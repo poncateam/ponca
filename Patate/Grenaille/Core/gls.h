@@ -4,6 +4,17 @@
 
 namespace Grenaille
 {
+
+  /*!
+    Growing Least Squares reparemetrization.
+    
+    Requierement: PROVIDES_ALGEBRAIC_SPHERE
+    Provide:      PROVIDES_GLS_PARAMETRIZATION
+    
+    Computed values:
+     - tau(), eta() and kappa():
+     - tau_normalized(), eta_normalized() and kappa_normalized(): scale invariants
+   */
   template < class DataPoint, class _WFunctor, typename T>
   class GLSParam : public T{
   private:
