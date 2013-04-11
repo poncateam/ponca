@@ -13,7 +13,7 @@ namespace Grenaille{
 			      const DataPoint&  attributes)
     { return _der().w(relativeQuery, attributes); }   
        
-    MULTIARCH inline Scalar spacedw(const VectorType& relativeQuery, 
+    MULTIARCH inline VectorType spacedw(const VectorType& relativeQuery, 
 				    const DataPoint&  attributes)
     { return _der().spacedw(relativeQuery, attributes); }   
        
@@ -37,13 +37,39 @@ namespace Grenaille{
     
     MULTIARCH inline DistWeightFunc(const Scalar& t = Scalar(1.)): _t(t) {}
 
-    MULTIARCH inline Scalar w(const VectorType& relativeQuery, 
-		       const DataPoint&  /*attributes*/);
+    /*!
+      Compute a weight using the norm of the query \f$ \mathbf{q} \f$ 
+      (expressed in centered basis)
+     */
+    MULTIARCH inline Scalar w(const VectorType& q, 
+			      const DataPoint&  /*attributes*/);
     
-    MULTIARCH inline Scalar spacedw(const VectorType& relativeQuery, 
+    
+    /*!
+      First order derivative in space (for each dimension \f$\mathsf{x})\f$:
+      
+      \f$ \frac{\delta \frac{\mathbf{q}}{t}}{\delta \mathsf{x}} 
+      \nabla w(\frac{\mathbf{q}}{t}) 
+      = \frac{ \nabla{w(\frac{\mathbf{q}}{t})}}{t}  \f$
+      
+      where \f$ \mathbf{q} \f$ represent the query coordinate expressed in 
+      centered basis.
+    */
+    MULTIARCH inline VectorType spacedw(const VectorType& q, 
 			     const DataPoint&  /*attributes*/);
        
-    MULTIARCH inline Scalar scaledw(const VectorType& relativeQuery, 
+    
+    /*!
+      First order derivative in scale t:
+      
+      \f$ \frac{\delta \frac{\mathbf{q}}{t}}{\delta t} 
+      \nabla w(\frac{\mathbf{q}}{t}) 
+      = - \frac{\mathbf{q}}{t^2} \nabla{w(\frac{\mathbf{q}}{t})} \f$
+      
+      where \f$ \mathbf{q} \f$ represent the query coordinate expressed in 
+      centered basis.
+    */
+    MULTIARCH inline Scalar scaledw(const VectorType& q, 
 			     const DataPoint&  /*attributes*/);
 
   protected:

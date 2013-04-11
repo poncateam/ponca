@@ -49,7 +49,7 @@ typedef MyPoint::VectorType VectorType;
 
 // Define related structure
 typedef DistWeightFunc<MyPoint,SmoothWeightKernel<Scalar> > WeightFunc; 
-typedef Basket<MyPoint,WeightFunc,OrientedSphereFit, GLSParam> Fit;
+typedef Basket<MyPoint,WeightFunc,OrientedSphereFit, GLSParam, OrientedSphereScaleDer> Fit;
 
 
 

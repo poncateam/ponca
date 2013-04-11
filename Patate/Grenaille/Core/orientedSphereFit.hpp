@@ -108,3 +108,92 @@ OrientedSphereFit<DataPoint, _WFunctor, T>::project( VectorType q ){
   //return normalize(other-_center) * _r + _center;
 }
 
+
+
+namespace internal{
+
+  template < class DataPoint, class _WFunctor, typename T, int Type>
+  void 
+  OrientedSphereDer<DataPoint, _WFunctor, T, Type>::init(const VectorType& evalPos){
+    Base::init(evalPos);
+
+    for (unsigned int d = 0; d < derDimension(); d++){
+
+      _dSumN[d]     = VectorType::Zero();
+      _dSumP[d]     = VectorType::Zero();
+        
+      _dSumDotPN[d] = Scalar(0.0);
+      _dSumDotPP[d] = Scalar(0.0);
+      _dSumW[d]     = Scalar(0.0);
+        
+      _dUc[d] = Scalar(0.0);
+      _dUq[d] = Scalar(0.0);
+      _dUl[d] = VectorType::Zero();
+    }
+  }
+
+
+  template < class DataPoint, class _WFunctor, typename T, int Type>
+  void 
+  OrientedSphereDer<DataPoint, _WFunctor, T, Type>::addNeighbor(const DataPoint  &nei){
+    Base::addNeighbor(nei);
+
+    int spaceId = (Type & FitScaleDer) ? 1 : 0;
+
+    ScalarArray w;
+
+    // centered basis
+    VectorType q = nei.pos()-Base::_p;
+
+    // compute weight
+    if (Type & FitScaleDer)
+      w[0] = Base::_w.scaledw(q, nei);
+
+    if (Type & FitSpaceDer){
+      VectorType vw = Base::_w.spacedw(q, nei);
+      for(unsigned int i = 0; i < DataPoint::Dim; i++)
+	w [spaceId+i] = vw[i];
+    }
+
+    // increment
+    for (unsigned int d = 0; d < derDimension(); d++){
+      _dSumW[d]     += w[d];
+      _dSumP[d]     += w[d] * q;
+      _dSumN[d]     += w[d] * nei.normal();
+      _dSumDotPN[d] += w[d] * nei.normal().dot(q);
+      _dSumDotPP[d] += w[d] * q.squaredNorm();
+    }
+  }
+
+
+  template < class DataPoint, class _WFunctor, typename T, int Type>
+  void 
+  OrientedSphereDer<DataPoint, _WFunctor, T, Type>::finalize(){
+    MULTIARCH_STD_MATH(sqrt);
+
+    Base::finalize();
+    
+    if (Base::_sumW != Scalar(0.)){
+
+      Scalar invSumW = Scalar(1.)/Base::_sumW;
+
+      Scalar nume  = Base::_sumDotPN - invSumW*Base::_sumP.dot(Base::_sumN);
+      Scalar deno  = Base::_sumDotPP - invSumW*Base::_sumP.dot(Base::_sumP);
+
+      // increment
+      for (unsigned int d = 0; d < derDimension(); d++){
+	Scalar dNume = _dSumDotPN[d] - invSumW*invSumW*(
+							Base::_sumW*(_dSumP[d].dot(Base::_sumN)+Base::_sumP.dot(_dSumN[d])) - _dSumW[d]*Base::_sumP.dot(Base::_sumN));
+	Scalar dDeno = _dSumDotPP[d] - invSumW*invSumW*( Scalar(2.)*Base::_sumW*_dSumP[d].dot(Base::_sumP)
+							 - _dSumW[d]*Base::_sumP.dot(Base::_sumP));
+
+	_dUq[d] = Scalar(.5) * (deno * dNume - dDeno * nume)/(deno*deno);
+	_dUl[d] = invSumW*((_dSumN[d] - Scalar(2.)*(_dSumP[d]*Base::_uq+Base::_sumP*_dUq[d])) - _dSumW[d]*Base::_ul);
+	_dUc[d] = -invSumW*( _dUl[d].dot(Base::_sumP) + _dUq[d]*Base::_sumDotPP + Base::_ul.dot(_dSumP[d])
+			     + Base::_uq*_dSumDotPP[d] + _dSumW[d]*Base::_uc);
+      }
+    }
+
+  }
+
+}// namespace internal

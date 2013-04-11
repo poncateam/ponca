@@ -36,8 +36,11 @@ namespace Grenaille{
     typedef _Scalar Scalar;
 
     // Functor
+    /*! Define the smooth weighting function \f$ w(x) = (x^2-1)^2 \f$ */
     MULTIARCH inline Scalar f  (const Scalar& x) const { Scalar v = x*x - Scalar(1.); return v*v; }
+    /*! Define the smooth first order weighting function \f$ \nabla w(x) = 4x(x^2-1) \f$ */
     MULTIARCH inline Scalar df (const Scalar& x) const { return Scalar(4.)*x*(x*x-Scalar(1.)); }
+    /*! Define the smooth second order weighting function \f$ \nabla^2 w(x) = 12x^2-4 \f$ */
     MULTIARCH inline Scalar ddf(const Scalar& x) const { return Scalar(12.)*x*x - Scalar(4.); }
   };//class SmoothWeightKernel
 
