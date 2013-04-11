@@ -2,12 +2,6 @@
 #define _GRENAILLE_ORIENTED_SPHERE_FIT_
 
 
-#ifndef __CUDA_ARCH__
-#include <math.h>
-#endif
-
-
-
 namespace Grenaille
 {
   template < class DataPoint, class _WFunctor, typename T = void >
