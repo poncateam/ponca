@@ -17,6 +17,7 @@
 
 #include <vector>
 using namespace std;
+using namespace Grenaille;
 
 // Define our working data structure
 class MyPoint{
@@ -47,8 +48,8 @@ typedef MyPoint::Scalar Scalar;
 typedef MyPoint::VectorType VectorType;
 
 // Define related structure
-typedef Grenaille::DistWeightFunc<MyPoint,Grenaille::SmoothWeightKernel<Scalar> > WeightFunc; 
-typedef Grenaille::Basket<MyPoint,WeightFunc,Grenaille::OrientedSphereFit> Fit;
+typedef DistWeightFunc<MyPoint,SmoothWeightKernel<Scalar> > WeightFunc; 
+typedef Basket<MyPoint,WeightFunc,OrientedSphereFit, GLSParam> Fit;
 
 
 
@@ -75,6 +76,13 @@ int main() {
   
   fit.finalize();
   
-  cout << p.transpose() << "->" << fit.project(p).transpose() << endl;
+  cout << "Fitted Sphere: " << endl
+       << "\t Tau  : " << fit.tau() << endl
+       << "\t Eta  : " << fit.eta().transpose() << endl
+       << "\t Kappa: " << fit.kappa() << endl;
+    
+  cout << "The initial point " << p.transpose() << endl
+       << "Is projected at   " << fit.project(p).transpose() << endl;
+  
   
 }
