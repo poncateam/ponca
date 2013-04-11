@@ -37,13 +37,13 @@ namespace Grenaille{
     
     MULTIARCH inline DistWeightFunc(const Scalar& t = Scalar(1.)): _t(t) {}
 
-    MULTIARCH Scalar w(const VectorType& relativeQuery, 
+    MULTIARCH inline Scalar w(const VectorType& relativeQuery, 
 		       const DataPoint&  /*attributes*/);
     
-    MULTIARCH Scalar spacedw(const VectorType& relativeQuery, 
+    MULTIARCH inline Scalar spacedw(const VectorType& relativeQuery, 
 			     const DataPoint&  /*attributes*/);
        
-    MULTIARCH Scalar scaledw(const VectorType& relativeQuery, 
+    MULTIARCH inline Scalar scaledw(const VectorType& relativeQuery, 
 			     const DataPoint&  /*attributes*/);
 
   protected:
