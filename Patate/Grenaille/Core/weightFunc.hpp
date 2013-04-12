@@ -20,11 +20,10 @@ DistWeightFunc<DataPoint, WeightKernel>::spacedw(const VectorType& q,
   return result;
 }
 
-/* \todo Implement ! */
 template <class DataPoint, class WeightKernel>
 typename DistWeightFunc<DataPoint, WeightKernel>::Scalar
 DistWeightFunc<DataPoint, WeightKernel>::scaledw(const VectorType& q, 
 						 const DataPoint&){
   Scalar d  = q.norm();  
-  return (d <= _t) ? _wk.df(d/_t) : Scalar(0.);
+  return (d <= _t) ? ( - d*_wk.df(d/_t)/(_t*_t) ) : Scalar(0.);
 }
