@@ -7,6 +7,12 @@ namespace Grenaille
 {
   /*!
     \brief Algebraic Sphere Fitting on oriented point sets
+    
+
+    Provide: 
+    \verbatim PROVIDES_ALGEBRAIC_SPHERE \endverbatim
+
+    \todo Deal with planar case
    */
   template < class DataPoint, class _WFunctor, typename T = void >
   class OrientedSphereFit {
@@ -48,7 +54,6 @@ namespace Grenaille
     MULTIARCH inline void init (const VectorType& evalPos);
 
     // processing
-    //\todo Change impl
     MULTIARCH inline void addNeighbor(const DataPoint &nei);
     MULTIARCH inline void finalize   ();
     
@@ -135,6 +140,14 @@ namespace Grenaille
 
   }// namespace internal  
 
+  /*!
+    \brief Differentiation in scale of the OrientedSphereFit
+    
+    Requierement: 
+    \verbatim PROVIDES_ALGEBRAIC_SPHERE \endverbatim
+    Provide: 
+    \verbatim PROVIDES_ALGEBRAIC_SPHERE_SCALE_DERIVATIVE \endverbatim
+  */
   template < class DataPoint, class _WFunctor, typename T>
   class OrientedSphereScaleDer:public internal::OrientedSphereDer<DataPoint, _WFunctor, T, internal::FitScaleDer>
   {
@@ -147,6 +160,15 @@ namespace Grenaille
     typedef typename Base::WFunctor   WFunctor;
   };
 
+
+  /*!
+    \brief Spatial differentiation of the OrientedSphereFit
+    
+    Requierement: 
+    \verbatim PROVIDES_ALGEBRAIC_SPHERE \endverbatim
+    Provide: 
+    \verbatim PROVIDES_ALGEBRAIC_SPHERE_SPACE_DERIVATIVE \endverbatim
+  */
   template < class DataPoint, class _WFunctor, typename T>
   class OrientedSphereSpaceDer:public internal::OrientedSphereDer<DataPoint, _WFunctor, T, internal::FitSpaceDer>
   {
@@ -159,6 +181,17 @@ namespace Grenaille
     typedef typename Base::WFunctor   WFunctor;
   };
 
+
+  /*!
+    \brief Differentiation both in scale and space of the OrientedSphereFit
+    
+    Requierement: 
+    \verbatim PROVIDES_ALGEBRAIC_SPHERE \endverbatim
+    Provide: 
+    \verbatim PROVIDES_ALGEBRAIC_SPHERE_SCALE_DERIVATIVE 
+    PROVIDES_ALGEBRAIC_SPHERE_SPACE_DERIVATIVE
+    \endverbatim
+  */
   template < class DataPoint, class _WFunctor, typename T>
   class OrientedSphereScaleSpaceDer:public internal::OrientedSphereDer<DataPoint, _WFunctor, T, internal::FitSpaceDer | internal::FitScaleDer>
   {

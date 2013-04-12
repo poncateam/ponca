@@ -6,14 +6,20 @@ namespace Grenaille
 {
 
   /*!
-    Growing Least Squares reparemetrization.
+    \brief Growing Least Squares reparemetrization of the OrientedSphereFit
     
-    Requierement: PROVIDES_ALGEBRAIC_SPHERE
-    Provide:      PROVIDES_GLS_PARAMETRIZATION
+    Requierement: 
+    \verbatim PROVIDES_ALGEBRAIC_SPHERE \endverbatim
+    Provide: 
+    \verbatim PROVIDES_GLS_PARAMETRIZATION \endverbatim
     
     Computed values:
-     - tau(), eta() and kappa():
-     - tau_normalized(), eta_normalized() and kappa_normalized(): scale invariants
+     - tau(), eta() and kappa(): the GLS descriptor 
+     \f$ \left[ \tau \; \eta \; \kappa \right]\f$ 
+     - tau_normalized(), eta_normalized() and kappa_normalized(): 
+     the scale invariant GLS descriptor
+     \f$ \left[ \frac{\tau}{t} \; \eta \; t\kappa \right]\f$ 
+     
    */
   template < class DataPoint, class _WFunctor, typename T>
   class GLSParam : public T{

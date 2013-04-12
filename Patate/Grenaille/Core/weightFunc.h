@@ -48,12 +48,12 @@ namespace Grenaille{
     /*!
       First order derivative in space (for each dimension \f$\mathsf{x})\f$:
       
-      \f$ \frac{\delta \frac{\mathbf{q}}{t}}{\delta \mathsf{x}} 
-      \nabla w(\frac{\mathbf{q}}{t}) 
-      = \frac{ \nabla{w(\frac{\mathbf{q}}{t})}}{t}  \f$
+      \f$ \frac{\delta \frac{\mathbf{q}_\mathsf{x}}{t}}{\delta \mathsf{x}} 
+      \nabla w(\frac{\mathbf{q}_\mathsf{x}}{t}) 
+      = \frac{ \nabla{w(\frac{\mathbf{q}_\mathsf{x}}{t})}}{t}  \f$
       
-      where \f$ \mathbf{q} \f$ represent the query coordinate expressed in 
-      centered basis.
+      where \f$ \mathbf{q}_\mathsf{x} \f$ represent the query coordinate in 
+      the spatial dimension \f$ \mathsf{x}\f$ expressed in centered basis.
     */
     MULTIARCH inline VectorType spacedw(const VectorType& q, 
 			     const DataPoint&  /*attributes*/);

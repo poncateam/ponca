@@ -73,7 +73,6 @@ OrientedSphereFit<DataPoint, _WFunctor, T>::finalize (){
 
 
 /*!
-  \todo Check Cuda bug with std::min
 */
 template < class DataPoint, class _WFunctor, typename T>
 typename DataPoint::VectorType
