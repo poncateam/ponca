@@ -2,7 +2,7 @@
 #define _GRENAILLE_WEIGHT_KERNEL_
 
 /*!
-  \file weightKernel Define 1D weight kernel functors
+  \file weightKernel.h Define 1D weight kernel functors
  */
 
 

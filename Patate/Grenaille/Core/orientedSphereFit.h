@@ -57,19 +57,28 @@ namespace Grenaille
     MULTIARCH inline void addNeighbor(const DataPoint &nei);
     MULTIARCH inline void finalize   ();
     
-    //! compute the squared Pratt norm of the implicit scalar field
-    MULTIARCH inline Scalar prattNorm2() const {
-      return _ul.squaredNorm() - Scalar(4.) * _uc*_uq;
-    }
-    
     //! compute the Pratt norm of the implicit scalar field
     MULTIARCH inline Scalar prattNorm() const {
       MULTIARCH_STD_MATH(sqrt);
       return sqrt(prattNorm2());
     }
     
+    //! compute the squared Pratt norm of the implicit scalar field
+    MULTIARCH inline Scalar prattNorm2() const {
+      return _ul.squaredNorm() - Scalar(4.) * _uc*_uq;
+    }
+
+    //! Normalize the scalar field by the Pratt norm
+    MULTIARCH inline void prattNormalize() {
+      Scalar pn = prattNorm();
+      _uc /= pn;
+      _ul *= Scalar(1.)/pn;
+      _uq /= pn;
+    }
+    
     //! Project a point on the sphere
     MULTIARCH inline VectorType project (VectorType q);
+
     
     //    MULTIARCH VectorType gradient(VectorType q, bool normalize = true);
 
