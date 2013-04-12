@@ -37,6 +37,9 @@ namespace Grenaille
     
     WFunctor _w;
 
+    // Is the implicit scalar field normalized using Pratt
+    bool _isNormalized;
+
     // results
   public:
     Scalar _uc, _uq;
@@ -57,24 +60,33 @@ namespace Grenaille
     MULTIARCH inline void addNeighbor(const DataPoint &nei);
     MULTIARCH inline void finalize   ();
     
-    //! compute the Pratt norm of the implicit scalar field
+    //! compute the Pratt norm of the implicit scalar field.
     MULTIARCH inline Scalar prattNorm() const {
       MULTIARCH_STD_MATH(sqrt);
       return sqrt(prattNorm2());
     }
     
-    //! compute the squared Pratt norm of the implicit scalar field
+    //! compute the squared Pratt norm of the implicit scalar field.
     MULTIARCH inline Scalar prattNorm2() const {
       return _ul.squaredNorm() - Scalar(4.) * _uc*_uq;
     }
 
     //! Normalize the scalar field by the Pratt norm
-    MULTIARCH inline void prattNormalize() {
+    /*!
+      Return false when an error occured during the normalization.
+     */
+    MULTIARCH inline bool applyPrattNorm() {
       Scalar pn = prattNorm();
       _uc /= pn;
       _ul *= Scalar(1.)/pn;
       _uq /= pn;
+
+      _isNormalized = true;
+      return true;
     }
+    
+    //! State that indicates if the sphere has been normalized 
+    MULTIARCH inline bool isNormalized() const { return _isNormalized; }
     
     //! Project a point on the sphere
     MULTIARCH inline VectorType project (VectorType q);
@@ -144,6 +156,14 @@ namespace Grenaille
       }
 
       MULTIARCH inline unsigned int derDimension() const { return VectorArray::size();}
+
+
+      //! Normalize the scalar field by the Pratt norm
+      /*!
+	\warning Requieres that isNormalized() return false
+	\return false when the original sphere has already been normalized.
+       */
+      MULTIARCH inline bool applyPrattNorm();
 
     }; //class OrientedSphereFitDer
 

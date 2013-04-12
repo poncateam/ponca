@@ -75,6 +75,7 @@ int main() {
     fit.addNeighbor(*it);
   
   fit.finalize();
+  fit.applyPrattNorm();
   
   cout << "Fitted Sphere: " << endl
        << "\t Tau  : " << fit.tau() << endl

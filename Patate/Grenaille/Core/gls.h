@@ -40,7 +40,7 @@ namespace Grenaille
 
 
     MULTIARCH inline Scalar     tau()   const 
-    {return Base::_uc / Base::prattNorm();}
+    {return Base::isNormalized() ? Base::_uc : Base::_uc / Base::prattNorm();}
 
     MULTIARCH inline VectorType eta()   const 
     {return Base::_ul * ( Scalar(1.) / Base::_ul.norm());}

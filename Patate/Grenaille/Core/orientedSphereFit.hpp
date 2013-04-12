@@ -4,6 +4,8 @@ template < class DataPoint, class _WFunctor, typename T>
 void 
 OrientedSphereFit<DataPoint, _WFunctor, T>::init(const VectorType& evalPos){
   _p    = evalPos;
+
+  _isNormalized = false;
     
   // initial values
   _sumP     = VectorType::Zero();
@@ -69,6 +71,8 @@ OrientedSphereFit<DataPoint, _WFunctor, T>::finalize (){
     _uc = s*_uc;
     _uq = Scalar(0.);
   }
+
+  _isNormalized = false;
 }
 
 
@@ -195,4 +199,28 @@ namespace internal{
 
   }
 
+  
+  template < class DataPoint, class _WFunctor, typename T, int Type>
+  bool
+  OrientedSphereDer<DataPoint, _WFunctor, T, Type>::applyPrattNorm() {
+    if(Base::isNormalized())
+      return false; //need original parameters without Pratt Normalization
+
+    MULTIARCH_STD_MATH(sqrt);
+    Scalar pn2    = Base::prattNorm2();
+    Scalar pn     = sqrt(pn2);
+    
+    for (unsigned int d = 0; d < derDimension(); d++){
+      Scalar dpn2   = dprattNorm2(d);
+      Scalar factor = Scalar(0.5) * dpn2 / pn;	
+      
+      _dUc[d] = ( _dUc[d] * pn - Base::_uc * factor ) / pn2;
+      _dUl[d] = ( _dUl[d] * pn - Base::_ul * factor ) / pn2;
+      _dUq[d] = ( _dUq[d] * pn - Base::_uq * factor ) / pn2;
+    }
+    
+    Base::applyPrattNorm();
+    return true;
+  }
+  
 }// namespace internal
