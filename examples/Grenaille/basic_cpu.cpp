@@ -49,7 +49,7 @@ typedef MyPoint::VectorType VectorType;
 
 // Define related structure
 typedef DistWeightFunc<MyPoint,SmoothWeightKernel<Scalar> > WeightFunc; 
-typedef Basket<MyPoint,WeightFunc,OrientedSphereFit, GLSParam, OrientedSphereScaleDer> Fit;
+typedef Basket<MyPoint,WeightFunc,OrientedSphereFit, GLSParam, OrientedSphereScaleDer, GLSDer> Fit;
 
 
 
@@ -59,7 +59,7 @@ int main() {
   VectorType p = VectorType::Random();
   
   // init input data
-  int n = 10;
+  int n = 100;
   vector<MyPoint> vecs (n);
 
   fill(vecs.begin(), vecs.end(), MyPoint::Random());
@@ -75,7 +75,8 @@ int main() {
     fit.addNeighbor(*it);
   
   fit.finalize();
-  fit.applyPrattNorm();
+
+  cout << "Pratt normalization" << (fit.applyPrattNorm() ? " is now done." : " has already been applied.") << endl;
   
   cout << "Fitted Sphere: " << endl
        << "\t Tau  : " << fit.tau() << endl
@@ -84,6 +85,13 @@ int main() {
     
   cout << "The initial point " << p.transpose() << endl
        << "Is projected at   " << fit.project(p).transpose() << endl;
+
+  Fit::ScalarArray dtau = fit.dtau();
+
+  cout << "dtau: " << dtau[0] 
+       << " , "    << dtau[1]
+       << " , "    << dtau[2]
+       << endl;
   
   
 }
