@@ -6,11 +6,12 @@ namespace Grenaille{
 
 
 
+  namespace internal{
+    template <class, class, typename T> class Forward: public T {};
+  }
 
-  template <class, class, typename T> class Forward: public T {};
 
-
-#define BASKET_TP(I) template <class, class, typename> class Ext##I = Forward
+#define BASKET_TP(I) template <class, class, typename> class Ext##I = internal::Forward
   /*!
 
     \brief 
