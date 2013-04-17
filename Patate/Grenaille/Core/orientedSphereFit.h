@@ -155,6 +155,8 @@ namespace Grenaille
         return sqrt(dprattNorm2(d));
       }
 
+      MULTIARCH inline bool isScaleDer() const {return Type & FitScaleDer;}
+      MULTIARCH inline bool isSpaceDer() const {return Type & FitSpaceDer;}
       MULTIARCH inline unsigned int derDimension() const { return VectorArray::size();}
 
 
@@ -183,10 +185,6 @@ namespace Grenaille
   protected:
     typedef internal::OrientedSphereDer<DataPoint, _WFunctor, T, internal::FitScaleDer> Base;
     enum { PROVIDES_ALGEBRAIC_SPHERE_SCALE_DERIVATIVE };
-  public:
-    typedef typename Base::Scalar     Scalar;
-    typedef typename Base::VectorType VectorType;
-    typedef typename Base::WFunctor   WFunctor;
   };
 
 
@@ -204,10 +202,6 @@ namespace Grenaille
   protected:
     typedef internal::OrientedSphereDer<DataPoint, _WFunctor, T, internal::FitSpaceDer> Base;
     enum {  PROVIDES_ALGEBRAIC_SPHERE_SPACE_DERIVATIVE };
-  public:
-    typedef typename Base::Scalar     Scalar;
-    typedef typename Base::VectorType VectorType;
-    typedef typename Base::WFunctor   WFunctor;
   };
 
 
@@ -231,10 +225,6 @@ namespace Grenaille
         PROVIDES_ALGEBRAIC_SPHERE_SCALE_DERIVATIVE,
         PROVIDES_ALGEBRAIC_SPHERE_SPACE_DERIVATIVE
       };
-  public:
-    typedef typename Base::Scalar     Scalar;
-    typedef typename Base::VectorType VectorType;
-    typedef typename Base::WFunctor   WFunctor;
   };
 
 

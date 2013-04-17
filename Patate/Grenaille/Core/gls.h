@@ -57,6 +57,84 @@ namespace Grenaille
 
   }; //class GLSParam
 
+
+  // namespace internal{
+
+  //   GLSScaleDerPostProcess < class DataPoint, class GLSDer> {
+  //   public:
+  //     typedef typename Base::Scalar Scalar;
+
+  //     MULTIARCH inline GLSScaleDerPostProcess(const &GLSDer glsDer): 
+  // 	_glsDer(glsDer){}
+      
+  //     template <class GLSGenDer>
+  // 	MULTIARCH Scalar geomVar const(Scalar wtau, 
+  // 				       Scalar weta,
+  // 				       Scalar wkappa);
+      
+  //   protected:
+  //     const GLSDer& _glsDer;      
+  //   }; //class GLSScaleDerPostProcess
+
+  //   GLSSpaceDerPostProcess < class DataPoint> {
+  //   public:
+  //     typedef typename Base::Scalar Scalar;
+
+  //     MULTIARCH inline GLSScaleDerPostProcess(const &GLSDer glsDer): 
+  // 	_glsDer(glsDer){}
+      
+  //     template <class GLSGenDer>
+  //     MULTIARCH Scalar variationTensor const(Scalar wtau, 
+  // 					     Scalar weta,
+  // 					     Scalar wkappa);
+      
+  //   protected:
+  //     const GLSDer& _glsDer;
+  //   }; //class GLSScaleDerPostProcess
+
+    
+  // }
+
+  
+  /*!
+    \todo Implement all functions !
+   */
+  template < class DataPoint, class _WFunctor, typename T>
+  class GLSDer : public T{
+  private:
+    typedef T Base;
+
+  protected:
+    enum
+      {
+        Check = Base::PROVIDES_GLS_PARAMETRIZATION,
+        PROVIDES_GLS_DERIVATIVE
+      };
+
+  public:
+    typedef typename Base::Scalar     Scalar;
+    typedef typename Base::VectorType VectorType;
+    typedef typename Base::WFunctor   WFunctor;
+
+    typedef typename Base::VectorArray VectorArray;
+    typedef typename Base::ScalarArray ScalarArray;
+
+    MULTIARCH void finalize (){
+      Base::finalize();
+      Base::applyPrattNorm();
+    }    
+    
+    MULTIARCH inline ScalarArray dtau()   const;
+    MULTIARCH inline VectorArray deta()   const;
+    MULTIARCH inline ScalarArray dkappa() const;
+    
+    MULTIARCH inline ScalarArray dtau_normalized()   const;
+    MULTIARCH inline VectorArray deta_normalized()   const;
+    MULTIARCH inline ScalarArray dkappa_normalized() const;
+  }; //class GLSScaleDer
+
+  #include "gls.hpp"
+
 } //namespace Grenaille
 
 #endif
