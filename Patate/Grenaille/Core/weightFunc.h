@@ -10,19 +10,22 @@ namespace Grenaille{
     typedef typename DataPoint::VectorType VectorType;
       
     MULTIARCH inline Scalar w(const VectorType& relativeQuery, 
-			      const DataPoint&  attributes)
+			      const DataPoint&  attributes) const
     { return _der().w(relativeQuery, attributes); }   
        
     MULTIARCH inline VectorType spacedw(const VectorType& relativeQuery, 
-				    const DataPoint&  attributes)
+				    const DataPoint&  attributes) const
     { return _der().spacedw(relativeQuery, attributes); }   
        
     MULTIARCH inline Scalar scaledw(const VectorType& relativeQuery, 
-				    const DataPoint&  attributes)
+				    const DataPoint&  attributes) const
     { return _der().scaledw(relativeQuery, attributes); }
 
+    MULTIARCH inline Scalar evalScale() const
+    { return _der().evalScale(); }
+
   protected:
-    MULTIARCH inline Derived& _der() { return &static_cast<Derived*>(this); }    
+    MULTIARCH inline const Derived& _der() { return &static_cast<Derived*>(this); }    
   };// class BaseWeightFunc
 
 
@@ -42,7 +45,7 @@ namespace Grenaille{
       (expressed in centered basis)
      */
     MULTIARCH inline Scalar w(const VectorType& q, 
-			      const DataPoint&  /*attributes*/);
+			      const DataPoint&  /*attributes*/) const;
     
     
     /*!
@@ -56,7 +59,7 @@ namespace Grenaille{
       the spatial dimension \f$ \mathsf{x}\f$ expressed in centered basis.
     */
     MULTIARCH inline VectorType spacedw(const VectorType& q, 
-			     const DataPoint&  /*attributes*/);
+			     const DataPoint&  /*attributes*/) const;
        
     
     /*!
@@ -70,7 +73,9 @@ namespace Grenaille{
       centered basis.
     */
     MULTIARCH inline Scalar scaledw(const VectorType& q, 
-			     const DataPoint&  /*attributes*/);
+			     const DataPoint&  /*attributes*/) const;
+
+    MULTIARCH inline Scalar evalScale() const { return _t; }
 
   protected:
     Scalar       _t;

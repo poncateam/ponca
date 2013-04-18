@@ -39,6 +39,17 @@ namespace Grenaille
     typedef typename Base::WFunctor   WFunctor;
 
 
+  protected:
+    Scalar _t;
+
+  public:
+    MULTIARCH inline GLSParam() : _t(0) {}
+
+    MULTIARCH inline void setWeightFunc (const WFunctor& w){
+      Base::setWeightFunc(w);
+      _t = w.evalScale();
+    }
+
     MULTIARCH inline Scalar     tau()   const 
     {return Base::isNormalized() ? Base::_uc : Base::_uc / Base::prattNorm();}
 
@@ -48,9 +59,9 @@ namespace Grenaille
     MULTIARCH inline Scalar     kappa() const 
     {return Scalar(2.) * Base::_uq / Base::prattNorm();}
     
-    MULTIARCH inline Scalar     tau_normalized()   const {return tau()/Base::_tmax;}
+    MULTIARCH inline Scalar     tau_normalized()   const {return tau()/_t;}
     MULTIARCH inline VectorType eta_normalized()   const {return eta();}
-    MULTIARCH inline Scalar     kappa_normalized() const {return kappa()*Base::_tmax;}
+    MULTIARCH inline Scalar     kappa_normalized() const {return kappa()*_t;}
     
     MULTIARCH inline Scalar     fitness() const {
         return Scalar(1.) - Base::_ul.squaredNorm() - Scalar(4.) * Base::_uc * Base::_uq;}
@@ -97,7 +108,6 @@ namespace Grenaille
 
   
   /*!
-    \todo Implement all functions !
    */
   template < class DataPoint, class _WFunctor, typename T>
   class GLSDer : public T{
