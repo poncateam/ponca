@@ -74,3 +74,17 @@ GLSDer <DataPoint, _WFunctor, T>::dkappa_normalized() const{
   return dkappa()*Base::_t*Base::_t;
 }
 
+
+
+
+template < class DataPoint, class _WFunctor, typename T>
+typename GLSGeomVar <DataPoint, _WFunctor, T>::Scalar
+GLSGeomVar <DataPoint, _WFunctor, T>::geomVar(Scalar wtau, 
+							     Scalar weta,
+							     Scalar wkappa) const{
+        Scalar dtau   = Base::dtau_normalized()[0];
+        Scalar deta   = Base::deta_normalized()[0].norm();
+        Scalar dkappa = Base::dkappa_normalized()[0];
+        return wtau*dtau*dtau + weta*deta*deta + wkappa*dkappa*dkappa;
+  
+}

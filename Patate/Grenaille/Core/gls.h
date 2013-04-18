@@ -12,6 +12,14 @@ namespace Grenaille
     \verbatim PROVIDES_ALGEBRAIC_SPHERE \endverbatim
     Provide: 
     \verbatim PROVIDES_GLS_PARAMETRIZATION \endverbatim
+
+    
+    This class assumes that the WeightFunc define the accessor
+    \code
+    w.evalScale();
+    \endcode
+    in order to access to the evaluation scale, needed to compute the 
+    scale invariant GLS reparametrization (all *_normalized methods).
     
     Computed values:
      - tau(), eta() and kappa(): the GLS descriptor 
@@ -68,46 +76,10 @@ namespace Grenaille
 
   }; //class GLSParam
 
-
-  // namespace internal{
-
-  //   GLSScaleDerPostProcess < class DataPoint, class GLSDer> {
-  //   public:
-  //     typedef typename Base::Scalar Scalar;
-
-  //     MULTIARCH inline GLSScaleDerPostProcess(const &GLSDer glsDer): 
-  // 	_glsDer(glsDer){}
-      
-  //     template <class GLSGenDer>
-  // 	MULTIARCH Scalar geomVar const(Scalar wtau, 
-  // 				       Scalar weta,
-  // 				       Scalar wkappa);
-      
-  //   protected:
-  //     const GLSDer& _glsDer;      
-  //   }; //class GLSScaleDerPostProcess
-
-  //   GLSSpaceDerPostProcess < class DataPoint> {
-  //   public:
-  //     typedef typename Base::Scalar Scalar;
-
-  //     MULTIARCH inline GLSScaleDerPostProcess(const &GLSDer glsDer): 
-  // 	_glsDer(glsDer){}
-      
-  //     template <class GLSGenDer>
-  //     MULTIARCH Scalar variationTensor const(Scalar wtau, 
-  // 					     Scalar weta,
-  // 					     Scalar wkappa);
-      
-  //   protected:
-  //     const GLSDer& _glsDer;
-  //   }; //class GLSScaleDerPostProcess
-
-    
-  // }
-
   
   /*!
+    \brief Differentiation of GLSParam
+
    */
   template < class DataPoint, class _WFunctor, typename T>
   class GLSDer : public T{
@@ -142,6 +114,30 @@ namespace Grenaille
     MULTIARCH inline VectorArray deta_normalized()   const;
     MULTIARCH inline ScalarArray dkappa_normalized() const;
   }; //class GLSScaleDer
+
+
+  /*!
+    \brief Extension to compute the Geometric Variation of the GLSParam
+   */
+  template < class DataPoint, class _WFunctor, typename T>
+  class GLSGeomVar : public T{
+  private:
+    typedef T Base;
+
+  protected:
+    enum
+      {
+        Check = Base::PROVIDES_ALGEBRAIC_SPHERE_SCALE_DERIVATIVE & Base::PROVIDES_GLS_DERIVATIVE,
+	PROVIDES_GLS_GEOM_VAR
+      };
+
+  public:
+    typedef typename Base::Scalar Scalar;
+
+    MULTIARCH inline Scalar geomVar(Scalar wtau   = Scalar(1), 
+				    Scalar weta   = Scalar(1),
+				    Scalar wkappa = Scalar(1)) const;
+  };
 
   #include "gls.hpp"
 

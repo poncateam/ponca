@@ -49,7 +49,7 @@ typedef MyPoint::VectorType VectorType;
 
 // Define related structure
 typedef DistWeightFunc<MyPoint,SmoothWeightKernel<Scalar> > WeightFunc; 
-typedef Basket<MyPoint,WeightFunc,OrientedSphereFit, GLSParam, OrientedSphereScaleDer, GLSDer> Fit;
+typedef Basket<MyPoint,WeightFunc,OrientedSphereFit, GLSParam, OrientedSphereScaleSpaceDer, GLSDer, GLSGeomVar> Fit;
 
 
 
@@ -59,7 +59,7 @@ int main() {
   VectorType p = VectorType::Random();
   
   // init input data
-  int n = 100;
+  int n = 1000;
   vector<MyPoint> vecs (n);
 
   fill(vecs.begin(), vecs.end(), MyPoint::Random());
@@ -86,12 +86,14 @@ int main() {
   cout << "The initial point " << p.transpose() << endl
        << "Is projected at   " << fit.project(p).transpose() << endl;
 
-  Fit::ScalarArray dtau = fit.dtau();
+  Fit::ScalarArray dtau = fit.dkappa_normalized();
 
-  cout << "dtau: " << dtau[0] 
+  cout << "dkappa: " << dtau[0] 
        << " , "    << dtau[1]
        << " , "    << dtau[2]
        << endl;
+
+  cout << "geomVar: " << fit.geomVar() << endl;
   
   
 }
