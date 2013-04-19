@@ -26,15 +26,15 @@ public:
   typedef double Scalar;
   typedef Eigen::Matrix<Scalar, Dim, 1> VectorType;
 
-  inline MyPoint(const VectorType &pos    = VectorType::Zero(), 
+  MULTIARCH inline MyPoint(const VectorType &pos    = VectorType::Zero(), 
 		 const VectorType& normal = VectorType::Zero())
     : _pos(pos), _normal(normal) {}
     
-  inline const VectorType& pos()    const { return _pos; }  
-  inline const VectorType& normal() const { return _normal; }
+  MULTIARCH inline const VectorType& pos()    const { return _pos; }  
+  MULTIARCH inline const VectorType& normal() const { return _normal; }
 
-  inline VectorType& pos()    { return _pos; }  
-  inline VectorType& normal() { return _normal; }
+  MULTIARCH inline VectorType& pos()    { return _pos; }  
+  MULTIARCH inline VectorType& normal() { return _normal; }
 
   static inline MyPoint Random() { 
     return MyPoint (VectorType::Random(), VectorType::Random());
@@ -49,7 +49,7 @@ typedef MyPoint::VectorType VectorType;
 
 // Define related structure
 typedef DistWeightFunc<MyPoint,SmoothWeightKernel<Scalar> > WeightFunc; 
-typedef Basket<MyPoint,WeightFunc,OrientedSphereFit, GLSParam, OrientedSphereScaleSpaceDer, GLSDer, GLSGeomVar> Fit;
+typedef Basket<MyPoint,WeightFunc,OrientedSphereFit, GLSParam, OrientedSphereScaleDer, GLSDer, GLSGeomVar> Fit;
 
 
 
