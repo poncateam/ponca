@@ -43,7 +43,7 @@ GLSDer <DataPoint, _WFunctor, T>::dkappa() const{
   Scalar cfactor    = Scalar(.5) / prattNorm;
   
   for (unsigned int d = 0; d < Base::derDimension(); d++)
-    result[d] = Scalar(2.) * (Base::_dUq[d] * prattNorm - Base::_uc * cfactor * Base::dprattNorm2(d)) / prattNorm2;
+    result[d] = Scalar(2.) * (Base::_dUq[d] * prattNorm - Base::_uq * cfactor * Base::dprattNorm2(d)) / prattNorm2;
   return result;
 }
 
@@ -82,9 +82,9 @@ typename GLSGeomVar <DataPoint, _WFunctor, T>::Scalar
 GLSGeomVar <DataPoint, _WFunctor, T>::geomVar(Scalar wtau, 
 							     Scalar weta,
 							     Scalar wkappa) const{
-        Scalar dtau   = Base::dtau_normalized()[0];
-        Scalar deta   = Base::deta_normalized()[0].norm();
-        Scalar dkappa = Base::dkappa_normalized()[0];
-        return wtau*dtau*dtau + weta*deta*deta + wkappa*dkappa*dkappa;
+  Scalar dtau   = Base::dtau_normalized()[0];
+  Scalar deta   = Base::deta_normalized()[0].norm();
+  Scalar dkappa = Base::dkappa_normalized()[0];
+  return wtau*dtau*dtau + weta*deta*deta + wkappa*dkappa*dkappa;
   
 }

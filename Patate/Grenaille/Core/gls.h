@@ -62,10 +62,10 @@ namespace Grenaille
     {return Base::isNormalized() ? Base::_uc : Base::_uc / Base::prattNorm();}
 
     MULTIARCH inline VectorType eta()   const 
-    {return Base::_ul * ( Scalar(1.) / Base::_ul.norm());}
+    {return Base::_ul / Base::_ul.norm();}
 
     MULTIARCH inline Scalar     kappa() const 
-    {return Scalar(2.) * Base::_uq / Base::prattNorm();}
+    {return Scalar(2.) * (Base::isNormalized() ? Base::_uq : Base::_uq / Base::prattNorm());}
     
     MULTIARCH inline Scalar     tau_normalized()   const {return tau()/_t;}
     MULTIARCH inline VectorType eta_normalized()   const {return eta();}
@@ -99,12 +99,7 @@ namespace Grenaille
     typedef typename Base::WFunctor   WFunctor;
 
     typedef typename Base::VectorArray VectorArray;
-    typedef typename Base::ScalarArray ScalarArray;
-
-    MULTIARCH void finalize (){
-      Base::finalize();
-      Base::applyPrattNorm();
-    }    
+    typedef typename Base::ScalarArray ScalarArray;   
     
     MULTIARCH inline ScalarArray dtau()   const;
     MULTIARCH inline VectorArray deta()   const;

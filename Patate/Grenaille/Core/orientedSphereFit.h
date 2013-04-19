@@ -76,12 +76,14 @@ namespace Grenaille
       Return false when an error occured during the normalization.
      */
     MULTIARCH inline bool applyPrattNorm() {
-      Scalar pn = prattNorm();
-      _uc /= pn;
-      _ul *= Scalar(1.)/pn;
-      _uq /= pn;
+      if (! _isNormalized){
+        Scalar pn = prattNorm();
+        _uc /= pn;
+        _ul *= Scalar(1.)/pn;
+        _uq /= pn;
 
-      _isNormalized = true;
+        _isNormalized = true;
+      }
       return true;
     }
     
