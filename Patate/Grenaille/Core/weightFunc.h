@@ -25,7 +25,7 @@ namespace Grenaille{
     { return _der().evalScale(); }
 
   protected:
-    MULTIARCH inline const Derived& _der() { return &static_cast<Derived*>(this); }    
+    MULTIARCH inline const Derived& _der() const { return &static_cast<Derived*>(this); }    
   };// class BaseWeightFunc
 
 
