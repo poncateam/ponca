@@ -21,12 +21,6 @@
 
 
 /*!
- *  \addtogroup Grenaille
- *  @{
- */
-
-
-/*!
 
   \brief Documentation
 
@@ -67,11 +61,6 @@ typedef Basket<MyPoint,WeightFunc,OrientedSphereFit, GLSParam, OrientedSphereSca
   \endcode
  */
 namespace Grenaille
-{
-
-
-} // End namespace Grenaille
-
-/*! @} End of Doxygen Groups*/
+{ } // End namespace Grenaille
 
 #endif //_PATATE_GRENAILLE_
