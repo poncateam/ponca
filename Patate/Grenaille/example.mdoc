@@ -3,5 +3,46 @@
   \example cpp/grenaille_basic_cpu.cpp
   This is an example of how to use Grenaille to compute 
   the GLS Geometric variation on random data.
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  \example python/ssgls.py
+  
+  \section pyssgl_intro_sec Screen Space Curvature using Cuda and Python
+  
+  This is an example that use Grenaille to compute Screen Space Curvature in 
+  python using Cuda.   
+  
+  Add the command line to use this example
+  
+  \section pyssgl_results_sec Expected results
+  
+  Add here some result pictures
+  
+   
+  
+  \section pyssgl_cuda_sec Cuda  
+  \subsection pyssgl_cuda_kernel_sec Kernel
+  \snippet python/ssgls.cu kernel
+  
+  \subsection pyssgl_cuda_access_sec Memory access
+  We use numpy to format the input data, filled by dimension (in object space) 
+  and then by the screen-space coordinates:
+  \snippet python/ssgls.cu data_acces
+  
+  
+  \section pyssgl_python_sec Python script
+  We use numpy to format input data. 
 
  */

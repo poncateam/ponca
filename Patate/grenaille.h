@@ -22,9 +22,7 @@
 
 /*!
 
-  \brief Documentation
-
-  Toto
+  \brief Fitting Patate
 
   You must define a Point class:
   \code
@@ -61,10 +59,7 @@ typedef Basket<MyPoint,WeightFunc,OrientedSphereFit, GLSParam, OrientedSphereSca
   \endcode
  */
 namespace Grenaille
-{ } // End namespace Grenaille
-
-
-
-
+{ 
+} // End namespace Grenaille
 
 #endif //_PATATE_GRENAILLE_
