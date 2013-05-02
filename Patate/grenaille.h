@@ -66,13 +66,5 @@ namespace Grenaille
 
 
 
-/*!
-  \example Grenaille/basic_cpu.cpp
-  This is an example of how to use Grenaille to compute 
-  the GLS Geometric variation on random data.
-
- */
-
-
 
 #endif //_PATATE_GRENAILLE_
