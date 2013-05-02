@@ -1,13 +1,11 @@
-/* ---------------------------------------------------------------------------
-**
-** Examples/Grenaille/basic_cpu.h
-** <very brief file description>
-**
-** Author: Nicolas Mellado
-** Compile command: 
-** $ g++ basic_cpu.h_cpu.cpp -I ../.. -I /path/to/Eigen/
-** -------------------------------------------------------------------------*/
+/*!
+ \file examples/Grenaille/basic_cpu.h
+ \brief very brief file description
 
+ \author: Nicolas Mellado
+ Compile command: 
+ $ g++ basic_cpu.h_cpu.cpp -I ../.. -I /path/to/Eigen/
+ */
 #include <cmath>
 #include <algorithm>
 #include <iostream>
@@ -19,7 +17,8 @@
 using namespace std;
 using namespace Grenaille;
 
-// Define our working data structure
+
+// This class define the input data format
 class MyPoint{
 public:
   enum {Dim = 3};
@@ -50,7 +49,6 @@ typedef MyPoint::VectorType VectorType;
 // Define related structure
 typedef DistWeightFunc<MyPoint,SmoothWeightKernel<Scalar> > WeightFunc; 
 typedef Basket<MyPoint,WeightFunc,OrientedSphereFit, GLSParam, OrientedSphereScaleDer, GLSDer, GLSGeomVar> Fit;
-
 
 
 int main() {
