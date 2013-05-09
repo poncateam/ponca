@@ -52,15 +52,19 @@
     - <b>Ext-set</b>: set of extensions that will be applied over the fit to
   obtain the desired behavior.
 
-  \subsection grenaille_overview_point_sec Point
-
-  \subsection grenaille_overview_fit_sec Fitting kernel
-
-  \subsection grenaille_overview_ext_sec Extensions
-
-  
+  In practice, you will have to define a Point class (you could use the example below
+  as basis), a weighting function (most of the time you could use those provided in 
+  Grenaille), choose your fitting kernel and the associated extension. The interface
+  of your class Point is defined the requirement of the weighting, fitting and 
+  extension classes.
 
   \section grenaille_howto_sec How to
+
+  \subsection grenaille_howto_point_sec Point
+
+  \subsection grenaille_howto_fit_sec Fitting kernel
+
+  \subsection grenaille_howto_ext_sec Extensions
 
   You must define a Point class:
   \code
