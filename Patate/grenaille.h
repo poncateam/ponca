@@ -34,8 +34,29 @@
 
   \section grenaille_overview_sec Overview
 
-  In Grenaille, you have access to various classes that you can combine to  
-  generate your perfectly-specialized fitting or analysis kernel.
+  In Grenaille, you have access to Fitting Kernels and Extensions you can 
+  combine using the #Basket template class to generate a specialized 
+  fitting or analysis kernel:
+  \image html grenaille/concept.svg
+
+  \subsection grenaille_overview_basket_sec Basket
+  \ref Basket "Basket <class Point, class Weight, class Fit, Ext-set ...>" 
+  is an helper template class that you will specialize to define 
+  the structure of the targeted kernel. To do so, please consider each of its 
+  template parameters:
+    - <b>Point</b>: defines the type of data the kernel will be applied on (e.g. number
+  of dimensions, attributes),
+    - <b>Weight</b>: defines the weighting function that will be applied to collect
+  neighbors for the fit,
+    - <b>Fit</b>: the fitting kernel
+    - <b>Ext-set</b>: set of extensions that will be applied over the fit to
+  obtain the desired behavior.
+
+  \subsection grenaille_overview_point_sec Point
+
+  \subsection grenaille_overview_fit_sec Fitting kernel
+
+  \subsection grenaille_overview_ext_sec Extensions
 
   
 
