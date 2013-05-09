@@ -117,13 +117,68 @@ private:
   A fitting kernel define at least four methods:
   \code
 // init
-MULTIARCH void setWeightFunc (const WFunctor& w);
+MULTIARCH void setWeightFunc (const WeightFunc& w);
 MULTIARCH void init (const VectorType& evalPos);
 
 // processing
-MULTIARCH void addNeighbor(const DataPoint &nei);
+MULTIARCH void addNeighbor(const Point &nei);
 MULTIARCH void finalize   ();
   \endcode
+
+  Please go to the documentation of each fitting primitive to know their 
+  requirements. For example, \ref OrientedSphereFit requires to define
+  a normal vector and the associated accessors in the Point class:
+  \code
+class MyPoint{
+public:
+  enum {Dim = 3};
+  typedef float Scalar;
+  typedef Eigen::Matrix<Scalar, Dim, 1> VectorType;
+
+  MULTIARCH inline MyPoint(const VectorType &pos    = VectorType::Zero(), 
+		 const VectorType& normal = VectorType::Zero())
+    : _pos(pos), _normal(normal) {}
+    
+  MULTIARCH inline const VectorType& pos()    const { return _pos; }  
+  MULTIARCH inline const VectorType& normal() const { return _normal; }
+
+  MULTIARCH inline VectorType& pos()    { return _pos; }  
+  MULTIARCH inline VectorType& normal() { return _normal; }
+  };
+
+private:
+  VectorType _pos, _normal;
+};
+  \endcode
+
+
+  The fitting kernel should also provide a macro, indicating the type of the fit. For example,
+  \ref OrientedSphereFit defines
+  \code
+PROVIDES_ALGEBRAIC_SPHERE
+  \endcode
+
+
+  \subsection grenaille_howto_compat_sec Basket compatibility check
+
+  The provided macros are checked by all the extensions to ensure the compatibility 
+  during the compilation and throw human-readable error message. For example:
+  \code
+Patate/Grenaille/Core/gls.h:91:7: error: ‘PROVIDES_GLS_PARAMETRIZATION’ is not a member of ...
+  \endcode
+  indicates that the current \ref requires an extension defining the GLS 
+  parametrization (in practice: \ref GLSParam).
+
+  This error is thrown when trying to compile the type
+\code
+typedef Basket<MyPoint,WeightFunc,OrientedSphereFit, OrientedSphereScaleDer, GLSDer> Fit;
+\endcode
+
+  Please go the the documentation of the extensions you plan to use
+  to know their requirements and the macros they provide.
+
+  \subsection grenaille_howto_ext_sec Extensions
+  \warning This documentation is not yet ready
 
   \subsection grenaille_howto_weight_sec Weighting function
 
@@ -137,13 +192,10 @@ MULTIARCH void finalize   ();
   \ref DistWeightFunc is provided, to compute a weight with respect to the
   distance between samples for a given scale \f$ t \f$ specified at runtime.
 
-  An example of Weighting function with the previous MyPoint class:
+  An example of Weighting function with the MyPoint class:
   \code
 typedef DistWeightFunc<MyPoint,SmoothWeightKernel<Scalar> > WeightFunc; 
   \endcode
-
-  \subsection grenaille_howto_ext_sec Extensions
-  \warning Documentation not written yet
 
 
 
