@@ -113,7 +113,17 @@ private:
   the common cases.
 
   \subsection grenaille_howto_fit_sec Fitting kernel
-  \warning Documentation not written yet
+
+  A fitting kernel define at least four methods:
+  \code
+// init
+MULTIARCH void setWeightFunc (const WFunctor& w);
+MULTIARCH void init (const VectorType& evalPos);
+
+// processing
+MULTIARCH void addNeighbor(const DataPoint &nei);
+MULTIARCH void finalize   ();
+  \endcode
 
   \subsection grenaille_howto_weight_sec Weighting function
 
