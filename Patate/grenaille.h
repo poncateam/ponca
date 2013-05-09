@@ -22,7 +22,19 @@
 
 /*!
 
-  \brief Fitting Patate
+  \brief Grenaille: the simplest way to fit and analyze point-set data
+
+  This Patate is based on top of Eigen, and use advanced C++ template 
+  programming to define generic fitting procedures and analysis.
+
+  In this documentation we present an \ref grenaille_overview_sec of 
+  the Grenaille programming concept, as well as a simple 
+  \ref grenaille_howto_sec. For a complete example, please go to the
+  \ref cpp/grenaille_basic_cpu.cpp "basic_cpu" example.
+
+  \section grenaille_overview_sec Overview
+
+  \section grenaille_howto_sec How to
 
   You must define a Point class:
   \code
