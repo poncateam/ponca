@@ -9,6 +9,12 @@
 #define _GRENAILLE_WEIGHT_FUNC_
 
 namespace Grenaille{
+  /*!
+    \brief This base class defines the interface available for weighting functions
+    
+    Based on a template delegate, this class defines methods that have
+    to be implemented by any weighting function.
+  */
   template <class DataPoint, typename Derived >
   class BaseWeightFunc {
 
@@ -16,18 +22,22 @@ namespace Grenaille{
     typedef typename DataPoint::Scalar Scalar;
     typedef typename DataPoint::VectorType VectorType;
       
+    /*! \brief Apply the weight function to a query. */
     MULTIARCH inline Scalar w(const VectorType& relativeQuery, 
 			      const DataPoint&  attributes) const
     { return _der().w(relativeQuery, attributes); }   
        
+    /*! \brief Apply the weight function differenciated in space to a query. */
     MULTIARCH inline VectorType spacedw(const VectorType& relativeQuery, 
 				    const DataPoint&  attributes) const
     { return _der().spacedw(relativeQuery, attributes); }   
        
+    /*! \brief Apply the weight function differenciated in scale to a query. */
     MULTIARCH inline Scalar scaledw(const VectorType& relativeQuery, 
 				    const DataPoint&  attributes) const
     { return _der().scaledw(relativeQuery, attributes); }
 
+    /*! \brief Read access to the evaluation scale */
     MULTIARCH inline Scalar evalScale() const
     { return _der().evalScale(); }
 
@@ -37,7 +47,15 @@ namespace Grenaille{
 
 
   /*!
-    \warning Assumes that the evaluation scale t is strictly positive
+    \brief Weighting function based on the euclidean distance between a query and a reference position
+    
+    The query is assumed to be expressed in centered coordinates (ie. relatively
+    to the evaluation position).
+    
+    This class inherits BaseWeightFunc. It can be specialized for any DataPoint, 
+    and uses a generic 1D BaseWeightKernel.
+    
+    \warning it assumes that the evaluation scale t is strictly positive
    */
   template <class DataPoint, class WeightKernel>
   class DistWeightFunc: public BaseWeightFunc<DataPoint, DistWeightFunc<DataPoint, WeightKernel> >{
@@ -45,48 +63,58 @@ namespace Grenaille{
     typedef typename DataPoint::Scalar Scalar;
     typedef typename DataPoint::VectorType VectorType;
     
+    /*! \brief Constructor that defines the current evaluation scale */
     MULTIARCH inline DistWeightFunc(const Scalar& t = Scalar(1.)): _t(t) {}
 
     /*!
-      Compute a weight using the norm of the query \f$ \mathbf{q} \f$ 
-      (expressed in centered basis)
+      \brief Compute the weight of the given query with respect to its coordinates.
+      
+      As the query \f$\mathbf{q}\f$ is expressed in a centered basis, the 
+      WeightKernel is directly applied to the norm of its coordinates with 
+      respect to the current scale  \f$ t \f$ :
+            
+      \f$ w(\frac{\left|\mathbf{q}_\mathsf{x}\right|}{t}) \f$ 
+      
+
      */
     MULTIARCH inline Scalar w(const VectorType& q, 
 			      const DataPoint&  /*attributes*/) const;
     
     
     /*!
-      First order derivative in space (for each dimension \f$\mathsf{x})\f$:
+      \brief First order derivative in space (for each spatial dimension \f$\mathsf{x})\f$
       
-      \f$ \frac{\delta \frac{\mathbf{q}_\mathsf{x}}{t}}{\delta \mathsf{x}} 
-      \nabla w(\frac{\mathbf{q}_\mathsf{x}}{t}) 
-      = \frac{ \nabla{w(\frac{\mathbf{q}_\mathsf{x}}{t})}}{t}  \f$
+      \f$ \frac{\delta \frac{\left|\mathbf{q}_\mathsf{x}\right|}{t}}{\delta \mathsf{x}} 
+      \nabla w(\frac{\left|\mathbf{q}_\mathsf{x}\right|}{t}) 
+      = \frac{ \nabla{w(\frac{\left|\mathbf{q}_\mathsf{x}\right|}{t})}}{t}  \f$
       
-      where \f$ \mathbf{q}_\mathsf{x} \f$ represent the query coordinate in 
-      the spatial dimension \f$ \mathsf{x}\f$ expressed in centered basis.
+      where \f$ \left|\mathbf{q}_\mathsf{x}\right| \f$ represents the norm of the
+      query coordinates expressed in centered basis,
+      for each spatial dimensions \f$ \mathsf{x}\f$.
     */
     MULTIARCH inline VectorType spacedw(const VectorType& q, 
 			     const DataPoint&  /*attributes*/) const;
        
     
     /*!
-      First order derivative in scale t:
+      \brief First order derivative in scale  \f$t\f$
       
-      \f$ \frac{\delta \frac{\mathbf{q}}{t}}{\delta t} 
-      \nabla w(\frac{\mathbf{q}}{t}) 
-      = - \frac{\mathbf{q}}{t^2} \nabla{w(\frac{\mathbf{q}}{t})} \f$
+      \f$ \frac{\delta \frac{\left|\mathbf{q}\right|}{t}}{\delta t} 
+      \nabla w(\frac{\left|\mathbf{q}\right|}{t}) 
+      = - \frac{\left|\mathbf{q}\right|}{t^2} \nabla{w(\frac{\left|\mathbf{q}\right|}{t})} \f$
       
-      where \f$ \mathbf{q} \f$ represent the query coordinate expressed in 
-      centered basis.
+      where \f$ \left|\mathbf{q}\right| \f$ represents the norm of the
+      query coordinates expressed in centered basis.
     */
     MULTIARCH inline Scalar scaledw(const VectorType& q, 
 			     const DataPoint&  /*attributes*/) const;
 
+    /*! \brief Access to the evaluation scale set during the initialization */
     MULTIARCH inline Scalar evalScale() const { return _t; }
 
   protected:
-    Scalar       _t;
-    WeightKernel _wk;
+    Scalar       _t;  /*!< \brief Evaluation scale */
+    WeightKernel _wk; /*!< \brief 1D function applied to weight queries*/
     
 
   };// class DistWeightFunc

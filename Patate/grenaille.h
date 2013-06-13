@@ -190,7 +190,8 @@ typedef Basket<MyPoint,WeightFunc,OrientedSphereFit, OrientedSphereScaleDer, GLS
   \subsection grenaille_howto_weight_sec Weighting function
 
   There is two components combined to weight samples:
-    - a 1D kernel, defined in the interval \f$ \left[0 \; : \; 1 \right]\f$. 
+    - a 1D kernel, defined in the interval \f$ \left[0 \; : \; 1 \right]\f$,
+  that inherits BaseWeightKernel. 
   Actually their is two kernels included in the library: 
   \ref ConstantWeightKernel and \ref SmoothWeightKernel. Please go to the 
   related documentation pages for more details.

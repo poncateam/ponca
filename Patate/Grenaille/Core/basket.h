@@ -14,6 +14,7 @@ namespace Grenaille{
 
 
   namespace internal{
+    /*! Internal class used to build the Basket structure */
     template <class, class, typename T> class Forward: public T {};
   }
 
@@ -21,7 +22,7 @@ namespace Grenaille{
 #define BASKET_TP(I) template <class, class, typename> class Ext##I = internal::Forward
   /*!
 
-    \brief 
+    \brief Agregator class used to declare specialized structures using CRTP
     \todo Comment
 
    */
