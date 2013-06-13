@@ -14,6 +14,7 @@ namespace Grenaille
 
   /*!
     \brief Growing Least Squares reparemetrization of the OrientedSphereFit
+    \inherit FittingExtensionInterface
     
     Requierement: 
     \verbatim PROVIDES_ALGEBRAIC_SPHERE \endverbatim
@@ -21,7 +22,7 @@ namespace Grenaille
     \verbatim PROVIDES_GLS_PARAMETRIZATION \endverbatim
 
     
-    This class assumes that the WeightFunc define the accessor
+    This class assumes that the WeightFunc defines the accessor
     \code
     w.evalScale();
     \endcode
@@ -55,37 +56,67 @@ namespace Grenaille
 
 
   protected:
-    Scalar _t;
+    Scalar _t; /*!< \brief Evaluation scale. Needed to computed the normalized values*/
+    Scalar _fitness; /*!< \brief Save the fitness value to avoid side effect with Pratt normalization*/
 
   public:
+    /*! \brief Default constructor */
     MULTIARCH inline GLSParam() : _t(0) {}
 
+    
+    /**************************************************************************/
+    /* Initialization                                                         */
+    /**************************************************************************/
+    /*! \copydoc FittingProcedureInterface::setWeightFunc() */
     MULTIARCH inline void setWeightFunc (const WFunctor& w){
       Base::setWeightFunc(w);
       _t = w.evalScale();
     }
+    
+    
+    /**************************************************************************/
+    /* Processing                                                             */
+    /**************************************************************************/
+    /*! \copydoc FittingProcedureInterface::finalize() */
+    MULTIARCH inline void finalize   (){
+      Base::finalize();
+      _fitness = Scalar(1.) - Base::prattNorm2();
+    }
 
+
+    /**************************************************************************/
+    /* Use results                                                            */
+    /**************************************************************************/
+    /*! \brief Compute and return \f$ \tau \f$ */
     MULTIARCH inline Scalar     tau()   const 
     {return Base::isNormalized() ? Base::_uc : Base::_uc / Base::prattNorm();}
 
+    /*! \brief Compute and return \f$ \eta \f$ */
     MULTIARCH inline VectorType eta()   const 
     {return Base::_ul / Base::_ul.norm();}
 
+    /*! \brief Compute and return \f$ \kappa \f$ */
     MULTIARCH inline Scalar     kappa() const 
     {return Scalar(2.) * (Base::isNormalized() ? Base::_uq : Base::_uq / Base::prattNorm());}
     
+    /*! \brief Compute and return \f$ \frac{\tau}{t} \f$ */
     MULTIARCH inline Scalar     tau_normalized()   const {return tau()/_t;}
-    MULTIARCH inline VectorType eta_normalized()   const {return eta();}
-    MULTIARCH inline Scalar     kappa_normalized() const {return kappa()*_t;}
     
-    MULTIARCH inline Scalar     fitness() const {
-        return Scalar(1.) - Base::_ul.squaredNorm() - Scalar(4.) * Base::_uc * Base::_uq;}
+    /*! \brief Compute and return \f$ \eta \f$ */    
+    MULTIARCH inline VectorType eta_normalized()   const {return eta();}
+    
+    /*! \brief Compute and return \f$ t \kappa \f$ */
+    MULTIARCH inline Scalar     kappa_normalized() const {return kappa()*_t;}    
+    
+    /*! \brief Return the fitness, e.g. the pratt norm of the initial scalar field \f$ */
+    MULTIARCH inline Scalar     fitness()          const {return _fitness;}
 
   }; //class GLSParam
 
   
   /*!
     \brief Differentiation of GLSParam
+    \inherit FittingExtensionInterface
 
    */
   template < class DataPoint, class _WFunctor, typename T>
@@ -120,6 +151,7 @@ namespace Grenaille
 
   /*!
     \brief Extension to compute the Geometric Variation of the GLSParam
+    \inherit FittingExtensionInterface
    */
   template < class DataPoint, class _WFunctor, typename T>
   class GLSGeomVar : public T{

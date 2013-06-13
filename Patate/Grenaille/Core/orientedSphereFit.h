@@ -13,7 +13,7 @@
 namespace Grenaille
 {
   /*!
-    \brief Algebraic Sphere Fitting on oriented point sets
+    \brief Algebraic Sphere fitting procedure on oriented point sets
     
     An algebraic hyper-sphere is defined as the \f$0\f$-isosurface of the scalar field
     
@@ -76,29 +76,24 @@ namespace Grenaille
     /*! \brief Writing access to the evaluation position */
     MULTIARCH inline       VectorType& evalPos ()       { return _p; }
     
+    
     /**************************************************************************/
     /* Initialization                                                         */
     /**************************************************************************/
-    /*! 
-      \brief Init the WeightFunc. 
-      \warning Must be called be for any computation 
-    */
+    /*! \copydoc FittingProcedureInterface::setWeightFunc() */
     MULTIARCH inline void setWeightFunc (const WFunctor& w) { _w  = w; }
     
-    /*!
-      \brief Set the evaluation position and reset the internal state. 
-      \warning Must be called be for any computation
-    */
+    /*! \copydoc FittingProcedureInterface::init() */
     MULTIARCH inline void init (const VectorType& evalPos);
     
 
     /**************************************************************************/
     /* Processing                                                             */
     /**************************************************************************/
-    /*! \brief Add a neighbor to perform the fit */
+    /*! \copydoc FittingProcedureInterface::addNeighbor() */
     MULTIARCH inline void addNeighbor(const DataPoint &nei);
     
-    /*! \brief Finalize the fitting procedure */
+    /*! \copydoc FittingProcedureInterface::finalize() */
     MULTIARCH inline void finalize   ();
 
 
@@ -147,11 +142,27 @@ namespace Grenaille
   namespace internal{
 
     enum {
-      FitScaleDer = 0x01, /*!< \brief Differentiation in scale */
-      FitSpaceDer = 0x02  /*!< \brief Differentiation in space */
+      FitScaleDer = 0x01, /*!< \brief Flag indicating a scale differentiation. */
+      FitSpaceDer = 0x02  /*!< \brief Flag indicating a space differentiation. */
     };
 
-    /*! \brief Internal generic class describing the Fit derivation */
+    /*! 
+      \brief Internal generic class performing the Fit derivation 
+      \inherit FittingExtensionInterface
+      
+      The differentiation can be done automatically in scale and/or space, by
+      combining the enum values FitScaleDer and FitSpaceDer in the template 
+      parameter Type.
+      
+      The differenciated values are stored in static arrays. The size of the
+      arrays is computed with respect to the derivation type (scale and/or space)
+      and the number of the dimension of the ambiant space.      
+      By convention, the scale derivatives are stored at index 0 when Type 
+      contains at least FitScaleDer. The size of these arrays can be known using
+      derDimension(), and the differentiation type by isScaleDer() and 
+      isSpaceDer().
+      
+    */
     template < class DataPoint, class _WFunctor, typename T, int Type>
     class OrientedSphereDer : public T{
     private:
@@ -170,45 +181,67 @@ namespace Grenaille
       typedef typename Base::WFunctor   WFunctor;   /*!< \brief Weight Function*/
 
 #define GLS_DER_NB_DERIVATIVES(TYPE,DIM) ((TYPE & FitScaleDer) ? 1 : 0 ) + ((TYPE & FitSpaceDer) ? DIM : 0)
+      /*! \brief Static array of scalars with a size adapted to the differentiation type */
       typedef FixedSizeArray <VectorType, GLS_DER_NB_DERIVATIVES(Type,DataPoint::Dim)> VectorArray;
+      /*! \brief Static array of scalars with a size adapted to the differentiation type */
       typedef FixedSizeArray <Scalar,     GLS_DER_NB_DERIVATIVES(Type,DataPoint::Dim)> ScalarArray;
       
     private:
       // computation data
-      VectorArray _dSumN, _dSumP;
-      ScalarArray _dSumDotPN, _dSumDotPP, _dSumW;
+      VectorArray _dSumN,     /*!< \brief Sum of the normal vectors with differenciated weights */
+                  _dSumP;     /*!< \brief Sum of the relative positions with differenciated weights*/
+      ScalarArray _dSumDotPN, /*!< \brief Sum of the dot product betwen relative positions and normals with differenciated weights */
+                  _dSumDotPP, /*!< \brief Sum of the squared relative positions with differenciated weights */
+                  _dSumW;     /*!< \brief Sum of queries weight with differenciated weights */
       
     public:
       // results
-      VectorArray _dUl;
-      ScalarArray _dUc, _dUq;
-
-      
-      // processing
-      MULTIARCH void init       (const VectorType &evalPos);
-      MULTIARCH void addNeighbor(const DataPoint  &nei);
-      MULTIARCH void finalize   ();
+      ScalarArray _dUc, /*!< \brief Derivative of the hyper-sphere constant term  */
+                  _dUq; /*!< \brief Derivative of the hyper-sphere quadratic term */
+      VectorArray _dUl; /*!< \brief Derivative of the hyper-sphere linear term    */
     
-      //! compute the squared Pratt norm derivative in dimension d
-      MULTIARCH inline Scalar dprattNorm2(unsigned int d) const {
-        return Scalar(2.) * _dUl[d].dot(Base::_ul) - Scalar(4.)*_dUc[d]*Base::_uq
-	  - Scalar(4.)* Base::_uc*_dUq[d];}
+      /************************************************************************/
+      /* Initialization                                                       */
+      /************************************************************************/
+      /*! \see FittingProcedureInterface::init() */
+      MULTIARCH void init       (const VectorType &evalPos);
+    
+      /************************************************************************/
+      /* Processing                                                           */
+      /************************************************************************/
+      /*! \see FittingProcedureInterface::addNeighbor() */
+      MULTIARCH void addNeighbor(const DataPoint  &nei);
+      /*! \see FittingProcedureInterface::finalize() */
+      MULTIARCH void finalize   ();
 
-      //! compute the Pratt norm derivative in dimension d
+
+    /**************************************************************************/
+    /* Use results                                                            */
+    /**************************************************************************/
+      /*! \brief compute the square of the Pratt norm derivative for dimension d */
+      MULTIARCH inline Scalar dprattNorm2(unsigned int d) const {
+        return   Scalar(2.) * _dUl[d].dot(Base::_ul) 
+               - Scalar(4.) * _dUc[d]*Base::_uq
+	             - Scalar(4.) * Base::_uc*_dUq[d];}
+
+      /*! \brief compute the Pratt norm derivative for the dimension d */
       MULTIARCH inline Scalar dprattNorm(unsigned int d) const {
-	MULTIARCH_STD_MATH(sqrt);
+	      MULTIARCH_STD_MATH(sqrt);
         return sqrt(dprattNorm2(d));
       }
 
+      /*! \brief State specified at compilation time to differenciate the fit in scale */
       MULTIARCH inline bool isScaleDer() const {return Type & FitScaleDer;}
+      /*! \brief State specified at compilation time to differenciate the fit in space */
       MULTIARCH inline bool isSpaceDer() const {return Type & FitSpaceDer;}
+      /*! \brief Number of dimensions used for the differentiation */
       MULTIARCH inline unsigned int derDimension() const { return VectorArray::size();}
 
 
       //! Normalize the scalar field by the Pratt norm
       /*!
-	\warning Requieres that isNormalized() return false
-	\return false when the original sphere has already been normalized.
+	      \warning Requieres that isNormalized() return false
+	      \return false when the original sphere has already been normalized.
        */
       MULTIARCH inline bool applyPrattNorm();
 
@@ -218,6 +251,7 @@ namespace Grenaille
 
   /*!
     \brief Differentiation in scale of the OrientedSphereFit
+    \inherit FittingExtensionInterface
     
     Requierement: 
     \verbatim PROVIDES_ALGEBRAIC_SPHERE \endverbatim
@@ -228,6 +262,7 @@ namespace Grenaille
   class OrientedSphereScaleDer:public internal::OrientedSphereDer<DataPoint, _WFunctor, T, internal::FitScaleDer>
   {
   protected:
+    /*! \brief Inherited class */
     typedef internal::OrientedSphereDer<DataPoint, _WFunctor, T, internal::FitScaleDer> Base;
     enum { PROVIDES_ALGEBRAIC_SPHERE_SCALE_DERIVATIVE };
   };
@@ -235,6 +270,7 @@ namespace Grenaille
 
   /*!
     \brief Spatial differentiation of the OrientedSphereFit
+    \inherit FittingExtensionInterface
     
     Requierement: 
     \verbatim PROVIDES_ALGEBRAIC_SPHERE \endverbatim
@@ -245,6 +281,7 @@ namespace Grenaille
   class OrientedSphereSpaceDer:public internal::OrientedSphereDer<DataPoint, _WFunctor, T, internal::FitSpaceDer>
   {
   protected:
+    /*! \brief Inherited class */
     typedef internal::OrientedSphereDer<DataPoint, _WFunctor, T, internal::FitSpaceDer> Base;
     enum {  PROVIDES_ALGEBRAIC_SPHERE_SPACE_DERIVATIVE };
   };
@@ -252,6 +289,7 @@ namespace Grenaille
 
   /*!
     \brief Differentiation both in scale and space of the OrientedSphereFit
+    \inherit FittingExtensionInterface
     
     Requierement: 
     \verbatim PROVIDES_ALGEBRAIC_SPHERE \endverbatim
@@ -264,6 +302,7 @@ namespace Grenaille
   class OrientedSphereScaleSpaceDer:public internal::OrientedSphereDer<DataPoint, _WFunctor, T, internal::FitSpaceDer | internal::FitScaleDer>
   {
   protected:
+    /*! \brief Inherited class */
     typedef internal::OrientedSphereDer<DataPoint, _WFunctor, T, internal::FitSpaceDer | internal::FitScaleDer> Base;
     enum
       {
