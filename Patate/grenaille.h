@@ -173,7 +173,7 @@ PROVIDES_ALGEBRAIC_SPHERE
   \code
 Patate/Grenaille/Core/gls.h:91:7: error: ‘PROVIDES_GLS_PARAMETRIZATION’ is not a member of ...
   \endcode
-  indicates that the current \ref requires an extension defining the GLS 
+  indicates that the current configuration requires an extension defining the GLS 
   parametrization (in practice: \ref GLSParam).
 
   This error is thrown when trying to compile the type

@@ -14,11 +14,11 @@
 
   \section patate_req_sec Requierements
   
-  The only thing you need to use a Patate is Eigen, the swiss army knife of linear algebra.
+  The only thing you need to use a Patate is <a href="http://eigen.tuxfamily.org" target="_blank">Eigen</a>, the swiss army knife of linear algebra.
 
   \section patate_multiarch_sec MultiArch
   
-  Patate is compatible with Cuda. Since Eigen cannot be compiled by nvcc yet, you need to use <a href="http://bitbucket.org/ggael/eigen-nvcc" target="_blank">eigen-nvcc</a>. The compatibility of the library is ensured by using the macro
+  Patate is compatible with Cuda. In this case, since Eigen cannot be compiled by nvcc yet, you need to use <a href="http://bitbucket.org/ggael/eigen-nvcc" target="_blank">eigen-nvcc</a>. The compatibility of the library is ensured by using the macro
 \code
 MULTIARCH void foo();
 \endcode

@@ -15,8 +15,16 @@ namespace Grenaille
   /*!
     \brief Algebraic Sphere Fitting on oriented point sets
     
-
-    Provide: 
+    An algebraic hyper-sphere is defined as the \f$0\f$-isosurface of the scalar field
+    
+    \f$ s_\mathbf{u}(\mathbf{x}) = \left[ 1 \; \mathbf{x}^T \; \mathbf{x}^T\mathbf{x}\right]^T \cdot \mathbf{u} \f$    
+    
+    with \f$ \mathbf{u} \left[ u_c \; \mathbf{u_l} \; u_q\right]^T \f$ is the 
+    vector of the constant, linear and quadratic parameters.
+    
+    
+    
+    This fitting procedure provides: 
     \verbatim PROVIDES_ALGEBRAIC_SPHERE \endverbatim
 
     \todo Deal with planar case
@@ -26,61 +34,91 @@ namespace Grenaille
   protected:
     enum
       {
-        PROVIDES_ALGEBRAIC_SPHERE
+        PROVIDES_ALGEBRAIC_SPHERE /*!< \brief Provides Algebraic Sphere */
       };
 
   public:
-    typedef typename DataPoint::Scalar     Scalar;
+    /*! \brief Scalar type inherited from DataPoint*/
+    typedef typename DataPoint::Scalar     Scalar;     
+    /*! \brief Vector type inherited from DataPoint*/
     typedef typename DataPoint::VectorType VectorType;
-    typedef _WFunctor             WFunctor;
+    /*! \brief Weight Function*/
+    typedef _WFunctor                      WFunctor;   
     
   protected:
-    // Evaluation position (needed for centered basis)
+    //! \brief Evaluation position (needed for centered basis)
     VectorType _p;
     
     // computation data
-    VectorType _sumN, _sumP;
-    Scalar _sumDotPN, _sumDotPP, _sumW;
+    VectorType _sumN, /*!< \brief Sum of the normal vectors */
+               _sumP; /*!< \brief Sum of the relative positions */
+    Scalar _sumDotPN, /*!< \brief Sum of the dot product betwen relative positions and normals */
+           _sumDotPP, /*!< \brief Sum of the squared relative positions */
+           _sumW;     /*!< \brief Sum of queries weight */
     
-    WFunctor _w;
+    WFunctor _w;      /*!< \brief Weight function (must inherits BaseWeightFunc) */
 
-    // Is the implicit scalar field normalized using Pratt
+    //! Is the implicit scalar field normalized using Pratt
     bool _isNormalized;
 
     // results
   public:
-    Scalar _uc, _uq;
-    VectorType _ul;
+    Scalar _uc,       /*!< \brief Constant parameter of the Algebraic hyper-sphere */
+           _uq;       /*!< \brief Quadratic parameter of the Algebraic hyper-sphere */
+    VectorType _ul;   /*!< \brief Linear parameter of the Algebraic hyper-sphere */
     
   public:
+    /*! \brief Default constructor */
     MULTIARCH inline OrientedSphereFit(){ }
 
-    // getters
+    /*! \brief Reading access to the evaluation position */
     MULTIARCH inline const VectorType& evalPos () const { return _p; }
+    /*! \brief Writing access to the evaluation position */
     MULTIARCH inline       VectorType& evalPos ()       { return _p; }
     
-    // init
+    /**************************************************************************/
+    /* Initialization                                                         */
+    /**************************************************************************/
+    /*! 
+      \brief Init the WeightFunc. 
+      \warning Must be called be for any computation 
+    */
     MULTIARCH inline void setWeightFunc (const WFunctor& w) { _w  = w; }
-    MULTIARCH inline void init (const VectorType& evalPos);
-
-    // processing
-    MULTIARCH inline void addNeighbor(const DataPoint &nei);
-    MULTIARCH inline void finalize   ();
     
-    //! compute the Pratt norm of the implicit scalar field.
+    /*!
+      \brief Set the evaluation position and reset the internal state. 
+      \warning Must be called be for any computation
+    */
+    MULTIARCH inline void init (const VectorType& evalPos);
+    
+
+    /**************************************************************************/
+    /* Processing                                                             */
+    /**************************************************************************/
+    /*! \brief Add a neighbor to perform the fit */
+    MULTIARCH inline void addNeighbor(const DataPoint &nei);
+    
+    /*! \brief Finalize the fitting procedure */
+    MULTIARCH inline void finalize   ();
+
+
+    /**************************************************************************/
+    /* Use results                                                            */
+    /**************************************************************************/
+    /*! \brief compute the Pratt norm of the implicit scalar field. */
     MULTIARCH inline Scalar prattNorm() const {
       MULTIARCH_STD_MATH(sqrt);
       return sqrt(prattNorm2());
     }
     
-    //! compute the squared Pratt norm of the implicit scalar field.
+    /*! \brief compute the squared Pratt norm of the implicit scalar field. */
     MULTIARCH inline Scalar prattNorm2() const {
       return _ul.squaredNorm() - Scalar(4.) * _uc*_uq;
     }
 
     //! Normalize the scalar field by the Pratt norm
     /*!
-      Return false when an error occured during the normalization.
+       \return false when the normalization fails (sphere is already normalized)
      */
     MULTIARCH inline bool applyPrattNorm() {
       if (! _isNormalized){
@@ -109,29 +147,27 @@ namespace Grenaille
   namespace internal{
 
     enum {
-      FitScaleDer = 0x01,
-      FitSpaceDer = 0x02
+      FitScaleDer = 0x01, /*!< \brief Differentiation in scale */
+      FitSpaceDer = 0x02  /*!< \brief Differentiation in space */
     };
 
-    /*!
-      Internal generic class describing the Fit derivation
-     */
+    /*! \brief Internal generic class describing the Fit derivation */
     template < class DataPoint, class _WFunctor, typename T, int Type>
     class OrientedSphereDer : public T{
     private:
-      typedef T Base;
+      typedef T Base; /*!< \brief Generic base type */
 
     protected:
       enum
 	{
-	  Check = Base::PROVIDES_ALGEBRAIC_SPHERE,
-	  PROVIDES_ALGEBRAIC_SPHERE_DERIVATIVE
+	  Check = Base::PROVIDES_ALGEBRAIC_SPHERE, /*!< \brief Needs Algebraic Sphere */
+	  PROVIDES_ALGEBRAIC_SPHERE_DERIVATIVE     /*!< \brief Provides Algebraic Sphere derivative*/
 	};
 
     public:
-      typedef typename Base::Scalar     Scalar;
-      typedef typename Base::VectorType VectorType;
-      typedef typename Base::WFunctor   WFunctor;
+      typedef typename Base::Scalar     Scalar;     /*!< \brief Inherited scalar type*/
+      typedef typename Base::VectorType VectorType; /*!< \brief Inherited vector type*/
+      typedef typename Base::WFunctor   WFunctor;   /*!< \brief Weight Function*/
 
 #define GLS_DER_NB_DERIVATIVES(TYPE,DIM) ((TYPE & FitScaleDer) ? 1 : 0 ) + ((TYPE & FitSpaceDer) ? DIM : 0)
       typedef FixedSizeArray <VectorType, GLS_DER_NB_DERIVATIVES(Type,DataPoint::Dim)> VectorArray;

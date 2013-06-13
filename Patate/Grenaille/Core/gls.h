@@ -49,9 +49,9 @@ namespace Grenaille
       };
 
   public:
-    typedef typename Base::Scalar     Scalar;
-    typedef typename Base::VectorType VectorType;
-    typedef typename Base::WFunctor   WFunctor;
+    typedef typename Base::Scalar     Scalar;     /*!< \brief Inherited scalar type*/
+    typedef typename Base::VectorType VectorType; /*!< \brief Inherited vector type*/
+    typedef typename Base::WFunctor   WFunctor;   /*!< \brief Weight Function*/
 
 
   protected:
