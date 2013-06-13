@@ -12,22 +12,29 @@
 
   But for the moment, there is only one Patate: #Grenaille, to fit implicit primitives and analyze them. Please go to \ref Grenaille "this" page, you will not be disappointed...
 
+  \section patate_req_sec Requierements
+  
+  The only thing you need to use a Patate is Eigen, the swiss army knife of linear algebra.
 
   \section patate_multiarch_sec MultiArch
-
-  Patate is compatible with Cuda, since you use <a href="http://bitbucket.org/ggael/eigen-nvcc" target="_blank">eigen-nvcc</a> instead of eigen. This compatibility is ensured by using the macro
+  
+  Patate is compatible with Cuda. Since Eigen cannot be compiled by nvcc yet, you need to use <a href="http://bitbucket.org/ggael/eigen-nvcc" target="_blank">eigen-nvcc</a>. The compatibility of the library is ensured by using the macro
 \code
 MULTIARCH void foo();
 \endcode
   as prefix to any function/method declaration. It has no effect when the code is compiled with GCC or Clang, but it will force the compilation for both host and device architectures when compiling with nvcc. 
 
-  \warning A similar macro system is provided for mathematical functions ; documentations will be provided as soon as possible.
+  \warning A similar macro system is provided for mathematical functions, to switch between STL and CUDA versions ; documentations will be provided as soon as possible.
 
   \section patate_status_sec Devel status
 
   The Patate lib is currently under active development. However, some basic functionalities have already been implemented. Please go to each Patate documentation to have more details on the available features.
 
   If you want to use only tested functionalities, please use the last package available here: https://gforge.inria.fr/projects/patate/.
+  Otherwise, you can use the development repository:
+  \code
+  git clone git://scm.gforge.inria.fr/patate/patate.git
+  \endcode
 
   Some examples are already available to help you using the library. 
   However, if you get stuck, please send an email to nicolas.mellado@inria.fr for further assistance.
