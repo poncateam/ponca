@@ -2,13 +2,13 @@ project(Patate)
 
 cmake_minimum_required(VERSION 2.6)
 
-# guard against in-source builds
+# guard against in-source builds (source: Eigen)
 
 if(${CMAKE_SOURCE_DIR} STREQUAL ${CMAKE_BINARY_DIR})
   message(FATAL_ERROR "In-source builds not allowed. Please make a new directory (called a build directory) and run CMake from there. You may need to remove CMakeCache.txt. ")
 endif()
 
-# guard against bad build-type strings
+# guard against bad build-type strings (source: Eigen)
 
 if (NOT CMAKE_BUILD_TYPE)
   set(CMAKE_BUILD_TYPE "Release")
