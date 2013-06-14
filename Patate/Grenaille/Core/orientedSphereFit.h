@@ -15,6 +15,8 @@ namespace Grenaille
   /*!
     \brief Algebraic Sphere fitting procedure on oriented point sets
     
+    Method published in \cite Guennebaud:2007:APSS
+    
     An algebraic hyper-sphere is defined as the \f$0\f$-isosurface of the scalar field
     
     \f$ s_\mathbf{u}(\mathbf{x}) = \left[ 1 \; \mathbf{x}^T \; \mathbf{x}^T\mathbf{x}\right]^T \cdot \mathbf{u} \f$    

@@ -16,12 +16,8 @@ namespace Grenaille
     \brief Growing Least Squares reparemetrization of the OrientedSphereFit
     \inherit FittingExtensionInterface
     
-    Requierement: 
-    \verbatim PROVIDES_ALGEBRAIC_SPHERE \endverbatim
-    Provide: 
-    \verbatim PROVIDES_GLS_PARAMETRIZATION \endverbatim
-
-    
+    Method published in \cite Mellado:2012:GLS
+        
     This class assumes that the WeightFunc defines the accessor
     \code
     w.evalScale();
@@ -35,7 +31,11 @@ namespace Grenaille
      - tau_normalized(), eta_normalized() and kappa_normalized(): 
      the scale invariant GLS descriptor
      \f$ \left[ \frac{\tau}{t} \; \eta \; t\kappa \right]\f$ 
-     
+          
+    Requierement: 
+    \verbatim PROVIDES_ALGEBRAIC_SPHERE \endverbatim
+    Provide: 
+    \verbatim PROVIDES_GLS_PARAMETRIZATION \endverbatim
    */
   template < class DataPoint, class _WFunctor, typename T>
   class GLSParam : public T{
@@ -118,6 +118,7 @@ namespace Grenaille
     \brief Differentiation of GLSParam
     \inherit FittingExtensionInterface
 
+    Method published in \cite Mellado:2012:GLS
    */
   template < class DataPoint, class _WFunctor, typename T>
   class GLSDer : public T{
@@ -154,6 +155,7 @@ namespace Grenaille
     \inherit FittingExtensionInterface
     
     Method published in \cite Mellado:2012:GLS
+    \todo Add more details
    */
   template < class DataPoint, class _WFunctor, typename T>
   class GLSGeomVar : public T{
