@@ -180,7 +180,7 @@ namespace internal{
     if (Type & FitSpaceDer){
       VectorType vw = Base::_w.spacedw(q, nei);
       for(unsigned int i = 0; i < DataPoint::Dim; i++)
-	w [spaceId+i] = vw[i];
+	      w [spaceId+i] = vw[i];
     }
 
     // increment
