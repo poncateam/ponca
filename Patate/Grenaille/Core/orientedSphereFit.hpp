@@ -87,7 +87,7 @@ OrientedSphereFit<DataPoint, _WFunctor, T>::finalize (){
 */
 template < class DataPoint, class _WFunctor, typename T>
 typename DataPoint::VectorType
-OrientedSphereFit<DataPoint, _WFunctor, T>::project( VectorType q ){
+OrientedSphereFit<DataPoint, _WFunctor, T>::project( VectorType q ) const{
   MULTIARCH_STD_MATH(min)
 
   // centered basis
@@ -118,6 +118,11 @@ OrientedSphereFit<DataPoint, _WFunctor, T>::project( VectorType q ){
   //return normalize(other-_center) * _r + _center;
 }
 
+template < class DataPoint, class _WFunctor, typename T>
+typename DataPoint::Scalar
+OrientedSphereFit<DataPoint, _WFunctor, T>::evaluate( VectorType q ) const{
+  return _uc + q.dot(_ul) + _uq * q.dot(q);
+}
 
 
 namespace internal{

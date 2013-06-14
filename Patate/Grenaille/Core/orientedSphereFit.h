@@ -133,7 +133,10 @@ namespace Grenaille
     MULTIARCH inline bool isNormalized() const { return _isNormalized; }
     
     //! Project a point on the sphere
-    MULTIARCH inline VectorType project (VectorType q);
+    MULTIARCH inline VectorType project (VectorType q) const;
+    
+    //! Value of the scalar field at the location \f$ \mathbf{q} \f$
+    MULTIARCH inline Scalar evaluate (VectorType q) const;
 
     
     //    MULTIARCH VectorType gradient(VectorType q, bool normalize = true);
