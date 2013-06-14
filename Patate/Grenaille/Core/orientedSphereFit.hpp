@@ -109,7 +109,7 @@ OrientedSphereFit<DataPoint, _WFunctor, T>::project( const VectorType& q ) const
     {
       grad = _ul+Scalar(2.)*_uq*proj;
       ilg = Scalar(1.)/grad.squaredNorm();
-      delta = -evaluate(proj)*min(ilg,1.);
+      delta = -potential(proj)*min(ilg,1.);
       proj += dir*delta;
     }
   return proj + _p;
@@ -120,7 +120,7 @@ OrientedSphereFit<DataPoint, _WFunctor, T>::project( const VectorType& q ) const
 
 template < class DataPoint, class _WFunctor, typename T>
 typename DataPoint::Scalar
-OrientedSphereFit<DataPoint, _WFunctor, T>::evaluate( const VectorType &q ) const{  
+OrientedSphereFit<DataPoint, _WFunctor, T>::potential( const VectorType &q ) const{  
   // turn to centered basis
   const VectorType lq = q-_p;
   
@@ -130,11 +130,17 @@ OrientedSphereFit<DataPoint, _WFunctor, T>::evaluate( const VectorType &q ) cons
 
 template < class DataPoint, class _WFunctor, typename T>
 typename DataPoint::VectorType
-OrientedSphereFit<DataPoint, _WFunctor, T>::evaluateGradient( const VectorType &q ) const{
+OrientedSphereFit<DataPoint, _WFunctor, T>::approxGradient( const VectorType &q ) const{
   // turn to centered basis
-  const VectorType lq = q-_p;
-  
+  const VectorType lq = q-_p;  
   return (_ul + Scalar(2.f) * _uq * lq).normalized();
+}
+
+template < class DataPoint, class _WFunctor, typename T>
+typename DataPoint::MatrixType
+OrientedSphereFit<DataPoint, _WFunctor, T>::approxHessian( const VectorType &q ) const{
+	// this is very approximate !!
+	return Scalar(2.) * _uq * MatrixType::Identity();	
 }
 
 

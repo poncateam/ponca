@@ -26,7 +26,7 @@ namespace Grenaille
     
     \note If internally the scalar fields are stored in a local frame defined
     by the evaluation position, the public methods involving a query (such as
-    project, evaluate, evaluateGradient) have to be defined in global 
+    project, potential, gradient) have to be defined in global 
     coordinates (e.g. you don't need to convert your query in the current locale
     frame).
     
@@ -48,6 +48,8 @@ namespace Grenaille
     typedef typename DataPoint::Scalar     Scalar;     
     /*! \brief Vector type inherited from DataPoint*/
     typedef typename DataPoint::VectorType VectorType;
+    /*! \brief Vector type inherited from DataPoint*/
+    typedef typename DataPoint::MatrixType MatrixType;
     /*! \brief Weight Function*/
     typedef _WFunctor                      WFunctor;   
     
@@ -137,10 +139,13 @@ namespace Grenaille
     MULTIARCH inline bool isNormalized() const { return _isNormalized; }
     
     //! \brief Value of the scalar field at the location \f$ \mathbf{q} \f$
-    MULTIARCH inline Scalar evaluate (const VectorType& q) const;
+    MULTIARCH inline Scalar potential (const VectorType& q) const;
     
-    //! \brief Gradient of the scalar field at the location \f$ \mathbf{q} \f$
-    MULTIARCH inline VectorType evaluateGradient (const VectorType& q) const;
+    //! \brief Approximation of the scalar field gradient at \f$ \mathbf{q} \f$
+    MULTIARCH inline VectorType approxGradient (const VectorType& q) const;
+    
+    //! \brief Rough Approximation of the hessian matrix at \f$ \mathbf{q} \f$
+    MULTIARCH inline MatrixType approxHessian (const VectorType &q) const;
     
     //! \brief Project a point on the sphere
     MULTIARCH inline VectorType project (const VectorType& q) const;
