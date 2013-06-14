@@ -108,7 +108,7 @@ namespace Grenaille
     /*! \brief Compute and return \f$ t \kappa \f$ */
     MULTIARCH inline Scalar     kappa_normalized() const {return kappa()*_t;}    
     
-    /*! \brief Return the fitness, e.g. the pratt norm of the initial scalar field \f$ */
+    /*! \brief Return the fitness, e.g. the pratt norm of the initial scalar field */
     MULTIARCH inline Scalar     fitness()          const {return _fitness;}
 
   }; //class GLSParam
@@ -150,8 +150,10 @@ namespace Grenaille
 
 
   /*!
-    \brief Extension to compute the Geometric Variation of the GLSParam
+    \brief Extension to compute the Geometric Variation of GLSParam
     \inherit FittingExtensionInterface
+    
+    Method published in \cite Mellado:2012:GLS
    */
   template < class DataPoint, class _WFunctor, typename T>
   class GLSGeomVar : public T{
@@ -162,15 +164,18 @@ namespace Grenaille
     enum
       {
         Check = Base::PROVIDES_ALGEBRAIC_SPHERE_SCALE_DERIVATIVE & Base::PROVIDES_GLS_DERIVATIVE,
-	PROVIDES_GLS_GEOM_VAR
+	      PROVIDES_GLS_GEOM_VAR
       };
 
   public:
     typedef typename Base::Scalar Scalar;
 
+    /*!
+      \brief Compute and return the Geometric Variation
+     */
     MULTIARCH inline Scalar geomVar(Scalar wtau   = Scalar(1), 
-				    Scalar weta   = Scalar(1),
-				    Scalar wkappa = Scalar(1)) const;
+  			                            Scalar weta   = Scalar(1),
+	                        			    Scalar wkappa = Scalar(1)) const;
   };
 
   #include "gls.hpp"
