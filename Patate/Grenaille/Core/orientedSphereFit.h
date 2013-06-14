@@ -24,7 +24,11 @@ namespace Grenaille
     with \f$ \mathbf{u} \left[ u_c \; \mathbf{u_l} \; u_q\right]^T \f$ is the 
     vector of the constant, linear and quadratic parameters.
     
-    
+    \note If internally the scalar fields are stored in a local frame defined
+    by the evaluation position, the public methods involving a query (such as
+    project, evaluate, evaluateGradient) have to be defined in global 
+    coordinates (e.g. you don't need to convert your query in the current locale
+    frame).
     
     This fitting procedure provides: 
     \verbatim PROVIDES_ALGEBRAIC_SPHERE \endverbatim
@@ -113,8 +117,8 @@ namespace Grenaille
       return _ul.squaredNorm() - Scalar(4.) * _uc*_uq;
     }
 
-    //! Normalize the scalar field by the Pratt norm
     /*!
+       \brief Normalize the scalar field by the Pratt norm
        \return false when the normalization fails (sphere is already normalized)
      */
     MULTIARCH inline bool applyPrattNorm() {
@@ -129,18 +133,17 @@ namespace Grenaille
       return true;
     }
     
-    //! State that indicates if the sphere has been normalized 
+    //! \brief State indicating when the sphere has been normalized 
     MULTIARCH inline bool isNormalized() const { return _isNormalized; }
     
-    //! Project a point on the sphere
-    MULTIARCH inline VectorType project (VectorType q) const;
+    //! \brief Value of the scalar field at the location \f$ \mathbf{q} \f$
+    MULTIARCH inline Scalar evaluate (const VectorType& q) const;
     
-    //! Value of the scalar field at the location \f$ \mathbf{q} \f$
-    MULTIARCH inline Scalar evaluate (VectorType q) const;
-
+    //! \brief Gradient of the scalar field at the location \f$ \mathbf{q} \f$
+    MULTIARCH inline VectorType evaluateGradient (const VectorType& q) const;
     
-    //    MULTIARCH VectorType gradient(VectorType q, bool normalize = true);
-
+    //! \brief Project a point on the sphere
+    MULTIARCH inline VectorType project (const VectorType& q) const;
   }; //class OrientedSphereFit
 
 

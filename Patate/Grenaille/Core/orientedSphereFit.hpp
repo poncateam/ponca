@@ -84,32 +84,32 @@ OrientedSphereFit<DataPoint, _WFunctor, T>::finalize (){
 
 
 /*!
+  Use gradient descent
 */
 template < class DataPoint, class _WFunctor, typename T>
 typename DataPoint::VectorType
-OrientedSphereFit<DataPoint, _WFunctor, T>::project( VectorType q ) const{
+OrientedSphereFit<DataPoint, _WFunctor, T>::project( const VectorType& q ) const{
   MULTIARCH_STD_MATH(min)
 
-  // centered basis
-  q = q-_p;
+  // turn to centered basis
+  const VectorType lq = q-_p;
 
   //if(_isPlane)
   //{
   VectorType grad;
-  VectorType dir  = _ul+Scalar(2.)*_uq*q;
+  VectorType dir  = _ul+Scalar(2.)*_uq*lq;
   Scalar ilg      = Scalar(1.)/dir.norm();
   dir             = dir*ilg;
-  Scalar ad       = _uc + _ul.dot(q) +
-    _uq * q.squaredNorm();
+  Scalar ad       = _uc + _ul.dot(lq) +
+    _uq * lq.squaredNorm();
   Scalar delta    = -ad*min(ilg,Scalar(1.));
-  VectorType proj = q + dir*delta;
+  VectorType proj = lq + dir*delta;
 
   for (int i=0 ; i<16 ; ++i)
     {
       grad = _ul+Scalar(2.)*_uq*proj;
       ilg = Scalar(1.)/grad.squaredNorm();
-      delta = -(_uc + _ul.dot(proj) +
-		_uq * proj.squaredNorm())*min(ilg,1.);
+      delta = -evaluate(proj)*min(ilg,1.);
       proj += dir*delta;
     }
   return proj + _p;
@@ -120,8 +120,21 @@ OrientedSphereFit<DataPoint, _WFunctor, T>::project( VectorType q ) const{
 
 template < class DataPoint, class _WFunctor, typename T>
 typename DataPoint::Scalar
-OrientedSphereFit<DataPoint, _WFunctor, T>::evaluate( VectorType q ) const{
-  return _uc + q.dot(_ul) + _uq * q.dot(q);
+OrientedSphereFit<DataPoint, _WFunctor, T>::evaluate( const VectorType &q ) const{  
+  // turn to centered basis
+  const VectorType lq = q-_p;
+  
+  return _uc + lq.dot(_ul) + _uq * lq.squaredNorm();
+}
+
+
+template < class DataPoint, class _WFunctor, typename T>
+typename DataPoint::VectorType
+OrientedSphereFit<DataPoint, _WFunctor, T>::evaluateGradient( const VectorType &q ) const{
+  // turn to centered basis
+  const VectorType lq = q-_p;
+  
+  return (_ul + Scalar(2.f) * _uq * lq).normalized();
 }
 
 
