@@ -52,6 +52,7 @@ namespace Grenaille
   public:
     typedef typename Base::Scalar     Scalar;     /*!< \brief Inherited scalar type*/
     typedef typename Base::VectorType VectorType; /*!< \brief Inherited vector type*/
+    typedef typename Base::MatrixType MatrixType; /*!< \brief Inherited Matrix type*/
     typedef typename Base::WFunctor   WFunctor;   /*!< \brief Weight Function*/
 
 
@@ -135,14 +136,15 @@ namespace Grenaille
   public:
     typedef typename Base::Scalar     Scalar;
     typedef typename Base::VectorType VectorType;
+    typedef typename Base::MatrixType MatrixType;
     typedef typename Base::WFunctor   WFunctor;
 
     typedef typename Base::VectorArray VectorArray;
     typedef typename Base::ScalarArray ScalarArray;   
     
-    MULTIARCH inline ScalarArray dtau()   const;
-    MULTIARCH inline VectorArray deta()   const;
-    MULTIARCH inline ScalarArray dkappa() const;
+    MULTIARCH inline ScalarArray dtau()   const; /*!< \brief Access to \f$ \tau \f$ derivatives */
+    MULTIARCH inline VectorArray deta()   const; /*!< \brief Access to \f$ \eta \f$ derivatives */
+    MULTIARCH inline ScalarArray dkappa() const; /*!< \brief Access to \f$ \kappa \f$ derivatives */
     
     MULTIARCH inline ScalarArray dtau_normalized()   const;
     MULTIARCH inline VectorArray deta_normalized()   const;
