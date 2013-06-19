@@ -26,13 +26,13 @@
   of dimensions, attributes),
     - <b>Weight</b>: defines the weighting function that will be applied to collect
   neighbors for the fit,
-    - <b>Fit</b>: the fitting kernel. Must implement the FittingProcedureInterface.
+    - <b>Fit</b>: the fitting kernel. Must implement the Concept::FittingProcedureConcept.
     - <b>Ext-set</b>: set of extensions that will be applied over the fit to
-  obtain the desired behavior. Must implement the FittingExtensionInterface.
+  obtain the desired behavior. Must implement the Concept::FittingExtensionConcept.
 
   In practice, you will have to define a Point class (you could use the example below
   as basis), a weighting function (most of the time you could use those provided in 
-  Grenaille), choose your fitting kernel and the associated extensions. The interface
+  Grenaille), choose your fitting kernel and the associated extensions. The Concept
   of your class Point is defined by the requirements of the weighting, fitting and 
   extension classes.
 
@@ -46,7 +46,7 @@
 
   \subsection grenaille_howto_point_sec Point
 
-  You must implemente the following interface to write your Point class:
+  You must implemente the following Concept to write your Point class:
     - Define a public enum value called Dim, to define the number of dimensions:
   \code
 enum {Dim = 3};
@@ -103,8 +103,8 @@ MULTIARCH void addNeighbor(const Point &nei);
 MULTIARCH void finalize   ();
   \endcode
   
-  This interface is resumed in the documentation of this fake 
-  FittingProcedureInterface.
+  This Concept is resumed in the documentation of 
+  Concept::FittingProcedureConcept.
 
   Please go to the documentation of each fitting primitive to know their 
   requirements. For example, \ref OrientedSphereFit requires to define
@@ -159,8 +159,8 @@ typedef Basket<MyPoint,WeightFunc,OrientedSphereFit, OrientedSphereScaleDer, GLS
   to know their requirements and the macros they provide.
 
   \subsection grenaille_howto_ext_sec Extensions
-  Please follow the instructions defined in the documentation of this fake 
-  FittingExtensionInterface.
+  Please follow the instructions defined in the documentation of the 
+  Concept::FittingExtensionConcept.
   \warning Lot of materials are missing here !  
 
   \subsection grenaille_howto_weight_sec Weighting function
@@ -188,133 +188,134 @@ namespace Grenaille
 { 
 
 
-  // create fake classes to document the interface of a fitting approach and the
+  // create concept classes to document the Concept of a fitting approach and the
   // extensions
   
-   
-  /*!
-    \brief Interface that have to be implemented by Fitting procedures.
-    
-    The typical usage of this approach is:
-    \code    
-      typedef Basket<MyPointStructure,MyWeightingFunction,MyFittingProcedure> Fit;
-      MyWeightingFunction w ( some_parameters );
+  namespace Concept{
+    /*!
+      \brief Concept that have to be implemented by Fitting procedures.
+      
+      The typical usage of this approach is:
+      \code    
+        typedef Basket<MyPointStructure,MyWeightingFunction,MyFittingProcedure> Fit;
+        MyWeightingFunction w ( some_parameters );
 
-      // Create a fit object      
-      Fit fit;
-      
-      // init the internal state with respect to the reference position
-      fit.init( referencePosition );
-      
-      // set the weighting function. Has no influence of the other internals
-      fit.setWeightFunc( w );
-      
-      foreach neighbors of referencePosition
-        fit.addNeighbor(neighbor);
+        // Create a fit object      
+        Fit fit;
         
-      fit.finalize();
+        // init the internal state with respect to the reference position
+        fit.init( referencePosition );
+        
+        // set the weighting function. Has no influence of the other internals
+        fit.setWeightFunc( w );
+        
+        foreach neighbors of referencePosition
+          fit.addNeighbor(neighbor);
+          
+        fit.finalize();
+        
+        // use the fit
+        // ... 
+      \endcode
       
-      // use the fit
-      // ... 
-    \endcode
-    
-    \warning This class not really exist in the source code. It is only provided
-    to describe the interface that have to implement the fitting 
-    procedures.    
-   */
-  template < class DataPoint, class _WFunctor, typename T = void >
-  class FittingProcedureInterface {
-    public:
-    /**************************************************************************/
-    /* Initialization                                                         */
-    /**************************************************************************/
-   /*! 
-      \brief Init the WeightFunc, without changing the other internal states
-      \warning Must be called be for any computation 
-    */
-    void setWeightFunc (const WFunctor& w){};
-    
-    /*!
-      \brief Set the evaluation position and reset the internal states. 
-      \warning Must be called be for any computation
-    */
-    void init (const VectorType& evalPos){};
-    
+      \warning This class not really exist in the source code. It is only provided
+      to describe the Concept that have to implement the fitting 
+      procedures.    
+     */
+    template < class DataPoint, class _WFunctor, typename T = void >
+    class FittingProcedureConcept {
+      public:
+      /**************************************************************************/
+      /* Initialization                                                         */
+      /**************************************************************************/
+     /*! 
+        \brief Init the WeightFunc, without changing the other internal states
+        \warning Must be called be for any computation 
+      */
+      void setWeightFunc (const WFunctor& w){};
+      
+      /*!
+        \brief Set the evaluation position and reset the internal states. 
+        \warning Must be called be for any computation
+      */
+      void init (const VectorType& evalPos){};
+      
 
-    /**************************************************************************/
-    /* Processing                                                             */
-    /**************************************************************************/
-    /*!
-      \brief Add a neighbor to perform the fit 
-    */
-    void addNeighbor(const DataPoint &nei){};
+      /**************************************************************************/
+      /* Processing                                                             */
+      /**************************************************************************/
+      /*!
+        \brief Add a neighbor to perform the fit 
+      */
+      void addNeighbor(const DataPoint &nei){};
+      
+      /*!
+        \brief Finalize the fitting procedure    
+        \warning Must be called be for any use of the fitting output
+      */
+      void finalize (){};    
+    };
     
     /*!
-      \brief Finalize the fitting procedure    
-      \warning Must be called be for any use of the fitting output
-    */
-    void finalize (){};    
-  };
+      \brief Concept that have to be implemented by Fitting extensions.
+      
+      The typical usage of this approach is:
+      \code
+        typedef Basket<MyPointStructure,MyWeightingFunction,MyFittingProcedure, MyExtension1, MyExtension2, ...> ExtendedFit;
+        MyWeightingFunction w ( some_parameters );
+
+        // Create a fit object      
+        ExtendedFit extFit;
+        
+        // init the internal state with respect to the reference position
+        extFit.init( referencePosition );
+        
+        // set the weighting function. Has no influence of the other internals
+        extFit.setWeightFunc( w );
+        
+        foreach neighbors of referencePosition
+          extFit.addNeighbor(neighbor);
+          
+        extFit.finalize();
+        
+        // use the result of the fit and its extensions
+        // ... 
+      \endcode
+      
+      Any of the functions defined in an extension must first call the Base class:
+      \code    
+        MULTIARCH inline void init (const VectorType& evalPos){
+          Base::init(evalPos);        
+          //extended stuff
+        };
+      \endcode
+      
+      \warning This class not really exist in the source code. It is only provided
+      to describe the Concept that have to implement the fitting 
+      extensions.    
+     */
+    template < class DataPoint, class _WFunctor, typename T = void >
+    class FittingExtensionConcept {
+      public:
+      /**************************************************************************/
+      /* Initialization                                                         */
+      /**************************************************************************/
+      /*! \see FittingProcedureConcept::setWeightFunc */
+      void setWeightFunc (const WFunctor& w){};
+      
+      /*! \see FittingProcedureConcept::init */
+      void init (const VectorType& evalPos){};
+      
+
+      /**************************************************************************/
+      /* Processing                                                             */
+      /**************************************************************************/
+      /*! \see FittingProcedureConcept::addNeighbor */
+      void addNeighbor(const DataPoint &nei){};
+      
+      /*! \see FittingProcedureConcept::finalize */
+      void finalize (){};    
+    };
   
-  /*!
-    \brief Interface that have to be implemented by Fitting extensions.
-    
-    The typical usage of this approach is:
-    \code
-      typedef Basket<MyPointStructure,MyWeightingFunction,MyFittingProcedure, MyExtension1, MyExtension2, ...> ExtendedFit;
-      MyWeightingFunction w ( some_parameters );
-
-      // Create a fit object      
-      ExtendedFit extFit;
-      
-      // init the internal state with respect to the reference position
-      extFit.init( referencePosition );
-      
-      // set the weighting function. Has no influence of the other internals
-      extFit.setWeightFunc( w );
-      
-      foreach neighbors of referencePosition
-        extFit.addNeighbor(neighbor);
-        
-      extFit.finalize();
-      
-      // use the result of the fit and its extensions
-      // ... 
-    \endcode
-    
-    Any of the functions defined in an extension must first call the Base class:
-    \code    
-      MULTIARCH inline void init (const VectorType& evalPos){
-        Base::init(evalPos);        
-        //extended stuff
-      };
-    \endcode
-    
-    \warning This class not really exist in the source code. It is only provided
-    to describe the interface that have to implement the fitting 
-    extensions.    
-   */
-  template < class DataPoint, class _WFunctor, typename T = void >
-  class FittingExtensionInterface {
-    public:
-    /**************************************************************************/
-    /* Initialization                                                         */
-    /**************************************************************************/
-    /*! \see FittingProcedureInterface::setWeightFunc */
-    void setWeightFunc (const WFunctor& w){};
-    
-    /*! \see FittingProcedureInterface::init */
-    void init (const VectorType& evalPos){};
-    
-
-    /**************************************************************************/
-    /* Processing                                                             */
-    /**************************************************************************/
-    /*! \see FittingProcedureInterface::addNeighbor */
-    void addNeighbor(const DataPoint &nei){};
-    
-    /*! \see FittingProcedureInterface::finalize */
-    void finalize (){};    
-  };
-
+  } // End namespace Concept
 } // End namespace Grenaille

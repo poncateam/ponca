@@ -18,6 +18,8 @@ namespace Grenaille
     
     Method published in \cite Guennebaud:2007:APSS.
     
+    \implement Concept::FittingProcedureConcept
+    
     \see AlgebraicSphere
    */
   template < class DataPoint, class _WFunctor, typename T = void >
@@ -53,20 +55,20 @@ namespace Grenaille
     /**************************************************************************/
     /* Initialization                                                         */
     /**************************************************************************/
-    /*! \copydoc FittingProcedureInterface::setWeightFunc() */
+    /*! \copydoc Concept::FittingProcedureConcept::setWeightFunc() */
     MULTIARCH inline void setWeightFunc (const WFunctor& w) { _w  = w; }
     
-    /*! \copydoc FittingProcedureInterface::init() */
+    /*! \copydoc Concept::FittingProcedureConcept::init() */
     MULTIARCH inline void init (const VectorType& evalPos);
     
 
     /**************************************************************************/
     /* Processing                                                             */
     /**************************************************************************/
-    /*! \copydoc FittingProcedureInterface::addNeighbor() */
+    /*! \copydoc Concept::FittingProcedureConcept::addNeighbor() */
     MULTIARCH inline void addNeighbor(const DataPoint &nei);
     
-    /*! \copydoc FittingProcedureInterface::finalize() */
+    /*! \copydoc Concept::FittingProcedureConcept::finalize() */
     MULTIARCH inline void finalize   ();
   }; //class OrientedSphereFit
 
@@ -80,7 +82,7 @@ namespace Grenaille
 
     /*! 
       \brief Internal generic class performing the Fit derivation 
-      \inherit FittingExtensionInterface
+      \inherit Concept::FittingExtensionConcept
       
       The differentiation can be done automatically in scale and/or space, by
       combining the enum values FitScaleDer and FitSpaceDer in the template 
@@ -136,15 +138,15 @@ namespace Grenaille
       /************************************************************************/
       /* Initialization                                                       */
       /************************************************************************/
-      /*! \see FittingProcedureInterface::init() */
+      /*! \see Concept::FittingProcedureConcept::init() */
       MULTIARCH void init       (const VectorType &evalPos);
     
       /************************************************************************/
       /* Processing                                                           */
       /************************************************************************/
-      /*! \see FittingProcedureInterface::addNeighbor() */
+      /*! \see Concept::FittingProcedureConcept::addNeighbor() */
       MULTIARCH void addNeighbor(const DataPoint  &nei);
-      /*! \see FittingProcedureInterface::finalize() */
+      /*! \see Concept::FittingProcedureConcept::finalize() */
       MULTIARCH void finalize   ();
 
 
@@ -184,7 +186,7 @@ namespace Grenaille
 
   /*!
     \brief Differentiation in scale of the OrientedSphereFit
-    \inherit FittingExtensionInterface
+    \inherit Concept::FittingExtensionConcept
     
     Requierement: 
     \verbatim PROVIDES_ALGEBRAIC_SPHERE \endverbatim
@@ -203,7 +205,7 @@ namespace Grenaille
 
   /*!
     \brief Spatial differentiation of the OrientedSphereFit
-    \inherit FittingExtensionInterface
+    \inherit Concept::FittingExtensionConcept
     
     Requierement: 
     \verbatim PROVIDES_ALGEBRAIC_SPHERE \endverbatim
@@ -222,7 +224,7 @@ namespace Grenaille
 
   /*!
     \brief Differentiation both in scale and space of the OrientedSphereFit
-    \inherit FittingExtensionInterface
+    \inherit Concept::FittingExtensionConcept
     
     Requierement: 
     \verbatim PROVIDES_ALGEBRAIC_SPHERE \endverbatim

@@ -14,7 +14,7 @@ namespace Grenaille
 
   /*!
     \brief Growing Least Squares reparemetrization of the OrientedSphereFit
-    \inherit FittingExtensionInterface
+    \inherit Concept::FittingExtensionConcept
     
     Method published in \cite Mellado:2012:GLS
         
@@ -68,7 +68,7 @@ namespace Grenaille
     /**************************************************************************/
     /* Initialization                                                         */
     /**************************************************************************/
-    /*! \copydoc FittingProcedureInterface::setWeightFunc() */
+    /*! \copydoc Concept::FittingProcedureConcept::setWeightFunc() */
     MULTIARCH inline void setWeightFunc (const WFunctor& w){
       Base::setWeightFunc(w);
       _t = w.evalScale();
@@ -78,7 +78,7 @@ namespace Grenaille
     /**************************************************************************/
     /* Processing                                                             */
     /**************************************************************************/
-    /*! \copydoc FittingProcedureInterface::finalize() */
+    /*! \copydoc Concept::FittingProcedureConcept::finalize() */
     MULTIARCH inline void finalize   (){
       Base::finalize();
       _fitness = Scalar(1.) - Base::prattNorm2();
@@ -117,7 +117,7 @@ namespace Grenaille
   
   /*!
     \brief Differentiation of GLSParam
-    \inherit FittingExtensionInterface
+    \inherit Concept::FittingExtensionConcept
 
     Method published in \cite Mellado:2012:GLS
    */
@@ -154,7 +154,7 @@ namespace Grenaille
 
   /*!
     \brief Extension to compute the Geometric Variation of GLSParam
-    \inherit FittingExtensionInterface
+    \inherit Concept::FittingExtensionConcept
     
     Method published in \cite Mellado:2012:GLS
     \todo Add more details

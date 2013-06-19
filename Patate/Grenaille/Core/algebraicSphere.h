@@ -14,7 +14,7 @@ namespace Grenaille
 {
 
 /*!
-    \brief Algebraic Sphere fitting procedure on oriented point sets
+    \brief Algebraic Sphere primitive
     
     Method published in \cite Guennebaud:2007:APSS
     
