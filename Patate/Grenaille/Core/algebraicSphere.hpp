@@ -25,7 +25,7 @@ AlgebraicSphere<DataPoint, _WFunctor, T>::project( const VectorType& q ) const{
     {
       grad = _ul+Scalar(2.)*_uq*proj;
       ilg = Scalar(1.)/grad.squaredNorm();
-      delta = -potential(proj)*min(ilg,1.);
+      delta = -potential(proj)*min(ilg,Scalar(1.));
       proj += dir*delta;
     }
   return proj + _p;
