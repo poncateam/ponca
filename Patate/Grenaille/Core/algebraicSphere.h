@@ -124,7 +124,7 @@ namespace Grenaille
     //! \brief Project a point on the sphere
     MULTIARCH inline VectorType project (const VectorType& q) const;
     
-    //! \brief Approximation of the scalar field gradient at \f$ \mathbf{q} \f$
+    //! \brief Approximation of the scalar field gradient at \f$ \mathbf{q} (not normalized) \f$
     MULTIARCH inline VectorType primitiveGradient (const VectorType& q) const;
     
     //! \brief Rough Approximation of the hessian matrix at \f$ \mathbf{q} \f$

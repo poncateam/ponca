@@ -49,7 +49,7 @@ typename DataPoint::VectorType
 AlgebraicSphere<DataPoint, _WFunctor, T>::primitiveGradient( const VectorType &q ) const{
   // turn to centered basis
   const VectorType lq = q-_p;  
-  return (_ul + Scalar(2.f) * _uq * lq).normalized();
+  return (_ul + Scalar(2.f) * _uq * lq);
 }
 
 template < class DataPoint, class _WFunctor, typename T>
