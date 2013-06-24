@@ -75,6 +75,11 @@ namespace Grenaille
 
   namespace internal{
 
+  //! \todo FIXME Odd work-arround to handle Matrix declaration using nvcc
+#ifdef __CUDACC__
+  using namespace Eigen;
+#endif
+  
     enum {
       FitScaleDer = 0x01, /*!< \brief Flag indicating a scale differentiation. */
       FitSpaceDer = 0x02  /*!< \brief Flag indicating a space differentiation. */
@@ -104,10 +109,10 @@ namespace Grenaille
 
     protected:
       enum
-	{
-	  Check = Base::PROVIDES_ALGEBRAIC_SPHERE, /*!< \brief Needs Algebraic Sphere */
-	  PROVIDES_ALGEBRAIC_SPHERE_DERIVATIVE     /*!< \brief Provides Algebraic Sphere derivative*/
-	};
+	  {
+	    Check = Base::PROVIDES_ALGEBRAIC_SPHERE, /*!< \brief Needs Algebraic Sphere */
+	    PROVIDES_ALGEBRAIC_SPHERE_DERIVATIVE     /*!< \brief Provides Algebraic Sphere derivative*/
+      };
 
     public:
       typedef typename Base::Scalar     Scalar;     /*!< \brief Inherited scalar type*/
