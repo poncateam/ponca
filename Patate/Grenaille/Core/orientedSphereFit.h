@@ -117,9 +117,9 @@ namespace Grenaille
 
 #define GLS_DER_NB_DERIVATIVES(TYPE,DIM) ((TYPE & FitScaleDer) ? 1 : 0 ) + ((TYPE & FitSpaceDer) ? DIM : 0)
       /*! \brief Static array of scalars with a size adapted to the differentiation type */
-      typedef FixedSizeArray <VectorType, GLS_DER_NB_DERIVATIVES(Type,DataPoint::Dim)> VectorArray;
+      typedef Eigen::Matrix <Scalar, DataPoint::Dim, GLS_DER_NB_DERIVATIVES(Type,DataPoint::Dim)> VectorArray;
       /*! \brief Static array of scalars with a size adapted to the differentiation type */
-      typedef FixedSizeArray <Scalar,     GLS_DER_NB_DERIVATIVES(Type,DataPoint::Dim)> ScalarArray;
+      typedef Eigen::Matrix <Scalar, 1, GLS_DER_NB_DERIVATIVES(Type,DataPoint::Dim)> ScalarArray;
       
     private:
       // computation data
@@ -153,11 +153,17 @@ namespace Grenaille
     /**************************************************************************/
     /* Use results                                                            */
     /**************************************************************************/
+      MULTIARCH inline ScalarArray dprattNorm2() const{
+        return   Scalar(2.) * Base::_ul.transpose() * _dUl 
+               - Scalar(4.) * Base::_uq * _dUc
+	             - Scalar(4.) * Base::_uc * _dUq;      
+      }
+    
       /*! \brief compute the square of the Pratt norm derivative for dimension d */
       MULTIARCH inline Scalar dprattNorm2(unsigned int d) const {
-        return   Scalar(2.) * _dUl[d].dot(Base::_ul) 
-               - Scalar(4.) * _dUc[d]*Base::_uq
-	             - Scalar(4.) * Base::_uc*_dUq[d];}
+        return   Scalar(2.) * _dUl.col(d).dot(Base::_ul) 
+               - Scalar(4.) * _dUc.col(d)[0]*Base::_uq
+	             - Scalar(4.) * _dUq.col(d)[0]*Base::_uc;}
 
       /*! \brief compute the Pratt norm derivative for the dimension d */
       MULTIARCH inline Scalar dprattNorm(unsigned int d) const {
@@ -165,12 +171,18 @@ namespace Grenaille
         return sqrt(dprattNorm2(d));
       }
 
+      /*! \brief compute the Pratt norm derivative for the dimension d */
+      MULTIARCH inline Scalar dprattNorm() const {
+	      MULTIARCH_STD_MATH(sqrt);
+        return dprattNorm2().array().sqrt();
+      }
+
       /*! \brief State specified at compilation time to differenciate the fit in scale */
       MULTIARCH inline bool isScaleDer() const {return Type & FitScaleDer;}
       /*! \brief State specified at compilation time to differenciate the fit in space */
       MULTIARCH inline bool isSpaceDer() const {return Type & FitSpaceDer;}
       /*! \brief Number of dimensions used for the differentiation */
-      MULTIARCH inline unsigned int derDimension() const { return VectorArray::size();}
+      MULTIARCH inline unsigned int derDimension() const { return GLS_DER_NB_DERIVATIVES(Type,DataPoint::Dim);}
 
 
       //! Normalize the scalar field by the Pratt norm

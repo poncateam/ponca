@@ -10,6 +10,7 @@
 
 // Include common stuff
 #include "common/defines.h"
+#include "Eigen/Core"
 
 // Include Grenaille Core components
 #include "Grenaille/Core/basket.h"

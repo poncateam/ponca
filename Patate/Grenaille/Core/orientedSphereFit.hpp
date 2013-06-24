@@ -87,19 +87,16 @@ namespace internal{
   OrientedSphereDer<DataPoint, _WFunctor, T, Type>::init(const VectorType& evalPos){
     Base::init(evalPos);
 
-    for (unsigned int d = 0; d < derDimension(); d++){
-
-      _dSumN[d]     = VectorType::Zero();
-      _dSumP[d]     = VectorType::Zero();
-        
-      _dSumDotPN[d] = Scalar(0.0);
-      _dSumDotPP[d] = Scalar(0.0);
-      _dSumW[d]     = Scalar(0.0);
-        
-      _dUc[d] = Scalar(0.0);
-      _dUq[d] = Scalar(0.0);
-      _dUl[d] = VectorType::Zero();
-    }
+    _dSumN     = VectorArray::Zero();
+    _dSumP     = VectorArray::Zero();
+      
+    _dSumDotPN = ScalarArray::Zero();
+    _dSumDotPP = ScalarArray::Zero();
+    _dSumW     = ScalarArray::Zero();
+      
+    _dUc       = ScalarArray::Zero();
+    _dUq       = ScalarArray::Zero();
+    _dUl       = VectorArray::Zero();
   }
 
 
@@ -126,13 +123,11 @@ namespace internal{
     }
 
     // increment
-    for (unsigned int d = 0; d < derDimension(); d++){
-      _dSumW[d]     += w[d];
-      _dSumP[d]     += w[d] * q;
-      _dSumN[d]     += w[d] * nei.normal();
-      _dSumDotPN[d] += w[d] * nei.normal().dot(q);
-      _dSumDotPP[d] += w[d] * q.squaredNorm();
-    }
+    _dSumW     += w;
+    _dSumP     += q * w;
+    _dSumN     += nei.normal() * w;
+    _dSumDotPN += w * nei.normal().dot(q);
+    _dSumDotPP += w * q.squaredNorm();
   }
 
 
@@ -149,19 +144,19 @@ namespace internal{
 
       Scalar nume  = Base::_sumDotPN - invSumW*Base::_sumP.dot(Base::_sumN);
       Scalar deno  = Base::_sumDotPP - invSumW*Base::_sumP.dot(Base::_sumP);
+      
+      ScalarArray dNume = _dSumDotPN - invSumW*invSumW * ( Base::_sumW * (
+			                                           Base::_sumN.transpose() * _dSumP +
+			                                           Base::_sumP.transpose() * _dSumN ) 
+			                                       - _dSumW*Base::_sumP.dot(Base::_sumN) );
+      ScalarArray dDeno = _dSumDotPP - invSumW*invSumW*( Scalar(2.)*Base::_sumW * Base::_sumP.transpose()*_dSumP
+			                  - _dSumW*Base::_sumP.dot(Base::_sumP) );
 
-      // increment
-      for (unsigned int d = 0; d < derDimension(); d++){
-	Scalar dNume = _dSumDotPN[d] - invSumW*invSumW*(
-							Base::_sumW*(_dSumP[d].dot(Base::_sumN)+Base::_sumP.dot(_dSumN[d])) - _dSumW[d]*Base::_sumP.dot(Base::_sumN));
-	Scalar dDeno = _dSumDotPP[d] - invSumW*invSumW*( Scalar(2.)*Base::_sumW*_dSumP[d].dot(Base::_sumP)
-							 - _dSumW[d]*Base::_sumP.dot(Base::_sumP));
-
-	_dUq[d] = Scalar(.5) * (deno * dNume - dDeno * nume)/(deno*deno);
-	_dUl[d] = invSumW*((_dSumN[d] - Scalar(2.)*(_dSumP[d]*Base::_uq+Base::_sumP*_dUq[d])) - _dSumW[d]*Base::_ul);
-	_dUc[d] = -invSumW*( _dUl[d].dot(Base::_sumP) + _dUq[d]*Base::_sumDotPP + Base::_ul.dot(_dSumP[d])
-			     + Base::_uq*_dSumDotPP[d] + _dSumW[d]*Base::_uc);
-      }
+      _dUq =  Scalar(.5) * (deno * dNume - dDeno * nume)/(deno*deno);
+      _dUl =  invSumW*((_dSumN - Scalar(2.)*(_dSumP*Base::_uq+Base::_sumP*_dUq)) - Base::_ul*_dSumW);
+      _dUc = -invSumW*( Base::_sumP.transpose() * _dUl + 
+                        Base::_sumDotPP * _dUq + Base::_ul.transpose() * _dSumP +
+                        Base::_uq*_dSumDotPP + _dSumW*Base::_uc);
     }
 
   }
@@ -172,19 +167,18 @@ namespace internal{
   OrientedSphereDer<DataPoint, _WFunctor, T, Type>::applyPrattNorm() {
     if(Base::isNormalized())
       return false; //need original parameters without Pratt Normalization
+      
 
     MULTIARCH_STD_MATH(sqrt);
     Scalar pn2    = Base::prattNorm2();
     Scalar pn     = sqrt(pn2);
-    
-    for (unsigned int d = 0; d < derDimension(); d++){
-      Scalar dpn2   = dprattNorm2(d);
-      Scalar factor = Scalar(0.5) * dpn2 / pn;	
       
-      _dUc[d] = ( _dUc[d] * pn - Base::_uc * factor ) / pn2;
-      _dUl[d] = ( _dUl[d] * pn - Base::_ul * factor ) / pn2;
-      _dUq[d] = ( _dUq[d] * pn - Base::_uq * factor ) / pn2;
-    }
+    ScalarArray dpn2   = dprattNorm2();
+    ScalarArray factor = Scalar(0.5) * dpn2 / pn;	
+    
+    _dUc = ( _dUc * pn - Base::_uc * factor ) / pn2;
+    _dUl = ( _dUl * pn - Base::_ul * factor ) / pn2;
+    _dUq = ( _dUq * pn - Base::_uq * factor ) / pn2;
     
     Base::applyPrattNorm();
     return true;
