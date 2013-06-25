@@ -19,10 +19,16 @@
 #include "Grenaille/Core/weightKernel.h"
 #include "Grenaille/Core/weightFunc.h"
 
-#include "Grenaille/Core/rawSphereFit.h"
 #include "Grenaille/Core/orientedSphereFit.h"
-#include "Grenaille/Core/unorientedSphereFit.h"
 #include "Grenaille/Core/gls.h"
+
+#include "Grenaille/Core/rawSphereFit.h"
+
+
+// not supported on cuda
+#ifndef __CUDACC__
+# include "Grenaille/Core/unorientedSphereFit.h"
+#endif
 
 
 // Include Grenaille Algorithms
