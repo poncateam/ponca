@@ -115,6 +115,16 @@ namespace Grenaille
       return true;
     }
     
+    Scalar radius() {
+      MULTIARCH_STD_MATH(sqrt);
+      return sqrt( center().squaredNorm() - _uc/_uq );
+    }
+    
+    VectorType center() {
+      Scalar b = 1./_uq;
+      return (-0.5*b/_uq)*_ul;;
+    }
+    
     //! \brief State indicating when the sphere has been normalized 
     MULTIARCH inline bool isNormalized() const { return _isNormalized; }
     
@@ -129,7 +139,7 @@ namespace Grenaille
     
     //! \brief Rough Approximation of the hessian matrix at \f$ \mathbf{q} \f$
     MULTIARCH inline MatrixType primitiveHessian (const VectorType &q) const;
-  }; //class OrientedSphereFit
+  }; //class AlgebraicSphere
 
 
 #include "algebraicSphere.hpp"
