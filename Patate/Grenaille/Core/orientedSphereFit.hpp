@@ -114,13 +114,10 @@ namespace internal{
 
     // compute weight
     if (Type & FitScaleDer)
-      w[0] = Base::_w.scaledw(q, nei);
+        w[0] = Base::_w.scaledw(q, nei);
 
-    if (Type & FitSpaceDer){
-      VectorType vw = Base::_w.spacedw(q, nei);
-      for(unsigned int i = 0; i < DataPoint::Dim; i++)
-	      w [spaceId+i] = vw[i];
-    }
+    if (Type & FitSpaceDer)
+      w.template block<1,int(DataPoint::Dim)>(0,spaceId) = Base::_w.spacedw(q, nei).transpose();
 
     // increment
     _dSumW     += w;

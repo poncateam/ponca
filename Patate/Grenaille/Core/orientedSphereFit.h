@@ -116,10 +116,18 @@ namespace Grenaille
       typedef typename Base::WFunctor   WFunctor;   /*!< \brief Weight Function*/
 
 #define GLS_DER_NB_DERIVATIVES(TYPE,DIM) ((TYPE & FitScaleDer) ? 1 : 0 ) + ((TYPE & FitSpaceDer) ? DIM : 0)
+#define GLS_DER_STORAGE_ORDER(TYPE)      ((TYPE & FitSpaceDer) ? Eigen::RowMajor : Eigen::ColMajor )
+
       /*! \brief Static array of scalars with a size adapted to the differentiation type */
-      typedef Eigen::Matrix <Scalar, DataPoint::Dim, GLS_DER_NB_DERIVATIVES(Type,DataPoint::Dim)> VectorArray;
+      typedef Eigen::Matrix < Scalar, 
+                              DataPoint::Dim, 
+                              GLS_DER_NB_DERIVATIVES(Type,DataPoint::Dim)/*,
+                              GLS_DER_STORAGE_ORDER(Type)*/ > VectorArray;
       /*! \brief Static array of scalars with a size adapted to the differentiation type */
-      typedef Eigen::Matrix <Scalar, 1, GLS_DER_NB_DERIVATIVES(Type,DataPoint::Dim)> ScalarArray;
+      typedef Eigen::Matrix < Scalar, 
+                              1, 
+                              GLS_DER_NB_DERIVATIVES(Type,DataPoint::Dim)/*,
+                              GLS_DER_STORAGE_ORDER(Type)*/ > ScalarArray;
       
     private:
       // computation data
