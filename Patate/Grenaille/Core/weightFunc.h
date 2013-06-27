@@ -23,7 +23,7 @@ namespace Grenaille{
     \warning it assumes that the evaluation scale t is strictly positive
    */
   template <class DataPoint, class WeightKernel>
-  class DistWeightFunc: {
+  class DistWeightFunc {
   public:
     typedef typename DataPoint::Scalar Scalar;
     typedef typename DataPoint::VectorType VectorType;
