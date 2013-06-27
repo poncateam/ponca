@@ -167,13 +167,13 @@ typedef Basket<MyPoint,WeightFunc,OrientedSphereFit, OrientedSphereScaleDer, GLS
 
   There is two components combined to weight samples:
     - a 1D kernel, defined in the interval \f$ \left[0 \; : \; 1 \right]\f$,
-  that inherits BaseWeightKernel. 
+  implementing the Concept::WeightKernelConcept. 
   Actually their is two kernels included in the library: 
   \ref ConstantWeightKernel and \ref SmoothWeightKernel. Please go to the 
   related documentation pages for more details.
     - a specialized function that will use this kernel with respect to a given
-  point structure. It must derive from \ref BaseWeightFunc. Actually only 
-  \ref DistWeightFunc is provided, to compute a weight with respect to the
+  point structure and implementing Concept::WeightFuncConcept. Only 
+  \ref DistWeightFunc is provided yet, to compute a weight with respect to the
   distance between samples for a given scale \f$ t \f$ specified at runtime.
 
   An example of Weighting function with the MyPoint class:
@@ -190,7 +190,9 @@ namespace Grenaille
 
   // create concept classes to document the Concept of a fitting approach and the
   // extensions
-  
+  /*!
+    \brief Main concepts used in Grenaille
+  */
   namespace Concept{
     /*!
       \brief Concept that have to be implemented by Fitting procedures.
@@ -316,6 +318,50 @@ namespace Grenaille
       /*! \see FittingProcedureConcept::finalize */
       void finalize (){};    
     };
+    
+    
+    /*!
+      \brief This base class defines the weighting kernel concept
+    */
+    template <typename _Scalar>
+    class WeightKernelConcept{
+    public:
+      typedef _Scalar Scalar;
+
+      //! \brief Apply the weighting kernel to the scalar value \f$f(x)\f$
+      MULTIARCH inline Scalar f  (const Scalar& x) const {}
+      //! \brief Apply the first derivative of the weighting kernel to the scalar value \f$f'(x)\f$
+      MULTIARCH inline Scalar df (const Scalar& x) const {}
+      //! \brief Apply the second derivative of the weighting kernel to the scalar value \f$f''(x)\f$
+      MULTIARCH inline Scalar ddf(const Scalar& x) const {}
+    };// class WeightKernelConcept
+    
+    
+    /*!
+      \brief Weighting function concept
+    */
+    template <class DataPoint, typename Derived >
+    class WeightFuncConcept {
+
+    public:        
+      typedef typename DataPoint::Scalar Scalar;
+      typedef typename DataPoint::VectorType VectorType;
+        
+      /*! \brief Apply the weight function to a query. */
+      MULTIARCH inline Scalar w(const VectorType& relativeQuery, 
+			        const DataPoint&  attributes) const {}   
+         
+      /*! \brief Apply the weight function differenciated in space to a query. */
+      MULTIARCH inline VectorType spacedw(const VectorType& relativeQuery, 
+				      const DataPoint&  attributes) const {}   
+         
+      /*! \brief Apply the weight function differenciated in scale to a query. */
+      MULTIARCH inline Scalar scaledw(const VectorType& relativeQuery, 
+				      const DataPoint&  attributes) const {}
+
+      /*! \brief Read access to the evaluation scale */
+      MULTIARCH inline Scalar evalScale() const {}   
+    };// class WeightFuncConcept
   
   } // End namespace Concept
 } // End namespace Grenaille

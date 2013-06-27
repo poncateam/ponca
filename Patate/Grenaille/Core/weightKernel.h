@@ -14,33 +14,14 @@
 
 
 namespace Grenaille{
-  /*!
-    \brief This base class defines the interface available for weighting kernels
-    
-    Based on a template delegate, this class defines methods that have
-    to be implemented by any weighting kernel.
-  */
-  template <typename _Scalar, typename Derived >
-  class BaseWeightKernel{
-  public:
-    typedef _Scalar Scalar;
-
-    //! \brief Apply the weighting kernel to the scalar value \f$f(x)\f$
-    MULTIARCH inline Scalar f  (const Scalar& x) const { return _der().f  (x); }
-    //! \brief Apply the first derivative of the weighting kernel to the scalar value \f$f'(x)\f$
-    MULTIARCH inline Scalar df (const Scalar& x) const { return _der().df (x); }
-    //! \brief Apply the second derivative of the weighting kernel to the scalar value \f$f''(x)\f$
-    MULTIARCH inline Scalar ddf(const Scalar& x) const { return _der().ddf(x); }
-    
-  protected:
-    MULTIARCH inline const Derived& _der() const { return &static_cast<Derived*>(this); } 
-  };// class BaseWeightKernel
 
   /*!
-    \brief WeightKernel returning a constant value
+    \brief Concept::WeightKernelConcept returning a constant value
+    
+    \inherit Concept::WeightKernelConcept    
   */
   template <typename _Scalar>
-  class ConstantWeightKernel : public BaseWeightKernel<_Scalar, ConstantWeightKernel<_Scalar> >{
+  class ConstantWeightKernel {
   public:
     typedef _Scalar Scalar;
     
@@ -66,9 +47,11 @@ namespace Grenaille{
   /*!
     \brief Smooth WeightKernel defined in \f$\left[0 : 1\right]\f$
     \todo Add a degree value as template parameter (in this class or another one), with specialized functions for 2
+    
+    \inherit Concept::WeightKernelConcept  
    */
   template <typename _Scalar>
-  class SmoothWeightKernel : public BaseWeightKernel<_Scalar, SmoothWeightKernel<_Scalar> >{
+  class SmoothWeightKernel {
   public:
     typedef _Scalar Scalar;
 

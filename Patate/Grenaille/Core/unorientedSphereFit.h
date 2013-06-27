@@ -22,7 +22,7 @@ namespace Grenaille
     
     Method published in \cite Chen:2013:NOMG.
     
-    \implement Concept::FittingProcedureConcept
+    \inherit Concept::FittingProcedureConcept
     
     \see class AlgebraicSphere, class OrientedSphereFit
    */

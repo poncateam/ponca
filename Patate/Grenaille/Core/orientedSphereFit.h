@@ -18,7 +18,7 @@ namespace Grenaille
     
     Method published in \cite Guennebaud:2007:APSS.
     
-    \implement Concept::FittingProcedureConcept
+    \inherit Concept::FittingProcedureConcept
     
     \see AlgebraicSphere
    */

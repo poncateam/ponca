@@ -10,43 +10,6 @@
 
 namespace Grenaille{
   /*!
-    \brief This base class defines the interface available for weighting functions
-    
-    Based on a template delegate, this class defines methods that have
-    to be implemented by any weighting function.
-  */
-  template <class DataPoint, typename Derived >
-  class BaseWeightFunc {
-
-  public:        
-    typedef typename DataPoint::Scalar Scalar;
-    typedef typename DataPoint::VectorType VectorType;
-      
-    /*! \brief Apply the weight function to a query. */
-    MULTIARCH inline Scalar w(const VectorType& relativeQuery, 
-			      const DataPoint&  attributes) const
-    { return _der().w(relativeQuery, attributes); }   
-       
-    /*! \brief Apply the weight function differenciated in space to a query. */
-    MULTIARCH inline VectorType spacedw(const VectorType& relativeQuery, 
-				    const DataPoint&  attributes) const
-    { return _der().spacedw(relativeQuery, attributes); }   
-       
-    /*! \brief Apply the weight function differenciated in scale to a query. */
-    MULTIARCH inline Scalar scaledw(const VectorType& relativeQuery, 
-				    const DataPoint&  attributes) const
-    { return _der().scaledw(relativeQuery, attributes); }
-
-    /*! \brief Read access to the evaluation scale */
-    MULTIARCH inline Scalar evalScale() const
-    { return _der().evalScale(); }
-
-  protected:
-    MULTIARCH inline const Derived& _der() const { return &static_cast<Derived*>(this); }    
-  };// class BaseWeightFunc
-
-
-  /*!
     \brief Weighting function based on the euclidean distance between a query and a reference position
     
     The query is assumed to be expressed in centered coordinates (ie. relatively
@@ -55,10 +18,12 @@ namespace Grenaille{
     This class inherits BaseWeightFunc. It can be specialized for any DataPoint, 
     and uses a generic 1D BaseWeightKernel.
     
+    \inherit Concept::WeightFuncConcept
+    
     \warning it assumes that the evaluation scale t is strictly positive
    */
   template <class DataPoint, class WeightKernel>
-  class DistWeightFunc: public BaseWeightFunc<DataPoint, DistWeightFunc<DataPoint, WeightKernel> >{
+  class DistWeightFunc: {
   public:
     typedef typename DataPoint::Scalar Scalar;
     typedef typename DataPoint::VectorType VectorType;
