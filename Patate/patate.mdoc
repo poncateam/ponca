@@ -7,35 +7,55 @@
 /*!
   \mainpage Patate Documentation
 
-  \section patate_intro_sec Introduction
-  One day, the world will be covered by millions of Patate.
+  \section patate_overview_sec Overview
 
-  But for the moment, there is only one Patate: #Grenaille, to fit implicit primitives and analyze them. Please go to \ref Grenaille "this" page, you will not be disappointed...
+  The Patate library is a collection of Computer Graphics techniques that incorporate the latest innovations from Inria research teams working in the field. It strives for efficiency and ease-of-use by focusing on low-level core operators and key algorithms, organised in modules that each tackle a specific set of issues. The central goal of the library is to drastically reduce the time and efforts required to turn a research paper into a ready-to-use solution, for both commercial and academic purposes. Before coming down to the details and to make your mouth water a bit, expect to find here tools about multi-scale analysis, material appearance, vector graphics, expressive rendering and 2D animation.
 
-  \section patate_req_sec Requierements
+  “Patate” means potato in French; and like potatoes, modules are intended to provide tasty and nourishing features that are easy to incorporate into your own recipe|pipeline. All you will have to do is to gently dig into the documentation to learn how each patate works; tutorials and examples will give you basic recipes from which to start from. Although patates are intended to grow seperately from each other, they will reveal even richer flavours when cooked together; we provide some examples of such combinations.
+
+  Each patate|module is structured in the same way: a core/ folder where you will find operators that rely on no data structure and work both with CUDA and C++; an algorithms/ folder with methods that may interface with user-provided data structures, with optimized solutions in C++, CUDA or both. The rationale behind this separation is to provide two levels of complexity: core operators implement atomic scientific contributions that are agnostic of the host application; algorithms implement step-by-step procedures that will likely rely on core operators and/or structure traversal. For this reason, all operators become available whenever a patate|module is included; whereas each algorithm must be included independently.
+
+  \section patate_download_sec Downloads
+
+  The Patate lib is currently under active development. However, some basic functionalities have already been implemented and tested. If you want to get a taste of these early features, use the latest package available here: https://gforge.inria.fr/projects/patate/. 
   
-  The only thing you need to use a Patate is <a href="http://eigen.tuxfamily.org" target="_blank">Eigen</a>, the swiss army knife of linear algebra.
-
-  \section patate_multiarch_sec MultiArch
-  
-  Patate is compatible with Cuda. In this case, since Eigen cannot be compiled by nvcc yet, you need to use <a href="http://bitbucket.org/ggael/eigen-nvcc" target="_blank">eigen-nvcc</a>. The compatibility of the library is ensured by using the macro
-\code
-MULTIARCH void foo();
-\endcode
-  as prefix to any function/method declaration. It has no effect when the code is compiled with GCC or Clang, but it will force the compilation for both host and device architectures when compiling with nvcc. 
-
-  \warning A similar macro system is provided for mathematical functions, to switch between STL and CUDA versions ; documentations will be provided as soon as possible.
-
-  \section patate_status_sec Devel status
-
-  The Patate lib is currently under active development. However, some basic functionalities have already been implemented. Please go to each Patate documentation to have more details on the available features.
-
-  If you want to use only tested functionalities, please use the last package available here: https://gforge.inria.fr/projects/patate/.
-  Otherwise, you can use the development repository:
+  You may also want to monitor our efforts in developping the library, in which case you will want to access the development repository:
   \code
   git clone git://scm.gforge.inria.fr/patate/patate.git
   \endcode
 
-  Some examples are already available to help you using the library. 
-  However, if you get stuck, please send an email to nicolas.mellado@inria.fr for further assistance.
+  \warning Only one patate is available at the moment though, but it's one that is already rich in features: have a look at the \ref Grenaille "this" page for more information. Some examples are already available to help you using the library. However, if you get stuck, please send an email to nicolas.mellado@inria.fr for further assistance.
+
+
+  \section patate_requirements_sec Requirements
+
+  Core operators are designed for lightweight uses and thus rely on a single external library: <a href="http://eigen.tuxfamily.org" target="_blank">Eigen</a>, the swiss army knife of linear algebra. Algorithms also strongly rely on Eigen for various purposes, but may require additional libraries in specific instances. In such cases, dependencies are mentioned in the associated documentation page.
+
+  The PatateLib is compatible with Cuda, which permits to use patates inside Matlab or Python (provided you own an NVidia graphics card). Eigen cannot be yet compiled by nvcc though; you will thus need to use <a href="http://bitbucket.org/ggael/eigen-nvcc" target="_blank">eigen-nvcc</a> if you want to make use of Cuda. The compatibility of the library is ensured by using the macro
+\code
+MULTIARCH void foo();
+\endcode
+  as a prefix to any function/method declaration. It has no effect when the code is compiled with GCC or Clang, but it will force the compilation for both host and device architectures when compiling with nvcc. 
+
+  \warning A similar macro system is provided for mathematical functions, to switch between STL and CUDA versions ; documentations will be provided as soon as possible.
+
+
+  \section patate_citing_sec Citing
+
+  The Patate library relies on published scientific papers that we have collected in a separate section of the documentation. These will prove invaluable resources if you want to dig into the implementation of operators and algorithms.
+
+  Moreover, if the PatateLib contributes to a project that leads to a scientific publication or a commercial or free software, please acknowledge this fact by citing the project. 
+
+
+  \section patate_licensing_sec Licensing
+
+  The source code of the library is licensed under the Mozilla Public License (MPL), v. 2.0. Its main advantage is to grant inclusion of template files as long as the source code itself is not modified. For more details, a copy of the MPL can be found at <a href="http://mozilla.org/MPL/2.0/" target="_blank"> http://mozilla.org/MPL/2.0/ </a>.
+
+
+  \section patate_credits_sec Credits
+
+  Each patate is usually developped by a few persons, for which we will give a list once we have more than one patate.
+  Our first and only patate for now is  #Grenaille, and it has been developped by Nicolas Mellado, Gael Guennebaud and Pascal Barla.
+
+
 */
