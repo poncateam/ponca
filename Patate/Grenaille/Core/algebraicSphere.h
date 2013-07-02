@@ -115,14 +115,15 @@ namespace Grenaille
       return true;
     }
     
-    Scalar radius() {
+    MULTIARCH inline Scalar radius() {
       MULTIARCH_STD_MATH(sqrt);
-      return sqrt( center().squaredNorm() - _uc/_uq );
+      Scalar b = 1./_uq;
+      return sqrt( ((-0.5*b)*_ul).squaredNorm() - _uc*b );
     }
     
-    VectorType center() {
+    MULTIARCH inline VectorType center() {
       Scalar b = 1./_uq;
-      return (-0.5*b/_uq)*_ul;;
+      return (-0.5*b)*_ul + basisCenter();
     }
     
     //! \brief State indicating when the sphere has been normalized 
