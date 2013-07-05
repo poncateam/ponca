@@ -1,17 +1,25 @@
 /*!
-  \page grenaille_tutorial1 Grenaille first tutorial
+  \page grenaille_tutorial1 Grenaille first tutorial  
   
-<div class="toc"><h3>Table of Contents</h3>tests</div>
-
-  This tutorial explains basics of Grenaille. A final and working version is
-  available in \ref cpp/grenaille_basic_cpu.cpp.
+  This tutorial explains basics of Grenaille. The complete source-code is
+  available at \ref cpp/grenaille_basic_cpu.cpp.
+  
+  <h3>Table of Content</h3>
+  - \ref grenaille_tutorial1_section_define
+    - \ref grenaille_tutorial1_subsection_define_samples
+    - \ref grenaille_tutorial1_subsection_define_fit
+  - \ref grenaille_tutorial1_section_fitting
+  - \ref grenaille_tutorial1_section_access
+    - \ref grenaille_tutorial1_section_access_field
+    - \ref grenaille_tutorial1_section_access_sphere
+    - \ref grenaille_tutorial1_section_access_other
 
   \section grenaille_tutorial1_section_define Defining samples and processing classes
-  The first step needed to use Grenaille is to define samples that might
-  be used for precessing, as well as the fitted primitive and its potential 
-  extensions. 
+  The first step needed to use Grenaille is to define how samples are represented
+  and indicates how Grenaille can access them for processing, with respect to 
+  the fitted primitive and the potential extensions required.
   
-  The strength of Grenaille is to define all these structures at compile time, to
+  A strength of Grenaille is to define all these structures at compile time to
   generate optimized code for fast evaluation at runtime. The only job you have
   to do is defining types and classes that might be used by Grenaille to process
   your data. 
@@ -19,7 +27,19 @@
   
     
   \subsection grenaille_tutorial1_subsection_define_samples Samples
+  The description of how sample points are represented has to be done by the 
+  user in order to make Grenaille easy to integrate in any existing application.
+  Indeed, with this approach it is not required to convert internal data format
+  from the application to Grenaille, but only to indicates how to access to
+  existing data.  
   
+  The class Grenaille::Concept::PointConcept defines the interface that have to 
+  be implemented. For this example, we want to fit a Grenaille::AlgebraicSphere 
+  over point equipped with normals using Grenaille::OrientedSphereFit, so we 
+  have to add a normal vector and the associated getters/setters. It is also
+  necessary to define a Matrix Type, requested by Grenaille::AlgebraicSphere. 
+
+  The final class is defined as:
   \code
   using namespace Grenaille;
   
@@ -29,7 +49,7 @@
     enum {Dim = 3};
     typedef double Scalar;
     typedef Eigen::Matrix<Scalar, Dim, 1>   VectorType;
-    typedef Eigen::Matrix<Scalar, Dim, Dim> MatrixType;
+    typedef Eigen::Matrix<Scalar, Dim, Dim> MatrixType; // Type needed by Grenaille::AlgebraicSphere
 
     MULTIARCH inline MyPoint(const VectorType &pos    = VectorType::Zero(), 
 		   const VectorType& normal = VectorType::Zero())
@@ -51,46 +71,86 @@
     VectorType _pos, _normal;
   };
   \endcode
+  Note the <CODE>Random</CODE> method to initialize samples and generates a 
+  noisy sphere. 
   
-  We can also define helper typedef for Scalar and Vector types: 
+  
+  We can also define helper <CODE>typedef</CODE> for <CODE>Scalar</CODE> and 
+  <CODE>Vector</CODE> types: 
   \code
   typedef MyPoint::Scalar Scalar;
   typedef MyPoint::VectorType VectorType;
   \endcode
   
+  
+  
+  
+  
   \subsection grenaille_tutorial1_subsection_define_fit Fitting procedure
+  Their is basically two Types that must be defined to specialize the fitting
+  procedure.  
+  
+  The first one defines how samples will contribute to the fit, through a given
+  weighting function. In this example, samples are weighted by considering their
+  distance to an evaluation point in order to collect of a ball neighborhood,
+  using Grenaille::DistWeightFunc. This weighting function could be specialized
+  by any arbitrary 1D WeighKernel that is applied to the euclidean distance (no 
+  mater the dimension number of the ambient space). In this example we use a
+  standard bisquare kernel defined in Grenaille::SmoothWeightKernel:
   \code
   typedef DistWeightFunc<MyPoint,SmoothWeightKernel<Scalar> > WeightFunc; 
   \endcode
+  
+  The last but not least type definition combines the sample description, the 
+  weighting function with a fitting procedure and its associated extensions.
+  This is achieved by filling a Grenaille::Basket. In this example a
+  Grenaille::AlgebraicSphere is fitted using a Grenaille::OrientedSphereFit 
+  procedure. Note that the primitive is implicitly defined by the fitting 
+  procedure, that's why it doesn't appear in the Basket). A Growing Least Square
+  reparametrization is also applied by Grenaille::GLSParam.
+  
   \code
   typedef Basket<MyPoint,WeightFunc,OrientedSphereFit, GLSParam> Fit1;  
   \endcode
   
   
+    
   
-  
-  
-  \section grenaille_tutorial1_section_fitting Fitting
-  
+  \section grenaille_tutorial1_section_fitting Processing
+
+  Once types are now defined, the main part of the job is done. We can now
+  create an object, assign it an instance of the weighting function, and
+  set the evaluation position.
   \code
+  // Create the previously defined fitting procedure
   Fit1 fit;
   
-  //... init data
-  
+  // Set a weighting function instance
   fit.setWeightFunc(WeightFunc(tmax));
-  fit.init(p);
   
-  // Fit the primitive
+  // Set the evaluation position
+  fit.init(p);
+  \endcode
+  
+  Neighbors are then added sequentially to compute the fit. In this example we
+  iterate over all the elements stored in an array, and let the weighting 
+  function filtering points that are outside of the neighborhood ball. In 
+  practice the computation may change with respect to the Basket definition.
+  
+  \code
+  // Iterate over samples and fit the primitive
   for(vector<MyPoint>::iterator it = vecs.begin(); it != vecs.end(); it++)
-    fit.addNeighbor(*it);  
+    fit.addNeighbor(*it); 
+    
+  //finalize fitting 
   fit.finalize();
   \endcode
   
   
   
-  
-  
   \section grenaille_tutorial1_section_access Playing with computed values  
+  Since the primitive has been adjusted, it is now possible to access to 
+  various computed fields.
   
   \subsection grenaille_tutorial1_section_access_field Scalar field  
   Access to properties of the fitted scalar-field, defined in Grenaille::AlgebraicSphere :
