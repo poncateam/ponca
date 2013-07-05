@@ -24,6 +24,24 @@ namespace Grenaille{
 
     \brief Agregator class used to declare specialized structures using CRTP
     \todo Comment
+    
+    The various implementations of Grenaille::Concept are mixed through 
+    specializations of the Basket class:
+    \code
+    typedef 
+    Basket <PointImpl,              // Implementation of PointConcept
+    
+            WeightFuncImpl,         // Implementation of WeightFuncConcept (could use WeightKernelConcept)
+            
+            FittingProcedureImpl,   // Implementation of FittingProcedureConcept
+            
+            FittingExtensionImpl1,  // 
+            FittingExtensionImpl2,  // Implementations of FittingExtensionConcept
+            ... ,                   //
+            FittingExtensionImpln   //
+            
+            > myFit;                // Final structure to fit and extend a primitive over weighted samples
+    \endcode
 
    */
   template < class P, class W, template <class, class, typename>class Fit, 
