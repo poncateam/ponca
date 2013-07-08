@@ -1,29 +1,26 @@
 /*!
 
-  \brief Fit and analyze point-clouds efficiently.
+  \brief Efficient fitting and analysis of point-clouds in arbitrary dimensions.
     
-  For a first contact, the best place is to have a look at the 
-  \ref grenaille_tutorial1 and at the Grenaille::Concept page that presents 
-  concepts defining the Grenaille API. 
+  The best way to get started is to go through the \ref grenaille_tutorial1. 
+  You will discover some of the concepts that define the programming interface of the module.
+  A concept is a set of requirements that a method has to fulfill, a bit like an interface in JAVA.
+  For a detailed presentation of all available concepts, go to the Grenaille::Concept page.
   
-  These concepts are implemented in many ways to fit different kind of 
-  primitives on various data. The above list of available features gives a direct
-  access to their documentation: mathematical overview, related papers, and API.
+  Browse the list below to discover implementations of these concepts currently available in the Grenaille module. 
   
  */
 namespace Grenaille
 { 
   /*!
-    \brief Main concepts used in Grenaille
+    \brief Concepts used in Grenaille
     
-    The Grenaille API is driven by five concepts, one defining samples  
-    structure (pointConcept), two to define how to weight
-    neighbor samples (WeightKernelConcept and WeightFuncConcept), and two
-    other to perform the fitting procedure and additional computations 
-    (FittingProcedureConcept and FittingExtensionConcept).
-    
-    The various implementations of these concepts are mixed through 
-    specializations of the Basket class:
+    The Grenaille module is structured around five concepts:
+    - one defining the structure a sample (PointConcept);
+    - two defining how neighbor samples should be weighted (WeightKernelConcept and WeightFuncConcept);
+    - two defining how to perform fitting and what to extract from it (FittingProcedureConcept and FittingExtensionConcept).
+
+    In practice, one must first determine which concept implementations they need, and then gather them in what we call a Basket.    
     \code
     typedef 
     Basket <PointImpl,              // Implementation of PointConcept
@@ -39,15 +36,16 @@ namespace Grenaille
             
             > myFit;                // Final structure to fit and extend a primitive over weighted samples
     \endcode
-    
-    \see \ref grenaille_tutorial1 for a complete how-to.
-    \see Related pages listed below defining concepts API:
+
+    \see The \ref grenaille_tutorial1 demonstrates step by step how to use a Basket for a simple application.
+
+    \see For more details about each concept and examples of how to use them, browse through the pages below.
   */
   namespace Concept{
     /*!
-      \brief Defines procedure to fit a primitive on samples
+      \brief Describes the procedure to fit a primitive to point samples.
       
-      The typical usage of this approach is:
+      A typical example use would go like this:
       \code    
         typedef Basket<MyPointStructure,MyWeightingFunction,MyFittingProcedure> Fit;
         MyWeightingFunction w ( some_parameters );
@@ -69,10 +67,7 @@ namespace Grenaille
         // use the fit
         // ... 
       \endcode
-      
-      \warning This class not really exist in the source code. It is only provided
-      to describe the Concept that have to implement the fitting 
-      procedures.    
+         
      */
     template < class DataPoint, class _WFunctor, typename T = void >
     class FittingProcedureConcept {
@@ -109,9 +104,9 @@ namespace Grenaille
     };
     
     /*!
-      \brief Defines procedure to extend a fit to compute additional informations
+      \brief Describes the procedure to provide fitting with additional features.
       
-      The typical usage of this approach is:
+      A typical example use would go like this:
       \code
         typedef Basket<MyPointStructure,MyWeightingFunction,MyFittingProcedure, MyExtension1, MyExtension2, ...> ExtendedFit;
         MyWeightingFunction w ( some_parameters );
@@ -214,16 +209,13 @@ namespace Grenaille
     };// class WeightFuncConcept
     
     /*!
-      \brief Definition of the sample structure.
+      \brief Definition of a point sample.
       
-      This is the minimalist point definition. Additional features might be 
-      required depending of the Basket definition, as listed in the 
-      documentation pages of the involved weight function, 
-      fitting procedure and fitting extension.
+      All fitting methods in Grenaille rely on the definition of a Point type. Specific features might be required depending on the content of the Basket: for instance, and OrientedSphereFit will require points equipped with normals as illustrated in the \ref grenaille_tutorial1.
       
-      Grenaille do not provide implementation for this concept, in order to let
+      Grenaille does not provide an implementation for this concept, in order to let
       users adapt it to their own data structure. However, the following 
-      implementation can be used as starting point for many 3D applications:
+      implementation can be used as a starting point for most 3D applications:
       \code
       class MyPoint{
       public:
