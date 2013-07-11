@@ -104,7 +104,7 @@ namespace Grenaille
     };
     
     /*!
-      \brief Describes the procedure to provide fitting with additional features.
+      \brief Describes how to add features to an existing fitting procedure.
       
       A typical example use would go like this:
       \code
@@ -129,17 +129,6 @@ namespace Grenaille
         // ... 
       \endcode
       
-      Any of the functions defined in an extension must first call the Base class:
-      \code    
-        MULTIARCH inline void init (const VectorType& evalPos){
-          Base::init(evalPos);        
-          //extended stuff
-        };
-      \endcode
-      
-      \warning This class not really exist in the source code. It is only provided
-      to describe the Concept that have to implement the fitting 
-      extensions.    
      */
     template < class DataPoint, class _WFunctor, typename T = void >
     class FittingExtensionConcept {
@@ -166,7 +155,7 @@ namespace Grenaille
     
     
     /*!
-      \brief This base class defines the weighting kernel concept
+      \brief A 1D weighting function and its derivatives.
     */
     template <typename _Scalar>
     class WeightKernelConcept{
@@ -183,7 +172,7 @@ namespace Grenaille
     
     
     /*!
-      \brief Weighting function concept
+      \brief Applies a Concept::WeightKernelConcept to a Concept::PointConcept query.
     */
     template <class Point>
     class WeightFuncConcept {
@@ -211,11 +200,9 @@ namespace Grenaille
     /*!
       \brief Definition of a point sample.
       
-      All fitting methods in Grenaille rely on the definition of a Point type. Specific features might be required depending on the content of the Basket: for instance, and OrientedSphereFit will require points equipped with normals as illustrated in the \ref grenaille_tutorial1.
+      All fitting methods in Grenaille rely on the definition of a Point type. Specific features might be required depending on the content of the Basket: for instance, an OrientedSphereFit will require points equipped with normals as illustrated in the \ref grenaille_tutorial1.
       
-      Grenaille does not provide an implementation for this concept, in order to let
-      users adapt it to their own data structure. However, the following 
-      implementation can be used as a starting point for most 3D applications:
+      Grenaille does not provide an implementation for this concept so that users may adapt it to their own data structure. However, the following implementation can be used as a starting point for most 3D applications:
       \code
       class MyPoint{
       public:

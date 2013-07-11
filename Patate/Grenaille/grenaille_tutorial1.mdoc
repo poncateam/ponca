@@ -1,7 +1,7 @@
 /*!
   \page grenaille_tutorial1 Grenaille first tutorial  
   
-  This tutorial explains basics of Grenaille. The complete source-code is
+  This tutorial explains the basics of the Grenaille module. The corresponding source-code is
   available at \ref cpp/grenaille_basic_cpu.cpp.
   
   <h3>Table of Content</h3>
@@ -14,32 +14,16 @@
     - \ref grenaille_tutorial1_section_access_sphere
     - \ref grenaille_tutorial1_section_access_other
 
-  \section grenaille_tutorial1_section_define Defining samples and processing classes
-  The first step needed to use Grenaille is to define how samples are represented
-  and indicates how Grenaille can access them for processing, with respect to 
-  the fitted primitive and the potential extensions required.
-  
-  A strength of Grenaille is to define all these structures at compile time to
-  generate optimized code for fast evaluation at runtime. The only job you have
-  to do is defining types and classes that might be used by Grenaille to process
-  your data. 
-  
-  
+  \section grenaille_tutorial1_section_define Setting up data and processes
+  The first step needed to use Grenaille is to define how samples are represented isnide the module.
+  A strength of Grenaille is to define all these structures at compile time to generate optimized code for fast evaluation at runtime. 
+
     
   \subsection grenaille_tutorial1_subsection_define_samples Samples
-  The description of how sample points are represented has to be done by the 
-  user in order to make Grenaille easy to integrate in any existing application.
-  Indeed, with this approach it is not required to convert internal data format
-  from the application to Grenaille, but only to indicates how to access to
-  existing data.  
+  The class Grenaille::Concept::PointConcept defines the interface that has to be implemented to represent a sample. Observe that there is no need for data conversion: all you need to do is to indicate how to access existing data.  
   
-  The class Grenaille::Concept::PointConcept defines the interface that have to 
-  be implemented. For this example, we want to fit a Grenaille::AlgebraicSphere 
-  over point equipped with normals using Grenaille::OrientedSphereFit, so we 
-  have to add a normal vector and the associated getters/setters. It is also
-  necessary to define a Matrix Type, requested by Grenaille::AlgebraicSphere. 
-
-  The final class is defined as:
+  As an example, let's fit a Grenaille::AlgebraicSphere onto points equipped with normals using the Grenaille::OrientedSphereFit. To this end, we must define a structure MyPoint containing a normal vector and its associated accessors. Because of the way Grenaille::AlgebraicSphere works, we must also define a Matrix Type.
+  This leads to the following class:
   \code
   using namespace Grenaille;
   
@@ -61,22 +45,14 @@
     MULTIARCH inline VectorType& pos()    { return _pos; }  
     MULTIARCH inline VectorType& normal() { return _normal; }
 
-    static inline MyPoint Random() {
-      VectorType n = VectorType::Random().normalized();
-      VectorType p = n * Eigen::internal::random<Scalar>(0.9,1.1);
-      return MyPoint (p, (n + VectorType::Random()*0.1).normalized());
-    };
-
   private:
     VectorType _pos, _normal;
   };
   \endcode
-  Note the <CODE>Random</CODE> method to initialize samples and generates a 
-  noisy sphere. 
   
   
-  We can also define helper <CODE>typedef</CODE> for <CODE>Scalar</CODE> and 
-  <CODE>Vector</CODE> types: 
+  To make code more readable, we also define helper <CODE>typedef</CODE> for <CODE>Scalar</CODE> and 
+  <CODE>Vector</CODE> types outside of the MyPoint class: 
   \code
   typedef MyPoint::Scalar Scalar;
   typedef MyPoint::VectorType VectorType;
@@ -86,28 +62,15 @@
   
   
   
-  \subsection grenaille_tutorial1_subsection_define_fit Fitting procedure
-  Their is basically two Types that must be defined to specialize the fitting
-  procedure.  
+  \subsection grenaille_tutorial1_subsection_define_fit Fitting
+  Two template classes must be specialized to indicate how a fit must be applied.  
   
-  The first one defines how samples will contribute to the fit, through a given
-  weighting function. In this example, samples are weighted by considering their
-  distance to an evaluation point in order to collect of a ball neighborhood,
-  using Grenaille::DistWeightFunc. This weighting function could be specialized
-  by any arbitrary 1D WeighKernel that is applied to the euclidean distance (no 
-  mater the dimension number of the ambient space). In this example we use a
-  standard bisquare kernel defined in Grenaille::SmoothWeightKernel:
+  The first step consists in identifying a weighting function: it defines how neighbor samples will contribute to the fit. In this example, we choose a weight based on the Euclidean distance using Grenaille::DistWeightFunc, remaped through a bisquare kernel defined in Grenaille::SmoothWeightKernel:
   \code
   typedef DistWeightFunc<MyPoint,SmoothWeightKernel<Scalar> > WeightFunc; 
   \endcode
   
-  The last but not least type definition combines the sample description, the 
-  weighting function with a fitting procedure and its associated extensions.
-  This is achieved by filling a Grenaille::Basket. In this example a
-  Grenaille::AlgebraicSphere is fitted using a Grenaille::OrientedSphereFit 
-  procedure. Note that the primitive is implicitly defined by the fitting 
-  procedure, that's why it doesn't appear in the Basket). A Growing Least Square
-  reparametrization is also applied by Grenaille::GLSParam.
+  The second step identifies a complete fitting procedure through the specialization of a Grenaille::Basket. In our example, we want to apply an Grenaille::OrientedSphereFit to input data points, which outputs an Grenaille::AlgebraicSphere by default. We further require such a sphere to be reparametrized using a Grenaille::GLSParam extension, which provides more intuitive parameters. This leads to the following specialization:
   
   \code
   typedef Basket<MyPoint,WeightFunc,OrientedSphereFit, GLSParam> Fit1;  
@@ -116,11 +79,10 @@
   
     
   
-  \section grenaille_tutorial1_section_fitting Processing
+  \section grenaille_tutorial1_section_fitting Applying the fitting procedure
 
-  Once types are now defined, the main part of the job is done. We can now
-  create an object, assign it an instance of the weighting function, and
-  set the evaluation position.
+  At this point, most of the hard job has already been performed. 
+  All we have to do now is to provide an instance of the weight function, where tmax refers to the neighborhood size, and iniate the fit at an arbitrary position p.
   \code
   // Create the previously defined fitting procedure
   Fit1 fit;
@@ -132,10 +94,8 @@
   fit.init(p);
   \endcode
   
-  Neighbors are then added sequentially to compute the fit. In this example we
-  iterate over all the elements stored in an array, and let the weighting 
-  function filtering points that are outside of the neighborhood ball. In 
-  practice the computation may change with respect to the Basket definition.
+  Then neighbors are added sequentially: in this example, we traverse a simple array, and samples outside of the neighborhood are automatically ignored by the weighting function.
+  Once all neighbors have been incorporated, the call to the finalize function actually performs the fit and stores results in the specialized Basket object.
   
   \code
   // Iterate over samples and fit the primitive
@@ -148,46 +108,45 @@
   
   
   
-  \section grenaille_tutorial1_section_access Playing with computed values  
-  Since the primitive has been adjusted, it is now possible to access to 
-  various computed fields.
+  \section grenaille_tutorial1_section_access Playing with output values
+  Various outputs may now be accessed as explained in the following.
   
   \subsection grenaille_tutorial1_section_access_field Scalar field  
-  Access to properties of the fitted scalar-field, defined in Grenaille::AlgebraicSphere :
+  You may directly access properties of the fitted scalar-field, as defined in Grenaille::AlgebraicSphere :
   \code
   cout << "Value of the scalar field at the initial point: " 
        << p.transpose() 
        << " is equal to " << fit.potential(p)
        << endl;
        
-  cout << "It's gradient at this place is equal to: "
+  cout << "Its gradient is equal to: "
        << fit.primitiveGradient(p).transpose()
        << endl;
   \endcode  
-  generates the following output  
+  This generates the following output:
   \code
   Value of the scalar field at the initial point: 0 0 0 is equal to -0.501162
-  It's gradient at this place is equal to:   0.00016028  0.000178782 -0.000384989
+  Its gradient is equal to:   0.00016028  0.000178782 -0.000384989
   \endcode
   
   \subsection grenaille_tutorial1_section_access_sphere Sphere
-  Access to properties of the fitted sphere (0-isosurface of the fitted scalar field), also defined in Grenaille::AlgebraicSphere :
+  You may rather access properties of the fitted sphere (the 0-isosurface of the fitted scalar field), as defined in Grenaille::AlgebraicSphere :
   \code
   cout << "Center: [" << fit.center().transpose() << "] ;  radius: " << fit.radius() << endl;
   \endcode
-  to get
+  You will obtain:
   \code 
   Center: [-0.000160652 -0.000179197  0.000385884] ;  radius: 1.00232
   \endcode
   
-  You can also access to the Growing Least Square reparametrization defined in Grenaille::GLSParam :
+  Alternatively, you may prefer accessing parameters provided by the Grenaille::GLSParam extension:
   \code
   cout << "Fitted Sphere: " << endl
        << "\t Tau  : "      << fit.tau()             << endl
        << "\t Eta  : "      << fit.eta().transpose() << endl
        << "\t Kappa: "      << fit.kappa()           << endl;
   \endcode
-  to get
+  You will obtain:
   \code 
 	Fitted Sphere: 
 	  Tau  : -0.501162
@@ -196,12 +155,12 @@
   \endcode
     
   \subsection grenaille_tutorial1_section_access_other Other methods
-  Grenaille::AlgebraicSphere also gives access to a method to project a point on the fitted sphere:
+  Thanks to the Grenaille::AlgebraicSphere, you may also project an arbitrary point onto the fitted sphere via:
   \code
   cout << "The initial point " << p.transpose()              << endl
        << "Is projected at   " << fit.project(p).transpose() << endl;
   \endcode
-  that will generate:
+  You will then obtain:
   \code
   The initial point 0 0 0
   Is projected at    0.353911  0.394765 -0.850088
