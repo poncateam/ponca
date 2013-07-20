@@ -74,12 +74,33 @@ GLSDer <DataPoint, _WFunctor, T>::dkappa_normalized() const{
 
 template < class DataPoint, class _WFunctor, typename T>
 typename GLSGeomVar <DataPoint, _WFunctor, T>::Scalar
-GLSGeomVar <DataPoint, _WFunctor, T>::geomVar(Scalar wtau, 
-							     Scalar weta,
-							     Scalar wkappa) const{
+GLSGeomVar <DataPoint, _WFunctor, T>::geomVar( Scalar wtau, 
+							                                 Scalar weta,
+							                                 Scalar wkappa ) const{
   Scalar dtau   = Base::dtau_normalized().col(0)(0);
   Scalar deta   = Base::deta_normalized().col(0).norm();
   Scalar dkappa = Base::dkappa_normalized().col(0)(0);
   
   return wtau*dtau*dtau + weta*deta*deta + wkappa*dkappa*dkappa;  
+}
+
+
+template < class DataPoint, class _WFunctor, typename T>
+typename GLSSpatialVariation <DataPoint, _WFunctor, T>::Scalar
+GLSSpatialVariation <DataPoint, _WFunctor, T>::projectedVariationTensor( 
+                                                   Scalar wtau, 
+		                                               Scalar weta,
+                      			                       Scalar wkappa ) const{
+  // local and global frames
+  VectorType lframe (0,0,1), 
+             gframe = Base::eta();  
+  
+  // rotation matrix to express vectors in tangent plane
+  Eigen::Matrix3f rot, invRot;
+  Eigen::Quaternionf r;
+  
+  Eigen::Matrix<Scalar, Base::derDimension(), DataPoint::Dim> jacobian;
+  Eigen::Matrix<Scalar, Base::derDimension(), DataPoint::Dim-1> projJacobian;
+  vec3 tmp;
+                      			                       
 }
