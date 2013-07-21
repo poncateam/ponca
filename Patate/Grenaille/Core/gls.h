@@ -9,6 +9,10 @@
 #define _GRENAILLE_GLS_
 
 
+#include <Eigen/Eigenvalues>
+#include <utility>
+
+
 namespace Grenaille
 {
 
@@ -206,6 +210,8 @@ namespace Grenaille
   public:
     typedef typename Base::Scalar Scalar;
     typedef typename Base::VectorType VectorType;
+    typedef typename Base::MatrixType MatrixType;
+    // \todo Change this by using cuda compatible structure (or check compatibility)
     typedef typename std::pair< Eigen::Matrix<Scalar, 1, DataPoint::Dim-1>,
                                 Eigen::Matrix<Scalar, DataPoint::Dim, DataPoint::Dim-1> > GLSSpatialEigenDecomposition;
 
@@ -252,7 +258,7 @@ namespace Grenaille
       cout << "Eigen vectors:\n\t" << decomp.second << endl;
       \endcode
      */
-    MULTIARCH inline 
+    MULTIARCH inline GLSSpatialEigenDecomposition
     projectedVariationDecomposition( Scalar wtau   = Scalar(1), 
   			                             Scalar weta   = Scalar(1),
 	                        			     Scalar wkappa = Scalar(1)) const;

@@ -86,21 +86,57 @@ GLSGeomVar <DataPoint, _WFunctor, T>::geomVar( Scalar wtau,
 
 
 template < class DataPoint, class _WFunctor, typename T>
-typename GLSSpatialVariation <DataPoint, _WFunctor, T>::Scalar
-GLSSpatialVariation <DataPoint, _WFunctor, T>::projectedVariationTensor( 
+typename GLSSpatialVariation<DataPoint, _WFunctor, T>::GLSSpatialEigenDecomposition
+GLSSpatialVariation <DataPoint, _WFunctor, T>::projectedVariationDecomposition( 
                                                    Scalar wtau, 
 		                                               Scalar weta,
                       			                       Scalar wkappa ) const{
-  // local and global frames
-  VectorType lframe (0,0,1), 
-             gframe = Base::eta();  
+  MULTIARCH_STD_MATH(acos);                    			        
   
   // rotation matrix to express vectors in tangent plane
-  Eigen::Matrix3f rot, invRot;
-  Eigen::Quaternionf r;
+  MatrixType localBasis;  
+  VectorType crossVector (0,0,1);
+  localBasis.col(2) = Base::eta();
+  localBasis.col(1) = localBasis.col(2).cross(crossVector).normalized();
+  localBasis.col(0) = localBasis.col(2).cross(localBasis.col(1) ).normalized();  
   
-  Eigen::Matrix<Scalar, Base::derDimension(), DataPoint::Dim> jacobian;
-  Eigen::Matrix<Scalar, Base::derDimension(), DataPoint::Dim-1> projJacobian;
-  vec3 tmp;
-                      			                       
+  // Init result structure, jacobian matrix and solver
+  GLSSpatialEigenDecomposition result;    
+  Eigen::Matrix<Scalar, int(DataPoint::Dim)+2, int(DataPoint::Dim)> jacobian;  
+  Eigen::Matrix<Scalar, int(DataPoint::Dim)+2, int(DataPoint::Dim)-1> projJacobian;
+  
+  Eigen::SelfAdjointEigenSolver< Eigen::Matrix<Scalar, 
+                                               int(DataPoint::Dim)-1, 
+                                               int(DataPoint::Dim)-1> > eigensolver;
+  
+  const unsigned int firstId = Base::isScaleDer() ? 1 : 0;
+  
+  // Set jacobian matrix with GLS derivatives
+  jacobian.template block< 1, int(DataPoint::Dim) >(0,0) = wtau *
+  Base::dtau_normalized().template block< 1, int(DataPoint::Dim) >(firstId,0);
+  
+  jacobian.template block< int(DataPoint::Dim), int(DataPoint::Dim) >(0,1) = weta *
+  Base::deta_normalized().template block< int(DataPoint::Dim), int(DataPoint::Dim) >(firstId,0);
+  
+  jacobian.template block< 1, int(DataPoint::Dim) >(0,int(DataPoint::Dim)+1) = wkappa *
+  Base::dkappa_normalized().template block< 1, int(DataPoint::Dim) >(firstId,0);
+  
+  // project on tangeant plane
+  projJacobian = (jacobian * localBasis).template block<int(DataPoint::Dim)+2,int(DataPoint::Dim)-1>(0,0);
+
+  // compute tensor and extract eigen values/vectors
+  eigensolver.compute(projJacobian.transpose() * projJacobian);
+  
+  if (eigensolver.info() == Eigen::Success){
+    result.first  = eigensolver.eigenvalues();
+    
+    // get eigenvectors back and apply reverse rotation (from local to global)
+    result.second = Eigen::Matrix<Scalar, DataPoint::Dim, DataPoint::Dim-1>::Zero();
+    result.second.template block<int(DataPoint::Dim)-1,
+                                 int(DataPoint::Dim)-1>(0,0) = eigensolver.eigenvectors();                  
+    result.second = (result.second.transpose() * localBasis.transpose()).transpose();
+    result.second.colwise().normalize();
+  }
+  
+  return result;                      			                       
 }
