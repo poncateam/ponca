@@ -78,8 +78,6 @@ OrientedSphereFit<DataPoint, _WFunctor, T>::finalize (){
 }
 
 
-
-
 namespace internal{
 
   template < class DataPoint, class _WFunctor, typename T, int Type>
@@ -117,7 +115,7 @@ namespace internal{
         w[0] = Base::_w.scaledw(q, nei);
 
     if (Type & FitSpaceDer)
-      w.template block<1,int(DataPoint::Dim)>(0,spaceId) = Base::_w.spacedw(q, nei).transpose();
+      w.template segment<int(DataPoint::Dim)>(spaceId) = -Base::_w.spacedw(q, nei).transpose();
 
     // increment
     _dSumW     += w;
@@ -136,24 +134,35 @@ namespace internal{
     Base::finalize();
     
     if (Base::_sumW != Scalar(0.)){
-
+      
+      if (isSpaceDer())
+      {
+        _dSumP.template middleCols<DataPoint::Dim>(isScaleDer() ? 1 : 0).diagonal().array() -= Base::_sumW;
+        _dSumDotPN.template segment<DataPoint::Dim>(isScaleDer() ? 1 : 0) -= Base::_sumN;
+        _dSumDotPP.template segment<DataPoint::Dim>(isScaleDer() ? 1 : 0) -= Scalar(2) * Base::_sumP;
+      }
+    
       Scalar invSumW = Scalar(1.)/Base::_sumW;
 
       Scalar nume  = Base::_sumDotPN - invSumW*Base::_sumP.dot(Base::_sumN);
       Scalar deno  = Base::_sumDotPP - invSumW*Base::_sumP.dot(Base::_sumP);
       
-      ScalarArray dNume = _dSumDotPN - invSumW*invSumW * ( Base::_sumW * (
-			                                           Base::_sumN.transpose() * _dSumP +
-			                                           Base::_sumP.transpose() * _dSumN ) 
-			                                       - _dSumW*Base::_sumP.dot(Base::_sumN) );
-      ScalarArray dDeno = _dSumDotPP - invSumW*invSumW*( Scalar(2.)*Base::_sumW * Base::_sumP.transpose()*_dSumP
-			                  - _dSumW*Base::_sumP.dot(Base::_sumP) );
+      ScalarArray dNume = _dSumDotPN 
+                          - invSumW*invSumW * ( Base::_sumW * ( Base::_sumN.transpose() * _dSumP + Base::_sumP.transpose() * _dSumN )
+			                                           - _dSumW*Base::_sumP.dot(Base::_sumN) );
+      ScalarArray dDeno = _dSumDotPP 
+                        - invSumW*invSumW*(   Scalar(2.) * Base::_sumW * Base::_sumP.transpose() * _dSumP
+                                            - _dSumW*Base::_sumP.dot(Base::_sumP) );
 
       _dUq =  Scalar(.5) * (deno * dNume - dDeno * nume)/(deno*deno);
-      _dUl =  invSumW*((_dSumN - Scalar(2.)*(_dSumP*Base::_uq+Base::_sumP*_dUq)) - Base::_ul*_dSumW);
-      _dUc = -invSumW*( Base::_sumP.transpose() * _dUl + 
-                        Base::_sumDotPP * _dUq + Base::_ul.transpose() * _dSumP +
-                        Base::_uq*_dSumDotPP + _dSumW*Base::_uc);
+      
+      _dUl =  invSumW * ( _dSumN - Scalar(2.)*(_dSumP*Base::_uq + Base::_sumP*_dUq) - Base::_ul*_dSumW);
+                       
+      _dUc = -invSumW*( Base::_sumP.transpose() * _dUl
+                      + Base::_sumDotPP * _dUq 
+                      + Base::_ul.transpose() * _dSumP 
+                      + Base::_uq * _dSumDotPP
+                      + _dSumW * Base::_uc);
     }
 
   }
@@ -179,6 +188,6 @@ namespace internal{
     
     Base::applyPrattNorm();
     return true;
-  }
+  }  
   
 }// namespace internal
