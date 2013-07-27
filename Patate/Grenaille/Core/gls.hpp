@@ -95,7 +95,9 @@ GLSSpatialVariation <DataPoint, _WFunctor, T>::projectedVariationDecomposition(
   
   // rotation matrix to express vectors in tangent plane
   MatrixType localBasis;  
-  VectorType crossVector (0,0,1);
+  VectorType crossVector = VectorType::Ones();
+  crossVector.normalize();
+  
   localBasis.col(2) = Base::eta();
   localBasis.col(1) = localBasis.col(2).cross(crossVector).normalized();
   localBasis.col(0) = localBasis.col(2).cross(localBasis.col(1) ).normalized();  
@@ -115,10 +117,10 @@ GLSSpatialVariation <DataPoint, _WFunctor, T>::projectedVariationDecomposition(
   jacobian.template block< 1, int(DataPoint::Dim) >(0,0) = wtau *
   Base::dtau_normalized().template block< 1, int(DataPoint::Dim) >(firstId,0);
   
-  jacobian.template block< int(DataPoint::Dim), int(DataPoint::Dim) >(0,1) = weta *
+  jacobian.template block< int(DataPoint::Dim), int(DataPoint::Dim) >(1,0) = weta *
   Base::deta_normalized().template block< int(DataPoint::Dim), int(DataPoint::Dim) >(firstId,0);
   
-  jacobian.template block< 1, int(DataPoint::Dim) >(0,int(DataPoint::Dim)+1) = wkappa *
+  jacobian.template block< 1, int(DataPoint::Dim) >(int(DataPoint::Dim)+1,0) = wkappa *
   Base::dkappa_normalized().template block< 1, int(DataPoint::Dim) >(firstId,0);
   
   // project on tangeant plane
@@ -135,7 +137,6 @@ GLSSpatialVariation <DataPoint, _WFunctor, T>::projectedVariationDecomposition(
     result.second.template block<int(DataPoint::Dim)-1,
                                  int(DataPoint::Dim)-1>(0,0) = eigensolver.eigenvectors();                  
     result.second = (result.second.transpose() * localBasis.transpose()).transpose();
-    result.second.colwise().normalize();
   }
   
   return result;                      			                       

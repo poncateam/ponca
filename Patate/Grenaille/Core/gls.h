@@ -10,7 +10,6 @@
 
 
 #include <Eigen/Eigenvalues>
-#include <utility>
 
 
 namespace Grenaille
