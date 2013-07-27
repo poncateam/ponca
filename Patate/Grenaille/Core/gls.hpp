@@ -21,14 +21,9 @@ GLSDer <DataPoint, _WFunctor, T>::dtau() const{
 template < class DataPoint, class _WFunctor, typename T>
 typename GLSDer <DataPoint, _WFunctor, T>::VectorArray
 GLSDer <DataPoint, _WFunctor, T>::deta() const{
-  MULTIARCH_STD_MATH(sqrt);
-  
-  Scalar prattNorm2 = Base::prattNorm2();
-  Scalar prattNorm  = sqrt(prattNorm2);
-  Scalar cfactor    = Scalar(.5) / prattNorm;
-  Scalar deno       = Scalar(1.) / prattNorm2;
-  
-  return (Base::_dUl * prattNorm - Base::_ul * cfactor * Base::dprattNorm2() ) * deno;
+  Scalar ulN  = Base::_ul.norm();
+  Scalar ulN3 = ulN*ulN*ulN;
+  return Base::_dUl*(Scalar(1.)/ulN) - Base::_ul * Base::_ul.transpose()*Base::_dUl*(Scalar(1.)/ulN3);
 }
 
 
@@ -55,11 +50,7 @@ GLSDer <DataPoint, _WFunctor, T>::dtau_normalized() const{
 template < class DataPoint, class _WFunctor, typename T>
 typename GLSDer <DataPoint, _WFunctor, T>::VectorArray
 GLSDer <DataPoint, _WFunctor, T>::deta_normalized() const{
-  Scalar ulN  = Base::_ul.norm();
-  Scalar ulN3 = ulN*ulN*ulN;
-  VectorArray detaStatic = deta();
- 
-  return Base::_t * detaStatic*(Scalar(1.)/ulN) - Base::_ul * Base::_ul.transpose()*detaStatic*(Scalar(1.)/ulN3);
+  return Base::_t * deta();
 }
 
 
