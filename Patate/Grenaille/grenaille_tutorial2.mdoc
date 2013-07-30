@@ -1,0 +1,70 @@
+namespace Grenaille{
+
+/*!
+  \page grenaille_tutorial2 Grenaille curvature tutorial
+  
+  This tutorial presents how to compute curvature values from the various fitting
+  procedures and extensions available in Grenaille.
+  
+  \section grenaille_tutorial2_section_sphere Sphere fitting
+  \subsection grenaille_tutorial2_section_sphere_subsection_meancurvature Mean Curvature
+  A fast approximation of the mean curvature is provided by GLSParam::kappa():
+  \code
+  typedef Basket<MyPoint, WeightFunc, OrientedSphereFit, // Sphere fitting
+                                      GLSParam> Fit;     // GLS reparametrization
+  
+  Fit fit;
+  // Fit primitive
+  // ... 
+  
+  // Get mean curvature
+  Scalar curvature = fit.kappa();
+  \endcode
+  
+  It can also be extracted by analysing the spatial derivatives of fitted normals, 
+  provided by GLSDer::deta(). Note that the computation cost is more important 
+  in this case.
+  \code
+  typedef Basket<MyPoint, WeightFunc, OrientedSphereFit,    // Sphere fitting
+                                    GLSParam,               // GLS reparametrization
+                                    OrientedSphereSpaceDer, // Spatial derivatives 
+                                    GLSDer > Fit;           // GLS differentiation                                    
+  
+  Fit fit;
+  // Fit primitive
+  // ... 
+  
+  // Mean curvature values is given by half of the trace of the jacobian matrix
+  MatrixType jacobian = fit.deta();  
+  cout << " Mean curvature: " << 0.5 * jacobian.trace() << endl;
+  \endcode
+    
+  \subsection grenaille_tutorial2_section_sphere_subsection_principalcurvatures Principal Curvatures
+  Principal curvature values and the associated directions can be computed by 
+  an eigen decomposition of the spatial derivatives of eta, provided by 
+  GLSDer::deta() :
+  \code
+  typedef Basket<MyPoint, WeightFunc, OrientedSphereFit,    // Sphere fitting
+                                    GLSParam,               // GLS reparametrization
+                                    OrientedSphereSpaceDer, // Spatial derivatives 
+                                    GLSDer > Fit;           // GLS differentiation   
+  
+  Fit fit;
+  // Fit primitive
+  // ... 
+  
+  // Get derivatives
+  MatrixType jacobian = fit.deta();
+  cout << "eta jacobian: \n" << jacobian << endl;
+  
+  // Perform eigen decomposition
+  Eigen::SelfAdjointEigenSolver<MatrixType> eig(jacobian);
+  
+  // Principal curvature values are the two largest eigenvalues:
+  cout << " Principal curvature: " << eig.eigenvalues().transpose() << endl;
+  
+  // And the associated direction by the two last eigenvectors
+  cout << " eigvec:\n" << eig.eigenvectors() << endl;
+  \endcode
+ */
+}
