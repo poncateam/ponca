@@ -58,7 +58,7 @@ namespace Grenaille{
   cout << "eta jacobian: \n" << jacobian << endl;
   
   // Perform eigen decomposition
-  Eigen::SelfAdjointEigenSolver<MatrixType> eig(jacobian);
+  Eigen::SelfAdjointEigenSolver<MatrixType> eig(jacobian.transpose() * jacobian);
   
   // Principal curvature values are the two largest eigenvalues:
   cout << " Principal curvature: " << eig.eigenvalues().transpose() << endl;
