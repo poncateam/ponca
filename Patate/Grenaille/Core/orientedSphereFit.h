@@ -121,14 +121,13 @@ namespace Grenaille
       /*! \brief Static array of scalars with a size adapted to the differentiation type */
       typedef Eigen::Matrix < Scalar, 
                               DataPoint::Dim, 
-                              GLS_DER_NB_DERIVATIVES(Type,DataPoint::Dim)/*,
-                              GLS_DER_STORAGE_ORDER(Type)*/ > VectorArray;
+                              GLS_DER_NB_DERIVATIVES(Type,DataPoint::Dim),
+                              GLS_DER_STORAGE_ORDER(Type) > VectorArray;
       /*! \brief Static array of scalars with a size adapted to the differentiation type */
       typedef Eigen::Matrix < Scalar, 
                               1, 
                               GLS_DER_NB_DERIVATIVES(Type,DataPoint::Dim)/*,
                               GLS_DER_STORAGE_ORDER(Type)*/ > ScalarArray;
-      
     private:
       // computation data
       VectorArray _dSumN,     /*!< \brief Sum of the normal vectors with differenciated weights */
