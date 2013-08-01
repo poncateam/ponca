@@ -8,10 +8,6 @@
 #ifndef _GRENAILLE_GLS_
 #define _GRENAILLE_GLS_
 
-
-#include <Eigen/Eigenvalues>
-
-
 namespace Grenaille
 {
 
