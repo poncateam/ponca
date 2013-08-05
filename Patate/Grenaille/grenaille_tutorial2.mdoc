@@ -42,7 +42,7 @@ namespace Grenaille{
   \subsection grenaille_tutorial2_section_sphere_subsection_principalcurvatures Principal Curvatures
   Principal curvature values and the associated directions can be computed by 
   an eigen decomposition of the spatial derivatives of eta, provided by 
-  GLSDer::deta() :
+  GLSDer::deta():
   \code
   typedef Basket<MyPoint, WeightFunc, OrientedSphereFit,    // Sphere fitting
                                     GLSParam,               // GLS reparametrization
@@ -65,6 +65,13 @@ namespace Grenaille{
   
   // And the associated direction by the two last eigenvectors
   cout << " eigvec:\n" << eig.eigenvectors() << endl;
+  \endcode
+  
+ \warning SelfAdjointEigenSolver is partially supported by eigen-nvcc, so you may
+  need to use computeDirect to perform eigen decomposition in cuda kernels:
+  \code
+  Eigen::SelfAdjointEigenSolver<MatrixType> eig;
+  eig.computeDirect((jacobian.transpose() * jacobian);  
   \endcode
  */
 }
