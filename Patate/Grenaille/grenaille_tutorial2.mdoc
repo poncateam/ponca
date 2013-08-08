@@ -61,10 +61,13 @@ namespace Grenaille{
   Eigen::SelfAdjointEigenSolver<MatrixType> eig(jacobian.transpose() * jacobian);
   
   // Principal curvature values are the two largest eigenvalues:
-  cout << " Principal curvature: " << eig.eigenvalues().transpose() << endl;
+  Scalar k1 = sqrt(eig.eigenvalues()(2)); //need sqrt because we solve eigen
+  Scalar k2 = sqrt(eig.eigenvalues()(1)); //decomposition of JT * J
   
   // And the associated direction by the two last eigenvectors
   cout << " eigvec:\n" << eig.eigenvectors() << endl;
+  VectorType v1 = eig.eigenvectors().col(2);
+  VectorType v2 = eig.eigenvectors().col(1);
   \endcode
   
  \warning SelfAdjointEigenSolver is partially supported by eigen-nvcc, so you may
@@ -73,5 +76,10 @@ namespace Grenaille{
   Eigen::SelfAdjointEigenSolver<MatrixType> eig;
   eig.computeDirect((jacobian.transpose() * jacobian);  
   \endcode
+  
+  \note The SelfAdjointEigenSolver needs symmetric matrices. If you want 
+  signed principal curvatures, you may use another Eigen solver. See 
+  <a href="http://eigen.tuxfamily.org/dox/group__TopicLinearAlgebraDecompositions.html"
+  target="_blank">Eigen documentation</a> for further details.
  */
 }
