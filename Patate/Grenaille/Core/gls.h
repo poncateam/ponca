@@ -267,6 +267,7 @@ namespace Grenaille
                                            // jacobian matrix to get mean curvature
       
       // Change sign and flip values if needed
+      // Thanks to Noam Kremen snoamk@tx.technion.ac.il for this algorithm
       if( H2 == Scalar(0)){
         _k2 = -_k2;        
         

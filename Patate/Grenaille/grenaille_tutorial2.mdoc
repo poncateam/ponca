@@ -42,44 +42,24 @@ namespace Grenaille{
   \subsection grenaille_tutorial2_section_sphere_subsection_principalcurvatures Principal Curvatures
   Principal curvature values and the associated directions can be computed by 
   an eigen decomposition of the spatial derivatives of eta, provided by 
-  GLSDer::deta():
+  the extension GLSCurvatureHelper (based on the analysis of GLSDer::deta()):
   \code
   typedef Basket<MyPoint, WeightFunc, OrientedSphereFit,    // Sphere fitting
                                     GLSParam,               // GLS reparametrization
                                     OrientedSphereSpaceDer, // Spatial derivatives 
-                                    GLSDer > Fit;           // GLS differentiation   
+                                    GLSDer,                 // GLS differentiation   
+                                    GLSCurvatureHelper > Fit;           
   
   Fit fit;
   // Fit primitive
   // ... 
   
-  // Get derivatives
-  MatrixType jacobian = fit.deta();
-  cout << "eta jacobian: \n" << jacobian << endl;
+  // Get principal curvatures
+  Scalar k1 = fit.GLSk1();
+  Scalar k2 = fit.GLSk2();
   
-  // Perform eigen decomposition
-  Eigen::SelfAdjointEigenSolver<MatrixType> eig(jacobian.transpose() * jacobian);
-  
-  // Principal curvature values are the two largest eigenvalues:
-  Scalar k1 = sqrt(eig.eigenvalues()(2)); //need sqrt because we solve eigen
-  Scalar k2 = sqrt(eig.eigenvalues()(1)); //decomposition of JT * J
-  
-  // And the associated direction by the two last eigenvectors
-  cout << " eigvec:\n" << eig.eigenvectors() << endl;
-  VectorType v1 = eig.eigenvectors().col(2);
-  VectorType v2 = eig.eigenvectors().col(1);
-  \endcode
-  
- \warning SelfAdjointEigenSolver is partially supported by eigen-nvcc, so you may
-  need to use computeDirect to perform eigen decomposition in cuda kernels:
-  \code
-  Eigen::SelfAdjointEigenSolver<MatrixType> eig;
-  eig.computeDirect((jacobian.transpose() * jacobian);  
-  \endcode
-  
-  \note The SelfAdjointEigenSolver needs symmetric matrices. If you want 
-  signed principal curvatures, you may use another Eigen solver. See 
-  <a href="http://eigen.tuxfamily.org/dox/group__TopicLinearAlgebraDecompositions.html"
-  target="_blank">Eigen documentation</a> for further details.
+  // Get gaussian curvature
+  Scalar K = fit.GLSGaussianCurvature();
+
  */
 }
