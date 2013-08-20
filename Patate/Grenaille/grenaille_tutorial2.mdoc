@@ -53,13 +53,20 @@ namespace Grenaille{
   Fit fit;
   // Fit primitive
   // ... 
+  // The eigen decomposition is called during the fit finalize
+  fit.finalize();
   
   // Get principal curvatures
   Scalar k1 = fit.GLSk1();
   Scalar k2 = fit.GLSk2();
   
+  // Get associated directions
+  VectorType d1 = fit.GLSk1Direction();
+  VectorType d2 = fit.GLSk2Direction();
+  
   // Get gaussian curvature
   Scalar K = fit.GLSGaussianCurvature();
+  \endcode
 
  */
 }
