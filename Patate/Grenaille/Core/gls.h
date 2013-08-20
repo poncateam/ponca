@@ -109,6 +109,19 @@ namespace Grenaille
     
     /*! \brief Return the fitness, e.g. the pratt norm of the initial scalar field */
     MULTIARCH inline Scalar     fitness()          const {return _fitness;}
+    
+    /*! 
+      \brief Compare current instance with other 
+    */
+    MULTIARCH inline Scalar compareTo (const GLSParam<DataPoint, _WFunctor, T>& other,
+                                       bool useFitness = true) const
+    { 
+      Scalar nTau     = this->tau_normalized()   - other.tau_normalized();
+      Scalar nKappa   = this->kappa_normalized() - other.kappa_normalized();
+      Scalar nFitness = useFitness ? this->fitness() - other.fitness() : 0.;
+      
+      return nTau * nTau + nKappa * nKappa + nFitness * nFitness;
+    }
 
   }; //class GLSParam
 
