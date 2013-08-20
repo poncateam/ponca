@@ -75,6 +75,7 @@ OrientedSphereFit<DataPoint, _WFunctor, T>::finalize (){
   }
 
   Base::_isNormalized = false;
+  Base::_isReady      = true;
 }
 
 

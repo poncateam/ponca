@@ -59,8 +59,11 @@ namespace Grenaille
     VectorType _p; 
     
   protected:
-    //! Is the implicit scalar field normalized using Pratt
+    //! \brief Is the implicit scalar field normalized using Pratt
     bool _isNormalized;
+    
+    //! \brief Is the sphere fitted an ready to use (finalize has been called)
+    bool _isReady;
 
     // results
   public:
@@ -80,8 +83,13 @@ namespace Grenaille
       _uc = Scalar(0.0);
       _ul = VectorType::Zero();
       _uq = Scalar(0.0);
+      
       _isNormalized = false;
-    }    
+      _isReady      = false;
+    }
+    
+    /*! \brief Is the sphere fitted an ready to use (finalize has been called) */
+    MULTIARCH inline bool isReady() { return _isReady; }
 
     /*! \brief Reading access to the basis center (evaluation position) */
     MULTIARCH inline const VectorType& basisCenter () const { return _p; }
