@@ -1,0 +1,25 @@
+Changelog
+
+
+V0.1.2
+
+ - BugFix
+   # Fix space derivatives equals to NaN when the local query is (0,...,0)
+   
+ - Documentation
+   # Update documentation on partial support of SelfAdjointEigenSolver in cuda
+   # Update documentation on GLSCurvatureHelper: new tutorial
+   
+ - Functionalities
+   # Add a ready state in algebraic sphere that is set to true by the fitting kernels finalize method
+   # Add method to compare two GLS instances
+   # Add helper class to compute principal curvatures
+   
+ - Improvements
+   # Use optimized storage order for derivatives vectors wrt space/space differentiation parameters
+   
+ - Tests
+   # Add eigendecomposition test
+   
+ - Cleaning
+   # Remove unused include directives
