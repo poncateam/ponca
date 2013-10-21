@@ -23,23 +23,69 @@
   
   
 */  
-/*
+/*!
   \example python/ssgls.py
   
   \section pyssgl_intro_sec Screen Space Curvature using Cuda and Python
   
   This is an example that use Grenaille to compute Screen Space Curvature in 
-  python using Cuda.   
+  python using Cuda. 
   
-  Add the command line to use this example
+  \subsection pyssgl_intro_sec_dep_subsec Installation and usage
+  This example requires the following python packages:
+   - pycuda
+   - matplotlib
   
-  \section pyssgl_results_sec Expected results
+  as well as a working cuda setup and the last version of eigen-nvcc.
   
-  Add here some result pictures
+  Compile the cuda kernel using 
+  \code
+  nvcc --ptx -I ../../Patate/ -I /path/to/eigen-nvcc/  ssgls.cu
+  \endcode
   
+  The command
+  \code
+  python ssgls.py -s 10 -p ssgls_sample_wc.png -n ssgls_sample_normal.png
+  \endcode
+  
+  takes the input pictures packed in this example and compute the curvature for
+  a screenspace neighborhood 10x10 pixels.
+  \image html examples/ssgls_input.png "Screen-Space Curvature typical input. Left: world coordinates. Right: remapped normal vectors"
+  
+  It will generate this picture
+  \image html examples/ssgls_result1.png "Screen-Space Curvature estimation"
+
+  as well as the following trace on the standard output  
+  \code
+  Load CUDA kernel ........... DONE in 0.024 seconds.
+  Init Input data ............ DONE in 13.390 seconds.
+  Init queries ............... DONE in 0.720 seconds.
+  Set memory configuration ... DONE in 0.004 seconds.
+  Launch kernel .............. DONE in 1.505 seconds.
+
+  ###########Configuration#############
+  Image size: 1902 x 911
+  NbQueries:  1732722
+  Scale:      10
+  ################Results################
+  Max value:  25.3449363708
+  Min value:  -31.8370857239
+  #######################################
+  \endcode
+  
+  \note Don't worry about the important execution time, this example uses a naive 
+  and inefficient approach to represent queries with numpy, making the 
+  total process really slow. However, the real computation time in cuda is
+  indicated by the last line of the timing trace. Note that we do not use any
+  re-sampling technique, that is why this step is directly related to the scale
+  parameter. 
    
   
-  \section pyssgl_cuda_sec Cuda  
+  \section pyssgl_cuda_sec Cuda programming
+  
+  Here are the technical details related to the cuda and python biding for 
+  screen-space curvature estimation.
+    
   \subsection pyssgl_cuda_mypoint_sec Define fitting data structure
   \snippet python/ssgls.cu mypoint
   
