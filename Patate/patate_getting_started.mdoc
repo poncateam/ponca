@@ -1,0 +1,78 @@
+/*
+ This Source Code Form is subject to the terms of the Mozilla Public
+ License, v. 2.0. If a copy of the MPL was not distributed with this
+ file, You can obtain one at http://mozilla.org/MPL/2.0/. 
+*/
+
+/*!
+  \page patate_getting_started_page Getting started
+
+  \section getting_started_requirements_sec Requirements
+
+  \subsection getting_started_requirements_subsec_eigen Eigen
+
+  Core operators are designed for lightweight uses and thus rely on a single external library : <a href="http://eigen.tuxfamily.org" target="_blank">Eigen</a>,
+  the swiss army knife of linear algebra.
+
+  \subsection getting_started_requirements_subsec_cuda Use with CUDA
+
+  The PatateLib is compatible with CUDA, which permits to use patates inside Matlab or Python (provided you own an NVidia graphics card).
+  Eigen cannot be yet compiled by nvcc (NVIDIA CUDA Compiler Driver) though; you will thus need to use <a href="http://bitbucket.org/ggael/eigen-nvcc" target="_blank"><b>Eigen-nvcc</b></a>
+  if you want to make use of CUDA. The compatibility of the library is ensured by using the follwing macro as a prefix to any function/method declaration :
+  \code
+  MULTIARCH void function();
+  \endcode
+  It has no effect when the code is compiled with GCC or Clang, but it will force the compilation for both host and device architectures when compiling with nvcc. 
+
+  \remark A similar macro system is provided for mathematical functions, to switch between STL and CUDA versions; documentations will be provided as soon as possible.
+
+  \subsection getting_started_requirements_subsec_third_party Third-party libraries
+
+  Algorithms strongly rely on Eigen for various purposes, but may require additional libraries in specific instances.
+  In such cases, dependencies are mentioned in the associated documentation page.
+
+  \section getting_started_download_sec Download
+
+  The Patate library is currently under active development. However, some basic functionalities have already been implemented and tested. 
+  If you want to get a taste of these early features, use the latest package available here: https://gforge.inria.fr/projects/patate/. 
+  
+  You may also want to monitor our efforts in developping the library, in which case you will want to access the development repository:
+  \code
+  git clone git://scm.gforge.inria.fr/patate/patate.git
+  \endcode
+
+  \remark Only one patate is available at the moment though, but it's one that is already rich in features : have a look at \ref Grenaille 
+  "this page" for more information. Some examples are already available to help you using the library.
+
+  \section getting_started_installation_sec Installation
+
+  The Patate lib is an headers only library. So there is nothing to build to use it. The only thing you have to do is to include the header of the module you want
+  to use in your code. For example :
+  \code
+  #include <Patate/grenaille.h>
+  \endcode
+  Each patate/module is independant from the others. So you can use only the header relative to the module that you need.
+
+  Patate is a header only library that makes heavy usage of C++ templates. This design may increase the compile time for files that use Patate. Precompiled
+  headers are recommended to avoid this issue.
+
+  \section getting_started_where_to_go_sec What can I do now ?
+
+  - If you want an introduction or a simple exemple of how to use Patate or how it works, you can take a look at our \ref grenaille_tutorial1 "basic tutorial" that make use of \ref Grenaille.
+  - If you want to go further or see what you can do with Patate, maybe the \ref patate_gallery_page "gallery" will interest you. Clicking on images will lead you to examples.
+  - If you simply need an overview of the library and the list of modules, go \ref patate_overview_page "there".
+  - If documentation is your purpose go to the reference manual.
+
+  \section getting_started_help_sec I need help !
+
+  If you get stuck or have a problem/bug using Patate, please send an email to patate-devel@lists.gforge.inria.fr for further assistance. Remember that the library
+  is under development so we are pleased to have your feedbacks.
+
+  \section gatting_started_details_sec Details on modules
+
+  Each patate/module is structured in the same way: a "core" folder where you will find operators that rely on no data structure and work both with CUDA and C++;
+  an "algorithms" folder with methods that may interface with user-provided data structures, with optimized solutions in C++, CUDA or both. The rationale behind
+  this separation is to provide two levels of complexity: core operators implement atomic scientific contributions that are agnostic of the host application;
+  algorithms implement step-by-step procedures that will likely rely on core operators and/or structure traversal. For this reason, all operators become available
+  whenever a patate/module is included; whereas each algorithm must be included independently.
+ */
