@@ -105,9 +105,9 @@ int main(int argc, char** argv) {
   
   for(int k=0; k<g_repeat; ++k)
   {
-    test_orthoEta<float, 3>();
-    test_orthoEta<double, 2>();
-    test_orthoEta<double, 4>();
+    CALL_SUBTEST(( test_orthoEta<float,  3>() ));
+    CALL_SUBTEST(( test_orthoEta<double, 2>() ));
+    CALL_SUBTEST(( test_orthoEta<double, 4>() ));
   }
   
   return EXIT_SUCCESS;

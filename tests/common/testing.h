@@ -36,8 +36,14 @@ void verify_impl(bool condition, const char *testname, const char *file, int lin
   }
 }
 
-#define VERIFY(a) ::verify_impl(a, "", __FILE__, __LINE__, PATATE_PP_MAKE_STRING(a))
-  
+#define VERIFY(a) ::verify_impl(a, g_test_stack.back().c_str(), __FILE__, __LINE__, PATATE_PP_MAKE_STRING(a))
+
+#define CALL_SUBTEST(FUNC) do { \
+    g_test_stack.push_back(PATATE_PP_MAKE_STRING(FUNC)); \
+    FUNC; \
+    g_test_stack.pop_back(); \
+  } while (0)
+
 inline void set_repeat_from_string(const char *str)
 {
   errno = 0;
