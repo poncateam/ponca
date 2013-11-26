@@ -9,11 +9,13 @@
  \file tets/Grenaille/deta_orthogonal_derivatives.cpp
  \brief Test validity of the spatial differentiation of eta
 
- \author: Nicolas Mellado
+ \authors: Nicolas Mellado, Gael Guennebaud
  */
 #include <cmath>
 #include <algorithm>
 #include <iostream>
+
+#include "../common/testing.h"
 
 #include "Patate/grenaille.h"
 #include "Eigen/Eigen"
@@ -23,17 +25,12 @@
 using namespace std;
 using namespace Grenaille;
 
-#define SCALAR float
-
-SCALAR radius = 10;
-SCALAR tmax   = 2;
-
-
 // This class defines the input data format
+template<typename _Scalar, int _Dim>
 class MyPoint{
 public:
-  enum {Dim = 3};
-  typedef SCALAR Scalar;
+  enum {Dim = _Dim};
+  typedef _Scalar Scalar;
   typedef Eigen::Matrix<Scalar, Dim, 1>   VectorType;
   typedef Eigen::Matrix<Scalar, Dim, Dim> MatrixType;
 
@@ -47,10 +44,11 @@ public:
   MULTIARCH inline VectorType& pos()    { return _pos; }  
   MULTIARCH inline VectorType& normal() { return _normal; }
 
-  static inline MyPoint Random() {
-    VectorType scale; scale << 3, 1, 2;
+  static inline MyPoint Random(Scalar radius) {
+    VectorType scale;
+    scale.setRandom();
     VectorType n = VectorType::Random().normalized();
-    VectorType p =   scale.asDiagonal() * n* radius   // create an ellipse
+    VectorType p =   scale.asDiagonal() * n * radius   // create an ellipse
                    * Eigen::internal::random<Scalar>(0.99,1.01); // add high frequency noise
     n = (scale.asDiagonal().inverse() * n).normalized();
     return MyPoint (p, n);
@@ -62,54 +60,55 @@ private:
 };
 
 
-// Define related structure
-typedef DistWeightFunc<MyPoint,SmoothWeightKernel<MyPoint::Scalar> > WeightFunc; 
-
-// Add unused arbitrary extensions
-typedef Basket<MyPoint,WeightFunc,OrientedSphereFit, GLSParam, OrientedSphereScaleSpaceDer, GLSDer, GLSGeomVar> Fit;
-
-template<typename Fit>
-bool
-test_orthoEta(Fit& fit, vector<MyPoint>& vecs){
+template<typename Scalar, int Dim>
+void test_orthoEta(){
   
-  MyPoint::Scalar epsilon = std::numeric_limits<MyPoint::Scalar>::epsilon();
-    
+  // Define related structure
+  typedef MyPoint<Scalar,Dim> Point;
+  typedef DistWeightFunc<Point,SmoothWeightKernel<Scalar> > WeightFunc; 
+  typedef Basket<Point, WeightFunc, OrientedSphereFit, GLSParam, OrientedSphereScaleSpaceDer, GLSDer> Fit;
+  
+  Scalar epsilon = Eigen::NumTraits<Scalar>::dummy_precision();
+  
+  // generate sample data
+  int n = Eigen::internal::random<int>(10,1000);
+  Scalar radius = Eigen::internal::random<Scalar>(1,10);
+  Scalar tmax = 10.*std::sqrt(4*M_PI*radius*radius/n);
+  vector<Point> vecs (n);
+
+  for(int k=0; k<n; ++k)
+    vecs[k] = Point::Random(radius);
+  
+  Fit fit;
+  
   for(int k=0; k<vecs.size(); ++k){  
     fit.setWeightFunc(WeightFunc(tmax));  
     
     fit.init(vecs[k].pos());
-    for(vector<MyPoint>::iterator it = vecs.begin(); it != vecs.end(); it++)
+    for(typename vector<Point>::iterator it = vecs.begin(); it != vecs.end(); it++)
       fit.addNeighbor(*it);      
     fit.finalize();
-  
+    
     typename Fit::VectorType eta  = fit.eta();
-    typename Fit::MatrixType deta = fit.deta().template middleCols<MyPoint::Dim>(fit.isScaleDer() ? 1: 0);
-
-    // FIXME Use eigen colwise test
-    if (eta.dot(deta.col(0)) > epsilon ||
-        eta.dot(deta.col(1)) > epsilon ||
-        eta.dot(deta.col(2)) > epsilon )
-      return false;    
+    typename Fit::MatrixType deta = fit.deta().template middleCols<Point::Dim>(fit.isScaleDer() ? 1: 0);
+    
+    
+    VERIFY( ((eta.transpose() * deta).array() < epsilon).all() );
   }
-  return true;
 }
 
-int main() {
-  cout << "Deta Orthogonal Derivatives Test .... " << flush;
-  
-  int n = 10000;
-  vector<MyPoint> vecs (n);
-
-  for(int k=0; k<n; ++k)
-    vecs[k] = MyPoint::Random();
-    
-  Fit fit;
-  if (test_orthoEta(fit, vecs)){
-    cout << "OK" << endl;
-    return EXIT_SUCCESS;
-  }
-  else{
-    cout << "FAILED" << endl;
+int main(int argc, char** argv) {
+  if(!init_testing(argc, argv))
     return EXIT_FAILURE;
+  
+  cout << "Test orthogonality between eta and its derivatives..." << endl;
+  
+  for(int k=0; k<g_repeat; ++k)
+  {
+    test_orthoEta<float, 3>();
+    test_orthoEta<double, 2>();
+    test_orthoEta<double, 4>();
   }
+  
+  return EXIT_SUCCESS;
 }
