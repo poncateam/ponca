@@ -8,7 +8,7 @@
 #ifndef _PATATE_GRENAILLE_
 
 // First inclue Eigen Core
-#include "Eigen/Core"
+#include <Eigen/Core>
 
 // Include common stuff
 #include "common/defines.h"
