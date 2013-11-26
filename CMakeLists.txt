@@ -1,6 +1,6 @@
 project(Patate)
 
-cmake_minimum_required(VERSION 2.6)
+cmake_minimum_required(VERSION 2.8)
 
 # guard against in-source builds (source: Eigen)
 
@@ -21,7 +21,6 @@ if(    NOT cmake_build_type_tolower STREQUAL "debug"
   message(FATAL_ERROR "Unknown build type \"${CMAKE_BUILD_TYPE}\". Allowed values are Debug, Release, RelWithDebInfo (case-insensitive).")
 endif()
 
-
 ################################################################################
 # add a target to generate API documentation with Doxygen                      #
 ################################################################################
@@ -36,10 +35,14 @@ if(DOXYGEN_FOUND)
   )
 endif(DOXYGEN_FOUND)
 
-
 ################################################################################
 # tests and examples                                                           #
 ################################################################################
+
+set(CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR}/cmake)
+
 add_subdirectory(examples EXCLUDE_FROM_ALL)
+
+include(cmake/ConfigureTesting.cmake)
 add_subdirectory(tests EXCLUDE_FROM_ALL)
 
