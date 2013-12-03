@@ -15,6 +15,7 @@
 #include <cerrno>
 #include <cstdlib>
 #include <sstream>
+#include <ctime>
 
 #define DEFAULT_REPEAT 10
 
