@@ -40,7 +40,7 @@ private:
 };
 
 template<typename DataPoint>
-DataPoint getPointOnSphere(typename DataPoint::Scalar radius, typename DataPoint::VectorType center, bool bAddNoise = true)
+DataPoint getPointOnSphere(typename DataPoint::Scalar radius, typename DataPoint::VectorType vCenter, bool bAddNoise = true)
 {
     typedef typename DataPoint::Scalar Scalar;
     typedef typename DataPoint::VectorType VectorType;
@@ -50,11 +50,11 @@ DataPoint getPointOnSphere(typename DataPoint::Scalar radius, typename DataPoint
     VectorType vPosition;
     if(bAddNoise)
     {
-        vPosition = center + vNormal * radius * Eigen::internal::random<Scalar>(MIN_NOISE, MAX_NOISE);
+        vPosition = vCenter + vNormal * radius * Eigen::internal::random<Scalar>(MIN_NOISE, MAX_NOISE);
     }
 	else
 	{
-		vPosition = center + vNormal * radius;
+		vPosition = vCenter + vNormal * radius;
 	}
 
     //vNormal = vPosition.normalized();
@@ -62,4 +62,26 @@ DataPoint getPointOnSphere(typename DataPoint::Scalar radius, typename DataPoint
     return DataPoint(vPosition, vNormal);
 }
 
+template<typename DataPoint>
+DataPoint getPointOnPlane(typename DataPoint::VectorType vPosition, typename DataPoint::VectorType vNormal, typename DataPoint::Scalar radius)
+{
+    typedef typename DataPoint::Scalar Scalar;
+    typedef typename DataPoint::VectorType VectorType;
+
+	VectorType vRandom;
+	VectorType vRandomPoint = VectorType::Zero();
+
+	do
+	{
+		vRandom = VectorType::Random().normalized(); // Direction in the unit sphere
+		vRandomPoint = vRandom.cross(vNormal);
+	}
+	while(vRandomPoint == VectorType::Zero());
+
+	vRandomPoint = vRandomPoint.normalized();
+	vRandomPoint *= radius;
+	vRandomPoint += vPosition;
+
+    return DataPoint(vRandomPoint, vNormal);
+}
 #endif // _TEST_UTILS_H_

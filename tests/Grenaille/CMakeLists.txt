@@ -19,3 +19,11 @@ set(fit_radius_curvature_center_SRCS
 add_executable(fit_radius_curvature_center ${fit_radius_curvature_center_SRCS})
 add_dependencies(buildtests fit_radius_curvature_center)
 add_test(fit_radius_curvature_center fit_radius_curvature_center)
+
+#############################################
+set(gls_tau_SRCS 
+    gls_tau.cpp 
+)
+add_executable(gls_tau ${gls_tau_SRCS})
+add_dependencies(buildtests gls_tau)
+add_test(gls_tau gls_tau)

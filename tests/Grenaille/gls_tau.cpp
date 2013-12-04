@@ -6,12 +6,11 @@
 
 
 /*!
- \file test/Grenaille/fit_radius_curvature_center.cpp
- \brief Test validity of algebraic sphere procedure and GLS kappa
+ \file test/Grenaille/gls_tau.cpp
+ \brief Test validity GLS tau param
 
  \authors: Gautier Ciaudo
  */
-
 
 #include "../common/testing.h"
 #include "../common/testUtils.h"
@@ -29,33 +28,34 @@ void testFunction()
 	typedef typename DataPoint::Scalar Scalar;
     typedef typename DataPoint::VectorType VectorType;
 
-    //generate sampled sphere
+    //generate sampled plane
     int nbPoints = Eigen::internal::random<int>(10, 1000);
-    
-	Scalar radiusScale = Eigen::internal::random<Scalar>(1,10);
-	Scalar radius = Eigen::internal::random<Scalar>(0,1) * radiusScale;
-    Scalar analysisScale = 10.f * std::sqrt( 4.f * M_PI * radius * radius / nbPoints);
-	Scalar centerScale = Eigen::internal::random<Scalar>(1,10);
-	VectorType center = VectorType::Random() * centerScale;
-
-	Scalar epsilon = Eigen::NumTraits<Scalar>::dummy_precision();
-	// epsilon is relative to the radius size
-	Scalar radiusEpsilon = epsilon * radius;
-
-
     vector<Point> vectorPoints(nbPoints);
+    
+	//Random plane parameters
+	Scalar centerScale =  Eigen::internal::random<Scalar>(0, 10000);
+	VectorType vCenter = VectorType::Random() * centerScale;
+	VectorType vPlaneNormal = VectorType::Random().normalized();
+
+    Scalar analysisScale = 100.;
+	Scalar epsilon = Eigen::NumTraits<Scalar>::dummy_precision();
 
     for(unsigned int i = 0; i < vectorPoints.size(); ++i)
     {
-        vectorPoints[i] = getPointOnSphere<Point>(radius, center);
+		Scalar radius = Eigen::internal::random<Scalar>(-100, 100);
+		vectorPoints[i] = getPointOnPlane<Point>(vCenter, vPlaneNormal, radius);
     }
 
 	// Test for each point if the fitted sphere correspond to the theorical sphere
     for(unsigned int i = 0; i < vectorPoints.size(); ++i)
     {
+		// Take a random distance to the plane, not too large to have few points in weightning analysis
+		Scalar distanceToPlane = Eigen::internal::random<Scalar>(-25, 25);
+		VectorType vEvaluationPoint = vectorPoints[i].pos() + distanceToPlane * vPlaneNormal;
+
         Fit fit;
         fit.setWeightFunc(WeightFunc(analysisScale));
-        fit.init(vectorPoints[i].pos());
+		fit.init(vEvaluationPoint);
 
         for(typename vector<Point>::iterator it = vectorPoints.begin();
             it != vectorPoints.end();
@@ -66,18 +66,12 @@ void testFunction()
 
         fit.finalize();
 
-        Scalar fitRadiusKappa = Scalar(abs(1.f / fit.kappa()));
-		Scalar fitRadiusAlgebraic = fit.radius();
-        typename Point::VectorType fitCenter = fit.center();
+		Scalar fitTau = fit.tau();
+		fitTau = abs(fitTau);
+		distanceToPlane = abs(distanceToPlane);
 
-		Scalar radiusMax = radius * MAX_NOISE;
-		Scalar radiusMin = radius * MIN_NOISE;
-		
-		// Test procedure
-		VERIFY( ((fitCenter - center).array().abs() < (radiusMax - radius) + radiusEpsilon).all() );
-		VERIFY( (radiusMin - radiusEpsilon < fitRadiusAlgebraic) && (fitRadiusAlgebraic < radiusMax + radiusEpsilon) );
-		// Test reparametrization
-        VERIFY( (radiusMin - radiusEpsilon < fitRadiusKappa) && (fitRadiusKappa < radiusMax + radiusEpsilon) );
+		// Test Tau
+		VERIFY( abs(distanceToPlane - fitTau) < epsilon * 100.);
     }
 }
 
@@ -110,9 +104,8 @@ int main(int argc, char** argv)
         return EXIT_FAILURE;
     }
 
-    cout << "Test sphere fitting (radius / center) and GLS curvature for different baskets..." << endl;
+    cout << "Test GLS tau param coherance..." << endl;
 
-	callSubTests<float, 2>();
 	callSubTests<float, 3>();
 	callSubTests<double, 3>();
 }
