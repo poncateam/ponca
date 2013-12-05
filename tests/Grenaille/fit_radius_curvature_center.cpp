@@ -25,7 +25,6 @@ template<typename DataPoint, typename Fit, typename WeightFunc> //, typename Fit
 void testFunction()
 {
     // Define related structure
-	typedef typename DataPoint Point;
 	typedef typename DataPoint::Scalar Scalar;
     typedef typename DataPoint::VectorType VectorType;
 
@@ -43,11 +42,11 @@ void testFunction()
 	Scalar radiusEpsilon = epsilon * radius;
 
 
-    vector<Point> vectorPoints(nbPoints);
+    vector<DataPoint> vectorPoints(nbPoints);
 
     for(unsigned int i = 0; i < vectorPoints.size(); ++i)
     {
-        vectorPoints[i] = getPointOnSphere<Point>(radius, center);
+        vectorPoints[i] = getPointOnSphere<DataPoint>(radius, center);
     }
 
 	// Test for each point if the fitted sphere correspond to the theorical sphere
@@ -57,7 +56,7 @@ void testFunction()
         fit.setWeightFunc(WeightFunc(analysisScale));
         fit.init(vectorPoints[i].pos());
 
-        for(typename vector<Point>::iterator it = vectorPoints.begin();
+        for(typename vector<DataPoint>::iterator it = vectorPoints.begin();
             it != vectorPoints.end();
             ++it)
         {
@@ -68,7 +67,7 @@ void testFunction()
 
         Scalar fitRadiusKappa = Scalar(abs(1.f / fit.kappa()));
 		Scalar fitRadiusAlgebraic = fit.radius();
-        typename Point::VectorType fitCenter = fit.center();
+        VectorType fitCenter = fit.center();
 
 		Scalar radiusMax = radius * MAX_NOISE;
 		Scalar radiusMin = radius * MIN_NOISE;
