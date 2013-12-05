@@ -27,3 +27,11 @@ set(gls_tau_SRCS
 add_executable(gls_tau ${gls_tau_SRCS})
 add_dependencies(buildtests gls_tau)
 add_test(gls_tau gls_tau)
+
+#############################################
+set(gls_sphere_der_SRCS 
+    gls_sphere_der.cpp 
+)
+add_executable(gls_sphere_der ${gls_sphere_der_SRCS})
+add_dependencies(buildtests gls_sphere_der)
+add_test(gls_sphere_der gls_sphere_der)

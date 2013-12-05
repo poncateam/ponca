@@ -6,12 +6,11 @@
 
 
 /*!
- \file test/Grenaille/fit_radius_curvature_center.cpp
- \brief Test validity of algebraic sphere procedure and GLS kappa
+ \file test/Grenaille/gls_sphere_der.cpp
+ \brief Test validity of GLS derivatives for a sphere
 
  \authors: Gautier Ciaudo
  */
-
 
 #include "../common/testing.h"
 #include "../common/testUtils.h"
@@ -28,19 +27,18 @@ void testFunction()
 	typedef typename DataPoint::Scalar Scalar;
     typedef typename DataPoint::VectorType VectorType;
 
+	typedef typename Fit::VectorArray VectorArray;
+    typedef typename Fit::ScalarArray ScalarArray;
+
     //generate sampled sphere
     int nbPoints = Eigen::internal::random<int>(10, 1000);
-    
-	Scalar radiusScale = Eigen::internal::random<Scalar>(1,10);
-	Scalar radius = Eigen::internal::random<Scalar>(0,1) * radiusScale;
-    Scalar analysisScale = 10.f * std::sqrt( 4.f * M_PI * radius * radius / nbPoints);
-	Scalar centerScale = Eigen::internal::random<Scalar>(1,10);
-	VectorType center = VectorType::Random() * centerScale;
 
-	Scalar epsilon = testEpsilon<Scalar>();
-	// epsilon is relative to the radius size
-	Scalar radiusEpsilon = epsilon * radius;
+	Scalar radius = Eigen::internal::random<Scalar>(1,10);
+	VectorType center = VectorType::Random() * Eigen::internal::random<Scalar>(1, 10000);
 
+    Scalar analysisScale = 10. * std::sqrt(4 * M_PI * radius * radius / nbPoints);
+
+	Scalar epsilon = testEpsilon<Scalar>() * radius;
 
     vector<DataPoint> vectorPoints(nbPoints);
 
@@ -49,7 +47,7 @@ void testFunction()
         vectorPoints[i] = getPointOnSphere<DataPoint>(radius, center);
     }
 
-	// Test for each point if the fitted sphere correspond to the theorical sphere
+	// Test for each point if the Derivatives are equal to 0
     for(unsigned int i = 0; i < vectorPoints.size(); ++i)
     {
         Fit fit;
@@ -65,18 +63,10 @@ void testFunction()
 
         fit.finalize();
 
-        Scalar fitRadiusKappa = Scalar(abs(1.f / fit.kappa()));
-		Scalar fitRadiusAlgebraic = fit.radius();
-        VectorType fitCenter = fit.center();
+		Scalar kappa = fit.kappa();
+		ScalarArray dkappa = fit.dkappa();
 
-		Scalar radiusMax = radius * MAX_NOISE;
-		Scalar radiusMin = radius * MIN_NOISE;
-		
-		// Test procedure
-		VERIFY( ((fitCenter - center).array().abs() < (radiusMax - radius) + radiusEpsilon).all() );
-		VERIFY( (radiusMin - radiusEpsilon < fitRadiusAlgebraic) && (fitRadiusAlgebraic < radiusMax + radiusEpsilon) );
-		// Test reparametrization
-        VERIFY( (radiusMin - radiusEpsilon < fitRadiusKappa) && (fitRadiusKappa < radiusMax + radiusEpsilon) );
+		VERIFY( (dkappa.array().abs() < epsilon).all() );
     }
 }
 
@@ -88,17 +78,13 @@ void callSubTests()
     typedef DistWeightFunc<Point, SmoothWeightKernel<Scalar> > WeightSmoothFunc;
 	typedef DistWeightFunc<Point, ConstantWeightKernel<Scalar> > WeightConstantFunc;
 
-    typedef Basket<Point, WeightSmoothFunc, OrientedSphereFit, GLSParam> FitSmoothOriented;
-	typedef Basket<Point, WeightConstantFunc, OrientedSphereFit, GLSParam> FitConstantOriented;
-	typedef Basket<Point, WeightSmoothFunc, UnorientedSphereFit, GLSParam> FitSmoothUnoriented;
-	typedef Basket<Point, WeightConstantFunc, UnorientedSphereFit, GLSParam> FitConstantUnoriented;
+    typedef Basket<Point, WeightSmoothFunc, OrientedSphereFit, GLSParam, OrientedSphereScaleSpaceDer, GLSDer> FitSmoothOriented;
+	typedef Basket<Point, WeightConstantFunc, OrientedSphereFit, GLSParam, OrientedSphereScaleSpaceDer, GLSDer> FitConstantOriented;
 
 	for(int i = 0; i < g_repeat; ++i)
     {
 		CALL_SUBTEST(( testFunction<Point, FitSmoothOriented, WeightSmoothFunc>() ));
 		CALL_SUBTEST(( testFunction<Point, FitConstantOriented, WeightConstantFunc>() ));
-		CALL_SUBTEST(( testFunction<Point, FitSmoothUnoriented, WeightSmoothFunc>() ));
-		CALL_SUBTEST(( testFunction<Point, FitConstantUnoriented, WeightConstantFunc>() ));
     }
 }
 
@@ -109,7 +95,7 @@ int main(int argc, char** argv)
         return EXIT_FAILURE;
     }
 
-    cout << "Test sphere fitting (radius / center) and GLS curvature for different baskets..." << endl;
+    cout << "Test sphere derivatives with GLSParam and OrientedSphereFit..." << endl;
 
 	callSubTests<float, 2>();
 	callSubTests<float, 3>();

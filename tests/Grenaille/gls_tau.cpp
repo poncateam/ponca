@@ -24,13 +24,12 @@ template<typename DataPoint, typename Fit, typename WeightFunc> //, typename Fit
 void testFunction()
 {
     // Define related structure
-	typedef typename DataPoint Point;
 	typedef typename DataPoint::Scalar Scalar;
     typedef typename DataPoint::VectorType VectorType;
 
     //generate sampled plane
     int nbPoints = Eigen::internal::random<int>(10, 1000);
-    vector<Point> vectorPoints(nbPoints);
+    vector<DataPoint> vectorPoints(nbPoints);
     
 	//Random plane parameters
 	Scalar centerScale =  Eigen::internal::random<Scalar>(0, 10000);
@@ -38,15 +37,15 @@ void testFunction()
 	VectorType vPlaneNormal = VectorType::Random().normalized();
 
     Scalar analysisScale = 100.;
-	Scalar epsilon = Eigen::NumTraits<Scalar>::dummy_precision();
+	Scalar epsilon = testEpsilon<Scalar>();
 
     for(unsigned int i = 0; i < vectorPoints.size(); ++i)
     {
 		Scalar radius = Eigen::internal::random<Scalar>(-100, 100);
-		vectorPoints[i] = getPointOnPlane<Point>(vCenter, vPlaneNormal, radius);
+		vectorPoints[i] = getPointOnPlane<DataPoint>(vCenter, vPlaneNormal, radius);
     }
 
-	// Test for each point if the fitted sphere correspond to the theorical sphere
+	// Test for each point if the point moved from distance d correspond to tau
     for(unsigned int i = 0; i < vectorPoints.size(); ++i)
     {
 		// Take a random distance to the plane, not too large to have few points in weightning analysis
@@ -57,7 +56,7 @@ void testFunction()
         fit.setWeightFunc(WeightFunc(analysisScale));
 		fit.init(vEvaluationPoint);
 
-        for(typename vector<Point>::iterator it = vectorPoints.begin();
+        for(typename vector<DataPoint>::iterator it = vectorPoints.begin();
             it != vectorPoints.end();
             ++it)
         {
@@ -71,7 +70,7 @@ void testFunction()
 		distanceToPlane = abs(distanceToPlane);
 
 		// Test Tau
-		VERIFY( abs(distanceToPlane - fitTau) < epsilon * 100.);
+		VERIFY( abs(distanceToPlane - fitTau) < epsilon);
     }
 }
 

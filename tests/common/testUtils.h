@@ -14,6 +14,22 @@
 #define MIN_NOISE 0.99f
 #define MAX_NOISE 1.01f
 
+// Epsilon precision
+template<typename T> inline T testEpsilon()
+{
+	return Eigen::NumTraits<Scalar>::dummy_precision();
+}
+
+template<> inline float testEpsilon<float>()
+{
+	return 1e-3f;
+}
+
+template<> inline double testEpsilon<double>()
+{
+	return 1e-3f;
+}
+
 // Basic point
 template<typename _Scalar, int _Dim>
 class PointPosistionNormal
