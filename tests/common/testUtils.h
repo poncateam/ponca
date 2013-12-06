@@ -57,7 +57,8 @@ private:
 };
 
 template<typename DataPoint>
-DataPoint getPointOnSphere(typename DataPoint::Scalar radius, typename DataPoint::VectorType vCenter, bool bAddNoise = true)
+DataPoint getPointOnSphere(typename DataPoint::Scalar radius, typename DataPoint::VectorType vCenter, bool bAddNoise = true,
+						   bool bReverseNormals = false)
 {
     typedef typename DataPoint::Scalar Scalar;
     typedef typename DataPoint::VectorType VectorType;
@@ -73,6 +74,16 @@ DataPoint getPointOnSphere(typename DataPoint::Scalar radius, typename DataPoint
 	{
 		vPosition = vCenter + vNormal * radius;
 	}
+
+	if(bReverseNormals)
+	{
+		float reverse = Eigen::internal::random<float>(0.f, 1.f);
+		if(reverse > 0.5f)
+		{
+			vNormal = -vNormal;
+		}	
+	}
+
 
     //vNormal = vPosition.normalized();
 
@@ -128,13 +139,13 @@ DataPoint getPointOnParaboloid(typename DataPoint::VectorType vCenter, typename 
 	Scalar x, y, z;
 	
 
-	do
-	{
-		x = Eigen::internal::random<Scalar>(-10., 10.);
-		y = Eigen::internal::random<Scalar>(-10., 10.);
+	//do
+	//{
+		x = Eigen::internal::random<Scalar>(-2., 2.);
+		y = Eigen::internal::random<Scalar>(-2., 2.);
 		z = getParaboloidZ(x, y, a, b);
-	}
-	while(z > Scalar(10.));
+	//}
+	//while(z > Scalar(10.));
 
 	vNormal = VectorType((2. * a * x), (2. * b * y), 1.).normalized();
 

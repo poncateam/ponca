@@ -32,14 +32,13 @@ void testFunction()
     typedef typename Fit::ScalarArray ScalarArray;
 
     //generate sampled paraboloid
-    int nbPoints = Eigen::internal::random<int>(10, 1000);
+    int nbPoints = Eigen::internal::random<int>(1000, 10000);
 
 	Scalar coefScale = Eigen::internal::random<Scalar>(1,10);
-    Scalar analysisScale = 10. * std::sqrt(4 * M_PI * coefScale * coefScale / nbPoints);
+    Scalar analysisScale = 100.;// * std::sqrt(4 * M_PI * coefScale * coefScale / nbPoints);
 
 	VectorType vCenter = VectorType::Random() * Eigen::internal::random<Scalar>(1, 10000);
 	VectorType vCoef = VectorType::Random() * coefScale;
-	vCoef.y() = vCoef.x();
 
 	Scalar rotationAngle = Eigen::internal::random<Scalar>(0, 2 * M_PI);
 	VectorType vRotationAxis = VectorType::Random().normalized();
@@ -51,7 +50,7 @@ void testFunction()
     vector<DataPoint> vectorPoints(nbPoints);
     for(unsigned int i = 0; i < vectorPoints.size(); ++i)
     {
-		vectorPoints[i] = getPointOnParaboloid<DataPoint>(vCenter, vCoef, qRotation);
+		vectorPoints[i] = getPointOnParaboloid<DataPoint>(vCenter, vCoef, qRotation, false);
     }
 
 	// Test for each point if the Derivatives are equal to 0
@@ -59,7 +58,7 @@ void testFunction()
     {
         Fit fit;
         fit.setWeightFunc(WeightFunc(analysisScale));
-		fit.init(VectorType(0., 0., 0.));
+		fit.init(VectorType(0, 0, 0));
 
         for(typename vector<DataPoint>::iterator it = vectorPoints.begin();
             it != vectorPoints.end();
@@ -73,6 +72,9 @@ void testFunction()
 		Scalar tau = fit.tau();
 		VectorType eta = fit.eta();
 		Scalar kappa = fit.kappa();
+
+		Scalar kappanorm = fit.kappa_normalized();
+		Scalar taunorm = fit.tau_normalized();
 		ScalarArray dkappa = fit.dkappa();
 
 		Scalar kappa1 = fit.GLSk1();
@@ -81,6 +83,8 @@ void testFunction()
 
 		Scalar a = vCoef.x();
 		Scalar b = vCoef.y();
+		Scalar kth = a + b;
+
 		Scalar a2 = a * a;
 		Scalar b2 = b * b;
     }
@@ -100,7 +104,7 @@ void callSubTests()
 	for(int i = 0; i < g_repeat; ++i)
     {
 		CALL_SUBTEST(( testFunction<Point, FitSmoothOriented, WeightSmoothFunc>() ));
-		CALL_SUBTEST(( testFunction<Point, FitConstantOriented, WeightConstantFunc>() ));
+		//CALL_SUBTEST(( testFunction<Point, FitConstantOriented, WeightConstantFunc>() ));
     }
 }
 

@@ -44,3 +44,11 @@ add_executable(gls_paraboloid_der ${gls_paraboloid_der_SRCS})
 add_dependencies(buildtests gls_paraboloid_der)
 add_test(gls_paraboloid_der gls_paraboloid_der)
 
+#############################################
+set(fit_unoriented_SRCS 
+    fit_unoriented.cpp
+)
+add_executable(fit_unoriented ${fit_unoriented_SRCS})
+add_dependencies(buildtests fit_unoriented)
+add_test(fit_unoriented fit_unoriented)
+

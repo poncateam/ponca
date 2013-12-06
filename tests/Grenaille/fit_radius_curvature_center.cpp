@@ -29,7 +29,7 @@ void testFunction()
     typedef typename DataPoint::VectorType VectorType;
 
     //generate sampled sphere
-    int nbPoints = Eigen::internal::random<int>(10, 1000);
+    int nbPoints = Eigen::internal::random<int>(100, 1000);
     
 	Scalar radiusScale = Eigen::internal::random<Scalar>(1,10);
 	Scalar radius = Eigen::internal::random<Scalar>(0,1) * radiusScale;
