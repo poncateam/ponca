@@ -37,9 +37,9 @@ class PointPosistionNormal
 public:
     enum {Dim = _Dim};
     typedef _Scalar Scalar;
-	typedef Eigen::Matrix<Scalar, 2, 1>   Vector2Type;
-    typedef Eigen::Matrix<Scalar, Dim, 1>   VectorType;
-    typedef Eigen::Matrix<Scalar, Dim, Dim> MatrixType;
+    typedef Eigen::Matrix<Scalar, Dim, 1>					VectorType;
+    typedef Eigen::Matrix<Scalar, Dim, Dim>					MatrixType;
+	typedef Eigen::Quaternion<Scalar, Eigen::DontAlign>		QuaternionType;
 
     MULTIARCH inline PointPosistionNormal(   const VectorType &pos = VectorType::Zero(), 
 											 const VectorType& normal = VectorType::Zero()
@@ -108,16 +108,13 @@ Scalar getParaboloidZ(Scalar x, Scalar y, Scalar a, Scalar b)
 	Scalar x2 = x * x;
 	Scalar y2 = y * y;
 
-	Scalar a2 = a * a;
-	Scalar b2 = b * b;
-
-	Scalar z = x2 / a2 + y2 / b2;
+	Scalar z = a * x2 + b * y2;
 
 	return z;
 }
 
 template<typename DataPoint>
-DataPoint getPointOnParaboloid(typename DataPoint::VectorType vCenter, typename DataPointtypename DataPoint::Vector2Type vAxisRadius,
+DataPoint getPointOnParaboloid(typename DataPoint::VectorType vCenter, typename DataPoint::VectorType vCoef,
 							   typename DataPoint::QuaternionType qRotation, bool bAddNoise = true)
 {
 	typedef typename DataPoint::Scalar Scalar;
@@ -126,19 +123,20 @@ DataPoint getPointOnParaboloid(typename DataPoint::VectorType vCenter, typename 
 	VectorType vNormal;
 	VectorType vPosition;
 
-	Scalar a = vAxisRadius.x();
-	Scalar b = vAxisRadius.y();
+	Scalar a = vCoef.x();
+	Scalar b = vCoef.y();
 	Scalar x, y, z;
 	
-	vNormal = VectorType((2. * x / a2), (2. * y / b2), 1).normalized();
 
 	do
 	{
-		x = Eigen::internal::random<Scalar>(-100., 100.);
-		y = Eigen::internal::random<Scalar>(-100., 100.);
+		x = Eigen::internal::random<Scalar>(-10., 10.);
+		y = Eigen::internal::random<Scalar>(-10., 10.);
 		z = getParaboloidZ(x, y, a, b);
 	}
-	while(z > Scalar(25.));
+	while(z > Scalar(10.));
+
+	vNormal = VectorType((2. * a * x), (2. * b * y), 1.).normalized();
 
 	vPosition.x() = x;
 	vPosition.y() = y;
@@ -150,8 +148,8 @@ DataPoint getPointOnParaboloid(typename DataPoint::VectorType vCenter, typename 
 		vPosition = vPosition + VectorType::Random().normalized() * Eigen::internal::random<Scalar>(MIN_NOISE, MAX_NOISE);
 	}
 
-	vPosition = qRotation * vPosition + vCenter;
-	vNormal = qRotation * vNormal;
+	//vPosition = qRotation * vPosition + vCenter;
+	//vNormal = qRotation * vNormal;
 
 	return DataPoint(vPosition, vNormal);
 }

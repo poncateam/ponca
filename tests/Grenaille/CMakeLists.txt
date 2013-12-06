@@ -35,3 +35,12 @@ set(gls_sphere_der_SRCS
 add_executable(gls_sphere_der ${gls_sphere_der_SRCS})
 add_dependencies(buildtests gls_sphere_der)
 add_test(gls_sphere_der gls_sphere_der)
+
+#############################################
+set(gls_paraboloid_der_SRCS 
+    gls_paraboloid_der.cpp
+)
+add_executable(gls_paraboloid_der ${gls_paraboloid_der_SRCS})
+add_dependencies(buildtests gls_paraboloid_der)
+add_test(gls_paraboloid_der gls_paraboloid_der)
+
