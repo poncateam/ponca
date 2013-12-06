@@ -17,7 +17,7 @@
 // Epsilon precision
 template<typename T> inline T testEpsilon()
 {
-	return Eigen::NumTraits<Scalar>::dummy_precision();
+	return Eigen::NumTraits<T>::dummy_precision();
 }
 
 template<> inline float testEpsilon<float>()
@@ -37,6 +37,7 @@ class PointPosistionNormal
 public:
     enum {Dim = _Dim};
     typedef _Scalar Scalar;
+	typedef Eigen::Matrix<Scalar, 2, 1>   Vector2Type;
     typedef Eigen::Matrix<Scalar, Dim, 1>   VectorType;
     typedef Eigen::Matrix<Scalar, Dim, Dim> MatrixType;
 
@@ -99,5 +100,59 @@ DataPoint getPointOnPlane(typename DataPoint::VectorType vPosition, typename Dat
 	vRandomPoint += vPosition;
 
     return DataPoint(vRandomPoint, vNormal);
+}
+
+template<typename Scalar>
+Scalar getParaboloidZ(Scalar x, Scalar y, Scalar a, Scalar b)
+{
+	Scalar x2 = x * x;
+	Scalar y2 = y * y;
+
+	Scalar a2 = a * a;
+	Scalar b2 = b * b;
+
+	Scalar z = x2 / a2 + y2 / b2;
+
+	return z;
+}
+
+template<typename DataPoint>
+DataPoint getPointOnParaboloid(typename DataPoint::VectorType vCenter, typename DataPointtypename DataPoint::Vector2Type vAxisRadius,
+							   typename DataPoint::QuaternionType qRotation, bool bAddNoise = true)
+{
+	typedef typename DataPoint::Scalar Scalar;
+	typedef typename DataPoint::VectorType VectorType;
+
+	VectorType vNormal;
+	VectorType vPosition;
+
+	Scalar a = vAxisRadius.x();
+	Scalar b = vAxisRadius.y();
+	Scalar x, y, z;
+	
+	vNormal = VectorType((2. * x / a2), (2. * y / b2), 1).normalized();
+
+	do
+	{
+		x = Eigen::internal::random<Scalar>(-100., 100.);
+		y = Eigen::internal::random<Scalar>(-100., 100.);
+		z = getParaboloidZ(x, y, a, b);
+	}
+	while(z > Scalar(25.));
+
+	vPosition.x() = x;
+	vPosition.y() = y;
+	vPosition.z() = z;
+
+	if(bAddNoise)
+	{
+		//spherical noise
+		vPosition = vPosition + VectorType::Random().normalized() * Eigen::internal::random<Scalar>(MIN_NOISE, MAX_NOISE);
+	}
+
+	vPosition = qRotation * vPosition + vCenter;
+	vNormal = qRotation * vNormal;
+
+	return DataPoint(vPosition, vNormal);
 }
 #endif // _TEST_UTILS_H_
