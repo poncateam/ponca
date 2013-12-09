@@ -23,6 +23,7 @@ namespace Grenaille{
   template <typename _Scalar>
   class ConstantWeightKernel {
   public:
+	/*! \brief Scalar type defined outside the class*/
     typedef _Scalar Scalar;
     
     // Init 
@@ -53,6 +54,7 @@ namespace Grenaille{
   template <typename _Scalar>
   class SmoothWeightKernel {
   public:
+	/*! \brief Scalar type defined outside the class*/
     typedef _Scalar Scalar;
 
     // Functor

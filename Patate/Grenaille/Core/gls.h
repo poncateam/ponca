@@ -146,12 +146,12 @@ namespace Grenaille
       };
 
   public:
-    typedef typename Base::Scalar     Scalar;
-    typedef typename Base::VectorType VectorType;
-    typedef typename Base::WFunctor   WFunctor;
+    typedef typename Base::Scalar     Scalar;		/*!< \brief Inherited scalar type*/
+    typedef typename Base::VectorType VectorType;	/*!< \brief Inherited vector type*/
+    typedef typename Base::WFunctor   WFunctor;		/*!< \brief Weight Function*/
 
-    typedef typename Base::VectorArray VectorArray;
-    typedef typename Base::ScalarArray ScalarArray;   
+    typedef typename Base::VectorArray VectorArray; /*!< \brief Inherited vector array type*/
+    typedef typename Base::ScalarArray ScalarArray; /*!< \brief Inherited scalar array type*/ 
     
     MULTIARCH inline ScalarArray dtau()   const; /*!< \brief Compute and return \f$ \tau \f$ derivatives */
     MULTIARCH inline VectorArray deta()   const; /*!< \brief Compute and return \f$ \eta \f$ derivatives */
@@ -183,7 +183,7 @@ namespace Grenaille
       };
 
   public:
-    typedef typename Base::Scalar Scalar;
+    typedef typename Base::Scalar Scalar;	/*!< \brief Inherited scalar type*/
 
     /*!
       \brief Compute and return the Geometric Variation
@@ -217,9 +217,9 @@ namespace Grenaille
       };
 
   public:
-    typedef typename Base::Scalar     Scalar;
-    typedef typename Base::VectorType VectorType;
-    typedef typename Base::MatrixType MatrixType;
+    typedef typename Base::Scalar     Scalar;		/*!< \brief Inherited scalar type*/
+    typedef typename Base::VectorType VectorType;	/*!< \brief Inherited vector type*/
+    typedef typename Base::MatrixType MatrixType;	/*!< \brief Weight Function*/
       
   private:
     Scalar _k1, _k2;

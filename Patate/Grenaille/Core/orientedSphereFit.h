@@ -160,7 +160,8 @@ namespace Grenaille
     /**************************************************************************/
     /* Use results                                                            */
     /**************************************************************************/
-      MULTIARCH inline ScalarArray dprattNorm2() const{
+      /*! \brief compute  the square of the Pratt norm derivative */
+	  MULTIARCH inline ScalarArray dprattNorm2() const{
         return   Scalar(2.) * Base::_ul.transpose() * _dUl 
                - Scalar(4.) * Base::_uq * _dUc
 	             - Scalar(4.) * Base::_uc * _dUq;      
@@ -178,7 +179,7 @@ namespace Grenaille
         return sqrt(dprattNorm2(d));
       }
 
-      /*! \brief compute the Pratt norm derivative for the dimension d */
+      /*! \brief compute the Pratt norm derivative */
       MULTIARCH inline Scalar dprattNorm() const {
 	      MULTIARCH_STD_MATH(sqrt);
         return dprattNorm2().array().sqrt();

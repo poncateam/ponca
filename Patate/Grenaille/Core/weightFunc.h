@@ -25,7 +25,9 @@ namespace Grenaille{
   template <class DataPoint, class WeightKernel>
   class DistWeightFunc {
   public:
+	/*! \brief Scalar type from DataPoint*/
     typedef typename DataPoint::Scalar Scalar;
+	/*! \brief Vector type from DataPoint*/
     typedef typename DataPoint::VectorType VectorType;
     
     /*! \brief Constructor that defines the current evaluation scale */
