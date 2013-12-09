@@ -153,13 +153,13 @@ namespace Grenaille
     typedef typename Base::VectorArray VectorArray;
     typedef typename Base::ScalarArray ScalarArray;   
     
-    MULTIARCH inline ScalarArray dtau()   const; /*!< \brief Access to \f$ \tau \f$ derivatives */
-    MULTIARCH inline VectorArray deta()   const; /*!< \brief Access to \f$ \eta \f$ derivatives */
-    MULTIARCH inline ScalarArray dkappa() const; /*!< \brief Access to \f$ \kappa \f$ derivatives */
-    
-    MULTIARCH inline ScalarArray dtau_normalized()   const;
-    MULTIARCH inline VectorArray deta_normalized()   const;
-    MULTIARCH inline ScalarArray dkappa_normalized() const;
+    MULTIARCH inline ScalarArray dtau()   const; /*!< \brief Compute and return \f$ \tau \f$ derivatives */
+    MULTIARCH inline VectorArray deta()   const; /*!< \brief Compute and return \f$ \eta \f$ derivatives */
+    MULTIARCH inline ScalarArray dkappa() const; /*!< \brief Compute and return \f$ \kappa \f$ derivatives */
+
+    MULTIARCH inline ScalarArray dtau_normalized()   const; /*!< \brief Compute and return \f$ \tau \f$ derivatives */
+    MULTIARCH inline VectorArray deta_normalized()   const; /*!< \brief Compute and return \f$ t * d\eta \f$ */ 
+    MULTIARCH inline ScalarArray dkappa_normalized() const; /*!< \brief Compute and return \f$ d\kappa * t^{2} \f$ */
   }; //class GLSScaleDer
 
 

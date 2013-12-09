@@ -123,12 +123,18 @@ namespace Grenaille
       return true;
     }
     
+	/*! 
+		\brief return the estimated radius of the sphere
+	*/
     MULTIARCH inline Scalar radius() {
       MULTIARCH_STD_MATH(sqrt);
       Scalar b = 1./_uq;
       return sqrt( ((-0.5*b)*_ul).squaredNorm() - _uc*b );
     }
     
+	/*! 
+		\brief return the estimated center of the sphere
+	*/
     MULTIARCH inline VectorType center() {
       Scalar b = 1./_uq;
       return (-0.5*b)*_ul + basisCenter();
