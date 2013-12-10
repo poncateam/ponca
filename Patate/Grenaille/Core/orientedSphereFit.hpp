@@ -47,31 +47,45 @@ OrientedSphereFit<DataPoint, _WFunctor, T>::addNeighbor(const DataPoint& nei){
 
 template < class DataPoint, class _WFunctor, typename T>
 void
-OrientedSphereFit<DataPoint, _WFunctor, T>::finalize (){
+OrientedSphereFit<DataPoint, _WFunctor, T>::finalize ()
+{
   MULTIARCH_STD_MATH(sqrt);
 
   // 1. finalize sphere fitting
-  Scalar invSumW;
+  Scalar epsilon = Eigen::NumTraits<Scalar>::dummy_precision();
     
-  if(_sumW == Scalar(0.)){ // handle planar configurations
-    invSumW = 10000000;
+  // handle empty configurations
+  if(_sumW == Scalar(0.))
+  {
+	Base::_ul.setZero();
+    Base::_uc = Scalar(0.);
     Base::_uq = Scalar(0.);
-  }else{
-    invSumW = Scalar(1.)/_sumW;
+    Base::_isNormalized = false;
+	Base::_isReady = false;
+	return;
+  }
 
-    Base::_uq = Scalar(.5)* (_sumDotPN - invSumW*_sumP.dot(_sumN))
-      / (_sumDotPP - invSumW*_sumP.dot(_sumP));
-  }    
+  Scalar invSumW = Scalar(1.)/_sumW;
 
-  Base::_ul = (_sumN-_sumP*(Scalar(2.)*Base::_uq))*invSumW;
-  Base::_uc = -invSumW*(Base::_ul.dot(_sumP) + _sumDotPP*Base::_uq);
-    
-  // 2. Deal with plane case:
-  if (fabs(Base::_uq)<Scalar(1e-9)){
-    Scalar s = Scalar(1.) / Base::_ul.norm();
-    Base::_ul = s*Base::_ul;
-    Base::_uc = s*Base::_uc;
-    Base::_uq = Scalar(0.);
+  Scalar num = (_sumDotPN - invSumW * _sumP.dot(_sumN));
+  Scalar den1 = invSumW * _sumP.dot(_sumP);
+  Scalar den  = _sumDotPP - den1;
+
+  // Deal with degenarative cases
+  if(fabs(den) < epsilon * std::max(_sumDotPP, den1))
+  {
+	//plane
+	Scalar s = Scalar(1.) / Base::_ul.norm();
+	Base::_ul = s*Base::_ul;
+	Base::_uc = s*Base::_uc;
+	Base::_uq = Scalar(0.);
+  }
+  else
+  {
+	//Generic case
+	Base::_uq = Scalar(.5) * num / den;
+    Base::_ul = (_sumN - _sumP * (Scalar(2.) * Base::_uq)) * invSumW;
+    Base::_uc = -invSumW * (Base::_ul.dot(_sumP) + _sumDotPP * Base::_uq);
   }
 
   Base::_isNormalized = false;

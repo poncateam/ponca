@@ -22,7 +22,7 @@ namespace Grenaille{
 #define BASKET_TP(I) template <class, class, typename> class Ext##I = internal::Forward
   /*!
 
-    \brief Agregator class used to declare specialized structures using CRTP
+    \brief Agregator class used to declare specialized structures using CRTP (Curiously recurring template pattern)
     \todo Comment
     
     The various implementations of Grenaille::Concept are mixed through 

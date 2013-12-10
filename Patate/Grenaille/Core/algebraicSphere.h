@@ -34,7 +34,7 @@ namespace Grenaille
     This fitting procedure provides: 
     \verbatim PROVIDES_ALGEBRAIC_SPHERE \endverbatim
 
-    \todo Deal with planar case
+    \todo Deal with planar case (_uq == 0) and what about _ul == 0 ?
    */
   template < class DataPoint, class _WFunctor, typename T = void  >
   class AlgebraicSphere {
@@ -62,7 +62,7 @@ namespace Grenaille
     //! \brief Is the implicit scalar field normalized using Pratt
     bool _isNormalized;
     
-    //! \brief Is the sphere fitted an ready to use (finalize has been called)
+    //! \brief Is the sphere fitted and ready to use (finalize has been called)
     bool _isReady;
 
     // results

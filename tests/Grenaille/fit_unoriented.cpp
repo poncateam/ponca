@@ -65,7 +65,7 @@ void testFunction()
 
         fit.finalize();
 
-        Scalar fitRadiusKappa = Scalar(abs(1.f / fit.kappa()));
+        Scalar fitRadiusKappa = Scalar(fabs(1.f / fit.kappa()));
 		Scalar fitRadiusAlgebraic = fit.radius();
         VectorType fitCenter = fit.center();
 

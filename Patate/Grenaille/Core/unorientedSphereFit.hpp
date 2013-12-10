@@ -98,12 +98,14 @@ UnorientedSphereFit<DataPoint, _WFunctor, T>::finalize (){
 
   // 1. finalize sphere fitting
   Scalar invSumW;
+  Scalar epsilon = Eigen::NumTraits<Scalar>::dummy_precision();
     
   if(_sumW == Scalar(0.)){ // handle empty configurations
     Base::_ul.setZero();
     Base::_uc = 0;
     Base::_uq = 0;
     Base::_isNormalized = false;
+	Base::_isReady = false;
     return;
   }else{
     invSumW = Scalar(1.)/_sumW;
@@ -128,14 +130,6 @@ UnorientedSphereFit<DataPoint, _WFunctor, T>::finalize (){
   Base::_uq = 0.5*eivec(Dim);
   Base::_uc = -invSumW*(Base::_ul.dot(_sumP) + _sumDotPP*Base::_uq);
     
-  // 2. Deal with planar case:
-  if (fabs(Base::_uq)<Scalar(1e-9)){
-    Scalar s = Scalar(1.) / Base::_ul.norm();
-    Base::_ul = s*Base::_ul;
-    Base::_uc = s*Base::_uc;
-    Base::_uq = Scalar(0.);
-  }
-
   Base::_isNormalized = false;
   Base::_isReady      = true;
 }
