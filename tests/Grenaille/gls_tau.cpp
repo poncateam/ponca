@@ -21,14 +21,14 @@ using namespace std;
 using namespace Grenaille;
 
 template<typename DataPoint, typename Fit, typename WeightFunc> //, typename Fit, typename WeightFunction>
-void testFunction()
+void testFunction(bool bUnoriented = false, bool bAddPositionNoise = false, bool bAddNormalNoise = false)
 {
     // Define related structure
 	typedef typename DataPoint::Scalar Scalar;
     typedef typename DataPoint::VectorType VectorType;
 
     //generate sampled plane
-    int nbPoints = Eigen::internal::random<int>(10, 1000);
+    int nbPoints = Eigen::internal::random<int>(100, 1000);
     vector<DataPoint> vectorPoints(nbPoints);
     
 	//Random plane parameters
@@ -36,13 +36,13 @@ void testFunction()
 	VectorType vCenter = VectorType::Random() * centerScale;
 	VectorType vPlaneNormal = VectorType::Random().normalized();
 
-    Scalar analysisScale = 100.;
+    Scalar analysisScale = Eigen::internal::random<Scalar>(10, 100);
 	Scalar epsilon = testEpsilon<Scalar>();
 
     for(unsigned int i = 0; i < vectorPoints.size(); ++i)
     {
-		Scalar radius = Eigen::internal::random<Scalar>(-100, 100);
-		vectorPoints[i] = getPointOnPlane<DataPoint>(vCenter, vPlaneNormal, radius);
+		Scalar radius = Eigen::internal::random<Scalar>(-analysisScale, analysisScale);
+		vectorPoints[i] = getPointOnPlane<DataPoint>(vCenter, vPlaneNormal, radius, bAddPositionNoise, bAddNormalNoise, bUnoriented);
     }
 
 	// Test for each point if the point moved from distance d correspond to tau
@@ -65,12 +65,16 @@ void testFunction()
 
         fit.finalize();
 
-		Scalar fitTau = fit.tau();
-		fitTau = abs(fitTau);
-		distanceToPlane = abs(distanceToPlane);
+		if(fit.isReady())
+		{
+			Scalar fitTau = fit.tau();
+			fitTau = fabs(fitTau);
+			distanceToPlane = fabs(distanceToPlane);
 
-		// Test Tau
-		VERIFY( abs(distanceToPlane - fitTau) < epsilon);
+			// Test Tau
+			//VERIFY( Eigen::internal::isApprox(distanceToPlane, fitTau, epsilon) );
+			VERIFY( Eigen::internal::isMuchSmallerThan(std::abs(distanceToPlane - fitTau), 1., epsilon) );
+		}
     }
 }
 
@@ -87,6 +91,7 @@ void callSubTests()
 	typedef Basket<Point, WeightSmoothFunc, UnorientedSphereFit, GLSParam> FitSmoothUnoriented;
 	typedef Basket<Point, WeightConstantFunc, UnorientedSphereFit, GLSParam> FitConstantUnoriented;
 
+	cout << "Testing with perfect plane (oriented / unoriented)..." << endl;
 	for(int i = 0; i < g_repeat; ++i)
     {
 		CALL_SUBTEST(( testFunction<Point, FitSmoothOriented, WeightSmoothFunc>() ));
@@ -94,6 +99,17 @@ void callSubTests()
 		CALL_SUBTEST(( testFunction<Point, FitSmoothUnoriented, WeightSmoothFunc>() ));
 		CALL_SUBTEST(( testFunction<Point, FitConstantUnoriented, WeightConstantFunc>() ));
     }
+	cout << "Ok..." << endl;
+
+	cout << "Testing with noise on position and normals (oriented / unoriented)..." << endl;
+	for(int i = 0; i < g_repeat; ++i)
+	{
+		CALL_SUBTEST(( testFunction<Point, FitSmoothOriented, WeightSmoothFunc>(false, true, true) ));
+		CALL_SUBTEST(( testFunction<Point, FitConstantOriented, WeightConstantFunc>(false, true, true) ));
+		CALL_SUBTEST(( testFunction<Point, FitSmoothUnoriented, WeightSmoothFunc>(true, true, true) ));
+		CALL_SUBTEST(( testFunction<Point, FitConstantUnoriented, WeightConstantFunc>(true, true, true) ));
+	}
+	cout << "Ok..." << endl;
 }
 
 int main(int argc, char** argv)
@@ -107,4 +123,5 @@ int main(int argc, char** argv)
 
 	callSubTests<float, 3>();
 	callSubTests<double, 3>();
+	callSubTests<long double, 3>();
 }

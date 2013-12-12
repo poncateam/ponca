@@ -21,7 +21,7 @@ using namespace std;
 using namespace Grenaille;
 
 template<typename DataPoint, typename Fit, typename WeightFunc> //, typename Fit, typename WeightFunction>
-void testFunction()
+void testFunction(bool bAddPositionNoise = false, bool bAddNormalNoise = false)
 {
     // Define related structure
 	typedef typename DataPoint::Scalar Scalar;
@@ -38,16 +38,17 @@ void testFunction()
 
     Scalar analysisScale = 10. * std::sqrt(4 * M_PI * radius * radius / nbPoints);
 
-	Scalar epsilon = testEpsilon<Scalar>() * radius;
+	Scalar epsilon = testEpsilon<Scalar>();
+	Scalar radisuEpsilon = epsilon * radius;
 
     vector<DataPoint> vectorPoints(nbPoints);
 
     for(unsigned int i = 0; i < vectorPoints.size(); ++i)
     {
-        vectorPoints[i] = getPointOnSphere<DataPoint>(radius, center);
+        vectorPoints[i] = getPointOnSphere<DataPoint>(radius, center, bAddPositionNoise, bAddNormalNoise);
     }
 
-	// Test for each point if the Derivatives are equal to 0
+	// Test for each point if the Derivatives of kappa are equal to 0
     for(unsigned int i = 0; i < vectorPoints.size(); ++i)
     {
         Fit fit;
@@ -63,10 +64,16 @@ void testFunction()
 
         fit.finalize();
 
-		Scalar kappa = fit.kappa();
-		ScalarArray dkappa = fit.dkappa();
+		if(fit.isReady())
+		{
+			ScalarArray dkappa = fit.dkappa();
 
-		VERIFY( (dkappa.array().abs() < epsilon).all() );
+			for(int i = 0; i < dkappa.size(); ++i)
+			{
+				VERIFY( Eigen::internal::isMuchSmallerThan(dkappa[i], 1., epsilon) );
+			}
+			//VERIFY( (dkappa.array().abs() < radisuEpsilon).all() );
+		}
     }
 }
 
@@ -81,11 +88,21 @@ void callSubTests()
     typedef Basket<Point, WeightSmoothFunc, OrientedSphereFit, GLSParam, OrientedSphereScaleSpaceDer, GLSDer> FitSmoothOriented;
 	typedef Basket<Point, WeightConstantFunc, OrientedSphereFit, GLSParam, OrientedSphereScaleSpaceDer, GLSDer> FitConstantOriented;
 
+	cout << "Testing with perfect sphere (oriented / unoriented)..." << endl;
 	for(int i = 0; i < g_repeat; ++i)
     {
 		CALL_SUBTEST(( testFunction<Point, FitSmoothOriented, WeightSmoothFunc>() ));
 		CALL_SUBTEST(( testFunction<Point, FitConstantOriented, WeightConstantFunc>() ));
     }
+	cout << "Ok!" << endl;
+
+	cout << "Testing with noise on position and normals (oriented / unoriented)..." << endl;
+	for(int i = 0; i < g_repeat; ++i)
+	{
+		CALL_SUBTEST(( testFunction<Point, FitSmoothOriented, WeightSmoothFunc>(true, true) ));
+		CALL_SUBTEST(( testFunction<Point, FitConstantOriented, WeightConstantFunc>(true, true) ));
+	}
+	cout << "Ok!" << endl;
 }
 
 int main(int argc, char** argv)
@@ -97,7 +114,8 @@ int main(int argc, char** argv)
 
     cout << "Test sphere derivatives with GLSParam and OrientedSphereFit..." << endl;
 
-	callSubTests<float, 2>();
+	callSubTests<double, 2>();
 	callSubTests<float, 3>();
+	callSubTests<long double, 3>();
 	callSubTests<double, 3>();
 }
