@@ -4,12 +4,20 @@
  file, You can obtain one at http://mozilla.org/MPL/2.0/. 
 */
 
+/*!
+ \file test/common/testUtils.h
+ \brief Useful functions for tests
+
+ \authors: Gautier Ciaudo
+ */
 
 #ifndef _TEST_UTILS_H_
 #define _TEST_UTILS_H_
 
 #include "Eigen/Eigen"
 #include "Patate/grenaille.h"
+
+#include <vector>
 
 #define MIN_NOISE 0.99f
 #define MAX_NOISE 1.01f
@@ -60,6 +68,32 @@ public:
 private:
     VectorType _pos, _normal;
 };
+
+template<typename DataPoint>
+void reverseNormals(std::vector<DataPoint>& dest, const std::vector<DataPoint>& src, bool bRandom = true)
+{
+	typedef typename DataPoint::VectorType VectorType;
+
+	VectorType vNormal;
+
+	for(unsigned int i = 0; i < src.size(); ++i)
+	{
+		if(bRandom)
+		{
+			float reverse = Eigen::internal::random<float>(0.f, 1.f);
+			if(reverse > 0.5f)
+			{
+				vNormal = -src[i].normal();
+			}
+		}
+		else
+		{
+			vNormal = -src[i].normal();
+		}
+
+		dest[i] = DataPoint(src[i].pos(), vNormal);
+	}
+}
 
 template<typename DataPoint>
 DataPoint getPointOnSphere(typename DataPoint::Scalar radius, typename DataPoint::VectorType vCenter, bool bAddPositionNoise = true,

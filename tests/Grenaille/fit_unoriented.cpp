@@ -6,8 +6,8 @@
 
 
 /*!
- \file test/Grenaille/fit_radius_curvature_center.cpp
- \brief Test coherance of unoriented sphere fit
+ \file test/Grenaille/fit_unoriented.cpp
+ \brief Test coherance of unoriented sphere fitting
 
  \authors: Gautier Ciaudo
  */
@@ -22,7 +22,7 @@ using namespace std;
 using namespace Grenaille;
 
 template<typename DataPoint, typename Fit, typename WeightFunc> //, typename Fit, typename WeightFunction>
-void testFunction()
+void testFunction(bool bAddPositionNoise = false, bool bAddNormalNoise = false)
 {
     // Define related structure
 	typedef typename DataPoint::Scalar Scalar;
@@ -33,6 +33,7 @@ void testFunction()
     
 	Scalar radiusScale = Eigen::internal::random<Scalar>(1,10);
 	Scalar radius = Eigen::internal::random<Scalar>(0,1) * radiusScale;
+
     Scalar analysisScale = 10.f * std::sqrt( 4.f * M_PI * radius * radius / nbPoints);
 	Scalar centerScale = Eigen::internal::random<Scalar>(1,10);
 	VectorType center = VectorType::Random() * centerScale;
@@ -43,40 +44,83 @@ void testFunction()
 
 
     vector<DataPoint> vectorPoints(nbPoints);
+	vector<DataPoint> vectorReversedNormals100(nbPoints);
+	vector<DataPoint> vectorReversedNormalsRandom(nbPoints);
 
     for(unsigned int i = 0; i < vectorPoints.size(); ++i)
     {
-        vectorPoints[i] = getPointOnSphere<DataPoint>(radius, center, true, true);
+		//reverse random normals
+        vectorPoints[i] = getPointOnSphere<DataPoint>(radius, center, bAddPositionNoise, bAddNormalNoise);
     }
 
-	// Test for each point if the fitted sphere correspond to the theorical sphere
+	reverseNormals<DataPoint>(vectorReversedNormals100, vectorPoints, false);
+	reverseNormals<DataPoint>(vectorReversedNormalsRandom, vectorPoints);
+
+	// Test sphere descriptors coherance for each points
     for(unsigned int i = 0; i < vectorPoints.size(); ++i)
     {
-        Fit fit;
+        Fit fit, fitReverse100, fitReverseRandom;
+
         fit.setWeightFunc(WeightFunc(analysisScale));
         fit.init(vectorPoints[i].pos());
 
-        for(typename vector<DataPoint>::iterator it = vectorPoints.begin();
-            it != vectorPoints.end();
+		fitReverse100.setWeightFunc(WeightFunc(analysisScale));
+		fitReverse100.init(vectorReversedNormals100[i].pos());
+
+		fitReverseRandom.setWeightFunc(WeightFunc(analysisScale));
+		fitReverseRandom.init(vectorReversedNormalsRandom[i].pos());
+
+		for(typename vector<DataPoint>::iterator it = vectorPoints.begin();
+			it != vectorPoints.end();
+			++it)
+		{
+			fit.addNeighbor(*it);
+		}
+
+        for(typename vector<DataPoint>::iterator it = vectorReversedNormals100.begin();
+            it != vectorReversedNormals100.end();
             ++it)
         {
-            fit.addNeighbor(*it);
+            fitReverse100.addNeighbor(*it);
         }
+		
+		for(typename vector<DataPoint>::iterator it = vectorReversedNormalsRandom.begin();
+			it != vectorReversedNormalsRandom.end();
+			++it)
+		{
+			fitReverseRandom.addNeighbor(*it);
+		}
 
         fit.finalize();
+		fitReverse100.finalize();
+		fitReverseRandom.finalize();
 
-        Scalar fitRadiusKappa = Scalar(fabs(1.f / fit.kappa()));
-		Scalar fitRadiusAlgebraic = fit.radius();
-        VectorType fitCenter = fit.center();
+		if(fit.isReady() && fitReverse100.isReady() && fitReverseRandom.isReady())
+		{
+			Scalar kappa1 = fabs(fit.kappa());
+			Scalar kappa2 = fabs(fitReverse100.kappa());
+			Scalar kappa3 = fabs(fitReverseRandom.kappa());
 
-		Scalar radiusMax = radius * MAX_NOISE;
-		Scalar radiusMin = radius * MIN_NOISE;
-		
-		// Test procedure
-		VERIFY( ((fitCenter - center).array().abs() < (radiusMax - radius) + radiusEpsilon).all() );
-		VERIFY( (radiusMin - radiusEpsilon < fitRadiusAlgebraic) && (fitRadiusAlgebraic < radiusMax + radiusEpsilon) );
-		// Test reparametrization
-        VERIFY( (radiusMin - radiusEpsilon < fitRadiusKappa) && (fitRadiusKappa < radiusMax + radiusEpsilon) );
+			Scalar tau1 = fabs(fit.tau());
+			Scalar tau2 = fabs(fitReverse100.tau());
+			Scalar tau3 = fabs(fitReverseRandom.tau());
+
+			VectorType eta1 = fit.eta().normalized().array().abs();
+			VectorType eta2 = fitReverse100.eta().normalized().array().abs();
+			VectorType eta3 = fitReverseRandom.eta().normalized().array().abs();
+
+			// Check kappa coherance
+			VERIFY( Eigen::internal::isMuchSmallerThan(std::fabs(kappa1 - kappa2), 1., epsilon) );
+			VERIFY( Eigen::internal::isMuchSmallerThan(std::fabs(kappa1 - kappa3), 1., epsilon) );
+
+			// Check tau coherance
+			VERIFY( Eigen::internal::isMuchSmallerThan(std::fabs(tau1 - tau2), 1., epsilon) );
+			VERIFY( Eigen::internal::isMuchSmallerThan(std::fabs(tau1 - tau3), 1., epsilon) );
+
+			// Check eta coherance
+			VERIFY( Eigen::internal::isMuchSmallerThan((eta1 - eta2).norm(), 1., epsilon) );
+			VERIFY( Eigen::internal::isMuchSmallerThan((eta1 - eta3).norm(), 1., epsilon) );
+		}
     }
 }
 
@@ -96,6 +140,23 @@ void callSubTests()
 		CALL_SUBTEST(( testFunction<Point, FitSmoothUnoriented, WeightSmoothFunc>() ));
 		CALL_SUBTEST(( testFunction<Point, FitConstantUnoriented, WeightConstantFunc>() ));
     }
+
+	cout << "Testing with perfect sphere (unoriented)..." << endl;
+	for(int i = 0; i < g_repeat; ++i)
+	{
+		//Test with perfect sphere
+		CALL_SUBTEST(( testFunction<Point, FitSmoothUnoriented, WeightSmoothFunc>() ));
+		CALL_SUBTEST(( testFunction<Point, FitConstantUnoriented, WeightConstantFunc>() ));
+	}
+	cout << "Ok!" << endl;
+
+	cout << "Testing with noise on position and normals (unoriented)..." << endl;
+	for(int i = 0; i < g_repeat; ++i)
+	{
+		CALL_SUBTEST(( testFunction<Point, FitSmoothUnoriented, WeightSmoothFunc>(true, true) ));
+		CALL_SUBTEST(( testFunction<Point, FitConstantUnoriented, WeightConstantFunc>(true, true) ));
+	}
+	cout << "Ok!" << endl;
 }
 
 int main(int argc, char** argv)
@@ -105,9 +166,9 @@ int main(int argc, char** argv)
         return EXIT_FAILURE;
     }
 
-    cout << "Test unoriented sphere fitting (radius / center) and mean curvature..." << endl;
+    cout << "Test unoriented sphere fit coherance..." << endl;
 
-	callSubTests<float, 2>();
+	callSubTests<double, 2>();
 	callSubTests<float, 3>();
-	callSubTests<double, 3>();
+	callSubTests<long double, 3>();
 }
