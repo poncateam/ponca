@@ -77,7 +77,7 @@ namespace Grenaille
     MULTIARCH inline void addNeighbor(const DataPoint &nei);
     
     /*! \copydoc Concept::FittingProcedureConcept::finalize() */
-    MULTIARCH inline void finalize   ();
+    MULTIARCH inline bool finalize   ();
   }; // class UnorientedSphereFit
 
   
@@ -152,7 +152,7 @@ namespace Grenaille
       /*! \see Concept::FittingProcedureConcept::addNeighbor() */
       MULTIARCH void addNeighbor(const DataPoint  &nei);
       /*! \see Concept::FittingProcedureConcept::finalize() */
-      MULTIARCH void finalize   ();
+      MULTIARCH bool finalize   ();
 
 
     /**************************************************************************/

@@ -46,7 +46,7 @@ OrientedSphereFit<DataPoint, _WFunctor, T>::addNeighbor(const DataPoint& nei){
 
 
 template < class DataPoint, class _WFunctor, typename T>
-void
+bool
 OrientedSphereFit<DataPoint, _WFunctor, T>::finalize ()
 {
   MULTIARCH_STD_MATH(sqrt);
@@ -62,7 +62,7 @@ OrientedSphereFit<DataPoint, _WFunctor, T>::finalize ()
     Base::_uq = Scalar(0.);
     Base::_isNormalized = false;
 	Base::_isReady = false;
-	return;
+	return false;
   }
 
   Scalar invSumW = Scalar(1.)/_sumW;
@@ -90,6 +90,8 @@ OrientedSphereFit<DataPoint, _WFunctor, T>::finalize ()
 
   Base::_isNormalized = false;
   Base::_isReady      = true;
+
+  return true;
 }
 
 
@@ -142,13 +144,13 @@ namespace internal{
 
 
   template < class DataPoint, class _WFunctor, typename T, int Type>
-  void 
+  bool 
   OrientedSphereDer<DataPoint, _WFunctor, T, Type>::finalize(){
     MULTIARCH_STD_MATH(sqrt);
 
-    Base::finalize();
+    bool bResult = Base::finalize();
     
-    if (Base::_sumW != Scalar(0.)){
+    if (bResult){
       
       if (isSpaceDer())
       {
@@ -178,8 +180,11 @@ namespace internal{
                       + Base::_ul.transpose() * _dSumP 
                       + Base::_uq * _dSumDotPP
                       + _dSumW * Base::_uc);
+
+	  return true;
     }
 
+	return false;
   }
 
   

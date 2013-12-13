@@ -78,9 +78,16 @@ namespace Grenaille
     /* Processing                                                             */
     /**************************************************************************/
     /*! \copydoc Concept::FittingProcedureConcept::finalize() */
-    MULTIARCH inline void finalize   (){
-      Base::finalize();
-      _fitness = Scalar(1.) - Base::prattNorm2();
+    MULTIARCH inline bool finalize   (){
+      bool bResult = Base::finalize();
+
+	  if(bResult)
+	  {
+		_fitness = Scalar(1.) - Base::prattNorm2();
+		return true;
+	  }
+
+	  return false;
     }
 
 
@@ -234,10 +241,13 @@ namespace Grenaille
     /* Processing                                                             */
     /**************************************************************************/
     /*! \copydoc Concept::FittingProcedureConcept::finalize() */
-    MULTIARCH inline void finalize   (){
+    MULTIARCH inline bool finalize   (){
 	    MULTIARCH_STD_MATH(sqrt);
 	      
-      Base::finalize();
+      bool bResult = Base::finalize();
+
+	  if(!bResult)
+		  return false;
       
       // Extract the spatial variations of eta
       MatrixType jacobian = Base::deta().template middleCols<DataPoint::Dim>(Base::isScaleDer() ? 1: 0);
@@ -284,6 +294,8 @@ namespace Grenaille
         _v1 = eig.eigenvectors().col(1);
         _v2 = eig.eigenvectors().col(2);        
       }
+
+	  return true;
     }
     
     /**************************************************************************/

@@ -64,8 +64,11 @@ namespace Grenaille
           
         fit.finalize();
         
-        // use the fit
-        // ... 
+		if(fit.isReady())
+		{
+			// use the fit
+			// ...
+		}			
       \endcode
          
      */
@@ -97,10 +100,11 @@ namespace Grenaille
       void addNeighbor(const DataPoint &nei){};
       
       /*!
-        \brief Finalize the fitting procedure    
+        \brief Finalize the fitting procedure
+		\return false is procedure failed (for example, 0 neighbor)
         \warning Must be called be for any use of the fitting output
       */
-      void finalize (){};    
+      bool finalize (){};    
     };
     
     /*!
@@ -125,8 +129,11 @@ namespace Grenaille
           
         extFit.finalize();
         
-        // use the result of the fit and its extensions
-        // ... 
+		if(extFit.isReady())
+		{
+			// use the result of the fit and its extensions
+			// ... 
+		}
       \endcode
       
      */
@@ -150,7 +157,7 @@ namespace Grenaille
       void addNeighbor(const DataPoint &nei){};
       
       /*! \see FittingProcedureConcept::finalize */
-      void finalize (){};    
+      bool finalize (){};    
     };
     
     
