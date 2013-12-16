@@ -130,10 +130,10 @@ namespace Grenaille
 	*/
     MULTIARCH inline Scalar radius()
 	{
-	  /*if(isPlane())
+	  if(isPlane())
 	  {
 	    return std::numeric_limits<Scalar>::infinity();
-	  }*/
+	  }
 
       MULTIARCH_STD_MATH(sqrt);
       Scalar b = 1./_uq;
@@ -145,10 +145,10 @@ namespace Grenaille
 	*/
     MULTIARCH inline VectorType center()
 	{
-	  /*if(isPlane())
+	  if(isPlane())
 	  {
 	    return VectorType(std::numeric_limits<Scalar>::infinity());
-	  }*/
+	  }
 
       Scalar b = 1./_uq;
       return (-0.5*b)*_ul + basisCenter();
