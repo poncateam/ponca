@@ -154,6 +154,24 @@ namespace Grenaille
     
     //! \brief Rough Approximation of the hessian matrix at \f$ \mathbf{q} \f$
     MULTIARCH inline MatrixType primitiveHessian (const VectorType &q) const;
+
+	/*! 
+		\brief Used to know if the fitting result to a plane
+		\return true if finalize() have been called and the fitting result to a plane
+	*/
+	MULTIARCH inline bool isPlane() const
+	{
+		Scalar epsilon = Eigen::NumTraits<Scalar>::dummy_precision();
+		bool bPlanar = Eigen::internal::isMuchSmallerThan(std::abs(_uq), 1., epsilon);
+
+		if(_isReady && bPlanar)
+		{
+			return true;
+		}
+
+		return false;
+	}
+	
   }; //class AlgebraicSphere
 
 
