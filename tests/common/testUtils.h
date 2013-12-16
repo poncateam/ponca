@@ -35,12 +35,12 @@ template<> inline float testEpsilon<float>()
 
 template<> inline double testEpsilon<double>()
 {
-	return 1e-6f;
+	return 1e-6;
 }
 
 template<> inline long double testEpsilon<long double>()
 {
-	return 1e-6f;
+	return 1e-6;
 }
 
 // Basic point
@@ -108,7 +108,7 @@ DataPoint getPointOnSphere(typename DataPoint::Scalar radius, typename DataPoint
 
     if(bAddPositionNoise)
     {
-		VectorType vPosition = vCenter + vNormal * radius * Eigen::internal::random<Scalar>(MIN_NOISE, MAX_NOISE);
+		vPosition = vCenter + vNormal * radius * Eigen::internal::random<Scalar>(MIN_NOISE, MAX_NOISE);
 		//vPosition = vPosition + VectorType::Random().normalized() * Eigen::internal::random<Scalar>(MIN_NOISE, MAX_NOISE);
 		vNormal = (vPosition - vCenter).normalized();
     }

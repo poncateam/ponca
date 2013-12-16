@@ -52,3 +52,11 @@ add_executable(fit_unoriented ${fit_unoriented_SRCS})
 add_dependencies(buildtests fit_unoriented)
 add_test(fit_unoriented fit_unoriented)
 
+#############################################
+set(gls_compare_SRCS 
+    gls_compare.cpp
+)
+add_executable(gls_compare ${gls_compare_SRCS})
+add_dependencies(buildtests gls_compare)
+add_test(gls_compare gls_compare)
+

@@ -119,7 +119,9 @@ namespace Grenaille
     MULTIARCH inline Scalar     fitness()          const {return _fitness;}
     
     /*! 
-      \brief Compare current instance with other 
+      \brief Compare current instance with other.
+	  \return a distance between two fits (0 correspond to two similar fits)
+	  \warning Use the same scale to have a useful comparison (normalized value are used)
     */
     MULTIARCH inline Scalar compareTo (const GLSParam<DataPoint, _WFunctor, T>& other,
                                        bool useFitness = true) const
