@@ -196,14 +196,15 @@ Scalar getParaboloidZ(Scalar x, Scalar y, Scalar a, Scalar b)
 	Scalar x2 = x * x;
 	Scalar y2 = y * y;
 
-	Scalar z = (a * x2 + b * y2); //* Scalar(0.5);
+	Scalar z = (a * x2 + b * y2) * Scalar(0.5);
 
 	return z;
 }
 
 template<typename DataPoint>
 DataPoint getPointOnParaboloid(typename DataPoint::VectorType vCenter, typename DataPoint::VectorType vCoef,
-							   typename DataPoint::QuaternionType qRotation, bool bAddNoise = true)
+							   typename DataPoint::QuaternionType qRotation, typename DataPoint::Scalar analysisScale,
+							   bool bAddNoise = true)
 {
 	typedef typename DataPoint::Scalar Scalar;
 	typedef typename DataPoint::VectorType VectorType;
@@ -217,13 +218,13 @@ DataPoint getPointOnParaboloid(typename DataPoint::VectorType vCenter, typename 
 
 	//do
 	//{
-		x = Eigen::internal::random<Scalar>(-0.0001 * a, 0.0001 * a);
-		y = Eigen::internal::random<Scalar>(-0.0001 * b, 0.0001 * b);
+		x = Eigen::internal::random<Scalar>(-analysisScale, analysisScale);
+		y = Eigen::internal::random<Scalar>(-analysisScale, analysisScale);
 		z = getParaboloidZ(x, y, a, b);
 	//}
 	//while(z > Scalar(10.));
 
-	vNormal = VectorType((2. * a * x), (2. * b * y), 1.).normalized();
+	vNormal = VectorType((a * x), (b * y), 1.).normalized();
 
 	vPosition.x() = x;
 	vPosition.y() = y;
@@ -239,5 +240,51 @@ DataPoint getPointOnParaboloid(typename DataPoint::VectorType vCenter, typename 
 	//vNormal = qRotation * vNormal;
 
 	return DataPoint(vPosition, vNormal);
+}
+
+template<typename DataPoint>
+typename DataPoint::Scalar getPointKappaMean(typename DataPoint::VectorType vPoint, typename DataPoint::Scalar a, typename DataPoint::Scalar b)
+{
+	typedef typename DataPoint::Scalar Scalar;
+	typedef typename DataPoint::VectorType VectorType;
+
+	Scalar x = vPoint.x();
+	Scalar y = vPoint.y();
+
+	Scalar ax2 = a * x * a * x;
+	Scalar by2 = b * y * b * y;
+
+	Scalar num = (1 + ax2) * b + (1 + by2) * a;
+	Scalar den = (1 + ax2 + by2);
+	den = std::pow<Scalar, Scalar>(den, Scalar(3./2.));
+
+	Scalar kappa = num / den * (0.5);
+
+	return kappa;
+}
+
+template<typename DataPoint>
+typename DataPoint::Scalar getKappaMean(const std::vector<DataPoint>& vectorPoints, typename DataPoint::VectorType vCenter,
+										typename DataPoint::Scalar a, typename DataPoint::Scalar b, typename DataPoint::Scalar analysisScale)
+{
+	typedef typename DataPoint::Scalar Scalar;
+	typedef typename DataPoint::VectorType VectorType;
+
+	int size = vectorPoints.size();
+	Scalar kappaMean = 0.;
+	int nbNei = 0;
+
+	for(unsigned int i = 0; i < size; ++i)
+	{
+		VectorType q = vectorPoints[i].pos() - vCenter;
+
+		if(q.norm() <= analysisScale)
+		{
+			kappaMean += getPointKappaMean<DataPoint>(vectorPoints[i].pos(), a, b);
+			++nbNei;
+		}
+	}
+
+	return kappaMean / nbNei;
 }
 #endif // _TEST_UTILS_H_
