@@ -30,8 +30,15 @@ namespace Grenaille{
 	/*! \brief Vector type from DataPoint*/
     typedef typename DataPoint::VectorType VectorType;
     
-    /*! \brief Constructor that defines the current evaluation scale */
-    MULTIARCH inline DistWeightFunc(const Scalar& t = Scalar(1.)): _t(t) {}
+    /*! \brief Constructor that defines the current evaluation scale
+		\warning t > 0
+	*/
+
+    MULTIARCH inline DistWeightFunc(const Scalar& t = Scalar(1.))
+	{
+		assert(t > Scalar(0));
+		_t = t;
+	}
 
     /*!
       \brief Compute the weight of the given query with respect to its coordinates.

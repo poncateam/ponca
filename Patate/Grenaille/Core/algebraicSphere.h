@@ -125,8 +125,16 @@ namespace Grenaille
     
 	/*! 
 		\brief return the estimated radius of the sphere
+		\return inf if the fitted surface is planar
+		\warning return +inf if the fitted surface is planar
 	*/
-    MULTIARCH inline Scalar radius() {
+    MULTIARCH inline Scalar radius()
+	{
+	  /*if(isPlane())
+	  {
+	    return std::numeric_limits<Scalar>::infinity();
+	  }*/
+
       MULTIARCH_STD_MATH(sqrt);
       Scalar b = 1./_uq;
       return sqrt( ((-0.5*b)*_ul).squaredNorm() - _uc*b );
@@ -135,7 +143,13 @@ namespace Grenaille
 	/*! 
 		\brief return the estimated center of the sphere
 	*/
-    MULTIARCH inline VectorType center() {
+    MULTIARCH inline VectorType center()
+	{
+	  /*if(isPlane())
+	  {
+	    return VectorType(std::numeric_limits<Scalar>::infinity());
+	  }*/
+
       Scalar b = 1./_uq;
       return (-0.5*b)*_ul + basisCenter();
     }
