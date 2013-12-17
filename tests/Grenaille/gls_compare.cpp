@@ -31,8 +31,8 @@ void testFunction(bool bUnoriented = false, bool bAddPositionNoise = false, bool
     //generate sampled sphere
     int nbPoints = Eigen::internal::random<int>(100, 1000);
 
-	Scalar radius1 = Eigen::internal::random<Scalar>(0, 1) * Eigen::internal::random<Scalar>(1, 5);
-	Scalar radius2 = Eigen::internal::random<Scalar>(0, 1) * Eigen::internal::random<Scalar>(10, 50);
+	Scalar radius1 = Eigen::internal::random<Scalar>(1, 5);
+	Scalar radius2 = Eigen::internal::random<Scalar>(10, 50);
 
     Scalar analysisScale = 10.f * std::sqrt( 4.f * M_PI * radius2 * radius2 / nbPoints);
 
