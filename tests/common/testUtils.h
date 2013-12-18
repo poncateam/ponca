@@ -30,17 +30,17 @@ template<typename T> inline T testEpsilon()
 
 template<> inline float testEpsilon<float>()
 {
-	return 1e-3f;
+	return 1e-2f;
 }
 
 template<> inline double testEpsilon<double>()
 {
-	return 1e-6;
+	return 1e-5;
 }
 
 template<> inline long double testEpsilon<long double>()
 {
-	return 1e-6;
+	return 1e-5;
 }
 
 // Basic point

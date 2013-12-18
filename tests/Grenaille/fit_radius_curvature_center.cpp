@@ -31,7 +31,7 @@ void testFunction(bool bUnoriented = false, bool bAddPositionNoise = false, bool
     //generate sampled sphere
     int nbPoints = Eigen::internal::random<int>(100, 1000);
     
-	Scalar radius = Eigen::internal::random<Scalar>(0.1, 10.);
+	Scalar radius = Eigen::internal::random<Scalar>(1., 10.);
 
     Scalar analysisScale = 10.f * std::sqrt( 4.f * M_PI * radius * radius / nbPoints);
 	Scalar centerScale = Eigen::internal::random<Scalar>(1,10000);
@@ -84,14 +84,14 @@ void testFunction(bool bUnoriented = false, bool bAddPositionNoise = false, bool
 			VERIFY( Eigen::internal::isMuchSmallerThan(std::fabs(fitRadiusAlgebraic - fitRadiusKappa), 1., epsilon) );
 
 			//Test on eta
-			/*if(!bAddPositionNoise && !bAddNormalNoise)
+			if(!bAddPositionNoise && !bAddNormalNoise)
 			{
 				//sometimes eta can be reversed
 				VectorType fitEta = fit.eta().normalized().array().abs();
 				VectorType theoricEta = vectorPoints[i].normal().array().abs();
 
 				VERIFY( Eigen::internal::isMuchSmallerThan((fitEta - theoricEta).norm(), 1., epsilon)  );
-			}*/
+			}
 		}
     }
 }
