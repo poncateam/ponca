@@ -78,17 +78,19 @@ void reverseNormals(std::vector<DataPoint>& dest, const std::vector<DataPoint>& 
 
 	for(unsigned int i = 0; i < src.size(); ++i)
 	{
+		vNormal = src[i].normal();
+
 		if(bRandom)
 		{
 			float reverse = Eigen::internal::random<float>(0.f, 1.f);
 			if(reverse > 0.5f)
 			{
-				vNormal = -src[i].normal();
+				vNormal = -vNormal;
 			}
 		}
 		else
 		{
-			vNormal = -src[i].normal();
+			vNormal = -vNormal;
 		}
 
 		dest[i] = DataPoint(src[i].pos(), vNormal);
