@@ -103,6 +103,7 @@ DataPoint getPointOnSphere(typename DataPoint::Scalar radius, typename DataPoint
 {
     typedef typename DataPoint::Scalar Scalar;
     typedef typename DataPoint::VectorType VectorType;
+	typedef typename DataPoint::QuaternionType QuaternionType;
 
     VectorType vNormal = VectorType::Random().normalized();
 
@@ -110,14 +111,14 @@ DataPoint getPointOnSphere(typename DataPoint::Scalar radius, typename DataPoint
 
     if(bAddPositionNoise)
     {
-		vPosition = vCenter + vNormal * radius * Eigen::internal::random<Scalar>(MIN_NOISE, MAX_NOISE);
-		//vPosition = vPosition + VectorType::Random().normalized() * Eigen::internal::random<Scalar>(MIN_NOISE, MAX_NOISE);
+		//vPosition = vCenter + vNormal * radius * Eigen::internal::random<Scalar>(MIN_NOISE, MAX_NOISE);
+		vPosition = vPosition + VectorType::Random().normalized() * Eigen::internal::random<Scalar>(0., 1. - MIN_NOISE);
 		vNormal = (vPosition - vCenter).normalized();
     }
 
 	if(bAddNormalNoise)
 	{
-		VectorType vTempPos = vPosition + VectorType::Random().normalized() * Eigen::internal::random<Scalar>(MIN_NOISE, MAX_NOISE);
+		VectorType vTempPos =  vPosition + VectorType::Random().normalized() * Eigen::internal::random<Scalar>(0., 1. - MIN_NOISE);
 		vNormal = (vTempPos - vCenter).normalized();
 	}
 
@@ -153,13 +154,13 @@ DataPoint getPointOnPlane(typename DataPoint::VectorType vPosition, typename Dat
 	}
 	while(vRandomDirection == VectorType::Zero());
 
-	vRandomDirection = vRandomPoint.normalized();
+	vRandomDirection = vRandomDirection.normalized();
 	vRandomPoint = vRandomDirection * radius;
 	vRandomPoint += vPosition;
 
 	if(bAddPositionNoise)
 	{
-		vRandomPoint = vRandomPoint + VectorType::Random().normalized() * Eigen::internal::random<Scalar>(MIN_NOISE, MAX_NOISE);
+		vRandomPoint = vRandomPoint + VectorType::Random().normalized() * Eigen::internal::random<Scalar>(0., 1. - MIN_NOISE);
 	}
 
 	if(bAddNormalNoise)
@@ -235,7 +236,7 @@ DataPoint getPointOnParaboloid(typename DataPoint::VectorType vCenter, typename 
 	if(bAddNoise)
 	{
 		//spherical noise
-		vPosition = vPosition + VectorType::Random().normalized() * Eigen::internal::random<Scalar>(MIN_NOISE, MAX_NOISE);
+		vPosition = vPosition + VectorType::Random().normalized() * Eigen::internal::random<Scalar>(0., 1. - MIN_NOISE);
 	}
 
 	//vPosition = qRotation * vPosition + vCenter;

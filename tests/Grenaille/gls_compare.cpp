@@ -95,31 +95,21 @@ void callSubTests()
 	typedef PointPosistionNormal<Scalar, Dim> Point;
 
     typedef DistWeightFunc<Point, SmoothWeightKernel<Scalar> > WeightSmoothFunc;
-	typedef DistWeightFunc<Point, ConstantWeightKernel<Scalar> > WeightConstantFunc;
 
     typedef Basket<Point, WeightSmoothFunc, OrientedSphereFit, GLSParam> FitSmoothOriented;
-	typedef Basket<Point, WeightConstantFunc, OrientedSphereFit, GLSParam> FitConstantOriented;
-	typedef Basket<Point, WeightSmoothFunc, UnorientedSphereFit, GLSParam> FitSmoothUnoriented;
-	typedef Basket<Point, WeightConstantFunc, UnorientedSphereFit, GLSParam> FitConstantUnoriented;
 
 	cout << "Testing with perfect spheres (oriented / unoriented)..." << endl;
 	for(int i = 0; i < g_repeat; ++i)
     {
 		//Test with perfect sphere
 		CALL_SUBTEST(( testFunction<Point, FitSmoothOriented, WeightSmoothFunc>() ));
-		CALL_SUBTEST(( testFunction<Point, FitConstantOriented, WeightConstantFunc>() ));
-		//CALL_SUBTEST(( testFunction<Point, FitSmoothUnoriented, WeightSmoothFunc>(true) ));
-		//CALL_SUBTEST(( testFunction<Point, FitConstantUnoriented, WeightConstantFunc>(true) ));
 	}
 	cout << "Ok!" << endl;
 
 	cout << "Testing with noise on position and normals (oriented / unoriented)..." << endl;
 	for(int i = 0; i < g_repeat; ++i)
 	{
-		CALL_SUBTEST(( testFunction<Point, FitSmoothOriented, WeightSmoothFunc>(false, true, false) ));
-		CALL_SUBTEST(( testFunction<Point, FitConstantOriented, WeightConstantFunc>(false, true, false) ));
-		//CALL_SUBTEST(( testFunction<Point, FitSmoothUnoriented, WeightSmoothFunc>(true, true, true) ));
-		//CALL_SUBTEST(( testFunction<Point, FitConstantUnoriented, WeightConstantFunc>(true, true, true) ));
+		CALL_SUBTEST(( testFunction<Point, FitSmoothOriented, WeightSmoothFunc>(false, true, true) ));
     }
 	cout << "Ok!" << endl;
 }

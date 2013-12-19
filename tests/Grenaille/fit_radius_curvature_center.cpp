@@ -123,10 +123,10 @@ void callSubTests()
 	cout << "Testing with noise on position and normals (oriented / unoriented)..." << endl;
 	for(int i = 0; i < g_repeat; ++i)
 	{
-		CALL_SUBTEST(( testFunction<Point, FitSmoothOriented, WeightSmoothFunc>(false, true, false) ));
-		CALL_SUBTEST(( testFunction<Point, FitConstantOriented, WeightConstantFunc>(false, true, false) ));
-		CALL_SUBTEST(( testFunction<Point, FitSmoothUnoriented, WeightSmoothFunc>(true, true, false) ));
-		CALL_SUBTEST(( testFunction<Point, FitConstantUnoriented, WeightConstantFunc>(true, true, false) ));
+		CALL_SUBTEST(( testFunction<Point, FitSmoothOriented, WeightSmoothFunc>(false, true, true) ));
+		CALL_SUBTEST(( testFunction<Point, FitConstantOriented, WeightConstantFunc>(false, true, true) ));
+		CALL_SUBTEST(( testFunction<Point, FitSmoothUnoriented, WeightSmoothFunc>(true, true, true) ));
+		CALL_SUBTEST(( testFunction<Point, FitConstantUnoriented, WeightConstantFunc>(true, true, true) ));
     }
 	cout << "Ok!" << endl;
 }

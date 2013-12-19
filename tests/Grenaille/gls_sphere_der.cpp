@@ -72,7 +72,6 @@ void testFunction(bool bAddPositionNoise = false, bool bAddNormalNoise = false)
 			{
 				VERIFY( Eigen::internal::isMuchSmallerThan(dkappa[i], 1., epsilon) );
 			}
-			//VERIFY( (dkappa.array().abs() < radisuEpsilon).all() );
 		}
     }
 }
@@ -83,16 +82,13 @@ void callSubTests()
 	typedef PointPosistionNormal<Scalar, Dim> Point;
 
     typedef DistWeightFunc<Point, SmoothWeightKernel<Scalar> > WeightSmoothFunc;
-	typedef DistWeightFunc<Point, ConstantWeightKernel<Scalar> > WeightConstantFunc;
 
     typedef Basket<Point, WeightSmoothFunc, OrientedSphereFit, GLSParam, OrientedSphereScaleSpaceDer, GLSDer> FitSmoothOriented;
-	typedef Basket<Point, WeightConstantFunc, OrientedSphereFit, GLSParam, OrientedSphereScaleSpaceDer, GLSDer> FitConstantOriented;
 
 	cout << "Testing with perfect sphere (oriented / unoriented)..." << endl;
 	for(int i = 0; i < g_repeat; ++i)
     {
 		CALL_SUBTEST(( testFunction<Point, FitSmoothOriented, WeightSmoothFunc>() ));
-		CALL_SUBTEST(( testFunction<Point, FitConstantOriented, WeightConstantFunc>() ));
     }
 	cout << "Ok!" << endl;
 
@@ -100,7 +96,6 @@ void callSubTests()
 	for(int i = 0; i < g_repeat; ++i)
 	{
 		CALL_SUBTEST(( testFunction<Point, FitSmoothOriented, WeightSmoothFunc>(true, true) ));
-		CALL_SUBTEST(( testFunction<Point, FitConstantOriented, WeightConstantFunc>(true, true) ));
 	}
 	cout << "Ok!" << endl;*/
 }
