@@ -47,7 +47,7 @@ void testFunction()
 	qRotation = qRotation.normalized();
 
 	Scalar epsilon = testEpsilon<Scalar>();
-	Scalar kappaEpsilon = 1e-1;
+	Scalar kappaEpsilon = 2e-1;
 
     vector<DataPoint> vectorPoints(nbPoints);
     for(unsigned int i = 0; i < vectorPoints.size(); ++i)
@@ -86,7 +86,7 @@ void testFunction()
 
 		VERIFY( Eigen::internal::isMuchSmallerThan(std::fabs(tau - theoricTau), 1., epsilon) );
 		VERIFY( Eigen::internal::isMuchSmallerThan((theoricEta - eta).norm(), 1., epsilon ) );
-		//VERIFY( Eigen::internal::isMuchSmallerThan(std::fabs(computedTheoricKappa - kappa), 1., kappaEpsilon) );
+		VERIFY( Eigen::internal::isMuchSmallerThan(std::fabs(computedTheoricKappa - kappa), 1., kappaEpsilon) );
 
 		Scalar kappanorm = fit.kappa_normalized();
 		Scalar taunorm = fit.tau_normalized();
@@ -96,12 +96,12 @@ void testFunction()
 		Scalar kappa2 = fit.GLSk2();
 		Scalar meanKappaFromPricipalCurvatures = (kappa1 + kappa2) * Scalar(.5);
 
-		//VERIFY( Eigen::internal::isApprox(meanKappaFromPricipalCurvatures, theoricKappa, epsilon) );
+		//VERIFY( Eigen::internal::isApprox(meanKappaFromPricipalCurvatures, theoricKappa, kappaEpsilon) );
 
 		Scalar gaussian = fit.GLSGaussianCurvature();
 		Scalar theoricGaussian = a * b;
 
-		//VERIFY( Eigen::internal::isApprox(gaussian, theoricGaussian, epsilon) );
+		//VERIFY( Eigen::internal::isApprox(gaussian, theoricGaussian, kappaEpsilon) );
 	}
 }
 

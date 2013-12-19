@@ -219,13 +219,9 @@ DataPoint getPointOnParaboloid(typename DataPoint::VectorType vCenter, typename 
 	Scalar b = vCoef.y();
 	Scalar x, y, z;
 
-	//do
-	//{
-		x = Eigen::internal::random<Scalar>(-analysisScale, analysisScale);
-		y = Eigen::internal::random<Scalar>(-analysisScale, analysisScale);
-		z = getParaboloidZ(x, y, a, b);
-	//}
-	//while(z > Scalar(10.));
+	x = Eigen::internal::random<Scalar>(-analysisScale, analysisScale);
+	y = Eigen::internal::random<Scalar>(-analysisScale, analysisScale);
+	z = getParaboloidZ(x, y, a, b);
 
 	vNormal = VectorType((a * x), (b * y), 1.).normalized();
 
