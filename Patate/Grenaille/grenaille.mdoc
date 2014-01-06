@@ -4,7 +4,7 @@
     
   Sounds a bit abstract, and indeed, it is templated in every corner of the code. It's worth the effort though, as it may be used for varied purposes such as curvature computation, surface reconstruction, scale-space analysis, image processing, sketch vectorization and much more!
 
-  The good news is that the module is quite easy to use, as is demonstrated in Grenaille first tutorial. And it's extensible thanks to its programming interface based on Grenaille::Concept that allows you to customize the patate to your needs.
+  The good news is that the module is quite easy to use, as is demonstrated in \ref grenaille_user_manual_page "Grenaille user manual". And it's extensible thanks to its programming interface based on Grenaille::Concept that allows you to customize the patate to your needs.
   
  */
 namespace Grenaille
@@ -34,7 +34,7 @@ namespace Grenaille
             > myFit;                // Final structure to fit and extend a primitive over weighted samples
     \endcode
 
-    \see The \ref grenaille_tutorial1 demonstrates step by step how to use a Basket for a simple application.
+    \see The \ref grenaille_user_manual_page demonstrates step by step how to use a Basket for a simple application.
 
     \see For more details about each concept and examples of how to use them, browse through the pages below.
   */
@@ -204,7 +204,7 @@ namespace Grenaille
     /*!
       \brief Definition of a point sample.
       
-      All fitting methods in Grenaille rely on the definition of a Point type. Specific features might be required depending on the content of the Basket: for instance, an OrientedSphereFit will require points equipped with normals as illustrated in the \ref grenaille_tutorial1.
+      All fitting methods in Grenaille rely on the definition of a Point type. Specific features might be required depending on the content of the Basket: for instance, an OrientedSphereFit will require points equipped with normals as illustrated in the \ref grenaille_user_manual_page.
       
       Grenaille does not provide an implementation for this concept so that users may adapt it to their own data structure. However, the following implementation can be used as a starting point for most 3D applications:
       \code
