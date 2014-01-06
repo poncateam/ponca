@@ -228,7 +228,7 @@ namespace Grenaille
   public:
     typedef typename Base::Scalar     Scalar;		/*!< \brief Inherited scalar type*/
     typedef typename Base::VectorType VectorType;	/*!< \brief Inherited vector type*/
-    typedef typename Base::MatrixType MatrixType;	/*!< \brief Weight Function*/
+    typedef typename DataPoint::MatrixType MatrixType;	/*!< \brief Matrix type inherited from DataPoint*/
       
   private:
     Scalar _k1, _k2;

@@ -49,8 +49,6 @@ namespace Grenaille
     typedef typename DataPoint::Scalar     Scalar;     
     /*! \brief Vector type inherited from DataPoint*/
     typedef typename DataPoint::VectorType VectorType;
-    /*! \brief Vector type inherited from DataPoint*/
-    typedef typename DataPoint::MatrixType MatrixType;
     /*! \brief Weight Function*/
     typedef _WFunctor                      WFunctor;  
     
@@ -165,9 +163,6 @@ namespace Grenaille
     
     //! \brief Approximation of the scalar field gradient at \f$ \mathbf{q} (not normalized) \f$
     MULTIARCH inline VectorType primitiveGradient (const VectorType& q) const;
-    
-    //! \brief Rough Approximation of the hessian matrix at \f$ \mathbf{q} \f$
-    MULTIARCH inline MatrixType primitiveHessian (const VectorType &q) const;
 
 	/*! 
 		\brief Used to know if the fitting result to a plane

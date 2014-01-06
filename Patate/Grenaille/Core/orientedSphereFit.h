@@ -112,7 +112,6 @@ namespace Grenaille
     public:
       typedef typename Base::Scalar     Scalar;     /*!< \brief Inherited scalar type*/
       typedef typename Base::VectorType VectorType; /*!< \brief Inherited vector type*/
-      typedef typename Base::MatrixType MatrixType; /*!< \brief Inherited Matrix type*/
       typedef typename Base::WFunctor   WFunctor;   /*!< \brief Weight Function*/
 
 #define GLS_DER_NB_DERIVATIVES(TYPE,DIM) ((TYPE & FitScaleDer) ? 1 : 0 ) + ((TYPE & FitSpaceDer) ? DIM : 0)
