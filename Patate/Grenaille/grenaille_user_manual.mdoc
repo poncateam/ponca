@@ -1,24 +1,37 @@
+namespace Grenaille
+{
 /*!
-  \page grenaille_tutorial1 Grenaille first tutorial  
+  \page grenaille_user_manual_page User Manual  
   
-  This tutorial explains the basics of the Grenaille module. The corresponding source-code is
-  available at \ref cpp/grenaille_basic_cpu.cpp.
-  
-  <h3>Table of Content</h3>
-  - \ref grenaille_tutorial1_section_define
-    - \ref grenaille_tutorial1_subsection_define_samples
-    - \ref grenaille_tutorial1_subsection_define_fit
-  - \ref grenaille_tutorial1_section_fitting
-  - \ref grenaille_tutorial1_section_access
-    - \ref grenaille_tutorial1_section_access_field
-    - \ref grenaille_tutorial1_section_access_sphere
-    - \ref grenaille_tutorial1_section_access_other
+  Welcome to the Grenaille user manual. This page may either provide a detailed explanation of classes found in the module, or describe
+  a simple example that makes use of basic functionalities. In the latter case, you will find a link to the complete example
+  that implements this kind of tutorial.
 
+  <h3>Table of Content</h3>
+  - \ref grenaille_tutorial1_intro
+    - \ref grenaille_tutorial1_section_define
+      - \ref grenaille_tutorial1_subsection_define_samples
+      - \ref grenaille_tutorial1_subsection_define_fit
+    - \ref grenaille_tutorial1_section_fitting
+    - \ref grenaille_tutorial1_section_access
+      - \ref grenaille_tutorial1_section_access_field
+      - \ref grenaille_tutorial1_section_access_sphere
+      - \ref grenaille_tutorial1_section_access_other
+  - \ref grenaille_tutorial2_intro
+    - \ref grenaille_tutorial2_section_sphere
+      - \ref grenaille_tutorial2_section_sphere_subsection_meancurvature
+      - \ref grenaille_tutorial2_section_sphere_subsection_principalcurvatures
+
+
+  \section grenaille_tutorial1_intro Grenaille basic use 
+  
+  This part explains the basics of the Grenaille module. The corresponding source-code is
+  available at cpp/grenaille_basic_cpu.cpp.
+ 
   \section grenaille_tutorial1_section_define Setting up data and processes
   The first step needed to use Grenaille is to define how samples are represented isnide the module.
   A strength of Grenaille is to define all these structures at compile time to generate optimized code for fast evaluation at runtime. 
 
-    
   \subsection grenaille_tutorial1_subsection_define_samples Samples
   The class Grenaille::Concept::PointConcept defines the interface that has to be implemented to represent a sample. Observe that there is no need for data conversion: all you need to do is to indicate how to access existing data.  
   
@@ -165,4 +178,74 @@
   The initial point 0 0 0
   Is projected at    0.353911  0.394765 -0.850088
   \endcode
+
+
+
+  \section grenaille_tutorial2_intro Grenaille curvature
+  
+  This part presents how to compute curvature values from the various fitting
+  procedures and extensions available in Grenaille.
+  
+  \section grenaille_tutorial2_section_sphere Curvature using sphere fitting
+  \subsection grenaille_tutorial2_section_sphere_subsection_meancurvature Mean Curvature
+  A fast approximation of the mean curvature is provided by GLSParam::kappa():
+  \code
+  typedef Basket<MyPoint, WeightFunc, OrientedSphereFit, // Sphere fitting
+                                      GLSParam> Fit;     // GLS reparametrization
+  
+  Fit fit;
+  // Fit primitive
+  // ... 
+  
+  // Get mean curvature
+  Scalar curvature = fit.kappa();
+  \endcode
+  
+  It can also be extracted by analysing the spatial derivatives of fitted normals, 
+  provided by GLSDer::deta(). Note that the computation cost is more important 
+  in this case.
+  \code
+  typedef Basket<MyPoint, WeightFunc, OrientedSphereFit,    // Sphere fitting
+                                    GLSParam,               // GLS reparametrization
+                                    OrientedSphereSpaceDer, // Spatial derivatives 
+                                    GLSDer > Fit;           // GLS differentiation                                    
+  
+  Fit fit;
+  // Fit primitive
+  // ... 
+  
+  // Mean curvature values is given by half of the trace of the jacobian matrix
+  MatrixType jacobian = fit.deta();  
+  cout << " Mean curvature: " << 0.5 * jacobian.trace() << endl;
+  \endcode
+    
+  \subsection grenaille_tutorial2_section_sphere_subsection_principalcurvatures Principal Curvatures
+  Principal curvature values and the associated directions can be computed by 
+  an eigen decomposition of the spatial derivatives of eta, provided by 
+  the extension GLSCurvatureHelper (based on the analysis of GLSDer::deta()):
+  \code
+  typedef Basket<MyPoint, WeightFunc, OrientedSphereFit,    // Sphere fitting
+                                    GLSParam,               // GLS reparametrization
+                                    OrientedSphereSpaceDer, // Spatial derivatives 
+                                    GLSDer,                 // GLS differentiation   
+                                    GLSCurvatureHelper > Fit;           
+  
+  Fit fit;
+  // Fit primitive
+  // ... 
+  // The eigen decomposition is called during the fit finalize
+  fit.finalize();
+  
+  // Get principal curvatures
+  Scalar k1 = fit.GLSk1();
+  Scalar k2 = fit.GLSk2();
+  
+  // Get associated directions
+  VectorType d1 = fit.GLSk1Direction();
+  VectorType d2 = fit.GLSk2Direction();
+  
+  // Get gaussian curvature
+  Scalar K = fit.GLSGaussianCurvature();
+  \endcode
  */
+ }
