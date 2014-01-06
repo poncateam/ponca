@@ -35,7 +35,7 @@ namespace Grenaille
   \subsection grenaille_tutorial1_subsection_define_samples Samples
   The class Grenaille::Concept::PointConcept defines the interface that has to be implemented to represent a sample. Observe that there is no need for data conversion: all you need to do is to indicate how to access existing data.  
   
-  As an example, let's fit a Grenaille::AlgebraicSphere onto points equipped with normals using the Grenaille::OrientedSphereFit. To this end, we must define a structure MyPoint containing a normal vector and its associated accessors. Because of the way Grenaille::AlgebraicSphere works, we must also define a Matrix Type.
+  As an example, let's fit a Grenaille::AlgebraicSphere onto points equipped with normals using the Grenaille::OrientedSphereFit. To this end, we must define a structure MyPoint containing a normal vector and its associated accessors. Depending on the fitting procedure we will use, we may need to define a Matrix Type. This is for instance required to compute \ref grenaille_tutorial2_section_sphere_subsection_principalcurvatures.
   This leads to the following class:
   \code
   using namespace Grenaille;
@@ -218,6 +218,7 @@ namespace Grenaille
   MatrixType jacobian = fit.deta();  
   cout << " Mean curvature: " << 0.5 * jacobian.trace() << endl;
   \endcode
+  \note We use in this example an implicit conversion by considering the derivatives of @f$\eta@f$ as the jacobian used to compute the mean curvature. This is valid because we compute \b only the spatial derivatives of the fit, using OrientedSphereSpaceDer. For instance, passing OrientedSphereScaleDer in the Basket configuration will raise a compilation error. More technical details can be found \link Grenaille::internal::OrientedSphereDer here\endlink (useful only if you plan to extend the library, and if you are really curious).
     
   \subsection grenaille_tutorial2_section_sphere_subsection_principalcurvatures Principal Curvatures
   Principal curvature values and the associated directions can be computed by 
