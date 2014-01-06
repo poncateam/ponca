@@ -51,11 +51,3 @@ AlgebraicSphere<DataPoint, _WFunctor, T>::primitiveGradient( const VectorType &q
   return (_ul + Scalar(2.f) * _uq * lq);
 }
 
-template < class DataPoint, class _WFunctor, typename T>
-typename DataPoint::MatrixType
-AlgebraicSphere<DataPoint, _WFunctor, T>::primitiveHessian( const VectorType &q ) const{
-	// this is very approximate !!
-	return Scalar(2.) * _uq * MatrixType::Identity();	
-}
-
-

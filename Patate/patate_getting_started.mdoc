@@ -9,9 +9,9 @@
 
   \section getting_started_requirements_sec Requirements
 
-  The only external library that is absolutely necessary to make Patates work is Eigen, the swiss army knife of linear algebra. Additional libraries might be required in specific instances, but only for advanced algorithms. We'll try to keep these dependencies to the minimum necessary, promised. Some examples will require additional libraries as well in an effort to keep them lean and legible.
+  The only external library that is absolutely necessary to make Patates work is <a href="http://eigen.tuxfamily.org/" target="_blank"><b>Eigen</b></a>, the swiss army knife of linear algebra. Additional libraries might be required in specific instances, but only for advanced algorithms. We'll try to keep these dependencies to the minimum necessary, promised. Some examples will require additional libraries as well in an effort to keep them lean and legible.
 
-  The PatateLib is also compatible with CUDA, so that you may run patates on the GPU, provided you own an NVidia graphics card. This is an efficient way to make patates available through CUDA-compatible languages such as Matlab or Python. Unfortunately, Eigen cannot yet be compiled by nvcc (NVIDIA CUDA Compiler Driver), thus you will need to use Eigen-nvcc in this case. 
+  The PatateLib is also compatible with CUDA, so that you may run patates on the GPU, provided you own an NVidia graphics card. This is an efficient way to make patates available through CUDA-compatible languages such as Matlab or Python. Unfortunately, Eigen cannot yet be compiled by nvcc (NVIDIA CUDA Compiler Driver), thus you will need to use <a href="http://bitbucket.org/ggael/eigen-nvcc" target="_blank"><b>Eigen-nvcc</b></a> in this case. 
 
   \section getting_started_download_sec Download
 
@@ -36,7 +36,7 @@
 
   \section getting_started_panorama_sec Panorama
   
-  You may alrady have had a look at the Overview section that presents patates|modules. Here we'd like to add an important bit of information, if you don't mind.
+  You may already have had a look at the \link patate_overview_page Overview\endlink section that presents patates|modules. Here we'd like to add an important bit of information, if you don't mind.
 
   Even though each patate is independent, they all have the same simple structure: a "core" folder where you will find operators that rely on no data structure and work both with CUDA and C++; and an "algorithms" folder with methods that may interface with user-provided data structures, with optimized solutions in C++, CUDA or both. 
   
@@ -49,11 +49,11 @@
   You're now ready to play with Patates! But where to start from?
 
   Say you're interested in the Grenaille module (the only available now, so it makes perfect sense).
-  You could take a look at its basic tutorial provided in its user manual.
+  You could take a look at its basic tutorial provided in its \ref grenaille_user_manual_page "user manual".
   It's very simple and... a bit boring. But at least you'll get the grip!
 
   Then you could play with other examples or start right away with yours!
-  In the latter case, you may want to read carefully the user manual, and check references in case of doubts. 
+  In the latter case, you may want to read carefully the \ref grenaille_user_manual_page "user manual", and check references in case of doubts. 
   You might then wonder what the heck are these macro prefix useful for. I mean for instance this one:
   \code
 	  MULTIARCH void function();
