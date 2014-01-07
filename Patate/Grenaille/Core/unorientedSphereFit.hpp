@@ -69,7 +69,7 @@ UnorientedSphereFit<DataPoint, _WFunctor, T>::init(const VectorType& evalPos){
 }
 
 template < class DataPoint, class _WFunctor, typename T>
-void 
+bool 
 UnorientedSphereFit<DataPoint, _WFunctor, T>::addNeighbor(const DataPoint& nei){
     
   // centered basis
@@ -87,12 +87,18 @@ UnorientedSphereFit<DataPoint, _WFunctor, T>::addNeighbor(const DataPoint& nei){
     _sumP     += w * q;
     _sumDotPP += w * q.squaredNorm();
     _sumW     += w;
+
+	/*! \todo Handle add of multiple similar neighbors (maybe user side)*/
+	++(Base::_nbNeighbors);
+	return true;
   }
+
+  return false;
 }
 
 
 template < class DataPoint, class _WFunctor, typename T>
-bool
+FITRESULT
 UnorientedSphereFit<DataPoint, _WFunctor, T>::finalize (){
   MULTIARCH_STD_MATH(sqrt);
 
@@ -100,13 +106,15 @@ UnorientedSphereFit<DataPoint, _WFunctor, T>::finalize (){
   Scalar invSumW;
   Scalar epsilon = Eigen::NumTraits<Scalar>::dummy_precision();
     
-  if(_sumW == Scalar(0.)){ // handle empty configurations
+  // handle specific configurations
+  // With less than 3 neighbors the fitting is undefined
+  if(_sumW == Scalar(0.) || Base::_nbNeighbors < 3){
     Base::_ul.setZero();
     Base::_uc = 0;
     Base::_uq = 0;
     Base::_isNormalized = false;
-	Base::_isReady = false;
-    return false;
+	Base::_eCurrentState = FITRESULT::UNDEFINED;
+	return Base::_eCurrentState;
   }else{
     invSumW = Scalar(1.)/_sumW;
   }
@@ -131,9 +139,17 @@ UnorientedSphereFit<DataPoint, _WFunctor, T>::finalize (){
   Base::_uc = -invSumW*(Base::_ul.dot(_sumP) + _sumDotPP*Base::_uq);
     
   Base::_isNormalized = false;
-  Base::_isReady      = true;
 
-  return true;
+  if(Base::_nbNeighbors < 6)
+  {
+	  Base::_eCurrentState = FITRESULT::UNSTABLE;
+  }
+  else
+  {
+	  Base::_eCurrentState = FITRESULT::STABLE;
+  }
+
+  return Base::_eCurrentState;
 }
 
 #ifdef TOBEIMPLEMENTED
@@ -159,44 +175,53 @@ namespace internal{
 
 
   template < class DataPoint, class _WFunctor, typename T, int Type>
-  void 
+  bool 
   OrientedSphereDer<DataPoint, _WFunctor, T, Type>::addNeighbor(const DataPoint  &nei){
-    Base::addNeighbor(nei);
+    
+	bool bResult = Base::addNeighbor(nei);
+	if(bResult)
+	{
+		int spaceId = (Type & FitScaleDer) ? 1 : 0;
 
-    int spaceId = (Type & FitScaleDer) ? 1 : 0;
+		ScalarArray w;
 
-    ScalarArray w;
+		// centered basis
+		VectorType q = nei.pos()-Base::basisCenter();
 
-    // centered basis
-    VectorType q = nei.pos()-Base::basisCenter();
+		// compute weight
+		if (Type & FitScaleDer)
+		  w[0] = Base::_w.scaledw(q, nei);
 
-    // compute weight
-    if (Type & FitScaleDer)
-      w[0] = Base::_w.scaledw(q, nei);
+		if (Type & FitSpaceDer){
+		  VectorType vw = Base::_w.spacedw(q, nei);
+		  for(unsigned int i = 0; i < DataPoint::Dim; i++)
+			  w [spaceId+i] = vw[i];
+		}
 
-    if (Type & FitSpaceDer){
-      VectorType vw = Base::_w.spacedw(q, nei);
-      for(unsigned int i = 0; i < DataPoint::Dim; i++)
-	      w [spaceId+i] = vw[i];
-    }
+		// increment
+		_dSumW     += w;
+		_dSumP     += q * w;
+		_dSumN     += nei.normal() * w;
+		_dSumDotPN += w * nei.normal().dot(q);
+		_dSumDotPP += w * q.squaredNorm();
 
-    // increment
-    _dSumW     += w;
-    _dSumP     += q * w;
-    _dSumN     += nei.normal() * w;
-    _dSumDotPN += w * nei.normal().dot(q);
-    _dSumDotPP += w * q.squaredNorm();
+		return true;
+	}
+
+	return false;
   }
 
 
   template < class DataPoint, class _WFunctor, typename T, int Type>
-  bool 
+  FITRESULT 
   OrientedSphereDer<DataPoint, _WFunctor, T, Type>::finalize(){
     MULTIARCH_STD_MATH(sqrt);
 
-    bool bResult = Base::finalize();
+    Base::finalize();
     
-    if (bResult){
+	// Test if base finalize end on a viable case (stable / unstable)
+	if (this->isReady())
+	{
 
       Scalar invSumW = Scalar(1.)/Base::_sumW;
 
@@ -216,10 +241,9 @@ namespace internal{
                         Base::_sumDotPP * _dUq + Base::_ul.transpose() * _dSumP +
                         Base::_uq*_dSumDotPP + _dSumW*Base::_uc);
 
-	  return true;
     }
 
-	return false;
+	return Base::_eCurrentState;
 
   }
 

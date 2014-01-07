@@ -78,7 +78,7 @@ void testFunction(bool bUnoriented = false, bool bAddPositionNoise = false, bool
 		fit2.finalize();
 		fit3.finalize();
 
-		if(fit1.isReady() && fit2.isReady() && fit3.isReady())
+		if(fit1.isStable() && fit2.isStable() && fit3.isStable())
 		{
 			Scalar value1 = fit1.compareTo(fit2);
 			Scalar value2 = fit1.compareTo(fit3);

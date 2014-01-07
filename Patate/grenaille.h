@@ -14,6 +14,7 @@
 #include "common/defines.h"
 
 // Include Grenaille Core components
+#include "Grenaille/Core/enums.h"
 #include "Grenaille/Core/basket.h"
 
 #include "Grenaille/Core/weightKernel.h"

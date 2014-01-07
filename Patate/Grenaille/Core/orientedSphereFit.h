@@ -66,10 +66,10 @@ namespace Grenaille
     /* Processing                                                             */
     /**************************************************************************/
     /*! \copydoc Concept::FittingProcedureConcept::addNeighbor() */
-    MULTIARCH inline void addNeighbor(const DataPoint &nei);
+    MULTIARCH inline bool addNeighbor(const DataPoint &nei);
     
     /*! \copydoc Concept::FittingProcedureConcept::finalize() */
-    MULTIARCH inline bool finalize   ();
+    MULTIARCH inline FITRESULT finalize   ();
   }; //class OrientedSphereFit
 
 
@@ -151,9 +151,9 @@ namespace Grenaille
       /* Processing                                                           */
       /************************************************************************/
       /*! \see Concept::FittingProcedureConcept::addNeighbor() */
-      MULTIARCH void addNeighbor(const DataPoint  &nei);
+      MULTIARCH bool addNeighbor(const DataPoint  &nei);
       /*! \see Concept::FittingProcedureConcept::finalize() */
-      MULTIARCH bool finalize   ();
+      MULTIARCH FITRESULT finalize   ();
 
 
     /**************************************************************************/

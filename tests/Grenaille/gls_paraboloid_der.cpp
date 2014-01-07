@@ -69,7 +69,7 @@ void testFunction()
 
     fit.finalize();
 
-	if(fit.isReady())
+	if(fit.isStable())
 	{
 		Scalar a = vCoef.x();
 		Scalar b = vCoef.y();

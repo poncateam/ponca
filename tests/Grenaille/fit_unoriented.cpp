@@ -94,7 +94,7 @@ void testFunction(bool bAddPositionNoise = false, bool bAddNormalNoise = false)
 		fitReverse100.finalize();
 		fitReverseRandom.finalize();
 
-		if(fit.isReady() && fitReverse100.isReady() && fitReverseRandom.isReady())
+		if(fit.isStable() && fitReverse100.isStable() && fitReverseRandom.isStable())
 		{
 			Scalar kappa1 = fabs(fit.kappa());
 			Scalar kappa2 = fabs(fitReverse100.kappa());

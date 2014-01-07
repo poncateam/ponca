@@ -70,7 +70,7 @@ void testFunction(bool bUnoriented = false, bool bAddPositionNoise = false, bool
 
         fit.finalize();
 
-		if(fit.isReady())
+		if(fit.isStable())
 		{
 			Scalar fitTau = fit.tau();
 			fitTau = fabs(fitTau);

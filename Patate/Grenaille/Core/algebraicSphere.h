@@ -60,8 +60,11 @@ namespace Grenaille
     //! \brief Is the implicit scalar field normalized using Pratt
     bool _isNormalized;
     
-    //! \brief Is the sphere fitted and ready to use (finalize has been called)
-    bool _isReady;
+    //! \brief Represent the current state of the fit (finalize function update the state)
+    FITRESULT _eCurrentState;
+
+	//! \brief Give the number of neighbors
+	int _nbNeighbors;
 
     // results
   public:
@@ -83,11 +86,19 @@ namespace Grenaille
       _uq = Scalar(0.0);
       
       _isNormalized = false;
-      _isReady      = false;
+      _eCurrentState = FITRESULT::UNDEFINED;
+	  _nbNeighbors = 0;
     }
     
-    /*! \brief Is the sphere fitted an ready to use (finalize has been called) */
-    MULTIARCH inline bool isReady() { return _isReady; }
+    /*! \brief Is the sphere fitted an ready to use (finalize has been called)
+		\warning The fit can be unstable (having neighbors between 3 and 6) */
+    MULTIARCH inline bool isReady() const { return (_eCurrentState == STABLE) || (_eCurrentState == UNSTABLE); }
+
+	/*! \brief Is the sphere fitted an ready to use (finalize has been called and the result is stable, eq. having more than 6 neighbors) */
+    MULTIARCH inline bool isStable() const { return _eCurrentState == STABLE; }
+
+	/*! \return the current test of the fit */
+	MULTIARCH inline FITRESULT getCurrentState() const { return _eCurrentState; }
 
     /*! \brief Reading access to the basis center (evaluation position) */
     MULTIARCH inline const VectorType& basisCenter () const { return _p; }
@@ -172,8 +183,9 @@ namespace Grenaille
 	{
 		Scalar epsilon = Eigen::NumTraits<Scalar>::dummy_precision();
 		bool bPlanar = Eigen::internal::isMuchSmallerThan(std::abs(_uq), 1., epsilon);
+		bool bReady = isReady();
 
-		if(_isReady && bPlanar)
+		if(bReady && bPlanar)
 		{
 			return true;
 		}

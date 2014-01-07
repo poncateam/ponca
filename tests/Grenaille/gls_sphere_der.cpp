@@ -64,7 +64,7 @@ void testFunction(bool bAddPositionNoise = false, bool bAddNormalNoise = false)
 
         fit.finalize();
 
-		if(fit.isReady())
+		if(fit.isStable())
 		{
 			ScalarArray dkappa = fit.dkappa();
 

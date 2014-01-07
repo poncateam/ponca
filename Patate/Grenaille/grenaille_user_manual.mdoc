@@ -118,7 +118,29 @@ namespace Grenaille
   //finalize fitting 
   fit.finalize();
   \endcode
+
+  After calling the finalize, it is better to test the state of the fitting if you want to use it. There are diffent state. You can see it in the reference manual.
+  But take a look at different ways to test it :
+
+  \code
+  FITRESULT eResult = fit.finalize();
+  if(eResult == FITRESULT::STABLE) //or another state
+  {
+	//do things...
+  }
+  \endcode
   
+  Or, for example :
+
+  \code
+  fit.finalize();
+
+  if(fit.isStable()) //You can also check the function isReady()
+  {
+	//do things;
+  }
+  \endcode
+
   
   
   \section grenaille_tutorial1_section_access Playing with output values

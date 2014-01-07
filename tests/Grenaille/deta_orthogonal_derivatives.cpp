@@ -89,11 +89,14 @@ void test_orthoEta(){
       fit.addNeighbor(*it);      
     fit.finalize();
     
-    typename Point::VectorType eta  = fit.eta();
-    typename Point::MatrixType deta = fit.deta().template middleCols<Point::Dim>(fit.isScaleDer() ? 1: 0);
+	if(fit.isStable())
+	{
+		typename Point::VectorType eta  = fit.eta();
+		typename Point::MatrixType deta = fit.deta().template middleCols<Point::Dim>(fit.isScaleDer() ? 1: 0);
     
     
-    VERIFY( ((eta.transpose() * deta).array() < epsilon).all() );
+		VERIFY( ((eta.transpose() * deta).array() < epsilon).all() );
+	}
   }
 }
 

@@ -66,7 +66,7 @@ void testFunction(bool bUnoriented = false, bool bAddPositionNoise = false, bool
         
 		fit.finalize();
 
-		if(fit.isReady())
+		if(fit.isStable())
 		{
 			Scalar fitRadiusKappa = Scalar(fabs(Scalar(1.) / fit.kappa()));
 			Scalar fitRadiusAlgebraic = fit.radius();
