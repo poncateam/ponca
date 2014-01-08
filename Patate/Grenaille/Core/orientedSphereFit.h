@@ -8,7 +8,6 @@
 #ifndef _GRENAILLE_ORIENTED_SPHERE_FIT_
 #define _GRENAILLE_ORIENTED_SPHERE_FIT_
 
-#include "internal.h"
 #include "algebraicSphere.h"
 
 namespace Grenaille

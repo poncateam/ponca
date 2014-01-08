@@ -8,8 +8,6 @@
 #ifndef _GRENAILLE_ALGEBRAIC_SPHERE_
 #define _GRENAILLE_ALGEBRAIC_SPHERE_
 
-#include "internal.h"
-
 namespace Grenaille
 {
 

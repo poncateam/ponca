@@ -12,7 +12,6 @@
 #define _GRENAILLE_UNORIENTED_SPHERE_FIT_
 
 #include <Eigen/Dense>
-#include "internal.h"
 #include "algebraicSphere.h"
 
 namespace Grenaille
