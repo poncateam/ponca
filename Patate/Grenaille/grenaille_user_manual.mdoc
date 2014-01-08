@@ -35,6 +35,8 @@ namespace Grenaille
   \subsection grenaille_tutorial1_subsection_define_samples Samples
   The class Grenaille::Concept::PointConcept defines the interface that has to be implemented to represent a sample. Observe that there is no need for data conversion: all you need to do is to indicate how to access existing data.  
   
+  \warning Your datas must have 1 as a significant value for better results. Maybe it is better to rescale it.
+
   As an example, let's fit a Grenaille::AlgebraicSphere onto points equipped with normals using the Grenaille::OrientedSphereFit. To this end, we must define a structure MyPoint containing a normal vector and its associated accessors. Depending on the fitting procedure we will use, we may need to define a Matrix Type. This is for instance required to compute \ref grenaille_tutorial2_section_sphere_subsection_principalcurvatures.
   This leads to the following class:
   \code
