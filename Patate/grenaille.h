@@ -23,9 +23,6 @@
 #include "Grenaille/Core/orientedSphereFit.h"
 #include "Grenaille/Core/gls.h"
 
-#include "Grenaille/Core/rawSphereFit.h"
-
-
 // not supported on cuda
 #ifndef __CUDACC__
 # include "Grenaille/Core/unorientedSphereFit.h"
