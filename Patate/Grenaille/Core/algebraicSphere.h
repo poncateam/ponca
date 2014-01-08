@@ -59,7 +59,7 @@ namespace Grenaille
     bool _isNormalized;
     
     //! \brief Represent the current state of the fit (finalize function update the state)
-    FITRESULT _eCurrentState;
+    FIT_RESULT _eCurrentState;
 
 	//! \brief Give the number of neighbors
 	int _nbNeighbors;
@@ -84,7 +84,7 @@ namespace Grenaille
       _uq = Scalar(0.0);
       
       _isNormalized = false;
-      _eCurrentState = FITRESULT::UNDEFINED;
+      _eCurrentState = FIT_RESULT::UNDEFINED;
 	  _nbNeighbors = 0;
     }
     
@@ -96,7 +96,7 @@ namespace Grenaille
     MULTIARCH inline bool isStable() const { return _eCurrentState == STABLE; }
 
 	/*! \return the current test of the fit */
-	MULTIARCH inline FITRESULT getCurrentState() const { return _eCurrentState; }
+	MULTIARCH inline FIT_RESULT getCurrentState() const { return _eCurrentState; }
 
     /*! \brief Reading access to the basis center (evaluation position) */
     MULTIARCH inline const VectorType& basisCenter () const { return _p; }

@@ -52,7 +52,7 @@ OrientedSphereFit<DataPoint, _WFunctor, T>::addNeighbor(const DataPoint& nei)
 
 
 template < class DataPoint, class _WFunctor, typename T>
-FITRESULT
+FIT_RESULT
 OrientedSphereFit<DataPoint, _WFunctor, T>::finalize ()
 {
   MULTIARCH_STD_MATH(sqrt);
@@ -68,7 +68,7 @@ OrientedSphereFit<DataPoint, _WFunctor, T>::finalize ()
     Base::_uc = Scalar(0.);
     Base::_uq = Scalar(0.);
     Base::_isNormalized = false;
-	Base::_eCurrentState = FITRESULT::UNDEFINED;
+	Base::_eCurrentState = FIT_RESULT::UNDEFINED;
 	return _eCurrentState;
   }
 
@@ -99,11 +99,11 @@ OrientedSphereFit<DataPoint, _WFunctor, T>::finalize ()
 
   if(Base::_nbNeighbors < 6)
   {
-	  Base::_eCurrentState = FITRESULT::UNSTABLE;
+	  Base::_eCurrentState = FIT_RESULT::UNSTABLE;
   }
   else
   {
-	  Base::_eCurrentState = FITRESULT::STABLE;
+	  Base::_eCurrentState = FIT_RESULT::STABLE;
   }
 
   return Base::_eCurrentState;
@@ -169,7 +169,7 @@ OrientedSphereDer<DataPoint, _WFunctor, T, Type>::addNeighbor(const DataPoint  &
 
 
 template < class DataPoint, class _WFunctor, typename T, int Type>
-FITRESULT 
+FIT_RESULT 
 OrientedSphereDer<DataPoint, _WFunctor, T, Type>::finalize()
 {
 	MULTIARCH_STD_MATH(sqrt);
