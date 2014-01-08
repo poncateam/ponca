@@ -84,7 +84,7 @@ namespace Grenaille
       _uq = Scalar(0.0);
       
       _isNormalized = false;
-      _eCurrentState = FIT_RESULT::UNDEFINED;
+      _eCurrentState = UNDEFINED;
 	  _nbNeighbors = 0;
     }
     

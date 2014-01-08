@@ -68,8 +68,8 @@ OrientedSphereFit<DataPoint, _WFunctor, T>::finalize ()
     Base::_uc = Scalar(0.);
     Base::_uq = Scalar(0.);
     Base::_isNormalized = false;
-	Base::_eCurrentState = FIT_RESULT::UNDEFINED;
-	return _eCurrentState;
+	Base::_eCurrentState = UNDEFINED;
+	return Base::_eCurrentState;
   }
 
   Scalar invSumW = Scalar(1.)/_sumW;
@@ -99,11 +99,11 @@ OrientedSphereFit<DataPoint, _WFunctor, T>::finalize ()
 
   if(Base::_nbNeighbors < 6)
   {
-	  Base::_eCurrentState = FIT_RESULT::UNSTABLE;
+	  Base::_eCurrentState = UNSTABLE;
   }
   else
   {
-	  Base::_eCurrentState = FIT_RESULT::STABLE;
+	  Base::_eCurrentState = STABLE;
   }
 
   return Base::_eCurrentState;
