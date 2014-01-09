@@ -36,13 +36,13 @@ namespace Grenaille
    */
   template < class DataPoint, class _WFunctor, typename T = void  >
   class AlgebraicSphere {
-  protected:
+   protected:
     enum
       {
         PROVIDES_ALGEBRAIC_SPHERE /*!< \brief Provides Algebraic Sphere */
       };
 
-  public:
+   public:
     /*! \brief Scalar type inherited from DataPoint*/
     typedef typename DataPoint::Scalar     Scalar;     
     /*! \brief Vector type inherited from DataPoint*/
@@ -50,27 +50,27 @@ namespace Grenaille
     /*! \brief Weight Function*/
     typedef _WFunctor                      WFunctor;  
     
-  private:    
+   private:
     //! \brief Evaluation position (needed for centered basis)
     VectorType _p; 
     
-  protected:
+   protected:
     //! \brief Is the implicit scalar field normalized using Pratt
     bool _isNormalized;
     
     //! \brief Represent the current state of the fit (finalize function update the state)
     FIT_RESULT _eCurrentState;
 
-	//! \brief Give the number of neighbors
-	int _nbNeighbors;
+    //! \brief Give the number of neighbors
+    int _nbNeighbors;
 
     // results
-  public:
+   public:
     Scalar _uc,       /*!< \brief Constant parameter of the Algebraic hyper-sphere */
            _uq;       /*!< \brief Quadratic parameter of the Algebraic hyper-sphere */
     VectorType _ul;   /*!< \brief Linear parameter of the Algebraic hyper-sphere */
     
-  public:
+   public:
     /*! \brief Default constructor */
     MULTIARCH inline AlgebraicSphere(){
       _p = VectorType::Zero();
@@ -85,18 +85,18 @@ namespace Grenaille
       
       _isNormalized = false;
       _eCurrentState = UNDEFINED;
-	  _nbNeighbors = 0;
+      _nbNeighbors = 0;
     }
     
     /*! \brief Is the sphere fitted an ready to use (finalize has been called)
-		\warning The fit can be unstable (having neighbors between 3 and 6) */
+    \warning The fit can be unstable (having neighbors between 3 and 6) */
     MULTIARCH inline bool isReady() const { return (_eCurrentState == STABLE) || (_eCurrentState == UNSTABLE); }
 
-	/*! \brief Is the sphere fitted an ready to use (finalize has been called and the result is stable, eq. having more than 6 neighbors) */
+    /*! \brief Is the sphere fitted an ready to use (finalize has been called and the result is stable, eq. having more than 6 neighbors) */
     MULTIARCH inline bool isStable() const { return _eCurrentState == STABLE; }
 
-	/*! \return the current test of the fit */
-	MULTIARCH inline FIT_RESULT getCurrentState() const { return _eCurrentState; }
+    /*! \return the current test of the fit */
+    MULTIARCH inline FIT_RESULT getCurrentState() const { return _eCurrentState; }
 
     /*! \brief Reading access to the basis center (evaluation position) */
     MULTIARCH inline const VectorType& basisCenter () const { return _p; }
@@ -130,32 +130,32 @@ namespace Grenaille
       return true;
     }
     
-	/*! 
-		\brief return the estimated radius of the sphere
-		\return inf if the fitted surface is planar
-		\warning return +inf if the fitted surface is planar
-	*/
+    /*!
+      \brief return the estimated radius of the sphere
+      \return inf if the fitted surface is planar
+      \warning return +inf if the fitted surface is planar
+    */
     MULTIARCH inline Scalar radius()
-	{
-	  if(isPlane())
-	  {
-	    return std::numeric_limits<Scalar>::infinity();
-	  }
+    {
+      if(isPlane())
+      {
+        return std::numeric_limits<Scalar>::infinity();
+      }
 
       MULTIARCH_STD_MATH(sqrt);
       Scalar b = Scalar(1.)/_uq;
       return Scalar(sqrt( ((Scalar(-0.5)*b)*_ul).squaredNorm() - _uc*b ));
     }
     
-	/*! 
-		\brief return the estimated center of the sphere
-	*/
+    /*!
+      \brief return the estimated center of the sphere
+    */
     MULTIARCH inline VectorType center()
-	{
-	  if(isPlane())
-	  {
-	    return VectorType(std::numeric_limits<Scalar>::infinity());
-	  }
+    {
+      if(isPlane())
+      {
+        return VectorType(std::numeric_limits<Scalar>::infinity());
+      }
 
       Scalar b = Scalar(1.)/_uq;
       return (Scalar(-0.5)*b)*_ul + basisCenter();
@@ -173,24 +173,19 @@ namespace Grenaille
     //! \brief Approximation of the scalar field gradient at \f$ \mathbf{q} (not normalized) \f$
     MULTIARCH inline VectorType primitiveGradient (const VectorType& q) const;
 
-	/*! 
-		\brief Used to know if the fitting result to a plane
-		\return true if finalize() have been called and the fitting result to a plane
-	*/
-	MULTIARCH inline bool isPlane() const
-	{
-		Scalar epsilon = Eigen::NumTraits<Scalar>::dummy_precision();
-		bool bPlanar = Eigen::internal::isMuchSmallerThan(std::abs(_uq), 1., epsilon);
-		bool bReady = isReady();
+    /*!
+      \brief Used to know if the fitting result to a plane
+      \return true if finalize() have been called and the fitting result to a plane
+    */
+    MULTIARCH inline bool isPlane() const
+    {
+      Scalar epsilon = Eigen::NumTraits<Scalar>::dummy_precision();
+      bool bPlanar = Eigen::internal::isMuchSmallerThan(std::abs(_uq), 1., epsilon);
+      bool bReady = isReady();
 
-		if(bReady && bPlanar)
-		{
-			return true;
-		}
+      return bReady && bPlanar;
+    }
 
-		return false;
-	}
-	
   }; //class AlgebraicSphere
 
 
