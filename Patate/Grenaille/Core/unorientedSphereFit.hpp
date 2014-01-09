@@ -135,7 +135,7 @@ UnorientedSphereFit<DataPoint, _WFunctor, T>::finalize (){
   
   // integrate
   Base::_ul = eivec.template head<Dim>();
-  Base::_uq = 0.5*eivec(Dim);
+  Base::_uq = Scalar(0.5)*eivec(Dim);
   Base::_uc = -invSumW*(Base::_ul.dot(_sumP) + _sumDotPP*Base::_uq);
     
   Base::_isNormalized = false;

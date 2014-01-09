@@ -143,8 +143,8 @@ namespace Grenaille
 	  }
 
       MULTIARCH_STD_MATH(sqrt);
-      Scalar b = 1./_uq;
-      return sqrt( ((-0.5*b)*_ul).squaredNorm() - _uc*b );
+      Scalar b = Scalar(1.)/_uq;
+      return Scalar(sqrt( ((Scalar(-0.5)*b)*_ul).squaredNorm() - _uc*b ));
     }
     
 	/*! 
@@ -157,8 +157,8 @@ namespace Grenaille
 	    return VectorType(std::numeric_limits<Scalar>::infinity());
 	  }
 
-      Scalar b = 1./_uq;
-      return (-0.5*b)*_ul + basisCenter();
+      Scalar b = Scalar(1.)/_uq;
+      return (Scalar(-0.5)*b)*_ul + basisCenter();
     }
     
     //! \brief State indicating when the sphere has been normalized 

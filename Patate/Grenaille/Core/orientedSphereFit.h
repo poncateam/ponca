@@ -184,9 +184,9 @@ namespace Grenaille
       }
 
       /*! \brief State specified at compilation time to differenciate the fit in scale */
-      MULTIARCH inline bool isScaleDer() const {return Type & FitScaleDer;}
+      MULTIARCH inline bool isScaleDer() const {return bool(Type & FitScaleDer);}
       /*! \brief State specified at compilation time to differenciate the fit in space */
-      MULTIARCH inline bool isSpaceDer() const {return Type & FitSpaceDer;}
+      MULTIARCH inline bool isSpaceDer() const {return bool(Type & FitSpaceDer);}
       /*! \brief Number of dimensions used for the differentiation */
       MULTIARCH inline unsigned int derDimension() const { return GLS_DER_NB_DERIVATIVES(Type,DataPoint::Dim);}
 

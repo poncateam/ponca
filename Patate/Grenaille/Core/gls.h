@@ -78,16 +78,15 @@ namespace Grenaille
     /* Processing                                                             */
     /**************************************************************************/
     /*! \copydoc Concept::FittingProcedureConcept::finalize() */
-    MULTIARCH inline bool finalize   (){
-      bool bResult = Base::finalize();
+    MULTIARCH inline FIT_RESULT finalize   (){
+      FIT_RESULT bResult = Base::finalize();
 
-	  if(bResult)
+	  if(bResult != UNDEFINED)
 	  {
 		_fitness = Scalar(1.) - Base::prattNorm2();
-		return true;
 	  }
 
-	  return false;
+	  return bResult;
     }
 
 
@@ -128,7 +127,7 @@ namespace Grenaille
     { 
       Scalar nTau     = this->tau_normalized()   - other.tau_normalized();
       Scalar nKappa   = this->kappa_normalized() - other.kappa_normalized();
-      Scalar nFitness = useFitness ? this->fitness() - other.fitness() : 0.;
+      Scalar nFitness = useFitness ? this->fitness() - other.fitness() : Scalar(0.);
       
       return nTau * nTau + nKappa * nKappa + nFitness * nFitness;
     }
@@ -243,61 +242,61 @@ namespace Grenaille
     /* Processing                                                             */
     /**************************************************************************/
     /*! \copydoc Concept::FittingProcedureConcept::finalize() */
-    MULTIARCH inline bool finalize   (){
+    MULTIARCH inline FIT_RESULT finalize   (){
 	    MULTIARCH_STD_MATH(sqrt);
 	      
-      bool bResult = Base::finalize();
+      FIT_RESULT bResult = Base::finalize();
 
-	  if(!bResult)
-		  return false;
+      if(bResult != UNDEFINED){
       
-      // Extract the spatial variations of eta
-      MatrixType jacobian = Base::deta().template middleCols<DataPoint::Dim>(Base::isScaleDer() ? 1: 0);
-      
-      // Use a simple solver with 2x2 and 3x3 closed forms compatible with eigen-nvcc
-      // This solver requires a triangular matrix
-      Eigen::SelfAdjointEigenSolver<MatrixType> eig;
-#ifdef __CUDACC__
-      eig.computeDirect(jacobian.transpose()*jacobian);
-#else
-      eig.compute(jacobian.transpose()*jacobian);
-#endif
-      
-      // Need sqrt because we solve eigendecomposition of JT * J.
-      _k1 = sqrt(eig.eigenvalues()(2)); 
-      _k2 = sqrt(eig.eigenvalues()(1)); 
-      
-      _v1 = eig.eigenvectors().col(2);
-      _v2 = eig.eigenvectors().col(1);
-      
-      // Now check the sign of the mean curvature to detect if we need to change
-      // the sign of the principal curvature values:
-      // the eigen decomposition return k1 and k2 wrt k1*k1 > k2*k2
-      
-      // Compare with the values of the mean curvature computed without k1 and k2
-      Scalar H2 = Scalar(2)*Base::kappa(); // we could also use the trace of the
-                                           // jacobian matrix to get mean curvature
-      
-      // Change sign and flip values if needed
-      // Thanks to Noam Kremen snoamk@tx.technion.ac.il for this algorithm
-      if( H2 == Scalar(0)){
-        _k2 = -_k2;        
+        // Extract the spatial variations of eta
+        MatrixType jacobian = Base::deta().template middleCols<DataPoint::Dim>(Base::isScaleDer() ? 1: 0);
         
-      } else if ( H2 > Scalar(0) ) {
-        if( H2 < _k1 )
-          _k2 = -_k2;
-      }else { // 2H < 0. In this case, we have k1<0, and k1 < k2
-        if( H2 > _k1 )
-          _k2 = -_k2;
-        _k1 = -_k1;
+        // Use a simple solver with 2x2 and 3x3 closed forms compatible with eigen-nvcc
+        // This solver requires a triangular matrix
+        Eigen::SelfAdjointEigenSolver<MatrixType> eig;
+  #ifdef __CUDACC__
+        eig.computeDirect(jacobian.transpose()*jacobian);
+  #else
+        eig.compute(jacobian.transpose()*jacobian);
+  #endif
         
-        // need to invert k1 and k2, and get the corresponding vectors
-        Scalar tmp = _k1; _k1 = _k2; _k2 = tmp;        
-        _v1 = eig.eigenvectors().col(1);
-        _v2 = eig.eigenvectors().col(2);        
+        // Need sqrt because we solve eigendecomposition of JT * J.
+        _k1 = sqrt(eig.eigenvalues()(2)); 
+        _k2 = sqrt(eig.eigenvalues()(1)); 
+        
+        _v1 = eig.eigenvectors().col(2);
+        _v2 = eig.eigenvectors().col(1);
+        
+        // Now check the sign of the mean curvature to detect if we need to change
+        // the sign of the principal curvature values:
+        // the eigen decomposition return k1 and k2 wrt k1*k1 > k2*k2
+        
+        // Compare with the values of the mean curvature computed without k1 and k2
+        Scalar H2 = Scalar(2)*Base::kappa(); // we could also use the trace of the
+                                             // jacobian matrix to get mean curvature
+        
+        // Change sign and flip values if needed
+        // Thanks to Noam Kremen snoamk@tx.technion.ac.il for this algorithm
+        if( H2 == Scalar(0)){
+          _k2 = -_k2;        
+          
+        } else if ( H2 > Scalar(0) ) {
+          if( H2 < _k1 )
+            _k2 = -_k2;
+        }else { // 2H < 0. In this case, we have k1<0, and k1 < k2
+          if( H2 > _k1 )
+            _k2 = -_k2;
+          _k1 = -_k1;
+          
+          // need to invert k1 and k2, and get the corresponding vectors
+          Scalar tmp = _k1; _k1 = _k2; _k2 = tmp;        
+          _v1 = eig.eigenvectors().col(1);
+          _v2 = eig.eigenvectors().col(2);        
+        }
       }
-
-	  return true;
+      
+	    return bResult;
     }
     
     /**************************************************************************/
