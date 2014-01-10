@@ -3,47 +3,31 @@ namespace Grenaille
 /*!
   \page grenaille_user_manual_page User Manual  
   
-  Welcome to the Grenaille user manual. This page may either provide a detailed explanation of classes found in the module, or describe
-  a simple example that makes use of basic functionalities. In the latter case, you will find a link to the complete example
-  that implements this kind of tutorial.
-
-  <h3>Table of Content</h3>
-  - \ref grenaille_tutorial1_intro
-    - \ref grenaille_tutorial1_section_define
-      - \ref grenaille_tutorial1_subsection_define_samples
-      - \ref grenaille_tutorial1_subsection_define_fit
-    - \ref grenaille_tutorial1_section_fitting
-    - \ref grenaille_tutorial1_section_access
-      - \ref grenaille_tutorial1_section_access_field
-      - \ref grenaille_tutorial1_section_access_sphere
-      - \ref grenaille_tutorial1_section_access_other
-  - \ref grenaille_tutorial2_intro
-    - \ref grenaille_tutorial2_section_sphere
-      - \ref grenaille_tutorial2_section_sphere_subsection_meancurvature
-      - \ref grenaille_tutorial2_section_sphere_subsection_principalcurvatures
-
-
-  \section grenaille_tutorial1_intro Grenaille basic use 
+  \authors Nicolas Mellado, Gautier Ciaudo, Gael Guennebaud, Pascal Barla
   
-  This part explains the basics of the Grenaille module. The corresponding source-code is
-  available \ref grenaille_example_cxx_basic_page "here".
- 
-  \section grenaille_tutorial1_section_define Setting up data and processes
+  \section grenaille_user_manual_intro Introduction
+
+  Fitting point clouds require a few steps that we describe in the following, using 3D points equiped with oriented normals in our example.
+  First you must set up data samples that interface with your code; then run the fitting process in itself, and finally collect outputs. 
+  We also show how to compute curvatures with the very same approach, as this is a common requirement of many geometric processing algorithms.
+  
+  \section grenaille_user_manual_datas Data Samples 
+  
   The first step needed to use Grenaille is to define how samples are represented inside the module.
   A strength of Grenaille is to define all these structures at compile time to generate optimized code for fast evaluation at runtime. 
 
-  \subsection grenaille_tutorial1_subsection_define_samples Samples
   The class Grenaille::Concept::PointConcept defines the interface that has to be implemented to represent a sample. Observe that there is no need for data conversion: all you need to do is to indicate how to access existing data.  
   
-  \warning Your datas must have 1 as a significant value for better results. Maybe it is better to rescale it.
+  \warning You should avoid data of low magnitude (i.e., 1 should be a significant value) to get good results; thus rescaling might be necessary.
 
-  As an example, let's fit a Grenaille::AlgebraicSphere onto points equipped with normals using the Grenaille::OrientedSphereFit. To this end, we must define a structure MyPoint containing a normal vector and its associated accessors. Depending on the fitting procedure we will use, we may need to define a Matrix Type. This is for instance required to compute \ref grenaille_tutorial2_section_sphere_subsection_principalcurvatures.
+  As an example, let's fit a Grenaille::AlgebraicSphere onto points equipped with normals using the Grenaille::OrientedSphereFit. To this end, we must define a structure MyPoint containing a normal vector and its associated accessors. Depending on the fitting procedure we will use, we may need to define a Matrix Type. This is for instance required to compute \ref grenaille_user_manual_subsection_principalcurvatures.
   This leads to the following class:
   \code
   using namespace Grenaille;
   
   // This class defines the input data format
-  class MyPoint{
+  class MyPoint
+  {
   public:
     enum {Dim = 3};
     typedef double Scalar;
@@ -65,22 +49,18 @@ namespace Grenaille
   };
   \endcode
   
-  
-  To make code more readable, we also define helper <CODE>typedef</CODE> for <CODE>Scalar</CODE> and 
+  To make the code more readable, we also define <CODE>typedef</CODE> helpers for <CODE>Scalar</CODE> and 
   <CODE>Vector</CODE> types outside of the MyPoint class: 
   \code
   typedef MyPoint::Scalar Scalar;
   typedef MyPoint::VectorType VectorType;
   \endcode
   
+  \section grenaille_user_manual_Fitting Fitting Process
+
+  Two template classes must be specialized to indicate how a fit will be applied.  
   
-  
-  
-  
-  \subsection grenaille_tutorial1_subsection_define_fit Fitting
-  Two template classes must be specialized to indicate how a fit must be applied.  
-  
-  The first step consists in identifying a weighting function: it defines how neighbor samples will contribute to the fit. In this example, we choose a weight based on the Euclidean distance using Grenaille::DistWeightFunc, remaped through a bisquare kernel defined in Grenaille::SmoothWeightKernel:
+  The first step consists in identifying a weighting function: it defines how neighbor samples will contribute to the fit. In this example, we choose a weight based on the Euclidean distance using Grenaille::DistWeightFunc, remapped through a bisquare kernel defined in Grenaille::SmoothWeightKernel:
   \code
   typedef DistWeightFunc<MyPoint,SmoothWeightKernel<Scalar> > WeightFunc; 
   \endcode
@@ -90,11 +70,6 @@ namespace Grenaille
   \code
   typedef Basket<MyPoint,WeightFunc,OrientedSphereFit, GLSParam> Fit1;  
   \endcode
-  
-  
-    
-  
-  \section grenaille_tutorial1_section_fitting Applying the fitting procedure
 
   At this point, most of the hard job has already been performed. 
   All we have to do now is to provide an instance of the weight function, where tmax refers to the neighborhood size, and iniate the fit at an arbitrary position p.
@@ -121,18 +96,17 @@ namespace Grenaille
   fit.finalize();
   \endcode
 
-  After calling the finalize, it is better to test the state of the fitting if you want to use it. There are diffent state. You can see it in the reference manual.
-  But take a look at different ways to test it :
+  After calling <CODE>finalize</CODE>, it is better to test the return state of the fitting before using it. There are diffent states but the most important one is <CODE>STABLE</CODE>.
 
   \code
   FIT_RESULT eResult = fit.finalize();
-  if(eResult == STABLE) //or another state
+  if(eResult == STABLE) 
   {
 	//do things...
   }
   \endcode
   
-  Or, for example :
+  You may also use accessors to perform the same check:
 
   \code
   fit.finalize();
@@ -144,11 +118,12 @@ namespace Grenaille
   \endcode
 
   
-  
-  \section grenaille_tutorial1_section_access Playing with output values
-  Various outputs may now be accessed as explained in the following.
-  
-  \subsection grenaille_tutorial1_section_access_field Scalar field  
+  \section grenaille_user_manual_outputs  Basic Outputs
+
+  Now that you have performed fitting, you may use its outputs in a number of ways.
+
+  \subsection grenaille_user_manual_subsection_access_field Scalar field  
+
   You may directly access properties of the fitted scalar-field, as defined in Grenaille::AlgebraicSphere :
   \code
   cout << "Value of the scalar field at the initial point: " 
@@ -166,7 +141,8 @@ namespace Grenaille
   Its gradient is equal to:   0.00016028  0.000178782 -0.000384989
   \endcode
   
-  \subsection grenaille_tutorial1_section_access_sphere Sphere
+  \subsection grenaille_user_manual_subsection_access_sphere Sphere
+
   You may rather access properties of the fitted sphere (the 0-isosurface of the fitted scalar field), as defined in Grenaille::AlgebraicSphere :
   \code
   cout << "Center: [" << fit.center().transpose() << "] ;  radius: " << fit.radius() << endl;
@@ -191,7 +167,8 @@ namespace Grenaille
 	  Kappa: 0.997682 
   \endcode
     
-  \subsection grenaille_tutorial1_section_access_other Other methods
+  \subsection grenaille_user_manual_subsection_access_other Other methods
+
   Thanks to the Grenaille::AlgebraicSphere, you may also project an arbitrary point onto the fitted sphere via:
   \code
   cout << "The initial point " << p.transpose()              << endl
@@ -204,14 +181,13 @@ namespace Grenaille
   \endcode
 
 
-
-  \section grenaille_tutorial2_intro Grenaille curvature use
+  \section grenaille_user_manual_cuvature Computing Curvatures
   
   This part presents how to compute curvature values from the various fitting
   procedures and extensions available in Grenaille.
-  
-  \section grenaille_tutorial2_section_sphere Curvature using sphere fitting
-  \subsection grenaille_tutorial2_section_sphere_subsection_meancurvature Mean Curvature
+
+  \subsection grenaille_user_manual_subsection_meancurvature Mean Curvature
+
   A fast approximation of the mean curvature is provided by GLSParam::kappa():
   \code
   typedef Basket<MyPoint, WeightFunc, OrientedSphereFit, // Sphere fitting
@@ -226,7 +202,7 @@ namespace Grenaille
   \endcode
   
   It can also be extracted by analysing the spatial derivatives of fitted normals, 
-  provided by GLSDer::deta(). Note that the computation cost is more important 
+  provided by GLSDer::deta(). Note that the computational cost is more important 
   in this case.
   \code
   typedef Basket<MyPoint, WeightFunc, OrientedSphereFit,    // Sphere fitting
@@ -242,10 +218,11 @@ namespace Grenaille
   MatrixType jacobian = fit.deta();  
   cout << " Mean curvature: " << 0.5 * jacobian.trace() << endl;
   \endcode
-  \note We use in this example an implicit conversion by considering the derivatives of @f$\eta@f$ as the jacobian used to compute the mean curvature. This is valid because we compute \b only the spatial derivatives of the fit, using OrientedSphereSpaceDer. For instance, passing OrientedSphereScaleDer in the Basket configuration will raise a compilation error. More technical details can be found \link Grenaille::internal::OrientedSphereDer here\endlink (useful only if you plan to extend the library, and if you are really curious).
+  \note In this example, we build the Jacobian from <CODE>fit.deta()</CODE>, using an implicit cast from <CODE>VectorArray</CODE> to <CODE>MatrixType</CODE>. It will require a more careful conversion when the basket contains different extensions. More details \link Grenaille::internal::OrientedSphereDer here.\endlink
     
-  \subsection grenaille_tutorial2_section_sphere_subsection_principalcurvatures Principal Curvatures
-  Principal curvature values and the associated directions can be computed by 
+  \subsection grenaille_user_manual_subsection_principalcurvatures Principal Curvatures
+
+  Principal curvatures and their associated directions can be computed by 
   an eigen decomposition of the spatial derivatives of eta, provided by 
   the extension GLSCurvatureHelper (based on the analysis of GLSDer::deta()):
   \code
@@ -261,16 +238,24 @@ namespace Grenaille
   // The eigen decomposition is called during the fit finalize
   fit.finalize();
   
-  // Get principal curvatures
-  Scalar k1 = fit.GLSk1();
-  Scalar k2 = fit.GLSk2();
+  if(fit.isStable())
+  {
+    // Get principal curvatures
+    Scalar k1 = fit.GLSk1();
+    Scalar k2 = fit.GLSk2();
   
-  // Get associated directions
-  VectorType d1 = fit.GLSk1Direction();
-  VectorType d2 = fit.GLSk2Direction();
+    // Get associated directions
+    VectorType d1 = fit.GLSk1Direction();
+    VectorType d2 = fit.GLSk2Direction();
   
-  // Get gaussian curvature
-  Scalar K = fit.GLSGaussianCurvature();
+    // Get gaussian curvature
+    Scalar K = fit.GLSGaussianCurvature();
+  }
   \endcode
+
+  \section grenaille_user_manual_going_further Going Further
+  
+  This page was intended to show you a standard use of the Grenaille module. However, there is more to it than Grenaille::OrientedSphereFit, as shown in its <a href="namespace_grenaille.html"><b>reference</b></a>.
+  We encourage you to make your own tests and have a look at our \ref grenaille_example_page "examples". It will give you ideas about how to use this module inside your own applications.
  */
  }

@@ -21,7 +21,13 @@
   If by that you mean "How can I download and install your mouth-watering library?", then the best place to start is the \ref patate_getting_started_page section, as you might have guessed from the onset. We do not advocate the conjoint physical use of real patates and computers.
 
   - <b> What can I cook with Patates? Do you have code recipies? </b><BR>
-  I guess you're looking for some kind of \link patate_overview_page Overview\endlink, right? You'll find there a list of our different patates|modules, each with a brief description and links to a specific user manual and a few examples. This might give you enough suggestions to start experimenting with your own recipies.
+  I guess you're looking for a \link patate_overview_page list of available patates|modules \endlink, each briefly described with links to a specific user manual and a few examples? This might give you enough suggestions to start experimenting with your own recipies.
+
+  - <b> Where do these patates come from originally?  </b><BR>
+  The Patate library relies on published scientific papers that we have collected in the \link citelist.html Citation\endlink section of the documentation. These will prove useful if you want to dig into the implementation of operators and algorithms. If the PatateLib contributes to a project that leads to a scientific publication or a commercial or free software, all we ask is to tell us about it, or at least cite the project using the bibtex entry provided at the end of this page.
+
+  - <b> What can I do if I get mashed in trouble? </b><BR>
+  If you get stuck or have a problem/bug using patates, please send an email to patate-devel@lists.gforge.inria.fr for further assistance. Remember that the library is under development so we are pleased to get your feedback.
 
   - <b> What does "Patate" mean, actually? </b><BR>
   "Patate" stands for potato in French. Honestly, we kinda decided to give the library that name with no obvious reason apart from the funny way it sounds in French. But in retrospect, this analogy does make a lot of sense. Indeed, patates|modules provide tasty and nourishing features that are easy to incorporate into your own recipe|pipeline. Although patates are intended to grow seperately from each other, they will reveal even richer flavours when cooked together. And it's all Open source, thus if you want to know more about a specific patate, all you will have to do is to gently dig into the ground|documentation to learn how it works. Ultimately, everybody loves patates!
@@ -29,9 +35,15 @@
   - <b> How are these patates licensed? Are their seeds patented? </b><BR>
   Do not be afraid, our patates are the closest you can get to "organic" in our solanaceous analogy. The source code of the library is licensed under the Mozilla Public License (MPL), v. 2.0. Its main advantage is to grant inclusion of template files as long as the source code itself is not modified (see? It's even somewhat sustainable). For more details, a copy of the MPL can be found at http://mozilla.org/MPL/2.0/ .
 
-  - <b> Where do these patates come from originally?  </b><BR>
-  The Patate library relies on published scientific papers that we have collected in a the \link citelist.html Citation\endlink section of the documentation. These will prove useful if you want to dig into the implementation of operators and algorithms. If the PatateLib contributes to a project that leads to a scientific publication or a commercial or free software, all we ask is to tell us about it, or at least cite the project:
-  \verbatim  
+  
+
+
+  \section patate_credits_sec Credits
+
+  Each patate is initially developped by a few persons, usually those who have authored the corresponding research papers. But the Patate library would not work as smoothly as we hope it does without the concourse of our engineer Gautier Ciaudo, or Mr Patate as we like to call him. He's in charge of unit tests, bug tracking, making examples and all that sort of crucial stuff.
+
+  Our first and only patate for now is Grenaille, and it has been developped by Nicolas Mellado, Gael Guennebaud and Pascal Barla. Noam Kremen has also contributed to this work. And of course Gautier Ciaudo helped us polishing it. If you use our library, please cite it using the following bibtex entry:
+    \verbatim  
   @MISC{PatateLib,
     author = {Nicolas Mellado and Gautier Ciaudo and Ga\"{e}l Guennebaud and Pascal Barla},
     title = {Patate Lib},
@@ -40,10 +52,4 @@
   }
   \endverbatim
 
-
-  \section patate_credits_sec Credits
-
-  Each patate is initially developped by a few persons, usually those who have authored the corresponding research papers. But the Patate library would not work as smoothly as we hope it does without the concourse of our engineer Gautier Ciaudo, or Mr Patate as we like to call him. He's in charge of unit tests, bug tracking, making examples and all that sort of crucial stuff.
-
-  Our first and only patate for now is Grenaille, and it has been developped by Nicolas Mellado, Gael Guennebaud and Pascal Barla. Noam Kremen has also contributed to this work: testing on cuda compatibility and function to get signed curvature in Grenaille::GLSCurvatureHelper. And of course Gautier Ciaudo helped us polishing it.
 */

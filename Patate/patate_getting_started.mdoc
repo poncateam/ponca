@@ -34,14 +34,12 @@
 
   If you want to see Patates in action, you will of course have to compile examples. And the same is true if you want to get the latest version of the documentation you are presently reading (well, not the exact same documentation, unless you've already compiled it, but then why are you reading this?). In both cases, have a look at the readme file, everything is explained there, no need to duplicate that here.
 
-  \section getting_started_panorama_sec Panorama
+  \section getting_started_panorama_sec Overview
   
-  You may already have had a look at the \link patate_overview_page Overview\endlink section that presents patates|modules. Here we'd like to add an important bit of information, if you don't mind.
+  You may already have had a look at the \link patate_overview_page list of available patates|modules. \endlink Here we'd like to add an important bit of information, if you don't mind.
 
   Even though each patate is independent, they all have the same simple structure: a "core" folder where you will find operators that rely on no data structure and work both with CUDA and C++; and an "algorithms" folder with methods that may interface with user-provided data structures, with optimized solutions in C++, CUDA or both. 
-  
   The rationale behind this separation is to provide two levels of complexity: core operators implement atomic scientific contributions that are agnostic of the host application; algorithms implement step-by-step procedures that will likely rely on core operators and/or structure traversal. 
-  
   For this reason, all operators become available whenever a patate/module is included; whereas each algorithm must be included independently.
 
   \section getting_started_first_step_sec First steps 

@@ -12,9 +12,9 @@
 namespace Grenaille{
 
 
-
+  /*! \brief Namespace used for structure or classes used internally by the lib */
   namespace internal{
-    /*! Internal class used to build the Basket structure */
+    /*! \brief Internal class used to build the Basket structure */
     template <class, class, typename T> class Forward: public T {};
   }
 
@@ -22,7 +22,7 @@ namespace Grenaille{
 #define BASKET_TP(I) template <class, class, typename> class Ext##I = internal::Forward
   /*!
 
-    \brief Agregator class used to declare specialized structures using CRTP (Curiously recurring template pattern)
+    \brief Agregator class used to declare specialized structures using CRTP (Curiously Recurring Template Pattern)
     \todo Comment
     
     The various implementations of Grenaille::Concept are mixed through 
