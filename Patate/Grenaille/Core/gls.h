@@ -39,31 +39,31 @@ namespace Grenaille
    */
   template < class DataPoint, class _WFunctor, typename T>
   class GLSParam : public T{
-  private:
+   private:
     typedef T Base;
 
-  protected:
+   protected:
     enum
       {
         Check = Base::PROVIDES_ALGEBRAIC_SPHERE,
         PROVIDES_GLS_PARAMETRIZATION
       };
 
-  public:
+   public:
     typedef typename Base::Scalar     Scalar;     /*!< \brief Inherited scalar type*/
     typedef typename Base::VectorType VectorType; /*!< \brief Inherited vector type*/
     typedef typename Base::WFunctor   WFunctor;   /*!< \brief Weight Function*/
 
 
-  protected:
+   protected:
     Scalar _t; /*!< \brief Evaluation scale. Needed to computed the normalized values*/
     Scalar _fitness; /*!< \brief Save the fitness value to avoid side effect with Pratt normalization*/
 
-  public:
+   public:
     /*! \brief Default constructor */
     MULTIARCH inline GLSParam() : _t(0) {}
 
-    
+
     /**************************************************************************/
     /* Initialization                                                         */
     /**************************************************************************/
@@ -72,22 +72,21 @@ namespace Grenaille
       Base::setWeightFunc(w);
       _t = w.evalScale();
     }
-    
-    
+
+
     /**************************************************************************/
     /* Processing                                                             */
     /**************************************************************************/
     /*! \copydoc Concept::FittingProcedureConcept::finalize() */
-    MULTIARCH inline bool finalize   (){
-      bool bResult = Base::finalize();
+    MULTIARCH inline FIT_RESULT finalize   (){
+      FIT_RESULT bResult = Base::finalize();
 
-	  if(bResult)
-	  {
-		_fitness = Scalar(1.) - Base::prattNorm2();
-		return true;
-	  }
+      if(bResult != UNDEFINED)
+      {
+        _fitness = Scalar(1.) - Base::prattNorm2();
+      }
 
-	  return false;
+      return bResult;
     }
 
 
@@ -105,30 +104,30 @@ namespace Grenaille
     /*! \brief Compute and return \f$ \kappa \f$ */
     MULTIARCH inline Scalar     kappa() const 
     {return Scalar(2.) * (Base::isNormalized() ? Base::_uq : Base::_uq / Base::prattNorm());}
-    
+
     /*! \brief Compute and return \f$ \frac{\tau}{t} \f$ */
     MULTIARCH inline Scalar     tau_normalized()   const {return tau()/_t;}
-    
+
     /*! \brief Compute and return \f$ \eta \f$ */    
     MULTIARCH inline VectorType eta_normalized()   const {return eta();}
-    
+
     /*! \brief Compute and return \f$ t \kappa \f$ */
     MULTIARCH inline Scalar     kappa_normalized() const {return kappa()*_t;}    
-    
+
     /*! \brief Return the fitness, e.g. the pratt norm of the initial scalar field */
     MULTIARCH inline Scalar     fitness()          const {return _fitness;}
-    
+
     /*! 
       \brief Compare current instance with other.
-	  \return a distance between two fits (0 correspond to two similar fits)
-	  \warning Use the same scale to have a useful comparison (normalized value are used)
+      \return a distance between two fits (0 correspond to two similar fits)
+      \warning Use the same scale to have a useful comparison (normalized value are used)
     */
     MULTIARCH inline Scalar compareTo (const GLSParam<DataPoint, _WFunctor, T>& other,
                                        bool useFitness = true) const
     { 
       Scalar nTau     = this->tau_normalized()   - other.tau_normalized();
       Scalar nKappa   = this->kappa_normalized() - other.kappa_normalized();
-      Scalar nFitness = useFitness ? this->fitness() - other.fitness() : 0.;
+      Scalar nFitness = useFitness ? this->fitness() - other.fitness() : Scalar(0.);
       
       return nTau * nTau + nKappa * nKappa + nFitness * nFitness;
     }
@@ -144,20 +143,20 @@ namespace Grenaille
    */
   template < class DataPoint, class _WFunctor, typename T>
   class GLSDer : public T{
-  private:
+   private:
     typedef T Base;
 
-  protected:
+   protected:
     enum
       {
         Check = Base::PROVIDES_GLS_PARAMETRIZATION,
         PROVIDES_GLS_DERIVATIVE
       };
 
-  public:
-    typedef typename Base::Scalar     Scalar;		/*!< \brief Inherited scalar type*/
-    typedef typename Base::VectorType VectorType;	/*!< \brief Inherited vector type*/
-    typedef typename Base::WFunctor   WFunctor;		/*!< \brief Weight Function*/
+   public:
+    typedef typename Base::Scalar     Scalar;    /*!< \brief Inherited scalar type*/
+    typedef typename Base::VectorType VectorType;  /*!< \brief Inherited vector type*/
+    typedef typename Base::WFunctor   WFunctor;    /*!< \brief Weight Function*/
 
     typedef typename Base::VectorArray VectorArray; /*!< \brief Inherited vector array type*/
     typedef typename Base::ScalarArray ScalarArray; /*!< \brief Inherited scalar array type*/ 
@@ -175,38 +174,38 @@ namespace Grenaille
   /*!
     \brief Extension to compute the Geometric Variation of GLSParam
     \inherit Concept::FittingExtensionConcept
-    
+
     Method published in \cite Mellado:2012:GLS
     \todo Add more details
    */
   template < class DataPoint, class _WFunctor, typename T>
   class GLSGeomVar : public T{
-  private:
+   private:
     typedef T Base;
 
-  protected:
+   protected:
     enum
       {
         Check = Base::PROVIDES_ALGEBRAIC_SPHERE_SCALE_DERIVATIVE & Base::PROVIDES_GLS_DERIVATIVE,
-	      PROVIDES_GLS_GEOM_VAR
+        PROVIDES_GLS_GEOM_VAR
       };
 
-  public:
-    typedef typename Base::Scalar Scalar;	/*!< \brief Inherited scalar type*/
+   public:
+    typedef typename Base::Scalar Scalar;  /*!< \brief Inherited scalar type*/
 
     /*!
       \brief Compute and return the Geometric Variation
      */
     MULTIARCH inline Scalar geomVar(Scalar wtau   = Scalar(1), 
-  			                            Scalar weta   = Scalar(1),
-	                        			    Scalar wkappa = Scalar(1)) const;
+                                    Scalar weta   = Scalar(1),
+                                    Scalar wkappa = Scalar(1)) const;
   };
   
   
   /*!
     \brief Extension to compute curvature values from \f$ \frac{\delta\tau}{\tau\mathbf{x}} \f$
     \inherit Concept::FittingExtensionConcept
-    
+
     This class requires an Eigendecomposition of the Jacobian matrix of 
     \f$ \tau \f$. We use an Eigen::SelfAdjointEigenSolver, compatible with 
     Eigen-nvcc for 2D and 3D spaces on cuda, and in arbitrary dimension for CPU
@@ -215,110 +214,110 @@ namespace Grenaille
    */
   template < class DataPoint, class _WFunctor, typename T>
   class GLSCurvatureHelper : public T{
-  private:
+   private:
     typedef T Base;
 
-  protected:
+   protected:
     enum
       {
         Check = Base::PROVIDES_ALGEBRAIC_SPHERE_SPACE_DERIVATIVE & Base::PROVIDES_GLS_DERIVATIVE,
-	      PROVIDES_PRINCIPALE_CURVATURES
+        PROVIDES_PRINCIPALE_CURVATURES
       };
 
-  public:
-    typedef typename Base::Scalar     Scalar;		/*!< \brief Inherited scalar type*/
-    typedef typename Base::VectorType VectorType;	/*!< \brief Inherited vector type*/
-    typedef typename DataPoint::MatrixType MatrixType;	/*!< \brief Matrix type inherited from DataPoint*/
-      
-  private:
+   public:
+    typedef typename Base::Scalar     Scalar;    /*!< \brief Inherited scalar type*/
+    typedef typename Base::VectorType VectorType;  /*!< \brief Inherited vector type*/
+    typedef typename DataPoint::MatrixType MatrixType;  /*!< \brief Matrix type inherited from DataPoint*/
+
+   private:
     Scalar _k1, _k2;
     VectorType _v1, _v2;
 
-    
-  public:
+
+   public:
     /*! \brief Default constructor */
     MULTIARCH inline GLSCurvatureHelper() : _k1(0), _k2(0) {}
-    
+
     /**************************************************************************/
     /* Processing                                                             */
     /**************************************************************************/
     /*! \copydoc Concept::FittingProcedureConcept::finalize() */
-    MULTIARCH inline bool finalize   (){
-	    MULTIARCH_STD_MATH(sqrt);
-	      
-      bool bResult = Base::finalize();
+    MULTIARCH inline FIT_RESULT finalize   (){
+      MULTIARCH_STD_MATH(sqrt);
 
-	  if(!bResult)
-		  return false;
-      
-      // Extract the spatial variations of eta
-      MatrixType jacobian = Base::deta().template middleCols<DataPoint::Dim>(Base::isScaleDer() ? 1: 0);
-      
-      // Use a simple solver with 2x2 and 3x3 closed forms compatible with eigen-nvcc
-      // This solver requires a triangular matrix
-      Eigen::SelfAdjointEigenSolver<MatrixType> eig;
-#ifdef __CUDACC__
-      eig.computeDirect(jacobian.transpose()*jacobian);
-#else
-      eig.compute(jacobian.transpose()*jacobian);
-#endif
-      
-      // Need sqrt because we solve eigendecomposition of JT * J.
-      _k1 = sqrt(eig.eigenvalues()(2)); 
-      _k2 = sqrt(eig.eigenvalues()(1)); 
-      
-      _v1 = eig.eigenvectors().col(2);
-      _v2 = eig.eigenvectors().col(1);
-      
-      // Now check the sign of the mean curvature to detect if we need to change
-      // the sign of the principal curvature values:
-      // the eigen decomposition return k1 and k2 wrt k1*k1 > k2*k2
-      
-      // Compare with the values of the mean curvature computed without k1 and k2
-      Scalar H2 = Scalar(2)*Base::kappa(); // we could also use the trace of the
-                                           // jacobian matrix to get mean curvature
-      
-      // Change sign and flip values if needed
-      // Thanks to Noam Kremen snoamk@tx.technion.ac.il for this algorithm
-      if( H2 == Scalar(0)){
-        _k2 = -_k2;        
-        
-      } else if ( H2 > Scalar(0) ) {
-        if( H2 < _k1 )
-          _k2 = -_k2;
-      }else { // 2H < 0. In this case, we have k1<0, and k1 < k2
-        if( H2 > _k1 )
-          _k2 = -_k2;
-        _k1 = -_k1;
-        
-        // need to invert k1 and k2, and get the corresponding vectors
-        Scalar tmp = _k1; _k1 = _k2; _k2 = tmp;        
-        _v1 = eig.eigenvectors().col(1);
-        _v2 = eig.eigenvectors().col(2);        
+      FIT_RESULT bResult = Base::finalize();
+
+      if(bResult != UNDEFINED){
+
+        // Extract the spatial variations of eta
+        MatrixType jacobian = Base::deta().template middleCols<DataPoint::Dim>(Base::isScaleDer() ? 1: 0);
+
+        // Use a simple solver with 2x2 and 3x3 closed forms compatible with eigen-nvcc
+        // This solver requires a triangular matrix
+        Eigen::SelfAdjointEigenSolver<MatrixType> eig;
+  #ifdef __CUDACC__
+        eig.computeDirect(jacobian.transpose()*jacobian);
+  #else
+        eig.compute(jacobian.transpose()*jacobian);
+  #endif
+
+        // Need sqrt because we solve eigendecomposition of JT * J.
+        _k1 = sqrt(eig.eigenvalues()(2)); 
+        _k2 = sqrt(eig.eigenvalues()(1)); 
+
+        _v1 = eig.eigenvectors().col(2);
+        _v2 = eig.eigenvectors().col(1);
+
+        // Now check the sign of the mean curvature to detect if we need to change
+        // the sign of the principal curvature values:
+        // the eigen decomposition return k1 and k2 wrt k1*k1 > k2*k2
+
+        // Compare with the values of the mean curvature computed without k1 and k2
+        Scalar H2 = Scalar(2)*Base::kappa(); // we could also use the trace of the
+                                             // jacobian matrix to get mean curvature
+
+        // Change sign and flip values if needed
+        // Thanks to Noam Kremen snoamk@tx.technion.ac.il for this algorithm
+        if( H2 == Scalar(0)){
+          _k2 = -_k2;        
+
+        } else if ( H2 > Scalar(0) ) {
+          if( H2 < _k1 )
+            _k2 = -_k2;
+        }else { // 2H < 0. In this case, we have k1<0, and k1 < k2
+          if( H2 > _k1 )
+            _k2 = -_k2;
+          _k1 = -_k1;
+
+          // need to invert k1 and k2, and get the corresponding vectors
+          Scalar tmp = _k1; _k1 = _k2; _k2 = tmp;        
+          _v1 = eig.eigenvectors().col(1);
+          _v2 = eig.eigenvectors().col(2);        
+        }
       }
 
-	  return true;
+      return bResult;
     }
-    
+
     /**************************************************************************/
     /* Use results                                                            */
     /**************************************************************************/
     //! \brief Return the first principal curvature value
     MULTIARCH inline Scalar GLSk1() const { return _k1; }
-    
+
     //! \brief Return the second principal curvature value
     MULTIARCH inline Scalar GLSk2() const { return _k2; }
-    
+
     //! \brief Return the first principal curvature direction
     MULTIARCH inline VectorType GLSk1Direction() const { return _v1; }
-    
+
     //! \brief Return the second principal curvature direction
     MULTIARCH inline VectorType GLSk2Direction() const { return _v2; }
-    
+
     //! \brief Return the Gaussian Curvature
     MULTIARCH inline Scalar GLSGaussianCurvature() const { return _k1*_k2;}    
   };
-  
+
   #include "gls.hpp"
 
 } //namespace Grenaille

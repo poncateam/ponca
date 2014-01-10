@@ -24,21 +24,21 @@ namespace Grenaille{
    */
   template <class DataPoint, class WeightKernel>
   class DistWeightFunc {
-  public:
-	/*! \brief Scalar type from DataPoint*/
+   public:
+    /*! \brief Scalar type from DataPoint*/
     typedef typename DataPoint::Scalar Scalar;
-	/*! \brief Vector type from DataPoint*/
+    /*! \brief Vector type from DataPoint*/
     typedef typename DataPoint::VectorType VectorType;
     
-    /*! \brief Constructor that defines the current evaluation scale
-		\warning t > 0
-	*/
-
+    /*! 
+       \brief Constructor that defines the current evaluation scale
+       \warning t > 0
+     */
     MULTIARCH inline DistWeightFunc(const Scalar& t = Scalar(1.))
-	{
-		assert(t > Scalar(0));
-		_t = t;
-	}
+    {
+      assert(t > Scalar(0));
+      _t = t;
+    }
 
     /*!
       \brief Compute the weight of the given query with respect to its coordinates.
@@ -48,11 +48,9 @@ namespace Grenaille{
       respect to the current scale  \f$ t \f$ :
             
       \f$ w(\frac{\left|\mathbf{q}_\mathsf{x}\right|}{t}) \f$ 
-      
-
      */
     MULTIARCH inline Scalar w(const VectorType& q, 
-			      const DataPoint&  /*attributes*/) const;
+                              const DataPoint&  /*attributes*/) const;
     
     
     /*!
@@ -67,7 +65,7 @@ namespace Grenaille{
       for each spatial dimensions \f$ \mathsf{x}\f$.
     */
     MULTIARCH inline VectorType spacedw(const VectorType& q, 
-			     const DataPoint&  /*attributes*/) const;
+                                        const DataPoint&  /*attributes*/) const;
        
     
     /*!
@@ -81,15 +79,14 @@ namespace Grenaille{
       query coordinates expressed in centered basis.
     */
     MULTIARCH inline Scalar scaledw(const VectorType& q, 
-			     const DataPoint&  /*attributes*/) const;
+                                    const DataPoint&  /*attributes*/) const;
 
     /*! \brief Access to the evaluation scale set during the initialization */
     MULTIARCH inline Scalar evalScale() const { return _t; }
 
   protected:
     Scalar       _t;  /*!< \brief Evaluation scale */
-    WeightKernel _wk; /*!< \brief 1D function applied to weight queries*/
-    
+    WeightKernel _wk; /*!< \brief 1D function applied to weight queries*/    
 
   };// class DistWeightFunc
 

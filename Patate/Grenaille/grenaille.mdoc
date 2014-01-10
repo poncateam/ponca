@@ -57,11 +57,11 @@ namespace Grenaille
           
         fit.finalize();
         
-		if(fit.isStable())
-		{
-			// use the fit
-			// ...
-		}			
+    if(fit.isStable())
+    {
+      // use the fit
+      // ...
+    }      
       \endcode
          
      */
@@ -89,13 +89,13 @@ namespace Grenaille
       /**************************************************************************/
       /*!
         \brief Add a neighbor to perform the fit 
-		\return false if param nei is not a valid neighbour (weight = 0)
+        \return false if param nei is not a valid neighbour (weight = 0)
       */
       bool addNeighbor(const DataPoint &nei){};
       
       /*!
         \brief Finalize the fitting procedure
-		\return the corresponding state of the fitting
+        \return the corresponding state of the fitting
         \warning Must be called be for any use of the fitting output
       */
       FIT_RESULT finalize (){};    
@@ -123,11 +123,11 @@ namespace Grenaille
           
         extFit.finalize();
         
-		if(extFit.isStable())
-		{
-			// use the result of the fit and its extensions
-			// ... 
-		}
+        if(extFit.isStable())
+        {
+          // use the result of the fit and its extensions
+          // ... 
+        }
       \endcode
       
      */
@@ -184,15 +184,15 @@ namespace Grenaille
         
       /*! \brief Apply the weight function to a query. */
       MULTIARCH inline Scalar w(const VectorType& relativeQuery, 
-			        const DataPoint&  attributes) const {}   
+              const DataPoint&  attributes) const {}   
          
       /*! \brief Apply the weight function differenciated in space to a query. */
       MULTIARCH inline VectorType spacedw(const VectorType& relativeQuery, 
-				      const DataPoint&  attributes) const {}   
+              const DataPoint&  attributes) const {}   
          
       /*! \brief Apply the weight function differenciated in scale to a query. */
       MULTIARCH inline Scalar scaledw(const VectorType& relativeQuery, 
-				      const DataPoint&  attributes) const {}
+              const DataPoint&  attributes) const {}
 
       /*! \brief Read access to the evaluation scale */
       MULTIARCH inline Scalar evalScale() const {}   
