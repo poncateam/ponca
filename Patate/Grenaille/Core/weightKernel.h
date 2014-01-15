@@ -31,7 +31,7 @@ public:
     //! \brief Default constructor that could be used to set the returned value
     MULTIARCH inline ConstantWeightKernel(const Scalar& _value = Scalar(1.)) : m_y(_value){}
     //! \brief Set the returned value
-    MULTIARCH inline void setValue(const Scalar& _value){ m_y = value; } 
+    MULTIARCH inline void setValue(const Scalar& _value){ m_y = _value; } 
 
     // Functor
     //! \brief Return the constant value
