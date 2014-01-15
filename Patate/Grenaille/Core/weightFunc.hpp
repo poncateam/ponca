@@ -8,26 +8,29 @@
 
 template <class DataPoint, class WeightKernel>
 typename DistWeightFunc<DataPoint, WeightKernel>::Scalar
-DistWeightFunc<DataPoint, WeightKernel>::w(const VectorType& q, 
-					   const DataPoint&) const{
-  Scalar d  = q.norm();  
-  return (d <= _t) ? _wk.f(d/_t) : Scalar(0.);
+DistWeightFunc<DataPoint, WeightKernel>::w( const VectorType& _q, 
+					                        const DataPoint&) const
+{
+    Scalar d  = _q.norm();  
+    return (d <= m_t) ? _wk.f(d/m_t) : Scalar(0.);
 }
 
 template <class DataPoint, class WeightKernel>
 typename DistWeightFunc<DataPoint, WeightKernel>::VectorType
-DistWeightFunc<DataPoint, WeightKernel>::spacedw(const VectorType& q, 
-						 const DataPoint&) const{
-  VectorType result = VectorType::Zero();
-  Scalar d = q.norm();
-  if (d <= _t && d != 0.) result = (q / (d * _t)) * _wk.df(d/_t);
-  return result;
+DistWeightFunc<DataPoint, WeightKernel>::spacedw(   const VectorType& _q, 
+						                            const DataPoint&) const
+{
+    VectorType result = VectorType::Zero();
+    Scalar d = _q.norm();
+    if (d <= m_t && d != 0.) result = (_q / (d * m_t)) * _wk.df(d/m_t);
+    return result;
 }
 
 template <class DataPoint, class WeightKernel>
 typename DistWeightFunc<DataPoint, WeightKernel>::Scalar
-DistWeightFunc<DataPoint, WeightKernel>::scaledw(const VectorType& q, 
-						 const DataPoint&) const{
-  Scalar d  = q.norm();  
-  return (d <= _t) ? ( - d*_wk.df(d/_t)/(_t*_t) ) : Scalar(0.);
+DistWeightFunc<DataPoint, WeightKernel>::scaledw(   const VectorType& _q, 
+						                            const DataPoint&) const
+{
+    Scalar d  = _q.norm();  
+    return (d <= m_t) ? ( - d*_wk.df(d/m_t)/(m_t*m_t) ) : Scalar(0.);
 }
