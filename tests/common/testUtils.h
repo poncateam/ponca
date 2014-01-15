@@ -1,15 +1,13 @@
 /*
- This Source Code Form is subject to the terms of the Mozilla Public
- License, v. 2.0. If a copy of the MPL was not distributed with this
- file, You can obtain one at http://mozilla.org/MPL/2.0/. 
+This Source Code Form is subject to the terms of the Mozilla Public
+License, v. 2.0. If _a copy of the MPL was not distributed with this
+file, You can obtain one at http://mozilla.org/MPL/2.0/. 
 */
 
 /*!
- \file test/common/testUtils.h
- \brief Useful functions for tests
-
- \authors: Gautier Ciaudo
- */
+  \file test/common/testUtils.h
+  \brief Useful functions for tests
+*/
 
 #ifndef _TEST_UTILS_H_
 #define _TEST_UTILS_H_
@@ -25,22 +23,22 @@
 // Epsilon precision
 template<typename T> inline T testEpsilon()
 {
-	return Eigen::NumTraits<T>::dummy_precision();
+    return Eigen::NumTraits<T>::dummy_precision();
 }
 
 template<> inline float testEpsilon<float>()
 {
-	return 1e-2f;
+    return 1e-2f;
 }
 
 template<> inline double testEpsilon<double>()
 {
-	return 1e-5;
+    return 1e-5;
 }
 
 template<> inline long double testEpsilon<long double>()
 {
-	return 1e-5;
+    return 1e-5;
 }
 
 // Basic point
@@ -51,239 +49,239 @@ public:
     enum {Dim = _Dim};
     typedef _Scalar Scalar;
     typedef Eigen::Matrix<Scalar, Dim, 1, Eigen::DontAlign>		VectorType;
-	typedef Eigen::Matrix<Scalar, Dim, Dim, Eigen::DontAlign>	MatrixType;
-	typedef Eigen::Quaternion<Scalar, Eigen::DontAlign>			QuaternionType;
+    typedef Eigen::Matrix<Scalar, Dim, Dim, Eigen::DontAlign>	MatrixType;
+    typedef Eigen::Quaternion<Scalar, Eigen::DontAlign>			QuaternionType;
 
-    MULTIARCH inline PointPosistionNormal(   const VectorType &pos = VectorType::Zero(), 
-											 const VectorType& normal = VectorType::Zero()
-										 )
-                                : _pos(pos), _normal(normal) {}
+    MULTIARCH inline PointPosistionNormal(  const VectorType &pos = VectorType::Zero(), 
+                                            const VectorType& normal = VectorType::Zero()
+                                        )
+        : m_pos(pos), m_normal(normal) {}
 
-    MULTIARCH inline const VectorType& pos()    const { return _pos; }  
-    MULTIARCH inline const VectorType& normal() const { return _normal; }
+    MULTIARCH inline const VectorType& pos()    const { return m_pos; }  
+    MULTIARCH inline const VectorType& normal() const { return m_normal; }
 
-    MULTIARCH inline VectorType& pos()    { return _pos; }  
-    MULTIARCH inline VectorType& normal() { return _normal; }
+    MULTIARCH inline VectorType& pos()    { return m_pos; }  
+    MULTIARCH inline VectorType& normal() { return m_normal; }
 
 private:
-    VectorType _pos, _normal;
+    VectorType m_pos, m_normal;
 };
 
 template<typename DataPoint>
-void reverseNormals(std::vector<DataPoint>& dest, const std::vector<DataPoint>& src, bool bRandom = true)
+void reverseNormals(std::vector<DataPoint>& _dest, const std::vector<DataPoint>& _src, bool _bRandom = true)
 {
-	typedef typename DataPoint::VectorType VectorType;
+    typedef typename DataPoint::VectorType VectorType;
 
-	VectorType vNormal;
+    VectorType vNormal;
 
-	for(unsigned int i = 0; i < src.size(); ++i)
-	{
-		vNormal = src[i].normal();
+    for(unsigned int i = 0; i < _src.size(); ++i)
+    {
+        vNormal = _src[i].normal();
 
-		if(bRandom)
-		{
-			float reverse = Eigen::internal::random<float>(0.f, 1.f);
-			if(reverse > 0.5f)
-			{
-				vNormal = -vNormal;
-			}
-		}
-		else
-		{
-			vNormal = -vNormal;
-		}
+        if(_bRandom)
+        {
+            float reverse = Eigen::internal::random<float>(0.f, 1.f);
+            if(reverse > 0.5f)
+            {
+                vNormal = -vNormal;
+            }
+        }
+        else
+        {
+            vNormal = -vNormal;
+        }
 
-		dest[i] = DataPoint(src[i].pos(), vNormal);
-	}
+        _dest[i] = DataPoint(_src[i].pos(), vNormal);
+    }
 }
 
 template<typename DataPoint>
-DataPoint getPointOnSphere(typename DataPoint::Scalar radius, typename DataPoint::VectorType vCenter, bool bAddPositionNoise = true,
-						   bool bAddNormalNoise = true, bool bReverseNormals = false)
+DataPoint getPointOnSphere(typename DataPoint::Scalar _radius, typename DataPoint::VectorType _vCenter, bool _bAddPositionNoise = true,
+                           bool _bAddNormalNoise = true, bool _bReverseNormals = false)
 {
     typedef typename DataPoint::Scalar Scalar;
     typedef typename DataPoint::VectorType VectorType;
-	typedef typename DataPoint::QuaternionType QuaternionType;
+    typedef typename DataPoint::QuaternionType QuaternionType;
 
     VectorType vNormal = VectorType::Random().normalized();
 
-    VectorType vPosition = vCenter + vNormal * radius; // * Eigen::internal::random<Scalar>(MIN_NOISE, MAX_NOISE);
+    VectorType vPosition = _vCenter + vNormal * _radius; // * Eigen::internal::random<Scalar>(MIN_NOISE, MAX_NOISE);
 
-    if(bAddPositionNoise)
+    if(_bAddPositionNoise)
     {
-		//vPosition = vCenter + vNormal * radius * Eigen::internal::random<Scalar>(MIN_NOISE, MAX_NOISE);
-		vPosition = vPosition + VectorType::Random().normalized() * Eigen::internal::random<Scalar>(0., 1. - MIN_NOISE);
-		vNormal = (vPosition - vCenter).normalized();
+        //vPosition = _vCenter + vNormal * _radius * Eigen::internal::random<Scalar>(MIN_NOISE, MAX_NOISE);
+        vPosition = vPosition + VectorType::Random().normalized() * Eigen::internal::random<Scalar>(0., 1. - MIN_NOISE);
+        vNormal = (vPosition - _vCenter).normalized();
     }
 
-	if(bAddNormalNoise)
-	{
-		VectorType vTempPos =  vPosition + VectorType::Random().normalized() * Eigen::internal::random<Scalar>(0., 1. - MIN_NOISE);
-		vNormal = (vTempPos - vCenter).normalized();
-	}
+    if(_bAddNormalNoise)
+    {
+        VectorType vTempPos =  vPosition + VectorType::Random().normalized() * Eigen::internal::random<Scalar>(0., 1. - MIN_NOISE);
+        vNormal = (vTempPos - _vCenter).normalized();
+    }
 
-	if(bReverseNormals)
-	{
-		float reverse = Eigen::internal::random<float>(0.f, 1.f);
-		if(reverse > 0.5f)
-		{
-			vNormal = -vNormal;
-		}	
-	}
+    if(_bReverseNormals)
+    {
+        float reverse = Eigen::internal::random<float>(0.f, 1.f);
+        if(reverse > 0.5f)
+        {
+            vNormal = -vNormal;
+        }	
+    }
 
     return DataPoint(vPosition, vNormal);
 }
 
 template<typename DataPoint>
-DataPoint getPointOnPlane(typename DataPoint::VectorType vPosition, typename DataPoint::VectorType vNormal, typename DataPoint::Scalar radius,
-						  bool bAddPositionNoise = true, bool bAddNormalNoise = true, bool bReverseNormals = false	)
+DataPoint getPointOnPlane(typename DataPoint::VectorType _vPosition, typename DataPoint::VectorType _vNormal, typename DataPoint::Scalar _radius,
+                          bool _bAddPositionNoise = true, bool _bAddNormalNoise = true, bool _bReverseNormals = false	)
 {
     typedef typename DataPoint::Scalar Scalar;
     typedef typename DataPoint::VectorType VectorType;
-	typedef typename DataPoint::QuaternionType QuaternionType;
+    typedef typename DataPoint::QuaternionType QuaternionType;
 
-	VectorType vRandom;
-	VectorType vRandomDirection = VectorType::Zero();
-	VectorType vRandomPoint = VectorType::Zero();
-	VectorType vLocalUp = vNormal;
+    VectorType vRandom;
+    VectorType vRandomDirection = VectorType::Zero();
+    VectorType vRandomPoint = VectorType::Zero();
+    VectorType vLocalUp = _vNormal;
 
-	do
-	{
-		vRandom = VectorType::Random().normalized(); // Direction in the unit sphere
-		vRandomDirection = vRandom.cross(vLocalUp);
-	}
-	while(vRandomDirection == VectorType::Zero());
+    do
+    {
+        vRandom = VectorType::Random().normalized(); // Direction in the unit sphere
+        vRandomDirection = vRandom.cross(vLocalUp);
+    }
+    while(vRandomDirection == VectorType::Zero());
 
-	vRandomDirection = vRandomDirection.normalized();
-	vRandomPoint = vRandomDirection * radius;
-	vRandomPoint += vPosition;
+    vRandomDirection = vRandomDirection.normalized();
+    vRandomPoint = vRandomDirection * _radius;
+    vRandomPoint += _vPosition;
 
-	if(bAddPositionNoise)
-	{
-		vRandomPoint = vRandomPoint + VectorType::Random().normalized() * Eigen::internal::random<Scalar>(0., 1. - MIN_NOISE);
-	}
+    if(_bAddPositionNoise)
+    {
+        vRandomPoint = vRandomPoint + VectorType::Random().normalized() * Eigen::internal::random<Scalar>(0., 1. - MIN_NOISE);
+    }
 
-	if(bAddNormalNoise)
-	{
-		VectorType vLocalLeft = vLocalUp.cross(vRandomDirection);
-		VectorType vLocalFront = vLocalLeft.cross(vLocalUp);
+    if(_bAddNormalNoise)
+    {
+        VectorType vLocalLeft = vLocalUp.cross(vRandomDirection);
+        VectorType vLocalFront = vLocalLeft.cross(vLocalUp);
 
-		Scalar rotationAngle = Eigen::internal::random<Scalar>(-M_PI / 16., M_PI / 16.);
-		VectorType vRotationAxis = vLocalLeft;
-		QuaternionType qRotation = QuaternionType(Eigen::AngleAxis<Scalar>(rotationAngle, vRotationAxis));
-		qRotation = qRotation.normalized();
-		vLocalUp = qRotation * vLocalUp;
+        Scalar rotationAngle = Eigen::internal::random<Scalar>(-M_PI / 16., M_PI / 16.);
+        VectorType vRotationAxis = vLocalLeft;
+        QuaternionType qRotation = QuaternionType(Eigen::AngleAxis<Scalar>(rotationAngle, vRotationAxis));
+        qRotation = qRotation.normalized();
+        vLocalUp = qRotation * vLocalUp;
 
-		rotationAngle = Eigen::internal::random<Scalar>(-M_PI / 16., M_PI / 16.);
-		vRotationAxis = vLocalFront;
-		qRotation = QuaternionType(Eigen::AngleAxis<Scalar>(rotationAngle, vRotationAxis));
-		qRotation = qRotation.normalized();
-		vLocalUp = qRotation * vLocalUp;
-	}
+        rotationAngle = Eigen::internal::random<Scalar>(-M_PI / 16., M_PI / 16.);
+        vRotationAxis = vLocalFront;
+        qRotation = QuaternionType(Eigen::AngleAxis<Scalar>(rotationAngle, vRotationAxis));
+        qRotation = qRotation.normalized();
+        vLocalUp = qRotation * vLocalUp;
+    }
 
-	if(bReverseNormals)
-	{
-		float reverse = Eigen::internal::random<float>(0.f, 1.f);
-		if(reverse > 0.5f)
-		{
-			vLocalUp = -vLocalUp;
-		}	
-	}
+    if(_bReverseNormals)
+    {
+        float reverse = Eigen::internal::random<float>(0.f, 1.f);
+        if(reverse > 0.5f)
+        {
+            vLocalUp = -vLocalUp;
+        }	
+    }
 
     return DataPoint(vRandomPoint, vLocalUp);
 }
 
 template<typename Scalar>
-Scalar getParaboloidZ(Scalar x, Scalar y, Scalar a, Scalar b)
+Scalar getParaboloidZ(Scalar _x, Scalar _y, Scalar _a, Scalar _b)
 {
-	Scalar x2 = x * x;
-	Scalar y2 = y * y;
+    Scalar x2 = _x * _x;
+    Scalar y2 = _y * _y;
 
-	Scalar z = (a * x2 + b * y2) * Scalar(0.5);
+    Scalar z = (_a * x2 + _b * y2) * Scalar(0.5);
 
-	return z;
+    return z;
 }
 
 template<typename DataPoint>
-DataPoint getPointOnParaboloid(typename DataPoint::VectorType vCenter, typename DataPoint::VectorType vCoef,
-							   typename DataPoint::QuaternionType qRotation, typename DataPoint::Scalar analysisScale,
-							   bool bAddNoise = true)
+DataPoint getPointOnParaboloid(typename DataPoint::VectorType _vCenter, typename DataPoint::VectorType _vCoef,
+                               typename DataPoint::QuaternionType _qRotation, typename DataPoint::Scalar _analysisScale,
+                               bool _bAddNoise = true)
 {
-	typedef typename DataPoint::Scalar Scalar;
-	typedef typename DataPoint::VectorType VectorType;
+    typedef typename DataPoint::Scalar Scalar;
+    typedef typename DataPoint::VectorType VectorType;
 
-	VectorType vNormal;
-	VectorType vPosition;
+    VectorType vNormal;
+    VectorType vPosition;
 
-	Scalar a = vCoef.x();
-	Scalar b = vCoef.y();
-	Scalar x, y, z;
+    Scalar a = _vCoef.x();
+    Scalar b = _vCoef.y();
+    Scalar x, y, z;
 
-	x = Eigen::internal::random<Scalar>(-analysisScale, analysisScale);
-	y = Eigen::internal::random<Scalar>(-analysisScale, analysisScale);
-	z = getParaboloidZ(x, y, a, b);
+    x = Eigen::internal::random<Scalar>(-_analysisScale, _analysisScale);
+    y = Eigen::internal::random<Scalar>(-_analysisScale, _analysisScale);
+    z = getParaboloidZ(x, y, a, b);
 
-	vNormal = VectorType((a * x), (b * y), 1.).normalized();
+    vNormal = VectorType((a * x), (b * y), 1.).normalized();
 
-	vPosition.x() = x;
-	vPosition.y() = y;
-	vPosition.z() = z;
+    vPosition.x() = x;
+    vPosition.y() = y;
+    vPosition.z() = z;
 
-	if(bAddNoise)
-	{
-		//spherical noise
-		vPosition = vPosition + VectorType::Random().normalized() * Eigen::internal::random<Scalar>(0., 1. - MIN_NOISE);
-	}
+    if(_bAddNoise)
+    {
+        //spherical noise
+        vPosition = vPosition + VectorType::Random().normalized() * Eigen::internal::random<Scalar>(0., 1. - MIN_NOISE);
+    }
 
-	//vPosition = qRotation * vPosition + vCenter;
-	//vNormal = qRotation * vNormal;
+    //vPosition = _qRotation * vPosition + _vCenter;
+    //vNormal = _qRotation * vNormal;
 
-	return DataPoint(vPosition, vNormal);
+    return DataPoint(vPosition, vNormal);
 }
 
 template<typename DataPoint>
-typename DataPoint::Scalar getPointKappaMean(typename DataPoint::VectorType vPoint, typename DataPoint::Scalar a, typename DataPoint::Scalar b)
+typename DataPoint::Scalar getPointKappaMean(typename DataPoint::VectorType _vPoint, typename DataPoint::Scalar _a, typename DataPoint::Scalar _b)
 {
-	typedef typename DataPoint::Scalar Scalar;
-	typedef typename DataPoint::VectorType VectorType;
+    typedef typename DataPoint::Scalar Scalar;
+    typedef typename DataPoint::VectorType VectorType;
 
-	Scalar x = vPoint.x();
-	Scalar y = vPoint.y();
+    Scalar x = _vPoint.x();
+    Scalar y = _vPoint.y();
 
-	Scalar ax2 = a * x * a * x;
-	Scalar by2 = b * y * b * y;
+    Scalar ax2 = _a * x * _a * x;
+    Scalar by2 = _b * y * _b * y;
 
-	Scalar num = (1 + ax2) * b + (1 + by2) * a;
-	Scalar den = (1 + ax2 + by2);
-	den = std::pow<Scalar, Scalar>(den, Scalar(3./2.));
+    Scalar num = (1 + ax2) * _b + (1 + by2) * _a;
+    Scalar den = (1 + ax2 + by2);
+    den = std::pow<Scalar, Scalar>(den, Scalar(3./2.));
 
-	Scalar kappa = num / den * (0.5);
+    Scalar kappa = num / den * (0.5);
 
-	return kappa;
+    return kappa;
 }
 
 template<typename DataPoint>
-typename DataPoint::Scalar getKappaMean(const std::vector<DataPoint>& vectorPoints, typename DataPoint::VectorType vCenter,
-										typename DataPoint::Scalar a, typename DataPoint::Scalar b, typename DataPoint::Scalar analysisScale)
+typename DataPoint::Scalar getKappaMean(const std::vector<DataPoint>& _vectorPoints, typename DataPoint::VectorType _vCenter,
+                                        typename DataPoint::Scalar _a, typename DataPoint::Scalar _b, typename DataPoint::Scalar _analysisScale)
 {
-	typedef typename DataPoint::Scalar Scalar;
-	typedef typename DataPoint::VectorType VectorType;
+    typedef typename DataPoint::Scalar Scalar;
+    typedef typename DataPoint::VectorType VectorType;
 
-	int size = vectorPoints.size();
-	Scalar kappaMean = 0.;
-	int nbNei = 0;
+    int size = _vectorPoints.size();
+    Scalar kappaMean = 0.;
+    int nbNei = 0;
 
-	for(unsigned int i = 0; i < size; ++i)
-	{
-		VectorType q = vectorPoints[i].pos() - vCenter;
+    for(unsigned int i = 0; i < size; ++i)
+    {
+        VectorType q = _vectorPoints[i].pos() - _vCenter;
 
-		if(q.norm() <= analysisScale)
-		{
-			kappaMean += getPointKappaMean<DataPoint>(vectorPoints[i].pos(), a, b);
-			++nbNei;
-		}
-	}
+        if(q.norm() <= _analysisScale)
+        {
+            kappaMean += getPointKappaMean<DataPoint>(_vectorPoints[i].pos(), _a, _b);
+            ++nbNei;
+        }
+    }
 
-	return kappaMean / nbNei;
+    return kappaMean / nbNei;
 }
 #endif // _TEST_UTILS_H_
