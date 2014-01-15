@@ -24,12 +24,12 @@ using namespace std;
 using namespace Grenaille;
 
 // This class defines the input data format
-template<typename Scalar, int Dim>
+template<typename _Scalar, int _Dim>
 class MyPoint
 {
 public:
-    enum {Dim = Dim};
-    typedef Scalar Scalar;
+    enum {Dim = _Dim};
+    typedef _Scalar Scalar;
     typedef Eigen::Matrix<Scalar, Dim, 1, Eigen::DontAlign>   VectorType;
     typedef Eigen::Matrix<Scalar, Dim, Dim, Eigen::DontAlign> MatrixType;
 
