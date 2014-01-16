@@ -34,7 +34,7 @@ void testFunction(bool _bAddPositionNoise = false, bool _bAddNormalNoise = false
     Scalar radius = Eigen::internal::random<Scalar>(1,10);
     VectorType center = VectorType::Random() * Eigen::internal::random<Scalar>(1, 10000);
 
-    Scalar analysisScale = 10. * std::sqrt(4 * M_PI * radius * radius / nbPoints);
+    Scalar analysisScale = Scalar(10. * std::sqrt(4 * M_PI * radius * radius / nbPoints));
 
     Scalar epsilon = testEpsilon<Scalar>();
     Scalar radisuEpsilon = epsilon * radius;

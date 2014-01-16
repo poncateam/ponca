@@ -36,10 +36,10 @@ void testFunction()
     VectorType vCoef = VectorType(Eigen::internal::random<Scalar>(-10,10), Eigen::internal::random<Scalar>(-10,10), 0);
     //vCoef.y() = vCoef.x();
 
-    Scalar analysisScale = 0.00000001 * std::min(fabs(vCoef.x()), fabs(vCoef.y()));
+    Scalar analysisScale = Scalar(.00000001 * std::min(fabs(vCoef.x()), fabs(vCoef.y())));
 
 
-    Scalar rotationAngle = Eigen::internal::random<Scalar>(0, 2 * M_PI);
+    Scalar rotationAngle = Eigen::internal::random<Scalar>(Scalar(0.), Scalar(2 * M_PI));
     VectorType vRotationAxis = VectorType::Random().normalized();
     QuaternionType qRotation = QuaternionType(Eigen::AngleAxis<Scalar>(rotationAngle, vRotationAxis));
     qRotation = qRotation.normalized();

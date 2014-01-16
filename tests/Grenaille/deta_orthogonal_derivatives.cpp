@@ -49,7 +49,7 @@ public:
         scale.setRandom();
         VectorType n = VectorType::Random().normalized();
         VectorType p =   scale.asDiagonal() * n * radius   // create an ellipse
-                         * Eigen::internal::random<Scalar>(0.99,1.01); // add high frequency noise
+                         * Eigen::internal::random<Scalar>(Scalar(0.99),Scalar(1.01)); // add high frequency noise
 
         n = (scale.asDiagonal().inverse() * n).normalized();
 
@@ -75,7 +75,7 @@ void test_orthoEta()
     // generate sample data
     int n = Eigen::internal::random<int>(10,1000);
     Scalar radius = Eigen::internal::random<Scalar>(1,10);
-    Scalar tmax = 10.*std::sqrt(4*M_PI*radius*radius/n);
+    Scalar tmax = Scalar(10. * std::sqrt(4. * M_PI * radius * radius/n));
     vector<Point> vecs (n);
 
     for(int k=0; k<n; ++k)
@@ -85,7 +85,7 @@ void test_orthoEta()
 
     Fit fit;
 
-    for(int k=0; k<vecs.size(); ++k)
+    for(unsigned int k=0; k<vecs.size(); ++k)
     {  
         fit.setWeightFunc(WeightFunc(tmax));  
 

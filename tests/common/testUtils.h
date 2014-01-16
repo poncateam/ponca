@@ -166,13 +166,13 @@ DataPoint getPointOnPlane(typename DataPoint::VectorType _vPosition, typename Da
         VectorType vLocalLeft = vLocalUp.cross(vRandomDirection);
         VectorType vLocalFront = vLocalLeft.cross(vLocalUp);
 
-        Scalar rotationAngle = Eigen::internal::random<Scalar>(-M_PI / 16., M_PI / 16.);
+        Scalar rotationAngle = Eigen::internal::random<Scalar>(Scalar(-M_PI / 16.), Scalar(M_PI / 16.));
         VectorType vRotationAxis = vLocalLeft;
         QuaternionType qRotation = QuaternionType(Eigen::AngleAxis<Scalar>(rotationAngle, vRotationAxis));
         qRotation = qRotation.normalized();
         vLocalUp = qRotation * vLocalUp;
 
-        rotationAngle = Eigen::internal::random<Scalar>(-M_PI / 16., M_PI / 16.);
+        rotationAngle = Eigen::internal::random<Scalar>(Scalar(-M_PI / 16.), Scalar(M_PI / 16.));
         vRotationAxis = vLocalFront;
         qRotation = QuaternionType(Eigen::AngleAxis<Scalar>(rotationAngle, vRotationAxis));
         qRotation = qRotation.normalized();
@@ -255,7 +255,7 @@ typename DataPoint::Scalar getPointKappaMean(typename DataPoint::VectorType _vPo
     Scalar den = (1 + ax2 + by2);
     den = std::pow<Scalar, Scalar>(den, Scalar(3./2.));
 
-    Scalar kappa = num / den * (0.5);
+    Scalar kappa = num / den * Scalar(0.5);
 
     return kappa;
 }
@@ -271,7 +271,7 @@ typename DataPoint::Scalar getKappaMean(const std::vector<DataPoint>& _vectorPoi
     Scalar kappaMean = 0.;
     int nbNei = 0;
 
-    for(unsigned int i = 0; i < size; ++i)
+    for(int i = 0; i < size; ++i)
     {
         VectorType q = _vectorPoints[i].pos() - _vCenter;
 

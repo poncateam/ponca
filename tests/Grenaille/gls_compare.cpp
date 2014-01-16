@@ -32,7 +32,7 @@ void testFunction(bool _bUnoriented = false, bool _bAddPositionNoise = false, bo
     Scalar radius1 = Eigen::internal::random<Scalar>(1, 5);
     Scalar radius2 = Eigen::internal::random<Scalar>(10, 50);
 
-    Scalar analysisScale = 10.f * std::sqrt( 4.f * M_PI * radius2 * radius2 / nbPoints);
+    Scalar analysisScale = Scalar(10. * std::sqrt( 4. * M_PI * radius2 * radius2 / nbPoints));
 
     VectorType center = VectorType::Zero();
 
@@ -41,14 +41,14 @@ void testFunction(bool _bUnoriented = false, bool _bAddPositionNoise = false, bo
     vector<DataPoint> sphere1(nbPoints);
     vector<DataPoint> sphere2(nbPoints);
 
-    for(unsigned int i = 0; i < nbPoints; ++i)
+    for(int i = 0; i < nbPoints; ++i)
     {
         sphere1[i] = getPointOnSphere<DataPoint>(radius1, center, _bAddPositionNoise, _bAddNormalNoise, _bUnoriented);
         sphere2[i] = getPointOnSphere<DataPoint>(radius2, center, _bAddPositionNoise, _bAddNormalNoise, _bUnoriented);
     }
 
     // Test for each point if the fitted sphere correspond to the theorical sphere
-    for(unsigned int i = 0; i < nbPoints - 1; ++i)
+    for(int i = 0; i < nbPoints - 1; ++i)
     {
         Fit fit1, fit2, fit3;
         fit1.setWeightFunc(WeightFunc(analysisScale));
