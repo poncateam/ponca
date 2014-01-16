@@ -7,10 +7,21 @@ namespace Grenaille
   
   \section grenaille_user_manual_intro Introduction
 
-  Fitting point clouds require a few steps that we describe in the following, using 3D points equiped with oriented normals in our example.
-  First you must set up data samples that interface with your code; then run the fitting process in itself, and finally collect outputs. 
-  We also show how to compute curvatures with the very same approach, as this is a common requirement of many geometric processing algorithms.
-  
+  This module is dedicated to the smooth fitting of point clouds and extraction of useful geometric properties. Figure 1(a) shows a typical example in 2D: 
+  we reconstruct a potential function (shown in fake colors) from a few 2D points equipped with normals; then the 0-isoline of this potential gives us an 
+  implicit curve (in orange) from which we can readily extract further properties like curvature. A great benefit of this implicit technique \cite Guennebaud:2007:APSS is that it works 
+  in arbitrary dimensions: Figures 1(b-c) show how we reconstruct an implicit 3D surface with the same approach, starting from a 3D point cloud. Working with 
+  meshes then simply consists of only considering their vertices.
+
+  This is just the tip of the iceberg though, as we also provide methods for dealing with points equipped with non-oriented normals \cite Chen:2013:NOMG, techniques to analyze 
+  points clouds in scale-space to discover salient structures \cite Mellado:2012:GLS, and methods to compute multi-scale principal curvatures \cite Mellado:2013:SSC. 
+
+  In the following, we focus on a basic use of the module, using 3D points equiped with oriented normals. First, one must set up data samples that interface 
+  with an external code; then run the fitting process in itself, and finally collect outputs. We also show how to compute curvatures with the very same approach, 
+  as this is a common requirement of many geometric processing algorithms.
+
+   \image html interpolation.png "Figure 1: (a) An implicit 2D curve fit to a 2D point cloud. (b) A 3D point cloud shown with splats. (c) An implicit 3D surface reconstructed from (b)."
+
   \section grenaille_user_manual_datas Data Samples 
   
   The first step needed to use Grenaille is to define how samples are represented inside the module.
@@ -60,7 +71,7 @@ namespace Grenaille
 
   Two template classes must be specialized to indicate how a fit will be applied.  
   
-  The first step consists in identifying a weighting function: it defines how neighbor samples will contribute to the fit. In this example, we choose a weight based on the Euclidean distance using Grenaille::DistWeightFunc, remapped through a bisquare kernel defined in Grenaille::SmoothWeightKernel:
+  The first step consists in identifying a weighting function: it defines how neighbor samples will contribute to the fit, as illustrated in Figure 2(a) in 2D. In this example, we choose a weight based on the Euclidean distance using Grenaille::DistWeightFunc, remapped through a bisquare kernel defined in Grenaille::SmoothWeightKernel:
   \code
   typedef DistWeightFunc<MyPoint,SmoothWeightKernel<Scalar> > WeightFunc; 
   \endcode
@@ -72,13 +83,13 @@ namespace Grenaille
   \endcode
 
   At this point, most of the hard job has already been performed. 
-  All we have to do now is to provide an instance of the weight function, where tmax refers to the neighborhood size, and iniate the fit at an arbitrary position p.
+  All we have to do now is to provide an instance of the weight function, where t refers to the neighborhood size, and iniate the fit at an arbitrary position p.
   \code
   // Create the previously defined fitting procedure
   Fit1 fit;
   
   // Set a weighting function instance
-  fit.setWeightFunc(WeightFunc(tmax));
+  fit.setWeightFunc(WeightFunc(t));
   
   // Set the evaluation position
   fit.init(p);
@@ -117,10 +128,11 @@ namespace Grenaille
   }
   \endcode
 
+  \image html gls.png "Figure 2. (a) Fitting a 2D point cloud of positions and normals at a point p (in red) requires to define a weight function of size t (in green). (b) This results in an implicit scalar field (in fake colors), from which parameters of a local spherical surface can be extracted: an offset tau, a normal eta and a curvature kappa."
   
   \section grenaille_user_manual_outputs  Basic Outputs
 
-  Now that you have performed fitting, you may use its outputs in a number of ways.
+  Now that you have performed fitting, you may use its outputs in a number of ways (see Figure 2(b) for an illustration in 2D).
 
   \subsection grenaille_user_manual_subsection_access_field Scalar field  
 
@@ -182,13 +194,14 @@ namespace Grenaille
 
 
   \section grenaille_user_manual_cuvature Computing Curvatures
-  
+
+
   This part presents how to compute curvature values from the various fitting
   procedures and extensions available in Grenaille.
 
   \subsection grenaille_user_manual_subsection_meancurvature Mean Curvature
 
-  A fast approximation of the mean curvature is provided by GLSParam::kappa():
+  A fast approximation of the mean curvature is provided by GLSParam::kappa() and illustrated at two scales on a 3D surface in Figure 3:
   \code
   typedef Basket<MyPoint, WeightFunc, OrientedSphereFit, // Sphere fitting
                                       GLSParam> Fit;     // GLS reparametrization
@@ -220,6 +233,8 @@ namespace Grenaille
   \endcode
   \note In this example, we build the Jacobian from <CODE>fit.deta()</CODE>, using an implicit cast from <CODE>VectorArray</CODE> to <CODE>MatrixType</CODE>. It will require a more careful conversion when the basket contains different extensions. More details \link Grenaille::internal::OrientedSphereDer here.\endlink
     
+  \image html buste.png "Figure 3. Mean curvature computed at a fine (left) and a coarse (right) scale, and rendered with a simple color map (orange for concavities, blue for convexities)."
+
   \subsection grenaille_user_manual_subsection_principalcurvatures Principal Curvatures
 
   Principal curvatures and their associated directions can be computed by 
