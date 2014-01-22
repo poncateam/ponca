@@ -152,7 +152,7 @@ public:
     {
         if(isPlane())
         {
-            return Scalar(1.0/0.0);
+            return std::numeric_limits<Scalar>::infinity();
         }
 
         MULTIARCH_STD_MATH(sqrt);
@@ -167,7 +167,7 @@ public:
     {
         if(isPlane())
         {
-            return Scalar(1.0/0.0);
+            return VectorType(std::numeric_limits<Scalar>::infinity());
         }
 
         Scalar b = Scalar(1.)/m_uq;
@@ -193,7 +193,6 @@ public:
     MULTIARCH inline bool isPlane() const
     {
         MULTIARCH_STD_MATH(abs);
-
         Scalar epsilon = Eigen::NumTraits<Scalar>::dummy_precision();
         bool bPlanar = Eigen::internal::isMuchSmallerThan(abs(m_uq), 1., epsilon);
         bool bReady = isReady();
