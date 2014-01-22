@@ -54,6 +54,7 @@ FIT_RESULT
 OrientedSphereFit<DataPoint, _WFunctor, T>::finalize ()
 {
     MULTIARCH_STD_MATH(sqrt);
+    MULTIARCH_STD_MATH(max);
 
     // 1. finalize sphere fitting
     Scalar epsilon = Eigen::NumTraits<Scalar>::dummy_precision();
@@ -77,7 +78,7 @@ OrientedSphereFit<DataPoint, _WFunctor, T>::finalize ()
     Scalar den  = m_sumDotPP - den1;
 
     // Deal with degenarative cases
-    if(fabs(den) < epsilon * std::max(m_sumDotPP, den1))
+    if(fabs(den) < epsilon * max(m_sumDotPP, den1))
     {
         //plane
         Scalar s = Scalar(1.) / Base::m_ul.norm();
