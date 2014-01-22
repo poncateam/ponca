@@ -38,7 +38,8 @@ public:
     */
     MULTIARCH inline DistWeightFunc(const Scalar& _t = Scalar(1.))
     {
-        assert(_t > Scalar(0));
+        //\todo manage that assrt on __host__ and __device__
+        //assert(_t > Scalar(0));
         m_t = _t;
     }
 
