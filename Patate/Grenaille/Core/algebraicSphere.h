@@ -145,14 +145,15 @@ public:
     
     /*!
         \brief return the estimated radius of the sphere
-        \return inf if the fitted surface is planar
-        \warning return +inf if the fitted surface is planar
+        \warning return inf if the fitted surface is planar
     */
     MULTIARCH inline Scalar radius()
     {
         if(isPlane())
         {
-            return std::numeric_limits<Scalar>::infinity();
+            //return infinity (non-sense value)
+            Scalar inf = 0.;
+            return Scalar(1.)/inf;
         }
 
         MULTIARCH_STD_MATH(sqrt);
@@ -162,12 +163,15 @@ public:
     
     /*!
         \brief return the estimated center of the sphere
+        \warning return Vector inf if the fitted surface is planar
     */
     MULTIARCH inline VectorType center()
     {
         if(isPlane())
         {
-            return VectorType(std::numeric_limits<Scalar>::infinity());
+            //return infinity (non-sense value)
+            Scalar inf = 0.;
+            return VectorType(Scalar(1.)/inf);
         }
 
         Scalar b = Scalar(1.)/m_uq;
