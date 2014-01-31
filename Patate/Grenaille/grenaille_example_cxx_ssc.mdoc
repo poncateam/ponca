@@ -17,11 +17,11 @@
   This example requires the following third-aprts library :
    - freeimageplus
   
-  as well as a working cuda 5.0 setup and the last version of eigen-nvcc.
+  as well as a working cuda 5.0 setup and the lastest version of <strong>eigen dev branch</strong> which manage nvcc compiler.
   
   Compile the cuda kernel using 
   \code
-  nvcc -I../../../patate -Ipath/to/eigen_nvcc -lfreeimageplus ssgls.cu -o ssgls.o
+  nvcc -I../../../patate -Ipath/to/eigen-dev-branch-version -lfreeimageplus ssgls.cu -o ssgls.o
   \endcode
   
   Then, use the following command to execute the compiled program
