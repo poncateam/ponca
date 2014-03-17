@@ -29,7 +29,7 @@ namespace Grenaille
     coordinates (e.g. you don't need to convert your query in the current locale
     frame).
     
-    This fitting procedure provides: 
+    This primitive provides: 
     \verbatim PROVIDES_ALGEBRAIC_SPHERE \endverbatim
 
     \todo Deal with planar case (_uq == 0) and what about _ul == 0 ?
