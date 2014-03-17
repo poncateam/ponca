@@ -48,7 +48,8 @@ class PointPosistionNormal
 public:
     enum {Dim = _Dim};
     typedef _Scalar Scalar;
-    typedef Eigen::Matrix<Scalar, Dim, 1, Eigen::DontAlign>		VectorType;
+    typedef Eigen::Matrix<Scalar, Dim,   1, Eigen::DontAlign>		VectorType;
+    typedef Eigen::Matrix<Scalar, Dim+1, 1, Eigen::DontAlign>		HVectorType;
     typedef Eigen::Matrix<Scalar, Dim, Dim, Eigen::DontAlign>	MatrixType;
     typedef Eigen::Quaternion<Scalar, Eigen::DontAlign>			QuaternionType;
 

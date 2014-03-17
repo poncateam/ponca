@@ -60,3 +60,11 @@ add_executable(gls_compare ${gls_compare_SRCS})
 add_dependencies(buildtests gls_compare)
 add_test(gls_compare gls_compare)
 
+#############################################
+set(plane_primitive_SRCS 
+    plane_primitive.cpp
+)
+add_executable(plane_primitive ${plane_primitive_SRCS})
+add_dependencies(buildtests plane_primitive)
+add_test(plane_primitive plane_primitive)
+
