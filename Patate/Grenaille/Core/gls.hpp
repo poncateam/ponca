@@ -55,7 +55,7 @@ template < class DataPoint, class _WFunctor, typename T>
 typename GLSDer <DataPoint, _WFunctor, T>::VectorArray
 GLSDer <DataPoint, _WFunctor, T>::deta_normalized() const
 {
-        return Base::m_t * deta();
+    return Base::m_t * deta();
 }
 
 
