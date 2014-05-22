@@ -8,6 +8,8 @@
 #ifndef _GRENAILLE_ALGEBRAIC_SPHERE_
 #define _GRENAILLE_ALGEBRAIC_SPHERE_
 
+#include "primitive.h" // PrimitiveBase
+
 namespace Grenaille
 {
 
@@ -35,8 +37,12 @@ namespace Grenaille
     \todo Deal with planar case (_uq == 0) and what about _ul == 0 ?
 */
 template < class DataPoint, class _WFunctor, typename T = void  >
-class AlgebraicSphere
+class AlgebraicSphere : public PrimitiveBase<DataPoint, _WFunctor>
 {
+private:
+
+    typedef PrimitiveBase<DataPoint, _WFunctor> Base; 
+    
 protected:
 
     enum
@@ -62,12 +68,6 @@ protected:
 
     //! \brief Is the implicit scalar field normalized using Pratt
     bool m_isNormalized;
-    
-    //! \brief Represent the current state of the fit (finalize function update the state)
-    FIT_RESULT m_eCurrentState;
-
-    //! \brief Give the number of neighbors
-    int m_nbNeighbors;
 
 // results
 public:
@@ -80,6 +80,7 @@ public:
 
     /*! \brief Default constructor */
     MULTIARCH inline AlgebraicSphere()
+        : Base()
     {
         m_p = VectorType::Zero();
         resetPrimitive();
@@ -88,24 +89,14 @@ public:
     /*! \brief Set the scalar field values to 0 and reset the isNormalized() status */
     MULTIARCH inline void resetPrimitive()
     {
+        Base::resetPrimitive();
+    
         m_uc = Scalar(0.0);
         m_ul = VectorType::Zero();
         m_uq = Scalar(0.0);
       
         m_isNormalized = false;
-        m_eCurrentState = UNDEFINED;
-        m_nbNeighbors = 0;
     }
-    
-    /*! \brief Is the sphere fitted an ready to use (finalize has been called)
-    \warning The fit can be unstable (having neighbors between 3 and 6) */
-    MULTIARCH inline bool isReady() const { return (m_eCurrentState == STABLE) || (m_eCurrentState == UNSTABLE); }
-
-    /*! \brief Is the sphere fitted an ready to use (finalize has been called and the result is stable, eq. having more than 6 neighbors) */
-    MULTIARCH inline bool isStable() const { return m_eCurrentState == STABLE; }
-
-    /*! \return the current test of the fit */
-    MULTIARCH inline FIT_RESULT getCurrentState() const { return m_eCurrentState; }
 
     /*! \brief Reading access to the basis center (evaluation position) */
     MULTIARCH inline const VectorType& basisCenter () const { return m_p; }
@@ -198,8 +189,8 @@ public:
     {
         MULTIARCH_STD_MATH(abs);
         Scalar epsilon = Eigen::NumTraits<Scalar>::dummy_precision();
-        bool bPlanar = Eigen::internal::isMuchSmallerThan(abs(m_uq), 1., epsilon);
-        bool bReady = isReady();
+        bool bPlanar   = Eigen::internal::isMuchSmallerThan(abs(m_uq), 1., epsilon);
+        bool bReady    = Base::isReady();
 
         return bReady && bPlanar;
     }

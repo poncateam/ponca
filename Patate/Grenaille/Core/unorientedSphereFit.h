@@ -58,7 +58,7 @@ protected:
 public:
     /*! \brief Default constructor */
     MULTIARCH inline UnorientedSphereFit()
-        : AlgebraicSphere<DataPoint,WFunctor>(){}
+        : Base(){}
 
 
     /**************************************************************************/

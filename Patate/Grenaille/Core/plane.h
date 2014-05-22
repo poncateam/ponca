@@ -10,6 +10,8 @@
 #ifndef _GRENAILLE_PLANE_
 #define _GRENAILLE_PLANE_
 
+#include "primitive.h" // PrimitiveBase
+
 namespace Grenaille
 {
 
@@ -30,15 +32,16 @@ namespace Grenaille
     This primitive provides: 
     \verbatim PROVIDES_PLANE \endverbatim
     
-    
-    \TODO Use Generic Primitive class and push fit state into it
-    
     \note The first n-components of the plane must define a normalized vector
     
 */
 template < class DataPoint, class _WFunctor, typename T = void  >
-class CompactPlane
+class CompactPlane : public PrimitiveBase<DataPoint, _WFunctor>
 {
+private:
+
+    typedef PrimitiveBase<DataPoint, _WFunctor> Base; 
+    
 protected:
 
     enum
@@ -55,16 +58,7 @@ public:
     /*! \brief Homogeneous vector type inherited from DataPoint */
     typedef typename DataPoint::HVectorType HVectorType;
     /*! \brief Weight Function */
-    typedef _WFunctor                       WFunctor;  
-    
-protected:
-    
-    //! \brief Represent the current state of the fit (finalize function 
-    //! update the state)
-    FIT_RESULT m_eCurrentState;
-
-    //! \brief Give the number of neighbors
-    int m_nbNeighbors;
+    typedef _WFunctor                       WFunctor;
 
 // results
 public:
@@ -74,7 +68,8 @@ public:
 public:
 
     /*! \brief Default constructor */
-    MULTIARCH inline Plane()
+    MULTIARCH inline CompactPlane()
+        : Base()
     {
         resetPrimitive();
     }    
@@ -83,27 +78,8 @@ public:
          status */
     MULTIARCH inline void resetPrimitive()
     {
+        Base::resetPrimitive();
         m_p = HVectorType::Zero();
-      
-        m_eCurrentState = UNDEFINED;
-        m_nbNeighbors = 0;
-    }
-    
-    /*! \brief Is the plane fitted an ready to use (finalize has been called)
-    \warning The fit can be unstable (having neighbors between 3 and 6) */
-    MULTIARCH inline bool isReady() const 
-    { 
-        return (m_eCurrentState == STABLE) || (m_eCurrentState == UNSTABLE); 
-    }
-
-    /*! \brief Is the plane fitted an ready to use (finalize has been called 
-    and the result is stable, eq. having more than 6 neighbors) */
-    MULTIARCH inline bool isStable() const { return m_eCurrentState == STABLE; }
-
-    /*! \return the current test of the fit */
-    MULTIARCH inline FIT_RESULT getCurrentState() const 
-    { 
-        return m_eCurrentState; 
     }
         
     //! \brief Value of the scalar field at the location \f$ \mathbf{q} \f$

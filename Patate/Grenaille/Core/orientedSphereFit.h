@@ -53,9 +53,7 @@ public:
 
     /*! \brief Default constructor */
     MULTIARCH inline OrientedSphereFit()
-        : AlgebraicSphere<DataPoint,WFunctor>()
-    {}
-
+        : Base(){}
 
     /**************************************************************************/
     /* Initialization                                                         */
