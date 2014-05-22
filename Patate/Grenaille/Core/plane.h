@@ -37,7 +37,7 @@ namespace Grenaille
     
 */
 template < class DataPoint, class _WFunctor, typename T = void  >
-class Plane
+class CompactPlane
 {
 protected:
 
