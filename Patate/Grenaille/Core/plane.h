@@ -24,6 +24,11 @@ namespace Grenaille
     \f$ s_\mathbf{u}(\mathbf{x}) = 
     \left[ \mathbf{x}^T \; 1 \;\right]^T \cdot \mathbf{p} \f$.
     
+    This class uses a compact storage of n+1 scalars in n-dimensionnal space. It 
+    can be sensitive to the data scale, leading to potential instabilities 
+    due to round errors at large scales. 
+    \todo Add standard plane storing 2n scalars (direction and center).    
+    
     
     This primitive requires the definition of n-dimensionnal vectors 
     (VectorType) and homogeneous n-dimensionnal vectors (HVectorType) in 
@@ -72,7 +77,7 @@ public:
         : Base()
     {
         resetPrimitive();
-    }    
+    }
     
     /*! \brief Set the scalar field values to 0 and reset the isNormalized() 
          status */
@@ -80,6 +85,17 @@ public:
     {
         Base::resetPrimitive();
         m_p = HVectorType::Zero();
+    }
+    
+    /* \brief Init the plane from a direction and a position
+       \param _dir Orientation of the plane
+       \param _pos Position of the plane
+    */
+    MULTIARCH inline void setPlane (const VectorType& _dir, 
+                                    const VectorType& _pos)
+    {
+        m_p.template head<DataPoint::Dim>() = _dir.normalized();
+        m_p.template tail<1>()<< -_pos.dot(m_p.template head<DataPoint::Dim>());
     }
         
     //! \brief Value of the scalar field at the location \f$ \mathbf{q} \f$
