@@ -21,6 +21,7 @@
 #include "Grenaille/Core/weightFunc.h"
 
 #include "Grenaille/Core/plane.h"
+#include "Grenaille/Core/covariancePlaneFit.h"
 
 #include "Grenaille/Core/orientedSphereFit.h"
 #include "Grenaille/Core/gls.h"
