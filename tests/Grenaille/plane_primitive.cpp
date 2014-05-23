@@ -26,13 +26,17 @@ void testFunction()
     typedef typename DataPoint::VectorType VectorType;
     typedef typename DataPoint::HVectorType HVectorType;
     
-    Fit f;
-    f.m_p = HVectorType::Random();
-    f.m_p.template head<DataPoint::Dim>().normalize();
-    
+    Scalar epsilon = testEpsilon<Scalar>();
     VectorType query = VectorType::Random();
     
-    Scalar epsilon = testEpsilon<Scalar>();
+    Fit f;
+    f.setPlane(VectorType::Random(), query);
+
+    // Test that the point on the plane returns a potential of 0
+    VERIFY( f.potential(query) <= epsilon);
+    
+    // Use a random position in space
+    query = VectorType::Random();
     
     // Check if we get the same point when projecting points x and x+gradient.
     VectorType proj1 = f.project( query );
