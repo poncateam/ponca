@@ -99,7 +99,7 @@ template < class DataPoint, class _WFunctor, typename T>
 typename CovariancePlaneFit<DataPoint, _WFunctor, T>::Scalar
 CovariancePlaneFit<DataPoint, _WFunctor, T>::surfaceVariation () const
 {
-    if( Base::m_eCurrentState = UNDEFINED )
+    if( Base::m_eCurrentState == UNDEFINED )
       return 0;
 
     return m_solver.eigenvalues()(0) / m_solver.eigenvalues().norm();
