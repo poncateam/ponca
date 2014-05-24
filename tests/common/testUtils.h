@@ -119,6 +119,42 @@ void reverseNormals(std::vector<DataPoint>& _dest, const std::vector<DataPoint>&
     }
 }
 
+template<typename DataPoint>
+DataPoint getPointOnSphere(typename DataPoint::Scalar _radius, typename DataPoint::VectorType _vCenter, bool _bAddPositionNoise = true,
+                           bool _bAddNormalNoise = true, bool _bReverseNormals = false)
+{
+    typedef typename DataPoint::Scalar Scalar;
+    typedef typename DataPoint::VectorType VectorType;
+    typedef typename DataPoint::QuaternionType QuaternionType;
+
+    VectorType vNormal = VectorType::Random().normalized();
+
+    VectorType vPosition = _vCenter + vNormal * _radius; // * Eigen::internal::random<Scalar>(MIN_NOISE, MAX_NOISE);
+
+    if(_bAddPositionNoise)
+    {
+        //vPosition = _vCenter + vNormal * _radius * Eigen::internal::random<Scalar>(MIN_NOISE, MAX_NOISE);
+        vPosition = vPosition + VectorType::Random().normalized() * Eigen::internal::random<Scalar>(0., 1. - MIN_NOISE);
+        vNormal = (vPosition - _vCenter).normalized();
+    }
+
+    if(_bAddNormalNoise)
+    {
+        VectorType vTempPos =  vPosition + VectorType::Random().normalized() * Eigen::internal::random<Scalar>(0., 1. - MIN_NOISE);
+        vNormal = (vTempPos - _vCenter).normalized();
+    }
+    if(_bReverseNormals)
+    {
+        float reverse = Eigen::internal::random<float>(0.f, 1.f);
+        if(reverse > 0.5f)
+        {
+            vNormal = -vNormal;
+        }
+    }
+
+    return DataPoint(vPosition, vNormal);
+}
+
 /*! \brief Generate points on a plane without normals */
 template<typename DataPoint>
 DataPoint getPointOnRectangularPlane(
