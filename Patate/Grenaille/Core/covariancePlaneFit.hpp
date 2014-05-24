@@ -41,6 +41,7 @@ CovariancePlaneFit<DataPoint, _WFunctor, T>::addNeighbor(const DataPoint& _nei)
         {
             VectorType q = _nei.pos() - m_gc;
             m_cov +=  w * q * q.transpose();
+            m_sumW += w;
         }
         
         ++(Base::m_nbNeighbors);
