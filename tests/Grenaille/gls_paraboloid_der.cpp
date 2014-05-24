@@ -106,7 +106,7 @@ void testFunction()
 template<typename Scalar, int Dim>
 void callSubTests()
 {
-    typedef PointPosistionNormal<Scalar, Dim> Point;
+    typedef PointPositionNormal<Scalar, Dim> Point;
 
     typedef DistWeightFunc<Point, SmoothWeightKernel<Scalar> > WeightSmoothFunc;
     typedef DistWeightFunc<Point, ConstantWeightKernel<Scalar> > WeightConstantFunc;
