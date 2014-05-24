@@ -55,7 +55,7 @@ void testFunction()
 template<typename Scalar, int Dim>
 void callSubTests()
 {
-    typedef PointPosistionNormal<Scalar, Dim> Point;
+    typedef PointPosition<Scalar, Dim> Point;
 
     // We test only primitive functions and not the fitting procedure
     typedef DistWeightFunc<Point, SmoothWeightKernel<Scalar> > WeightFunc;
