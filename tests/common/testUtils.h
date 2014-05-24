@@ -43,7 +43,7 @@ template<> inline long double testEpsilon<long double>()
 
 // Basic point
 template<typename _Scalar, int _Dim>
-class PointPosistionNormal
+class PointPositionNormal
 {
 public:
     enum {Dim = _Dim};
@@ -53,19 +53,42 @@ public:
     typedef Eigen::Matrix<Scalar, Dim, Dim, Eigen::DontAlign>	MatrixType;
     typedef Eigen::Quaternion<Scalar, Eigen::DontAlign>			QuaternionType;
 
-    MULTIARCH inline PointPosistionNormal(  const VectorType &pos = VectorType::Zero(), 
+    MULTIARCH inline PointPositionNormal(  const VectorType &pos = VectorType::Zero(),
                                             const VectorType& normal = VectorType::Zero()
                                         )
         : m_pos(pos), m_normal(normal) {}
 
-    MULTIARCH inline const VectorType& pos()    const { return m_pos; }  
+    MULTIARCH inline const VectorType& pos()    const { return m_pos; }
     MULTIARCH inline const VectorType& normal() const { return m_normal; }
 
-    MULTIARCH inline VectorType& pos()    { return m_pos; }  
+    MULTIARCH inline VectorType& pos()    { return m_pos; }
     MULTIARCH inline VectorType& normal() { return m_normal; }
 
 private:
     VectorType m_pos, m_normal;
+};
+
+// Basic point
+template<typename _Scalar, int _Dim>
+class PointPosition
+{
+public:
+    enum {Dim = _Dim};
+    typedef _Scalar Scalar;
+    typedef Eigen::Matrix<Scalar, Dim,   1, Eigen::DontAlign>		VectorType;
+    typedef Eigen::Matrix<Scalar, Dim+1, 1, Eigen::DontAlign>		HVectorType;
+    typedef Eigen::Matrix<Scalar, Dim, Dim, Eigen::DontAlign>	MatrixType;
+    typedef Eigen::Quaternion<Scalar, Eigen::DontAlign>			QuaternionType;
+
+    MULTIARCH inline PointPosition(  const VectorType &pos = VectorType::Zero() )
+        : m_pos(pos) {}
+
+    MULTIARCH inline const VectorType& pos()    const { return m_pos; }
+
+    MULTIARCH inline VectorType& pos()    { return m_pos; }
+
+private:
+    VectorType m_pos;
 };
 
 template<typename DataPoint>
