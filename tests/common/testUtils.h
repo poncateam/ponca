@@ -119,46 +119,44 @@ void reverseNormals(std::vector<DataPoint>& _dest, const std::vector<DataPoint>&
     }
 }
 
+/*! \brief Generate points on a plane without normals */
 template<typename DataPoint>
-DataPoint getPointOnSphere(typename DataPoint::Scalar _radius, typename DataPoint::VectorType _vCenter, bool _bAddPositionNoise = true,
-                           bool _bAddNormalNoise = true, bool _bReverseNormals = false)
+DataPoint getPointOnRectangularPlane(
+        const typename DataPoint::VectorType& _vPosition,
+        const typename DataPoint::VectorType& /*_vNormal*/,
+        const typename DataPoint::Scalar& _width,
+        const typename DataPoint::Scalar& _height,
+        const typename DataPoint::VectorType& _localxAxis,
+        const typename DataPoint::VectorType& _localyAxis,
+        bool _bAddPositionNoise = true)
 {
     typedef typename DataPoint::Scalar Scalar;
     typedef typename DataPoint::VectorType VectorType;
-    typedef typename DataPoint::QuaternionType QuaternionType;
 
-    VectorType vNormal = VectorType::Random().normalized();
+    Scalar u = Eigen::internal::random<Scalar>(-_width/Scalar(2),
+                                                _width/Scalar(2));
+    Scalar v = Eigen::internal::random<Scalar>(-_height/Scalar(2),
+                                                _height/Scalar(2));
 
-    VectorType vPosition = _vCenter + vNormal * _radius; // * Eigen::internal::random<Scalar>(MIN_NOISE, MAX_NOISE);
+    VectorType vRandomPosition = _vPosition + u*_localxAxis + v*_localyAxis;
 
     if(_bAddPositionNoise)
     {
-        //vPosition = _vCenter + vNormal * _radius * Eigen::internal::random<Scalar>(MIN_NOISE, MAX_NOISE);
-        vPosition = vPosition + VectorType::Random().normalized() * Eigen::internal::random<Scalar>(0., 1. - MIN_NOISE);
-        vNormal = (vPosition - _vCenter).normalized();
+        vRandomPosition = vRandomPosition +
+                VectorType::Random().normalized() *
+                Eigen::internal::random<Scalar>(0., 1. - MIN_NOISE);
     }
 
-    if(_bAddNormalNoise)
-    {
-        VectorType vTempPos =  vPosition + VectorType::Random().normalized() * Eigen::internal::random<Scalar>(0., 1. - MIN_NOISE);
-        vNormal = (vTempPos - _vCenter).normalized();
-    }
-
-    if(_bReverseNormals)
-    {
-        float reverse = Eigen::internal::random<float>(0.f, 1.f);
-        if(reverse > 0.5f)
-        {
-            vNormal = -vNormal;
-        }	
-    }
-
-    return DataPoint(vPosition, vNormal);
+    return DataPoint(vRandomPosition);
 }
 
 template<typename DataPoint>
-DataPoint getPointOnPlane(typename DataPoint::VectorType _vPosition, typename DataPoint::VectorType _vNormal, typename DataPoint::Scalar _radius,
-                          bool _bAddPositionNoise = true, bool _bAddNormalNoise = true, bool _bReverseNormals = false	)
+DataPoint getPointOnPlane(typename DataPoint::VectorType _vPosition,
+                          typename DataPoint::VectorType _vNormal,
+                          typename DataPoint::Scalar _radius,
+                          bool _bAddPositionNoise = true,
+                          bool _bAddNormalNoise = true,
+                          bool _bReverseNormals = false	)
 {
     typedef typename DataPoint::Scalar Scalar;
     typedef typename DataPoint::VectorType VectorType;
