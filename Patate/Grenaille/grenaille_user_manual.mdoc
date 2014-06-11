@@ -14,9 +14,9 @@ namespace Grenaille
   meshes then simply consists of only considering their vertices.
 
   This is just the tip of the iceberg though, as we also provide methods for dealing with points equipped with non-oriented normals \cite Chen:2013:NOMG, techniques to analyze 
-  points clouds in scale-space to discover salient structures \cite Mellado:2012:GLS, and methods to compute multi-scale principal curvatures \cite Mellado:2013:SSC. 
+  points clouds in scale-space to discover salient structures \cite Mellado:2012:GLS, methods to compute multi-scale principal curvatures \cite Mellado:2013:SSC and methods to compute surface varition using a plane instead of a sphere for the fitting \cite Pauly:2002:PSSimplification.
 
-  In the following, we focus on a basic use of the module, using 3D points equiped with oriented normals. First, one must set up data samples that interface 
+  In the following, we focus on a basic use of the module, using 3D points equiped with oriented normals fitted by a Grenaille::AlgebraicSphere. First, one must set up data samples that interface 
   with an external code; then run the fitting process in itself, and finally collect outputs. We also show how to compute curvatures with the very same approach, 
   as this is a common requirement of many geometric processing algorithms.
 
@@ -270,7 +270,8 @@ namespace Grenaille
 
   \section grenaille_user_manual_going_further Going Further
   
-  This page was intended to show you a standard use of the Grenaille module. However, there is more to it than Grenaille::OrientedSphereFit, as shown in its <a href="namespace_grenaille.html"><b>reference</b></a>.
+  This page was intended to show you a standard use of the Grenaille module. However, there is more to it than Grenaille::OrientedSphereFit, as shown in its <a href="namespace_grenaille.html"><b>reference</b></a>. For example,
+  you can create a totally different Basket with a Grenaille::CompactPlane and its extension Grenaille::CovariancePlaneFit using plane instead of algebraic sphere to procede the fit in order to compute Grenaille::CovariancePlaneFit::surfaceVariation.
   We encourage you to make your own tests and have a look at our \ref grenaille_example_page "examples". It will give you ideas about how to use this module inside your own applications.
  */
  }
