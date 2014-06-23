@@ -19,7 +19,41 @@
 using namespace std;
 using namespace Grenaille;
 
-template<typename DataPoint, typename Fit, typename WeightFunc> //, typename Fit, typename WeightFunction>
+template <bool isSpaceDer, int Dim>
+struct subTestSpatial{
+    template<typename Scalar, typename Fit>
+    static
+    inline void eval(const Fit& _fit,
+                     Scalar _radiusMin,
+                     Scalar _radiusMax,
+                     Scalar _radiusEpsilon,
+                     Scalar _fitRadiusKappa,
+                     Scalar _fitRadiusAlgebraic) { }
+};
+
+template <>
+template<typename Scalar, typename Fit>
+void
+subTestSpatial<true, 3>::eval(const Fit& _fit,
+                           Scalar _radiusMin,
+                           Scalar _radiusMax,
+                           Scalar _radiusEpsilon,
+                           Scalar _fitRadiusKappa,
+                           Scalar _fitRadiusAlgebraic){
+
+    Scalar k1      = _fit.GLSk1();
+    Scalar k2      = _fit.GLSk2();
+    Scalar kmean   = (k1 + k2) / Scalar (2.);
+    Scalar radius  = Scalar(1.) / kmean;
+
+    //Test value
+    VERIFY( (radius > _radiusMin - _radiusEpsilon) &&
+            (radius < _radiusMax + _radiusEpsilon) );
+}
+
+
+
+template<typename DataPoint, typename Fit, typename WeightFunc, bool isSpaceDer> //, typename Fit, typename WeightFunction>
 void testFunction(bool _bUnoriented = false, bool _bAddPositionNoise = false, bool _bAddNormalNoise = false)
 {
     // Define related structure
@@ -68,7 +102,7 @@ void testFunction(bool _bUnoriented = false, bool _bAddPositionNoise = false, bo
         {
             Scalar fitRadiusKappa = Scalar(fabs(Scalar(1.) / fit.kappa()));
             Scalar fitRadiusAlgebraic = fit.radius();
-            VectorType fitCenter = fit.center();
+            VectorType fitCenter (fit.center());
 
             Scalar radiusMax = radius * MAX_NOISE;
             Scalar radiusMin = radius * MIN_NOISE;
@@ -81,12 +115,15 @@ void testFunction(bool _bUnoriented = false, bool _bAddPositionNoise = false, bo
             //Test coherance
             VERIFY( Eigen::internal::isMuchSmallerThan(std::fabs(fitRadiusAlgebraic - fitRadiusKappa), 1., epsilon) );
 
+            //Test using spatial derivatives if defined
+            subTestSpatial<isSpaceDer, DataPoint::Dim>::eval(fit, radiusMin, radiusMax, radiusEpsilon, fitRadiusKappa, fitRadiusAlgebraic);
+
             //Test on eta
             if(!_bAddPositionNoise && !_bAddNormalNoise)
             {
                 //sometimes eta can be reversed
-                VectorType fitEta = fit.eta().normalized().array().abs();
-                VectorType theoricEta = vectorPoints[i].normal().array().abs();
+                VectorType fitEta (fit.eta().normalized().array().abs());
+                VectorType theoricEta (vectorPoints[i].normal().array().abs());
 
                 VERIFY( Eigen::internal::isMuchSmallerThan((fitEta - theoricEta).norm(), 1., epsilon)  );
             }
@@ -106,25 +143,31 @@ void callSubTests()
     typedef Basket<Point, WeightConstantFunc, OrientedSphereFit, GLSParam> FitConstantOriented;
     typedef Basket<Point, WeightSmoothFunc, UnorientedSphereFit, GLSParam> FitSmoothUnoriented;
     typedef Basket<Point, WeightConstantFunc, UnorientedSphereFit, GLSParam> FitConstantUnoriented;
+    typedef Basket<Point, WeightSmoothFunc, OrientedSphereFit, GLSParam, OrientedSphereSpaceDer, GLSDer, GLSCurvatureHelper> FitSmoothOrientedSpatial;
+    typedef Basket<Point, WeightConstantFunc, OrientedSphereFit, GLSParam, OrientedSphereSpaceDer, GLSDer, GLSCurvatureHelper> FitConstantOrientedSpatial;
 
     cout << "Testing with perfect sphere (oriented / unoriented)..." << endl;
     for(int i = 0; i < g_repeat; ++i)
     {
         //Test with perfect sphere
-        CALL_SUBTEST(( testFunction<Point, FitSmoothOriented, WeightSmoothFunc>() ));
-        CALL_SUBTEST(( testFunction<Point, FitConstantOriented, WeightConstantFunc>() ));
-        CALL_SUBTEST(( testFunction<Point, FitSmoothUnoriented, WeightSmoothFunc>(true) ));
-        CALL_SUBTEST(( testFunction<Point, FitConstantUnoriented, WeightConstantFunc>(true) ));
+        CALL_SUBTEST(( testFunction<Point, FitSmoothOriented, WeightSmoothFunc, false>() ));
+        CALL_SUBTEST(( testFunction<Point, FitConstantOriented, WeightConstantFunc, false>() ));
+        CALL_SUBTEST(( testFunction<Point, FitSmoothOrientedSpatial, WeightSmoothFunc, true>() ));
+        CALL_SUBTEST(( testFunction<Point, FitConstantOrientedSpatial, WeightConstantFunc, true>() ));
+        CALL_SUBTEST(( testFunction<Point, FitSmoothUnoriented, WeightSmoothFunc, false>(true) ));
+        CALL_SUBTEST(( testFunction<Point, FitConstantUnoriented, WeightConstantFunc, false>(true) ));
     }
     cout << "Ok!" << endl;
 
     cout << "Testing with noise on position and normals (oriented / unoriented)..." << endl;
     for(int i = 0; i < g_repeat; ++i)
     {
-        CALL_SUBTEST(( testFunction<Point, FitSmoothOriented, WeightSmoothFunc>(false, true, true) ));
-        CALL_SUBTEST(( testFunction<Point, FitConstantOriented, WeightConstantFunc>(false, true, true) ));
-        CALL_SUBTEST(( testFunction<Point, FitSmoothUnoriented, WeightSmoothFunc>(true, true, true) ));
-        CALL_SUBTEST(( testFunction<Point, FitConstantUnoriented, WeightConstantFunc>(true, true, true) ));
+        CALL_SUBTEST(( testFunction<Point, FitSmoothOriented, WeightSmoothFunc, false>(false, true, true) ));
+        CALL_SUBTEST(( testFunction<Point, FitConstantOriented, WeightConstantFunc, false>(false, true, true) ));
+        CALL_SUBTEST(( testFunction<Point, FitSmoothOrientedSpatial, WeightSmoothFunc, true>(false, true, true) ));
+        CALL_SUBTEST(( testFunction<Point, FitConstantOrientedSpatial, WeightConstantFunc, true>(false, true, true) ));
+        CALL_SUBTEST(( testFunction<Point, FitSmoothUnoriented, WeightSmoothFunc, false>(true, true, true) ));
+        CALL_SUBTEST(( testFunction<Point, FitConstantUnoriented, WeightConstantFunc, false>(true, true, true) ));
     }
     cout << "Ok!" << endl;
 }
