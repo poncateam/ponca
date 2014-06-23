@@ -215,10 +215,14 @@ public:
     \inherit Concept::FittingExtensionConcept
 
     This class requires an Eigendecomposition of the Jacobian matrix of 
-    \f$ \tau \f$. We use an Eigen::SelfAdjointEigenSolver, compatible with 
-    Eigen-nvcc for 2D and 3D spaces on cuda, and in arbitrary dimension for CPU
-    compilation (cuda version also use a fast but less accurate decomposition
-    provided by computeDirect. See <a href="http://eigen.tuxfamily.org/dox/classEigen_1_1SelfAdjointEigenSolver.html#a85cda7e77edf4923f3fc0512c83f6323" target="_blank">Eigen documentation</a> for mor details).
+    \f$ \eta \f$, used to approximate principal curvatures in 3D. It uses an
+    Eigen::SelfAdjointEigenSolver, and when compiled by nvccc call the fast but
+    less accurate decomposition provided by computeDirect. See 
+    <a href="http://eigen.tuxfamily.org/dox/classEigen_1_1SelfAdjointEigenSolver.html#a85cda7e77edf4923f3fc0512c83f6323" target="_blank">Eigen documentation</a>
+    for mor details).
+
+    \warning This class is valid only in 3D.
+    \todo Add a compile time check for the working dimension
 */
 template < class DataPoint, class _WFunctor, typename T>
 class GLSCurvatureHelper : public T
