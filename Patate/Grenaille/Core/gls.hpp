@@ -104,12 +104,31 @@ GLSCurvatureHelper<DataPoint, _WFunctor, T>::finalize()
         eig.compute(jacobian.transpose()*jacobian);
 #endif
 
-        // Need sqrt because we solve eigendecomposition of JT * J.
-        m_k1 = sqrt(eig.eigenvalues()(2)); 
-        m_k2 = sqrt(eig.eigenvalues()(1)); 
+        // Need to detect which vector is the most aligned to the smoothed
+        // normal direction, and pick the two others as principal directions
+        int idK1 = 2,
+            idK2 = 1;
+        {
+            // compute the abs dot product between eta and the eigen vectors
+            VectorType dotVec = (eig.eigenvectors().transpose() * Base::eta()).array().abs();
+            int maxCoeff = dotVec(0) > dotVec(1) ?
+                             (dotVec(0) > dotVec(2) ? 0 : 2) :
+                             (dotVec(1) > dotVec(2) ? 1 : 2);
+            
+            // swap ids if needed
+            if (maxCoeff != 0){
+                idK2 = 0;
+                if (maxCoeff == 2) idK1 = 1;
+            }
+        }
 
-        m_v1 = eig.eigenvectors().col(2);
-        m_v2 = eig.eigenvectors().col(1);
+        // Extract eigenvectors and eigen values
+        // Need sqrt because we solve eigendecomposition of JT * J.
+        m_k1 = sqrt(eig.eigenvalues()(idK1)); 
+        m_k2 = sqrt(eig.eigenvalues()(idK2)); 
+
+        m_v1 = eig.eigenvectors().col(idK1);
+        m_v2 = eig.eigenvectors().col(idK2);
 
         // Now check the sign of the mean curvature to detect if we need to change
         // the sign of the principal curvature values:
@@ -144,8 +163,8 @@ GLSCurvatureHelper<DataPoint, _WFunctor, T>::finalize()
             Scalar tmp = m_k1;
             m_k1 = m_k2;
             m_k2 = tmp;        
-            m_v1 = eig.eigenvectors().col(1);
-            m_v2 = eig.eigenvectors().col(2);        
+            m_v1 = eig.eigenvectors().col(idK2);
+            m_v2 = eig.eigenvectors().col(idK1);        
         }
     }
 
