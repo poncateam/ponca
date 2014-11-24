@@ -13,12 +13,13 @@ add_dependencies(buildtests deta_orthogonal_derivatives)
 add_test(deta_orthogonal_derivatives deta_orthogonal_derivatives)
 
 #############################################
-set(fit_radius_curvature_center_SRCS 
-    fit_radius_curvature_center.cpp 
-)
-add_executable(fit_radius_curvature_center ${fit_radius_curvature_center_SRCS})
-add_dependencies(buildtests fit_radius_curvature_center)
-add_test(fit_radius_curvature_center fit_radius_curvature_center)
+# set(fit_radius_curvature_center_SRCS 
+#     fit_radius_curvature_center.cpp 
+# )
+# add_executable(fit_radius_curvature_center ${fit_radius_curvature_center_SRCS})
+# add_dependencies(buildtests fit_radius_curvature_center)
+# add_test(fit_radius_curvature_center fit_radius_curvature_center)
+add_multi_test(fit_radius_curvature_center.cpp)
 
 #############################################
 set(gls_tau_SRCS 
