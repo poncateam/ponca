@@ -11,6 +11,7 @@
  */
 
 
+#include "../split_test_helper.h"
 #include "../common/testing.h"
 #include "../common/testUtils.h"
 
@@ -181,9 +182,9 @@ int main(int argc, char** argv)
 
     cout << "Test sphere fitting (radius / center) and GLS curvature for different baskets..." << endl;
 
-    callSubTests<float, 2>();
-    callSubTests<float, 3>();
-    callSubTests<double, 3>();
-    callSubTests<long double, 2>();
-    callSubTests<long double, 3>();
+    CALL_SUBTEST_1(( callSubTests<float,       2>() ));
+    CALL_SUBTEST_2(( callSubTests<float,       3>() ));
+    CALL_SUBTEST_3(( callSubTests<double,      3>() ));
+    CALL_SUBTEST_4(( callSubTests<long double, 2>() ));
+    CALL_SUBTEST_5(( callSubTests<long double, 3>() ));
 }
