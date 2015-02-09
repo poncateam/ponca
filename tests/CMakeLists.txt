@@ -88,5 +88,6 @@ macro(add_multi_test filename)
 endmacro(add_multi_test)
 
 add_subdirectory(Grenaille)
+add_subdirectory(Vitelotte)
 
 

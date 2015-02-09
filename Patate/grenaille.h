@@ -6,6 +6,7 @@
 
 
 #ifndef _PATATE_GRENAILLE_
+#define _PATATE_GRENAILLE_
 
 // First inclue Eigen Core
 #include <Eigen/Core>
