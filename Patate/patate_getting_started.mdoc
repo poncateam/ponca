@@ -1,7 +1,7 @@
 /*
  This Source Code Form is subject to the terms of the Mozilla Public
  License, v. 2.0. If a copy of the MPL was not distributed with this
- file, You can obtain one at http://mozilla.org/MPL/2.0/. 
+ file, You can obtain one at http://mozilla.org/MPL/2.0/.
 */
 
 /*!
@@ -11,7 +11,7 @@
 
   The only external library that is absolutely necessary to make Patates work is <a href="http://eigen.tuxfamily.org/" target="_blank"><b>Eigen</b></a>, the swiss army knife of linear algebra. Additional libraries might be required in specific instances, but only for advanced algorithms. We'll try to keep these dependencies to the minimum necessary, promised. Some examples will require additional libraries as well in an effort to keep them lean and legible.
 
-  The PatateLib is also compatible with CUDA, so that you may run patates on the GPU, provided you own an NVidia graphics card. This is an efficient way to make patates available through CUDA-compatible languages such as Matlab or Python. Unfortunately, Eigen release cannot yet be compiled by nvcc (NVIDIA CUDA Compiler Driver), thus you will need to use <a href="https://bitbucket.org/eigen/eigen/" target="_blank"><b>Eigen latest dev branch version</b></a> in this case. 
+  The PatateLib is also compatible with CUDA, so that you may run patates on the GPU, provided you own an NVidia graphics card. This is an efficient way to make patates available through CUDA-compatible languages such as Matlab or Python. Unfortunately, Eigen release cannot yet be compiled by nvcc (NVIDIA CUDA Compiler Driver), thus you will need to use <a href="https://bitbucket.org/eigen/eigen/" target="_blank"><b>Eigen latest dev branch version</b></a> in this case.
 
   \section getting_started_download_sec Download
 
@@ -24,7 +24,7 @@
 
   \section getting_started_installation_sec Installation
 
-  The Patate lib is an header-only library. It could not be easier to install: the only thing you have to do is to include the header of the module you want to use in your code. 
+  The Patate lib is an header-only library. It could not be easier to install: the only thing you have to do is to include the header of the module you want to use in your code.
   Moreover, each patate|module is independent from the others, hence you may only use the header corresponding to the module you are interested in. For example:
 	\code
 	#include <Patate/grenaille.h>
@@ -35,23 +35,23 @@
   If you want to see Patates in action, you will of course have to compile examples. And the same is true if you want to get the latest version of the documentation you are presently reading (well, not the exact same documentation, unless you've already compiled it, but then why are you reading this?). In both cases, have a look at the readme file, everything is explained there, no need to duplicate that here.
 
   \section getting_started_panorama_sec Overview
-  
+
   You may already have had a look at the \link patate_overview_page list of available patates|modules. \endlink Here we'd like to add an important bit of information, if you don't mind.
 
-  Even though each patate is independent, they all have the same simple structure: a "core" folder where you will find operators that rely on no data structure and work both with CUDA and C++; and an "algorithms" folder with methods that may interface with user-provided data structures, with optimized solutions in C++, CUDA or both. 
-  The rationale behind this separation is to provide two levels of complexity: core operators implement atomic scientific contributions that are agnostic of the host application; algorithms implement step-by-step procedures that will likely rely on core operators and/or structure traversal. 
+  Even though each patate is independent, they all have the same simple structure: a "core" folder where you will find operators that rely on no data structure and work both with CUDA and C++; and an "algorithms" folder with methods that may interface with user-provided data structures, with optimized solutions in C++, CUDA or both.
+  The rationale behind this separation is to provide two levels of complexity: core operators implement atomic scientific contributions that are agnostic of the host application; algorithms implement step-by-step procedures that will likely rely on core operators and/or structure traversal.
   For this reason, all operators become available whenever a patate/module is included; whereas each algorithm must be included independently.
 
-  \section getting_started_first_step_sec First steps 
+  \section getting_started_first_step_sec First steps
 
   You're now ready to play with Patates! But where to start from?
 
-  Say you're interested in the Grenaille module (the only available now, so it makes perfect sense).
+  Say you're interested in the Grenaille module.
   You could take a look at its basic tutorial provided in its \ref grenaille_user_manual_page "user manual".
   It's very simple and... a bit boring. But at least you'll get the grip!
 
   Then you could play with other examples or start right away with yours!
-  In the latter case, you may want to read carefully the \ref grenaille_user_manual_page "user manual", and check references in case of doubts. 
+  In the latter case, you may want to read carefully the \ref grenaille_user_manual_page "user manual", and check references in case of doubts.
   You might then wonder what the heck are these macro prefix useful for. I mean for instance this one:
   \code
 	  MULTIARCH void function();
