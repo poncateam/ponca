@@ -162,7 +162,7 @@ public:
         {
             //return infinity (non-sense value)
             Scalar inf = 0.;
-            return VectorType(Scalar(1.)/inf);
+            return VectorType::Constant(Scalar(1.)/inf);
         }
 
         Scalar b = Scalar(1.)/m_uq;
