@@ -7,8 +7,8 @@
 */
 
 
-#ifndef _COVARIANCE_PLANE_FIT_
-#define _COVARIANCE_PLANE_FIT_
+#ifndef _GRENAILLE_COVARIANCE_PLANE_FIT_
+#define _GRENAILLE_COVARIANCE_PLANE_FIT_
 
 #include <Eigen/Eigenvalues> 
 
