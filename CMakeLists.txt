@@ -22,6 +22,36 @@ if(    NOT cmake_build_type_tolower STREQUAL "debug"
 endif()
 
 ################################################################################
+# Generate Vitelotte's shaders                                                 #
+# TODO: find a more appropriate place for this.                                #
+################################################################################
+
+set(vitelotte_SHADERS
+    ${Patate_SOURCE_DIR}/Patate/Vitelotte/Utils/vgMeshRendererShaders/vert_common.glsl
+    ${Patate_SOURCE_DIR}/Patate/Vitelotte/Utils/vgMeshRendererShaders/geom_common.glsl
+    ${Patate_SOURCE_DIR}/Patate/Vitelotte/Utils/vgMeshRendererShaders/frag_common.glsl
+    ${Patate_SOURCE_DIR}/Patate/Vitelotte/Utils/vgMeshRendererShaders/frag_linear.glsl
+    ${Patate_SOURCE_DIR}/Patate/Vitelotte/Utils/vgMeshRendererShaders/frag_quadratic.glsl
+    ${Patate_SOURCE_DIR}/Patate/Vitelotte/Utils/vgMeshRendererShaders/frag_wireframe.glsl
+)
+
+add_custom_command(
+    OUTPUT ${Patate_SOURCE_DIR}/Patate/Vitelotte/Utils/vgMeshRendererShaders.hpp
+    COMMAND python3 ${Patate_SOURCE_DIR}/bin/shader2cpp
+        -l
+        -n Vitelotte::VGMeshRendererShaders
+        -g _VITELOTTE_UTILS_VG_MESH_RENDERER_SHADERS_
+        -o ${Patate_SOURCE_DIR}/Patate/Vitelotte/Utils/vgMeshRendererShaders.hpp
+        ${vitelotte_SHADERS}
+    DEPENDS ${vitelotte_SHADERS}
+    WORKING_DIRECTORY ${Patate_SOURCE_DIR}
+    VERBATIM
+)
+
+add_custom_target(vitelottes_vg_mesh_renderer_shaders
+    DEPENDS ${PROJECT_SOURCE_DIR}/Patate/Vitelotte/Utils/vgMeshRendererShaders.hpp)
+
+################################################################################
 # add a target to generate API documentation with Doxygen                      #
 ################################################################################
 
