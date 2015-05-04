@@ -1,3 +1,9 @@
+/*
+ This Source Code Form is subject to the terms of the Mozilla Public
+ License, v. 2.0. If a copy of the MPL was not distributed with this
+ file, You can obtain one at http://mozilla.org/MPL/2.0/.
+*/
+
 #ifndef PCL_FEATURES_GLS_CURVATURE_H_
 #define PCL_FEATURES_GLS_CURVATURE_H_
 
