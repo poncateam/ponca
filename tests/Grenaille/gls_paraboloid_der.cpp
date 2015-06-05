@@ -82,9 +82,9 @@ void testFunction()
         VectorType eta = fit.eta();
         Scalar kappa = fit.kappa();
 
-        VERIFY( Eigen::internal::isMuchSmallerThan(std::fabs(tau - theoricTau), 1., epsilon) );
+        VERIFY( Eigen::internal::isMuchSmallerThan(std::abs(tau - theoricTau), 1., epsilon) );
         VERIFY( Eigen::internal::isMuchSmallerThan((theoricEta - eta).norm(), 1., epsilon ) );
-        VERIFY( Eigen::internal::isMuchSmallerThan(std::fabs(computedTheoricKappa - kappa), 1., kappaEpsilon) );
+        VERIFY( Eigen::internal::isMuchSmallerThan(std::abs(computedTheoricKappa - kappa), 1., kappaEpsilon) );
 
         Scalar kappanorm = fit.kappa_normalized();
         Scalar taunorm = fit.tau_normalized();
