@@ -157,7 +157,7 @@ GLSCurvatureHelper<DataPoint, _WFunctor, T>::finalize()
         }
         else // 2H < 0. In this case, we have k1<0, and k1 < k2
         {
-            if( H2 > m_k1 )
+            if( H2 < - m_k1 )
             {
                 m_k2 = -m_k2;
             }
