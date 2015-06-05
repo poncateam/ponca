@@ -36,7 +36,8 @@ void testFunction()
     VectorType vCoef = VectorType(Eigen::internal::random<Scalar>(-10,10), Eigen::internal::random<Scalar>(-10,10), 0);
     //vCoef.y() = vCoef.x();
 
-    Scalar analysisScale = Scalar(.00000001 * std::min(fabs(vCoef.x()), fabs(vCoef.y())));
+    Scalar analysisScale = Scalar(.00000001 * std::min(std::abs(vCoef.x()),
+                                                       std::abs(vCoef.y())));
 
 
     Scalar rotationAngle = Eigen::internal::random<Scalar>(Scalar(0.), Scalar(2 * M_PI));
