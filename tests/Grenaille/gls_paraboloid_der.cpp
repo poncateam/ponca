@@ -95,10 +95,25 @@ void testFunction()
         Scalar kappa2 = fit.GLSk2();
         Scalar meanKappaFromPricipalCurvatures = (kappa1 + kappa2) * Scalar(.5);
 
-        //VERIFY( Eigen::internal::isApprox(meanKappaFromPricipalCurvatures, theoricKappa, kappaEpsilon) );
+//        std::cout << "a         :" << a << std::endl;
+//        std::cout << "b         :" << b << std::endl;
+//        std::cout << "k1        :" << kappa1 << std::endl;
+//        std::cout << "k2        :" << kappa2 << std::endl;
+//        std::cout << "k         :" << meanKappaFromPricipalCurvatures << std::endl;
+//        std::cout << "kappa     :" << kappa << std::endl;
+//        std::cout << "ktheorique:" << theoricKappa << std::endl;
+
+        //VERIFY(
+        //    Eigen::internal::isApprox(meanKappaFromPricipalCurvatures,
+        //                              kappa, kappaEpsilon) ||
+        //    Eigen::internal::isApprox(meanKappaFromPricipalCurvatures,
+        //                              theoricKappa, kappaEpsilon)  );
 
         Scalar gaussian = fit.GLSGaussianCurvature();
         Scalar theoricGaussian = a * b;
+
+        //std::cout << "gaussian  :" << gaussian << std::endl;
+        //std::cout << "gtheorique:" << theoricGaussian << std::endl;
 
         //VERIFY( Eigen::internal::isApprox(gaussian, theoricGaussian, kappaEpsilon) );
     }
