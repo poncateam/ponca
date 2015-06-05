@@ -104,6 +104,10 @@ GLSCurvatureHelper<DataPoint, _WFunctor, T>::finalize()
         eig.compute(jacobian.transpose()*jacobian);
 #endif
 
+        if (eig.info() != Eigen::Success){
+            return UNDEFINED;
+        }
+
         // Need to detect which vector is the most aligned to the smoothed
         // normal direction, and pick the two others as principal directions
         int idK1 = 2,
