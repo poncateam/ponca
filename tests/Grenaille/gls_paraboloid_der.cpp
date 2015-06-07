@@ -36,7 +36,8 @@ void testFunction()
     VectorType vCoef = VectorType(Eigen::internal::random<Scalar>(-10,10), Eigen::internal::random<Scalar>(-10,10), 0);
     //vCoef.y() = vCoef.x();
 
-    Scalar analysisScale = Scalar(.00000001 * std::min(fabs(vCoef.x()), fabs(vCoef.y())));
+    Scalar analysisScale = Scalar(.00000001 * std::min(std::abs(vCoef.x()),
+                                                       std::abs(vCoef.y())));
 
 
     Scalar rotationAngle = Eigen::internal::random<Scalar>(Scalar(0.), Scalar(2 * M_PI));
@@ -82,9 +83,9 @@ void testFunction()
         VectorType eta = fit.eta();
         Scalar kappa = fit.kappa();
 
-        VERIFY( Eigen::internal::isMuchSmallerThan(std::fabs(tau - theoricTau), 1., epsilon) );
+        VERIFY( Eigen::internal::isMuchSmallerThan(std::abs(tau - theoricTau), 1., epsilon) );
         VERIFY( Eigen::internal::isMuchSmallerThan((theoricEta - eta).norm(), 1., epsilon ) );
-        VERIFY( Eigen::internal::isMuchSmallerThan(std::fabs(computedTheoricKappa - kappa), 1., kappaEpsilon) );
+        VERIFY( Eigen::internal::isMuchSmallerThan(std::abs(computedTheoricKappa - kappa), 1., kappaEpsilon) );
 
         Scalar kappanorm = fit.kappa_normalized();
         Scalar taunorm = fit.tau_normalized();
@@ -94,10 +95,25 @@ void testFunction()
         Scalar kappa2 = fit.GLSk2();
         Scalar meanKappaFromPricipalCurvatures = (kappa1 + kappa2) * Scalar(.5);
 
-        //VERIFY( Eigen::internal::isApprox(meanKappaFromPricipalCurvatures, theoricKappa, kappaEpsilon) );
+//        std::cout << "a         :" << a << std::endl;
+//        std::cout << "b         :" << b << std::endl;
+//        std::cout << "k1        :" << kappa1 << std::endl;
+//        std::cout << "k2        :" << kappa2 << std::endl;
+//        std::cout << "k         :" << meanKappaFromPricipalCurvatures << std::endl;
+//        std::cout << "kappa     :" << kappa << std::endl;
+//        std::cout << "ktheorique:" << theoricKappa << std::endl;
+
+        //VERIFY(
+        //    Eigen::internal::isApprox(meanKappaFromPricipalCurvatures,
+        //                              kappa, kappaEpsilon) ||
+        //    Eigen::internal::isApprox(meanKappaFromPricipalCurvatures,
+        //                              theoricKappa, kappaEpsilon)  );
 
         Scalar gaussian = fit.GLSGaussianCurvature();
         Scalar theoricGaussian = a * b;
+
+        //std::cout << "gaussian  :" << gaussian << std::endl;
+        //std::cout << "gtheorique:" << theoricGaussian << std::endl;
 
         //VERIFY( Eigen::internal::isApprox(gaussian, theoricGaussian, kappaEpsilon) );
     }

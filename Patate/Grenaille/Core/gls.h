@@ -181,6 +181,15 @@ public:
 /*!
     \brief Extension to compute the Geometric Variation of GLSParam
     \inherit Concept::FittingExtensionConcept
+    
+    The Geometric Variation is computed as the weighted sum of the
+    GLS scale-invariant partial derivatives
+    \f[
+     \nu(\mathbf{p},t) = 
+     w_\tau   \left(\frac{\delta\tau}{\delta t}\right)^2 +
+     w_\eta   \left( t   \frac{\delta\eta}{\delta t}\right)^2 +
+     w_\kappa \left( t^2 \frac{\delta\kappa}{\delta t}\right)^2
+    \f]
 
     Method published in \cite Mellado:2012:GLS
     \todo Add more details

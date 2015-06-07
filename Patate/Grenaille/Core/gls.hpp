@@ -104,23 +104,35 @@ GLSCurvatureHelper<DataPoint, _WFunctor, T>::finalize()
         eig.compute(jacobian.transpose()*jacobian);
 #endif
 
+        if (eig.info() != Eigen::Success){
+            return UNDEFINED;
+        }
+
         // Need to detect which vector is the most aligned to the smoothed
         // normal direction, and pick the two others as principal directions
+        typename VectorType::Index idAlign;
+
+        // To do so, extract the index corresponding to the smaller abs dot
+        // product between eta and the eigen vectors
+        (eig.eigenvectors().transpose() * Base::eta())
+            .array().abs()       // compute absolute value of the dot products
+            .maxCoeff(&idAlign); // extract id of the most aligned eigenvector
+
         int idK1 = 2,
             idK2 = 1;
-        {
-            // compute the abs dot product between eta and the eigen vectors
-            VectorType dotVec = (eig.eigenvectors().transpose() * Base::eta()).array().abs();
-            int maxCoeff = dotVec(0) > dotVec(1) ?
-                             (dotVec(0) > dotVec(2) ? 0 : 2) :
-                             (dotVec(1) > dotVec(2) ? 1 : 2);
-            
-            // swap ids if needed
-            if (maxCoeff != 0){
+        switch (idAlign){
+            case 0:    // set at init time, usual value
+                break;
+            case 1:
                 idK2 = 0;
-                if (maxCoeff == 2) idK1 = 1;
-            }
-        }
+                break;
+            case 2:
+                idK1 = 1;
+                idK2 = 0;
+                break;
+            default:
+                return UNDEFINED;
+        };
 
         // Extract eigenvectors and eigen values
         // Need sqrt because we solve eigendecomposition of JT * J.
@@ -153,7 +165,7 @@ GLSCurvatureHelper<DataPoint, _WFunctor, T>::finalize()
         }
         else // 2H < 0. In this case, we have k1<0, and k1 < k2
         {
-            if( H2 > m_k1 )
+            if( H2 < - m_k1 )
             {
                 m_k2 = -m_k2;
             }
