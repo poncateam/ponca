@@ -63,6 +63,9 @@ if(DOXYGEN_FOUND)
   WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}
   COMMENT "Generating API documentation with Doxygen" VERBATIM
   )
+
+  message(STATUS "[Dox] Copying html image directory")
+  file (COPY ${CMAKE_CURRENT_SOURCE_DIR}/doc-src/images/ DESTINATION ${CMAKE_CURRENT_BINARY_DIR}/doc/html/images)
 endif(DOXYGEN_FOUND)
 
 ################################################################################
