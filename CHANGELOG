@@ -1,6 +1,76 @@
 Changelog
 
 
+--------------------------------------------------------------------------------
+v0.4
+- Vitelotte
+    # TODO
+    
+- Grenaille
+  - Core
+    # Bugfixes and performance improvements in GLSCurvatureHelper
+  
+  - Doc
+    # Minor changes: added formulas
+    
+- General documentation
+    # Updates Eigen/Cuda instructions
+    
+    
+--------------------------------------------------------------------------------
+v0.3.2
+
+- Core
+    # New PrimitiveBase class (to be used with heritance for all new primitives)
+    # Plane primitive added
+    # New output state for fitting added (need another pass)
+    # New plane fitting technique, using covariance analysis    
+    # Few updates
+
+- Examples
+    # PCL wrapper added
+    # Plane fitting example added
+
+- Tests
+    # Plane primitive tests added
+    # Plane fitting tests added
+    # Few updates in tests
+
+- Documentation
+    # Few fixes in typo
+    # Few updates in credits and for new features
+    
+
+--------------------------------------------------------------------------------
+v0.3.1
+
+- Core
+    # few issues with cuda have been updated
+
+- Exemple
+    # SSC gls examples updated
+
+
+--------------------------------------------------------------------------------
+v0.3
+
+- Documentation
+    # New version with improved presentation, new examples, user manual, images, references, etc.
+    # Examples fixed.
+    # We now have a logo !
+
+- Tests
+    # Now using ctest for the unit tests
+    # Few functional tests have been added
+
+- Core
+    # Fits now have a state. The finalize() function can return it. See doc for more details.
+    # Fit degenerative cases are now well treated (for example plane case). Thus, it should no more produce QNaN values.
+    # Library cleaned of useless code / files.
+    # Code refactoring, we now follow some guidelines (see guidelines.txt).
+
+
+--------------------------------------------------------------------------------
 V0.1.2
 
  - BugFix
