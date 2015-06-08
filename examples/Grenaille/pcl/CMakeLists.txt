@@ -14,4 +14,5 @@ set(pcl_wrapper_SRCS
 add_executable(pcl_wrapper ${pcl_wrapper_SRCS})
 
 target_link_libraries(pcl_wrapper ${PCL_LIBRARIES})
-add_dependencies(examples pcl_wrapper)
+add_dependencies(grenaille_examples pcl_wrapper)
+
