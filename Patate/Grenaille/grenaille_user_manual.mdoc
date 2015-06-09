@@ -14,14 +14,38 @@ namespace Grenaille
   meshes then simply consists of only considering their vertices.
 
   This is just the tip of the iceberg though, as we also provide methods for dealing with points equipped with non-oriented normals \cite Chen:2013:NOMG, techniques to analyze 
-  points clouds in scale-space to discover salient structures \cite Mellado:2012:GLS, methods to compute multi-scale principal curvatures \cite Mellado:2013:SSC and methods to compute surface varition using a plane instead of a sphere for the fitting \cite Pauly:2002:PSSimplification.
+  points clouds in scale-space to discover salient structures \cite Mellado:2012:GLS, methods to compute multi-scale principal curvatures \cite Mellado:2013:SSC and methods to compute surface variation using a plane instead of a sphere for the fitting \cite Pauly:2002:PSSimplification.
 
-  In the following, we focus on a basic use of the module, using 3D points equiped with oriented normals fitted by a Grenaille::AlgebraicSphere. First, one must set up data samples that interface 
+  In the following, we focus on a basic use of the module, using 3D points equipped with oriented normals fitted by a Grenaille::AlgebraicSphere. First, one must set up data samples that interface 
   with an external code; then run the fitting process in itself, and finally collect outputs. We also show how to compute curvatures with the very same approach, 
   as this is a common requirement of many geometric processing algorithms.
 
    \image html interpolation.png "Figure 1: (a) An implicit 2D curve fit to a 2D point cloud. (b) A 3D point cloud shown with splats. (c) An implicit 3D surface reconstructed from (b)."
-
+   
+   
+  \subsection grenaille_user_manual_codeStructure Code structure 
+  We structured Grenaille as follow: a "core" folder defining operators that rely on no data structure and work both with CUDA and C++; and an "algorithms" folder with methods that may interface with user-provided data structures, with optimized solutions in C++, CUDA or both. 
+  The rationale behind this separation is to provide two levels of complexity: core operators implement atomic scientific contributions that are agnostic of the host application; algorithms implement step-by-step procedures that will likely rely on core operators and/or structure traversal.
+  
+  In its current state, we do not have algorithms for Grenaille implemented: it's work in progress (we are open to contributions). If you want to use Grenaille, just include its main header:
+  \code
+#include <Patate/grenaille.h>
+  \endcode
+  
+  \subsection grenaille_user_manual_cuda Cuda 
+  Grenaille can be used directly on GPU, thanks to several mechanisms:
+   - Eigen Cuda capabilities, see <a href="http://eigen.tuxfamily.org/dox-devel/TopicCUDA.html"  target="_blank">Eigen documentation</a> for more details. You *need* to use a consistent Eigen::Index on both CPU and GPU if you plan to transfer memory between the computing units. That's why we recommend to set the following preprocessor variable when compiling your project: \verbatim -DEIGEN_DEFAULT_DENSE_INDEX_TYPE=int\endverbatim
+   - C++03 Compliant: right now we *do not* use C++11 in Patate, to maximize compatibility across platforms and Cuda versions. 
+   - Automatic CPU/GPU compilation qualifiers. We use the macro
+  \code
+	  MULTIARCH void function();
+  \endcode
+  to use the same code for C++ and CUDA. It has no effect when the code is compiled with GCC or Clang, but it will force the compilation for both host and device architectures when compiling with nvcc. A similar macro system is provided for mathematical functions, to switch between STL and CUDA versions.
+  
+  Check the \ref grenaille_example_cxx_ssc_page "C++/Cuda" and \ref grenaille_example_python_ssc_page "Python/Cuda" (using PyCuda) examples for more details and how-to. 
+  
+  You are now ready to read the next sections, and discover how to interface Grenaille with your data-structures, how to fit various primitives and compute geometrical and differential properties. 
+  
   \section grenaille_user_manual_datas Data Samples 
   
   The first step needed to use Grenaille is to define how samples are represented inside the module.
