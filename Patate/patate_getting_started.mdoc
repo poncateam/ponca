@@ -34,30 +34,12 @@
 
   If you want to see Patates in action, you will of course have to compile examples. And the same is true if you want to get the latest version of the documentation you are presently reading (well, not the exact same documentation, unless you've already compiled it, but then why are you reading this?). In both cases, have a look at the readme file, everything is explained there, no need to duplicate that here.
 
-  \section getting_started_panorama_sec Overview
-
-  You may already have had a look at the \link patate_overview_page list of available patates|modules. \endlink Here we'd like to add an important bit of information, if you don't mind.
-
-  Even though each patate is independent, they all have the same simple structure: a "core" folder where you will find operators that rely on no data structure and work both with CUDA and C++; and an "algorithms" folder with methods that may interface with user-provided data structures, with optimized solutions in C++, CUDA or both.
-  The rationale behind this separation is to provide two levels of complexity: core operators implement atomic scientific contributions that are agnostic of the host application; algorithms implement step-by-step procedures that will likely rely on core operators and/or structure traversal.
-  For this reason, all operators become available whenever a patate/module is included; whereas each algorithm must be included independently.
-
   \section getting_started_first_step_sec First steps
 
   You're now ready to play with Patates! But where to start from?
-
-  Say you're interested in the Grenaille module.
-  You could take a look at its basic tutorial provided in its \ref grenaille_user_manual_page "user manual".
-  It's very simple and... a bit boring. But at least you'll get the grip!
-
-  Then you could play with other examples or start right away with yours!
-  In the latter case, you may want to read carefully the \ref grenaille_user_manual_page "user manual", and check references in case of doubts.
-  You might then wonder what the heck are these macro prefix useful for. I mean for instance this one:
-  \code
-	  MULTIARCH void function();
-  \endcode
-
-  It's important: it permits to use the same code for C++ and CUDA. It has no effect when the code is compiled with GCC or Clang, but it will force the compilation for both host and device architectures when compiling with nvcc. A similar macro system is provided for mathematical functions, to switch between STL and CUDA versions.
-
+  Just have a look at the\link patate_overview_page list of available patates|modules.\endlink, or directly access the Patates user manuals (links under Patetes names):
+   - \ref grenaille_user_manual_page "Grenaille": this module provides efficient methods for the fitting and analysis of point-clouds in arbitrary dimensions. Sounds a bit abstract, and indeed, it is templated in every corner of the code.
+   - \ref vitelotte_user_manual_page "Vitelotte": this module provides tool to manipulate mesh-based vector graphics with arbitrary connectivity. It includes a generic mesh representation, a diffusion solver to generate colors from a sparse set of constraint, an OpenGL renderer and input/output through the mvg file format.
+   
   We've already been a bit too deep for that "Getting Started" page, so we should end it up soon. One last thing: if you get stuck or have a problem/bug using patates, please send an email to patate-devel@lists.gforge.inria.fr for further assistance. Remember that the library is under development so we are pleased to get your feedback.
  */
