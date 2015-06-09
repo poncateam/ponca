@@ -4,7 +4,18 @@ Changelog
 --------------------------------------------------------------------------------
 v0.4
 - Vitelotte
-    # TODO
+    - Core
+        # First release of Vitelotte which include a datastructure for
+          mesh-based vector graphics, a FEM diffusion solver, an OpenGL renderer
+          and I/O in the mvg file format
+    - Examples
+        # tutorial: a simple application to demonstrate basic usage of Vitelotte
+        # mvgtk: a CLI tool to manipulate mvg files
+        # mvg_editor: a simple GUI tool to edit mvg files
+        # mvg_viewer: a lightweigh OpenGL viewer 
+    - Doc
+        # Added the Vitelotte section, with user manual for the main
+          functionalities and basic explanations of the examples
     
 - Grenaille
   - Core
