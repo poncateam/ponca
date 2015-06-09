@@ -50,7 +50,7 @@ PROJECT_BRIEF          =
 # exceed 55 pixels and the maximum width should not exceed 200 pixels.
 # Doxygen will copy the logo to the output directory.
 
-PROJECT_LOGO           = @CMAKE_CURRENT_SOURCE_DIR@/doc-src/html/images/logoSmall.png
+PROJECT_LOGO           = @CMAKE_CURRENT_SOURCE_DIR@/doc-src/images/logoSmall.png
 
 # The OUTPUT_DIRECTORY tag is used to specify the (relative or absolute)
 # base path where the generated documentation will be put.
@@ -608,7 +608,8 @@ LAYOUT_FILE            = @CMAKE_CURRENT_SOURCE_DIR@/doc-src/layout.xml
 # of the bibliography can be controlled using LATEX_BIB_STYLE. To use this
 # feature you need bibtex and perl available in the search path.
 
-CITE_BIB_FILES         = @CMAKE_CURRENT_SOURCE_DIR@/Patate/Grenaille/grenaille.bib
+CITE_BIB_FILES         = @CMAKE_CURRENT_SOURCE_DIR@/Patate/Grenaille/grenaille.bib \
+                         @CMAKE_CURRENT_SOURCE_DIR@/Patate/Vitelotte/vitelotte.bib
 
 #---------------------------------------------------------------------------
 # configuration options related to warning and progress messages

@@ -1,7 +1,7 @@
 /*
  This Source Code Form is subject to the terms of the Mozilla Public
  License, v. 2.0. If a copy of the MPL was not distributed with this
- file, You can obtain one at http://mozilla.org/MPL/2.0/. 
+ file, You can obtain one at http://mozilla.org/MPL/2.0/.
 */
 
 
@@ -9,35 +9,35 @@
   \page grenaille_example_python_ssc_page Screen Space Curvature using Cuda and Python
 
   \section pyssgl_intro_sec Introduction
-  
-  This is an example that use Grenaille to compute Screen Space Curvature in 
-  python using Cuda. 
-  
+
+  This is an example that use Grenaille to compute Screen Space Curvature in
+  python using Cuda.
+
   \subsection pyssgl_intro_sec_dep_subsec Installation and usage
   This example requires the following python packages:
    - pycuda
    - matplotlib
-  
+
   as well as a working cuda setup and and the lastest version of <strong>eigen dev branch</strong> which manage nvcc compiler.
-  
-  Compile the cuda kernel using 
+
+  Compile the cuda kernel using
   \code
   nvcc --ptx -I ../../Patate/ -I /path/to/eigen-dev-branch-version/  ssgls.cu
   \endcode
-  
+
   The command
   \code
   python ssgls.py -s 10 -p ./data/ssgls_sample_wc.png -n ./data/ssgls_sample_normal.png
   \endcode
-  
+
   takes the input pictures packed in this example and compute the curvature for
   a screenspace neighborhood 10x10 pixels.
   \image html examples/ssgls_input.png "Screen-Space Curvature typical input. Left: world coordinates. Right: remapped normal vectors"
-  
+
   It will generate this picture
   \image html examples/ssgls_result1.png "Screen-Space Curvature estimation"
 
-  as well as the following trace on the standard output  
+  as well as the following trace on the standard output
   \code
   Load CUDA kernel ........... DONE in 0.024 seconds.
   Init Input data ............ DONE in 13.390 seconds.
@@ -54,42 +54,42 @@
   Min value:  -31.8370857239
   #######################################
   \endcode
-  
-  \note Don't worry about the important execution time, this example uses a naive 
-  and inefficient approach to represent queries with numpy, making the 
+
+  \note Don't worry about the important execution time, this example uses a naive
+  and inefficient approach to represent queries with numpy, making the
   total process really slow. However, the real computation time in cuda is
   indicated by the last line of the timing trace. Note that we do not use any
   re-sampling technique, that is why this step is directly related to the scale
-  parameter. 
-   
-  
-  \section pyssgl_cuda_sec Cuda programming
-  
-  Here are the technical details related to the cuda and python biding for 
-  screen-space curvature estimation.
-    
-  \subsection pyssgl_cuda_mypoint_sec Define fitting data structure
-  \snippet python/ssgls.cu mypoint
-  
-  
-  \subsection pyssgl_cuda_weight_sec Define weighting functions  
-  \snippet python/ssgls.cu w_def
-  
-  \subsection pyssgl_cuda_fit_sec Define fitting primitive
-  \snippet python/ssgls.cu fit_def
-  
-  
-  \subsection pyssgl_cuda_kernel_sec Kernel
-  \snippet python/ssgls.cu kernel
-  
-  \subsection pyssgl_cuda_access_sec Memory access
-  We use numpy to format the input data, filled by dimension (in object space) 
-  and then by the screen-space coordinates:
-  \snippet python/ssgls.cu data_acces
-  
-  
-  \section pyssgl_python_sec Python script
-  We use numpy to format input data. 
+  parameter.
 
-  \include python/ssgls.py
+
+  \section pyssgl_cuda_sec Cuda programming
+
+  Here are the technical details related to the cuda and python biding for
+  screen-space curvature estimation.
+
+  \subsection pyssgl_cuda_mypoint_sec Define fitting data structure
+  \snippet Grenaille/python/ssgls.cu mypoint
+
+
+  \subsection pyssgl_cuda_weight_sec Define weighting functions
+  \snippet Grenaille/python/ssgls.cu w_def
+
+  \subsection pyssgl_cuda_fit_sec Define fitting primitive
+  \snippet Grenaille/python/ssgls.cu fit_def
+
+
+  \subsection pyssgl_cuda_kernel_sec Kernel
+  \snippet Grenaille/python/ssgls.cu kernel
+
+  \subsection pyssgl_cuda_access_sec Memory access
+  We use numpy to format the input data, filled by dimension (in object space)
+  and then by the screen-space coordinates:
+  \snippet Grenaille/python/ssgls.cu data_acces
+
+
+  \section pyssgl_python_sec Python script
+  We use numpy to format input data.
+
+  \include Grenaille/python/ssgls.py
  */
