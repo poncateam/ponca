@@ -1,25 +1,24 @@
 /*
  This Source Code Form is subject to the terms of the Mozilla Public
  License, v. 2.0. If a copy of the MPL was not distributed with this
- file, You can obtain one at http://mozilla.org/MPL/2.0/. 
+ file, You can obtain one at http://mozilla.org/MPL/2.0/.
 */
 
 /*!
   \mainpage notitle
 
-  \section patate_news_sec New Release 0.3.2
+  \section patate_news_sec New Release 0.4
 
   \subsection patate_news_subsec Principal features
 
-  - Point Cloud Library (PCL) wrapper added in examples <BR>
-  - New Grenaille::PrimitiveBase interface added <BR>
-  - You can now use Grenaille::CompactPlane for fitting and compute Grenaille::CovariancePlaneFit::surfaceVariation with the extension Grenaille::CovariancePlaneFit. <BR>
+  - Added the new patate Vitelotte for mesh-based vector graphics with a diffusion solver. Comes with a few applications to experiment with this representation. <BR>
+  - Bugfixes and performance improvements in GLSCurvatureHelper <BR>
 
   \section patate_about_sec About Patate
 
   Patate is a header only C++/CUDA library for graphics applications released under the MPL license.
 
-  It provides a collection of Computer Graphics techniques that incorporate the latest innovations from INRIA research teams working in the field. It strives for efficiency and ease-of-use by focusing on low-level core operators and key algorithms, organised in modules that each tackle a specific set of issues. The central goal of the library is to drastically reduce the time and efforts required to turn a research paper into a ready-to-use solution, for both commercial and academic purposes. 
+  It provides a collection of Computer Graphics techniques that incorporate the latest innovations from INRIA research teams working in the field. It strives for efficiency and ease-of-use by focusing on low-level core operators and key algorithms, organised in modules that each tackle a specific set of issues. The central goal of the library is to drastically reduce the time and efforts required to turn a research paper into a ready-to-use solution, for both commercial and academic purposes.
 
   The library is still in its infancy and we're actively working on it to bring you the latest of our published research techniques. Modules will be dealing with graphics domains as varied as multi-scale analysis, material appearance, vector graphics, expressive rendering and 2D animation. Okay, right now it's only multi-scale analysis, but if everything goes as planned, this sentence should be properly deleted in the upcoming months!
 
@@ -43,23 +42,23 @@
   - <b> How are these patates licensed? Are their seeds patented? </b><BR>
   Do not be afraid, our patates are the closest you can get to "organic" in our solanaceous analogy. The source code of the library is licensed under the Mozilla Public License (MPL), v. 2.0. Its main advantage is to grant inclusion of template files as long as the source code itself is not modified (see? It's even somewhat sustainable). For more details, a copy of the MPL can be found at http://mozilla.org/MPL/2.0/ .
 
-  
+
 
 
   \section patate_credits_sec Credits
 
-  \subsection patate_credits_subsection_crew Crew  
+  \subsection patate_credits_subsection_crew Crew
 
   - <b> Nicolas Mellado </b>: conception, implementation and examples <br/>
   - <b> Gautier Ciaudo </b>: testing, documentation, refactoring and examples <br/>
   - <b> Gael Guennebaud </b>: conception and implementation <br/>
   - <b> Pascal Barla </b>: conception and documentation <br/>
   - <b> Noam Kremen </b>: implementation <br/>
-  
+
   \subsection patate_credits_subsection_citation Citation
 
   If you use our library, please cite it using the following bibtex entry:
-  \verbatim  
+  \verbatim
     @MISC{PatateLib,
     author = {Nicolas Mellado and Gautier Ciaudo and Ga\"{e}l Guennebaud and Pascal Barla},
     title = {Patate Lib},
