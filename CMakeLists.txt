@@ -66,6 +66,8 @@ if(DOXYGEN_FOUND)
 
   message(STATUS "[Dox] Copying html image directory")
   file (COPY ${CMAKE_CURRENT_SOURCE_DIR}/doc-src/images/ DESTINATION ${CMAKE_CURRENT_BINARY_DIR}/doc/html/images)
+  message(STATUS "[Dox] Copying changelog")
+  file (COPY ${CMAKE_CURRENT_SOURCE_DIR}/CHANGELOG DESTINATION ${CMAKE_CURRENT_BINARY_DIR}/doc/html/)
 endif(DOXYGEN_FOUND)
 
 ################################################################################
