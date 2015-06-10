@@ -7,7 +7,6 @@
 		<tab type="user" visible="yes" url="@ref getting_started_requirements_sec" title="Requirements"/>
 		<tab type="user" visible="yes" url="@ref getting_started_download_sec" title="Download"/>
 		<tab type="user" visible="yes" url="@ref getting_started_installation_sec" title="Installation"/>
-		<tab type="user" visible="yes" url="@ref getting_started_panorama_sec" title="Panorama"/>
 		<tab type="user" visible="yes" url="@ref getting_started_first_step_sec" title="First steps"/>
 	</tab>
 
