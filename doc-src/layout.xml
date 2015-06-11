@@ -69,6 +69,7 @@
 	  <tab type="namespacelist" visible="no" title="" intro=""/>
 	  <tab type="namespacemembers" visible="no" title="" intro=""/>
 	</tab>
+    <tab type="user" visible="yes" title="Changelog" url="patate_changelog.html"/>
     <tab type="user" visible="yes" title="Citations" url="citelist.html"/>
   </navindex>
 

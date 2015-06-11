@@ -58,16 +58,21 @@ add_custom_target(vitelottes_vg_mesh_renderer_shaders
 find_package(Doxygen)
 if(DOXYGEN_FOUND)
   configure_file(${CMAKE_CURRENT_SOURCE_DIR}/doc-src/Doxyfile.in ${CMAKE_CURRENT_BINARY_DIR}/Doxyfile @ONLY)
-  add_custom_target(doc
-  ${DOXYGEN_EXECUTABLE} ${CMAKE_CURRENT_BINARY_DIR}/Doxyfile
-  WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}
-  COMMENT "Generating API documentation with Doxygen" VERBATIM
-  )
 
-  message(STATUS "[Dox] Copying html image directory")
-  file (COPY ${CMAKE_CURRENT_SOURCE_DIR}/doc-src/images/ DESTINATION ${CMAKE_CURRENT_BINARY_DIR}/doc/html/images)
-  message(STATUS "[Dox] Copying changelog")
-  file (COPY ${CMAKE_CURRENT_SOURCE_DIR}/CHANGELOG DESTINATION ${CMAKE_CURRENT_BINARY_DIR}/doc/html/)
+  add_custom_target(doc
+     COMMAND ${CMAKE_COMMAND} -E copy_directory
+       ${CMAKE_CURRENT_SOURCE_DIR}/doc-src/images/
+       ${CMAKE_CURRENT_BINARY_DIR}/doc/html/images
+     COMMAND ${CMAKE_COMMAND} -E copy
+       ${CMAKE_CURRENT_SOURCE_DIR}/CHANGELOG
+       ${CMAKE_CURRENT_BINARY_DIR}/doc-src/
+     COMMAND ${DOXYGEN_EXECUTABLE} ${CMAKE_CURRENT_BINARY_DIR}/Doxyfile
+     DEPENDS
+       ${CMAKE_CURRENT_SOURCE_DIR}/doc-src/Doxyfile.in
+       ${CMAKE_CURRENT_SOURCE_DIR}/CHANGELOG
+     WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}
+     COMMENT "Generating API documentation with Doxygen" VERBATIM
+  )
 endif(DOXYGEN_FOUND)
 
 ################################################################################
