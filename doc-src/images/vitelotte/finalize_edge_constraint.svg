@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   version="1.1"
+   width="400"
+   height="150"
+   id="svg5354"
+   inkscape:version="0.48.4 r9939"
+   sodipodi:docname="edge_uc_src.svg"
+   style="fill:#ffffff">
+  <metadata
+     id="metadata5368">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <defs
+     id="defs5366">
+    <marker
+       inkscape:stockid="TriangleOutL"
+       orient="auto"
+       refY="0.0"
+       refX="0.0"
+       id="TriangleOutL"
+       style="overflow:visible">
+      <path
+         id="path4421"
+         d="M 5.77,0.0 L -2.88,5.0 L -2.88,-5.0 L 5.77,0.0 z "
+         style="fill-rule:evenodd;stroke:#000000;stroke-width:1.0pt"
+         transform="scale(0.8)" />
+    </marker>
+  </defs>
+  <sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="1918"
+     inkscape:window-height="1032"
+     id="namedview5364"
+     showgrid="false"
+     inkscape:snap-bbox="true"
+     inkscape:zoom="1.5733333"
+     inkscape:cx="-33.686441"
+     inkscape:cy="75"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg5354">
+    <sodipodi:guide
+       position="0,0"
+       orientation="0,400"
+       id="guide5370" />
+    <sodipodi:guide
+       position="400,0"
+       orientation="-150,0"
+       id="guide5372" />
+    <sodipodi:guide
+       position="400,150"
+       orientation="0,-400"
+       id="guide5374" />
+    <sodipodi:guide
+       id="guide5400"
+       orientation="0,-400"
+       position="0,75" />
+    <sodipodi:guide
+       position="0,150"
+       orientation="150,0"
+       id="guide5376" />
+    <sodipodi:guide
+       id="guide5396"
+       orientation="150,0"
+       position="175,0" />
+    <sodipodi:guide
+       position="225,0"
+       orientation="150,0"
+       id="guide5398" />
+  </sodipodi:namedview>
+  <g
+     id="g5380">
+    <rect
+       style="fill:#ffffff"
+       id="rect5356"
+       height="150"
+       width="150"
+       y="0"
+       x="0" />
+    <line
+       style="stroke:#000000"
+       id="line5358"
+       y2="37.5"
+       x2="139.95"
+       y1="112.5"
+       x1="10.05" />
+    <text
+       style="fill:#000000"
+       id="text5360"
+       y="70.339813"
+       x="66.499893">0</text>
+    <circle
+       style="fill:#ff0000"
+       sodipodi:ry="6"
+       sodipodi:rx="6"
+       sodipodi:cy="83.660187"
+       sodipodi:cx="80.000107"
+       id="circle5362"
+       r="6"
+       cy="83.660187"
+       cx="80.000107" />
+  </g>
+  <g
+     id="g5386"
+     transform="translate(250,0)">
+    <rect
+       x="0"
+       y="0"
+       width="150"
+       height="150"
+       id="rect5388"
+       style="fill:#ffffff" />
+    <line
+       x1="10.05"
+       y1="112.5"
+       x2="139.95"
+       y2="37.5"
+       id="line5390"
+       style="stroke:#000000" />
+    <text
+       x="66.499893"
+       y="70.339813"
+       id="text5392"
+       style="fill:#000000">0</text>
+    <circle
+       cx="80.000107"
+       cy="83.660187"
+       r="6"
+       id="circle5394"
+       sodipodi:cx="80.000107"
+       sodipodi:cy="83.660187"
+       sodipodi:rx="6"
+       sodipodi:ry="6"
+       style="fill:#ff0000"
+       d="m 86.000107,83.660187 c 0,3.313708 -2.686292,6 -6,6 -3.313709,0 -6,-2.686292 -6,-6 0,-3.313709 2.686291,-6 6,-6 3.313708,0 6,2.686291 6,6 z" />
+  </g>
+  <path
+     style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-end:url(#TriangleOutL)"
+     d="m 175,75 50,0"
+     id="path5402"
+     inkscape:connector-curvature="0" />
+</svg>
