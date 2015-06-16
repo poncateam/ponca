@@ -14,7 +14,13 @@ namespace Grenaille
   meshes then simply consists of only considering their vertices.
 
   This is just the tip of the iceberg though, as we also provide methods for dealing with points equipped with non-oriented normals \cite Chen:2013:NOMG, techniques to analyze 
-  points clouds in scale-space to discover salient structures \cite Mellado:2012:GLS, methods to compute multi-scale principal curvatures \cite Mellado:2013:SSC and methods to compute surface variation using a plane instead of a sphere for the fitting \cite Pauly:2002:PSSimplification.
+  points clouds in scale-space to discover salient structures \cite Mellado:2012:GLS, methods to compute multi-scale principal curvatures \cite Mellado:2013:SSC and methods to compute surface variation using a plane instead of a sphere for the fitting \cite Pauly:2002:PSSimplification. See the table below:
+  
+  Primitive         | Supported Input     | Fitting techniques                            | Analysis/Tools                                     | Other usages |
+  ----------------- | ------------------- | --------------------------------------------- | -------------------------------------------------- | ------------ |
+  Plane             | Points              | CovariancePlaneFit                            | Surface Variation\cite Pauly:2002:PSSimplification | Ray Traced Curvature\cite Mellado:2013:SSC |
+  Algebraic Sphere  | Oriented points     | OrientedSphereFit \cite Guennebaud:2007:APSS  | GLS\cite Mellado:2012:GLS                          |       |
+  Algebraic Sphere  | Non-oriented points | UnorientedSphereFit \cite Chen:2013:NOMG      |                                                    |       |
 
   In the following, we focus on a basic use of the module, using 3D points equipped with oriented normals fitted by a Grenaille::AlgebraicSphere. First, one must set up data samples that interface 
   with an external code; then run the fitting process in itself, and finally collect outputs. We also show how to compute curvatures with the very same approach, 
