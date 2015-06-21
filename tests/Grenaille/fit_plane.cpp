@@ -35,7 +35,7 @@ void testFunction(bool _bUnoriented = false, bool _bAddPositionNoise = false, bo
     Scalar width  = Eigen::internal::random<Scalar>(1., 10.);
     Scalar height = width;
 
-    Scalar analysisScale = Scalar(15. * std::sqrt( width * height / nbPoints));
+    Scalar analysisScale = Scalar(15.) * std::sqrt( width * height / nbPoints);
     Scalar centerScale   = Eigen::internal::random<Scalar>(1,10000);
     VectorType center    = VectorType::Random() * centerScale;
 
