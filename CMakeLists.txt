@@ -80,6 +80,9 @@ endif(DOXYGEN_FOUND)
 # tests and examples                                                           #
 ################################################################################
 
+# enable extra warnings
+list( APPEND CMAKE_CXX_FLAGS "-Wall -Wpedantic -Wextra  -Wdouble-promotion ${CMAKE_CXX_FLAGS}")
+
 set(CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR}/cmake)
 
 add_subdirectory(examples EXCLUDE_FROM_ALL)
