@@ -143,8 +143,12 @@ public:
         if(isPlane())
         {
             //return infinity (non-sense value)
+#ifdef __CUDACC__
             Scalar inf = 0.;
             return Scalar(1.)/inf;
+#else
+            return std::numeric_limits<Scalar>::infinity();
+#endif
         }
 
         MULTIARCH_STD_MATH(sqrt);
