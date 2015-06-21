@@ -81,7 +81,9 @@ endif(DOXYGEN_FOUND)
 ################################################################################
 
 # enable extra warnings
-list( APPEND CMAKE_CXX_FLAGS "-Wall -Wpedantic -Wextra  -Wdouble-promotion ${CMAKE_CXX_FLAGS}")
+if (CMAKE_COMPILER_IS_GNUCXX)
+    list( APPEND CMAKE_CXX_FLAGS "-Wall -Wpedantic -Wextra  -Wdouble-promotion ${CMAKE_CXX_FLAGS}")
+endif (CMAKE_COMPILER_IS_GNUCXX)
 
 set(CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR}/cmake)
 
