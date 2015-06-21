@@ -22,7 +22,7 @@ DistWeightFunc<DataPoint, WeightKernel>::spacedw(   const VectorType& _q,
 {
     VectorType result = VectorType::Zero();
     Scalar d = _q.norm();
-    if (d <= m_t && d != 0.) result = (_q / (d * m_t)) * m_wk.df(d/m_t);
+    if (d <= m_t && d != Scalar(0.)) result = (_q / (d * m_t)) * m_wk.df(d/m_t);
     return result;
 }
 

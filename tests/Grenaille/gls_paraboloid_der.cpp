@@ -26,9 +26,6 @@ void testFunction()
     typedef typename DataPoint::VectorType VectorType;
     typedef typename DataPoint::QuaternionType QuaternionType;
 
-    typedef typename Fit::VectorArray VectorArray;
-    typedef typename Fit::ScalarArray ScalarArray;
-
     //generate sampled paraboloid
     int nbPoints = Eigen::internal::random<int>(1000, 10000);
 
@@ -36,8 +33,8 @@ void testFunction()
     VectorType vCoef = VectorType(Eigen::internal::random<Scalar>(-10,10), Eigen::internal::random<Scalar>(-10,10), 0);
     //vCoef.y() = vCoef.x();
 
-    Scalar analysisScale = Scalar(.00000001 * std::min(std::abs(vCoef.x()),
-                                                       std::abs(vCoef.y())));
+    Scalar analysisScale = Scalar(.00000001) * std::min(std::abs(vCoef.x()),
+                                                       std::abs(vCoef.y()));
 
 
     Scalar rotationAngle = Eigen::internal::random<Scalar>(Scalar(0.), Scalar(2 * M_PI));
@@ -83,13 +80,13 @@ void testFunction()
         VectorType eta = fit.eta();
         Scalar kappa = fit.kappa();
 
-        VERIFY( Eigen::internal::isMuchSmallerThan(std::abs(tau - theoricTau), 1., epsilon) );
-        VERIFY( Eigen::internal::isMuchSmallerThan((theoricEta - eta).norm(), 1., epsilon ) );
-        VERIFY( Eigen::internal::isMuchSmallerThan(std::abs(computedTheoricKappa - kappa), 1., kappaEpsilon) );
+        VERIFY( Eigen::internal::isMuchSmallerThan(std::abs(tau - theoricTau), Scalar(1.), epsilon) );
+        VERIFY( Eigen::internal::isMuchSmallerThan((theoricEta - eta).norm(), Scalar(1.), epsilon ) );
+        VERIFY( Eigen::internal::isMuchSmallerThan(std::abs(computedTheoricKappa - kappa), Scalar(1.), kappaEpsilon) );
 
-        Scalar kappanorm = fit.kappa_normalized();
-        Scalar taunorm = fit.tau_normalized();
-        ScalarArray dkappa = fit.dkappa();
+        //Scalar kappanorm = fit.kappa_normalized();
+        //Scalar taunorm = fit.tau_normalized();
+        //ScalarArray dkappa = fit.dkappa();
 
         Scalar kappa1 = fit.GLSk1();
         Scalar kappa2 = fit.GLSk2();

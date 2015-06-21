@@ -40,7 +40,7 @@ void testFunction(bool _bUnoriented = false, bool _bAddPositionNoise = false, bo
     if(_bAddPositionNoise || _bAddNormalNoise)
         epsilon *= 10;
 
-    Scalar analysisScale = Scalar(100. * std::sqrt(4 * M_PI * range * range / nbPoints));
+    Scalar analysisScale = Scalar(100.) * std::sqrt(Scalar(4. * M_PI) * range * range / nbPoints);
 
     for(unsigned int i = 0; i < vectorPoints.size(); ++i)
     {

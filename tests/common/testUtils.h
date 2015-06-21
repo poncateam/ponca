@@ -18,8 +18,8 @@
 
 #include <vector>
 
-#define MIN_NOISE 0.99f
-#define MAX_NOISE 1.01f
+#define MIN_NOISE 0.99
+#define MAX_NOISE 1.01
 
 // Epsilon precision
 template<typename T> inline T testEpsilon()
@@ -126,7 +126,6 @@ DataPoint getPointOnSphere(typename DataPoint::Scalar _radius, typename DataPoin
 {
     typedef typename DataPoint::Scalar Scalar;
     typedef typename DataPoint::VectorType VectorType;
-    typedef typename DataPoint::QuaternionType QuaternionType;
 
     VectorType vNormal = VectorType::Random().normalized();
 
@@ -135,13 +134,15 @@ DataPoint getPointOnSphere(typename DataPoint::Scalar _radius, typename DataPoin
     if(_bAddPositionNoise)
     {
         //vPosition = _vCenter + vNormal * _radius * Eigen::internal::random<Scalar>(MIN_NOISE, MAX_NOISE);
-        vPosition = vPosition + VectorType::Random().normalized() * Eigen::internal::random<Scalar>(0., 1. - MIN_NOISE);
+        vPosition = vPosition + VectorType::Random().normalized() *
+                Eigen::internal::random<Scalar>(Scalar(0.), Scalar(1. - MIN_NOISE));
         vNormal = (vPosition - _vCenter).normalized();
     }
 
     if(_bAddNormalNoise)
     {
-        VectorType vTempPos =  vPosition + VectorType::Random().normalized() * Eigen::internal::random<Scalar>(0., 1. - MIN_NOISE);
+        VectorType vTempPos =  vPosition + VectorType::Random().normalized() *
+                Eigen::internal::random<Scalar>(Scalar(0.), Scalar(1. - MIN_NOISE));
         vNormal = (vTempPos - _vCenter).normalized();
     }
     if(_bReverseNormals)
@@ -262,8 +263,10 @@ Scalar getParaboloidZ(Scalar _x, Scalar _y, Scalar _a, Scalar _b)
 }
 
 template<typename DataPoint>
-DataPoint getPointOnParaboloid(typename DataPoint::VectorType _vCenter, typename DataPoint::VectorType _vCoef,
-                               typename DataPoint::QuaternionType _qRotation, typename DataPoint::Scalar _analysisScale,
+DataPoint getPointOnParaboloid(typename DataPoint::VectorType /*_vCenter*/,
+                               typename DataPoint::VectorType _vCoef,
+                               typename DataPoint::QuaternionType /*_qRotation*/,
+                               typename DataPoint::Scalar _analysisScale,
                                bool _bAddNoise = true)
 {
     typedef typename DataPoint::Scalar Scalar;
@@ -302,7 +305,6 @@ template<typename DataPoint>
 typename DataPoint::Scalar getPointKappaMean(typename DataPoint::VectorType _vPoint, typename DataPoint::Scalar _a, typename DataPoint::Scalar _b)
 {
     typedef typename DataPoint::Scalar Scalar;
-    typedef typename DataPoint::VectorType VectorType;
 
     Scalar x = _vPoint.x();
     Scalar y = _vPoint.y();

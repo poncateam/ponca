@@ -24,12 +24,12 @@ template <bool isSpaceDer, int Dim>
 struct subTestSpatial{
     template<typename Scalar, typename Fit>
     static
-    inline void eval(const Fit& _fit,
-                     Scalar _radiusMin,
-                     Scalar _radiusMax,
-                     Scalar _radiusEpsilon,
-                     Scalar _fitRadiusKappa,
-                     Scalar _fitRadiusAlgebraic) { }
+    inline void eval(const Fit& /*_fit*/,
+                     Scalar /*_radiusMin*/,
+                     Scalar /*_radiusMax*/,
+                     Scalar /*_radiusEpsilon*/,
+                     Scalar /*_fitRadiusKappa*/,
+                     Scalar /*_fitRadiusAlgebraic*/) { }
 };
 
 template <>
@@ -39,8 +39,8 @@ subTestSpatial<true, 3>::eval(const Fit& _fit,
                            Scalar _radiusMin,
                            Scalar _radiusMax,
                            Scalar _radiusEpsilon,
-                           Scalar _fitRadiusKappa,
-                           Scalar _fitRadiusAlgebraic){
+                           Scalar /*_fitRadiusKappa*/,
+                           Scalar /*_fitRadiusAlgebraic*/){
 
     Scalar k1      = _fit.GLSk1();
     Scalar k2      = _fit.GLSk2();
@@ -66,7 +66,7 @@ void testFunction(bool _bUnoriented = false, bool _bAddPositionNoise = false, bo
 
     Scalar radius = Eigen::internal::random<Scalar>(1., 10.);
 
-    Scalar analysisScale = Scalar(10. * std::sqrt( 4. * M_PI * radius * radius / nbPoints));
+    Scalar analysisScale = Scalar(10.) * std::sqrt( Scalar(4. * M_PI) * radius * radius / nbPoints);
     Scalar centerScale = Eigen::internal::random<Scalar>(1,10000);
     VectorType center = VectorType::Random() * centerScale;
 
@@ -105,8 +105,8 @@ void testFunction(bool _bUnoriented = false, bool _bAddPositionNoise = false, bo
             Scalar fitRadiusAlgebraic = fit.radius();
             VectorType fitCenter (fit.center());
 
-            Scalar radiusMax = radius * MAX_NOISE;
-            Scalar radiusMin = radius * MIN_NOISE;
+            Scalar radiusMax = radius * Scalar(MAX_NOISE);
+            Scalar radiusMin = radius * Scalar(MIN_NOISE);
 
             // Test procedure
             VERIFY( (fitCenter - center).norm() < (radiusMax - radius) + radiusEpsilon );
@@ -114,7 +114,7 @@ void testFunction(bool _bUnoriented = false, bool _bAddPositionNoise = false, bo
             // Test reparametrization
             VERIFY( (fitRadiusKappa > radiusMin - radiusEpsilon) && (fitRadiusKappa < radiusMax + radiusEpsilon) );
             //Test coherance
-            VERIFY( Eigen::internal::isMuchSmallerThan(std::fabs(fitRadiusAlgebraic - fitRadiusKappa), 1., epsilon) );
+            VERIFY( Eigen::internal::isMuchSmallerThan(std::fabs(fitRadiusAlgebraic - fitRadiusKappa), Scalar(1.), epsilon) );
 
             //Test using spatial derivatives if defined
             subTestSpatial<isSpaceDer, DataPoint::Dim>::eval(fit, radiusMin, radiusMax, radiusEpsilon, fitRadiusKappa, fitRadiusAlgebraic);
@@ -126,7 +126,7 @@ void testFunction(bool _bUnoriented = false, bool _bAddPositionNoise = false, bo
                 VectorType fitEta (fit.eta().normalized().array().abs());
                 VectorType theoricEta (vectorPoints[i].normal().array().abs());
 
-                VERIFY( Eigen::internal::isMuchSmallerThan((fitEta - theoricEta).norm(), 1., epsilon)  );
+                VERIFY( Eigen::internal::isMuchSmallerThan((fitEta - theoricEta).norm(), Scalar(1.), epsilon)  );
             }
         }
     }

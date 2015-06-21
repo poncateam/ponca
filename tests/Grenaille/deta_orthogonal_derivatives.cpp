@@ -75,7 +75,7 @@ void test_orthoEta()
     // generate sample data
     int n = Eigen::internal::random<int>(10,1000);
     Scalar radius = Eigen::internal::random<Scalar>(1,10);
-    Scalar tmax = Scalar(10. * std::sqrt(4. * M_PI * radius * radius/n));
+    Scalar tmax = Scalar(10.) * std::sqrt(Scalar(4. * M_PI) * radius * radius/n);
     vector<Point> vecs (n);
 
     for(int k=0; k<n; ++k)

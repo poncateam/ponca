@@ -25,7 +25,6 @@ void testFunction(bool _bAddPositionNoise = false, bool _bAddNormalNoise = false
     typedef typename DataPoint::Scalar Scalar;
     typedef typename DataPoint::VectorType VectorType;
 
-    typedef typename Fit::VectorArray VectorArray;
     typedef typename Fit::ScalarArray ScalarArray;
 
     //generate sampled sphere
@@ -34,10 +33,10 @@ void testFunction(bool _bAddPositionNoise = false, bool _bAddNormalNoise = false
     Scalar radius = Eigen::internal::random<Scalar>(1,10);
     VectorType center = VectorType::Random() * Eigen::internal::random<Scalar>(1, 10000);
 
-    Scalar analysisScale = Scalar(10. * std::sqrt(4 * M_PI * radius * radius / nbPoints));
+    Scalar analysisScale = Scalar(10.) * std::sqrt(Scalar(4. * M_PI) * radius * radius / nbPoints);
 
     Scalar epsilon = testEpsilon<Scalar>();
-    Scalar radisuEpsilon = epsilon * radius;
+    //Scalar radisuEpsilon = epsilon * radius;
 
     vector<DataPoint> vectorPoints(nbPoints);
 
@@ -68,7 +67,7 @@ void testFunction(bool _bAddPositionNoise = false, bool _bAddNormalNoise = false
 
             for(int i = 0; i < dkappa.size(); ++i)
             {
-                VERIFY( Eigen::internal::isMuchSmallerThan(dkappa[i], 1., epsilon) );
+                VERIFY( Eigen::internal::isMuchSmallerThan(dkappa[i], Scalar(1.), epsilon) );
             }
         }
     }

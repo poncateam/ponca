@@ -31,7 +31,7 @@ void testFunction(bool _bAddPositionNoise = false, bool _bAddNormalNoise = false
 
     Scalar radius = Eigen::internal::random<Scalar>(Scalar(0.1), Scalar(10.));
 
-    Scalar analysisScale = Scalar(10. * std::sqrt( 4. * M_PI * radius * radius / nbPoints));
+    Scalar analysisScale = Scalar(10.) * std::sqrt(Scalar(4. * M_PI) * radius * radius / nbPoints);
     Scalar centerScale = Eigen::internal::random<Scalar>(1,10);
     VectorType center = VectorType::Random() * centerScale;
 
