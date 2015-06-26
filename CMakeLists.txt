@@ -38,6 +38,8 @@ find_package(PythonInterp 3.0)
 if(PYTHONINTERP_FOUND)
     set(vitelotte_SHADERS
         ${Patate_SOURCE_DIR}/Patate/Vitelotte/Utils/vgMeshRendererShaders/vert_common.glsl
+        ${Patate_SOURCE_DIR}/Patate/Vitelotte/Utils/vgMeshRendererShaders/ctrl_common.glsl
+        ${Patate_SOURCE_DIR}/Patate/Vitelotte/Utils/vgMeshRendererShaders/eval_common.glsl
         ${Patate_SOURCE_DIR}/Patate/Vitelotte/Utils/vgMeshRendererShaders/geom_common.glsl
         ${Patate_SOURCE_DIR}/Patate/Vitelotte/Utils/vgMeshRendererShaders/frag_common.glsl
         ${Patate_SOURCE_DIR}/Patate/Vitelotte/Utils/vgMeshRendererShaders/frag_linear.glsl
