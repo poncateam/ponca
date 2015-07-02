@@ -22,6 +22,13 @@ if(    NOT cmake_build_type_tolower STREQUAL "debug"
 endif()
 
 ################################################################################
+# Add core code source, so it is visible in dev environements                  #
+################################################################################
+
+add_subdirectory(Patate/Grenaille EXCLUDE_FROM_ALL)
+add_subdirectory(Patate/Vitelotte EXCLUDE_FROM_ALL)
+
+################################################################################
 # Generate Vitelotte's shaders                                                 #
 # TODO: find a more appropriate place for this.                                #
 ################################################################################
