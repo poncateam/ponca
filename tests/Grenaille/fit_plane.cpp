@@ -76,25 +76,9 @@ void testFunction(bool _bUnoriented = false, bool _bAddPositionNoise = false, bo
         fit.setWeightFunc(WeightFunc(analysisScale));
         fit.init(vectorPoints[i].pos());
 
-        for(typename vector<DataPoint>::iterator it = vectorPoints.begin();
-            it != vectorPoints.end();
-            ++it)
-        {
-            fit.addNeighbor(*it);
-        }
+        fit.compute(vectorPoints.begin(), vectorPoints.end());
 
-        if (fit.finalize() == NEED_OTHER_PASS) {
-
-            for(typename vector<DataPoint>::iterator it = vectorPoints.begin();
-                it != vectorPoints.end();
-                ++it)
-            {
-                fit.addNeighbor(*it);
-            }
-
-            fit.finalize();
-
-            VERIFY(fit.isStable());
+        if( fit.isStable() ){
 
             if ( _bAddPositionNoise) // relax a bit the testing threshold
                 epsilon *= Scalar(10.);
