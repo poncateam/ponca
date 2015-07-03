@@ -314,7 +314,7 @@ typename DataPoint::Scalar getPointKappaMean(typename DataPoint::VectorType _vPo
 
     Scalar num = (1 + ax2) * _b + (1 + by2) * _a;
     Scalar den = (1 + ax2 + by2);
-    den = std::pow<Scalar, Scalar>(den, Scalar(3./2.));
+    den = std::pow(den, Scalar(3./2.));
 
     Scalar kappa = num / den * Scalar(0.5);
 
