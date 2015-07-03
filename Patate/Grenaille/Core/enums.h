@@ -26,6 +26,15 @@ namespace Grenaille
         NEED_OTHER_PASS = 3, 
         NBMAX /*!< \brief Nb enums */
     };
+    
+namespace internal
+{
+  enum
+  {
+    FitScaleDer = 0x01, /*!< \brief Flag indicating a scale differentiation. */
+    FitSpaceDer = 0x02  /*!< \brief Flag indicating a space differentiation. */
+  };
+} // end namespace internal
 
 } //namespace Grenaille
 

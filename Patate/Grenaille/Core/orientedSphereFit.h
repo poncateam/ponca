@@ -79,12 +79,6 @@ public:
 namespace internal
 {
 
-enum
-{
-    FitScaleDer = 0x01, /*!< \brief Flag indicating a scale differentiation. */
-    FitSpaceDer = 0x02  /*!< \brief Flag indicating a space differentiation. */
-};
-
 /*! 
     \brief Internal generic class performing the Fit derivation 
     \inherit Concept::FittingExtensionConcept
