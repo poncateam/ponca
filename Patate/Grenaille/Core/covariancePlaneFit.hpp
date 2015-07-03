@@ -1,5 +1,6 @@
 /*
  Copyright (C) 2014 Nicolas Mellado <nmellado0@gmail.com>
+ Copyright (C) 2015 Gael Guennebaud <gael.guennebaud@inria.fr>
  
  This Source Code Form is subject to the terms of the Mozilla Public
  License, v. 2.0. If a copy of the MPL was not distributed with this
@@ -20,32 +21,24 @@ CovariancePlaneFit<DataPoint, _WFunctor, T>::init(const VectorType& _evalPos)
     m_evalPos     = _evalPos;
     m_gc          = VectorType::Zero();
     m_cov         = MatrixType::Zero();
-    m_isFirstPass = true;
 }
 
 template < class DataPoint, class _WFunctor, typename T>
 bool 
 CovariancePlaneFit<DataPoint, _WFunctor, T>::addNeighbor(const DataPoint& _nei)
 {
+    VectorType q = _nei.pos() - m_evalPos;
     // compute weight
-    Scalar w = m_w.w(_nei.pos() - m_evalPos, _nei);
+    Scalar w = m_w.w(q, _nei);
 
     if (w > Scalar(0.))
     {
-        if (m_isFirstPass) // compute gravity center
-        { 
-            m_gc   += w * _nei.pos();
-            m_sumW += w;
-        }
-        else // increment covariance matrix
-        {
-            VectorType q = _nei.pos() - m_gc;
-            m_cov +=  w * q * q.transpose();
-            m_sumW += w;
-        }
+      m_gc   += w * q;
+      m_sumW += w;
+      m_cov  += w * q * q.transpose();
         
-        ++(Base::m_nbNeighbors);
-        return true;
+      ++(Base::m_nbNeighbors);
+      return true;
     }
     return false;
 }
@@ -61,37 +54,26 @@ CovariancePlaneFit<DataPoint, _WFunctor, T>::finalize ()
     // With less than 3 neighbors the fitting is undefined
     if(m_sumW == Scalar(0.) || Base::m_nbNeighbors < 3)
     {
-        Base::resetPrimitive();
-        Base::m_eCurrentState = UNDEFINED;
-        return Base::m_eCurrentState;
+      Base::resetPrimitive();
+      Base::m_eCurrentState = UNDEFINED;
+      return Base::m_eCurrentState;
     }
 
-    if( m_isFirstPass )
-    {
-        m_gc  /= m_sumW;
-        m_cov  = MatrixType::Zero();
-        m_sumW = Scalar(0.);
-        m_isFirstPass = false;
-        
-        Base::m_eCurrentState = NEED_OTHER_PASS;
-        Base::m_nbNeighbors   = 0;
-    }
-    else // second pass
-    {
-        m_cov /= m_sumW;
+    m_gc  /= m_sumW;
+    m_cov /= m_sumW;
+    m_cov -= m_gc * m_gc.transpose();
+    m_gc += m_evalPos;
         
 #ifdef __CUDACC__
-        m_solver.computeDirect(m_cov.transpose()*m_cov);
+    m_solver.computeDirect(m_cov);
 #else
-        m_solver.compute(m_cov.transpose()*m_cov);
+    m_solver.compute(m_cov);
 #endif
         
-        Base::setPlane(m_solver.eigenvectors().col(0), m_gc);
+    Base::setPlane(m_solver.eigenvectors().col(0), m_gc);
 
-        // \todo Use the output of the solver to check stability
-        Base::m_eCurrentState = STABLE;
-    }
-
+    // \todo Use the output of the solver to check stability
+    Base::m_eCurrentState = STABLE;
     return Base::m_eCurrentState;
 }
 

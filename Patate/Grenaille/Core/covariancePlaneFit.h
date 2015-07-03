@@ -62,8 +62,6 @@ public:
     VectorType m_gc,      /*!< \brief Gravity center of the neighborhood */
                m_evalPos; /*!< \brief Center of the evaluation basis */
     MatrixType m_cov;     /*!< \brief Covariance matrix */
-    /*! \brief State indicating if the current pass is the first one*/
-    bool       m_isFirstPass; 
 
     Solver m_solver;  /*!<\brief Solver used to analyse the covariance matrix */
 
