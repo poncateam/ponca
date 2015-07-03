@@ -1236,7 +1236,8 @@ MATHJAX_RELPATH        = http://cdn.mathjax.org/mathjax/latest
 # The MATHJAX_EXTENSIONS tag can be used to specify one or MathJax extension
 # names that should be enabled during MathJax rendering.
 
-MATHJAX_EXTENSIONS     =
+MATHJAX_EXTENSIONS     = TeX/AMSsymbols \
+                         TeX/AMSmath
 
 # When the SEARCHENGINE tag is enabled doxygen will generate a search box
 # for the HTML output. The underlying search engine uses javascript
