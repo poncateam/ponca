@@ -268,19 +268,19 @@ public:
     /**************************************************************************/
     /* Use results                                                            */
     /**************************************************************************/
-    //! \brief Return the first principal curvature value
+    //! \brief Returns an estimate of the first principal curvature value based on the spacial derivatives of \c eta
     MULTIARCH inline Scalar GLSk1() const { return m_k1; }
 
-    //! \brief Return the second principal curvature value
+    //! \brief Returns an estimate of the second principal curvature value based on the spacial derivatives of \c eta
     MULTIARCH inline Scalar GLSk2() const { return m_k2; }
 
-    //! \brief Return the first principal curvature direction
+    //! \brief Returns an estimate of the first principal curvature direction as the direction of maximal variation of \c eta
     MULTIARCH inline VectorType GLSk1Direction() const { return m_v1; }
 
-    //! \brief Return the second principal curvature direction
+    //! \brief Returns an estimate of the second principal curvature direction as the direction of minimal variation of \c eta
     MULTIARCH inline VectorType GLSk2Direction() const { return m_v2; }
 
-    //! \brief Return the Gaussian Curvature
+    //! \brief Returns an estimate of the Gaussian Curvature based on the spacial derivatives of \c eta
     MULTIARCH inline Scalar GLSGaussianCurvature() const { return m_k1 * m_k2;}    
 };
 
