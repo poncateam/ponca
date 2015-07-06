@@ -34,7 +34,7 @@ if(CUDA_FOUND)
         include_directories(${FREEIMAGEPLUS_INCLUDE_PATH})
 
         # Pass options to NVCC
-        set(CUDA_NVCC_FLAGS ${CUDA_NVCC_FLAGS};-O3)
+        set(CUDA_NVCC_FLAGS ${CUDA_NVCC_FLAGS} -O3)
 
         # For compilation ...
         # Specify target & source files to compile it from
@@ -43,5 +43,10 @@ if(CUDA_FOUND)
         # For linking ...
         # Specify target & libraries to link it with
         target_link_libraries( ssgls ${FREEIMAGEPLUS_LIBRARIES} )
+
+        # Add images
+        add_custom_command(TARGET ssgls POST_BUILD
+                       COMMAND ${CMAKE_COMMAND} -E copy_directory
+                               ${CMAKE_CURRENT_SOURCE_DIR}/data/ ${CMAKE_CURRENT_BINARY_DIR}/data )
     endif(FREEIMAGEPLUS_FOUND)
 endif(CUDA_FOUND)
