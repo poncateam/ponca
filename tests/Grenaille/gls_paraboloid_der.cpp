@@ -9,7 +9,6 @@
  \file test/Grenaille/gls_paraboloid_der.cpp
  \brief Test validity of GLS derivatives for a paraboloid
  */
-
 #include "../common/testing.h"
 #include "../common/testUtils.h"
 
@@ -27,15 +26,13 @@ void testFunction()
     typedef typename DataPoint::QuaternionType QuaternionType;
 
     //generate sampled paraboloid
-    int nbPoints = Eigen::internal::random<int>(1000, 10000);
+    int nbPoints = Eigen::internal::random<int>(10000, 20000);
 
-    VectorType vCenter = VectorType::Random() * Eigen::internal::random<Scalar>(1, 10000);
+    VectorType vCenter = VectorType::Random() * Eigen::internal::random<Scalar>(1, 1000);
     VectorType vCoef = VectorType(Eigen::internal::random<Scalar>(-10,10), Eigen::internal::random<Scalar>(-10,10), 0);
     //vCoef.y() = vCoef.x();
 
-    Scalar analysisScale = Scalar(.00000001) * std::min(std::abs(vCoef.x()),
-                                                       std::abs(vCoef.y()));
-
+    Scalar analysisScale = Scalar(.00001);// * std::min(std::abs(vCoef.x()), std::abs(vCoef.y()));
 
     Scalar rotationAngle = Eigen::internal::random<Scalar>(Scalar(0.), Scalar(2 * M_PI));
     VectorType vRotationAxis = VectorType::Random().normalized();
@@ -43,12 +40,15 @@ void testFunction()
     qRotation = qRotation.normalized();
 
     Scalar epsilon = testEpsilon<Scalar>();
-    Scalar kappaEpsilon = 5e-1;
+    Scalar kappaEpsilon = 0.1;
 
     vector<DataPoint> vectorPoints(nbPoints);
+    vector<DataPoint> vectorPointsOrigin(nbPoints);
     for(unsigned int i = 0; i < vectorPoints.size(); ++i)
     {
-        vectorPoints[i] = getPointOnParaboloid<DataPoint>(vCenter, vCoef, qRotation, analysisScale, false);
+      vectorPointsOrigin[i] = getPointOnParaboloid<DataPoint>(vCenter, vCoef, qRotation, analysisScale, false);
+      vectorPoints[i].pos() = qRotation * vectorPointsOrigin[i].pos();
+      vectorPoints[i].normal() = qRotation * vectorPointsOrigin[i].normal();
     }
 
     Fit fit;
@@ -65,54 +65,53 @@ void testFunction()
 
     fit.finalize();
 
+    VERIFY(fit.isStable());
+    
     if(fit.isStable())
     {
-        Scalar a = vCoef.x();
-        Scalar b = vCoef.y();
+      Scalar a = vCoef.x();
+      Scalar b = vCoef.y();
 
-        Scalar theoricTau = 0;
-        VectorType theoricEta = VectorType(0, 0, 1);
-        Scalar theoricKappa = (a + b) * Scalar(.5);
+      Scalar theoricTau = 0;
+      VectorType theoricNormal = qRotation * VectorType(0, 0, 1);
+      Scalar theoricKmean        = (a + b) * Scalar(.5);
+      Scalar theoricAverageKmean = getKappaMean<DataPoint>(vectorPointsOrigin, vFittingPoint, a, b, analysisScale);
+      Scalar theoricK1 = std::abs(a)<std::abs(b) ? b : a;
+      Scalar theoricK2 = std::abs(a)<std::abs(b) ? a : b;
+      Scalar theoricGaussian = a * b;
 
-        Scalar computedTheoricKappa = getKappaMean<DataPoint>(vectorPoints, vFittingPoint, a, b, analysisScale);
+      Scalar tau = fit.tau();
+      VectorType normal = fit.eta();
+      Scalar kmean = fit.kappa();
 
-        Scalar tau = fit.tau();
-        VectorType eta = fit.eta();
-        Scalar kappa = fit.kappa();
+      Scalar kappa1 = fit.GLSk1();
+      Scalar kappa2 = fit.GLSk2();
+      Scalar kmeanFromK1K2 = (kappa1 + kappa2) * Scalar(.5);
+      Scalar gaussian = fit.GLSGaussianCurvature();
 
-        VERIFY( Eigen::internal::isMuchSmallerThan(std::abs(tau - theoricTau), Scalar(1.), epsilon) );
-        VERIFY( Eigen::internal::isMuchSmallerThan((theoricEta - eta).norm(), Scalar(1.), epsilon ) );
-        VERIFY( Eigen::internal::isMuchSmallerThan(std::abs(computedTheoricKappa - kappa), Scalar(1.), kappaEpsilon) );
+//       std::cout << "k1        : " << kappa1 << "  \tref: " << theoricK1 << std::endl;
+//       std::cout << "k2        : " << kappa2 << "  \tref: " << theoricK2 << std::endl;
+//       std::cout << "kmean     : " << kmean << ", " << kmeanFromK1K2 << "  \tref:" << theoricKmean << " , " << theoricAverageKmean << std::endl;
+//       std::cout << "gaussian  : " << gaussian << "  \tref: " << theoricGaussian << std::endl;
+//       std::cout << "normal    : " << normal.transpose() << "  \tref: " << theoricNormal.transpose() << std::endl;
+      
+      VERIFY( Eigen::internal::isMuchSmallerThan(std::abs(tau - theoricTau), Scalar(1.), epsilon) );
+      VERIFY( Eigen::internal::isMuchSmallerThan((theoricNormal - normal).norm(), Scalar(1.), epsilon ) );
+      VERIFY( Eigen::internal::isMuchSmallerThan(std::abs(theoricAverageKmean - kmeanFromK1K2), std::abs(theoricK1), kappaEpsilon) );
+      VERIFY( Eigen::internal::isMuchSmallerThan(std::abs(theoricAverageKmean - kmean), std::abs(theoricK1), kappaEpsilon) );
+      
+      if(std::abs(std::abs(theoricK1)-std::abs(theoricK2))>kappaEpsilon*std::abs(theoricK1))
+      {
+        VERIFY( Eigen::internal::isApprox(kappa1, theoricK1, kappaEpsilon) );
+        VERIFY( std::abs(kappa2-theoricK2) < kappaEpsilon*std::abs(kappa1) );
+      }
+      else
+      {
+        VERIFY( Eigen::internal::isApprox(std::abs(kappa1), std::abs(theoricK1), kappaEpsilon) );
+        VERIFY( std::abs(std::abs(kappa2)-std::abs(theoricK2)) < kappaEpsilon*std::abs(kappa1) );
+      }
 
-        //Scalar kappanorm = fit.kappa_normalized();
-        //Scalar taunorm = fit.tau_normalized();
-        //ScalarArray dkappa = fit.dkappa();
-
-        Scalar kappa1 = fit.GLSk1();
-        Scalar kappa2 = fit.GLSk2();
-        Scalar meanKappaFromPricipalCurvatures = (kappa1 + kappa2) * Scalar(.5);
-
-//        std::cout << "a         :" << a << std::endl;
-//        std::cout << "b         :" << b << std::endl;
-//        std::cout << "k1        :" << kappa1 << std::endl;
-//        std::cout << "k2        :" << kappa2 << std::endl;
-//        std::cout << "k         :" << meanKappaFromPricipalCurvatures << std::endl;
-//        std::cout << "kappa     :" << kappa << std::endl;
-//        std::cout << "ktheorique:" << theoricKappa << std::endl;
-
-        //VERIFY(
-        //    Eigen::internal::isApprox(meanKappaFromPricipalCurvatures,
-        //                              kappa, kappaEpsilon) ||
-        //    Eigen::internal::isApprox(meanKappaFromPricipalCurvatures,
-        //                              theoricKappa, kappaEpsilon)  );
-
-        Scalar gaussian = fit.GLSGaussianCurvature();
-        Scalar theoricGaussian = a * b;
-
-        //std::cout << "gaussian  :" << gaussian << std::endl;
-        //std::cout << "gtheorique:" << theoricGaussian << std::endl;
-
-        //VERIFY( Eigen::internal::isApprox(gaussian, theoricGaussian, kappaEpsilon) );
+      VERIFY( Eigen::internal::isMuchSmallerThan(std::abs(gaussian-theoricGaussian), std::max(std::abs(theoricK1), std::abs(theoricGaussian)), 2*kappaEpsilon) );
     }
 }
 
@@ -127,11 +126,7 @@ void callSubTests()
     typedef Basket<Point, WeightSmoothFunc, OrientedSphereFit, GLSParam, OrientedSphereScaleSpaceDer, GLSDer, GLSCurvatureHelper> FitSmoothOriented;
     typedef Basket<Point, WeightConstantFunc, OrientedSphereFit, GLSParam, OrientedSphereScaleSpaceDer, GLSDer, GLSCurvatureHelper> FitConstantOriented;
 
-    for(int i = 0; i < g_repeat; ++i)
-    {
-        CALL_SUBTEST(( testFunction<Point, FitSmoothOriented, WeightSmoothFunc>() ));
-        CALL_SUBTEST(( testFunction<Point, FitConstantOriented, WeightConstantFunc>() ));
-    }
+    CALL_SUBTEST(( testFunction<Point, FitSmoothOriented, WeightSmoothFunc>() ));
 }
 
 int main(int argc, char** argv)
@@ -143,7 +138,10 @@ int main(int argc, char** argv)
 
     cout << "Test paraboloid fitting..." << endl;
 
-    callSubTests<float, 3>();
-    callSubTests<double, 3>();
-    callSubTests<long double, 3>();
+    for(int i = 0; i < g_repeat; ++i)
+    {
+      callSubTests<float, 3>();
+      callSubTests<double, 3>();
+      callSubTests<long double, 3>();
+    }
 }
