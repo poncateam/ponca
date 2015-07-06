@@ -86,97 +86,64 @@ template < class DataPoint, class _WFunctor, typename T>
 FIT_RESULT
 GLSCurvatureHelper<DataPoint, _WFunctor, T>::finalize()
 {
+    typedef typename VectorType::Index Index;
+    typedef Eigen::Matrix<Scalar,3,2> Mat32;
+    typedef Eigen::Matrix<Scalar,2,2> Mat22;
+    
     MULTIARCH_STD_MATH(sqrt);
 
     FIT_RESULT bResult = Base::finalize();
 
     if(bResult != UNDEFINED)
     {
-        // Extract the spatial variations of eta
-        MatrixType jacobian = Base::deta().template middleCols<DataPoint::Dim>(Base::isScaleDer() ? 1: 0);
-
-        // Use a simple solver with 2x2 and 3x3 closed forms compatible with eigen-nvcc
-        // This solver requires a triangular matrix
-        Eigen::SelfAdjointEigenSolver<MatrixType> eig;
-#ifdef __CUDACC__
-        eig.computeDirect(jacobian.transpose()*jacobian);
-#else
-        eig.compute(jacobian.transpose()*jacobian);
-#endif
-
-        if (eig.info() != Eigen::Success){
-            return UNDEFINED;
+        // Get the object space Weingarten map dN
+        MatrixType dN = Base::deta().template middleCols<DataPoint::Dim>(Base::isScaleDer() ? 1: 0);
+        
+        // Make sure dN is orthogonal to the normal: (optional, does not seem to improve accuracy)
+//         VectorType n = Base::eta().normalized();
+//         dN = dN - n * n.transpose() * dN;
+        
+        // Make sure that dN is symmetric:
+        // FIXME check why dN is not already symmetric (i.e., round-off errors or error in derivative formulas?)
+        dN = 0.5*(dN + dN.transpose().eval());
+        
+        // Compute tangent-space basis from dN
+        //   1 - pick the column with maximal norm as the first tangent vector,
+        Index i0, i1, i2;
+        Scalar sqNorm = dN.colwise().squaredNorm().maxCoeff(&i0);
+        Mat32 B;
+        B.col(0) = dN.col(i0) / sqrt(sqNorm);
+        //   2 - orthogonalize the other column vectors, and pick the most reliable one
+        i1 = (i0+1)%3;
+        i2 = (i0+2)%3;
+        VectorType v1 = dN.col(i1) - B.col(0).dot(dN.col(i1)) * B.col(0);
+        VectorType v2 = dN.col(i2) - B.col(0).dot(dN.col(i2)) * B.col(0);
+        Scalar v1norm2 = v1.squaredNorm();
+        Scalar v2norm2 = v2.squaredNorm();
+        if(v1norm2 > v2norm2) B.col(1) = v1 / sqrt(v1norm2);
+        else                  B.col(1) = v2 / sqrt(v2norm2);
+        
+        // Compute the 2x2 matrix representing the shape operator by transforming dN to the basis B.
+        // Recall that dN is a bilinear form, it thus transforms as follows:
+        Mat22 S = B.transpose() * dN * B;
+        
+        Eigen::SelfAdjointEigenSolver<Mat22> eig2;
+        eig2.computeDirect(S);
+        
+        if (eig2.info() != Eigen::Success){
+          return UNDEFINED;
         }
-
-        // Need to detect which vector is the most aligned to the smoothed
-        // normal direction, and pick the two others as principal directions
-        typename VectorType::Index idAlign;
-
-        // To do so, extract the index corresponding to the smaller abs dot
-        // product between eta and the eigen vectors
-        (eig.eigenvectors().transpose() * Base::eta())
-            .array().abs()       // compute absolute value of the dot products
-            .maxCoeff(&idAlign); // extract id of the most aligned eigenvector
-
-        int idK1 = 2,
-            idK2 = 1;
-        switch (idAlign){
-            case 0:    // set at init time, usual value
-                break;
-            case 1:
-                idK2 = 0;
-                break;
-            case 2:
-                idK1 = 1;
-                idK2 = 0;
-                break;
-            default:
-                return UNDEFINED;
-        };
-
-        // Extract eigenvectors and eigen values
-        // Need sqrt because we solve eigendecomposition of JT * J.
-        m_k1 = sqrt(eig.eigenvalues()(idK1)); 
-        m_k2 = sqrt(eig.eigenvalues()(idK2)); 
-
-        m_v1 = eig.eigenvectors().col(idK1);
-        m_v2 = eig.eigenvectors().col(idK2);
-
-        // Now check the sign of the mean curvature to detect if we need to change
-        // the sign of the principal curvature values:
-        // the eigen decomposition return k1 and k2 wrt k1*k1 > k2*k2
-
-        // Compare with the values of the mean curvature computed without k1 and k2
-        Scalar H2 = Scalar(2) * Base::kappa(); // we could also use the trace of the
-        // jacobian matrix to get mean curvature
-
-        // Change sign and flip values if needed
-        // Thanks to Noam Kremen snoamk@tx.technion.ac.il for this algorithm
-        if( H2 == Scalar(0))
+        
+        m_k1 = eig2.eigenvalues()(0);
+        m_k2 = eig2.eigenvalues()(1);
+        
+        m_v1 = B * eig2.eigenvectors().col(0);
+        m_v2 = B * eig2.eigenvectors().col(1);
+        
+        if(std::abs(m_k1)<std::abs(m_k2))
         {
-            m_k2 = -m_k2;
-        }
-        else if ( H2 > Scalar(0) )
-        {
-            if( H2 < m_k1 )
-            {
-                m_k2 = -m_k2;
-            }
-        }
-        else // 2H < 0. In this case, we have k1<0, and k1 < k2
-        {
-            if( H2 < - m_k1 )
-            {
-                m_k2 = -m_k2;
-            }
-            m_k1 = -m_k1;
-
-            // need to invert k1 and k2, and get the corresponding vectors
-            Scalar tmp = m_k1;
-            m_k1 = m_k2;
-            m_k2 = tmp;        
-            m_v1 = eig.eigenvectors().col(idK2);
-            m_v2 = eig.eigenvectors().col(idK1);        
+          std::swap(m_k1, m_k2);
+          std::swap(m_v1, m_v2);
         }
     }
 
