@@ -18,19 +18,15 @@
    - pycuda
    - matplotlib
 
-  as well as a working cuda setup and and the lastest version of <strong>eigen dev branch</strong> which manage nvcc compiler.
+  as well as a working cuda setup (tested with 5.0 and 7.0), and the lastest version of <strong>eigen dev branch</strong> which manage nvcc compiler.
 
-  Compile the cuda kernel using
+  To compile and run the example, call
   \code
-  nvcc --ptx -I ../../Patate/ -I /path/to/eigen-dev-branch-version/  ssgls.cu
+  cd build && make ssgls_py
+  cd examples/Grenaille/python && python ssgls.py -s 10 -p ./data/ssgls_sample_wc.png -n ./data/ssgls_sample_normal.png
   \endcode
 
-  The command
-  \code
-  python ssgls.py -s 10 -p ./data/ssgls_sample_wc.png -n ./data/ssgls_sample_normal.png
-  \endcode
-
-  takes the input pictures packed in this example and compute the curvature for
+  The script will load the input pictures and compute the curvature for
   a screenspace neighborhood 10x10 pixels.
   \image html examples/ssgls_input.png "Screen-Space Curvature typical input. Left: world coordinates. Right: remapped normal vectors"
 

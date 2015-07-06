@@ -12,7 +12,7 @@
 #include <algorithm>
 
 #include "Eigen/Core"
-#include "grenaille.h"
+#include "Patate/grenaille.h"
 
 
 //! [mypoint]

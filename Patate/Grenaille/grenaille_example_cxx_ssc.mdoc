@@ -14,19 +14,15 @@
   C++ using Cuda.
 
   \subsection cxx_ssgl_sec_dep_subsec Installation and usage
-  This example requires the following third-aprts library :
+  This example requires the following third-party library :
    - freeimageplus
 
-  as well as a working cuda 5.0 setup and the lastest version of <strong>eigen dev branch</strong> which manage nvcc compiler.
+  as well as a working cuda setup (tested with 5.0 and 7.0), and the lastest version of <strong>eigen dev branch</strong> which manage nvcc compiler.
 
-  Compile the cuda kernel using
+  To compile and run the example, call
   \code
-  nvcc -I../../../patate -Ipath/to/eigen-dev-branch-version -lfreeimageplus ssgls.cu -o ssgls.o
-  \endcode
-
-  Then, use the following command to execute the compiled program
-  \code
-  ./ssgls.o
+  cd build && make ssgls
+  cd examples/Grenaille/cpp && ./ssgls
   \endcode
 
   This will takes the two input pictures packed in this example (in "data" directory) and compute the curvature for
