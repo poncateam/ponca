@@ -22,3 +22,26 @@ set(grenaille_binding_SRCS
 add_executable(grenaille_binding ${grenaille_binding_SRCS})
 add_dependencies(grenaille_examples grenaille_binding)
 
+################################################################################
+# CUDA                                                                         #
+################################################################################
+
+find_package(CUDA)
+if(CUDA_FOUND)
+    # Dep: FreeImagePlus
+    find_package(FREEIMAGEPLUS)
+    if(FREEIMAGEPLUS_FOUND)
+        include_directories(${FREEIMAGEPLUS_INCLUDE_PATH})
+
+        # Pass options to NVCC
+        set(CUDA_NVCC_FLAGS ${CUDA_NVCC_FLAGS};-O3)
+
+        # For compilation ...
+        # Specify target & source files to compile it from
+        cuda_add_executable( ssgls ssgls.cu )
+
+        # For linking ...
+        # Specify target & libraries to link it with
+        target_link_libraries( ssgls ${FREEIMAGEPLUS_LIBRARIES} )
+    endif(FREEIMAGEPLUS_FOUND)
+endif(CUDA_FOUND)
