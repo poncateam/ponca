@@ -144,8 +144,6 @@ void callSubTests()
     typedef Basket<Point, WeightConstantFunc, OrientedSphereFit, GLSParam> FitConstantOriented;
     typedef Basket<Point, WeightSmoothFunc, UnorientedSphereFit, GLSParam> FitSmoothUnoriented;
     typedef Basket<Point, WeightConstantFunc, UnorientedSphereFit, GLSParam> FitConstantUnoriented;
-    typedef Basket<Point, WeightSmoothFunc, OrientedSphereFit, GLSParam, OrientedSphereSpaceDer, GLSDer, GLSCurvatureHelper> FitSmoothOrientedSpatial;
-    typedef Basket<Point, WeightConstantFunc, OrientedSphereFit, GLSParam, OrientedSphereSpaceDer, GLSDer, GLSCurvatureHelper> FitConstantOrientedSpatial;
 
     cout << "Testing with perfect sphere (oriented / unoriented)..." << endl;
     for(int i = 0; i < g_repeat; ++i)
@@ -153,8 +151,6 @@ void callSubTests()
         //Test with perfect sphere
         CALL_SUBTEST(( testFunction<Point, FitSmoothOriented, WeightSmoothFunc, false>() ));
         CALL_SUBTEST(( testFunction<Point, FitConstantOriented, WeightConstantFunc, false>() ));
-        CALL_SUBTEST(( testFunction<Point, FitSmoothOrientedSpatial, WeightSmoothFunc, true>() ));
-        CALL_SUBTEST(( testFunction<Point, FitConstantOrientedSpatial, WeightConstantFunc, true>() ));
         CALL_SUBTEST(( testFunction<Point, FitSmoothUnoriented, WeightSmoothFunc, false>(true) ));
         CALL_SUBTEST(( testFunction<Point, FitConstantUnoriented, WeightConstantFunc, false>(true) ));
     }
@@ -165,10 +161,37 @@ void callSubTests()
     {
         CALL_SUBTEST(( testFunction<Point, FitSmoothOriented, WeightSmoothFunc, false>(false, true, true) ));
         CALL_SUBTEST(( testFunction<Point, FitConstantOriented, WeightConstantFunc, false>(false, true, true) ));
-        CALL_SUBTEST(( testFunction<Point, FitSmoothOrientedSpatial, WeightSmoothFunc, true>(false, true, true) ));
-        CALL_SUBTEST(( testFunction<Point, FitConstantOrientedSpatial, WeightConstantFunc, true>(false, true, true) ));
         CALL_SUBTEST(( testFunction<Point, FitSmoothUnoriented, WeightSmoothFunc, false>(true, true, true) ));
         CALL_SUBTEST(( testFunction<Point, FitConstantUnoriented, WeightConstantFunc, false>(true, true, true) ));
+    }
+    cout << "Ok!" << endl;
+}
+
+template<typename Scalar, int Dim>
+void callDerivativeSubTests()
+{
+    typedef PointPositionNormal<Scalar, Dim> Point;
+
+    typedef DistWeightFunc<Point, SmoothWeightKernel<Scalar> > WeightSmoothFunc;
+    typedef DistWeightFunc<Point, ConstantWeightKernel<Scalar> > WeightConstantFunc;
+
+    typedef Basket<Point, WeightSmoothFunc, OrientedSphereFit, GLSParam, OrientedSphereSpaceDer, GLSDer, GLSCurvatureHelper> FitSmoothOrientedSpatial;
+    typedef Basket<Point, WeightConstantFunc, OrientedSphereFit, GLSParam, OrientedSphereSpaceDer, GLSDer, GLSCurvatureHelper> FitConstantOrientedSpatial;
+
+    cout << "Testing with perfect sphere (oriented / unoriented) with spatial derivatives..." << endl;
+    for(int i = 0; i < g_repeat; ++i)
+    {
+        //Test with perfect sphere
+        CALL_SUBTEST(( testFunction<Point, FitSmoothOrientedSpatial, WeightSmoothFunc, true>() ));
+        CALL_SUBTEST(( testFunction<Point, FitConstantOrientedSpatial, WeightConstantFunc, true>() ));
+    }
+    cout << "Ok!" << endl;
+
+    cout << "Testing with noise on position and normals (oriented / unoriented) with spatial derivatives..." << endl;
+    for(int i = 0; i < g_repeat; ++i)
+    {
+        CALL_SUBTEST(( testFunction<Point, FitSmoothOrientedSpatial, WeightSmoothFunc, true>(false, true, true) ));
+        CALL_SUBTEST(( testFunction<Point, FitConstantOrientedSpatial, WeightConstantFunc, true>(false, true, true) ));
     }
     cout << "Ok!" << endl;
 }
@@ -187,4 +210,8 @@ int main(int argc, char** argv)
     CALL_SUBTEST_3(( callSubTests<double,      3>() ));
     CALL_SUBTEST_4(( callSubTests<long double, 2>() ));
     CALL_SUBTEST_5(( callSubTests<long double, 3>() ));
+
+    CALL_SUBTEST_6(( callDerivativeSubTests<float,       3>() ));
+    CALL_SUBTEST_7(( callDerivativeSubTests<double,      3>() ));
+    CALL_SUBTEST_8(( callDerivativeSubTests<long double, 3>() ));
 }
