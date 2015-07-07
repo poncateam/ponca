@@ -78,7 +78,7 @@ OrientedSphereFit<DataPoint, _WFunctor, T>::finalize ()
     Scalar den1 = invSumW * m_sumP.dot(m_sumP);
     Scalar den  = m_sumDotPP - den1;
 
-    // Deal with degenarative cases
+    // Deal with degenerate cases
     if(abs(den) < epsilon * max(m_sumDotPP, den1))
     {
         //plane
@@ -140,26 +140,24 @@ OrientedSphereDer<DataPoint, _WFunctor, T, Type>::addNeighbor(const DataPoint  &
 
     if(bResult)
     {
-        int spaceId = (Type & FitScaleDer) ? 1 : 0;
-
-        ScalarArray w;
+        ScalarArray dw;
 
         // centered basis
-        VectorType q = _nei.pos()-Base::basisCenter();
+        VectorType q = _nei.pos() - Base::basisCenter();
 
         // compute weight
         if (Type & FitScaleDer)
-            w[0] = Base::m_w.scaledw(q, _nei);
+            dw[0] = Base::m_w.scaledw(q, _nei);
 
         if (Type & FitSpaceDer)
-            w.template segment<int(DataPoint::Dim)>(spaceId) = -Base::m_w.spacedw(q, _nei).transpose();
+            dw.template tail<int(DataPoint::Dim)>() = -Base::m_w.spacedw(q, _nei).transpose();
 
         // increment
-        m_dSumW     += w;
-        m_dSumP     += q * w;
-        m_dSumN     += _nei.normal() * w;
-        m_dSumDotPN += w * _nei.normal().dot(q);
-        m_dSumDotPP += w * q.squaredNorm();
+        m_dSumW     += dw;
+        m_dSumP     += q * dw;
+        m_dSumN     += _nei.normal() * dw;
+        m_dSumDotPN += dw * _nei.normal().dot(q);
+        m_dSumDotPP += dw * q.squaredNorm();
 
         return true;
     }
@@ -178,14 +176,6 @@ OrientedSphereDer<DataPoint, _WFunctor, T, Type>::finalize()
     // Test if base finalize end on a viable case (stable / unstable)
     if (this->isReady())
     {
-
-        if (isSpaceDer())
-        {
-            m_dSumP.template middleCols<DataPoint::Dim>(isScaleDer() ? 1 : 0).diagonal().array() -= Base::m_sumW;
-            m_dSumDotPN.template segment<DataPoint::Dim>(isScaleDer() ? 1 : 0) -= Base::m_sumN;
-            m_dSumDotPP.template segment<DataPoint::Dim>(isScaleDer() ? 1 : 0) -= Scalar(2) * Base::m_sumP;
-        }
-
         Scalar invSumW = Scalar(1.)/Base::m_sumW;
 
         Scalar nume  = Base::m_sumDotPN - invSumW*Base::m_sumP.dot(Base::m_sumN);

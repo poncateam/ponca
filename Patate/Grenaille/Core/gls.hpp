@@ -23,9 +23,15 @@ template < class DataPoint, class _WFunctor, typename T>
 typename GLSDer <DataPoint, _WFunctor, T>::VectorArray
 GLSDer <DataPoint, _WFunctor, T>::deta() const
 {
-    Scalar ulN  = Base::m_ul.norm();
-    Scalar ulN3 = ulN * ulN * ulN;
-    return Base::m_dUl * (Scalar(1.) / ulN) - Base::m_ul * Base::m_ul.transpose() * Base::m_dUl * (Scalar(1.) / ulN3);
+  // Recall that eta() returns the normal at the evaluation point, therefore,
+  // we must take into account the variation of the evaluation point when differentiating wrt space
+  // i.e., eta(x) = grad/|grad|, with grad(x) = ul + 2 uq * x, and diff_x(grad) = dul + 2 uq I
+  VectorArray dgrad = Base::m_dUl;
+  if(this->isSpaceDer())
+    dgrad.template rightCols<DataPoint::Dim>().diagonal().array() += 2.*Base::m_uq;
+  Scalar norm  = Base::m_ul.norm();
+  Scalar norm3 = norm*norm*norm;
+  return dgrad / norm - Base::m_ul * (Base::m_ul.transpose() * dgrad) / norm3;
 }
 
 
