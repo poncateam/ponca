@@ -136,7 +136,7 @@ protected:
     enum
     {
         Check = Base::PROVIDES_PLANE,             /*!< \brief Needs plane */
-        PROVIDES_COVARIANCE_PLANE_DERIVATIVE,     /*!< \brief Provides derivatives for hyper-planes */
+        PROVIDES_COVARIANCE_PLANE_DERIVATIVE      /*!< \brief Provides derivatives for hyper-planes */
     };
     
     static const int NbDerivatives   = ((Type & FitScaleDer) ? 1 : 0 ) + ((Type & FitSpaceDer) ? DataPoint::Dim : 0);
