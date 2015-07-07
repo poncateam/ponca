@@ -33,7 +33,7 @@ GLSDer <DataPoint, _WFunctor, T>::deta() const
   // i.e., eta(x) = grad/|grad|, with grad(x) = ul + 2 uq * x, and diff_x(grad) = dul + 2 uq I
   VectorArray dgrad = Base::m_dUl;
   if(this->isSpaceDer())
-    dgrad.template rightCols<DataPoint::Dim>().diagonal().array() += 2.*Base::m_uq;
+    dgrad.template rightCols<DataPoint::Dim>().diagonal().array() += Scalar(2)*Base::m_uq;
   Scalar norm  = Base::m_ul.norm();
   Scalar norm3 = norm*norm*norm;
   return dgrad / norm - Base::m_ul * (Base::m_ul.transpose() * dgrad) / norm3;
