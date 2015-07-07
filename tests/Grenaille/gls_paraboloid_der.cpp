@@ -24,7 +24,7 @@ void testFunction()
     // Define related structure
     typedef typename DataPoint::Scalar Scalar;
     typedef typename DataPoint::VectorType VectorType;
-    typedef typename DataPoint::MatrixType MatrixType;
+    //typedef typename DataPoint::MatrixType MatrixType;
     typedef typename DataPoint::QuaternionType QuaternionType;
 
     //generate sampled paraboloid
@@ -48,7 +48,7 @@ void testFunction()
     vector<DataPoint> vectorPointsOrigin(nbPoints);
     for(unsigned int i = 0; i < vectorPoints.size(); ++i)
     {
-      vectorPointsOrigin[i] = getPointOnParaboloid<DataPoint>(vCenter, vCoef, qRotation, analysisScale*1.2, false);
+      vectorPointsOrigin[i] = getPointOnParaboloid<DataPoint>(vCenter, vCoef, qRotation, analysisScale*Scalar(1.2), false);
       vectorPoints[i].pos() = qRotation * vectorPointsOrigin[i].pos() + vCenter;
       vectorPoints[i].normal() = qRotation * vectorPointsOrigin[i].normal();
     }
@@ -84,7 +84,7 @@ void testFunction()
       RefFit ref_fit;
       ref_fit.setWeightFunc(RefWeightFunc(analysisScale));
       VectorType vFittingPoint = vCenter;
-      ref_fit.init(vFittingPoint);
+      ref_fit.init(vFittingPoint.template cast<RefScalar>());
       for(typename vector<RefPoint>::iterator it = refVectorPoints.begin();
           it != refVectorPoints.end();
           ++it)
@@ -100,7 +100,7 @@ void testFunction()
       typename RefFit::VectorArray dUl, dN;
       // typename RefFit::VectorArray dSumP;
       typename RefFit::ScalarArray dUc, dUq, dTau, dKappa;
-      Scalar h = 0.000001*analysisScale;
+      Scalar h = Scalar(0.000001)*analysisScale;
       
       // Differentiation along scale, x, y, z:
       for(int k = 0; k<4; ++k)
@@ -112,7 +112,7 @@ void testFunction()
           f.setWeightFunc(RefWeightFunc(analysisScale+h));
         else
           vFittingPoint(k-1) += h;
-        f.init(vFittingPoint);
+        f.init(vFittingPoint.template cast<RefScalar>());
         for(typename vector<RefPoint>::iterator it = refVectorPoints.begin(); it != refVectorPoints.end();++it)
           f.addNeighbor(*it);
         f.finalize();
