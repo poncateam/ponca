@@ -14,8 +14,13 @@ typename GLSDer <DataPoint, _WFunctor, T>::ScalarArray
     Scalar prattNorm2 = Base::prattNorm2();
     Scalar prattNorm  = sqrt(prattNorm2);
     Scalar cfactor    = Scalar(.5) / prattNorm;
+    ScalarArray dfield = Base::m_dUc;
+    // Recall that tau is the field function at the evaluation point, we thus must take care about
+    // its variation when differentiating in space:
+    if(this->isScaleDer())
+      dfield.template tail<DataPoint::Dim>() += Base::m_ul;
 
-    return (Base::m_dUc * prattNorm - Base::m_uc * cfactor * Base::dprattNorm2()) / prattNorm2;
+    return (dfield * prattNorm - Base::m_uc * cfactor * Base::dprattNorm2()) / prattNorm2;
 }
 
 
