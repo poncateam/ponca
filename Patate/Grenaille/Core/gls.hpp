@@ -102,6 +102,7 @@ GLSCurvatureHelper<DataPoint, _WFunctor, T>::finalize()
     typedef Eigen::Matrix<Scalar,2,2> Mat22;
     
     MULTIARCH_STD_MATH(sqrt);
+    MULTIARCH_STD_MATH(abs);
 
     FIT_RESULT bResult = Base::finalize();
 
@@ -151,10 +152,19 @@ GLSCurvatureHelper<DataPoint, _WFunctor, T>::finalize()
         m_v1 = B * eig2.eigenvectors().col(0);
         m_v2 = B * eig2.eigenvectors().col(1);
         
-        if(std::abs(m_k1)<std::abs(m_k2))
+        if(abs(m_k1)<abs(m_k2))
         {
+#ifdef __CUDACC__
+          Scalar tmpk = m_k1;
+          m_k1 = m_k2;
+          m_k2 = tmpk;
+          VectorType tmpv = m_v1;
+          m_v1 = m_v2;
+          m_v2 = tmpv;
+#else
           std::swap(m_k1, m_k2);
           std::swap(m_v1, m_v2);
+#endif
         }
     }
 
