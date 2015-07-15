@@ -25,6 +25,7 @@
 #include "Grenaille/Core/covariancePlaneFit.h"
 
 #include "Grenaille/Core/orientedSphereFit.h"
+#include "Grenaille/Core/curvature.h"
 #include "Grenaille/Core/gls.h"
 
 // not supported on cuda

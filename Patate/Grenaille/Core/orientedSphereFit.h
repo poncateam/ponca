@@ -105,7 +105,8 @@ protected:
     enum
     {
         Check = Base::PROVIDES_ALGEBRAIC_SPHERE, /*!< \brief Needs Algebraic Sphere */
-        PROVIDES_ALGEBRAIC_SPHERE_DERIVATIVE     /*!< \brief Provides Algebraic Sphere derivative*/
+        PROVIDES_ALGEBRAIC_SPHERE_DERIVATIVE,    /*!< \brief Provides Algebraic Sphere derivative*/
+        PROVIDES_NORMAL_DERIVATIVE
     };
 
 public:
@@ -159,6 +160,10 @@ public:
     /**************************************************************************/
     /* Use results                                                            */
     /**************************************************************************/
+    
+    /*! \brief Returns the derivatives of the primitive normal */
+    MULTIARCH inline VectorArray dNormal() const; 
+
     /*! \brief compute  the square of the Pratt norm derivative */
     MULTIARCH inline ScalarArray dprattNorm2() const
     {
@@ -223,7 +228,11 @@ class OrientedSphereScaleDer:public internal::OrientedSphereDer<DataPoint, _WFun
 protected:
     /*! \brief Inherited class */
     typedef internal::OrientedSphereDer<DataPoint, _WFunctor, T, internal::FitScaleDer> Base;
-    enum { PROVIDES_ALGEBRAIC_SPHERE_SCALE_DERIVATIVE };
+    enum
+    {
+      PROVIDES_ALGEBRAIC_SPHERE_SCALE_DERIVATIVE,
+      PROVIDES_NORMAL_SCALE_DERIVATIVE
+    };
 };
 
 
@@ -242,7 +251,11 @@ class OrientedSphereSpaceDer:public internal::OrientedSphereDer<DataPoint, _WFun
 protected:
     /*! \brief Inherited class */
     typedef internal::OrientedSphereDer<DataPoint, _WFunctor, T, internal::FitSpaceDer> Base;
-    enum {  PROVIDES_ALGEBRAIC_SPHERE_SPACE_DERIVATIVE };
+    enum
+    {
+      PROVIDES_ALGEBRAIC_SPHERE_SPACE_DERIVATIVE,
+      PROVIDES_NORMAL_SPACE_DERIVATIVE
+    };
 };
 
 
@@ -266,7 +279,9 @@ protected:
     enum
     {
         PROVIDES_ALGEBRAIC_SPHERE_SCALE_DERIVATIVE,
-        PROVIDES_ALGEBRAIC_SPHERE_SPACE_DERIVATIVE
+        PROVIDES_ALGEBRAIC_SPHERE_SPACE_DERIVATIVE,
+        PROVIDES_NORMAL_SCALE_DERIVATIVE,
+        PROVIDES_NORMAL_SPACE_DERIVATIVE
     };
 };
 

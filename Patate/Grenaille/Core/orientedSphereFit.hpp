@@ -203,6 +203,20 @@ OrientedSphereDer<DataPoint, _WFunctor, T, Type>::finalize()
     return Base::m_eCurrentState;
 }
 
+template < class DataPoint, class _WFunctor, typename T, int Type>
+typename OrientedSphereDer <DataPoint, _WFunctor, T, Type>::VectorArray
+OrientedSphereDer<DataPoint, _WFunctor, T, Type>::dNormal() const
+{
+  // Computes the derivatives of the normal of the sphere at the evaluation point.
+  // Therefore, we must take into account the variation of the evaluation point when differentiating wrt space
+  // i.e., normal(x) = grad / |grad|, with grad(x) = ul + 2 uq * x, and diff_x(grad) = dul + 2 uq I
+  VectorArray dgrad = m_dUl;
+  if(this->isSpaceDer())
+    dgrad.template rightCols<DataPoint::Dim>().diagonal().array() += Scalar(2)*Base::m_uq;
+  Scalar norm  = Base::m_ul.norm();
+  Scalar norm3 = norm*norm*norm;
+  return dgrad / norm - Base::m_ul * (Base::m_ul.transpose() * dgrad) / norm3;
+}
 
 template < class DataPoint, class _WFunctor, typename T, int Type>
 bool

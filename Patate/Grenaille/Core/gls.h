@@ -161,12 +161,12 @@ protected:
     };
 
 public:
-    typedef typename Base::Scalar     Scalar;    /*!< \brief Inherited scalar type*/
-    typedef typename Base::VectorType VectorType;  /*!< \brief Inherited vector type*/
-    typedef typename Base::WFunctor   WFunctor;    /*!< \brief Weight Function*/
+    typedef typename Base::Scalar     Scalar;      /*!< \brief Inherited scalar type */
+    typedef typename Base::VectorType VectorType;  /*!< \brief Inherited vector type */
+    typedef typename Base::WFunctor   WFunctor;    /*!< \brief Weight Function */
 
-    typedef typename Base::VectorArray VectorArray; /*!< \brief Inherited vector array type*/
-    typedef typename Base::ScalarArray ScalarArray; /*!< \brief Inherited scalar array type*/ 
+    typedef typename Base::VectorArray VectorArray; /*!< \brief Inherited vector array type */
+    typedef typename Base::ScalarArray ScalarArray; /*!< \brief Inherited scalar array type */ 
 
     MULTIARCH inline ScalarArray dtau()   const; /*!< \brief Compute and return \f$ \tau \f$ derivatives */
     MULTIARCH inline VectorArray deta()   const; /*!< \brief Compute and return \f$ \eta \f$ derivatives */
@@ -219,69 +219,31 @@ public:
 };
 
 
-/*!
-    \brief Extension to compute curvature values from \f$ \frac{\delta\tau}{\tau\mathbf{x}} \f$
-    \inherit Concept::FittingExtensionConcept
-
-    This class requires an Eigendecomposition of the Jacobian matrix of 
-    \f$ \eta \f$, used to approximate principal curvatures in 3D. It uses an
-    Eigen::SelfAdjointEigenSolver, and when compiled by nvccc call the fast but
-    less accurate decomposition provided by computeDirect. See 
-    <a href="http://eigen.tuxfamily.org/dox/classEigen_1_1SelfAdjointEigenSolver.html#a85cda7e77edf4923f3fc0512c83f6323" target="_blank">Eigen documentation</a>
-    for mor details).
-
-    \warning This class is valid only in 3D.
-    \todo Add a compile time check for the working dimension
-*/
+/*! \deprecated See class CurvatureEstimator */
 template < class DataPoint, class _WFunctor, typename T>
-class GLSCurvatureHelper : public T
+class GLSCurvatureHelper : public CurvatureEstimator<DataPoint,_WFunctor,T>
 {
-private:
-    typedef T Base;
-
-protected:
-    enum
-    {
-        Check = Base::PROVIDES_ALGEBRAIC_SPHERE_SPACE_DERIVATIVE & Base::PROVIDES_GLS_DERIVATIVE,
-        PROVIDES_PRINCIPALE_CURVATURES
-    };
-
+    typedef CurvatureEstimator<DataPoint,_WFunctor,T> Base;
 public:
-    typedef typename Base::Scalar     Scalar;    /*!< \brief Inherited scalar type*/
-    typedef typename Base::VectorType VectorType;  /*!< \brief Inherited vector type*/
-    typedef typename DataPoint::MatrixType MatrixType;  /*!< \brief Matrix type inherited from DataPoint*/
+  
+    typedef typename Base::Scalar Scalar;
+    typedef typename Base::VectorType VectorType;
+    
+    /*! \deprecated */
+    MULTIARCH inline Scalar GLSk1() const { return Base::k1(); }
 
-private:
-    Scalar m_k1, m_k2;
-    VectorType m_v1, m_v2;
+    /*! \deprecated */
+    MULTIARCH inline Scalar GLSk2() const { return Base::k2(); }
 
-public:
-    /*! \brief Default constructor */
-    MULTIARCH inline GLSCurvatureHelper() : m_k1(0), m_k2(0) {}
+    /*! \deprecated */
+    MULTIARCH inline VectorType GLSk1Direction() const { return Base::k1Direction(); }
+    
+    /*! \deprecated */
+    MULTIARCH inline VectorType GLSk2Direction() const { return Base::k2Direction(); }
 
-    /**************************************************************************/
-    /* Processing                                                             */
-    /**************************************************************************/
-    /*! \copydoc Concept::FittingProcedureConcept::finalize() */
-    MULTIARCH inline FIT_RESULT finalize();
+    /*! \deprecated */
+    MULTIARCH inline Scalar GLSGaussianCurvature() const { return Base::GaussianCurvature; }    
 
-    /**************************************************************************/
-    /* Use results                                                            */
-    /**************************************************************************/
-    //! \brief Returns an estimate of the first principal curvature value based on the spacial derivatives of \c eta
-    MULTIARCH inline Scalar GLSk1() const { return m_k1; }
-
-    //! \brief Returns an estimate of the second principal curvature value based on the spacial derivatives of \c eta
-    MULTIARCH inline Scalar GLSk2() const { return m_k2; }
-
-    //! \brief Returns an estimate of the first principal curvature direction as the direction of maximal variation of \c eta
-    MULTIARCH inline VectorType GLSk1Direction() const { return m_v1; }
-
-    //! \brief Returns an estimate of the second principal curvature direction as the direction of minimal variation of \c eta
-    MULTIARCH inline VectorType GLSk2Direction() const { return m_v2; }
-
-    //! \brief Returns an estimate of the Gaussian Curvature based on the spacial derivatives of \c eta
-    MULTIARCH inline Scalar GLSGaussianCurvature() const { return m_k1 * m_k2;}    
 };
 
 #include "gls.hpp"

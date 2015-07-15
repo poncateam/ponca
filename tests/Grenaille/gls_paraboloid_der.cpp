@@ -31,7 +31,7 @@ void testFunction()
     int nbPoints = Eigen::internal::random<int>(10000, 20000);
 
     VectorType vCenter = VectorType::Random() * Eigen::internal::random<Scalar>(0, 1);
-    VectorType vCoef = 1000 * VectorType(Eigen::internal::random<Scalar>(-1,1), Eigen::internal::random<Scalar>(-1,1), 0);
+    VectorType vCoef = 100 * VectorType(Eigen::internal::random<Scalar>(-1,1), Eigen::internal::random<Scalar>(-1,1), 0);
 
     Scalar analysisScale = Scalar(.001);// / std::max(std::abs(vCoef.x()), std::abs(vCoef.y()));
     vCenter *= analysisScale;
@@ -42,7 +42,7 @@ void testFunction()
     qRotation = qRotation.normalized();
 
     Scalar epsilon = testEpsilon<Scalar>();
-    Scalar kappaEpsilon = 0.01;
+    Scalar approxEpsilon = 0.1;
 
     vector<DataPoint> vectorPoints(nbPoints);
     vector<DataPoint> vectorPointsOrigin(nbPoints);
@@ -94,8 +94,8 @@ void testFunction()
       ref_fit.finalize();
       
       RefScalar der_epsilon = epsilon*10;
-//       if(Eigen::internal::is_same<Scalar,float>::value)
-//         der_epsilon = epsilon*100;
+      if(Eigen::internal::is_same<Scalar,float>::value)
+        der_epsilon = epsilon*100;
       // FIXME check whether numerical accuracy can be improved with float
       typename RefFit::VectorArray dUl, dN;
       // typename RefFit::VectorArray dSumP;
@@ -152,7 +152,6 @@ void testFunction()
       VERIFY( dN.template cast<Scalar>().isApprox( fit.deta(), der_epsilon ) );
       VERIFY( dKappa.template cast<Scalar>().isApprox( fit.dkappa(), der_epsilon ) );
     }
-    return;
  
     VERIFY(fit.isStable());
     
@@ -173,37 +172,38 @@ void testFunction()
       VectorType normal = fit.eta();
       Scalar kmean = fit.kappa();
 
-      Scalar kappa1 = fit.GLSk1();
-      Scalar kappa2 = fit.GLSk2();
+      Scalar kappa1 = fit.k1();
+      Scalar kappa2 = fit.k2();
       Scalar kmeanFromK1K2 = (kappa1 + kappa2) * Scalar(.5);
-      Scalar gaussian = fit.GLSGaussianCurvature();
+      Scalar gaussian = fit.GaussianCurvature();
 
+//       std::cout << "tau       : " << tau << "  \tref: " << theoricTau << std::endl;
 //       std::cout << "k1        : " << kappa1 << "  \tref: " << theoricK1 << std::endl;
 //       std::cout << "k2        : " << kappa2 << "  \tref: " << theoricK2 << std::endl;
 //       std::cout << "kmean     : " << kmean << ", " << kmeanFromK1K2 << "  \tref:" << theoricKmean << " , " << theoricAverageKmean << std::endl;
 //       std::cout << "gaussian  : " << gaussian << "  \tref: " << theoricGaussian << std::endl;
 //       std::cout << "normal    : " << normal.transpose() << "  \tref: " << theoricNormal.transpose() << std::endl;
       
-      VERIFY( Eigen::internal::isMuchSmallerThan(std::abs(tau - theoricTau), Scalar(1.), epsilon) );
-      VERIFY( Eigen::internal::isMuchSmallerThan((theoricNormal - normal).norm(), Scalar(1.), epsilon ) );
-      VERIFY( Eigen::internal::isMuchSmallerThan(std::abs(theoricAverageKmean - kmeanFromK1K2), std::abs(theoricK1), kappaEpsilon) );
-      VERIFY( Eigen::internal::isMuchSmallerThan(std::abs(theoricAverageKmean - kmean), std::abs(theoricK1), kappaEpsilon) );
+      VERIFY( Eigen::internal::isMuchSmallerThan(std::abs(tau - theoricTau), Scalar(1.), approxEpsilon) );
+      VERIFY( Eigen::internal::isMuchSmallerThan((theoricNormal - normal).norm(), Scalar(1.), approxEpsilon ) );
+      VERIFY( Eigen::internal::isMuchSmallerThan(std::abs(theoricAverageKmean - kmeanFromK1K2), std::abs(theoricK1), approxEpsilon) );
+      VERIFY( Eigen::internal::isMuchSmallerThan(std::abs(theoricAverageKmean - kmean), std::abs(theoricK1), approxEpsilon) );
       
-      if(std::abs(std::abs(theoricK1)-std::abs(theoricK2))>kappaEpsilon*std::abs(theoricK1))
+      if(std::abs(std::abs(theoricK1)-std::abs(theoricK2))>approxEpsilon*std::abs(theoricK1))
       {
         // absolute curvatures are clearly different
-        VERIFY( Eigen::internal::isApprox(kappa1, theoricK1, kappaEpsilon) );
-        VERIFY( std::abs(kappa2-theoricK2) < kappaEpsilon*std::abs(kappa1) );
+        VERIFY( Eigen::internal::isApprox(kappa1, theoricK1, approxEpsilon) );
+        VERIFY( std::abs(kappa2-theoricK2) < approxEpsilon*std::abs(kappa1) );
       }
       else
       {
         // absolute curvatures are close to each other and therefore their order should be ignored
-        VERIFY( Eigen::internal::isApprox(std::abs(kappa1), std::abs(theoricK1), kappaEpsilon) );
-        VERIFY( std::abs(std::abs(kappa2)-std::abs(theoricK2)) < kappaEpsilon*std::abs(kappa1) );
+        VERIFY( Eigen::internal::isApprox(std::abs(kappa1), std::abs(theoricK1), approxEpsilon) );
+        VERIFY( std::abs(std::abs(kappa2)-std::abs(theoricK2)) < approxEpsilon*std::abs(kappa1) );
       }
 
       // The errors on k1 and k2 are expected to be of the same order, we thus compare the accuracy of k_gauss to k1^2
-      VERIFY( Eigen::internal::isMuchSmallerThan(std::abs(gaussian-theoricGaussian), theoricK1*theoricK1, kappaEpsilon) );
+      VERIFY( Eigen::internal::isMuchSmallerThan(std::abs(gaussian-theoricGaussian), theoricK1*theoricK1, approxEpsilon) );
     }
 }
 
@@ -212,7 +212,7 @@ void callSubTests()
 {
     typedef PointPositionNormal<Scalar, Dim> Point;
     typedef DistWeightFunc<Point, SmoothWeightKernel<Scalar> > WeightSmoothFunc;
-    typedef Basket<Point, WeightSmoothFunc, OrientedSphereFit, GLSParam, OrientedSphereScaleSpaceDer, GLSDer, GLSCurvatureHelper> FitSmoothOriented;
+    typedef Basket<Point, WeightSmoothFunc, OrientedSphereFit, GLSParam, OrientedSphereScaleSpaceDer, GLSDer, CurvatureEstimator> FitSmoothOriented;
 
     CALL_SUBTEST(( testFunction<Point, FitSmoothOriented, WeightSmoothFunc>() ));
 }
