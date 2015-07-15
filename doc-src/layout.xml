@@ -34,6 +34,7 @@
 
 		<tab type="usergroup" url="vitelotte_user_manual_page.html" title="Vitelotte">
 			<tab type="usergroup" url="vitelotte_user_manual_page.html" title="User Manual">
+				<tab type="user" visible="yes" url="vitelotte_user_manual_diffusion_images_page.html" title="Diffusion images"/>
 				<tab type="user" visible="yes" url="vitelotte_user_manual_tutorial_page.html" title="Tutorial"/>
 				<tab type="user" visible="yes" url="vitelotte_user_manual_vg_mesh_page.html" title="The VGMesh class"/>
 				<tab type="user" visible="yes" url="vitelotte_user_manual_dc_mesh_page.html" title="The DCMesh class"/>
