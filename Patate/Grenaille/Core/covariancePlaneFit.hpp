@@ -149,6 +149,13 @@ CovariancePlaneDer<DataPoint, _WFunctor, T, Type>::finalize()
     // Test if base finalize end on a viable case (stable / unstable)
     if (this->isReady())
     {
+      // pre-compute shifted eigenvalues to apply the pseudo inverse of C - lambda_0 I
+      Scalar epsilon          = Scalar(2) * Eigen::NumTraits<Scalar>::epsilon();
+      Scalar consider_as_zero = Scalar(2) * std::numeric_limits<Scalar>::denorm_min();
+      Eigen::Matrix<Scalar,2,1> shifted_eivals = Base::m_solver.eigenvalues().template tail<2>().array() - Base::m_solver.eigenvalues()(0);
+      if(shifted_eivals(0) < consider_as_zero || shifted_eivals(0) < epsilon * shifted_eivals(1)) shifted_eivals(0) = 0;
+      if(shifted_eivals(1) < consider_as_zero) shifted_eivals(1) = 0;
+      
       for(int k=0; k<NbDerivatives; ++k)
       {
         // Finalize the computation of dCov.
@@ -167,15 +174,20 @@ CovariancePlaneDer<DataPoint, _WFunctor, T, Type>::finalize()
         // apply normalization by sumW:
         m_dCog.col(k) = (m_dCog.col(k) - m_dSumW(k) * Base::m_cog) / Base::m_sumW;
 
-        Scalar lambda = Base::m_solver.eigenvalues()(0);
-        
         VectorType normal = Base::normal();
+        // The derivative of 'normal' is the derivative of the smallest eigenvector.
+        // Since the covariance matrix is real and symmetric, it is equal to:
+        //    n' = - (C - lambda_0 I)^+ C' n
+        // Where ^+ denotes the pseudo-inverse.
+        // Since we already performed the eigenvalue decomposition of the matrix C,
+        // we can directly apply the pseudo inverse by observing that:
+        //    (C - lambda_0 I) = V (L - lambda_0 I) V^T
+        // where V is the eigenvector matrix, and L the eigenvalue diagonal matrix.
+        Eigen::Matrix<Scalar,2,1> z = - Base::m_solver.eigenvectors().template rightCols<2>().transpose() * (m_dCov[k] * normal);
+        if(shifted_eivals(0)>0) z(0) /= shifted_eivals(0);
+        if(shifted_eivals(1)>0) z(1) /= shifted_eivals(1);
+        m_dNormal.col(k) = Base::m_solver.eigenvectors().template rightCols<2>() * z;
         
-        MatrixType A = Base::m_cov;
-        A.diagonal().array() -= lambda;
-        
-        Eigen::JacobiSVD<MatrixType> svd(A, Eigen::ComputeFullU|Eigen::ComputeFullV);
-        m_dNormal.col(k) = svd.solve(-m_dCov[k]*normal);
         VectorType dDiff = -m_dCog.col(k);
         if(k>0 || !isScaleDer())
           dDiff(isScaleDer() ? k-1 : k) += 1;
