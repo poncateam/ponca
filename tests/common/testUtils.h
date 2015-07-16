@@ -257,7 +257,7 @@ Scalar getParaboloidZ(Scalar _x, Scalar _y, Scalar _a, Scalar _b)
     Scalar x2 = _x * _x;
     Scalar y2 = _y * _y;
 
-    Scalar z = (_a * x2 + _b * y2) * Scalar(0.5);
+    Scalar z = (_a * x2 + _b * y2) / Scalar(2.);
 
     return z;
 }
@@ -283,7 +283,7 @@ DataPoint getPointOnParaboloid(typename DataPoint::VectorType /*_vCenter*/,
     y = Eigen::internal::random<Scalar>(-_analysisScale, _analysisScale);
     z = getParaboloidZ(x, y, a, b);
 
-    vNormal = VectorType((a * x), (b * y), 1.).normalized();
+    vNormal = VectorType((a * x), (b * y), -1.).normalized();
 
     vPosition.x() = x;
     vPosition.y() = y;
