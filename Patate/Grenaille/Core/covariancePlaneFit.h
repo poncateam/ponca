@@ -108,8 +108,12 @@ public:
       matrix */
     MULTIARCH inline const Solver& solver() const { return m_solver; }
     
-    /*! \brief Implements \cite Pauly:2002:PSSimplification. 
-        \return 0 for invalid fits */
+    /*! \brief Implements \cite Pauly:2002:PSSimplification surface variation.
+    
+        It computes the ratio \f$ d \frac{\lambda_0}{\sum_i \lambda_i} \f$ with \c d the dimension of the ambient space.
+        
+        \return 0 for invalid fits
+    */
     MULTIARCH inline Scalar surfaceVariation() const;
 }; //class CovariancePlaneFit
 
