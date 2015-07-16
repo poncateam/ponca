@@ -171,14 +171,11 @@ CovariancePlaneDer<DataPoint, _WFunctor, T, Type>::finalize()
         
         VectorType normal = Base::normal();
         
-        // Scalar dLambda = normal.dot(m_dCov[k]*normal);
         MatrixType A = Base::m_cov;
         A.diagonal().array() -= lambda;
-        MatrixType B = -m_dCov[k];
-        // B.diagonal().array() += dLambda;
         
         Eigen::JacobiSVD<MatrixType> svd(A, Eigen::ComputeFullU|Eigen::ComputeFullV);
-        m_dNormal.col(k) = svd.solve((B*normal).eval());
+        m_dNormal.col(k) = svd.solve(-m_dCov[k]*normal);
         VectorType dDiff = -m_dCog.col(k);
         if(k>0 || !isScaleDer())
           dDiff(isScaleDer() ? k-1 : k) += 1;
