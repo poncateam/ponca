@@ -188,13 +188,13 @@ void testFunction(bool isSigned = true)
       Scalar kmeanFromK1K2 = (kappa1 + kappa2) * Scalar(.5);
       Scalar gaussian = fit.GaussianCurvature();
 
-      std::cout << "flip_fit : " << flip_fit << " , " << bool(isSigned || fit.normal().dot(theoricNormal) > 0) << "\n";
-      std::cout << "potential : " << potential << "  \tref: " << theoricPotential << std::endl;
-      std::cout << "k1        : " << kappa1 << "  \tref: " << theoricK1 << std::endl;
-      std::cout << "k2        : " << kappa2 << "  \tref: " << theoricK2 << std::endl;
-      std::cout << "kmean     : " << /*kmean << ", " <<*/ kmeanFromK1K2 << "  \tref:" << theoricKmean << " , " << theoricAverageKmean << std::endl;
-      std::cout << "gaussian  : " << gaussian << "  \tref: " << theoricGaussian << std::endl;
-      std::cout << "normal    : " << normal.transpose() << "  \tref: " << theoricNormal.transpose() << std::endl;
+//       std::cout << "flip_fit : " << flip_fit << " , " << bool(isSigned || fit.normal().dot(theoricNormal) > 0) << "\n";
+//       std::cout << "potential : " << potential << "  \tref: " << theoricPotential << std::endl;
+//       std::cout << "k1        : " << kappa1 << "  \tref: " << theoricK1 << std::endl;
+//       std::cout << "k2        : " << kappa2 << "  \tref: " << theoricK2 << std::endl;
+//       std::cout << "kmean     : " << /*kmean << ", " <<*/ kmeanFromK1K2 << "  \tref:" << theoricKmean << " , " << theoricAverageKmean << std::endl;
+//       std::cout << "gaussian  : " << gaussian << "  \tref: " << theoricGaussian << std::endl;
+//       std::cout << "normal    : " << normal.transpose() << "  \tref: " << theoricNormal.transpose() << std::endl;
       
       VERIFY( Eigen::internal::isMuchSmallerThan(std::abs(potential - theoricPotential), Scalar(1.), approxEpsilon) );
       VERIFY( Eigen::internal::isMuchSmallerThan((theoricNormal - normal).norm(), Scalar(1.), approxEpsilon ) );
