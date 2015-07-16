@@ -239,7 +239,7 @@ public:
     MULTIARCH inline VectorType GLSk2Direction() const { return Base::k2Direction(); }
 
     /*! \deprecated */
-    MULTIARCH inline Scalar GLSGaussianCurvature() const { return Base::GaussianCurvature; }    
+    MULTIARCH inline Scalar GLSGaussianCurvature() const { return Base::GaussianCurvature(); }    
 
 };
 
