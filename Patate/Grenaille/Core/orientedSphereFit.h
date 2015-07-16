@@ -73,6 +73,20 @@ public:
 
     /*! \copydoc Concept::FittingProcedureConcept::finalize() */
     MULTIARCH inline FIT_RESULT finalize();
+    
+    
+    /**************************************************************************/
+    /* Results                                                                */
+    /**************************************************************************/
+    
+    using Base::potential;
+    
+    /*! \brief Value of the scalar field at the evaluation point */
+    MULTIARCH inline Scalar potential() const { return Base::m_uc; }
+    
+    /*! \brief Value of the normal of the primitive at the evaluation point */
+    MULTIARCH inline VectorType normal() const { return Base::m_ul.normalized(); }
+    
 }; //class OrientedSphereFit
 
 
@@ -160,6 +174,9 @@ public:
     /**************************************************************************/
     /* Use results                                                            */
     /**************************************************************************/
+    
+    /*! \brief Returns the derivatives of the scalar field at the evaluation point */
+    MULTIARCH inline ScalarArray dPotential() const;
     
     /*! \brief Returns the derivatives of the primitive normal */
     MULTIARCH inline VectorArray dNormal() const; 

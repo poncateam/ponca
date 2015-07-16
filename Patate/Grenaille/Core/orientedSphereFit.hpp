@@ -219,6 +219,16 @@ OrientedSphereDer<DataPoint, _WFunctor, T, Type>::dNormal() const
 }
 
 template < class DataPoint, class _WFunctor, typename T, int Type>
+typename OrientedSphereDer <DataPoint, _WFunctor, T, Type>::ScalarArray
+OrientedSphereDer<DataPoint, _WFunctor, T, Type>::dPotential() const
+{
+  ScalarArray dfield = m_dUc;
+  if(this->isScaleDer())
+    dfield.template tail<DataPoint::Dim>() += Base::m_ul;
+  return dfield;
+}
+
+template < class DataPoint, class _WFunctor, typename T, int Type>
 bool
 OrientedSphereDer<DataPoint, _WFunctor, T, Type>::applyPrattNorm()
 {

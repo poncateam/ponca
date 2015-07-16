@@ -100,10 +100,7 @@ public:
     }
 
     /*! \brief Compute and return \f$ \eta \f$ */
-    MULTIARCH inline VectorType eta() const 
-    {
-        return Base::m_ul / Base::m_ul.norm();
-    }
+    MULTIARCH inline VectorType eta() const { return Base::normal(); }
 
     /*! \brief Compute and return \f$ \kappa \f$ */
     MULTIARCH inline Scalar kappa() const 
