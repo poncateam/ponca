@@ -95,6 +95,15 @@ public:
     /**************************************************************************/
     /* Results                                                                */
     /**************************************************************************/
+    
+    using Base::potential;
+    
+    /*! \brief Value of the scalar field at the evaluation point */
+    MULTIARCH inline Scalar potential() const { return Base::potential(m_evalPos); }
+    
+    /*! \brief Value of the normal of the primitive at the evaluation point */
+    MULTIARCH inline VectorType normal() const { return Base::m_p.template head<DataPoint::Dim>(); }
+    
     /*! \brief Reading access to the Solver used to analyse the covariance 
       matrix */
     MULTIARCH inline const Solver& solver() const { return m_solver; }
@@ -136,7 +145,8 @@ protected:
     enum
     {
         Check = Base::PROVIDES_PLANE,             /*!< \brief Needs plane */
-        PROVIDES_COVARIANCE_PLANE_DERIVATIVE      /*!< \brief Provides derivatives for hyper-planes */
+        PROVIDES_COVARIANCE_PLANE_DERIVATIVE,      /*!< \brief Provides derivatives for hyper-planes */
+        PROVIDES_NORMAL_DERIVATIVE
     };
     
     static const int NbDerivatives   = ((Type & FitScaleDer) ? 1 : 0 ) + ((Type & FitSpaceDer) ? DataPoint::Dim : 0);
@@ -157,12 +167,12 @@ private:
     // computation data
     ScalarArray m_dSumW;      /*!< \brief Sum of weight derivatives */
     MatrixType  m_dCov[NbDerivatives];
-
-public:
-    // results
+    
     VectorArray m_dCog;       /*!< \brief Derivatives of the centroid */
     VectorArray m_dNormal;    /*!< \brief Derivatives of the hyper-plane normal */
     ScalarArray m_dDist;      /*!< \brief Derivatives of the MLS scalar field */
+
+public:
 
     /************************************************************************/
     /* Initialization                                                       */
@@ -182,6 +192,12 @@ public:
     /**************************************************************************/
     /* Use results                                                            */
     /**************************************************************************/
+    
+    /*! \brief Returns the derivatives of the scalar field at the evaluation point */
+    MULTIARCH inline ScalarArray dPotential() const { return m_dDist; }
+    
+    /*! \brief Returns the derivatives of the primitive normal */
+    MULTIARCH inline VectorArray dNormal() const { return m_dNormal; }
 
     /*! \brief State specified at compilation time to differenciate the fit in scale */
     MULTIARCH inline bool isScaleDer() const {return bool(Type & FitScaleDer);}
@@ -209,7 +225,7 @@ class CovariancePlaneScaleDer:public internal::CovariancePlaneDer<DataPoint, _WF
 protected:
     /*! \brief Inherited class */
     typedef internal::CovariancePlaneDer<DataPoint, _WFunctor, T, internal::FitScaleDer> Base;
-    enum { PROVIDES_COVARIANCE_PLANE_SCALE_DERIVATIVE };
+    enum { PROVIDES_COVARIANCE_PLANE_SCALE_DERIVATIVE, PROVIDES_NORMAL_SCALE_DERIVATIVE };
 };
 
 
@@ -228,7 +244,7 @@ class CovariancePlaneSpaceDer:public internal::CovariancePlaneDer<DataPoint, _WF
 protected:
     /*! \brief Inherited class */
     typedef internal::CovariancePlaneDer<DataPoint, _WFunctor, T, internal::FitSpaceDer> Base;
-    enum { PROVIDES_COVARIANCE_PLANE_SPACE_DERIVATIVE };
+    enum { PROVIDES_COVARIANCE_PLANE_SPACE_DERIVATIVE, PROVIDES_NORMAL_SPACE_DERIVATIVE };
 };
 
 
@@ -252,7 +268,9 @@ protected:
     enum
     {
         PROVIDES_COVARIANCE_PLANE_SCALE_DERIVATIVE,
-        PROVIDES_COVARIANCE_PLANE_SPACE_DERIVATIVE
+        PROVIDES_COVARIANCE_PLANE_SPACE_DERIVATIVE,
+        PROVIDES_NORMAL_SCALE_DERIVATIVE,
+        PROVIDES_NORMAL_SPACE_DERIVATIVE
     };
 };
 
