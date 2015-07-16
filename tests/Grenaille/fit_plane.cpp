@@ -69,9 +69,13 @@ void testFunction(bool _bUnoriented = false, bool _bAddPositionNoise = false, bo
                                                      _bUnoriented);
     }
 
-    // Test for each point if the fitted plane correspond to the theorical plane
+    // Test for each point if the fitted plane correspond to the theoretical plane
     for(unsigned int i = 0; i < vectorPoints.size(); ++i)
     {
+        epsilon = testEpsilon<Scalar>();
+        if ( _bAddPositionNoise) // relax a bit the testing threshold
+          epsilon = Scalar(0.001*MAX_NOISE);
+        
         Fit fit;
         fit.setWeightFunc(WeightFunc(analysisScale));
         fit.init(vectorPoints[i].pos());
@@ -80,20 +84,15 @@ void testFunction(bool _bUnoriented = false, bool _bAddPositionNoise = false, bo
 
         if( fit.isStable() ){
 
-            if ( _bAddPositionNoise) // relax a bit the testing threshold
-                epsilon *= Scalar(10.);
-
             // Check if the plane orientation is equal to the generation direction
             VERIFY(Scalar(1.) - std::abs(fit.primitiveGradient(vectorPoints[i].pos()).dot(direction)) <= epsilon);
 
             // Check if the surface variation is small
             VERIFY(fit.surfaceVariation() < epsilon);
 
-            if ( _bAddPositionNoise) // relax a bit the testing threshold
-                epsilon = Scalar(0.1*MAX_NOISE);
-
             // Check if the query point is on the plane
-            VERIFY(fit.potential(vectorPoints[i].pos()) <= epsilon);
+            if(!_bAddPositionNoise)
+              VERIFY(fit.potential(vectorPoints[i].pos()) <= epsilon);
 
         }
         else {
