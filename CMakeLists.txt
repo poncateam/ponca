@@ -21,6 +21,10 @@ if(    NOT cmake_build_type_tolower STREQUAL "debug"
   message(FATAL_ERROR "Unknown build type \"${CMAKE_BUILD_TYPE}\". Allowed values are Debug, Release, RelWithDebInfo (case-insensitive).")
 endif()
 
+
+# get changeset id
+execute_process(COMMAND git rev-parse HEAD OUTPUT_VARIABLE GIT_CHANGESET)
+
 ################################################################################
 # Add core code source, so it is visible in dev environements                  #
 ################################################################################
@@ -70,6 +74,8 @@ add_custom_target(vitelottes_vg_mesh_renderer_shaders
 
 find_package(Doxygen)
 if(DOXYGEN_FOUND)
+  set (PATATE_PROJECT_NUMBER ${GIT_CHANGESET})
+  
   configure_file(${CMAKE_CURRENT_SOURCE_DIR}/doc-src/Doxyfile.in ${CMAKE_CURRENT_BINARY_DIR}/Doxyfile @ONLY)
 
   add_custom_target(doc
