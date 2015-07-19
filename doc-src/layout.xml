@@ -72,6 +72,7 @@
 	</tab>
     <tab type="user" visible="yes" title="Changelog" url="patate_changelog.html"/>
     <tab type="user" visible="yes" title="Citations" url="citelist.html"/>
+    <tab type="user" visible="yes" title="Deprecated" url="deprecated.html"/>
   </navindex>
 
   <!-- Layout definition for a class page -->
