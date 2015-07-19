@@ -126,8 +126,12 @@ namespace Grenaille
   \endcode
   
   Then neighbors are added sequentially: in this example, we traverse a simple array, and samples outside of the neighborhood are automatically ignored by the weighting function.
-  Once all neighbors have been incorporated, the call to the finalize function actually performs the fit and stores results in the specialized Basket object.
+  Once all neighbors have been incorporated, the fit is performed and results stored in the specialized Basket object. STL-like iterators can be used directly for the fit by calling   
+  \code
+  fit.compute(vecs.begin(), vecs.end());
+  \endcode
   
+  Internally, the container is traversed and the method <CODE>finalize</CODE> is called at the end:
   \code
   // Iterate over samples and fit the primitive
   for(vector<MyPoint>::iterator it = vecs.begin(); it != vecs.end(); it++)
@@ -137,10 +141,10 @@ namespace Grenaille
   fit.finalize();
   \endcode
 
-  After calling <CODE>finalize</CODE>, it is better to test the return state of the fitting before using it. There are diffent states but the most important one is <CODE>STABLE</CODE>.
+  After calling <CODE>finalize</CODE> or <CODE>compute</CODE>, it is better to test the return state of the fitting before using it. There are diffent states but the most important one is <CODE>STABLE</CODE>.
 
   \code
-  FIT_RESULT eResult = fit.finalize();
+  FIT_RESULT eResult = fit.compute(vecs.begin(), vecs.end()); // or = fit.finalize();
   if(eResult == STABLE) 
   {
 	//do things...
@@ -150,7 +154,7 @@ namespace Grenaille
   You may also use accessors to perform the same check:
 
   \code
-  fit.finalize();
+  fit.compute(vecs.begin(), vecs.end());
 
   if(fit.isStable()) //You can also check the function isReady()
   {

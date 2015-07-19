@@ -47,6 +47,13 @@ namespace internal
         : public Ext11<P,W, Ext10<P,W, Ext9<P,W, Ext8<P,W, Ext7<P,W, Ext6<P,W, Ext5<P,W, Ext4<P,W, Ext3<P,W, Ext2<P,W, Ext1<P,W, Ext0<P,W, Fit<P,W,void> > > > > > > > > > > > > 
     {
     public:
+        /*! 
+         * \brief Convenience function for STL-like iterators
+         *
+         * Add neighbors stored in a container using STL-like iterators, and
+         * call finalize at the end.
+         * \note Multi-pass fitting is supported by this function as an experimental feature. It thus should be used carefully.
+         */
         template <typename Iterator>
         MULTIARCH inline
         FIT_RESULT compute(const Iterator& begin, const Iterator& end){
