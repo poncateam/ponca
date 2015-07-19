@@ -2,6 +2,56 @@ Patate changelog
 
 
 --------------------------------------------------------------------------------
+v.0.5 (RC)
+- Vitelotte
+  - Core
+    # Fixed a bug making LDLT solver fail with most versions of Eigen.
+    # Now support curved edges for rendering
+    # Improved Windows/Linux compatibility.
+    # Added Luv color space and fixed a few bugs.
+    # Added color space support (conversion and rendering)
+    # Fixed shader2cpp so that generated shaders are not modified on each compilations.
+    # Fixed errors and warnings
+    
+  - Documentation
+    # Documentation for diffusion images and color spaces
+    
+- Grenaille
+  - Core
+    # Fix bugs in GLS derivatives computations
+    # API improvements:
+      - Add a method compute(Iterator begin, Iterator end) to hide the addNeighbor/finalize calls when using stl-like vertex containers
+      - GLS::tau and GLS::eta replaced by generic names: potential, normal. These names are also used by CovariancePlaneFit.
+      - Add a general CurvatureEstimator based on the availability of a dNormal() method. Make GLSCurvatureHelper deprecated. Principal curvature extraction has also been improved by computing the 2x2 shape operator
+    # Fix surfaceVariation() method to match Pauly's definition
+    # Improved covariance plane fitting (single pass + first orded spatial derivatives)
+    # Speed-up computation of eigenvector derivatives by by-passing the computation of the SVD to compute the pseudo-inverse of the matrix pencil
+    # Remove several warnings
+
+  - Cuda
+    # Improved compatibility with Cuda 7 (compilation + cross-compilation )
+
+  - Tests
+    # Fix fit_plane unit test
+    # Extend paraboloid unit test to check for covariance-plane derivatives
+    # Improve paraboloid unit test: add numerical differentiation, improve stability
+
+    
+  - Examples
+    # Cuda and C++ examples can now be compiled using CMake
+    # Python examples are also installed in build dir
+    
+- General documentation
+    # Add deprecated page
+    # Added a clean changelog page and fixed images copy.
+    # Replace link to devel-list to patate-info registration page
+    # Add AMS math extensions
+    # Add a table listing methods implemented in Grenaille
+    
+- Other improvements
+    # Update CMake configuration to show Grenaille and Vitelotte source files in QtCreator
+
+--------------------------------------------------------------------------------
 v0.4
 - Vitelotte
     - Core
