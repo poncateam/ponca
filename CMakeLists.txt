@@ -1,6 +1,6 @@
 project(Patate)
 
-cmake_minimum_required(VERSION 2.8.12.1)
+cmake_minimum_required(VERSION 2.8)
 
 # guard against in-source builds (source: Eigen)
 
@@ -29,8 +29,8 @@ execute_process(COMMAND git rev-parse HEAD OUTPUT_VARIABLE GIT_CHANGESET)
 # Add core code source, so it is visible in dev environements                  #
 ################################################################################
 
-add_subdirectory(Patate/Grenaille EXCLUDE_FROM_ALL)
-add_subdirectory(Patate/Vitelotte EXCLUDE_FROM_ALL)
+#add_subdirectory(Patate/Grenaille EXCLUDE_FROM_ALL)
+#add_subdirectory(Patate/Vitelotte EXCLUDE_FROM_ALL)
 
 ################################################################################
 # Generate Vitelotte's shaders                                                 #
