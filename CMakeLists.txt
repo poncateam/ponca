@@ -29,8 +29,8 @@ execute_process(COMMAND git rev-parse HEAD OUTPUT_VARIABLE GIT_CHANGESET)
 # Add core code source, so it is visible in dev environements                  #
 ################################################################################
 
-#add_subdirectory(Patate/Grenaille EXCLUDE_FROM_ALL)
-#add_subdirectory(Patate/Vitelotte EXCLUDE_FROM_ALL)
+add_subdirectory(Patate/Grenaille EXCLUDE_FROM_ALL)
+add_subdirectory(Patate/Vitelotte EXCLUDE_FROM_ALL)
 
 ################################################################################
 # Generate Vitelotte's shaders                                                 #
@@ -75,7 +75,7 @@ add_custom_target(vitelottes_vg_mesh_renderer_shaders
 find_package(Doxygen)
 if(DOXYGEN_FOUND)
   set (PATATE_PROJECT_NUMBER ${GIT_CHANGESET})
-  
+
   configure_file(${CMAKE_CURRENT_SOURCE_DIR}/doc-src/Doxyfile.in ${CMAKE_CURRENT_BINARY_DIR}/Doxyfile @ONLY)
 
   add_custom_target(doc
