@@ -29,8 +29,12 @@ execute_process(COMMAND git rev-parse HEAD OUTPUT_VARIABLE GIT_CHANGESET)
 # Add core code source, so it is visible in dev environements                  #
 ################################################################################
 
-add_subdirectory(Patate/Grenaille EXCLUDE_FROM_ALL)
-add_subdirectory(Patate/Vitelotte EXCLUDE_FROM_ALL)
+# Enable it only with CodeBlocks generators (used by QtCreator) cause it seems
+# to fail with some, like VS.
+if(CMAKE_GENERATOR MATCHES "CodeBlocks.*")
+    add_subdirectory(Patate/Grenaille EXCLUDE_FROM_ALL)
+    add_subdirectory(Patate/Vitelotte EXCLUDE_FROM_ALL)
+endif()
 
 ################################################################################
 # Generate Vitelotte's shaders                                                 #
