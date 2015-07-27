@@ -2,7 +2,7 @@ Patate changelog
 
 
 --------------------------------------------------------------------------------
-v.0.5 (RC)
+v.0.5
 - Vitelotte
   - Core
     # Fixed a bug making LDLT solver fail with most versions of Eigen.
@@ -10,12 +10,16 @@ v.0.5 (RC)
     # Improved Windows/Linux compatibility.
     # Added Luv color space and fixed a few bugs.
     # Added color space support (conversion and rendering)
+    # Removed redundant headers
     # Fixed shader2cpp so that generated shaders are not modified on each compilations.
     # Fixed errors and warnings
-    
+
+  - Examples
+    # mvg_editor: display status bar message on selection
+
   - Documentation
     # Documentation for diffusion images and color spaces
-    
+
 - Grenaille
   - Core
     # Fix bugs in GLS derivatives computations
@@ -36,18 +40,18 @@ v.0.5 (RC)
     # Extend paraboloid unit test to check for covariance-plane derivatives
     # Improve paraboloid unit test: add numerical differentiation, improve stability
 
-    
+
   - Examples
     # Cuda and C++ examples can now be compiled using CMake
     # Python examples are also installed in build dir
-    
+
 - General documentation
     # Add deprecated page
     # Added a clean changelog page and fixed images copy.
     # Replace link to devel-list to patate-info registration page
     # Add AMS math extensions
     # Add a table listing methods implemented in Grenaille
-    
+
 - Other improvements
     # Update CMake configuration to show Grenaille and Vitelotte source files in QtCreator
 
@@ -62,22 +66,22 @@ v0.4
         # tutorial: a simple application to demonstrate basic usage of Vitelotte
         # mvgtk: a CLI tool to manipulate mvg files
         # mvg_editor: a simple GUI tool to edit mvg files
-        # mvg_viewer: a lightweigh OpenGL viewer 
+        # mvg_viewer: a lightweigh OpenGL viewer
     - Doc
         # Added the Vitelotte section, with user manual for the main
           functionalities and basic explanations of the examples
-    
+
 - Grenaille
   - Core
     # Bugfixes and performance improvements in GLSCurvatureHelper
-  
+
   - Doc
     # Minor changes: added formulas
-    
+
 - General documentation
     # Updates Eigen/Cuda instructions
-    
-    
+
+
 --------------------------------------------------------------------------------
 v0.3.2
 
@@ -85,7 +89,7 @@ v0.3.2
     # New PrimitiveBase class (to be used with heritance for all new primitives)
     # Plane primitive added
     # New output state for fitting added (need another pass)
-    # New plane fitting technique, using covariance analysis    
+    # New plane fitting technique, using covariance analysis
     # Few updates
 
 - Examples
@@ -100,7 +104,7 @@ v0.3.2
 - Documentation
     # Few fixes in typo
     # Few updates in credits and for new features
-    
+
 
 --------------------------------------------------------------------------------
 v0.3.1
@@ -136,21 +140,21 @@ V0.1.2
 
  - BugFix
    # Fix space derivatives equals to NaN when the local query is (0,...,0)
-   
+
  - Documentation
    # Update documentation on partial support of SelfAdjointEigenSolver in cuda
    # Update documentation on GLSCurvatureHelper: new tutorial
-   
+
  - Functionalities
    # Add a ready state in algebraic sphere that is set to true by the fitting kernels finalize method
    # Add method to compare two GLS instances
    # Add helper class to compute principal curvatures
-   
+
  - Improvements
    # Use optimized storage order for derivatives vectors wrt space/space differentiation parameters
-   
+
  - Tests
    # Add eigendecomposition test
-   
+
  - Cleaning
    # Remove unused include directives
