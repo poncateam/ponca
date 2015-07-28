@@ -23,7 +23,12 @@ endif()
 
 
 # get changeset id
-execute_process(COMMAND git rev-parse HEAD OUTPUT_VARIABLE GIT_CHANGESET)
+find_package(Git)
+if(GIT_FOUND)
+    execute_process(COMMAND ${GIT_EXECUTABLE} rev-parse HEAD
+        WORKING_DIRECTORY ${Patate_SOURCE_DIR}
+        OUTPUT_VARIABLE GIT_CHANGESET)
+endif()
 
 ################################################################################
 # Add core code source, so it is visible in dev environements                  #
