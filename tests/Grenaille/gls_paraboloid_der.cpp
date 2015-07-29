@@ -9,19 +9,29 @@
  \file test/Grenaille/gls_paraboloid_der.cpp
  \brief Test validity of GLS derivatives for a paraboloid
  */
+#ifdef NDEBUG
+#undef NDEBUG
+#endif
 
+#include "../common/scalar_precision_check.h"
 #include "../common/testing.h"
 #include "../common/testUtils.h"
+
 
 #include <vector>
 
 using namespace std;
 using namespace Grenaille;
 
-template<typename DataPoint, typename Fit, typename WeightFunc, typename RefFit>
+template<typename Fit, typename RefFit, typename TestFit>
 void testFunction(bool isSigned = true)
 {
     // Define related structure
+    typedef typename Fit::WeightFunction WeightFunc;
+    typedef typename Fit::DataPoint DataPoint;
+    typedef typename TestFit::WeightFunction TestWeightFunc;
+    typedef typename TestFit::DataPoint TestDataPoint;
+    typedef typename TestDataPoint::Scalar TestScalar;
     typedef typename DataPoint::Scalar Scalar;
     typedef typename DataPoint::VectorType VectorType;
     //typedef typename DataPoint::MatrixType MatrixType;
@@ -46,28 +56,33 @@ void testFunction(bool isSigned = true)
 
     vector<DataPoint> vectorPoints(nbPoints);
     vector<DataPoint> vectorPointsOrigin(nbPoints);
+    vector<TestDataPoint> testVectorPoints(nbPoints);
     for(unsigned int i = 0; i < vectorPoints.size(); ++i)
     {
       vectorPointsOrigin[i] = getPointOnParaboloid<DataPoint>(vCenter, vCoef, qRotation, analysisScale*Scalar(1.2), false);
       vectorPoints[i].pos() = qRotation * vectorPointsOrigin[i].pos() + vCenter;
       vectorPoints[i].normal() = qRotation * vectorPointsOrigin[i].normal();
+      
+      testVectorPoints[i].pos()    = vectorPoints[i].pos().template cast<TestScalar>();
+      testVectorPoints[i].normal() = vectorPoints[i].normal().template cast<TestScalar>();
     }
     
     VectorType theoricNormal = qRotation * VectorType(0, 0, -1);
 
-    Fit fit;
-    fit.setWeightFunc(WeightFunc(analysisScale));
+    TestFit fit;
+    
+    fit.setWeightFunc(TestWeightFunc(analysisScale));
     VectorType vFittingPoint = vCenter;
-    fit.init(vFittingPoint);
-    for(typename vector<DataPoint>::iterator it = vectorPoints.begin();
-        it != vectorPoints.end();
+    fit.init(vFittingPoint.template cast<TestScalar>());
+    for(typename vector<TestDataPoint>::iterator it = testVectorPoints.begin();
+        it != testVectorPoints.end();
         ++it)
     {
         fit.addNeighbor(*it);
     }
     fit.finalize();
     
-    Scalar flip_fit = (isSigned || (fit.normal().dot(theoricNormal) > 0 )) ? Scalar(1) : Scalar(-1);
+    Scalar flip_fit = (isSigned || (fit.normal().template cast<Scalar>().dot(theoricNormal) > 0 )) ? Scalar(1) : Scalar(-1);
 
     {
       // Check derivatives wrt numerical differentiation
@@ -160,8 +175,8 @@ void testFunction(bool isSigned = true)
 //       VERIFY( dUq.template cast<Scalar>().isApprox( fit.m_dUq, der_epsilon ) );
 //       VERIFY( (dUl.template cast<Scalar>()-fit.m_dUl).norm() < fit.m_ul.norm() * der_epsilon );
       // VERIFY( dTau.template cast<Scalar>().isApprox( fit.dtau(), der_epsilon ) );
-      VERIFY( dPotential.template cast<Scalar>().isApprox( flip_fit*fit.dPotential(), der_epsilon ) );
-      VERIFY( dN.template cast<Scalar>().isApprox( flip_fit*fit.dNormal(), der_epsilon ) );
+      VERIFY( dPotential.template cast<Scalar>().isApprox( flip_fit*fit.dPotential().template cast<Scalar>(), der_epsilon ) );
+      VERIFY( dN.template cast<Scalar>().isApprox( flip_fit*fit.dNormal().template cast<Scalar>(), der_epsilon ) );
       //VERIFY( dKappa.template cast<Scalar>().isApprox( fit.dkappa(), der_epsilon ) );
     }
  
@@ -180,7 +195,7 @@ void testFunction(bool isSigned = true)
       Scalar theoricGaussian = a * b;
 
       Scalar potential  = flip_fit * fit.potential();
-      VectorType normal = flip_fit * fit.normal();
+      VectorType normal = flip_fit * fit.normal().template cast<Scalar>();
 //       Scalar kmean = fit.kappa();
 
       Scalar kappa1 = flip_fit * fit.k1();
@@ -226,16 +241,23 @@ void callSubTests()
     typedef PointPositionNormal<RefScalar, 3> RefPoint;
     typedef DistWeightFunc<RefPoint, SmoothWeightKernel<RefScalar> > RefWeightFunc;
       
+    typedef ScalarPrecisionCheck<Scalar,RefScalar> TestScalar;
+    TestScalar::check_enabled = false; // set it to true to track diverging computations
+    typedef PointPositionNormal<TestScalar, 3> TestPoint;
+    typedef DistWeightFunc<TestPoint, SmoothWeightKernel<TestScalar> > TestWeightFunc;
+    
     typedef PointPositionNormal<Scalar, Dim> Point;
     typedef DistWeightFunc<Point, SmoothWeightKernel<Scalar> > WeightSmoothFunc;
     
-    typedef Basket<Point, WeightSmoothFunc, OrientedSphereFit, /*GLSParam,*/ OrientedSphereScaleSpaceDer, /*GLSDer,*/ CurvatureEstimator> FitSphereOriented;
-    typedef Basket<RefPoint, RefWeightFunc, OrientedSphereFit, /*GLSParam,*/ OrientedSphereScaleSpaceDer, /*GLSDer,*/ CurvatureEstimator> RefFitSphereOriented;
-    CALL_SUBTEST(( testFunction<Point, FitSphereOriented, WeightSmoothFunc, RefFitSphereOriented>(true) ));
+    typedef Basket<Point,     WeightSmoothFunc, OrientedSphereFit, /*GLSParam,*/ OrientedSphereScaleSpaceDer, /*GLSDer,*/ CurvatureEstimator> FitSphereOriented;
+    typedef Basket<RefPoint,  RefWeightFunc,    OrientedSphereFit, /*GLSParam,*/ OrientedSphereScaleSpaceDer, /*GLSDer,*/ CurvatureEstimator> RefFitSphereOriented;
+    typedef Basket<TestPoint, TestWeightFunc,   OrientedSphereFit, /*GLSParam,*/ OrientedSphereScaleSpaceDer, /*GLSDer,*/ CurvatureEstimator> TestFitSphereOriented;
+    CALL_SUBTEST(( testFunction<FitSphereOriented, RefFitSphereOriented, /*TestFitSphereOriented*/FitSphereOriented>(true) ));
     
-    typedef Basket<Point, WeightSmoothFunc, CompactPlane, CovariancePlaneFit, CovariancePlaneScaleSpaceDer, CurvatureEstimator> FitPlanePCA;
-    typedef Basket<RefPoint, RefWeightFunc, CompactPlane, CovariancePlaneFit, CovariancePlaneScaleSpaceDer, CurvatureEstimator> RefFitPlanePCA;
-    CALL_SUBTEST(( testFunction<Point, FitPlanePCA, WeightSmoothFunc, RefFitPlanePCA>(false) ));
+    typedef Basket<Point, WeightSmoothFunc,   CompactPlane, CovariancePlaneFit, CovariancePlaneScaleSpaceDer, CurvatureEstimator> FitPlanePCA;
+    typedef Basket<RefPoint, RefWeightFunc,   CompactPlane, CovariancePlaneFit, CovariancePlaneScaleSpaceDer, CurvatureEstimator> RefFitPlanePCA;
+    //typedef Basket<TestPoint, TestWeightFunc, CompactPlane, CovariancePlaneFit, CovariancePlaneScaleSpaceDer, CurvatureEstimator> TestFitPlanePCA;
+    CALL_SUBTEST(( testFunction<FitPlanePCA, RefFitPlanePCA, FitPlanePCA>(false) ));
 }
 
 int main(int argc, char** argv)
