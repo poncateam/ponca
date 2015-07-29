@@ -144,8 +144,8 @@ OrientedSphereDer<DataPoint, _WFunctor, T, Type>::addNeighbor(const DataPoint  &
 
         // centered basis
         VectorType q = _nei.pos() - Base::basisCenter();
-
-        // compute weight
+        
+        // compute weight derivatives
         if (Type & FitScaleDer)
             dw[0] = Base::m_w.scaledw(q, _nei);
 
@@ -182,7 +182,7 @@ OrientedSphereDer<DataPoint, _WFunctor, T, Type>::finalize()
         Scalar deno  = Base::m_sumDotPP - invSumW*Base::m_sumP.dot(Base::m_sumP);
 
         ScalarArray dNume = m_dSumDotPN 
-            - invSumW*invSumW * ( Base::m_sumW * ( Base::m_sumN.transpose() * m_dSumP + Base::m_sumP.transpose() * m_dSumN )
+            - invSumW*invSumW * ( Base::m_sumW * ( m_dSumDotPN + Base::m_sumP.transpose() * m_dSumN )
             - m_dSumW*Base::m_sumP.dot(Base::m_sumN) );
 
         ScalarArray dDeno = m_dSumDotPP 
@@ -191,8 +191,9 @@ OrientedSphereDer<DataPoint, _WFunctor, T, Type>::finalize()
 
         m_dUq =  Scalar(.5) * (deno * dNume - dDeno * nume)/(deno*deno);
 
-        m_dUl =  invSumW * ( m_dSumN - Scalar(2.)*(m_dSumP*Base::m_uq + Base::m_sumP*m_dUq) - Base::m_ul*m_dSumW);
-
+        // FIXME: this line is prone to numerical cancellation issues because dSumN and u_l*dSumW are close to each other.
+        // If using two passes, one could directly compute sum( dw_i + (n_i - ul) ) to avoid this issue.
+        m_dUl =  invSumW * ( m_dSumN - Base::m_ul*m_dSumW - Scalar(2.)*(m_dSumP*Base::m_uq + Base::m_sumP*m_dUq) );
         m_dUc = -invSumW*( Base::m_sumP.transpose() * m_dUl
             + Base::m_sumDotPP * m_dUq 
             + Base::m_ul.transpose() * m_dSumP 
