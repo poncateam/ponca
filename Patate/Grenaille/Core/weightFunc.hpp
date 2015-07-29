@@ -32,5 +32,5 @@ DistWeightFunc<DataPoint, WeightKernel>::scaledw(   const VectorType& _q,
 						                            const DataPoint&) const
 {
     Scalar d  = _q.norm();  
-    return (d <= m_t) ? ( - d*m_wk.df(d/m_t)/(m_t*m_t) ) : Scalar(0.);
+    return (d <= m_t) ? Scalar( - d*m_wk.df(d/m_t)/(m_t*m_t) ) : Scalar(0.);
 }
