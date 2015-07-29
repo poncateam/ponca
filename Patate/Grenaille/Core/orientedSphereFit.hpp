@@ -180,9 +180,12 @@ OrientedSphereDer<DataPoint, _WFunctor, T, Type>::finalize()
 
         Scalar nume  = Base::m_sumDotPN - invSumW*Base::m_sumP.dot(Base::m_sumN);
         Scalar deno  = Base::m_sumDotPP - invSumW*Base::m_sumP.dot(Base::m_sumP);
-
+        
+        // FIXME, the following product "Base::m_sumN.transpose() * m_dSumP" is prone to numerical cancellation
+        // issues for spacial derivatives because, (d sum w_i P_i)/(d x) is supposed to be tangent to the surface whereas
+        // "sum w_i N_i" is normal to the surface...
         ScalarArray dNume = m_dSumDotPN 
-            - invSumW*invSumW * ( Base::m_sumW * ( m_dSumDotPN + Base::m_sumP.transpose() * m_dSumN )
+            - invSumW*invSumW * ( Base::m_sumW * ( Base::m_sumN.transpose() * m_dSumP + Base::m_sumP.transpose() * m_dSumN )
             - m_dSumW*Base::m_sumP.dot(Base::m_sumN) );
 
         ScalarArray dDeno = m_dSumDotPP 
