@@ -47,6 +47,8 @@ namespace internal
         : public Ext11<P,W, Ext10<P,W, Ext9<P,W, Ext8<P,W, Ext7<P,W, Ext6<P,W, Ext5<P,W, Ext4<P,W, Ext3<P,W, Ext2<P,W, Ext1<P,W, Ext0<P,W, Fit<P,W,void> > > > > > > > > > > > > 
     {
     public:
+        typedef P DataPoint;
+        typedef W WeightFunction;
         /*! 
          * \brief Convenience function for STL-like iterators
          *
