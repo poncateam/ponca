@@ -4,6 +4,7 @@
  file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
  \author Nicolas Mellado nmellado0@gmail.com
+ \author Gael Guennebaud gael.guennebaud@inria.com
 */
 
 
@@ -11,6 +12,9 @@
 #define SCALAR_PRECISION_CHECK_H
 
 #include <limits>
+#include <cassert>
+#include <cmath>
+#include <algorithm>
 
 template <typename _lowPrecisionScalarT,
           typename _highPrecisionScalarT,
@@ -40,10 +44,11 @@ struct _conditionnal_AND_assert{
 
 template <>
 struct _conditionnal_AND_assert<true>{
-    static inline bool run(bool lp, bool hp){ assert (lp && hp); return lp && hp; }
+    static inline bool run(bool lp, bool hp){ assert (lp==hp); return lp && hp; }
 };
 
 }
+
 
 /*!
  * \brief Scalar class running arithmetic operations on two scalar types to
@@ -73,10 +78,11 @@ class ScalarPrecisionCheck {
 public:
     typedef _lowPrecisionScalarT  LPScalar;
     typedef _highPrecisionScalarT HPScalar;
-    typedef ScalarPrecisionCheck<LPScalar, HPScalar, autoCheck> ScalarPC;
+    typedef ScalarPrecisionCheck ScalarPC;
 
+    inline ScalarPrecisionCheck() {}
+    
     /*!
-     * \fixme Not sure about how to properly set this epsilon value
      */
     template <typename RealScalar>
     inline ScalarPrecisionCheck(RealScalar v)
@@ -84,8 +90,13 @@ public:
         precision_assert::run(*this);
     }
 
-    template <bool otherCheck> inline ScalarPrecisionCheck
-    (const ScalarPrecisionCheck<LPScalar, HPScalar, otherCheck>& __rhs)
+    inline ScalarPrecisionCheck(const ScalarPrecisionCheck& __rhs)
+        : _lp(__rhs._lp), _hp(__rhs._hp) {
+        precision_assert::run(*this);
+        
+    }
+    
+    inline ScalarPrecisionCheck(const ScalarPrecisionCheck<LPScalar, HPScalar, !autoCheck>& __rhs)
         : _lp(__rhs._lp), _hp(__rhs._hp) {
         precision_assert::run(*this);
     }
@@ -93,53 +104,28 @@ public:
     inline ScalarPrecisionCheck(LPScalar lp,
                                 HPScalar hp)
         : _lp(lp), _hp(hp) {
+        //if(autoCheck && relativePrecisionDelta()>0)
+        //  std::cerr << "    " << _lp << " " << _hp << " -> " << relativePrecisionDelta() << "\n";
         precision_assert::run(*this);
     }
 
     inline HPScalar precisionDelta() const { return std::abs(HPScalar(_lp) - _hp); }
-    inline bool checkPrecision() const { return ( precisionDelta() < epsilon); }
+    inline HPScalar relativePrecisionDelta() const {
+      using std::abs;
+      using std::max;
+      using std::min;
+      HPScalar diff = abs(HPScalar(_lp) - _hp);
+      if(min(abs(HPScalar(_lp)),abs(_hp))<7e-5)
+        return 0;
+      return diff<std::numeric_limits<LPScalar>::min() ? 0 : diff/abs(HPScalar(_hp));
+    }
+    inline bool checkPrecision() const {
+      return ( relativePrecisionDelta() < epsilon);
+    }
 
+    operator const LPScalar () const { return _lp; }
     inline LPScalar lp() const { return _lp; }
     inline HPScalar hp() const { return _hp; }
-
-    ////////////////////////////////////////////////////////////////////////////
-    /// Pairwise operators with scalars
-    ///
-    template <typename RealScalar> inline ScalarPC operator* (RealScalar __rhs) const
-    { return ScalarPC(__rhs) * (*this); }
-
-    template <typename RealScalar> inline ScalarPC operator/ (RealScalar __rhs) const
-    { return ScalarPC(__rhs) / (*this); }
-
-    template <typename RealScalar> inline ScalarPC operator+ (RealScalar __rhs) const
-    { return ScalarPC(__rhs) + (*this); }
-
-    template <typename RealScalar> inline ScalarPC operator- (RealScalar __rhs) const
-    { return ScalarPC(__rhs) - (*this); }
-
-    template <typename RealScalar> inline ScalarPC& operator*= (RealScalar __rhs)
-    { return *this = ScalarPC(__rhs) * (*this); }
-
-    template <typename RealScalar> inline ScalarPC& operator/= (RealScalar __rhs)
-    { return *this = ScalarPC(__rhs) / (*this); }
-
-    template <typename RealScalar> inline ScalarPC& operator+= (RealScalar __rhs)
-    { return *this = ScalarPC(__rhs) + (*this); }
-
-    template <typename RealScalar> inline ScalarPC& operator-= (RealScalar __rhs)
-    { return *this = ScalarPC(__rhs) - (*this); }
-
-    template <typename RealScalar> inline bool operator< (RealScalar __rhs) const
-    { return AND_assert::run( _lp < __rhs, _hp < __rhs ); }
-
-    template <typename RealScalar> inline bool operator> (RealScalar __rhs) const
-    { return AND_assert::run( _lp > __rhs, _hp > __rhs ); }
-
-    template <typename RealScalar> inline bool operator== (RealScalar __rhs) const
-    { return AND_assert::run( _lp == __rhs, _hp == __rhs ); }
-
-    template <typename RealScalar> inline bool operator!= (RealScalar __rhs) const
-    { return AND_assert::run( _lp != __rhs, _hp != __rhs ); }
 
     ////////////////////////////////////////////////////////////////////////////
     /// Pairwise operators between ScalarPCs
@@ -209,49 +195,7 @@ private:
 
 template <typename lps, typename hps, bool c>
 typename ScalarPrecisionCheck<lps,hps,c>::HPScalar
-ScalarPrecisionCheck<lps,hps,c>::epsilon =
-         std::numeric_limits<typename ScalarPrecisionCheck<lps,hps,c>::HPScalar>::epsilon();
-
-
-template <typename RealScalar, typename lps, typename hps, bool acheck>
-inline ScalarPrecisionCheck<lps,hps,acheck> operator*  (RealScalar __lhs,
-                            const ScalarPrecisionCheck<lps,hps,acheck>& __rhs)
-{ return ScalarPrecisionCheck<lps,hps,acheck>(__lhs) * __rhs; }
-
-template <typename RealScalar, typename lps, typename hps, bool acheck>
-inline ScalarPrecisionCheck<lps,hps,acheck> operator/  (RealScalar __lhs,
-                            const ScalarPrecisionCheck<lps,hps,acheck>& __rhs)
-{ return ScalarPrecisionCheck<lps,hps,acheck>(__lhs) / __rhs; }
-
-template <typename RealScalar, typename lps, typename hps, bool acheck>
-inline ScalarPrecisionCheck<lps,hps,acheck> operator+  (RealScalar __lhs,
-                            const ScalarPrecisionCheck<lps,hps,acheck>& __rhs)
-{ return ScalarPrecisionCheck<lps,hps,acheck>(__lhs) + __rhs; }
-
-template <typename RealScalar, typename lps, typename hps, bool acheck>
-inline ScalarPrecisionCheck<lps,hps,acheck> operator-  (RealScalar __lhs,
-                            const ScalarPrecisionCheck<lps,hps,acheck>& __rhs)
-{ return ScalarPrecisionCheck<lps,hps,acheck>(__lhs) - __rhs; }
-
-template <typename RealScalar, typename lps, typename hps, bool acheck>
-inline bool operator<  (RealScalar __lhs,
-                        const ScalarPrecisionCheck<lps,hps,acheck>& __rhs)
-{ return __rhs > __lhs; }
-
-template <typename RealScalar, typename lps, typename hps, bool acheck>
-inline bool operator>  (RealScalar __lhs,
-                        const ScalarPrecisionCheck<lps,hps,acheck>& __rhs)
-{ return __rhs.operator< (__lhs); }
-
-template <typename RealScalar, typename lps, typename hps, bool acheck>
-inline bool operator==  (RealScalar __lhs,
-                        const ScalarPrecisionCheck<lps,hps,acheck>& __rhs)
-{ return __rhs == __lhs; }
-
-template <typename RealScalar, typename lps, typename hps, bool acheck>
-inline bool operator!=  (RealScalar __lhs,
-                        const ScalarPrecisionCheck<lps,hps,acheck>& __rhs)
-{ return __rhs != __lhs; }
+ScalarPrecisionCheck<lps,hps,c>::epsilon = 2*std::numeric_limits<typename ScalarPrecisionCheck<lps,hps,c>::LPScalar>::epsilon();
 
 // create definitions for common std math functions
 namespace std{
