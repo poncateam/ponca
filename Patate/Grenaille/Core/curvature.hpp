@@ -26,14 +26,6 @@ CurvatureEstimator<DataPoint, _WFunctor, T>::finalize()
         // Get the object space Weingarten map dN
         MatrixType dN = Base::dNormal().template middleCols<DataPoint::Dim>(Base::isScaleDer() ? 1: 0);
         
-        // Make sure dN is orthogonal to the normal: (optional, does not seem to improve accuracy)
-//         VectorType n = Base::normal().normalized();
-//         dN = dN - n * n.transpose() * dN;
-        
-        // Make sure that dN is symmetric:
-        // FIXME check why dN is not already symmetric (i.e., round-off errors or error in derivative formulas?)
-        dN = 0.5*(dN + dN.transpose().eval());
-        
         // Compute tangent-space basis from dN
         //   1 - pick the column with maximal norm as the first tangent vector,
         Index i0, i1, i2;
@@ -54,6 +46,20 @@ CurvatureEstimator<DataPoint, _WFunctor, T>::finalize()
         // Recall that dN is a bilinear form, it thus transforms as follows:
         Mat22 S = B.transpose() * dN * B;
         
+        // Recall that at this stage, the shape operator represented by S describes the normal curvature K_n(u) in the direction u \in R^2 as follows:
+        //   K_n(u) = u^T S u
+        // The principal curvatures are fully defined by the values and the directions of the extrema of K_n.
+        // 
+        // If the normal field N(x) comes from the gradient of a scalar field, then N(x) is curl-free, and dN and S are symmetric matrices.
+        // In this case, the extrema of the previous quadratic form are directly obtained by the the eigenvalue decomposition of S.
+        // However, if N(x) is only an approximation of the normal field of a surface, then N(x) is not necessarily curl-free, and in this case S is not symmetric.
+        // In this case, we first have to find an equivalent symmetric matrix S' such that:
+        //   K_n(u) = u^T S' u,
+        // for any u \in R^2.
+        // It is easy to see that such a S' is simply obtained as:
+        //   S' = (S + S^T)/2
+        
+        S(0,1) = S(1,0) = (S(0,1) + S(1,0))/Scalar(2);
         Eigen::SelfAdjointEigenSolver<Mat22> eig2;
         eig2.computeDirect(S);
         

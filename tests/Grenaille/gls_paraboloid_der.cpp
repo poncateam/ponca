@@ -60,6 +60,9 @@ void testFunction(bool isSigned = true)
     for(unsigned int i = 0; i < vectorPoints.size(); ++i)
     {
       vectorPointsOrigin[i] = getPointOnParaboloid<DataPoint>(vCenter, vCoef, qRotation, analysisScale*Scalar(1.2), false);
+      // Add noise:
+      // vectorPointsOrigin[i].pos() += VectorType::Random()*1e-6;
+      //vectorPointsOrigin[i].normal() = (vectorPointsOrigin[i].normal() + VectorType::Random()*1e-6).normalized();
       vectorPoints[i].pos() = qRotation * vectorPointsOrigin[i].pos() + vCenter;
       vectorPoints[i].normal() = qRotation * vectorPointsOrigin[i].normal();
       
@@ -83,7 +86,6 @@ void testFunction(bool isSigned = true)
     fit.finalize();
     
     Scalar flip_fit = (isSigned || (fit.normal().template cast<Scalar>().dot(theoricNormal) > 0 )) ? Scalar(1) : Scalar(-1);
-
     {
       // Check derivatives wrt numerical differentiation
       // Use long double for stable numerical differentiation
@@ -161,7 +163,7 @@ void testFunction(bool isSigned = true)
 //       std::cout << "== Numerical differentiation ==\n";
 //       std::cout << "dPotential: "  << dPotential << " == " << fit.dPotential() << " ; " << (dPotential.template cast<Scalar>()-flip_fit*fit.dPotential()).norm()/dPotential.norm() << "\n";
 //       std::cout << "dN:\n"  << dN << "\n == \n" << flip_fit*fit.dNormal() << " ; " << (dN.template cast<Scalar>()-flip_fit*fit.dNormal()).norm()/dN.norm() << "\n";
-//       std::cout << "eig(dN): " << Eigen::EigenSolver<typename DataPoint::MatrixType>(dN.template cast<Scalar>().template rightCols<3>()).eigenvalues().real().transpose() << "\n\n";
+//       std::cout << "eig(dN): " << Eigen::EigenSolver<typename DataPoint::MatrixType>(dN.template cast<Scalar>().template rightCols<3>()).eigenvalues().transpose() << "\n\n";
       
 //       std::cout << "dKappa: " << dKappa << " == " << fit.dkappa() << " ; " << (dKappa.template cast<Scalar>()-fit.dkappa()).norm()/dKappa.norm() << "\n";
 //       std::cout << "dUc: "  << dUc << " == " << fit.m_dUc << " ; " << (dUc.template cast<Scalar>()-fit.m_dUc).norm()/dUc.norm() << "\n";
