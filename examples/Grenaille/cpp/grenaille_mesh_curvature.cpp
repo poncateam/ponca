@@ -14,6 +14,10 @@ file, You can obtain one at http://mozilla.org/MPL/2.0/.
 #include <iostream>
 #include <fstream>
 
+#ifdef _OPENMP
+#include <omp.h>
+#endif
+
 #include "Patate/common/surface_mesh/surfaceMesh.h"
 #include "Patate/common/surface_mesh/objReader.h"
 #include "Patate/common/surface_mesh/objWriter.h"
@@ -171,79 +175,108 @@ typedef Basket<GLSPoint, WeightFunc, OrientedSphereFit, GLSParam,
 
 Scalar fit(Mesh& mesh, Scalar radius) {
     // compute curvature
-    Vertex v0, v1;
-    Mesh::VertexAroundVertexCirculator vc, vc_end;
+    const Scalar r = Scalar(2) * radius;
+    const Scalar r2 = r * r;
+    const unsigned nVertices = mesh.verticesSize();
 
-    std::queue<Vertex> nrings;
-
-    Scalar r = Scalar(2) * radius;
     Scalar gCurvMax = Scalar(0);
 
-    for(Mesh::VertexIterator vit = mesh.verticesBegin();
-        vit != mesh.verticesEnd(); ++vit)
+//    for(Mesh::VertexIterator vit = mesh.verticesBegin();
+//        vit != mesh.verticesEnd(); ++vit)
+#ifdef _OPENMP
+#pragma omp parallel
+#endif
     {
-        v0 = *vit;
+        std::queue<Vertex> nrings;
+        std::vector<bool> processed(nVertices, false);
+        std::vector<unsigned> clearList;
 
-        // initialize fit
-        Fit fit;
-        fit.init(mesh.position(v0));
-        nrings.push(v0);
-
-        fit.setWeightFunc(WeightFunc(r));
-
-        int nbNeighboors = 0;
-
-        // process stack
-        if(mesh.halfedge(v0).isValid()) {
-            Mesh::VertexProperty<bool> processed =
-                    mesh.addVertexProperty<bool>("v:processed",false);
-            processed[v0] = true;
-            while(!nrings.empty()) {
-                v1 = nrings.front();
-                nrings.pop();
-                // add to the fit
-                fit.addNeighbor(GLSPoint(mesh, v1));
-                nbNeighboors++;
-
-                // add its 1-ring neighboors to the stack if they haven't been processed yet...
-                vc = mesh.vertices(v1);
-                vc_end = vc;
-                do {
-                    if(!processed[*vc]) {
-                        processed[*vc] = true;
-                        // ...and if they are close enough
-                        if((mesh.position(*vc) - mesh.position(v0)).norm() < r)
-                            nrings.push(*vc);
-                    }
-                } while(++vc != vc_end);
+#ifdef _OPENMP
+#pragma omp for reduction(max:gCurvMax)
+#endif
+        for(unsigned i = 0; i < nVertices; ++i)
+        {
+            Vertex v0 = Vertex(i);
+            if(mesh.isDeleted(v0)) {
+                continue;
             }
-            mesh.removeVertexProperty<bool>(processed);
+
+            // initialize fit
+            Fit fit;
+            fit.init(mesh.position(v0));
+            nrings.push(v0);
+
+            fit.setWeightFunc(WeightFunc(r));
+
+            int nbNeighboors = 0;
+
+            // process stack
+            if(mesh.halfedge(v0).isValid()) {
+                processed[v0.idx()] = true;
+                clearList.push_back(v0.idx());
+                while(!nrings.empty()) {
+                    Vertex v1 = nrings.front();
+                    nrings.pop();
+                    // add to the fit
+                    fit.addNeighbor(GLSPoint(mesh, v1));
+                    nbNeighboors++;
+
+                    // add its 1-ring neighboors to the stack if they haven't been processed yet...
+                    Mesh::VertexAroundVertexCirculator vc, vc_end;
+                    vc = mesh.vertices(v1);
+                    vc_end = vc;
+                    do {
+                        if(!processed[(*vc).idx()]) {
+                            processed[(*vc).idx()] = true;
+                            clearList.push_back((*vc).idx());
+                            // ...and if they are close enough
+                            if((mesh.position(*vc) - mesh.position(v0)).squaredNorm() < r2)
+                                nrings.push(*vc);
+                        }
+                    } while(++vc != vc_end);
+                }
+                for(unsigned ci = 0; ci < clearList.size(); ++ci) {
+                    processed[clearList[ci]] = false;
+                }
+                clearList.clear();
+            }
+
+            fit.finalize();
+
+            if(fit.isReady()) {
+                if(!fit.isStable()) {
+#ifdef _OPENMP
+#pragma omp critical(cerr)
+#endif
+                    {
+                        std::cerr << "Unstable fit: " << nbNeighboors << " neighbhoors\n";
+                    }
+                }
+
+                mesh.maxDirection(v0)  = fit.GLSk1Direction();
+                mesh.minDirection(v0)  = fit.GLSk2Direction();
+                mesh.maxCurvature(v0)  = fit.GLSk1();
+                mesh.minCurvature(v0)  = fit.GLSk2();
+                mesh.geomVar(v0)       = fit.geomVar();
+
+                Scalar gCurv = fabs(fit.GLSGaussianCurvature());
+                if(gCurv > gCurvMax)
+                    gCurvMax = gCurv;
+            } else {
+#ifdef _OPENMP
+#pragma omp critical(cerr)
+#endif
+                {
+                    std::cerr << "Fit impossible: " << nbNeighboors << " neighbhoors\n";
+                }
+                mesh.maxDirection(v0)  = Vector::Zero();
+                mesh.minDirection(v0)  = Vector::Zero();
+                mesh.maxCurvature(v0)  = std::numeric_limits<Scalar>::quiet_NaN();
+                mesh.minCurvature(v0)  = std::numeric_limits<Scalar>::quiet_NaN();
+                mesh.geomVar(v0)       = std::numeric_limits<Scalar>::quiet_NaN();
+            }
         }
-
-        fit.finalize();
-
-        if(fit.isReady()) {
-            if(!fit.isStable())
-                std::cerr << "Unstable fit: " << nbNeighboors << " neighbhoors\n";
-
-            mesh.maxDirection(v0)  = fit.GLSk1Direction();
-            mesh.minDirection(v0)  = fit.GLSk2Direction();
-            mesh.maxCurvature(v0)  = fit.GLSk1();
-            mesh.minCurvature(v0)  = fit.GLSk2();
-            mesh.geomVar(v0)       = fit.geomVar();
-
-            Scalar gCurv = fabs(fit.GLSGaussianCurvature());
-            if(gCurv > gCurvMax)
-                gCurvMax = gCurv;
-        } else {
-            std::cerr << "Fit impossible: " << nbNeighboors << " neighbhoors\n";
-            mesh.maxDirection(v0)  = Vector::Zero();
-            mesh.minDirection(v0)  = Vector::Zero();
-            mesh.maxCurvature(v0)  = std::numeric_limits<Scalar>::quiet_NaN();
-            mesh.minCurvature(v0)  = std::numeric_limits<Scalar>::quiet_NaN();
-            mesh.geomVar(v0)       = std::numeric_limits<Scalar>::quiet_NaN();
-        }
-    }
+    } // omp parallel
 
     return gCurvMax;
 }
@@ -274,16 +307,64 @@ Vector getColor(Scalar _value, Scalar _valueMin, Scalar _valueMax) {
 }
 
 
+void usage(const char* progName) {
+    std::cerr << "Usage: " << progName << " [-r RADIUS] [-m MAX_CURV] [-R] OBJ_IN OBJ_OUT\n";
+    exit(1);
+}
+
+
 int main(int argc, char** argv)
 {
-    if(argc != 3) {
-        std::cerr << "Usage: " << argv[0] << " OBJ_IN OBJ_OUT\n";
-        return 1;
-    }
+    double radius   = 0;
+    bool   relative = false;
+    const char* inFilename  = 0;
+    const char* outFilename = 0;
+    double maxCurv = 0;
 
-    const char* inFilename  = argv[1];
-    const char* outFilename = argv[2];
-    double radius = 0.089;
+    for(int i = 1; i < argc; ++i) {
+        if(argv[i][0] == '-') {
+            if(argv[i] == std::string("-r")
+            || argv[i] == std::string("--radius")) {
+                if(++i == argc) {
+                    std::cerr << "Error: " << argv[i-1] << " need an argument.\n";
+                    usage(argv[0]);
+                }
+                if(radius != 0) std::cerr << "Warning: radius specified several times.\n";
+                radius = std::atof(argv[i]);
+                if(radius == 0) {
+                    std::cerr << "Error: invalid radius.\n";
+                    exit(1);
+                }
+            } else if(argv[i] == std::string("-m")
+                   || argv[i] == std::string("--max-curvature")) {
+                    if(++i == argc) {
+                        std::cerr << "Error: " << argv[i-1] << " need an argument.\n";
+                        usage(argv[0]);
+                    }
+                    if(maxCurv != 0) std::cerr << "Warning: radius specified several times.\n";
+                    maxCurv = std::atof(argv[i]);
+                    if(maxCurv == 0) {
+                        std::cerr << "Error: invalid radius.\n";
+                        exit(1);
+                    }
+            } else if(argv[i] == std::string("-R")
+                   || argv[i] == std::string("--relative")) {
+                relative = true;
+            } else {
+                std::cerr << "Unknown option " << argv[i] << ".\n";
+                usage(argv[0]);
+            }
+        } else {
+            if(!inFilename) {
+                inFilename = argv[i];
+            } else if(!outFilename) {
+                outFilename = argv[i];
+            } else {
+                std::cerr << "Error: too much parameters.\n";
+                usage(argv[0]);
+            }
+        }
+    }
 
     Mesh mesh;
     {
@@ -294,25 +375,34 @@ int main(int argc, char** argv)
     mesh.triangulate();
     mesh.computeNormals();
 
-    Vector meshBarycenter = Vector::Zero();
-    Scalar meshRadius = 0.f;
+    if(relative) {
+        Vector meshBarycenter = Vector::Zero();
+        Scalar meshRadius = 0.f;
 
-    Mesh::VertexIterator vit, vend = mesh.verticesEnd();
-    for(vit = mesh.verticesBegin(); vit != vend; ++vit)
-    {
-        meshBarycenter += mesh.position(*vit);
+        Mesh::VertexIterator vit, vend = mesh.verticesEnd();
+        for(vit = mesh.verticesBegin(); vit != vend; ++vit)
+        {
+            meshBarycenter += mesh.position(*vit);
+        }
+        meshBarycenter /= mesh.nVertices();
+
+        for (vit = mesh.verticesBegin(); vit != vend; ++vit)
+        {
+            Scalar dist = (mesh.position(*vit) - meshBarycenter).norm();
+            if(dist > meshRadius)
+                meshRadius = dist;
+        }
+
+        radius *= meshRadius;
     }
-    meshBarycenter /= mesh.nVertices();
 
-    for (vit = mesh.verticesBegin(); vit != vend; ++vit)
-    {
-        Scalar dist = (mesh.position(*vit) - meshBarycenter).norm();
-        if(dist > meshRadius)
-            meshRadius = dist;
+    std::cout << "Radius: " << radius << "\n";
+    Scalar gCurvMax = fit(mesh, radius);
+    std::cout << "Maximum absolute computed curvature: " << gCurvMax << "\n";
+
+    if(maxCurv == 0) {
+        maxCurv = gCurvMax;
     }
-
-    Scalar gCurveMax = fit(mesh, meshRadius * radius);
-    std::cout << "gCurveMax: " << gCurveMax << "\n";
 
     {
         std::ofstream out(outFilename);
@@ -323,7 +413,7 @@ int main(int argc, char** argv)
             vit != mesh.verticesEnd(); ++vit)
         {
             Scalar curv = mesh.minCurvature(*vit) * mesh.maxCurvature(*vit);
-            Vector color = getColor(curv, -gCurveMax, gCurveMax);
+            Vector color = getColor(curv, -maxCurv, maxCurv);
             out << "v " << mesh.position(*vit).transpose()
                 << " " << color.transpose() << "\n";
         }

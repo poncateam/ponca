@@ -26,6 +26,13 @@ set(grenaille_mesh_curvature_SRCS
     grenaille_mesh_curvature.cpp
 )
 add_executable(grenaille_mesh_curvature ${grenaille_mesh_curvature_SRCS})
+find_package(OpenMP)
+if(OPENMP_FOUND)
+    target_compile_options(grenaille_mesh_curvature PRIVATE ${OpenMP_CXX_FLAGS})
+    target_link_libraries(grenaille_mesh_curvature ${OpenMP_CXX_FLAGS})
+endif()
+
+
 add_dependencies(grenaille_examples grenaille_mesh_curvature)
 
 ################################################################################
