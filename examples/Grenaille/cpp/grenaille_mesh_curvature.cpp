@@ -307,6 +307,20 @@ Vector getColor(Scalar _value, Scalar _valueMin, Scalar _valueMax) {
 }
 
 
+Vector getColor2(Scalar value, Scalar p) {
+    bool sign = value < 0;
+    value = 2 * std::min(std::max(std::pow(std::abs(value), p), Scalar(0)), Scalar(1));
+    return Vector(std::abs(1 - value),
+                  std::min(2 - value, Scalar(1)),
+                  Scalar(sign));
+}
+
+
+bool noopErrorCallback(const std::string& /*msg*/, unsigned /*line*/, void* /*ptr*/) {
+    return false;
+}
+
+
 void usage(const char* progName) {
     std::cerr << "Usage: " << progName << " [-r RADIUS] [-m MAX_CURV] [-R] OBJ_IN OBJ_OUT\n";
     exit(1);
@@ -369,7 +383,10 @@ int main(int argc, char** argv)
     Mesh mesh;
     {
         std::ifstream in(inFilename);
-        PatateCommon::OBJReader<Mesh>().read(in, mesh);
+        PatateCommon::OBJReader<Mesh> reader;
+        reader.setErrorCallback(PatateCommon::defaultErrorCallback,
+                                noopErrorCallback, NULL);
+        reader.read(in, mesh);
     }
 
     mesh.triangulate();
@@ -413,9 +430,15 @@ int main(int argc, char** argv)
             vit != mesh.verticesEnd(); ++vit)
         {
             Scalar curv = mesh.minCurvature(*vit) * mesh.maxCurvature(*vit);
-            Vector color = getColor(curv, -maxCurv, maxCurv);
+//            Vector color = getColor(curv, -maxCurv, maxCurv);
+            Vector color = getColor2(curv / maxCurv, .5);
             out << "v " << mesh.position(*vit).transpose()
                 << " " << color.transpose() << "\n";
+        }
+        for(Mesh::VertexIterator vit = mesh.verticesBegin();
+            vit != mesh.verticesEnd(); ++vit)
+        {
+            out << "vt " << mesh.maxCurvature(*vit) << " " << mesh.minCurvature(*vit) << "\n";
         }
         for(Mesh::VertexIterator vit = mesh.verticesBegin();
             vit != mesh.verticesEnd(); ++vit)
@@ -430,7 +453,8 @@ int main(int argc, char** argv)
             Mesh::VertexAroundFaceCirculator vEnd = vit;
             do {
                 out << " " << (*vit).idx() + 1
-                    << "//" << (*vit).idx() + 1;
+                    << "/" << (*vit).idx() + 1
+                    << "/" << (*vit).idx() + 1;
                 ++vit;
             } while(vit != vEnd);
             out << "\n";
