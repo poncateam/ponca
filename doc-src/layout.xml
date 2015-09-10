@@ -41,6 +41,7 @@
 				<tab type="user" visible="yes" url="vitelotte_user_manual_fem_solver_page.html" title="The FEM solver"/>
 				<tab type="user" visible="yes" url="vitelotte_user_manual_rendering_page.html" title="Rendering"/>
 				<tab type="user" visible="yes" url="vitelotte_user_manual_mvg_file_format_page.html" title="The MVG file format"/>
+				<tab type="user" visible="yes" url="vitelotte_user_manual_blender_plugin_page.html" title="Blender plugin"/>
 			</tab>
 
 			<tab type="usergroup" url="@ref vitelotte_example_page" title="Examples">
