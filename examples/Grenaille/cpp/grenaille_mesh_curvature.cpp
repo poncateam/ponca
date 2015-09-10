@@ -380,6 +380,15 @@ int main(int argc, char** argv)
         }
     }
 
+    if(!inFilename) {
+        std::cerr << "Missing input file.\n";
+        usage(argv[0]);
+    }
+    if(!outFilename) {
+        std::cerr << "Missing output file.\n";
+        usage(argv[0]);
+    }
+
     Mesh mesh;
     {
         std::ifstream in(inFilename);
