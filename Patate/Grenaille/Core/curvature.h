@@ -63,15 +63,23 @@ public:
     /* Use results                                                            */
     /**************************************************************************/
     //! \brief Returns an estimate of the first principal curvature value
+    //!
+    //! It is the greatest curvature in <b>absolute value</b>.
     MULTIARCH inline Scalar k1() const { return m_k1; }
 
     //! \brief Returns an estimate of the second principal curvature value
+    //!
+    //! It is the smallest curvature in <b>absolute value</b>.
     MULTIARCH inline Scalar k2() const { return m_k2; }
 
     //! \brief Returns an estimate of the first principal curvature direction
+    //!
+    //! It is the greatest curvature in <b>absolute value</b>.
     MULTIARCH inline VectorType k1Direction() const { return m_v1; }
 
     //! \brief Returns an estimate of the second principal curvature direction
+    //!
+    //! It is the smallest curvature in <b>absolute value</b>.
     MULTIARCH inline VectorType k2Direction() const { return m_v2; }
     
     //! \brief Returns an estimate of the mean curvature
