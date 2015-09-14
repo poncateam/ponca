@@ -430,6 +430,7 @@ int main(int argc, char** argv)
         maxCurv = gCurvMax;
     }
 
+    int ret = 0;
     {
         std::ofstream out(outFilename);
 //        PatateCommon::OBJWriter<Mesh>().write(out, mesh);
@@ -447,6 +448,8 @@ int main(int argc, char** argv)
         for(Mesh::VertexIterator vit = mesh.verticesBegin();
             vit != mesh.verticesEnd(); ++vit)
         {
+            if(std::isnan(mesh.maxCurvature(*vit)) || std::isnan(mesh.minCurvature(*vit)))
+                ret = 1;
             out << "vt " << mesh.maxCurvature(*vit) << " " << mesh.minCurvature(*vit) << "\n";
         }
         for(Mesh::VertexIterator vit = mesh.verticesBegin();
@@ -469,4 +472,5 @@ int main(int argc, char** argv)
             out << "\n";
         }
     }
+    return ret;
 }
