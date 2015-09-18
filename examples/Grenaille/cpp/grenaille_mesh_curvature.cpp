@@ -14,6 +14,10 @@ file, You can obtain one at http://mozilla.org/MPL/2.0/.
 #include <iostream>
 #include <fstream>
 
+#ifdef __linux
+#include "time.h"
+#endif
+
 #ifdef _OPENMP
 #include <omp.h>
 #endif
@@ -152,18 +156,17 @@ public:
     typedef Eigen::Matrix<Scalar, Dim, 1>    VectorType;
     typedef Eigen::Matrix<Scalar, Dim, Dim>  MatrixType;
 
-    MULTIARCH inline GLSPoint(Mesh& mesh, Vertex vx)
-        : m_mesh(&mesh), m_vx(vx) {}
+    MULTIARCH inline GLSPoint()
+        : m_pos(), m_norm() {}
+    MULTIARCH inline GLSPoint(const Mesh& mesh, Vertex vx)
+        : m_pos(mesh.position(vx)), m_norm(mesh.normal(vx)) {}
 
-    MULTIARCH inline const VectorType& pos()    const { return m_mesh->position(m_vx); }
-    MULTIARCH inline VectorType& pos()    { return m_mesh->position(m_vx); }
-
-    MULTIARCH inline const VectorType& normal() const { return m_mesh->normal(m_vx); }
-    MULTIARCH inline VectorType& normal() { return m_mesh->normal(m_vx); }
+    MULTIARCH inline const VectorType& pos()    const { return m_pos; }
+    MULTIARCH inline const VectorType& normal() const { return m_norm; }
 
 private:
-    Mesh*   m_mesh;
-    Vertex  m_vx;
+    Vector m_pos;
+    Vector m_norm;
 };
 
 
@@ -171,6 +174,107 @@ typedef Grenaille::DistWeightFunc<GLSPoint, Grenaille::SmoothWeightKernel<Scalar
                WeightFunc;
 typedef Basket<GLSPoint, WeightFunc, OrientedSphereFit, GLSParam,
                OrientedSphereScaleSpaceDer, GLSDer, GLSCurvatureHelper, GLSGeomVar> Fit;
+
+
+class Grid {
+public:
+    typedef Eigen::Array3i Cell;
+    typedef Eigen::AlignedBox3i CellBlock;
+    typedef std::vector<unsigned> IndexVector;
+    typedef std::vector<GLSPoint, Eigen::aligned_allocator<GLSPoint> > PointVector;
+
+public:
+    Grid(const Mesh& mesh, Scalar cellSize)
+        : _cellSize(cellSize),
+          _gridSize(),
+          _gridBase() {
+
+        // Compute bounding box.
+        typedef Eigen::AlignedBox<Scalar, 3> BoundingBox;
+        BoundingBox bb;
+        for(Mesh::VertexIterator vit = mesh.verticesBegin();
+            vit != mesh.verticesEnd(); ++vit) {
+            bb.extend(mesh.position(*vit));
+        }
+
+        _gridBase = bb.min();
+        _gridSize = gridCoord(bb.max()) + Cell::Constant(1);
+        std::cout << "GridSize: " << _gridSize.transpose()
+                  << " (" << nCells() << ")\n";
+
+        // Compute cells size (number of points in each cell)
+        _cellsIndex.resize(nCells() + 1, 0);
+        for(Mesh::VertexIterator vit = mesh.verticesBegin();
+            vit != mesh.verticesEnd(); ++vit) {
+            unsigned i = cellIndex(mesh.position(*vit));
+            ++_cellsIndex[i + 1];
+        }
+
+        // Prefix sum to get indices
+        for(unsigned i = 1; i <= nCells(); ++i) {
+            _cellsIndex[i] += _cellsIndex[i - 1];
+        }
+
+        // Fill the point array
+        IndexVector pointCount(nCells(), 0);
+        _points.resize(_cellsIndex.back());
+        for(Mesh::VertexIterator vit = mesh.verticesBegin();
+            vit != mesh.verticesEnd(); ++vit) {
+            unsigned i = cellIndex(mesh.position(*vit));
+            *(_pointsBegin(i) + pointCount[i]) = GLSPoint(mesh, *vit);
+            ++pointCount[i];
+        }
+
+        for(unsigned i = 0; i < nCells(); ++i) {
+            assert(pointCount[i] == _cellsIndex[i+1] - _cellsIndex[i]);
+        }
+    }
+
+    inline unsigned nCells() const {
+        return _gridSize.prod();
+    }
+    inline Cell gridCoord(const Vector& p) const {
+        return Eigen::Array3i(((p - _gridBase) / _cellSize).cast<int>());
+    }
+    inline int cellIndex(const Cell& c) const {
+        return c(0) + _gridSize(0) * (c(1) + _gridSize(1) * c(2));
+    }
+    inline int cellIndex(const Vector& p) const {
+        Cell c = gridCoord(p);
+        assert(c(0) >= 0 && c(1) >= 0 && c(2) >= 0
+            && c(0) < _gridSize(0) && c(1) < _gridSize(1) && c(2) < _gridSize(2));
+        return c(0) + _gridSize(0) * (c(1) + _gridSize(1) * c(2));
+    }
+
+    inline const GLSPoint* pointsBegin(unsigned ci) const {
+        assert(ci < nCells());
+        return &_points[0] + _cellsIndex[ci];
+    }
+    inline const GLSPoint* pointsEnd(unsigned ci) const {
+        assert(ci < nCells());
+        return &_points[0] + _cellsIndex[ci + 1];
+    }
+
+    CellBlock cellsAround(const Vector& p, Scalar radius) {
+        return CellBlock(gridCoord(p - Vector::Constant(radius))
+                                 .max(Cell(0, 0, 0)).matrix(),
+                         (gridCoord(p + Vector::Constant(radius)) + Cell::Constant(1))
+                                 .min(_gridSize).matrix());
+    }
+
+private:
+    inline GLSPoint* _pointsBegin(unsigned ci) {
+        assert(ci < nCells());
+        return &_points[0] + _cellsIndex[ci];
+    }
+
+private:
+    Scalar      _cellSize;
+    Cell        _gridSize;
+    Vector      _gridBase; // min corner
+    IndexVector _cellsIndex;
+    PointVector _points;
+};
 
 
 Scalar fit(Mesh& mesh, Scalar radius) {
@@ -181,102 +285,78 @@ Scalar fit(Mesh& mesh, Scalar radius) {
 
     Scalar gCurvMax = Scalar(0);
 
-//    for(Mesh::VertexIterator vit = mesh.verticesBegin();
-//        vit != mesh.verticesEnd(); ++vit)
+    Grid grid(mesh, r);
+
 #ifdef _OPENMP
-#pragma omp parallel
+#pragma omp parallel for reduction(max:gCurvMax)
 #endif
+    for(unsigned i = 0; i < nVertices; ++i)
     {
-        std::queue<Vertex> nrings;
-        std::vector<bool> processed(nVertices, false);
-        std::vector<unsigned> clearList;
+        Vertex v0 = Vertex(i);
+        if(mesh.isDeleted(v0)) {
+            continue;
+        }
 
-#ifdef _OPENMP
-#pragma omp for reduction(max:gCurvMax)
-#endif
-        for(unsigned i = 0; i < nVertices; ++i)
-        {
-            Vertex v0 = Vertex(i);
-            if(mesh.isDeleted(v0)) {
-                continue;
-            }
+        // initialize fit
+        Fit fit;
+        Vector p0 = mesh.position(v0);
+        fit.init(p0);
+        fit.setWeightFunc(WeightFunc(r));
 
-            // initialize fit
-            Fit fit;
-            fit.init(mesh.position(v0));
-            nrings.push(v0);
+        int nbNeighboors = 0;
 
-            fit.setWeightFunc(WeightFunc(r));
-
-            int nbNeighboors = 0;
-
-            // process stack
-            if(mesh.halfedge(v0).isValid()) {
-                processed[v0.idx()] = true;
-                clearList.push_back(v0.idx());
-                while(!nrings.empty()) {
-                    Vertex v1 = nrings.front();
-                    nrings.pop();
-                    // add to the fit
-                    fit.addNeighbor(GLSPoint(mesh, v1));
-                    nbNeighboors++;
-
-                    // add its 1-ring neighboors to the stack if they haven't been processed yet...
-                    Mesh::VertexAroundVertexCirculator vc, vc_end;
-                    vc = mesh.vertices(v1);
-                    vc_end = vc;
-                    do {
-                        if(!processed[(*vc).idx()]) {
-                            processed[(*vc).idx()] = true;
-                            clearList.push_back((*vc).idx());
-                            // ...and if they are close enough
-                            if((mesh.position(*vc) - mesh.position(v0)).squaredNorm() < r2)
-                                nrings.push(*vc);
+        Eigen::AlignedBox3i cells = grid.cellsAround(p0, r);
+        Grid::Cell c = cells.min().array();
+        for(c(2) = cells.min()(2); c(2) < cells.max()(2); ++c(2)) {
+            for(c(1) = cells.min()(1); c(1) < cells.max()(1); ++c(1)) {
+                for(c(0) = cells.min()(0); c(0) < cells.max()(0); ++c(0)) {
+                    const GLSPoint* p = grid.pointsBegin(grid.cellIndex(c));
+                    const GLSPoint* end = grid.pointsEnd(grid.cellIndex(c));
+                    for(; p != end; ++p) {
+                        if((p->pos() - p0).squaredNorm() < r2) {
+                            fit.addNeighbor(*p);
+                            ++nbNeighboors;
                         }
-                    } while(++vc != vc_end);
-                }
-                for(unsigned ci = 0; ci < clearList.size(); ++ci) {
-                    processed[clearList[ci]] = false;
-                }
-                clearList.clear();
-            }
-
-            fit.finalize();
-
-            if(fit.isReady()) {
-                if(!fit.isStable()) {
-#ifdef _OPENMP
-#pragma omp critical(cerr)
-#endif
-                    {
-                        std::cerr << "Unstable fit: " << nbNeighboors << " neighbhoors\n";
                     }
                 }
+            }
+        }
 
-                mesh.maxDirection(v0)  = fit.GLSk1Direction();
-                mesh.minDirection(v0)  = fit.GLSk2Direction();
-                mesh.maxCurvature(v0)  = fit.GLSk1();
-                mesh.minCurvature(v0)  = fit.GLSk2();
-                mesh.geomVar(v0)       = fit.geomVar();
+        fit.finalize();
 
-                Scalar gCurv = fabs(fit.GLSGaussianCurvature());
-                if(gCurv > gCurvMax)
-                    gCurvMax = gCurv;
-            } else {
+        if(fit.isReady()) {
+            if(!fit.isStable()) {
 #ifdef _OPENMP
 #pragma omp critical(cerr)
 #endif
                 {
-                    std::cerr << "Fit impossible: " << nbNeighboors << " neighbhoors\n";
+                    std::cerr << "Unstable fit: " << nbNeighboors << " neighbhoors\n";
                 }
-                mesh.maxDirection(v0)  = Vector::Zero();
-                mesh.minDirection(v0)  = Vector::Zero();
-                mesh.maxCurvature(v0)  = std::numeric_limits<Scalar>::quiet_NaN();
-                mesh.minCurvature(v0)  = std::numeric_limits<Scalar>::quiet_NaN();
-                mesh.geomVar(v0)       = std::numeric_limits<Scalar>::quiet_NaN();
             }
+
+            mesh.maxDirection(v0)  = fit.GLSk1Direction();
+            mesh.minDirection(v0)  = fit.GLSk2Direction();
+            mesh.maxCurvature(v0)  = fit.GLSk1();
+            mesh.minCurvature(v0)  = fit.GLSk2();
+            mesh.geomVar(v0)       = fit.geomVar();
+
+            Scalar gCurv = fabs(fit.GLSGaussianCurvature());
+            if(gCurv > gCurvMax)
+                gCurvMax = gCurv;
+        } else {
+#ifdef _OPENMP
+#pragma omp critical(cerr)
+#endif
+            {
+                std::cerr << "Fit impossible: " << nbNeighboors << " neighbhoors\n";
+            }
+            mesh.maxDirection(v0)  = Vector::Zero();
+            mesh.minDirection(v0)  = Vector::Zero();
+            mesh.maxCurvature(v0)  = std::numeric_limits<Scalar>::quiet_NaN();
+            mesh.minCurvature(v0)  = std::numeric_limits<Scalar>::quiet_NaN();
+            mesh.geomVar(v0)       = std::numeric_limits<Scalar>::quiet_NaN();
         }
-    } // omp parallel
+    }
 
     return gCurvMax;
 }
@@ -423,7 +503,24 @@ int main(int argc, char** argv)
     }
 
     std::cout << "Radius: " << radius << "\n";
+
+#ifdef __linux
+    timespec startTime;
+    int res = clock_gettime(CLOCK_MONOTONIC_RAW, &startTime);
+    if(res != 0) { startTime.tv_sec = 0; startTime.tv_nsec = 0; }
+#endif
+
     Scalar gCurvMax = fit(mesh, radius);
+
+#ifdef __linux
+    timespec endTime;
+    res = clock_gettime(CLOCK_MONOTONIC_RAW, &endTime);
+    if(res != 0) { endTime.tv_sec = 0; endTime.tv_nsec = 0; }
+    std::cout << "Curvature computation time: " <<
+                 double(double(endTime.tv_sec) - double(startTime.tv_sec))
+                 + double(double(endTime.tv_nsec) - double(startTime.tv_nsec)) * 1.e-9 << " s\n";
+#endif
+
     std::cout << "Maximum absolute computed curvature: " << gCurvMax << "\n";
 
     if(maxCurv == 0) {
