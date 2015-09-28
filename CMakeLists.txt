@@ -112,7 +112,7 @@ endif(DOXYGEN_FOUND)
 if (CMAKE_COMPILER_IS_GNUCXX)
     # Do NOT use list( APPEND ... ) with flags, as adding flags to a non-empty
     # CMAKE_[...]_FLAGS introduces unwanted semicolons.
-    set( CMAKE_CXX_FLAGS "-Wall -Wpedantic -Wextra  -Wdouble-promotion ${CMAKE_CXX_FLAGS}")
+    set( CMAKE_CXX_FLAGS "-Wall -pedantic -Wextra  -Wdouble-promotion ${CMAKE_CXX_FLAGS}")
 endif (CMAKE_COMPILER_IS_GNUCXX)
 
 set(CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR}/cmake)
