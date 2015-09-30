@@ -52,6 +52,7 @@
 				<tab type="user" visible="yes" url="@ref vitelotte_example_mvgtk_page" title="MVG Toolkit"/>
 				<tab type="user" visible="yes" url="@ref vitelotte_example_mvg_viewer_page" title="MVG Viewer"/>
 				<tab type="user" visible="yes" url="@ref vitelotte_example_mvg_editor_page" title="MVG Editor"/>
+				<tab type="user" visible="yes" url="@ref vitelotte_example_gen_mesh_page" title="MVG from SVG"/>
 			</tab>
 		</tab>
 	</tab>
