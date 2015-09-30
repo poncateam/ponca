@@ -14,7 +14,8 @@ file, You can obtain one at http://mozilla.org/MPL/2.0/.
 #include <iostream>
 #include <fstream>
 
-#ifdef __linux
+#if defined __linux && _POSIX_C_SOURCE >= 199309
+#define USE_TIMER
 #include "time.h"
 #endif
 
@@ -504,7 +505,7 @@ int main(int argc, char** argv)
 
     std::cout << "Radius: " << radius << "\n";
 
-#ifdef __linux
+#ifdef USE_TIMER
     timespec startTime;
     int res = clock_gettime(CLOCK_MONOTONIC_RAW, &startTime);
     if(res != 0) { startTime.tv_sec = 0; startTime.tv_nsec = 0; }
@@ -512,7 +513,7 @@ int main(int argc, char** argv)
 
     Scalar gCurvMax = fit(mesh, radius);
 
-#ifdef __linux
+#ifdef USE_TIMER
     timespec endTime;
     res = clock_gettime(CLOCK_MONOTONIC_RAW, &endTime);
     if(res != 0) { endTime.tv_sec = 0; endTime.tv_nsec = 0; }
