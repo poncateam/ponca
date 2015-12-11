@@ -8,6 +8,7 @@
 
 #include "viewer.h"
 #include <QMouseEvent>
+#include <QOpenGLShaderProgram>
 
 /*!
  * \brief Viewer::Viewer
@@ -125,5 +126,5 @@ void Viewer::mouseMoveEvent(QMouseEvent *event)
 }
 
 void Viewer::draw(){
-
+    _mesh.draw();
 }

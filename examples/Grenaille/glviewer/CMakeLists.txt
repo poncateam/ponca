@@ -4,16 +4,12 @@
 
 
 find_package(OpenGL REQUIRED)
-find_package(GLEW REQUIRED)
 find_package(Qt5Widgets REQUIRED)
 find_package(Qt5OpenGL REQUIRED)
 
 set(grenaille_glviewer_MISSING "")
 if(NOT OPENGL_FOUND)
     set(grenaille_glviewer_MISSING "${grenaille_glviewer_MISSING} OpenGL")
-endif()
-if(NOT GLEW_FOUND)
-    set(grenaille_glviewer_MISSING "${grenaille_glviewer_MISSING} GLEW")
 endif()
 if(NOT Qt5Widgets_FOUND)
     set(grenaille_glviewer_MISSING "${grenaille_glviewer_MISSING} Qt5Widgets")
@@ -65,7 +61,6 @@ if(NOT grenaille_glviewer_MISSING)
 
     target_link_libraries(grenaille_glviewer
                           ${OPENGL_LIBRARIES}
-                          ${GLEW_LIBRARIES}
                           Qt5::Widgets
                           Qt5::OpenGL
     )
