@@ -36,11 +36,11 @@ endif()
 
 # Enable it only with CodeBlocks generators (used by QtCreator) cause it seems
 # to fail with some, like VS.
-if(CMAKE_GENERATOR MATCHES "CodeBlocks.*")
+#if(CMAKE_GENERATOR MATCHES "CodeBlocks.*")
     add_subdirectory(Patate/Grenaille EXCLUDE_FROM_ALL)
     add_subdirectory(Patate/Vitelotte EXCLUDE_FROM_ALL)
     add_subdirectory(Patate/common EXCLUDE_FROM_ALL)
-endif()
+#endif()
 
 ################################################################################
 # Generate Vitelotte's shaders                                                 #
