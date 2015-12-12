@@ -11,3 +11,4 @@ FILE ( GLOB GRENAILLE_IMPL
 )
 
 add_library (Grenaille OBJECT ${GRENAILLE_HEADERS} ${GRENAILLE_IMPL})
+set_target_properties(Grenaille PROPERTIES LINKER_LANGUAGE C++)
