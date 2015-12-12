@@ -51,7 +51,7 @@ void testFunction(bool isSigned = true)
     qRotation = qRotation.normalized();
 
     Scalar epsilon = testEpsilon<Scalar>();
-    Scalar approxEpsilon = 0.1;
+    Scalar approxEpsilon (0.1);
 
     vector<DataPoint> vectorPoints(nbPoints);
     vector<DataPoint> vectorPointsOrigin(nbPoints);

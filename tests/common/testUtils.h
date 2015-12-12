@@ -292,7 +292,7 @@ DataPoint getPointOnParaboloid(typename DataPoint::VectorType /*_vCenter*/,
     if(_bAddNoise)
     {
         //spherical noise
-        vPosition = vPosition + VectorType::Random().normalized() * Eigen::internal::random<Scalar>(0., 1. - MIN_NOISE);
+        vPosition = vPosition + VectorType::Random().normalized() * Eigen::internal::random<Scalar>(Scalar(0), Scalar(1. - MIN_NOISE));
     }
 
     //vPosition = _qRotation * vPosition + _vCenter;
