@@ -17,6 +17,11 @@
 #include <sstream>
 #include <ctime>
 
+#if defined (_MSC_VER)
+#	define _USE_MATH_DEFINES 
+#	include <cmath>
+#endif
+
 #define DEFAULT_REPEAT 10
 
 #define PATATE_PP_MAKE_STRING2(S) #S

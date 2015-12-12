@@ -13,10 +13,9 @@
 #undef NDEBUG
 #endif
 
-#include "../common/scalar_precision_check.h"
 #include "../common/testing.h"
+#include "../common/scalar_precision_check.h"
 #include "../common/testUtils.h"
-
 
 #include <vector>
 

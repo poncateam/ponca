@@ -9,15 +9,13 @@
   \file tets/Grenaille/deta_orthogonal_derivatives.cpp
   \brief Test validity of the spatial differentiation of eta
 */
-#include <cmath>
-#include <algorithm>
-#include <iostream>
 
 #include "../common/testing.h"
-
 #include "Patate/grenaille.h"
 #include "Eigen/Eigen"
 
+#include <algorithm>
+#include <iostream>
 #include <vector>
 
 using namespace std;
