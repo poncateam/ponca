@@ -3,9 +3,9 @@
 ###############################################################################
 
 
-find_package(OpenGL REQUIRED)
-find_package(Qt5Widgets REQUIRED)
-find_package(Qt5OpenGL REQUIRED)
+find_package(OpenGL)
+find_package(Qt5Widgets)
+find_package(Qt5OpenGL)
 
 set(grenaille_glviewer_MISSING "")
 if(NOT OPENGL_FOUND)
