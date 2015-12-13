@@ -31,8 +31,14 @@ if(NOT grenaille_glviewer_MISSING)
     include_directories(
         ${EIGEN3_INCLUDE_DIR}
         ${OPENGL_INCLUDE_DIR}
-        ${GLEW_INCLUDE_DIRS}
         "../../.."
+    )
+
+    # Add the include directories for the Qt 5 Widgets module to
+    # the compile lines. Mandatory on some old plateforms
+    include_directories(
+        ${Qt5Widgets_INCLUDE_DIRS}
+        ${Qt5OpenGL_INCLUDE_DIRS}
     )
 
     set(CMAKE_INCLUDE_CURRENT_DIR ON)
