@@ -15,6 +15,9 @@
 
     #define __gl_h_
 
+#elif defined _MSC_VER
+    #include <Windows.h>
+    #include <GL/gl.h>
 #else
     #define GL_GLEXT_PROTOTYPES
 
