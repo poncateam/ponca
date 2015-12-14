@@ -76,7 +76,9 @@ private:
         int vertex;
         int normal;
         int transform;
+        int lightPos;
     } _progLocation;
+    QVector3D _lightPos;
     QMatrix4x4 _transform;
     bool _programInitialized;
 

@@ -43,7 +43,7 @@ void Viewer::setXRotation(int angle)
     qNormalizeAngle(angle);
     if (angle != _xRot) {
         _xRot = angle;
-        updateGL();
+        update();
     }
 }
 
@@ -52,7 +52,7 @@ void Viewer::setYRotation(int angle)
     qNormalizeAngle(angle);
     if (angle != _yRot) {
         _yRot = angle;
-        updateGL();
+        update();
     }
 }
 
@@ -61,7 +61,7 @@ void Viewer::setZRotation(int angle)
     qNormalizeAngle(angle);
     if (angle != _zRot) {
         _zRot = angle;
-        updateGL();
+        update();
     }
 }
 
@@ -73,11 +73,10 @@ void Viewer::initializeGL()
     glEnable(GL_DEPTH_TEST);
     //glEnable(GL_CULL_FACE);
     glShadeModel(GL_SMOOTH);
-    glEnable(GL_LIGHTING);
-    glEnable(GL_LIGHT0);
 
-    static GLfloat lightPosition[4] = { 0, 0, 10, 1.0 };
-    glLightfv(GL_LIGHT0, GL_POSITION, lightPosition);
+//    _lightPos.setX(0);
+//    _lightPos.setY(0);
+//    _lightPos.setZ(1);
 
     prepareShaders();
 }
@@ -92,6 +91,7 @@ void Viewer::prepareShaders() {
     _progLocation.vertex    = _program.attributeLocation("vertex");
     _progLocation.normal    = _program.attributeLocation("normal");
     _progLocation.transform = _program.uniformLocation("transform");
+    //_progLocation.lightPos  = _program.uniformLocation("lightPos");
 
     _program.release();
     _programInitialized = true;
@@ -120,7 +120,7 @@ void Viewer::resizeGL(int width, int height)
 #ifdef QT_OPENGL_ES_1
     glOrthof(-2, +2, -2, +2, 0.1, 100.0);
 #else
-    glOrtho(-2, +2, -2, +2, 0.1, 100.0);
+    glOrtho(-2, +2, -2, +2, 0.01, 200.0);
 #endif
 }
 
@@ -148,7 +148,7 @@ void Viewer::mouseMoveEvent(QMouseEvent *event)
 void Viewer::wheelEvent(QWheelEvent * event){
     static const int unit = 120;
     _zoom = std::max(1, _zoom + event->angleDelta().y()/unit );
-    updateGL();
+    update();
 }
 
 void Viewer::draw(){
@@ -157,6 +157,7 @@ void Viewer::draw(){
     _program.enableAttributeArray(_progLocation.vertex);
     _program.enableAttributeArray(_progLocation.normal);
     _program.setUniformValue("transform", _transform);
+    //_program.setUniformValue("lightPos", _lightPos);
     _mesh.draw();
     _program.disableAttributeArray(_progLocation.normal);
     _program.disableAttributeArray(_progLocation.vertex);
