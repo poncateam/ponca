@@ -19,7 +19,9 @@ Viewer::Viewer(QWidget *parent) :
     _xRot(0),
     _yRot(0),
     _zRot(0),
-    _lastPos(QPoint(0,0))
+    _zoom(10),
+    _lastPos(QPoint(0,0)),
+    _programInitialized(false)
 {
 }
 
@@ -69,23 +71,42 @@ void Viewer::initializeGL()
     qglClearColor(Qt::white);
 
     glEnable(GL_DEPTH_TEST);
-    glEnable(GL_CULL_FACE);
+    //glEnable(GL_CULL_FACE);
     glShadeModel(GL_SMOOTH);
     glEnable(GL_LIGHTING);
     glEnable(GL_LIGHT0);
 
     static GLfloat lightPosition[4] = { 0, 0, 10, 1.0 };
     glLightfv(GL_LIGHT0, GL_POSITION, lightPosition);
+
+    prepareShaders();
 }
+
+void Viewer::prepareShaders() {
+    _program.addShaderFromSourceFile(QOpenGLShader::Vertex, "default.vert");
+    _program.addShaderFromSourceFile(QOpenGLShader::Fragment, "default.frag");
+
+    _program.link();
+    _program.bind();
+
+    _progLocation.vertex    = _program.attributeLocation("vertex");
+    _progLocation.normal    = _program.attributeLocation("normal");
+    _progLocation.transform = _program.uniformLocation("transform");
+
+    _program.release();
+    _programInitialized = true;
+}
+
 
 void Viewer::paintGL()
 {
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-    glLoadIdentity();
-    glTranslatef(0.0, 0.0, -10.0);
-    glRotatef(_xRot / 16.0, 1.0, 0.0, 0.0);
-    glRotatef(_yRot / 16.0, 0.0, 1.0, 0.0);
-    glRotatef(_zRot / 16.0, 0.0, 0.0, 1.0);
+    _transform.setToIdentity();
+    _transform.scale(_zoom * 0.1);
+    //_transform.translate(0.0, 0.0, 0.0);
+    _transform.rotate( -_xRot / 16.0, 1.0, 0.0, 0.0);
+    _transform.rotate( -_yRot / 16.0, 0.0, 1.0, 0.0);
+    _transform.rotate( _zRot / 16.0, 0.0, 0.0, 1.0);
     draw();
 }
 
@@ -97,11 +118,10 @@ void Viewer::resizeGL(int width, int height)
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
 #ifdef QT_OPENGL_ES_1
-    glOrthof(-2, +2, -2, +2, 1.0, 15.0);
+    glOrthof(-2, +2, -2, +2, 0.1, 100.0);
 #else
-    glOrtho(-2, +2, -2, +2, 1.0, 15.0);
+    glOrtho(-2, +2, -2, +2, 0.1, 100.0);
 #endif
-    glMatrixMode(GL_MODELVIEW);
 }
 
 void Viewer::mousePressEvent(QMouseEvent *event)
@@ -125,6 +145,20 @@ void Viewer::mouseMoveEvent(QMouseEvent *event)
     _lastPos = event->pos();
 }
 
+void Viewer::wheelEvent(QWheelEvent * event){
+    static const int unit = 120;
+    _zoom = std::max(1, _zoom + event->angleDelta().y()/unit );
+    updateGL();
+}
+
 void Viewer::draw(){
+     // draw object
+    _program.bind();
+    _program.enableAttributeArray(_progLocation.vertex);
+    _program.enableAttributeArray(_progLocation.normal);
+    _program.setUniformValue("transform", _transform);
     _mesh.draw();
+    _program.disableAttributeArray(_progLocation.normal);
+    _program.disableAttributeArray(_progLocation.vertex);
+    _program.release();
 }

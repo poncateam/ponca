@@ -44,26 +44,41 @@ if(NOT grenaille_glviewer_MISSING)
     set(CMAKE_INCLUDE_CURRENT_DIR ON)
 
     set(grenaille_glviewer_UIS
-      mainwindow.ui
+      ${CMAKE_CURRENT_SOURCE_DIR}/mainwindow.ui
     )
 
-    set(grenaille_glviewer_HEADERSS
-      viewer.h
-      mainwindow.h
+    set(grenaille_glviewer_HEADERS
+      ${CMAKE_CURRENT_SOURCE_DIR}/viewer.h
+      ${CMAKE_CURRENT_SOURCE_DIR}/mainwindow.h
     )
 
     set(grenaille_glviewer_SRCS
-      main.cpp
-      viewer.cpp
-      mainwindow.cpp
+      ${CMAKE_CURRENT_SOURCE_DIR}/main.cpp
+      ${CMAKE_CURRENT_SOURCE_DIR}/viewer.cpp
+      ${CMAKE_CURRENT_SOURCE_DIR}/mainwindow.cpp
+    )
+
+
+    # GLSL files
+    file(GLOB SHADER_VERT_FILES ${CMAKE_CURRENT_SOURCE_DIR}/*.vert)
+    file(GLOB SHADER_FRAG_FILES ${CMAKE_CURRENT_SOURCE_DIR}/*.frag)
+
+    add_custom_target( install_res
+        COMMENT "Copying shaders and other ressources" VERBATIM
+        COMMAND ${CMAKE_COMMAND} -E copy ${SHADER_VERT_FILES} ${CMAKE_CURRENT_BINARY_DIR}
+        COMMAND ${CMAKE_COMMAND} -E copy ${SHADER_FRAG_FILES} ${CMAKE_CURRENT_BINARY_DIR}
     )
 
     add_executable(grenaille_glviewer
                           ${grenaille_glviewer_SRCS}
                           ${grenaille_glviewer_HEADERS}
-                          ${grenaille_glviewer_UIS})
-    add_dependencies(grenaille_examples grenaille_glviewer)
+                          ${grenaille_glviewer_UIS}
+                          ${SHADER_VERT_FILES}
+                          ${SHADER_FRAG_FILES}
+    )
+    add_dependencies(grenaille_glviewer install_res)
     add_dependencies(grenaille_glviewer patate_common Grenaille)
+    add_dependencies(grenaille_examples grenaille_glviewer)
 
     target_link_libraries(grenaille_glviewer
                           ${OPENGL_LIBRARIES}

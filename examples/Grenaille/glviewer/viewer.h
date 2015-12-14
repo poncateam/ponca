@@ -30,9 +30,9 @@
 
 
 #include "Patate/common/gl_utils/glmesh.h"
+#include <QOpenGLShaderProgram>
 
 class QMouseEvent;
-class QOpenGLShaderProgram;
 
 /*!
  * \brief The Viewer class
@@ -56,8 +56,9 @@ public:
     virtual void resizeGL(int w, int h);
     virtual void mousePressEvent(QMouseEvent *event);
     virtual void mouseMoveEvent(QMouseEvent *event);
+    virtual void wheelEvent(QWheelEvent * event);
 
-    inline void setMesh(const Mesh& mesh) { _mesh = mesh; }
+    inline void setMesh(const Mesh& mesh) { _mesh = mesh; updateGL(); }
 
 private:
     void setXRotation(int angle);
@@ -65,11 +66,19 @@ private:
     void setZRotation(int angle);
 
     void draw();
+    void prepareShaders();
 
-    int _xRot, _yRot, _zRot;
+    int _xRot, _yRot, _zRot, _zoom;
 
     QPoint _lastPos;
-    QOpenGLShaderProgram *m_program;
+    QOpenGLShaderProgram _program;
+    struct {
+        int vertex;
+        int normal;
+        int transform;
+    } _progLocation;
+    QMatrix4x4 _transform;
+    bool _programInitialized;
 
     Mesh _mesh;
 };
