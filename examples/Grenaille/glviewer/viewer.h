@@ -62,6 +62,9 @@ public:
 
     inline void setMesh(const Mesh& mesh) { _mesh = mesh; update(); }
 
+public slots:
+    void setScale(double scale) { _scale = scale; update(); }
+
 private:
     void setXRotation(int angle);
     void setYRotation(int angle);
@@ -100,6 +103,7 @@ private:
     int _pickedPointId;
     typename Mesh::Vector _pickedPoint;
 
+    double _scale;
     Mesh _mesh;
     Mesh _unitSphere;
     QTimer *_refreshTimer; // automatically update the view

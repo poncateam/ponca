@@ -32,6 +32,7 @@ Viewer::Viewer(QWidget *parent) :
     _lastPos(QPoint(0,0)),
     _programInitialized(false),
     _pickedPointId(-1),
+    _scale(0.02),
     _refreshTimer(new QTimer(this))
 {
     _refreshTimer->setInterval(25);
@@ -301,7 +302,7 @@ void Viewer::draw(Mesh& mesh){
 void Viewer::drawPicked(){
 
     _transform.translate(_pickedPoint(0), _pickedPoint(1), _pickedPoint(2));
-    _transform.scale(0.02);
+    _transform.scale(_scale);
 
     draw(_unitSphere);
 
