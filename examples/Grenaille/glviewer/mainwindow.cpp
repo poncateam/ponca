@@ -12,10 +12,8 @@
 
 #include <QFileDialog>
 
+#include "Patate/common/gl_utils/glmesh.h"
 #include "Patate/common/surface_mesh/objReader.h"
-
-typedef Viewer::Mesh Mesh;
-
 
 bool noopErrorCallback(const std::string& /*msg*/, unsigned /*line*/, void* /*ptr*/) {
     return false;
@@ -24,7 +22,9 @@ bool noopErrorCallback(const std::string& /*msg*/, unsigned /*line*/, void* /*pt
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
-    ui(new Ui::MainWindow)
+    ui(new Ui::MainWindow),
+    _manager(this),
+    _mesh(NULL)
 {
     ui->setupUi(this);
 }
@@ -32,6 +32,7 @@ MainWindow::MainWindow(QWidget *parent) :
 MainWindow::~MainWindow()
 {
     delete ui;
+    delete _mesh;
 }
 
 void MainWindow::on_actionOpen_File_triggered()
@@ -43,14 +44,23 @@ void MainWindow::on_actionOpen_File_triggered()
                 QString("3d Mesh (*.obj)"));
 
     if (! fileName.isEmpty()) {
-        Mesh mesh;
+        PatateCommon::GLTri3DMesh* mesh = new PatateCommon::GLTri3DMesh;
         {
             std::ifstream in(fileName.toStdString().c_str());
-            PatateCommon::OBJReader<Mesh> reader;
+            PatateCommon::OBJReader<PatateCommon::GLTri3DMesh> reader;
             reader.setErrorCallback(PatateCommon::defaultErrorCallback,
                                     noopErrorCallback, NULL);
-            reader.read(in, mesh);
+            reader.read(in, *mesh);
         }
         ui->_viewer->setMesh(mesh);
+        _manager.setMesh(mesh);
+
+        delete _mesh;
+        _mesh = mesh;
     }
+}
+
+void MainWindow::on__paramBasketType_currentIndexChanged(int index)
+{
+    _manager.setBasketType(FittingManager::FIT_TYPE(index));
 }

@@ -60,7 +60,7 @@ public:
     virtual void mouseReleaseEvent(QMouseEvent *event);
     virtual void mouseDoubleClickEvent(QMouseEvent *event);
 
-    inline void setMesh(const Mesh& mesh) { _mesh = mesh; update(); }
+    inline void setMesh(Mesh* mesh) { _mesh = mesh; update(); }
 
 public slots:
     void setScale(double scale) { _scale = scale; update(); }
@@ -73,7 +73,7 @@ private:
     //! \brief Enable/Disable auto refresh
     void triggerAutoRefresh(bool status);
 
-    void draw(Mesh &mesh);
+    void draw(Mesh *mesh);
     void drawPicked();
     void prepareShaders();
     void prepareFBO(int w, int h);
@@ -104,7 +104,8 @@ private:
     typename Mesh::Vector _pickedPoint;
 
     double _scale;
-    Mesh _mesh;
+
+    Mesh *_mesh;
     Mesh _unitSphere;
     QTimer *_refreshTimer; // automatically update the view
 };

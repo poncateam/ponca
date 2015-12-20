@@ -33,6 +33,7 @@ Viewer::Viewer(QWidget *parent) :
     _programInitialized(false),
     _pickedPointId(-1),
     _scale(0.02),
+    _mesh(NULL),
     _refreshTimer(new QTimer(this))
 {
     _refreshTimer->setInterval(25);
@@ -180,8 +181,10 @@ void Viewer::paintGL()
     qglClearColor(Qt::white);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-    draw(_mesh);
-    if(_pickedPointId != -1)  drawPicked();
+    if (_mesh != NULL){
+        draw(_mesh);
+        if(_pickedPointId != -1)  drawPicked();
+    }
 }
 
 void Viewer::resizeGL(int width, int height)
@@ -234,66 +237,69 @@ void Viewer::mouseReleaseEvent(QMouseEvent */*event*/)
 void Viewer::mouseDoubleClickEvent(QMouseEvent *event)
 {
     _pickedPointId = -1;
-    int w = width();
-    int h = height();
-    prepareFBO(w,h);
 
-    // bind shader
-   _pickProgram.bind();
-   _pickProgram.enableAttributeArray(_pickingProgLocation.vertex);
-   _pickProgram.enableAttributeArray(_pickingProgLocation.normal);
-   _pickProgram.enableAttributeArray(_pickingProgLocation.ids);
-   _pickProgram.setUniformValue("transform", _transform);
+    if(_mesh != NULL){
+        int w = width();
+        int h = height();
+        prepareFBO(w,h);
 
-   // bind fbo
-   glBindFramebuffer(GL_FRAMEBUFFER, _pickingFBOLocation);
-   GLenum DrawBuffers[1] = {GL_COLOR_ATTACHMENT0};
-   glDrawBuffers(_pickingFBOLocation, DrawBuffers);
-   qglClearColor(Qt::black);
-   glClear(GL_COLOR_BUFFER_BIT);
+        // bind shader
+        _pickProgram.bind();
+        _pickProgram.enableAttributeArray(_pickingProgLocation.vertex);
+        _pickProgram.enableAttributeArray(_pickingProgLocation.normal);
+        _pickProgram.enableAttributeArray(_pickingProgLocation.ids);
+        _pickProgram.setUniformValue("transform", _transform);
 
-   // draw
-   _mesh.drawIds();
+        // bind fbo
+        glBindFramebuffer(GL_FRAMEBUFFER, _pickingFBOLocation);
+        GLenum DrawBuffers[1] = {GL_COLOR_ATTACHMENT0};
+        glDrawBuffers(_pickingFBOLocation, DrawBuffers);
+        qglClearColor(Qt::black);
+        glClear(GL_COLOR_BUFFER_BIT);
 
-   // unbind fbo
-   glFlush(); // Flush after just in case
-   glBindFramebuffer(GL_FRAMEBUFFER, 0);
+        // draw
+        _mesh->drawIds();
 
-   // unbind shader
-   _pickProgram.disableAttributeArray(_pickingProgLocation.vertex);
-   _pickProgram.disableAttributeArray(_pickingProgLocation.normal);
-   _pickProgram.disableAttributeArray(_pickingProgLocation.ids);
-   _pickProgram.release();
+        // unbind fbo
+        glFlush(); // Flush after just in case
+        glBindFramebuffer(GL_FRAMEBUFFER, 0);
 
-   // get texture back
-   // SHOULD BE
-   // unsigned int* ids = new unsigned int[ w*h ];
-   // But it doesn't work as it should...
-   // \helpwanted
-   float* ids = new float[ w*h ];
-   glBindTexture(GL_TEXTURE_2D, _pickingTexture);
-   glGetTexImage(GL_TEXTURE_2D, 0, GL_RED_INTEGER, GL_UNSIGNED_INT, ids);
-   glBindTexture(GL_TEXTURE_2D, 0);
+        // unbind shader
+        _pickProgram.disableAttributeArray(_pickingProgLocation.vertex);
+        _pickProgram.disableAttributeArray(_pickingProgLocation.normal);
+        _pickProgram.disableAttributeArray(_pickingProgLocation.ids);
+        _pickProgram.release();
 
-   QPoint p = event->pos();
-   unsigned int id = ids[p.x() + (h-p.y())*w];
-   delete [](ids);
-   if (id != 0) {
-       _pickedPointId = id;
-       _pickedPoint   = _mesh.getVertexMap(id);
-   }
-   update();
+        // get texture back
+        // SHOULD BE
+        // unsigned int* ids = new unsigned int[ w*h ];
+        // But it doesn't work as it should...
+        // \helpwanted
+        float* ids = new float[ w*h ];
+        glBindTexture(GL_TEXTURE_2D, _pickingTexture);
+        glGetTexImage(GL_TEXTURE_2D, 0, GL_RED_INTEGER, GL_UNSIGNED_INT, ids);
+        glBindTexture(GL_TEXTURE_2D, 0);
+
+        QPoint p = event->pos();
+        unsigned int id = ids[p.x() + (h-p.y())*w];
+        delete [](ids);
+        if (id != 0) {
+            _pickedPointId = id;
+            _pickedPoint   = _mesh->getVertexMap(id);
+        }
+        update();
+    }
 }
 
 
-void Viewer::draw(Mesh& mesh){
+void Viewer::draw(Mesh* mesh){
      // draw object
     _program.bind();
     _program.enableAttributeArray(_progLocation.vertex);
     _program.enableAttributeArray(_progLocation.normal);
     _program.setUniformValue("transform", _transform);
     //_program.setUniformValue("lightPos", _lightPos);
-    mesh.draw();
+    mesh->draw();
     _program.disableAttributeArray(_progLocation.normal);
     _program.disableAttributeArray(_progLocation.vertex);
     _program.release();
@@ -304,7 +310,7 @@ void Viewer::drawPicked(){
     _transform.translate(_pickedPoint(0), _pickedPoint(1), _pickedPoint(2));
     _transform.scale(_scale);
 
-    draw(_unitSphere);
+    draw(&_unitSphere);
 
     updateTransformationMatrix();
 

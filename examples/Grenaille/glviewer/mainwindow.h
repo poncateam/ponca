@@ -9,10 +9,15 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
+#include "fittingmanager.h"
+
 #include <QMainWindow>
 
 namespace Ui {
 class MainWindow;
+}
+namespace PatateCommon {
+class GLTri3DMesh;
 }
 
 class MainWindow : public QMainWindow
@@ -26,8 +31,12 @@ public:
 private slots:
     void on_actionOpen_File_triggered();
 
+    void on__paramBasketType_currentIndexChanged(int index);
+
 private:
     Ui::MainWindow *ui;
+    FittingManager _manager;
+    PatateCommon::GLTri3DMesh* _mesh;
 };
 
 #endif // MAINWINDOW_H
