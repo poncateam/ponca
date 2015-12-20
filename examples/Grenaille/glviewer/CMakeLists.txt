@@ -49,12 +49,14 @@ if(NOT grenaille_glviewer_MISSING)
 
     set(grenaille_glviewer_HEADERS
       ${CMAKE_CURRENT_SOURCE_DIR}/viewer.h
+      ${CMAKE_CURRENT_SOURCE_DIR}/fittingmanager.h
       ${CMAKE_CURRENT_SOURCE_DIR}/mainwindow.h
     )
 
     set(grenaille_glviewer_SRCS
       ${CMAKE_CURRENT_SOURCE_DIR}/main.cpp
       ${CMAKE_CURRENT_SOURCE_DIR}/viewer.cpp
+      ${CMAKE_CURRENT_SOURCE_DIR}/fittingmanager.cpp
       ${CMAKE_CURRENT_SOURCE_DIR}/mainwindow.cpp
     )
 
