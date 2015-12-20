@@ -7,8 +7,17 @@
 */
 
 #include "viewer.h"
+#include "Patate/common/surface_mesh/objReader.h"
+
+
+#include <istream>
+
+#include <QTimer>
 #include <QMouseEvent>
 #include <QOpenGLShaderProgram>
+
+#define ASSET_SPHERE_MESH_FILENAME "unitSphere.obj"
+
 
 /*!
  * \brief Viewer::Viewer
@@ -21,8 +30,21 @@ Viewer::Viewer(QWidget *parent) :
     _zRot(0),
     _zoom(10),
     _lastPos(QPoint(0,0)),
-    _programInitialized(false)
+    _programInitialized(false),
+    _pickedPointId(-1),
+    _refreshTimer(new QTimer(this))
 {
+    _refreshTimer->setInterval(25);
+    _refreshTimer->setSingleShot(false);
+    connect(_refreshTimer, SIGNAL(timeout()), this, SLOT(update()));
+    triggerAutoRefresh(false);
+
+    // load unit sphere mesh
+    std::ifstream in(ASSET_SPHERE_MESH_FILENAME);
+    PatateCommon::OBJReader<Mesh> reader;
+    reader.read(in, _unitSphere);
+
+    updateTransformationMatrix();
 }
 
 Viewer::~Viewer()
@@ -43,7 +65,7 @@ void Viewer::setXRotation(int angle)
     qNormalizeAngle(angle);
     if (angle != _xRot) {
         _xRot = angle;
-        update();
+        updateTransformationMatrix();
     }
 }
 
@@ -52,7 +74,7 @@ void Viewer::setYRotation(int angle)
     qNormalizeAngle(angle);
     if (angle != _yRot) {
         _yRot = angle;
-        update();
+        updateTransformationMatrix();
     }
 }
 
@@ -61,14 +83,22 @@ void Viewer::setZRotation(int angle)
     qNormalizeAngle(angle);
     if (angle != _zRot) {
         _zRot = angle;
+        updateTransformationMatrix();
+    }
+}
+
+void Viewer::triggerAutoRefresh(bool status) {
+    if (status){
+        _refreshTimer->start();
         update();
     }
+    else
+        _refreshTimer->stop();
 }
 
 
 void Viewer::initializeGL()
 {
-    qglClearColor(Qt::white);
 
     glEnable(GL_DEPTH_TEST);
     //glEnable(GL_CULL_FACE);
@@ -79,6 +109,9 @@ void Viewer::initializeGL()
 //    _lightPos.setZ(1);
 
     prepareShaders();
+
+    glGenFramebuffers(1, &_pickingFBOLocation);
+    glGenTextures(1, &_pickingTexture);
 }
 
 void Viewer::prepareShaders() {
@@ -94,20 +127,60 @@ void Viewer::prepareShaders() {
     //_progLocation.lightPos  = _program.uniformLocation("lightPos");
 
     _program.release();
+
+    _pickProgram.addShaderFromSourceFile(QOpenGLShader::Vertex, "picking.vert");
+    _pickProgram.addShaderFromSourceFile(QOpenGLShader::Fragment, "picking.frag");
+
+    _pickProgram.link();
+    _pickProgram.bind();
+
+    _pickingProgLocation.vertex    = _pickProgram.attributeLocation("vertex");
+    _pickingProgLocation.normal    = _pickProgram.attributeLocation("normal");
+    _pickingProgLocation.ids       = _pickProgram.attributeLocation("ids");
+    _pickingProgLocation.transform = _pickProgram.uniformLocation("transform");
+
+    _pickProgram.release();
+
     _programInitialized = true;
 }
 
+void Viewer::prepareFBO(int w, int h) {
+    glBindFramebuffer(GL_FRAMEBUFFER, _pickingFBOLocation);
 
-void Viewer::paintGL()
-{
-    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-    _transform.setToIdentity();
+    glBindTexture(GL_TEXTURE_2D, _pickingTexture);
+
+    glTexImage2D(GL_TEXTURE_2D, 0, GL_R32UI, w, h, 0, GL_RED_INTEGER, GL_UNSIGNED_INT, 0);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+
+    glFramebufferTexture(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, _pickingTexture, 0);
+
+    if(glCheckFramebufferStatus(GL_FRAMEBUFFER) != GL_FRAMEBUFFER_COMPLETE)
+        std::cerr << "Incomplete FBO Attachement" << std::endl;
+
+    glBindFramebuffer(GL_FRAMEBUFFER, 0);
+
+}
+
+
+void Viewer::updateTransformationMatrix(bool reset){
+    if(reset) _transform.setToIdentity();
+
     _transform.scale(_zoom * 0.1);
     //_transform.translate(0.0, 0.0, 0.0);
     _transform.rotate( -_xRot / 16.0, 1.0, 0.0, 0.0);
     _transform.rotate( -_yRot / 16.0, 0.0, 1.0, 0.0);
     _transform.rotate( _zRot / 16.0, 0.0, 0.0, 1.0);
-    draw();
+    _transform.translate(-0.5, -0.5);
+}
+
+void Viewer::paintGL()
+{
+    qglClearColor(Qt::white);
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
+    draw(_mesh);
+    if(_pickedPointId != -1)  drawPicked();
 }
 
 void Viewer::resizeGL(int width, int height)
@@ -127,6 +200,7 @@ void Viewer::resizeGL(int width, int height)
 void Viewer::mousePressEvent(QMouseEvent *event)
 {
     _lastPos = event->pos();
+    triggerAutoRefresh(true);
 }
 
 void Viewer::mouseMoveEvent(QMouseEvent *event)
@@ -151,15 +225,86 @@ void Viewer::wheelEvent(QWheelEvent * event){
     update();
 }
 
-void Viewer::draw(){
+void Viewer::mouseReleaseEvent(QMouseEvent */*event*/)
+{
+    triggerAutoRefresh(false);
+}
+
+void Viewer::mouseDoubleClickEvent(QMouseEvent *event)
+{
+    _pickedPointId = -1;
+    int w = width();
+    int h = height();
+    prepareFBO(w,h);
+
+    // bind shader
+   _pickProgram.bind();
+   _pickProgram.enableAttributeArray(_pickingProgLocation.vertex);
+   _pickProgram.enableAttributeArray(_pickingProgLocation.normal);
+   _pickProgram.enableAttributeArray(_pickingProgLocation.ids);
+   _pickProgram.setUniformValue("transform", _transform);
+
+   // bind fbo
+   glBindFramebuffer(GL_FRAMEBUFFER, _pickingFBOLocation);
+   GLenum DrawBuffers[1] = {GL_COLOR_ATTACHMENT0};
+   glDrawBuffers(_pickingFBOLocation, DrawBuffers);
+   qglClearColor(Qt::black);
+   glClear(GL_COLOR_BUFFER_BIT);
+
+   // draw
+   _mesh.drawIds();
+
+   // unbind fbo
+   glFlush(); // Flush after just in case
+   glBindFramebuffer(GL_FRAMEBUFFER, 0);
+
+   // unbind shader
+   _pickProgram.disableAttributeArray(_pickingProgLocation.vertex);
+   _pickProgram.disableAttributeArray(_pickingProgLocation.normal);
+   _pickProgram.disableAttributeArray(_pickingProgLocation.ids);
+   _pickProgram.release();
+
+   // get texture back
+   // SHOULD BE
+   // unsigned int* ids = new unsigned int[ w*h ];
+   // But it doesn't work as it should...
+   // \helpwanted
+   float* ids = new float[ w*h ];
+   glBindTexture(GL_TEXTURE_2D, _pickingTexture);
+   glGetTexImage(GL_TEXTURE_2D, 0, GL_RED_INTEGER, GL_UNSIGNED_INT, ids);
+   glBindTexture(GL_TEXTURE_2D, 0);
+
+   QPoint p = event->pos();
+   unsigned int id = ids[p.x() + (h-p.y())*w];
+   delete [](ids);
+   if (id != 0) {
+       _pickedPointId = id;
+       _pickedPoint   = _mesh.getVertexMap(id);
+   }
+   update();
+}
+
+
+void Viewer::draw(Mesh& mesh){
      // draw object
     _program.bind();
     _program.enableAttributeArray(_progLocation.vertex);
     _program.enableAttributeArray(_progLocation.normal);
     _program.setUniformValue("transform", _transform);
     //_program.setUniformValue("lightPos", _lightPos);
-    _mesh.draw();
+    mesh.draw();
     _program.disableAttributeArray(_progLocation.normal);
     _program.disableAttributeArray(_progLocation.vertex);
     _program.release();
+}
+
+void Viewer::drawPicked(){
+
+    _transform.translate(_pickedPoint(0), _pickedPoint(1), _pickedPoint(2));
+    _transform.scale(0.02);
+
+    draw(_unitSphere);
+
+    updateTransformationMatrix();
+
 }

@@ -60,13 +60,17 @@ if(NOT grenaille_glviewer_MISSING)
 
 
     # GLSL files
-    file(GLOB SHADER_VERT_FILES ${CMAKE_CURRENT_SOURCE_DIR}/*.vert)
-    file(GLOB SHADER_FRAG_FILES ${CMAKE_CURRENT_SOURCE_DIR}/*.frag)
+    set(SHADERS_DIR ${CMAKE_CURRENT_SOURCE_DIR}/shaders)
+    file(GLOB SHADER_VERT_FILES ${SHADERS_DIR}/*.vert)
+    file(GLOB SHADER_FRAG_FILES ${SHADERS_DIR}/*.frag)
+
+    # Assets
+    set(ASSETS_DIR ${CMAKE_CURRENT_SOURCE_DIR}/assets)
 
     add_custom_target( install_res
         COMMENT "Copying shaders and other ressources" VERBATIM
-        COMMAND ${CMAKE_COMMAND} -E copy ${SHADER_VERT_FILES} ${CMAKE_CURRENT_BINARY_DIR}
-        COMMAND ${CMAKE_COMMAND} -E copy ${SHADER_FRAG_FILES} ${CMAKE_CURRENT_BINARY_DIR}
+        COMMAND ${CMAKE_COMMAND} -E copy_directory ${SHADERS_DIR} ${CMAKE_CURRENT_BINARY_DIR}
+        COMMAND ${CMAKE_COMMAND} -E copy_directory ${ASSETS_DIR} ${CMAKE_CURRENT_BINARY_DIR}
     )
 
     add_executable(grenaille_glviewer

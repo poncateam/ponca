@@ -26,7 +26,7 @@
 #endif
 
 #include <QGLWidget>
-#include <QGLFunctions>
+//#include <QGLFunctions>
 
 
 #include "Patate/common/gl_utils/glmesh.h"
@@ -41,7 +41,7 @@ class QMouseEvent;
  *
  * \see Trackball implementation from http://www.bogotobogo.com/Qt/Qt5_OpenGL_QGLWidget.php
  */
-class Viewer : public QGLWidget, protected QGLFunctions
+class Viewer : public QGLWidget/*, protected QGLFunctions*/
 {
     Q_OBJECT
 
@@ -57,32 +57,52 @@ public:
     virtual void mousePressEvent(QMouseEvent *event);
     virtual void mouseMoveEvent(QMouseEvent *event);
     virtual void wheelEvent(QWheelEvent * event);
+    virtual void mouseReleaseEvent(QMouseEvent *event);
+    virtual void mouseDoubleClickEvent(QMouseEvent *event);
 
-    inline void setMesh(const Mesh& mesh) { _mesh = mesh; updateGL(); }
+    inline void setMesh(const Mesh& mesh) { _mesh = mesh; update(); }
 
 private:
     void setXRotation(int angle);
     void setYRotation(int angle);
     void setZRotation(int angle);
 
-    void draw();
+    //! \brief Enable/Disable auto refresh
+    void triggerAutoRefresh(bool status);
+
+    void draw(Mesh &mesh);
+    void drawPicked();
     void prepareShaders();
+    void prepareFBO(int w, int h);
+    void updateTransformationMatrix(bool reset = true);
 
     int _xRot, _yRot, _zRot, _zoom;
 
     QPoint _lastPos;
-    QOpenGLShaderProgram _program;
+    QOpenGLShaderProgram _program, _pickProgram;
     struct {
         int vertex;
         int normal;
         int transform;
         int lightPos;
     } _progLocation;
+    struct {
+        int vertex;
+        int normal;
+        int ids;
+        int transform;
+    } _pickingProgLocation;
+    GLuint _pickingFBOLocation, _pickingTexture;
     QVector3D _lightPos;
     QMatrix4x4 _transform;
     bool _programInitialized;
 
+    int _pickedPointId;
+    typename Mesh::Vector _pickedPoint;
+
     Mesh _mesh;
+    Mesh _unitSphere;
+    QTimer *_refreshTimer; // automatically update the view
 };
 
 #endif // VIEWER_H
