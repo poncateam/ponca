@@ -149,18 +149,27 @@ void Viewer::prepareShaders() {
 void Viewer::prepareFBO(int w, int h) {
     glBindFramebuffer(GL_FRAMEBUFFER, _pickingFBOLocation);
 
+    // render output
     glBindTexture(GL_TEXTURE_2D, _pickingTexture);
 
     glTexImage2D(GL_TEXTURE_2D, 0, GL_R32UI, w, h, 0, GL_RED_INTEGER, GL_UNSIGNED_INT, 0);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
-
     glFramebufferTexture(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, _pickingTexture, 0);
+
+    // depth layer
+    glGenRenderbuffers(1, &_pickingDepth);
+    glBindRenderbuffer(GL_RENDERBUFFER, _pickingDepth);
+    glRenderbufferStorage(GL_RENDERBUFFER, GL_DEPTH_COMPONENT, w, h);
+    glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, GL_RENDERBUFFER, _pickingDepth);
+
 
     if(glCheckFramebufferStatus(GL_FRAMEBUFFER) != GL_FRAMEBUFFER_COMPLETE)
         std::cerr << "Incomplete FBO Attachement" << std::endl;
 
     glBindFramebuffer(GL_FRAMEBUFFER, 0);
+    glBindTexture(GL_TEXTURE_2D, 0);
+    glBindRenderbuffer(GL_RENDERBUFFER, 0);
 
 }
 
@@ -250,10 +259,13 @@ void Viewer::mouseDoubleClickEvent(QMouseEvent *event)
 
         // bind fbo
         glBindFramebuffer(GL_FRAMEBUFFER, _pickingFBOLocation);
+        glBindTexture(GL_TEXTURE_2D, _pickingTexture);
+        glBindRenderbuffer(GL_RENDERBUFFER, _pickingDepth);
+
         GLenum DrawBuffers[1] = {GL_COLOR_ATTACHMENT0};
         glDrawBuffers(_pickingFBOLocation, DrawBuffers);
         qglClearColor(Qt::black);
-        glClear(GL_COLOR_BUFFER_BIT);
+        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
         // draw
         _mesh->drawIds();
@@ -261,6 +273,8 @@ void Viewer::mouseDoubleClickEvent(QMouseEvent *event)
         // unbind fbo
         glFlush(); // Flush after just in case
         glBindFramebuffer(GL_FRAMEBUFFER, 0);
+        glBindTexture(GL_TEXTURE_2D, 0);
+        glBindRenderbuffer(GL_RENDERBUFFER, 0);
 
         // unbind shader
         _pickProgram.disableAttributeArray(_pickingProgLocation.vertex);

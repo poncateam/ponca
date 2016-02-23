@@ -95,7 +95,7 @@ private:
         int ids;
         int transform;
     } _pickingProgLocation;
-    GLuint _pickingFBOLocation, _pickingTexture;
+    GLuint _pickingFBOLocation, _pickingDepth, _pickingTexture;
     QVector3D _lightPos;
     QMatrix4x4 _transform;
     bool _programInitialized;
