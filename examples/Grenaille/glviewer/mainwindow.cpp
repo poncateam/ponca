@@ -51,6 +51,7 @@ void MainWindow::on_actionOpen_File_triggered()
             reader.setErrorCallback(PatateCommon::defaultErrorCallback,
                                     noopErrorCallback, NULL);
             reader.read(in, *mesh);
+            mesh->translateToCentroid();
         }
         ui->_viewer->setMesh(mesh);
         _manager.setMesh(mesh);
