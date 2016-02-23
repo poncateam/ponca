@@ -169,11 +169,9 @@ void Viewer::updateTransformationMatrix(bool reset){
     if(reset) _transform.setToIdentity();
 
     _transform.scale(_zoom * 0.1);
-    //_transform.translate(0.0, 0.0, 0.0);
     _transform.rotate( -_xRot / 16.0, 1.0, 0.0, 0.0);
     _transform.rotate( -_yRot / 16.0, 0.0, 1.0, 0.0);
     _transform.rotate( _zRot / 16.0, 0.0, 0.0, 1.0);
-    _transform.translate(-0.5, -0.5);
 }
 
 void Viewer::paintGL()
