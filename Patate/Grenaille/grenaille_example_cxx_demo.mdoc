@@ -1,0 +1,41 @@
+/*
+ This Source Code Form is subject to the terms of the Mozilla Public
+ License, v. 2.0. If a copy of the MPL was not distributed with this
+ file, You can obtain one at http://mozilla.org/MPL/2.0/.
+*/
+
+
+/*!
+  \page grenaille_example_cxx_demo_page Grenaille Demo
+
+  \warning This example is currently work in progress.
+
+
+  \section pyssgl_intro_sec Introduction
+
+  This is a Qt application to demonstrate the various features of Grenaille.
+
+  \subsection demo_intro_sec_dep_subsec Installation and usage
+  This example requires the following libraries:
+  - Qt5Widgets,
+  - Qt5OpenGL.
+
+  Picking requires FBO capabilites, shaders require version 330 Core.
+
+  To compile and run the example, call
+  \code
+  cd build && make grenaille_glviewer
+  cd examples/Grenaille/glviewer/ && grenaille_glviewer
+  \endcode
+
+  After the application is loaded, use the menu (or type Ctrl-O) to open a mesh,
+  for instance the Armadillo (original version
+  <a href="http://graphics.stanford.edu/data/3Dscanrep/" target="_blank">here</a>)
+  provided with the example.
+
+  The, double click to pick a point and compute its primitive (not displayed
+  yet), and changes the parameters using control widgets.
+  Fitting outputs are shown in standard output.
+  \image html examples/grenaille_demo_screen.jpg  "Grenaille Demo"
+
+*/
