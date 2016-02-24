@@ -65,6 +65,9 @@ public:
 public slots:
     void setScale(double scale) { _scale = scale; update(); }
 
+signals:
+    void selectedPointChanged(const PatateCommon::GLTri3DMesh::Vector& point);
+
 private:
     void setXRotation(int angle);
     void setYRotation(int angle);

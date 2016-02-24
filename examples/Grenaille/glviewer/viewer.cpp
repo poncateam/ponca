@@ -298,6 +298,7 @@ void Viewer::mouseDoubleClickEvent(QMouseEvent *event)
         if (id != 0) {
             _pickedPointId = id;
             _pickedPoint   = _mesh->getVertexMap(id);
+            emit selectedPointChanged(_pickedPoint);
         }
         update();
     }
