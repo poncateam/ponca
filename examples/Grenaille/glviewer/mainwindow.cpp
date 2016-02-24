@@ -27,6 +27,11 @@ MainWindow::MainWindow(QWidget *parent) :
     _mesh(NULL)
 {
     ui->setupUi(this);
+    connect(ui->_viewer, SIGNAL(selectedPointChanged(const PatateCommon::GLTri3DMesh::Vector&)),
+            &_manager,   SLOT(setEvaluationPoint(const PatateCommon::GLTri3DMesh::Vector&)));
+
+    connect(ui->_paramBasketScale, SIGNAL(valueChanged(double)),
+            &_manager,             SLOT(setScale(double)));
 }
 
 MainWindow::~MainWindow()
