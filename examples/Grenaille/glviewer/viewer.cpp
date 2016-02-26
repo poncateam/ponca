@@ -47,6 +47,9 @@ Viewer::Viewer(QWidget *parent) :
     reader.read(in, _unitSphere);
 
     updateTransformationMatrix();
+
+    _meshAttribs.globalAlpha   = 1.f;
+    _sphereAttribs.globalAlpha = 0.5f;
 }
 
 Viewer::~Viewer()
@@ -102,7 +105,10 @@ void Viewer::triggerAutoRefresh(bool status) {
 void Viewer::initializeGL()
 {
 
-    glEnable(GL_DEPTH_TEST);
+    glEnable    (GL_DEPTH_TEST);
+
+    glEnable    (GL_BLEND);
+    glBlendFunc (GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
     prepareShaders();
 
@@ -124,6 +130,7 @@ void Viewer::prepareShaders() {
     _progLocation.transform   = _program.uniformLocation("transform");
     _progLocation.projection  = _program.uniformLocation("projection");
     //_progLocation.lightPos  = _program.uniformLocation("lightPos");
+    _progLocation.globalAlpha = _program.uniformLocation("globalAlpha");
 
     _program.release();
 
@@ -195,7 +202,7 @@ void Viewer::paintGL()
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
     if (_mesh != NULL){
-        draw(_mesh);
+        draw(_mesh, _meshAttribs);
         if(_pickedPointId != -1)  drawPicked();
     }
 }
@@ -306,13 +313,15 @@ void Viewer::mouseDoubleClickEvent(QMouseEvent *event)
 }
 
 
-void Viewer::draw(Mesh* mesh){
+void Viewer::draw(Mesh* mesh, const MeshAttributesValues&attr){
      // draw object
     _program.bind();
     _program.enableAttributeArray(_progLocation.vertex);
     _program.enableAttributeArray(_progLocation.normal);
     _program.setUniformValue("transform", _transform);
     _program.setUniformValue("projection", _projection);
+    _program.setUniformValue("globalAlpha", attr.globalAlpha);
+
     //_program.setUniformValue("lightPos", _lightPos);
     mesh->draw();
     _program.disableAttributeArray(_progLocation.normal);
@@ -325,7 +334,7 @@ void Viewer::drawPicked(){
     _transform.translate(_pickedPoint(0), _pickedPoint(1), _pickedPoint(2));
     _transform.scale(_scale);
 
-    draw(&_unitSphere);
+    draw(&_unitSphere, _sphereAttribs);
 
     updateTransformationMatrix();
 

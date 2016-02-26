@@ -51,6 +51,10 @@ public:
 
     typedef PatateCommon::GLTri3DMesh Mesh;
 
+    struct MeshAttributesValues {
+        float globalAlpha;
+    };
+
     virtual void initializeGL();
     virtual void paintGL();
     virtual void resizeGL(int w, int h);
@@ -76,7 +80,7 @@ private:
     //! \brief Enable/Disable auto refresh
     void triggerAutoRefresh(bool status);
 
-    void draw(Mesh *mesh);
+    void draw(Mesh *mesh, const MeshAttributesValues&attr);
     void drawPicked();
     void prepareShaders();
     void prepareFBO(int w, int h);
@@ -115,6 +119,7 @@ private:
 
     Mesh *_mesh;
     Mesh _unitSphere;
+    MeshAttributesValues _meshAttribs, _sphereAttribs;
     QTimer *_refreshTimer; // automatically update the view
 };
 
