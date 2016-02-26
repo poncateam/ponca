@@ -30,8 +30,9 @@ public:
 
 private slots:
     void on_actionOpen_File_triggered();
-
     void on__paramBasketType_currentIndexChanged(int index);
+
+    void updateNeighborhoodMesh();
 
 private:
     Ui::MainWindow *ui;

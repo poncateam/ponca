@@ -25,9 +25,14 @@ public:
 
     inline void setMesh(Mesh* mesh) { _mesh = mesh; }
 
+    //! \brief Generate a new mesh that is an approximation of the current nei.
+    Mesh computeNeighborhoodMeshApprox() const;
+
 signals:
     //! \brief Signal emitted when the basket has been applied to the input data.
     void fitPerformed();
+    void scaleChanged();
+    void evaluationPointChanged();
 
 public slots:
     void setBasketType(FIT_TYPE type);
@@ -35,19 +40,28 @@ public slots:
     void setScale(float scale);
     void setScale(double scale);
     void fitPrimitive();
+    void setNeighborhoodApproxUpdate(bool update) {
+        _stateUpdateNei = update;
+        if(update) fitPrimitive();
+    }
 
 private:
     FIT_TYPE _fitType;
     PatateCommon::GLTri3DMesh *_mesh;
+    PatateCommon::GLTri3DMesh _neiApproximation;
     Scalar _scale;
     typename Mesh::Vector _evalPos;
+
+    bool _stateUpdateNei;
 };
 
 namespace fittingmanagerspace {
 typedef PatateCommon::GLTri3DMesh::GrenaillePoint MyPoint;
 
 template <FittingManager::FIT_TYPE type>
-struct BasketMaker { };
+struct BasketMaker {
+    typedef Grenaille::DistWeightFunc<MyPoint,Grenaille::SmoothWeightKernel<MyPoint::Scalar> > WeightFunc;
+};
 
 template <>
 struct BasketMaker<FittingManager::PLANE_COV>{

@@ -32,6 +32,12 @@ MainWindow::MainWindow(QWidget *parent) :
 
     connect(ui->_paramBasketScale, SIGNAL(valueChanged(double)),
             &_manager,             SLOT(setScale(double)));
+
+    connect(&_manager, SIGNAL(fitPerformed()),
+            this,     SLOT(updateNeighborhoodMesh()));
+
+    connect(ui->_paramDisplayProjectedNei, SIGNAL(clicked(bool)),
+            &_manager,                     SLOT(setNeighborhoodApproxUpdate(bool)));
 }
 
 MainWindow::~MainWindow()
@@ -69,4 +75,8 @@ void MainWindow::on_actionOpen_File_triggered()
 void MainWindow::on__paramBasketType_currentIndexChanged(int index)
 {
     _manager.setBasketType(FittingManager::FIT_TYPE(index));
+}
+
+void MainWindow::updateNeighborhoodMesh(){
+    ui->_viewer->setNeighborhoodMesh(_manager.computeNeighborhoodMeshApprox());
 }
