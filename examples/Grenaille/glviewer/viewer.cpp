@@ -334,7 +334,11 @@ void Viewer::drawPicked(){
     _transform.translate(_pickedPoint(0), _pickedPoint(1), _pickedPoint(2));
     _transform.scale(_scale);
 
+
+    glEnable    (GL_CULL_FACE);
+    glCullFace  (GL_FRONT);
     draw(&_unitSphere, _sphereAttribs);
+    glDisable   (GL_CULL_FACE);
 
     updateTransformationMatrix();
 
