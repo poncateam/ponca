@@ -119,9 +119,10 @@ void Viewer::prepareShaders() {
     _program.link();
     _program.bind();
 
-    _progLocation.vertex    = _program.attributeLocation("vertex");
-    _progLocation.normal    = _program.attributeLocation("normal");
-    _progLocation.transform = _program.uniformLocation("transform");
+    _progLocation.vertex      = _program.attributeLocation("vertex");
+    _progLocation.normal      = _program.attributeLocation("normal");
+    _progLocation.transform   = _program.uniformLocation("transform");
+    _progLocation.projection  = _program.uniformLocation("projection");
     //_progLocation.lightPos  = _program.uniformLocation("lightPos");
 
     _program.release();
@@ -132,10 +133,11 @@ void Viewer::prepareShaders() {
     _pickProgram.link();
     _pickProgram.bind();
 
-    _pickingProgLocation.vertex    = _pickProgram.attributeLocation("vertex");
-    _pickingProgLocation.normal    = _pickProgram.attributeLocation("normal");
-    _pickingProgLocation.ids       = _pickProgram.attributeLocation("ids");
-    _pickingProgLocation.transform = _pickProgram.uniformLocation("transform");
+    _pickingProgLocation.vertex     = _pickProgram.attributeLocation("vertex");
+    _pickingProgLocation.normal     = _pickProgram.attributeLocation("normal");
+    _pickingProgLocation.ids        = _pickProgram.attributeLocation("ids");
+    _pickingProgLocation.transform  = _pickProgram.uniformLocation("transform");
+    _pickingProgLocation.projection = _pickProgram.uniformLocation("projection");
 
     _pickProgram.release();
 
@@ -182,6 +184,9 @@ void Viewer::updateTransformationMatrix(bool reset){
 void Viewer::updateProjectionMatrix() {
     _projection.setToIdentity();
 
+    const QVector3D s (1., 1., 1./std::sqrt(3.*_zoom));
+    _projection.scale(s);
+
 }
 
 void Viewer::paintGL()
@@ -227,6 +232,7 @@ void Viewer::wheelEvent(QWheelEvent * event){
     static const int unit = 120;
     _zoom = std::max(1, _zoom + event->angleDelta().y()/unit );
     updateTransformationMatrix(true);
+    updateProjectionMatrix();
     update();
 }
 
@@ -249,7 +255,8 @@ void Viewer::mouseDoubleClickEvent(QMouseEvent *event)
         _pickProgram.enableAttributeArray(_pickingProgLocation.vertex);
         _pickProgram.enableAttributeArray(_pickingProgLocation.normal);
         _pickProgram.enableAttributeArray(_pickingProgLocation.ids);
-        _pickProgram.setUniformValue("transform", _projection*_transform);
+        _pickProgram.setUniformValue("transform",  _transform);
+        _pickProgram.setUniformValue("projection", _projection);
 
         // bind fbo
         glBindFramebuffer(GL_FRAMEBUFFER, _pickingFBOLocation);
@@ -304,7 +311,8 @@ void Viewer::draw(Mesh* mesh){
     _program.bind();
     _program.enableAttributeArray(_progLocation.vertex);
     _program.enableAttributeArray(_progLocation.normal);
-    _program.setUniformValue("transform", _projection*_transform);
+    _program.setUniformValue("transform", _transform);
+    _program.setUniformValue("projection", _projection);
     //_program.setUniformValue("lightPos", _lightPos);
     mesh->draw();
     _program.disableAttributeArray(_progLocation.normal);

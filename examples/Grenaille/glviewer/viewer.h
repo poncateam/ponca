@@ -91,14 +91,18 @@ private:
         int vertex;
         int normal;
         int transform;
+        int projection;
         int lightPos;
+        int globalAlpha;
     } _progLocation;
     struct {
         int vertex;
         int normal;
         int ids;
         int transform;
+        int projection;
     } _pickingProgLocation;
+
     GLuint _pickingFBOLocation, _pickingDepth, _pickingTexture;
     QVector3D _lightPos;
     QMatrix4x4 _transform, _projection;
