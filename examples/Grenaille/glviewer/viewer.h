@@ -81,6 +81,7 @@ private:
     void prepareShaders();
     void prepareFBO(int w, int h);
     void updateTransformationMatrix(bool reset = true);
+    void updateProjectionMatrix();
 
     int _xRot, _yRot, _zRot, _zoom;
 
@@ -100,7 +101,7 @@ private:
     } _pickingProgLocation;
     GLuint _pickingFBOLocation, _pickingDepth, _pickingTexture;
     QVector3D _lightPos;
-    QMatrix4x4 _transform;
+    QMatrix4x4 _transform, _projection;
     bool _programInitialized;
 
     int _pickedPointId;

@@ -103,17 +103,13 @@ void Viewer::initializeGL()
 {
 
     glEnable(GL_DEPTH_TEST);
-    //glEnable(GL_CULL_FACE);
-    glShadeModel(GL_SMOOTH);
-
-//    _lightPos.setX(0);
-//    _lightPos.setY(0);
-//    _lightPos.setZ(1);
 
     prepareShaders();
 
     glGenFramebuffers(1, &_pickingFBOLocation);
     glGenTextures(1, &_pickingTexture);
+
+    updateProjectionMatrix();
 }
 
 void Viewer::prepareShaders() {
@@ -183,6 +179,11 @@ void Viewer::updateTransformationMatrix(bool reset){
     _transform.rotate( _zRot / 16.0, 0.0, 0.0, 1.0);
 }
 
+void Viewer::updateProjectionMatrix() {
+    _projection.setToIdentity();
+
+}
+
 void Viewer::paintGL()
 {
     qglClearColor(Qt::white);
@@ -198,14 +199,6 @@ void Viewer::resizeGL(int width, int height)
 {
     int side = qMin(width, height);
     glViewport((width - side) / 2, (height - side) / 2, side, side);
-
-    glMatrixMode(GL_PROJECTION);
-    glLoadIdentity();
-#ifdef QT_OPENGL_ES_1
-    glOrthof(-2, +2, -2, +2, 0.1, 100.0);
-#else
-    glOrtho(-2, +2, -2, +2, 0.01, 200.0);
-#endif
 }
 
 void Viewer::mousePressEvent(QMouseEvent *event)
@@ -233,6 +226,7 @@ void Viewer::mouseMoveEvent(QMouseEvent *event)
 void Viewer::wheelEvent(QWheelEvent * event){
     static const int unit = 120;
     _zoom = std::max(1, _zoom + event->angleDelta().y()/unit );
+    updateTransformationMatrix(true);
     update();
 }
 
@@ -255,7 +249,7 @@ void Viewer::mouseDoubleClickEvent(QMouseEvent *event)
         _pickProgram.enableAttributeArray(_pickingProgLocation.vertex);
         _pickProgram.enableAttributeArray(_pickingProgLocation.normal);
         _pickProgram.enableAttributeArray(_pickingProgLocation.ids);
-        _pickProgram.setUniformValue("transform", _transform);
+        _pickProgram.setUniformValue("transform", _projection*_transform);
 
         // bind fbo
         glBindFramebuffer(GL_FRAMEBUFFER, _pickingFBOLocation);
@@ -310,7 +304,7 @@ void Viewer::draw(Mesh* mesh){
     _program.bind();
     _program.enableAttributeArray(_progLocation.vertex);
     _program.enableAttributeArray(_progLocation.normal);
-    _program.setUniformValue("transform", _transform);
+    _program.setUniformValue("transform", _projection*_transform);
     //_program.setUniformValue("lightPos", _lightPos);
     mesh->draw();
     _program.disableAttributeArray(_progLocation.normal);
