@@ -86,7 +86,11 @@ public:
         resetPrimitive();
     }    
     
-    /*! \brief Set the scalar field values to 0 and reset the isNormalized() status */
+    /*! \brief Set the scalar field values to 0 and reset the isNormalized() status
+
+        \warning Set m_ul to Zero(), which leads to nans in OrientedSphere::normal()
+        \FIXME Set and use Base::m_state to handle invalid configuration
+	*/
     MULTIARCH inline void resetPrimitive()
     {
         Base::resetPrimitive();
@@ -138,6 +142,7 @@ public:
         \brief return the estimated radius of the sphere
         \warning return inf if the fitted surface is planar
     */
+    MULTIARCH inline Scalar radius() const
     MULTIARCH inline Scalar radius()
     {
         if(isPlane())
@@ -160,6 +165,7 @@ public:
         \brief return the estimated center of the sphere
         \warning return Vector inf if the fitted surface is planar
     */
+    MULTIARCH inline VectorType center() const
     MULTIARCH inline VectorType center()
     {
         if(isPlane())
