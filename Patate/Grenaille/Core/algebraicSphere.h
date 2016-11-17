@@ -86,7 +86,11 @@ public:
         resetPrimitive();
     }    
     
-    /*! \brief Set the scalar field values to 0 and reset the isNormalized() status */
+    /*! \brief Set the scalar field values to 0 and reset the isNormalized() status
+
+        \warning Set m_ul to Zero(), which leads to nans in OrientedSphere::normal()
+        \FIXME Set and use Base::m_state to handle invalid configuration
+	*/
     MULTIARCH inline void resetPrimitive()
     {
         Base::resetPrimitive();
