@@ -138,6 +138,7 @@ public:
         \brief return the estimated radius of the sphere
         \warning return inf if the fitted surface is planar
     */
+    MULTIARCH inline Scalar radius() const
     MULTIARCH inline Scalar radius()
     {
         if(isPlane())
@@ -160,6 +161,7 @@ public:
         \brief return the estimated center of the sphere
         \warning return Vector inf if the fitted surface is planar
     */
+    MULTIARCH inline VectorType center() const
     MULTIARCH inline VectorType center()
     {
         if(isPlane())
