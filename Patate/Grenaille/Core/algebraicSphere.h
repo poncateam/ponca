@@ -143,7 +143,6 @@ public:
         \warning return inf if the fitted surface is planar
     */
     MULTIARCH inline Scalar radius() const
-    MULTIARCH inline Scalar radius()
     {
         if(isPlane())
         {
@@ -166,7 +165,6 @@ public:
         \warning return Vector inf if the fitted surface is planar
     */
     MULTIARCH inline VectorType center() const
-    MULTIARCH inline VectorType center()
     {
         if(isPlane())
         {
