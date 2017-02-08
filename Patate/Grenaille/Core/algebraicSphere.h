@@ -107,6 +107,18 @@ public:
     /*! \brief Writing access to the (evaluation position) */
     MULTIARCH inline       VectorType& basisCenter ()       { return m_p; }
 
+    /*! \brief Express the scalar field relatively to a new basis */
+    MULTIARCH inline void changeBasis(const VectorType& newbasis)
+    {
+        VectorType diff = m_p- newbasis;
+        m_uc = m_uc - m_ul.dot(diff) + m_uq * diff.dot(diff);
+        m_ul = m_ul - Scalar(2.)*m_uq*diff;
+        //m_uq is not changed
+        m_p = newbasis;
+        m_isNormalized = false;
+        applyPrattNorm();
+    }
+
     /*! \brief compute the Pratt norm of the implicit scalar field. */
     MULTIARCH inline Scalar prattNorm() const
     {
