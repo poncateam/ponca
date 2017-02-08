@@ -108,16 +108,16 @@ void testFunction(bool _bAddPositionNoise = false, bool _bAddNormalNoise = false
             VectorType eta3 = fitReverseRandom.eta().normalized().array().abs();
 
             // Check kappa coherance
-            VERIFY( Eigen::internal::isMuchSmallerThan(std::fabs(kappa1 - kappa2), 1., epsilon) );
-            VERIFY( Eigen::internal::isMuchSmallerThan(std::fabs(kappa1 - kappa3), 1., epsilon) );
+            VERIFY( Eigen::internal::isMuchSmallerThan(std::fabs(kappa1 - kappa2), Scalar(1.), epsilon) );
+            VERIFY( Eigen::internal::isMuchSmallerThan(std::fabs(kappa1 - kappa3), Scalar(1.), epsilon) );
 
             // Check tau coherance
-            VERIFY( Eigen::internal::isMuchSmallerThan(std::fabs(tau1 - tau2), 1., epsilon) );
-            VERIFY( Eigen::internal::isMuchSmallerThan(std::fabs(tau1 - tau3), 1., epsilon) );
+            VERIFY( Eigen::internal::isMuchSmallerThan(std::fabs(tau1 - tau2), Scalar(1.), epsilon) );
+            VERIFY( Eigen::internal::isMuchSmallerThan(std::fabs(tau1 - tau3), Scalar(1.), epsilon) );
 
             // Check eta coherance
-            VERIFY( Eigen::internal::isMuchSmallerThan((eta1 - eta2).norm(), 1., epsilon) );
-            VERIFY( Eigen::internal::isMuchSmallerThan((eta1 - eta3).norm(), 1., epsilon) );
+            VERIFY( Eigen::internal::isMuchSmallerThan((eta1 - eta2).norm(), Scalar(1.), epsilon) );
+            VERIFY( Eigen::internal::isMuchSmallerThan((eta1 - eta3).norm(), Scalar(1.), epsilon) );
         }
     }
 }

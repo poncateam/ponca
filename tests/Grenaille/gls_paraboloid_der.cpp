@@ -26,7 +26,7 @@ template<typename Fit, typename RefFit, typename TestFit>
 void testFunction(bool isSigned = true)
 {
     // Define related structure
-    typedef typename Fit::WeightFunction WeightFunc;
+    //typedef typename Fit::WeightFunction WeightFunc;
     typedef typename Fit::DataPoint DataPoint;
     typedef typename TestFit::WeightFunction TestWeightFunc;
     typedef typename TestFit::DataPoint TestDataPoint;
@@ -252,7 +252,7 @@ void callSubTests()
     
     typedef Basket<Point,     WeightSmoothFunc, OrientedSphereFit, /*GLSParam,*/ OrientedSphereScaleSpaceDer, /*GLSDer,*/ CurvatureEstimator> FitSphereOriented;
     typedef Basket<RefPoint,  RefWeightFunc,    OrientedSphereFit, /*GLSParam,*/ OrientedSphereScaleSpaceDer, /*GLSDer,*/ CurvatureEstimator> RefFitSphereOriented;
-    typedef Basket<TestPoint, TestWeightFunc,   OrientedSphereFit, /*GLSParam,*/ OrientedSphereScaleSpaceDer, /*GLSDer,*/ CurvatureEstimator> TestFitSphereOriented;
+    //typedef Basket<TestPoint, TestWeightFunc,   OrientedSphereFit, /*GLSParam,*/ OrientedSphereScaleSpaceDer, /*GLSDer,*/ CurvatureEstimator> TestFitSphereOriented;
     CALL_SUBTEST(( testFunction<FitSphereOriented, RefFitSphereOriented, /*TestFitSphereOriented*/FitSphereOriented>(true) ));
     
     typedef Basket<Point, WeightSmoothFunc,   CompactPlane, CovariancePlaneFit, CovariancePlaneScaleSpaceDer, CurvatureEstimator> FitPlanePCA;

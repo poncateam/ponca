@@ -32,7 +32,7 @@ void testFunction(bool _bUnoriented = false, bool _bAddPositionNoise = false, bo
     Scalar radius1 = Eigen::internal::random<Scalar>(1, 5);
     Scalar radius2 = Eigen::internal::random<Scalar>(10, 50);
 
-    Scalar analysisScale = Scalar(10. * std::sqrt( 4. * M_PI * radius2 * radius2 / nbPoints));
+    Scalar analysisScale = Scalar(Scalar(10.) * std::sqrt( Scalar(4.) * Scalar(M_PI) * radius2 * radius2 / nbPoints));
 
     VectorType center = VectorType::Zero();
 
@@ -82,7 +82,7 @@ void testFunction(bool _bUnoriented = false, bool _bAddPositionNoise = false, bo
             Scalar value1 = fit1.compareTo(fit2);
             Scalar value2 = fit1.compareTo(fit3);
 
-            VERIFY( Eigen::internal::isMuchSmallerThan(value1, 1., epsilon) );
+            VERIFY( Eigen::internal::isMuchSmallerThan(value1, Scalar(1.), epsilon) );
             VERIFY( value2 > epsilon );
         }
     }

@@ -76,7 +76,7 @@ void testFunction(bool _bUnoriented = false, bool _bAddPositionNoise = false, bo
             distanceToPlane = fabs(distanceToPlane);
 
             // Test Tau
-            VERIFY( Eigen::internal::isMuchSmallerThan(std::abs(distanceToPlane - fitTau), 1., epsilon) );
+            VERIFY( Eigen::internal::isMuchSmallerThan(std::abs(distanceToPlane - fitTau), Scalar(1.), epsilon) );
         }
     }
 }

@@ -24,7 +24,6 @@ void testFunction()
     // Define related structure
     typedef typename DataPoint::Scalar Scalar;
     typedef typename DataPoint::VectorType VectorType;
-    typedef typename DataPoint::HVectorType HVectorType;
     
     Scalar epsilon = testEpsilon<Scalar>();
     VectorType query = VectorType::Random();

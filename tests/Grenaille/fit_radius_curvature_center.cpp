@@ -102,7 +102,7 @@ void testFunction(bool _bUnoriented = false, bool _bAddPositionNoise = false, bo
 
         if(fit.isStable())
         {
-            Scalar fitRadiusKappa = Scalar(fabs(Scalar(1.) / fit.kappa()));
+            Scalar fitRadiusKappa = Scalar(std::abs(Scalar(1.) / fit.kappa()));
             Scalar fitRadiusAlgebraic = fit.radius();
             VectorType fitCenter (fit.center());
 
@@ -115,7 +115,7 @@ void testFunction(bool _bUnoriented = false, bool _bAddPositionNoise = false, bo
             // Test reparametrization
             VERIFY( (fitRadiusKappa > radiusMin - radiusEpsilon) && (fitRadiusKappa < radiusMax + radiusEpsilon) );
             //Test coherance
-            VERIFY( Eigen::internal::isMuchSmallerThan(std::fabs(fitRadiusAlgebraic - fitRadiusKappa), Scalar(1.), epsilon) );
+            VERIFY( Eigen::internal::isMuchSmallerThan(std::abs(fitRadiusAlgebraic - fitRadiusKappa), Scalar(1.), epsilon) );
 
             //Test using spatial derivatives if defined
             subTestSpatial<isSpaceDer, DataPoint::Dim>::eval(fit, radiusMin, radiusMax, radiusEpsilon, fitRadiusKappa, fitRadiusAlgebraic);
