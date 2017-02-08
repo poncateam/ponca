@@ -83,6 +83,7 @@ void test_orthoEta()
 
     Fit fit;
 
+#pragma omp parallel for private(fit)
     for(unsigned int k=0; k<vecs.size(); ++k)
     {  
         fit.setWeightFunc(WeightFunc(tmax));  

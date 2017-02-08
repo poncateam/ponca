@@ -48,6 +48,7 @@ void testFunction(bool _bUnoriented = false, bool _bAddPositionNoise = false, bo
     }
 
     // Test for each point if the fitted sphere correspond to the theorical sphere
+#pragma omp parallel for
     for(int i = 0; i < nbPoints - 1; ++i)
     {
         Fit fit1, fit2, fit3;

@@ -54,6 +54,7 @@ void testFunction(bool _bAddPositionNoise = false, bool _bAddNormalNoise = false
     reverseNormals<DataPoint>(vectorReversedNormalsRandom, vectorPoints);
 
     // Test sphere descriptors coherance for each points
+#pragma omp parallel for
     for(unsigned int i = 0; i < vectorPoints.size(); ++i)
     {
         Fit fit, fitReverse100, fitReverseRandom;
