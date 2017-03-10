@@ -88,7 +88,16 @@ public:
         Base::resetPrimitive();
         m_p = HVectorType::Zero();
     }
-    
+
+    MULTIARCH inline bool operator==(const CompactPlane<DataPoint, WFunctor, T>& other) const{
+        return m_p == other.m_p;
+    }
+
+    /*! \brief Comparison operator, convenience function */
+    MULTIARCH inline bool operator!=(const CompactPlane<DataPoint, WFunctor, T>& other) const{
+        return ! ((*this) == other);
+    }
+
     /* \brief Init the plane from a direction and a position
        \param _dir Orientation of the plane
        \param _pos Position of the plane

@@ -102,6 +102,16 @@ public:
         m_isNormalized = false;
     }
 
+    MULTIARCH inline bool operator==(const AlgebraicSphere<DataPoint, WFunctor, T>& other) const{
+        return m_uc == other.m_uc &&
+               m_uq == other.m_uq &&
+               m_ul == other.m_ul;
+    }
+
+    /*! \brief Comparison operator, convenience function */
+    MULTIARCH inline bool operator!=(const AlgebraicSphere<DataPoint, WFunctor, T>& other) const{
+        return ! ((*this) == other);
+    }
     /*! \brief Reading access to the basis center (evaluation position) */
     MULTIARCH inline const VectorType& basisCenter () const { return m_p; }
     /*! \brief Writing access to the (evaluation position) */
