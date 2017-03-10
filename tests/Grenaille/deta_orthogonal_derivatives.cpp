@@ -1,7 +1,7 @@
 /*
   This Source Code Form is subject to the terms of the Mozilla Public
   License, v. 2.0. If a copy of the MPL was not distributed with this
-  file, You can obtain one at http://mozilla.org/MPL/2.0/. 
+  file, You can obtain one at http://mozilla.org/MPL/2.0/.
 */
 
 
@@ -31,14 +31,14 @@ public:
     typedef Eigen::Matrix<Scalar, Dim, 1, Eigen::DontAlign>   VectorType;
     typedef Eigen::Matrix<Scalar, Dim, Dim, Eigen::DontAlign> MatrixType;
 
-    MULTIARCH inline MyPoint(   const VectorType &pos    = VectorType::Zero(), 
+    MULTIARCH inline MyPoint(   const VectorType &pos    = VectorType::Zero(),
                                 const VectorType& normal = VectorType::Zero())
         : m_pos(pos), m_normal(normal) {}
 
-    MULTIARCH inline const VectorType& pos()    const { return m_pos; }  
+    MULTIARCH inline const VectorType& pos()    const { return m_pos; }
     MULTIARCH inline const VectorType& normal() const { return m_normal; }
 
-    MULTIARCH inline VectorType& pos()    { return m_pos; }  
+    MULTIARCH inline VectorType& pos()    { return m_pos; }
     MULTIARCH inline VectorType& normal() { return m_normal; }
 
     static inline MyPoint Random(Scalar radius)
@@ -65,7 +65,7 @@ void test_orthoEta()
 {
     // Define related structure
     typedef MyPoint<Scalar,Dim> Point;
-    typedef DistWeightFunc<Point,SmoothWeightKernel<Scalar> > WeightFunc; 
+    typedef DistWeightFunc<Point,SmoothWeightKernel<Scalar> > WeightFunc;
     typedef Basket<Point, WeightFunc, OrientedSphereFit, GLSParam, OrientedSphereScaleSpaceDer, GLSDer> Fit;
 
     Scalar epsilon = Eigen::NumTraits<Scalar>::dummy_precision();
@@ -85,17 +85,10 @@ void test_orthoEta()
 
 #pragma omp parallel for private(fit)
     for(unsigned int k=0; k<vecs.size(); ++k)
-    {  
-        fit.setWeightFunc(WeightFunc(tmax));  
-
+    {
+        fit.setWeightFunc(WeightFunc(tmax));
         fit.init(vecs[k].pos());
-
-        for(typename vector<Point>::iterator it = vecs.begin(); it != vecs.end(); it++)
-        {
-            fit.addNeighbor(*it);
-        }
-
-        fit.finalize();
+        fit.compute(vecs.cbegin(), vecs.cend());
 
         if(fit.isStable())
         {

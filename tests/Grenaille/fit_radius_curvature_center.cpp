@@ -1,7 +1,7 @@
 /*
  This Source Code Form is subject to the terms of the Mozilla Public
  License, v. 2.0. If a copy of the MPL was not distributed with this
- file, You can obtain one at http://mozilla.org/MPL/2.0/. 
+ file, You can obtain one at http://mozilla.org/MPL/2.0/.
 */
 
 
@@ -89,16 +89,7 @@ void testFunction(bool _bUnoriented = false, bool _bAddPositionNoise = false, bo
         Fit fit;
         fit.setWeightFunc(WeightFunc(analysisScale));
         fit.init(vectorPoints[i].pos());
-
-        for(typename vector<DataPoint>::iterator it = vectorPoints.begin();
-            it != vectorPoints.end();
-            ++it)
-        {
-            fit.addNeighbor(*it);
-        }
-
-
-        fit.finalize();
+        fit.compute(vectorPoints.cbegin(), vectorPoints.cend());
 
         if(fit.isStable())
         {

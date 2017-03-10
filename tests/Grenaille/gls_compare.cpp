@@ -1,7 +1,7 @@
 /*
  This Source Code Form is subject to the terms of the Mozilla Public
  License, v. 2.0. If a copy of the MPL was not distributed with this
- file, You can obtain one at http://mozilla.org/MPL/2.0/. 
+ file, You can obtain one at http://mozilla.org/MPL/2.0/.
 */
 
 
@@ -55,27 +55,14 @@ void testFunction(bool _bUnoriented = false, bool _bAddPositionNoise = false, bo
         fit1.setWeightFunc(WeightFunc(analysisScale));
         fit2.setWeightFunc(WeightFunc(analysisScale));
         fit3.setWeightFunc(WeightFunc(analysisScale));
+
         fit1.init(sphere1[i].pos());
         fit2.init(sphere1[i+1].pos());
         fit3.init(sphere2[i].pos());
 
-        for(typename vector<DataPoint>::iterator it = sphere1.begin();
-            it != sphere1.end();
-            ++it)
-        {
-            fit1.addNeighbor(*it);
-            fit2.addNeighbor(*it);
-        }
-        for(typename vector<DataPoint>::iterator it = sphere2.begin();
-            it != sphere2.end();
-            ++it)
-        {
-            fit3.addNeighbor(*it);
-        }
-
-        fit1.finalize();
-        fit2.finalize();
-        fit3.finalize();
+        fit1.compute(sphere1.cbegin(), sphere1.cend());
+        fit2.compute(sphere1.cbegin(), sphere1.cend());
+        fit3.compute(sphere2.cbegin(), sphere2.cend());
 
         if(fit1.isStable() && fit2.isStable() && fit3.isStable())
         {

@@ -1,7 +1,7 @@
 /*
  This Source Code Form is subject to the terms of the Mozilla Public
  License, v. 2.0. If a copy of the MPL was not distributed with this
- file, You can obtain one at http://mozilla.org/MPL/2.0/. 
+ file, You can obtain one at http://mozilla.org/MPL/2.0/.
 */
 
 
@@ -44,7 +44,7 @@ void testFunction(bool isSigned = true)
 
     Scalar analysisScale = Scalar(.001);// / std::max(std::abs(vCoef.x()), std::abs(vCoef.y()));
     vCenter *= analysisScale;
-    
+
     Scalar rotationAngle = Eigen::internal::random<Scalar>(Scalar(0.), Scalar(2 * M_PI));
     VectorType vRotationAxis = VectorType::Random().normalized();
     QuaternionType qRotation = QuaternionType(Eigen::AngleAxis<Scalar>(rotationAngle, vRotationAxis));
@@ -64,15 +64,15 @@ void testFunction(bool isSigned = true)
       //vectorPointsOrigin[i].normal() = (vectorPointsOrigin[i].normal() + VectorType::Random()*1e-6).normalized();
       vectorPoints[i].pos() = qRotation * vectorPointsOrigin[i].pos() + vCenter;
       vectorPoints[i].normal() = qRotation * vectorPointsOrigin[i].normal();
-      
+
       testVectorPoints[i].pos()    = vectorPoints[i].pos().template cast<TestScalar>();
       testVectorPoints[i].normal() = vectorPoints[i].normal().template cast<TestScalar>();
     }
-    
+
     VectorType theoricNormal = qRotation * VectorType(0, 0, -1);
 
     TestFit fit;
-    
+
     fit.setWeightFunc(TestWeightFunc(analysisScale));
     VectorType vFittingPoint = vCenter;
     fit.init(vFittingPoint.template cast<TestScalar>());
@@ -83,7 +83,7 @@ void testFunction(bool isSigned = true)
         fit.addNeighbor(*it);
     }
     fit.finalize();
-    
+
     Scalar flip_fit = (isSigned || (fit.normal().template cast<Scalar>().dot(theoricNormal) > 0 )) ? Scalar(1) : Scalar(-1);
     {
       // Check derivatives wrt numerical differentiation
@@ -91,14 +91,14 @@ void testFunction(bool isSigned = true)
       typedef long double RefScalar;
       typedef PointPositionNormal<RefScalar, 3> RefPoint;
       typedef DistWeightFunc<RefPoint, SmoothWeightKernel<RefScalar> > RefWeightFunc;
-      
+
       vector<RefPoint> refVectorPoints(nbPoints);
       for(unsigned int i = 0; i < vectorPoints.size(); ++i)
       {
         refVectorPoints[i].pos() = vectorPoints[i].pos().template cast<RefScalar>();
         refVectorPoints[i].normal() = vectorPoints[i].normal().template cast<RefScalar>();
       }
-      
+
       // Centered fit:
       RefFit ref_fit;
       ref_fit.setWeightFunc(RefWeightFunc(analysisScale));
@@ -112,16 +112,16 @@ void testFunction(bool isSigned = true)
       }
       ref_fit.finalize();
       RefScalar flip_ref = (isSigned || (ref_fit.normal().dot(theoricNormal.template cast<RefScalar>()) > 0 )) ? RefScalar(1) : RefScalar(-1);
-      
+
       RefScalar der_epsilon = epsilon*10;
       if(Eigen::internal::is_same<Scalar,float>::value)
         der_epsilon = epsilon*100;
       // FIXME check whether numerical accuracy can be improved with float
-      typename RefFit::VectorArray dUl, dN;
-      typename RefFit::VectorArray dSumP;
-      typename RefFit::ScalarArray dPotential, dUc, dUq, dTau, dKappa;
+      typename RefFit::VectorArray /*dUl,*/ dN;
+//      typename RefFit::VectorArray dSumP;
+      typename RefFit::ScalarArray dPotential/*, dUc, dUq, dTau, dKappa*/;
       Scalar h = Scalar(0.000001)*analysisScale;
-      
+
       // Differentiation along scale, x, y, z:
       for(int k = 0; k<4; ++k)
       {
@@ -133,11 +133,10 @@ void testFunction(bool isSigned = true)
         else
           vFittingPoint(k-1) += h;
         f.init(vFittingPoint.template cast<RefScalar>());
-        for(typename vector<RefPoint>::iterator it = refVectorPoints.begin(); it != refVectorPoints.end();++it)
-          f.addNeighbor(*it);
-        f.finalize();
+        f.compute(refVectorPoints.cbegin(), refVectorPoints.cend());
+
         RefScalar flip_f   = (isSigned || (f.normal().dot(theoricNormal.template cast<RefScalar>()) > 0 )) ? RefScalar(1) : RefScalar(-1);
-        
+
 //         Scalar uc = f.m_uc;
 //         typename RefFit::VectorType ul = f.m_ul;
 //         typename RefFit::VectorType sumP = f.m_sumP;
@@ -153,7 +152,7 @@ void testFunction(bool isSigned = true)
 //         dUq(k)        = ( f.m_uq    - ref_fit.m_uq    ) / h;
 //         dUl.col(k)    = ( ul        - ref_fit.m_ul    ) / h;
 //         dTau(k)    = ( f.tau()   - ref_fit.tau()   ) / h;
-        
+
         dPotential(k) = ( flip_f*f.potential() - flip_ref * ref_fit.potential()   ) / h;
         dN.col(k)     = ( flip_f*f.normal()    - flip_ref * ref_fit.normal()      ) / h;
 //         dKappa(k)     = ( f.kappa() - ref_fit.kappa() ) / h;
@@ -163,7 +162,7 @@ void testFunction(bool isSigned = true)
 //       std::cout << "dPotential: "  << dPotential << " == " << fit.dPotential() << " ; " << (dPotential.template cast<Scalar>()-flip_fit*fit.dPotential()).norm()/dPotential.norm() << "\n";
 //       std::cout << "dN:\n"  << dN << "\n == \n" << flip_fit*fit.dNormal() << " ; " << (dN.template cast<Scalar>()-flip_fit*fit.dNormal()).norm()/dN.norm() << "\n";
 //       std::cout << "eig(dN): " << Eigen::EigenSolver<typename DataPoint::MatrixType>(dN.template cast<Scalar>().template rightCols<3>()).eigenvalues().transpose() << "\n\n";
-      
+
 //       std::cout << "dKappa: " << dKappa << " == " << fit.dkappa() << " ; " << (dKappa.template cast<Scalar>()-fit.dkappa()).norm()/dKappa.norm() << "\n";
 //       std::cout << "dUc: "  << dUc << " == " << fit.m_dUc << " ; " << (dUc.template cast<Scalar>()-fit.m_dUc).norm()/dUc.norm() << "\n";
 //       std::cout << "dUq: "  << dUq << " == " << fit.m_dUq << " ; " << (dUq.template cast<Scalar>()-fit.m_dUq).norm()/dUq.norm() << "\n";
@@ -180,16 +179,16 @@ void testFunction(bool isSigned = true)
       VERIFY( dN.template cast<Scalar>().isApprox( flip_fit*fit.dNormal().template cast<Scalar>(), der_epsilon ) );
       //VERIFY( dKappa.template cast<Scalar>().isApprox( fit.dkappa(), der_epsilon ) );
     }
- 
+
     VERIFY(fit.isStable());
-    
+
     if(fit.isStable())
     {
       Scalar a = vCoef.x();
       Scalar b = vCoef.y();
 
       Scalar theoricPotential = 0;
-      Scalar theoricKmean        = (a + b) / Scalar(2.);
+//      Scalar theoricKmean        = (a + b) / Scalar(2.);
       Scalar theoricAverageKmean = getKappaMean<DataPoint>(vectorPointsOrigin, vFittingPoint, a, b, analysisScale);
       Scalar theoricK1 = (std::abs(a)<std::abs(b) ? b : a);
       Scalar theoricK2 = (std::abs(a)<std::abs(b) ? a : b);
@@ -211,12 +210,12 @@ void testFunction(bool isSigned = true)
 //       std::cout << "kmean     : " << /*kmean << ", " <<*/ kmeanFromK1K2 << "  \tref:" << theoricKmean << " , " << theoricAverageKmean << std::endl;
 //       std::cout << "gaussian  : " << gaussian << "  \tref: " << theoricGaussian << std::endl;
 //       std::cout << "normal    : " << normal.transpose() << "  \tref: " << theoricNormal.transpose() << std::endl;
-      
+
       VERIFY( Eigen::internal::isMuchSmallerThan(std::abs(potential - theoricPotential), Scalar(1.), approxEpsilon) );
       VERIFY( Eigen::internal::isMuchSmallerThan((theoricNormal - normal).norm(), Scalar(1.), approxEpsilon ) );
       VERIFY( Eigen::internal::isMuchSmallerThan(std::abs(theoricAverageKmean - kmeanFromK1K2), std::abs(theoricK1), approxEpsilon) );
 //       VERIFY( Eigen::internal::isMuchSmallerThan(std::abs(theoricAverageKmean - kmean), std::abs(theoricK1), approxEpsilon) );
-      
+
       if(std::abs(std::abs(theoricK1)-std::abs(theoricK2))>approxEpsilon*std::abs(theoricK1))
       {
         // absolute curvatures are clearly different
@@ -241,20 +240,20 @@ void callSubTests()
     typedef long double RefScalar;
     typedef PointPositionNormal<RefScalar, 3> RefPoint;
     typedef DistWeightFunc<RefPoint, SmoothWeightKernel<RefScalar> > RefWeightFunc;
-      
+
     typedef ScalarPrecisionCheck<Scalar,RefScalar> TestScalar;
     TestScalar::check_enabled = false; // set it to true to track diverging computations
-    typedef PointPositionNormal<TestScalar, 3> TestPoint;
-    typedef DistWeightFunc<TestPoint, SmoothWeightKernel<TestScalar> > TestWeightFunc;
-    
+//    typedef PointPositionNormal<TestScalar, 3> TestPoint;
+//    typedef DistWeightFunc<TestPoint, SmoothWeightKernel<TestScalar> > TestWeightFunc;
+
     typedef PointPositionNormal<Scalar, Dim> Point;
     typedef DistWeightFunc<Point, SmoothWeightKernel<Scalar> > WeightSmoothFunc;
-    
+
     typedef Basket<Point,     WeightSmoothFunc, OrientedSphereFit, /*GLSParam,*/ OrientedSphereScaleSpaceDer, /*GLSDer,*/ CurvatureEstimator> FitSphereOriented;
     typedef Basket<RefPoint,  RefWeightFunc,    OrientedSphereFit, /*GLSParam,*/ OrientedSphereScaleSpaceDer, /*GLSDer,*/ CurvatureEstimator> RefFitSphereOriented;
     //typedef Basket<TestPoint, TestWeightFunc,   OrientedSphereFit, /*GLSParam,*/ OrientedSphereScaleSpaceDer, /*GLSDer,*/ CurvatureEstimator> TestFitSphereOriented;
     CALL_SUBTEST(( testFunction<FitSphereOriented, RefFitSphereOriented, /*TestFitSphereOriented*/FitSphereOriented>(true) ));
-    
+
     typedef Basket<Point, WeightSmoothFunc,   CompactPlane, CovariancePlaneFit, CovariancePlaneScaleSpaceDer, CurvatureEstimator> FitPlanePCA;
     typedef Basket<RefPoint, RefWeightFunc,   CompactPlane, CovariancePlaneFit, CovariancePlaneScaleSpaceDer, CurvatureEstimator> RefFitPlanePCA;
     //typedef Basket<TestPoint, TestWeightFunc, CompactPlane, CovariancePlaneFit, CovariancePlaneScaleSpaceDer, CurvatureEstimator> TestFitPlanePCA;

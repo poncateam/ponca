@@ -1,7 +1,7 @@
 /*
 This Source Code Form is subject to the terms of the Mozilla Public
 License, v. 2.0. If a copy of the MPL was not distributed with this
-file, You can obtain one at http://mozilla.org/MPL/2.0/. 
+file, You can obtain one at http://mozilla.org/MPL/2.0/.
 */
 
 
@@ -341,7 +341,7 @@ Scalar fit(Mesh& mesh, Scalar radius) {
             mesh.minCurvature(v0)  = fit.GLSk2();
             mesh.geomVar(v0)       = fit.geomVar();
 
-            Scalar gCurv = fabs(fit.GLSGaussianCurvature());
+            Scalar gCurv = std::abs(fit.GLSGaussianCurvature());
             if(gCurv > gCurvMax)
                 gCurvMax = gCurv;
         } else {

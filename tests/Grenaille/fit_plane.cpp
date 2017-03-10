@@ -3,7 +3,7 @@
 
  This Source Code Form is subject to the terms of the Mozilla Public
  License, v. 2.0. If a copy of the MPL was not distributed with this
- file, You can obtain one at http://mozilla.org/MPL/2.0/. 
+ file, You can obtain one at http://mozilla.org/MPL/2.0/.
 */
 
 
@@ -76,12 +76,11 @@ void testFunction(bool _bUnoriented = false, bool _bAddPositionNoise = false, bo
         epsilon = testEpsilon<Scalar>();
         if ( _bAddPositionNoise) // relax a bit the testing threshold
           epsilon = Scalar(0.001*MAX_NOISE);
-        
+
         Fit fit;
         fit.setWeightFunc(WeightFunc(analysisScale));
         fit.init(vectorPoints[i].pos());
-
-        fit.compute(vectorPoints.begin(), vectorPoints.end());
+        fit.compute(vectorPoints.cbegin(), vectorPoints.cend());
 
         if( fit.isStable() ){
 
@@ -102,7 +101,7 @@ void testFunction(bool _bUnoriented = false, bool _bAddPositionNoise = false, bo
 
 //        if(fit.isStable())
 //        {
-//            Scalar fitRadiusKappa = Scalar(fabs(Scalar(1.) / fit.kappa()));
+//            Scalar fitRadiusKappa = Scalar(std::abs(Scalar(1.) / fit.kappa()));
 //            Scalar fitRadiusAlgebraic = fit.radius();
 //            VectorType fitCenter = fit.center();
 
@@ -115,7 +114,7 @@ void testFunction(bool _bUnoriented = false, bool _bAddPositionNoise = false, bo
 //            // Test reparametrization
 //            VERIFY( (fitRadiusKappa > radiusMin - radiusEpsilon) && (fitRadiusKappa < radiusMax + radiusEpsilon) );
 //            //Test coherance
-//            VERIFY( Eigen::internal::isMuchSmallerThan(std::fabs(fitRadiusAlgebraic - fitRadiusKappa), 1., epsilon) );
+//            VERIFY( Eigen::internal::isMuchSmallerThan(std::abs(fitRadiusAlgebraic - fitRadiusKappa), 1., epsilon) );
 
 //            //Test on eta
 //            if(!_bAddPositionNoise && !_bAddNormalNoise)

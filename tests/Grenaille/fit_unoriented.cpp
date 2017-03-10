@@ -1,7 +1,7 @@
 /*
  This Source Code Form is subject to the terms of the Mozilla Public
  License, v. 2.0. If a copy of the MPL was not distributed with this
- file, You can obtain one at http://mozilla.org/MPL/2.0/. 
+ file, You can obtain one at http://mozilla.org/MPL/2.0/.
 */
 
 
@@ -61,59 +61,37 @@ void testFunction(bool _bAddPositionNoise = false, bool _bAddNormalNoise = false
 
         fit.setWeightFunc(WeightFunc(analysisScale));
         fit.init(vectorPoints[i].pos());
+        fit.compute(vectorPoints.cbegin(), vectorPoints.cend());
 
         fitReverse100.setWeightFunc(WeightFunc(analysisScale));
         fitReverse100.init(vectorReversedNormals100[i].pos());
+        fitReverse100.compute(vectorPoints.cbegin(), vectorPoints.cend());
 
         fitReverseRandom.setWeightFunc(WeightFunc(analysisScale));
         fitReverseRandom.init(vectorReversedNormalsRandom[i].pos());
-
-        for(typename vector<DataPoint>::iterator it = vectorPoints.begin();
-            it != vectorPoints.end();
-            ++it)
-        {
-            fit.addNeighbor(*it);
-        }
-
-        for(typename vector<DataPoint>::iterator it = vectorReversedNormals100.begin();
-            it != vectorReversedNormals100.end();
-            ++it)
-        {
-            fitReverse100.addNeighbor(*it);
-        }
-
-        for(typename vector<DataPoint>::iterator it = vectorReversedNormalsRandom.begin();
-            it != vectorReversedNormalsRandom.end();
-            ++it)
-        {
-            fitReverseRandom.addNeighbor(*it);
-        }
-
-        fit.finalize();
-        fitReverse100.finalize();
-        fitReverseRandom.finalize();
+        fitReverseRandom.compute(vectorPoints.cbegin(), vectorPoints.cend());
 
         if(fit.isStable() && fitReverse100.isStable() && fitReverseRandom.isStable())
         {
-            Scalar kappa1 = fabs(fit.kappa());
-            Scalar kappa2 = fabs(fitReverse100.kappa());
-            Scalar kappa3 = fabs(fitReverseRandom.kappa());
+            Scalar kappa1 = std::abs(fit.kappa());
+            Scalar kappa2 = std::abs(fitReverse100.kappa());
+            Scalar kappa3 = std::abs(fitReverseRandom.kappa());
 
-            Scalar tau1 = fabs(fit.tau());
-            Scalar tau2 = fabs(fitReverse100.tau());
-            Scalar tau3 = fabs(fitReverseRandom.tau());
+            Scalar tau1 = std::abs(fit.tau());
+            Scalar tau2 = std::abs(fitReverse100.tau());
+            Scalar tau3 = std::abs(fitReverseRandom.tau());
 
             VectorType eta1 = fit.eta().normalized().array().abs();
             VectorType eta2 = fitReverse100.eta().normalized().array().abs();
             VectorType eta3 = fitReverseRandom.eta().normalized().array().abs();
 
             // Check kappa coherance
-            VERIFY( Eigen::internal::isMuchSmallerThan(std::fabs(kappa1 - kappa2), Scalar(1.), epsilon) );
-            VERIFY( Eigen::internal::isMuchSmallerThan(std::fabs(kappa1 - kappa3), Scalar(1.), epsilon) );
+            VERIFY( Eigen::internal::isMuchSmallerThan(std::abs(kappa1 - kappa2), Scalar(1.), epsilon) );
+            VERIFY( Eigen::internal::isMuchSmallerThan(std::abs(kappa1 - kappa3), Scalar(1.), epsilon) );
 
             // Check tau coherance
-            VERIFY( Eigen::internal::isMuchSmallerThan(std::fabs(tau1 - tau2), Scalar(1.), epsilon) );
-            VERIFY( Eigen::internal::isMuchSmallerThan(std::fabs(tau1 - tau3), Scalar(1.), epsilon) );
+            VERIFY( Eigen::internal::isMuchSmallerThan(std::abs(tau1 - tau2), Scalar(1.), epsilon) );
+            VERIFY( Eigen::internal::isMuchSmallerThan(std::abs(tau1 - tau3), Scalar(1.), epsilon) );
 
             // Check eta coherance
             VERIFY( Eigen::internal::isMuchSmallerThan((eta1 - eta2).norm(), Scalar(1.), epsilon) );
