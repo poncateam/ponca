@@ -84,7 +84,7 @@ void testFunction(bool _bUnoriented = false, bool _bAddPositionNoise = false, bo
 
     // Test for each point if the fitted sphere correspond to the theorical sphere
 #pragma omp parallel for
-    for(unsigned int i = 0; i < vectorPoints.size(); ++i)
+    for(int i = 0; i < int(vectorPoints.size()); ++i)
     {
         Fit fit;
         fit.setWeightFunc(WeightFunc(analysisScale));

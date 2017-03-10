@@ -47,7 +47,7 @@ void testFunction(bool _bAddPositionNoise = false, bool _bAddNormalNoise = false
 
     // Test for each point if the Derivatives of kappa are equal to 0
 #pragma omp parallel for
-    for(unsigned int i = 0; i < vectorPoints.size(); ++i)
+    for(int i = 0; i < int(vectorPoints.size()); ++i)
     {
         Fit fit;
         fit.setWeightFunc(WeightFunc(analysisScale));

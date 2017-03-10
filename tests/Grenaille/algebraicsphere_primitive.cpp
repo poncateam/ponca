@@ -80,7 +80,7 @@ void testFunction()
 
 
 #pragma omp parallel for
-    for(unsigned int k=0; k<vecs.size(); ++k)
+    for(int k=0; k<int(vecs.size()); ++k)
     {
         Fit fit;
         fit.setWeightFunc(WeightFunc(tmax));
