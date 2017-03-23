@@ -55,6 +55,11 @@
 				<tab type="user" visible="yes" url="@ref vitelotte_example_gen_mesh_page" title="MVG from SVG"/>
 			</tab>
 		</tab>
+		<tab type="usergroup" url="shelves_user_manual_page.html" title="Shelves">
+		  <tab type="usergroup" url="shelves_user_manual_page.html" title="User Manual">
+		    <tab type="user" visible="yes" url="shelves_user_manual_kdtree_page.html" title="KdTree"/>
+		  </tab>
+		</tab>
 	</tab>
     <tab type="pages" visible="no" title="" intro=""/>
     <tab type="modules" visible="no" title="" intro=""/>

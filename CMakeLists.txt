@@ -37,6 +37,7 @@ endif()
 add_subdirectory(Patate/Grenaille EXCLUDE_FROM_ALL)
 add_subdirectory(Patate/Vitelotte EXCLUDE_FROM_ALL)
 add_subdirectory(Patate/common)
+add_subdirectory(Patate/Shelves EXCLUDE_FROM_ALL)
 
 
 ################################################################################
