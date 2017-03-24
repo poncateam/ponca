@@ -52,7 +52,7 @@ void testFunction(bool _bAddPositionNoise = false, bool _bAddNormalNoise = false
         Fit fit;
         fit.setWeightFunc(WeightFunc(analysisScale));
         fit.init(vectorPoints[i].pos());
-        fit.compute(vectorPoints.cbegin(), vectorPoints.cend());
+        fit.compute(vectorPoints.begin(), vectorPoints.cend());
 
         if(fit.isStable())
         {
