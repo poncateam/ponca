@@ -50,7 +50,7 @@ void testFunction(bool _bUnoriented = false, bool _bAddPositionNoise = false, bo
 
     // Test for each point if the point moved from distance d correspond to tau
 #pragma omp parallel for
-    for(unsigned int i = 0; i < vectorPoints.size(); ++i)
+    for(int i = 0; i < int(vectorPoints.size()); ++i)
     {
         // Take a random distance to the plane, not too large to have few points in weightning analysis
         Scalar distanceToPlane = Eigen::internal::random<Scalar>(-range, range);
