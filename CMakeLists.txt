@@ -43,6 +43,17 @@ endif()
 #endif()
 
 ################################################################################
+# Generate install target                                                      #
+################################################################################
+if (NOT INCLUDE_INSTALL_DIR)
+    set(INCLUDE_INSTALL_DIR ${CMAKE_INSTALL_PREFIX}/include)
+endif (NOT INCLUDE_INSTALL_DIR)
+install(DIRECTORY Patate DESTINATION ${INCLUDE_INSTALL_DIR} FILES_MATCHING REGEX ".*\\.(hpp|h)$")
+message("Patate will be installed in ${INCLUDE_INSTALL_DIR}/Patate")
+
+
+
+################################################################################
 # Generate Vitelotte's shaders                                                 #
 # TODO: find a more appropriate place for this.                                #
 ################################################################################
