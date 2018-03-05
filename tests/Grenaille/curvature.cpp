@@ -51,7 +51,7 @@ void testFunction(bool _bAddPositionNoise = false, bool _bAddNormalNoise = false
     }
 
     // Test for each point if principal curvature values are null
-//#pragma omp parallel for
+#pragma omp parallel for
     for(int i = 0; i < int(vectorPoints.size()); ++i)
     {
         epsilon = testEpsilon<Scalar>();
