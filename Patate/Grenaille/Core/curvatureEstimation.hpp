@@ -38,6 +38,10 @@ template < class DataPoint, class _WFunctor, typename T>
 FIT_RESULT
 NormalCovarianceCurvature<DataPoint, _WFunctor, T>::finalize ()
 {
+    typedef typename VectorType::Index Index;
+
+    MULTIARCH_STD_MATH(abs);
+
     FIT_RESULT res = Base::finalize();
 
     if(this->isReady())
@@ -45,11 +49,38 @@ NormalCovarianceCurvature<DataPoint, _WFunctor, T>::finalize ()
         m_cov /= Base::m_nbNeighbors;
         m_solver.computeDirect(m_cov);
 
-        Base::m_k1 = m_solver.eigenvalues()(0);
-        Base::m_k2 = m_solver.eigenvalues()(2);
+        // find eigenvalue equal to one
+        Index i0 = Index(-1);
+        for(Index k=0; k<3; ++k)
+        {
+            if( Eigen::internal::isApprox( m_solver.eigenvalues()(k), Scalar(1)) )
+            {
+                i0 = k;
+                break;
+            }
+        }
 
-        Base::m_v1 = m_solver.eigenvectors().col(0);
-        Base::m_v2 = m_solver.eigenvectors().col(2);
+        if(i0 != Index(-1))
+        {
+            Index i1 = (i0+1)%3;
+            Index i2 = (i0+2)%3;
+            if(i1>i2)
+            {
+#ifdef __CUDACC__
+                Index tmp = i2;
+                i2 = i1;
+                i1 = tmp;
+#else
+                std::swap(i1, i2);
+#endif
+            }
+
+            Base::m_k1 = m_solver.eigenvalues()(i1);
+            Base::m_k2 = m_solver.eigenvalues()(i2);
+
+            Base::m_v1 = m_solver.eigenvectors().col(i1);
+            Base::m_v2 = m_solver.eigenvectors().col(i2);
+        }
     }
     return res;
 }
