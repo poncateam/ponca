@@ -50,8 +50,8 @@ void testFunction(bool _bAddPositionNoise = false, bool _bAddNormalNoise = false
                                                      _bAddNormalNoise);
     }
 
-    // Test for each point if TODO(thib)...
-#pragma omp parallel for
+    // Test for each point if principal curvature values are null
+//#pragma omp parallel for
     for(int i = 0; i < int(vectorPoints.size()); ++i)
     {
         epsilon = testEpsilon<Scalar>();
@@ -79,21 +79,6 @@ void testFunction(bool _bAddPositionNoise = false, bool _bAddNormalNoise = false
     }
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 template<typename Scalar, int Dim>
 void callSubTests()
 {
@@ -102,20 +87,30 @@ void callSubTests()
     typedef DistWeightFunc<Point, SmoothWeightKernel<Scalar> > WeightSmoothFunc;
     typedef DistWeightFunc<Point, ConstantWeightKernel<Scalar> > WeightConstantFunc;
 
-//    typedef Basket<Point, WeightSmoothFunc,   CompactPlane, CovariancePlaneFit, NormalCovarianceCurvature> FitSmoothNormalCovariance;
-//    typedef Basket<Point, WeightConstantFunc, CompactPlane, CovariancePlaneFit, NormalCovarianceCurvature> FitConstantNormalCovariance;
+    typedef Basket<Point, WeightSmoothFunc,   CompactPlane, CovariancePlaneFit, NormalCovarianceCurvature> FitSmoothNormalCovariance;
+    typedef Basket<Point, WeightConstantFunc, CompactPlane, CovariancePlaneFit, NormalCovarianceCurvature> FitConstantNormalCovariance;
     typedef Basket<Point, WeightSmoothFunc,   CompactPlane, CovariancePlaneFit, ProjectedNormalCovarianceCurvature> FitSmoothProjectedNormalCovariance;
     typedef Basket<Point, WeightConstantFunc, CompactPlane, CovariancePlaneFit, ProjectedNormalCovarianceCurvature> FitConstantProjectedNormalCovariance;
 
     cout << "Testing with perfect plane..." << endl;
     for(int i = 0; i < g_repeat; ++i)
     {
-//        CALL_SUBTEST(( testFunction<Point, FitSmoothNormalCovariance, WeightSmoothFunc>() ));
-//        CALL_SUBTEST(( testFunction<Point, FitConstantNormalCovariance, WeightConstantFunc>() ));
+        CALL_SUBTEST(( testFunction<Point, FitSmoothNormalCovariance, WeightSmoothFunc>() ));
+        CALL_SUBTEST(( testFunction<Point, FitConstantNormalCovariance, WeightConstantFunc>() ));
         CALL_SUBTEST(( testFunction<Point, FitSmoothProjectedNormalCovariance, WeightSmoothFunc>() ));
         CALL_SUBTEST(( testFunction<Point, FitConstantProjectedNormalCovariance, WeightConstantFunc>() ));
     }
     cout << "Ok..." << endl;
+
+//    cout << "Testing with noisy plane..." << endl;
+//    for(int i = 0; i < g_repeat; ++i)
+//    {
+//        CALL_SUBTEST(( testFunction<Point, FitSmoothNormalCovariance, WeightSmoothFunc>(true, true) ));
+//        CALL_SUBTEST(( testFunction<Point, FitConstantNormalCovariance, WeightConstantFunc>(true, true) ));
+//        CALL_SUBTEST(( testFunction<Point, FitSmoothProjectedNormalCovariance, WeightSmoothFunc>(true, true) ));
+//        CALL_SUBTEST(( testFunction<Point, FitConstantProjectedNormalCovariance, WeightConstantFunc>(true, true) ));
+//    }
+//    cout << "Ok..." << endl;
 }
 
 
