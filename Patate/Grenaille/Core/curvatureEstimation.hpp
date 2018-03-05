@@ -1,4 +1,4 @@
-
+﻿
 
 template < class DataPoint, class _WFunctor, typename T>
 void
@@ -31,25 +31,27 @@ NormalCovarianceCurvature<DataPoint, _WFunctor, T>::addNeighbor(const DataPoint&
     {
         m_cov += _nei.normal() * _nei.normal().transpose();
     }
+    return bResult;
 }
 
 template < class DataPoint, class _WFunctor, typename T>
 FIT_RESULT
 NormalCovarianceCurvature<DataPoint, _WFunctor, T>::finalize ()
 {
-    Base::finalize();
+    FIT_RESULT res = Base::finalize();
 
     if(this->isReady())
     {
         m_cov /= Base::m_nbNeighbors;
         m_solver.computeDirect(m_cov);
 
-        m_k1 = m_solver.eigenvalues()(1);
-        m_k2 = m_solver.eigenvalues()(2);
+        Base::m_k1 = m_solver.eigenvalues()(0);
+        Base::m_k2 = m_solver.eigenvalues()(2);
 
-        m_v1 = m_solver.eigenvectors().col(1);
-        m_v2 = m_solver.eigenvectors().col(2);
+        Base::m_v1 = m_solver.eigenvectors().col(0);
+        Base::m_v2 = m_solver.eigenvectors().col(2);
     }
+    return res;
 }
 
 
@@ -86,8 +88,8 @@ ProjectedNormalCovarianceCurvature<DataPoint, _WFunctor, T>::addNeighbor(const D
         // project normal on plane
         VectorType n = _nei.normal();
         Vector2 proj = m_tframe.transpose() * n;
-
         m_cov += proj * proj.transpose();
+
         return true;
     }
     return false;
@@ -119,7 +121,7 @@ ProjectedNormalCovarianceCurvature<DataPoint, _WFunctor, T>::finalize ()
             m_tframe.col(1)[i2] = -n[i2]*n[i0];
 
             // go to second pass
-            ++m_pass;
+            m_pass = SECOND_PASS;
             return NEED_OTHER_PASS;
         }
         else
@@ -132,12 +134,12 @@ ProjectedNormalCovarianceCurvature<DataPoint, _WFunctor, T>::finalize ()
         m_cov /= Base::m_nbNeighbors;
         m_solver.computeDirect(m_cov);
 
-        m_k1 = m_solver.eigenvalues()(1);
-        m_k2 = m_solver.eigenvalues()(2);
+        Base::m_k1 = m_solver.eigenvalues()(0);
+        Base::m_k2 = m_solver.eigenvalues()(1);
 
         // transform from local plane coordinates to world coordinates
-        m_v1 = m_tframe * m_solver.eigenvectors().col(1);
-        m_v2 = m_tframe * m_solver.eigenvectors().col(2);
+        Base::m_v1 = m_tframe * m_solver.eigenvectors().col(0);
+        Base::m_v2 = m_tframe * m_solver.eigenvectors().col(1);
 
         return STABLE;
     }

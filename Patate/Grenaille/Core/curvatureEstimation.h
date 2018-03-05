@@ -1,4 +1,4 @@
-
+﻿
 #ifndef _GRENAILLE_CURVATUREESTIMATION_
 #define _GRENAILLE_CURVATUREESTIMATION_
 
@@ -22,13 +22,20 @@ public:
     typedef typename Base::VectorType      VectorType;  /*!< \brief Inherited vector type*/
     typedef typename DataPoint::MatrixType MatrixType;  /*!< \brief Matrix type inherited from DataPoint*/
 
-private:
+protected:
     Scalar m_k1, m_k2;
     VectorType m_v1, m_v2;
 
 public:
     /*! \brief Default constructor */
     MULTIARCH inline BaseCurvatureEstimator() : m_k1(0), m_k2(0) {}
+
+public:
+    /**************************************************************************/
+    /* Initialization                                                         */
+    /**************************************************************************/
+    /*! \copydoc Concept::FittingProcedureConcept::init() */
+    MULTIARCH inline void init (const VectorType& _evalPos);
 
     /**************************************************************************/
     /* Use results                                                            */
@@ -142,7 +149,7 @@ protected:
         FIRST_PASS = 0,
         SECOND_PASS,
         PASS_COUNT
-    }
+    };
 
 public:
     typedef typename Base::Scalar          Scalar;      /*!< \brief Inherited scalar type*/
@@ -151,9 +158,10 @@ public:
     //TODO(thib) use of Eigen::RowAtCompileTime-1 ?
     typedef Eigen::Matrix<Scalar,2,2> Mat22;
     typedef Eigen::Matrix<Scalar,3,2> Mat32;
+    typedef Eigen::Matrix<Scalar,2,1> Vector2;
     typedef typename VectorType::Index Index;
     /*! \brief Solver used to analyse the covariance matrix*/
-    typedef Eigen::SelfAdjointEigenSolver<MatrixType> Solver;
+    typedef Eigen::SelfAdjointEigenSolver<Mat22> Solver;
 
 protected:
     Mat22 m_cov;        /*!< \brief Covariance matrix */
