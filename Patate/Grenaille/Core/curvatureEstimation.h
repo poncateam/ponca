@@ -74,7 +74,7 @@ public:
  * of normal vectors of neighbors.
  *
  * A 3D covariance matrix is computed from the normals of the neighbors and the
- * two principal curvature values and directions are given by the two largest
+ * two principal curvature values and directions are given by the two extreme
  * eigenvalues and associated eigenvectors of the covariance matrix
  * \cite Liang:1990:RRSS.
  *
@@ -86,6 +86,9 @@ class NormalCovarianceCurvature : public BaseCurvatureEstimator<DataPoint,_WFunc
 private:
     typedef BaseCurvatureEstimator<DataPoint,_WFunctor,T> Base;
 
+    //TODO(thib) check the curvature values that might be wrong
+    //TODO(thib) use weighting function
+
 public:
     typedef typename Base::Scalar          Scalar;      /*!< \brief Inherited scalar type*/
     typedef typename Base::VectorType      VectorType;  /*!< \brief Inherited vector type*/
@@ -95,6 +98,7 @@ public:
 
 protected:
     MatrixType m_cov;   /*!< \brief Covariance matrix */
+    VectorType m_cog;   /*!< \brief Gravity center */
     Solver m_solver;    /*!< \brief Solver used to analyse the covariance matrix */
 
 public:
@@ -138,6 +142,9 @@ class ProjectedNormalCovarianceCurvature : public BaseCurvatureEstimator<DataPoi
 private:
     typedef BaseCurvatureEstimator<DataPoint,_WFunctor,T> Base;
 
+    //TODO(thib) check the curvature values that might be wrong
+    //TODO(thib) use weighting function
+
 protected:
     enum
     {
@@ -164,6 +171,7 @@ public:
     typedef Eigen::SelfAdjointEigenSolver<Mat22> Solver;
 
 protected:
+    Vector2 m_cog;      /*!< \brief Gravity center */
     Mat22 m_cov;        /*!< \brief Covariance matrix */
     Solver m_solver;    /*!< \brief Solver used to analyse the covariance matrix */
     PASS m_pass;        /*!< \brief Current pass */

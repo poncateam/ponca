@@ -19,6 +19,7 @@ NormalCovarianceCurvature<DataPoint, _WFunctor, T>::init(const VectorType& _eval
     Base::init(_evalPos);
 
     m_cov = MatrixType::Zero();
+    m_cog = VectorType::Zero();
 }
 
 template < class DataPoint, class _WFunctor, typename T>
@@ -30,6 +31,7 @@ NormalCovarianceCurvature<DataPoint, _WFunctor, T>::addNeighbor(const DataPoint&
     if(bResult)
     {
         m_cov += _nei.normal() * _nei.normal().transpose();
+        m_cog += _nei.normal();
     }
     return bResult;
 }
@@ -46,40 +48,41 @@ NormalCovarianceCurvature<DataPoint, _WFunctor, T>::finalize ()
 
     if(this->isReady())
     {
+        // center of gravity (mean)
+        m_cog /= Base::m_nbNeighbors;
+
+        // covariance matrix
         m_cov /= Base::m_nbNeighbors;
+        m_cov -= m_cog*m_cog.transpose();
+
         m_solver.computeDirect(m_cov);
 
-        // find eigenvalue equal to one
-        Index i0 = Index(-1);
-        for(Index k=0; k<3; ++k)
+        Base::m_k1 = m_solver.eigenvalues()(0);
+        Base::m_k2 = m_solver.eigenvalues()(2);
+
+        Base::m_v1 = m_solver.eigenvectors().col(0);
+        Base::m_v2 = m_solver.eigenvectors().col(2);
+
+        //TODO(thib) which epsilon value should be chosen ?
+//        Scalar epsilon = Eigen::NumTraits<Scalar>::dummy_precision();
+        Scalar epsilon = Scalar(1e-3);
+        if(Base::m_k1<epsilon && Base::m_k2<epsilon)
         {
-            if( Eigen::internal::isApprox( m_solver.eigenvalues()(k), Scalar(1)) )
-            {
-                i0 = k;
-                break;
-            }
-        }
+            Base::m_k1 = Scalar(0);
+            Base::m_k2 = Scalar(0);
 
-        if(i0 != Index(-1))
-        {
-            Index i1 = (i0+1)%3;
-            Index i2 = (i0+2)%3;
-            if(i1>i2)
-            {
-#ifdef __CUDACC__
-                Index tmp = i2;
-                i2 = i1;
-                i1 = tmp;
-#else
-                std::swap(i1, i2);
-#endif
-            }
-
-            Base::m_k1 = m_solver.eigenvalues()(i1);
-            Base::m_k2 = m_solver.eigenvalues()(i2);
-
-            Base::m_v1 = m_solver.eigenvectors().col(i1);
-            Base::m_v2 = m_solver.eigenvectors().col(i2);
+            // set principal directions from normals center of gravity
+            VectorType n = m_cog.normalized();
+            Index i0 = -1, i1 = -1, i2 = -1;
+            n.rowwise().squaredNorm().minCoeff(&i0);
+            i1 = (i0+1)%3;
+            i2 = (i0+2)%3;
+            Base::m_v1[i0] = 0;
+            Base::m_v1[i1] = n[i2];
+            Base::m_v1[i2] = -n[i1];
+            Base::m_v2[i0] = n[i1]*n[i1] + n[i2]*n[i2];
+            Base::m_v2[i1] = -n[i1]*n[i0];
+            Base::m_v2[i2] = -n[i2]*n[i0];
         }
     }
     return res;
@@ -95,6 +98,7 @@ ProjectedNormalCovarianceCurvature<DataPoint, _WFunctor, T>::init(const VectorTy
 {
     Base::init(_evalPos);
 
+    m_cog = Vector2::Zero();
     m_cov = Mat22::Zero();
     m_pass = FIRST_PASS;
     m_tframe = Mat32::Zero();
@@ -110,18 +114,17 @@ ProjectedNormalCovarianceCurvature<DataPoint, _WFunctor, T>::addNeighbor(const D
     }
     else if(m_pass == SECOND_PASS)
     {
-        //TODO(thib) should I call Base::addNeighbor(_nei)?
-        /// In the second pass the plane is already computed, but we need to
-        /// check if this point is actually a neighbor. Don't we?
-        /// Is it the responsabilty of the caller to give only neighbor point?
-        /// If I call addNeighbor(), does it change something?
+        VectorType q = _nei.pos() - Base::m_evalPos;
+        if(Base::m_w.w(q, _nei)>0)
+        {
+            // project normal on plane
+            VectorType n = _nei.normal();
+            Vector2 proj = m_tframe.transpose() * n;
 
-        // project normal on plane
-        VectorType n = _nei.normal();
-        Vector2 proj = m_tframe.transpose() * n;
-        m_cov += proj * proj.transpose();
-
-        return true;
+            m_cov += proj * proj.transpose();
+            m_cog += proj;
+            return true;
+        }
     }
     return false;
 }
@@ -162,7 +165,13 @@ ProjectedNormalCovarianceCurvature<DataPoint, _WFunctor, T>::finalize ()
     }
     else if(m_pass == SECOND_PASS)
     {
+        // center of gravity (mean)
+        m_cog /= Base::m_nbNeighbors;
+
+        // covariance matrix
         m_cov /= Base::m_nbNeighbors;
+        m_cov -= m_cog*m_cog.transpose();
+
         m_solver.computeDirect(m_cov);
 
         Base::m_k1 = m_solver.eigenvalues()(0);
@@ -171,6 +180,19 @@ ProjectedNormalCovarianceCurvature<DataPoint, _WFunctor, T>::finalize ()
         // transform from local plane coordinates to world coordinates
         Base::m_v1 = m_tframe * m_solver.eigenvectors().col(0);
         Base::m_v2 = m_tframe * m_solver.eigenvectors().col(1);
+
+        //TODO(thib) which epsilon value should be chosen ?
+//        Scalar epsilon = Eigen::NumTraits<Scalar>::dummy_precision();
+        Scalar epsilon = Scalar(1e-3);
+        if(Base::m_k1<epsilon && Base::m_k2<epsilon)
+        {
+            Base::m_k1 = Scalar(0);
+            Base::m_k2 = Scalar(0);
+
+            // set principal directions from fitted plane
+            Base::m_v2 = m_tframe.col(0);
+            Base::m_v1 = m_tframe.col(1);
+        }
 
         return STABLE;
     }
