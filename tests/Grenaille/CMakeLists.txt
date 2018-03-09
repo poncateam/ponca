@@ -15,5 +15,6 @@ add_multi_test(gls_compare.cpp)
 add_multi_test(plane_primitive.cpp)
 add_multi_test(fit_plane.cpp)
 add_multi_test(basket.cpp)
-add_multi_test(curvature.cpp)
+add_multi_test(curvature_plane.cpp)
+add_multi_test(curvature_sphere.cpp)
 
