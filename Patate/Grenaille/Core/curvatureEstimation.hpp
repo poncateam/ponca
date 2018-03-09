@@ -57,10 +57,10 @@ NormalCovarianceCurvature<DataPoint, _WFunctor, T>::finalize ()
 
         m_solver.computeDirect(m_cov);
 
-        Base::m_k1 = m_solver.eigenvalues()(0);
+        Base::m_k1 = m_solver.eigenvalues()(1);
         Base::m_k2 = m_solver.eigenvalues()(2);
 
-        Base::m_v1 = m_solver.eigenvectors().col(0);
+        Base::m_v1 = m_solver.eigenvectors().col(1);
         Base::m_v2 = m_solver.eigenvectors().col(2);
 
         //TODO(thib) which epsilon value should be chosen ?

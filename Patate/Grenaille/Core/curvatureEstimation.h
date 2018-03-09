@@ -88,6 +88,7 @@ private:
 
     //TODO(thib) check the curvature values that might be wrong
     //TODO(thib) use weighting function
+    //TODO(thib) which eigenvectors should be selected ? extreme of maximal ?
 
 public:
     typedef typename Base::Scalar          Scalar;      /*!< \brief Inherited scalar type*/
