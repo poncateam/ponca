@@ -1,5 +1,4 @@
 ﻿
-
 template < class DataPoint, class _WFunctor, typename T>
 void
 BaseCurvatureEstimator<DataPoint, _WFunctor, T>::init(const VectorType& _evalPos)
@@ -87,10 +86,6 @@ NormalCovarianceCurvature<DataPoint, _WFunctor, T>::finalize ()
     }
     return res;
 }
-
-
-
-
 
 template < class DataPoint, class _WFunctor, typename T>
 void

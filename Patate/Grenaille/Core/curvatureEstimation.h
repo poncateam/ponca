@@ -196,10 +196,6 @@ public:
 
 };
 
-
-
-
-
 #include "curvatureEstimation.hpp"
 
 } //namespace Grenaille
