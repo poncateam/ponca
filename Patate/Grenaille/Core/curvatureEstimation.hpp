@@ -1,22 +1,11 @@
 ﻿
 template < class DataPoint, class _WFunctor, typename T>
 void
-BaseCurvatureEstimator<DataPoint, _WFunctor, T>::init(const VectorType& _evalPos)
-{
-    Base::init(_evalPos);
-
-    m_k1 = 0;
-    m_k2 = 0;
-    m_v1 = VectorType::Zero();
-    m_v2 = VectorType::Zero();
-}
-
-template < class DataPoint, class _WFunctor, typename T>
-void
 NormalCovarianceCurvature<DataPoint, _WFunctor, T>::init(const VectorType& _evalPos)
 {
     Base::init(_evalPos);
 
+    reset();
     m_cov = MatrixType::Zero();
     m_cog = VectorType::Zero();
 }
@@ -56,19 +45,19 @@ NormalCovarianceCurvature<DataPoint, _WFunctor, T>::finalize ()
 
         m_solver.computeDirect(m_cov);
 
-        Base::m_k1 = m_solver.eigenvalues()(1);
-        Base::m_k2 = m_solver.eigenvalues()(2);
+        m_k1 = m_solver.eigenvalues()(1);
+        m_k2 = m_solver.eigenvalues()(2);
 
-        Base::m_v1 = m_solver.eigenvectors().col(1);
-        Base::m_v2 = m_solver.eigenvectors().col(2);
+        m_v1 = m_solver.eigenvectors().col(1);
+        m_v2 = m_solver.eigenvectors().col(2);
 
         //TODO(thib) which epsilon value should be chosen ?
 //        Scalar epsilon = Eigen::NumTraits<Scalar>::dummy_precision();
         Scalar epsilon = Scalar(1e-3);
-        if(Base::m_k1<epsilon && Base::m_k2<epsilon)
+        if(m_k1<epsilon && m_k2<epsilon)
         {
-            Base::m_k1 = Scalar(0);
-            Base::m_k2 = Scalar(0);
+            m_k1 = Scalar(0);
+            m_k2 = Scalar(0);
 
             // set principal directions from normals center of gravity
             VectorType n = m_cog.normalized();
@@ -76,12 +65,12 @@ NormalCovarianceCurvature<DataPoint, _WFunctor, T>::finalize ()
             n.rowwise().squaredNorm().minCoeff(&i0);
             i1 = (i0+1)%3;
             i2 = (i0+2)%3;
-            Base::m_v1[i0] = 0;
-            Base::m_v1[i1] = n[i2];
-            Base::m_v1[i2] = -n[i1];
-            Base::m_v2[i0] = n[i1]*n[i1] + n[i2]*n[i2];
-            Base::m_v2[i1] = -n[i1]*n[i0];
-            Base::m_v2[i2] = -n[i2]*n[i0];
+            m_v1[i0] = 0;
+            m_v1[i1] = n[i2];
+            m_v1[i2] = -n[i1];
+            m_v2[i0] = n[i1]*n[i1] + n[i2]*n[i2];
+            m_v2[i1] = -n[i1]*n[i0];
+            m_v2[i2] = -n[i2]*n[i0];
         }
     }
     return res;
@@ -93,6 +82,7 @@ ProjectedNormalCovarianceCurvature<DataPoint, _WFunctor, T>::init(const VectorTy
 {
     Base::init(_evalPos);
 
+    reset();
     m_cog = Vector2::Zero();
     m_cov = Mat22::Zero();
     m_pass = FIRST_PASS;
@@ -169,24 +159,24 @@ ProjectedNormalCovarianceCurvature<DataPoint, _WFunctor, T>::finalize ()
 
         m_solver.computeDirect(m_cov);
 
-        Base::m_k1 = m_solver.eigenvalues()(0);
-        Base::m_k2 = m_solver.eigenvalues()(1);
+        m_k1 = m_solver.eigenvalues()(0);
+        m_k2 = m_solver.eigenvalues()(1);
 
         // transform from local plane coordinates to world coordinates
-        Base::m_v1 = m_tframe * m_solver.eigenvectors().col(0);
-        Base::m_v2 = m_tframe * m_solver.eigenvectors().col(1);
+        m_v1 = m_tframe * m_solver.eigenvectors().col(0);
+        m_v2 = m_tframe * m_solver.eigenvectors().col(1);
 
         //TODO(thib) which epsilon value should be chosen ?
 //        Scalar epsilon = Eigen::NumTraits<Scalar>::dummy_precision();
         Scalar epsilon = Scalar(1e-3);
-        if(Base::m_k1<epsilon && Base::m_k2<epsilon)
+        if(m_k1<epsilon && m_k2<epsilon)
         {
-            Base::m_k1 = Scalar(0);
-            Base::m_k2 = Scalar(0);
+            m_k1 = Scalar(0);
+            m_k2 = Scalar(0);
 
             // set principal directions from fitted plane
-            Base::m_v2 = m_tframe.col(0);
-            Base::m_v1 = m_tframe.col(1);
+            m_v2 = m_tframe.col(0);
+            m_v1 = m_tframe.col(1);
         }
 
         return STABLE;

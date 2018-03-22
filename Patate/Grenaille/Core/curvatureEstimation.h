@@ -5,69 +5,54 @@
 namespace Grenaille
 {
 
-template < class DataPoint, class _WFunctor, typename T>
-class BaseCurvatureEstimator : public T
-{
-private:
-    typedef T Base;
-
-protected:
-    enum
-    {
-        PROVIDES_PRINCIPALE_CURVATURES
-    };
-
-public:
-    typedef typename Base::Scalar          Scalar;      /*!< \brief Inherited scalar type*/
-    typedef typename Base::VectorType      VectorType;  /*!< \brief Inherited vector type*/
-    typedef typename DataPoint::MatrixType MatrixType;  /*!< \brief Matrix type inherited from DataPoint*/
-
-protected:
-    Scalar m_k1, m_k2;
-    VectorType m_v1, m_v2;
-
-public:
-    /*! \brief Default constructor */
-    MULTIARCH inline BaseCurvatureEstimator() : m_k1(0), m_k2(0) {}
-
-public:
-    /**************************************************************************/
-    /* Initialization                                                         */
-    /**************************************************************************/
-    /*! \copydoc Concept::FittingProcedureConcept::init() */
-    MULTIARCH inline void init (const VectorType& _evalPos);
-
-    /**************************************************************************/
-    /* Use results                                                            */
-    /**************************************************************************/
-    //! \brief Returns an estimate of the first principal curvature value
-    //!
-    //! It is the greatest curvature in <b>absolute value</b>.
-    MULTIARCH inline Scalar k1() const { return m_k1; }
-
-    //! \brief Returns an estimate of the second principal curvature value
-    //!
-    //! It is the smallest curvature in <b>absolute value</b>.
-    MULTIARCH inline Scalar k2() const { return m_k2; }
-
-    //! \brief Returns an estimate of the first principal curvature direction
-    //!
-    //! It is the greatest curvature in <b>absolute value</b>.
-    MULTIARCH inline VectorType k1Direction() const { return m_v1; }
-
-    //! \brief Returns an estimate of the second principal curvature direction
-    //!
-    //! It is the smallest curvature in <b>absolute value</b>.
-    MULTIARCH inline VectorType k2Direction() const { return m_v2; }
-
-    //! \brief Returns an estimate of the mean curvature
-    MULTIARCH inline Scalar kMean() const { return (m_k1 + m_k2)/2.;}
-
-    //! \brief Returns an estimate of the Gaussian curvature
-    MULTIARCH inline Scalar GaussianCurvature() const { return m_k1 * m_k2;}
-};
-
-
+#define CURVATURE_EXTENSION                                                     \
+protected:                                                                      \
+    enum                                                                        \
+    {                                                                           \
+        PROVIDES_PRINCIPALE_CURVATURES                                          \
+    };                                                                          \
+                                                                                \
+protected:                                                                      \
+    Scalar m_k1, m_k2;                                                          \
+    VectorType m_v1, m_v2;                                                      \
+                                                                                \
+public:                                                                         \
+    /**************************************************************************/\
+    /* Use results                                                            */\
+    /**************************************************************************/\
+    /*! \brief Returns an estimate of the first principal curvature value     */\
+    /*!                                                                       */\
+    /*! It is the greatest curvature in <b>absolute value</b>.                */\
+    MULTIARCH inline Scalar k1() const { return m_k1; }                         \
+                                                                                \
+    /*! \brief Returns an estimate of the second principal curvature value    */\
+    /*!                                                                       */\
+    /*! It is the smallest curvature in <b>absolute value</b>.                */\
+    MULTIARCH inline Scalar k2() const { return m_k2; }                         \
+                                                                                \
+    /*! \brief Returns an estimate of the first principal curvature direction */\
+    /*!                                                                       */\
+    /*! It is the greatest curvature in <b>absolute value</b>.                */\
+    MULTIARCH inline VectorType k1Direction() const { return m_v1; }            \
+                                                                                \
+    /*! \brief Returns an estimate of the second principal curvature direction*/\
+    /*!                                                                       */\
+    /*! It is the smallest curvature in <b>absolute value</b>.                */\
+    MULTIARCH inline VectorType k2Direction() const { return m_v2; }            \
+                                                                                \
+    /*! \brief Returns an estimate of the mean curvature                      */\
+    MULTIARCH inline Scalar kMean() const { return (m_k1 + m_k2)/2.;}           \
+                                                                                \
+    /*! \brief Returns an estimate of the Gaussian curvature                  */\
+    MULTIARCH inline Scalar GaussianCurvature() const { return m_k1 * m_k2;}    \
+private:                                                                        \
+    /*TODO(thib) is it the right way?*/                                         \
+    MULTIARCH inline void reset() {                                             \
+        m_k1 = Scalar(0);                                                       \
+        m_k2 = Scalar(0);                                                       \
+        m_v1 = VectorType::Zero();                                              \
+        m_v2 = VectorType::Zero();                                              \
+    }
 
 /*!
  * \brief Extension to compute curvature values based on a covariance analysis
@@ -81,10 +66,10 @@ public:
  * \warning This class is valid only in 3D.
  */
 template < class DataPoint, class _WFunctor, typename T>
-class NormalCovarianceCurvature : public BaseCurvatureEstimator<DataPoint,_WFunctor,T>
+class NormalCovarianceCurvature : public T
 {
 private:
-    typedef BaseCurvatureEstimator<DataPoint,_WFunctor,T> Base;
+    typedef T Base;
 
     //TODO(thib) check the curvature values that might be wrong
     //TODO(thib) use weighting function
@@ -96,6 +81,8 @@ public:
     typedef typename DataPoint::MatrixType MatrixType;  /*!< \brief Matrix type inherited from DataPoint*/
     /*! \brief Solver used to analyse the covariance matrix*/
     typedef Eigen::SelfAdjointEigenSolver<MatrixType> Solver;
+
+    CURVATURE_EXTENSION
 
 protected:
     MatrixType m_cov;   /*!< \brief Covariance matrix */
@@ -138,10 +125,10 @@ public:
  * \warning This class is valid only in 3D.
  */
 template < class DataPoint, class _WFunctor, typename T>
-class ProjectedNormalCovarianceCurvature : public BaseCurvatureEstimator<DataPoint,_WFunctor,T>
+class ProjectedNormalCovarianceCurvature : public T
 {
 private:
-    typedef BaseCurvatureEstimator<DataPoint,_WFunctor,T> Base;
+    typedef T Base;
 
     //TODO(thib) check the curvature values that might be wrong
     //TODO(thib) use weighting function
@@ -170,6 +157,8 @@ public:
     typedef typename VectorType::Index Index;
     /*! \brief Solver used to analyse the covariance matrix*/
     typedef Eigen::SelfAdjointEigenSolver<Mat22> Solver;
+
+    CURVATURE_EXTENSION
 
 protected:
     Vector2 m_cog;      /*!< \brief Gravity center */
