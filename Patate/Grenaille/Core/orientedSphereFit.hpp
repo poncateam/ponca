@@ -1,12 +1,12 @@
 /*
  This Source Code Form is subject to the terms of the Mozilla Public
  License, v. 2.0. If a copy of the MPL was not distributed with this
- file, You can obtain one at http://mozilla.org/MPL/2.0/. 
+ file, You can obtain one at http://mozilla.org/MPL/2.0/.
 */
 
 
 template < class DataPoint, class _WFunctor, typename T>
-void 
+void
 OrientedSphereFit<DataPoint, _WFunctor, T>::init(const VectorType& _evalPos)
 {
     // Setup primitive
@@ -22,17 +22,17 @@ OrientedSphereFit<DataPoint, _WFunctor, T>::init(const VectorType& _evalPos)
 }
 
 template < class DataPoint, class _WFunctor, typename T>
-bool 
+bool
 OrientedSphereFit<DataPoint, _WFunctor, T>::addNeighbor(const DataPoint& _nei)
 {
     // centered basis
     VectorType q = _nei.pos() - Base::basisCenter();
 
     // compute weight
-    Scalar w = m_w.w(q, _nei);  
+    Scalar w = m_w.w(q, _nei);
 
     if (w > Scalar(0.))
-    {    
+    {
         // increment matrix
         m_sumP     += q * w;
         m_sumN     += _nei.normal() * w;
@@ -114,7 +114,7 @@ namespace internal
 {
 
 template < class DataPoint, class _WFunctor, typename T, int Type>
-void 
+void
 OrientedSphereDer<DataPoint, _WFunctor, T, Type>::init(const VectorType& _evalPos)
 {
     Base::init(_evalPos);
@@ -133,7 +133,7 @@ OrientedSphereDer<DataPoint, _WFunctor, T, Type>::init(const VectorType& _evalPo
 
 
 template < class DataPoint, class _WFunctor, typename T, int Type>
-bool 
+bool
 OrientedSphereDer<DataPoint, _WFunctor, T, Type>::addNeighbor(const DataPoint  &_nei)
 {
     bool bResult = Base::addNeighbor(_nei);
@@ -144,7 +144,7 @@ OrientedSphereDer<DataPoint, _WFunctor, T, Type>::addNeighbor(const DataPoint  &
 
         // centered basis
         VectorType q = _nei.pos() - Base::basisCenter();
-        
+
         // compute weight derivatives
         if (Type & FitScaleDer)
             dw[0] = Base::m_w.scaledw(q, _nei);
@@ -167,7 +167,7 @@ OrientedSphereDer<DataPoint, _WFunctor, T, Type>::addNeighbor(const DataPoint  &
 
 
 template < class DataPoint, class _WFunctor, typename T, int Type>
-FIT_RESULT 
+FIT_RESULT
 OrientedSphereDer<DataPoint, _WFunctor, T, Type>::finalize()
 {
     MULTIARCH_STD_MATH(sqrt);
@@ -180,15 +180,15 @@ OrientedSphereDer<DataPoint, _WFunctor, T, Type>::finalize()
 
         Scalar nume  = Base::m_sumDotPN - invSumW*Base::m_sumP.dot(Base::m_sumN);
         Scalar deno  = Base::m_sumDotPP - invSumW*Base::m_sumP.dot(Base::m_sumP);
-        
+
         // FIXME, the following product "Base::m_sumN.transpose() * m_dSumP" is prone to numerical cancellation
         // issues for spacial derivatives because, (d sum w_i P_i)/(d x) is supposed to be tangent to the surface whereas
         // "sum w_i N_i" is normal to the surface...
-        ScalarArray dNume = m_dSumDotPN 
+        ScalarArray dNume = m_dSumDotPN
             - invSumW*invSumW * ( Base::m_sumW * ( Base::m_sumN.transpose() * m_dSumP + Base::m_sumP.transpose() * m_dSumN )
             - m_dSumW*Base::m_sumP.dot(Base::m_sumN) );
 
-        ScalarArray dDeno = m_dSumDotPP 
+        ScalarArray dDeno = m_dSumDotPP
             - invSumW*invSumW*(   Scalar(2.) * Base::m_sumW * Base::m_sumP.transpose() * m_dSumP
             - m_dSumW*Base::m_sumP.dot(Base::m_sumP) );
 
@@ -198,8 +198,8 @@ OrientedSphereDer<DataPoint, _WFunctor, T, Type>::finalize()
         // If using two passes, one could directly compute sum( dw_i + (n_i - ul) ) to avoid this issue.
         m_dUl =  invSumW * ( m_dSumN - Base::m_ul*m_dSumW - Scalar(2.)*(m_dSumP*Base::m_uq + Base::m_sumP*m_dUq) );
         m_dUc = -invSumW*( Base::m_sumP.transpose() * m_dUl
-            + Base::m_sumDotPP * m_dUq 
-            + Base::m_ul.transpose() * m_dSumP 
+            + Base::m_sumDotPP * m_dUq
+            + Base::m_ul.transpose() * m_dSumP
             + Base::m_uq * m_dSumDotPP
             + m_dSumW * Base::m_uc);
     }

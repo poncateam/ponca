@@ -1,15 +1,15 @@
 /*
  Copyright (C) 2014 Nicolas Mellado <nmellado0@gmail.com>
  Copyright (C) 2015 Gael Guennebaud <gael.guennebaud@inria.fr>
- 
+
  This Source Code Form is subject to the terms of the Mozilla Public
  License, v. 2.0. If a copy of the MPL was not distributed with this
- file, You can obtain one at http://mozilla.org/MPL/2.0/. 
+ file, You can obtain one at http://mozilla.org/MPL/2.0/.
 */
 
 
 template < class DataPoint, class _WFunctor, typename T>
-void 
+void
 CovariancePlaneFit<DataPoint, _WFunctor, T>::init(const VectorType& _evalPos)
 {
     // Setup primitive
@@ -24,7 +24,7 @@ CovariancePlaneFit<DataPoint, _WFunctor, T>::init(const VectorType& _evalPos)
 }
 
 template < class DataPoint, class _WFunctor, typename T>
-bool 
+bool
 CovariancePlaneFit<DataPoint, _WFunctor, T>::addNeighbor(const DataPoint& _nei)
 {
     VectorType q = _nei.pos() - m_evalPos;
@@ -36,7 +36,7 @@ CovariancePlaneFit<DataPoint, _WFunctor, T>::addNeighbor(const DataPoint& _nei)
       m_cog  += w * q;
       m_sumW += w;
       m_cov  += w * q * q.transpose();
-        
+
       ++(Base::m_nbNeighbors);
       return true;
     }
@@ -68,13 +68,13 @@ CovariancePlaneFit<DataPoint, _WFunctor, T>::finalize ()
 
     // Finalize the centroid
     m_cog = m_cog/m_sumW + m_evalPos;
-            
+
 #ifdef __CUDACC__
     m_solver.computeDirect(m_cov);
 #else
     m_solver.compute(m_cov);
 #endif
-        
+
     Base::setPlane(m_solver.eigenvectors().col(0), m_cog);
 
     // \todo Use the output of the solver to check stability
@@ -98,7 +98,7 @@ namespace internal
 {
 
 template < class DataPoint, class _WFunctor, typename T, int Type>
-void 
+void
 CovariancePlaneDer<DataPoint, _WFunctor, T, Type>::init(const VectorType& _evalPos)
 {
     Base::init(_evalPos);
@@ -111,7 +111,7 @@ CovariancePlaneDer<DataPoint, _WFunctor, T, Type>::init(const VectorType& _evalP
 
 
 template < class DataPoint, class _WFunctor, typename T, int Type>
-bool 
+bool
 CovariancePlaneDer<DataPoint, _WFunctor, T, Type>::addNeighbor(const DataPoint  &_nei)
 {
     bool bResult = Base::addNeighbor(_nei);
@@ -145,7 +145,7 @@ CovariancePlaneDer<DataPoint, _WFunctor, T, Type>::addNeighbor(const DataPoint  
 
 
 template < class DataPoint, class _WFunctor, typename T, int Type>
-FIT_RESULT 
+FIT_RESULT
 CovariancePlaneDer<DataPoint, _WFunctor, T, Type>::finalize()
 {
     MULTIARCH_STD_MATH(sqrt);
@@ -160,7 +160,7 @@ CovariancePlaneDer<DataPoint, _WFunctor, T, Type>::finalize()
       Eigen::Matrix<Scalar,2,1> shifted_eivals = Base::m_solver.eigenvalues().template tail<2>().array() - Base::m_solver.eigenvalues()(0);
       if(shifted_eivals(0) < consider_as_zero || shifted_eivals(0) < epsilon * shifted_eivals(1)) shifted_eivals(0) = 0;
       if(shifted_eivals(1) < consider_as_zero) shifted_eivals(1) = 0;
-      
+
       for(int k=0; k<NbDerivatives; ++k)
       {
         // Finalize the computation of dCov.
@@ -172,10 +172,10 @@ CovariancePlaneDer<DataPoint, _WFunctor, T, Type>::finalize()
                   - shifted_cog * m_dCog.col(k).transpose()
                   - m_dCog.col(k) * shifted_cog.transpose()
                   + m_dSumW[k] * shifted_cog * shifted_cog.transpose();
-                  
+
         // cancel centered basis of dCog:
         m_dCog.col(k) += m_dSumW[k] * Base::m_evalPos;
-        
+
         // apply normalization by sumW:
         m_dCog.col(k) = (m_dCog.col(k) - m_dSumW(k) * Base::m_cog) / Base::m_sumW;
 
@@ -192,7 +192,7 @@ CovariancePlaneDer<DataPoint, _WFunctor, T, Type>::finalize()
         if(shifted_eivals(0)>0) z(0) /= shifted_eivals(0);
         if(shifted_eivals(1)>0) z(1) /= shifted_eivals(1);
         m_dNormal.col(k) = Base::m_solver.eigenvectors().template rightCols<2>() * z;
-        
+
         VectorType dDiff = -m_dCog.col(k);
         if(k>0 || !isScaleDer())
           dDiff(isScaleDer() ? k-1 : k) += 1;
