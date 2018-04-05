@@ -227,7 +227,7 @@ typename OrientedSphereDer <DataPoint, _WFunctor, T, Type>::ScalarArray
 OrientedSphereDer<DataPoint, _WFunctor, T, Type>::dPotential() const
 {
   ScalarArray dfield = m_dUc;
-  if(this->isScaleDer())
+  if(this->isSpaceDer())
     dfield.template tail<DataPoint::Dim>() += Base::m_ul;
   return dfield;
 }
