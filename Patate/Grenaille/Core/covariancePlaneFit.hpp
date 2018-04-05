@@ -61,6 +61,11 @@ CovariancePlaneFit<DataPoint, _WFunctor, T>::finalize ()
 
     // Center the covariance on the centroid:
     m_cov -= m_cog * m_cog.transpose() / m_sumW;
+
+    // \note The covariance matrix should be here normalized by m_sumW.
+    // As it does not affect the eigen decomposition, we skip this normalization
+    // to save computation.
+
     // Finalize the centroid
     m_cog = m_cog/m_sumW + m_evalPos;
             
