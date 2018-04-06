@@ -5,14 +5,8 @@
 #ifndef _GRENAILLE_MLS_SPHERE_FIT_DER_
 #define _GRENAILLE_MLS_SPHERE_FIT_DER_
 
-
-
 namespace Grenaille
 {
-
-//TODO(thib) get Type from *SphereDer class
-//TODO(thib) or should it be put it in internal:: namespace ?
-//           and create other public class as OrientedSphereDer does
 
 template < class DataPoint, class _WFunctor, typename T>
 class MlsSphereFitDer : public T
@@ -27,6 +21,19 @@ protected:
         PROVIDES_NORMAL_SPACE_DERIVATIVE
     };
 
+    enum
+    {
+        Dim = DataPoint::Dim //!< Dimension of the ambient space
+    };
+
+    //TODO(thib) redundant with OrientedSphereDer macro, which cannot be used here due to internal namespace...
+#define DER_NB_DERIVATIVES(TYPE,DIM) ((TYPE & internal::FitScaleDer) ? 1 : 0 ) + ((TYPE & internal::FitSpaceDer) ? DIM : 0)
+
+    enum
+    {
+        DerDim = DER_NB_DERIVATIVES(Base::Type,Dim) //!< Number of dimensions used for the differentiation
+    };
+
 public:
     typedef typename Base::Scalar     Scalar;     /*!< \brief Inherited scalar type*/
     typedef typename Base::VectorType VectorType; /*!< \brief Inherited vector type*/
@@ -34,25 +41,41 @@ public:
     typedef typename Base::VectorArray VectorArray; /*!< \brief Inherited vector array type */
     typedef typename Base::ScalarArray ScalarArray; /*!< \brief Inherited scalar array type */
 
-    //TODO(thib) redundant with OrientedSphereDer macro, which cannot be used here due to internal namespace...
-#define DER_NB_DERIVATIVES(TYPE,DIM) ((TYPE & internal::FitScaleDer) ? 1 : 0 ) + ((TYPE & internal::FitSpaceDer) ? DIM : 0)
-
     //TODO(thib) use appropriate storage order
     //#define GLS_DER_STORAGE_ORDER(TYPE)      ((TYPE & FitSpaceDer) ? Eigen::RowMajor : Eigen::ColMajor )
 
-    typedef Eigen::Matrix< Scalar,
-        DER_NB_DERIVATIVES(Base::Type,DataPoint::Dim),
-        DER_NB_DERIVATIVES(Base::Type,DataPoint::Dim)> Matrix;
+    /*!
+        \brief Static squared matrix of scalars with a size adapted to the
+        differentiation type
 
-    typedef Eigen::Matrix< Scalar,
-        DER_NB_DERIVATIVES(Base::Type,DataPoint::Dim),
-        DataPoint::Dim*DER_NB_DERIVATIVES(Base::Type,DataPoint::Dim)> MatrixArray;
+        The size is adapted to the differentiation type (scale and/or space)
+        only. Such Matrix is used to represent Hessian matrix of multivariate
+        single-valued functions such as \f$ u_c \f$ and \f$ u_q \f$ of an
+        AlgebraicSphere obtained from a fitting procedure.
+     */
+    typedef Eigen::Matrix< Scalar, DerDim, DerDim > Matrix;
+
+    /*!
+        \brief Static matrix of scalars with a size adapted to the
+        differentiation type and the dimension of the ambiant space.
+
+        The size is adapted to the differentiation type (scale and/or space) and
+        the dimension of the ambiant space. Such Matrix is used to represent
+        Hessian matrix of multivariate multi-valued functions such as
+        \f$ u_l \f$ of an AlgebraicSphere obtained from a fitting procedure.
+
+        //TODO(thib) add explanation on how to use this matrix (using block...)
+     */
+    typedef Eigen::Matrix< Scalar, DerDim, Dim*DerDim > MatrixArray;
 
 protected:
     // computation data
     Matrix m_d2SumDotPN, /*!< \brief Sum of the dot product betwen relative positions and normals with twice differenciated weights */
            m_d2SumDotPP, /*!< \brief Sum of the squared relative positions with twice differenciated weights */
            m_d2SumW;     /*!< \brief Sum of queries weight with twice differenciated weights */
+
+    MatrixArray m_d2SumP,
+                m_d2SumN;
 
 public:
     // results

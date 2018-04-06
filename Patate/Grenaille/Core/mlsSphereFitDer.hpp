@@ -32,8 +32,13 @@ MlsSphereFitDer<DataPoint, _WFunctor, T>::addNeighbor(const DataPoint& _nei)
         m_d2SumDotPN += d2w * _nei.normal().dot(q);
         m_d2SumDotPP += d2w * q.squaredNorm();
         m_d2SumW     += d2w;
-    }
 
+        for(int i=0; i<Dim; ++i)
+        {
+            m_d2SumP.template block<DerDim,DerDim>(0,i*Dim) += d2w * q[i];
+            m_d2SumN.template block<DerDim,DerDim>(0,i*Dim) += d2w * _nei.normal()[i];
+        }
+    }
     return bResult;
 }
 
@@ -66,10 +71,27 @@ MlsSphereFitDer<DataPoint, _WFunctor, T>::finalize()
             - invSumW*invSumW*(   Scalar(2.) * Base::m_sumW * Base::m_sumP.transpose() * Base::m_dSumP
             - Base::m_dSumW*Base::m_sumP.dot(Base::m_sumP) );
 
+        Matrix sumdSumPdSumN  = Matrix::Zero(); //TODO(thib) is this the transpose of eachother ?
+        Matrix sumdSumNdSumP  = Matrix::Zero(); //TODO(thib) is this the transpose of eachother ?
+        Matrix sumd2SumPdSumN = Matrix::Zero();
+        Matrix sumd2SumNdSumP = Matrix::Zero();
+        Matrix sumdSumPdSumP  = Matrix::Zero();
+        Matrix sumd2SumPdSumP = Matrix::Zero();
+
+        for(int i=0; i<Dim; ++i)
+        {
+            sumdSumPdSumN  += Base::m_dSumN.row(i).transpose()*Base::m_dSumP.row(i); //TODO(thib) is this the transpose of eachother ?
+            sumdSumNdSumP  += Base::m_dSumP.row(i).transpose()*Base::m_dSumN.row(i); //TODO(thib) is this the transpose of eachother ?
+            sumd2SumPdSumN += m_d2SumP.template block<DerDim,DerDim>(0,i*Dim)*Base::m_sumN(i);
+            sumd2SumNdSumP += m_d2SumN.template block<DerDim,DerDim>(0,i*Dim)*Base::m_sumP(i);
+            sumdSumPdSumP  += Base::m_dSumP.row(i).transpose()*Base::m_dSumP.row(i); //TODO(thib) simplification ?
+            sumd2SumPdSumP += m_d2SumP.template block<DerDim,DerDim>(0,i*Dim)*Base::m_sumP(i);
+        }
+
         Matrix d2Nume = m_d2SumDotPN
             - invSumW*invSumW*invSumW*invSumW*(
-                    Base::m_sumW*Base::m_sumW*(/*Base::m_sumW*(0)*/   //TODO(thib) replace this
-                                               /*+ */Base::m_dSumW.transpose()*(Base::m_sumN.transpose()*Base::m_dSumP + Base::m_sumP.transpose()*Base::m_dSumN)
+                    Base::m_sumW*Base::m_sumW*(  Base::m_sumW*(sumdSumPdSumN+sumdSumNdSumP+sumd2SumPdSumN+sumd2SumNdSumP)
+                                               + Base::m_dSumW.transpose()*(Base::m_sumN.transpose()*Base::m_dSumP + Base::m_sumP.transpose()*Base::m_dSumN)
                                                - (Base::m_sumP.transpose()*Base::m_sumN)*m_d2SumW.transpose()
                                                - (Base::m_dSumN.transpose()*Base::m_sumP + Base::m_dSumP.transpose()*Base::m_sumN)*Base::m_dSumW)
                     - Scalar(2.)*Base::m_sumW*Base::m_dSumW.transpose()*(Base::m_sumW*(Base::m_sumN.transpose()*Base::m_dSumP + Base::m_sumP.transpose()*Base::m_dSumN)
@@ -77,8 +99,8 @@ MlsSphereFitDer<DataPoint, _WFunctor, T>::finalize()
 
         Matrix d2Deno = m_d2SumDotPP
             - invSumW*invSumW*invSumW*invSumW*(
-                Base::m_sumW*Base::m_sumW*(/*Scalar(2.)*Base::m_sumW*(0)*/ //TODO(thib) replace this
-                                           /*+ */Scalar(2.)*Base::m_dSumW.transpose()*(Base::m_sumP.transpose()*Base::m_dSumP)
+                Base::m_sumW*Base::m_sumW*(  Scalar(2.)*Base::m_sumW*(sumdSumPdSumP+sumd2SumPdSumP)
+                                           + Scalar(2.)*Base::m_dSumW.transpose()*(Base::m_sumP.transpose()*Base::m_dSumP)
                                            - (Base::m_sumP.transpose()*Base::m_sumP)*m_d2SumW.transpose()
                                            - Scalar(2.)*(Base::m_dSumP.transpose()*Base::m_sumP)*Base::m_dSumW)
                 - Scalar(2.)*Base::m_sumW*Base::m_dSumW.transpose()*(Scalar(2.)*Base::m_sumW*Base::m_sumP.transpose()*Base::m_dSumP
@@ -86,19 +108,49 @@ MlsSphereFitDer<DataPoint, _WFunctor, T>::finalize()
 
         Scalar deno2 = deno*deno;
 
-        m_d2Uq = Scalar(.5)/(deno2*deno2)*(deno2*(dDeno.transpose()*dNume + deno*d2Nume
-                                                  - dNume.transpose()*dDeno - nume*d2Deno)
+        m_d2Uq = Scalar(.5)/(deno2*deno2)*(deno2*(  dDeno.transpose()*dNume
+                                                  + deno*d2Nume
+                                                  - dNume.transpose()*dDeno
+                                                  - nume*d2Deno)
                                            - Scalar(2.)*deno*dDeno.transpose()*(deno*dNume - nume*dDeno));
 
-        m_d2Ul; //TODO(thib) compute this
+        for(int i=0; i<Dim; ++i)
+        {
+            m_d2Ul.template block<DerDim,DerDim>(0,i*Dim) = invSumW*(
+                  m_d2SumN.template block<DerDim,DerDim>(0,i*Dim)
+                - Scalar(2.)*(  m_d2Uq*Base::m_sumP[i]
+                              + Base::m_dSumP.row(i).transpose()*Base::m_dUq
+                              + Base::m_uq*m_d2SumP.template block<DerDim,DerDim>(0,i*Dim)
+                              + Base::m_dUq.transpose()*Base::m_dSumP.row(i))
+                - Base::m_ul[i]*m_d2SumW
+                - Base::m_dUl.row(i).transpose()*Base::m_dSumW
+                - Base::m_dSumW.transpose()*Base::m_dUl.row(i));
+        }
         
-        m_d2Uc = -invSumW*(/*0*/ // TODO(thib) replace this
-            //+ 0              // TODO(thib) replace this
-            //+ 0              // TODO(thib) replace this
-            //+ 0              // TODO(thib) replace this
-            /*+ */Base::m_dUq.transpose()*Base::m_dSumDotPP + Base::m_uq*m_d2SumDotPP
-            + Base::m_dSumDotPP.transpose()*Base::m_dUq + m_d2Uq*Base::m_sumDotPP
-            + Base::m_uc*m_d2SumW + Base::m_dUc.transpose()*Base::m_dSumW
+        Matrix sumdUldSumP = Matrix::Zero();
+        Matrix sumUld2SumP = Matrix::Zero();
+        Matrix sumd2UlsumP = Matrix::Zero();
+        Matrix sumdSumPdUl = Matrix::Zero();
+
+        for(int i=0; i<Dim; ++i)
+        {
+            sumdUldSumP += Base::m_dUl.row(i).transpose()*Base::m_dSumP.row(i);
+            sumUld2SumP += Base::m_ul[i]*m_d2SumP.template block<DerDim,DerDim>(0,i*Dim);
+            sumd2UlsumP += m_d2Ul.template block<DerDim,DerDim>(0,i*Dim)*Base::m_sumP[i];
+            sumdSumPdUl += Base::m_dSumP.row(i).transpose()*Base::m_dUl.row(i);
+        }
+
+        m_d2Uc = -invSumW*(
+              sumdUldSumP
+            + sumUld2SumP
+            + sumd2UlsumP
+            + sumdSumPdUl
+            + Base::m_dUq.transpose()*Base::m_dSumDotPP
+            + Base::m_uq*m_d2SumDotPP
+            + Base::m_dSumDotPP.transpose()*Base::m_dUq
+            + m_d2Uq*Base::m_sumDotPP
+            + Base::m_uc*m_d2SumW
+            + Base::m_dUc.transpose()*Base::m_dSumW
             - Base::m_dSumW.transpose()*Base::m_dUc);
     }
 
