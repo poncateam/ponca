@@ -13,6 +13,9 @@ MlsSphereFitDer<DataPoint, _WFunctor, T>::init(const VectorType& _evalPos)
     m_d2SumDotPN = Matrix::Zero();
     m_d2SumDotPP = Matrix::Zero();
     m_d2SumW     = Matrix::Zero();
+
+    m_d2SumP = MatrixArray::Zero();
+    m_d2SumN = MatrixArray::Zero();
 }
 
 template < class DataPoint, class _WFunctor, typename T>
@@ -42,12 +45,6 @@ MlsSphereFitDer<DataPoint, _WFunctor, T>::addNeighbor(const DataPoint& _nei)
     return bResult;
 }
 
-//TODO(thib) delete this macro
-template<typename T> struct ____The_Unkown_Type_Is____;
-#define GLUE1(X,Y) X##Y
-#define GLUE(X,Y) GLUE1(X,Y)
-#define WhatIsTheTypeOf(expr) ____The_Unkown_Type_Is____<decltype(expr)> GLUE(_,__LINE__)
-
 template < class DataPoint, class _WFunctor, typename T>
 FIT_RESULT
 MlsSphereFitDer<DataPoint, _WFunctor, T>::finalize()
@@ -56,21 +53,6 @@ MlsSphereFitDer<DataPoint, _WFunctor, T>::finalize()
 
     if (this->isReady())
     {
-        //TODO(thib) use nume, deno, dNume, dDeno from base class to avoid calculating them twice
-
-        Scalar invSumW = Scalar(1.)/Base::m_sumW;
-
-        Scalar nume  = Base::m_sumDotPN - invSumW*Base::m_sumP.dot(Base::m_sumN);
-        Scalar deno  = Base::m_sumDotPP - invSumW*Base::m_sumP.dot(Base::m_sumP);
-
-        ScalarArray dNume = Base::m_dSumDotPN
-            - invSumW*invSumW * ( Base::m_sumW * ( Base::m_sumN.transpose() * Base::m_dSumP + Base::m_sumP.transpose() * Base::m_dSumN )
-            - Base::m_dSumW*Base::m_sumP.dot(Base::m_sumN) );
-
-        ScalarArray dDeno = Base::m_dSumDotPP
-            - invSumW*invSumW*(   Scalar(2.) * Base::m_sumW * Base::m_sumP.transpose() * Base::m_dSumP
-            - Base::m_dSumW*Base::m_sumP.dot(Base::m_sumP) );
-
         Matrix sumdSumPdSumN  = Matrix::Zero(); //TODO(thib) is this the transpose of eachother ?
         Matrix sumdSumNdSumP  = Matrix::Zero(); //TODO(thib) is this the transpose of eachother ?
         Matrix sumd2SumPdSumN = Matrix::Zero();
@@ -87,6 +69,8 @@ MlsSphereFitDer<DataPoint, _WFunctor, T>::finalize()
             sumdSumPdSumP  += Base::m_dSumP.row(i).transpose()*Base::m_dSumP.row(i); //TODO(thib) simplification ?
             sumd2SumPdSumP += m_d2SumP.template block<DerDim,DerDim>(0,i*Dim)*Base::m_sumP(i);
         }
+
+        Scalar invSumW = Scalar(1.)/Base::m_sumW;
 
         Matrix d2Nume = m_d2SumDotPN
             - invSumW*invSumW*invSumW*invSumW*(
@@ -106,13 +90,13 @@ MlsSphereFitDer<DataPoint, _WFunctor, T>::finalize()
                 - Scalar(2.)*Base::m_sumW*Base::m_dSumW.transpose()*(Scalar(2.)*Base::m_sumW*Base::m_sumP.transpose()*Base::m_dSumP
                                                                      - (Base::m_sumP.transpose()*Base::m_sumP)*Base::m_dSumW));
 
-        Scalar deno2 = deno*deno;
+        Scalar deno2 = Base::m_deno*Base::m_deno;
 
-        m_d2Uq = Scalar(.5)/(deno2*deno2)*(deno2*(  dDeno.transpose()*dNume
-                                                  + deno*d2Nume
-                                                  - dNume.transpose()*dDeno
-                                                  - nume*d2Deno)
-                                           - Scalar(2.)*deno*dDeno.transpose()*(deno*dNume - nume*dDeno));
+        m_d2Uq = Scalar(.5)/(deno2*deno2)*(deno2*(  Base::m_dDeno.transpose()*Base::m_dNume
+                                                  + Base::m_deno*d2Nume
+                                                  - Base::m_dNume.transpose()*Base::m_dDeno
+                                                  - Base::m_nume*d2Deno)
+                                           - Scalar(2.)*Base::m_deno*Base::m_dDeno.transpose()*(Base::m_deno*Base::m_dNume - Base::m_nume*Base::m_dDeno));
 
         for(int i=0; i<Dim; ++i)
         {
