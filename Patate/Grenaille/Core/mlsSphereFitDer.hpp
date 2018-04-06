@@ -53,8 +53,7 @@ MlsSphereFitDer<DataPoint, _WFunctor, T>::finalize()
 
     if (this->isReady())
     {
-        Matrix sumdSumPdSumN  = Matrix::Zero(); //TODO(thib) is this the transpose of eachother ?
-        Matrix sumdSumNdSumP  = Matrix::Zero(); //TODO(thib) is this the transpose of eachother ?
+        Matrix sumdSumPdSumN  = Matrix::Zero();
         Matrix sumd2SumPdSumN = Matrix::Zero();
         Matrix sumd2SumNdSumP = Matrix::Zero();
         Matrix sumdSumPdSumP  = Matrix::Zero();
@@ -62,11 +61,10 @@ MlsSphereFitDer<DataPoint, _WFunctor, T>::finalize()
 
         for(int i=0; i<Dim; ++i)
         {
-            sumdSumPdSumN  += Base::m_dSumN.row(i).transpose()*Base::m_dSumP.row(i); //TODO(thib) is this the transpose of eachother ?
-            sumdSumNdSumP  += Base::m_dSumP.row(i).transpose()*Base::m_dSumN.row(i); //TODO(thib) is this the transpose of eachother ?
+            sumdSumPdSumN  += Base::m_dSumN.row(i).transpose()*Base::m_dSumP.row(i);
             sumd2SumPdSumN += m_d2SumP.template block<DerDim,DerDim>(0,i*Dim)*Base::m_sumN(i);
             sumd2SumNdSumP += m_d2SumN.template block<DerDim,DerDim>(0,i*Dim)*Base::m_sumP(i);
-            sumdSumPdSumP  += Base::m_dSumP.row(i).transpose()*Base::m_dSumP.row(i); //TODO(thib) simplification ?
+            sumdSumPdSumP  += Base::m_dSumP.row(i).transpose()*Base::m_dSumP.row(i);
             sumd2SumPdSumP += m_d2SumP.template block<DerDim,DerDim>(0,i*Dim)*Base::m_sumP(i);
         }
 
@@ -74,7 +72,7 @@ MlsSphereFitDer<DataPoint, _WFunctor, T>::finalize()
 
         Matrix d2Nume = m_d2SumDotPN
             - invSumW*invSumW*invSumW*invSumW*(
-                    Base::m_sumW*Base::m_sumW*(  Base::m_sumW*(sumdSumPdSumN+sumdSumNdSumP+sumd2SumPdSumN+sumd2SumNdSumP)
+                    Base::m_sumW*Base::m_sumW*(  Base::m_sumW*(sumdSumPdSumN+sumdSumPdSumN.transpose()+sumd2SumPdSumN+sumd2SumNdSumP)
                                                + Base::m_dSumW.transpose()*(Base::m_sumN.transpose()*Base::m_dSumP + Base::m_sumP.transpose()*Base::m_dSumN)
                                                - (Base::m_sumP.transpose()*Base::m_sumN)*m_d2SumW.transpose()
                                                - (Base::m_dSumN.transpose()*Base::m_sumP + Base::m_dSumP.transpose()*Base::m_sumN)*Base::m_dSumW)
