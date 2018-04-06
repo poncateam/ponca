@@ -21,17 +21,12 @@ protected:
         PROVIDES_NORMAL_SPACE_DERIVATIVE
     };
 
-    enum
-    {
-        Dim = DataPoint::Dim //!< Dimension of the ambient space
-    };
-
-    //TODO(thib) redundant with OrientedSphereDer macro, which cannot be used here due to internal namespace...
 #define DER_NB_DERIVATIVES(TYPE,DIM) ((TYPE & internal::FitScaleDer) ? 1 : 0 ) + ((TYPE & internal::FitSpaceDer) ? DIM : 0)
 
     enum
     {
-        DerDim = DER_NB_DERIVATIVES(Base::Type,Dim) //!< Number of dimensions used for the differentiation
+        Dim     = DataPoint::Dim,                    //!< Dimension of the ambient space
+        DerDim  = DER_NB_DERIVATIVES(Base::Type,Dim) //!< Number of dimensions used for the differentiation
     };
 
 public:
@@ -41,41 +36,46 @@ public:
     typedef typename Base::VectorArray VectorArray; /*!< \brief Inherited vector array type */
     typedef typename Base::ScalarArray ScalarArray; /*!< \brief Inherited scalar array type */
 
-    //TODO(thib) use appropriate storage order
-    //#define GLS_DER_STORAGE_ORDER(TYPE)      ((TYPE & FitSpaceDer) ? Eigen::RowMajor : Eigen::ColMajor )
-
     /*!
         \brief Static squared matrix of scalars with a size adapted to the
-        differentiation type
+        differentiation type.
 
         The size is adapted to the differentiation type (scale and/or space)
-        only. Such Matrix is used to represent Hessian matrix of multivariate
-        single-valued functions such as \f$ u_c \f$ and \f$ u_q \f$ of an
-        AlgebraicSphere obtained from a fitting procedure.
+        only. Such Matrix is typically used to represent Hessian matrix of
+        multivariate single-valued functions such as \f$ u_c \f$ and \f$ u_q \f$
+        of an AlgebraicSphere obtained from a fitting procedure.
      */
     typedef Eigen::Matrix< Scalar, DerDim, DerDim > Matrix;
 
     /*!
         \brief Static matrix of scalars with a size adapted to the
-        differentiation type and the dimension of the ambiant space.
+        differentiation type and the dimension of the ambient space.
 
         The size is adapted to the differentiation type (scale and/or space) and
-        the dimension of the ambiant space. Such Matrix is used to represent
-        Hessian matrix of multivariate multi-valued functions such as
-        \f$ u_l \f$ of an AlgebraicSphere obtained from a fitting procedure.
+        the dimension of the ambient space. Such Matrix is typically used to
+        represent Hessian matrices of multivariate multi-valued functions such
+        as \f$ u_l \f$ of an AlgebraicSphere obtained from a fitting procedure.
 
-        //TODO(thib) add explanation on how to use this matrix (using block...)
+        A MatrixArray is an array of Matrix (that mimics a 3D matrix) where the
+        number of Matrix is equal to the dimension of the ambient space.
+        The i-th Matrix can be accesed by the following block operation:
+        \code
+            MatrixArray a;
+            int i;
+            //...
+            Matrix m_i = a.template block<DerDim, DerDim>(0, i*Dim);
+        \endcode
      */
     typedef Eigen::Matrix< Scalar, DerDim, Dim*DerDim > MatrixArray;
 
 protected:
     // computation data
-    Matrix m_d2SumDotPN, /*!< \brief Sum of the dot product betwen relative positions and normals with twice differenciated weights */
-           m_d2SumDotPP, /*!< \brief Sum of the squared relative positions with twice differenciated weights */
-           m_d2SumW;     /*!< \brief Sum of queries weight with twice differenciated weights */
+    Matrix m_d2SumDotPN,  /*!< \brief Sum of the dot product betwen relative positions and normals with twice differenciated weights */
+           m_d2SumDotPP,  /*!< \brief Sum of the squared relative positions with twice differenciated weights */
+           m_d2SumW;      /*!< \brief Sum of queries weight with twice differenciated weights */
 
-    MatrixArray m_d2SumP,
-                m_d2SumN;
+    MatrixArray m_d2SumP, /*!< \brief Sum of relative positions with twice differenciated weights */
+                m_d2SumN; /*!< \brief Sum of normal vectors with twice differenciated weights */
 
 public:
     // results
