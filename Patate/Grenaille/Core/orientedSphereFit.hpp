@@ -19,6 +19,8 @@ OrientedSphereFit<DataPoint, _WFunctor, T>::init(const VectorType& _evalPos)
     m_sumDotPN = Scalar(0.0);
     m_sumDotPP = Scalar(0.0);
     m_sumW     = Scalar(0.0);
+    m_nume     = Scalar(0.0);
+    m_deno     = Scalar(0.0);
 }
 
 template < class DataPoint, class _WFunctor, typename T>
@@ -74,12 +76,12 @@ OrientedSphereFit<DataPoint, _WFunctor, T>::finalize ()
 
     Scalar invSumW = Scalar(1.)/m_sumW;
 
-    Scalar num = (m_sumDotPN - invSumW * m_sumP.dot(m_sumN));
+    m_nume = (m_sumDotPN - invSumW * m_sumP.dot(m_sumN));
     Scalar den1 = invSumW * m_sumP.dot(m_sumP);
-    Scalar den  = m_sumDotPP - den1;
+    m_deno = m_sumDotPP - den1;
 
     // Deal with degenerate cases
-    if(abs(den) < epsilon * max(m_sumDotPP, den1))
+    if(abs(m_deno) < epsilon * max(m_sumDotPP, den1))
     {
         //plane
         Scalar s = Scalar(1.) / Base::m_ul.norm();
@@ -90,7 +92,7 @@ OrientedSphereFit<DataPoint, _WFunctor, T>::finalize ()
     else
     {
         //Generic case
-        Base::m_uq = Scalar(.5) * num / den;
+        Base::m_uq = Scalar(.5) * m_nume / m_deno;
         Base::m_ul = (m_sumN - m_sumP * (Scalar(2.) * Base::m_uq)) * invSumW;
         Base::m_uc = -invSumW * (Base::m_ul.dot(m_sumP) + m_sumDotPP * Base::m_uq);
     }
@@ -125,6 +127,8 @@ OrientedSphereDer<DataPoint, _WFunctor, T, Type>::init(const VectorType& _evalPo
     m_dSumDotPN = ScalarArray::Zero();
     m_dSumDotPP = ScalarArray::Zero();
     m_dSumW     = ScalarArray::Zero();
+    m_dNume     = ScalarArray::Zero();
+    m_dDeno     = ScalarArray::Zero();
 
     m_dUc       = ScalarArray::Zero();
     m_dUq       = ScalarArray::Zero();
@@ -184,15 +188,15 @@ OrientedSphereDer<DataPoint, _WFunctor, T, Type>::finalize()
         // FIXME, the following product "Base::m_sumN.transpose() * m_dSumP" is prone to numerical cancellation
         // issues for spacial derivatives because, (d sum w_i P_i)/(d x) is supposed to be tangent to the surface whereas
         // "sum w_i N_i" is normal to the surface...
-        ScalarArray dNume = m_dSumDotPN
+        m_dNume = m_dSumDotPN
             - invSumW*invSumW * ( Base::m_sumW * ( Base::m_sumN.transpose() * m_dSumP + Base::m_sumP.transpose() * m_dSumN )
             - m_dSumW*Base::m_sumP.dot(Base::m_sumN) );
 
-        ScalarArray dDeno = m_dSumDotPP
+        m_dDeno = m_dSumDotPP
             - invSumW*invSumW*(   Scalar(2.) * Base::m_sumW * Base::m_sumP.transpose() * m_dSumP
             - m_dSumW*Base::m_sumP.dot(Base::m_sumP) );
 
-        m_dUq =  Scalar(.5) * (deno * dNume - dDeno * nume)/(deno*deno);
+        m_dUq =  Scalar(.5) * (deno * m_dNume - m_dDeno * nume)/(deno*deno);
 
         // FIXME: this line is prone to numerical cancellation issues because dSumN and u_l*dSumW are close to each other.
         // If using two passes, one could directly compute sum( dw_i + (n_i - ul) ) to avoid this issue.

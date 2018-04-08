@@ -45,7 +45,9 @@ public:
                 m_sumP; /*!< \brief Sum of the relative positions */
     Scalar  m_sumDotPN, /*!< \brief Sum of the dot product betwen relative positions and normals */
             m_sumDotPP, /*!< \brief Sum of the squared relative positions */
-            m_sumW;     /*!< \brief Sum of queries weight */
+            m_sumW,     /*!< \brief Sum of queries weight */
+            m_nume,     /*!< \brief Numerator of the quadratic parameter (excluding the 0.5 coefficient)   */
+            m_deno;     /*!< \brief Denominator of the quadratic parameter (excluding the 0.5 coefficient) */
 
     WFunctor m_w;      /*!< \brief Weight function (must inherits BaseWeightFunc) */
 
@@ -142,13 +144,16 @@ public:
                             1,
                             GLS_DER_NB_DERIVATIVES(Type,DataPoint::Dim)/*,
                             GLS_DER_STORAGE_ORDER(Type)*/ > ScalarArray;
-private:
+
+protected:
     // computation data
     VectorArray m_dSumN,     /*!< \brief Sum of the normal vectors with differenciated weights */
                 m_dSumP;     /*!< \brief Sum of the relative positions with differenciated weights*/
     ScalarArray m_dSumDotPN, /*!< \brief Sum of the dot product betwen relative positions and normals with differenciated weights */
                 m_dSumDotPP, /*!< \brief Sum of the squared relative positions with differenciated weights */
-                m_dSumW;     /*!< \brief Sum of queries weight with differenciated weights */
+                m_dSumW,     /*!< \brief Sum of queries weight with differenciated weights */
+                m_dNume,     /*!< \brief Differenciation of the numerator of the quadratic parameter   */
+                m_dDeno;     /*!< \brief Differenciation of the denominator of the quadratic parameter */
 
 public:
     // results
