@@ -111,7 +111,7 @@ namespace internal
     derDimension(), and the differentiation type by isScaleDer() and
     isSpaceDer().
 */
-template < class DataPoint, class _WFunctor, typename T, int Type>
+template < class DataPoint, class _WFunctor, typename T, int _Type>
 class OrientedSphereDer : public T
 {
 private:
@@ -123,6 +123,11 @@ protected:
         Check = Base::PROVIDES_ALGEBRAIC_SPHERE, /*!< \brief Needs Algebraic Sphere */
         PROVIDES_ALGEBRAIC_SPHERE_DERIVATIVE,    /*!< \brief Provides Algebraic Sphere derivative*/
         PROVIDES_NORMAL_DERIVATIVE
+    };
+
+    enum
+    {
+        Type = _Type    /*!< \brief Type of differentiation */
     };
 
 public:
