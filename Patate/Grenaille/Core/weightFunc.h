@@ -59,9 +59,9 @@ public:
     /*!
         \brief First order derivative in space (for each spatial dimension \f$\mathsf{x})\f$
 
-        \f$ \frac{\delta \frac{\left|\mathbf{q}_\mathsf{x}\right|}{t}}{\delta \mathsf{x}} 
-        \nabla w(\frac{\left|\mathbf{q}_\mathsf{x}\right|}{t}) 
-        = \frac{ \nabla{w(\frac{\left|\mathbf{q}_\mathsf{x}\right|}{t})}}{t}  \f$
+        \f$ \frac{\delta \frac{\left|\mathbf{q}_\mathsf{x}\right|}{t}}{\delta \mathsf{x}}
+        \nabla w(\frac{\left|\mathbf{q}_\mathsf{x}\right|}{t})
+        = \frac{\mathbf{q}}{t\left|q\right|}  \nabla{w(\frac{\left|\mathbf{q}_\mathsf{x}\right|}{t})}  \f$
 
         where \f$ \left|\mathbf{q}_\mathsf{x}\right| \f$ represents the norm of the
         query coordinates expressed in centered basis,
