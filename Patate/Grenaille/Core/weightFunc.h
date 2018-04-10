@@ -122,6 +122,24 @@ public:
     MULTIARCH inline Scalar scaled2w(const VectorType& _q,
         const DataPoint&  /*attributes*/) const;
 
+    /*!
+        \brief Cross derivative in scale \f$t\f$ and in space (for each spatial dimension \f$\mathsf{x})\f$
+
+        \f$ \frac{\delta^2 \frac{\left|\mathbf{q}_\mathsf{x}\right|}{t}}{\delta t\ \delta \mathsf{x}}
+        \nabla w(\frac{\left|\mathbf{q}_\mathsf{x}\right|}{t}) +
+        \frac{\delta \frac{\left|\mathbf{q}_\mathsf{x}\right|}{t}}{\delta \mathsf{x}}
+        \frac{\delta \frac{\left|\mathbf{q}_\mathsf{x}\right|}{t}}{\delta t}
+        \nabla^2 w(\frac{\left|\mathbf{q}_\mathsf{x}\right|}{t}) =
+        -\frac{\mathbf{q}_\mathsf{x}}{t^2}
+        \left( \frac{1}{\left|\mathbf{q}_\mathsf{x}\right|}\nabla w(\frac{\left|\mathbf{q}_\mathsf{x}\right|}{t}) +
+        \frac{1}{t}\nabla^2 w(\frac{\left|\mathbf{q}_\mathsf{x}\right|}{t}) \right)\f$
+
+        where \f$ \left|\mathbf{q}_\mathsf{x}\right| \f$ represents the norm of the
+        query coordinates expressed in centered basis.
+    */
+    MULTIARCH inline VectorType scaleSpaced2w(const VectorType& _q,
+        const DataPoint&  /*attributes*/) const;
+
     /*! \brief Access to the evaluation scale set during the initialization */
     MULTIARCH inline Scalar evalScale() const { return m_t; }
 
