@@ -21,12 +21,10 @@ protected:
         PROVIDES_NORMAL_SPACE_DERIVATIVE
     };
 
-#define DER_NB_DERIVATIVES(TYPE,DIM) ((TYPE & internal::FitScaleDer) ? 1 : 0 ) + ((TYPE & internal::FitSpaceDer) ? DIM : 0)
-
     enum
     {
-        Dim     = DataPoint::Dim,                    //!< Dimension of the ambient space
-        DerDim  = DER_NB_DERIVATIVES(Base::Type,Dim) //!< Number of dimensions used for the differentiation
+        Dim     = DataPoint::Dim,       //!< Dimension of the ambient space
+        DerDim  = Base::derDimension()  //!< Number of dimensions used for the differentiation
     };
 
 public:
