@@ -31,6 +31,8 @@ public:
     typedef typename DataPoint::Scalar Scalar;
     /*! \brief Vector type from DataPoint */
     typedef typename DataPoint::VectorType VectorType;
+    /*! \brief Matrix type from DataPoint */
+    typedef typename DataPoint::MatrixType MatrixType;
 
     /*! 
         \brief Constructor that defines the current evaluation scale
@@ -70,6 +72,25 @@ public:
     MULTIARCH inline VectorType spacedw(const VectorType& _q, 
         const DataPoint&  /*attributes*/) const;
 
+
+    /*!
+        \brief Second order derivative in space (for each spatial dimension \f$\mathsf{x})\f$
+
+        \f$ \frac{\delta^2 \frac{\left|\mathbf{q}_\mathsf{x}\right|}{t}}{\delta \mathsf{x}^2}
+        \nabla w(\frac{\left|\mathbf{q}_\mathsf{x}\right|}{t}) +
+        \left(\frac{\delta \frac{\left|\mathbf{q}_\mathsf{x}\right|}{t}}{\delta \mathsf{x}}\right)^2
+        \nabla^2 w(\frac{\left|\mathbf{q}_\mathsf{x}\right|}{t}) =
+        \frac{1}{t\left|\mathbf{q}_\mathsf{x}\right|} \left( I_d - \frac{\mathbf{q}_\mathsf{x}\mathbf{q}_\mathsf{x}^T}{\left|\mathbf{q}_\mathsf{x}\right|^2}\right)
+        \nabla w(\frac{\left|\mathbf{q}_\mathsf{x}\right|}{t}) +
+        \frac{\mathbf{q}_\mathsf{x}\mathbf{q}_\mathsf{x}^T}{t^2\left|\mathbf{q}_\mathsf{x}\right|^2}
+        \nabla^2 w(\frac{\left|\mathbf{q}_\mathsf{x}\right|}{t}) \f$
+
+        where \f$ \left|\mathbf{q}_\mathsf{x}\right| \f$ represents the norm of the
+        query coordinates expressed in centered basis,
+        for each spatial dimensions \f$ \mathsf{x}\f$.
+    */
+    MULTIARCH inline MatrixType spaced2w(const VectorType& _q,
+        const DataPoint&  /*attributes*/) const;
 
     /*!
         \brief First order derivative in scale  \f$t\f$

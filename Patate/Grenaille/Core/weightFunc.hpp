@@ -27,6 +27,23 @@ DistWeightFunc<DataPoint, WeightKernel>::spacedw(   const VectorType& _q,
 }
 
 template <class DataPoint, class WeightKernel>
+typename DistWeightFunc<DataPoint, WeightKernel>::MatrixType
+DistWeightFunc<DataPoint, WeightKernel>::spaced2w(   const VectorType& _q,
+                                                     const DataPoint&) const
+{
+    MatrixType result = MatrixType::Zero();
+    Scalar d = _q.norm();
+    if (d <= m_t && d != Scalar(0.))
+    {
+        Scalar der = m_wk.df(d/m_t);
+        result = _q*_q.transpose()*(m_wk.ddf(d/m_t)/m_t - der/(d*d));
+        result.diagonal().array() += der;
+        result *= Scalar(1.)/(m_t*d);
+    }
+    return result;
+}
+
+template <class DataPoint, class WeightKernel>
 typename DistWeightFunc<DataPoint, WeightKernel>::Scalar
 DistWeightFunc<DataPoint, WeightKernel>::scaledw(   const VectorType& _q, 
 						                            const DataPoint&) const
