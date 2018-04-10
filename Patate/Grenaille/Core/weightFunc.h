@@ -105,6 +105,23 @@ public:
     MULTIARCH inline Scalar scaledw(const VectorType& _q, 
         const DataPoint&  /*attributes*/) const;
 
+    /*!
+        \brief Second order derivative in scale  \f$t\f$
+
+        \f$ \frac{\delta^2 \frac{\left|\mathbf{q}\right|}{t}}{\delta t^2}
+        \nabla w(\frac{\left|\mathbf{q}\right|}{t}) +
+        \left(\frac{\delta \frac{\left|\mathbf{q}\right|}{t}}{\delta t}\right)^2
+        \nabla^2 w(\frac{\left|\mathbf{q}\right|}{t}) =
+        \frac{2\left|\mathbf{q}\right|}{t^3} \nabla{w(\frac{\left|\mathbf{q}\right|}{t})} -
+        \frac{\left|\mathbf{q}\right|^2}{t^4} \nabla^2{w(\frac{\left|\mathbf{q}\right|}{t})}
+        \f$
+
+        where \f$ \left|\mathbf{q}\right| \f$ represents the norm of the
+        query coordinates expressed in centered basis.
+    */
+    MULTIARCH inline Scalar scaled2w(const VectorType& _q,
+        const DataPoint&  /*attributes*/) const;
+
     /*! \brief Access to the evaluation scale set during the initialization */
     MULTIARCH inline Scalar evalScale() const { return m_t; }
 

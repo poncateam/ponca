@@ -51,3 +51,14 @@ DistWeightFunc<DataPoint, WeightKernel>::scaledw(   const VectorType& _q,
     Scalar d  = _q.norm();  
     return (d <= m_t) ? Scalar( - d*m_wk.df(d/m_t)/(m_t*m_t) ) : Scalar(0.);
 }
+
+template <class DataPoint, class WeightKernel>
+typename DistWeightFunc<DataPoint, WeightKernel>::Scalar
+DistWeightFunc<DataPoint, WeightKernel>::scaled2w(   const VectorType& _q,
+                                                     const DataPoint&) const
+{
+    Scalar d  = _q.norm();
+    return (d <= m_t) ? Scalar(Scalar(2.)*d/(m_t*m_t*m_t)*m_wk.df(d/m_t) -
+                               d*d/(m_t*m_t*m_t*m_t)*m_wk.ddf(d/m_t)) :
+                        Scalar(0.);
+}
