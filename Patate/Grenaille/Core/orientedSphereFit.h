@@ -125,11 +125,6 @@ protected:
         PROVIDES_NORMAL_DERIVATIVE
     };
 
-    enum
-    {
-        Type = _Type    /*!< \brief Type of differentiation */
-    };
-
 public:
     typedef typename Base::Scalar     Scalar;     /*!< \brief Inherited scalar type*/
     typedef typename Base::VectorType VectorType; /*!< \brief Inherited vector type*/
@@ -141,13 +136,13 @@ public:
     /*! \brief Static array of scalars with a size adapted to the differentiation type */
     typedef Eigen::Matrix < Scalar,
         DataPoint::Dim,
-        GLS_DER_NB_DERIVATIVES(Type,DataPoint::Dim),
-        GLS_DER_STORAGE_ORDER(Type) > VectorArray;
+        GLS_DER_NB_DERIVATIVES(_Type,DataPoint::Dim),
+        GLS_DER_STORAGE_ORDER(_Type) > VectorArray;
 
     /*! \brief Static array of scalars with a size adapted to the differentiation type */
     typedef Eigen::Matrix < Scalar,
                             1,
-                            GLS_DER_NB_DERIVATIVES(Type,DataPoint::Dim)/*,
+                            GLS_DER_NB_DERIVATIVES(_Type,DataPoint::Dim)/*,
                             GLS_DER_STORAGE_ORDER(Type)*/ > ScalarArray;
 
 protected:
@@ -222,12 +217,11 @@ public:
     }
 
     /*! \brief State specified at compilation time to differenciate the fit in scale */
-    MULTIARCH inline bool isScaleDer() const {return bool(Type & FitScaleDer);}
+    static constexpr MULTIARCH inline bool isScaleDer() {return bool(_Type & FitScaleDer);}
     /*! \brief State specified at compilation time to differenciate the fit in space */
-    MULTIARCH inline bool isSpaceDer() const {return bool(Type & FitSpaceDer);}
+    static constexpr MULTIARCH inline bool isSpaceDer() {return bool(_Type & FitSpaceDer);}
     /*! \brief Number of dimensions used for the differentiation */
-    MULTIARCH inline unsigned int derDimension() const { return GLS_DER_NB_DERIVATIVES(Type,DataPoint::Dim);}
-
+    static constexpr MULTIARCH inline unsigned int derDimension() { return GLS_DER_NB_DERIVATIVES(_Type,DataPoint::Dim);}
 
     //! Normalize the scalar field by the Pratt norm
     /*!
