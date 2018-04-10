@@ -29,8 +29,20 @@ MlsSphereFitDer<DataPoint, _WFunctor, T>::addNeighbor(const DataPoint& _nei)
         // centered basis
         VectorType q = _nei.pos() - Base::basisCenter();
 
-        Matrix d2w;
-        d2w;//TODO(thib) computes d2w wrt Scale/Space der type
+        // compute weight derivatives
+        Matrix d2w = Matrix::Zero();
+
+        if (Base::isScaleDer())
+            d2w(0,0) = Base::m_w.scaled2w(q, _nei);
+
+        if (Base::isSpaceDer())
+            d2w.template bottomRightCorner<Dim,Dim>() = Base::m_w.spaced2w(q, _nei);
+
+        if (Base::isScaleDer() && Base::isSpaceDer())
+        {
+            d2w.template bottomLeftCorner<Dim,1>() = Base::m_w.scaleSpaced2w(q,_nei);
+            d2w.template topRightCorner<1,Dim>() = d2w.template bottomLeftCorner<Dim,1>().transpose();
+        }
 
         m_d2SumDotPN += d2w * _nei.normal().dot(q);
         m_d2SumDotPP += d2w * q.squaredNorm();
