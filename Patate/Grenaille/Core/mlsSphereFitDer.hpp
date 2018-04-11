@@ -155,15 +155,36 @@ template < class DataPoint, class _WFunctor, typename T>
 typename MlsSphereFitDer<DataPoint, _WFunctor, T>::ScalarArray
 MlsSphereFitDer<DataPoint, _WFunctor, T>::dPotential() const
 {
-    //TODO(thib) handle spaceDer/scaleDer
-    return Base::m_dUc + Base::m_ul;
+    ScalarArray result = ScalarArray::Zero();
+
+    if(this->isScaleDer)
+        result[0] = Base::m_dUc[0];
+
+    if(this->isSpaceDer)
+        result.template tail<Dim>() = Base::m_ul;
+
+    return result;
 }
 
 template < class DataPoint, class _WFunctor, typename T>
 typename MlsSphereFitDer<DataPoint, _WFunctor, T>::VectorArray
 MlsSphereFitDer<DataPoint, _WFunctor, T>::dNormal() const
 {
-    //TODO(thib) handle spaceDer/scaleDer
-    //TODO(thib) this is just the hessian for now, need to normalize by the norm and then differenciate
-    return m_d2Uc + Base::m_dUl + Base::m_dUl.transpose() + Scalar(2.)*Base::m_uq*VectorArray::Ones();
+    VectorArray result = VectorArray::Zero();
+
+    VectorType grad = Base::m_dUc.template tail<Dim>().transpose() + Base::m_ul;
+    Scalar gradNorm  = grad.norm();
+
+    if(this->isScaleDer)
+        result.col(0) = m_d2Uc.template topRightCorner<1,Dim>().transpose() + Base::m_dUl.col(0);
+
+    if(this->isSpaceDer)
+    {
+        result.template rightCols<Dim>() = m_d2Uc.template bottomRightCorner<Dim,Dim>().transpose()
+                                           + Base::m_dUl.template rightCols<Dim>().transpose()
+                                           + Base::m_dUl.template rightCols<Dim>();
+        result.template rightCols<Dim>().diagonal().array() += Scalar(2.)*Base::m_uq;
+    }
+
+    return result/gradNorm - grad*grad.transpose()/(gradNorm*gradNorm)*result;
 }
