@@ -167,6 +167,14 @@ MlsSphereFitDer<DataPoint, _WFunctor, T>::dPotential() const
 }
 
 template < class DataPoint, class _WFunctor, typename T>
+typename MlsSphereFitDer<DataPoint, _WFunctor, T>::VectorType
+MlsSphereFitDer<DataPoint, _WFunctor, T>::normal() const
+{
+    VectorType grad = Base::m_dUc.template tail<Dim>().transpose() + Base::m_ul;
+    return grad.normalized();
+}
+
+template < class DataPoint, class _WFunctor, typename T>
 typename MlsSphereFitDer<DataPoint, _WFunctor, T>::VectorArray
 MlsSphereFitDer<DataPoint, _WFunctor, T>::dNormal() const
 {
