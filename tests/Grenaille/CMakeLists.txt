@@ -17,4 +17,5 @@ add_multi_test(fit_plane.cpp)
 add_multi_test(basket.cpp)
 add_multi_test(curvature_plane.cpp)
 add_multi_test(curvature_sphere.cpp)
-
+add_multi_test(normal_sphere.cpp)
+add_multi_test(normal_plane.cpp)
