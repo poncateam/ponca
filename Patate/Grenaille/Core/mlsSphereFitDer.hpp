@@ -157,10 +157,10 @@ MlsSphereFitDer<DataPoint, _WFunctor, T>::dPotential() const
 {
     ScalarArray result = ScalarArray::Zero();
 
-    if(this->isScaleDer)
+    if(Base::isScaleDer())
         result[0] = Base::m_dUc[0];
 
-    if(this->isSpaceDer)
+    if(Base::isSpaceDer())
         result.template tail<Dim>() = Base::m_ul;
 
     return result;
@@ -183,10 +183,10 @@ MlsSphereFitDer<DataPoint, _WFunctor, T>::dNormal() const
     VectorType grad = Base::m_dUc.template tail<Dim>().transpose() + Base::m_ul;
     Scalar gradNorm  = grad.norm();
 
-    if(this->isScaleDer)
+    if(Base::isScaleDer())
         result.col(0) = m_d2Uc.template topRightCorner<1,Dim>().transpose() + Base::m_dUl.col(0);
 
-    if(this->isSpaceDer)
+    if(Base::isSpaceDer())
     {
         result.template rightCols<Dim>() = m_d2Uc.template bottomRightCorner<Dim,Dim>().transpose()
                                            + Base::m_dUl.template rightCols<Dim>().transpose()
