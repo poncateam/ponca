@@ -155,13 +155,10 @@ template < class DataPoint, class _WFunctor, typename T>
 typename MlsSphereFitDer<DataPoint, _WFunctor, T>::ScalarArray
 MlsSphereFitDer<DataPoint, _WFunctor, T>::dPotential() const
 {
-    ScalarArray result = ScalarArray::Zero();
-
-    if(Base::isScaleDer())
-        result[0] = Base::m_dUc[0];
+    ScalarArray result = Base::m_dUc;
 
     if(Base::isSpaceDer())
-        result.template tail<Dim>() = Base::m_ul;
+        result.template tail<Dim>() += Base::m_ul;
 
     return result;
 }
