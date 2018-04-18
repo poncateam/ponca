@@ -33,10 +33,10 @@ namespace Grenaille
     \see CompactPlane
 */
 template < class DataPoint, class _WFunctor, typename T >
-class CovariancePlaneFit : public T
+class CovariancePlaneFit : public CompactPlane<DataPoint, _WFunctor>
 {
 private:
-    typedef T Base;
+    typedef CompactPlane<DataPoint, _WFunctor> Base;
 
 protected:
     enum
