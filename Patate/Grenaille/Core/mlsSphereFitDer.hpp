@@ -145,7 +145,7 @@ MlsSphereFitDer<DataPoint, _WFunctor, T>::finalize()
             + m_d2Uq*Base::m_sumDotPP
             + Base::m_uc*m_d2SumW
             + Base::m_dUc.transpose()*Base::m_dSumW
-            - Base::m_dSumW.transpose()*Base::m_dUc);
+            + Base::m_dSumW.transpose()*Base::m_dUc);
     }
 
     return Base::m_eCurrentState;
