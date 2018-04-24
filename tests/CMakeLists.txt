@@ -7,7 +7,7 @@ include_directories(${CMAKE_SOURCE_DIR})
 
 # Generate split test header file only if it does not yet exist
 # in order to prevent a rebuild everytime cmake is configured.
-if(NOT EXISTS ${CMAKE_CURRENT_BINARY_DIR}/split_test_helper.h)  
+if(NOT EXISTS ${CMAKE_CURRENT_BINARY_DIR}/split_test_helper.h)
   file(WRITE ${CMAKE_CURRENT_BINARY_DIR}/split_test_helper.h "")
   foreach(i RANGE 1 999)
     file(APPEND ${CMAKE_CURRENT_BINARY_DIR}/split_test_helper.h
@@ -65,7 +65,7 @@ macro(add_multi_test filename)
 
   string(REGEX MATCHALL "(.*)\\.c.*" dummy "${filename}")
   set(testname ${CMAKE_MATCH_1})
-  
+
   file(READ "${filename}" test_source)
   set(parts 0)
   string(REGEX MATCHALL "CALL_SUBTEST_[0-9]+|TEST_PART_[0-9]+|PATATE_SUFFIXES(;[0-9]+)+" occurences "${test_source}")
@@ -89,5 +89,6 @@ endmacro(add_multi_test)
 
 add_subdirectory(Grenaille)
 add_subdirectory(Vitelotte)
+add_subdirectory(Shelves)
 
 
