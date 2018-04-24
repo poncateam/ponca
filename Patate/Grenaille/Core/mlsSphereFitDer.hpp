@@ -1,3 +1,8 @@
+/*
+ This Source Code Form is subject to the terms of the Mozilla Public
+ License, v. 2.0. If a copy of the MPL was not distributed with this
+ file, You can obtain one at http://mozilla.org/MPL/2.0/.
+*/
 
 
 template < class DataPoint, class _WFunctor, typename T>
@@ -155,6 +160,10 @@ template < class DataPoint, class _WFunctor, typename T>
 typename MlsSphereFitDer<DataPoint, _WFunctor, T>::ScalarArray
 MlsSphereFitDer<DataPoint, _WFunctor, T>::dPotential() const
 {
+    // Compute the 1st order derivative of the scalar field s = uc + x^T ul + x^T x uq
+    // In a centered basis (x=0), we obtain:
+    //   the scale derivative:   d_t(s)(t,0) = d_t(uc)(t,0)
+    //   the spatial derivative: d_x(s)(t,0) = d_x(uc)(t,0) + ul(t,0)
     ScalarArray result = Base::m_dUc;
 
     if(Base::isSpaceDer())
@@ -167,6 +176,7 @@ template < class DataPoint, class _WFunctor, typename T>
 typename MlsSphereFitDer<DataPoint, _WFunctor, T>::VectorType
 MlsSphereFitDer<DataPoint, _WFunctor, T>::normal() const
 {
+    // Compute the 1st order derivative of the scalar field and normalize it
     VectorType grad = Base::m_dUc.template tail<Dim>().transpose() + Base::m_ul;
     return grad.normalized();
 }
@@ -175,10 +185,17 @@ template < class DataPoint, class _WFunctor, typename T>
 typename MlsSphereFitDer<DataPoint, _WFunctor, T>::VectorArray
 MlsSphereFitDer<DataPoint, _WFunctor, T>::dNormal() const
 {
+    // Compute the 1st order derivative of the normal, which is the normalized gradient N = d_x(s) / |d_x(s)|
+    // We obtain:
+    //   the scale derivative:   d_t(N) = (I-N N^T) / |d_x(s)| d2_tx(s)
+    //   the spatial derivative: d_x(N) = (I-N N^T) / |d_x(s)| d2_x2(s)
+    // Where in a centered basis (x=0), we have:
+    //   d2_tx(s) = d2_tx(uc) + d_t(ul)
+    //   d2_x2(s) = d2_x2(uc) + d_x(ul) + d_x(ul)^T + 2 uq I
     VectorArray result = VectorArray::Zero();
 
     VectorType grad = Base::m_dUc.template tail<Dim>().transpose() + Base::m_ul;
-    Scalar gradNorm  = grad.norm();
+    Scalar gradNorm = grad.norm();
 
     if(Base::isScaleDer())
         result.col(0) = m_d2Uc.template topRightCorner<1,Dim>().transpose() + Base::m_dUl.col(0);

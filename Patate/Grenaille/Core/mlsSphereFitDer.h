@@ -1,5 +1,8 @@
-
-
+/*
+ This Source Code Form is subject to the terms of the Mozilla Public
+ License, v. 2.0. If a copy of the MPL was not distributed with this
+ file, You can obtain one at http://mozilla.org/MPL/2.0/.
+*/
 
 
 #ifndef _GRENAILLE_MLS_SPHERE_FIT_DER_
@@ -8,6 +11,14 @@
 namespace Grenaille
 {
 
+/*!
+ * \brief Extension performing derivation of the mls surface
+ * \inherit Concept::FittingExtensionConcept
+ *
+ * The differentiation is determined by a previous basket elements that must
+ * provides first order derivatives of the algebraic sphere parameters.
+ *
+ */
 template < class DataPoint, class _WFunctor, typename T>
 class MlsSphereFitDer : public T
 {
@@ -109,8 +120,6 @@ public:
 
     /*! \brief Returns the second derivatives of the scalar field at the evaluation point */
     MULTIARCH inline VectorArray dNormal() const;
-
-
 
 }; //class MlsSphereFitDer
 
