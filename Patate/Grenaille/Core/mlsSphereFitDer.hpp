@@ -55,8 +55,8 @@ MlsSphereFitDer<DataPoint, _WFunctor, T>::addNeighbor(const DataPoint& _nei)
 
         for(int i=0; i<Dim; ++i)
         {
-            m_d2SumP.template block<DerDim,DerDim>(0,i*Dim) += d2w * q[i];
-            m_d2SumN.template block<DerDim,DerDim>(0,i*Dim) += d2w * _nei.normal()[i];
+            m_d2SumP.template block<DerDim,DerDim>(0,i*DerDim) += d2w * q[i];
+            m_d2SumN.template block<DerDim,DerDim>(0,i*DerDim) += d2w * _nei.normal()[i];
         }
     }
     return bResult;
@@ -79,10 +79,10 @@ MlsSphereFitDer<DataPoint, _WFunctor, T>::finalize()
         for(int i=0; i<Dim; ++i)
         {
             sumdSumPdSumN  += Base::m_dSumN.row(i).transpose()*Base::m_dSumP.row(i);
-            sumd2SumPdSumN += m_d2SumP.template block<DerDim,DerDim>(0,i*Dim)*Base::m_sumN(i);
-            sumd2SumNdSumP += m_d2SumN.template block<DerDim,DerDim>(0,i*Dim)*Base::m_sumP(i);
+            sumd2SumPdSumN += m_d2SumP.template block<DerDim,DerDim>(0,i*DerDim)*Base::m_sumN(i);
+            sumd2SumNdSumP += m_d2SumN.template block<DerDim,DerDim>(0,i*DerDim)*Base::m_sumP(i);
             sumdSumPdSumP  += Base::m_dSumP.row(i).transpose()*Base::m_dSumP.row(i);
-            sumd2SumPdSumP += m_d2SumP.template block<DerDim,DerDim>(0,i*Dim)*Base::m_sumP(i);
+            sumd2SumPdSumP += m_d2SumP.template block<DerDim,DerDim>(0,i*DerDim)*Base::m_sumP(i);
         }
 
         Scalar invSumW = Scalar(1.)/Base::m_sumW;
@@ -115,11 +115,11 @@ MlsSphereFitDer<DataPoint, _WFunctor, T>::finalize()
 
         for(int i=0; i<Dim; ++i)
         {
-            m_d2Ul.template block<DerDim,DerDim>(0,i*Dim) = invSumW*(
-                  m_d2SumN.template block<DerDim,DerDim>(0,i*Dim)
+            m_d2Ul.template block<DerDim,DerDim>(0,i*DerDim) = invSumW*(
+                  m_d2SumN.template block<DerDim,DerDim>(0,i*DerDim)
                 - Scalar(2.)*(  m_d2Uq*Base::m_sumP[i]
                               + Base::m_dSumP.row(i).transpose()*Base::m_dUq
-                              + Base::m_uq*m_d2SumP.template block<DerDim,DerDim>(0,i*Dim)
+                              + Base::m_uq*m_d2SumP.template block<DerDim,DerDim>(0,i*DerDim)
                               + Base::m_dUq.transpose()*Base::m_dSumP.row(i))
                 - Base::m_ul[i]*m_d2SumW
                 - Base::m_dUl.row(i).transpose()*Base::m_dSumW
@@ -134,8 +134,8 @@ MlsSphereFitDer<DataPoint, _WFunctor, T>::finalize()
         for(int i=0; i<Dim; ++i)
         {
             sumdUldSumP += Base::m_dUl.row(i).transpose()*Base::m_dSumP.row(i);
-            sumUld2SumP += Base::m_ul[i]*m_d2SumP.template block<DerDim,DerDim>(0,i*Dim);
-            sumd2UlsumP += m_d2Ul.template block<DerDim,DerDim>(0,i*Dim)*Base::m_sumP[i];
+            sumUld2SumP += Base::m_ul[i]*m_d2SumP.template block<DerDim,DerDim>(0,i*DerDim);
+            sumd2UlsumP += m_d2Ul.template block<DerDim,DerDim>(0,i*DerDim)*Base::m_sumP[i];
             sumdSumPdUl += Base::m_dSumP.row(i).transpose()*Base::m_dUl.row(i);
         }
 

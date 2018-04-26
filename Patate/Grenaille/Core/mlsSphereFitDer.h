@@ -72,7 +72,7 @@ public:
             MatrixArray a;
             int i;
             //...
-            Matrix m_i = a.template block<DerDim, DerDim>(0, i*Dim);
+            Matrix m_i = a.template block<DerDim, DerDim>(0, i*DerDim);
         \endcode
      */
     typedef Eigen::Matrix< Scalar, DerDim, Dim*DerDim > MatrixArray;
