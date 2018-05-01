@@ -112,7 +112,7 @@ public:
         \nabla w(\frac{\left|\mathbf{q}\right|}{t}) +
         \left(\frac{\delta \frac{\left|\mathbf{q}\right|}{t}}{\delta t}\right)^2
         \nabla^2 w(\frac{\left|\mathbf{q}\right|}{t}) =
-        \frac{2\left|\mathbf{q}\right|}{t^3} \nabla{w(\frac{\left|\mathbf{q}\right|}{t})} -
+        \frac{2\left|\mathbf{q}\right|}{t^3} \nabla{w(\frac{\left|\mathbf{q}\right|}{t})} +
         \frac{\left|\mathbf{q}\right|^2}{t^4} \nabla^2{w(\frac{\left|\mathbf{q}\right|}{t})}
         \f$
 
