@@ -36,7 +36,7 @@ DistWeightFunc<DataPoint, WeightKernel>::spaced2w(   const VectorType& _q,
     if (d <= m_t && d != Scalar(0.))
     {
         Scalar der = m_wk.df(d/m_t);
-        result = _q*_q.transpose()*(m_wk.ddf(d/m_t)/m_t - der/(d*d));
+        result = _q*_q.transpose()/d*(m_wk.ddf(d/m_t)/m_t - der/d);
         result.diagonal().array() += der;
         result *= Scalar(1.)/(m_t*d);
     }
