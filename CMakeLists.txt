@@ -34,13 +34,10 @@ endif()
 # Add core code source, so it is visible in dev environements                  #
 ################################################################################
 
-# Enable it only with CodeBlocks generators (used by QtCreator) cause it seems
-# to fail with some, like VS.
-#if(CMAKE_GENERATOR MATCHES "CodeBlocks.*")
-    add_subdirectory(Patate/Grenaille EXCLUDE_FROM_ALL)
-    add_subdirectory(Patate/Vitelotte EXCLUDE_FROM_ALL)
-    add_subdirectory(Patate/common EXCLUDE_FROM_ALL)
-#endif()
+add_subdirectory(Patate/Grenaille EXCLUDE_FROM_ALL)
+add_subdirectory(Patate/Vitelotte EXCLUDE_FROM_ALL)
+add_subdirectory(Patate/common)
+
 
 ################################################################################
 # Generate install target                                                      #
@@ -51,43 +48,6 @@ endif (NOT INCLUDE_INSTALL_DIR)
 install(DIRECTORY Patate DESTINATION ${INCLUDE_INSTALL_DIR} FILES_MATCHING REGEX ".*\\.(hpp|h)$")
 message("Patate will be installed in ${INCLUDE_INSTALL_DIR}/Patate")
 
-
-
-################################################################################
-# Generate Vitelotte's shaders                                                 #
-# TODO: find a more appropriate place for this.                                #
-################################################################################
-
-find_package(PythonInterp 3.0)
-
-if(PYTHONINTERP_FOUND)
-    set(vitelotte_SHADERS
-        ${Patate_SOURCE_DIR}/Patate/Vitelotte/Utils/vgMeshRendererShaders/vert_common.glsl
-        ${Patate_SOURCE_DIR}/Patate/Vitelotte/Utils/vgMeshRendererShaders/ctrl_common.glsl
-        ${Patate_SOURCE_DIR}/Patate/Vitelotte/Utils/vgMeshRendererShaders/eval_common.glsl
-        ${Patate_SOURCE_DIR}/Patate/Vitelotte/Utils/vgMeshRendererShaders/geom_common.glsl
-        ${Patate_SOURCE_DIR}/Patate/Vitelotte/Utils/vgMeshRendererShaders/frag_common.glsl
-        ${Patate_SOURCE_DIR}/Patate/Vitelotte/Utils/vgMeshRendererShaders/frag_linear.glsl
-        ${Patate_SOURCE_DIR}/Patate/Vitelotte/Utils/vgMeshRendererShaders/frag_quadratic.glsl
-        ${Patate_SOURCE_DIR}/Patate/Vitelotte/Utils/vgMeshRendererShaders/frag_wireframe.glsl
-    )
-
-    add_custom_command(
-        OUTPUT ${Patate_SOURCE_DIR}/Patate/Vitelotte/Utils/vgMeshRendererShaders.hpp
-        COMMAND ${PYTHON_EXECUTABLE} ${Patate_SOURCE_DIR}/bin/shader2cpp
-            -l
-            -n Vitelotte::VGMeshRendererShaders
-            -g _VITELOTTE_UTILS_VG_MESH_RENDERER_SHADERS_
-            -o ${Patate_SOURCE_DIR}/Patate/Vitelotte/Utils/vgMeshRendererShaders.hpp
-            ${vitelotte_SHADERS}
-        DEPENDS ${vitelotte_SHADERS} ${PROJECT_SOURCE_DIR}/bin/shader2cpp
-        WORKING_DIRECTORY ${Patate_SOURCE_DIR}
-        VERBATIM
-    )
-endif()
-
-add_custom_target(vitelottes_vg_mesh_renderer_shaders
-    DEPENDS ${PROJECT_SOURCE_DIR}/Patate/Vitelotte/Utils/vgMeshRendererShaders.hpp)
 
 ################################################################################
 # add a target to generate API documentation with Doxygen                      #
