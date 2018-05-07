@@ -12,8 +12,39 @@
 #include "../common/testing.h"
 #include "../common/testUtils.h"
 
+#include <unsupported/Eigen/AutoDiff>
+
 using namespace std;
 using namespace Grenaille;
+
+template<class Kernel>
+void testFunctionAutoDiff()
+{
+    typedef typename Kernel::Scalar ScalarDiff;
+    typedef typename ScalarDiff::Scalar Scalar;
+
+    Scalar step = Scalar(0.05);
+    int n = Scalar(1.)/step;
+
+    Kernel k;
+    Scalar epsilon = testEpsilon<Scalar>();
+
+    // compare to automatic differentiation
+    for(int i=1; i<=n; ++i)
+    {
+        ScalarDiff a(i*step, 1, 0);
+
+        ScalarDiff f   = k.f(a);
+        ScalarDiff df  = k.df(a);
+        ScalarDiff ddf = k.ddf(a);
+
+        Scalar diff1 = std::abs( f.derivatives()[0] - df.value());
+        Scalar diff2 = std::abs(df.derivatives()[0] - ddf.value());
+
+        VERIFY(diff1 < epsilon);
+        VERIFY(diff2 < epsilon);
+    }
+}
 
 template<class Kernel>
 void testFunction()
@@ -53,8 +84,14 @@ void testFunction()
 template<typename Scalar>
 void callSubTests()
 {
+    typedef Eigen::AutoDiffScalar<Eigen::Matrix<Scalar,1,1>> ScalarDiff;
+
     typedef SmoothWeightKernel<Scalar> Kernel;
+    typedef SmoothWeightKernel<ScalarDiff> KernelAutoDiff;
+
     CALL_SUBTEST(( testFunction<Kernel>() ));
+    CALL_SUBTEST(( testFunctionAutoDiff<KernelAutoDiff>() ));
+
     cout << "ok" << endl;
 }
 
