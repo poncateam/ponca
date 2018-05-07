@@ -5,6 +5,7 @@
 */
 
 #include <Eigen/Eigenvalues>
+#include <Eigen/Core>
 
 #ifndef _GRENAILLE_CURVATURE_
 #define _GRENAILLE_CURVATURE_
@@ -44,6 +45,10 @@ public:
     typedef typename Base::Scalar          Scalar;      /*!< \brief Inherited scalar type*/
     typedef typename Base::VectorType      VectorType;  /*!< \brief Inherited vector type*/
     typedef typename DataPoint::MatrixType MatrixType;  /*!< \brief Matrix type inherited from DataPoint*/
+
+private:
+    typedef Eigen::Matrix<Scalar,3,2> Mat32; /*!< \brief Matrix type for tangent plane basis */
+    typedef Eigen::Matrix<Scalar,2,2> Mat22; /*!< \brief Matrix type for shape operator */
 
 private:
     Scalar m_k1, m_k2;
@@ -87,6 +92,20 @@ public:
 
     //! \brief Returns an estimate of the Gaussian curvature
     MULTIARCH inline Scalar GaussianCurvature() const { return m_k1 * m_k2;}    
+
+    //! \brief Compute principal curvature directions
+    //!
+    //! The tangent plane can be calculated from the normal vector or from its
+    //! derivatives, depending of the useNormal parameter
+    //!
+    //! The finalize() method calls this function with useNormal=false by
+    //! default.
+    //!
+    MULTIARCH inline FIT_RESULT computeCurvature(bool useNormal = false);
+
+protected:
+    //! \brief Compute a tangent plane basis
+    MULTIARCH inline Mat32 tangentPlane(bool useNormal = false) const;
 };
 
 #include "curvature.hpp"
