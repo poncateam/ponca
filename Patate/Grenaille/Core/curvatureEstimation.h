@@ -5,6 +5,10 @@
 namespace Grenaille
 {
 
+/** \addtogroup experimental
+ *  @{
+ */
+
 
 template < class DataPoint, class _WFunctor, typename T>
 class BaseCurvatureEstimator : public T
@@ -197,6 +201,8 @@ public:
 };
 
 #include "curvatureEstimation.hpp"
+
+/** @}*/
 
 } //namespace Grenaille
 
