@@ -35,8 +35,6 @@ void testFunction()
     Scalar centerScale = Eigen::internal::random<Scalar>(1,10000);
     VectorType center = VectorType::Random() * centerScale;
 
-    Scalar epsilon = testEpsilon<Scalar>();
-
     vector<DataPoint> vectorPoints(nbPoints);
 
     for(unsigned int i = 0; i < vectorPoints.size(); ++i)

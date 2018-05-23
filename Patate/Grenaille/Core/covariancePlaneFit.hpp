@@ -48,8 +48,6 @@ template < class DataPoint, class _WFunctor, typename T>
 FIT_RESULT
 CovariancePlaneFit<DataPoint, _WFunctor, T>::finalize ()
 {
-    Scalar epsilon = Eigen::NumTraits<Scalar>::dummy_precision();
-
     // handle specific configurations
     // With less than 3 neighbors the fitting is undefined
     if(m_sumW == Scalar(0.) || Base::m_nbNeighbors < 3)
