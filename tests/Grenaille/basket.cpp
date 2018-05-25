@@ -35,8 +35,6 @@ void testFunction()
     Scalar centerScale = Eigen::internal::random<Scalar>(1,10000);
     VectorType center = VectorType::Random() * centerScale;
 
-    Scalar epsilon = testEpsilon<Scalar>();
-
     vector<DataPoint> vectorPoints(nbPoints);
 
     for(unsigned int i = 0; i < vectorPoints.size(); ++i)
@@ -53,7 +51,7 @@ void testFunction()
         // use compute function
         fit1.setWeightFunc(WeightFunc(analysisScale));
         fit1.init(vectorPoints[i].pos());
-        fit1.compute(vectorPoints.begin(), vectorPoints.cend());
+        fit1.compute(vectorPoints.cbegin(), vectorPoints.cend());
 
         // use addNeighbor
         fit2.setWeightFunc(WeightFunc(analysisScale));

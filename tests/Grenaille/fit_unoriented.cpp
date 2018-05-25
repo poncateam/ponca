@@ -37,7 +37,7 @@ void testFunction(bool _bAddPositionNoise = false, bool _bAddNormalNoise = false
 
     Scalar epsilon = testEpsilon<Scalar>();
     // epsilon is relative to the radius size
-    Scalar radiusEpsilon = epsilon * radius;
+//    Scalar radiusEpsilon = epsilon * radius;
 
 
     vector<DataPoint> vectorPoints(nbPoints);
@@ -61,15 +61,15 @@ void testFunction(bool _bAddPositionNoise = false, bool _bAddNormalNoise = false
 
         fit.setWeightFunc(WeightFunc(analysisScale));
         fit.init(vectorPoints[i].pos());
-        fit.compute(vectorPoints.begin(), vectorPoints.cend());
+        fit.compute(vectorPoints.cbegin(), vectorPoints.cend());
 
         fitReverse100.setWeightFunc(WeightFunc(analysisScale));
         fitReverse100.init(vectorReversedNormals100[i].pos());
-        fitReverse100.compute(vectorPoints.begin(), vectorPoints.cend());
+        fitReverse100.compute(vectorPoints.cbegin(), vectorPoints.cend());
 
         fitReverseRandom.setWeightFunc(WeightFunc(analysisScale));
         fitReverseRandom.init(vectorReversedNormalsRandom[i].pos());
-        fitReverseRandom.compute(vectorPoints.begin(), vectorPoints.cend());
+        fitReverseRandom.compute(vectorPoints.cbegin(), vectorPoints.cend());
 
         if(fit.isStable() && fitReverse100.isStable() && fitReverseRandom.isStable())
         {

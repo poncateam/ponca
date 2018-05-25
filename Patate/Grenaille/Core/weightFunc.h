@@ -31,6 +31,8 @@ public:
     typedef typename DataPoint::Scalar Scalar;
     /*! \brief Vector type from DataPoint */
     typedef typename DataPoint::VectorType VectorType;
+    /*! \brief Matrix type from DataPoint */
+    typedef typename DataPoint::MatrixType MatrixType;
 
     /*! 
         \brief Constructor that defines the current evaluation scale
@@ -59,9 +61,9 @@ public:
     /*!
         \brief First order derivative in space (for each spatial dimension \f$\mathsf{x})\f$
 
-        \f$ \frac{\delta \frac{\left|\mathbf{q}_\mathsf{x}\right|}{t}}{\delta \mathsf{x}} 
-        \nabla w(\frac{\left|\mathbf{q}_\mathsf{x}\right|}{t}) 
-        = \frac{ \nabla{w(\frac{\left|\mathbf{q}_\mathsf{x}\right|}{t})}}{t}  \f$
+        \f$ \frac{\delta \frac{\left|\mathbf{q}_\mathsf{x}\right|}{t}}{\delta \mathsf{x}}
+        \nabla w(\frac{\left|\mathbf{q}_\mathsf{x}\right|}{t})
+        = \frac{\mathbf{q}}{t\left|q\right|}  \nabla{w(\frac{\left|\mathbf{q}_\mathsf{x}\right|}{t})}  \f$
 
         where \f$ \left|\mathbf{q}_\mathsf{x}\right| \f$ represents the norm of the
         query coordinates expressed in centered basis,
@@ -70,6 +72,25 @@ public:
     MULTIARCH inline VectorType spacedw(const VectorType& _q, 
         const DataPoint&  /*attributes*/) const;
 
+
+    /*!
+        \brief Second order derivative in space (for each spatial dimension \f$\mathsf{x})\f$
+
+        \f$ \frac{\delta^2 \frac{\left|\mathbf{q}_\mathsf{x}\right|}{t}}{\delta \mathsf{x}^2}
+        \nabla w(\frac{\left|\mathbf{q}_\mathsf{x}\right|}{t}) +
+        \left(\frac{\delta \frac{\left|\mathbf{q}_\mathsf{x}\right|}{t}}{\delta \mathsf{x}}\right)^2
+        \nabla^2 w(\frac{\left|\mathbf{q}_\mathsf{x}\right|}{t}) =
+        \frac{1}{t\left|\mathbf{q}_\mathsf{x}\right|} \left( I_d - \frac{\mathbf{q}_\mathsf{x}\mathbf{q}_\mathsf{x}^T}{\left|\mathbf{q}_\mathsf{x}\right|^2}\right)
+        \nabla w(\frac{\left|\mathbf{q}_\mathsf{x}\right|}{t}) +
+        \frac{\mathbf{q}_\mathsf{x}\mathbf{q}_\mathsf{x}^T}{t^2\left|\mathbf{q}_\mathsf{x}\right|^2}
+        \nabla^2 w(\frac{\left|\mathbf{q}_\mathsf{x}\right|}{t}) \f$
+
+        where \f$ \left|\mathbf{q}_\mathsf{x}\right| \f$ represents the norm of the
+        query coordinates expressed in centered basis,
+        for each spatial dimensions \f$ \mathsf{x}\f$.
+    */
+    MULTIARCH inline MatrixType spaced2w(const VectorType& _q,
+        const DataPoint&  /*attributes*/) const;
 
     /*!
         \brief First order derivative in scale  \f$t\f$
@@ -82,6 +103,41 @@ public:
         query coordinates expressed in centered basis.
     */
     MULTIARCH inline Scalar scaledw(const VectorType& _q, 
+        const DataPoint&  /*attributes*/) const;
+
+    /*!
+        \brief Second order derivative in scale  \f$t\f$
+
+        \f$ \frac{\delta^2 \frac{\left|\mathbf{q}\right|}{t}}{\delta t^2}
+        \nabla w(\frac{\left|\mathbf{q}\right|}{t}) +
+        \left(\frac{\delta \frac{\left|\mathbf{q}\right|}{t}}{\delta t}\right)^2
+        \nabla^2 w(\frac{\left|\mathbf{q}\right|}{t}) =
+        \frac{2\left|\mathbf{q}\right|}{t^3} \nabla{w(\frac{\left|\mathbf{q}\right|}{t})} +
+        \frac{\left|\mathbf{q}\right|^2}{t^4} \nabla^2{w(\frac{\left|\mathbf{q}\right|}{t})}
+        \f$
+
+        where \f$ \left|\mathbf{q}\right| \f$ represents the norm of the
+        query coordinates expressed in centered basis.
+    */
+    MULTIARCH inline Scalar scaled2w(const VectorType& _q,
+        const DataPoint&  /*attributes*/) const;
+
+    /*!
+        \brief Cross derivative in scale \f$t\f$ and in space (for each spatial dimension \f$\mathsf{x})\f$
+
+        \f$ \frac{\delta^2 \frac{\left|\mathbf{q}_\mathsf{x}\right|}{t}}{\delta t\ \delta \mathsf{x}}
+        \nabla w(\frac{\left|\mathbf{q}_\mathsf{x}\right|}{t}) +
+        \frac{\delta \frac{\left|\mathbf{q}_\mathsf{x}\right|}{t}}{\delta \mathsf{x}}
+        \frac{\delta \frac{\left|\mathbf{q}_\mathsf{x}\right|}{t}}{\delta t}
+        \nabla^2 w(\frac{\left|\mathbf{q}_\mathsf{x}\right|}{t}) =
+        -\frac{\mathbf{q}_\mathsf{x}}{t^2}
+        \left( \frac{1}{\left|\mathbf{q}_\mathsf{x}\right|}\nabla w(\frac{\left|\mathbf{q}_\mathsf{x}\right|}{t}) +
+        \frac{1}{t}\nabla^2 w(\frac{\left|\mathbf{q}_\mathsf{x}\right|}{t}) \right)\f$
+
+        where \f$ \left|\mathbf{q}_\mathsf{x}\right| \f$ represents the norm of the
+        query coordinates expressed in centered basis.
+    */
+    MULTIARCH inline VectorType scaleSpaced2w(const VectorType& _q,
         const DataPoint&  /*attributes*/) const;
 
     /*! \brief Access to the evaluation scale set during the initialization */

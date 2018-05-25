@@ -15,4 +15,3 @@ add_multi_test(gls_compare.cpp)
 add_multi_test(plane_primitive.cpp)
 add_multi_test(fit_plane.cpp)
 add_multi_test(basket.cpp)
-

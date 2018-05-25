@@ -1,7 +1,7 @@
 /*
  This Source Code Form is subject to the terms of the Mozilla Public
  License, v. 2.0. If a copy of the MPL was not distributed with this
- file, You can obtain one at http://mozilla.org/MPL/2.0/. 
+ file, You can obtain one at http://mozilla.org/MPL/2.0/.
 */
 
 
@@ -38,7 +38,7 @@ for(uint i=0 ; i<nofSamples ; ++i)
     sumDotPP  += w * p.squaredNorm();
 }
 cov /= sumOfWeights;
-Q   /= sumOfWeights;            
+Q   /= sumOfWeights;
 
 MatrixBB M = Q.inverse() * cov;
 Eigen::EigenSolver<MatrixBB> eig(M);
@@ -55,7 +55,7 @@ uConstant() = -(1./sumOfWeights)*(eivec.start<Dim>().dot(sumP) + 0.5*eivec(Dim) 
 #endif
 
 template < class DataPoint, class _WFunctor, typename T>
-void 
+void
 UnorientedSphereFit<DataPoint, _WFunctor, T>::init(const VectorType& _evalPos)
 {
     // Setup primitive
@@ -71,7 +71,7 @@ UnorientedSphereFit<DataPoint, _WFunctor, T>::init(const VectorType& _evalPos)
 }
 
 template < class DataPoint, class _WFunctor, typename T>
-bool 
+bool
 UnorientedSphereFit<DataPoint, _WFunctor, T>::addNeighbor(const DataPoint& _nei)
 {
     // centered basis
@@ -105,8 +105,6 @@ UnorientedSphereFit<DataPoint, _WFunctor, T>::finalize ()
     MULTIARCH_STD_MATH(sqrt);
 
     // 1. finalize sphere fitting
-    Scalar invSumW;
-    Scalar epsilon = Eigen::NumTraits<Scalar>::dummy_precision();
 
     // handle specific configurations
     // With less than 3 neighbors the fitting is undefined
@@ -119,10 +117,9 @@ UnorientedSphereFit<DataPoint, _WFunctor, T>::finalize ()
         Base::m_eCurrentState = UNDEFINED;
         return Base::m_eCurrentState;
     }
-    else
-    {
-        invSumW = Scalar(1.) / m_sumW;
-    }
+
+    Scalar invSumW = Scalar(1.) / m_sumW;
+
 
     MatrixBB Q;
     Q.template topLeftCorner<Dim,Dim>().setIdentity();
@@ -135,7 +132,8 @@ UnorientedSphereFit<DataPoint, _WFunctor, T>::finalize ()
     Eigen::EigenSolver<MatrixBB> eig(M);
     VectorB eivals = eig.eigenvalues().real();
     int maxId = 0;
-    Scalar l = eivals.maxCoeff(&maxId);
+    eivals.maxCoeff(&maxId);
+
     VectorB eivec = eig.eigenvectors().col(maxId).real();
 
     // integrate
@@ -163,7 +161,7 @@ namespace internal
 {
 
 template < class DataPoint, class _WFunctor, typename T, int Type>
-void 
+void
 OrientedSphereDer<DataPoint, _WFunctor, T, Type>::init(const VectorType& _evalPos)
 {
     Base::init(_evalPos);
@@ -182,7 +180,7 @@ OrientedSphereDer<DataPoint, _WFunctor, T, Type>::init(const VectorType& _evalPo
 
 
 template < class DataPoint, class _WFunctor, typename T, int Type>
-bool 
+bool
 OrientedSphereDer<DataPoint, _WFunctor, T, Type>::addNeighbor(const DataPoint  &_nei)
 {
     bool bResult = Base::addNeighbor(_nei);
@@ -220,7 +218,7 @@ OrientedSphereDer<DataPoint, _WFunctor, T, Type>::addNeighbor(const DataPoint  &
 
 
 template < class DataPoint, class _WFunctor, typename T, int Type>
-FIT_RESULT 
+FIT_RESULT
 OrientedSphereDer<DataPoint, _WFunctor, T, Type>::finalize()
 {
     MULTIARCH_STD_MATH(sqrt);
@@ -238,14 +236,14 @@ OrientedSphereDer<DataPoint, _WFunctor, T, Type>::finalize()
 
         ScalarArray dNume = m_dSumDotPN - invSumW*invSumW * ( Base::m_sumW * (
                                                             Base::m_sumN.transpose() * m_dSumP +
-                                                            Base::m_sumP.transpose() * m_dSumN ) 
+                                                            Base::m_sumP.transpose() * m_dSumN )
                                                             - m_dSumW*Base::m_sumP.dot(Base::m_sumN) );
         ScalarArray dDeno = m_dSumDotPP - invSumW*invSumW*( Scalar(2.)*Base::m_sumW * Base::m_sumP.transpose()*m_dSumP
                                                             - m_dSumW*Base::m_sumP.dot(Base::m_sumP) );
 
         m_dUq =  Scalar(.5) * (deno * dNume - dDeno * nume)/(deno*deno);
         m_dUl =  invSumW*((m_dSumN - Scalar(2.)*(m_dSumP*Base::m_uq+Base::m_sumP*m_dUq)) - Base::m_ul*m_dSumW);
-        m_dUc = -invSumW*( Base::m_sumP.transpose() * m_dUl + 
+        m_dUc = -invSumW*( Base::m_sumP.transpose() * m_dUl +
                             Base::m_sumDotPP * m_dUq + Base::m_ul.transpose() * m_dSumP +
                             Base::m_uq*m_dSumDotPP + m_dSumW*Base::m_uc);
     }
@@ -268,7 +266,7 @@ OrientedSphereDer<DataPoint, _WFunctor, T, Type>::applyPrattNorm()
     Scalar pn     = sqrt(pn2);
 
     ScalarArray dpn2   = dprattNorm2();
-    ScalarArray factor = Scalar(0.5) * dpn2 / pn;  
+    ScalarArray factor = Scalar(0.5) * dpn2 / pn;
 
     m_dUc = ( m_dUc * pn - Base::m_uc * factor ) / pn2;
     m_dUl = ( m_dUl * pn - Base::m_ul * factor ) / pn2;
@@ -277,7 +275,7 @@ OrientedSphereDer<DataPoint, _WFunctor, T, Type>::applyPrattNorm()
     Base::applyPrattNorm();
     return true;
 }
-  
+
 }// namespace internal
 
 #endif
