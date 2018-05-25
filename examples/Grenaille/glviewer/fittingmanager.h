@@ -17,6 +17,7 @@ public:
     enum FIT_TYPE {
         PLANE_COV,
         SPHERE_ORIENTED,
+        SPHERE,
         UNSUPPORTED
     };
 
@@ -25,8 +26,8 @@ public:
 
     inline void setMesh(Mesh* mesh) { _mesh = mesh; }
 
-    //! \brief Generate a new mesh that is an approximation of the current nei.
-    Mesh computeNeighborhoodMeshApprox() const;
+    //! \brief Getter on the projected mesh.
+    Mesh *getNeighborhoodMeshApprox();
 
 signals:
     //! \brief Signal emitted when the basket has been applied to the input data.
@@ -40,15 +41,11 @@ public slots:
     void setScale(float scale);
     void setScale(double scale);
     void fitPrimitive();
-    void setNeighborhoodApproxUpdate(bool update) {
-        _stateUpdateNei = update;
-        if(update) fitPrimitive();
-    }
 
 private:
     FIT_TYPE _fitType;
     PatateCommon::GLTri3DMesh *_mesh;
-    PatateCommon::GLTri3DMesh _neiApproximation;
+    PatateCommon::GLTri3DMesh *_neiApproximation;
     Scalar _scale;
     typename Mesh::Vector _evalPos;
 
@@ -66,15 +63,20 @@ struct BasketMaker {
 template <>
 struct BasketMaker<FittingManager::PLANE_COV>{
     typedef Grenaille::DistWeightFunc<MyPoint,Grenaille::SmoothWeightKernel<MyPoint::Scalar> > WeightFunc;
-    typedef Grenaille::Basket<MyPoint,WeightFunc, Grenaille::CompactPlane,
-                                                  Grenaille::CovariancePlaneFit> Basket;
+    typedef Grenaille::Basket<MyPoint,WeightFunc, Grenaille::CovariancePlaneFit> Basket;
 };
 
 template <>
 struct BasketMaker<FittingManager::SPHERE_ORIENTED>{
     typedef Grenaille::DistWeightFunc<MyPoint,Grenaille::SmoothWeightKernel<MyPoint::Scalar> > WeightFunc;
-    typedef Grenaille::Basket<MyPoint,WeightFunc, Grenaille::AlgebraicSphere,
-                                                  Grenaille::OrientedSphereFit,
+    typedef Grenaille::Basket<MyPoint,WeightFunc, Grenaille::OrientedSphereFit,
+                                                  Grenaille::GLSParam> Basket;
+};
+
+template <>
+struct BasketMaker<FittingManager::SPHERE>{
+    typedef Grenaille::DistWeightFunc<MyPoint,Grenaille::SmoothWeightKernel<MyPoint::Scalar> > WeightFunc;
+    typedef Grenaille::Basket<MyPoint,WeightFunc, Grenaille::SphereFit,
                                                   Grenaille::GLSParam> Basket;
 };
 

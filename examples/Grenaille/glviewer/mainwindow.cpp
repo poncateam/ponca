@@ -36,8 +36,7 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(&_manager, SIGNAL(fitPerformed()),
             this,     SLOT(updateNeighborhoodMesh()));
 
-    connect(ui->_paramDisplayProjectedNei, SIGNAL(clicked(bool)),
-            &_manager,                     SLOT(setNeighborhoodApproxUpdate(bool)));
+    ui->_viewer->setNeighborhoodMesh(_manager.getNeighborhoodMeshApprox());
 }
 
 MainWindow::~MainWindow()
@@ -78,5 +77,5 @@ void MainWindow::on__paramBasketType_currentIndexChanged(int index)
 }
 
 void MainWindow::updateNeighborhoodMesh(){
-    ui->_viewer->setNeighborhoodMesh(_manager.computeNeighborhoodMeshApprox());
+    ui->_viewer->update();
 }

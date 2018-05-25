@@ -20,7 +20,7 @@
      <x>0</x>
      <y>0</y>
      <width>800</width>
-     <height>19</height>
+     <height>25</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFile">
@@ -59,6 +59,11 @@
             <string>Oriented Sphere Fit</string>
            </property>
           </item>
+          <item>
+           <property name="text">
+            <string>Sphere Fit</string>
+           </property>
+          </item>
          </widget>
         </item>
         <item row="1" column="0">
@@ -91,25 +96,6 @@
          <widget class="QLabel" name="_paramBasketScaleLabel">
           <property name="text">
            <string>Scale:</string>
-          </property>
-         </widget>
-        </item>
-       </layout>
-      </widget>
-     </item>
-     <item>
-      <widget class="QGroupBox" name="_paramDisplayGroup">
-       <property name="title">
-        <string>Display</string>
-       </property>
-       <layout class="QVBoxLayout" name="verticalLayout_2">
-        <item>
-         <widget class="QCheckBox" name="_paramDisplayProjectedNei">
-          <property name="toolTip">
-           <string>May slow down performances</string>
-          </property>
-          <property name="text">
-           <string>Show projected neighborhood</string>
           </property>
          </widget>
         </item>

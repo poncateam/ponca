@@ -3,10 +3,11 @@
 FittingManager::FittingManager(QObject *parent) :
     QObject(parent),
     _fitType(FittingManager::PLANE_COV),
-    _mesh(NULL),
+    _mesh(nullptr),
+    _neiApproximation(new Mesh()),
     _scale(0.02),
     _evalPos(Mesh::Vector::Zero()),
-    _stateUpdateNei(false)
+    _stateUpdateNei(true)
 {
 }
 void
@@ -20,6 +21,7 @@ FittingManager::setBasketType(FIT_TYPE type){
 void
 FittingManager::setEvaluationPoint(const PatateCommon::GLTri3DMesh::Vector &pos){
     _evalPos = pos;
+    _stateUpdateNei = true;
     std::cout << __PRETTY_FUNCTION__ << std::endl;
 
     emit evaluationPointChanged();
@@ -30,6 +32,7 @@ FittingManager::setEvaluationPoint(const PatateCommon::GLTri3DMesh::Vector &pos)
 void
 FittingManager::setScale(float scale){
     _scale = scale;
+    _stateUpdateNei = true;
     std::cout << __PRETTY_FUNCTION__ << std::endl;
 
     emit scaleChanged();
@@ -40,6 +43,7 @@ FittingManager::setScale(float scale){
 void
 FittingManager::setScale(double scale){
     _scale = scale;
+    _stateUpdateNei = true;
     std::cout << __PRETTY_FUNCTION__ << std::endl;
 
     emit scaleChanged();
@@ -62,9 +66,9 @@ FittingManager::fitPrimitive(){
     //   - fit primitive
     //   - project nei vertices on primitive
     //
-    _neiApproximation = Mesh();
 
     if (_stateUpdateNei){
+        Mesh nei;
         // accessing using UNSUPPORTED returns default params
         typedef typename fittingmanagerspace::BasketMaker<UNSUPPORTED>::WeightFunc WFunc;
         typedef typename Mesh::Vector VectorType;
@@ -88,15 +92,16 @@ FittingManager::fitPrimitive(){
 
 
             if (add){
-                _neiApproximation.addVertex(list[0].pos());
-                _neiApproximation.addVertex(list[1].pos());
-                _neiApproximation.addVertex(list[2].pos());
+                nei.addVertex(list[0].pos());
+                nei.addVertex(list[1].pos());
+                nei.addVertex(list[2].pos());
 
-                _neiApproximation.addFace(vertexId, vertexId+1, vertexId+2);
+                nei.addFace(vertexId, vertexId+1, vertexId+2);
 
                 vertexId += 3;
             }
         }
+        _neiApproximation->setFrom(nei);
     }
 
 
@@ -108,11 +113,9 @@ FittingManager::fitPrimitive(){
     f.setWeightFunc(WFunc(_scale));                                            \
     f.init(_evalPos);                                                          \
     f.compute(_mesh->begin(), _mesh->end());                                   \
-    if (_stateUpdateNei){                                                      \
-        for (Mesh::posIterator it = _mesh->vertexBegin();                      \
-                               it != _mesh->vertexEnd(); ++it)                 \
-            *it = f.project(*it);                                              \
-    }
+    for (Mesh::posIterator it = _neiApproximation->vertexBegin();              \
+                           it != _neiApproximation->vertexEnd(); ++it)         \
+        *it = f.project(*it);
 
 
     switch(_fitType){
@@ -126,6 +129,14 @@ FittingManager::fitPrimitive(){
     case SPHERE_ORIENTED:
     {
         COMPUTE(SPHERE_ORIENTED);
+        std::cout << "Tau:   " << f.tau() << std::endl;
+        std::cout << "Eta:   " << f.eta().transpose() << std::endl;
+        std::cout << "Kappa: " << f.kappa() << std::endl;
+        break;
+    }
+    case SPHERE:
+    {
+        COMPUTE(SPHERE);
         std::cout << "Tau:   " << f.tau() << std::endl;
         std::cout << "Eta:   " << f.eta().transpose() << std::endl;
         std::cout << "Kappa: " << f.kappa() << std::endl;
@@ -145,7 +156,7 @@ FittingManager::fitPrimitive(){
  * Internally, the weighting function is created, and used to select the vertices
  * having an influence on the fit
  */
-FittingManager::Mesh
-FittingManager::computeNeighborhoodMeshApprox() const {
+FittingManager::Mesh *
+FittingManager::getNeighborhoodMeshApprox() {
     return _neiApproximation;
 }

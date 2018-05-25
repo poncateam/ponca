@@ -68,7 +68,7 @@ public:
 
 public slots:
     void setScale(double scale) { _scale = scale; update(); }
-    void setNeighborhoodMesh (const Mesh& mesh) { _neighborhoodMesh = mesh; update(); }
+    void setNeighborhoodMesh (Mesh* mesh) { _neighborhoodMesh = mesh; update(); }
 
 signals:
     void selectedPointChanged(const PatateCommon::GLTri3DMesh::Vector& point);
@@ -118,8 +118,8 @@ private:
 
     double _scale;
 
-    Mesh *_mesh;
-    Mesh _unitSphere, _neighborhoodMesh;
+    Mesh *_mesh, *_neighborhoodMesh;
+    Mesh _unitSphere;
     MeshAttributesValues _meshAttribs, _sphereAttribs;
     QTimer *_refreshTimer; // automatically update the view
 };

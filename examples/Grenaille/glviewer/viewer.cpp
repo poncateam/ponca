@@ -200,13 +200,18 @@ void Viewer::paintGL()
 {
     qglClearColor(Qt::white);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+    glDisable(GL_CULL_FACE);
 
     if (_mesh != NULL){
-        draw(_mesh, _meshAttribs);
         if(_pickedPointId != -1)
-            glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-        draw(&_neighborhoodMesh, _sphereAttribs);
-        if(_pickedPointId != -1)  drawPicked();
+        {
+            draw(_mesh, _sphereAttribs);
+            glClear(/*GL_COLOR_BUFFER_BIT |*/ GL_DEPTH_BUFFER_BIT);
+            draw(_neighborhoodMesh, _meshAttribs);
+        } else {
+            draw(_mesh, _meshAttribs);
+        }
+        //if(_pickedPointId != -1)  drawPicked();
 
     }
 }
