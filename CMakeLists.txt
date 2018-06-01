@@ -2,6 +2,8 @@ project(Patate)
 
 cmake_minimum_required(VERSION 2.8.10)
 
+set(PATATE_ROOT ${CMAKE_CURRENT_SOURCE_DIR})
+
 # guard against in-source builds (source: Eigen)
 
 if(${CMAKE_SOURCE_DIR} STREQUAL ${CMAKE_BINARY_DIR})
@@ -34,10 +36,10 @@ endif()
 # Add core code source, so it is visible in dev environements                  #
 ################################################################################
 
-add_subdirectory(Patate/Grenaille EXCLUDE_FROM_ALL)
-add_subdirectory(Patate/Vitelotte EXCLUDE_FROM_ALL)
-add_subdirectory(Patate/common)
-add_subdirectory(Patate/Shelves EXCLUDE_FROM_ALL)
+add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/Patate/Grenaille EXCLUDE_FROM_ALL)
+add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/Patate/Vitelotte EXCLUDE_FROM_ALL)
+add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/Patate/common)
+add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/Patate/Shelves EXCLUDE_FROM_ALL)
 
 
 ################################################################################
