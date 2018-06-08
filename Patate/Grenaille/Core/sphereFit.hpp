@@ -74,8 +74,16 @@ SphereFit<DataPoint, _WFunctor, T>::finalize ()
     invCpratt.template bottomRightCorner<1,1>() << 0;
 
     MatrixA M = invCpratt * m_matA;
-    Eigen::EigenSolver<MatrixA> eig(M);
-    VectorA eivals = eig.eigenvalues().real();
+    // go to positive semi-definite matrix to be compatible with
+    // SelfAdjointEigenSolver requirements
+    // Note: This does not affect the eigen vectors order
+    Eigen::SelfAdjointEigenSolver<MatrixA> solver;
+#ifdef __CUDACC__
+    solver.computeDirect(M.transpose() * M);
+#else
+    solver.compute(M.transpose() * M);
+#endif
+    VectorA eivals = solver.eigenvalues().real();
     int minId = -1;
     for(int i=0 ; i<DataPoint::Dim+2 ; ++i)
     {
@@ -85,7 +93,7 @@ SphereFit<DataPoint, _WFunctor, T>::finalize ()
     }
 
     //mLambda = eivals(minId);
-    VectorA vecU = eig.eigenvectors().col(minId).real();
+    VectorA vecU = solver.eigenvectors().col(minId).real();
     Base::m_uq = vecU[1+DataPoint::Dim];
     Base::m_ul = vecU.template segment<DataPoint::Dim>(1);
     Base::m_uc = vecU[0];

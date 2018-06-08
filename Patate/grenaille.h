@@ -24,6 +24,7 @@
 #include "Grenaille/Core/plane.h"
 #include "Grenaille/Core/covariancePlaneFit.h"
 
+#include "Grenaille/Core/sphereFit.h"
 #include "Grenaille/Core/orientedSphereFit.h"
 #include "Grenaille/Core/mlsSphereFitDer.h"
 #include "Grenaille/Core/curvature.h"
@@ -34,7 +35,6 @@
 // not supported on cuda
 #ifndef __CUDACC__
 # include "Grenaille/Core/unorientedSphereFit.h"
-# include "Grenaille/Core/sphereFit.h"
 #endif
 
 
