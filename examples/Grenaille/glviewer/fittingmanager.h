@@ -15,7 +15,9 @@ public:
     //! Type of supported fit types, used to generate Baskets.
     //! \warning Must be aligned with UI
     enum FIT_TYPE {
+        PLANE_MEAN,
         PLANE_COV,
+        MONGE_PATCH,
         SPHERE_ORIENTED,
         SPHERE,
         UNSUPPORTED
@@ -61,9 +63,21 @@ struct BasketMaker {
 };
 
 template <>
+struct BasketMaker<FittingManager::PLANE_MEAN>{
+    typedef Grenaille::DistWeightFunc<MyPoint,Grenaille::SmoothWeightKernel<MyPoint::Scalar> > WeightFunc;
+    typedef Grenaille::Basket<MyPoint,WeightFunc, Grenaille::MeanPlaneFit> Basket;
+};
+
+template <>
 struct BasketMaker<FittingManager::PLANE_COV>{
     typedef Grenaille::DistWeightFunc<MyPoint,Grenaille::SmoothWeightKernel<MyPoint::Scalar> > WeightFunc;
     typedef Grenaille::Basket<MyPoint,WeightFunc, Grenaille::CovariancePlaneFit> Basket;
+};
+
+template <>
+struct BasketMaker<FittingManager::MONGE_PATCH>{
+    typedef Grenaille::DistWeightFunc<MyPoint,Grenaille::SmoothWeightKernel<MyPoint::Scalar> > WeightFunc;
+    typedef Grenaille::Basket<MyPoint,WeightFunc, Grenaille::CovariancePlaneFit, Grenaille::MongePatch> Basket;
 };
 
 template <>

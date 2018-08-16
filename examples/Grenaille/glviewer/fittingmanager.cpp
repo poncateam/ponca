@@ -2,7 +2,7 @@
 
 FittingManager::FittingManager(QObject *parent) :
     QObject(parent),
-    _fitType(FittingManager::PLANE_COV),
+    _fitType(FittingManager::PLANE_MEAN),
     _mesh(nullptr),
     _neiApproximation(new Mesh()),
     _scale(0.02),
@@ -118,17 +118,31 @@ FittingManager::fitPrimitive(){
         *it = f.project(*it);
 
 
+
     switch(_fitType){
-    case PLANE_COV:
-    {
-        COMPUTE(PLANE_COV);
-        std::cout << "Normal vector:     " << f.primitiveGradient(_evalPos).transpose() << std::endl;
-        std::cout << "Surface variation: " << f.surfaceVariation() << std::endl;
-        break;
-    }
+      case PLANE_MEAN:
+      {
+          COMPUTE(PLANE_MEAN);
+          std::cout << "Normal vector:     " << f.primitiveGradient(_evalPos).transpose() << std::endl;
+          break;
+      }
+      case PLANE_COV:
+      {
+          COMPUTE(PLANE_COV);
+          std::cout << "Normal vector:     " << f.primitiveGradient(_evalPos).transpose() << std::endl;
+          std::cout << "Surface variation: " << f.surfaceVariation() << std::endl;
+          break;
+      }
+      case MONGE_PATCH:
+      {
+          COMPUTE(MONGE_PATCH);
+          std::cout << "Mean Curvature: " << f.kMean() << std::endl;
+          break;
+      }
     case SPHERE_ORIENTED:
     {
         COMPUTE(SPHERE_ORIENTED);
+        std::cout << "Normal vector:     " << f.primitiveGradient(_evalPos).transpose() << std::endl;
         std::cout << "Tau:   " << f.tau() << std::endl;
         std::cout << "Eta:   " << f.eta().transpose() << std::endl;
         std::cout << "Kappa: " << f.kappa() << std::endl;
@@ -137,6 +151,7 @@ FittingManager::fitPrimitive(){
     case SPHERE:
     {
         COMPUTE(SPHERE);
+        std::cout << "Normal vector:     " << f.primitiveGradient(_evalPos).transpose() << std::endl;
         std::cout << "Tau:   " << f.tau() << std::endl;
         std::cout << "Eta:   " << f.eta().transpose() << std::endl;
         std::cout << "Kappa: " << f.kappa() << std::endl;
