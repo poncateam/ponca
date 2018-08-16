@@ -22,7 +22,21 @@
 using namespace std;
 using namespace Grenaille;
 
-template<typename DataPoint, typename Fit, typename WeightFunc> //, typename Fit, typename WeightFunction>
+template <bool check>
+struct CheckSurfaceVariation {
+    template <typename Fit, typename Scalar>
+    static inline void run(const Fit& fit, Scalar epsilon){
+        VERIFY(fit.surfaceVariation() < epsilon);
+    }
+};
+
+template <>
+template <typename Fit, typename Scalar>
+void
+CheckSurfaceVariation<false>::run(const Fit& /*fit*/, Scalar /*epsilon*/){ }
+
+
+template<typename DataPoint, typename Fit, typename WeightFunc, bool _cSurfVar> //, typename Fit, typename WeightFunction>
 void testFunction(bool _bUnoriented = false, bool _bAddPositionNoise = false, bool _bAddNormalNoise = false)
 {
     // Define related structure
@@ -69,13 +83,13 @@ void testFunction(bool _bUnoriented = false, bool _bAddPositionNoise = false, bo
                                                      _bUnoriented);
     }
 
+    epsilon = testEpsilon<Scalar>();
+    if ( _bAddPositionNoise) // relax a bit the testing threshold
+      epsilon = Scalar(0.001*MAX_NOISE);
     // Test for each point if the fitted plane correspond to the theoretical plane
 #pragma omp parallel for
     for(int i = 0; i < int(vectorPoints.size()); ++i)
     {
-        epsilon = testEpsilon<Scalar>();
-        if ( _bAddPositionNoise) // relax a bit the testing threshold
-          epsilon = Scalar(0.001*MAX_NOISE);
 
         Fit fit;
         fit.setWeightFunc(WeightFunc(analysisScale));
@@ -88,7 +102,7 @@ void testFunction(bool _bUnoriented = false, bool _bAddPositionNoise = false, bo
             VERIFY(Scalar(1.) - std::abs(fit.primitiveGradient(vectorPoints[i].pos()).dot(direction)) <= epsilon);
 
             // Check if the surface variation is small
-            VERIFY(fit.surfaceVariation() < epsilon);
+            CheckSurfaceVariation<_cSurfVar>::run(fit, _bAddPositionNoise ? epsilon*Scalar(10.): epsilon);
 
             // Check if the query point is on the plane
             if(!_bAddPositionNoise)
@@ -140,20 +154,25 @@ void callSubTests()
     typedef Basket<Point, WeightSmoothFunc, CompactPlane, CovariancePlaneFit> CovFitSmooth;
     typedef Basket<Point, WeightConstantFunc, CompactPlane, CovariancePlaneFit> CovFitConstant;
 
+    typedef Basket<Point, WeightSmoothFunc, CompactPlane, MeanPlaneFit> MeanFitSmooth;
+    typedef Basket<Point, WeightConstantFunc, CompactPlane, MeanPlaneFit> MeanFitConstant;
+
     cout << "Testing with perfect plane..." << endl;
     for(int i = 0; i < g_repeat; ++i)
     {
         //Test with perfect plane
-        CALL_SUBTEST(( testFunction<Point, CovFitSmooth, WeightSmoothFunc>() ));
-        CALL_SUBTEST(( testFunction<Point, CovFitConstant, WeightConstantFunc>() ));
+        CALL_SUBTEST(( testFunction<Point, CovFitSmooth, WeightSmoothFunc, true>() ));
+        CALL_SUBTEST(( testFunction<Point, CovFitConstant, WeightConstantFunc, true>() ));
+        CALL_SUBTEST(( testFunction<Point, MeanFitSmooth, WeightSmoothFunc, false>() ));
+        CALL_SUBTEST(( testFunction<Point, MeanFitConstant, WeightConstantFunc, false>() ));
     }
     cout << "Ok!" << endl;
 
     cout << "Testing with noise on position" << endl;
     for(int i = 0; i < g_repeat; ++i)
     {
-        CALL_SUBTEST(( testFunction<Point, CovFitSmooth, WeightSmoothFunc>(false, true, true) ));
-        CALL_SUBTEST(( testFunction<Point, CovFitConstant, WeightConstantFunc>(false, true, true) ));
+        CALL_SUBTEST(( testFunction<Point, CovFitSmooth, WeightSmoothFunc, true>(false, true, true) ));
+        CALL_SUBTEST(( testFunction<Point, CovFitConstant, WeightConstantFunc, true>(false, true, true) ));
     }
     cout << "Ok!" << endl;
 }
