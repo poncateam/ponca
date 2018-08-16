@@ -37,7 +37,14 @@ private:
 protected:
     enum
     {
-        Check = Base::PROVIDES_PLANE
+        Check = Base::PROVIDES_PLANE,
+        /*!
+         * \brief Expose a method worldToTangentPlane(VectorType), which turns a point
+         * in ambient 3D space to the tangent plane.
+         * \see worldToTangentPlane
+         * \see tangentPlaneToWorld
+         */
+        PROVIDES_TANGENT_PLANE_BASIS
     };
 
 public:
@@ -111,6 +118,18 @@ public:
         \return 0 for invalid fits
     */
     MULTIARCH inline Scalar surfaceVariation() const;
+
+    /*!
+     * \brief Express a point in ambiant space relatively to the tangent plane.
+     * Output vector is: [h, u, v]^T, where u, v are 2d coordinates on the plane,
+     * and h the height of the sample.
+     */
+    MULTIARCH inline VectorType worldToTangentPlane(const VectorType &_q) const;
+
+    /*!
+     * \brief Transform a point from the tangent plane [h, u, v]^T to ambiant space
+     */
+    MULTIARCH inline VectorType tangentPlaneToWorld(const VectorType &_q) const;
 }; //class CovariancePlaneFit
 
 namespace internal {

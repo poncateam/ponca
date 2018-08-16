@@ -91,6 +91,22 @@ CovariancePlaneFit<DataPoint, _WFunctor, T>::surfaceVariation () const
     return m_solver.eigenvalues()(0) / m_solver.eigenvalues().mean();
 }
 
+template < class DataPoint, class _WFunctor, typename T>
+typename CovariancePlaneFit<DataPoint, _WFunctor, T>::VectorType
+CovariancePlaneFit<DataPoint, _WFunctor, T>::worldToTangentPlane (const VectorType& _q) const
+{
+    return m_solver.eigenvectors().transpose() * (_q - m_evalPos);
+}
+
+template < class DataPoint, class _WFunctor, typename T>
+typename CovariancePlaneFit<DataPoint, _WFunctor, T>::VectorType
+CovariancePlaneFit<DataPoint, _WFunctor, T>::tangentPlaneToWorld (const VectorType& _lq) const
+{
+    return m_solver.eigenvectors().transpose().inverse() * _lq + m_evalPos;
+}
+
+
+
 
 namespace internal
 {
