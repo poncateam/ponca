@@ -24,6 +24,7 @@
 #include "Grenaille/Core/plane.h"
 #include "Grenaille/Core/meanPlaneFit.h"
 #include "Grenaille/Core/covariancePlaneFit.h"
+#include "Grenaille/Core/mongePatch.h"
 
 #include "Grenaille/Core/sphereFit.h"
 #include "Grenaille/Core/orientedSphereFit.h"
