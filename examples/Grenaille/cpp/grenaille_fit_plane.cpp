@@ -31,7 +31,6 @@ public:
 	enum {Dim = 3};
 	typedef double Scalar;
 	typedef Eigen::Matrix<Scalar, Dim, 1>   VectorType;
-    typedef Eigen::Matrix<Scalar, Dim+1, 1>	HVectorType;
 	typedef Eigen::Matrix<Scalar, Dim, Dim> MatrixType;
 
 	MULTIARCH inline MyPoint(   const VectorType& _pos    = VectorType::Zero(), 
