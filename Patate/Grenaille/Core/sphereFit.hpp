@@ -31,7 +31,13 @@ SphereFit<DataPoint, _WFunctor, T>::addNeighbor(const DataPoint& _nei)
     if (w > Scalar(0.))
     {
         VectorA a;
+#ifdef __CUDACC__
+        a(0) = 1;
+        a.template segment<DataPoint::Dim>(1) = q;
+        a(DataPoint::Dim+1) = q.squaredNorm();
+#else
         a << 1, q, q.squaredNorm();
+#endif
         m_matA     += w * a * a.transpose();
         m_sumW     += w;
 
