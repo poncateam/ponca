@@ -87,7 +87,9 @@ void testFunction(bool _bUnoriented = false, bool _bAddPositionNoise = false, bo
     if ( _bAddPositionNoise) // relax a bit the testing threshold
       epsilon = Scalar(0.001*MAX_NOISE);
     // Test for each point if the fitted plane correspond to the theoretical plane
+#ifdef DEBUG
 #pragma omp parallel for
+#endif
     for(int i = 0; i < int(vectorPoints.size()); ++i)
     {
 
