@@ -75,8 +75,7 @@ CovariancePlaneFit<DataPoint, _WFunctor, T>::finalize ()
 
     Base::setPlane(m_solver.eigenvectors().col(0), m_cog);
 
-    // \todo Use the output of the solver to check stability
-    Base::m_eCurrentState = STABLE;
+    Base::m_eCurrentState = ( m_solver.info() == Eigen::Success ? STABLE : UNDEFINED );
     return Base::m_eCurrentState;
 }
 
@@ -85,9 +84,6 @@ template < class DataPoint, class _WFunctor, typename T>
 typename CovariancePlaneFit<DataPoint, _WFunctor, T>::Scalar
 CovariancePlaneFit<DataPoint, _WFunctor, T>::surfaceVariation () const
 {
-    if( Base::m_eCurrentState == UNDEFINED )
-      return 0;
-
     return m_solver.eigenvalues()(0) / m_solver.eigenvalues().mean();
 }
 
