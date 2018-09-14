@@ -16,9 +16,11 @@ namespace Grenaille
   This is just the tip of the iceberg though, as we also provide methods for dealing with points equipped with non-oriented normals \cite Chen:2013:NOMG, techniques to analyze 
   points clouds in scale-space to discover salient structures \cite Mellado:2012:GLS, methods to compute multi-scale principal curvatures \cite Mellado:2013:SSC and methods to compute surface variation using a plane instead of a sphere for the fitting \cite Pauly:2002:PSSimplification. See the table below:
   
-  Primitive         | Supported Input     | Fitting techniques                            | Analysis/Tools                                     | Other usages |
+  Primitive         | Required Input      | Fitting techniques                            | Analysis/Tools                                     | Other usages |
   ----------------- | ------------------- | --------------------------------------------- | -------------------------------------------------- | ------------ |
-  Plane             | Points              | CovariancePlaneFit                            | Surface Variation\cite Pauly:2002:PSSimplification |              |
+  Plane             | Points only         | CovariancePlaneFit                            | Surface Variation\cite Pauly:2002:PSSimplification |              |
+  Plane             | Oriented points     | MeanPlaneFit                                  |                                                    |              |
+  Monge Patch       | Points only         | MongePatchFit                                 |                                                    |              |
   Algebraic Sphere  | Oriented points     | OrientedSphereFit \cite Guennebaud:2007:APSS  | GLS\cite Mellado:2012:GLS                          | Ray Traced Curvature\cite Mellado:2013:SSC |
   Algebraic Sphere  | Non-oriented points | UnorientedSphereFit \cite Chen:2013:NOMG      |                                                    |              |
 
