@@ -85,7 +85,7 @@ void testFunction(bool _bUnoriented = false, bool _bAddPositionNoise = false, bo
 
     epsilon = testEpsilon<Scalar>();
     if ( _bAddPositionNoise) // relax a bit the testing threshold
-      epsilon = Scalar(0.001*MAX_NOISE);
+      epsilon = Scalar(0.01*MAX_NOISE);
     // Test for each point if the fitted plane correspond to the theoretical plane
 #ifdef DEBUG
 #pragma omp parallel for
@@ -114,34 +114,6 @@ void testFunction(bool _bUnoriented = false, bool _bAddPositionNoise = false, bo
         else {
             VERIFY(MULTIPASS_PLANE_FITTING_FAILED);
         }
-
-//        if(fit.isStable())
-//        {
-//            Scalar fitRadiusKappa = Scalar(std::abs(Scalar(1.) / fit.kappa()));
-//            Scalar fitRadiusAlgebraic = fit.radius();
-//            VectorType fitCenter = fit.center();
-
-//            Scalar radiusMax = radius * MAX_NOISE;
-//            Scalar radiusMin = radius * MIN_NOISE;
-
-//            // Test procedure
-//            VERIFY( (fitCenter - center).norm() < (radiusMax - radius) + radiusEpsilon );
-//            VERIFY( (fitRadiusAlgebraic > radiusMin - radiusEpsilon) && (fitRadiusAlgebraic < radiusMax + radiusEpsilon) );
-//            // Test reparametrization
-//            VERIFY( (fitRadiusKappa > radiusMin - radiusEpsilon) && (fitRadiusKappa < radiusMax + radiusEpsilon) );
-//            //Test coherance
-//            VERIFY( Eigen::internal::isMuchSmallerThan(std::abs(fitRadiusAlgebraic - fitRadiusKappa), 1., epsilon) );
-
-//            //Test on eta
-//            if(!_bAddPositionNoise && !_bAddNormalNoise)
-//            {
-//                //sometimes eta can be reversed
-//                VectorType fitEta = fit.eta().normalized().array().abs();
-//                VectorType theoricEta = vectorPoints[i].normal().array().abs();
-
-//                VERIFY( Eigen::internal::isMuchSmallerThan((fitEta - theoricEta).norm(), 1., epsilon)  );
-//            }
-//        }
     }
 }
 
