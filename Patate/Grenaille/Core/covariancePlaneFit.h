@@ -64,8 +64,7 @@ public:
 
     // computation data
     Scalar  m_sumW;       /*!< \brief Sum of queries weight.*/
-    VectorType m_cog,     /*!< \brief Gravity center of the neighborhood */
-               m_evalPos; /*!< \brief Center of the evaluation basis */
+    VectorType m_cog;     /*!< \brief Gravity center of the neighborhood */
     MatrixType m_cov;     /*!< \brief Covariance matrix */
 
     Solver m_solver;  /*!<\brief Solver used to analyse the covariance matrix */
@@ -122,12 +121,16 @@ public:
      * \brief Express a point in ambiant space relatively to the tangent plane.
      * Output vector is: [h, u, v]^T, where u, v are 2d coordinates on the plane,
      * and h the height of the sample.
+     * \tparam ignoreTranslation must be set to true when passing vectors instead of points
      */
+    template <bool ignoreTranslation = false>
     MULTIARCH inline VectorType worldToTangentPlane(const VectorType &_q) const;
 
     /*!
      * \brief Transform a point from the tangent plane [h, u, v]^T to ambiant space
+     * \tparam ignoreTranslation must be set to true when passing vectors instead of points
      */
+    template <bool ignoreTranslation = false>
     MULTIARCH inline VectorType tangentPlaneToWorld(const VectorType &_q) const;
 }; //class CovariancePlaneFit
 

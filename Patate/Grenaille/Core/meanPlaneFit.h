@@ -52,8 +52,7 @@ public:
     // computation data
     Scalar      m_sumW;    /*!< \brief Sum of queries weight.*/
     VectorType  m_sumN,    /*!< \brief Sum of the normal vectors */
-                m_sumP,    /*!< \brief Sum of the relative positions */
-                m_evalPos; /*!< \brief Center of the evaluation basis */
+                m_sumP;    /*!< \brief Sum of the relative positions */
 
     WFunctor m_w;     /*!< \brief Weight function (must inherits BaseWeightFunc) */
 

@@ -13,7 +13,7 @@ MeanPlaneFit<DataPoint, _WFunctor, T>::init(const VectorType& _evalPos)
 {
     // Setup primitive
     Base::resetPrimitive();
-    m_evalPos = _evalPos;
+    Base::basisCenter() = _evalPos;
 
     // Setup fitting internal values
     m_sumP = VectorType::Zero();
@@ -25,7 +25,7 @@ template < class DataPoint, class _WFunctor, typename T>
 bool
 MeanPlaneFit<DataPoint, _WFunctor, T>::addNeighbor(const DataPoint& _nei)
 {
-    VectorType q = _nei.pos() - m_evalPos;
+    VectorType q = _nei.pos() - Base::basisCenter();
     // compute weight
     Scalar w = m_w.w(q, _nei);
 
@@ -55,7 +55,7 @@ MeanPlaneFit<DataPoint, _WFunctor, T>::finalize ()
       return Base::m_eCurrentState;
     }
 
-    Base::setPlane(m_sumN / m_sumW, m_sumP / m_sumW + m_evalPos);
+    Base::setPlane(m_sumN / m_sumW, m_sumP / m_sumW);
 
     return Base::m_eCurrentState = STABLE;
 }

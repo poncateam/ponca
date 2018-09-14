@@ -12,6 +12,7 @@
 
 #include "primitive.h" // PrimitiveBase
 #include <Eigen/Geometry>
+#include <iostream>
 
 namespace Grenaille
 {
@@ -65,12 +66,19 @@ public:
     /*! \brief Weight Function */
     typedef _WFunctor                       WFunctor;
 
+private:
+
+    //! \brief Evaluation position (needed for centered basis)
+    VectorType m_p;
+
+
 public:
 
     /*! \brief Default constructor */
     MULTIARCH inline CompactPlane()
         : Base(), EigenBase()
     {
+        m_p = VectorType::Zero();
         resetPrimitive();
     }
 
@@ -79,7 +87,7 @@ public:
     CompactPlane<DataPoint, WFunctor, T>& compactPlane()
     { return * static_cast<CompactPlane<DataPoint, WFunctor, T>*>(this); }
 
-    /*! \brief Set the scalar field values to 0 and reset the isNormalized()
+    /*! \brief Set the scalar field values to 0
          status */
     MULTIARCH inline void resetPrimitive()
     {
@@ -96,6 +104,11 @@ public:
     MULTIARCH inline bool operator!=(const CompactPlane<DataPoint, WFunctor, T>& other) const{
         return ! ((*this) == other);
     }
+
+    /*! \brief Reading access to the basis center (evaluation position) */
+    MULTIARCH inline const VectorType& basisCenter () const { return m_p; }
+    /*! \brief Writing access to the (evaluation position) */
+    MULTIARCH inline       VectorType& basisCenter ()       { return m_p; }
 
     /* \brief Init the plane from a direction and a position
        \param _dir Orientation of the plane, does not need to be normalized
@@ -118,14 +131,16 @@ public:
     MULTIARCH inline Scalar potential (const VectorType& _q) const
     {
         // The potential is the distance from the point to the plane
-        return EigenBase::signedDistance(_q);
+        return EigenBase::signedDistance(_q - m_p);
     }
 
     //! \brief Project a point on the plane
     MULTIARCH inline VectorType project (const VectorType& _q) const
     {
         // Project on the normal vector and add the offset value
-        return EigenBase::projection(_q);
+        return EigenBase::projection(_q - m_p) + m_p;
+    }
+
     //! \brief Scalar field gradient direction at the evaluation point
     MULTIARCH inline VectorType primitiveGradient () const
     {
