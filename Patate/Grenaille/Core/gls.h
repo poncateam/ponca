@@ -98,7 +98,7 @@ public:
     }
 
     /*! \brief Compute and return \f$ \eta \f$ */
-    MULTIARCH inline VectorType eta() const { return Base::normal(); }
+    MULTIARCH inline VectorType eta() const { return Base::primitiveGradient(); }
 
     /*! \brief Compute and return \f$ \kappa \f$ */
     MULTIARCH inline Scalar kappa() const 

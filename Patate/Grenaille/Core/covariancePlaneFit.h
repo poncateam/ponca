@@ -77,6 +77,11 @@ public:
     /*! \brief Default constructor */
     MULTIARCH inline CovariancePlaneFit() : Base() {}
 
+    /*! \brief Explicit conversion to CovariancePlaneFit, to access methods potentially hidden by inheritage */
+    MULTIARCH inline
+    CovariancePlaneFit<DataPoint, WFunctor, T>& covariancePlaneFit()
+    { return * static_cast<CovariancePlaneFit<DataPoint, WFunctor, T>*>(this); }
+
     /**************************************************************************/
     /* Initialization                                                         */
     /**************************************************************************/
@@ -100,12 +105,6 @@ public:
     /**************************************************************************/
 
     using Base::potential;
-
-    /*! \brief Value of the scalar field at the evaluation point */
-    MULTIARCH inline Scalar potential() const { return Base::potential(m_evalPos); }
-
-    /*! \brief Value of the normal of the primitive at the evaluation point */
-    MULTIARCH inline VectorType normal() const { return Base::m_p.template head<DataPoint::Dim>(); }
 
     /*! \brief Reading access to the Solver used to analyse the covariance
       matrix */

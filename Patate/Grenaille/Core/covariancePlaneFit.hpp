@@ -189,7 +189,7 @@ CovariancePlaneDer<DataPoint, _WFunctor, T, Type>::finalize()
         // apply normalization by sumW:
         m_dCog.col(k) = (m_dCog.col(k) - m_dSumW(k) * Base::m_cog) / Base::m_sumW;
 
-        VectorType normal = Base::normal();
+        VectorType normal = Base::primitiveGradient();
         // The derivative of 'normal' is the derivative of the smallest eigenvector.
         // Since the covariance matrix is real and symmetric, it is equal to:
         //    n' = - (C - lambda_0 I)^+ C' n

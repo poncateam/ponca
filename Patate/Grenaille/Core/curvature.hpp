@@ -91,7 +91,7 @@ CurvatureEstimator<DataPoint, _WFunctor, T>::tangentPlane(bool useNormal) const
 
     if(useNormal)
     {
-        VectorType n = Base::normal();
+        VectorType n = Base::primitiveGradient();
         n.minCoeff(&i0);
         i1 = (i0+1)%3;
         i2 = (i0+2)%3;

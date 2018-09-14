@@ -86,6 +86,11 @@ public:
         resetPrimitive();
     }
 
+    /*! \brief Explicit conversion to AlgebraicSphere, to access methods potentially hidden by inheritage */
+    MULTIARCH inline
+    AlgebraicSphere<DataPoint, WFunctor, T>& algebraicSphere()
+    { return * static_cast<AlgebraicSphere<DataPoint, WFunctor, T>*>(this); }
+
     /*! \brief Set the scalar field values to 0 and reset the isNormalized() status
 
         \warning Set m_ul to Zero(), which leads to nans in OrientedSphere::normal()
@@ -206,11 +211,17 @@ public:
     //! \brief Value of the scalar field at the location \f$ \mathbf{q} \f$
     MULTIARCH inline Scalar potential (const VectorType& _q) const;
 
+    /*! \brief Value of the scalar field at the evaluation point */
+    MULTIARCH inline Scalar potential() const { return m_uc; }
+
     //! \brief Project a point on the sphere
     MULTIARCH inline VectorType project (const VectorType& _q) const;
 
     //! \brief Approximation of the scalar field gradient at \f$ \mathbf{q} (not normalized) \f$
     MULTIARCH inline VectorType primitiveGradient (const VectorType& _q) const;
+
+    /*! \brief Approximation of the scalar field gradient at the evaluation point */
+    MULTIARCH inline VectorType primitiveGradient () const { return m_ul.normalized(); }
 
     /*!
         \brief Used to know if the fitting result to a plane

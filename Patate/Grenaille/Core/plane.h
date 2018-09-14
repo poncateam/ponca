@@ -74,6 +74,11 @@ public:
         resetPrimitive();
     }
 
+    /*! \brief Explicit conversion to CompactPlane, to access methods potentially hidden by inheritage */
+    MULTIARCH inline
+    CompactPlane<DataPoint, WFunctor, T>& compactPlane()
+    { return * static_cast<CompactPlane<DataPoint, WFunctor, T>*>(this); }
+
     /*! \brief Set the scalar field values to 0 and reset the isNormalized()
          status */
     MULTIARCH inline void resetPrimitive()
@@ -103,6 +108,12 @@ public:
         *cc = EigenBase(_dir.normalized(), _pos);
     }
 
+    /*! \brief Value of the scalar field at the evaluation point */
+    MULTIARCH inline Scalar potential ( ) const
+    {
+        return EigenBase::signedDistance(VectorType::Zero());
+    }
+
     //! \brief Value of the scalar field at the location \f$ \mathbf{q} \f$
     MULTIARCH inline Scalar potential (const VectorType& _q) const
     {
@@ -115,6 +126,11 @@ public:
     {
         // Project on the normal vector and add the offset value
         return EigenBase::projection(_q);
+    //! \brief Scalar field gradient direction at the evaluation point
+    MULTIARCH inline VectorType primitiveGradient () const
+    {
+        // Uniform gradient defined only by the orientation of the plane
+        return EigenBase::normal();
     }
 
     //! \brief Scalar field gradient direction at \f$ \mathbf{q}\f$
