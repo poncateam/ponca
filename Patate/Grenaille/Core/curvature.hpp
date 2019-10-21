@@ -89,8 +89,11 @@ CurvatureEstimator<DataPoint, _WFunctor, T>::tangentPlane(bool useNormal) const
     Mat32 B;
     Index i0=Index(-1), i1=Index(-1), i2=Index(-1);
 
+    // Two choices to compute a basis of the tangent plane
     if(useNormal)
     {
+        // Use a vector orthogonal to the surface (the gradient) and compute an
+        // orthonormal basis from it
         VectorType n = Base::primitiveGradient();
         n.array().abs().minCoeff(&i0); // i0: dimension where n extends the least
         i1 = (i0+1)%3;
@@ -105,6 +108,9 @@ CurvatureEstimator<DataPoint, _WFunctor, T>::tangentPlane(bool useNormal) const
     }
     else
     {
+        // Use the spatial derivative of the normal. This option leads to NaN
+        // values if dN is null (like in the case of a perfect plane)
+
         // Get the object space Weingarten map dN
         MatrixType dN = Base::dNormal().template middleCols<DataPoint::Dim>(Base::isScaleDer() ? 1: 0);
 
