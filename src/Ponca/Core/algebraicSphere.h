@@ -218,8 +218,22 @@ public:
     /*! \brief Value of the scalar field at the evaluation point */
     PONCA_MULTIARCH inline Scalar potential() const { return m_uc; }
 
-    //! \brief Project a point on the sphere
+    /*!
+       \brief Project a point on the algebraic hypersphere
+
+        This projection is realized in closed-form: the algebraic hypersphere is converted
+        to a geometrical representation (hyperplane or hypersphere), and _q is orthogonally
+        projected on the primtive.
+        \note This function is in most cases more accurate and faster than #projectDescent
+     */
     PONCA_MULTIARCH inline VectorType project (const VectorType& _q) const;
+
+    /*!
+       \brief Project a point on the algebraic hypersphere using Gradient Descent
+       This projection is realized by following the gradient of the hypersphere scalar field
+       \warning This function is in most cases slower and less accurate than #project.
+     */
+    PONCA_MULTIARCH inline VectorType projectDescent (const VectorType& _q) const;
 
     //! \brief Approximation of the scalar field gradient at \f$ \mathbf{q} (not normalized) \f$
     PONCA_MULTIARCH inline VectorType primitiveGradient (const VectorType& _q) const;

@@ -37,7 +37,7 @@ void testFunction()
     Scalar radius = Eigen::internal::random<Scalar>(1., 10.);
 
     Scalar analysisScale = Scalar(10.) * std::sqrt( Scalar(4. * M_PI) * radius * radius / nbPoints);
-    Scalar centerScale = Eigen::internal::random<Scalar>(1,10000);
+    Scalar centerScale = Eigen::internal::random<Scalar>(1,1000);
     VectorType center = VectorType::Random() * centerScale;
 
     Scalar epsilon = testEpsilon<Scalar>();
@@ -65,12 +65,12 @@ void testFunction()
             // do two iterations to test successive calls
             VectorType candidate = VectorType::Random();
             for (unsigned int j = 0; j != 2; ++j){
-                f2.changeBasis(fit.basisCenter() + Scalar(0.01)*VectorType::Random());
+                // move basis center to a portion of the radius of the sphere
+                f2.changeBasis(fit.basisCenter() + Scalar(0.1)*fit.radius()*VectorType::Random());
 
-                VERIFY( Eigen::internal::isMuchSmallerThan(
-                            (fit.project(candidate) - f2.project(candidate)).norm(),
-                            Scalar(1.),
-                            epsilon) );
+                VERIFY(  fit.radius() - f2.radius() < epsilon );
+                VERIFY( (fit.center() - f2.center() ).norm() < epsilon );
+                VERIFY( (fit.project(candidate) - f2.project(candidate)).norm() - Scalar(1.) < epsilon );
             }
         }
     }
@@ -102,5 +102,10 @@ int main(int argc, char** argv)
     callSubTests<float, 3>();
     callSubTests<double, 3>();
     callSubTests<long double, 3>();
+
+    cout << "Test Algebraic Sphere Primitive functions in 5 dimensions..." << endl;
+    callSubTests<float, 5>();
+    callSubTests<double, 5>();
+    callSubTests<long double, 5>();
     cout << "Ok..." << endl;
 }
