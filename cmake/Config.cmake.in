@@ -1,0 +1,27 @@
+# - Config file for the Ponca package
+# It defines the following variables
+#  PONCA_INCLUDE_DIRS - include directories for Ponca
+#  PONCA_LIB_DIR      - libraries to link against
+#  PONCA_LIBRARIES    - libraries to link against
+#
+#
+# To use
+# ::
+# find_package(Ponca REQUIRED)
+# add_executable(foo foo.cc)
+# target_link_libraries(foo Ponca::Ponca)
+
+
+@PACKAGE_INIT@
+
+include(CMakeFindDependencyMacro)
+find_dependency(Eigen3 REQUIRED)
+
+include("@Ponca_EXPORT_TARGET_DIR@/PoncaTargets.cmake")
+
+
+# Compute paths
+set(Ponca_INCLUDE_DIR "@Ponca_INSTALL_INC_DIR@/")
+set(Ponca_LIB_DIR "@Ponca_INSTALL_LIB_DIR@/")
+
+set(Ponca_FOUND 1)

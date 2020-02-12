@@ -4,7 +4,9 @@ cmake_minimum_required(VERSION 3.10)
 set(CMAKE_DISABLE_SOURCE_CHANGES ON)
 set(CMAKE_DISABLE_IN_SOURCE_BUILD ON)
 
-project(Ponca LANGUAGES CXX)
+project(Ponca LANGUAGES CXX VERSION 0.0.1)
+
+set(CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR}/cmake)
 
 # guard against bad build-type strings (source: Eigen)
 
@@ -55,25 +57,67 @@ message(STATUS "Eigen3 root path: ${EIGEN3_INCLUDE_DIR}")
 # Add core code source, so it is visible in dev environements                  #
 ################################################################################
 
-FILE ( GLOB PONCA_HEADERS
-    ${CMAKE_CURRENT_SOURCE_DIR}/src/Ponca/*.h
-)
-
-FILE ( GLOB PONCA_IMPL
-    ${CMAKE_CURRENT_SOURCE_DIR}/src/Ponca/*.hpp
-)
-
-add_library (Ponca OBJECT ${PONCA_HEADERS} ${PONCA_IMPL})
-set_target_properties(Ponca PROPERTIES LINKER_LANGUAGE C++)
+add_subdirectory( src )
 
 ################################################################################
 # Generate install target                                                      #
 ################################################################################
-if (NOT INCLUDE_INSTALL_DIR)
-    set(INCLUDE_INSTALL_DIR ${CMAKE_INSTALL_PREFIX}/include)
-endif (NOT INCLUDE_INSTALL_DIR)
-install(DIRECTORY Ponca DESTINATION ${INCLUDE_INSTALL_DIR} FILES_MATCHING REGEX ".*\\.(hpp|h)$")
-message("Ponca will be installed in ${INCLUDE_INSTALL_DIR}/Ponca")
+install(EXPORT PoncaTargets
+  FILE
+    PoncaTargets.cmake
+  NAMESPACE
+    Ponca::
+  DESTINATION
+    ${CMAKE_INSTALL_LIBDIR}/cmake
+)
+
+
+set(config_install_dir "${CMAKE_INSTALL_PREFIX}/lib/cmake/")
+set(include_install_dir "${CMAKE_INSTALL_PREFIX}/include")
+set(generated_dir "${CMAKE_CURRENT_BINARY_DIR}/generated")
+
+## Configuration
+set(version_config "${generated_dir}/${PROJECT_NAME}ConfigVersion.cmake")
+set(project_config "${generated_dir}/${PROJECT_NAME}Config.cmake")
+#set(targets_export_name "${PROJECT_NAME}Targets")
+#et(namespace "${PROJECT_NAME}::")
+
+## Include module with fuction 'write_basic_package_version_file'
+include(CMakePackageConfigHelpers)
+
+# Configure '<PROJECT-NAME>ConfigVersion.cmake'
+# Note: PROJECT_VERSION is used as a VERSION
+write_basic_package_version_file(
+    "${version_config}"
+                VERSION ${Ponca_VERSION}
+                COMPATIBILITY AnyNewerVersion
+)
+
+## Configure '<PROJECT-NAME>Config.cmake'
+## version to be installed
+## Use variables:
+##   * targets_export_name
+##   * PROJECT_NAME
+## Used by Config.cmake.in
+set(Ponca_INSTALL_INC_DIR "${CMAKE_INSTALL_PREFIX}/include")
+set(Ponca_INSTALL_LIB_DIR "${CMAKE_INSTALL_PREFIX}/lib")
+set (Ponca_EXPORT_TARGET_DIR \${CMAKE_CURRENT_LIST_DIR})
+configure_package_config_file(
+    "cmake/Config.cmake.in"
+    "${project_config}"
+    INSTALL_DESTINATION "${config_install_dir}"
+)
+
+#install(EXPORT Ponca-srcTargets  DESTINATION ${config_install_dir} NAMESPACE gr::)
+
+
+# Config
+#   * <prefix>/lib/cmake/Foo/FooConfig.cmake
+#   * <prefix>/lib/cmake/Foo/FooConfigVersion.cmake
+install(
+    FILES "${project_config}" "${version_config}"
+    DESTINATION "${config_install_dir}"
+)
 
 
 ################################################################################
