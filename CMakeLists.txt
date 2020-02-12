@@ -1,12 +1,10 @@
-project(Patate)
+cmake_minimum_required(VERSION 3.10)
 
-cmake_minimum_required(VERSION 2.8.10)
+# add this options before PROJECT keyword
+set(CMAKE_DISABLE_SOURCE_CHANGES ON)
+set(CMAKE_DISABLE_IN_SOURCE_BUILD ON)
 
-# guard against in-source builds (source: Eigen)
-
-if(${CMAKE_SOURCE_DIR} STREQUAL ${CMAKE_BINARY_DIR})
-  message(FATAL_ERROR "In-source builds not allowed. Please make a new directory (called a build directory) and run CMake from there. You may need to remove CMakeCache.txt. ")
-endif()
+project(Ponca)
 
 # guard against bad build-type strings (source: Eigen)
 
@@ -26,7 +24,7 @@ endif()
 find_package(Git)
 if(GIT_FOUND)
     execute_process(COMMAND ${GIT_EXECUTABLE} rev-parse HEAD
-        WORKING_DIRECTORY ${Patate_SOURCE_DIR}
+        WORKING_DIRECTORY ${Ponca_SOURCE_DIR}
         OUTPUT_VARIABLE GIT_CHANGESET)
 endif()
 
@@ -34,10 +32,16 @@ endif()
 # Add core code source, so it is visible in dev environements                  #
 ################################################################################
 
-add_subdirectory(Patate/Grenaille EXCLUDE_FROM_ALL)
-add_subdirectory(Patate/Vitelotte EXCLUDE_FROM_ALL)
-add_subdirectory(Patate/common)
+FILE ( GLOB PONCA_HEADERS
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/Ponca/*.h
+)
 
+FILE ( GLOB PONCA_IMPL
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/Ponca/*.hpp
+)
+
+add_library (Ponca OBJECT ${PONCA_HEADERS} ${PONCA_IMPL})
+set_target_properties(Ponca PROPERTIES LINKER_LANGUAGE C++)
 
 ################################################################################
 # Generate install target                                                      #
@@ -45,8 +49,8 @@ add_subdirectory(Patate/common)
 if (NOT INCLUDE_INSTALL_DIR)
     set(INCLUDE_INSTALL_DIR ${CMAKE_INSTALL_PREFIX}/include)
 endif (NOT INCLUDE_INSTALL_DIR)
-install(DIRECTORY Patate DESTINATION ${INCLUDE_INSTALL_DIR} FILES_MATCHING REGEX ".*\\.(hpp|h)$")
-message("Patate will be installed in ${INCLUDE_INSTALL_DIR}/Patate")
+install(DIRECTORY Ponca DESTINATION ${INCLUDE_INSTALL_DIR} FILES_MATCHING REGEX ".*\\.(hpp|h)$")
+message("Ponca will be installed in ${INCLUDE_INSTALL_DIR}/Ponca")
 
 
 ################################################################################
@@ -55,7 +59,7 @@ message("Patate will be installed in ${INCLUDE_INSTALL_DIR}/Patate")
 
 find_package(Doxygen)
 if(DOXYGEN_FOUND)
-  set (PATATE_PROJECT_NUMBER ${GIT_CHANGESET})
+  set (PONCA_PROJECT_NUMBER ${GIT_CHANGESET})
 
   configure_file(${CMAKE_CURRENT_SOURCE_DIR}/doc-src/Doxyfile.in ${CMAKE_CURRENT_BINARY_DIR}/Doxyfile @ONLY)
 
@@ -89,8 +93,8 @@ endif (CMAKE_COMPILER_IS_GNUCXX)
 
 set(CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR}/cmake)
 
-add_subdirectory(examples EXCLUDE_FROM_ALL)
+#add_subdirectory(examples EXCLUDE_FROM_ALL)
 
-include(cmake/ConfigureTesting.cmake)
-add_subdirectory(tests EXCLUDE_FROM_ALL)
+#include(cmake/ConfigureTesting.cmake)
+#add_subdirectory(tests EXCLUDE_FROM_ALL)
 
