@@ -1,24 +1,22 @@
 /*
  This Source Code Form is subject to the terms of the Mozilla Public
  License, v. 2.0. If a copy of the MPL was not distributed with this
- file, You can obtain one at http://mozilla.org/MPL/2.0/. 
+ file, You can obtain one at http://mozilla.org/MPL/2.0/.
 */
 
-
-#ifndef _GRENAILLE_WEIGHT_KERNEL_
-#define _GRENAILLE_WEIGHT_KERNEL_
+#pragma once
 
 /*!
     \file weightKernel.h Define 1D weight kernel functors
 */
 
 
-namespace Grenaille
+namespace Ponca
 {
 /*!
     \brief Concept::WeightKernelConcept returning a constant value
 
-    \inherit Concept::WeightKernelConcept    
+    \inherit Concept::WeightKernelConcept
 */
 template <typename _Scalar>
 class ConstantWeightKernel
@@ -27,11 +25,11 @@ public:
     /*! \brief Scalar type defined outside the class */
     typedef _Scalar Scalar;
 
-    // Init 
+    // Init
     //! \brief Default constructor that could be used to set the returned value
     MULTIARCH inline ConstantWeightKernel(const Scalar& _value = Scalar(1.)) : m_y(_value){}
     //! \brief Set the returned value
-    MULTIARCH inline void setValue(const Scalar& _value){ m_y = _value; } 
+    MULTIARCH inline void setValue(const Scalar& _value){ m_y = _value; }
 
     // Functor
     //! \brief Return the constant value
@@ -41,7 +39,7 @@ public:
     //! \brief Return \f$ 0 \f$
     MULTIARCH inline Scalar ddf(const Scalar&) const { return Scalar(0.); }
 
-private: 
+private:
     Scalar m_y; /*!< \brief Constant value returned by the kernel */
 };// class ConstantWeightKernel
 
@@ -50,7 +48,7 @@ private:
     \brief Smooth WeightKernel defined in \f$\left[0 : 1\right]\f$
     \todo Add a degree value as template parameter (in this class or another one), with specialized functions for 2
 
-    \inherit Concept::WeightKernelConcept  
+    \inherit Concept::WeightKernelConcept
 */
 template <typename _Scalar>
 class SmoothWeightKernel
@@ -68,7 +66,4 @@ public:
     MULTIARCH inline Scalar ddf(const Scalar& _x) const { return Scalar(12.)*_x*_x - Scalar(4.); }
 };//class SmoothWeightKernel
 
-}// namespace Grenaille
-
-
-#endif //_GRENAILLE_WEIGHT_KERNEL_
+}// namespace Ponca

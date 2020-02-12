@@ -7,14 +7,12 @@
  file, You can obtain one at http://mozilla.org/MPL/2.0/.
 */
 
-
-#ifndef _GRENAILLE_COVARIANCE_PLANE_FIT_
-#define _GRENAILLE_COVARIANCE_PLANE_FIT_
+#pragma once
 
 #include <Eigen/Eigenvalues>
-#include "enums.h"
+#include "plane.h"
 
-namespace Grenaille
+namespace Ponca
 {
 
 /*!
@@ -136,8 +134,8 @@ public:
 
 namespace internal {
 
-using ::Grenaille::internal::FitSpaceDer;
-using ::Grenaille::internal::FitScaleDer;
+using ::Ponca::internal::FitSpaceDer;
+using ::Ponca::internal::FitScaleDer;
 
 /*!
     \brief Internal generic class computing the derivatives of covariance plane fits
@@ -297,6 +295,4 @@ protected:
 
 #include "covariancePlaneFit.hpp"
 
-} //namespace Grenaille
-
-#endif
+} //namespace Ponca

@@ -3,6 +3,7 @@ project (Ponca-src)
 set(src_ROOT "${CMAKE_CURRENT_SOURCE_DIR}/Ponca")
 
 set(ponca_INCLUDE
+    "Ponca/defines.h"
     "Ponca/algebraicSphere.h"
     "Ponca/algebraicSphere.hpp"
     "Ponca/basket.h"
@@ -23,6 +24,7 @@ set(ponca_INCLUDE
     "Ponca/mongePatch.hpp"
     "Ponca/orientedSphereFit.h"
     "Ponca/orientedSphereFit.hpp"
+    "ponca.h"
     "Ponca/plane.h"
     "Ponca/primitive.h"
     "Ponca/sphereFit.h"
@@ -58,6 +60,8 @@ add_library(Ponca::Ponca ALIAS Ponca)
 
 install(FILES ${ponca_INCLUDE}
         DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/Ponca)
+    install(FILES "ponca.h"
+            DESTINATION ${CMAKE_INSTALL_INCLUDEDIR})
 
 #############################################
 #

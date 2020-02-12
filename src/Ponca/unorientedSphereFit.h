@@ -1,19 +1,17 @@
 /*
  Copyright (C) 2013 Gael Guennebaud <gael.guennebaud@inria.fr>
- 
+
  This Source Code Form is subject to the terms of the Mozilla Public
  License, v. 2.0. If a copy of the MPL was not distributed with this
- file, You can obtain one at http://mozilla.org/MPL/2.0/. 
+ file, You can obtain one at http://mozilla.org/MPL/2.0/.
 */
 
-
-#ifndef _GRENAILLE_UNORIENTED_SPHERE_FIT_
-#define _GRENAILLE_UNORIENTED_SPHERE_FIT_
+#pragma once
 
 #include <Eigen/Dense>
 #include "algebraicSphere.h"
 
-namespace Grenaille
+namespace Ponca
 {
 /*!
     \brief Algebraic Sphere fitting procedure on point sets with non-oriented normals
@@ -32,11 +30,11 @@ private:
 
 public:
     /*! \brief Scalar type inherited from DataPoint*/
-    typedef typename Base::Scalar     Scalar;     
+    typedef typename Base::Scalar     Scalar;
     /*! \brief Vector type inherited from DataPoint*/
     typedef typename Base::VectorType VectorType;
     /*! \brief Weight Function*/
-    typedef _WFunctor                 WFunctor;   
+    typedef _WFunctor                 WFunctor;
 
 protected:
 
@@ -79,7 +77,7 @@ public:
 
     /*! \copydoc Concept::FittingProcedureConcept::finalize() */
     MULTIARCH inline FIT_RESULT finalize();
-    
+
 }; // class UnorientedSphereFit
 
 
@@ -88,20 +86,20 @@ public:
 namespace internal
 {
 
-/*! 
-    \brief Internal generic class performing the Fit derivation 
+/*!
+    \brief Internal generic class performing the Fit derivation
     \inherit Concept::FittingExtensionConcept
 
     The differentiation can be done automatically in scale and/or space, by
-    combining the enum values FitScaleDer and FitSpaceDer in the template 
+    combining the enum values FitScaleDer and FitSpaceDer in the template
     parameter Type.
 
     The differenciated values are stored in static arrays. The size of the
     arrays is computed with respect to the derivation type (scale and/or space)
-    and the number of the dimension of the ambiant space.      
-    By convention, the scale derivatives are stored at index 0 when Type 
+    and the number of the dimension of the ambiant space.
+    By convention, the scale derivatives are stored at index 0 when Type
     contains at least FitScaleDer. The size of these arrays can be known using
-    derDimension(), and the differentiation type by isScaleDer() and 
+    derDimension(), and the differentiation type by isScaleDer() and
     isSpaceDer().
 */
 template < class DataPoint, class _WFunctor, typename T, int Type>
@@ -163,15 +161,15 @@ public:
     /**************************************************************************/
     MULTIARCH inline ScalarArray dprattNorm2() const
     {
-        return Scalar(2.) * Base::m_ul.transpose() * m_dUl 
+        return Scalar(2.) * Base::m_ul.transpose() * m_dUl
                 - Scalar(4.) * Base::m_uq * m_dUc
-                - Scalar(4.) * Base::m_uc * m_dUq;      
+                - Scalar(4.) * Base::m_uc * m_dUq;
     }
 
     /*! \brief compute the square of the Pratt norm derivative for dimension d */
     MULTIARCH inline Scalar dprattNorm2(unsigned int _d) const
     {
-        return Scalar(2.) * m_dUl.col(_d).dot(Base::m_ul) 
+        return Scalar(2.) * m_dUl.col(_d).dot(Base::m_ul)
                 - Scalar(4.) * m_dUc.col(_d)[0]*Base::m_uq
                 - Scalar(4.) * m_dUq.col(_d)[0]*Base::m_uc;
     }
@@ -206,15 +204,15 @@ public:
 
 }; // class UnorientedSphereFitDer
 
-}// namespace internal  
+}// namespace internal
 
 /*!
     \brief Differentiation in scale of the UnorientedSphereFit
     \inherit Concept::FittingExtensionConcept
 
-    Requierement: 
+    Requierement:
     \verbatim PROVIDES_ALGEBRAIC_SPHERE \endverbatim
-    Provide: 
+    Provide:
     \verbatim PROVIDES_ALGEBRAIC_SPHERE_SCALE_DERIVATIVE \endverbatim
 */
 template < class DataPoint, class _WFunctor, typename T>
@@ -231,9 +229,9 @@ protected:
     \brief Spatial differentiation of the UnorientedSphereFit
     \inherit Concept::FittingExtensionConcept
 
-    Requierement: 
+    Requierement:
     \verbatim PROVIDES_ALGEBRAIC_SPHERE \endverbatim
-    Provide: 
+    Provide:
     \verbatim PROVIDES_ALGEBRAIC_SPHERE_SPACE_DERIVATIVE \endverbatim
 */
 template < class DataPoint, class _WFunctor, typename T>
@@ -250,10 +248,10 @@ protected:
     \brief Differentiation both in scale and space of the UnorientedSphereFit
     \inherit Concept::FittingExtensionConcept
 
-    Requierement: 
+    Requierement:
     \verbatim PROVIDES_ALGEBRAIC_SPHERE \endverbatim
-    Provide: 
-    \verbatim PROVIDES_ALGEBRAIC_SPHERE_SCALE_DERIVATIVE 
+    Provide:
+    \verbatim PROVIDES_ALGEBRAIC_SPHERE_SCALE_DERIVATIVE
         PROVIDES_ALGEBRAIC_SPHERE_SPACE_DERIVATIVE
     \endverbatim
 */
@@ -274,7 +272,5 @@ protected:
 
 #include "unorientedSphereFit.hpp"
 
-} //namespace Grenaille
+} //namespace Ponca
 
-
-#endif

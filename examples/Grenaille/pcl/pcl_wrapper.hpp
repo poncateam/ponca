@@ -58,8 +58,8 @@ template <typename PointInT, typename PointOutT> void
 pcl::GlsCurvature<PointInT, PointOutT>::computeCurvature(const pcl::PointCloud<PointInT> &cloud, int p_idx, const std::vector<int> &indices, float &curvature)
 {
     typedef GlsPoint::Scalar Scalar;
-    typedef Grenaille::DistWeightFunc<GlsPoint, Grenaille::SmoothWeightKernel<Scalar> > WeightFunc;
-    typedef Grenaille::Basket<GlsPoint, WeightFunc, Grenaille::OrientedSphereFit, Grenaille::GLSParam> Fit;
+    typedef Ponca::DistWeightFunc<GlsPoint, Ponca::SmoothWeightKernel<Scalar> > WeightFunc;
+    typedef Ponca::Basket<GlsPoint, WeightFunc, Ponca::OrientedSphereFit, Ponca::GLSParam> Fit;
 
     Fit fit;
     // Set a weighting function instance using the search radius of the tree as scale

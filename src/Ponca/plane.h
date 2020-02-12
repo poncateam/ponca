@@ -6,15 +6,12 @@
  file, You can obtain one at http://mozilla.org/MPL/2.0/.
 */
 
-
-#ifndef _GRENAILLE_PLANE_
-#define _GRENAILLE_PLANE_
+#pragma once
 
 #include "primitive.h" // PrimitiveBase
 #include <Eigen/Geometry>
-#include <iostream>
 
-namespace Grenaille
+namespace Ponca
 {
 
 /*!
@@ -44,7 +41,7 @@ private:
     using Base      = PrimitiveBase<DataPoint, _WFunctor>;
 
 public:
-    /// \brief Specialization of Eigen::Hyperplane inherited by Grenaille::CompactPlane
+    /// \brief Specialization of Eigen::Hyperplane inherited by Ponca::CompactPlane
     using EigenBase = Eigen::Hyperplane<typename DataPoint::Scalar, DataPoint::Dim >;
 
 
@@ -159,4 +156,3 @@ public:
 }; //class Plane
 
 }
-#endif  // _GRENAILLE_PLANE_

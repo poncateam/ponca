@@ -5,12 +5,16 @@
 */
 
 
-#ifndef _GRENAILLE_ALGEBRAIC_SPHERE_
-#define _GRENAILLE_ALGEBRAIC_SPHERE_
+#pragma once
 
 #include "primitive.h" // PrimitiveBase
 
-namespace Grenaille
+#include MULTIARCH_INCLUDE_STD(cmath)
+#include MULTIARCH_INCLUDE_STD(limits)
+
+#include <Eigen/Core>
+
+namespace Ponca
 {
 
 /*!
@@ -242,4 +246,3 @@ public:
 #include "algebraicSphere.hpp"
 
 }
-#endif  // _GRENAILLE_ALGEBRAIC_SPHERE_

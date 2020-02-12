@@ -4,11 +4,9 @@
  file, You can obtain one at http://mozilla.org/MPL/2.0/.
 */
 
+#pragma once
 
-#ifndef _GRENAILLE_MLS_SPHERE_FIT_DER_
-#define _GRENAILLE_MLS_SPHERE_FIT_DER_
-
-namespace Grenaille
+namespace Ponca
 {
 
 /*!
@@ -125,6 +123,4 @@ public:
 
 #include "mlsSphereFitDer.hpp"
 
-} //namespace Grenaille
-
-#endif
+} //namespace Ponca

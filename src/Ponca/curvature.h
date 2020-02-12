@@ -1,16 +1,15 @@
 /*
  This Source Code Form is subject to the terms of the Mozilla Public
  License, v. 2.0. If a copy of the MPL was not distributed with this
- file, You can obtain one at http://mozilla.org/MPL/2.0/. 
+ file, You can obtain one at http://mozilla.org/MPL/2.0/.
 */
+
+#pragma once
 
 #include <Eigen/Eigenvalues>
 #include <Eigen/Core>
 
-#ifndef _GRENAILLE_CURVATURE_
-#define _GRENAILLE_CURVATURE_
-
-namespace Grenaille
+namespace Ponca
 {
 
 
@@ -21,7 +20,7 @@ namespace Grenaille
     This class extracts curvature informations from the spatial derivatives of the normal field \f$ N \f$.
     It first assemble a 2x2 matrix representation of the shape operator, and then performs an eigenvalue decomposition
     using Eigen::SelfAdjointEigenSolver::computeDirect.
-    
+
     The previous basket elements must provide a \c dNormal() method returning a 3x3 matrix.
     If more than one basket element provide a \c dNormal() member, then the last one will be used.
 
@@ -86,12 +85,12 @@ public:
     //!
     //! It is the smallest curvature in <b>absolute value</b>.
     MULTIARCH inline VectorType k2Direction() const { return m_v2; }
-    
+
     //! \brief Returns an estimate of the mean curvature
-    MULTIARCH inline Scalar kMean() const { return (m_k1 + m_k2)/2.;}    
+    MULTIARCH inline Scalar kMean() const { return (m_k1 + m_k2)/2.;}
 
     //! \brief Returns an estimate of the Gaussian curvature
-    MULTIARCH inline Scalar GaussianCurvature() const { return m_k1 * m_k2;}    
+    MULTIARCH inline Scalar GaussianCurvature() const { return m_k1 * m_k2;}
 
     //! \brief Compute principal curvature directions
     //!
@@ -110,6 +109,4 @@ protected:
 
 #include "curvature.hpp"
 
-} //namespace Grenaille
-
-#endif
+} //namespace Ponca

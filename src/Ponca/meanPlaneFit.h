@@ -6,13 +6,11 @@
  file, You can obtain one at http://mozilla.org/MPL/2.0/.
 */
 
+#pragma once
 
-#ifndef _GRENAILLE_MEAN_PLANE_FIT_
-#define _GRENAILLE_MEAN_PLANE_FIT_
+#include "plane.h"
 
-#include "enums.h"
-
-namespace Grenaille
+namespace Ponca
 {
 
 /*!
@@ -83,6 +81,4 @@ public:
 
 #include "meanPlaneFit.hpp"
 
-} //namespace Grenaille
-
-#endif
+} //namespace Ponca

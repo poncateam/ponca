@@ -6,11 +6,12 @@
  file, You can obtain one at http://mozilla.org/MPL/2.0/.
 */
 
+#pragma once
 
-#ifndef _GRENAILLE_PRIMITIVE_
-#define _GRENAILLE_PRIMITIVE_
+#include "defines.h"
+#include "enums.h"
 
-namespace Grenaille
+namespace Ponca
 {
 
 /*!
@@ -69,4 +70,3 @@ public:
 }; //class Plane
 
 }
-#endif  // _GRENAILLE_PLANE_

@@ -8,8 +8,10 @@
 #ifndef _GRENAILLE_BASKET_
 #define _GRENAILLE_BASKET_
 
+#include "defines.h"
+#include "enums.h"
 
-namespace Grenaille
+namespace Ponca
 {
 
 /*! \brief Namespace used for structure or classes used internally by the lib */
@@ -26,7 +28,7 @@ namespace internal
     \brief Agregator class used to declare specialized structures using CRTP (Curiously Recurring Template Pattern)
     \todo Comment
 
-    The various implementations of Grenaille::Concept are mixed through
+    The various implementations of Ponca::Concept are mixed through
     specializations of the Basket class:
     \code
         typedef
@@ -82,7 +84,7 @@ namespace internal
 
 #undef BASKET_TP
 
-}// namespace Grenaille
+}// namespace Ponca
 
 
 #endif

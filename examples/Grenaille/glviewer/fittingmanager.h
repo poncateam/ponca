@@ -59,39 +59,39 @@ typedef PatateCommon::GLTri3DMesh::GrenaillePoint MyPoint;
 
 template <FittingManager::FIT_TYPE type>
 struct BasketMaker {
-    typedef Grenaille::DistWeightFunc<MyPoint,Grenaille::SmoothWeightKernel<MyPoint::Scalar> > WeightFunc;
+    typedef Ponca::DistWeightFunc<MyPoint,Ponca::SmoothWeightKernel<MyPoint::Scalar> > WeightFunc;
 };
 
 template <>
 struct BasketMaker<FittingManager::PLANE_MEAN>{
-    typedef Grenaille::DistWeightFunc<MyPoint,Grenaille::SmoothWeightKernel<MyPoint::Scalar> > WeightFunc;
-    typedef Grenaille::Basket<MyPoint,WeightFunc, Grenaille::MeanPlaneFit> Basket;
+    typedef Ponca::DistWeightFunc<MyPoint,Ponca::SmoothWeightKernel<MyPoint::Scalar> > WeightFunc;
+    typedef Ponca::Basket<MyPoint,WeightFunc, Ponca::MeanPlaneFit> Basket;
 };
 
 template <>
 struct BasketMaker<FittingManager::PLANE_COV>{
-    typedef Grenaille::DistWeightFunc<MyPoint,Grenaille::SmoothWeightKernel<MyPoint::Scalar> > WeightFunc;
-    typedef Grenaille::Basket<MyPoint,WeightFunc, Grenaille::CovariancePlaneFit> Basket;
+    typedef Ponca::DistWeightFunc<MyPoint,Ponca::SmoothWeightKernel<MyPoint::Scalar> > WeightFunc;
+    typedef Ponca::Basket<MyPoint,WeightFunc, Ponca::CovariancePlaneFit> Basket;
 };
 
 template <>
 struct BasketMaker<FittingManager::MONGE_PATCH>{
-    typedef Grenaille::DistWeightFunc<MyPoint,Grenaille::SmoothWeightKernel<MyPoint::Scalar> > WeightFunc;
-    typedef Grenaille::Basket<MyPoint,WeightFunc, Grenaille::CovariancePlaneFit, Grenaille::MongePatch> Basket;
+    typedef Ponca::DistWeightFunc<MyPoint,Ponca::SmoothWeightKernel<MyPoint::Scalar> > WeightFunc;
+    typedef Ponca::Basket<MyPoint,WeightFunc, Ponca::CovariancePlaneFit, Ponca::MongePatch> Basket;
 };
 
 template <>
 struct BasketMaker<FittingManager::SPHERE_ORIENTED>{
-    typedef Grenaille::DistWeightFunc<MyPoint,Grenaille::SmoothWeightKernel<MyPoint::Scalar> > WeightFunc;
-    typedef Grenaille::Basket<MyPoint,WeightFunc, Grenaille::OrientedSphereFit,
-                                                  Grenaille::GLSParam> Basket;
+    typedef Ponca::DistWeightFunc<MyPoint,Ponca::SmoothWeightKernel<MyPoint::Scalar> > WeightFunc;
+    typedef Ponca::Basket<MyPoint,WeightFunc, Ponca::OrientedSphereFit,
+                                                  Ponca::GLSParam> Basket;
 };
 
 template <>
 struct BasketMaker<FittingManager::SPHERE>{
-    typedef Grenaille::DistWeightFunc<MyPoint,Grenaille::SmoothWeightKernel<MyPoint::Scalar> > WeightFunc;
-    typedef Grenaille::Basket<MyPoint,WeightFunc, Grenaille::SphereFit,
-                                                  Grenaille::GLSParam> Basket;
+    typedef Ponca::DistWeightFunc<MyPoint,Ponca::SmoothWeightKernel<MyPoint::Scalar> > WeightFunc;
+    typedef Ponca::Basket<MyPoint,WeightFunc, Ponca::SphereFit,
+                                                  Ponca::GLSParam> Basket;
 };
 
 } // namespace fittingmanagerspace

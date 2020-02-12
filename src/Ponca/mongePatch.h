@@ -4,16 +4,10 @@
  file, You can obtain one at http://mozilla.org/MPL/2.0/.
 */
 
-#ifndef _GRENAILLE_MONGE_PATCH_
-#define _GRENAILLE_MONGE_PATCH_
+#pragma once
 
-#include <iostream>
-
-
-namespace Grenaille
+namespace Ponca
 {
-
-
 
 /*!
  * \brief Extension to compute the best fit quadric on 3d points expressed as f(u,v)=h
@@ -108,6 +102,4 @@ public:
 
 #include "mongePatch.hpp"
 
-} //namespace Grenaille
-
-#endif
+} //namespace Ponca
