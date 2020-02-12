@@ -4,7 +4,7 @@ cmake_minimum_required(VERSION 3.10)
 set(CMAKE_DISABLE_SOURCE_CHANGES ON)
 set(CMAKE_DISABLE_IN_SOURCE_BUILD ON)
 
-project(Ponca)
+project(Ponca LANGUAGES CXX)
 
 # guard against bad build-type strings (source: Eigen)
 
@@ -27,6 +27,29 @@ if(GIT_FOUND)
         WORKING_DIRECTORY ${Ponca_SOURCE_DIR}
         OUTPUT_VARIABLE GIT_CHANGESET)
 endif()
+
+################################################################################
+## Dependencies
+################################################################################
+
+## Eigen: automatic configuration:
+##  1. if EIGEN3_INCLUDE_DIR is set, use it directly
+##  2. if any, and version >= 3.3.x, use system version
+##  3. otherwise, download (if required) and use submodule
+if( NOT EIGEN3_INCLUDE_DIR )
+    find_package(Eigen3 QUIET)
+    if( (NOT Eigen3_FOUND) OR EIGEN_VERSION_NUMBER VERSION_LESS 3.3 )
+
+        set(EIGEN3_INCLUDE_DIR "${PROJECT_SOURCE_DIR}/external/eigen")
+
+        if( NOT EXISTS ${EIGEN3_INCLUDE_DIR}/signature_of_eigen3_matrix_library )
+            execute_process(COMMAND git submodule update --init -- ${EIGEN3_INCLUDE_DIR}
+                    WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR})
+        endif( NOT EXISTS ${EIGEN3_INCLUDE_DIR}/signature_of_eigen3_matrix_library )
+    endif()
+endif( NOT EIGEN3_INCLUDE_DIR )
+include_directories(${EIGEN3_INCLUDE_DIR})
+message(STATUS "Eigen3 root path: ${EIGEN3_INCLUDE_DIR}")
 
 ################################################################################
 # Add core code source, so it is visible in dev environements                  #
