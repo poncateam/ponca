@@ -68,4 +68,4 @@ install(FILES ${ponca_INCLUDE}
 # HACK: have the files showing in the IDE, under the name 'ponca_src_IDE'
 # Source: https://stackoverflow.com/questions/27039019/how-to-have-cmake-show-headers-that-are-not-part-of-any-binary-target-in-the-ide/29214327#29214327
 #
-add_custom_target(ponca_src_IDE SOURCES ${ponca_INCLUDE})
+add_custom_target(ponca-src SOURCES ${ponca_INCLUDE} "ponca.h")

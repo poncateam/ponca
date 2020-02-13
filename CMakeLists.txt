@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.10)
+cmake_minimum_required(VERSION 3.11)
 
 # add this options before PROJECT keyword
 set(CMAKE_DISABLE_SOURCE_CHANGES ON)
@@ -7,6 +7,7 @@ set(CMAKE_DISABLE_IN_SOURCE_BUILD ON)
 project(Ponca LANGUAGES CXX VERSION 0.0.1)
 
 set(CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR}/cmake)
+set(PONCA_ROOT_DIR ${PROJECT_SOURCE_DIR}/src)
 
 # guard against bad build-type strings (source: Eigen)
 
@@ -150,17 +151,7 @@ endif(DOXYGEN_FOUND)
 ################################################################################
 # tests and examples                                                           #
 ################################################################################
-
-# enable extra warnings
-if (CMAKE_COMPILER_IS_GNUCXX)
-    # Do NOT use list( APPEND ... ) with flags, as adding flags to a non-empty
-    # CMAKE_[...]_FLAGS introduces unwanted semicolons.
-    set( CMAKE_CXX_FLAGS "-Wall -pedantic -Wextra  -Wdouble-promotion ${CMAKE_CXX_FLAGS}")
-endif (CMAKE_COMPILER_IS_GNUCXX)
-
-set(CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR}/cmake)
-
-#add_subdirectory(examples EXCLUDE_FROM_ALL)
+add_subdirectory(examples EXCLUDE_FROM_ALL)
 
 #include(cmake/ConfigureTesting.cmake)
 #add_subdirectory(tests EXCLUDE_FROM_ALL)

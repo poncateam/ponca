@@ -1,7 +1,7 @@
 /*
 This Source Code Form is subject to the terms of the Mozilla Public
 License, v. 2.0. If a copy of the MPL was not distributed with this
-file, You can obtain one at http://mozilla.org/MPL/2.0/. 
+file, You can obtain one at http://mozilla.org/MPL/2.0/.
 */
 
 
@@ -15,22 +15,22 @@ file, You can obtain one at http://mozilla.org/MPL/2.0/.
 #include <algorithm>
 #include <iostream>
 
-#include "Patate/grenaille.h"
+#include "ponca.h"
 #include "Eigen/Eigen"
 
 #include <vector>
 
 using namespace std;
-using namespace Grenaille;
+using namespace Ponca;
 
 #define DIMENSION 3
 
 /*
    \brief Variant of the MyPoint class allowing to work with external raw data.
-  
+
    Using this approach, ones can use the patate library with already existing
    data-structures and without any data-duplication.
-   
+
    In this example, we use this class to map an interlaced raw array containing
    both point normals and coordinates.
  */
@@ -40,13 +40,14 @@ public:
     enum {Dim = DIMENSION};
     typedef double Scalar;
     typedef Eigen::Matrix<Scalar, Dim, 1>   VectorType;
+    typedef Eigen::Matrix<Scalar, Dim, Dim> MatrixType;
 
     MULTIARCH inline MyPoint(Scalar* _interlacedArray, int _pId)
-        : m_pos   (Eigen::Map< const VectorType >(_interlacedArray + Dim*2*_pId  )), 
+        : m_pos   (Eigen::Map< const VectorType >(_interlacedArray + Dim*2*_pId  )),
         m_normal(Eigen::Map< const VectorType >(_interlacedArray + Dim*2*_pId+Dim))
     {}
 
-    MULTIARCH inline const Eigen::Map< const VectorType >& pos()    const { return m_pos; }  
+    MULTIARCH inline const Eigen::Map< const VectorType >& pos()    const { return m_pos; }
     MULTIARCH inline const Eigen::Map< const VectorType >& normal() const { return m_normal; }
 
 private:
@@ -57,20 +58,20 @@ typedef MyPoint::Scalar Scalar;
 typedef MyPoint::VectorType VectorType;
 
 // Define related structure
-typedef DistWeightFunc<MyPoint,SmoothWeightKernel<Scalar> > WeightFunc; 
+typedef DistWeightFunc<MyPoint,SmoothWeightKernel<Scalar> > WeightFunc;
 typedef Basket<MyPoint,WeightFunc,OrientedSphereFit,   GLSParam> Fit;
 
 
 template<typename Fit>
-void test_fit(Fit& _fit, 
-              Scalar* _interlacedArray, 
+void test_fit(Fit& _fit,
+              Scalar* _interlacedArray,
               int _n,
               const VectorType& _p)
 {
     Scalar tmax = 100.0;
 
     // Set a weighting function instance
-    _fit.setWeightFunc(WeightFunc(tmax));  
+    _fit.setWeightFunc(WeightFunc(tmax));
 
     // Set the evaluation position
     _fit.init(_p);
@@ -91,12 +92,12 @@ void test_fit(Fit& _fit,
     {
         cout << "Center: [" << _fit.center().transpose() << "] ;  radius: " << _fit.radius() << endl;
 
-        cout << "Pratt normalization" 
+        cout << "Pratt normalization"
             << (_fit.applyPrattNorm() ? " is now done." : " has already been applied.") << endl;
 
         // Play with fitting output
-        cout << "Value of the scalar field at the initial point: " 
-            << _p.transpose() 
+        cout << "Value of the scalar field at the initial point: "
+            << _p.transpose()
             << " is equal to " << _fit.potential(_p)
             << endl;
 
@@ -117,12 +118,12 @@ void test_fit(Fit& _fit,
 // Build an interlaced array containing _n position and normal vectors
 Scalar* buildInterlacedArray(int _n)
 {
-    Scalar* interlacedArray = new Scalar[2*DIMENSION*_n];
+    Scalar* interlacedArray = new Scalar[uint(2*DIMENSION*_n)];
 
     for(int k=0; k<_n; ++k)
     {
-        // For the simplicity of this example, we use Eigen Vectors to compute 
-        // both coordinates and normals, and then copy the raw values to an 
+        // For the simplicity of this example, we use Eigen Vectors to compute
+        // both coordinates and normals, and then copy the raw values to an
         // interlaced array, discarding the Eigen representation.
         Eigen::Matrix<Scalar, DIMENSION, 1> nvec = Eigen::Matrix<Scalar, DIMENSION, 1>::Random().normalized();
         Eigen::Matrix<Scalar, DIMENSION, 1> pvec = nvec * Eigen::internal::random<Scalar>(0.9,1.1);
