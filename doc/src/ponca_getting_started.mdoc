@@ -5,7 +5,7 @@
 */
 
 /*!
-  \page patate_getting_started_page Getting started
+  \page ponca_getting_started_page Getting started
 
   \section getting_started_requirements_sec Requirements
 
@@ -26,9 +26,9 @@
 
   The Patate lib is an header-only library. It could not be easier to install: the only thing you have to do is to include the header of the module you want to use in your code.
   Moreover, each patate|module is independent from the others, hence you may only use the header corresponding to the module you are interested in. For example:
-	\code
-	#include <Patate/grenaille.h>
-	\endcode
+        \code
+        #include <ponca.h>
+        \endcode
 
   That said, the (quite heavy) use of templates in some modules may increase compilation times. Precompiled headers are recommended if this becomes a source of frustration. You will also have to pre-compile patates using nvcc if you want to use CUDA versions. This is explained in more details in related examples.
 
@@ -36,10 +36,7 @@
 
   \section getting_started_first_step_sec First steps
 
-  You're now ready to play with Patates! But where to start from?
-  Just have a look at the \link patate_overview_page list of available patates|modules.\endlink, or directly access the Patates user manuals (links under Patates names):
-   - \ref grenaille_user_manual_page "Grenaille": this module provides efficient methods for the fitting and analysis of point-clouds in arbitrary dimensions. 
-   - \ref vitelotte_user_manual_page "Vitelotte": this module provides tool to manipulate mesh-based vector graphics with arbitrary connectivity. 
-   
+  You're now ready to play with Ponca! Checkout the user manual here:  \ref user_manual_page.
+
   If you get stuck or have a problem/bug using patates, please register and email us using our public mailing list at https://lists.gforge.inria.fr/mailman/listinfo/patate-info. Remember that the library is under development so we are pleased to get your feedback.
  */

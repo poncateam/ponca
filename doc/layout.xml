@@ -3,77 +3,54 @@
   <navindex>
     <tab type="mainpage" visible="yes" title="Home"/>
 
-	<tab type="usergroup" visible="yes" url="@ref patate_getting_started_page" title="Getting Started">
-		<tab type="user" visible="yes" url="@ref getting_started_requirements_sec" title="Requirements"/>
-		<tab type="user" visible="yes" url="@ref getting_started_download_sec" title="Download"/>
-		<tab type="user" visible="yes" url="@ref getting_started_installation_sec" title="Installation"/>
-		<tab type="user" visible="yes" url="@ref getting_started_first_step_sec" title="First steps"/>
-	</tab>
+        <tab type="usergroup" visible="yes" url="@ref ponca_getting_started_page" title="Getting Started">
+                <tab type="user" visible="yes" url="@ref getting_started_requirements_sec" title="Requirements"/>
+                <tab type="user" visible="yes" url="@ref getting_started_download_sec" title="Download"/>
+                <tab type="user" visible="yes" url="@ref getting_started_installation_sec" title="Installation"/>
+                <tab type="user" visible="yes" url="@ref getting_started_first_step_sec" title="First steps"/>
+        </tab>
 
-	<tab type="usergroup" url="@ref patate_overview_page" title="Patates">
-		<tab type="usergroup" url="grenaille_user_manual_page.html" title="Grenaille">
-			<tab type="usergroup" url="grenaille_user_manual_page.html" title="User Manual">
-				<tab type="user" visible="yes" url="@ref grenaille_user_manual_intro" title="Introduction"/>
-				<tab type="user" visible="yes" url="@ref grenaille_user_manual_datas" title="Data Samples"/>
-				<tab type="user" visible="yes" url="@ref grenaille_user_manual_Fitting" title="Fitting Process"/>
-				<tab type="user" visible="yes" url="@ref grenaille_user_manual_outputs" title="Basic Outputs"/>
-				<tab type="user" visible="yes" url="@ref grenaille_user_manual_cuvature" title="Computing Curvatures"/>
-				<tab type="user" visible="yes" url="@ref grenaille_user_manual_going_further" title="Going Further"/>
-			</tab>
+        <!--<tab type="usergroup" url="@ref ponca_overview_page" title="poncas">-->
+                <!--<tab type="usergroup" url="user_manual_page.html" title="Grenaille">-->
+                        <tab type="usergroup" url="user_manual_page.html" title="User Manual">
+                                <tab type="user" visible="yes" url="@ref user_manual_intro" title="Introduction"/>
+                                <tab type="user" visible="yes" url="@ref user_manual_datas" title="Data Samples"/>
+                                <tab type="user" visible="yes" url="@ref user_manual_Fitting" title="Fitting Process"/>
+                                <tab type="user" visible="yes" url="@ref user_manual_outputs" title="Basic Outputs"/>
+                                <tab type="user" visible="yes" url="@ref user_manual_cuvature" title="Computing Curvatures"/>
+                                <tab type="user" visible="yes" url="@ref user_manual_going_further" title="Going Further"/>
+                        </tab>
 
-			<tab type="usergroup" url="@ref grenaille_example_page" title="Examples">
-				<tab type="user" visible="yes" url="@ref grenaille_example_cxx_basic_page" title="Basic example"/>
-				<tab type="user" visible="yes" url="@ref grenaille_example_cxx_fit_plane_page" title="Plane fitting"/>
-				<tab type="user" visible="yes" url="@ref grenaille_example_cxx_binding_page" title="External data-structure binding"/>
-				<tab type="user" visible="yes" url="@ref grenaille_example_opengl_circle_page" title="Basket classes using OpenGL"/>
-				<tab type="user" visible="yes" url="@ref grenaille_example_cxx_ssc_page" title="C++/CUDA screen space curvature"/>
-				<tab type="user" visible="yes" url="@ref grenaille_example_python_ssc_page" title="Python/CUDA screen space curvature"/>
-				<tab type="user" visible="yes" url="@ref grenaille_example_pcl_page" title="PCL Wrapper for surface curvature"/>
-			</tab>
-		</tab>
-
-		<tab type="usergroup" url="vitelotte_user_manual_page.html" title="Vitelotte">
-			<tab type="usergroup" url="vitelotte_user_manual_page.html" title="User Manual">
-				<tab type="user" visible="yes" url="vitelotte_user_manual_diffusion_images_page.html" title="Diffusion images"/>
-				<tab type="user" visible="yes" url="vitelotte_user_manual_tutorial_page.html" title="Tutorial"/>
-				<tab type="user" visible="yes" url="vitelotte_user_manual_vg_mesh_page.html" title="The VGMesh class"/>
-				<tab type="user" visible="yes" url="vitelotte_user_manual_dc_mesh_page.html" title="The DCMesh class"/>
-				<tab type="user" visible="yes" url="vitelotte_user_manual_fem_solver_page.html" title="The FEM solver"/>
-				<tab type="user" visible="yes" url="vitelotte_user_manual_rendering_page.html" title="Rendering"/>
-				<tab type="user" visible="yes" url="vitelotte_user_manual_mvg_file_format_page.html" title="The MVG file format"/>
-				<tab type="user" visible="yes" url="vitelotte_user_manual_blender_plugin_page.html" title="Blender plugin"/>
-			</tab>
-
-			<tab type="usergroup" url="@ref vitelotte_example_page" title="Examples">
-				<!--<tab type="usergroup" url="@ref vitelotte_example_common_page" title="Common utilities">
-					<tab type="user" visible="yes" url="@ref vitelotte_example_vg_node_renderer_page" title="VGNodeRenderer"/>
-					<tab type="user" visible="yes" url="@ref vitelotte_example_plot_obj_page" title="OBJ Plotter"/>
-				</tab>-->
-				<tab type="user" visible="yes" url="@ref vitelotte_example_mvgtk_page" title="MVG Toolkit"/>
-				<tab type="user" visible="yes" url="@ref vitelotte_example_mvg_viewer_page" title="MVG Viewer"/>
-				<tab type="user" visible="yes" url="@ref vitelotte_example_mvg_editor_page" title="MVG Editor"/>
-				<tab type="user" visible="yes" url="@ref vitelotte_example_gen_mesh_page" title="MVG from SVG"/>
-			</tab>
-		</tab>
-	</tab>
+                        <tab type="usergroup" url="@ref example_page" title="Examples">
+                                <tab type="user" visible="yes" url="@ref example_cxx_basic_page" title="Basic example"/>
+                                <tab type="user" visible="yes" url="@ref example_cxx_fit_plane_page" title="Plane fitting"/>
+                                <tab type="user" visible="yes" url="@ref example_cxx_binding_page" title="External data-structure binding"/>
+                                <tab type="user" visible="yes" url="@ref example_cxx_opengl_circle_page" title="Basket classes using OpenGL"/>
+                                <tab type="user" visible="yes" url="@ref example_cxx_pcl_page" title="PCL Wrapper for surface curvature"/>
+                                <tab type="user" visible="yes" url="@ref example_cxx_demo_page" title="C++/OpenGL Demo"/>
+                                <tab type="user" visible="yes" url="@ref example_cu_ssc_page" title="C++/CUDA screen space curvature"/>
+                                <tab type="user" visible="yes" url="@ref example_python_ssc_page" title="Python/CUDA screen space curvature"/>
+                        </tab>
+                <!--</tab>-->
+        <!--</tab>-->
     <tab type="pages" visible="no" title="" intro=""/>
     <tab type="modules" visible="no" title="" intro=""/>
-	<!-- <tab type="classes" visible="no" title=""> -->
-	  <tab type="classlist" visible="yes" title="References" intro=""/>
-	  <tab type="classindex" visible="no" title=""/>
-	  <tab type="hierarchy" visible="no" title="" intro=""/>
-	  <tab type="classmembers" visible="no" title="" intro=""/>
-	<!-- </tab> -->
-	<!-- <tab type="files" visible="yes" title="">
-	  <tab type="filelist" visible="yes" title="" intro=""/>
-	  <tab type="globals" visible="yes" title="" intro=""/>
-	</tab>-->
-	<!-- <tab type="examples" visible="yes" title="" intro=""/> -->
-	<tab type="namespaces" visible="no" title="">
-	  <tab type="namespacelist" visible="no" title="" intro=""/>
-	  <tab type="namespacemembers" visible="no" title="" intro=""/>
-	</tab>
-    <tab type="user" visible="yes" title="Changelog" url="patate_changelog.html"/>
+        <!-- <tab type="classes" visible="no" title=""> -->
+          <tab type="classlist" visible="yes" title="References" intro=""/>
+          <tab type="classindex" visible="no" title=""/>
+          <tab type="hierarchy" visible="no" title="" intro=""/>
+          <tab type="classmembers" visible="no" title="" intro=""/>
+        <!-- </tab> -->
+        <!-- <tab type="files" visible="yes" title="">
+          <tab type="filelist" visible="yes" title="" intro=""/>
+          <tab type="globals" visible="yes" title="" intro=""/>
+        </tab>-->
+        <!-- <tab type="examples" visible="yes" title="" intro=""/> -->
+        <tab type="namespaces" visible="no" title="">
+          <tab type="namespacelist" visible="no" title="" intro=""/>
+          <tab type="namespacemembers" visible="no" title="" intro=""/>
+        </tab>
+    <tab type="user" visible="yes" title="Changelog" url="ponca_changelog.html"/>
     <tab type="user" visible="yes" title="Citations" url="citelist.html"/>
     <tab type="user" visible="yes" title="Deprecated" url="deprecated.html"/>
   </navindex>

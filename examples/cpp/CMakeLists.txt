@@ -2,10 +2,6 @@ project(Ponca_Examples_cpp LANGUAGES CXX)
 
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 
-################################################################################
-# Grenaille                                                                    #
-################################################################################
-
 set(ponca_basic_SRCS
     ponca_basic_cpu.cpp
 )

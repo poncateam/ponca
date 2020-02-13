@@ -6,11 +6,11 @@
 
 
 /*!
-  \page grenaille_example_python_ssc_page Screen Space Curvature using Cuda and Python
+  \page example_python_ssc_page Screen Space Curvature using Cuda and Python
 
   \section pyssgl_intro_sec Introduction
 
-  This is an example that use Grenaille to compute Screen Space Curvature in
+  This is an example that use Ponca to compute Screen Space Curvature in
   python using Cuda.
 
   \subsection pyssgl_intro_sec_dep_subsec Installation and usage
@@ -23,7 +23,7 @@
   To compile and run the example, call
   \code
   cd build && make ssgls_py
-  cd examples/Grenaille/python && python ssgls.py -s 10 -p ./data/ssgls_sample_wc.png -n ./data/ssgls_sample_normal.png
+  cd examples/python && python ssgls.py -s 10 -p ./data/ssgls_sample_wc.png -n ./data/ssgls_sample_normal.png
   \endcode
 
   The script will load the input pictures and compute the curvature for
@@ -65,27 +65,27 @@
   screen-space curvature estimation.
 
   \subsection pyssgl_cuda_mypoint_sec Define fitting data structure
-  \snippet Grenaille/python/ssgls.cu mypoint
+  \snippet python/ssgls.cu mypoint
 
 
   \subsection pyssgl_cuda_weight_sec Define weighting functions
-  \snippet Grenaille/python/ssgls.cu w_def
+  \snippet python/ssgls.cu w_def
 
   \subsection pyssgl_cuda_fit_sec Define fitting primitive
-  \snippet Grenaille/python/ssgls.cu fit_def
+  \snippet python/ssgls.cu fit_def
 
 
   \subsection pyssgl_cuda_kernel_sec Kernel
-  \snippet Grenaille/python/ssgls.cu kernel
+  \snippet python/ssgls.cu kernel
 
   \subsection pyssgl_cuda_access_sec Memory access
   We use numpy to format the input data, filled by dimension (in object space)
   and then by the screen-space coordinates:
-  \snippet Grenaille/python/ssgls.cu data_acces
+  \snippet python/ssgls.cu data_acces
 
 
   \section pyssgl_python_sec Python script
   We use numpy to format input data.
 
-  \include Grenaille/python/ssgls.py
+  \include python/ssgls.py
  */

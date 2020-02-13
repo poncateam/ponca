@@ -1,0 +1,63 @@
+/*
+ This Source Code Form is subject to the terms of the Mozilla Public
+ License, v. 2.0. If a copy of the MPL was not distributed with this
+ file, You can obtain one at http://mozilla.org/MPL/2.0/.
+*/
+
+
+/*!
+  \page example_cu_ssc_page Screen Space Curvature using Cuda/C++
+
+  \section cu_ssgl_intro_sec Introduction
+
+  This is an example that use Ponca to compute Screen Space Curvature in
+  C++ using Cuda.
+
+  \subsection cu_ssgl_sec_dep_subsec Installation and usage
+  This example requires the following third-party library :
+   - libpng
+   - cuda (tested with 9.2).
+
+  To compile and run the example, call
+  \code
+  cd build && make ssgls
+  cd examples/cuda && ./ponca_ssgls
+  \endcode
+
+  This will takes the two input pictures packed in this example (in "data" directory) and compute the curvature for
+  a screenspace neighborhood 10x10 pixels.
+  \image html examples/ssgls_input.png "Screen-Space Curvature typical input. Left: world coordinates. Right: remapped normal vectors"
+
+  It will generate this picture
+  \image html examples/ssgls_result1.png "Screen-Space Curvature estimation"
+
+  \section cu_ssgl_cuda_sec Cuda programming
+
+  Here are the technical details related to the cuda and C++ biding for
+  screen-space curvature estimation.
+
+  \subsection cu_ssgl_cuda_mypoint_sec Define fitting data structure
+  \snippet cuda/ponca_ssgls.cu mypoint
+
+
+  \subsection cu_ssgl_cuda_weight_sec Define weighting functions
+  \snippet cuda/ponca_ssgls.cu w_def
+
+  \subsection cu_ssgl_cuda_fit_sec Define fitting primitive
+  \snippet cuda/ponca_ssgls.cu fit_def
+
+
+  \subsection cu_ssgl_cuda_kernel_sec Kernel
+  \snippet cuda/ponca_ssgls.cu kernel
+
+  \subsection cu_ssgl_cuda_access_sec Memory access
+  We format the input data, filled by dimension (in object space)
+  and then by the screen-space coordinates:
+  \snippet cuda/ponca_ssgls.cu data_acces
+
+
+  \section cu_ssgl_sec The whole code
+  We use freeimageplus to format input data.
+
+  \include cuda/ponca_ssgls.cu
+ */

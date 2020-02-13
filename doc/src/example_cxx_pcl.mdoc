@@ -6,11 +6,11 @@
 
 
 /*!
-  \page grenaille_example_pcl_page Using Grenaille to compute surface curvature in PCL
+  \page example_cxx_pcl_page Using Ponca to compute surface curvature in PCL
 
   \section pcl_intro_sec Introduction
 
-  This is an example that use Grenaille to compute surface curvature with <a href="http://http://pointclouds.org/">Point Cloud Library (PCL)</a>.
+  This is an example that use Ponca to compute surface curvature with <a href="http://http://pointclouds.org/">Point Cloud Library (PCL)</a>.
   Of course, you have to install the last version of PCL (tested with v1.6) to make the example works. It provides a class implementation to be incorporate in the PCL tree, section "features",
   and a method to use that feature and visualize data using a colormap.
 
@@ -36,16 +36,16 @@
   Here is the PCL implementation of our method.
 
   pcl_wrapper.h
-  \include Grenaille/pcl/pcl_wrapper.h
+  \include pcl/pcl_wrapper.h
 
   pcl_wrapper.hpp
-  \include Grenaille/pcl/pcl_wrapper.hpp
+  \include pcl/pcl_wrapper.hpp
 
   pcl_wrapper.cpp
-  \include Grenaille/pcl/pcl_wrapper.cpp
+  \include pcl/pcl_wrapper.cpp
 
   \section pcl_main_sec Compute and visualization
 
   Now, a basic method to use the previous class and to visualize the result.
-  \include Grenaille/pcl/main.cpp
+  \include pcl/main.cpp
  */

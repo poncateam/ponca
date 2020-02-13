@@ -129,23 +129,47 @@ find_package(Doxygen)
 if(DOXYGEN_FOUND)
   set (PONCA_PROJECT_NUMBER ${GIT_CHANGESET})
 
-  configure_file(${CMAKE_CURRENT_SOURCE_DIR}/doc-src/Doxyfile.in ${CMAKE_CURRENT_BINARY_DIR}/Doxyfile @ONLY)
+  configure_file(${CMAKE_CURRENT_SOURCE_DIR}/doc/Doxyfile.in ${CMAKE_CURRENT_BINARY_DIR}/Doxyfile @ONLY)
+
+  set(doc_file_list
+      ${CMAKE_CURRENT_SOURCE_DIR}/CHANGELOG
+      ${CMAKE_CURRENT_SOURCE_DIR}/doc/Doxyfile.in
+      ${CMAKE_CURRENT_SOURCE_DIR}/doc/layout.xml
+      ${CMAKE_CURRENT_SOURCE_DIR}/doc/ponca.css
+      ${CMAKE_CURRENT_SOURCE_DIR}/doc/html/common.css
+      ${CMAKE_CURRENT_SOURCE_DIR}/doc/html/doxygen.css
+      ${CMAKE_CURRENT_SOURCE_DIR}/doc/src/ponca.bib
+      ${CMAKE_CURRENT_SOURCE_DIR}/doc/src/ponca.mdoc
+      ${CMAKE_CURRENT_SOURCE_DIR}/doc/src/ponca_changelog.mdoc
+      ${CMAKE_CURRENT_SOURCE_DIR}/doc/src/ponca_user_manual.mdoc
+      ${CMAKE_CURRENT_SOURCE_DIR}/doc/src/ponca_getting_started.mdoc
+      ${CMAKE_CURRENT_SOURCE_DIR}/doc/src/ponca_overview.mdoc
+      ${CMAKE_CURRENT_SOURCE_DIR}/doc/src/example.mdoc
+      ${CMAKE_CURRENT_SOURCE_DIR}/doc/src/example_cxx_basic.mdoc
+      ${CMAKE_CURRENT_SOURCE_DIR}/doc/src/example_cxx_binding.mdoc
+      ${CMAKE_CURRENT_SOURCE_DIR}/doc/src/example_cxx_demo.mdoc
+      ${CMAKE_CURRENT_SOURCE_DIR}/doc/src/example_cxx_fit_plane.mdoc
+      ${CMAKE_CURRENT_SOURCE_DIR}/doc/src/example_cxx_opengl_circle.mdoc
+      ${CMAKE_CURRENT_SOURCE_DIR}/doc/src/example_cxx_pcl.mdoc
+      ${CMAKE_CURRENT_SOURCE_DIR}/doc/src/example_cu_ssc.mdoc
+      ${CMAKE_CURRENT_SOURCE_DIR}/doc/src/example_python_ssc.mdoc
+      )
 
   add_custom_target(doc
-     ${CMAKE_COMMAND} -E make_directory ${CMAKE_CURRENT_BINARY_DIR}/doc-src
+     ${CMAKE_COMMAND} -E make_directory ${CMAKE_CURRENT_BINARY_DIR}/doc
      COMMAND ${CMAKE_COMMAND} -E copy_directory
-       ${CMAKE_CURRENT_SOURCE_DIR}/doc-src/images/
+       ${CMAKE_CURRENT_SOURCE_DIR}/doc/images/
        ${CMAKE_CURRENT_BINARY_DIR}/doc/html/images
      COMMAND ${CMAKE_COMMAND} -E copy
        ${CMAKE_CURRENT_SOURCE_DIR}/CHANGELOG
-       ${CMAKE_CURRENT_BINARY_DIR}/doc-src/
+       ${CMAKE_CURRENT_BINARY_DIR}/doc/
      COMMAND ${DOXYGEN_EXECUTABLE} ${CMAKE_CURRENT_BINARY_DIR}/Doxyfile
      DEPENDS
-       ${CMAKE_CURRENT_SOURCE_DIR}/doc-src/Doxyfile.in
-       ${CMAKE_CURRENT_SOURCE_DIR}/CHANGELOG
+       ${doc_file_list}
      WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}
      COMMENT "Generating API documentation with Doxygen" VERBATIM
   )
+    add_custom_target(ponca-doc SOURCES ${doc_file_list})
 endif(DOXYGEN_FOUND)
 
 ################################################################################
