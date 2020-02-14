@@ -163,7 +163,7 @@ template < class DataPoint, class _WFunctor, typename T, int Type>
 FIT_RESULT
 CovariancePlaneDer<DataPoint, _WFunctor, T, Type>::finalize()
 {
-    MULTIARCH_STD_MATH(sqrt);
+    PONCA_MULTIARCH_STD_MATH(sqrt);
 
     Base::finalize();
     // Test if base finalize end on a viable case (stable / unstable)

@@ -55,7 +55,7 @@ protected:
 
 public:
     /*! \brief Default constructor */
-    MULTIARCH inline UnorientedSphereFit()
+    PONCA_MULTIARCH inline UnorientedSphereFit()
         : Base(){}
 
 
@@ -63,20 +63,20 @@ public:
     /* Initialization                                                         */
     /**************************************************************************/
     /*! \copydoc Concept::FittingProcedureConcept::setWeightFunc() */
-    MULTIARCH inline void setWeightFunc(const WFunctor& _w) { m_w  = _w; }
+    PONCA_MULTIARCH inline void setWeightFunc(const WFunctor& _w) { m_w  = _w; }
 
     /*! \copydoc Concept::FittingProcedureConcept::init() */
-    MULTIARCH inline void init(const VectorType& _evalPos);
+    PONCA_MULTIARCH inline void init(const VectorType& _evalPos);
 
 
     /**************************************************************************/
     /* Processing                                                             */
     /**************************************************************************/
     /*! \copydoc Concept::FittingProcedureConcept::addNeighbor() */
-    MULTIARCH inline bool addNeighbor(const DataPoint& _nei);
+    PONCA_MULTIARCH inline bool addNeighbor(const DataPoint& _nei);
 
     /*! \copydoc Concept::FittingProcedureConcept::finalize() */
-    MULTIARCH inline FIT_RESULT finalize();
+    PONCA_MULTIARCH inline FIT_RESULT finalize();
 
 }; // class UnorientedSphereFit
 
@@ -145,21 +145,21 @@ public:
     /* Initialization                                                       */
     /************************************************************************/
     /*! \see Concept::FittingProcedureConcept::init() */
-    MULTIARCH void init(const VectorType& _evalPos);
+    PONCA_MULTIARCH void init(const VectorType& _evalPos);
 
     /************************************************************************/
     /* Processing                                                           */
     /************************************************************************/
     /*! \see Concept::FittingProcedureConcept::addNeighbor() */
-    MULTIARCH bool addNeighbor(const DataPoint& _nei);
+    PONCA_MULTIARCH bool addNeighbor(const DataPoint& _nei);
     /*! \see Concept::FittingProcedureConcept::finalize() */
-    MULTIARCH FIT_RESULT finalize();
+    PONCA_MULTIARCH FIT_RESULT finalize();
 
 
     /**************************************************************************/
     /* Use results                                                            */
     /**************************************************************************/
-    MULTIARCH inline ScalarArray dprattNorm2() const
+    PONCA_MULTIARCH inline ScalarArray dprattNorm2() const
     {
         return Scalar(2.) * Base::m_ul.transpose() * m_dUl
                 - Scalar(4.) * Base::m_uq * m_dUc
@@ -167,7 +167,7 @@ public:
     }
 
     /*! \brief compute the square of the Pratt norm derivative for dimension d */
-    MULTIARCH inline Scalar dprattNorm2(unsigned int _d) const
+    PONCA_MULTIARCH inline Scalar dprattNorm2(unsigned int _d) const
     {
         return Scalar(2.) * m_dUl.col(_d).dot(Base::m_ul)
                 - Scalar(4.) * m_dUc.col(_d)[0]*Base::m_uq
@@ -175,32 +175,32 @@ public:
     }
 
     /*! \brief compute the Pratt norm derivative for the dimension d */
-    MULTIARCH inline Scalar dprattNorm(unsigned int _d) const
+    PONCA_MULTIARCH inline Scalar dprattNorm(unsigned int _d) const
     {
-        MULTIARCH_STD_MATH(sqrt);
+        PONCA_MULTIARCH_STD_MATH(sqrt);
         return sqrt(dprattNorm2(_d));
     }
 
     /*! \brief compute the Pratt norm derivative for the dimension d */
-    MULTIARCH inline Scalar dprattNorm() const
+    PONCA_MULTIARCH inline Scalar dprattNorm() const
     {
-        MULTIARCH_STD_MATH(sqrt);
+        PONCA_MULTIARCH_STD_MATH(sqrt);
         return dprattNorm2().array().sqrt();
     }
 
     /*! \brief State specified at compilation time to differenciate the fit in scale */
-    MULTIARCH inline bool isScaleDer() const {return Type & FitScaleDer;}
+    PONCA_MULTIARCH inline bool isScaleDer() const {return Type & FitScaleDer;}
     /*! \brief State specified at compilation time to differenciate the fit in space */
-    MULTIARCH inline bool isSpaceDer() const {return Type & FitSpaceDer;}
+    PONCA_MULTIARCH inline bool isSpaceDer() const {return Type & FitSpaceDer;}
     /*! \brief Number of dimensions used for the differentiation */
-    MULTIARCH inline unsigned int derDimension() const { return GLS_DER_NB_DERIVATIVES(Type,DataPoint::Dim);}
+    PONCA_MULTIARCH inline unsigned int derDimension() const { return GLS_DER_NB_DERIVATIVES(Type,DataPoint::Dim);}
 
     /*!
         \brief Normalize the scalar field by the Pratt norm
         \warning Requieres that isNormalized() return false
         \return false when the original sphere has already been normalized.
     */
-    MULTIARCH inline bool applyPrattNorm();
+    PONCA_MULTIARCH inline bool applyPrattNorm();
 
 }; // class UnorientedSphereFitDer
 

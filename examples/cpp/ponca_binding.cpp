@@ -42,13 +42,13 @@ public:
     typedef Eigen::Matrix<Scalar, Dim, 1>   VectorType;
     typedef Eigen::Matrix<Scalar, Dim, Dim> MatrixType;
 
-    MULTIARCH inline MyPoint(Scalar* _interlacedArray, int _pId)
+    PONCA_MULTIARCH inline MyPoint(Scalar* _interlacedArray, int _pId)
         : m_pos   (Eigen::Map< const VectorType >(_interlacedArray + Dim*2*_pId  )),
         m_normal(Eigen::Map< const VectorType >(_interlacedArray + Dim*2*_pId+Dim))
     {}
 
-    MULTIARCH inline const Eigen::Map< const VectorType >& pos()    const { return m_pos; }
-    MULTIARCH inline const Eigen::Map< const VectorType >& normal() const { return m_normal; }
+    PONCA_MULTIARCH inline const Eigen::Map< const VectorType >& pos()    const { return m_pos; }
+    PONCA_MULTIARCH inline const Eigen::Map< const VectorType >& normal() const { return m_normal; }
 
 private:
     Eigen::Map< const VectorType > m_pos, m_normal;

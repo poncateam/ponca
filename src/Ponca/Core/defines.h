@@ -5,17 +5,16 @@
 */
 
 
-#ifndef _PATATE_DEFINES_
-#define _PATATE_DEFINES_
+#pragma once
 
 ////////////////////////////////////////////////////////////////////////////////
 // Compatibility types, macros, functions
 //
 #ifdef __CUDACC__
 # include <cuda.h>
-# define MULTIARCH __host__ __device__
+# define PONCA_MULTIARCH __host__ __device__
 #else
-# define MULTIARCH
+# define PONCA_MULTIARCH
 
 // GCC: compile with -std=c++0x
 # if defined(__GNUC__) && ((__GNUC__ == 4 && __GNUC_MINOR__ >= 6) || (__GNUC__ >= 5))
@@ -27,11 +26,11 @@
 #endif // ifdef __CUDACC__
 
 #ifdef __CUDA_ARCH__
-  #define MULTIARCH_INCLUDE_STD(FILENAME) "defines.h"
-  #define MULTIARCH_STD_MATH(FUNC)
+  #define PONCA_MULTIARCH_INCLUDE_STD(FILENAME) "defines.h"
+  #define PONCA_MULTIARCH_STD_MATH(FUNC)
+  #define PONCA_CUDA_ARCH
 #else
-  #define MULTIARCH_INCLUDE_STD(FILENAME) <FILENAME>
-  #define MULTIARCH_STD_MATH(FUNC) using std::FUNC;
+  #define PONCA_MULTIARCH_INCLUDE_STD(FILENAME) <FILENAME>
+  #define PONCA_MULTIARCH_STD_MATH(FUNC) using std::FUNC;
+  #define PONCA_CPU_ARCH
 #endif
-
-#endif //#ifndef _PATATE_DEFINES_

@@ -9,8 +9,8 @@
 
 #include "primitive.h" // PrimitiveBase
 
-#include MULTIARCH_INCLUDE_STD(cmath)
-#include MULTIARCH_INCLUDE_STD(limits)
+#include PONCA_MULTIARCH_INCLUDE_STD(cmath)
+#include PONCA_MULTIARCH_INCLUDE_STD(limits)
 
 #include <Eigen/Core>
 
@@ -83,7 +83,7 @@ public:
 public:
 
     /*! \brief Default constructor */
-    MULTIARCH inline AlgebraicSphere()
+    PONCA_MULTIARCH inline AlgebraicSphere()
         : Base()
     {
         m_p = VectorType::Zero();
@@ -91,7 +91,7 @@ public:
     }
 
     /*! \brief Explicit conversion to AlgebraicSphere, to access methods potentially hidden by inheritage */
-    MULTIARCH inline
+    PONCA_MULTIARCH inline
     AlgebraicSphere<DataPoint, WFunctor, T>& algebraicSphere()
     { return * static_cast<AlgebraicSphere<DataPoint, WFunctor, T>*>(this); }
 
@@ -100,7 +100,7 @@ public:
         \warning Set m_ul to Zero(), which leads to nans in OrientedSphere::normal()
         \FIXME Set and use Base::m_state to handle invalid configuration
     */
-    MULTIARCH inline void resetPrimitive()
+    PONCA_MULTIARCH inline void resetPrimitive()
     {
         Base::resetPrimitive();
 
@@ -111,24 +111,24 @@ public:
         m_isNormalized = false;
     }
 
-    MULTIARCH inline bool operator==(const AlgebraicSphere<DataPoint, WFunctor, T>& other) const{
+    PONCA_MULTIARCH inline bool operator==(const AlgebraicSphere<DataPoint, WFunctor, T>& other) const{
         return m_uc == other.m_uc &&
                m_uq == other.m_uq &&
                m_ul == other.m_ul;
     }
 
     /*! \brief Comparison operator, convenience function */
-    MULTIARCH inline bool operator!=(const AlgebraicSphere<DataPoint, WFunctor, T>& other) const{
+    PONCA_MULTIARCH inline bool operator!=(const AlgebraicSphere<DataPoint, WFunctor, T>& other) const{
         return ! ((*this) == other);
     }
 
     /*! \brief Reading access to the basis center (evaluation position) */
-    MULTIARCH inline const VectorType& basisCenter () const { return m_p; }
+    PONCA_MULTIARCH inline const VectorType& basisCenter () const { return m_p; }
     /*! \brief Writing access to the (evaluation position) */
-    MULTIARCH inline       VectorType& basisCenter ()       { return m_p; }
+    PONCA_MULTIARCH inline       VectorType& basisCenter ()       { return m_p; }
 
     /*! \brief Express the scalar field relatively to a new basis */
-    MULTIARCH inline void changeBasis(const VectorType& newbasis)
+    PONCA_MULTIARCH inline void changeBasis(const VectorType& newbasis)
     {
         VectorType diff = m_p- newbasis;
         m_uc = m_uc - m_ul.dot(diff) + m_uq * diff.dot(diff);
@@ -140,14 +140,14 @@ public:
     }
 
     /*! \brief compute the Pratt norm of the implicit scalar field. */
-    MULTIARCH inline Scalar prattNorm() const
+    PONCA_MULTIARCH inline Scalar prattNorm() const
     {
-        MULTIARCH_STD_MATH(sqrt);
+        PONCA_MULTIARCH_STD_MATH(sqrt);
         return sqrt(prattNorm2());
     }
 
     /*! \brief compute the squared Pratt norm of the implicit scalar field. */
-    MULTIARCH inline Scalar prattNorm2() const
+    PONCA_MULTIARCH inline Scalar prattNorm2() const
     {
         return m_ul.squaredNorm() - Scalar(4.) * m_uc * m_uq;
     }
@@ -156,7 +156,7 @@ public:
         \brief Normalize the scalar field by the Pratt norm
         \return false when the normalization fails (sphere is already normalized)
     */
-    MULTIARCH inline bool applyPrattNorm()
+    PONCA_MULTIARCH inline bool applyPrattNorm()
     {
         if (! m_isNormalized)
         {
@@ -174,7 +174,7 @@ public:
         \brief return the estimated radius of the sphere
         \warning return inf if the fitted surface is planar
     */
-    MULTIARCH inline Scalar radius() const
+    PONCA_MULTIARCH inline Scalar radius() const
     {
         if(isPlane())
         {
@@ -187,7 +187,7 @@ public:
 #endif
         }
 
-        MULTIARCH_STD_MATH(sqrt);
+        PONCA_MULTIARCH_STD_MATH(sqrt);
         Scalar b = Scalar(1.)/m_uq;
         return Scalar(sqrt( ((Scalar(-0.5)*b)*m_ul).squaredNorm() - m_uc*b ));
     }
@@ -196,7 +196,7 @@ public:
         \brief return the estimated center of the sphere
         \warning return Vector inf if the fitted surface is planar
     */
-    MULTIARCH inline VectorType center() const
+    PONCA_MULTIARCH inline VectorType center() const
     {
         if(isPlane())
         {
@@ -210,30 +210,30 @@ public:
     }
 
     //! \brief State indicating when the sphere has been normalized
-    MULTIARCH inline bool isNormalized() const { return m_isNormalized; }
+    PONCA_MULTIARCH inline bool isNormalized() const { return m_isNormalized; }
 
     //! \brief Value of the scalar field at the location \f$ \mathbf{q} \f$
-    MULTIARCH inline Scalar potential (const VectorType& _q) const;
+    PONCA_MULTIARCH inline Scalar potential (const VectorType& _q) const;
 
     /*! \brief Value of the scalar field at the evaluation point */
-    MULTIARCH inline Scalar potential() const { return m_uc; }
+    PONCA_MULTIARCH inline Scalar potential() const { return m_uc; }
 
     //! \brief Project a point on the sphere
-    MULTIARCH inline VectorType project (const VectorType& _q) const;
+    PONCA_MULTIARCH inline VectorType project (const VectorType& _q) const;
 
     //! \brief Approximation of the scalar field gradient at \f$ \mathbf{q} (not normalized) \f$
-    MULTIARCH inline VectorType primitiveGradient (const VectorType& _q) const;
+    PONCA_MULTIARCH inline VectorType primitiveGradient (const VectorType& _q) const;
 
     /*! \brief Approximation of the scalar field gradient at the evaluation point */
-    MULTIARCH inline VectorType primitiveGradient () const { return m_ul.normalized(); }
+    PONCA_MULTIARCH inline VectorType primitiveGradient () const { return m_ul.normalized(); }
 
     /*!
         \brief Used to know if the fitting result to a plane
         \return true if finalize() have been called and the fitting result to a plane
     */
-    MULTIARCH inline bool isPlane() const
+    PONCA_MULTIARCH inline bool isPlane() const
     {
-        MULTIARCH_STD_MATH(abs);
+        PONCA_MULTIARCH_STD_MATH(abs);
         Scalar epsilon = Eigen::NumTraits<Scalar>::dummy_precision();
         bool bPlanar   = Eigen::internal::isMuchSmallerThan(abs(m_uq), Scalar(1.), epsilon);
         bool bReady    = Base::isReady();

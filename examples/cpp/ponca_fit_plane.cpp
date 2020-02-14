@@ -28,31 +28,31 @@ using namespace Ponca;
 class MyPoint
 {
 public:
-	enum {Dim = 3};
-	typedef double Scalar;
-	typedef Eigen::Matrix<Scalar, Dim, 1>   VectorType;
-	typedef Eigen::Matrix<Scalar, Dim, Dim> MatrixType;
+  enum {Dim = 3};
+  typedef double Scalar;
+  typedef Eigen::Matrix<Scalar, Dim, 1>   VectorType;
+  typedef Eigen::Matrix<Scalar, Dim, Dim> MatrixType;
 
-	MULTIARCH inline MyPoint(   const VectorType& _pos    = VectorType::Zero(),
-					const VectorType& _normal = VectorType::Zero()
-			    )
-		: m_pos(_pos), m_normal(_normal) {}
+  PONCA_MULTIARCH inline MyPoint(   const VectorType& _pos    = VectorType::Zero(),
+                                    const VectorType& _normal = VectorType::Zero()
+      )
+    : m_pos(_pos), m_normal(_normal) {}
 
-	MULTIARCH inline const VectorType& pos()    const { return m_pos; }
-	MULTIARCH inline const VectorType& normal() const { return m_normal; }
+  PONCA_MULTIARCH inline const VectorType& pos()    const { return m_pos; }
+  PONCA_MULTIARCH inline const VectorType& normal() const { return m_normal; }
 
-	MULTIARCH inline VectorType& pos()    { return m_pos; }
-	MULTIARCH inline VectorType& normal() { return m_normal; }
+  PONCA_MULTIARCH inline VectorType& pos()    { return m_pos; }
+  PONCA_MULTIARCH inline VectorType& normal() { return m_normal; }
 
-        static inline MyPoint Random()
-    {
-                VectorType n = VectorType::Random().normalized();
-                VectorType p = n * Eigen::internal::random<Scalar>(0.9,1.1);
-                return MyPoint (p, (n + VectorType::Random()*0.1).normalized());
-        };
+  static inline MyPoint Random()
+  {
+    VectorType n = VectorType::Random().normalized();
+    VectorType p = n * Eigen::internal::random<Scalar>(0.9,1.1);
+    return MyPoint (p, (n + VectorType::Random()*0.1).normalized());
+  };
 
 private:
-        VectorType m_pos, m_normal;
+  VectorType m_pos, m_normal;
 };
 
 typedef MyPoint::Scalar Scalar;

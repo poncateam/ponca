@@ -27,17 +27,17 @@ public:
 
     // Init
     //! \brief Default constructor that could be used to set the returned value
-    MULTIARCH inline ConstantWeightKernel(const Scalar& _value = Scalar(1.)) : m_y(_value){}
+    PONCA_MULTIARCH inline ConstantWeightKernel(const Scalar& _value = Scalar(1.)) : m_y(_value){}
     //! \brief Set the returned value
-    MULTIARCH inline void setValue(const Scalar& _value){ m_y = _value; }
+    PONCA_MULTIARCH inline void setValue(const Scalar& _value){ m_y = _value; }
 
     // Functor
     //! \brief Return the constant value
-    MULTIARCH inline Scalar f  (const Scalar&) const { return m_y; }
+    PONCA_MULTIARCH inline Scalar f  (const Scalar&) const { return m_y; }
     //! \brief Return \f$ 0 \f$
-    MULTIARCH inline Scalar df (const Scalar&) const { return Scalar(0.); }
+    PONCA_MULTIARCH inline Scalar df (const Scalar&) const { return Scalar(0.); }
     //! \brief Return \f$ 0 \f$
-    MULTIARCH inline Scalar ddf(const Scalar&) const { return Scalar(0.); }
+    PONCA_MULTIARCH inline Scalar ddf(const Scalar&) const { return Scalar(0.); }
 
 private:
     Scalar m_y; /*!< \brief Constant value returned by the kernel */
@@ -59,11 +59,11 @@ public:
 
     // Functor
     /*! \brief Defines the smooth weighting function \f$ w(x) = (x^2-1)^2 \f$ */
-    MULTIARCH inline Scalar f  (const Scalar& _x) const { Scalar v = _x*_x - Scalar(1.); return v*v; }
+    PONCA_MULTIARCH inline Scalar f  (const Scalar& _x) const { Scalar v = _x*_x - Scalar(1.); return v*v; }
     /*! \brief Defines the smooth first order weighting function \f$ \nabla w(x) = 4x(x^2-1) \f$ */
-    MULTIARCH inline Scalar df (const Scalar& _x) const { return Scalar(4.)*_x*(_x*_x-Scalar(1.)); }
+    PONCA_MULTIARCH inline Scalar df (const Scalar& _x) const { return Scalar(4.)*_x*(_x*_x-Scalar(1.)); }
     /*! \brief Defines the smooth second order weighting function \f$ \nabla^2 w(x) = 12x^2-4 \f$ */
-    MULTIARCH inline Scalar ddf(const Scalar& _x) const { return Scalar(12.)*_x*_x - Scalar(4.); }
+    PONCA_MULTIARCH inline Scalar ddf(const Scalar& _x) const { return Scalar(12.)*_x*_x - Scalar(4.); }
 };//class SmoothWeightKernel
 
 }// namespace Ponca

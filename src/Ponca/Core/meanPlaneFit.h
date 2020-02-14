@@ -57,25 +57,25 @@ public:
 public:
 
     /*! \brief Default constructor */
-    MULTIARCH inline MeanPlaneFit() : Base() {}
+    PONCA_MULTIARCH inline MeanPlaneFit() : Base() {}
 
     /**************************************************************************/
     /* Initialization                                                         */
     /**************************************************************************/
     /*! \copydoc Concept::FittingProcedureConcept::setWeightFunc() */
-    MULTIARCH inline void setWeightFunc (const WFunctor& _w) { m_w  = _w; }
+    PONCA_MULTIARCH inline void setWeightFunc (const WFunctor& _w) { m_w  = _w; }
 
     /*! \copydoc Concept::FittingProcedureConcept::init() */
-    MULTIARCH inline void init (const VectorType& _evalPos);
+    PONCA_MULTIARCH inline void init (const VectorType& _evalPos);
 
     /**************************************************************************/
     /* Processing                                                             */
     /**************************************************************************/
     /*! \copydoc Concept::FittingProcedureConcept::addNeighbor() */
-    MULTIARCH inline bool addNeighbor(const DataPoint &_nei);
+    PONCA_MULTIARCH inline bool addNeighbor(const DataPoint &_nei);
 
     /*! \copydoc Concept::FittingProcedureConcept::finalize() */
-    MULTIARCH inline FIT_RESULT finalize();
+    PONCA_MULTIARCH inline FIT_RESULT finalize();
 }; //class MeanPlaneFit
 
 

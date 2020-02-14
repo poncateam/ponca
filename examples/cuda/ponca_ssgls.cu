@@ -239,18 +239,18 @@ public:
     typedef Eigen::Matrix<Scalar, 2,   1>   ScreenVectorType;
     typedef Eigen::Matrix<Scalar, Dim, Dim> MatrixType;
 
-    MULTIARCH inline ScreenSpacePoint(const VectorType       &_pos    = VectorType::Zero(),
+    PONCA_MULTIARCH inline ScreenSpacePoint(const VectorType       &_pos    = VectorType::Zero(),
                                       const VectorType       &_normal = VectorType::Zero(),
                                       const ScreenVectorType &_spos   = ScreenVectorType::Zero())
         : m_pos(_pos), m_normal(_normal), m_spos(_spos){}
 
-    MULTIARCH inline const VectorType& pos()	const { return m_pos; }
-    MULTIARCH inline const VectorType& normal()	const { return m_normal; }
-    MULTIARCH inline const ScreenVectorType& spos() const { return m_spos; }
+    PONCA_MULTIARCH inline const VectorType& pos()	const { return m_pos; }
+    PONCA_MULTIARCH inline const VectorType& normal()	const { return m_normal; }
+    PONCA_MULTIARCH inline const ScreenVectorType& spos() const { return m_spos; }
 
-    MULTIARCH inline VectorType& pos()	 { return m_pos; }
-    MULTIARCH inline VectorType& normal()	 { return m_normal; }
-    MULTIARCH inline ScreenVectorType& spos() { return m_spos; }
+    PONCA_MULTIARCH inline VectorType& pos()	 { return m_pos; }
+    PONCA_MULTIARCH inline VectorType& normal()	 { return m_normal; }
+    PONCA_MULTIARCH inline ScreenVectorType& spos() { return m_spos; }
 
 private:
     VectorType	m_pos, m_normal;
@@ -269,13 +269,13 @@ public:
     typedef ScreenSpacePoint::Scalar Scalar;
     typedef ScreenSpacePoint::VectorType VectorType;
 
-    MULTIARCH inline ProjectedWeightFunc(const Scalar& _t = Scalar(1.), const Scalar _dz = 0.f)
+    PONCA_MULTIARCH inline ProjectedWeightFunc(const Scalar& _t = Scalar(1.), const Scalar _dz = 0.f)
         : Ponca::DistWeightFunc<ScreenSpacePoint,Ponca::SmoothWeightKernel<Scalar> >(_t),
           m_dz(_dz) {}
 
-    MULTIARCH inline Scalar w(const VectorType& _relativePos, const ScreenSpacePoint&  _attributes) const
+    PONCA_MULTIARCH inline Scalar w(const VectorType& _relativePos, const ScreenSpacePoint&  _attributes) const
     {
-        MULTIARCH_STD_MATH(abs);
+        PONCA_MULTIARCH_STD_MATH(abs);
         Scalar d  = _attributes.spos().norm();
         const float dz = abs(_relativePos[2]);
         if (d > m_t || (m_dz != Scalar(0) && dz > m_dz))
@@ -608,11 +608,17 @@ int main()
 
     std::cout << "ssCurvature running..." << std::endl;
 
-    auto start = std::chrono::system_clock::now();
+    // dry run: first call is always slower
     doGLS_kernel<<<grid, block>>>(width, height, fScale, fMaxDepthDiff, positionsInfos_device, normalsInfos_device, results_device);
-    cudaThreadSynchronize();	// Wait for the GPU launched work to complete
+
+    int nbrun = 100;
+    auto start = std::chrono::system_clock::now();
+    for( int i = 0; i != nbrun; ++i) {
+      doGLS_kernel<<<grid, block>>>(width, height, fScale, fMaxDepthDiff, positionsInfos_device, normalsInfos_device, results_device);
+      cudaThreadSynchronize();	// Wait for the GPU launched work to complete
+    }
     auto end = std::chrono::system_clock::now();
-    std::chrono::duration<double> diff = end-start;
+    std::chrono::duration<double> diff = (end-start)/double(nbrun);
 
     err = cudaGetLastError();
 

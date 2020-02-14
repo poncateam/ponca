@@ -55,13 +55,13 @@ private:
 
 public:
     /*! \brief Default constructor */
-    MULTIARCH inline CurvatureEstimator() : m_k1(0), m_k2(0) {}
+    PONCA_MULTIARCH inline CurvatureEstimator() : m_k1(0), m_k2(0) {}
 
     /**************************************************************************/
     /* Processing                                                             */
     /**************************************************************************/
     /*! \copydoc Concept::FittingProcedureConcept::finalize() */
-    MULTIARCH inline FIT_RESULT finalize();
+    PONCA_MULTIARCH inline FIT_RESULT finalize();
 
     /**************************************************************************/
     /* Use results                                                            */
@@ -69,28 +69,28 @@ public:
     //! \brief Returns an estimate of the first principal curvature value
     //!
     //! It is the greatest curvature in <b>absolute value</b>.
-    MULTIARCH inline Scalar k1() const { return m_k1; }
+    PONCA_MULTIARCH inline Scalar k1() const { return m_k1; }
 
     //! \brief Returns an estimate of the second principal curvature value
     //!
     //! It is the smallest curvature in <b>absolute value</b>.
-    MULTIARCH inline Scalar k2() const { return m_k2; }
+    PONCA_MULTIARCH inline Scalar k2() const { return m_k2; }
 
     //! \brief Returns an estimate of the first principal curvature direction
     //!
     //! It is the greatest curvature in <b>absolute value</b>.
-    MULTIARCH inline VectorType k1Direction() const { return m_v1; }
+    PONCA_MULTIARCH inline VectorType k1Direction() const { return m_v1; }
 
     //! \brief Returns an estimate of the second principal curvature direction
     //!
     //! It is the smallest curvature in <b>absolute value</b>.
-    MULTIARCH inline VectorType k2Direction() const { return m_v2; }
+    PONCA_MULTIARCH inline VectorType k2Direction() const { return m_v2; }
 
     //! \brief Returns an estimate of the mean curvature
-    MULTIARCH inline Scalar kMean() const { return (m_k1 + m_k2)/2.;}
+    PONCA_MULTIARCH inline Scalar kMean() const { return (m_k1 + m_k2)/2.;}
 
     //! \brief Returns an estimate of the Gaussian curvature
-    MULTIARCH inline Scalar GaussianCurvature() const { return m_k1 * m_k2;}
+    PONCA_MULTIARCH inline Scalar GaussianCurvature() const { return m_k1 * m_k2;}
 
     //! \brief Compute principal curvature directions
     //!
@@ -100,11 +100,11 @@ public:
     //! The finalize() method calls this function with useNormal=false by
     //! default.
     //!
-    MULTIARCH inline FIT_RESULT computeCurvature(bool useNormal = false);
+    PONCA_MULTIARCH inline FIT_RESULT computeCurvature(bool useNormal = false);
 
 protected:
     //! \brief Compute a tangent plane basis
-    MULTIARCH inline Mat32 tangentPlane(bool useNormal = false) const;
+    PONCA_MULTIARCH inline Mat32 tangentPlane(bool useNormal = false) const;
 };
 
 #include "curvature.hpp"

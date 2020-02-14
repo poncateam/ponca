@@ -42,7 +42,7 @@ NormalCovarianceCurvature<DataPoint, _WFunctor, T>::finalize ()
 {
     typedef typename VectorType::Index Index;
 
-    MULTIARCH_STD_MATH(abs);
+    PONCA_MULTIARCH_STD_MATH(abs);
 
     FIT_RESULT res = Base::finalize();
 

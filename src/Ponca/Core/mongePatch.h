@@ -48,55 +48,55 @@ protected:
 public:
 
     /*! \brief Explicit conversion to MongePatch, to access methods potentially hidden by inheritage */
-    MULTIARCH inline
+    PONCA_MULTIARCH inline
     MongePatch<DataPoint, WFunctor, T>& mongePatch()
     { return * static_cast<MongePatch<DataPoint, WFunctor, T>*>(this); }
     /**************************************************************************/
     /* Initialization                                                         */
     /**************************************************************************/
     /*! \copydoc Concept::FittingProcedureConcept::init() */
-    MULTIARCH inline void init (const VectorType& _evalPos);
+    PONCA_MULTIARCH inline void init (const VectorType& _evalPos);
 
     /**************************************************************************/
     /* Processing                                                             */
     /**************************************************************************/
     /*! \copydoc Concept::FittingProcedureConcept::addNeighbor() */
-    MULTIARCH inline bool addNeighbor(const DataPoint &_nei);
+    PONCA_MULTIARCH inline bool addNeighbor(const DataPoint &_nei);
 
     /*! \copydoc Concept::FittingProcedureConcept::finalize() */
-    MULTIARCH inline FIT_RESULT finalize();
+    PONCA_MULTIARCH inline FIT_RESULT finalize();
 
 
     //! \brief Returns an estimate of the mean curvature
-    MULTIARCH inline Scalar kMean() const;
+    PONCA_MULTIARCH inline Scalar kMean() const;
 
     //! \brief Returns an estimate of the Gaussian curvature
-    MULTIARCH inline Scalar GaussianCurvature() const;
+    PONCA_MULTIARCH inline Scalar GaussianCurvature() const;
 
-    MULTIARCH inline Scalar evalUV(Scalar u, Scalar v) const {
+    PONCA_MULTIARCH inline Scalar evalUV(Scalar u, Scalar v) const {
       return h_uu()*u*u + h_vv()*v*v + h_uv()*u*v + h_u()*u + h_v()*v + h_c();
     }
 
     /*! \brief Value of the scalar field at the evaluation point */
-    MULTIARCH inline Scalar potential(const VectorType& _q) const {
+    PONCA_MULTIARCH inline Scalar potential(const VectorType& _q) const {
       VectorType x = Base::worldToTangentPlane(_q);
       return evalUV(*(x.data()+1),*(x.data()+2)) - *(x.data());
     }
 
     //! \brief Orthogonal projecting on the patch, such that h = f(u,v)
-    MULTIARCH inline VectorType project (const VectorType& _q) const
+    PONCA_MULTIARCH inline VectorType project (const VectorType& _q) const
     {
         VectorType x = Base::worldToTangentPlane(_q);
         *(x.data()) = evalUV(*(x.data()+1),*(x.data()+2));
         return Base::tangentPlaneToWorld(x);
     }
 
-    MULTIARCH inline const Scalar & h_uu () const { return *(m_x.data()); }
-    MULTIARCH inline const Scalar & h_vv () const { return *(m_x.data()+1); }
-    MULTIARCH inline const Scalar & h_uv () const { return *(m_x.data()+2); }
-    MULTIARCH inline const Scalar & h_u  () const { return *(m_x.data()+3); }
-    MULTIARCH inline const Scalar & h_v  () const { return *(m_x.data()+4); }
-    MULTIARCH inline const Scalar & h_c  () const { return *(m_x.data()+5); }
+    PONCA_MULTIARCH inline const Scalar & h_uu () const { return *(m_x.data()); }
+    PONCA_MULTIARCH inline const Scalar & h_vv () const { return *(m_x.data()+1); }
+    PONCA_MULTIARCH inline const Scalar & h_uv () const { return *(m_x.data()+2); }
+    PONCA_MULTIARCH inline const Scalar & h_u  () const { return *(m_x.data()+3); }
+    PONCA_MULTIARCH inline const Scalar & h_v  () const { return *(m_x.data()+4); }
+    PONCA_MULTIARCH inline const Scalar & h_c  () const { return *(m_x.data()+5); }
 
 };
 

@@ -36,7 +36,7 @@ public:
         \brief Constructor that defines the current evaluation scale
         \warning t > 0
     */
-    MULTIARCH inline DistWeightFunc(const Scalar& _t = Scalar(1.))
+    PONCA_MULTIARCH inline DistWeightFunc(const Scalar& _t = Scalar(1.))
     {
         //\todo manage that assrt on __host__ and __device__
         //assert(_t > Scalar(0));
@@ -52,7 +52,7 @@ public:
 
         \f$ w(\frac{\left|\mathbf{q}_\mathsf{x}\right|}{t}) \f$
     */
-    MULTIARCH inline Scalar w(const VectorType& _q,
+    PONCA_MULTIARCH inline Scalar w(const VectorType& _q,
         const DataPoint&  /*attributes*/) const;
 
 
@@ -67,7 +67,7 @@ public:
         query coordinates expressed in centered basis,
         for each spatial dimensions \f$ \mathsf{x}\f$.
     */
-    MULTIARCH inline VectorType spacedw(const VectorType& _q,
+    PONCA_MULTIARCH inline VectorType spacedw(const VectorType& _q,
         const DataPoint&  /*attributes*/) const;
 
 
@@ -87,7 +87,7 @@ public:
         query coordinates expressed in centered basis,
         for each spatial dimensions \f$ \mathsf{x}\f$.
     */
-    MULTIARCH inline MatrixType spaced2w(const VectorType& _q,
+    PONCA_MULTIARCH inline MatrixType spaced2w(const VectorType& _q,
         const DataPoint&  /*attributes*/) const;
 
     /*!
@@ -100,7 +100,7 @@ public:
         where \f$ \left|\mathbf{q}\right| \f$ represents the norm of the
         query coordinates expressed in centered basis.
     */
-    MULTIARCH inline Scalar scaledw(const VectorType& _q,
+    PONCA_MULTIARCH inline Scalar scaledw(const VectorType& _q,
         const DataPoint&  /*attributes*/) const;
 
     /*!
@@ -117,7 +117,7 @@ public:
         where \f$ \left|\mathbf{q}\right| \f$ represents the norm of the
         query coordinates expressed in centered basis.
     */
-    MULTIARCH inline Scalar scaled2w(const VectorType& _q,
+    PONCA_MULTIARCH inline Scalar scaled2w(const VectorType& _q,
         const DataPoint&  /*attributes*/) const;
 
     /*!
@@ -135,11 +135,11 @@ public:
         where \f$ \left|\mathbf{q}_\mathsf{x}\right| \f$ represents the norm of the
         query coordinates expressed in centered basis.
     */
-    MULTIARCH inline VectorType scaleSpaced2w(const VectorType& _q,
+    PONCA_MULTIARCH inline VectorType scaleSpaced2w(const VectorType& _q,
         const DataPoint&  /*attributes*/) const;
 
     /*! \brief Access to the evaluation scale set during the initialization */
-    MULTIARCH inline Scalar evalScale() const { return m_t; }
+    PONCA_MULTIARCH inline Scalar evalScale() const { return m_t; }
 
 protected:
     Scalar       m_t;  /*!< \brief Evaluation scale */

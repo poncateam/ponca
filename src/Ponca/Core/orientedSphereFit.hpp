@@ -55,9 +55,9 @@ template < class DataPoint, class _WFunctor, typename T>
 FIT_RESULT
 OrientedSphereFit<DataPoint, _WFunctor, T>::finalize ()
 {
-    MULTIARCH_STD_MATH(sqrt);
-    MULTIARCH_STD_MATH(max);
-    MULTIARCH_STD_MATH(abs);
+    PONCA_MULTIARCH_STD_MATH(sqrt);
+    PONCA_MULTIARCH_STD_MATH(max);
+    PONCA_MULTIARCH_STD_MATH(abs);
 
     // 1. finalize sphere fitting
     Scalar epsilon = Eigen::NumTraits<Scalar>::dummy_precision();
@@ -174,7 +174,7 @@ template < class DataPoint, class _WFunctor, typename T, int Type>
 FIT_RESULT
 OrientedSphereDer<DataPoint, _WFunctor, T, Type>::finalize()
 {
-    MULTIARCH_STD_MATH(sqrt);
+    PONCA_MULTIARCH_STD_MATH(sqrt);
 
     Base::finalize();
     // Test if base finalize end on a viable case (stable / unstable)
@@ -243,7 +243,7 @@ OrientedSphereDer<DataPoint, _WFunctor, T, Type>::applyPrattNorm()
     if(Base::isNormalized())
         return false; //need original parameters without Pratt Normalization
 
-    MULTIARCH_STD_MATH(sqrt);
+    PONCA_MULTIARCH_STD_MATH(sqrt);
     Scalar pn2    = Base::prattNorm2();
     Scalar pn     = sqrt(pn2);
 

@@ -37,14 +37,14 @@ protected:
 
 public:
     /*! \brief Default constructor */
-    MULTIARCH inline BaseCurvatureEstimator() : m_k1(0), m_k2(0) {}
+    PONCA_MULTIARCH inline BaseCurvatureEstimator() : m_k1(0), m_k2(0) {}
 
 public:
     /**************************************************************************/
     /* Initialization                                                         */
     /**************************************************************************/
     /*! \copydoc Concept::FittingProcedureConcept::init() */
-    MULTIARCH inline void init (const VectorType& _evalPos);
+    PONCA_MULTIARCH inline void init (const VectorType& _evalPos);
 
     /**************************************************************************/
     /* Use results                                                            */
@@ -52,28 +52,28 @@ public:
     //! \brief Returns an estimate of the first principal curvature value
     //!
     //! It is the greatest curvature in <b>absolute value</b>.
-    MULTIARCH inline Scalar k1() const { return m_k1; }
+    PONCA_MULTIARCH inline Scalar k1() const { return m_k1; }
 
     //! \brief Returns an estimate of the second principal curvature value
     //!
     //! It is the smallest curvature in <b>absolute value</b>.
-    MULTIARCH inline Scalar k2() const { return m_k2; }
+    PONCA_MULTIARCH inline Scalar k2() const { return m_k2; }
 
     //! \brief Returns an estimate of the first principal curvature direction
     //!
     //! It is the greatest curvature in <b>absolute value</b>.
-    MULTIARCH inline VectorType k1Direction() const { return m_v1; }
+    PONCA_MULTIARCH inline VectorType k1Direction() const { return m_v1; }
 
     //! \brief Returns an estimate of the second principal curvature direction
     //!
     //! It is the smallest curvature in <b>absolute value</b>.
-    MULTIARCH inline VectorType k2Direction() const { return m_v2; }
+    PONCA_MULTIARCH inline VectorType k2Direction() const { return m_v2; }
 
     //! \brief Returns an estimate of the mean curvature
-    MULTIARCH inline Scalar kMean() const { return (m_k1 + m_k2)/2.;}
+    PONCA_MULTIARCH inline Scalar kMean() const { return (m_k1 + m_k2)/2.;}
 
     //! \brief Returns an estimate of the Gaussian curvature
-    MULTIARCH inline Scalar GaussianCurvature() const { return m_k1 * m_k2;}
+    PONCA_MULTIARCH inline Scalar GaussianCurvature() const { return m_k1 * m_k2;}
 };
 
 
@@ -112,23 +112,23 @@ protected:
 
 public:
     /*! \brief Default constructor */
-    MULTIARCH inline NormalCovarianceCurvature() : Base() {}
+    PONCA_MULTIARCH inline NormalCovarianceCurvature() : Base() {}
 
 public:
     /**************************************************************************/
     /* Initialization                                                         */
     /**************************************************************************/
     /*! \copydoc Concept::FittingProcedureConcept::init() */
-    MULTIARCH inline void init (const VectorType& _evalPos);
+    PONCA_MULTIARCH inline void init (const VectorType& _evalPos);
 
     /**************************************************************************/
     /* Processing                                                             */
     /**************************************************************************/
     /*! \copydoc Concept::FittingProcedureConcept::addNeighbor() */
-    MULTIARCH inline bool addNeighbor(const DataPoint &_nei);
+    PONCA_MULTIARCH inline bool addNeighbor(const DataPoint &_nei);
 
     /*! \copydoc Concept::FittingProcedureConcept::finalize() */
-    MULTIARCH inline FIT_RESULT finalize();
+    PONCA_MULTIARCH inline FIT_RESULT finalize();
 };
 
 
@@ -191,16 +191,16 @@ public:
     /* Initialization                                                         */
     /**************************************************************************/
     /*! \copydoc Concept::FittingProcedureConcept::init() */
-    MULTIARCH inline void init (const VectorType& _evalPos);
+    PONCA_MULTIARCH inline void init (const VectorType& _evalPos);
 
     /**************************************************************************/
     /* Processing                                                             */
     /**************************************************************************/
     /*! \copydoc Concept::FittingProcedureConcept::addNeighbor() */
-    MULTIARCH inline bool addNeighbor(const DataPoint &_nei);
+    PONCA_MULTIARCH inline bool addNeighbor(const DataPoint &_nei);
 
     /*! \copydoc Concept::FittingProcedureConcept::finalize() */
-    MULTIARCH inline FIT_RESULT finalize();
+    PONCA_MULTIARCH inline FIT_RESULT finalize();
 
 };
 

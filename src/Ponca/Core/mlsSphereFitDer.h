@@ -95,29 +95,29 @@ public:
     /* Initialization                                                       */
     /************************************************************************/
     /*! \see Concept::FittingProcedureConcept::init() */
-    MULTIARCH void init(const VectorType &evalPos);
+    PONCA_MULTIARCH void init(const VectorType &evalPos);
 
     /************************************************************************/
     /* Processing                                                           */
     /************************************************************************/
     /*! \see Concept::FittingProcedureConcept::addNeighbor() */
-    MULTIARCH bool addNeighbor(const DataPoint &nei);
+    PONCA_MULTIARCH bool addNeighbor(const DataPoint &nei);
 
     /*! \see Concept::FittingProcedureConcept::finalize() */
-    MULTIARCH FIT_RESULT finalize();
+    PONCA_MULTIARCH FIT_RESULT finalize();
 
     /**************************************************************************/
     /* Use results                                                            */
     /**************************************************************************/
 
     /*! \brief Returns the derivatives of the scalar field at the evaluation point */
-    MULTIARCH inline ScalarArray dPotential() const;
+    PONCA_MULTIARCH inline ScalarArray dPotential() const;
 
     /*! \brief Value of the normal of the primitive at the evaluation point */
-    MULTIARCH inline VectorType normal() const;
+    PONCA_MULTIARCH inline VectorType normal() const;
 
     /*! \brief Returns the second derivatives of the scalar field at the evaluation point */
-    MULTIARCH inline VectorArray dNormal() const;
+    PONCA_MULTIARCH inline VectorArray dNormal() const;
 
 }; //class MlsSphereFitDer
 

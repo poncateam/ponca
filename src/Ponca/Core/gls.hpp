@@ -9,7 +9,7 @@ template < class DataPoint, class _WFunctor, typename T>
 typename GLSDer <DataPoint, _WFunctor, T>::ScalarArray
  GLSDer <DataPoint, _WFunctor, T>::dtau() const
 {
-    MULTIARCH_STD_MATH(sqrt);
+    PONCA_MULTIARCH_STD_MATH(sqrt);
 
     Scalar prattNorm2 = Base::prattNorm2();
     Scalar prattNorm  = sqrt(prattNorm2);
@@ -36,7 +36,7 @@ template < class DataPoint, class _WFunctor, typename T>
 typename GLSDer <DataPoint, _WFunctor, T>::ScalarArray
 GLSDer <DataPoint, _WFunctor, T>::dkappa() const
 {
-    MULTIARCH_STD_MATH(sqrt);
+    PONCA_MULTIARCH_STD_MATH(sqrt);
 
     Scalar prattNorm2 = Base::prattNorm2();
     Scalar prattNorm  = sqrt(prattNorm2);

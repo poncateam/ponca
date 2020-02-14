@@ -37,34 +37,3 @@ check_language(CUDA)
 else()
     message(INFO "Cuda not found, skipping Ponca_Examples_cuda")
 endif( CMAKE_CUDA_COMPILER )
-
-
-#################################################################################
-## CUDA                                                                         #
-#################################################################################
-
-#find_package(CUDA QUIET)
-#if(CUDA_FOUND)
-#    # Dep: FreeImagePlus
-#    find_package(FREEIMAGEPLUS QUIET)
-#    if(FREEIMAGEPLUS_FOUND)
-#        include_directories(${FREEIMAGEPLUS_INCLUDE_PATH})
-
-#        # Pass options to NVCC
-#        set(CUDA_NVCC_FLAGS ${CUDA_NVCC_FLAGS} -O3)
-
-#        # For compilation ...
-#        # Specify target & source files to compile it from
-#        cuda_add_executable( ssgls ssgls.cu )
-
-#        # For linking ...
-#        # Specify target & libraries to link it with
-#        target_link_libraries( ssgls ${FREEIMAGEPLUS_LIBRARIES} )
-#        target_include_directories(ssgls PRIVATE ${PONCA_ROOT_DIR})
-
-#        # Add images
-#        add_custom_command(TARGET ssgls POST_BUILD
-#                       COMMAND ${CMAKE_COMMAND} -E copy_directory
-#                               ${CMAKE_CURRENT_SOURCE_DIR}/data/ ${CMAKE_CURRENT_BINARY_DIR}/data )
-#    endif(FREEIMAGEPLUS_FOUND)
-#endif(CUDA_FOUND)

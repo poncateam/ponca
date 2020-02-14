@@ -76,7 +76,7 @@ MongePatch<DataPoint, _WFunctor, T>::finalize ()
 template < class DataPoint, class _WFunctor, typename T>
 typename MongePatch<DataPoint, _WFunctor, T>::Scalar
 MongePatch<DataPoint, _WFunctor, T>::kMean() const {
-  MULTIARCH_STD_MATH(pow);
+  PONCA_MULTIARCH_STD_MATH(pow);
   static const Scalar one (1);
   static const Scalar two (2);
   static const Scalar threeOverTwo (Scalar(3)/Scalar(2));
@@ -87,7 +87,7 @@ MongePatch<DataPoint, _WFunctor, T>::kMean() const {
 template < class DataPoint, class _WFunctor, typename T>
 typename MongePatch<DataPoint, _WFunctor, T>::Scalar
 MongePatch<DataPoint, _WFunctor, T>::GaussianCurvature() const {
-    MULTIARCH_STD_MATH(pow);
+    PONCA_MULTIARCH_STD_MATH(pow);
     static const Scalar one (1);
     static const Scalar two (2);
     return (h_uu()*h_vv() - pow(h_uv(),two)) /

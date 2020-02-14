@@ -72,7 +72,7 @@ private:
 public:
 
     /*! \brief Default constructor */
-    MULTIARCH inline CompactPlane()
+    PONCA_MULTIARCH inline CompactPlane()
         : Base(), EigenBase()
     {
         m_p = VectorType::Zero();
@@ -80,38 +80,38 @@ public:
     }
 
     /*! \brief Explicit conversion to CompactPlane, to access methods potentially hidden by inheritage */
-    MULTIARCH inline
+    PONCA_MULTIARCH inline
     CompactPlane<DataPoint, WFunctor, T>& compactPlane()
     { return * static_cast<CompactPlane<DataPoint, WFunctor, T>*>(this); }
 
     /*! \brief Set the scalar field values to 0
          status */
-    MULTIARCH inline void resetPrimitive()
+    PONCA_MULTIARCH inline void resetPrimitive()
     {
         Base::resetPrimitive();
         EigenBase* cc = static_cast<EigenBase*>(this);
         *cc = EigenBase();
     }
 
-    MULTIARCH inline bool operator==(const CompactPlane<DataPoint, WFunctor, T>& other) const{
+    PONCA_MULTIARCH inline bool operator==(const CompactPlane<DataPoint, WFunctor, T>& other) const{
         return EigenBase::isApprox(other);
     }
 
     /*! \brief Comparison operator, convenience function */
-    MULTIARCH inline bool operator!=(const CompactPlane<DataPoint, WFunctor, T>& other) const{
+    PONCA_MULTIARCH inline bool operator!=(const CompactPlane<DataPoint, WFunctor, T>& other) const{
         return ! ((*this) == other);
     }
 
     /*! \brief Reading access to the basis center (evaluation position) */
-    MULTIARCH inline const VectorType& basisCenter () const { return m_p; }
+    PONCA_MULTIARCH inline const VectorType& basisCenter () const { return m_p; }
     /*! \brief Writing access to the (evaluation position) */
-    MULTIARCH inline       VectorType& basisCenter ()       { return m_p; }
+    PONCA_MULTIARCH inline       VectorType& basisCenter ()       { return m_p; }
 
     /* \brief Init the plane from a direction and a position
        \param _dir Orientation of the plane, does not need to be normalized
        \param _pos Position of the plane
     */
-    MULTIARCH inline void setPlane (const VectorType& _dir,
+    PONCA_MULTIARCH inline void setPlane (const VectorType& _dir,
                                     const VectorType& _pos)
     {
         EigenBase* cc = static_cast<EigenBase*>(this);
@@ -119,34 +119,34 @@ public:
     }
 
     /*! \brief Value of the scalar field at the evaluation point */
-    MULTIARCH inline Scalar potential ( ) const
+    PONCA_MULTIARCH inline Scalar potential ( ) const
     {
         return EigenBase::signedDistance(VectorType::Zero());
     }
 
     //! \brief Value of the scalar field at the location \f$ \mathbf{q} \f$
-    MULTIARCH inline Scalar potential (const VectorType& _q) const
+    PONCA_MULTIARCH inline Scalar potential (const VectorType& _q) const
     {
         // The potential is the distance from the point to the plane
         return EigenBase::signedDistance(_q - m_p);
     }
 
     //! \brief Project a point on the plane
-    MULTIARCH inline VectorType project (const VectorType& _q) const
+    PONCA_MULTIARCH inline VectorType project (const VectorType& _q) const
     {
         // Project on the normal vector and add the offset value
         return EigenBase::projection(_q - m_p) + m_p;
     }
 
     //! \brief Scalar field gradient direction at the evaluation point
-    MULTIARCH inline VectorType primitiveGradient () const
+    PONCA_MULTIARCH inline VectorType primitiveGradient () const
     {
         // Uniform gradient defined only by the orientation of the plane
         return EigenBase::normal();
     }
 
     //! \brief Scalar field gradient direction at \f$ \mathbf{q}\f$
-    MULTIARCH inline VectorType primitiveGradient (const VectorType&) const
+    PONCA_MULTIARCH inline VectorType primitiveGradient (const VectorType&) const
     {
         // Uniform gradient defined only by the orientation of the plane
         return EigenBase::normal();

@@ -4,12 +4,12 @@
  file, You can obtain one at http://mozilla.org/MPL/2.0/.
 */
 
-
-#ifndef _GRENAILLE_BASKET_
-#define _GRENAILLE_BASKET_
+#pragma once
 
 #include "defines.h"
 #include "enums.h"
+
+#include PONCA_MULTIARCH_INCLUDE_STD(iterator)
 
 namespace Ponca
 {
@@ -58,7 +58,7 @@ namespace internal
          * call finalize at the end.
          */
         template <typename IteratorBegin, typename IteratorEnd>
-        MULTIARCH inline
+        PONCA_MULTIARCH inline
         FIT_RESULT compute(const IteratorBegin& begin, const IteratorEnd& end){
             FIT_RESULT res = UNDEFINED;
             do {
@@ -70,21 +70,21 @@ namespace internal
             return res;
         }
 
+#ifndef PONCA_CPU_ARCH
         /*!
          * \brief Convenience function for STL-like containers
          *
          * \see #compute(const IteratorBegin& begin, const IteratorEnd& end)
          */
         template <typename Container>
-        MULTIARCH inline
+        PONCA_MULTIARCH inline
         FIT_RESULT compute(const Container& c){
             return compute(std::begin(c), std::end(c));
         }
+#endif
     }; // class Basket
 
 #undef BASKET_TP
 
 }// namespace Ponca
 
-
-#endif

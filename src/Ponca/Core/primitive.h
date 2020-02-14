@@ -39,11 +39,11 @@ protected:
 public:
 
     /*! \brief Default constructor */
-    MULTIARCH inline PrimitiveBase() { }
+    PONCA_MULTIARCH inline PrimitiveBase() { }
 
     /*! \brief Reset fitting state
          status */
-    MULTIARCH inline void resetPrimitive()
+    PONCA_MULTIARCH inline void resetPrimitive()
     {
         m_eCurrentState = UNDEFINED;
         m_nbNeighbors = 0;
@@ -52,17 +52,17 @@ public:
     /*! \brief Is the primitive well fitted an ready to use (finalize has been
     called)
     \warning The fit can be unstable (having neighbors between 3 and 6) */
-    MULTIARCH inline bool isReady() const
+    PONCA_MULTIARCH inline bool isReady() const
     {
         return (m_eCurrentState == STABLE) || (m_eCurrentState == UNSTABLE);
     }
 
     /*! \brief Is the plane fitted an ready to use (finalize has been called
     and the result is stable, eq. having more than 6 neighbors) */
-    MULTIARCH inline bool isStable() const { return m_eCurrentState == STABLE; }
+    PONCA_MULTIARCH inline bool isStable() const { return m_eCurrentState == STABLE; }
 
     /*! \return the current test of the fit */
-    MULTIARCH inline FIT_RESULT getCurrentState() const
+    PONCA_MULTIARCH inline FIT_RESULT getCurrentState() const
     {
         return m_eCurrentState;
     }

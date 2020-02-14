@@ -4,8 +4,7 @@
  file, You can obtain one at http://mozilla.org/MPL/2.0/.
 */
 
-#ifndef _GRENAILLE_ENUMS_
-#define _GRENAILLE_ENUMS_
+#pragma once
 
 namespace Ponca
 {
@@ -37,5 +36,3 @@ namespace internal
 } // end namespace internal
 
 } //namespace Ponca
-
-#endif

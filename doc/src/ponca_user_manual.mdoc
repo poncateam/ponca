@@ -3,11 +3,9 @@ namespace Ponca
 /*!
   \page user_manual_page User Manual
 
-  \authors Nicolas Mellado, Gautier Ciaudo, Gael Guennebaud, Pascal Barla
-
   \section user_manual_intro Introduction
 
-  This module is dedicated to the smooth fitting of point clouds and extraction of useful geometric properties. Figure 1(a) shows a typical example in 2D:
+  Ponca is dedicated to the smooth fitting of point clouds and extraction of useful geometric properties. Figure 1(a) shows a typical example in 2D:
   we reconstruct a potential function (shown in fake colors) from a few 2D points equipped with normals; then the 0-isoline of this potential gives us an
   implicit curve (in orange) from which we can readily extract further properties like curvature. A great benefit of this implicit technique \cite Guennebaud:2007:APSS is that it works
   in arbitrary dimensions: Figures 1(b-c) show how we reconstruct an implicit 3D surface with the same approach, starting from a 3D point cloud. Working with
@@ -16,13 +14,13 @@ namespace Ponca
   This is just the tip of the iceberg though, as we also provide methods for dealing with points equipped with non-oriented normals \cite Chen:2013:NOMG, techniques to analyze
   points clouds in scale-space to discover salient structures \cite Mellado:2012:GLS, methods to compute multi-scale principal curvatures \cite Mellado:2013:SSC and methods to compute surface variation using a plane instead of a sphere for the fitting \cite Pauly:2002:PSSimplification. See the table below:
 
-  Primitive         | Required Input      | Fitting techniques                            | Analysis/Tools                                     | Other usages |
-  ----------------- | ------------------- | --------------------------------------------- | -------------------------------------------------- | ------------ |
-  Plane             | Points only         | CovariancePlaneFit                            | Surface Variation\cite Pauly:2002:PSSimplification |              |
-  Plane             | Oriented points     | MeanPlaneFit                                  |                                                    |              |
-  Monge Patch       | Points only         | MongePatch                                    |                                                    |              |
-  Algebraic Sphere  | Oriented points     | OrientedSphereFit \cite Guennebaud:2007:APSS  | GLS\cite Mellado:2012:GLS                          | Ray Traced Curvature\cite Mellado:2013:SSC |
-  Algebraic Sphere  | Non-oriented points | UnorientedSphereFit \cite Chen:2013:NOMG      |                                                    |              |
+  Primitive         | Required Input      | Fitting techniques                                | Analysis/Tools                                          | Other usages |
+  ----------------- | ------------------- | ------------------------------------------------- | ------------------------------------------------------- | ------------ |
+  Plane             | Points only         | CovariancePlaneFit (nD)                           | Surface Variation (nD)\cite Pauly:2002:PSSimplification |              |
+  Plane             | Oriented points     | MeanPlaneFit (nD, co-dimension 1)                 |                                                         |              |
+  Monge Patch       | Points only         | MongePatch (3D)                                   |                                                         |              |
+  Algebraic Sphere  | Oriented points     | OrientedSphereFit (nD) \cite Guennebaud:2007:APSS | GLS (nD) \cite Mellado:2012:GLS                         | Ray Traced Curvature \cite Mellado:2013:SSC |
+  Algebraic Sphere  | Non-oriented points | UnorientedSphereFit (nD) \cite Chen:2013:NOMG     |                                                         |              |
 
   In the following, we focus on a basic use of the module, using 3D points equipped with oriented normals fitted by a Ponca::AlgebraicSphere. First, one must set up data samples that interface
   with an external code; then run the fitting process in itself, and finally collect outputs. We also show how to compute curvatures with the very same approach,
@@ -32,21 +30,33 @@ namespace Ponca
 
 
   \subsection user_manual_codeStructure Code structure
-  We structured Ponca as follow: a "core" folder defining operators that rely on no data structure and work both with CUDA and C++; and an "algorithms" folder with methods that may interface with user-provided data structures, with optimized solutions in C++, CUDA or both.
+  We structured Ponca as follow: a `Core` folder defining operators that rely on no data structure and work both with CUDA and C++; and an `Algorithm` folder with methods that may interface with user-provided data structures, with optimized solutions in C++, CUDA or both.
   The rationale behind this separation is to provide two levels of complexity: core operators implement atomic scientific contributions that are agnostic of the host application; algorithms implement step-by-step procedures that will likely rely on core operators and/or structure traversal.
 
   In its current state, we do not have algorithms for Ponca implemented: it's work in progress (we are open to contributions). If you want to use Ponca, just include its main header:
   \code
 #include "ponca.h"
   \endcode
+  or
+  \code
+#include "Ponca/core.h"
+  \endcode
 
   \subsection user_manual_cuda Cuda
   Ponca can be used directly on GPU, thanks to several mechanisms:
-   - Eigen Cuda capabilities, see <a href="http://eigen.tuxfamily.org/dox-devel/TopicCUDA.html"  target="_blank">Eigen documentation</a> for more details. You *need* to use a consistent Eigen::Index on both CPU and GPU if you plan to transfer memory between the computing units. That's why we recommend to set the following preprocessor variable when compiling your project: \verbatim -DEIGEN_DEFAULT_DENSE_INDEX_TYPE=int\endverbatim
-   - C++03 Compliant: right now we *do not* use C++11 in Patate, to maximize compatibility across platforms and Cuda versions.
+   - Eigen Cuda capabilities, see <a href="http://eigen.tuxfamily.org/dox-devel/TopicCUDA.html"  target="_blank">Eigen documentation</a> for more details. You *need* to use a consistent Eigen::Index on both CPU and GPU if you plan to transfer memory between the computing units. That's why we recommend to set the following preprocessor variable when compiling your project:
+   \code -DEIGEN_DEFAULT_DENSE_INDEX_TYPE=int\endcode
+   You might also need to define the `--expt-relaxed-constexpr` preprocessor option for `NVCC`. Example of working cmake file (see \ref example_cu_ssc_page):
+   \code
+   enable_language(CUDA)
+   add_executable(ponca_ssgls "ponca_ssgls.cu")
+   target_include_directories(ponca_ssgls PRIVATE ${PONCA_ROOT_DIR})
+   target_compile_options(ponca_ssgls PRIVATE --expt-relaxed-constexpr)
+   \endcode
+   - C++03 Compliant: right now we *do not* use C++11 in Ponca when compiled with CUDA, to maximize compatibility across platforms and Cuda versions.
    - Automatic CPU/GPU compilation qualifiers. We use the macro
   \code
-          MULTIARCH void function();
+          PONCA_MULTIARCH void function();
   \endcode
   to use the same code for C++ and CUDA. It has no effect when the code is compiled with GCC or Clang, but it will force the compilation for both host and device architectures when compiling with nvcc. A similar macro system is provided for mathematical functions, to switch between STL and CUDA versions.
 
@@ -63,7 +73,7 @@ namespace Ponca
 
   \warning You should avoid data of low magnitude (i.e., 1 should be a significant value) to get good results; thus rescaling might be necessary.
 
-  As an example, let's fit a Ponca::AlgebraicSphere onto points equipped with normals using the Ponca::OrientedSphereFit. To this end, we must define a structure MyPoint containing a normal vector and its associated accessors. Depending on the fitting procedure we will use, we may need to define a Matrix Type. This is for instance required to compute \ref user_manual_subsection_principalcurvatures.
+  As an example, let's fit a Ponca::AlgebraicSphere onto points equipped with normals using the Ponca::OrientedSphereFit. To this end, we must define a structure `MyPoint` containing a normal vector and its associated accessors. Depending on the fitting procedure we will use, we may need to define a Matrix Type. This is for instance required to compute \ref user_manual_subsection_principalcurvatures.
   This leads to the following class:
   \code
   using namespace Ponca;
@@ -77,15 +87,15 @@ namespace Ponca
     typedef Eigen::Matrix<Scalar, Dim, 1>   VectorType;
     typedef Eigen::Matrix<Scalar, Dim, Dim> MatrixType; // Type needed by Ponca::GLSCurvatureHelper
 
-    MULTIARCH inline MyPoint(const VectorType &pos    = VectorType::Zero(),
+    PONCA_MULTIARCH inline MyPoint(const VectorType &pos    = VectorType::Zero(),
                    const VectorType& normal = VectorType::Zero())
       : _pos(pos), _normal(normal) {}
 
-    MULTIARCH inline const VectorType& pos()    const { return _pos; }
-    MULTIARCH inline const VectorType& normal() const { return _normal; }
+    PONCA_MULTIARCH inline const VectorType& pos()    const { return _pos; }
+    PONCA_MULTIARCH inline const VectorType& normal() const { return _normal; }
 
-    MULTIARCH inline VectorType& pos()    { return _pos; }
-    MULTIARCH inline VectorType& normal() { return _normal; }
+    PONCA_MULTIARCH inline VectorType& pos()    { return _pos; }
+    PONCA_MULTIARCH inline VectorType& normal() { return _normal; }
 
   private:
     VectorType _pos, _normal;

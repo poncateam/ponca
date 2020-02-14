@@ -84,7 +84,7 @@ CurvatureEstimator<DataPoint, _WFunctor, T>::tangentPlane(bool useNormal) const
 {
     typedef typename VectorType::Index Index;
 
-    MULTIARCH_STD_MATH(sqrt);
+    PONCA_MULTIARCH_STD_MATH(sqrt);
 
     Mat32 B;
     Index i0=Index(-1), i1=Index(-1), i2=Index(-1);

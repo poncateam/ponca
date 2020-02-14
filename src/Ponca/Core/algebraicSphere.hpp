@@ -12,7 +12,7 @@ template < class DataPoint, class _WFunctor, typename T>
 typename DataPoint::VectorType
 AlgebraicSphere<DataPoint, _WFunctor, T>::project( const VectorType& _q ) const
 {
-    MULTIARCH_STD_MATH(min)
+    PONCA_MULTIARCH_STD_MATH(min)
 
     // turn to centered basis
     const VectorType lq = _q-m_p;

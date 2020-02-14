@@ -72,10 +72,10 @@ public:
 public:
 
     /*! \brief Default constructor */
-    MULTIARCH inline CovariancePlaneFit() : Base() {}
+    PONCA_MULTIARCH inline CovariancePlaneFit() : Base() {}
 
     /*! \brief Explicit conversion to CovariancePlaneFit, to access methods potentially hidden by inheritage */
-    MULTIARCH inline
+    PONCA_MULTIARCH inline
     CovariancePlaneFit<DataPoint, WFunctor, T>& covariancePlaneFit()
     { return * static_cast<CovariancePlaneFit<DataPoint, WFunctor, T>*>(this); }
 
@@ -83,19 +83,19 @@ public:
     /* Initialization                                                         */
     /**************************************************************************/
     /*! \copydoc Concept::FittingProcedureConcept::setWeightFunc() */
-    MULTIARCH inline void setWeightFunc (const WFunctor& _w) { m_w  = _w; }
+    PONCA_MULTIARCH inline void setWeightFunc (const WFunctor& _w) { m_w  = _w; }
 
     /*! \copydoc Concept::FittingProcedureConcept::init() */
-    MULTIARCH inline void init (const VectorType& _evalPos);
+    PONCA_MULTIARCH inline void init (const VectorType& _evalPos);
 
     /**************************************************************************/
     /* Processing                                                             */
     /**************************************************************************/
     /*! \copydoc Concept::FittingProcedureConcept::addNeighbor() */
-    MULTIARCH inline bool addNeighbor(const DataPoint &_nei);
+    PONCA_MULTIARCH inline bool addNeighbor(const DataPoint &_nei);
 
     /*! \copydoc Concept::FittingProcedureConcept::finalize() */
-    MULTIARCH inline FIT_RESULT finalize();
+    PONCA_MULTIARCH inline FIT_RESULT finalize();
 
     /**************************************************************************/
     /* Results                                                                */
@@ -105,7 +105,7 @@ public:
 
     /*! \brief Reading access to the Solver used to analyse the covariance
       matrix */
-    MULTIARCH inline const Solver& solver() const { return m_solver; }
+    PONCA_MULTIARCH inline const Solver& solver() const { return m_solver; }
 
     /*! \brief Implements \cite Pauly:2002:PSSimplification surface variation.
 
@@ -113,7 +113,7 @@ public:
 
         \return 0 for invalid fits
     */
-    MULTIARCH inline Scalar surfaceVariation() const;
+    PONCA_MULTIARCH inline Scalar surfaceVariation() const;
 
     /*!
      * \brief Express a point in ambiant space relatively to the tangent plane.
@@ -122,14 +122,14 @@ public:
      * \tparam ignoreTranslation must be set to true when passing vectors instead of points
      */
     template <bool ignoreTranslation = false>
-    MULTIARCH inline VectorType worldToTangentPlane(const VectorType &_q) const;
+    PONCA_MULTIARCH inline VectorType worldToTangentPlane(const VectorType &_q) const;
 
     /*!
      * \brief Transform a point from the tangent plane [h, u, v]^T to ambiant space
      * \tparam ignoreTranslation must be set to true when passing vectors instead of points
      */
     template <bool ignoreTranslation = false>
-    MULTIARCH inline VectorType tangentPlaneToWorld(const VectorType &_q) const;
+    PONCA_MULTIARCH inline VectorType tangentPlaneToWorld(const VectorType &_q) const;
 }; //class CovariancePlaneFit
 
 namespace internal {
@@ -197,15 +197,15 @@ public:
     /* Initialization                                                       */
     /************************************************************************/
     /*! \see Concept::FittingProcedureConcept::init() */
-    MULTIARCH void init(const VectorType &evalPos);
+    PONCA_MULTIARCH void init(const VectorType &evalPos);
 
     /************************************************************************/
     /* Processing                                                           */
     /************************************************************************/
     /*! \see Concept::FittingProcedureConcept::addNeighbor() */
-    MULTIARCH bool addNeighbor(const DataPoint  &nei);
+    PONCA_MULTIARCH bool addNeighbor(const DataPoint  &nei);
     /*! \see Concept::FittingProcedureConcept::finalize() */
-    MULTIARCH FIT_RESULT finalize();
+    PONCA_MULTIARCH FIT_RESULT finalize();
 
 
     /**************************************************************************/
@@ -213,17 +213,17 @@ public:
     /**************************************************************************/
 
     /*! \brief Returns the derivatives of the scalar field at the evaluation point */
-    MULTIARCH inline ScalarArray dPotential() const { return m_dDist; }
+    PONCA_MULTIARCH inline ScalarArray dPotential() const { return m_dDist; }
 
     /*! \brief Returns the derivatives of the primitive normal */
-    MULTIARCH inline VectorArray dNormal() const { return m_dNormal; }
+    PONCA_MULTIARCH inline VectorArray dNormal() const { return m_dNormal; }
 
     /*! \brief State specified at compilation time to differenciate the fit in scale */
-    MULTIARCH inline bool isScaleDer() const {return bool(Type & FitScaleDer);}
+    PONCA_MULTIARCH inline bool isScaleDer() const {return bool(Type & FitScaleDer);}
     /*! \brief State specified at compilation time to differenciate the fit in space */
-    MULTIARCH inline bool isSpaceDer() const {return bool(Type & FitSpaceDer);}
+    PONCA_MULTIARCH inline bool isSpaceDer() const {return bool(Type & FitSpaceDer);}
     /*! \brief Number of dimensions used for the differentiation */
-    MULTIARCH inline unsigned int derDimension() const { return NbDerivatives;}
+    PONCA_MULTIARCH inline unsigned int derDimension() const { return NbDerivatives;}
 
 }; //class CovariancePlaneDer
 
