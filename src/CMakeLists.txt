@@ -53,11 +53,11 @@ install(TARGETS Ponca
 add_library(Ponca::Ponca ALIAS Ponca)
 
 install(FILES "ponca.h"
-        DESTINATION ${CMAKE_INSTALL_INCLUDEDIR})
+        DESTINATION ${CMAKE_INSTALL_INCDIR}/)
 install(FILES "Ponca/core.h"
-        DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/Ponca)
+        DESTINATION ${CMAKE_INSTALL_INCDIR}/Ponca)
 install(FILES ${ponca_core_INCLUDE}
-        DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/Ponca/Core)
+        DESTINATION ${CMAKE_INSTALL_INCDIR}/Ponca/Core)
 
 #############################################
 #

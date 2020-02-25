@@ -10,8 +10,7 @@
                 <tab type="user" visible="yes" url="@ref getting_started_first_step_sec" title="First steps"/>
         </tab>
 
-        <tab type="usergroup" url="@ref overview_page" title="Overview">
-        </tab>
+        <!--<tab type="usergroup" url="@ref overview_page" title="Overview"> </tab>-->
         <!--<tab type="usergroup" url="user_manual_page.html" title="Grenaille">-->
                 <tab type="usergroup" url="user_manual_page.html" title="User Manual">
                         <tab type="user" visible="yes" url="@ref user_manual_intro" title="Introduction"/>
@@ -26,9 +25,7 @@
                         <tab type="user" visible="yes" url="@ref example_cxx_basic_page" title="Basic example"/>
                         <tab type="user" visible="yes" url="@ref example_cxx_fit_plane_page" title="Plane fitting"/>
                         <tab type="user" visible="yes" url="@ref example_cxx_binding_page" title="External data-structure binding"/>
-                        <tab type="user" visible="yes" url="@ref example_cxx_opengl_circle_page" title="Basket classes using OpenGL"/>
                         <tab type="user" visible="yes" url="@ref example_cxx_pcl_page" title="PCL Wrapper for surface curvature"/>
-                        <tab type="user" visible="yes" url="@ref example_cxx_demo_page" title="C++/OpenGL Demo"/>
                         <tab type="user" visible="yes" url="@ref example_cu_ssc_page" title="C++/CUDA screen space curvature"/>
                         <tab type="user" visible="yes" url="@ref example_python_ssc_page" title="Python/CUDA screen space curvature"/>
                 </tab>

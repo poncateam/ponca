@@ -11,10 +11,13 @@ namespace Ponca
 
 /** \addtogroup experimental
  *  @{
+ *
  */
-
-
 template < class DataPoint, class _WFunctor, typename T>
+/**
+ *
+ * \brief Base class for any 3d curvature estimator: holds k1, k2 and associated vectors
+ */
 class BaseCurvatureEstimator : public T
 {
 private:
@@ -32,8 +35,14 @@ public:
     typedef typename DataPoint::MatrixType MatrixType;  /*!< \brief Matrix type inherited from DataPoint*/
 
 protected:
-    Scalar m_k1, m_k2;
-    VectorType m_v1, m_v2;
+    /// \brief Principal curvature with highest absolute magnitude
+    Scalar m_k1,
+    /// \brief Principal curvature with smallest absolute magnitude
+           m_k2;
+    /// \brief Direction associated to the principal curvature with highest absolute magnitude
+    VectorType m_v1,
+    /// \brief Direction associated to the principal curvature with highest smallest magnitude
+               m_v2;
 
 public:
     /*! \brief Default constructor */
