@@ -150,8 +150,8 @@ public:
  * the eigenvalues and associated eigenvectors of the covariance matrix
  * \cite Berkmann:1994:CSG.
  *
- * \note This procedure requires two passes, the first one for plane fitting,
- * the second one for covariance analysis.
+ * \note This procedure requires two passes, the first one for plane fitting
+ * and local frame estimation, and the second one for covariance analysis.
  * \warning This class is valid only in 3D.
  */
 template < class DataPoint, class _WFunctor, typename T>

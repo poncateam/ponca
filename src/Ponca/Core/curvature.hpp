@@ -1,9 +1,9 @@
 /*
  Copyright (C) 2015 Gael Guennebaud <gael.guennebaud@inria.fr>
- 
+
  This Source Code Form is subject to the terms of the Mozilla Public
  License, v. 2.0. If a copy of the MPL was not distributed with this
- file, You can obtain one at http://mozilla.org/MPL/2.0/. 
+ file, You can obtain one at http://mozilla.org/MPL/2.0/.
 */
 
 template < class DataPoint, class _WFunctor, typename T>
@@ -23,6 +23,8 @@ CurvatureEstimator<DataPoint, _WFunctor, T>::finalize()
 template < class DataPoint, class _WFunctor, typename T>
 FIT_RESULT CurvatureEstimator<DataPoint, _WFunctor, T>::computeCurvature(bool useNormal)
 {
+    PONCA_MULTIARCH_STD_MATH(abs);
+
     // Get the object space Weingarten map dN
     MatrixType dN = Base::dNormal().template middleCols<DataPoint::Dim>(Base::isScaleDer() ? 1: 0);
 
@@ -85,6 +87,7 @@ CurvatureEstimator<DataPoint, _WFunctor, T>::tangentPlane(bool useNormal) const
     typedef typename VectorType::Index Index;
 
     PONCA_MULTIARCH_STD_MATH(sqrt);
+    PONCA_MULTIARCH_STD_MATH(abs);
 
     Mat32 B;
     Index i0=Index(-1), i1=Index(-1), i2=Index(-1);

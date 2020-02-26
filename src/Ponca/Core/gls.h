@@ -150,7 +150,7 @@ private:
 protected:
     enum
     {
-        Check = Base::PROVIDES_GLS_PARAMETRIZATION,
+        Check = Base::PROVIDES_GLS_PARAMETRIZATION & Base::PROVIDES_ALGEBRAIC_SPHERE_DERIVATIVE,
         PROVIDES_GLS_DERIVATIVE
     };
 
@@ -161,6 +161,10 @@ public:
 
     typedef typename Base::VectorArray VectorArray; /*!< \brief Inherited vector array type */
     typedef typename Base::ScalarArray ScalarArray; /*!< \brief Inherited scalar array type */
+
+    using Base::isScaleDer;   // forward methods provided by PROVIDES_ALGEBRAIC_SPHERE_DERIVATIVE
+    using Base::isSpaceDer;   // forward methods provided by PROVIDES_ALGEBRAIC_SPHERE_DERIVATIVE
+    using Base::derDimension; // forward methods provided by PROVIDES_ALGEBRAIC_SPHERE_DERIVATIVE
 
     PONCA_MULTIARCH inline ScalarArray dtau()   const; /*!< \brief Compute and return \f$ \tau \f$ derivatives */
     PONCA_MULTIARCH inline VectorArray deta()   const; /*!< \brief Compute and return \f$ \eta \f$ derivatives */
@@ -186,7 +190,6 @@ public:
     \f]
 
     Method published in \cite Mellado:2012:GLS
-    \todo Add more details
 */
 template < class DataPoint, class _WFunctor, typename T>
 class GLSGeomVar : public T
@@ -197,7 +200,7 @@ private:
 protected:
     enum
     {
-        Check = Base::PROVIDES_ALGEBRAIC_SPHERE_SCALE_DERIVATIVE & Base::PROVIDES_GLS_DERIVATIVE,
+        Check = Base::PROVIDES_GLS_DERIVATIVE,
         PROVIDES_GLS_GEOM_VAR
     };
 

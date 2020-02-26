@@ -9,7 +9,7 @@
 namespace Ponca
 {
     /*! Enum corresponding to the state of a fitting method (and what the finalize function can return) */
-    enum FIT_RESULT
+    enum FIT_RESULT : unsigned char
     {
         /*! \brief The fitting is stable an ready to use (and having more than 6
           neighbours)*/
@@ -28,7 +28,7 @@ namespace Ponca
 
 namespace internal
 {
-  enum
+  enum : unsigned char
   {
     FitScaleDer = 0x01, /*!< \brief Flag indicating a scale differentiation. */
     FitSpaceDer = 0x02  /*!< \brief Flag indicating a space differentiation. */
