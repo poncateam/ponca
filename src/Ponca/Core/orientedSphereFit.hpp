@@ -219,7 +219,7 @@ OrientedSphereDer<DataPoint, _WFunctor, T, Type>::dNormal() const
   // Therefore, we must take into account the variation of the evaluation point when differentiating wrt space
   // i.e., normal(x) = grad / |grad|, with grad(x) = ul + 2 uq * x, and diff_x(grad) = dul + 2 uq I
   VectorArray dgrad = m_dUl;
-  if(this->isSpaceDer())
+  if(isSpaceDer())
     dgrad.template rightCols<DataPoint::Dim>().diagonal().array() += Scalar(2)*Base::m_uq;
   Scalar norm  = Base::m_ul.norm();
   Scalar norm3 = norm*norm*norm;
@@ -231,7 +231,7 @@ typename OrientedSphereDer <DataPoint, _WFunctor, T, Type>::ScalarArray
 OrientedSphereDer<DataPoint, _WFunctor, T, Type>::dPotential() const
 {
   ScalarArray dfield = m_dUc;
-  if(this->isSpaceDer())
+  if(isSpaceDer())
     dfield.template tail<DataPoint::Dim>() += Base::m_ul;
   return dfield;
 }

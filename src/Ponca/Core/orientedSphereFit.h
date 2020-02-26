@@ -201,11 +201,20 @@ public:
         return dprattNorm2().array().sqrt();
     }
 
-    /*! \brief State specified at compilation time to differenciate the fit in scale */
+    /*!
+     * \brief State specified at compilation time to differenciate the fit in scale
+     * Brought by PROVIDES_ALGEBRAIC_SPHERE_DERIVATIVE and PROVIDES_NORMAL_DERIVATIVE
+     */
     static constexpr PONCA_MULTIARCH inline bool isScaleDer() {return bool(_Type & FitScaleDer);}
-    /*! \brief State specified at compilation time to differenciate the fit in space */
+    /*!
+     * \brief State specified at compilation time to differenciate the fit in space
+     * Brought by PROVIDES_ALGEBRAIC_SPHERE_DERIVATIVE and PROVIDES_NORMAL_DERIVATIVE
+     */
     static constexpr PONCA_MULTIARCH inline bool isSpaceDer() {return bool(_Type & FitSpaceDer);}
-    /*! \brief Number of dimensions used for the differentiation */
+    /*!
+     * \brief Number of dimensions used for the differentiation
+     * Brought by PROVIDES_ALGEBRAIC_SPHERE_DERIVATIVE and PROVIDES_NORMAL_DERIVATIVE
+     */
     static constexpr PONCA_MULTIARCH inline unsigned int derDimension() { return GLS_DER_NB_DERIVATIVES(_Type,DataPoint::Dim);}
 
     //! Normalize the scalar field by the Pratt norm
