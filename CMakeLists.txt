@@ -55,21 +55,19 @@ include_directories(${EIGEN3_INCLUDE_DIR})
 message(STATUS "Eigen3 root path: ${EIGEN3_INCLUDE_DIR}")
 
 ################################################################################
-# Add core code source, so it is visible in dev environements                  #
-################################################################################
-
-add_subdirectory( src )
-
-################################################################################
 # Generate install target                                                      #
 ################################################################################
+set(Ponca_INSTALL_INC_DIR "${CMAKE_INSTALL_PREFIX}/include")
+set(Ponca_INSTALL_LIB_DIR "${CMAKE_INSTALL_PREFIX}/lib")
+set(Ponca_EXPORT_TARGET_DIR \${CMAKE_CURRENT_LIST_DIR})
+
 install(EXPORT PoncaTargets
   FILE
     PoncaTargets.cmake
   NAMESPACE
     Ponca::
   DESTINATION
-    ${CMAKE_INSTALL_LIBDIR}/cmake
+    ${Ponca_INSTALL_LIB_DIR}/cmake
 )
 
 
@@ -100,9 +98,6 @@ write_basic_package_version_file(
 ##   * targets_export_name
 ##   * PROJECT_NAME
 ## Used by Config.cmake.in
-set(Ponca_INSTALL_INC_DIR "${CMAKE_INSTALL_PREFIX}/include")
-set(Ponca_INSTALL_LIB_DIR "${CMAKE_INSTALL_PREFIX}/lib")
-set (Ponca_EXPORT_TARGET_DIR \${CMAKE_CURRENT_LIST_DIR})
 configure_package_config_file(
     "cmake/Config.cmake.in"
     "${project_config}"
@@ -116,7 +111,14 @@ install(
 
 
 ################################################################################
-# add a target to generate API documentation with Doxygen                      #
+# Add core code source, so it is visible in dev environements                  #
+################################################################################
+
+add_subdirectory( src )
+
+
+################################################################################
+# API documentation with Doxygen                                               #
 ################################################################################
 add_subdirectory(doc)
 
@@ -128,3 +130,8 @@ add_subdirectory(examples EXCLUDE_FROM_ALL)
 #include(cmake/ConfigureTesting.cmake)
 #add_subdirectory(tests EXCLUDE_FROM_ALL)
 
+################################################################################
+# Add custom target for Continuous Integration scripts                         #
+################################################################################
+add_custom_target(ponca-ci SOURCES
+                    ${CMAKE_CURRENT_SOURCE_DIR}/.travis.yml)

@@ -41,6 +41,10 @@ target_include_directories(Ponca INTERFACE
     $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/src/>
 )
 
+set_target_properties(Ponca PROPERTIES
+  INTERFACE_COMPILE_FEATURES cxx_std_11
+)
+
 target_link_libraries(Ponca PUBLIC INTERFACE Eigen3::Eigen)
 
 install(TARGETS Ponca
@@ -53,15 +57,12 @@ install(TARGETS Ponca
 add_library(Ponca::Ponca ALIAS Ponca)
 
 install(FILES "ponca.h"
-        DESTINATION ${CMAKE_INSTALL_INCDIR}/)
+        DESTINATION ${Ponca_INSTALL_INC_DIR}/)
 install(FILES "Ponca/core.h"
-        DESTINATION ${CMAKE_INSTALL_INCDIR}/Ponca)
+        DESTINATION ${Ponca_INSTALL_INC_DIR}/Ponca)
 install(FILES ${ponca_core_INCLUDE}
-        DESTINATION ${CMAKE_INSTALL_INCDIR}/Ponca/Core)
+        DESTINATION ${Ponca_INSTALL_INC_DIR}/Ponca/Core)
 
 #############################################
-#
-# HACK: have the files showing in the IDE, under the name 'ponca_src_IDE'
-# Source: https://stackoverflow.com/questions/27039019/how-to-have-cmake-show-headers-that-are-not-part-of-any-binary-target-in-the-ide/29214327#29214327
-#
+# HACK: have the files showing in the IDE, under the name 'ponca-src'
 add_custom_target(ponca-src SOURCES "ponca.h" "Ponca/core.h" ${ponca_core_INCLUDE})

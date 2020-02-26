@@ -1,6 +1,6 @@
 OPTION(PONCA_CompilePCLExample "CompilePCLExample" OFF)
 
-add_custom_target(ponca_examples)
+add_custom_target(ponca-examples)
 
 add_subdirectory(cpp)
 add_subdirectory(cuda)

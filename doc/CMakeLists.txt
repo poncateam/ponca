@@ -14,9 +14,6 @@ if(DOXYGEN_FOUND)
       ${CMAKE_CURRENT_SOURCE_DIR}/Doxyfile.in
       ${CMAKE_CURRENT_SOURCE_DIR}/layout.xml
       ${CMAKE_CURRENT_SOURCE_DIR}/html/ponca.css
-      ${CMAKE_CURRENT_SOURCE_DIR}/html/header.html
-      ${CMAKE_CURRENT_SOURCE_DIR}/html/footer.html
-      ${CMAKE_CURRENT_SOURCE_DIR}/html/doxy-boot.js
       ${CMAKE_CURRENT_SOURCE_DIR}/src/ponca.bib
       ${CMAKE_CURRENT_SOURCE_DIR}/src/ponca.mdoc
       ${CMAKE_CURRENT_SOURCE_DIR}/src/concepts.mdoc
@@ -46,4 +43,9 @@ if(DOXYGEN_FOUND)
                     WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}
                     COMMENT "Generating API documentation with Doxygen" VERBATIM )
   add_dependencies(ponca-doc ponca-doc-doxygen)
+
+  install(
+      DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/html
+      DESTINATION share/doc/
+      OPTIONAL )
 endif(DOXYGEN_FOUND)

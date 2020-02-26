@@ -20,7 +20,7 @@ check_language(CUDA)
         target_include_directories(ponca_ssgls PRIVATE ${PONCA_ROOT_DIR})
         target_link_libraries(ponca_ssgls PRIVATE PNG::PNG)
         target_compile_options(ponca_ssgls PRIVATE --expt-relaxed-constexpr)
-        add_dependencies(ponca_examples ponca_ssgls)
+        add_dependencies(ponca-examples ponca_ssgls)
 
         # Copy assets
         add_custom_command(TARGET ponca_ssgls POST_BUILD
