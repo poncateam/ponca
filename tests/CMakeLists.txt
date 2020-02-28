@@ -1,13 +1,10 @@
-project(PatateTests)
-
-find_package(Eigen3 REQUIRED)
-include_directories(${EIGEN3_INCLUDE_DIR})
+project(ponca-tests)
 
 include_directories(${CMAKE_SOURCE_DIR})
 
 # Generate split test header file only if it does not yet exist
 # in order to prevent a rebuild everytime cmake is configured.
-if(NOT EXISTS ${CMAKE_CURRENT_BINARY_DIR}/split_test_helper.h)  
+if(NOT EXISTS ${CMAKE_CURRENT_BINARY_DIR}/split_test_helper.h)
   file(WRITE ${CMAKE_CURRENT_BINARY_DIR}/split_test_helper.h "")
   foreach(i RANGE 1 999)
     file(APPEND ${CMAKE_CURRENT_BINARY_DIR}/split_test_helper.h
@@ -21,7 +18,7 @@ if(NOT EXISTS ${CMAKE_CURRENT_BINARY_DIR}/split_test_helper.h)
 endif()
 
 # similar to set_target_properties but append the property instead of overwriting it
-macro(patate_add_target_property target prop value)
+macro(ponca_add_target_property target prop value)
 
   get_target_property(previous ${target} ${prop})
   # if the property wasn't previously set, ${previous} is now "previous-NOTFOUND" which cmake allows catching with plain if()
@@ -29,7 +26,7 @@ macro(patate_add_target_property target prop value)
     set(previous "")
   endif(NOT previous)
   set_target_properties(${target} PROPERTIES ${prop} "${previous} ${value}")
-endmacro(patate_add_target_property)
+endmacro(ponca_add_target_property)
 
 # Macro to add a test
 #
@@ -65,29 +62,30 @@ macro(add_multi_test filename)
 
   string(REGEX MATCHALL "(.*)\\.c.*" dummy "${filename}")
   set(testname ${CMAKE_MATCH_1})
-  
+
   file(READ "${filename}" test_source)
   set(parts 0)
-  string(REGEX MATCHALL "CALL_SUBTEST_[0-9]+|TEST_PART_[0-9]+|PATATE_SUFFIXES(;[0-9]+)+" occurences "${test_source}")
-  string(REGEX REPLACE "CALL_SUBTEST_|TEST_PART_|PATATE_SUFFIXES" "" suffixes "${occurences}")
+  string(REGEX MATCHALL "CALL_SUBTEST_[0-9]+|TEST_PART_[0-9]+|PONCA_SUFFIXES(;[0-9]+)+" occurences "${test_source}")
+  string(REGEX REPLACE "CALL_SUBTEST_|TEST_PART_|PONCA_SUFFIXES" "" suffixes "${occurences}")
   list(REMOVE_DUPLICATES suffixes)
   if(suffixes)
     add_custom_target(${testname})
     add_dependencies(buildtests ${testname})
     foreach(suffix ${suffixes})
       add_executable(${testname}_${suffix} ${filename})
-      patate_add_target_property(${testname}_${suffix} COMPILE_FLAGS "-DTEST_PART_${suffix}=1")
+      target_include_directories(${testname}_${suffix} PRIVATE ${PONCA_ROOT_DIR})
+      ponca_add_target_property(${testname}_${suffix} COMPILE_FLAGS "-DTEST_PART_${suffix}=1")
       add_dependencies(${testname} ${testname}_${suffix})
       add_test(${testname}_${suffix} ${testname}_${suffix})
     endforeach(suffix)
   else(suffixes)
     add_executable(${testname} ${filename})
+    target_include_directories(${testname} PRIVATE ${PONCA_ROOT_DIR})
     add_dependencies(buildtests ${testname})
     add_test(${testname} ${testname})
   endif(suffixes)
 endmacro(add_multi_test)
 
-add_subdirectory(Grenaille)
-add_subdirectory(Vitelotte)
+add_subdirectory(src)
 
 

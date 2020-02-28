@@ -16,7 +16,7 @@
 #include <vector>
 
 using namespace std;
-using namespace Grenaille;
+using namespace Ponca;
 
 template<typename DataPoint, typename Fit, typename WeightFunc> 
 void testFunction()

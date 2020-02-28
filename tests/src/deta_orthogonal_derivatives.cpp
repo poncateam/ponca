@@ -11,7 +11,7 @@
 */
 
 #include "../common/testing.h"
-#include "Patate/grenaille.h"
+#include "ponca.h"
 #include "Eigen/Eigen"
 
 #include <algorithm>
@@ -19,7 +19,7 @@
 #include <vector>
 
 using namespace std;
-using namespace Grenaille;
+using namespace Ponca;
 
 // This class defines the input data format
 template<typename _Scalar, int _Dim>
@@ -31,15 +31,15 @@ public:
     typedef Eigen::Matrix<Scalar, Dim, 1, Eigen::DontAlign>   VectorType;
     typedef Eigen::Matrix<Scalar, Dim, Dim, Eigen::DontAlign> MatrixType;
 
-    MULTIARCH inline MyPoint(   const VectorType &pos    = VectorType::Zero(),
+    PONCA_MULTIARCH inline MyPoint(   const VectorType &pos    = VectorType::Zero(),
                                 const VectorType& normal = VectorType::Zero())
         : m_pos(pos), m_normal(normal) {}
 
-    MULTIARCH inline const VectorType& pos()    const { return m_pos; }
-    MULTIARCH inline const VectorType& normal() const { return m_normal; }
+    PONCA_MULTIARCH inline const VectorType& pos()    const { return m_pos; }
+    PONCA_MULTIARCH inline const VectorType& normal() const { return m_normal; }
 
-    MULTIARCH inline VectorType& pos()    { return m_pos; }
-    MULTIARCH inline VectorType& normal() { return m_normal; }
+    PONCA_MULTIARCH inline VectorType& pos()    { return m_pos; }
+    PONCA_MULTIARCH inline VectorType& normal() { return m_normal; }
 
     static inline MyPoint Random(Scalar radius)
     {
