@@ -18,7 +18,7 @@
 #include <vector>
 
 using namespace std;
-using namespace Grenaille;
+using namespace Ponca;
 
 template <bool isSpaceDer, int Dim>
 struct subTestSpatial{

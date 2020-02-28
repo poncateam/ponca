@@ -20,7 +20,7 @@
 #include <vector>
 
 using namespace std;
-using namespace Grenaille;
+using namespace Ponca;
 
 template <bool check>
 struct CheckSurfaceVariation {

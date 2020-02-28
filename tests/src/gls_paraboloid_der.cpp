@@ -20,7 +20,7 @@
 #include <vector>
 
 using namespace std;
-using namespace Grenaille;
+using namespace Ponca;
 
 template<typename Fit, typename RefFit, typename TestFit>
 void testFunction(bool isSigned = true)

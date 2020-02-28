@@ -14,7 +14,7 @@
 #define _TEST_UTILS_H_
 
 #include "Eigen/Eigen"
-#include "Patate/grenaille.h"
+#include "ponca.h"
 
 #include <vector>
 
@@ -245,7 +245,7 @@ DataPoint getPointOnPlane(typename DataPoint::VectorType _vPosition,
         if(reverse > 0.5f)
         {
             vLocalUp = -vLocalUp;
-        }	
+        }
     }
 
     return DataPoint(vRandomPoint, vLocalUp);

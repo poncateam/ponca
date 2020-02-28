@@ -130,6 +130,12 @@ add_subdirectory(doc)
 ################################################################################
 add_subdirectory(examples EXCLUDE_FROM_ALL)
 
+################################################################################
+# Tests                                                                        #
+################################################################################
+include (configureTesting)
+add_subdirectory(tests)
+
 #include(cmake/ConfigureTesting.cmake)
 #add_subdirectory(tests EXCLUDE_FROM_ALL)
 
