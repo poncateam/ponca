@@ -1,13 +1,9 @@
 language: cpp
 dist: bionic
 
-script:
-  - make -j 4 ponca-examples
-  - |
-    if [ "$BUILD_DOC" = "On" ]; then
-        make ponca-doc
-    fi;
-  - make install
+git:
+  submodules: false
+  depth: 10
 
 cache:
   directories:
@@ -16,6 +12,13 @@ env:
   global:
     - OMP_NUM_THREADS=4
     - TIMEOUT=1000
+    - BUILD_TYPE=Release
+
+
+script:
+  - make -j 4 ponca-examples
+  - make -j 4 buildtests
+  - make test
 
 
 before_install:
@@ -29,45 +32,165 @@ before_install:
 
 matrix:
   include:
-    # mac clang Release
-    - env:
-        - BUILD_TYPE=Release
-        - BUILD_DOC=Off
-        - MATRIX_EVAL=""
-      os: osx
-      compiler: clang
+    - os: osx
+      osx_image: xcode10.1
+      env:
+        - MATRIX_EVAL="CC=gcc-4.9 && CXX=g++-4.9"
 
-    # linx clang Release
-    - env:
-        - BUILD_TYPE=Release
-        - CLANG_VERSION=5.0
-        - BUILD_DOC=Off
-        - MATRIX_EVAL=""
-      os: linux
-      addons: &clang50
+    - os: osx
+      osx_image: xcode10.1
+      env:
+        - MATRIX_EVAL="brew install gcc5 && CC=gcc-5 && CXX=g++-5"
+
+    - os: osx
+      osx_image: xcode10.1
+      env:
+        - MATRIX_EVAL="brew install gcc6 && CC=gcc-6 && CXX=g++-6"
+
+    - os: osx
+      osx_image: xcode10.1
+      env:
+        - MATRIX_EVAL="brew install gcc && CC=gcc-7 && CXX=g++-7"
+
+    - os: osx
+      osx_image: xcode10.1
+
+    - os: osx
+      osx_image: xcode10.1
+
+    # works on Precise and Trusty
+    - os: linux
+      addons:
         apt:
-          packages:
-            - clang-5.0
-            - cmake
           sources:
             - ubuntu-toolchain-r-test
+          packages:
+            - cmake
+            - g++-4.9
+      env:
+         - MATRIX_EVAL="CC=gcc-4.9 && CXX=g++-4.9"
 
-    # linx gcc Release
-    - env:
-        - BUILD_TYPE=Release
-        - GCC_VERSION=7
-        - BUILD_DOC=On
-        - MATRIX_EVAL=""
-      os: linux
-      addons: &gcc7
+    # works on Precise and Trusty
+    - os: linux
+      addons:
+        apt:
+          sources:
+            - ubuntu-toolchain-r-test
+          packages:
+            - cmake
+            - g++-5
+      env:
+         - MATRIX_EVAL="CC=gcc-5 && CXX=g++-5"
+
+    # works on Precise and Trusty
+    - os: linux
+      addons:
+        apt:
+          sources:
+            - ubuntu-toolchain-r-test
+          packages:
+            - cmake
+            - g++-6
+      env:
+        - MATRIX_EVAL="CC=gcc-6 && CXX=g++-6"
+
+    # works on Precise and Trusty
+    - os: linux
+      addons:
         apt:
           packages:
+            - cmake
             - g++-7
-            - cmake
-            - doxygen
-            - graphviz
+      env:
+        - MATRIX_EVAL="CC=gcc-7 && CXX=g++-7"
+
+    - os: linux
+      addons:
+        apt:
           sources:
             - ubuntu-toolchain-r-test
+            - llvm-toolchain-precise-3.6
+          packages:
+            - cmake
+            - clang-3.6
+      env:
+        - MATRIX_EVAL="CC=clang-3.6 && CXX=clang++-3.6"
+
+    # works on Precise and Trusty
+    - os: linux
+      addons:
+        apt:
+          sources:
+            - ubuntu-toolchain-r-test
+            - llvm-toolchain-precise-3.7
+          packages:
+            - cmake
+            - clang-3.7
+      env:
+        - MATRIX_EVAL="CC=clang-3.7 && CXX=clang++-3.7"
+
+    # works on Precise and Trusty
+    - os: linux
+      addons:
+        apt:
+          sources:
+            - ubuntu-toolchain-r-test
+            - llvm-toolchain-precise-3.8
+          packages:
+            - cmake
+            - clang-3.8
+      env:
+        - MATRIX_EVAL="CC=clang-3.8 && CXX=clang++-3.8"
+
+    # works on Trusty
+    - os: linux
+      addons:
+        apt:
+          sources:
+            - llvm-toolchain-trusty-3.9
+          packages:
+            - cmake
+            - clang-3.9
+      env:
+        - MATRIX_EVAL="CC=clang-3.9 && CXX=clang++-3.9"
+
+    # works on Trusty
+    - os: linux
+      addons:
+        apt:
+          sources:
+            - llvm-toolchain-trusty-4.0
+          packages:
+            - cmake
+            - clang-4.0
+      env:
+        - MATRIX_EVAL="CC=clang-4.0 && CXX=clang++-4.0"
+
+    # works on Trusty
+    - os: linux
+      addons:
+        apt:
+          sources:
+            - llvm-toolchain-trusty-5.0
+          packages:
+            - cmake
+            - clang-5.0
+      env:
+        - MATRIX_EVAL="CC=clang-5.0 && CXX=clang++-5.0"
+
+
+
+
+
+
+    - stage: documentation
+      apt:
+        packages:
+          - doxygen
+          - graphviz
+      script:
+      - make ponca-doc
+
 
 
 install:
@@ -76,6 +199,9 @@ install:
   - mkdir -p build
   - cd build
   - cmake .. -DCMAKE_C_COMPILER=$CC -DCMAKE_CXX_COMPILER=$CXX -DCMAKE_BUILD_TYPE=${BUILD_TYPE} -DCMAKE_INSTALL_PREFIX=./installed
+
+after_success:
+  - make install
 
 
 # safelist
