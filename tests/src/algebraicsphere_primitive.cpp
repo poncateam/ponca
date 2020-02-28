@@ -19,44 +19,6 @@
 using namespace std;
 using namespace Ponca;
 
-// This class defines the input data format
-template<typename _Scalar, int _Dim>
-class MyPoint
-{
-public:
-    enum {Dim = _Dim};
-    typedef _Scalar Scalar;
-    typedef Eigen::Matrix<Scalar, Dim, 1, Eigen::DontAlign>   VectorType;
-    typedef Eigen::Matrix<Scalar, Dim, Dim, Eigen::DontAlign> MatrixType;
-
-    PONCA_MULTIARCH inline MyPoint(   const VectorType &pos    = VectorType::Zero(),
-                                const VectorType& normal = VectorType::Zero())
-        : m_pos(pos), m_normal(normal) {}
-
-    PONCA_MULTIARCH inline const VectorType& pos()    const { return m_pos; }
-    PONCA_MULTIARCH inline const VectorType& normal() const { return m_normal; }
-
-    PONCA_MULTIARCH inline VectorType& pos()    { return m_pos; }
-    PONCA_MULTIARCH inline VectorType& normal() { return m_normal; }
-
-    static inline MyPoint Random(Scalar radius)
-    {
-        VectorType scale;
-        scale.setRandom();
-        VectorType n = VectorType::Random().normalized();
-        VectorType p =   scale.asDiagonal() * n * radius   // create an ellipse
-                         * Eigen::internal::random<Scalar>(Scalar(0.99),Scalar(1.01)); // add high frequency noise
-
-        n = (scale.asDiagonal().inverse() * n).normalized();
-
-        return MyPoint (p, n);
-    };
-
-
-private:
-    VectorType m_pos, m_normal;
-};
-
 template<typename Point, typename Fit, typename WeightFunc>
 void testFunction()
 {
@@ -64,18 +26,22 @@ void testFunction()
     typedef typename Point::Scalar Scalar;
     typedef typename Point::VectorType VectorType;
 
-     // dummy precision is to hard for this test
-    Scalar epsilon = 1e-4; //Eigen::NumTraits<Scalar>::dummy_precision();
+    //generate sampled sphere
+    int nbPoints = Eigen::internal::random<int>(100, 1000);
 
-    // generate sample data
-    int n = Eigen::internal::random<int>(10,100);
-    Scalar radius = Eigen::internal::random<Scalar>(1,10);
-    Scalar tmax = Scalar(10.) * std::sqrt(Scalar(4. * M_PI) * radius * radius/n);
-    vector<Point> vecs (n);
+    Scalar radius = Eigen::internal::random<Scalar>(1., 10.);
 
-    for(int k=0; k<n; ++k)
+    Scalar analysisScale = Scalar(10.) * std::sqrt( Scalar(4. * M_PI) * radius * radius / nbPoints);
+    Scalar centerScale = Eigen::internal::random<Scalar>(1,10000);
+    VectorType center = VectorType::Random() * centerScale;
+
+    Scalar epsilon = testEpsilon<Scalar>();
+
+    vector<Point> vecs ( nbPoints );
+
+    for(unsigned int i = 0; i < vecs.size(); ++i)
     {
-        vecs[k] = Point::Random(radius);
+        vecs[i] = getPointOnSphere<Point>(radius, center, true, false, false);
     }
 
 
@@ -83,7 +49,7 @@ void testFunction()
     for(int k=0; k<int(vecs.size()); ++k)
     {
         Fit fit;
-        fit.setWeightFunc(WeightFunc(tmax));
+        fit.setWeightFunc(WeightFunc(analysisScale));
 
         fit.init(vecs[k].pos());
         fit.compute(vecs.cbegin(), vecs.cend());
@@ -91,7 +57,7 @@ void testFunction()
         if(fit.isStable())
         {
             Fit f2 = fit;
-            // do to iterations to test successive calls
+            // do two iterations to test successive calls
             VectorType candidate = VectorType::Random();
             for (unsigned int j = 0; j != 2; ++j){
                 f2.changeBasis(fit.basisCenter() + Scalar(0.01)*VectorType::Random());
@@ -108,7 +74,7 @@ void testFunction()
 template<typename Scalar, int Dim>
 void callSubTests()
 {
-    typedef MyPoint<Scalar, Dim> Point;
+    using Point = PointPositionNormal<Scalar, Dim>;
 
     // We test only primitive functions and not the fitting procedure
     typedef DistWeightFunc<Point, SmoothWeightKernel<Scalar> > WeightFunc;

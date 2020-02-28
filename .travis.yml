@@ -1,13 +1,9 @@
 language: cpp
 dist: bionic
 
-script:
-  - make -j 4 ponca-examples
-  - |
-    if [ "$BUILD_DOC" = "On" ]; then
-        make ponca-doc
-    fi;
-  - make install
+git:
+  submodules: false
+  depth: 10
 
 cache:
   directories:
@@ -16,6 +12,15 @@ env:
   global:
     - OMP_NUM_THREADS=4
     - TIMEOUT=1000
+    - BUILD_TYPE=Release
+    - CTEST_OUTPUT_ON_FAILURE=1
+
+
+script:
+  - |
+    make -j 4 ponca-examples
+    make -j 2 buildtests
+    make test
 
 
 before_install:
@@ -28,46 +33,112 @@ before_install:
   - cmake --version
 
 matrix:
+  allow_failures:
+    - env: ALLOW_FAILURE=true
   include:
-    # mac clang Release
-    - env:
-        - BUILD_TYPE=Release
-        - BUILD_DOC=Off
-        - MATRIX_EVAL=""
-      os: osx
-      compiler: clang
+    - os: osx
+      name: osx gcc5
+      osx_image: xcode10.1
+      env:
+        - MATRIX_EVAL="brew install gcc5 && CC=gcc-5 && CXX=g++-5"
 
-    # linx clang Release
-    - env:
-        - BUILD_TYPE=Release
-        - CLANG_VERSION=5.0
-        - BUILD_DOC=Off
-        - MATRIX_EVAL=""
-      os: linux
-      addons: &clang50
+    - os: osx
+      name: osx gcc6
+      osx_image: xcode10.1
+      env:
+        - MATRIX_EVAL="brew install gcc6 && CC=gcc-6 && CXX=g++-6"
+
+    - os: osx
+      name: osx gcc7
+      osx_image: xcode10.1
+      env:
+        - MATRIX_EVAL="brew install gcc@7 && CC=gcc-7 && CXX=g++-7"
+
+    - os: osx
+      name: osx gcc8
+      osx_image: xcode10.1
+      env:
+        - MATRIX_EVAL="brew install gcc@8 && CC=gcc-8 && CXX=g++-8"
+
+    - os: osx
+      name: osx clang902.0
+      osx_image: xcode9.4
+
+    - os: osx
+      name: osx clang1000.11
+      osx_image: xcode10.1
+
+    - os: linux
+      name: linux gcc5
+      addons:
         apt:
           packages:
-            - clang-5.0
             - cmake
-          sources:
-            - ubuntu-toolchain-r-test
+            - g++-5
+      env:
+         - MATRIX_EVAL="CC=gcc-5 && CXX=g++-5 && ALLOW_FAILURE=true"
 
-    # linx gcc Release
-    - env:
-        - BUILD_TYPE=Release
-        - GCC_VERSION=7
-        - BUILD_DOC=On
-        - MATRIX_EVAL=""
-      os: linux
-      addons: &gcc7
+    - os: linux
+      name: linux gcc6
+      addons:
         apt:
           packages:
+            - cmake
+            - g++-6
+      env:
+        - MATRIX_EVAL="CC=gcc-6 && CXX=g++-6 && ALLOW_FAILURE=true"
+
+    - os: linux
+      name: linux gcc7
+      addons:
+        apt:
+          packages:
+            - cmake
             - g++-7
+      env:
+        - MATRIX_EVAL="CC=gcc-7 && CXX=g++-7 && ALLOW_FAILURE=true"
+
+    - os: linux
+      name: linux clang4.0
+      addons:
+        apt:
+          sources:
+            - llvm-toolchain-trusty-4.0
+          packages:
             - cmake
+            - clang-4.0
+      env:
+        - MATRIX_EVAL="CC=clang-4.0 && CXX=clang++-4.0"
+
+    - os: linux
+      name: linux clang5.0
+      addons:
+        apt:
+          sources:
+            - llvm-toolchain-trusty-5.0
+          packages:
+            - cmake
+            - clang-5.0
+      env:
+        - MATRIX_EVAL="CC=clang-5.0 && CXX=clang++-5.0"
+
+
+
+
+
+
+    - stage: documentation
+    - os: linux
+      name: Documentation Generation
+      addons:
+        apt:
+          packages:
             - doxygen
             - graphviz
-          sources:
-            - ubuntu-toolchain-r-test
+        script:
+        - make ponca-doc
+        - make install
+
 
 
 install:
@@ -76,6 +147,9 @@ install:
   - mkdir -p build
   - cd build
   - cmake .. -DCMAKE_C_COMPILER=$CC -DCMAKE_CXX_COMPILER=$CXX -DCMAKE_BUILD_TYPE=${BUILD_TYPE} -DCMAKE_INSTALL_PREFIX=./installed
+
+after_success:
+  - make install
 
 
 # safelist
