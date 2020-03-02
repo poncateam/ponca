@@ -4,8 +4,7 @@
  file, You can obtain one at http://mozilla.org/MPL/2.0/.
 */
 
-#ifndef PCL_FEATURES_GLS_CURVATURE_IMPL_H_
-#define PCL_FEATURES_GLS_CURVATURE_IMPL_H_
+#pragma once
 
 #include "pcl_wrapper.h"
 
@@ -55,11 +54,14 @@ pcl::GlsCurvature<PointInT, PointOutT>::computeFeature(PointCloudOut &output)
 
 //////////////////////////////////////////////////////////////////////////////////////////////
 template <typename PointInT, typename PointOutT> void
-pcl::GlsCurvature<PointInT, PointOutT>::computeCurvature(const pcl::PointCloud<PointInT> &cloud, int p_idx, const std::vector<int> &indices, float &curvature)
+pcl::GlsCurvature<PointInT, PointOutT>::computeCurvature(const pcl::PointCloud<PointInT> &cloud,
+                                                         int p_idx, const std::vector<int> &indices,
+                                                         float &curvature)
 {
     typedef GlsPoint::Scalar Scalar;
     typedef Ponca::DistWeightFunc<GlsPoint, Ponca::SmoothWeightKernel<Scalar> > WeightFunc;
-    typedef Ponca::Basket<GlsPoint, WeightFunc, Ponca::OrientedSphereFit, Ponca::GLSParam> Fit;
+    //typedef Ponca::Basket<GlsPoint, WeightFunc, Ponca::MeanPlaneFit, Ponca::NormalCovarianceCurvature> Fit;
+    typedef Ponca::Basket<GlsPoint, WeightFunc, Ponca::CovariancePlaneFit, Ponca::CovariancePlaneSpaceDer, Ponca::CurvatureEstimator> Fit;
 
     Fit fit;
     // Set a weighting function instance using the search radius of the tree as scale
@@ -84,7 +86,7 @@ pcl::GlsCurvature<PointInT, PointOutT>::computeCurvature(const pcl::PointCloud<P
     // Test if the fitting ended without errors. Set curvature to qNan otherwise.
     if(fit.isStable())
     {
-        curvature = fit.kappa();
+        curvature = fit.kMean();
     }
     else
     {
@@ -94,4 +96,3 @@ pcl::GlsCurvature<PointInT, PointOutT>::computeCurvature(const pcl::PointCloud<P
 
 #define PCL_INSTANTIATE_GlsCurvature(T, OutT) template class PCL_EXPORTS pcl::GlsCurvature<T, OutT>;
 
-#endif // PCL_FEATURES_GLS_CURVATURE_IMPL_H_

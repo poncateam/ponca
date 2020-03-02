@@ -26,14 +26,5 @@ add_dependencies(ponca-examples ponca_binding)
 set(ponca_mesh_curvature_SRCS
     ponca_mesh_curvature.cpp
 )
-#add_executable(ponca_mesh_curvature ${ponca_mesh_curvature_SRCS})
-#target_include_directories(ponca_mesh_curvature PRIVATE ${PONCA_ROOT_DIR})
-#find_package(OpenMP)
-#if(OpenMP_CXX_FOUND)
-#    target_link_libraries(ponca_mesh_curvature OpenMP::OpenMP_CXX)
-#endif()
 
-
-#add_dependencies(ponca_examples ponca_mesh_curvature)
-
-
+add_subdirectory(pcl)
