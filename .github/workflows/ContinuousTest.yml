@@ -10,10 +10,12 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: cmake
-      run: mkdir build && cd build && cmake .. -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=./installed
+      run: mkdir build && cd build && cmake .. -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=./installed -DPONCA_CONFIGURE_EXAMPLES=ON -DPONCA_CONFIGURE_DOC=ON -DPONCA_CONFIGURE_TESTS=ON
     - name: make buildtests
       run: cd build && make buildtests
     - name: make ContinuousTest
       run: cd build && make test
     - name: make ponca-examples
       run: cd build && make ponca-examples
+    - name: make install
+      run: cd build && make install

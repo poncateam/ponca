@@ -16,6 +16,8 @@ env:
     - CTEST_OUTPUT_ON_FAILURE=1
     - COMPILE_COVERAGE=OFF
     - COMPILE_DOC=OFF
+    - COMPILE_EXAMPLES=ON
+    - COMPILE_TESTS=ON
 
 
 script:
@@ -160,7 +162,7 @@ matrix:
             - doxygen
             - graphviz
       env:
-        - MATRIX_EVAL="COMPILE_DOC=ON"
+        - MATRIX_EVAL="COMPILE_DOC=ON && COMPILE_EXAMPLES=OFF && COMPILE_TESTS=OFF"
 
 
     - stage: artefacts
@@ -173,14 +175,14 @@ matrix:
             - g++-7
             - lcov
       env:
-        - MATRIX_EVAL="CC=gcc-7 && CXX=g++-7 && COMPILE_COVERAGE=ON"
+        - MATRIX_EVAL="CC=gcc-7 && CXX=g++-7 && COMPILE_COVERAGE=ON && COMPILE_EXAMPLES=OFF"
 
 install:
   - cd $CHECKOUT_PATH
 
   - mkdir -p build
   - cd build
-  - cmake .. -DCMAKE_C_COMPILER=$CC -DCMAKE_CXX_COMPILER=$CXX -DCMAKE_BUILD_TYPE=${BUILD_TYPE} -DCMAKE_INSTALL_PREFIX=./installed -DPONCA_COVERAGE_TESTING=$COMPILE_COVERAGE
+  - cmake .. -DCMAKE_C_COMPILER=$CC -DCMAKE_CXX_COMPILER=$CXX -DCMAKE_BUILD_TYPE=${BUILD_TYPE} -DCMAKE_INSTALL_PREFIX=./installed -DPONCA_COVERAGE_TESTING=$COMPILE_COVERAGE  -DPONCA_CONFIGURE_EXAMPLES=$COMPILE_EXAMPLES -DPONCA_CONFIGURE_DOC=$COMPILE_DOC -DPONCA_CONFIGURE_TESTS=$COMPILE_TESTS
 
 after_success:
 
@@ -200,7 +202,7 @@ deploy:
     github_token: $GITHUB_API_KEY
     on:
       branch: master
-      condition: "$COMPILE_DOC = On"
+      condition: $COMPILE_DOC = ON
   - provider: releases
     api_key: "GITHUB OAUTH TOKEN"
     file: build/${Ponca_RELEASE_NAME}.zip
