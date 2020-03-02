@@ -143,4 +143,6 @@ add_subdirectory(tests)
 # Add custom target for Continuous Integration scripts                         #
 ################################################################################
 add_custom_target(ponca-ci SOURCES
-                    ${CMAKE_CURRENT_SOURCE_DIR}/.travis.yml)
+    ${CMAKE_CURRENT_SOURCE_DIR}/.travis.yml
+    ${CMAKE_CURRENT_SOURCE_DIR}/.github/workflows/ContinuousTest.yml
+    ${CMAKE_CURRENT_SOURCE_DIR}/.github/workflows/stale.yml)
