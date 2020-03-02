@@ -44,6 +44,8 @@ protected:
     /// \brief Direction associated to the principal curvature with highest smallest magnitude
                m_v2;
 
+    static_assert ( DataPoint::Dim == 3, "BaseCurvatureEstimator is only valid in 3D");
+
 public:
     /*! \brief Default constructor */
     PONCA_MULTIARCH inline BaseCurvatureEstimator() : m_k1(0), m_k2(0) {}
