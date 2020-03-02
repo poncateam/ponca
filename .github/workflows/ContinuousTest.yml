@@ -1,0 +1,19 @@
+name: C/C++ CI
+
+on: [push]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: cmake
+      run: mkdir build && cd build && cmake .. -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=./installed
+    - name: make buildtests
+      run: cd build && make buildtests
+    - name: make ContinuousTest
+      run: cd build && make test
+    - name: make ponca-examples
+      run: cd build && make ponca-examples
