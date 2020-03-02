@@ -4,33 +4,34 @@
  file, You can obtain one at http://mozilla.org/MPL/2.0/.
 */
 
-#ifndef PCL_FEATURES_GLS_CURVATURE_H_
-#define PCL_FEATURES_GLS_CURVATURE_H_
+#pragma once
 
 #include <pcl/features/feature.h>
 
-#include "Patate/grenaille.h"
+#include "ponca.h"
 #include "Eigen/Eigen"
 
 /**
    \brief Class used for fitting method.
-  
-   Using this approach, ones can use the patate library with already existing
+
+   Using this approach, ones can use the ponca library with already existing
    data-structures and without any data-duplication.
  */
 class GlsPoint
 {
 public:
+    enum {Dim = 3};
     typedef float Scalar;
-    typedef Eigen::Matrix<Scalar, 3, 1>   VectorType;
+    typedef Eigen::Matrix<Scalar, 3, 1> VectorType;
+    typedef Eigen::Matrix<Scalar, 3, 3> MatrixType;
 
-    MULTIARCH inline GlsPoint(Eigen::Map< const VectorType > pos, Eigen::Map< const VectorType > normal)
-        : pos_   (pos), 
+    PONCA_MULTIARCH inline GlsPoint(Eigen::Map< const VectorType > pos, Eigen::Map< const VectorType > normal)
+        : pos_   (pos),
           normal_(normal)
     {}
 
-    MULTIARCH inline const Eigen::Map< const VectorType >& pos()    const { return pos_; }  
-    MULTIARCH inline const Eigen::Map< const VectorType >& normal() const { return normal_; }
+    PONCA_MULTIARCH inline const Eigen::Map< const VectorType >& pos()    const { return pos_; }
+    PONCA_MULTIARCH inline const Eigen::Map< const VectorType >& normal() const { return normal_; }
 
 private:
     Eigen::Map< const VectorType > pos_, normal_;
@@ -38,7 +39,7 @@ private:
 
 namespace pcl
 {
-    /** \brief GlsCurvature estimates local surface curvatures at each 3D point with oriented normal using the Patate library
+    /** \brief GlsCurvature estimates local surface curvatures at each 3D point with oriented normal using the Ponca library
     * method.
     *
     *
@@ -92,4 +93,3 @@ namespace pcl
         computeFeatureEigen (pcl::PointCloud<Eigen::MatrixXf> &) {}
     };
 }
-#endif // PCL_FEATURES_GLS_CURVATURE_H_
