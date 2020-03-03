@@ -33,9 +33,9 @@ before_install:
   - cmake --version
 
 matrix:
-  allow_failures:
-    - env: ALLOW_FAILURE=true
   include:
+    allow_failures:
+      - env: ALLOW_FAILURE=true
     - os: osx
       name: osx gcc5
       osx_image: xcode10.1
