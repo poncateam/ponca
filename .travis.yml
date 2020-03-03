@@ -14,6 +14,7 @@ env:
     - TIMEOUT=1000
     - BUILD_TYPE=Release
     - CTEST_OUTPUT_ON_FAILURE=1
+    - COMPILE_COVERAGE=OFF
 
 
 script:
@@ -35,6 +36,7 @@ before_install:
 matrix:
   allow_failures:
     - env: ALLOW_FAILURE=true
+  fast_finish: true
   include:
     - os: osx
       name: osx gcc5
@@ -122,34 +124,47 @@ matrix:
       env:
         - MATRIX_EVAL="CC=clang-5.0 && CXX=clang++-5.0"
 
-
-
-
-
-
-    - stage: documentation
-    - os: linux
-      name: Documentation Generation
-      addons:
-        apt:
-          packages:
-            - doxygen
-            - graphviz
+    stage:
+      - os: linux
+        name: Documentation Generation
+        addons:
+          apt:
+            packages:
+              - doxygen
+              - graphviz
         script:
-        - make ponca-doc
-        - make install
-
-
+          - make ponca-doc
+          - make install
+      - os: linux
+        name: Coverage Generation
+        addons:
+          apt:
+            sources:
+              - llvm-toolchain-trusty-5.0
+            packages:
+              - cmake
+              - clang-5.0
+              - lcov
+        script:
+          - make buildtests
+          - make test
+          - lcov --capture --directory . --output-file coverage.info
+          # filter system-files, Eigen and tests
+          - lcov --remove coverage.info '/usr/*' '*/external/eigen/*' '*/tests/*' --output-file coverage.info
+          - lcov --list coverage.info # debug info
+          # Uploading report to CodeCov
+          - bash <(curl -s https://codecov.io/bash) -f coverage.info || echo "Codecov did not collect coverage reports"
+        env:
+          - MATRIX_EVAL="CC=clang-5.0 && CXX=clang++-5.0 && COMPILE_COVERAGE=ON"
 
 install:
   - cd $CHECKOUT_PATH
 
   - mkdir -p build
   - cd build
-  - cmake .. -DCMAKE_C_COMPILER=$CC -DCMAKE_CXX_COMPILER=$CXX -DCMAKE_BUILD_TYPE=${BUILD_TYPE} -DCMAKE_INSTALL_PREFIX=./installed
+  - cmake .. -DCMAKE_C_COMPILER=$CC -DCMAKE_CXX_COMPILER=$CXX -DCMAKE_BUILD_TYPE=${BUILD_TYPE} -DCMAKE_INSTALL_PREFIX=./installed -DPONCA_COVERAGE_TESTING=$COMPILE_COVERAGE
 
 after_success:
-  - make install
 
 
 # safelist
@@ -158,6 +173,7 @@ branches:
   - gh-pages
 
 before_deploy:
+  - make install
   - zip --symlinks -r ${CHECKOUT_PATH}/build/${Ponca_RELEASE_NAME}.zip ${CHECKOUT_PATH}/build/installed/
 
 deploy:

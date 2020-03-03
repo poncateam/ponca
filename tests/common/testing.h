@@ -22,7 +22,11 @@
 #	include <cmath>
 #endif
 
+#ifdef PONCA_COVERAGE_ENABLED
+#define DEFAULT_REPEAT 1
+#else
 #define DEFAULT_REPEAT 10
+#endif
 
 #define PATATE_PP_MAKE_STRING2(S) #S
 #define PATATE_PP_MAKE_STRING(S) PATATE_PP_MAKE_STRING2(S)
