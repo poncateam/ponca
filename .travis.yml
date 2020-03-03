@@ -135,10 +135,9 @@ matrix:
           packages:
             - doxygen
             - graphviz
-        script:
+      script:
         - make ponca-doc
         - make install
-
 
 
 install:
