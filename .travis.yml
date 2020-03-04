@@ -15,20 +15,31 @@ env:
     - BUILD_TYPE=Release
     - CTEST_OUTPUT_ON_FAILURE=1
     - COMPILE_COVERAGE=OFF
+    - COMPILE_DOC=OFF
 
 
 script:
-  - |
-    make -j 4 ponca-examples
-    make -j 2 buildtests
-    make test
+  - if [ "$COMPILE_DOC" == "ON" ]; then
+      make ponca-doc
+    else
+      make -j 2 buildtests
+      make test
+      if [ "$COMPILE_COVERAGE" == "ON" ]; then
+        lcov --capture --directory . --output-file coverage.info
+        # filter system-files, Eigen and tests
+        lcov --remove coverage.info '/usr/*' '*/external/eigen/*' '*/tests/*' --output-file coverage.info
+        lcov --list coverage.info # debug info
+        # Uploading report to CodeCov
+        bash <(curl -s https://codecov.io/bash) -f coverage.info || echo "Codecov did not collect coverage reports"
+      else
+        make -j 4 ponca-examples
+      fi
+    fi
 
 
 before_install:
   - export CHECKOUT_PATH=`pwd`;
   - eval "${MATRIX_EVAL}"
-  - if [ -n "$GCC_VERSION" ]; then export CXX="g++-${GCC_VERSION}" CC="gcc-${GCC_VERSION}"; fi
-  - if [ -n "$CLANG_VERSION" ]; then export CXX="clang++-${CLANG_VERSION}" CC="clang-${CLANG_VERSION}"; fi
   - export Ponca_RELEASE_NAME="Ponca-${APPVEYOR_REPO_TAG}-${TRAVIS_OS_NAME}-${CXX}"
   - $CXX --version
   - cmake --version
@@ -127,7 +138,7 @@ jobs:
             env:
               - MATRIX_EVAL="CC=clang-5.0 && CXX=clang++-5.0"
 
-    - stage: build
+    - stage: artefacts
       matrix:
         include:
           - os: linux
@@ -137,9 +148,8 @@ jobs:
                 packages:
                   - doxygen
                   - graphviz
-            script:
-              - make ponca-doc
-              - make install
+            env:
+              - MATRIX_EVAL="COMPILE_DOC=ON"
           - os: linux
             name: Coverage Generation
             addons:
@@ -150,15 +160,6 @@ jobs:
                   - cmake
                   - clang-5.0
                   - lcov
-            script:
-              - make buildtests
-              - make test
-              - lcov --capture --directory . --output-file coverage.info
-              # filter system-files, Eigen and tests
-              - lcov --remove coverage.info '/usr/*' '*/external/eigen/*' '*/tests/*' --output-file coverage.info
-              - lcov --list coverage.info # debug info
-              # Uploading report to CodeCov
-              - bash <(curl -s https://codecov.io/bash) -f coverage.info || echo "Codecov did not collect coverage reports"
             env:
               - MATRIX_EVAL="CC=clang-5.0 && CXX=clang++-5.0 && COMPILE_COVERAGE=ON"
 
@@ -188,7 +189,7 @@ deploy:
     github_token: $GITHUB_API_KEY
     on:
       branch: master
-      condition: "$BUILD_DOC = On"
+      condition: "$COMPILE_DOC = On"
   - provider: releases
     api_key: "GITHUB OAUTH TOKEN"
     file: build/${Ponca_RELEASE_NAME}.zip
