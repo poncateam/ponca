@@ -19,7 +19,8 @@ env:
 
 
 script:
-  - if [ "$COMPILE_DOC" == "ON" ]; then
+  - |
+    if [ "$COMPILE_DOC" == "ON" ]; then
       make ponca-doc
     else
       make -j 2 buildtests
