@@ -10,8 +10,7 @@
   \brief Useful functions for tests
 */
 
-#ifndef _TEST_UTILS_H_
-#define _TEST_UTILS_H_
+#pragma once
 
 #include "Eigen/Eigen"
 #include "ponca.h"
@@ -341,4 +340,3 @@ typename DataPoint::Scalar getKappaMean(const std::vector<DataPoint>& _vectorPoi
 
     return kappaMean / nbNei;
 }
-#endif // _TEST_UTILS_H_
