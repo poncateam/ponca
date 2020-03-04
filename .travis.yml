@@ -36,6 +36,7 @@ script:
         make -j 4 ponca-examples
       fi
     fi
+  - make install
 
 
 before_install:
@@ -97,7 +98,7 @@ matrix:
             - cmake
             - g++-5
       env:
-         - MATRIX_EVAL="CC=gcc-5 && CXX=g++-5 && ALLOW_FAILURE=true"
+         - MATRIX_EVAL="CC=gcc-5 && CXX=g++-5" # && ALLOW_FAILURE=true"
 
     - stage: build
       os: linux
@@ -108,7 +109,7 @@ matrix:
             - cmake
             - g++-6
       env:
-        - MATRIX_EVAL="CC=gcc-6 && CXX=g++-6 && ALLOW_FAILURE=true"
+        - MATRIX_EVAL="CC=gcc-6 && CXX=g++-6" # && ALLOW_FAILURE=true"
 
     - stage: build
       os: linux
@@ -119,7 +120,7 @@ matrix:
             - cmake
             - g++-7
       env:
-        - MATRIX_EVAL="CC=gcc-7 && CXX=g++-7 && ALLOW_FAILURE=true"
+        - MATRIX_EVAL="CC=gcc-7 && CXX=g++-7" # && ALLOW_FAILURE=true"
 
     - stage: build
       os: linux
@@ -165,14 +166,12 @@ matrix:
       name: Coverage Generation
       addons:
         apt:
-          sources:
-            - llvm-toolchain-trusty-5.0
           packages:
             - cmake
-            - clang-5.0
+            - g++-7
             - lcov
       env:
-        - MATRIX_EVAL="CC=clang-5.0 && CXX=clang++-5.0 && COMPILE_COVERAGE=ON"
+        - MATRIX_EVAL="CC=gcc-7 && CXX=g++-7 && COMPILE_COVERAGE=ON"
 
 install:
   - cd $CHECKOUT_PATH
@@ -190,7 +189,6 @@ branches:
   - gh-pages
 
 before_deploy:
-  - make install
   - zip --symlinks -r ${CHECKOUT_PATH}/build/${Ponca_RELEASE_NAME}.zip ${CHECKOUT_PATH}/build/installed/
 
 deploy:
