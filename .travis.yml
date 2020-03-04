@@ -33,129 +33,134 @@ before_install:
   - $CXX --version
   - cmake --version
 
-matrix:
+jobs:
   allow_failures:
     - env: ALLOW_FAILURE=true
   fast_finish: true
   include:
-    - os: osx
-      name: osx gcc5
-      osx_image: xcode10.1
-      env:
-        - MATRIX_EVAL="brew install gcc5 && CC=gcc-5 && CXX=g++-5"
+    - stage: build
+      matrix:
+        include:
+          - os: osx
+            name: osx gcc5
+            osx_image: xcode10.1
+            env:
+              - MATRIX_EVAL="brew install gcc5 && CC=gcc-5 && CXX=g++-5"
 
-    - os: osx
-      name: osx gcc6
-      osx_image: xcode10.1
-      env:
-        - MATRIX_EVAL="brew install gcc6 && CC=gcc-6 && CXX=g++-6"
+          - os: osx
+            name: osx gcc6
+            osx_image: xcode10.1
+            env:
+              - MATRIX_EVAL="brew install gcc6 && CC=gcc-6 && CXX=g++-6"
 
-    - os: osx
-      name: osx gcc7
-      osx_image: xcode10.1
-      env:
-        - MATRIX_EVAL="brew install gcc@7 && CC=gcc-7 && CXX=g++-7"
+          - os: osx
+            name: osx gcc7
+            osx_image: xcode10.1
+            env:
+              - MATRIX_EVAL="brew install gcc@7 && CC=gcc-7 && CXX=g++-7"
 
-    - os: osx
-      name: osx gcc8
-      osx_image: xcode10.1
-      env:
-        - MATRIX_EVAL="brew install gcc@8 && CC=gcc-8 && CXX=g++-8"
+          - os: osx
+            name: osx gcc8
+            osx_image: xcode10.1
+            env:
+              - MATRIX_EVAL="brew install gcc@8 && CC=gcc-8 && CXX=g++-8"
 
-    - os: osx
-      name: osx clang902.0
-      osx_image: xcode9.4
+          - os: osx
+            name: osx clang902.0
+            osx_image: xcode9.4
 
-    - os: osx
-      name: osx clang1000.11
-      osx_image: xcode10.1
+          - os: osx
+            name: osx clang1000.11
+            osx_image: xcode10.1
 
-    - os: linux
-      name: linux gcc5
-      addons:
-        apt:
-          packages:
-            - cmake
-            - g++-5
-      env:
-         - MATRIX_EVAL="CC=gcc-5 && CXX=g++-5 && ALLOW_FAILURE=true"
+          - os: linux
+            name: linux gcc5
+            addons:
+              apt:
+                packages:
+                  - cmake
+                  - g++-5
+            env:
+               - MATRIX_EVAL="CC=gcc-5 && CXX=g++-5 && ALLOW_FAILURE=true"
 
-    - os: linux
-      name: linux gcc6
-      addons:
-        apt:
-          packages:
-            - cmake
-            - g++-6
-      env:
-        - MATRIX_EVAL="CC=gcc-6 && CXX=g++-6 && ALLOW_FAILURE=true"
+          - os: linux
+            name: linux gcc6
+            addons:
+              apt:
+                packages:
+                  - cmake
+                  - g++-6
+            env:
+              - MATRIX_EVAL="CC=gcc-6 && CXX=g++-6 && ALLOW_FAILURE=true"
 
-    - os: linux
-      name: linux gcc7
-      addons:
-        apt:
-          packages:
-            - cmake
-            - g++-7
-      env:
-        - MATRIX_EVAL="CC=gcc-7 && CXX=g++-7 && ALLOW_FAILURE=true"
+          - os: linux
+            name: linux gcc7
+            addons:
+              apt:
+                packages:
+                  - cmake
+                  - g++-7
+            env:
+              - MATRIX_EVAL="CC=gcc-7 && CXX=g++-7 && ALLOW_FAILURE=true"
 
-    - os: linux
-      name: linux clang4.0
-      addons:
-        apt:
-          sources:
-            - llvm-toolchain-trusty-4.0
-          packages:
-            - cmake
-            - clang-4.0
-      env:
-        - MATRIX_EVAL="CC=clang-4.0 && CXX=clang++-4.0"
+          - os: linux
+            name: linux clang4.0
+            addons:
+              apt:
+                sources:
+                  - llvm-toolchain-trusty-4.0
+                packages:
+                  - cmake
+                  - clang-4.0
+            env:
+              - MATRIX_EVAL="CC=clang-4.0 && CXX=clang++-4.0"
 
-    - os: linux
-      name: linux clang5.0
-      addons:
-        apt:
-          sources:
-            - llvm-toolchain-trusty-5.0
-          packages:
-            - cmake
-            - clang-5.0
-      env:
-        - MATRIX_EVAL="CC=clang-5.0 && CXX=clang++-5.0"
+          - os: linux
+            name: linux clang5.0
+            addons:
+              apt:
+                sources:
+                  - llvm-toolchain-trusty-5.0
+                packages:
+                  - cmake
+                  - clang-5.0
+            env:
+              - MATRIX_EVAL="CC=clang-5.0 && CXX=clang++-5.0"
 
-    stage:
-      - os: linux
-        name: Documentation Generation
-        addons:
-          apt:
-            packages:
-              - doxygen
-              - graphviz
-        script:
-          - make ponca-doc
-          - make install
-      - os: linux
-        name: Coverage Generation
-        addons:
-          apt:
-            sources:
-              - llvm-toolchain-trusty-5.0
-            packages:
-              - cmake
-              - clang-5.0
-              - lcov
-        script:
-          - make buildtests
-          - make test
-          - lcov --capture --directory . --output-file coverage.info
-          # filter system-files, Eigen and tests
-          - lcov --remove coverage.info '/usr/*' '*/external/eigen/*' '*/tests/*' --output-file coverage.info
-          - lcov --list coverage.info # debug info
-          # Uploading report to CodeCov
-          - bash <(curl -s https://codecov.io/bash) -f coverage.info || echo "Codecov did not collect coverage reports"
-        env:
-          - MATRIX_EVAL="CC=clang-5.0 && CXX=clang++-5.0 && COMPILE_COVERAGE=ON"
+    - stage: build
+      matrix:
+        include:
+          - os: linux
+            name: Documentation Generation
+            addons:
+              apt:
+                packages:
+                  - doxygen
+                  - graphviz
+            script:
+              - make ponca-doc
+              - make install
+          - os: linux
+            name: Coverage Generation
+            addons:
+              apt:
+                sources:
+                  - llvm-toolchain-trusty-5.0
+                packages:
+                  - cmake
+                  - clang-5.0
+                  - lcov
+            script:
+              - make buildtests
+              - make test
+              - lcov --capture --directory . --output-file coverage.info
+              # filter system-files, Eigen and tests
+              - lcov --remove coverage.info '/usr/*' '*/external/eigen/*' '*/tests/*' --output-file coverage.info
+              - lcov --list coverage.info # debug info
+              # Uploading report to CodeCov
+              - bash <(curl -s https://codecov.io/bash) -f coverage.info || echo "Codecov did not collect coverage reports"
+            env:
+              - MATRIX_EVAL="CC=clang-5.0 && CXX=clang++-5.0 && COMPILE_COVERAGE=ON"
 
 install:
   - cd $CHECKOUT_PATH
