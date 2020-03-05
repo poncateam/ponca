@@ -28,6 +28,24 @@ macro(ponca_add_target_property target prop value)
   set_target_properties(${target} PROPERTIES ${prop} "${previous} ${value}")
 endmacro(ponca_add_target_property)
 
+macro(ponca_configure_coverage target)
+    if(PONCA_COVERAGE_TESTING AND CMAKE_CXX_COMPILER_ID MATCHES "GNU|Clang")
+      # Add required flags (GCC & LLVM/Clang)
+      target_compile_options(${target} PUBLIC
+        -O0        # no optimization
+        -g         # generate debug info
+        --coverage # sets all required flags
+        -fprofile-arcs -ftest-coverage
+        -DPONCA_COVERAGE_ENABLED
+      )
+      if(CMAKE_VERSION VERSION_GREATER_EQUAL 3.13)
+        target_link_options(${target} PUBLIC --coverage)
+      else()
+        target_link_libraries(${target} PUBLIC --coverage)
+      endif()
+    endif()
+endmacro()
+
 # Macro to add a test
 #
 # the unique mandatory parameter testname must correspond to a file <testname.cpp>
@@ -75,12 +93,27 @@ macro(add_multi_test filename)
       add_executable(${testname}_${suffix} ${filename})
       target_include_directories(${testname}_${suffix} PRIVATE ${PONCA_ROOT_DIR})
       ponca_add_target_property(${testname}_${suffix} COMPILE_FLAGS "-DTEST_PART_${suffix}=1")
+
+      if(OpenMP_CXX_FOUND)
+        target_link_libraries(${testname}_${suffix} PUBLIC OpenMP::OpenMP_CXX)
+      endif(OpenMP_CXX_FOUND)
+
+      ponca_configure_coverage(${testname}_${suffix})
+
       add_dependencies(${testname} ${testname}_${suffix})
       add_test(${testname}_${suffix} ${testname}_${suffix})
+
     endforeach(suffix)
   else(suffixes)
     add_executable(${testname} ${filename})
     target_include_directories(${testname} PRIVATE ${PONCA_ROOT_DIR})
+
+    if(OpenMP_CXX_FOUND)
+      target_link_libraries(${testname} PUBLIC OpenMP::OpenMP_CXX)
+    endif(OpenMP_CXX_FOUND)
+
+    ponca_configure_coverage(${testname})
+
     add_dependencies(buildtests ${testname})
     add_test(${testname} ${testname})
   endif(suffixes)

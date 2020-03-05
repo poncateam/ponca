@@ -1,14 +1,13 @@
 /*
  This Source Code Form is subject to the terms of the Mozilla Public
  License, v. 2.0. If a copy of the MPL was not distributed with this
- file, You can obtain one at http://mozilla.org/MPL/2.0/. 
+ file, You can obtain one at http://mozilla.org/MPL/2.0/.
 */
 
 // Part of this file has been adapted from the Eigen library.
 
 
-#ifndef _PATATE_TESTING_H_
-#define _PATATE_TESTING_H_
+#pragma once
 
 #include <iostream>
 #include <vector>
@@ -18,11 +17,15 @@
 #include <ctime>
 
 #if defined (_MSC_VER)
-#	define _USE_MATH_DEFINES 
+#	define _USE_MATH_DEFINES
 #	include <cmath>
 #endif
 
+#ifdef PONCA_COVERAGE_ENABLED
+#define DEFAULT_REPEAT 1
+#else
 #define DEFAULT_REPEAT 10
+#endif
 
 #define PATATE_PP_MAKE_STRING2(S) #S
 #define PATATE_PP_MAKE_STRING(S) PATATE_PP_MAKE_STRING2(S)
@@ -133,8 +136,6 @@ static bool init_testing(int argc, char *argv[])
   g_test_stack.push_back(ss.str());
   srand(g_seed);
   std::cout << "Repeating each test " << g_repeat << " times" << std::endl;
-  
+
   return true;
 }
-
-#endif // _PATATE_TESTING_H_

@@ -8,8 +8,7 @@
 */
 
 
-#ifndef SCALAR_PRECISION_CHECK_H
-#define SCALAR_PRECISION_CHECK_H
+#pragma once
 
 #include <limits>
 #include <cassert>
@@ -49,7 +48,7 @@ public:
     typedef _highPrecisionScalarT HPScalar;
 
     inline ScalarPrecisionCheck() {}
-    
+
     /*!
      */
     template <typename RealScalar>
@@ -61,9 +60,9 @@ public:
     inline ScalarPrecisionCheck(const ScalarPrecisionCheck& __rhs)
         : _lp(__rhs._lp), _hp(__rhs._hp) {
         precision_assert(*this);
-        
+
     }
-    
+
     inline ScalarPrecisionCheck(LPScalar lp,
                                 HPScalar hp)
         : _lp(lp), _hp(hp) {
@@ -143,13 +142,13 @@ private:
       if(check_enabled) assert(s.checkPrecision());
       return s;
     }
-    
+
     static inline bool AND_assert(bool lp, bool hp)
     {
       if(check_enabled) assert (lp==hp);
       return lp && hp;
     }
-    
+
 }; // class ScalarPrecisionCheck
 
 template <typename lps, typename hps>
@@ -198,5 +197,3 @@ inline ScalarPrecisionCheck<lps,hps> atan(const ScalarPrecisionCheck<lps,hps>& s
 }
 
 } // namespace std
-
-#endif // SCALAR_PRECISION_CHECK_H
