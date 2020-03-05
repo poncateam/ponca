@@ -23,9 +23,9 @@ script:
     if [ "$COMPILE_DOC" == "ON" ]; then
       make ponca-doc
     else
-      make -j 2 buildtests
-      make test
       if [ "$COMPILE_COVERAGE" == "ON" ]; then
+        make buildtests
+        make test
         lcov --capture --directory . --output-file coverage.info
         # filter system-files, Eigen and tests
         lcov --remove coverage.info '/usr/*' '*/external/eigen/*' '*/tests/*' --output-file coverage.info
@@ -33,6 +33,8 @@ script:
         # Uploading report to CodeCov
         bash <(curl -s https://codecov.io/bash) -f coverage.info || echo "Codecov did not collect coverage reports"
       else
+        make -j 2 buildtests
+        make test
         make -j 4 ponca-examples
       fi
     fi
