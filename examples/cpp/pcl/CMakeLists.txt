@@ -1,5 +1,5 @@
 
-find_package(PCL 1.3 QUIET)
+find_package(PCL 1.6 QUIET)
 if(PCL_FOUND)
     set(CMAKE_INCLUDE_CURRENT_DIR ON)
 

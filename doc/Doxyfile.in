@@ -774,6 +774,7 @@ EXAMPLE_PATH           = @CMAKE_CURRENT_SOURCE_DIR@/../examples \
 # blank all files are included.
 
 EXAMPLE_PATTERNS       = *.cpp \
+                         *.hpp \
                          *.h \
                          *.cu
 

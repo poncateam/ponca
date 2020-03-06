@@ -10,41 +10,43 @@
 
   \section pcl_intro_sec Introduction
 
-  This is an example that use Ponca to compute surface curvature with <a href="http://http://pointclouds.org/">Point Cloud Library (PCL)</a>.
-  Of course, you have to install the last version of PCL (tested with v1.6) to make the example works. It provides a class implementation to be incorporate in the PCL tree, section "features",
-  and a method to use that feature and visualize data using a colormap.
+  This is an example that use Ponca to compute surface curvature with <a href="http://http://pointclouds.org/">Point Cloud Library (PCL)</a> (recommended version: 1.9)
+  It provides a class implementation to be incorporate in the PCL tree, section "features", and a method to use that feature and visualize data using a colormap.
 
   \subsection pcl_usage_sec Usage
 
-  To compile this example, we provide a cmake file. All you have to do is to add the following instruction in your cmake process for patate examples :
+  To compile this example, you need to enable the compilation of the examples with `cmake`, and build the examples:
 
   \code
-  -DCompilePCLExample=ON
+  cmake [..] -DPONCA_CONFIGURE_EXAMPLES=ON
+  make ponca-examples // or make ponca_pclwrapper
   \endcode
 
-  You can also turn it on by checking the option with the cmake GUI.
+  \note Tip if you are using visual studio: if you have a problem with boost or pcl exceptions, go to Project -> Properties -> C/C++ -> Code Generation -> Enable C++ exceptions and turn it to "Yes (/EHsc)"
 
-  \warning Be sure to have the "bun_zipper.ply" file provided in the right build directory for a good program execution.
-
-  \note Tip if you are using visual studio : if you have a problem with boost or pcl exceptions, go to Project -> Properties -> C/C++ -> Code Generation -> Enable C++ exceptions and turn it to "Yes (/EHsc)"
-
-  Then execute the program and you will visualize this colored point cloud :
+  Then execute the program and you will visualize two color point clouds: on the left, the signed curvature estimated using Ponca, and on the right, the unsigned curvature estimated using PCL.
   \image html examples/pcl_wrapper.png "Surface Curvature on a point cloud using GLS method"
 
   \section pcl_wrapper_sec PCL wrapper
 
   Here is the PCL implementation of our method.
 
-  pcl_wrapper.h
+  \subsection pcl_wrapper_sec_pcl_wrapper_sec_h Datastructures declaration
+  - `GlsPoint` defines how point samples are represented,
+  - `pcl::GlsCurvature` defines the wrapper that brings Ponca algorithms into the PCL API
+
+  Source file: `pcl_wrapper.h`
   \include pcl/pcl_wrapper.h
 
-  pcl_wrapper.hpp
+  \subsection pcl_wrapper_sec_pcl_wrapper_sec_hpp Datastructures implementation
+  Source file: `pcl_wrapper.hpp`
   \include pcl/pcl_wrapper.hpp
 
-  pcl_wrapper.cpp
+  \subsection pcl_wrapper_sec_pcl_wrapper_sec_cpp Datastructures instanciation
+  Source file: `pcl_wrapper.cpp`
   \include pcl/pcl_wrapper.cpp
 
-  \section pcl_main_sec Compute and visualization
+  \subsection pcl_main_sec Main program
 
   Now, a basic method to use the previous class and to visualize the result.
   \include pcl/main.cpp
