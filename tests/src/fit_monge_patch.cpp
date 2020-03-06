@@ -15,6 +15,12 @@
 #include "../common/testing.h"
 #include "../common/testUtils.h"
 
+#include <Ponca/Core/basket.h>
+#include <Ponca/Core/covariancePlaneFit.h>
+#include <Ponca/Core/mongePatch.h>
+#include <Ponca/Core/weightFunc.h>
+#include <Ponca/Core/weightKernel.h>
+
 #include <vector>
 
 using namespace std;
@@ -98,8 +104,8 @@ void callSubTests()
     typedef DistWeightFunc<Point, SmoothWeightKernel<Scalar> > WeightSmoothFunc;
     typedef DistWeightFunc<Point, ConstantWeightKernel<Scalar> > WeightConstantFunc;
 
-    typedef Basket<Point, WeightSmoothFunc, CompactPlane, CovariancePlaneFit, MongePatch> CovFitSmooth;
-    typedef Basket<Point, WeightConstantFunc, CompactPlane, CovariancePlaneFit, MongePatch> CovFitConstant;
+    typedef Basket<Point, WeightSmoothFunc, CovariancePlaneFit, MongePatch> CovFitSmooth;
+    typedef Basket<Point, WeightConstantFunc, CovariancePlaneFit, MongePatch> CovFitConstant;
 
 //    typedef Basket<Point, WeightSmoothFunc, CompactPlane, MeanPlaneFit> MeanFitSmooth;
 //    typedef Basket<Point, WeightConstantFunc, CompactPlane, MeanPlaneFit> MeanFitConstant;

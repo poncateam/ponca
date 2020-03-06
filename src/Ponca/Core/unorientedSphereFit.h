@@ -8,8 +8,9 @@
 
 #pragma once
 
-#include <Eigen/Dense>
 #include "algebraicSphere.h"
+
+#include <Eigen/Dense>
 
 namespace Ponca
 {

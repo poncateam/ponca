@@ -6,6 +6,8 @@
 
 #pragma once
 
+#include <Ponca/Core/defines.h>
+
 #include <Eigen/Eigenvalues>
 #include <Eigen/Core>
 

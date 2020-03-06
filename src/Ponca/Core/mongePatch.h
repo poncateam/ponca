@@ -6,6 +6,10 @@
 
 #pragma once
 
+#include <Ponca/Core/defines.h>
+
+#include <Eigen/Dense>
+
 namespace Ponca
 {
 
