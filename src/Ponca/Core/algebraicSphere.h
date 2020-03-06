@@ -7,7 +7,7 @@
 
 #pragma once
 
-#include "primitive.h" // PrimitiveBase
+#include <Ponca/Core/primitive.h> // PrimitiveBase
 
 #include PONCA_MULTIARCH_INCLUDE_STD(cmath)
 #include PONCA_MULTIARCH_INCLUDE_STD(limits)

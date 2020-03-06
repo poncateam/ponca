@@ -6,7 +6,7 @@ file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 #pragma once
 
-#include "algebraicSphere.h"
+#include <Ponca/Core/algebraicSphere.h>
 
 namespace Ponca
 {

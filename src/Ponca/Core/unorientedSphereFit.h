@@ -8,7 +8,7 @@
 
 #pragma once
 
-#include "algebraicSphere.h"
+#include <Ponca/Core/algebraicSphere.h>
 
 #include <Eigen/Dense>
 
