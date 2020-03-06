@@ -30,6 +30,7 @@ set(ponca_core_INCLUDE
     "Ponca/Core/sphereFit.hpp"
     "Ponca/Core/unorientedSphereFit.h"
     "Ponca/Core/unorientedSphereFit.hpp"
+    "Ponca/Core/utilsEigen.h"
     "Ponca/Core/weightFunc.h"
     "Ponca/Core/weightFunc.hpp"
     "Ponca/Core/weightKernel.h")

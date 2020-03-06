@@ -34,7 +34,7 @@ CovariancePlaneFit<DataPoint, _WFunctor, T>::addNeighbor(const DataPoint& _nei)
     {
       m_cog  += w * q;
       m_sumW += w;
-      m_cov  += w * q * q.transpose();
+      m_cov  += covarianceAccumulate (q, w);
 
       ++(Base::m_nbNeighbors);
       return true;
@@ -60,7 +60,8 @@ CovariancePlaneFit<DataPoint, _WFunctor, T>::finalize ()
     m_cog = m_cog/m_sumW;
 
     // Center the covariance on the centroid
-    m_cov = m_cov/m_sumW - m_cog * m_cog.transpose();
+    MatrixType tmp = m_cov.template selfadjointView<Eigen::Lower>();
+    m_cov = tmp/m_sumW - m_cog * m_cog.transpose();
 
 #ifdef __CUDACC__
     m_solver.computeDirect(m_cov);
@@ -150,7 +151,7 @@ CovariancePlaneDer<DataPoint, _WFunctor, T, Type>::addNeighbor(const DataPoint  
         m_dSumW += dw;
         m_dCog  += q * dw;
         for(int k=0; k<NbDerivatives; ++k)
-          m_dCov[k]  += dw[k] * q * q.transpose();
+          m_dCov[k]  += covarianceAccumulate (q, dw[k]);
 
         return true;
     }
@@ -176,10 +177,12 @@ CovariancePlaneDer<DataPoint, _WFunctor, T, Type>::finalize()
       if(shifted_eivals(0) < consider_as_zero || shifted_eivals(0) < epsilon * shifted_eivals(1)) shifted_eivals(0) = 0;
       if(shifted_eivals(1) < consider_as_zero) shifted_eivals(1) = 0;
 
+      MatrixType tmp;
       for(int k=0; k<NbDerivatives; ++k)
       {
         // Finalize the computation of dCov.
-        m_dCov[k] = m_dCov[k]
+        tmp = m_dCov[k].template selfadjointView<Eigen::Lower>();
+        m_dCov[k] = tmp
                   - Base::m_cog * m_dCog.col(k).transpose()
                   - m_dCog.col(k) * Base::m_cog.transpose()
                   + m_dSumW[k] * Base::m_cog * Base::m_cog.transpose();

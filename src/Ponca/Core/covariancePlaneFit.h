@@ -9,6 +9,7 @@
 
 #pragma once
 
+#include <Ponca/Core/utilsEigen.h>
 #include <Ponca/Core/plane.h>
 
 #include <Eigen/Eigenvalues>
