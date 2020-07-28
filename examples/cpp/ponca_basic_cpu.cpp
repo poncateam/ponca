@@ -15,7 +15,13 @@ file, You can obtain one at http://mozilla.org/MPL/2.0/.
 #include <algorithm>
 #include <iostream>
 
-#include "ponca.h"
+#include <Ponca/Core/basket.h>
+#include <Ponca/Core/gls.h>
+#include <Ponca/Core/orientedSphereFit.h>
+#include <Ponca/Core/unorientedSphereFit.h>
+#include <Ponca/Core/weightFunc.h>
+#include <Ponca/Core/weightKernel.h>
+
 #include "Eigen/Eigen"
 
 #include <vector>
@@ -67,60 +73,60 @@ typedef Basket<MyPoint,WeightFunc,OrientedSphereFit, GLSParam, OrientedSphereSpa
 template<typename Fit>
 void test_fit(Fit& _fit, vector<MyPoint>& _vecs, const VectorType& _p)
 {
-	Scalar tmax = 100.0;
+  Scalar tmax = 100.0;
 
-	// Set a weighting function instance
-	_fit.setWeightFunc(WeightFunc(tmax));
+  // Set a weighting function instance
+  _fit.setWeightFunc(WeightFunc(tmax));
 
-	// Set the evaluation position
-	_fit.init(_p);
+  // Set the evaluation position
+  _fit.init(_p);
 
-	// Iterate over samples and _fit the primitive
-	for(vector<MyPoint>::iterator it = _vecs.begin(); it != _vecs.end(); it++)
+  // Iterate over samples and _fit the primitive
+  for(vector<MyPoint>::iterator it = _vecs.begin(); it != _vecs.end(); it++)
     {
                 _fit.addNeighbor(*it);
     }
 
-	//finalize fitting
-	_fit.finalize();
+  //finalize fitting
+  _fit.finalize();
 
-	//Test if the fitting ended without errors
-	if(_fit.isStable())
-	{
-		cout << "Center: [" << _fit.center().transpose() << "] ;  radius: " << _fit.radius() << endl;
+  //Test if the fitting ended without errors
+  if(_fit.isStable())
+  {
+    cout << "Center: [" << _fit.center().transpose() << "] ;  radius: " << _fit.radius() << endl;
 
-		cout << "Pratt normalization"
-			<< (_fit.applyPrattNorm() ? " is now done." : " has already been applied.") << endl;
+    cout << "Pratt normalization"
+      << (_fit.applyPrattNorm() ? " is now done." : " has already been applied.") << endl;
 
-		// Play with fitting output
-		cout << "Value of the scalar field at the initial point: "
-			<< _p.transpose()
-			<< " is equal to " << _fit.potential(_p)
-			<< endl;
+    // Play with fitting output
+    cout << "Value of the scalar field at the initial point: "
+      << _p.transpose()
+      << " is equal to " << _fit.potential(_p)
+      << endl;
 
-		cout << "It's gradient at this place is equal to: "
-			<< _fit.primitiveGradient(_p).transpose()
-			<< endl;
+    cout << "It's gradient at this place is equal to: "
+      << _fit.primitiveGradient(_p).transpose()
+      << endl;
 
-		cout << "Fitted Sphere: " << endl
-			<< "\t Tau  : "      << _fit.tau()             << endl
-			<< "\t Eta  : "      << _fit.eta().transpose() << endl
-			<< "\t Kappa: "      << _fit.kappa()           << endl;
+    cout << "Fitted Sphere: " << endl
+      << "\t Tau  : "      << _fit.tau()             << endl
+      << "\t Eta  : "      << _fit.eta().transpose() << endl
+      << "\t Kappa: "      << _fit.kappa()           << endl;
 
-		cout << "The initial point " << _p.transpose()              << endl
-			<< "Is projected at   " << _fit.project(_p).transpose() << endl;
-	}
+    cout << "The initial point " << _p.transpose()              << endl
+      << "Is projected at   " << _fit.project(_p).transpose() << endl;
+  }
 
 }
 
 int main()
 {
-	// set evaluation point and scale
-	VectorType p = VectorType::Random();
+  // set evaluation point and scale
+  VectorType p = VectorType::Random();
 
-	// init input data
-	int n = 10000;
-	vector<MyPoint> vecs (n);
+  // init input data
+  int n = 10000;
+  vector<MyPoint> vecs (n);
 
         for(int k=0; k<n; ++k)
     {
@@ -129,25 +135,25 @@ int main()
 
         p = vecs.at(0).pos();
 
-	std::cout << "====================\nOrientedSphereFit:\n";
-	Fit1 fit1;
-	test_fit(fit1, vecs, p);
+  std::cout << "====================\nOrientedSphereFit:\n";
+  Fit1 fit1;
+  test_fit(fit1, vecs, p);
 
-	std::cout << "\n\n====================\nUnorientedSphereFit:\n";
-	Fit2 fit2;
-	test_fit(fit2, vecs, p);
+  std::cout << "\n\n====================\nUnorientedSphereFit:\n";
+  Fit2 fit2;
+  test_fit(fit2, vecs, p);
 
-	std::cout << "\n\n====================\nUnorientedSphereFit:\n";
-	Fit3 fit3;
-	test_fit(fit3, vecs, p);
+  std::cout << "\n\n====================\nUnorientedSphereFit:\n";
+  Fit3 fit3;
+  test_fit(fit3, vecs, p);
 
-	if(fit3.isStable())
-	{
-		cout << "eigen values: "<< endl;
-		cout << fit3.GLSk1() << endl;
-		cout << fit3.GLSk2() << endl;
-		cout << "eigen vectors: "<< endl;
-		cout << fit3.GLSk1Direction() << endl << endl;
-		cout << fit3.GLSk2Direction() << endl;
-	}
+  if(fit3.isStable())
+  {
+    cout << "eigen values: "<< endl;
+    cout << fit3.GLSk1() << endl;
+    cout << fit3.GLSk2() << endl;
+    cout << "eigen vectors: "<< endl;
+    cout << fit3.GLSk1Direction() << endl << endl;
+    cout << fit3.GLSk2Direction() << endl;
+  }
 }

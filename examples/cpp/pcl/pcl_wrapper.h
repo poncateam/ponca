@@ -8,7 +8,8 @@
 
 #include <pcl/features/feature.h>
 
-#include "ponca.h"
+#include <Ponca/Core/defines.h>
+
 #include "Eigen/Eigen"
 
 /**

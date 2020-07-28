@@ -14,6 +14,12 @@
 #include "../common/testing.h"
 #include "../common/testUtils.h"
 
+#include <Ponca/Core/basket.h>
+#include <Ponca/Core/gls.h>
+#include <Ponca/Core/unorientedSphereFit.h>
+#include <Ponca/Core/weightFunc.h>
+#include <Ponca/Core/weightKernel.h>
+
 #include <vector>
 
 using namespace std;

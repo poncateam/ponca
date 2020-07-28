@@ -21,8 +21,11 @@ file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 #define EIGEN_DEFAULT_DENSE_INDEX_TYPE int
 
-//#include "Eigen/Core"
-#include "ponca.h"
+#include <Ponca/Core/basket.h>
+#include <Ponca/Core/gls.h>
+#include <Ponca/Core/orientedSphereFit.h>
+#include <Ponca/Core/weightFunc.h>
+#include <Ponca/Core/weightKernel.h>
 
 
 
@@ -323,8 +326,8 @@ __device__ VectorType getVector(const int _x,
 
 //! [kernel]
 __global__ void doGLS_kernel( int _imgw, int _imgh, int _scale,
-			      float _maxDepthDiff, float* _positions, float* _normals,
-			      float* _result)
+            float _maxDepthDiff, float* _positions, float* _normals,
+            float* _result)
 {
     int tx = threadIdx.x;
     int ty = threadIdx.y;
@@ -370,31 +373,31 @@ __global__ void doGLS_kernel( int _imgw, int _imgh, int _scale,
             {
                 int nx, ny; // neighbor ids
 
-		nx = x + dx;
-		ny = y + dy;
+    nx = x + dx;
+    ny = y + dy;
 
-		// Check image boundaries
-		if(nx >= 0 && ny >= 0 && nx < _imgw && ny < _imgh)
-		{
-		    ScreenSpacePoint::VectorType n = getVector(nx, ny, _imgw, _imgh, _normals);
-		    // add nei only when the normal is properly defined
-		    if(n.squaredNorm() != 0.f)
-		    {
-			// RGB to XYZ remapping
-			n =  2.f * n - one;
-			n.normalize();
+    // Check image boundaries
+    if(nx >= 0 && ny >= 0 && nx < _imgw && ny < _imgh)
+    {
+        ScreenSpacePoint::VectorType n = getVector(nx, ny, _imgw, _imgh, _normals);
+        // add nei only when the normal is properly defined
+        if(n.squaredNorm() != 0.f)
+        {
+      // RGB to XYZ remapping
+      n =  2.f * n - one;
+      n.normalize();
 
-			ScreenSpacePoint::ScreenVectorType xyCoord;
-			xyCoord[0] = dx;
-			xyCoord[1] = dy;
+      ScreenSpacePoint::ScreenVectorType xyCoord;
+      xyCoord[0] = dx;
+      xyCoord[1] = dy;
 
-			ScreenSpacePoint::VectorType p = getVector(nx, ny, _imgw, _imgh, _positions) * 2.f - one;
-			// GLS computation
-			fit.addNeighbor(ScreenSpacePoint(p, n, xyCoord));
-		    }
-		}
-	    }
-	}
+      ScreenSpacePoint::VectorType p = getVector(nx, ny, _imgw, _imgh, _positions) * 2.f - one;
+      // GLS computation
+      fit.addNeighbor(ScreenSpacePoint(p, n, xyCoord));
+        }
+    }
+      }
+  }
     }
 
     // closed form minimization

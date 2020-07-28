@@ -9,8 +9,9 @@
 
 #pragma once
 
+#include <Ponca/Core/plane.h>
+
 #include <Eigen/Eigenvalues>
-#include "plane.h"
 
 namespace Ponca
 {

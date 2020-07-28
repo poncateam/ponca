@@ -1,7 +1,7 @@
 /*
  This Source Code Form is subject to the terms of the Mozilla Public
  License, v. 2.0. If a copy of the MPL was not distributed with this
- file, You can obtain one at http://mozilla.org/MPL/2.0/. 
+ file, You can obtain one at http://mozilla.org/MPL/2.0/.
 */
 
 
@@ -13,38 +13,43 @@
 #include "../common/testing.h"
 #include "../common/testUtils.h"
 
+#include <Ponca/Core/basket.h>
+#include <Ponca/Core/plane.h>
+#include <Ponca/Core/weightFunc.h>
+#include <Ponca/Core/weightKernel.h>
+
 #include <vector>
 
 using namespace std;
 using namespace Ponca;
 
-template<typename DataPoint, typename Fit, typename WeightFunc> 
+template<typename DataPoint, typename Fit, typename WeightFunc>
 void testFunction()
 {
     // Define related structure
     typedef typename DataPoint::Scalar Scalar;
     typedef typename DataPoint::VectorType VectorType;
-    
+
     Scalar epsilon = testEpsilon<Scalar>();
     VectorType query = VectorType::Random();
-    
+
     Fit f;
     f.setPlane(VectorType::Random(), query);
 
     // Test that the point on the plane returns a potential of 0
     VERIFY( f.potential(query) <= epsilon);
-    
+
     // Use a random position in space
     query = VectorType::Random();
-    
+
     // Check if we get the same point when projecting points x and x+gradient.
     VectorType proj1 = f.project( query );
     VectorType proj2 = f.project( query + f.primitiveGradient( query ) );
-    
+
     VERIFY( ( proj1 - proj2 ).norm() <= epsilon);
 
     // Check that the potential value is equal to the distance between the query
-    // and its projection    
+    // and its projection
     VERIFY( std::abs( std::abs(f.potential(query)) - (query - proj1).norm()) <= epsilon);
 
     // Check that the potential value of a projected point is equal to 0
@@ -58,8 +63,8 @@ void callSubTests()
 
     // We test only primitive functions and not the fitting procedure
     typedef DistWeightFunc<Point, SmoothWeightKernel<Scalar> > WeightFunc;
-    typedef Basket<Point, WeightFunc, CompactPlane> Plane;        
-    
+    typedef Basket<Point, WeightFunc, CompactPlane> Plane;
+
     for(int i = 0; i < g_repeat; ++i)
     {
         CALL_SUBTEST(( testFunction<Point, Plane, WeightFunc>() ));

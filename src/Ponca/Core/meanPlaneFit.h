@@ -8,7 +8,7 @@
 
 #pragma once
 
-#include "plane.h"
+#include <Ponca/Core/plane.h>
 
 namespace Ponca
 {

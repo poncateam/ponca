@@ -13,7 +13,7 @@
 #pragma once
 
 #include "Eigen/Eigen"
-#include "ponca.h"
+#include "Ponca/Core/defines.h"
 
 #include <vector>
 

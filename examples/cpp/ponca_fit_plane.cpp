@@ -15,7 +15,11 @@ file, You can obtain one at http://mozilla.org/MPL/2.0/.
 #include <algorithm>
 #include <iostream>
 
-#include "ponca.h"
+#include <Ponca/Core/basket.h>
+#include <Ponca/Core/covariancePlaneFit.h>
+#include <Ponca/Core/weightFunc.h>
+#include <Ponca/Core/weightKernel.h>
+
 #include "Eigen/Eigen"
 
 #include <vector>
@@ -65,22 +69,22 @@ typedef Basket<MyPoint, WeightFunc, CompactPlane, CovariancePlaneFit> CovPlaneFi
 template<typename Fit>
 void test_fit(Fit& _fit, vector<MyPoint>& _vecs, const VectorType& _p)
 {
-	Scalar tmax = 100.0;
+  Scalar tmax = 100.0;
 
-	// Set a weighting function instance
-	_fit.setWeightFunc(WeightFunc(tmax));
+  // Set a weighting function instance
+  _fit.setWeightFunc(WeightFunc(tmax));
 
-	// Set the evaluation position
-	_fit.init(_p);
+  // Set the evaluation position
+  _fit.init(_p);
 
-	// Iterate over samples and _fit the primitive
-	for(vector<MyPoint>::iterator it = _vecs.begin(); it != _vecs.end(); it++)
+  // Iterate over samples and _fit the primitive
+  for(vector<MyPoint>::iterator it = _vecs.begin(); it != _vecs.end(); it++)
     {
                 _fit.addNeighbor(*it);
     }
 
-	// The plane fitting is a multipass method
-	if(_fit.finalize() == NEED_OTHER_PASS)
+  // The plane fitting is a multipass method
+  if(_fit.finalize() == NEED_OTHER_PASS)
     {
         // Iterate over samples and _fit the primitive
         for(vector<MyPoint>::iterator it = _vecs.begin(); it != _vecs.end(); it++)
@@ -115,12 +119,12 @@ void test_fit(Fit& _fit, vector<MyPoint>& _vecs, const VectorType& _p)
 
 int main()
 {
-	// set evaluation point and scale
-	VectorType p = VectorType::Random();
+  // set evaluation point and scale
+  VectorType p = VectorType::Random();
 
-	// init input data
-	int n = 10000;
-	vector<MyPoint> vecs (n);
+  // init input data
+  int n = 10000;
+  vector<MyPoint> vecs (n);
 
         for(int k=0; k<n; ++k)
     {
@@ -129,7 +133,7 @@ int main()
 
         p = vecs.at(0).pos();
 
-	std::cout << "====================\nCovariancePlaneFit:\n";
-	CovPlaneFit fit;
-	test_fit(fit, vecs, p);
+  std::cout << "====================\nCovariancePlaneFit:\n";
+  CovPlaneFit fit;
+  test_fit(fit, vecs, p);
 }
