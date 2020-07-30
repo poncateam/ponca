@@ -6,7 +6,7 @@
 
 #pragma once
 
-#include <Ponca/Core/defines.h>
+#include "./defines.h"
 
 /*!
     \file weightKernel.h Define 1D weight kernel functors

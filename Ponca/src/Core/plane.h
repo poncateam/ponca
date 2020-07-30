@@ -8,7 +8,8 @@
 
 #pragma once
 
-#include <Ponca/Core/primitive.h> // PrimitiveBase
+#include "./defines.h"
+#include "./primitive.h"
 #include <Eigen/Geometry>
 
 namespace Ponca

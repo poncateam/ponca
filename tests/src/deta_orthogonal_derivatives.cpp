@@ -11,7 +11,13 @@
 */
 
 #include "../common/testing.h"
-#include "ponca.h"
+
+#include <Ponca/src/Core/basket.h>
+#include <Ponca/src/Core/orientedSphereFit.h>
+#include <Ponca/src/Core/gls.h>
+#include <Ponca/src/Core/weightFunc.h>
+#include <Ponca/src/Core/weightKernel.h>
+
 #include "Eigen/Eigen"
 
 #include <algorithm>

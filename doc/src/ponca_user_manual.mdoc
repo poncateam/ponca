@@ -50,7 +50,6 @@ namespace Ponca
    \code
    enable_language(CUDA)
    add_executable(ponca_ssgls "ponca_ssgls.cu")
-   target_include_directories(ponca_ssgls PRIVATE ${PONCA_ROOT_DIR})
    target_compile_options(ponca_ssgls PRIVATE --expt-relaxed-constexpr)
    \endcode
    - C++03 Compliant: right now we *do not* use C++11 in Ponca when compiled with CUDA, to maximize compatibility across platforms and Cuda versions.

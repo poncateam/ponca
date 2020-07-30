@@ -6,8 +6,8 @@
 
 #pragma once
 
-#include <Ponca/Core/defines.h>
-#include <Ponca/Core/curvature.h>
+#include "./defines.h"
+#include "./curvature.h"
 
 namespace Ponca
 {

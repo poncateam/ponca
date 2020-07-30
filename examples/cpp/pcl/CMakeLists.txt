@@ -30,7 +30,7 @@ else()
             )
 
         target_link_directories(ponca_pclwrapper PUBLIC ${PCL_LIBRARY_DIRS})
-        target_compile_definitions(ponca_pclwrapper PUBLIC ${PCL_DEFINITIONS})
+#        target_compile_definitions(ponca_pclwrapper PUBLIC ${PCL_DEFINITIONS})
         target_link_libraries(ponca_pclwrapper PUBLIC ${PCL_LIBRARIES})
         target_include_directories(ponca_pclwrapper PRIVATE ${PONCA_ROOT_DIR})
         target_include_directories(ponca_pclwrapper PUBLIC ${PCL_INCLUDE_DIRS})

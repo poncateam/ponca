@@ -16,11 +16,11 @@ check_language(CUDA)
     endif()
 
 
-
     find_package(PNG QUIET)
     if ( PNG_FOUND )
+
         add_executable(ponca_ssgls "ponca_ssgls.cu")
-        target_include_directories(ponca_ssgls PRIVATE ${PONCA_ROOT_DIR})
+        target_include_directories(ponca_ssgls PRIVATE ${PONCA_src_ROOT})
         target_link_libraries(ponca_ssgls PRIVATE PNG::PNG)
         target_compile_options(ponca_ssgls PRIVATE --expt-relaxed-constexpr)
         add_dependencies(ponca-examples ponca_ssgls)

@@ -6,8 +6,6 @@
 
 #pragma once
 
-// First inclue Eigen Core
-#include <Eigen/Core>
-#include <Ponca/core.h>
+#include <Ponca/Core>
 
 // Include Ponca Algorithms
