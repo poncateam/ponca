@@ -85,7 +85,7 @@ install(EXPORT PoncaTargets
   NAMESPACE
     Ponca::
   DESTINATION
-    ${Ponca_INSTALL_LIB_DIR}/cmake
+    lib/cmake
 )
 
 
