@@ -14,6 +14,9 @@ OPTION( PONCA_CONFIGURE_TESTS    "Include compilation rules for built-in tests" 
 ## END USER OPTIONS
 ####################################################################################################
 
+if(POLICY CMP0076)
+    cmake_policy(SET CMP0076 NEW)
+endif()
 
 # add this options before PROJECT keyword
 set(CMAKE_DISABLE_SOURCE_CHANGES ON)
