@@ -28,8 +28,9 @@ macro(ponca_add_target_property target prop value)
   set_target_properties(${target} PROPERTIES ${prop} "${previous} ${value}")
 endmacro(ponca_add_target_property)
 
-macro(ponca_configure_coverage target)
-    if(PONCA_COVERAGE_TESTING AND CMAKE_CXX_COMPILER_ID MATCHES "GNU|Clang")
+macro(ponca_configure_compiler_flags target)
+  if( CMAKE_CXX_COMPILER_ID MATCHES "GNU|Clang")
+    if(PONCA_COVERAGE_TESTING)
       # Add required flags (GCC & LLVM/Clang)
       target_compile_options(${target} PUBLIC
         -O0        # no optimization
@@ -43,7 +44,10 @@ macro(ponca_configure_coverage target)
       else()
         target_link_libraries(${target} PUBLIC --coverage)
       endif()
+    else() # no coverage: enable march
+        target_compile_options(${target} PUBLIC -march=native)
     endif()
+  endif()
 endmacro()
 
 # Macro to add a test
@@ -98,7 +102,7 @@ macro(add_multi_test filename)
         target_link_libraries(${testname}_${suffix} PUBLIC OpenMP::OpenMP_CXX)
       endif(OpenMP_CXX_FOUND)
 
-      ponca_configure_coverage(${testname}_${suffix})
+      ponca_configure_compiler_flags(${testname}_${suffix})
 
       add_dependencies(${testname} ${testname}_${suffix})
       add_test(${testname}_${suffix} ${testname}_${suffix})
@@ -112,7 +116,7 @@ macro(add_multi_test filename)
       target_link_libraries(${testname} PUBLIC OpenMP::OpenMP_CXX)
     endif(OpenMP_CXX_FOUND)
 
-    ponca_configure_coverage(${testname})
+    ponca_configure_compiler_flags(${testname})
 
     add_dependencies(buildtests ${testname})
     add_test(${testname} ${testname})
