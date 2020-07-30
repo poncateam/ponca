@@ -1,5 +1,7 @@
 cmake_minimum_required(VERSION 3.10)
 
+project( Ponca VERSION 0.1)
+
 
 ####################################################################################################
 ## USER OPTIONS
