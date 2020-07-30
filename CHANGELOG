@@ -1,5 +1,21 @@
-Patate changelog
+Ponca changelog
 
+
+--------------------------------------------------------------------------------
+v.0.2 (wip - not released yet)
+  - Major changes from PR#9
+    - Rename Core module as Fitting
+    - New public entry points are the header files <Ponca/Ponca> and <Ponca/Fitting>
+    - Add Package Common
+    - cmake package is now relocable
+
+--------------------------------------------------------------------------------
+v.0.1
+- Migrate from Patate: update naming
+
+--------------------------------------------------------------------------------
+Patate changelog
+--------------------------------------------------------------------------------
 
 --------------------------------------------------------------------------------
 v.0.5
