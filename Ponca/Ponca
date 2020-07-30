@@ -6,6 +6,4 @@
 
 #pragma once
 
-#include <Ponca/Core>
-
-// Include Ponca Algorithms
+#include <Ponca/Fitting>

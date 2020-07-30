@@ -12,11 +12,11 @@
 
 #include "../common/testing.h"
 
-#include <Ponca/src/Core/basket.h>
-#include <Ponca/src/Core/orientedSphereFit.h>
-#include <Ponca/src/Core/gls.h>
-#include <Ponca/src/Core/weightFunc.h>
-#include <Ponca/src/Core/weightKernel.h>
+#include <Ponca/src/Fitting/basket.h>
+#include <Ponca/src/Fitting/orientedSphereFit.h>
+#include <Ponca/src/Fitting/gls.h>
+#include <Ponca/src/Fitting/weightFunc.h>
+#include <Ponca/src/Fitting/weightKernel.h>
 
 #include "Eigen/Eigen"
 

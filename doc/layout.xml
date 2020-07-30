@@ -13,21 +13,17 @@
         <!--<tab type="usergroup" url="@ref overview_page" title="Overview"> </tab>-->
         <!--<tab type="usergroup" url="user_manual_page.html" title="Grenaille">-->
                 <tab type="usergroup" url="user_manual_page.html" title="User Manual">
-                        <tab type="user" visible="yes" url="@ref user_manual_intro" title="Introduction"/>
-                        <tab type="user" visible="yes" url="@ref user_manual_datas" title="Data Samples"/>
-                        <tab type="user" visible="yes" url="@ref user_manual_Fitting" title="Fitting Process"/>
-                        <tab type="user" visible="yes" url="@ref user_manual_outputs" title="Basic Outputs"/>
-                        <tab type="user" visible="yes" url="@ref user_manual_cuvature" title="Computing Curvatures"/>
-                        <tab type="user" visible="yes" url="@ref user_manual_going_further" title="Going Further"/>
                 </tab>
 
                 <tab type="usergroup" url="@ref example_page" title="Examples">
+                    <tab type="usergroup" url="@ref fitting" title="Fitting Module">
                         <tab type="user" visible="yes" url="@ref example_cxx_basic_page" title="Basic example"/>
                         <tab type="user" visible="yes" url="@ref example_cxx_fit_plane_page" title="Plane fitting"/>
                         <tab type="user" visible="yes" url="@ref example_cxx_binding_page" title="External data-structure binding"/>
                         <tab type="user" visible="yes" url="@ref example_cxx_pcl_page" title="PCL Wrapper for surface curvature"/>
                         <tab type="user" visible="yes" url="@ref example_cu_ssc_page" title="C++/CUDA screen space curvature"/>
                         <tab type="user" visible="yes" url="@ref example_python_ssc_page" title="Python/CUDA screen space curvature"/>
+                    </tab>
                 </tab>
         <!--</tab>-->
     <tab type="pages" visible="no" title="" intro=""/>

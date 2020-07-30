@@ -81,9 +81,9 @@ message(STATUS "Eigen3 root path: ${EIGEN3_INCLUDE_DIR}")
 ################################################################################
 set(Ponca_EXPORT_TARGET_DIR \${CMAKE_CURRENT_LIST_DIR})
 
-install(EXPORT CoreTargets
+install(EXPORT FittingTargets
   FILE
-    PoncaCoreTargets.cmake
+    PoncaFittingTargets.cmake
   NAMESPACE
     Ponca::
   DESTINATION
@@ -131,11 +131,11 @@ install(
 
 
 ################################################################################
-# Add core code source, so it is visible in dev environements                  #
+# Add code source, so it is visible in dev environements                       #
 ################################################################################
 
 set(PONCA_src_ROOT "${CMAKE_CURRENT_SOURCE_DIR}/")
-include(PoncaConfigureCore)
+include(PoncaConfigureFitting)
 
 install(DIRECTORY ${PONCA_src_ROOT}/Ponca
     DESTINATION include/

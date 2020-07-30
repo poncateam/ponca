@@ -7,6 +7,17 @@
 
 #pragma once
 
+/**
+  *
+  * \defgroup fitting Fitting module
+  * \brief This modules includes classes and methods for primitive fitting. See reference manual below.
+  * @{
+  *  \defgroup fittingExperimental Fitting-Experimental features
+  *     @{ @}
+  * @}
+  *
+  */
+
 ////////////////////////////////////////////////////////////////////////////////
 // Compatibility types, macros, functions
 //

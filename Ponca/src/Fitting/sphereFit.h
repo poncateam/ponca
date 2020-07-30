@@ -20,6 +20,8 @@ namespace Ponca
     \inherit Concept::FittingProcedureConcept
 
     \see AlgebraicSphere
+
+    \ingroup fitting
 */
 template < class DataPoint, class _WFunctor, typename T = void >
 class SphereFit : public AlgebraicSphere<DataPoint, _WFunctor>

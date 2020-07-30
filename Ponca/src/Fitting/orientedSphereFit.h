@@ -1,35 +1,36 @@
 /*
- Copyright (C) 2013 Gael Guennebaud <gael.guennebaud@inria.fr>
-
- This Source Code Form is subject to the terms of the Mozilla Public
- License, v. 2.0. If a copy of the MPL was not distributed with this
- file, You can obtain one at http://mozilla.org/MPL/2.0/.
+This Source Code Form is subject to the terms of the Mozilla Public
+License, v. 2.0. If a copy of the MPL was not distributed with this
+file, You can obtain one at http://mozilla.org/MPL/2.0/.
 */
 
 #pragma once
 
 #include "./algebraicSphere.h"
 
-#include <Eigen/Dense>
-
 namespace Ponca
 {
-/*!
-    \brief Algebraic Sphere fitting procedure on point sets with non-oriented normals
 
-    Method published in \cite Chen:2013:NOMG.
+/*!
+    \brief Algebraic Sphere fitting procedure on oriented point sets
+
+    Method published in \cite Guennebaud:2007:APSS.
 
     \inherit Concept::FittingProcedureConcept
 
-    \see class AlgebraicSphere, class OrientedSphereFit
+    \see AlgebraicSphere
+
+    \ingroup fitting
 */
 template < class DataPoint, class _WFunctor, typename T = void >
-class UnorientedSphereFit : public AlgebraicSphere<DataPoint, _WFunctor>
+class OrientedSphereFit : public AlgebraicSphere<DataPoint, _WFunctor>
 {
 private:
+
     typedef AlgebraicSphere<DataPoint, _WFunctor> Base;
 
 public:
+
     /*! \brief Scalar type inherited from DataPoint*/
     typedef typename Base::Scalar     Scalar;
     /*! \brief Vector type inherited from DataPoint*/
@@ -37,52 +38,46 @@ public:
     /*! \brief Weight Function*/
     typedef _WFunctor                 WFunctor;
 
-protected:
+ protected:
 
-    enum
-    {
-        Dim = VectorType::SizeAtCompileTime //!< Dimension of the ambient space
-    };
-    typedef Eigen::Matrix<Scalar, Dim+1, 1>      VectorB;
-    typedef Eigen::Matrix<Scalar, Dim+1, Dim+1>  MatrixBB;
-
-    MatrixBB    m_matA;     /*!< \brief The accumulated covariance matrix */
-    VectorType  m_sumP;     /*!< \brief Sum of the relative positions */
-    Scalar      m_sumDotPP, /*!< \brief Sum of the squared relative positions */
-                m_sumW;     /*!< \brief Sum of queries weight */
+    // computation data
+    VectorType  m_sumN, /*!< \brief Sum of the normal vectors */
+                m_sumP; /*!< \brief Sum of the relative positions */
+    Scalar  m_sumDotPN, /*!< \brief Sum of the dot product betwen relative positions and normals */
+            m_sumDotPP, /*!< \brief Sum of the squared relative positions */
+            m_sumW,     /*!< \brief Sum of queries weight */
+            m_nume,     /*!< \brief Numerator of the quadratic parameter (excluding the 0.5 coefficient)   */
+            m_deno;     /*!< \brief Denominator of the quadratic parameter (excluding the 0.5 coefficient) */
 
     WFunctor m_w;      /*!< \brief Weight function (must inherits BaseWeightFunc) */
 
-
 public:
-    /*! \brief Default constructor */
-    PONCA_MULTIARCH inline UnorientedSphereFit()
-        : Base(){}
 
+    /*! \brief Default constructor */
+    PONCA_MULTIARCH inline OrientedSphereFit()
+        : Base(){}
 
     /**************************************************************************/
     /* Initialization                                                         */
     /**************************************************************************/
     /*! \copydoc Concept::FittingProcedureConcept::setWeightFunc() */
-    PONCA_MULTIARCH inline void setWeightFunc(const WFunctor& _w) { m_w  = _w; }
+    PONCA_MULTIARCH inline void setWeightFunc (const WFunctor& _w) { m_w  = _w; }
 
     /*! \copydoc Concept::FittingProcedureConcept::init() */
-    PONCA_MULTIARCH inline void init(const VectorType& _evalPos);
+    PONCA_MULTIARCH inline void init (const VectorType& _evalPos);
 
 
     /**************************************************************************/
     /* Processing                                                             */
     /**************************************************************************/
     /*! \copydoc Concept::FittingProcedureConcept::addNeighbor() */
-    PONCA_MULTIARCH inline bool addNeighbor(const DataPoint& _nei);
+    PONCA_MULTIARCH inline bool addNeighbor(const DataPoint &_nei);
 
     /*! \copydoc Concept::FittingProcedureConcept::finalize() */
     PONCA_MULTIARCH inline FIT_RESULT finalize();
 
-}; // class UnorientedSphereFit
+}; //class OrientedSphereFit
 
-
-#ifdef TOBEIMPLEMENTED
 
 namespace internal
 {
@@ -103,8 +98,8 @@ namespace internal
     derDimension(), and the differentiation type by isScaleDer() and
     isSpaceDer().
 */
-template < class DataPoint, class _WFunctor, typename T, int Type>
-class UnorientedSphereDer : public T
+template < class DataPoint, class _WFunctor, typename T, int _Type>
+class OrientedSphereDer : public T
 {
 private:
     typedef T Base; /*!< \brief Generic base type */
@@ -113,7 +108,8 @@ protected:
     enum
     {
         Check = Base::PROVIDES_ALGEBRAIC_SPHERE, /*!< \brief Needs Algebraic Sphere */
-        PROVIDES_ALGEBRAIC_SPHERE_DERIVATIVE     /*!< \brief Provides Algebraic Sphere derivative*/
+        PROVIDES_ALGEBRAIC_SPHERE_DERIVATIVE,    /*!< \brief Provides Algebraic Sphere derivative*/
+        PROVIDES_NORMAL_DERIVATIVE
     };
 
 public:
@@ -122,19 +118,29 @@ public:
     typedef typename Base::WFunctor   WFunctor;   /*!< \brief Weight Function*/
 
 #define GLS_DER_NB_DERIVATIVES(TYPE,DIM) ((TYPE & FitScaleDer) ? 1 : 0 ) + ((TYPE & FitSpaceDer) ? DIM : 0)
+#define GLS_DER_STORAGE_ORDER(TYPE)      ((TYPE & FitSpaceDer) ? Eigen::RowMajor : Eigen::ColMajor )
 
     /*! \brief Static array of scalars with a size adapted to the differentiation type */
-    typedef Eigen::Matrix <Scalar, DataPoint::Dim, GLS_DER_NB_DERIVATIVES(Type,DataPoint::Dim)> VectorArray;
-    /*! \brief Static array of scalars with a size adapted to the differentiation type */
-    typedef Eigen::Matrix <Scalar, 1, GLS_DER_NB_DERIVATIVES(Type,DataPoint::Dim)> ScalarArray;
+    typedef Eigen::Matrix < Scalar,
+        DataPoint::Dim,
+        GLS_DER_NB_DERIVATIVES(_Type,DataPoint::Dim),
+        GLS_DER_STORAGE_ORDER(_Type) > VectorArray;
 
-private:
+    /*! \brief Static array of scalars with a size adapted to the differentiation type */
+    typedef Eigen::Matrix < Scalar,
+                            1,
+                            GLS_DER_NB_DERIVATIVES(_Type,DataPoint::Dim)/*,
+                            GLS_DER_STORAGE_ORDER(Type)*/ > ScalarArray;
+
+protected:
     // computation data
     VectorArray m_dSumN,     /*!< \brief Sum of the normal vectors with differenciated weights */
                 m_dSumP;     /*!< \brief Sum of the relative positions with differenciated weights*/
     ScalarArray m_dSumDotPN, /*!< \brief Sum of the dot product betwen relative positions and normals with differenciated weights */
                 m_dSumDotPP, /*!< \brief Sum of the squared relative positions with differenciated weights */
-                m_dSumW;     /*!< \brief Sum of queries weight with differenciated weights */
+                m_dSumW,     /*!< \brief Sum of queries weight with differenciated weights */
+                m_dNume,     /*!< \brief Differenciation of the numerator of the quadratic parameter   */
+                m_dDeno;     /*!< \brief Differenciation of the denominator of the quadratic parameter */
 
 public:
     // results
@@ -146,69 +152,86 @@ public:
     /* Initialization                                                       */
     /************************************************************************/
     /*! \see Concept::FittingProcedureConcept::init() */
-    PONCA_MULTIARCH void init(const VectorType& _evalPos);
+    PONCA_MULTIARCH void init       (const VectorType &evalPos);
 
     /************************************************************************/
     /* Processing                                                           */
     /************************************************************************/
     /*! \see Concept::FittingProcedureConcept::addNeighbor() */
-    PONCA_MULTIARCH bool addNeighbor(const DataPoint& _nei);
+    PONCA_MULTIARCH bool addNeighbor(const DataPoint  &nei);
     /*! \see Concept::FittingProcedureConcept::finalize() */
-    PONCA_MULTIARCH FIT_RESULT finalize();
+    PONCA_MULTIARCH FIT_RESULT finalize   ();
 
 
     /**************************************************************************/
     /* Use results                                                            */
     /**************************************************************************/
+
+    /*! \brief Returns the derivatives of the scalar field at the evaluation point */
+    PONCA_MULTIARCH inline ScalarArray dPotential() const;
+
+    /*! \brief Returns the derivatives of the primitive normal */
+    PONCA_MULTIARCH inline VectorArray dNormal() const;
+
+    /*! \brief compute  the square of the Pratt norm derivative */
     PONCA_MULTIARCH inline ScalarArray dprattNorm2() const
     {
-        return Scalar(2.) * Base::m_ul.transpose() * m_dUl
-                - Scalar(4.) * Base::m_uq * m_dUc
-                - Scalar(4.) * Base::m_uc * m_dUq;
+        return   Scalar(2.) * Base::m_ul.transpose() * m_dUl
+            - Scalar(4.) * Base::m_uq * m_dUc
+            - Scalar(4.) * Base::m_uc * m_dUq;
     }
 
-    /*! \brief compute the square of the Pratt norm derivative for dimension d */
+    /*! \brief compute the square of the Pratt norm derivative for dimension _d */
     PONCA_MULTIARCH inline Scalar dprattNorm2(unsigned int _d) const
     {
-        return Scalar(2.) * m_dUl.col(_d).dot(Base::m_ul)
-                - Scalar(4.) * m_dUc.col(_d)[0]*Base::m_uq
-                - Scalar(4.) * m_dUq.col(_d)[0]*Base::m_uc;
+        return   Scalar(2.) * m_dUl.col(_d).dot(Base::m_ul)
+            - Scalar(4.) * m_dUc.col(_d)[0]*Base::m_uq
+            - Scalar(4.) * m_dUq.col(_d)[0]*Base::m_uc;
     }
 
-    /*! \brief compute the Pratt norm derivative for the dimension d */
+    /*! \brief compute the Pratt norm derivative for the dimension _d */
     PONCA_MULTIARCH inline Scalar dprattNorm(unsigned int _d) const
     {
         PONCA_MULTIARCH_STD_MATH(sqrt);
         return sqrt(dprattNorm2(_d));
     }
 
-    /*! \brief compute the Pratt norm derivative for the dimension d */
+    /*! \brief compute the Pratt norm derivative */
     PONCA_MULTIARCH inline Scalar dprattNorm() const
     {
         PONCA_MULTIARCH_STD_MATH(sqrt);
         return dprattNorm2().array().sqrt();
     }
 
-    /*! \brief State specified at compilation time to differenciate the fit in scale */
-    PONCA_MULTIARCH inline bool isScaleDer() const {return Type & FitScaleDer;}
-    /*! \brief State specified at compilation time to differenciate the fit in space */
-    PONCA_MULTIARCH inline bool isSpaceDer() const {return Type & FitSpaceDer;}
-    /*! \brief Number of dimensions used for the differentiation */
-    PONCA_MULTIARCH inline unsigned int derDimension() const { return GLS_DER_NB_DERIVATIVES(Type,DataPoint::Dim);}
-
     /*!
-        \brief Normalize the scalar field by the Pratt norm
+     * \brief State specified at compilation time to differenciate the fit in scale
+     * Brought by PROVIDES_ALGEBRAIC_SPHERE_DERIVATIVE and PROVIDES_NORMAL_DERIVATIVE
+     */
+    static constexpr PONCA_MULTIARCH inline bool isScaleDer() {return bool(_Type & FitScaleDer);}
+    /*!
+     * \brief State specified at compilation time to differenciate the fit in space
+     * Brought by PROVIDES_ALGEBRAIC_SPHERE_DERIVATIVE and PROVIDES_NORMAL_DERIVATIVE
+     */
+    static constexpr PONCA_MULTIARCH inline bool isSpaceDer() {return bool(_Type & FitSpaceDer);}
+    /*!
+     * \brief Number of dimensions used for the differentiation
+     * Brought by PROVIDES_ALGEBRAIC_SPHERE_DERIVATIVE and PROVIDES_NORMAL_DERIVATIVE
+     */
+    static constexpr PONCA_MULTIARCH inline unsigned int derDimension() { return GLS_DER_NB_DERIVATIVES(_Type,DataPoint::Dim);}
+
+    //! Normalize the scalar field by the Pratt norm
+    /*!
         \warning Requieres that isNormalized() return false
         \return false when the original sphere has already been normalized.
     */
     PONCA_MULTIARCH inline bool applyPrattNorm();
 
-}; // class UnorientedSphereFitDer
+}; //class OrientedSphereFitDer
 
 }// namespace internal
 
 /*!
-    \brief Differentiation in scale of the UnorientedSphereFit
+    \brief Differentiation in scale of the OrientedSphereFit
     \inherit Concept::FittingExtensionConcept
 
     Requierement:
@@ -217,17 +240,21 @@ public:
     \verbatim PROVIDES_ALGEBRAIC_SPHERE_SCALE_DERIVATIVE \endverbatim
 */
 template < class DataPoint, class _WFunctor, typename T>
-class UnorientedSphereScaleDer:public internal::UnorientedSphereDer<DataPoint, _WFunctor, T, internal::FitScaleDer>
+class OrientedSphereScaleDer:public internal::OrientedSphereDer<DataPoint, _WFunctor, T, internal::FitScaleDer>
 {
 protected:
     /*! \brief Inherited class */
-    typedef internal::UnorientedSphereDer<DataPoint, _WFunctor, T, internal::FitScaleDer> Base;
-    enum { PROVIDES_ALGEBRAIC_SPHERE_SCALE_DERIVATIVE };
+    typedef internal::OrientedSphereDer<DataPoint, _WFunctor, T, internal::FitScaleDer> Base;
+    enum
+    {
+      PROVIDES_ALGEBRAIC_SPHERE_SCALE_DERIVATIVE,
+      PROVIDES_NORMAL_SCALE_DERIVATIVE
+    };
 };
 
 
 /*!
-    \brief Spatial differentiation of the UnorientedSphereFit
+    \brief Spatial differentiation of the OrientedSphereFit
     \inherit Concept::FittingExtensionConcept
 
     Requierement:
@@ -236,42 +263,46 @@ protected:
     \verbatim PROVIDES_ALGEBRAIC_SPHERE_SPACE_DERIVATIVE \endverbatim
 */
 template < class DataPoint, class _WFunctor, typename T>
-class UnorientedSphereSpaceDer:public internal::UnorientedSphereDer<DataPoint, _WFunctor, T, internal::FitSpaceDer>
+class OrientedSphereSpaceDer:public internal::OrientedSphereDer<DataPoint, _WFunctor, T, internal::FitSpaceDer>
 {
 protected:
     /*! \brief Inherited class */
-    typedef internal::UnorientedSphereDer<DataPoint, _WFunctor, T, internal::FitSpaceDer> Base;
-    enum {  PROVIDES_ALGEBRAIC_SPHERE_SPACE_DERIVATIVE };
+    typedef internal::OrientedSphereDer<DataPoint, _WFunctor, T, internal::FitSpaceDer> Base;
+    enum
+    {
+      PROVIDES_ALGEBRAIC_SPHERE_SPACE_DERIVATIVE,
+      PROVIDES_NORMAL_SPACE_DERIVATIVE
+    };
 };
 
 
 /*!
-    \brief Differentiation both in scale and space of the UnorientedSphereFit
+    \brief Differentiation both in scale and space of the OrientedSphereFit
     \inherit Concept::FittingExtensionConcept
 
     Requierement:
     \verbatim PROVIDES_ALGEBRAIC_SPHERE \endverbatim
     Provide:
     \verbatim PROVIDES_ALGEBRAIC_SPHERE_SCALE_DERIVATIVE
-        PROVIDES_ALGEBRAIC_SPHERE_SPACE_DERIVATIVE
+    PROVIDES_ALGEBRAIC_SPHERE_SPACE_DERIVATIVE
     \endverbatim
 */
 template < class DataPoint, class _WFunctor, typename T>
-class UnorientedSphereScaleSpaceDer:public internal::UnorientedSphereDer<DataPoint, _WFunctor, T, internal::FitSpaceDer | internal::FitScaleDer>
+class OrientedSphereScaleSpaceDer:public internal::OrientedSphereDer<DataPoint, _WFunctor, T, internal::FitSpaceDer | internal::FitScaleDer>
 {
 protected:
     /*! \brief Inherited class */
-    typedef internal::UnorientedSphereDer<DataPoint, _WFunctor, T, internal::FitSpaceDer | internal::FitScaleDer> Base;
+    typedef internal::OrientedSphereDer<DataPoint, _WFunctor, T, internal::FitSpaceDer | internal::FitScaleDer> Base;
     enum
     {
         PROVIDES_ALGEBRAIC_SPHERE_SCALE_DERIVATIVE,
-        PROVIDES_ALGEBRAIC_SPHERE_SPACE_DERIVATIVE
+        PROVIDES_ALGEBRAIC_SPHERE_SPACE_DERIVATIVE,
+        PROVIDES_NORMAL_SCALE_DERIVATIVE,
+        PROVIDES_NORMAL_SPACE_DERIVATIVE
     };
 };
 
-#endif // end TOBEIMPLEMENTED
 
-#include "unorientedSphereFit.hpp"
+#include "orientedSphereFit.hpp"
 
 } //namespace Ponca
-

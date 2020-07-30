@@ -22,6 +22,8 @@ namespace Ponca
 
     Protected fields #m_eCurrentState and #m_nbNeighbors should be updated
     during the fitting process by the inheriting class.
+
+    \ingroup fitting
 */
 template < class DataPoint, class _WFunctor, typename T = void  >
 class PrimitiveBase

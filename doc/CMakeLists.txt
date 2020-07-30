@@ -19,8 +19,8 @@ if(DOXYGEN_FOUND)
       ${CMAKE_CURRENT_SOURCE_DIR}/src/concepts.mdoc
       ${CMAKE_CURRENT_SOURCE_DIR}/src/ponca_changelog.mdoc
       ${CMAKE_CURRENT_SOURCE_DIR}/src/ponca_user_manual.mdoc
+      ${CMAKE_CURRENT_SOURCE_DIR}/src/ponca_module_fitting.mdoc
       ${CMAKE_CURRENT_SOURCE_DIR}/src/ponca_getting_started.mdoc
-      ${CMAKE_CURRENT_SOURCE_DIR}/src/ponca_overview.mdoc
       ${CMAKE_CURRENT_SOURCE_DIR}/src/example.mdoc
       ${CMAKE_CURRENT_SOURCE_DIR}/src/example_cxx_basic.mdoc
       ${CMAKE_CURRENT_SOURCE_DIR}/src/example_cxx_binding.mdoc

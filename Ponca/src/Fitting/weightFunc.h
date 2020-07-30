@@ -22,6 +22,8 @@ namespace Ponca
     \inherit Concept::WeightFuncConcept
 
     \warning it assumes that the evaluation scale t is strictly positive
+
+    \ingroup fitting
 */
 template <class DataPoint, class WeightKernel>
 class DistWeightFunc

@@ -28,6 +28,8 @@ namespace Ponca
 
     \warning This class is valid only in 3D.
     \todo Add a compile time check for the working dimension
+
+    \ingroup fittingExperimental
 */
 template < class DataPoint, class _WFunctor, typename T>
 class CurvatureEstimator : public T

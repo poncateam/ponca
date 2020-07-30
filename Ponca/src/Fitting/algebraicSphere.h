@@ -39,7 +39,11 @@ namespace Ponca
     \verbatim PROVIDES_ALGEBRAIC_SPHERE \endverbatim
 
     \todo Deal with planar case (_uq == 0) and what about _ul == 0 ?
+
+    \ingroup fitting
 */
+
+
 template < class DataPoint, class _WFunctor, typename T = void  >
 class AlgebraicSphere : public PrimitiveBase<DataPoint, _WFunctor>
 {
@@ -258,5 +262,4 @@ public:
 }; //class AlgebraicSphere
 
 #include "algebraicSphere.hpp"
-
 }

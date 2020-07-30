@@ -15,11 +15,11 @@ file, You can obtain one at http://mozilla.org/MPL/2.0/.
 #include <algorithm>
 #include <iostream>
 
-#include <Ponca/Core/basket.h>
-#include <Ponca/Core/gls.h>
-#include <Ponca/Core/orientedSphereFit.h>
-#include <Ponca/Core/weightFunc.h>
-#include <Ponca/Core/weightKernel.h>
+#include <Ponca/src/Fitting/basket.h>
+#include <Ponca/src/Fitting/gls.h>
+#include <Ponca/src/Fitting/orientedSphereFit.h>
+#include <Ponca/src/Fitting/weightFunc.h>
+#include <Ponca/src/Fitting/weightKernel.h>
 
 #include "Eigen/Eigen"
 

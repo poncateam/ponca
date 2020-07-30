@@ -32,6 +32,8 @@ namespace Ponca
     This primitive provides:
     \verbatim PROVIDES_PLANE \endverbatim
 
+    \ingroup fitting
+
 */
 template < class DataPoint, class _WFunctor, typename T = void  >
 class CompactPlane : public PrimitiveBase<DataPoint, _WFunctor>,

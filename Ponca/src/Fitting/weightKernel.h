@@ -19,6 +19,8 @@ namespace Ponca
     \brief Concept::WeightKernelConcept returning a constant value
 
     \inherit Concept::WeightKernelConcept
+
+    \ingroup fitting
 */
 template <typename _Scalar>
 class ConstantWeightKernel

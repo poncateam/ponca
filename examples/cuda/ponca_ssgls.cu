@@ -21,11 +21,11 @@ file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 #define EIGEN_DEFAULT_DENSE_INDEX_TYPE int
 
-#include <Ponca/src/Core/basket.h>
-#include <Ponca/src/Core/gls.h>
-#include <Ponca/src/Core/orientedSphereFit.h>
-#include <Ponca/src/Core/weightFunc.h>
-#include <Ponca/src/Core/weightKernel.h>
+#include <Ponca/src/Fitting/basket.h>
+#include <Ponca/src/Fitting/gls.h>
+#include <Ponca/src/Fitting/orientedSphereFit.h>
+#include <Ponca/src/Fitting/weightFunc.h>
+#include <Ponca/src/Fitting/weightKernel.h>
 
 
 

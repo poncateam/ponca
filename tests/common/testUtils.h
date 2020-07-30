@@ -13,7 +13,7 @@
 #pragma once
 
 #include "Eigen/Eigen"
-#include "Ponca/Core"
+#include "Ponca/Fitting"
 
 #include <vector>
 

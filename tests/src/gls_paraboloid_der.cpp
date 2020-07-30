@@ -17,11 +17,11 @@
 #include "../common/scalar_precision_check.h"
 #include "../common/testUtils.h"
 
-#include <Ponca/src/Core/basket.h>
-#include <Ponca/src/Core/curvature.h>
-#include <Ponca/src/Core/orientedSphereFit.h>
-#include <Ponca/src/Core/weightFunc.h>
-#include <Ponca/src/Core/weightKernel.h>
+#include <Ponca/src/Fitting/basket.h>
+#include <Ponca/src/Fitting/curvature.h>
+#include <Ponca/src/Fitting/orientedSphereFit.h>
+#include <Ponca/src/Fitting/weightFunc.h>
+#include <Ponca/src/Fitting/weightKernel.h>
 
 #include <vector>
 

@@ -13,10 +13,10 @@
 #include "../common/testing.h"
 #include "../common/testUtils.h"
 
-#include <Ponca/src/Core/basket.h>
-#include <Ponca/src/Core/plane.h>
-#include <Ponca/src/Core/weightFunc.h>
-#include <Ponca/src/Core/weightKernel.h>
+#include <Ponca/src/Fitting/basket.h>
+#include <Ponca/src/Fitting/plane.h>
+#include <Ponca/src/Fitting/weightFunc.h>
+#include <Ponca/src/Fitting/weightKernel.h>
 
 #include <vector>
 
