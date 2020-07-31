@@ -1,5 +1,6 @@
 set(ponca_Common_INCLUDE
     "${PONCA_src_ROOT}/Ponca/Common"
+    "${PONCA_src_ROOT}/Ponca/Ponca"
     "${PONCA_src_ROOT}/Ponca/src/Common/defines.h"
     "${PONCA_src_ROOT}/Ponca/src/Common/Containers/limitedPriorityQueue.h"
     "${PONCA_src_ROOT}/Ponca/src/Common/Containers/stack.h"
@@ -27,6 +28,12 @@ install(TARGETS Common
     LIBRARY DESTINATION  ${CMAKE_INSTALL_LIBDIR}
     ARCHIVE DESTINATION  ${CMAKE_INSTALL_LIBDIR}
     INCLUDES DESTINATION ${CMAKE_INSTALL_INCDIR}
+)
+
+install(EXPORT CommonTargets
+  FILE PoncaTargets-Common.cmake
+  NAMESPACE Ponca::
+  DESTINATION lib/cmake
 )
 
 add_library(Ponca::Common ALIAS Common)

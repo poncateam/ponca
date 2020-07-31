@@ -1,6 +1,5 @@
 set(ponca_Fitting_INCLUDE
     "${PONCA_src_ROOT}/Ponca/Fitting"
-    "${PONCA_src_ROOT}/Ponca/Ponca"
     "${PONCA_src_ROOT}/Ponca/src/Fitting/defines.h"
     "${PONCA_src_ROOT}/Ponca/src/Fitting/algebraicSphere.h"
     "${PONCA_src_ROOT}/Ponca/src/Fitting/algebraicSphere.hpp"
@@ -42,19 +41,26 @@ target_sources(Fitting INTERFACE
     "$<BUILD_INTERFACE:${ponca_Fitting_INCLUDE}>"
     "$<INSTALL_INTERFACE:>"
     )
-
+add_dependencies(Fitting Common)
 
 set_target_properties(Fitting PROPERTIES
   INTERFACE_COMPILE_FEATURES cxx_std_11
 )
 
-#target_link_libraries(Fitting PUBLIC INTERFACE Eigen3::Eigen)
+target_link_libraries(Fitting PUBLIC INTERFACE Eigen3::Eigen)
 
 install(TARGETS Fitting
     EXPORT FittingTargets
     LIBRARY DESTINATION  ${CMAKE_INSTALL_LIBDIR}
     ARCHIVE DESTINATION  ${CMAKE_INSTALL_LIBDIR}
     INCLUDES DESTINATION ${CMAKE_INSTALL_INCDIR}
+)
+
+install(EXPORT FittingTargets
+  FILE PoncaTargets-Fitting.cmake
+  NAMESPACE Ponca::
+  DESTINATION lib/cmake
+  COMPONENT Common
 )
 
 add_library(Ponca::Fitting ALIAS Fitting)

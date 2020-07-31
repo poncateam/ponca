@@ -8,6 +8,5 @@
 
 // Include Ponca Common components
 #include "src/Common/Containers/limitedPriorityQueue.h"
-#include "src/Common/Containers/limitedPriorityQueue.h"
 #include "src/Common/Containers/stack.h"
 
