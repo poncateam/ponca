@@ -7,6 +7,13 @@
 
 #pragma once
 
+/**
+  *
+  * \defgroup common Common module
+  * \brief This modules includes general purpose classes and methods. See reference manual below.
+  *
+  */
+
 ////////////////////////////////////////////////////////////////////////////////
 // Compatibility types, macros, functions
 //
@@ -33,4 +40,10 @@
   #define PONCA_MULTIARCH_INCLUDE_STD(FILENAME) <FILENAME>
   #define PONCA_MULTIARCH_STD_MATH(FUNC) using std::FUNC;
   #define PONCA_CPU_ARCH
+#endif
+
+#ifdef NDEBUG
+#define STD_SAFE_AT(C,i) C[i]
+#else
+#define STD_SAFE_AT(C,i) C.at(i)
 #endif

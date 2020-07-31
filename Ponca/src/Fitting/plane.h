@@ -8,7 +8,8 @@
 
 #pragma once
 
-#include <Ponca/Core/primitive.h> // PrimitiveBase
+#include "./defines.h"
+#include "./primitive.h"
 #include <Eigen/Geometry>
 
 namespace Ponca
@@ -30,6 +31,8 @@ namespace Ponca
 
     This primitive provides:
     \verbatim PROVIDES_PLANE \endverbatim
+
+    \ingroup fitting
 
 */
 template < class DataPoint, class _WFunctor, typename T = void  >

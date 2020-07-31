@@ -8,7 +8,7 @@
 
 #include <pcl/features/feature.h>
 
-#include <Ponca/Core/defines.h>
+#include <Ponca/Fitting>
 
 #include "Eigen/Eigen"
 

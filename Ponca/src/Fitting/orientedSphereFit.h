@@ -6,7 +6,7 @@ file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 #pragma once
 
-#include <Ponca/Core/algebraicSphere.h>
+#include "./algebraicSphere.h"
 
 namespace Ponca
 {
@@ -19,6 +19,8 @@ namespace Ponca
     \inherit Concept::FittingProcedureConcept
 
     \see AlgebraicSphere
+
+    \ingroup fitting
 */
 template < class DataPoint, class _WFunctor, typename T = void >
 class OrientedSphereFit : public AlgebraicSphere<DataPoint, _WFunctor>

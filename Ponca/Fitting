@@ -1,0 +1,33 @@
+/*
+ This Source Code Form is subject to the terms of the Mozilla Public
+ License, v. 2.0. If a copy of the MPL was not distributed with this
+ file, You can obtain one at http://mozilla.org/MPL/2.0/.
+*/
+
+#pragma once
+
+// Include Ponca Fitting components
+#include "src/Fitting/defines.h"
+#include "src/Fitting/enums.h"
+#include "src/Fitting/basket.h"
+
+#include "src/Fitting/weightKernel.h"
+#include "src/Fitting/weightFunc.h"
+
+#include "src/Fitting/plane.h"
+#include "src/Fitting/meanPlaneFit.h"
+#include "src/Fitting/covariancePlaneFit.h"
+#include "src/Fitting/mongePatch.h"
+
+#include "src/Fitting/sphereFit.h"
+#include "src/Fitting/orientedSphereFit.h"
+#include "src/Fitting/mlsSphereFitDer.h"
+#include "src/Fitting/curvature.h"
+#include "src/Fitting/gls.h"
+
+#include "src/Fitting/curvatureEstimation.h"
+
+// not supported on cuda
+#ifndef __CUDACC__
+# include "src/Fitting/unorientedSphereFit.h"
+#endif

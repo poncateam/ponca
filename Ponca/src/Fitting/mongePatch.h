@@ -6,7 +6,7 @@
 
 #pragma once
 
-#include <Ponca/Core/defines.h>
+#include "./defines.h"
 
 #include <Eigen/Dense>
 
@@ -19,6 +19,8 @@ namespace Ponca
  * \note This procedure requires at least two passes, the first one for plane fitting,
  * the second one for quadric fitting.
  * \warning This class is valid only in 3D.
+
+ * \ingroup fitting
  */
 template < class DataPoint, class _WFunctor, typename T>
 class MongePatch : public T

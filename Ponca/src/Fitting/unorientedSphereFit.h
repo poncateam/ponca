@@ -8,7 +8,7 @@
 
 #pragma once
 
-#include <Ponca/Core/algebraicSphere.h>
+#include "./algebraicSphere.h"
 
 #include <Eigen/Dense>
 
@@ -22,6 +22,8 @@ namespace Ponca
     \inherit Concept::FittingProcedureConcept
 
     \see class AlgebraicSphere, class OrientedSphereFit
+
+    \ingroup fitting
 */
 template < class DataPoint, class _WFunctor, typename T = void >
 class UnorientedSphereFit : public AlgebraicSphere<DataPoint, _WFunctor>

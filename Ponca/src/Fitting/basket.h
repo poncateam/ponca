@@ -42,6 +42,7 @@ namespace internal
         > myFit;                // Final structure to fit and extend a primitive over weighted samples
     \endcode
 
+    \ingroup fitting
 */
     template < class P, class W, template <class, class, typename>class Fit,
         BASKET_TP(0), BASKET_TP(1), BASKET_TP(2), BASKET_TP(3), BASKET_TP(4), BASKET_TP(5), BASKET_TP(6), BASKET_TP(7), BASKET_TP(8), BASKET_TP(9), BASKET_TP(10), BASKET_TP(11) >

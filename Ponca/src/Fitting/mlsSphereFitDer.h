@@ -6,7 +6,7 @@
 
 #pragma once
 
-#include <Ponca/Core/defines.h>
+#include "./defines.h"
 
 namespace Ponca
 {
@@ -18,6 +18,8 @@ namespace Ponca
  * The differentiation is determined by a previous basket elements that must
  * provides first order derivatives of the algebraic sphere parameters.
  *
+
+ * \ingroup fitting
  */
 template < class DataPoint, class _WFunctor, typename T>
 class MlsSphereFitDer : public T

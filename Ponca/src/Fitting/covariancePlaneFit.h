@@ -9,7 +9,7 @@
 
 #pragma once
 
-#include <Ponca/Core/plane.h>
+#include "./plane.h"
 
 #include <Eigen/Eigenvalues>
 
@@ -26,6 +26,7 @@ namespace Ponca
     \inherit Concept::FittingProcedureConcept
 
     \see CompactPlane
+    \ingroup fitting
 */
 template < class DataPoint, class _WFunctor, typename T >
 class CovariancePlaneFit : public CompactPlane<DataPoint, _WFunctor>
@@ -153,6 +154,9 @@ using ::Ponca::internal::FitScaleDer;
     contains at least FitScaleDer. The size of these arrays can be known using
     derDimension(), and the differentiation type by isScaleDer() and
     isSpaceDer().
+
+    \ingroup fitting
+    \internal
 */
 template < class DataPoint, class _WFunctor, typename T, int Type>
 class CovariancePlaneDer : public T
@@ -238,6 +242,8 @@ public:
     \verbatim PROVIDES_COVARIANCE_PLANE \endverbatim
     Provide:
     \verbatim PROVIDES_COVARIANCE_PLANE_SCALE_DERIVATIVE \endverbatim
+
+    \ingroup fitting
 */
 template < class DataPoint, class _WFunctor, typename T>
 class CovariancePlaneScaleDer:public internal::CovariancePlaneDer<DataPoint, _WFunctor, T, internal::FitScaleDer>
@@ -257,6 +263,8 @@ protected:
     \verbatim PROVIDES_COVARIANCE_PLANE \endverbatim
     Provide:
     \verbatim PROVIDES_COVARIANCE_PLANE_SPACE_DERIVATIVE \endverbatim
+
+    \ingroup fitting
 */
 template < class DataPoint, class _WFunctor, typename T>
 class CovariancePlaneSpaceDer:public internal::CovariancePlaneDer<DataPoint, _WFunctor, T, internal::FitSpaceDer>
@@ -278,6 +286,8 @@ protected:
     \verbatim PROVIDES_COVARIANCE_PLANE_SCALE_DERIVATIVE
     PROVIDES_COVARIANCE_PLANE_SPACE_DERIVATIVE
     \endverbatim
+
+    \ingroup fitting
 */
 template < class DataPoint, class _WFunctor, typename T>
 class CovariancePlaneScaleSpaceDer:public internal::CovariancePlaneDer<DataPoint, _WFunctor, T, internal::FitSpaceDer | internal::FitScaleDer>

@@ -6,7 +6,7 @@
 
 #pragma once
 
-#include <Ponca/Core/defines.h>
+#include "./defines.h"
 
 /*!
     \file weightKernel.h Define 1D weight kernel functors
@@ -19,6 +19,8 @@ namespace Ponca
     \brief Concept::WeightKernelConcept returning a constant value
 
     \inherit Concept::WeightKernelConcept
+
+    \ingroup fitting
 */
 template <typename _Scalar>
 class ConstantWeightKernel

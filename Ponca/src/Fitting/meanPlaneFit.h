@@ -8,7 +8,7 @@
 
 #pragma once
 
-#include <Ponca/Core/plane.h>
+#include "./plane.h"
 
 namespace Ponca
 {
@@ -21,6 +21,8 @@ namespace Ponca
 
     \see CompactPlane
     \todo Add derivatives
+
+    \ingroup fitting
 */
 template < class DataPoint, class _WFunctor, typename T >
 class MeanPlaneFit : public CompactPlane<DataPoint, _WFunctor>

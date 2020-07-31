@@ -1,5 +1,7 @@
 cmake_minimum_required(VERSION 3.10)
 
+project( Ponca VERSION 0.1)
+
 
 ####################################################################################################
 ## USER OPTIONS
@@ -14,6 +16,9 @@ OPTION( PONCA_CONFIGURE_TESTS    "Include compilation rules for built-in tests" 
 ## END USER OPTIONS
 ####################################################################################################
 
+if(POLICY CMP0076)
+    cmake_policy(SET CMP0076 NEW)
+endif()
 
 # add this options before PROJECT keyword
 set(CMAKE_DISABLE_SOURCE_CHANGES ON)
@@ -25,7 +30,6 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
 
 set(CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR}/cmake)
-set(PONCA_ROOT_DIR ${PROJECT_SOURCE_DIR}/src)
 
 # guard against bad build-type strings (source: Eigen)
 
@@ -75,17 +79,15 @@ message(STATUS "Eigen3 root path: ${EIGEN3_INCLUDE_DIR}")
 ################################################################################
 # Generate install target                                                      #
 ################################################################################
-set(Ponca_INSTALL_INC_DIR "${CMAKE_INSTALL_PREFIX}/include")
-set(Ponca_INSTALL_LIB_DIR "${CMAKE_INSTALL_PREFIX}/lib")
 set(Ponca_EXPORT_TARGET_DIR \${CMAKE_CURRENT_LIST_DIR})
 
-install(EXPORT PoncaTargets
+install(EXPORT FittingTargets
   FILE
-    PoncaTargets.cmake
+    PoncaFittingTargets.cmake
   NAMESPACE
     Ponca::
   DESTINATION
-    ${Ponca_INSTALL_LIB_DIR}/cmake
+    lib/cmake
 )
 
 
@@ -129,9 +131,16 @@ install(
 
 
 ################################################################################
-# Add core code source, so it is visible in dev environements                  #
+# Add code source, so it is visible in dev environements                       #
 ################################################################################
-add_subdirectory( src )
+
+set(PONCA_src_ROOT "${CMAKE_CURRENT_SOURCE_DIR}/")
+include(PoncaConfigureFitting)
+include(PoncaConfigureCommon)
+
+install(DIRECTORY ${PONCA_src_ROOT}/Ponca
+    DESTINATION include/
+    PATTERN "*~" EXCLUDE)
 
 ################################################################################
 # API documentation with Doxygen                                               #

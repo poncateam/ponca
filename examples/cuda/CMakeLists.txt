@@ -6,6 +6,9 @@ check_language(CUDA)
     if( CMAKE_CUDA_COMPILER )
 
     enable_language(CUDA)
+    if(POLICY CMP0104)
+        cmake_policy(SET CMP0104 NEW)
+    endif()
 
     if(NOT DEFINED CMAKE_CUDA_STANDARD)
         set(CMAKE_CUDA_STANDARD 11)
@@ -13,14 +16,15 @@ check_language(CUDA)
     endif()
 
 
-
     find_package(PNG QUIET)
     if ( PNG_FOUND )
+
         add_executable(ponca_ssgls "ponca_ssgls.cu")
-        target_include_directories(ponca_ssgls PRIVATE ${PONCA_ROOT_DIR})
+        target_include_directories(ponca_ssgls PRIVATE ${PONCA_src_ROOT})
         target_link_libraries(ponca_ssgls PRIVATE PNG::PNG)
         target_compile_options(ponca_ssgls PRIVATE --expt-relaxed-constexpr)
         add_dependencies(ponca-examples ponca_ssgls)
+        set_property(TARGET ponca_ssgls PROPERTY CUDA_ARCHITECTURES OFF)
 
         # Copy assets
         add_custom_command(TARGET ponca_ssgls POST_BUILD
