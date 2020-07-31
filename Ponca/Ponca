@@ -7,3 +7,4 @@
 #pragma once
 
 #include <Ponca/Fitting>
+#include <Ponca/Common>

@@ -1,6 +1,5 @@
 set(ponca_Fitting_INCLUDE
     "${PONCA_src_ROOT}/Ponca/Fitting"
-    "${PONCA_src_ROOT}/Ponca/Ponca"
     "${PONCA_src_ROOT}/Ponca/src/Fitting/defines.h"
     "${PONCA_src_ROOT}/Ponca/src/Fitting/algebraicSphere.h"
     "${PONCA_src_ROOT}/Ponca/src/Fitting/algebraicSphere.hpp"
