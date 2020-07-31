@@ -14,7 +14,7 @@
 include(CMakeFindDependencyMacro)
 find_dependency(Eigen3 REQUIRED)
 
-include("@Ponca_EXPORT_TARGET_DIR@/PoncaFittingTargets.cmake")
+include("@Ponca_EXPORT_TARGET_DIR@/PoncaTargets-Fitting.cmake")
 
 
 # Compute paths

@@ -81,16 +81,6 @@ message(STATUS "Eigen3 root path: ${EIGEN3_INCLUDE_DIR}")
 ################################################################################
 set(Ponca_EXPORT_TARGET_DIR \${CMAKE_CURRENT_LIST_DIR})
 
-install(EXPORT FittingTargets
-  FILE
-    PoncaFittingTargets.cmake
-  NAMESPACE
-    Ponca::
-  DESTINATION
-    lib/cmake
-)
-
-
 set(config_install_dir "${CMAKE_INSTALL_PREFIX}/lib/cmake/")
 set(include_install_dir "${CMAKE_INSTALL_PREFIX}/include")
 set(generated_dir "${CMAKE_CURRENT_BINARY_DIR}/generated")
