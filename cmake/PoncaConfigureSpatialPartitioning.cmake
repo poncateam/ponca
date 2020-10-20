@@ -2,7 +2,17 @@ set(ponca_SpatialPartitioning_INCLUDE
     "${PONCA_src_ROOT}/Ponca/SpatialPartitioning"
     "${PONCA_src_ROOT}/Ponca/src/SpatialPartitioning/defines.h"
     "${PONCA_src_ROOT}/Ponca/src/SpatialPartitioning/query.h"
+    "${PONCA_src_ROOT}/Ponca/src/SpatialPartitioning/iterator.h"
     "${PONCA_src_ROOT}/Ponca/src/SpatialPartitioning/indexSquaredDistance.h"
+    "${PONCA_src_ROOT}/Ponca/src/SpatialPartitioning/KdTree/kdTree.h"
+    "${PONCA_src_ROOT}/Ponca/src/SpatialPartitioning/KdTree/kdTree.hpp"
+    "${PONCA_src_ROOT}/Ponca/src/SpatialPartitioning/KdTree/kdTreeNode.h"
+    "${PONCA_src_ROOT}/Ponca/src/SpatialPartitioning/KdTree/query.h"
+    "${PONCA_src_ROOT}/Ponca/src/SpatialPartitioning/KdTree/Query/kdTreeKNearestIndexQuery.h"
+    "${PONCA_src_ROOT}/Ponca/src/SpatialPartitioning/KdTree/Query/kdTreeKNearestIndexQuery.hpp"
+    "${PONCA_src_ROOT}/Ponca/src/SpatialPartitioning/KdTree/Query/kdTreeKNearestPointQuery.h"
+    "${PONCA_src_ROOT}/Ponca/src/SpatialPartitioning/KdTree/Query/kdTreeKNearestPointQuery.hpp"
+    "${PONCA_src_ROOT}/Ponca/src/SpatialPartitioning/KdTree/iterator.h"
     )
 
 add_library(SpatialPartitioning INTERFACE)
