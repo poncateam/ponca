@@ -97,24 +97,6 @@ protected:
 // KNearest Queries
 ////////////////////////////////////////////////////////////////
 
-/// \brief Base class for knearest queries
-/// \ingroup spatialpartitioning
-struct KNearestQuery
-{
-    inline KNearestQuery()      : m_queue() {}
-    inline KNearestQuery(int k) : m_queue(k){}
-
-    inline int k() const     { return m_queue.capacity(); }
-    inline void set_k(int k) { return m_queue.reserve(k); }
-
-    inline limited_priority_queue<IndexSquaredDistance>& queue()
-    { return m_queue; }
-
-protected:
-    limited_priority_queue<IndexSquaredDistance> m_queue;
-};
-
-
 /// \brief Base class of KNearestQuery storing indices
 /// \ingroup spatialpartitioning
 struct KNearestIndexQuery : public IndexQuery,
@@ -126,6 +108,22 @@ struct KNearestIndexQuery : public IndexQuery,
         : IndexQuery(), KNearestQuery( k ) {}
     inline KNearestIndexQuery(int k, int index)
         : IndexQuery( index ), KNearestQuery( k ) {}
+};
+
+/// \brief Base class of KNearestQuery storing points
+/// \ingroup spatialpartitioning
+template <typename _VectorType>
+struct KNearestPointQuery : public PointQuery<_VectorType>, public KNearestQuery
+{
+    using VectorType = typename PointQuery<_VectorType>::VectorType;
+    inline KNearestPointQuery()
+        : PointQuery<VectorType>(), KNearestQuery() {}
+    inline KNearestPointQuery(const VectorType& point)
+        : PointQuery<VectorType>(point), KNearestQuery() {}
+    inline KNearestPointQuery(int k)
+        : PointQuery<VectorType>(), KNearestQuery(k) {}
+    inline KNearestPointQuery(int k, const VectorType& point)
+        : PointQuery<VectorType>(point), KNearestQuery(k) {}
 };
 
 
