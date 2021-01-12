@@ -1,21 +1,40 @@
-name: C/C++ CI
+name: Build and run tests
 
-on: [push]
+defaults:
+  run:
+    shell: bash
+
+on:
+  pull_request:
+    branches:
+      - master
+  push:
+    branches:
+      - master
 
 jobs:
   build:
-
-    runs-on: ubuntu-latest
-
+    runs-on: ${{ matrix.config.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        config:
+          - { name: "Windows MSVC", os: windows-latest, cc: "cl.exe", cxx: "cl.exe", assimp: "OFF", icon: "Windows"}
+          - { name: "Ubuntu gcc", os: ubuntu-latest, cc: "gcc", cxx: "g++", assimp: "ON", icon: "Linux" }
+          - { name: "MacOS clang", os: macos-latest, cc: "clang", cxx: "clang++", assimp: "ON", icon: "Apple" }
     steps:
-    - uses: actions/checkout@v2
-    - name: cmake
-      run: mkdir build && cd build && cmake .. -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=./installed -DPONCA_CONFIGURE_EXAMPLES=ON -DPONCA_CONFIGURE_DOC=ON -DPONCA_CONFIGURE_TESTS=ON
-    - name: make buildtests
-      run: cd build && make buildtests
-    - name: make ContinuousTest
-      run: cd build && make test
-    - name: make ponca-examples
-      run: cd build && make ponca-examples
-    - name: make install
-      run: cd build && make install
+      - uses: seanmiddleditch/gha-setup-ninja@master
+      - name: Add msbuild to PATH
+        uses: seanmiddleditch/gha-setup-vsdevenv@master
+        if: runner.os == 'Windows'
+      - uses: actions/checkout@v2
+      - name: cmake
+        run: mkdir build && cd build && cmake .. -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=./installed -DPONCA_CONFIGURE_EXAMPLES=ON -DPONCA_CONFIGURE_DOC=ON -DPONCA_CONFIGURE_TESTS=ON
+      - name: make buildtests
+        run: cd build && make buildtests
+      - name: make ContinuousTest
+        run: cd build && make test
+      - name: make ponca-examples
+        run: cd build && make ponca-examples
+      - name: make install
+        run: cd build && make install
