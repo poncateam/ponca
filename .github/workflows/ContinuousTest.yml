@@ -1,21 +1,43 @@
-name: C/C++ CI
+name: Build and run tests
 
-on: [push]
+defaults:
+  run:
+    shell: bash
+
+on:
+  pull_request:
+    branches:
+      - master
+  push:
+    branches:
+      - master
 
 jobs:
   build:
-
-    runs-on: ubuntu-latest
-
+    runs-on: ${{ matrix.config.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        config:
+          - { name: "Windows MSVC", os: windows-latest, cc: "cl.exe", cxx: "cl.exe", icon: "Windows"}
+          - { name: "Ubuntu gcc", os: ubuntu-latest, cc: "gcc", cxx: "g++", icon: "Linux" }
+          - { name: "MacOS clang", os: macos-latest, cc: "clang", cxx: "clang++", icon: "Apple" }
     steps:
-    - uses: actions/checkout@v2
-    - name: cmake
-      run: mkdir build && cd build && cmake .. -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=./installed -DPONCA_CONFIGURE_EXAMPLES=ON -DPONCA_CONFIGURE_DOC=ON -DPONCA_CONFIGURE_TESTS=ON
-    - name: make buildtests
-      run: cd build && make buildtests
-    - name: make ContinuousTest
-      run: cd build && make test
-    - name: make ponca-examples
-      run: cd build && make ponca-examples
-    - name: make install
-      run: cd build && make install
+      - uses: seanmiddleditch/gha-setup-ninja@master
+      - name: Add msbuild to PATH
+        uses: seanmiddleditch/gha-setup-vsdevenv@master
+        if: runner.os == 'Windows'
+      - name: Checkout remote head
+        uses: actions/checkout@master
+        with:
+          path: src
+      - name: cmake
+        run: mkdir build && cd build && cmake ../src  -GNinja -DCMAKE_CXX_COMPILER=${{ matrix.config.cxx }} -DCMAKE_C_COMPILER=${{ matrix.config.cc }} -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=../install -DPONCA_CONFIGURE_EXAMPLES=ON -DPONCA_CONFIGURE_DOC=ON -DPONCA_CONFIGURE_TESTS=ON
+      - name: make buildtests
+        run: cd build && cmake --build . --target buildtests
+      - name: make ContinuousTest
+        run: cd build && cmake --build . --target test
+      - name: make ponca-examples
+        run: cd build && cmake --build . --target ponca-examples
+      - name: make install
+        run: cd build && cmake --build . --target install
