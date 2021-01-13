@@ -44,8 +44,8 @@ macro(ponca_configure_compiler_flags target)
       else()
         target_link_libraries(${target} PUBLIC --coverage)
       endif()
-    else() # no coverage: enable march
-        target_compile_options(${target} PUBLIC -march=native)
+#    else() # no coverage: enable march
+#        target_compile_options(${target} PUBLIC -march=native)
     endif()
   endif()
 endmacro()
