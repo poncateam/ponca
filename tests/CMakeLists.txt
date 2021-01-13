@@ -46,7 +46,9 @@ macro(ponca_configure_compiler_flags target)
       endif()
 #    else() # no coverage: enable march
 #        target_compile_options(${target} PUBLIC -march=native)
-    endif()
+    endif()  
+  elseif (MSVC)
+    target_compile_options(${target} PUBLIC /bigobj)
   endif()
 endmacro()
 
