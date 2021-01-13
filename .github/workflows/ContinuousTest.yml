@@ -31,10 +31,10 @@ jobs:
       - name: cmake
         run: mkdir build && cd build && cmake ..  -GNinja -DCMAKE_CXX_COMPILER=${{ matrix.config.cxx }} -DCMAKE_C_COMPILER=${{ matrix.config.cc }} -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=./installed -DPONCA_CONFIGURE_EXAMPLES=ON -DPONCA_CONFIGURE_DOC=ON -DPONCA_CONFIGURE_TESTS=ON
       - name: make buildtests
-        run: cd build && make buildtests
+        run: cd build && cmake --build . --target buildtests
       - name: make ContinuousTest
-        run: cd build && make test
+        run: cd build && cmake --build . --target test
       - name: make ponca-examples
-        run: cd build && make ponca-examples
+        run: cd build && cmake --build . --target ponca-examples
       - name: make install
-        run: cd build && make install
+        run: cd build && cmake --build . --target install
