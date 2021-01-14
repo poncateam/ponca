@@ -150,9 +150,12 @@ endif()
 # Tests                                                                        #
 ################################################################################
 if(PONCA_CONFIGURE_TESTS)
-    include (configureTesting)
-    add_subdirectory(tests)
-endif()
+    include(CTest)
+    set (BUILD_TESTING ON)
+    option(PONCA_COVERAGE_TESTING "Enable coverage reporting" OFF)
+    add_custom_target(buildtests)
+    add_subdirectory(tests EXCLUDE_FROM_ALL)
+endif(PONCA_CONFIGURE_TESTS)
 
 ################################################################################
 # Add custom target for Continuous Integration scripts                         #
