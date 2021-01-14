@@ -57,24 +57,24 @@ endif()
 ## Dependencies
 ################################################################################
 
-## Eigen: automatic configuration:
-##  1. if EIGEN3_INCLUDE_DIR is set, use it directly
-##  2. if any, and version >= 3.3.x, use system version
-##  3. otherwise, download (if required) and use submodule
-if( NOT EIGEN3_INCLUDE_DIR )
-    find_package(Eigen3 QUIET)
-    if( (NOT Eigen3_FOUND) OR EIGEN_VERSION_NUMBER VERSION_LESS 3.3 )
+find_package(Eigen3 QUIET)
+if( NOT Eigen3_FOUND )
+    message(WARNING "Cannot find Eigen, use submodule (disable transitive linking)")
 
-        set(EIGEN3_INCLUDE_DIR "${PROJECT_SOURCE_DIR}/external/eigen")
-
-        if( NOT EXISTS ${EIGEN3_INCLUDE_DIR}/signature_of_eigen3_matrix_library )
-            execute_process(COMMAND git submodule update --init -- ${EIGEN3_INCLUDE_DIR}
-                    WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR})
-        endif( NOT EXISTS ${EIGEN3_INCLUDE_DIR}/signature_of_eigen3_matrix_library )
+    get_directory_property(hasParent PARENT_DIRECTORY)
+    if(hasParent)
+        set(EIGEN3_INCLUDE_DIRS "${CMAKE_CURRENT_SOURCE_DIR}/external/eigen" PARENT_SCOPE)
+        message(STATUS "Make EIGEN3_INCLUDE_DIRS available to parent project.")
+    else()
+        set(EIGEN3_INCLUDE_DIRS "${CMAKE_CURRENT_SOURCE_DIR}/external/eigen")
     endif()
-endif( NOT EIGEN3_INCLUDE_DIR )
-include_directories(${EIGEN3_INCLUDE_DIR})
-message(STATUS "Eigen3 root path: ${EIGEN3_INCLUDE_DIR}")
+
+    if( NOT EXISTS ${EIGEN_SUBMODULE_ROOT_PATHv}/signature_of_eigen3_matrix_library )
+        execute_process(COMMAND git submodule update --init -- ${EIGEN_SUBMODULE_ROOT_PATH}
+                WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR})
+    endif()
+    include_directories(${EIGEN3_INCLUDE_DIRS})
+endif()
 
 ################################################################################
 # Generate install target                                                      #
