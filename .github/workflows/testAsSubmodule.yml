@@ -35,7 +35,7 @@ jobs:
         if: ${{ matrix.config.installEigen == 'ON'}}
 
       - name: Checkout helper repository with Ponca as submodule (master branch)
-        run: git clone https://github.com/poncateam/ci-submodule-helper.git repo --recursive
+        run: git clone https://github.com/poncateam/ci-submodule-helper.git repo
       - name: Update ponca submodule to current PR
         run: cd repo/ponca && git fetch && git checkout ${{ github.head_ref }}
       - name: Configure cmake project with installed eigen

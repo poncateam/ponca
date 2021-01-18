@@ -19,6 +19,7 @@ else()
         if(Boost_FOUND)
             target_link_libraries(ponca_pclwrapper PUBLIC ${Boost_LIBRARIES})
         endif()
+        ponca_handle_eigen_dependency(ponca_pclwrapper)
 
         add_custom_command( TARGET ponca_pclwrapper POST_BUILD
                             COMMAND ${CMAKE_COMMAND} -E copy
