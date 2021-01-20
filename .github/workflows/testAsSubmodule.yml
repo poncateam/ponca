@@ -17,32 +17,43 @@ jobs:
       fail-fast: false
       matrix:
         config:
-          - { name: "Windows MSVC", os: windows-latest, cc: "cl.exe", cxx: "cl.exe", installEigen: 'ON'}
-          - { name: "Ubuntu gcc", os: ubuntu-latest, cc: "gcc", cxx: "g++", installEigen: 'ON'}
-          - { name: "MacOS clang", os: macos-latest, cc: "clang", cxx: "clang++", installEigen: 'ON'}
+          - { name: "Ubuntu gcc", os: ubuntu-latest, cc: "gcc", cxx: "g++", installEigen: 'PACKAGE'}
+          - { name: "MacOS clang", os: macos-latest, cc: "clang", cxx: "clang++", installEigen: 'PACKAGE'}
+          - { name: "Windows MSVC", os: windows-latest, cc: "cl.exe", cxx: "cl.exe", installEigen: 'COMPILE'}
+          - { name: "Ubuntu gcc", os: ubuntu-latest, cc: "gcc", cxx: "g++", installEigen: 'COMPILE'}
+          - { name: "MacOS clang", os: macos-latest, cc: "clang", cxx: "clang++", installEigen: 'COMPILE'}
           - { name: "Windows MSVC", os: windows-latest, cc: "cl.exe", cxx: "cl.exe", installEigen: 'OFF'}
           - { name: "Ubuntu gcc", os: ubuntu-latest, cc: "gcc", cxx: "g++", installEigen: 'OFF'}
           - { name: "MacOS clang", os: macos-latest, cc: "clang", cxx: "clang++", installEigen: 'OFF'}
     steps:
+      - name: Get Eigen from package manager (MacOS)
+        run: brew install eigen
+        if: ${{ matrix.config.installEigen == 'PACKAGE' && runner.os == 'macOS' }}
+      - name: Get Eigen from package manager (Linux)
+        run: sudo apt-get install libeigen3-dev
+        if: ${{ matrix.config.installEigen == 'PACKAGE' && runner.os == 'Linux' }}
+
       - name: Checkout Eigen repository (master branch)
         run: git clone https://gitlab.com/libeigen/eigen.git eigen_src && mkdir eigen_installed/
-        if: ${{ matrix.config.installEigen == 'ON'}}
+        if: ${{ matrix.config.installEigen == 'COMPILE'}}
       - name: Configure Eigen
         run: mkdir eigen_build && cd eigen_build && cmake ../eigen_src -DCMAKE_INSTALL_PREFIX=../eigen_installed
-        if: ${{ matrix.config.installEigen == 'ON'}}
+        if: ${{ matrix.config.installEigen == 'COMPILE'}}
       - name: Install Eigen
         run:  cd eigen_build && cmake --build . --target install
-        if: ${{ matrix.config.installEigen == 'ON'}}
+        if: ${{ matrix.config.installEigen == 'COMPILE'}}
 
       - name: Checkout helper repository with Ponca as submodule (master branch)
-        run: git clone https://github.com/poncateam/ci-submodule-helper.git repo --recursive
+        run: git clone https://github.com/poncateam/ci-submodule-helper.git repo
+      - name: Checkout submodule (Ponca) of helper repository
+        run: cd repo &&  git submodule update --init
       - name: Update ponca submodule to current PR
         run: cd repo/ponca && git fetch && git checkout ${{ github.head_ref }}
       - name: Configure cmake project with installed eigen
         run : mkdir build && cd build && cmake ../repo -DEigen3_DIR=../eigen_installed/share/eigen3/cmake/
-        if: ${{ matrix.config.installEigen == 'ON'}}
-      - name: Configure cmake project with local eigen
+        if: ${{ matrix.config.installEigen == 'COMPILE'}}
+      - name: Configure cmake project with local or packaged eigen
         run : mkdir build && cd build && cmake ../repo
-        if: ${{ matrix.config.installEigen == 'OFF'}}
+        if: ${{ matrix.config.installEigen != 'COMPILE'}}
       - name: Build
         run : cd build && cmake --build .

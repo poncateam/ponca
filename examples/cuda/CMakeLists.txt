@@ -25,6 +25,7 @@ check_language(CUDA)
         target_compile_options(ponca_ssgls PRIVATE --expt-relaxed-constexpr)
         add_dependencies(ponca-examples ponca_ssgls)
         set_property(TARGET ponca_ssgls PROPERTY CUDA_ARCHITECTURES OFF)
+        ponca_handle_eigen_dependency(ponca_ssgls)
 
         # Copy assets
         add_custom_command(TARGET ponca_ssgls POST_BUILD

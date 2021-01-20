@@ -103,6 +103,7 @@ macro(add_multi_test filename)
       if(OpenMP_CXX_FOUND)
         target_link_libraries(${testname}_${suffix} PUBLIC OpenMP::OpenMP_CXX)
       endif(OpenMP_CXX_FOUND)
+      ponca_handle_eigen_dependency(${testname}_${suffix})
 
       ponca_configure_compiler_flags(${testname}_${suffix})
 
@@ -117,6 +118,7 @@ macro(add_multi_test filename)
     if(OpenMP_CXX_FOUND)
       target_link_libraries(${testname} PUBLIC OpenMP::OpenMP_CXX)
     endif(OpenMP_CXX_FOUND)
+    ponca_handle_eigen_dependency(${testname})
 
     ponca_configure_compiler_flags(${testname})
 

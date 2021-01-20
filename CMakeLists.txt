@@ -76,6 +76,16 @@ if( NOT Eigen3_FOUND )
     include_directories(${EIGEN3_INCLUDE_DIRS})
 endif()
 
+macro(ponca_handle_eigen_dependency TARGETNAME)
+    ## Should be retrieved by transitive linking, however it seems to fails with older cmake versions
+    if(Eigen3_FOUND AND ${CMAKE_VERSION} VERSION_LESS "3.19")
+        get_target_property(MODULE Fitting INTERFACE_LINK_LIBRARIES )
+        if ("${MODULE}" STREQUAL "Eigen3::Eigen")
+            target_link_libraries(${TARGETNAME} PUBLIC Eigen3::Eigen)
+        endif()
+    endif()
+endmacro()
+
 ################################################################################
 # Generate install target                                                      #
 ################################################################################
