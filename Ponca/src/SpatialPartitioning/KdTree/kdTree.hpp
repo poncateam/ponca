@@ -82,7 +82,7 @@ bool KdTree::valid() const
         b[idx] = true;
     }
 
-    for(uint n=0; n<m_nodes->size(); ++n)
+    for(size_t n=0; n<m_nodes->size(); ++n)
     {
         const KdTreeNode& node = m_nodes->operator [](n);
         if(node.leaf)
@@ -117,12 +117,12 @@ std::string KdTree::to_string() const
 
     std::stringstream str;
     str << "indices (" << m_indices->size() << ") :\n";
-    for(uint i=0; i<m_indices->size(); ++i)
+    for(size_t i=0; i<m_indices->size(); ++i)
     {
         str << "  " << i << ": " << m_indices->operator[](i) << "\n";
     }
     str << "nodes (" << m_nodes->size() << ") :\n";
-    for(uint n=0; n<m_nodes->size(); ++n)
+    for(size_t n=0; n<m_nodes->size(); ++n)
     {
         const KdTreeNode& node = m_nodes->operator[](n);
         if(node.leaf)
@@ -158,7 +158,9 @@ void KdTree::build(std::shared_ptr<KdTree::Vector3Array>& points, const std::vec
 
     m_indices = std::make_shared<std::vector<int>>(sampling);
 
-    this->build_rec(0, 0, m_indices->size(), 1);
+    int end = static_cast<int>(m_indices->size());
+
+    this->build_rec(0, 0, end, 1);
 
 //    PCA_DEBUG_ASSERT(this->valid());
 }
@@ -173,7 +175,8 @@ void KdTree::rebuild(const std::vector<int>& sampling)
 
     *m_indices = sampling;
 
-    this->build_rec(0, 0, m_indices->size(), 1);
+    int end = static_cast<int>(m_indices->size());
+    this->build_rec(0, 0, end, 1);
 
 //    PCA_DEBUG_ASSERT(this->valid());
 }
@@ -244,7 +247,7 @@ void KdTree::rebuild(const std::vector<int>& sampling)
 
 // Accessors -------------------------------------------------------------------
 
-int KdTree::size() const
+size_t KdTree::size() const
 {
     return m_points->size();
 }
@@ -372,7 +375,10 @@ int KdTree::partition(int start, int end, int dim, Scalar value)
     {
         return points[i][dim] < value;
     });
-    return std::distance(m_indices->begin(), it);
+    
+    auto distance = std::distance(m_indices->begin(), it);
+
+    return static_cast<int>(distance);
 }
 
 } // namespace Ponca

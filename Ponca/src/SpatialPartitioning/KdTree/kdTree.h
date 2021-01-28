@@ -9,6 +9,7 @@
 #include <vector>
 
 #define PCA_KDTREE_MAX_DEPTH 32
+using Scalar = float;
 
 namespace Ponca {
 
@@ -34,7 +35,7 @@ public:
 
     // Accessors ---------------------------------------------------------------
 public:
-    inline int size() const;
+    inline size_t size() const;
 
     inline const Vector3Array& point_data() const;
     inline       Vector3Array& point_data();
