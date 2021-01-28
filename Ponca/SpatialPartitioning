@@ -16,5 +16,6 @@
 #include "src/SpatialPartitioning/KdTree/kdTreeNode.h"
 #include "src/SpatialPartitioning/KdTree/query.h"
 #include "src/SpatialPartitioning/KdTree/iterator.h"
+#include "src/SpatialPartitioning/KdTree/Query/KdTreeNearestPointQuery.h"
 #include "src/SpatialPartitioning/KdTree/Query/kdTreeKNearestIndexQuery.h"
 #include "src/SpatialPartitioning/KdTree/Query/kdTreeKNearestPointQuery.h"

@@ -16,7 +16,8 @@
 #include "../common/testing.h"
 #include "../common/testUtils.h"
 
-//#include <Ponca/src/SpatialPartitioning/KdTree/kdTree.h>
+#include <Ponca/src/SpatialPartitioning/KdTree/kdTree.h>
+#include <Ponca/src/SpatialPartitioning/KdTree/Query/KdTreeNearestPointQuery.h>
 
 #include <Ponca/src/Fitting/basket.h>
 #include <Ponca/src/Fitting/orientedSphereFit.h>
@@ -24,11 +25,16 @@
 #include <Ponca/src/Fitting/weightKernel.h>
 
 #include <chrono>
+#include <Eigen/Dense>
+
 //#include <PCP/Math/VectorArray.h>
 
 #include <chrono>
+using namespace Eigen;
 
 using namespace std;
+
+using namespace pca;
 using namespace Ponca;
 
 using uint = unsigned int;
@@ -148,7 +154,8 @@ int main(int argc, char** argv)
 
     cout << "Test projection for different baskets..." << endl;
 
-	callSubTests<float, 3>();
+	/*callSubTests<float, 3>();
 	callSubTests<double, 3>();
-	callSubTests<long double, 3>();
+	callSubTests<long double, 3>();*/
+	KdTreeNearestPointQuery<Vector3f> q();
 }

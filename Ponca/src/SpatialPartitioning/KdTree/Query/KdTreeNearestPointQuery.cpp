@@ -1,37 +1,48 @@
-#include <PCA/SpacePartitioning/KdTree/Query/KdTreeNearestPointQuery.h>
-#include <PCA/SpacePartitioning/KdTree/KdTree.h>
+#include "../iterator.h"
+
+#include "../kdTree.h"
+
+#include "../../query.h"
+#include "KdTreeNearestPointQuery.h"
+
+class KdTree;
 
 namespace pca {
 
+template <typename _VectorType>
 KdTreeNearestPointQuery::KdTreeNearestPointQuery() :
     KdTreeQuery(),
     NearestPointQuery()
 {
 }
 
+using VectorType = typename NearestPointQuery<_VectorType>::VectorType;
+template <typename _VectorType>
 KdTreeNearestPointQuery::KdTreeNearestPointQuery(const KdTree* kdtree) :
     KdTreeQuery(kdtree),
     NearestPointQuery()
 {
 }
 
-KdTreeNearestPointQuery::KdTreeNearestPointQuery(const KdTree* kdtree, const Vector3& point) :
+template <typename _VectorType>
+KdTreeNearestPointQuery::KdTreeNearestPointQuery(const KdTree* kdtree, const VectorType& point) :
     KdTreeQuery(kdtree),
     NearestPointQuery(point)
 {
 }
 
-KdTreeNearestPointIterator KdTreeNearestPointQuery::begin()
-{
-    this->search();
-    return KdTreeNearestPointIterator(m_nearest);
-}
+//KdTreeNearestPointIterator KdTreeNearestPointQuery::begin()
+//{
+//    this->search();
+//    return KdTreeNearestPointIterator(m_nearest);
+//}
+//
+//KdTreeNearestPointIterator KdTreeNearestPointQuery::end()
+//{
+//    return KdTreeNearestPointIterator(m_nearest+1);
+//}
 
-KdTreeNearestPointIterator KdTreeNearestPointQuery::end()
-{
-    return KdTreeNearestPointIterator(m_nearest+1);
-}
-
+template <typename _VectorType>
 void KdTreeNearestPointQuery::search()
 {
     const auto& nodes   = m_kdtree->node_data();
