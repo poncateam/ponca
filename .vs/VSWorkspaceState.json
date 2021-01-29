@@ -1,0 +1,17 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\Ponca",
+    "\\Ponca\\src",
+    "\\Ponca\\src\\SpatialPartitioning",
+    "\\Ponca\\src\\SpatialPartitioning\\KdTree",
+    "\\Ponca\\src\\SpatialPartitioning\\KdTree\\Query",
+    "\\Ponca\\src\\SpatialPartitioning\\KNNGraph",
+    "\\Ponca\\src\\SpatialPartitioning\\KNNGraph\\Query",
+    "\\Ponca\\src\\SpatialPartitioning\\Query",
+    "\\tests",
+    "\\tests\\src"
+  ],
+  "SelectedNode": "\\tests\\src\\kdtree.cpp",
+  "PreviewInSolutionExplorer": false
+}
