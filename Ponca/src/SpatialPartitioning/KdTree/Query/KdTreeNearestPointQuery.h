@@ -8,8 +8,8 @@
 #include "../../query.h"
 //#include "../../defines.h"
 
-//#include <PCA/SpacePartitioning/Query/NearestPointQuery.h>
-//#include <PCA/SpacePartitioning/KdTree/Query/KdTreeQuery.h>
+#include <Ponca/src/SpatialPartitioning/Query/NearestPointQuery.h>
+#include <Ponca/src/SpatialPartitioning/KdTree/Query/KdTreeQuery.h>
 //#include <PCA/SpacePartitioning/KdTree/Iterator/KdTreeNearestPointIterator.h>
 
 //class Ponca::KdTree;
@@ -26,7 +26,7 @@ class KdTreeNearestPointQuery : public NearestPointQuery<_VectorType>, public Kd
 public:
     KdTreeNearestPointQuery();
     KdTreeNearestPointQuery(const KdTree* kdtree);
-    KdTreeNearestPointQuery(const KdTree* kdtree, const VectorType& point);
+    KdTreeNearestPointQuery(const KdTree* kdtree, const _VectorType& point);
 
 public:
     //KdTreeNearestPointIterator begin();
