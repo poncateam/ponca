@@ -157,5 +157,6 @@ int main(int argc, char** argv)
 	/*callSubTests<float, 3>();
 	callSubTests<double, 3>();
 	callSubTests<long double, 3>();*/
-	KdTreeNearestPointQuery<Vector3f> q();
+	typedef Eigen::Matrix <Scalar, 3, 1> Vector3;
+	KdTreeNearestPointQuery<Vector3> q;
 }
