@@ -1,7 +1,7 @@
 #pragma once
 
-//#include <PDPC/SpacePartitioning/internal/IndexSquaredDistance.h>
-//#include <PDPC/Common/Containers/static_stack.h>
+#include "../../indexSquaredDistance.h"
+#include "../../../Common/Containers/stack.h"
 
 #define PDPC_KDTREE_MAX_DEPTH 32
 
@@ -17,7 +17,7 @@ namespace pca {
 
     protected:
         const KdTree* m_kdtree;
-        //static_stack<IndexSquaredDistance, 2 * PDPC_KDTREE_MAX_DEPTH> m_stack;
+        Stack<IndexSquaredDistance, 2 * PDPC_KDTREE_MAX_DEPTH> m_stack;
     };
 
 } // namespace pca
