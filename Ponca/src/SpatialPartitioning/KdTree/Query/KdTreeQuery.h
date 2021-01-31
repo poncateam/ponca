@@ -4,6 +4,7 @@
 #include "../../../Common/Containers/stack.h"
 
 #define PDPC_KDTREE_MAX_DEPTH 32
+using namespace Ponca;
 
 namespace pca {
 
