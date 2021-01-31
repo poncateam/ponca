@@ -8,7 +8,7 @@
 #include "../../query.h"
 //#include "../../defines.h"
 
-#include <Ponca/src/SpatialPartitioning/Query/NearestPointQuery.h>
+//#include <Ponca/src/SpatialPartitioning/Query/NearestPointQuery.h>
 #include <Ponca/src/SpatialPartitioning/KdTree/Query/KdTreeQuery.h>
 //#include <PCA/SpacePartitioning/KdTree/Iterator/KdTreeNearestPointIterator.h>
 
