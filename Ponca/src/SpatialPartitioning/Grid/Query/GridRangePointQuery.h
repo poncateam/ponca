@@ -4,7 +4,7 @@
 #include <PCA/SpacePartitioning/Grid/Query/GridQuery.h>
 #include <PCA/SpacePartitioning/Grid/Iterator/GridRangePointIterator.h>
 
-namespace pca {
+namespace Ponca {
 
 class GridRangePointQuery : public GridQuery,
                             public RangePointQuery

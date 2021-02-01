@@ -1,6 +1,6 @@
 #include <PCA/SpacePartitioning/Grid/Iterator/GridKNearestPointIterator.h>
 
-namespace pca {
+namespace Ponca {
 
 GridKNearestPointIterator::GridKNearestPointIterator() :
     m_iterator()

@@ -1,7 +1,7 @@
 #include <PCA/SpacePartitioning/Grid/Query/GridRangeIndexQuery.h>
 #include <PCA/SpacePartitioning/Grid/Grid.h>
 
-namespace pca {
+namespace Ponca {
 
 GridRangeIndexQuery::GridRangeIndexQuery() :
     GridQuery(),

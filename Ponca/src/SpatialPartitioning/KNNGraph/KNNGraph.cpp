@@ -3,7 +3,7 @@
 
 #include <PCA/Common/Progress.h>
 
-namespace pca {
+namespace Ponca {
 
 // KNNGraph --------------------------------------------------------------------
 

@@ -1,7 +1,7 @@
 #include <PCA/SpacePartitioning/Grid/Iterator/GridRangePointIterator.h>
 #include <PCA/SpacePartitioning/Grid/Query/GridRangePointQuery.h>
 
-namespace pca {
+namespace Ponca {
 
 GridRangePointIterator::GridRangePointIterator() :
     m_query(nullptr),

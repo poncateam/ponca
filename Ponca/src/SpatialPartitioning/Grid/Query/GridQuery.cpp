@@ -1,6 +1,6 @@
 #include <PCA/SpacePartitioning/Grid/Query/GridQuery.h>
 
-namespace pca {
+namespace Ponca {
 
 GridQuery::GridQuery() :
     m_grid(nullptr)

@@ -6,7 +6,7 @@
 #include <list>
 #include <numeric>
 
-namespace pca {
+namespace Ponca {
 
 // Grid ------------------------------------------------------------------------
 

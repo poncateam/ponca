@@ -1,7 +1,7 @@
 #include <PCA/SpacePartitioning/KNNGraph/Query/KNNGraphQuery.h>
 #include <PCA/SpacePartitioning/KNNGraph/KNNGraph.h>
 
-namespace pca {
+namespace Ponca {
 
 KNNGraphQuery::KNNGraphQuery() :
     m_graph(nullptr),

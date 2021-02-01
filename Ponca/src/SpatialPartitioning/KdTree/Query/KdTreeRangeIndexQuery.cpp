@@ -1,7 +1,7 @@
 #include <PCA/SpacePartitioning/KdTree/Query/KdTreeRangeIndexQuery.h>
 #include <PCA/SpacePartitioning/KdTree/KdTree.h>
 
-namespace pca {
+namespace Ponca {
 
 KdTreeRangeIndexQuery::KdTreeRangeIndexQuery() :
     KdTreeQuery(),

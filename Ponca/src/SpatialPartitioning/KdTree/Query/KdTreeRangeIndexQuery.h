@@ -4,7 +4,7 @@
 #include <PCA/SpacePartitioning/KdTree/Query/KdTreeQuery.h>
 #include <PCA/SpacePartitioning/KdTree/Iterator/KdTreeRangeIndexIterator.h>
 
-namespace pca {
+namespace Ponca {
 
 class KdTreeRangeIndexQuery : public KdTreeQuery,
                               public RangeIndexQuery

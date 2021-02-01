@@ -2,7 +2,7 @@
 
 #include <vector>
 
-namespace pca {
+namespace Ponca {
 
 class KNNGraph;
 

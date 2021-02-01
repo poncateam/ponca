@@ -3,7 +3,7 @@
 
 #include <PCA/Common/Assert.h>
 
-namespace pca {
+namespace Ponca {
 
 KNNGraphRangeQuery::KNNGraphRangeQuery() :
     RangeIndexQuery(),

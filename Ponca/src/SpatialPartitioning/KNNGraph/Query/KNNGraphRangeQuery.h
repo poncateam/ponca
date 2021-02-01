@@ -6,7 +6,7 @@
 #include <vector>
 #include <stack>
 
-namespace pca {
+namespace Ponca {
 
 class KNNGraph;
 

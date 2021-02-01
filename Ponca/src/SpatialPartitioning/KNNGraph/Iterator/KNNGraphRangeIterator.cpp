@@ -1,7 +1,7 @@
 #include <PCA/SpacePartitioning/KNNGraph/Iterator/KNNGraphRangeIterator.h>
 #include <PCA/SpacePartitioning/KNNGraph/Query/KNNGraphRangeQuery.h>
 
-namespace pca {
+namespace Ponca {
 
 KNNGraphRangeIterator::KNNGraphRangeIterator() :
     m_query(nullptr),
