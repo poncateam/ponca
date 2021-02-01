@@ -3,29 +3,28 @@
 #include "../kdTree.h"
 
 #include "../../query.h"
-#include "KdTreeNearestPointQuery.h"
+#include "./KdTreeNearestPointQuery.h"
 
 class KdTree;
 
-namespace pca {
+namespace Ponca {
 
 template <typename _VectorType>
-KdTreeNearestPointQuery::KdTreeNearestPointQuery() :
+KdTreeNearestPointQuery<_VectorType>::KdTreeNearestPointQuery() :
     KdTreeQuery(),
     NearestPointQuery()
 {
 }
 
-using VectorType = typename NearestPointQuery<_VectorType>::VectorType;
 template <typename _VectorType>
-KdTreeNearestPointQuery::KdTreeNearestPointQuery(const KdTree* kdtree) :
+KdTreeNearestPointQuery< _VectorType>::KdTreeNearestPointQuery(const KdTree* kdtree) :
     KdTreeQuery(kdtree),
     NearestPointQuery()
 {
 }
 
 template <typename _VectorType>
-KdTreeNearestPointQuery::KdTreeNearestPointQuery(const KdTree* kdtree, const VectorType& point) :
+KdTreeNearestPointQuery< _VectorType>::KdTreeNearestPointQuery(const KdTree* kdtree, const _VectorType& point) :
     KdTreeQuery(kdtree),
     NearestPointQuery(point)
 {
@@ -43,7 +42,7 @@ KdTreeNearestPointQuery::KdTreeNearestPointQuery(const KdTree* kdtree, const Vec
 //}
 
 template <typename _VectorType>
-void KdTreeNearestPointQuery::search()
+void KdTreeNearestPointQuery< _VectorType>::search()
 {
     const auto& nodes   = m_kdtree->node_data();
     const auto& points  = m_kdtree->point_data();
@@ -104,4 +103,4 @@ void KdTreeNearestPointQuery::search()
     }
 }
 
-} // namespace pca
+} // namespace ponca

@@ -4,7 +4,7 @@
 #include <PCA/SpacePartitioning/Grid/Query/GridQuery.h>
 #include <PCA/SpacePartitioning/Grid/Iterator/GridKNearestIndexIterator.h>
 
-namespace pca {
+namespace Ponca {
 
 class GridKNearestIndexQuery : public GridQuery,
                                public KNearestIndexQuery

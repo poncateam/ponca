@@ -82,7 +82,7 @@ struct KNearestQuery
     inline KNearestQuery()      : m_queue() {}
     inline KNearestQuery(int k) : m_queue(k){}
 
-    inline int k() const     { return m_queue.capacity(); }
+    inline size_t k() const     { return m_queue.capacity(); }
     inline void set_k(int k) { return m_queue.reserve(k); }
 
     inline limited_priority_queue<IndexSquaredDistance>& queue()

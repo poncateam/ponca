@@ -1,6 +1,6 @@
 #include <PCA/SpacePartitioning/Grid/Iterator/GridNearestIndexIterator.h>
 
-namespace pca {
+namespace Ponca {
 
 GridNearestIndexIterator::GridNearestIndexIterator() :
     m_index(-1)

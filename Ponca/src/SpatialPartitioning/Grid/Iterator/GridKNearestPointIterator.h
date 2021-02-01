@@ -2,7 +2,7 @@
 
 #include <PCA/SpacePartitioning/Query/KNearestQuery.h>
 
-namespace pca {
+namespace Ponca {
 
 class GridKNearestPointIterator
 {

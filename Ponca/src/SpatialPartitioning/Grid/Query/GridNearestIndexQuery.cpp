@@ -3,7 +3,7 @@
 
 #include <PCA/Common/Assert.h> //TODO remove this include
 
-namespace pca {
+namespace Ponca {
 
 GridNearestIndexQuery::GridNearestIndexQuery() :
     GridQuery(),

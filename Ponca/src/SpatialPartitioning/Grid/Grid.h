@@ -11,7 +11,7 @@
 
 #include <memory>
 
-namespace pca {
+namespace Ponca {
 
 class Grid
 {

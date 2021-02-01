@@ -1,7 +1,7 @@
 #include <PCA/SpacePartitioning/KdTree/Query/KdTreeNearestIndexQuery.h>
 #include <PCA/SpacePartitioning/KdTree/KdTree.h>
 
-namespace pca {
+namespace Ponca {
 
 KdTreeNearestIndexQuery::KdTreeNearestIndexQuery() :
     KdTreeQuery(),

@@ -34,7 +34,6 @@ using namespace Eigen;
 
 using namespace std;
 
-using namespace pca;
 using namespace Ponca;
 
 using uint = unsigned int;
@@ -152,11 +151,11 @@ int main(int argc, char** argv)
 	}
 
 
-    cout << "Test projection for different baskets..." << endl;
 
 	/*callSubTests<float, 3>();
 	callSubTests<double, 3>();
 	callSubTests<long double, 3>();*/
 	typedef Eigen::Matrix <Scalar, 3, 1> Vector3;
 	KdTreeNearestPointQuery<Vector3> q;
+	//q.search();
 }
