@@ -94,4 +94,4 @@ void KdTreeKNearestPointQuery<VectorType>::search()
     }
 }
 
-} // namespace pca
+}   

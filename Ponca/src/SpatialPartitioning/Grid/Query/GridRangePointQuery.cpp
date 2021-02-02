@@ -117,4 +117,4 @@ void GridRangePointQuery::advance(GridRangePointIterator& it)
     }
 }
 
-} // namespace pca
+}   

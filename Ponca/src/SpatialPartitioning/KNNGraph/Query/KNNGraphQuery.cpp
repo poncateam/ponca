@@ -25,4 +25,4 @@ KNNGraphQuery::iterator KNNGraphQuery::end() const
     return m_graph->index_data().begin() + (m_index+1) * m_graph->k();
 }
 
-} // namespace pca
+}   

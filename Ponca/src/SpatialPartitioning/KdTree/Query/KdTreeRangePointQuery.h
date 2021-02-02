@@ -27,4 +27,4 @@ protected:
     void advance(KdTreeRangePointIterator& iterator);
 };
 
-} // namespace pca
+}   

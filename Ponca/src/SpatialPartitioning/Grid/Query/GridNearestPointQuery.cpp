@@ -39,4 +39,4 @@ void GridNearestPointQuery::search()
     PCA_TODO;
 }
 
-} // namespace pca
+}   

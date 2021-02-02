@@ -36,5 +36,5 @@ protected:
     void search();
 };
 
-} // namespace pca
-//#include "./KdTreeNearestPointQuery.cpp"
+}   
+#include "./KdTreeNearestPointQuery.hpp"

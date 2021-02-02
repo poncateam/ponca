@@ -62,4 +62,4 @@ protected:
     bool m_verbose;
 };
 
-} // namespace pca
+}   

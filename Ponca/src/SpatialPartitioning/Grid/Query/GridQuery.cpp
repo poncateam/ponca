@@ -12,4 +12,4 @@ GridQuery::GridQuery(const Grid* grid) :
 {
 }
 
-} // namespace pca
+}   

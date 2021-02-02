@@ -69,4 +69,4 @@ int GridRangeIndexIterator::operator * () const
     return m_index;
 }
 
-} // namespace pca
+}   

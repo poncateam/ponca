@@ -91,4 +91,4 @@ void KNNGraphRangeQuery::advance(KNNGraphRangeIterator& iterator)
     }
 }
 
-} // namespace pca
+}   

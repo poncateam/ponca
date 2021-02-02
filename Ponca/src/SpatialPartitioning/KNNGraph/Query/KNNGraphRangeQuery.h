@@ -35,4 +35,4 @@ protected:
     std::stack<int>   m_stack;
 };
 
-} // namespace pca
+}   

@@ -37,4 +37,4 @@ int KNNGraphRangeIterator::operator *  () const
 }
 
 
-} // namespace pca
+}   

@@ -27,4 +27,4 @@ protected:
     void advance(GridRangePointIterator& iterator);
 };
 
-} // namespace pca
+}   

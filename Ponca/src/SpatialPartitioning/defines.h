@@ -21,6 +21,6 @@ namespace Ponca {
 /// \ingroup spatialpartitioning
 using SPScalar = float;
 
-} // namespace pca
+}   
 
 #include "../Common/defines.h"

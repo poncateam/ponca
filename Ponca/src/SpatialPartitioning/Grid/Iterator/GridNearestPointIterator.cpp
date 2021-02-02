@@ -27,4 +27,4 @@ int GridNearestPointIterator::operator * () const
     return m_index;
 }
 
-} // namespace pca
+}   

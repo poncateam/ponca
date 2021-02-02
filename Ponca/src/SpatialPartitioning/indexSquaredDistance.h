@@ -20,4 +20,4 @@ struct IndexSquaredDistance
     { return squared_distance < other.squared_distance; }
 };
 
-} // namespace pca
+}   

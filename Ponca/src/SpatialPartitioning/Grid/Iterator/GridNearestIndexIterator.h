@@ -17,4 +17,4 @@ protected:
     int m_index;
 };
 
-} // namespace pca
+}   
