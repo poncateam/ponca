@@ -121,4 +121,4 @@ void GridRangeIndexQuery::advance(GridRangeIndexIterator& it)
     }
 }
 
-} // namespace pca
+}   

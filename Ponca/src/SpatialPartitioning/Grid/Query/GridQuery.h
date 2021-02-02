@@ -14,4 +14,4 @@ protected:
     const Grid* m_grid;
 };
 
-} // namespace pca
+}   

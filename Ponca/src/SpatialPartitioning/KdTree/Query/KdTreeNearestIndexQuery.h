@@ -22,4 +22,5 @@ protected:
     void search();
 };
 
-} // namespace pca
+}
+#include "./KdTreeNearestIndexQuery.hpp"

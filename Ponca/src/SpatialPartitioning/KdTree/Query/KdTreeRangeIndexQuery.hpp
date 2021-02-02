@@ -125,4 +125,4 @@ void KdTreeRangeIndexQuery::advance(KdTreeRangeIndexIterator& it)
     it.m_index = points.size();
 }
 
-} // namespace pca
+}   

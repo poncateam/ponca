@@ -19,4 +19,4 @@ protected:
     limited_priority_queue<IndexSquaredDistance>::iterator m_iterator;
 };
 
-} // namespace pca
+}   

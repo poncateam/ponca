@@ -1,58 +1,49 @@
-#include "../iterator.h"
-
-#include "../kdTree.h"
-
-#include "../../query.h"
-#include "./KdTreeNearestPointQuery.h"
-
-class KdTree;
+#include <PCA/SpacePartitioning/KdTree/Query/KdTreeNearestIndexQuery.h>
+#include <PCA/SpacePartitioning/KdTree/KdTree.h>
 
 namespace Ponca {
 
-template <typename _VectorType>
-KdTreeNearestPointQuery<_VectorType>::KdTreeNearestPointQuery() :
+KdTreeNearestIndexQuery::KdTreeNearestIndexQuery() :
     KdTreeQuery(),
-    NearestPointQuery()
+    NearestIndexQuery()
 {
 }
 
-template <typename _VectorType>
-KdTreeNearestPointQuery< _VectorType>::KdTreeNearestPointQuery(const KdTree* kdtree) :
+KdTreeNearestIndexQuery::KdTreeNearestIndexQuery(const KdTree* kdtree) :
     KdTreeQuery(kdtree),
-    NearestPointQuery()
+    NearestIndexQuery()
 {
 }
 
-template <typename _VectorType>
-KdTreeNearestPointQuery< _VectorType>::KdTreeNearestPointQuery(const KdTree* kdtree, const _VectorType& point) :
+KdTreeNearestIndexQuery::KdTreeNearestIndexQuery(const KdTree* kdtree, int index) :
     KdTreeQuery(kdtree),
-    NearestPointQuery(point)
+    NearestIndexQuery(index)
 {
 }
 
-//KdTreeNearestPointIterator KdTreeNearestPointQuery::begin()
-//{
-//    this->search();
-//    return KdTreeNearestPointIterator(m_nearest);
-//}
-//
-//KdTreeNearestPointIterator KdTreeNearestPointQuery::end()
-//{
-//    return KdTreeNearestPointIterator(m_nearest+1);
-//}
+KdTreeNearestIndexIterator KdTreeNearestIndexQuery::begin()
+{
+    this->search();
+    return KdTreeNearestIndexIterator(m_nearest);
+}
 
-template <typename _VectorType>
-void KdTreeNearestPointQuery< _VectorType>::search()
+KdTreeNearestIndexIterator KdTreeNearestIndexQuery::end()
+{
+    return KdTreeNearestIndexIterator(m_nearest+1);
+}
+
+void KdTreeNearestIndexQuery::search()
 {
     const auto& nodes   = m_kdtree->node_data();
     const auto& points  = m_kdtree->point_data();
     const auto& indices = m_kdtree->index_data();
+    const auto& point   = points[m_index];
 
     m_stack.clear();
     m_stack.push({0,0});
 
-    m_nearest = indices[0];
-    m_squared_distance = (m_point - points[m_nearest]).squaredNorm();
+    m_nearest = m_index==indices[0] ? indices[1] : indices[0];
+    m_squared_distance = (point - points[m_nearest]).squaredNorm();
 
     while(!m_stack.empty())
     {
@@ -68,8 +59,9 @@ void KdTreeNearestPointQuery< _VectorType>::search()
                 for(int i=node.start; i<end; ++i)
                 {
                     int idx = indices[i];
+                    if(m_index == idx) continue;
 
-                    Scalar d = (m_point - points[idx]).squaredNorm();
+                    Scalar d = (point - points[idx]).squaredNorm();
                     if(d < m_squared_distance)
                     {
                         m_nearest = idx;
@@ -80,7 +72,7 @@ void KdTreeNearestPointQuery< _VectorType>::search()
             else
             {
                 // replace the stack top by the farthest and push the closest
-                Scalar newOff = m_point[node.dim] - node.splitValue;
+                Scalar newOff = point[node.dim] - node.splitValue;
                 m_stack.push();
                 if(newOff < 0)
                 {
@@ -103,4 +95,4 @@ void KdTreeNearestPointQuery< _VectorType>::search()
     }
 }
 
-} // namespace ponca
+}   

@@ -38,4 +38,4 @@ protected:
     int m_idx_cell;
 };
 
-} // namespace pca
+}   

@@ -159,4 +159,4 @@ void KNNGraph::set_verbose(bool verbose)
     m_verbose = verbose;
 }
 
-} // namespace pca
+}   

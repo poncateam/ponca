@@ -92,4 +92,4 @@ void KdTreeKNearestIndexQuery::search()
     }
 }
 
-} // namespace pca
+}   
