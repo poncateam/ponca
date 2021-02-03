@@ -6,9 +6,10 @@
 
 #pragma once
 
-#include <PCA/SpacePartitioning/Query/NearestIndexQuery.h>
-#include <PCA/SpacePartitioning/KdTree/Query/KdTreeQuery.h>
-#include <PCA/SpacePartitioning/KdTree/Iterator/KdTreeNearestIndexIterator.h>
+#include "../Iterator/KdTreeNearestIndexIterator.h"
+#include "../iterator.h"
+#include "../kdTree.h"
+#include "../../query.h"
 
 namespace Ponca {
 

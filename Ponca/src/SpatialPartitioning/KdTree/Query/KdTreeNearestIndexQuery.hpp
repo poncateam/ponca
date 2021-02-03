@@ -4,8 +4,10 @@
  file, You can obtain one at http://mozilla.org/MPL/2.0/.
 */
 
-#include <PCA/SpacePartitioning/KdTree/Query/KdTreeNearestIndexQuery.h>
-#include <PCA/SpacePartitioning/KdTree/KdTree.h>
+#include "../iterator.h"
+#include "../kdTree.h"
+#include "../../query.h"
+#include "./KdTreeNearestIndexQuery.h"
 
 namespace Ponca {
 
