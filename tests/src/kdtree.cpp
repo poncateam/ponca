@@ -1,12 +1,3 @@
-/*
- Copyright (C) 2014 Nicolas Mellado <nmellado0@gmail.com>
-
- This Source Code Form is subject to the terms of the Mozilla Public
- License, v. 2.0. If a copy of the MPL was not distributed with this
- file, You can obtain one at http://mozilla.org/MPL/2.0/.
-*/
-
-
 /*!
  \file test/Grenaille/projection.cpp
  \brief Test validity of the direct projection on an algebraic sphere
@@ -16,14 +7,13 @@
 #include "../common/testing.h"
 #include "../common/testUtils.h"
 
-#include <Ponca/src/SpatialPartitioning/KdTree/kdTree.h>
 #include <Ponca/src/SpatialPartitioning/KdTree/Query/KdTreeNearestPointQuery.h>
+#include <Ponca/src/SpatialPartitioning/KdTree/Query/KdTreeKNearestPointQuery.h>
 
 #include <Ponca/src/Fitting/basket.h>
 #include <Ponca/src/Fitting/orientedSphereFit.h>
 #include <Ponca/src/Fitting/weightFunc.h>
 #include <Ponca/src/Fitting/weightKernel.h>
-
 #include <chrono>
 #include <Eigen/Dense>
 
@@ -144,18 +134,8 @@ int main(int argc, char** argv)
         return EXIT_FAILURE;
     }
 
-
-	for (int i = 0; i < 10; i++) {
-
-		cout << i % 2 * 5 << endl;
-	}
-
-
-
-	/*callSubTests<float, 3>();
-	callSubTests<double, 3>();
-	callSubTests<long double, 3>();*/
 	typedef Eigen::Matrix <Scalar, 3, 1> Vector3;
-	KdTreeNearestPointQuery<Vector3> q;
-	//q.search();
+	const Ponca::KdTree* tree = new Ponca::KdTree();
+	KdTreeKNearestPointQuery<Vector3> q(tree, 5);
+	q.begin();
 }

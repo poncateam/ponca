@@ -1,3 +1,9 @@
+/*
+ This Source Code Form is subject to the terms of the Mozilla Public
+ License, v. 2.0. If a copy of the MPL was not distributed with this
+ file, You can obtain one at http://mozilla.org/MPL/2.0/.
+*/
+
 #include "../iterator.h"
 
 #include "../kdTree.h"
@@ -31,16 +37,18 @@ KdTreeNearestPointQuery< _VectorType>::KdTreeNearestPointQuery(const KdTree* kdt
 {
 }
 
-//KdTreeNearestPointIterator KdTreeNearestPointQuery::begin()
-//{
-//    this->search();
-//    return KdTreeNearestPointIterator(m_nearest);
-//}
-//
-//KdTreeNearestPointIterator KdTreeNearestPointQuery::end()
-//{
-//    return KdTreeNearestPointIterator(m_nearest+1);
-//}
+template <typename _VectorType>
+KdTreeNearestPointIterator KdTreeNearestPointQuery< _VectorType>::begin()
+{
+    this->search();
+    return KdTreeNearestPointIterator(m_nearest);
+}
+
+template <typename _VectorType>
+KdTreeNearestPointIterator KdTreeNearestPointQuery< _VectorType>::end()
+{
+    return KdTreeNearestPointIterator(m_nearest+1);
+}
 
 template <typename _VectorType>
 void KdTreeNearestPointQuery< _VectorType>::search()
@@ -48,6 +56,9 @@ void KdTreeNearestPointQuery< _VectorType>::search()
     const auto& nodes   = m_kdtree->node_data();
     const auto& points  = m_kdtree->point_data();
     const auto& indices = m_kdtree->index_data();
+
+    if (nodes.empty() || points.empty() || indices.empty())
+        throw invalid_argument("Empty KdTree");
 
     m_stack.clear();
     m_stack.push({0,0});
