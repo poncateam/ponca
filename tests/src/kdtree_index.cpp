@@ -6,13 +6,10 @@
 
 #include "../common/testing.h"
 #include "../common/testUtils.h"
+#include "../common/has_duplicate.h"
 
 #include <Ponca/src/SpatialPartitioning/KdTree/Query/KdTreeNearestIndexQuery.h>
 
-#include <Ponca/src/Fitting/basket.h>
-#include <Ponca/src/Fitting/orientedSphereFit.h>
-#include <Ponca/src/Fitting/weightFunc.h>
-#include <Ponca/src/Fitting/weightKernel.h>
 #include <chrono>
 #include <Eigen/Dense>
 
@@ -28,102 +25,88 @@ using namespace Ponca;
 using uint = unsigned int;
 using Scalar = float;
 
+using Vec3 = Eigen::Matrix<SPScalar, 3, 1>;
+using Vector3Array = std::vector<Vec3>;
 
 //Dans le fichier de test de thibault has_duplicate sert a vérifier les données d'entrée pour empecher les duplicatas
 // et retourne un erreur si c'est le cas 
 
-template<typename DataPoint, typename WeightFunc>
-void testFunction()
+
+bool check_k_nearest_neighbors(const Vector3Array& points, int index, int k, const std::vector<int>& neighbors)
 {
-	// Define related structure
-	typedef typename DataPoint::Scalar Scalar;
-	typedef typename DataPoint::VectorType VectorType;
-	typedef typename DataPoint::QuaternionType QuaternionType;
-	typedef Basket<DataPoint, WeightFunc, OrientedSphereFit> Fit;
-
-	//generate samples
-	int nbPoints = Eigen::internal::random<int>(100, 1000);
-	int nbPointsFit = 50;
-
-	// equal probability of having a plane or a random quadric
-	VectorType coeff = 5 * VectorType::Random();
-	if (Eigen::internal::random<Scalar>(0., 1.) < Scalar(0.5))
+	if (int(points.size()) > k && int(neighbors.size()) != k)
 	{
-		coeff = VectorType::Zero();
-	}
-	Scalar width = Eigen::internal::random<Scalar>(1., 10.);
-	VectorType center = 1000 * VectorType::Random();
-
-	Scalar zmax = std::abs((coeff[0] + coeff[1]) * width*width);
-	Scalar analysisScale = std::sqrt(zmax*zmax + width * width);
-
-	Scalar epsilon = Scalar(10.)*testEpsilon<Scalar>();
-
-	Fit fit;
-	fit.setWeightFunc(WeightFunc(analysisScale));
-	fit.init(center);
-
-	for (int i = 0; i < nbPointsFit; ++i)
-	{
-		DataPoint p = getPointOnParaboloid<DataPoint>(VectorType(),     // center (not used)
-			coeff,
-			QuaternionType(), // (not used)
-			width,
-			false);           // noise
-		p.pos() += center;
-
-		fit.addNeighbor(p);
+		//PCP_DEBUG_ERROR;;
+		return false;
 	}
 
-	fit.finalize();
-
-	if (fit.isStable())
+	if (has_duplicate(neighbors))
 	{
-		std::vector<VectorType> samples(nbPoints);
-		for (int i = 0; i < nbPoints; ++i)
+		//PCP_DEBUG_ERROR;;
+		return false;
+	}
+
+	auto it = std::find(neighbors.begin(), neighbors.end(), index);
+	if (it != neighbors.end())
+	{
+		//PCP_DEBUG_ERROR;;
+		return false;
+	}
+
+	Scalar max_dist = 0;
+	for (int idx : neighbors)
+		max_dist = std::max(max_dist, (points[idx] - points[index]).norm());
+
+	for (int idx = 0; idx<int(points.size()); ++idx)
+	{
+		if (idx == index) continue;
+
+		Scalar dist = (points[idx] - points[index]).norm();
+		auto it = std::find(neighbors.begin(), neighbors.end(), idx);
+		bool is_neighbor = it != neighbors.end();
+
+		if (is_neighbor && max_dist < dist)
 		{
-			VectorType p = center + analysisScale * VectorType::Random();
-			samples[i] = p;
-			VectorType proj = fit.project(p);
-
-			// check that the projected point is on the surface
-			VERIFY(fit.potential(proj) < epsilon);
+			//PCP_DEBUG_ERROR;;
+			return false;
 		}
-
-		auto start1 = std::chrono::system_clock::now();
-		for (const auto& p : samples)
-			fit.project(p);
-		auto end1 = std::chrono::system_clock::now();
-
-		auto start2 = std::chrono::system_clock::now();
-		for (const auto& p : samples)
-			fit.projectDescent(p);
-		auto end2 = std::chrono::system_clock::now();
-
-		std::chrono::duration<double> elapsed_seconds1 = end1 - start1;
-		std::chrono::duration<double> elapsed_seconds2 = end2 - start2;
-		std::cout << "Default: " << elapsed_seconds1.count() << " Descent: " << elapsed_seconds2.count() << "s\n";
-		VERIFY(elapsed_seconds1 <= elapsed_seconds2);
+		if (!is_neighbor && dist < max_dist)
+		{
+			//PCP_DEBUG_ERROR;;
+			return false;
+		}
 	}
+	return true;
+}
+
+template<typename Vector3Array>
+bool check_k_nearest_neighbors(const Vector3Array& points, int index, int k, const std::vector<int>& neighbors)
+{
+	return check_k_nearest_neighbors(points, index, 1, { nearest });
 
 
 }
 
-template<typename Scalar, int Dim>
+template<typename Vector3, int N>
 void callSubTests()
 {
-	typedef PointPositionNormal<Scalar, Dim> Point;
+	const int N = quick ? 100 : 10000;
+	auto points = std::make_shared<Vector3Array>(N);
+	std::generate(points->begin(), points->end(), []() {return Vector3::Random(); });
 
-	typedef DistWeightFunc<Point, SmoothWeightKernel<Scalar> > WeightSmoothFunc;
-	typedef DistWeightFunc<Point, ConstantWeightKernel<Scalar> > WeightConstantFunc;
+	KdTree structure(points);
 
-	cout << "Testing with parabola..." << endl;
-	for (int i = 0; i < g_repeat; ++i)
+	std::vector<int> results;
+	for (int i = 0; i < N; ++i)
 	{
-		CALL_SUBTEST((testFunction<Point, WeightSmoothFunc>()));
-		CALL_SUBTEST((testFunction<Point, WeightConstantFunc>()));
+		results.clear();
+		for (int j : structure.nearest_neighbor(i))
+		{
+			results.push_back(j);
+		}
+		EXPECT_EQ(int(results.size()), 1);
+		EXPECT_TRUE(check_nearest_neighbors(*points, i, results.front()));
 	}
-	cout << "Ok!" << endl;
 }
 
 int main(int argc, char** argv)
@@ -133,8 +116,11 @@ int main(int argc, char** argv)
         return EXIT_FAILURE;
     }
 
-	typedef Eigen::Matrix <Scalar, 3, 1> Vector3;
+	/*typedef Eigen::Matrix <Scalar, 3, 1> Vector3;
 	const Ponca::KdTree* tree = new Ponca::KdTree();
 	KdTreeNearestIndexQuery q;
-	q.begin();
+	q.begin();*/
+
+	callSubTests<Vec3,20>();
+
 }
