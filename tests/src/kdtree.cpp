@@ -9,6 +9,10 @@
 
 #include <Ponca/src/SpatialPartitioning/KdTree/Query/KdTreeNearestPointQuery.h>
 #include <Ponca/src/SpatialPartitioning/KdTree/Query/KdTreeKNearestPointQuery.h>
+#include <Ponca/src/SpatialPartitioning/KdTree/Query/KdTreeRangePointQuery.h>
+
+#include <Ponca/src/SpatialPartitioning/KdTree/Iterator/KdTreeRangePointIterator.h>
+#include <Ponca/src/SpatialPartitioning/KdTree/Iterator/KdTreeKNearestPointIterator.h>
 
 #include <Ponca/src/Fitting/basket.h>
 #include <Ponca/src/Fitting/orientedSphereFit.h>
@@ -136,6 +140,7 @@ int main(int argc, char** argv)
 
 	typedef Eigen::Matrix <Scalar, 3, 1> Vector3;
 	const Ponca::KdTree* tree = new Ponca::KdTree();
-	KdTreeKNearestPointQuery<Vector3> q(tree, 5);
-	q.begin();
+	//KdTreeKNearestPointQuery<Vector3> q;
+	//q.begin();
+	KdTreeRangePointIterator<Vector3> t;
 }

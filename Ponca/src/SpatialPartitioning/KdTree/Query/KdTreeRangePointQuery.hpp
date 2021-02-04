@@ -4,49 +4,58 @@
  file, You can obtain one at http://mozilla.org/MPL/2.0/.
 */
 
-#include <PCA/SpacePartitioning/KdTree/Query/KdTreeRangePointQuery.h>
-#include <PCA/SpacePartitioning/KdTree/KdTree.h>
+#include "./KdTreeRangePointQuery.h"
+#include "../kdTree.h"
+
+class KdTree;
 
 namespace Ponca {
-
-KdTreeRangePointQuery::KdTreeRangePointQuery() :
+template <typename VectorType>
+KdTreeRangePointQuery<VectorType>::KdTreeRangePointQuery() :
     KdTreeQuery(),
-    RangePointQuery()
+    RangePointQuery<VectorType>()
 {
+    cout << "Test" << endl;
 }
 
-KdTreeRangePointQuery::KdTreeRangePointQuery(const KdTree* kdtree) :
+template <typename VectorType>
+KdTreeRangePointQuery<VectorType>::KdTreeRangePointQuery(const KdTree* kdtree) :
     KdTreeQuery(kdtree),
-    RangePointQuery()
+    RangePointQuery<VectorType>()
 {
 }
 
-KdTreeRangePointQuery::KdTreeRangePointQuery(const KdTree* kdtree, Scalar radius) :
+template <typename VectorType>
+KdTreeRangePointQuery<VectorType>::KdTreeRangePointQuery(const KdTree* kdtree, Scalar radius) :
     KdTreeQuery(kdtree),
-    RangePointQuery(radius)
+    RangePointQuery<VectorType>(radius)
 {
 }
 
-KdTreeRangePointQuery::KdTreeRangePointQuery(const KdTree* kdtree, Scalar radius, const Vector3& point) :
+template <typename VectorType>
+KdTreeRangePointQuery<VectorType>::KdTreeRangePointQuery(const KdTree* kdtree, Scalar radius, const VectorType& point) :
     KdTreeQuery(kdtree),
-    RangePointQuery(radius, point)
+    RangePointQuery<VectorType>(radius, point)
 {
 }
 
-KdTreeRangePointIterator KdTreeRangePointQuery::begin()
+template <typename VectorType>
+KdTreeRangePointIterator<typename RangePointQuery<VectorType>::VectorType> KdTreeRangePointQuery<VectorType>::begin()
 {
-    KdTreeRangePointIterator it(this);
+    KdTreeRangePointIterator<VectorType> it(this);
     this->initialize(it);
     this->advance(it);
     return it;
 }
 
-KdTreeRangePointIterator KdTreeRangePointQuery::end()
+template <typename VectorType>
+KdTreeRangePointIterator<typename RangePointQuery<VectorType>::VectorType> KdTreeRangePointQuery<VectorType>::end()
 {
-    return KdTreeRangePointIterator(this, m_kdtree->size());
+    return KdTreeRangePointIterator<VectorType>(this, static_cast<int>(m_kdtree->size()));
 }
 
-void KdTreeRangePointQuery::initialize(KdTreeRangePointIterator& it)
+template <typename VectorType>
+void KdTreeRangePointQuery<VectorType>::initialize(KdTreeRangePointIterator<VectorType>& it)
 {
     m_stack.clear();
     m_stack.push();
@@ -57,7 +66,8 @@ void KdTreeRangePointQuery::initialize(KdTreeRangePointIterator& it)
     it.m_end   = 0;
 }
 
-void KdTreeRangePointQuery::advance(KdTreeRangePointIterator& it)
+template <typename VectorType>
+void KdTreeRangePointQuery<VectorType>::advance(KdTreeRangePointIterator<VectorType>& it)
 {
     const auto& nodes   = m_kdtree->node_data();
     const auto& points  = m_kdtree->point_data();
@@ -128,4 +138,4 @@ void KdTreeRangePointQuery::advance(KdTreeRangePointIterator& it)
     it.m_index = points.size();
 }
 
-}   
+} // namespace ponca

@@ -15,43 +15,43 @@ class KdTree;
 
 namespace Ponca {
 
-template <typename _VectorType>
-KdTreeNearestPointQuery<_VectorType>::KdTreeNearestPointQuery() :
+template <typename VectorType>
+KdTreeNearestPointQuery<VectorType>::KdTreeNearestPointQuery() :
     KdTreeQuery(),
-    NearestPointQuery()
+    NearestPointQuery<VectorType>()
 {
     cout << "Test" << endl;
 }
 
-template <typename _VectorType>
-KdTreeNearestPointQuery< _VectorType>::KdTreeNearestPointQuery(const KdTree* kdtree) :
+template <typename VectorType>
+KdTreeNearestPointQuery<VectorType>::KdTreeNearestPointQuery(const KdTree* kdtree) :
     KdTreeQuery(kdtree),
-    NearestPointQuery()
+    NearestPointQuery<VectorType>()
 {
 }
 
-template <typename _VectorType>
-KdTreeNearestPointQuery< _VectorType>::KdTreeNearestPointQuery(const KdTree* kdtree, const _VectorType& point) :
+template <typename VectorType>
+KdTreeNearestPointQuery<VectorType>::KdTreeNearestPointQuery(const KdTree* kdtree, const VectorType& point) :
     KdTreeQuery(kdtree),
-    NearestPointQuery(point)
+    NearestPointQuery<VectorType>(point)
 {
 }
 
-template <typename _VectorType>
-KdTreeNearestPointIterator KdTreeNearestPointQuery< _VectorType>::begin()
+template <typename VectorType>
+KdTreeNearestPointIterator KdTreeNearestPointQuery<VectorType>::begin()
 {
     this->search();
     return KdTreeNearestPointIterator(m_nearest);
 }
 
-template <typename _VectorType>
-KdTreeNearestPointIterator KdTreeNearestPointQuery< _VectorType>::end()
+template <typename VectorType>
+KdTreeNearestPointIterator KdTreeNearestPointQuery<VectorType>::end()
 {
     return KdTreeNearestPointIterator(m_nearest+1);
 }
 
-template <typename _VectorType>
-void KdTreeNearestPointQuery< _VectorType>::search()
+template <typename VectorType>
+void KdTreeNearestPointQuery<VectorType>::search()
 {
     const auto& nodes   = m_kdtree->node_data();
     const auto& points  = m_kdtree->point_data();

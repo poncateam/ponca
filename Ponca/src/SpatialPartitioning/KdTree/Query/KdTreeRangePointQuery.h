@@ -6,31 +6,35 @@
 
 #pragma once
 
-#include <PCA/SpacePartitioning/Query/RangePointQuery.h>
-#include <PCA/SpacePartitioning/KdTree/Query/KdTreeQuery.h>
-#include <PCA/SpacePartitioning/KdTree/Iterator/KdTreeRangePointIterator.h>
+#include "../Iterator/KdTreeRangePointIterator.h"
+
+#include "../../query.h"
+#include "../query.h"
 
 namespace Ponca {
 
-class KdTreeRangePointQuery : public KdTreeQuery,
-                              public RangePointQuery
+template <typename _VectorType>
+class KdTreeRangePointQuery : public RangePointQuery<_VectorType>, public KdTreeQuery
 {
+using VectorType = typename RangePointQuery<_VectorType>::VectorType;
+
 protected:
-    friend class KdTreeRangePointIterator;
+    friend class KdTreeRangePointIterator<VectorType>;
 
 public:
     KdTreeRangePointQuery();
     KdTreeRangePointQuery(const KdTree* kdtree);
     KdTreeRangePointQuery(const KdTree* kdtree, Scalar radius);
-    KdTreeRangePointQuery(const KdTree* kdtree, Scalar radius, const Vector3& point);
+    KdTreeRangePointQuery(const KdTree* kdtree, Scalar radius, const VectorType& point);
 
 public:
-    KdTreeRangePointIterator begin();
-    KdTreeRangePointIterator end();
+    KdTreeRangePointIterator<VectorType> begin();
+    KdTreeRangePointIterator<VectorType> end();
 
 protected:
-    void initialize(KdTreeRangePointIterator& iterator);
-    void advance(KdTreeRangePointIterator& iterator);
+    void initialize(KdTreeRangePointIterator<VectorType>& iterator);
+    void advance(KdTreeRangePointIterator<VectorType>& iterator);
 };
 
-}   
+} // namespace ponca
+#include "./KdTreeRangePointQuery.hpp"
