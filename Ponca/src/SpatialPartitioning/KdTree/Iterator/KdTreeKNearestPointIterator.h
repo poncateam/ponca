@@ -6,8 +6,6 @@
 
 #pragma once
 
-#include "../iterator.h"
-
 namespace Ponca {
 
 class KdTreeKNearestPointIterator
@@ -26,3 +24,4 @@ protected:
 };
 
 } // namespace ponca
+#include "./KdTreeKNearestPointIterator.hpp"

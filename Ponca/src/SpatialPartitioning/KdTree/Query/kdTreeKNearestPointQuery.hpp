@@ -5,9 +5,13 @@
 */
 
 #include "../iterator.h"
+
 #include "../kdTree.h"
+
 #include "../../query.h"
-#include "./kdTreeKNearestPointQuery.h"
+#include "./KdTreeKNearestPointQuery.h"
+
+class KdTree;
 
 namespace Ponca {
 
@@ -16,6 +20,7 @@ KdTreeKNearestPointQuery<VectorType>::KdTreeKNearestPointQuery() :
     KdTreeQuery(),
     KNearestPointQuery<VectorType>()
 {
+    cout << "Test" << endl;
 }
 
 template <typename VectorType>
@@ -103,4 +108,4 @@ void KdTreeKNearestPointQuery<VectorType>::search()
     }
 }
 
-}   
+}

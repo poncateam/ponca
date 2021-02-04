@@ -1,9 +1,16 @@
-#include <PDPC/SpacePartitioning/KdTree/Iterator/KdTreeRangePointIterator.h>
-#include <PDPC/SpacePartitioning/KdTree/Query/KdTreeRangePointQuery.h>
+/*
+ This Source Code Form is subject to the terms of the Mozilla Public
+ License, v. 2.0. If a copy of the MPL was not distributed with this
+ file, You can obtain one at http://mozilla.org/MPL/2.0/.
+*/
 
-namespace pdpc {
+#include "./KdTreeRangePointIterator.h"
+#include "../Query/KdTreeRangePointQuery.h"
 
-KdTreeRangePointIterator::KdTreeRangePointIterator() :
+namespace Ponca {
+    
+template <typename VectorType>
+KdTreeRangePointIterator<VectorType>::KdTreeRangePointIterator() :
     m_query(nullptr),
     m_index(-1),
     m_start(0),
@@ -11,7 +18,8 @@ KdTreeRangePointIterator::KdTreeRangePointIterator() :
 {
 }
 
-KdTreeRangePointIterator::KdTreeRangePointIterator(KdTreeRangePointQuery* query) :
+template <typename VectorType>
+KdTreeRangePointIterator<VectorType>::KdTreeRangePointIterator(KdTreeRangePointQuery<VectorType>* query) :
     m_query(query),
     m_index(-1),
     m_start(0),
@@ -19,7 +27,8 @@ KdTreeRangePointIterator::KdTreeRangePointIterator(KdTreeRangePointQuery* query)
 {
 }
 
-KdTreeRangePointIterator::KdTreeRangePointIterator(KdTreeRangePointQuery* query, int index) :
+template <typename VectorType>
+KdTreeRangePointIterator<VectorType>::KdTreeRangePointIterator(KdTreeRangePointQuery<VectorType>* query, int index) :
     m_query(query),
     m_index(index),
     m_start(0),
@@ -27,19 +36,22 @@ KdTreeRangePointIterator::KdTreeRangePointIterator(KdTreeRangePointQuery* query,
 {
 }
 
-bool KdTreeRangePointIterator::operator !=(const KdTreeRangePointIterator& other) const
+template <typename VectorType>
+bool KdTreeRangePointIterator<VectorType>::operator !=(const KdTreeRangePointIterator& other) const
 {
     return m_index != other.m_index;
 }
 
-void KdTreeRangePointIterator::operator ++()
+template <typename VectorType>
+void KdTreeRangePointIterator<VectorType>::operator ++()
 {
     m_query->advance(*this);
 }
 
-int KdTreeRangePointIterator::operator * () const
+template <typename VectorType>
+int KdTreeRangePointIterator<VectorType>::operator *() const
 {
     return m_index;
 }
 
-} // namespace pdpc
+} // namespace ponca
