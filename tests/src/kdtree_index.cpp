@@ -12,21 +12,31 @@
 
 #include <chrono>
 #include <Eigen/Dense>
+#include <cassert>
 
 //#include <PCP/Math/VectorArray.h>
 
 #include <chrono>
-using namespace Eigen;
+#include <random>
 
+
+#define EXPECT_EQ(a,b) assert(a==b)
+#define EXPECT_TRUE(a) assert(a==True)
+
+using namespace Eigen;
+using namespace Ponca;
 using namespace std;
 
-using namespace Ponca;
+
 
 using uint = unsigned int;
 using Scalar = float;
 
 using Vec3 = Eigen::Matrix<SPScalar, 3, 1>;
 using Vector3Array = std::vector<Vec3>;
+
+
+
 
 //Dans le fichier de test de thibault has_duplicate sert a vérifier les données d'entrée pour empecher les duplicatas
 // et retourne un erreur si c'est le cas 
@@ -36,20 +46,20 @@ bool check_k_nearest_neighbors(const Vector3Array& points, int index, int k, con
 {
 	if (int(points.size()) > k && int(neighbors.size()) != k)
 	{
-		//PCP_DEBUG_ERROR;;
+		//PCP_DEBUG_ERROR;
 		return false;
 	}
 
 	if (has_duplicate(neighbors))
 	{
-		//PCP_DEBUG_ERROR;;
+		//PCP_DEBUG_ERROR;
 		return false;
 	}
 
 	auto it = std::find(neighbors.begin(), neighbors.end(), index);
 	if (it != neighbors.end())
 	{
-		//PCP_DEBUG_ERROR;;
+		//PCP_DEBUG_ERROR;
 		return false;
 	}
 
@@ -67,40 +77,108 @@ bool check_k_nearest_neighbors(const Vector3Array& points, int index, int k, con
 
 		if (is_neighbor && max_dist < dist)
 		{
-			//PCP_DEBUG_ERROR;;
+			//PCP_DEBUG_ERROR;
 			return false;
 		}
 		if (!is_neighbor && dist < max_dist)
 		{
-			//PCP_DEBUG_ERROR;;
+			//PCP_DEBUG_ERROR;
 			return false;
 		}
 	}
 	return true;
 }
 
-template<typename Vector3Array>
-bool check_k_nearest_neighbors(const Vector3Array& points, int index, int k, const std::vector<int>& neighbors)
+bool check_nearest_neighbors(const Vector3Array& points, int index, int nearest)
 {
 	return check_k_nearest_neighbors(points, index, 1, { nearest });
-
-
 }
 
-template<typename Vector3, int N>
+bool check_k_nearest_neighbors(const Vector3Array& points, const std::vector<int>& sampling, int index, int k, const std::vector<int>& neighbors)
+{
+	if (int(points.size()) > k && int(neighbors.size()) != k)
+	{
+		//PCP_DEBUG_ERROR;
+		return false;
+	}
+
+	if (has_duplicate(neighbors))
+	{
+		//PCP_DEBUG_ERROR;
+		return false;
+	}
+
+	for (int idx : neighbors)
+	{
+		if (std::find(sampling.begin(), sampling.end(), idx) == sampling.end())
+		{
+			//PCP_DEBUG_ERROR;
+			return false;
+		}
+	}
+
+	auto it = std::find(neighbors.begin(), neighbors.end(), index);
+	if (it != neighbors.end())
+	{
+		//PCP_DEBUG_ERROR;
+		return false;
+	}
+
+	Scalar max_dist = 0;
+	for (int idx : neighbors)
+		max_dist = std::max(max_dist, (points[idx] - points[index]).norm());
+
+	for (int i = 0; i<int(sampling.size()); ++i)
+	{
+		int idx = sampling[i];
+		if (idx == index) continue;
+
+		Scalar dist = (points[idx] - points[index]).norm();
+		auto it = std::find(neighbors.begin(), neighbors.end(), idx);
+		bool is_neighbor = it != neighbors.end();
+
+		if (is_neighbor && max_dist < dist)
+		{
+			//PCP_DEBUG_ERROR;
+			return false;
+		}
+		if (!is_neighbor && dist < max_dist)
+		{
+			//PCP_DEBUG_ERROR;
+			return false;
+		}
+	}
+	return true;
+}
+
+bool check_nearest_neighbors(const Vector3Array& points, const std::vector<int>& sampling, int index, int nearest)
+{
+	return check_k_nearest_neighbors(points, sampling, index, 1, { nearest });
+}
+
+
+template<typename Vector3>
 void callSubTests()
 {
 	const int N = quick ? 100 : 10000;
 	auto points = std::make_shared<Vector3Array>(N);
 	std::generate(points->begin(), points->end(), []() {return Vector3::Random(); });
 
+
+	std::vector<int> indices(N);
+	std::vector<int> sampling(N / 2);
+	std::iota(indices.begin(), indices.end(), 0);
+	std::sample(indices.begin(), indices.end(), sampling.begin(), N / 2, std::mt19937(pcptest::seed));
+
+
 	KdTree structure(points);
 
 	std::vector<int> results;
 	for (int i = 0; i < N; ++i)
 	{
+		const Scalar r = Scalar(std::rand()) / RAND_MAX * 2.5;
 		results.clear();
-		for (int j : structure.nearest_neighbor(i))
+		for (int j : structure.range_neighbors(i, r))
 		{
 			results.push_back(j);
 		}
@@ -116,11 +194,11 @@ int main(int argc, char** argv)
         return EXIT_FAILURE;
     }
 
-	/*typedef Eigen::Matrix <Scalar, 3, 1> Vector3;
-	const Ponca::KdTree* tree = new Ponca::KdTree();
-	KdTreeNearestIndexQuery q;
-	q.begin();*/
+	//typedef Eigen::Matrix <Scalar, 3, 1> Vector3;
+	//const Ponca::KdTree* tree = new Ponca::KdTree();
+	//KdTreeNearestIndexQuery q;
+	//q.begin();
 
-	callSubTests<Vec3,20>();
+	callSubTests<Vec3>();
 
 }

@@ -1,6 +1,6 @@
-#include <PCA/SpacePartitioning/KdTree/Query/KdTreeRangeIndexQuery.h>
-#include <PCA/SpacePartitioning/KdTree/KdTree.h>
 
+#include "./KdTreeRangeIndexQuery.h"
+#include "../kdTree.h"
 namespace Ponca {
 
 KdTreeRangeIndexQuery::KdTreeRangeIndexQuery() :

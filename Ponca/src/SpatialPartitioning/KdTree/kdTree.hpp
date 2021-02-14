@@ -214,10 +214,10 @@ void KdTree::rebuild(const std::vector<int>& sampling)
 //    return RangePointQuery(this, r, point);
 //}
 
-//KdTreeRangeIndexQuery KdTree::range_neighbors(int index, Scalar r) const
-//{
-//    return RangeIndexQuery(this, r, index);
-//}
+KdTreeRangeIndexQuery KdTree::range_neighbors(int index, Scalar r) const
+{
+    return RangeIndexQuery(r, index);
+}
 
 //// Empty Query -----------------------------------------------------------------
 

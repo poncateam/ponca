@@ -1,6 +1,10 @@
 #pragma once
 
-namespace pdpc {
+#include "../Query/KdTreeRangeIndexQuery.h"
+
+#include "../../query.h"
+
+namespace Ponca {
 
 class KdTreeRangeIndexQuery;
 
@@ -27,3 +31,4 @@ protected:
 };
 
 } // namespace pdpc
+#include "./KdTreeRangeIndexIterator.h"
