@@ -14,6 +14,8 @@
 #include <memory>
 #include <vector>
 
+#include "./Query/KdTreeRangeIndexQuery.h"
+
 #define PCA_KDTREE_MAX_DEPTH 32
 using Scalar = float;
 
@@ -64,6 +66,11 @@ public:
 public:
     inline void build_rec(int node_id, int start, int end, int level);
     inline int partition(int start, int end, int dim, Scalar value);
+
+
+	// Query -------------------------------------------------------------------
+public :
+	inline RangeIndexQuery range_neighbors(int index, Scalar r) const;
 
     // Data --------------------------------------------------------------------
 protected:
