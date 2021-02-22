@@ -22,25 +22,25 @@ protected:
     int m_index;
 };
 
-struct KNearestIterator
-{
-    inline KNearestIterator(limited_priority_queue<IndexSquaredDistance>::iterator iterator
-                            = limited_priority_queue<IndexSquaredDistance>::iterator() )
-        : m_iterator(iterator) {}
-
-    inline bool operator !=(const KNearestIterator& other) const
-    { return m_iterator != other.m_iterator; }
-    inline void operator ++()
-    { ++m_iterator; }
-    inline void operator +=(int i)
-    { m_iterator += i; }
-    inline int  operator * () const
-    { return m_iterator->index; }
-
-
-protected:
-    limited_priority_queue<IndexSquaredDistance>::iterator m_iterator;
-};
+//struct KNearestIterator
+//{
+//    inline KNearestIterator(limited_priority_queue<IndexSquaredDistance>::iterator iterator
+//                            = limited_priority_queue<IndexSquaredDistance>::iterator() )
+//        : m_iterator(iterator) {}
+//
+//    inline bool operator !=(const KNearestIterator& other) const
+//    { return m_iterator != other.m_iterator; }
+//    inline void operator ++()
+//    { ++m_iterator; }
+//    inline void operator +=(int i)
+//    { m_iterator += i; }
+//    inline int  operator * () const
+//    { return m_iterator->index; }
+//
+//
+//protected:
+//    limited_priority_queue<IndexSquaredDistance>::iterator m_iterator;
+//};
 
 template<typename _RangeQueryType>
 struct RangeIterator

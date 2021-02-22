@@ -13,19 +13,20 @@
 
 namespace Ponca {
 
-template <typename _VectorType>
-class KdTreeRangePointQuery : public RangePointQuery<_VectorType>, public KdTreeQuery
+template <class DataPoint>
+class KdTreeRangePointQuery : public RangePointQuery<DataPoint>, public KdTreeQuery<DataPoint>
 {
-using VectorType = typename RangePointQuery<_VectorType>::VectorType;
+	using VectorType = typename DataPoint::VectorType;
+	using Scalar = typename DataPoint::Scalar;
 
 protected:
     friend class KdTreeRangePointIterator<VectorType>;
 
 public:
     KdTreeRangePointQuery();
-    KdTreeRangePointQuery(const KdTree* kdtree);
-    KdTreeRangePointQuery(const KdTree* kdtree, Scalar radius);
-    KdTreeRangePointQuery(const KdTree* kdtree, Scalar radius, const VectorType& point);
+    KdTreeRangePointQuery(const KdTree<DataPoint>* kdtree);
+    KdTreeRangePointQuery(const KdTree<DataPoint>* kdtree, Scalar radius);
+    KdTreeRangePointQuery(const KdTree<DataPoint>* kdtree, Scalar radius, const VectorType& point);
 
 public:
     KdTreeRangePointIterator<VectorType> begin();
