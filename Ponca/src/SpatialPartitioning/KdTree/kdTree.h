@@ -17,15 +17,20 @@
 #include "./Query/KdTreeRangeIndexQuery.h"
 
 #define PCA_KDTREE_MAX_DEPTH 32
-using Scalar = float;
 
 namespace Ponca {
-
+template<class DataPoint>
 class KdTree
 {
 public:
-    using Vector3Array = std::vector< Eigen::Matrix<SPScalar, 3, 1>>;
-    using Aabb = Eigen::AlignedBox<SPScalar, 3>;
+
+	/*! \brief Scalar type inherited from DataPoint */
+	typedef typename DataPoint::Scalar     Scalar;
+	/*! \brief Vector type inherited from DataPoint */
+	typedef typename DataPoint::VectorType VectorType;
+
+    using Vector3Array = std::vector< Eigen::Matrix<Scalar, 3, 1>>;
+    using Aabb = Eigen::AlignedBox<Scalar, 3>;
 
     inline KdTree();
     template <typename Range>

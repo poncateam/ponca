@@ -9,12 +9,12 @@
 #include "../defines.h"
 
 namespace Ponca {
-
+template<typename Scalar>
 struct KdTreeNode
 {
     union {
         struct {
-            SPScalar       splitValue;
+			Scalar       splitValue;
             unsigned int   firstChildId:24;
             unsigned int   dim:2;
             unsigned int   leaf:1;

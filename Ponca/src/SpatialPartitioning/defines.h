@@ -19,7 +19,6 @@ namespace Ponca {
 
 /// Scalar type used in SpatialPartitioning module
 /// \ingroup spatialpartitioning
-using SPScalar = float;
 
 }   
 

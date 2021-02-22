@@ -14,7 +14,7 @@ namespace Ponca {
 using KdTreeNearestIndexIterator = NearestIterator;
 //using KdTreeNearestPointIterator = NearestIterator;
 
-using KdTreeKNearestIndexIterator = KNearestIterator;
+//using KdTreeKNearestIndexIterator = KNearestIterator;
 //using KdTreeKNearestPointIterator = KNearestIterator;
 //struct KdTreeRangeIndexIterator : public RangeIterator<kdTreeRangeIndexQuery> {};
 //struct KdTreeRangePointIterator : public RangeIterator<kdTreeRangePointQuery> {};
