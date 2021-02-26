@@ -8,7 +8,7 @@
 #include "../Query/KdTreeRangePointQuery.h"
 
 namespace Ponca {
-    
+    /*
 template <typename VectorType>
 KdTreeRangePointIterator<VectorType>::KdTreeRangePointIterator() :
     m_query(nullptr),
@@ -36,22 +36,19 @@ KdTreeRangePointIterator<VectorType>::KdTreeRangePointIterator(KdTreeRangePointQ
 {
 }
 
-template <typename VectorType>
 bool KdTreeRangePointIterator<VectorType>::operator !=(const KdTreeRangePointIterator& other) const
 {
     return m_index != other.m_index;
 }
 
-template <typename VectorType>
 void KdTreeRangePointIterator<VectorType>::operator ++()
 {
     m_query->advance(*this);
 }
 
-template <typename VectorType>
 int KdTreeRangePointIterator<VectorType>::operator *() const
 {
     return m_index;
-}
+}*/
 
 } // namespace ponca

@@ -6,17 +6,16 @@
 
 namespace Ponca {
 
-class KdTreeRangeIndexQuery;
-
+template<class DataPoint>
 class KdTreeRangeIndexIterator
 {
 protected:
-    friend class KdTreeRangeIndexQuery;
+	template<DataPoint> friend class KdTreeRangeIndexQuery;
 
 public:
     KdTreeRangeIndexIterator();
-    KdTreeRangeIndexIterator(KdTreeRangeIndexQuery* query);
-    KdTreeRangeIndexIterator(KdTreeRangeIndexQuery* query, int index);
+    KdTreeRangeIndexIterator(KdTreeRangeIndexQuery<DataPoint>* query);
+    KdTreeRangeIndexIterator(KdTreeRangeIndexQuery<DataPoint>* query, int index);
 
 public:
     bool operator !=(const KdTreeRangeIndexIterator& other) const;
@@ -24,7 +23,7 @@ public:
     int  operator * () const;
 
 protected:
-    KdTreeRangeIndexQuery* m_query;
+    KdTreeRangeIndexQuery<DataPoint>* m_query;
     int m_index;
     int m_start;
     int m_end;
