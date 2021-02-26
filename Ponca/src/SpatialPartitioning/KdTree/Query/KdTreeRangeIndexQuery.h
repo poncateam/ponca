@@ -6,31 +6,37 @@
 
 #pragma once
 
-#include "../Iterator/KdTreeRangePointIterator.h"
+#include "../Iterator/KdTreeRangeIndexIterator.h"
 #include "../../query.h"
 #include "../query.h"
 
 namespace Ponca {
 
-class KdTreeRangeIndexQuery : public KdTreeQuery,
-                              public RangeIndexQuery
+//
+//:	public KdTreeQuery<DataPoint>,
+//public RangeIndexQuery<DataPoint::Scalar>
+template <class DataPoint>
+class KdTreeRangeIndexQuery 
 {
+	using VectorType = typename DataPoint::VectorType;
+	using Scalar = typename DataPoint::Scalar;
+//
 protected:
-    friend class KdTreeRangeIndexIterator;
-
+	template<DataPoint> friend class KdTreeRangeIndexIterator;
+//
+//public:
+//    inline KdTreeRangeIndexQuery();
+//    inline KdTreeRangeIndexQuery(const KdTree* kdtree);
+//    inline KdTreeRangeIndexQuery(const KdTree* kdtree, Scalar radius);
+//    inline KdTreeRangeIndexQuery(const KdTree* kdtree, Scalar radius, int index);
+//
 public:
-    inline KdTreeRangeIndexQuery();
-    inline KdTreeRangeIndexQuery(const KdTree* kdtree);
-    inline KdTreeRangeIndexQuery(const KdTree* kdtree, Scalar radius);
-    inline KdTreeRangeIndexQuery(const KdTree* kdtree, Scalar radius, int index);
-
-public:
-    inline KdTreeRangeIndexIterator begin();
-    inline KdTreeRangeIndexIterator end();
-
-protected:
-    inline void initialize(KdTreeRangeIndexIterator& iterator);
-    inline void advance(KdTreeRangeIndexIterator& iterator);
+    inline KdTreeRangeIndexIterator<DataPoint> begin();
+    inline KdTreeRangeIndexIterator<DataPoint> end();
+//
+//protected:
+//    inline void initialize(KdTreeRangeIndexIterator& iterator);
+//    inline void advance(KdTreeRangeIndexIterator& iterator);
 };
 
 }

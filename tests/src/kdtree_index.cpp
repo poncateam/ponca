@@ -14,10 +14,10 @@
 #include <Eigen/Dense>
 #include <cassert>
 
-//#include <PCP/Math/VectorArray.h>
-
 #include <chrono>
 #include <random>
+#include <iterator>
+#include <algorithm>
 
 
 #define EXPECT_EQ(a,b) assert(a==b)
@@ -30,9 +30,8 @@ using namespace std;
 
 
 using uint = unsigned int;
-using Scalar = float;
 
-using Vec3 = Eigen::Matrix<SPScalar, 3, 1>;
+using Vec3 = Eigen::Matrix<float, 3, 1>;
 using Vector3Array = std::vector<Vec3>;
 
 
@@ -40,6 +39,16 @@ using Vector3Array = std::vector<Vec3>;
 
 //Dans le fichier de test de thibault has_duplicate sert a vérifier les données d'entrée pour empecher les duplicatas
 // et retourne un erreur si c'est le cas 
+
+
+template <typename Scalar, typename Vector3>
+class _Point {
+public:
+	typedef Scalar Scalar;
+	typedef Vector3 VectorType;
+};
+
+
 
 
 bool check_k_nearest_neighbors(const Vector3Array& points, int index, int k, const std::vector<int>& neighbors)
@@ -63,7 +72,7 @@ bool check_k_nearest_neighbors(const Vector3Array& points, int index, int k, con
 		return false;
 	}
 
-	Scalar max_dist = 0;
+	float max_dist = 0;
 	for (int idx : neighbors)
 		max_dist = std::max(max_dist, (points[idx] - points[index]).norm());
 
@@ -71,7 +80,7 @@ bool check_k_nearest_neighbors(const Vector3Array& points, int index, int k, con
 	{
 		if (idx == index) continue;
 
-		Scalar dist = (points[idx] - points[index]).norm();
+		float dist = (points[idx] - points[index]).norm();
 		auto it = std::find(neighbors.begin(), neighbors.end(), idx);
 		bool is_neighbor = it != neighbors.end();
 
@@ -124,7 +133,7 @@ bool check_k_nearest_neighbors(const Vector3Array& points, const std::vector<int
 		return false;
 	}
 
-	Scalar max_dist = 0;
+	float max_dist = 0;
 	for (int idx : neighbors)
 		max_dist = std::max(max_dist, (points[idx] - points[index]).norm());
 
@@ -133,7 +142,7 @@ bool check_k_nearest_neighbors(const Vector3Array& points, const std::vector<int
 		int idx = sampling[i];
 		if (idx == index) continue;
 
-		Scalar dist = (points[idx] - points[index]).norm();
+		float dist = (points[idx] - points[index]).norm();
 		auto it = std::find(neighbors.begin(), neighbors.end(), idx);
 		bool is_neighbor = it != neighbors.end();
 
@@ -160,7 +169,7 @@ bool check_nearest_neighbors(const Vector3Array& points, const std::vector<int>&
 template<typename Vector3>
 void callSubTests()
 {
-	const int N = quick ? 100 : 10000;
+	const int N = 10000;// quick ? 100 : 10000
 	auto points = std::make_shared<Vector3Array>(N);
 	std::generate(points->begin(), points->end(), []() {return Vector3::Random(); });
 
@@ -168,15 +177,19 @@ void callSubTests()
 	std::vector<int> indices(N);
 	std::vector<int> sampling(N / 2);
 	std::iota(indices.begin(), indices.end(), 0);
-	std::sample(indices.begin(), indices.end(), sampling.begin(), N / 2, std::mt19937(pcptest::seed));
+	
+	//NEED C++17
+	//std::sample(indices.begin(), indices.end(), sampling.begin(), N / 2, std::mt19937(pcptest::seed));
+	
 
+	using Point = _Point<float, Vector3Array>;
 
-	KdTree structure(points);
+	KdTree<Point> structure(points);
 
 	std::vector<int> results;
 	for (int i = 0; i < N; ++i)
 	{
-		const Scalar r = Scalar(std::rand()) / RAND_MAX * 2.5;
+		const float r = float(std::rand()) / RAND_MAX * 2.5;
 		results.clear();
 		for (int j : structure.range_neighbors(i, r))
 		{

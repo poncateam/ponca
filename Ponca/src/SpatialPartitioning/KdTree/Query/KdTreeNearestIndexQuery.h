@@ -12,9 +12,9 @@
 #include "../../query.h"
 
 namespace Ponca {
-
-class KdTreeNearestIndexQuery : public KdTreeQuery,
-                                public NearestIndexQuery
+template <class DataPoint>
+class KdTreeNearestIndexQuery : public KdTreeQuery<DataPoint>,
+								public NearestIndexQuery<typename DataPoint::Scalar>
 {
 public:
     KdTreeNearestIndexQuery();

@@ -35,7 +35,9 @@ public:
     inline KdTree();
     template <typename Range>
     inline KdTree(const Range& points);
+	template<class DataPoint>
     inline KdTree(std::shared_ptr<Vector3Array>& points);
+	template<class DataPoint>
     inline KdTree(std::shared_ptr<Vector3Array>& points, const std::vector<int>& sampling);
 
     inline void clear();
@@ -56,8 +58,8 @@ public:
     inline const std::shared_ptr<Vector3Array>& point_ptr() const;
     inline       std::shared_ptr<Vector3Array>& point_ptr();
 
-    inline const std::vector<KdTreeNode>& node_data() const;
-    inline       std::vector<KdTreeNode>& node_data();
+    inline const std::vector<KdTreeNode<Scalar>>& node_data() const;
+    inline       std::vector<KdTreeNode<Scalar>>& node_data();
 
     inline const std::vector<int>& index_data() const;
     inline       std::vector<int>& index_data();
@@ -75,12 +77,12 @@ public:
 
 	// Query -------------------------------------------------------------------
 public :
-	inline RangeIndexQuery range_neighbors(int index, Scalar r) const;
+	inline KdTreeRangeIndexQuery<Scalar> range_neighbors(int index, Scalar r) const;
 
     // Data --------------------------------------------------------------------
 protected:
     std::shared_ptr<Vector3Array>            m_points;
-    std::shared_ptr<std::vector<KdTreeNode>> m_nodes;
+    std::shared_ptr<std::vector<KdTreeNode<Scalar>>> m_nodes;
     std::shared_ptr<std::vector<int>>        m_indices;
 
     int m_min_cell_size;
