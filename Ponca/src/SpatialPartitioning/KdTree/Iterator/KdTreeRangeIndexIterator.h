@@ -10,12 +10,12 @@ template<class DataPoint>
 class KdTreeRangeIndexIterator
 {
 protected:
-	template<DataPoint> friend class KdTreeRangeIndexQuery;
+	//template<DataPoint> friend class KdTreeRangeIndexQuery;
 
 public:
-    KdTreeRangeIndexIterator();
+    /*KdTreeRangeIndexIterator();
     KdTreeRangeIndexIterator(KdTreeRangeIndexQuery<DataPoint>* query);
-    KdTreeRangeIndexIterator(KdTreeRangeIndexQuery<DataPoint>* query, int index);
+    KdTreeRangeIndexIterator(KdTreeRangeIndexQuery<DataPoint>* query, int index);*/
 
 public:
     bool operator !=(const KdTreeRangeIndexIterator& other) const;
@@ -23,11 +23,11 @@ public:
     int  operator * () const;
 
 protected:
-    KdTreeRangeIndexQuery<DataPoint>* m_query;
+    //KdTreeRangeIndexQuery<DataPoint>* m_query;
     int m_index;
     int m_start;
     int m_end;
 };
 
 } // namespace pdpc
-#include "./KdTreeRangeIndexIterator.h"
+#include "./KdTreeRangeIndexIterator.hpp"

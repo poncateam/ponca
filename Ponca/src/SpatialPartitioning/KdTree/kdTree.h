@@ -29,20 +29,17 @@ public:
 	/*! \brief Vector type inherited from DataPoint */
 	typedef typename DataPoint::VectorType VectorType;
 
-    using Vector3Array = std::vector< Eigen::Matrix<Scalar, 3, 1>>;
     using Aabb = Eigen::AlignedBox<Scalar, 3>;
 
     inline KdTree();
-    template <typename Range>
-    inline KdTree(const Range& points);
-	template<class DataPoint>
-    inline KdTree(std::shared_ptr<Vector3Array>& points);
-	template<class DataPoint>
-    inline KdTree(std::shared_ptr<Vector3Array>& points, const std::vector<int>& sampling);
+    /*template <typename Range>
+    inline KdTree(const Range& points);*/
+    inline KdTree(std::shared_ptr<VectorType>& points);
+    inline KdTree(std::shared_ptr<VectorType>& points, const std::vector<int>& sampling);
 
     inline void clear();
-    inline void build(std::shared_ptr<Vector3Array>& points);
-    inline void build(std::shared_ptr<Vector3Array>& points, const std::vector<int>& sampling);
+    inline void build(std::shared_ptr<VectorType>& points);
+    inline void build(std::shared_ptr<VectorType>& points, const std::vector<int>& sampling);
     inline void rebuild(const std::vector<int>& sampling);
 
     inline bool valid() const;
@@ -52,11 +49,11 @@ public:
 public:
     inline size_t size() const;
 
-    inline const Vector3Array& point_data() const;
-    inline       Vector3Array& point_data();
+    inline const VectorType& point_data() const;
+    inline       VectorType& point_data();
 
-    inline const std::shared_ptr<Vector3Array>& point_ptr() const;
-    inline       std::shared_ptr<Vector3Array>& point_ptr();
+    inline const std::shared_ptr<VectorType>& point_ptr() const;
+    inline       std::shared_ptr<VectorType>& point_ptr();
 
     inline const std::vector<KdTreeNode<Scalar>>& node_data() const;
     inline       std::vector<KdTreeNode<Scalar>>& node_data();
@@ -81,7 +78,7 @@ public :
 
     // Data --------------------------------------------------------------------
 protected:
-    std::shared_ptr<Vector3Array>            m_points;
+    std::shared_ptr<VectorType>            m_points;
     std::shared_ptr<std::vector<KdTreeNode<Scalar>>> m_nodes;
     std::shared_ptr<std::vector<int>>        m_indices;
 
