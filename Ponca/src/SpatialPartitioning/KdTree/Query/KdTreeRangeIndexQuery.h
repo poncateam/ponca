@@ -18,17 +18,17 @@ namespace Ponca {
 template <class DataPoint>
 class KdTreeRangeIndexQuery 
 {
-	using VectorType = typename DataPoint::VectorType;
-	using Scalar = typename DataPoint::Scalar;
+	/*using VectorType = typename DataPoint::VectorType;
+	using Scalar = typename DataPoint::Scalar;*/
 //
 protected:
-	template<DataPoint> friend class KdTreeRangeIndexIterator;
-//
-//public:
-//    inline KdTreeRangeIndexQuery();
-//    inline KdTreeRangeIndexQuery(const KdTree* kdtree);
-//    inline KdTreeRangeIndexQuery(const KdTree* kdtree, Scalar radius);
-//    inline KdTreeRangeIndexQuery(const KdTree* kdtree, Scalar radius, int index);
+	//template<DataPoint> friend class KdTreeRangeIndexIterator;
+
+public:
+  /*  inline KdTreeRangeIndexQuery();
+    inline KdTreeRangeIndexQuery(const KdTree* kdtree);
+    inline KdTreeRangeIndexQuery(const KdTree* kdtree, Scalar radius);
+    inline KdTreeRangeIndexQuery(const KdTree* kdtree, Scalar radius, int index);*/
 //
 public:
     inline KdTreeRangeIndexIterator<DataPoint> begin();

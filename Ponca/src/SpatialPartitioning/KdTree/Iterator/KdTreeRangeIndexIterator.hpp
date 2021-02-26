@@ -1,8 +1,9 @@
-#include <PDPC/SpacePartitioning/KdTree/Iterator/KdTreeRangeIndexIterator.h>
-#include <PDPC/SpacePartitioning/KdTree/Query/KdTreeRangeIndexQuery.h>
 
-namespace pdpc {
+#include "./KdTreeRangeIndexIterator.h"
+#include "../Query/KdTreeRangePointQuery.h"
 
+namespace Ponca {
+/*
 KdTreeRangeIndexIterator::KdTreeRangeIndexIterator() :
     m_query(nullptr),
     m_index(-1),
@@ -40,6 +41,6 @@ void KdTreeRangeIndexIterator::operator ++()
 int KdTreeRangeIndexIterator::operator * () const
 {
     return m_index;
-}
+}*/
 
 } // namespace pdpc
