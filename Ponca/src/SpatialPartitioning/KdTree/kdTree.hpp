@@ -22,7 +22,7 @@ inline Ponca::KdTree<DataPoint>::KdTree() :
 }
 
 template<class DataPoint>
-inline Ponca::KdTree<DataPoint>::KdTree(std::shared_ptr<DataPoint::VectorType>& points) :
+inline Ponca::KdTree<DataPoint>::KdTree(std::shared_ptr<VectorType>& points) :
 	m_points(nullptr),
 	m_nodes(nullptr),
 	m_indices(nullptr),
@@ -32,7 +32,7 @@ inline Ponca::KdTree<DataPoint>::KdTree(std::shared_ptr<DataPoint::VectorType>& 
 }
 
 template<class DataPoint>
-inline Ponca::KdTree<DataPoint>::KdTree(std::shared_ptr<DataPoint::VectorType>& points, const std::vector<int>& sampling) :
+inline Ponca::KdTree<DataPoint>::KdTree(std::shared_ptr<VectorType>& points, const std::vector<int>& sampling) :
 	m_points(nullptr),
 	m_nodes(nullptr),
 	m_indices(nullptr),
@@ -50,7 +50,7 @@ inline void Ponca::KdTree<DataPoint>::clear()
 }
 
 template<class DataPoint>
-inline void Ponca::KdTree<DataPoint>::build(std::shared_ptr<DataPoint::VectorType>& points)
+inline void Ponca::KdTree<DataPoint>::build(std::shared_ptr<VectorType>& points)
 {
 	std::vector<int> ids;
 	std::iota(ids.begin(), ids.end(), 0);
@@ -58,7 +58,7 @@ inline void Ponca::KdTree<DataPoint>::build(std::shared_ptr<DataPoint::VectorTyp
 }
 
 template<class DataPoint>
-inline void Ponca::KdTree<DataPoint>::build(std::shared_ptr<DataPoint::VectorType>& points, const std::vector<int>& sampling)
+inline void Ponca::KdTree<DataPoint>::build(std::shared_ptr<VectorType>& points, const std::vector<int>& sampling)
 {
 	this->clear();
 	
@@ -189,54 +189,6 @@ inline size_t Ponca::KdTree<DataPoint>::size() const
 
 
 template<class DataPoint>
-inline const DataPoint::VectorType & Ponca::KdTree<DataPoint>::point_data() const
-{
-	return *m_points.get();
-}
-
-template<class DataPoint>
-inline  DataPoint::VectorType & Ponca::KdTree<DataPoint>::point_data()
-{
-	return *m_points.get();
-}
-
-template<class DataPoint>
-inline const std::shared_ptr< DataPoint::VectorType>& Ponca::KdTree<DataPoint>::point_ptr() const
-{
-	return m_points;
-}
-
-template<class DataPoint>
-inline std::shared_ptr<DataPoint::VectorType>& Ponca::KdTree<DataPoint>::point_ptr()
-{
-	return m_points;
-}
-
-template<class DataPoint>
-inline const std::vector<Ponca::KdTreeNode<DataPoint::Scalar>>& Ponca::KdTree<DataPoint>::node_data() const
-{
-	return *m_nodes.get();
-}
-
-template<class DataPoint>
-inline std::vector<Ponca::KdTreeNode<DataPoint::Scalar>>& Ponca::KdTree<DataPoint>::node_data()
-{
-	return *m_nodes.get();
-}
-
-template<class DataPoint>
-inline const std::vector<int>& Ponca::KdTree<DataPoint>::index_data() const
-{
-	return *m_indices.get();
-}
-
-template<class DataPoint>
-inline std::vector<int>& Ponca::KdTree<DataPoint>::index_data()
-{
-	return *m_indices.get();
-}
-
-template<class DataPoint>
 inline int Ponca::KdTree<DataPoint>::min_cell_size() const
 {
 	return m_min_cell_size;
@@ -251,62 +203,62 @@ inline void Ponca::KdTree<DataPoint>::set_min_cell_size(int min_cell_size)
 template<class DataPoint>
 inline void Ponca::KdTree<DataPoint>::build_rec(int node_id, int start, int end, int level)
 {
-	auto& nodes = *m_nodes.get();
-	const auto& points  = *m_points.get();
-	const auto& indices = *m_indices.get();
-	
-	KdTreeNode& node = nodes[node_id];
-	Aabb aabb;
-	for(int i=start; i<end; ++i)
-	    aabb.extend(points[indices[i]]);
-	
-	int dim;
-	(Scalar(0.5)*(aabb.max()-aabb.min())).maxCoeff(&dim);
-	
-	node.dim = dim;
-	node.splitValue = aabb.center()(dim);
-	
-	int midId = this->partition(start, end, dim, node.splitValue);
-	node.firstChildId = nodes.size();
-	
-	{
-	    KdTreeNode n;
-	    n.size = 0;
-	    nodes.push_back(n);
-	    nodes.push_back(n);
-	}
-	{
-	    // left child
-	    int childId = nodes[node_id].firstChildId;
-	    KdTreeNode& child = nodes[childId];
-	    if(midId-start <= m_min_cell_size || level >= PCA_KDTREE_MAX_DEPTH)
-	    {
-	        child.leaf = 1;
-	        child.start = start;
-	        child.size = midId-start;
-	    }
-	    else
-	    {
-	        child.leaf = 0;
-	        this->build_rec(childId, start, midId, level+1);
-	    }
-	}
-	{
-	    // right child
-	    int childId = nodes[node_id].firstChildId+1;
-	    KdTreeNode& child = nodes[childId];
-	    if(end-midId <= m_min_cell_size || level >= PCA_KDTREE_MAX_DEPTH)
-	    {
-	        child.leaf = 1;
-	        child.start = midId;
-	        child.size = end-midId;
-	    }
-	    else
-	    {
-	        child.leaf = 0;
-	        this->build_rec(childId, midId, end, level+1);
-	    }
-	}
+	//auto& nodes = *m_nodes.get();
+	//const auto& points  = *m_points.get();
+	//const auto& indices = *m_indices.get();
+	//
+	//KdTreeNode& node = nodes[node_id];
+	//Aabb aabb;
+	//for(int i=start; i<end; ++i)
+	//    aabb.extend(points[indices[i]]);
+	//
+	//int dim;
+	//(Scalar(0.5)*(aabb.max()-aabb.min())).maxCoeff(&dim);
+	//
+	//node.dim = dim;
+	//node.splitValue = aabb.center()(dim);
+	//
+	//int midId = this->partition(start, end, dim, node.splitValue);
+	//node.firstChildId = nodes.size();
+	//
+	//{
+	//    KdTreeNode n;
+	//    n.size = 0;
+	//    nodes.push_back(n);
+	//    nodes.push_back(n);
+	//}
+	//{
+	//    // left child
+	//    int childId = nodes[node_id].firstChildId;
+	//    KdTreeNode& child = nodes[childId];
+	//    if(midId-start <= m_min_cell_size || level >= PCA_KDTREE_MAX_DEPTH)
+	//    {
+	//        child.leaf = 1;
+	//        child.start = start;
+	//        child.size = midId-start;
+	//    }
+	//    else
+	//    {
+	//        child.leaf = 0;
+	//        this->build_rec(childId, start, midId, level+1);
+	//    }
+	//}
+	//{
+	//    // right child
+	//    int childId = nodes[node_id].firstChildId+1;
+	//    KdTreeNode& child = nodes[childId];
+	//    if(end-midId <= m_min_cell_size || level >= PCA_KDTREE_MAX_DEPTH)
+	//    {
+	//        child.leaf = 1;
+	//        child.start = midId;
+	//        child.size = end-midId;
+	//    }
+	//    else
+	//    {
+	//        child.leaf = 0;
+	//        this->build_rec(childId, midId, end, level+1);
+	//    }
+	//}
 }
 
 template<class DataPoint>
@@ -326,7 +278,7 @@ inline int Ponca::KdTree<DataPoint>::partition(int start, int end, int dim, Scal
 }
 
 template<class DataPoint>
-inline Ponca::KdTreeRangeIndexQuery<DataPoint::Scalar> Ponca::KdTree<DataPoint>::range_neighbors(int index, DataPoint::Scalar r) const
+inline Ponca::KdTreeRangeIndexQuery<Scalar> Ponca::KdTree<DataPoint>::range_neighbors(int index, Scalar r) const
 {
 	return RangeIndexQuery(r, index);
 }

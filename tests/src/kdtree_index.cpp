@@ -47,6 +47,7 @@ public:
 	typedef Scalar Scalar;
 	typedef Vector3 VectorType;
 };
+using Point = _Point<float, Vector3Array>;
 
 
 
@@ -169,8 +170,8 @@ bool check_nearest_neighbors(const Vector3Array& points, const std::vector<int>&
 template<typename Vector3>
 void callSubTests()
 {
-	//const int N = 10000;// quick ? 100 : 10000
-	//auto points = std::make_shared<Vector3Array>(N);
+	const int N = 10000;// quick ? 100 : 10000
+	auto points = std::make_shared<Vector3Array>(N);
 	//std::generate(points->begin(), points->end(), []() {return Vector3::Random(); });
 
 
@@ -182,7 +183,6 @@ void callSubTests()
 	//std::sample(indices.begin(), indices.end(), sampling.begin(), N / 2, std::mt19937(pcptest::seed));
 	
 
-	//using Point = _Point<float, Vector3Array>;
 
 	KdTree<Point> structure(points);
 
@@ -215,3 +215,4 @@ int main(int argc, char** argv)
 	callSubTests<Vec3>();
 
 }
+template class KdTree<Point>;
