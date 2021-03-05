@@ -1,4 +1,3 @@
-#include "kdTree.h"
 /*
  This Source Code Form is subject to the terms of the Mozilla Public
  License, v. 2.0. If a copy of the MPL was not distributed with this
@@ -11,38 +10,8 @@
 
 // KdTree ----------------------------------------------------------------------
 
-
 template<class DataPoint>
-inline Ponca::KdTree<DataPoint>::KdTree() : 
-	m_points(nullptr),
-	m_nodes(nullptr),
-	m_indices(nullptr),
-	m_min_cell_size(64)
-{
-}
-
-template<class DataPoint>
-inline Ponca::KdTree<DataPoint>::KdTree(std::shared_ptr<VectorType>& points) :
-	m_points(nullptr),
-	m_nodes(nullptr),
-	m_indices(nullptr),
-	m_min_cell_size(64)
-{
-	this->build(points);
-}
-
-template<class DataPoint>
-inline Ponca::KdTree<DataPoint>::KdTree(std::shared_ptr<VectorType>& points, const std::vector<int>& sampling) :
-	m_points(nullptr),
-	m_nodes(nullptr),
-	m_indices(nullptr),
-	m_min_cell_size(64)
-{
-	this->build(points, sampling);
-}
-
-template<class DataPoint>
-inline void Ponca::KdTree<DataPoint>::clear()
+inline void KdTree<DataPoint>::clear()
 {
 	m_points = nullptr;
 	m_nodes   = nullptr;
@@ -50,7 +19,7 @@ inline void Ponca::KdTree<DataPoint>::clear()
 }
 
 template<class DataPoint>
-inline void Ponca::KdTree<DataPoint>::build(std::shared_ptr<VectorType>& points)
+inline void KdTree<DataPoint>::build(std::shared_ptr<VectorType>& points)
 {
 	std::vector<int> ids;
 	std::iota(ids.begin(), ids.end(), 0);
@@ -58,7 +27,7 @@ inline void Ponca::KdTree<DataPoint>::build(std::shared_ptr<VectorType>& points)
 }
 
 template<class DataPoint>
-inline void Ponca::KdTree<DataPoint>::build(std::shared_ptr<VectorType>& points, const std::vector<int>& sampling)
+inline void KdTree<DataPoint>::build(std::shared_ptr<VectorType>& points, const std::vector<int>& sampling)
 {
 	this->clear();
 	
@@ -79,7 +48,7 @@ inline void Ponca::KdTree<DataPoint>::build(std::shared_ptr<VectorType>& points,
 }
 
 template<class DataPoint>
-inline void Ponca::KdTree<DataPoint>::rebuild(const std::vector<int>& sampling)
+inline void KdTree<DataPoint>::rebuild(const std::vector<int>& sampling)
 {
 	//    PCA_DEBUG_ASSERT(sampling.size() <= m_points->size());
 
@@ -96,7 +65,7 @@ inline void Ponca::KdTree<DataPoint>::rebuild(const std::vector<int>& sampling)
 }
 
 template<class DataPoint>
-inline bool Ponca::KdTree<DataPoint>::valid() const
+inline bool KdTree<DataPoint>::valid() const
 {
 	if (m_points == nullptr)
 		return m_nodes == nullptr && m_indices == nullptr;
@@ -154,7 +123,7 @@ inline bool Ponca::KdTree<DataPoint>::valid() const
 }
 
 template<class DataPoint>
-inline std::string Ponca::KdTree<DataPoint>::to_string() const
+inline std::string KdTree<DataPoint>::to_string() const
 {
 	if (!m_indices) return "";
 	
@@ -182,26 +151,26 @@ inline std::string Ponca::KdTree<DataPoint>::to_string() const
 }
 
 template<class DataPoint>
-inline size_t Ponca::KdTree<DataPoint>::size() const
+inline size_t KdTree<DataPoint>::size() const
 {
 	return size_t();
 }
 
 
 template<class DataPoint>
-inline int Ponca::KdTree<DataPoint>::min_cell_size() const
+inline int KdTree<DataPoint>::min_cell_size() const
 {
 	return m_min_cell_size;
 }
 
 template<class DataPoint>
-inline void Ponca::KdTree<DataPoint>::set_min_cell_size(int min_cell_size)
+inline void KdTree<DataPoint>::set_min_cell_size(int min_cell_size)
 {
 	m_min_cell_size = min_cell_size;
 }
 
 template<class DataPoint>
-inline void Ponca::KdTree<DataPoint>::build_rec(int node_id, int start, int end, int level)
+inline void KdTree<DataPoint>::build_rec(int node_id, int start, int end, int level)
 {
 	//auto& nodes = *m_nodes.get();
 	//const auto& points  = *m_points.get();
@@ -262,7 +231,7 @@ inline void Ponca::KdTree<DataPoint>::build_rec(int node_id, int start, int end,
 }
 
 template<class DataPoint>
-inline int Ponca::KdTree<DataPoint>::partition(int start, int end, int dim, Scalar value)
+inline int KdTree<DataPoint>::partition(int start, int end, int dim, Scalar value)
 {
 	const auto& points = *m_points.get();
 	auto& indices  = *m_indices.get();
@@ -278,7 +247,7 @@ inline int Ponca::KdTree<DataPoint>::partition(int start, int end, int dim, Scal
 }
 
 template<class DataPoint>
-inline Ponca::KdTreeRangeIndexQuery<Scalar> Ponca::KdTree<DataPoint>::range_neighbors(int index, Scalar r) const
+inline KdTreeRangeIndexQuery<Scalar> KdTree<DataPoint>::range_neighbors(int index, Scalar r) const
 {
 	return RangeIndexQuery(r, index);
 }
