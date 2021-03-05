@@ -49,17 +49,45 @@ public:
 public:
     inline size_t size() const;
 
-    inline const VectorType& point_data() const;
-    inline       VectorType& point_data();
+    inline const VectorType& KdTree<DataPoint>::point_data() const
+    {
+        return *m_points.get();
+    }
 
-    inline const std::shared_ptr<VectorType>& point_ptr() const;
-    inline       std::shared_ptr<VectorType>& point_ptr();
+    inline VectorType& KdTree<DataPoint>::point_data()
+    {
+        return *m_points.get();
+    }
 
-    inline const std::vector<KdTreeNode<Scalar>>& node_data() const;
-    inline       std::vector<KdTreeNode<Scalar>>& node_data();
+    inline const std::shared_ptr<VectorType>& KdTree<DataPoint>::point_ptr() const
+    {
+        return m_points;
+    }
 
-    inline const std::vector<int>& index_data() const;
-    inline       std::vector<int>& index_data();
+    inline std::shared_ptr<VectorType>& KdTree<DataPoint>::point_ptr()
+    {
+        return m_points;
+    }
+
+    inline const std::vector<Ponca::KdTreeNode<Scalar>>& KdTree<DataPoint>::node_data() const
+    {
+        return *m_nodes.get();
+    }
+
+    inline std::vector<Ponca::KdTreeNode<Scalar>>& KdTree<DataPoint>::node_data()
+    {
+        return *m_nodes.get();
+    }
+
+    inline const std::vector<int>& Ponca::KdTree<DataPoint>::index_data() const
+    {
+        return *m_indices.get();
+    }
+
+    inline std::vector<int>& Ponca::KdTree<DataPoint>::index_data()
+    {
+        return *m_indices.get();
+    }
 
     // Parameters --------------------------------------------------------------
 public:

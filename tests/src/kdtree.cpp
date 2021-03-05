@@ -37,81 +37,31 @@ using Scalar = float;
 //Dans le fichier de test de thibault has_duplicate sert a vérifier les données d'entrée pour empecher les duplicatas
 // et retourne un erreur si c'est le cas 
 
-template<typename DataPoint, typename WeightFunc>
-void testFunction()
+TEST(KdTree_nearest_neighbor_point, sampling)
 {
-	// Define related structure
-	typedef typename DataPoint::Scalar Scalar;
-	typedef typename DataPoint::VectorType VectorType;
-	typedef typename DataPoint::QuaternionType QuaternionType;
-	typedef Basket<DataPoint, WeightFunc, OrientedSphereFit> Fit;
+    const int N = quick ? 100 : 10000;
+    auto points = std::make_shared<Vector3Array>(N);
+    std::generate(points->begin(), points->end(), []() {return Vector3::Random(); });
 
-	//generate samples
-	int nbPoints = Eigen::internal::random<int>(100, 1000);
-	int nbPointsFit = 50;
+    std::vector<int> indices(N);
+    std::vector<int> sampling(N / 2);
+    std::iota(indices.begin(), indices.end(), 0);
+    std::sample(indices.begin(), indices.end(), sampling.begin(), N / 2, std::mt19937(pcptest::seed));
 
-	// equal probability of having a plane or a random quadric
-	VectorType coeff = 5 * VectorType::Random();
-	if (Eigen::internal::random<Scalar>(0., 1.) < Scalar(0.5))
-	{
-		coeff = VectorType::Zero();
-	}
-	Scalar width = Eigen::internal::random<Scalar>(1., 10.);
-	VectorType center = 1000 * VectorType::Random();
+    KdTree structure(points, sampling);
 
-	Scalar zmax = std::abs((coeff[0] + coeff[1]) * width*width);
-	Scalar analysisScale = std::sqrt(zmax*zmax + width * width);
-
-	Scalar epsilon = Scalar(10.)*testEpsilon<Scalar>();
-
-	Fit fit;
-	fit.setWeightFunc(WeightFunc(analysisScale));
-	fit.init(center);
-
-	for (int i = 0; i < nbPointsFit; ++i)
-	{
-		DataPoint p = getPointOnParaboloid<DataPoint>(VectorType(),     // center (not used)
-			coeff,
-			QuaternionType(), // (not used)
-			width,
-			false);           // noise
-		p.pos() += center;
-
-		fit.addNeighbor(p);
-	}
-
-	fit.finalize();
-
-	if (fit.isStable())
-	{
-		std::vector<VectorType> samples(nbPoints);
-		for (int i = 0; i < nbPoints; ++i)
-		{
-			VectorType p = center + analysisScale * VectorType::Random();
-			samples[i] = p;
-			VectorType proj = fit.project(p);
-
-			// check that the projected point is on the surface
-			VERIFY(fit.potential(proj) < epsilon);
-		}
-
-		auto start1 = std::chrono::system_clock::now();
-		for (const auto& p : samples)
-			fit.project(p);
-		auto end1 = std::chrono::system_clock::now();
-
-		auto start2 = std::chrono::system_clock::now();
-		for (const auto& p : samples)
-			fit.projectDescent(p);
-		auto end2 = std::chrono::system_clock::now();
-
-		std::chrono::duration<double> elapsed_seconds1 = end1 - start1;
-		std::chrono::duration<double> elapsed_seconds2 = end2 - start2;
-		std::cout << "Default: " << elapsed_seconds1.count() << " Descent: " << elapsed_seconds2.count() << "s\n";
-		VERIFY(elapsed_seconds1 <= elapsed_seconds2);
-	}
-
-
+    std::vector<int> results;
+    for (int i = 0; i < N; ++i)
+    {
+        Vector3 point = Vector3::Random();
+        results.clear();
+        for (int j : structure.nearest_neighbor(point))
+        {
+            results.push_back(j);
+        }
+        EXPECT_EQ(int(results.size()), 1);
+        EXPECT_TRUE(check_nearest_neighbors(*points, sampling, point, results.front()));
+    }
 }
 
 template<typename Scalar, int Dim>
