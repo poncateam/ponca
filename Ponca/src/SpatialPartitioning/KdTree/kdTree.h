@@ -74,7 +74,21 @@ public:
 
 	// Query -------------------------------------------------------------------
 public :
+	/*KNearestPointQuery k_nearest_neighbors(const Vector3& point, int k) const;
+	KNearestIndexQuery k_nearest_neighbors(int index, int k) const;
+	NearestPointQuery  nearest_neighbor(const Vector3& point) const;
+	NearestIndexQuery  nearest_neighbor(int index) const;
+	RangePointQuery    range_neighbors(const Vector3& point, Scalar r) const;*/
 	inline KdTreeRangeIndexQuery<Scalar> range_neighbors(int index, Scalar r) const;
+	
+	// Empty Query ------------------------------------------------------------
+
+	/*KNearestPointQuery k_nearest_point_query(int k = 0) const;
+	KNearestIndexQuery k_nearest_index_query(int k = 0) const;
+	NearestPointQuery  nearest_point_query() const;
+	NearestIndexQuery  nearest_index_query() const;
+	RangePointQuery    range_point_query(Scalar r = 0) const;
+	RangeIndexQuery    range_index_query(Scalar r = 0) const;*/
 
     // Data --------------------------------------------------------------------
 protected:

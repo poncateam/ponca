@@ -207,19 +207,19 @@ inline const std::shared_ptr< DataPoint::VectorType>& Ponca::KdTree<DataPoint>::
 }
 
 template<class DataPoint>
-inline std::shared_ptr< DataPoint::VectorType>& Ponca::KdTree<DataPoint>::point_ptr()
+inline std::shared_ptr<DataPoint::VectorType>& Ponca::KdTree<DataPoint>::point_ptr()
 {
 	return m_points;
 }
 
 template<class DataPoint>
-inline const std::vector<KdTreeNode<DataPoint::Scalar>>& Ponca::KdTree<DataPoint>::node_data() const
+inline const std::vector<Ponca::KdTreeNode<DataPoint::Scalar>>& Ponca::KdTree<DataPoint>::node_data() const
 {
 	return *m_nodes.get();
 }
 
 template<class DataPoint>
-inline std::vector<KdTreeNode<DataPoint::Scalar>>& Ponca::KdTree<DataPoint>::node_data()
+inline std::vector<Ponca::KdTreeNode<DataPoint::Scalar>>& Ponca::KdTree<DataPoint>::node_data()
 {
 	return *m_nodes.get();
 }
@@ -326,9 +326,72 @@ inline int Ponca::KdTree<DataPoint>::partition(int start, int end, int dim, Scal
 }
 
 template<class DataPoint>
-inline KdTreeRangeIndexQuery<DataPoint::Scalar> Ponca::KdTree<DataPoint>::range_neighbors(int index, DataPoint::Scalar r) const
+inline Ponca::KdTreeRangeIndexQuery<DataPoint::Scalar> Ponca::KdTree<DataPoint>::range_neighbors(int index, DataPoint::Scalar r) const
 {
 	return RangeIndexQuery(r, index);
 }
 
-
+//
+//// Query -----------------------------------------------------------------------
+//
+//KdTreeKNearestPointQuery KdTree::k_nearest_neighbors(const Vector3& point, int k) const
+//{
+//	return KNearestPointQuery(this, k, point);
+//}
+//
+//KdTreeKNearestIndexQuery KdTree::k_nearest_neighbors(int index, int k) const
+//{
+//	return KNearestIndexQuery(this, k, index);
+//}
+//
+//KdTreeNearestPointQuery KdTree::nearest_neighbor(const Vector3& point) const
+//{
+//	return NearestPointQuery(this, point);
+//}
+//
+//KdTreeNearestIndexQuery KdTree::nearest_neighbor(int index) const
+//{
+//	return NearestIndexQuery(this, index);
+//}
+//
+//KdTreeRangePointQuery KdTree::range_neighbors(const Vector3& point, Scalar r) const
+//{
+//	return RangePointQuery(this, r, point);
+//}
+//
+//KdTreeRangeIndexQuery KdTree::range_neighbors(int index, Scalar r) const
+//{
+//	return RangeIndexQuery(this, r, index);
+//}
+//
+//// Empty Query -----------------------------------------------------------------
+//
+//KdTreeKNearestPointQuery KdTree::k_nearest_point_query(int k) const
+//{
+//	return KNearestPointQuery(this, k);
+//}
+//
+//KdTreeKNearestIndexQuery KdTree::k_nearest_index_query(int k) const
+//{
+//	return KNearestIndexQuery(this, k);
+//}
+//
+//KdTreeNearestPointQuery KdTree::nearest_point_query() const
+//{
+//	return NearestPointQuery(this);
+//}
+//
+//KdTreeNearestIndexQuery KdTree::nearest_index_query() const
+//{
+//	return NearestIndexQuery(this);
+//}
+//
+//KdTreeRangePointQuery KdTree::range_point_query(Scalar r) const
+//{
+//	return RangePointQuery(this, r);
+//}
+//
+//KdTreeRangeIndexQuery KdTree::range_index_query(Scalar r) const
+//{
+//	return RangeIndexQuery(this, r);
+//}
