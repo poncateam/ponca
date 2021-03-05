@@ -1,12 +1,10 @@
+//#include "kdTree.h"
 /*
  This Source Code Form is subject to the terms of the Mozilla Public
  License, v. 2.0. If a copy of the MPL was not distributed with this
  file, You can obtain one at http://mozilla.org/MPL/2.0/.
 */
 
-
-
-#include <numeric>
 
 // KdTree ----------------------------------------------------------------------
 
@@ -158,7 +156,7 @@ inline size_t KdTree<DataPoint>::size() const
 
 
 template<class DataPoint>
-inline int KdTree<DataPoint>::min_cell_size() const
+inline int Ponca::KdTree<DataPoint>::min_cell_size() const
 {
 	return m_min_cell_size;
 }

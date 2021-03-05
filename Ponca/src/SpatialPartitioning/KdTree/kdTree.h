@@ -6,14 +6,15 @@
 
 #pragma once
 
-#include "./kdTreeNode.h"
 
 #include <Eigen/Eigen>
 #include <Eigen/Geometry> // aabb
 
 #include <memory>
 #include <vector>
+#include <numeric>
 
+#include "./kdTreeNode.h"
 #include "./Query/KdTreeRangeIndexQuery.h"
 
 #define PCA_KDTREE_MAX_DEPTH 32
