@@ -69,7 +69,7 @@ if( NOT Eigen3_FOUND )
         set(EIGEN3_INCLUDE_DIRS "${CMAKE_CURRENT_SOURCE_DIR}/external/eigen")
     endif()
 
-    if( NOT EXISTS ${EIGEN_SUBMODULE_ROOT_PATHv}/signature_of_eigen3_matrix_library )
+    if( NOT EXISTS ${EIGEN_SUBMODULE_ROOT_PATH}/signature_of_eigen3_matrix_library )
         execute_process(COMMAND git submodule update --init -- ${EIGEN_SUBMODULE_ROOT_PATH}
                 WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR})
     endif()
