@@ -31,11 +31,31 @@ public:
 
     using Aabb = Eigen::AlignedBox<Scalar, 3>;
 
-    inline KdTree();
+    inline KdTree(): 
+        m_points(nullptr),
+        m_nodes(nullptr),
+        m_indices(nullptr),
+        m_min_cell_size(64)
+    {
+    };
     /*template <typename Range>
     inline KdTree(const Range& points);*/
-    inline KdTree(std::shared_ptr<VectorType>& points);
-    inline KdTree(std::shared_ptr<VectorType>& points, const std::vector<int>& sampling);
+    inline KdTree(std::shared_ptr<VectorType>& points):
+        m_points(nullptr),
+        m_nodes(nullptr),
+        m_indices(nullptr),
+        m_min_cell_size(64)
+    {
+        this->build(points);
+    };
+    inline KdTree(std::shared_ptr<VectorType>& points, const std::vector<int>& sampling):
+        m_points(nullptr),
+        m_nodes(nullptr),
+        m_indices(nullptr),
+        m_min_cell_size(64)
+    {
+        this->build(points, sampling);
+    };
 
     inline void clear();
     inline void build(std::shared_ptr<VectorType>& points);
@@ -127,6 +147,6 @@ protected:
     int m_min_cell_size;
 };
 
-} // namespace Ponca
-
 #include "./kdTree.hpp"
+
+} // namespace Ponca
