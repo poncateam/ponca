@@ -9,7 +9,7 @@
 // KdTree ----------------------------------------------------------------------
 
 template<class DataPoint>
-inline void KdTree<DataPoint>::clear()
+void KdTree<DataPoint>::clear()
 {
 	m_points = nullptr;
 	m_nodes   = nullptr;
@@ -17,159 +17,160 @@ inline void KdTree<DataPoint>::clear()
 }
 
 template<class DataPoint>
-inline void KdTree<DataPoint>::build(std::shared_ptr<VectorType>& points)
+void KdTree<DataPoint>::build(std::shared_ptr<VectorType>& points)
 {
+	PONCA_MULTIARCH_STD_MATH(iota);
 	std::vector<int> ids;
-	std::iota(ids.begin(), ids.end(), 0);
-	this->build( points, ids);
+	iota(ids.begin(), ids.end(), 0);
+//	this->build( points, ids);
 }
 
-template<class DataPoint>
-inline void KdTree<DataPoint>::build(std::shared_ptr<VectorType>& points, const std::vector<int>& sampling)
-{
-	this->clear();
-	
-	m_points = points;
-	
-	m_nodes = std::make_shared<std::vector<KdTreeNode>>();
-	m_nodes->reserve(4 * m_points->size() / m_min_cell_size);
-	m_nodes->emplace_back();
-	m_nodes->back().leaf = false;
-	
-	m_indices = std::make_shared<std::vector<int>>(sampling);
-	
-	int end = static_cast<int>(m_indices->size());
-	
-	this->build_rec(0, 0, end, 1);
-	
-//    PCA_DEBUG_ASSERT(this->valid());
-}
+//template<class DataPoint>
+//void KdTree<DataPoint>::build(std::shared_ptr<VectorType>& points, const std::vector<int>& sampling)
+//{
+//	this->clear();
+//	
+//	m_points = points;
+//	
+//	m_nodes = std::make_shared<std::vector<KdTreeNode>>();
+//	m_nodes->reserve(4 * m_points->size() / m_min_cell_size);
+//	m_nodes->emplace_back();
+//	m_nodes->back().leaf = false;
+//	
+//	m_indices = std::make_shared<std::vector<int>>(sampling);
+//	
+//	int end = static_cast<int>(m_indices->size());
+//	
+//	this->build_rec(0, 0, end, 1);
+//	
+////    PCA_DEBUG_ASSERT(this->valid());
+//}
+//
+//template<class DataPoint>
+//void KdTree<DataPoint>::rebuild(const std::vector<int>& sampling)
+//{
+//	//    PCA_DEBUG_ASSERT(sampling.size() <= m_points->size());
+//
+//    m_nodes->clear();
+//    m_nodes->emplace_back();
+//    m_nodes->back().leaf = false;
+//
+//    *m_indices = sampling;
+//
+//    int end = static_cast<int>(m_indices->size());
+//    this->build_rec(0, 0, end, 1);
+//
+////    PCA_DEBUG_ASSERT(this->valid());
+//}
+//
+//template<class DataPoint>
+//bool KdTree<DataPoint>::valid() const
+//{
+//	if (m_points == nullptr)
+//		return m_nodes == nullptr && m_indices == nullptr;
+//		
+//	if(m_nodes == nullptr || m_indices == nullptr)
+//	{
+//		//PCA_DEBUG_ERROR;
+//		return false;
+//	}
+//		
+//	if(m_points->size() < m_indices->size())
+//	{
+//		//PCA_DEBUG_ERROR;
+//		return false;
+//	}
+//		
+//	std::vector<bool> b(m_points->size(), false);
+//	for(int idx : *m_indices.get())
+//	{
+//		if(idx < 0 || int(m_points->size()) <= idx || b[idx])
+//		{
+//		    //PCA_DEBUG_ERROR;
+//		    return false;
+//		}
+//		b[idx] = true;
+//	}
+//		
+//	for(size_t n=0; n<m_nodes->size(); ++n)
+//	{
+//		const KdTreeNode& node = m_nodes->operator [](n);
+//		if(node.leaf)
+//		{
+//		    if(m_indices->size() <= node.start || m_indices->size() < node.start+node.size)
+//		    {
+//		        //PCA_DEBUG_ERROR;
+//		        return false;
+//		    }
+//		}
+//		else
+//		{
+//		    if(node.dim < 0 || 2 < node.dim)
+//		    {
+//		        //PCA_DEBUG_ERROR;
+//		        return false;
+//		    }
+//		    if(m_nodes->size() <= node.firstChildId || m_nodes->size() <= node.firstChildId+1u)
+//		    {
+//		        //PCA_DEBUG_ERROR;
+//		        return false;
+//		    }
+//		}
+//	}
+//		
+//	return true;
+//}
+//
+//template<class DataPoint>
+//std::string KdTree<DataPoint>::to_string() const
+//{
+//	if (!m_indices) return "";
+//	
+//	std::stringstream str;
+//	str << "indices (" << m_indices->size() << ") :\n";
+//	for(size_t i=0; i<m_indices->size(); ++i)
+//	{
+//	    str << "  " << i << ": " << m_indices->operator[](i) << "\n";
+//	}
+//	str << "nodes (" << m_nodes->size() << ") :\n";
+//	for(size_t n=0; n<m_nodes->size(); ++n)
+//	{
+//	    const KdTreeNode& node = m_nodes->operator[](n);
+//	    if(node.leaf)
+//	    {
+//	        int end = node.start + node.size;
+//	        str << "  leaf: start=" << node.start << " end=" << end << " (size=" << node.size << ")\n";
+//	    }
+//	    else
+//	    {
+//	        str << "  node: dim=" << node.dim << " split=" << node.splitValue << " child=" << node.firstChildId << "\n";
+//	    }
+//	}
+//	return str.str();
+//}
 
 template<class DataPoint>
-inline void KdTree<DataPoint>::rebuild(const std::vector<int>& sampling)
-{
-	//    PCA_DEBUG_ASSERT(sampling.size() <= m_points->size());
-
-    m_nodes->clear();
-    m_nodes->emplace_back();
-    m_nodes->back().leaf = false;
-
-    *m_indices = sampling;
-
-    int end = static_cast<int>(m_indices->size());
-    this->build_rec(0, 0, end, 1);
-
-//    PCA_DEBUG_ASSERT(this->valid());
-}
-
-template<class DataPoint>
-inline bool KdTree<DataPoint>::valid() const
-{
-	if (m_points == nullptr)
-		return m_nodes == nullptr && m_indices == nullptr;
-		
-	if(m_nodes == nullptr || m_indices == nullptr)
-	{
-		//PCA_DEBUG_ERROR;
-		return false;
-	}
-		
-	if(m_points->size() < m_indices->size())
-	{
-		//PCA_DEBUG_ERROR;
-		return false;
-	}
-		
-	std::vector<bool> b(m_points->size(), false);
-	for(int idx : *m_indices.get())
-	{
-		if(idx < 0 || int(m_points->size()) <= idx || b[idx])
-		{
-		    //PCA_DEBUG_ERROR;
-		    return false;
-		}
-		b[idx] = true;
-	}
-		
-	for(size_t n=0; n<m_nodes->size(); ++n)
-	{
-		const KdTreeNode& node = m_nodes->operator [](n);
-		if(node.leaf)
-		{
-		    if(m_indices->size() <= node.start || m_indices->size() < node.start+node.size)
-		    {
-		        //PCA_DEBUG_ERROR;
-		        return false;
-		    }
-		}
-		else
-		{
-		    if(node.dim < 0 || 2 < node.dim)
-		    {
-		        //PCA_DEBUG_ERROR;
-		        return false;
-		    }
-		    if(m_nodes->size() <= node.firstChildId || m_nodes->size() <= node.firstChildId+1u)
-		    {
-		        //PCA_DEBUG_ERROR;
-		        return false;
-		    }
-		}
-	}
-		
-	return true;
-}
-
-template<class DataPoint>
-inline std::string KdTree<DataPoint>::to_string() const
-{
-	if (!m_indices) return "";
-	
-	std::stringstream str;
-	str << "indices (" << m_indices->size() << ") :\n";
-	for(size_t i=0; i<m_indices->size(); ++i)
-	{
-	    str << "  " << i << ": " << m_indices->operator[](i) << "\n";
-	}
-	str << "nodes (" << m_nodes->size() << ") :\n";
-	for(size_t n=0; n<m_nodes->size(); ++n)
-	{
-	    const KdTreeNode& node = m_nodes->operator[](n);
-	    if(node.leaf)
-	    {
-	        int end = node.start + node.size;
-	        str << "  leaf: start=" << node.start << " end=" << end << " (size=" << node.size << ")\n";
-	    }
-	    else
-	    {
-	        str << "  node: dim=" << node.dim << " split=" << node.splitValue << " child=" << node.firstChildId << "\n";
-	    }
-	}
-	return str.str();
-}
-
-template<class DataPoint>
-inline size_t KdTree<DataPoint>::size() const
+size_t KdTree<DataPoint>::size() const
 {
 	return size_t();
 }
 
 
-template<class DataPoint>
-inline int Ponca::KdTree<DataPoint>::min_cell_size() const
-{
-	return m_min_cell_size;
-}
-
-template<class DataPoint>
-inline void KdTree<DataPoint>::set_min_cell_size(int min_cell_size)
-{
-	m_min_cell_size = min_cell_size;
-}
-
-template<class DataPoint>
-inline void KdTree<DataPoint>::build_rec(int node_id, int start, int end, int level)
-{
+//template<class DataPoint>
+//int KdTree<DataPoint>::min_cell_size() const
+//{
+//	return m_min_cell_size;
+//}
+//
+//template<class DataPoint>
+//void KdTree<DataPoint>::set_min_cell_size(int min_cell_size)
+//{
+//	m_min_cell_size = min_cell_size;
+//}
+//
+//template<class DataPoint>
+//void KdTree<DataPoint>::build_rec(int node_id, int start, int end, int level)
+//{
 	//auto& nodes = *m_nodes.get();
 	//const auto& points  = *m_points.get();
 	//const auto& indices = *m_indices.get();
@@ -226,29 +227,29 @@ inline void KdTree<DataPoint>::build_rec(int node_id, int start, int end, int le
 	//        this->build_rec(childId, midId, end, level+1);
 	//    }
 	//}
-}
+//}
 
-template<class DataPoint>
-inline int KdTree<DataPoint>::partition(int start, int end, int dim, Scalar value)
-{
-	const auto& points = *m_points.get();
-	auto& indices  = *m_indices.get();
-	
-	auto it = std::partition(indices.begin()+start, indices.begin()+end, [&](int i)
-	{
-	    return points[i][dim] < value;
-	});
-	    
-	auto distance = std::distance(m_indices->begin(), it);
-	
-	return static_cast<int>(distance);
-}
+//template<class DataPoint>
+//int KdTree<DataPoint>::partition(int start, int end, int dim, Scalar value)
+//{
+//	const auto& points = *m_points.get();
+//	auto& indices  = *m_indices.get();
+//	
+//	auto it = std::partition(indices.begin()+start, indices.begin()+end, [&](int i)
+//	{
+//	    return points[i][dim] < value;
+//	});
+//	    
+//	auto distance = std::distance(m_indices->begin(), it);
+//	
+//	return static_cast<int>(distance);
+//}
 
-template<class DataPoint>
-inline KdTreeRangeIndexQuery<Scalar> KdTree<DataPoint>::range_neighbors(int index, Scalar r) const
-{
-	return RangeIndexQuery(r, index);
-}
+//template<class DataPoint>
+//KdTreeRangeIndexQuery<Scalar> KdTree<DataPoint>::range_neighbors(int index, Scalar r) const
+//{
+//	return RangeIndexQuery(r, index);
+//}
 
 //
 //// Query -----------------------------------------------------------------------
@@ -314,3 +315,4 @@ inline KdTreeRangeIndexQuery<Scalar> KdTree<DataPoint>::range_neighbors(int inde
 //{
 //	return RangeIndexQuery(this, r);
 //}
+

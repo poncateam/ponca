@@ -6,16 +6,18 @@
 
 #pragma once
 
+#include "./kdTreeNode.h"
+
+#include PONCA_MULTIARCH_INCLUDE_STD(cmath)
+#include PONCA_MULTIARCH_INCLUDE_STD(limits)
 
 #include <Eigen/Eigen>
 #include <Eigen/Geometry> // aabb
 
 #include <memory>
 #include <vector>
-#include <numeric>
 
-#include "./kdTreeNode.h"
-#include "./Query/KdTreeRangeIndexQuery.h"
+//#include "./Query/KdTreeRangeIndexQuery.h"
 
 #define PCA_KDTREE_MAX_DEPTH 32
 
@@ -32,103 +34,102 @@ public:
 
     using Aabb = Eigen::AlignedBox<Scalar, 3>;
 
-    inline KdTree(): 
+    PONCA_MULTIARCH inline KdTree():
         m_points(nullptr),
         m_nodes(nullptr),
         m_indices(nullptr),
         m_min_cell_size(64)
     {
-    };
-    /*template <typename Range>
-    inline KdTree(const Range& points);*/
-    inline KdTree(std::shared_ptr<VectorType>& points):
-        m_points(nullptr),
-        m_nodes(nullptr),
-        m_indices(nullptr),
-        m_min_cell_size(64)
-    {
-        this->build(points);
-    };
-    inline KdTree(std::shared_ptr<VectorType>& points, const std::vector<int>& sampling):
-        m_points(nullptr),
-        m_nodes(nullptr),
-        m_indices(nullptr),
-        m_min_cell_size(64)
-    {
-        this->build(points, sampling);
     };
 
-    inline void clear();
-    inline void build(std::shared_ptr<VectorType>& points);
-    inline void build(std::shared_ptr<VectorType>& points, const std::vector<int>& sampling);
-    inline void rebuild(const std::vector<int>& sampling);
+    PONCA_MULTIARCH inline KdTree(std::shared_ptr<VectorType>& points):
+        m_points(nullptr),
+        m_nodes(nullptr),
+        m_indices(nullptr),
+        m_min_cell_size(64)
+    {
+        //this->build(points);
+    };
+    PONCA_MULTIARCH inline KdTree(std::shared_ptr<VectorType>& points, const std::vector<int>& sampling):
+        m_points(nullptr),
+        m_nodes(nullptr),
+        m_indices(nullptr),
+        m_min_cell_size(64)
+    {
+        //this->build(points, sampling);
+    };
 
-    inline bool valid() const;
-    inline std::string to_string() const;
+    PONCA_MULTIARCH inline void clear();
+    PONCA_MULTIARCH inline void build(std::shared_ptr<VectorType>& points);
+    //inline void build(std::shared_ptr<VectorType>& points, const std::vector<int>& sampling);
+    //inline void rebuild(const std::vector<int>& sampling);
+
+    //inline bool valid() const;
+    //inline std::string to_string() const;
 
     // Accessors ---------------------------------------------------------------
 public:
     inline size_t size() const;
 
-    inline const VectorType& KdTree<DataPoint>::point_data() const
+    inline VectorType& point_data()
     {
         return *m_points.get();
-    }
+    };
 
-    inline VectorType& KdTree<DataPoint>::point_data()
+    inline const VectorType& point_data() const
     {
         return *m_points.get();
-    }
+    };
 
-    inline const std::shared_ptr<VectorType>& KdTree<DataPoint>::point_ptr() const
+    inline const std::shared_ptr<VectorType>& point_ptr() const
     {
         return m_points;
     }
 
-    inline std::shared_ptr<VectorType>& KdTree<DataPoint>::point_ptr()
+    inline std::shared_ptr<VectorType>& point_ptr()
     {
         return m_points;
     }
 
-    inline const std::vector<Ponca::KdTreeNode<Scalar>>& KdTree<DataPoint>::node_data() const
+    inline const std::vector<KdTreeNode<Scalar>>& node_data() const
     {
         return *m_nodes.get();
     }
 
-    inline std::vector<Ponca::KdTreeNode<Scalar>>& KdTree<DataPoint>::node_data()
+    inline std::vector<KdTreeNode<Scalar>>& node_data()
     {
         return *m_nodes.get();
     }
 
-    inline const std::vector<int>& Ponca::KdTree<DataPoint>::index_data() const
+    inline const std::vector<int>& index_data() const
     {
         return *m_indices.get();
     }
 
-    inline std::vector<int>& Ponca::KdTree<DataPoint>::index_data()
+    inline std::vector<int>& index_data()
     {
         return *m_indices.get();
     }
 
     // Parameters --------------------------------------------------------------
-public:
-    inline int min_cell_size() const;
-    inline void set_min_cell_size(int min_cell_size);
-
-    // Internal ----------------------------------------------------------------
-public:
-    inline void build_rec(int node_id, int start, int end, int level);
-    inline int partition(int start, int end, int dim, Scalar value);
+//public:
+//    inline int min_cell_size() const;
+//    inline void set_min_cell_size(int min_cell_size);
+//
+//    // Internal ----------------------------------------------------------------
+//public:
+//    inline void build_rec(int node_id, int start, int end, int level);
+//    inline int partition(int start, int end, int dim, Scalar value);
 
 
 	// Query -------------------------------------------------------------------
-public :
+//public :
 	/*KNearestPointQuery k_nearest_neighbors(const Vector3& point, int k) const;
 	KNearestIndexQuery k_nearest_neighbors(int index, int k) const;
 	NearestPointQuery  nearest_neighbor(const Vector3& point) const;
 	NearestIndexQuery  nearest_neighbor(int index) const;
 	RangePointQuery    range_neighbors(const Vector3& point, Scalar r) const;*/
-	inline KdTreeRangeIndexQuery<Scalar> range_neighbors(int index, Scalar r) const;
+	//inline KdTreeRangeIndexQuery<Scalar> range_neighbors(int index, Scalar r) const;
 	
 	// Empty Query ------------------------------------------------------------
 

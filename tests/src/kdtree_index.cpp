@@ -186,18 +186,18 @@ void callSubTests()
 
 	KdTree<Point> structure(points);
 
-	std::vector<int> results;
-	for (int i = 0; i < N; ++i)
-	{
-		const float r = float(std::rand()) / RAND_MAX * 2.5;
-		results.clear();
-		for (int j : structure.range_neighbors(i, r))
-		{
-			results.push_back(j);
-		}
-		//EXPECT_EQ(int(results.size()), 1);
-		//EXPECT_TRUE(check_nearest_neighbors(*points, i, results.front()));
-	}
+	//std::vector<int> results;
+	//for (int i = 0; i < N; ++i)
+	//{
+	//	const float r = float(std::rand()) / RAND_MAX * 2.5;
+	//	results.clear();
+	//	for (int j : structure.range_neighbors(i, r))
+	//	{
+	//		results.push_back(j);
+	//	}
+	//	//EXPECT_EQ(int(results.size()), 1);
+	//	//EXPECT_TRUE(check_nearest_neighbors(*points, i, results.front()));
+	//}
 }
 
 int main(int argc, char** argv)
