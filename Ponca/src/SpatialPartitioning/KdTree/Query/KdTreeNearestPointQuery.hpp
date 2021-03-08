@@ -4,54 +4,21 @@
  file, You can obtain one at http://mozilla.org/MPL/2.0/.
 */
 
-#include "../iterator.h"
-
-#include "../kdTree.h"
-
-#include "../../query.h"
-#include "./KdTreeNearestPointQuery.h"
-
-class KdTree;
-
-namespace Ponca {
-
-template <typename VectorType>
-KdTreeNearestPointQuery<VectorType>::KdTreeNearestPointQuery() :
-    KdTreeQuery(),
-    NearestPointQuery<VectorType>()
-{
-    cout << "Test" << endl;
-}
-
-template <typename VectorType>
-KdTreeNearestPointQuery<VectorType>::KdTreeNearestPointQuery(const KdTree* kdtree) :
-    KdTreeQuery(kdtree),
-    NearestPointQuery<VectorType>()
-{
-}
-
-template <typename VectorType>
-KdTreeNearestPointQuery<VectorType>::KdTreeNearestPointQuery(const KdTree* kdtree, const VectorType& point) :
-    KdTreeQuery(kdtree),
-    NearestPointQuery<VectorType>(point)
-{
-}
-
-template <typename VectorType>
-KdTreeNearestPointIterator KdTreeNearestPointQuery<VectorType>::begin()
+template <typename DataPoint>
+KdTreeNearestPointIterator KdTreeNearestPointQuery<DataPoint>::begin()
 {
     this->search();
     return KdTreeNearestPointIterator(m_nearest);
 }
 
-template <typename VectorType>
-KdTreeNearestPointIterator KdTreeNearestPointQuery<VectorType>::end()
+template <typename DataPoint>
+KdTreeNearestPointIterator KdTreeNearestPointQuery<DataPoint>::end()
 {
     return KdTreeNearestPointIterator(m_nearest+1);
 }
 
-template <typename VectorType>
-void KdTreeNearestPointQuery<VectorType>::search()
+template <typename DataPoint>
+void KdTreeNearestPointQuery<DataPoint>::search()
 {
     const auto& nodes   = m_kdtree->node_data();
     const auto& points  = m_kdtree->point_data();
@@ -114,5 +81,3 @@ void KdTreeNearestPointQuery<VectorType>::search()
         }
     }
 }
-
-} // namespace ponca

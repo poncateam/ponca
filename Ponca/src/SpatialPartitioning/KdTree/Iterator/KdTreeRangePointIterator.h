@@ -12,29 +12,53 @@
 
 namespace Ponca {
 
-template <typename VectorType>
+template <typename DataPoint>
 class KdTreeRangePointIterator
 {
+public:
+    /*! \brief Scalar type inherited from DataPoint */
+    typedef typename DataPoint::Scalar     Scalar;
+    /*! \brief Vector type inherited from DataPoint */
+    typedef typename DataPoint::VectorType VectorType;
 protected:
-    template <typename _VectorType>
-    friend class KdTreeRangePointQuery;
+    friend class KdTreeRangePointQuery<DataPoint>;
 
 public:
-    KdTreeRangePointIterator();
-    KdTreeRangePointIterator(KdTreeRangePointQuery<VectorType>* query);
-    KdTreeRangePointIterator(KdTreeRangePointQuery<VectorType>* query, int index);
+    KdTreeRangePointIterator() :
+        m_query(nullptr),
+        m_index(-1),
+        m_start(0),
+        m_end(0)
+    {
+    }
+
+    KdTreeRangePointIterator(KdTreeRangePointQuery<DataPoint>* query) :
+        m_query(query),
+        m_index(-1),
+        m_start(0),
+        m_end(0)
+    {
+    }
+
+    KdTreeRangePointIterator(KdTreeRangePointQuery<DataPoint>* query, int index) :
+        m_query(query),
+        m_index(index),
+        m_start(0),
+        m_end(0)
+    {
+    }
 
 public:
-    bool operator !=(const KdTreeRangePointIterator& other) const;
+    bool operator !=(const KdTreeRangePointIterator<DataPoint>& other) const;
     void operator ++();
     int  operator * () const;
 
 protected:
-    KdTreeRangePointQuery<VectorType>* m_query;
+    KdTreeRangePointQuery<DataPoint>* m_query;
     int m_index;
     int m_start;
     int m_end;
 };
 
-} // namespace ponca
 #include "./KdTreeRangePointIterator.hpp"
+} // namespace ponca

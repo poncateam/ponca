@@ -12,32 +12,44 @@
 
 namespace Ponca {
 
-//
-//:	public KdTreeQuery<DataPoint>,
-//public RangeIndexQuery<DataPoint::Scalar>
 template <class DataPoint>
-class KdTreeRangeIndexQuery 
+class KdTreeRangeIndexQuery : public KdTreeQuery<DataPoint>, public RangeIndexQuery<typename DataPoint::Scalar>
 {
-	/*using VectorType = typename DataPoint::VectorType;
-	using Scalar = typename DataPoint::Scalar;*/
-//
+	using VectorType = typename DataPoint::VectorType;
+	using Scalar = typename DataPoint::Scalar;
+
 protected:
-	//template<DataPoint> friend class KdTreeRangeIndexIterator;
+	friend class KdTreeRangeIndexIterator<DataPoint>;
 
 public:
-  /*  inline KdTreeRangeIndexQuery();
-    inline KdTreeRangeIndexQuery(const KdTree* kdtree);
-    inline KdTreeRangeIndexQuery(const KdTree* kdtree, Scalar radius);
-    inline KdTreeRangeIndexQuery(const KdTree* kdtree, Scalar radius, int index);*/
-//
+    KdTreeRangeIndexQuery() :
+        KdTreeQuery<DataPoint>(), RangeIndexQuery<Scalar>()
+    {
+    }
+
+    KdTreeRangeIndexQuery(const KdTree<DataPoint>* kdtree) :
+        KdTreeQuery<DataPoint>(kdtree), RangeIndexQuery<Scalar>()
+    {
+    }
+
+    KdTreeRangeIndexQuery(const KdTree<DataPoint>* kdtree, Scalar radius) :
+        KdTreeQuery<DataPoint>(kdtree), RangeIndexQuery<Scalar>(radius)
+    {
+    }
+
+    KdTreeRangeIndexQuery(const KdTree<DataPoint>* kdtree, Scalar radius, int index) :
+        KdTreeQuery<DataPoint>(kdtree), RangeIndexQuery<Scalar>(radius, index)
+    {
+    }
+
 public:
     inline KdTreeRangeIndexIterator<DataPoint> begin();
     inline KdTreeRangeIndexIterator<DataPoint> end();
-//
-//protected:
-//    inline void initialize(KdTreeRangeIndexIterator& iterator);
-//    inline void advance(KdTreeRangeIndexIterator& iterator);
+
+protected:
+    inline void initialize(KdTreeRangeIndexIterator<DataPoint>& iterator);
+    inline void advance(KdTreeRangeIndexIterator<DataPoint>& iterator);
 };
 
-}
 #include "./KdTreeRangeIndexQuery.hpp"
+} // namespace ponca

@@ -4,42 +4,21 @@
  file, You can obtain one at http://mozilla.org/MPL/2.0/.
 */
 
-
-//#include <PCA/SpacePartitioning/KdTree/KdTree.h>
-#include "./kdTreeKNearestIndexQuery.h"
-
-namespace Ponca {
-
-KdTreeKNearestIndexQuery::KdTreeKNearestIndexQuery() :
-    KdTreeQuery(),
-    KNearestIndexQuery()
-{
-}
-
-KdTreeKNearestIndexQuery::KdTreeKNearestIndexQuery(const KdTree* kdtree, int k) :
-    KdTreeQuery(kdtree),
-    KNearestIndexQuery(k)
-{
-}
-
-KdTreeKNearestIndexQuery::KdTreeKNearestIndexQuery(const KdTree* kdtree, int k, int index) :
-    KdTreeQuery(kdtree),
-    KNearestIndexQuery(k, index)
-{
-}
-
-KdTreeKNearestIndexIterator KdTreeKNearestIndexQuery::begin()
+template<class DataPoint>
+KdTreeKNearestIndexIterator<DataPoint> KdTreeKNearestIndexQuery<DataPoint>::begin()
 {
     this->search();
-    return KdTreeKNearestIndexIterator(m_queue.begin());
+    return KdTreeKNearestIndexIterator<DataPoint>(m_queue.begin());
 }
 
-KdTreeKNearestIndexIterator KdTreeKNearestIndexQuery::end()
+template<class DataPoint>
+KdTreeKNearestIndexIterator<DataPoint> KdTreeKNearestIndexQuery<DataPoint>::end()
 {
-    return KdTreeKNearestIndexIterator(m_queue.end());
+    return KdTreeKNearestIndexIterator<DataPoint>(m_queue.end());
 }
 
-void KdTreeKNearestIndexQuery::search()
+template<class DataPoint>
+void KdTreeKNearestIndexQuery<DataPoint>::search()
 {
     const auto& nodes   = m_kdtree->node_data();
     const auto& points  = m_kdtree->point_data();
@@ -97,5 +76,3 @@ void KdTreeKNearestIndexQuery::search()
         }
     }
 }
-
-}   

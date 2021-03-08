@@ -16,14 +16,27 @@
 
 namespace Ponca {
 
-template <typename _VectorType>
-class KdTreeNearestPointQuery : public NearestPointQuery<_VectorType>, public KdTreeQuery
+template <class DataPoint>
+class KdTreeNearestPointQuery : public NearestPointQuery<DataPoint>, public KdTreeQuery<DataPoint>
 {
-using VectorType = typename NearestPointQuery<_VectorType>::VectorType;
 public:
-    KdTreeNearestPointQuery();
-    KdTreeNearestPointQuery(const KdTree* kdtree);
-    KdTreeNearestPointQuery(const KdTree* kdtree, const VectorType& point);
+    using VectorType = DataPoint::VectorType;
+
+    KdTreeNearestPointQuery() :
+        KdTreeQuery<DataPoint>(), NearestPointQuery<DataPoint>()
+    {
+        cout << "Test" << endl;
+    }
+
+    KdTreeNearestPointQuery(const KdTree<DataPoint>* kdtree) :
+        KdTreeQuery<DataPoint>(kdtree), NearestPointQuery<DataPoint>()
+    {
+    }
+
+    KdTreeNearestPointQuery(const KdTree<DataPoint>* kdtree, const VectorType& point) :
+        KdTreeQuery<DataPoint>(kdtree), NearestPointQuery<DataPoint>(point)
+    {
+    }
 
 public:
     KdTreeNearestPointIterator begin();
@@ -33,5 +46,5 @@ protected:
     void search();
 };
 
-}   
 #include "./KdTreeNearestPointQuery.hpp"
+} // namespace ponca

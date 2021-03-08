@@ -1,3 +1,9 @@
+/*
+ This Source Code Form is subject to the terms of the Mozilla Public
+ License, v. 2.0. If a copy of the MPL was not distributed with this
+ file, You can obtain one at http://mozilla.org/MPL/2.0/.
+*/
+
 #pragma once
 
 #include "../Query/KdTreeRangeIndexQuery.h"
@@ -10,24 +16,44 @@ template<class DataPoint>
 class KdTreeRangeIndexIterator
 {
 protected:
-	//template<DataPoint> friend class KdTreeRangeIndexQuery;
+	friend class KdTreeRangeIndexQuery<DataPoint>;
 
 public:
-    /*KdTreeRangeIndexIterator();
-    KdTreeRangeIndexIterator(KdTreeRangeIndexQuery<DataPoint>* query);
-    KdTreeRangeIndexIterator(KdTreeRangeIndexQuery<DataPoint>* query, int index);*/
+    KdTreeRangeIndexIterator() :
+        m_query(nullptr),
+        m_index(-1),
+        m_start(0),
+        m_end(0)
+    {
+    }
+
+    KdTreeRangeIndexIterator(KdTreeRangeIndexQuery<DataPoint>* query) :
+        m_query(query),
+        m_index(-1),
+        m_start(0),
+        m_end(0)
+    {
+    }
+
+    KdTreeRangeIndexIterator(KdTreeRangeIndexQuery<DataPoint>* query, int index) :
+        m_query(query),
+        m_index(index),
+        m_start(0),
+        m_end(0)
+    {
+    }
 
 public:
-    bool operator !=(const KdTreeRangeIndexIterator& other) const;
+    bool operator !=(const KdTreeRangeIndexIterator<DataPoint>& other) const;
     void operator ++();
     int  operator * () const;
 
 protected:
-    //KdTreeRangeIndexQuery<DataPoint>* m_query;
+    KdTreeRangeIndexQuery<DataPoint>* m_query;
     int m_index;
     int m_start;
     int m_end;
 };
 
-} // namespace pdpc
 #include "./KdTreeRangeIndexIterator.hpp"
+} // namespace ponca

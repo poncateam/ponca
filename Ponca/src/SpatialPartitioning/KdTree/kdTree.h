@@ -15,7 +15,10 @@
 #include <vector>
 #include <numeric>
 
-#include "./Query/KdTreeRangeIndexQuery.h"
+#include "../query.h"
+//#include "kdTreeQuery.h"
+#include "Query/KdTreeRangeIndexQuery.h"
+#include "Query/KdTreeRangePointQuery.h"
 
 #define PCA_KDTREE_MAX_DEPTH 32
 
@@ -122,25 +125,72 @@ public:
 
 
 	// Query -------------------------------------------------------------------
-//public :
-	/*KNearestPointQuery k_nearest_neighbors(const Vector3& point, int k) const;
-	KNearestIndexQuery k_nearest_neighbors(int index, int k) const;
-	NearestPointQuery  nearest_neighbor(const Vector3& point) const;
-	NearestIndexQuery  nearest_neighbor(int index) const;
-	RangePointQuery    range_neighbors(const Vector3& point, Scalar r) const;*/
+public :
+   /* KdTreeKNearestPointQuery<DataPoint> k_nearest_neighbors(const VectorType& point, int k) const
+    {
+        return KdTreeKNearestPointQuery<DataPoint>(this, k, point);
+    }
+
+    KdTreeKNearestIndexQuery<DataPoint> k_nearest_neighbors(int index, int k) const
+    {
+        return KdTreeKNearestIndexQuery<DataPoint>(this, k, index);
+    }
+
+    KdTreeNearestPointQuery<DataPoint> nearest_neighbor(const VectorType& point) const
+    {
+        return KdTreeNearestPointQuery<DataPoint>(this, point);
+    }
+
+    KdTreeNearestIndexQuery<DataPoint> nearest_neighbor(int index) const
+    {
+        return KdTreeNearestIndexQuery<DataPoint>(this, index);
+    }*/
+
+    KdTreeRangePointQuery<DataPoint> range_neighbors(const VectorType& point, Scalar r) const
+    {
+        return KdTreeRangePointQuery<DataPoint>(this, r, point);
+    }
+
+    KdTreeRangeIndexQuery<DataPoint> range_neighbors(int index, Scalar r) const
+    {
+        return KdTreeRangeIndexQuery<DataPoint>(this, r, index);
+    }
     RangeIndexQuery<Scalar> range_neighbors(int index, Scalar r) const
     {
         return RangeIndexQuery<Scalar>(r, index);
     }
 	
 	// Empty Query ------------------------------------------------------------
+public:
+  /*  KdTreeKNearestPointQuery<DataPoint> k_nearest_point_query(int k) const
+    {
+        return KdTreeKNearestPointQuery<DataPoint>(this, k);
+    }
 
-	/*KNearestPointQuery k_nearest_point_query(int k = 0) const;
-	KNearestIndexQuery k_nearest_index_query(int k = 0) const;
-	NearestPointQuery  nearest_point_query() const;
-	NearestIndexQuery  nearest_index_query() const;
-	RangePointQuery    range_point_query(Scalar r = 0) const;
-	RangeIndexQuery    range_index_query(Scalar r = 0) const;*/
+    KdTreeKNearestIndexQuery<DataPoint> k_nearest_index_query(int k) const
+    {
+        return KdTreeKNearestIndexQuery<DataPoint>(this, k);
+    }
+
+    KdTreeNearestPointQuery<DataPoint> nearest_point_query() const
+    {
+        return KdTreeNearestPointQuery<DataPoint>(this);
+    }
+
+    KdTreeNearestIndexQuery<DataPoint> nearest_index_query() const
+    {
+        return KdTreeNearestIndexQuery<DataPoint>(this);
+    }*/
+
+    KdTreeRangePointQuery<DataPoint> range_point_query(Scalar r) const
+    {
+        return KdTreeRangePointQuery<DataPoint>(this, r);
+    }
+
+    KdTreeRangeIndexQuery<Scalar> range_index_query(Scalar r) const
+    {
+        return KdTreeRangeIndexQuery<Scalar>(this, r);
+    }
 
     // Data --------------------------------------------------------------------
 protected:

@@ -14,29 +14,47 @@
 namespace Ponca {
 
 template <class DataPoint>
-//: public KdTreeQuery<DataPoint>, public RangePointQuery<DataPoint>
-class KdTreeRangePointQuery 
+class KdTreeRangePointQuery : public KdTreeQuery<DataPoint>, public RangePointQuery<DataPoint>
 {
-	using VectorType = typename DataPoint::VectorType;
-	using Scalar = typename DataPoint::Scalar;
-/*
-protected:
-    friend class KdTreeRangePointIterator;
-
 public:
-    KdTreeRangePointQuery();
-    KdTreeRangePointQuery(const KdTree<DataPoint>* kdtree);
-    KdTreeRangePointQuery(const KdTree<DataPoint>* kdtree, Scalar radius);
-    KdTreeRangePointQuery(const KdTree<DataPoint>* kdtree, Scalar radius, const VectorType& point);
-
-public:
-    KdTreeRangePointIterator<VectorType> begin();
-    KdTreeRangePointIterator<VectorType> end();
+    /*! \brief Scalar type inherited from DataPoint */
+    typedef typename DataPoint::Scalar     Scalar;
+    /*! \brief Vector type inherited from DataPoint */
+    typedef typename DataPoint::VectorType VectorType;
 
 protected:
-    void initialize(KdTreeRangePointIterator<VectorType>& iterator);
-    void advance(KdTreeRangePointIterator<VectorType>& iterator);*/
+    friend class KdTreeRangePointIterator<DataPoint>;
+
+public:
+    KdTreeRangePointQuery() :
+        KdTreeQuery<DataPoint>(), RangePointQuery<DataPoint>()
+    {
+        cout << "Test" << endl;
+    }
+
+    KdTreeRangePointQuery(const KdTree<DataPoint>* kdtree) :
+        KdTreeQuery<DataPoint>(kdtree), RangePointQuery<DataPoint>()
+    {
+    }
+
+    KdTreeRangePointQuery(const KdTree<DataPoint>* kdtree, Scalar radius) :
+        KdTreeQuery<DataPoint>(kdtree), RangePointQuery<DataPoint>(radius)
+    {
+    }
+
+    KdTreeRangePointQuery(const KdTree<DataPoint>* kdtree, Scalar radius, const VectorType& point) :
+        KdTreeQuery<DataPoint>(kdtree), RangePointQuery<VectorType>(radius, point)
+    {
+    }
+
+public:
+    KdTreeRangePointIterator<DataPoint> begin();
+    KdTreeRangePointIterator<DataPoint> end();
+
+protected:
+    void initialize(KdTreeRangePointIterator<DataPoint>& iterator);
+    void advance(KdTreeRangePointIterator<DataPoint>& iterator);
 };
 
-} // namespace ponca
 #include "./KdTreeRangePointQuery.hpp"
+} // namespace ponca
