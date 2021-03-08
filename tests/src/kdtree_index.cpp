@@ -215,4 +215,3 @@ int main(int argc, char** argv)
 	callSubTests<Vec3>();
 
 }
-template class KdTree<Point>;

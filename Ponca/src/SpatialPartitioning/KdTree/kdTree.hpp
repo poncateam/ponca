@@ -1,4 +1,3 @@
-//#include "kdTree.h"
 /*
  This Source Code Form is subject to the terms of the Mozilla Public
  License, v. 2.0. If a copy of the MPL was not distributed with this
@@ -242,69 +241,4 @@ int KdTree<DataPoint>::partition(int start, int end, int dim, Scalar value)
 	
 	return static_cast<int>(distance);
 }
-
-//
-//// Query -----------------------------------------------------------------------
-//
-//KdTreeKNearestPointQuery KdTree::k_nearest_neighbors(const Vector3& point, int k) const
-//{
-//	return KNearestPointQuery(this, k, point);
-//}
-//
-//KdTreeKNearestIndexQuery KdTree::k_nearest_neighbors(int index, int k) const
-//{
-//	return KNearestIndexQuery(this, k, index);
-//}
-//
-//KdTreeNearestPointQuery KdTree::nearest_neighbor(const Vector3& point) const
-//{
-//	return NearestPointQuery(this, point);
-//}
-//
-//KdTreeNearestIndexQuery KdTree::nearest_neighbor(int index) const
-//{
-//	return NearestIndexQuery(this, index);
-//}
-//
-//KdTreeRangePointQuery KdTree::range_neighbors(const Vector3& point, Scalar r) const
-//{
-//	return RangePointQuery(this, r, point);
-//}
-//
-//KdTreeRangeIndexQuery KdTree::range_neighbors(int index, Scalar r) const
-//{
-//	return RangeIndexQuery(this, r, index);
-//}
-//
-//// Empty Query -----------------------------------------------------------------
-//
-//KdTreeKNearestPointQuery KdTree::k_nearest_point_query(int k) const
-//{
-//	return KNearestPointQuery(this, k);
-//}
-//
-//KdTreeKNearestIndexQuery KdTree::k_nearest_index_query(int k) const
-//{
-//	return KNearestIndexQuery(this, k);
-//}
-//
-//KdTreeNearestPointQuery KdTree::nearest_point_query() const
-//{
-//	return NearestPointQuery(this);
-//}
-//
-//KdTreeNearestIndexQuery KdTree::nearest_index_query() const
-//{
-//	return NearestIndexQuery(this);
-//}
-//
-//KdTreeRangePointQuery KdTree::range_point_query(Scalar r) const
-//{
-//	return RangePointQuery(this, r);
-//}
-//
-//KdTreeRangeIndexQuery KdTree::range_index_query(Scalar r) const
-//{
-//	return RangeIndexQuery(this, r);
-//}
 

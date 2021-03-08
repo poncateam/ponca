@@ -113,11 +113,11 @@ struct KNearestIndexQuery : public IndexQuery,
                             public KNearestQuery<Scalar>
 {
     inline KNearestIndexQuery()
-        : IndexQuery(), KNearestQuery() {}
+        : IndexQuery(), KNearestQuery<Scalar>() {}
     inline KNearestIndexQuery(int k)
-        : IndexQuery(), KNearestQuery( k ) {}
+        : IndexQuery(), KNearestQuery<Scalar>( k ) {}
     inline KNearestIndexQuery(int k, int index)
-        : IndexQuery( index ), KNearestQuery( k ) {}
+        : IndexQuery( index ), KNearestQuery<Scalar>( k ) {}
 };
 
 /// \brief Base class of KNearestQuery storing points
@@ -125,14 +125,17 @@ struct KNearestIndexQuery : public IndexQuery,
 template <class DataPoint>
 struct KNearestPointQuery : public PointQuery<typename DataPoint::VectorType>, public KNearestQuery<typename DataPoint::Scalar>
 {
+    using Vector = typename DataPoint::VectorType;
+    using Scalar = typename DataPoint::Scalar;
+
     inline KNearestPointQuery()
-        : PointQuery<VectorType>(), KNearestQuery() {}
+        : PointQuery<VectorType>(), KNearestQuery<Scalar>() {}
     inline KNearestPointQuery(const VectorType& point)
-        : PointQuery<VectorType>(point), KNearestQuery() {}
+        : PointQuery<VectorType>(point), KNearestQuery<Scalar>() {}
     inline KNearestPointQuery(int k)
-        : PointQuery<VectorType>(), KNearestQuery(k) {}
+        : PointQuery<VectorType>(), KNearestQuery<Scalar>(k) {}
     inline KNearestPointQuery(int k, const VectorType& point)
-        : PointQuery<VectorType>(point), KNearestQuery(k) {}
+        : PointQuery<VectorType>(point), KNearestQuery<Scalar>(k) {}
 };
 
 
@@ -147,6 +150,7 @@ struct NearestPointQuery : public PointQuery<typename DataPoint::VectorType>, pu
 {
 	using Vector = typename DataPoint::VectorType;
 	using Scalar = typename DataPoint::Scalar;
+
     inline NearestPointQuery()
         : PointQuery<Vector>(), NearestQuery<Scalar>() {}
     inline NearestPointQuery(const Vector& point)
@@ -169,23 +173,23 @@ struct NearestIndexQuery : public IndexQuery, public NearestQuery<Scalar>
 /// \brief Base class RangeQuery storing points
 /// \ingroup spatialpartitioning
 template <class DataPoint>
-struct  RangePointQuery : public PointQuery<typename DataPoint::VectorType>, public RangeQuery<typename DataPoint::Scalar>
+struct RangePointQuery : public PointQuery<typename DataPoint::VectorType>, public RangeQuery<typename DataPoint::Scalar>
 {
 	using Vector = typename DataPoint::VectorType;
 	using Scalar = typename DataPoint::Scalar;
 
     inline RangePointQuery()
-        : PointQuery<Vector>(), RangeQuery() {}
+        : PointQuery<Vector>(), RangeQuery<Scalar>() {}
     inline RangePointQuery(Scalar radius)
-        : PointQuery<Vector>(), RangeQuery( radius ) {}
+        : PointQuery<Vector>(), RangeQuery<Scalar>(radius) {}
     inline RangePointQuery(Scalar radius, const Vector& point)
-        : PointQuery<Vector>( radius ), RangeQuery( point ) {}
+        : PointQuery<Vector>(radius), RangeQuery<Scalar>(point) {}
 };
 
 /// \brief Base class RangeQuery storing indices
 /// \ingroup spatialpartitioning
 template<typename Scalar>
-struct RangeIndexQuery : public IndexQuery, public RangeQuery<typename Scalar>
+struct RangeIndexQuery : public IndexQuery, public RangeQuery<Scalar>
 {
     inline RangeIndexQuery()
         : IndexQuery(), RangeQuery<Scalar>() {}

@@ -17,15 +17,14 @@ namespace Ponca {
 template <class DataPoint>
 class KdTreeQuery
 {
-//public:
-//    inline KdTreeQuery(const KdTree<DataPoint>* kdtree = nullptr) : m_kdtree( kdtree ){}
-//
-//protected:
-//    const KdTree<DataPoint>* m_kdtree { nullptr };
-//    Stack<IndexSquaredDistance<DataPoint::Scalar>, 2 * PCA_KDTREE_MAX_DEPTH> m_stack;
+public:
+    inline KdTreeQuery(const KdTree<DataPoint>* kdtree = nullptr) : m_kdtree( kdtree ){}
+
+protected:
+    const KdTree<DataPoint>* m_kdtree { nullptr };
+    Stack<IndexSquaredDistance<DataPoint::Scalar>, 2 * PCA_KDTREE_MAX_DEPTH> m_stack;
 };
 
 //struct KdTreeKNearestQuery;
-
 
 } // namespace Ponca

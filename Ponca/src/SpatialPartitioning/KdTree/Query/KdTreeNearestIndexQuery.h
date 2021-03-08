@@ -12,14 +12,28 @@
 #include "../../query.h"
 
 namespace Ponca {
+
 template <class DataPoint>
 class KdTreeNearestIndexQuery : public KdTreeQuery<DataPoint>,
 								public NearestIndexQuery<typename DataPoint::Scalar>
 {
 public:
-    KdTreeNearestIndexQuery();
-    KdTreeNearestIndexQuery(const KdTree* kdtree);
-    KdTreeNearestIndexQuery(const KdTree* kdtree, int index);
+    using Scalar = DataPoint::Scalar;
+
+    KdTreeNearestIndexQuery() :
+        KdTreeQuery<DataPoint>(), NearestIndexQuery<Scalar>()
+    {
+    }
+
+    KdTreeNearestIndexQuery(const KdTree<DataPoint>* kdtree) :
+        KdTreeQuery<DataPoint>(kdtree), NearestIndexQuery<Scalar>()
+    {
+    }
+
+    KdTreeNearestIndexQuery(const KdTree<DataPoint>* kdtree, int index) :
+        KdTreeQuery<DataPoint>(kdtree), NearestIndexQuery<Scalar>(index)
+    {
+    }
 
 public:
     KdTreeNearestIndexIterator begin();
@@ -29,5 +43,5 @@ protected:
     void search();
 };
 
-}
 #include "./KdTreeNearestIndexQuery.hpp"
+}

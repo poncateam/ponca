@@ -12,22 +12,37 @@
 
 namespace Ponca {
 
-class KdTreeKNearestIndexQuery : public KdTreeQuery,
-                                 public KNearestIndexQuery
+template<class DataPoint>
+class KdTreeKNearestIndexQuery : public KdTreeQuery<DataPoint>,
+    public KNearestIndexQuery<typename DataPoint::Scalar>
 {
+    typedef typename DataPoint::Scalar Scalar;
 public:
-    KdTreeKNearestIndexQuery();
-    KdTreeKNearestIndexQuery(const KdTree* kdtree, int k);
-    KdTreeKNearestIndexQuery(const KdTree* kdtree, int k, int index);
+    KdTreeKNearestIndexQuery() :
+        KdTreeQuery<DataPoint>(),
+        KNearestIndexQuery<Scalar>()
+    {
+    }
+
+    KdTreeKNearestIndexQuery(const KdTree<DataPoint>* kdtree, int k) :
+        KdTreeQuery<DataPoint>(kdtree),
+        KNearestIndexQuery<Scalar>(k)
+    {
+    }
+
+    KdTreeKNearestIndexQuery(const KdTree<DataPoint>* kdtree, int k, int index) :
+        KdTreeQuery<DataPoint>(kdtree),
+        KNearestIndexQuery<Scalar>(k, index)
+    {
+    }
 
 public:
-    KdTreeKNearestIndexIterator begin();
-    KdTreeKNearestIndexIterator end();
+    KdTreeKNearestIndexIterator<DataPoint> begin();
+    KdTreeKNearestIndexIterator<DataPoint> end();
 
 protected:
     void search();
 };
 
-}   
-
 #include "./kdTreeKNearestIndexQuery.hpp"
+}   
