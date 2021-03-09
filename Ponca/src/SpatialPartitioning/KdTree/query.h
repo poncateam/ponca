@@ -7,8 +7,10 @@
 #pragma once
 
 #include "../indexSquaredDistance.h"
-#include "./kdTree.h"
+//#include "./kdTree.h"
 #include "../../Common/Containers/stack.h"
+
+template<class DataPoint> class KdTree;
 
 #define PCA_KDTREE_MAX_DEPTH 32
 
@@ -22,7 +24,7 @@ public:
 
 protected:
     const KdTree<DataPoint>* m_kdtree { nullptr };
-    Stack<IndexSquaredDistance<DataPoint::Scalar>, 2 * PCA_KDTREE_MAX_DEPTH> m_stack;
+    Stack<IndexSquaredDistance<class DataPoint::Scalar>, 2 * PCA_KDTREE_MAX_DEPTH> m_stack;
 };
 
 //struct KdTreeKNearestQuery;

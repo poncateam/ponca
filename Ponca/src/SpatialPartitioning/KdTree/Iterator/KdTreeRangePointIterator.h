@@ -6,9 +6,12 @@
 
 #pragma once
 
-#include "../Query/KdTreeRangePointQuery.h"
+//#include "../Query/KdTreeRangePointQuery.h"
 
-#include "../../query.h"
+//#include "../../query.h"
+
+
+template<class DataPoint> class KdTreeRangePointQuery;
 
 namespace Ponca {
 
