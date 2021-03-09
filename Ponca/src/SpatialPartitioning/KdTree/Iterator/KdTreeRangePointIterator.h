@@ -11,9 +11,9 @@
 //#include "../../query.h"
 
 
-template<class DataPoint> class KdTreeRangePointQuery;
-
 namespace Ponca {
+
+template<class DataPoint> class KdTreeRangePointQuery;
 
 template <typename DataPoint>
 class KdTreeRangePointIterator

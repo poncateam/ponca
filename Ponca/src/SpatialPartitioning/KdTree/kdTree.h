@@ -158,10 +158,6 @@ public :
         return KdTreeRangeIndexQuery<DataPoint>(this, r, index);
     }
 
-    RangeIndexQuery<Scalar> range_neighbors(int index, Scalar r) const
-    {
-        return RangeIndexQuery<Scalar>(r, index);
-    }
 	// Empty Query ------------------------------------------------------------
 public:
   /*  KdTreeKNearestPointQuery<DataPoint> k_nearest_point_query(int k) const
