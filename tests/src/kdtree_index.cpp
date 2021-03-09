@@ -24,7 +24,7 @@
 #define EXPECT_TRUE(a) assert(a==True)
 
 using namespace Eigen;
-//using namespace Ponca;
+using namespace Ponca;
 using namespace std;
 
 
@@ -184,7 +184,7 @@ void callSubTests()
 	using Point = _Point<float, Vector3Array>;
 
 
-	Ponca::KdTree<Point>* structure = new Ponca::KdTree<Point>(points);
+	KdTree<Point>* structure = new KdTree<Point>(points);
 
 	//std::vector<int> results;
 	//for (int i = 0; i < N; ++i)
