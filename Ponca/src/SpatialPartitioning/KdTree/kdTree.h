@@ -16,13 +16,15 @@
 #include <numeric>
 
 #include "../query.h"
-//#include "kdTreeQuery.h"
-#include "Query/KdTreeRangeIndexQuery.h"
-#include "Query/KdTreeRangePointQuery.h"
 
 #define PCA_KDTREE_MAX_DEPTH 32
 
 namespace Ponca {
+template<class DataPoint> class KdTreeRangeIndexIterator;
+template<class Scalar> class KdTreeRangeIndexQuery;
+template<class DataPoint> class KdTreeRangePointQuery;
+template<class Scalar> class RangeIndexQuery;
+template<class DataPoint> class KdTreeQuery;
 template<class DataPoint>
 class KdTree
 {
@@ -155,11 +157,11 @@ public :
     {
         return KdTreeRangeIndexQuery<DataPoint>(this, r, index);
     }
+
     RangeIndexQuery<Scalar> range_neighbors(int index, Scalar r) const
     {
         return RangeIndexQuery<Scalar>(r, index);
     }
-	
 	// Empty Query ------------------------------------------------------------
 public:
   /*  KdTreeKNearestPointQuery<DataPoint> k_nearest_point_query(int k) const

@@ -8,9 +8,9 @@
 
 #include "./kdTree.h"
 
-#include "Query/kdTreeKNearestIndexQuery.h"
-#include "Query/kdTreeKNearestPointQuery.h"
-#include "Query/kdTreeNearestIndexQuery.h"
-#include "Query/kdTreeNearestPointQuery.h"
+//#include "Query/kdTreeKNearestIndexQuery.h"
+//#include "Query/kdTreeKNearestPointQuery.h"
+//#include "Query/kdTreeNearestIndexQuery.h"
+//#include "Query/kdTreeNearestPointQuery.h"
 #include "Query/KdTreeRangeIndexQuery.h"
 #include "Query/KdTreeRangePointQuery.h"

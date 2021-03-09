@@ -8,7 +8,7 @@
 #include "../common/testUtils.h"
 #include "../common/has_duplicate.h"
 
-#include <Ponca/src/SpatialPartitioning/KdTree/Query/KdTreeNearestIndexQuery.h>
+#include "Ponca/src/SpatialPartitioning/KdTree/kdTreeQuery.h"
 
 #include <chrono>
 #include <Eigen/Dense>
@@ -24,7 +24,7 @@
 #define EXPECT_TRUE(a) assert(a==True)
 
 using namespace Eigen;
-using namespace Ponca;
+//using namespace Ponca;
 using namespace std;
 
 
@@ -47,7 +47,6 @@ public:
 	typedef Scalar Scalar;
 	typedef Vector3 VectorType;
 };
-using Point = _Point<float, Vector3Array>;
 
 
 
@@ -181,10 +180,11 @@ void callSubTests()
 	
 	//NEED C++17
 	//std::sample(indices.begin(), indices.end(), sampling.begin(), N / 2, std::mt19937(pcptest::seed));
-	
+
+	using Point = _Point<float, Vector3Array>;
 
 
-	KdTree<Point> structure(points);
+	Ponca::KdTree<Point>* structure = new Ponca::KdTree<Point>(points);
 
 	//std::vector<int> results;
 	//for (int i = 0; i < N; ++i)
