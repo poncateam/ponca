@@ -15,10 +15,11 @@ namespace Ponca {
 
 template <class DataPoint>
 class KdTreeNearestIndexQuery : public KdTreeQuery<DataPoint>,
-								public NearestIndexQuery<typename DataPoint::Scalar>
+								public NearestIndexQuery<class DataPoint::Scalar>
 {
 public:
-    using Scalar = DataPoint::Scalar;
+	
+    typedef typename DataPoint::Scalar Scalar;
 
     KdTreeNearestIndexQuery() :
         KdTreeQuery<DataPoint>(), NearestIndexQuery<Scalar>()
