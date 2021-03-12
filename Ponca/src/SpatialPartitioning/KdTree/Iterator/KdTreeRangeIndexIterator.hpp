@@ -17,7 +17,10 @@ void KdTreeRangeIndexIterator<DataPoint>::operator ++()
 }
 
 template<class DataPoint>
-int KdTreeRangeIndexIterator<DataPoint>::operator * () const
+int KdTreeRangeIndexIterator<DataPoint>::operator *() const
 {
     return m_index;
 }
+
+
+

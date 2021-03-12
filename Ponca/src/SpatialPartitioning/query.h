@@ -130,11 +130,11 @@ struct KNearestPointQuery : public PointQuery<typename DataPoint::VectorType>, p
 
     inline KNearestPointQuery()
         : PointQuery<VectorType>(), KNearestQuery<Scalar>() {}
-    inline KNearestPointQuery(const VectorType& point)
+    inline KNearestPointQuery(const Vector& point)
         : PointQuery<VectorType>(point), KNearestQuery<Scalar>() {}
     inline KNearestPointQuery(int k)
         : PointQuery<VectorType>(), KNearestQuery<Scalar>(k) {}
-    inline KNearestPointQuery(int k, const VectorType& point)
+    inline KNearestPointQuery(int k, const Vector& point)
         : PointQuery<VectorType>(point), KNearestQuery<Scalar>(k) {}
 };
 
