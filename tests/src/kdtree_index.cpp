@@ -21,7 +21,7 @@
 
 
 #define EXPECT_EQ(a,b) assert(a==b)
-#define EXPECT_TRUE(a) assert(a==True)
+#define EXPECT_TRUE(a) assert(a==true)
 
 using namespace Eigen;
 using namespace Ponca;
@@ -55,20 +55,20 @@ bool check_k_nearest_neighbors(const Vector3Array& points, int index, int k, con
 {
 	if (int(points.size()) > k && int(neighbors.size()) != k)
 	{
-		//PCP_DEBUG_ERROR;
+		////PCP_DEBUG_ERROR;
 		return false;
 	}
 
 	if (has_duplicate(neighbors))
 	{
-		//PCP_DEBUG_ERROR;
+		////PCP_DEBUG_ERROR;
 		return false;
 	}
 
 	auto it = std::find(neighbors.begin(), neighbors.end(), index);
 	if (it != neighbors.end())
 	{
-		//PCP_DEBUG_ERROR;
+		////PCP_DEBUG_ERROR;
 		return false;
 	}
 
@@ -86,12 +86,12 @@ bool check_k_nearest_neighbors(const Vector3Array& points, int index, int k, con
 
 		if (is_neighbor && max_dist < dist)
 		{
-			//PCP_DEBUG_ERROR;
+			////PCP_DEBUG_ERROR;
 			return false;
 		}
 		if (!is_neighbor && dist < max_dist)
 		{
-			//PCP_DEBUG_ERROR;
+			////PCP_DEBUG_ERROR;
 			return false;
 		}
 	}
@@ -107,10 +107,62 @@ bool check_k_nearest_neighbors(const Vector3Array& points, const std::vector<int
 {
 	if (int(points.size()) > k && int(neighbors.size()) != k)
 	{
-		//PCP_DEBUG_ERROR;
+		////PCP_DEBUG_ERROR;
 		return false;
 	}
 
+	if (has_duplicate(neighbors))
+	{
+		////PCP_DEBUG_ERROR;
+		return false;
+	}
+
+	for (int idx : neighbors)
+	{
+		if (std::find(sampling.begin(), sampling.end(), idx) == sampling.end())
+		{
+			////PCP_DEBUG_ERROR;
+			return false;
+		}
+	}
+
+	auto it = std::find(neighbors.begin(), neighbors.end(), index);
+	if (it != neighbors.end())
+	{
+		////PCP_DEBUG_ERROR;
+		return false;
+	}
+
+	float max_dist = 0;
+	for (int idx : neighbors)
+		max_dist = std::max(max_dist, (points[idx] - points[index]).norm());
+
+	for (int i = 0; i<int(sampling.size()); ++i)
+	{
+		int idx = sampling[i];
+		if (idx == index) continue;
+
+		float dist = (points[idx] - points[index]).norm();
+		auto it = std::find(neighbors.begin(), neighbors.end(), idx);
+		bool is_neighbor = it != neighbors.end();
+
+		if (is_neighbor && max_dist < dist)
+		{
+			////PCP_DEBUG_ERROR;
+			return false;
+		}
+		if (!is_neighbor && dist < max_dist)
+		{
+			////PCP_DEBUG_ERROR;
+			return false;
+		}
+	}
+	return true;
+}
+
+
+bool check_range_neighbors(const Vector3Array& points, const std::vector<int>& sampling, int index, float r, const std::vector<int>& neighbors)
+{
 	if (has_duplicate(neighbors))
 	{
 		//PCP_DEBUG_ERROR;
@@ -133,9 +185,15 @@ bool check_k_nearest_neighbors(const Vector3Array& points, const std::vector<int
 		return false;
 	}
 
-	float max_dist = 0;
-	for (int idx : neighbors)
-		max_dist = std::max(max_dist, (points[idx] - points[index]).norm());
+	for (int i = 0; i<int(neighbors.size()); ++i)
+	{
+		float dist = (points[neighbors[i]] - points[index]).norm();
+		if (r < dist)
+		{
+			//PCP_DEBUG_ERROR;
+			return false;
+		}
+	}
 
 	for (int i = 0; i<int(sampling.size()); ++i)
 	{
@@ -146,12 +204,12 @@ bool check_k_nearest_neighbors(const Vector3Array& points, const std::vector<int
 		auto it = std::find(neighbors.begin(), neighbors.end(), idx);
 		bool is_neighbor = it != neighbors.end();
 
-		if (is_neighbor && max_dist < dist)
+		if (is_neighbor && r < dist)
 		{
 			//PCP_DEBUG_ERROR;
 			return false;
 		}
-		if (!is_neighbor && dist < max_dist)
+		if (!is_neighbor && dist < r)
 		{
 			//PCP_DEBUG_ERROR;
 			return false;
@@ -159,7 +217,6 @@ bool check_k_nearest_neighbors(const Vector3Array& points, const std::vector<int
 	}
 	return true;
 }
-
 bool check_nearest_neighbors(const Vector3Array& points, const std::vector<int>& sampling, int index, int nearest)
 {
 	return check_k_nearest_neighbors(points, sampling, index, 1, { nearest });
@@ -169,35 +226,37 @@ bool check_nearest_neighbors(const Vector3Array& points, const std::vector<int>&
 template<typename Vector3>
 void callSubTests()
 {
-	const int N = 10000;// quick ? 100 : 10000
+	const int N = 10;// quick ? 100 : 10000
 	auto points = std::make_shared<Vector3Array>(N);
-	//std::generate(points->begin(), points->end(), []() {return Vector3::Random(); });
+	std::generate(points->begin(), points->end(), []() {return Vector3::Random(); });
 
 
-	//std::vector<int> indices(N);
-	//std::vector<int> sampling(N / 2);
-	//std::iota(indices.begin(), indices.end(), 0);
+	std::vector<int> indices(N);
+	std::vector<int> sampling(N / 2);
+	std::iota(indices.begin(), indices.end(), 0);
 	
-	//NEED C++17
-	//std::sample(indices.begin(), indices.end(), sampling.begin(), N / 2, std::mt19937(pcptest::seed));
+	int seed = 0;
 
+	//NEED C++17
+	std::sample(indices.begin(), indices.end(), sampling.begin(), N / 2, std::mt19937(seed));
+	
 	using Point = _Point<float, Vector3Array>;
 
+	KdTree<Point> structure(points, sampling);
 
-	KdTree<Point>* structure = new KdTree<Point>(points);
-
-	//std::vector<int> results;
-	//for (int i = 0; i < N; ++i)
-	//{
-	//	const float r = float(std::rand()) / RAND_MAX * 2.5;
-	//	results.clear();
-	//	for (int j : structure.range_neighbors(i, r))
-	//	{
-	//		results.push_back(j);
-	//	}
-	//	//EXPECT_EQ(int(results.size()), 1);
-	//	//EXPECT_TRUE(check_nearest_neighbors(*points, i, results.front()));
-	//}
+	std::vector<int> results;
+	for (int i = 0; i < N; ++i)
+	{
+		const float r = float(std::rand()) / RAND_MAX * 2.5;
+		results.clear();
+		for (int j : structure.range_neighbors(i, r))
+		{
+			results.push_back(j);
+		}
+		//EXPECT_EQ(int(results.size()), 1);
+		//EXPECT_TRUE();
+		EXPECT_TRUE(check_range_neighbors(*points,sampling, i, r,results));
+	}
 }
 
 int main(int argc, char** argv)
