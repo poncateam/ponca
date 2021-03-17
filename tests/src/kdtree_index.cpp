@@ -40,14 +40,12 @@ void callSubTests()
 		const float r = float(std::rand()) / RAND_MAX * 2.5;
 		results.clear();
 		KdTreeRangeIndexQuery<Point> rangeIndexQuery = structure.range_neighbors(i, r);
-		KdTreeRangeIndexIterator<Point> start = rangeIndexQuery.begin();
-		KdTreeRangeIndexIterator<Point> end = rangeIndexQuery.end();
 		for (KdTreeRangeIndexIterator<Point> j = rangeIndexQuery.begin(); j != rangeIndexQuery.end(); j++) {
 			results.push_back(*j);
 		}
 		//EXPECT_EQ(int(results.size()), 1);
 		//EXPECT_TRUE();
-		EXPECT_TRUE(check_range_neighbors(*points,sampling, i, r,results));
+		EXPECT_TRUE(check_range_neighbors(*points, sampling, i, r, results));
 	}
 }
 
