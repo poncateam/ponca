@@ -9,19 +9,19 @@
 template<class DataPoint>
 int KdTree<DataPoint>::node_count() const
 {
-	return m_nodes->size();
+	return static_cast<int>(m_nodes->size());
 }
 
 template<class DataPoint>
 int KdTree<DataPoint>::index_count() const
 {
-	return m_indices->size();
+	return static_cast<int>(m_indices->size());
 }
 
 template<class DataPoint>
 int KdTree<DataPoint>::point_count() const
 {
-	return m_points->size();
+	return static_cast<int>(m_points->size());
 }
 
 template<class DataPoint>
