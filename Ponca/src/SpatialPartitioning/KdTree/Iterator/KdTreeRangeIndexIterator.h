@@ -6,8 +6,6 @@
 
 #pragma once
 
-//#include "../Query/KdTreeRangeIndexQuery.h"
-
 #include "../../query.h"
 
 namespace Ponca {
@@ -46,24 +44,8 @@ public:
     }
 
     inline bool operator !=(const KdTreeRangeIndexIterator<DataPoint>& other) const;
-    inline void operator ++();
-    inline int  operator * () const;
-
-	/*
-	inline bool KdTreeRangeIndexIterator<DataPoint>::operator !=(const KdTreeRangeIndexIterator<DataPoint>& other) const
-	{
-		return m_index != other.m_index;
-	}
-
-	inline void KdTreeRangeIndexIterator<DataPoint>::operator ++()
-	{
-		m_query->advance(*this);
-	}
-
-	inline int KdTreeRangeIndexIterator<DataPoint>::operator *() const
-	{
-		return m_index;
-	}*/
+    inline void operator ++(int);
+    inline int  operator *() const;
 
 protected:
     KdTreeRangeIndexQuery<DataPoint>* m_query;

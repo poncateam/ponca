@@ -7,6 +7,24 @@
 // KdTree ----------------------------------------------------------------------
 
 template<class DataPoint>
+int KdTree<DataPoint>::node_count() const
+{
+	return m_nodes->size();
+}
+
+template<class DataPoint>
+int KdTree<DataPoint>::index_count() const
+{
+	return m_indices->size();
+}
+
+template<class DataPoint>
+int KdTree<DataPoint>::point_count() const
+{
+	return m_points->size();
+}
+
+template<class DataPoint>
 void KdTree<DataPoint>::clear()
 {
 	m_points = nullptr;
@@ -145,13 +163,6 @@ std::string KdTree<DataPoint>::to_string() const
 	}
 	return str.str();
 }
-
-template<class DataPoint>
-size_t KdTree<DataPoint>::size() const
-{
-	return size_t();
-}
-
 
 template<class DataPoint>
 int KdTree<DataPoint>::min_cell_size() const

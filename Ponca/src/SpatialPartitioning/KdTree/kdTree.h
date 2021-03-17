@@ -73,7 +73,9 @@ public:
 
     // Accessors ---------------------------------------------------------------
 public:
-    inline size_t size() const;
+    inline int node_count() const;
+    inline int index_count() const;
+    inline int point_count() const;
 
     inline VectorType& point_data()
     {
