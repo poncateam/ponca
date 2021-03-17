@@ -33,7 +33,7 @@ void KNNGraph::build(const KdTree& kdtree)
 {
     this->clear();
 
-    const int size = kdtree.size();
+    const int size = kdtree.point_count();
 
     m_points = kdtree.point_ptr();
 

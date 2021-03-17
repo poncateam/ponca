@@ -16,7 +16,7 @@ KdTreeRangeIndexIterator<DataPoint> KdTreeRangeIndexQuery<DataPoint>::begin()
 template<class DataPoint>
 KdTreeRangeIndexIterator<DataPoint> KdTreeRangeIndexQuery<DataPoint>::end()
 {
-    return KdTreeRangeIndexIterator<DataPoint>(this, m_kdtree->size());
+    return KdTreeRangeIndexIterator<DataPoint>(this, m_kdtree->point_count());
 }
 
 template<class DataPoint>
