@@ -37,8 +37,8 @@ void callSubTests()
 		results.clear();
 
 
-		KdTreeRangePointQuery<Point> rangeIndexQuery = structure.range_neighbors(i, r);
-		for (KdTreeRangePointIterator<Point> j = rangeIndexQuery.begin(); j != rangeIndexQuery.end(); j++) {
+		KdTreeRangePointQuery<Point> rangePointQuery = structure.range_neighbors(point, r);
+		for (KdTreeRangePointIterator<Point> j = rangePointQuery.begin(); j != rangePointQuery.end(); j++) {
 			results.push_back(*j);
 		}
 /*
