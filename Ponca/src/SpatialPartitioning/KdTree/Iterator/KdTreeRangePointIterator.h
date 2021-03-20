@@ -6,9 +6,8 @@
 
 #pragma once
 
-//#include "../Query/KdTreeRangePointQuery.h"
 
-//#include "../../query.h"
+#include "../../query.h"
 
 
 namespace Ponca {
@@ -18,11 +17,6 @@ template<class DataPoint> class KdTreeRangePointQuery;
 template <typename DataPoint>
 class KdTreeRangePointIterator
 {
-public:
-    /*! \brief Scalar type inherited from DataPoint */
-    typedef typename DataPoint::Scalar     Scalar;
-    /*! \brief Vector type inherited from DataPoint */
-    typedef typename DataPoint::VectorType VectorType;
 protected:
     friend class KdTreeRangePointQuery<DataPoint>;
 
@@ -52,9 +46,9 @@ public:
     }
 
 public:
-    bool operator !=(const KdTreeRangePointIterator<DataPoint>& other) const;
-    void operator ++();
-    int  operator * () const;
+    inline bool operator !=(const KdTreeRangePointIterator<DataPoint>& other) const;
+	inline void operator ++(int);
+	inline int  operator * () const;
 
 protected:
     KdTreeRangePointQuery<DataPoint>* m_query;
