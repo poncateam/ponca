@@ -31,7 +31,6 @@ public:
     KdTreeRangePointQuery() :
         KdTreeQuery<DataPoint>(), RangePointQuery<DataPoint>()
     {
-        cout << "Test" << endl;
     }
 
     KdTreeRangePointQuery(const KdTree<DataPoint>* kdtree) :
