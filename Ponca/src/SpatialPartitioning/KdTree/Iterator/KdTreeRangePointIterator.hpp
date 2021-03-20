@@ -11,7 +11,7 @@ bool KdTreeRangePointIterator<DataPoint>::operator !=(const KdTreeRangePointIter
 }
 
 template<class DataPoint>
-void KdTreeRangePointIterator<DataPoint>::operator ++()
+void KdTreeRangePointIterator<DataPoint>::operator ++(int)
 {
     m_query->advance(*this);
 }

@@ -11,6 +11,7 @@
 namespace Ponca {
 
 template<class DataPoint> class KdTreeRangeIndexQuery;
+
 template<class DataPoint>
 class KdTreeRangeIndexIterator
 {
