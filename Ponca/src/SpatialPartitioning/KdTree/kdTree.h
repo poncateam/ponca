@@ -29,14 +29,18 @@ template<class DataPoint> class KdTreeQuery;
 template<class DataPoint>
 class KdTree
 {
+
+
 public:
+
 
 	/*! \brief Scalar type inherited from DataPoint */
 	typedef typename DataPoint::Scalar     Scalar;
 	/*! \brief Vector type inherited from DataPoint */
 	typedef typename DataPoint::VectorType VectorType;
+	typedef typename DataPoint::Vector Vector;
 
-    using Aabb = Eigen::AlignedBox<Scalar, 3>;
+	using Aabb = Eigen::AlignedBox<Scalar, 3>;
 
     inline KdTree():
         m_points(nullptr),
@@ -46,7 +50,7 @@ public:
     {
     };
 
-    inline KdTree(std::shared_ptr<VectorType>& points):
+    inline KdTree(std::shared_ptr<Vector>& points):
         m_points(nullptr),
         m_nodes(nullptr),
         m_indices(nullptr),
@@ -55,7 +59,7 @@ public:
         this->build(points);
     };
 
-    inline KdTree(std::shared_ptr<VectorType>& points, const std::vector<int>& sampling):
+    inline KdTree(std::shared_ptr<Vector>& points, const std::vector<int>& sampling):
         m_points(nullptr),
         m_nodes(nullptr),
         m_indices(nullptr),
@@ -65,8 +69,8 @@ public:
     };
 
     inline void clear();
-    inline void build(std::shared_ptr<VectorType>& points);
-    inline void build(std::shared_ptr<VectorType>& points, const std::vector<int>& sampling);
+    inline void build(std::shared_ptr<Vector>& points);
+    inline void build(std::shared_ptr<Vector>& points, const std::vector<int>& sampling);
     inline void rebuild(const std::vector<int>& sampling);
 
     inline bool valid() const;
@@ -78,22 +82,22 @@ public:
     inline int index_count() const;
     inline int point_count() const;
 
-    inline VectorType& point_data()
+    inline Vector& point_data()
     {
         return *m_points.get();
     };
 
-    inline const VectorType& point_data() const
+    inline const Vector& point_data() const
     {
         return *m_points.get();
     };
 
-    inline const std::shared_ptr<VectorType>& point_ptr() const
+    inline const std::shared_ptr<Vector>& point_ptr() const
     {
         return m_points;
     }
 
-    inline std::shared_ptr<VectorType>& point_ptr()
+    inline std::shared_ptr<Vector>& point_ptr()
     {
         return m_points;
     }
@@ -195,7 +199,7 @@ public:
 
     // Data --------------------------------------------------------------------
 protected:
-    std::shared_ptr<VectorType>            m_points;
+    std::shared_ptr<Vector>            m_points;
     std::shared_ptr<std::vector<KdTreeNode<Scalar>>> m_nodes;
     std::shared_ptr<std::vector<int>>        m_indices;
 

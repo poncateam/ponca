@@ -26,7 +26,7 @@ void callSubTests()
 	std::iota(indices.begin(), indices.end(), 0);
 	std::sample(indices.begin(), indices.end(), sampling.begin(), N / 2, std::mt19937(seed));
 
-	using Point = _Point<float, Vector3Array>;
+	using Point = _Point<float, Vector3, Vector3Array>;
 	KdTree<Point> structure(points, sampling);
 
 	std::vector<int> results;

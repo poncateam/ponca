@@ -183,7 +183,7 @@ struct RangePointQuery : public PointQuery<typename DataPoint::VectorType>, publ
     inline RangePointQuery(Scalar radius)
         : PointQuery<Vector>(), RangeQuery<Scalar>(radius) {}
     inline RangePointQuery(Scalar radius, const Vector& point)
-        : PointQuery<Vector>(radius), RangeQuery<Scalar>(point) {}
+        : PointQuery<Vector>(point), RangeQuery<Scalar>(radius) {}
 };
 
 /// \brief Base class RangeQuery storing indices

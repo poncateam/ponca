@@ -33,7 +33,7 @@ void KdTree<DataPoint>::clear()
 }
 
 template<class DataPoint>
-void KdTree<DataPoint>::build(std::shared_ptr<VectorType>& points)
+void KdTree<DataPoint>::build(std::shared_ptr<Vector>& points)
 {
 	std::vector<int> ids;
 	iota(ids.begin(), ids.end(), 0);
@@ -41,7 +41,7 @@ void KdTree<DataPoint>::build(std::shared_ptr<VectorType>& points)
 }
 
 template<class DataPoint>
-void KdTree<DataPoint>::build(std::shared_ptr<VectorType>& points, const std::vector<int>& sampling)
+void KdTree<DataPoint>::build(std::shared_ptr<Vector>& points, const std::vector<int>& sampling)
 {
 	this->clear();
 	

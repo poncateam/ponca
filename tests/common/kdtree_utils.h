@@ -21,11 +21,12 @@ using Vec3 = Eigen::Matrix<float, 3, 1>;
 using Vector3Array = std::vector<Vec3>;
 
 
-template <typename Scalar, typename Vector3>
+template <typename Scalar, typename Vector3,typename Vector>
 class _Point {
 public:
 	typedef Scalar Scalar;
 	typedef Vector3 VectorType;
+	typedef Vector Vector;
 };
 
 
