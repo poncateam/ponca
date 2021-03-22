@@ -8,7 +8,7 @@
 
 #include "../Iterator/KdTreeRangePointIterator.h"
 //
-//#include "../query.h"
+#include "../query.h"
 //#include "../../query.h"
 
 namespace Ponca {
@@ -44,7 +44,7 @@ public:
     }
 
     KdTreeRangePointQuery(const KdTree<DataPoint>* kdtree, Scalar radius, const VectorType& point) :
-        KdTreeQuery<DataPoint>(kdtree), RangePointQuery<VectorType>(radius, point)
+        KdTreeQuery<DataPoint>(kdtree), RangePointQuery<DataPoint>(radius, point)
     {
     }
 
