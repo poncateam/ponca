@@ -30,6 +30,7 @@ void callSubTests()
 	KdTree<Point> structure(points, sampling);
 
 	std::vector<int> results;
+
 	for (int i = 0; i < N; ++i)
 	{
 		const float r = float(std::rand()) / RAND_MAX * 2.5;
@@ -46,7 +47,8 @@ void callSubTests()
 		{
 			results.push_back(j);
 		}*/
-		EXPECT_TRUE(check_range_neighbors(*points, sampling, point, r, results));
+		bool res = check_range_neighbors<Vector3, Vector3Array>(*points, sampling, point, r, results);
+		EXPECT_TRUE(res);
 	}
 }
 
