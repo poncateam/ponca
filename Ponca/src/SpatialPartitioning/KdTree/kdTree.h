@@ -29,18 +29,11 @@ template<class DataPoint> class KdTreeQuery;
 template<class DataPoint>
 class KdTree
 {
-
-
 public:
-
-
-	/*! \brief Scalar type inherited from DataPoint */
 	typedef typename DataPoint::Scalar     Scalar;
-	/*! \brief Vector type inherited from DataPoint */
 	typedef typename DataPoint::VectorType VectorType;
 	typedef typename DataPoint::Vector Vector;
-
-	using Aabb = Eigen::AlignedBox<Scalar, 3>;
+	typedef typename DataPoint::Aabb Aabb;
 
     inline KdTree():
         m_points(nullptr),
