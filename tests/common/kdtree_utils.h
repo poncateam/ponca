@@ -27,7 +27,21 @@ public:
 	typedef Scalar Scalar;
 	typedef Eigen::Matrix<Scalar, size, 1> VectorType;
 	typedef std::vector<VectorType> Vector;
-	typedef Eigen::AlignedBox<Scalar, size> Aabb;
+};
+
+class MyPoint {
+public:
+	enum { Dim = 3 };
+	typedef float Scalar;
+	typedef Eigen::Matrix<Scalar, Dim, 1> VectorType;
+	typedef std::vector<VectorType> VectorContainer;
+
+	PONCA_MULTIARCH inline MyPoint(const VectorType& pos = VectorType::Zero())
+		: _pos(pos) {}
+	PONCA_MULTIARCH inline const VectorType& pos() const { return _pos; }
+	PONCA_MULTIARCH inline       VectorType& pos() { return _pos; }
+private:
+	VectorType _pos;
 };
 
 template<typename Scalar, typename Vector>

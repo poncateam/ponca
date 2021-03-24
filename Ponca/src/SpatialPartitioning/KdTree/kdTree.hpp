@@ -52,7 +52,7 @@ void KdTree<DataPoint>::build(std::shared_ptr<Vector>& points, const std::vector
 	m_nodes->emplace_back();
 	m_nodes->back().leaf = false;
 	
-	m_indices = std::make_shared<std::vector<int>>(sampling);
+	m_indices = std::make_shared<std::vector<int>>(sampling);//move operator ou std copy
 	
 	int end = static_cast<int>(m_indices->size());
 	

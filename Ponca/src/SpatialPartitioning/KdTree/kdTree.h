@@ -32,8 +32,11 @@ class KdTree
 public:
 	typedef typename DataPoint::Scalar     Scalar;
 	typedef typename DataPoint::VectorType VectorType;
-	typedef typename DataPoint::Vector Vector;
-	typedef typename DataPoint::Aabb Aabb;
+	//typedef typename DataPoint::Vector Vector;
+	typedef typename Eigen::AlignedBox<Scalar, DataPoint::Dim> Aabb;
+    typedef typename std::vector<VectorType> PointContainer;
+    typedef typename std::vector<int> IndexContainer;
+    typedef typename std::vector<KdTreeNode<Scalar>> NodeContainer;
 
     inline KdTree():
         m_points(nullptr),
@@ -43,7 +46,8 @@ public:
     {
     };
 
-    inline KdTree(std::shared_ptr<Vector>& points):
+    template<typename Container>
+    inline KdTree(const Container& points):
         m_points(nullptr),
         m_nodes(nullptr),
         m_indices(nullptr),
@@ -52,7 +56,8 @@ public:
         this->build(points);
     };
 
-    inline KdTree(std::shared_ptr<Vector>& points, const std::vector<int>& sampling):
+    template<typename Container, typename IndexContainer>
+    inline KdTree(const Container& points, const IndexContainer& sampling):
         m_points(nullptr),
         m_nodes(nullptr),
         m_indices(nullptr),
@@ -62,9 +67,21 @@ public:
     };
 
     inline void clear();
-    inline void build(std::shared_ptr<Vector>& points);
-    inline void build(std::shared_ptr<Vector>& points, const std::vector<int>& sampling);
-    inline void rebuild(const std::vector<int>& sampling);
+
+    template<typename Container>
+    inline void build(const Container& points);
+
+    inline void build(PointContainer&& points);
+
+    template<typename Container, typename IndexContainer>
+    inline void build(const Container& points, const IndexContainer& sampling);
+
+    inline void build(PointContainer&& points, IndexContainer&& sampling);
+
+    template<typename IndexContainer>
+    inline void rebuild(const IndexContainer& sampling);
+
+    inline void rebuild(IndexContainer&& sampling);
 
     inline bool valid() const;
     inline std::string to_string() const;
@@ -75,42 +92,42 @@ public:
     inline int index_count() const;
     inline int point_count() const;
 
-    inline Vector& point_data()
+    inline PointContainer& point_data()
     {
         return *m_points.get();
     };
 
-    inline const Vector& point_data() const
+    inline const PointContainer& point_data() const
     {
         return *m_points.get();
     };
 
-    inline const std::shared_ptr<Vector>& point_ptr() const
+    inline const PointContainer& point_ptr() const
     {
         return m_points;
     }
 
-    inline std::shared_ptr<Vector>& point_ptr()
+    inline PointContainer& point_ptr()
     {
         return m_points;
     }
 
-    inline const std::vector<KdTreeNode<Scalar>>& node_data() const
+    inline const NodeContainer& node_data() const
     {
         return *m_nodes.get();
     }
 
-    inline std::vector<KdTreeNode<Scalar>>& node_data()
+    inline NodeContainer& node_data()
     {
         return *m_nodes.get();
     }
 
-    inline const std::vector<int>& index_data() const
+    inline const IndexContainer& index_data() const
     {
         return *m_indices.get();
     }
 
-    inline std::vector<int>& index_data()
+    inline IndexContainer& index_data()
     {
         return *m_indices.get();
     }
@@ -192,9 +209,9 @@ public:
 
     // Data --------------------------------------------------------------------
 protected:
-    std::shared_ptr<Vector>            m_points;
-    std::shared_ptr<std::vector<KdTreeNode<Scalar>>> m_nodes;
-    std::shared_ptr<std::vector<int>>        m_indices;
+    PointContainer m_points;
+    NodeContainer m_nodes;
+    IndexContainer m_indices;
 
     int m_min_cell_size;
 };
