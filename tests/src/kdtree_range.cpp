@@ -13,7 +13,6 @@
 
 using namespace Ponca;
 
-
 template<typename DataPoint>
 void testKdTreeRangeIndex(bool quick)
 {
