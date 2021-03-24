@@ -26,7 +26,7 @@ void callSubTests()
 	std::iota(indices.begin(), indices.end(), 0);
 	std::sample(indices.begin(), indices.end(), sampling.begin(), N / 2, std::mt19937(seed));
 
-	using Point = _Point<float, Vector3, Vector3Array>;
+	using Point = _Point<float, 3>;
 	KdTree<Point> structure(points, sampling);
 
 	std::vector<int> results;
@@ -47,7 +47,7 @@ void callSubTests()
 		{
 			results.push_back(j);
 		}*/
-		bool res = check_range_neighbors<Vector3, Vector3Array>(*points, sampling, point, r, results);
+		bool res = check_range_neighbors<Point::Scalar, Point::VectorType, Point::Vector>(*points, sampling, point, r, results);
 		EXPECT_TRUE(res);
 	}
 }
