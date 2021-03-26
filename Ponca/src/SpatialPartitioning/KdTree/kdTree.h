@@ -32,12 +32,14 @@ template<class DataPoint>
 class KdTree
 {
 public:
-	typedef typename DataPoint::Scalar     Scalar;
-	typedef typename DataPoint::VectorType VectorType;
-	typedef typename Eigen::AlignedBox<Scalar, DataPoint::Dim> Aabb;
-    typedef typename std::vector<VectorType> PointContainer;
-    typedef typename std::vector<int> IndexContainer;
-    typedef typename std::vector<KdTreeNode<Scalar>> NodeContainer;
+	typedef typename DataPoint::Scalar     Scalar;  // Scalar given by user
+	typedef typename DataPoint::VectorType VectorType;  // VectorType given by user
+
+	typedef typename Eigen::AlignedBox<Scalar, DataPoint::Dim> Aabb; // Intersections
+
+    typedef typename std::vector<VectorType> PointContainer; // Container for VectorType used inside the KdTree
+    typedef typename std::vector<int> IndexContainer; // Container for indices used inside the KdTree
+    typedef typename std::vector<KdTreeNode<Scalar>> NodeContainer;  // Container for nodes used inside the KdTree
 
     inline KdTree():
         m_points(nullptr),
@@ -47,8 +49,8 @@ public:
     {
     };
 
-    template<typename VectorUserContainer>
-    inline KdTree(const VectorUserContainer& points):
+    template<typename PointUserContainer>
+    inline KdTree(const PointUserContainer& points): // PointUserContainer => Given by user, transformed to PointContainer
         m_points(nullptr),
         m_nodes(nullptr),
         m_indices(nullptr),
@@ -57,8 +59,9 @@ public:
         this->build(points);
     };
 
-    template<typename VectorUserContainer, typename IndexContainer>
-    inline KdTree(const VectorUserContainer& points, const IndexContainer& sampling):
+    template<typename PointUserContainer, typename IndexUserContainer>
+    inline KdTree(const PointUserContainer& points, const IndexUserContainer& sampling): // PointUserContainer => Given by user, transformed to PointContainer
+                                                                                         // IndexUserContainer => Given by user, transformed to IndexContainer
         m_points(),
         m_nodes(),
         m_indices(),
@@ -69,16 +72,17 @@ public:
 
     inline void clear();
 
-    template<typename VectorUserContainer>
-    inline void build(const VectorUserContainer& points);
+    template<typename PointUserContainer>
+    inline void build(const PointUserContainer& points);  // PointUserContainer => Given by user, transformed to PointContainer
 
 
-    template<typename VectorUserContainer, typename IndexUserContainer>
-    inline void build(const VectorUserContainer& points, const IndexUserContainer& sampling);
+    template<typename PointUserContainer, typename IndexUserContainer>
+    inline void build(const PointUserContainer& points, const IndexUserContainer& sampling); // PointUserContainer => Given by user, transformed to PointContainer
+                                                                                             // IndexUserContainer => Given by user, transformed to IndexContainer
 
 
     template<typename IndexUserContainer>
-    inline void rebuild(const IndexUserContainer& sampling);
+    inline void rebuild(const IndexUserContainer& sampling); // IndexUserContainer => Given by user, transformed to IndexContainer
 
 
     inline bool valid() const;
