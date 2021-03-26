@@ -94,8 +94,7 @@ inline void KdTree<DataPoint>::build(const VectorUserContainer & points, const I
 {
 	this->clear();
 
-	//m_points = points;
-	std::copy(points.begin(), points.end(), m_points.begin());
+	m_points = points;
 
 	m_nodes = NodeContainer();
 	m_nodes.reserve(4 * point_count() / m_min_cell_size);
