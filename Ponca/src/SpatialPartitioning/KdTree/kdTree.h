@@ -15,19 +15,18 @@
 #include <vector>
 #include <numeric>
 
-#include "../query.h"
+
+#include "Iterator/KdTreeRangeIndexIterator.h"
+#include "Iterator/KdTreeRangePointIterator.h"
+
+#include "Query/KdTreeNearestPointQuery.h"
+#include "Query/KdTreeNearestIndexQuery.h"
+#include "Query/KdTreeRangeIndexQuery.h"
+#include "Query/KdTreeRangePointQuery.h"
 
 #define PCA_KDTREE_MAX_DEPTH 32
 
 namespace Ponca {
-template<class DataPoint> class KdTreeRangeIndexIterator;
-template<class DataPoint> class KdTreeNearestPointQuery;
-template<class DataPoint> class KdTreeNearestIndexQuery;
-template<class Scalar> class KdTreeRangeIndexQuery;
-template<class DataPoint> class KdTreeRangePointQuery;
-template<class DataPoint> class KdTreeRangePointIterator;
-template<class Scalar> class RangeIndexQuery;
-template<class DataPoint> class KdTreeQuery;
 template<class DataPoint>
 class KdTree
 {
