@@ -12,7 +12,6 @@ set(ponca_SpatialPartitioning_INCLUDE
     "${PONCA_src_ROOT}/Ponca/src/SpatialPartitioning/KdTree/Query/kdTreeKNearestIndexQuery.hpp"
     "${PONCA_src_ROOT}/Ponca/src/SpatialPartitioning/KdTree/Query/kdTreeKNearestPointQuery.h"
     "${PONCA_src_ROOT}/Ponca/src/SpatialPartitioning/KdTree/Query/kdTreeKNearestPointQuery.hpp"
-    "${PONCA_src_ROOT}/Ponca/src/SpatialPartitioning/KdTree/iterator.h"
     )
 
 add_library(SpatialPartitioning INTERFACE)
