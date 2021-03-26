@@ -4,20 +4,6 @@
  file, You can obtain one at http://mozilla.org/MPL/2.0/.
 */
 
-#include "./KdTreeNearestPointIterator.h"
-
-namespace Ponca {
-
-KdTreeNearestPointIterator::KdTreeNearestPointIterator() :
-    m_index(-1)
-{
-}
-
-KdTreeNearestPointIterator::KdTreeNearestPointIterator(int index) :
-    m_index(index)
-{
-}
-
 bool KdTreeNearestPointIterator::operator !=(const KdTreeNearestPointIterator& other) const
 {
     return m_index != other.m_index;
@@ -33,4 +19,3 @@ int KdTreeNearestPointIterator::operator * () const
     return m_index;
 }
 
-}
