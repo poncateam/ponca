@@ -38,7 +38,7 @@ protected:
 template <typename DataPoint>
 struct PointQuery
 {
-    using VectorType = DataPoint::VectorType;
+    using VectorType = typename DataPoint::VectorType;
 
     inline PointQuery(const VectorType& point = VectorType::Zero())
         : m_point(point) {}
