@@ -8,16 +8,12 @@
 
 #include "../Iterator/KdTreeNearestPointIterator.h"
 
-#include "../iterator.h"
-
-#include "../kdTree.h"
-
-#include "../../query.h"
 
 namespace Ponca {
 
 template <class DataPoint>
-class KdTreeNearestPointQuery : public NearestPointQuery<DataPoint>, public KdTreeQuery<DataPoint>
+class KdTreeNearestPointQuery : public NearestPointQuery<DataPoint>, 
+								public KdTreeQuery<DataPoint>
 {
 public:
     using VectorType = DataPoint::VectorType;
@@ -25,7 +21,6 @@ public:
     KdTreeNearestPointQuery() :
         KdTreeQuery<DataPoint>(), NearestPointQuery<DataPoint>()
     {
-        cout << "Test" << endl;
     }
 
     KdTreeNearestPointQuery(const KdTree<DataPoint>* kdtree) :

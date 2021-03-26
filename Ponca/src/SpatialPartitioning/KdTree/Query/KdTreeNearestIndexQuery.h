@@ -6,9 +6,8 @@
 
 #pragma once
 
+
 #include "../Iterator/KdTreeNearestIndexIterator.h"
-#include "../kdTree.h"
-#include "../../query.h"
 
 namespace Ponca {
 
