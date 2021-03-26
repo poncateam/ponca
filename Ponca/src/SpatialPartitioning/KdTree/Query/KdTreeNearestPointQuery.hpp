@@ -31,7 +31,7 @@ void KdTreeNearestPointQuery<DataPoint>::search()
     m_stack.push({0,0});
 
     m_nearest = indices[0];
-    m_squared_distance = (m_point - points[m_nearest]).squaredNorm();
+    m_squared_distance = (m_point.pos() - points[m_nearest]).squaredNorm();
 
     while(!m_stack.empty())
     {
@@ -48,7 +48,7 @@ void KdTreeNearestPointQuery<DataPoint>::search()
                 {
                     int idx = indices[i];
 
-                    Scalar d = (m_point - points[idx]).squaredNorm();
+                    Scalar d = (m_point.pos() - points[idx]).squaredNorm();
                     if(d < m_squared_distance)
                     {
                         m_nearest = idx;
@@ -59,7 +59,7 @@ void KdTreeNearestPointQuery<DataPoint>::search()
             else
             {
                 // replace the stack top by the farthest and push the closest
-                Scalar newOff = m_point[node.dim] - node.splitValue;
+                Scalar newOff = m_point.pos()[node.dim] - node.splitValue;
                 m_stack.push();
                 if(newOff < 0)
                 {
