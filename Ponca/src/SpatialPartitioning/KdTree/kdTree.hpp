@@ -80,8 +80,8 @@ void KdTree<DataPoint>::clear()
 
 
 template<class DataPoint>
-template<typename VectorUserContainer>
-inline void KdTree<DataPoint>::build(const VectorUserContainer & points)
+template<typename PointUserContainer>
+inline void KdTree<DataPoint>::build(const PointUserContainer& points)
 {
 	std::vector<int> ids;
 	iota(ids.begin(), ids.end(), 0);
@@ -89,8 +89,8 @@ inline void KdTree<DataPoint>::build(const VectorUserContainer & points)
 }
 
 template<class DataPoint>
-template<typename VectorUserContainer, typename IndexUserContainer>
-inline void KdTree<DataPoint>::build(const VectorUserContainer & points, const IndexUserContainer & sampling)
+template<typename PointUserContainer, typename IndexUserContainer>
+inline void KdTree<DataPoint>::build(const PointUserContainer& points, const IndexUserContainer & sampling)
 {
 	this->clear();
 
