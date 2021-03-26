@@ -103,5 +103,5 @@ void KdTreeRangeIndexQuery<DataPoint>::advance(KdTreeRangeIndexIterator<DataPoin
             m_stack.pop();
         }
     }
-    it.m_index = static_int<int>(points.size());
+    it.m_index = static_cast<int>(points.size());
 }   
