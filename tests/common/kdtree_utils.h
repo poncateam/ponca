@@ -21,20 +21,12 @@ using Vec3 = Eigen::Matrix<float, 3, 1>;
 using Vector3Array = std::vector<Vec3>;
 
 
-template <typename Scalar, int size>
-class _Point {
-public:
-	typedef Scalar Scalar;
-	typedef Eigen::Matrix<Scalar, size, 1> VectorType;
-	typedef std::vector<VectorType> Vector;
-};
-
 class MyPoint {
 public:
 	enum { Dim = 3 };
 	typedef float Scalar;
 	typedef Eigen::Matrix<Scalar, Dim, 1> VectorType;
-	typedef std::vector<VectorType> VectorContainer;
+	typedef std::vector<VectorType> VectorContainer; // Must be given to use KdTree queries
 
 	PONCA_MULTIARCH inline MyPoint(const VectorType& pos = VectorType::Zero())
 		: _pos(pos) {}
@@ -44,8 +36,8 @@ private:
 	VectorType _pos;
 };
 
-template<typename Scalar, typename Vector>
-bool check_range_neighbors(const Vector& points, const std::vector<int>& sampling, int index, Scalar r, const std::vector<int>& neighbors)
+template<typename Scalar, typename VectorContainer>
+bool check_range_neighbors(const VectorContainer& points, const std::vector<int>& sampling, int index, Scalar r, const std::vector<int>& neighbors)
 {
 	if (has_duplicate(neighbors))
 	{
@@ -96,8 +88,8 @@ bool check_range_neighbors(const Vector& points, const std::vector<int>& samplin
 	return true;
 }
 
-template<typename Scalar, typename Vector>
-bool check_k_nearest_neighbors(const Vector& points, int index, int k, const std::vector<int>& neighbors)
+template<typename Scalar, typename VectorContainer>
+bool check_k_nearest_neighbors(const VectorContainer& points, int index, int k, const std::vector<int>& neighbors)
 {
 	if (int(points.size()) > k && int(neighbors.size()) != k)
 	{
@@ -139,14 +131,14 @@ bool check_k_nearest_neighbors(const Vector& points, int index, int k, const std
 	return true;
 }
 
-template<typename Scalar, typename Vector>
-bool check_nearest_neighbors(const Vector& points, int index, int nearest)
+template<typename Scalar, typename VectorContainer>
+bool check_nearest_neighbors(const VectorContainer& points, int index, int nearest)
 {
-	return check_k_nearest_neighbors<Scalar, Vector>(points, index, 1, { nearest });
+	return check_k_nearest_neighbors<Scalar, VectorContainer>(points, index, 1, { nearest });
 }
 
-template<typename Scalar, typename Vector>
-bool check_k_nearest_neighbors(const Vector& points, const std::vector<int>& sampling, int index, int k, const std::vector<int>& neighbors)
+template<typename Scalar, typename VectorContainer>
+bool check_k_nearest_neighbors(const VectorContainer& points, const std::vector<int>& sampling, int index, int k, const std::vector<int>& neighbors)
 {
 	if (int(points.size()) > k && int(neighbors.size()) != k)
 	{
@@ -197,8 +189,8 @@ bool check_k_nearest_neighbors(const Vector& points, const std::vector<int>& sam
 	return true;
 }
 
-template<typename Scalar, typename VectorType, typename Vector>
-bool check_k_nearest_neighbors(const Vector& points, const std::vector<int>& sampling, const VectorType& point, int k, const std::vector<int>& neighbors)
+template<typename Scalar, typename VectorType, typename VectorContainer>
+bool check_k_nearest_neighbors(const VectorContainer& points, const std::vector<int>& sampling, const VectorType& point, int k, const std::vector<int>& neighbors)
 {
 	if (int(sampling.size()) >= k && int(neighbors.size()) != k)
 	{
@@ -242,21 +234,21 @@ bool check_k_nearest_neighbors(const Vector& points, const std::vector<int>& sam
 }
 
 
-template<typename Scalar, typename VectorType, typename Vector>
-bool check_nearest_neighbors(const Vector& points, const std::vector<int>& sampling, const VectorType& point, int nearest)
+template<typename Scalar, typename VectorType, typename VectorContainer>
+bool check_nearest_neighbors(const VectorContainer& points, const std::vector<int>& sampling, const VectorType& point, int nearest)
 {
-	return check_k_nearest_neighbors<Scalar, Vector>(points, sampling, point, 1, { nearest });
+	return check_k_nearest_neighbors<Scalar, VectorContainer>(points, sampling, point, 1, { nearest });
 }
 
 
-template<typename Scalar, typename VectorType, typename Vector>
-bool check_nearest_neighbors(const Vector& points, const std::vector<int>& sampling, int index, int nearest)
+template<typename Scalar, typename VectorType, typename VectorContainer>
+bool check_nearest_neighbors(const VectorContainer& points, const std::vector<int>& sampling, int index, int nearest)
 {
-	return check_k_nearest_neighbors<Scalar, VectorType, Vector>(points, sampling, index, 1, { nearest });
+	return check_k_nearest_neighbors<Scalar, VectorType, VectorContainer>(points, sampling, index, 1, { nearest });
 }
 
-template<typename Scalar, typename VectorType, typename Vector>
-bool check_range_neighbors(const Vector& points, const std::vector<int>& sampling, const VectorType& point, Scalar r, const std::vector<int>& neighbors)
+template<typename Scalar, typename VectorType, typename VectorContainer>
+bool check_range_neighbors(const VectorContainer& points, const std::vector<int>& sampling, const VectorType& point, Scalar r, const std::vector<int>& neighbors)
 {
 	if (has_duplicate(neighbors))
 	{

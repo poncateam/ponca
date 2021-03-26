@@ -16,13 +16,13 @@ using namespace Ponca;
 template<typename DataPoint>
 void testKdTreeRangeIndex(bool quick)
 {
-	using S = DataPoint::Scalar;
-	using V = DataPoint::Vector;
-	using VT = DataPoint::VectorType;
+	using Scalar = DataPoint::Scalar;
+	using VectorContainer = DataPoint::VectorContainer;
+	using VectorType = DataPoint::VectorType;
 
 	const int N = quick ? 100 : 10000;
-	auto points = std::make_shared<V>(N);
-	std::generate(points->begin(), points->end(), []() {return VT::Random(); });
+	auto points = std::make_shared<VectorContainer>(N);
+	std::generate(points->begin(), points->end(), []() {return VectorType::Random(); });
 
 	std::vector<int> indices(N);
 	std::vector<int> sampling(N / 2);
@@ -37,13 +37,13 @@ void testKdTreeRangeIndex(bool quick)
 	std::vector<int> results;
 	for (int i = 0; i < N; ++i)
 	{
-		const S r = static_cast<S>((std::rand()) / RAND_MAX * 2.5);
+		const Scalar r = static_cast<Scalar>((std::rand()) / RAND_MAX * 2.5);
 		results.clear();
 		KdTreeRangeIndexQuery<DataPoint> rangeIndexQuery = structure.range_neighbors(i, r);
 		for (KdTreeRangeIndexIterator<DataPoint> j = rangeIndexQuery.begin(); j != rangeIndexQuery.end(); j++) {
 			results.push_back(*j);
 		}
-		bool res = check_range_neighbors<S, V>(*points, sampling, i, r, results);
+		bool res = check_range_neighbors<Scalar, VectorContainer>(*points, sampling, i, r, results);
 		EXPECT_TRUE(res);
 	}
 
@@ -51,12 +51,12 @@ void testKdTreeRangeIndex(bool quick)
 template<typename DataPoint>
 void testKdTreeRangePoint(bool quick)
 {
-	using S = DataPoint::Scalar;
-	using V = DataPoint::Vector;
-	using VT = DataPoint::VectorType;
+	using Scalar = DataPoint::Scalar;
+	using VectorContainer = DataPoint::VectorContainer;
+	using VectorType = DataPoint::VectorType;
 
 	const int N = quick ? 100 : 10000;
-	auto points = std::make_shared<V>(N);
+	auto points = std::make_shared<VectorContainer>(N);
 	std::generate(points->begin(), points->end(), []() {return VT::Random(); });
 
 	int seed = 0;
@@ -71,8 +71,8 @@ void testKdTreeRangePoint(bool quick)
 
 	for (int i = 0; i < N; ++i)
 	{
-		const S r = static_cast<S>((std::rand()) / RAND_MAX * 2.5);
-		VT point = VT::Random();
+		const Scalar r = static_cast<Scalar>((std::rand()) / RAND_MAX * 2.5);
+		VectorType point = VectorType::Random();
 		results.clear();
 
 		KdTreeRangePointQuery<DataPoint> rangePointQuery = structure.range_neighbors(point, r);
@@ -80,10 +80,26 @@ void testKdTreeRangePoint(bool quick)
 			results.push_back(*j);
 		}
 
-		bool res = check_range_neighbors<S, VT, V>(*points, sampling, point, r, results);
+		bool res = check_range_neighbors<Scalar, VectorType, VectorContainer>(*points, sampling, point, r, results);
 		EXPECT_TRUE(res);
 	}
 }
+
+template<typename type, int size>
+class TestPoint {
+public:
+	enum { Dim = size };
+	typedef type Scalar;
+	typedef Eigen::Matrix<Scalar, Dim, 1> VectorType;
+	typedef std::vector<VectorType> VectorContainer;
+
+	PONCA_MULTIARCH inline MyPointTestDim3Float(const VectorType& pos = VectorType::Zero())
+		: _pos(pos) {}
+	PONCA_MULTIARCH inline const VectorType& pos() const { return _pos; }
+	PONCA_MULTIARCH inline       VectorType& pos() { return _pos; }
+private:
+	VectorType _pos;
+};
 
 int main(int argc, char** argv)
 {
@@ -92,19 +108,19 @@ int main(int argc, char** argv)
         return EXIT_FAILURE;
     }
 
-	testKdTreeRangePoint<_Point<float, 3>>(false);
-	testKdTreeRangePoint<_Point<double, 3>>(false);
-	testKdTreeRangePoint<_Point<long double, 3>>(false);
+	testKdTreeRangePoint<TestPoint<float, 3>>(false);
+	testKdTreeRangePoint<TestPoint<double, 3>>(false);
+	testKdTreeRangePoint<TestPoint<long double, 3>>(false);
 
-	testKdTreeRangePoint<_Point<float, 4>>(false);
-	testKdTreeRangePoint<_Point<double, 4>>(false);
-	testKdTreeRangePoint<_Point<long double, 4>>(false);
+	testKdTreeRangePoint<TestPoint<float, 4>>(false);
+	testKdTreeRangePoint<TestPoint<double, 4>>(false);
+	testKdTreeRangePoint<TestPoint<long double, 4>>(false);
 
-	testKdTreeRangeIndex<_Point<float, 3>>(false);
-	testKdTreeRangeIndex<_Point<double, 3>>(false);
-	testKdTreeRangeIndex<_Point<long double, 3>>(false);
+	testKdTreeRangeIndex<TestPoint<float, 3>>(false);
+	testKdTreeRangeIndex<TestPoint<double, 3>>(false);
+	testKdTreeRangeIndex<TestPoint<long double, 3>>(false);
 
-	testKdTreeRangeIndex<_Point<float, 4>>(false);
-	testKdTreeRangeIndex<_Point<double, 4>>(false);
-	testKdTreeRangeIndex<_Point<long double, 4>>(false);
+	testKdTreeRangeIndex<TestPoint<float, 4>>(false);
+	testKdTreeRangeIndex<TestPoint<double, 4>>(false);
+	testKdTreeRangeIndex<TestPoint<long double, 4>>(false);
 }
