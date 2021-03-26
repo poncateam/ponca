@@ -95,7 +95,7 @@ inline void KdTree<DataPoint>::build(const VectorUserContainer & points, const I
 	this->clear();
 
 	//m_points = points;
-	std::copy(points.begin(), points.end(), m_points);
+	std::copy(points.begin(), points.end(), m_points.begin());
 
 	m_nodes = NodeContainer();
 	m_nodes.reserve(4 * m_points.size() / m_min_cell_size);
@@ -108,7 +108,7 @@ inline void KdTree<DataPoint>::build(const VectorUserContainer & points, const I
 
 	this->build_rec(0, 0, end, 1);
 
-	//    PCA_DEBUG_ASSERT(this->valid());
+	   // PCA_DEBUG_ASSERT(this->valid());
 }
 
 template<class DataPoint>
@@ -121,9 +121,9 @@ inline void KdTree<DataPoint>::rebuild(const IndexUserContainer & sampling)
 	m_nodes->emplace_back();
 	m_nodes->back().leaf = false;
 
-	*m_indices = sampling;
+	m_indices = sampling;
 
-	int end = static_cast<int>(m_indices->size());
+	int end = static_cast<int>(m_indices.size());
 	this->build_rec(0, 0, end, 1);
 
 	//    PCA_DEBUG_ASSERT(this->valid());
