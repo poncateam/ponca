@@ -34,7 +34,6 @@ class KdTree
 public:
 	typedef typename DataPoint::Scalar     Scalar;
 	typedef typename DataPoint::VectorType VectorType;
-	//typedef typename DataPoint::Vector Vector;
 	typedef typename Eigen::AlignedBox<Scalar, DataPoint::Dim> Aabb;
     typedef typename std::vector<VectorType> PointContainer;
     typedef typename std::vector<int> IndexContainer;
@@ -48,8 +47,8 @@ public:
     {
     };
 
-    template<typename Container>
-    inline KdTree(const Container& points):
+    template<typename VectorUserContainer>
+    inline KdTree(const VectorUserContainer& points):
         m_points(nullptr),
         m_nodes(nullptr),
         m_indices(nullptr),
@@ -58,11 +57,11 @@ public:
         this->build(points);
     };
 
-    template<typename Container, typename IndexContainer>
-    inline KdTree(const Container& points, const IndexContainer& sampling):
-        m_points(nullptr),
-        m_nodes(nullptr),
-        m_indices(nullptr),
+    template<typename VectorUserContainer, typename IndexContainer>
+    inline KdTree(const VectorUserContainer& points, const IndexContainer& sampling):
+        m_points(),
+        m_nodes(),
+        m_indices(),
         m_min_cell_size(64)
     {
         this->build(points, sampling);
@@ -70,20 +69,17 @@ public:
 
     inline void clear();
 
-    template<typename Container>
-    inline void build(const Container& points);
+    template<typename VectorUserContainer>
+    inline void build(const VectorUserContainer& points);
 
-    inline void build(PointContainer&& points);
 
-    template<typename Container, typename IndexContainer>
-    inline void build(const Container& points, const IndexContainer& sampling);
+    template<typename VectorUserContainer, typename IndexUserContainer>
+    inline void build(const VectorUserContainer& points, const IndexUserContainer& sampling);
 
-    inline void build(PointContainer&& points, IndexContainer&& sampling);
 
-    template<typename IndexContainer>
-    inline void rebuild(const IndexContainer& sampling);
+    template<typename IndexUserContainer>
+    inline void rebuild(const IndexUserContainer& sampling);
 
-    inline void rebuild(IndexContainer&& sampling);
 
     inline bool valid() const;
     inline std::string to_string() const;
@@ -101,7 +97,7 @@ public:
 
     inline const PointContainer& point_data() const
     {
-        return *m_points.get();
+        return m_points;
     };
 
     inline const PointContainer& point_ptr() const
@@ -116,7 +112,7 @@ public:
 
     inline const NodeContainer& node_data() const
     {
-        return *m_nodes.get();
+        return m_nodes;
     }
 
     inline NodeContainer& node_data()
@@ -126,7 +122,7 @@ public:
 
     inline const IndexContainer& index_data() const
     {
-        return *m_indices.get();
+        return m_indices;
     }
 
     inline IndexContainer& index_data()
@@ -219,5 +215,6 @@ protected:
 };
 
 #include "./kdTree.hpp"
+
 
 } // namespace Ponca

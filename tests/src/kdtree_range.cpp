@@ -21,8 +21,8 @@ void testKdTreeRangeIndex(bool quick)
 	using VectorType = DataPoint::VectorType;
 
 	const int N = quick ? 100 : 10000;
-	auto points = std::make_shared<VectorContainer>(N);
-	std::generate(points->begin(), points->end(), []() {return VectorType::Random(); });
+	auto points = V(N);
+	std::generate(points.begin(), points.end(), []() {return VT::Random(); });
 
 	std::vector<int> indices(N);
 	std::vector<int> sampling(N / 2);
