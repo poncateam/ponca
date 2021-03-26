@@ -43,7 +43,7 @@ void testKdTreeRangeIndex(bool quick = true)
 		for (KdTreeRangeIndexIterator<DataPoint> j = rangeIndexQuery.begin(); j != rangeIndexQuery.end(); j++) {
 			results.push_back(*j);
 		}
-		bool res = check_range_neighbors<Scalar, VectorContainer>(*points, sampling, i, r, results);
+		bool res = check_range_neighbors<Scalar, VectorContainer>(points, sampling, i, r, results);
 		EXPECT_TRUE(res);
 	}
 
@@ -57,7 +57,7 @@ void testKdTreeRangePoint(bool quick = true)
 
 	const int N = quick ? 100 : 10000;
 	auto points = VectorContainer(N);
-	std::generate(points->begin(), points->end(), []() {return VectorType::Random(); });
+	std::generate(points.begin(), points.end(), []() {return VectorType::Random(); });
 
 	int seed = 0;
 	std::vector<int> indices(N);
@@ -80,7 +80,7 @@ void testKdTreeRangePoint(bool quick = true)
 			results.push_back(*j);
 		}
 
-		bool res = check_range_neighbors<Scalar, VectorType, VectorContainer>(*points, sampling, point, r, results);
+		bool res = check_range_neighbors<Scalar, VectorType, VectorContainer>(points, sampling, point, r, results);
 		EXPECT_TRUE(res);
 	}
 }
@@ -107,6 +107,7 @@ int main(int argc, char** argv)
     {
         return EXIT_FAILURE;
     }
+
 
 	testKdTreeRangePoint<TestPoint<float, 3>>();
 	testKdTreeRangePoint<TestPoint<double, 3>>();
