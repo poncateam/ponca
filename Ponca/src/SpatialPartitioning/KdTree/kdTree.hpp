@@ -15,7 +15,7 @@ int KdTree<DataPoint>::node_count() const
 template<class DataPoint>
 int KdTree<DataPoint>::index_count() const
 {
-	return m_indices.size();
+	return static_cast<int>(m_indices.size());
 }
 
 template<class DataPoint>
@@ -98,13 +98,13 @@ inline void KdTree<DataPoint>::build(const VectorUserContainer & points, const I
 	std::copy(points.begin(), points.end(), m_points.begin());
 
 	m_nodes = NodeContainer();
-	m_nodes.reserve(4 * m_points.size() / m_min_cell_size);
+	m_nodes.reserve(4 * point_count() / m_min_cell_size);
 	m_nodes.emplace_back();
 	m_nodes.back().leaf = false;
 
 	m_indices = IndexContainer(sampling);//move operator ou std copy
 
-	int end = m_indices.size();
+	int end = index_count();
 
 	this->build_rec(0, 0, end, 1);
 
@@ -123,7 +123,7 @@ inline void KdTree<DataPoint>::rebuild(const IndexUserContainer & sampling)
 
 	m_indices = sampling;
 
-	int end = static_cast<int>(m_indices.size());
+	int end = index_count();
 	this->build_rec(0, 0, end, 1);
 
 	//    PCA_DEBUG_ASSERT(this->valid());
@@ -141,16 +141,16 @@ bool KdTree<DataPoint>::valid() const
 		return false;
 	}
 		
-	if(m_points->size() < m_indices->size())
+	if(point_count() < index_count())
 	{
 		//PCA_DEBUG_ERROR;
 		return false;
 	}
 		
-	std::vector<bool> b(m_points->size(), false);
+	std::vector<bool> b(point_count(), false);
 	for(int idx : *m_indices.get())
 	{
-		if(idx < 0 || int(m_points->size()) <= idx || b[idx])
+		if(idx < 0 || point_count() <= idx || b[idx])
 		{
 		    //PCA_DEBUG_ERROR;
 		    return false;
@@ -158,12 +158,12 @@ bool KdTree<DataPoint>::valid() const
 		b[idx] = true;
 	}
 		
-	for(size_t n=0; n<m_nodes->size(); ++n)
+	for(int n=0; n< node_count(); ++n)
 	{
 		const KdTreeNode<Scalar>& node = m_nodes->operator [](n);
 		if(node.leaf)
 		{
-		    if(m_indices->size() <= node.start || m_indices->size() < node.start+node.size)
+		    if(index_count() <= node.start || index_count() < node.start+node.size)
 		    {
 		        //PCA_DEBUG_ERROR;
 		        return false;
@@ -176,7 +176,7 @@ bool KdTree<DataPoint>::valid() const
 		        //PCA_DEBUG_ERROR;
 		        return false;
 		    }
-		    if(m_nodes->size() <= node.firstChildId || m_nodes->size() <= node.firstChildId+1u)
+		    if(node_count() <= node.firstChildId || node_count() <= node.firstChildId+1u)
 		    {
 		        //PCA_DEBUG_ERROR;
 		        return false;
@@ -193,13 +193,13 @@ std::string KdTree<DataPoint>::to_string() const
 	if (!m_indices) return "";
 	
 	std::stringstream str;
-	str << "indices (" << m_indices->size() << ") :\n";
-	for(size_t i=0; i<m_indices->size(); ++i)
+	str << "indices (" << index_count() << ") :\n";
+	for(int i=0; i<index_count(); ++i)
 	{
 	    str << "  " << i << ": " << m_indices->operator[](i) << "\n";
 	}
-	str << "nodes (" << m_nodes->size() << ") :\n";
-	for(size_t n=0; n<m_nodes->size(); ++n)
+	str << "nodes (" << node_count() << ") :\n";
+	for(int n=0; n< node_count(); ++n)
 	{
 	    const KdTreeNode<Scalar>& node = m_nodes->operator[](n);
 	    if(node.leaf)
