@@ -7,7 +7,6 @@
 #pragma once
 
 #include "../Iterator/KdTreeNearestIndexIterator.h"
-#include "../iterator.h"
 #include "../kdTree.h"
 #include "../../query.h"
 
@@ -15,7 +14,7 @@ namespace Ponca {
 
 template <class DataPoint>
 class KdTreeNearestIndexQuery : public KdTreeQuery<DataPoint>,
-								public NearestIndexQuery<class DataPoint::Scalar>
+								public NearestIndexQuery<typename DataPoint::Scalar>
 {
 public:
 	
