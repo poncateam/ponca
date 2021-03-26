@@ -11,8 +11,15 @@ namespace Ponca {
 class KdTreeNearestPointIterator
 {
 public:
-    KdTreeNearestPointIterator();
-    KdTreeNearestPointIterator(int index);
+    KdTreeNearestPointIterator() :
+        m_index(-1)
+    {
+    }
+
+    KdTreeNearestPointIterator(int index) :
+        m_index(index)
+    {
+    }
 
 public:
     bool operator !=(const KdTreeNearestPointIterator& other) const;
@@ -23,5 +30,5 @@ protected:
     int m_index;
 };
 
-}
 #include "./KdTreeNearestPointIterator.hpp"
+} // namespace ponca
