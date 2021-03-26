@@ -21,7 +21,7 @@ int KdTree<DataPoint>::index_count() const
 template<class DataPoint>
 int KdTree<DataPoint>::point_count() const
 {
-	return m_points.size();
+	return static_cast<int>(m_points.size());
 }
 
 template<class DataPoint>
