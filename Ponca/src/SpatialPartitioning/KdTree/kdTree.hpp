@@ -83,8 +83,7 @@ template<class DataPoint>
 template<typename PointUserContainer>
 inline void KdTree<DataPoint>::build(const PointUserContainer& points)
 {
-	std::vector<int> ids;
-	iota(ids.begin(), ids.end(), 0);
+	std::vector<int> ids(points.size(), 0);
 	this->build(points, ids);
 }
 
@@ -103,9 +102,7 @@ inline void KdTree<DataPoint>::build(const PointUserContainer& points, const Ind
 
 	m_indices = IndexContainer(sampling);//move operator ou std copy
 
-	int end = index_count();
-
-	this->build_rec(0, 0, end, 1);
+	this->build_rec(0, 0, index_count(), 1);
 
 	   // PCA_DEBUG_ASSERT(this->valid());
 }
@@ -122,8 +119,7 @@ inline void KdTree<DataPoint>::rebuild(const IndexUserContainer & sampling)
 
 	m_indices = sampling;
 
-	int end = index_count();
-	this->build_rec(0, 0, end, 1);
+	this->build_rec(0, 0, index_count(), 1);
 
 	//    PCA_DEBUG_ASSERT(this->valid());
 }
