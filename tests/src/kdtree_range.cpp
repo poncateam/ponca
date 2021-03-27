@@ -20,7 +20,7 @@ void testKdTreeRangeIndex(bool quick = true)
 	using VectorContainer = DataPoint::VectorContainer;
 	using VectorType = DataPoint::VectorType;
 
-	const int N = quick ? 100 : 10000;
+	const int N = quick ? 100 : 100000;
 	auto points = VectorContainer(N);
 	std::generate(points.begin(), points.end(), []() {return VectorType::Random(); });
 
@@ -55,7 +55,7 @@ void testKdTreeRangePoint(bool quick = true)
 	using VectorContainer = DataPoint::VectorContainer;
 	using VectorType = DataPoint::VectorType;
 
-	const int N = quick ? 100 : 10000;
+	const int N = quick ? 100 : 100000;
 	auto points = VectorContainer(N);
 	std::generate(points.begin(), points.end(), []() {return VectorType::Random(); });
 
@@ -85,43 +85,26 @@ void testKdTreeRangePoint(bool quick = true)
 	}
 }
 
-template<typename type, int size>
-class TestPoint {
-public:
-	enum { Dim = size };
-	typedef type Scalar;
-	typedef Eigen::Matrix<Scalar, Dim, 1> VectorType;
-	typedef std::vector<VectorType> VectorContainer;
-
-	PONCA_MULTIARCH inline TestPoint(const VectorType& pos = VectorType::Zero())
-		: _pos(pos) {}
-	PONCA_MULTIARCH inline const VectorType& pos() const { return _pos; }
-	PONCA_MULTIARCH inline       VectorType& pos() { return _pos; }
-private:
-	VectorType _pos;
-};
-
 int main(int argc, char** argv)
 {
-    if(!init_testing(argc, argv))
-    {
-        return EXIT_FAILURE;
-    }
+	if (!init_testing(argc, argv))
+	{
+		return EXIT_FAILURE;
+	}
 
+	testKdTreeRangePoint<TestPoint<float, 3>>(false);
+	testKdTreeRangePoint<TestPoint<double, 3>>(false);
+	testKdTreeRangePoint<TestPoint<long double, 3>>(false);
 
-	testKdTreeRangePoint<TestPoint<float, 3>>();
-	testKdTreeRangePoint<TestPoint<double, 3>>();
-	testKdTreeRangePoint<TestPoint<long double, 3>>();
+	testKdTreeRangePoint<TestPoint<float, 4>>(false);
+	testKdTreeRangePoint<TestPoint<double, 4>>(false);
+	testKdTreeRangePoint<TestPoint<long double, 4>>(false);
 
-	testKdTreeRangePoint<TestPoint<float, 4>>();
-	testKdTreeRangePoint<TestPoint<double, 4>>();
-	testKdTreeRangePoint<TestPoint<long double, 4>>();
+	testKdTreeRangeIndex<TestPoint<float, 3>>(false);
+	testKdTreeRangeIndex<TestPoint<double, 3>>(false);
+	testKdTreeRangeIndex<TestPoint<long double, 3>>(false);
 
-	testKdTreeRangeIndex<TestPoint<float, 3>>();
-	testKdTreeRangeIndex<TestPoint<double, 3>>();
-	testKdTreeRangeIndex<TestPoint<long double, 3>>();
-
-	testKdTreeRangeIndex<TestPoint<float, 4>>();
-	testKdTreeRangeIndex<TestPoint<double, 4>>();
-	testKdTreeRangeIndex<TestPoint<long double, 4>>();
+	testKdTreeRangeIndex<TestPoint<float, 4>>(false);
+	testKdTreeRangeIndex<TestPoint<double, 4>>(false);
+	testKdTreeRangeIndex<TestPoint<long double, 4>>(false);
 }

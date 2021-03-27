@@ -41,18 +41,18 @@ public:
     typedef typename std::vector<KdTreeNode<Scalar>> NodeContainer;  // Container for nodes used inside the KdTree
 
     inline KdTree():
-        m_points(nullptr),
-        m_nodes(nullptr),
-        m_indices(nullptr),
+        m_points(PointContainer()),
+        m_nodes(NodeContainer()),
+        m_indices(IndexContainer()),
         m_min_cell_size(64)
     {
     };
 
     template<typename PointUserContainer>
     inline KdTree(const PointUserContainer& points): // PointUserContainer => Given by user, transformed to PointContainer
-        m_points(nullptr),
-        m_nodes(nullptr),
-        m_indices(nullptr),
+        m_points(PointContainer()),
+        m_nodes(NodeContainer()),
+        m_indices(IndexContainer()),
         m_min_cell_size(64)
     {
         this->build(points);

@@ -20,7 +20,7 @@ template <class DataPoint>
 class KdTreeQuery
 {
 public:
-    inline KdTreeQuery(const KdTree<DataPoint>* kdtree = nullptr) : m_kdtree( kdtree ){}
+    inline KdTreeQuery(const KdTree<DataPoint>* kdtree = nullptr) : m_kdtree( kdtree ), m_stack() {}
 
 protected:
     const KdTree<DataPoint>* m_kdtree { nullptr };
