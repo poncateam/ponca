@@ -47,7 +47,6 @@ void KdTreeNearestPointQuery<DataPoint>::search()
                 for(int i=node.start; i<end; ++i)
                 {
                     int idx = indices[i];
-
                     Scalar d = (m_point.pos() - points[idx]).squaredNorm();
                     if(d < m_squared_distance)
                     {

@@ -41,7 +41,7 @@ struct PointQuery
     using VectorType = typename DataPoint::VectorType;
 
     inline PointQuery(const VectorType& point = VectorType::Zero())
-        : m_point(DataPoint(point)) {}
+        : m_point(point) {}
 
     inline const VectorType& point() const { return m_point.pos(); }
     inline void set_point(const VectorType& point) { m_point = DataPoint(point); }

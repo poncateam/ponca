@@ -9,7 +9,7 @@
 template<class DataPoint>
 int KdTree<DataPoint>::node_count() const
 {
-	return static_cast<int>(m_nodes->size());
+	return static_cast<int>(m_nodes.size());
 }
 
 template<class DataPoint>
@@ -32,53 +32,6 @@ void KdTree<DataPoint>::clear()
 	m_indices.clear();
 }
 
-//template<class DataPoint>
-//void KdTree<DataPoint>::build(std::shared_ptr<Vector>& points)
-//{
-//	std::vector<int> ids;
-//	iota(ids.begin(), ids.end(), 0);
-//	this->build( points, ids);
-//}
-//
-//template<class DataPoint>
-//void KdTree<DataPoint>::build(std::shared_ptr<Vector>& points, const std::vector<int>& sampling)
-//{
-//	this->clear();
-//	
-//	m_points = points;
-//	
-//	m_nodes = std::make_shared<std::vector<KdTreeNode<Scalar>>>();
-//	m_nodes->reserve(4 * m_points->size() / m_min_cell_size);
-//	m_nodes->emplace_back();
-//	m_nodes->back().leaf = false;
-//	
-//	m_indices = std::make_shared<std::vector<int>>(sampling);//move operator ou std copy
-//	
-//	int end = static_cast<int>(m_indices->size());
-//	
-//	this->build_rec(0, 0, end, 1);
-//	
-////    PCA_DEBUG_ASSERT(this->valid());
-//}
-//
-//template<class DataPoint>
-//void KdTree<DataPoint>::rebuild(const std::vector<int>& sampling)
-//{
-//	//    PCA_DEBUG_ASSERT(sampling.size() <= m_points->size());
-//
-//    m_nodes->clear();
-//    m_nodes->emplace_back();
-//    m_nodes->back().leaf = false;
-//
-//    *m_indices = sampling;
-//
-//    int end = static_cast<int>(m_indices->size());
-//    this->build_rec(0, 0, end, 1);
-//
-////    PCA_DEBUG_ASSERT(this->valid());
-//}
-
-
 template<class DataPoint>
 template<typename PointUserContainer>
 inline void KdTree<DataPoint>::build(const PointUserContainer& points)
@@ -93,7 +46,7 @@ inline void KdTree<DataPoint>::build(const PointUserContainer& points, const Ind
 {
 	this->clear();
 
-	m_points = points;
+	m_points = PointContainer(points);
 
 	m_nodes = NodeContainer();
 	m_nodes.reserve(4 * point_count() / m_min_cell_size);
@@ -113,9 +66,9 @@ inline void KdTree<DataPoint>::rebuild(const IndexUserContainer & sampling)
 {
 	//    PCA_DEBUG_ASSERT(sampling.size() <= m_points->size());
 
-	m_nodes->clear();
-	m_nodes->emplace_back();
-	m_nodes->back().leaf = false;
+	m_nodes.clear();
+	m_nodes.emplace_back();
+	m_nodes.back().leaf = false;
 
 	m_indices = sampling;
 
@@ -127,10 +80,10 @@ inline void KdTree<DataPoint>::rebuild(const IndexUserContainer & sampling)
 template<class DataPoint>
 bool KdTree<DataPoint>::valid() const
 {
-	if (m_points == nullptr)
-		return m_nodes == nullptr && m_indices == nullptr;
+	if (m_points.empty())
+		return m_nodes.empty() && m_indices.empty();
 		
-	if(m_nodes == nullptr || m_indices == nullptr)
+	if(m_nodes.empty() || m_indices.empty())
 	{
 		//PCA_DEBUG_ERROR;
 		return false;
@@ -143,7 +96,7 @@ bool KdTree<DataPoint>::valid() const
 	}
 		
 	std::vector<bool> b(point_count(), false);
-	for(int idx : *m_indices.get())
+	for(int idx : m_indices)
 	{
 		if(idx < 0 || point_count() <= idx || b[idx])
 		{
@@ -153,9 +106,9 @@ bool KdTree<DataPoint>::valid() const
 		b[idx] = true;
 	}
 		
-	for(int n=0; n< node_count(); ++n)
+	for(int n=0;n<node_count();++n)
 	{
-		const KdTreeNode<Scalar>& node = m_nodes->operator [](n);
+		const KdTreeNode<Scalar>& node = m_nodes.operator[](n);
 		if(node.leaf)
 		{
 		    if(index_count() <= node.start || index_count() < node.start+node.size)
@@ -185,18 +138,18 @@ bool KdTree<DataPoint>::valid() const
 template<class DataPoint>
 std::string KdTree<DataPoint>::to_string() const
 {
-	if (!m_indices) return "";
+	if (m_indices.empty()) return "";
 	
 	std::stringstream str;
 	str << "indices (" << index_count() << ") :\n";
 	for(int i=0; i<index_count(); ++i)
 	{
-	    str << "  " << i << ": " << m_indices->operator[](i) << "\n";
+	    str << "  " << i << ": " << m_indices.operator[](i) << "\n";
 	}
 	str << "nodes (" << node_count() << ") :\n";
 	for(int n=0; n< node_count(); ++n)
 	{
-	    const KdTreeNode<Scalar>& node = m_nodes->operator[](n);
+	    const KdTreeNode<Scalar>& node = m_nodes.operator[](n);
 	    if(node.leaf)
 	    {
 	        int end = node.start + node.size;
