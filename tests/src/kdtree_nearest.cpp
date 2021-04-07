@@ -83,7 +83,7 @@ int main(int argc, char** argv)
 	//testKdTreeNearestPoint<TestPoint<double, 4>>(false);
 	//testKdTreeNearestPoint<TestPoint<long double, 4>>(false);
 
-	//testKdTreeNearestIndex<TestPoint<float, 3>>(false);
+	testKdTreeNearestIndex<TestPoint<float, 3>>(false);
 	//testKdTreeNearestIndex<TestPoint<double, 3>>(false);
 	//testKdTreeNearestIndex<TestPoint<long double, 3>>(false);
 
