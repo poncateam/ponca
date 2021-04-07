@@ -36,13 +36,14 @@ template<class DataPoint>
 template<typename PointUserContainer>
 inline void KdTree<DataPoint>::build(const PointUserContainer& points)
 {
-	std::vector<int> ids(points.size(), 0);
+	std::vector<int> ids(points.size());
+	std::iota(ids.begin(), ids.end(), 0);
 	this->build(points, ids);
 }
 
 template<class DataPoint>
 template<typename PointUserContainer, typename IndexUserContainer>
-inline void KdTree<DataPoint>::build(const PointUserContainer& points, const IndexUserContainer & sampling)
+inline void KdTree<DataPoint>::build(const PointUserContainer& points, const IndexUserContainer& sampling)
 {
 	this->clear();
 
@@ -57,14 +58,14 @@ inline void KdTree<DataPoint>::build(const PointUserContainer& points, const Ind
 
 	this->build_rec(0, 0, index_count(), 1);
 
-	   // PCA_DEBUG_ASSERT(this->valid());
+	PONCA_DEBUG_ASSERT(this->valid());
 }
 
 template<class DataPoint>
 template<typename IndexUserContainer>
 inline void KdTree<DataPoint>::rebuild(const IndexUserContainer & sampling)
 {
-	//    PCA_DEBUG_ASSERT(sampling.size() <= m_points->size());
+	PONCA_DEBUG_ASSERT(sampling.size() <= m_points->size());
 
 	m_nodes.clear();
 	m_nodes.emplace_back();
@@ -74,24 +75,27 @@ inline void KdTree<DataPoint>::rebuild(const IndexUserContainer & sampling)
 
 	this->build_rec(0, 0, index_count(), 1);
 
-	//    PCA_DEBUG_ASSERT(this->valid());
+	PONCA_DEBUG_ASSERT(this->valid());
 }
 
 template<class DataPoint>
 bool KdTree<DataPoint>::valid() const
 {
+	PONCA_DEBUG_ERROR;
+	return false;
+
 	if (m_points.empty())
 		return m_nodes.empty() && m_indices.empty();
 		
 	if(m_nodes.empty() || m_indices.empty())
 	{
-		//PCA_DEBUG_ERROR;
+		PONCA_DEBUG_ERROR;
 		return false;
 	}
 		
 	if(point_count() < index_count())
 	{
-		//PCA_DEBUG_ERROR;
+		PONCA_DEBUG_ERROR;
 		return false;
 	}
 		
@@ -100,7 +104,7 @@ bool KdTree<DataPoint>::valid() const
 	{
 		if(idx < 0 || point_count() <= idx || b[idx])
 		{
-		    //PCA_DEBUG_ERROR;
+			PONCA_DEBUG_ERROR;
 		    return false;
 		}
 		b[idx] = true;
@@ -113,7 +117,7 @@ bool KdTree<DataPoint>::valid() const
 		{
 		    if(index_count() <= node.start || index_count() < node.start+node.size)
 		    {
-		        //PCA_DEBUG_ERROR;
+				PONCA_DEBUG_ERROR;
 		        return false;
 		    }
 		}
@@ -121,17 +125,17 @@ bool KdTree<DataPoint>::valid() const
 		{
 		    if(node.dim < 0 || 2 < node.dim)
 		    {
-		        //PCA_DEBUG_ERROR;
+				PONCA_DEBUG_ERROR;
 		        return false;
 		    }
 		    if(node_count() <= node.firstChildId || node_count() <= node.firstChildId+1u)
 		    {
-		        //PCA_DEBUG_ERROR;
+				PONCA_DEBUG_ERROR;
 		        return false;
 		    }
 		}
 	}
-		
+
 	return true;
 }
 
@@ -177,35 +181,30 @@ void KdTree<DataPoint>::set_min_cell_size(int min_cell_size)
 
 template<class DataPoint>
 void KdTree<DataPoint>::build_rec(int node_id, int start, int end, int level)
-{
-	auto& nodes = m_nodes;
-	const auto& points  = m_points;
-	const auto& indices = m_indices;
-	
-	KdTreeNode<Scalar>& node = nodes[node_id];
+{	
+	KdTreeNode<Scalar>& node = m_nodes[node_id];
 	Aabb aabb;
 	for(int i=start; i<end; ++i)
-	    aabb.extend(points[indices[i]]);
+	    aabb.extend(m_points[m_indices[i]]);
 	
 	int dim;
-	(Scalar(0.5)*(aabb.max()-aabb.min())).maxCoeff(&dim);
-	
+	(Scalar(0.5) * (aabb.max() - aabb.min())).maxCoeff(&dim);
 	node.dim = dim;
 	node.splitValue = aabb.center()(dim);
 	
 	int midId = this->partition(start, end, dim, node.splitValue);
-	node.firstChildId = nodes.size();
+	node.firstChildId = m_nodes.size();
 	
 	{
 	    KdTreeNode<Scalar> n;
 	    n.size = 0;
-	    nodes.push_back(n);
-	    nodes.push_back(n);
+		m_nodes.push_back(n);
+		m_nodes.push_back(n);
 	}
 	{
 	    // left child
-	    int childId = nodes[node_id].firstChildId;
-	    KdTreeNode<Scalar>& child = nodes[childId];
+	    int childId = m_nodes[node_id].firstChildId;
+	    KdTreeNode<Scalar>& child = m_nodes[childId];
 	    if(midId-start <= m_min_cell_size || level >= PCA_KDTREE_MAX_DEPTH)
 	    {
 	        child.leaf = 1;
@@ -220,8 +219,8 @@ void KdTree<DataPoint>::build_rec(int node_id, int start, int end, int level)
 	}
 	{
 	    // right child
-	    int childId = nodes[node_id].firstChildId+1;
-	    KdTreeNode<Scalar>& child = nodes[childId];
+	    int childId = m_nodes[node_id].firstChildId+1;
+	    KdTreeNode<Scalar>& child = m_nodes[childId];
 	    if(end-midId <= m_min_cell_size || level >= PCA_KDTREE_MAX_DEPTH)
 	    {
 	        child.leaf = 1;

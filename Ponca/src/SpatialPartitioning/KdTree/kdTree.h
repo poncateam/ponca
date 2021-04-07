@@ -15,6 +15,7 @@
 #include <vector>
 #include <numeric>
 
+#include "../../Common/Assert.h"
 
 #include "Iterator/KdTreeRangeIndexIterator.h"
 #include "Iterator/KdTreeRangePointIterator.h"
