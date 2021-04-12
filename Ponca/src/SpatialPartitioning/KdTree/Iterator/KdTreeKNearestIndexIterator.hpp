@@ -1,35 +1,29 @@
-#include <PDPC/SpacePartitioning/KdTree/Iterator/KdTreeKNearestIndexIterator.h>
+/*
+ This Source Code Form is subject to the terms of the Mozilla Public
+ License, v. 2.0. If a copy of the MPL was not distributed with this
+ file, You can obtain one at http://mozilla.org/MPL/2.0/.
+*/
 
-namespace pdpc {
-
-KdTreeKNearestIndexIterator::KdTreeKNearestIndexIterator() :
-    m_iterator()
-{
-}
-
-KdTreeKNearestIndexIterator::KdTreeKNearestIndexIterator(limited_priority_queue<IndexSquaredDistance>::iterator iterator) :
-    m_iterator(iterator)
-{
-}
-
-bool KdTreeKNearestIndexIterator::operator !=(const KdTreeKNearestIndexIterator& other) const
+template <class DataPoint>
+bool KdTreeKNearestIndexIterator<DataPoint>::operator !=(const KdTreeKNearestIndexIterator<DataPoint>& other) const
 {
     return m_iterator != other.m_iterator;
 }
 
-void KdTreeKNearestIndexIterator::operator ++()
+template <class DataPoint>
+void KdTreeKNearestIndexIterator<DataPoint>::operator ++()
 {
     ++m_iterator;
 }
 
-int KdTreeKNearestIndexIterator::operator * () const
+template <class DataPoint>
+int KdTreeKNearestIndexIterator<DataPoint>::operator * () const
 {
     return m_iterator->index;
 }
 
-void KdTreeKNearestIndexIterator::operator +=(int i)
+template <class DataPoint>
+void KdTreeKNearestIndexIterator<DataPoint>::operator +=(int i)
 {
     m_iterator += i;
 }
-
-} // namespace pdpc

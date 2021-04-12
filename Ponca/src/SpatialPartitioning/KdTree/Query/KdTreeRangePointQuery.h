@@ -6,8 +6,8 @@
 
 #pragma once
 
-#include "../Iterator/KdTreeRangePointIterator.h"
-//
+#include "../Iterator/kdTreeRangePointIterator.h"
+
 #include "../query.h"
 //#include "../../query.h"
 
@@ -16,13 +16,13 @@ namespace Ponca {
 template<class DataPoint> class RangePointQuery;
 template<class DataPoint> class KdTreeQuery;
 template<class DataPoint> class KdTree;
+
 template <class DataPoint>
 class KdTreeRangePointQuery : public KdTreeQuery<DataPoint>, public RangePointQuery<DataPoint>
 {
 public:
 	using VectorType = typename DataPoint::VectorType;
 	using Scalar = typename DataPoint::Scalar;
-
 
 protected:
     friend class KdTreeRangePointIterator<DataPoint>;
@@ -57,5 +57,5 @@ protected:
 	inline void advance(KdTreeRangePointIterator<DataPoint>& iterator);
 };
 
-#include "./KdTreeRangePointQuery.hpp"
+#include "./kdTreeRangePointQuery.hpp"
 } // namespace ponca

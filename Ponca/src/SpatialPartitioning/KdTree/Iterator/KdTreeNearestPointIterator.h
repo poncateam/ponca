@@ -30,5 +30,5 @@ protected:
     int m_index;
 };
 
-#include "./KdTreeNearestPointIterator.hpp"
+#include "./kdTreeNearestPointIterator.hpp"
 } // namespace ponca

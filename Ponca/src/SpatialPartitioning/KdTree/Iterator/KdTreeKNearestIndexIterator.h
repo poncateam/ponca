@@ -1,23 +1,40 @@
+/*
+ This Source Code Form is subject to the terms of the Mozilla Public
+ License, v. 2.0. If a copy of the MPL was not distributed with this
+ file, You can obtain one at http://mozilla.org/MPL/2.0/.
+*/
+
 #pragma once
 
-#include <PDPC/SpacePartitioning/Query/KNearestQuery.h>
+#include "../../iterator.h"
 
-namespace pdpc {
+namespace Ponca {
 
+template <class DataPoint>
 class KdTreeKNearestIndexIterator
 {
 public:
-    KdTreeKNearestIndexIterator();
-    KdTreeKNearestIndexIterator(limited_priority_queue<IndexSquaredDistance>::iterator iterator);
+    typedef typename DataPoint::Scalar Scalar;
+    typedef typename limited_priority_queue<IndexSquaredDistance<Scalar>>::iterator Iterator;
+    KdTreeKNearestIndexIterator() :
+        m_iterator()
+    {
+    }
+
+    KdTreeKNearestIndexIterator(Iterator iterator) :
+        m_iterator(iterator)
+    {
+    }
 
 public:
-    bool operator !=(const KdTreeKNearestIndexIterator& other) const;
+    bool operator !=(const KdTreeKNearestIndexIterator<DataPoint>& other) const;
     void operator ++();
     int  operator * () const;
     void operator +=(int i);
 
 protected:
-    limited_priority_queue<IndexSquaredDistance>::iterator m_iterator;
+    Iterator m_iterator;
 };
 
-} // namespace pdpc
+#include "./kdTreeKNearestIndexIterator.hpp"
+} // namespace ponca

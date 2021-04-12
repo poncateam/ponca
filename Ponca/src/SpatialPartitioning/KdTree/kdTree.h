@@ -22,6 +22,8 @@
 
 #include "Query/KdTreeNearestPointQuery.h"
 #include "Query/KdTreeNearestIndexQuery.h"
+#include "Query/KdTreeKNearestPointQuery.h"
+#include "Query/KdTreeKNearestIndexQuery.h"
 #include "Query/KdTreeRangeIndexQuery.h"
 #include "Query/KdTreeRangePointQuery.h"
 
@@ -147,7 +149,7 @@ public:
 
 	// Query -------------------------------------------------------------------
 public :
-   /* KdTreeKNearestPointQuery<DataPoint> k_nearest_neighbors(const VectorType& point, int k) const
+    KdTreeKNearestPointQuery<DataPoint> k_nearest_neighbors(const VectorType& point, int k) const
     {
         return KdTreeKNearestPointQuery<DataPoint>(this, k, point);
     }
@@ -155,7 +157,7 @@ public :
     KdTreeKNearestIndexQuery<DataPoint> k_nearest_neighbors(int index, int k) const
     {
         return KdTreeKNearestIndexQuery<DataPoint>(this, k, index);
-    }*/
+    }
 
     KdTreeNearestPointQuery<DataPoint> nearest_neighbor(const VectorType& point) const
     {
@@ -179,7 +181,7 @@ public :
 
 	// Empty Query ------------------------------------------------------------
 public:
-  /*  KdTreeKNearestPointQuery<DataPoint> k_nearest_point_query(int k) const
+    KdTreeKNearestPointQuery<DataPoint> k_nearest_point_query(int k) const
     {
         return KdTreeKNearestPointQuery<DataPoint>(this, k);
     }
@@ -187,7 +189,7 @@ public:
     KdTreeKNearestIndexQuery<DataPoint> k_nearest_index_query(int k) const
     {
         return KdTreeKNearestIndexQuery<DataPoint>(this, k);
-    }*/
+    }
 
     KdTreeNearestPointQuery<DataPoint> nearest_point_query() const
     {
