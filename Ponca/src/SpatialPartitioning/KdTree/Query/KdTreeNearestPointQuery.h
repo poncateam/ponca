@@ -6,15 +6,14 @@
 
 #pragma once
 
-#include "../Iterator/kdTreeNearestPointIterator.h"
 #include "../query.h"
-
+#include "../../query.h"
+#include "../Iterator/kdTreeNearestPointIterator.h"
 
 namespace Ponca {
 
 template <class DataPoint>
-class KdTreeNearestPointQuery : public NearestPointQuery<DataPoint>, 
-								public KdTreeQuery<DataPoint>
+class KdTreeNearestPointQuery : public NearestPointQuery<DataPoint>, public KdTreeQuery<DataPoint>
 {
 public:
     using VectorType = typename DataPoint::VectorType;

@@ -6,14 +6,14 @@
 
 #pragma once
 
-
+#include "../query.h"
+#include "../../query.h"
 #include "../Iterator/kdTreeNearestIndexIterator.h"
 
 namespace Ponca {
 
 template <class DataPoint>
-class KdTreeNearestIndexQuery : public KdTreeQuery<DataPoint>,
-								public NearestIndexQuery<typename DataPoint::Scalar>
+class KdTreeNearestIndexQuery : public KdTreeQuery<DataPoint>, public NearestIndexQuery<typename DataPoint::Scalar>
 {
 public:
     typedef typename DataPoint::Scalar Scalar;
