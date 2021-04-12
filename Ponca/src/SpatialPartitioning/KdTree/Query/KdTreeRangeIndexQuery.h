@@ -13,7 +13,7 @@
 namespace Ponca {
 
 //template<class DataPoint> class KdTreeRangeIndexIterator;
-template<typename Scalar> class RangeIndexQuery;
+template<typename Scalar> struct RangeIndexQuery;
 template<class DataPoint> class KdTreeQuery;
 template<class DataPoint> class KdTree;
 

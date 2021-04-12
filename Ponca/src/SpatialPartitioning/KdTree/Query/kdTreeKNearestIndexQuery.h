@@ -15,26 +15,21 @@ template<class DataPoint>
 class KdTreeKNearestIndexQuery : public KdTreeQuery<DataPoint>,
     public KNearestIndexQuery<typename DataPoint::Scalar>
 {
-protected:
-    friend class KdTreeKNearestIndexIterator<DataPoint>;
 public:
     typedef typename DataPoint::Scalar Scalar;
 
     KdTreeKNearestIndexQuery() :
-        KdTreeQuery<DataPoint>(),
-        KNearestIndexQuery<Scalar>()
+        KdTreeQuery<DataPoint>(), KNearestIndexQuery<Scalar>()
     {
     }
 
     KdTreeKNearestIndexQuery(const KdTree<DataPoint>* kdtree, int k) :
-        KdTreeQuery<DataPoint>(kdtree),
-        KNearestIndexQuery<Scalar>(k)
+        KdTreeQuery<DataPoint>(kdtree), KNearestIndexQuery<Scalar>(k)
     {
     }
 
     KdTreeKNearestIndexQuery(const KdTree<DataPoint>* kdtree, int k, int index) :
-        KdTreeQuery<DataPoint>(kdtree),
-        KNearestIndexQuery<Scalar>(k, index)
+        KdTreeQuery<DataPoint>(kdtree), KNearestIndexQuery<Scalar>(k, index)
     {
     }
 
