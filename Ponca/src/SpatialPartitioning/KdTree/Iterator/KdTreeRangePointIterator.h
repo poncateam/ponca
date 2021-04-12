@@ -8,9 +8,13 @@
 
 namespace Ponca {
 
-template <typename DataPoint>
+template<class DataPoint> class KdTreeRangePointQuery; // Circular dependency
+
+template<class DataPoint>
 class KdTreeRangePointIterator
 {
+protected:
+    friend class KdTreeRangePointQuery<DataPoint>;
 
 public:
     KdTreeRangePointIterator() :

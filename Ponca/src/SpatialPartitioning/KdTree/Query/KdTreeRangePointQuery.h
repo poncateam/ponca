@@ -19,8 +19,8 @@ public:
 	using VectorType = typename DataPoint::VectorType;
 	using Scalar = typename DataPoint::Scalar;
 
-//protected:
-//    friend class KdTreeRangePointIterator<DataPoint>;
+protected:
+    friend class KdTreeRangePointIterator<DataPoint>;
 
 public:
     KdTreeRangePointQuery() :
