@@ -57,5 +57,5 @@ protected:
     int m_end;
 };
 
-#include "./KdTreeRangePointIterator.hpp"
+#include "./kdTreeRangePointIterator.hpp"
 } // namespace ponca

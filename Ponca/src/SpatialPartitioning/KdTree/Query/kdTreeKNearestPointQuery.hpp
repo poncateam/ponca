@@ -4,20 +4,20 @@
  file, You can obtain one at http://mozilla.org/MPL/2.0/.
 */
 
-template <typename DataPoint>
-KdTreeKNearestPointIterator KdTreeKNearestPointQuery<DataPoint>::begin()
+template <class DataPoint>
+KdTreeKNearestPointIterator<DataPoint> KdTreeKNearestPointQuery<DataPoint>::begin()
 {
     this->search();
-    return KdTreeKNearestPointIterator(KNearestQuery<Scalar>::m_queue.begin());
+    return KdTreeKNearestPointIterator<DataPoint>(KNearestQuery<Scalar>::m_queue.begin());
 }
 
-template <typename DataPoint>
-KdTreeKNearestPointIterator KdTreeKNearestPointQuery<DataPoint>::end()
+template <class DataPoint>
+KdTreeKNearestPointIterator<DataPoint> KdTreeKNearestPointQuery<DataPoint>::end()
 {
-    return KdTreeKNearestPointIterator(KNearestQuery<Scalar>::m_queue.end());
+    return KdTreeKNearestPointIterator<DataPoint>(KNearestQuery<Scalar>::m_queue.end());
 }
 
-template <typename DataPoint>
+template <class DataPoint>
 void KdTreeKNearestPointQuery<DataPoint>::search()
 {
     const auto& nodes   = m_kdtree->node_data();

@@ -6,14 +6,14 @@
 
 #pragma once
 
-#include "../Iterator/KdTreeRangeIndexIterator.h"
+#include "../Iterator/kdTreeRangeIndexIterator.h"
 //#include "../../query.h"
 //#include "../query.h"
 
 namespace Ponca {
 
 //template<class DataPoint> class KdTreeRangeIndexIterator;
-template<class Scalar> class RangeIndexQuery;
+template<typename Scalar> class RangeIndexQuery;
 template<class DataPoint> class KdTreeQuery;
 template<class DataPoint> class KdTree;
 
@@ -56,5 +56,5 @@ protected:
     inline void advance(KdTreeRangeIndexIterator<DataPoint>& iterator);
 };
 
-#include "./KdTreeRangeIndexQuery.hpp"
+#include "./kdTreeRangeIndexQuery.hpp"
 } // namespace ponca

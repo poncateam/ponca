@@ -6,7 +6,7 @@
 
 #pragma once
 
-#include "../Iterator/KdTreeNearestPointIterator.h"
+#include "../Iterator/kdTreeNearestPointIterator.h"
 #include "../query.h"
 
 
@@ -42,5 +42,5 @@ protected:
     void search();
 };
 
-#include "./KdTreeNearestPointQuery.hpp"
+#include "./kdTreeNearestPointQuery.hpp"
 } // namespace ponca
