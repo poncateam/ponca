@@ -6,8 +6,6 @@
 
 #pragma once
 
-#include "../../iterator.h"
-
 namespace Ponca {
 
 template <class DataPoint>
@@ -16,6 +14,7 @@ class KdTreeKNearestIndexIterator
 public:
     typedef typename DataPoint::Scalar Scalar;
     typedef typename limited_priority_queue<IndexSquaredDistance<Scalar>>::iterator Iterator;
+
     KdTreeKNearestIndexIterator() :
         m_iterator()
     {

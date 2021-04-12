@@ -6,22 +6,21 @@
 
 #pragma once
 
-#include "../../iterator.h"
-
 namespace Ponca {
 
 template <class DataPoint>
 class KdTreeKNearestPointIterator
 {
 public:
-    typedef typename DataPoint::Scalar Scalar; 
+    typedef typename DataPoint::Scalar Scalar;
+    typedef typename limited_priority_queue<IndexSquaredDistance<Scalar>>::iterator Iterator;
 
     KdTreeKNearestPointIterator() :
         m_iterator()
     {
     }
 
-    KdTreeKNearestPointIterator(typename limited_priority_queue<IndexSquaredDistance<Scalar>>::iterator iterator) :
+    KdTreeKNearestPointIterator(Iterator iterator) :
         m_iterator(iterator)
     {
     }
@@ -32,7 +31,7 @@ public:
     int  operator * () const;
 
 protected:
-    typename limited_priority_queue<IndexSquaredDistance<Scalar>>::iterator m_iterator;
+    Iterator m_iterator;
 };
 
 #include "./kdTreeKNearestPointIterator.hpp"

@@ -6,18 +6,11 @@
 
 #pragma once
 
-#include "../../query.h"
-
 namespace Ponca {
-
-template<class DataPoint> class KdTreeRangeIndexQuery;
 
 template<class DataPoint>
 class KdTreeRangeIndexIterator
 {
-protected:
-	//friend class KdTreeRangeIndexQuery<DataPoint>;
-	friend class KdTreeRangeIndexQuery<DataPoint>;
 
 public:
     KdTreeRangeIndexIterator() :
