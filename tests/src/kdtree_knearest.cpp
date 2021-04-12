@@ -77,7 +77,7 @@ int main(int argc, char** argv)
 		return EXIT_FAILURE;
 	}
 
-	testKdTreeKNearestPoint<TestPoint<float, 3>>(false);
+	testKdTreeKNearestPoint<TestPoint<float, 3>>(true);
 	//testKdTreeKNearestPoint<TestPoint<double, 3>>(false);
 	//testKdTreeKNearestPoint<TestPoint<long double, 3>>(false);
 
@@ -85,7 +85,7 @@ int main(int argc, char** argv)
 	//testKdTreeKNearestPoint<TestPoint<double, 4>>(false);
 	//testKdTreeKNearestPoint<TestPoint<long double, 4>>(false);
 
-	testKdTreeKNearestIndex<TestPoint<float, 3>>(false);
+	testKdTreeKNearestIndex<TestPoint<float, 3>>(true);
 	//testKdTreeKNearestIndex<TestPoint<double, 3>>(false);
 	//testKdTreeKNearestIndex<TestPoint<long double, 3>>(false);
 

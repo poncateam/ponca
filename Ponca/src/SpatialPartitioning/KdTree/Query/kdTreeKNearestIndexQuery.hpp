@@ -67,7 +67,7 @@ void KdTreeKNearestIndexQuery<DataPoint>::search()
                     qnode.index         = node.firstChildId;
                 }
                 m_stack.top().squared_distance = qnode.squared_distance;
-                qnode.squared_distance         = newOff*newOff;
+                qnode.squared_distance         = newOff * newOff;
             }
         }
         else

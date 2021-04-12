@@ -13,7 +13,7 @@
 
 namespace Ponca {
 
-template<class DataPoint> class RangePointQuery;
+template<class DataPoint> struct RangePointQuery;
 template<class DataPoint> class KdTreeQuery;
 template<class DataPoint> class KdTree;
 

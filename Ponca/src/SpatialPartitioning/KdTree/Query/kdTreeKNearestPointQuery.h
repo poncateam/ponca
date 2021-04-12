@@ -14,8 +14,6 @@ namespace Ponca {
 template <class DataPoint>
 class KdTreeKNearestPointQuery : public KNearestPointQuery<DataPoint>, public KdTreeQuery<DataPoint>
 {
-protected:
-    friend class KdTreeKNearestPointIterator<DataPoint>;
 public:
     typedef typename DataPoint::VectorType VectorType;
     typedef typename DataPoint::Scalar Scalar;
