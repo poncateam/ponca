@@ -6,11 +6,24 @@
 
 #pragma once
 
-#include "./kdTree.h"
+#include "../indexSquaredDistance.h"
+#include "../../Common/Containers/stack.h"
 
-//#include "Query/kdTreeKNearestIndexQuery.h"
-//#include "Query/kdTreeKNearestPointQuery.h"
-//#include "Query/kdTreeNearestIndexQuery.h"
-//#include "Query/kdTreeNearestPointQuery.h"
-#include "Query/KdTreeRangeIndexQuery.h"
-#include "Query/KdTreeRangePointQuery.h"
+
+#define PCA_KDTREE_MAX_DEPTH 32
+
+namespace Ponca {
+template<class DataPoint> class KdTree;
+
+template <class DataPoint>
+class KdTreeQuery
+{
+public:
+    inline KdTreeQuery(const KdTree<DataPoint>* kdtree = nullptr) : m_kdtree( kdtree ), m_stack() {}
+
+protected:
+    const KdTree<DataPoint>* m_kdtree { nullptr };
+    Stack<IndexSquaredDistance<typename DataPoint::Scalar>, 2 * PCA_KDTREE_MAX_DEPTH> m_stack;
+};
+
+} // namespace Ponca
