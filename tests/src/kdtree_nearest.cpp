@@ -9,7 +9,7 @@
 #include "../common/has_duplicate.h"
 #include "../common/kdtree_utils.h"
 
-#include "Ponca/src/SpatialPartitioning/KdTree/kdTreeQuery.h"
+#include <Ponca/src/SpatialPartitioning/KdTree/kdTree.h>
 
 using namespace Ponca;
 
