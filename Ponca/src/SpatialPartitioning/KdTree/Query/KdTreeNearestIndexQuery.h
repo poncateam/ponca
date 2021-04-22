@@ -6,7 +6,7 @@
 
 #pragma once
 
-#include "../query.h"
+#include "../kdTreeQuery.h"
 #include "../../query.h"
 #include "../Iterator/kdTreeNearestIndexIterator.h"
 
