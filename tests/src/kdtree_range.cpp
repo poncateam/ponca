@@ -17,7 +17,7 @@ template<typename DataPoint>
 void testKdTreeRangeIndex(bool quick = true)
 {
 	using Scalar = DataPoint::Scalar;
-	using VectorContainer = DataPoint::VectorContainer;
+	using VectorContainer = typename KdTree<DataPoint>::PointContainer;
 	using VectorType = DataPoint::VectorType;
 
 	const int N = quick ? 100 : 100000;
@@ -52,7 +52,7 @@ template<typename DataPoint>
 void testKdTreeRangePoint(bool quick = true)
 {
 	using Scalar = DataPoint::Scalar;
-	using VectorContainer = DataPoint::VectorContainer;
+	using VectorContainer = typename KdTree<DataPoint>::PointContainer;
 	using VectorType = DataPoint::VectorType;
 
 	const int N = quick ? 100 : 100000;
