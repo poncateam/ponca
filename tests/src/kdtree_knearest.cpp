@@ -17,7 +17,7 @@ template<typename DataPoint>
 void testKdTreeKNearestIndex(bool quick = true)
 {
 	using Scalar = DataPoint::Scalar;
-	using VectorContainer = DataPoint::VectorContainer;
+	using VectorContainer = typename KdTree<DataPoint>::PointContainer;
 	using VectorType = DataPoint::VectorType;
 
 	const int N = quick ? 100 : 100000;
@@ -37,6 +37,8 @@ void testKdTreeKNearestIndex(bool quick = true)
 		}
 
 		bool res = check_k_nearest_neighbors<Scalar, VectorContainer>(points, i, k, results);
+		if (!res)
+			cout << "False" << endl;
 		EXPECT_TRUE(res);
 	}
 }
@@ -45,7 +47,7 @@ template<typename DataPoint>
 void testKdTreeKNearestPoint(bool quick = true)
 {
 	using Scalar = DataPoint::Scalar;
-	using VectorContainer = DataPoint::VectorContainer;
+	using VectorContainer = typename KdTree<DataPoint>::PointContainer;
 	using VectorType = DataPoint::VectorType;
 
 	const int N = quick ? 100 : 100000;
@@ -77,19 +79,19 @@ int main(int argc, char** argv)
 		return EXIT_FAILURE;
 	}
 
-	testKdTreeKNearestPoint<TestPoint<float, 3>>(true);
-	//testKdTreeKNearestPoint<TestPoint<double, 3>>(false);
-	//testKdTreeKNearestPoint<TestPoint<long double, 3>>(false);
+	testKdTreeKNearestPoint<TestPoint<float, 3>>(false);
+	testKdTreeKNearestPoint<TestPoint<double, 3>>(false);
+	testKdTreeKNearestPoint<TestPoint<long double, 3>>(false);
 
-	//testKdTreeKNearestPoint<TestPoint<float, 4>>(false);
-	//testKdTreeKNearestPoint<TestPoint<double, 4>>(false);
-	//testKdTreeKNearestPoint<TestPoint<long double, 4>>(false);
+	testKdTreeKNearestPoint<TestPoint<float, 4>>(false);
+	testKdTreeKNearestPoint<TestPoint<double, 4>>(false);
+	testKdTreeKNearestPoint<TestPoint<long double, 4>>(false);
 
-	testKdTreeKNearestIndex<TestPoint<float, 3>>(true);
-	//testKdTreeKNearestIndex<TestPoint<double, 3>>(false);
-	//testKdTreeKNearestIndex<TestPoint<long double, 3>>(false);
+	testKdTreeKNearestIndex<TestPoint<float, 3>>(false);
+	testKdTreeKNearestIndex<TestPoint<double, 3>>(false);
+	testKdTreeKNearestIndex<TestPoint<long double, 3>>(false);
 
-	//testKdTreeKNearestIndex<TestPoint<float, 4>>(false);
-	//testKdTreeKNearestIndex<TestPoint<double, 4>>(false);
-	//testKdTreeKNearestIndex<TestPoint<long double, 4>>(false);
+	testKdTreeKNearestIndex<TestPoint<float, 4>>(false);
+	testKdTreeKNearestIndex<TestPoint<double, 4>>(false);
+	testKdTreeKNearestIndex<TestPoint<long double, 4>>(false);
 }

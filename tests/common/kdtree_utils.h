@@ -27,7 +27,6 @@ public:
 	enum { Dim = size };
 	typedef type Scalar;
 	typedef Eigen::Matrix<Scalar, Dim, 1> VectorType;
-	typedef std::vector<VectorType> VectorContainer;
 
 	PONCA_MULTIARCH inline TestPoint(const VectorType& pos = VectorType::Zero())
 		: _pos(pos) {}
@@ -42,7 +41,6 @@ public:
 	enum { Dim = 3 };
 	typedef float Scalar;
 	typedef Eigen::Matrix<Scalar, Dim, 1> VectorType;
-	typedef std::vector<VectorType> VectorContainer; // Must be given to use KdTree queries
 
 	PONCA_MULTIARCH inline MyPoint(const VectorType& pos = VectorType::Zero())
 		: _pos(pos) {}
