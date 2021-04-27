@@ -17,15 +17,15 @@
 
 #include "../../Common/Assert.h"
 
-#include "Iterator/KdTreeRangeIndexIterator.h"
-#include "Iterator/KdTreeRangePointIterator.h"
+#include "Iterator/kdTreeRangeIndexIterator.h"
+#include "Iterator/kdTreeRangePointIterator.h"
 
-#include "Query/KdTreeNearestPointQuery.h"
-#include "Query/KdTreeNearestIndexQuery.h"
-#include "Query/KdTreeKNearestPointQuery.h"
-#include "Query/KdTreeKNearestIndexQuery.h"
-#include "Query/KdTreeRangeIndexQuery.h"
-#include "Query/KdTreeRangePointQuery.h"
+#include "Query/kdTreeNearestPointQuery.h"
+#include "Query/kdTreeNearestIndexQuery.h"
+#include "Query/kdTreeKNearestPointQuery.h"
+#include "Query/kdTreeKNearestIndexQuery.h"
+#include "Query/kdTreeRangeIndexQuery.h"
+#include "Query/kdTreeRangePointQuery.h"
 
 #define PCA_KDTREE_MAX_DEPTH 32
 
