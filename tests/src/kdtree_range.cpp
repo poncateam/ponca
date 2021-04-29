@@ -16,9 +16,9 @@ using namespace Ponca;
 template<typename DataPoint>
 void testKdTreeRangeIndex(bool quick = true)
 {
-	using Scalar = DataPoint::Scalar;
+	using Scalar = typename DataPoint::Scalar;
 	using VectorContainer = typename KdTree<DataPoint>::PointContainer;
-	using VectorType = DataPoint::VectorType;
+	using VectorType = typename DataPoint::VectorType;
 
 	const int N = quick ? 100 : 100000;
 	auto points = VectorContainer(N);
@@ -51,9 +51,9 @@ void testKdTreeRangeIndex(bool quick = true)
 template<typename DataPoint>
 void testKdTreeRangePoint(bool quick = true)
 {
-	using Scalar = DataPoint::Scalar;
+	using Scalar = typename DataPoint::Scalar;
 	using VectorContainer = typename KdTree<DataPoint>::PointContainer;
-	using VectorType = DataPoint::VectorType;
+	using VectorType = typename DataPoint::VectorType;
 
 	const int N = quick ? 100 : 100000;
 	auto points = VectorContainer(N);
