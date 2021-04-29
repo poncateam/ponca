@@ -16,9 +16,9 @@ using namespace Ponca;
 template<typename DataPoint>
 void testKdTreeNearestIndex(bool quick = true)
 {
-	using Scalar = DataPoint::Scalar;
+	using Scalar = typename DataPoint::Scalar;
 	using VectorContainer = typename KdTree<DataPoint>::PointContainer;
-	using VectorType = DataPoint::VectorType;
+	using VectorType = typename DataPoint::VectorType;
 
 	const int N = quick ? 100 : 100000;
 	auto points = VectorContainer(N);
@@ -43,9 +43,9 @@ void testKdTreeNearestIndex(bool quick = true)
 template<typename DataPoint>
 void testKdTreeNearestPoint(bool quick = true)
 {
-	using Scalar = DataPoint::Scalar;
+	using Scalar = typename DataPoint::Scalar;
 	using VectorContainer = typename KdTree<DataPoint>::PointContainer;
-	using VectorType = DataPoint::VectorType;
+	using VectorType = typename DataPoint::VectorType;
 
 	const int N = quick ? 100 : 100000;
 	auto points = VectorContainer(N);

@@ -133,7 +133,7 @@ public:
 
     inline IndexContainer& index_data()
     {
-        return *m_indices.get();
+        return m_indices;
     }
 
     // Parameters --------------------------------------------------------------

@@ -16,8 +16,10 @@ template <class DataPoint>
 class KdTreeKNearestPointQuery : public KNearestPointQuery<DataPoint>, public KdTreeQuery<DataPoint>
 {
 public:
-    typedef typename DataPoint::VectorType VectorType;
-    typedef typename DataPoint::Scalar Scalar;
+    using Scalar          = typename DataPoint::Scalar;
+    using VectorType      = typename DataPoint::VectorType;
+    using QueryType       = KNearestPointQuery<DataPoint>;
+    using QueryAccelType  = KdTreeQuery<DataPoint>;
 
     KdTreeKNearestPointQuery() :
         KdTreeQuery<DataPoint>(), KNearestPointQuery<DataPoint>()

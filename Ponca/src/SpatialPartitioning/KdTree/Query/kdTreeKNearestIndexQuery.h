@@ -17,7 +17,10 @@ class KdTreeKNearestIndexQuery : public KdTreeQuery<DataPoint>,
     public KNearestIndexQuery<typename DataPoint::Scalar>
 {
 public:
-    typedef typename DataPoint::Scalar Scalar;
+    using Scalar          = typename DataPoint::Scalar;
+    using VectorType      = typename DataPoint::VectorType;
+    using QueryType       = KNearestIndexQuery<typename DataPoint::Scalar>;
+    using QueryAccelType  = KdTreeQuery<DataPoint>;
 
     KdTreeKNearestIndexQuery() :
         KdTreeQuery<DataPoint>(), KNearestIndexQuery<Scalar>()
