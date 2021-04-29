@@ -8,13 +8,13 @@ template<class DataPoint>
 KdTreeKNearestIndexIterator<DataPoint> KdTreeKNearestIndexQuery<DataPoint>::begin()
 {
     this->search();
-    return KdTreeKNearestIndexIterator<DataPoint>(QueryAccelType::m_queue.begin());
+    return KdTreeKNearestIndexIterator<DataPoint>(QueryType::m_queue.begin());
 }
 
 template<class DataPoint>
 KdTreeKNearestIndexIterator<DataPoint> KdTreeKNearestIndexQuery<DataPoint>::end()
 {
-    return KdTreeKNearestIndexIterator<DataPoint>(QueryAccelType::m_queue.end());
+    return KdTreeKNearestIndexIterator<DataPoint>(QueryType::m_queue.end());
 }
 
 template<class DataPoint>
@@ -28,15 +28,15 @@ void KdTreeKNearestIndexQuery<DataPoint>::search()
     QueryAccelType::m_stack.clear();
     QueryAccelType::m_stack.push({0,0});
 
-    QueryAccelType::m_queue.clear();
-    QueryAccelType::m_queue.push({-1,std::numeric_limits<Scalar>::max()});
+    QueryType::m_queue.clear();
+    QueryType::m_queue.push({-1,std::numeric_limits<Scalar>::max()});
 
     while(!QueryAccelType::m_stack.empty())
     {
         auto& qnode = QueryAccelType::m_stack.top();
         const auto& node  = nodes[qnode.index];
 
-        if(qnode.squared_distance < QueryAccelType::m_queue.bottom().squared_distance)
+        if(qnode.squared_distance < QueryType::m_queue.bottom().squared_distance)
         {
             if(node.leaf)
             {
@@ -48,7 +48,7 @@ void KdTreeKNearestIndexQuery<DataPoint>::search()
                     if(QueryType::m_index == idx) continue;
 
                     Scalar d = (point - points[idx]).squaredNorm();
-                    QueryAccelType::m_queue.push({idx, d});
+                    QueryType::m_queue.push({idx, d});
                 }
             }
             else
