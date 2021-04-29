@@ -8,75 +8,75 @@ template <class DataPoint>
 KdTreeNearestPointIterator KdTreeNearestPointQuery<DataPoint>::begin()
 {
     this->search();
-    return KdTreeNearestPointIterator(m_nearest);
+    return KdTreeNearestPointIterator( QueryType::m_nearest );
 }
 
 template <class DataPoint>
 KdTreeNearestPointIterator KdTreeNearestPointQuery<DataPoint>::end()
 {
-    return KdTreeNearestPointIterator(m_nearest+1);
+    return KdTreeNearestPointIterator( QueryType::m_nearest + 1);
 }
 
 template <class DataPoint>
 void KdTreeNearestPointQuery<DataPoint>::search()
 {
-    const auto& nodes   = m_kdtree->node_data();
-    const auto& points  = m_kdtree->point_data();
-    const auto& indices = m_kdtree->index_data();
+    const auto& nodes   = QueryAccelType::m_kdtree->node_data();
+    const auto& points  = QueryAccelType::m_kdtree->point_data();
+    const auto& indices = QueryAccelType::m_kdtree->index_data();
 
     if (nodes.empty() || points.empty() || indices.empty())
         throw invalid_argument("Empty KdTree");
 
-    m_stack.clear();
-    m_stack.push({0,0});
+    QueryAccelType::m_stack.clear();
+    QueryAccelType::m_stack.push({0,0});
 
-    m_nearest = indices[0];
-    m_squared_distance = (m_point.pos() - points[m_nearest]).squaredNorm();
+    QueryType::m_nearest = indices[0];
+    QueryType::m_squared_distance = (QueryType::m_point.pos() - points[QueryType::m_nearest]).squaredNorm();
 
-    while(!m_stack.empty())
+    while(!QueryAccelType::m_stack.empty())
     {
-        auto& qnode = m_stack.top();
+        auto& qnode = QueryAccelType::m_stack.top();
         const auto& node  = nodes[qnode.index];
 
-        if(qnode.squared_distance < m_squared_distance)
+        if(qnode.squared_distance < QueryType::m_squared_distance)
         {
             if(node.leaf)
             {
-                m_stack.pop();
+                QueryAccelType::m_stack.pop();
                 int end = node.start + node.size;
                 for(int i=node.start; i<end; ++i)
                 {
                     int idx = indices[i];
-                    Scalar d = (m_point.pos() - points[idx]).squaredNorm();
-                    if(d < m_squared_distance)
+                    Scalar d = (QueryType::m_point.pos() - points[idx]).squaredNorm();
+                    if(d < QueryType::m_squared_distance)
                     {
-                        m_nearest = idx;
-                        m_squared_distance = d;
+                        QueryType::m_nearest = idx;
+                        QueryType::m_squared_distance = d;
                     }
                 }
             }
             else
             {
                 // replace the stack top by the farthest and push the closest
-                Scalar newOff = m_point.pos()[node.dim] - node.splitValue;
-                m_stack.push();
+                Scalar newOff = QueryType::m_point.pos()[node.dim] - node.splitValue;
+                QueryAccelType::m_stack.push();
                 if(newOff < 0)
                 {
-                    m_stack.top().index = node.firstChildId;
+                    QueryAccelType::m_stack.top().index = node.firstChildId;
                     qnode.index         = node.firstChildId+1;
                 }
                 else
                 {
-                    m_stack.top().index = node.firstChildId+1;
+                    QueryAccelType::m_stack.top().index = node.firstChildId+1;
                     qnode.index         = node.firstChildId;
                 }
-                m_stack.top().squared_distance = qnode.squared_distance;
+                QueryAccelType::m_stack.top().squared_distance = qnode.squared_distance;
                 qnode.squared_distance         = newOff*newOff;
             }
         }
         else
         {
-            m_stack.pop();
+            QueryAccelType::m_stack.pop();
         }
     }
 }

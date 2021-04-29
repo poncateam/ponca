@@ -16,8 +16,10 @@ template <class DataPoint>
 class KdTreeRangePointQuery : public KdTreeQuery<DataPoint>, public RangePointQuery<DataPoint>
 {
 public:
-	using VectorType = typename DataPoint::VectorType;
-	using Scalar = typename DataPoint::Scalar;
+    using Scalar          = typename DataPoint::Scalar;
+    using VectorType      = typename DataPoint::VectorType;
+    using QueryType       = RangePointQuery<DataPoint>;
+    using QueryAccelType  = KdTreeQuery<DataPoint>;
 
 protected:
     friend class KdTreeRangePointIterator<DataPoint>;

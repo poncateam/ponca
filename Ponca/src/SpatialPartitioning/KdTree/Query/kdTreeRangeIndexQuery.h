@@ -16,8 +16,10 @@ namespace Ponca {
 template <class DataPoint>
 class KdTreeRangeIndexQuery : public KdTreeQuery<DataPoint>, public RangeIndexQuery<typename DataPoint::Scalar>
 {
-	using VectorType = typename DataPoint::VectorType;
-	using Scalar = typename DataPoint::Scalar;
+    using Scalar          = typename DataPoint::Scalar;
+    using VectorType      = typename DataPoint::VectorType;
+    using QueryType       = RangeIndexQuery<typename DataPoint::Scalar>;
+    using QueryAccelType  = KdTreeQuery<DataPoint>;
 
 protected:
 	friend class KdTreeRangeIndexIterator<DataPoint>;

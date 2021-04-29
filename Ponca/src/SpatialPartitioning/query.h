@@ -112,6 +112,9 @@ template <typename Scalar>
 struct KNearestIndexQuery : public IndexQuery,
                             public KNearestQuery<Scalar>
 {
+    using QueryInType  = IndexQuery;
+    using QueryOutType = KNearestQuery<Scalar>;
+
     inline KNearestIndexQuery()
         : IndexQuery(), KNearestQuery<Scalar>() {}
     inline KNearestIndexQuery(int k)
@@ -126,7 +129,10 @@ template <class DataPoint>
 struct KNearestPointQuery : public PointQuery<DataPoint>, public KNearestQuery<typename DataPoint::Scalar>
 {
     using VectorType = typename DataPoint::VectorType;
-    using Scalar = typename DataPoint::Scalar;
+    using Scalar     = typename DataPoint::Scalar;
+
+    using QueryInType  = PointQuery<DataPoint>;
+    using QueryOutType = KNearestQuery<typename DataPoint::Scalar>;
 
     inline KNearestPointQuery()
         : PointQuery<DataPoint>(), KNearestQuery<Scalar>() {}
@@ -148,8 +154,11 @@ struct KNearestPointQuery : public PointQuery<DataPoint>, public KNearestQuery<t
 template <class DataPoint>
 struct NearestPointQuery : public PointQuery<DataPoint>, public NearestQuery<typename DataPoint::Scalar>
 {
-	using Scalar = typename DataPoint::Scalar;
+	using Scalar     = typename DataPoint::Scalar;
 	using VectorType = typename DataPoint::VectorType;
+
+    using QueryInType  = PointQuery<DataPoint>;
+    using QueryOutType = NearestQuery<typename DataPoint::Scalar>;
 
     inline NearestPointQuery()
         : PointQuery<DataPoint>(), NearestQuery<Scalar>() {}
@@ -162,6 +171,9 @@ struct NearestPointQuery : public PointQuery<DataPoint>, public NearestQuery<typ
 template <typename Scalar>
 struct NearestIndexQuery : public IndexQuery, public NearestQuery<Scalar>
 {
+    using QueryInType  = IndexQuery;
+    using QueryOutType = NearestQuery<Scalar>;
+
     inline NearestIndexQuery() : IndexQuery(), NearestQuery<Scalar>() {}
     inline NearestIndexQuery(int index) : IndexQuery( index ), NearestQuery<Scalar>() {}
 };
@@ -176,7 +188,10 @@ template <class DataPoint>
 struct RangePointQuery : public PointQuery<DataPoint>, public RangeQuery<typename DataPoint::Scalar>
 {
 	using VectorType = typename DataPoint::VectorType;
-	using Scalar = typename DataPoint::Scalar;
+	using Scalar     = typename DataPoint::Scalar;
+
+    using QueryInType  = PointQuery<DataPoint>;
+    using QueryOutType = RangeQuery<typename DataPoint::Scalar>;
 
     inline RangePointQuery()
         : PointQuery<DataPoint>(), RangeQuery<Scalar>() {}
@@ -191,6 +206,9 @@ struct RangePointQuery : public PointQuery<DataPoint>, public RangeQuery<typenam
 template<typename Scalar>
 struct RangeIndexQuery : public IndexQuery, public RangeQuery<Scalar>
 {
+    using QueryInType  = IndexQuery;
+    using QueryOutType = RangeQuery<Scalar>;
+
     inline RangeIndexQuery()
         : IndexQuery(), RangeQuery<Scalar>() {}
     inline RangeIndexQuery(Scalar radius)
