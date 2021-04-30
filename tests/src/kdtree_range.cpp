@@ -20,7 +20,7 @@ void testKdTreeRangeIndex(bool quick = true)
 	using VectorContainer = typename KdTree<DataPoint>::PointContainer;
 	using VectorType = typename DataPoint::VectorType;
 
-	const int N = quick ? 100 : 100000;
+	const int N = quick ? 100 : 10000;
 	auto points = VectorContainer(N);
 	std::generate(points.begin(), points.end(), []() {return VectorType::Random(); });
 
@@ -34,11 +34,12 @@ void testKdTreeRangeIndex(bool quick = true)
 
 	KdTree<DataPoint> structure(points, sampling);
 
-	std::vector<int> results;
+#pragma omp parallel for
 	for (int i = 0; i < N; ++i)
 	{
-		const Scalar r = static_cast<Scalar>((std::rand()) / RAND_MAX * 2.5);
-		results.clear();
+        Scalar r = Eigen::internal::random<Scalar>(0., 0.5);
+        std::vector<int> results;
+
 		KdTreeRangeIndexQuery<DataPoint> rangeIndexQuery = structure.range_neighbors(i, r);
 		for (KdTreeRangeIndexIterator<DataPoint> j = rangeIndexQuery.begin(); j != rangeIndexQuery.end(); j++) {
 			results.push_back(*j);
@@ -55,7 +56,7 @@ void testKdTreeRangePoint(bool quick = true)
 	using VectorContainer = typename KdTree<DataPoint>::PointContainer;
 	using VectorType = typename DataPoint::VectorType;
 
-	const int N = quick ? 100 : 100000;
+	const int N = quick ? 100 : 10000;
 	auto points = VectorContainer(N);
 	std::generate(points.begin(), points.end(), []() {return VectorType::Random(); });
 
@@ -67,13 +68,12 @@ void testKdTreeRangePoint(bool quick = true)
 
 	KdTree<DataPoint> structure(points, sampling);
 
-	std::vector<int> results;
-
+#pragma omp parallel for
 	for (int i = 0; i < N; ++i)
 	{
-		const Scalar r = static_cast<Scalar>((std::rand()) / RAND_MAX * 2.5);
-		VectorType point = VectorType::Random();
-		results.clear();
+        Scalar r = Eigen::internal::random<Scalar>(0., 0.5);
+		VectorType point = VectorType::Random(); // values between [-1:1]
+        std::vector<int> results;
 
 		KdTreeRangePointQuery<DataPoint> rangePointQuery = structure.range_neighbors(point, r);
 		for (KdTreeRangePointIterator<DataPoint> j = rangePointQuery.begin(); j != rangePointQuery.end(); j++) {
@@ -92,18 +92,22 @@ int main(int argc, char** argv)
 		return EXIT_FAILURE;
 	}
 
+    cout << "Test KdTreeRange (from Point) in 3D..." << endl;
 	testKdTreeRangePoint<TestPoint<float, 3>>(false);
 	testKdTreeRangePoint<TestPoint<double, 3>>(false);
 	testKdTreeRangePoint<TestPoint<long double, 3>>(false);
 
+    cout << "Test KdTreeRange (from Point) in 4D..." << endl;
 	testKdTreeRangePoint<TestPoint<float, 4>>(false);
 	testKdTreeRangePoint<TestPoint<double, 4>>(false);
 	testKdTreeRangePoint<TestPoint<long double, 4>>(false);
 
+    cout << "Test KdTreeRange (from Index) in 3D..." << endl;
 	testKdTreeRangeIndex<TestPoint<float, 3>>(false);
 	testKdTreeRangeIndex<TestPoint<double, 3>>(false);
 	testKdTreeRangeIndex<TestPoint<long double, 3>>(false);
 
+    cout << "Test KdTreeRange (from Index) in 4D..." << endl;
 	testKdTreeRangeIndex<TestPoint<float, 4>>(false);
 	testKdTreeRangeIndex<TestPoint<double, 4>>(false);
 	testKdTreeRangeIndex<TestPoint<long double, 4>>(false);
