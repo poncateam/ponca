@@ -1,0 +1,58 @@
+/*
+ This Source Code Form is subject to the terms of the Mozilla Public
+ License, v. 2.0. If a copy of the MPL was not distributed with this
+ file, You can obtain one at http://mozilla.org/MPL/2.0/.
+*/
+
+#pragma once
+
+#include "../kdTreeQuery.h"
+#include "../../query.h"
+#include "../Iterator/kdTreeRangeIndexIterator.h"
+
+namespace Ponca {
+
+
+template <class DataPoint>
+class KdTreeRangeIndexQuery : public KdTreeQuery<DataPoint>, public RangeIndexQuery<typename DataPoint::Scalar>
+{
+    using Scalar          = typename DataPoint::Scalar;
+    using VectorType      = typename DataPoint::VectorType;
+    using QueryType       = RangeIndexQuery<typename DataPoint::Scalar>;
+    using QueryAccelType  = KdTreeQuery<DataPoint>;
+
+protected:
+	friend class KdTreeRangeIndexIterator<DataPoint>;
+
+public:
+    KdTreeRangeIndexQuery() :
+        KdTreeQuery<DataPoint>(), RangeIndexQuery<Scalar>()
+    {
+    }
+
+    KdTreeRangeIndexQuery(const KdTree<DataPoint>* kdtree) :
+        KdTreeQuery<DataPoint>(kdtree), RangeIndexQuery<Scalar>()
+    {
+    }
+
+    KdTreeRangeIndexQuery(const KdTree<DataPoint>* kdtree, Scalar radius) :
+        KdTreeQuery<DataPoint>(kdtree), RangeIndexQuery<Scalar>(radius)
+    {
+    }
+
+    KdTreeRangeIndexQuery(const KdTree<DataPoint>* kdtree, Scalar radius, int index) :
+        KdTreeQuery<DataPoint>(kdtree), RangeIndexQuery<Scalar>(radius, index)
+    {
+    }
+
+public:
+    inline KdTreeRangeIndexIterator<DataPoint> begin();
+    inline KdTreeRangeIndexIterator<DataPoint> end();
+
+protected:
+    inline void initialize(KdTreeRangeIndexIterator<DataPoint>& iterator);
+    inline void advance(KdTreeRangeIndexIterator<DataPoint>& iterator);
+};
+
+#include "./kdTreeRangeIndexQuery.hpp"
+} // namespace ponca

@@ -1,7 +1,5 @@
 cmake_minimum_required(VERSION 3.10)
 
-project( Ponca VERSION 0.1)
-
 
 ####################################################################################################
 ## USER OPTIONS
@@ -24,8 +22,8 @@ endif()
 set(CMAKE_DISABLE_SOURCE_CHANGES ON)
 set(CMAKE_DISABLE_IN_SOURCE_BUILD ON)
 
-project(Ponca LANGUAGES CXX VERSION 0.0.1)
-set(CMAKE_CXX_STANDARD 11)
+project(Ponca LANGUAGES CXX VERSION 0.2)
+set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
 
@@ -137,6 +135,7 @@ install(
 set(PONCA_src_ROOT "${CMAKE_CURRENT_SOURCE_DIR}/")
 include(PoncaConfigureFitting)
 include(PoncaConfigureCommon)
+include(PoncaConfigureSpatialPartitioning)
 
 install(DIRECTORY ${PONCA_src_ROOT}/Ponca
     DESTINATION include/

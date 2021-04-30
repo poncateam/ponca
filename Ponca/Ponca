@@ -6,5 +6,7 @@
 
 #pragma once
 
-#include <Ponca/Fitting>
 #include <Ponca/Common>
+#include <Ponca/Fitting>
+#include <Ponca/SpatialPartitioning>
+

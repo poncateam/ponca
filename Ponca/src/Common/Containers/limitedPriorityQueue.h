@@ -119,8 +119,8 @@ public:
 public:
     inline bool empty() const;
     inline bool full() const;
-    inline int  size() const;
-    inline int  capacity() const;
+    inline size_t  size() const;
+    inline size_t  capacity() const;
 
     // Modifiers ---------------------------------------------------------------
 public:
@@ -140,7 +140,7 @@ public:
 protected:
     container_type  m_c;
     compare         m_comp;
-    int             m_size;
+    size_t          m_size;
 };
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -281,13 +281,13 @@ bool limited_priority_queue<T,Cmp>::full() const
 }
 
 template<class T, class Cmp>
-int limited_priority_queue<T,Cmp>::size() const
+size_t limited_priority_queue<T,Cmp>::size() const
 {
     return m_size;
 }
 
 template<class T, class Cmp>
-int limited_priority_queue<T,Cmp>::capacity() const
+size_t limited_priority_queue<T,Cmp>::capacity() const
 {
     return m_c.size();
 }
@@ -410,4 +410,4 @@ const typename limited_priority_queue<T,Cmp>::container_type& limited_priority_q
     return m_c;
 }
 
-} // namespace pca
+}   
