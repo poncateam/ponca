@@ -15,6 +15,7 @@
 namespace Ponca {
 template<class DataPoint> class KdTree;
 
+/// \ingroup spatialpartitioning
 template <class DataPoint>
 class KdTreeQuery
 {
