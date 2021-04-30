@@ -7,24 +7,29 @@
 /*!
   \mainpage notitle
 
-  \section ponca_news_sec First release 0.1: forking from Patate
+  \section ponca_news_sec New release 0.2: adding Spatial Partitioning module
 
   \subsection ponca_news_subsec Principal features
 
-  - In this first version, we updated the library name and its associated namespace. We kept only parts corresponding to Patate/Grenaille to create Ponca.
-  - We also updated the build chain in order to move to modern cmake and clean the installation system: there is now a proper cmake package generated when calling `make install`.
-  - We updated the examples and tests, including cuda examples.
+  In this new version, we updated and extended the API:
+     - we added a new module Spatial Partitioning with a KdTree and several queries
+     - we added a new module Common for general purpose code
+     - we improved the cmake buildchain to improve dependencies management. We also added use a submodule.
 
-  We also continued to polish our documentations, examples and tests along the process.
   See the [complete changelog](@ref ponca_changelog) for details.
 
   \section ponca_about_sec About Ponca
 
-  Ponca is a header only library coded in C++, and compatible with CUDA. It is maintained by researcher in Computer Graphics, and released under the MPL license.
+  Ponca is a header only library coded in C++, and compatible with CUDA. It is maintained by researcher in Computer
+  Graphics, and released under the MPL license.
 
-  It provides a collection of techniques for Point Cloud Analysis that incorporate the latest innovations from CNRS and INRIA research teams working in the field. It strives for efficiency and ease-of-use by focusing on low-level core operators and key algorithms. The central goal of the library is to drastically reduce the time and efforts required to turn a research paper into a ready-to-use solution, for both commercial and academic purposes.
+  It provides a collection of techniques for Point Cloud Analysis that incorporate the latest innovations from CNRS and
+  INRIA research teams working in the field. It strives for efficiency and ease-of-use by focusing on low-level core
+  operators and key algorithms. The central goal of the library is to drastically reduce the time and efforts required
+  to turn a research paper into a ready-to-use solution, for both commercial and academic purposes.
 
-  The library is still in its infancy and we're actively working on it to bring you the latest of our published research techniques.
+  The library is still in its infancy and we're actively working on it to bring you the latest of our published research
+  techniques.
 
   \section ponca_instructions_sec Basic FAQs
 
@@ -57,6 +62,7 @@
 
   \subsection ponca_credits_subsection_grenaille Patate/Grenaille crew and contributors
   Ponca is a fork of Patate, module Grenaille, which is now deprecated, and which was developed by:
+  - <b> Matthieu Gomiero, Dorian Ferreira, Sacha Vincent </b>: porting KdTree code in Spatial Partitioning module <br/>
   - <b> Nicolas Mellado </b>: conception, implementation and examples <br/>
   - <b> Gael Guennebaud </b>: conception and implementation <br/>
   - <b> Pascal Barla </b>: conception and documentation <br/>
@@ -69,7 +75,7 @@
   If you use our library, please cite it using the following bibtex entry:
   \verbatim
     @MISC{Ponca,
-    author = {Nicolas Mellado and Thibault Lejemble and Ga\"{e}l Guennebaud and Pascal Barla},
+    author = {Nicolas Mellado and Thibault Lejemble and Ga\"{e}l Guennebaud and Pascal Barla and others},
     title = {Ponca: a Point Cloud Analysis Library},
     howpublished = {https://github.com/poncateam/ponca/},
     year = {2020}
