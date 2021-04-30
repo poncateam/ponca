@@ -25,7 +25,8 @@ void testKdTreeKNearestIndex(bool quick = true)
 	auto points = VectorContainer(N);
 	std::generate(points.begin(), points.end(), []() {return VectorType::Random(); });
 
-	KdTree<DataPoint> structure(points);
+	/// [Kdtree construction and query]
+	Ponca::KdTree<DataPoint> structure(points);
 
 #pragma omp parallel for
 	for (int i = 0; i < N; ++i)
@@ -39,6 +40,7 @@ void testKdTreeKNearestIndex(bool quick = true)
 		bool res = check_k_nearest_neighbors<Scalar, VectorContainer>(points, i, k, results);
 		EXPECT_TRUE(res);
 	}
+    /// [Kdtree construction and query]
 }
 
 template<typename DataPoint>
