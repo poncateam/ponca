@@ -20,16 +20,16 @@ void testKdTreeNearestIndex(bool quick = true)
 	using VectorContainer = typename KdTree<DataPoint>::PointContainer;
 	using VectorType = typename DataPoint::VectorType;
 
-	const int N = quick ? 100 : 100000;
+	const int N = quick ? 100 : 10000;
 	auto points = VectorContainer(N);
 	std::generate(points.begin(), points.end(), []() {return VectorType::Random(); });
 
 	KdTree<DataPoint> structure(points);
 
-	std::vector<int> results;
+#pragma omp parallel for
 	for (int i = 0; i < N; ++i)
 	{
-		results.clear();
+        std::vector<int> results; results.reserve( 1 );
 		for (int j : structure.nearest_neighbor(i))
 		{
 			results.push_back(j);
@@ -47,17 +47,17 @@ void testKdTreeNearestPoint(bool quick = true)
 	using VectorContainer = typename KdTree<DataPoint>::PointContainer;
 	using VectorType = typename DataPoint::VectorType;
 
-	const int N = quick ? 100 : 100000;
+	const int N = quick ? 100 : 10000;
 	auto points = VectorContainer(N);
 	std::generate(points.begin(), points.end(), []() {return VectorType::Random(); });
 
 	KdTree<DataPoint> structure(points);
 
-	std::vector<int> results;
+#pragma omp parallel for
 	for (int i = 0; i < N; ++i)
 	{
 		VectorType point = VectorType::Random();
-		results.clear();
+        std::vector<int> results; results.reserve( 1 );
 		for (int j : structure.nearest_neighbor(point))
 		{
 			results.push_back(j);
@@ -75,19 +75,23 @@ int main(int argc, char** argv)
 		return EXIT_FAILURE;
 	}
 
+    cout << "Test Nearest (from Point) in 3D..." << endl;
 	testKdTreeNearestPoint<TestPoint<float, 3>>(false);
-	//testKdTreeNearestPoint<TestPoint<double, 3>>(false);
-	//testKdTreeNearestPoint<TestPoint<long double, 3>>(false);
+	testKdTreeNearestPoint<TestPoint<double, 3>>(false);
+	testKdTreeNearestPoint<TestPoint<long double, 3>>(false);
 
-	//testKdTreeNearestPoint<TestPoint<float, 4>>(false);
-	//testKdTreeNearestPoint<TestPoint<double, 4>>(false);
-	//testKdTreeNearestPoint<TestPoint<long double, 4>>(false);
+    cout << "Test Nearest (from Point) in 4D..." << endl;
+	testKdTreeNearestPoint<TestPoint<float, 4>>(false);
+	testKdTreeNearestPoint<TestPoint<double, 4>>(false);
+	testKdTreeNearestPoint<TestPoint<long double, 4>>(false);
 
+    cout << "Test Nearest (from Index) in 3D..." << endl;
 	testKdTreeNearestIndex<TestPoint<float, 3>>(false);
-	//testKdTreeNearestIndex<TestPoint<double, 3>>(false);
-	//testKdTreeNearestIndex<TestPoint<long double, 3>>(false);
+	testKdTreeNearestIndex<TestPoint<double, 3>>(false);
+	testKdTreeNearestIndex<TestPoint<long double, 3>>(false);
 
-	//testKdTreeNearestIndex<TestPoint<float, 4>>(false);
-	//testKdTreeNearestIndex<TestPoint<double, 4>>(false);
-	//testKdTreeNearestIndex<TestPoint<long double, 4>>(false);
+    cout << "Test Nearest (from Index) in 4D..." << endl;
+	testKdTreeNearestIndex<TestPoint<float, 4>>(false);
+	testKdTreeNearestIndex<TestPoint<double, 4>>(false);
+	testKdTreeNearestIndex<TestPoint<long double, 4>>(false);
 }

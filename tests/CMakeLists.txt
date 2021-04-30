@@ -2,6 +2,8 @@ project(ponca-tests)
 
 include_directories(${CMAKE_SOURCE_DIR})
 
+find_package(OpenMP)
+
 # Generate split test header file only if it does not yet exist
 # in order to prevent a rebuild everytime cmake is configured.
 if(NOT EXISTS ${CMAKE_CURRENT_BINARY_DIR}/split_test_helper.h)
