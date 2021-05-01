@@ -10,7 +10,7 @@ v.0.2
     - [api] New public entry points are the header files <Ponca/Ponca> and <Ponca/Fitting> (#9)
 
 - Buildchain
-    - [cmake] Fix several bugs with Eigen submodule (#17,#19)
+    - [cmake] Fix several bugs with Eigen submodule (#17,#19,#26)
     - [cmake] Allow use as submodule (#15)
     - [cmake] Cmake package is now relocable (#9)
 
