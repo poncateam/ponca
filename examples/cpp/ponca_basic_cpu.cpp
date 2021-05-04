@@ -22,6 +22,8 @@ file, You can obtain one at http://mozilla.org/MPL/2.0/.
 #include <Ponca/src/Fitting/weightFunc.h>
 #include <Ponca/src/Fitting/weightKernel.h>
 
+#include <Ponca/SpatialPartitioning>
+
 #include "Eigen/Eigen"
 
 #include <vector>
@@ -71,7 +73,7 @@ typedef Basket<MyPoint,WeightFunc,OrientedSphereFit, GLSParam, OrientedSphereSpa
 
 
 template<typename Fit>
-void test_fit(Fit& _fit, vector<MyPoint>& _vecs, const VectorType& _p)
+void test_fit(Fit& _fit, const KdTree<MyPoint>& tree, const VectorType& _p)
 {
   Scalar tmax = 100.0;
 
@@ -82,10 +84,10 @@ void test_fit(Fit& _fit, vector<MyPoint>& _vecs, const VectorType& _p)
   _fit.init(_p);
 
   // Iterate over samples and _fit the primitive
-  for(vector<MyPoint>::iterator it = _vecs.begin(); it != _vecs.end(); it++)
-    {
-                _fit.addNeighbor(*it);
-    }
+  for(int i : tree.range_neighbors(_p, tmax) )
+  {
+      _fit.addNeighbor( tree.point_data()[i] );
+  }
 
   //finalize fitting
   _fit.finalize();
@@ -127,25 +129,23 @@ int main()
   // init input data
   int n = 10000;
   vector<MyPoint> vecs (n);
+  std::generate(vecs.begin(), vecs.end(), []() {return MyPoint::Random(); });
 
-        for(int k=0; k<n; ++k)
-    {
-                vecs[k] = MyPoint::Random();
-    }
+  p = vecs.at(0).pos();
 
-        p = vecs.at(0).pos();
+  KdTree<MyPoint> tree {vecs};
 
   std::cout << "====================\nOrientedSphereFit:\n";
   Fit1 fit1;
-  test_fit(fit1, vecs, p);
+  test_fit(fit1, tree, p);
 
   std::cout << "\n\n====================\nUnorientedSphereFit:\n";
   Fit2 fit2;
-  test_fit(fit2, vecs, p);
+  test_fit(fit2, tree, p);
 
   std::cout << "\n\n====================\nUnorientedSphereFit:\n";
   Fit3 fit3;
-  test_fit(fit3, vecs, p);
+  test_fit(fit3, tree, p);
 
   if(fit3.isStable())
   {
