@@ -1,7 +1,9 @@
 var searchData=
 [
-  ['pointconcept',['PointConcept',['../class_ponca_1_1_concept_1_1_point_concept.html',1,'Ponca::Concept']]],
-  ['primitivebase',['PrimitiveBase',['../class_ponca_1_1_primitive_base.html',1,'Ponca']]],
-  ['primitivebase_3c_20datapoint_2c_20_5fwfunctor_20_3e',['PrimitiveBase&lt; DataPoint, _WFunctor &gt;',['../class_ponca_1_1_primitive_base.html',1,'Ponca']]],
-  ['projectednormalcovariancecurvature',['ProjectedNormalCovarianceCurvature',['../class_ponca_1_1_projected_normal_covariance_curvature.html',1,'Ponca']]]
+  ['nearestindexquery_323',['NearestIndexQuery',['../struct_ponca_1_1_nearest_index_query.html',1,'Ponca']]],
+  ['nearestindexquery_3c_20datapoint_3a_3ascalar_20_3e_324',['NearestIndexQuery&lt; DataPoint::Scalar &gt;',['../struct_ponca_1_1_nearest_index_query.html',1,'Ponca']]],
+  ['nearestpointquery_325',['NearestPointQuery',['../struct_ponca_1_1_nearest_point_query.html',1,'Ponca']]],
+  ['nearestquery_326',['NearestQuery',['../struct_ponca_1_1_nearest_query.html',1,'Ponca']]],
+  ['nearestquery_3c_20datapoint_3a_3ascalar_20_3e_327',['NearestQuery&lt; DataPoint::Scalar &gt;',['../struct_ponca_1_1_nearest_query.html',1,'Ponca']]],
+  ['normalcovariancecurvature_328',['NormalCovarianceCurvature',['../class_ponca_1_1_normal_covariance_curvature.html',1,'Ponca']]]
 ];
