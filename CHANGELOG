@@ -18,6 +18,12 @@ v.0.2
     - Fix test on Algebraic Sphere projection (#27)
     - Fix compilation error on Windows (github actions) for Basket test ( (#27)
 
+- Doc
+    - Fix online documentation (#29): broken reference list (issue #24)
+
+- CI/Actions
+    - Add automatic doc deployment (#29)
+
 
 --------------------------------------------------------------------------------
 v.0.1
