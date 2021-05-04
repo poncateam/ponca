@@ -7,6 +7,7 @@
 #pragma once
 
 #include "pcl_wrapper.h"
+#include <pcl/common/point_tests.h> // isFinite
 
 //////////////////////////////////////////////////////////////////////////////////////////////
 template <typename PointInT, typename PointOutT> void
@@ -39,7 +40,7 @@ pcl::GlsCurvature<PointInT, PointOutT>::computeFeature(PointCloudOut &output)
         // Iterating over the entire index vector
         for (size_t idx = 0; idx < indices_->size (); ++idx)
         {
-            if (!isFinite ((*input_)[(*indices_)[idx]]) ||
+            if (!pcl::isFinite ((*input_)[(*indices_)[idx]]) ||
                 this->searchForNeighbors ((*indices_)[idx], search_parameter_, nn_indices, nn_dists) == 0)
             {
                 output.points[idx].curvature = std::numeric_limits<float>::quiet_NaN ();
