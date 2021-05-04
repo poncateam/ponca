@@ -41,7 +41,7 @@ public:
 
 	typedef typename Eigen::AlignedBox<Scalar, DataPoint::Dim> Aabb; // Intersections
 
-    typedef typename std::vector<VectorType> PointContainer; // Container for VectorType used inside the KdTree
+    typedef typename std::vector<DataPoint> PointContainer; // Container for VectorType used inside the KdTree
     typedef typename std::vector<int> IndexContainer; // Container for indices used inside the KdTree
     typedef typename std::vector<KdTreeNode<Scalar>> NodeContainer;  // Container for nodes used inside the KdTree
 

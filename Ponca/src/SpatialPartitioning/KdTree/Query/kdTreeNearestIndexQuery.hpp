@@ -29,7 +29,7 @@ void KdTreeNearestIndexQuery<DataPoint>::search()
     QueryAccelType::m_stack.push({0,0});
 
     QueryType::m_nearest = QueryType::m_index==indices[0] ? indices[1] : indices[0];
-    QueryType::m_squared_distance = (point - points[QueryType::m_nearest]).squaredNorm();
+    QueryType::m_squared_distance = (point.pos() - points[QueryType::m_nearest].pos()).squaredNorm();
 
     while(!QueryAccelType::m_stack.empty())
     {
@@ -47,7 +47,7 @@ void KdTreeNearestIndexQuery<DataPoint>::search()
                     int idx = indices[i];
                     if(QueryType::m_index == idx) continue;
 
-                    Scalar d = (point - points[idx]).squaredNorm();
+                    Scalar d = (point.pos() - points[idx].pos()).squaredNorm();
                     if(d < QueryType::m_squared_distance)
                     {
                         QueryType::m_nearest = idx;
@@ -58,7 +58,7 @@ void KdTreeNearestIndexQuery<DataPoint>::search()
             else
             {
                 // replace the stack top by the farthest and push the closest
-                Scalar newOff = point[node.dim] - node.splitValue;
+                Scalar newOff = point.pos()[node.dim] - node.splitValue;
                 QueryAccelType::m_stack.push();
                 if(newOff < 0)
                 {

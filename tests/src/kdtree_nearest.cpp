@@ -22,7 +22,7 @@ void testKdTreeNearestIndex(bool quick = true)
 
 	const int N = quick ? 100 : 10000;
 	auto points = VectorContainer(N);
-	std::generate(points.begin(), points.end(), []() {return VectorType::Random(); });
+    std::generate(points.begin(), points.end(), []() {return DataPoint(VectorType::Random()); });
 
 	KdTree<DataPoint> structure(points);
 
@@ -49,7 +49,7 @@ void testKdTreeNearestPoint(bool quick = true)
 
 	const int N = quick ? 100 : 10000;
 	auto points = VectorContainer(N);
-	std::generate(points.begin(), points.end(), []() {return VectorType::Random(); });
+    std::generate(points.begin(), points.end(), []() {return DataPoint(VectorType::Random()); });
 
 	KdTree<DataPoint> structure(points);
 

@@ -74,7 +74,7 @@ bool check_range_neighbors(const VectorContainer& points, const std::vector<int>
 
 	for (int i = 0; i<int(neighbors.size()); ++i)
 	{
-		Scalar dist = (points[neighbors[i]] - points[index]).norm();
+		Scalar dist = (points[neighbors[i]].pos() - points[index].pos()).norm();
 		if (r < dist)
 		{
 			return false;
@@ -86,7 +86,7 @@ bool check_range_neighbors(const VectorContainer& points, const std::vector<int>
 		int idx = sampling[i];
 		if (idx == index) continue;
 
-		Scalar dist = (points[idx] - points[index]).norm();
+		Scalar dist = (points[idx].pos() - points[index].pos()).norm();
 		auto it = std::find(neighbors.begin(), neighbors.end(), idx);
 		bool is_neighbor = it != neighbors.end();
 
@@ -120,7 +120,7 @@ bool check_range_neighbors(const VectorContainer& points, const std::vector<int>
 
 	for (int i = 0; i<int(neighbors.size()); ++i)
 	{
-		Scalar dist = (points[neighbors[i]] - point).norm();
+		Scalar dist = (points[neighbors[i]].pos() - point).norm();
 		if (r < dist)
 		{
 			return false;
@@ -130,7 +130,7 @@ bool check_range_neighbors(const VectorContainer& points, const std::vector<int>
 	for (int i = 0; i<int(sampling.size()); ++i)
 	{
 		int idx = sampling[i];
-		Scalar dist = (points[idx] - point).norm();
+		Scalar dist = (points[idx].pos() - point).norm();
 		auto it = std::find(neighbors.begin(), neighbors.end(), idx);
 		bool is_neighbor = it != neighbors.end();
 
@@ -167,13 +167,13 @@ bool check_k_nearest_neighbors(const VectorContainer& points, int index, int k, 
 
 	Scalar max_dist = 0;
 	for (int idx : neighbors)
-		max_dist = std::max(max_dist, (points[idx] - points[index]).norm());
+		max_dist = std::max(max_dist, (points[idx].pos() - points[index].pos()).norm());
 
 	for (int idx = 0; idx<int(points.size()); ++idx)
 	{
 		if (idx == index) continue;
 
-		Scalar dist = (points[idx] - points[index]).norm();
+		Scalar dist = (points[idx].pos() - points[index].pos()).norm();
 		auto it = std::find(neighbors.begin(), neighbors.end(), idx);
 		bool is_neighbor = it != neighbors.end();
 
@@ -301,11 +301,11 @@ bool check_k_nearest_neighbors(const VectorContainer& points, const VectorType& 
 
 	Scalar max_dist = 0;
 	for (int idx : neighbors)
-		max_dist = std::max(max_dist, (points[idx] - point).norm());
+		max_dist = std::max(max_dist, (points[idx].pos() - point).norm());
 
 	for (int idx = 0; idx<int(points.size()); ++idx)
 	{
-		Scalar dist = (points[idx] - point).norm();
+		Scalar dist = (points[idx].pos() - point).norm();
 		auto it = std::find(neighbors.begin(), neighbors.end(), idx);
 		bool is_neighbor = it != neighbors.end();
 

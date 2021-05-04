@@ -25,22 +25,22 @@ protected:
     friend class KdTreeRangePointIterator<DataPoint>;
 
 public:
-    KdTreeRangePointQuery() :
+    inline KdTreeRangePointQuery() :
         KdTreeQuery<DataPoint>(), RangePointQuery<DataPoint>()
     {
     }
 
-    KdTreeRangePointQuery(const KdTree<DataPoint>* kdtree) :
+    inline KdTreeRangePointQuery(const KdTree<DataPoint>* kdtree) :
         KdTreeQuery<DataPoint>(kdtree), RangePointQuery<DataPoint>()
     {
     }
 
-    KdTreeRangePointQuery(const KdTree<DataPoint>* kdtree, Scalar radius) :
+    inline KdTreeRangePointQuery(const KdTree<DataPoint>* kdtree, Scalar radius) :
         KdTreeQuery<DataPoint>(kdtree), RangePointQuery<DataPoint>(radius)
     {
     }
 
-    KdTreeRangePointQuery(const KdTree<DataPoint>* kdtree, Scalar radius, const VectorType& point) :
+    inline KdTreeRangePointQuery(const KdTree<DataPoint>* kdtree, Scalar radius, const VectorType& point) :
         KdTreeQuery<DataPoint>(kdtree), RangePointQuery<DataPoint>(radius, point)
     {
     }

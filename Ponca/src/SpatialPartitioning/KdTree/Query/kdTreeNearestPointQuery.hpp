@@ -25,13 +25,13 @@ void KdTreeNearestPointQuery<DataPoint>::search()
     const auto& indices = QueryAccelType::m_kdtree->index_data();
 
     if (nodes.empty() || points.empty() || indices.empty())
-        throw invalid_argument("Empty KdTree");
+        throw std::invalid_argument("Empty KdTree");
 
     QueryAccelType::m_stack.clear();
     QueryAccelType::m_stack.push({0,0});
 
     QueryType::m_nearest = indices[0];
-    QueryType::m_squared_distance = (QueryType::m_point.pos() - points[QueryType::m_nearest]).squaredNorm();
+    QueryType::m_squared_distance = (QueryType::m_point.pos() - points[QueryType::m_nearest].pos()).squaredNorm();
 
     while(!QueryAccelType::m_stack.empty())
     {
@@ -47,7 +47,7 @@ void KdTreeNearestPointQuery<DataPoint>::search()
                 for(int i=node.start; i<end; ++i)
                 {
                     int idx = indices[i];
-                    Scalar d = (QueryType::m_point.pos() - points[idx]).squaredNorm();
+                    Scalar d = (QueryType::m_point.pos() - points[idx].pos()).squaredNorm();
                     if(d < QueryType::m_squared_distance)
                     {
                         QueryType::m_nearest = idx;

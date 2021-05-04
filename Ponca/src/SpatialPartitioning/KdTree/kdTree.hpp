@@ -185,7 +185,7 @@ void KdTree<DataPoint>::build_rec(int node_id, int start, int end, int level)
 	KdTreeNode<Scalar>& node = m_nodes[node_id];
 	Aabb aabb;
 	for(int i=start; i<end; ++i)
-	    aabb.extend(m_points[m_indices[i]]);
+	    aabb.extend(m_points[m_indices[i]].pos());
 	
 	int dim;
 	(Scalar(0.5) * (aabb.max() - aabb.min())).maxCoeff(&dim);
@@ -243,7 +243,7 @@ int KdTree<DataPoint>::partition(int start, int end, int dim, Scalar value)
 	
 	auto it = std::partition(indices.begin()+start, indices.begin()+end, [&](int i)
 	{
-	    return points[i][dim] < value;
+	    return points[i].pos()[dim] < value;
 	});
 	    
 	auto distance = std::distance(m_indices.begin(), it);

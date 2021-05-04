@@ -23,7 +23,7 @@ void testKdTreeKNearestIndex(bool quick = true)
 	const int N = quick ? 100 : 10000;
 	const int k = quick ? 5 : 15;
 	auto points = VectorContainer(N);
-	std::generate(points.begin(), points.end(), []() {return VectorType::Random(); });
+    std::generate(points.begin(), points.end(), []() {return DataPoint(VectorType::Random()); });
 
 	/// [Kdtree construction and query]
 	Ponca::KdTree<DataPoint> structure(points);
@@ -53,7 +53,7 @@ void testKdTreeKNearestPoint(bool quick = true)
 	const int N = quick ? 100 : 10000;
 	const int k = quick ? 5 : 15;
 	auto points = VectorContainer(N);
-	std::generate(points.begin(), points.end(), []() {return VectorType::Random(); });
+    std::generate(points.begin(), points.end(), []() {return DataPoint(VectorType::Random()); });
 
 	KdTree<DataPoint> structure(points);
 

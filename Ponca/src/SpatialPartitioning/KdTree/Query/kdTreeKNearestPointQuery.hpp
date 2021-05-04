@@ -45,7 +45,7 @@ void KdTreeKNearestPointQuery<DataPoint>::search()
                 {
                     int idx = indices[i];
 
-                    Scalar d = (KNearestPointQuery<DataPoint>::m_point.pos() - points[idx]).squaredNorm();
+                    Scalar d = (KNearestPointQuery<DataPoint>::m_point.pos() - points[idx].pos()).squaredNorm();
                     QueryType::m_queue.push({idx, d});
                 }
             }

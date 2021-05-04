@@ -47,14 +47,14 @@ void KdTreeKNearestIndexQuery<DataPoint>::search()
                     int idx = indices[i];
                     if(QueryType::m_index == idx) continue;
 
-                    Scalar d = (point - points[idx]).squaredNorm();
+                    Scalar d = (point.pos() - points[idx].pos()).squaredNorm();
                     QueryType::m_queue.push({idx, d});
                 }
             }
             else
             {
                 // replace the stack top by the farthest and push the closest
-                Scalar newOff = point[node.dim] - node.splitValue;
+                Scalar newOff = point.pos()[node.dim] - node.splitValue;
                 QueryAccelType::m_stack.push();
                 if(newOff < 0)
                 {

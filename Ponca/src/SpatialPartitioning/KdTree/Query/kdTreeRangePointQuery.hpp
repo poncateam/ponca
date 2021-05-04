@@ -43,7 +43,7 @@ void KdTreeRangePointQuery<DataPoint>::advance(KdTreeRangePointIterator<DataPoin
     {
         int idx = indices[i];
 
-        Scalar d = (pos - points[idx]).squaredNorm();
+        Scalar d = (pos - points[idx].pos()).squaredNorm();
         if(d < QueryType::m_squared_radius)
         {
             it.m_index = idx;
@@ -68,7 +68,7 @@ void KdTreeRangePointQuery<DataPoint>::advance(KdTreeRangePointIterator<DataPoin
                 {
                     int idx = indices[i];
 
-                    Scalar d = (pos - points[idx]).squaredNorm();
+                    Scalar d = (pos - points[idx].pos()).squaredNorm();
                     if(d < QueryType::m_squared_radius)
                     {
                         it.m_index = idx;
