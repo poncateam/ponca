@@ -236,8 +236,9 @@ public:
        \brief Project a point on the algebraic hypersphere using Gradient Descent
        This projection is realized by following the gradient of the hypersphere scalar field
        \warning This function is in most cases slower and less accurate than #project.
+       \param nbIter Number of iterations (default = 16)
      */
-    PONCA_MULTIARCH inline VectorType projectDescent (const VectorType& _q) const;
+    PONCA_MULTIARCH inline VectorType projectDescent (const VectorType& _q, int nbIter = 16) const;
 
     //! \brief Approximation of the scalar field gradient at \f$ \mathbf{q} (not normalized) \f$
     PONCA_MULTIARCH inline VectorType primitiveGradient (const VectorType& _q) const;

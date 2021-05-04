@@ -10,7 +10,7 @@
 /*!
  \file test/Grenaille/projection.cpp
  \brief Test validity of the direct projection on an algebraic sphere
- \authors Thibault Lejemble
+ \authors Thibault Lejemble, Nicolas Mellado
  */
 
 #include "../common/testing.h"
@@ -84,6 +84,17 @@ void testFunction()
             VERIFY( fit.potential(proj) < epsilon );
         }
 
+
+        // check if direct projection gives same or better result than descent projection.
+        for( const auto& p: samples )
+        {
+            auto res1 = fit.project( p );
+            auto res2 = fit.projectDescent( p, 1000 ); // force high number of iterations
+            VERIFY( res1.isApprox( res2 ) );
+        }
+
+        // Disable this test: not true with apple-clang 12.
+#ifdef COMPARE_PROJECTION_TIMINGS
         auto start1 = std::chrono::system_clock::now();
         for( const auto& p: samples )
           fit.project( p );
@@ -98,6 +109,8 @@ void testFunction()
         std::chrono::duration<double> elapsed_seconds2 = end2-start2;
         std::cout << "Default: " << elapsed_seconds1.count() << " Descent: " << elapsed_seconds2.count() << "s\n";
         VERIFY( elapsed_seconds1 <= elapsed_seconds2 );
+#endif
+
     }
 
 

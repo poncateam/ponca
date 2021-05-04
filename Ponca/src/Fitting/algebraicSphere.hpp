@@ -31,7 +31,7 @@ AlgebraicSphere<DataPoint, _WFunctor, T>::project(const VectorType& _q) const
 
 template < class DataPoint, class _WFunctor, typename T>
 typename DataPoint::VectorType
-AlgebraicSphere<DataPoint, _WFunctor, T>::projectDescent( const VectorType& _q ) const
+AlgebraicSphere<DataPoint, _WFunctor, T>::projectDescent( const VectorType& _q, int nbIter) const
 {
     PONCA_MULTIARCH_STD_MATH(min)
 
@@ -46,7 +46,7 @@ AlgebraicSphere<DataPoint, _WFunctor, T>::projectDescent( const VectorType& _q )
     Scalar delta    = -ad*min(ilg,Scalar(1.));
     VectorType proj = lq + dir*delta;
 
-    for (int i=0; i<16; ++i)
+    for (int i=0; i<nbIter; ++i)
     {
         grad  = m_ul+Scalar(2.)*m_uq*proj;
         ilg   = Scalar(1.)/grad.norm();
