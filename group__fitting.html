@@ -30,7 +30,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Ponca
-   &#160;<span id="projectnumber">347881749c5a6ce5e962c0651c448dc77633a6ab</span>
+   &#160;<span id="projectnumber">4ffd3f462d939d6d0eeccd45b7c0bcd870f56284</span>
    </div>
    <div id="projectbrief">Point Cloud Analysis library</div>
   </td>
@@ -170,21 +170,21 @@ Enumerations</h2></td></tr>
 <p>This modules includes classes and methods for primitive fitting. See reference manual below. </p>
 <h1><a class="anchor" id="fitting_intro"></a>
 Introduction</h1>
-<p>The fitting module is dedicated to the smooth fitting of point clouds and extraction of useful geometric properties. Figure 1(a) shows a typical example in 2D: we reconstruct a potential function (shown in fake colors) from a few 2D points equipped with normals; then the 0-isoline of this potential gives us an implicit curve (in orange) from which we can readily extract further properties like curvature. A great benefit of this implicit technique <b>[Guennebaud:2007:APSS]</b> is that it works in arbitrary dimensions: Figures 1(b-c) show how we reconstruct an implicit 3D surface with the same approach, starting from a 3D point cloud. Working with meshes then simply consists of only considering their vertices.</p>
-<p>This is just the tip of the iceberg though, as we also provide methods for dealing with points equipped with non-oriented normals <b>[Chen:2013:NOMG]</b>, techniques to analyze points clouds in scale-space to discover salient structures <b>[Mellado:2012:GLS]</b>, methods to compute multi-scale principal curvatures <b>[Mellado:2013:SSC]</b> and methods to compute surface variation using a plane instead of a sphere for the fitting <b>[Pauly:2002:PSSimplification]</b>. See the table below:</p>
+<p>The fitting module is dedicated to the smooth fitting of point clouds and extraction of useful geometric properties. Figure 1(a) shows a typical example in 2D: we reconstruct a potential function (shown in fake colors) from a few 2D points equipped with normals; then the 0-isoline of this potential gives us an implicit curve (in orange) from which we can readily extract further properties like curvature. A great benefit of this implicit technique <a class="el" href="citelist.html#CITEREF_Guennebaud:2007:APSS">[3]</a> is that it works in arbitrary dimensions: Figures 1(b-c) show how we reconstruct an implicit 3D surface with the same approach, starting from a 3D point cloud. Working with meshes then simply consists of only considering their vertices.</p>
+<p>This is just the tip of the iceberg though, as we also provide methods for dealing with points equipped with non-oriented normals <a class="el" href="citelist.html#CITEREF_Chen:2013:NOMG">[2]</a>, techniques to analyze points clouds in scale-space to discover salient structures <a class="el" href="citelist.html#CITEREF_Mellado:2012:GLS">[5]</a>, methods to compute multi-scale principal curvatures <a class="el" href="citelist.html#CITEREF_Mellado:2013:SSC">[6]</a> and methods to compute surface variation using a plane instead of a sphere for the fitting <a class="el" href="citelist.html#CITEREF_Pauly:2002:PSSimplification">[7]</a>. See the table below:</p>
 <table class="markdownTable">
 <tr class="markdownTableHead">
 <th class="markdownTableHeadNone">Primitive </th><th class="markdownTableHeadNone">Required Input </th><th class="markdownTableHeadNone">Fitting techniques </th><th class="markdownTableHeadNone">Analysis/Tools </th><th class="markdownTableHeadNone">Other usages  </th></tr>
 <tr class="markdownTableRowOdd">
-<td class="markdownTableBodyNone">Plane </td><td class="markdownTableBodyNone">Points only </td><td class="markdownTableBodyNone"><a class="el" href="class_ponca_1_1_covariance_plane_fit.html" title="Plane fitting procedure using only points position.">CovariancePlaneFit</a> (nD) </td><td class="markdownTableBodyNone">Surface Variation (nD)<b>[Pauly:2002:PSSimplification]</b> </td><td class="markdownTableBodyNone"></td></tr>
+<td class="markdownTableBodyNone">Plane </td><td class="markdownTableBodyNone">Points only </td><td class="markdownTableBodyNone"><a class="el" href="class_ponca_1_1_covariance_plane_fit.html" title="Plane fitting procedure using only points position.">CovariancePlaneFit</a> (nD) </td><td class="markdownTableBodyNone">Surface Variation (nD)<a class="el" href="citelist.html#CITEREF_Pauly:2002:PSSimplification">[7]</a> </td><td class="markdownTableBodyNone"></td></tr>
 <tr class="markdownTableRowEven">
 <td class="markdownTableBodyNone">Plane </td><td class="markdownTableBodyNone">Oriented points </td><td class="markdownTableBodyNone"><a class="el" href="class_ponca_1_1_mean_plane_fit.html" title="Plane fitting procedure computing the mean position and orientation from oriented points.">MeanPlaneFit</a> (nD, co-dimension 1) </td><td class="markdownTableBodyNone"></td><td class="markdownTableBodyNone"></td></tr>
 <tr class="markdownTableRowOdd">
 <td class="markdownTableBodyNone">Monge Patch </td><td class="markdownTableBodyNone">Points only </td><td class="markdownTableBodyNone"><a class="el" href="class_ponca_1_1_monge_patch.html" title="Extension to compute the best fit quadric on 3d points expressed as f(u,v)=h.">MongePatch</a> (3D) </td><td class="markdownTableBodyNone"></td><td class="markdownTableBodyNone"></td></tr>
 <tr class="markdownTableRowEven">
-<td class="markdownTableBodyNone">Algebraic Sphere </td><td class="markdownTableBodyNone">Oriented points </td><td class="markdownTableBodyNone"><a class="el" href="class_ponca_1_1_oriented_sphere_fit.html" title="Algebraic Sphere fitting procedure on oriented point sets.">OrientedSphereFit</a> (nD) <b>[Guennebaud:2007:APSS]</b> </td><td class="markdownTableBodyNone">GLS (nD) <b>[Mellado:2012:GLS]</b> </td><td class="markdownTableBodyNone">Ray Traced Curvature <b>[Mellado:2013:SSC]</b>  </td></tr>
+<td class="markdownTableBodyNone">Algebraic Sphere </td><td class="markdownTableBodyNone">Oriented points </td><td class="markdownTableBodyNone"><a class="el" href="class_ponca_1_1_oriented_sphere_fit.html" title="Algebraic Sphere fitting procedure on oriented point sets.">OrientedSphereFit</a> (nD) <a class="el" href="citelist.html#CITEREF_Guennebaud:2007:APSS">[3]</a> </td><td class="markdownTableBodyNone">GLS (nD) <a class="el" href="citelist.html#CITEREF_Mellado:2012:GLS">[5]</a> </td><td class="markdownTableBodyNone">Ray Traced Curvature <a class="el" href="citelist.html#CITEREF_Mellado:2013:SSC">[6]</a>  </td></tr>
 <tr class="markdownTableRowOdd">
-<td class="markdownTableBodyNone">Algebraic Sphere </td><td class="markdownTableBodyNone">Non-oriented points </td><td class="markdownTableBodyNone"><a class="el" href="class_ponca_1_1_unoriented_sphere_fit.html" title="Algebraic Sphere fitting procedure on point sets with non-oriented normals.">UnorientedSphereFit</a> (nD) <b>[Chen:2013:NOMG]</b> </td><td class="markdownTableBodyNone"></td><td class="markdownTableBodyNone"></td></tr>
+<td class="markdownTableBodyNone">Algebraic Sphere </td><td class="markdownTableBodyNone">Non-oriented points </td><td class="markdownTableBodyNone"><a class="el" href="class_ponca_1_1_unoriented_sphere_fit.html" title="Algebraic Sphere fitting procedure on point sets with non-oriented normals.">UnorientedSphereFit</a> (nD) <a class="el" href="citelist.html#CITEREF_Chen:2013:NOMG">[2]</a> </td><td class="markdownTableBodyNone"></td><td class="markdownTableBodyNone"></td></tr>
 </table>
 <p>In the following, we focus on a basic use of the module, using 3D points equipped with oriented normals fitted by a <a class="el" href="class_ponca_1_1_algebraic_sphere.html" title="Algebraic Sphere primitive.">Ponca::AlgebraicSphere</a>. First, one must set up data samples that interface with an external code; then run the fitting process in itself, and finally collect outputs. We also show how to compute curvatures with the very same approach, as this is a common requirement of many geometric processing algorithms.</p>
 <div class="image">
@@ -407,7 +407,7 @@ Going Further</h1>
 <div class="ttc" id="anamespace_ponca_html"><div class="ttname"><a href="namespace_ponca.html">Ponca</a></div><div class="ttdoc">This module provides efficient methods for the fitting and analysis of point-clouds in arbitrary dime...</div><div class="ttdef"><b>Definition:</b> limitedPriorityQueue.h:14</div></div>
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue May 4 2021 09:48:12 for Ponca by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Tue May 4 2021 09:55:21 for Ponca by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.17
 </small></address>
