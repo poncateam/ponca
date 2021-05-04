@@ -14,6 +14,10 @@ v.0.2
     - [cmake] Allow use as submodule (#15)
     - [cmake] Cmake package is now relocable (#9)
 
+- Tests
+    - Fix test on Algebraic Sphere projection (#27)
+    - Fix compilation error on Windows (github actions) for Basket test ( (#27)
+
 
 --------------------------------------------------------------------------------
 v.0.1

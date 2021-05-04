@@ -117,16 +117,4 @@ int main(int argc, char** argv)
     callSubTests<double, 4>();
     callSubTests<long double, 4>();
     cout << "Ok..." << endl;
-
-    cout << "Test Basket functions in 5 dimensions..." << endl;
-    callSubTests<float, 5>();
-    callSubTests<double, 5>();
-    callSubTests<long double, 5>();
-    cout << "Ok..." << endl;
-
-    cout << "Test Basket functions in 42 dimensions..." << endl;
-    callSubTests<float, 42>();
-    callSubTests<double, 42>();
-    callSubTests<long double, 42>();
-    cout << "Ok..." << endl;
 }
