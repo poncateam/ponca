@@ -26,8 +26,4 @@ target_include_directories(ponca_binding PRIVATE ${PONCA_src_ROOT})
 add_dependencies(ponca-examples ponca_binding)
 ponca_handle_eigen_dependency(ponca_binding)
 
-set(ponca_mesh_curvature_SRCS
-    ponca_mesh_curvature.cpp
-)
-
 add_subdirectory(pcl)
