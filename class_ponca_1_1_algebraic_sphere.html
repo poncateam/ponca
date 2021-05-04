@@ -30,7 +30,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Ponca
-   &#160;<span id="projectnumber">49f0ce03c594b249853f9b1fb2884cfa47a41381</span>
+   &#160;<span id="projectnumber">d60c1978953c2b86fe28562e96b838e57d220bf6</span>
    </div>
    <div id="projectbrief">Point Cloud Analysis library</div>
   </td>
@@ -178,9 +178,9 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 <tr class="memitem:a2f32fb50aced14cf4105f65b61f819d5"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_ponca_1_1_algebraic_sphere.html#af39632c6e1cab056fc9249d39abedba6">VectorType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_ponca_1_1_algebraic_sphere.html#a2f32fb50aced14cf4105f65b61f819d5">project</a> (const <a class="el" href="class_ponca_1_1_algebraic_sphere.html#af39632c6e1cab056fc9249d39abedba6">VectorType</a> &amp;_q) const</td></tr>
 <tr class="memdesc:a2f32fb50aced14cf4105f65b61f819d5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Project a point on the algebraic hypersphere.  <a href="class_ponca_1_1_algebraic_sphere.html#a2f32fb50aced14cf4105f65b61f819d5">More...</a><br /></td></tr>
 <tr class="separator:a2f32fb50aced14cf4105f65b61f819d5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af5ae1b54931af26057072f1c18604ed8"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_ponca_1_1_algebraic_sphere.html#af39632c6e1cab056fc9249d39abedba6">VectorType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_ponca_1_1_algebraic_sphere.html#af5ae1b54931af26057072f1c18604ed8">projectDescent</a> (const <a class="el" href="class_ponca_1_1_algebraic_sphere.html#af39632c6e1cab056fc9249d39abedba6">VectorType</a> &amp;_q) const</td></tr>
-<tr class="memdesc:af5ae1b54931af26057072f1c18604ed8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Project a point on the algebraic hypersphere using Gradient Descent This projection is realized by following the gradient of the hypersphere scalar field.  <a href="class_ponca_1_1_algebraic_sphere.html#af5ae1b54931af26057072f1c18604ed8">More...</a><br /></td></tr>
-<tr class="separator:af5ae1b54931af26057072f1c18604ed8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8f26c77f0015a163707463593a0c3abc"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_ponca_1_1_algebraic_sphere.html#af39632c6e1cab056fc9249d39abedba6">VectorType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_ponca_1_1_algebraic_sphere.html#a8f26c77f0015a163707463593a0c3abc">projectDescent</a> (const <a class="el" href="class_ponca_1_1_algebraic_sphere.html#af39632c6e1cab056fc9249d39abedba6">VectorType</a> &amp;_q, int nbIter=16) const</td></tr>
+<tr class="memdesc:a8f26c77f0015a163707463593a0c3abc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Project a point on the algebraic hypersphere using Gradient Descent This projection is realized by following the gradient of the hypersphere scalar field.  <a href="class_ponca_1_1_algebraic_sphere.html#a8f26c77f0015a163707463593a0c3abc">More...</a><br /></td></tr>
+<tr class="separator:a8f26c77f0015a163707463593a0c3abc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8e8a4807e8ff369e0b0c94a1b40eeb02"><td class="memItemLeft" align="right" valign="top"><a id="a8e8a4807e8ff369e0b0c94a1b40eeb02"></a>
 <a class="el" href="class_ponca_1_1_algebraic_sphere.html#af39632c6e1cab056fc9249d39abedba6">VectorType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_ponca_1_1_algebraic_sphere.html#a8e8a4807e8ff369e0b0c94a1b40eeb02">primitiveGradient</a> (const <a class="el" href="class_ponca_1_1_algebraic_sphere.html#af39632c6e1cab056fc9249d39abedba6">VectorType</a> &amp;_q) const</td></tr>
 <tr class="memdesc:a8e8a4807e8ff369e0b0c94a1b40eeb02"><td class="mdescLeft">&#160;</td><td class="mdescRight">Approximation of the scalar field gradient at \( \mathbf{q} (not normalized) \). <br /></td></tr>
@@ -395,12 +395,12 @@ template&lt;class DataPoint , class _WFunctor , typename T  = void&gt; </div>
 </div><div class="memdoc">
 
 <p>Project a point on the algebraic hypersphere. </p>
-<p>This projection is realized in closed-form: the algebraic hypersphere is converted to a geometrical representation (hyperplane or hypersphere), and _q is orthogonally projected on the primtive. </p><dl class="section note"><dt>Note</dt><dd>This function is in most cases more accurate and faster than <a class="el" href="class_ponca_1_1_algebraic_sphere.html#af5ae1b54931af26057072f1c18604ed8" title="Project a point on the algebraic hypersphere using Gradient Descent This projection is realized by fo...">projectDescent</a> </dd></dl>
+<p>This projection is realized in closed-form: the algebraic hypersphere is converted to a geometrical representation (hyperplane or hypersphere), and _q is orthogonally projected on the primtive. </p><dl class="section note"><dt>Note</dt><dd>This function is in most cases more accurate and faster than <a class="el" href="class_ponca_1_1_algebraic_sphere.html#a8f26c77f0015a163707463593a0c3abc" title="Project a point on the algebraic hypersphere using Gradient Descent This projection is realized by fo...">projectDescent</a> </dd></dl>
 
 </div>
 </div>
-<a id="af5ae1b54931af26057072f1c18604ed8"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af5ae1b54931af26057072f1c18604ed8">&#9670;&nbsp;</a></span>projectDescent()</h2>
+<a id="a8f26c77f0015a163707463593a0c3abc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8f26c77f0015a163707463593a0c3abc">&#9670;&nbsp;</a></span>projectDescent()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -414,8 +414,18 @@ template&lt;class DataPoint , class _WFunctor , typename T  = void&gt; </div>
           <td class="memname">DataPoint::VectorType AlgebraicSphere::projectDescent </td>
           <td>(</td>
           <td class="paramtype">const <a class="el" href="class_ponca_1_1_algebraic_sphere.html#af39632c6e1cab056fc9249d39abedba6">VectorType</a> &amp;&#160;</td>
-          <td class="paramname"><em>_q</em></td><td>)</td>
-          <td> const</td>
+          <td class="paramname"><em>_q</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>nbIter</em> = <code>16</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td> const</td>
         </tr>
       </table>
   </td>
@@ -427,6 +437,12 @@ template&lt;class DataPoint , class _WFunctor , typename T  = void&gt; </div>
 
 <p>Project a point on the algebraic hypersphere using Gradient Descent This projection is realized by following the gradient of the hypersphere scalar field. </p>
 <dl class="section warning"><dt>Warning</dt><dd>This function is in most cases slower and less accurate than <a class="el" href="class_ponca_1_1_algebraic_sphere.html#a2f32fb50aced14cf4105f65b61f819d5" title="Project a point on the algebraic hypersphere.">project</a>. </dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">nbIter</td><td>Number of iterations (default = 16) </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -493,7 +509,7 @@ template&lt;class DataPoint , class _WFunctor , typename T  = void&gt; </div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue May 4 2021 09:58:14 for Ponca by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Tue May 4 2021 11:21:56 for Ponca by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.17
 </small></address>
