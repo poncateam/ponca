@@ -10,6 +10,15 @@ bool KdTreeRangePointIterator<DataPoint>::operator !=(const KdTreeRangePointIter
     return m_index != other.m_index;
 }
 
+
+template<class DataPoint>
+KdTreeRangePointIterator<DataPoint>&
+KdTreeRangePointIterator<DataPoint>::operator ++()
+{
+    m_query->advance(*this);
+    return *this;
+}
+
 template<class DataPoint>
 void KdTreeRangePointIterator<DataPoint>::operator ++(int)
 {

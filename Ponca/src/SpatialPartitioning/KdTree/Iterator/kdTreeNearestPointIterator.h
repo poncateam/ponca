@@ -23,7 +23,8 @@ public:
 
 public:
     bool operator !=(const KdTreeNearestPointIterator& other) const;
-    void operator ++();
+    void operator ++(int);
+    inline KdTreeNearestPointIterator& operator++();
     int  operator * () const;
 
 protected:

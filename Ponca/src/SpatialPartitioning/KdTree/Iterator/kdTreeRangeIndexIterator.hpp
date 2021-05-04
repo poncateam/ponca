@@ -15,6 +15,12 @@ void KdTreeRangeIndexIterator<DataPoint>::operator ++(int)
 {
     m_query->advance(*this);
 }
+template<class DataPoint>
+KdTreeRangeIndexIterator<DataPoint>& KdTreeRangeIndexIterator<DataPoint>::operator++()
+{
+    m_query->advance(*this);
+    return *this;
+}
 
 template<class DataPoint>
 int KdTreeRangeIndexIterator<DataPoint>::operator *() const

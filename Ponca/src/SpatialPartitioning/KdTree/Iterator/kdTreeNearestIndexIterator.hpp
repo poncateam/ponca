@@ -9,9 +9,15 @@ bool KdTreeNearestIndexIterator::operator !=(const KdTreeNearestIndexIterator& o
     return m_index != other.m_index;
 }
 
-void KdTreeNearestIndexIterator::operator ++()
+void KdTreeNearestIndexIterator::operator ++(int)
 {
     ++m_index;
+}
+
+KdTreeNearestIndexIterator& KdTreeNearestIndexIterator::operator ++()
+{
+    ++m_index;
+    return *this;
 }
 
 int KdTreeNearestIndexIterator::operator * () const

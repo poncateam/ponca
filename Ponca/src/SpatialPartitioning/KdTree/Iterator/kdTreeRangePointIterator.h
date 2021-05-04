@@ -44,6 +44,7 @@ public:
 public:
     inline bool operator !=(const KdTreeRangePointIterator<DataPoint>& other) const;
 	inline void operator ++(int);
+	inline KdTreeRangePointIterator<DataPoint>& operator++();
 	inline int  operator * () const;
 
 protected:
