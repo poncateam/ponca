@@ -8,7 +8,7 @@
 
 #include "../kdTreeQuery.h"
 #include "../../query.h"
-#include "../Iterator/kdTreeRangeIndexIterator.h"
+#include "../Iterator/kdTreeRangeIterator.h"
 
 namespace Ponca {
 
@@ -20,9 +20,10 @@ class KdTreeRangeIndexQuery : public KdTreeQuery<DataPoint>, public RangeIndexQu
     using VectorType      = typename DataPoint::VectorType;
     using QueryType       = RangeIndexQuery<typename DataPoint::Scalar>;
     using QueryAccelType  = KdTreeQuery<DataPoint>;
+    using Iterator        = KdTreeRangeIterator<DataPoint, KdTreeRangeIndexQuery>;
 
 protected:
-	friend class KdTreeRangeIndexIterator<DataPoint>;
+	friend Iterator;
 
 public:
     KdTreeRangeIndexQuery() :
@@ -46,12 +47,12 @@ public:
     }
 
 public:
-    inline KdTreeRangeIndexIterator<DataPoint> begin();
-    inline KdTreeRangeIndexIterator<DataPoint> end();
+    inline Iterator begin();
+    inline Iterator end();
 
 protected:
-    inline void initialize(KdTreeRangeIndexIterator<DataPoint>& iterator);
-    inline void advance(KdTreeRangeIndexIterator<DataPoint>& iterator);
+    inline void initialize(Iterator& iterator);
+    inline void advance(Iterator& iterator);
 };
 
 #include "./kdTreeRangeIndexQuery.hpp"

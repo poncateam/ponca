@@ -5,34 +5,34 @@
 */
 
 template<class DataPoint>
-KdTreeRangeIndexIterator<DataPoint> KdTreeRangeIndexQuery<DataPoint>::begin()
+typename KdTreeRangeIndexQuery<DataPoint>::Iterator
+KdTreeRangeIndexQuery<DataPoint>::begin()
 {
-    KdTreeRangeIndexIterator<DataPoint> it(this);
+    Iterator it(this);
     this->initialize(it);
     this->advance(it);
     return it;
 }
 
 template<class DataPoint>
-KdTreeRangeIndexIterator<DataPoint> KdTreeRangeIndexQuery<DataPoint>::end()
+typename KdTreeRangeIndexQuery<DataPoint>::Iterator
+KdTreeRangeIndexQuery<DataPoint>::end()
 {
-    return KdTreeRangeIndexIterator<DataPoint>(this, QueryAccelType::m_kdtree->point_count());
+    return Iterator(this, QueryAccelType::m_kdtree->point_count());
 }
 
 template<class DataPoint>
-void KdTreeRangeIndexQuery<DataPoint>::initialize(KdTreeRangeIndexIterator<DataPoint>& it)
+void KdTreeRangeIndexQuery<DataPoint>::initialize(Iterator& it)
 {
     QueryAccelType::m_stack.clear();
     QueryAccelType::m_stack.push();
     QueryAccelType::m_stack.top().index = 0;
     QueryAccelType::m_stack.top().squared_distance = 0;
-    it.m_index = -1;
-    it.m_start = 0;
-    it.m_end   = 0;
+    it = Iterator(this);
 }
 
 template<class DataPoint>
-void KdTreeRangeIndexQuery<DataPoint>::advance(KdTreeRangeIndexIterator<DataPoint>& it)
+void KdTreeRangeIndexQuery<DataPoint>::advance(Iterator& it)
 {
     const auto& nodes   = QueryAccelType::m_kdtree->node_data();
     const auto& points  = QueryAccelType::m_kdtree->point_data();

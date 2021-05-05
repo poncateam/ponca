@@ -5,16 +5,16 @@
 */
 
 template <class DataPoint>
-KdTreeKNearestPointIterator<DataPoint> KdTreeKNearestPointQuery<DataPoint>::begin()
+KdTreeKNearestIterator<DataPoint> KdTreeKNearestPointQuery<DataPoint>::begin()
 {
     this->search();
-    return KdTreeKNearestPointIterator<DataPoint>(KNearestQuery<Scalar>::m_queue.begin());
+    return KdTreeKNearestIterator<DataPoint>(KNearestQuery<Scalar>::m_queue.begin());
 }
 
 template <class DataPoint>
-KdTreeKNearestPointIterator<DataPoint> KdTreeKNearestPointQuery<DataPoint>::end()
+KdTreeKNearestIterator<DataPoint> KdTreeKNearestPointQuery<DataPoint>::end()
 {
-    return KdTreeKNearestPointIterator<DataPoint>(KNearestQuery<Scalar>::m_queue.end());
+    return KdTreeKNearestIterator<DataPoint>(KNearestQuery<Scalar>::m_queue.end());
 }
 
 template <class DataPoint>

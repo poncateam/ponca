@@ -17,9 +17,6 @@
 
 #include "../../Common/Assert.h"
 
-#include "Iterator/kdTreeRangeIndexIterator.h"
-#include "Iterator/kdTreeRangePointIterator.h"
-
 #include "Query/kdTreeNearestPointQuery.h"
 #include "Query/kdTreeNearestIndexQuery.h"
 #include "Query/kdTreeKNearestPointQuery.h"

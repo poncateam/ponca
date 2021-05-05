@@ -8,7 +8,7 @@
 
 #include "../kdTreeQuery.h"
 #include "../../query.h"
-#include "../Iterator/kdTreeKNearestIndexIterator.h"
+#include "../Iterator/kdTreeKNearestIterator.h"
 
 namespace Ponca {
 
@@ -38,8 +38,8 @@ public:
     }
 
 public:
-    KdTreeKNearestIndexIterator<DataPoint> begin();
-    KdTreeKNearestIndexIterator<DataPoint> end();
+    KdTreeKNearestIterator<DataPoint> begin();
+    KdTreeKNearestIterator<DataPoint> end();
 
 protected:
     void search();
