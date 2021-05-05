@@ -37,12 +37,12 @@ void KdTreeRangeIndexQuery<DataPoint>::advance(Iterator& it)
     const auto& nodes   = QueryAccelType::m_kdtree->node_data();
     const auto& points  = QueryAccelType::m_kdtree->point_data();
     const auto& indices = QueryAccelType::m_kdtree->index_data();
-    const auto& point   = points[QueryType::m_index];
+    const auto& point   = points[QueryType::input()];
 
     for(int i=it.m_start; i<it.m_end; ++i)
     {
         int idx = indices[i];
-        if(idx == QueryType::m_index) continue;
+        if(idx == QueryType::input()) continue;
 
         Scalar d = (point.pos() - points[idx].pos()).squaredNorm();
         if(d < QueryType::m_squared_radius)
@@ -68,7 +68,7 @@ void KdTreeRangeIndexQuery<DataPoint>::advance(Iterator& it)
                 for(int i=it.m_start; i<it.m_end; ++i)
                 {
                     int idx = indices[i];
-                    if(idx == QueryType::m_index) continue;
+                    if(idx == QueryType::input()) continue;
 
                     Scalar d = (point.pos() - points[idx].pos()).squaredNorm();
                     if(d < QueryType::m_squared_radius)

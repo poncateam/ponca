@@ -27,7 +27,7 @@ public:
     {return m_index != other.m_index;}
     inline void operator ++(int) {m_query->advance(*this);}
     inline KdTreeRangeIterator<DataPoint,QueryType>& operator++() {m_query->advance(*this); return *this;}
-    inline int  operator *() const {return m_index;}
+    inline int operator *() const {return m_index;}
 
 protected:
     QueryType* m_query {nullptr};

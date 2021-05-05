@@ -8,13 +8,13 @@ template <class DataPoint>
 KdTreeKNearestIterator<DataPoint> KdTreeKNearestPointQuery<DataPoint>::begin()
 {
     this->search();
-    return KdTreeKNearestIterator<DataPoint>(KNearestQuery<Scalar>::m_queue.begin());
+    return KdTreeKNearestIterator<DataPoint>(QueryOutputIsKNearest<Scalar>::m_queue.begin());
 }
 
 template <class DataPoint>
 KdTreeKNearestIterator<DataPoint> KdTreeKNearestPointQuery<DataPoint>::end()
 {
-    return KdTreeKNearestIterator<DataPoint>(KNearestQuery<Scalar>::m_queue.end());
+    return KdTreeKNearestIterator<DataPoint>(QueryOutputIsKNearest<Scalar>::m_queue.end());
 }
 
 template <class DataPoint>
@@ -45,14 +45,14 @@ void KdTreeKNearestPointQuery<DataPoint>::search()
                 {
                     int idx = indices[i];
 
-                    Scalar d = (KNearestPointQuery<DataPoint>::m_point.pos() - points[idx].pos()).squaredNorm();
+                    Scalar d = (KNearestPointQuery<DataPoint>::input() - points[idx].pos()).squaredNorm();
                     QueryType::m_queue.push({idx, d});
                 }
             }
             else
             {
                 // replace the stack top by the farthest and push the closest
-                Scalar newOff = KNearestPointQuery<DataPoint>::m_point.pos()[node.dim] - node.splitValue;
+                Scalar newOff = KNearestPointQuery<DataPoint>::input()[node.dim] - node.splitValue;
                 QueryAccelType::m_stack.push();
                 if(newOff < 0)
                 {

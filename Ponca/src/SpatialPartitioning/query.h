@@ -14,207 +14,159 @@
 
 namespace Ponca {
 
+
+/// \internal
+/// \brief Macro generating code of the the Query base classes inhering QueryInputIsIndex
+/// \note For internal use only
+#define DECLARE_INDEX_QUERY_CLASS(OUT_TYPE) \
+/*! \brief Base Query class combining QueryInputIsIndex and QueryOutputIs##OUT_TYPE##. */    \
+template <typename Scalar>                                 \
+struct  OUT_TYPE##IndexQuery : Query<QueryInputIsIndex, QueryOutputIs##OUT_TYPE<Scalar>> \
+{ \
+    using Base = Query<QueryInputIsIndex, QueryOutputIs##OUT_TYPE<Scalar>>; \
+    using Base::Base; \
+};
+
+
+/// \internal
+/// \brief Macro generating code of the the Query base classes inhering QueryInputIsPosition
+/// \note For internal use only
+#define DECLARE_POINT_QUERY_CLASS(OUT_TYPE) \
+/*! \brief Base Query class combining QueryInputIsPosition and QueryOutputIs##OUT_TYPE##. */    \
+template <typename DataPoint>                                \
+struct  OUT_TYPE##PointQuery : Query<QueryInputIsPosition<DataPoint>, \
+                                     QueryOutputIs##OUT_TYPE<typename DataPoint::Scalar>> \
+{ \
+    using Base = Query<QueryInputIsPosition<DataPoint>, QueryOutputIs##OUT_TYPE<typename DataPoint::Scalar>>; \
+    using Base::Base; \
+};
+
+/// \addtogroup spatialpartitioning
+/// @{
+
 ////////////////////////////////////////////////////////////////
 // Base classes
 ////////////////////////////////////////////////////////////////
 
-/// \brief Base class for queries storing indices
-/// \ingroup spatialpartitioning
-struct IndexQuery
-{
-    inline IndexQuery(int index = -1): m_index( index ) { }
+/// \brief Base class for queries input type
+    struct QueryInputBase {
+    };
 
-    inline int index() const { return m_index; }
-    inline void set_index(int index) { m_index = index;}
+/// \brief Base class for queries output type
+    struct QueryOutputBase {
+        struct DummyOutputParameter {
+        };
+    };
 
-protected:
-    /// Index of the queried point
-    int m_index;
-};
+/// \brief Base class for typed queries input type
+    template<typename InputType_>
+    struct QueryInput : public QueryInputBase {
+        using InputType = InputType_;
+
+        inline QueryInput(InputType input) : m_input(input) {}
+
+        inline const InputType &input() const { return m_input; }
+
+    private:
+        /// Index of the queried point
+        const InputType m_input;
+    };
 
 
 /// \brief Base class for queries storing points
-/// \ingroup spatialpartitioning
-template <typename DataPoint>
-struct PointQuery
-{
-    using VectorType = typename DataPoint::VectorType;
+    struct QueryInputIsIndex : public QueryInput<int> {
+        using Base = QueryInput<int>;
+        using InputType = typename Base::InputType;
 
-    inline PointQuery(const VectorType& point = VectorType::Zero())
-        : m_point(point) {}
+        inline QueryInputIsIndex(const InputType &point = -1)
+                : Base(point) {}
+    };
 
-    inline const VectorType& point() const { return m_point.pos(); }
-    inline void set_point(const VectorType& point) { m_point = DataPoint(point); }
+/// \brief Base class for queries storing points
+    template<typename DataPoint>
+    struct QueryInputIsPosition : public QueryInput<typename DataPoint::VectorType> {
+        using Base = QueryInput<typename DataPoint::VectorType>;
+        using InputType = typename Base::InputType;
 
-protected:
-    /// Queried point
-    DataPoint m_point;
-};
+        inline QueryInputIsPosition(const InputType &point = InputType::Zero())
+                : Base(point) {}
+    };
 
 /// \brief Base class for range queries
-/// \ingroup spatialpartitioning
-template<typename Scalar>
-struct RangeQuery
-{
-    inline RangeQuery(Scalar radius = Scalar( 0 ))
-        : m_squared_radius ( std::pow( radius, 2 ) ) {}
+    template<typename Scalar>
+    struct QueryOutputIsRange : public QueryOutputBase {
+        using OutputParameter = Scalar;
 
-    inline Scalar radius() const { return std::sqrt( m_squared_radius );}
-    inline Scalar squared_radius() const { return m_squared_radius; }
-    inline void set_radius(Scalar radius) { m_squared_radius = std::pow( radius, 2 ); }
-    inline void set_squared_radius(Scalar radius) { m_squared_radius = radius; }
+        inline QueryOutputIsRange(OutputParameter radius = OutputParameter(0))
+                : m_squared_radius(std::pow(radius, 2)) {}
 
-protected:
-	Scalar m_squared_radius { 0 };
-};
+        inline Scalar radius() const { return std::sqrt(m_squared_radius); }
 
+        inline Scalar squared_radius() const { return m_squared_radius; }
+
+        inline void set_radius(Scalar radius) { m_squared_radius = std::pow(radius, 2); }
+
+        inline void set_squared_radius(Scalar radius) { m_squared_radius = radius; }
+
+    protected:
+        Scalar m_squared_radius{0};
+    };
 
 /// \brief Base class for nearest queries
-/// \ingroup spatialpartitioning
-template<typename Scalar>
-struct NearestQuery
-{
-    NearestQuery(){}
+    template<typename Scalar>
+    struct QueryOutputIsNearest : public QueryOutputBase {
+        using OutputParameter = typename QueryOutputBase::DummyOutputParameter;
 
-    int get() const{return m_nearest;}
+        QueryOutputIsNearest() {}
 
-protected:
-    int m_nearest;
-	Scalar m_squared_distance;
-};
+        int get() const { return m_nearest; }
+
+    protected:
+        int m_nearest;
+        Scalar m_squared_distance;
+    };
 
 /// \brief Base class for knearest queries
-/// \ingroup spatialpartitioning
-template<typename Scalar>
-struct KNearestQuery
-{
-    inline KNearestQuery()      : m_queue() {}
-    inline KNearestQuery(int k) : m_queue(k){}
+    template<typename Scalar>
+    struct QueryOutputIsKNearest : public QueryOutputBase {
+        using OutputParameter = int;
 
-    inline size_t k() const     { return m_queue.capacity(); }
-    inline void set_k(int k) { return m_queue.reserve(k); }
+        inline QueryOutputIsKNearest(OutputParameter k = 0) : m_queue(k) {}
 
-    inline limited_priority_queue<IndexSquaredDistance<Scalar>>& queue()
-    { return m_queue; }
+        inline limited_priority_queue<IndexSquaredDistance<Scalar>> &queue() { return m_queue; }
 
-protected:
-    limited_priority_queue<IndexSquaredDistance<Scalar>> m_queue;
-};
+    protected:
+        limited_priority_queue<IndexSquaredDistance<Scalar>> m_queue;
+    };
 
 
-////////////////////////////////////////////////////////////////
-// KNearest Queries
-////////////////////////////////////////////////////////////////
+    template<typename Input_, typename Output_>
+    struct Query : public Input_, public Output_ {
+        using QueryInType = Input_;
+        using QueryOutType = Output_;
 
-/// \brief Base class of KNearestQuery storing indices
-/// \ingroup spatialpartitioning
-template <typename Scalar>
-struct KNearestIndexQuery : public IndexQuery,
-                            public KNearestQuery<Scalar>
-{
-    using QueryInType  = IndexQuery;
-    using QueryOutType = KNearestQuery<Scalar>;
+        static_assert(std::is_base_of<QueryInputBase, QueryInType>::value,
+                      "QueryInType must inherit Ponca::QueryInputBase");
+        static_assert(std::is_base_of<QueryOutputBase, QueryOutType>::value,
+                      "QueryInType must inherit Ponca::QueryInputBase");
 
-    inline KNearestIndexQuery()
-        : IndexQuery(), KNearestQuery<Scalar>() {}
-    inline KNearestIndexQuery(int k)
-        : IndexQuery(), KNearestQuery<Scalar>( k ) {}
-    inline KNearestIndexQuery(int k, int index)
-        : IndexQuery( index ), KNearestQuery<Scalar>( k ) {}
-};
+        inline Query(const typename QueryInType::InputType &in)
+                : QueryInType(in), QueryOutType() {}
 
-/// \brief Base class of KNearestQuery storing points
-/// \ingroup spatialpartitioning
-template <class DataPoint>
-struct KNearestPointQuery : public PointQuery<DataPoint>, public KNearestQuery<typename DataPoint::Scalar>
-{
-    using VectorType = typename DataPoint::VectorType;
-    using Scalar     = typename DataPoint::Scalar;
+        inline Query(const typename QueryOutType::OutputParameter &outParam,
+                     const typename QueryInType::InputType &in)
+                : QueryOutType(outParam), QueryInType(in) {}
+    };
 
-    using QueryInType  = PointQuery<DataPoint>;
-    using QueryOutType = KNearestQuery<typename DataPoint::Scalar>;
+DECLARE_INDEX_QUERY_CLASS(KNearest) //KNearestIndexQuery
+DECLARE_INDEX_QUERY_CLASS(Nearest)  //NearestIndexQuery
+DECLARE_INDEX_QUERY_CLASS(Range)    //RangeIndexQuery
+DECLARE_POINT_QUERY_CLASS(KNearest) //KNearestPointQuery
+DECLARE_POINT_QUERY_CLASS(Nearest)  //NearestPointQuery
+DECLARE_POINT_QUERY_CLASS(Range)    //RangePointQuery
 
-    inline KNearestPointQuery()
-        : PointQuery<DataPoint>(), KNearestQuery<Scalar>() {}
-    inline KNearestPointQuery(const VectorType& point)
-        : PointQuery<DataPoint>(point), KNearestQuery<Scalar>() {}
-    inline KNearestPointQuery(int k)
-        : PointQuery<DataPoint>(), KNearestQuery<Scalar>(k) {}
-    inline KNearestPointQuery(int k, const VectorType& point)
-        : PointQuery<DataPoint>(point), KNearestQuery<Scalar>(k) {}
-};
+/// @}
 
-
-////////////////////////////////////////////////////////////////
-// Nearest Queries
-////////////////////////////////////////////////////////////////
-
-/// \brief Base class NearestQuery storing points
-/// \ingroup spatialpartitioning
-template <class DataPoint>
-struct NearestPointQuery : public PointQuery<DataPoint>, public NearestQuery<typename DataPoint::Scalar>
-{
-	using Scalar     = typename DataPoint::Scalar;
-	using VectorType = typename DataPoint::VectorType;
-
-    using QueryInType  = PointQuery<DataPoint>;
-    using QueryOutType = NearestQuery<typename DataPoint::Scalar>;
-
-    inline NearestPointQuery()
-        : PointQuery<DataPoint>(), NearestQuery<Scalar>() {}
-    inline NearestPointQuery(const VectorType& point)
-        : PointQuery<DataPoint>(point), NearestQuery<Scalar>() {}
-};
-
-/// \brief Base class for NearestQuery storing indices
-/// \ingroup spatialpartitioning
-template <typename Scalar>
-struct NearestIndexQuery : public IndexQuery, public NearestQuery<Scalar>
-{
-    using QueryInType  = IndexQuery;
-    using QueryOutType = NearestQuery<Scalar>;
-
-    inline NearestIndexQuery() : IndexQuery(), NearestQuery<Scalar>() {}
-    inline NearestIndexQuery(int index) : IndexQuery( index ), NearestQuery<Scalar>() {}
-};
-
-////////////////////////////////////////////////////////////////
-// Range Queries
-////////////////////////////////////////////////////////////////
-
-/// \brief Base class RangeQuery storing points
-/// \ingroup spatialpartitioning
-template <class DataPoint>
-struct RangePointQuery : public PointQuery<DataPoint>, public RangeQuery<typename DataPoint::Scalar>
-{
-	using VectorType = typename DataPoint::VectorType;
-	using Scalar     = typename DataPoint::Scalar;
-
-    using QueryInType  = PointQuery<DataPoint>;
-    using QueryOutType = RangeQuery<typename DataPoint::Scalar>;
-
-    inline RangePointQuery()
-        : PointQuery<DataPoint>(), RangeQuery<Scalar>() {}
-    inline RangePointQuery(Scalar radius)
-        : PointQuery<DataPoint>(), RangeQuery<Scalar>(radius) {}
-    inline RangePointQuery(Scalar radius, const VectorType& point)
-        : PointQuery<DataPoint>(point), RangeQuery<Scalar>(radius) {}
-};
-
-/// \brief Base class RangeQuery storing indices
-/// \ingroup spatialpartitioning
-template<typename Scalar>
-struct RangeIndexQuery : public IndexQuery, public RangeQuery<Scalar>
-{
-    using QueryInType  = IndexQuery;
-    using QueryOutType = RangeQuery<Scalar>;
-
-    inline RangeIndexQuery()
-        : IndexQuery(), RangeQuery<Scalar>() {}
-    inline RangeIndexQuery(Scalar radius)
-        : IndexQuery(), RangeQuery<Scalar>( radius ) {}
-    inline RangeIndexQuery(Scalar radius, int index)
-        : IndexQuery( index ), RangeQuery<Scalar>( radius ) {}
-};
-
+#undef DECLARE_INDEX_QUERY_CLASS
+#undef DECLARE_POINT_QUERY_CLASS
 }

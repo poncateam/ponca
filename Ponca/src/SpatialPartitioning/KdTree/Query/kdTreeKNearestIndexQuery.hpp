@@ -23,7 +23,7 @@ void KdTreeKNearestIndexQuery<DataPoint>::search()
     const auto& nodes   = QueryAccelType::m_kdtree->node_data();
     const auto& points  = QueryAccelType::m_kdtree->point_data();
     const auto& indices = QueryAccelType::m_kdtree->index_data();
-    const auto& point   = points[QueryType::m_index];
+    const auto& point   = points[QueryType::input()];
 
     QueryAccelType::m_stack.clear();
     QueryAccelType::m_stack.push({0,0});
@@ -45,7 +45,7 @@ void KdTreeKNearestIndexQuery<DataPoint>::search()
                 for(int i=node.start; i<end; ++i)
                 {
                     int idx = indices[i];
-                    if(QueryType::m_index == idx) continue;
+                    if(QueryType::input() == idx) continue;
 
                     Scalar d = (point.pos() - points[idx].pos()).squaredNorm();
                     QueryType::m_queue.push({idx, d});

@@ -36,7 +36,7 @@ void KdTreeRangePointQuery<DataPoint>::advance(Iterator& it)
     const auto& points  = QueryAccelType::m_kdtree->point_data();
     const auto& indices = QueryAccelType::m_kdtree->index_data();
 
-    VectorType pos = QueryType::m_point.pos();
+    VectorType pos = QueryType::input();
     for(int i=it.m_start; i<it.m_end; ++i)
     {
         int idx = indices[i];
