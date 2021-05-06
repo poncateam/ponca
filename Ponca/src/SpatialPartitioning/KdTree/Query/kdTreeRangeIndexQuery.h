@@ -26,20 +26,6 @@ protected:
 	friend Iterator;
 
 public:
-    KdTreeRangeIndexQuery() :
-        KdTreeQuery<DataPoint>(), RangeIndexQuery<Scalar>()
-    {
-    }
-
-    KdTreeRangeIndexQuery(const KdTree<DataPoint>* kdtree) :
-        KdTreeQuery<DataPoint>(kdtree), RangeIndexQuery<Scalar>()
-    {
-    }
-
-    KdTreeRangeIndexQuery(const KdTree<DataPoint>* kdtree, Scalar radius) :
-        KdTreeQuery<DataPoint>(kdtree), RangeIndexQuery<Scalar>(radius)
-    {
-    }
 
     KdTreeRangeIndexQuery(const KdTree<DataPoint>* kdtree, Scalar radius, int index) :
         KdTreeQuery<DataPoint>(kdtree), RangeIndexQuery<Scalar>(radius, index)
@@ -51,7 +37,7 @@ public:
     inline Iterator end();
 
 protected:
-    inline void initialize(Iterator& iterator);
+    inline void initialize();
     inline void advance(Iterator& iterator);
 };
 

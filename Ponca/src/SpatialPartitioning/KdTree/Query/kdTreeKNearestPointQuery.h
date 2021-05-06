@@ -21,16 +21,6 @@ public:
     using QueryType       = KNearestPointQuery<DataPoint>;
     using QueryAccelType  = KdTreeQuery<DataPoint>;
 
-    KdTreeKNearestPointQuery() :
-        KdTreeQuery<DataPoint>(), KNearestPointQuery<DataPoint>()
-    {
-    }
-
-    KdTreeKNearestPointQuery(const KdTree<DataPoint>* kdtree, int k) :
-        KdTreeQuery<DataPoint>(kdtree), KNearestPointQuery<DataPoint>(k)
-    {
-    }
-
     KdTreeKNearestPointQuery(const KdTree<DataPoint>* kdtree, int k, const VectorType& point) :
         KdTreeQuery<DataPoint>(kdtree), KNearestPointQuery<DataPoint>(k, point)
     {

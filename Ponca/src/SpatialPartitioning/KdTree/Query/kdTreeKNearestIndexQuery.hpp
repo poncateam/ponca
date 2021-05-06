@@ -7,6 +7,8 @@
 template<class DataPoint>
 KdTreeKNearestIterator<DataPoint> KdTreeKNearestIndexQuery<DataPoint>::begin()
 {
+    QueryAccelType::reset();
+    QueryType::reset();
     this->search();
     return KdTreeKNearestIterator<DataPoint>(QueryType::m_queue.begin());
 }
@@ -23,13 +25,7 @@ void KdTreeKNearestIndexQuery<DataPoint>::search()
     const auto& nodes   = QueryAccelType::m_kdtree->node_data();
     const auto& points  = QueryAccelType::m_kdtree->point_data();
     const auto& indices = QueryAccelType::m_kdtree->index_data();
-    const auto& point   = points[QueryType::input()];
-
-    QueryAccelType::m_stack.clear();
-    QueryAccelType::m_stack.push({0,0});
-
-    QueryType::m_queue.clear();
-    QueryType::m_queue.push({-1,std::numeric_limits<Scalar>::max()});
+    const auto& point   = points[QueryType::input()].pos();
 
     while(!QueryAccelType::m_stack.empty())
     {
@@ -47,14 +43,14 @@ void KdTreeKNearestIndexQuery<DataPoint>::search()
                     int idx = indices[i];
                     if(QueryType::input() == idx) continue;
 
-                    Scalar d = (point.pos() - points[idx].pos()).squaredNorm();
+                    Scalar d = (point - points[idx].pos()).squaredNorm();
                     QueryType::m_queue.push({idx, d});
                 }
             }
             else
             {
                 // replace the stack top by the farthest and push the closest
-                Scalar newOff = point.pos()[node.dim] - node.splitValue;
+                Scalar newOff = point[node.dim] - node.splitValue;
                 QueryAccelType::m_stack.push();
                 if(newOff < 0)
                 {
@@ -67,7 +63,7 @@ void KdTreeKNearestIndexQuery<DataPoint>::search()
                     qnode.index         = node.firstChildId;
                 }
                 QueryAccelType::m_stack.top().squared_distance = qnode.squared_distance;
-                qnode.squared_distance         = newOff * newOff;
+                qnode.squared_distance         = newOff*newOff;
             }
         }
         else

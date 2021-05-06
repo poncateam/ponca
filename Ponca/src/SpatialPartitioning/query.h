@@ -109,6 +109,10 @@ struct  OUT_TYPE##PointQuery : Query<QueryInputIsPosition<DataPoint>, \
         inline void set_squared_radius(Scalar radius) { m_squared_radius = radius; }
 
     protected:
+        /// \brief Reset Query for a new search
+        void reset() {
+            m_squared_radius = 0;
+        }
         Scalar m_squared_radius{0};
     };
 
@@ -122,8 +126,14 @@ struct  OUT_TYPE##PointQuery : Query<QueryInputIsPosition<DataPoint>, \
         int get() const { return m_nearest; }
 
     protected:
-        int m_nearest;
-        Scalar m_squared_distance;
+        /// \brief Reset Query for a new search
+        void reset() {
+            m_nearest = -1;
+            m_squared_distance = std::numeric_limits<Scalar>::max();
+        }
+
+        int m_nearest {-1};
+        Scalar m_squared_distance {std::numeric_limits<Scalar>::max()};
     };
 
 /// \brief Base class for knearest queries
@@ -136,6 +146,11 @@ struct  OUT_TYPE##PointQuery : Query<QueryInputIsPosition<DataPoint>, \
         inline limited_priority_queue<IndexSquaredDistance<Scalar>> &queue() { return m_queue; }
 
     protected:
+        /// \brief Reset Query for a new search
+        void reset() {
+            m_queue.clear();
+            m_queue.push({-1,std::numeric_limits<Scalar>::max()});
+        }
         limited_priority_queue<IndexSquaredDistance<Scalar>> m_queue;
     };
 

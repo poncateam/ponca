@@ -7,6 +7,8 @@
 template <class DataPoint>
 KdTreeNearestIterator KdTreeNearestIndexQuery<DataPoint>::begin()
 {
+    QueryAccelType::reset();
+    QueryType::reset();
     this->search();
     return KdTreeNearestIterator(QueryType::m_nearest);
 }
@@ -23,13 +25,10 @@ void KdTreeNearestIndexQuery<DataPoint>::search()
     const auto& nodes   = QueryAccelType::m_kdtree->node_data();
     const auto& points  = QueryAccelType::m_kdtree->point_data();
     const auto& indices = QueryAccelType::m_kdtree->index_data();
-    const auto& point   = points[QueryType::input()];
+    const auto& point   = points[QueryType::input()].pos();
 
-    QueryAccelType::m_stack.clear();
-    QueryAccelType::m_stack.push({0,0});
-
-    QueryType::m_nearest = QueryType::input()==indices[0] ? indices[1] : indices[0];
-    QueryType::m_squared_distance = (point.pos() - points[QueryType::m_nearest].pos()).squaredNorm();
+    if (nodes.empty() || points.empty() || indices.empty())
+        throw std::invalid_argument("Empty KdTree");
 
     while(!QueryAccelType::m_stack.empty())
     {
@@ -47,7 +46,7 @@ void KdTreeNearestIndexQuery<DataPoint>::search()
                     int idx = indices[i];
                     if(QueryType::input() == idx) continue;
 
-                    Scalar d = (point.pos() - points[idx].pos()).squaredNorm();
+                    Scalar d = (point - points[idx].pos()).squaredNorm();
                     if(d < QueryType::m_squared_distance)
                     {
                         QueryType::m_nearest = idx;
@@ -58,7 +57,7 @@ void KdTreeNearestIndexQuery<DataPoint>::search()
             else
             {
                 // replace the stack top by the farthest and push the closest
-                Scalar newOff = point.pos()[node.dim] - node.splitValue;
+                Scalar newOff = point[node.dim] - node.splitValue;
                 QueryAccelType::m_stack.push();
                 if(newOff < 0)
                 {
@@ -79,4 +78,4 @@ void KdTreeNearestIndexQuery<DataPoint>::search()
             QueryAccelType::m_stack.pop();
         }
     }
-}   
+}

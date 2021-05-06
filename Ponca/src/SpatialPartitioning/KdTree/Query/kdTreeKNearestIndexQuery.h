@@ -22,16 +22,6 @@ public:
     using QueryType       = KNearestIndexQuery<typename DataPoint::Scalar>;
     using QueryAccelType  = KdTreeQuery<DataPoint>;
 
-    KdTreeKNearestIndexQuery() :
-        KdTreeQuery<DataPoint>(), KNearestIndexQuery<Scalar>()
-    {
-    }
-
-    KdTreeKNearestIndexQuery(const KdTree<DataPoint>* kdtree, int k) :
-        KdTreeQuery<DataPoint>(kdtree), KNearestIndexQuery<Scalar>(k)
-    {
-    }
-
     KdTreeKNearestIndexQuery(const KdTree<DataPoint>* kdtree, int k, int index) :
         KdTreeQuery<DataPoint>(kdtree), KNearestIndexQuery<Scalar>(k, index)
     {

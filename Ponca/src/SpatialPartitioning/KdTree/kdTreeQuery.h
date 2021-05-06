@@ -20,9 +20,18 @@ template <class DataPoint>
 class KdTreeQuery
 {
 public:
-    inline KdTreeQuery(const KdTree<DataPoint>* kdtree = nullptr) : m_kdtree( kdtree ), m_stack() {}
+    using Scalar          = typename DataPoint::Scalar;
+    using VectorType      = typename DataPoint::VectorType;
+
+    explicit inline KdTreeQuery(const KdTree<DataPoint>* kdtree) : m_kdtree( kdtree ), m_stack() {}
 
 protected:
+    /// \brief Init stack for a new search
+    inline void reset() {
+        m_stack.clear();
+        m_stack.push({0,0});
+    }
+
     const KdTree<DataPoint>* m_kdtree { nullptr };
     Stack<IndexSquaredDistance<typename DataPoint::Scalar>, 2 * PCA_KDTREE_MAX_DEPTH> m_stack;
 };
