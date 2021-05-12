@@ -5,16 +5,18 @@
 */
 
 template <class DataPoint>
-KdTreeKNearestPointIterator<DataPoint> KdTreeKNearestPointQuery<DataPoint>::begin()
+KdTreeKNearestIterator<DataPoint> KdTreeKNearestPointQuery<DataPoint>::begin()
 {
+    QueryAccelType::reset();
+    QueryType::reset();
     this->search();
-    return KdTreeKNearestPointIterator<DataPoint>(KNearestQuery<Scalar>::m_queue.begin());
+    return KdTreeKNearestIterator<DataPoint>(QueryType::m_queue.begin());
 }
 
 template <class DataPoint>
-KdTreeKNearestPointIterator<DataPoint> KdTreeKNearestPointQuery<DataPoint>::end()
+KdTreeKNearestIterator<DataPoint> KdTreeKNearestPointQuery<DataPoint>::end()
 {
-    return KdTreeKNearestPointIterator<DataPoint>(KNearestQuery<Scalar>::m_queue.end());
+    return KdTreeKNearestIterator<DataPoint>(QueryType::m_queue.end());
 }
 
 template <class DataPoint>
@@ -23,12 +25,7 @@ void KdTreeKNearestPointQuery<DataPoint>::search()
     const auto& nodes   = QueryAccelType::m_kdtree->node_data();
     const auto& points  = QueryAccelType::m_kdtree->point_data();
     const auto& indices = QueryAccelType::m_kdtree->index_data();
-
-    QueryAccelType::m_stack.clear();
-    QueryAccelType::m_stack.push({0,0});
-
-    QueryType::m_queue.clear();
-    QueryType::m_queue.push({-1,std::numeric_limits<Scalar>::max()});
+    const auto& point   = QueryType::input();
 
     while(!QueryAccelType::m_stack.empty())
     {
@@ -45,14 +42,14 @@ void KdTreeKNearestPointQuery<DataPoint>::search()
                 {
                     int idx = indices[i];
 
-                    Scalar d = (KNearestPointQuery<DataPoint>::m_point.pos() - points[idx]).squaredNorm();
+                    Scalar d = (point - points[idx].pos()).squaredNorm();
                     QueryType::m_queue.push({idx, d});
                 }
             }
             else
             {
                 // replace the stack top by the farthest and push the closest
-                Scalar newOff = KNearestPointQuery<DataPoint>::m_point.pos()[node.dim] - node.splitValue;
+                Scalar newOff = point[node.dim] - node.splitValue;
                 QueryAccelType::m_stack.push();
                 if(newOff < 0)
                 {

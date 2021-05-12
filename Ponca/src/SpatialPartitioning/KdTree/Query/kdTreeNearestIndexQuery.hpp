@@ -5,16 +5,18 @@
 */
 
 template <class DataPoint>
-KdTreeNearestIndexIterator KdTreeNearestIndexQuery<DataPoint>::begin()
+KdTreeNearestIterator KdTreeNearestIndexQuery<DataPoint>::begin()
 {
+    QueryAccelType::reset();
+    QueryType::reset();
     this->search();
-    return KdTreeNearestIndexIterator(QueryType::m_nearest);
+    return KdTreeNearestIterator(QueryType::m_nearest);
 }
 
 template <class DataPoint>
-KdTreeNearestIndexIterator KdTreeNearestIndexQuery<DataPoint>::end()
+KdTreeNearestIterator KdTreeNearestIndexQuery<DataPoint>::end()
 {
-    return KdTreeNearestIndexIterator(QueryType::m_nearest+1);
+    return KdTreeNearestIterator(QueryType::m_nearest + 1);
 }
 
 template <class DataPoint>
@@ -23,13 +25,10 @@ void KdTreeNearestIndexQuery<DataPoint>::search()
     const auto& nodes   = QueryAccelType::m_kdtree->node_data();
     const auto& points  = QueryAccelType::m_kdtree->point_data();
     const auto& indices = QueryAccelType::m_kdtree->index_data();
-    const auto& point   = points[QueryType::m_index];
+    const auto& point   = points[QueryType::input()].pos();
 
-    QueryAccelType::m_stack.clear();
-    QueryAccelType::m_stack.push({0,0});
-
-    QueryType::m_nearest = QueryType::m_index==indices[0] ? indices[1] : indices[0];
-    QueryType::m_squared_distance = (point - points[QueryType::m_nearest]).squaredNorm();
+    if (nodes.empty() || points.empty() || indices.empty())
+        throw std::invalid_argument("Empty KdTree");
 
     while(!QueryAccelType::m_stack.empty())
     {
@@ -45,9 +44,9 @@ void KdTreeNearestIndexQuery<DataPoint>::search()
                 for(int i=node.start; i<end; ++i)
                 {
                     int idx = indices[i];
-                    if(QueryType::m_index == idx) continue;
+                    if(QueryType::input() == idx) continue;
 
-                    Scalar d = (point - points[idx]).squaredNorm();
+                    Scalar d = (point - points[idx].pos()).squaredNorm();
                     if(d < QueryType::m_squared_distance)
                     {
                         QueryType::m_nearest = idx;
@@ -79,4 +78,4 @@ void KdTreeNearestIndexQuery<DataPoint>::search()
             QueryAccelType::m_stack.pop();
         }
     }
-}   
+}

@@ -22,7 +22,7 @@ void testKdTreeRangeIndex(bool quick = true)
 
 	const int N = quick ? 100 : 10000;
 	auto points = VectorContainer(N);
-	std::generate(points.begin(), points.end(), []() {return VectorType::Random(); });
+    std::generate(points.begin(), points.end(), []() {return DataPoint(VectorType::Random()); });
 
 	std::vector<int> indices(N);
 	std::vector<int> sampling(N / 2);
@@ -40,9 +40,8 @@ void testKdTreeRangeIndex(bool quick = true)
         Scalar r = Eigen::internal::random<Scalar>(0., 0.5);
         std::vector<int> results;
 
-		KdTreeRangeIndexQuery<DataPoint> rangeIndexQuery = structure.range_neighbors(i, r);
-		for (KdTreeRangeIndexIterator<DataPoint> j = rangeIndexQuery.begin(); j != rangeIndexQuery.end(); j++) {
-			results.push_back(*j);
+		for (int j : structure.range_neighbors(i, r)) {
+			results.push_back(j);
 		}
 		bool res = check_range_neighbors<Scalar, VectorContainer>(points, sampling, i, r, results);
 		EXPECT_TRUE(res);
@@ -58,7 +57,7 @@ void testKdTreeRangePoint(bool quick = true)
 
 	const int N = quick ? 100 : 10000;
 	auto points = VectorContainer(N);
-	std::generate(points.begin(), points.end(), []() {return VectorType::Random(); });
+    std::generate(points.begin(), points.end(), []() {return DataPoint(VectorType::Random()); });
 
 	int seed = 0;
 	std::vector<int> indices(N);
@@ -75,9 +74,8 @@ void testKdTreeRangePoint(bool quick = true)
 		VectorType point = VectorType::Random(); // values between [-1:1]
         std::vector<int> results;
 
-		KdTreeRangePointQuery<DataPoint> rangePointQuery = structure.range_neighbors(point, r);
-		for (KdTreeRangePointIterator<DataPoint> j = rangePointQuery.begin(); j != rangePointQuery.end(); j++) {
-			results.push_back(*j);
+		for (int j : structure.range_neighbors(point, r)) {
+			results.push_back(j);
 		}
 
 		bool res = check_range_neighbors<Scalar, VectorType, VectorContainer>(points, sampling, point, r, results);

@@ -8,7 +8,7 @@
 
 #include "../kdTreeQuery.h"
 #include "../../query.h"
-#include "../Iterator/kdTreeNearestIndexIterator.h"
+#include "../Iterator/kdTreeNearestIterator.h"
 
 namespace Ponca {
 
@@ -21,24 +21,14 @@ public:
     using QueryType       = NearestIndexQuery<typename DataPoint::Scalar>;
     using QueryAccelType  = KdTreeQuery<DataPoint>;
 
-    KdTreeNearestIndexQuery() :
-        KdTreeQuery<DataPoint>(), NearestIndexQuery<Scalar>()
-    {
-    }
-
-    KdTreeNearestIndexQuery(const KdTree<DataPoint>* kdtree) :
-        KdTreeQuery<DataPoint>(kdtree), NearestIndexQuery<Scalar>()
-    {
-    }
-
     KdTreeNearestIndexQuery(const KdTree<DataPoint>* kdtree, int index) :
         KdTreeQuery<DataPoint>(kdtree), NearestIndexQuery<Scalar>(index)
     {
     }
 
 public:
-    KdTreeNearestIndexIterator begin();
-    KdTreeNearestIndexIterator end();
+    KdTreeNearestIterator begin();
+    KdTreeNearestIterator end();
 
 protected:
     void search();

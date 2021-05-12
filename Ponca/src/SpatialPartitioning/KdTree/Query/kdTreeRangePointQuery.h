@@ -8,7 +8,7 @@
 
 #include "../kdTreeQuery.h"
 #include "../../query.h"
-#include "../Iterator/kdTreeRangePointIterator.h"
+#include "../Iterator/kdTreeRangeIterator.h"
 
 namespace Ponca {
 
@@ -20,38 +20,25 @@ public:
     using VectorType      = typename DataPoint::VectorType;
     using QueryType       = RangePointQuery<DataPoint>;
     using QueryAccelType  = KdTreeQuery<DataPoint>;
+    using Iterator        = KdTreeRangeIterator<DataPoint, KdTreeRangePointQuery>;
+
 
 protected:
-    friend class KdTreeRangePointIterator<DataPoint>;
+    friend Iterator;
 
 public:
-    KdTreeRangePointQuery() :
-        KdTreeQuery<DataPoint>(), RangePointQuery<DataPoint>()
-    {
-    }
 
-    KdTreeRangePointQuery(const KdTree<DataPoint>* kdtree) :
-        KdTreeQuery<DataPoint>(kdtree), RangePointQuery<DataPoint>()
-    {
-    }
-
-    KdTreeRangePointQuery(const KdTree<DataPoint>* kdtree, Scalar radius) :
-        KdTreeQuery<DataPoint>(kdtree), RangePointQuery<DataPoint>(radius)
-    {
-    }
-
-    KdTreeRangePointQuery(const KdTree<DataPoint>* kdtree, Scalar radius, const VectorType& point) :
+    inline KdTreeRangePointQuery(const KdTree<DataPoint>* kdtree, Scalar radius, const VectorType& point) :
         KdTreeQuery<DataPoint>(kdtree), RangePointQuery<DataPoint>(radius, point)
     {
     }
 
 public:
-    inline KdTreeRangePointIterator<DataPoint> begin();
-	inline KdTreeRangePointIterator<DataPoint> end();
+    inline Iterator begin();
+	inline Iterator end();
 
 protected:
-	inline void initialize(KdTreeRangePointIterator<DataPoint>& iterator);
-	inline void advance(KdTreeRangePointIterator<DataPoint>& iterator);
+	inline void advance(Iterator& iterator);
 };
 
 #include "./kdTreeRangePointQuery.hpp"

@@ -5,45 +5,34 @@
 */
 
 template <class DataPoint>
-KdTreeRangePointIterator<DataPoint> KdTreeRangePointQuery<DataPoint>::begin()
+typename KdTreeRangePointQuery<DataPoint>::Iterator KdTreeRangePointQuery<DataPoint>::begin()
 {
-    KdTreeRangePointIterator<DataPoint> it(this);
-    this->initialize(it);
+    QueryAccelType::reset();
+    QueryType::reset();
+    Iterator it(this);
     this->advance(it);
     return it;
 }
 
 template <class DataPoint>
-KdTreeRangePointIterator<DataPoint> KdTreeRangePointQuery<DataPoint>::end()
+typename KdTreeRangePointQuery<DataPoint>::Iterator KdTreeRangePointQuery<DataPoint>::end()
 {
-    return KdTreeRangePointIterator<DataPoint>(this, static_cast<int>(QueryAccelType::m_kdtree->point_count()));
+    return Iterator(this, QueryAccelType::m_kdtree->point_count());
 }
 
 template <class DataPoint>
-void KdTreeRangePointQuery<DataPoint>::initialize(KdTreeRangePointIterator<DataPoint>& it)
-{
-    QueryAccelType::m_stack.clear();
-    QueryAccelType::m_stack.push();
-    QueryAccelType::m_stack.top().index = 0;
-    QueryAccelType::m_stack.top().squared_distance = 0;
-    it.m_index = -1;
-    it.m_start = 0;
-    it.m_end   = 0;
-}
-
-template <class DataPoint>
-void KdTreeRangePointQuery<DataPoint>::advance(KdTreeRangePointIterator<DataPoint>& it)
+void KdTreeRangePointQuery<DataPoint>::advance(Iterator& it)
 {
     const auto& nodes   = QueryAccelType::m_kdtree->node_data();
     const auto& points  = QueryAccelType::m_kdtree->point_data();
     const auto& indices = QueryAccelType::m_kdtree->index_data();
+    const auto& point   = QueryType::input();
 
-    VectorType pos = QueryType::m_point.pos();
     for(int i=it.m_start; i<it.m_end; ++i)
     {
         int idx = indices[i];
 
-        Scalar d = (pos - points[idx]).squaredNorm();
+        Scalar d = (point - points[idx].pos()).squaredNorm();
         if(d < QueryType::m_squared_radius)
         {
             it.m_index = idx;
@@ -68,7 +57,7 @@ void KdTreeRangePointQuery<DataPoint>::advance(KdTreeRangePointIterator<DataPoin
                 {
                     int idx = indices[i];
 
-                    Scalar d = (pos - points[idx]).squaredNorm();
+                    Scalar d = (point - points[idx].pos()).squaredNorm();
                     if(d < QueryType::m_squared_radius)
                     {
                         it.m_index = idx;
@@ -80,7 +69,7 @@ void KdTreeRangePointQuery<DataPoint>::advance(KdTreeRangePointIterator<DataPoin
             else
             {
                 // replace the stack top by the farthest and push the closest
-                Scalar newOff = pos[node.dim] - node.splitValue;
+                Scalar newOff = point[node.dim] - node.splitValue;
                 QueryAccelType::m_stack.push();
                 if(newOff < 0)
                 {

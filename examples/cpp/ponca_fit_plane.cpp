@@ -61,7 +61,7 @@ typedef MyPoint::VectorType VectorType;
 
 // Define related structure
 typedef DistWeightFunc<MyPoint,SmoothWeightKernel<Scalar> > WeightFunc;
-typedef Basket<MyPoint, WeightFunc, CompactPlane, CovariancePlaneFit> CovPlaneFit;
+typedef Basket<MyPoint, WeightFunc, CovariancePlaneFit> CovPlaneFit;
 
 template<typename Fit>
 void test_fit(Fit& _fit, vector<MyPoint>& _vecs, const VectorType& _p)
@@ -74,63 +74,37 @@ void test_fit(Fit& _fit, vector<MyPoint>& _vecs, const VectorType& _p)
   // Set the evaluation position
   _fit.init(_p);
 
-  // Iterate over samples and _fit the primitive
-  for(vector<MyPoint>::iterator it = _vecs.begin(); it != _vecs.end(); it++)
-    {
-                _fit.addNeighbor(*it);
-    }
+  // Fit plane (method compute handles multipass fitting
+  _fit.compute( _vecs.begin(), _vecs.end() );
 
-  // The plane fitting is a multipass method
-  if(_fit.finalize() == NEED_OTHER_PASS)
-    {
-        // Iterate over samples and _fit the primitive
-        for(vector<MyPoint>::iterator it = _vecs.begin(); it != _vecs.end(); it++)
-        {
-            _fit.addNeighbor(*it);
-        }
+  if(_fit.isStable())
+  {
+        cout << "Value of the scalar field at the initial point: "
+            << _p.transpose()
+            << " is equal to " << _fit.potential(_p)
+            << endl;
 
-        //finalize fitting
-        _fit.finalize();
+        cout << "It's gradient at this place is equal to: "
+            << _fit.primitiveGradient(_p).transpose()
+            << endl;
 
-        //Test if the fitting ended without errors
-        if(_fit.isStable())
-        {
-            cout << "Value of the scalar field at the initial point: "
-                << _p.transpose()
-                << " is equal to " << _fit.potential(_p)
-                << endl;
+        cout << "The initial point " << _p.transpose()              << endl
+            << "Is projected at   " << _fit.project(_p).transpose() << endl;
 
-            cout << "It's gradient at this place is equal to: "
-                << _fit.primitiveGradient(_p).transpose()
-                << endl;
-
-            cout << "The initial point " << _p.transpose()              << endl
-                << "Is projected at   " << _fit.project(_p).transpose() << endl;
-
-            cout << "Value of the surface variation: "
-                << _fit.surfaceVariation()
-                << endl;
-        }
-    }
+        cout << "Value of the surface variation: "
+            << _fit.surfaceVariation()
+            << endl;
+  }
 }
 
 int main()
 {
-  // set evaluation point and scale
-  VectorType p = VectorType::Random();
-
-  // init input data
+  // init random point cloud
   int n = 10000;
   vector<MyPoint> vecs (n);
-
-        for(int k=0; k<n; ++k)
-    {
-                vecs[k] = MyPoint::Random();
-    }
-
-        p = vecs.at(0).pos();
+  std::generate(vecs.begin(), vecs.end(), []() {return MyPoint::Random(); });
 
   std::cout << "====================\nCovariancePlaneFit:\n";
   CovPlaneFit fit;
-  test_fit(fit, vecs, p);
+  test_fit(fit, vecs, vecs.at(0).pos());
 }

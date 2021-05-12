@@ -17,9 +17,6 @@
 
 #include "../../Common/Assert.h"
 
-#include "Iterator/kdTreeRangeIndexIterator.h"
-#include "Iterator/kdTreeRangePointIterator.h"
-
 #include "Query/kdTreeNearestPointQuery.h"
 #include "Query/kdTreeNearestIndexQuery.h"
 #include "Query/kdTreeKNearestPointQuery.h"
@@ -41,7 +38,7 @@ public:
 
 	typedef typename Eigen::AlignedBox<Scalar, DataPoint::Dim> Aabb; // Intersections
 
-    typedef typename std::vector<VectorType> PointContainer; // Container for VectorType used inside the KdTree
+    typedef typename std::vector<DataPoint> PointContainer; // Container for VectorType used inside the KdTree
     typedef typename std::vector<int> IndexContainer; // Container for indices used inside the KdTree
     typedef typename std::vector<KdTreeNode<Scalar>> NodeContainer;  // Container for nodes used inside the KdTree
 
@@ -179,38 +176,6 @@ public :
     KdTreeRangeIndexQuery<DataPoint> range_neighbors(int index, Scalar r) const
     {
         return KdTreeRangeIndexQuery<DataPoint>(this, r, index);
-    }
-
-	// Empty Query ------------------------------------------------------------
-public:
-    KdTreeKNearestPointQuery<DataPoint> k_nearest_point_query(int k) const
-    {
-        return KdTreeKNearestPointQuery<DataPoint>(this, k);
-    }
-
-    KdTreeKNearestIndexQuery<DataPoint> k_nearest_index_query(int k) const
-    {
-        return KdTreeKNearestIndexQuery<DataPoint>(this, k);
-    }
-
-    KdTreeNearestPointQuery<DataPoint> nearest_point_query() const
-    {
-        return KdTreeNearestPointQuery<DataPoint>(this);
-    }
-
-    KdTreeNearestIndexQuery<DataPoint> nearest_index_query() const
-    {
-        return KdTreeNearestIndexQuery<DataPoint>(this);
-    }
-
-    KdTreeRangePointQuery<DataPoint> range_point_query(Scalar r) const
-    {
-        return KdTreeRangePointQuery<DataPoint>(this, r);
-    }
-
-    KdTreeRangeIndexQuery<Scalar> range_index_query(Scalar r) const
-    {
-        return KdTreeRangeIndexQuery<Scalar>(this, r);
     }
 
     // Data --------------------------------------------------------------------

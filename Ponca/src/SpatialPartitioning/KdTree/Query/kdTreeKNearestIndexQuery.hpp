@@ -5,16 +5,18 @@
 */
 
 template<class DataPoint>
-KdTreeKNearestIndexIterator<DataPoint> KdTreeKNearestIndexQuery<DataPoint>::begin()
+KdTreeKNearestIterator<DataPoint> KdTreeKNearestIndexQuery<DataPoint>::begin()
 {
+    QueryAccelType::reset();
+    QueryType::reset();
     this->search();
-    return KdTreeKNearestIndexIterator<DataPoint>(QueryType::m_queue.begin());
+    return KdTreeKNearestIterator<DataPoint>(QueryType::m_queue.begin());
 }
 
 template<class DataPoint>
-KdTreeKNearestIndexIterator<DataPoint> KdTreeKNearestIndexQuery<DataPoint>::end()
+KdTreeKNearestIterator<DataPoint> KdTreeKNearestIndexQuery<DataPoint>::end()
 {
-    return KdTreeKNearestIndexIterator<DataPoint>(QueryType::m_queue.end());
+    return KdTreeKNearestIterator<DataPoint>(QueryType::m_queue.end());
 }
 
 template<class DataPoint>
@@ -23,13 +25,7 @@ void KdTreeKNearestIndexQuery<DataPoint>::search()
     const auto& nodes   = QueryAccelType::m_kdtree->node_data();
     const auto& points  = QueryAccelType::m_kdtree->point_data();
     const auto& indices = QueryAccelType::m_kdtree->index_data();
-    const auto& point   = points[QueryType::m_index];
-
-    QueryAccelType::m_stack.clear();
-    QueryAccelType::m_stack.push({0,0});
-
-    QueryType::m_queue.clear();
-    QueryType::m_queue.push({-1,std::numeric_limits<Scalar>::max()});
+    const auto& point   = points[QueryType::input()].pos();
 
     while(!QueryAccelType::m_stack.empty())
     {
@@ -45,9 +41,9 @@ void KdTreeKNearestIndexQuery<DataPoint>::search()
                 for(int i=node.start; i<end; ++i)
                 {
                     int idx = indices[i];
-                    if(QueryType::m_index == idx) continue;
+                    if(QueryType::input() == idx) continue;
 
-                    Scalar d = (point - points[idx]).squaredNorm();
+                    Scalar d = (point - points[idx].pos()).squaredNorm();
                     QueryType::m_queue.push({idx, d});
                 }
             }
@@ -67,7 +63,7 @@ void KdTreeKNearestIndexQuery<DataPoint>::search()
                     qnode.index         = node.firstChildId;
                 }
                 QueryAccelType::m_stack.top().squared_distance = qnode.squared_distance;
-                qnode.squared_distance         = newOff * newOff;
+                qnode.squared_distance         = newOff*newOff;
             }
         }
         else

@@ -140,7 +140,7 @@ public:
 protected:
     container_type  m_c;
     compare         m_comp;
-    size_t          m_size;
+    size_t          m_size {0};
 };
 
 ////////////////////////////////////////////////////////////////////////////////
