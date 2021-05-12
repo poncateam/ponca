@@ -1,8 +1,7 @@
 var searchData=
 [
-  ['pointconcept_337',['PointConcept',['../class_ponca_1_1_concept_1_1_point_concept.html',1,'Ponca::Concept']]],
-  ['pointquery_338',['PointQuery',['../struct_ponca_1_1_point_query.html',1,'Ponca']]],
-  ['primitivebase_339',['PrimitiveBase',['../class_ponca_1_1_primitive_base.html',1,'Ponca']]],
-  ['primitivebase_3c_20datapoint_2c_20_5fwfunctor_20_3e_340',['PrimitiveBase&lt; DataPoint, _WFunctor &gt;',['../class_ponca_1_1_primitive_base.html',1,'Ponca']]],
-  ['projectednormalcovariancecurvature_341',['ProjectedNormalCovarianceCurvature',['../class_ponca_1_1_projected_normal_covariance_curvature.html',1,'Ponca']]]
+  ['pointconcept_345',['PointConcept',['../classPonca_1_1Concept_1_1PointConcept.html',1,'Ponca::Concept']]],
+  ['primitivebase_346',['PrimitiveBase',['../classPonca_1_1PrimitiveBase.html',1,'Ponca']]],
+  ['primitivebase_3c_20datapoint_2c_20_5fwfunctor_20_3e_347',['PrimitiveBase&lt; DataPoint, _WFunctor &gt;',['../classPonca_1_1PrimitiveBase.html',1,'Ponca']]],
+  ['projectednormalcovariancecurvature_348',['ProjectedNormalCovarianceCurvature',['../classPonca_1_1ProjectedNormalCovarianceCurvature.html',1,'Ponca']]]
 ];

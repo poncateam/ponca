@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['xxxxxxxxxx_5fthe_5funkown_5ftype_5fis_5f_353',['XXXXXXXXXX_The_unkown_type_is_',['../struct_x_x_x_x_x_x_x_x_x_x___the__unkown__type__is__.html',1,'']]]
+  ['weightfuncconcept_380',['WeightFuncConcept',['../classPonca_1_1Concept_1_1WeightFuncConcept.html',1,'Ponca::Concept']]],
+  ['weightkernelconcept_381',['WeightKernelConcept',['../classPonca_1_1Concept_1_1WeightKernelConcept.html',1,'Ponca::Concept']]]
 ];

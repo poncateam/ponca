@@ -1,0 +1,16 @@
+<map id="Ponca::KdTreeRangePointQuery&lt; DataPoint &gt;" name="Ponca::KdTreeRangePointQuery&lt; DataPoint &gt;">
+<area shape="rect" id="node1" title=" " alt="" coords="148,1143,375,1279"/>
+<area shape="rect" id="node2" href="$classPonca_1_1KdTreeQuery.html" title=" " alt="" coords="169,972,321,1093"/>
+<area shape="rect" id="node3" href="$structPonca_1_1RangePointQuery.html" title="Base Query class combining QueryInputIsPosition and QueryOutputIsRange." alt="" coords="346,987,529,1079"/>
+<area shape="rect" id="node4" href="$structPonca_1_1Query.html" title=" " alt="" coords="340,787,535,923"/>
+<area shape="rect" id="node5" href="$structPonca_1_1QueryInputIsPosition.html" title="Base class for queries storing points." alt="" coords="91,566,295,658"/>
+<area shape="rect" id="node6" href="$structPonca_1_1QueryInput.html" title=" " alt="" coords="63,331,247,437"/>
+<area shape="rect" id="node7" href="$structPonca_1_1QueryInputBase.html" title="Base class for queries input type." alt="" coords="5,5,179,83"/>
+<area shape="rect" id="node8" href="$structPonca_1_1QueryInput.html" title="Base class for typed queries input type." alt="" coords="113,132,265,239"/>
+<area shape="rect" id="node9" href="$structPonca_1_1QueryOutputIsRange.html" title=" " alt="" coords="335,529,539,695"/>
+<area shape="rect" id="node10" href="$structPonca_1_1QueryOutputBase.html" title="Base class for queries output type." alt="" coords="317,147,501,224"/>
+<area shape="rect" id="node11" href="$structPonca_1_1QueryOutputIsRange.html" title="Base class for range queries." alt="" coords="390,301,594,467"/>
+<area shape="rect" id="node12" href="$structPonca_1_1Query.html" title=" " alt="" coords="571,559,727,665"/>
+<area shape="rect" id="node13" title=" " alt="" coords="618,345,681,423"/>
+<area shape="rect" id="node14" title=" " alt="" coords="705,345,778,423"/>
+</map>

@@ -1,0 +1,29 @@
+<map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
+<area shape="rect" id="node1" href="$classPonca_1_1Concept_1_1FittingExtensionConcept.html" title="Describes how to add features to an existing fitting procedure." alt="" coords="5,637,267,678"/>
+<area shape="rect" id="node2" href="$classPonca_1_1internal_1_1CovariancePlaneDer.html" title=" " alt="" coords="320,67,560,123"/>
+<area shape="rect" id="node3" href="$classPonca_1_1CovariancePlaneScaleDer.html" title="Differentiation in scale of the CovariancePlaneFit." alt="" coords="634,42,865,84"/>
+<area shape="rect" id="node4" href="$classPonca_1_1internal_1_1CovariancePlaneDer.html" title=" " alt="" coords="320,198,560,254"/>
+<area shape="rect" id="node5" href="$classPonca_1_1CovariancePlaneSpaceDer.html" title="Spatial differentiation of the CovariancePlaneFit." alt="" coords="634,173,865,214"/>
+<area shape="rect" id="node6" href="$classPonca_1_1internal_1_1CovariancePlaneDer.html" title=" " alt="" coords="320,329,560,400"/>
+<area shape="rect" id="node7" href="$classPonca_1_1CovariancePlaneScaleSpaceDer.html" title="Differentiation both in scale and space of the CovariancePlaneFit." alt="" coords="614,308,885,349"/>
+<area shape="rect" id="node8" href="$classPonca_1_1internal_1_1OrientedSphereDer.html" title=" " alt="" coords="349,476,531,546"/>
+<area shape="rect" id="node9" href="$classPonca_1_1OrientedSphereScaleDer.html" title="Differentiation in scale of the OrientedSphereFit." alt="" coords="634,454,865,496"/>
+<area shape="rect" id="node10" href="$classPonca_1_1internal_1_1OrientedSphereDer.html" title=" " alt="" coords="349,622,531,693"/>
+<area shape="rect" id="node11" href="$classPonca_1_1OrientedSphereSpaceDer.html" title="Spatial differentiation of the OrientedSphereFit." alt="" coords="634,601,865,642"/>
+<area shape="rect" id="node12" href="$classPonca_1_1internal_1_1OrientedSphereDer.html" title=" " alt="" coords="315,769,565,840"/>
+<area shape="rect" id="node13" href="$classPonca_1_1OrientedSphereScaleSpaceDer.html" title="Differentiation both in scale and space of the OrientedSphereFit." alt="" coords="614,748,885,789"/>
+<area shape="rect" id="node14" href="$classPonca_1_1CurvatureEstimator.html" title="Extension to compute curvature values from the Weingarten map ." alt="" coords="336,864,544,905"/>
+<area shape="rect" id="node16" href="$classPonca_1_1GLSDer.html" title="Differentiation of GLSParam." alt="" coords="340,929,540,970"/>
+<area shape="rect" id="node17" href="$classPonca_1_1GLSGeomVar.html" title="Extension to compute the Geometric Variation of GLSParam." alt="" coords="341,994,539,1036"/>
+<area shape="rect" id="node18" href="$classPonca_1_1GLSParam.html" title="Growing Least Squares reparemetrization of the OrientedSphereFit." alt="" coords="331,1060,549,1101"/>
+<area shape="rect" id="node19" href="$classPonca_1_1internal_1_1CovariancePlaneDer.html" title="Internal generic class computing the derivatives of covariance plane fits." alt="" coords="320,1126,560,1182"/>
+<area shape="rect" id="node20" href="$classPonca_1_1internal_1_1OrientedSphereDer.html" title="Internal generic class performing the Fit derivation." alt="" coords="349,1206,531,1262"/>
+<area shape="rect" id="node21" href="$classPonca_1_1MlsSphereFitDer.html" title="Extension performing derivation of the mls surface." alt="" coords="336,1286,544,1328"/>
+<area shape="rect" id="node15" href="$classPonca_1_1GLSCurvatureHelper.html" title=" " alt="" coords="645,864,853,905"/>
+<area shape="rect" id="node22" title=" " alt="" coords="117,968,155,995"/>
+<area shape="rect" id="node23" href="$classPonca_1_1BaseCurvatureEstimator.html" title="Base class for any 3d curvature estimator: holds k1, k2 and associated vectors." alt="" coords="326,1352,554,1393"/>
+<area shape="rect" id="node26" href="$classPonca_1_1internal_1_1Forward.html" title="Internal class used to build the Basket structure." alt="" coords="351,1417,529,1458"/>
+<area shape="rect" id="node27" href="$classPonca_1_1MongePatch.html" title="Extension to compute the best fit quadric on 3d points expressed as f(u,v)=h." alt="" coords="341,1482,539,1524"/>
+<area shape="rect" id="node24" href="$classPonca_1_1NormalCovarianceCurvature.html" title="Extension to compute curvature values based on a covariance analysis of normal vectors of neighbors." alt="" coords="622,1320,877,1361"/>
+<area shape="rect" id="node25" href="$classPonca_1_1ProjectedNormalCovarianceCurvature.html" title="Extension to compute curvature values based on a covariance analysis of normal vectors of neighbors p..." alt="" coords="613,1385,885,1426"/>
+</map>

@@ -1,0 +1,11 @@
+<map id="Ponca::internal::OrientedSphereDer&lt; DataPoint, _WFunctor, T, _Type &gt;" name="Ponca::internal::OrientedSphereDer&lt; DataPoint, _WFunctor, T, _Type &gt;">
+<area shape="rect" id="node1" title="Internal generic class performing the Fit derivation." alt="" coords="284,191,467,605"/>
+<area shape="rect" id="node4" href="$classPonca_1_1internal_1_1OrientedSphereDer.html" title=" " alt="" coords="53,697,236,1127"/>
+<area shape="rect" id="node6" href="$classPonca_1_1internal_1_1OrientedSphereDer.html" title=" " alt="" coords="284,697,467,1127"/>
+<area shape="rect" id="node8" href="$classPonca_1_1internal_1_1OrientedSphereDer.html" title=" " alt="" coords="509,697,759,1127"/>
+<area shape="rect" id="node2" href="$classPonca_1_1Concept_1_1FittingExtensionConcept.html" title="Describes how to add features to an existing fitting procedure." alt="" coords="158,5,419,141"/>
+<area shape="rect" id="node3" title=" " alt="" coords="443,35,481,112"/>
+<area shape="rect" id="node5" href="$classPonca_1_1OrientedSphereSpaceDer.html" title="Spatial differentiation of the OrientedSphereFit." alt="" coords="5,1176,236,1312"/>
+<area shape="rect" id="node7" href="$classPonca_1_1OrientedSphereScaleDer.html" title="Differentiation in scale of the OrientedSphereFit." alt="" coords="260,1176,491,1312"/>
+<area shape="rect" id="node9" href="$classPonca_1_1OrientedSphereScaleSpaceDer.html" title="Differentiation both in scale and space of the OrientedSphereFit." alt="" coords="515,1176,785,1312"/>
+</map>

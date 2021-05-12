@@ -1,0 +1,13 @@
+<map id="Ponca::PrimitiveBase&lt; DataPoint, _WFunctor, T &gt;" name="Ponca::PrimitiveBase&lt; DataPoint, _WFunctor, T &gt;">
+<area shape="rect" id="node1" title="Primitive base class." alt="" coords="540,5,748,171"/>
+<area shape="rect" id="node2" href="$classPonca_1_1PrimitiveBase.html" title=" " alt="" coords="548,233,740,399"/>
+<area shape="rect" id="node3" href="$classPonca_1_1AlgebraicSphere.html" title=" " alt="" coords="328,793,520,1076"/>
+<area shape="rect" id="node7" href="$classPonca_1_1CompactPlane.html" title=" " alt="" coords="715,801,907,1069"/>
+<area shape="rect" id="node10" href="$classPonca_1_1AlgebraicSphere.html" title="Algebraic Sphere primitive." alt="" coords="347,448,555,731"/>
+<area shape="rect" id="node11" href="$classPonca_1_1CompactPlane.html" title="Implicit hyperplane defined by an homogeneous vector ." alt="" coords="707,455,915,723"/>
+<area shape="rect" id="node4" href="$classPonca_1_1OrientedSphereFit.html" title="Algebraic Sphere fitting procedure on oriented point sets." alt="" coords="237,1155,445,1408"/>
+<area shape="rect" id="node5" href="$classPonca_1_1SphereFit.html" title="Algebraic Sphere fitting procedure on point sets without normals." alt="" coords="469,1191,683,1371"/>
+<area shape="rect" id="node6" href="$classPonca_1_1UnorientedSphereFit.html" title="Algebraic Sphere fitting procedure on point sets with non&#45;oriented normals." alt="" coords="5,1177,213,1386"/>
+<area shape="rect" id="node8" href="$classPonca_1_1CovariancePlaneFit.html" title="Plane fitting procedure using only points position." alt="" coords="939,1125,1147,1437"/>
+<area shape="rect" id="node9" href="$classPonca_1_1MeanPlaneFit.html" title="Plane fitting procedure computing the mean position and orientation from oriented points." alt="" coords="707,1184,915,1379"/>
+</map>

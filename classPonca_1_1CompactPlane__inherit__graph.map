@@ -1,0 +1,9 @@
+<map id="Ponca::CompactPlane&lt; DataPoint, _WFunctor, T &gt;" name="Ponca::CompactPlane&lt; DataPoint, _WFunctor, T &gt;">
+<area shape="rect" id="node1" title="Implicit hyperplane defined by an homogeneous vector ." alt="" coords="152,448,360,716"/>
+<area shape="rect" id="node5" href="$classPonca_1_1CompactPlane.html" title=" " alt="" coords="160,779,352,1047"/>
+<area shape="rect" id="node2" href="$classPonca_1_1PrimitiveBase.html" title=" " alt="" coords="13,233,205,399"/>
+<area shape="rect" id="node3" href="$classPonca_1_1PrimitiveBase.html" title="Primitive base class." alt="" coords="5,5,213,171"/>
+<area shape="rect" id="node4" title=" " alt="" coords="229,263,381,369"/>
+<area shape="rect" id="node6" href="$classPonca_1_1CovariancePlaneFit.html" title="Plane fitting procedure using only points position." alt="" coords="36,1096,244,1408"/>
+<area shape="rect" id="node7" href="$classPonca_1_1MeanPlaneFit.html" title="Plane fitting procedure computing the mean position and orientation from oriented points." alt="" coords="268,1155,476,1349"/>
+</map>

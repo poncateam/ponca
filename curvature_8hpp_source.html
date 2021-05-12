@@ -30,7 +30,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Ponca
-   &#160;<span id="projectnumber">7faa5c71841a2fcf84e84f2c30f5cf9c9bca27fb</span>
+   &#160;<span id="projectnumber">2e385808b3c2f12e9cbc35fd2ed37ef9b045169e</span>
    </div>
    <div id="projectbrief">Point Cloud Analysis library</div>
   </td>
@@ -89,7 +89,7 @@ $(function() {
 <div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160; </div>
 <div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="keyword">template</span> &lt; <span class="keyword">class</span> DataPo<span class="keywordtype">int</span>, <span class="keyword">class</span> _WFunctor, <span class="keyword">typename</span> T&gt;</div>
 <div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<a class="code" href="group__fitting.html#gabfd697aebf07c1b5c8be5ee401e2dc84">FIT_RESULT</a></div>
-<div class="line"><a name="l00011"></a><span class="lineno"><a class="line" href="class_ponca_1_1_curvature_estimator.html#a8ecdd50da51dc980cd4d2e14ab258510">   11</a></span>&#160;<a class="code" href="class_ponca_1_1_curvature_estimator.html">CurvatureEstimator&lt;DataPoint, _WFunctor, T&gt;::finalize</a>()</div>
+<div class="line"><a name="l00011"></a><span class="lineno"><a class="line" href="classPonca_1_1CurvatureEstimator.html#a8ecdd50da51dc980cd4d2e14ab258510">   11</a></span>&#160;<a class="code" href="classPonca_1_1CurvatureEstimator.html">CurvatureEstimator&lt;DataPoint, _WFunctor, T&gt;::finalize</a>()</div>
 <div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;{</div>
 <div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;    <a class="code" href="group__fitting.html#gabfd697aebf07c1b5c8be5ee401e2dc84">FIT_RESULT</a> bResult = Base::finalize();</div>
 <div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160; </div>
@@ -102,12 +102,12 @@ $(function() {
 <div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;}</div>
 <div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160; </div>
 <div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="keyword">template</span> &lt; <span class="keyword">class</span> DataPo<span class="keywordtype">int</span>, <span class="keyword">class</span> _WFunctor, <span class="keyword">typename</span> T&gt;</div>
-<div class="line"><a name="l00024"></a><span class="lineno"><a class="line" href="class_ponca_1_1_curvature_estimator.html#af4fa845da433ca227ede3109a316606c">   24</a></span>&#160;<a class="code" href="group__fitting.html#gabfd697aebf07c1b5c8be5ee401e2dc84">FIT_RESULT</a> <a class="code" href="class_ponca_1_1_curvature_estimator.html">CurvatureEstimator&lt;DataPoint, _WFunctor, T&gt;::computeCurvature</a>(<span class="keywordtype">bool</span> useNormal)</div>
+<div class="line"><a name="l00024"></a><span class="lineno"><a class="line" href="classPonca_1_1CurvatureEstimator.html#af4fa845da433ca227ede3109a316606c">   24</a></span>&#160;<a class="code" href="group__fitting.html#gabfd697aebf07c1b5c8be5ee401e2dc84">FIT_RESULT</a> <a class="code" href="classPonca_1_1CurvatureEstimator.html">CurvatureEstimator&lt;DataPoint, _WFunctor, T&gt;::computeCurvature</a>(<span class="keywordtype">bool</span> useNormal)</div>
 <div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;{</div>
 <div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    PONCA_MULTIARCH_STD_MATH(abs);</div>
 <div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160; </div>
 <div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    <span class="comment">// Get the object space Weingarten map dN</span></div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;    <a class="code" href="class_ponca_1_1_curvature_estimator.html#a45bf5962d5aa4a3c730c17bc0ae67c89">MatrixType</a> dN = Base::dNormal().template middleCols&lt;DataPoint::Dim&gt;(Base::isScaleDer() ? 1: 0);</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;    <a class="code" href="classPonca_1_1CurvatureEstimator.html#a45bf5962d5aa4a3c730c17bc0ae67c89">MatrixType</a> dN = Base::dNormal().template middleCols&lt;DataPoint::Dim&gt;(Base::isScaleDer() ? 1: 0);</div>
 <div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160; </div>
 <div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;    <span class="comment">// Compute tangent-space basis</span></div>
 <div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;    Mat32 B = tangentPlane(useNormal);</div>
@@ -129,7 +129,7 @@ $(function() {
 <div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    <span class="comment">// It is easy to see that such a S&#39; is simply obtained as:</span></div>
 <div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    <span class="comment">//   S&#39; = (S + S^T)/2</span></div>
 <div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160; </div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    S(0,1) = S(1,0) = (S(0,1) + S(1,0))/<a class="code" href="class_ponca_1_1_curvature_estimator.html#ab7fd1319c8fe88b6f3978fe36607a17f">Scalar</a>(2);</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    S(0,1) = S(1,0) = (S(0,1) + S(1,0))/<a class="code" href="classPonca_1_1CurvatureEstimator.html#ab7fd1319c8fe88b6f3978fe36607a17f">Scalar</a>(2);</div>
 <div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    Eigen::SelfAdjointEigenSolver&lt;Mat22&gt; eig2;</div>
 <div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    eig2.computeDirect(S);</div>
 <div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160; </div>
@@ -146,10 +146,10 @@ $(function() {
 <div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;    <span class="keywordflow">if</span>(abs(m_k1)&lt;abs(m_k2))</div>
 <div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;    {</div>
 <div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;<span class="preprocessor">#ifdef __CUDACC__</span></div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;      <a class="code" href="class_ponca_1_1_curvature_estimator.html#ab7fd1319c8fe88b6f3978fe36607a17f">Scalar</a> tmpk = m_k1;</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;      <a class="code" href="classPonca_1_1CurvatureEstimator.html#ab7fd1319c8fe88b6f3978fe36607a17f">Scalar</a> tmpk = m_k1;</div>
 <div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;      m_k1 = m_k2;</div>
 <div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;      m_k2 = tmpk;</div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;      <a class="code" href="class_ponca_1_1_curvature_estimator.html#a15025ba7f85c5a6233a7e83276c397f8">VectorType</a> tmpv = m_v1;</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;      <a class="code" href="classPonca_1_1CurvatureEstimator.html#a15025ba7f85c5a6233a7e83276c397f8">VectorType</a> tmpv = m_v1;</div>
 <div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;      m_v1 = m_v2;</div>
 <div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;      m_v2 = tmpv;</div>
 <div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;<span class="preprocessor">#else</span></div>
@@ -163,7 +163,7 @@ $(function() {
 <div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160; </div>
 <div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;<span class="keyword">template</span> &lt; <span class="keyword">class</span> DataPo<span class="keywordtype">int</span>, <span class="keyword">class</span> _WFunctor, <span class="keyword">typename</span> T&gt;</div>
 <div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;<span class="keyword">typename</span> CurvatureEstimator&lt;DataPoint, _WFunctor, T&gt;::Mat32</div>
-<div class="line"><a name="l00085"></a><span class="lineno"><a class="line" href="class_ponca_1_1_curvature_estimator.html#a5a7b7014fc60bf9d485601ab2f49fb69">   85</a></span>&#160;<a class="code" href="class_ponca_1_1_curvature_estimator.html">CurvatureEstimator&lt;DataPoint, _WFunctor, T&gt;::tangentPlane</a>(<span class="keywordtype">bool</span> useNormal)<span class="keyword"> const</span></div>
+<div class="line"><a name="l00085"></a><span class="lineno"><a class="line" href="classPonca_1_1CurvatureEstimator.html#a5a7b7014fc60bf9d485601ab2f49fb69">   85</a></span>&#160;<a class="code" href="classPonca_1_1CurvatureEstimator.html">CurvatureEstimator&lt;DataPoint, _WFunctor, T&gt;::tangentPlane</a>(<span class="keywordtype">bool</span> useNormal)<span class="keyword"> const</span></div>
 <div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;<span class="keyword"></span>{</div>
 <div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;    <span class="keyword">typedef</span> <span class="keyword">typename</span> VectorType::Index Index;</div>
 <div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160; </div>
@@ -178,7 +178,7 @@ $(function() {
 <div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;    {</div>
 <div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;        <span class="comment">// Use a vector orthogonal to the surface (the gradient) and compute an</span></div>
 <div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;        <span class="comment">// orthonormal basis from it</span></div>
-<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;        <a class="code" href="class_ponca_1_1_curvature_estimator.html#a15025ba7f85c5a6233a7e83276c397f8">VectorType</a> n = Base::primitiveGradient();</div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;        <a class="code" href="classPonca_1_1CurvatureEstimator.html#a15025ba7f85c5a6233a7e83276c397f8">VectorType</a> n = Base::primitiveGradient();</div>
 <div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;        n.array().abs().minCoeff(&amp;i0); <span class="comment">// i0: dimension where n extends the least</span></div>
 <div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;        i1 = (i0+1)%3;</div>
 <div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;        i2 = (i0+2)%3;</div>
@@ -196,19 +196,19 @@ $(function() {
 <div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;        <span class="comment">// values if dN is null (like in the case of a perfect plane)</span></div>
 <div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160; </div>
 <div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;        <span class="comment">// Get the object space Weingarten map dN</span></div>
-<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;        <a class="code" href="class_ponca_1_1_curvature_estimator.html#a45bf5962d5aa4a3c730c17bc0ae67c89">MatrixType</a> dN = Base::dNormal().template middleCols&lt;DataPoint::Dim&gt;(Base::isScaleDer() ? 1: 0);</div>
+<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;        <a class="code" href="classPonca_1_1CurvatureEstimator.html#a45bf5962d5aa4a3c730c17bc0ae67c89">MatrixType</a> dN = Base::dNormal().template middleCols&lt;DataPoint::Dim&gt;(Base::isScaleDer() ? 1: 0);</div>
 <div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160; </div>
 <div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;        <span class="comment">// Compute tangent-space basis from dN</span></div>
 <div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;        <span class="comment">//   1 - pick the column with maximal norm as the first tangent vector,</span></div>
-<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;        <a class="code" href="class_ponca_1_1_curvature_estimator.html#ab7fd1319c8fe88b6f3978fe36607a17f">Scalar</a> sqNorm = dN.colwise().squaredNorm().maxCoeff(&amp;i0);</div>
+<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;        <a class="code" href="classPonca_1_1CurvatureEstimator.html#ab7fd1319c8fe88b6f3978fe36607a17f">Scalar</a> sqNorm = dN.colwise().squaredNorm().maxCoeff(&amp;i0);</div>
 <div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;        B.col(0) = dN.col(i0) / sqrt(sqNorm);</div>
 <div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;        <span class="comment">//   2 - orthogonalize the other column vectors, and pick the most reliable one</span></div>
 <div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;        i1 = (i0+1)%3;</div>
 <div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;        i2 = (i0+2)%3;</div>
-<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;        <a class="code" href="class_ponca_1_1_curvature_estimator.html#a15025ba7f85c5a6233a7e83276c397f8">VectorType</a> v1 = dN.col(i1) - B.col(0).dot(dN.col(i1)) * B.col(0);</div>
-<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;        <a class="code" href="class_ponca_1_1_curvature_estimator.html#a15025ba7f85c5a6233a7e83276c397f8">VectorType</a> v2 = dN.col(i2) - B.col(0).dot(dN.col(i2)) * B.col(0);</div>
-<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;        <a class="code" href="class_ponca_1_1_curvature_estimator.html#ab7fd1319c8fe88b6f3978fe36607a17f">Scalar</a> v1norm2 = v1.squaredNorm();</div>
-<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;        <a class="code" href="class_ponca_1_1_curvature_estimator.html#ab7fd1319c8fe88b6f3978fe36607a17f">Scalar</a> v2norm2 = v2.squaredNorm();</div>
+<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;        <a class="code" href="classPonca_1_1CurvatureEstimator.html#a15025ba7f85c5a6233a7e83276c397f8">VectorType</a> v1 = dN.col(i1) - B.col(0).dot(dN.col(i1)) * B.col(0);</div>
+<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;        <a class="code" href="classPonca_1_1CurvatureEstimator.html#a15025ba7f85c5a6233a7e83276c397f8">VectorType</a> v2 = dN.col(i2) - B.col(0).dot(dN.col(i2)) * B.col(0);</div>
+<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;        <a class="code" href="classPonca_1_1CurvatureEstimator.html#ab7fd1319c8fe88b6f3978fe36607a17f">Scalar</a> v1norm2 = v1.squaredNorm();</div>
+<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;        <a class="code" href="classPonca_1_1CurvatureEstimator.html#ab7fd1319c8fe88b6f3978fe36607a17f">Scalar</a> v2norm2 = v2.squaredNorm();</div>
 <div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;        <span class="keywordflow">if</span>(v1norm2 &gt; v2norm2) B.col(1) = v1 / sqrt(v1norm2);</div>
 <div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;        <span class="keywordflow">else</span>                  B.col(1) = v2 / sqrt(v2norm2);</div>
 <div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;    }</div>
@@ -217,15 +217,15 @@ $(function() {
 <div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;}</div>
 <div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160; </div>
 </div><!-- fragment --></div><!-- contents -->
-<div class="ttc" id="aclass_ponca_1_1_curvature_estimator_html_ab7fd1319c8fe88b6f3978fe36607a17f"><div class="ttname"><a href="class_ponca_1_1_curvature_estimator.html#ab7fd1319c8fe88b6f3978fe36607a17f">Ponca::CurvatureEstimator::Scalar</a></div><div class="ttdeci">Base::Scalar Scalar</div><div class="ttdoc">Inherited scalar type.</div><div class="ttdef"><b>Definition:</b> curvature.h:48</div></div>
-<div class="ttc" id="aclass_ponca_1_1_curvature_estimator_html_a45bf5962d5aa4a3c730c17bc0ae67c89"><div class="ttname"><a href="class_ponca_1_1_curvature_estimator.html#a45bf5962d5aa4a3c730c17bc0ae67c89">Ponca::CurvatureEstimator::MatrixType</a></div><div class="ttdeci">DataPoint::MatrixType MatrixType</div><div class="ttdoc">Matrix type inherited from DataPoint.</div><div class="ttdef"><b>Definition:</b> curvature.h:50</div></div>
-<div class="ttc" id="aclass_ponca_1_1_curvature_estimator_html_a15025ba7f85c5a6233a7e83276c397f8"><div class="ttname"><a href="class_ponca_1_1_curvature_estimator.html#a15025ba7f85c5a6233a7e83276c397f8">Ponca::CurvatureEstimator::VectorType</a></div><div class="ttdeci">Base::VectorType VectorType</div><div class="ttdoc">Inherited vector type.</div><div class="ttdef"><b>Definition:</b> curvature.h:49</div></div>
-<div class="ttc" id="aclass_ponca_1_1_curvature_estimator_html"><div class="ttname"><a href="class_ponca_1_1_curvature_estimator.html">Ponca::CurvatureEstimator</a></div><div class="ttdoc">Extension to compute curvature values from the Weingarten map .</div><div class="ttdef"><b>Definition:</b> curvature.h:35</div></div>
+<div class="ttc" id="aclassPonca_1_1CurvatureEstimator_html"><div class="ttname"><a href="classPonca_1_1CurvatureEstimator.html">Ponca::CurvatureEstimator</a></div><div class="ttdoc">Extension to compute curvature values from the Weingarten map .</div><div class="ttdef"><b>Definition:</b> curvature.h:35</div></div>
 <div class="ttc" id="agroup__fitting_html_gabfd697aebf07c1b5c8be5ee401e2dc84"><div class="ttname"><a href="group__fitting.html#gabfd697aebf07c1b5c8be5ee401e2dc84">Ponca::FIT_RESULT</a></div><div class="ttdeci">FIT_RESULT</div><div class="ttdef"><b>Definition:</b> enums.h:16</div></div>
+<div class="ttc" id="aclassPonca_1_1CurvatureEstimator_html_ab7fd1319c8fe88b6f3978fe36607a17f"><div class="ttname"><a href="classPonca_1_1CurvatureEstimator.html#ab7fd1319c8fe88b6f3978fe36607a17f">Ponca::CurvatureEstimator::Scalar</a></div><div class="ttdeci">Base::Scalar Scalar</div><div class="ttdoc">Inherited scalar type.</div><div class="ttdef"><b>Definition:</b> curvature.h:48</div></div>
+<div class="ttc" id="aclassPonca_1_1CurvatureEstimator_html_a45bf5962d5aa4a3c730c17bc0ae67c89"><div class="ttname"><a href="classPonca_1_1CurvatureEstimator.html#a45bf5962d5aa4a3c730c17bc0ae67c89">Ponca::CurvatureEstimator::MatrixType</a></div><div class="ttdeci">DataPoint::MatrixType MatrixType</div><div class="ttdoc">Matrix type inherited from DataPoint.</div><div class="ttdef"><b>Definition:</b> curvature.h:50</div></div>
 <div class="ttc" id="agroup__fitting_html_ggabfd697aebf07c1b5c8be5ee401e2dc84a08d57dd200082f67128b5274049dda41"><div class="ttname"><a href="group__fitting.html#ggabfd697aebf07c1b5c8be5ee401e2dc84a08d57dd200082f67128b5274049dda41">Ponca::UNDEFINED</a></div><div class="ttdeci">@ UNDEFINED</div><div class="ttdoc">The fitting is undefined, you can't use it for valid results (and having less than 3 neighbors)</div><div class="ttdef"><b>Definition:</b> enums.h:26</div></div>
+<div class="ttc" id="aclassPonca_1_1CurvatureEstimator_html_a15025ba7f85c5a6233a7e83276c397f8"><div class="ttname"><a href="classPonca_1_1CurvatureEstimator.html#a15025ba7f85c5a6233a7e83276c397f8">Ponca::CurvatureEstimator::VectorType</a></div><div class="ttdeci">Base::VectorType VectorType</div><div class="ttdoc">Inherited vector type.</div><div class="ttdef"><b>Definition:</b> curvature.h:49</div></div>
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue May 4 2021 15:13:05 for Ponca by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Wed May 12 2021 13:41:20 for Ponca by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.17
 </small></address>

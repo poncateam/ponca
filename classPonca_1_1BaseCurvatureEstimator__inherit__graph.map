@@ -1,0 +1,6 @@
+<map id="Ponca::BaseCurvatureEstimator&lt; DataPoint, _WFunctor, T &gt;" name="Ponca::BaseCurvatureEstimator&lt; DataPoint, _WFunctor, T &gt;">
+<area shape="rect" id="node1" title="Base class for any 3d curvature estimator: holds k1, k2 and associated vectors." alt="" coords="163,131,391,369"/>
+<area shape="rect" id="node3" href="$classPonca_1_1NormalCovarianceCurvature.html" title="Extension to compute curvature values based on a covariance analysis of normal vectors of neighbors." alt="" coords="5,425,260,590"/>
+<area shape="rect" id="node4" href="$classPonca_1_1ProjectedNormalCovarianceCurvature.html" title="Extension to compute curvature values based on a covariance analysis of normal vectors of neighbors p..." alt="" coords="285,417,557,597"/>
+<area shape="rect" id="node2" title=" " alt="" coords="257,5,296,83"/>
+</map>

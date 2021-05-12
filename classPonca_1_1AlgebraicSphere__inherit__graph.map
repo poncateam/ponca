@@ -1,0 +1,9 @@
+<map id="Ponca::AlgebraicSphere&lt; DataPoint, _WFunctor, T &gt;" name="Ponca::AlgebraicSphere&lt; DataPoint, _WFunctor, T &gt;">
+<area shape="rect" id="node1" title="Algebraic Sphere primitive." alt="" coords="240,448,448,731"/>
+<area shape="rect" id="node4" href="$classPonca_1_1AlgebraicSphere.html" title=" " alt="" coords="248,793,440,1076"/>
+<area shape="rect" id="node2" href="$classPonca_1_1PrimitiveBase.html" title=" " alt="" coords="248,233,440,399"/>
+<area shape="rect" id="node3" href="$classPonca_1_1PrimitiveBase.html" title="Primitive base class." alt="" coords="240,5,448,171"/>
+<area shape="rect" id="node5" href="$classPonca_1_1OrientedSphereFit.html" title="Algebraic Sphere fitting procedure on oriented point sets." alt="" coords="5,1125,213,1379"/>
+<area shape="rect" id="node6" href="$classPonca_1_1SphereFit.html" title="Algebraic Sphere fitting procedure on point sets without normals." alt="" coords="237,1162,451,1342"/>
+<area shape="rect" id="node7" href="$classPonca_1_1UnorientedSphereFit.html" title="Algebraic Sphere fitting procedure on point sets with non&#45;oriented normals." alt="" coords="475,1147,683,1357"/>
+</map>

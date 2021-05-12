@@ -30,7 +30,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Ponca
-   &#160;<span id="projectnumber">7faa5c71841a2fcf84e84f2c30f5cf9c9bca27fb</span>
+   &#160;<span id="projectnumber">2e385808b3c2f12e9cbc35fd2ed37ef9b045169e</span>
    </div>
    <div id="projectbrief">Point Cloud Analysis library</div>
   </td>
@@ -76,10 +76,10 @@ $(function() {
 </div><!-- top -->
 <div class="PageDoc"><div class="header">
   <div class="headertitle">
-<div class="title"><a class="el" href="namespace_ponca.html" title="This module provides efficient methods for the fitting and analysis of point-clouds in arbitrary dime...">Ponca</a> data-structure binding </div>  </div>
+<div class="title"><a class="el" href="namespacePonca.html" title="This module provides efficient methods for the fitting and analysis of point-clouds in arbitrary dime...">Ponca</a> data-structure binding </div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><p>This is an example of how to instanciate the <a class="el" href="class_ponca_1_1_concept_1_1_point_concept.html" title="Definition of a point sample.">Ponca::Concept::PointConcept</a> in order to use <a class="el" href="namespace_ponca.html" title="This module provides efficient methods for the fitting and analysis of point-clouds in arbitrary dime...">Ponca</a> on existing data structures without any memory duplication. We apply exactly the same processing than in <a class="el" href="example_cxx_basic_page.html">Ponca basic CPU</a>, but this time by taking an interlaced raw buffer as input.</p>
+<div class="textblock"><p>This is an example of how to instanciate the <a class="el" href="classPonca_1_1Concept_1_1PointConcept.html" title="Definition of a point sample.">Ponca::Concept::PointConcept</a> in order to use <a class="el" href="namespacePonca.html" title="This module provides efficient methods for the fitting and analysis of point-clouds in arbitrary dime...">Ponca</a> on existing data structures without any memory duplication. We apply exactly the same processing than in <a class="el" href="example_cxx_basic_page.html">Ponca basic CPU</a>, but this time by taking an interlaced raw buffer as input.</p>
 <div class="fragment"><div class="line"><span class="comment">/*</span></div>
 <div class="line"><span class="comment">This Source Code Form is subject to the terms of the Mozilla Public</span></div>
 <div class="line"><span class="comment">License, v. 2.0. If a copy of the MPL was not distributed with this</span></div>
@@ -102,7 +102,7 @@ $(function() {
 <div class="line"><span class="preprocessor">#include &lt;vector&gt;</span></div>
 <div class="line"> </div>
 <div class="line"><span class="keyword">using namespace </span>std;</div>
-<div class="line"><span class="keyword">using namespace </span><a class="code" href="namespace_ponca.html">Ponca</a>;</div>
+<div class="line"><span class="keyword">using namespace </span><a class="code" href="namespacePonca.html">Ponca</a>;</div>
 <div class="line"> </div>
 <div class="line"><span class="preprocessor">#define DIMENSION 3</span></div>
 <div class="line"> </div>
@@ -139,8 +139,8 @@ $(function() {
 <div class="line"><span class="keyword">typedef</span> MyPoint::VectorType VectorType;</div>
 <div class="line"> </div>
 <div class="line"><span class="comment">// Define related structure</span></div>
-<div class="line"><span class="keyword">typedef</span> <a class="code" href="class_ponca_1_1_dist_weight_func.html">DistWeightFunc&lt;MyPoint,SmoothWeightKernel&lt;Scalar&gt;</a> &gt; WeightFunc;</div>
-<div class="line"><span class="keyword">typedef</span> <a class="code" href="class_ponca_1_1_basket.html">Basket&lt;MyPoint,WeightFunc,OrientedSphereFit,   GLSParam&gt;</a> Fit;</div>
+<div class="line"><span class="keyword">typedef</span> <a class="code" href="classPonca_1_1DistWeightFunc.html">DistWeightFunc&lt;MyPoint,SmoothWeightKernel&lt;Scalar&gt;</a> &gt; WeightFunc;</div>
+<div class="line"><span class="keyword">typedef</span> <a class="code" href="classPonca_1_1Basket.html">Basket&lt;MyPoint,WeightFunc,OrientedSphereFit,   GLSParam&gt;</a> Fit;</div>
 <div class="line"> </div>
 <div class="line"> </div>
 <div class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> Fit&gt;</div>
@@ -235,12 +235,12 @@ $(function() {
 <div class="line">}</div>
 </div><!-- fragment --> </div></div><!-- contents -->
 </div><!-- PageDoc -->
-<div class="ttc" id="aclass_ponca_1_1_dist_weight_func_html"><div class="ttname"><a href="class_ponca_1_1_dist_weight_func.html">Ponca::DistWeightFunc</a></div><div class="ttdoc">Weighting function based on the euclidean distance between a query and a reference position.</div><div class="ttdef"><b>Definition:</b> weightFunc.h:29</div></div>
-<div class="ttc" id="aclass_ponca_1_1_basket_html"><div class="ttname"><a href="class_ponca_1_1_basket.html">Ponca::Basket</a></div><div class="ttdoc">Agregator class used to declare specialized structures using CRTP (Curiously Recurring Template Patte...</div><div class="ttdef"><b>Definition:</b> basket.h:49</div></div>
-<div class="ttc" id="anamespace_ponca_html"><div class="ttname"><a href="namespace_ponca.html">Ponca</a></div><div class="ttdoc">This module provides efficient methods for the fitting and analysis of point-clouds in arbitrary dime...</div><div class="ttdef"><b>Definition:</b> limitedPriorityQueue.h:14</div></div>
+<div class="ttc" id="anamespacePonca_html"><div class="ttname"><a href="namespacePonca.html">Ponca</a></div><div class="ttdoc">This module provides efficient methods for the fitting and analysis of point-clouds in arbitrary dime...</div><div class="ttdef"><b>Definition:</b> limitedPriorityQueue.h:14</div></div>
+<div class="ttc" id="aclassPonca_1_1Basket_html"><div class="ttname"><a href="classPonca_1_1Basket.html">Ponca::Basket</a></div><div class="ttdoc">Agregator class used to declare specialized structures using CRTP (Curiously Recurring Template Patte...</div><div class="ttdef"><b>Definition:</b> basket.h:49</div></div>
+<div class="ttc" id="aclassPonca_1_1DistWeightFunc_html"><div class="ttname"><a href="classPonca_1_1DistWeightFunc.html">Ponca::DistWeightFunc</a></div><div class="ttdoc">Weighting function based on the euclidean distance between a query and a reference position.</div><div class="ttdef"><b>Definition:</b> weightFunc.h:29</div></div>
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue May 4 2021 15:13:05 for Ponca by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Wed May 12 2021 13:41:20 for Ponca by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.17
 </small></address>
