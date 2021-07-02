@@ -14,7 +14,7 @@ namespace Ponca
 
 /*!
  * \brief Extension to compute line primitives and fitting procedures to the library
- *
+ * \warning This class is valid only in 3D.
  * \ingroup fitting
  */
 
