@@ -30,6 +30,8 @@ set(ponca_Fitting_INCLUDE
     "${PONCA_src_ROOT}/Ponca/src/Fitting/weightFunc.h"
     "${PONCA_src_ROOT}/Ponca/src/Fitting/weightFunc.hpp"
     "${PONCA_src_ROOT}/Ponca/src/Fitting/weightKernel.h"
+    "${PONCA_src_ROOT}/Ponca/src/Fitting/linePrimitive.h"
+    "${PONCA_src_ROOT}/Ponca/src/Fitting/leastSquareLine.h"
     )
 
 add_library(Fitting INTERFACE)

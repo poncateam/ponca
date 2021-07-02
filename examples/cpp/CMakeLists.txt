@@ -26,4 +26,12 @@ target_include_directories(ponca_binding PRIVATE ${PONCA_src_ROOT})
 add_dependencies(ponca-examples ponca_binding)
 ponca_handle_eigen_dependency(ponca_binding)
 
+set(ponca_fit_line_SRCS
+    ponca_fit_line.cpp
+)
+add_executable(ponca_fit_line ${ponca_fit_line_SRCS})
+target_include_directories(ponca_fit_line PRIVATE ${PONCA_src_ROOT})
+add_dependencies(ponca-examples ponca_fit_line)
+ponca_handle_eigen_dependency(ponca_fit_line)
+
 add_subdirectory(pcl)
