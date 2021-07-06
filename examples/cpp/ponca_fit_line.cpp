@@ -4,7 +4,6 @@
  file, You can obtain one at http://mozilla.org/MPL/2.0/.
 */
 
-
 #include <cmath>
 #include <algorithm>
 #include <iostream>
@@ -17,13 +16,16 @@
 #include "Eigen/Eigen"
 #include <Eigen/Core> 
 #include <Eigen/Dense>
-
 using namespace Eigen;
+
 using namespace std;
 using namespace Ponca;
 
+
 #define DIMENSION 3
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+ 
 // This class defines the input data format
 class MyPoint
 {
@@ -60,11 +62,15 @@ typedef DistWeightFunc<MyPoint,SmoothWeightKernel<Scalar> > WeightFunc;
 typedef Basket<MyPoint,WeightFunc, LeastSquareLine> fit;
 
 
+
+
+
 int main(int argc, char **argv) {
 
-   
+
     int n = 10000;
     vector<MyPoint> points(n);
+    // Generate a random set of n points on 3d space
     std::generate(points.begin(), points.end(), []() {return MyPoint::Random(); });
     const VectorType& p = points.at(0).pos();
 
@@ -90,7 +96,7 @@ int main(int argc, char **argv) {
 
     if( _fit.isStable() )
     {
-         cout << "\nA point on the fitted 3D line: \n"
+        cout << "\nA point on the fitted 3D line: \n"
             << _fit.point()    
             << endl;
 
@@ -98,10 +104,14 @@ int main(int argc, char **argv) {
             << _fit.direction()
             << endl;
 
-      
+        cout << "\nThe initial point is: \n"
+            << p
+            << endl;
 
-        
+        cout << "\nThe projected point on the fitted 3D line: \n"
+            << _fit.project(p)
+            << endl;
     } 
-
+    
     return 0;   
 }

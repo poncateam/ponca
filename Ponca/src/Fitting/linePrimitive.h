@@ -18,8 +18,7 @@ namespace Ponca
 /*!
     \brief A parametrized line is defined by an origin point o and a unit direction vector d such that the line corresponds to the set l(t)=o+td, t∈R.
 
-    In 3-dimensionnal space, the plane is defined using a point and a direction vector.
-
+    In 3-dimensionnal space, the line has an orgin and a direction vector.
 
     This class inherits Eigen::ParametrizedLine.
 
@@ -62,13 +61,6 @@ public:
     /*! \brief Weight Function */
     typedef _WFunctor                       WFunctor;
 
-
-private:
-    /*! \brief  The equation of a line with a point vectorType point 
-    and direction vectorType direction */
-    VectorType _direction;
-    VectorType _point; 
-
 private:
 
     /*! \brief Evaluation position (needed for centered basis) */
@@ -80,6 +72,7 @@ public:
     PONCA_MULTIARCH inline Line()
         : Base()
     {
+        m_p = VectorType::Zero();
         resetPrimitive();
     }
 
@@ -89,16 +82,15 @@ public:
     Line<DataPoint, WFunctor, T>& line()
     { return * static_cast<Line<DataPoint, WFunctor, T>*>(this); }
 
-    /*! \brief Set the scalar field values to 0 and reset the isNormalized() status
+    /*! \brief Set the scalar field values to 0 and reset the distance() and origin() status
 
-        \warning Set a_y to Zero(), which leads to nans in OrientedLine::normal()
         \FIXME Set and use Base::m_state to handle invalid configuration
     */
     PONCA_MULTIARCH inline void resetPrimitive()
     {
         Base::resetPrimitive();
-        _direction = VectorType::Zero();
-        _point = VectorType::Zero();
+        EigenBase* cc = static_cast<EigenBase*>(this);
+        *cc = EigenBase();
 
     }
     /*! \brief Comparison operator */
@@ -121,24 +113,39 @@ public:
        \param _pos Position of the line
     */
     PONCA_MULTIARCH inline void setLine (const VectorType& _origin,
-                                    const VectorType& _axis)
+                                    const VectorType& _direction)
     {
-        _point = _origin;
-        _direction = _axis;
+        EigenBase* cc = static_cast<EigenBase*>(this);
+        *cc = EigenBase(_origin, _direction);
     }
 
-     /*! \brief direction of the  lines */
+     //! \brief direction of the  lines
     PONCA_MULTIARCH inline VectorType direction () const
     {
-        /* Uniform direction defined only by the orientation of the line*/
-        return _direction;
+        // Uniform direction defined only by the orientation of the line
+        return EigenBase::direction();
     }
-     /*! \brief point on the fitting line */
+     //! \brief point on the fitting line
     PONCA_MULTIARCH inline VectorType point () const
     {
-        /* Uniform point defined only by the orientation of the line */
-        return _point;
+        // Uniform point defined only by the orientation of the line
+        return EigenBase::origin();
     }
+
+    //! \brief Value of the scalar field at the location \f$ \mathbf{q} \f$
+    PONCA_MULTIARCH inline Scalar distance (const VectorType& _q) const
+    {
+        // The potential is the distance from a point to the line
+        return EigenBase::distance(_q - m_p);
+    }
+
+    //! \brief Project a point on the line
+    PONCA_MULTIARCH inline VectorType project (const VectorType& _q) const
+    {
+        // Project on the normal vector and add the offset value
+        return EigenBase::projection(_q - m_p) + m_p;
+    }
+
 
     /*!
         \brief Used to know if the fitting result to a line
