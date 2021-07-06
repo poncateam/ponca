@@ -13,7 +13,18 @@ namespace Ponca
 {
 
 /*!
- * \brief Extension to compute line primitives and fitting procedures to the library
+ * \brief Orthogonal Regression is the process of finding the line that best fits a set of points by minimizing their squared orthogonal distances to it.
+    The first key insight is that the orthogonal regression line will always pass through the average (or centroid) of the points.
+    The centroid can be computed by adding the points together, and then dividing by the number of points.
+    Note: Now that we have a point that the line passes through, we just need to calculate its direction.
+
+    Since this algorithm is iterative, we need an iteration function that gets us closer to the true line direction at each step.
+
+    We can choose almost any** direction to start, and we will iteratively work toward the real direction.
+
+    The key to calculating the next direction estimate is to multiply each point by the dot product of it and the current estimate.
+    This moves all the points to the same hemisphere as the current guess, allowing you to simply sum them and normalize them for the new direction estimate.
+
  * \warning This class is valid only in 3D.
  * \ingroup fitting
  */
@@ -84,6 +95,6 @@ public:
 
 };
 
-#include "LeastSquareLine.hpp"
+#include "leastSquareLine.hpp"
 
 } //namespace Ponca
