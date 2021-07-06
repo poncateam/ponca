@@ -4,13 +4,12 @@ template < class DataPoint, class _WFunctor, typename T>
 void
 LeastSquareLine<DataPoint, _WFunctor, T>::init(const VectorType& _evalPos)
 {
-    
     // Setup primitive
     Base::resetPrimitive();
     Base::basisCenter() = _evalPos;
 
     // Setup fitting internal values
-    m_sum        = Scalar(0.0);
+    m_sum         = Scalar(0.0);
     m_cog         = VectorType::Zero();
     m_cov         = MatrixType::Zero();
 }
@@ -19,9 +18,7 @@ template < class DataPoint, class _WFunctor, typename T>
 bool
 LeastSquareLine<DataPoint, _WFunctor, T>::addNeighbor(const DataPoint& _nei)
 {
-    
     VectorType q = _nei.pos() - Base::basisCenter();
-
     m_cog  +=  q;
     m_sum++;
     m_cov  +=  q * q.transpose();
@@ -34,11 +31,9 @@ template < class DataPoint, class _WFunctor, typename T>
 FIT_RESULT
 LeastSquareLine<DataPoint, _WFunctor, T>::finalize ()
 {
-    
-  
-    // handle specific configurations
-    // With less than 3 neighbors the fitting is undefined
-    if(m_sum == Scalar(0.) || Base::m_nbNeighbors < 3)
+    /* handle specific configurations
+     With less than 2 neighbors the fitting is undefined */
+    if(m_sum == Scalar(0.) || Base::m_nbNeighbors < 2)
     {
       Base::resetPrimitive();
       Base::m_eCurrentState = UNDEFINED;

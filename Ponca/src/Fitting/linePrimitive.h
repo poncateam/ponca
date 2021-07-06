@@ -15,14 +15,34 @@
 namespace Ponca
 {
 
+/*!
+    \brief A parametrized line is defined by an origin point o and a unit direction vector d such that the line corresponds to the set l(t)=o+td, t∈R.
 
+    In 3-dimensionnal space, the plane is defined using a point and a direction vector.
+
+
+    This class inherits Eigen::ParametrizedLine.
+
+    This primitive requires the definition of n-dimensionnal vectors
+    (VectorType) in Concept::PointConcept.
+
+    This primitive provides:
+    \verbatim PROVIDES_LINE \endverbatim
+
+    \ingroup fitting
+*/
 
 template < class DataPoint, class _WFunctor, typename T = void  >
-class Line : public PrimitiveBase<DataPoint, _WFunctor>
+class Line : public PrimitiveBase<DataPoint, _WFunctor>,
+             public Eigen::ParametrizedLine<typename DataPoint::Scalar, DataPoint::Dim >
 {
 private:
 
    typedef PrimitiveBase<DataPoint, _WFunctor> Base;
+
+public:
+    /// \brief Specialization of Eigen::ParametrizedLine inherited by Ponca::Line
+    using EigenBase = Eigen::ParametrizedLine<typename DataPoint::Scalar, DataPoint::Dim >;
 
 protected:
 
@@ -46,13 +66,12 @@ public:
 private:
     /*! \brief  The equation of a line with a point vectorType point 
     and direction vectorType direction */
-
     VectorType _direction;
     VectorType _point; 
 
 private:
 
-    //! \brief Evaluation position (needed for centered basis)
+    /*! \brief Evaluation position (needed for centered basis) */
     VectorType m_p;
 
 public:
@@ -82,10 +101,9 @@ public:
         _point = VectorType::Zero();
 
     }
-
+    /*! \brief Comparison operator */
     PONCA_MULTIARCH inline bool operator==(const Line<DataPoint, WFunctor, T>& other) const{
-        return (_direction == other.direction()) && (_point == other.point());
-              
+        return EigenBase::isApprox(other);
     }
 
     /*! \brief Comparison operator, convenience function */
