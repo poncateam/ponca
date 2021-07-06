@@ -84,7 +84,7 @@ public:
     }
 
     PONCA_MULTIARCH inline bool operator==(const Line<DataPoint, WFunctor, T>& other) const{
-        return (this.direction() == other.direction()) && (this.point() == other.point());
+        return (_direction == other.direction()) && (_point == other.point());
               
     }
 
