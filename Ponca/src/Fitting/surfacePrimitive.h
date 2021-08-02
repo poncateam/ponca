@@ -124,6 +124,33 @@ public:
       q_point = _pos;
     }
 
+    //*! \brief Value of the scalar field at the evaluation point */
+    // PONCA_MULTIARCH inline projectDescent( const VectorType& _q, int nbIter) const
+    // {
+    //     PONCA_MULTIARCH_STD_MATH(min)
+
+    //     // turn to centered basis
+    //     const VectorType lq = _q-m_p;
+
+    //     VectorType grad;
+    //     VectorType dir  = m_ul+Scalar(2.)*m_uq*lq;
+    //     Scalar ilg      = Scalar(1.)/dir.norm();
+    //     dir             = dir*ilg;
+    //     Scalar ad       = m_uc + m_ul.dot(lq) + m_uq * lq.squaredNorm();
+    //     Scalar delta    = -ad*min(ilg,Scalar(1.));
+    //     VectorType proj = lq + dir*delta;
+
+    //     for (int i=0; i<nbIter; ++i)
+    //     {
+    //         grad  = m_ul+Scalar(2.)*m_uq*proj;
+    //         ilg   = Scalar(1.)/grad.norm();
+    //         delta = -(m_uc + proj.dot(m_ul) + m_uq * proj.squaredNorm())*min(ilg,Scalar(1.));
+    //         proj += dir*delta;
+    //     }
+    //     return proj + m_p;
+    // }
+
+
     // /*! \brief Value of the scalar field at the evaluation point */
     // PONCA_MULTIARCH inline Scalar potential ( ) const
     // {
@@ -151,11 +178,38 @@ public:
     //     return EigenBase::normal();
     // }
 
-    // //! \brief Scalar field gradient direction at \f$ \mathbf{q}\f$
-    // PONCA_MULTIARCH inline VectorType primitiveGradient (const VectorType&) const
+       // //! \brief Scalar field gradient direction at \f$ \mathbf{q}\f$
+    // PONCA_MULTIARCH inline VectorType projectDescent (const VectorType&) const
     // {
-    //     // Uniform gradient defined only by the orientation of the surface
-    //     return EigenBase::normal();
+    // PONCA_MULTIARCH_STD_MATH(min)
+
+    //     // turn to centered basis
+    //     const VectorType lq = _q-m_p;
+
+    //     VectorType grad;
+    //     VectorType dir  = m_ul+Scalar(2.)*m_uq*lq;
+    //     Scalar ilg      = Scalar(1.)/dir.norm();
+    //     dir             = dir*ilg;
+    //     Scalar ad       = m_uc + m_ul.dot(lq) + m_uq * lq.squaredNorm();
+    //     Scalar delta    = -ad*min(ilg,Scalar(1.));
+    //     VectorType proj = lq + dir*delta;
+
+    //     for (int i=0; i<nbIter; ++i)
+    //     {
+    //         grad  = m_ul+Scalar(2.)*m_uq*proj;
+    //         ilg   = Scalar(1.)/grad.norm();
+    //         delta = -(m_uc + proj.dot(m_ul) + m_uq * proj.squaredNorm())*min(ilg,Scalar(1.));
+    //         proj += dir*delta;
+    //     }
+    //     return proj + m_p;
+
+    // }
+
+    // //! \brief Scalar field gradient direction at \f$ \mathbf{q}\f$
+    // PONCA_MULTIARCH inline VectorType primitiveGradient (const VectorType&_q) const
+    // {
+    //      const VectorType lq = _q-m_p;
+    //     return (m_ul + Scalar(2.f) * m_uq * lq);
     // }
 
 
