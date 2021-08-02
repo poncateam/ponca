@@ -30,6 +30,9 @@
 #include "src/Fitting/linePrimitive.h"
 #include "src/Fitting/leastSquareLine.h"
 
+#include "src/Fitting/surfacePrimitive.h"
+#include "src/Fitting/leastSquareSurfaceFit.h"
+
 // not supported on cuda
 #ifndef __CUDACC__
 # include "src/Fitting/unorientedSphereFit.h"
