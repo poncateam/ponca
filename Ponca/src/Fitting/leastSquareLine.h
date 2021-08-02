@@ -15,15 +15,14 @@ namespace Ponca
 {
 
 /*!
- * \brief Orthogonal Regression is the process of finding the line that best fits a set of points by minimizing their squared orthogonal distances to it.
-    The first key insight is that the orthogonal regression line will always pass through the average (or centroid) of the points.
-    The centroid can be computed by adding the points together, and then dividing by the number of points.
-    Note: Now that we have a point that the line passes through, we just need to calculate its direction.
+   \brief Line fitting procedure that minimize the orthogonal distance between the samples and the fitted primitive.
 
-    The algorithm is based on the Eigen decomposition of the covariance matrix of the points coordinates.
+   \inherit Concept::FittingProcedureConcept
+   \see Line
+   \see CovariancePlaneFit which use a similar approach for CompactPlane estimation
 
- * \warning This class is valid only in 3D.
- * \ingroup fitting
+   \warning This class is valid only in 3D.
+   \ingroup fitting
  */
 
 template < class DataPoint, class _WFunctor, typename T>
@@ -31,7 +30,6 @@ class LeastSquareLine : public Line<DataPoint, _WFunctor>
 {
 private:
     typedef Line<DataPoint, _WFunctor> Base;
-
 
 protected:
     enum

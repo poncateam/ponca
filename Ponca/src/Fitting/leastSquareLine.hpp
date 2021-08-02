@@ -63,7 +63,6 @@ LeastSquareLine<DataPoint, _WFunctor, T>::finalize ()
     Base::m_eCurrentState = ( m_solver.info() == Eigen::Success ? STABLE : UNDEFINED );
 
     Base::setLine(m_cog, m_solver.eigenvectors().col(2).normalized());
-   
 
     return Base::m_eCurrentState;
 }

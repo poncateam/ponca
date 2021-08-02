@@ -12,8 +12,6 @@
  \brief Test validity of line fitting procedure(s)
  */
 
-#define MULTIPASS_LINE_FITTING_FAILED false
-
 #include "../common/testing.h"
 #include "../common/testUtils.h"
 
@@ -30,7 +28,7 @@ using namespace Ponca;
 
 
 template<typename DataPoint, typename Fit, typename WeightFunc> //, typename Fit, typename WeightFunction>
-void testFunction(bool _bUnoriented = false, bool _bAddPositionNoise = false, bool _bAddNormalNoise = false)
+void testFunction(bool _bAddPositionNoise = false)
 {
     // Define related structure
     typedef typename DataPoint::Scalar Scalar;
@@ -42,49 +40,39 @@ void testFunction(bool _bUnoriented = false, bool _bAddPositionNoise = false, bo
     VectorType _direction = VectorType::Random().normalized();
 
     Scalar epsilon = testEpsilon<Scalar>();
+    Scalar noiseMagnitude = 0.001;
 
     vector<DataPoint> vectorPoints(nbPoints);
-
-    for(unsigned int i = 0; i < vectorPoints.size(); ++i)
-    {
-        vectorPoints[i] = {i * _direction, {0,0,0}}; 
-    }
+    std::generate(vectorPoints.begin(), vectorPoints.end(), [&_direction,_bAddPositionNoise,noiseMagnitude]() {
+        return DataPoint(_direction * Eigen::internal::random<Scalar>(0.1,2)
+                + ( _bAddPositionNoise ? (VectorType::Random() * noiseMagnitude).eval() : VectorType::Zero() ));
+    });
 
     epsilon = testEpsilon<Scalar>();
-    // if ( _bAddPositionNoise) // relax a bit the testing threshold
-    //   epsilon = Scalar(0.01*MAX_NOISE);
-    // Test for each point if the fitted line correspond to the theoretical line
-#ifdef DEBUG
+
 #pragma omp parallel for
-#endif
     for(int i = 0; i < int(vectorPoints.size()); ++i)
     {
-
         Fit fit;
-        fit.setWeightFunc(WeightFunc(0.1));
+        fit.setWeightFunc(WeightFunc(1));
         fit.init(vectorPoints[i].pos());
         fit.compute(vectorPoints.cbegin(), vectorPoints.cend());
 
-        if( fit.isStable() ){
+        VERIFY( fit.isStable() );
 
-            // Check if the query point is on the line
-               VERIFY(fit.distance(vectorPoints[i].pos()) <= epsilon);
+        if(_bAddPositionNoise)
+            VERIFY((fit.distance(vectorPoints[i].pos())) <= Scalar(4)*noiseMagnitude );
+        else
+            VERIFY((fit.distance(vectorPoints[i].pos())) <= epsilon);
 
-            // Check if the line orientation is equal to the generation direction
-            //VERIFY(Scalar(1.) - std::abs(fit.direction(vectorPoints[i].pos()).dot(_direction)) <= epsilon);
-            // if(!_bAddPositionNoise)
-
-        }
-        else {
-            VERIFY(MULTIPASS_LINE_FITTING_FAILED);
-        }
+        VERIFY( Scalar(1) - std::abs( fit.direction().dot(_direction) ) <= epsilon );
     }
 }
 
 template<typename Scalar, int Dim>
 void callSubTests()
 {
-    typedef PointPositionNormal<Scalar, Dim> Point;
+    typedef PointPosition<Scalar, Dim> Point;
 
     typedef DistWeightFunc<Point, SmoothWeightKernel<Scalar> > WeightSmoothFunc;
     typedef DistWeightFunc<Point, ConstantWeightKernel<Scalar> > WeightConstantFunc;
@@ -103,13 +91,13 @@ void callSubTests()
     }
     cout << "Ok!" << endl;
 
-    // cout << "Testing with noise on position" << endl;
-    // for(int i = 0; i < g_repeat; ++i)
-    // {
-    //     CALL_SUBTEST(( testFunction<Point, LeastSquareFitSmooth, WeightSmoothFunc>(false, true, true) ));
-    //     CALL_SUBTEST(( testFunction<Point, LeastSquareFitConstant, WeightConstantFunc>(false, true, true) ));
-    // }
-    // cout << "Ok!" << endl;
+     cout << "Testing with noise on position" << endl;
+     for(int i = 0; i < g_repeat; ++i)
+     {
+         CALL_SUBTEST(( testFunction<Point, LeastSquareFitSmooth, WeightSmoothFunc>(true) ));
+         CALL_SUBTEST(( testFunction<Point, LeastSquareFitConstant, WeightConstantFunc>(true) ));
+     }
+     cout << "Ok!" << endl;
 }
 
 int main(int argc, char** argv)
