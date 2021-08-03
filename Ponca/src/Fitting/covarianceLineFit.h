@@ -26,7 +26,7 @@ namespace Ponca
  */
 
 template < class DataPoint, class _WFunctor, typename T>
-class LeastSquareLine : public Line<DataPoint, _WFunctor>
+class CovarianceLineFit : public Line<DataPoint, _WFunctor>
 {
 private:
     typedef Line<DataPoint, _WFunctor> Base;
@@ -60,11 +60,11 @@ protected:
 
 public:
      /*! \brief Default constructor */
-    PONCA_MULTIARCH inline LeastSquareLine() : Base() {}
-    //! \brief Explicit conversion to LeastSquareLine, to access methods potentially hidden by inheritage */
+    PONCA_MULTIARCH inline CovarianceLineFit() : Base() {}
+    //! \brief Explicit conversion to CovarianceLineFit, to access methods potentially hidden by inheritage */
     PONCA_MULTIARCH inline
-    LeastSquareLine<DataPoint, WFunctor, T>& leastSquareLine()
-    { return * static_cast<LeastSquareLine<DataPoint, WFunctor, T>*>(this); }
+    CovarianceLineFit<DataPoint, WFunctor, T>& leastSquareLine()
+    { return * static_cast<CovarianceLineFit<DataPoint, WFunctor, T>*>(this); }
     /**************************************************************************/
     /* Initialization                                                         */
     /**************************************************************************/
@@ -90,6 +90,6 @@ public:
 
 };
 
-#include "leastSquareLine.hpp"
+#include "covarianceLineFit.hpp"
 
 } //namespace Ponca
