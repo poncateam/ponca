@@ -1,8 +1,9 @@
 <map id="Ponca::Concept::FittingProcedureConcept&lt; DataPoint, _WFunctor, T &gt;" name="Ponca::Concept::FittingProcedureConcept&lt; DataPoint, _WFunctor, T &gt;">
-<area shape="rect" id="node1" title="Describes the procedure to fit a primitive to point samples." alt="" coords="443,5,704,141"/>
+<area shape="rect" id="node1" title="Describes the procedure to fit a primitive to point samples." alt="" coords="559,5,820,141"/>
 <area shape="rect" id="node2" href="$classPonca_1_1CovariancePlaneFit.html" title="Plane fitting procedure using only points position." alt="" coords="5,189,213,501"/>
-<area shape="rect" id="node3" href="$classPonca_1_1MeanPlaneFit.html" title="Plane fitting procedure computing the mean position and orientation from oriented points." alt="" coords="237,248,445,443"/>
-<area shape="rect" id="node4" href="$classPonca_1_1OrientedSphereFit.html" title="Algebraic Sphere fitting procedure on oriented point sets." alt="" coords="469,219,677,472"/>
-<area shape="rect" id="node5" href="$classPonca_1_1SphereFit.html" title="Algebraic Sphere fitting procedure on point sets without normals." alt="" coords="701,255,915,435"/>
-<area shape="rect" id="node6" href="$classPonca_1_1UnorientedSphereFit.html" title="Algebraic Sphere fitting procedure on point sets with non&#45;oriented normals." alt="" coords="939,241,1147,450"/>
+<area shape="rect" id="node3" href="$classPonca_1_1LeastSquareLine.html" title="Line fitting procedure that minimize the orthogonal distance between the samples and the fitted primi..." alt="" coords="237,226,445,465"/>
+<area shape="rect" id="node4" href="$classPonca_1_1MeanPlaneFit.html" title="Plane fitting procedure computing the mean position and orientation from oriented points." alt="" coords="469,248,677,443"/>
+<area shape="rect" id="node5" href="$classPonca_1_1OrientedSphereFit.html" title="Algebraic Sphere fitting procedure on oriented point sets." alt="" coords="701,219,909,472"/>
+<area shape="rect" id="node6" href="$classPonca_1_1SphereFit.html" title="Algebraic Sphere fitting procedure on point sets without normals." alt="" coords="933,255,1147,435"/>
+<area shape="rect" id="node7" href="$classPonca_1_1UnorientedSphereFit.html" title="Algebraic Sphere fitting procedure on point sets with non&#45;oriented normals." alt="" coords="1171,241,1379,450"/>
 </map>

@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['normal_447',['normal',['../classPonca_1_1MlsSphereFitDer.html#afe8dacfa43d2a2cb8cd0d219582c22ff',1,'Ponca::MlsSphereFitDer']]],
-  ['normalcovariancecurvature_448',['NormalCovarianceCurvature',['../classPonca_1_1NormalCovarianceCurvature.html#aa239f453e50459589ff58b2c188fcdc4',1,'Ponca::NormalCovarianceCurvature']]]
+  ['meanplanefit_458',['MeanPlaneFit',['../classPonca_1_1MeanPlaneFit.html#a845966882b678a521ae0564eed68ee4a',1,'Ponca::MeanPlaneFit']]],
+  ['mongepatch_459',['mongePatch',['../classPonca_1_1MongePatch.html#a1062d4f81df29288f4f14526bc6e4166',1,'Ponca::MongePatch']]]
 ];

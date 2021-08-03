@@ -30,7 +30,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Ponca
-   &#160;<span id="projectnumber">78bcb73123b743f89bc2b913f8805fdda5a8153a</span>
+   &#160;<span id="projectnumber">49cec0828ff3928bf81c3c0981b0888e9775064e</span>
    </div>
    <div id="projectbrief">Point Cloud Analysis library</div>
   </td>
@@ -88,6 +88,8 @@ $(function() {
 , <a class="el" href="classPonca_1_1GLSParam.html#a21cddbd7a99a8705c5f55afca94d77a1">Ponca::GLSParam&lt; DataPoint, _WFunctor, T &gt;</a>
 , <a class="el" href="classPonca_1_1internal_1_1CovariancePlaneDer.html#a40482eae9dc5bab5bfdac726a88e48dc">Ponca::internal::CovariancePlaneDer&lt; DataPoint, _WFunctor, T, Type &gt;</a>
 , <a class="el" href="classPonca_1_1internal_1_1OrientedSphereDer.html#a4c02ba63406ee746c113eb310823f7bf">Ponca::internal::OrientedSphereDer&lt; DataPoint, _WFunctor, T, _Type &gt;</a>
+, <a class="el" href="classPonca_1_1LeastSquareLine.html#a91aa71ca80453cdd1d4ac296e53d14a7">Ponca::LeastSquareLine&lt; DataPoint, _WFunctor, T &gt;</a>
+, <a class="el" href="classPonca_1_1Line.html#a5c1c9fa1304c588030f9ca41a9592a8c">Ponca::Line&lt; DataPoint, _WFunctor, T &gt;</a>
 , <a class="el" href="classPonca_1_1MeanPlaneFit.html#a4ba033344fa0dddddb808f3a9412dfd5">Ponca::MeanPlaneFit&lt; DataPoint, _WFunctor, T &gt;</a>
 , <a class="el" href="classPonca_1_1MlsSphereFitDer.html#a4a9f1177061522659f45d9cd3640ffdf">Ponca::MlsSphereFitDer&lt; DataPoint, _WFunctor, T &gt;</a>
 , <a class="el" href="classPonca_1_1MongePatch.html#af05d7b64e140ddc676cf97d4c55b1d18">Ponca::MongePatch&lt; DataPoint, _WFunctor, T &gt;</a>
@@ -114,6 +116,9 @@ $(function() {
 <li>scaleSpaced2w()
 : <a class="el" href="classPonca_1_1DistWeightFunc.html#a26332be7b205ec289253c4b366c46110">Ponca::DistWeightFunc&lt; DataPoint, WeightKernel &gt;</a>
 </li>
+<li>setLine()
+: <a class="el" href="classPonca_1_1Line.html#a2be50f01b5e7ba741e67d80711495add">Ponca::Line&lt; DataPoint, _WFunctor, T &gt;</a>
+</li>
 <li>setValue()
 : <a class="el" href="classPonca_1_1ConstantWeightKernel.html#abfdd7c48d31e98cb1f566724dccf06c0">Ponca::ConstantWeightKernel&lt; _Scalar &gt;</a>
 </li>
@@ -122,6 +127,7 @@ $(function() {
 , <a class="el" href="classPonca_1_1Concept_1_1FittingProcedureConcept.html#a1501914de67d1689b6128ffb4c65f37b">Ponca::Concept::FittingProcedureConcept&lt; DataPoint, _WFunctor, T &gt;</a>
 , <a class="el" href="classPonca_1_1CovariancePlaneFit.html#a6158d614a1ce446614474d0be289b2e5">Ponca::CovariancePlaneFit&lt; DataPoint, _WFunctor, T &gt;</a>
 , <a class="el" href="classPonca_1_1GLSParam.html#a4606b39de74522ce448724e5a84e5127">Ponca::GLSParam&lt; DataPoint, _WFunctor, T &gt;</a>
+, <a class="el" href="classPonca_1_1LeastSquareLine.html#a33ba856fac340cbaf9c5748d255b0727">Ponca::LeastSquareLine&lt; DataPoint, _WFunctor, T &gt;</a>
 , <a class="el" href="classPonca_1_1MeanPlaneFit.html#adbcc153a3bc7953899c6bab16bc2b3b1">Ponca::MeanPlaneFit&lt; DataPoint, _WFunctor, T &gt;</a>
 , <a class="el" href="classPonca_1_1OrientedSphereFit.html#acb676db97cebd819e38672270a75bed4">Ponca::OrientedSphereFit&lt; DataPoint, _WFunctor, T &gt;</a>
 , <a class="el" href="classPonca_1_1SphereFit.html#ac761c038416c74e2d0032adb8e8a6767">Ponca::SphereFit&lt; DataPoint, _WFunctor, T &gt;</a>
@@ -135,6 +141,12 @@ $(function() {
 </li>
 <li>solver()
 : <a class="el" href="classPonca_1_1CovariancePlaneFit.html#a80936cc908161b2041d5d12cc8f9941b">Ponca::CovariancePlaneFit&lt; DataPoint, _WFunctor, T &gt;</a>
+</li>
+<li>Solver
+: <a class="el" href="classPonca_1_1LeastSquareLine.html#a73885c2820ebdeb90f6e94c3f5b372f8">Ponca::LeastSquareLine&lt; DataPoint, _WFunctor, T &gt;</a>
+</li>
+<li>solver()
+: <a class="el" href="classPonca_1_1LeastSquareLine.html#a828bd9642f5ba7c44aebc732e757d0f6">Ponca::LeastSquareLine&lt; DataPoint, _WFunctor, T &gt;</a>
 </li>
 <li>Solver
 : <a class="el" href="classPonca_1_1NormalCovarianceCurvature.html#ac849643242f3feca6a4216a74af6c7d1">Ponca::NormalCovarianceCurvature&lt; DataPoint, _WFunctor, T &gt;</a>
@@ -160,7 +172,7 @@ $(function() {
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue May 25 2021 20:21:34 for Ponca by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Tue Aug 3 2021 07:51:25 for Ponca by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.17
 </small></address>

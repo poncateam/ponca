@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['meanplanefit_445',['MeanPlaneFit',['../classPonca_1_1MeanPlaneFit.html#a845966882b678a521ae0564eed68ee4a',1,'Ponca::MeanPlaneFit']]],
-  ['mongepatch_446',['mongePatch',['../classPonca_1_1MongePatch.html#a1062d4f81df29288f4f14526bc6e4166',1,'Ponca::MongePatch']]]
+  ['leastsquareline_456',['LeastSquareLine',['../classPonca_1_1LeastSquareLine.html#ad92cdf49a251b30cabd2bdef6da15394',1,'Ponca::LeastSquareLine::LeastSquareLine()'],['../classPonca_1_1LeastSquareLine.html#ae877972f54903a35dfb3d84e01bb9428',1,'Ponca::LeastSquareLine::leastSquareLine()']]],
+  ['line_457',['Line',['../classPonca_1_1Line.html#ac8d2bcd6bc64acf0cd7f4bf23fb63e7b',1,'Ponca::Line::Line()'],['../classPonca_1_1Line.html#a24d0dcc58ea6069c7cc92b2abeca484e',1,'Ponca::Line::line()']]]
 ];

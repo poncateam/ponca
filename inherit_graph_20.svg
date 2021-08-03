@@ -9,9 +9,9 @@
 <g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 559.5)">
 <title>Graphical Class Hierarchy</title>
 <polygon fill="white" stroke="transparent" points="-4,4 -4,-559.5 1117,-559.5 1117,4 -4,4"/>
-<!-- Node91 -->
+<!-- Node95 -->
 <g id="node1" class="node">
-<title>Node91</title>
+<title>Node95</title>
 <g id="a_node1"><a xlink:href="classPonca_1_1KdTreeQuery.html" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="black" points="771.5,-181.5 771.5,-211.5 885.5,-211.5 885.5,-181.5 771.5,-181.5"/>
 <text text-anchor="start" x="779.5" y="-199.5" font-family="Helvetica,sans-Serif" font-size="10.00">Ponca::KdTreeQuery</text>
@@ -29,9 +29,9 @@
 </a>
 </g>
 </g>
-<!-- Node91&#45;&gt;Node13 -->
+<!-- Node95&#45;&gt;Node13 -->
 <g id="edge1" class="edge">
-<title>Node91&#45;&gt;Node13</title>
+<title>Node95&#45;&gt;Node13</title>
 <path fill="none" stroke="midnightblue" d="M895.83,-199.54C912.67,-200.31 930.91,-201.14 948.26,-201.94"/>
 <polygon fill="midnightblue" stroke="midnightblue" points="895.7,-196.03 885.55,-199.07 895.38,-203.02 895.7,-196.03"/>
 </g>
@@ -45,9 +45,9 @@
 </a>
 </g>
 </g>
-<!-- Node91&#45;&gt;Node16 -->
+<!-- Node95&#45;&gt;Node16 -->
 <g id="edge2" class="edge">
-<title>Node91&#45;&gt;Node16</title>
+<title>Node95&#45;&gt;Node16</title>
 <path fill="none" stroke="midnightblue" d="M894.73,-179.28C898.42,-177 901.88,-174.42 905,-171.5 936.13,-142.32 909.23,-110.98 941,-82.5 944.77,-79.12 948.98,-76.22 953.45,-73.72"/>
 <polygon fill="midnightblue" stroke="midnightblue" points="892.96,-176.26 885.8,-184.07 896.26,-182.43 892.96,-176.26"/>
 </g>
@@ -61,9 +61,9 @@
 </a>
 </g>
 </g>
-<!-- Node91&#45;&gt;Node20 -->
+<!-- Node95&#45;&gt;Node20 -->
 <g id="edge3" class="edge">
-<title>Node91&#45;&gt;Node20</title>
+<title>Node95&#45;&gt;Node20</title>
 <path fill="none" stroke="midnightblue" d="M894.64,-212.92C898.35,-215.13 901.84,-217.65 905,-220.5 934.84,-247.45 913.28,-274.37 941,-303.5 952.01,-315.07 966.87,-323.9 981.1,-330.41"/>
 <polygon fill="midnightblue" stroke="midnightblue" points="896.15,-209.76 885.66,-208.27 892.93,-215.98 896.15,-209.76"/>
 </g>
@@ -77,9 +77,9 @@
 </a>
 </g>
 </g>
-<!-- Node91&#45;&gt;Node23 -->
+<!-- Node95&#45;&gt;Node23 -->
 <g id="edge4" class="edge">
-<title>Node91&#45;&gt;Node23</title>
+<title>Node95&#45;&gt;Node23</title>
 <path fill="none" stroke="midnightblue" d="M895.6,-183.05C914.04,-179.29 934.17,-175.19 952.99,-171.36"/>
 <polygon fill="midnightblue" stroke="midnightblue" points="894.65,-179.67 885.55,-185.09 896.04,-186.53 894.65,-179.67"/>
 </g>
@@ -93,9 +93,9 @@
 </a>
 </g>
 </g>
-<!-- Node91&#45;&gt;Node27 -->
+<!-- Node95&#45;&gt;Node27 -->
 <g id="edge5" class="edge">
-<title>Node91&#45;&gt;Node27</title>
+<title>Node95&#45;&gt;Node27</title>
 <path fill="none" stroke="midnightblue" d="M890.02,-214.91C895.12,-216.71 900.17,-218.59 905,-220.5 937.27,-233.29 972.96,-250.84 997.17,-263.28"/>
 <polygon fill="midnightblue" stroke="midnightblue" points="890.8,-211.48 880.2,-211.55 888.53,-218.1 890.8,-211.48"/>
 </g>
@@ -109,9 +109,9 @@
 </a>
 </g>
 </g>
-<!-- Node91&#45;&gt;Node30 -->
+<!-- Node95&#45;&gt;Node30 -->
 <g id="edge6" class="edge">
-<title>Node91&#45;&gt;Node30</title>
+<title>Node95&#45;&gt;Node30</title>
 <path fill="none" stroke="midnightblue" d="M895.13,-177.19C898.55,-175.44 901.87,-173.55 905,-171.5 925.02,-158.42 920.69,-144.14 941,-131.5 946.47,-128.1 952.43,-125.17 958.58,-122.64"/>
 <polygon fill="midnightblue" stroke="midnightblue" points="893.46,-174.11 885.86,-181.49 896.41,-180.46 893.46,-174.11"/>
 </g>

@@ -1,0 +1,8 @@
+<map id="Ponca::Line&lt; DataPoint, _WFunctor, T &gt;" name="Ponca::Line&lt; DataPoint, _WFunctor, T &gt;">
+<area shape="rect" id="node1" title="A parametrized line is defined by an origin point &#160;and a unit direction vector &#160;such that the line co..." alt="" coords="192,448,371,687"/>
+<area shape="rect" id="node5" href="$classPonca_1_1Line.html" title=" " alt="" coords="192,749,371,988"/>
+<area shape="rect" id="node2" href="$classPonca_1_1PrimitiveBase.html" title=" " alt="" coords="13,233,205,399"/>
+<area shape="rect" id="node3" href="$classPonca_1_1PrimitiveBase.html" title="Primitive base class." alt="" coords="5,5,213,171"/>
+<area shape="rect" id="node4" title=" " alt="" coords="229,263,451,369"/>
+<area shape="rect" id="node6" href="$classPonca_1_1LeastSquareLine.html" title="Line fitting procedure that minimize the orthogonal distance between the samples and the fitted primi..." alt="" coords="177,1037,385,1276"/>
+</map>

@@ -2,7 +2,7 @@ var searchData=
 [
   ['center_8',['center',['../classPonca_1_1AlgebraicSphere.html#abe53aba84bb693f553804c734d69da13',1,'Ponca::AlgebraicSphere']]],
   ['changebasis_9',['changeBasis',['../classPonca_1_1AlgebraicSphere.html#a054a41e20c9ca517af359aa591bca9e7',1,'Ponca::AlgebraicSphere']]],
-  ['check_10',['Check',['../classPonca_1_1internal_1_1CovariancePlaneDer.html#a0b2a4b85a2878ed09c1aa460eaaa9ba7ad8e5308aaaeeda17bfdbe3f0786f966e',1,'Ponca::internal::CovariancePlaneDer::Check()'],['../classPonca_1_1internal_1_1OrientedSphereDer.html#a15d147c8fbf7cbf87ef9ca706b6e74daa25998874014bba7a5929ba146d3e729d',1,'Ponca::internal::OrientedSphereDer::Check()']]],
+  ['check_10',['Check',['../classPonca_1_1internal_1_1CovariancePlaneDer.html#a0b2a4b85a2878ed09c1aa460eaaa9ba7ad8e5308aaaeeda17bfdbe3f0786f966e',1,'Ponca::internal::CovariancePlaneDer::Check()'],['../classPonca_1_1internal_1_1OrientedSphereDer.html#a5a25f262a2c50dbc36b0d22594f35589a25998874014bba7a5929ba146d3e729d',1,'Ponca::internal::OrientedSphereDer::Check()']]],
   ['clear_11',['clear',['../classPonca_1_1Stack.html#a00f925370381e2f455d52141e1f13b22',1,'Ponca::Stack']]],
   ['common_20module_12',['Common module',['../group__common.html',1,'']]],
   ['compactplane_13',['CompactPlane',['../classPonca_1_1CompactPlane.html',1,'Ponca::CompactPlane&lt; DataPoint, _WFunctor, T &gt;'],['../classPonca_1_1CompactPlane.html#ae65b2511f24763e70f5f9bfcf43a04a0',1,'Ponca::CompactPlane::CompactPlane()'],['../classPonca_1_1CompactPlane.html#a5ff20fd985e90322b449ced316c82b1d',1,'Ponca::CompactPlane::compactPlane()']]],
