@@ -107,8 +107,8 @@ void callSubTests()
     typedef Basket<Point, WeightSmoothFunc, CovariancePlaneFit, MongePatch> CovFitSmooth;
     typedef Basket<Point, WeightConstantFunc, CovariancePlaneFit, MongePatch> CovFitConstant;
 
-//    typedef Basket<Point, WeightSmoothFunc, CompactPlane, MeanPlaneFit> MeanFitSmooth;
-//    typedef Basket<Point, WeightConstantFunc, CompactPlane, MeanPlaneFit> MeanFitConstant;
+//    typedef Basket<Point, WeightSmoothFunc, Plane, MeanPlaneFit> MeanFitSmooth;
+//    typedef Basket<Point, WeightConstantFunc, Plane, MeanPlaneFit> MeanFitConstant;
 
     cout << "Testing with perfect plane..." << endl;
     for(int i = 0; i < g_repeat; ++i)

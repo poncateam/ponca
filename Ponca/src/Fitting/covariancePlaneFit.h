@@ -25,14 +25,14 @@ namespace Ponca
 
     \inherit Concept::FittingProcedureConcept
 
-    \see CompactPlane
+    \see Plane
     \ingroup fitting
 */
 template < class DataPoint, class _WFunctor, typename T >
-class CovariancePlaneFit : public CompactPlane<DataPoint, _WFunctor>
+class CovariancePlaneFit : public Plane<DataPoint, _WFunctor>
 {
 private:
-    typedef CompactPlane<DataPoint, _WFunctor> Base;
+    typedef Plane<DataPoint, _WFunctor> Base;
 
 protected:
     enum

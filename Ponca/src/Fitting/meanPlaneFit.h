@@ -19,16 +19,16 @@ namespace Ponca
 
     \inherit Concept::FittingProcedureConcept
 
-    \see CompactPlane
+    \see Plane
     \todo Add derivatives
 
     \ingroup fitting
 */
 template < class DataPoint, class _WFunctor, typename T >
-class MeanPlaneFit : public CompactPlane<DataPoint, _WFunctor>
+class MeanPlaneFit : public Plane<DataPoint, _WFunctor>
 {
 private:
-    typedef CompactPlane<DataPoint, _WFunctor> Base;
+    typedef Plane<DataPoint, _WFunctor> Base;
 
 protected:
     enum

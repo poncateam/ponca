@@ -19,7 +19,7 @@ namespace Ponca
 
    \inherit Concept::FittingProcedureConcept
    \see Line
-   \see CovariancePlaneFit which use a similar approach for CompactPlane estimation
+   \see CovariancePlaneFit which use a similar approach for Plane estimation
 
    \warning This class is valid only in 3D.
    \ingroup fitting
