@@ -18,9 +18,9 @@ namespace Ponca
   ----------------- | ------------------- | ------------------------------------------------- | ------------------------------------------------------- | ------------ |
   Plane             | Points only         | CovariancePlaneFit (nD)                           | Surface Variation (nD)\cite Pauly:2002:PSSimplification |              |
   Plane             | Oriented points     | MeanPlaneFit (nD, co-dimension 1)                 |                                                         |              |
-  Monge Patch       | Points only         | MongePatch (3D)                                   |                                                         |              |
-  Algebraic Sphere  | Oriented points     | OrientedSphereFit (nD) \cite Guennebaud:2007:APSS | GLS (nD) \cite Mellado:2012:GLS                         | Ray Traced Curvature \cite Mellado:2013:SSC |
-  Algebraic Sphere  | Non-oriented points | UnorientedSphereFit (nD) \cite Chen:2013:NOMG     |                                                         |              |
+  MongePatch        | Points only         | MongePatch (3D)                                   |                                                         |              |
+  AlgebraicSphere   | Oriented points     | OrientedSphereFit (nD) \cite Guennebaud:2007:APSS | GLS (nD) \cite Mellado:2012:GLS                         | Ray Traced Curvature \cite Mellado:2013:SSC |
+  AlgebraicSphere   | Non-oriented points | UnorientedSphereFit (nD) \cite Chen:2013:NOMG     |                                                         |              |
   Line              | Points only         | CovarianceLineFit (3D)                            |                                                         |              |
   
   In the following, we focus on a basic use of the module, using 3D points equipped with oriented normals fitted by a Ponca::AlgebraicSphere. First, one must set up data samples that interface
