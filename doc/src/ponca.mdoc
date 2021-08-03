@@ -16,14 +16,20 @@
      - we added a new module Common for general purpose code
      - we improved the cmake buildchain to improve dependencies management. We also added use a submodule.
 
+  Get the code by calling:
+  \code
+  git clone https://github.com/poncateam/ponca.git
+  git checkout v0.2-alpha-patch1
+  \endcode
+
   See the [complete changelog](@ref ponca_changelog) for details.
 
   \section ponca_about_sec About Ponca
 
-  Ponca is a header only library coded in C++, and compatible with CUDA. It is maintained by researcher in Computer
-  Graphics, and released under the MPL license.
+  Ponca is a header only library coded in C++, and compatible with CUDA. It is maintained by researchers in Computer
+  Graphics, and released under the MPL license. Source code is available at: https://github.com/poncateam/ponca
 
-  It provides a collection of techniques for Point Cloud Analysis that incorporate the latest innovations from CNRS and
+  Ponca provides a collection of techniques for Point Cloud Analysis that incorporate the latest innovations from CNRS and
   INRIA research teams working in the field. It strives for efficiency and ease-of-use by focusing on low-level core
   operators and key algorithms. The central goal of the library is to drastically reduce the time and efforts required
   to turn a research paper into a ready-to-use solution, for both commercial and academic purposes.
@@ -46,10 +52,10 @@
   If you get stuck or have a problem/bug using Ponca, open an issue on <a href="https://github.com/poncateam/ponca/issues" target="_blank">Github</a> for further assistance. Remember that the library is under development so we are pleased to get your feedback.
 
   - <b> What does "Ponca" mean, actually? </b><BR>
-  "Ponca" stands for POiNt Cloud Analysis. Currently, it provides fitting techniques, to approximate sets of points by planes or spheres. Upcoming release should bring Moving Least Squares surfaces.
+  "Ponca" stands for POiNt Cloud Analysis. Currently, it provides fitting techniques and spatial queries accelerators (e.g. KdTree), to approximate sets of points by planes or spheres. Upcoming release should bring Moving Least Squares surfaces.
 
-  - <b> How is Ponca licensed? Are their seeds patented? </b><BR>
-  The source code of the library is licensed under the Mozilla Public License (MPL), v. 2.0. Its main advantage is to grant inclusion of template files as long as the source code itself is not modified (see? It's even somewhat sustainable). For more details, a copy of the MPL can be found at http://mozilla.org/MPL/2.0/ .
+  - <b> How is Ponca licensed? </b><BR>
+  The source code of the library is licensed under the Mozilla Public License (MPL), v. 2.0. Its main advantage is to grant inclusion of template files as long as the source code itself is not modified. For more details, a copy of the MPL can be found at http://mozilla.org/MPL/2.0/ .
 
 
 
