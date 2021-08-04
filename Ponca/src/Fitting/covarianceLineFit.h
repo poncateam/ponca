@@ -31,12 +31,6 @@ class CovarianceLineFit : public Line<DataPoint, _WFunctor>
 private:
     typedef Line<DataPoint, _WFunctor> Base;
 
-protected:
-    enum
-    {
-        Check = Base::PROVIDES_LINE
-    };
-
 public:
    /*! \brief Scalar type inherited from DataPoint*/
     typedef typename Base::Scalar     Scalar;
