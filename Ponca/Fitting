@@ -28,7 +28,7 @@
 #include "src/Fitting/curvatureEstimation.h"
 
 #include "src/Fitting/linePrimitive.h"
-#include "src/Fitting/leastSquareLine.h"
+#include "src/Fitting/covarianceLineFit.h"
 
 // not supported on cuda
 #ifndef __CUDACC__

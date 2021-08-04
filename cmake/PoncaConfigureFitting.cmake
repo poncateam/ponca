@@ -4,6 +4,8 @@ set(ponca_Fitting_INCLUDE
     "${PONCA_src_ROOT}/Ponca/src/Fitting/algebraicSphere.h"
     "${PONCA_src_ROOT}/Ponca/src/Fitting/algebraicSphere.hpp"
     "${PONCA_src_ROOT}/Ponca/src/Fitting/basket.h"
+    "${PONCA_src_ROOT}/Ponca/src/Fitting/covarianceLineFit.h"
+    "${PONCA_src_ROOT}/Ponca/src/Fitting/covarianceLineFit.hpp"
     "${PONCA_src_ROOT}/Ponca/src/Fitting/covariancePlaneFit.h"
     "${PONCA_src_ROOT}/Ponca/src/Fitting/covariancePlaneFit.hpp"
     "${PONCA_src_ROOT}/Ponca/src/Fitting/curvatureEstimation.h"
@@ -31,7 +33,6 @@ set(ponca_Fitting_INCLUDE
     "${PONCA_src_ROOT}/Ponca/src/Fitting/weightFunc.hpp"
     "${PONCA_src_ROOT}/Ponca/src/Fitting/weightKernel.h"
     "${PONCA_src_ROOT}/Ponca/src/Fitting/linePrimitive.h"
-    "${PONCA_src_ROOT}/Ponca/src/Fitting/leastSquareLine.h"
     )
 
 add_library(Fitting INTERFACE)

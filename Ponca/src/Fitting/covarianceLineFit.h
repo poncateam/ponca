@@ -19,23 +19,17 @@ namespace Ponca
 
    \inherit Concept::FittingProcedureConcept
    \see Line
-   \see CovariancePlaneFit which use a similar approach for CompactPlane estimation
+   \see CovariancePlaneFit which use a similar approach for Plane estimation
 
    \warning This class is valid only in 3D.
    \ingroup fitting
  */
 
 template < class DataPoint, class _WFunctor, typename T>
-class LeastSquareLine : public Line<DataPoint, _WFunctor>
+class CovarianceLineFit : public Line<DataPoint, _WFunctor>
 {
 private:
     typedef Line<DataPoint, _WFunctor> Base;
-
-protected:
-    enum
-    {
-        Check = Base::PROVIDES_LINE
-    };
 
 public:
    /*! \brief Scalar type inherited from DataPoint*/
@@ -60,11 +54,11 @@ protected:
 
 public:
      /*! \brief Default constructor */
-    PONCA_MULTIARCH inline LeastSquareLine() : Base() {}
-    //! \brief Explicit conversion to LeastSquareLine, to access methods potentially hidden by inheritage */
+    PONCA_MULTIARCH inline CovarianceLineFit() : Base() {}
+    //! \brief Explicit conversion to CovarianceLineFit, to access methods potentially hidden by inheritage */
     PONCA_MULTIARCH inline
-    LeastSquareLine<DataPoint, WFunctor, T>& leastSquareLine()
-    { return * static_cast<LeastSquareLine<DataPoint, WFunctor, T>*>(this); }
+    CovarianceLineFit<DataPoint, WFunctor, T>& leastSquareLine()
+    { return * static_cast<CovarianceLineFit<DataPoint, WFunctor, T>*>(this); }
     /**************************************************************************/
     /* Initialization                                                         */
     /**************************************************************************/
@@ -90,6 +84,6 @@ public:
 
 };
 
-#include "leastSquareLine.hpp"
+#include "covarianceLineFit.hpp"
 
 } //namespace Ponca

@@ -10,7 +10,7 @@
 
 template < class DataPoint, class _WFunctor, typename T>
 void
-LeastSquareLine<DataPoint, _WFunctor, T>::init(const VectorType& _evalPos)
+CovarianceLineFit<DataPoint, _WFunctor, T>::init(const VectorType& _evalPos)
 {
     // Setup primitive
     Base::resetPrimitive();
@@ -24,7 +24,7 @@ LeastSquareLine<DataPoint, _WFunctor, T>::init(const VectorType& _evalPos)
 
 template < class DataPoint, class _WFunctor, typename T>
 bool
-LeastSquareLine<DataPoint, _WFunctor, T>::addNeighbor(const DataPoint& _nei)
+CovarianceLineFit<DataPoint, _WFunctor, T>::addNeighbor(const DataPoint& _nei)
 {
     VectorType q = _nei.pos() - Base::basisCenter();
     m_cog  +=  q;
@@ -37,7 +37,7 @@ LeastSquareLine<DataPoint, _WFunctor, T>::addNeighbor(const DataPoint& _nei)
 
 template < class DataPoint, class _WFunctor, typename T>
 FIT_RESULT
-LeastSquareLine<DataPoint, _WFunctor, T>::finalize ()
+CovarianceLineFit<DataPoint, _WFunctor, T>::finalize ()
 {
     /* handle specific configurations
      With less than 2 neighbors the fitting is undefined */

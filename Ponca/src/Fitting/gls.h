@@ -225,37 +225,6 @@ public:
 };
 
 
-/*!
-   \deprecated See class CurvatureEstimator
-
-   \ingroup fitting
-*/
-template < class DataPoint, class _WFunctor, typename T>
-class GLSCurvatureHelper : public CurvatureEstimator<DataPoint,_WFunctor,T>
-{
-    typedef CurvatureEstimator<DataPoint,_WFunctor,T> Base;
-public:
-
-    typedef typename Base::Scalar Scalar;
-    typedef typename Base::VectorType VectorType;
-
-    /*! \deprecated */
-    PONCA_MULTIARCH inline Scalar GLSk1() const { return Base::k1(); }
-
-    /*! \deprecated */
-    PONCA_MULTIARCH inline Scalar GLSk2() const { return Base::k2(); }
-
-    /*! \deprecated */
-    PONCA_MULTIARCH inline VectorType GLSk1Direction() const { return Base::k1Direction(); }
-
-    /*! \deprecated */
-    PONCA_MULTIARCH inline VectorType GLSk2Direction() const { return Base::k2Direction(); }
-
-    /*! \deprecated */
-    PONCA_MULTIARCH inline Scalar GLSGaussianCurvature() const { return Base::GaussianCurvature(); }
-
-};
-
 #include "gls.hpp"
 
 } //namespace Ponca

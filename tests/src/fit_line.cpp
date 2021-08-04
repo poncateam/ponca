@@ -16,7 +16,7 @@
 #include "../common/testUtils.h"
 
 #include <Ponca/src/Fitting/basket.h>
-#include <Ponca/src/Fitting/leastSquareLine.h>
+#include <Ponca/src/Fitting/covarianceLineFit.h>
 #include <Ponca/src/Fitting/weightFunc.h>
 #include <Ponca/src/Fitting/weightKernel.h>
 
@@ -77,8 +77,8 @@ void callSubTests()
     typedef DistWeightFunc<Point, SmoothWeightKernel<Scalar> > WeightSmoothFunc;
     typedef DistWeightFunc<Point, ConstantWeightKernel<Scalar> > WeightConstantFunc;
 
-    typedef Basket<Point, WeightSmoothFunc, LeastSquareLine> LeastSquareFitSmooth;
-    typedef Basket<Point, WeightConstantFunc, LeastSquareLine> LeastSquareFitConstant;
+    typedef Basket<Point, WeightSmoothFunc, CovarianceLineFit> LeastSquareFitSmooth;
+    typedef Basket<Point, WeightConstantFunc, CovarianceLineFit> LeastSquareFitConstant;
 
 
     cout << "Testing with perfect line..." << endl;

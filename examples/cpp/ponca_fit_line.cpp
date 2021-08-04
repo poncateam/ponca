@@ -41,7 +41,7 @@ typedef MyPoint::Scalar Scalar;
 typedef MyPoint::VectorType VectorType;
 
 typedef DistWeightFunc<MyPoint,ConstantWeightKernel<Scalar> > WeightFunc;
-typedef Basket<MyPoint,WeightFunc, LeastSquareLine> Fit;
+typedef Basket<MyPoint,WeightFunc, CovarianceLineFit> Fit;
 
 
 int main(int argc, char **argv) {

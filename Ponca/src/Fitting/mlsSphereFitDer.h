@@ -69,7 +69,7 @@ public:
 
         A MatrixArray is an array of Matrix (that mimics a 3D matrix) where the
         number of Matrix is equal to the dimension of the ambient space.
-        The i-th Matrix can be accesed by the following block operation:
+        The i-th Matrix can be accessed by the following block operation:
         \code
             MatrixArray a;
             int i;
@@ -81,7 +81,7 @@ public:
 
 protected:
     // computation data
-    Matrix m_d2SumDotPN,  /*!< \brief Sum of the dot product betwen relative positions and normals with twice differenciated weights */
+    Matrix m_d2SumDotPN,  /*!< \brief Sum of the dot product between relative positions and normals with twice differenciated weights */
            m_d2SumDotPP,  /*!< \brief Sum of the squared relative positions with twice differenciated weights */
            m_d2SumW;      /*!< \brief Sum of queries weight with twice differenciated weights */
 

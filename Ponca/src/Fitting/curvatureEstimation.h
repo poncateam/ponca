@@ -16,7 +16,7 @@ template < class DataPoint, class _WFunctor, typename T>
  *
  * \brief Base class for any 3d curvature estimator: holds k1, k2 and associated vectors
  *
- * \ingroup fittingExperimental
+ * \ingroup fitting
  */
 class BaseCurvatureEstimator : public T
 {
@@ -98,7 +98,7 @@ public:
  * \cite Liang:1990:RRSS.
  *
  * \warning This class is valid only in 3D.
- * \ingroup fittingExperimental
+ * \ingroup fitting
  */
 template < class DataPoint, class _WFunctor, typename T>
 class NormalCovarianceCurvature : public BaseCurvatureEstimator<DataPoint,_WFunctor,T>
@@ -156,7 +156,7 @@ public:
  * \note This procedure requires two passes, the first one for plane fitting
  * and local frame estimation, and the second one for covariance analysis.
  * \warning This class is valid only in 3D.
- * \ingroup fittingExperimental
+ * \ingroup fitting
  */
 template < class DataPoint, class _WFunctor, typename T>
 class ProjectedNormalCovarianceCurvature : public BaseCurvatureEstimator<DataPoint,_WFunctor,T>
