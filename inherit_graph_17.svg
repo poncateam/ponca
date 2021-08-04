@@ -9,261 +9,261 @@
 <g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 329)">
 <title>Graphical Class Hierarchy</title>
 <polygon fill="white" stroke="transparent" points="-4,4 -4,-329 576,-329 576,4 -4,4"/>
-<!-- Node107 -->
+<!-- Node106 -->
 <g id="node1" class="node">
-<title>Node107</title>
+<title>Node106</title>
 <g id="a_node1"><a xlink:href="classPonca_1_1Concept_1_1FittingProcedureConcept.html" target="_top" xlink:title="Describes the procedure to fit a primitive to point samples.">
-<polygon fill="white" stroke="black" points="180,-196.5 180,-226.5 376,-226.5 376,-196.5 180,-196.5"/>
-<text text-anchor="start" x="188" y="-214.5" font-family="Helvetica,sans-Serif" font-size="10.00">Ponca::Concept::FittingProcedure</text>
-<text text-anchor="middle" x="278" y="-203.5" font-family="Helvetica,sans-Serif" font-size="10.00">Concept&lt; DataPoint, _WFunctor, T &gt;</text>
+<polygon fill="white" stroke="black" points="180,-98.5 180,-128.5 376,-128.5 376,-98.5 180,-98.5"/>
+<text text-anchor="start" x="188" y="-116.5" font-family="Helvetica,sans-Serif" font-size="10.00">Ponca::Concept::FittingProcedure</text>
+<text text-anchor="middle" x="278" y="-105.5" font-family="Helvetica,sans-Serif" font-size="10.00">Concept&lt; DataPoint, _WFunctor, T &gt;</text>
 </a>
 </g>
 </g>
 <!-- Node6 -->
 <g id="node2" class="node">
 <title>Node6</title>
-<g id="a_node2"><a xlink:href="classPonca_1_1CovariancePlaneFit.html" target="_top" xlink:title="Plane fitting procedure using only points position.">
-<polygon fill="white" stroke="black" points="414,-269.5 414,-299.5 570,-299.5 570,-269.5 414,-269.5"/>
-<text text-anchor="start" x="422" y="-287.5" font-family="Helvetica,sans-Serif" font-size="10.00">Ponca::CovariancePlaneFit</text>
-<text text-anchor="middle" x="492" y="-276.5" font-family="Helvetica,sans-Serif" font-size="10.00">&lt; DataPoint, _WFunctor, T &gt;</text>
+<g id="a_node2"><a xlink:href="classPonca_1_1CovarianceLineFit.html" target="_top" xlink:title="Line fitting procedure that minimize the orthogonal distance between the samples and the fitted primi...">
+<polygon fill="white" stroke="black" points="414,-245.5 414,-275.5 570,-275.5 570,-245.5 414,-245.5"/>
+<text text-anchor="start" x="422" y="-263.5" font-family="Helvetica,sans-Serif" font-size="10.00">Ponca::CovarianceLineFit</text>
+<text text-anchor="middle" x="492" y="-252.5" font-family="Helvetica,sans-Serif" font-size="10.00">&lt; DataPoint, _WFunctor, T &gt;</text>
 </a>
 </g>
 </g>
-<!-- Node107&#45;&gt;Node6 -->
+<!-- Node106&#45;&gt;Node6 -->
 <g id="edge1" class="edge">
-<title>Node107&#45;&gt;Node6</title>
-<path fill="none" stroke="midnightblue" d="M359,-229.8C364.83,-231.84 370.56,-234.07 376,-236.5 393.56,-244.34 394.61,-252.28 412,-260.5 419,-263.81 426.56,-266.79 434.13,-269.43"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="359.71,-226.35 349.12,-226.56 357.52,-233 359.71,-226.35"/>
+<title>Node106&#45;&gt;Node6</title>
+<path fill="none" stroke="midnightblue" d="M372.38,-134.48C373.62,-135.44 374.83,-136.45 376,-137.5 410.82,-168.8 378.02,-204.3 412,-236.5 415.64,-239.95 419.76,-242.91 424.17,-245.44"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="373.99,-131.34 363.72,-128.71 370.11,-137.17 373.99,-131.34"/>
+</g>
+<!-- Node8 -->
+<g id="node3" class="node">
+<title>Node8</title>
+<g id="a_node3"><a xlink:href="classPonca_1_1CovariancePlaneFit.html" target="_top" xlink:title="Plane fitting procedure using only points position.">
+<polygon fill="white" stroke="black" points="414,-0.5 414,-30.5 570,-30.5 570,-0.5 414,-0.5"/>
+<text text-anchor="start" x="422" y="-18.5" font-family="Helvetica,sans-Serif" font-size="10.00">Ponca::CovariancePlaneFit</text>
+<text text-anchor="middle" x="492" y="-7.5" font-family="Helvetica,sans-Serif" font-size="10.00">&lt; DataPoint, _WFunctor, T &gt;</text>
+</a>
+</g>
+</g>
+<!-- Node106&#45;&gt;Node8 -->
+<g id="edge2" class="edge">
+<title>Node106&#45;&gt;Node8</title>
+<path fill="none" stroke="midnightblue" d="M366.38,-94.21C369.72,-92.47 372.94,-90.57 376,-88.5 398.38,-73.36 389.94,-55.11 412,-39.5 416.8,-36.1 422.08,-33.18 427.58,-30.66"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="364.89,-91.04 357.33,-98.46 367.87,-97.38 364.89,-91.04"/>
 </g>
 <!-- Node9 -->
-<g id="node3" class="node">
-<title>Node9</title>
-<g id="a_node3"><a xlink:href="classPonca_1_1LeastSquareLine.html" target="_top" xlink:title="Line fitting procedure that minimize the orthogonal distance between the samples and the fitted primi...">
-<polygon fill="white" stroke="black" points="414,-24.5 414,-54.5 570,-54.5 570,-24.5 414,-24.5"/>
-<text text-anchor="start" x="422" y="-42.5" font-family="Helvetica,sans-Serif" font-size="10.00">Ponca::LeastSquareLine</text>
-<text text-anchor="middle" x="492" y="-31.5" font-family="Helvetica,sans-Serif" font-size="10.00">&lt; DataPoint, _WFunctor, T &gt;</text>
-</a>
-</g>
-</g>
-<!-- Node107&#45;&gt;Node9 -->
-<g id="edge2" class="edge">
-<title>Node107&#45;&gt;Node9</title>
-<path fill="none" stroke="midnightblue" d="M372.6,-190.53C373.77,-189.56 374.91,-188.55 376,-187.5 417.38,-147.74 371.67,-104.33 412,-63.5 415.42,-60.03 419.33,-57.06 423.54,-54.52"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="370.58,-187.67 364.44,-196.31 374.62,-193.39 370.58,-187.67"/>
-</g>
-<!-- Node7 -->
 <g id="node4" class="node">
-<title>Node7</title>
+<title>Node9</title>
 <g id="a_node4"><a xlink:href="classPonca_1_1MeanPlaneFit.html" target="_top" xlink:title="Plane fitting procedure computing the mean position and orientation from oriented points.">
-<polygon fill="white" stroke="black" points="414,-220.5 414,-250.5 570,-250.5 570,-220.5 414,-220.5"/>
-<text text-anchor="start" x="422" y="-238.5" font-family="Helvetica,sans-Serif" font-size="10.00">Ponca::MeanPlaneFit</text>
-<text text-anchor="middle" x="492" y="-227.5" font-family="Helvetica,sans-Serif" font-size="10.00">&lt; DataPoint, _WFunctor, T &gt;</text>
+<polygon fill="white" stroke="black" points="414,-49.5 414,-79.5 570,-79.5 570,-49.5 414,-49.5"/>
+<text text-anchor="start" x="422" y="-67.5" font-family="Helvetica,sans-Serif" font-size="10.00">Ponca::MeanPlaneFit</text>
+<text text-anchor="middle" x="492" y="-56.5" font-family="Helvetica,sans-Serif" font-size="10.00">&lt; DataPoint, _WFunctor, T &gt;</text>
 </a>
 </g>
 </g>
-<!-- Node107&#45;&gt;Node7 -->
+<!-- Node106&#45;&gt;Node9 -->
 <g id="edge3" class="edge">
-<title>Node107&#45;&gt;Node7</title>
-<path fill="none" stroke="midnightblue" d="M386.1,-223.63C395.42,-224.68 404.73,-225.73 413.73,-226.75"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="386.33,-220.13 376,-222.48 385.55,-227.08 386.33,-220.13"/>
+<title>Node106&#45;&gt;Node9</title>
+<path fill="none" stroke="midnightblue" d="M353.98,-96.17C377.52,-90.73 403.29,-84.77 426.08,-79.51"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="353,-92.8 344.05,-98.47 354.58,-99.62 353,-92.8"/>
 </g>
 <!-- Node2 -->
 <g id="node5" class="node">
 <title>Node2</title>
 <g id="a_node5"><a xlink:href="classPonca_1_1OrientedSphereFit.html" target="_top" xlink:title="Algebraic Sphere fitting procedure on oriented point sets.">
-<polygon fill="white" stroke="black" points="414,-171.5 414,-201.5 570,-201.5 570,-171.5 414,-171.5"/>
-<text text-anchor="start" x="422" y="-189.5" font-family="Helvetica,sans-Serif" font-size="10.00">Ponca::OrientedSphereFit</text>
-<text text-anchor="middle" x="492" y="-178.5" font-family="Helvetica,sans-Serif" font-size="10.00">&lt; DataPoint, _WFunctor, T &gt;</text>
+<polygon fill="white" stroke="black" points="414,-196.5 414,-226.5 570,-226.5 570,-196.5 414,-196.5"/>
+<text text-anchor="start" x="422" y="-214.5" font-family="Helvetica,sans-Serif" font-size="10.00">Ponca::OrientedSphereFit</text>
+<text text-anchor="middle" x="492" y="-203.5" font-family="Helvetica,sans-Serif" font-size="10.00">&lt; DataPoint, _WFunctor, T &gt;</text>
 </a>
 </g>
 </g>
-<!-- Node107&#45;&gt;Node2 -->
+<!-- Node106&#45;&gt;Node2 -->
 <g id="edge4" class="edge">
-<title>Node107&#45;&gt;Node2</title>
-<path fill="none" stroke="midnightblue" d="M386.1,-198.87C395.42,-197.77 404.73,-196.67 413.73,-195.61"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="385.53,-195.41 376,-200.06 386.34,-202.37 385.53,-195.41"/>
+<title>Node106&#45;&gt;Node2</title>
+<path fill="none" stroke="midnightblue" d="M368.91,-133.17C371.35,-134.52 373.72,-135.96 376,-137.5 398.68,-152.84 389.73,-171.57 412,-187.5 416.78,-190.92 422.06,-193.86 427.55,-196.38"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="370.33,-129.96 359.81,-128.67 367.23,-136.24 370.33,-129.96"/>
 </g>
 <!-- Node3 -->
 <g id="node6" class="node">
 <title>Node3</title>
 <g id="a_node6"><a xlink:href="classPonca_1_1SphereFit.html" target="_top" xlink:title="Algebraic Sphere fitting procedure on point sets without normals.">
-<polygon fill="white" stroke="black" points="412,-122.5 412,-152.5 572,-152.5 572,-122.5 412,-122.5"/>
-<text text-anchor="start" x="420" y="-140.5" font-family="Helvetica,sans-Serif" font-size="10.00">Ponca::SphereFit&lt; DataPoint,</text>
-<text text-anchor="middle" x="492" y="-129.5" font-family="Helvetica,sans-Serif" font-size="10.00"> _WFunctor, T &gt;</text>
+<polygon fill="white" stroke="black" points="412,-147.5 412,-177.5 572,-177.5 572,-147.5 412,-147.5"/>
+<text text-anchor="start" x="420" y="-165.5" font-family="Helvetica,sans-Serif" font-size="10.00">Ponca::SphereFit&lt; DataPoint,</text>
+<text text-anchor="middle" x="492" y="-154.5" font-family="Helvetica,sans-Serif" font-size="10.00"> _WFunctor, T &gt;</text>
 </a>
 </g>
 </g>
-<!-- Node107&#45;&gt;Node3 -->
+<!-- Node106&#45;&gt;Node3 -->
 <g id="edge5" class="edge">
-<title>Node107&#45;&gt;Node3</title>
-<path fill="none" stroke="midnightblue" d="M361.76,-193.23C366.64,-191.48 371.42,-189.57 376,-187.5 393.75,-179.47 394.52,-171.09 412,-162.5 419.49,-158.82 427.64,-155.52 435.77,-152.63"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="360.64,-189.92 352.28,-196.43 362.87,-196.55 360.64,-189.92"/>
+<title>Node106&#45;&gt;Node3</title>
+<path fill="none" stroke="midnightblue" d="M353.98,-130.83C377.52,-136.27 403.29,-142.23 426.08,-147.49"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="354.58,-127.38 344.05,-128.53 353,-134.2 354.58,-127.38"/>
 </g>
 <!-- Node4 -->
 <g id="node7" class="node">
 <title>Node4</title>
 <g id="a_node7"><a xlink:href="classPonca_1_1UnorientedSphereFit.html" target="_top" xlink:title="Algebraic Sphere fitting procedure on point sets with non&#45;oriented normals.">
-<polygon fill="white" stroke="black" points="414,-73.5 414,-103.5 570,-103.5 570,-73.5 414,-73.5"/>
-<text text-anchor="start" x="422" y="-91.5" font-family="Helvetica,sans-Serif" font-size="10.00">Ponca::UnorientedSphereFit</text>
-<text text-anchor="middle" x="492" y="-80.5" font-family="Helvetica,sans-Serif" font-size="10.00">&lt; DataPoint, _WFunctor, T &gt;</text>
+<polygon fill="white" stroke="black" points="414,-98.5 414,-128.5 570,-128.5 570,-98.5 414,-98.5"/>
+<text text-anchor="start" x="422" y="-116.5" font-family="Helvetica,sans-Serif" font-size="10.00">Ponca::UnorientedSphereFit</text>
+<text text-anchor="middle" x="492" y="-105.5" font-family="Helvetica,sans-Serif" font-size="10.00">&lt; DataPoint, _WFunctor, T &gt;</text>
 </a>
 </g>
 </g>
-<!-- Node107&#45;&gt;Node4 -->
+<!-- Node106&#45;&gt;Node4 -->
 <g id="edge6" class="edge">
-<title>Node107&#45;&gt;Node4</title>
-<path fill="none" stroke="midnightblue" d="M371.14,-191.12C372.81,-189.98 374.44,-188.77 376,-187.5 404.68,-164.17 383.94,-136.58 412,-112.5 416.03,-109.05 420.54,-106.09 425.31,-103.56"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="369.2,-188.2 362.41,-196.34 372.79,-194.22 369.2,-188.2"/>
+<title>Node106&#45;&gt;Node4</title>
+<path fill="none" stroke="midnightblue" d="M386.1,-113.5C395.42,-113.5 404.73,-113.5 413.73,-113.5"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="386,-110 376,-113.5 386,-117 386,-110"/>
 </g>
-<!-- Node104 -->
+<!-- Node103 -->
 <g id="node8" class="node">
-<title>Node104</title>
+<title>Node103</title>
 <g id="a_node8"><a xlink:title=" ">
-<polygon fill="white" stroke="#bfbfbf" points="35.5,-275 35.5,-294 108.5,-294 108.5,-275 35.5,-275"/>
-<text text-anchor="middle" x="72" y="-282" font-family="Helvetica,sans-Serif" font-size="10.00">Hyperplane</text>
+<polygon fill="white" stroke="#bfbfbf" points="35.5,-31 35.5,-50 108.5,-50 108.5,-31 35.5,-31"/>
+<text text-anchor="middle" x="72" y="-38" font-family="Helvetica,sans-Serif" font-size="10.00">Hyperplane</text>
 </a>
 </g>
 </g>
-<!-- Node5 -->
+<!-- Node7 -->
 <g id="node9" class="node">
-<title>Node5</title>
-<g id="a_node9"><a xlink:href="classPonca_1_1CompactPlane.html" target="_top" xlink:title=" ">
-<polygon fill="white" stroke="black" points="206,-245.5 206,-275.5 350,-275.5 350,-245.5 206,-245.5"/>
-<text text-anchor="start" x="214" y="-263.5" font-family="Helvetica,sans-Serif" font-size="10.00">Ponca::CompactPlane</text>
-<text text-anchor="middle" x="278" y="-252.5" font-family="Helvetica,sans-Serif" font-size="10.00">&lt; DataPoint, _WFunctor &gt;</text>
-</a>
-</g>
-</g>
-<!-- Node104&#45;&gt;Node5 -->
-<g id="edge7" class="edge">
-<title>Node104&#45;&gt;Node5</title>
-<path fill="none" stroke="midnightblue" d="M118.73,-279.12C144.42,-276.1 177.04,-272.26 205.98,-268.86"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="118.06,-275.67 108.53,-280.32 118.87,-282.63 118.06,-275.67"/>
-</g>
-<!-- Node11 -->
-<g id="node10" class="node">
-<title>Node11</title>
-<g id="a_node10"><a xlink:href="classPonca_1_1CompactPlane.html" target="_top" xlink:title="Implicit hyperplane defined by an homogeneous vector .">
-<polygon fill="white" stroke="black" points="200,-294.5 200,-324.5 356,-324.5 356,-294.5 200,-294.5"/>
-<text text-anchor="start" x="208" y="-312.5" font-family="Helvetica,sans-Serif" font-size="10.00">Ponca::CompactPlane</text>
-<text text-anchor="middle" x="278" y="-301.5" font-family="Helvetica,sans-Serif" font-size="10.00">&lt; DataPoint, _WFunctor, T &gt;</text>
-</a>
-</g>
-</g>
-<!-- Node104&#45;&gt;Node11 -->
-<g id="edge10" class="edge">
-<title>Node104&#45;&gt;Node11</title>
-<path fill="none" stroke="midnightblue" d="M118.69,-290.1C142.52,-293.02 172.32,-296.67 199.62,-300.02"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="118.89,-286.6 108.53,-288.85 118.03,-293.55 118.89,-286.6"/>
-</g>
-<!-- Node5&#45;&gt;Node6 -->
-<g id="edge8" class="edge">
-<title>Node5&#45;&gt;Node6</title>
-<path fill="none" stroke="midnightblue" d="M360.39,-269.71C377.94,-271.7 396.44,-273.79 413.82,-275.76"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="360.51,-266.21 350.18,-268.56 359.73,-273.16 360.51,-266.21"/>
-</g>
-<!-- Node5&#45;&gt;Node7 -->
-<g id="edge9" class="edge">
-<title>Node5&#45;&gt;Node7</title>
-<path fill="none" stroke="midnightblue" d="M360.39,-250.9C377.94,-248.83 396.44,-246.65 413.82,-244.6"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="359.7,-247.46 350.18,-252.11 360.52,-254.41 359.7,-247.46"/>
-</g>
-<!-- Node87 -->
-<g id="node11" class="node">
-<title>Node87</title>
-<g id="a_node11"><a xlink:title=" ">
-<polygon fill="white" stroke="#bfbfbf" points="21.5,-31 21.5,-50 122.5,-50 122.5,-31 21.5,-31"/>
-<text text-anchor="middle" x="72" y="-38" font-family="Helvetica,sans-Serif" font-size="10.00">ParametrizedLine</text>
-</a>
-</g>
-</g>
-<!-- Node8 -->
-<g id="node12" class="node">
-<title>Node8</title>
-<g id="a_node12"><a xlink:href="classPonca_1_1Line.html" target="_top" xlink:title=" ">
-<polygon fill="white" stroke="black" points="211,-0.5 211,-30.5 345,-30.5 345,-0.5 211,-0.5"/>
-<text text-anchor="start" x="219" y="-18.5" font-family="Helvetica,sans-Serif" font-size="10.00">Ponca::Line&lt; DataPoint,</text>
+<title>Node7</title>
+<g id="a_node9"><a xlink:href="classPonca_1_1Plane.html" target="_top" xlink:title=" ">
+<polygon fill="white" stroke="black" points="207.5,-0.5 207.5,-30.5 348.5,-30.5 348.5,-0.5 207.5,-0.5"/>
+<text text-anchor="start" x="215.5" y="-18.5" font-family="Helvetica,sans-Serif" font-size="10.00">Ponca::Plane&lt; DataPoint,</text>
 <text text-anchor="middle" x="278" y="-7.5" font-family="Helvetica,sans-Serif" font-size="10.00"> _WFunctor &gt;</text>
 </a>
 </g>
 </g>
-<!-- Node87&#45;&gt;Node8 -->
-<g id="edge11" class="edge">
-<title>Node87&#45;&gt;Node8</title>
-<path fill="none" stroke="midnightblue" d="M132.88,-33.16C157.37,-30.16 185.79,-26.68 210.89,-23.6"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="132.14,-29.73 122.64,-34.42 132.99,-36.67 132.14,-29.73"/>
+<!-- Node103&#45;&gt;Node7 -->
+<g id="edge7" class="edge">
+<title>Node103&#45;&gt;Node7</title>
+<path fill="none" stroke="midnightblue" d="M118.52,-34.92C144.61,-31.72 177.91,-27.64 207.24,-24.05"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="118.03,-31.45 108.53,-36.15 118.89,-38.4 118.03,-31.45"/>
 </g>
 <!-- Node12 -->
-<g id="node13" class="node">
+<g id="node10" class="node">
 <title>Node12</title>
-<g id="a_node13"><a xlink:href="classPonca_1_1Line.html" target="_top" xlink:title="A parametrized line is defined by an origin point &#160;and a unit direction vector &#160;such that the line co...">
-<polygon fill="white" stroke="black" points="211,-49.5 211,-79.5 345,-79.5 345,-49.5 211,-49.5"/>
-<text text-anchor="start" x="219" y="-67.5" font-family="Helvetica,sans-Serif" font-size="10.00">Ponca::Line&lt; DataPoint,</text>
+<g id="a_node10"><a xlink:href="classPonca_1_1Plane.html" target="_top" xlink:title="Implicit hyperplane defined by an homogeneous vector .">
+<polygon fill="white" stroke="black" points="207.5,-49.5 207.5,-79.5 348.5,-79.5 348.5,-49.5 207.5,-49.5"/>
+<text text-anchor="start" x="215.5" y="-67.5" font-family="Helvetica,sans-Serif" font-size="10.00">Ponca::Plane&lt; DataPoint,</text>
 <text text-anchor="middle" x="278" y="-56.5" font-family="Helvetica,sans-Serif" font-size="10.00"> _WFunctor, T &gt;</text>
 </a>
 </g>
 </g>
-<!-- Node87&#45;&gt;Node12 -->
-<g id="edge13" class="edge">
-<title>Node87&#45;&gt;Node12</title>
-<path fill="none" stroke="midnightblue" d="M132.88,-47.54C157.37,-50.43 185.79,-53.77 210.89,-56.72"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="132.98,-44.03 122.64,-46.34 132.17,-50.98 132.98,-44.03"/>
+<!-- Node103&#45;&gt;Node12 -->
+<g id="edge10" class="edge">
+<title>Node103&#45;&gt;Node12</title>
+<path fill="none" stroke="midnightblue" d="M118.52,-45.86C144.61,-48.93 177.91,-52.84 207.24,-56.29"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="118.87,-42.37 108.53,-44.68 118.06,-49.33 118.87,-42.37"/>
 </g>
-<!-- Node8&#45;&gt;Node9 -->
+<!-- Node7&#45;&gt;Node8 -->
+<g id="edge8" class="edge">
+<title>Node7&#45;&gt;Node8</title>
+<path fill="none" stroke="midnightblue" d="M358.89,-15.5C376.92,-15.5 396.02,-15.5 413.93,-15.5"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="358.71,-12 348.71,-15.5 358.71,-19 358.71,-12"/>
+</g>
+<!-- Node7&#45;&gt;Node9 -->
+<g id="edge9" class="edge">
+<title>Node7&#45;&gt;Node9</title>
+<path fill="none" stroke="midnightblue" d="M353.98,-32.83C377.52,-38.27 403.29,-44.23 426.08,-49.49"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="354.58,-29.38 344.05,-30.53 353,-36.2 354.58,-29.38"/>
+</g>
+<!-- Node86 -->
+<g id="node11" class="node">
+<title>Node86</title>
+<g id="a_node11"><a xlink:title=" ">
+<polygon fill="white" stroke="#bfbfbf" points="21.5,-275 21.5,-294 122.5,-294 122.5,-275 21.5,-275"/>
+<text text-anchor="middle" x="72" y="-282" font-family="Helvetica,sans-Serif" font-size="10.00">ParametrizedLine</text>
+</a>
+</g>
+</g>
+<!-- Node5 -->
+<g id="node12" class="node">
+<title>Node5</title>
+<g id="a_node12"><a xlink:href="classPonca_1_1Line.html" target="_top" xlink:title=" ">
+<polygon fill="white" stroke="black" points="211,-245.5 211,-275.5 345,-275.5 345,-245.5 211,-245.5"/>
+<text text-anchor="start" x="219" y="-263.5" font-family="Helvetica,sans-Serif" font-size="10.00">Ponca::Line&lt; DataPoint,</text>
+<text text-anchor="middle" x="278" y="-252.5" font-family="Helvetica,sans-Serif" font-size="10.00"> _WFunctor &gt;</text>
+</a>
+</g>
+</g>
+<!-- Node86&#45;&gt;Node5 -->
+<g id="edge11" class="edge">
+<title>Node86&#45;&gt;Node5</title>
+<path fill="none" stroke="midnightblue" d="M132.88,-277.46C157.37,-274.57 185.79,-271.23 210.89,-268.28"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="132.17,-274.02 122.64,-278.66 132.98,-280.97 132.17,-274.02"/>
+</g>
+<!-- Node11 -->
+<g id="node13" class="node">
+<title>Node11</title>
+<g id="a_node13"><a xlink:href="classPonca_1_1Line.html" target="_top" xlink:title="A parametrized line is defined by an origin point &#160;and a unit direction vector &#160;such that the line co...">
+<polygon fill="white" stroke="black" points="211,-294.5 211,-324.5 345,-324.5 345,-294.5 211,-294.5"/>
+<text text-anchor="start" x="219" y="-312.5" font-family="Helvetica,sans-Serif" font-size="10.00">Ponca::Line&lt; DataPoint,</text>
+<text text-anchor="middle" x="278" y="-301.5" font-family="Helvetica,sans-Serif" font-size="10.00"> _WFunctor, T &gt;</text>
+</a>
+</g>
+</g>
+<!-- Node86&#45;&gt;Node11 -->
+<g id="edge13" class="edge">
+<title>Node86&#45;&gt;Node11</title>
+<path fill="none" stroke="midnightblue" d="M132.88,-291.84C157.37,-294.84 185.79,-298.32 210.89,-301.4"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="132.99,-288.33 122.64,-290.58 132.14,-295.27 132.99,-288.33"/>
+</g>
+<!-- Node5&#45;&gt;Node6 -->
 <g id="edge12" class="edge">
-<title>Node8&#45;&gt;Node9</title>
-<path fill="none" stroke="midnightblue" d="M355.31,-24.14C374.33,-26.29 394.74,-28.6 413.8,-30.76"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="355.54,-20.64 345.21,-23 354.75,-27.6 355.54,-20.64"/>
+<title>Node5&#45;&gt;Node6</title>
+<path fill="none" stroke="midnightblue" d="M355.31,-260.5C374.33,-260.5 394.74,-260.5 413.8,-260.5"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="355.21,-257 345.21,-260.5 355.21,-264 355.21,-257"/>
 </g>
 <!-- Node0 -->
 <g id="node14" class="node">
 <title>Node0</title>
 <g id="a_node14"><a xlink:href="classPonca_1_1PrimitiveBase.html" target="_top" xlink:title=" ">
-<polygon fill="white" stroke="black" points="0,-122.5 0,-152.5 144,-152.5 144,-122.5 0,-122.5"/>
-<text text-anchor="start" x="8" y="-140.5" font-family="Helvetica,sans-Serif" font-size="10.00">Ponca::PrimitiveBase</text>
-<text text-anchor="middle" x="72" y="-129.5" font-family="Helvetica,sans-Serif" font-size="10.00">&lt; DataPoint, _WFunctor &gt;</text>
+<polygon fill="white" stroke="black" points="0,-171.5 0,-201.5 144,-201.5 144,-171.5 0,-171.5"/>
+<text text-anchor="start" x="8" y="-189.5" font-family="Helvetica,sans-Serif" font-size="10.00">Ponca::PrimitiveBase</text>
+<text text-anchor="middle" x="72" y="-178.5" font-family="Helvetica,sans-Serif" font-size="10.00">&lt; DataPoint, _WFunctor &gt;</text>
 </a>
 </g>
 </g>
-<!-- Node0&#45;&gt;Node5 -->
-<g id="edge18" class="edge">
-<title>Node0&#45;&gt;Node5</title>
-<path fill="none" stroke="midnightblue" d="M91.7,-160.58C111.34,-183.28 144.29,-217.24 180,-236.5 188.02,-240.82 196.82,-244.38 205.76,-247.31"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="94.23,-158.14 85.09,-152.78 88.89,-162.67 94.23,-158.14"/>
-</g>
-<!-- Node0&#45;&gt;Node11 -->
-<g id="edge21" class="edge">
-<title>Node0&#45;&gt;Node11</title>
-<path fill="none" stroke="midnightblue" d="M84.07,-162.27C100.25,-195.56 133.56,-254.16 180,-285.5 186.04,-289.58 192.71,-292.96 199.64,-295.77"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="87.04,-160.36 79.6,-152.81 80.71,-163.35 87.04,-160.36"/>
-</g>
-<!-- Node0&#45;&gt;Node8 -->
+<!-- Node0&#45;&gt;Node7 -->
 <g id="edge19" class="edge">
-<title>Node0&#45;&gt;Node8</title>
-<path fill="none" stroke="midnightblue" d="M91.75,-114.66C111.43,-92.19 144.41,-58.58 180,-39.5 189.56,-34.38 200.23,-30.33 210.9,-27.13"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="88.98,-112.51 85.13,-122.38 94.29,-117.07 88.98,-112.51"/>
+<title>Node0&#45;&gt;Node7</title>
+<path fill="none" stroke="midnightblue" d="M84.11,-161.89C100.34,-128.83 133.71,-70.63 180,-39.5 188.28,-33.93 197.73,-29.66 207.41,-26.37"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="80.78,-160.76 79.63,-171.29 87.09,-163.77 80.78,-160.76"/>
 </g>
 <!-- Node0&#45;&gt;Node12 -->
 <g id="edge22" class="edge">
 <title>Node0&#45;&gt;Node12</title>
-<path fill="none" stroke="midnightblue" d="M111.05,-117.97C131.18,-108.18 156.52,-96.7 180,-88.5 189.83,-85.07 200.38,-81.93 210.77,-79.13"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="109.34,-114.91 101.91,-122.47 112.43,-121.19 109.34,-114.91"/>
+<path fill="none" stroke="midnightblue" d="M91.75,-163.66C111.43,-141.19 144.41,-107.58 180,-88.5 188.49,-83.95 197.85,-80.25 207.32,-77.23"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="88.98,-161.51 85.13,-171.38 94.29,-166.07 88.98,-161.51"/>
+</g>
+<!-- Node0&#45;&gt;Node5 -->
+<g id="edge18" class="edge">
+<title>Node0&#45;&gt;Node5</title>
+<path fill="none" stroke="midnightblue" d="M110.58,-206.26C130.76,-216.3 156.3,-228.12 180,-236.5 189.81,-239.97 200.36,-243.13 210.74,-245.94"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="111.93,-203.02 101.43,-201.64 108.78,-209.27 111.93,-203.02"/>
+</g>
+<!-- Node0&#45;&gt;Node11 -->
+<g id="edge21" class="edge">
+<title>Node0&#45;&gt;Node11</title>
+<path fill="none" stroke="midnightblue" d="M91.7,-209.58C111.34,-232.28 144.29,-266.24 180,-285.5 189.54,-290.65 200.21,-294.71 210.88,-297.91"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="94.23,-207.14 85.09,-201.78 88.89,-211.67 94.23,-207.14"/>
 </g>
 <!-- Node1 -->
 <g id="node15" class="node">
 <title>Node1</title>
 <g id="a_node15"><a xlink:href="classPonca_1_1AlgebraicSphere.html" target="_top" xlink:title=" ">
-<polygon fill="white" stroke="black" points="206,-98.5 206,-128.5 350,-128.5 350,-98.5 206,-98.5"/>
-<text text-anchor="start" x="214" y="-116.5" font-family="Helvetica,sans-Serif" font-size="10.00">Ponca::AlgebraicSphere</text>
-<text text-anchor="middle" x="278" y="-105.5" font-family="Helvetica,sans-Serif" font-size="10.00">&lt; DataPoint, _WFunctor &gt;</text>
+<polygon fill="white" stroke="black" points="206,-196.5 206,-226.5 350,-226.5 350,-196.5 206,-196.5"/>
+<text text-anchor="start" x="214" y="-214.5" font-family="Helvetica,sans-Serif" font-size="10.00">Ponca::AlgebraicSphere</text>
+<text text-anchor="middle" x="278" y="-203.5" font-family="Helvetica,sans-Serif" font-size="10.00">&lt; DataPoint, _WFunctor &gt;</text>
 </a>
 </g>
 </g>
 <!-- Node0&#45;&gt;Node1 -->
 <g id="edge14" class="edge">
 <title>Node0&#45;&gt;Node1</title>
-<path fill="none" stroke="midnightblue" d="M154.04,-127.97C171.16,-125.95 189.12,-123.84 205.85,-121.87"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="153.59,-124.5 144.06,-129.14 154.4,-131.45 153.59,-124.5"/>
+<path fill="none" stroke="midnightblue" d="M154.04,-196.43C171.16,-198.53 189.12,-200.73 205.85,-202.78"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="154.41,-192.95 144.06,-195.21 153.56,-199.9 154.41,-192.95"/>
 </g>
 <!-- Node10 -->
 <g id="node16" class="node">
@@ -278,26 +278,26 @@
 <!-- Node0&#45;&gt;Node10 -->
 <g id="edge20" class="edge">
 <title>Node0&#45;&gt;Node10</title>
-<path fill="none" stroke="midnightblue" d="M154.35,-147.47C169.38,-149.31 185.04,-151.23 199.93,-153.06"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="154.41,-143.95 144.06,-146.21 153.56,-150.9 154.41,-143.95"/>
+<path fill="none" stroke="midnightblue" d="M154.35,-176.93C169.38,-175.16 185.04,-173.32 199.93,-171.57"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="153.59,-173.5 144.06,-178.14 154.4,-180.45 153.59,-173.5"/>
 </g>
 <!-- Node1&#45;&gt;Node2 -->
 <g id="edge15" class="edge">
 <title>Node1&#45;&gt;Node2</title>
-<path fill="none" stroke="midnightblue" d="M359,-131.8C364.83,-133.84 370.56,-136.07 376,-138.5 393.56,-146.34 394.61,-154.28 412,-162.5 419,-165.81 426.56,-168.79 434.13,-171.43"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="359.71,-128.35 349.12,-128.56 357.52,-135 359.71,-128.35"/>
+<path fill="none" stroke="midnightblue" d="M360.39,-211.5C377.94,-211.5 396.44,-211.5 413.82,-211.5"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="360.18,-208 350.18,-211.5 360.18,-215 360.18,-208"/>
 </g>
 <!-- Node1&#45;&gt;Node3 -->
 <g id="edge16" class="edge">
 <title>Node1&#45;&gt;Node3</title>
-<path fill="none" stroke="midnightblue" d="M360.56,-122.73C377.44,-124.64 395.19,-126.65 411.98,-128.55"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="360.51,-119.21 350.18,-121.56 359.73,-126.16 360.51,-119.21"/>
+<path fill="none" stroke="midnightblue" d="M353.98,-194.17C377.52,-188.73 403.29,-182.77 426.08,-177.51"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="353,-190.8 344.05,-196.47 354.58,-197.62 353,-190.8"/>
 </g>
 <!-- Node1&#45;&gt;Node4 -->
 <g id="edge17" class="edge">
 <title>Node1&#45;&gt;Node4</title>
-<path fill="none" stroke="midnightblue" d="M360.39,-103.9C377.94,-101.83 396.44,-99.65 413.82,-97.6"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="359.7,-100.46 350.18,-105.11 360.52,-107.41 359.7,-100.46"/>
+<path fill="none" stroke="midnightblue" d="M359.44,-196.49C365.26,-193.95 370.86,-190.98 376,-187.5 398.68,-172.16 389.73,-153.43 412,-137.5 416.78,-134.08 422.06,-131.14 427.55,-128.62"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="358.16,-193.23 350.13,-200.14 360.71,-199.75 358.16,-193.23"/>
 </g>
 </g>
 </svg>

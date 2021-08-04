@@ -12,7 +12,7 @@
 <!-- Node1 -->
 <g id="node1" class="node">
 <title>Node1</title>
-<g id="a_node1"><a xlink:title="Extension to compute the best fit quadric on 3d points expressed as f(u,v)=h.">
+<g id="a_node1"><a xlink:title="Extension to compute the best fit quadric on 3d points expressed as .">
 <polygon fill="#bfbfbf" stroke="black" points="0,-0.5 0,-266.5 148,-266.5 148,-0.5 0,-0.5"/>
 <text text-anchor="start" x="8" y="-254.5" font-family="Helvetica,sans-Serif" font-size="10.00">Ponca::MongePatch&lt;</text>
 <text text-anchor="middle" x="74" y="-243.5" font-family="Helvetica,sans-Serif" font-size="10.00"> DataPoint, _WFunctor, T &gt;</text>

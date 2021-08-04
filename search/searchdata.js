@@ -9,7 +9,7 @@ var indexSectionsWithContent =
   6: "f",
   7: "cdfnpsu",
   8: "cfs",
-  9: "bdegnpsu"
+  9: "begnpsu"
 };
 
 var indexSectionNames =

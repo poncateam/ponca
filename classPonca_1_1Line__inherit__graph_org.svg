@@ -139,9 +139,9 @@
 <!-- Node6 -->
 <g id="node6" class="node">
 <title>Node6</title>
-<g id="a_node6"><a xlink:href="classPonca_1_1LeastSquareLine.html" target="_top" xlink:title="Line fitting procedure that minimize the orthogonal distance between the samples and the fitted primi...">
+<g id="a_node6"><a xlink:href="classPonca_1_1CovarianceLineFit.html" target="_top" xlink:title="Line fitting procedure that minimize the orthogonal distance between the samples and the fitted primi...">
 <polygon fill="white" stroke="black" points="129,-0.5 129,-178.5 285,-178.5 285,-0.5 129,-0.5"/>
-<text text-anchor="start" x="137" y="-166.5" font-family="Helvetica,sans-Serif" font-size="10.00">Ponca::LeastSquareLine</text>
+<text text-anchor="start" x="137" y="-166.5" font-family="Helvetica,sans-Serif" font-size="10.00">Ponca::CovarianceLineFit</text>
 <text text-anchor="middle" x="207" y="-155.5" font-family="Helvetica,sans-Serif" font-size="10.00">&lt; DataPoint, _WFunctor, T &gt;</text>
 <polyline fill="none" stroke="black" points="129,-148.5 285,-148.5 "/>
 <text text-anchor="start" x="137" y="-136.5" font-family="Helvetica,sans-Serif" font-size="10.00"># m_sum</text>
@@ -150,7 +150,7 @@
 <text text-anchor="start" x="137" y="-103.5" font-family="Helvetica,sans-Serif" font-size="10.00"># m_solver</text>
 <text text-anchor="start" x="137" y="-92.5" font-family="Helvetica,sans-Serif" font-size="10.00"># m_w</text>
 <polyline fill="none" stroke="black" points="129,-85.5 285,-85.5 "/>
-<text text-anchor="start" x="137" y="-73.5" font-family="Helvetica,sans-Serif" font-size="10.00">+ LeastSquareLine()</text>
+<text text-anchor="start" x="137" y="-73.5" font-family="Helvetica,sans-Serif" font-size="10.00">+ CovarianceLineFit()</text>
 <text text-anchor="start" x="137" y="-62.5" font-family="Helvetica,sans-Serif" font-size="10.00">+ leastSquareLine()</text>
 <text text-anchor="start" x="137" y="-51.5" font-family="Helvetica,sans-Serif" font-size="10.00">+ setWeightFunc()</text>
 <text text-anchor="start" x="137" y="-40.5" font-family="Helvetica,sans-Serif" font-size="10.00">+ init()</text>

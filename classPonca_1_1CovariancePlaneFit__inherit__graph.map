@@ -1,9 +1,9 @@
 <map id="Ponca::CovariancePlaneFit&lt; DataPoint, _WFunctor, T &gt;" name="Ponca::CovariancePlaneFit&lt; DataPoint, _WFunctor, T &gt;">
-<area shape="rect" id="node1" title="Plane fitting procedure using only points position." alt="" coords="103,1096,311,1408"/>
+<area shape="rect" id="node1" title="Plane fitting procedure using only points position." alt="" coords="48,1096,256,1408"/>
 <area shape="rect" id="node2" href="$classPonca_1_1Concept_1_1FittingProcedureConcept.html" title="Describes the procedure to fit a primitive to point samples." alt="" coords="5,845,267,981"/>
-<area shape="rect" id="node3" href="$classPonca_1_1CompactPlane.html" title=" " alt="" coords="291,779,483,1047"/>
-<area shape="rect" id="node4" href="$classPonca_1_1PrimitiveBase.html" title=" " alt="" coords="464,233,656,399"/>
-<area shape="rect" id="node7" href="$classPonca_1_1CompactPlane.html" title="Implicit hyperplane defined by an homogeneous vector ." alt="" coords="336,448,544,716"/>
-<area shape="rect" id="node5" href="$classPonca_1_1PrimitiveBase.html" title="Primitive base class." alt="" coords="456,5,664,171"/>
-<area shape="rect" id="node6" title=" " alt="" coords="245,263,397,369"/>
+<area shape="rect" id="node3" href="$classPonca_1_1Plane.html" title=" " alt="" coords="291,779,479,1047"/>
+<area shape="rect" id="node4" href="$classPonca_1_1PrimitiveBase.html" title=" " alt="" coords="467,233,659,399"/>
+<area shape="rect" id="node7" href="$classPonca_1_1Plane.html" title="Implicit hyperplane defined by an homogeneous vector ." alt="" coords="354,448,542,716"/>
+<area shape="rect" id="node5" href="$classPonca_1_1PrimitiveBase.html" title="Primitive base class." alt="" coords="459,5,667,171"/>
+<area shape="rect" id="node6" title=" " alt="" coords="257,263,409,369"/>
 </map>

@@ -1,8 +1,5 @@
 var searchData=
 [
-  ['ponca_20basic_20cpu_590',['Ponca basic CPU',['../example_cxx_basic_page.html',1,'example_page']]],
-  ['ponca_20data_2dstructure_20binding_591',['Ponca data-structure binding',['../example_cxx_binding_page.html',1,'example_page']]],
-  ['ponca_20basic_20line_20fit_592',['Ponca basic line fit',['../example_cxx_fit_line_page.html',1,'example_page']]],
-  ['ponca_20basic_20plane_20fit_593',['Ponca basic plane fit',['../example_cxx_fit_plane_page.html',1,'example_page']]],
-  ['ponca_27s_20changelog_594',['Ponca&apos;s changelog',['../ponca_changelog.html',1,'']]]
+  ['screen_20space_20curvature_20using_20cuda_2fc_2b_2b_583',['Screen Space Curvature using Cuda/C++',['../example_cu_ssc_page.html',1,'example_page']]],
+  ['screen_20space_20curvature_20using_20cuda_20and_20python_584',['Screen Space Curvature using Cuda and Python',['../example_python_ssc_page.html',1,'example_page']]]
 ];

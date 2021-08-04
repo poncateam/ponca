@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.17"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Ponca: Ponca::LeastSquareLine&lt; DataPoint, _WFunctor, T &gt; Class Template Reference</title>
+<title>Ponca: Ponca::CovarianceLineFit&lt; DataPoint, _WFunctor, T &gt; Class Template Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -30,7 +30,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Ponca
-   &#160;<span id="projectnumber">f6a5690c7836143d500ac3abfee944d943e656d3</span>
+   &#160;<span id="projectnumber">f3a766491b8d53c702407b3607deae8c5fe94d26</span>
    </div>
    <div id="projectbrief">Point Cloud Analysis library</div>
   </td>
@@ -71,70 +71,69 @@ $(function() {
 
 <div id="nav-path" class="navpath">
   <ul>
-<li class="navelem"><a class="el" href="namespacePonca.html">Ponca</a></li><li class="navelem"><a class="el" href="classPonca_1_1LeastSquareLine.html">LeastSquareLine</a></li>  </ul>
+<li class="navelem"><a class="el" href="namespacePonca.html">Ponca</a></li><li class="navelem"><a class="el" href="classPonca_1_1CovarianceLineFit.html">CovarianceLineFit</a></li>  </ul>
 </div>
 </div><!-- top -->
 <div class="header">
   <div class="summary">
 <a href="#pub-types">Public Types</a> &#124;
 <a href="#pub-methods">Public Member Functions</a> &#124;
-<a href="#pro-types">Protected Types</a> &#124;
 <a href="#pro-attribs">Protected Attributes</a> &#124;
-<a href="classPonca_1_1LeastSquareLine-members.html">List of all members</a>  </div>
+<a href="classPonca_1_1CovarianceLineFit-members.html">List of all members</a>  </div>
   <div class="headertitle">
-<div class="title">Ponca::LeastSquareLine&lt; DataPoint, _WFunctor, T &gt; Class Template Reference<div class="ingroups"><a class="el" href="group__fitting.html">Fitting module</a></div></div>  </div>
+<div class="title">Ponca::CovarianceLineFit&lt; DataPoint, _WFunctor, T &gt; Class Template Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
 
-<p><code>#include &lt;<a class="el" href="leastSquareLine_8h_source.html">leastSquareLine.h</a>&gt;</code></p>
+<p><code>#include &lt;<a class="el" href="covarianceLineFit_8h_source.html">covarianceLineFit.h</a>&gt;</code></p>
 <div id="dynsection-0" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
-  <img id="dynsection-0-trigger" src="closed.png" alt="+"/> Inheritance diagram for Ponca::LeastSquareLine&lt; DataPoint, _WFunctor, T &gt;:</div>
+  <img id="dynsection-0-trigger" src="closed.png" alt="+"/> Inheritance diagram for Ponca::CovarianceLineFit&lt; DataPoint, _WFunctor, T &gt;:</div>
 <div id="dynsection-0-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-0-content" class="dyncontent" style="display:none;">
-<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="classPonca_1_1LeastSquareLine__inherit__graph.svg" width="100%" height="600"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="classPonca_1_1CovarianceLineFit__inherit__graph.svg" width="100%" height="600"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 </div>
 <div id="dynsection-1" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
-  <img id="dynsection-1-trigger" src="closed.png" alt="+"/> Collaboration diagram for Ponca::LeastSquareLine&lt; DataPoint, _WFunctor, T &gt;:</div>
+  <img id="dynsection-1-trigger" src="closed.png" alt="+"/> Collaboration diagram for Ponca::CovarianceLineFit&lt; DataPoint, _WFunctor, T &gt;:</div>
 <div id="dynsection-1-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-1-content" class="dyncontent" style="display:none;">
-<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="classPonca_1_1LeastSquareLine__coll__graph.svg" width="100%" height="600"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="classPonca_1_1CovarianceLineFit__coll__graph.svg" width="100%" height="600"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 </div>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><h3>template&lt;class DataPoint, class _WFunctor, typename T&gt;<br />
-class Ponca::LeastSquareLine&lt; DataPoint, _WFunctor, T &gt;</h3>
+class Ponca::CovarianceLineFit&lt; DataPoint, _WFunctor, T &gt;</h3>
 
 <p><a class="el" href="classPonca_1_1Line.html" title="A parametrized line is defined by an origin point  and a unit direction vector  such that the line co...">Line</a> fitting procedure that minimize the orthogonal distance between the samples and the fitted primitive. </p>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="classPonca_1_1Line.html" title="A parametrized line is defined by an origin point  and a unit direction vector  such that the line co...">Line</a> </dd>
 <dd>
-<a class="el" href="classPonca_1_1CovariancePlaneFit.html" title="Plane fitting procedure using only points position.">CovariancePlaneFit</a> which use a similar approach for <a class="el" href="classPonca_1_1CompactPlane.html" title="Implicit hyperplane defined by an homogeneous vector .">CompactPlane</a> estimation</dd></dl>
+<a class="el" href="classPonca_1_1CovariancePlaneFit.html" title="Plane fitting procedure using only points position.">CovariancePlaneFit</a> which use a similar approach for <a class="el" href="classPonca_1_1Plane.html" title="Implicit hyperplane defined by an homogeneous vector .">Plane</a> estimation</dd></dl>
 <dl class="section warning"><dt>Warning</dt><dd>This class is valid only in 3D. </dd></dl>
 </div><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-types"></a>
 Public Types</h2></td></tr>
-<tr class="memitem:a91aa71ca80453cdd1d4ac296e53d14a7"><td class="memItemLeft" align="right" valign="top"><a id="a91aa71ca80453cdd1d4ac296e53d14a7"></a>
-typedef Base::Scalar&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1LeastSquareLine.html#a91aa71ca80453cdd1d4ac296e53d14a7">Scalar</a></td></tr>
-<tr class="memdesc:a91aa71ca80453cdd1d4ac296e53d14a7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Scalar type inherited from DataPoint. <br /></td></tr>
-<tr class="separator:a91aa71ca80453cdd1d4ac296e53d14a7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af43772f06fd12d523e3cdfdbb40f6a7a"><td class="memItemLeft" align="right" valign="top"><a id="af43772f06fd12d523e3cdfdbb40f6a7a"></a>
-typedef Base::VectorType&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1LeastSquareLine.html#af43772f06fd12d523e3cdfdbb40f6a7a">VectorType</a></td></tr>
-<tr class="memdesc:af43772f06fd12d523e3cdfdbb40f6a7a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Vector type inherited from DataPoint. <br /></td></tr>
-<tr class="separator:af43772f06fd12d523e3cdfdbb40f6a7a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a18261ba0c0ced0a7f03a126ff130fa1b"><td class="memItemLeft" align="right" valign="top"><a id="a18261ba0c0ced0a7f03a126ff130fa1b"></a>
-typedef Base::MatrixType&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1LeastSquareLine.html#a18261ba0c0ced0a7f03a126ff130fa1b">MatrixType</a></td></tr>
-<tr class="memdesc:a18261ba0c0ced0a7f03a126ff130fa1b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Vector type inherited from DataPoint. <br /></td></tr>
-<tr class="separator:a18261ba0c0ced0a7f03a126ff130fa1b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aefa6ce1aca29c96909bc2b949044b4be"><td class="memItemLeft" align="right" valign="top"><a id="aefa6ce1aca29c96909bc2b949044b4be"></a>
-typedef _WFunctor&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1LeastSquareLine.html#aefa6ce1aca29c96909bc2b949044b4be">WFunctor</a></td></tr>
-<tr class="memdesc:aefa6ce1aca29c96909bc2b949044b4be"><td class="mdescLeft">&#160;</td><td class="mdescRight">Weight Function. <br /></td></tr>
-<tr class="separator:aefa6ce1aca29c96909bc2b949044b4be"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a73885c2820ebdeb90f6e94c3f5b372f8"><td class="memItemLeft" align="right" valign="top"><a id="a73885c2820ebdeb90f6e94c3f5b372f8"></a>
-typedef Eigen::SelfAdjointEigenSolver&lt; <a class="el" href="classPonca_1_1LeastSquareLine.html#a18261ba0c0ced0a7f03a126ff130fa1b">MatrixType</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1LeastSquareLine.html#a73885c2820ebdeb90f6e94c3f5b372f8">Solver</a></td></tr>
-<tr class="memdesc:a73885c2820ebdeb90f6e94c3f5b372f8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Solver used to analyse the covariance matrix. <br /></td></tr>
-<tr class="separator:a73885c2820ebdeb90f6e94c3f5b372f8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a57630b8ee8785a75b41f7b42c3ec2358"><td class="memItemLeft" align="right" valign="top"><a id="a57630b8ee8785a75b41f7b42c3ec2358"></a>
+typedef <a class="el" href="classPonca_1_1Line.html#a5c1c9fa1304c588030f9ca41a9592a8c">Base::Scalar</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1CovarianceLineFit.html#a57630b8ee8785a75b41f7b42c3ec2358">Scalar</a></td></tr>
+<tr class="memdesc:a57630b8ee8785a75b41f7b42c3ec2358"><td class="mdescLeft">&#160;</td><td class="mdescRight">Scalar type inherited from DataPoint. <br /></td></tr>
+<tr class="separator:a57630b8ee8785a75b41f7b42c3ec2358"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a163c3e73a125edfc3b83400ca08bb1e2"><td class="memItemLeft" align="right" valign="top"><a id="a163c3e73a125edfc3b83400ca08bb1e2"></a>
+typedef Base::VectorType&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1CovarianceLineFit.html#a163c3e73a125edfc3b83400ca08bb1e2">VectorType</a></td></tr>
+<tr class="memdesc:a163c3e73a125edfc3b83400ca08bb1e2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Vector type inherited from DataPoint. <br /></td></tr>
+<tr class="separator:a163c3e73a125edfc3b83400ca08bb1e2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2d9f65a1ed8dddc4c3ec3b956853f8f2"><td class="memItemLeft" align="right" valign="top"><a id="a2d9f65a1ed8dddc4c3ec3b956853f8f2"></a>
+typedef <a class="el" href="classPonca_1_1Line.html#a4956ae0de5d57c9a16f7a4c744e4b80f">Base::MatrixType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1CovarianceLineFit.html#a2d9f65a1ed8dddc4c3ec3b956853f8f2">MatrixType</a></td></tr>
+<tr class="memdesc:a2d9f65a1ed8dddc4c3ec3b956853f8f2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Vector type inherited from DataPoint. <br /></td></tr>
+<tr class="separator:a2d9f65a1ed8dddc4c3ec3b956853f8f2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af87f2cd4abeff83b3b9cac79297fb5cf"><td class="memItemLeft" align="right" valign="top"><a id="af87f2cd4abeff83b3b9cac79297fb5cf"></a>
+typedef _WFunctor&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1CovarianceLineFit.html#af87f2cd4abeff83b3b9cac79297fb5cf">WFunctor</a></td></tr>
+<tr class="memdesc:af87f2cd4abeff83b3b9cac79297fb5cf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Weight Function. <br /></td></tr>
+<tr class="separator:af87f2cd4abeff83b3b9cac79297fb5cf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a866c38badbb4e1134ef59ee7d1585c0a"><td class="memItemLeft" align="right" valign="top"><a id="a866c38badbb4e1134ef59ee7d1585c0a"></a>
+typedef Eigen::SelfAdjointEigenSolver&lt; <a class="el" href="classPonca_1_1CovarianceLineFit.html#a2d9f65a1ed8dddc4c3ec3b956853f8f2">MatrixType</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1CovarianceLineFit.html#a866c38badbb4e1134ef59ee7d1585c0a">Solver</a></td></tr>
+<tr class="memdesc:a866c38badbb4e1134ef59ee7d1585c0a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Solver used to analyse the covariance matrix. <br /></td></tr>
+<tr class="separator:a866c38badbb4e1134ef59ee7d1585c0a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_types_classPonca_1_1Line"><td colspan="2" onclick="javascript:toggleInherit('pub_types_classPonca_1_1Line')"><img src="closed.png" alt="-"/>&#160;Public Types inherited from <a class="el" href="classPonca_1_1Line.html">Ponca::Line&lt; DataPoint, _WFunctor &gt;</a></td></tr>
 <tr class="memitem:a3f3084f67fea22fdfce80178636f2b30 inherit pub_types_classPonca_1_1Line"><td class="memItemLeft" align="right" valign="top"><a id="a3f3084f67fea22fdfce80178636f2b30"></a>
 using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1Line.html#a3f3084f67fea22fdfce80178636f2b30">EigenBase</a> = Eigen::ParametrizedLine&lt; typename DataPoint::Scalar, DataPoint::Dim &gt;</td></tr>
@@ -159,30 +158,30 @@ typedef _WFunctor&#160;</td><td class="memItemRight" valign="bottom"><a class="e
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:ad92cdf49a251b30cabd2bdef6da15394"><td class="memItemLeft" align="right" valign="top"><a id="ad92cdf49a251b30cabd2bdef6da15394"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1LeastSquareLine.html#ad92cdf49a251b30cabd2bdef6da15394">LeastSquareLine</a> ()</td></tr>
-<tr class="memdesc:ad92cdf49a251b30cabd2bdef6da15394"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default constructor. <br /></td></tr>
-<tr class="separator:ad92cdf49a251b30cabd2bdef6da15394"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae877972f54903a35dfb3d84e01bb9428"><td class="memItemLeft" align="right" valign="top"><a id="ae877972f54903a35dfb3d84e01bb9428"></a>
-<a class="el" href="classPonca_1_1LeastSquareLine.html">LeastSquareLine</a>&lt; DataPoint, <a class="el" href="classPonca_1_1LeastSquareLine.html#aefa6ce1aca29c96909bc2b949044b4be">WFunctor</a>, T &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1LeastSquareLine.html#ae877972f54903a35dfb3d84e01bb9428">leastSquareLine</a> ()</td></tr>
-<tr class="memdesc:ae877972f54903a35dfb3d84e01bb9428"><td class="mdescLeft">&#160;</td><td class="mdescRight">Explicit conversion to <a class="el" href="classPonca_1_1LeastSquareLine.html" title="Line fitting procedure that minimize the orthogonal distance between the samples and the fitted primi...">LeastSquareLine</a>, to access methods potentially hidden by inheritage *&zwj;/. <br /></td></tr>
-<tr class="separator:ae877972f54903a35dfb3d84e01bb9428"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a33ba856fac340cbaf9c5748d255b0727"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1LeastSquareLine.html#a33ba856fac340cbaf9c5748d255b0727">setWeightFunc</a> (const <a class="el" href="classPonca_1_1LeastSquareLine.html#aefa6ce1aca29c96909bc2b949044b4be">WFunctor</a> &amp;_w)</td></tr>
-<tr class="memdesc:a33ba856fac340cbaf9c5748d255b0727"><td class="mdescLeft">&#160;</td><td class="mdescRight">Init the WeightFunc, without changing the other internal states.  <a href="classPonca_1_1LeastSquareLine.html#a33ba856fac340cbaf9c5748d255b0727">More...</a><br /></td></tr>
-<tr class="separator:a33ba856fac340cbaf9c5748d255b0727"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a313882c85662f547956bff8a7be715aa"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1LeastSquareLine.html#a313882c85662f547956bff8a7be715aa">init</a> (const <a class="el" href="classPonca_1_1LeastSquareLine.html#af43772f06fd12d523e3cdfdbb40f6a7a">VectorType</a> &amp;_evalPos)</td></tr>
-<tr class="memdesc:a313882c85662f547956bff8a7be715aa"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the evaluation position and reset the internal states.  <a href="classPonca_1_1LeastSquareLine.html#a313882c85662f547956bff8a7be715aa">More...</a><br /></td></tr>
-<tr class="separator:a313882c85662f547956bff8a7be715aa"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a21f96c8d28d45859200041f93090fac1"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1LeastSquareLine.html#a21f96c8d28d45859200041f93090fac1">addNeighbor</a> (const DataPoint &amp;_nei)</td></tr>
-<tr class="memdesc:a21f96c8d28d45859200041f93090fac1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Add a neighbor to perform the fit.  <a href="classPonca_1_1LeastSquareLine.html#a21f96c8d28d45859200041f93090fac1">More...</a><br /></td></tr>
-<tr class="separator:a21f96c8d28d45859200041f93090fac1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5f4f2fda1125f70bc8ae6e61cc00f7f5"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__fitting.html#gabfd697aebf07c1b5c8be5ee401e2dc84">FIT_RESULT</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1LeastSquareLine.html#a5f4f2fda1125f70bc8ae6e61cc00f7f5">finalize</a> ()</td></tr>
-<tr class="memdesc:a5f4f2fda1125f70bc8ae6e61cc00f7f5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Finalize the fitting procedure.  <a href="classPonca_1_1LeastSquareLine.html#a5f4f2fda1125f70bc8ae6e61cc00f7f5">More...</a><br /></td></tr>
-<tr class="separator:a5f4f2fda1125f70bc8ae6e61cc00f7f5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a828bd9642f5ba7c44aebc732e757d0f6"><td class="memItemLeft" align="right" valign="top"><a id="a828bd9642f5ba7c44aebc732e757d0f6"></a>
-const <a class="el" href="classPonca_1_1LeastSquareLine.html#a73885c2820ebdeb90f6e94c3f5b372f8">Solver</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1LeastSquareLine.html#a828bd9642f5ba7c44aebc732e757d0f6">solver</a> () const</td></tr>
-<tr class="memdesc:a828bd9642f5ba7c44aebc732e757d0f6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reading access to the Solver used to analyse the covariance matrix. <br /></td></tr>
-<tr class="separator:a828bd9642f5ba7c44aebc732e757d0f6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a000126060c29a08dfc1c9b194a826399"><td class="memItemLeft" align="right" valign="top"><a id="a000126060c29a08dfc1c9b194a826399"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1CovarianceLineFit.html#a000126060c29a08dfc1c9b194a826399">CovarianceLineFit</a> ()</td></tr>
+<tr class="memdesc:a000126060c29a08dfc1c9b194a826399"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default constructor. <br /></td></tr>
+<tr class="separator:a000126060c29a08dfc1c9b194a826399"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a12ed4896f87a4b66cad28bf05e00696d"><td class="memItemLeft" align="right" valign="top"><a id="a12ed4896f87a4b66cad28bf05e00696d"></a>
+<a class="el" href="classPonca_1_1CovarianceLineFit.html">CovarianceLineFit</a>&lt; DataPoint, <a class="el" href="classPonca_1_1CovarianceLineFit.html#af87f2cd4abeff83b3b9cac79297fb5cf">WFunctor</a>, T &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1CovarianceLineFit.html#a12ed4896f87a4b66cad28bf05e00696d">leastSquareLine</a> ()</td></tr>
+<tr class="memdesc:a12ed4896f87a4b66cad28bf05e00696d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Explicit conversion to <a class="el" href="classPonca_1_1CovarianceLineFit.html" title="Line fitting procedure that minimize the orthogonal distance between the samples and the fitted primi...">CovarianceLineFit</a>, to access methods potentially hidden by inheritage *&zwj;/. <br /></td></tr>
+<tr class="separator:a12ed4896f87a4b66cad28bf05e00696d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a02126d48a206a548e64783e6bc677a09"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1CovarianceLineFit.html#a02126d48a206a548e64783e6bc677a09">setWeightFunc</a> (const <a class="el" href="classPonca_1_1CovarianceLineFit.html#af87f2cd4abeff83b3b9cac79297fb5cf">WFunctor</a> &amp;_w)</td></tr>
+<tr class="memdesc:a02126d48a206a548e64783e6bc677a09"><td class="mdescLeft">&#160;</td><td class="mdescRight">Init the WeightFunc, without changing the other internal states.  <a href="classPonca_1_1CovarianceLineFit.html#a02126d48a206a548e64783e6bc677a09">More...</a><br /></td></tr>
+<tr class="separator:a02126d48a206a548e64783e6bc677a09"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a280990562850e903b1edd82a0ae83353"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1CovarianceLineFit.html#a280990562850e903b1edd82a0ae83353">init</a> (const <a class="el" href="classPonca_1_1CovarianceLineFit.html#a163c3e73a125edfc3b83400ca08bb1e2">VectorType</a> &amp;_evalPos)</td></tr>
+<tr class="memdesc:a280990562850e903b1edd82a0ae83353"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the evaluation position and reset the internal states.  <a href="classPonca_1_1CovarianceLineFit.html#a280990562850e903b1edd82a0ae83353">More...</a><br /></td></tr>
+<tr class="separator:a280990562850e903b1edd82a0ae83353"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5dd8686f68c5084a95101557e93699ae"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1CovarianceLineFit.html#a5dd8686f68c5084a95101557e93699ae">addNeighbor</a> (const DataPoint &amp;_nei)</td></tr>
+<tr class="memdesc:a5dd8686f68c5084a95101557e93699ae"><td class="mdescLeft">&#160;</td><td class="mdescRight">Add a neighbor to perform the fit.  <a href="classPonca_1_1CovarianceLineFit.html#a5dd8686f68c5084a95101557e93699ae">More...</a><br /></td></tr>
+<tr class="separator:a5dd8686f68c5084a95101557e93699ae"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acba2f915271bf955712538e64a0e00a7"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__fitting.html#gabfd697aebf07c1b5c8be5ee401e2dc84">FIT_RESULT</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1CovarianceLineFit.html#acba2f915271bf955712538e64a0e00a7">finalize</a> ()</td></tr>
+<tr class="memdesc:acba2f915271bf955712538e64a0e00a7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Finalize the fitting procedure.  <a href="classPonca_1_1CovarianceLineFit.html#acba2f915271bf955712538e64a0e00a7">More...</a><br /></td></tr>
+<tr class="separator:acba2f915271bf955712538e64a0e00a7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a51640a262a2170914202f4520200b9e4"><td class="memItemLeft" align="right" valign="top"><a id="a51640a262a2170914202f4520200b9e4"></a>
+const <a class="el" href="classPonca_1_1CovarianceLineFit.html#a866c38badbb4e1134ef59ee7d1585c0a">Solver</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1CovarianceLineFit.html#a51640a262a2170914202f4520200b9e4">solver</a> () const</td></tr>
+<tr class="memdesc:a51640a262a2170914202f4520200b9e4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reading access to the Solver used to analyse the covariance matrix. <br /></td></tr>
+<tr class="separator:a51640a262a2170914202f4520200b9e4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_classPonca_1_1Concept_1_1FittingProcedureConcept"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classPonca_1_1Concept_1_1FittingProcedureConcept')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="classPonca_1_1Concept_1_1FittingProcedureConcept.html">Ponca::Concept::FittingProcedureConcept&lt; DataPoint, _WFunctor, T &gt;</a></td></tr>
 <tr class="memitem:a1501914de67d1689b6128ffb4c65f37b inherit pub_methods_classPonca_1_1Concept_1_1FittingProcedureConcept"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1Concept_1_1FittingProcedureConcept.html#a1501914de67d1689b6128ffb4c65f37b">setWeightFunc</a> (const WFunctor &amp;w)</td></tr>
 <tr class="memdesc:a1501914de67d1689b6128ffb4c65f37b inherit pub_methods_classPonca_1_1Concept_1_1FittingProcedureConcept"><td class="mdescLeft">&#160;</td><td class="mdescRight">Init the WeightFunc, without changing the other internal states.  <a href="classPonca_1_1Concept_1_1FittingProcedureConcept.html#a1501914de67d1689b6128ffb4c65f37b">More...</a><br /></td></tr>
@@ -259,37 +258,28 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 <tr class="memitem:a19945873f15545be8791ceb7d5c49c1a inherit pub_methods_classPonca_1_1PrimitiveBase"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__fitting.html#gabfd697aebf07c1b5c8be5ee401e2dc84">FIT_RESULT</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1PrimitiveBase.html#a19945873f15545be8791ceb7d5c49c1a">getCurrentState</a> () const</td></tr>
 <tr class="separator:a19945873f15545be8791ceb7d5c49c1a inherit pub_methods_classPonca_1_1PrimitiveBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-types"></a>
-Protected Types</h2></td></tr>
-<tr class="memitem:a3dfd588f49f88ce0f602c65a8a8501a9"><td class="memItemLeft" align="right" valign="top"><a id="a3dfd588f49f88ce0f602c65a8a8501a9"></a>enum &#160;</td><td class="memItemRight" valign="bottom">{ <b>Check</b> = Base::PROVIDES_LINE
- }</td></tr>
-<tr class="separator:a3dfd588f49f88ce0f602c65a8a8501a9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="inherit_header pro_types_classPonca_1_1Line"><td colspan="2" onclick="javascript:toggleInherit('pro_types_classPonca_1_1Line')"><img src="closed.png" alt="-"/>&#160;Protected Types inherited from <a class="el" href="classPonca_1_1Line.html">Ponca::Line&lt; DataPoint, _WFunctor &gt;</a></td></tr>
-<tr class="memitem:a54ef4014284a6007bfb3e733c75c3f95 inherit pro_types_classPonca_1_1Line"><td class="memItemLeft" align="right" valign="top"><a id="a54ef4014284a6007bfb3e733c75c3f95"></a>enum &#160;</td><td class="memItemRight" valign="bottom"></td></tr>
-<tr class="separator:a54ef4014284a6007bfb3e733c75c3f95 inherit pro_types_classPonca_1_1Line"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
-<tr class="memitem:a8ee6b89e6e3b66fa5fcd90cd0aa8f244"><td class="memItemLeft" align="right" valign="top"><a id="a8ee6b89e6e3b66fa5fcd90cd0aa8f244"></a>
-<a class="el" href="classPonca_1_1LeastSquareLine.html#a91aa71ca80453cdd1d4ac296e53d14a7">Scalar</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1LeastSquareLine.html#a8ee6b89e6e3b66fa5fcd90cd0aa8f244">m_sum</a></td></tr>
-<tr class="memdesc:a8ee6b89e6e3b66fa5fcd90cd0aa8f244"><td class="mdescLeft">&#160;</td><td class="mdescRight">total number of queries . <br /></td></tr>
-<tr class="separator:a8ee6b89e6e3b66fa5fcd90cd0aa8f244"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5a04e842ff6c848e116ea048343bcaa6"><td class="memItemLeft" align="right" valign="top"><a id="a5a04e842ff6c848e116ea048343bcaa6"></a>
-<a class="el" href="classPonca_1_1LeastSquareLine.html#af43772f06fd12d523e3cdfdbb40f6a7a">VectorType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1LeastSquareLine.html#a5a04e842ff6c848e116ea048343bcaa6">m_cog</a></td></tr>
-<tr class="memdesc:a5a04e842ff6c848e116ea048343bcaa6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gravity center of the neighborhood. <br /></td></tr>
-<tr class="separator:a5a04e842ff6c848e116ea048343bcaa6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac6a8d80692153b9afb9ea069cec8856f"><td class="memItemLeft" align="right" valign="top"><a id="ac6a8d80692153b9afb9ea069cec8856f"></a>
-<a class="el" href="classPonca_1_1LeastSquareLine.html#a18261ba0c0ced0a7f03a126ff130fa1b">MatrixType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1LeastSquareLine.html#ac6a8d80692153b9afb9ea069cec8856f">m_cov</a></td></tr>
-<tr class="memdesc:ac6a8d80692153b9afb9ea069cec8856f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Covariance matrix. <br /></td></tr>
-<tr class="separator:ac6a8d80692153b9afb9ea069cec8856f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5521bf020507d58cefe27f3b05a5e4b8"><td class="memItemLeft" align="right" valign="top"><a id="a5521bf020507d58cefe27f3b05a5e4b8"></a>
-<a class="el" href="classPonca_1_1LeastSquareLine.html#a73885c2820ebdeb90f6e94c3f5b372f8">Solver</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1LeastSquareLine.html#a5521bf020507d58cefe27f3b05a5e4b8">m_solver</a></td></tr>
-<tr class="memdesc:a5521bf020507d58cefe27f3b05a5e4b8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Solver used to analyse the covariance matrix. <br /></td></tr>
-<tr class="separator:a5521bf020507d58cefe27f3b05a5e4b8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5388fca932d8399513e2b7b66a960803"><td class="memItemLeft" align="right" valign="top"><a id="a5388fca932d8399513e2b7b66a960803"></a>
-<a class="el" href="classPonca_1_1LeastSquareLine.html#aefa6ce1aca29c96909bc2b949044b4be">WFunctor</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1LeastSquareLine.html#a5388fca932d8399513e2b7b66a960803">m_w</a></td></tr>
-<tr class="memdesc:a5388fca932d8399513e2b7b66a960803"><td class="mdescLeft">&#160;</td><td class="mdescRight">Weight function (must inherits BaseWeightFunc) <br /></td></tr>
-<tr class="separator:a5388fca932d8399513e2b7b66a960803"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6993144f00e00ec7164203a16f0d6ba6"><td class="memItemLeft" align="right" valign="top"><a id="a6993144f00e00ec7164203a16f0d6ba6"></a>
+<a class="el" href="classPonca_1_1CovarianceLineFit.html#a57630b8ee8785a75b41f7b42c3ec2358">Scalar</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1CovarianceLineFit.html#a6993144f00e00ec7164203a16f0d6ba6">m_sum</a></td></tr>
+<tr class="memdesc:a6993144f00e00ec7164203a16f0d6ba6"><td class="mdescLeft">&#160;</td><td class="mdescRight">total number of queries . <br /></td></tr>
+<tr class="separator:a6993144f00e00ec7164203a16f0d6ba6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a57d2d4697a9c01842baf7717df59142f"><td class="memItemLeft" align="right" valign="top"><a id="a57d2d4697a9c01842baf7717df59142f"></a>
+<a class="el" href="classPonca_1_1CovarianceLineFit.html#a163c3e73a125edfc3b83400ca08bb1e2">VectorType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1CovarianceLineFit.html#a57d2d4697a9c01842baf7717df59142f">m_cog</a></td></tr>
+<tr class="memdesc:a57d2d4697a9c01842baf7717df59142f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gravity center of the neighborhood. <br /></td></tr>
+<tr class="separator:a57d2d4697a9c01842baf7717df59142f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a362cc156fe295399292627d32c2be20b"><td class="memItemLeft" align="right" valign="top"><a id="a362cc156fe295399292627d32c2be20b"></a>
+<a class="el" href="classPonca_1_1CovarianceLineFit.html#a2d9f65a1ed8dddc4c3ec3b956853f8f2">MatrixType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1CovarianceLineFit.html#a362cc156fe295399292627d32c2be20b">m_cov</a></td></tr>
+<tr class="memdesc:a362cc156fe295399292627d32c2be20b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Covariance matrix. <br /></td></tr>
+<tr class="separator:a362cc156fe295399292627d32c2be20b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8ad55081df7f813e630e92706bb1f762"><td class="memItemLeft" align="right" valign="top"><a id="a8ad55081df7f813e630e92706bb1f762"></a>
+<a class="el" href="classPonca_1_1CovarianceLineFit.html#a866c38badbb4e1134ef59ee7d1585c0a">Solver</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1CovarianceLineFit.html#a8ad55081df7f813e630e92706bb1f762">m_solver</a></td></tr>
+<tr class="memdesc:a8ad55081df7f813e630e92706bb1f762"><td class="mdescLeft">&#160;</td><td class="mdescRight">Solver used to analyse the covariance matrix. <br /></td></tr>
+<tr class="separator:a8ad55081df7f813e630e92706bb1f762"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad64edd4cc7d7b971791feebe78144981"><td class="memItemLeft" align="right" valign="top"><a id="ad64edd4cc7d7b971791feebe78144981"></a>
+<a class="el" href="classPonca_1_1CovarianceLineFit.html#af87f2cd4abeff83b3b9cac79297fb5cf">WFunctor</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1CovarianceLineFit.html#ad64edd4cc7d7b971791feebe78144981">m_w</a></td></tr>
+<tr class="memdesc:ad64edd4cc7d7b971791feebe78144981"><td class="mdescLeft">&#160;</td><td class="mdescRight">Weight function (must inherits BaseWeightFunc) <br /></td></tr>
+<tr class="separator:ad64edd4cc7d7b971791feebe78144981"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pro_attribs_classPonca_1_1PrimitiveBase"><td colspan="2" onclick="javascript:toggleInherit('pro_attribs_classPonca_1_1PrimitiveBase')"><img src="closed.png" alt="-"/>&#160;Protected Attributes inherited from <a class="el" href="classPonca_1_1PrimitiveBase.html">Ponca::PrimitiveBase&lt; DataPoint, _WFunctor &gt;</a></td></tr>
 <tr class="memitem:ae90892c0b382040d748e16a10990ec49 inherit pro_attribs_classPonca_1_1PrimitiveBase"><td class="memItemLeft" align="right" valign="top"><a id="ae90892c0b382040d748e16a10990ec49"></a>
 <a class="el" href="group__fitting.html#gabfd697aebf07c1b5c8be5ee401e2dc84">FIT_RESULT</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1PrimitiveBase.html#ae90892c0b382040d748e16a10990ec49">m_eCurrentState</a></td></tr>
@@ -299,10 +289,16 @@ Protected Attributes</h2></td></tr>
 int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1PrimitiveBase.html#affee95252016666ddd5d0d1b01dbe25a">m_nbNeighbors</a></td></tr>
 <tr class="memdesc:affee95252016666ddd5d0d1b01dbe25a inherit pro_attribs_classPonca_1_1PrimitiveBase"><td class="mdescLeft">&#160;</td><td class="mdescRight">Give the number of neighbors. <br /></td></tr>
 <tr class="separator:affee95252016666ddd5d0d1b01dbe25a inherit pro_attribs_classPonca_1_1PrimitiveBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="inherited"></a>
+Additional Inherited Members</h2></td></tr>
+<tr class="inherit_header pro_types_classPonca_1_1Line"><td colspan="2" onclick="javascript:toggleInherit('pro_types_classPonca_1_1Line')"><img src="closed.png" alt="-"/>&#160;Protected Types inherited from <a class="el" href="classPonca_1_1Line.html">Ponca::Line&lt; DataPoint, _WFunctor &gt;</a></td></tr>
+<tr class="memitem:af69f2a87913e0ae3a1514963af6dfc68 inherit pro_types_classPonca_1_1Line"><td class="memItemLeft" align="right" valign="top"><a id="af69f2a87913e0ae3a1514963af6dfc68"></a>enum &#160;</td><td class="memItemRight" valign="bottom"></td></tr>
+<tr class="separator:af69f2a87913e0ae3a1514963af6dfc68 inherit pro_types_classPonca_1_1Line"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a id="a21f96c8d28d45859200041f93090fac1"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a21f96c8d28d45859200041f93090fac1">&#9670;&nbsp;</a></span>addNeighbor()</h2>
+<a id="a5dd8686f68c5084a95101557e93699ae"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5dd8686f68c5084a95101557e93699ae">&#9670;&nbsp;</a></span>addNeighbor()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -313,7 +309,7 @@ template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">bool LeastSquareLine::addNeighbor </td>
+          <td class="memname">bool CovarianceLineFit::addNeighbor </td>
           <td>(</td>
           <td class="paramtype">const DataPoint &amp;&#160;</td>
           <td class="paramname"><em>_nei</em></td><td>)</td>
@@ -332,8 +328,8 @@ template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
 
 </div>
 </div>
-<a id="a5f4f2fda1125f70bc8ae6e61cc00f7f5"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a5f4f2fda1125f70bc8ae6e61cc00f7f5">&#9670;&nbsp;</a></span>finalize()</h2>
+<a id="acba2f915271bf955712538e64a0e00a7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acba2f915271bf955712538e64a0e00a7">&#9670;&nbsp;</a></span>finalize()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -344,7 +340,7 @@ template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="group__fitting.html#gabfd697aebf07c1b5c8be5ee401e2dc84">FIT_RESULT</a> LeastSquareLine::finalize </td>
+          <td class="memname"><a class="el" href="group__fitting.html#gabfd697aebf07c1b5c8be5ee401e2dc84">FIT_RESULT</a> CovarianceLineFit::finalize </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -363,8 +359,8 @@ template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
 
 </div>
 </div>
-<a id="a313882c85662f547956bff8a7be715aa"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a313882c85662f547956bff8a7be715aa">&#9670;&nbsp;</a></span>init()</h2>
+<a id="a280990562850e903b1edd82a0ae83353"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a280990562850e903b1edd82a0ae83353">&#9670;&nbsp;</a></span>init()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -375,9 +371,9 @@ template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">void LeastSquareLine::init </td>
+          <td class="memname">void CovarianceLineFit::init </td>
           <td>(</td>
-          <td class="paramtype">const <a class="el" href="classPonca_1_1LeastSquareLine.html#af43772f06fd12d523e3cdfdbb40f6a7a">VectorType</a> &amp;&#160;</td>
+          <td class="paramtype">const <a class="el" href="classPonca_1_1CovarianceLineFit.html#a163c3e73a125edfc3b83400ca08bb1e2">VectorType</a> &amp;&#160;</td>
           <td class="paramname"><em>_evalPos</em></td><td>)</td>
           <td></td>
         </tr>
@@ -394,8 +390,8 @@ template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
 
 </div>
 </div>
-<a id="a33ba856fac340cbaf9c5748d255b0727"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a33ba856fac340cbaf9c5748d255b0727">&#9670;&nbsp;</a></span>setWeightFunc()</h2>
+<a id="a02126d48a206a548e64783e6bc677a09"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a02126d48a206a548e64783e6bc677a09">&#9670;&nbsp;</a></span>setWeightFunc()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -406,9 +402,9 @@ template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">void <a class="el" href="classPonca_1_1LeastSquareLine.html">Ponca::LeastSquareLine</a>&lt; DataPoint, _WFunctor, T &gt;::setWeightFunc </td>
+          <td class="memname">void <a class="el" href="classPonca_1_1CovarianceLineFit.html">Ponca::CovarianceLineFit</a>&lt; DataPoint, _WFunctor, T &gt;::setWeightFunc </td>
           <td>(</td>
-          <td class="paramtype">const <a class="el" href="classPonca_1_1LeastSquareLine.html#aefa6ce1aca29c96909bc2b949044b4be">WFunctor</a> &amp;&#160;</td>
+          <td class="paramtype">const <a class="el" href="classPonca_1_1CovarianceLineFit.html#af87f2cd4abeff83b3b9cac79297fb5cf">WFunctor</a> &amp;&#160;</td>
           <td class="paramname"><em>_w</em></td><td>)</td>
           <td></td>
         </tr>
@@ -428,7 +424,7 @@ template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Aug 3 2021 10:14:51 for Ponca by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Wed Aug 4 2021 10:58:19 for Ponca by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.17
 </small></address>

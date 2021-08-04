@@ -30,7 +30,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Ponca
-   &#160;<span id="projectnumber">f6a5690c7836143d500ac3abfee944d943e656d3</span>
+   &#160;<span id="projectnumber">f3a766491b8d53c702407b3607deae8c5fe94d26</span>
    </div>
    <div id="projectbrief">Point Cloud Analysis library</div>
   </td>
@@ -82,7 +82,7 @@ $(function() {
 <a href="#pro-attribs">Protected Attributes</a> &#124;
 <a href="classPonca_1_1MeanPlaneFit-members.html">List of all members</a>  </div>
   <div class="headertitle">
-<div class="title">Ponca::MeanPlaneFit&lt; DataPoint, _WFunctor, T &gt; Class Template Reference<div class="ingroups"><a class="el" href="group__fitting.html">Fitting module</a></div></div>  </div>
+<div class="title">Ponca::MeanPlaneFit&lt; DataPoint, _WFunctor, T &gt; Class Template Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
 
@@ -107,13 +107,13 @@ $(function() {
 <div class="textblock"><h3>template&lt;class DataPoint, class _WFunctor, typename T&gt;<br />
 class Ponca::MeanPlaneFit&lt; DataPoint, _WFunctor, T &gt;</h3>
 
-<p>Plane fitting procedure computing the mean position and orientation from oriented points. </p>
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="classPonca_1_1CompactPlane.html" title="Implicit hyperplane defined by an homogeneous vector .">CompactPlane</a> </dd></dl>
+<p><a class="el" href="classPonca_1_1Plane.html" title="Implicit hyperplane defined by an homogeneous vector .">Plane</a> fitting procedure computing the mean position and orientation from oriented points. </p>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="classPonca_1_1Plane.html" title="Implicit hyperplane defined by an homogeneous vector .">Plane</a> </dd></dl>
 </div><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-types"></a>
 Public Types</h2></td></tr>
 <tr class="memitem:a4ba033344fa0dddddb808f3a9412dfd5"><td class="memItemLeft" align="right" valign="top"><a id="a4ba033344fa0dddddb808f3a9412dfd5"></a>
-typedef <a class="el" href="classPonca_1_1CompactPlane.html#af013b4eec660ea01ecb8f67ea38182db">Base::Scalar</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1MeanPlaneFit.html#a4ba033344fa0dddddb808f3a9412dfd5">Scalar</a></td></tr>
+typedef <a class="el" href="classPonca_1_1Plane.html#a9c9d1bb6f9272d8143607d4d0723cd42">Base::Scalar</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1MeanPlaneFit.html#a4ba033344fa0dddddb808f3a9412dfd5">Scalar</a></td></tr>
 <tr class="memdesc:a4ba033344fa0dddddb808f3a9412dfd5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Scalar type inherited from DataPoint. <br /></td></tr>
 <tr class="separator:a4ba033344fa0dddddb808f3a9412dfd5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4bdf06c9844a61b654c4ff9a1df9ad6f"><td class="memItemLeft" align="right" valign="top"><a id="a4bdf06c9844a61b654c4ff9a1df9ad6f"></a>
@@ -121,34 +121,34 @@ typedef Base::VectorType&#160;</td><td class="memItemRight" valign="bottom"><a c
 <tr class="memdesc:a4bdf06c9844a61b654c4ff9a1df9ad6f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Vector type inherited from DataPoint. <br /></td></tr>
 <tr class="separator:a4bdf06c9844a61b654c4ff9a1df9ad6f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8cbc6491e9bb55ec3e186ddd90e2a3af"><td class="memItemLeft" align="right" valign="top"><a id="a8cbc6491e9bb55ec3e186ddd90e2a3af"></a>
-typedef <a class="el" href="classPonca_1_1CompactPlane.html#aa5cbc81a8b141cedae151892871314e8">Base::MatrixType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1MeanPlaneFit.html#a8cbc6491e9bb55ec3e186ddd90e2a3af">MatrixType</a></td></tr>
+typedef <a class="el" href="classPonca_1_1Plane.html#afdb7adae71601bba760e8bea3df1e0c7">Base::MatrixType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1MeanPlaneFit.html#a8cbc6491e9bb55ec3e186ddd90e2a3af">MatrixType</a></td></tr>
 <tr class="memdesc:a8cbc6491e9bb55ec3e186ddd90e2a3af"><td class="mdescLeft">&#160;</td><td class="mdescRight">Vector type inherited from DataPoint. <br /></td></tr>
 <tr class="separator:a8cbc6491e9bb55ec3e186ddd90e2a3af"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:adb26156794ac88ec9f36ef8da6cd4855"><td class="memItemLeft" align="right" valign="top"><a id="adb26156794ac88ec9f36ef8da6cd4855"></a>
 typedef _WFunctor&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1MeanPlaneFit.html#adb26156794ac88ec9f36ef8da6cd4855">WFunctor</a></td></tr>
 <tr class="memdesc:adb26156794ac88ec9f36ef8da6cd4855"><td class="mdescLeft">&#160;</td><td class="mdescRight">Weight Function. <br /></td></tr>
 <tr class="separator:adb26156794ac88ec9f36ef8da6cd4855"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="inherit_header pub_types_classPonca_1_1CompactPlane"><td colspan="2" onclick="javascript:toggleInherit('pub_types_classPonca_1_1CompactPlane')"><img src="closed.png" alt="-"/>&#160;Public Types inherited from <a class="el" href="classPonca_1_1CompactPlane.html">Ponca::CompactPlane&lt; DataPoint, _WFunctor &gt;</a></td></tr>
-<tr class="memitem:a2de297da9260ea59fbf583e9b099edc9 inherit pub_types_classPonca_1_1CompactPlane"><td class="memItemLeft" align="right" valign="top"><a id="a2de297da9260ea59fbf583e9b099edc9"></a>
-using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1CompactPlane.html#a2de297da9260ea59fbf583e9b099edc9">EigenBase</a> = Eigen::Hyperplane&lt; typename DataPoint::Scalar, DataPoint::Dim &gt;</td></tr>
-<tr class="memdesc:a2de297da9260ea59fbf583e9b099edc9 inherit pub_types_classPonca_1_1CompactPlane"><td class="mdescLeft">&#160;</td><td class="mdescRight">Specialization of Eigen::Hyperplane inherited by <a class="el" href="classPonca_1_1CompactPlane.html" title="Implicit hyperplane defined by an homogeneous vector .">Ponca::CompactPlane</a>. <br /></td></tr>
-<tr class="separator:a2de297da9260ea59fbf583e9b099edc9 inherit pub_types_classPonca_1_1CompactPlane"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af013b4eec660ea01ecb8f67ea38182db inherit pub_types_classPonca_1_1CompactPlane"><td class="memItemLeft" align="right" valign="top"><a id="af013b4eec660ea01ecb8f67ea38182db"></a>
-typedef DataPoint::Scalar&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1CompactPlane.html#af013b4eec660ea01ecb8f67ea38182db">Scalar</a></td></tr>
-<tr class="memdesc:af013b4eec660ea01ecb8f67ea38182db inherit pub_types_classPonca_1_1CompactPlane"><td class="mdescLeft">&#160;</td><td class="mdescRight">Scalar type inherited from DataPoint. <br /></td></tr>
-<tr class="separator:af013b4eec660ea01ecb8f67ea38182db inherit pub_types_classPonca_1_1CompactPlane"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac10d372cf3967ca69522d18809614edc inherit pub_types_classPonca_1_1CompactPlane"><td class="memItemLeft" align="right" valign="top"><a id="ac10d372cf3967ca69522d18809614edc"></a>
-typedef DataPoint::VectorType&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1CompactPlane.html#ac10d372cf3967ca69522d18809614edc">VectorType</a></td></tr>
-<tr class="memdesc:ac10d372cf3967ca69522d18809614edc inherit pub_types_classPonca_1_1CompactPlane"><td class="mdescLeft">&#160;</td><td class="mdescRight">Vector type inherited from DataPoint. <br /></td></tr>
-<tr class="separator:ac10d372cf3967ca69522d18809614edc inherit pub_types_classPonca_1_1CompactPlane"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa5cbc81a8b141cedae151892871314e8 inherit pub_types_classPonca_1_1CompactPlane"><td class="memItemLeft" align="right" valign="top"><a id="aa5cbc81a8b141cedae151892871314e8"></a>
-typedef DataPoint::MatrixType&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1CompactPlane.html#aa5cbc81a8b141cedae151892871314e8">MatrixType</a></td></tr>
-<tr class="memdesc:aa5cbc81a8b141cedae151892871314e8 inherit pub_types_classPonca_1_1CompactPlane"><td class="mdescLeft">&#160;</td><td class="mdescRight">Matrix type inherited from DataPoint. <br /></td></tr>
-<tr class="separator:aa5cbc81a8b141cedae151892871314e8 inherit pub_types_classPonca_1_1CompactPlane"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7f43f277948afb08324db283b62827e5 inherit pub_types_classPonca_1_1CompactPlane"><td class="memItemLeft" align="right" valign="top"><a id="a7f43f277948afb08324db283b62827e5"></a>
-typedef _WFunctor&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1CompactPlane.html#a7f43f277948afb08324db283b62827e5">WFunctor</a></td></tr>
-<tr class="memdesc:a7f43f277948afb08324db283b62827e5 inherit pub_types_classPonca_1_1CompactPlane"><td class="mdescLeft">&#160;</td><td class="mdescRight">Weight Function. <br /></td></tr>
-<tr class="separator:a7f43f277948afb08324db283b62827e5 inherit pub_types_classPonca_1_1CompactPlane"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pub_types_classPonca_1_1Plane"><td colspan="2" onclick="javascript:toggleInherit('pub_types_classPonca_1_1Plane')"><img src="closed.png" alt="-"/>&#160;Public Types inherited from <a class="el" href="classPonca_1_1Plane.html">Ponca::Plane&lt; DataPoint, _WFunctor &gt;</a></td></tr>
+<tr class="memitem:a0b86da18f6a6d769e24b783d842b2bfe inherit pub_types_classPonca_1_1Plane"><td class="memItemLeft" align="right" valign="top"><a id="a0b86da18f6a6d769e24b783d842b2bfe"></a>
+using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1Plane.html#a0b86da18f6a6d769e24b783d842b2bfe">EigenBase</a> = Eigen::Hyperplane&lt; typename DataPoint::Scalar, DataPoint::Dim &gt;</td></tr>
+<tr class="memdesc:a0b86da18f6a6d769e24b783d842b2bfe inherit pub_types_classPonca_1_1Plane"><td class="mdescLeft">&#160;</td><td class="mdescRight">Specialization of Eigen::Hyperplane inherited by <a class="el" href="classPonca_1_1Plane.html" title="Implicit hyperplane defined by an homogeneous vector .">Ponca::Plane</a>. <br /></td></tr>
+<tr class="separator:a0b86da18f6a6d769e24b783d842b2bfe inherit pub_types_classPonca_1_1Plane"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9c9d1bb6f9272d8143607d4d0723cd42 inherit pub_types_classPonca_1_1Plane"><td class="memItemLeft" align="right" valign="top"><a id="a9c9d1bb6f9272d8143607d4d0723cd42"></a>
+typedef DataPoint::Scalar&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1Plane.html#a9c9d1bb6f9272d8143607d4d0723cd42">Scalar</a></td></tr>
+<tr class="memdesc:a9c9d1bb6f9272d8143607d4d0723cd42 inherit pub_types_classPonca_1_1Plane"><td class="mdescLeft">&#160;</td><td class="mdescRight">Scalar type inherited from DataPoint. <br /></td></tr>
+<tr class="separator:a9c9d1bb6f9272d8143607d4d0723cd42 inherit pub_types_classPonca_1_1Plane"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4855b9d53d3ab5e251b0344d8ea2cbf2 inherit pub_types_classPonca_1_1Plane"><td class="memItemLeft" align="right" valign="top"><a id="a4855b9d53d3ab5e251b0344d8ea2cbf2"></a>
+typedef DataPoint::VectorType&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1Plane.html#a4855b9d53d3ab5e251b0344d8ea2cbf2">VectorType</a></td></tr>
+<tr class="memdesc:a4855b9d53d3ab5e251b0344d8ea2cbf2 inherit pub_types_classPonca_1_1Plane"><td class="mdescLeft">&#160;</td><td class="mdescRight">Vector type inherited from DataPoint. <br /></td></tr>
+<tr class="separator:a4855b9d53d3ab5e251b0344d8ea2cbf2 inherit pub_types_classPonca_1_1Plane"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afdb7adae71601bba760e8bea3df1e0c7 inherit pub_types_classPonca_1_1Plane"><td class="memItemLeft" align="right" valign="top"><a id="afdb7adae71601bba760e8bea3df1e0c7"></a>
+typedef DataPoint::MatrixType&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1Plane.html#afdb7adae71601bba760e8bea3df1e0c7">MatrixType</a></td></tr>
+<tr class="memdesc:afdb7adae71601bba760e8bea3df1e0c7 inherit pub_types_classPonca_1_1Plane"><td class="mdescLeft">&#160;</td><td class="mdescRight">Matrix type inherited from DataPoint. <br /></td></tr>
+<tr class="separator:afdb7adae71601bba760e8bea3df1e0c7 inherit pub_types_classPonca_1_1Plane"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af30d1f88b1336f6f63b818b5b434d080 inherit pub_types_classPonca_1_1Plane"><td class="memItemLeft" align="right" valign="top"><a id="af30d1f88b1336f6f63b818b5b434d080"></a>
+typedef _WFunctor&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1Plane.html#af30d1f88b1336f6f63b818b5b434d080">WFunctor</a></td></tr>
+<tr class="memdesc:af30d1f88b1336f6f63b818b5b434d080 inherit pub_types_classPonca_1_1Plane"><td class="mdescLeft">&#160;</td><td class="mdescRight">Weight Function. <br /></td></tr>
+<tr class="separator:af30d1f88b1336f6f63b818b5b434d080 inherit pub_types_classPonca_1_1Plane"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
@@ -181,57 +181,57 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a78d759b90e8e72c9effdd9fc8508b83a inherit pub_methods_classPonca_1_1Concept_1_1FittingProcedureConcept"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__fitting.html#gabfd697aebf07c1b5c8be5ee401e2dc84">FIT_RESULT</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1Concept_1_1FittingProcedureConcept.html#a78d759b90e8e72c9effdd9fc8508b83a">finalize</a> ()</td></tr>
 <tr class="memdesc:a78d759b90e8e72c9effdd9fc8508b83a inherit pub_methods_classPonca_1_1Concept_1_1FittingProcedureConcept"><td class="mdescLeft">&#160;</td><td class="mdescRight">Finalize the fitting procedure.  <a href="classPonca_1_1Concept_1_1FittingProcedureConcept.html#a78d759b90e8e72c9effdd9fc8508b83a">More...</a><br /></td></tr>
 <tr class="separator:a78d759b90e8e72c9effdd9fc8508b83a inherit pub_methods_classPonca_1_1Concept_1_1FittingProcedureConcept"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="inherit_header pub_methods_classPonca_1_1CompactPlane"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classPonca_1_1CompactPlane')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="classPonca_1_1CompactPlane.html">Ponca::CompactPlane&lt; DataPoint, _WFunctor &gt;</a></td></tr>
-<tr class="memitem:ae65b2511f24763e70f5f9bfcf43a04a0 inherit pub_methods_classPonca_1_1CompactPlane"><td class="memItemLeft" align="right" valign="top"><a id="ae65b2511f24763e70f5f9bfcf43a04a0"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1CompactPlane.html#ae65b2511f24763e70f5f9bfcf43a04a0">CompactPlane</a> ()</td></tr>
-<tr class="memdesc:ae65b2511f24763e70f5f9bfcf43a04a0 inherit pub_methods_classPonca_1_1CompactPlane"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default constructor. <br /></td></tr>
-<tr class="separator:ae65b2511f24763e70f5f9bfcf43a04a0 inherit pub_methods_classPonca_1_1CompactPlane"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5ff20fd985e90322b449ced316c82b1d inherit pub_methods_classPonca_1_1CompactPlane"><td class="memItemLeft" align="right" valign="top"><a id="a5ff20fd985e90322b449ced316c82b1d"></a>
-<a class="el" href="classPonca_1_1CompactPlane.html">CompactPlane</a>&lt; DataPoint, <a class="el" href="classPonca_1_1CompactPlane.html#a7f43f277948afb08324db283b62827e5">WFunctor</a>, void &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1CompactPlane.html#a5ff20fd985e90322b449ced316c82b1d">compactPlane</a> ()</td></tr>
-<tr class="memdesc:a5ff20fd985e90322b449ced316c82b1d inherit pub_methods_classPonca_1_1CompactPlane"><td class="mdescLeft">&#160;</td><td class="mdescRight">Explicit conversion to CompactPlane, to access methods potentially hidden by inheritage. <br /></td></tr>
-<tr class="separator:a5ff20fd985e90322b449ced316c82b1d inherit pub_methods_classPonca_1_1CompactPlane"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5a987e9193a75a8aad7ac5703bd9c706 inherit pub_methods_classPonca_1_1CompactPlane"><td class="memItemLeft" align="right" valign="top"><a id="a5a987e9193a75a8aad7ac5703bd9c706"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1CompactPlane.html#a5a987e9193a75a8aad7ac5703bd9c706">resetPrimitive</a> ()</td></tr>
-<tr class="memdesc:a5a987e9193a75a8aad7ac5703bd9c706 inherit pub_methods_classPonca_1_1CompactPlane"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the scalar field values to 0 status. <br /></td></tr>
-<tr class="separator:a5a987e9193a75a8aad7ac5703bd9c706 inherit pub_methods_classPonca_1_1CompactPlane"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a69cca146e5bf8d301f3ffd4957f55afe inherit pub_methods_classPonca_1_1CompactPlane"><td class="memItemLeft" align="right" valign="top"><a id="a69cca146e5bf8d301f3ffd4957f55afe"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>operator==</b> (const <a class="el" href="classPonca_1_1CompactPlane.html">CompactPlane</a>&lt; DataPoint, <a class="el" href="classPonca_1_1CompactPlane.html#a7f43f277948afb08324db283b62827e5">WFunctor</a>, void &gt; &amp;other) const</td></tr>
-<tr class="separator:a69cca146e5bf8d301f3ffd4957f55afe inherit pub_methods_classPonca_1_1CompactPlane"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a019ceeea5f5bdd417ccbebf4887fd37d inherit pub_methods_classPonca_1_1CompactPlane"><td class="memItemLeft" align="right" valign="top"><a id="a019ceeea5f5bdd417ccbebf4887fd37d"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1CompactPlane.html#a019ceeea5f5bdd417ccbebf4887fd37d">operator!=</a> (const <a class="el" href="classPonca_1_1CompactPlane.html">CompactPlane</a>&lt; DataPoint, <a class="el" href="classPonca_1_1CompactPlane.html#a7f43f277948afb08324db283b62827e5">WFunctor</a>, void &gt; &amp;other) const</td></tr>
-<tr class="memdesc:a019ceeea5f5bdd417ccbebf4887fd37d inherit pub_methods_classPonca_1_1CompactPlane"><td class="mdescLeft">&#160;</td><td class="mdescRight">Comparison operator, convenience function. <br /></td></tr>
-<tr class="separator:a019ceeea5f5bdd417ccbebf4887fd37d inherit pub_methods_classPonca_1_1CompactPlane"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1f4aad61055ac34a342ad10e16414043 inherit pub_methods_classPonca_1_1CompactPlane"><td class="memItemLeft" align="right" valign="top"><a id="a1f4aad61055ac34a342ad10e16414043"></a>
-const <a class="el" href="classPonca_1_1CompactPlane.html#ac10d372cf3967ca69522d18809614edc">VectorType</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1CompactPlane.html#a1f4aad61055ac34a342ad10e16414043">basisCenter</a> () const</td></tr>
-<tr class="memdesc:a1f4aad61055ac34a342ad10e16414043 inherit pub_methods_classPonca_1_1CompactPlane"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reading access to the basis center (evaluation position) <br /></td></tr>
-<tr class="separator:a1f4aad61055ac34a342ad10e16414043 inherit pub_methods_classPonca_1_1CompactPlane"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6915762d54a1b67edb6d211104359c78 inherit pub_methods_classPonca_1_1CompactPlane"><td class="memItemLeft" align="right" valign="top"><a id="a6915762d54a1b67edb6d211104359c78"></a>
-<a class="el" href="classPonca_1_1CompactPlane.html#ac10d372cf3967ca69522d18809614edc">VectorType</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1CompactPlane.html#a6915762d54a1b67edb6d211104359c78">basisCenter</a> ()</td></tr>
-<tr class="memdesc:a6915762d54a1b67edb6d211104359c78 inherit pub_methods_classPonca_1_1CompactPlane"><td class="mdescLeft">&#160;</td><td class="mdescRight">Writing access to the (evaluation position) <br /></td></tr>
-<tr class="separator:a6915762d54a1b67edb6d211104359c78 inherit pub_methods_classPonca_1_1CompactPlane"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9ef1223ceb554f9903a59634ea33ae55 inherit pub_methods_classPonca_1_1CompactPlane"><td class="memItemLeft" align="right" valign="top"><a id="a9ef1223ceb554f9903a59634ea33ae55"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>setPlane</b> (const <a class="el" href="classPonca_1_1CompactPlane.html#ac10d372cf3967ca69522d18809614edc">VectorType</a> &amp;_dir, const <a class="el" href="classPonca_1_1CompactPlane.html#ac10d372cf3967ca69522d18809614edc">VectorType</a> &amp;_pos)</td></tr>
-<tr class="separator:a9ef1223ceb554f9903a59634ea33ae55 inherit pub_methods_classPonca_1_1CompactPlane"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4ddb217ae0897ea854fd8d4432c24a29 inherit pub_methods_classPonca_1_1CompactPlane"><td class="memItemLeft" align="right" valign="top"><a id="a4ddb217ae0897ea854fd8d4432c24a29"></a>
-<a class="el" href="classPonca_1_1CompactPlane.html#af013b4eec660ea01ecb8f67ea38182db">Scalar</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1CompactPlane.html#a4ddb217ae0897ea854fd8d4432c24a29">potential</a> () const</td></tr>
-<tr class="memdesc:a4ddb217ae0897ea854fd8d4432c24a29 inherit pub_methods_classPonca_1_1CompactPlane"><td class="mdescLeft">&#160;</td><td class="mdescRight">Value of the scalar field at the evaluation point. <br /></td></tr>
-<tr class="separator:a4ddb217ae0897ea854fd8d4432c24a29 inherit pub_methods_classPonca_1_1CompactPlane"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9ef660791e064e77e70c534a8debb0ef inherit pub_methods_classPonca_1_1CompactPlane"><td class="memItemLeft" align="right" valign="top"><a id="a9ef660791e064e77e70c534a8debb0ef"></a>
-<a class="el" href="classPonca_1_1CompactPlane.html#af013b4eec660ea01ecb8f67ea38182db">Scalar</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1CompactPlane.html#a9ef660791e064e77e70c534a8debb0ef">potential</a> (const <a class="el" href="classPonca_1_1CompactPlane.html#ac10d372cf3967ca69522d18809614edc">VectorType</a> &amp;_q) const</td></tr>
-<tr class="memdesc:a9ef660791e064e77e70c534a8debb0ef inherit pub_methods_classPonca_1_1CompactPlane"><td class="mdescLeft">&#160;</td><td class="mdescRight">Value of the scalar field at the location \( \mathbf{q} \). <br /></td></tr>
-<tr class="separator:a9ef660791e064e77e70c534a8debb0ef inherit pub_methods_classPonca_1_1CompactPlane"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac451d5a57ebd5a957f97a50569f3f4f7 inherit pub_methods_classPonca_1_1CompactPlane"><td class="memItemLeft" align="right" valign="top"><a id="ac451d5a57ebd5a957f97a50569f3f4f7"></a>
-<a class="el" href="classPonca_1_1CompactPlane.html#ac10d372cf3967ca69522d18809614edc">VectorType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1CompactPlane.html#ac451d5a57ebd5a957f97a50569f3f4f7">project</a> (const <a class="el" href="classPonca_1_1CompactPlane.html#ac10d372cf3967ca69522d18809614edc">VectorType</a> &amp;_q) const</td></tr>
-<tr class="memdesc:ac451d5a57ebd5a957f97a50569f3f4f7 inherit pub_methods_classPonca_1_1CompactPlane"><td class="mdescLeft">&#160;</td><td class="mdescRight">Project a point on the plane. <br /></td></tr>
-<tr class="separator:ac451d5a57ebd5a957f97a50569f3f4f7 inherit pub_methods_classPonca_1_1CompactPlane"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a08dbba2c83b10242b204f1cca8524bbb inherit pub_methods_classPonca_1_1CompactPlane"><td class="memItemLeft" align="right" valign="top"><a id="a08dbba2c83b10242b204f1cca8524bbb"></a>
-<a class="el" href="classPonca_1_1CompactPlane.html#ac10d372cf3967ca69522d18809614edc">VectorType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1CompactPlane.html#a08dbba2c83b10242b204f1cca8524bbb">primitiveGradient</a> () const</td></tr>
-<tr class="memdesc:a08dbba2c83b10242b204f1cca8524bbb inherit pub_methods_classPonca_1_1CompactPlane"><td class="mdescLeft">&#160;</td><td class="mdescRight">Scalar field gradient direction at the evaluation point. <br /></td></tr>
-<tr class="separator:a08dbba2c83b10242b204f1cca8524bbb inherit pub_methods_classPonca_1_1CompactPlane"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a61620a67d78dfd2925fd01bf79b2ae01 inherit pub_methods_classPonca_1_1CompactPlane"><td class="memItemLeft" align="right" valign="top"><a id="a61620a67d78dfd2925fd01bf79b2ae01"></a>
-<a class="el" href="classPonca_1_1CompactPlane.html#ac10d372cf3967ca69522d18809614edc">VectorType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1CompactPlane.html#a61620a67d78dfd2925fd01bf79b2ae01">primitiveGradient</a> (const <a class="el" href="classPonca_1_1CompactPlane.html#ac10d372cf3967ca69522d18809614edc">VectorType</a> &amp;) const</td></tr>
-<tr class="memdesc:a61620a67d78dfd2925fd01bf79b2ae01 inherit pub_methods_classPonca_1_1CompactPlane"><td class="mdescLeft">&#160;</td><td class="mdescRight">Scalar field gradient direction at \( \mathbf{q}\). <br /></td></tr>
-<tr class="separator:a61620a67d78dfd2925fd01bf79b2ae01 inherit pub_methods_classPonca_1_1CompactPlane"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pub_methods_classPonca_1_1Plane"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classPonca_1_1Plane')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="classPonca_1_1Plane.html">Ponca::Plane&lt; DataPoint, _WFunctor &gt;</a></td></tr>
+<tr class="memitem:a588a8ed4bc3185aba32021d409ddd380 inherit pub_methods_classPonca_1_1Plane"><td class="memItemLeft" align="right" valign="top"><a id="a588a8ed4bc3185aba32021d409ddd380"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1Plane.html#a588a8ed4bc3185aba32021d409ddd380">Plane</a> ()</td></tr>
+<tr class="memdesc:a588a8ed4bc3185aba32021d409ddd380 inherit pub_methods_classPonca_1_1Plane"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default constructor. <br /></td></tr>
+<tr class="separator:a588a8ed4bc3185aba32021d409ddd380 inherit pub_methods_classPonca_1_1Plane"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae53a83e024c16571f538790ad9b92dfa inherit pub_methods_classPonca_1_1Plane"><td class="memItemLeft" align="right" valign="top"><a id="ae53a83e024c16571f538790ad9b92dfa"></a>
+<a class="el" href="classPonca_1_1Plane.html">Plane</a>&lt; DataPoint, <a class="el" href="classPonca_1_1Plane.html#af30d1f88b1336f6f63b818b5b434d080">WFunctor</a>, void &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1Plane.html#ae53a83e024c16571f538790ad9b92dfa">compactPlane</a> ()</td></tr>
+<tr class="memdesc:ae53a83e024c16571f538790ad9b92dfa inherit pub_methods_classPonca_1_1Plane"><td class="mdescLeft">&#160;</td><td class="mdescRight">Explicit conversion to Plane, to access methods potentially hidden by inheritage. <br /></td></tr>
+<tr class="separator:ae53a83e024c16571f538790ad9b92dfa inherit pub_methods_classPonca_1_1Plane"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab75740fc55b07d04b2d6823359bc717a inherit pub_methods_classPonca_1_1Plane"><td class="memItemLeft" align="right" valign="top"><a id="ab75740fc55b07d04b2d6823359bc717a"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1Plane.html#ab75740fc55b07d04b2d6823359bc717a">resetPrimitive</a> ()</td></tr>
+<tr class="memdesc:ab75740fc55b07d04b2d6823359bc717a inherit pub_methods_classPonca_1_1Plane"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the scalar field values to 0 status. <br /></td></tr>
+<tr class="separator:ab75740fc55b07d04b2d6823359bc717a inherit pub_methods_classPonca_1_1Plane"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aada32be32c8cec90c72a0b54d60fab44 inherit pub_methods_classPonca_1_1Plane"><td class="memItemLeft" align="right" valign="top"><a id="aada32be32c8cec90c72a0b54d60fab44"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>operator==</b> (const <a class="el" href="classPonca_1_1Plane.html">Plane</a>&lt; DataPoint, <a class="el" href="classPonca_1_1Plane.html#af30d1f88b1336f6f63b818b5b434d080">WFunctor</a>, void &gt; &amp;other) const</td></tr>
+<tr class="separator:aada32be32c8cec90c72a0b54d60fab44 inherit pub_methods_classPonca_1_1Plane"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad1a40b2bd6aab48a8e0ca3e32d7d02ce inherit pub_methods_classPonca_1_1Plane"><td class="memItemLeft" align="right" valign="top"><a id="ad1a40b2bd6aab48a8e0ca3e32d7d02ce"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1Plane.html#ad1a40b2bd6aab48a8e0ca3e32d7d02ce">operator!=</a> (const <a class="el" href="classPonca_1_1Plane.html">Plane</a>&lt; DataPoint, <a class="el" href="classPonca_1_1Plane.html#af30d1f88b1336f6f63b818b5b434d080">WFunctor</a>, void &gt; &amp;other) const</td></tr>
+<tr class="memdesc:ad1a40b2bd6aab48a8e0ca3e32d7d02ce inherit pub_methods_classPonca_1_1Plane"><td class="mdescLeft">&#160;</td><td class="mdescRight">Comparison operator, convenience function. <br /></td></tr>
+<tr class="separator:ad1a40b2bd6aab48a8e0ca3e32d7d02ce inherit pub_methods_classPonca_1_1Plane"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3d8d4a4d3d34d18f7e17a4a06993dcf1 inherit pub_methods_classPonca_1_1Plane"><td class="memItemLeft" align="right" valign="top"><a id="a3d8d4a4d3d34d18f7e17a4a06993dcf1"></a>
+const <a class="el" href="classPonca_1_1Plane.html#a4855b9d53d3ab5e251b0344d8ea2cbf2">VectorType</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1Plane.html#a3d8d4a4d3d34d18f7e17a4a06993dcf1">basisCenter</a> () const</td></tr>
+<tr class="memdesc:a3d8d4a4d3d34d18f7e17a4a06993dcf1 inherit pub_methods_classPonca_1_1Plane"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reading access to the basis center (evaluation position) <br /></td></tr>
+<tr class="separator:a3d8d4a4d3d34d18f7e17a4a06993dcf1 inherit pub_methods_classPonca_1_1Plane"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a07ebddf795ed1940ff3ae7ac9b5accc1 inherit pub_methods_classPonca_1_1Plane"><td class="memItemLeft" align="right" valign="top"><a id="a07ebddf795ed1940ff3ae7ac9b5accc1"></a>
+<a class="el" href="classPonca_1_1Plane.html#a4855b9d53d3ab5e251b0344d8ea2cbf2">VectorType</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1Plane.html#a07ebddf795ed1940ff3ae7ac9b5accc1">basisCenter</a> ()</td></tr>
+<tr class="memdesc:a07ebddf795ed1940ff3ae7ac9b5accc1 inherit pub_methods_classPonca_1_1Plane"><td class="mdescLeft">&#160;</td><td class="mdescRight">Writing access to the (evaluation position) <br /></td></tr>
+<tr class="separator:a07ebddf795ed1940ff3ae7ac9b5accc1 inherit pub_methods_classPonca_1_1Plane"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a96d3ea4f9b961cbd2f38fdf71e04257c inherit pub_methods_classPonca_1_1Plane"><td class="memItemLeft" align="right" valign="top"><a id="a96d3ea4f9b961cbd2f38fdf71e04257c"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>setPlane</b> (const <a class="el" href="classPonca_1_1Plane.html#a4855b9d53d3ab5e251b0344d8ea2cbf2">VectorType</a> &amp;_dir, const <a class="el" href="classPonca_1_1Plane.html#a4855b9d53d3ab5e251b0344d8ea2cbf2">VectorType</a> &amp;_pos)</td></tr>
+<tr class="separator:a96d3ea4f9b961cbd2f38fdf71e04257c inherit pub_methods_classPonca_1_1Plane"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8cd4d0cad6e6c43d1217d01d3b9497ee inherit pub_methods_classPonca_1_1Plane"><td class="memItemLeft" align="right" valign="top"><a id="a8cd4d0cad6e6c43d1217d01d3b9497ee"></a>
+<a class="el" href="classPonca_1_1Plane.html#a9c9d1bb6f9272d8143607d4d0723cd42">Scalar</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1Plane.html#a8cd4d0cad6e6c43d1217d01d3b9497ee">potential</a> () const</td></tr>
+<tr class="memdesc:a8cd4d0cad6e6c43d1217d01d3b9497ee inherit pub_methods_classPonca_1_1Plane"><td class="mdescLeft">&#160;</td><td class="mdescRight">Value of the scalar field at the evaluation point. <br /></td></tr>
+<tr class="separator:a8cd4d0cad6e6c43d1217d01d3b9497ee inherit pub_methods_classPonca_1_1Plane"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7c05e3d35bd506b83f5a74ed234cd290 inherit pub_methods_classPonca_1_1Plane"><td class="memItemLeft" align="right" valign="top"><a id="a7c05e3d35bd506b83f5a74ed234cd290"></a>
+<a class="el" href="classPonca_1_1Plane.html#a9c9d1bb6f9272d8143607d4d0723cd42">Scalar</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1Plane.html#a7c05e3d35bd506b83f5a74ed234cd290">potential</a> (const <a class="el" href="classPonca_1_1Plane.html#a4855b9d53d3ab5e251b0344d8ea2cbf2">VectorType</a> &amp;_q) const</td></tr>
+<tr class="memdesc:a7c05e3d35bd506b83f5a74ed234cd290 inherit pub_methods_classPonca_1_1Plane"><td class="mdescLeft">&#160;</td><td class="mdescRight">Value of the scalar field at the location \( \mathbf{q} \). <br /></td></tr>
+<tr class="separator:a7c05e3d35bd506b83f5a74ed234cd290 inherit pub_methods_classPonca_1_1Plane"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4c8dfa7374f71e788ebdfb8f91d80187 inherit pub_methods_classPonca_1_1Plane"><td class="memItemLeft" align="right" valign="top"><a id="a4c8dfa7374f71e788ebdfb8f91d80187"></a>
+<a class="el" href="classPonca_1_1Plane.html#a4855b9d53d3ab5e251b0344d8ea2cbf2">VectorType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1Plane.html#a4c8dfa7374f71e788ebdfb8f91d80187">project</a> (const <a class="el" href="classPonca_1_1Plane.html#a4855b9d53d3ab5e251b0344d8ea2cbf2">VectorType</a> &amp;_q) const</td></tr>
+<tr class="memdesc:a4c8dfa7374f71e788ebdfb8f91d80187 inherit pub_methods_classPonca_1_1Plane"><td class="mdescLeft">&#160;</td><td class="mdescRight">Project a point on the plane. <br /></td></tr>
+<tr class="separator:a4c8dfa7374f71e788ebdfb8f91d80187 inherit pub_methods_classPonca_1_1Plane"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3cabe0850b4d4cff4013a97a06ce1617 inherit pub_methods_classPonca_1_1Plane"><td class="memItemLeft" align="right" valign="top"><a id="a3cabe0850b4d4cff4013a97a06ce1617"></a>
+<a class="el" href="classPonca_1_1Plane.html#a4855b9d53d3ab5e251b0344d8ea2cbf2">VectorType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1Plane.html#a3cabe0850b4d4cff4013a97a06ce1617">primitiveGradient</a> () const</td></tr>
+<tr class="memdesc:a3cabe0850b4d4cff4013a97a06ce1617 inherit pub_methods_classPonca_1_1Plane"><td class="mdescLeft">&#160;</td><td class="mdescRight">Scalar field gradient direction at the evaluation point. <br /></td></tr>
+<tr class="separator:a3cabe0850b4d4cff4013a97a06ce1617 inherit pub_methods_classPonca_1_1Plane"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaf943f5bcf752d7871c8475369022ef9 inherit pub_methods_classPonca_1_1Plane"><td class="memItemLeft" align="right" valign="top"><a id="aaf943f5bcf752d7871c8475369022ef9"></a>
+<a class="el" href="classPonca_1_1Plane.html#a4855b9d53d3ab5e251b0344d8ea2cbf2">VectorType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1Plane.html#aaf943f5bcf752d7871c8475369022ef9">primitiveGradient</a> (const <a class="el" href="classPonca_1_1Plane.html#a4855b9d53d3ab5e251b0344d8ea2cbf2">VectorType</a> &amp;) const</td></tr>
+<tr class="memdesc:aaf943f5bcf752d7871c8475369022ef9 inherit pub_methods_classPonca_1_1Plane"><td class="mdescLeft">&#160;</td><td class="mdescRight">Scalar field gradient direction at \( \mathbf{q}\). <br /></td></tr>
+<tr class="separator:aaf943f5bcf752d7871c8475369022ef9 inherit pub_methods_classPonca_1_1Plane"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_classPonca_1_1PrimitiveBase"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classPonca_1_1PrimitiveBase')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="classPonca_1_1PrimitiveBase.html">Ponca::PrimitiveBase&lt; DataPoint, _WFunctor &gt;</a></td></tr>
 <tr class="memitem:a008e1acfad08864ea8df9979e5cd6015 inherit pub_methods_classPonca_1_1PrimitiveBase"><td class="memItemLeft" align="right" valign="top"><a id="a008e1acfad08864ea8df9979e5cd6015"></a>
 &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1PrimitiveBase.html#a008e1acfad08864ea8df9979e5cd6015">PrimitiveBase</a> ()</td></tr>
@@ -253,12 +253,12 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-types"></a>
 Protected Types</h2></td></tr>
-<tr class="memitem:abf9da95f01cd8bf3f9e24f0dcf8a5e75"><td class="memItemLeft" align="right" valign="top"><a id="abf9da95f01cd8bf3f9e24f0dcf8a5e75"></a>enum &#160;</td><td class="memItemRight" valign="bottom">{ <b>Check</b> = Base::PROVIDES_PLANE
+<tr class="memitem:a5c4c53ba2fcf4724412e085e6bb9fee5"><td class="memItemLeft" align="right" valign="top"><a id="a5c4c53ba2fcf4724412e085e6bb9fee5"></a>enum &#160;</td><td class="memItemRight" valign="bottom">{ <b>Check</b> = Base::PROVIDES_PLANE
  }</td></tr>
-<tr class="separator:abf9da95f01cd8bf3f9e24f0dcf8a5e75"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="inherit_header pro_types_classPonca_1_1CompactPlane"><td colspan="2" onclick="javascript:toggleInherit('pro_types_classPonca_1_1CompactPlane')"><img src="closed.png" alt="-"/>&#160;Protected Types inherited from <a class="el" href="classPonca_1_1CompactPlane.html">Ponca::CompactPlane&lt; DataPoint, _WFunctor &gt;</a></td></tr>
-<tr class="memitem:a38929cc48863baaa442695b7ea66f4f0 inherit pro_types_classPonca_1_1CompactPlane"><td class="memItemLeft" align="right" valign="top"><a id="a38929cc48863baaa442695b7ea66f4f0"></a>enum &#160;</td><td class="memItemRight" valign="bottom"></td></tr>
-<tr class="separator:a38929cc48863baaa442695b7ea66f4f0 inherit pro_types_classPonca_1_1CompactPlane"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="separator:a5c4c53ba2fcf4724412e085e6bb9fee5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pro_types_classPonca_1_1Plane"><td colspan="2" onclick="javascript:toggleInherit('pro_types_classPonca_1_1Plane')"><img src="closed.png" alt="-"/>&#160;Protected Types inherited from <a class="el" href="classPonca_1_1Plane.html">Ponca::Plane&lt; DataPoint, _WFunctor &gt;</a></td></tr>
+<tr class="memitem:aee542df3bc7ddb9708bd532b5b57a9e6 inherit pro_types_classPonca_1_1Plane"><td class="memItemLeft" align="right" valign="top"><a id="aee542df3bc7ddb9708bd532b5b57a9e6"></a>enum &#160;</td><td class="memItemRight" valign="bottom"></td></tr>
+<tr class="separator:aee542df3bc7ddb9708bd532b5b57a9e6 inherit pro_types_classPonca_1_1Plane"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
@@ -416,7 +416,7 @@ template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Aug 3 2021 10:14:51 for Ponca by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Wed Aug 4 2021 10:58:19 for Ponca by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.17
 </small></address>

@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['examples_587',['Examples',['../example_page.html',1,'']]]
+  ['getting_20started_576',['Getting started',['../ponca_getting_started_page.html',1,'']]]
 ];

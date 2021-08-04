@@ -75,66 +75,66 @@ var sectionId = 'dynsection-0';
 <!-- Node2 -->
 <g id="node2" class="node">
 <title>Node2</title>
-<g id="a_node2"><a xlink:href="classPonca_1_1CovariancePlaneFit.html" target="_top" xlink:title="Plane fitting procedure using only points position.">
-<polygon fill="white" stroke="black" points="0,-0.5 0,-233.5 156,-233.5 156,-0.5 0,-0.5"/>
-<text text-anchor="start" x="8" y="-221.5" font-family="Helvetica,sans-Serif" font-size="10.00">Ponca::CovariancePlaneFit</text>
-<text text-anchor="middle" x="78" y="-210.5" font-family="Helvetica,sans-Serif" font-size="10.00">&lt; DataPoint, _WFunctor, T &gt;</text>
-<polyline fill="none" stroke="black" points="0,-203.5 156,-203.5 "/>
-<text text-anchor="start" x="8" y="-191.5" font-family="Helvetica,sans-Serif" font-size="10.00"># m_sumW</text>
-<text text-anchor="start" x="8" y="-180.5" font-family="Helvetica,sans-Serif" font-size="10.00"># m_cog</text>
-<text text-anchor="start" x="8" y="-169.5" font-family="Helvetica,sans-Serif" font-size="10.00"># m_cov</text>
-<text text-anchor="start" x="8" y="-158.5" font-family="Helvetica,sans-Serif" font-size="10.00"># m_solver</text>
-<text text-anchor="start" x="8" y="-147.5" font-family="Helvetica,sans-Serif" font-size="10.00"># m_w</text>
-<polyline fill="none" stroke="black" points="0,-140.5 156,-140.5 "/>
-<text text-anchor="start" x="8" y="-128.5" font-family="Helvetica,sans-Serif" font-size="10.00">+ CovariancePlaneFit()</text>
-<text text-anchor="start" x="8" y="-117.5" font-family="Helvetica,sans-Serif" font-size="10.00">+ covariancePlaneFit()</text>
-<text text-anchor="start" x="8" y="-106.5" font-family="Helvetica,sans-Serif" font-size="10.00">+ setWeightFunc()</text>
-<text text-anchor="start" x="8" y="-95.5" font-family="Helvetica,sans-Serif" font-size="10.00">+ init()</text>
-<text text-anchor="start" x="8" y="-84.5" font-family="Helvetica,sans-Serif" font-size="10.00">+ addNeighbor()</text>
-<text text-anchor="start" x="8" y="-73.5" font-family="Helvetica,sans-Serif" font-size="10.00">+ finalize()</text>
-<text text-anchor="start" x="8" y="-62.5" font-family="Helvetica,sans-Serif" font-size="10.00">+ solver()</text>
-<text text-anchor="start" x="8" y="-51.5" font-family="Helvetica,sans-Serif" font-size="10.00">+ surfaceVariation()</text>
-<text text-anchor="start" x="8" y="-40.5" font-family="Helvetica,sans-Serif" font-size="10.00">+ worldToTangentPlane()</text>
-<text text-anchor="start" x="8" y="-29.5" font-family="Helvetica,sans-Serif" font-size="10.00">+ tangentPlaneToWorld()</text>
-<text text-anchor="start" x="8" y="-18.5" font-family="Helvetica,sans-Serif" font-size="10.00">+ worldToTangentPlane()</text>
-<text text-anchor="start" x="8" y="-7.5" font-family="Helvetica,sans-Serif" font-size="10.00">+ tangentPlaneToWorld()</text>
+<g id="a_node2"><a xlink:href="classPonca_1_1CovarianceLineFit.html" target="_top" xlink:title="Line fitting procedure that minimize the orthogonal distance between the samples and the fitted primi...">
+<polygon fill="white" stroke="black" points="0,-28 0,-206 156,-206 156,-28 0,-28"/>
+<text text-anchor="start" x="8" y="-194" font-family="Helvetica,sans-Serif" font-size="10.00">Ponca::CovarianceLineFit</text>
+<text text-anchor="middle" x="78" y="-183" font-family="Helvetica,sans-Serif" font-size="10.00">&lt; DataPoint, _WFunctor, T &gt;</text>
+<polyline fill="none" stroke="black" points="0,-176 156,-176 "/>
+<text text-anchor="start" x="8" y="-164" font-family="Helvetica,sans-Serif" font-size="10.00"># m_sum</text>
+<text text-anchor="start" x="8" y="-153" font-family="Helvetica,sans-Serif" font-size="10.00"># m_cog</text>
+<text text-anchor="start" x="8" y="-142" font-family="Helvetica,sans-Serif" font-size="10.00"># m_cov</text>
+<text text-anchor="start" x="8" y="-131" font-family="Helvetica,sans-Serif" font-size="10.00"># m_solver</text>
+<text text-anchor="start" x="8" y="-120" font-family="Helvetica,sans-Serif" font-size="10.00"># m_w</text>
+<polyline fill="none" stroke="black" points="0,-113 156,-113 "/>
+<text text-anchor="start" x="8" y="-101" font-family="Helvetica,sans-Serif" font-size="10.00">+ CovarianceLineFit()</text>
+<text text-anchor="start" x="8" y="-90" font-family="Helvetica,sans-Serif" font-size="10.00">+ leastSquareLine()</text>
+<text text-anchor="start" x="8" y="-79" font-family="Helvetica,sans-Serif" font-size="10.00">+ setWeightFunc()</text>
+<text text-anchor="start" x="8" y="-68" font-family="Helvetica,sans-Serif" font-size="10.00">+ init()</text>
+<text text-anchor="start" x="8" y="-57" font-family="Helvetica,sans-Serif" font-size="10.00">+ addNeighbor()</text>
+<text text-anchor="start" x="8" y="-46" font-family="Helvetica,sans-Serif" font-size="10.00">+ finalize()</text>
+<text text-anchor="start" x="8" y="-35" font-family="Helvetica,sans-Serif" font-size="10.00">+ solver()</text>
 </a>
 </g>
 </g>
 <!-- Node1&#45;&gt;Node2 -->
 <g id="edge1" class="edge">
 <title>Node1&#45;&gt;Node2</title>
-<path fill="none" stroke="midnightblue" d="M404.63,-312.2C331.82,-302.62 236.49,-281.33 165,-234 161.96,-231.99 158.98,-229.83 156.07,-227.55"/>
+<path fill="none" stroke="midnightblue" d="M404.63,-312.2C331.82,-302.62 236.49,-281.33 165,-234 153.46,-226.36 142.86,-216.64 133.33,-206.1"/>
 <polygon fill="none" stroke="midnightblue" points="404.39,-315.7 414.75,-313.47 405.26,-308.75 404.39,-315.7"/>
 </g>
 <!-- Node3 -->
 <g id="node3" class="node">
 <title>Node3</title>
-<g id="a_node3"><a xlink:href="classPonca_1_1LeastSquareLine.html" target="_top" xlink:title="Line fitting procedure that minimize the orthogonal distance between the samples and the fitted primi...">
-<polygon fill="white" stroke="black" points="174,-28 174,-206 330,-206 330,-28 174,-28"/>
-<text text-anchor="start" x="182" y="-194" font-family="Helvetica,sans-Serif" font-size="10.00">Ponca::LeastSquareLine</text>
-<text text-anchor="middle" x="252" y="-183" font-family="Helvetica,sans-Serif" font-size="10.00">&lt; DataPoint, _WFunctor, T &gt;</text>
-<polyline fill="none" stroke="black" points="174,-176 330,-176 "/>
-<text text-anchor="start" x="182" y="-164" font-family="Helvetica,sans-Serif" font-size="10.00"># m_sum</text>
-<text text-anchor="start" x="182" y="-153" font-family="Helvetica,sans-Serif" font-size="10.00"># m_cog</text>
-<text text-anchor="start" x="182" y="-142" font-family="Helvetica,sans-Serif" font-size="10.00"># m_cov</text>
-<text text-anchor="start" x="182" y="-131" font-family="Helvetica,sans-Serif" font-size="10.00"># m_solver</text>
-<text text-anchor="start" x="182" y="-120" font-family="Helvetica,sans-Serif" font-size="10.00"># m_w</text>
-<polyline fill="none" stroke="black" points="174,-113 330,-113 "/>
-<text text-anchor="start" x="182" y="-101" font-family="Helvetica,sans-Serif" font-size="10.00">+ LeastSquareLine()</text>
-<text text-anchor="start" x="182" y="-90" font-family="Helvetica,sans-Serif" font-size="10.00">+ leastSquareLine()</text>
-<text text-anchor="start" x="182" y="-79" font-family="Helvetica,sans-Serif" font-size="10.00">+ setWeightFunc()</text>
-<text text-anchor="start" x="182" y="-68" font-family="Helvetica,sans-Serif" font-size="10.00">+ init()</text>
-<text text-anchor="start" x="182" y="-57" font-family="Helvetica,sans-Serif" font-size="10.00">+ addNeighbor()</text>
-<text text-anchor="start" x="182" y="-46" font-family="Helvetica,sans-Serif" font-size="10.00">+ finalize()</text>
-<text text-anchor="start" x="182" y="-35" font-family="Helvetica,sans-Serif" font-size="10.00">+ solver()</text>
+<g id="a_node3"><a xlink:href="classPonca_1_1CovariancePlaneFit.html" target="_top" xlink:title="Plane fitting procedure using only points position.">
+<polygon fill="white" stroke="black" points="174,-0.5 174,-233.5 330,-233.5 330,-0.5 174,-0.5"/>
+<text text-anchor="start" x="182" y="-221.5" font-family="Helvetica,sans-Serif" font-size="10.00">Ponca::CovariancePlaneFit</text>
+<text text-anchor="middle" x="252" y="-210.5" font-family="Helvetica,sans-Serif" font-size="10.00">&lt; DataPoint, _WFunctor, T &gt;</text>
+<polyline fill="none" stroke="black" points="174,-203.5 330,-203.5 "/>
+<text text-anchor="start" x="182" y="-191.5" font-family="Helvetica,sans-Serif" font-size="10.00"># m_sumW</text>
+<text text-anchor="start" x="182" y="-180.5" font-family="Helvetica,sans-Serif" font-size="10.00"># m_cog</text>
+<text text-anchor="start" x="182" y="-169.5" font-family="Helvetica,sans-Serif" font-size="10.00"># m_cov</text>
+<text text-anchor="start" x="182" y="-158.5" font-family="Helvetica,sans-Serif" font-size="10.00"># m_solver</text>
+<text text-anchor="start" x="182" y="-147.5" font-family="Helvetica,sans-Serif" font-size="10.00"># m_w</text>
+<polyline fill="none" stroke="black" points="174,-140.5 330,-140.5 "/>
+<text text-anchor="start" x="182" y="-128.5" font-family="Helvetica,sans-Serif" font-size="10.00">+ CovariancePlaneFit()</text>
+<text text-anchor="start" x="182" y="-117.5" font-family="Helvetica,sans-Serif" font-size="10.00">+ covariancePlaneFit()</text>
+<text text-anchor="start" x="182" y="-106.5" font-family="Helvetica,sans-Serif" font-size="10.00">+ setWeightFunc()</text>
+<text text-anchor="start" x="182" y="-95.5" font-family="Helvetica,sans-Serif" font-size="10.00">+ init()</text>
+<text text-anchor="start" x="182" y="-84.5" font-family="Helvetica,sans-Serif" font-size="10.00">+ addNeighbor()</text>
+<text text-anchor="start" x="182" y="-73.5" font-family="Helvetica,sans-Serif" font-size="10.00">+ finalize()</text>
+<text text-anchor="start" x="182" y="-62.5" font-family="Helvetica,sans-Serif" font-size="10.00">+ solver()</text>
+<text text-anchor="start" x="182" y="-51.5" font-family="Helvetica,sans-Serif" font-size="10.00">+ surfaceVariation()</text>
+<text text-anchor="start" x="182" y="-40.5" font-family="Helvetica,sans-Serif" font-size="10.00">+ worldToTangentPlane()</text>
+<text text-anchor="start" x="182" y="-29.5" font-family="Helvetica,sans-Serif" font-size="10.00">+ tangentPlaneToWorld()</text>
+<text text-anchor="start" x="182" y="-18.5" font-family="Helvetica,sans-Serif" font-size="10.00">+ worldToTangentPlane()</text>
+<text text-anchor="start" x="182" y="-7.5" font-family="Helvetica,sans-Serif" font-size="10.00">+ tangentPlaneToWorld()</text>
 </a>
 </g>
 </g>
 <!-- Node1&#45;&gt;Node3 -->
 <g id="edge2" class="edge">
 <title>Node1&#45;&gt;Node3</title>
-<path fill="none" stroke="midnightblue" d="M405.45,-276.68C382.26,-264.73 358.79,-250.44 339,-234 329.12,-225.8 319.73,-216.26 311.02,-206.24"/>
+<path fill="none" stroke="midnightblue" d="M405.45,-276.68C382.26,-264.73 358.79,-250.44 339,-234 336,-231.51 333.04,-228.89 330.13,-226.17"/>
 <polygon fill="none" stroke="midnightblue" points="404.15,-279.95 414.66,-281.32 407.3,-273.69 404.15,-279.95"/>
 </g>
 <!-- Node4 -->
