@@ -156,7 +156,7 @@ using ::Ponca::internal::FitScaleDer;
     isSpaceDer().
 
     \ingroup fitting
-    \internal
+    \warning This class cannot be used directly, see CovariancePlaneScaleDer, CovariancePlaneSpaceDer and CovariancePlaneScaleSpaceDer
 */
 template < class DataPoint, class _WFunctor, typename T, int Type>
 class CovariancePlaneDer : public T

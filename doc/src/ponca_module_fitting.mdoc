@@ -5,75 +5,61 @@ namespace Ponca
 
   \section fitting_intro Introduction
 
-  The fitting module is dedicated to the smooth fitting of point clouds and extraction of useful geometric properties. Figure 1(a) shows a typical example in 2D:
-  we reconstruct a potential function (shown in fake colors) from a few 2D points equipped with normals; then the 0-isoline of this potential gives us an
-  implicit curve (in orange) from which we can readily extract further properties like curvature. A great benefit of this implicit technique \cite Guennebaud:2007:APSS is that it works
-  in arbitrary dimensions: Figures 1(b-c) show how we reconstruct an implicit 3D surface with the same approach, starting from a 3D point cloud. Working with
-  meshes then simply consists of only considering their vertices.
+  The fitting module is dedicated to the smooth fitting of point clouds and extraction of useful geometric properties.
+  Figure 1(a) shows a typical example in 2D: we reconstruct a potential function (shown in fake colors) from a few 2D points equipped with normals;
+  then the 0-isoline of this potential gives us an implicit curve (in orange) from which we can readily extract further properties like curvature.
+  A great benefit of this implicit technique \cite Guennebaud:2007:APSS is that it works in arbitrary dimensions: Figures 1(b-c) show how we reconstruct an implicit 3D surface with the same approach, starting from a 3D point cloud.
+  Working with meshes then simply consists of only considering their vertices.
+
+  \image html interpolation.png "Figure 1: (a) An implicit 2D curve fit to a 2D point cloud. (b) A 3D point cloud shown with splats. (c) An implicit 3D surface reconstructed from (b)."
+
 
   This is just the tip of the iceberg though, as we also provide methods for dealing with points equipped with non-oriented normals \cite Chen:2013:NOMG, techniques to analyze
-  points clouds in scale-space to discover salient structures \cite Mellado:2012:GLS, methods to compute multi-scale principal curvatures \cite Mellado:2013:SSC and methods to compute surface variation using a plane instead of a sphere for the fitting \cite Pauly:2002:PSSimplification. See the table below:
+  points clouds in scale-space to discover salient structures \cite Mellado:2012:GLS, methods to compute multi-scale principal curvatures \cite Mellado:2013:SSC and methods to compute surface variation using a plane instead of a sphere for the fitting \cite Pauly:2002:PSSimplification.
+  The list of primitives and fitting techniques is summarized in the table below:
 
   Primitive         | Required Input      | Fitting techniques                                | Analysis/Tools                                          | Other usages |
   ----------------- | ------------------- | ------------------------------------------------- | ------------------------------------------------------- | ------------ |
+  Line              | Points only         | CovarianceLineFit (3D)                            |                                                         |              |
   Plane             | Points only         | CovariancePlaneFit (nD)                           | Surface Variation (nD)\cite Pauly:2002:PSSimplification |              |
   Plane             | Oriented points     | MeanPlaneFit (nD, co-dimension 1)                 |                                                         |              |
   MongePatch        | Points only         | MongePatch (3D)                                   |                                                         |              |
-  AlgebraicSphere   | Oriented points     | OrientedSphereFit (nD) \cite Guennebaud:2007:APSS | GLS (nD) \cite Mellado:2012:GLS                         | Ray Traced Curvature \cite Mellado:2013:SSC |
+  AlgebraicSphere   | Points only         | SphereFit (nD) \cite Guennebaud:2007:APSS         |                                                         |              |
+  AlgebraicSphere   | Oriented points     | OrientedSphereFit (nD) \cite Guennebaud:2007:APSS | GLS (nD) \cite Mellado:2012:GLS , curvature estimators (3D) \cite Lejemble:2021:stable | Ray Traced Curvature \cite Mellado:2013:SSC |
   AlgebraicSphere   | Non-oriented points | UnorientedSphereFit (nD) \cite Chen:2013:NOMG     |                                                         |              |
-  Line              | Points only         | CovarianceLineFit (3D)                            |                                                         |              |
-  
-  In the following, we focus on a basic use of the module, using 3D points equipped with oriented normals fitted by a Ponca::AlgebraicSphere. First, one must set up data samples that interface
-  with an external code; then run the fitting process in itself, and finally collect outputs. We also show how to compute curvatures with the very same approach,
-  as this is a common requirement of many geometric processing algorithms.
 
-   \image html interpolation.png "Figure 1: (a) An implicit 2D curve fit to a 2D point cloud. (b) A 3D point cloud shown with splats. (c) An implicit 3D surface reconstructed from (b)."
+
+  In the following, we focus on a basic use of the module, and detail how to:
+   - set up data samples that interface with an external code (see Section \ref fitting_datas),
+   - run the fitting process in itself (see Section \ref fitting_Fitting),
+   - and finally collect outputs (see Section \ref fitting_outputs).
+
+  We also show detail all the available tools for geometrical property estimation (see Section \ref fitting_extensions_deps), with a specific focus on curvature (see Section \ref fitting_cuvature).
+  the last section detail how to use this module on CUDA kernels (see Section \ref fitting_going_further).
 
 
   \subsection fitting_codeStructure Code structure
-  We structured Ponca as follow: a `Fitting` folder defining operators that rely on no data structure and work both with CUDA and C++; and an `Algorithm` folder with methods that may interface with user-provided data structures, with optimized solutions in C++, CUDA or both.
-  The rationale behind this separation is to provide two levels of complexity: core operators implement atomic scientific contributions that are agnostic of the host application; algorithms implement step-by-step procedures that will likely rely on core operators and/or structure traversal.
-
-  In its current state, we do not have algorithms for Ponca implemented: it's work in progress (we are open to contributions). If you want to use Ponca, just include its main header:
-  \code
-#include "Ponca/Ponca"
-  \endcode
-  or
+  The Fitting module defines operators that rely on no data structure and work both with CUDA and C++.
+  These core operators implement atomic scientific contributions that are agnostic of the host application.
+  If you want to use the Fitting module, just include its header:
   \code
 #include "Ponca/Fitting"
   \endcode
-
-  \subsection fitting_cuda Cuda
-  Ponca can be used directly on GPU, thanks to several mechanisms:
-   - Eigen Cuda capabilities, see <a href="http://eigen.tuxfamily.org/dox-devel/TopicCUDA.html"  target="_blank">Eigen documentation</a> for more details. You *need* to use a consistent Eigen::Index on both CPU and GPU if you plan to transfer memory between the computing units. That's why we recommend to set the following preprocessor variable when compiling your project:
-   \code -DEIGEN_DEFAULT_DENSE_INDEX_TYPE=int\endcode
-   You might also need to define the `--expt-relaxed-constexpr` preprocessor option for `NVCC`. Example of working cmake file (see \ref example_cu_ssc_page):
-   \code
-   enable_language(CUDA)
-   add_executable(ponca_ssgls "ponca_ssgls.cu")
-   target_compile_options(ponca_ssgls PRIVATE --expt-relaxed-constexpr)
-   \endcode
-   - C++03 Compliant: right now we *do not* use C++11 in Ponca when compiled with CUDA, to maximize compatibility across platforms and Cuda versions.
-   - Automatic CPU/GPU compilation qualifiers. We use the macro
-  \code
-          PONCA_MULTIARCH void function();
-  \endcode
-  to use the same code for C++ and CUDA. It has no effect when the code is compiled with GCC or Clang, but it will force the compilation for both host and device architectures when compiling with nvcc. A similar macro system is provided for mathematical functions, to switch between STL and CUDA versions.
-
-  Check the \ref example_cxx_ssc_page "C++/Cuda" and \ref example_python_ssc_page "Python/Cuda" (using PyCuda) examples for more details and how-to.
-
-  You are now ready to read the next sections, and discover how to interface Ponca with your data-structures, how to fit various primitives and compute geometrical and differential properties.
 
   \section fitting_datas Data Samples
 
   The first step needed to use Ponca is to define how samples are represented inside the module.
   A strength of Ponca is to define all these structures at compile time to generate optimized code for fast evaluation at runtime.
 
-  The class Ponca::Concept::PointConcept defines the interface that has to be implemented to represent a sample. Observe that there is no need for data conversion: all you need to do is to indicate how to access existing data.
+  The class Ponca::Concept::PointConcept defines the interface that has to be implemented to represent a sample.
+  Observe that there is no need for data conversion: all you need to do is to indicate how to access existing data (see the example \ref example_cxx_binding_page).
 
   \warning You should avoid data of low magnitude (i.e., 1 should be a significant value) to get good results; thus rescaling might be necessary.
 
-  As an example, let's fit a Ponca::AlgebraicSphere onto points equipped with normals using the Ponca::OrientedSphereFit. To this end, we must define a structure `MyPoint` containing a normal vector and its associated accessors. Depending on the fitting procedure we will use, we may need to define a Matrix Type. This is for instance required to compute \ref fitting_subsection_principalcurvatures.
+  As an example, let's fit a Ponca::AlgebraicSphere onto points equipped with normals using the Ponca::OrientedSphereFit.
+  To this end, we must define a structure `MyPoint` containing a normal vector and its associated accessors.
+  Depending on the fitting procedure we will use, we may need to define a `MatrixType` type.
+  This is for instance required for \ref fitting_cuvature.
   This leads to the following class:
   \code
   using namespace Ponca;
@@ -85,7 +71,7 @@ namespace Ponca
     enum {Dim = 3};
     typedef double Scalar;
     typedef Eigen::Matrix<Scalar, Dim, 1>   VectorType;
-    typedef Eigen::Matrix<Scalar, Dim, Dim> MatrixType; // Type needed by Ponca::GLSCurvatureHelper
+    typedef Eigen::Matrix<Scalar, Dim, Dim> MatrixType;
 
     PONCA_MULTIARCH inline MyPoint(const VectorType &pos    = VectorType::Zero(),
                    const VectorType& normal = VectorType::Zero())
@@ -102,77 +88,58 @@ namespace Ponca
   };
   \endcode
 
-  To make the code more readable, we also define <CODE>typedef</CODE> helpers for <CODE>Scalar</CODE> and
-  <CODE>Vector</CODE> types outside of the MyPoint class:
-  \code
-  typedef MyPoint::Scalar Scalar;
-  typedef MyPoint::VectorType VectorType;
-  \endcode
-
   \section fitting_Fitting Fitting Process
 
   Two template classes must be specialized to indicate how a fit will be applied.
 
-  The first step consists in identifying a weighting function: it defines how neighbor samples will contribute to the fit, as illustrated in Figure 2(a) in 2D. In this example, we choose a weight based on the Euclidean distance using Ponca::DistWeightFunc, remapped through a bisquare kernel defined in Ponca::SmoothWeightKernel:
+  The first step consists in identifying a weighting function: it defines how neighbor samples will contribute to the fit, as illustrated in Figure 2(a) in 2D.
+  In this example, we choose a weight based on the Euclidean distance using Ponca::DistWeightFunc, remapped through a bisquare kernel defined in Ponca::SmoothWeightKernel:
   \code
   typedef DistWeightFunc<MyPoint,SmoothWeightKernel<Scalar> > WeightFunc;
   \endcode
 
-  The second step identifies a complete fitting procedure through the specialization of a Ponca::Basket. In our example, we want to apply an Ponca::OrientedSphereFit to input data points, which outputs an Ponca::AlgebraicSphere by default. We further require such a sphere to be reparametrized using a Ponca::GLSParam extension, which provides more intuitive parameters. This leads to the following specialization:
+  The second step identifies a complete fitting procedure through the specialization of a Ponca::Basket.
+  In our example, we want to apply an Ponca::OrientedSphereFit to input data points, which outputs an Ponca::AlgebraicSphere by default.
+  This leads to the following specialization:
 
   \code
-  typedef Basket<MyPoint,WeightFunc,OrientedSphereFit, GLSParam> Fit1;
+  typedef Basket<MyPoint,WeightFunc,OrientedSphereFit> Fit;
   \endcode
 
   At this point, most of the hard job has already been performed.
-  All we have to do now is to provide an instance of the weight function, where t refers to the neighborhood size, and iniate the fit at an arbitrary position p.
+  All we have to do now is to provide an instance of the weight function, where \f$t\f$ refers to the neighborhood size, and initiate the fit at an arbitrary position \f$\mathbf{p}\f$.
   \code
-  // Create the previously defined fitting procedure
-  Fit1 fit;
-
-  // Set a weighting function instance
-  fit.setWeightFunc(WeightFunc(t));
-
-  // Set the evaluation position
-  fit.init(p);
+  Fit fit;                          // Create the previously defined fitting procedure
+  fit.setWeightFunc(WeightFunc(t)); // Set a weighting function instance
+  fit.init(p);                      // Set the evaluation position
   \endcode
 
   Then neighbors are added sequentially: in this example, we traverse a simple array, and samples outside of the neighborhood are automatically ignored by the weighting function.
-  Once all neighbors have been incorporated, the fit is performed and results stored in the specialized Basket object. STL-like iterators can be used directly for the fit by calling
+  Once all neighbors have been incorporated, the fit is performed and results stored in the specialized Basket object.
+  STL-like iterators can be used directly for the fit by calling
   \code
   fit.compute(vecs.begin(), vecs.end());
   \endcode
 
-  Internally, the container is traversed and the method <CODE>finalize</CODE> is called at the end:
+  Internally, the container is traversed and the method `finalize` is called at the end:
   \code
-  // Iterate over samples and fit the primitive
-  for(vector<MyPoint>::iterator it = vecs.begin(); it != vecs.end(); it++)
-    fit.addNeighbor(*it);
-
-  //finalize fitting
-  fit.finalize();
+  for(auto& it = vecs.begin(); it != vecs.end(); it++)
+    fit.addNeighbor(*it);  // Iterate over samples and fit the primitive
+  fit.finalize();          // finalize fitting
   \endcode
 
-  After calling <CODE>finalize</CODE> or <CODE>compute</CODE>, it is better to test the return state of the fitting before using it. There are diffent states but the most important one is <CODE>STABLE</CODE>.
+  After calling `finalize` or `compute`, it is better to test the return state of the fitting before using it.
 
   \code
-  FIT_RESULT eResult = fit.compute(vecs.begin(), vecs.end()); // or = fit.finalize();
-  if(eResult == STABLE)
-  {
+  FIT_RESULT eResult = fit.compute(vecs.begin(), vecs.end()); // or eResult = fit.finalize();
+  if(eResult == STABLE)                                       // or fit.isStable()
         //do things...
-  }
   \endcode
 
-  You may also use accessors to perform the same check:
+  Some methods require multiple fitting passes, e.g. `Basket<P,W,CovariancePlaneFit, MongePatch>`.
+  This is directly handled by the `compute` method.
+  If you don't use it, you need to check if `eResults == NEED_ANOTHER_PASS` and repeat the `addNeighbor()`/`finalize()` steps.
 
-  \code
-  fit.compute(vecs.begin(), vecs.end());
-
-  if(fit.isStable()) //You can also check the function isReady()
-  {
-        //do things;
-  }
-  \endcode
 
   \image html gls.png "Figure 2. (a) Fitting a 2D point cloud of positions and normals at a point p (in red) requires to define a weight function of size t (in green). (b) This results in an implicit scalar field (in fake colors), from which parameters of a local spherical surface can be extracted: an offset tau, a normal eta and a curvature kappa."
 
@@ -182,16 +149,11 @@ namespace Ponca
 
   \subsection fitting_subsection_access_field Scalar field
 
-  You may directly access properties of the fitted scalar-field, as defined in Ponca::AlgebraicSphere :
+  You may directly access properties of the fitted Primitive :
   \code
-  cout << "Value of the scalar field at the initial point: "
-       << p.transpose()
-       << " is equal to " << fit.potential(p)
-       << endl;
-
-  cout << "Its gradient is equal to: "
-       << fit.primitiveGradient(p).transpose()
-       << endl;
+  cout << "Value of the scalar field at the initial point: " << p.transpose()
+       << " is equal to " << fit.potential(p) << endl;
+  cout << "Its gradient is equal to: " << fit.primitiveGradient(p).transpose() << endl;
   \endcode
   This generates the following output:
   \code
@@ -210,24 +172,9 @@ namespace Ponca
   Center: [-0.000160652 -0.000179197  0.000385884] ;  radius: 1.00232
   \endcode
 
-  Alternatively, you may prefer accessing parameters provided by the Ponca::GLSParam extension:
-  \code
-  cout << "Fitted Sphere: " << endl
-       << "\t Tau  : "      << fit.tau()             << endl
-       << "\t Eta  : "      << fit.eta().transpose() << endl
-       << "\t Kappa: "      << fit.kappa()           << endl;
-  \endcode
-  You will obtain:
-  \code
-        Fitted Sphere:
-          Tau  : -0.501162
-          Eta  :   0.35325  0.394028 -0.848502
-          Kappa: 0.997682
-  \endcode
+  \subsection fitting_subsection_access_projection Projection
 
-  \subsection fitting_subsection_access_other Other methods
-
-  Thanks to the Ponca::AlgebraicSphere, you may also project an arbitrary point onto the fitted sphere via:
+  All primitives also provide a projection operator, to project an arbitrary point onto the fitted primitive via:
   \code
   cout << "The initial point " << p.transpose()              << endl
        << "Is projected at   " << fit.project(p).transpose() << endl;
@@ -239,85 +186,110 @@ namespace Ponca
   \endcode
 
 
+
+
+  \section fitting_extensions_deps Fitting extensions and tools
+  In addition to Primitive fitting, Ponca allows to compute geometrical properties of the input samples.
+  This is done by aggregating multiple tool classes in the Basket, e.g. to compute the principal curvatures
+  (CurvatureEstimator) from the spatial derivatives (OrientedSphereSpaceDer) of the fitted sphere (OrientedSphereFit):
+  \code
+  typedef Basket<MyPoint,WeightFunc,OrientedSphereFit,OrientedSphereSpaceDer,CurvatureEstimator> Fit;
+  \endcode
+
+  Alternatively, one can estimate normals using plane fitting and use the same estimator:
+  \code
+  typedef Basket<MyPoint,WeightFunc,CovariancePlaneFit,CovariancePlaneSpaceDer,CurvatureEstimator> Fit;
+  \endcode
+
+  Ponca provides compile-time checks to ensure that the tools can be combined in a Basket.
+  This is done by checking the **capabilities** between the tools.
+  A tool providing a given capability needs to provide a given API, ie. a set of methods/attributes that can be safely
+  used.
+  For instance, a tool with the capability `PROVIDES_PRINCIPALE_CURVATURES` provides the following methods:
+  `k1()`, `k2()`, `k1Direction()`, `k2Direction()`, `kMean()`, `GaussianCurvature()`.
+
+  In order to ease tools combinations, each class declare a set of *required* and *provided* capabilities, as listed in the following table:
+
+    Fit/Tool                           | Requires                                                              | Provides                                                                                                                                                          |
+    ---------------------------------- | --------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+    NormalCovarianceCurvature          |                                                                       | `PROVIDES_PRINCIPALE_CURVATURES`                                                                                                                                  |
+    CovarianceLineFit                  |                                                                       | `PROVIDES_LINE`                                                                                                                                                   |
+    CovariancePlaneFit                 |                                                                       | `PROVIDES_PLANE` `PROVIDES_TANGENT_PLANE_BASIS`                                                                                                                   |
+    ProjectedNormalCovarianceCurvature | `PROVIDES_PLANE`                                                      | `PROVIDES_PRINCIPALE_CURVATURES`                                                                                                                                  |
+    internal::CovariancePlaneDer       | `PROVIDES_PLANE`                                                      | `PROVIDES_COVARIANCE_PLANE_DERIVATIVE` `PROVIDES_NORMAL_DERIVATIVE`                                                                                               |
+    CovariancePlaneSpaceDer            | `PROVIDES_PLANE`                                                      | `PROVIDES_COVARIANCE_PLANE_SPACE_DERIVATIVE` `PROVIDES_NORMAL_SPACE_DERIVATIVE`                                                                                   |
+    CovariancePlaneScaleDer            | `PROVIDES_PLANE`                                                      | `PROVIDES_COVARIANCE_PLANE_SCALE_DERIVATIVE` `PROVIDES_NORMAL_SCALE_DERIVATIVE`                                                                                   |
+    CovariancePlaneScaleSpaceDer       | `PROVIDES_PLANE`                                                      | `PROVIDES_COVARIANCE_PLANE_SCALE_DERIVATIVE` `PROVIDES_NORMAL_SCALE_DERIVATIVE` `PROVIDES_COVARIANCE_PLANE_SCALE_DERIVATIVE` `PROVIDES_NORMAL_SCALE_DERIVATIVE`   |
+    MeanPlaneFit                       | `PROVIDES_PLANE`                                                      |                                                                                                                                                                   |
+    MongePatch                         | `PROVIDES_PLANE`, `PROVIDES_TANGENT_PLANE_BASIS`                      |                                                                                                                                                                   |
+    SphereFit                          |                                                                       | `PROVIDES_ALGEBRAIC_SPHERE`                                                                                                                                       |
+    OrientedSphereFit                  |                                                                       | `PROVIDES_ALGEBRAIC_SPHERE`                                                                                                                                       |
+    internal::OrientedSphereDer        | `PROVIDES_ALGEBRAIC_SPHERE`                                           | `PROVIDES_NORMAL_DERIVATIVE` `PROVIDES_ALGEBRAIC_SPHERE_DERIVATIVE`                                                                                               |
+    OrientedSphereScaleDer             | `PROVIDES_ALGEBRAIC_SPHERE`                                           | `PROVIDES_NORMAL_SCALE_DERIVATIVE` `PROVIDES_ALGEBRAIC_SPHERE_SCALE_DERIVATIVE`                                                                                   |
+    OrientedSphereSpaceDer             | `PROVIDES_ALGEBRAIC_SPHERE`                                           | `PROVIDES_NORMAL_SPACE_DERIVATIVE` `PROVIDES_ALGEBRAIC_SPHERE_SPACE_DERIVATIVE`                                                                                   |
+    OrientedSphereScaleSpaceDer        | `PROVIDES_ALGEBRAIC_SPHERE`                                           | `PROVIDES_NORMAL_SCALE_DERIVATIVE` `PROVIDES_ALGEBRAIC_SPHERE_SCALE_DERIVATIVE` `PROVIDES_NORMAL_SPACE_DERIVATIVE` `PROVIDES_ALGEBRAIC_SPHERE_SPACE_DERIVATIVE`   |
+    UnorientedSphereFit                |                                                                       | `PROVIDES_ALGEBRAIC_SPHERE`                                                                                                                                       |
+    MlsSphereFitDer                    | `PROVIDES_ALGEBRAIC_SPHERE_DERIVATIVE`                                | `PROVIDES_NORMAL_SPACE_DERIVATIVE`                                                                                                                                |
+    GLSParam                           | `PROVIDES_ALGEBRAIC_SPHERE`                                           | `PROVIDES_GLS_PARAMETRIZATION`                                                                                                                                    |
+    GLSDer                             | `PROVIDES_ALGEBRAIC_SPHERE_DERIVATIVE` `PROVIDES_GLS_PARAMETRIZATION` | `PROVIDES_GLS_DERIVATIVE`                                                                                                                                         |
+    GLSGeomVar                         | `PROVIDES_GLS_DERIVATIVE`                                             | `PROVIDES_GLS_GEOM_VAR`                                                                                                                                           |
+    CurvatureEstimator                 | `PROVIDES_NORMAL_SPACE_DERIVATIVE`                                    | `PROVIDES_PRINCIPALE_CURVATURES`                                                                                                                                  |
+
+  \note Conflicts between tools providing the same capabilities are currently not checked.
+  For instance, the two tools CurvatureEstimator and NormalCovarianceCurvature both provide `PROVIDES_PRINCIPALE_CURVATURES`.
+  It is possible (even if not recommended) to combine them in the same Basket, however it will require to specify which class should be used when accessing the estimated properties, e.g.:
+  \code
+  typedef Basket<MyPoint,WeightFunc,OrientedSphereFit,OrientedSphereSpaceDer,CurvatureEstimator,NormalCovarianceCurvature> Fit;
+  Fit f;
+  /// fit f to data
+  /// ...
+  /// access curvature estimation of both estimators
+  f.CurvatureEstimator::k1();         // might require the additional keyword 'template' with some compilers
+  f.NormalCovarianceCurvature::k1();
+  \endcode
+
+
+
   \section fitting_cuvature Computing Curvatures
 
+  Ponca offers several ways to compute curvatures, some of which are reviewed and compared by Lejemble et al. in \cite Lejemble:2021:stable and listed in the table below:
+  Estimator Name                                                 |   Estimated quantities   | Usage                                                                                       |  Speed | Robustness  |
+  -------------------------------------------------------------- | ------------------------ | ------------------------------------------------------------------------------------------- | ------ | ----------- |
+  Distance to PCA plane \cite Digne:2011:scalespacemeshing       | Mean curvature           | `Basket<P,W,CovariancePlaneFit> // method potential()`                                      |  +++   | - - -       |
+  Surface Variation \cite Pauly:2002:PSSimplification            | Mean curvature           | `Basket<P,W,CovariancePlaneFit> // method surfaceVariation()`                               |  +++   | - - -       |
+  Growing Least Squares \cite Mellado:2012:GLS                   | Mean curvature           | `Basket<P,W,OrientedSphereFit,GLSParam> // method kappa()`                                  |  +++   | - - -       |
+  Point Set Surfaces (PSS) \cite Alexa:2001:Pss                  | Curvature Tensor         | `Basket<P,W,CovariancePlaneFit,CovariancePlaneSpaceDer,CurvatureEstimator>`                 |        |             |
+  Algebraic Point Set Surfaces (APSS) \cite Guennebaud:2007:APSS | Curvature Tensor         | `Basket<P,W,OrientedSphereFit,OrientedSphereSpaceDer,CurvatureEstimator>`                   |        |             |
+  Algebraic Shape Operator (ASO) \cite Lejemble:2021:stable      | Curvature Tensor         | `Basket<P,W,OrientedSphereFit,OrientedSphereSpaceDer,MlsSphereFitDer,CurvatureEstimator>`   |        |             |
 
-  This part presents how to compute curvature values from the various fitting
-  procedures and extensions available in Ponca.
 
-  \subsection fitting_subsection_meancurvature Mean Curvature
+  \image html buste.png "Figure 3. Example of mean curvature (GLSParam::kappa) computed at a fine (left) and a coarse (right) scale, and rendered with a simple color map (orange for concavities, blue for convexities)."
 
-  A fast approximation of the mean curvature is provided by GLSParam::kappa() and illustrated at two scales on a 3D surface in Figure 3:
-  \code
-  typedef Basket<MyPoint, WeightFunc, OrientedSphereFit, // Sphere fitting
-                                      GLSParam> Fit;     // GLS reparametrization
-
-  Fit fit;
-  // Fit primitive
-  // ...
-
-  // Get mean curvature
-  Scalar curvature = fit.kappa();
-  \endcode
-
-  It can also be extracted by analysing the spatial derivatives of fitted normals,
-  provided by GLSDer::deta(). Note that the computational cost is more important
-  in this case.
-  \code
-  typedef Basket<MyPoint, WeightFunc, OrientedSphereFit,    // Sphere fitting
-                                    GLSParam,               // GLS reparametrization
-                                    OrientedSphereSpaceDer, // Spatial derivatives
-                                    GLSDer > Fit;           // GLS differentiation
-
-  Fit fit;
-  // Fit primitive
-  // ...
-
-  // Mean curvature values is given by half of the trace of the jacobian matrix
-  MatrixType jacobian = fit.deta();
-  cout << " Mean curvature: " << 0.5 * jacobian.trace() << endl;
-  \endcode
-  \note In this example, we build the Jacobian from <CODE>fit.deta()</CODE>, using an implicit cast from <CODE>VectorArray</CODE> to <CODE>MatrixType</CODE>. It will require a more careful conversion when the basket contains different extensions. More details \link Ponca::internal::OrientedSphereDer here.\endlink
-
-  \image html buste.png "Figure 3. Mean curvature computed at a fine (left) and a coarse (right) scale, and rendered with a simple color map (orange for concavities, blue for convexities)."
-
-  \subsection fitting_subsection_principalcurvatures Principal Curvatures
-
-  Principal curvatures and their associated directions can be computed by
-  an eigen decomposition of the spatial derivatives of eta, provided by
-  the extension GLSCurvatureHelper (based on the analysis of GLSDer::deta()):
-  \code
-  typedef Basket<MyPoint, WeightFunc, OrientedSphereFit,    // Sphere fitting
-                                    GLSParam,               // GLS reparametrization
-                                    OrientedSphereSpaceDer, // Spatial derivatives
-                                    GLSDer,                 // GLS differentiation
-                                    GLSCurvatureHelper > Fit;
-
-  Fit fit;
-  // Fit primitive
-  // ...
-  // The eigen decomposition is called during the fit finalize
-  fit.finalize();
-
-  if(fit.isStable())
-  {
-    // Get principal curvatures
-    Scalar k1 = fit.GLSk1();
-    Scalar k2 = fit.GLSk2();
-
-    // Get associated directions
-    VectorType d1 = fit.GLSk1Direction();
-    VectorType d2 = fit.GLSk2Direction();
-
-    // Get gaussian curvature
-    Scalar K = fit.GLSGaussianCurvature();
-  }
-  \endcode
 
   \section fitting_going_further Going Further
 
-  This page was intended to show you a standard use of the Ponca module. However, there is more to it than Ponca::OrientedSphereFit, as shown in its <a href="namespace_grenaille.html"><b>reference</b></a>. For example,
-  you can create a totally different Basket with a Ponca::Plane and its extension Ponca::CovariancePlaneFit using plane instead of algebraic sphere to procede the fit in order to compute Ponca::CovariancePlaneFit::surfaceVariation.
-  We encourage you to make your own tests and have a look at our \ref example_page "examples". It will give you ideas about how to use this module inside your own applications.
+  This page was intended to show you a standard use of the Ponca module.
+  To go further, we encourage you to browse the <a href="annotated.html"><b>reference</b></a> and \ref example_page "example" pages.
+
+  \subsection fitting_cuda Cuda
+  Ponca can be used directly on GPU, thanks to several mechanisms:
+   - Eigen Cuda capabilities, see <a href="http://eigen.tuxfamily.org/dox-devel/TopicCUDA.html"  target="_blank">Eigen documentation</a> for more details.
+   You *need* to use a consistent `Eigen::Index` on both CPU and GPU if you plan to transfer memory between the computing units.
+   That's why we recommend to set the following preprocessor variable when compiling your project:
+   \code -DEIGEN_DEFAULT_DENSE_INDEX_TYPE=int\endcode
+   You might also need to define the `--expt-relaxed-constexpr` preprocessor option for `NVCC`.
+   Example of working cmake file (see \ref example_cu_ssc_page):
+   \code
+   enable_language(CUDA)
+   add_executable(ponca_ssgls "ponca_ssgls.cu")
+   target_compile_options(ponca_ssgls PRIVATE --expt-relaxed-constexpr)
+   \endcode
+   - Automatic CPU/GPU compilation qualifiers. We use the macro
+  \code
+          PONCA_MULTIARCH void function();
+  \endcode
+  to use the same code for C++ and CUDA. It has no effect when the code is compiled with GCC or Clang, but it will force the compilation for both host and device architectures when compiling with nvcc. A similar macro system is provided for mathematical functions, to switch between STL and CUDA versions.
+
+  Check the \ref example_cxx_ssc_page "C++/Cuda" and \ref example_python_ssc_page "Python/Cuda" (using PyCuda) examples for more details and how-to.
  */
  }
