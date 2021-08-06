@@ -44,7 +44,7 @@ void testKdTreeRangeIndex(bool quick = true)
 			results.push_back(j);
 		}
 		bool res = check_range_neighbors<Scalar, VectorContainer>(points, sampling, i, r, results);
-		EXPECT_TRUE(res);
+        VERIFY(res);
 	}
 
 }
@@ -79,7 +79,7 @@ void testKdTreeRangePoint(bool quick = true)
 		}
 
 		bool res = check_range_neighbors<Scalar, VectorType, VectorContainer>(points, sampling, point, r, results);
-		EXPECT_TRUE(res);
+		VERIFY(res);
 	}
 }
 
