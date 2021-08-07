@@ -15,29 +15,21 @@ namespace Ponca
 {
 
 /*!
- * \brief Orthogonal Regression is the process of finding the line that best fits a set of points by minimizing their squared orthogonal distances to it.
-    The first key insight is that the orthogonal regression line will always pass through the average (or centroid) of the points.
-    The centroid can be computed by adding the points together, and then dividing by the number of points.
-    Note: Now that we have a point that the line passes through, we just need to calculate its direction.
+   \brief Line fitting procedure that minimize the orthogonal distance between the samples and the fitted primitive.
 
-    The algorithm is based on the Eigen decomposition of the covariance matrix of the points coordinates.
+   \inherit Concept::FittingProcedureConcept
+   \see Line
+   \see CovariancePlaneFit which use a similar approach for Plane estimation
 
- * \warning This class is valid only in 3D.
- * \ingroup fitting
+   \warning This class is valid only in 3D.
+   \ingroup fitting
  */
 
 template < class DataPoint, class _WFunctor, typename T>
-class LeastSquareLine : public Line<DataPoint, _WFunctor>
+class CovarianceLineFit : public Line<DataPoint, _WFunctor>
 {
 private:
     typedef Line<DataPoint, _WFunctor> Base;
-
-
-protected:
-    enum
-    {
-        Check = Base::PROVIDES_LINE
-    };
 
 public:
    /*! \brief Scalar type inherited from DataPoint*/
@@ -62,11 +54,11 @@ protected:
 
 public:
      /*! \brief Default constructor */
-    PONCA_MULTIARCH inline LeastSquareLine() : Base() {}
-    //! \brief Explicit conversion to LeastSquareLine, to access methods potentially hidden by inheritage */
+    PONCA_MULTIARCH inline CovarianceLineFit() : Base() {}
+    //! \brief Explicit conversion to CovarianceLineFit, to access methods potentially hidden by inheritage */
     PONCA_MULTIARCH inline
-    LeastSquareLine<DataPoint, WFunctor, T>& leastSquareLine()
-    { return * static_cast<LeastSquareLine<DataPoint, WFunctor, T>*>(this); }
+    CovarianceLineFit<DataPoint, WFunctor, T>& leastSquareLine()
+    { return * static_cast<CovarianceLineFit<DataPoint, WFunctor, T>*>(this); }
     /**************************************************************************/
     /* Initialization                                                         */
     /**************************************************************************/
@@ -92,6 +84,6 @@ public:
 
 };
 
-#include "leastSquareLine.hpp"
+#include "covarianceLineFit.hpp"
 
 } //namespace Ponca

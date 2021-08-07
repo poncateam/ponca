@@ -14,7 +14,7 @@ namespace Ponca
 {
 
 /*!
- * \brief Extension to compute the best fit quadric on 3d points expressed as f(u,v)=h
+ * \brief Extension to compute the best fit quadric on 3d points expressed as \f$f(u,v)=h\f$
  *
  * \note This procedure requires at least two passes, the first one for plane fitting,
  * the second one for quadric fitting.

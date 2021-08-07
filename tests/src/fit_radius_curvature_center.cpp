@@ -49,8 +49,8 @@ subTestSpatial<true, 3>::eval(const Fit& _fit,
                            Scalar /*_fitRadiusKappa*/,
                            Scalar /*_fitRadiusAlgebraic*/){
 
-    Scalar k1      = _fit.GLSk1();
-    Scalar k2      = _fit.GLSk2();
+    Scalar k1      = _fit.k1();
+    Scalar k2      = _fit.k2();
     Scalar kmean   = (k1 + k2) / Scalar (2.);
     Scalar radius  = Scalar(1.) / kmean;
 
@@ -174,8 +174,8 @@ void callDerivativeSubTests()
     typedef DistWeightFunc<Point, SmoothWeightKernel<Scalar> > WeightSmoothFunc;
     typedef DistWeightFunc<Point, ConstantWeightKernel<Scalar> > WeightConstantFunc;
 
-    typedef Basket<Point, WeightSmoothFunc, OrientedSphereFit, GLSParam, OrientedSphereSpaceDer, GLSDer, GLSCurvatureHelper> FitSmoothOrientedSpatial;
-    typedef Basket<Point, WeightConstantFunc, OrientedSphereFit, GLSParam, OrientedSphereSpaceDer, GLSDer, GLSCurvatureHelper> FitConstantOrientedSpatial;
+    typedef Basket<Point, WeightSmoothFunc, OrientedSphereFit, GLSParam, OrientedSphereSpaceDer, CurvatureEstimator> FitSmoothOrientedSpatial;
+    typedef Basket<Point, WeightConstantFunc, OrientedSphereFit, GLSParam, OrientedSphereSpaceDer, CurvatureEstimator> FitConstantOrientedSpatial;
 
     cout << "Testing with perfect sphere (oriented / unoriented) with spatial derivatives..." << endl;
     for(int i = 0; i < g_repeat; ++i)

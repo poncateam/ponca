@@ -36,15 +36,15 @@ namespace Ponca
 
 */
 template < class DataPoint, class _WFunctor, typename T = void  >
-class CompactPlane : public PrimitiveBase<DataPoint, _WFunctor>,
-                     public Eigen::Hyperplane<typename DataPoint::Scalar, DataPoint::Dim >
+class Plane : public PrimitiveBase<DataPoint, _WFunctor>,
+              public Eigen::Hyperplane<typename DataPoint::Scalar, DataPoint::Dim >
 {
 private:
 
     using Base      = PrimitiveBase<DataPoint, _WFunctor>;
 
 public:
-    /// \brief Specialization of Eigen::Hyperplane inherited by Ponca::CompactPlane
+    /// \brief Specialization of Eigen::Hyperplane inherited by Ponca::Plane
     using EigenBase = Eigen::Hyperplane<typename DataPoint::Scalar, DataPoint::Dim >;
 
 
@@ -75,17 +75,17 @@ private:
 public:
 
     /*! \brief Default constructor */
-    PONCA_MULTIARCH inline CompactPlane()
+    PONCA_MULTIARCH inline Plane()
         : Base(), EigenBase()
     {
         m_p = VectorType::Zero();
         resetPrimitive();
     }
 
-    /*! \brief Explicit conversion to CompactPlane, to access methods potentially hidden by inheritage */
+    /*! \brief Explicit conversion to Plane, to access methods potentially hidden by inheritage */
     PONCA_MULTIARCH inline
-    CompactPlane<DataPoint, WFunctor, T>& compactPlane()
-    { return * static_cast<CompactPlane<DataPoint, WFunctor, T>*>(this); }
+    Plane<DataPoint, WFunctor, T>& compactPlane()
+    { return * static_cast<Plane<DataPoint, WFunctor, T>*>(this); }
 
     /*! \brief Set the scalar field values to 0
          status */
@@ -96,12 +96,12 @@ public:
         *cc = EigenBase();
     }
 
-    PONCA_MULTIARCH inline bool operator==(const CompactPlane<DataPoint, WFunctor, T>& other) const{
+    PONCA_MULTIARCH inline bool operator==(const Plane<DataPoint, WFunctor, T>& other) const{
         return EigenBase::isApprox(other);
     }
 
     /*! \brief Comparison operator, convenience function */
-    PONCA_MULTIARCH inline bool operator!=(const CompactPlane<DataPoint, WFunctor, T>& other) const{
+    PONCA_MULTIARCH inline bool operator!=(const Plane<DataPoint, WFunctor, T>& other) const{
         return ! ((*this) == other);
     }
 

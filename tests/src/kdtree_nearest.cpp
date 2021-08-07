@@ -34,9 +34,9 @@ void testKdTreeNearestIndex(bool quick = true)
 		{
 			results.push_back(j);
 		}
-		EXPECT_EQ(int(results.size()), 1);
+        VERIFY(results.size() == 1);
 		bool res = check_nearest_neighbor<Scalar, VectorContainer>(points, i, results.front());
-		EXPECT_TRUE(res);
+        VERIFY(res);
 	}
 }
 
@@ -62,9 +62,9 @@ void testKdTreeNearestPoint(bool quick = true)
 		{
 			results.push_back(j);
 		}
-		EXPECT_EQ(int(results.size()), 1);
+        VERIFY(results.size() == 1);
 		bool res = check_nearest_neighbor<Scalar, VectorType, VectorContainer>(points, point, results.front());
-		EXPECT_TRUE(res);
+        VERIFY(res);
 	}
 }
 

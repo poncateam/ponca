@@ -69,7 +69,7 @@ typedef MyPoint::VectorType VectorType;
 typedef DistWeightFunc<MyPoint,SmoothWeightKernel<Scalar> > WeightFunc;
 typedef Basket<MyPoint,WeightFunc,OrientedSphereFit,   GLSParam> Fit1;
 typedef Basket<MyPoint,WeightFunc,UnorientedSphereFit, GLSParam> Fit2;
-typedef Basket<MyPoint,WeightFunc,OrientedSphereFit, GLSParam, OrientedSphereSpaceDer, GLSDer, GLSCurvatureHelper> Fit3;
+typedef Basket<MyPoint,WeightFunc,OrientedSphereFit, GLSParam, OrientedSphereSpaceDer, CurvatureEstimator> Fit3;
 
 
 template<typename Fit>
@@ -150,10 +150,10 @@ int main()
   if(fit3.isStable())
   {
     cout << "eigen values: "<< endl;
-    cout << fit3.GLSk1() << endl;
-    cout << fit3.GLSk2() << endl;
+    cout << fit3.k1() << endl;
+    cout << fit3.k2() << endl;
     cout << "eigen vectors: "<< endl;
-    cout << fit3.GLSk1Direction() << endl << endl;
-    cout << fit3.GLSk2Direction() << endl;
+    cout << fit3.k1Direction() << endl << endl;
+    cout << fit3.k2Direction() << endl;
   }
 }

@@ -2,17 +2,22 @@ Ponca changelog
 
 
 --------------------------------------------------------------------------------
-v.0.2
+Current head (v.0.2.1 RC)
 - API
-    - [spatialpartitioning] Add new package Space Partitioning (#20)
-    - [core][fitting] Rename Core module as Fitting (#9)
-    - [common] Add package common (#9)
-    - [api] New public entry points are the header files <Ponca/Ponca> and <Ponca/Fitting> (#9)
+    - [spatialpartitioning] Remove duplicated code and clean API (#32)
+    - [core][fitting] Add Line primitive and LeastSquaresLineFitting (#39)
+    - [core][fitting] Rename several classes for better name consistency (#42)
 
+- Doc
+    - Rewrite documentation of the fitting package user manual and its classes. (#42)
+    - Fix typo in user manual (#34)
+    - Fix Mathjax configuration (#41)
+    - Update author list (#42)
+
+--------------------------------------------------------------------------------
+v.0.2-patch1
 - Buildchain
-    - [cmake] Fix several bugs with Eigen submodule (#17,#19,#26)
-    - [cmake] Allow use as submodule (#15)
-    - [cmake] Cmake package is now relocable (#9)
+    - [cmake] Fix several bugs with Eigen submodule (#26)
 
 - Tests
     - Fix test on Algebraic Sphere projection (#27)
@@ -23,6 +28,19 @@ v.0.2
 
 - CI/Actions
     - Add automatic doc deployment (#29)
+
+--------------------------------------------------------------------------------
+v.0.2
+- API
+    - [spatialpartitioning] Add new package Space Partitioning (#20)
+    - [core][fitting] Rename Core module as Fitting (#9)
+    - [common] Add package common (#9)
+    - [api] New public entry points are the header files <Ponca/Ponca> and <Ponca/Fitting> (#9)
+
+- Buildchain
+    - [cmake] Fix several bugs with Eigen submodule (#17,#19)
+    - [cmake] Allow use as submodule (#15)
+    - [cmake] Cmake package is now relocable (#9)
 
 
 --------------------------------------------------------------------------------

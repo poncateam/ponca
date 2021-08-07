@@ -110,9 +110,7 @@ struct  OUT_TYPE##PointQuery : Query<QueryInputIsPosition<DataPoint>, \
 
     protected:
         /// \brief Reset Query for a new search
-        void reset() {
-            m_squared_radius = 0;
-        }
+        inline void reset() { }
         Scalar m_squared_radius{0};
     };
 
