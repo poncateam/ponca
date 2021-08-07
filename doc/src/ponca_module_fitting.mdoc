@@ -23,11 +23,22 @@ namespace Ponca
   Line              | Points only         | CovarianceLineFit (3D)                            |                                                         |              |
   Plane             | Points only         | CovariancePlaneFit (nD)                           | Surface Variation (nD)\cite Pauly:2002:PSSimplification |              |
   Plane             | Oriented points     | MeanPlaneFit (nD, co-dimension 1)                 |                                                         |              |
+  MongePatch        | Points only         | MongePatch (3D)                                   |                                                         |              |
+  AlgebraicSphere   | Points only         | SphereFit (nD) \cite Guennebaud:2007:APSS         |                                                         |              |
+  AlgebraicSphere   | Oriented points     | OrientedSphereFit (nD) \cite Guennebaud:2007:APSS | GLS (nD) \cite Mellado:2012:GLS , curvature estimators (3D) \cite Lejemble:2021:stable | Ray Traced Curvature \cite Mellado:2013:SSC |
+  AlgebraicSphere   | Non-oriented points | UnorientedSphereFit (nD) \cite Chen:2013:NOMG     |                                                         |              |
+
+
+  In the following, we focus on a basic use of the module, and detail how to:
+   - set up data samples that interface with an external code (see Section \ref fitting_datas),
+   - run the fitting process in itself (see Section \ref fitting_Fitting),
+   - and finally collect outputs (see Section \ref fitting_outputs).
 
   We also show detail all the available tools for geometrical property estimation (see Section \ref fitting_extensions_deps), with a specific focus on curvature (see Section \ref fitting_cuvature).
   the last section detail how to use this module on CUDA kernels (see Section \ref fitting_going_further).
 
 
+  \subsection fitting_codeStructure Code structure
   The Fitting module defines operators that rely on no data structure and work both with CUDA and C++.
   These core operators implement atomic scientific contributions that are agnostic of the host application.
   If you want to use the Fitting module, just include its header:
