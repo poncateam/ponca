@@ -38,7 +38,7 @@ void testKdTreeKNearestIndex(bool quick = true)
 		}
 
 		bool res = check_k_nearest_neighbors<Scalar, VectorContainer>(points, i, k, results);
-		EXPECT_TRUE(res);
+		VERIFY(res);
 	}
     /// [Kdtree construction and query]
 }
@@ -68,7 +68,7 @@ void testKdTreeKNearestPoint(bool quick = true)
 		}
 
 		bool res = check_k_nearest_neighbors<Scalar, VectorType, VectorContainer>(points, point, k, results);
-		EXPECT_TRUE(res);
+        VERIFY(res);
 	}
 }
 
