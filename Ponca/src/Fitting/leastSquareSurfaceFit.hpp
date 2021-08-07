@@ -19,7 +19,6 @@ LeastSquareSurfaceFit<DataPoint, _WFunctor, T>::init(const VectorType& _evalPos)
     // Setup fitting internal values
     m_sumW        = Scalar(0.0);
     m_cog         = VectorType::Zero();
-    cofficient    = Eigen::Matrix<Scalar, 9, 1> ::Zero();
     m_right       = Eigen::Matrix<Scalar, 9, 1> ::Zero();
     m_cov         = Eigen::Matrix<Scalar, 9, 9> ::Zero();
 }
@@ -36,21 +35,19 @@ LeastSquareSurfaceFit<DataPoint, _WFunctor, T>::addNeighbor(const DataPoint& _ne
     if (w > Scalar(0.))
     {
       
-      m_sumW  += w;
+      m_sumW +=  w;
       m_cog  +=  q * w;
 
-      // temp = [x^2 y^2 z^2 xy yz zx x y z]
+      /* temp = [x^2 y^2 z^2 2xy 2xz 2yz 2x 2y 2z] */
       Eigen::Matrix<Scalar, 9, 1> temp;
-      temp << q[0] * q[0], q[1] * q[1] ,q[2] * q[2] , 2* q[0] * q[1] , 2*q[1] * q[2] , 2 * q[0] * q[2] , 2*q; 
+      temp << q[0] * q[0], q[1] * q[1] ,q[2] * q[2] , 2* q[0] * q[1] , 2*q[0] * q[2] , 2 * q[1] * q[2] , 2*q; 
      
       m_right -= temp;
       m_cov  +=  temp * temp.transpose(); 
-
       ++(Base::m_nbNeighbors);
       
       return true;
     }
-
     return false;
 }
 
@@ -58,7 +55,6 @@ template < class DataPoint, class _WFunctor, typename T>
 FIT_RESULT
 LeastSquareSurfaceFit<DataPoint, _WFunctor, T>::finalize ()
 {
-
     // handle specific configurations
     // With less than 2 neighbors the fitting is undefined
     if(m_sumW == Scalar(0.) || Base::m_nbNeighbors < 2)
@@ -83,17 +79,44 @@ LeastSquareSurfaceFit<DataPoint, _WFunctor, T>::finalize ()
 }
 
 template < class DataPoint, class _WFunctor, typename T>
-typename DataPoint::Vectortype
+typename LeastSquareSurfaceFit<DataPoint, _WFunctor, T>::VectorType
 LeastSquareSurfaceFit<DataPoint, _WFunctor, T>::primitiveGradient( const VectorType &_q ) const
 {
-      MatrixType A;
-      A << cofficient[0], cofficient[5], cofficient[4],
-           cofficient[5], cofficient[1], cofficient[3],
-           cofficient[4], cofficient[3], cofficient[2];
-      
-      VectorType B;
-      B << cofficient[6], cofficient[7], cofficient[8];
-       VectorType result = A * _q + B;
-      return result;
+    const VectorType w = _q - Base::basisCenter();
+    MatrixType A;
 
+    A <<  cofficient[0], cofficient[5], cofficient[4],
+          cofficient[5], cofficient[1], cofficient[3],
+          cofficient[4], cofficient[3], cofficient[2];
+    
+    VectorType B;
+    B << cofficient[6], cofficient[7], cofficient[8];
+      VectorType result = A * w + B;
+    return result;
+}
+
+template < class DataPoint, class _WFunctor, typename T>
+typename LeastSquareSurfaceFit<DataPoint, _WFunctor, T>::VectorType
+LeastSquareSurfaceFit<DataPoint, _WFunctor, T>::projectDescent( const VectorType& _q, int nbIter) const
+{
+    PONCA_MULTIARCH_STD_MATH(min)
+    // turn to centered basis
+    const VectorType lq = _q - Base::basisCenter();
+
+    VectorType grad;
+    VectorType dir  = primitiveGradient(_q);
+    Scalar ilg      = Scalar(1.)/dir.norm();
+    dir             = dir*ilg;
+ //   Scalar ad       = m_uc + m_ul.dot(lq) + m_uq * lq.squaredNorm();
+    Scalar delta    = -min(ilg,Scalar(1.));
+    VectorType proj = lq + dir*delta;
+
+    for (int i=0; i<nbIter; ++i)
+    {
+        grad  = primitiveGradient(proj);
+        ilg   = Scalar(1.)/grad.norm();
+        delta = -min(ilg,Scalar(1.));
+        proj += dir*delta;
+    }
+    return proj + Base::basisCenter();
 }
