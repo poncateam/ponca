@@ -99,7 +99,7 @@ namespace Ponca
         /*! \brief Writing access to the (evaluation position) */
         PONCA_MULTIARCH inline       VectorType& basisCenter ()       { return m_p; }
 
-        PONCA_MULTIARCH inline       MatrixType& getParameters ()  { return q_para; }
+        PONCA_MULTIARCH inline       Eigen::Matrix<Scalar, 9, 1>& getParameters ()  { return q_para; }
         PONCA_MULTIARCH inline       VectorType& getPoint ()       { return q_point; }
 
         /* \brief Init the surface from a direction and a position

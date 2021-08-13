@@ -72,7 +72,7 @@ void test_fit(Fit& _fit, vector<MyPoint>& _vecs, const VectorType& _p)
 
   if(_fit.isStable())
   {
-        cout << "A point on the surface taking the initial point: "
+        cout << "A point on the surface at the initial point: "
             << _p.transpose()
             << " is equal to " << _fit.getPoint()
             << endl;
@@ -83,6 +83,10 @@ void test_fit(Fit& _fit, vector<MyPoint>& _vecs, const VectorType& _p)
 
         cout << "The initial point " << _p.transpose()              << endl
             << "Is projected at   " << _fit.project(_p).transpose() << endl;
+
+        cout << "The parameters of the surface fitting: \n"
+            << _fit.getParameters()
+            << endl;
   }
 }
 

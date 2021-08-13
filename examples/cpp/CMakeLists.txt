@@ -34,4 +34,12 @@ target_include_directories(ponca_fit_line PRIVATE ${PONCA_src_ROOT})
 add_dependencies(ponca-examples ponca_fit_line)
 ponca_handle_eigen_dependency(ponca_fit_line)
 
+set(ponca_fit_surface_SRCS
+    ponca_fit_surface.cpp
+)
+add_executable(ponca_fit_surface ${ponca_fit_surface_SRCS})
+target_include_directories(ponca_fit_surface PRIVATE ${PONCA_src_ROOT})
+add_dependencies(ponca-examples ponca_fit_surface)
+ponca_handle_eigen_dependency(ponca_fit_surface)
+
 add_subdirectory(pcl)
