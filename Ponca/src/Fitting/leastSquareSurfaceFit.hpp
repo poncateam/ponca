@@ -97,7 +97,7 @@ LeastSquareSurfaceFit<DataPoint, _WFunctor, T>::primitiveGradient( const VectorT
 
 template < class DataPoint, class _WFunctor, typename T>
 typename LeastSquareSurfaceFit<DataPoint, _WFunctor, T>::VectorType
-LeastSquareSurfaceFit<DataPoint, _WFunctor, T>::projectDescent( const VectorType& _q, int nbIter) const
+LeastSquareSurfaceFit<DataPoint, _WFunctor, T>::project( const VectorType& _q, int nbIter) const
 {
     PONCA_MULTIARCH_STD_MATH(min)
     // turn to centered basis
