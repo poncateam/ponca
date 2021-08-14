@@ -107,15 +107,15 @@ LeastSquareSurfaceFit<DataPoint, _WFunctor, T>::project( const VectorType& _q, i
     VectorType dir  = primitiveGradient(_q);
     Scalar ilg      = Scalar(1.)/dir.norm();
     dir             = dir*ilg;
- //   Scalar ad       = m_uc + m_ul.dot(lq) + m_uq * lq.squaredNorm();
-    Scalar delta    = -min(ilg,Scalar(1.));
+    Scalar ad       = 0.01;
+    Scalar delta    = -min(ilg,Scalar(1.)) * ad;
     VectorType proj = lq + dir*delta;
 
     for (int i=0; i<nbIter; ++i)
     {
         grad  = primitiveGradient(proj);
         ilg   = Scalar(1.)/grad.norm();
-        delta = -min(ilg,Scalar(1.));
+        delta = -min(ilg,Scalar(1.)) * ad;
         proj += dir*delta;
     }
     return proj + Base::basisCenter();

@@ -120,7 +120,7 @@ namespace Ponca
         This projection is realized by following the gradient of the surface scalar field
         \param nbIter Number of iterations (default = 16)
         */
-        PONCA_MULTIARCH inline VectorType project (const VectorType& _q, int nbIter = 16) const;
+        PONCA_MULTIARCH inline VectorType project (const VectorType& _q, int nbIter = 50) const;
 
 
         //! \brief Approximation of the scalar field gradient at \f$ \mathbf{q} (not normalized) \f$

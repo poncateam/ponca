@@ -25,7 +25,9 @@ if(DOXYGEN_FOUND)
       ${CMAKE_CURRENT_SOURCE_DIR}/src/example.mdoc
       ${CMAKE_CURRENT_SOURCE_DIR}/src/example_cxx_basic.mdoc
       ${CMAKE_CURRENT_SOURCE_DIR}/src/example_cxx_binding.mdoc
+      ${CMAKE_CURRENT_SOURCE_DIR}/src/example_cxx_fit_line.mdoc
       ${CMAKE_CURRENT_SOURCE_DIR}/src/example_cxx_fit_plane.mdoc
+      ${CMAKE_CURRENT_SOURCE_DIR}/src/example_cxx_fit_surface.mdoc
       ${CMAKE_CURRENT_SOURCE_DIR}/src/example_cxx_pcl.mdoc
       ${CMAKE_CURRENT_SOURCE_DIR}/src/example_cu_ssc.mdoc
       ${CMAKE_CURRENT_SOURCE_DIR}/src/example_python_ssc.mdoc
