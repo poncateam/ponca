@@ -23,10 +23,6 @@ namespace Ponca
         In n-dimensionnal space, the surface is defined as
         the \f$0\f$-isosurface of the scalar field
 
-        \f$ s_\mathbf{u}(\mathbf{x}) =
-        \left[ \mathbf{x}^T \; 1 \;\right]^T \cdot \mathbf{p} \f$.
-
-
         This primitive requires the definition of n-dimensionnal vectors
         (VectorType) in Concept::PointConcept.
 
@@ -98,8 +94,9 @@ namespace Ponca
         PONCA_MULTIARCH inline const VectorType& basisCenter () const { return m_p; }
         /*! \brief Writing access to the (evaluation position) */
         PONCA_MULTIARCH inline       VectorType& basisCenter ()       { return m_p; }
-
+        /*! \brief method to get the parameters of the surface */
         PONCA_MULTIARCH inline       Eigen::Matrix<Scalar, 9, 1>& getParameters ()  { return q_para; }
+         /*! \brief method to get a point on the surface */
         PONCA_MULTIARCH inline       VectorType& getPoint ()       { return q_point; }
 
         /* \brief Init the surface from a direction and a position

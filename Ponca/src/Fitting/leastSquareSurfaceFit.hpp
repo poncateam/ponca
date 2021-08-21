@@ -40,10 +40,10 @@ LeastSquareSurfaceFit<DataPoint, _WFunctor, T>::addNeighbor(const DataPoint& _ne
 
       /* temp = [x^2 y^2 z^2 2xy 2xz 2yz 2x 2y 2z] */
       Eigen::Matrix<Scalar, 9, 1> temp;
-      temp << q[0] * q[0], q[1] * q[1] ,q[2] * q[2] , 2* q[0] * q[1] , 2*q[0] * q[2] , 2 * q[1] * q[2] , 2*q; 
+      temp << q[0] * q[0], q[1] * q[1], q[2] * q[2], 2* q[0] * q[1] , 2*q[0] * q[2] , 2 * q[1] * q[2] , 2*q; 
      
       m_right -= temp;
-      m_cov  +=  temp * temp.transpose(); 
+      m_cov   +=  temp * temp.transpose(); 
       ++(Base::m_nbNeighbors);
       
       return true;

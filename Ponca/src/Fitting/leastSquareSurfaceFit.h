@@ -25,13 +25,9 @@ namespace Ponca
     /*!
         \brief Surface fitting procedure using only points position
 
-        This class can also computes the surface variation measure introduced in
-        \cite Pauly:2002:PSSimplification. The solver used to analyse the covariance
-        matrix is stored for further use.
-
         \inherit Concept::FittingProcedureConcept
 
-        \see CompactSurface
+        \see surfacePrimitive
         \ingroup fitting
     */
     template < class DataPoint, class _WFunctor, typename T >
@@ -68,16 +64,16 @@ namespace Ponca
     protected:
 
         // computation data
-        Scalar  m_sumW;       /*!< \brief Sum of queries weight.*/
-        VectorType m_cog;    /*!< \brief Gravity center of the neighborhood */
-        Eigen::Matrix<Scalar, 9, 1 > cofficient;   /*!< \brief cofficients of the fitting equation */
+        Scalar  m_sumW;       /*! \brief Sum of queries weight.*/
+        VectorType m_cog;    /*! \brief Gravity center of the neighborhood */
+        Eigen::Matrix<Scalar, 9, 1 > cofficient;   /*! \brief cofficients of the fitting equation */
 
 
         Eigen::Matrix<Scalar, 9, 1>  m_right;   
-        Eigen::Matrix<Scalar, 9, 9>  m_cov;     /*!< \brief Covariance matrix */
+        Eigen::Matrix<Scalar, 9, 9>  m_cov;     /*! \brief Covariance matrix */
 
-        Solver m_solver;  /*!<\brief Solver used to analyse the covariance matrix */
-        WFunctor m_w;     /*!< \brief Weight function (must inherits BaseWeightFunc) */
+        Solver m_solver;  /*! \brief Solver used to analyse the covariance matrix */
+        WFunctor m_w;     /*! \brief Weight function (must inherits BaseWeightFunc) */
 
     public:
 
@@ -118,16 +114,13 @@ namespace Ponca
         /*!
         \brief Project a point on the surface using Gradient Descent
         This projection is realized by following the gradient of the surface scalar field
-        \param nbIter Number of iterations (default = 16)
+        \param nbIter Number of iterations (default = 50)
         */
         PONCA_MULTIARCH inline VectorType project (const VectorType& _q, int nbIter = 50) const;
 
 
         //! \brief Approximation of the scalar field gradient at \f$ \mathbf{q} (not normalized) \f$
         PONCA_MULTIARCH inline VectorType primitiveGradient (const VectorType& _q) const;
-
     }; 
-
     #include "leastSquareSurfaceFit.hpp"
-
 } //namespace Ponca
