@@ -97,23 +97,13 @@ public:
 
     inline PointContainer& point_data()
     {
-        return *m_points.get();
+        return m_points;
     };
 
     inline const PointContainer& point_data() const
     {
         return m_points;
     };
-
-    inline const PointContainer& point_ptr() const
-    {
-        return m_points;
-    }
-
-    inline PointContainer& point_ptr()
-    {
-        return m_points;
-    }
 
     inline const NodeContainer& node_data() const
     {
