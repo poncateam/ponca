@@ -131,11 +131,11 @@ void callSubTests()
     typedef DistWeightFunc<Point, SmoothWeightKernel<Scalar> > WeightSmoothFunc;
     typedef DistWeightFunc<Point, ConstantWeightKernel<Scalar> > WeightConstantFunc;
 
-    typedef Basket<Point, WeightSmoothFunc, Plane, CovariancePlaneFit> CovFitSmooth;
-    typedef Basket<Point, WeightConstantFunc, Plane, CovariancePlaneFit> CovFitConstant;
+    typedef Basket<Point, WeightSmoothFunc, CovariancePlaneFit> CovFitSmooth;
+    typedef Basket<Point, WeightConstantFunc, CovariancePlaneFit> CovFitConstant;
 
-    typedef Basket<Point, WeightSmoothFunc, Plane, MeanPlaneFit> MeanFitSmooth;
-    typedef Basket<Point, WeightConstantFunc, Plane, MeanPlaneFit> MeanFitConstant;
+    typedef Basket<Point, WeightSmoothFunc, MeanPlaneFit> MeanFitSmooth;
+    typedef Basket<Point, WeightConstantFunc, MeanPlaneFit> MeanFitConstant;
 
     cout << "Testing with perfect plane..." << endl;
     for(int i = 0; i < g_repeat; ++i)

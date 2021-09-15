@@ -33,21 +33,24 @@ void KdTree<DataPoint>::clear()
 }
 
 template<class DataPoint>
-template<typename PointUserContainer>
-inline void KdTree<DataPoint>::build(const PointUserContainer& points)
+template<typename PointUserContainer, typename Converter>
+inline void KdTree<DataPoint>::build(const PointUserContainer& points, Converter c)
 {
 	std::vector<int> ids(points.size());
 	std::iota(ids.begin(), ids.end(), 0);
-	this->build(points, ids);
+    this->buildWithSampling(points, ids, c);
 }
 
 template<class DataPoint>
-template<typename PointUserContainer, typename IndexUserContainer>
-inline void KdTree<DataPoint>::build(const PointUserContainer& points, const IndexUserContainer& sampling)
+template<typename PointUserContainer, typename IndexUserContainer, typename Converter>
+inline void KdTree<DataPoint>::buildWithSampling(const PointUserContainer& points,
+                                                 const IndexUserContainer& sampling,
+                                                 Converter c)
 {
 	this->clear();
 
-	m_points = PointContainer(points);
+	// Copy or convert input samples
+	c( points, m_points );
 
 	m_nodes = NodeContainer();
 	m_nodes.reserve(4 * point_count() / m_min_cell_size);

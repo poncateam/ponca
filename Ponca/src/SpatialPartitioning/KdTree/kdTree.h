@@ -29,10 +29,15 @@
 namespace Ponca {
 
 /// \ingroup spatialpartitioning
-template<class DataPoint>
+///
+/// \tparam DataPoint
+///
+/// \todo Better handle sampling: do not store non-selected points (requires to store original indices
+template<class _DataPoint>
 class KdTree
 {
 public:
+    typedef          _DataPoint            DataPoint;
 	typedef typename DataPoint::Scalar     Scalar;  // Scalar given by user
 	typedef typename DataPoint::VectorType VectorType;  // VectorType given by user
 
@@ -68,18 +73,54 @@ public:
         m_indices(),
         m_min_cell_size(64)
     {
-        this->build(points, sampling);
+        buildWithSampling(points, sampling);
     };
 
     inline void clear();
 
+    struct DefaultConverter{
+        template <typename Input>
+        inline void operator()( const Input& i, PointContainer & o ) {
+            if constexpr ( std::is_same<Input, PointContainer>::value )
+                o = i;
+            else
+                std::transform(i.cbegin(), i.cend(), std::back_inserter(o),
+                               [](const typename Input::value_type &p) -> DataPoint { return DataPoint(p); });
+        }
+    };
+
+    ///
+    /// \tparam PointUserContainer Input point container, transformed to PointContainer
+    /// \param points Input points
     template<typename PointUserContainer>
-    inline void build(const PointUserContainer& points);  // PointUserContainer => Given by user, transformed to PointContainer
+    inline void build(const PointUserContainer& points) { build(points, DefaultConverter()); }
+    ///
+    /// \tparam PointUserContainer Input point container, transformed to PointContainer
+    /// \tparam IndexUserContainer Input sampling container, transformed to IndexContainer
+    /// \param points Input points
+    /// \param c Cast/Convert input point type to DataType
+    template<typename PointUserContainer, typename Converter>
+    inline void build(const PointUserContainer& points, Converter c);
 
-
+    /// \tparam PointUserContainer Input point, transformed to PointContainer
+    /// \tparam IndexUserContainer Input sampling, transformed to IndexContainer
+    /// \param points Input points
+    /// \param sampling Indices of points used in the tree
     template<typename PointUserContainer, typename IndexUserContainer>
-    inline void build(const PointUserContainer& points, const IndexUserContainer& sampling); // PointUserContainer => Given by user, transformed to PointContainer
-                                                                                             // IndexUserContainer => Given by user, transformed to IndexContainer
+    inline void buildWithSampling(const PointUserContainer& points,
+                                  const IndexUserContainer& sampling)
+                                  { buildWithSampling(points, sampling, DefaultConverter());}
+
+    /// \tparam PointUserContainer Input point, transformed to PointContainer
+    /// \tparam IndexUserContainer Input sampling, transformed to IndexContainer
+    /// \tparam Converter
+    /// \param points Input points
+    /// \param sampling Indices of points used in the tree
+    /// \param c Cast/Convert input point type to DataType
+    template<typename PointUserContainer, typename IndexUserContainer, typename Converter>
+    inline void buildWithSampling(const PointUserContainer& points,
+                                  const IndexUserContainer& sampling,
+                                  Converter c);
 
 
     template<typename IndexUserContainer>
@@ -97,23 +138,13 @@ public:
 
     inline PointContainer& point_data()
     {
-        return *m_points.get();
+        return m_points;
     };
 
     inline const PointContainer& point_data() const
     {
         return m_points;
     };
-
-    inline const PointContainer& point_ptr() const
-    {
-        return m_points;
-    }
-
-    inline PointContainer& point_ptr()
-    {
-        return m_points;
-    }
 
     inline const NodeContainer& node_data() const
     {
