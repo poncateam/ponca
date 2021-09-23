@@ -46,7 +46,7 @@ if (edges && edges.length) {
         </defs>
 
 <script type="text/javascript">
-var viewWidth = 1038;
+var viewWidth = 1200;
 var viewHeight = 380;
 var sectionId = 'dynsection-0';
 </script>
@@ -54,21 +54,21 @@ var sectionId = 'dynsection-0';
 <svg id="graph" class="graph">
 <g id="viewport">
 <title>Ponca::Concept::FittingProcedureConcept&lt; DataPoint, _WFunctor, T &gt;</title>
-<polygon fill="white" stroke="transparent" points="-4,4 -4,-376 1034,-376 1034,4 -4,4"/>
+<polygon fill="white" stroke="transparent" points="-4,4 -4,-376 1196,-376 1196,4 -4,4"/>
 <!-- Node1 -->
 <g id="node1" class="node">
 <title>Node1</title>
 <g id="a_node1"><a xlink:title="Describes the procedure to fit a primitive to point samples.">
-<polygon fill="#bfbfbf" stroke="black" points="415,-270.5 415,-371.5 611,-371.5 611,-270.5 415,-270.5"/>
-<text text-anchor="start" x="423" y="-359.5" font-family="Helvetica,sans-Serif" font-size="10.00">Ponca::Concept::FittingProcedure</text>
-<text text-anchor="middle" x="513" y="-348.5" font-family="Helvetica,sans-Serif" font-size="10.00">Concept&lt; DataPoint, _WFunctor, T &gt;</text>
-<polyline fill="none" stroke="black" points="415,-341.5 611,-341.5 "/>
-<text text-anchor="middle" x="513" y="-329.5" font-family="Helvetica,sans-Serif" font-size="10.00"> </text>
-<polyline fill="none" stroke="black" points="415,-322.5 611,-322.5 "/>
-<text text-anchor="start" x="423" y="-310.5" font-family="Helvetica,sans-Serif" font-size="10.00">+ setWeightFunc()</text>
-<text text-anchor="start" x="423" y="-299.5" font-family="Helvetica,sans-Serif" font-size="10.00">+ init()</text>
-<text text-anchor="start" x="423" y="-288.5" font-family="Helvetica,sans-Serif" font-size="10.00">+ addNeighbor()</text>
-<text text-anchor="start" x="423" y="-277.5" font-family="Helvetica,sans-Serif" font-size="10.00">+ finalize()</text>
+<polygon fill="#bfbfbf" stroke="black" points="490,-270.5 490,-371.5 686,-371.5 686,-270.5 490,-270.5"/>
+<text text-anchor="start" x="498" y="-359.5" font-family="Helvetica,sans-Serif" font-size="10.00">Ponca::Concept::FittingProcedure</text>
+<text text-anchor="middle" x="588" y="-348.5" font-family="Helvetica,sans-Serif" font-size="10.00">Concept&lt; DataPoint, _WFunctor, T &gt;</text>
+<polyline fill="none" stroke="black" points="490,-341.5 686,-341.5 "/>
+<text text-anchor="middle" x="588" y="-329.5" font-family="Helvetica,sans-Serif" font-size="10.00"> </text>
+<polyline fill="none" stroke="black" points="490,-322.5 686,-322.5 "/>
+<text text-anchor="start" x="498" y="-310.5" font-family="Helvetica,sans-Serif" font-size="10.00">+ setWeightFunc()</text>
+<text text-anchor="start" x="498" y="-299.5" font-family="Helvetica,sans-Serif" font-size="10.00">+ init()</text>
+<text text-anchor="start" x="498" y="-288.5" font-family="Helvetica,sans-Serif" font-size="10.00">+ addNeighbor()</text>
+<text text-anchor="start" x="498" y="-277.5" font-family="Helvetica,sans-Serif" font-size="10.00">+ finalize()</text>
 </a>
 </g>
 </g>
@@ -99,8 +99,8 @@ var sectionId = 'dynsection-0';
 <!-- Node1&#45;&gt;Node2 -->
 <g id="edge1" class="edge">
 <title>Node1&#45;&gt;Node2</title>
-<path fill="none" stroke="midnightblue" d="M404.63,-312.2C331.82,-302.62 236.49,-281.33 165,-234 153.46,-226.36 142.86,-216.64 133.33,-206.1"/>
-<polygon fill="none" stroke="midnightblue" points="404.39,-315.7 414.75,-313.47 405.26,-308.75 404.39,-315.7"/>
+<path fill="none" stroke="midnightblue" d="M479.58,-318.89C389.11,-313.31 260.08,-294.13 165,-234 153.19,-226.53 142.41,-216.85 132.78,-206.27"/>
+<polygon fill="none" stroke="midnightblue" points="479.4,-322.39 489.58,-319.47 479.8,-315.4 479.4,-322.39"/>
 </g>
 <!-- Node3 -->
 <g id="node3" class="node">
@@ -134,120 +134,149 @@ var sectionId = 'dynsection-0';
 <!-- Node1&#45;&gt;Node3 -->
 <g id="edge2" class="edge">
 <title>Node1&#45;&gt;Node3</title>
-<path fill="none" stroke="midnightblue" d="M405.45,-276.68C382.26,-264.73 358.79,-250.44 339,-234 336,-231.51 333.04,-228.89 330.13,-226.17"/>
-<polygon fill="none" stroke="midnightblue" points="404.15,-279.95 414.66,-281.32 407.3,-273.69 404.15,-279.95"/>
+<path fill="none" stroke="midnightblue" d="M480.19,-297.8C433.7,-284.59 380.58,-264.31 339,-234 335.95,-231.78 332.96,-229.41 330.03,-226.94"/>
+<polygon fill="none" stroke="midnightblue" points="479.43,-301.22 490,-300.51 481.29,-294.47 479.43,-301.22"/>
 </g>
 <!-- Node4 -->
 <g id="node4" class="node">
 <title>Node4</title>
-<g id="a_node4"><a xlink:href="classPonca_1_1MeanPlaneFit.html" target="_top" xlink:title="Plane fitting procedure computing the mean position and orientation from oriented points.">
-<polygon fill="white" stroke="black" points="348,-44.5 348,-189.5 504,-189.5 504,-44.5 348,-44.5"/>
-<text text-anchor="start" x="356" y="-177.5" font-family="Helvetica,sans-Serif" font-size="10.00">Ponca::MeanPlaneFit</text>
-<text text-anchor="middle" x="426" y="-166.5" font-family="Helvetica,sans-Serif" font-size="10.00">&lt; DataPoint, _WFunctor, T &gt;</text>
-<polyline fill="none" stroke="black" points="348,-159.5 504,-159.5 "/>
-<text text-anchor="start" x="356" y="-147.5" font-family="Helvetica,sans-Serif" font-size="10.00"># m_sumW</text>
-<text text-anchor="start" x="356" y="-136.5" font-family="Helvetica,sans-Serif" font-size="10.00"># m_sumN</text>
-<text text-anchor="start" x="356" y="-125.5" font-family="Helvetica,sans-Serif" font-size="10.00"># m_sumP</text>
-<text text-anchor="start" x="356" y="-114.5" font-family="Helvetica,sans-Serif" font-size="10.00"># m_w</text>
-<polyline fill="none" stroke="black" points="348,-107.5 504,-107.5 "/>
-<text text-anchor="start" x="356" y="-95.5" font-family="Helvetica,sans-Serif" font-size="10.00">+ MeanPlaneFit()</text>
-<text text-anchor="start" x="356" y="-84.5" font-family="Helvetica,sans-Serif" font-size="10.00">+ setWeightFunc()</text>
-<text text-anchor="start" x="356" y="-73.5" font-family="Helvetica,sans-Serif" font-size="10.00">+ init()</text>
-<text text-anchor="start" x="356" y="-62.5" font-family="Helvetica,sans-Serif" font-size="10.00">+ addNeighbor()</text>
-<text text-anchor="start" x="356" y="-51.5" font-family="Helvetica,sans-Serif" font-size="10.00">+ finalize()</text>
+<g id="a_node4"><a xlink:href="classPonca_1_1DryFit.html" target="_top" xlink:title="Empty fitting object doing no computation.">
+<polygon fill="white" stroke="black" points="348.5,-33.5 348.5,-200.5 491.5,-200.5 491.5,-33.5 348.5,-33.5"/>
+<text text-anchor="start" x="356.5" y="-188.5" font-family="Helvetica,sans-Serif" font-size="10.00">Ponca::DryFit&lt; DataPoint,</text>
+<text text-anchor="middle" x="420" y="-177.5" font-family="Helvetica,sans-Serif" font-size="10.00"> _WFunctor, T &gt;</text>
+<polyline fill="none" stroke="black" points="348.5,-170.5 491.5,-170.5 "/>
+<text text-anchor="middle" x="420" y="-158.5" font-family="Helvetica,sans-Serif" font-size="10.00"> </text>
+<polyline fill="none" stroke="black" points="348.5,-151.5 491.5,-151.5 "/>
+<text text-anchor="start" x="356.5" y="-139.5" font-family="Helvetica,sans-Serif" font-size="10.00">+ DryFit()</text>
+<text text-anchor="start" x="356.5" y="-128.5" font-family="Helvetica,sans-Serif" font-size="10.00">+ setWeightFunc()</text>
+<text text-anchor="start" x="356.5" y="-117.5" font-family="Helvetica,sans-Serif" font-size="10.00">+ init()</text>
+<text text-anchor="start" x="356.5" y="-106.5" font-family="Helvetica,sans-Serif" font-size="10.00">+ addNeighbor()</text>
+<text text-anchor="start" x="356.5" y="-95.5" font-family="Helvetica,sans-Serif" font-size="10.00">+ finalize()</text>
+<text text-anchor="start" x="356.5" y="-84.5" font-family="Helvetica,sans-Serif" font-size="10.00">+ potential()</text>
+<text text-anchor="start" x="356.5" y="-73.5" font-family="Helvetica,sans-Serif" font-size="10.00">+ potential()</text>
+<text text-anchor="start" x="356.5" y="-62.5" font-family="Helvetica,sans-Serif" font-size="10.00">+ project()</text>
+<text text-anchor="start" x="356.5" y="-51.5" font-family="Helvetica,sans-Serif" font-size="10.00">+ primitiveGradient()</text>
+<text text-anchor="start" x="356.5" y="-40.5" font-family="Helvetica,sans-Serif" font-size="10.00">+ primitiveGradient()</text>
 </a>
 </g>
 </g>
 <!-- Node1&#45;&gt;Node4 -->
 <g id="edge3" class="edge">
 <title>Node1&#45;&gt;Node4</title>
-<path fill="none" stroke="midnightblue" d="M487.58,-260.98C477.96,-238.65 466.91,-213 456.85,-189.64"/>
-<polygon fill="none" stroke="midnightblue" points="484.44,-262.53 491.61,-270.33 490.86,-259.76 484.44,-262.53"/>
+<path fill="none" stroke="midnightblue" d="M527.16,-262.7C518.11,-253.37 509.1,-243.61 501,-234 492.13,-223.48 483.27,-212.02 474.84,-200.52"/>
+<polygon fill="none" stroke="midnightblue" points="524.91,-265.41 534.42,-270.08 529.9,-260.5 524.91,-265.41"/>
 </g>
 <!-- Node5 -->
 <g id="node5" class="node">
 <title>Node5</title>
-<g id="a_node5"><a xlink:href="classPonca_1_1OrientedSphereFit.html" target="_top" xlink:title="Algebraic Sphere fitting procedure on oriented point sets.">
-<polygon fill="white" stroke="black" points="522,-22.5 522,-211.5 678,-211.5 678,-22.5 522,-22.5"/>
-<text text-anchor="start" x="530" y="-199.5" font-family="Helvetica,sans-Serif" font-size="10.00">Ponca::OrientedSphereFit</text>
-<text text-anchor="middle" x="600" y="-188.5" font-family="Helvetica,sans-Serif" font-size="10.00">&lt; DataPoint, _WFunctor, T &gt;</text>
-<polyline fill="none" stroke="black" points="522,-181.5 678,-181.5 "/>
-<text text-anchor="start" x="530" y="-169.5" font-family="Helvetica,sans-Serif" font-size="10.00"># m_sumN</text>
-<text text-anchor="start" x="530" y="-158.5" font-family="Helvetica,sans-Serif" font-size="10.00"># m_sumP</text>
-<text text-anchor="start" x="530" y="-147.5" font-family="Helvetica,sans-Serif" font-size="10.00"># m_sumDotPN</text>
-<text text-anchor="start" x="530" y="-136.5" font-family="Helvetica,sans-Serif" font-size="10.00"># m_sumDotPP</text>
-<text text-anchor="start" x="530" y="-125.5" font-family="Helvetica,sans-Serif" font-size="10.00"># m_sumW</text>
-<text text-anchor="start" x="530" y="-114.5" font-family="Helvetica,sans-Serif" font-size="10.00"># m_nume</text>
-<text text-anchor="start" x="530" y="-103.5" font-family="Helvetica,sans-Serif" font-size="10.00"># m_deno</text>
-<text text-anchor="start" x="530" y="-92.5" font-family="Helvetica,sans-Serif" font-size="10.00"># m_w</text>
-<polyline fill="none" stroke="black" points="522,-85.5 678,-85.5 "/>
-<text text-anchor="start" x="530" y="-73.5" font-family="Helvetica,sans-Serif" font-size="10.00">+ OrientedSphereFit()</text>
-<text text-anchor="start" x="530" y="-62.5" font-family="Helvetica,sans-Serif" font-size="10.00">+ setWeightFunc()</text>
-<text text-anchor="start" x="530" y="-51.5" font-family="Helvetica,sans-Serif" font-size="10.00">+ init()</text>
-<text text-anchor="start" x="530" y="-40.5" font-family="Helvetica,sans-Serif" font-size="10.00">+ addNeighbor()</text>
-<text text-anchor="start" x="530" y="-29.5" font-family="Helvetica,sans-Serif" font-size="10.00">+ finalize()</text>
+<g id="a_node5"><a xlink:href="classPonca_1_1MeanPlaneFit.html" target="_top" xlink:title="Plane fitting procedure computing the mean position and orientation from oriented points.">
+<polygon fill="white" stroke="black" points="510,-44.5 510,-189.5 666,-189.5 666,-44.5 510,-44.5"/>
+<text text-anchor="start" x="518" y="-177.5" font-family="Helvetica,sans-Serif" font-size="10.00">Ponca::MeanPlaneFit</text>
+<text text-anchor="middle" x="588" y="-166.5" font-family="Helvetica,sans-Serif" font-size="10.00">&lt; DataPoint, _WFunctor, T &gt;</text>
+<polyline fill="none" stroke="black" points="510,-159.5 666,-159.5 "/>
+<text text-anchor="start" x="518" y="-147.5" font-family="Helvetica,sans-Serif" font-size="10.00"># m_sumW</text>
+<text text-anchor="start" x="518" y="-136.5" font-family="Helvetica,sans-Serif" font-size="10.00"># m_sumN</text>
+<text text-anchor="start" x="518" y="-125.5" font-family="Helvetica,sans-Serif" font-size="10.00"># m_sumP</text>
+<text text-anchor="start" x="518" y="-114.5" font-family="Helvetica,sans-Serif" font-size="10.00"># m_w</text>
+<polyline fill="none" stroke="black" points="510,-107.5 666,-107.5 "/>
+<text text-anchor="start" x="518" y="-95.5" font-family="Helvetica,sans-Serif" font-size="10.00">+ MeanPlaneFit()</text>
+<text text-anchor="start" x="518" y="-84.5" font-family="Helvetica,sans-Serif" font-size="10.00">+ setWeightFunc()</text>
+<text text-anchor="start" x="518" y="-73.5" font-family="Helvetica,sans-Serif" font-size="10.00">+ init()</text>
+<text text-anchor="start" x="518" y="-62.5" font-family="Helvetica,sans-Serif" font-size="10.00">+ addNeighbor()</text>
+<text text-anchor="start" x="518" y="-51.5" font-family="Helvetica,sans-Serif" font-size="10.00">+ finalize()</text>
 </a>
 </g>
 </g>
 <!-- Node1&#45;&gt;Node5 -->
 <g id="edge4" class="edge">
 <title>Node1&#45;&gt;Node5</title>
-<path fill="none" stroke="midnightblue" d="M538.44,-260.93C545.09,-245.49 552.43,-228.45 559.65,-211.69"/>
-<polygon fill="none" stroke="midnightblue" points="535.14,-259.76 534.39,-270.33 541.56,-262.53 535.14,-259.76"/>
+<path fill="none" stroke="midnightblue" d="M588,-260.08C588,-237.96 588,-212.68 588,-189.64"/>
+<polygon fill="none" stroke="midnightblue" points="584.5,-260.33 588,-270.33 591.5,-260.33 584.5,-260.33"/>
 </g>
 <!-- Node6 -->
 <g id="node6" class="node">
 <title>Node6</title>
-<g id="a_node6"><a xlink:href="classPonca_1_1SphereFit.html" target="_top" xlink:title="Algebraic Sphere fitting procedure on point sets without normals.">
-<polygon fill="white" stroke="black" points="696,-50 696,-184 856,-184 856,-50 696,-50"/>
-<text text-anchor="start" x="704" y="-172" font-family="Helvetica,sans-Serif" font-size="10.00">Ponca::SphereFit&lt; DataPoint,</text>
-<text text-anchor="middle" x="776" y="-161" font-family="Helvetica,sans-Serif" font-size="10.00"> _WFunctor, T &gt;</text>
-<polyline fill="none" stroke="black" points="696,-154 856,-154 "/>
-<text text-anchor="start" x="704" y="-142" font-family="Helvetica,sans-Serif" font-size="10.00"># m_matA</text>
-<text text-anchor="start" x="704" y="-131" font-family="Helvetica,sans-Serif" font-size="10.00"># m_sumW</text>
-<text text-anchor="start" x="704" y="-120" font-family="Helvetica,sans-Serif" font-size="10.00"># m_w</text>
-<polyline fill="none" stroke="black" points="696,-113 856,-113 "/>
-<text text-anchor="start" x="704" y="-101" font-family="Helvetica,sans-Serif" font-size="10.00">+ SphereFit()</text>
-<text text-anchor="start" x="704" y="-90" font-family="Helvetica,sans-Serif" font-size="10.00">+ setWeightFunc()</text>
-<text text-anchor="start" x="704" y="-79" font-family="Helvetica,sans-Serif" font-size="10.00">+ init()</text>
-<text text-anchor="start" x="704" y="-68" font-family="Helvetica,sans-Serif" font-size="10.00">+ addNeighbor()</text>
-<text text-anchor="start" x="704" y="-57" font-family="Helvetica,sans-Serif" font-size="10.00">+ finalize()</text>
+<g id="a_node6"><a xlink:href="classPonca_1_1OrientedSphereFit.html" target="_top" xlink:title="Algebraic Sphere fitting procedure on oriented point sets.">
+<polygon fill="white" stroke="black" points="684,-22.5 684,-211.5 840,-211.5 840,-22.5 684,-22.5"/>
+<text text-anchor="start" x="692" y="-199.5" font-family="Helvetica,sans-Serif" font-size="10.00">Ponca::OrientedSphereFit</text>
+<text text-anchor="middle" x="762" y="-188.5" font-family="Helvetica,sans-Serif" font-size="10.00">&lt; DataPoint, _WFunctor, T &gt;</text>
+<polyline fill="none" stroke="black" points="684,-181.5 840,-181.5 "/>
+<text text-anchor="start" x="692" y="-169.5" font-family="Helvetica,sans-Serif" font-size="10.00"># m_sumN</text>
+<text text-anchor="start" x="692" y="-158.5" font-family="Helvetica,sans-Serif" font-size="10.00"># m_sumP</text>
+<text text-anchor="start" x="692" y="-147.5" font-family="Helvetica,sans-Serif" font-size="10.00"># m_sumDotPN</text>
+<text text-anchor="start" x="692" y="-136.5" font-family="Helvetica,sans-Serif" font-size="10.00"># m_sumDotPP</text>
+<text text-anchor="start" x="692" y="-125.5" font-family="Helvetica,sans-Serif" font-size="10.00"># m_sumW</text>
+<text text-anchor="start" x="692" y="-114.5" font-family="Helvetica,sans-Serif" font-size="10.00"># m_nume</text>
+<text text-anchor="start" x="692" y="-103.5" font-family="Helvetica,sans-Serif" font-size="10.00"># m_deno</text>
+<text text-anchor="start" x="692" y="-92.5" font-family="Helvetica,sans-Serif" font-size="10.00"># m_w</text>
+<polyline fill="none" stroke="black" points="684,-85.5 840,-85.5 "/>
+<text text-anchor="start" x="692" y="-73.5" font-family="Helvetica,sans-Serif" font-size="10.00">+ OrientedSphereFit()</text>
+<text text-anchor="start" x="692" y="-62.5" font-family="Helvetica,sans-Serif" font-size="10.00">+ setWeightFunc()</text>
+<text text-anchor="start" x="692" y="-51.5" font-family="Helvetica,sans-Serif" font-size="10.00">+ init()</text>
+<text text-anchor="start" x="692" y="-40.5" font-family="Helvetica,sans-Serif" font-size="10.00">+ addNeighbor()</text>
+<text text-anchor="start" x="692" y="-29.5" font-family="Helvetica,sans-Serif" font-size="10.00">+ finalize()</text>
 </a>
 </g>
 </g>
 <!-- Node1&#45;&gt;Node6 -->
 <g id="edge5" class="edge">
 <title>Node1&#45;&gt;Node6</title>
-<path fill="none" stroke="midnightblue" d="M620.42,-276.52C643.61,-264.57 667.12,-250.33 687,-234 704.16,-219.9 719.99,-201.89 733.39,-184.29"/>
-<polygon fill="none" stroke="midnightblue" points="618.57,-273.53 611.21,-281.15 621.71,-279.79 618.57,-273.53"/>
+<path fill="none" stroke="midnightblue" d="M647.91,-263.11C657.22,-253.61 666.54,-243.69 675,-234 681.21,-226.89 687.46,-219.37 693.62,-211.72"/>
+<polygon fill="none" stroke="midnightblue" points="645.36,-260.71 640.81,-270.28 650.34,-265.64 645.36,-260.71"/>
 </g>
 <!-- Node7 -->
 <g id="node7" class="node">
 <title>Node7</title>
-<g id="a_node7"><a xlink:href="classPonca_1_1UnorientedSphereFit.html" target="_top" xlink:title="Algebraic Sphere fitting procedure on point sets with non&#45;oriented normals.">
-<polygon fill="white" stroke="black" points="874,-39 874,-195 1030,-195 1030,-39 874,-39"/>
-<text text-anchor="start" x="882" y="-183" font-family="Helvetica,sans-Serif" font-size="10.00">Ponca::UnorientedSphereFit</text>
-<text text-anchor="middle" x="952" y="-172" font-family="Helvetica,sans-Serif" font-size="10.00">&lt; DataPoint, _WFunctor, T &gt;</text>
-<polyline fill="none" stroke="black" points="874,-165 1030,-165 "/>
-<text text-anchor="start" x="882" y="-153" font-family="Helvetica,sans-Serif" font-size="10.00"># m_matA</text>
-<text text-anchor="start" x="882" y="-142" font-family="Helvetica,sans-Serif" font-size="10.00"># m_sumP</text>
-<text text-anchor="start" x="882" y="-131" font-family="Helvetica,sans-Serif" font-size="10.00"># m_sumDotPP</text>
-<text text-anchor="start" x="882" y="-120" font-family="Helvetica,sans-Serif" font-size="10.00"># m_sumW</text>
-<text text-anchor="start" x="882" y="-109" font-family="Helvetica,sans-Serif" font-size="10.00"># m_w</text>
-<polyline fill="none" stroke="black" points="874,-102 1030,-102 "/>
-<text text-anchor="start" x="882" y="-90" font-family="Helvetica,sans-Serif" font-size="10.00">+ UnorientedSphereFit()</text>
-<text text-anchor="start" x="882" y="-79" font-family="Helvetica,sans-Serif" font-size="10.00">+ setWeightFunc()</text>
-<text text-anchor="start" x="882" y="-68" font-family="Helvetica,sans-Serif" font-size="10.00">+ init()</text>
-<text text-anchor="start" x="882" y="-57" font-family="Helvetica,sans-Serif" font-size="10.00">+ addNeighbor()</text>
-<text text-anchor="start" x="882" y="-46" font-family="Helvetica,sans-Serif" font-size="10.00">+ finalize()</text>
+<g id="a_node7"><a xlink:href="classPonca_1_1SphereFit.html" target="_top" xlink:title="Algebraic Sphere fitting procedure on point sets without normals.">
+<polygon fill="white" stroke="black" points="858,-50 858,-184 1018,-184 1018,-50 858,-50"/>
+<text text-anchor="start" x="866" y="-172" font-family="Helvetica,sans-Serif" font-size="10.00">Ponca::SphereFit&lt; DataPoint,</text>
+<text text-anchor="middle" x="938" y="-161" font-family="Helvetica,sans-Serif" font-size="10.00"> _WFunctor, T &gt;</text>
+<polyline fill="none" stroke="black" points="858,-154 1018,-154 "/>
+<text text-anchor="start" x="866" y="-142" font-family="Helvetica,sans-Serif" font-size="10.00"># m_matA</text>
+<text text-anchor="start" x="866" y="-131" font-family="Helvetica,sans-Serif" font-size="10.00"># m_sumW</text>
+<text text-anchor="start" x="866" y="-120" font-family="Helvetica,sans-Serif" font-size="10.00"># m_w</text>
+<polyline fill="none" stroke="black" points="858,-113 1018,-113 "/>
+<text text-anchor="start" x="866" y="-101" font-family="Helvetica,sans-Serif" font-size="10.00">+ SphereFit()</text>
+<text text-anchor="start" x="866" y="-90" font-family="Helvetica,sans-Serif" font-size="10.00">+ setWeightFunc()</text>
+<text text-anchor="start" x="866" y="-79" font-family="Helvetica,sans-Serif" font-size="10.00">+ init()</text>
+<text text-anchor="start" x="866" y="-68" font-family="Helvetica,sans-Serif" font-size="10.00">+ addNeighbor()</text>
+<text text-anchor="start" x="866" y="-57" font-family="Helvetica,sans-Serif" font-size="10.00">+ finalize()</text>
 </a>
 </g>
 </g>
 <!-- Node1&#45;&gt;Node7 -->
 <g id="edge6" class="edge">
 <title>Node1&#45;&gt;Node7</title>
-<path fill="none" stroke="midnightblue" d="M621.46,-312.61C695.24,-303.23 792.29,-282 865,-234 880.44,-223.81 894.19,-209.9 905.94,-195.26"/>
-<polygon fill="none" stroke="midnightblue" points="620.71,-309.18 611.21,-313.86 621.56,-316.13 620.71,-309.18"/>
+<path fill="none" stroke="midnightblue" d="M695.99,-299.8C745.8,-286.79 803.77,-266.1 849,-234 867.73,-220.7 884.34,-202.31 897.99,-184.09"/>
+<polygon fill="none" stroke="midnightblue" points="694.97,-296.44 686.14,-302.3 696.69,-303.23 694.97,-296.44"/>
+</g>
+<!-- Node8 -->
+<g id="node8" class="node">
+<title>Node8</title>
+<g id="a_node8"><a xlink:href="classPonca_1_1UnorientedSphereFit.html" target="_top" xlink:title="Algebraic Sphere fitting procedure on point sets with non&#45;oriented normals.">
+<polygon fill="white" stroke="black" points="1036,-39 1036,-195 1192,-195 1192,-39 1036,-39"/>
+<text text-anchor="start" x="1044" y="-183" font-family="Helvetica,sans-Serif" font-size="10.00">Ponca::UnorientedSphereFit</text>
+<text text-anchor="middle" x="1114" y="-172" font-family="Helvetica,sans-Serif" font-size="10.00">&lt; DataPoint, _WFunctor, T &gt;</text>
+<polyline fill="none" stroke="black" points="1036,-165 1192,-165 "/>
+<text text-anchor="start" x="1044" y="-153" font-family="Helvetica,sans-Serif" font-size="10.00"># m_matA</text>
+<text text-anchor="start" x="1044" y="-142" font-family="Helvetica,sans-Serif" font-size="10.00"># m_sumP</text>
+<text text-anchor="start" x="1044" y="-131" font-family="Helvetica,sans-Serif" font-size="10.00"># m_sumDotPP</text>
+<text text-anchor="start" x="1044" y="-120" font-family="Helvetica,sans-Serif" font-size="10.00"># m_sumW</text>
+<text text-anchor="start" x="1044" y="-109" font-family="Helvetica,sans-Serif" font-size="10.00"># m_w</text>
+<polyline fill="none" stroke="black" points="1036,-102 1192,-102 "/>
+<text text-anchor="start" x="1044" y="-90" font-family="Helvetica,sans-Serif" font-size="10.00">+ UnorientedSphereFit()</text>
+<text text-anchor="start" x="1044" y="-79" font-family="Helvetica,sans-Serif" font-size="10.00">+ setWeightFunc()</text>
+<text text-anchor="start" x="1044" y="-68" font-family="Helvetica,sans-Serif" font-size="10.00">+ init()</text>
+<text text-anchor="start" x="1044" y="-57" font-family="Helvetica,sans-Serif" font-size="10.00">+ addNeighbor()</text>
+<text text-anchor="start" x="1044" y="-46" font-family="Helvetica,sans-Serif" font-size="10.00">+ finalize()</text>
+</a>
+</g>
+</g>
+<!-- Node1&#45;&gt;Node8 -->
+<g id="edge7" class="edge">
+<title>Node1&#45;&gt;Node8</title>
+<path fill="none" stroke="midnightblue" d="M696.34,-307.79C807.96,-293.64 973.04,-267.86 1027,-234 1042.89,-224.03 1056.89,-210.04 1068.77,-195.21"/>
+<polygon fill="none" stroke="midnightblue" points="695.87,-304.32 686.38,-309.04 696.74,-311.27 695.87,-304.32"/>
 </g>
 </g>
 </svg>

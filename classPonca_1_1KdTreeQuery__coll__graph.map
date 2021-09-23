@@ -1,11 +1,17 @@
 <map id="Ponca::KdTreeQuery&lt; DataPoint &gt;" name="Ponca::KdTreeQuery&lt; DataPoint &gt;">
-<area shape="rect" id="node1" title=" " alt="" coords="228,1145,380,1252"/>
-<area shape="rect" id="node2" href="$classPonca_1_1Stack.html" title=" " alt="" coords="215,844,393,1083"/>
+<area shape="rect" id="node1" title=" " alt="" coords="452,1175,604,1281"/>
+<area shape="rect" id="node2" href="$classPonca_1_1Stack.html" title=" " alt="" coords="260,873,439,1112"/>
 <area shape="rect" id="node3" title=" " alt="" coords="145,373,316,495"/>
 <area shape="rect" id="node4" href="$structPonca_1_1IndexSquaredDistance.html" title=" " alt="" coords="5,189,240,296"/>
 <area shape="rect" id="node5" href="$structPonca_1_1IndexSquaredDistance.html" title="Associates an index with a distance." alt="" coords="15,5,230,112"/>
-<area shape="rect" id="node6" title="STL class." alt="" coords="417,204,540,281"/>
-<area shape="rect" id="node9" title=" " alt="" coords="437,395,577,473"/>
-<area shape="rect" id="node7" title=" " alt="" coords="517,20,555,97"/>
-<area shape="rect" id="node8" href="$classPonca_1_1Stack.html" title="Stack with fixed&#45;size storage." alt="" coords="399,557,561,752"/>
+<area shape="rect" id="node6" title="STL class." alt="" coords="427,204,549,281"/>
+<area shape="rect" id="node9" title=" " alt="" coords="351,395,491,473"/>
+<area shape="rect" id="node7" title=" " alt="" coords="578,20,617,97"/>
+<area shape="rect" id="node12" title="STL class." alt="" coords="702,204,831,281"/>
+<area shape="rect" id="node8" href="$classPonca_1_1Stack.html" title="Stack with fixed&#45;size storage." alt="" coords="333,572,494,767"/>
+<area shape="rect" id="node10" href="$classPonca_1_1KdTree.html" title=" " alt="" coords="611,881,818,1105"/>
+<area shape="rect" id="node11" title=" " alt="" coords="515,395,701,473"/>
+<area shape="rect" id="node15" href="$classPonca_1_1KdTree.html" title=" " alt="" coords="821,557,1035,781"/>
+<area shape="rect" id="node13" title=" " alt="" coords="725,395,864,473"/>
+<area shape="rect" id="node14" title=" " alt="" coords="888,388,1072,480"/>
 </map>

@@ -46,7 +46,7 @@ if (edges && edges.length) {
         </defs>
 
 <script type="text/javascript">
-var viewWidth = 1038;
+var viewWidth = 1089;
 var viewHeight = 1082;
 var sectionId = 'dynsection-0';
 </script>
@@ -54,23 +54,23 @@ var sectionId = 'dynsection-0';
 <svg id="graph" class="graph">
 <g id="viewport">
 <title>Ponca::PrimitiveBase&lt; DataPoint, _WFunctor, T &gt;</title>
-<polygon fill="white" stroke="transparent" points="-4,4 -4,-1078 1034,-1078 1034,4 -4,4"/>
+<polygon fill="white" stroke="transparent" points="-4,4 -4,-1078 1085,-1078 1085,4 -4,4"/>
 <!-- Node1 -->
 <g id="node1" class="node">
 <title>Node1</title>
 <g id="a_node1"><a xlink:title="Primitive base class.">
-<polygon fill="#bfbfbf" stroke="black" points="539,-950.5 539,-1073.5 695,-1073.5 695,-950.5 539,-950.5"/>
-<text text-anchor="start" x="547" y="-1061.5" font-family="Helvetica,sans-Serif" font-size="10.00">Ponca::PrimitiveBase</text>
-<text text-anchor="middle" x="617" y="-1050.5" font-family="Helvetica,sans-Serif" font-size="10.00">&lt; DataPoint, _WFunctor, T &gt;</text>
-<polyline fill="none" stroke="black" points="539,-1043.5 695,-1043.5 "/>
-<text text-anchor="start" x="547" y="-1031.5" font-family="Helvetica,sans-Serif" font-size="10.00"># m_eCurrentState</text>
-<text text-anchor="start" x="547" y="-1020.5" font-family="Helvetica,sans-Serif" font-size="10.00"># m_nbNeighbors</text>
-<polyline fill="none" stroke="black" points="539,-1013.5 695,-1013.5 "/>
-<text text-anchor="start" x="547" y="-1001.5" font-family="Helvetica,sans-Serif" font-size="10.00">+ PrimitiveBase()</text>
-<text text-anchor="start" x="547" y="-990.5" font-family="Helvetica,sans-Serif" font-size="10.00">+ resetPrimitive()</text>
-<text text-anchor="start" x="547" y="-979.5" font-family="Helvetica,sans-Serif" font-size="10.00">+ isReady()</text>
-<text text-anchor="start" x="547" y="-968.5" font-family="Helvetica,sans-Serif" font-size="10.00">+ isStable()</text>
-<text text-anchor="start" x="547" y="-957.5" font-family="Helvetica,sans-Serif" font-size="10.00">+ getCurrentState()</text>
+<polygon fill="#bfbfbf" stroke="black" points="533,-950.5 533,-1073.5 689,-1073.5 689,-950.5 533,-950.5"/>
+<text text-anchor="start" x="541" y="-1061.5" font-family="Helvetica,sans-Serif" font-size="10.00">Ponca::PrimitiveBase</text>
+<text text-anchor="middle" x="611" y="-1050.5" font-family="Helvetica,sans-Serif" font-size="10.00">&lt; DataPoint, _WFunctor, T &gt;</text>
+<polyline fill="none" stroke="black" points="533,-1043.5 689,-1043.5 "/>
+<text text-anchor="start" x="541" y="-1031.5" font-family="Helvetica,sans-Serif" font-size="10.00"># m_eCurrentState</text>
+<text text-anchor="start" x="541" y="-1020.5" font-family="Helvetica,sans-Serif" font-size="10.00"># m_nbNeighbors</text>
+<polyline fill="none" stroke="black" points="533,-1013.5 689,-1013.5 "/>
+<text text-anchor="start" x="541" y="-1001.5" font-family="Helvetica,sans-Serif" font-size="10.00">+ PrimitiveBase()</text>
+<text text-anchor="start" x="541" y="-990.5" font-family="Helvetica,sans-Serif" font-size="10.00">+ resetPrimitive()</text>
+<text text-anchor="start" x="541" y="-979.5" font-family="Helvetica,sans-Serif" font-size="10.00">+ isReady()</text>
+<text text-anchor="start" x="541" y="-968.5" font-family="Helvetica,sans-Serif" font-size="10.00">+ isStable()</text>
+<text text-anchor="start" x="541" y="-957.5" font-family="Helvetica,sans-Serif" font-size="10.00">+ getCurrentState()</text>
 </a>
 </g>
 </g>
@@ -78,217 +78,246 @@ var sectionId = 'dynsection-0';
 <g id="node2" class="node">
 <title>Node2</title>
 <g id="a_node2"><a xlink:href="classPonca_1_1PrimitiveBase.html" target="_top" xlink:title=" ">
-<polygon fill="white" stroke="black" points="545,-779.5 545,-902.5 689,-902.5 689,-779.5 545,-779.5"/>
-<text text-anchor="start" x="553" y="-890.5" font-family="Helvetica,sans-Serif" font-size="10.00">Ponca::PrimitiveBase</text>
-<text text-anchor="middle" x="617" y="-879.5" font-family="Helvetica,sans-Serif" font-size="10.00">&lt; DataPoint, _WFunctor &gt;</text>
-<polyline fill="none" stroke="black" points="545,-872.5 689,-872.5 "/>
-<text text-anchor="start" x="553" y="-860.5" font-family="Helvetica,sans-Serif" font-size="10.00"># m_eCurrentState</text>
-<text text-anchor="start" x="553" y="-849.5" font-family="Helvetica,sans-Serif" font-size="10.00"># m_nbNeighbors</text>
-<polyline fill="none" stroke="black" points="545,-842.5 689,-842.5 "/>
-<text text-anchor="start" x="553" y="-830.5" font-family="Helvetica,sans-Serif" font-size="10.00">+ PrimitiveBase()</text>
-<text text-anchor="start" x="553" y="-819.5" font-family="Helvetica,sans-Serif" font-size="10.00">+ resetPrimitive()</text>
-<text text-anchor="start" x="553" y="-808.5" font-family="Helvetica,sans-Serif" font-size="10.00">+ isReady()</text>
-<text text-anchor="start" x="553" y="-797.5" font-family="Helvetica,sans-Serif" font-size="10.00">+ isStable()</text>
-<text text-anchor="start" x="553" y="-786.5" font-family="Helvetica,sans-Serif" font-size="10.00">+ getCurrentState()</text>
+<polygon fill="white" stroke="black" points="539,-779.5 539,-902.5 683,-902.5 683,-779.5 539,-779.5"/>
+<text text-anchor="start" x="547" y="-890.5" font-family="Helvetica,sans-Serif" font-size="10.00">Ponca::PrimitiveBase</text>
+<text text-anchor="middle" x="611" y="-879.5" font-family="Helvetica,sans-Serif" font-size="10.00">&lt; DataPoint, _WFunctor &gt;</text>
+<polyline fill="none" stroke="black" points="539,-872.5 683,-872.5 "/>
+<text text-anchor="start" x="547" y="-860.5" font-family="Helvetica,sans-Serif" font-size="10.00"># m_eCurrentState</text>
+<text text-anchor="start" x="547" y="-849.5" font-family="Helvetica,sans-Serif" font-size="10.00"># m_nbNeighbors</text>
+<polyline fill="none" stroke="black" points="539,-842.5 683,-842.5 "/>
+<text text-anchor="start" x="547" y="-830.5" font-family="Helvetica,sans-Serif" font-size="10.00">+ PrimitiveBase()</text>
+<text text-anchor="start" x="547" y="-819.5" font-family="Helvetica,sans-Serif" font-size="10.00">+ resetPrimitive()</text>
+<text text-anchor="start" x="547" y="-808.5" font-family="Helvetica,sans-Serif" font-size="10.00">+ isReady()</text>
+<text text-anchor="start" x="547" y="-797.5" font-family="Helvetica,sans-Serif" font-size="10.00">+ isStable()</text>
+<text text-anchor="start" x="547" y="-786.5" font-family="Helvetica,sans-Serif" font-size="10.00">+ getCurrentState()</text>
 </a>
 </g>
 </g>
 <!-- Node1&#45;&gt;Node2 -->
 <g id="edge1" class="edge">
 <title>Node1&#45;&gt;Node2</title>
-<path fill="none" stroke="orange" d="M617,-940.13C617,-927.68 617,-914.82 617,-902.68"/>
-<polygon fill="orange" stroke="orange" points="613.5,-940.46 617,-950.46 620.5,-940.46 613.5,-940.46"/>
-<text text-anchor="middle" x="682.5" y="-924" font-family="Helvetica,sans-Serif" font-size="10.00"> &lt; DataPoint, _WFunctor &gt;</text>
+<path fill="none" stroke="orange" d="M611,-940.13C611,-927.68 611,-914.82 611,-902.68"/>
+<polygon fill="orange" stroke="orange" points="607.5,-940.46 611,-950.46 614.5,-940.46 607.5,-940.46"/>
+<text text-anchor="middle" x="676.5" y="-924" font-family="Helvetica,sans-Serif" font-size="10.00"> &lt; DataPoint, _WFunctor &gt;</text>
 </g>
 <!-- Node3 -->
 <g id="node3" class="node">
 <title>Node3</title>
 <g id="a_node3"><a xlink:href="classPonca_1_1AlgebraicSphere.html" target="_top" xlink:title=" ">
-<polygon fill="white" stroke="black" points="205,-271.5 205,-482.5 349,-482.5 349,-271.5 205,-271.5"/>
-<text text-anchor="start" x="213" y="-470.5" font-family="Helvetica,sans-Serif" font-size="10.00">Ponca::AlgebraicSphere</text>
-<text text-anchor="middle" x="277" y="-459.5" font-family="Helvetica,sans-Serif" font-size="10.00">&lt; DataPoint, _WFunctor &gt;</text>
-<polyline fill="none" stroke="black" points="205,-452.5 349,-452.5 "/>
-<text text-anchor="start" x="213" y="-440.5" font-family="Helvetica,sans-Serif" font-size="10.00">+ m_uc</text>
-<text text-anchor="start" x="213" y="-429.5" font-family="Helvetica,sans-Serif" font-size="10.00">+ m_uq</text>
-<text text-anchor="start" x="213" y="-418.5" font-family="Helvetica,sans-Serif" font-size="10.00">+ m_ul</text>
-<text text-anchor="start" x="213" y="-407.5" font-family="Helvetica,sans-Serif" font-size="10.00"># m_isNormalized</text>
-<polyline fill="none" stroke="black" points="205,-400.5 349,-400.5 "/>
-<text text-anchor="start" x="213" y="-388.5" font-family="Helvetica,sans-Serif" font-size="10.00">+ AlgebraicSphere()</text>
-<text text-anchor="start" x="213" y="-377.5" font-family="Helvetica,sans-Serif" font-size="10.00">+ algebraicSphere()</text>
-<text text-anchor="start" x="213" y="-366.5" font-family="Helvetica,sans-Serif" font-size="10.00">+ resetPrimitive()</text>
-<text text-anchor="start" x="213" y="-355.5" font-family="Helvetica,sans-Serif" font-size="10.00">+ operator==()</text>
-<text text-anchor="start" x="213" y="-344.5" font-family="Helvetica,sans-Serif" font-size="10.00">+ operator!=()</text>
-<text text-anchor="start" x="213" y="-333.5" font-family="Helvetica,sans-Serif" font-size="10.00">+ basisCenter()</text>
-<text text-anchor="start" x="213" y="-322.5" font-family="Helvetica,sans-Serif" font-size="10.00">+ basisCenter()</text>
-<text text-anchor="start" x="213" y="-311.5" font-family="Helvetica,sans-Serif" font-size="10.00">+ changeBasis()</text>
-<text text-anchor="start" x="213" y="-300.5" font-family="Helvetica,sans-Serif" font-size="10.00">+ prattNorm()</text>
-<text text-anchor="start" x="213" y="-289.5" font-family="Helvetica,sans-Serif" font-size="10.00">+ prattNorm2()</text>
-<text text-anchor="start" x="213" y="-278.5" font-family="Helvetica,sans-Serif" font-size="10.00">and 11 more...</text>
+<polygon fill="white" stroke="black" points="182,-271.5 182,-482.5 326,-482.5 326,-271.5 182,-271.5"/>
+<text text-anchor="start" x="190" y="-470.5" font-family="Helvetica,sans-Serif" font-size="10.00">Ponca::AlgebraicSphere</text>
+<text text-anchor="middle" x="254" y="-459.5" font-family="Helvetica,sans-Serif" font-size="10.00">&lt; DataPoint, _WFunctor &gt;</text>
+<polyline fill="none" stroke="black" points="182,-452.5 326,-452.5 "/>
+<text text-anchor="start" x="190" y="-440.5" font-family="Helvetica,sans-Serif" font-size="10.00">+ m_uc</text>
+<text text-anchor="start" x="190" y="-429.5" font-family="Helvetica,sans-Serif" font-size="10.00">+ m_uq</text>
+<text text-anchor="start" x="190" y="-418.5" font-family="Helvetica,sans-Serif" font-size="10.00">+ m_ul</text>
+<text text-anchor="start" x="190" y="-407.5" font-family="Helvetica,sans-Serif" font-size="10.00"># m_isNormalized</text>
+<polyline fill="none" stroke="black" points="182,-400.5 326,-400.5 "/>
+<text text-anchor="start" x="190" y="-388.5" font-family="Helvetica,sans-Serif" font-size="10.00">+ AlgebraicSphere()</text>
+<text text-anchor="start" x="190" y="-377.5" font-family="Helvetica,sans-Serif" font-size="10.00">+ algebraicSphere()</text>
+<text text-anchor="start" x="190" y="-366.5" font-family="Helvetica,sans-Serif" font-size="10.00">+ resetPrimitive()</text>
+<text text-anchor="start" x="190" y="-355.5" font-family="Helvetica,sans-Serif" font-size="10.00">+ operator==()</text>
+<text text-anchor="start" x="190" y="-344.5" font-family="Helvetica,sans-Serif" font-size="10.00">+ operator!=()</text>
+<text text-anchor="start" x="190" y="-333.5" font-family="Helvetica,sans-Serif" font-size="10.00">+ basisCenter()</text>
+<text text-anchor="start" x="190" y="-322.5" font-family="Helvetica,sans-Serif" font-size="10.00">+ basisCenter()</text>
+<text text-anchor="start" x="190" y="-311.5" font-family="Helvetica,sans-Serif" font-size="10.00">+ changeBasis()</text>
+<text text-anchor="start" x="190" y="-300.5" font-family="Helvetica,sans-Serif" font-size="10.00">+ prattNorm()</text>
+<text text-anchor="start" x="190" y="-289.5" font-family="Helvetica,sans-Serif" font-size="10.00">+ prattNorm2()</text>
+<text text-anchor="start" x="190" y="-278.5" font-family="Helvetica,sans-Serif" font-size="10.00">and 11 more...</text>
 </a>
 </g>
 </g>
 <!-- Node2&#45;&gt;Node3 -->
 <g id="edge2" class="edge">
 <title>Node2&#45;&gt;Node3</title>
-<path fill="none" stroke="midnightblue" d="M534.95,-825.93C449.98,-809.54 325.55,-779.82 296,-742 239.4,-669.58 240.92,-562.16 252.81,-482.77"/>
-<polygon fill="none" stroke="midnightblue" points="534.37,-829.38 544.85,-827.82 535.68,-822.51 534.37,-829.38"/>
+<path fill="none" stroke="midnightblue" d="M528.86,-827.95C437.44,-812.69 298.3,-783.31 266,-742 209.44,-669.64 213.2,-562.22 227.04,-482.81"/>
+<polygon fill="none" stroke="midnightblue" points="528.49,-831.43 538.93,-829.6 529.63,-824.53 528.49,-831.43"/>
 </g>
 <!-- Node7 -->
 <g id="node7" class="node">
 <title>Node7</title>
 <g id="a_node7"><a xlink:href="classPonca_1_1Line.html" target="_top" xlink:title=" ">
-<polygon fill="white" stroke="black" points="537,-288 537,-466 671,-466 671,-288 537,-288"/>
-<text text-anchor="start" x="545" y="-454" font-family="Helvetica,sans-Serif" font-size="10.00">Ponca::Line&lt; DataPoint,</text>
-<text text-anchor="middle" x="604" y="-443" font-family="Helvetica,sans-Serif" font-size="10.00"> _WFunctor &gt;</text>
-<polyline fill="none" stroke="black" points="537,-436 671,-436 "/>
-<text text-anchor="middle" x="604" y="-424" font-family="Helvetica,sans-Serif" font-size="10.00"> </text>
-<polyline fill="none" stroke="black" points="537,-417 671,-417 "/>
-<text text-anchor="start" x="545" y="-405" font-family="Helvetica,sans-Serif" font-size="10.00">+ Line()</text>
-<text text-anchor="start" x="545" y="-394" font-family="Helvetica,sans-Serif" font-size="10.00">+ line()</text>
-<text text-anchor="start" x="545" y="-383" font-family="Helvetica,sans-Serif" font-size="10.00">+ resetPrimitive()</text>
-<text text-anchor="start" x="545" y="-372" font-family="Helvetica,sans-Serif" font-size="10.00">+ operator==()</text>
-<text text-anchor="start" x="545" y="-361" font-family="Helvetica,sans-Serif" font-size="10.00">+ operator!=()</text>
-<text text-anchor="start" x="545" y="-350" font-family="Helvetica,sans-Serif" font-size="10.00">+ basisCenter()</text>
-<text text-anchor="start" x="545" y="-339" font-family="Helvetica,sans-Serif" font-size="10.00">+ basisCenter()</text>
-<text text-anchor="start" x="545" y="-328" font-family="Helvetica,sans-Serif" font-size="10.00">+ setLine()</text>
-<text text-anchor="start" x="545" y="-317" font-family="Helvetica,sans-Serif" font-size="10.00">+ potential()</text>
-<text text-anchor="start" x="545" y="-306" font-family="Helvetica,sans-Serif" font-size="10.00">+ potential()</text>
-<text text-anchor="start" x="545" y="-295" font-family="Helvetica,sans-Serif" font-size="10.00">+ project()</text>
+<polygon fill="white" stroke="black" points="540,-288 540,-466 674,-466 674,-288 540,-288"/>
+<text text-anchor="start" x="548" y="-454" font-family="Helvetica,sans-Serif" font-size="10.00">Ponca::Line&lt; DataPoint,</text>
+<text text-anchor="middle" x="607" y="-443" font-family="Helvetica,sans-Serif" font-size="10.00"> _WFunctor &gt;</text>
+<polyline fill="none" stroke="black" points="540,-436 674,-436 "/>
+<text text-anchor="middle" x="607" y="-424" font-family="Helvetica,sans-Serif" font-size="10.00"> </text>
+<polyline fill="none" stroke="black" points="540,-417 674,-417 "/>
+<text text-anchor="start" x="548" y="-405" font-family="Helvetica,sans-Serif" font-size="10.00">+ Line()</text>
+<text text-anchor="start" x="548" y="-394" font-family="Helvetica,sans-Serif" font-size="10.00">+ line()</text>
+<text text-anchor="start" x="548" y="-383" font-family="Helvetica,sans-Serif" font-size="10.00">+ resetPrimitive()</text>
+<text text-anchor="start" x="548" y="-372" font-family="Helvetica,sans-Serif" font-size="10.00">+ operator==()</text>
+<text text-anchor="start" x="548" y="-361" font-family="Helvetica,sans-Serif" font-size="10.00">+ operator!=()</text>
+<text text-anchor="start" x="548" y="-350" font-family="Helvetica,sans-Serif" font-size="10.00">+ basisCenter()</text>
+<text text-anchor="start" x="548" y="-339" font-family="Helvetica,sans-Serif" font-size="10.00">+ basisCenter()</text>
+<text text-anchor="start" x="548" y="-328" font-family="Helvetica,sans-Serif" font-size="10.00">+ setLine()</text>
+<text text-anchor="start" x="548" y="-317" font-family="Helvetica,sans-Serif" font-size="10.00">+ potential()</text>
+<text text-anchor="start" x="548" y="-306" font-family="Helvetica,sans-Serif" font-size="10.00">+ potential()</text>
+<text text-anchor="start" x="548" y="-295" font-family="Helvetica,sans-Serif" font-size="10.00">+ project()</text>
 </a>
 </g>
 </g>
 <!-- Node2&#45;&gt;Node7 -->
 <g id="edge6" class="edge">
 <title>Node2&#45;&gt;Node7</title>
-<path fill="none" stroke="midnightblue" d="M624.11,-768.96C629.81,-700.26 635.55,-593.29 627,-501 625.95,-489.64 624.36,-477.77 622.5,-466.07"/>
-<polygon fill="none" stroke="midnightblue" points="620.6,-768.97 623.24,-779.23 627.57,-769.57 620.6,-768.97"/>
+<path fill="none" stroke="midnightblue" d="M610.39,-768.98C609.68,-687.64 608.53,-554.27 607.76,-466.3"/>
+<polygon fill="none" stroke="midnightblue" points="606.89,-769.16 610.47,-779.13 613.89,-769.1 606.89,-769.16"/>
 </g>
 <!-- Node9 -->
 <g id="node9" class="node">
 <title>Node9</title>
 <g id="a_node9"><a xlink:href="classPonca_1_1Plane.html" target="_top" xlink:title=" ">
-<polygon fill="white" stroke="black" points="707.5,-277 707.5,-477 848.5,-477 848.5,-277 707.5,-277"/>
-<text text-anchor="start" x="715.5" y="-465" font-family="Helvetica,sans-Serif" font-size="10.00">Ponca::Plane&lt; DataPoint,</text>
-<text text-anchor="middle" x="778" y="-454" font-family="Helvetica,sans-Serif" font-size="10.00"> _WFunctor &gt;</text>
-<polyline fill="none" stroke="black" points="707.5,-447 848.5,-447 "/>
-<text text-anchor="middle" x="778" y="-435" font-family="Helvetica,sans-Serif" font-size="10.00"> </text>
-<polyline fill="none" stroke="black" points="707.5,-428 848.5,-428 "/>
-<text text-anchor="start" x="715.5" y="-416" font-family="Helvetica,sans-Serif" font-size="10.00">+ Plane()</text>
-<text text-anchor="start" x="715.5" y="-405" font-family="Helvetica,sans-Serif" font-size="10.00">+ compactPlane()</text>
-<text text-anchor="start" x="715.5" y="-394" font-family="Helvetica,sans-Serif" font-size="10.00">+ resetPrimitive()</text>
-<text text-anchor="start" x="715.5" y="-383" font-family="Helvetica,sans-Serif" font-size="10.00">+ operator==()</text>
-<text text-anchor="start" x="715.5" y="-372" font-family="Helvetica,sans-Serif" font-size="10.00">+ operator!=()</text>
-<text text-anchor="start" x="715.5" y="-361" font-family="Helvetica,sans-Serif" font-size="10.00">+ basisCenter()</text>
-<text text-anchor="start" x="715.5" y="-350" font-family="Helvetica,sans-Serif" font-size="10.00">+ basisCenter()</text>
-<text text-anchor="start" x="715.5" y="-339" font-family="Helvetica,sans-Serif" font-size="10.00">+ setPlane()</text>
-<text text-anchor="start" x="715.5" y="-328" font-family="Helvetica,sans-Serif" font-size="10.00">+ potential()</text>
-<text text-anchor="start" x="715.5" y="-317" font-family="Helvetica,sans-Serif" font-size="10.00">+ potential()</text>
-<text text-anchor="start" x="715.5" y="-306" font-family="Helvetica,sans-Serif" font-size="10.00">+ project()</text>
-<text text-anchor="start" x="715.5" y="-295" font-family="Helvetica,sans-Serif" font-size="10.00">+ primitiveGradient()</text>
-<text text-anchor="start" x="715.5" y="-284" font-family="Helvetica,sans-Serif" font-size="10.00">+ primitiveGradient()</text>
+<polygon fill="white" stroke="black" points="782.5,-277 782.5,-477 923.5,-477 923.5,-277 782.5,-277"/>
+<text text-anchor="start" x="790.5" y="-465" font-family="Helvetica,sans-Serif" font-size="10.00">Ponca::Plane&lt; DataPoint,</text>
+<text text-anchor="middle" x="853" y="-454" font-family="Helvetica,sans-Serif" font-size="10.00"> _WFunctor &gt;</text>
+<polyline fill="none" stroke="black" points="782.5,-447 923.5,-447 "/>
+<text text-anchor="middle" x="853" y="-435" font-family="Helvetica,sans-Serif" font-size="10.00"> </text>
+<polyline fill="none" stroke="black" points="782.5,-428 923.5,-428 "/>
+<text text-anchor="start" x="790.5" y="-416" font-family="Helvetica,sans-Serif" font-size="10.00">+ Plane()</text>
+<text text-anchor="start" x="790.5" y="-405" font-family="Helvetica,sans-Serif" font-size="10.00">+ compactPlane()</text>
+<text text-anchor="start" x="790.5" y="-394" font-family="Helvetica,sans-Serif" font-size="10.00">+ resetPrimitive()</text>
+<text text-anchor="start" x="790.5" y="-383" font-family="Helvetica,sans-Serif" font-size="10.00">+ operator==()</text>
+<text text-anchor="start" x="790.5" y="-372" font-family="Helvetica,sans-Serif" font-size="10.00">+ operator!=()</text>
+<text text-anchor="start" x="790.5" y="-361" font-family="Helvetica,sans-Serif" font-size="10.00">+ basisCenter()</text>
+<text text-anchor="start" x="790.5" y="-350" font-family="Helvetica,sans-Serif" font-size="10.00">+ basisCenter()</text>
+<text text-anchor="start" x="790.5" y="-339" font-family="Helvetica,sans-Serif" font-size="10.00">+ setPlane()</text>
+<text text-anchor="start" x="790.5" y="-328" font-family="Helvetica,sans-Serif" font-size="10.00">+ potential()</text>
+<text text-anchor="start" x="790.5" y="-317" font-family="Helvetica,sans-Serif" font-size="10.00">+ potential()</text>
+<text text-anchor="start" x="790.5" y="-306" font-family="Helvetica,sans-Serif" font-size="10.00">+ project()</text>
+<text text-anchor="start" x="790.5" y="-295" font-family="Helvetica,sans-Serif" font-size="10.00">+ primitiveGradient()</text>
+<text text-anchor="start" x="790.5" y="-284" font-family="Helvetica,sans-Serif" font-size="10.00">+ primitiveGradient()</text>
 </a>
 </g>
 </g>
 <!-- Node2&#45;&gt;Node9 -->
 <g id="edge8" class="edge">
 <title>Node2&#45;&gt;Node9</title>
-<path fill="none" stroke="midnightblue" d="M636.73,-769.45C637.5,-766.6 638.26,-763.77 639,-761 666.33,-658.62 659.95,-628.9 698,-530 704.75,-512.47 713.02,-494.36 721.65,-477.02"/>
-<polygon fill="none" stroke="midnightblue" points="633.32,-768.65 634.07,-779.22 640.07,-770.49 633.32,-768.65"/>
+<path fill="none" stroke="midnightblue" d="M692.88,-814.26C728.71,-798.88 767.98,-775.63 792,-742 799.73,-731.18 823.08,-581.34 838.55,-477.32"/>
+<polygon fill="none" stroke="midnightblue" points="691.27,-811.14 683.37,-818.19 693.95,-817.6 691.27,-811.14"/>
 </g>
 <!-- Node12 -->
 <g id="node12" class="node">
 <title>Node12</title>
 <g id="a_node12"><a xlink:href="classPonca_1_1AlgebraicSphere.html" target="_top" xlink:title="Algebraic Sphere primitive.">
-<polygon fill="white" stroke="black" points="305,-530.5 305,-741.5 461,-741.5 461,-530.5 305,-530.5"/>
-<text text-anchor="start" x="313" y="-729.5" font-family="Helvetica,sans-Serif" font-size="10.00">Ponca::AlgebraicSphere</text>
-<text text-anchor="middle" x="383" y="-718.5" font-family="Helvetica,sans-Serif" font-size="10.00">&lt; DataPoint, _WFunctor, T &gt;</text>
-<polyline fill="none" stroke="black" points="305,-711.5 461,-711.5 "/>
-<text text-anchor="start" x="313" y="-699.5" font-family="Helvetica,sans-Serif" font-size="10.00">+ m_uc</text>
-<text text-anchor="start" x="313" y="-688.5" font-family="Helvetica,sans-Serif" font-size="10.00">+ m_uq</text>
-<text text-anchor="start" x="313" y="-677.5" font-family="Helvetica,sans-Serif" font-size="10.00">+ m_ul</text>
-<text text-anchor="start" x="313" y="-666.5" font-family="Helvetica,sans-Serif" font-size="10.00"># m_isNormalized</text>
-<polyline fill="none" stroke="black" points="305,-659.5 461,-659.5 "/>
-<text text-anchor="start" x="313" y="-647.5" font-family="Helvetica,sans-Serif" font-size="10.00">+ AlgebraicSphere()</text>
-<text text-anchor="start" x="313" y="-636.5" font-family="Helvetica,sans-Serif" font-size="10.00">+ algebraicSphere()</text>
-<text text-anchor="start" x="313" y="-625.5" font-family="Helvetica,sans-Serif" font-size="10.00">+ resetPrimitive()</text>
-<text text-anchor="start" x="313" y="-614.5" font-family="Helvetica,sans-Serif" font-size="10.00">+ operator==()</text>
-<text text-anchor="start" x="313" y="-603.5" font-family="Helvetica,sans-Serif" font-size="10.00">+ operator!=()</text>
-<text text-anchor="start" x="313" y="-592.5" font-family="Helvetica,sans-Serif" font-size="10.00">+ basisCenter()</text>
-<text text-anchor="start" x="313" y="-581.5" font-family="Helvetica,sans-Serif" font-size="10.00">+ basisCenter()</text>
-<text text-anchor="start" x="313" y="-570.5" font-family="Helvetica,sans-Serif" font-size="10.00">+ changeBasis()</text>
-<text text-anchor="start" x="313" y="-559.5" font-family="Helvetica,sans-Serif" font-size="10.00">+ prattNorm()</text>
-<text text-anchor="start" x="313" y="-548.5" font-family="Helvetica,sans-Serif" font-size="10.00">+ prattNorm2()</text>
-<text text-anchor="start" x="313" y="-537.5" font-family="Helvetica,sans-Serif" font-size="10.00">and 11 more...</text>
+<polygon fill="white" stroke="black" points="275,-530.5 275,-741.5 431,-741.5 431,-530.5 275,-530.5"/>
+<text text-anchor="start" x="283" y="-729.5" font-family="Helvetica,sans-Serif" font-size="10.00">Ponca::AlgebraicSphere</text>
+<text text-anchor="middle" x="353" y="-718.5" font-family="Helvetica,sans-Serif" font-size="10.00">&lt; DataPoint, _WFunctor, T &gt;</text>
+<polyline fill="none" stroke="black" points="275,-711.5 431,-711.5 "/>
+<text text-anchor="start" x="283" y="-699.5" font-family="Helvetica,sans-Serif" font-size="10.00">+ m_uc</text>
+<text text-anchor="start" x="283" y="-688.5" font-family="Helvetica,sans-Serif" font-size="10.00">+ m_uq</text>
+<text text-anchor="start" x="283" y="-677.5" font-family="Helvetica,sans-Serif" font-size="10.00">+ m_ul</text>
+<text text-anchor="start" x="283" y="-666.5" font-family="Helvetica,sans-Serif" font-size="10.00"># m_isNormalized</text>
+<polyline fill="none" stroke="black" points="275,-659.5 431,-659.5 "/>
+<text text-anchor="start" x="283" y="-647.5" font-family="Helvetica,sans-Serif" font-size="10.00">+ AlgebraicSphere()</text>
+<text text-anchor="start" x="283" y="-636.5" font-family="Helvetica,sans-Serif" font-size="10.00">+ algebraicSphere()</text>
+<text text-anchor="start" x="283" y="-625.5" font-family="Helvetica,sans-Serif" font-size="10.00">+ resetPrimitive()</text>
+<text text-anchor="start" x="283" y="-614.5" font-family="Helvetica,sans-Serif" font-size="10.00">+ operator==()</text>
+<text text-anchor="start" x="283" y="-603.5" font-family="Helvetica,sans-Serif" font-size="10.00">+ operator!=()</text>
+<text text-anchor="start" x="283" y="-592.5" font-family="Helvetica,sans-Serif" font-size="10.00">+ basisCenter()</text>
+<text text-anchor="start" x="283" y="-581.5" font-family="Helvetica,sans-Serif" font-size="10.00">+ basisCenter()</text>
+<text text-anchor="start" x="283" y="-570.5" font-family="Helvetica,sans-Serif" font-size="10.00">+ changeBasis()</text>
+<text text-anchor="start" x="283" y="-559.5" font-family="Helvetica,sans-Serif" font-size="10.00">+ prattNorm()</text>
+<text text-anchor="start" x="283" y="-548.5" font-family="Helvetica,sans-Serif" font-size="10.00">+ prattNorm2()</text>
+<text text-anchor="start" x="283" y="-537.5" font-family="Helvetica,sans-Serif" font-size="10.00">and 11 more...</text>
 </a>
 </g>
 </g>
 <!-- Node2&#45;&gt;Node12 -->
 <g id="edge11" class="edge">
 <title>Node2&#45;&gt;Node12</title>
-<path fill="none" stroke="midnightblue" d="M536.25,-792.24C513.81,-777.38 490.1,-760.12 470,-742 467.01,-739.31 464.03,-736.51 461.08,-733.63"/>
-<polygon fill="none" stroke="midnightblue" points="534.49,-795.27 544.78,-797.81 538.32,-789.41 534.49,-795.27"/>
+<path fill="none" stroke="midnightblue" d="M529.54,-801.08C499.82,-784.94 466.93,-764.66 440,-742 437.01,-739.48 434.05,-736.86 431.12,-734.14"/>
+<polygon fill="none" stroke="midnightblue" points="528.18,-804.32 538.65,-805.96 531.49,-798.15 528.18,-804.32"/>
 </g>
 <!-- Node13 -->
 <g id="node13" class="node">
 <title>Node13</title>
-<g id="a_node13"><a xlink:href="classPonca_1_1Line.html" target="_top" xlink:title="A parametrized line is defined by an origin point &#160;and a unit direction vector &#160;such that the line co...">
-<polygon fill="white" stroke="black" points="479,-547 479,-725 613,-725 613,-547 479,-547"/>
-<text text-anchor="start" x="487" y="-713" font-family="Helvetica,sans-Serif" font-size="10.00">Ponca::Line&lt; DataPoint,</text>
-<text text-anchor="middle" x="546" y="-702" font-family="Helvetica,sans-Serif" font-size="10.00"> _WFunctor, T &gt;</text>
-<polyline fill="none" stroke="black" points="479,-695 613,-695 "/>
-<text text-anchor="middle" x="546" y="-683" font-family="Helvetica,sans-Serif" font-size="10.00"> </text>
-<polyline fill="none" stroke="black" points="479,-676 613,-676 "/>
-<text text-anchor="start" x="487" y="-664" font-family="Helvetica,sans-Serif" font-size="10.00">+ Line()</text>
-<text text-anchor="start" x="487" y="-653" font-family="Helvetica,sans-Serif" font-size="10.00">+ line()</text>
-<text text-anchor="start" x="487" y="-642" font-family="Helvetica,sans-Serif" font-size="10.00">+ resetPrimitive()</text>
-<text text-anchor="start" x="487" y="-631" font-family="Helvetica,sans-Serif" font-size="10.00">+ operator==()</text>
-<text text-anchor="start" x="487" y="-620" font-family="Helvetica,sans-Serif" font-size="10.00">+ operator!=()</text>
-<text text-anchor="start" x="487" y="-609" font-family="Helvetica,sans-Serif" font-size="10.00">+ basisCenter()</text>
-<text text-anchor="start" x="487" y="-598" font-family="Helvetica,sans-Serif" font-size="10.00">+ basisCenter()</text>
-<text text-anchor="start" x="487" y="-587" font-family="Helvetica,sans-Serif" font-size="10.00">+ setLine()</text>
-<text text-anchor="start" x="487" y="-576" font-family="Helvetica,sans-Serif" font-size="10.00">+ potential()</text>
-<text text-anchor="start" x="487" y="-565" font-family="Helvetica,sans-Serif" font-size="10.00">+ potential()</text>
-<text text-anchor="start" x="487" y="-554" font-family="Helvetica,sans-Serif" font-size="10.00">+ project()</text>
+<g id="a_node13"><a xlink:href="classPonca_1_1DryFit.html" target="_top" xlink:title="Empty fitting object doing no computation.">
+<polygon fill="white" stroke="black" points="639.5,-552.5 639.5,-719.5 782.5,-719.5 782.5,-552.5 639.5,-552.5"/>
+<text text-anchor="start" x="647.5" y="-707.5" font-family="Helvetica,sans-Serif" font-size="10.00">Ponca::DryFit&lt; DataPoint,</text>
+<text text-anchor="middle" x="711" y="-696.5" font-family="Helvetica,sans-Serif" font-size="10.00"> _WFunctor, T &gt;</text>
+<polyline fill="none" stroke="black" points="639.5,-689.5 782.5,-689.5 "/>
+<text text-anchor="middle" x="711" y="-677.5" font-family="Helvetica,sans-Serif" font-size="10.00"> </text>
+<polyline fill="none" stroke="black" points="639.5,-670.5 782.5,-670.5 "/>
+<text text-anchor="start" x="647.5" y="-658.5" font-family="Helvetica,sans-Serif" font-size="10.00">+ DryFit()</text>
+<text text-anchor="start" x="647.5" y="-647.5" font-family="Helvetica,sans-Serif" font-size="10.00">+ setWeightFunc()</text>
+<text text-anchor="start" x="647.5" y="-636.5" font-family="Helvetica,sans-Serif" font-size="10.00">+ init()</text>
+<text text-anchor="start" x="647.5" y="-625.5" font-family="Helvetica,sans-Serif" font-size="10.00">+ addNeighbor()</text>
+<text text-anchor="start" x="647.5" y="-614.5" font-family="Helvetica,sans-Serif" font-size="10.00">+ finalize()</text>
+<text text-anchor="start" x="647.5" y="-603.5" font-family="Helvetica,sans-Serif" font-size="10.00">+ potential()</text>
+<text text-anchor="start" x="647.5" y="-592.5" font-family="Helvetica,sans-Serif" font-size="10.00">+ potential()</text>
+<text text-anchor="start" x="647.5" y="-581.5" font-family="Helvetica,sans-Serif" font-size="10.00">+ project()</text>
+<text text-anchor="start" x="647.5" y="-570.5" font-family="Helvetica,sans-Serif" font-size="10.00">+ primitiveGradient()</text>
+<text text-anchor="start" x="647.5" y="-559.5" font-family="Helvetica,sans-Serif" font-size="10.00">+ primitiveGradient()</text>
 </a>
 </g>
 </g>
 <!-- Node2&#45;&gt;Node13 -->
 <g id="edge13" class="edge">
 <title>Node2&#45;&gt;Node13</title>
-<path fill="none" stroke="midnightblue" d="M592.38,-769.59C587.36,-755.24 582.01,-739.97 576.81,-725.09"/>
-<polygon fill="none" stroke="midnightblue" points="589.19,-771.08 595.79,-779.37 595.8,-768.77 589.19,-771.08"/>
+<path fill="none" stroke="midnightblue" d="M645.48,-770C653.44,-753.84 661.99,-736.49 670.19,-719.84"/>
+<polygon fill="none" stroke="midnightblue" points="642.15,-768.85 640.87,-779.37 648.43,-771.94 642.15,-768.85"/>
 </g>
 <!-- Node14 -->
 <g id="node14" class="node">
 <title>Node14</title>
-<g id="a_node14"><a xlink:href="classPonca_1_1Plane.html" target="_top" xlink:title="Implicit hyperplane defined by an homogeneous vector .">
-<polygon fill="white" stroke="black" points="707.5,-536 707.5,-736 848.5,-736 848.5,-536 707.5,-536"/>
-<text text-anchor="start" x="715.5" y="-724" font-family="Helvetica,sans-Serif" font-size="10.00">Ponca::Plane&lt; DataPoint,</text>
-<text text-anchor="middle" x="778" y="-713" font-family="Helvetica,sans-Serif" font-size="10.00"> _WFunctor, T &gt;</text>
-<polyline fill="none" stroke="black" points="707.5,-706 848.5,-706 "/>
-<text text-anchor="middle" x="778" y="-694" font-family="Helvetica,sans-Serif" font-size="10.00"> </text>
-<polyline fill="none" stroke="black" points="707.5,-687 848.5,-687 "/>
-<text text-anchor="start" x="715.5" y="-675" font-family="Helvetica,sans-Serif" font-size="10.00">+ Plane()</text>
-<text text-anchor="start" x="715.5" y="-664" font-family="Helvetica,sans-Serif" font-size="10.00">+ compactPlane()</text>
-<text text-anchor="start" x="715.5" y="-653" font-family="Helvetica,sans-Serif" font-size="10.00">+ resetPrimitive()</text>
-<text text-anchor="start" x="715.5" y="-642" font-family="Helvetica,sans-Serif" font-size="10.00">+ operator==()</text>
-<text text-anchor="start" x="715.5" y="-631" font-family="Helvetica,sans-Serif" font-size="10.00">+ operator!=()</text>
-<text text-anchor="start" x="715.5" y="-620" font-family="Helvetica,sans-Serif" font-size="10.00">+ basisCenter()</text>
-<text text-anchor="start" x="715.5" y="-609" font-family="Helvetica,sans-Serif" font-size="10.00">+ basisCenter()</text>
-<text text-anchor="start" x="715.5" y="-598" font-family="Helvetica,sans-Serif" font-size="10.00">+ setPlane()</text>
-<text text-anchor="start" x="715.5" y="-587" font-family="Helvetica,sans-Serif" font-size="10.00">+ potential()</text>
-<text text-anchor="start" x="715.5" y="-576" font-family="Helvetica,sans-Serif" font-size="10.00">+ potential()</text>
-<text text-anchor="start" x="715.5" y="-565" font-family="Helvetica,sans-Serif" font-size="10.00">+ project()</text>
-<text text-anchor="start" x="715.5" y="-554" font-family="Helvetica,sans-Serif" font-size="10.00">+ primitiveGradient()</text>
-<text text-anchor="start" x="715.5" y="-543" font-family="Helvetica,sans-Serif" font-size="10.00">+ primitiveGradient()</text>
+<g id="a_node14"><a xlink:href="classPonca_1_1Line.html" target="_top" xlink:title="A parametrized line is defined by an origin point &#160;and a unit direction vector &#160;such that the line co...">
+<polygon fill="white" stroke="black" points="449,-547 449,-725 583,-725 583,-547 449,-547"/>
+<text text-anchor="start" x="457" y="-713" font-family="Helvetica,sans-Serif" font-size="10.00">Ponca::Line&lt; DataPoint,</text>
+<text text-anchor="middle" x="516" y="-702" font-family="Helvetica,sans-Serif" font-size="10.00"> _WFunctor, T &gt;</text>
+<polyline fill="none" stroke="black" points="449,-695 583,-695 "/>
+<text text-anchor="middle" x="516" y="-683" font-family="Helvetica,sans-Serif" font-size="10.00"> </text>
+<polyline fill="none" stroke="black" points="449,-676 583,-676 "/>
+<text text-anchor="start" x="457" y="-664" font-family="Helvetica,sans-Serif" font-size="10.00">+ Line()</text>
+<text text-anchor="start" x="457" y="-653" font-family="Helvetica,sans-Serif" font-size="10.00">+ line()</text>
+<text text-anchor="start" x="457" y="-642" font-family="Helvetica,sans-Serif" font-size="10.00">+ resetPrimitive()</text>
+<text text-anchor="start" x="457" y="-631" font-family="Helvetica,sans-Serif" font-size="10.00">+ operator==()</text>
+<text text-anchor="start" x="457" y="-620" font-family="Helvetica,sans-Serif" font-size="10.00">+ operator!=()</text>
+<text text-anchor="start" x="457" y="-609" font-family="Helvetica,sans-Serif" font-size="10.00">+ basisCenter()</text>
+<text text-anchor="start" x="457" y="-598" font-family="Helvetica,sans-Serif" font-size="10.00">+ basisCenter()</text>
+<text text-anchor="start" x="457" y="-587" font-family="Helvetica,sans-Serif" font-size="10.00">+ setLine()</text>
+<text text-anchor="start" x="457" y="-576" font-family="Helvetica,sans-Serif" font-size="10.00">+ potential()</text>
+<text text-anchor="start" x="457" y="-565" font-family="Helvetica,sans-Serif" font-size="10.00">+ potential()</text>
+<text text-anchor="start" x="457" y="-554" font-family="Helvetica,sans-Serif" font-size="10.00">+ project()</text>
 </a>
 </g>
 </g>
 <!-- Node2&#45;&gt;Node14 -->
-<g id="edge15" class="edge">
+<g id="edge14" class="edge">
 <title>Node2&#45;&gt;Node14</title>
-<path fill="none" stroke="midnightblue" d="M684.13,-771.55C687.18,-768.03 690.15,-764.5 693,-761 699.43,-753.11 705.87,-744.74 712.17,-736.23"/>
-<polygon fill="none" stroke="midnightblue" points="681.34,-769.42 677.35,-779.23 686.59,-774.05 681.34,-769.42"/>
+<path fill="none" stroke="midnightblue" d="M578.25,-770.01C571.47,-755.54 564.26,-740.11 557.23,-725.09"/>
+<polygon fill="none" stroke="midnightblue" points="575.22,-771.79 582.63,-779.37 581.56,-768.83 575.22,-771.79"/>
+</g>
+<!-- Node15 -->
+<g id="node15" class="node">
+<title>Node15</title>
+<g id="a_node15"><a xlink:href="classPonca_1_1Plane.html" target="_top" xlink:title="Implicit hyperplane defined by an homogeneous vector .">
+<polygon fill="white" stroke="black" points="839.5,-536 839.5,-736 980.5,-736 980.5,-536 839.5,-536"/>
+<text text-anchor="start" x="847.5" y="-724" font-family="Helvetica,sans-Serif" font-size="10.00">Ponca::Plane&lt; DataPoint,</text>
+<text text-anchor="middle" x="910" y="-713" font-family="Helvetica,sans-Serif" font-size="10.00"> _WFunctor, T &gt;</text>
+<polyline fill="none" stroke="black" points="839.5,-706 980.5,-706 "/>
+<text text-anchor="middle" x="910" y="-694" font-family="Helvetica,sans-Serif" font-size="10.00"> </text>
+<polyline fill="none" stroke="black" points="839.5,-687 980.5,-687 "/>
+<text text-anchor="start" x="847.5" y="-675" font-family="Helvetica,sans-Serif" font-size="10.00">+ Plane()</text>
+<text text-anchor="start" x="847.5" y="-664" font-family="Helvetica,sans-Serif" font-size="10.00">+ compactPlane()</text>
+<text text-anchor="start" x="847.5" y="-653" font-family="Helvetica,sans-Serif" font-size="10.00">+ resetPrimitive()</text>
+<text text-anchor="start" x="847.5" y="-642" font-family="Helvetica,sans-Serif" font-size="10.00">+ operator==()</text>
+<text text-anchor="start" x="847.5" y="-631" font-family="Helvetica,sans-Serif" font-size="10.00">+ operator!=()</text>
+<text text-anchor="start" x="847.5" y="-620" font-family="Helvetica,sans-Serif" font-size="10.00">+ basisCenter()</text>
+<text text-anchor="start" x="847.5" y="-609" font-family="Helvetica,sans-Serif" font-size="10.00">+ basisCenter()</text>
+<text text-anchor="start" x="847.5" y="-598" font-family="Helvetica,sans-Serif" font-size="10.00">+ setPlane()</text>
+<text text-anchor="start" x="847.5" y="-587" font-family="Helvetica,sans-Serif" font-size="10.00">+ potential()</text>
+<text text-anchor="start" x="847.5" y="-576" font-family="Helvetica,sans-Serif" font-size="10.00">+ potential()</text>
+<text text-anchor="start" x="847.5" y="-565" font-family="Helvetica,sans-Serif" font-size="10.00">+ project()</text>
+<text text-anchor="start" x="847.5" y="-554" font-family="Helvetica,sans-Serif" font-size="10.00">+ primitiveGradient()</text>
+<text text-anchor="start" x="847.5" y="-543" font-family="Helvetica,sans-Serif" font-size="10.00">+ primitiveGradient()</text>
+</a>
+</g>
+</g>
+<!-- Node2&#45;&gt;Node15 -->
+<g id="edge16" class="edge">
+<title>Node2&#45;&gt;Node15</title>
+<path fill="none" stroke="midnightblue" d="M692.99,-822.47C735.54,-810.39 786.52,-790.97 825,-761 834.27,-753.78 842.9,-745.27 850.84,-736.14"/>
+<polygon fill="none" stroke="midnightblue" points="691.92,-819.14 683.21,-825.16 693.78,-825.88 691.92,-819.14"/>
 </g>
 <!-- Node4 -->
 <g id="node4" class="node">
@@ -318,8 +347,8 @@ var sectionId = 'dynsection-0';
 <!-- Node3&#45;&gt;Node4 -->
 <g id="edge3" class="edge">
 <title>Node3&#45;&gt;Node4</title>
-<path fill="none" stroke="midnightblue" d="M198.68,-277.34C187.33,-262.85 175.82,-248.07 165,-234 159.4,-226.72 153.62,-219.15 147.84,-211.54"/>
-<polygon fill="none" stroke="midnightblue" points="196.04,-279.65 204.97,-285.35 201.55,-275.33 196.04,-279.65"/>
+<path fill="none" stroke="midnightblue" d="M176.97,-263.08C165.32,-246 153.4,-228.53 142.06,-211.91"/>
+<polygon fill="none" stroke="midnightblue" points="174.14,-265.14 182.67,-271.43 179.92,-261.2 174.14,-265.14"/>
 </g>
 <!-- Node5 -->
 <g id="node5" class="node">
@@ -344,8 +373,8 @@ var sectionId = 'dynsection-0';
 <!-- Node3&#45;&gt;Node5 -->
 <g id="edge4" class="edge">
 <title>Node3&#45;&gt;Node5</title>
-<path fill="none" stroke="midnightblue" d="M266.78,-261.36C264.43,-234.94 262,-207.71 259.9,-184.18"/>
-<polygon fill="none" stroke="midnightblue" points="263.3,-261.78 267.68,-271.43 270.28,-261.16 263.3,-261.78"/>
+<path fill="none" stroke="midnightblue" d="M254,-261.36C254,-234.94 254,-207.71 254,-184.18"/>
+<polygon fill="none" stroke="midnightblue" points="250.5,-261.43 254,-271.43 257.5,-261.43 250.5,-261.43"/>
 </g>
 <!-- Node6 -->
 <g id="node6" class="node">
@@ -372,121 +401,121 @@ var sectionId = 'dynsection-0';
 <!-- Node3&#45;&gt;Node6 -->
 <g id="edge5" class="edge">
 <title>Node3&#45;&gt;Node6</title>
-<path fill="none" stroke="midnightblue" d="M344.16,-262.75C357.66,-239.99 371.55,-216.57 384.12,-195.37"/>
-<polygon fill="none" stroke="midnightblue" points="341.1,-261.05 339.01,-271.43 347.12,-264.62 341.1,-261.05"/>
+<path fill="none" stroke="midnightblue" d="M331.05,-263.05C346.64,-240.2 362.7,-216.66 377.22,-195.37"/>
+<polygon fill="none" stroke="midnightblue" points="328.08,-261.2 325.33,-271.43 333.86,-265.14 328.08,-261.2"/>
 </g>
 <!-- Node8 -->
 <g id="node8" class="node">
 <title>Node8</title>
 <g id="a_node8"><a xlink:href="classPonca_1_1CovarianceLineFit.html" target="_top" xlink:title="Line fitting procedure that minimize the orthogonal distance between the samples and the fitted primi...">
-<polygon fill="white" stroke="black" points="526,-28 526,-206 682,-206 682,-28 526,-28"/>
-<text text-anchor="start" x="534" y="-194" font-family="Helvetica,sans-Serif" font-size="10.00">Ponca::CovarianceLineFit</text>
-<text text-anchor="middle" x="604" y="-183" font-family="Helvetica,sans-Serif" font-size="10.00">&lt; DataPoint, _WFunctor, T &gt;</text>
-<polyline fill="none" stroke="black" points="526,-176 682,-176 "/>
-<text text-anchor="start" x="534" y="-164" font-family="Helvetica,sans-Serif" font-size="10.00"># m_sum</text>
-<text text-anchor="start" x="534" y="-153" font-family="Helvetica,sans-Serif" font-size="10.00"># m_cog</text>
-<text text-anchor="start" x="534" y="-142" font-family="Helvetica,sans-Serif" font-size="10.00"># m_cov</text>
-<text text-anchor="start" x="534" y="-131" font-family="Helvetica,sans-Serif" font-size="10.00"># m_solver</text>
-<text text-anchor="start" x="534" y="-120" font-family="Helvetica,sans-Serif" font-size="10.00"># m_w</text>
-<polyline fill="none" stroke="black" points="526,-113 682,-113 "/>
-<text text-anchor="start" x="534" y="-101" font-family="Helvetica,sans-Serif" font-size="10.00">+ CovarianceLineFit()</text>
-<text text-anchor="start" x="534" y="-90" font-family="Helvetica,sans-Serif" font-size="10.00">+ leastSquareLine()</text>
-<text text-anchor="start" x="534" y="-79" font-family="Helvetica,sans-Serif" font-size="10.00">+ setWeightFunc()</text>
-<text text-anchor="start" x="534" y="-68" font-family="Helvetica,sans-Serif" font-size="10.00">+ init()</text>
-<text text-anchor="start" x="534" y="-57" font-family="Helvetica,sans-Serif" font-size="10.00">+ addNeighbor()</text>
-<text text-anchor="start" x="534" y="-46" font-family="Helvetica,sans-Serif" font-size="10.00">+ finalize()</text>
-<text text-anchor="start" x="534" y="-35" font-family="Helvetica,sans-Serif" font-size="10.00">+ solver()</text>
+<polygon fill="white" stroke="black" points="529,-28 529,-206 685,-206 685,-28 529,-28"/>
+<text text-anchor="start" x="537" y="-194" font-family="Helvetica,sans-Serif" font-size="10.00">Ponca::CovarianceLineFit</text>
+<text text-anchor="middle" x="607" y="-183" font-family="Helvetica,sans-Serif" font-size="10.00">&lt; DataPoint, _WFunctor, T &gt;</text>
+<polyline fill="none" stroke="black" points="529,-176 685,-176 "/>
+<text text-anchor="start" x="537" y="-164" font-family="Helvetica,sans-Serif" font-size="10.00"># m_sum</text>
+<text text-anchor="start" x="537" y="-153" font-family="Helvetica,sans-Serif" font-size="10.00"># m_cog</text>
+<text text-anchor="start" x="537" y="-142" font-family="Helvetica,sans-Serif" font-size="10.00"># m_cov</text>
+<text text-anchor="start" x="537" y="-131" font-family="Helvetica,sans-Serif" font-size="10.00"># m_solver</text>
+<text text-anchor="start" x="537" y="-120" font-family="Helvetica,sans-Serif" font-size="10.00"># m_w</text>
+<polyline fill="none" stroke="black" points="529,-113 685,-113 "/>
+<text text-anchor="start" x="537" y="-101" font-family="Helvetica,sans-Serif" font-size="10.00">+ CovarianceLineFit()</text>
+<text text-anchor="start" x="537" y="-90" font-family="Helvetica,sans-Serif" font-size="10.00">+ leastSquareLine()</text>
+<text text-anchor="start" x="537" y="-79" font-family="Helvetica,sans-Serif" font-size="10.00">+ setWeightFunc()</text>
+<text text-anchor="start" x="537" y="-68" font-family="Helvetica,sans-Serif" font-size="10.00">+ init()</text>
+<text text-anchor="start" x="537" y="-57" font-family="Helvetica,sans-Serif" font-size="10.00">+ addNeighbor()</text>
+<text text-anchor="start" x="537" y="-46" font-family="Helvetica,sans-Serif" font-size="10.00">+ finalize()</text>
+<text text-anchor="start" x="537" y="-35" font-family="Helvetica,sans-Serif" font-size="10.00">+ solver()</text>
 </a>
 </g>
 </g>
 <!-- Node7&#45;&gt;Node8 -->
 <g id="edge7" class="edge">
 <title>Node7&#45;&gt;Node8</title>
-<path fill="none" stroke="midnightblue" d="M604,-277.91C604,-254.31 604,-229.23 604,-206.11"/>
-<polygon fill="none" stroke="midnightblue" points="600.5,-277.93 604,-287.93 607.5,-277.93 600.5,-277.93"/>
+<path fill="none" stroke="midnightblue" d="M607,-277.91C607,-254.31 607,-229.23 607,-206.11"/>
+<polygon fill="none" stroke="midnightblue" points="603.5,-277.93 607,-287.93 610.5,-277.93 603.5,-277.93"/>
 </g>
 <!-- Node10 -->
 <g id="node10" class="node">
 <title>Node10</title>
 <g id="a_node10"><a xlink:href="classPonca_1_1CovariancePlaneFit.html" target="_top" xlink:title="Plane fitting procedure using only points position.">
-<polygon fill="white" stroke="black" points="700,-0.5 700,-233.5 856,-233.5 856,-0.5 700,-0.5"/>
-<text text-anchor="start" x="708" y="-221.5" font-family="Helvetica,sans-Serif" font-size="10.00">Ponca::CovariancePlaneFit</text>
-<text text-anchor="middle" x="778" y="-210.5" font-family="Helvetica,sans-Serif" font-size="10.00">&lt; DataPoint, _WFunctor, T &gt;</text>
-<polyline fill="none" stroke="black" points="700,-203.5 856,-203.5 "/>
-<text text-anchor="start" x="708" y="-191.5" font-family="Helvetica,sans-Serif" font-size="10.00"># m_sumW</text>
-<text text-anchor="start" x="708" y="-180.5" font-family="Helvetica,sans-Serif" font-size="10.00"># m_cog</text>
-<text text-anchor="start" x="708" y="-169.5" font-family="Helvetica,sans-Serif" font-size="10.00"># m_cov</text>
-<text text-anchor="start" x="708" y="-158.5" font-family="Helvetica,sans-Serif" font-size="10.00"># m_solver</text>
-<text text-anchor="start" x="708" y="-147.5" font-family="Helvetica,sans-Serif" font-size="10.00"># m_w</text>
-<polyline fill="none" stroke="black" points="700,-140.5 856,-140.5 "/>
-<text text-anchor="start" x="708" y="-128.5" font-family="Helvetica,sans-Serif" font-size="10.00">+ CovariancePlaneFit()</text>
-<text text-anchor="start" x="708" y="-117.5" font-family="Helvetica,sans-Serif" font-size="10.00">+ covariancePlaneFit()</text>
-<text text-anchor="start" x="708" y="-106.5" font-family="Helvetica,sans-Serif" font-size="10.00">+ setWeightFunc()</text>
-<text text-anchor="start" x="708" y="-95.5" font-family="Helvetica,sans-Serif" font-size="10.00">+ init()</text>
-<text text-anchor="start" x="708" y="-84.5" font-family="Helvetica,sans-Serif" font-size="10.00">+ addNeighbor()</text>
-<text text-anchor="start" x="708" y="-73.5" font-family="Helvetica,sans-Serif" font-size="10.00">+ finalize()</text>
-<text text-anchor="start" x="708" y="-62.5" font-family="Helvetica,sans-Serif" font-size="10.00">+ solver()</text>
-<text text-anchor="start" x="708" y="-51.5" font-family="Helvetica,sans-Serif" font-size="10.00">+ surfaceVariation()</text>
-<text text-anchor="start" x="708" y="-40.5" font-family="Helvetica,sans-Serif" font-size="10.00">+ worldToTangentPlane()</text>
-<text text-anchor="start" x="708" y="-29.5" font-family="Helvetica,sans-Serif" font-size="10.00">+ tangentPlaneToWorld()</text>
-<text text-anchor="start" x="708" y="-18.5" font-family="Helvetica,sans-Serif" font-size="10.00">+ worldToTangentPlane()</text>
-<text text-anchor="start" x="708" y="-7.5" font-family="Helvetica,sans-Serif" font-size="10.00">+ tangentPlaneToWorld()</text>
+<polygon fill="white" stroke="black" points="751,-0.5 751,-233.5 907,-233.5 907,-0.5 751,-0.5"/>
+<text text-anchor="start" x="759" y="-221.5" font-family="Helvetica,sans-Serif" font-size="10.00">Ponca::CovariancePlaneFit</text>
+<text text-anchor="middle" x="829" y="-210.5" font-family="Helvetica,sans-Serif" font-size="10.00">&lt; DataPoint, _WFunctor, T &gt;</text>
+<polyline fill="none" stroke="black" points="751,-203.5 907,-203.5 "/>
+<text text-anchor="start" x="759" y="-191.5" font-family="Helvetica,sans-Serif" font-size="10.00"># m_sumW</text>
+<text text-anchor="start" x="759" y="-180.5" font-family="Helvetica,sans-Serif" font-size="10.00"># m_cog</text>
+<text text-anchor="start" x="759" y="-169.5" font-family="Helvetica,sans-Serif" font-size="10.00"># m_cov</text>
+<text text-anchor="start" x="759" y="-158.5" font-family="Helvetica,sans-Serif" font-size="10.00"># m_solver</text>
+<text text-anchor="start" x="759" y="-147.5" font-family="Helvetica,sans-Serif" font-size="10.00"># m_w</text>
+<polyline fill="none" stroke="black" points="751,-140.5 907,-140.5 "/>
+<text text-anchor="start" x="759" y="-128.5" font-family="Helvetica,sans-Serif" font-size="10.00">+ CovariancePlaneFit()</text>
+<text text-anchor="start" x="759" y="-117.5" font-family="Helvetica,sans-Serif" font-size="10.00">+ covariancePlaneFit()</text>
+<text text-anchor="start" x="759" y="-106.5" font-family="Helvetica,sans-Serif" font-size="10.00">+ setWeightFunc()</text>
+<text text-anchor="start" x="759" y="-95.5" font-family="Helvetica,sans-Serif" font-size="10.00">+ init()</text>
+<text text-anchor="start" x="759" y="-84.5" font-family="Helvetica,sans-Serif" font-size="10.00">+ addNeighbor()</text>
+<text text-anchor="start" x="759" y="-73.5" font-family="Helvetica,sans-Serif" font-size="10.00">+ finalize()</text>
+<text text-anchor="start" x="759" y="-62.5" font-family="Helvetica,sans-Serif" font-size="10.00">+ solver()</text>
+<text text-anchor="start" x="759" y="-51.5" font-family="Helvetica,sans-Serif" font-size="10.00">+ surfaceVariation()</text>
+<text text-anchor="start" x="759" y="-40.5" font-family="Helvetica,sans-Serif" font-size="10.00">+ worldToTangentPlane()</text>
+<text text-anchor="start" x="759" y="-29.5" font-family="Helvetica,sans-Serif" font-size="10.00">+ tangentPlaneToWorld()</text>
+<text text-anchor="start" x="759" y="-18.5" font-family="Helvetica,sans-Serif" font-size="10.00">+ worldToTangentPlane()</text>
+<text text-anchor="start" x="759" y="-7.5" font-family="Helvetica,sans-Serif" font-size="10.00">+ tangentPlaneToWorld()</text>
 </a>
 </g>
 </g>
 <!-- Node9&#45;&gt;Node10 -->
 <g id="edge9" class="edge">
 <title>Node9&#45;&gt;Node10</title>
-<path fill="none" stroke="midnightblue" d="M778,-266.92C778,-255.89 778,-244.66 778,-233.56"/>
-<polygon fill="none" stroke="midnightblue" points="774.5,-266.99 778,-276.99 781.5,-266.99 774.5,-266.99"/>
+<path fill="none" stroke="midnightblue" d="M842.85,-266.92C841.83,-255.89 840.78,-244.66 839.75,-233.56"/>
+<polygon fill="none" stroke="midnightblue" points="839.38,-267.36 843.79,-276.99 846.35,-266.71 839.38,-267.36"/>
 </g>
 <!-- Node11 -->
 <g id="node11" class="node">
 <title>Node11</title>
 <g id="a_node11"><a xlink:href="classPonca_1_1MeanPlaneFit.html" target="_top" xlink:title="Plane fitting procedure computing the mean position and orientation from oriented points.">
-<polygon fill="white" stroke="black" points="874,-44.5 874,-189.5 1030,-189.5 1030,-44.5 874,-44.5"/>
-<text text-anchor="start" x="882" y="-177.5" font-family="Helvetica,sans-Serif" font-size="10.00">Ponca::MeanPlaneFit</text>
-<text text-anchor="middle" x="952" y="-166.5" font-family="Helvetica,sans-Serif" font-size="10.00">&lt; DataPoint, _WFunctor, T &gt;</text>
-<polyline fill="none" stroke="black" points="874,-159.5 1030,-159.5 "/>
-<text text-anchor="start" x="882" y="-147.5" font-family="Helvetica,sans-Serif" font-size="10.00"># m_sumW</text>
-<text text-anchor="start" x="882" y="-136.5" font-family="Helvetica,sans-Serif" font-size="10.00"># m_sumN</text>
-<text text-anchor="start" x="882" y="-125.5" font-family="Helvetica,sans-Serif" font-size="10.00"># m_sumP</text>
-<text text-anchor="start" x="882" y="-114.5" font-family="Helvetica,sans-Serif" font-size="10.00"># m_w</text>
-<polyline fill="none" stroke="black" points="874,-107.5 1030,-107.5 "/>
-<text text-anchor="start" x="882" y="-95.5" font-family="Helvetica,sans-Serif" font-size="10.00">+ MeanPlaneFit()</text>
-<text text-anchor="start" x="882" y="-84.5" font-family="Helvetica,sans-Serif" font-size="10.00">+ setWeightFunc()</text>
-<text text-anchor="start" x="882" y="-73.5" font-family="Helvetica,sans-Serif" font-size="10.00">+ init()</text>
-<text text-anchor="start" x="882" y="-62.5" font-family="Helvetica,sans-Serif" font-size="10.00">+ addNeighbor()</text>
-<text text-anchor="start" x="882" y="-51.5" font-family="Helvetica,sans-Serif" font-size="10.00">+ finalize()</text>
+<polygon fill="white" stroke="black" points="925,-44.5 925,-189.5 1081,-189.5 1081,-44.5 925,-44.5"/>
+<text text-anchor="start" x="933" y="-177.5" font-family="Helvetica,sans-Serif" font-size="10.00">Ponca::MeanPlaneFit</text>
+<text text-anchor="middle" x="1003" y="-166.5" font-family="Helvetica,sans-Serif" font-size="10.00">&lt; DataPoint, _WFunctor, T &gt;</text>
+<polyline fill="none" stroke="black" points="925,-159.5 1081,-159.5 "/>
+<text text-anchor="start" x="933" y="-147.5" font-family="Helvetica,sans-Serif" font-size="10.00"># m_sumW</text>
+<text text-anchor="start" x="933" y="-136.5" font-family="Helvetica,sans-Serif" font-size="10.00"># m_sumN</text>
+<text text-anchor="start" x="933" y="-125.5" font-family="Helvetica,sans-Serif" font-size="10.00"># m_sumP</text>
+<text text-anchor="start" x="933" y="-114.5" font-family="Helvetica,sans-Serif" font-size="10.00"># m_w</text>
+<polyline fill="none" stroke="black" points="925,-107.5 1081,-107.5 "/>
+<text text-anchor="start" x="933" y="-95.5" font-family="Helvetica,sans-Serif" font-size="10.00">+ MeanPlaneFit()</text>
+<text text-anchor="start" x="933" y="-84.5" font-family="Helvetica,sans-Serif" font-size="10.00">+ setWeightFunc()</text>
+<text text-anchor="start" x="933" y="-73.5" font-family="Helvetica,sans-Serif" font-size="10.00">+ init()</text>
+<text text-anchor="start" x="933" y="-62.5" font-family="Helvetica,sans-Serif" font-size="10.00">+ addNeighbor()</text>
+<text text-anchor="start" x="933" y="-51.5" font-family="Helvetica,sans-Serif" font-size="10.00">+ finalize()</text>
 </a>
 </g>
 </g>
 <!-- Node9&#45;&gt;Node11 -->
 <g id="edge10" class="edge">
 <title>Node9&#45;&gt;Node11</title>
-<path fill="none" stroke="midnightblue" d="M850.57,-268.4C868.52,-241.79 887.31,-213.92 903.77,-189.51"/>
-<polygon fill="none" stroke="midnightblue" points="847.47,-266.74 844.78,-276.99 853.27,-270.65 847.47,-266.74"/>
+<path fill="none" stroke="midnightblue" d="M915.76,-268.05C931.17,-241.54 947.29,-213.82 961.42,-189.51"/>
+<polygon fill="none" stroke="midnightblue" points="912.57,-266.58 910.56,-276.99 918.62,-270.1 912.57,-266.58"/>
 </g>
 <!-- Node12&#45;&gt;Node3 -->
 <g id="edge12" class="edge">
 <title>Node12&#45;&gt;Node3</title>
-<path fill="none" stroke="orange" d="M336.07,-521.22C330.81,-508.46 325.46,-495.5 320.25,-482.86"/>
-<polygon fill="orange" stroke="orange" points="332.84,-522.56 339.89,-530.47 339.31,-519.89 332.84,-522.56"/>
-<text text-anchor="middle" x="395.5" y="-504" font-family="Helvetica,sans-Serif" font-size="10.00"> &lt; DataPoint, _WFunctor &gt;</text>
+<path fill="none" stroke="orange" d="M309.03,-520.85C304.16,-508.2 299.21,-495.38 294.39,-482.86"/>
+<polygon fill="orange" stroke="orange" points="305.87,-522.39 312.73,-530.47 312.4,-519.88 305.87,-522.39"/>
+<text text-anchor="middle" x="369.5" y="-504" font-family="Helvetica,sans-Serif" font-size="10.00"> &lt; DataPoint, _WFunctor &gt;</text>
 </g>
-<!-- Node13&#45;&gt;Node7 -->
-<g id="edge14" class="edge">
-<title>Node13&#45;&gt;Node7</title>
-<path fill="none" stroke="orange" d="M492.44,-536.62C490.88,-524.62 491.66,-512.53 496,-501 504.82,-477.6 520.33,-455.75 536.9,-437.15"/>
-<polygon fill="orange" stroke="orange" points="489.03,-537.47 494.27,-546.67 495.92,-536.21 489.03,-537.47"/>
-<text text-anchor="middle" x="561.5" y="-504" font-family="Helvetica,sans-Serif" font-size="10.00"> &lt; DataPoint, _WFunctor &gt;</text>
+<!-- Node14&#45;&gt;Node7 -->
+<g id="edge15" class="edge">
+<title>Node14&#45;&gt;Node7</title>
+<path fill="none" stroke="orange" d="M461.03,-536.57C459.62,-524.49 460.82,-512.39 466,-501 481.46,-466.99 511.49,-438.72 539.87,-417.89"/>
+<polygon fill="orange" stroke="orange" points="457.63,-537.46 462.79,-546.71 464.52,-536.25 457.63,-537.46"/>
+<text text-anchor="middle" x="531.5" y="-504" font-family="Helvetica,sans-Serif" font-size="10.00"> &lt; DataPoint, _WFunctor &gt;</text>
 </g>
-<!-- Node14&#45;&gt;Node9 -->
-<g id="edge16" class="edge">
-<title>Node14&#45;&gt;Node9</title>
-<path fill="none" stroke="orange" d="M778,-525.2C778,-509.22 778,-492.85 778,-477.1"/>
-<polygon fill="orange" stroke="orange" points="774.5,-525.64 778,-535.64 781.5,-525.64 774.5,-525.64"/>
-<text text-anchor="middle" x="843.5" y="-504" font-family="Helvetica,sans-Serif" font-size="10.00"> &lt; DataPoint, _WFunctor &gt;</text>
+<!-- Node15&#45;&gt;Node9 -->
+<g id="edge17" class="edge">
+<title>Node15&#45;&gt;Node9</title>
+<path fill="none" stroke="orange" d="M885.75,-525.66C882.17,-509.54 878.51,-493 874.98,-477.1"/>
+<polygon fill="orange" stroke="orange" points="882.38,-526.63 887.96,-535.64 889.21,-525.12 882.38,-526.63"/>
+<text text-anchor="middle" x="946.5" y="-504" font-family="Helvetica,sans-Serif" font-size="10.00"> &lt; DataPoint, _WFunctor &gt;</text>
 </g>
 </g>
 </svg>
