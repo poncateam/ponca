@@ -57,6 +57,7 @@ namespace internal
          *
          * Add neighbors stored in a container using STL-like iterators, and
          * call finalize at the end.
+         * The fit is evaluated multiple time if needed (see NEED_OTHER_PASS).
          */
         template <typename IteratorBegin, typename IteratorEnd>
         PONCA_MULTIARCH inline
@@ -65,6 +66,30 @@ namespace internal
             do {
                 for (auto it = begin; it != end; ++it){
                     this->addNeighbor(*it);
+                }
+                res = this->finalize();
+            } while ( res == NEED_OTHER_PASS );
+            return res;
+        }
+
+        /*!
+         * \brief Convenience function for STL-like iterators
+         *
+         * Add neighbors stored in a PointContainer and sampled using
+         * indices stored in ids.
+         *
+         * \tparam IndexRange STL-Like range storing indices of the neighbors
+         * \tparam PointContainer STL-like container storing the points
+         *
+         * \see #compute(const IteratorBegin& begin, const IteratorEnd& end)
+         */
+        template <typename IndexRange, typename PointContainer>
+        PONCA_MULTIARCH inline
+        FIT_RESULT computeWithIds(IndexRange ids, const PointContainer& points){
+            FIT_RESULT res = UNDEFINED;
+            do {
+                for (const auto& i : ids){
+                    this->addNeighbor(points[i]);
                 }
                 res = this->finalize();
             } while ( res == NEED_OTHER_PASS );
