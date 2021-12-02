@@ -4,9 +4,15 @@ Ponca changelog
 --------------------------------------------------------------------------------
 Current head (v.0.2.1 RC)
 - API
-    - [spatialpartitioning] Remove duplicated code and clean API (#32)
+    - [spatialpartitioning] Remove duplicated code and clean API (#32,#51)
+    - [spatialpartitioning] Fix a bug in range queries (#46)
     - [core][fitting] Add Line primitive and LeastSquaresLineFitting (#39)
     - [core][fitting] Rename several classes for better name consistency (#42)
+    - [core][fitting] Add DryFit: a dummy fit object useful for debugging or monitoring (#52)
+
+- Tests
+    - [spatialpartitioning] Fix wrong test macro in kdtree tests (#46)
+    - [core][fitting] Fix bug in basket test (#51)
 
 - Doc
     - Rewrite documentation of the fitting package user manual and its classes. (#42)
