@@ -55,9 +55,14 @@ endif()
 ## Dependencies
 ################################################################################
 
-find_package(Eigen3 QUIET)
+find_package(Eigen3 3.4 QUIET)
 if( NOT Eigen3_FOUND )
-    message(WARNING "Cannot find Eigen, use submodule (disable transitive linking)")
+    message(STATUS "Cannot find Eigen, use submodule (disable transitive linking)")
+
+    if( NOT EXISTS ${EIGEN_SUBMODULE_ROOT_PATH}/signature_of_eigen3_matrix_library )
+        execute_process(COMMAND git submodule update --init -- ${EIGEN_SUBMODULE_ROOT_PATH}
+                WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR})
+    endif()
 
     get_directory_property(hasParent PARENT_DIRECTORY)
     if(hasParent)
@@ -65,11 +70,6 @@ if( NOT Eigen3_FOUND )
         message(STATUS "Make EIGEN3_INCLUDE_DIRS available to parent project.")
     else()
         set(EIGEN3_INCLUDE_DIRS "${CMAKE_CURRENT_SOURCE_DIR}/external/eigen")
-    endif()
-
-    if( NOT EXISTS ${EIGEN_SUBMODULE_ROOT_PATH}/signature_of_eigen3_matrix_library )
-        execute_process(COMMAND git submodule update --init -- ${EIGEN_SUBMODULE_ROOT_PATH}
-                WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR})
     endif()
     include_directories(${EIGEN3_INCLUDE_DIRS})
 endif()
