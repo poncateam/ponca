@@ -57,7 +57,7 @@ void testFunction()
         // use compute function
         fit1.setWeightFunc(WeightFunc(analysisScale));
         fit1.init(vectorPoints[i].pos());
-        fit1.compute(vectorPoints.cbegin(), vectorPoints.cend());
+        fit1.compute(vectorPoints);
 
         // use addNeighbor
         fit2.setWeightFunc(WeightFunc(analysisScale));

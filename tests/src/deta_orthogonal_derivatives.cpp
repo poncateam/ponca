@@ -94,7 +94,7 @@ void test_orthoEta()
     {
         fit.setWeightFunc(WeightFunc(tmax));
         fit.init(vecs[k].pos());
-        fit.compute(vecs.cbegin(), vecs.cend());
+        fit.compute(vecs);
 
         if(fit.isStable())
         {

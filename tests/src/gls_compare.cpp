@@ -66,9 +66,9 @@ void testFunction(bool _bUnoriented = false, bool _bAddPositionNoise = false, bo
         fit2.init(sphere1[i+1].pos());
         fit3.init(sphere2[i].pos());
 
-        fit1.compute(sphere1.cbegin(), sphere1.cend());
-        fit2.compute(sphere1.cbegin(), sphere1.cend());
-        fit3.compute(sphere2.cbegin(), sphere2.cend());
+        fit1.compute(sphere1);
+        fit2.compute(sphere1);
+        fit3.compute(sphere2);
 
         if(fit1.isStable() && fit2.isStable() && fit3.isStable())
         {

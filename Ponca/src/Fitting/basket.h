@@ -71,7 +71,7 @@ namespace internal
             return res;
         }
 
-#ifndef PONCA_CPU_ARCH
+#ifdef PONCA_CPU_ARCH
         /*!
          * \brief Convenience function for STL-like containers
          *

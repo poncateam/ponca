@@ -141,7 +141,7 @@ void testFunction(bool isSigned = true)
         else
           vFittingPoint(k-1) += h;
         f.init(vFittingPoint.template cast<RefScalar>());
-        f.compute(refVectorPoints.cbegin(), refVectorPoints.cend());
+        f.compute(refVectorPoints);
 
         RefScalar flip_f   = (isSigned || (f.primitiveGradient().dot(theoricNormal.template cast<RefScalar>()) > 0 )) ? RefScalar(1) : RefScalar(-1);
 
