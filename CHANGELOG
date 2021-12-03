@@ -6,17 +6,25 @@ Current head (v.0.2.1 RC)
 - API
     - [spatialpartitioning] Remove duplicated code and clean API (#32,#51)
     - [spatialpartitioning] Fix a bug in range queries (#46)
-    - [core][fitting] Add Line primitive and LeastSquaresLineFitting (#39)
-    - [core][fitting] Rename several classes for better name consistency (#42)
-    - [core][fitting] Add DryFit: a dummy fit object useful for debugging or monitoring (#52)
+    - [fitting] Add Line primitive and LeastSquaresLineFitting (#39)
+    - [fitting] Rename several classes for better name consistency (#42)
+    - [fitting] Add DryFit: a dummy fit object useful for debugging or monitoring (#52, #53)
+    - [fitting] Improve convenience functions for basket: add compute(Range) and
+      computeWithIds, which can be directly interfaced with kdtree queries (#53)
+    - [fitting] Fix too sensitive AlgebraicSphere comparison (#53)
 
 - Tests
     - [spatialpartitioning] Fix wrong test macro in kdtree tests (#46)
-    - [core][fitting] Fix bug in basket test (#51)
+    - [fitting] Fix bug in basket test (#51)
+    - [fitting] Disable test on windows when using long doubles (#53)
+
+- Dependencies
+    - [eigen] Update default version to 3.4 (#53)
 
 - Doc
     - Rewrite documentation of the fitting package user manual and its classes. (#42)
     - Fix typo in user manual (#34)
+    - Fix broken speed/quality comparisons for curvature estiators (#53)
     - Fix Mathjax configuration (#41)
     - Update author list (#42)
 
