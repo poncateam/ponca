@@ -118,8 +118,16 @@ namespace Ponca
   Once all neighbors have been incorporated, the fit is performed and results stored in the specialized Basket object.
   STL-like iterators can be used directly for the fit by calling
   \code
-  fit.compute(vecs.begin(), vecs.end());
+  fit.compute(vecs);
   \endcode
+
+  Spatial structures can be used to accelerate spatial queries. Consider for instance using the KdTree class with range queries:
+  \code
+  fit.init(p);                      // Set the evaluation position
+  fit.setWeightFunc(WeightFunc(t)); // Set a weighting function instance
+  fit3.computeWithIds( tree.range_neighbors(p, t), vecs );
+  \endcode
+  Note: Currently, users need to ensure consistency between the query and the fit location/scale. This is expected to be fixed in the upcoming releases.
 
   Internally, the container is traversed and the method `finalize` is called at the end:
   \code
@@ -255,12 +263,12 @@ namespace Ponca
   Ponca offers several ways to compute curvatures, some of which are reviewed and compared by Lejemble et al. in \cite Lejemble:2021:stable and listed in the table below:
   Estimator Name                                                 |   Estimated quantities   | Usage                                                                                       |  Speed | Robustness  |
   -------------------------------------------------------------- | ------------------------ | ------------------------------------------------------------------------------------------- | ------ | ----------- |
-  Distance to PCA plane \cite Digne:2011:scalespacemeshing       | Mean curvature           | `Basket<P,W,CovariancePlaneFit> // method potential()`                                      |  +++   | - - -       |
-  Surface Variation \cite Pauly:2002:PSSimplification            | Mean curvature           | `Basket<P,W,CovariancePlaneFit> // method surfaceVariation()`                               |  +++   | - - -       |
-  Growing Least Squares \cite Mellado:2012:GLS                   | Mean curvature           | `Basket<P,W,OrientedSphereFit,GLSParam> // method kappa()`                                  |  +++   | - - -       |
-  Point Set Surfaces (PSS) \cite Alexa:2001:Pss                  | Curvature Tensor         | `Basket<P,W,CovariancePlaneFit,CovariancePlaneSpaceDer,CurvatureEstimator>`                 |        |             |
-  Algebraic Point Set Surfaces (APSS) \cite Guennebaud:2007:APSS | Curvature Tensor         | `Basket<P,W,OrientedSphereFit,OrientedSphereSpaceDer,CurvatureEstimator>`                   |        |             |
-  Algebraic Shape Operator (ASO) \cite Lejemble:2021:stable      | Curvature Tensor         | `Basket<P,W,OrientedSphereFit,OrientedSphereSpaceDer,MlsSphereFitDer,CurvatureEstimator>`   |        |             |
+  Distance to PCA plane \cite Digne:2011:scalespacemeshing       | Mean curvature           | `Basket<P,W,CovariancePlaneFit> // method potential()`                                      |  +++   | -           |
+  Surface Variation \cite Pauly:2002:PSSimplification            | Mean curvature           | `Basket<P,W,CovariancePlaneFit> // method surfaceVariation()`                               |  +++   | -           |
+  Growing Least Squares \cite Mellado:2012:GLS                   | Mean curvature           | `Basket<P,W,OrientedSphereFit,GLSParam> // method kappa()`                                  |  ++    | + +         |
+  Point Set Surfaces (PSS) \cite Alexa:2001:Pss                  | Curvature Tensor         | `Basket<P,W,CovariancePlaneFit,CovariancePlaneSpaceDer,CurvatureEstimator>`                 |  +++   | +           |
+  Algebraic Point Set Surfaces (APSS) \cite Guennebaud:2007:APSS | Curvature Tensor         | `Basket<P,W,OrientedSphereFit,OrientedSphereSpaceDer,CurvatureEstimator>`                   |  ++    | + +         |
+  Algebraic Shape Operator (ASO) \cite Lejemble:2021:stable      | Curvature Tensor         | `Basket<P,W,OrientedSphereFit,OrientedSphereSpaceDer,MlsSphereFitDer,CurvatureEstimator>`   |  +     | + + +       |
 
 
   \image html buste.png "Figure 3. Example of mean curvature (GLSParam::kappa) computed at a fine (left) and a coarse (right) scale, and rendered with a simple color map (orange for concavities, blue for convexities)."
