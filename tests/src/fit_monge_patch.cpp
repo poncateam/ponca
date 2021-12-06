@@ -75,7 +75,7 @@ void testFunction(bool _bUnoriented = false, bool _bAddPositionNoise = false, bo
         fit.setWeightFunc(WeightFunc(analysisScale));
         fit.init(queryPos);
 
-        fit.compute(vectorPoints.cbegin(), vectorPoints.cend());
+        fit.compute(vectorPoints);
 
         if( fit.isStable() ){
 

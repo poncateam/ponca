@@ -57,7 +57,7 @@ void testFunction()
         fit.setWeightFunc(WeightFunc(analysisScale));
 
         fit.init(vecs[k].pos());
-        fit.compute(vecs.cbegin(), vecs.cend());
+        fit.compute(vecs);
 
         if(fit.isStable())
         {

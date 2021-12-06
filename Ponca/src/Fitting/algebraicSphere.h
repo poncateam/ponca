@@ -116,9 +116,12 @@ public:
     }
 
     PONCA_MULTIARCH inline bool operator==(const AlgebraicSphere<DataPoint, WFunctor, T>& other) const{
-        return m_uc == other.m_uc &&
-               m_uq == other.m_uq &&
-               m_ul == other.m_ul;
+        PONCA_MULTIARCH_STD_MATH(pow);
+        const Scalar epsilon        = Eigen::NumTraits<Scalar>::dummy_precision();
+        const Scalar squaredEpsilon = epsilon*epsilon;
+        return  pow(m_uc - other.m_uc, Scalar(2)) < squaredEpsilon &&
+                pow(m_uq - other.m_uq, Scalar(2)) < squaredEpsilon &&
+                 m_ul.isApprox(other.m_ul);
     }
 
     /*! \brief Comparison operator, convenience function */
