@@ -30,7 +30,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Ponca
-   &#160;<span id="projectnumber">345919c0213ea09ce7adadf80bdf6618cbdb36e9</span>
+   &#160;<span id="projectnumber">72135cd1bcc0f945bd086d42c070f7a66b04b20d</span>
    </div>
    <div id="projectbrief">Point Cloud Analysis library</div>
   </td>
@@ -81,13 +81,27 @@ $(function() {
 --------------------------------------------------------------------------------
 Current head (v.0.2.1 RC)
 - API
-    - [spatialpartitioning] Remove duplicated code and clean API (#32)
-    - [core][fitting] Add Line primitive and LeastSquaresLineFitting (#39)
-    - [core][fitting] Rename several classes for better name consistency (#42)
+    - [spatialpartitioning] Remove duplicated code and clean API (#32,#51)
+    - [spatialpartitioning] Fix a bug in range queries (#46)
+    - [fitting] Add Line primitive and LeastSquaresLineFitting (#39)
+    - [fitting] Rename several classes for better name consistency (#42)
+    - [fitting] Add DryFit: a dummy fit object useful for debugging or monitoring (#52, #53)
+    - [fitting] Improve convenience functions for basket: add compute(Range) and
+      computeWithIds, which can be directly interfaced with kdtree queries (#53)
+    - [fitting] Fix too sensitive AlgebraicSphere comparison (#53)
+
+- Tests
+    - [spatialpartitioning] Fix wrong test macro in kdtree tests (#46)
+    - [fitting] Fix bug in basket test (#51)
+    - [fitting] Disable test on windows when using long doubles (#53)
+
+- Dependencies
+    - [eigen] Update default version to 3.4 (#53)
 
 - Doc
     - Rewrite documentation of the fitting package user manual and its classes. (#42)
     - Fix typo in user manual (#34)
+    - Fix broken speed/quality comparisons for curvature estiators (#53)
     - Fix Mathjax configuration (#41)
     - Update author list (#42)
 
@@ -289,7 +303,7 @@ V0.1.2
 </div><!-- PageDoc -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Sep 23 2021 10:14:23 for Ponca by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Mon Dec 6 2021 19:18:36 for Ponca by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.17
 </small></address>
