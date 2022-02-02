@@ -75,4 +75,6 @@ add_library(Ponca::Fitting ALIAS Fitting)
 #############################################
 # HACK: have the files showing in the IDE, under the name 'ponca-src'
 #target_sources(Fitting INTERFACE $<BUILD_INTERFACE:${ponca_INCLUDE}> )
-add_custom_target(ponca_Fitting_IDE SOURCES ${ponca_Fitting_INCLUDE})
+if( ${PONCA_GENERATE_IDE_TARGETS} )
+  add_custom_target(ponca_Fitting_IDE SOURCES ${ponca_Fitting_INCLUDE})
+endif()

@@ -41,4 +41,6 @@ add_library(Ponca::Common ALIAS Common)
 #############################################
 # HACK: have the files showing in the IDE, under the name 'ponca-src'
 #target_sources(Fitting INTERFACE $<BUILD_INTERFACE:${ponca_INCLUDE}> )
-add_custom_target(ponca_Common_IDE SOURCES ${ponca_Common_INCLUDE})
+if( ${PONCA_GENERATE_IDE_TARGETS} )
+    add_custom_target(ponca_Common_IDE SOURCES ${ponca_Common_INCLUDE})
+endif()

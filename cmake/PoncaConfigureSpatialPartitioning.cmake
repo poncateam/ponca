@@ -57,4 +57,6 @@ add_library(Ponca::SpatialPartitioning ALIAS SpatialPartitioning)
 #############################################
 # HACK: have the files showing in the IDE, under the name 'ponca-src'
 #target_sources(SpatialPartitioning INTERFACE $<BUILD_INTERFACE:${ponca_INCLUDE}> )
-add_custom_target(ponca_SpatialPartitioning_IDE SOURCES ${ponca_SpatialPartitioning_INCLUDE})
+if( ${PONCA_GENERATE_IDE_TARGETS} )
+    add_custom_target(ponca_SpatialPartitioning_IDE SOURCES ${ponca_SpatialPartitioning_INCLUDE})
+endif()
