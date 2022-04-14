@@ -51,7 +51,8 @@ public:
         m_points(PointContainer()),
         m_nodes(NodeContainer()),
         m_indices(IndexContainer()),
-        m_min_cell_size(64)
+        m_min_cell_size(64),
+        m_leaf_count(0)
     {
     };
 
@@ -60,7 +61,8 @@ public:
         m_points(PointContainer()),
         m_nodes(NodeContainer()),
         m_indices(IndexContainer()),
-        m_min_cell_size(64)
+        m_min_cell_size(64),
+        m_leaf_count(0)
     {
         this->build(points);
     };
@@ -71,7 +73,8 @@ public:
         m_points(),
         m_nodes(),
         m_indices(),
-        m_min_cell_size(64)
+        m_min_cell_size(64),
+        m_leaf_count(0)
     {
         buildWithSampling(points, sampling);
     };
@@ -135,6 +138,7 @@ public:
     inline int node_count() const;
     inline int index_count() const;
     inline int point_count() const;
+    inline int leaf_count() const;
 
     inline PointContainer& point_data()
     {
@@ -209,6 +213,75 @@ public :
         return KdTreeRangeIndexQuery<DataPoint>(this, r, index);
     }
 
+    /// Given indexs of kdTree points, support_range compute points average center and return a range  
+    /// query based on this center and a sum of maximum distance of points with center and given radius.
+    /// \param 
+    KdTreeRangePointQuery<DataPoint> support_range_query(const vector<int>& points, Scalar radius) 
+    {
+        if (points.size() < 1)
+        {
+            std::cout << "ERROR : Points empty !" << std::endl;
+            return KdTreeRangePointQuery<DataPoint>(this,0,VectorType());
+        }
+
+        VectorType center = VectorType::Zero();
+        Scalar support = 0;
+
+        for (int i = 0; i < points.size(); i++)
+        {
+            center = center + this->m_points[points[i]].pos();
+        }
+
+        center /= points.size();
+
+
+        for (int i = 0; i < points.size(); i++)
+        {
+            auto t = center - this->m_points[points[i]].pos();
+            Scalar temp = std::sqrt(t.squaredNorm());
+            if (support < temp)
+            {
+                support = temp;
+            }
+        }
+
+        return KdTreeRangePointQuery<DataPoint>(this,(Scalar)(support + radius) , center);
+    }
+
+
+    /// Given points, support_range compute points average center and return a range  
+    /// query based on this center and a sum of maximum distance points-center and given radius.
+    KdTreeRangePointQuery<DataPoint> support_range_query(const vector<VectorType>& points, Scalar radius) {
+
+        if (points.size() < 1)
+        {
+            std::cout << "ERROR : Points empty !" << std::endl;
+            return KdTreeRangePointQuery<DataPoint>(this,0,VectorType());
+        }
+
+        VectorType center = VectorType::Zero();
+        Scalar support = 0;
+
+        for (int i = 0; i < points.size(); i++)
+        {
+            center += points[i];
+        }
+
+        center /= points.size();
+
+
+        for (int i = 0; i < points.size(); i++)
+        {
+            Scalar temp = std::sqrt((center - points[i]).squaredNorm());
+            if (support < temp)
+            {
+                support = temp;
+            }
+        }
+
+        return KdTreeRangePointQuery<DataPoint>(this, support + radius, center);
+    }
+
     // Data --------------------------------------------------------------------
 protected:
     PointContainer m_points;
@@ -216,9 +289,8 @@ protected:
     IndexContainer m_indices;
 
     int m_min_cell_size;
+    int m_leaf_count;
 };
 
 #include "./kdTree.hpp"
-
-
 } // namespace Ponca

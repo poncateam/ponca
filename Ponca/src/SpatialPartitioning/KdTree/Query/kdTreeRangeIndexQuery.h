@@ -12,30 +12,28 @@
 
 namespace Ponca {
 
-
 template <class DataPoint>
 class KdTreeRangeIndexQuery : public KdTreeQuery<DataPoint>, public RangeIndexQuery<typename DataPoint::Scalar>
 {
+
+public:
     using Scalar          = typename DataPoint::Scalar;
     using VectorType      = typename DataPoint::VectorType;
     using QueryType       = RangeIndexQuery<typename DataPoint::Scalar>;
     using QueryAccelType  = KdTreeQuery<DataPoint>;
     using Iterator        = KdTreeRangeIterator<DataPoint, KdTreeRangeIndexQuery>;
 
-protected:
-	friend Iterator;
-
-public:
-
     KdTreeRangeIndexQuery(const KdTree<DataPoint>* kdtree, Scalar radius, int index) :
         KdTreeQuery<DataPoint>(kdtree), RangeIndexQuery<Scalar>(radius, index)
     {
     }
 
+protected:
+	friend Iterator;
+
 public:
     inline Iterator begin();
     inline Iterator end();
-
 protected:
     inline void initialize();
     inline void advance(Iterator& iterator);

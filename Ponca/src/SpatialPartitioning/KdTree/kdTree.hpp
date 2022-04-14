@@ -24,12 +24,20 @@ int KdTree<DataPoint>::point_count() const
 	return static_cast<int>(m_points.size());
 }
 
+
+template<class DataPoint>
+int KdTree<DataPoint>::leaf_count() const
+{
+	return m_leaf_count;
+}
+
 template<class DataPoint>
 void KdTree<DataPoint>::clear()
 {
 	m_points.clear();
 	m_nodes.clear();
 	m_indices.clear();
+	m_leaf_count = 0;
 }
 
 template<class DataPoint>
@@ -213,6 +221,7 @@ void KdTree<DataPoint>::build_rec(int node_id, int start, int end, int level)
 	        child.leaf = 1;
 	        child.start = start;
 	        child.size = midId-start;
+			m_leaf_count++;
 	    }
 	    else
 	    {
@@ -229,6 +238,7 @@ void KdTree<DataPoint>::build_rec(int node_id, int start, int end, int level)
 	        child.leaf = 1;
 	        child.start = midId;
 	        child.size = end-midId;
+			m_leaf_count++;
 	    }
 	    else
 	    {
