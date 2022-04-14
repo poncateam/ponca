@@ -43,7 +43,7 @@ void testKdTreeSupportRangePoint(bool quick = true)
 		queryPoints.push_back(VectorType::Random()); // values between [-1:1]
     }
 
-    auto supportQuery = structure.support_range_query(queryPoints,r);
+    auto supportQuery = structure.support_range_neighbors(queryPoints,r);
 
 	
 	check_support<DataPoint,VectorContainer>(supportQuery,points,queryPoints, sampling, r);
@@ -80,7 +80,7 @@ void testKdTreeSupportRangeIndex(bool quick = true)
 		queryPoints.push_back(rand()%N); // values between [-1:1]
     }
 
-    auto supportQuery = structure.support_range_query(queryPoints,r);
+    auto supportQuery = structure.support_range_neighbors(queryPoints,r);
 
 	
 	check_support<DataPoint,VectorContainer>(supportQuery,points,queryPoints, sampling, r);
