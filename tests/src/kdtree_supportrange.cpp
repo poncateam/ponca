@@ -13,6 +13,45 @@
 
 using namespace Ponca;
 
+
+template<typename DataPoint,
+		typename VectorContainer,
+		typename Scalar = DataPoint::Scalar,
+		typename VectorType = typename DataPoint::VectorType>
+void check_support(
+	KdTreeRangePointQuery<DataPoint>& supportQuery, const VectorContainer& points, 
+	const vector<VectorType>& queryPoints,
+	const std::vector<int>& sampling, Scalar r)
+{
+	std::vector<int> results;
+	for(int q : supportQuery)
+	{
+		results.push_back(q);
+	}
+	VectorType center = VectorType::Zero();
+	Scalar support = 0;
+
+	for (int i = 0; i < queryPoints.size(); i++)
+	{
+		center =center + queryPoints[i];
+	}
+
+	center /= queryPoints.size();
+
+
+	for (int i = 0; i < queryPoints.size(); i++)
+	{
+		Scalar temp = std::sqrt((center - queryPoints[i]).squaredNorm());
+		if (support < temp)
+		{
+			support = temp;
+		}
+	}
+
+	bool res = check_range_neighbors<Scalar, VectorType, VectorContainer>(points, sampling, center, support + r, results);
+	VERIFY(res);
+}
+
 template<typename DataPoint>
 void testKdTreeSupportRangePoint(bool quick = true)
 {
@@ -84,44 +123,6 @@ void testKdTreeSupportRangeIndex(bool quick = true)
 
 	
 	check_support<DataPoint,VectorContainer>(supportQuery,points,queryPoints, sampling, r);
-}
-
-template<typename DataPoint,
-		typename VectorContainer,
-		typename Scalar = DataPoint::Scalar,
-		typename VectorType = typename DataPoint::VectorType>
-void check_support(
-	KdTreeRangePointQuery<DataPoint>& supportQuery, const VectorContainer& points, 
-	const vector<VectorType>& queryPoints,
-	const std::vector<int>& sampling, Scalar r)
-{
-	std::vector<int> results;
-	for(int q : supportQuery)
-	{
-		results.push_back(q);
-	}
-	VectorType center = VectorType::Zero();
-	Scalar support = 0;
-
-	for (int i = 0; i < queryPoints.size(); i++)
-	{
-		center =center + queryPoints[i];
-	}
-
-	center /= queryPoints.size();
-
-
-	for (int i = 0; i < queryPoints.size(); i++)
-	{
-		Scalar temp = std::sqrt((center - queryPoints[i]).squaredNorm());
-		if (support < temp)
-		{
-			support = temp;
-		}
-	}
-
-	bool res = check_range_neighbors<Scalar, VectorType, VectorContainer>(points, sampling, center, support + r, results);
-	VERIFY(res);
 }
 
 template<typename DataPoint,
