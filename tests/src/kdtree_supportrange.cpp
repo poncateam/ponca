@@ -16,7 +16,7 @@ using namespace Ponca;
 
 template<typename DataPoint,
 		typename VectorContainer,
-		typename Scalar = DataPoint::Scalar,
+		typename Scalar = typename DataPoint::Scalar,
 		typename VectorType = typename DataPoint::VectorType>
 void check_support(
 	KdTreeRangePointQuery<DataPoint>& supportQuery, const VectorContainer& points, 
@@ -127,7 +127,7 @@ void testKdTreeSupportRangeIndex(bool quick = true)
 
 template<typename DataPoint,
 		typename VectorContainer,
-		typename Scalar = DataPoint::Scalar,
+		typename Scalar = typename DataPoint::Scalar,
 		typename VectorType = typename DataPoint::VectorType>
 void check_support(
 	KdTreeRangePointQuery<DataPoint>& supportQuery, const VectorContainer& points, 
