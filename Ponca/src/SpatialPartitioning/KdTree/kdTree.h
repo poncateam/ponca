@@ -212,10 +212,12 @@ public :
     {
         return KdTreeRangeIndexQuery<DataPoint>(this, r, index);
     }
-
-    /// Given indexs of kdTree points, support_range compute points average center and return a range  
-    /// query based on this center and a sum of maximum distance of points with center and given radius.
-    /// \param 
+    
+    /*! \brief Given indexs of kdTree points, support_range compute selected points average center and return a range
+    query based on this center and a sum of maximum points-to-center distance and given radius.*/
+    /// \tparam DataPoint 
+    /// \param points Index of Inputs points in kdTree
+    /// \param radius Scalar added to max range to build range query
     KdTreeRangePointQuery<DataPoint> support_range_query(const vector<int>& points, Scalar radius) 
     {
         if (points.size() < 1)
@@ -249,8 +251,11 @@ public :
     }
 
 
-    /// Given points, support_range compute points average center and return a range  
-    /// query based on this center and a sum of maximum distance points-center and given radius.
+    /*! \brief Given points, support_range compute points average center and return a range  
+    query based on this center and a sum of maximum points-to-center distance and given radius.*/
+    /// \tparam DataPoint 
+    /// \param points Input points
+    /// \param radius Scalar added to max range to build range query
     KdTreeRangePointQuery<DataPoint> support_range_query(const vector<VectorType>& points, Scalar radius) {
 
         if (points.size() < 1)
