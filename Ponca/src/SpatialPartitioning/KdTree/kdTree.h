@@ -218,7 +218,7 @@ public :
     /// \tparam DataPoint 
     /// \param points Index of Inputs points in kdTree
     /// \param radius Scalar added to max range to build range query
-    KdTreeRangePointQuery<DataPoint> support_range_neighbors(const vector<int>& points, Scalar radius) 
+    KdTreeRangePointQuery<DataPoint> support_range_neighbors(const std::vector<int>& points, Scalar radius) 
     {
         if (points.size() < 1)
         {
@@ -256,7 +256,7 @@ public :
     /// \tparam DataPoint 
     /// \param points Input points
     /// \param radius Scalar added to max range to build range query
-    KdTreeRangePointQuery<DataPoint> support_range_neighbors(const vector<VectorType>& points, Scalar radius) {
+    KdTreeRangePointQuery<DataPoint> support_range_neighbors(const std::vector<VectorType>& points, Scalar radius) {
 
         if (points.size() < 1)
         {
