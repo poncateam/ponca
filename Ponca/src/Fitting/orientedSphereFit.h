@@ -7,6 +7,7 @@ file, You can obtain one at http://mozilla.org/MPL/2.0/.
 #pragma once
 
 #include "./algebraicSphere.h"
+#include "./mean.h"
 
 namespace Ponca
 {
@@ -23,11 +24,16 @@ namespace Ponca
     \ingroup fitting
 */
 template < class DataPoint, class _WFunctor, typename T = void >
-class OrientedSphereFit : public AlgebraicSphere<DataPoint, _WFunctor>
+class OrientedSphereFit : public MeanNormal<DataPoint, _WFunctor, AlgebraicSphere<DataPoint, _WFunctor>>
 {
 private:
+    using Base = MeanNormal<DataPoint, _WFunctor, AlgebraicSphere<DataPoint, _WFunctor>>;
 
-    typedef AlgebraicSphere<DataPoint, _WFunctor> Base;
+protected:
+    enum
+    {
+        Check = Base::PROVIDES_ALGEBRAIC_SPHERE && Base::PROVIDES_MEAN_NORMAL
+    };
 
 public:
 
@@ -41,15 +47,10 @@ public:
  protected:
 
     // computation data
-    VectorType  m_sumN, /*!< \brief Sum of the normal vectors */
-                m_sumP; /*!< \brief Sum of the relative positions */
     Scalar  m_sumDotPN, /*!< \brief Sum of the dot product betwen relative positions and normals */
             m_sumDotPP, /*!< \brief Sum of the squared relative positions */
-            m_sumW,     /*!< \brief Sum of queries weight */
             m_nume,     /*!< \brief Numerator of the quadratic parameter (excluding the 0.5 coefficient)   */
             m_deno;     /*!< \brief Denominator of the quadratic parameter (excluding the 0.5 coefficient) */
-
-    WFunctor m_w;      /*!< \brief Weight function (must inherits BaseWeightFunc) */
 
 public:
 
@@ -60,8 +61,6 @@ public:
     /**************************************************************************/
     /* Initialization                                                         */
     /**************************************************************************/
-    /*! \copydoc Concept::FittingProcedureConcept::setWeightFunc() */
-    PONCA_MULTIARCH inline void setWeightFunc (const WFunctor& _w) { m_w  = _w; }
 
     /*! \copydoc Concept::FittingProcedureConcept::init() */
     PONCA_MULTIARCH inline void init (const VectorType& _evalPos);

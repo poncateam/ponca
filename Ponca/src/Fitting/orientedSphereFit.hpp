@@ -9,16 +9,11 @@ template < class DataPoint, class _WFunctor, typename T>
 void
 OrientedSphereFit<DataPoint, _WFunctor, T>::init(const VectorType& _evalPos)
 {
-    // Setup primitive
-    Base::resetPrimitive();
-    Base::basisCenter() = _evalPos;
+    Base::init(_evalPos);
 
     // Setup fitting internal values
-    m_sumP     = VectorType::Zero();
-    m_sumN     = VectorType::Zero();
     m_sumDotPN = Scalar(0.0);
     m_sumDotPP = Scalar(0.0);
-    m_sumW     = Scalar(0.0);
     m_nume     = Scalar(0.0);
     m_deno     = Scalar(0.0);
 }
@@ -27,23 +22,18 @@ template < class DataPoint, class _WFunctor, typename T>
 bool
 OrientedSphereFit<DataPoint, _WFunctor, T>::addNeighbor(const DataPoint& _nei)
 {
-    // centered basis
-    VectorType q = _nei.pos() - Base::basisCenter();
-
-    // compute weight
-    Scalar w = m_w.w(q, _nei);
-
-    if (w > Scalar(0.))
+    if (Base::addNeighbor(_nei))
     {
+        /// \todo Avoid to compute the weight multiple times
+        // centered basis
+        VectorType q = _nei.pos() - Base::basisCenter();
+
+        // compute weight
+        Scalar w = Base::m_w.w(q, _nei);
+
         // increment matrix
-        m_sumP     += q * w;
-        m_sumN     += _nei.normal() * w;
         m_sumDotPN += w * _nei.normal().dot(q);
         m_sumDotPP += w * q.squaredNorm();
-        m_sumW     += w;
-
-        /*! \todo Handle add of multiple similar neighbors (maybe user side)*/
-        ++(Base::m_nbNeighbors);
         return true;
     }
 
@@ -59,25 +49,23 @@ OrientedSphereFit<DataPoint, _WFunctor, T>::finalize ()
     PONCA_MULTIARCH_STD_MATH(max);
     PONCA_MULTIARCH_STD_MATH(abs);
 
-    // 1. finalize sphere fitting
-    Scalar epsilon = Eigen::NumTraits<Scalar>::dummy_precision();
-
     // handle specific configurations
-    // With less than 3 neighbors the fitting is undefined
-    if(m_sumW == Scalar(0.) || Base::m_nbNeighbors < 3)
+    if(Base::finalize() != STABLE  || Base::m_nbNeighbors < 3)
     {
         Base::m_ul.setZero();
         Base::m_uc = Scalar(0.);
         Base::m_uq = Scalar(0.);
         Base::m_isNormalized = false;
-        Base::m_eCurrentState = UNDEFINED;
         return Base::m_eCurrentState;
     }
 
-    Scalar invSumW = Scalar(1.)/m_sumW;
+    // 1. finalize sphere fitting
+    Scalar epsilon = Eigen::NumTraits<Scalar>::dummy_precision();
 
-    m_nume = (m_sumDotPN - invSumW * m_sumP.dot(m_sumN));
-    Scalar den1 = invSumW * m_sumP.dot(m_sumP);
+    Scalar invSumW = Scalar(1.)/Base::m_sumW;
+
+    m_nume = (m_sumDotPN - invSumW * Base::m_sumP.dot(Base::m_sumN));
+    Scalar den1 = invSumW * Base::m_sumP.dot(Base::m_sumP);
     m_deno = m_sumDotPP - den1;
 
     // Deal with degenerate cases
@@ -93,20 +81,12 @@ OrientedSphereFit<DataPoint, _WFunctor, T>::finalize ()
     {
         //Generic case
         Base::m_uq = Scalar(.5) * m_nume / m_deno;
-        Base::m_ul = (m_sumN - m_sumP * (Scalar(2.) * Base::m_uq)) * invSumW;
-        Base::m_uc = -invSumW * (Base::m_ul.dot(m_sumP) + m_sumDotPP * Base::m_uq);
+        Base::m_ul = (Base::m_sumN - Base::m_sumP * (Scalar(2.) * Base::m_uq)) * invSumW;
+        Base::m_uc = -invSumW * (Base::m_ul.dot(Base::m_sumP) + m_sumDotPP * Base::m_uq);
     }
 
     Base::m_isNormalized = false;
-
-    if(Base::m_nbNeighbors < 6)
-    {
-        Base::m_eCurrentState = UNSTABLE;
-    }
-    else
-    {
-        Base::m_eCurrentState = STABLE;
-    }
+    Base::m_eCurrentState = Base::m_nbNeighbors < 6 ? UNSTABLE : STABLE;
 
     return Base::m_eCurrentState;
 }
