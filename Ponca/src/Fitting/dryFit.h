@@ -52,8 +52,9 @@ namespace Ponca
         /**************************************************************************/
         /* Processing                                                             */
         /**************************************************************************/
-        /*! \copydoc Concept::FittingProcedureConcept::addNeighbor() */
-        PONCA_MULTIARCH inline bool addNeighbor(const DataPoint &/*_nei*/) { return true; }
+        /*! \copydoc Concept::FittingProcedureConcept::addLocalNeighbor() */
+        PONCA_MULTIARCH inline bool addLocalNeighbor(Scalar w, const VectorType &localQ, const DataPoint &attributes)
+        { return Base::addLocalNeighbor(w, localQ, attributes);}
 
         /*! \copydoc Concept::FittingProcedureConcept::finalize() */
         PONCA_MULTIARCH inline FIT_RESULT finalize() { return STABLE; }

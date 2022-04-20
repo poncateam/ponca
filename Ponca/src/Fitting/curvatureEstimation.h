@@ -36,19 +36,19 @@ public:
 
 protected:
     /// \brief Principal curvature with highest absolute magnitude
-    Scalar m_k1,
+    Scalar m_k1 {0},
     /// \brief Principal curvature with smallest absolute magnitude
-           m_k2;
+           m_k2 {0};
     /// \brief Direction associated to the principal curvature with highest absolute magnitude
-    VectorType m_v1,
+    VectorType m_v1 {VectorType::Zero()},
     /// \brief Direction associated to the principal curvature with highest smallest magnitude
-               m_v2;
+               m_v2 {VectorType::Zero()};
 
     static_assert ( DataPoint::Dim == 3, "BaseCurvatureEstimator is only valid in 3D");
 
 public:
     /*! \brief Default constructor */
-    PONCA_MULTIARCH inline BaseCurvatureEstimator() : m_k1(0), m_k2(0) {}
+    PONCA_MULTIARCH inline BaseCurvatureEstimator() = default;
 
 public:
     /**************************************************************************/
@@ -118,8 +118,8 @@ public:
     typedef Eigen::SelfAdjointEigenSolver<MatrixType> Solver;
 
 protected:
-    MatrixType m_cov;   /*!< \brief Covariance matrix */
-    VectorType m_cog;   /*!< \brief Gravity center */
+    MatrixType m_cov;   /*!< \brief Covariance matrix of the normal vectors */
+    VectorType m_cog;   /*!< \brief Gravity center of the normal vectors \fixme Use MeanNormal */
     Solver m_solver;    /*!< \brief Solver used to analyse the covariance matrix */
 
 public:
@@ -136,8 +136,8 @@ public:
     /**************************************************************************/
     /* Processing                                                             */
     /**************************************************************************/
-    /*! \copydoc Concept::FittingProcedureConcept::addNeighbor() */
-    PONCA_MULTIARCH inline bool addNeighbor(const DataPoint &_nei);
+    /*! \copydoc Concept::FittingProcedureConcept::addLocalNeighbor() */
+    PONCA_MULTIARCH inline bool addLocalNeighbor(Scalar w, const VectorType &localQ, const DataPoint &attributes);
 
     /*! \copydoc Concept::FittingProcedureConcept::finalize() */
     PONCA_MULTIARCH inline FIT_RESULT finalize();
@@ -173,6 +173,7 @@ protected:
         Check = Base::PROVIDES_PLANE
     };
 
+    /// \fixme Use same pass management than MongePatch
     enum PASS : int
     {
         FIRST_PASS = 0,
@@ -209,8 +210,8 @@ public:
     /**************************************************************************/
     /* Processing                                                             */
     /**************************************************************************/
-    /*! \copydoc Concept::FittingProcedureConcept::addNeighbor() */
-    PONCA_MULTIARCH inline bool addNeighbor(const DataPoint &_nei);
+    /*! \copydoc Concept::FittingProcedureConcept::addLocalNeighbor() */
+    PONCA_MULTIARCH inline bool addLocalNeighbor(Scalar w, const VectorType &localQ, const DataPoint &attributes);
 
     /*! \copydoc Concept::FittingProcedureConcept::finalize() */
     PONCA_MULTIARCH inline FIT_RESULT finalize();

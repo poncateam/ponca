@@ -25,10 +25,10 @@ namespace Ponca
     \ingroup fitting
 */
 template < class DataPoint, class _WFunctor, typename T >
-class MeanPlaneFit : public MeanNormal<DataPoint, _WFunctor, Plane<DataPoint, _WFunctor>>
+class MeanPlaneFit : public MeanPosition<DataPoint, _WFunctor, MeanNormal<DataPoint, _WFunctor, Plane<DataPoint, _WFunctor>>>
 {
 private:
-    using Base = MeanNormal<DataPoint, _WFunctor, Plane<DataPoint, _WFunctor>>;
+    using Base = MeanPosition<DataPoint, _WFunctor, MeanNormal<DataPoint, _WFunctor, Plane<DataPoint, _WFunctor>>>;
 
 protected:
     enum
@@ -48,7 +48,7 @@ public:
 public:
 
     /*! \brief Default constructor */
-    PONCA_MULTIARCH inline MeanPlaneFit() : Base() {}
+    PONCA_MULTIARCH inline MeanPlaneFit() = default;
 
     /**************************************************************************/
     /* Processing                                                             */
@@ -58,11 +58,7 @@ public:
     PONCA_MULTIARCH inline FIT_RESULT finalize()
     {
         // handle specific configurations
-        if(Base::finalize() == STABLE)
-        {
-            Base::setPlane(Base::m_sumN / Base::m_sumW, Base::barycenter());
-        }
-
+        if(Base::finalize() == STABLE) Base::setPlane(Base::m_sumN / Base::m_sumW, Base::barycenter());
         return Base::m_eCurrentState;
     }
 }; //class MeanPlaneFit

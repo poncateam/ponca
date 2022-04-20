@@ -50,6 +50,8 @@ namespace internal
         : public Ext11<P,W, Ext10<P,W, Ext9<P,W, Ext8<P,W, Ext7<P,W, Ext6<P,W, Ext5<P,W, Ext4<P,W, Ext3<P,W, Ext2<P,W, Ext1<P,W, Ext0<P,W, Fit<P,W,void> > > > > > > > > > > > >
     {
     public:
+        using Base = Ext11<P,W, Ext10<P,W, Ext9<P,W, Ext8<P,W, Ext7<P,W, Ext6<P,W, Ext5<P,W, Ext4<P,W, Ext3<P,W, Ext2<P,W, Ext1<P,W, Ext0<P,W, Fit<P,W,void> > > > > > > > > > > > >;
+        using Scalar = typename P::Scalar;
         typedef P DataPoint;
         typedef W WeightFunction;
         /*!
@@ -65,11 +67,26 @@ namespace internal
             FIT_RESULT res = UNDEFINED;
             do {
                 for (auto it = begin; it != end; ++it){
-                    this->addNeighbor(*it);
+                    addNeighbor(*it);
                 }
-                res = this->finalize();
+                res = Base::finalize();
             } while ( res == NEED_OTHER_PASS );
             return res;
+        }
+
+
+
+        PONCA_MULTIARCH inline bool addNeighbor(const DataPoint &_nei) {
+            // compute weight
+            auto wres = Base::m_w.w(_nei.pos(), _nei);
+
+            if (wres.first > Scalar(0.)) {
+                Base::addLocalNeighbor(wres.first, wres.second, _nei);
+                Base::m_sumW += (wres.first);
+                ++(Base::m_nbNeighbors);
+                return true;
+            }
+            return false;
         }
 
         /*!

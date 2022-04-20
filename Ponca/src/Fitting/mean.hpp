@@ -10,44 +10,20 @@
 template<class DataPoint, class _WFunctor, typename T>
 void
 MeanPosition<DataPoint, _WFunctor, T>::init(const VectorType &_evalPos) {
-    // Setup primitive
-    Base::resetPrimitive();
-    Base::basisCenter() = _evalPos;
-
-    // Setup fitting internal values
-    m_sumW = Scalar(0.0);
+    Base::init(_evalPos);
     m_sumP = VectorType::Zero();
 }
 
 template<class DataPoint, class _WFunctor, typename T>
 bool
-MeanPosition<DataPoint, _WFunctor, T>::addNeighbor(const DataPoint &_nei) {
-    VectorType q = _nei.pos() - Base::basisCenter();
-    // compute weight
-    Scalar w = m_w.w(q, _nei);
-
-    if (w > Scalar(0.)) {
-        m_sumP += w * q;
-        m_sumW += w;
-
-        ++(Base::m_nbNeighbors);
+MeanPosition<DataPoint, _WFunctor, T>::addLocalNeighbor(Scalar w,
+                                                        const VectorType &localQ,
+                                                        const DataPoint &attributes) {
+    if( Base::addLocalNeighbor(w, localQ, attributes) ) {
+        m_sumP += w * localQ;
         return true;
     }
     return false;
-}
-
-
-template<class DataPoint, class _WFunctor, typename T>
-FIT_RESULT
-MeanPosition<DataPoint, _WFunctor, T>::finalize() {
-    // handle specific configurations
-    // We need to have at least one neighbor to compute the mean
-    if (m_sumW == Scalar(0.) || Base::m_nbNeighbors < 1) {
-        Base::resetPrimitive();
-        return Base::m_eCurrentState = UNDEFINED;
-    }
-
-    return Base::m_eCurrentState = STABLE;
 }
 
 template < class DataPoint, class _WFunctor, typename T>
@@ -55,25 +31,17 @@ void
 MeanNormal<DataPoint, _WFunctor, T>::init(const VectorType& _evalPos)
 {
     Base::init(_evalPos);
-
-    // Setup fitting internal values
     m_sumN = VectorType::Zero();
 }
 
-template < class DataPoint, class _WFunctor, typename T>
+
+template<class DataPoint, class _WFunctor, typename T>
 bool
-MeanNormal<DataPoint, _WFunctor, T>::addNeighbor(const DataPoint& _nei)
-{
-    if (Base::addNeighbor(_nei))
-    {
-        /// \todo Avoid to compute the weight multiple times
-        // centered basis
-        VectorType q = _nei.pos() - Base::basisCenter();
-
-        // compute weight
-        Scalar w = Base::m_w.w(q, _nei);
-        m_sumN += _nei.normal() * w;
-
+MeanNormal<DataPoint, _WFunctor, T>::addLocalNeighbor(Scalar w,
+                                                      const VectorType &localQ,
+                                                      const DataPoint &attributes) {
+    if( Base::addLocalNeighbor(w, localQ, attributes) ) {
+        m_sumN += w * attributes.normal();
         return true;
     }
     return false;

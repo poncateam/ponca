@@ -47,9 +47,8 @@ public:
 protected:
     MatrixX m_A; /*!< \brief Quadric input samples */
     MatrixX m_x; /*!< \brief Quadric parameters */
-    VectorX m_b;         /*!< \brief Obervations */
+    VectorX m_b; /*!< \brief Observations */
 
-    int  m_neiIdx;       /*!< \brief Counter of observations, used in addNeighhor() */
     bool m_planeIsReady;
 public:
 
@@ -66,8 +65,8 @@ public:
     /**************************************************************************/
     /* Processing                                                             */
     /**************************************************************************/
-    /*! \copydoc Concept::FittingProcedureConcept::addNeighbor() */
-    PONCA_MULTIARCH inline bool addNeighbor(const DataPoint &_nei);
+    /*! \copydoc Concept::FittingProcedureConcept::addLocalNeighbor() */
+    PONCA_MULTIARCH inline bool addLocalNeighbor(Scalar w, const VectorType &localQ, const DataPoint &attributes);
 
     /*! \copydoc Concept::FittingProcedureConcept::finalize() */
     PONCA_MULTIARCH inline FIT_RESULT finalize();

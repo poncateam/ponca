@@ -44,21 +44,16 @@ public:
     typedef Eigen::Matrix<Scalar, DataPoint::Dim+2, DataPoint::Dim+2>  MatrixA;
 
     // computation data
-    MatrixA  m_matA;  /*!< \brief Covariance matrix of [1, p, p^2] */
-    Scalar   m_sumW;  /*!< \brief Sum of queries weight */
-    WFunctor m_w;     /*!< \brief Weight function (must inherits BaseWeightFunc) */
+    MatrixA  m_matA {MatrixA::Zero()};  /*!< \brief Covariance matrix of [1, p, p^2] */
 
 public:
 
     /*! \brief Default constructor */
-    PONCA_MULTIARCH inline SphereFit()
-        : Base(){}
+    PONCA_MULTIARCH inline SphereFit() = default;
 
     /**************************************************************************/
     /* Initialization                                                         */
     /**************************************************************************/
-    /*! \copydoc Concept::FittingProcedureConcept::setWeightFunc() */
-    PONCA_MULTIARCH inline void setWeightFunc (const WFunctor& _w) { m_w  = _w; }
 
     /*! \copydoc Concept::FittingProcedureConcept::init() */
     PONCA_MULTIARCH inline void init (const VectorType& _evalPos);
@@ -67,8 +62,8 @@ public:
     /**************************************************************************/
     /* Processing                                                             */
     /**************************************************************************/
-    /*! \copydoc Concept::FittingProcedureConcept::addNeighbor() */
-    PONCA_MULTIARCH inline bool addNeighbor(const DataPoint &_nei);
+    /*! \copydoc Concept::FittingProcedureConcept::addLocalNeighbor() */
+    PONCA_MULTIARCH inline bool addLocalNeighbor(Scalar w, const VectorType &localQ, const DataPoint &attributes);
 
     /*! \copydoc Concept::FittingProcedureConcept::finalize() */
     PONCA_MULTIARCH inline FIT_RESULT finalize();
