@@ -104,8 +104,8 @@ public:
     /************************************************************************/
     /* Processing                                                           */
     /************************************************************************/
-    /*! \see Concept::FittingProcedureConcept::addNeighbor() */
-    PONCA_MULTIARCH bool addNeighbor(const DataPoint &nei);
+    /*! \see Concept::FittingProcedureConcept::addLocalNeighbor() */
+    PONCA_MULTIARCH inline bool addLocalNeighbor(Scalar w, const VectorType &localQ, const DataPoint &attributes);
 
     /*! \see Concept::FittingProcedureConcept::finalize() */
     PONCA_MULTIARCH FIT_RESULT finalize();

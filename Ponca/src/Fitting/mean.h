@@ -44,31 +44,23 @@ namespace Ponca
 
     protected:
         VectorType m_sumP; /*!< \brief Sum of the input points vectors */
-        Scalar     m_sumW; /*!< \brief Sum of queries weight */
-        WFunctor   m_w;    /*!< \brief Weight function (must inherits BaseWeightFunc) */
 
     public:
         /*! \brief Default constructor */
         PONCA_MULTIARCH inline MeanPosition() :
-            Base(), m_sumP( VectorType::Zero() ), m_sumW(Scalar(1)) {}
+            Base(), m_sumP( VectorType::Zero() ) {}
 
         /**************************************************************************/
         /* Initialization                                                         */
         /**************************************************************************/
-        /*! \copydoc Concept::FittingProcedureConcept::setWeightFunc() */
-        PONCA_MULTIARCH inline void setWeightFunc (const WFunctor& _w) { m_w  = _w; }
-
         /*! \copydoc Concept::FittingProcedureConcept::init() */
         PONCA_MULTIARCH inline void init (const VectorType& _evalPos);
 
         /**************************************************************************/
         /* Processing                                                             */
         /**************************************************************************/
-        /*! \copydoc Concept::FittingProcedureConcept::addNeighbor() */
-        PONCA_MULTIARCH inline bool addNeighbor(const DataPoint &_nei);
-
-        /*! \copydoc Concept::FittingProcedureConcept::finalize() */
-        PONCA_MULTIARCH inline FIT_RESULT finalize();
+        /*! \copydoc Concept::FittingExtensionConcept::addLocalNeighbor() */
+        PONCA_MULTIARCH inline bool addLocalNeighbor(Scalar w, const VectorType &localQ, const DataPoint &attributes);
 
         /**************************************************************************/
         /* Use results                                                            */
@@ -76,7 +68,7 @@ namespace Ponca
         //! \brief Value of the scalar field at the location \f$ \mathbf{q} \f$
         PONCA_MULTIARCH inline VectorType barycenter () const
         {
-            return (m_sumP / m_sumW);
+            return (m_sumP / Base::m_sumW);
         }
 
     }; //class MeanPosition
@@ -102,10 +94,10 @@ namespace Ponca
     \ingroup fitting
 */
     template < class DataPoint, class _WFunctor, typename T >
-    class MeanNormal : public MeanPosition<DataPoint, _WFunctor, T>
+    class MeanNormal : public T
     {
     private:
-        using Base = MeanPosition<DataPoint, _WFunctor, T>;
+        using Base = T;
 
     protected:
         enum
@@ -136,8 +128,8 @@ namespace Ponca
         /**************************************************************************/
         /* Processing                                                             */
         /**************************************************************************/
-        /*! \copydoc Concept::FittingProcedureConcept::addNeighbor() */
-        PONCA_MULTIARCH inline bool addNeighbor(const DataPoint &_nei);
+        /*! \copydoc Concept::FittingExtensionConcept::addLocalNeighbor() */
+        PONCA_MULTIARCH inline bool addLocalNeighbor(Scalar w, const VectorType &localQ, const DataPoint &attributes);
     }; //class BarycenterWithNormal
 
 #include "mean.hpp"

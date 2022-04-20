@@ -61,20 +61,16 @@ public:
     typedef Eigen::SelfAdjointEigenSolver<MatrixType> Solver;
 
  protected:
-
     // computation data
-    Scalar  m_sumW;       /*!< \brief Sum of queries weight.*/
-    VectorType m_cog;     /*!< \brief Gravity center of the neighborhood */
-    MatrixType m_cov;     /*!< \brief Covariance matrix */
+    VectorType m_cog {VectorType::Zero()};     /*!< \brief Gravity center of the neighborhood */
+    MatrixType m_cov {MatrixType::Zero()};     /*!< \brief Covariance matrix */
 
     Solver m_solver;  /*!<\brief Solver used to analyse the covariance matrix */
-
-    WFunctor m_w;     /*!< \brief Weight function (must inherits BaseWeightFunc) */
 
 public:
 
     /*! \brief Default constructor */
-    PONCA_MULTIARCH inline CovariancePlaneFit() : Base() {}
+    PONCA_MULTIARCH inline CovariancePlaneFit() = default;
 
     /*! \brief Explicit conversion to CovariancePlaneFit, to access methods potentially hidden by inheritage */
     PONCA_MULTIARCH inline
@@ -84,17 +80,14 @@ public:
     /**************************************************************************/
     /* Initialization                                                         */
     /**************************************************************************/
-    /*! \copydoc Concept::FittingProcedureConcept::setWeightFunc() */
-    PONCA_MULTIARCH inline void setWeightFunc (const WFunctor& _w) { m_w  = _w; }
-
     /*! \copydoc Concept::FittingProcedureConcept::init() */
     PONCA_MULTIARCH inline void init (const VectorType& _evalPos);
 
     /**************************************************************************/
     /* Processing                                                             */
     /**************************************************************************/
-    /*! \copydoc Concept::FittingProcedureConcept::addNeighbor() */
-    PONCA_MULTIARCH inline bool addNeighbor(const DataPoint &_nei);
+    /*! \copydoc Concept::FittingProcedureConcept::addLocalNeighbor() */
+    PONCA_MULTIARCH inline bool addLocalNeighbor(Scalar w, const VectorType &localQ, const DataPoint &attributes);
 
     /*! \copydoc Concept::FittingProcedureConcept::finalize() */
     PONCA_MULTIARCH inline FIT_RESULT finalize();
@@ -207,8 +200,8 @@ public:
     /************************************************************************/
     /* Processing                                                           */
     /************************************************************************/
-    /*! \see Concept::FittingProcedureConcept::addNeighbor() */
-    PONCA_MULTIARCH bool addNeighbor(const DataPoint  &nei);
+    /*! \see Concept::FittingProcedureConcept::addLocalNeighbor() */
+    PONCA_MULTIARCH inline bool addLocalNeighbor(Scalar w, const VectorType &localQ, const DataPoint &attributes);
     /*! \see Concept::FittingProcedureConcept::finalize() */
     PONCA_MULTIARCH FIT_RESULT finalize();
 

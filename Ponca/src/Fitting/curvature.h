@@ -54,14 +54,14 @@ private:
     typedef Eigen::Matrix<Scalar,2,2> Mat22; /*!< \brief Matrix type for shape operator */
 
 private:
-    Scalar m_k1, m_k2;
-    VectorType m_v1, m_v2;
+    Scalar m_k1 {0}, m_k2 {0};
+    VectorType m_v1 {VectorType::Zero()}, m_v2{VectorType::Zero()};
 
     static_assert ( DataPoint::Dim == 3, "BaseCurvatureEstimator is only valid in 3D");
 
 public:
     /*! \brief Default constructor */
-    PONCA_MULTIARCH inline CurvatureEstimator() : m_k1(0), m_k2(0) {}
+    PONCA_MULTIARCH inline CurvatureEstimator() = default;
 
     /**************************************************************************/
     /* Processing                                                             */

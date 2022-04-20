@@ -18,25 +18,16 @@ OrientedSphereFit<DataPoint, _WFunctor, T>::init(const VectorType& _evalPos)
     m_deno     = Scalar(0.0);
 }
 
-template < class DataPoint, class _WFunctor, typename T>
+template<class DataPoint, class _WFunctor, typename T>
 bool
-OrientedSphereFit<DataPoint, _WFunctor, T>::addNeighbor(const DataPoint& _nei)
-{
-    if (Base::addNeighbor(_nei))
-    {
-        /// \todo Avoid to compute the weight multiple times
-        // centered basis
-        VectorType q = _nei.pos() - Base::basisCenter();
-
-        // compute weight
-        Scalar w = Base::m_w.w(q, _nei);
-
-        // increment matrix
-        m_sumDotPN += w * _nei.normal().dot(q);
-        m_sumDotPP += w * q.squaredNorm();
+OrientedSphereFit<DataPoint, _WFunctor, T>::addLocalNeighbor(Scalar w,
+                                                        const VectorType &localQ,
+                                                        const DataPoint &attributes) {
+    if( Base::addLocalNeighbor(w, localQ, attributes) ) {
+        m_sumDotPN += w * attributes.normal().dot(localQ);
+        m_sumDotPP += w * localQ.squaredNorm();
         return true;
     }
-
     return false;
 }
 
@@ -118,34 +109,27 @@ OrientedSphereDer<DataPoint, _WFunctor, T, Type>::init(const VectorType& _evalPo
 
 template < class DataPoint, class _WFunctor, typename T, int Type>
 bool
-OrientedSphereDer<DataPoint, _WFunctor, T, Type>::addNeighbor(const DataPoint  &_nei)
-{
-    bool bResult = Base::addNeighbor(_nei);
-
-    if(bResult)
-    {
+OrientedSphereDer<DataPoint, _WFunctor, T, Type>::addLocalNeighbor(Scalar w,
+                                                             const VectorType &localQ,
+                                                             const DataPoint &attributes) {
+    if( Base::addLocalNeighbor(w, localQ, attributes) ) {
         ScalarArray dw;
-
-        // centered basis
-        VectorType q = _nei.pos() - Base::basisCenter();
-
         // compute weight derivatives
         if (Type & FitScaleDer)
-            dw[0] = Base::m_w.scaledw(q, _nei);
+            dw[0] = Base::m_w.scaledw(attributes.pos(), attributes);
 
         if (Type & FitSpaceDer)
-            dw.template tail<int(DataPoint::Dim)>() = -Base::m_w.spacedw(q, _nei).transpose();
+            dw.template tail<int(DataPoint::Dim)>() = -Base::m_w.spacedw(attributes.pos(), attributes).transpose();
 
         // increment
         m_dSumW     += dw;
-        m_dSumP     += q * dw;
-        m_dSumN     += _nei.normal() * dw;
-        m_dSumDotPN += dw * _nei.normal().dot(q);
-        m_dSumDotPP += dw * q.squaredNorm();
+        m_dSumP     += localQ * dw;
+        m_dSumN     += attributes.normal() * dw;
+        m_dSumDotPN += dw * attributes.normal().dot(localQ);
+        m_dSumDotPP += dw * localQ.squaredNorm();
 
         return true;
     }
-
     return false;
 }
 

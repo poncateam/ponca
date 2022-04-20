@@ -59,31 +59,22 @@ void
 UnorientedSphereFit<DataPoint, _WFunctor, T>::init(const VectorType& _evalPos)
 {
     Base::init(_evalPos);
-
-    // Setup fitting internal values
     m_matA.setZero();
-    //   _matQ.setZero();
     m_sumDotPP = Scalar(0.0);
 }
 
-template < class DataPoint, class _WFunctor, typename T>
+template<class DataPoint, class _WFunctor, typename T>
 bool
-UnorientedSphereFit<DataPoint, _WFunctor, T>::addNeighbor(const DataPoint& _nei)
-{
-    if (Base::addNeighbor(_nei))
+UnorientedSphereFit<DataPoint, _WFunctor, T>::addLocalNeighbor(Scalar w,
+                                                        const VectorType &localQ,
+                                                        const DataPoint &attributes) {
+    if( Base::addLocalNeighbor(w, localQ, attributes) )
     {
-        /// \todo Avoid to compute the weight multiple times
-        // centered basis
-        VectorType q = _nei.pos() - Base::basisCenter();
-
-        // compute weight
-        Scalar w = Base::m_w.w(q, _nei);
-
         VectorB basis;
-        basis << _nei.normal(), _nei.normal().dot(q);
+        basis << attributes.normal(), attributes.normal().dot(localQ);
 
         m_matA     += w * basis * basis.transpose();
-        m_sumDotPP += w * q.squaredNorm();
+        m_sumDotPP += w * localQ.squaredNorm();
 
         return true;
     }

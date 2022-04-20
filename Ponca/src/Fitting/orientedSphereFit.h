@@ -24,15 +24,19 @@ namespace Ponca
     \ingroup fitting
 */
 template < class DataPoint, class _WFunctor, typename T = void >
-class OrientedSphereFit : public MeanNormal<DataPoint, _WFunctor, AlgebraicSphere<DataPoint, _WFunctor>>
+class OrientedSphereFit : public MeanPosition<DataPoint, _WFunctor,
+                                 MeanNormal<DataPoint, _WFunctor,
+                                 AlgebraicSphere<DataPoint, _WFunctor>>>
 {
 private:
-    using Base = MeanNormal<DataPoint, _WFunctor, AlgebraicSphere<DataPoint, _WFunctor>>;
+    using Base = MeanPosition<DataPoint, _WFunctor, MeanNormal<DataPoint, _WFunctor, AlgebraicSphere<DataPoint, _WFunctor>>>;
 
 protected:
     enum
     {
-        Check = Base::PROVIDES_ALGEBRAIC_SPHERE && Base::PROVIDES_MEAN_NORMAL
+        Check = Base::PROVIDES_ALGEBRAIC_SPHERE &&
+                Base::PROVIDES_MEAN_NORMAL &&
+                Base::PROVIDES_MEAN_POSITION
     };
 
 public:
@@ -55,8 +59,7 @@ public:
 public:
 
     /*! \brief Default constructor */
-    PONCA_MULTIARCH inline OrientedSphereFit()
-        : Base(){}
+    PONCA_MULTIARCH inline OrientedSphereFit() = default;
 
     /**************************************************************************/
     /* Initialization                                                         */
@@ -69,8 +72,8 @@ public:
     /**************************************************************************/
     /* Processing                                                             */
     /**************************************************************************/
-    /*! \copydoc Concept::FittingProcedureConcept::addNeighbor() */
-    PONCA_MULTIARCH inline bool addNeighbor(const DataPoint &_nei);
+    /*! \copydoc Concept::FittingProcedureConcept::addLocalNeighbor() */
+    PONCA_MULTIARCH inline bool addLocalNeighbor(Scalar w, const VectorType &localQ, const DataPoint &attributes);
 
     /*! \copydoc Concept::FittingProcedureConcept::finalize() */
     PONCA_MULTIARCH inline FIT_RESULT finalize();
@@ -156,9 +159,10 @@ public:
     /************************************************************************/
     /* Processing                                                           */
     /************************************************************************/
-    /*! \see Concept::FittingProcedureConcept::addNeighbor() */
-    PONCA_MULTIARCH bool addNeighbor(const DataPoint  &nei);
-    /*! \see Concept::FittingProcedureConcept::finalize() */
+    /*! \see Concept::FittingProcedureConcept::addLocalNeighbor() */
+    PONCA_MULTIARCH inline bool addLocalNeighbor(Scalar w, const VectorType &localQ, const DataPoint &attributes);
+
+        /*! \see Concept::FittingProcedureConcept::finalize() */
     PONCA_MULTIARCH FIT_RESULT finalize   ();
 
 

@@ -52,14 +52,13 @@ protected:
     typedef Eigen::Matrix<Scalar, Dim+1, 1>      VectorB;
     typedef Eigen::Matrix<Scalar, Dim+1, Dim+1>  MatrixBB;
 
-    MatrixBB    m_matA;     /*!< \brief The accumulated covariance matrix */
-    Scalar      m_sumDotPP; /*!< \brief Sum of the squared relative positions */
+    MatrixBB    m_matA {MatrixBB::Zero()}; /*!< \brief The accumulated covariance matrix */
+    Scalar      m_sumDotPP {0};            /*!< \brief Sum of the squared relative positions */
 
 
 public:
     /*! \brief Default constructor */
-    PONCA_MULTIARCH inline UnorientedSphereFit()
-        : Base(){}
+    PONCA_MULTIARCH inline UnorientedSphereFit() = default;
 
     /**************************************************************************/
     /* Initialization                                                         */
@@ -70,8 +69,8 @@ public:
     /**************************************************************************/
     /* Processing                                                             */
     /**************************************************************************/
-    /*! \copydoc Concept::FittingProcedureConcept::addNeighbor() */
-    PONCA_MULTIARCH inline bool addNeighbor(const DataPoint& _nei);
+    /*! \copydoc Concept::FittingProcedureConcept::addLocalNeighbor() */
+    PONCA_MULTIARCH inline bool addLocalNeighbor(Scalar w, const VectorType &localQ, const DataPoint &attributes);
 
     /*! \copydoc Concept::FittingProcedureConcept::finalize() */
     PONCA_MULTIARCH inline FIT_RESULT finalize();

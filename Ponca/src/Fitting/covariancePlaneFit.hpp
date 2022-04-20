@@ -12,32 +12,21 @@ template < class DataPoint, class _WFunctor, typename T>
 void
 CovariancePlaneFit<DataPoint, _WFunctor, T>::init(const VectorType& _evalPos)
 {
-    // Setup primitive
-    Base::resetPrimitive();
-    Base::basisCenter() = _evalPos;
-
-    // Setup fitting internal values
-    m_sumW        = Scalar(0.0);
+    Base::init(_evalPos);
     m_cog         = VectorType::Zero();
     m_cov         = MatrixType::Zero();
 }
 
 template < class DataPoint, class _WFunctor, typename T>
 bool
-CovariancePlaneFit<DataPoint, _WFunctor, T>::addNeighbor(const DataPoint& _nei)
+CovariancePlaneFit<DataPoint, _WFunctor, T>::addLocalNeighbor(Scalar w,
+                                                             const VectorType &localQ,
+                                                             const DataPoint &attributes)
 {
-    VectorType q = _nei.pos() - Base::basisCenter();
-    // compute weight
-    Scalar w = m_w.w(q, _nei);
-
-    if (w > Scalar(0.))
-    {
-      m_cog  += w * q;
-      m_sumW += w;
-      m_cov  += w * q * q.transpose();
-
-      ++(Base::m_nbNeighbors);
-      return true;
+    if( Base::addLocalNeighbor(w, localQ, attributes) ) {
+        m_cog  += w * localQ; /// \fixme Replace by MeanPosition
+        m_cov  += localQ * localQ.transpose();
+        return true;
     }
     return false;
 }
@@ -49,18 +38,16 @@ CovariancePlaneFit<DataPoint, _WFunctor, T>::finalize ()
 {
     // handle specific configurations
     // With less than 3 neighbors the fitting is undefined
-    if(m_sumW == Scalar(0.) || Base::m_nbNeighbors < 3)
+    if(Base::finalize() != STABLE || Base::m_nbNeighbors < 3)
     {
-      Base::resetPrimitive();
-      Base::m_eCurrentState = UNDEFINED;
-      return Base::m_eCurrentState;
+        return Base::m_eCurrentState = UNDEFINED;
     }
 
     // Finalize the centroid (still expressed in local basis)
-    m_cog = m_cog/m_sumW;
+    m_cog = m_cog/Base::m_sumW;
 
     // Center the covariance on the centroid
-    m_cov = m_cov/m_sumW - m_cog * m_cog.transpose();
+    m_cov = m_cov/Base::m_sumW - m_cog * m_cog.transpose();
 
 #ifdef __CUDACC__
     m_solver.computeDirect(m_cov);
@@ -69,6 +56,7 @@ CovariancePlaneFit<DataPoint, _WFunctor, T>::finalize ()
 #endif
     Base::m_eCurrentState = ( m_solver.info() == Eigen::Success ? STABLE : UNDEFINED );
 
+    /// \fixme refactor to avoid code duplication with linefit
     Base::setPlane(m_solver.eigenvectors().col(0), m_cog);
 
     return Base::m_eCurrentState;
@@ -91,7 +79,7 @@ CovariancePlaneFit<DataPoint, _WFunctor, T>::worldToTangentPlane (const VectorTy
     return m_solver.eigenvectors().transpose() * _q;
   else {
     // apply rotation and translation to get uv coordinates
-    return m_solver.eigenvectors().transpose() * (_q - Base::basisCenter());
+    return m_solver.eigenvectors().transpose() * (Base::m_w.convertToLocalBasis(_q));
   }
 }
 
@@ -103,7 +91,7 @@ CovariancePlaneFit<DataPoint, _WFunctor, T>::tangentPlaneToWorld (const VectorTy
   if (ignoreTranslation)
     return m_solver.eigenvectors().transpose().inverse() * _lq;
   else {
-    return m_solver.eigenvectors().transpose().inverse() * _lq + Base::basisCenter();
+    return m_solver.eigenvectors().transpose().inverse() * _lq + Base::m_w.basisCenter();
   }
 }
 
@@ -125,32 +113,28 @@ CovariancePlaneDer<DataPoint, _WFunctor, T, Type>::init(const VectorType& _evalP
 }
 
 
+
 template < class DataPoint, class _WFunctor, typename T, int Type>
 bool
-CovariancePlaneDer<DataPoint, _WFunctor, T, Type>::addNeighbor(const DataPoint  &_nei)
+CovariancePlaneDer<DataPoint, _WFunctor, T, Type>::addLocalNeighbor(Scalar w,
+                                                             const VectorType &localQ,
+                                                             const DataPoint &attributes)
 {
-    bool bResult = Base::addNeighbor(_nei);
-
-    if(bResult)
-    {
+    if( Base::addLocalNeighbor(w, localQ, attributes) ) {
         int spaceId = (Type & FitScaleDer) ? 1 : 0;
-
         ScalarArray dw;
-
-        // centered basis
-        VectorType q = _nei.pos()-Base::basisCenter();
 
         // compute weight
         if (Type & FitScaleDer)
-            dw[0] = Base::m_w.scaledw(q, _nei);
+            dw[0] = Base::m_w.scaledw(attributes.pos(), attributes);
 
         if (Type & FitSpaceDer)
-            dw.template segment<int(DataPoint::Dim)>(spaceId) = -Base::m_w.spacedw(q, _nei).transpose();
+            dw.template segment<int(DataPoint::Dim)>(spaceId) = -Base::m_w.spacedw(attributes.pos(), attributes).transpose();
 
         m_dSumW += dw;
-        m_dCog  += q * dw;
+        m_dCog  += localQ * dw;
         for(int k=0; k<NbDerivatives; ++k)
-          m_dCov[k]  += dw[k] * q * q.transpose();
+          m_dCov[k]  += dw[k] * localQ * localQ.transpose(); /// \fixme better use eigen here
 
         return true;
     }
