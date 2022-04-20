@@ -32,9 +32,9 @@ namespace Ponca
     the scale invariant GLS descriptor
     \f$ \left[ \frac{\tau}{t} \; \eta \; t\kappa \right]\f$
 
-    Requierement:
+    Requirements:
     \verbatim PROVIDES_ALGEBRAIC_SPHERE \endverbatim
-    Provide:
+    Provides:
     \verbatim PROVIDES_GLS_PARAMETRIZATION \endverbatim
 
     \ingroup fitting

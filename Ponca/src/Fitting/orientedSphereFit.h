@@ -233,9 +233,9 @@ public:
     \brief Differentiation in scale of the OrientedSphereFit
     \inherit Concept::FittingExtensionConcept
 
-    Requierement:
+    Requirements:
     \verbatim PROVIDES_ALGEBRAIC_SPHERE \endverbatim
-    Provide:
+    Provides:
     \verbatim PROVIDES_ALGEBRAIC_SPHERE_SCALE_DERIVATIVE \endverbatim
 */
 template < class DataPoint, class _WFunctor, typename T>
@@ -256,9 +256,9 @@ protected:
     \brief Spatial differentiation of the OrientedSphereFit
     \inherit Concept::FittingExtensionConcept
 
-    Requierement:
+    Requirements:
     \verbatim PROVIDES_ALGEBRAIC_SPHERE \endverbatim
-    Provide:
+    Provides:
     \verbatim PROVIDES_ALGEBRAIC_SPHERE_SPACE_DERIVATIVE \endverbatim
 */
 template < class DataPoint, class _WFunctor, typename T>
@@ -279,9 +279,9 @@ protected:
     \brief Differentiation both in scale and space of the OrientedSphereFit
     \inherit Concept::FittingExtensionConcept
 
-    Requierement:
+    Requirements:
     \verbatim PROVIDES_ALGEBRAIC_SPHERE \endverbatim
-    Provide:
+    Provides:
     \verbatim PROVIDES_ALGEBRAIC_SPHERE_SCALE_DERIVATIVE
     PROVIDES_ALGEBRAIC_SPHERE_SPACE_DERIVATIVE
     \endverbatim

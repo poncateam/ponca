@@ -89,8 +89,10 @@ void testFunction(bool _bUnoriented = false, bool _bAddPositionNoise = false, bo
         vectorPoints[i] = getPointOnSphere<DataPoint>(radius, center, _bAddPositionNoise, _bAddNormalNoise, _bUnoriented);
     }
 
-    // Test for each point if the fitted sphere correspond to the theorical sphere
+    // Test for each point if the fitted sphere correspond to the theoretical sphere
+#ifdef NDEBUG
 #pragma omp parallel for
+#endif
     for(int i = 0; i < int(vectorPoints.size()); ++i)
     {
         Fit fit;
@@ -110,9 +112,9 @@ void testFunction(bool _bUnoriented = false, bool _bAddPositionNoise = false, bo
             // Test procedure
             VERIFY( (fitCenter - center).norm() < (radiusMax - radius) + radiusEpsilon );
             VERIFY( (fitRadiusAlgebraic > radiusMin - radiusEpsilon) && (fitRadiusAlgebraic < radiusMax + radiusEpsilon) );
-            // Test reparametrization
+            // Test re-parameterization
             VERIFY( (fitRadiusKappa > radiusMin - radiusEpsilon) && (fitRadiusKappa < radiusMax + radiusEpsilon) );
-            //Test coherance
+            //Test coherence
             VERIFY( Eigen::internal::isMuchSmallerThan(std::abs(fitRadiusAlgebraic - fitRadiusKappa), Scalar(1.), epsilon) );
 
             //Test using spatial derivatives if defined
@@ -123,9 +125,9 @@ void testFunction(bool _bUnoriented = false, bool _bAddPositionNoise = false, bo
             {
                 //sometimes eta can be reversed
                 VectorType fitEta (fit.eta().normalized().array().abs());
-                VectorType theoricEta (vectorPoints[i].normal().array().abs());
+                VectorType expectedEta (vectorPoints[i].normal().array().abs());
 
-                VERIFY( Eigen::internal::isMuchSmallerThan((fitEta - theoricEta).norm(), Scalar(1.), epsilon)  );
+                VERIFY( Eigen::internal::isMuchSmallerThan((fitEta - expectedEta).norm(), Scalar(1.), epsilon)  );
             }
         }
     }

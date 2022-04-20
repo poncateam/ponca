@@ -64,10 +64,8 @@ public:
     /**************************************************************************/
     /* Initialization                                                         */
     /**************************************************************************/
-
     /*! \copydoc Concept::FittingProcedureConcept::init() */
     PONCA_MULTIARCH inline void init(const VectorType& _evalPos);
-
 
     /**************************************************************************/
     /* Processing                                                             */
@@ -210,9 +208,9 @@ public:
     \brief Differentiation in scale of the UnorientedSphereFit
     \inherit Concept::FittingExtensionConcept
 
-    Requierement:
+    Requirements:
     \verbatim PROVIDES_ALGEBRAIC_SPHERE \endverbatim
-    Provide:
+    Provides:
     \verbatim PROVIDES_ALGEBRAIC_SPHERE_SCALE_DERIVATIVE \endverbatim
 */
 template < class DataPoint, class _WFunctor, typename T>
@@ -229,9 +227,9 @@ protected:
     \brief Spatial differentiation of the UnorientedSphereFit
     \inherit Concept::FittingExtensionConcept
 
-    Requierement:
+    Requirements:
     \verbatim PROVIDES_ALGEBRAIC_SPHERE \endverbatim
-    Provide:
+    Provides:
     \verbatim PROVIDES_ALGEBRAIC_SPHERE_SPACE_DERIVATIVE \endverbatim
 */
 template < class DataPoint, class _WFunctor, typename T>
@@ -248,9 +246,9 @@ protected:
     \brief Differentiation both in scale and space of the UnorientedSphereFit
     \inherit Concept::FittingExtensionConcept
 
-    Requierement:
+    Requirements:
     \verbatim PROVIDES_ALGEBRAIC_SPHERE \endverbatim
-    Provide:
+    Provides:
     \verbatim PROVIDES_ALGEBRAIC_SPHERE_SCALE_DERIVATIVE
         PROVIDES_ALGEBRAIC_SPHERE_SPACE_DERIVATIVE
     \endverbatim
