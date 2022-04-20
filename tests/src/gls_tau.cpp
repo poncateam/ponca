@@ -59,7 +59,7 @@ void testFunction(bool _bUnoriented = false, bool _bAddPositionNoise = false, bo
 #pragma omp parallel for
     for(int i = 0; i < int(vectorPoints.size()); ++i)
     {
-        // Take a random distance to the plane, not too large to have few points in weightning analysis
+        // Take a random distance to the plane, not too large to have few points in weighting analysis
         Scalar distanceToPlane = Eigen::internal::random<Scalar>(-range, range);
         VectorType vEvaluationPoint = vectorPoints[i].pos() + distanceToPlane * vPlaneNormal;
 

@@ -52,7 +52,9 @@ void testFunction()
     KdTree<DataPoint> tree( vectorPoints );
 
     // Test for each point if the fitted sphere correspond to the theoretical sphere
+#ifdef NDEBUG
 #pragma omp parallel for
+#endif
     for(int i = 0; i < int(vectorPoints.size()); ++i)
     {
         Fit fit1, fit2;

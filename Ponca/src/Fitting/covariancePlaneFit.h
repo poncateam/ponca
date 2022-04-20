@@ -238,9 +238,9 @@ public:
     \brief Differentiation in scale of the CovariancePlaneFit
     \inherit Concept::FittingExtensionConcept
 
-    Requierement:
+    Requirements:
     \verbatim PROVIDES_COVARIANCE_PLANE \endverbatim
-    Provide:
+    Provides:
     \verbatim PROVIDES_COVARIANCE_PLANE_SCALE_DERIVATIVE \endverbatim
 
     \ingroup fitting
@@ -259,9 +259,9 @@ protected:
     \brief Spatial differentiation of the CovariancePlaneFit
     \inherit Concept::FittingExtensionConcept
 
-    Requierement:
+    Requirements:
     \verbatim PROVIDES_COVARIANCE_PLANE \endverbatim
-    Provide:
+    Provides:
     \verbatim PROVIDES_COVARIANCE_PLANE_SPACE_DERIVATIVE \endverbatim
 
     \ingroup fitting
@@ -280,9 +280,9 @@ protected:
     \brief Differentiation both in scale and space of the CovariancePlaneFit
     \inherit Concept::FittingExtensionConcept
 
-    Requierement:
+    Requirements:
     \verbatim PROVIDES_COVARIANCE_PLANE \endverbatim
-    Provide:
+    Provides:
     \verbatim PROVIDES_COVARIANCE_PLANE_SCALE_DERIVATIVE
     PROVIDES_COVARIANCE_PLANE_SPACE_DERIVATIVE
     \endverbatim
