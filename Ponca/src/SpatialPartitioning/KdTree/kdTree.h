@@ -38,10 +38,10 @@ class KdTree
 {
 public:
     typedef          _DataPoint            DataPoint;
-	typedef typename DataPoint::Scalar     Scalar;  // Scalar given by user
-	typedef typename DataPoint::VectorType VectorType;  // VectorType given by user
+    typedef typename DataPoint::Scalar     Scalar;  // Scalar given by user
+    typedef typename DataPoint::VectorType VectorType;  // VectorType given by user
 
-	typedef typename Eigen::AlignedBox<Scalar, DataPoint::Dim> Aabb; // Intersections
+    typedef typename Eigen::AlignedBox<Scalar, DataPoint::Dim> Aabb; // Intersections
 
     typedef typename std::vector<DataPoint> PointContainer; // Container for VectorType used inside the KdTree
     typedef typename std::vector<int> IndexContainer; // Container for indices used inside the KdTree
@@ -51,7 +51,8 @@ public:
         m_points(PointContainer()),
         m_nodes(NodeContainer()),
         m_indices(IndexContainer()),
-        m_min_cell_size(64)
+        m_min_cell_size(64),
+        m_leaf_count(0)
     {
     };
 
@@ -60,7 +61,8 @@ public:
         m_points(PointContainer()),
         m_nodes(NodeContainer()),
         m_indices(IndexContainer()),
-        m_min_cell_size(64)
+        m_min_cell_size(64),
+        m_leaf_count(0)
     {
         this->build(points);
     };
@@ -71,7 +73,8 @@ public:
         m_points(),
         m_nodes(),
         m_indices(),
-        m_min_cell_size(64)
+        m_min_cell_size(64),
+        m_leaf_count(0)
     {
         buildWithSampling(points, sampling);
     };
@@ -135,6 +138,7 @@ public:
     inline int node_count() const;
     inline int index_count() const;
     inline int point_count() const;
+    inline int leaf_count() const;
 
     inline PointContainer& point_data()
     {
@@ -177,7 +181,7 @@ public:
     inline int partition(int start, int end, int dim, Scalar value);
 
 
-	// Query -------------------------------------------------------------------
+    // Query -------------------------------------------------------------------
 public :
     KdTreeKNearestPointQuery<DataPoint> k_nearest_neighbors(const VectorType& point, int k) const
     {
@@ -208,6 +212,7 @@ public :
     {
         return KdTreeRangeIndexQuery<DataPoint>(this, r, index);
     }
+    
 
     // Data --------------------------------------------------------------------
 protected:
@@ -216,9 +221,8 @@ protected:
     IndexContainer m_indices;
 
     int m_min_cell_size;
+    int m_leaf_count; ///< Number of leafs in the Kdtree (computed during construction)
 };
 
 #include "./kdTree.hpp"
-
-
 } // namespace Ponca

@@ -35,10 +35,10 @@ public:
 
 public:
     inline Iterator begin();
-	inline Iterator end();
+    inline Iterator end();
 
 protected:
-	inline void advance(Iterator& iterator);
+    inline void advance(Iterator& iterator);
 };
 
 #include "./kdTreeRangePointQuery.hpp"

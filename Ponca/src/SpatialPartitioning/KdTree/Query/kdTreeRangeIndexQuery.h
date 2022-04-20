@@ -23,7 +23,7 @@ class KdTreeRangeIndexQuery : public KdTreeQuery<DataPoint>, public RangeIndexQu
     using Iterator        = KdTreeRangeIterator<DataPoint, KdTreeRangeIndexQuery>;
 
 protected:
-	friend Iterator;
+    friend Iterator;
 
 public:
 

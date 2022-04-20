@@ -15,7 +15,7 @@ struct KdTreeNode
 {
     union {
         struct {
-			Scalar       splitValue;
+            Scalar       splitValue;
             unsigned int   firstChildId:24;
             unsigned int   dim:2;
             unsigned int   leaf:1;
