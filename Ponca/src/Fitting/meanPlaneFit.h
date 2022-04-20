@@ -9,6 +9,7 @@
 #pragma once
 
 #include "./plane.h"
+#include "./mean.h"
 
 namespace Ponca
 {
@@ -20,20 +21,19 @@ namespace Ponca
     \inherit Concept::FittingProcedureConcept
 
     \see Plane
-    \todo Add derivatives
 
     \ingroup fitting
 */
 template < class DataPoint, class _WFunctor, typename T >
-class MeanPlaneFit : public Plane<DataPoint, _WFunctor>
+class MeanPlaneFit : public MeanNormal<DataPoint, _WFunctor, Plane<DataPoint, _WFunctor>>
 {
 private:
-    typedef Plane<DataPoint, _WFunctor> Base;
+    using Base = MeanNormal<DataPoint, _WFunctor, Plane<DataPoint, _WFunctor>>;
 
 protected:
     enum
     {
-        Check = Base::PROVIDES_PLANE
+        Check = Base::PROVIDES_PLANE && Base::PROVIDES_MEAN_NORMAL
     };
 
 public:
@@ -44,17 +44,6 @@ public:
     typedef typename Base::VectorType VectorType;
     /*! \brief Vector type inherited from DataPoint*/
     typedef typename Base::MatrixType MatrixType;
-    /*! \brief Weight Function*/
-    typedef _WFunctor                 WFunctor;
-
- protected:
-
-    // computation data
-    Scalar      m_sumW;    /*!< \brief Sum of queries weight.*/
-    VectorType  m_sumN,    /*!< \brief Sum of the normal vectors */
-                m_sumP;    /*!< \brief Sum of the relative positions */
-
-    WFunctor m_w;     /*!< \brief Weight function (must inherits BaseWeightFunc) */
 
 public:
 
@@ -62,25 +51,19 @@ public:
     PONCA_MULTIARCH inline MeanPlaneFit() : Base() {}
 
     /**************************************************************************/
-    /* Initialization                                                         */
-    /**************************************************************************/
-    /*! \copydoc Concept::FittingProcedureConcept::setWeightFunc() */
-    PONCA_MULTIARCH inline void setWeightFunc (const WFunctor& _w) { m_w  = _w; }
-
-    /*! \copydoc Concept::FittingProcedureConcept::init() */
-    PONCA_MULTIARCH inline void init (const VectorType& _evalPos);
-
-    /**************************************************************************/
     /* Processing                                                             */
     /**************************************************************************/
-    /*! \copydoc Concept::FittingProcedureConcept::addNeighbor() */
-    PONCA_MULTIARCH inline bool addNeighbor(const DataPoint &_nei);
 
     /*! \copydoc Concept::FittingProcedureConcept::finalize() */
-    PONCA_MULTIARCH inline FIT_RESULT finalize();
+    PONCA_MULTIARCH inline FIT_RESULT finalize()
+    {
+        // handle specific configurations
+        if(Base::finalize() == STABLE)
+        {
+            Base::setPlane(Base::m_sumN / Base::m_sumW, Base::barycenter());
+        }
+
+        return Base::m_eCurrentState;
+    }
 }; //class MeanPlaneFit
-
-
-#include "meanPlaneFit.hpp"
-
 } //namespace Ponca
