@@ -16,6 +16,8 @@ set(ponca_Fitting_INCLUDE
     "${PONCA_src_ROOT}/Ponca/src/Fitting/enums.h"
     "${PONCA_src_ROOT}/Ponca/src/Fitting/gls.h"
     "${PONCA_src_ROOT}/Ponca/src/Fitting/gls.hpp"
+    "${PONCA_src_ROOT}/Ponca/src/Fitting/mean.h"
+    "${PONCA_src_ROOT}/Ponca/src/Fitting/mean.hpp"
     "${PONCA_src_ROOT}/Ponca/src/Fitting/meanPlaneFit.h"
     "${PONCA_src_ROOT}/Ponca/src/Fitting/meanPlaneFit.hpp"
     "${PONCA_src_ROOT}/Ponca/src/Fitting/mlsSphereFitDer.h"
