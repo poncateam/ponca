@@ -97,6 +97,7 @@ public:
         m_p = _evalPos;
     }
 
+    /// \fixme add convertToGlobalBasis, and remove this function
     PONCA_MULTIARCH inline const VectorType& basisCenter() const { return m_p; }
 
     /*!
