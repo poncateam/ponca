@@ -297,30 +297,31 @@
 <g id="node11" class="node">
 <title>Node11</title>
 <g id="a_node11"><a xlink:href="classPonca_1_1KdTree.html" target="_top" xlink:title=" ">
-<polygon fill="white" stroke="black" points="387,-549 387,-716 542,-716 542,-549 387,-549"/>
-<text text-anchor="middle" x="464.5" y="-704" font-family="Helvetica,sans-Serif" font-size="10.00">Ponca::KdTree&lt; DataPoint &gt;</text>
-<polyline fill="none" stroke="black" points="387,-697 542,-697 "/>
-<text text-anchor="start" x="395" y="-685" font-family="Helvetica,sans-Serif" font-size="10.00"># m_min_cell_size</text>
-<polyline fill="none" stroke="black" points="387,-678 542,-678 "/>
-<text text-anchor="start" x="395" y="-666" font-family="Helvetica,sans-Serif" font-size="10.00">+ KdTree()</text>
-<text text-anchor="start" x="395" y="-655" font-family="Helvetica,sans-Serif" font-size="10.00">+ KdTree()</text>
-<text text-anchor="start" x="395" y="-644" font-family="Helvetica,sans-Serif" font-size="10.00">+ KdTree()</text>
-<text text-anchor="start" x="395" y="-633" font-family="Helvetica,sans-Serif" font-size="10.00">+ clear()</text>
-<text text-anchor="start" x="395" y="-622" font-family="Helvetica,sans-Serif" font-size="10.00">+ build()</text>
-<text text-anchor="start" x="395" y="-611" font-family="Helvetica,sans-Serif" font-size="10.00">+ build()</text>
-<text text-anchor="start" x="395" y="-600" font-family="Helvetica,sans-Serif" font-size="10.00">+ buildWithSampling()</text>
-<text text-anchor="start" x="395" y="-589" font-family="Helvetica,sans-Serif" font-size="10.00">+ buildWithSampling()</text>
-<text text-anchor="start" x="395" y="-578" font-family="Helvetica,sans-Serif" font-size="10.00">+ rebuild()</text>
-<text text-anchor="start" x="395" y="-567" font-family="Helvetica,sans-Serif" font-size="10.00">+ valid()</text>
-<text text-anchor="start" x="395" y="-556" font-family="Helvetica,sans-Serif" font-size="10.00">and 20 more...</text>
+<polygon fill="white" stroke="black" points="387,-543.5 387,-721.5 542,-721.5 542,-543.5 387,-543.5"/>
+<text text-anchor="middle" x="464.5" y="-709.5" font-family="Helvetica,sans-Serif" font-size="10.00">Ponca::KdTree&lt; DataPoint &gt;</text>
+<polyline fill="none" stroke="black" points="387,-702.5 542,-702.5 "/>
+<text text-anchor="start" x="395" y="-690.5" font-family="Helvetica,sans-Serif" font-size="10.00"># m_min_cell_size</text>
+<text text-anchor="start" x="395" y="-679.5" font-family="Helvetica,sans-Serif" font-size="10.00"># m_leaf_count</text>
+<polyline fill="none" stroke="black" points="387,-672.5 542,-672.5 "/>
+<text text-anchor="start" x="395" y="-660.5" font-family="Helvetica,sans-Serif" font-size="10.00">+ KdTree()</text>
+<text text-anchor="start" x="395" y="-649.5" font-family="Helvetica,sans-Serif" font-size="10.00">+ KdTree()</text>
+<text text-anchor="start" x="395" y="-638.5" font-family="Helvetica,sans-Serif" font-size="10.00">+ KdTree()</text>
+<text text-anchor="start" x="395" y="-627.5" font-family="Helvetica,sans-Serif" font-size="10.00">+ clear()</text>
+<text text-anchor="start" x="395" y="-616.5" font-family="Helvetica,sans-Serif" font-size="10.00">+ build()</text>
+<text text-anchor="start" x="395" y="-605.5" font-family="Helvetica,sans-Serif" font-size="10.00">+ build()</text>
+<text text-anchor="start" x="395" y="-594.5" font-family="Helvetica,sans-Serif" font-size="10.00">+ buildWithSampling()</text>
+<text text-anchor="start" x="395" y="-583.5" font-family="Helvetica,sans-Serif" font-size="10.00">+ buildWithSampling()</text>
+<text text-anchor="start" x="395" y="-572.5" font-family="Helvetica,sans-Serif" font-size="10.00">+ rebuild()</text>
+<text text-anchor="start" x="395" y="-561.5" font-family="Helvetica,sans-Serif" font-size="10.00">+ valid()</text>
+<text text-anchor="start" x="395" y="-550.5" font-family="Helvetica,sans-Serif" font-size="10.00">and 21 more...</text>
 </a>
 </g>
 </g>
 <!-- Node11&#45;&gt;Node2 -->
 <g id="edge12" class="edge">
 <title>Node11&#45;&gt;Node2</title>
-<path fill="none" stroke="#404040" d="M464.5,-548.76C464.5,-525.55 464.5,-501.01 464.5,-480.27"/>
-<polygon fill="none" stroke="#404040" points="464.5,-480.21 460.5,-474.21 464.5,-468.21 468.5,-474.21 464.5,-480.21"/>
+<path fill="none" stroke="#404040" d="M464.5,-543.49C464.5,-521.86 464.5,-499.42 464.5,-480.23"/>
+<polygon fill="none" stroke="#404040" points="464.5,-480.13 460.5,-474.13 464.5,-468.13 468.5,-474.13 464.5,-480.13"/>
 <text text-anchor="middle" x="493.5" y="-506" font-family="Helvetica,sans-Serif" font-size="10.00"> #m_kdtree</text>
 </g>
 <!-- Node12 -->
@@ -339,38 +340,39 @@
 <!-- Node12&#45;&gt;Node11 -->
 <g id="edge13" class="edge">
 <title>Node12&#45;&gt;Node11</title>
-<path fill="none" stroke="#404040" d="M364.36,-1121.67C347.78,-1060.25 314.77,-909.17 352.5,-791 359.7,-768.44 371.45,-746.35 384.68,-726.18"/>
-<polygon fill="none" stroke="#404040" points="384.76,-726.06 384.82,-718.85 391.5,-716.14 391.44,-723.35 384.76,-726.06"/>
+<path fill="none" stroke="#404040" d="M364.36,-1121.67C347.78,-1060.25 314.77,-909.17 352.5,-791 359.04,-770.5 369.34,-750.39 381.09,-731.76"/>
+<polygon fill="none" stroke="#404040" points="381.19,-731.61 381.12,-724.4 387.76,-721.57 387.82,-728.78 381.19,-731.61"/>
 <text text-anchor="middle" x="381" y="-889" font-family="Helvetica,sans-Serif" font-size="10.00"> #m_points</text>
 </g>
 <!-- Node16 -->
 <g id="node16" class="node">
 <title>Node16</title>
 <g id="a_node16"><a xlink:href="classPonca_1_1KdTree.html" target="_top" xlink:title=" ">
-<polygon fill="white" stroke="black" points="496,-808 496,-975 657,-975 657,-808 496,-808"/>
-<text text-anchor="middle" x="576.5" y="-963" font-family="Helvetica,sans-Serif" font-size="10.00">Ponca::KdTree&lt; _DataPoint &gt;</text>
-<polyline fill="none" stroke="black" points="496,-956 657,-956 "/>
-<text text-anchor="start" x="504" y="-944" font-family="Helvetica,sans-Serif" font-size="10.00"># m_min_cell_size</text>
-<polyline fill="none" stroke="black" points="496,-937 657,-937 "/>
-<text text-anchor="start" x="504" y="-925" font-family="Helvetica,sans-Serif" font-size="10.00">+ KdTree()</text>
-<text text-anchor="start" x="504" y="-914" font-family="Helvetica,sans-Serif" font-size="10.00">+ KdTree()</text>
-<text text-anchor="start" x="504" y="-903" font-family="Helvetica,sans-Serif" font-size="10.00">+ KdTree()</text>
-<text text-anchor="start" x="504" y="-892" font-family="Helvetica,sans-Serif" font-size="10.00">+ clear()</text>
-<text text-anchor="start" x="504" y="-881" font-family="Helvetica,sans-Serif" font-size="10.00">+ build()</text>
-<text text-anchor="start" x="504" y="-870" font-family="Helvetica,sans-Serif" font-size="10.00">+ build()</text>
-<text text-anchor="start" x="504" y="-859" font-family="Helvetica,sans-Serif" font-size="10.00">+ buildWithSampling()</text>
-<text text-anchor="start" x="504" y="-848" font-family="Helvetica,sans-Serif" font-size="10.00">+ buildWithSampling()</text>
-<text text-anchor="start" x="504" y="-837" font-family="Helvetica,sans-Serif" font-size="10.00">+ rebuild()</text>
-<text text-anchor="start" x="504" y="-826" font-family="Helvetica,sans-Serif" font-size="10.00">+ valid()</text>
-<text text-anchor="start" x="504" y="-815" font-family="Helvetica,sans-Serif" font-size="10.00">and 20 more...</text>
+<polygon fill="white" stroke="black" points="496,-802.5 496,-980.5 657,-980.5 657,-802.5 496,-802.5"/>
+<text text-anchor="middle" x="576.5" y="-968.5" font-family="Helvetica,sans-Serif" font-size="10.00">Ponca::KdTree&lt; _DataPoint &gt;</text>
+<polyline fill="none" stroke="black" points="496,-961.5 657,-961.5 "/>
+<text text-anchor="start" x="504" y="-949.5" font-family="Helvetica,sans-Serif" font-size="10.00"># m_min_cell_size</text>
+<text text-anchor="start" x="504" y="-938.5" font-family="Helvetica,sans-Serif" font-size="10.00"># m_leaf_count</text>
+<polyline fill="none" stroke="black" points="496,-931.5 657,-931.5 "/>
+<text text-anchor="start" x="504" y="-919.5" font-family="Helvetica,sans-Serif" font-size="10.00">+ KdTree()</text>
+<text text-anchor="start" x="504" y="-908.5" font-family="Helvetica,sans-Serif" font-size="10.00">+ KdTree()</text>
+<text text-anchor="start" x="504" y="-897.5" font-family="Helvetica,sans-Serif" font-size="10.00">+ KdTree()</text>
+<text text-anchor="start" x="504" y="-886.5" font-family="Helvetica,sans-Serif" font-size="10.00">+ clear()</text>
+<text text-anchor="start" x="504" y="-875.5" font-family="Helvetica,sans-Serif" font-size="10.00">+ build()</text>
+<text text-anchor="start" x="504" y="-864.5" font-family="Helvetica,sans-Serif" font-size="10.00">+ build()</text>
+<text text-anchor="start" x="504" y="-853.5" font-family="Helvetica,sans-Serif" font-size="10.00">+ buildWithSampling()</text>
+<text text-anchor="start" x="504" y="-842.5" font-family="Helvetica,sans-Serif" font-size="10.00">+ buildWithSampling()</text>
+<text text-anchor="start" x="504" y="-831.5" font-family="Helvetica,sans-Serif" font-size="10.00">+ rebuild()</text>
+<text text-anchor="start" x="504" y="-820.5" font-family="Helvetica,sans-Serif" font-size="10.00">+ valid()</text>
+<text text-anchor="start" x="504" y="-809.5" font-family="Helvetica,sans-Serif" font-size="10.00">and 21 more...</text>
 </a>
 </g>
 </g>
 <!-- Node12&#45;&gt;Node16 -->
 <g id="edge21" class="edge">
 <title>Node12&#45;&gt;Node16</title>
-<path fill="none" stroke="#404040" d="M391.05,-1121.89C410.55,-1093.3 442.49,-1047.62 472.5,-1010 479.24,-1001.55 486.38,-992.91 493.65,-984.32"/>
-<polygon fill="none" stroke="#404040" points="493.77,-984.17 494.63,-977.01 501.56,-975.04 500.71,-982.2 493.77,-984.17"/>
+<path fill="none" stroke="#404040" d="M391.05,-1121.89C410.55,-1093.3 442.49,-1047.62 472.5,-1010 477.81,-1003.34 483.38,-996.55 489.06,-989.76"/>
+<polygon fill="none" stroke="#404040" points="489.12,-989.69 489.94,-982.53 496.86,-980.53 496.05,-987.69 489.12,-989.69"/>
 <text text-anchor="middle" x="501" y="-1018.5" font-family="Helvetica,sans-Serif" font-size="10.00"> #m_points</text>
 </g>
 <!-- Node13&#45;&gt;Node12 -->
@@ -470,15 +472,15 @@
 <!-- Node14&#45;&gt;Node11 -->
 <g id="edge16" class="edge">
 <title>Node14&#45;&gt;Node11</title>
-<path fill="none" stroke="#404040" d="M502.12,-1121.87C476.36,-1084.5 433.18,-1019.36 425.5,-992 400.97,-904.64 416.72,-801.29 435,-728.06"/>
-<polygon fill="none" stroke="#404040" points="435.08,-727.74 432.7,-720.93 438.07,-716.12 440.45,-722.92 435.08,-727.74"/>
+<path fill="none" stroke="#404040" d="M502.12,-1121.87C476.36,-1084.5 433.18,-1019.36 425.5,-992 401.58,-906.78 415.97,-806.35 433.66,-733.5"/>
+<polygon fill="none" stroke="#404040" points="433.72,-733.23 431.3,-726.44 436.64,-721.59 439.06,-728.39 433.72,-733.23"/>
 <text text-anchor="middle" x="456" y="-889" font-family="Helvetica,sans-Serif" font-size="10.00"> #m_indices</text>
 </g>
 <!-- Node14&#45;&gt;Node16 -->
 <g id="edge22" class="edge">
 <title>Node14&#45;&gt;Node16</title>
-<path fill="none" stroke="#404040" d="M522.67,-1121.95C524.28,-1093.6 528.03,-1048.29 536.5,-1010 538.17,-1002.45 540.15,-994.72 542.34,-986.99"/>
-<polygon fill="none" stroke="#404040" points="542.39,-986.81 540.25,-979.92 545.78,-975.3 547.92,-982.18 542.39,-986.81"/>
+<path fill="none" stroke="#404040" d="M522.67,-1121.95C524.28,-1093.6 528.03,-1048.29 536.5,-1010 537.76,-1004.32 539.19,-998.52 540.76,-992.71"/>
+<polygon fill="none" stroke="#404040" points="540.87,-992.31 538.65,-985.45 544.14,-980.77 546.35,-987.63 540.87,-992.31"/>
 <text text-anchor="middle" x="567" y="-1018.5" font-family="Helvetica,sans-Serif" font-size="10.00"> #m_indices</text>
 </g>
 <!-- Node15&#45;&gt;Node11 -->
@@ -491,15 +493,15 @@
 <!-- Node15&#45;&gt;Node16 -->
 <g id="edge23" class="edge">
 <title>Node15&#45;&gt;Node16</title>
-<path fill="none" stroke="#404040" d="M649.69,-1116.43C638.99,-1083.68 622.1,-1032 607.23,-986.53"/>
-<polygon fill="none" stroke="#404040" points="607.23,-986.53 601.57,-982.07 603.51,-975.12 609.17,-979.58 607.23,-986.53"/>
+<path fill="none" stroke="#404040" d="M649.69,-1116.43C639.44,-1085.07 623.51,-1036.33 609.13,-992.33"/>
+<polygon fill="none" stroke="#404040" points="609.04,-992.06 603.38,-987.6 605.31,-980.66 610.98,-985.12 609.04,-992.06"/>
 <text text-anchor="middle" x="649.5" y="-1018.5" font-family="Helvetica,sans-Serif" font-size="10.00"> #m_nodes</text>
 </g>
 <!-- Node16&#45;&gt;Node11 -->
 <g id="edge20" class="edge">
 <title>Node16&#45;&gt;Node11</title>
-<path fill="none" stroke="orange" d="M536.35,-798.37C524.64,-771.5 511.92,-742.32 500.49,-716.08"/>
-<polygon fill="orange" stroke="orange" points="533.24,-800 540.45,-807.77 539.66,-797.2 533.24,-800"/>
+<path fill="none" stroke="orange" d="M534.09,-793.18C523.88,-769.77 513.04,-744.89 503.03,-721.91"/>
+<polygon fill="orange" stroke="orange" points="530.91,-794.65 538.11,-802.41 537.33,-791.85 530.91,-794.65"/>
 <text text-anchor="middle" x="561.5" y="-754" font-family="Helvetica,sans-Serif" font-size="10.00"> &lt; DataPoint &gt;</text>
 </g>
 <!-- Node17 -->
