@@ -58,40 +58,33 @@ template < class DataPoint, class _WFunctor, typename T>
 void
 UnorientedSphereFit<DataPoint, _WFunctor, T>::init(const VectorType& _evalPos)
 {
-    // Setup primitive
-    Base::resetPrimitive();
-    Base::basisCenter() = _evalPos;
+    Base::init(_evalPos);
 
     // Setup fitting internal values
     m_matA.setZero();
     //   _matQ.setZero();
-    m_sumP.setZero();
     m_sumDotPP = Scalar(0.0);
-    m_sumW     = Scalar(0.0);
 }
 
 template < class DataPoint, class _WFunctor, typename T>
 bool
 UnorientedSphereFit<DataPoint, _WFunctor, T>::addNeighbor(const DataPoint& _nei)
 {
-    // centered basis
-    VectorType q = _nei.pos() - Base::basisCenter();
-
-    // compute weight
-    Scalar w = m_w.w(q, _nei);
-
-    if (w > Scalar(0.))
+    if (Base::addNeighbor(_nei))
     {
+        /// \todo Avoid to compute the weight multiple times
+        // centered basis
+        VectorType q = _nei.pos() - Base::basisCenter();
+
+        // compute weight
+        Scalar w = Base::m_w.w(q, _nei);
+
         VectorB basis;
         basis << _nei.normal(), _nei.normal().dot(q);
 
         m_matA     += w * basis * basis.transpose();
-        m_sumP     += w * q;
         m_sumDotPP += w * q.squaredNorm();
-        m_sumW     += w;
 
-        /*! \todo Handle add of multiple similar neighbors (maybe user side)*/
-        ++(Base::m_nbNeighbors);
         return true;
     }
 
@@ -104,27 +97,24 @@ UnorientedSphereFit<DataPoint, _WFunctor, T>::finalize ()
 {
     PONCA_MULTIARCH_STD_MATH(sqrt);
 
-    // 1. finalize sphere fitting
-
     // handle specific configurations
-    // With less than 3 neighbors the fitting is undefined
-    if(m_sumW == Scalar(0.) || Base::m_nbNeighbors < 3)
+    if(Base::finalize() != STABLE || Base::m_nbNeighbors < 3)
     {
         Base::m_ul.setZero();
-        Base::m_uc = 0;
-        Base::m_uq = 0;
+        Base::m_uc = Scalar(0.);
+        Base::m_uq = Scalar(0.);
         Base::m_isNormalized = false;
-        Base::m_eCurrentState = UNDEFINED;
         return Base::m_eCurrentState;
     }
 
-    Scalar invSumW = Scalar(1.) / m_sumW;
+    // 1. finalize sphere fitting
+    Scalar invSumW = Scalar(1.) / Base::m_sumW;
 
 
     MatrixBB Q;
     Q.template topLeftCorner<Dim,Dim>().setIdentity();
-    Q.col(Dim).template head<Dim>() = m_sumP * invSumW;
-    Q.row(Dim).template head<Dim>() = m_sumP * invSumW;
+    Q.col(Dim).template head<Dim>() = Base::m_sumP * invSumW;
+    Q.row(Dim).template head<Dim>() = Base::m_sumP * invSumW;
     Q(Dim,Dim) = m_sumDotPP * invSumW;
     m_matA *= invSumW;
 
@@ -139,18 +129,10 @@ UnorientedSphereFit<DataPoint, _WFunctor, T>::finalize ()
     // integrate
     Base::m_ul = eivec.template head<Dim>();
     Base::m_uq = Scalar(0.5) * eivec(Dim);
-    Base::m_uc = -invSumW * (Base::m_ul.dot(m_sumP) + m_sumDotPP * Base::m_uq);
+    Base::m_uc = -invSumW * (Base::m_ul.dot(Base::m_sumP) + m_sumDotPP * Base::m_uq);
 
     Base::m_isNormalized = false;
-
-    if(Base::m_nbNeighbors < 6)
-    {
-        Base::m_eCurrentState = UNSTABLE;
-    }
-    else
-    {
-        Base::m_eCurrentState = STABLE;
-    }
+    Base::m_eCurrentState = Base::m_nbNeighbors < 6 ? UNSTABLE : STABLE;
 
     return Base::m_eCurrentState;
 }
