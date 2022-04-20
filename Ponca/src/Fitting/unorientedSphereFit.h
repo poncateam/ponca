@@ -26,18 +26,22 @@ namespace Ponca
     \ingroup fitting
 */
 template < class DataPoint, class _WFunctor, typename T = void >
-class UnorientedSphereFit : public AlgebraicSphere<DataPoint, _WFunctor>
+class UnorientedSphereFit : public MeanPosition<DataPoint, _WFunctor, AlgebraicSphere<DataPoint, _WFunctor>>
 {
 private:
-    typedef AlgebraicSphere<DataPoint, _WFunctor> Base;
+    using Base = MeanPosition<DataPoint, _WFunctor, AlgebraicSphere<DataPoint, _WFunctor>>;
+
+protected:
+    enum
+    {
+        Check = Base::PROVIDES_ALGEBRAIC_SPHERE && Base::PROVIDES_MEAN_POSITION
+    };
 
 public:
     /*! \brief Scalar type inherited from DataPoint*/
     typedef typename Base::Scalar     Scalar;
     /*! \brief Vector type inherited from DataPoint*/
     typedef typename Base::VectorType VectorType;
-    /*! \brief Weight Function*/
-    typedef _WFunctor                 WFunctor;
 
 protected:
 
@@ -49,11 +53,7 @@ protected:
     typedef Eigen::Matrix<Scalar, Dim+1, Dim+1>  MatrixBB;
 
     MatrixBB    m_matA;     /*!< \brief The accumulated covariance matrix */
-    VectorType  m_sumP;     /*!< \brief Sum of the relative positions */
-    Scalar      m_sumDotPP, /*!< \brief Sum of the squared relative positions */
-                m_sumW;     /*!< \brief Sum of queries weight */
-
-    WFunctor m_w;      /*!< \brief Weight function (must inherits BaseWeightFunc) */
+    Scalar      m_sumDotPP; /*!< \brief Sum of the squared relative positions */
 
 
 public:
@@ -61,12 +61,9 @@ public:
     PONCA_MULTIARCH inline UnorientedSphereFit()
         : Base(){}
 
-
     /**************************************************************************/
     /* Initialization                                                         */
     /**************************************************************************/
-    /*! \copydoc Concept::FittingProcedureConcept::setWeightFunc() */
-    PONCA_MULTIARCH inline void setWeightFunc(const WFunctor& _w) { m_w  = _w; }
 
     /*! \copydoc Concept::FittingProcedureConcept::init() */
     PONCA_MULTIARCH inline void init(const VectorType& _evalPos);
