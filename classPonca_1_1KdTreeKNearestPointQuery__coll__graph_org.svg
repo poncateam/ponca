@@ -93,22 +93,23 @@
 <g id="node5" class="node">
 <title>Node5</title>
 <g id="a_node5"><a xlink:href="structPonca_1_1QueryInput.html" target="_top" xlink:title=" ">
-<polygon fill="white" stroke="black" points="59,-604 59,-683 197,-683 197,-604 59,-604"/>
-<text text-anchor="start" x="67" y="-671" font-family="Helvetica,sans-Serif" font-size="10.00">Ponca::QueryInput&lt;</text>
-<text text-anchor="middle" x="128" y="-660" font-family="Helvetica,sans-Serif" font-size="10.00"> DataPoint::VectorType &gt;</text>
-<polyline fill="none" stroke="black" points="59,-653 197,-653 "/>
-<text text-anchor="middle" x="128" y="-641" font-family="Helvetica,sans-Serif" font-size="10.00"> </text>
-<polyline fill="none" stroke="black" points="59,-634 197,-634 "/>
-<text text-anchor="start" x="67" y="-622" font-family="Helvetica,sans-Serif" font-size="10.00">+ QueryInput()</text>
-<text text-anchor="start" x="67" y="-611" font-family="Helvetica,sans-Serif" font-size="10.00">+ input()</text>
+<polygon fill="white" stroke="black" points="59,-598.5 59,-688.5 197,-688.5 197,-598.5 59,-598.5"/>
+<text text-anchor="start" x="67" y="-676.5" font-family="Helvetica,sans-Serif" font-size="10.00">Ponca::QueryInput&lt;</text>
+<text text-anchor="middle" x="128" y="-665.5" font-family="Helvetica,sans-Serif" font-size="10.00"> DataPoint::VectorType &gt;</text>
+<polyline fill="none" stroke="black" points="59,-658.5 197,-658.5 "/>
+<text text-anchor="middle" x="128" y="-646.5" font-family="Helvetica,sans-Serif" font-size="10.00"> </text>
+<polyline fill="none" stroke="black" points="59,-639.5 197,-639.5 "/>
+<text text-anchor="start" x="67" y="-627.5" font-family="Helvetica,sans-Serif" font-size="10.00">+ QueryInput()</text>
+<text text-anchor="start" x="67" y="-616.5" font-family="Helvetica,sans-Serif" font-size="10.00">+ input()</text>
+<text text-anchor="start" x="67" y="-605.5" font-family="Helvetica,sans-Serif" font-size="10.00"># editInput()</text>
 </a>
 </g>
 </g>
 <!-- Node5&#45;&gt;Node4 -->
 <g id="edge4" class="edge">
 <title>Node5&#45;&gt;Node4</title>
-<path fill="none" stroke="midnightblue" d="M157.37,-595.3C176.87,-563.95 202,-523.58 219.4,-495.61"/>
-<polygon fill="none" stroke="midnightblue" points="154.34,-593.55 152.03,-603.89 160.28,-597.24 154.34,-593.55"/>
+<path fill="none" stroke="midnightblue" d="M160.87,-589.68C179.8,-559.25 203.01,-521.95 219.38,-495.64"/>
+<polygon fill="none" stroke="midnightblue" points="157.71,-588.13 155.4,-598.47 163.65,-591.83 157.71,-588.13"/>
 </g>
 <!-- Node6 -->
 <g id="node6" class="node">
@@ -126,35 +127,36 @@
 <!-- Node6&#45;&gt;Node5 -->
 <g id="edge5" class="edge">
 <title>Node6&#45;&gt;Node5</title>
-<path fill="none" stroke="midnightblue" d="M59.65,-1122.78C51.42,-1056.91 38.88,-916.98 62,-802 70.53,-759.56 90.8,-714.3 106.64,-683.24"/>
+<path fill="none" stroke="midnightblue" d="M59.65,-1122.78C51.42,-1056.91 38.88,-916.98 62,-802 70.04,-762.03 88.48,-719.56 103.83,-688.81"/>
 <polygon fill="none" stroke="midnightblue" points="56.18,-1123.23 60.93,-1132.7 63.12,-1122.33 56.18,-1123.23"/>
 </g>
 <!-- Node7 -->
 <g id="node7" class="node">
 <title>Node7</title>
 <g id="a_node7"><a xlink:href="structPonca_1_1QueryInput.html" target="_top" xlink:title="Base class for typed queries input type.">
-<polygon fill="white" stroke="black" points="71,-863 71,-942 185,-942 185,-863 71,-863"/>
-<text text-anchor="start" x="79" y="-930" font-family="Helvetica,sans-Serif" font-size="10.00">Ponca::QueryInput&lt;</text>
-<text text-anchor="middle" x="128" y="-919" font-family="Helvetica,sans-Serif" font-size="10.00"> InputType_ &gt;</text>
-<polyline fill="none" stroke="black" points="71,-912 185,-912 "/>
-<text text-anchor="middle" x="128" y="-900" font-family="Helvetica,sans-Serif" font-size="10.00"> </text>
-<polyline fill="none" stroke="black" points="71,-893 185,-893 "/>
-<text text-anchor="start" x="79" y="-881" font-family="Helvetica,sans-Serif" font-size="10.00">+ QueryInput()</text>
-<text text-anchor="start" x="79" y="-870" font-family="Helvetica,sans-Serif" font-size="10.00">+ input()</text>
+<polygon fill="white" stroke="black" points="71,-857.5 71,-947.5 185,-947.5 185,-857.5 71,-857.5"/>
+<text text-anchor="start" x="79" y="-935.5" font-family="Helvetica,sans-Serif" font-size="10.00">Ponca::QueryInput&lt;</text>
+<text text-anchor="middle" x="128" y="-924.5" font-family="Helvetica,sans-Serif" font-size="10.00"> InputType_ &gt;</text>
+<polyline fill="none" stroke="black" points="71,-917.5 185,-917.5 "/>
+<text text-anchor="middle" x="128" y="-905.5" font-family="Helvetica,sans-Serif" font-size="10.00"> </text>
+<polyline fill="none" stroke="black" points="71,-898.5 185,-898.5 "/>
+<text text-anchor="start" x="79" y="-886.5" font-family="Helvetica,sans-Serif" font-size="10.00">+ QueryInput()</text>
+<text text-anchor="start" x="79" y="-875.5" font-family="Helvetica,sans-Serif" font-size="10.00">+ input()</text>
+<text text-anchor="start" x="79" y="-864.5" font-family="Helvetica,sans-Serif" font-size="10.00"># editInput()</text>
 </a>
 </g>
 </g>
 <!-- Node6&#45;&gt;Node7 -->
 <g id="edge7" class="edge">
 <title>Node6&#45;&gt;Node7</title>
-<path fill="none" stroke="midnightblue" d="M74.13,-1123.25C85.98,-1074.91 106.55,-990.99 118.55,-942.04"/>
+<path fill="none" stroke="midnightblue" d="M74.18,-1123.04C85.57,-1076.57 104.97,-997.45 117.1,-947.95"/>
 <polygon fill="none" stroke="midnightblue" points="70.72,-1122.45 71.74,-1133 77.52,-1124.12 70.72,-1122.45"/>
 </g>
 <!-- Node7&#45;&gt;Node5 -->
 <g id="edge6" class="edge">
 <title>Node7&#45;&gt;Node5</title>
-<path fill="none" stroke="orange" d="M128,-852.65C128,-803.41 128,-728.4 128,-683.15"/>
-<polygon fill="orange" stroke="orange" points="124.5,-852.75 128,-862.75 131.5,-852.75 124.5,-852.75"/>
+<path fill="none" stroke="orange" d="M128,-847.27C128,-800.06 128,-732.47 128,-688.53"/>
+<polygon fill="orange" stroke="orange" points="124.5,-847.32 128,-857.32 131.5,-847.32 124.5,-847.32"/>
 <text text-anchor="middle" x="194.5" y="-765" font-family="Helvetica,sans-Serif" font-size="10.00"> &lt; DataPoint::VectorType &gt;</text>
 </g>
 <!-- Node8 -->

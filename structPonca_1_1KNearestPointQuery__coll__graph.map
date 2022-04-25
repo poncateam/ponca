@@ -2,9 +2,9 @@
 <area shape="rect" id="node1" title="Base Query class combining QueryInputIsPosition and QueryOutputIsKNearest." alt="" coords="407,1617,609,1709"/>
 <area shape="rect" id="node2" href="$structPonca_1_1Query.html" title=" " alt="" coords="409,1432,607,1568"/>
 <area shape="rect" id="node3" href="$structPonca_1_1QueryInputIsPosition.html" title="Base class for queries storing points." alt="" coords="142,1233,346,1325"/>
-<area shape="rect" id="node4" href="$structPonca_1_1QueryInput.html" title=" " alt="" coords="75,1042,259,1149"/>
+<area shape="rect" id="node4" href="$structPonca_1_1QueryInput.html" title=" " alt="" coords="75,1035,259,1156"/>
 <area shape="rect" id="node5" href="$structPonca_1_1QueryInputBase.html" title="Base class for queries input type." alt="" coords="5,454,179,531"/>
-<area shape="rect" id="node6" href="$structPonca_1_1QueryInput.html" title="Base class for typed queries input type." alt="" coords="92,785,244,891"/>
+<area shape="rect" id="node6" href="$structPonca_1_1QueryInput.html" title="Base class for typed queries input type." alt="" coords="92,777,244,899"/>
 <area shape="rect" id="node7" href="$structPonca_1_1QueryOutputIsKNearest.html" title=" " alt="" coords="397,1219,619,1340"/>
 <area shape="rect" id="node8" href="$structPonca_1_1QueryOutputBase.html" title="Base class for queries output type." alt="" coords="271,799,455,877"/>
 <area shape="rect" id="node16" href="$structPonca_1_1QueryOutputIsKNearest.html" title="Base class for knearest queries." alt="" coords="401,1035,623,1156"/>

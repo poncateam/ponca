@@ -1,18 +1,18 @@
 <map id="Ponca::KdTreeKNearestIndexQuery&lt; DataPoint &gt;" name="Ponca::KdTreeKNearestIndexQuery&lt; DataPoint &gt;">
-<area shape="rect" id="node1" title=" " alt="" coords="103,1195,329,1331"/>
-<area shape="rect" id="node2" href="$classPonca_1_1KdTreeQuery.html" title=" " alt="" coords="124,1024,276,1145"/>
-<area shape="rect" id="node3" href="$structPonca_1_1KNearestIndexQuery.html" title=" " alt="" coords="301,1039,505,1131"/>
-<area shape="rect" id="node4" href="$structPonca_1_1Query.html" title=" " alt="" coords="183,699,414,820"/>
-<area shape="rect" id="node5" href="$structPonca_1_1QueryInputIsIndex.html" title="Base class for queries storing points." alt="" coords="55,507,243,585"/>
-<area shape="rect" id="node16" href="$structPonca_1_1Query.html" title=" " alt="" coords="438,699,669,820"/>
-<area shape="rect" id="node6" href="$structPonca_1_1QueryInput.html" title=" " alt="" coords="73,309,225,415"/>
+<area shape="rect" id="node1" title=" " alt="" coords="103,1209,329,1345"/>
+<area shape="rect" id="node2" href="$classPonca_1_1KdTreeQuery.html" title=" " alt="" coords="124,1039,276,1160"/>
+<area shape="rect" id="node3" href="$structPonca_1_1KNearestIndexQuery.html" title=" " alt="" coords="301,1053,505,1145"/>
+<area shape="rect" id="node4" href="$structPonca_1_1Query.html" title=" " alt="" coords="183,713,414,835"/>
+<area shape="rect" id="node5" href="$structPonca_1_1QueryInputIsIndex.html" title="Base class for queries storing points." alt="" coords="55,522,243,599"/>
+<area shape="rect" id="node16" href="$structPonca_1_1Query.html" title=" " alt="" coords="438,713,669,835"/>
+<area shape="rect" id="node6" href="$structPonca_1_1QueryInput.html" title=" " alt="" coords="73,316,225,437"/>
 <area shape="rect" id="node7" href="$structPonca_1_1QueryInputBase.html" title="Base class for queries input type." alt="" coords="5,5,179,83"/>
-<area shape="rect" id="node8" href="$structPonca_1_1QueryInput.html" title="Base class for typed queries input type." alt="" coords="113,132,265,239"/>
-<area shape="rect" id="node9" href="$structPonca_1_1QueryOutputIsKNearest.html" title=" " alt="" coords="267,485,490,607"/>
-<area shape="rect" id="node10" href="$structPonca_1_1QueryOutputBase.html" title="Base class for queries output type." alt="" coords="296,147,480,224"/>
-<area shape="rect" id="node11" href="$structPonca_1_1QueryOutputIsKNearest.html" title="Base class for knearest queries." alt="" coords="371,301,594,423"/>
-<area shape="rect" id="node12" href="$structPonca_1_1Query.html" title=" " alt="" coords="682,493,838,599"/>
-<area shape="rect" id="node13" title=" " alt="" coords="682,323,745,401"/>
-<area shape="rect" id="node14" title=" " alt="" coords="769,323,842,401"/>
-<area shape="rect" id="node15" href="$structPonca_1_1KNearestIndexQuery.html" title="Base Query class combining QueryInputIsIndex and QueryOutputIsKNearest." alt="" coords="422,869,626,961"/>
+<area shape="rect" id="node8" href="$structPonca_1_1QueryInput.html" title="Base class for typed queries input type." alt="" coords="113,132,265,253"/>
+<area shape="rect" id="node9" href="$structPonca_1_1QueryOutputIsKNearest.html" title=" " alt="" coords="267,500,490,621"/>
+<area shape="rect" id="node10" href="$structPonca_1_1QueryOutputBase.html" title="Base class for queries output type." alt="" coords="296,154,480,231"/>
+<area shape="rect" id="node11" href="$structPonca_1_1QueryOutputIsKNearest.html" title="Base class for knearest queries." alt="" coords="371,316,594,437"/>
+<area shape="rect" id="node12" href="$structPonca_1_1Query.html" title=" " alt="" coords="682,507,838,614"/>
+<area shape="rect" id="node13" title=" " alt="" coords="682,338,745,415"/>
+<area shape="rect" id="node14" title=" " alt="" coords="769,338,842,415"/>
+<area shape="rect" id="node15" href="$structPonca_1_1KNearestIndexQuery.html" title="Base Query class combining QueryInputIsIndex and QueryOutputIsKNearest." alt="" coords="422,884,626,976"/>
 </map>

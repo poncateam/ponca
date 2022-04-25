@@ -591,22 +591,23 @@
 <g id="node20" class="node">
 <title>Node20</title>
 <g id="a_node20"><a xlink:href="structPonca_1_1QueryInput.html" target="_top" xlink:title=" ">
-<polygon fill="white" stroke="black" points="1514.5,-852 1514.5,-931 1628.5,-931 1628.5,-852 1514.5,-852"/>
-<text text-anchor="start" x="1522.5" y="-919" font-family="Helvetica,sans-Serif" font-size="10.00">Ponca::QueryInput&lt;</text>
-<text text-anchor="middle" x="1571.5" y="-908" font-family="Helvetica,sans-Serif" font-size="10.00"> int &gt;</text>
-<polyline fill="none" stroke="black" points="1514.5,-901 1628.5,-901 "/>
-<text text-anchor="middle" x="1571.5" y="-889" font-family="Helvetica,sans-Serif" font-size="10.00"> </text>
-<polyline fill="none" stroke="black" points="1514.5,-882 1628.5,-882 "/>
-<text text-anchor="start" x="1522.5" y="-870" font-family="Helvetica,sans-Serif" font-size="10.00">+ QueryInput()</text>
-<text text-anchor="start" x="1522.5" y="-859" font-family="Helvetica,sans-Serif" font-size="10.00">+ input()</text>
+<polygon fill="white" stroke="black" points="1514.5,-846.5 1514.5,-936.5 1628.5,-936.5 1628.5,-846.5 1514.5,-846.5"/>
+<text text-anchor="start" x="1522.5" y="-924.5" font-family="Helvetica,sans-Serif" font-size="10.00">Ponca::QueryInput&lt;</text>
+<text text-anchor="middle" x="1571.5" y="-913.5" font-family="Helvetica,sans-Serif" font-size="10.00"> int &gt;</text>
+<polyline fill="none" stroke="black" points="1514.5,-906.5 1628.5,-906.5 "/>
+<text text-anchor="middle" x="1571.5" y="-894.5" font-family="Helvetica,sans-Serif" font-size="10.00"> </text>
+<polyline fill="none" stroke="black" points="1514.5,-887.5 1628.5,-887.5 "/>
+<text text-anchor="start" x="1522.5" y="-875.5" font-family="Helvetica,sans-Serif" font-size="10.00">+ QueryInput()</text>
+<text text-anchor="start" x="1522.5" y="-864.5" font-family="Helvetica,sans-Serif" font-size="10.00">+ input()</text>
+<text text-anchor="start" x="1522.5" y="-853.5" font-family="Helvetica,sans-Serif" font-size="10.00"># editInput()</text>
 </a>
 </g>
 </g>
 <!-- Node20&#45;&gt;Node19 -->
 <g id="edge27" class="edge">
 <title>Node20&#45;&gt;Node19</title>
-<path fill="none" stroke="midnightblue" d="M1554.94,-842.13C1536.62,-788.65 1507.75,-704.33 1492.95,-661.09"/>
-<polygon fill="none" stroke="midnightblue" points="1551.68,-843.42 1558.23,-851.75 1558.3,-841.15 1551.68,-843.42"/>
+<path fill="none" stroke="midnightblue" d="M1553.06,-836.65C1534.73,-783.11 1507.34,-703.12 1493.01,-661.28"/>
+<polygon fill="none" stroke="midnightblue" points="1549.82,-837.99 1556.37,-846.32 1556.44,-835.73 1549.82,-837.99"/>
 </g>
 <!-- Node21 -->
 <g id="node21" class="node">
@@ -624,35 +625,36 @@
 <!-- Node21&#45;&gt;Node20 -->
 <g id="edge28" class="edge">
 <title>Node21&#45;&gt;Node20</title>
-<path fill="none" stroke="midnightblue" d="M1583.78,-1310.32C1584.36,-1292.36 1585.02,-1270.57 1585.5,-1251 1588.13,-1143.91 1597.63,-1116.82 1589.5,-1010 1587.49,-983.56 1582.96,-954.06 1578.95,-931.23"/>
+<path fill="none" stroke="midnightblue" d="M1583.78,-1310.32C1584.36,-1292.36 1585.02,-1270.57 1585.5,-1251 1588.13,-1143.91 1597.63,-1116.82 1589.5,-1010 1587.64,-985.62 1583.65,-958.63 1579.89,-936.67"/>
 <polygon fill="none" stroke="midnightblue" points="1580.28,-1310.3 1583.45,-1320.41 1587.27,-1310.53 1580.28,-1310.3"/>
 </g>
 <!-- Node22 -->
 <g id="node22" class="node">
 <title>Node22</title>
 <g id="a_node22"><a xlink:href="structPonca_1_1QueryInput.html" target="_top" xlink:title="Base class for typed queries input type.">
-<polygon fill="white" stroke="black" points="1462.5,-1111 1462.5,-1190 1576.5,-1190 1576.5,-1111 1462.5,-1111"/>
-<text text-anchor="start" x="1470.5" y="-1178" font-family="Helvetica,sans-Serif" font-size="10.00">Ponca::QueryInput&lt;</text>
-<text text-anchor="middle" x="1519.5" y="-1167" font-family="Helvetica,sans-Serif" font-size="10.00"> InputType_ &gt;</text>
-<polyline fill="none" stroke="black" points="1462.5,-1160 1576.5,-1160 "/>
-<text text-anchor="middle" x="1519.5" y="-1148" font-family="Helvetica,sans-Serif" font-size="10.00"> </text>
-<polyline fill="none" stroke="black" points="1462.5,-1141 1576.5,-1141 "/>
-<text text-anchor="start" x="1470.5" y="-1129" font-family="Helvetica,sans-Serif" font-size="10.00">+ QueryInput()</text>
-<text text-anchor="start" x="1470.5" y="-1118" font-family="Helvetica,sans-Serif" font-size="10.00">+ input()</text>
+<polygon fill="white" stroke="black" points="1462.5,-1105.5 1462.5,-1195.5 1576.5,-1195.5 1576.5,-1105.5 1462.5,-1105.5"/>
+<text text-anchor="start" x="1470.5" y="-1183.5" font-family="Helvetica,sans-Serif" font-size="10.00">Ponca::QueryInput&lt;</text>
+<text text-anchor="middle" x="1519.5" y="-1172.5" font-family="Helvetica,sans-Serif" font-size="10.00"> InputType_ &gt;</text>
+<polyline fill="none" stroke="black" points="1462.5,-1165.5 1576.5,-1165.5 "/>
+<text text-anchor="middle" x="1519.5" y="-1153.5" font-family="Helvetica,sans-Serif" font-size="10.00"> </text>
+<polyline fill="none" stroke="black" points="1462.5,-1146.5 1576.5,-1146.5 "/>
+<text text-anchor="start" x="1470.5" y="-1134.5" font-family="Helvetica,sans-Serif" font-size="10.00">+ QueryInput()</text>
+<text text-anchor="start" x="1470.5" y="-1123.5" font-family="Helvetica,sans-Serif" font-size="10.00">+ input()</text>
+<text text-anchor="start" x="1470.5" y="-1112.5" font-family="Helvetica,sans-Serif" font-size="10.00"># editInput()</text>
 </a>
 </g>
 </g>
 <!-- Node21&#45;&gt;Node22 -->
 <g id="edge30" class="edge">
 <title>Node21&#45;&gt;Node22</title>
-<path fill="none" stroke="midnightblue" d="M1570.5,-1310.57C1559.44,-1276.09 1543.11,-1225.15 1531.93,-1190.26"/>
+<path fill="none" stroke="midnightblue" d="M1570.52,-1310.62C1560.03,-1277.91 1544.78,-1230.35 1533.69,-1195.75"/>
 <polygon fill="none" stroke="midnightblue" points="1567.22,-1311.81 1573.61,-1320.26 1573.89,-1309.67 1567.22,-1311.81"/>
 </g>
 <!-- Node22&#45;&gt;Node20 -->
 <g id="edge29" class="edge">
 <title>Node22&#45;&gt;Node20</title>
-<path fill="none" stroke="orange" d="M1529.38,-1100.65C1539.35,-1051.41 1554.52,-976.4 1563.68,-931.15"/>
-<polygon fill="orange" stroke="orange" points="1525.89,-1100.25 1527.34,-1110.75 1532.75,-1101.64 1525.89,-1100.25"/>
+<path fill="none" stroke="orange" d="M1530.47,-1095.27C1540.03,-1048.06 1553.7,-980.47 1562.59,-936.53"/>
+<polygon fill="orange" stroke="orange" points="1526.99,-1094.82 1528.44,-1105.32 1533.85,-1096.21 1526.99,-1094.82"/>
 <text text-anchor="middle" x="1566" y="-1018.5" font-family="Helvetica,sans-Serif" font-size="10.00"> &lt; int &gt;</text>
 </g>
 <!-- Node23 -->
