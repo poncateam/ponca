@@ -66,7 +66,13 @@ struct  OUT_TYPE##PointQuery : Query<QueryInputIsPosition<DataPoint>, \
         inline QueryInput(InputType input) : m_input(input) {}
 
         inline const InputType &input() const { return m_input; }
-
+    protected:
+        /// \brief Edit the input 
+        /// Need to be used carefully. Modifying a query input while iterating on the query will result in undefined behavior.
+        /// Simplest way to avoid this is to restart the iteration on the query. 
+        /// Usefull to avoid query reallocation between different requests
+        inline void editInput(const InputType& input) { m_input = input; }
+    
     private:
         /// Index of the queried point
         const InputType m_input;
