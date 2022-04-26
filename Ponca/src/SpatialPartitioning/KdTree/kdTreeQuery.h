@@ -32,6 +32,11 @@ protected:
         m_stack.push({0,0});
     }
 
+    /// \brief Empty the stack  
+    inline void clear() {
+        m_stack.clear();
+    }
+
     const KdTree<DataPoint>* m_kdtree { nullptr };
     Stack<IndexSquaredDistance<typename DataPoint::Scalar>, 2 * PCA_KDTREE_MAX_DEPTH> m_stack;
 };
