@@ -13,7 +13,6 @@ void
 CovariancePlaneFit<DataPoint, _WFunctor, T>::init(const VectorType& _evalPos)
 {
     Base::init(_evalPos);
-    m_cog         = VectorType::Zero();
     m_cov         = MatrixType::Zero();
 }
 
@@ -24,7 +23,6 @@ CovariancePlaneFit<DataPoint, _WFunctor, T>::addLocalNeighbor(Scalar w,
                                                              const DataPoint &attributes)
 {
     if( Base::addLocalNeighbor(w, localQ, attributes) ) {
-        m_cog  += w * localQ; /// \fixme Replace by MeanPosition
         m_cov  += localQ * localQ.transpose();
         return true;
     }
@@ -43,11 +41,9 @@ CovariancePlaneFit<DataPoint, _WFunctor, T>::finalize ()
         return Base::m_eCurrentState = UNDEFINED;
     }
 
-    // Finalize the centroid (still expressed in local basis)
-    m_cog = m_cog/Base::m_sumW;
-
     // Center the covariance on the centroid
-    m_cov = m_cov/Base::m_sumW - m_cog * m_cog.transpose();
+    auto centroid = Base::barycenter();
+    m_cov = m_cov/Base::m_sumW - centroid * centroid.transpose();
 
 #ifdef __CUDACC__
     m_solver.computeDirect(m_cov);
@@ -57,7 +53,7 @@ CovariancePlaneFit<DataPoint, _WFunctor, T>::finalize ()
     Base::m_eCurrentState = ( m_solver.info() == Eigen::Success ? STABLE : UNDEFINED );
 
     /// \fixme refactor to avoid code duplication with linefit
-    Base::setPlane(m_solver.eigenvectors().col(0), m_cog);
+    Base::setPlane(m_solver.eigenvectors().col(0), centroid);
 
     return Base::m_eCurrentState;
 }
