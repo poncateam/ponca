@@ -29,15 +29,17 @@ namespace Ponca
     \ingroup fitting
 */
 template < class DataPoint, class _WFunctor, typename T >
-class CovariancePlaneFit : public Plane<DataPoint, _WFunctor>
+class CovariancePlaneFit : public MeanPosition<DataPoint, _WFunctor,
+                                  Plane<DataPoint, _WFunctor>>
 {
 private:
-    typedef Plane<DataPoint, _WFunctor> Base;
+    using Base = MeanPosition<DataPoint, _WFunctor, Plane<DataPoint, _WFunctor>>;
 
 protected:
     enum
     {
-        Check = Base::PROVIDES_PLANE,
+        Check = Base::PROVIDES_PLANE &&
+                Base::PROVIDES_MEAN_POSITION,
         /*!
          * \brief Expose a method worldToTangentPlane(VectorType), which turns a point
          * in ambient 3D space to the tangent plane.
@@ -62,7 +64,6 @@ public:
 
  protected:
     // computation data
-    VectorType m_cog {VectorType::Zero()};     /*!< \brief Gravity center of the neighborhood */
     MatrixType m_cov {MatrixType::Zero()};     /*!< \brief Covariance matrix */
 
     Solver m_solver;  /*!<\brief Solver used to analyse the covariance matrix */
