@@ -10,6 +10,8 @@
 
 #include <array>
 
+#include "../defines.h" //STD_SAFE_AT
+
 namespace Ponca {
 
 /// Stack with fixed-size storage
