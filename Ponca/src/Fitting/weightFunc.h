@@ -7,6 +7,7 @@
 #pragma once
 
 #include "./defines.h"
+#include PONCA_MULTIARCH_INCLUDE_CU_STD(utility)
 
 namespace Ponca
 {
@@ -74,7 +75,7 @@ public:
     /*! \brief Matrix type from DataPoint */
     using MatrixType = typename DataPoint::MatrixType;
     /*! \brief Return type of the method #w() */
-    using WeightReturnType = std::pair<Scalar, VectorType>;
+    using WeightReturnType = PONCA_MULTIARCH_CU_STD_NAMESPACE(pair)<Scalar, VectorType>;
 
     /*!
         \brief Constructor that defines the current evaluation scale
