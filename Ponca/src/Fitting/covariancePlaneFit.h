@@ -109,7 +109,7 @@ public:
     PONCA_MULTIARCH inline Scalar surfaceVariation() const;
 
     /*!
-     * \brief Express a point in ambiant space relatively to the tangent plane.
+     * \brief Express a point in ambient space relatively to the tangent plane.
      * Output vector is: [h, u, v]^T, where u, v are 2d coordinates on the plane,
      * and h the height of the sample.
      * \tparam ignoreTranslation must be set to true when passing vectors instead of points
@@ -118,7 +118,7 @@ public:
     PONCA_MULTIARCH inline VectorType worldToTangentPlane(const VectorType &_q) const;
 
     /*!
-     * \brief Transform a point from the tangent plane [h, u, v]^T to ambiant space
+     * \brief Transform a point from the tangent plane [h, u, v]^T to ambient space
      * \tparam ignoreTranslation must be set to true when passing vectors instead of points
      */
     template <bool ignoreTranslation = false>

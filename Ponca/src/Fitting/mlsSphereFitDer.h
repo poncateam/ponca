@@ -56,6 +56,8 @@ public:
         only. Such Matrix is typically used to represent Hessian matrix of
         multivariate single-valued functions such as \f$ u_c \f$ and \f$ u_q \f$
         of an AlgebraicSphere obtained from a fitting procedure.
+
+        \todo check with MatrixType, VectorArray and ScalarArray
      */
     typedef Eigen::Matrix< Scalar, DerDim, DerDim > Matrix;
 

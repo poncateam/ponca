@@ -19,7 +19,9 @@ namespace Ponca
  * \note This procedure requires at least two passes, the first one for plane fitting,
  * the second one for quadric fitting.
  * \warning This class is valid only in 3D.
-
+ *
+ * \note This class mixes the primitive (MongePatch) and its fitting procedure.
+ *       Could makes sense to split the two
  * \ingroup fitting
  */
 template < class DataPoint, class _WFunctor, typename T>
