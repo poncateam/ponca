@@ -11,44 +11,6 @@
 
 namespace Ponca
 {
-    /*!
-     \brief Applies a Concept::WeightKernelConcept to a Concept::PointConcept query.
-     The input query is expressed in global coordinate system.
-     A local frame (ie. a position) can be set a initialization time, and the query will be automatically converted
-     from global to local coordinate at evaluation.
-   */
-    template <class DataPoint, class WeightKernel>
-    class LocalWeightFunc {
-
-    public:
-        typedef typename DataPoint::Scalar Scalar;
-        typedef typename DataPoint::VectorType VectorType;
-
-        /*!
-         * \brief Initialization method, called by the fitting procedure
-         * @param _evalPos Basis center
-         */
-        PONCA_MULTIARCH inline void init( const VectorType& _evalPos ) {}
-
-        /*! \brief Convert query from global to local coordinate system */
-        PONCA_MULTIARCH inline VectorType convertToLocalBasis(const VectorType& _q) const;
-
-        /*! \brief Apply the weight function to a query. */
-        PONCA_MULTIARCH inline Scalar w(const VectorType& globalQuery,
-                                        const DataPoint&  attributes) const {}
-
-        /*! \brief Apply the weight function derived in space to a query. */
-        PONCA_MULTIARCH inline VectorType spacedw(const VectorType& globalQuery,
-                                                  const DataPoint&  attributes) const {}
-
-        /*! \brief Apply the weight function derived in scale to a query. */
-        PONCA_MULTIARCH inline Scalar scaledw(const VectorType& globalQuery,
-                                              const DataPoint&  attributes) const {}
-
-        /*! \brief Read access to the evaluation scale */
-        PONCA_MULTIARCH inline Scalar evalScale() const {}
-    };// class WeightFuncConcept
-
 /*!
     \brief Weighting function based on the euclidean distance between a query and a reference position
 
@@ -61,6 +23,9 @@ namespace Ponca
     \inherit Concept::WeightFuncConcept
 
     \warning it assumes that the evaluation scale t is strictly positive
+
+    \todo Add class to use DistWeightFunc with CenterBasis of GlobalBasis
+          (functions init, basisCenter and convertToLocalBasis)
 
     \ingroup fitting
 */
