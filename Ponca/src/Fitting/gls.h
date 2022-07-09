@@ -53,10 +53,9 @@ protected:
     };
 
 public:
-    typedef typename Base::Scalar     Scalar;     /*!< \brief Inherited scalar type*/
-    typedef typename Base::VectorType VectorType; /*!< \brief Inherited vector type*/
-    typedef typename Base::WFunctor   WFunctor;   /*!< \brief Weight Function*/
-
+    using Scalar     = typename Base::Scalar;     /*!< \brief Inherited scalar type*/
+    using VectorType = typename Base::VectorType; /*!< \brief Inherited vector type*/
+    using WFunctor   = typename Base::WFunctor;   /*!< \brief Weight Function*/
 
 protected:
     Scalar m_t;         /*!< \brief Evaluation scale. Needed to computed the normalized values*/
