@@ -102,7 +102,6 @@ CovariancePlaneDer<DataPoint, _WFunctor, T, Type>::init(const VectorType& _evalP
 {
     Base::init(_evalPos);
 
-    m_dCog.setZero();
     for(int k=0; k<Base::NbDerivatives; ++k)
       m_dCov[k].setZero();
 }
@@ -119,7 +118,6 @@ CovariancePlaneDer<DataPoint, _WFunctor, T, Type>::addLocalNeighbor(Scalar w,
     if( Base::addLocalNeighbor(w, localQ, attributes, dw) ) {
         int spaceId = (Type & FitScaleDer) ? 1 : 0;
 
-        m_dCog  += localQ * dw;
         for(int k=0; k<Base::NbDerivatives; ++k)
           m_dCov[k]  += dw[k] * localQ * localQ.transpose(); /// \fixme better use eigen here
 
@@ -140,6 +138,8 @@ CovariancePlaneDer<DataPoint, _WFunctor, T, Type>::finalize()
     // Test if base finalize end on a viable case (stable / unstable)
     if (this->isReady())
     {
+      VectorType dBarycenter = Base::barycenterDerivatives();
+
       // pre-compute shifted eigenvalues to apply the pseudo inverse of C - lambda_0 I
       Scalar epsilon          = Scalar(2) * Eigen::NumTraits<Scalar>::epsilon();
       Scalar consider_as_zero = Scalar(2) * std::numeric_limits<Scalar>::denorm_min();
@@ -147,16 +147,14 @@ CovariancePlaneDer<DataPoint, _WFunctor, T, Type>::finalize()
       if(shifted_eivals(0) < consider_as_zero || shifted_eivals(0) < epsilon * shifted_eivals(1)) shifted_eivals(0) = 0;
       if(shifted_eivals(1) < consider_as_zero) shifted_eivals(1) = 0;
 
+
       for(int k=0; k<Base::NbDerivatives; ++k)
       {
         // Finalize the computation of dCov.
         m_dCov[k] = m_dCov[k]
-                  - Base::m_cog * m_dCog.col(k).transpose()
-                  - m_dCog.col(k) * Base::m_cog.transpose()
+                  - Base::m_cog * Base::m_dSumP.col(k).transpose()
+                  - Base::m_dSumP.col(k) * Base::m_cog.transpose()
                   + Base::m_dSumW[k] * Base::m_cog * Base::m_cog.transpose();
-
-        // apply normalization by sumW:
-        m_dCog.col(k) = (m_dCog.col(k) - Base::m_dSumW(k) * Base::m_cog) / Base::m_sumW;
 
         VectorType normal = Base::primitiveGradient();
         // The derivative of 'normal' is the derivative of the smallest eigenvector.
@@ -172,7 +170,7 @@ CovariancePlaneDer<DataPoint, _WFunctor, T, Type>::finalize()
         if(shifted_eivals(1)>0) z(1) /= shifted_eivals(1);
         m_dNormal.col(k) = Base::m_solver.eigenvectors().template rightCols<2>() * z;
 
-        VectorType dDiff = -m_dCog.col(k);
+        VectorType dDiff = dBarycenter.col(k);
         if(k>0 || !Base::isScaleDer())
           dDiff(Base::isScaleDer() ? k-1 : k) += 1;
         m_dDist(k) = m_dNormal.col(k).dot(Base::m_cog) + normal.dot(dDiff);

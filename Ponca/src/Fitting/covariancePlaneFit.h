@@ -10,6 +10,7 @@
 #pragma once
 
 #include "./plane.h"
+#include "./primitive.h"
 
 #include <Eigen/Eigenvalues>
 
@@ -149,10 +150,10 @@ using ::Ponca::internal::FitScaleDer;
     \warning This class cannot be used directly, see CovariancePlaneScaleDer, CovariancePlaneSpaceDer and CovariancePlaneScaleSpaceDer
 */
 template < class DataPoint, class _WFunctor, typename T, int Type>
-class CovariancePlaneDer : public PrimitiveDer<DataPoint, _WFunctor, T, Type>
+class CovariancePlaneDer : public MeanPositionDer<DataPoint, _WFunctor, T, Type>
 {
 private:
-    using Base = PrimitiveDer<DataPoint, _WFunctor, T, Type>; /*!< \brief Generic base type */
+    using Base = MeanPositionDer<DataPoint, _WFunctor, T, Type>; /*!< \brief Generic base type */
 
 
 protected:
@@ -176,7 +177,6 @@ private:
     // computation data
     MatrixType  m_dCov[Base::NbDerivatives];
 
-    VectorArray m_dCog;       /*!< \brief Derivatives of the centroid */
     VectorArray m_dNormal;    /*!< \brief Derivatives of the hyper-plane normal */
     ScalarArray m_dDist;      /*!< \brief Derivatives of the MLS scalar field */
 

@@ -97,10 +97,10 @@ namespace internal
     isSpaceDer().
 */
 template < class DataPoint, class _WFunctor, typename T, int Type>
-class OrientedSphereDer : public PrimitiveDer<DataPoint, _WFunctor, T, Type>
+class OrientedSphereDer : public MeanPositionDer<DataPoint, _WFunctor, T, Type>
 {
 private:
-    using Base = PrimitiveDer<DataPoint, _WFunctor, T, Type>; /*!< \brief Generic base type */
+    using Base = MeanPositionDer<DataPoint, _WFunctor, T, Type>; /*!< \brief Generic base type */
 
 
 protected:
@@ -120,8 +120,7 @@ public:
 
 protected:
     // computation data
-    VectorArray m_dSumN,     /*!< \brief Sum of the normal vectors with differenciated weights */
-                m_dSumP;     /*!< \brief Sum of the relative positions with differenciated weights*/
+    VectorArray m_dSumN;     /*!< \brief Sum of the normal vectors with differenciated weights */
     ScalarArray m_dSumDotPN, /*!< \brief Sum of the dot product betwen relative positions and normals with differenciated weights */
                 m_dSumDotPP, /*!< \brief Sum of the squared relative positions with differenciated weights */
                 m_dNume,     /*!< \brief Differenciation of the numerator of the quadratic parameter   */

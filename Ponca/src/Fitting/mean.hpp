@@ -46,3 +46,31 @@ MeanNormal<DataPoint, _WFunctor, T>::addLocalNeighbor(Scalar w,
     }
     return false;
 }
+
+
+namespace internal {
+
+    template<class DataPoint, class _WFunctor, typename T, int Type>
+    void
+    MeanPositionDer<DataPoint, _WFunctor, T, Type>::init(const VectorType &_evalPos) {
+        Base::init(_evalPos);
+        m_dSumP.setZero();
+    }
+
+
+    template<class DataPoint, class _WFunctor, typename T, int Type>
+    bool
+    MeanPositionDer<DataPoint, _WFunctor, T, Type>::addLocalNeighbor(Scalar w,
+                                                                     const VectorType &localQ,
+                                                                     const DataPoint &attributes,
+                                                                     ScalarArray &dw) {
+        if (Base::addLocalNeighbor(w, localQ, attributes, dw)) {
+            int spaceId = (Type & FitScaleDer) ? 1 : 0;
+
+            m_dSumP += localQ * dw;
+            return true;
+        }
+
+        return false;
+    }
+}
