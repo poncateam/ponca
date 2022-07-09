@@ -40,13 +40,9 @@ protected:
     };
 
 public:
-
-    /*! \brief Scalar type inherited from DataPoint*/
-    typedef typename Base::Scalar     Scalar;
-    /*! \brief Vector type inherited from DataPoint*/
-    typedef typename Base::VectorType VectorType;
-    /*! \brief Weight Function*/
-    typedef _WFunctor                 WFunctor;
+    using Scalar     = typename Base::Scalar;     /*!< \brief Inherited scalar type*/
+    using VectorType = typename Base::VectorType; /*!< \brief Inherited vector type*/
+    using WFunctor   = typename Base::WFunctor;   /*!< \brief Weight Function*/
 
  protected:
 
@@ -115,9 +111,9 @@ protected:
     };
 
 public:
-    typedef typename Base::Scalar     Scalar;     /*!< \brief Inherited scalar type*/
-    typedef typename Base::VectorType VectorType; /*!< \brief Inherited vector type*/
-    typedef typename Base::WFunctor   WFunctor;   /*!< \brief Weight Function*/
+    using Scalar      = typename Base::Scalar;
+    using VectorType  = typename Base::VectorType;
+    using WFunctor    = typename Base::WFunctor;
 
 #define GLS_DER_NB_DERIVATIVES(TYPE,DIM) ((TYPE & FitScaleDer) ? 1 : 0 ) + ((TYPE & FitSpaceDer) ? DIM : 0)
 #define GLS_DER_STORAGE_ORDER(TYPE)      ((TYPE & FitSpaceDer) ? Eigen::RowMajor : Eigen::ColMajor )

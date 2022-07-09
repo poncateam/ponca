@@ -45,9 +45,9 @@ protected:
     };
 
 public:
-    typedef typename Base::Scalar          Scalar;      /*!< \brief Inherited scalar type*/
-    typedef typename Base::VectorType      VectorType;  /*!< \brief Inherited vector type*/
-    typedef typename DataPoint::MatrixType MatrixType;  /*!< \brief Matrix type inherited from DataPoint*/
+    using Scalar     = typename Base::Scalar;     /*!< \brief Inherited scalar type*/
+    using VectorType = typename Base::VectorType; /*!< \brief Inherited vector type*/
+    using MatrixType = typename Base::MatrixType; /*!< \brief Inherited matrix type*/
 
 private:
     typedef Eigen::Matrix<Scalar,3,2> Mat32; /*!< \brief Matrix type for tangent plane basis */

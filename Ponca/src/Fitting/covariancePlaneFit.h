@@ -50,17 +50,13 @@ protected:
     };
 
 public:
-
-    /*! \brief Scalar type inherited from DataPoint*/
-    typedef typename Base::Scalar     Scalar;
-    /*! \brief Vector type inherited from DataPoint*/
-    typedef typename Base::VectorType VectorType;
-    /*! \brief Vector type inherited from DataPoint*/
-    typedef typename Base::MatrixType MatrixType;
-    /*! \brief Weight Function*/
-    typedef _WFunctor                 WFunctor;
+    using Scalar     = typename Base::Scalar;          /*!< \brief Inherited scalar type*/
+    using VectorType = typename Base::VectorType;      /*!< \brief Inherited vector type*/
+    using MatrixType = typename DataPoint::MatrixType; /*!< \brief Inherited matrix type*/
+    using WFunctor   = typename Base::WFunctor;        /*!< \brief Weight Function*/
     /*! \brief Solver used to analyse the covariance matrix*/
-    typedef Eigen::SelfAdjointEigenSolver<MatrixType> Solver;
+    using Solver     = Eigen::SelfAdjointEigenSolver<MatrixType>;
+
 
  protected:
     // computation data
@@ -171,10 +167,10 @@ protected:
     static const int DerStorageOrder = (Type & FitSpaceDer) ? Eigen::RowMajor : Eigen::ColMajor;
 
 public:
-    typedef typename Base::Scalar     Scalar;     /*!< \brief Inherited scalar type*/
-    typedef typename Base::VectorType VectorType; /*!< \brief Inherited vector type*/
-    typedef typename Base::MatrixType MatrixType; /*!< \brief Inherited matrix type*/
-    typedef typename Base::WFunctor   WFunctor;   /*!< \brief Weight Function*/
+    using Scalar     = typename Base::Scalar;     /*!< \brief Inherited scalar type*/
+    using VectorType = typename Base::VectorType; /*!< \brief Inherited vector type*/
+    using MatrixType = typename Base::MatrixType; /*!< \brief Inherited matrix type*/
+    using WFunctor   = typename Base::WFunctor;   /*!< \brief Weight Function*/
 
     /*! \brief Static array of scalars with a size adapted to the differentiation type */
     typedef Eigen::Matrix<Scalar, DataPoint::Dim, NbDerivatives, DerStorageOrder> VectorArray;

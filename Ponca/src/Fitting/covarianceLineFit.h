@@ -32,14 +32,10 @@ private:
     typedef Line<DataPoint, _WFunctor> Base;
 
 public:
-   /*! \brief Scalar type inherited from DataPoint*/
-    typedef typename Base::Scalar     Scalar;
-    /*! \brief Vector type inherited from DataPoint*/
-    typedef typename Base::VectorType VectorType;
-    /*! \brief Vector type inherited from DataPoint*/
-    typedef typename Base::MatrixType MatrixType;
-    /*! \brief Weight Function*/
-    typedef _WFunctor                 WFunctor;
+    using Scalar     = typename Base::Scalar;     /*!< \brief Inherited scalar type*/
+    using VectorType = typename Base::VectorType; /*!< \brief Inherited vector type*/
+    using MatrixType = typename Base::MatrixType; /*!< \brief Inherited matrix type*/
+    using WFunctor   = typename Base::WFunctor;   /*!< \brief Weight Function*/
     /*! \brief Solver used to analyse the covariance matrix*/
     typedef Eigen::SelfAdjointEigenSolver<MatrixType> Solver;
 

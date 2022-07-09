@@ -37,13 +37,9 @@ protected:
     };
 
 public:
-
-    /*! \brief Scalar type inherited from DataPoint*/
-    typedef typename Base::Scalar     Scalar;
-    /*! \brief Vector type inherited from DataPoint*/
-    typedef typename Base::VectorType VectorType;
-    /*! \brief Vector type inherited from DataPoint*/
-    typedef typename Base::MatrixType MatrixType;
+    using Scalar     = typename Base::Scalar;     /*!< \brief Inherited scalar type*/
+    using VectorType = typename Base::VectorType; /*!< \brief Inherited vector type*/
+    using WFunctor   = typename Base::WFunctor;   /*!< \brief Weight Function*/
 
 public:
 

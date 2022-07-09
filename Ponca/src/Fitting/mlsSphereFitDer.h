@@ -41,8 +41,9 @@ protected:
     };
 
 public:
-    typedef typename Base::Scalar     Scalar;     /*!< \brief Inherited scalar type*/
-    typedef typename Base::VectorType VectorType; /*!< \brief Inherited vector type*/
+    using Scalar     = typename Base::Scalar;     /*!< \brief Inherited scalar type*/
+    using VectorType = typename Base::VectorType; /*!< \brief Inherited vector type*/
+    using WFunctor   = typename Base::WFunctor;   /*!< \brief Weight Function*/
 
     typedef typename Base::VectorArray VectorArray; /*!< \brief Inherited vector array type */
     typedef typename Base::ScalarArray ScalarArray; /*!< \brief Inherited scalar array type */

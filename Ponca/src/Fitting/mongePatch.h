@@ -35,10 +35,9 @@ protected:
     };
 
 public:
-    typedef typename Base::Scalar          Scalar;      /*!< \brief Inherited scalar type*/
-    typedef typename Base::VectorType      VectorType;  /*!< \brief Inherited vector type*/
-    typedef typename DataPoint::MatrixType MatrixType;  /*!< \brief Matrix type inherited from DataPoint*/
-    typedef _WFunctor                       WFunctor;   /*!< \brief Weight Function */
+    using Scalar     = typename Base::Scalar;     /*!< \brief Inherited scalar type*/
+    using VectorType = typename Base::VectorType; /*!< \brief Inherited vector type*/
+    using WFunctor   = typename Base::WFunctor;   /*!< \brief Weight Function*/
 
     typedef Eigen::Matrix<Scalar,2,1> Vector2;
     typedef Eigen::Matrix<Scalar,Eigen::Dynamic,1> VectorX;
