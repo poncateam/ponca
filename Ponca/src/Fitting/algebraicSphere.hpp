@@ -5,7 +5,7 @@
 */
 
 template < class DataPoint, class _WFunctor, typename T>
-typename DataPoint::VectorType
+typename AlgebraicSphere<DataPoint, _WFunctor, T>::VectorType
 AlgebraicSphere<DataPoint, _WFunctor, T>::project(const VectorType& _q) const
 {
     PONCA_MULTIARCH_STD_MATH(sqrt);
@@ -30,7 +30,7 @@ AlgebraicSphere<DataPoint, _WFunctor, T>::project(const VectorType& _q) const
 }
 
 template < class DataPoint, class _WFunctor, typename T>
-typename DataPoint::VectorType
+typename AlgebraicSphere<DataPoint, _WFunctor, T>::VectorType
 AlgebraicSphere<DataPoint, _WFunctor, T>::projectDescent( const VectorType& _q, int nbIter) const
 {
     PONCA_MULTIARCH_STD_MATH(min)
@@ -57,7 +57,7 @@ AlgebraicSphere<DataPoint, _WFunctor, T>::projectDescent( const VectorType& _q, 
 }
 
 template < class DataPoint, class _WFunctor, typename T>
-typename DataPoint::Scalar
+typename AlgebraicSphere<DataPoint, _WFunctor, T>::Scalar
 AlgebraicSphere<DataPoint, _WFunctor, T>::potential( const VectorType &_q ) const
 {
     // turn to centered basis
@@ -68,7 +68,7 @@ AlgebraicSphere<DataPoint, _WFunctor, T>::potential( const VectorType &_q ) cons
 
 
 template < class DataPoint, class _WFunctor, typename T>
-typename DataPoint::VectorType
+typename AlgebraicSphere<DataPoint, _WFunctor, T>::VectorType
 AlgebraicSphere<DataPoint, _WFunctor, T>::primitiveGradient( const VectorType &_q ) const
 {
         // turn to centered basis

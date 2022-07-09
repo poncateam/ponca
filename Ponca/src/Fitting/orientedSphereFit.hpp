@@ -92,18 +92,17 @@ OrientedSphereDer<DataPoint, _WFunctor, T, Type>::init(const VectorType& _evalPo
 {
     Base::init(_evalPos);
 
-    m_dSumN     = VectorArray::Zero();
-    m_dSumP     = VectorArray::Zero();
+    m_dSumN.setZero();
+    m_dSumP.setZero();
 
-    m_dSumDotPN = ScalarArray::Zero();
-    m_dSumDotPP = ScalarArray::Zero();
-    m_dSumW     = ScalarArray::Zero();
-    m_dNume     = ScalarArray::Zero();
-    m_dDeno     = ScalarArray::Zero();
+    m_dSumDotPN.setZero();
+    m_dSumDotPP.setZero();
+    m_dNume.setZero();
+    m_dDeno.setZero();
 
-    m_dUc       = ScalarArray::Zero();
-    m_dUq       = ScalarArray::Zero();
-    m_dUl       = VectorArray::Zero();
+    m_dUc.setZero();
+    m_dUq.setZero();
+    m_dUl.setZero();
 }
 
 
