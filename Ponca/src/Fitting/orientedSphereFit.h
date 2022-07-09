@@ -96,11 +96,12 @@ namespace internal
     derDimension(), and the differentiation type by isScaleDer() and
     isSpaceDer().
 */
-template < class DataPoint, class _WFunctor, typename T, int _Type>
-class OrientedSphereDer : public T
+template < class DataPoint, class _WFunctor, typename T, int Type>
+class OrientedSphereDer : public PrimitiveDer<DataPoint, _WFunctor, T, Type>
 {
 private:
-    typedef T Base; /*!< \brief Generic base type */
+    using Base = PrimitiveDer<DataPoint, _WFunctor, T, Type>; /*!< \brief Generic base type */
+
 
 protected:
     enum
@@ -114,21 +115,8 @@ public:
     using Scalar      = typename Base::Scalar;
     using VectorType  = typename Base::VectorType;
     using WFunctor    = typename Base::WFunctor;
-
-#define GLS_DER_NB_DERIVATIVES(TYPE,DIM) ((TYPE & FitScaleDer) ? 1 : 0 ) + ((TYPE & FitSpaceDer) ? DIM : 0)
-#define GLS_DER_STORAGE_ORDER(TYPE)      ((TYPE & FitSpaceDer) ? Eigen::RowMajor : Eigen::ColMajor )
-
-    /*! \brief Static array of scalars with a size adapted to the differentiation type */
-    typedef Eigen::Matrix < Scalar,
-        DataPoint::Dim,
-        GLS_DER_NB_DERIVATIVES(_Type,DataPoint::Dim),
-        GLS_DER_STORAGE_ORDER(_Type) > VectorArray;
-
-    /*! \brief Static array of scalars with a size adapted to the differentiation type */
-    typedef Eigen::Matrix < Scalar,
-                            1,
-                            GLS_DER_NB_DERIVATIVES(_Type,DataPoint::Dim)/*,
-                            GLS_DER_STORAGE_ORDER(Type)*/ > ScalarArray;
+    using ScalarArray = typename Base::ScalarArray;
+    using VectorArray = typename Base::VectorArray;
 
 protected:
     // computation data
@@ -136,7 +124,6 @@ protected:
                 m_dSumP;     /*!< \brief Sum of the relative positions with differenciated weights*/
     ScalarArray m_dSumDotPN, /*!< \brief Sum of the dot product betwen relative positions and normals with differenciated weights */
                 m_dSumDotPP, /*!< \brief Sum of the squared relative positions with differenciated weights */
-                m_dSumW,     /*!< \brief Sum of queries weight with differenciated weights */
                 m_dNume,     /*!< \brief Differenciation of the numerator of the quadratic parameter   */
                 m_dDeno;     /*!< \brief Differenciation of the denominator of the quadratic parameter */
 
@@ -201,23 +188,6 @@ public:
         PONCA_MULTIARCH_STD_MATH(sqrt);
         return dprattNorm2().array().sqrt();
     }
-
-    /*!
-     * \brief State specified at compilation time to differenciate the fit in scale
-     * Brought by PROVIDES_ALGEBRAIC_SPHERE_DERIVATIVE and PROVIDES_NORMAL_DERIVATIVE
-     */
-    static constexpr PONCA_MULTIARCH inline bool isScaleDer() {return bool(_Type & FitScaleDer);}
-    /*!
-     * \brief State specified at compilation time to differenciate the fit in space
-     * Brought by PROVIDES_ALGEBRAIC_SPHERE_DERIVATIVE and PROVIDES_NORMAL_DERIVATIVE
-     */
-    static constexpr PONCA_MULTIARCH inline bool isSpaceDer() {return bool(_Type & FitSpaceDer);}
-    /*!
-     * \brief Number of dimensions used for the differentiation
-     * Brought by PROVIDES_ALGEBRAIC_SPHERE_DERIVATIVE and PROVIDES_NORMAL_DERIVATIVE
-     */
-    static constexpr PONCA_MULTIARCH inline unsigned int derDimension() { return GLS_DER_NB_DERIVATIVES(_Type,DataPoint::Dim);}
-
     //! Normalize the scalar field by the Pratt norm
     /*!
         \warning Requieres that isNormalized() return false

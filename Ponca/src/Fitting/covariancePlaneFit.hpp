@@ -103,7 +103,6 @@ CovariancePlaneDer<DataPoint, _WFunctor, T, Type>::init(const VectorType& _evalP
     Base::init(_evalPos);
 
     m_dCog   = VectorArray::Zero();
-    m_dSumW  = ScalarArray::Zero();
     for(int k=0; k<NbDerivatives; ++k)
       m_dCov[k].setZero();
 }
@@ -116,20 +115,12 @@ CovariancePlaneDer<DataPoint, _WFunctor, T, Type>::addLocalNeighbor(Scalar w,
                                                              const VectorType &localQ,
                                                              const DataPoint &attributes)
 {
-    if( Base::addLocalNeighbor(w, localQ, attributes) ) {
+    ScalarArray dw;
+    if( Base::addLocalNeighbor(w, localQ, attributes, dw) ) {
         int spaceId = (Type & FitScaleDer) ? 1 : 0;
-        ScalarArray dw;
 
-        // compute weight
-        if (Type & FitScaleDer)
-            dw[0] = Base::m_w.scaledw(attributes.pos(), attributes);
-
-        if (Type & FitSpaceDer)
-            dw.template segment<int(DataPoint::Dim)>(spaceId) = -Base::m_w.spacedw(attributes.pos(), attributes).transpose();
-
-        m_dSumW += dw;
         m_dCog  += localQ * dw;
-        for(int k=0; k<NbDerivatives; ++k)
+        for(int k=0; k<Base::NbDerivatives; ++k)
           m_dCov[k]  += dw[k] * localQ * localQ.transpose(); /// \fixme better use eigen here
 
         return true;
@@ -156,16 +147,16 @@ CovariancePlaneDer<DataPoint, _WFunctor, T, Type>::finalize()
       if(shifted_eivals(0) < consider_as_zero || shifted_eivals(0) < epsilon * shifted_eivals(1)) shifted_eivals(0) = 0;
       if(shifted_eivals(1) < consider_as_zero) shifted_eivals(1) = 0;
 
-      for(int k=0; k<NbDerivatives; ++k)
+      for(int k=0; k<Base::NbDerivatives; ++k)
       {
         // Finalize the computation of dCov.
         m_dCov[k] = m_dCov[k]
                   - Base::m_cog * m_dCog.col(k).transpose()
                   - m_dCog.col(k) * Base::m_cog.transpose()
-                  + m_dSumW[k] * Base::m_cog * Base::m_cog.transpose();
+                  + Base::m_dSumW[k] * Base::m_cog * Base::m_cog.transpose();
 
         // apply normalization by sumW:
-        m_dCog.col(k) = (m_dCog.col(k) - m_dSumW(k) * Base::m_cog) / Base::m_sumW;
+        m_dCog.col(k) = (m_dCog.col(k) - Base::m_dSumW(k) * Base::m_cog) / Base::m_sumW;
 
         VectorType normal = Base::primitiveGradient();
         // The derivative of 'normal' is the derivative of the smallest eigenvector.
@@ -182,8 +173,8 @@ CovariancePlaneDer<DataPoint, _WFunctor, T, Type>::finalize()
         m_dNormal.col(k) = Base::m_solver.eigenvectors().template rightCols<2>() * z;
 
         VectorType dDiff = -m_dCog.col(k);
-        if(k>0 || !isScaleDer())
-          dDiff(isScaleDer() ? k-1 : k) += 1;
+        if(k>0 || !Base::isScaleDer())
+          dDiff(Base::isScaleDer() ? k-1 : k) += 1;
         m_dDist(k) = m_dNormal.col(k).dot(Base::m_cog) + normal.dot(dDiff);
 
         // \fixme we shouldn't need this normalization, however currently the derivatives are overestimated by a factor 2

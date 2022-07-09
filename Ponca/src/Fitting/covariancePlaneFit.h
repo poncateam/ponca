@@ -149,10 +149,10 @@ using ::Ponca::internal::FitScaleDer;
     \warning This class cannot be used directly, see CovariancePlaneScaleDer, CovariancePlaneSpaceDer and CovariancePlaneScaleSpaceDer
 */
 template < class DataPoint, class _WFunctor, typename T, int Type>
-class CovariancePlaneDer : public T
+class CovariancePlaneDer : public PrimitiveDer<DataPoint, _WFunctor, T, Type>
 {
 private:
-    typedef T Base; /*!< \brief Generic base type */
+    using Base = PrimitiveDer<DataPoint, _WFunctor, T, Type>; /*!< \brief Generic base type */
 
 
 protected:
@@ -163,24 +163,18 @@ protected:
         PROVIDES_NORMAL_DERIVATIVE
     };
 
-    static const int NbDerivatives   = ((Type & FitScaleDer) ? 1 : 0 ) + ((Type & FitSpaceDer) ? DataPoint::Dim : 0);
-    static const int DerStorageOrder = (Type & FitSpaceDer) ? Eigen::RowMajor : Eigen::ColMajor;
 
 public:
     using Scalar     = typename Base::Scalar;     /*!< \brief Inherited scalar type*/
     using VectorType = typename Base::VectorType; /*!< \brief Inherited vector type*/
     using MatrixType = typename Base::MatrixType; /*!< \brief Inherited matrix type*/
     using WFunctor   = typename Base::WFunctor;   /*!< \brief Weight Function*/
+    using ScalarArray = typename Base::ScalarArray;
+    using VectorArray = typename Base::VectorArray;
 
-    /*! \brief Static array of scalars with a size adapted to the differentiation type */
-    typedef Eigen::Matrix<Scalar, DataPoint::Dim, NbDerivatives, DerStorageOrder> VectorArray;
-
-    /*! \brief Static array of scalars with a size adapted to the differentiation type */
-    typedef Eigen::Matrix<Scalar, 1, NbDerivatives> ScalarArray;
 private:
     // computation data
-    ScalarArray m_dSumW;      /*!< \brief Sum of weight derivatives */
-    MatrixType  m_dCov[NbDerivatives];
+    MatrixType  m_dCov[Base::NbDerivatives];
 
     VectorArray m_dCog;       /*!< \brief Derivatives of the centroid */
     VectorArray m_dNormal;    /*!< \brief Derivatives of the hyper-plane normal */
@@ -212,13 +206,6 @@ public:
 
     /*! \brief Returns the derivatives of the primitive normal */
     PONCA_MULTIARCH inline VectorArray dNormal() const { return m_dNormal; }
-
-    /*! \brief State specified at compilation time to differenciate the fit in scale */
-    PONCA_MULTIARCH inline bool isScaleDer() const {return bool(Type & FitScaleDer);}
-    /*! \brief State specified at compilation time to differenciate the fit in space */
-    PONCA_MULTIARCH inline bool isSpaceDer() const {return bool(Type & FitSpaceDer);}
-    /*! \brief Number of dimensions used for the differentiation */
-    PONCA_MULTIARCH inline unsigned int derDimension() const { return NbDerivatives;}
 
 }; //class CovariancePlaneDer
 
