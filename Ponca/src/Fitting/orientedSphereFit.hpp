@@ -112,17 +112,9 @@ bool
 OrientedSphereDer<DataPoint, _WFunctor, T, Type>::addLocalNeighbor(Scalar w,
                                                              const VectorType &localQ,
                                                              const DataPoint &attributes) {
-    if( Base::addLocalNeighbor(w, localQ, attributes) ) {
-        ScalarArray dw;
-        // compute weight derivatives
-        if (Type & FitScaleDer)
-            dw[0] = Base::m_w.scaledw(attributes.pos(), attributes);
+    ScalarArray dw;
+    if( Base::addLocalNeighbor(w, localQ, attributes, dw) ) {
 
-        if (Type & FitSpaceDer)
-            dw.template tail<int(DataPoint::Dim)>() = -Base::m_w.spacedw(attributes.pos(), attributes).transpose();
-
-        // increment
-        m_dSumW     += dw;
         m_dSumP     += localQ * dw;
         m_dSumN     += attributes.normal() * dw;
         m_dSumDotPN += dw * attributes.normal().dot(localQ);
@@ -154,22 +146,22 @@ OrientedSphereDer<DataPoint, _WFunctor, T, Type>::finalize()
         // "sum w_i N_i" is normal to the surface...
         m_dNume = m_dSumDotPN
             - invSumW*invSumW * ( Base::m_sumW * ( Base::m_sumN.transpose() * m_dSumP + Base::m_sumP.transpose() * m_dSumN )
-            - m_dSumW*Base::m_sumP.dot(Base::m_sumN) );
+            - Base::m_dSumW*Base::m_sumP.dot(Base::m_sumN) );
 
         m_dDeno = m_dSumDotPP
             - invSumW*invSumW*(   Scalar(2.) * Base::m_sumW * Base::m_sumP.transpose() * m_dSumP
-            - m_dSumW*Base::m_sumP.dot(Base::m_sumP) );
+            - Base::m_dSumW*Base::m_sumP.dot(Base::m_sumP) );
 
         m_dUq =  Scalar(.5) * (deno * m_dNume - m_dDeno * nume)/(deno*deno);
 
         // FIXME: this line is prone to numerical cancellation issues because dSumN and u_l*dSumW are close to each other.
         // If using two passes, one could directly compute sum( dw_i + (n_i - ul) ) to avoid this issue.
-        m_dUl =  invSumW * ( m_dSumN - Base::m_ul*m_dSumW - Scalar(2.)*(m_dSumP*Base::m_uq + Base::m_sumP*m_dUq) );
+        m_dUl =  invSumW * ( m_dSumN - Base::m_ul*Base::m_dSumW - Scalar(2.)*(m_dSumP*Base::m_uq + Base::m_sumP*m_dUq) );
         m_dUc = -invSumW*( Base::m_sumP.transpose() * m_dUl
             + Base::m_sumDotPP * m_dUq
             + Base::m_ul.transpose() * m_dSumP
             + Base::m_uq * m_dSumDotPP
-            + m_dSumW * Base::m_uc);
+            + Base::m_dSumW * Base::m_uc);
     }
 
     return Base::m_eCurrentState;
@@ -183,7 +175,7 @@ OrientedSphereDer<DataPoint, _WFunctor, T, Type>::dNormal() const
   // Therefore, we must take into account the variation of the evaluation point when differentiating wrt space
   // i.e., normal(x) = grad / |grad|, with grad(x) = ul + 2 uq * x, and diff_x(grad) = dul + 2 uq I
   VectorArray dgrad = m_dUl;
-  if(isSpaceDer())
+  if(Base::isSpaceDer())
     dgrad.template rightCols<DataPoint::Dim>().diagonal().array() += Scalar(2)*Base::m_uq;
   Scalar norm  = Base::m_ul.norm();
   Scalar norm3 = norm*norm*norm;
@@ -195,7 +187,7 @@ typename OrientedSphereDer <DataPoint, _WFunctor, T, Type>::ScalarArray
 OrientedSphereDer<DataPoint, _WFunctor, T, Type>::dPotential() const
 {
   ScalarArray dfield = m_dUc;
-  if(isSpaceDer())
+  if(Base::isSpaceDer())
     dfield.template tail<DataPoint::Dim>() += Base::m_ul;
   return dfield;
 }
