@@ -58,12 +58,11 @@ public:
     using WFunctor   = typename Base::WFunctor;   /*!< \brief Weight Function*/
 
 protected:
-    Scalar m_t;         /*!< \brief Evaluation scale. Needed to computed the normalized values*/
     Scalar m_fitness;   /*!< \brief Save the fitness value to avoid side effect with Pratt normalization*/
 
 public:
     /*! \brief Default constructor */
-    PONCA_MULTIARCH inline GLSParam() : m_t(0) {}
+    PONCA_MULTIARCH inline GLSParam() : m_fitness(0) {}
 
     /**************************************************************************/
     /* Initialization                                                         */
@@ -72,7 +71,6 @@ public:
     PONCA_MULTIARCH inline void setWeightFunc(const WFunctor& _w)
     {
         Base::setWeightFunc(_w);
-        m_t = _w.evalScale();
     }
 
     /**************************************************************************/
@@ -110,13 +108,13 @@ public:
     }
 
     /*! \brief Compute and return \f$ \frac{\tau}{t} \f$ */
-    PONCA_MULTIARCH inline Scalar tau_normalized() const { return tau() / m_t; }
+    PONCA_MULTIARCH inline Scalar tau_normalized() const { return tau() / Base::m_w.evalScale(); }
 
     /*! \brief Compute and return \f$ \eta \f$ */
     PONCA_MULTIARCH inline VectorType eta_normalized() const { return eta(); }
 
     /*! \brief Compute and return \f$ t \kappa \f$ */
-    PONCA_MULTIARCH inline Scalar kappa_normalized() const { return kappa() * m_t; }
+    PONCA_MULTIARCH inline Scalar kappa_normalized() const { return kappa() * Base::m_w.evalScale(); }
 
     /*! \brief Return the fitness, e.g. the pratt norm of the initial scalar field */
     PONCA_MULTIARCH inline Scalar fitness() const { return m_fitness; }
