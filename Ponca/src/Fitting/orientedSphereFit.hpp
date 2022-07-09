@@ -93,7 +93,6 @@ OrientedSphereDer<DataPoint, _WFunctor, T, Type>::init(const VectorType& _evalPo
     Base::init(_evalPos);
 
     m_dSumN.setZero();
-    m_dSumP.setZero();
 
     m_dSumDotPN.setZero();
     m_dSumDotPP.setZero();
@@ -114,7 +113,6 @@ OrientedSphereDer<DataPoint, _WFunctor, T, Type>::addLocalNeighbor(Scalar w,
     ScalarArray dw;
     if( Base::addLocalNeighbor(w, localQ, attributes, dw) ) {
 
-        m_dSumP     += localQ * dw;
         m_dSumN     += attributes.normal() * dw;
         m_dSumDotPN += dw * attributes.normal().dot(localQ);
         m_dSumDotPP += dw * localQ.squaredNorm();
@@ -144,21 +142,21 @@ OrientedSphereDer<DataPoint, _WFunctor, T, Type>::finalize()
         // issues for spacial derivatives because, (d sum w_i P_i)/(d x) is supposed to be tangent to the surface whereas
         // "sum w_i N_i" is normal to the surface...
         m_dNume = m_dSumDotPN
-            - invSumW*invSumW * ( Base::m_sumW * ( Base::m_sumN.transpose() * m_dSumP + Base::m_sumP.transpose() * m_dSumN )
+            - invSumW*invSumW * ( Base::m_sumW * ( Base::m_sumN.transpose() * Base::m_dSumP + Base::m_sumP.transpose() * m_dSumN )
             - Base::m_dSumW*Base::m_sumP.dot(Base::m_sumN) );
 
         m_dDeno = m_dSumDotPP
-            - invSumW*invSumW*(   Scalar(2.) * Base::m_sumW * Base::m_sumP.transpose() * m_dSumP
+            - invSumW*invSumW*(   Scalar(2.) * Base::m_sumW * Base::m_sumP.transpose() * Base::m_dSumP
             - Base::m_dSumW*Base::m_sumP.dot(Base::m_sumP) );
 
         m_dUq =  Scalar(.5) * (deno * m_dNume - m_dDeno * nume)/(deno*deno);
 
         // FIXME: this line is prone to numerical cancellation issues because dSumN and u_l*dSumW are close to each other.
         // If using two passes, one could directly compute sum( dw_i + (n_i - ul) ) to avoid this issue.
-        m_dUl =  invSumW * ( m_dSumN - Base::m_ul*Base::m_dSumW - Scalar(2.)*(m_dSumP*Base::m_uq + Base::m_sumP*m_dUq) );
+        m_dUl =  invSumW * ( m_dSumN - Base::m_ul*Base::m_dSumW - Scalar(2.)*(Base::m_dSumP * Base::m_uq + Base::m_sumP * m_dUq) );
         m_dUc = -invSumW*( Base::m_sumP.transpose() * m_dUl
             + Base::m_sumDotPP * m_dUq
-            + Base::m_ul.transpose() * m_dSumP
+            + Base::m_ul.transpose() * Base::m_dSumP
             + Base::m_uq * m_dSumDotPP
             + Base::m_dSumW * Base::m_uc);
     }
