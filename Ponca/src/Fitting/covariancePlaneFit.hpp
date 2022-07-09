@@ -13,7 +13,7 @@ void
 CovariancePlaneFit<DataPoint, _WFunctor, T>::init(const VectorType& _evalPos)
 {
     Base::init(_evalPos);
-    m_cov         = MatrixType::Zero();
+    m_cov.setZero();
 }
 
 template < class DataPoint, class _WFunctor, typename T>
@@ -102,8 +102,8 @@ CovariancePlaneDer<DataPoint, _WFunctor, T, Type>::init(const VectorType& _evalP
 {
     Base::init(_evalPos);
 
-    m_dCog   = VectorArray::Zero();
-    for(int k=0; k<NbDerivatives; ++k)
+    m_dCog.setZero();
+    for(int k=0; k<Base::NbDerivatives; ++k)
       m_dCov[k].setZero();
 }
 
