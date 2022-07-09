@@ -106,6 +106,25 @@ public:
 
 namespace internal
 {
+    /**
+    \brief Internal generic class performing the Fit derivation
+    \inherit Concept::FittingExtensionConcept
+
+    The differentiation can be done automatically in scale and/or space, by
+    combining the enum values FitScaleDer and FitSpaceDer in the template
+    parameter Type.
+
+    The differenciated values are stored in static arrays. The size of the
+    arrays is computed with respect to the derivation type (scale and/or space)
+    and the number of the dimension of the ambiant space.
+    By convention, the scale derivatives are stored at index 0 when Type
+    contains at least FitScaleDer. The size of these arrays can be known using
+    derDimension(), and the differentiation type by isScaleDer() and
+    isSpaceDer().
+
+     \todo Do not explicitely inherit from PrimitiveDer (risk of diamond)
+           but rather rely on the REQUIREMENT system
+     */
 template < class DataPoint, class _WFunctor, typename T, int Type>
 class PrimitiveDer : public T
 {

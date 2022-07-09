@@ -110,6 +110,7 @@ public:
 
 protected:
     //! \brief Compute a tangent plane basis
+    /// \todo Uniformize with tangentplane basis
     PONCA_MULTIARCH inline Mat32 tangentPlane(bool useNormal = false) const;
 };
 
