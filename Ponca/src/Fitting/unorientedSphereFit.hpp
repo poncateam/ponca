@@ -56,7 +56,7 @@ uConstant() = -(1./sumOfWeights)*(eivec.start<Dim>().dot(sumP) + 0.5*eivec(Dim) 
 
 template < class DataPoint, class _WFunctor, typename T>
 void
-UnorientedSphereFit<DataPoint, _WFunctor, T>::init(const VectorType& _evalPos)
+UnorientedSphereFitImpl<DataPoint, _WFunctor, T>::init(const VectorType& _evalPos)
 {
     Base::init(_evalPos);
     m_matA.setZero();
@@ -65,7 +65,7 @@ UnorientedSphereFit<DataPoint, _WFunctor, T>::init(const VectorType& _evalPos)
 
 template<class DataPoint, class _WFunctor, typename T>
 bool
-UnorientedSphereFit<DataPoint, _WFunctor, T>::addLocalNeighbor(Scalar w,
+UnorientedSphereFitImpl<DataPoint, _WFunctor, T>::addLocalNeighbor(Scalar w,
                                                         const VectorType &localQ,
                                                         const DataPoint &attributes) {
     if( Base::addLocalNeighbor(w, localQ, attributes) )
@@ -84,7 +84,7 @@ UnorientedSphereFit<DataPoint, _WFunctor, T>::addLocalNeighbor(Scalar w,
 
 template < class DataPoint, class _WFunctor, typename T>
 FIT_RESULT
-UnorientedSphereFit<DataPoint, _WFunctor, T>::finalize ()
+UnorientedSphereFitImpl<DataPoint, _WFunctor, T>::finalize ()
 {
     PONCA_MULTIARCH_STD_MATH(sqrt);
 

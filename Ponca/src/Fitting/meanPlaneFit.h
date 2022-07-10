@@ -22,29 +22,34 @@ namespace Ponca
 
     \see Plane
 
+    \todo Add local frame computation to enable PROVIDES_TANGENT_PLANE_BASIS
+
     \ingroup fitting
 */
 template < class DataPoint, class _WFunctor, typename T >
-class MeanPlaneFit : public MeanPosition<DataPoint, _WFunctor, MeanNormal<DataPoint, _WFunctor, Plane<DataPoint, _WFunctor>>>
+class MeanPlaneFitImpl : public T
 {
 private:
-    using Base = MeanPosition<DataPoint, _WFunctor, MeanNormal<DataPoint, _WFunctor, Plane<DataPoint, _WFunctor>>>;
+    using Base = T;
 
 protected:
     enum
     {
-        Check = Base::PROVIDES_PLANE && Base::PROVIDES_MEAN_NORMAL
+        Check = Base::PROVIDES_MEAN_POSITION && Base::PROVIDES_MEAN_NORMAL && Base::PROVIDES_PLANE
     };
 
 public:
     using Scalar     = typename Base::Scalar;     /*!< \brief Inherited scalar type*/
     using VectorType = typename Base::VectorType; /*!< \brief Inherited vector type*/
+    using MatrixType = typename DataPoint::MatrixType;
     using WFunctor   = typename Base::WFunctor;   /*!< \brief Weight Function*/
 
 public:
 
     /*! \brief Default constructor */
-    PONCA_MULTIARCH inline MeanPlaneFit() = default;
+    PONCA_MULTIARCH inline MeanPlaneFitImpl() = default;
+
+    PONCA_EXPLICIT_CAST_OPERATORS(MeanPlaneFitImpl,meanPlaneFit)
 
     /**************************************************************************/
     /* Processing                                                             */
@@ -54,8 +59,21 @@ public:
     PONCA_MULTIARCH inline FIT_RESULT finalize()
     {
         // handle specific configurations
-        if(Base::finalize() == STABLE) Base::setPlane(Base::m_sumN / Base::m_sumW, Base::barycenter());
+        if(Base::finalize() == STABLE)
+        {
+            if (Base::plane().isValid()) Base::m_eCurrentState = CONFLICT_ERROR_FOUND;
+            Base::setPlane(Base::m_sumN / Base::m_sumW, Base::barycenter());
+        }
         return Base::m_eCurrentState;
     }
-}; //class MeanPlaneFit
+}; //class MeanPlaneFitImpl
+
+/// \brief Helper alias for Plane fitting on points using MeanPlaneFitImpl
+/// \ingroup fittingalias
+    template < class DataPoint, class _WFunctor, typename T>
+    using MeanPlaneFit =
+    MeanPlaneFitImpl<DataPoint, _WFunctor,
+            MeanNormal<DataPoint, _WFunctor,
+            MeanPosition<DataPoint, _WFunctor,
+            Plane<DataPoint, _WFunctor,T>>>>;
 } //namespace Ponca

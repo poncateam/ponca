@@ -11,6 +11,8 @@
 
 #include "./plane.h"
 #include "./primitive.h"
+#include "./mean.h"          // used to define CovarianceLineFit
+#include "./covarianceFit.h" // use to define CovariancePlaneFit
 
 #include <Eigen/Eigenvalues>
 
@@ -21,8 +23,7 @@ namespace Ponca
     \brief Plane fitting procedure using only points position
 
     This class can also computes the surface variation measure introduced in
-    \cite Pauly:2002:PSSimplification. The solver used to analyse the covariance
-    matrix is stored for further use.
+    \cite Pauly:2002:PSSimplification.
 
     \inherit Concept::FittingProcedureConcept
 
@@ -30,17 +31,16 @@ namespace Ponca
     \ingroup fitting
 */
 template < class DataPoint, class _WFunctor, typename T >
-class CovariancePlaneFit : public MeanPosition<DataPoint, _WFunctor,
-                                  Plane<DataPoint, _WFunctor>>
+class CovariancePlaneFitImpl : public T
 {
 private:
-    using Base = MeanPosition<DataPoint, _WFunctor, Plane<DataPoint, _WFunctor>>;
+    using Base = T;
 
 protected:
     enum
     {
         Check = Base::PROVIDES_PLANE &&
-                Base::PROVIDES_MEAN_POSITION,
+                Base::PROVIDES_POSITION_COVARIANCE,
         /*!
          * \brief Expose a method worldToTangentPlane(VectorType), which turns a point
          * in ambient 3D space to the tangent plane.
@@ -55,37 +55,13 @@ public:
     using VectorType = typename Base::VectorType;      /*!< \brief Inherited vector type*/
     using MatrixType = typename DataPoint::MatrixType; /*!< \brief Inherited matrix type*/
     using WFunctor   = typename Base::WFunctor;        /*!< \brief Weight Function*/
-    /*! \brief Solver used to analyse the covariance matrix*/
-    using Solver     = Eigen::SelfAdjointEigenSolver<MatrixType>;
-
-
- protected:
-    // computation data
-    MatrixType m_cov {MatrixType::Zero()};     /*!< \brief Covariance matrix */
-
-    Solver m_solver;  /*!<\brief Solver used to analyse the covariance matrix */
 
 public:
 
     /*! \brief Default constructor */
-    PONCA_MULTIARCH inline CovariancePlaneFit() = default;
+    PONCA_MULTIARCH inline CovariancePlaneFitImpl() = default;
 
-    /*! \brief Explicit conversion to CovariancePlaneFit, to access methods potentially hidden by inheritage */
-    PONCA_MULTIARCH inline
-    CovariancePlaneFit<DataPoint, WFunctor, T>& covariancePlaneFit()
-    { return * static_cast<CovariancePlaneFit<DataPoint, WFunctor, T>*>(this); }
-
-    /**************************************************************************/
-    /* Initialization                                                         */
-    /**************************************************************************/
-    /*! \copydoc Concept::FittingProcedureConcept::init() */
-    PONCA_MULTIARCH inline void init (const VectorType& _evalPos);
-
-    /**************************************************************************/
-    /* Processing                                                             */
-    /**************************************************************************/
-    /*! \copydoc Concept::FittingProcedureConcept::addLocalNeighbor() */
-    PONCA_MULTIARCH inline bool addLocalNeighbor(Scalar w, const VectorType &localQ, const DataPoint &attributes);
+    PONCA_EXPLICIT_CAST_OPERATORS(CovariancePlaneFitImpl,covariancePlaneFit)
 
     /*! \copydoc Concept::FittingProcedureConcept::finalize() */
     PONCA_MULTIARCH inline FIT_RESULT finalize();
@@ -93,20 +69,6 @@ public:
     /**************************************************************************/
     /* Results                                                                */
     /**************************************************************************/
-
-    using Base::potential;
-
-    /*! \brief Reading access to the Solver used to analyse the covariance
-      matrix */
-    PONCA_MULTIARCH inline const Solver& solver() const { return m_solver; }
-
-    /*! \brief Implements \cite Pauly:2002:PSSimplification surface variation.
-
-        It computes the ratio \f$ d \frac{\lambda_0}{\sum_i \lambda_i} \f$ with \c d the dimension of the ambient space.
-
-        \return 0 for invalid fits
-    */
-    PONCA_MULTIARCH inline Scalar surfaceVariation() const;
 
     /*!
      * \brief Express a point in ambient space relatively to the tangent plane.
@@ -123,7 +85,16 @@ public:
      */
     template <bool ignoreTranslation = false>
     PONCA_MULTIARCH inline VectorType tangentPlaneToWorld(const VectorType &_q) const;
-}; //class CovariancePlaneFit
+}; //class CovariancePlaneFitImpl
+
+/// \brief Helper alias for Plane fitting on 3D points using CovariancePlaneFitImpl
+/// \ingroup fittingalias
+    template < class DataPoint, class _WFunctor, typename T>
+    using CovariancePlaneFit =
+    CovariancePlaneFitImpl<DataPoint, _WFunctor,
+            CovarianceFitBase<DataPoint, _WFunctor,
+                    MeanPosition<DataPoint, _WFunctor,
+                            Plane<DataPoint, _WFunctor,T>>>>;
 
 namespace internal {
 
@@ -148,13 +119,14 @@ using ::Ponca::internal::FitScaleDer;
 
     \ingroup fitting
     \warning This class cannot be used directly, see CovariancePlaneScaleDer, CovariancePlaneSpaceDer and CovariancePlaneScaleSpaceDer
+    \warning Defined in 3D only
 */
 template < class DataPoint, class _WFunctor, typename T, int Type>
-class CovariancePlaneDer : public MeanPositionDer<DataPoint, _WFunctor, T, Type>
+class CovariancePlaneDer : public CovarianceFitDer<DataPoint, _WFunctor, T, Type>
 {
 private:
-    using Base = MeanPositionDer<DataPoint, _WFunctor, T, Type>; /*!< \brief Generic base type */
-
+    using Base = CovarianceFitDer<DataPoint, _WFunctor, T, Type>; /*!< \brief Generic base type */
+    static_assert ( DataPoint::Dim == 3, "CovariancePlaneDer is only valid in 3D");
 
 protected:
     enum
@@ -174,28 +146,12 @@ public:
     using VectorArray = typename Base::VectorArray;
 
 private:
-    // computation data
-    MatrixType  m_dCov[Base::NbDerivatives];
-
     VectorArray m_dNormal;    /*!< \brief Derivatives of the hyper-plane normal */
     ScalarArray m_dDist;      /*!< \brief Derivatives of the MLS scalar field */
 
 public:
-
-    /************************************************************************/
-    /* Initialization                                                       */
-    /************************************************************************/
-    /*! \see Concept::FittingProcedureConcept::init() */
-    PONCA_MULTIARCH void init(const VectorType &evalPos);
-
-    /************************************************************************/
-    /* Processing                                                           */
-    /************************************************************************/
-    /*! \see Concept::FittingProcedureConcept::addLocalNeighbor() */
-    PONCA_MULTIARCH inline bool addLocalNeighbor(Scalar w, const VectorType &localQ, const DataPoint &attributes);
-    /*! \see Concept::FittingProcedureConcept::finalize() */
+/*! \see Concept::FittingProcedureConcept::finalize() */
     PONCA_MULTIARCH FIT_RESULT finalize();
-
 
     /**************************************************************************/
     /* Use results                                                            */

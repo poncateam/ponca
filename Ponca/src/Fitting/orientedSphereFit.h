@@ -7,7 +7,7 @@ file, You can obtain one at http://mozilla.org/MPL/2.0/.
 #pragma once
 
 #include "./algebraicSphere.h"
-#include "./mean.h"
+#include "./mean.h"          // used to define OrientedSphereFit
 
 namespace Ponca
 {
@@ -23,13 +23,11 @@ namespace Ponca
 
     \ingroup fitting
 */
-template < class DataPoint, class _WFunctor, typename T = void >
-class OrientedSphereFit : public MeanPosition<DataPoint, _WFunctor,
-                                 MeanNormal<DataPoint, _WFunctor,
-                                 AlgebraicSphere<DataPoint, _WFunctor>>>
+template < class DataPoint, class _WFunctor, typename T >
+class OrientedSphereFitImpl : public T
 {
 private:
-    using Base = MeanPosition<DataPoint, _WFunctor, MeanNormal<DataPoint, _WFunctor, AlgebraicSphere<DataPoint, _WFunctor>>>;
+    using Base = T;
 
 protected:
     enum
@@ -55,7 +53,9 @@ public:
 public:
 
     /*! \brief Default constructor */
-    PONCA_MULTIARCH inline OrientedSphereFit() = default;
+    PONCA_MULTIARCH inline OrientedSphereFitImpl() = default;
+
+    PONCA_EXPLICIT_CAST_OPERATORS(OrientedSphereFitImpl,orientedSphereFit)
 
     /**************************************************************************/
     /* Initialization                                                         */
@@ -74,7 +74,16 @@ public:
     /*! \copydoc Concept::FittingProcedureConcept::finalize() */
     PONCA_MULTIARCH inline FIT_RESULT finalize();
 
-}; //class OrientedSphereFit
+}; //class OrientedSphereFitImpl
+
+/// \brief Helper alias for Oriented Sphere fitting on 3D points using OrientedSphereFitImpl
+/// \ingroup fittingalias
+template < class DataPoint, class _WFunctor, typename T>
+using OrientedSphereFit =
+OrientedSphereFitImpl<DataPoint, _WFunctor,
+        MeanPosition<DataPoint, _WFunctor,
+            MeanNormal<DataPoint, _WFunctor,
+                AlgebraicSphere<DataPoint, _WFunctor,T>>>>;
 
 
 namespace internal
@@ -97,17 +106,19 @@ namespace internal
     isSpaceDer().
 */
 template < class DataPoint, class _WFunctor, typename T, int Type>
-class OrientedSphereDer : public MeanPositionDer<DataPoint, _WFunctor, T, Type>
+class OrientedSphereDer : public T
 {
 private:
-    using Base = MeanPositionDer<DataPoint, _WFunctor, T, Type>; /*!< \brief Generic base type */
+    using Base = T; /*!< \brief Generic base type */
 
 
 protected:
     enum
     {
-        Check = Base::PROVIDES_ALGEBRAIC_SPHERE, /*!< \brief Needs Algebraic Sphere */
-        PROVIDES_ALGEBRAIC_SPHERE_DERIVATIVE,    /*!< \brief Provides Algebraic Sphere derivative*/
+        Check = Base::PROVIDES_ALGEBRAIC_SPHERE &
+                Base::PROVIDES_MEAN_POSITION_DERIVATIVE &
+                Base::PROVIDES_PRIMITIVE_DERIVATIVE,
+        PROVIDES_ALGEBRAIC_SPHERE_DERIVATIVE,
         PROVIDES_NORMAL_DERIVATIVE
     };
 

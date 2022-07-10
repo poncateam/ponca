@@ -16,6 +16,8 @@ template < class DataPoint, class _WFunctor, typename T>
  *
  * \brief Base class for any 3d curvature estimator: holds k1, k2 and associated vectors
  *
+ * \todo Check if PROVIDES_PRINCIPALE_CURVATURES is same as CurvatureEstimator::PROVIDES_PRINCIPALE_CURVATURES
+ *
  * \ingroup fitting
  */
 class BaseCurvatureEstimator : public T
@@ -49,6 +51,8 @@ protected:
 public:
     /*! \brief Default constructor */
     PONCA_MULTIARCH inline BaseCurvatureEstimator() = default;
+
+    PONCA_EXPLICIT_CAST_OPERATORS(BaseCurvatureEstimator,baseCurvatureEstimator)
 
 public:
     /**************************************************************************/
@@ -97,6 +101,8 @@ public:
  * eigenvalues and associated eigenvectors of the covariance matrix
  * \cite Liang:1990:RRSS.
  *
+ * \todo Remove direct inheritance (use PROVIDE system instead)
+ *
  * \warning This class is valid only in 3D.
  * \ingroup fitting
  */
@@ -125,6 +131,8 @@ protected:
 public:
     /*! \brief Default constructor */
     PONCA_MULTIARCH inline NormalCovarianceCurvature() : Base() {}
+
+    PONCA_EXPLICIT_CAST_OPERATORS(NormalCovarianceCurvature,normalCovarianceCurvature)
 
 public:
     /**************************************************************************/
@@ -201,6 +209,8 @@ protected:
     Mat32 m_tframe;     /*!< \brief Tangent frame */
 
 public:
+    PONCA_EXPLICIT_CAST_OPERATORS(ProjectedNormalCovarianceCurvature,projectedNormalCovarianceCurvature)
+
     /**************************************************************************/
     /* Initialization                                                         */
     /**************************************************************************/

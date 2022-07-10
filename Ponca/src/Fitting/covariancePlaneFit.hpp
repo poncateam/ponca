@@ -7,87 +7,38 @@
  file, You can obtain one at http://mozilla.org/MPL/2.0/.
 */
 
-
-template < class DataPoint, class _WFunctor, typename T>
-void
-CovariancePlaneFit<DataPoint, _WFunctor, T>::init(const VectorType& _evalPos)
-{
-    Base::init(_evalPos);
-    m_cov.setZero();
-}
-
-template < class DataPoint, class _WFunctor, typename T>
-bool
-CovariancePlaneFit<DataPoint, _WFunctor, T>::addLocalNeighbor(Scalar w,
-                                                             const VectorType &localQ,
-                                                             const DataPoint &attributes)
-{
-    if( Base::addLocalNeighbor(w, localQ, attributes) ) {
-        m_cov  += localQ * localQ.transpose();
-        return true;
-    }
-    return false;
-}
-
-
 template < class DataPoint, class _WFunctor, typename T>
 FIT_RESULT
-CovariancePlaneFit<DataPoint, _WFunctor, T>::finalize ()
+CovariancePlaneFitImpl<DataPoint, _WFunctor, T>::finalize ()
 {
-    // handle specific configurations
-    // With less than 3 neighbors the fitting is undefined
-    if(Base::finalize() != STABLE || Base::m_nbNeighbors < 3)
-    {
-        return Base::m_eCurrentState = UNDEFINED;
-    }
-
-    // Center the covariance on the centroid
-    auto centroid = Base::barycenter();
-    m_cov = m_cov/Base::m_sumW - centroid * centroid.transpose();
-
-#ifdef __CUDACC__
-    m_solver.computeDirect(m_cov);
-#else
-    m_solver.compute(m_cov);
-#endif
-    Base::m_eCurrentState = ( m_solver.info() == Eigen::Success ? STABLE : UNDEFINED );
-
-    /// \fixme refactor to avoid code duplication with linefit
-    Base::setPlane(m_solver.eigenvectors().col(0), centroid);
+    if (Base::finalize() == STABLE)
+        Base::setPlane(Base::m_solver.eigenvectors().col(0), Base::barycenter());
 
     return Base::m_eCurrentState;
 }
 
-
-template < class DataPoint, class _WFunctor, typename T>
-typename CovariancePlaneFit<DataPoint, _WFunctor, T>::Scalar
-CovariancePlaneFit<DataPoint, _WFunctor, T>::surfaceVariation () const
-{
-    return m_solver.eigenvalues()(0) / m_solver.eigenvalues().mean();
-}
-
 template < class DataPoint, class _WFunctor, typename T>
 template <bool ignoreTranslation>
-typename CovariancePlaneFit<DataPoint, _WFunctor, T>::VectorType
-CovariancePlaneFit<DataPoint, _WFunctor, T>::worldToTangentPlane (const VectorType& _q) const
+typename CovariancePlaneFitImpl<DataPoint, _WFunctor, T>::VectorType
+CovariancePlaneFitImpl<DataPoint, _WFunctor, T>::worldToTangentPlane (const VectorType& _q) const
 {
   if (ignoreTranslation)
-    return m_solver.eigenvectors().transpose() * _q;
+    return Base::m_solver.eigenvectors().transpose() * _q;
   else {
     // apply rotation and translation to get uv coordinates
-    return m_solver.eigenvectors().transpose() * (Base::m_w.convertToLocalBasis(_q));
+    return Base::m_solver.eigenvectors().transpose() * (Base::m_w.convertToLocalBasis(_q));
   }
 }
 
 template < class DataPoint, class _WFunctor, typename T>
 template <bool ignoreTranslation>
-typename CovariancePlaneFit<DataPoint, _WFunctor, T>::VectorType
-CovariancePlaneFit<DataPoint, _WFunctor, T>::tangentPlaneToWorld (const VectorType& _lq) const
+typename CovariancePlaneFitImpl<DataPoint, _WFunctor, T>::VectorType
+CovariancePlaneFitImpl<DataPoint, _WFunctor, T>::tangentPlaneToWorld (const VectorType& _lq) const
 {
   if (ignoreTranslation)
-    return m_solver.eigenvectors().transpose().inverse() * _lq;
+    return Base::m_solver.eigenvectors().transpose().inverse() * _lq;
   else {
-    return m_solver.eigenvectors().transpose().inverse() * _lq + Base::m_w.basisCenter();
+    return Base::m_solver.eigenvectors().transpose().inverse() * _lq + Base::m_w.basisCenter();
   }
 }
 
@@ -95,38 +46,6 @@ CovariancePlaneFit<DataPoint, _WFunctor, T>::tangentPlaneToWorld (const VectorTy
 
 namespace internal
 {
-
-template < class DataPoint, class _WFunctor, typename T, int Type>
-void
-CovariancePlaneDer<DataPoint, _WFunctor, T, Type>::init(const VectorType& _evalPos)
-{
-    Base::init(_evalPos);
-
-    for(int k=0; k<Base::NbDerivatives; ++k)
-      m_dCov[k].setZero();
-}
-
-
-
-template < class DataPoint, class _WFunctor, typename T, int Type>
-bool
-CovariancePlaneDer<DataPoint, _WFunctor, T, Type>::addLocalNeighbor(Scalar w,
-                                                             const VectorType &localQ,
-                                                             const DataPoint &attributes)
-{
-    ScalarArray dw;
-    if( Base::addLocalNeighbor(w, localQ, attributes, dw) ) {
-        int spaceId = (Type & FitScaleDer) ? 1 : 0;
-
-        for(int k=0; k<Base::NbDerivatives; ++k)
-          m_dCov[k]  += dw[k] * localQ * localQ.transpose(); /// \fixme better use eigen here
-
-        return true;
-    }
-
-    return false;
-}
-
 
 template < class DataPoint, class _WFunctor, typename T, int Type>
 FIT_RESULT
@@ -143,6 +62,9 @@ CovariancePlaneDer<DataPoint, _WFunctor, T, Type>::finalize()
       // pre-compute shifted eigenvalues to apply the pseudo inverse of C - lambda_0 I
       Scalar epsilon          = Scalar(2) * Eigen::NumTraits<Scalar>::epsilon();
       Scalar consider_as_zero = Scalar(2) * std::numeric_limits<Scalar>::denorm_min();
+
+      // This is where the limitation to 3d comes from.
+      // \fixme Replace shift in 2d subspace by any subspace with co-dimension 1
       Eigen::Matrix<Scalar,2,1> shifted_eivals = Base::m_solver.eigenvalues().template tail<2>().array() - Base::m_solver.eigenvalues()(0);
       if(shifted_eivals(0) < consider_as_zero || shifted_eivals(0) < epsilon * shifted_eivals(1)) shifted_eivals(0) = 0;
       if(shifted_eivals(1) < consider_as_zero) shifted_eivals(1) = 0;
@@ -150,12 +72,6 @@ CovariancePlaneDer<DataPoint, _WFunctor, T, Type>::finalize()
 
       for(int k=0; k<Base::NbDerivatives; ++k)
       {
-        // Finalize the computation of dCov.
-        m_dCov[k] = m_dCov[k]
-                  - Base::m_cog * Base::m_dSumP.col(k).transpose()
-                  - Base::m_dSumP.col(k) * Base::m_cog.transpose()
-                  + Base::m_dSumW[k] * Base::m_cog * Base::m_cog.transpose();
-
         VectorType normal = Base::primitiveGradient();
         // The derivative of 'normal' is the derivative of the smallest eigenvector.
         // Since the covariance matrix is real and symmetric, it is equal to:
@@ -165,7 +81,7 @@ CovariancePlaneDer<DataPoint, _WFunctor, T, Type>::finalize()
         // we can directly apply the pseudo inverse by observing that:
         //    (C - lambda_0 I) = V (L - lambda_0 I) V^T
         // where V is the eigenvector matrix, and L the eigenvalue diagonal matrix.
-        Eigen::Matrix<Scalar,2,1> z = - Base::m_solver.eigenvectors().template rightCols<2>().transpose() * (m_dCov[k] * normal);
+        Eigen::Matrix<Scalar,2,1> z = - Base::m_solver.eigenvectors().template rightCols<2>().transpose() * (Base::m_dCov[k] * normal);
         if(shifted_eivals(0)>0) z(0) /= shifted_eivals(0);
         if(shifted_eivals(1)>0) z(1) /= shifted_eivals(1);
         m_dNormal.col(k) = Base::m_solver.eigenvectors().template rightCols<2>() * z;

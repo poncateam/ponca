@@ -24,10 +24,16 @@ namespace Ponca
  */
 
     template < class DataPoint, class _WFunctor, typename T>
-    class DryFit :  public PrimitiveBase<DataPoint, _WFunctor>
+    class DryFit :  public T
     {
     private:
-        typedef PrimitiveBase<DataPoint, _WFunctor> Base;
+        using Base = T;
+
+    protected:
+        enum
+        {
+            check = Base::PROVIDES_PRIMITIVE_BASE,  /*!< \brief Requires PrimitiveBase */
+        };
 
     public:
         /*! \brief Scalar type inherited from DataPoint*/
@@ -40,6 +46,9 @@ namespace Ponca
     public:
         /*! \brief Default constructor */
         PONCA_MULTIARCH inline DryFit() : Base() {}
+
+        PONCA_EXPLICIT_CAST_OPERATORS(DryFit,dryfit)
+
         /**************************************************************************/
         /* Initialization                                                         */
         /**************************************************************************/

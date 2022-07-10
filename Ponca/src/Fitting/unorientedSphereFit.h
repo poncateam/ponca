@@ -9,6 +9,7 @@
 #pragma once
 
 #include "./algebraicSphere.h"
+#include "./mean.h"          // used to define UnorientedSphereFit
 
 #include <Eigen/Dense>
 
@@ -25,11 +26,11 @@ namespace Ponca
 
     \ingroup fitting
 */
-template < class DataPoint, class _WFunctor, typename T = void >
-class UnorientedSphereFit : public MeanPosition<DataPoint, _WFunctor, AlgebraicSphere<DataPoint, _WFunctor>>
+template < class DataPoint, class _WFunctor, typename T >
+class UnorientedSphereFitImpl : public T
 {
 private:
-    using Base = MeanPosition<DataPoint, _WFunctor, AlgebraicSphere<DataPoint, _WFunctor>>;
+    using Base = T;
 
 protected:
     enum
@@ -58,7 +59,9 @@ protected:
 
 public:
     /*! \brief Default constructor */
-    PONCA_MULTIARCH inline UnorientedSphereFit() = default;
+    PONCA_MULTIARCH inline UnorientedSphereFitImpl() = default;
+
+    PONCA_EXPLICIT_CAST_OPERATORS(UnorientedSphereFitImpl,unorientedSphereFit)
 
     /**************************************************************************/
     /* Initialization                                                         */
@@ -75,8 +78,15 @@ public:
     /*! \copydoc Concept::FittingProcedureConcept::finalize() */
     PONCA_MULTIARCH inline FIT_RESULT finalize();
 
-}; // class UnorientedSphereFit
+}; // class UnorientedSphereFitImpl
 
+/// \brief Helper alias for Oriented Sphere fitting on 3D points using UnorientedSphereFitImpl
+/// \ingroup fittingalias
+template < class DataPoint, class _WFunctor, typename T>
+using UnorientedSphereFit =
+UnorientedSphereFitImpl<DataPoint, _WFunctor,
+        MeanPosition<DataPoint, _WFunctor,
+                AlgebraicSphere<DataPoint, _WFunctor,T>>>;
 
 #ifdef TOBEIMPLEMENTED
 

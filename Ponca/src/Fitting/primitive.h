@@ -24,11 +24,19 @@ namespace Ponca
     Protected fields #m_eCurrentState and #m_nbNeighbors should be updated
     during the fitting process by the inheriting class.
 
+    \note This class should not be inherited explicitly: this is done by the
+    #Basket class.
+
     \ingroup fitting
 */
 template < class DataPoint, class _WFunctor, typename T = void  >
 class PrimitiveBase
 {
+protected:
+    enum {
+        PROVIDES_PRIMITIVE_BASE,    /*!< \brief Provides base API for primitives*/
+    };
+
 public:
     using Scalar     = typename DataPoint::Scalar;     /*!< \brief Inherited scalar type*/
     using VectorType = typename DataPoint::VectorType; /*!< \brief Inherited vector type*/

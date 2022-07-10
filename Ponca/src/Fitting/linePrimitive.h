@@ -10,7 +10,6 @@
 #pragma once
 
 #include "./defines.h"
-#include "./primitive.h" // PrimitiveBase
 #include <Eigen/Geometry>
 #include <Eigen/Core>
 
@@ -33,13 +32,12 @@ namespace Ponca
     \ingroup fitting
 */
 
-template < class DataPoint, class _WFunctor, typename T = void  >
-class Line : public PrimitiveBase<DataPoint, _WFunctor>,
+template < class DataPoint, class _WFunctor, typename T >
+class Line : public T,
              public Eigen::ParametrizedLine<typename DataPoint::Scalar, DataPoint::Dim >
 {
 private:
-
-   typedef PrimitiveBase<DataPoint, _WFunctor> Base;
+    using Base = T;
 
 public:
     /// \brief Specialization of Eigen::ParametrizedLine inherited by Ponca::Line
@@ -49,30 +47,21 @@ protected:
 
     enum
     {
-        PROVIDES_LINE /*!< \brief Provides  Line */
+        check = Base::PROVIDES_PRIMITIVE_BASE,  /*!< \brief Requires PrimitiveBase */
+        PROVIDES_LINE                           /*!< \brief Provides  Line */
     };
 
 public:
-
-    /*! \brief Scalar type inherited from DataPoint */
-    typedef typename DataPoint::Scalar      Scalar;
-    /*! \brief Vector type inherited from DataPoint */
-    typedef typename DataPoint::VectorType  VectorType;
-    /*! \brief Matrix type inherited from DataPoint */
-    typedef typename DataPoint::MatrixType  MatrixType;
-    /*! \brief Weight Function */
-    typedef _WFunctor                       WFunctor;
+    using Scalar     = typename DataPoint::Scalar;     /*!< \brief Inherited scalar type*/
+    using VectorType = typename DataPoint::VectorType; /*!< \brief Inherited vector type*/
+    using WFunctor   = _WFunctor;                      /*!< \brief Weight Function*/
 
 public:
 
     /*! \brief Default constructor */
     PONCA_MULTIARCH inline Line() = default;
 
-
-    /*! \brief Explicit conversion to Line, to access methods potentially hidden by inheritage */
-    PONCA_MULTIARCH inline
-    Line<DataPoint, WFunctor, T>& line()
-    { return * static_cast<Line<DataPoint, WFunctor, T>*>(this); }
+    PONCA_EXPLICIT_CAST_OPERATORS(Line,line)
 
     /*!
      * \brief Set the scalar field values to 0 and reset the distance() and origin() status

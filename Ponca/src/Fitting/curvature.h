@@ -29,6 +29,8 @@ namespace Ponca
     \warning This class is valid only in 3D.
     \todo Add a compile time check for the working dimension
 
+    \todo Check if PROVIDES_PRINCIPALE_CURVATURES is same as BaseCurvatureEstimator::PROVIDES_PRINCIPALE_CURVATURES
+
     \ingroup fitting
 */
 template < class DataPoint, class _WFunctor, typename T>
