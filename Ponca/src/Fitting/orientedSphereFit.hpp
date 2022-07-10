@@ -7,7 +7,7 @@
 
 template < class DataPoint, class _WFunctor, typename T>
 void
-OrientedSphereFit<DataPoint, _WFunctor, T>::init(const VectorType& _evalPos)
+OrientedSphereFitImpl<DataPoint, _WFunctor, T>::init(const VectorType& _evalPos)
 {
     Base::init(_evalPos);
 
@@ -20,7 +20,7 @@ OrientedSphereFit<DataPoint, _WFunctor, T>::init(const VectorType& _evalPos)
 
 template<class DataPoint, class _WFunctor, typename T>
 bool
-OrientedSphereFit<DataPoint, _WFunctor, T>::addLocalNeighbor(Scalar w,
+OrientedSphereFitImpl<DataPoint, _WFunctor, T>::addLocalNeighbor(Scalar w,
                                                         const VectorType &localQ,
                                                         const DataPoint &attributes) {
     if( Base::addLocalNeighbor(w, localQ, attributes) ) {
@@ -34,7 +34,7 @@ OrientedSphereFit<DataPoint, _WFunctor, T>::addLocalNeighbor(Scalar w,
 
 template < class DataPoint, class _WFunctor, typename T>
 FIT_RESULT
-OrientedSphereFit<DataPoint, _WFunctor, T>::finalize ()
+OrientedSphereFitImpl<DataPoint, _WFunctor, T>::finalize ()
 {
     PONCA_MULTIARCH_STD_MATH(sqrt);
     PONCA_MULTIARCH_STD_MATH(max);

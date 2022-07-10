@@ -98,6 +98,8 @@ public:
     MatrixArray m_d2Ul; /*!< \brief Second derivative of the hyper-sphere linear term    */
 
 public:
+    PONCA_EXPLICIT_CAST_OPERATORS(MlsSphereFitDer,mlsSphereFitDer)
+
     /************************************************************************/
     /* Initialization                                                       */
     /************************************************************************/

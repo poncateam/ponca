@@ -64,6 +64,8 @@ public:
     /*! \brief Default constructor */
     PONCA_MULTIARCH inline GLSParam() : m_fitness(0) {}
 
+    PONCA_EXPLICIT_CAST_OPERATORS(GLSParam,glsParam)
+
     /**************************************************************************/
     /* Initialization                                                         */
     /**************************************************************************/
@@ -154,7 +156,9 @@ private:
 protected:
     enum
     {
-        Check = Base::PROVIDES_GLS_PARAMETRIZATION & Base::PROVIDES_ALGEBRAIC_SPHERE_DERIVATIVE,
+        Check = Base::PROVIDES_GLS_PARAMETRIZATION &
+                Base::PROVIDES_PRIMITIVE_DERIVATIVE &
+                Base::PROVIDES_ALGEBRAIC_SPHERE_DERIVATIVE,
         PROVIDES_GLS_DERIVATIVE
     };
 
@@ -194,6 +198,8 @@ public:
     \f]
 
     Method published in \cite Mellado:2012:GLS
+
+    \fixme Remove this class and move method to GLSDer
 
     \ingroup fitting
 */

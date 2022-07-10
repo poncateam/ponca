@@ -9,7 +9,6 @@
 #pragma once
 
 #include "./defines.h"
-#include "./primitive.h"
 #include <Eigen/Geometry>
 
 namespace Ponca
@@ -35,13 +34,12 @@ namespace Ponca
     \ingroup fitting
 
 */
-template < class DataPoint, class _WFunctor, typename T = void  >
-class Plane : public PrimitiveBase<DataPoint, _WFunctor>,
+template < class DataPoint, class _WFunctor, typename T >
+class Plane : public T,
               public Eigen::Hyperplane<typename DataPoint::Scalar, DataPoint::Dim >
 {
 private:
-
-    using Base      = PrimitiveBase<DataPoint, _WFunctor>;
+    using Base = T;
 
 public:
     /// \brief Specialization of Eigen::Hyperplane inherited by Ponca::Plane
@@ -51,7 +49,8 @@ protected:
 
     enum
     {
-        PROVIDES_PLANE /*!< \brief Provides a Plane primitive */
+        check = Base::PROVIDES_PRIMITIVE_BASE,  /*!< \brief Requires PrimitiveBase */
+        PROVIDES_PLANE                          /*!< \brief Provides a Plane primitive */
     };
 
 public:
@@ -69,10 +68,8 @@ public:
         init(VectorType::Zero());
     }
 
-    /*! \brief Explicit conversion to Plane, to access methods potentially hidden by inheritage */
-    PONCA_MULTIARCH inline
-    Plane<DataPoint, WFunctor, T>& compactPlane()
-    { return * static_cast<Plane<DataPoint, WFunctor, T>*>(this); }
+    PONCA_EXPLICIT_CAST_OPERATORS(Plane,compactPlane) //< \fixme To be removed, kept for compatibility only
+    PONCA_EXPLICIT_CAST_OPERATORS(Plane,plane)
 
     /*! \brief Set the scalar field values to 0
          status */

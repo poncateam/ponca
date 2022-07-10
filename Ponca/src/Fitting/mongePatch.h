@@ -53,10 +53,8 @@ protected:
     bool m_planeIsReady;
 public:
 
-    /*! \brief Explicit conversion to MongePatch, to access methods potentially hidden by inheritage */
-    PONCA_MULTIARCH inline
-    MongePatch<DataPoint, WFunctor, T>& mongePatch()
-    { return * static_cast<MongePatch<DataPoint, WFunctor, T>*>(this); }
+    PONCA_EXPLICIT_CAST_OPERATORS(MongePatch,mongePatch)
+
     /**************************************************************************/
     /* Initialization                                                         */
     /**************************************************************************/

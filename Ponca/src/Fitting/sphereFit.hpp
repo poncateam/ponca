@@ -7,7 +7,7 @@
 
 template < class DataPoint, class _WFunctor, typename T>
 void
-SphereFit<DataPoint, _WFunctor, T>::init(const VectorType& _evalPos)
+SphereFitImpl<DataPoint, _WFunctor, T>::init(const VectorType& _evalPos)
 {
     Base::init(_evalPos);
     m_matA.setZero();
@@ -15,7 +15,7 @@ SphereFit<DataPoint, _WFunctor, T>::init(const VectorType& _evalPos)
 
 template < class DataPoint, class _WFunctor, typename T>
 bool
-SphereFit<DataPoint, _WFunctor, T>::addLocalNeighbor(Scalar w,
+SphereFitImpl<DataPoint, _WFunctor, T>::addLocalNeighbor(Scalar w,
                                                      const VectorType &localQ,
                                                      const DataPoint &attributes)
 {
@@ -38,7 +38,7 @@ SphereFit<DataPoint, _WFunctor, T>::addLocalNeighbor(Scalar w,
 
 template < class DataPoint, class _WFunctor, typename T>
 FIT_RESULT
-SphereFit<DataPoint, _WFunctor, T>::finalize ()
+SphereFitImpl<DataPoint, _WFunctor, T>::finalize ()
 {
     // handle specific configurations
     // With less than 3 neighbors the fitting is undefined

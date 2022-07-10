@@ -47,6 +47,8 @@ namespace Ponca {
         PONCA_MULTIARCH inline MeanPosition() :
                 Base(), m_sumP(VectorType::Zero()) {}
 
+        PONCA_EXPLICIT_CAST_OPERATORS(MeanPosition,meanPosition)
+
         /**************************************************************************/
         /* Initialization                                                         */
         /**************************************************************************/

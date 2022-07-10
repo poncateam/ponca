@@ -7,7 +7,7 @@
 
 #pragma once
 
-#include "./primitive.h" // PrimitiveBase
+#include "./defines.h"
 
 #include PONCA_MULTIARCH_INCLUDE_STD(cmath)
 #include PONCA_MULTIARCH_INCLUDE_STD(limits)
@@ -44,18 +44,18 @@ namespace Ponca
 */
 
 
-template < class DataPoint, class _WFunctor, typename T = void  >
-class AlgebraicSphere : public PrimitiveBase<DataPoint, _WFunctor>
+template < class DataPoint, class _WFunctor, typename T >
+class AlgebraicSphere : public T
 {
 private:
-
-    typedef PrimitiveBase<DataPoint, _WFunctor> Base;
+    using Base = T;
 
 protected:
 
     enum
     {
-        PROVIDES_ALGEBRAIC_SPHERE /*!< \brief Provides Algebraic Sphere */
+        check = Base::PROVIDES_PRIMITIVE_BASE,  /*!< \brief Requires PrimitiveBase */
+        PROVIDES_ALGEBRAIC_SPHERE               /*!< \brief Provides Algebraic Sphere */
     };
 
 public:
@@ -80,10 +80,7 @@ public:
     /*! \brief Default constructor */
     PONCA_MULTIARCH inline AlgebraicSphere() = default;
 
-    /*! \brief Explicit conversion to AlgebraicSphere, to access methods potentially hidden by heritage */
-    PONCA_MULTIARCH inline
-    AlgebraicSphere<DataPoint, WFunctor, T>& algebraicSphere()
-    { return * static_cast<AlgebraicSphere<DataPoint, WFunctor, T>*>(this); }
+    PONCA_EXPLICIT_CAST_OPERATORS(AlgebraicSphere,algebraicSphere)
 
     /*! \brief Set the scalar field values to 0 and reset the isNormalized() status
 

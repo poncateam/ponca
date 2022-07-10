@@ -23,23 +23,18 @@ namespace Ponca
 
     \ingroup fitting
 */
-template < class DataPoint, class _WFunctor, typename T = void >
-class SphereFit : public AlgebraicSphere<DataPoint, _WFunctor>
+template < class DataPoint, class _WFunctor, typename T >
+class SphereFitImpl : public T
 {
 private:
-
-    typedef AlgebraicSphere<DataPoint, _WFunctor> Base;
+    using Base = T;
 
 public:
+    using Scalar     = typename Base::Scalar;     /*!< \brief Inherited scalar type*/
+    using VectorType = typename Base::VectorType; /*!< \brief Inherited vector type*/
+    using WFunctor   = typename Base::WFunctor;   /*!< \brief Weight Function*/
 
-    /*! \brief Scalar type inherited from DataPoint*/
-    typedef typename Base::Scalar     Scalar;
-    /*! \brief Vector type inherited from DataPoint*/
-    typedef typename Base::VectorType VectorType;
-    /*! \brief Weight Function*/
-    typedef _WFunctor                 WFunctor;
-
- protected:
+protected:
     typedef Eigen::Matrix<Scalar, DataPoint::Dim+2, 1>      VectorA;
     typedef Eigen::Matrix<Scalar, DataPoint::Dim+2, DataPoint::Dim+2>  MatrixA;
 
@@ -49,7 +44,9 @@ public:
 public:
 
     /*! \brief Default constructor */
-    PONCA_MULTIARCH inline SphereFit() = default;
+    PONCA_MULTIARCH inline SphereFitImpl() = default;
+
+    PONCA_EXPLICIT_CAST_OPERATORS(SphereFitImpl,sphereFit)
 
     /**************************************************************************/
     /* Initialization                                                         */
@@ -69,6 +66,13 @@ public:
     PONCA_MULTIARCH inline FIT_RESULT finalize();
 
 }; //class SphereFit
+
+/// \brief Helper alias for Sphere fitting on 3D points using SphereFitImpl
+/// \ingroup fittingalias
+template < class DataPoint, class _WFunctor, typename T>
+using SphereFit =
+    SphereFitImpl<DataPoint, _WFunctor,
+        AlgebraicSphere<DataPoint, _WFunctor,T>>;
 
 
 

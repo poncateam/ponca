@@ -14,25 +14,31 @@
 #include "src/Fitting/weightKernel.h"
 #include "src/Fitting/weightFunc.h"
 
-#include "src/Fitting/dryFit.h"
-
+// Primitives
+#include "src/Fitting/linePrimitive.h"
 #include "src/Fitting/plane.h"
-#include "src/Fitting/meanPlaneFit.h"
-#include "src/Fitting/covariancePlaneFit.h"
-#include "src/Fitting/mongePatch.h"
+#include "src/Fitting/algebraicSphere.h"
 
+// Fitting tools
+#include "src/Fitting/mean.h"
+
+// Fitting
+#include "src/Fitting/dryFit.h"
+#include "src/Fitting/meanPlaneFit.h"
+#include "src/Fitting/covarianceFit.h"
+#include "src/Fitting/covariancePlaneFit.h"
+#include "src/Fitting/covarianceLineFit.h"
+#include "src/Fitting/mongePatch.h"
 #include "src/Fitting/sphereFit.h"
 #include "src/Fitting/orientedSphereFit.h"
-#include "src/Fitting/mlsSphereFitDer.h"
-#include "src/Fitting/curvature.h"
-#include "src/Fitting/gls.h"
-
-#include "src/Fitting/curvatureEstimation.h"
-
-#include "src/Fitting/linePrimitive.h"
-#include "src/Fitting/covarianceLineFit.h"
-
-// not supported on cuda
 #ifndef __CUDACC__
 # include "src/Fitting/unorientedSphereFit.h"
 #endif
+
+// Extensions
+#include "src/Fitting/mlsSphereFitDer.h"
+#include "src/Fitting/curvature.h"
+#include "src/Fitting/curvatureEstimation.h"
+#include "src/Fitting/gls.h"
+
+
