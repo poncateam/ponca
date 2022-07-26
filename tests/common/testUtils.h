@@ -13,7 +13,7 @@
 #pragma once
 
 #include "Eigen/Eigen"
-#include "Ponca/Fitting"
+#include "Ponca/src/Common/defines.h"
 
 #include <vector>
 
@@ -217,7 +217,8 @@ DataPoint getPointOnPlane(typename DataPoint::VectorType _vPosition,
 
     if(_bAddPositionNoise)
     {
-        vRandomPoint = vRandomPoint + VectorType::Random().normalized() * Eigen::internal::random<Scalar>(0., 1. - MIN_NOISE);
+        vRandomPoint = vRandomPoint + VectorType::Random().normalized() *
+                Eigen::internal::random<Scalar>(Scalar(0), Scalar(1. - MIN_NOISE));
     }
 
     if(_bAddNormalNoise)
