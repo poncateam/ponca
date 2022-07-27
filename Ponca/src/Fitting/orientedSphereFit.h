@@ -51,7 +51,6 @@ public:
             m_deno;     /*!< \brief Denominator of the quadratic parameter (excluding the 0.5 coefficient) */
 
 public:
-
     /*! \brief Default constructor */
     PONCA_MULTIARCH inline OrientedSphereFitImpl() = default;
 
@@ -85,32 +84,15 @@ OrientedSphereFitImpl<DataPoint, _WFunctor,
             MeanNormal<DataPoint, _WFunctor,
                 AlgebraicSphere<DataPoint, _WFunctor,T>>>>;
 
-
-namespace internal
-{
-
 /*!
     \brief Internal generic class performing the Fit derivation
     \inherit Concept::FittingExtensionConcept
-
-    The differentiation can be done automatically in scale and/or space, by
-    combining the enum values FitScaleDer and FitSpaceDer in the template
-    parameter Type.
-
-    The differenciated values are stored in static arrays. The size of the
-    arrays is computed with respect to the derivation type (scale and/or space)
-    and the number of the dimension of the ambiant space.
-    By convention, the scale derivatives are stored at index 0 when Type
-    contains at least FitScaleDer. The size of these arrays can be known using
-    derDimension(), and the differentiation type by isScaleDer() and
-    isSpaceDer().
 */
-template < class DataPoint, class _WFunctor, typename T, int Type>
-class OrientedSphereDer : public T
+template < class DataPoint, class _WFunctor, int DiffType, typename T>
+class OrientedSphereDerImpl : public T
 {
 private:
     using Base = T; /*!< \brief Generic base type */
-
 
 protected:
     enum
@@ -143,17 +125,23 @@ public:
                 m_dUq; /*!< \brief Derivative of the hyper-sphere quadratic term */
     VectorArray m_dUl; /*!< \brief Derivative of the hyper-sphere linear term    */
 
+public:
+    /*! \brief Default constructor */
+    PONCA_MULTIARCH inline OrientedSphereDerImpl() = default;
+
+    PONCA_EXPLICIT_CAST_OPERATORS_DER(OrientedSphereDerImpl,orientedSphereDer)
+
     /************************************************************************/
     /* Initialization                                                       */
     /************************************************************************/
     /*! \see Concept::FittingProcedureConcept::init() */
-    PONCA_MULTIARCH void init       (const VectorType &evalPos);
+    PONCA_MULTIARCH void init (const VectorType &evalPos);
 
     /************************************************************************/
     /* Processing                                                           */
     /************************************************************************/
     /*! \see Concept::FittingProcedureConcept::addLocalNeighbor() */
-    PONCA_MULTIARCH inline bool addLocalNeighbor(Scalar w, const VectorType &localQ, const DataPoint &attributes);
+    PONCA_MULTIARCH inline bool addLocalNeighbor(Scalar w, const VectorType &localQ, const DataPoint &attributes, ScalarArray &dw);
 
         /*! \see Concept::FittingProcedureConcept::finalize() */
     PONCA_MULTIARCH FIT_RESULT finalize   ();
@@ -205,82 +193,14 @@ public:
     */
     PONCA_MULTIARCH inline bool applyPrattNorm();
 
-}; //class OrientedSphereFitDer
+}; //class OrientedSphereDerImpl
 
-}// namespace internal
-
-/*!
-    \brief Differentiation in scale of the OrientedSphereFit
-    \inherit Concept::FittingExtensionConcept
-
-    Requirements:
-    \verbatim PROVIDES_ALGEBRAIC_SPHERE \endverbatim
-    Provides:
-    \verbatim PROVIDES_ALGEBRAIC_SPHERE_SCALE_DERIVATIVE \endverbatim
-*/
-template < class DataPoint, class _WFunctor, typename T>
-class OrientedSphereScaleDer:public internal::OrientedSphereDer<DataPoint, _WFunctor, T, internal::FitScaleDer>
-{
-protected:
-    /*! \brief Inherited class */
-    typedef internal::OrientedSphereDer<DataPoint, _WFunctor, T, internal::FitScaleDer> Base;
-    enum
-    {
-      PROVIDES_ALGEBRAIC_SPHERE_SCALE_DERIVATIVE,
-      PROVIDES_NORMAL_SCALE_DERIVATIVE
-    };
-};
-
-
-/*!
-    \brief Spatial differentiation of the OrientedSphereFit
-    \inherit Concept::FittingExtensionConcept
-
-    Requirements:
-    \verbatim PROVIDES_ALGEBRAIC_SPHERE \endverbatim
-    Provides:
-    \verbatim PROVIDES_ALGEBRAIC_SPHERE_SPACE_DERIVATIVE \endverbatim
-*/
-template < class DataPoint, class _WFunctor, typename T>
-class OrientedSphereSpaceDer:public internal::OrientedSphereDer<DataPoint, _WFunctor, T, internal::FitSpaceDer>
-{
-protected:
-    /*! \brief Inherited class */
-    typedef internal::OrientedSphereDer<DataPoint, _WFunctor, T, internal::FitSpaceDer> Base;
-    enum
-    {
-      PROVIDES_ALGEBRAIC_SPHERE_SPACE_DERIVATIVE,
-      PROVIDES_NORMAL_SPACE_DERIVATIVE
-    };
-};
-
-
-/*!
-    \brief Differentiation both in scale and space of the OrientedSphereFit
-    \inherit Concept::FittingExtensionConcept
-
-    Requirements:
-    \verbatim PROVIDES_ALGEBRAIC_SPHERE \endverbatim
-    Provides:
-    \verbatim PROVIDES_ALGEBRAIC_SPHERE_SCALE_DERIVATIVE
-    PROVIDES_ALGEBRAIC_SPHERE_SPACE_DERIVATIVE
-    \endverbatim
-*/
-template < class DataPoint, class _WFunctor, typename T>
-class OrientedSphereScaleSpaceDer:public internal::OrientedSphereDer<DataPoint, _WFunctor, T, internal::FitSpaceDer | internal::FitScaleDer>
-{
-protected:
-    /*! \brief Inherited class */
-    typedef internal::OrientedSphereDer<DataPoint, _WFunctor, T, internal::FitSpaceDer | internal::FitScaleDer> Base;
-    enum
-    {
-        PROVIDES_ALGEBRAIC_SPHERE_SCALE_DERIVATIVE,
-        PROVIDES_ALGEBRAIC_SPHERE_SPACE_DERIVATIVE,
-        PROVIDES_NORMAL_SCALE_DERIVATIVE,
-        PROVIDES_NORMAL_SPACE_DERIVATIVE
-    };
-};
-
+/// \brief Helper alias for Plane fitting on 3D points using CovariancePlaneFitImpl
+/// \ingroup fittingalias
+    template < class DataPoint, class _WFunctor, int DiffType, typename T>
+    using OrientedSphereDer =
+        OrientedSphereDerImpl<DataPoint, _WFunctor, DiffType,
+            MeanPositionDer<DataPoint, _WFunctor, DiffType, T>>;
 
 #include "orientedSphereFit.hpp"
 

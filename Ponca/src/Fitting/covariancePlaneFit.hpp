@@ -44,12 +44,9 @@ CovariancePlaneFitImpl<DataPoint, _WFunctor, T>::tangentPlaneToWorld (const Vect
 
 
 
-namespace internal
-{
-
-template < class DataPoint, class _WFunctor, typename T, int Type>
+template < class DataPoint, class _WFunctor, int DiffType, typename T>
 FIT_RESULT
-CovariancePlaneDer<DataPoint, _WFunctor, T, Type>::finalize()
+CovariancePlaneDerImpl<DataPoint, _WFunctor, DiffType, T>::finalize()
 {
     PONCA_MULTIARCH_STD_MATH(sqrt);
 
@@ -57,7 +54,8 @@ CovariancePlaneDer<DataPoint, _WFunctor, T, Type>::finalize()
     // Test if base finalize end on a viable case (stable / unstable)
     if (this->isReady())
     {
-      VectorType dBarycenter = Base::barycenterDerivatives();
+      VectorType   barycenter = Base::barycenter();
+      VectorArray dBarycenter = Base::barycenterDerivatives();
 
       // pre-compute shifted eigenvalues to apply the pseudo inverse of C - lambda_0 I
       Scalar epsilon          = Scalar(2) * Eigen::NumTraits<Scalar>::epsilon();
@@ -89,7 +87,7 @@ CovariancePlaneDer<DataPoint, _WFunctor, T, Type>::finalize()
         VectorType dDiff = dBarycenter.col(k);
         if(k>0 || !Base::isScaleDer())
           dDiff(Base::isScaleDer() ? k-1 : k) += 1;
-        m_dDist(k) = m_dNormal.col(k).dot(Base::m_cog) + normal.dot(dDiff);
+        m_dDist(k) = m_dNormal.col(k).dot(barycenter) + normal.dot(dDiff);
 
         // \fixme we shouldn't need this normalization, however currently the derivatives are overestimated by a factor 2
         m_dNormal /= Scalar(2.);
@@ -98,5 +96,3 @@ CovariancePlaneDer<DataPoint, _WFunctor, T, Type>::finalize()
 
     return Base::m_eCurrentState;
 }
-
-}// namespace internal

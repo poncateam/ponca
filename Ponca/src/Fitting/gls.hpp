@@ -5,9 +5,9 @@
 */
 
 
-template < class DataPoint, class _WFunctor, typename T>
-typename GLSDer <DataPoint, _WFunctor, T>::ScalarArray
- GLSDer <DataPoint, _WFunctor, T>::dtau() const
+template < class DataPoint, class _WFunctor, int DiffType, typename T>
+typename GLSDer <DataPoint, _WFunctor, DiffType, T>::ScalarArray
+GLSDer <DataPoint, _WFunctor, DiffType, T>::dtau() const
 {
     PONCA_MULTIARCH_STD_MATH(sqrt);
 
@@ -24,17 +24,17 @@ typename GLSDer <DataPoint, _WFunctor, T>::ScalarArray
 }
 
 
-template < class DataPoint, class _WFunctor, typename T>
-typename GLSDer <DataPoint, _WFunctor, T>::VectorArray
-GLSDer <DataPoint, _WFunctor, T>::deta() const
+template < class DataPoint, class _WFunctor, int DiffType, typename T>
+typename GLSDer <DataPoint, _WFunctor, DiffType, T>::VectorArray
+GLSDer <DataPoint, _WFunctor, DiffType, T>::deta() const
 {
   return Base::dNormal();
 }
 
 
-template < class DataPoint, class _WFunctor, typename T>
-typename GLSDer <DataPoint, _WFunctor, T>::ScalarArray
-GLSDer <DataPoint, _WFunctor, T>::dkappa() const
+template < class DataPoint, class _WFunctor, int DiffType, typename T>
+typename GLSDer <DataPoint, _WFunctor, DiffType, T>::ScalarArray
+GLSDer <DataPoint, _WFunctor, DiffType, T>::dkappa() const
 {
     PONCA_MULTIARCH_STD_MATH(sqrt);
 
@@ -46,25 +46,25 @@ GLSDer <DataPoint, _WFunctor, T>::dkappa() const
 }
 
 
-template < class DataPoint, class _WFunctor, typename T>
-typename GLSDer <DataPoint, _WFunctor, T>::ScalarArray
-GLSDer <DataPoint, _WFunctor, T>::dtau_normalized() const
+template < class DataPoint, class _WFunctor, int DiffType, typename T>
+typename GLSDer <DataPoint, _WFunctor, DiffType, T>::ScalarArray
+GLSDer <DataPoint, _WFunctor, DiffType, T>::dtau_normalized() const
 {
     return dtau();
 }
 
 
-template < class DataPoint, class _WFunctor, typename T>
-typename GLSDer <DataPoint, _WFunctor, T>::VectorArray
-GLSDer <DataPoint, _WFunctor, T>::deta_normalized() const
+template < class DataPoint, class _WFunctor, int DiffType, typename T>
+typename GLSDer <DataPoint, _WFunctor, DiffType, T>::VectorArray
+GLSDer <DataPoint, _WFunctor, DiffType, T>::deta_normalized() const
 {
     return Base::m_t * deta();
 }
 
 
-template < class DataPoint, class _WFunctor, typename T>
-typename GLSDer <DataPoint, _WFunctor, T>::ScalarArray
-GLSDer <DataPoint, _WFunctor, T>::dkappa_normalized() const
+template < class DataPoint, class _WFunctor, int DiffType, typename T>
+typename GLSDer <DataPoint, _WFunctor, DiffType, T>::ScalarArray
+GLSDer <DataPoint, _WFunctor, DiffType, T>::dkappa_normalized() const
 {
     return dkappa() * Base::m_t * Base::m_t;
 }

@@ -63,9 +63,9 @@ CovarianceFitBase<DataPoint, _WFunctor, T>::surfaceVariation () const
 }
 
 
-template < class DataPoint, class _WFunctor, typename T, int Type>
+template < class DataPoint, class _WFunctor, int DiffType, typename T>
 void
-CovarianceFitDer<DataPoint, _WFunctor, T, Type>::init(const VectorType& _evalPos)
+CovarianceFitDer<DataPoint, _WFunctor, DiffType, T>::init(const VectorType& _evalPos)
 {
     Base::init(_evalPos);
 
@@ -75,16 +75,14 @@ CovarianceFitDer<DataPoint, _WFunctor, T, Type>::init(const VectorType& _evalPos
 
 
 
-template < class DataPoint, class _WFunctor, typename T, int Type>
+template < class DataPoint, class _WFunctor, int DiffType, typename T>
 bool
-CovarianceFitDer<DataPoint, _WFunctor, T, Type>::addLocalNeighbor(Scalar w,
-                                                                    const VectorType &localQ,
-                                                                    const DataPoint &attributes)
+CovarianceFitDer<DataPoint, _WFunctor, DiffType, T>::addLocalNeighbor(Scalar w,
+                                                                      const VectorType &localQ,
+                                                                      const DataPoint &attributes,
+                                                                      ScalarArray &dw)
 {
-    ScalarArray dw;
     if( Base::addLocalNeighbor(w, localQ, attributes, dw) ) {
-        int spaceId = (Type & FitScaleDer) ? 1 : 0;
-
         for(int k=0; k<Base::NbDerivatives; ++k)
             m_dCov[k]  += dw[k] * localQ * localQ.transpose(); /// \fixme better use eigen here
 
@@ -95,9 +93,9 @@ CovarianceFitDer<DataPoint, _WFunctor, T, Type>::addLocalNeighbor(Scalar w,
 }
 
 
-template < class DataPoint, class _WFunctor, typename T, int Type>
+template < class DataPoint, class _WFunctor, int DiffType, typename T>
 FIT_RESULT
-CovarianceFitDer<DataPoint, _WFunctor, T, Type>::finalize()
+CovarianceFitDer<DataPoint, _WFunctor, DiffType, T>::finalize()
 {
     PONCA_MULTIARCH_STD_MATH(sqrt);
 
@@ -105,14 +103,16 @@ CovarianceFitDer<DataPoint, _WFunctor, T, Type>::finalize()
     // Test if base finalize end on a viable case (stable / unstable)
     if (this->isReady())
     {
+        VectorType cog = Base::barycenter();
+        MatrixType cogSq = cog * cog.transpose();
         // \fixme Better use eigen here
         for(int k=0; k<Base::NbDerivatives; ++k)
         {
             // Finalize the computation of dCov.
             m_dCov[k] = m_dCov[k]
-                        - Base::m_cog * Base::m_dSumP.col(k).transpose()
-                        - Base::m_dSumP.col(k) * Base::m_cog.transpose()
-                        + Base::m_dSumW[k] * Base::m_cog * Base::m_cog.transpose();
+                        - cog * Base::m_dSumP.col(k).transpose()
+                        - Base::m_dSumP.col(k) * cog.transpose()
+                        + Base::m_dSumW[k] * cogSq;
         }
     }
 

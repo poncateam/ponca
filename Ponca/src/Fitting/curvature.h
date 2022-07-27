@@ -27,13 +27,12 @@ namespace Ponca
     If more than one basket element provide a \c dNormal() member, then the last one will be used.
 
     \warning This class is valid only in 3D.
-    \todo Add a compile time check for the working dimension
 
     \todo Check if PROVIDES_PRINCIPALE_CURVATURES is same as BaseCurvatureEstimator::PROVIDES_PRINCIPALE_CURVATURES
 
     \ingroup fitting
 */
-template < class DataPoint, class _WFunctor, typename T>
+template < class DataPoint, class _WFunctor, int DiffType, typename T>
 class CurvatureEstimator : public T
 {
 private:
@@ -42,7 +41,7 @@ private:
 protected:
     enum
     {
-        Check = Base::PROVIDES_NORMAL_SPACE_DERIVATIVE,
+        Check = Base::PROVIDES_NORMAL_DERIVATIVE,
         PROVIDES_PRINCIPALE_CURVATURES
     };
 
@@ -59,11 +58,14 @@ private:
     Scalar m_k1 {0}, m_k2 {0};
     VectorType m_v1 {VectorType::Zero()}, m_v2{VectorType::Zero()};
 
-    static_assert ( DataPoint::Dim == 3, "BaseCurvatureEstimator is only valid in 3D");
+    static_assert ( DataPoint::Dim == 3, "CurvatureEstimator is only valid in 3D");
+    static_assert ( DiffType & internal::FitSpaceDer,  "CurvatureEstimator requires spatial derivatives");
 
 public:
     /*! \brief Default constructor */
     PONCA_MULTIARCH inline CurvatureEstimator() = default;
+
+    PONCA_EXPLICIT_CAST_OPERATORS_DER(CurvatureEstimator,curvatureEstimator)
 
     /**************************************************************************/
     /* Processing                                                             */
