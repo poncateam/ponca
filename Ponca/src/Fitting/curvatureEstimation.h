@@ -130,7 +130,7 @@ protected:
 
 public:
     /*! \brief Default constructor */
-    PONCA_MULTIARCH inline NormalCovarianceCurvature() : Base() {}
+    PONCA_MULTIARCH inline NormalCovarianceCurvature() = default;
 
     PONCA_EXPLICIT_CAST_OPERATORS(NormalCovarianceCurvature,normalCovarianceCurvature)
 
@@ -209,6 +209,9 @@ protected:
     Mat32 m_tframe;     /*!< \brief Tangent frame */
 
 public:
+    /*! \brief Default constructor */
+    PONCA_MULTIARCH inline ProjectedNormalCovarianceCurvature() = default;
+
     PONCA_EXPLICIT_CAST_OPERATORS(ProjectedNormalCovarianceCurvature,projectedNormalCovarianceCurvature)
 
     /**************************************************************************/

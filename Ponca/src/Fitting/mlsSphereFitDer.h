@@ -98,6 +98,9 @@ public:
     MatrixArray m_d2Ul; /*!< \brief Second derivative of the hyper-sphere linear term    */
 
 public:
+    /*! \brief Default constructor */
+    PONCA_MULTIARCH inline MlsSphereFitDer() = default;
+
     PONCA_EXPLICIT_CAST_OPERATORS(MlsSphereFitDer,mlsSphereFitDer)
 
     /************************************************************************/

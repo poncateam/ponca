@@ -57,7 +57,6 @@ public:
     using WFunctor   = typename Base::WFunctor;        /*!< \brief Weight Function*/
 
 public:
-
     /*! \brief Default constructor */
     PONCA_MULTIARCH inline CovariancePlaneFitImpl() = default;
 
@@ -129,11 +128,13 @@ public:
     using VectorArray = typename Base::VectorArray;
 
 private:
-    VectorArray m_dNormal;    /*!< \brief Derivatives of the hyper-plane normal */
-    ScalarArray m_dDist;      /*!< \brief Derivatives of the MLS scalar field */
+    VectorArray m_dNormal {VectorArray::Zero()};    /*!< \brief Derivatives of the hyper-plane normal */
+    ScalarArray m_dDist {ScalarArray::Zero()};      /*!< \brief Derivatives of the MLS scalar field */
 
 public:
-/*! \see Concept::FittingProcedureConcept::finalize() */
+    /*! \brief Default constructor */
+    PONCA_MULTIARCH inline CovariancePlaneDerImpl() = default;
+
     PONCA_EXPLICIT_CAST_OPERATORS_DER(CovariancePlaneDerImpl,covariancePlaneDer)
 
     /*! \see Concept::FittingProcedureConcept::finalize() */

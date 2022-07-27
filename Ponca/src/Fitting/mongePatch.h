@@ -41,17 +41,18 @@ public:
     using VectorType = typename Base::VectorType; /*!< \brief Inherited vector type*/
     using WFunctor   = typename Base::WFunctor;   /*!< \brief Weight Function*/
 
-    typedef Eigen::Matrix<Scalar,2,1> Vector2;
-    typedef Eigen::Matrix<Scalar,Eigen::Dynamic,1> VectorX;
-    typedef Eigen::Matrix<Scalar,Eigen::Dynamic,Eigen::Dynamic> MatrixX;
+    using SampleMatrix = Eigen::Matrix<Scalar,Eigen::Dynamic,Eigen::Dynamic>;
+    using Vector6      = Eigen::Matrix<Scalar,6,1>;
 
 protected:
-    MatrixX m_A; /*!< \brief Quadric input samples */
-    MatrixX m_x; /*!< \brief Quadric parameters */
-    VectorX m_b; /*!< \brief Observations */
+    SampleMatrix m_A; /*!< \brief Quadric input samples */
+    Vector6      m_x {Vector6::Zero()};      /*!< \brief Quadric parameters */
+    Vector6      m_b {Vector6::Zero()};      /*!< \brief Observations */
 
-    bool m_planeIsReady;
+    bool m_planeIsReady {false};
 public:
+    /*! \brief Default constructor */
+    PONCA_MULTIARCH inline MongePatch() = default;
 
     PONCA_EXPLICIT_CAST_OPERATORS(MongePatch,mongePatch)
 

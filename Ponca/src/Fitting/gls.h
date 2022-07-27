@@ -58,11 +58,11 @@ public:
     using WFunctor   = typename Base::WFunctor;   /*!< \brief Weight Function*/
 
 protected:
-    Scalar m_fitness;   /*!< \brief Save the fitness value to avoid side effect with Pratt normalization*/
+    Scalar m_fitness {0};   /*!< \brief Save the fitness value to avoid side effect with Pratt normalization*/
 
 public:
     /*! \brief Default constructor */
-    PONCA_MULTIARCH inline GLSParam() : m_fitness(0) {}
+    PONCA_MULTIARCH inline GLSParam() = default;
 
     PONCA_EXPLICIT_CAST_OPERATORS(GLSParam,glsParam)
 

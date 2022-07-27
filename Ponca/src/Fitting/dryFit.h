@@ -45,7 +45,7 @@ namespace Ponca
 
     public:
         /*! \brief Default constructor */
-        PONCA_MULTIARCH inline DryFit() : Base() {}
+        PONCA_MULTIARCH inline DryFit() = default;
 
         PONCA_EXPLICIT_CAST_OPERATORS(DryFit,dryfit)
 
