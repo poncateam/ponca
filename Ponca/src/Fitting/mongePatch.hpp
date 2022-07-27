@@ -8,6 +8,7 @@ MongePatch<DataPoint, _WFunctor, T>::init(const VectorType& _evalPos)
 {
     Base::init(_evalPos);
 
+    m_b.setZero();
     m_x.setZero();
     m_planeIsReady = false;
 }
@@ -50,9 +51,8 @@ MongePatch<DataPoint, _WFunctor, T>::finalize ()
 
         if(res == STABLE) {  // plane is ready
             m_planeIsReady = true;
-            m_A = MatrixX(6,6);
+            m_A = SampleMatrix(6,6);
             m_A.setZero();
-            m_b = VectorX(6);
             m_b.setZero();
 
             return Base::m_eCurrentState = NEED_OTHER_PASS;

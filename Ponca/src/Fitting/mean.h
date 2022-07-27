@@ -38,12 +38,11 @@ namespace Ponca {
         using WFunctor = typename Base::WFunctor;   /*!< \brief Weight Function*/
 
     protected:
-        VectorType m_sumP; /*!< \brief Sum of the input points vectors */
+        VectorType m_sumP {VectorType::Zero()}; /*!< \brief Sum of the input points vectors */
 
     public:
         /*! \brief Default constructor */
-        PONCA_MULTIARCH inline MeanPosition() :
-                Base(), m_sumP(VectorType::Zero()) {}
+        PONCA_MULTIARCH inline MeanPosition() = default;
 
         PONCA_EXPLICIT_CAST_OPERATORS(MeanPosition,meanPosition)
 
@@ -148,9 +147,11 @@ namespace Ponca {
 
     protected:
         /*! \brief Derivatives of the of the input points vectors */
-        VectorArray m_dSumP;
+        VectorArray m_dSumP {VectorArray::Zero()};
 
     public:
+        /*! \brief Default constructor */
+        PONCA_MULTIARCH inline MeanPositionDer() = default;
 
         PONCA_EXPLICIT_CAST_OPERATORS_DER(MeanPositionDer,meanPositionDer)
         /************************************************************************/

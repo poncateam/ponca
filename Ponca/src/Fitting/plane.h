@@ -71,13 +71,12 @@ public:
     PONCA_EXPLICIT_CAST_OPERATORS(Plane,compactPlane) //< \fixme To be removed, kept for compatibility only
     PONCA_EXPLICIT_CAST_OPERATORS(Plane,plane)
 
-    /*! \brief Set the scalar field values to 0
-         status */
+    /// \brief Set the scalar field values to 0
     PONCA_MULTIARCH inline void init(const VectorType& _basisCenter = VectorType::Zero())
     {
         Base::init(_basisCenter);
-        EigenBase* cc = static_cast<EigenBase*>(this);
-        *cc = EigenBase();
+        EigenBase::coeffs().setZero();
+    }
     }
 
     PONCA_MULTIARCH inline bool operator==(const Plane<DataPoint, WFunctor, T>& other) const{

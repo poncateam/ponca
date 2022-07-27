@@ -90,9 +90,9 @@ public:
     {
         Base::init(_basisCenter);
 
-        m_uc = Scalar(0.0);
+        m_uc = Scalar(0);
         m_ul = VectorType::Zero();
-        m_uq = Scalar(0.0);
+        m_uq = Scalar(0);
 
         m_isNormalized = false;
     }

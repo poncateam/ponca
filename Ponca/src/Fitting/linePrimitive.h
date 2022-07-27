@@ -69,8 +69,9 @@ public:
     PONCA_MULTIARCH inline void init(const VectorType& _basisCenter = VectorType::Zero())
     {
         Base::init(_basisCenter);
-        EigenBase* cc = static_cast<EigenBase*>(this);
-        *cc = EigenBase();
+        EigenBase::origin().setZero();
+        EigenBase::direction().setZero();
+    }
     }
     /*! \brief Comparison operator */
     PONCA_MULTIARCH inline bool operator==(const Line<DataPoint, WFunctor, T>& other) const{
