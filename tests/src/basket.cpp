@@ -108,13 +108,18 @@ void callSubTests()
     // We test only primitive functions and not the fitting procedure
     typedef DistWeightFunc<Point, SmoothWeightKernel<Scalar> > WeightFunc;
 
-    typedef Basket<Point, WeightFunc, CovariancePlaneFit> Plane;
-    typedef Basket<Point, WeightFunc, OrientedSphereFit> Sphere;
+    using Plane = Basket<Point, WeightFunc, CovariancePlaneFit>;
+    using Sphere = Basket<Point, WeightFunc, OrientedSphereFit>;
+
+    using PlaneScaleDiff = BasketDiff<Plane, internal::FitScaleDer, CovariancePlaneDer>;
+    using PlaneScaleSpaceDiff = BasketDiff<Plane, internal::FitScaleDer | internal::FitSpaceDer, CovariancePlaneDer>;
 
     for(int i = 0; i < g_repeat; ++i)
     {
         CALL_SUBTEST(( testFunction<Point, Plane>() ));
         CALL_SUBTEST(( testFunction<Point, Sphere>() ));
+        CALL_SUBTEST(( testFunction<Point, PlaneScaleDiff>() ));
+        CALL_SUBTEST(( testFunction<Point, PlaneScaleSpaceDiff>() ));
     }
 }
 
@@ -134,12 +139,12 @@ int main(int argc, char** argv)
 #endif
     cout << "Ok..." << endl;
 
-    cout << "Test Basket functions in 4 dimensions..." << endl;
-    callSubTests<float, 4>();
-    callSubTests<double, 4>();
-    // don't know why, but we have problems when using the kdtree with long doubles on windows
-#ifndef WIN32
-    callSubTests<long double, 4>();
-#endif
+//    cout << "Test Basket functions in 4 dimensions..." << endl;
+//    callSubTests<float, 4>();
+//    callSubTests<double, 4>();
+//    // don't know why, but we have problems when using the kdtree with long doubles on windows
+//#ifndef WIN32
+//    callSubTests<long double, 4>();
+//#endif
     cout << "Ok..." << endl;
 }

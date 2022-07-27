@@ -112,10 +112,11 @@ public:
 }; //class Primitive
 
 
-namespace internal
-{
-    /**
-    \brief Internal generic class performing the Fit derivation
+
+
+
+/**
+    \brief Generic class performing the Fit derivation
     \inherit Concept::FittingExtensionConcept
 
     The differentiation can be done automatically in scale and/or space, by
@@ -129,19 +130,22 @@ namespace internal
     contains at least FitScaleDer. The size of these arrays can be known using
     derDimension(), and the differentiation type by isScaleDer() and
     isSpaceDer().
-
-     \todo Do not explicitely inherit from PrimitiveDer (risk of diamond)
-           but rather rely on the REQUIREMENT system
-     */
-template < class DataPoint, class _WFunctor, typename T, int Type>
+ */
+template < class DataPoint, class _WFunctor, int Type, typename T>
 class PrimitiveDer : public T
 {
 private:
     typedef T Base; /*!< \brief Generic base type */
 
 protected:
-    static const int NbDerivatives   = ((Type & FitScaleDer) ? 1 : 0 ) + ((Type & FitSpaceDer) ? DataPoint::Dim : 0);
-    static const int DerStorageOrder = (Type & FitSpaceDer) ? Eigen::RowMajor : Eigen::ColMajor;
+    enum {
+        Check = Base::PROVIDES_PRIMITIVE_BASE,    /*!< \brief Provides base API for primitives*/
+        PROVIDES_PRIMITIVE_DERIVATIVE
+    };
+
+protected:
+    static constexpr  int NbDerivatives   = ((Type & internal::FitScaleDer) ? 1 : 0 ) + ((Type & internal::FitSpaceDer) ? DataPoint::Dim : 0);
+    static constexpr  int DerStorageOrder = (Type & internal::FitSpaceDer) ? Eigen::RowMajor : Eigen::ColMajor;
 
 public:
     using Scalar     = typename Base::Scalar;          /*!< \brief Inherited scalar type*/
@@ -179,12 +183,12 @@ public:
                                                  ScalarArray &dw)
     {
         if( Base::addLocalNeighbor(w, localQ, attributes) ) {
-            int spaceId = (Type & FitScaleDer) ? 1 : 0;
+            int spaceId = (Type & internal::FitScaleDer) ? 1 : 0;
             // compute weight
-            if (Type & FitScaleDer)
+            if (Type & internal::FitScaleDer)
                 dw[0] = Base::m_w.scaledw(attributes.pos(), attributes);
 
-            if (Type & FitSpaceDer)
+            if (Type & internal::FitSpaceDer)
                 dw.template segment<int(DataPoint::Dim)>(spaceId) = -Base::m_w.spacedw(attributes.pos(), attributes).transpose();
 
             m_dSumW += dw;
@@ -197,12 +201,14 @@ public:
     /* Use results                                                            */
     /**************************************************************************/
     /*! \brief State specified at compilation time to differenciate the fit in scale */
-    PONCA_MULTIARCH inline bool isScaleDer() const {return bool(Type & FitScaleDer);}
+    PONCA_MULTIARCH inline constexpr bool isScaleDer() const {return bool(Type & internal::FitScaleDer);}
     /*! \brief State specified at compilation time to differenciate the fit in space */
-    PONCA_MULTIARCH inline bool isSpaceDer() const {return bool(Type & FitSpaceDer);}
+    PONCA_MULTIARCH inline constexpr bool isSpaceDer() const {return bool(Type & internal::FitSpaceDer);}
     /*! \brief Number of dimensions used for the differentiation */
-    PONCA_MULTIARCH inline unsigned int derDimension() const { return NbDerivatives;}
+    PONCA_MULTIARCH inline constexpr unsigned int derDimension() const { return NbDerivatives;}
 
 };
-}
+
+
+
 }

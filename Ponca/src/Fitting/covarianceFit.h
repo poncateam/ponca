@@ -94,8 +94,6 @@ namespace Ponca
 
     };
 
-    using ::Ponca::internal::FitSpaceDer;
-    using ::Ponca::internal::FitScaleDer;
 
 /*!
     \brief Internal generic class computing the derivatives of covariance matrix
@@ -104,7 +102,7 @@ namespace Ponca
 
     \ingroup fitting
 */
-    template < class DataPoint, class _WFunctor, typename T, int Type>
+    template < class DataPoint, class _WFunctor, int DiffType, typename T>
     class CovarianceFitDer : public T
     {
     private:
@@ -113,7 +111,9 @@ namespace Ponca
     protected:
         enum
         {
-            Check = Base::PROVIDES_3D_POSITION_COVARIANCE && Base::PROVIDES_MEAN_POSITION_DERIVATIVE,
+            Check = Base::PROVIDES_PRIMITIVE_DERIVATIVE &&
+                    Base::PROVIDES_MEAN_POSITION_DERIVATIVE &&
+                    Base::PROVIDES_POSITION_COVARIANCE,
             PROVIDES_POSITION_COVARIANCE_DERIVATIVE
         };
 
@@ -124,11 +124,16 @@ namespace Ponca
         using WFunctor   = typename Base::WFunctor;   /*!< \brief Weight Function*/
         using ScalarArray = typename Base::ScalarArray;
 
-    private:
+    protected:
         // computation data
         MatrixType  m_dCov[Base::NbDerivatives];
 
     public:
+        /*! \brief Default constructor */
+        PONCA_MULTIARCH inline CovarianceFitDer() = default;
+
+        PONCA_EXPLICIT_CAST_OPERATORS_DER(CovarianceFitDer,covarianceFitDer)
+
         /************************************************************************/
         /* Initialization                                                       */
         /************************************************************************/
@@ -139,7 +144,7 @@ namespace Ponca
         /* Processing                                                           */
         /************************************************************************/
         /*! \see Concept::FittingProcedureConcept::addLocalNeighbor() */
-        PONCA_MULTIARCH inline bool addLocalNeighbor(Scalar w, const VectorType &localQ, const DataPoint &attributes);
+        PONCA_MULTIARCH inline bool addLocalNeighbor(Scalar w, const VectorType &localQ, const DataPoint &attributes, ScalarArray &dw);
         /*! \see Concept::FittingProcedureConcept::finalize() */
         PONCA_MULTIARCH FIT_RESULT finalize();
     }; //class CovarianceFitDer

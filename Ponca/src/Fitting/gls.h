@@ -147,7 +147,7 @@ public:
 
     \ingroup fitting
 */
-template < class DataPoint, class _WFunctor, typename T>
+template < class DataPoint, class _WFunctor, int DiffType, typename T>
 class GLSDer : public T
 {
 private:
@@ -173,6 +173,8 @@ public:
     using Base::isScaleDer;   // forward methods provided by PROVIDES_ALGEBRAIC_SPHERE_DERIVATIVE
     using Base::isSpaceDer;   // forward methods provided by PROVIDES_ALGEBRAIC_SPHERE_DERIVATIVE
     using Base::derDimension; // forward methods provided by PROVIDES_ALGEBRAIC_SPHERE_DERIVATIVE
+
+    PONCA_EXPLICIT_CAST_OPERATORS_DER(GLSDer,glsDer)
 
     PONCA_MULTIARCH inline ScalarArray dtau()   const; /*!< \brief Compute and return \f$ \tau \f$ derivatives */
     PONCA_MULTIARCH inline VectorArray deta()   const; /*!< \brief Compute and return \f$ \eta \f$ derivatives */

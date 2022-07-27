@@ -96,43 +96,26 @@ public:
                     MeanPosition<DataPoint, _WFunctor,
                             Plane<DataPoint, _WFunctor,T>>>>;
 
-namespace internal {
-
-using ::Ponca::internal::FitSpaceDer;
-using ::Ponca::internal::FitScaleDer;
-
 /*!
     \brief Internal generic class computing the derivatives of covariance plane fits
     \inherit Concept::FittingExtensionConcept
 
-    The differentiation can be done automatically in scale and/or space, by
-    combining the enum values FitScaleDer and FitSpaceDer in the template
-    parameter Type.
-
-    The differenciated values are stored in static arrays. The size of the
-    arrays is computed with respect to the derivation type (scale and/or space)
-    and the number of the dimension of the ambiant space.
-    By convention, the scale derivatives are stored at index 0 when Type
-    contains at least FitScaleDer. The size of these arrays can be known using
-    derDimension(), and the differentiation type by isScaleDer() and
-    isSpaceDer().
-
     \ingroup fitting
-    \warning This class cannot be used directly, see CovariancePlaneScaleDer, CovariancePlaneSpaceDer and CovariancePlaneScaleSpaceDer
     \warning Defined in 3D only
 */
-template < class DataPoint, class _WFunctor, typename T, int Type>
-class CovariancePlaneDer : public CovarianceFitDer<DataPoint, _WFunctor, T, Type>
+template < class DataPoint, class _WFunctor, int DiffType, typename T>
+class CovariancePlaneDerImpl : public T
 {
 private:
-    using Base = CovarianceFitDer<DataPoint, _WFunctor, T, Type>; /*!< \brief Generic base type */
+    using Base = T; /*!< \brief Generic base type */
     static_assert ( DataPoint::Dim == 3, "CovariancePlaneDer is only valid in 3D");
 
 protected:
     enum
     {
-        Check = Base::PROVIDES_PLANE,             /*!< \brief Needs plane */
-        PROVIDES_COVARIANCE_PLANE_DERIVATIVE,      /*!< \brief Provides derivatives for hyper-planes */
+        Check = Base::PROVIDES_PLANE &
+                Base::PROVIDES_POSITION_COVARIANCE_DERIVATIVE,
+        PROVIDES_COVARIANCE_PLANE_DERIVATIVE,                    /*!< \brief Provides derivatives for hyper-planes */
         PROVIDES_NORMAL_DERIVATIVE
     };
 
@@ -151,6 +134,9 @@ private:
 
 public:
 /*! \see Concept::FittingProcedureConcept::finalize() */
+    PONCA_EXPLICIT_CAST_OPERATORS_DER(CovariancePlaneDerImpl,covariancePlaneDer)
+
+    /*! \see Concept::FittingProcedureConcept::finalize() */
     PONCA_MULTIARCH FIT_RESULT finalize();
 
     /**************************************************************************/
@@ -165,77 +151,14 @@ public:
 
 }; //class CovariancePlaneDer
 
-}// namespace internal
 
-/*!
-    \brief Differentiation in scale of the CovariancePlaneFit
-    \inherit Concept::FittingExtensionConcept
-
-    Requirements:
-    \verbatim PROVIDES_COVARIANCE_PLANE \endverbatim
-    Provides:
-    \verbatim PROVIDES_COVARIANCE_PLANE_SCALE_DERIVATIVE \endverbatim
-
-    \ingroup fitting
-*/
-template < class DataPoint, class _WFunctor, typename T>
-class CovariancePlaneScaleDer:public internal::CovariancePlaneDer<DataPoint, _WFunctor, T, internal::FitScaleDer>
-{
-protected:
-    /*! \brief Inherited class */
-    typedef internal::CovariancePlaneDer<DataPoint, _WFunctor, T, internal::FitScaleDer> Base;
-    enum { PROVIDES_COVARIANCE_PLANE_SCALE_DERIVATIVE, PROVIDES_NORMAL_SCALE_DERIVATIVE };
-};
-
-
-/*!
-    \brief Spatial differentiation of the CovariancePlaneFit
-    \inherit Concept::FittingExtensionConcept
-
-    Requirements:
-    \verbatim PROVIDES_COVARIANCE_PLANE \endverbatim
-    Provides:
-    \verbatim PROVIDES_COVARIANCE_PLANE_SPACE_DERIVATIVE \endverbatim
-
-    \ingroup fitting
-*/
-template < class DataPoint, class _WFunctor, typename T>
-class CovariancePlaneSpaceDer:public internal::CovariancePlaneDer<DataPoint, _WFunctor, T, internal::FitSpaceDer>
-{
-protected:
-    /*! \brief Inherited class */
-    typedef internal::CovariancePlaneDer<DataPoint, _WFunctor, T, internal::FitSpaceDer> Base;
-    enum { PROVIDES_COVARIANCE_PLANE_SPACE_DERIVATIVE, PROVIDES_NORMAL_SPACE_DERIVATIVE };
-};
-
-
-/*!
-    \brief Differentiation both in scale and space of the CovariancePlaneFit
-    \inherit Concept::FittingExtensionConcept
-
-    Requirements:
-    \verbatim PROVIDES_COVARIANCE_PLANE \endverbatim
-    Provides:
-    \verbatim PROVIDES_COVARIANCE_PLANE_SCALE_DERIVATIVE
-    PROVIDES_COVARIANCE_PLANE_SPACE_DERIVATIVE
-    \endverbatim
-
-    \ingroup fitting
-*/
-template < class DataPoint, class _WFunctor, typename T>
-class CovariancePlaneScaleSpaceDer:public internal::CovariancePlaneDer<DataPoint, _WFunctor, T, internal::FitSpaceDer | internal::FitScaleDer>
-{
-protected:
-    /*! \brief Inherited class */
-    typedef internal::CovariancePlaneDer<DataPoint, _WFunctor, T, internal::FitSpaceDer | internal::FitScaleDer> Base;
-    enum
-    {
-        PROVIDES_COVARIANCE_PLANE_SCALE_DERIVATIVE,
-        PROVIDES_COVARIANCE_PLANE_SPACE_DERIVATIVE,
-        PROVIDES_NORMAL_SCALE_DERIVATIVE,
-        PROVIDES_NORMAL_SPACE_DERIVATIVE
-    };
-};
+/// \brief Helper alias for Plane fitting on 3D points using CovariancePlaneFitImpl
+/// \ingroup fittingalias
+template < class DataPoint, class _WFunctor, int DiffType, typename T>
+using CovariancePlaneDer =
+CovariancePlaneDerImpl<DataPoint, _WFunctor, DiffType,
+        CovarianceFitDer<DataPoint, _WFunctor, DiffType,
+                MeanPositionDer<DataPoint, _WFunctor, DiffType, T>>>;
 
 #include "covariancePlaneFit.hpp"
 
