@@ -133,18 +133,21 @@ void testFunction(bool _bUnoriented = false, bool _bAddPositionNoise = false, bo
     }
 }
 
+#define DECLARE_DEFAULT_TYPES                                                                      \
+    typedef PointPositionNormal<Scalar, Dim> Point;                                                \
+                                                                                                   \
+    typedef DistWeightFunc<Point, SmoothWeightKernel<Scalar> > WeightSmoothFunc;                   \
+    typedef DistWeightFunc<Point, ConstantWeightKernel<Scalar> > WeightConstantFunc;               \
+                                                                                                   \
+    typedef Basket<Point, WeightSmoothFunc, OrientedSphereFit, GLSParam> FitSmoothOriented;        \
+    typedef Basket<Point, WeightConstantFunc, OrientedSphereFit, GLSParam> FitConstantOriented;    \
+    typedef Basket<Point, WeightSmoothFunc, UnorientedSphereFit, GLSParam> FitSmoothUnoriented;    \
+    typedef Basket<Point, WeightConstantFunc, UnorientedSphereFit, GLSParam> FitConstantUnoriented;
+
 template<typename Scalar, int Dim>
 void callSubTests()
 {
-    typedef PointPositionNormal<Scalar, Dim> Point;
-
-    typedef DistWeightFunc<Point, SmoothWeightKernel<Scalar> > WeightSmoothFunc;
-    typedef DistWeightFunc<Point, ConstantWeightKernel<Scalar> > WeightConstantFunc;
-
-    typedef Basket<Point, WeightSmoothFunc, OrientedSphereFit, GLSParam> FitSmoothOriented;
-    typedef Basket<Point, WeightConstantFunc, OrientedSphereFit, GLSParam> FitConstantOriented;
-    typedef Basket<Point, WeightSmoothFunc, UnorientedSphereFit, GLSParam> FitSmoothUnoriented;
-    typedef Basket<Point, WeightConstantFunc, UnorientedSphereFit, GLSParam> FitConstantUnoriented;
+    DECLARE_DEFAULT_TYPES
 
     cout << "Testing with perfect sphere (oriented / unoriented)..." << endl;
     for(int i = 0; i < g_repeat; ++i)
@@ -171,13 +174,10 @@ void callSubTests()
 template<typename Scalar, int Dim>
 void callDerivativeSubTests()
 {
-    typedef PointPositionNormal<Scalar, Dim> Point;
+    DECLARE_DEFAULT_TYPES
 
-    typedef DistWeightFunc<Point, SmoothWeightKernel<Scalar> > WeightSmoothFunc;
-    typedef DistWeightFunc<Point, ConstantWeightKernel<Scalar> > WeightConstantFunc;
-
-    typedef Basket<Point, WeightSmoothFunc, OrientedSphereFit, GLSParam, OrientedSphereSpaceDer, CurvatureEstimator> FitSmoothOrientedSpatial;
-    typedef Basket<Point, WeightConstantFunc, OrientedSphereFit, GLSParam, OrientedSphereSpaceDer, CurvatureEstimator> FitConstantOrientedSpatial;
+    using FitSmoothOrientedSpatial   = BasketDiff<FitSmoothOriented, internal::FitSpaceDer, OrientedSphereDer, CurvatureEstimator>;
+    using FitConstantOrientedSpatial = BasketDiff<FitConstantOriented, internal::FitSpaceDer, OrientedSphereDer, CurvatureEstimator>;
 
     cout << "Testing with perfect sphere (oriented / unoriented) with spatial derivatives..." << endl;
     for(int i = 0; i < g_repeat; ++i)

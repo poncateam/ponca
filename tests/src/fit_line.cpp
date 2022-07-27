@@ -40,11 +40,11 @@ void testFunction(bool _bAddPositionNoise = false)
     VectorType _direction = VectorType::Random().normalized();
 
     Scalar epsilon = testEpsilon<Scalar>();
-    Scalar noiseMagnitude = 0.001;
+    Scalar noiseMagnitude {0.001};
 
     vector<DataPoint> vectorPoints(nbPoints);
     std::generate(vectorPoints.begin(), vectorPoints.end(), [&_direction,_bAddPositionNoise,noiseMagnitude]() {
-        return DataPoint(_direction * Eigen::internal::random<Scalar>(0.1,2)
+        return DataPoint(_direction * Eigen::internal::random<Scalar>(Scalar(0.1),Scalar(2))
                 + ( _bAddPositionNoise ? (VectorType::Random() * noiseMagnitude).eval() : VectorType::Zero() ));
     });
 

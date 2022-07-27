@@ -17,6 +17,7 @@
 
 #include <Ponca/src/Fitting/basket.h>
 #include <Ponca/src/Fitting/covariancePlaneFit.h>
+#include <Ponca/src/Fitting/meanPlaneFit.h>
 #include <Ponca/src/Fitting/mongePatch.h>
 #include <Ponca/src/Fitting/weightFunc.h>
 #include <Ponca/src/Fitting/weightKernel.h>
@@ -107,8 +108,9 @@ void callSubTests()
     typedef Basket<Point, WeightSmoothFunc, CovariancePlaneFit, MongePatch> CovFitSmooth;
     typedef Basket<Point, WeightConstantFunc, CovariancePlaneFit, MongePatch> CovFitConstant;
 
-//    typedef Basket<Point, WeightSmoothFunc, Plane, MeanPlaneFit> MeanFitSmooth;
-//    typedef Basket<Point, WeightConstantFunc, Plane, MeanPlaneFit> MeanFitConstant;
+    // \todo Add these tests when MeanPlaneFit PROVIDES_TANGENT_PLANE_BASIS
+//    typedef Basket<Point, WeightSmoothFunc, MeanPlaneFit, MongePatch> MeanFitSmooth;
+//    typedef Basket<Point, WeightConstantFunc, MeanPlaneFit, MongePatch> MeanFitConstant;
 
     cout << "Testing with perfect plane..." << endl;
     for(int i = 0; i < g_repeat; ++i)
@@ -116,6 +118,8 @@ void callSubTests()
         //Test with perfect plane
         CALL_SUBTEST(( testFunction<Point, CovFitSmooth, WeightSmoothFunc>() ));
         CALL_SUBTEST(( testFunction<Point, CovFitConstant, WeightConstantFunc>() ));
+//        CALL_SUBTEST(( testFunction<Point, MeanFitSmooth, WeightSmoothFunc>() ));
+//        CALL_SUBTEST(( testFunction<Point, MeanFitConstant, WeightConstantFunc>() ));
     }
     cout << "Ok!" << endl;
 
