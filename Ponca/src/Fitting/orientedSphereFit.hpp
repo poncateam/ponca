@@ -40,15 +40,13 @@ OrientedSphereFitImpl<DataPoint, _WFunctor, T>::finalize ()
     PONCA_MULTIARCH_STD_MATH(max);
     PONCA_MULTIARCH_STD_MATH(abs);
 
-    // handle specific configurations
+    // Compute status
     if(Base::finalize() != STABLE  || Base::m_nbNeighbors < 3)
-    {
-        Base::m_ul.setZero();
-        Base::m_uc = Scalar(0.);
-        Base::m_uq = Scalar(0.);
-        Base::m_isNormalized = false;
         return Base::m_eCurrentState;
-    }
+    if (Base::algebraicSphere().isValid())
+        Base::m_eCurrentState = CONFLICT_ERROR_FOUND;
+    else
+        Base::m_eCurrentState = Base::m_nbNeighbors < 6 ? UNSTABLE : STABLE;
 
     // 1. finalize sphere fitting
     Scalar epsilon = Eigen::NumTraits<Scalar>::dummy_precision();
@@ -77,7 +75,6 @@ OrientedSphereFitImpl<DataPoint, _WFunctor, T>::finalize ()
     }
 
     Base::m_isNormalized = false;
-    Base::m_eCurrentState = Base::m_nbNeighbors < 6 ? UNSTABLE : STABLE;
 
     return Base::m_eCurrentState;
 }

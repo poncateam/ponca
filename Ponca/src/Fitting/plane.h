@@ -77,6 +77,12 @@ public:
         Base::init(_basisCenter);
         EigenBase::coeffs().setZero();
     }
+
+    /// \brief Tell if the plane as been correctly set.
+    /// Used to set CONFLICT_ERROR_FOUND during fitting
+    /// \return false when called straight after #init. Should be true after fitting
+    PONCA_MULTIARCH inline bool isValid() const{
+        return ! EigenBase::coeffs().isApprox(EigenBase::Coefficients::Zero());
     }
 
     PONCA_MULTIARCH inline bool operator==(const Plane<DataPoint, WFunctor, T>& other) const{

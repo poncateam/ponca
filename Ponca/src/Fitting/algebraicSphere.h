@@ -97,6 +97,13 @@ public:
         m_isNormalized = false;
     }
 
+    /// \brief Tell if the sphere as been correctly set.
+    /// Used to set CONFLICT_ERROR_FOUND during fitting
+    /// \return false when called straight after #init. Should be true after fitting
+    PONCA_MULTIARCH inline bool isValid() const{
+        return !( m_ul.isApprox(VectorType::Zero()) && m_uc == Scalar(0) && m_uq == Scalar(0) );
+    }
+
     PONCA_MULTIARCH inline bool operator==(const AlgebraicSphere<DataPoint, WFunctor, T>& other) const{
         PONCA_MULTIARCH_STD_MATH(pow);
         const Scalar epsilon        = Eigen::NumTraits<Scalar>::dummy_precision();
