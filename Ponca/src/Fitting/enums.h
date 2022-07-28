@@ -27,12 +27,16 @@ namespace Ponca
         /*! \brief The fitting procedure needs to analyse the neighborhood
           another time*/
         NEED_OTHER_PASS = 3,
+        /*! \brief Multiple classes of the fitting procedure initialize the primitive. Should be treated as error. */
+        CONFLICT_ERROR_FOUND = 4,
         NBMAX /*!< \brief Nb enums */
     };
 
 namespace internal
 {
   /// \internal
+  ///
+  /// Flags need to be combined using |
   enum : unsigned char
   {
     FitScaleDer = 0x01, /*!< \brief Flag indicating a scale differentiation. */

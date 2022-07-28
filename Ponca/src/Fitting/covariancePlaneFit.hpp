@@ -11,8 +11,10 @@ template < class DataPoint, class _WFunctor, typename T>
 FIT_RESULT
 CovariancePlaneFitImpl<DataPoint, _WFunctor, T>::finalize ()
 {
-    if (Base::finalize() == STABLE)
+    if (Base::finalize() == STABLE) {
+        if (Base::plane().isValid()) Base::m_eCurrentState = CONFLICT_ERROR_FOUND;
         Base::setPlane(Base::m_solver.eigenvectors().col(0), Base::barycenter());
+    }
 
     return Base::m_eCurrentState;
 }

@@ -40,12 +40,13 @@ template < class DataPoint, class _WFunctor, typename T>
 FIT_RESULT
 SphereFitImpl<DataPoint, _WFunctor, T>::finalize ()
 {
-    // handle specific configurations
-    // With less than 3 neighbors the fitting is undefined
+    // Compute status
     if(Base::finalize() != STABLE || Base::m_nbNeighbors < 3)
-    {
         return Base::m_eCurrentState = UNDEFINED;
-    }
+    if (Base::algebraicSphere().isValid())
+        Base::m_eCurrentState = CONFLICT_ERROR_FOUND;
+    else
+        Base::m_eCurrentState = Base::m_nbNeighbors < 6 ? UNSTABLE : STABLE;
 
     MatrixA matC;
     matC.setIdentity();
@@ -87,7 +88,6 @@ SphereFitImpl<DataPoint, _WFunctor, T>::finalize ()
     Base::m_uc = vecU[0];
 
     Base::m_isNormalized = false;
-    Base::m_eCurrentState = Base::m_nbNeighbors < 6 ? UNSTABLE : STABLE;
 
     return Base::m_eCurrentState;
 }

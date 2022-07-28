@@ -72,7 +72,15 @@ public:
         EigenBase::origin().setZero();
         EigenBase::direction().setZero();
     }
+
+    /// \brief Tell if the line as been correctly set.
+    /// Used to set CONFLICT_ERROR_FOUND during fitting
+    /// \return false when called straight after #init. Should be true after fitting
+    PONCA_MULTIARCH inline bool isValid() const{
+        static const typename EigenBase::VectorType zeros = EigenBase::VectorType::Zero();
+        return ! ( EigenBase::origin().isApprox(zeros) && EigenBase::direction().isApprox(zeros) ) ;
     }
+
     /*! \brief Comparison operator */
     PONCA_MULTIARCH inline bool operator==(const Line<DataPoint, WFunctor, T>& other) const{
         return EigenBase::isApprox(other);
