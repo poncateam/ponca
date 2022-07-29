@@ -26,22 +26,10 @@ namespace Ponca
     template < class DataPoint, class _WFunctor, typename T>
     class DryFit :  public T
     {
-    private:
-        using Base = T;
+    PONCA_FITTING_DECLARE_DEFAULT_TYPES
 
     protected:
-        enum
-        {
-            check = Base::PROVIDES_PRIMITIVE_BASE,  /*!< \brief Requires PrimitiveBase */
-        };
-
-    public:
-        /*! \brief Scalar type inherited from DataPoint*/
-        typedef typename DataPoint::Scalar     Scalar;
-        /*! \brief Vector type inherited from DataPoint*/
-        typedef typename DataPoint::VectorType VectorType;
-        /*! \brief Weight Function*/
-        typedef _WFunctor                 WFunctor;
+        enum { check = Base::PROVIDES_PRIMITIVE_BASE };
 
     public:
         /*! \brief Default constructor */
@@ -49,24 +37,15 @@ namespace Ponca
 
         PONCA_EXPLICIT_CAST_OPERATORS(DryFit,dryfit)
 
-        /**************************************************************************/
-        /* Initialization                                                         */
-        /**************************************************************************/
-        /*! \copydoc Concept::FittingProcedureConcept::setWeightFunc() */
-        PONCA_MULTIARCH inline void setWeightFunc (const WFunctor& /*_w*/) { }
-
-        /*! \copydoc Concept::FittingProcedureConcept::init() */
-        PONCA_MULTIARCH inline void init (const VectorType& /*_evalPos*/) { }
-
-        /**************************************************************************/
-        /* Processing                                                             */
-        /**************************************************************************/
         /*! \copydoc Concept::FittingProcedureConcept::addLocalNeighbor() */
         PONCA_MULTIARCH inline bool addLocalNeighbor(Scalar w, const VectorType &localQ, const DataPoint &attributes)
         { return Base::addLocalNeighbor(w, localQ, attributes);}
 
         /*! \copydoc Concept::FittingProcedureConcept::finalize() */
-        PONCA_MULTIARCH inline FIT_RESULT finalize() { return STABLE; }
+        PONCA_MULTIARCH inline FIT_RESULT finalize() { return Base::finalize(); }
+
+        /*! \copydoc Concept::FittingProcedureConcept::setWeightFunc() */
+        PONCA_MULTIARCH inline void setWeightFunc (const WFunctor& /*_w*/) { }
 
         //! \brief Simulate Scalar field computation
         PONCA_MULTIARCH inline Scalar potential ( ) const { return Scalar(0); }

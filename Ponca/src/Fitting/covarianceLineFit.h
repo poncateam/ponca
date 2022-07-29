@@ -34,8 +34,8 @@ namespace Ponca
 template < class DataPoint, class _WFunctor, typename T>
 class CovarianceLineFitImpl : public T
 {
-private:
-    using Base = T;
+    PONCA_FITTING_DECLARE_DEFAULT_TYPES
+    PONCA_FITTING_DECLARE_MATRIX_TYPE
 
 protected:
     enum
@@ -43,12 +43,6 @@ protected:
         check = Base::PROVIDES_LINE &&
                 Base::PROVIDES_POSITION_COVARIANCE,
     };
-
-public:
-    using Scalar     = typename Base::Scalar;          /*!< \brief Inherited scalar type*/
-    using VectorType = typename Base::VectorType;      /*!< \brief Inherited vector type*/
-    using MatrixType = typename DataPoint::MatrixType; /*!< \brief Inherited matrix type*/
-    using WFunctor   = typename Base::WFunctor;        /*!< \brief Weight Function*/
 
 public:
      /*! \brief Default constructor */

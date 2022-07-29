@@ -47,30 +47,21 @@ namespace Ponca
 template < class DataPoint, class _WFunctor, typename T >
 class AlgebraicSphere : public T
 {
-private:
-    using Base = T;
+    PONCA_FITTING_DECLARE_DEFAULT_TYPES
 
 protected:
-
     enum
     {
         check = Base::PROVIDES_PRIMITIVE_BASE,  /*!< \brief Requires PrimitiveBase */
         PROVIDES_ALGEBRAIC_SPHERE               /*!< \brief Provides Algebraic Sphere */
     };
 
-public:
-    using Scalar     = typename Base::Scalar;     /*!< \brief Inherited scalar type*/
-    using VectorType = typename Base::VectorType; /*!< \brief Inherited vector type*/
-    using WFunctor   = typename Base::WFunctor;   /*!< \brief Weight Function*/
-
 protected:
-
     //! \brief Is the implicit scalar field normalized using Pratt
     bool m_isNormalized;
 
 // results
 public:
-
     Scalar m_uc {0},       /*!< \brief Constant parameter of the Algebraic hyper-sphere */
            m_uq {0};       /*!< \brief Quadratic parameter of the Algebraic hyper-sphere */
     VectorType m_ul {VectorType::Zero()};   /*!< \brief Linear parameter of the Algebraic hyper-sphere */

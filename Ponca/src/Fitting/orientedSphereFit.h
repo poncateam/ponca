@@ -26,8 +26,7 @@ namespace Ponca
 template < class DataPoint, class _WFunctor, typename T >
 class OrientedSphereFitImpl : public T
 {
-private:
-    using Base = T;
+    PONCA_FITTING_DECLARE_DEFAULT_TYPES
 
 protected:
     enum
@@ -36,13 +35,6 @@ protected:
                 Base::PROVIDES_MEAN_NORMAL &&
                 Base::PROVIDES_MEAN_POSITION
     };
-
-public:
-    using Scalar     = typename Base::Scalar;     /*!< \brief Inherited scalar type*/
-    using VectorType = typename Base::VectorType; /*!< \brief Inherited vector type*/
-    using WFunctor   = typename Base::WFunctor;   /*!< \brief Weight Function*/
-
- protected:
 
     // computation data
     Scalar  m_sumDotPN, /*!< \brief Sum of the dot product betwen relative positions and normals */
@@ -55,24 +47,7 @@ public:
     PONCA_MULTIARCH inline OrientedSphereFitImpl() = default;
 
     PONCA_EXPLICIT_CAST_OPERATORS(OrientedSphereFitImpl,orientedSphereFit)
-
-    /**************************************************************************/
-    /* Initialization                                                         */
-    /**************************************************************************/
-
-    /*! \copydoc Concept::FittingProcedureConcept::init() */
-    PONCA_MULTIARCH inline void init (const VectorType& _evalPos);
-
-
-    /**************************************************************************/
-    /* Processing                                                             */
-    /**************************************************************************/
-    /*! \copydoc Concept::FittingProcedureConcept::addLocalNeighbor() */
-    PONCA_MULTIARCH inline bool addLocalNeighbor(Scalar w, const VectorType &localQ, const DataPoint &attributes);
-
-    /*! \copydoc Concept::FittingProcedureConcept::finalize() */
-    PONCA_MULTIARCH inline FIT_RESULT finalize();
-
+    PONCA_FITTING_DECLARE_INIT_ADD_FINALIZE
 }; //class OrientedSphereFitImpl
 
 /// \brief Helper alias for Oriented Sphere fitting on 3D points using OrientedSphereFitImpl
@@ -91,8 +66,8 @@ OrientedSphereFitImpl<DataPoint, _WFunctor,
 template < class DataPoint, class _WFunctor, int DiffType, typename T>
 class OrientedSphereDerImpl : public T
 {
-private:
-    using Base = T; /*!< \brief Generic base type */
+    PONCA_FITTING_DECLARE_DEFAULT_TYPES
+    PONCA_FITTING_DECLARE_DEFAULT_DER_TYPES
 
 protected:
     enum
@@ -104,14 +79,6 @@ protected:
         PROVIDES_NORMAL_DERIVATIVE
     };
 
-public:
-    using Scalar      = typename Base::Scalar;
-    using VectorType  = typename Base::VectorType;
-    using WFunctor    = typename Base::WFunctor;
-    using ScalarArray = typename Base::ScalarArray;
-    using VectorArray = typename Base::VectorArray;
-
-protected:
     // computation data
     VectorArray m_dSumN;     /*!< \brief Sum of the normal vectors with differenciated weights */
     ScalarArray m_dSumDotPN, /*!< \brief Sum of the dot product betwen relative positions and normals with differenciated weights */
@@ -130,26 +97,7 @@ public:
     PONCA_MULTIARCH inline OrientedSphereDerImpl() = default;
 
     PONCA_EXPLICIT_CAST_OPERATORS_DER(OrientedSphereDerImpl,orientedSphereDer)
-
-    /************************************************************************/
-    /* Initialization                                                       */
-    /************************************************************************/
-    /*! \see Concept::FittingProcedureConcept::init() */
-    PONCA_MULTIARCH void init (const VectorType &evalPos);
-
-    /************************************************************************/
-    /* Processing                                                           */
-    /************************************************************************/
-    /*! \see Concept::FittingProcedureConcept::addLocalNeighbor() */
-    PONCA_MULTIARCH inline bool addLocalNeighbor(Scalar w, const VectorType &localQ, const DataPoint &attributes, ScalarArray &dw);
-
-        /*! \see Concept::FittingProcedureConcept::finalize() */
-    PONCA_MULTIARCH FIT_RESULT finalize   ();
-
-
-    /**************************************************************************/
-    /* Use results                                                            */
-    /**************************************************************************/
+    PONCA_FITTING_DECLARE_INIT_ADDDER_FINALIZE
 
     /*! \brief Returns the derivatives of the scalar field at the evaluation point */
     PONCA_MULTIARCH inline ScalarArray dPotential() const;

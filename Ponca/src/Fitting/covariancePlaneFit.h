@@ -33,8 +33,8 @@ namespace Ponca
 template < class DataPoint, class _WFunctor, typename T >
 class CovariancePlaneFitImpl : public T
 {
-private:
-    using Base = T;
+PONCA_FITTING_DECLARE_DEFAULT_TYPES
+PONCA_FITTING_DECLARE_MATRIX_TYPE
 
 protected:
     enum
@@ -51,19 +51,11 @@ protected:
     };
 
 public:
-    using Scalar     = typename Base::Scalar;          /*!< \brief Inherited scalar type*/
-    using VectorType = typename Base::VectorType;      /*!< \brief Inherited vector type*/
-    using MatrixType = typename DataPoint::MatrixType; /*!< \brief Inherited matrix type*/
-    using WFunctor   = typename Base::WFunctor;        /*!< \brief Weight Function*/
-
-public:
     /*! \brief Default constructor */
     PONCA_MULTIARCH inline CovariancePlaneFitImpl() = default;
 
     PONCA_EXPLICIT_CAST_OPERATORS(CovariancePlaneFitImpl,covariancePlaneFit)
-
-    /*! \copydoc Concept::FittingProcedureConcept::finalize() */
-    PONCA_MULTIARCH inline FIT_RESULT finalize();
+    PONCA_FITTING_DECLARE_FINALIZE
 
     /**************************************************************************/
     /* Results                                                                */
@@ -105,8 +97,9 @@ public:
 template < class DataPoint, class _WFunctor, int DiffType, typename T>
 class CovariancePlaneDerImpl : public T
 {
-private:
-    using Base = T; /*!< \brief Generic base type */
+    PONCA_FITTING_DECLARE_DEFAULT_TYPES
+    PONCA_FITTING_DECLARE_MATRIX_TYPE
+    PONCA_FITTING_DECLARE_DEFAULT_DER_TYPES
     static_assert ( DataPoint::Dim == 3, "CovariancePlaneDer is only valid in 3D");
 
 protected:
@@ -117,15 +110,6 @@ protected:
         PROVIDES_COVARIANCE_PLANE_DERIVATIVE,                    /*!< \brief Provides derivatives for hyper-planes */
         PROVIDES_NORMAL_DERIVATIVE
     };
-
-
-public:
-    using Scalar     = typename Base::Scalar;     /*!< \brief Inherited scalar type*/
-    using VectorType = typename Base::VectorType; /*!< \brief Inherited vector type*/
-    using MatrixType = typename Base::MatrixType; /*!< \brief Inherited matrix type*/
-    using WFunctor   = typename Base::WFunctor;   /*!< \brief Weight Function*/
-    using ScalarArray = typename Base::ScalarArray;
-    using VectorArray = typename Base::VectorArray;
 
 private:
     VectorArray m_dNormal {VectorArray::Zero()};    /*!< \brief Derivatives of the hyper-plane normal */

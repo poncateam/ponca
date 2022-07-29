@@ -32,8 +32,7 @@ namespace Ponca
     template < class DataPoint, class _WFunctor, typename T>
     class CovarianceFitBase : public T
     {
-    private:
-        using Base = T;
+    PONCA_FITTING_DECLARE_DEFAULT_TYPES
 
     protected:
         enum
@@ -43,17 +42,13 @@ namespace Ponca
         };
 
     public:
-        using Scalar     = typename Base::Scalar;          /*!< \brief Inherited scalar type*/
-        using VectorType = typename Base::VectorType;      /*!< \brief Inherited vector type*/
-        using MatrixType = typename DataPoint::MatrixType; /*!< \brief Inherited matrix type*/
-        using WFunctor   = typename Base::WFunctor;        /*!< \brief Weight Function*/
+        using MatrixType = typename DataPoint::MatrixType; /*!< \brief Alias to matrix type*/
         /*! \brief Solver used to analyse the covariance matrix*/
-        typedef Eigen::SelfAdjointEigenSolver<MatrixType> Solver;
+        using Solver = Eigen::SelfAdjointEigenSolver<MatrixType>;
 
     protected:
         // computation data
         MatrixType m_cov {MatrixType::Zero()};     /*!< \brief Covariance matrix */
-
         Solver m_solver;  /*!<\brief Solver used to analyse the covariance matrix */
 
     public:
@@ -61,25 +56,7 @@ namespace Ponca
         PONCA_MULTIARCH inline CovarianceFitBase() = default;
 
         PONCA_EXPLICIT_CAST_OPERATORS(CovarianceFitBase,covarianceFit)
-
-        /**************************************************************************/
-        /* Initialization                                                         */
-        /**************************************************************************/
-        /*! \copydoc Concept::FittingProcedureConcept::init() */
-        PONCA_MULTIARCH inline void init (const VectorType& _evalPos);
-
-        /**************************************************************************/
-        /* Processing                                                             */
-        /**************************************************************************/
-        /*! \copydoc Concept::FittingProcedureConcept::addLocalNeighbor() */
-        PONCA_MULTIARCH inline bool addLocalNeighbor(Scalar w, const VectorType &localQ, const DataPoint &attributes);
-
-        /*! \copydoc Concept::FittingProcedureConcept::finalize() */
-        PONCA_MULTIARCH inline FIT_RESULT finalize();
-
-        /**************************************************************************/
-        /* Results                                                                */
-        /**************************************************************************/
+        PONCA_FITTING_DECLARE_INIT_ADD_FINALIZE
 
         /*! \brief Implements \cite Pauly:2002:PSSimplification surface variation.
             It computes the ratio \f$ d \frac{\lambda_0}{\sum_i \lambda_i} \f$ with \c d the dimension of the ambient space.
@@ -87,11 +64,8 @@ namespace Ponca
         */
         PONCA_MULTIARCH inline Scalar surfaceVariation() const;
 
-        /*! \brief Reading access to the Solver used to analyse the covariance
-          matrix */
+        /*! \brief Reading access to the Solver used to analyse the covariance matrix */
         PONCA_MULTIARCH inline const Solver& solver() const { return m_solver; }
-
-
     };
 
 
@@ -105,8 +79,9 @@ namespace Ponca
     template < class DataPoint, class _WFunctor, int DiffType, typename T>
     class CovarianceFitDer : public T
     {
-    private:
-        using Base = T; /*!< \brief Generic base type */
+    PONCA_FITTING_DECLARE_DEFAULT_TYPES
+    PONCA_FITTING_DECLARE_MATRIX_TYPE
+    PONCA_FITTING_DECLARE_DEFAULT_DER_TYPES
 
     protected:
         enum
@@ -117,13 +92,6 @@ namespace Ponca
             PROVIDES_POSITION_COVARIANCE_DERIVATIVE
         };
 
-    public:
-        using Scalar     = typename Base::Scalar;     /*!< \brief Inherited scalar type*/
-        using VectorType = typename Base::VectorType; /*!< \brief Inherited vector type*/
-        using MatrixType = typename Base::MatrixType; /*!< \brief Inherited matrix type*/
-        using WFunctor   = typename Base::WFunctor;   /*!< \brief Weight Function*/
-        using ScalarArray = typename Base::ScalarArray;
-
     protected:
         // computation data
         MatrixType  m_dCov[Base::NbDerivatives];
@@ -133,20 +101,7 @@ namespace Ponca
         PONCA_MULTIARCH inline CovarianceFitDer() = default;
 
         PONCA_EXPLICIT_CAST_OPERATORS_DER(CovarianceFitDer,covarianceFitDer)
-
-        /************************************************************************/
-        /* Initialization                                                       */
-        /************************************************************************/
-        /*! \see Concept::FittingProcedureConcept::init() */
-        PONCA_MULTIARCH void init(const VectorType &evalPos);
-
-        /************************************************************************/
-        /* Processing                                                           */
-        /************************************************************************/
-        /*! \see Concept::FittingProcedureConcept::addLocalNeighbor() */
-        PONCA_MULTIARCH inline bool addLocalNeighbor(Scalar w, const VectorType &localQ, const DataPoint &attributes, ScalarArray &dw);
-        /*! \see Concept::FittingProcedureConcept::finalize() */
-        PONCA_MULTIARCH FIT_RESULT finalize();
+        PONCA_FITTING_DECLARE_INIT_ADDDER_FINALIZE
     }; //class CovarianceFitDer
 
 #include "covarianceFit.hpp"

@@ -35,8 +35,8 @@ namespace Ponca
 template < class DataPoint, class _WFunctor, int DiffType, typename T>
 class CurvatureEstimator : public T
 {
-private:
-    typedef T Base;
+PONCA_FITTING_DECLARE_DEFAULT_TYPES
+PONCA_FITTING_DECLARE_MATRIX_TYPE
 
 protected:
     enum
@@ -45,16 +45,10 @@ protected:
         PROVIDES_PRINCIPALE_CURVATURES
     };
 
-public:
-    using Scalar     = typename Base::Scalar;     /*!< \brief Inherited scalar type*/
-    using VectorType = typename Base::VectorType; /*!< \brief Inherited vector type*/
-    using MatrixType = typename Base::MatrixType; /*!< \brief Inherited matrix type*/
-
 private:
     typedef Eigen::Matrix<Scalar,3,2> Mat32; /*!< \brief Matrix type for tangent plane basis */
     typedef Eigen::Matrix<Scalar,2,2> Mat22; /*!< \brief Matrix type for shape operator */
 
-private:
     Scalar m_k1 {0}, m_k2 {0};
     VectorType m_v1 {VectorType::Zero()}, m_v2{VectorType::Zero()};
 
@@ -66,12 +60,7 @@ public:
     PONCA_MULTIARCH inline CurvatureEstimator() = default;
 
     PONCA_EXPLICIT_CAST_OPERATORS_DER(CurvatureEstimator,curvatureEstimator)
-
-    /**************************************************************************/
-    /* Processing                                                             */
-    /**************************************************************************/
-    /*! \copydoc Concept::FittingProcedureConcept::finalize() */
-    PONCA_MULTIARCH inline FIT_RESULT finalize();
+    PONCA_FITTING_DECLARE_FINALIZE
 
     /**************************************************************************/
     /* Use results                                                            */

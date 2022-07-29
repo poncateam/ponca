@@ -42,8 +42,7 @@ namespace Ponca
 template < class DataPoint, class _WFunctor, typename T>
 class GLSParam : public T
 {
-private:
-    typedef T Base;
+    PONCA_FITTING_DECLARE_DEFAULT_TYPES
 
 protected:
     enum
@@ -51,11 +50,6 @@ protected:
         Check = Base::PROVIDES_ALGEBRAIC_SPHERE,
         PROVIDES_GLS_PARAMETRIZATION
     };
-
-public:
-    using Scalar     = typename Base::Scalar;     /*!< \brief Inherited scalar type*/
-    using VectorType = typename Base::VectorType; /*!< \brief Inherited vector type*/
-    using WFunctor   = typename Base::WFunctor;   /*!< \brief Weight Function*/
 
 protected:
     Scalar m_fitness {0};   /*!< \brief Save the fitness value to avoid side effect with Pratt normalization*/
@@ -65,31 +59,7 @@ public:
     PONCA_MULTIARCH inline GLSParam() = default;
 
     PONCA_EXPLICIT_CAST_OPERATORS(GLSParam,glsParam)
-
-    /**************************************************************************/
-    /* Initialization                                                         */
-    /**************************************************************************/
-    /*! \copydoc Concept::FittingProcedureConcept::setWeightFunc() */
-    PONCA_MULTIARCH inline void setWeightFunc(const WFunctor& _w)
-    {
-        Base::setWeightFunc(_w);
-    }
-
-    /**************************************************************************/
-    /* Processing                                                             */
-    /**************************************************************************/
-    /*! \copydoc Concept::FittingProcedureConcept::finalize() */
-    PONCA_MULTIARCH inline FIT_RESULT finalize()
-    {
-        FIT_RESULT bResult = Base::finalize();
-
-        if(bResult != UNDEFINED)
-        {
-            m_fitness = Scalar(1.) - Base::prattNorm2();
-        }
-
-        return bResult;
-    }
+    PONCA_FITTING_DECLARE_FINALIZE
 
     /**************************************************************************/
     /* Use results                                                            */
@@ -150,8 +120,8 @@ public:
 template < class DataPoint, class _WFunctor, int DiffType, typename T>
 class GLSDer : public T
 {
-private:
-    typedef T Base;
+PONCA_FITTING_DECLARE_DEFAULT_TYPES
+PONCA_FITTING_DECLARE_DEFAULT_DER_TYPES
 
 protected:
     enum
@@ -163,17 +133,6 @@ protected:
     };
 
 public:
-    typedef typename Base::Scalar     Scalar;      /*!< \brief Inherited scalar type */
-    typedef typename Base::VectorType VectorType;  /*!< \brief Inherited vector type */
-    typedef typename Base::WFunctor   WFunctor;    /*!< \brief Weight Function */
-
-    typedef typename Base::VectorArray VectorArray; /*!< \brief Inherited vector array type */
-    typedef typename Base::ScalarArray ScalarArray; /*!< \brief Inherited scalar array type */
-
-    using Base::isScaleDer;   // forward methods provided by PROVIDES_ALGEBRAIC_SPHERE_DERIVATIVE
-    using Base::isSpaceDer;   // forward methods provided by PROVIDES_ALGEBRAIC_SPHERE_DERIVATIVE
-    using Base::derDimension; // forward methods provided by PROVIDES_ALGEBRAIC_SPHERE_DERIVATIVE
-
     PONCA_EXPLICIT_CAST_OPERATORS_DER(GLSDer,glsDer)
 
     PONCA_MULTIARCH inline ScalarArray dtau()   const; /*!< \brief Compute and return \f$ \tau \f$ derivatives */
@@ -208,8 +167,7 @@ public:
 template < class DataPoint, class _WFunctor, typename T>
 class GLSGeomVar : public T
 {
-private:
-    typedef T Base;
+PONCA_FITTING_DECLARE_DEFAULT_TYPES
 
 protected:
     enum
@@ -219,7 +177,6 @@ protected:
     };
 
 public:
-    typedef typename Base::Scalar Scalar;  /*!< \brief Inherited scalar type*/
 
     /*!
     \brief Compute and return the Geometric Variation

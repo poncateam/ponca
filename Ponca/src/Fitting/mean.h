@@ -24,20 +24,10 @@ namespace Ponca {
 */
     template<class DataPoint, class _WFunctor, typename T>
     class MeanPosition : public T {
-    private:
-        using Base = T;
+    PONCA_FITTING_DECLARE_DEFAULT_TYPES
 
     protected:
-        enum {
-            PROVIDES_MEAN_POSITION
-        };
-
-    public:
-        using Scalar = typename Base::Scalar;     /*!< \brief Inherited scalar type*/
-        using VectorType = typename Base::VectorType; /*!< \brief Inherited vector type*/
-        using WFunctor = typename Base::WFunctor;   /*!< \brief Weight Function*/
-
-    protected:
+        enum { PROVIDES_MEAN_POSITION };
         VectorType m_sumP {VectorType::Zero()}; /*!< \brief Sum of the input points vectors */
 
     public:
@@ -45,22 +35,9 @@ namespace Ponca {
         PONCA_MULTIARCH inline MeanPosition() = default;
 
         PONCA_EXPLICIT_CAST_OPERATORS(MeanPosition,meanPosition)
+        PONCA_FITTING_DECLARE_INIT
+        PONCA_FITTING_DECLARE_ADDNEIGHBOR
 
-        /**************************************************************************/
-        /* Initialization                                                         */
-        /**************************************************************************/
-        /*! \copydoc Concept::FittingProcedureConcept::init() */
-        PONCA_MULTIARCH inline void init(const VectorType &_evalPos);
-
-        /**************************************************************************/
-        /* Processing                                                             */
-        /**************************************************************************/
-        /*! \copydoc Concept::FittingExtensionConcept::addLocalNeighbor() */
-        PONCA_MULTIARCH inline bool addLocalNeighbor(Scalar w, const VectorType &localQ, const DataPoint &attributes);
-
-        /**************************************************************************/
-        /* Use results                                                            */
-        /**************************************************************************/
         //! \brief Value of the scalar field at the location \f$ \mathbf{q} \f$
         PONCA_MULTIARCH inline VectorType barycenter() const {
             return (m_sumP / Base::m_sumW);
@@ -90,46 +67,25 @@ namespace Ponca {
 */
     template<class DataPoint, class _WFunctor, typename T>
     class MeanNormal : public T {
-    private:
-        using Base = T;
+    PONCA_FITTING_DECLARE_DEFAULT_TYPES
 
     protected:
-        enum {
-            PROVIDES_MEAN_NORMAL
-        };
-
-    public:
-        using Scalar = typename Base::Scalar;     /*!< \brief Inherited scalar type*/
-        using VectorType = typename Base::VectorType; /*!< \brief Inherited vector type*/
-        using WFunctor = typename Base::WFunctor;   /*!< \brief Weight Function*/
-
-    protected:
+        enum { PROVIDES_MEAN_NORMAL };
         VectorType m_sumN;    /*!< \brief Sum of the normal vectors */
 
     public:
-
         /*! \brief Default constructor */
-        PONCA_MULTIARCH inline MeanNormal() : Base() {}
+        PONCA_MULTIARCH inline MeanNormal() = default;
 
-        /**************************************************************************/
-        /* Initialization                                                         */
-        /**************************************************************************/
-
-        /*! \copydoc Concept::FittingProcedureConcept::init() */
-        PONCA_MULTIARCH inline void init(const VectorType &_evalPos);
-
-        /**************************************************************************/
-        /* Processing                                                             */
-        /**************************************************************************/
-        /*! \copydoc Concept::FittingExtensionConcept::addLocalNeighbor() */
-        PONCA_MULTIARCH inline bool addLocalNeighbor(Scalar w, const VectorType &localQ, const DataPoint &attributes);
+        PONCA_EXPLICIT_CAST_OPERATORS(MeanNormal,meanNormal)
+        PONCA_FITTING_DECLARE_INIT
+        PONCA_FITTING_DECLARE_ADDNEIGHBOR
     }; //class MeanNormal
 
     template<class DataPoint, class _WFunctor, int DiffType, typename T>
     class MeanPositionDer : public T {
-    private:
-        using Base = T; /*!< \brief Generic base type */
-
+    PONCA_FITTING_DECLARE_DEFAULT_TYPES
+    PONCA_FITTING_DECLARE_DEFAULT_DER_TYPES
 
     protected:
         enum {
@@ -138,14 +94,6 @@ namespace Ponca {
             PROVIDES_MEAN_POSITION_DERIVATIVE,    /*!< \brief Provides derivative of the mean position*/
         };
 
-    public:
-        using Scalar = typename Base::Scalar;
-        using VectorType = typename Base::VectorType;
-        using WFunctor = typename Base::WFunctor;
-        using ScalarArray = typename Base::ScalarArray;
-        using VectorArray = typename Base::VectorArray;
-
-    protected:
         /*! \brief Derivatives of the of the input points vectors */
         VectorArray m_dSumP {VectorArray::Zero()};
 
@@ -154,20 +102,10 @@ namespace Ponca {
         PONCA_MULTIARCH inline MeanPositionDer() = default;
 
         PONCA_EXPLICIT_CAST_OPERATORS_DER(MeanPositionDer,meanPositionDer)
-        /************************************************************************/
-        /* Initialization                                                       */
-        /************************************************************************/
-        /*! \see Concept::FittingProcedureConcept::init() */
-        PONCA_MULTIARCH void init(const VectorType &evalPos);
+        PONCA_FITTING_DECLARE_INIT
+        PONCA_FITTING_DECLARE_ADDNEIGHBOR_DER
 
-        /************************************************************************/
-        /* Processing                                                           */
-        /************************************************************************/
-        /*! \see Concept::FittingProcedureConcept::addLocalNeighbor() */
-        PONCA_MULTIARCH inline bool
-        addLocalNeighbor(Scalar w, const VectorType &localQ, const DataPoint &attributes, ScalarArray &dw);
-
-        /*! \see Concept::FittingProcedureConcept::finalize() */
+        /// \brief Compute derivatives of the barycenter. \see MeanPosition::barycenter()
         PONCA_MULTIARCH VectorArray barycenterDerivatives() const
         {
             VectorArray barycenterDer;

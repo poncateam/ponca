@@ -26,13 +26,7 @@ namespace Ponca
 template < class DataPoint, class _WFunctor, typename T >
 class SphereFitImpl : public T
 {
-private:
-    using Base = T;
-
-public:
-    using Scalar     = typename Base::Scalar;     /*!< \brief Inherited scalar type*/
-    using VectorType = typename Base::VectorType; /*!< \brief Inherited vector type*/
-    using WFunctor   = typename Base::WFunctor;   /*!< \brief Weight Function*/
+PONCA_FITTING_DECLARE_DEFAULT_TYPES
 
 protected:
     typedef Eigen::Matrix<Scalar, DataPoint::Dim+2, 1>      VectorA;
@@ -42,29 +36,11 @@ protected:
     MatrixA  m_matA {MatrixA::Zero()};  /*!< \brief Covariance matrix of [1, p, p^2] */
 
 public:
-
     /*! \brief Default constructor */
     PONCA_MULTIARCH inline SphereFitImpl() = default;
 
     PONCA_EXPLICIT_CAST_OPERATORS(SphereFitImpl,sphereFit)
-
-    /**************************************************************************/
-    /* Initialization                                                         */
-    /**************************************************************************/
-
-    /*! \copydoc Concept::FittingProcedureConcept::init() */
-    PONCA_MULTIARCH inline void init (const VectorType& _evalPos);
-
-
-    /**************************************************************************/
-    /* Processing                                                             */
-    /**************************************************************************/
-    /*! \copydoc Concept::FittingProcedureConcept::addLocalNeighbor() */
-    PONCA_MULTIARCH inline bool addLocalNeighbor(Scalar w, const VectorType &localQ, const DataPoint &attributes);
-
-    /*! \copydoc Concept::FittingProcedureConcept::finalize() */
-    PONCA_MULTIARCH inline FIT_RESULT finalize();
-
+    PONCA_FITTING_DECLARE_INIT_ADD_FINALIZE
 }; //class SphereFit
 
 /// \brief Helper alias for Sphere fitting on 3D points using SphereFitImpl
