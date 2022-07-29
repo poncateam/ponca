@@ -58,10 +58,6 @@ protected:
     Scalar m_sumW {0};
 
 public:
-
-    /*! \brief Default constructor */
-    PONCA_MULTIARCH inline PrimitiveBase() = default;
-
     /**************************************************************************/
     /* Initialization                                                         */
     /**************************************************************************/

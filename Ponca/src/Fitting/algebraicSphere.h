@@ -67,10 +67,6 @@ public:
     VectorType m_ul {VectorType::Zero()};   /*!< \brief Linear parameter of the Algebraic hyper-sphere */
 
 public:
-
-    /*! \brief Default constructor */
-    PONCA_MULTIARCH inline AlgebraicSphere() = default;
-
     PONCA_EXPLICIT_CAST_OPERATORS(AlgebraicSphere,algebraicSphere)
 
     /*! \brief Set the scalar field values to 0 and reset the isNormalized() status

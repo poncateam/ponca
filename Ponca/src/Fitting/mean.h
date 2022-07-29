@@ -31,9 +31,6 @@ namespace Ponca {
         VectorType m_sumP {VectorType::Zero()}; /*!< \brief Sum of the input points vectors */
 
     public:
-        /*! \brief Default constructor */
-        PONCA_MULTIARCH inline MeanPosition() = default;
-
         PONCA_EXPLICIT_CAST_OPERATORS(MeanPosition,meanPosition)
         PONCA_FITTING_DECLARE_INIT
         PONCA_FITTING_DECLARE_ADDNEIGHBOR
@@ -74,9 +71,6 @@ namespace Ponca {
         VectorType m_sumN;    /*!< \brief Sum of the normal vectors */
 
     public:
-        /*! \brief Default constructor */
-        PONCA_MULTIARCH inline MeanNormal() = default;
-
         PONCA_EXPLICIT_CAST_OPERATORS(MeanNormal,meanNormal)
         PONCA_FITTING_DECLARE_INIT
         PONCA_FITTING_DECLARE_ADDNEIGHBOR
@@ -98,9 +92,6 @@ namespace Ponca {
         VectorArray m_dSumP {VectorArray::Zero()};
 
     public:
-        /*! \brief Default constructor */
-        PONCA_MULTIARCH inline MeanPositionDer() = default;
-
         PONCA_EXPLICIT_CAST_OPERATORS_DER(MeanPositionDer,meanPositionDer)
         PONCA_FITTING_DECLARE_INIT
         PONCA_FITTING_DECLARE_ADDNEIGHBOR_DER

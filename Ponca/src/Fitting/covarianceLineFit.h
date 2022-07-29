@@ -45,9 +45,6 @@ protected:
     };
 
 public:
-     /*! \brief Default constructor */
-    PONCA_MULTIARCH inline CovarianceLineFitImpl() = default;
-
     PONCA_EXPLICIT_CAST_OPERATORS(CovarianceLineFitImpl,covarianceLineFit)
 
     /*! \copydoc Concept::FittingProcedureConcept::finalize() */

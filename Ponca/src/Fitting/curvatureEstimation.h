@@ -41,9 +41,6 @@ protected:
     static_assert ( DataPoint::Dim == 3, "BaseCurvatureEstimator is only valid in 3D");
 
 public:
-    /*! \brief Default constructor */
-    PONCA_MULTIARCH inline BaseCurvatureEstimator() = default;
-
     PONCA_EXPLICIT_CAST_OPERATORS(BaseCurvatureEstimator,baseCurvatureEstimator)
     PONCA_FITTING_DECLARE_INIT
 
@@ -116,9 +113,6 @@ protected:
     Solver m_solver;    /*!< \brief Solver used to analyse the covariance matrix */
 
 public:
-    /*! \brief Default constructor */
-    PONCA_MULTIARCH inline NormalCovarianceCurvature() = default;
-
     PONCA_EXPLICIT_CAST_OPERATORS(NormalCovarianceCurvature,normalCovarianceCurvature)
     PONCA_FITTING_DECLARE_INIT_ADD_FINALIZE
 };
@@ -182,9 +176,6 @@ protected:
     Mat32 m_tframe;     /*!< \brief Tangent frame */
 
 public:
-    /*! \brief Default constructor */
-    PONCA_MULTIARCH inline ProjectedNormalCovarianceCurvature() = default;
-
     PONCA_EXPLICIT_CAST_OPERATORS(ProjectedNormalCovarianceCurvature,projectedNormalCovarianceCurvature)
     PONCA_FITTING_DECLARE_INIT_ADD_FINALIZE
 };

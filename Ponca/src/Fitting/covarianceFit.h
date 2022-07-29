@@ -52,9 +52,6 @@ namespace Ponca
         Solver m_solver;  /*!<\brief Solver used to analyse the covariance matrix */
 
     public:
-        /*! \brief Default constructor */
-        PONCA_MULTIARCH inline CovarianceFitBase() = default;
-
         PONCA_EXPLICIT_CAST_OPERATORS(CovarianceFitBase,covarianceFit)
         PONCA_FITTING_DECLARE_INIT_ADD_FINALIZE
 
@@ -97,9 +94,6 @@ namespace Ponca
         MatrixType  m_dCov[Base::NbDerivatives];
 
     public:
-        /*! \brief Default constructor */
-        PONCA_MULTIARCH inline CovarianceFitDer() = default;
-
         PONCA_EXPLICIT_CAST_OPERATORS_DER(CovarianceFitDer,covarianceFitDer)
         PONCA_FITTING_DECLARE_INIT_ADDDER_FINALIZE
     }; //class CovarianceFitDer

@@ -43,9 +43,6 @@ protected:
             m_deno;     /*!< \brief Denominator of the quadratic parameter (excluding the 0.5 coefficient) */
 
 public:
-    /*! \brief Default constructor */
-    PONCA_MULTIARCH inline OrientedSphereFitImpl() = default;
-
     PONCA_EXPLICIT_CAST_OPERATORS(OrientedSphereFitImpl,orientedSphereFit)
     PONCA_FITTING_DECLARE_INIT_ADD_FINALIZE
 }; //class OrientedSphereFitImpl
@@ -93,9 +90,6 @@ public:
     VectorArray m_dUl; /*!< \brief Derivative of the hyper-sphere linear term    */
 
 public:
-    /*! \brief Default constructor */
-    PONCA_MULTIARCH inline OrientedSphereDerImpl() = default;
-
     PONCA_EXPLICIT_CAST_OPERATORS_DER(OrientedSphereDerImpl,orientedSphereDer)
     PONCA_FITTING_DECLARE_INIT_ADDDER_FINALIZE
 
