@@ -192,8 +192,11 @@ public:
         if(isPlane())
         {
             //return infinity (non-sense value)
-            Scalar inf = 0.;
-            return VectorType::Constant(Scalar(1.)/inf);
+#ifdef __CUDACC__
+            return VectorType::Constant(Scalar(1.)/Scalar(0));
+#else
+            return VectorType::Constant(std::numeric_limits<Scalar>::infinity());
+#endif
         }
 
         Scalar b = Scalar(1.)/m_uq;
