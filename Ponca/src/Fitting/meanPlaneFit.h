@@ -36,9 +36,6 @@ protected:
     enum { Check = Base::PROVIDES_MEAN_POSITION && Base::PROVIDES_MEAN_NORMAL && Base::PROVIDES_PLANE };
 
 public:
-    /*! \brief Default constructor */
-    PONCA_MULTIARCH inline MeanPlaneFitImpl() = default;
-
     PONCA_EXPLICIT_CAST_OPERATORS(MeanPlaneFitImpl,meanPlaneFit)
 
     /*! \copydoc Concept::FittingProcedureConcept::finalize() */

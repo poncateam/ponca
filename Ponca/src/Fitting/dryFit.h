@@ -32,9 +32,6 @@ namespace Ponca
         enum { check = Base::PROVIDES_PRIMITIVE_BASE };
 
     public:
-        /*! \brief Default constructor */
-        PONCA_MULTIARCH inline DryFit() = default;
-
         PONCA_EXPLICIT_CAST_OPERATORS(DryFit,dryfit)
 
         /*! \copydoc Concept::FittingProcedureConcept::addLocalNeighbor() */

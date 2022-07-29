@@ -43,9 +43,6 @@ protected:
 
     bool m_planeIsReady {false};
 public:
-    /*! \brief Default constructor */
-    PONCA_MULTIARCH inline MongePatch() = default;
-
     PONCA_EXPLICIT_CAST_OPERATORS(MongePatch,mongePatch)
     PONCA_FITTING_DECLARE_INIT_ADD_FINALIZE
 

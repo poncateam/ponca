@@ -55,9 +55,6 @@ protected:
     Scalar m_fitness {0};   /*!< \brief Save the fitness value to avoid side effect with Pratt normalization*/
 
 public:
-    /*! \brief Default constructor */
-    PONCA_MULTIARCH inline GLSParam() = default;
-
     PONCA_EXPLICIT_CAST_OPERATORS(GLSParam,glsParam)
     PONCA_FITTING_DECLARE_FINALIZE
 

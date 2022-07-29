@@ -51,9 +51,6 @@ protected:
     };
 
 public:
-    /*! \brief Default constructor */
-    PONCA_MULTIARCH inline CovariancePlaneFitImpl() = default;
-
     PONCA_EXPLICIT_CAST_OPERATORS(CovariancePlaneFitImpl,covariancePlaneFit)
     PONCA_FITTING_DECLARE_FINALIZE
 
@@ -116,9 +113,6 @@ private:
     ScalarArray m_dDist {ScalarArray::Zero()};      /*!< \brief Derivatives of the MLS scalar field */
 
 public:
-    /*! \brief Default constructor */
-    PONCA_MULTIARCH inline CovariancePlaneDerImpl() = default;
-
     PONCA_EXPLICIT_CAST_OPERATORS_DER(CovariancePlaneDerImpl,covariancePlaneDer)
 
     /*! \see Concept::FittingProcedureConcept::finalize() */

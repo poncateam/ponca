@@ -36,9 +36,6 @@ protected:
     MatrixA  m_matA {MatrixA::Zero()};  /*!< \brief Covariance matrix of [1, p, p^2] */
 
 public:
-    /*! \brief Default constructor */
-    PONCA_MULTIARCH inline SphereFitImpl() = default;
-
     PONCA_EXPLICIT_CAST_OPERATORS(SphereFitImpl,sphereFit)
     PONCA_FITTING_DECLARE_INIT_ADD_FINALIZE
 }; //class SphereFit

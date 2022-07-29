@@ -51,9 +51,6 @@ protected:
     };
 
 public:
-    /*! \brief Default constructor */
-    PONCA_MULTIARCH inline Line() = default;
-
     PONCA_EXPLICIT_CAST_OPERATORS(Line,line)
 
     /*!

@@ -42,9 +42,6 @@ protected:
 
 
 public:
-    /*! \brief Default constructor */
-    PONCA_MULTIARCH inline UnorientedSphereFitImpl() = default;
-
     PONCA_EXPLICIT_CAST_OPERATORS(UnorientedSphereFitImpl,unorientedSphereFit)
     PONCA_FITTING_DECLARE_INIT_ADD_FINALIZE
 

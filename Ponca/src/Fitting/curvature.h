@@ -56,9 +56,6 @@ private:
     static_assert ( DiffType & internal::FitSpaceDer,  "CurvatureEstimator requires spatial derivatives");
 
 public:
-    /*! \brief Default constructor */
-    PONCA_MULTIARCH inline CurvatureEstimator() = default;
-
     PONCA_EXPLICIT_CAST_OPERATORS_DER(CurvatureEstimator,curvatureEstimator)
     PONCA_FITTING_DECLARE_FINALIZE
 
