@@ -104,7 +104,7 @@ struct  OUT_TYPE##PointQuery : Query<QueryInputIsPosition<DataPoint>, \
         using OutputParameter = Scalar;
 
         inline QueryOutputIsRange(OutputParameter radius = OutputParameter(0))
-                : m_squared_radius(std::pow(radius, 2)) {}
+                : m_squared_radius(std::pow(radius, OutputParameter(2))) {}
 
         inline Scalar radius() const { return std::sqrt(m_squared_radius); }
 
