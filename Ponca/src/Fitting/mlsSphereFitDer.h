@@ -18,10 +18,11 @@ namespace Ponca
  * The differentiation is determined by a previous basket elements that must
  * provides first order derivatives of the algebraic sphere parameters.
  *
-
+ * \todo This class is not covered by tests. Add to testsuite !
+ *
  * \ingroup fitting
  */
-template < class DataPoint, class _WFunctor, typename T>
+template < class DataPoint, class _WFunctor, int DiffType, typename T>
 class MlsSphereFitDer : public T
 {
 PONCA_FITTING_DECLARE_DEFAULT_TYPES
@@ -30,14 +31,14 @@ PONCA_FITTING_DECLARE_DEFAULT_DER_TYPES
 protected:
     enum
     {
-        Check = Base::PROVIDES_ALGEBRAIC_SPHERE_DERIVATIVE,
+        Check = Base::PROVIDES_PRIMITIVE_DERIVATIVE & Base::PROVIDES_ALGEBRAIC_SPHERE_DERIVATIVE,
         PROVIDES_NORMAL_SPACE_DERIVATIVE
     };
 
     enum
     {
         Dim     = DataPoint::Dim,       //!< Dimension of the ambient space
-        DerDim  = Base::derDimension()  //!< Number of dimensions used for the differentiation
+        DerDim  = Base::NbDerivatives   //!< Number of dimensions used for the differentiation
     };
 
 public:
@@ -91,8 +92,8 @@ public:
     MatrixArray m_d2Ul; /*!< \brief Second derivative of the hyper-sphere linear term    */
 
 public:
-    PONCA_EXPLICIT_CAST_OPERATORS(MlsSphereFitDer,mlsSphereFitDer)
-    PONCA_FITTING_DECLARE_INIT_ADD_FINALIZE
+    PONCA_EXPLICIT_CAST_OPERATORS_DER(MlsSphereFitDer,mlsSphereFitDer)
+    PONCA_FITTING_DECLARE_INIT_ADDDER_FINALIZE
 
     /*! \brief Returns the derivatives of the scalar field at the evaluation point */
     PONCA_MULTIARCH inline ScalarArray dPotential() const;
