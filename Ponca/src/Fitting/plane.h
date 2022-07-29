@@ -38,35 +38,19 @@ template < class DataPoint, class _WFunctor, typename T >
 class Plane : public T,
               public Eigen::Hyperplane<typename DataPoint::Scalar, DataPoint::Dim >
 {
-private:
-    using Base = T;
+    PONCA_FITTING_DECLARE_DEFAULT_TYPES
 
 public:
     /// \brief Specialization of Eigen::Hyperplane inherited by Ponca::Plane
     using EigenBase = Eigen::Hyperplane<typename DataPoint::Scalar, DataPoint::Dim >;
 
 protected:
-
-    enum
-    {
-        check = Base::PROVIDES_PRIMITIVE_BASE,  /*!< \brief Requires PrimitiveBase */
-        PROVIDES_PLANE                          /*!< \brief Provides a Plane primitive */
-    };
-
-public:
-    using Scalar     = typename Base::Scalar;     /*!< \brief Inherited scalar type*/
-    using VectorType = typename Base::VectorType; /*!< \brief Inherited vector type*/
-    using WFunctor   = typename Base::WFunctor;   /*!< \brief Weight Function*/
-
+    enum { check = Base::PROVIDES_PRIMITIVE_BASE, PROVIDES_PLANE };
 
 public:
 
     /*! \brief Default constructor */
-    PONCA_MULTIARCH inline Plane()
-        : Base(), EigenBase()
-    {
-        init(VectorType::Zero());
-    }
+    PONCA_MULTIARCH inline Plane() : Base(), EigenBase() { init(VectorType::Zero()); }
 
     PONCA_EXPLICIT_CAST_OPERATORS(Plane,compactPlane) //< \fixme To be removed, kept for compatibility only
     PONCA_EXPLICIT_CAST_OPERATORS(Plane,plane)
@@ -138,8 +122,6 @@ public:
         // Uniform gradient defined only by the orientation of the plane
         return EigenBase::normal();
     }
-
-
 }; //class Plane
 
 }

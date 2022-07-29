@@ -87,6 +87,7 @@ FIT_RESULT
 UnorientedSphereFitImpl<DataPoint, _WFunctor, T>::finalize ()
 {
     PONCA_MULTIARCH_STD_MATH(sqrt);
+    constexpr int Dim = DataPoint::Dim;
 
     // Compute status
     if(Base::finalize() != STABLE || Base::m_nbNeighbors < 3)

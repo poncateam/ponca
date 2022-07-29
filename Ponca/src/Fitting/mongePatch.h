@@ -27,20 +27,12 @@ namespace Ponca
 template < class DataPoint, class _WFunctor, typename T>
 class MongePatch : public T
 {
-private:
-    using Base = T;
+PONCA_FITTING_DECLARE_DEFAULT_TYPES
 
 protected:
-    enum
-    {
-        Check = Base::PROVIDES_PLANE && Base::PROVIDES_TANGENT_PLANE_BASIS
-    };
+    enum { Check = Base::PROVIDES_PLANE && Base::PROVIDES_TANGENT_PLANE_BASIS };
 
 public:
-    using Scalar     = typename Base::Scalar;     /*!< \brief Inherited scalar type*/
-    using VectorType = typename Base::VectorType; /*!< \brief Inherited vector type*/
-    using WFunctor   = typename Base::WFunctor;   /*!< \brief Weight Function*/
-
     using SampleMatrix = Eigen::Matrix<Scalar,Eigen::Dynamic,Eigen::Dynamic>;
     using Vector6      = Eigen::Matrix<Scalar,6,1>;
 
@@ -55,22 +47,7 @@ public:
     PONCA_MULTIARCH inline MongePatch() = default;
 
     PONCA_EXPLICIT_CAST_OPERATORS(MongePatch,mongePatch)
-
-    /**************************************************************************/
-    /* Initialization                                                         */
-    /**************************************************************************/
-    /*! \copydoc Concept::FittingProcedureConcept::init() */
-    PONCA_MULTIARCH inline void init (const VectorType& _evalPos);
-
-    /**************************************************************************/
-    /* Processing                                                             */
-    /**************************************************************************/
-    /*! \copydoc Concept::FittingProcedureConcept::addLocalNeighbor() */
-    PONCA_MULTIARCH inline bool addLocalNeighbor(Scalar w, const VectorType &localQ, const DataPoint &attributes);
-
-    /*! \copydoc Concept::FittingProcedureConcept::finalize() */
-    PONCA_MULTIARCH inline FIT_RESULT finalize();
-
+    PONCA_FITTING_DECLARE_INIT_ADD_FINALIZE
 
     //! \brief Returns an estimate of the mean curvature
     PONCA_MULTIARCH inline Scalar kMean() const;

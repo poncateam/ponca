@@ -22,19 +22,11 @@ template < class DataPoint, class _WFunctor, typename T>
  */
 class BaseCurvatureEstimator : public T
 {
-private:
-    typedef T Base;
+PONCA_FITTING_DECLARE_DEFAULT_TYPES
+PONCA_FITTING_DECLARE_MATRIX_TYPE
 
 protected:
-    enum
-    {
-        PROVIDES_PRINCIPALE_CURVATURES
-    };
-
-public:
-    typedef typename Base::Scalar          Scalar;      /*!< \brief Inherited scalar type*/
-    typedef typename Base::VectorType      VectorType;  /*!< \brief Inherited vector type*/
-    typedef typename DataPoint::MatrixType MatrixType;  /*!< \brief Matrix type inherited from DataPoint*/
+    enum { PROVIDES_PRINCIPALE_CURVATURES };
 
 protected:
     /// \brief Principal curvature with highest absolute magnitude
@@ -53,13 +45,7 @@ public:
     PONCA_MULTIARCH inline BaseCurvatureEstimator() = default;
 
     PONCA_EXPLICIT_CAST_OPERATORS(BaseCurvatureEstimator,baseCurvatureEstimator)
-
-public:
-    /**************************************************************************/
-    /* Initialization                                                         */
-    /**************************************************************************/
-    /*! \copydoc Concept::FittingProcedureConcept::init() */
-    PONCA_MULTIARCH inline void init (const VectorType& _evalPos);
+    PONCA_FITTING_DECLARE_INIT
 
     /**************************************************************************/
     /* Use results                                                            */
@@ -110,6 +96,7 @@ template < class DataPoint, class _WFunctor, typename T>
 class NormalCovarianceCurvature : public BaseCurvatureEstimator<DataPoint,_WFunctor,T>
 {
 private:
+    // \todo Remove this, replace by PONCA_FITTING_DECLARE_DEFAULT_TYPES
     typedef BaseCurvatureEstimator<DataPoint,_WFunctor,T> Base;
 
     //TODO(thib) check the curvature values that might be wrong
@@ -133,22 +120,7 @@ public:
     PONCA_MULTIARCH inline NormalCovarianceCurvature() = default;
 
     PONCA_EXPLICIT_CAST_OPERATORS(NormalCovarianceCurvature,normalCovarianceCurvature)
-
-public:
-    /**************************************************************************/
-    /* Initialization                                                         */
-    /**************************************************************************/
-    /*! \copydoc Concept::FittingProcedureConcept::init() */
-    PONCA_MULTIARCH inline void init (const VectorType& _evalPos);
-
-    /**************************************************************************/
-    /* Processing                                                             */
-    /**************************************************************************/
-    /*! \copydoc Concept::FittingProcedureConcept::addLocalNeighbor() */
-    PONCA_MULTIARCH inline bool addLocalNeighbor(Scalar w, const VectorType &localQ, const DataPoint &attributes);
-
-    /*! \copydoc Concept::FittingProcedureConcept::finalize() */
-    PONCA_MULTIARCH inline FIT_RESULT finalize();
+    PONCA_FITTING_DECLARE_INIT_ADD_FINALIZE
 };
 
 
@@ -170,6 +142,7 @@ template < class DataPoint, class _WFunctor, typename T>
 class ProjectedNormalCovarianceCurvature : public BaseCurvatureEstimator<DataPoint,_WFunctor,T>
 {
 private:
+    // \todo Remove this, replace by PONCA_FITTING_DECLARE_DEFAULT_TYPES
     typedef BaseCurvatureEstimator<DataPoint,_WFunctor,T> Base;
 
     //TODO(thib) check the curvature values that might be wrong
@@ -213,22 +186,7 @@ public:
     PONCA_MULTIARCH inline ProjectedNormalCovarianceCurvature() = default;
 
     PONCA_EXPLICIT_CAST_OPERATORS(ProjectedNormalCovarianceCurvature,projectedNormalCovarianceCurvature)
-
-    /**************************************************************************/
-    /* Initialization                                                         */
-    /**************************************************************************/
-    /*! \copydoc Concept::FittingProcedureConcept::init() */
-    PONCA_MULTIARCH inline void init (const VectorType& _evalPos);
-
-    /**************************************************************************/
-    /* Processing                                                             */
-    /**************************************************************************/
-    /*! \copydoc Concept::FittingProcedureConcept::addLocalNeighbor() */
-    PONCA_MULTIARCH inline bool addLocalNeighbor(Scalar w, const VectorType &localQ, const DataPoint &attributes);
-
-    /*! \copydoc Concept::FittingProcedureConcept::finalize() */
-    PONCA_MULTIARCH inline FIT_RESULT finalize();
-
+    PONCA_FITTING_DECLARE_INIT_ADD_FINALIZE
 };
 
 #include "curvatureEstimation.hpp"

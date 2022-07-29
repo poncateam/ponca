@@ -29,29 +29,13 @@ namespace Ponca
 template < class DataPoint, class _WFunctor, typename T >
 class UnorientedSphereFitImpl : public T
 {
-private:
-    using Base = T;
+PONCA_FITTING_DECLARE_DEFAULT_TYPES
 
 protected:
-    enum
-    {
-        Check = Base::PROVIDES_ALGEBRAIC_SPHERE && Base::PROVIDES_MEAN_POSITION
-    };
+    enum { Check = Base::PROVIDES_ALGEBRAIC_SPHERE && Base::PROVIDES_MEAN_POSITION };
 
-public:
-    /*! \brief Scalar type inherited from DataPoint*/
-    typedef typename Base::Scalar     Scalar;
-    /*! \brief Vector type inherited from DataPoint*/
-    typedef typename Base::VectorType VectorType;
-
-protected:
-
-    enum
-    {
-        Dim = VectorType::SizeAtCompileTime //!< Dimension of the ambient space
-    };
-    typedef Eigen::Matrix<Scalar, Dim+1, 1>      VectorB;
-    typedef Eigen::Matrix<Scalar, Dim+1, Dim+1>  MatrixBB;
+    typedef Eigen::Matrix<Scalar, DataPoint::Dim+1, 1>      VectorB;
+    typedef Eigen::Matrix<Scalar, DataPoint::Dim+1, DataPoint::Dim+1>  MatrixBB;
 
     MatrixBB    m_matA {MatrixBB::Zero()}; /*!< \brief The accumulated covariance matrix */
     Scalar      m_sumDotPP {0};            /*!< \brief Sum of the squared relative positions */
@@ -62,21 +46,7 @@ public:
     PONCA_MULTIARCH inline UnorientedSphereFitImpl() = default;
 
     PONCA_EXPLICIT_CAST_OPERATORS(UnorientedSphereFitImpl,unorientedSphereFit)
-
-    /**************************************************************************/
-    /* Initialization                                                         */
-    /**************************************************************************/
-    /*! \copydoc Concept::FittingProcedureConcept::init() */
-    PONCA_MULTIARCH inline void init(const VectorType& _evalPos);
-
-    /**************************************************************************/
-    /* Processing                                                             */
-    /**************************************************************************/
-    /*! \copydoc Concept::FittingProcedureConcept::addLocalNeighbor() */
-    PONCA_MULTIARCH inline bool addLocalNeighbor(Scalar w, const VectorType &localQ, const DataPoint &attributes);
-
-    /*! \copydoc Concept::FittingProcedureConcept::finalize() */
-    PONCA_MULTIARCH inline FIT_RESULT finalize();
+    PONCA_FITTING_DECLARE_INIT_ADD_FINALIZE
 
 }; // class UnorientedSphereFitImpl
 

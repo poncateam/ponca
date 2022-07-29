@@ -36,8 +36,7 @@ template < class DataPoint, class _WFunctor, typename T >
 class Line : public T,
              public Eigen::ParametrizedLine<typename DataPoint::Scalar, DataPoint::Dim >
 {
-private:
-    using Base = T;
+PONCA_FITTING_DECLARE_DEFAULT_TYPES
 
 public:
     /// \brief Specialization of Eigen::ParametrizedLine inherited by Ponca::Line
@@ -52,12 +51,6 @@ protected:
     };
 
 public:
-    using Scalar     = typename DataPoint::Scalar;     /*!< \brief Inherited scalar type*/
-    using VectorType = typename DataPoint::VectorType; /*!< \brief Inherited vector type*/
-    using WFunctor   = _WFunctor;                      /*!< \brief Weight Function*/
-
-public:
-
     /*! \brief Default constructor */
     PONCA_MULTIARCH inline Line() = default;
 

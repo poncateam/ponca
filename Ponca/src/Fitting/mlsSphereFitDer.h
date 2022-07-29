@@ -24,8 +24,8 @@ namespace Ponca
 template < class DataPoint, class _WFunctor, typename T>
 class MlsSphereFitDer : public T
 {
-private:
-    typedef T Base;
+PONCA_FITTING_DECLARE_DEFAULT_TYPES
+PONCA_FITTING_DECLARE_DEFAULT_DER_TYPES
 
 protected:
     enum
@@ -41,13 +41,6 @@ protected:
     };
 
 public:
-    using Scalar     = typename Base::Scalar;     /*!< \brief Inherited scalar type*/
-    using VectorType = typename Base::VectorType; /*!< \brief Inherited vector type*/
-    using WFunctor   = typename Base::WFunctor;   /*!< \brief Weight Function*/
-
-    typedef typename Base::VectorArray VectorArray; /*!< \brief Inherited vector array type */
-    typedef typename Base::ScalarArray ScalarArray; /*!< \brief Inherited scalar array type */
-
     /*!
         \brief Static squared matrix of scalars with a size adapted to the
         differentiation type.
@@ -102,25 +95,7 @@ public:
     PONCA_MULTIARCH inline MlsSphereFitDer() = default;
 
     PONCA_EXPLICIT_CAST_OPERATORS(MlsSphereFitDer,mlsSphereFitDer)
-
-    /************************************************************************/
-    /* Initialization                                                       */
-    /************************************************************************/
-    /*! \see Concept::FittingProcedureConcept::init() */
-    PONCA_MULTIARCH void init(const VectorType &evalPos);
-
-    /************************************************************************/
-    /* Processing                                                           */
-    /************************************************************************/
-    /*! \see Concept::FittingProcedureConcept::addLocalNeighbor() */
-    PONCA_MULTIARCH inline bool addLocalNeighbor(Scalar w, const VectorType &localQ, const DataPoint &attributes);
-
-    /*! \see Concept::FittingProcedureConcept::finalize() */
-    PONCA_MULTIARCH FIT_RESULT finalize();
-
-    /**************************************************************************/
-    /* Use results                                                            */
-    /**************************************************************************/
+    PONCA_FITTING_DECLARE_INIT_ADD_FINALIZE
 
     /*! \brief Returns the derivatives of the scalar field at the evaluation point */
     PONCA_MULTIARCH inline ScalarArray dPotential() const;

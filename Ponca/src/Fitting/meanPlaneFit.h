@@ -29,31 +29,17 @@ namespace Ponca
 template < class DataPoint, class _WFunctor, typename T >
 class MeanPlaneFitImpl : public T
 {
-private:
-    using Base = T;
+PONCA_FITTING_DECLARE_DEFAULT_TYPES
+PONCA_FITTING_DECLARE_MATRIX_TYPE
 
 protected:
-    enum
-    {
-        Check = Base::PROVIDES_MEAN_POSITION && Base::PROVIDES_MEAN_NORMAL && Base::PROVIDES_PLANE
-    };
+    enum { Check = Base::PROVIDES_MEAN_POSITION && Base::PROVIDES_MEAN_NORMAL && Base::PROVIDES_PLANE };
 
 public:
-    using Scalar     = typename Base::Scalar;     /*!< \brief Inherited scalar type*/
-    using VectorType = typename Base::VectorType; /*!< \brief Inherited vector type*/
-    using MatrixType = typename DataPoint::MatrixType;
-    using WFunctor   = typename Base::WFunctor;   /*!< \brief Weight Function*/
-
-public:
-
     /*! \brief Default constructor */
     PONCA_MULTIARCH inline MeanPlaneFitImpl() = default;
 
     PONCA_EXPLICIT_CAST_OPERATORS(MeanPlaneFitImpl,meanPlaneFit)
-
-    /**************************************************************************/
-    /* Processing                                                             */
-    /**************************************************************************/
 
     /*! \copydoc Concept::FittingProcedureConcept::finalize() */
     PONCA_MULTIARCH inline FIT_RESULT finalize()

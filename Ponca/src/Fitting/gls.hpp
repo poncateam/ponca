@@ -4,6 +4,19 @@
  file, You can obtain one at http://mozilla.org/MPL/2.0/. 
 */
 
+template < class DataPoint, class _WFunctor, typename T>
+inline FIT_RESULT
+GLSParam<DataPoint, _WFunctor, T>::finalize()
+{
+    FIT_RESULT bResult = Base::finalize();
+
+    if(bResult != UNDEFINED)
+    {
+        m_fitness = Scalar(1.) - Base::prattNorm2();
+    }
+
+    return bResult;
+}
 
 template < class DataPoint, class _WFunctor, int DiffType, typename T>
 typename GLSDer <DataPoint, _WFunctor, DiffType, T>::ScalarArray
