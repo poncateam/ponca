@@ -36,7 +36,10 @@ set_target_properties(SpatialPartitioning PROPERTIES
   INTERFACE_COMPILE_FEATURES cxx_std_11
 )
 
-target_link_libraries(SpatialPartitioning PUBLIC INTERFACE Eigen3::Eigen)
+if(Eigen3_FOUND)
+    message("Compiling with installed Eigen package, enable transitive linking (Version ${Eigen3_VERSION}, path: ${Eigen3_DIR})")
+    target_link_libraries(SpatialPartitioning PUBLIC INTERFACE Eigen3::Eigen)
+endif()
 
 install(TARGETS SpatialPartitioning
     EXPORT SpatialPartitioningTargets

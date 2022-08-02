@@ -21,8 +21,6 @@ set_target_properties(Common PROPERTIES
   INTERFACE_COMPILE_FEATURES cxx_std_11
 )
 
-#target_link_libraries(Fitting PUBLIC INTERFACE Eigen3::Eigen)
-
 install(TARGETS Common
     EXPORT CommonTargets
     LIBRARY DESTINATION  ${CMAKE_INSTALL_LIBDIR}
