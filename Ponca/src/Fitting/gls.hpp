@@ -58,7 +58,7 @@ template < class DataPoint, class _WFunctor, typename T>
 typename GLSDer <DataPoint, _WFunctor, T>::VectorArray
 GLSDer <DataPoint, _WFunctor, T>::deta_normalized() const
 {
-    return Base::m_t * deta();
+    return Base::m_w.evalScale() * deta();
 }
 
 
@@ -66,7 +66,8 @@ template < class DataPoint, class _WFunctor, typename T>
 typename GLSDer <DataPoint, _WFunctor, T>::ScalarArray
 GLSDer <DataPoint, _WFunctor, T>::dkappa_normalized() const
 {
-    return dkappa() * Base::m_t * Base::m_t;
+    const auto dscale = Base::m_w.evalScale();
++   return dkappa() * dscale * dscale;
 }
 
 
