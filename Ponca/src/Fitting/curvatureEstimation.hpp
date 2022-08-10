@@ -4,7 +4,6 @@ void
 BaseCurvatureEstimator<DataPoint, _WFunctor, T>::init(const VectorType& _evalPos)
 {
     Base::init(_evalPos);
-
     m_k1 = 0;
     m_k2 = 0;
     m_v1 = VectorType::Zero();
@@ -17,23 +16,23 @@ void
 NormalCovarianceCurvature<DataPoint, _WFunctor, T>::init(const VectorType& _evalPos)
 {
     Base::init(_evalPos);
-
     m_cov = MatrixType::Zero();
     m_cog = VectorType::Zero();
 }
 
 template < class DataPoint, class _WFunctor, typename T>
 bool
-NormalCovarianceCurvature<DataPoint, _WFunctor, T>::addNeighbor(const DataPoint& _nei)
+NormalCovarianceCurvature<DataPoint, _WFunctor, T>::addLocalNeighbor(Scalar w,
+                                                              const VectorType &localQ,
+                                                              const DataPoint &attributes)
 {
-    bool bResult = Base::addNeighbor(_nei);
-
-    if(bResult)
+    if( Base::addLocalNeighbor(w, localQ, attributes) )
     {
-        m_cov += _nei.normal() * _nei.normal().transpose();
-        m_cog += _nei.normal();
+        m_cov += w * attributes.normal() * attributes.normal().transpose();
+        m_cog += attributes.normal();
+        return true;
     }
-    return bResult;
+    return false;
 }
 
 template < class DataPoint, class _WFunctor, typename T>
@@ -49,11 +48,10 @@ NormalCovarianceCurvature<DataPoint, _WFunctor, T>::finalize ()
     if(this->isReady())
     {
         // center of gravity (mean)
-        m_cog /= Base::m_nbNeighbors;
+        m_cog /= Base::m_sumW;
 
-        // covariance matrix
-        m_cov /= Base::m_nbNeighbors;
-        m_cov -= m_cog*m_cog.transpose();
+        // Center the covariance on the centroid
+        m_cov = m_cov/Base::m_sumW - m_cog * m_cog.transpose();
 
         m_solver.computeDirect(m_cov);
 
@@ -102,25 +100,23 @@ ProjectedNormalCovarianceCurvature<DataPoint, _WFunctor, T>::init(const VectorTy
 
 template < class DataPoint, class _WFunctor, typename T>
 bool
-ProjectedNormalCovarianceCurvature<DataPoint, _WFunctor, T>::addNeighbor(const DataPoint& _nei)
+ProjectedNormalCovarianceCurvature<DataPoint, _WFunctor, T>::addLocalNeighbor(Scalar w,
+                                                              const VectorType &localQ,
+                                                              const DataPoint &attributes)
 {
     if(m_pass == FIRST_PASS)
     {
-        return Base::addNeighbor(_nei);
+        return Base::addLocalNeighbor(w, localQ, attributes);
     }
     else if(m_pass == SECOND_PASS)
     {
-        VectorType q = _nei.pos() - Base::m_evalPos;
-        if(Base::m_w.w(q, _nei)>0)
-        {
-            // project normal on plane
-            VectorType n = _nei.normal();
-            Vector2 proj = m_tframe.transpose() * n;
+        // project normal on plane
+        VectorType n = attributes.normal();
+        Vector2 proj = m_tframe.transpose() * n;
 
-            m_cov += proj * proj.transpose();
-            m_cog += proj;
-            return true;
-        }
+        m_cov += proj * proj.transpose();
+        m_cog += w * proj;
+        return true;
     }
     return false;
 }
@@ -162,11 +158,10 @@ ProjectedNormalCovarianceCurvature<DataPoint, _WFunctor, T>::finalize ()
     else if(m_pass == SECOND_PASS)
     {
         // center of gravity (mean)
-        m_cog /= Base::m_nbNeighbors;
+        m_cog /= Base::m_sumW;
 
-        // covariance matrix
-        m_cov /= Base::m_nbNeighbors;
-        m_cov -= m_cog*m_cog.transpose();
+        // Center the covariance on the centroid
+        m_cov = m_cov/Base::m_sumW - m_cog * m_cog.transpose();
 
         m_solver.computeDirect(m_cov);
 

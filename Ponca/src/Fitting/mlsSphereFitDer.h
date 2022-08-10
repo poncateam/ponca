@@ -18,35 +18,30 @@ namespace Ponca
  * The differentiation is determined by a previous basket elements that must
  * provides first order derivatives of the algebraic sphere parameters.
  *
-
+ * \todo This class is not covered by tests. Add to testsuite !
+ *
  * \ingroup fitting
  */
-template < class DataPoint, class _WFunctor, typename T>
+template < class DataPoint, class _WFunctor, int DiffType, typename T>
 class MlsSphereFitDer : public T
 {
-private:
-    typedef T Base;
+PONCA_FITTING_DECLARE_DEFAULT_TYPES
+PONCA_FITTING_DECLARE_DEFAULT_DER_TYPES
 
 protected:
     enum
     {
-        Check = Base::PROVIDES_ALGEBRAIC_SPHERE_DERIVATIVE,
+        Check = Base::PROVIDES_PRIMITIVE_DERIVATIVE & Base::PROVIDES_ALGEBRAIC_SPHERE_DERIVATIVE,
         PROVIDES_NORMAL_SPACE_DERIVATIVE
     };
 
     enum
     {
         Dim     = DataPoint::Dim,       //!< Dimension of the ambient space
-        DerDim  = Base::derDimension()  //!< Number of dimensions used for the differentiation
+        DerDim  = Base::NbDerivatives   //!< Number of dimensions used for the differentiation
     };
 
 public:
-    typedef typename Base::Scalar     Scalar;     /*!< \brief Inherited scalar type*/
-    typedef typename Base::VectorType VectorType; /*!< \brief Inherited vector type*/
-
-    typedef typename Base::VectorArray VectorArray; /*!< \brief Inherited vector array type */
-    typedef typename Base::ScalarArray ScalarArray; /*!< \brief Inherited scalar array type */
-
     /*!
         \brief Static squared matrix of scalars with a size adapted to the
         differentiation type.
@@ -55,6 +50,8 @@ public:
         only. Such Matrix is typically used to represent Hessian matrix of
         multivariate single-valued functions such as \f$ u_c \f$ and \f$ u_q \f$
         of an AlgebraicSphere obtained from a fitting procedure.
+
+        \todo check with MatrixType, VectorArray and ScalarArray
      */
     typedef Eigen::Matrix< Scalar, DerDim, DerDim > Matrix;
 
@@ -95,24 +92,8 @@ public:
     MatrixArray m_d2Ul; /*!< \brief Second derivative of the hyper-sphere linear term    */
 
 public:
-    /************************************************************************/
-    /* Initialization                                                       */
-    /************************************************************************/
-    /*! \see Concept::FittingProcedureConcept::init() */
-    PONCA_MULTIARCH void init(const VectorType &evalPos);
-
-    /************************************************************************/
-    /* Processing                                                           */
-    /************************************************************************/
-    /*! \see Concept::FittingProcedureConcept::addNeighbor() */
-    PONCA_MULTIARCH bool addNeighbor(const DataPoint &nei);
-
-    /*! \see Concept::FittingProcedureConcept::finalize() */
-    PONCA_MULTIARCH FIT_RESULT finalize();
-
-    /**************************************************************************/
-    /* Use results                                                            */
-    /**************************************************************************/
+    PONCA_EXPLICIT_CAST_OPERATORS_DER(MlsSphereFitDer,mlsSphereFitDer)
+    PONCA_FITTING_DECLARE_INIT_ADDDER_FINALIZE
 
     /*! \brief Returns the derivatives of the scalar field at the evaluation point */
     PONCA_MULTIARCH inline ScalarArray dPotential() const;

@@ -7,7 +7,7 @@
 
 #pragma once
 
-#include "./primitive.h" // PrimitiveBase
+#include "./defines.h"
 
 #include PONCA_MULTIARCH_INCLUDE_STD(cmath)
 #include PONCA_MULTIARCH_INCLUDE_STD(limits)
@@ -44,75 +44,51 @@ namespace Ponca
 */
 
 
-template < class DataPoint, class _WFunctor, typename T = void  >
-class AlgebraicSphere : public PrimitiveBase<DataPoint, _WFunctor>
+template < class DataPoint, class _WFunctor, typename T >
+class AlgebraicSphere : public T
 {
-private:
-
-    typedef PrimitiveBase<DataPoint, _WFunctor> Base;
+    PONCA_FITTING_DECLARE_DEFAULT_TYPES
 
 protected:
-
     enum
     {
-        PROVIDES_ALGEBRAIC_SPHERE /*!< \brief Provides Algebraic Sphere */
+        check = Base::PROVIDES_PRIMITIVE_BASE,  /*!< \brief Requires PrimitiveBase */
+        PROVIDES_ALGEBRAIC_SPHERE               /*!< \brief Provides Algebraic Sphere */
     };
 
-public:
-
-    /*! \brief Scalar type inherited from DataPoint */
-    typedef typename DataPoint::Scalar     Scalar;
-    /*! \brief Vector type inherited from DataPoint */
-    typedef typename DataPoint::VectorType VectorType;
-    /*! \brief Weight Function */
-    typedef _WFunctor                      WFunctor;
-
-private:
-
-    //! \brief Evaluation position (needed for centered basis)
-    VectorType m_p;
-
 protected:
-
     //! \brief Is the implicit scalar field normalized using Pratt
     bool m_isNormalized;
 
 // results
 public:
-
-    Scalar m_uc,       /*!< \brief Constant parameter of the Algebraic hyper-sphere */
-            m_uq;       /*!< \brief Quadratic parameter of the Algebraic hyper-sphere */
-    VectorType m_ul;   /*!< \brief Linear parameter of the Algebraic hyper-sphere */
+    Scalar m_uc {0},       /*!< \brief Constant parameter of the Algebraic hyper-sphere */
+           m_uq {0};       /*!< \brief Quadratic parameter of the Algebraic hyper-sphere */
+    VectorType m_ul {VectorType::Zero()};   /*!< \brief Linear parameter of the Algebraic hyper-sphere */
 
 public:
-
-    /*! \brief Default constructor */
-    PONCA_MULTIARCH inline AlgebraicSphere()
-        : Base()
-    {
-        m_p = VectorType::Zero();
-        resetPrimitive();
-    }
-
-    /*! \brief Explicit conversion to AlgebraicSphere, to access methods potentially hidden by inheritage */
-    PONCA_MULTIARCH inline
-    AlgebraicSphere<DataPoint, WFunctor, T>& algebraicSphere()
-    { return * static_cast<AlgebraicSphere<DataPoint, WFunctor, T>*>(this); }
+    PONCA_EXPLICIT_CAST_OPERATORS(AlgebraicSphere,algebraicSphere)
 
     /*! \brief Set the scalar field values to 0 and reset the isNormalized() status
 
         \warning Set m_ul to Zero(), which leads to nans in OrientedSphere::normal()
-        \FIXME Set and use Base::m_state to handle invalid configuration
     */
-    PONCA_MULTIARCH inline void resetPrimitive()
+    PONCA_MULTIARCH inline void init(const VectorType& _basisCenter = VectorType::Zero())
     {
-        Base::resetPrimitive();
+        Base::init(_basisCenter);
 
-        m_uc = Scalar(0.0);
+        m_uc = Scalar(0);
         m_ul = VectorType::Zero();
-        m_uq = Scalar(0.0);
+        m_uq = Scalar(0);
 
         m_isNormalized = false;
+    }
+
+    /// \brief Tell if the sphere as been correctly set.
+    /// Used to set CONFLICT_ERROR_FOUND during fitting
+    /// \return false when called straight after #init. Should be true after fitting
+    PONCA_MULTIARCH inline bool isValid() const{
+        return !( m_ul.isApprox(VectorType::Zero()) && m_uc == Scalar(0) && m_uq == Scalar(0) );
     }
 
     PONCA_MULTIARCH inline bool operator==(const AlgebraicSphere<DataPoint, WFunctor, T>& other) const{
@@ -129,19 +105,14 @@ public:
         return ! ((*this) == other);
     }
 
-    /*! \brief Reading access to the basis center (evaluation position) */
-    PONCA_MULTIARCH inline const VectorType& basisCenter () const { return m_p; }
-    /*! \brief Writing access to the (evaluation position) */
-    PONCA_MULTIARCH inline       VectorType& basisCenter ()       { return m_p; }
-
     /*! \brief Express the scalar field relatively to a new basis */
     PONCA_MULTIARCH inline void changeBasis(const VectorType& newbasis)
     {
-        VectorType diff = m_p- newbasis;
+        VectorType diff = Base::m_w.basisCenter() - newbasis;
+        Base::m_w.init( newbasis );
         m_uc = m_uc - m_ul.dot(diff) + m_uq * diff.dot(diff);
         m_ul = m_ul - Scalar(2.)*m_uq*diff;
         //m_uq is not changed
-        m_p = newbasis;
         m_isNormalized = false;
         applyPrattNorm();
     }
@@ -208,12 +179,15 @@ public:
         if(isPlane())
         {
             //return infinity (non-sense value)
-            Scalar inf = 0.;
-            return VectorType::Constant(Scalar(1.)/inf);
+#ifdef __CUDACC__
+            return VectorType::Constant(Scalar(1.)/Scalar(0));
+#else
+            return VectorType::Constant(std::numeric_limits<Scalar>::infinity());
+#endif
         }
 
         Scalar b = Scalar(1.)/m_uq;
-        return (Scalar(-0.5)*b)*m_ul + basisCenter();
+        return (Scalar(-0.5)*b)*m_ul + Base::m_w.basisCenter();
     }
 
     //! \brief State indicating when the sphere has been normalized

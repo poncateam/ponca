@@ -8,6 +8,9 @@
 
 #pragma once
 #include "./defines.h"
+#include "./linePrimitive.h" // used to define CovarianceLineFit
+#include "./mean.h"          // used to define CovarianceLineFit
+#include "./covarianceFit.h" // used to define CovarianceLineFit
 
 #include <Eigen/Dense>
 
@@ -15,75 +18,52 @@ namespace Ponca
 {
 
 /*!
-   \brief Line fitting procedure that minimize the orthogonal distance between the samples and the fitted primitive.
+   \brief Line fitting procedure that minimize the orthogonal distance
+   between the samples and the fitted primitive.
 
    \inherit Concept::FittingProcedureConcept
    \see Line
    \see CovariancePlaneFit which use a similar approach for Plane estimation
+
+   \todo Add equations
 
    \warning This class is valid only in 3D.
    \ingroup fitting
  */
 
 template < class DataPoint, class _WFunctor, typename T>
-class CovarianceLineFit : public Line<DataPoint, _WFunctor>
+class CovarianceLineFitImpl : public T
 {
-private:
-    typedef Line<DataPoint, _WFunctor> Base;
-
-public:
-   /*! \brief Scalar type inherited from DataPoint*/
-    typedef typename Base::Scalar     Scalar;
-    /*! \brief Vector type inherited from DataPoint*/
-    typedef typename Base::VectorType VectorType;
-    /*! \brief Vector type inherited from DataPoint*/
-    typedef typename Base::MatrixType MatrixType;
-    /*! \brief Weight Function*/
-    typedef _WFunctor                 WFunctor;
-    /*! \brief Solver used to analyse the covariance matrix*/
-    typedef Eigen::SelfAdjointEigenSolver<MatrixType> Solver;
+    PONCA_FITTING_DECLARE_DEFAULT_TYPES
+    PONCA_FITTING_DECLARE_MATRIX_TYPE
 
 protected:
-     // computation data
-    Scalar  m_sum;       /*!< \brief total number of queries .*/
-    VectorType m_cog;     /*!< \brief Gravity center of the neighborhood */
-    MatrixType m_cov;     /*!< \brief Covariance matrix */
-
-    Solver m_solver;  /*!<\brief Solver used to analyse the covariance matrix */
-    WFunctor m_w;     /*!< \brief Weight function (must inherits BaseWeightFunc) */
+    enum
+    {
+        check = Base::PROVIDES_LINE &&
+                Base::PROVIDES_POSITION_COVARIANCE,
+    };
 
 public:
-     /*! \brief Default constructor */
-    PONCA_MULTIARCH inline CovarianceLineFit() : Base() {}
-    //! \brief Explicit conversion to CovarianceLineFit, to access methods potentially hidden by inheritage */
-    PONCA_MULTIARCH inline
-    CovarianceLineFit<DataPoint, WFunctor, T>& leastSquareLine()
-    { return * static_cast<CovarianceLineFit<DataPoint, WFunctor, T>*>(this); }
-    /**************************************************************************/
-    /* Initialization                                                         */
-    /**************************************************************************/
-    /*! \copydoc Concept::FittingProcedureConcept::setWeightFunc() */
-    PONCA_MULTIARCH inline void setWeightFunc (const WFunctor& _w) { m_w  = _w; }
-
-    /*! \copydoc Concept::FittingProcedureConcept::init() */
-    PONCA_MULTIARCH inline void init (const VectorType& _evalPos);
-
-    /**************************************************************************/
-    /* Processing                                                             */
-    /**************************************************************************/
-    /*! \copydoc Concept::FittingProcedureConcept::addNeighbor() */
-    PONCA_MULTIARCH inline bool addNeighbor(const DataPoint &_nei);
+    PONCA_EXPLICIT_CAST_OPERATORS(CovarianceLineFitImpl,covarianceLineFit)
 
     /*! \copydoc Concept::FittingProcedureConcept::finalize() */
-    PONCA_MULTIARCH inline FIT_RESULT finalize();
-
-    /*! \brief Reading access to the Solver used to analyse the covariance
-      matrix */
-    PONCA_MULTIARCH inline const Solver& solver() const { return m_solver; }
-  
-
+    PONCA_MULTIARCH inline FIT_RESULT finalize()
+    {
+        static const int smallestEigenValue = DataPoint::Dim - 1;
+        if (Base::finalize() == STABLE)
+            Base::setLine(Base::barycenter(), Base::m_solver.eigenvectors().col(smallestEigenValue).normalized());
+        return Base::m_eCurrentState;
+    }
 };
 
-#include "covarianceLineFit.hpp"
+/// \brief Helper alias for Line fitting on 3D points using CovarianceLineFitImpl
+/// \ingroup fittingalias
+template < class DataPoint, class _WFunctor, typename T>
+using CovarianceLineFit =
+                CovarianceLineFitImpl<DataPoint, _WFunctor,
+                CovarianceFitBase<DataPoint, _WFunctor,
+                MeanPosition<DataPoint, _WFunctor,
+                Line<DataPoint, _WFunctor,T>>>>;
 
 } //namespace Ponca

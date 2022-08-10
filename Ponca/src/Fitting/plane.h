@@ -9,7 +9,6 @@
 #pragma once
 
 #include "./defines.h"
-#include "./primitive.h"
 #include <Eigen/Geometry>
 
 namespace Ponca
@@ -35,65 +34,39 @@ namespace Ponca
     \ingroup fitting
 
 */
-template < class DataPoint, class _WFunctor, typename T = void  >
-class Plane : public PrimitiveBase<DataPoint, _WFunctor>,
+template < class DataPoint, class _WFunctor, typename T >
+class Plane : public T,
               public Eigen::Hyperplane<typename DataPoint::Scalar, DataPoint::Dim >
 {
-private:
-
-    using Base      = PrimitiveBase<DataPoint, _WFunctor>;
+    PONCA_FITTING_DECLARE_DEFAULT_TYPES
 
 public:
     /// \brief Specialization of Eigen::Hyperplane inherited by Ponca::Plane
     using EigenBase = Eigen::Hyperplane<typename DataPoint::Scalar, DataPoint::Dim >;
 
-
 protected:
-
-    enum
-    {
-        PROVIDES_PLANE /*!< \brief Provides a Plane primitive */
-    };
-
-public:
-
-    /*! \brief Scalar type inherited from DataPoint */
-    typedef typename DataPoint::Scalar      Scalar;
-    /*! \brief Vector type inherited from DataPoint */
-    typedef typename DataPoint::VectorType  VectorType;
-    /*! \brief Matrix type inherited from DataPoint */
-    typedef typename DataPoint::MatrixType  MatrixType;
-    /*! \brief Weight Function */
-    typedef _WFunctor                       WFunctor;
-
-private:
-
-    //! \brief Evaluation position (needed for centered basis)
-    VectorType m_p;
-
+    enum { check = Base::PROVIDES_PRIMITIVE_BASE, PROVIDES_PLANE };
 
 public:
 
     /*! \brief Default constructor */
-    PONCA_MULTIARCH inline Plane()
-        : Base(), EigenBase()
+    PONCA_MULTIARCH inline Plane() : Base(), EigenBase() { init(VectorType::Zero()); }
+
+    PONCA_EXPLICIT_CAST_OPERATORS(Plane,compactPlane) //< \fixme To be removed, kept for compatibility only
+    PONCA_EXPLICIT_CAST_OPERATORS(Plane,plane)
+
+    /// \brief Set the scalar field values to 0
+    PONCA_MULTIARCH inline void init(const VectorType& _basisCenter = VectorType::Zero())
     {
-        m_p = VectorType::Zero();
-        resetPrimitive();
+        Base::init(_basisCenter);
+        EigenBase::coeffs().setZero();
     }
 
-    /*! \brief Explicit conversion to Plane, to access methods potentially hidden by inheritage */
-    PONCA_MULTIARCH inline
-    Plane<DataPoint, WFunctor, T>& compactPlane()
-    { return * static_cast<Plane<DataPoint, WFunctor, T>*>(this); }
-
-    /*! \brief Set the scalar field values to 0
-         status */
-    PONCA_MULTIARCH inline void resetPrimitive()
-    {
-        Base::resetPrimitive();
-        EigenBase* cc = static_cast<EigenBase*>(this);
-        *cc = EigenBase();
+    /// \brief Tell if the plane as been correctly set.
+    /// Used to set CONFLICT_ERROR_FOUND during fitting
+    /// \return false when called straight after #init. Should be true after fitting
+    PONCA_MULTIARCH inline bool isValid() const{
+        return ! EigenBase::coeffs().isApprox(EigenBase::Coefficients::Zero());
     }
 
     PONCA_MULTIARCH inline bool operator==(const Plane<DataPoint, WFunctor, T>& other) const{
@@ -104,11 +77,6 @@ public:
     PONCA_MULTIARCH inline bool operator!=(const Plane<DataPoint, WFunctor, T>& other) const{
         return ! ((*this) == other);
     }
-
-    /*! \brief Reading access to the basis center (evaluation position) */
-    PONCA_MULTIARCH inline const VectorType& basisCenter () const { return m_p; }
-    /*! \brief Writing access to the (evaluation position) */
-    PONCA_MULTIARCH inline       VectorType& basisCenter ()       { return m_p; }
 
     /* \brief Init the plane from a direction and a position
        \param _dir Orientation of the plane, does not need to be normalized
@@ -131,14 +99,14 @@ public:
     PONCA_MULTIARCH inline Scalar potential (const VectorType& _q) const
     {
         // The potential is the distance from the point to the plane
-        return EigenBase::signedDistance(_q - m_p);
+        return EigenBase::signedDistance(Base::m_w.convertToLocalBasis(_q) );
     }
 
     //! \brief Project a point on the plane
     PONCA_MULTIARCH inline VectorType project (const VectorType& _q) const
     {
         // Project on the normal vector and add the offset value
-        return EigenBase::projection(_q - m_p) + m_p;
+        return EigenBase::projection(Base::m_w.convertToLocalBasis(_q)) + Base::m_w.basisCenter();
     }
 
     //! \brief Scalar field gradient direction at the evaluation point
@@ -154,8 +122,6 @@ public:
         // Uniform gradient defined only by the orientation of the plane
         return EigenBase::normal();
     }
-
-
 }; //class Plane
 
 }

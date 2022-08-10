@@ -10,7 +10,6 @@
 #pragma once
 
 #include "./defines.h"
-#include "./primitive.h" // PrimitiveBase
 #include <Eigen/Geometry>
 #include <Eigen/Core>
 
@@ -33,13 +32,11 @@ namespace Ponca
     \ingroup fitting
 */
 
-template < class DataPoint, class _WFunctor, typename T = void  >
-class Line : public PrimitiveBase<DataPoint, _WFunctor>,
+template < class DataPoint, class _WFunctor, typename T >
+class Line : public T,
              public Eigen::ParametrizedLine<typename DataPoint::Scalar, DataPoint::Dim >
 {
-private:
-
-   typedef PrimitiveBase<DataPoint, _WFunctor> Base;
+PONCA_FITTING_DECLARE_DEFAULT_TYPES
 
 public:
     /// \brief Specialization of Eigen::ParametrizedLine inherited by Ponca::Line
@@ -49,50 +46,31 @@ protected:
 
     enum
     {
-        PROVIDES_LINE /*!< \brief Provides  Line */
+        check = Base::PROVIDES_PRIMITIVE_BASE,  /*!< \brief Requires PrimitiveBase */
+        PROVIDES_LINE                           /*!< \brief Provides  Line */
     };
 
 public:
-
-    /*! \brief Scalar type inherited from DataPoint */
-    typedef typename DataPoint::Scalar      Scalar;
-    /*! \brief Vector type inherited from DataPoint */
-    typedef typename DataPoint::VectorType  VectorType;
-    /*! \brief Matrix type inherited from DataPoint */
-    typedef typename DataPoint::MatrixType  MatrixType;
-    /*! \brief Weight Function */
-    typedef _WFunctor                       WFunctor;
-
-private:
-
-    /*! \brief Evaluation position (needed for centered basis) */
-    VectorType m_p;
-
-public:
-
-    /*! \brief Default constructor */
-    PONCA_MULTIARCH inline Line()
-        : Base()
-    {
-        m_p = VectorType::Zero();
-        resetPrimitive();
-    }
-
-
-    /*! \brief Explicit conversion to Line, to access methods potentially hidden by inheritage */
-    PONCA_MULTIARCH inline
-    Line<DataPoint, WFunctor, T>& line()
-    { return * static_cast<Line<DataPoint, WFunctor, T>*>(this); }
+    PONCA_EXPLICIT_CAST_OPERATORS(Line,line)
 
     /*!
      * \brief Set the scalar field values to 0 and reset the distance() and origin() status
     */
-    PONCA_MULTIARCH inline void resetPrimitive()
+    PONCA_MULTIARCH inline void init(const VectorType& _basisCenter = VectorType::Zero())
     {
-        Base::resetPrimitive();
-        EigenBase* cc = static_cast<EigenBase*>(this);
-        *cc = EigenBase();
+        Base::init(_basisCenter);
+        EigenBase::origin().setZero();
+        EigenBase::direction().setZero();
     }
+
+    /// \brief Tell if the line as been correctly set.
+    /// Used to set CONFLICT_ERROR_FOUND during fitting
+    /// \return false when called straight after #init. Should be true after fitting
+    PONCA_MULTIARCH inline bool isValid() const{
+        static const typename EigenBase::VectorType zeros = EigenBase::VectorType::Zero();
+        return ! ( EigenBase::origin().isApprox(zeros) && EigenBase::direction().isApprox(zeros) ) ;
+    }
+
     /*! \brief Comparison operator */
     PONCA_MULTIARCH inline bool operator==(const Line<DataPoint, WFunctor, T>& other) const{
         return EigenBase::isApprox(other);
@@ -102,11 +80,6 @@ public:
     PONCA_MULTIARCH inline bool operator!=(const Line<DataPoint, WFunctor, T>& other) const{
         return ! ((*this) == other);
     }
-      /*! \brief Reading access to the basis center (evaluation position) */
-    PONCA_MULTIARCH inline const VectorType& basisCenter () const { return m_p; }
-    /*! \brief Writing access to the (evaluation position) */
-    PONCA_MULTIARCH inline       VectorType& basisCenter ()       { return m_p; }
-
 
     /*! \brief Init the line from a direction and a position
        \param _dir Orientation of the line, does not need to be normalized
@@ -123,7 +96,7 @@ public:
     PONCA_MULTIARCH inline Scalar potential ( ) const
     {
         // The potential is the distance from a point to the line
-        return EigenBase::squaredDistance( m_p);
+        return EigenBase::squaredDistance(VectorType::Zero());
     }
 
     /*!  \brief Value of the scalar field at the location \f$ \mathbf{q} \f$,
@@ -132,14 +105,14 @@ public:
     PONCA_MULTIARCH inline Scalar potential (const VectorType& _q) const
     {
         // The potential is the distance from a point to the line
-        return EigenBase::squaredDistance(_q - m_p);
+        return EigenBase::squaredDistance(Base::m_w.convertToLocalBasis(_q));
     }
 
     //! \brief Project a point on the line
     PONCA_MULTIARCH inline VectorType project (const VectorType& _q) const
     {
         // Project on the normal vector and add the offset value
-        return EigenBase::projection(_q - m_p) + m_p;
+        return EigenBase::projection(Base::m_w.convertToLocalBasis(_q)) + Base::m_w.basisCenter();
     }
 }; //class Line
 

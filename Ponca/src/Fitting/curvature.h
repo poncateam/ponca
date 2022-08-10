@@ -27,47 +27,37 @@ namespace Ponca
     If more than one basket element provide a \c dNormal() member, then the last one will be used.
 
     \warning This class is valid only in 3D.
-    \todo Add a compile time check for the working dimension
+
+    \todo Check if PROVIDES_PRINCIPALE_CURVATURES is same as BaseCurvatureEstimator::PROVIDES_PRINCIPALE_CURVATURES
 
     \ingroup fitting
 */
-template < class DataPoint, class _WFunctor, typename T>
+template < class DataPoint, class _WFunctor, int DiffType, typename T>
 class CurvatureEstimator : public T
 {
-private:
-    typedef T Base;
+PONCA_FITTING_DECLARE_DEFAULT_TYPES
+PONCA_FITTING_DECLARE_MATRIX_TYPE
 
 protected:
     enum
     {
-        Check = Base::PROVIDES_NORMAL_SPACE_DERIVATIVE,
+        Check = Base::PROVIDES_NORMAL_DERIVATIVE,
         PROVIDES_PRINCIPALE_CURVATURES
     };
-
-public:
-    typedef typename Base::Scalar          Scalar;      /*!< \brief Inherited scalar type*/
-    typedef typename Base::VectorType      VectorType;  /*!< \brief Inherited vector type*/
-    typedef typename DataPoint::MatrixType MatrixType;  /*!< \brief Matrix type inherited from DataPoint*/
 
 private:
     typedef Eigen::Matrix<Scalar,3,2> Mat32; /*!< \brief Matrix type for tangent plane basis */
     typedef Eigen::Matrix<Scalar,2,2> Mat22; /*!< \brief Matrix type for shape operator */
 
-private:
-    Scalar m_k1, m_k2;
-    VectorType m_v1, m_v2;
+    Scalar m_k1 {0}, m_k2 {0};
+    VectorType m_v1 {VectorType::Zero()}, m_v2{VectorType::Zero()};
 
-    static_assert ( DataPoint::Dim == 3, "BaseCurvatureEstimator is only valid in 3D");
+    static_assert ( DataPoint::Dim == 3, "CurvatureEstimator is only valid in 3D");
+    static_assert ( DiffType & internal::FitSpaceDer,  "CurvatureEstimator requires spatial derivatives");
 
 public:
-    /*! \brief Default constructor */
-    PONCA_MULTIARCH inline CurvatureEstimator() : m_k1(0), m_k2(0) {}
-
-    /**************************************************************************/
-    /* Processing                                                             */
-    /**************************************************************************/
-    /*! \copydoc Concept::FittingProcedureConcept::finalize() */
-    PONCA_MULTIARCH inline FIT_RESULT finalize();
+    PONCA_EXPLICIT_CAST_OPERATORS_DER(CurvatureEstimator,curvatureEstimator)
+    PONCA_FITTING_DECLARE_FINALIZE
 
     /**************************************************************************/
     /* Use results                                                            */
@@ -110,6 +100,7 @@ public:
 
 protected:
     //! \brief Compute a tangent plane basis
+    /// \todo Uniformize with tangentplane basis
     PONCA_MULTIARCH inline Mat32 tangentPlane(bool useNormal = false) const;
 };
 

@@ -5,9 +5,9 @@
 */
 
 
-template < class DataPoint, class _WFunctor, typename T>
+template < class DataPoint, class _WFunctor, int DiffType, typename T>
 void
-MlsSphereFitDer<DataPoint, _WFunctor, T>::init(const VectorType& _evalPos)
+MlsSphereFitDer<DataPoint, _WFunctor, DiffType, T>::init(const VectorType& _evalPos)
 {
     Base::init(_evalPos);
 
@@ -23,48 +23,48 @@ MlsSphereFitDer<DataPoint, _WFunctor, T>::init(const VectorType& _evalPos)
     m_d2SumN = MatrixArray::Zero();
 }
 
-template < class DataPoint, class _WFunctor, typename T>
+template < class DataPoint, class _WFunctor, int DiffType, typename T>
 bool
-MlsSphereFitDer<DataPoint, _WFunctor, T>::addNeighbor(const DataPoint& _nei)
+MlsSphereFitDer<DataPoint, _WFunctor, DiffType, T>::addLocalNeighbor(Scalar w,
+                                                              const VectorType &localQ,
+                                                              const DataPoint &attributes,
+                                                              ScalarArray &dw)
 {
-    bool bResult = Base::addNeighbor(_nei);
-
-    if(bResult)
-    {
-        // centered basis
-        VectorType q = _nei.pos() - Base::basisCenter();
-
+    if( Base::addLocalNeighbor(w, localQ, attributes, dw) ) {
         // compute weight derivatives
         Matrix d2w = Matrix::Zero();
 
         if (Base::isScaleDer())
-            d2w(0,0) = Base::m_w.scaled2w(q, _nei);
+            d2w(0,0) = Base::m_w.scaled2w(localQ, attributes);
 
         if (Base::isSpaceDer())
-            d2w.template bottomRightCorner<Dim,Dim>() = Base::m_w.spaced2w(q, _nei);
+            d2w.template bottomRightCorner<Dim,Dim>() = Base::m_w.spaced2w(localQ, attributes);
 
         if (Base::isScaleDer() && Base::isSpaceDer())
         {
-            d2w.template bottomLeftCorner<Dim,1>() = Base::m_w.scaleSpaced2w(q,_nei);
+            d2w.template bottomLeftCorner<Dim,1>() = Base::m_w.scaleSpaced2w(localQ,attributes);
             d2w.template topRightCorner<1,Dim>() = d2w.template bottomLeftCorner<Dim,1>().transpose();
         }
 
-        m_d2SumDotPN += d2w * _nei.normal().dot(q);
-        m_d2SumDotPP += d2w * q.squaredNorm();
+        m_d2SumDotPN += d2w * attributes.normal().dot(localQ);
+        m_d2SumDotPP += d2w * localQ.squaredNorm();
         m_d2SumW     += d2w;
 
+        /// \fixme Better use eigen here
         for(int i=0; i<Dim; ++i)
         {
-            m_d2SumP.template block<DerDim,DerDim>(0,i*DerDim) += d2w * q[i];
-            m_d2SumN.template block<DerDim,DerDim>(0,i*DerDim) += d2w * _nei.normal()[i];
+            m_d2SumP.template block<DerDim,DerDim>(0,i*DerDim) += d2w * localQ[i];
+            m_d2SumN.template block<DerDim,DerDim>(0,i*DerDim) += d2w * attributes.normal()[i];
         }
+
+        return true;
     }
-    return bResult;
+    return false;
 }
 
-template < class DataPoint, class _WFunctor, typename T>
+template < class DataPoint, class _WFunctor, int DiffType, typename T>
 FIT_RESULT
-MlsSphereFitDer<DataPoint, _WFunctor, T>::finalize()
+MlsSphereFitDer<DataPoint, _WFunctor, DiffType, T>::finalize()
 {
     Base::finalize();
 
@@ -156,9 +156,9 @@ MlsSphereFitDer<DataPoint, _WFunctor, T>::finalize()
     return Base::m_eCurrentState;
 }
 
-template < class DataPoint, class _WFunctor, typename T>
-typename MlsSphereFitDer<DataPoint, _WFunctor, T>::ScalarArray
-MlsSphereFitDer<DataPoint, _WFunctor, T>::dPotential() const
+template < class DataPoint, class _WFunctor, int DiffType, typename T>
+typename MlsSphereFitDer<DataPoint, _WFunctor, DiffType, T>::ScalarArray
+MlsSphereFitDer<DataPoint, _WFunctor, DiffType, T>::dPotential() const
 {
     // Compute the 1st order derivative of the scalar field s = uc + x^T ul + x^T x uq
     // In a centered basis (x=0), we obtain:
@@ -172,18 +172,18 @@ MlsSphereFitDer<DataPoint, _WFunctor, T>::dPotential() const
     return result;
 }
 
-template < class DataPoint, class _WFunctor, typename T>
-typename MlsSphereFitDer<DataPoint, _WFunctor, T>::VectorType
-MlsSphereFitDer<DataPoint, _WFunctor, T>::normal() const
+template < class DataPoint, class _WFunctor, int DiffType, typename T>
+typename MlsSphereFitDer<DataPoint, _WFunctor, DiffType, T>::VectorType
+MlsSphereFitDer<DataPoint, _WFunctor, DiffType, T>::normal() const
 {
     // Compute the 1st order derivative of the scalar field and normalize it
     VectorType grad = Base::m_dUc.template tail<Dim>().transpose() + Base::m_ul;
     return grad.normalized();
 }
 
-template < class DataPoint, class _WFunctor, typename T>
-typename MlsSphereFitDer<DataPoint, _WFunctor, T>::VectorArray
-MlsSphereFitDer<DataPoint, _WFunctor, T>::dNormal() const
+template < class DataPoint, class _WFunctor, int DiffType, typename T>
+typename MlsSphereFitDer<DataPoint, _WFunctor, DiffType, T>::VectorArray
+MlsSphereFitDer<DataPoint, _WFunctor, DiffType, T>::dNormal() const
 {
     // Compute the 1st order derivative of the normal, which is the normalized gradient N = d_x(s) / |d_x(s)|
     // We obtain:

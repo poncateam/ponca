@@ -49,7 +49,7 @@ void testFunction(bool isSigned = true)
     VectorType vCenter = VectorType::Zero(); //::Random() * Eigen::internal::random<Scalar>(0, 1);
     VectorType vCoef = 100 * VectorType(Eigen::internal::random<Scalar>(-1,1), Eigen::internal::random<Scalar>(-1,1), 0);
 
-    Scalar analysisScale = Scalar(.001);// / std::max(std::abs(vCoef.x()), std::abs(vCoef.y()));
+    Scalar analysisScale {.001};// / std::max(std::abs(vCoef.x()), std::abs(vCoef.y()));
     vCenter *= analysisScale;
 
     Scalar rotationAngle = Eigen::internal::random<Scalar>(Scalar(0.), Scalar(2 * M_PI));
@@ -59,7 +59,7 @@ void testFunction(bool isSigned = true)
     qRotation = QuaternionType::Identity();
 
     Scalar epsilon = testEpsilon<Scalar>();
-    Scalar approxEpsilon (0.1);
+    Scalar approxEpsilon {0.1};
 
     vector<DataPoint> vectorPoints(nbPoints);
     vector<DataPoint> vectorPointsOrigin(nbPoints);
@@ -183,9 +183,9 @@ void testFunction(bool isSigned = true)
 //       VERIFY( dUq.template cast<Scalar>().isApprox( fit.m_dUq, der_epsilon ) );
 //       VERIFY( (dUl.template cast<Scalar>()-fit.m_dUl).norm() < fit.m_ul.norm() * der_epsilon );
       // VERIFY( dTau.template cast<Scalar>().isApprox( fit.dtau(), der_epsilon ) );
-      VERIFY( dPotential.template cast<Scalar>().isApprox( flip_fit*fit.dPotential().template cast<Scalar>(), der_epsilon ) );
+      VERIFY( dPotential.template cast<Scalar>().isApprox( flip_fit*fit.dPotential().template cast<Scalar>(), Scalar(der_epsilon) ) );
 
-      VERIFY( dN.template cast<Scalar>().isApprox( flip_fit*fit.dNormal().template cast<Scalar>(), der_epsilon ) );
+      VERIFY( dN.template cast<Scalar>().isApprox( flip_fit*fit.dNormal().template cast<Scalar>(), Scalar(der_epsilon) ) );
       //VERIFY( dKappa.template cast<Scalar>().isApprox( fit.dkappa(), der_epsilon ) );
     }
 
@@ -259,9 +259,15 @@ void callSubTests()
     typedef PointPositionNormal<Scalar, Dim> Point;
     typedef DistWeightFunc<Point, SmoothWeightKernel<Scalar> > WeightSmoothFunc;
 
-    typedef Basket<Point,     WeightSmoothFunc, OrientedSphereFit, /*GLSParam,*/ OrientedSphereScaleSpaceDer, /*GLSDer,*/ CurvatureEstimator> FitSphereOriented;
-    typedef Basket<RefPoint,  RefWeightFunc,    OrientedSphereFit, /*GLSParam,*/ OrientedSphereScaleSpaceDer, /*GLSDer,*/ CurvatureEstimator> RefFitSphereOriented;
-    //typedef Basket<TestPoint, TestWeightFunc,   OrientedSphereFit, /*GLSParam,*/ OrientedSphereScaleSpaceDer, /*GLSDer,*/ CurvatureEstimator> TestFitSphereOriented;
+    using FitSphereOriented    = BasketDiff<
+            Basket<Point, WeightSmoothFunc, OrientedSphereFit>,
+            internal::FitSpaceDer | internal::FitScaleDer, OrientedSphereDer, CurvatureEstimator>;
+    using RefFitSphereOriented = BasketDiff<
+            Basket<RefPoint, RefWeightFunc, OrientedSphereFit>,
+            internal::FitSpaceDer | internal::FitScaleDer, OrientedSphereDer, CurvatureEstimator>;
+//    using TestFitSphereOriented = BasketDiff<Basket<TestPoint, TestWeightFunc, OrientedSphereFit>,
+//            internal::FitScaleDer | internal::FitScaleDer, OrientedSphereDer, CurvatureEstimator>;
+
     CALL_SUBTEST(( testFunction<FitSphereOriented, RefFitSphereOriented, /*TestFitSphereOriented*/FitSphereOriented>(true) ));
 }
 

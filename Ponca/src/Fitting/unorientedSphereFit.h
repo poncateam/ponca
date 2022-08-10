@@ -9,6 +9,7 @@
 #pragma once
 
 #include "./algebraicSphere.h"
+#include "./mean.h"          // used to define UnorientedSphereFit
 
 #include <Eigen/Dense>
 
@@ -25,64 +26,34 @@ namespace Ponca
 
     \ingroup fitting
 */
-template < class DataPoint, class _WFunctor, typename T = void >
-class UnorientedSphereFit : public AlgebraicSphere<DataPoint, _WFunctor>
+template < class DataPoint, class _WFunctor, typename T >
+class UnorientedSphereFitImpl : public T
 {
-private:
-    typedef AlgebraicSphere<DataPoint, _WFunctor> Base;
-
-public:
-    /*! \brief Scalar type inherited from DataPoint*/
-    typedef typename Base::Scalar     Scalar;
-    /*! \brief Vector type inherited from DataPoint*/
-    typedef typename Base::VectorType VectorType;
-    /*! \brief Weight Function*/
-    typedef _WFunctor                 WFunctor;
+PONCA_FITTING_DECLARE_DEFAULT_TYPES
 
 protected:
+    enum { Check = Base::PROVIDES_ALGEBRAIC_SPHERE && Base::PROVIDES_MEAN_POSITION };
 
-    enum
-    {
-        Dim = VectorType::SizeAtCompileTime //!< Dimension of the ambient space
-    };
-    typedef Eigen::Matrix<Scalar, Dim+1, 1>      VectorB;
-    typedef Eigen::Matrix<Scalar, Dim+1, Dim+1>  MatrixBB;
+    typedef Eigen::Matrix<Scalar, DataPoint::Dim+1, 1>      VectorB;
+    typedef Eigen::Matrix<Scalar, DataPoint::Dim+1, DataPoint::Dim+1>  MatrixBB;
 
-    MatrixBB    m_matA;     /*!< \brief The accumulated covariance matrix */
-    VectorType  m_sumP;     /*!< \brief Sum of the relative positions */
-    Scalar      m_sumDotPP, /*!< \brief Sum of the squared relative positions */
-                m_sumW;     /*!< \brief Sum of queries weight */
-
-    WFunctor m_w;      /*!< \brief Weight function (must inherits BaseWeightFunc) */
+    MatrixBB    m_matA {MatrixBB::Zero()}; /*!< \brief The accumulated covariance matrix */
+    Scalar      m_sumDotPP {0};            /*!< \brief Sum of the squared relative positions */
 
 
 public:
-    /*! \brief Default constructor */
-    PONCA_MULTIARCH inline UnorientedSphereFit()
-        : Base(){}
+    PONCA_EXPLICIT_CAST_OPERATORS(UnorientedSphereFitImpl,unorientedSphereFit)
+    PONCA_FITTING_DECLARE_INIT_ADD_FINALIZE
 
+}; // class UnorientedSphereFitImpl
 
-    /**************************************************************************/
-    /* Initialization                                                         */
-    /**************************************************************************/
-    /*! \copydoc Concept::FittingProcedureConcept::setWeightFunc() */
-    PONCA_MULTIARCH inline void setWeightFunc(const WFunctor& _w) { m_w  = _w; }
-
-    /*! \copydoc Concept::FittingProcedureConcept::init() */
-    PONCA_MULTIARCH inline void init(const VectorType& _evalPos);
-
-
-    /**************************************************************************/
-    /* Processing                                                             */
-    /**************************************************************************/
-    /*! \copydoc Concept::FittingProcedureConcept::addNeighbor() */
-    PONCA_MULTIARCH inline bool addNeighbor(const DataPoint& _nei);
-
-    /*! \copydoc Concept::FittingProcedureConcept::finalize() */
-    PONCA_MULTIARCH inline FIT_RESULT finalize();
-
-}; // class UnorientedSphereFit
-
+/// \brief Helper alias for Oriented Sphere fitting on 3D points using UnorientedSphereFitImpl
+/// \ingroup fittingalias
+template < class DataPoint, class _WFunctor, typename T>
+using UnorientedSphereFit =
+UnorientedSphereFitImpl<DataPoint, _WFunctor,
+        MeanPosition<DataPoint, _WFunctor,
+                AlgebraicSphere<DataPoint, _WFunctor,T>>>;
 
 #ifdef TOBEIMPLEMENTED
 
@@ -213,9 +184,9 @@ public:
     \brief Differentiation in scale of the UnorientedSphereFit
     \inherit Concept::FittingExtensionConcept
 
-    Requierement:
+    Requirements:
     \verbatim PROVIDES_ALGEBRAIC_SPHERE \endverbatim
-    Provide:
+    Provides:
     \verbatim PROVIDES_ALGEBRAIC_SPHERE_SCALE_DERIVATIVE \endverbatim
 */
 template < class DataPoint, class _WFunctor, typename T>
@@ -232,9 +203,9 @@ protected:
     \brief Spatial differentiation of the UnorientedSphereFit
     \inherit Concept::FittingExtensionConcept
 
-    Requierement:
+    Requirements:
     \verbatim PROVIDES_ALGEBRAIC_SPHERE \endverbatim
-    Provide:
+    Provides:
     \verbatim PROVIDES_ALGEBRAIC_SPHERE_SPACE_DERIVATIVE \endverbatim
 */
 template < class DataPoint, class _WFunctor, typename T>
@@ -251,9 +222,9 @@ protected:
     \brief Differentiation both in scale and space of the UnorientedSphereFit
     \inherit Concept::FittingExtensionConcept
 
-    Requierement:
+    Requirements:
     \verbatim PROVIDES_ALGEBRAIC_SPHERE \endverbatim
-    Provide:
+    Provides:
     \verbatim PROVIDES_ALGEBRAIC_SPHERE_SCALE_DERIVATIVE
         PROVIDES_ALGEBRAIC_SPHERE_SPACE_DERIVATIVE
     \endverbatim

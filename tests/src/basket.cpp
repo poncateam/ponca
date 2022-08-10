@@ -6,7 +6,7 @@
 
 
 /*!
-    \file test/Grenaille/basket.cpp
+    \file test/basket.cpp
     \brief Test basket utility functions
  */
 
@@ -25,16 +25,18 @@
 using namespace std;
 using namespace Ponca;
 
-template<typename DataPoint, typename Fit>
-void testFunction()
+template<typename DataPoint>
+typename DataPoint::Scalar generateData(KdTree<DataPoint>& tree)
 {
-    // Define related structure
     typedef typename DataPoint::Scalar Scalar;
     typedef typename DataPoint::VectorType VectorType;
-    typedef typename Fit::WFunctor WeightFunc;
 
     //generate sampled sphere
+#ifdef NDEBUG
+    int nbPoints = Eigen::internal::random<int>(500, 1000);
+#else
     int nbPoints = Eigen::internal::random<int>(100, 200);
+#endif
 
     Scalar radius = Eigen::internal::random<Scalar>(1., 10.);
 
@@ -44,15 +46,36 @@ void testFunction()
 
     vector<DataPoint> vectorPoints(nbPoints);
 
-    for(unsigned int i = 0; i < vectorPoints.size(); ++i)
+#ifdef NDEBUG
+#pragma omp parallel for
+#endif
+    for(int i = 0; i < int(vectorPoints.size()); ++i)
     {
         vectorPoints[i] = getPointOnSphere<DataPoint>(radius, center, false, false, false);
     }
 
-    KdTree<DataPoint> tree( vectorPoints );
+    tree.clear();
+    tree.build(vectorPoints);
+
+    return analysisScale;
+}
+
+template<typename Fit>
+void testBasicFunctionalities(const KdTree<typename Fit::DataPoint>& tree, typename Fit::Scalar analysisScale)
+{
+    using DataPoint = typename Fit::DataPoint;
+
+    // Define related structure
+    typedef typename DataPoint::Scalar Scalar;
+    typedef typename DataPoint::VectorType VectorType;
+    typedef typename Fit::WFunctor WeightFunc;
+
+    const auto& vectorPoints = tree.point_data();
 
     // Test for each point if the fitted sphere correspond to the theoretical sphere
+#ifdef NDEBUG
 #pragma omp parallel for
+#endif
     for(int i = 0; i < int(vectorPoints.size()); ++i)
     {
         Fit fit1, fit2;
@@ -65,7 +88,7 @@ void testFunction()
         // use addNeighbor
         fit2.setWeightFunc(WeightFunc(analysisScale));
         fit2.init(vectorPoints[i].pos());
-        for(typename vector<DataPoint>::iterator it = vectorPoints.begin();
+        for(auto it = vectorPoints.begin();
             it != vectorPoints.end();
             ++it)
         {
@@ -86,7 +109,6 @@ void testFunction()
         // rounding error accumulations, and thus the final result
         if (! std::is_same<Scalar, float>::value)
         {
-
             Fit fit3;
             fit3.setWeightFunc(WeightFunc(analysisScale));
             fit3.init(vectorPoints[i].pos());
@@ -98,6 +120,76 @@ void testFunction()
     }
 }
 
+template<typename Fit1, typename Fit2, typename Functor>
+void testIsSame(const KdTree<typename Fit1::DataPoint>& tree,
+                typename Fit1::Scalar analysisScale,
+                Functor f)
+{
+    static_assert(std::is_same<typename Fit1::DataPoint, typename Fit2::DataPoint>::value, "Both Fit should use the same point type");
+    static_assert(std::is_same<typename Fit1::WFunctor, typename Fit2::WFunctor>::value, "Both Fit should use the same WFunctor");
+
+    // Define related structure
+    typedef typename Fit1::Scalar     Scalar;
+    typedef typename Fit1::VectorType VectorType;
+    typedef typename Fit1::WFunctor   WeightFunc;
+    const auto& vectorPoints = tree.point_data();
+
+    // Test for each point if the fitted sphere correspond to the theoretical sphere
+#ifdef NDEBUG
+#pragma omp parallel for
+#endif
+    for(int i = 0; i < int(vectorPoints.size()); ++i)
+    {
+        Fit1 fit1;
+        Fit2 fit2;
+
+        auto neighborhoodRange = tree.range_neighbors(vectorPoints[i].pos(), analysisScale);
+
+        // use compute function
+        fit1.setWeightFunc(WeightFunc(analysisScale));
+        fit1.init(vectorPoints[i].pos());
+        fit1.computeWithIds( neighborhoodRange, vectorPoints );
+
+        fit2.setWeightFunc(WeightFunc(analysisScale));
+        fit2.init(vectorPoints[i].pos());
+        fit2.computeWithIds( neighborhoodRange, vectorPoints );
+
+        f(fit1, fit2);
+    }
+}
+
+
+template<typename Fit1, typename Fit2>
+void isSamePlane(const Fit1& fit1, const Fit2& fit2) {
+    const auto &plane1 = fit1.compactPlane();
+    const auto &plane2 = fit2.compactPlane();
+
+// Test we fit the same plane
+    VERIFY(plane1.isApprox(plane2));
+}
+
+template<typename Fit1, typename Fit2>
+void isSameSphere(const Fit1& fit1, const Fit2& fit2) {
+    const auto &sphere1 = fit1.algebraicSphere();
+    const auto &sphere2 = fit2.algebraicSphere();
+
+    // Test we fit the same plane
+    VERIFY(sphere1 == sphere2);
+}
+
+template<typename Fit1, typename Fit2>
+void hasSamePlaneDerivatives(const Fit1& fit1, const Fit2& fit2) {
+    // Get covariance
+    const auto& dpot1 = fit1.covariancePlaneDer().dPotential();
+    const auto& dpot2 = fit2.covariancePlaneDer().dPotential();
+    const auto& dnor1 = fit1.covariancePlaneDer().dNormal();
+    const auto& dnor2 = fit2.covariancePlaneDer().dNormal();
+
+    // Test we compute the same derivatives
+    VERIFY(dpot1.isApprox( dpot2 ));
+    VERIFY(dnor1.isApprox( dnor2 ));
+}
+
 template<typename Scalar, int Dim>
 void callSubTests()
 {
@@ -106,13 +198,70 @@ void callSubTests()
     // We test only primitive functions and not the fitting procedure
     typedef DistWeightFunc<Point, SmoothWeightKernel<Scalar> > WeightFunc;
 
-    typedef Basket<Point, WeightFunc, CovariancePlaneFit> Plane;
-    typedef Basket<Point, WeightFunc, OrientedSphereFit> Sphere;
+    using TestPlane = Basket<Point, WeightFunc, CovariancePlaneFit>;
+    using Sphere = Basket<Point, WeightFunc, OrientedSphereFit>;
+    // Create an hybrid structure fitting a plane and a sphere at the same time
+    using Hybrid = Basket<Point, WeightFunc, AlgebraicSphere, Plane, MeanNormal, MeanPosition, OrientedSphereFitImpl, CovarianceFitBase, CovariancePlaneFitImpl>;
+
+    using PlaneScaleDiff = BasketDiff<TestPlane, internal::FitScaleDer, CovariancePlaneDer>;
+    using PlaneSpaceDiff = BasketDiff<TestPlane, internal::FitSpaceDer, CovariancePlaneDer>;
+    using PlaneScaleSpaceDiff = BasketDiff<TestPlane, internal::FitScaleDer | internal::FitSpaceDer, CovariancePlaneDer>;
+
+    using HybridScaleDiff = BasketDiff<Hybrid, internal::FitScaleDer, CovariancePlaneDer>;
+    using HybridSpaceDiff = BasketDiff<Hybrid, internal::FitSpaceDer, CovariancePlaneDer>;
+    using HybridScaleSpaceDiff = BasketDiff<Hybrid, internal::FitScaleDer | internal::FitSpaceDer, CovariancePlaneDer>;
+
+    KdTree<Point>tree;
+    Scalar scale = generateData(tree);
 
     for(int i = 0; i < g_repeat; ++i)
     {
-        CALL_SUBTEST(( testFunction<Point, Plane>() ));
-        CALL_SUBTEST(( testFunction<Point, Sphere>() ));
+        // Single Primitive
+        CALL_SUBTEST((testBasicFunctionalities<TestPlane>(tree, scale) ));
+        CALL_SUBTEST((testBasicFunctionalities<Sphere>(tree, scale) ));
+        // Hybrid
+        CALL_SUBTEST((testBasicFunctionalities<Hybrid>(tree, scale) ));
+        //Plane diffs
+        CALL_SUBTEST((testBasicFunctionalities<PlaneScaleDiff>(tree, scale) ));
+        CALL_SUBTEST((testBasicFunctionalities<PlaneSpaceDiff>(tree, scale) ));
+        CALL_SUBTEST((testBasicFunctionalities<PlaneScaleSpaceDiff>(tree, scale) ));
+        // Hybrid diffs
+        CALL_SUBTEST((testBasicFunctionalities<HybridScaleDiff>(tree, scale) ));
+        CALL_SUBTEST((testBasicFunctionalities<HybridSpaceDiff>(tree, scale) ));
+        CALL_SUBTEST((testBasicFunctionalities<HybridScaleSpaceDiff>(tree, scale) ));
+
+        // Check that we get the same Sphere, whatever the extensions
+        auto checkIsSameSphere = [](const auto&f1, const auto&f2){isSameSphere(f1,f2);};
+        CALL_SUBTEST((testIsSame<Sphere, Hybrid>(tree, scale, checkIsSameSphere) ));
+        CALL_SUBTEST((testIsSame<Sphere, HybridScaleDiff>(tree, scale, checkIsSameSphere) ));
+        CALL_SUBTEST((testIsSame<Sphere, HybridSpaceDiff>(tree, scale, checkIsSameSphere) ));
+        CALL_SUBTEST((testIsSame<Sphere, HybridScaleSpaceDiff>(tree, scale, checkIsSameSphere) ));
+
+        // Check that we get the same Plane, whatever the extensions
+        auto checkIsSamePlane = [](const auto&f1, const auto&f2){isSamePlane(f1,f2);};
+        CALL_SUBTEST((testIsSame<TestPlane, Hybrid>(tree, scale, checkIsSamePlane) ));
+        CALL_SUBTEST((testIsSame<TestPlane, HybridScaleDiff>(tree, scale, checkIsSamePlane) ));
+        CALL_SUBTEST((testIsSame<TestPlane, HybridSpaceDiff>(tree, scale, checkIsSamePlane) ));
+        CALL_SUBTEST((testIsSame<TestPlane, HybridScaleSpaceDiff>(tree, scale, checkIsSamePlane) ));
+        //CALL_SUBTEST((testIsSame<PlaneScaleDiff, HybridScaleDiff>(tree, scale, checkIsSamePlane) )); //tested below
+        CALL_SUBTEST((testIsSame<PlaneScaleDiff, HybridSpaceDiff>(tree, scale, checkIsSamePlane) ));
+        CALL_SUBTEST((testIsSame<PlaneScaleDiff, HybridScaleSpaceDiff>(tree, scale, checkIsSamePlane) ));
+        CALL_SUBTEST((testIsSame<PlaneSpaceDiff, HybridScaleDiff>(tree, scale, checkIsSamePlane) ));
+        //CALL_SUBTEST((testIsSame<PlaneSpaceDiff, HybridSpaceDiff>(tree, scale, checkIsSamePlane) )); //tested below
+        CALL_SUBTEST((testIsSame<PlaneSpaceDiff, HybridScaleSpaceDiff>(tree, scale, checkIsSamePlane) ));
+        CALL_SUBTEST((testIsSame<PlaneScaleSpaceDiff, HybridScaleDiff>(tree, scale, checkIsSamePlane) ));
+        CALL_SUBTEST((testIsSame<PlaneScaleSpaceDiff, HybridSpaceDiff>(tree, scale, checkIsSamePlane) ));
+        //CALL_SUBTEST((testIsSame<PlaneScaleSpaceDiff, HybridScaleSpaceDiff>(tree, scale, checkIsSamePlane) )); //tested below
+
+        auto checkIsSamePlaneDerivative = [](const auto&f1, const auto&f2){
+            isSamePlane(f1,f2);
+            hasSamePlaneDerivatives(f1, f2);
+        };
+        // Check that we get the same Plane derivative, whatever if we have one or more primitive fitted.
+        int fff = 0;
+        CALL_SUBTEST((testIsSame<PlaneScaleDiff, HybridScaleDiff>(tree, scale, checkIsSamePlaneDerivative) ));
+        CALL_SUBTEST((testIsSame<PlaneSpaceDiff, HybridSpaceDiff>(tree, scale, checkIsSamePlaneDerivative) ));
+        CALL_SUBTEST((testIsSame<PlaneScaleSpaceDiff, HybridScaleSpaceDiff>(tree, scale, checkIsSamePlaneDerivative) ));
     }
 }
 
@@ -123,21 +272,23 @@ int main(int argc, char** argv)
         return EXIT_FAILURE;
     }
 
-    cout << "Test Basket functions in 3 dimensions..." << endl;
+    cout << "Test Basket functions in 3 dimensions: float" << flush;
     callSubTests<float, 3>();
+    cout << " (ok), double" << flush;
     callSubTests<double, 3>();
+    cout << " (ok)" << flush;
     // don't know why, but we have problems when using the kdtree with long doubles on windows
 #ifndef WIN32
+    cout << ", long double" << flush;
     callSubTests<long double, 3>();
+    cout << " (ok)" << endl;
 #endif
-    cout << "Ok..." << endl;
 
-    cout << "Test Basket functions in 4 dimensions..." << endl;
-    callSubTests<float, 4>();
-    callSubTests<double, 4>();
-    // don't know why, but we have problems when using the kdtree with long doubles on windows
-#ifndef WIN32
-    callSubTests<long double, 4>();
-#endif
-    cout << "Ok..." << endl;
+//    cout << "Test Basket functions in 4 dimensions..." << endl;
+//    callSubTests<float, 4>();
+//    callSubTests<double, 4>();
+//    // don't know why, but we have problems when using the kdtree with long doubles on windows
+//#ifndef WIN32
+//    callSubTests<long double, 4>();
+//#endif
 }

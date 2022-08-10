@@ -19,59 +19,32 @@ namespace Ponca
  * \note This procedure requires at least two passes, the first one for plane fitting,
  * the second one for quadric fitting.
  * \warning This class is valid only in 3D.
-
+ *
+ * \note This class mixes the primitive (MongePatch) and its fitting procedure.
+ *       Could makes sense to split the two
  * \ingroup fitting
  */
 template < class DataPoint, class _WFunctor, typename T>
 class MongePatch : public T
 {
-private:
-    using Base = T;
+PONCA_FITTING_DECLARE_DEFAULT_TYPES
 
 protected:
-    enum
-    {
-        Check = Base::PROVIDES_PLANE && Base::PROVIDES_TANGENT_PLANE_BASIS
-    };
+    enum { Check = Base::PROVIDES_PLANE && Base::PROVIDES_TANGENT_PLANE_BASIS };
 
 public:
-    typedef typename Base::Scalar          Scalar;      /*!< \brief Inherited scalar type*/
-    typedef typename Base::VectorType      VectorType;  /*!< \brief Inherited vector type*/
-    typedef typename DataPoint::MatrixType MatrixType;  /*!< \brief Matrix type inherited from DataPoint*/
-    typedef _WFunctor                       WFunctor;   /*!< \brief Weight Function */
-
-    typedef Eigen::Matrix<Scalar,2,1> Vector2;
-    typedef Eigen::Matrix<Scalar,Eigen::Dynamic,1> VectorX;
-    typedef Eigen::Matrix<Scalar,Eigen::Dynamic,Eigen::Dynamic> MatrixX;
+    using SampleMatrix = Eigen::Matrix<Scalar,Eigen::Dynamic,Eigen::Dynamic>;
+    using Vector6      = Eigen::Matrix<Scalar,6,1>;
 
 protected:
-    MatrixX m_A; /*!< \brief Quadric input samples */
-    MatrixX m_x; /*!< \brief Quadric parameters */
-    VectorX m_b;         /*!< \brief Obervations */
+    SampleMatrix m_A; /*!< \brief Quadric input samples */
+    Vector6      m_x {Vector6::Zero()};      /*!< \brief Quadric parameters */
+    Vector6      m_b {Vector6::Zero()};      /*!< \brief Observations */
 
-    int  m_neiIdx;       /*!< \brief Counter of observations, used in addNeighhor() */
-    bool m_planeIsReady;
+    bool m_planeIsReady {false};
 public:
-
-    /*! \brief Explicit conversion to MongePatch, to access methods potentially hidden by inheritage */
-    PONCA_MULTIARCH inline
-    MongePatch<DataPoint, WFunctor, T>& mongePatch()
-    { return * static_cast<MongePatch<DataPoint, WFunctor, T>*>(this); }
-    /**************************************************************************/
-    /* Initialization                                                         */
-    /**************************************************************************/
-    /*! \copydoc Concept::FittingProcedureConcept::init() */
-    PONCA_MULTIARCH inline void init (const VectorType& _evalPos);
-
-    /**************************************************************************/
-    /* Processing                                                             */
-    /**************************************************************************/
-    /*! \copydoc Concept::FittingProcedureConcept::addNeighbor() */
-    PONCA_MULTIARCH inline bool addNeighbor(const DataPoint &_nei);
-
-    /*! \copydoc Concept::FittingProcedureConcept::finalize() */
-    PONCA_MULTIARCH inline FIT_RESULT finalize();
-
+    PONCA_EXPLICIT_CAST_OPERATORS(MongePatch,mongePatch)
+    PONCA_FITTING_DECLARE_INIT_ADD_FINALIZE
 
     //! \brief Returns an estimate of the mean curvature
     PONCA_MULTIARCH inline Scalar kMean() const;

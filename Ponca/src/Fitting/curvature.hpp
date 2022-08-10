@@ -6,9 +6,9 @@
  file, You can obtain one at http://mozilla.org/MPL/2.0/.
 */
 
-template < class DataPoint, class _WFunctor, typename T>
+template < class DataPoint, class _WFunctor, int DiffType, typename T>
 FIT_RESULT
-CurvatureEstimator<DataPoint, _WFunctor, T>::finalize()
+CurvatureEstimator<DataPoint, _WFunctor, DiffType, T>::finalize()
 {
     FIT_RESULT bResult = Base::finalize();
 
@@ -20,8 +20,8 @@ CurvatureEstimator<DataPoint, _WFunctor, T>::finalize()
     return bResult;
 }
 
-template < class DataPoint, class _WFunctor, typename T>
-FIT_RESULT CurvatureEstimator<DataPoint, _WFunctor, T>::computeCurvature(bool useNormal)
+template < class DataPoint, class _WFunctor, int DiffType, typename T>
+FIT_RESULT CurvatureEstimator<DataPoint, _WFunctor, DiffType, T>::computeCurvature(bool useNormal)
 {
     PONCA_MULTIARCH_STD_MATH(abs);
 
@@ -80,9 +80,9 @@ FIT_RESULT CurvatureEstimator<DataPoint, _WFunctor, T>::computeCurvature(bool us
     return this->getCurrentState();
 }
 
-template < class DataPoint, class _WFunctor, typename T>
-typename CurvatureEstimator<DataPoint, _WFunctor, T>::Mat32
-CurvatureEstimator<DataPoint, _WFunctor, T>::tangentPlane(bool useNormal) const
+template < class DataPoint, class _WFunctor, int DiffType, typename T>
+typename CurvatureEstimator<DataPoint, _WFunctor, DiffType, T>::Mat32
+CurvatureEstimator<DataPoint, _WFunctor, DiffType, T>::tangentPlane(bool useNormal) const
 {
     typedef typename VectorType::Index Index;
 
