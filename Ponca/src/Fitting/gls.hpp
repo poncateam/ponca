@@ -80,7 +80,7 @@ typename GLSDer <DataPoint, _WFunctor, DiffType, T>::ScalarArray
 GLSDer <DataPoint, _WFunctor, DiffType, T>::dkappa_normalized() const
 {
     const auto dscale = Base::m_w.evalScale();
-+   return dkappa() * dscale * dscale;
+    return dkappa() * dscale * dscale;
 }
 
 
