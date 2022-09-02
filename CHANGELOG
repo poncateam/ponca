@@ -32,6 +32,9 @@ The changes introduced in this version mostly come from the PR #56.
 - Tests
     - [fitting] Update according to API changes (#56)
 
+-Docs
+    - Switch to doxygen-awesome-css (#56)
+
 --------------------------------------------------------------------------------
 v.0.3
 - API
