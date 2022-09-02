@@ -25,6 +25,7 @@ if(DOXYGEN_FOUND)
       ${CMAKE_CURRENT_SOURCE_DIR}/src/ponca_changelog.mdoc
       ${CMAKE_CURRENT_SOURCE_DIR}/src/ponca_user_manual.mdoc
       ${CMAKE_CURRENT_SOURCE_DIR}/src/ponca_module_fitting.mdoc
+      ${CMAKE_CURRENT_SOURCE_DIR}/src/ponca_module_common.mdoc
       ${CMAKE_CURRENT_SOURCE_DIR}/src/ponca_module_spatialpartitioning.mdoc
       ${CMAKE_CURRENT_SOURCE_DIR}/src/ponca_getting_started.mdoc
       ${CMAKE_CURRENT_SOURCE_DIR}/src/example.mdoc

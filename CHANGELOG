@@ -34,6 +34,7 @@ The changes introduced in this version mostly come from the PR #56.
 
 -Docs
     - Switch to doxygen-awesome-css (#56)
+    - [common] Add main page
 
 --------------------------------------------------------------------------------
 v.0.3
