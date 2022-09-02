@@ -10,7 +10,7 @@
 /**
   *
   * \defgroup common Common module
-  * \brief This modules includes general purpose classes and methods. See reference manual below.
+  * \brief This modules includes general purpose classes and methods.
   *
   */
 
