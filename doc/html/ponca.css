@@ -4,3 +4,27 @@ html {
     /* Overrides Doxygen Awesome CSS presets */
     --side-nav-arrow-opacity: 0.5;
 }
+
+div.dessin:hover {
+    border-color:#fbeac1 #c89f4e #8c6916;
+}
+
+div.dessin {
+    /*border-color:#CCCCCC #6c6a64 #333230;
+    border-style:solid;
+    border-width:3px;*/
+    float:left;
+    height:200px;
+    margin:4px;
+    width:180px;
+}
+
+td.topbar { border-top: 1px solid; }
+
+td.cellAlignCenter {
+    text-align: center;
+}
+
+table.noBorder{
+    border: 0px;
+}

@@ -1,7 +1,11 @@
 namespace Ponca
 {
 /*!
-  \addtogroup fitting
+  \page fitting Fitting Module: User Manual
+
+  <center>[\ref user_manual_page "Go back to user manual"]</center>
+
+  \tableofcontents
 
   \section fitting_intro Introduction
 
@@ -14,27 +18,36 @@ namespace Ponca
   \image html interpolation.png "Figure 1: (a) An implicit 2D curve fit to a 2D point cloud. (b) A 3D point cloud shown with splats. (c) An implicit 3D surface reconstructed from (b)."
 
 
+  \subsection fitting_primitiveOverview Overview of the fitting primitives
   This is just the tip of the iceberg though, as we also provide methods for dealing with points equipped with non-oriented normals \cite Chen:2013:NOMG, techniques to analyze
   points clouds in scale-space to discover salient structures \cite Mellado:2012:GLS, methods to compute multi-scale principal curvatures \cite Mellado:2013:SSC and methods to compute surface variation using a plane instead of a sphere for the fitting \cite Pauly:2002:PSSimplification.
   The list of primitives and fitting techniques is summarized in the table below:
 
-  Primitive         | Required Input      | Fitting techniques                                | Analysis/Tools                                          | Other usages |
-  ----------------- | ------------------- | ------------------------------------------------- | ------------------------------------------------------- | ------------ |
-  Covariance Matrix | Points only         | CovarianceFitBase (nD), CovarianceFitDer (3D)     | Surface Variation (nD)\cite Pauly:2002:PSSimplification |              |
-  Line              | Points only         | CovarianceLineFitImpl (nD)                        |                                                         |              |
-  Plane             | Points only         | CovariancePlaneFitImpl (nD)                       |                                                         |              |
-  Plane             | Oriented points     | MeanPlaneFit (nD, co-dimension 1)                 |                                                         |              |
-  MongePatch        | Points only         | MongePatch (3D)                                   |                                                         |              |
-  AlgebraicSphere   | Points only         | SphereFit (nD) \cite Guennebaud:2007:APSS         |                                                         |              |
-  AlgebraicSphere   | Oriented points     | OrientedSphereFit (nD) \cite Guennebaud:2007:APSS | GLS (nD) \cite Mellado:2012:GLS , curvature estimators (3D) \cite Lejemble:2021:stable | Ray Traced Curvature \cite Mellado:2013:SSC |
-  AlgebraicSphere   | Non-oriented points | UnorientedSphereFit (nD) \cite Chen:2013:NOMG     |                                                         |              |
+  Primitive         | Required Input      | Fitting techniques                                    |
+  ----------------- | ------------------- | ----------------------------------------------------- |
+  Barycenter        | Points only         | MeanPosition (nD)                                     |
+  Normal Vector     | Oriented points     | MeanNormal (nD, co-dimension 1)                       |
+  Covariance Matrix | Points only         | CovarianceFitBase (nD)                                |
+  Line              | Points only         | CovarianceLineFitImpl (nD)                            |
+  Plane             | Points only         | CovariancePlaneFitImpl (nD)                           |
+  Plane             | Oriented points     | MeanPlaneFitImpl (nD, co-dimension 1)                 |
+  MongePatch        | Points only         | MongePatch (3D)                                       |
+  AlgebraicSphere   | Points only         | SphereFitImpl (nD) \cite Guennebaud:2007:APSS         |
+  AlgebraicSphere   | Oriented points     | OrientedSphereFitImpl (nD) \cite Guennebaud:2007:APSS |
+  AlgebraicSphere   | Non-oriented points | UnorientedSphereFitImpl (nD) \cite Chen:2013:NOMG     |
 
-  In Ponca, each class provides a set of functionalities that are combined, at compile time, in custom user-defined
-  types.
-  This design allows to take benefit of the compiler optimizations and obtain optimal performances at runtime, while
-  keeping a rich and generic API.
-  In order to ease type definition, Ponca provides a compile-time dependency check between all elements, as well as
-  set of predefined aliases to build the most common fitting objects, such as #CovarianceLineFit, #CovariancePlaneFit.
+<!--   Analysis/Tools                                          | Other usages | -->
+<!--   ------------------------------------------------------- | ------------ | -->
+<!--   Surface Variation (nD)\cite Pauly:2002:PSSimplification |              | -->
+<!--                                                           |              |                                                                   In Ponca, each class provides a set of functionalities that are combined, at compile time, in custom user-defined -->
+<!--                                                           |              |                                                                   types. -->
+<!--                                                           |              |                                                                   This design allows to take benefit of the compiler optimizations and obtain optimal performances at runtime, while -->
+<!--                                                           |              |                                                                   keeping a rich and generic API. -->
+<!--                                                           |              |                                                                   In order to ease type definition, Ponca provides a compile-time dependency check between all elements, as well as -->
+<!--   GLS (nD) \cite Mellado:2012:GLS , curvature estimators (3D) \cite Lejemble:2021:stable | Ray Traced Curvature \cite Mellado:2013:SSC |     set of predefined aliases to build the most common fitting objects, such as #CovarianceLineFit, #CovariancePlaneFit. -->
+<!--                                                           |              | -->
+
+  \subpage concepts
 
   In the following, we focus on a basic use of the module, and detail how to:
    - set up data samples that interface with an external code (see Section \ref fitting_datas),
@@ -306,5 +319,7 @@ namespace Ponca
   to use the same code for C++ and CUDA. It has no effect when the code is compiled with GCC or Clang, but it will force the compilation for both host and device architectures when compiling with nvcc. A similar macro system is provided for mathematical functions, to switch between STL and CUDA versions.
 
   Check the \ref example_cxx_ssc_page "C++/Cuda" and \ref example_python_ssc_page "Python/Cuda" (using PyCuda) examples for more details and how-to.
+
+  <center>[\ref user_manual_page "Go back to user manual"]</center>
  */
  }
