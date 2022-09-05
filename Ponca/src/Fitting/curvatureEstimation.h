@@ -16,7 +16,7 @@ template < class DataPoint, class _WFunctor, typename T>
  *
  * \brief Base class for any 3d curvature estimator: holds k1, k2 and associated vectors
  *
- * \todo Check if PROVIDES_PRINCIPALE_CURVATURES is same as CurvatureEstimator::PROVIDES_PRINCIPALE_CURVATURES
+ * \todo Check if PROVIDES_PRINCIPAL_CURVATURES is same as CurvatureEstimator::PROVIDES_PRINCIPAL_CURVATURES
  *
  * \ingroup fitting
  */
@@ -26,7 +26,7 @@ PONCA_FITTING_DECLARE_DEFAULT_TYPES
 PONCA_FITTING_DECLARE_MATRIX_TYPE
 
 protected:
-    enum { PROVIDES_PRINCIPALE_CURVATURES };
+    enum { PROVIDES_PRINCIPAL_CURVATURES };
 
 protected:
     /// \brief Principal curvature with highest absolute magnitude

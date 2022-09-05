@@ -221,17 +221,17 @@ namespace Ponca
   This is done by checking the **capabilities** between the tools.
   A tool providing a given capability needs to provide a given API, ie. a set of methods/attributes that can be safely
   used.
-  For instance, a tool with the capability `PROVIDES_PRINCIPALE_CURVATURES` provides the following methods:
+  For instance, a tool with the capability `PROVIDES_PRINCIPAL_CURVATURES` provides the following methods:
   `k1()`, `k2()`, `k1Direction()`, `k2Direction()`, `kMean()`, `GaussianCurvature()`.
 
   In order to ease tools combinations, each class declare a set of *required* and *provided* capabilities, as listed in the following table:
 
     Fit/Tool                           | Requires                                                              | Provides                                                                                                                                                          |
     ---------------------------------- | --------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-    NormalCovarianceCurvature          |                                                                       | `PROVIDES_PRINCIPALE_CURVATURES`                                                                                                                                  |
+    NormalCovarianceCurvature          |                                                                       | `PROVIDES_PRINCIPAL_CURVATURES`                                                                                                                                   |
     CovarianceLineFit                  |                                                                       | `PROVIDES_LINE`                                                                                                                                                   |
     CovariancePlaneFit                 |                                                                       | `PROVIDES_PLANE` `PROVIDES_TANGENT_PLANE_BASIS`                                                                                                                   |
-    ProjectedNormalCovarianceCurvature | `PROVIDES_PLANE`                                                      | `PROVIDES_PRINCIPALE_CURVATURES`                                                                                                                                  |
+    ProjectedNormalCovarianceCurvature | `PROVIDES_PLANE`                                                      | `PROVIDES_PRINCIPAL_CURVATURES`                                                                                                                                   |
     internal::CovariancePlaneDer       | `PROVIDES_PLANE`                                                      | `PROVIDES_COVARIANCE_PLANE_DERIVATIVE` `PROVIDES_NORMAL_DERIVATIVE`                                                                                               |
     CovariancePlaneSpaceDer            | `PROVIDES_PLANE`                                                      | `PROVIDES_COVARIANCE_PLANE_SPACE_DERIVATIVE` `PROVIDES_NORMAL_SPACE_DERIVATIVE`                                                                                   |
     CovariancePlaneScaleDer            | `PROVIDES_PLANE`                                                      | `PROVIDES_COVARIANCE_PLANE_SCALE_DERIVATIVE` `PROVIDES_NORMAL_SCALE_DERIVATIVE`                                                                                   |
@@ -248,10 +248,10 @@ namespace Ponca
     MlsSphereFitDer                    | `PROVIDES_ALGEBRAIC_SPHERE_DERIVATIVE`                                | `PROVIDES_NORMAL_SPACE_DERIVATIVE`                                                                                                                                |
     GLSParam                           | `PROVIDES_ALGEBRAIC_SPHERE`                                           | `PROVIDES_GLS_PARAMETRIZATION`                                                                                                                                    |
     GLSDer                             | `PROVIDES_ALGEBRAIC_SPHERE_DERIVATIVE` `PROVIDES_GLS_PARAMETRIZATION` | `PROVIDES_GLS_DERIVATIVE`, `PROVIDES_GLS_GEOM_VAR`                                                                                                                |
-    CurvatureEstimator                 | `PROVIDES_NORMAL_SPACE_DERIVATIVE`                                    | `PROVIDES_PRINCIPALE_CURVATURES`                                                                                                                                  |
+    CurvatureEstimator                 | `PROVIDES_NORMAL_SPACE_DERIVATIVE`                                    | `PROVIDES_PRINCIPAL_CURVATURES`                                                                                                                                   |
 
   \note Conflicts between tools providing the same capabilities are currently not checked.
-  For instance, the two tools CurvatureEstimator and NormalCovarianceCurvature both provide `PROVIDES_PRINCIPALE_CURVATURES`.
+  For instance, the two tools CurvatureEstimator and NormalCovarianceCurvature both provide `PROVIDES_PRINCIPAL_CURVATURES`.
   It is possible (even if not recommended) to combine them in the same Basket, however it will require to specify which class should be used when accessing the estimated properties, e.g.:
   \code
   typedef Basket<MyPoint,WeightFunc,OrientedSphereFit,OrientedSphereSpaceDer,CurvatureEstimator,NormalCovarianceCurvature> Fit;

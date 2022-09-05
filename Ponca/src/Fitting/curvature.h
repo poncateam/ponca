@@ -28,7 +28,7 @@ namespace Ponca
 
     \warning This class is valid only in 3D.
 
-    \todo Check if PROVIDES_PRINCIPALE_CURVATURES is same as BaseCurvatureEstimator::PROVIDES_PRINCIPALE_CURVATURES
+    \todo Check if PROVIDES_PRINCIPAL_CURVATURES is same as BaseCurvatureEstimator::PROVIDES_PRINCIPAL_CURVATURES
 
     \ingroup fitting
 */
@@ -42,7 +42,7 @@ protected:
     enum
     {
         Check = Base::PROVIDES_NORMAL_DERIVATIVE,
-        PROVIDES_PRINCIPALE_CURVATURES
+        PROVIDES_PRINCIPAL_CURVATURES
     };
 
 private:
