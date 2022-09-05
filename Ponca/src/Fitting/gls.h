@@ -126,7 +126,8 @@ protected:
         Check = Base::PROVIDES_GLS_PARAMETRIZATION &
                 Base::PROVIDES_PRIMITIVE_DERIVATIVE &
                 Base::PROVIDES_ALGEBRAIC_SPHERE_DERIVATIVE,
-        PROVIDES_GLS_DERIVATIVE
+        PROVIDES_GLS_DERIVATIVE,
+        PROVIDES_GLS_GEOM_VAR
     };
 
 public:
@@ -139,49 +140,26 @@ public:
     PONCA_MULTIARCH inline ScalarArray dtau_normalized()   const; /*!< \brief Compute and return \f$ \tau \f$ derivatives */
     PONCA_MULTIARCH inline VectorArray deta_normalized()   const; /*!< \brief Compute and return \f$ t * d\eta \f$ */
     PONCA_MULTIARCH inline ScalarArray dkappa_normalized() const; /*!< \brief Compute and return \f$ d\kappa * t^{2} \f$ */
-}; //class GLSScaleDer
-
-
-/*!
-    \brief Extension to compute the Geometric Variation of GLSParam
-    \inherit Concept::FittingExtensionConcept
-
-    The Geometric Variation is computed as the weighted sum of the
-    GLS scale-invariant partial derivatives
-    \f[
-     \nu(\mathbf{p},t) =
-     w_\tau   \left(\frac{\delta\tau}{\delta t}\right)^2 +
-     w_\eta   \left( t   \frac{\delta\eta}{\delta t}\right)^2 +
-     w_\kappa \left( t^2 \frac{\delta\kappa}{\delta t}\right)^2
-    \f]
-
-    Method published in \cite Mellado:2012:GLS
-
-    \fixme Remove this class and move method to GLSDer
-
-    \ingroup fitting
-*/
-template < class DataPoint, class _WFunctor, typename T>
-class GLSGeomVar : public T
-{
-PONCA_FITTING_DECLARE_DEFAULT_TYPES
-
-protected:
-    enum
-    {
-        Check = Base::PROVIDES_GLS_DERIVATIVE,
-        PROVIDES_GLS_GEOM_VAR
-    };
-
-public:
 
     /*!
-    \brief Compute and return the Geometric Variation
-    */
+       \brief The Geometric Variation is computed as the weighted sum of the GLS scale-invariant partial derivatives
+       \f[
+        \nu(\mathbf{p},t) =
+        w_\tau   \left(\frac{\delta\tau}{\delta t}\right)^2 +
+        w_\eta   \left( t   \frac{\delta\eta}{\delta t}\right)^2 +
+        w_\kappa \left( t^2 \frac{\delta\kappa}{\delta t}\right)^2
+       \f]
+
+       Method published in \cite Mellado:2012:GLS
+       @param wtau Weight applied to \f$ \tau \f$
+       @param weta Weight applied to \f$ \eta \f$
+       @param wkappa Weight applied to \f$ \kappa \f$
+       @return
+     */
     PONCA_MULTIARCH inline Scalar geomVar(Scalar wtau   = Scalar(1),
-                                    Scalar weta   = Scalar(1),
-                                    Scalar wkappa = Scalar(1)) const;
-};
+                                          Scalar weta   = Scalar(1),
+                                          Scalar wkappa = Scalar(1)) const;
+}; //class GLSScaleDer
 
 
 #include "gls.hpp"

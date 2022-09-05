@@ -85,12 +85,13 @@ GLSDer <DataPoint, _WFunctor, DiffType, T>::dkappa_normalized() const
 
 
 
-template < class DataPoint, class _WFunctor, typename T>
-typename GLSGeomVar <DataPoint, _WFunctor, T>::Scalar
-GLSGeomVar <DataPoint, _WFunctor, T>::geomVar(  Scalar wtau, 
-                                                Scalar weta,
-                                                Scalar wkappa ) const
+template < class DataPoint, class _WFunctor, int DiffType, typename T>
+typename GLSDer <DataPoint, _WFunctor, DiffType, T>::Scalar
+GLSDer <DataPoint, _WFunctor, DiffType, T>::geomVar(  Scalar wtau,
+                                                      Scalar weta,
+                                                      Scalar wkappa ) const
 {
+    static_assert( Base::isScaleDer, "Scale derivatives are required to compute Geometric Variation" );
     Scalar dtau   = Base::dtau_normalized().col(0)(0);
     Scalar deta   = Base::deta_normalized().col(0).norm();
     Scalar dkappa = Base::dkappa_normalized().col(0)(0);
