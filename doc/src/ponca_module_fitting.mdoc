@@ -18,7 +18,7 @@ namespace Ponca
   \image html interpolation.png "Figure 1: (a) An implicit 2D curve fit to a 2D point cloud. (b) A 3D point cloud shown with splats. (c) An implicit 3D surface reconstructed from (b)."
 
 
-  \subsection fitting_primitiveOverview Overview of the fitting primitives
+  \subsection fitting_primitiveOverview Fitting primitives
   This is just the tip of the iceberg though, as we also provide methods for dealing with points equipped with non-oriented normals \cite Chen:2013:NOMG, techniques to analyze
   points clouds in scale-space to discover salient structures \cite Mellado:2012:GLS, methods to compute multi-scale principal curvatures \cite Mellado:2013:SSC and methods to compute surface variation using a plane instead of a sphere for the fitting \cite Pauly:2002:PSSimplification.
   The list of primitives and fitting techniques is summarized in the table below:
@@ -36,6 +36,13 @@ namespace Ponca
   AlgebraicSphere   | Oriented points     | OrientedSphereFitImpl (nD) \cite Guennebaud:2007:APSS |
   AlgebraicSphere   | Non-oriented points | UnorientedSphereFitImpl (nD) \cite Chen:2013:NOMG     |
 
+  \subsection fitting_extensionsOverview Fitting extensions
+
+  As detailed in \subpage concepts, Ponca is designed to do more than primitive fitting: it computes derivatives (in scale and space), provides state of the art geometric descriptors and differential estimators,
+  as summarized in the table below:
+
+  TODO
+
 <!--   Analysis/Tools                                          | Other usages | -->
 <!--   ------------------------------------------------------- | ------------ | -->
 <!--   Surface Variation (nD)\cite Pauly:2002:PSSimplification |              | -->
@@ -47,8 +54,9 @@ namespace Ponca
 <!--   GLS (nD) \cite Mellado:2012:GLS , curvature estimators (3D) \cite Lejemble:2021:stable | Ray Traced Curvature \cite Mellado:2013:SSC |     set of predefined aliases to build the most common fitting objects, such as #CovarianceLineFit, #CovariancePlaneFit. -->
 <!--                                                           |              | -->
 
-  \subpage concepts
 
+
+  \subsection fitting_dicStructure Structure of the documentation
   In the following, we focus on a basic use of the module, and detail how to:
    - set up data samples that interface with an external code (see Section \ref fitting_datas),
    - run the fitting process in itself (see Section \ref fitting_Fitting),
