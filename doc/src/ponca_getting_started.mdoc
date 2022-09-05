@@ -56,13 +56,12 @@
   mkdir build && cd build
   cmake ..
   \endcode
+
   Available cmake options:
-  \code
-OPTION( PONCA_CONFIGURE_EXAMPLES "Include compilation rules for built-in examples"      ON)
-OPTION( PONCA_CONFIGURE_DOC      "Include compilation rules for built-in documentation" ON)
-OPTION( PONCA_CONFIGURE_TESTS    "Include compilation rules for built-in tests"         ON)
-OPTION( PONCA_COVERAGE_TESTING   "Enable coverage reporting" OFF)
-  \endcode
+  \dontinclude ../../CMakeLists.txt
+  \skip USER OPTIONS
+  \until END USER OPTIONS
+
   Then compile using
   \code
   cmake --build . --target TARGET
