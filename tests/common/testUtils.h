@@ -41,7 +41,8 @@ template<> inline long double testEpsilon<long double>()
     return 1e-5;
 }
 
-// Basic point
+//! [PointPositionNormal]
+// Point with position and normal vector
 template<typename _Scalar, int _Dim>
 class PointPositionNormal
 {
@@ -49,13 +50,11 @@ public:
     enum {Dim = _Dim};
     typedef _Scalar Scalar;
     typedef Eigen::Matrix<Scalar, Dim,   1>		VectorType;
-    typedef Eigen::Matrix<Scalar, Dim+1, 1>		HVectorType;
     typedef Eigen::Matrix<Scalar, Dim, Dim>	MatrixType;
-    typedef Eigen::Quaternion<Scalar>			QuaternionType;
 
-    PONCA_MULTIARCH inline PointPositionNormal(  const VectorType &pos = VectorType::Zero(),
-                                            const VectorType& normal = VectorType::Zero()
-                                        )
+    PONCA_MULTIARCH inline PointPositionNormal(
+            const VectorType &pos = VectorType::Zero(),
+            const VectorType& normal = VectorType::Zero() )
         : m_pos(pos), m_normal(normal) {}
 
     PONCA_MULTIARCH inline const VectorType& pos()    const { return m_pos; }
@@ -67,18 +66,18 @@ public:
 private:
     VectorType m_pos, m_normal;
 };
+//! [PointPositionNormal]
 
-// Basic point
+//! [PointPosition]
+/// Point with position, without attribute
 template<typename _Scalar, int _Dim>
 class PointPosition
 {
 public:
     enum {Dim = _Dim};
     typedef _Scalar Scalar;
-    typedef Eigen::Matrix<Scalar, Dim,   1>		VectorType;
-    typedef Eigen::Matrix<Scalar, Dim+1, 1>		HVectorType;
+    typedef Eigen::Matrix<Scalar, Dim,   1>	VectorType;
     typedef Eigen::Matrix<Scalar, Dim, Dim>	MatrixType;
-    typedef Eigen::Quaternion<Scalar>			QuaternionType;
 
     PONCA_MULTIARCH inline PointPosition(  const VectorType &pos = VectorType::Zero() )
         : m_pos(pos) {}
@@ -90,6 +89,7 @@ public:
 private:
     VectorType m_pos;
 };
+//! [PointPosition]
 
 template<typename DataPoint>
 void reverseNormals(std::vector<DataPoint>& _dest, const std::vector<DataPoint>& _src, bool _bRandom = true)
@@ -197,7 +197,8 @@ DataPoint getPointOnPlane(typename DataPoint::VectorType _vPosition,
 {
     typedef typename DataPoint::Scalar Scalar;
     typedef typename DataPoint::VectorType VectorType;
-    typedef typename DataPoint::QuaternionType QuaternionType;
+    typedef Eigen::Quaternion<Scalar> QuaternionType;
+
 
     VectorType vRandom;
     VectorType vRandomDirection = VectorType::Zero();
@@ -261,7 +262,6 @@ getParaboloidZ(Scalar _x, Scalar _y, Scalar _a, Scalar _b)
 template<typename DataPoint>
 DataPoint getPointOnParaboloid(typename DataPoint::VectorType /*_vCenter*/,
                                typename DataPoint::VectorType _vCoef,
-                               typename DataPoint::QuaternionType /*_qRotation*/,
                                typename DataPoint::Scalar _analysisScale,
                                bool _bAddNoise = true)
 {

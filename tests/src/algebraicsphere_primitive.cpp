@@ -55,10 +55,10 @@ void testFunction()
 #endif
     for(int k=0; k<int(vecs.size()); ++k)
     {
+        const auto &fitInitPos = vecs[k].pos();
+
         Fit fit;
         fit.setWeightFunc(WeightFunc(analysisScale));
-
-        const auto &fitInitPos = vecs[k].pos();
         fit.init(fitInitPos);
         fit.compute(vecs);
 
@@ -85,8 +85,8 @@ void callSubTests()
     using Point = PointPositionNormal<Scalar, Dim>;
 
     // We test only primitive functions and not the fitting procedure
-    typedef DistWeightFunc<Point, SmoothWeightKernel<Scalar> > WeightFunc;
-    typedef Basket<Point, WeightFunc, OrientedSphereFit> Sphere;
+    using WeightFunc = DistWeightFunc<Point, SmoothWeightKernel<Scalar> >;
+    using Sphere     = Basket<Point, WeightFunc, OrientedSphereFit>;
 
     for(int i = 0; i < g_repeat; ++i)
     {

@@ -78,24 +78,25 @@ void testBasicFunctionalities(const KdTree<typename Fit::DataPoint>& tree, typen
 #endif
     for(int i = 0; i < int(vectorPoints.size()); ++i)
     {
-        Fit fit1, fit2;
-
-        // use compute function
-        fit1.setWeightFunc(WeightFunc(analysisScale));
-        fit1.init(vectorPoints[i].pos());
-        fit1.compute(vectorPoints);
+        const auto &fitInitPos = vectorPoints[i].pos();
 
         // use addNeighbor
-        fit2.setWeightFunc(WeightFunc(analysisScale));
-        fit2.init(vectorPoints[i].pos());
-        for(auto it = vectorPoints.begin();
-            it != vectorPoints.end();
-            ++it)
-        {
-            fit2.addNeighbor(*it);
-        }
+        //! [Fit Manual Traversal]
+        Fit fit1;
+        fit1.setWeightFunc(WeightFunc(analysisScale));
+        fit1.init(fitInitPos);
+        for(auto it = vectorPoints.begin(); it != vectorPoints.end(); ++it)
+           fit1.addNeighbor(*it);
+        fit1.finalize();
+        //! [Fit Manual Traversal]
 
-        fit2.finalize();
+        // use compute function
+        //! [Fit Compute]
+        Fit fit2;
+        fit2.setWeightFunc(WeightFunc(analysisScale));
+        fit2.init(fitInitPos);
+        fit2.compute(vectorPoints);
+        //! [Fit Compute]
 
         // also test comparison operators
         VERIFY(fit1 == fit1);
@@ -109,10 +110,12 @@ void testBasicFunctionalities(const KdTree<typename Fit::DataPoint>& tree, typen
         // rounding error accumulations, and thus the final result
         if (! std::is_same<Scalar, float>::value)
         {
+            //! [Fit computeWithIds]
             Fit fit3;
             fit3.setWeightFunc(WeightFunc(analysisScale));
-            fit3.init(vectorPoints[i].pos());
-            fit3.computeWithIds( tree.range_neighbors(vectorPoints[i].pos(), analysisScale), vectorPoints );
+            fit3.init(fitInitPos);
+            fit3.computeWithIds( tree.range_neighbors(fitInitPos, analysisScale), vectorPoints );
+            //! [Fit computeWithIds]
             VERIFY(fit3 == fit3);
             VERIFY(fit1 == fit3);
             VERIFY(! (fit1 != fit3));
@@ -193,19 +196,29 @@ void hasSamePlaneDerivatives(const Fit1& fit1, const Fit2& fit2) {
 template<typename Scalar, int Dim>
 void callSubTests()
 {
+    //! [SpecializedPointType]
     typedef PointPositionNormal<Scalar, Dim> Point;
+    //! [SpecializedPointType]
 
     // We test only primitive functions and not the fitting procedure
-    typedef DistWeightFunc<Point, SmoothWeightKernel<Scalar> > WeightFunc;
-
+    //! [WeightFunction]
+    using WeightFunc = DistWeightFunc<Point, SmoothWeightKernel<Scalar> >;
+    //! [WeightFunction]
+    using Sphere     = Basket<Point, WeightFunc, OrientedSphereFit>;
+    //! [PlaneFitType]
     using TestPlane = Basket<Point, WeightFunc, CovariancePlaneFit>;
+    //! [PlaneFitType]
+    //! [FitType]
     using Sphere = Basket<Point, WeightFunc, OrientedSphereFit>;
+    //! [FitType]
     // Create an hybrid structure fitting a plane and a sphere at the same time
     using Hybrid = Basket<Point, WeightFunc, AlgebraicSphere, Plane, MeanNormal, MeanPosition, OrientedSphereFitImpl, CovarianceFitBase, CovariancePlaneFitImpl>;
 
+    //! [PlaneFitDerTypes]
     using PlaneScaleDiff = BasketDiff<TestPlane, internal::FitScaleDer, CovariancePlaneDer>;
     using PlaneSpaceDiff = BasketDiff<TestPlane, internal::FitSpaceDer, CovariancePlaneDer>;
     using PlaneScaleSpaceDiff = BasketDiff<TestPlane, internal::FitScaleDer | internal::FitSpaceDer, CovariancePlaneDer>;
+    //! [PlaneFitDerTypes]
 
     using HybridScaleDiff = BasketDiff<Hybrid, internal::FitScaleDer, CovariancePlaneDer>;
     using HybridSpaceDiff = BasketDiff<Hybrid, internal::FitSpaceDer, CovariancePlaneDer>;

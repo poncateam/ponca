@@ -40,7 +40,6 @@ void testFunction(bool isSigned = true)
     typedef typename DataPoint::Scalar Scalar;
     typedef typename DataPoint::VectorType VectorType;
     //typedef typename DataPoint::MatrixType MatrixType;
-    typedef typename DataPoint::QuaternionType QuaternionType;
 
     //generate sampled paraboloid
     int nbPoints = Eigen::internal::random<int>(10000, 20000);
@@ -54,9 +53,6 @@ void testFunction(bool isSigned = true)
 
     Scalar rotationAngle = Eigen::internal::random<Scalar>(Scalar(0.), Scalar(2 * M_PI));
     VectorType vRotationAxis = VectorType::Random().normalized();
-    QuaternionType /*qRotation = QuaternionType(Eigen::AngleAxis<Scalar>(rotationAngle, vRotationAxis));
-    qRotation = qRotation.normalized();*/
-    qRotation = QuaternionType::Identity();
 
     Scalar epsilon = testEpsilon<Scalar>();
     Scalar approxEpsilon {0.1};
@@ -66,18 +62,18 @@ void testFunction(bool isSigned = true)
     vector<TestDataPoint> testVectorPoints(nbPoints);
     for(unsigned int i = 0; i < vectorPoints.size(); ++i)
     {
-      vectorPointsOrigin[i] = getPointOnParaboloid<DataPoint>(vCenter, vCoef, qRotation, analysisScale*Scalar(1.2), false);
+      vectorPointsOrigin[i] = getPointOnParaboloid<DataPoint>(vCenter, vCoef, analysisScale*Scalar(1.2), false);
       // Add noise:
       // vectorPointsOrigin[i].pos() += VectorType::Random()*1e-6;
       //vectorPointsOrigin[i].normal() = (vectorPointsOrigin[i].normal() + VectorType::Random()*1e-6).normalized();
-      vectorPoints[i].pos() = qRotation * vectorPointsOrigin[i].pos() + vCenter;
-      vectorPoints[i].normal() = qRotation * vectorPointsOrigin[i].normal();
+      vectorPoints[i].pos() = vectorPointsOrigin[i].pos() + vCenter;
+      vectorPoints[i].normal() = vectorPointsOrigin[i].normal();
 
       testVectorPoints[i].pos()    = vectorPoints[i].pos().template cast<TestScalar>();
       testVectorPoints[i].normal() = vectorPoints[i].normal().template cast<TestScalar>();
     }
 
-    VectorType theoricNormal = qRotation * VectorType(0, 0, -1);
+    VectorType theoricNormal = VectorType(0, 0, -1);
 
     TestFit fit;
 

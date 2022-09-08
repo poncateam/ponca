@@ -32,7 +32,6 @@ void testFunction()
     // Define related structure
     typedef typename DataPoint::Scalar Scalar;
     typedef typename DataPoint::VectorType VectorType;
-    typedef typename DataPoint::QuaternionType QuaternionType;
     typedef Basket<DataPoint, WeightFunc, OrientedSphereFit> Fit;
 
     //generate samples
@@ -61,7 +60,6 @@ void testFunction()
     {
         DataPoint p = getPointOnParaboloid<DataPoint>(VectorType(),     // center (not used)
                                                       coeff,
-                                                      QuaternionType(), // (not used)
                                                       width,
                                                       false);           // noise
         p.pos() += center;
