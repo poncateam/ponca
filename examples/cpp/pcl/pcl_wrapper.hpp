@@ -62,7 +62,7 @@ pcl::GlsCurvature<PointInT, PointOutT>::computeCurvature(const pcl::PointCloud<P
     typedef GlsPoint::Scalar Scalar;
     typedef Ponca::DistWeightFunc<GlsPoint, Ponca::SmoothWeightKernel<Scalar> > WeightFunc;
     //typedef Ponca::Basket<GlsPoint, WeightFunc, Ponca::MeanPlaneFit, Ponca::NormalCovarianceCurvature> Fit;
-    typedef Ponca::Basket<GlsPoint, WeightFunc, Ponca::CovariancePlaneFit, Ponca::CovariancePlaneSpaceDer, Ponca::CurvatureEstimator> Fit;
+    typedef Ponca::Basket<GlsPoint, WeightFunc, Ponca::CovariancePlaneFit, Ponca::CovariancePlaneSpaceDer, Ponca::NormalDerivativesCurvatureEstimator> Fit;
 
     Fit fit;
     // Set a weighting function instance using the search radius of the tree as scale

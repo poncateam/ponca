@@ -19,6 +19,8 @@
 #include <Ponca/src/Fitting/gls.h>
 #include <Ponca/src/Fitting/orientedSphereFit.h>
 #include <Ponca/src/Fitting/unorientedSphereFit.h>
+#include <Ponca/src/Fitting/curvature.h>
+#include <Ponca/src/Fitting/curvatureEstimation.h>
 #include <Ponca/src/Fitting/weightFunc.h>
 #include <Ponca/src/Fitting/weightKernel.h>
 
@@ -176,8 +178,8 @@ void callDerivativeSubTests()
 {
     DECLARE_DEFAULT_TYPES
 
-    using FitSmoothOrientedSpatial   = BasketDiff<FitSmoothOriented, internal::FitSpaceDer, OrientedSphereDer, CurvatureEstimator>;
-    using FitConstantOrientedSpatial = BasketDiff<FitConstantOriented, internal::FitSpaceDer, OrientedSphereDer, CurvatureEstimator>;
+    using FitSmoothOrientedSpatial   = BasketDiff<FitSmoothOriented, internal::FitSpaceDer, OrientedSphereDer, CurvatureEstimatorBase, NormalDerivativesCurvatureEstimator>;
+    using FitConstantOrientedSpatial = BasketDiff<FitConstantOriented, internal::FitSpaceDer, OrientedSphereDer, CurvatureEstimatorBase, NormalDerivativesCurvatureEstimator>;
 
     cout << "Testing with perfect sphere (oriented / unoriented) with spatial derivatives..." << endl;
     for(int i = 0; i < g_repeat; ++i)
