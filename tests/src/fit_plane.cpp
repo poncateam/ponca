@@ -144,9 +144,11 @@ void callSubTests()
     typedef Basket<Point, WeightConstantFunc, MeanPlaneFit> MeanFitConstant;
 
     // test if conflicts are detected
+    //! [Conflicting type]
     typedef Basket<Point, WeightConstantFunc, Plane,
             MeanNormal, MeanPosition, MeanPlaneFitImpl,
             CovarianceFitBase, CovariancePlaneFitImpl> Hybrid1; //test conflict detection in one direction
+    //! [Conflicting type]
     typedef Basket<Point, WeightConstantFunc, Plane,
             MeanPosition, CovarianceFitBase, CovariancePlaneFitImpl,
             MeanNormal, MeanPlaneFitImpl> Hybrid2;  //test conflict detection in the second direction

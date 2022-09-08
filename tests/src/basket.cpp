@@ -211,8 +211,14 @@ void callSubTests()
     //! [FitType]
     using Sphere = Basket<Point, WeightFunc, OrientedSphereFit>;
     //! [FitType]
+    //! [HybridType]
     // Create an hybrid structure fitting a plane and a sphere at the same time
-    using Hybrid = Basket<Point, WeightFunc, AlgebraicSphere, Plane, MeanNormal, MeanPosition, OrientedSphereFitImpl, CovarianceFitBase, CovariancePlaneFitImpl>;
+    using Hybrid = Basket<Point, WeightFunc,
+                          AlgebraicSphere, Plane,                     // primitives
+                          MeanNormal, MeanPosition,                   // shared computation
+                          OrientedSphereFitImpl,                      // sphere fitting
+                          CovarianceFitBase, CovariancePlaneFitImpl>; // plane fitting
+    //! [HybridType]
 
     //! [PlaneFitDerTypes]
     using PlaneScaleDiff = BasketDiff<TestPlane, internal::FitScaleDer, CovariancePlaneDer>;

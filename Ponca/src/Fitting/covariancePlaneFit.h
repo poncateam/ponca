@@ -77,12 +77,14 @@ public:
 
 /// \brief Helper alias for Plane fitting on 3D points using CovariancePlaneFitImpl
 /// \ingroup fittingalias
+//! [CovariancePlaneFit Definition]
     template < class DataPoint, class _WFunctor, typename T>
     using CovariancePlaneFit =
     CovariancePlaneFitImpl<DataPoint, _WFunctor,
             CovarianceFitBase<DataPoint, _WFunctor,
                     MeanPosition<DataPoint, _WFunctor,
                             Plane<DataPoint, _WFunctor,T>>>>;
+//! [CovariancePlaneFit Definition]
 
 /*!
     \brief Internal generic class computing the derivatives of covariance plane fits

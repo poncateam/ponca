@@ -53,10 +53,12 @@ public:
 
 /// \brief Helper alias for Plane fitting on points using MeanPlaneFitImpl
 /// \ingroup fittingalias
+//! [MeanPlaneFit Definition]
     template < class DataPoint, class _WFunctor, typename T>
     using MeanPlaneFit =
     MeanPlaneFitImpl<DataPoint, _WFunctor,
-            MeanNormal<DataPoint, _WFunctor,
+        MeanNormal<DataPoint, _WFunctor,
             MeanPosition<DataPoint, _WFunctor,
-            Plane<DataPoint, _WFunctor,T>>>>;
+                Plane<DataPoint, _WFunctor,T>>>>;
+//! [MeanPlaneFit Definition]
 } //namespace Ponca

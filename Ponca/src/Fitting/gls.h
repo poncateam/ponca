@@ -44,12 +44,14 @@ class GLSParam : public T
 {
     PONCA_FITTING_DECLARE_DEFAULT_TYPES
 
+//! [Requirements]
 protected:
     enum
     {
         Check = Base::PROVIDES_ALGEBRAIC_SPHERE,
         PROVIDES_GLS_PARAMETRIZATION
     };
+//! [Requirements]
 
 protected:
     Scalar m_fitness {0};   /*!< \brief Save the fitness value to avoid side effect with Pratt normalization*/

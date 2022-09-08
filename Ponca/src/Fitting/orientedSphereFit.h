@@ -49,12 +49,14 @@ public:
 
 /// \brief Helper alias for Oriented Sphere fitting on 3D points using OrientedSphereFitImpl
 /// \ingroup fittingalias
+//! [OrientedSphereFit Definition]
 template < class DataPoint, class _WFunctor, typename T>
 using OrientedSphereFit =
 OrientedSphereFitImpl<DataPoint, _WFunctor,
         MeanPosition<DataPoint, _WFunctor,
             MeanNormal<DataPoint, _WFunctor,
                 AlgebraicSphere<DataPoint, _WFunctor,T>>>>;
+//! [OrientedSphereFit Definition]
 
 /*!
     \brief Internal generic class performing the Fit derivation
