@@ -28,11 +28,11 @@ jobs:
           cat doc/Doxyfile
       - name: Download recent doxygen
         run: |
-          curl https://www.doxygen.nl/files/doxygen-1.9.1.linux.bin.tar.gz -o  doxygen-1.9.1.linux.bin.tar.gz
-          tar -xvzf doxygen-1.9.1.linux.bin.tar.gz
+          curl https://www.doxygen.nl/files/doxygen-1.9.2.linux.bin.tar.gz -o  doxygen-1.9.2.linux.bin.tar.gz
+          tar -xvzf doxygen-1.9.2.linux.bin.tar.gz
       - name: Build doc
         run: |
-          ./doxygen-1.9.1/bin/doxygen ./build/doc/Doxyfile
+          ./doxygen-1.9.2/bin/doxygen ./build/doc/Doxyfile
       - name: Deploy Doc
         uses: peaceiris/actions-gh-pages@v3
         with:
