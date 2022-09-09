@@ -1,0 +1,17 @@
+digraph "/home/runner/work/ponca/ponca/src/Ponca/src/SpatialPartitioning"
+{
+ // INTERACTIVE_SVG=YES
+ // LATEX_PDF_SIZE
+  bgcolor="transparent";
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  compound=true
+  subgraph clusterdir_ce16314fc45f8638543c5146aff64d4a {
+    graph [ bgcolor="#eeeef6", pencolor="grey50", style="filled,dashed,", label="src", fontname="Helvetica", fontsize="10", URL="dir_ce16314fc45f8638543c5146aff64d4a.html"]
+  subgraph clusterdir_12c32e53c838db195d209d78f62f8479 {
+    graph [ bgcolor="#eeeef6", pencolor="grey25", style="filled,bold,", label="", fontname="Helvetica", fontsize="10", URL="dir_12c32e53c838db195d209d78f62f8479.html"]
+    dir_12c32e53c838db195d209d78f62f8479 [shape=plaintext, label="SpatialPartitioning"];
+  dir_1714f3cab0d35a638840fab853fb5d40 [shape=box, label="KdTree", style="filled,", fillcolor="#a7a7d1", color="grey25", URL="dir_1714f3cab0d35a638840fab853fb5d40.html"];
+  }
+  }
+}

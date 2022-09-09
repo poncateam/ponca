@@ -1,9 +1,0 @@
-<map id="Ponca::QueryOutputIsKNearest&lt; Scalar &gt;" name="Ponca::QueryOutputIsKNearest&lt; Scalar &gt;">
-<area shape="rect" id="node1" title="Base class for knearest queries." alt="" coords="61,885,291,984"/>
-<area shape="rect" id="node2" href="$group__spatialpartitioning.html#structPonca_1_1QueryOutputBase" title="Base class for queries output type." alt="" coords="5,673,197,713"/>
-<area shape="rect" id="node3" href="$group__common.html" title=" " alt="" coords="221,563,499,823"/>
-<area shape="rect" id="node4" title=" " alt="" coords="129,313,305,397"/>
-<area shape="rect" id="node5" title=" " alt="" coords="149,108,286,148"/>
-<area shape="rect" id="node6" title=" " alt="" coords="198,5,237,45"/>
-<area shape="rect" id="node7" href="$group__common.html#classPonca_1_1limited__priority__queue" title="The limited_priority_queue class is similar to std::priority_queue but has a limited capacity and han..." alt="" coords="329,225,535,485"/>
-</map>

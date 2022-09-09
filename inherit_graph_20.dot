@@ -1,0 +1,10 @@
+digraph "Graphical Class Hierarchy"
+{
+ // INTERACTIVE_SVG=YES
+ // LATEX_PDF_SIZE
+  bgcolor="transparent";
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node0 [label="Ponca::limited_priority\l_queue\< T, CompareT \>",height=0.2,width=0.4,color="black",URL="$group__common.html#classPonca_1_1limited__priority__queue",tooltip="The limited_priority_queue class is similar to std::priority_queue but has a limited capacity and han..."];
+}

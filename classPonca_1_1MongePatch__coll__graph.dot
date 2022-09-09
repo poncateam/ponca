@@ -1,0 +1,11 @@
+digraph "Ponca::MongePatch&lt; DataPoint, _WFunctor, T &gt;"
+{
+ // INTERACTIVE_SVG=YES
+ // LATEX_PDF_SIZE
+  bgcolor="transparent";
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  Node1 [label="{Ponca::MongePatch\<\l DataPoint, _WFunctor, T \>\n|# m_A\l# m_x\l# m_b\l# m_planeIsReady\l|+ mongePatch()\l+ mongePatch()\l+ init()\l+ addLocalNeighbor()\l+ finalize()\l+ kMean()\l+ GaussianCurvature()\l+ evalUV()\l+ potential()\l+ project()\land 6 more...\l}",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip="Extension to compute the best fit quadric on 3d points expressed as ."];
+  Node2 -> Node1 [dir="back",color="midnightblue",fontsize="10",style="solid",arrowtail="onormal",fontname="Helvetica"];
+  Node2 [label="{T\n||}",height=0.2,width=0.4,color="grey75",tooltip=" "];
+}

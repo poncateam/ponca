@@ -1,6 +1,0 @@
-<map id="Ponca::QueryInputIsIndex" name="Ponca::QueryInputIsIndex">
-<area shape="rect" id="node1" title="Base class for queries storing points." alt="" coords="5,404,201,459"/>
-<area shape="rect" id="node2" href="$group__spatialpartitioning.html" title=" " alt="" coords="23,256,183,355"/>
-<area shape="rect" id="node3" href="$group__spatialpartitioning.html#structPonca_1_1QueryInputBase" title="Base class for queries input type." alt="" coords="7,5,189,45"/>
-<area shape="rect" id="node4" href="$group__spatialpartitioning.html#structPonca_1_1QueryInput" title="Base class for typed queries input type." alt="" coords="119,95,279,193"/>
-</map>

@@ -1,0 +1,21 @@
+digraph "Ponca::QueryOutputIsKNearest&lt; Scalar &gt;"
+{
+ // INTERACTIVE_SVG=YES
+ // LATEX_PDF_SIZE
+  bgcolor="transparent";
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  Node1 [label="{Ponca::QueryOutputIsKNearest\l\< Scalar \>\n||+ QueryOutputIsKNearest()\l+ queue()\l# reset()\l}",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip="Base class for knearest queries."];
+  Node2 -> Node1 [dir="back",color="midnightblue",fontsize="10",style="solid",arrowtail="onormal",fontname="Helvetica"];
+  Node2 [label="{Ponca::QueryOutputBase\n||}",height=0.2,width=0.4,color="black",URL="$group__spatialpartitioning.html#structPonca_1_1QueryOutputBase",tooltip="Base class for queries output type."];
+  Node3 -> Node1 [color="grey25",fontsize="10",style="solid",label=" #m_queue" ,arrowhead="odiamond",fontname="Helvetica"];
+  Node3 [label="{Ponca::limited_priority\l_queue\< Ponca::IndexSquaredDistance\l\< Scalar \> \>\n|# m_comp\l# m_size\l|+ limited_priority_queue()\l+ limited_priority_queue()\l+ limited_priority_queue()\l+ limited_priority_queue()\l+ ~limited_priority_queue()\l+ operator=()\l+ begin()\l+ begin()\l+ cbegin()\l+ end()\land 16 more...\l}",height=0.2,width=0.4,color="black",URL="$group__common.html",tooltip=" "];
+  Node4 -> Node3 [color="grey25",fontsize="10",style="solid",label=" #m_c" ,arrowhead="odiamond",fontname="Helvetica"];
+  Node4 [label="{std::vector\< Ponca\l::IndexSquaredDistance\l\< Scalar \> \>\n|+ elements\l|}",height=0.2,width=0.4,color="black",tooltip=" "];
+  Node5 -> Node4 [dir="back",color="orange",fontsize="10",style="solid",label=" \< Ponca::IndexSquaredDistance\l\< Scalar \> \>" ,fontname="Helvetica"];
+  Node5 [label="{std::vector\< T \>\n||}",height=0.2,width=0.4,color="black",tooltip=" "];
+  Node6 -> Node5 [color="grey25",fontsize="10",style="solid",label=" +elements" ,arrowhead="odiamond",fontname="Helvetica"];
+  Node6 [label="{T\n||}",height=0.2,width=0.4,color="grey75",tooltip=" "];
+  Node7 -> Node3 [dir="back",color="orange",fontsize="10",style="solid",label=" \< Ponca::IndexSquaredDistance\l\< Scalar \> \>" ,fontname="Helvetica"];
+  Node7 [label="{Ponca::limited_priority\l_queue\< T, CompareT \>\n|# m_c\l# m_comp\l# m_size\l|+ limited_priority_queue()\l+ limited_priority_queue()\l+ limited_priority_queue()\l+ limited_priority_queue()\l+ ~limited_priority_queue()\l+ operator=()\l+ begin()\l+ begin()\l+ cbegin()\l+ end()\land 16 more...\l}",height=0.2,width=0.4,color="black",URL="$group__common.html#classPonca_1_1limited__priority__queue",tooltip="The limited_priority_queue class is similar to std::priority_queue but has a limited capacity and han..."];
+}

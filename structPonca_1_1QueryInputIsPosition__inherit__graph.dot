@@ -1,0 +1,34 @@
+digraph "Ponca::QueryInputIsPosition&lt; DataPoint &gt;"
+{
+ // INTERACTIVE_SVG=YES
+ // LATEX_PDF_SIZE
+  bgcolor="transparent";
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  Node1 [label="{Ponca::QueryInputIsPosition\l\< DataPoint \>\n||+ QueryInputIsPosition()\l}",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip="Base class for queries storing points."];
+  Node2 -> Node1 [dir="back",color="midnightblue",fontsize="10",style="solid",arrowtail="onormal",fontname="Helvetica"];
+  Node2 [label="{Ponca::QueryInput\<\l DataPoint::VectorType \>\n||+ QueryInput()\l+ input()\l# editInput()\l}",height=0.2,width=0.4,color="black",URL="$group__spatialpartitioning.html",tooltip=" "];
+  Node3 -> Node2 [dir="back",color="midnightblue",fontsize="10",style="solid",arrowtail="onormal",fontname="Helvetica"];
+  Node3 [label="{Ponca::QueryInputBase\n||}",height=0.2,width=0.4,color="black",URL="$group__spatialpartitioning.html#structPonca_1_1QueryInputBase",tooltip="Base class for queries input type."];
+  Node4 -> Node2 [dir="back",color="orange",fontsize="10",style="solid",label=" \< DataPoint::VectorType \>" ,fontname="Helvetica"];
+  Node4 [label="{Ponca::QueryInput\<\l InputType_ \>\n||+ QueryInput()\l+ input()\l# editInput()\l}",height=0.2,width=0.4,color="black",URL="$group__spatialpartitioning.html#structPonca_1_1QueryInput",tooltip="Base class for typed queries input type."];
+  Node3 -> Node4 [dir="back",color="midnightblue",fontsize="10",style="solid",arrowtail="onormal",fontname="Helvetica"];
+  Node1 -> Node5 [dir="back",color="midnightblue",fontsize="10",style="solid",arrowtail="onormal",fontname="Helvetica"];
+  Node5 [label="{Ponca::Query\< QueryInput\lIsPosition\< DataPoint\l \>, QueryOutputIsKNearest\l\< DataPoint::Scalar \> \>\n||+ Query()\l+ Query()\l}",height=0.2,width=0.4,color="grey75",URL="$group__spatialpartitioning.html",tooltip=" "];
+  Node5 -> Node6 [dir="back",color="midnightblue",fontsize="10",style="solid",arrowtail="onormal",fontname="Helvetica"];
+  Node6 [label="{Ponca::KNearestPointQuery\l\< DataPoint \>\n||}",height=0.2,width=0.4,color="black",URL="$group__spatialpartitioning.html#structPonca_1_1KNearestPointQuery",tooltip="Base Query class combining QueryInputIsPosition and QueryOutputIsKNearest."];
+  Node6 -> Node7 [dir="back",color="midnightblue",fontsize="10",style="solid",arrowtail="onormal",fontname="Helvetica"];
+  Node7 [label="{Ponca::KdTreeKNearestPoint\lQuery\< DataPoint \>\n||+ KdTreeKNearestPointQuery()\l+ begin()\l+ end()\l# search()\l}",height=0.2,width=0.4,color="grey75",URL="$classPonca_1_1KdTreeKNearestPointQuery.html",tooltip=" "];
+  Node1 -> Node8 [dir="back",color="midnightblue",fontsize="10",style="solid",arrowtail="onormal",fontname="Helvetica"];
+  Node8 [label="{Ponca::Query\< QueryInput\lIsPosition\< DataPoint\l \>, QueryOutputIsNearest\l\< DataPoint::Scalar \> \>\n||+ Query()\l+ Query()\l}",height=0.2,width=0.4,color="grey75",URL="$group__spatialpartitioning.html",tooltip=" "];
+  Node8 -> Node9 [dir="back",color="midnightblue",fontsize="10",style="solid",arrowtail="onormal",fontname="Helvetica"];
+  Node9 [label="{Ponca::NearestPointQuery\l\< DataPoint \>\n||}",height=0.2,width=0.4,color="black",URL="$group__spatialpartitioning.html#structPonca_1_1NearestPointQuery",tooltip="Base Query class combining QueryInputIsPosition and QueryOutputIsNearest."];
+  Node9 -> Node10 [dir="back",color="midnightblue",fontsize="10",style="solid",arrowtail="onormal",fontname="Helvetica"];
+  Node10 [label="{Ponca::KdTreeNearestPoint\lQuery\< DataPoint \>\n||+ KdTreeNearestPointQuery()\l+ begin()\l+ end()\l# search()\l}",height=0.2,width=0.4,color="grey75",URL="$classPonca_1_1KdTreeNearestPointQuery.html",tooltip=" "];
+  Node1 -> Node11 [dir="back",color="midnightblue",fontsize="10",style="solid",arrowtail="onormal",fontname="Helvetica"];
+  Node11 [label="{Ponca::Query\< QueryInput\lIsPosition\< DataPoint\l \>, QueryOutputIsRange\l\< DataPoint::Scalar \> \>\n||+ Query()\l+ Query()\l}",height=0.2,width=0.4,color="grey75",URL="$group__spatialpartitioning.html",tooltip=" "];
+  Node11 -> Node12 [dir="back",color="midnightblue",fontsize="10",style="solid",arrowtail="onormal",fontname="Helvetica"];
+  Node12 [label="{Ponca::RangePointQuery\l\< DataPoint \>\n||}",height=0.2,width=0.4,color="black",URL="$group__spatialpartitioning.html#structPonca_1_1RangePointQuery",tooltip="Base Query class combining QueryInputIsPosition and QueryOutputIsRange."];
+  Node12 -> Node13 [dir="back",color="midnightblue",fontsize="10",style="solid",arrowtail="onormal",fontname="Helvetica"];
+  Node13 [label="{Ponca::KdTreeRangePointQuery\l\< DataPoint \>\n|# Iterator\l|+ KdTreeRangePointQuery()\l+ begin()\l+ end()\l# advance()\l}",height=0.2,width=0.4,color="grey75",URL="$classPonca_1_1KdTreeRangePointQuery.html",tooltip=" "];
+}
