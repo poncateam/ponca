@@ -9,9 +9,7 @@
 namespace Ponca
 {
    /*!
-      Enum corresponding to the state of a fitting method (and what the finalize function can return)
-
-      \ingroup fitting
+      Enum corresponding to the state of a fitting method (and what the finalize function can return
     */
     enum FIT_RESULT : unsigned char
     {

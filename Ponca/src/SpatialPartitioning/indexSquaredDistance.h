@@ -12,7 +12,6 @@
 namespace Ponca {
 
 /// \brief Associates an index with a distance
-/// \ingroup spatialpartitioning
 template<typename Scalar>
 struct IndexSquaredDistance
 {

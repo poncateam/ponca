@@ -9,7 +9,6 @@
 #include "../defines.h"
 
 namespace Ponca {
-/// \ingroup spatialpartitioning
 template<typename Scalar>
 struct KdTreeNode
 {

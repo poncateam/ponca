@@ -27,8 +27,6 @@
 #define PCA_KDTREE_MAX_DEPTH 32
 
 namespace Ponca {
-
-/// \ingroup spatialpartitioning
 ///
 /// \tparam DataPoint
 ///

@@ -19,8 +19,6 @@ namespace Ponca
  * provides first order derivatives of the algebraic sphere parameters.
  *
  * \todo This class is not covered by tests. Add to testsuite !
- *
- * \ingroup fitting
  */
 template < class DataPoint, class _WFunctor, int DiffType, typename T>
 class MlsSphereFitDer : public T

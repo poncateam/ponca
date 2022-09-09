@@ -20,8 +20,6 @@ namespace Ponca
     \inherit Concept::FittingProcedureConcept
 
     \see AlgebraicSphere
-
-    \ingroup fitting
 */
 template < class DataPoint, class _WFunctor, typename T >
 class OrientedSphereFitImpl : public T
@@ -48,7 +46,6 @@ public:
 }; //class OrientedSphereFitImpl
 
 /// \brief Helper alias for Oriented Sphere fitting on 3D points using OrientedSphereFitImpl
-/// \ingroup fittingalias
 //! [OrientedSphereFit Definition]
 template < class DataPoint, class _WFunctor, typename T>
 using OrientedSphereFit =
@@ -60,7 +57,6 @@ OrientedSphereFitImpl<DataPoint, _WFunctor,
 
 /*!
     \brief Internal generic class performing the Fit derivation
-    \inherit Concept::FittingExtensionConcept
 */
 template < class DataPoint, class _WFunctor, int DiffType, typename T>
 class OrientedSphereDerImpl : public T
@@ -140,7 +136,6 @@ public:
 }; //class OrientedSphereDerImpl
 
 /// \brief Helper alias for Plane fitting on 3D points using CovariancePlaneFitImpl
-/// \ingroup fittingalias
     template < class DataPoint, class _WFunctor, int DiffType, typename T>
     using OrientedSphereDer =
         OrientedSphereDerImpl<DataPoint, _WFunctor, DiffType,

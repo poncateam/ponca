@@ -23,8 +23,6 @@ namespace Ponca
     \see Plane
 
     \todo Add local frame computation to enable PROVIDES_TANGENT_PLANE_BASIS
-
-    \ingroup fitting
 */
 template < class DataPoint, class _WFunctor, typename T >
 class MeanPlaneFitImpl : public T
@@ -52,7 +50,6 @@ public:
 }; //class MeanPlaneFitImpl
 
 /// \brief Helper alias for Plane fitting on points using MeanPlaneFitImpl
-/// \ingroup fittingalias
 //! [MeanPlaneFit Definition]
     template < class DataPoint, class _WFunctor, typename T>
     using MeanPlaneFit =

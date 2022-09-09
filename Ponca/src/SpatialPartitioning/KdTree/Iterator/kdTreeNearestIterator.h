@@ -8,7 +8,6 @@
 
 namespace Ponca {
 
-/// \ingroup spatialpartitioning
 class KdTreeNearestIterator
 {
 public:

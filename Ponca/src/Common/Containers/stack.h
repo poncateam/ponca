@@ -20,8 +20,6 @@ namespace Ponca {
 /// they are overriden by another element (e.g. when running pop() and then push(). This makes it
 /// not appropriate to store smart pointers.
 ///
-///
-/// \ingroup common
 template<class T, int N>
 class Stack
 {

@@ -28,7 +28,6 @@ namespace Ponca
     \inherit Concept::FittingProcedureConcept
 
     \see Plane
-    \ingroup fitting
 */
 template < class DataPoint, class _WFunctor, typename T >
 class CovariancePlaneFitImpl : public T
@@ -82,7 +81,6 @@ public:
 }; //class CovariancePlaneFitImpl
 
 /// \brief Helper alias for Plane fitting on 3D points using CovariancePlaneFitImpl
-/// \ingroup fittingalias
 //! [CovariancePlaneFit Definition]
     template < class DataPoint, class _WFunctor, typename T>
     using CovariancePlaneFit =
@@ -96,7 +94,6 @@ public:
     \brief Internal generic class computing the derivatives of covariance plane fits
     \inherit Concept::FittingExtensionConcept
 
-    \ingroup fitting
     \warning Defined in 3D only
 */
 template < class DataPoint, class _WFunctor, int DiffType, typename T>
@@ -140,7 +137,6 @@ public:
 
 
 /// \brief Helper alias for Plane fitting on 3D points using CovariancePlaneFitImpl
-/// \ingroup fittingalias
 template < class DataPoint, class _WFunctor, int DiffType, typename T>
 using CovariancePlaneDer =
 CovariancePlaneDerImpl<DataPoint, _WFunctor, DiffType,

@@ -22,7 +22,6 @@ namespace Ponca
  *
  * \note This class mixes the primitive (MongePatch) and its fitting procedure.
  *       Could makes sense to split the two
- * \ingroup fitting
  */
 template < class DataPoint, class _WFunctor, typename T>
 class MongePatch : public T

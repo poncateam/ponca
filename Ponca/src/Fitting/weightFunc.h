@@ -23,8 +23,6 @@ namespace Ponca
 
     \todo Add class to use DistWeightFunc with CenterBasis of GlobalBasis
           (functions init, basisCenter and convertToLocalBasis)
-
-    \ingroup fitting
 */
 template <class DataPoint, class WeightKernel>
 class DistWeightFunc

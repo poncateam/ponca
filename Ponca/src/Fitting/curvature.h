@@ -17,8 +17,6 @@ namespace Ponca
 /**
  *
  * \brief Base class for any 3d curvature estimator: holds \f$k_1\f$, \f$k_2\f$ and associated vectors
- *
- * \ingroup fitting
  */
     class CurvatureEstimatorBase : public T
     {

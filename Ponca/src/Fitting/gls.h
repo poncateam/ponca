@@ -36,8 +36,6 @@ namespace Ponca
     \verbatim PROVIDES_ALGEBRAIC_SPHERE \endverbatim
     Provides:
     \verbatim PROVIDES_GLS_PARAMETRIZATION \endverbatim
-
-    \ingroup fitting
 */
 template < class DataPoint, class _WFunctor, typename T>
 class GLSParam : public T
@@ -113,8 +111,6 @@ public:
     \inherit Concept::FittingExtensionConcept
 
     Method published in \cite Mellado:2012:GLS
-
-    \ingroup fitting
 */
 template < class DataPoint, class _WFunctor, int DiffType, typename T>
 class GLSDer : public T
