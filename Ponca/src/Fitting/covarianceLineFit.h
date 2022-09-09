@@ -47,7 +47,7 @@ protected:
 public:
     PONCA_EXPLICIT_CAST_OPERATORS(CovarianceLineFitImpl,covarianceLineFit)
 
-    /*! \copydoc Concept::FittingProcedureConcept::finalize() */
+    PONCA_FITTING_APIDOC_FINALIZE
     PONCA_MULTIARCH inline FIT_RESULT finalize()
     {
         static const int smallestEigenValue = DataPoint::Dim - 1;

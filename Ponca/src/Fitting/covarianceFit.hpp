@@ -84,7 +84,7 @@ CovarianceFitDer<DataPoint, _WFunctor, DiffType, T>::addLocalNeighbor(Scalar w,
 {
     if( Base::addLocalNeighbor(w, localQ, attributes, dw) ) {
         for(int k=0; k<Base::NbDerivatives; ++k)
-            m_dCov[k]  += dw[k] * localQ * localQ.transpose(); /// \fixme better use eigen here
+            m_dCov[k]  += dw[k] * localQ * localQ.transpose();
 
         return true;
     }

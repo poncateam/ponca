@@ -82,8 +82,8 @@ public:
     }
 
     /*! \brief Init the line from a direction and a position
-       \param _dir Orientation of the line, does not need to be normalized
-       \param _pos Position of the line
+       \param direction Orientation of the line, does not need to be normalized
+       \param origin Position of the line
     */
     PONCA_MULTIARCH inline void setLine (const VectorType& origin,
                                          const VectorType& direction)

@@ -50,7 +50,6 @@ MlsSphereFitDer<DataPoint, _WFunctor, DiffType, T>::addLocalNeighbor(Scalar w,
         m_d2SumDotPP += d2w * localQ.squaredNorm();
         m_d2SumW     += d2w;
 
-        /// \fixme Better use eigen here
         for(int i=0; i<Dim; ++i)
         {
             m_d2SumP.template block<DerDim,DerDim>(0,i*DerDim) += d2w * localQ[i];

@@ -62,28 +62,38 @@ public:                                                                         
 using ScalarArray = typename Base::ScalarArray;     /*!< \brief Alias to scalar derivatives array */                \
 using VectorArray = typename Base::VectorArray;     /*!< \brief Alias to vector derivatives array */
 
+// FIT API DOCUMENTATION
+#define PONCA_FITTING_APIDOC_SETWFUNC \
+/*! Init the WeightFunc, without changing the other internal states. \warning Must be called be for any computation */
+#define PONCA_FITTING_APIDOC_INIT \
+/*! Set the evaluation position and reset the internal states. \warning Must be called be for any computation */
+#define PONCA_FITTING_APIDOC_ADDNEIGHBOR \
+/*! Add a neighbor to perform the fit \return false if param nei is not a valid neighbour (weight = 0) */
+#define PONCA_FITTING_APIDOC_ADDNEIGHBOR_DER \
+/*! Add a neighbor to perform the fit \return false if param nei is not a valid neighbour (weight = 0) */
+#define PONCA_FITTING_APIDOC_FINALIZE \
+/*! Finalize the procedure \return Fitting Status \warning Must be called be for any use of the fitting output */
 
 // FIT API DECLARATION
-
-/// Declare Concept::FittingProcedureConcept::init()
+/// Declare Concept::ComputationalObjectConcept::init()
 #define PONCA_FITTING_DECLARE_INIT                                                                                 \
-/*! \copydoc Concept::FittingProcedureConcept::init() */                                                           \
+PONCA_FITTING_APIDOC_INIT                                                                                          \
 PONCA_MULTIARCH inline void init (const VectorType& _evalPos);
 
-/// Declare Concept::FittingProcedureConcept::addLocalNeighbor
+/// Declare Concept::ComputationalObjectConcept::addLocalNeighbor
 #define PONCA_FITTING_DECLARE_ADDNEIGHBOR                                                                          \
-/*! \copydoc Concept::FittingProcedureConcept::addLocalNeighbor() */                                               \
+PONCA_FITTING_APIDOC_ADDNEIGHBOR                                                                                   \
 PONCA_MULTIARCH inline bool addLocalNeighbor(Scalar w, const VectorType &localQ, const DataPoint &attributes);
 
-/// Declare Concept::FittingProcedureConcept::addLocalNeighbor
+/// Declare Concept::ComputationalDerivativesConcept::addLocalNeighbor
 #define PONCA_FITTING_DECLARE_ADDNEIGHBOR_DER                                                                      \
-/*! \see Concept::FittingProcedureConcept::addLocalNeighbor() */                                                   \
+PONCA_FITTING_APIDOC_ADDNEIGHBOR_DER                                                                               \
 PONCA_MULTIARCH inline bool                                                                                        \
 addLocalNeighbor(Scalar w, const VectorType &localQ, const DataPoint &attributes, ScalarArray &dw);
 
-/// Declare Concept::FittingProcedureConcept::finalize
+/// Declare Concept::ComputationalObjectConcept::finalize
 #define PONCA_FITTING_DECLARE_FINALIZE                                                                             \
-/*! \copydoc Concept::FittingProcedureConcept::finalize() */                                                       \
+PONCA_FITTING_APIDOC_FINALIZE                                                                                      \
 PONCA_MULTIARCH inline FIT_RESULT finalize();
 
 #define PONCA_FITTING_DECLARE_INIT_ADD_FINALIZE                                                                    \

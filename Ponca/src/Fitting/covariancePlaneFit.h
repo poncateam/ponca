@@ -60,16 +60,22 @@ public:
 
     /*!
      * \brief Express a point in ambient space relatively to the tangent plane.
+     *
      * Output vector is: [h, u, v]^T, where u, v are 2d coordinates on the plane,
      * and h the height of the sample.
      * \tparam ignoreTranslation must be set to true when passing vectors instead of points
+     * \param _q Point coordinates expressed in ambient space
+     * \return Point coordinates expressed in local tangent frame
      */
     template <bool ignoreTranslation = false>
     PONCA_MULTIARCH inline VectorType worldToTangentPlane(const VectorType &_q) const;
 
     /*!
      * \brief Transform a point from the tangent plane [h, u, v]^T to ambient space
+     *
      * \tparam ignoreTranslation must be set to true when passing vectors instead of points
+     * \param _q Point coordinates expressed in local tangent frame
+     * \return Point coordinates expressed in ambient space
      */
     template <bool ignoreTranslation = false>
     PONCA_MULTIARCH inline VectorType tangentPlaneToWorld(const VectorType &_q) const;

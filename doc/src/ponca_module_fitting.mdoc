@@ -27,7 +27,7 @@ namespace Ponca
   The goal of this module is to provide lightweight, fast and generic algorithms for 3d point cloud processing.
   We mostly focus on local regression techniques, which are core components of surface reconstruction techniques \cite Alexa:2001:Pss \cite Guennebaud:2007:APSS, geometric descriptors \cite Mellado:2012:GLS \cite Lejemble:2021:stable or shape analysis techniques \cite lejemble:2020:persistence.
   Most of these techniques share similar computation, and can be combined in several ways.
-  For instance, \ref NormalDerivativesCurvature estimates curvature values by analyzing the spatial derivatives of a normal field, and can be combined with any normal estimation technique.
+  For instance, \ref NormalDerivativesCurvatureEstimator estimates curvature values by analyzing the spatial derivatives of a normal field, and can be combined with any normal estimation technique.
 
   In order to ease the association of multiple computational components, the library is based on the Curiously Recurring Template Pattern (CRTP).
   In contrast with polymorphism, this method allows to combine multiple short computations without adding runtime overhead (both in terms of memory footprint and execution time).
@@ -333,7 +333,7 @@ namespace Ponca
   \endcode
   to use the same code for C++ and CUDA. It has no effect when the code is compiled with GCC or Clang, but it will force the compilation for both host and device architectures when compiling with nvcc. A similar macro system is provided for mathematical functions, to switch between STL and CUDA versions.
 
-  Check the \ref example_cxx_ssc_page "C++/Cuda" and \ref example_python_ssc_page "Python/Cuda" (using PyCuda) examples for more details and how-to.
+  Check the \ref cu_ssgl_intro_sec "C++/Cuda" and \ref example_python_ssc_page "Python/Cuda" (using PyCuda) examples for more details and how-to.
 
   <hr>
   <center>[\ref fitting_concepts "Go to concept page"]</center>

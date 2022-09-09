@@ -38,7 +38,7 @@ protected:
 public:
     PONCA_EXPLICIT_CAST_OPERATORS(MeanPlaneFitImpl,meanPlaneFit)
 
-    /*! \copydoc Concept::FittingProcedureConcept::finalize() */
+    PONCA_FITTING_APIDOC_FINALIZE
     PONCA_MULTIARCH inline FIT_RESULT finalize()
     {
         // handle specific configurations

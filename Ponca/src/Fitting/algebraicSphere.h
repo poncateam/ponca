@@ -91,6 +91,7 @@ public:
         return !( m_ul.isApprox(VectorType::Zero()) && m_uc == Scalar(0) && m_uq == Scalar(0) );
     }
 
+    /// \brief Comparison operator \warning Assume that other shares the same basis \see changeBasis()
     PONCA_MULTIARCH inline bool operator==(const AlgebraicSphere<DataPoint, WFunctor, T>& other) const{
         PONCA_MULTIARCH_STD_MATH(pow);
         const Scalar epsilon        = Eigen::NumTraits<Scalar>::dummy_precision();
@@ -213,6 +214,7 @@ public:
        \brief Project a point on the algebraic hypersphere using Gradient Descent
        This projection is realized by following the gradient of the hypersphere scalar field
        \warning This function is in most cases slower and less accurate than #project.
+       \param _q Starting point
        \param nbIter Number of iterations (default = 16)
      */
     PONCA_MULTIARCH inline VectorType projectDescent (const VectorType& _q, int nbIter = 16) const;

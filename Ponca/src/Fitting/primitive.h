@@ -61,10 +61,10 @@ public:
     /**************************************************************************/
     /* Initialization                                                         */
     /**************************************************************************/
-    /*! \copydoc Concept::FittingProcedureConcept::setWeightFunc() */
+    PONCA_FITTING_APIDOC_SETWFUNC
     PONCA_MULTIARCH inline void setWeightFunc (const WFunctor& _w) { m_w  = _w; }
 
-    /*! \brief Reset fitting state status */
+    PONCA_FITTING_APIDOC_INIT
     PONCA_MULTIARCH inline void init(const VectorType& _basisCenter = VectorType::Zero())
     {
         m_eCurrentState = UNDEFINED;
@@ -91,10 +91,12 @@ public:
         return m_eCurrentState;
     }
 
+    PONCA_FITTING_APIDOC_ADDNEIGHBOR
     PONCA_MULTIARCH inline bool addLocalNeighbor(Scalar, const VectorType &, const DataPoint &) {
         return true;
     }
 
+    PONCA_FITTING_APIDOC_FINALIZE
     PONCA_MULTIARCH inline FIT_RESULT finalize(){
         // handle specific configurations
         // We need to have at least one neighbor to compute the mean
@@ -119,7 +121,7 @@ public:
     combining the enum values FitScaleDer and FitSpaceDer in the template
     parameter Type.
 
-    The differenciated values are stored in static arrays. The size of the
+    The differentiated values are stored in static arrays. The size of the
     arrays is computed with respect to the derivation type (scale and/or space)
     and the number of the dimension of the ambiant space.
     By convention, the scale derivatives are stored at index 0 when Type

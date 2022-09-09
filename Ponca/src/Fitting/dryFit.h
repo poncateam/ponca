@@ -34,14 +34,14 @@ namespace Ponca
     public:
         PONCA_EXPLICIT_CAST_OPERATORS(DryFit,dryfit)
 
-        /*! \copydoc Concept::FittingProcedureConcept::addLocalNeighbor() */
+        PONCA_FITTING_APIDOC_ADDNEIGHBOR
         PONCA_MULTIARCH inline bool addLocalNeighbor(Scalar w, const VectorType &localQ, const DataPoint &attributes)
         { return Base::addLocalNeighbor(w, localQ, attributes);}
 
-        /*! \copydoc Concept::FittingProcedureConcept::finalize() */
+        PONCA_FITTING_APIDOC_FINALIZE
         PONCA_MULTIARCH inline FIT_RESULT finalize() { return Base::finalize(); }
 
-        /*! \copydoc Concept::FittingProcedureConcept::setWeightFunc() */
+        PONCA_FITTING_APIDOC_SETWFUNC
         PONCA_MULTIARCH inline void setWeightFunc (const WFunctor& /*_w*/) { }
 
         //! \brief Simulate Scalar field computation

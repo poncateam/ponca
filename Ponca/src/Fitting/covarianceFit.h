@@ -90,7 +90,7 @@ namespace Ponca
         };
 
     protected:
-        // computation data
+        /// Computation data: derivatives of the covariance matrix
         MatrixType  m_dCov[Base::NbDerivatives];
 
     public:

@@ -96,8 +96,8 @@ public:
     typedef Eigen::SelfAdjointEigenSolver<MatrixType> Solver;
 
 protected:
-    MatrixType m_cov;   /*!< \brief Covariance matrix of the normal vectors \fixme We have this somewhere else */
-    VectorType m_cog;   /*!< \brief Gravity center of the normal vectors \fixme Use MeanNormal */
+    MatrixType m_cov;   /*!< \brief Covariance matrix of the normal vectors \todo We have this somewhere else */
+    VectorType m_cog;   /*!< \brief Gravity center of the normal vectors \todo Use MeanNormal */
     Solver m_solver;    /*!< \brief Solver used to analyse the covariance matrix */
 
 public:
@@ -139,7 +139,7 @@ protected:
                 Base::PROVIDES_PLANE // \todo This class relies on the primitiveGradient, so update this
     };
 
-    /// \fixme Use same pass management than MongePatch
+    /// \todo Use same pass management than MongePatch
     enum PASS : int
     {
         FIRST_PASS = 0,
