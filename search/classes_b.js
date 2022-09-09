@@ -1,7 +1,7 @@
 var searchData=
 [
-  ['plane_347',['Plane',['../classPonca_1_1Plane.html',1,'Ponca']]],
-  ['primitivebase_348',['PrimitiveBase',['../classPonca_1_1PrimitiveBase.html',1,'Ponca']]],
-  ['primitiveder_349',['PrimitiveDer',['../classPonca_1_1PrimitiveDer.html',1,'Ponca']]],
-  ['projectednormalcovariancecurvatureestimator_350',['ProjectedNormalCovarianceCurvatureEstimator',['../classPonca_1_1ProjectedNormalCovarianceCurvatureEstimator.html',1,'Ponca']]]
+  ['plane_0',['Plane',['../group__fitting.html#classPonca_1_1Plane',1,'Ponca']]],
+  ['primitivebase_1',['PrimitiveBase',['../group__fitting.html#classPonca_1_1PrimitiveBase',1,'Ponca']]],
+  ['primitiveder_2',['PrimitiveDer',['../classPonca_1_1PrimitiveDer.html',1,'Ponca']]],
+  ['projectednormalcovariancecurvatureestimator_3',['ProjectedNormalCovarianceCurvatureEstimator',['../group__fitting.html#classPonca_1_1ProjectedNormalCovarianceCurvatureEstimator',1,'Ponca']]]
 ];

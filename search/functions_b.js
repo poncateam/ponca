@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['normal_458',['normal',['../classPonca_1_1MlsSphereFitDer.html#ab2812ca0747f89b185561b31c2f8deff',1,'Ponca::MlsSphereFitDer']]],
-  ['normalcovariancecurvatureestimator_459',['normalCovarianceCurvatureEstimator',['../classPonca_1_1NormalCovarianceCurvatureEstimator.html#a8c2e84d77f566f5809e6ba3093ee66ae',1,'Ponca::NormalCovarianceCurvatureEstimator::normalCovarianceCurvatureEstimator()'],['../classPonca_1_1NormalCovarianceCurvatureEstimator.html#a6ed0e2b95bdfeef3fb9d108ab7bedbd6',1,'Ponca::NormalCovarianceCurvatureEstimator::normalCovarianceCurvatureEstimator() const']]],
-  ['normalderivativescurvatureestimator_460',['normalDerivativesCurvatureEstimator',['../classPonca_1_1NormalDerivativesCurvatureEstimator.html#a310f591d4cc1461f247e6fc88a457210',1,'Ponca::NormalDerivativesCurvatureEstimator::normalDerivativesCurvatureEstimator()'],['../classPonca_1_1NormalDerivativesCurvatureEstimator.html#a756ddbdb24e6b6d792b25ee1fbd936a2',1,'Ponca::NormalDerivativesCurvatureEstimator::normalDerivativesCurvatureEstimator() const']]]
+  ['normal_0',['normal',['../group__fitting.html#ab2812ca0747f89b185561b31c2f8deff',1,'Ponca::MlsSphereFitDer']]],
+  ['normalcovariancecurvatureestimator_1',['normalCovarianceCurvatureEstimator',['../group__fitting.html#a11712fc1797773cadb2a2e4428adbf18',1,'Ponca::NormalCovarianceCurvatureEstimator::normalCovarianceCurvatureEstimator()'],['../group__fitting.html#af43280afd82279ae3d45468e6a2dbfba',1,'Ponca::NormalCovarianceCurvatureEstimator::normalCovarianceCurvatureEstimator() const']]],
+  ['normalderivativescurvatureestimator_2',['normalDerivativesCurvatureEstimator',['../group__fitting.html#a8b1e7e7663c7ec33be9d872086475fa6',1,'Ponca::NormalDerivativesCurvatureEstimator::normalDerivativesCurvatureEstimator()'],['../group__fitting.html#a3d5772628f0c7eac453f4e6299d33b05',1,'Ponca::NormalDerivativesCurvatureEstimator::normalDerivativesCurvatureEstimator() const']]]
 ];

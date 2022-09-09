@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['line_451',['line',['../classPonca_1_1Line.html#af56b74e2353a1ca4b35f7dbc35ef626c',1,'Ponca::Line::line()'],['../classPonca_1_1Line.html#a3ed454a596c67e1db60c3ea2ded2aea2',1,'Ponca::Line::line() const']]]
+  ['line_0',['line',['../group__fitting.html#afb4dcc5479a1443200a67cb347fd3d3e',1,'Ponca::Line::line()'],['../group__fitting.html#aaddf681edbd030ca33492f1cd1f5f84a',1,'Ponca::Line::line() const']]]
 ];

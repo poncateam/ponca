@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['glsder_308',['GLSDer',['../classPonca_1_1GLSDer.html',1,'Ponca']]],
-  ['glsparam_309',['GLSParam',['../classPonca_1_1GLSParam.html',1,'Ponca']]]
+  ['glsder_0',['GLSDer',['../group__fitting.html#classPonca_1_1GLSDer',1,'Ponca']]],
+  ['glsparam_1',['GLSParam',['../group__fitting.html#classPonca_1_1GLSParam',1,'Ponca']]]
 ];

@@ -1,33 +1,33 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="node1" title=" " alt="" coords="6,300,186,327"/>
-<area shape="rect" id="node2" href="$classPonca_1_1CovarianceFitDer.html" title="Internal generic class computing the derivatives of covariance matrix computed by CovarianceFitBase." alt="" coords="271,325,453,381"/>
-<area shape="rect" id="node3" href="$classPonca_1_1CovariancePlaneDerImpl.html" title="[CovariancePlaneFit Definition]" alt="" coords="257,405,467,461"/>
-<area shape="rect" id="node4" href="$classPonca_1_1GLSDer.html" title="Differentiation of GLSParam." alt="" coords="262,486,462,527"/>
-<area shape="rect" id="node5" href="$classPonca_1_1GLSParam.html" title="Growing Least Squares reparemetrization of the OrientedSphereFit." alt="" coords="253,551,471,593"/>
-<area shape="rect" id="node6" href="$classPonca_1_1MlsSphereFitDer.html" title="Extension performing derivation of the mls surface." alt="" coords="271,5,453,61"/>
-<area shape="rect" id="node7" href="$classPonca_1_1NormalDerivativesCurvatureEstimator.html" title="Extension to compute curvature values from the Weingarten map ." alt="" coords="246,85,478,141"/>
-<area shape="rect" id="node8" href="$classPonca_1_1OrientedSphereDerImpl.html" title="[OrientedSphereFit Definition]" alt="" coords="257,165,467,221"/>
-<area shape="rect" id="node9" href="$classPonca_1_1PrimitiveDer.html" title="Generic class performing the Fit derivation." alt="" coords="271,245,453,301"/>
-<area shape="rect" id="node10" title=" " alt="" coords="5,1372,187,1399"/>
-<area shape="rect" id="node11" href="$classPonca_1_1CovarianceFitBase.html" title="Line fitting procedure that minimize the orthogonal distance between the samples and the fitted primi..." alt="" coords="258,1331,466,1373"/>
-<area shape="rect" id="node12" href="$classPonca_1_1CovarianceLineFitImpl.html" title="Line fitting procedure that minimize the orthogonal distance between the samples and the fitted primi..." alt="" coords="243,1397,481,1438"/>
-<area shape="rect" id="node13" href="$classPonca_1_1CovariancePlaneFitImpl.html" title="Plane fitting procedure using only points position." alt="" coords="243,1462,481,1503"/>
-<area shape="rect" id="node14" href="$classPonca_1_1DryFit.html" title="Empty fitting object doing no computation." alt="" coords="267,1527,457,1569"/>
-<area shape="rect" id="node15" href="$classPonca_1_1MeanNormal.html" title="Compute the barycenter of the input points + their normals." alt="" coords="263,1593,461,1634"/>
-<area shape="rect" id="node16" href="$classPonca_1_1MeanPlaneFitImpl.html" title="Plane fitting procedure computing the mean position and orientation from oriented points." alt="" coords="258,1658,466,1699"/>
-<area shape="rect" id="node17" href="$classPonca_1_1MeanPosition.html" title="Compute the barycenter of the input points." alt="" coords="258,1070,466,1111"/>
-<area shape="rect" id="node18" href="$classPonca_1_1OrientedSphereFitImpl.html" title="Algebraic Sphere fitting procedure on oriented point sets." alt="" coords="243,1135,481,1177"/>
-<area shape="rect" id="node19" href="$classPonca_1_1SphereFitImpl.html" title="Algebraic Sphere fitting procedure on point sets without normals." alt="" coords="258,1201,466,1242"/>
-<area shape="rect" id="node20" href="$classPonca_1_1UnorientedSphereFitImpl.html" title="Algebraic Sphere fitting procedure on point sets with non&#45;oriented normals." alt="" coords="243,1266,481,1307"/>
-<area shape="rect" id="node21" title=" " alt="" coords="47,1731,145,1757"/>
-<area shape="rect" id="node22" href="$classPonca_1_1Plane.html" title="Implicit hyperplane defined by an homogeneous vector ." alt="" coords="268,1723,456,1765"/>
-<area shape="rect" id="node23" title=" " alt="" coords="29,1796,163,1823"/>
-<area shape="rect" id="node24" href="$classPonca_1_1Line.html" title="A parametrized line is defined by an origin point &#160;and a unit direction vector &#160;such that the line co..." alt="" coords="273,1789,451,1830"/>
-<area shape="rect" id="node25" title=" " alt="" coords="77,964,115,991"/>
-<area shape="rect" id="node26" href="$classPonca_1_1AlgebraicSphere.html" title="Algebraic Sphere primitive." alt="" coords="258,617,466,658"/>
-<area shape="rect" id="node27" href="$classPonca_1_1CurvatureEstimatorBase.html" title="Base class for any 3d curvature estimator: holds , &#160;and associated vectors." alt="" coords="255,683,469,739"/>
-<area shape="rect" id="node28" href="$classPonca_1_1MeanPositionDer.html" title=" " alt="" coords="271,763,453,819"/>
-<area shape="rect" id="node29" href="$classPonca_1_1MongePatch.html" title="Extension to compute the best fit quadric on 3d points expressed as ." alt="" coords="263,843,461,885"/>
-<area shape="rect" id="node30" href="$classPonca_1_1NormalCovarianceCurvatureEstimator.html" title="Extension to compute curvature values based on a covariance analysis of normal vectors of neighbors." alt="" coords="235,909,489,965"/>
-<area shape="rect" id="node31" href="$classPonca_1_1ProjectedNormalCovarianceCurvatureEstimator.html" title="Extension to compute curvature values based on a covariance analysis of normal vectors of neighbors p..." alt="" coords="237,989,487,1045"/>
+<area shape="rect" id="node1" title=" " alt="" coords="6,289,194,329"/>
+<area shape="rect" id="node2" href="$group__fitting.html#classPonca_1_1CovarianceFitDer" title="Internal generic class computing the derivatives of covariance matrix computed by CovarianceFitBase." alt="" coords="279,320,461,375"/>
+<area shape="rect" id="node3" href="$group__fitting.html#classPonca_1_1CovariancePlaneDerImpl" title="[CovariancePlaneFit Definition]" alt="" coords="265,399,475,453"/>
+<area shape="rect" id="node4" href="$group__fitting.html#classPonca_1_1GLSDer" title="Differentiation of GLSParam." alt="" coords="270,478,470,518"/>
+<area shape="rect" id="node5" href="$group__fitting.html#classPonca_1_1GLSParam" title="Growing Least Squares reparemetrization of the OrientedSphereFit." alt="" coords="261,542,479,582"/>
+<area shape="rect" id="node6" href="$group__fitting.html#classPonca_1_1MlsSphereFitDer" title="Extension performing derivation of the mls surface." alt="" coords="279,5,461,60"/>
+<area shape="rect" id="node7" href="$group__fitting.html#classPonca_1_1NormalDerivativesCurvatureEstimator" title="Extension to compute curvature values from the Weingarten map ." alt="" coords="254,84,486,139"/>
+<area shape="rect" id="node8" href="$classPonca_1_1OrientedSphereDerImpl.html" title="[OrientedSphereFit Definition]" alt="" coords="265,163,475,217"/>
+<area shape="rect" id="node9" href="$classPonca_1_1PrimitiveDer.html" title="Generic class performing the Fit derivation." alt="" coords="279,241,461,296"/>
+<area shape="rect" id="node10" title=" " alt="" coords="5,1339,195,1379"/>
+<area shape="rect" id="node11" href="$group__fitting.html#classPonca_1_1CovarianceFitBase" title="Line fitting procedure that minimize the orthogonal distance between the samples and the fitted primi..." alt="" coords="266,1307,474,1347"/>
+<area shape="rect" id="node12" href="$group__fitting.html#classPonca_1_1CovarianceLineFitImpl" title="Line fitting procedure that minimize the orthogonal distance between the samples and the fitted primi..." alt="" coords="251,1371,489,1411"/>
+<area shape="rect" id="node13" href="$group__fitting.html#classPonca_1_1CovariancePlaneFitImpl" title="Plane fitting procedure using only points position." alt="" coords="251,1435,489,1475"/>
+<area shape="rect" id="node14" href="$group__fitting.html#classPonca_1_1DryFit" title="Empty fitting object doing no computation." alt="" coords="275,1499,465,1539"/>
+<area shape="rect" id="node15" href="$group__fitting.html#classPonca_1_1MeanNormal" title="Compute the barycenter of the input points + their normals." alt="" coords="271,1563,469,1603"/>
+<area shape="rect" id="node16" href="$group__fitting.html#classPonca_1_1MeanPlaneFitImpl" title="Plane fitting procedure computing the mean position and orientation from oriented points." alt="" coords="266,1627,474,1667"/>
+<area shape="rect" id="node17" href="$group__fitting.html#classPonca_1_1MeanPosition" title="Compute the barycenter of the input points." alt="" coords="266,1051,474,1091"/>
+<area shape="rect" id="node18" href="$group__fitting.html#classPonca_1_1OrientedSphereFitImpl" title="Algebraic Sphere fitting procedure on oriented point sets." alt="" coords="251,1115,489,1155"/>
+<area shape="rect" id="node19" href="$group__fitting.html#classPonca_1_1SphereFitImpl" title="Algebraic Sphere fitting procedure on point sets without normals." alt="" coords="266,1179,474,1219"/>
+<area shape="rect" id="node20" href="$group__fitting.html#classPonca_1_1UnorientedSphereFitImpl" title="Algebraic Sphere fitting procedure on point sets with non&#45;oriented normals." alt="" coords="251,1243,489,1283"/>
+<area shape="rect" id="node21" title=" " alt="" coords="29,1699,171,1724"/>
+<area shape="rect" id="node22" href="$group__fitting.html#classPonca_1_1Plane" title="Implicit hyperplane defined by an homogeneous vector ." alt="" coords="276,1691,464,1731"/>
+<area shape="rect" id="node23" title=" " alt="" coords="11,1763,189,1788"/>
+<area shape="rect" id="node24" href="$group__fitting.html#classPonca_1_1Line" title="A parametrized line is defined by an origin point &#160;and a unit direction vector &#160;such that the line co..." alt="" coords="281,1755,459,1795"/>
+<area shape="rect" id="node25" title=" " alt="" coords="81,948,119,973"/>
+<area shape="rect" id="node26" href="$group__fitting.html#classPonca_1_1AlgebraicSphere" title="Algebraic Sphere primitive." alt="" coords="266,606,474,646"/>
+<area shape="rect" id="node27" href="$group__fitting.html#classPonca_1_1CurvatureEstimatorBase" title="Base class for any 3d curvature estimator: holds , &#160;and associated vectors." alt="" coords="263,671,477,725"/>
+<area shape="rect" id="node28" href="$classPonca_1_1MeanPositionDer.html" title=" " alt="" coords="279,749,461,804"/>
+<area shape="rect" id="node29" href="$group__fitting.html#classPonca_1_1MongePatch" title="Extension to compute the best fit quadric on 3d points expressed as ." alt="" coords="271,829,469,869"/>
+<area shape="rect" id="node30" href="$group__fitting.html#classPonca_1_1NormalCovarianceCurvatureEstimator" title="Extension to compute curvature values based on a covariance analysis of normal vectors of neighbors." alt="" coords="243,893,497,948"/>
+<area shape="rect" id="node31" href="$group__fitting.html#classPonca_1_1ProjectedNormalCovarianceCurvatureEstimator" title="Extension to compute curvature values based on a covariance analysis of normal vectors of neighbors p..." alt="" coords="245,972,495,1027"/>
 </map>
