@@ -19,7 +19,7 @@ jobs:
           path: src/
       - name: Install packages (only used to generate Doxyfile)
         run : |
-          sudo apt-get install doxygen graphviz doxygen-latex
+          sudo apt-get install doxygen graphviz # doxygen-latex
       - name: Configure Doc
         run: |
           cd build/
