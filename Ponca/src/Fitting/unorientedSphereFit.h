@@ -234,7 +234,7 @@ class UnorientedSphereScaleSpaceDer:public internal::UnorientedSphereDer<DataPoi
 {
 protected:
     /*! \brief Inherited class */
-    typedef internal::UnorientedSphereDer<DataPoint, _WFunctor, T, internal::FitSpaceDer | internal::FitScaleDer> Base;
+    typedef internal::UnorientedSphereDer<DataPoint, _WFunctor, T, FitScaleSpaceDer> Base;
     enum
     {
         PROVIDES_ALGEBRAIC_SPHERE_SCALE_DERIVATIVE,

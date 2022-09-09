@@ -142,8 +142,8 @@ protected:
     };
 
 protected:
-    static constexpr  int NbDerivatives   = ((Type & internal::FitScaleDer) ? 1 : 0 ) + ((Type & internal::FitSpaceDer) ? DataPoint::Dim : 0);
-    static constexpr  int DerStorageOrder = (Type & internal::FitSpaceDer) ? Eigen::RowMajor : Eigen::ColMajor;
+    static constexpr  int NbDerivatives   = ((Type & FitScaleDer) ? 1 : 0 ) + ((Type & FitSpaceDer) ? DataPoint::Dim : 0);
+    static constexpr  int DerStorageOrder = (Type & FitSpaceDer) ? Eigen::RowMajor : Eigen::ColMajor;
 
 public:
     using Scalar     = typename Base::Scalar;          /*!< \brief Inherited scalar type*/
@@ -181,12 +181,12 @@ public:
                                                  ScalarArray &dw)
     {
         if( Base::addLocalNeighbor(w, localQ, attributes) ) {
-            int spaceId = (Type & internal::FitScaleDer) ? 1 : 0;
+            int spaceId = (Type & FitScaleDer) ? 1 : 0;
             // compute weight
-            if (Type & internal::FitScaleDer)
+            if (Type & FitScaleDer)
                 dw[0] = Base::m_w.scaledw(attributes.pos(), attributes);
 
-            if (Type & internal::FitSpaceDer)
+            if (Type & FitSpaceDer)
                 dw.template segment<int(DataPoint::Dim)>(spaceId) = -Base::m_w.spacedw(attributes.pos(), attributes).transpose();
 
             m_dSumW += dw;
@@ -199,9 +199,9 @@ public:
     /* Use results                                                            */
     /**************************************************************************/
     /*! \brief State specified at compilation time to differenciate the fit in scale */
-    PONCA_MULTIARCH inline constexpr bool isScaleDer() const {return bool(Type & internal::FitScaleDer);}
+    PONCA_MULTIARCH inline constexpr bool isScaleDer() const {return bool(Type & FitScaleDer);}
     /*! \brief State specified at compilation time to differenciate the fit in space */
-    PONCA_MULTIARCH inline constexpr bool isSpaceDer() const {return bool(Type & internal::FitSpaceDer);}
+    PONCA_MULTIARCH inline constexpr bool isSpaceDer() const {return bool(Type & FitSpaceDer);}
     /*! \brief Number of dimensions used for the differentiation */
     PONCA_MULTIARCH inline constexpr unsigned int derDimension() const { return NbDerivatives;}
 

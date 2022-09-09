@@ -221,14 +221,14 @@ void callSubTests()
     //! [HybridType]
 
     //! [PlaneFitDerTypes]
-    using PlaneScaleDiff = BasketDiff<TestPlane, internal::FitScaleDer, CovariancePlaneDer>;
-    using PlaneSpaceDiff = BasketDiff<TestPlane, internal::FitSpaceDer, CovariancePlaneDer>;
-    using PlaneScaleSpaceDiff = BasketDiff<TestPlane, internal::FitScaleDer | internal::FitSpaceDer, CovariancePlaneDer>;
+    using PlaneScaleDiff = BasketDiff<TestPlane, FitScaleDer, CovariancePlaneDer>;
+    using PlaneSpaceDiff = BasketDiff<TestPlane, FitSpaceDer, CovariancePlaneDer>;
+    using PlaneScaleSpaceDiff = BasketDiff<TestPlane, FitScaleSpaceDer, CovariancePlaneDer>;
     //! [PlaneFitDerTypes]
 
-    using HybridScaleDiff = BasketDiff<Hybrid, internal::FitScaleDer, CovariancePlaneDer>;
-    using HybridSpaceDiff = BasketDiff<Hybrid, internal::FitSpaceDer, CovariancePlaneDer>;
-    using HybridScaleSpaceDiff = BasketDiff<Hybrid, internal::FitScaleDer | internal::FitSpaceDer, CovariancePlaneDer>;
+    using HybridScaleDiff = BasketDiff<Hybrid, FitScaleDer, CovariancePlaneDer>;
+    using HybridSpaceDiff = BasketDiff<Hybrid, FitSpaceDer, CovariancePlaneDer>;
+    using HybridScaleSpaceDiff = BasketDiff<Hybrid, FitScaleSpaceDer, CovariancePlaneDer>;
 
     KdTree<Point>tree;
     Scalar scale = generateData(tree);

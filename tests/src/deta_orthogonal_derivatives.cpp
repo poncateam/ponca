@@ -74,7 +74,7 @@ void test_orthoEta()
     typedef DistWeightFunc<Point,SmoothWeightKernel<Scalar> > WeightFunc;
     using Fit    = BasketDiff<
             Basket<Point, WeightFunc, OrientedSphereFit, GLSParam>,
-            internal::FitScaleDer | internal::FitSpaceDer, OrientedSphereDer, GLSDer>;
+            FitScaleSpaceDer, OrientedSphereDer, GLSDer>;
 
     Scalar epsilon = Eigen::NumTraits<Scalar>::dummy_precision();
 

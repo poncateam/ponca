@@ -32,16 +32,13 @@ namespace Ponca
         NBMAX /*!< \brief Nb enums */
     };
 
-namespace internal
+/// Flags defining which derivatives need to be computed.
+/// \warning Flags have to be combined using `|`
+enum DiffType: unsigned int
 {
-  /// \internal
-  ///
-  /// Flags need to be combined using |
-  enum : unsigned char
-  {
-    FitScaleDer = 0x01, /*!< \brief Flag indicating a scale differentiation. */
-    FitSpaceDer = 0x02  /*!< \brief Flag indicating a space differentiation. */
-  };
-} // end namespace internal
+FitScaleDer = 0x01,                          /*!< \brief Flag indicating a scale differentiation. */
+FitSpaceDer = 0x02,                          /*!< \brief Flag indicating a space differentiation. */
+FitScaleSpaceDer = FitScaleDer | FitSpaceDer /*!< \brief Flag indicating a scale-space differentiation. */
+};
 
 } //namespace Ponca

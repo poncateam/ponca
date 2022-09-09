@@ -79,7 +79,7 @@ void callSubTests()
     typedef DistWeightFunc<Point, SmoothWeightKernel<Scalar> > WeightSmoothFunc;
     using FitSmoothOriented = BasketDiff<
             Basket<Point, WeightSmoothFunc, OrientedSphereFit, GLSParam>,
-            internal::FitScaleDer | internal::FitSpaceDer, OrientedSphereDer, GLSDer>;
+            FitScaleSpaceDer, OrientedSphereDer, GLSDer>;
 
 
     cout << "Testing with perfect sphere (oriented / unoriented)..." << endl;
