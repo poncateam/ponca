@@ -4,6 +4,7 @@ namespace Ponca
   \page fitting Fitting Module: User Manual
 
   <center>[\ref user_manual_page "Go back to user manual"]</center>
+  <center>[\ref fitting_concepts "Go to concept page"]</center>
 
   \tableofcontents
 
@@ -32,7 +33,7 @@ namespace Ponca
   In contrast with polymorphism, this method allows to combine multiple short computations without adding runtime overhead (both in terms of memory footprint and execution time).
   Instead, the combination of the computational components is performed and optimized when compiling the program, and thus require more memory and time for this stage.
 
-  Because of some properties of the C++ language, our classes does not inherit from a `Base` interface defining the API, but rather follows concepts, as described in \ref concepts.
+  Because of some properties of the C++ language, our classes does not inherit from a `Base` interface defining the API, but rather follows concepts, as described in \subpage fitting_concepts.
 
   \subsection fitting_primitiveOverview Fitting primitives and compute neighborhood properties
   The fitting module provides a unified API to perform computations (e.g. fit a \ref PrimitiveBase "Primitive", compute geometrical properties such as \ref CurvatureEstimatorBase "Curvatures") over the neighborhood of a given point.
@@ -334,6 +335,8 @@ namespace Ponca
 
   Check the \ref example_cxx_ssc_page "C++/Cuda" and \ref example_python_ssc_page "Python/Cuda" (using PyCuda) examples for more details and how-to.
 
+  <hr>
+  <center>[\ref fitting_concepts "Go to concept page"]</center>
   <center>[\ref user_manual_page "Go back to user manual"]</center>
  */
  }

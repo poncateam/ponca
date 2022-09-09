@@ -17,10 +17,7 @@ namespace Ponca
     The evaluation position is set using the #init method. All the queries are expressed in global system, and the
     weighting function convert them to local coordinates (ie. relatively to the evaluation position).
 
-    This class inherits BaseWeightFunc. It can be specialized for any DataPoint,
-    and uses a generic 1D BaseWeightKernel.
-
-    \inherit Concept::WeightFuncConcept
+    It can be specialized for any DataPoint and uses a generic 1D BaseWeightKernel.
 
     \warning it assumes that the evaluation scale t is strictly positive
 
