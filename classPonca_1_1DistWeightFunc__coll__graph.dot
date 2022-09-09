@@ -1,9 +1,0 @@
-digraph "Ponca::DistWeightFunc&lt; DataPoint, WeightKernel &gt;"
-{
- // INTERACTIVE_SVG=YES
- // LATEX_PDF_SIZE
-  bgcolor="transparent";
-  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
-  node [fontname="Helvetica",fontsize="10",shape=record];
-  Node1 [label="{Ponca::DistWeightFunc\l\< DataPoint, WeightKernel \>\n|# m_t\l# m_wk\l# m_p\l|+ DistWeightFunc()\l+ init()\l+ basisCenter()\l+ convertToLocalBasis()\l+ w()\l+ spacedw()\l+ spaced2w()\l+ scaledw()\l+ scaled2w()\l+ scaleSpaced2w()\l+ evalScale()\l+ evalPos()\l}",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip="Weighting function based on the euclidean distance between a query and a reference position."];
-}
