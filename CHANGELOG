@@ -21,6 +21,7 @@ The changes introduced in this version mostly are all introduced by PR #56.
     - [fitting] Improve genericity by allowing to build objets computing multiple
       fits at once (#56)
     - [fitting] Add a mechanism to detect conflicting computations (#56)
+    - [fitting] Move iScaleDer out of internal namespace + name enum (#56)
 
 - Bug-fixes and code improvements
     - [fitting] Reduce objets sizes by removing unnecessary attributes (#56)
@@ -34,6 +35,7 @@ The changes introduced in this version mostly are all introduced by PR #56.
 
 -Docs
     - Switch to doxygen-awesome-css (#56)
+    - Fix several warnings (#56)
     - [common] Add main page (#56)
     - [common] Add concept page (#56)
     - [common] Reformat page User Manual (#56)
