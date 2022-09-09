@@ -26,10 +26,17 @@ jobs:
           cmake ../src/ -DCMAKE_EXECUTE_PROCESS_COMMAND_ECHO=STDOUT -DPONCA_CONFIGURE_EXAMPLES=OFF -DPONCA_CONFIGURE_TESTS=OFF
           ls doc/
           cat doc/Doxyfile
-      - name: Build Doc
-        uses: mattnotmitt/doxygen-action@v1.9.4
-        with:
-           doxyfile-path: 'build/doc/Doxyfile'
+      - name: Download recent doxygen
+        run: |
+          curl https://www.doxygen.nl/files/doxygen-1.9.5.linux.bin.tar.gz .
+          tar -xvzf doxygen-1.9.5.linux.bin.tar.gz
+      - name: Build doc
+        run: |
+          ./doxygen-1.9.5/bin/doxygen ./build/doc/Doxyfile
+#      - name: Build Doc
+#        uses: mattnotmitt/doxygen-action@v1.9.4
+#        with:
+#           doxyfile-path: 'build/doc/Doxyfile'
 #      - name: Deploy Doc
 #        uses: peaceiris/actions-gh-pages@v3
 #        with:
