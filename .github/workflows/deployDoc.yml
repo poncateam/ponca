@@ -17,22 +17,17 @@ jobs:
         uses: actions/checkout@master
         with:
           path: src/
-      - name: Install packages (only used to generate Doxyfile)
-        run : |
-          sudo apt-get install doxygen graphviz # doxygen-latex
+      - name: Download recent doxygen
+        run: |
+          curl https://www.doxygen.nl/files/doxygen-1.9.3.linux.bin.tar.gz -o  doxygen-1.9.3.linux.bin.tar.gz
+          tar -xvzf doxygen-1.9.3.linux.bin.tar.gz
       - name: Configure Doc
         run: |
           cd build/
           cmake ../src/ -DCMAKE_EXECUTE_PROCESS_COMMAND_ECHO=STDOUT -DPONCA_CONFIGURE_EXAMPLES=OFF -DPONCA_CONFIGURE_TESTS=OFF
-          ls doc/
-          cat doc/Doxyfile
-      - name: Download recent doxygen
-        run: |
-          curl https://www.doxygen.nl/files/doxygen-1.9.2.linux.bin.tar.gz -o  doxygen-1.9.2.linux.bin.tar.gz
-          tar -xvzf doxygen-1.9.2.linux.bin.tar.gz
       - name: Build doc
         run: |
-          ./doxygen-1.9.2/bin/doxygen ./build/doc/Doxyfile
+          ./doxygen-1.9.3/bin/doxygen ./build/doc/Doxyfile
       - name: Deploy Doc
         uses: peaceiris/actions-gh-pages@v3
         with:
