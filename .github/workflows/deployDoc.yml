@@ -3,7 +3,7 @@ name: Deploy documentation to gh-pages
 
 on:
   push:
-    branches: [ master updateDoxAction ]
+    branches: [ master, updateDoxAction ]
 
 jobs:
   deploy-doc:
