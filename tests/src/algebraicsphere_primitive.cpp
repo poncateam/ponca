@@ -50,13 +50,16 @@ void testFunction()
     }
 
 
+#ifdef NDEBUG
 #pragma omp parallel for
+#endif
     for(int k=0; k<int(vecs.size()); ++k)
     {
+        const auto &fitInitPos = vecs[k].pos();
+
         Fit fit;
         fit.setWeightFunc(WeightFunc(analysisScale));
-
-        fit.init(vecs[k].pos());
+        fit.init(fitInitPos);
         fit.compute(vecs);
 
         if(fit.isStable())
@@ -66,7 +69,7 @@ void testFunction()
             VectorType candidate = VectorType::Random();
             for (unsigned int j = 0; j != 2; ++j){
                 // move basis center to a portion of the radius of the sphere
-                f2.changeBasis(fit.basisCenter() + Scalar(0.1)*fit.radius()*VectorType::Random());
+                f2.changeBasis(fitInitPos + Scalar(0.1)*fit.radius()*VectorType::Random());
 
                 VERIFY(  fit.radius() - f2.radius() < epsilon );
                 VERIFY( (fit.center() - f2.center() ).norm() < epsilon );
@@ -82,8 +85,8 @@ void callSubTests()
     using Point = PointPositionNormal<Scalar, Dim>;
 
     // We test only primitive functions and not the fitting procedure
-    typedef DistWeightFunc<Point, SmoothWeightKernel<Scalar> > WeightFunc;
-    typedef Basket<Point, WeightFunc, OrientedSphereFit> Sphere;
+    using WeightFunc = DistWeightFunc<Point, SmoothWeightKernel<Scalar> >;
+    using Sphere     = Basket<Point, WeightFunc, OrientedSphereFit>;
 
     for(int i = 0; i < g_repeat; ++i)
     {

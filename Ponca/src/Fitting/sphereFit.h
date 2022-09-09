@@ -23,57 +23,34 @@ namespace Ponca
 
     \ingroup fitting
 */
-template < class DataPoint, class _WFunctor, typename T = void >
-class SphereFit : public AlgebraicSphere<DataPoint, _WFunctor>
+template < class DataPoint, class _WFunctor, typename T >
+class SphereFitImpl : public T
 {
-private:
+PONCA_FITTING_DECLARE_DEFAULT_TYPES
 
-    typedef AlgebraicSphere<DataPoint, _WFunctor> Base;
-
-public:
-
-    /*! \brief Scalar type inherited from DataPoint*/
-    typedef typename Base::Scalar     Scalar;
-    /*! \brief Vector type inherited from DataPoint*/
-    typedef typename Base::VectorType VectorType;
-    /*! \brief Weight Function*/
-    typedef _WFunctor                 WFunctor;
-
- protected:
+protected:
+    enum
+    {
+        Check = Base::PROVIDES_ALGEBRAIC_SPHERE
+    };
+protected:
     typedef Eigen::Matrix<Scalar, DataPoint::Dim+2, 1>      VectorA;
     typedef Eigen::Matrix<Scalar, DataPoint::Dim+2, DataPoint::Dim+2>  MatrixA;
 
     // computation data
-    MatrixA  m_matA;  /*!< \brief Covariance matrix of [1, p, p^2] */
-    Scalar   m_sumW;  /*!< \brief Sum of queries weight */
-    WFunctor m_w;     /*!< \brief Weight function (must inherits BaseWeightFunc) */
+    MatrixA  m_matA {MatrixA::Zero()};  /*!< \brief Covariance matrix of [1, p, p^2] */
 
 public:
-
-    /*! \brief Default constructor */
-    PONCA_MULTIARCH inline SphereFit()
-        : Base(){}
-
-    /**************************************************************************/
-    /* Initialization                                                         */
-    /**************************************************************************/
-    /*! \copydoc Concept::FittingProcedureConcept::setWeightFunc() */
-    PONCA_MULTIARCH inline void setWeightFunc (const WFunctor& _w) { m_w  = _w; }
-
-    /*! \copydoc Concept::FittingProcedureConcept::init() */
-    PONCA_MULTIARCH inline void init (const VectorType& _evalPos);
-
-
-    /**************************************************************************/
-    /* Processing                                                             */
-    /**************************************************************************/
-    /*! \copydoc Concept::FittingProcedureConcept::addNeighbor() */
-    PONCA_MULTIARCH inline bool addNeighbor(const DataPoint &_nei);
-
-    /*! \copydoc Concept::FittingProcedureConcept::finalize() */
-    PONCA_MULTIARCH inline FIT_RESULT finalize();
-
+    PONCA_EXPLICIT_CAST_OPERATORS(SphereFitImpl,sphereFit)
+    PONCA_FITTING_DECLARE_INIT_ADD_FINALIZE
 }; //class SphereFit
+
+/// \brief Helper alias for Sphere fitting on 3D points using SphereFitImpl
+/// \ingroup fittingalias
+template < class DataPoint, class _WFunctor, typename T>
+using SphereFit =
+    SphereFitImpl<DataPoint, _WFunctor,
+        AlgebraicSphere<DataPoint, _WFunctor,T>>;
 
 
 

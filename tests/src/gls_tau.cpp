@@ -59,7 +59,7 @@ void testFunction(bool _bUnoriented = false, bool _bAddPositionNoise = false, bo
 #pragma omp parallel for
     for(int i = 0; i < int(vectorPoints.size()); ++i)
     {
-        // Take a random distance to the plane, not too large to have few points in weightning analysis
+        // Take a random distance to the plane, not too large to have few points in weighting analysis
         Scalar distanceToPlane = Eigen::internal::random<Scalar>(-range, range);
         VectorType vEvaluationPoint = vectorPoints[i].pos() + distanceToPlane * vPlaneNormal;
 
@@ -88,10 +88,12 @@ void callSubTests()
     typedef DistWeightFunc<Point, SmoothWeightKernel<Scalar> > WeightSmoothFunc;
     typedef DistWeightFunc<Point, ConstantWeightKernel<Scalar> > WeightConstantFunc;
 
+    //! [GLSFitTypes]
     typedef Basket<Point, WeightSmoothFunc, OrientedSphereFit, GLSParam> FitSmoothOriented;
     typedef Basket<Point, WeightConstantFunc, OrientedSphereFit, GLSParam> FitConstantOriented;
     typedef Basket<Point, WeightSmoothFunc, UnorientedSphereFit, GLSParam> FitSmoothUnoriented;
     typedef Basket<Point, WeightConstantFunc, UnorientedSphereFit, GLSParam> FitConstantUnoriented;
+    //! [GLSFitTypes]
 
     cout << "Testing with perfect plane (oriented / unoriented)..." << endl;
     for(int i = 0; i < g_repeat; ++i)

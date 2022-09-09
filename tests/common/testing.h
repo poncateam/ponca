@@ -32,8 +32,8 @@
 #define DEFAULT_REPEAT 10
 #endif
 
-#define PATATE_PP_MAKE_STRING2(S) #S
-#define PATATE_PP_MAKE_STRING(S) PATATE_PP_MAKE_STRING2(S)
+#define PONCA_PP_MAKE_STRING2(S) #S
+#define PONCA_PP_MAKE_STRING(S) PONCA_PP_MAKE_STRING2(S)
 
 static std::vector<std::string> g_test_stack;
 static int g_repeat;
@@ -50,10 +50,10 @@ void verify_impl(bool condition, const char *testname, const char *file, int lin
   }
 }
 
-#define VERIFY(a) ::verify_impl(a, g_test_stack.back().c_str(), __FILE__, __LINE__, PATATE_PP_MAKE_STRING(a))
+#define VERIFY(a) ::verify_impl(a, g_test_stack.back().c_str(), __FILE__, __LINE__, PONCA_PP_MAKE_STRING(a))
 
 #define CALL_SUBTEST(FUNC) do { \
-    g_test_stack.push_back(PATATE_PP_MAKE_STRING(FUNC)); \
+    g_test_stack.push_back(PONCA_PP_MAKE_STRING(FUNC)); \
     FUNC; \
     g_test_stack.pop_back(); \
   } while (0)
@@ -124,13 +124,6 @@ static bool init_testing(int argc, char *argv[])
     std::cout << "will be used as default values for these parameters." << std::endl;
     return false;
   }
-
-  char *env_EIGEN_REPEAT = getenv("EIGEN_REPEAT");
-  if(!g_has_set_repeat && env_EIGEN_REPEAT)
-    set_repeat_from_string(env_EIGEN_REPEAT);
-  char *env_EIGEN_SEED = getenv("EIGEN_SEED");
-  if(!g_has_set_seed && env_EIGEN_SEED)
-    set_seed_from_string(env_EIGEN_SEED);
 
   if(!g_has_set_seed) g_seed = (unsigned int) time(NULL);
   if(!g_has_set_repeat) g_repeat = DEFAULT_REPEAT;

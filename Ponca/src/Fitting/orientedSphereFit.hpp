@@ -7,77 +7,54 @@
 
 template < class DataPoint, class _WFunctor, typename T>
 void
-OrientedSphereFit<DataPoint, _WFunctor, T>::init(const VectorType& _evalPos)
+OrientedSphereFitImpl<DataPoint, _WFunctor, T>::init(const VectorType& _evalPos)
 {
-    // Setup primitive
-    Base::resetPrimitive();
-    Base::basisCenter() = _evalPos;
+    Base::init(_evalPos);
 
     // Setup fitting internal values
-    m_sumP     = VectorType::Zero();
-    m_sumN     = VectorType::Zero();
     m_sumDotPN = Scalar(0.0);
     m_sumDotPP = Scalar(0.0);
-    m_sumW     = Scalar(0.0);
     m_nume     = Scalar(0.0);
     m_deno     = Scalar(0.0);
 }
 
-template < class DataPoint, class _WFunctor, typename T>
+template<class DataPoint, class _WFunctor, typename T>
 bool
-OrientedSphereFit<DataPoint, _WFunctor, T>::addNeighbor(const DataPoint& _nei)
-{
-    // centered basis
-    VectorType q = _nei.pos() - Base::basisCenter();
-
-    // compute weight
-    Scalar w = m_w.w(q, _nei);
-
-    if (w > Scalar(0.))
-    {
-        // increment matrix
-        m_sumP     += q * w;
-        m_sumN     += _nei.normal() * w;
-        m_sumDotPN += w * _nei.normal().dot(q);
-        m_sumDotPP += w * q.squaredNorm();
-        m_sumW     += w;
-
-        /*! \todo Handle add of multiple similar neighbors (maybe user side)*/
-        ++(Base::m_nbNeighbors);
+OrientedSphereFitImpl<DataPoint, _WFunctor, T>::addLocalNeighbor(Scalar w,
+                                                        const VectorType &localQ,
+                                                        const DataPoint &attributes) {
+    if( Base::addLocalNeighbor(w, localQ, attributes) ) {
+        m_sumDotPN += w * attributes.normal().dot(localQ);
+        m_sumDotPP += w * localQ.squaredNorm();
         return true;
     }
-
     return false;
 }
 
 
 template < class DataPoint, class _WFunctor, typename T>
 FIT_RESULT
-OrientedSphereFit<DataPoint, _WFunctor, T>::finalize ()
+OrientedSphereFitImpl<DataPoint, _WFunctor, T>::finalize ()
 {
     PONCA_MULTIARCH_STD_MATH(sqrt);
     PONCA_MULTIARCH_STD_MATH(max);
     PONCA_MULTIARCH_STD_MATH(abs);
 
+    // Compute status
+    if(Base::finalize() != STABLE  || Base::m_nbNeighbors < 3)
+        return Base::m_eCurrentState;
+    if (Base::algebraicSphere().isValid())
+        Base::m_eCurrentState = CONFLICT_ERROR_FOUND;
+    else
+        Base::m_eCurrentState = Base::m_nbNeighbors < 6 ? UNSTABLE : STABLE;
+
     // 1. finalize sphere fitting
     Scalar epsilon = Eigen::NumTraits<Scalar>::dummy_precision();
 
-    // handle specific configurations
-    // With less than 3 neighbors the fitting is undefined
-    if(m_sumW == Scalar(0.) || Base::m_nbNeighbors < 3)
-    {
-        Base::m_ul.setZero();
-        Base::m_uc = Scalar(0.);
-        Base::m_uq = Scalar(0.);
-        Base::m_isNormalized = false;
-        Base::m_eCurrentState = UNDEFINED;
-        return Base::m_eCurrentState;
-    }
+    Scalar invSumW = Scalar(1.)/Base::m_sumW;
 
-    Scalar invSumW = Scalar(1.)/m_sumW;
-
-    m_nume = (m_sumDotPN - invSumW * m_sumP.dot(m_sumN));
-    Scalar den1 = invSumW * m_sumP.dot(m_sumP);
+    m_nume = (m_sumDotPN - invSumW * Base::m_sumP.dot(Base::m_sumN));
+    Scalar den1 = invSumW * Base::m_sumP.dot(Base::m_sumP);
     m_deno = m_sumDotPP - den1;
 
     // Deal with degenerate cases
@@ -93,86 +70,55 @@ OrientedSphereFit<DataPoint, _WFunctor, T>::finalize ()
     {
         //Generic case
         Base::m_uq = Scalar(.5) * m_nume / m_deno;
-        Base::m_ul = (m_sumN - m_sumP * (Scalar(2.) * Base::m_uq)) * invSumW;
-        Base::m_uc = -invSumW * (Base::m_ul.dot(m_sumP) + m_sumDotPP * Base::m_uq);
+        Base::m_ul = (Base::m_sumN - Base::m_sumP * (Scalar(2.) * Base::m_uq)) * invSumW;
+        Base::m_uc = -invSumW * (Base::m_ul.dot(Base::m_sumP) + m_sumDotPP * Base::m_uq);
     }
 
     Base::m_isNormalized = false;
 
-    if(Base::m_nbNeighbors < 6)
-    {
-        Base::m_eCurrentState = UNSTABLE;
-    }
-    else
-    {
-        Base::m_eCurrentState = STABLE;
-    }
-
     return Base::m_eCurrentState;
 }
 
-
-namespace internal
-{
-
-template < class DataPoint, class _WFunctor, typename T, int Type>
+template < class DataPoint, class _WFunctor, int DiffType, typename T>
 void
-OrientedSphereDer<DataPoint, _WFunctor, T, Type>::init(const VectorType& _evalPos)
+OrientedSphereDerImpl<DataPoint, _WFunctor, DiffType, T>::init(const VectorType& _evalPos)
 {
     Base::init(_evalPos);
 
-    m_dSumN     = VectorArray::Zero();
-    m_dSumP     = VectorArray::Zero();
+    m_dSumN.setZero();
 
-    m_dSumDotPN = ScalarArray::Zero();
-    m_dSumDotPP = ScalarArray::Zero();
-    m_dSumW     = ScalarArray::Zero();
-    m_dNume     = ScalarArray::Zero();
-    m_dDeno     = ScalarArray::Zero();
+    m_dSumDotPN.setZero();
+    m_dSumDotPP.setZero();
+    m_dNume.setZero();
+    m_dDeno.setZero();
 
-    m_dUc       = ScalarArray::Zero();
-    m_dUq       = ScalarArray::Zero();
-    m_dUl       = VectorArray::Zero();
+    m_dUc.setZero();
+    m_dUq.setZero();
+    m_dUl.setZero();
 }
 
 
-template < class DataPoint, class _WFunctor, typename T, int Type>
+template < class DataPoint, class _WFunctor, int DiffType, typename T>
 bool
-OrientedSphereDer<DataPoint, _WFunctor, T, Type>::addNeighbor(const DataPoint  &_nei)
-{
-    bool bResult = Base::addNeighbor(_nei);
+OrientedSphereDerImpl<DataPoint, _WFunctor, DiffType, T>::addLocalNeighbor(Scalar w,
+                                                                           const VectorType &localQ,
+                                                                           const DataPoint &attributes,
+                                                                           ScalarArray &dw) {
+    if( Base::addLocalNeighbor(w, localQ, attributes, dw) ) {
 
-    if(bResult)
-    {
-        ScalarArray dw;
-
-        // centered basis
-        VectorType q = _nei.pos() - Base::basisCenter();
-
-        // compute weight derivatives
-        if (Type & FitScaleDer)
-            dw[0] = Base::m_w.scaledw(q, _nei);
-
-        if (Type & FitSpaceDer)
-            dw.template tail<int(DataPoint::Dim)>() = -Base::m_w.spacedw(q, _nei).transpose();
-
-        // increment
-        m_dSumW     += dw;
-        m_dSumP     += q * dw;
-        m_dSumN     += _nei.normal() * dw;
-        m_dSumDotPN += dw * _nei.normal().dot(q);
-        m_dSumDotPP += dw * q.squaredNorm();
+        m_dSumN     += attributes.normal() * dw;
+        m_dSumDotPN += dw * attributes.normal().dot(localQ);
+        m_dSumDotPP += dw * localQ.squaredNorm();
 
         return true;
     }
-
     return false;
 }
 
 
-template < class DataPoint, class _WFunctor, typename T, int Type>
+template < class DataPoint, class _WFunctor, int DiffType, typename T>
 FIT_RESULT
-OrientedSphereDer<DataPoint, _WFunctor, T, Type>::finalize()
+OrientedSphereDerImpl<DataPoint, _WFunctor, DiffType, T>::finalize()
 {
     PONCA_MULTIARCH_STD_MATH(sqrt);
 
@@ -189,56 +135,56 @@ OrientedSphereDer<DataPoint, _WFunctor, T, Type>::finalize()
         // issues for spacial derivatives because, (d sum w_i P_i)/(d x) is supposed to be tangent to the surface whereas
         // "sum w_i N_i" is normal to the surface...
         m_dNume = m_dSumDotPN
-            - invSumW*invSumW * ( Base::m_sumW * ( Base::m_sumN.transpose() * m_dSumP + Base::m_sumP.transpose() * m_dSumN )
-            - m_dSumW*Base::m_sumP.dot(Base::m_sumN) );
+            - invSumW*invSumW * ( Base::m_sumW * ( Base::m_sumN.transpose() * Base::m_dSumP + Base::m_sumP.transpose() * m_dSumN )
+            - Base::m_dSumW*Base::m_sumP.dot(Base::m_sumN) );
 
         m_dDeno = m_dSumDotPP
-            - invSumW*invSumW*(   Scalar(2.) * Base::m_sumW * Base::m_sumP.transpose() * m_dSumP
-            - m_dSumW*Base::m_sumP.dot(Base::m_sumP) );
+            - invSumW*invSumW*(   Scalar(2.) * Base::m_sumW * Base::m_sumP.transpose() * Base::m_dSumP
+            - Base::m_dSumW*Base::m_sumP.dot(Base::m_sumP) );
 
         m_dUq =  Scalar(.5) * (deno * m_dNume - m_dDeno * nume)/(deno*deno);
 
         // FIXME: this line is prone to numerical cancellation issues because dSumN and u_l*dSumW are close to each other.
         // If using two passes, one could directly compute sum( dw_i + (n_i - ul) ) to avoid this issue.
-        m_dUl =  invSumW * ( m_dSumN - Base::m_ul*m_dSumW - Scalar(2.)*(m_dSumP*Base::m_uq + Base::m_sumP*m_dUq) );
+        m_dUl =  invSumW * ( m_dSumN - Base::m_ul*Base::m_dSumW - Scalar(2.)*(Base::m_dSumP * Base::m_uq + Base::m_sumP * m_dUq) );
         m_dUc = -invSumW*( Base::m_sumP.transpose() * m_dUl
             + Base::m_sumDotPP * m_dUq
-            + Base::m_ul.transpose() * m_dSumP
+            + Base::m_ul.transpose() * Base::m_dSumP
             + Base::m_uq * m_dSumDotPP
-            + m_dSumW * Base::m_uc);
+            + Base::m_dSumW * Base::m_uc);
     }
 
     return Base::m_eCurrentState;
 }
 
-template < class DataPoint, class _WFunctor, typename T, int Type>
-typename OrientedSphereDer <DataPoint, _WFunctor, T, Type>::VectorArray
-OrientedSphereDer<DataPoint, _WFunctor, T, Type>::dNormal() const
+template < class DataPoint, class _WFunctor, int DiffType, typename T>
+typename OrientedSphereDerImpl <DataPoint, _WFunctor, DiffType, T>::VectorArray
+OrientedSphereDerImpl<DataPoint, _WFunctor, DiffType, T>::dNormal() const
 {
   // Computes the derivatives of the normal of the sphere at the evaluation point.
   // Therefore, we must take into account the variation of the evaluation point when differentiating wrt space
   // i.e., normal(x) = grad / |grad|, with grad(x) = ul + 2 uq * x, and diff_x(grad) = dul + 2 uq I
   VectorArray dgrad = m_dUl;
-  if(isSpaceDer())
+  if(Base::isSpaceDer())
     dgrad.template rightCols<DataPoint::Dim>().diagonal().array() += Scalar(2)*Base::m_uq;
   Scalar norm  = Base::m_ul.norm();
   Scalar norm3 = norm*norm*norm;
   return dgrad / norm - Base::m_ul * (Base::m_ul.transpose() * dgrad) / norm3;
 }
 
-template < class DataPoint, class _WFunctor, typename T, int Type>
-typename OrientedSphereDer <DataPoint, _WFunctor, T, Type>::ScalarArray
-OrientedSphereDer<DataPoint, _WFunctor, T, Type>::dPotential() const
+template < class DataPoint, class _WFunctor, int DiffType, typename T>
+typename OrientedSphereDerImpl <DataPoint, _WFunctor, DiffType, T>::ScalarArray
+OrientedSphereDerImpl<DataPoint, _WFunctor, DiffType, T>::dPotential() const
 {
   ScalarArray dfield = m_dUc;
-  if(isSpaceDer())
+  if(Base::isSpaceDer())
     dfield.template tail<DataPoint::Dim>() += Base::m_ul;
   return dfield;
 }
 
-template < class DataPoint, class _WFunctor, typename T, int Type>
+template < class DataPoint, class _WFunctor, int DiffType, typename T>
 bool
-OrientedSphereDer<DataPoint, _WFunctor, T, Type>::applyPrattNorm()
+OrientedSphereDerImpl<DataPoint, _WFunctor, DiffType, T>::applyPrattNorm()
 {
     if(Base::isNormalized())
         return false; //need original parameters without Pratt Normalization
@@ -257,5 +203,3 @@ OrientedSphereDer<DataPoint, _WFunctor, T, Type>::applyPrattNorm()
     Base::applyPrattNorm();
     return true;
 }
-
-}// namespace internal

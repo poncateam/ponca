@@ -5,13 +5,13 @@
 */
 
 template < class DataPoint, class _WFunctor, typename T>
-typename DataPoint::VectorType
+typename AlgebraicSphere<DataPoint, _WFunctor, T>::VectorType
 AlgebraicSphere<DataPoint, _WFunctor, T>::project(const VectorType& _q) const
 {
     PONCA_MULTIARCH_STD_MATH(sqrt);
 
     // turn to centered basis
-    const VectorType lq = _q-m_p;
+    const VectorType lq = Base::m_w.convertToLocalBasis(_q);
 
     Scalar potential = m_uc + lq.dot(m_ul) + m_uq * lq.squaredNorm();
     VectorType grad = m_ul + Scalar(2) * m_uq * lq;
@@ -26,17 +26,17 @@ AlgebraicSphere<DataPoint, _WFunctor, T>::project(const VectorType& _q) const
     {
         t = - (norm - sqrt(norm*norm - Scalar(4) * m_uq * potential)) / (Scalar(2) * m_uq * norm);
     }
-    return m_p + lq + t * grad;
+    return Base::m_w.basisCenter() + lq + t * grad;
 }
 
 template < class DataPoint, class _WFunctor, typename T>
-typename DataPoint::VectorType
+typename AlgebraicSphere<DataPoint, _WFunctor, T>::VectorType
 AlgebraicSphere<DataPoint, _WFunctor, T>::projectDescent( const VectorType& _q, int nbIter) const
 {
     PONCA_MULTIARCH_STD_MATH(min)
 
     // turn to centered basis
-    const VectorType lq = _q-m_p;
+    const VectorType lq = Base::m_w.convertToLocalBasis(_q);
 
     VectorType grad;
     VectorType dir  = m_ul+Scalar(2.)*m_uq*lq;
@@ -53,26 +53,26 @@ AlgebraicSphere<DataPoint, _WFunctor, T>::projectDescent( const VectorType& _q, 
         delta = -(m_uc + proj.dot(m_ul) + m_uq * proj.squaredNorm())*min(ilg,Scalar(1.));
         proj += dir*delta;
     }
-    return proj + m_p;
+    return proj + Base::m_w.basisCenter();
 }
 
 template < class DataPoint, class _WFunctor, typename T>
-typename DataPoint::Scalar
+typename AlgebraicSphere<DataPoint, _WFunctor, T>::Scalar
 AlgebraicSphere<DataPoint, _WFunctor, T>::potential( const VectorType &_q ) const
 {
     // turn to centered basis
-    const VectorType lq = _q-m_p;
+    const VectorType lq = Base::m_w.convertToLocalBasis(_q);
 
     return m_uc + lq.dot(m_ul) + m_uq * lq.squaredNorm();
 }
 
 
 template < class DataPoint, class _WFunctor, typename T>
-typename DataPoint::VectorType
+typename AlgebraicSphere<DataPoint, _WFunctor, T>::VectorType
 AlgebraicSphere<DataPoint, _WFunctor, T>::primitiveGradient( const VectorType &_q ) const
 {
         // turn to centered basis
-        const VectorType lq = _q-m_p;
+        const VectorType lq = Base::m_w.convertToLocalBasis(_q);
         return (m_ul + Scalar(2.f) * m_uq * lq);
 }
 

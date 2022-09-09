@@ -10,85 +10,55 @@
 
 namespace Ponca
 {
+/*!
+    \brief Extension to compute curvature values from the Weingarten map \f$ \frac{d N}{d \mathbf{x}} \f$
+    \inherit Concept::FittingExtensionConcept
 
-template < class DataPoint, class _WFunctor, typename T>
-/**
- *
- * \brief Base class for any 3d curvature estimator: holds k1, k2 and associated vectors
- *
- * \ingroup fitting
- */
-class BaseCurvatureEstimator : public T
-{
-private:
-    typedef T Base;
+    This class extracts curvature information from the spatial derivatives of the normal field \f$ N \f$.
+    It first assemble a 2x2 matrix representation of the shape operator, and then performs an eigenvalue decomposition
+    using Eigen::SelfAdjointEigenSolver::computeDirect.
 
-protected:
-    enum
+    \ingroup fitting
+*/
+    template < class DataPoint, class _WFunctor, int DiffType, typename T>
+    class NormalDerivativesCurvatureEstimator : public T
     {
-        PROVIDES_PRINCIPALE_CURVATURES
+    PONCA_FITTING_DECLARE_DEFAULT_TYPES
+    PONCA_FITTING_DECLARE_MATRIX_TYPE
+
+    protected:
+        enum
+        {
+            Check = Base::PROVIDES_NORMAL_DERIVATIVE && Base::PROVIDES_PRINCIPAL_CURVATURES
+        };
+
+    private:
+        typedef Eigen::Matrix<Scalar,3,2> Mat32; /*!< \brief Matrix type for tangent plane basis \fixme formalize tangent plane basis */
+        typedef Eigen::Matrix<Scalar,2,2> Mat22; /*!< \brief Matrix type for shape operator */
+
+    public:
+        PONCA_EXPLICIT_CAST_OPERATORS_DER(NormalDerivativesCurvatureEstimator,normalDerivativesCurvatureEstimator)
+        PONCA_FITTING_DECLARE_FINALIZE
+
+    private:
+        //! \brief Compute principal curvature directions relatively to the tangent plane
+        //! \see tangentPlane
+        //! The finalize() method calls this function with useNormal=false by default.
+        //! \todo Add a way to give user control to the tangent plane estimation
+        //!
+        PONCA_MULTIARCH inline FIT_RESULT computeCurvature(bool useNormal = false);
+
+    protected:
+        //! \brief Compute a tangent plane basis
+        //!
+        //! The tangent plane can be calculated from the normal vector or from its
+        //! derivatives, depending of the useNormal parameter
+        //! \todo Uniformize with tangentplane basis: these computations are not part of NormalDerivativesCurvature
+        PONCA_MULTIARCH inline Mat32 tangentPlane(bool useNormal = false) const;
     };
 
-public:
-    typedef typename Base::Scalar          Scalar;      /*!< \brief Inherited scalar type*/
-    typedef typename Base::VectorType      VectorType;  /*!< \brief Inherited vector type*/
-    typedef typename DataPoint::MatrixType MatrixType;  /*!< \brief Matrix type inherited from DataPoint*/
 
-protected:
-    /// \brief Principal curvature with highest absolute magnitude
-    Scalar m_k1,
-    /// \brief Principal curvature with smallest absolute magnitude
-           m_k2;
-    /// \brief Direction associated to the principal curvature with highest absolute magnitude
-    VectorType m_v1,
-    /// \brief Direction associated to the principal curvature with highest smallest magnitude
-               m_v2;
-
-    static_assert ( DataPoint::Dim == 3, "BaseCurvatureEstimator is only valid in 3D");
-
-public:
-    /*! \brief Default constructor */
-    PONCA_MULTIARCH inline BaseCurvatureEstimator() : m_k1(0), m_k2(0) {}
-
-public:
-    /**************************************************************************/
-    /* Initialization                                                         */
-    /**************************************************************************/
-    /*! \copydoc Concept::FittingProcedureConcept::init() */
-    PONCA_MULTIARCH inline void init (const VectorType& _evalPos);
-
-    /**************************************************************************/
-    /* Use results                                                            */
-    /**************************************************************************/
-    //! \brief Returns an estimate of the first principal curvature value
-    //!
-    //! It is the greatest curvature in <b>absolute value</b>.
-    PONCA_MULTIARCH inline Scalar k1() const { return m_k1; }
-
-    //! \brief Returns an estimate of the second principal curvature value
-    //!
-    //! It is the smallest curvature in <b>absolute value</b>.
-    PONCA_MULTIARCH inline Scalar k2() const { return m_k2; }
-
-    //! \brief Returns an estimate of the first principal curvature direction
-    //!
-    //! It is the greatest curvature in <b>absolute value</b>.
-    PONCA_MULTIARCH inline VectorType k1Direction() const { return m_v1; }
-
-    //! \brief Returns an estimate of the second principal curvature direction
-    //!
-    //! It is the smallest curvature in <b>absolute value</b>.
-    PONCA_MULTIARCH inline VectorType k2Direction() const { return m_v2; }
-
-    //! \brief Returns an estimate of the mean curvature
-    PONCA_MULTIARCH inline Scalar kMean() const { return (m_k1 + m_k2)/2.;}
-
-    //! \brief Returns an estimate of the Gaussian curvature
-    PONCA_MULTIARCH inline Scalar GaussianCurvature() const { return m_k1 * m_k2;}
-};
-
-
-/*!
+    /*!
  * \brief Extension to compute curvature values based on a covariance analysis
  * of normal vectors of neighbors.
  *
@@ -97,50 +67,42 @@ public:
  * eigenvalues and associated eigenvectors of the covariance matrix
  * \cite Liang:1990:RRSS.
  *
+ * \todo Refactor curvature estimators, and link to tangent plane
+ *
+ * \warning Not it test suite, to be added !
+ *
  * \warning This class is valid only in 3D.
  * \ingroup fitting
  */
-template < class DataPoint, class _WFunctor, typename T>
-class NormalCovarianceCurvature : public BaseCurvatureEstimator<DataPoint,_WFunctor,T>
+template < class DataPoint, class _WFunctor, int DiffType, typename T>
+class NormalCovarianceCurvatureEstimator : public T
 {
-private:
-    typedef BaseCurvatureEstimator<DataPoint,_WFunctor,T> Base;
+PONCA_FITTING_DECLARE_DEFAULT_TYPES
+PONCA_FITTING_DECLARE_MATRIX_TYPE
+PONCA_FITTING_DECLARE_DEFAULT_DER_TYPES
+
+protected:
+    enum
+    {
+        Check = Base::PROVIDES_PRINCIPAL_CURVATURES
+    };
 
     //TODO(thib) check the curvature values that might be wrong
     //TODO(thib) use weighting function
     //TODO(thib) which eigenvectors should be selected ? extreme of maximal ?
 
 public:
-    typedef typename Base::Scalar          Scalar;      /*!< \brief Inherited scalar type*/
-    typedef typename Base::VectorType      VectorType;  /*!< \brief Inherited vector type*/
-    typedef typename DataPoint::MatrixType MatrixType;  /*!< \brief Matrix type inherited from DataPoint*/
     /*! \brief Solver used to analyse the covariance matrix*/
     typedef Eigen::SelfAdjointEigenSolver<MatrixType> Solver;
 
 protected:
-    MatrixType m_cov;   /*!< \brief Covariance matrix */
-    VectorType m_cog;   /*!< \brief Gravity center */
+    MatrixType m_cov;   /*!< \brief Covariance matrix of the normal vectors \todo We have this somewhere else */
+    VectorType m_cog;   /*!< \brief Gravity center of the normal vectors \todo Use MeanNormal */
     Solver m_solver;    /*!< \brief Solver used to analyse the covariance matrix */
 
 public:
-    /*! \brief Default constructor */
-    PONCA_MULTIARCH inline NormalCovarianceCurvature() : Base() {}
-
-public:
-    /**************************************************************************/
-    /* Initialization                                                         */
-    /**************************************************************************/
-    /*! \copydoc Concept::FittingProcedureConcept::init() */
-    PONCA_MULTIARCH inline void init (const VectorType& _evalPos);
-
-    /**************************************************************************/
-    /* Processing                                                             */
-    /**************************************************************************/
-    /*! \copydoc Concept::FittingProcedureConcept::addNeighbor() */
-    PONCA_MULTIARCH inline bool addNeighbor(const DataPoint &_nei);
-
-    /*! \copydoc Concept::FittingProcedureConcept::finalize() */
-    PONCA_MULTIARCH inline FIT_RESULT finalize();
+    PONCA_EXPLICIT_CAST_OPERATORS_DER(NormalCovarianceCurvatureEstimator, normalCovarianceCurvatureEstimator)
+    PONCA_FITTING_DECLARE_INIT_ADDDER_FINALIZE
 };
 
 
@@ -157,22 +119,27 @@ public:
  * and local frame estimation, and the second one for covariance analysis.
  * \warning This class is valid only in 3D.
  * \ingroup fitting
+ *
+ * \warning Not it test suite, to be added !
  */
-template < class DataPoint, class _WFunctor, typename T>
-class ProjectedNormalCovarianceCurvature : public BaseCurvatureEstimator<DataPoint,_WFunctor,T>
+template < class DataPoint, class _WFunctor, int DiffType, typename T>
+class ProjectedNormalCovarianceCurvatureEstimator : public T
 {
-private:
-    typedef BaseCurvatureEstimator<DataPoint,_WFunctor,T> Base;
-
     //TODO(thib) check the curvature values that might be wrong
     //TODO(thib) use weighting function
+
+PONCA_FITTING_DECLARE_DEFAULT_TYPES
+PONCA_FITTING_DECLARE_MATRIX_TYPE
+PONCA_FITTING_DECLARE_DEFAULT_DER_TYPES
 
 protected:
     enum
     {
-        Check = Base::PROVIDES_PLANE
+        Check = Base::PROVIDES_PRINCIPAL_CURVATURES &&
+                Base::PROVIDES_PLANE // \todo This class relies on the primitiveGradient, so update this
     };
 
+    /// \todo Use same pass management than MongePatch
     enum PASS : int
     {
         FIRST_PASS = 0,
@@ -181,9 +148,6 @@ protected:
     };
 
 public:
-    typedef typename Base::Scalar          Scalar;      /*!< \brief Inherited scalar type*/
-    typedef typename Base::VectorType      VectorType;  /*!< \brief Inherited vector type*/
-    typedef typename DataPoint::MatrixType MatrixType;  /*!< \brief Matrix type inherited from DataPoint*/
     //TODO(thib) use of Eigen::RowAtCompileTime-1 ?
     typedef Eigen::Matrix<Scalar,2,2> Mat22;
     typedef Eigen::Matrix<Scalar,3,2> Mat32;
@@ -200,21 +164,8 @@ protected:
     Mat32 m_tframe;     /*!< \brief Tangent frame */
 
 public:
-    /**************************************************************************/
-    /* Initialization                                                         */
-    /**************************************************************************/
-    /*! \copydoc Concept::FittingProcedureConcept::init() */
-    PONCA_MULTIARCH inline void init (const VectorType& _evalPos);
-
-    /**************************************************************************/
-    /* Processing                                                             */
-    /**************************************************************************/
-    /*! \copydoc Concept::FittingProcedureConcept::addNeighbor() */
-    PONCA_MULTIARCH inline bool addNeighbor(const DataPoint &_nei);
-
-    /*! \copydoc Concept::FittingProcedureConcept::finalize() */
-    PONCA_MULTIARCH inline FIT_RESULT finalize();
-
+    PONCA_EXPLICIT_CAST_OPERATORS_DER(ProjectedNormalCovarianceCurvatureEstimator, projectedNormalCovarianceCurvature)
+    PONCA_FITTING_DECLARE_INIT_ADDDER_FINALIZE
 };
 
 #include "curvatureEstimation.hpp"

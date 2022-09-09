@@ -43,7 +43,7 @@ CheckSurfaceVariation<false>::run(const Fit& /*fit*/, Scalar /*epsilon*/){ }
 
 
 template<typename DataPoint, typename Fit, typename WeightFunc, bool _cSurfVar> //, typename Fit, typename WeightFunction>
-void testFunction(bool _bUnoriented = false, bool _bAddPositionNoise = false, bool _bAddNormalNoise = false)
+void testFunction(bool _bUnoriented = false, bool _bAddPositionNoise = false, bool _bAddNormalNoise = false, bool conflictAnnounced = false)
 {
     // Define related structure
     typedef typename DataPoint::Scalar Scalar;
@@ -104,22 +104,28 @@ void testFunction(bool _bUnoriented = false, bool _bAddPositionNoise = false, bo
         fit.init(vectorPoints[i].pos());
         fit.compute(vectorPoints);
 
-        if( fit.isStable() ){
+        auto ret = fit.getCurrentState();
 
-            // Check if the plane orientation is equal to the generation direction
-            VERIFY(Scalar(1.) - std::abs(fit.primitiveGradient(vectorPoints[i].pos()).dot(direction)) <= epsilon);
+        switch (ret){
+            case STABLE: {
+                // Check if the plane orientation is equal to the generation direction
+                VERIFY(Scalar(1.) - std::abs(fit.primitiveGradient(vectorPoints[i].pos()).dot(direction)) <= epsilon);
 
-            // Check if the surface variation is small
-            CheckSurfaceVariation<_cSurfVar>::run(fit, _bAddPositionNoise ? epsilon*Scalar(10.): epsilon);
+                // Check if the surface variation is small
+                CheckSurfaceVariation<_cSurfVar>::run(fit, _bAddPositionNoise ? epsilon*Scalar(10.): epsilon);
 
-            // Check if the query point is on the plane
-            if(!_bAddPositionNoise)
-              VERIFY(fit.potential(vectorPoints[i].pos()) <= epsilon);
-
-        }
-        else {
-            VERIFY(MULTIPASS_PLANE_FITTING_FAILED);
-        }
+                // Check if the query point is on the plane
+                if(!_bAddPositionNoise)
+                    VERIFY(fit.potential(vectorPoints[i].pos()) <= epsilon);
+                break;
+            }
+            case CONFLICT_ERROR_FOUND:
+                VERIFY(conflictAnnounced); // raise error only if conflict is detected but not announced
+                break;
+            default:
+                VERIFY(MULTIPASS_PLANE_FITTING_FAILED);
+        };
+        if(conflictAnnounced) VERIFY(ret == CONFLICT_ERROR_FOUND); //check if we did not detect the conflict
     }
 }
 
@@ -137,6 +143,16 @@ void callSubTests()
     typedef Basket<Point, WeightSmoothFunc, MeanPlaneFit> MeanFitSmooth;
     typedef Basket<Point, WeightConstantFunc, MeanPlaneFit> MeanFitConstant;
 
+    // test if conflicts are detected
+    //! [Conflicting type]
+    typedef Basket<Point, WeightConstantFunc, Plane,
+            MeanNormal, MeanPosition, MeanPlaneFitImpl,
+            CovarianceFitBase, CovariancePlaneFitImpl> Hybrid1; //test conflict detection in one direction
+    //! [Conflicting type]
+    typedef Basket<Point, WeightConstantFunc, Plane,
+            MeanPosition, CovarianceFitBase, CovariancePlaneFitImpl,
+            MeanNormal, MeanPlaneFitImpl> Hybrid2;  //test conflict detection in the second direction
+
     cout << "Testing with perfect plane..." << endl;
     for(int i = 0; i < g_repeat; ++i)
     {
@@ -145,6 +161,9 @@ void callSubTests()
         CALL_SUBTEST(( testFunction<Point, CovFitConstant, WeightConstantFunc, true>() ));
         CALL_SUBTEST(( testFunction<Point, MeanFitSmooth, WeightSmoothFunc, false>() ));
         CALL_SUBTEST(( testFunction<Point, MeanFitConstant, WeightConstantFunc, false>() ));
+        // Check if fitting conflict is detected
+        CALL_SUBTEST(( testFunction<Point, Hybrid1, WeightConstantFunc, false>(false, false, false, true) ));
+        CALL_SUBTEST(( testFunction<Point, Hybrid2, WeightConstantFunc, false>(false, false, false, true) ));
     }
     cout << "Ok!" << endl;
 

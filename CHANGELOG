@@ -3,13 +3,53 @@ Ponca changelog
 
 
 --------------------------------------------------------------------------------
+Current head (v.1.0 RC)
+This release introduces several changes in the API in order to
+   - improve the computation timings (we reported x1.2 to x1.4 gain depending on
+     the situation)
+   - reduce code duplication
+   - ease the design of new estimators
+The changes introduced in this version mostly are all introduced by PR #56.
+
+- API
+    - [fitting] Factorize neighbors weight computation (#56)
+    - [fitting] Factorize neighbors weight derivative computation (add class
+      PrimitiveDer and BasketDiff) (#56)
+    - [fitting] Add new classes for intermediate computation, which reduces code
+      duplication across estimators: MeanPosition, MeanNormal, MeanPositionDer,
+      CovarianceFit, CovarianceFitDer (#56)
+    - [fitting] Improve genericity by allowing to build objets computing multiple
+      fits at once (#56)
+    - [fitting] Add a mechanism to detect conflicting computations (#56)
+    - [fitting] Move iScaleDer out of internal namespace + name enum (#56)
+
+- Bug-fixes and code improvements
+    - [fitting] Reduce objets sizes by removing unnecessary attributes (#56)
+    - [fitting] Set default fields values (#56)
+    - [fitting] Remove explicit implementation of default constructors (#56)
+    - [fitting] Add macros to simplify headers writing (#56)
+    - [fitting] Fix several warnings when compiling with MSVC (#56)
+
+- Tests
+    - [fitting] Update according to API changes (#56)
+
+-Docs
+    - Switch to doxygen-awesome-css (#56)
+    - Fix several warnings (#56)
+    - [common] Add main page (#56)
+    - [common] Add concept page (#56)
+    - [common] Reformat page User Manual (#56)
+    - [fitting] Rewrite User Manual (#56)
+    - [fitting] Rewrite Concept page (#56)
+
+--------------------------------------------------------------------------------
 v.0.3
 - API
     - [spatialpartitioning] Remove duplicated code and clean API (#32,#51)
     - [spatialpartitioning] Fix a bug in range queries (#46)
-    - [spatialpartitioning] Add a counter of leaf in the KdTree (55#)
+    - [spatialpartitioning] Add a counter of leaf in the KdTree (#55)
     - [spatialpartitioning] Add editInput on Queries to allow query re-usability
-      between different request (57#)
+      between different request (#57)
     - [fitting] Add Line primitive and LeastSquaresLineFitting (#39)
     - [fitting] Rename several classes for better name consistency (#42)
     - [fitting] Add DryFit: a dummy fit object useful for debugging or monitoring (#52, #53)

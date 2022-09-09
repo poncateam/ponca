@@ -43,6 +43,3 @@
     PONCA_CRASH;                                                                \
     PONCA_MACRO_END
 
-template<typename T> struct XXXXXXXXXX_The_unkown_type_is_;
-#define WhatIsTheTypeOf(expr) XXXXXXXXXX_The_unkown_type_is_<decltype(expr)> _XXXXXXXXXX
-#define WhatIsThisType(type) XXXXXXXXXX_The_unkown_type_is_<type> _XXXXXXXXXX

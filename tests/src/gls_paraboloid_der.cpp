@@ -19,6 +19,7 @@
 
 #include <Ponca/src/Fitting/basket.h>
 #include <Ponca/src/Fitting/curvature.h>
+#include <Ponca/src/Fitting/curvatureEstimation.h>
 #include <Ponca/src/Fitting/orientedSphereFit.h>
 #include <Ponca/src/Fitting/weightFunc.h>
 #include <Ponca/src/Fitting/weightKernel.h>
@@ -40,7 +41,6 @@ void testFunction(bool isSigned = true)
     typedef typename DataPoint::Scalar Scalar;
     typedef typename DataPoint::VectorType VectorType;
     //typedef typename DataPoint::MatrixType MatrixType;
-    typedef typename DataPoint::QuaternionType QuaternionType;
 
     //generate sampled paraboloid
     int nbPoints = Eigen::internal::random<int>(10000, 20000);
@@ -49,35 +49,32 @@ void testFunction(bool isSigned = true)
     VectorType vCenter = VectorType::Zero(); //::Random() * Eigen::internal::random<Scalar>(0, 1);
     VectorType vCoef = 100 * VectorType(Eigen::internal::random<Scalar>(-1,1), Eigen::internal::random<Scalar>(-1,1), 0);
 
-    Scalar analysisScale = Scalar(.001);// / std::max(std::abs(vCoef.x()), std::abs(vCoef.y()));
+    Scalar analysisScale {.001};// / std::max(std::abs(vCoef.x()), std::abs(vCoef.y()));
     vCenter *= analysisScale;
 
     Scalar rotationAngle = Eigen::internal::random<Scalar>(Scalar(0.), Scalar(2 * M_PI));
     VectorType vRotationAxis = VectorType::Random().normalized();
-    QuaternionType /*qRotation = QuaternionType(Eigen::AngleAxis<Scalar>(rotationAngle, vRotationAxis));
-    qRotation = qRotation.normalized();*/
-    qRotation = QuaternionType::Identity();
 
     Scalar epsilon = testEpsilon<Scalar>();
-    Scalar approxEpsilon (0.1);
+    Scalar approxEpsilon {0.1};
 
     vector<DataPoint> vectorPoints(nbPoints);
     vector<DataPoint> vectorPointsOrigin(nbPoints);
     vector<TestDataPoint> testVectorPoints(nbPoints);
     for(unsigned int i = 0; i < vectorPoints.size(); ++i)
     {
-      vectorPointsOrigin[i] = getPointOnParaboloid<DataPoint>(vCenter, vCoef, qRotation, analysisScale*Scalar(1.2), false);
+      vectorPointsOrigin[i] = getPointOnParaboloid<DataPoint>(vCenter, vCoef, analysisScale*Scalar(1.2), false);
       // Add noise:
       // vectorPointsOrigin[i].pos() += VectorType::Random()*1e-6;
       //vectorPointsOrigin[i].normal() = (vectorPointsOrigin[i].normal() + VectorType::Random()*1e-6).normalized();
-      vectorPoints[i].pos() = qRotation * vectorPointsOrigin[i].pos() + vCenter;
-      vectorPoints[i].normal() = qRotation * vectorPointsOrigin[i].normal();
+      vectorPoints[i].pos() = vectorPointsOrigin[i].pos() + vCenter;
+      vectorPoints[i].normal() = vectorPointsOrigin[i].normal();
 
       testVectorPoints[i].pos()    = vectorPoints[i].pos().template cast<TestScalar>();
       testVectorPoints[i].normal() = vectorPoints[i].normal().template cast<TestScalar>();
     }
 
-    VectorType theoricNormal = qRotation * VectorType(0, 0, -1);
+    VectorType theoricNormal = VectorType(0, 0, -1);
 
     TestFit fit;
 
@@ -183,9 +180,9 @@ void testFunction(bool isSigned = true)
 //       VERIFY( dUq.template cast<Scalar>().isApprox( fit.m_dUq, der_epsilon ) );
 //       VERIFY( (dUl.template cast<Scalar>()-fit.m_dUl).norm() < fit.m_ul.norm() * der_epsilon );
       // VERIFY( dTau.template cast<Scalar>().isApprox( fit.dtau(), der_epsilon ) );
-      VERIFY( dPotential.template cast<Scalar>().isApprox( flip_fit*fit.dPotential().template cast<Scalar>(), der_epsilon ) );
+      VERIFY( dPotential.template cast<Scalar>().isApprox( flip_fit*fit.dPotential().template cast<Scalar>(), Scalar(der_epsilon) ) );
 
-      VERIFY( dN.template cast<Scalar>().isApprox( flip_fit*fit.dNormal().template cast<Scalar>(), der_epsilon ) );
+      VERIFY( dN.template cast<Scalar>().isApprox( flip_fit*fit.dNormal().template cast<Scalar>(), Scalar(der_epsilon) ) );
       //VERIFY( dKappa.template cast<Scalar>().isApprox( fit.dkappa(), der_epsilon ) );
     }
 
@@ -259,9 +256,15 @@ void callSubTests()
     typedef PointPositionNormal<Scalar, Dim> Point;
     typedef DistWeightFunc<Point, SmoothWeightKernel<Scalar> > WeightSmoothFunc;
 
-    typedef Basket<Point,     WeightSmoothFunc, OrientedSphereFit, /*GLSParam,*/ OrientedSphereScaleSpaceDer, /*GLSDer,*/ CurvatureEstimator> FitSphereOriented;
-    typedef Basket<RefPoint,  RefWeightFunc,    OrientedSphereFit, /*GLSParam,*/ OrientedSphereScaleSpaceDer, /*GLSDer,*/ CurvatureEstimator> RefFitSphereOriented;
-    //typedef Basket<TestPoint, TestWeightFunc,   OrientedSphereFit, /*GLSParam,*/ OrientedSphereScaleSpaceDer, /*GLSDer,*/ CurvatureEstimator> TestFitSphereOriented;
+    using FitSphereOriented    = BasketDiff<
+            Basket<Point, WeightSmoothFunc, OrientedSphereFit>,
+            FitScaleSpaceDer, OrientedSphereDer, CurvatureEstimatorBase, NormalDerivativesCurvatureEstimator>;
+    using RefFitSphereOriented = BasketDiff<
+            Basket<RefPoint, RefWeightFunc, OrientedSphereFit>,
+            FitScaleSpaceDer, OrientedSphereDer, CurvatureEstimatorBase, NormalDerivativesCurvatureEstimator>;
+//    using TestFitSphereOriented = BasketDiff<Basket<TestPoint, TestWeightFunc, OrientedSphereFit>,
+//            internal::FitScaleDer | internal::FitScaleDer, OrientedSphereDer, NormalDerivativesCurvatureEstimator>;
+
     CALL_SUBTEST(( testFunction<FitSphereOriented, RefFitSphereOriented, /*TestFitSphereOriented*/FitSphereOriented>(true) ));
 }
 

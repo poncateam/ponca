@@ -7,41 +7,28 @@
 
 template < class DataPoint, class _WFunctor, typename T>
 void
-SphereFit<DataPoint, _WFunctor, T>::init(const VectorType& _evalPos)
+SphereFitImpl<DataPoint, _WFunctor, T>::init(const VectorType& _evalPos)
 {
-    // Setup primitive
-    Base::resetPrimitive();
-    Base::basisCenter() = _evalPos;
-
-    // Setup fitting internal values
-    m_sumW = Scalar(0.0);
+    Base::init(_evalPos);
     m_matA.setZero();
 }
 
 template < class DataPoint, class _WFunctor, typename T>
 bool
-SphereFit<DataPoint, _WFunctor, T>::addNeighbor(const DataPoint& _nei)
+SphereFitImpl<DataPoint, _WFunctor, T>::addLocalNeighbor(Scalar w,
+                                                     const VectorType &localQ,
+                                                     const DataPoint &attributes)
 {
-    // centered basis
-    VectorType q = _nei.pos() - Base::basisCenter();
-
-    // compute weight
-    Scalar w = m_w.w(q, _nei);
-
-    if (w > Scalar(0.))
-    {
+    if( Base::addLocalNeighbor(w, localQ, attributes) ) {
         VectorA a;
 #ifdef __CUDACC__
         a(0) = 1;
-        a.template segment<DataPoint::Dim>(1) = q;
-        a(DataPoint::Dim+1) = q.squaredNorm();
+        a.template segment<DataPoint::Dim>(1) = localQ;
+        a(DataPoint::Dim+1) = localQ.squaredNorm();
 #else
-        a << 1, q, q.squaredNorm();
+        a << 1, localQ, localQ.squaredNorm();
 #endif
         m_matA     += w * a * a.transpose();
-        m_sumW     += w;
-
-        ++(Base::m_nbNeighbors);
         return true;
     }
 
@@ -51,19 +38,15 @@ SphereFit<DataPoint, _WFunctor, T>::addNeighbor(const DataPoint& _nei)
 
 template < class DataPoint, class _WFunctor, typename T>
 FIT_RESULT
-SphereFit<DataPoint, _WFunctor, T>::finalize ()
+SphereFitImpl<DataPoint, _WFunctor, T>::finalize ()
 {
-    // handle specific configurations
-    // With less than 3 neighbors the fitting is undefined
-    if(m_sumW == Scalar(0.) || Base::m_nbNeighbors < 3)
-    {
-        Base::m_ul.setZero();
-        Base::m_uc = Scalar(0.);
-        Base::m_uq = Scalar(0.);
-        Base::m_isNormalized = false;
-        Base::m_eCurrentState = UNDEFINED;
-        return Base::m_eCurrentState;
-    }
+    // Compute status
+    if(Base::finalize() != STABLE || Base::m_nbNeighbors < 3)
+        return Base::m_eCurrentState = UNDEFINED;
+    if (Base::algebraicSphere().isValid())
+        Base::m_eCurrentState = CONFLICT_ERROR_FOUND;
+    else
+        Base::m_eCurrentState = Base::m_nbNeighbors < 6 ? UNSTABLE : STABLE;
 
     MatrixA matC;
     matC.setIdentity();
@@ -105,15 +88,6 @@ SphereFit<DataPoint, _WFunctor, T>::finalize ()
     Base::m_uc = vecU[0];
 
     Base::m_isNormalized = false;
-
-    if(Base::m_nbNeighbors < 6)
-    {
-        Base::m_eCurrentState = UNSTABLE;
-    }
-    else
-    {
-        Base::m_eCurrentState = STABLE;
-    }
 
     return Base::m_eCurrentState;
 }

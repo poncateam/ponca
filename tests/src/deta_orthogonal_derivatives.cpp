@@ -72,7 +72,9 @@ void test_orthoEta()
     // Define related structure
     typedef MyPoint<Scalar,Dim> Point;
     typedef DistWeightFunc<Point,SmoothWeightKernel<Scalar> > WeightFunc;
-    typedef Basket<Point, WeightFunc, OrientedSphereFit, GLSParam, OrientedSphereScaleSpaceDer, GLSDer> Fit;
+    using Fit    = BasketDiff<
+            Basket<Point, WeightFunc, OrientedSphereFit, GLSParam>,
+            FitScaleSpaceDer, OrientedSphereDer, GLSDer>;
 
     Scalar epsilon = Eigen::NumTraits<Scalar>::dummy_precision();
 
@@ -89,7 +91,9 @@ void test_orthoEta()
 
     Fit fit;
 
+#ifdef NDEBUG
 #pragma omp parallel for private(fit)
+#endif
     for(int k=0; k<int(vecs.size()); ++k)
     {
         fit.setWeightFunc(WeightFunc(tmax));

@@ -7,21 +7,22 @@
 #pragma once
 
 #include "./defines.h"
+#include PONCA_MULTIARCH_INCLUDE_CU_STD(utility)
 
 namespace Ponca
 {
 /*!
     \brief Weighting function based on the euclidean distance between a query and a reference position
 
-    The query is assumed to be expressed in centered coordinates (ie. relatively
-    to the evaluation position).
+    The evaluation position is set using the #init method. All the queries are expressed in global system, and the
+    weighting function convert them to local coordinates (ie. relatively to the evaluation position).
 
-    This class inherits BaseWeightFunc. It can be specialized for any DataPoint,
-    and uses a generic 1D BaseWeightKernel.
-
-    \inherit Concept::WeightFuncConcept
+    It can be specialized for any DataPoint and uses a generic 1D BaseWeightKernel.
 
     \warning it assumes that the evaluation scale t is strictly positive
+
+    \todo Add class to use DistWeightFunc with CenterBasis of GlobalBasis
+          (functions init, basisCenter and convertToLocalBasis)
 
     \ingroup fitting
 */
@@ -30,17 +31,20 @@ class DistWeightFunc
 {
 public:
     /*! \brief Scalar type from DataPoint */
-    typedef typename DataPoint::Scalar Scalar;
+    using Scalar =  typename DataPoint::Scalar;
     /*! \brief Vector type from DataPoint */
-    typedef typename DataPoint::VectorType VectorType;
+    using VectorType =  typename DataPoint::VectorType;
     /*! \brief Matrix type from DataPoint */
-    typedef typename DataPoint::MatrixType MatrixType;
+    using MatrixType = typename DataPoint::MatrixType;
+    /*! \brief Return type of the method #w() */
+    using WeightReturnType = PONCA_MULTIARCH_CU_STD_NAMESPACE(pair)<Scalar, VectorType>;
 
     /*!
         \brief Constructor that defines the current evaluation scale
         \warning t > 0
     */
     PONCA_MULTIARCH inline DistWeightFunc(const Scalar& _t = Scalar(1.))
+    : m_p(VectorType::Zero())
     {
         //\todo manage that assrt on __host__ and __device__
         //assert(_t > Scalar(0));
@@ -48,15 +52,37 @@ public:
     }
 
     /*!
+     * \brief Initialization method, called by the fitting procedure
+     * @param _evalPos Basis center
+     */
+    PONCA_MULTIARCH inline void init( const VectorType& _evalPos )
+    {
+        m_p = _evalPos;
+    }
+
+    /// \todo add convertToGlobalBasis, and remove this function
+    PONCA_MULTIARCH inline const VectorType& basisCenter() const { return m_p; }
+
+    /*!
+     * \brief Convert query from global to local coordinate system
+     * @param _q Query in global coordinate
+     * @return Query expressed relatively to the basis center
+     */
+    PONCA_MULTIARCH inline VectorType convertToLocalBasis(const VectorType& _q) const;
+
+    /*!
         \brief Compute the weight of the given query with respect to its coordinates.
 
-        As the query \f$\mathbf{q}\f$ is expressed in a centered basis, the
-        WeightKernel is directly applied to the norm of its coordinates with
-        respect to the current scale  \f$ t \f$ :
+        As the query \f$\mathbf{q}\f$ is expressed in global coordinate, it is
+        first converted to the centered basis. Then, the WeightKernel is directly
+        applied to the norm of its coordinates with respect to the current scale  \f$ t \f$ :
 
         \f$ w(\frac{\left|\mathbf{q}_\mathsf{x}\right|}{t}) \f$
+
+        \see convertToLocalBasis
+        \return The computed weight + the point expressed in local basis
     */
-    PONCA_MULTIARCH inline Scalar w(const VectorType& _q,
+    PONCA_MULTIARCH inline WeightReturnType w(const VectorType& _q,
         const DataPoint&  /*attributes*/) const;
 
 
@@ -145,9 +171,13 @@ public:
     /*! \brief Access to the evaluation scale set during the initialization */
     PONCA_MULTIARCH inline Scalar evalScale() const { return m_t; }
 
+    /*! \brief Access to the evaluation position set during the initialization */
+    PONCA_MULTIARCH inline const VectorType & evalPos() const { return m_p; }
+
 protected:
     Scalar       m_t;  /*!< \brief Evaluation scale */
     WeightKernel m_wk; /*!< \brief 1D function applied to weight queries */
+    VectorType   m_p;  /*!< \brief basis center */
 
 };// class DistWeightFunc
 

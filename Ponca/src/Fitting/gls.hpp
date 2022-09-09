@@ -4,10 +4,23 @@
  file, You can obtain one at http://mozilla.org/MPL/2.0/. 
 */
 
-
 template < class DataPoint, class _WFunctor, typename T>
-typename GLSDer <DataPoint, _WFunctor, T>::ScalarArray
- GLSDer <DataPoint, _WFunctor, T>::dtau() const
+inline FIT_RESULT
+GLSParam<DataPoint, _WFunctor, T>::finalize()
+{
+    FIT_RESULT bResult = Base::finalize();
+
+    if(bResult != UNDEFINED)
+    {
+        m_fitness = Scalar(1.) - Base::prattNorm2();
+    }
+
+    return bResult;
+}
+
+template < class DataPoint, class _WFunctor, int DiffType, typename T>
+typename GLSDer <DataPoint, _WFunctor, DiffType, T>::ScalarArray
+GLSDer <DataPoint, _WFunctor, DiffType, T>::dtau() const
 {
     PONCA_MULTIARCH_STD_MATH(sqrt);
 
@@ -24,17 +37,17 @@ typename GLSDer <DataPoint, _WFunctor, T>::ScalarArray
 }
 
 
-template < class DataPoint, class _WFunctor, typename T>
-typename GLSDer <DataPoint, _WFunctor, T>::VectorArray
-GLSDer <DataPoint, _WFunctor, T>::deta() const
+template < class DataPoint, class _WFunctor, int DiffType, typename T>
+typename GLSDer <DataPoint, _WFunctor, DiffType, T>::VectorArray
+GLSDer <DataPoint, _WFunctor, DiffType, T>::deta() const
 {
   return Base::dNormal();
 }
 
 
-template < class DataPoint, class _WFunctor, typename T>
-typename GLSDer <DataPoint, _WFunctor, T>::ScalarArray
-GLSDer <DataPoint, _WFunctor, T>::dkappa() const
+template < class DataPoint, class _WFunctor, int DiffType, typename T>
+typename GLSDer <DataPoint, _WFunctor, DiffType, T>::ScalarArray
+GLSDer <DataPoint, _WFunctor, DiffType, T>::dkappa() const
 {
     PONCA_MULTIARCH_STD_MATH(sqrt);
 
@@ -46,25 +59,25 @@ GLSDer <DataPoint, _WFunctor, T>::dkappa() const
 }
 
 
-template < class DataPoint, class _WFunctor, typename T>
-typename GLSDer <DataPoint, _WFunctor, T>::ScalarArray
-GLSDer <DataPoint, _WFunctor, T>::dtau_normalized() const
+template < class DataPoint, class _WFunctor, int DiffType, typename T>
+typename GLSDer <DataPoint, _WFunctor, DiffType, T>::ScalarArray
+GLSDer <DataPoint, _WFunctor, DiffType, T>::dtau_normalized() const
 {
     return dtau();
 }
 
 
-template < class DataPoint, class _WFunctor, typename T>
-typename GLSDer <DataPoint, _WFunctor, T>::VectorArray
-GLSDer <DataPoint, _WFunctor, T>::deta_normalized() const
+template < class DataPoint, class _WFunctor, int DiffType, typename T>
+typename GLSDer <DataPoint, _WFunctor, DiffType, T>::VectorArray
+GLSDer <DataPoint, _WFunctor, DiffType, T>::deta_normalized() const
 {
     return Base::m_t * deta();
 }
 
 
-template < class DataPoint, class _WFunctor, typename T>
-typename GLSDer <DataPoint, _WFunctor, T>::ScalarArray
-GLSDer <DataPoint, _WFunctor, T>::dkappa_normalized() const
+template < class DataPoint, class _WFunctor, int DiffType, typename T>
+typename GLSDer <DataPoint, _WFunctor, DiffType, T>::ScalarArray
+GLSDer <DataPoint, _WFunctor, DiffType, T>::dkappa_normalized() const
 {
     return dkappa() * Base::m_t * Base::m_t;
 }
@@ -72,12 +85,13 @@ GLSDer <DataPoint, _WFunctor, T>::dkappa_normalized() const
 
 
 
-template < class DataPoint, class _WFunctor, typename T>
-typename GLSGeomVar <DataPoint, _WFunctor, T>::Scalar
-GLSGeomVar <DataPoint, _WFunctor, T>::geomVar(  Scalar wtau, 
-                                                Scalar weta,
-                                                Scalar wkappa ) const
+template < class DataPoint, class _WFunctor, int DiffType, typename T>
+typename GLSDer <DataPoint, _WFunctor, DiffType, T>::Scalar
+GLSDer <DataPoint, _WFunctor, DiffType, T>::geomVar(  Scalar wtau,
+                                                      Scalar weta,
+                                                      Scalar wkappa ) const
 {
+    static_assert( Base::isScaleDer, "Scale derivatives are required to compute Geometric Variation" );
     Scalar dtau   = Base::dtau_normalized().col(0)(0);
     Scalar deta   = Base::deta_normalized().col(0).norm();
     Scalar dkappa = Base::dkappa_normalized().col(0)(0);

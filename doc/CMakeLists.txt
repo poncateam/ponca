@@ -5,6 +5,11 @@ find_package(Doxygen)
 if(DOXYGEN_FOUND)
   set (PONCA_PROJECT_NUMBER ${GIT_CHANGESET})
 
+  # Configure doxygen-awesome-css
+  set(PONCA_EXTERNAL_DOXYGEN_AWESOME_CSS "${CMAKE_CURRENT_SOURCE_DIR}/../external/doxygen-awesome-css/")
+  execute_process(COMMAND git submodule update --init -- ${PONCA_EXTERNAL_DOXYGEN_AWESOME_CSS}
+          WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR})
+
   configure_file(${CMAKE_CURRENT_SOURCE_DIR}/Doxyfile.in ${CMAKE_CURRENT_BINARY_DIR}/Doxyfile @ONLY)
 
   add_custom_target(ponca-doc SOURCES ${doc_file_list})
@@ -12,7 +17,7 @@ if(DOXYGEN_FOUND)
   set(doc_file_list
       ${CMAKE_CURRENT_SOURCE_DIR}/../CHANGELOG
       ${CMAKE_CURRENT_SOURCE_DIR}/Doxyfile.in
-      ${CMAKE_CURRENT_SOURCE_DIR}/layout.xml
+      ${CMAKE_CURRENT_SOURCE_DIR}/html/ponca_header.html
       ${CMAKE_CURRENT_SOURCE_DIR}/html/ponca.css
       ${CMAKE_CURRENT_SOURCE_DIR}/src/ponca.bib
       ${CMAKE_CURRENT_SOURCE_DIR}/src/ponca.mdoc
@@ -20,6 +25,7 @@ if(DOXYGEN_FOUND)
       ${CMAKE_CURRENT_SOURCE_DIR}/src/ponca_changelog.mdoc
       ${CMAKE_CURRENT_SOURCE_DIR}/src/ponca_user_manual.mdoc
       ${CMAKE_CURRENT_SOURCE_DIR}/src/ponca_module_fitting.mdoc
+      ${CMAKE_CURRENT_SOURCE_DIR}/src/ponca_module_common.mdoc
       ${CMAKE_CURRENT_SOURCE_DIR}/src/ponca_module_spatialpartitioning.mdoc
       ${CMAKE_CURRENT_SOURCE_DIR}/src/ponca_getting_started.mdoc
       ${CMAKE_CURRENT_SOURCE_DIR}/src/example.mdoc

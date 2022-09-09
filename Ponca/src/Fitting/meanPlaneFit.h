@@ -9,6 +9,7 @@
 #pragma once
 
 #include "./plane.h"
+#include "./mean.h"
 
 namespace Ponca
 {
@@ -20,67 +21,44 @@ namespace Ponca
     \inherit Concept::FittingProcedureConcept
 
     \see Plane
-    \todo Add derivatives
+
+    \todo Add local frame computation to enable PROVIDES_TANGENT_PLANE_BASIS
 
     \ingroup fitting
 */
 template < class DataPoint, class _WFunctor, typename T >
-class MeanPlaneFit : public Plane<DataPoint, _WFunctor>
+class MeanPlaneFitImpl : public T
 {
-private:
-    typedef Plane<DataPoint, _WFunctor> Base;
+PONCA_FITTING_DECLARE_DEFAULT_TYPES
+PONCA_FITTING_DECLARE_MATRIX_TYPE
 
 protected:
-    enum
+    enum { Check = Base::PROVIDES_MEAN_POSITION && Base::PROVIDES_MEAN_NORMAL && Base::PROVIDES_PLANE };
+
+public:
+    PONCA_EXPLICIT_CAST_OPERATORS(MeanPlaneFitImpl,meanPlaneFit)
+
+    PONCA_FITTING_APIDOC_FINALIZE
+    PONCA_MULTIARCH inline FIT_RESULT finalize()
     {
-        Check = Base::PROVIDES_PLANE
-    };
+        // handle specific configurations
+        if(Base::finalize() == STABLE)
+        {
+            if (Base::plane().isValid()) Base::m_eCurrentState = CONFLICT_ERROR_FOUND;
+            Base::setPlane(Base::m_sumN / Base::m_sumW, Base::barycenter());
+        }
+        return Base::m_eCurrentState;
+    }
+}; //class MeanPlaneFitImpl
 
-public:
-
-    /*! \brief Scalar type inherited from DataPoint*/
-    typedef typename Base::Scalar     Scalar;
-    /*! \brief Vector type inherited from DataPoint*/
-    typedef typename Base::VectorType VectorType;
-    /*! \brief Vector type inherited from DataPoint*/
-    typedef typename Base::MatrixType MatrixType;
-    /*! \brief Weight Function*/
-    typedef _WFunctor                 WFunctor;
-
- protected:
-
-    // computation data
-    Scalar      m_sumW;    /*!< \brief Sum of queries weight.*/
-    VectorType  m_sumN,    /*!< \brief Sum of the normal vectors */
-                m_sumP;    /*!< \brief Sum of the relative positions */
-
-    WFunctor m_w;     /*!< \brief Weight function (must inherits BaseWeightFunc) */
-
-public:
-
-    /*! \brief Default constructor */
-    PONCA_MULTIARCH inline MeanPlaneFit() : Base() {}
-
-    /**************************************************************************/
-    /* Initialization                                                         */
-    /**************************************************************************/
-    /*! \copydoc Concept::FittingProcedureConcept::setWeightFunc() */
-    PONCA_MULTIARCH inline void setWeightFunc (const WFunctor& _w) { m_w  = _w; }
-
-    /*! \copydoc Concept::FittingProcedureConcept::init() */
-    PONCA_MULTIARCH inline void init (const VectorType& _evalPos);
-
-    /**************************************************************************/
-    /* Processing                                                             */
-    /**************************************************************************/
-    /*! \copydoc Concept::FittingProcedureConcept::addNeighbor() */
-    PONCA_MULTIARCH inline bool addNeighbor(const DataPoint &_nei);
-
-    /*! \copydoc Concept::FittingProcedureConcept::finalize() */
-    PONCA_MULTIARCH inline FIT_RESULT finalize();
-}; //class MeanPlaneFit
-
-
-#include "meanPlaneFit.hpp"
-
+/// \brief Helper alias for Plane fitting on points using MeanPlaneFitImpl
+/// \ingroup fittingalias
+//! [MeanPlaneFit Definition]
+    template < class DataPoint, class _WFunctor, typename T>
+    using MeanPlaneFit =
+    MeanPlaneFitImpl<DataPoint, _WFunctor,
+        MeanNormal<DataPoint, _WFunctor,
+            MeanPosition<DataPoint, _WFunctor,
+                Plane<DataPoint, _WFunctor,T>>>>;
+//! [MeanPlaneFit Definition]
 } //namespace Ponca

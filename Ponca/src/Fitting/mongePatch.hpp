@@ -8,38 +8,35 @@ MongePatch<DataPoint, _WFunctor, T>::init(const VectorType& _evalPos)
 {
     Base::init(_evalPos);
 
+    m_b.setZero();
     m_x.setZero();
     m_planeIsReady = false;
 }
 
 template < class DataPoint, class _WFunctor, typename T>
 bool
-MongePatch<DataPoint, _WFunctor, T>::addNeighbor(const DataPoint& _nei)
+MongePatch<DataPoint, _WFunctor, T>::addLocalNeighbor(Scalar w,
+                                                      const VectorType &localQ,
+                                                      const DataPoint &attributes)
 {
     if(! m_planeIsReady)
     {
-        return Base::addNeighbor(_nei);
+        return Base::addLocalNeighbor(w, localQ, attributes);
     }
     else // base plane is ready, we can now fit the patch
     {
-        VectorType q = _nei.pos() - Base::basisCenter();
-        Scalar w = Base::m_w.w(q, _nei);
+        // express neighbor in local coordinate frame
+        const VectorType local = Base::worldToTangentPlane(attributes.pos());
+        const Scalar& h = *(local.data());
+        const Scalar& u = *(local.data()+1);
+        const Scalar& v = *(local.data()+2);
 
-        if (w > Scalar(0.))
-        {
-            // express neighbor in local coordinate frame
-            VectorType local = Base::worldToTangentPlane(_nei.pos());
-            const Scalar& h = *(local.data());
-            const Scalar& u = *(local.data()+1);
-            const Scalar& v = *(local.data()+2);
+        Eigen::Matrix<Scalar, 6, 1 > p;
+        p << u*u, v*v, u*v, u, v, 1;
+        m_A    += w*p*p.transpose();
+        m_b    += w*h*p;
 
-            Eigen::Matrix<Scalar, 6, 1 > p;
-            p << u*u, v*v, u*v, u, v, 1;
-            m_A    += w*p*p.transpose();
-            m_b    += w*h*p;
-
-            return true;
-        }
+        return true;
     }
     return false;
 }
@@ -54,11 +51,9 @@ MongePatch<DataPoint, _WFunctor, T>::finalize ()
 
         if(res == STABLE) {  // plane is ready
             m_planeIsReady = true;
-            m_A = MatrixX(6,6/*5*/);
+            m_A = SampleMatrix(6,6);
             m_A.setZero();
-            m_b = VectorX(6);
             m_b.setZero();
-            m_neiIdx = 0;
 
             return Base::m_eCurrentState = NEED_OTHER_PASS;
         }

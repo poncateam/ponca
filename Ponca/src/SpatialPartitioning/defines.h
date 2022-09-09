@@ -11,15 +11,11 @@ namespace Ponca {
 /**
   *
   * \defgroup spatialpartitioning Spatial Partitioning module
-  * \brief This modules includes classes and methods for Spatial Partitioning and queries. See reference manual below.
+  * \brief This modules includes classes and methods for Spatial Partitioning and queries.
   * @{
   * @}
   *
   */
-
-/// Scalar type used in SpatialPartitioning module
-/// \ingroup spatialpartitioning
-
 }   
 
 #include "../Common/defines.h"

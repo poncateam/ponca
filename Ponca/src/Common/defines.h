@@ -10,7 +10,7 @@
 /**
   *
   * \defgroup common Common module
-  * \brief This modules includes general purpose classes and methods. See reference manual below.
+  * \brief This modules includes general purpose classes and methods.
   *
   */
 
@@ -35,10 +35,17 @@
 #ifdef __CUDA_ARCH__
   #define PONCA_MULTIARCH_INCLUDE_STD(FILENAME) "defines.h"
   #define PONCA_MULTIARCH_STD_MATH(FUNC)
+
+  //see https://nvidia.github.io/libcudacxx/standard_api.html
+  #define PONCA_MULTIARCH_CU_STD_NAMESPACE(FUNC) cuda::std::FUNC
+  #define PONCA_MULTIARCH_INCLUDE_CU_STD(FILENAME) <cuda/std/FILENAME>
+
   #define PONCA_CUDA_ARCH
 #else
   #define PONCA_MULTIARCH_INCLUDE_STD(FILENAME) <FILENAME>
   #define PONCA_MULTIARCH_STD_MATH(FUNC) using std::FUNC;
+  #define PONCA_MULTIARCH_CU_STD_NAMESPACE(FUNC) std::FUNC
+  #define PONCA_MULTIARCH_INCLUDE_CU_STD(FILENAME) <FILENAME>
   #define PONCA_CPU_ARCH
 #endif
 

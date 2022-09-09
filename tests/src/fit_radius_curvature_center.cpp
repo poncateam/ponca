@@ -19,6 +19,8 @@
 #include <Ponca/src/Fitting/gls.h>
 #include <Ponca/src/Fitting/orientedSphereFit.h>
 #include <Ponca/src/Fitting/unorientedSphereFit.h>
+#include <Ponca/src/Fitting/curvature.h>
+#include <Ponca/src/Fitting/curvatureEstimation.h>
 #include <Ponca/src/Fitting/weightFunc.h>
 #include <Ponca/src/Fitting/weightKernel.h>
 
@@ -89,8 +91,10 @@ void testFunction(bool _bUnoriented = false, bool _bAddPositionNoise = false, bo
         vectorPoints[i] = getPointOnSphere<DataPoint>(radius, center, _bAddPositionNoise, _bAddNormalNoise, _bUnoriented);
     }
 
-    // Test for each point if the fitted sphere correspond to the theorical sphere
+    // Test for each point if the fitted sphere correspond to the theoretical sphere
+#ifdef NDEBUG
 #pragma omp parallel for
+#endif
     for(int i = 0; i < int(vectorPoints.size()); ++i)
     {
         Fit fit;
@@ -110,9 +114,9 @@ void testFunction(bool _bUnoriented = false, bool _bAddPositionNoise = false, bo
             // Test procedure
             VERIFY( (fitCenter - center).norm() < (radiusMax - radius) + radiusEpsilon );
             VERIFY( (fitRadiusAlgebraic > radiusMin - radiusEpsilon) && (fitRadiusAlgebraic < radiusMax + radiusEpsilon) );
-            // Test reparametrization
+            // Test re-parameterization
             VERIFY( (fitRadiusKappa > radiusMin - radiusEpsilon) && (fitRadiusKappa < radiusMax + radiusEpsilon) );
-            //Test coherance
+            //Test coherence
             VERIFY( Eigen::internal::isMuchSmallerThan(std::abs(fitRadiusAlgebraic - fitRadiusKappa), Scalar(1.), epsilon) );
 
             //Test using spatial derivatives if defined
@@ -123,26 +127,29 @@ void testFunction(bool _bUnoriented = false, bool _bAddPositionNoise = false, bo
             {
                 //sometimes eta can be reversed
                 VectorType fitEta (fit.eta().normalized().array().abs());
-                VectorType theoricEta (vectorPoints[i].normal().array().abs());
+                VectorType expectedEta (vectorPoints[i].normal().array().abs());
 
-                VERIFY( Eigen::internal::isMuchSmallerThan((fitEta - theoricEta).norm(), Scalar(1.), epsilon)  );
+                VERIFY( Eigen::internal::isMuchSmallerThan((fitEta - expectedEta).norm(), Scalar(1.), epsilon)  );
             }
         }
     }
 }
 
+#define DECLARE_DEFAULT_TYPES                                                                      \
+    typedef PointPositionNormal<Scalar, Dim> Point;                                                \
+                                                                                                   \
+    typedef DistWeightFunc<Point, SmoothWeightKernel<Scalar> > WeightSmoothFunc;                   \
+    typedef DistWeightFunc<Point, ConstantWeightKernel<Scalar> > WeightConstantFunc;               \
+                                                                                                   \
+    typedef Basket<Point, WeightSmoothFunc, OrientedSphereFit, GLSParam> FitSmoothOriented;        \
+    typedef Basket<Point, WeightConstantFunc, OrientedSphereFit, GLSParam> FitConstantOriented;    \
+    typedef Basket<Point, WeightSmoothFunc, UnorientedSphereFit, GLSParam> FitSmoothUnoriented;    \
+    typedef Basket<Point, WeightConstantFunc, UnorientedSphereFit, GLSParam> FitConstantUnoriented;
+
 template<typename Scalar, int Dim>
 void callSubTests()
 {
-    typedef PointPositionNormal<Scalar, Dim> Point;
-
-    typedef DistWeightFunc<Point, SmoothWeightKernel<Scalar> > WeightSmoothFunc;
-    typedef DistWeightFunc<Point, ConstantWeightKernel<Scalar> > WeightConstantFunc;
-
-    typedef Basket<Point, WeightSmoothFunc, OrientedSphereFit, GLSParam> FitSmoothOriented;
-    typedef Basket<Point, WeightConstantFunc, OrientedSphereFit, GLSParam> FitConstantOriented;
-    typedef Basket<Point, WeightSmoothFunc, UnorientedSphereFit, GLSParam> FitSmoothUnoriented;
-    typedef Basket<Point, WeightConstantFunc, UnorientedSphereFit, GLSParam> FitConstantUnoriented;
+    DECLARE_DEFAULT_TYPES
 
     cout << "Testing with perfect sphere (oriented / unoriented)..." << endl;
     for(int i = 0; i < g_repeat; ++i)
@@ -169,13 +176,10 @@ void callSubTests()
 template<typename Scalar, int Dim>
 void callDerivativeSubTests()
 {
-    typedef PointPositionNormal<Scalar, Dim> Point;
+    DECLARE_DEFAULT_TYPES
 
-    typedef DistWeightFunc<Point, SmoothWeightKernel<Scalar> > WeightSmoothFunc;
-    typedef DistWeightFunc<Point, ConstantWeightKernel<Scalar> > WeightConstantFunc;
-
-    typedef Basket<Point, WeightSmoothFunc, OrientedSphereFit, GLSParam, OrientedSphereSpaceDer, CurvatureEstimator> FitSmoothOrientedSpatial;
-    typedef Basket<Point, WeightConstantFunc, OrientedSphereFit, GLSParam, OrientedSphereSpaceDer, CurvatureEstimator> FitConstantOrientedSpatial;
+    using FitSmoothOrientedSpatial   = BasketDiff<FitSmoothOriented, FitSpaceDer, OrientedSphereDer, CurvatureEstimatorBase, NormalDerivativesCurvatureEstimator>;
+    using FitConstantOrientedSpatial = BasketDiff<FitConstantOriented, FitSpaceDer, OrientedSphereDer, CurvatureEstimatorBase, NormalDerivativesCurvatureEstimator>;
 
     cout << "Testing with perfect sphere (oriented / unoriented) with spatial derivatives..." << endl;
     for(int i = 0; i < g_repeat; ++i)

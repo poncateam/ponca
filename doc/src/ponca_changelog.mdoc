@@ -5,7 +5,33 @@
 */
 
 /*!
-  \page ponca_changelog Ponca's changelog
+  \page ponca_changelog Releases overview
+
+   Check latest release at: https://github.com/poncateam/ponca/releases/latest
+
+   \section ponca_releases_overview Principal features of the latest releases
+
+   \subsection ponca_v03_sec V0.3: adding Spatial Partitioning module
+
+   - Fix bugs in \ref spatialpartitioning "Spatial Partitioning"
+   - Clean and extend API of the \ref fitting "Fitting Module". Fix bugs.
+   - Improve tests and documentation
+
+    \code
+    git checkout v0.3
+    \endcode
+
+
+   \subsection ponca_v02_sec V0.2: adding Spatial Partitioning module
+
+   - Add a new \ref spatialpartitioning "Spatial Partitioning module" with a KdTree and several queries
+   - Add a new \ref common "Common module" for general purpose code
+   - Improvements of the cmake build chain (dependencies management and use a submodule).
+    \code
+    git checkout v0.2-alpha-patch1
+    \endcode
+
+  \section ponca_changelog_sec Complete Changelog
 
   \verbinclude CHANGELOG
 
