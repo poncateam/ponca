@@ -33,12 +33,8 @@ jobs:
       - name: Build doc
         run: |
           ./doxygen-1.9.5/bin/doxygen ./build/doc/Doxyfile
-#      - name: Build Doc
-#        uses: mattnotmitt/doxygen-action@v1.9.4
-#        with:
-#           doxyfile-path: 'build/doc/Doxyfile'
-#      - name: Deploy Doc
-#        uses: peaceiris/actions-gh-pages@v3
-#        with:
-#          github_token: ${{ secrets.REPO_ACCESS_TOKEN }}
-#          publish_dir: 'build/doc/html'
+      - name: Deploy Doc
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.REPO_ACCESS_TOKEN }}
+          publish_dir: 'build/doc/html'
