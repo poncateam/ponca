@@ -8,7 +8,6 @@
  viewBox="0.00 0.00 425.50 513.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 <g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 509)">
 <title>Ponca::KdTree&lt; _DataPoint &gt;</title>
-<polygon fill="white" stroke="transparent" points="-4,4 -4,-509 421.5,-509 421.5,4 -4,4"/>
 <!-- Node1 -->
 <g id="node1" class="node">
 <title>Node1</title>
@@ -37,7 +36,7 @@
 <g id="node2" class="node">
 <title>Node2</title>
 <g id="a_node2"><a xlink:title=" ">
-<polygon fill="white" stroke="#bfbfbf" points="0,-232 0,-289 139,-289 139,-232 0,-232"/>
+<polygon fill="none" stroke="#bfbfbf" points="0,-232 0,-289 139,-289 139,-232 0,-232"/>
 <text text-anchor="middle" x="69.5" y="-277" font-family="Helvetica,sans-Serif" font-size="10.00">std::vector&lt; DataPoint &gt;</text>
 <polyline fill="none" stroke="#bfbfbf" points="0,-270 139,-270 "/>
 <text text-anchor="start" x="8" y="-258" font-family="Helvetica,sans-Serif" font-size="10.00">+ elements</text>
@@ -57,7 +56,7 @@
 <g id="node3" class="node">
 <title>Node3</title>
 <g id="a_node3"><a xlink:title="STL class.">
-<polygon fill="white" stroke="#bfbfbf" points="161,-342.5 161,-399.5 258,-399.5 258,-342.5 161,-342.5"/>
+<polygon fill="none" stroke="#bfbfbf" points="161,-342.5 161,-399.5 258,-399.5 258,-342.5 161,-342.5"/>
 <text text-anchor="middle" x="209.5" y="-387.5" font-family="Helvetica,sans-Serif" font-size="10.00">std::vector&lt; T &gt;</text>
 <polyline fill="none" stroke="#bfbfbf" points="161,-380.5 258,-380.5 "/>
 <text text-anchor="middle" x="209.5" y="-368.5" font-family="Helvetica,sans-Serif" font-size="10.00"> </text>
@@ -77,7 +76,7 @@
 <g id="node5" class="node">
 <title>Node5</title>
 <g id="a_node5"><a xlink:title=" ">
-<polygon fill="white" stroke="#bfbfbf" points="157.5,-232 157.5,-289 261.5,-289 261.5,-232 157.5,-232"/>
+<polygon fill="none" stroke="#bfbfbf" points="157.5,-232 157.5,-289 261.5,-289 261.5,-232 157.5,-232"/>
 <text text-anchor="middle" x="209.5" y="-277" font-family="Helvetica,sans-Serif" font-size="10.00">std::vector&lt; int &gt;</text>
 <polyline fill="none" stroke="#bfbfbf" points="157.5,-270 261.5,-270 "/>
 <text text-anchor="start" x="165.5" y="-258" font-family="Helvetica,sans-Serif" font-size="10.00">+ elements</text>
@@ -97,7 +96,7 @@
 <g id="node6" class="node">
 <title>Node6</title>
 <g id="a_node6"><a xlink:title=" ">
-<polygon fill="white" stroke="#bfbfbf" points="279.5,-226.5 279.5,-294.5 417.5,-294.5 417.5,-226.5 279.5,-226.5"/>
+<polygon fill="none" stroke="#bfbfbf" points="279.5,-226.5 279.5,-294.5 417.5,-294.5 417.5,-226.5 279.5,-226.5"/>
 <text text-anchor="start" x="287.5" y="-282.5" font-family="Helvetica,sans-Serif" font-size="10.00">std::vector&lt; KdTreeNode</text>
 <text text-anchor="middle" x="348.5" y="-271.5" font-family="Helvetica,sans-Serif" font-size="10.00">&lt; Scalar &gt; &gt;</text>
 <polyline fill="none" stroke="#bfbfbf" points="279.5,-264.5 417.5,-264.5 "/>
@@ -118,7 +117,7 @@
 <g id="node4" class="node">
 <title>Node4</title>
 <g id="a_node4"><a xlink:title=" ">
-<polygon fill="white" stroke="#bfbfbf" points="195,-447.5 195,-504.5 224,-504.5 224,-447.5 195,-447.5"/>
+<polygon fill="none" stroke="#bfbfbf" points="195,-447.5 195,-504.5 224,-504.5 224,-447.5 195,-447.5"/>
 <text text-anchor="middle" x="209.5" y="-492.5" font-family="Helvetica,sans-Serif" font-size="10.00">T</text>
 <polyline fill="none" stroke="#bfbfbf" points="195,-485.5 224,-485.5 "/>
 <text text-anchor="middle" x="209.5" y="-473.5" font-family="Helvetica,sans-Serif" font-size="10.00"> </text>

@@ -1,3 +1,4 @@
+<!-- HTML header for doxygen 1.9.1-->
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -9,6 +10,10 @@
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
@@ -20,7 +25,23 @@
 </script>
 <script type="text/javascript" async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js"></script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only-darkmode-toggle.css" rel="stylesheet" type="text/css"/>
 <link href="ponca.css" rel="stylesheet" type="text/css"/>
+<!-- ... other metadata & script includes ... -->
+<script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+<script type="text/javascript">
+    DoxygenAwesomeDarkModeToggle.init()
+</script>
+<script type="text/javascript" src="doxygen-awesome-fragment-copy-button.js"></script>
+<script type="text/javascript">
+    DoxygenAwesomeFragmentCopyButton.init()
+</script>
+<script type="text/javascript" src="doxygen-awesome-paragraph-link.js"></script>
+<script type="text/javascript">
+    DoxygenAwesomeParagraphLink.init()
+</script>
 </head>
 <body>
 <div id="top"><!-- do not remove this div, it is closed by doxygen! -->
@@ -30,7 +51,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Ponca
-   &#160;<span id="projectnumber">8976dc5e97f677a334261616e8d2314551b8ce3d</span>
+   &#160;<span id="projectnumber">d844664447d2173c00cc41660408e8eb5b3a41d6</span>
    </div>
    <div id="projectbrief">Point Cloud Analysis library</div>
   </td>
@@ -55,6 +76,23 @@ $(function() {
 });
 /* @license-end */</script>
 <div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(document).ready(function(){initNavTree('classPonca_1_1Stack.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -69,11 +107,6 @@ $(function() {
 </iframe>
 </div>
 
-<div id="nav-path" class="navpath">
-  <ul>
-<li class="navelem"><a class="el" href="namespacePonca.html">Ponca</a></li><li class="navelem"><a class="el" href="classPonca_1_1Stack.html">Stack</a></li>  </ul>
-</div>
-</div><!-- top -->
 <div class="header">
   <div class="summary">
 <a href="#pub-types">Public Types</a> &#124;
@@ -84,6 +117,9 @@ $(function() {
 <div class="title">Ponca::Stack&lt; T, N &gt; Class Template Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p><a class="el" href="classPonca_1_1Stack.html" title="Stack with fixed-size storage.">Stack</a> with fixed-size storage.  
+ <a href="classPonca_1_1Stack.html#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="stack_8h_source.html">stack.h</a>&gt;</code></p>
 <div id="dynsection-0" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
@@ -102,13 +138,7 @@ $(function() {
 <div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="classPonca_1_1Stack__coll__graph.svg" width="100%" height="600"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 </div>
-<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><h3>template&lt;class T, int N&gt;<br />
-class Ponca::Stack&lt; T, N &gt;</h3>
-
-<p><a class="el" href="classPonca_1_1Stack.html" title="Stack with fixed-size storage.">Stack</a> with fixed-size storage. </p>
-<dl class="section warning"><dt>Warning</dt><dd>This class does not destroy elements that are removed from the stack, but rather when they are overriden by another element (e.g. when running <a class="el" href="classPonca_1_1Stack.html#a2b188cfb0eb0406751cc3d38a7a367fb" title="Pop the last element of the Stack.">pop()</a> and then <a class="el" href="classPonca_1_1Stack.html#a6166b198d8c0ad83b5c4606e85474e29" title="Add an element with default initialization.">push()</a>. This makes it not appropriate to store smart pointers. </dd></dl>
-</div><table class="memberdecls">
+<table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-types"></a>
 Public Types</h2></td></tr>
 <tr class="memitem:a46bb5c7fe879cd6218ed23b166f2875f"><td class="memItemLeft" align="right" valign="top"><a id="a46bb5c7fe879cd6218ed23b166f2875f"></a>
@@ -159,7 +189,15 @@ std::array&lt; T, N &gt;&#160;</td><td class="memItemRight" valign="bottom"><a c
 <tr class="memdesc:a411840ebe5631efd0ddfd3b1a4a17f16"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fixed-size data buffer. <br /></td></tr>
 <tr class="separator:a411840ebe5631efd0ddfd3b1a4a17f16"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Member Function Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><h3>template&lt;class T, int N&gt;<br />
+class Ponca::Stack&lt; T, N &gt;</h3>
+
+<p><a class="el" href="classPonca_1_1Stack.html" title="Stack with fixed-size storage.">Stack</a> with fixed-size storage. </p>
+<dl class="section warning"><dt>Warning</dt><dd>This class does not destroy elements that are removed from the stack, but rather when they are overriden by another element (e.g. when running <a class="el" href="classPonca_1_1Stack.html#a2b188cfb0eb0406751cc3d38a7a367fb" title="Pop the last element of the Stack.">pop()</a> and then <a class="el" href="classPonca_1_1Stack.html#a6166b198d8c0ad83b5c4606e85474e29" title="Add an element with default initialization.">push()</a>. This makes it not appropriate to store smart pointers. </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="stack_8h_source.html#l00026">26</a> of file <a class="el" href="stack_8h_source.html">stack.h</a>.</p>
+</div><h2 class="groupheader">Member Function Documentation</h2>
 <a id="a00f925370381e2f455d52141e1f13b22"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a00f925370381e2f455d52141e1f13b22">&#9670;&nbsp;</a></span>clear()</h2>
 
@@ -184,6 +222,8 @@ template&lt;class T , int N&gt; </div>
 
 <p>Clear the stack content. </p>
 <dl class="section note"><dt>Note</dt><dd>Shares the same limitation than <a class="el" href="classPonca_1_1Stack.html#a2b188cfb0eb0406751cc3d38a7a367fb" title="Pop the last element of the Stack.">Stack::pop()</a> </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="stack_8h_source.html#l00120">120</a> of file <a class="el" href="stack_8h_source.html">stack.h</a>.</p>
 
 </div>
 </div>
@@ -211,6 +251,8 @@ template&lt;class T , int N&gt; </div>
 
 <p>Pop the last element of the <a class="el" href="classPonca_1_1Stack.html" title="Stack with fixed-size storage.">Stack</a>. </p>
 <dl class="section note"><dt>Note</dt><dd>In practice the element is not destroyed, only the size of the <a class="el" href="classPonca_1_1Stack.html" title="Stack with fixed-size storage.">Stack</a> is reduced. This makes the <a class="el" href="classPonca_1_1Stack.html" title="Stack with fixed-size storage.">Stack</a> not appropriate to store <code>shared_ptr</code>: counters will not be decremented. </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="stack_8h_source.html#l00114">114</a> of file <a class="el" href="stack_8h_source.html">stack.h</a>.</p>
 
 </div>
 </div>
@@ -248,14 +290,20 @@ template&lt;class T , int N&gt; </div>
   </dd>
 </dl>
 
+<p class="definition">Definition at line <a class="el" href="stack_8h_source.html#l00101">101</a> of file <a class="el" href="stack_8h_source.html">stack.h</a>.</p>
+
 </div>
 </div>
 </div><!-- contents -->
+</div><!-- doc-content -->
 <!-- start footer part -->
-<hr class="footer"/><address class="footer"><small>
-Generated on Tue Aug 2 2022 09:22:55 for Ponca by &#160;<a href="http://www.doxygen.org/index.html">
-<img class="footer" src="doxygen.png" alt="doxygen"/>
-</a> 1.8.17
-</small></address>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="namespacePonca.html">Ponca</a></li><li class="navelem"><a class="el" href="classPonca_1_1Stack.html">Stack</a></li>
+    <li class="footer">Generated on Fri Sep 9 2022 12:28:20 for Ponca by
+    <a href="http://www.doxygen.org/index.html">
+    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.17 </li>
+  </ul>
+</div>
 </body>
 </html>

@@ -54,7 +54,6 @@ var sectionId = 'dynsection-1';
 <svg id="graph" class="graph">
 <g id="viewport">
 <title>Ponca::QueryOutputIsKNearest&lt; Scalar &gt;</title>
-<polygon fill="white" stroke="transparent" points="-4,4 -4,-823 452,-823 452,4 -4,4"/>
 <!-- Node1 -->
 <g id="node1" class="node">
 <title>Node1</title>
@@ -75,7 +74,7 @@ var sectionId = 'dynsection-1';
 <g id="node2" class="node">
 <title>Node2</title>
 <g id="a_node2"><a xlink:href="structPonca_1_1QueryOutputBase.html" target="_top" xlink:title="Base class for queries output type.">
-<polygon fill="white" stroke="black" points="0,-210 0,-267 138,-267 138,-210 0,-210"/>
+<polygon fill="none" stroke="black" points="0,-210 0,-267 138,-267 138,-210 0,-210"/>
 <text text-anchor="middle" x="69" y="-255" font-family="Helvetica,sans-Serif" font-size="10.00">Ponca::QueryOutputBase</text>
 <polyline fill="none" stroke="black" points="0,-248 138,-248 "/>
 <text text-anchor="middle" x="69" y="-236" font-family="Helvetica,sans-Serif" font-size="10.00"> </text>
@@ -94,7 +93,7 @@ var sectionId = 'dynsection-1';
 <g id="node3" class="node">
 <title>Node3</title>
 <g id="a_node3"><a xlink:href="classPonca_1_1limited__priority__queue.html" target="_top" xlink:title=" ">
-<polygon fill="white" stroke="black" points="156,-138.5 156,-338.5 364,-338.5 364,-138.5 156,-138.5"/>
+<polygon fill="none" stroke="black" points="156,-138.5 156,-338.5 364,-338.5 364,-138.5 156,-138.5"/>
 <text text-anchor="start" x="164" y="-326.5" font-family="Helvetica,sans-Serif" font-size="10.00">Ponca::limited_priority</text>
 <text text-anchor="start" x="164" y="-315.5" font-family="Helvetica,sans-Serif" font-size="10.00">_queue&lt; Ponca::IndexSquaredDistance</text>
 <text text-anchor="middle" x="260" y="-304.5" font-family="Helvetica,sans-Serif" font-size="10.00">&lt; Scalar &gt; &gt;</text>
@@ -127,7 +126,7 @@ var sectionId = 'dynsection-1';
 <g id="node4" class="node">
 <title>Node4</title>
 <g id="a_node4"><a xlink:title=" ">
-<polygon fill="white" stroke="#bfbfbf" points="87,-458 87,-537 219,-537 219,-458 87,-458"/>
+<polygon fill="none" stroke="#bfbfbf" points="87,-458 87,-537 219,-537 219,-458 87,-458"/>
 <text text-anchor="start" x="95" y="-525" font-family="Helvetica,sans-Serif" font-size="10.00">std::vector&lt; Ponca</text>
 <text text-anchor="start" x="95" y="-514" font-family="Helvetica,sans-Serif" font-size="10.00">::IndexSquaredDistance</text>
 <text text-anchor="middle" x="153" y="-503" font-family="Helvetica,sans-Serif" font-size="10.00">&lt; Scalar &gt; &gt;</text>
@@ -149,7 +148,7 @@ var sectionId = 'dynsection-1';
 <g id="node5" class="node">
 <title>Node5</title>
 <g id="a_node5"><a xlink:title="STL class.">
-<polygon fill="white" stroke="#bfbfbf" points="104.5,-656.5 104.5,-713.5 201.5,-713.5 201.5,-656.5 104.5,-656.5"/>
+<polygon fill="none" stroke="#bfbfbf" points="104.5,-656.5 104.5,-713.5 201.5,-713.5 201.5,-656.5 104.5,-656.5"/>
 <text text-anchor="middle" x="153" y="-701.5" font-family="Helvetica,sans-Serif" font-size="10.00">std::vector&lt; T &gt;</text>
 <polyline fill="none" stroke="#bfbfbf" points="104.5,-694.5 201.5,-694.5 "/>
 <text text-anchor="middle" x="153" y="-682.5" font-family="Helvetica,sans-Serif" font-size="10.00"> </text>
@@ -170,7 +169,7 @@ var sectionId = 'dynsection-1';
 <g id="node6" class="node">
 <title>Node6</title>
 <g id="a_node6"><a xlink:title=" ">
-<polygon fill="white" stroke="#bfbfbf" points="138.5,-761.5 138.5,-818.5 167.5,-818.5 167.5,-761.5 138.5,-761.5"/>
+<polygon fill="none" stroke="#bfbfbf" points="138.5,-761.5 138.5,-818.5 167.5,-818.5 167.5,-761.5 138.5,-761.5"/>
 <text text-anchor="middle" x="153" y="-806.5" font-family="Helvetica,sans-Serif" font-size="10.00">T</text>
 <polyline fill="none" stroke="#bfbfbf" points="138.5,-799.5 167.5,-799.5 "/>
 <text text-anchor="middle" x="153" y="-787.5" font-family="Helvetica,sans-Serif" font-size="10.00"> </text>
@@ -190,7 +189,7 @@ var sectionId = 'dynsection-1';
 <g id="node7" class="node">
 <title>Node7</title>
 <g id="a_node7"><a xlink:href="classPonca_1_1limited__priority__queue.html" target="_top" xlink:title="The limited_priority_queue class is similar to std::priority_queue but has a limited capacity and han...">
-<polygon fill="white" stroke="black" points="237,-397.5 237,-597.5 391,-597.5 391,-397.5 237,-397.5"/>
+<polygon fill="none" stroke="black" points="237,-397.5 237,-597.5 391,-597.5 391,-397.5 237,-397.5"/>
 <text text-anchor="start" x="245" y="-585.5" font-family="Helvetica,sans-Serif" font-size="10.00">Ponca::limited_priority</text>
 <text text-anchor="middle" x="314" y="-574.5" font-family="Helvetica,sans-Serif" font-size="10.00">_queue&lt; T, CompareT &gt;</text>
 <polyline fill="none" stroke="black" points="237,-567.5 391,-567.5 "/>

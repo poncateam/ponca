@@ -1,3 +1,4 @@
+<!-- HTML header for doxygen 1.9.1-->
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -9,6 +10,10 @@
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
@@ -20,7 +25,23 @@
 </script>
 <script type="text/javascript" async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js"></script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only-darkmode-toggle.css" rel="stylesheet" type="text/css"/>
 <link href="ponca.css" rel="stylesheet" type="text/css"/>
+<!-- ... other metadata & script includes ... -->
+<script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+<script type="text/javascript">
+    DoxygenAwesomeDarkModeToggle.init()
+</script>
+<script type="text/javascript" src="doxygen-awesome-fragment-copy-button.js"></script>
+<script type="text/javascript">
+    DoxygenAwesomeFragmentCopyButton.init()
+</script>
+<script type="text/javascript" src="doxygen-awesome-paragraph-link.js"></script>
+<script type="text/javascript">
+    DoxygenAwesomeParagraphLink.init()
+</script>
 </head>
 <body>
 <div id="top"><!-- do not remove this div, it is closed by doxygen! -->
@@ -30,7 +51,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Ponca
-   &#160;<span id="projectnumber">8976dc5e97f677a334261616e8d2314551b8ce3d</span>
+   &#160;<span id="projectnumber">d844664447d2173c00cc41660408e8eb5b3a41d6</span>
    </div>
    <div id="projectbrief">Point Cloud Analysis library</div>
   </td>
@@ -55,6 +76,23 @@ $(function() {
 });
 /* @license-end */</script>
 <div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(document).ready(function(){initNavTree('classPonca_1_1Line.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -69,11 +107,6 @@ $(function() {
 </iframe>
 </div>
 
-<div id="nav-path" class="navpath">
-  <ul>
-<li class="navelem"><a class="el" href="namespacePonca.html">Ponca</a></li><li class="navelem"><a class="el" href="classPonca_1_1Line.html">Line</a></li>  </ul>
-</div>
-</div><!-- top -->
 <div class="header">
   <div class="summary">
 <a href="#pub-types">Public Types</a> &#124;
@@ -85,13 +118,16 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 
+<p>A parametrized line is defined by an origin point \(\mathbf{o}\) and a unit direction vector \(\overrightarrow{\mathbf{d}}\) such that the line corresponds to the set \(l(t)=\mathbf{o}+t\overrightarrow{\mathbf{d}}, t\in \mathbb{R}\).  
+ <a href="classPonca_1_1Line.html#details">More...</a></p>
+
 <p><code>#include &lt;<a class="el" href="linePrimitive_8h_source.html">linePrimitive.h</a>&gt;</code></p>
 <div id="dynsection-0" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-0-trigger" src="closed.png" alt="+"/> Inheritance diagram for Ponca::Line&lt; DataPoint, _WFunctor, T &gt;:</div>
 <div id="dynsection-0-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-0-content" class="dyncontent" style="display:none;">
-<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="classPonca_1_1Line__inherit__graph.svg" width="100%" height="600"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classPonca_1_1Line__inherit__graph.svg" width="296" height="390"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
 </div>
 <div id="dynsection-1" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
@@ -99,130 +135,94 @@ $(function() {
 <div id="dynsection-1-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-1-content" class="dyncontent" style="display:none;">
-<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="classPonca_1_1Line__coll__graph.svg" width="100%" height="600"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classPonca_1_1Line__coll__graph.svg" width="296" height="390"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
 </div>
-<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><h3>template&lt;class DataPoint, class _WFunctor, typename T = void&gt;<br />
-class Ponca::Line&lt; DataPoint, _WFunctor, T &gt;</h3>
-
-<p>A parametrized line is defined by an origin point \(\mathbf{o}\) and a unit direction vector \(\overrightarrow{\mathbf{d}}\) such that the line corresponds to the set \(l(t)=\mathbf{o}+t\overrightarrow{\mathbf{d}}, t\in \mathbb{R}\). </p>
-<p>This class inherits Eigen::ParametrizedLine.</p>
-<p>This primitive requires the definition of n-dimensionnal vectors (VectorType) in <a class="el" href="classPonca_1_1Concept_1_1PointConcept.html" title="Definition of a point sample.">Concept::PointConcept</a>.</p>
-<p>This primitive provides: </p><pre class="fragment">PROVIDES_LINE </pre> </div><table class="memberdecls">
+<table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-types"></a>
 Public Types</h2></td></tr>
+<tr class="memitem:ab84c7954e61467637df87040e798a641"><td class="memItemLeft" align="right" valign="top"><a id="ab84c7954e61467637df87040e798a641"></a>
+using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1Line.html#ab84c7954e61467637df87040e798a641">Scalar</a> = typename DataPoint::Scalar</td></tr>
+<tr class="memdesc:ab84c7954e61467637df87040e798a641"><td class="mdescLeft">&#160;</td><td class="mdescRight">Alias to scalar type. <br /></td></tr>
+<tr class="separator:ab84c7954e61467637df87040e798a641"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a423e9d0178e924d62143af82dcf644ca"><td class="memItemLeft" align="right" valign="top"><a id="a423e9d0178e924d62143af82dcf644ca"></a>
+using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1Line.html#a423e9d0178e924d62143af82dcf644ca">VectorType</a> = typename Base::VectorType</td></tr>
+<tr class="memdesc:a423e9d0178e924d62143af82dcf644ca"><td class="mdescLeft">&#160;</td><td class="mdescRight">Alias to vector type. <br /></td></tr>
+<tr class="separator:a423e9d0178e924d62143af82dcf644ca"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab87f6b326c72ee2588b149f5e20fd0e5"><td class="memItemLeft" align="right" valign="top"><a id="ab87f6b326c72ee2588b149f5e20fd0e5"></a>
+using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1Line.html#ab87f6b326c72ee2588b149f5e20fd0e5">WFunctor</a> = typename Base::WFunctor</td></tr>
+<tr class="memdesc:ab87f6b326c72ee2588b149f5e20fd0e5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Alias to weight function. <br /></td></tr>
+<tr class="separator:ab87f6b326c72ee2588b149f5e20fd0e5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3f3084f67fea22fdfce80178636f2b30"><td class="memItemLeft" align="right" valign="top"><a id="a3f3084f67fea22fdfce80178636f2b30"></a>
 using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1Line.html#a3f3084f67fea22fdfce80178636f2b30">EigenBase</a> = Eigen::ParametrizedLine&lt; typename DataPoint::Scalar, DataPoint::Dim &gt;</td></tr>
 <tr class="memdesc:a3f3084f67fea22fdfce80178636f2b30"><td class="mdescLeft">&#160;</td><td class="mdescRight">Specialization of Eigen::ParametrizedLine inherited by <a class="el" href="classPonca_1_1Line.html" title="A parametrized line is defined by an origin point  and a unit direction vector  such that the line co...">Ponca::Line</a>. <br /></td></tr>
 <tr class="separator:a3f3084f67fea22fdfce80178636f2b30"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5c1c9fa1304c588030f9ca41a9592a8c"><td class="memItemLeft" align="right" valign="top"><a id="a5c1c9fa1304c588030f9ca41a9592a8c"></a>
-typedef DataPoint::Scalar&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1Line.html#a5c1c9fa1304c588030f9ca41a9592a8c">Scalar</a></td></tr>
-<tr class="memdesc:a5c1c9fa1304c588030f9ca41a9592a8c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Scalar type inherited from DataPoint. <br /></td></tr>
-<tr class="separator:a5c1c9fa1304c588030f9ca41a9592a8c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aef66490b8846d22e0da8b07f82d9ba3c"><td class="memItemLeft" align="right" valign="top"><a id="aef66490b8846d22e0da8b07f82d9ba3c"></a>
-typedef DataPoint::VectorType&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1Line.html#aef66490b8846d22e0da8b07f82d9ba3c">VectorType</a></td></tr>
-<tr class="memdesc:aef66490b8846d22e0da8b07f82d9ba3c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Vector type inherited from DataPoint. <br /></td></tr>
-<tr class="separator:aef66490b8846d22e0da8b07f82d9ba3c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4956ae0de5d57c9a16f7a4c744e4b80f"><td class="memItemLeft" align="right" valign="top"><a id="a4956ae0de5d57c9a16f7a4c744e4b80f"></a>
-typedef DataPoint::MatrixType&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1Line.html#a4956ae0de5d57c9a16f7a4c744e4b80f">MatrixType</a></td></tr>
-<tr class="memdesc:a4956ae0de5d57c9a16f7a4c744e4b80f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Matrix type inherited from DataPoint. <br /></td></tr>
-<tr class="separator:a4956ae0de5d57c9a16f7a4c744e4b80f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7a05b85ea7b127dede86b6ca5dffc01f"><td class="memItemLeft" align="right" valign="top"><a id="a7a05b85ea7b127dede86b6ca5dffc01f"></a>
-typedef _WFunctor&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1Line.html#a7a05b85ea7b127dede86b6ca5dffc01f">WFunctor</a></td></tr>
-<tr class="memdesc:a7a05b85ea7b127dede86b6ca5dffc01f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Weight Function. <br /></td></tr>
-<tr class="separator:a7a05b85ea7b127dede86b6ca5dffc01f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:ac8d2bcd6bc64acf0cd7f4bf23fb63e7b"><td class="memItemLeft" align="right" valign="top"><a id="ac8d2bcd6bc64acf0cd7f4bf23fb63e7b"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1Line.html#ac8d2bcd6bc64acf0cd7f4bf23fb63e7b">Line</a> ()</td></tr>
-<tr class="memdesc:ac8d2bcd6bc64acf0cd7f4bf23fb63e7b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default constructor. <br /></td></tr>
-<tr class="separator:ac8d2bcd6bc64acf0cd7f4bf23fb63e7b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a24d0dcc58ea6069c7cc92b2abeca484e"><td class="memItemLeft" align="right" valign="top"><a id="a24d0dcc58ea6069c7cc92b2abeca484e"></a>
-<a class="el" href="classPonca_1_1Line.html">Line</a>&lt; DataPoint, <a class="el" href="classPonca_1_1Line.html#a7a05b85ea7b127dede86b6ca5dffc01f">WFunctor</a>, T &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1Line.html#a24d0dcc58ea6069c7cc92b2abeca484e">line</a> ()</td></tr>
-<tr class="memdesc:a24d0dcc58ea6069c7cc92b2abeca484e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Explicit conversion to <a class="el" href="classPonca_1_1Line.html" title="A parametrized line is defined by an origin point  and a unit direction vector  such that the line co...">Line</a>, to access methods potentially hidden by inheritage. <br /></td></tr>
-<tr class="separator:a24d0dcc58ea6069c7cc92b2abeca484e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae31d6ffff7dfb6a6f5cd5ec4335e515f"><td class="memItemLeft" align="right" valign="top"><a id="ae31d6ffff7dfb6a6f5cd5ec4335e515f"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1Line.html#ae31d6ffff7dfb6a6f5cd5ec4335e515f">resetPrimitive</a> ()</td></tr>
-<tr class="memdesc:ae31d6ffff7dfb6a6f5cd5ec4335e515f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the scalar field values to 0 and reset the distance() and origin() status. <br /></td></tr>
-<tr class="separator:ae31d6ffff7dfb6a6f5cd5ec4335e515f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af56b74e2353a1ca4b35f7dbc35ef626c"><td class="memItemLeft" align="right" valign="top"><a id="af56b74e2353a1ca4b35f7dbc35ef626c"></a>
+<a class="el" href="classPonca_1_1Line.html">Line</a>&lt; DataPoint, _WFunctor, T &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1Line.html#af56b74e2353a1ca4b35f7dbc35ef626c">line</a> ()</td></tr>
+<tr class="memdesc:af56b74e2353a1ca4b35f7dbc35ef626c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Explicit conversion to <a class="el" href="classPonca_1_1Line.html" title="A parametrized line is defined by an origin point  and a unit direction vector  such that the line co...">Line</a> , to access methods potentially hidden by heritage. <br /></td></tr>
+<tr class="separator:af56b74e2353a1ca4b35f7dbc35ef626c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3ed454a596c67e1db60c3ea2ded2aea2"><td class="memItemLeft" align="right" valign="top"><a id="a3ed454a596c67e1db60c3ea2ded2aea2"></a>
+const PONCA_MULTIARCH <a class="el" href="classPonca_1_1Line.html">Line</a>&lt; DataPoint, _WFunctor, T &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1Line.html#a3ed454a596c67e1db60c3ea2ded2aea2">line</a> () const</td></tr>
+<tr class="memdesc:a3ed454a596c67e1db60c3ea2ded2aea2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Explicit conversion to <a class="el" href="classPonca_1_1Line.html" title="A parametrized line is defined by an origin point  and a unit direction vector  such that the line co...">Line</a> , to access methods potentially hidden by heritage. <br /></td></tr>
+<tr class="separator:a3ed454a596c67e1db60c3ea2ded2aea2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8ad80a68b6de494b50499127c0eb69ff"><td class="memItemLeft" align="right" valign="top"><a id="a8ad80a68b6de494b50499127c0eb69ff"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1Line.html#a8ad80a68b6de494b50499127c0eb69ff">init</a> (const <a class="el" href="classPonca_1_1Line.html#a423e9d0178e924d62143af82dcf644ca">VectorType</a> &amp;_basisCenter=VectorType::Zero())</td></tr>
+<tr class="memdesc:a8ad80a68b6de494b50499127c0eb69ff"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the scalar field values to 0 and reset the distance() and origin() status. <br /></td></tr>
+<tr class="separator:a8ad80a68b6de494b50499127c0eb69ff"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a398ea691c79a3a5cf8e7610109f2bfae"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1Line.html#a398ea691c79a3a5cf8e7610109f2bfae">isValid</a> () const</td></tr>
+<tr class="memdesc:a398ea691c79a3a5cf8e7610109f2bfae"><td class="mdescLeft">&#160;</td><td class="mdescRight">Tell if the line as been correctly set. Used to set CONFLICT_ERROR_FOUND during fitting.  <a href="classPonca_1_1Line.html#a398ea691c79a3a5cf8e7610109f2bfae">More...</a><br /></td></tr>
+<tr class="separator:a398ea691c79a3a5cf8e7610109f2bfae"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ade5bd02e317099f64d8e476d6cfddf75"><td class="memItemLeft" align="right" valign="top"><a id="ade5bd02e317099f64d8e476d6cfddf75"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1Line.html#ade5bd02e317099f64d8e476d6cfddf75">operator==</a> (const <a class="el" href="classPonca_1_1Line.html">Line</a>&lt; DataPoint, <a class="el" href="classPonca_1_1Line.html#a7a05b85ea7b127dede86b6ca5dffc01f">WFunctor</a>, T &gt; &amp;other) const</td></tr>
+bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1Line.html#ade5bd02e317099f64d8e476d6cfddf75">operator==</a> (const <a class="el" href="classPonca_1_1Line.html">Line</a>&lt; DataPoint, <a class="el" href="classPonca_1_1Line.html#ab87f6b326c72ee2588b149f5e20fd0e5">WFunctor</a>, T &gt; &amp;other) const</td></tr>
 <tr class="memdesc:ade5bd02e317099f64d8e476d6cfddf75"><td class="mdescLeft">&#160;</td><td class="mdescRight">Comparison operator. <br /></td></tr>
 <tr class="separator:ade5bd02e317099f64d8e476d6cfddf75"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae5249ccb0238a2be5ff2dc774643dc73"><td class="memItemLeft" align="right" valign="top"><a id="ae5249ccb0238a2be5ff2dc774643dc73"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1Line.html#ae5249ccb0238a2be5ff2dc774643dc73">operator!=</a> (const <a class="el" href="classPonca_1_1Line.html">Line</a>&lt; DataPoint, <a class="el" href="classPonca_1_1Line.html#a7a05b85ea7b127dede86b6ca5dffc01f">WFunctor</a>, T &gt; &amp;other) const</td></tr>
+bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1Line.html#ae5249ccb0238a2be5ff2dc774643dc73">operator!=</a> (const <a class="el" href="classPonca_1_1Line.html">Line</a>&lt; DataPoint, <a class="el" href="classPonca_1_1Line.html#ab87f6b326c72ee2588b149f5e20fd0e5">WFunctor</a>, T &gt; &amp;other) const</td></tr>
 <tr class="memdesc:ae5249ccb0238a2be5ff2dc774643dc73"><td class="mdescLeft">&#160;</td><td class="mdescRight">Comparison operator, convenience function. <br /></td></tr>
 <tr class="separator:ae5249ccb0238a2be5ff2dc774643dc73"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad7e2cd2a32e170f545453cc8d4a838ff"><td class="memItemLeft" align="right" valign="top"><a id="ad7e2cd2a32e170f545453cc8d4a838ff"></a>
-const <a class="el" href="classPonca_1_1Line.html#aef66490b8846d22e0da8b07f82d9ba3c">VectorType</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1Line.html#ad7e2cd2a32e170f545453cc8d4a838ff">basisCenter</a> () const</td></tr>
-<tr class="memdesc:ad7e2cd2a32e170f545453cc8d4a838ff"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reading access to the basis center (evaluation position) <br /></td></tr>
-<tr class="separator:ad7e2cd2a32e170f545453cc8d4a838ff"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad833201fb22c6bc9fb6566910e4964e7"><td class="memItemLeft" align="right" valign="top"><a id="ad833201fb22c6bc9fb6566910e4964e7"></a>
-<a class="el" href="classPonca_1_1Line.html#aef66490b8846d22e0da8b07f82d9ba3c">VectorType</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1Line.html#ad833201fb22c6bc9fb6566910e4964e7">basisCenter</a> ()</td></tr>
-<tr class="memdesc:ad833201fb22c6bc9fb6566910e4964e7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Writing access to the (evaluation position) <br /></td></tr>
-<tr class="separator:ad833201fb22c6bc9fb6566910e4964e7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2be50f01b5e7ba741e67d80711495add"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1Line.html#a2be50f01b5e7ba741e67d80711495add">setLine</a> (const <a class="el" href="classPonca_1_1Line.html#aef66490b8846d22e0da8b07f82d9ba3c">VectorType</a> &amp;origin, const <a class="el" href="classPonca_1_1Line.html#aef66490b8846d22e0da8b07f82d9ba3c">VectorType</a> &amp;direction)</td></tr>
+<tr class="memitem:a2be50f01b5e7ba741e67d80711495add"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1Line.html#a2be50f01b5e7ba741e67d80711495add">setLine</a> (const <a class="el" href="classPonca_1_1Line.html#a423e9d0178e924d62143af82dcf644ca">VectorType</a> &amp;origin, const <a class="el" href="classPonca_1_1Line.html#a423e9d0178e924d62143af82dcf644ca">VectorType</a> &amp;direction)</td></tr>
 <tr class="memdesc:a2be50f01b5e7ba741e67d80711495add"><td class="mdescLeft">&#160;</td><td class="mdescRight">Init the line from a direction and a position.  <a href="classPonca_1_1Line.html#a2be50f01b5e7ba741e67d80711495add">More...</a><br /></td></tr>
 <tr class="separator:a2be50f01b5e7ba741e67d80711495add"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad624614bf466e2b0edc710414026bfe2"><td class="memItemLeft" align="right" valign="top"><a id="ad624614bf466e2b0edc710414026bfe2"></a>
-<a class="el" href="classPonca_1_1Line.html#a5c1c9fa1304c588030f9ca41a9592a8c">Scalar</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1Line.html#ad624614bf466e2b0edc710414026bfe2">potential</a> () const</td></tr>
+<a class="el" href="classPonca_1_1Line.html#ab84c7954e61467637df87040e798a641">Scalar</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1Line.html#ad624614bf466e2b0edc710414026bfe2">potential</a> () const</td></tr>
 <tr class="memdesc:ad624614bf466e2b0edc710414026bfe2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Value of the scalar field at the evaluation point. <br /></td></tr>
 <tr class="separator:ad624614bf466e2b0edc710414026bfe2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a50a96df292866f49341e8b5429679a52"><td class="memItemLeft" align="right" valign="top"><a id="a50a96df292866f49341e8b5429679a52"></a>
-<a class="el" href="classPonca_1_1Line.html#a5c1c9fa1304c588030f9ca41a9592a8c">Scalar</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1Line.html#a50a96df292866f49341e8b5429679a52">potential</a> (const <a class="el" href="classPonca_1_1Line.html#aef66490b8846d22e0da8b07f82d9ba3c">VectorType</a> &amp;_q) const</td></tr>
+<a class="el" href="classPonca_1_1Line.html#ab84c7954e61467637df87040e798a641">Scalar</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1Line.html#a50a96df292866f49341e8b5429679a52">potential</a> (const <a class="el" href="classPonca_1_1Line.html#a423e9d0178e924d62143af82dcf644ca">VectorType</a> &amp;_q) const</td></tr>
 <tr class="memdesc:a50a96df292866f49341e8b5429679a52"><td class="mdescLeft">&#160;</td><td class="mdescRight">Value of the scalar field at the location \( \mathbf{q} \), defined as the squared distance between \( \mathbf{q} \) and the line. <br /></td></tr>
 <tr class="separator:a50a96df292866f49341e8b5429679a52"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a438adedc217dc8ee8bdd4ded42b5c5cf"><td class="memItemLeft" align="right" valign="top"><a id="a438adedc217dc8ee8bdd4ded42b5c5cf"></a>
-<a class="el" href="classPonca_1_1Line.html#aef66490b8846d22e0da8b07f82d9ba3c">VectorType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1Line.html#a438adedc217dc8ee8bdd4ded42b5c5cf">project</a> (const <a class="el" href="classPonca_1_1Line.html#aef66490b8846d22e0da8b07f82d9ba3c">VectorType</a> &amp;_q) const</td></tr>
+<a class="el" href="classPonca_1_1Line.html#a423e9d0178e924d62143af82dcf644ca">VectorType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1Line.html#a438adedc217dc8ee8bdd4ded42b5c5cf">project</a> (const <a class="el" href="classPonca_1_1Line.html#a423e9d0178e924d62143af82dcf644ca">VectorType</a> &amp;_q) const</td></tr>
 <tr class="memdesc:a438adedc217dc8ee8bdd4ded42b5c5cf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Project a point on the line. <br /></td></tr>
 <tr class="separator:a438adedc217dc8ee8bdd4ded42b5c5cf"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="inherit_header pub_methods_classPonca_1_1PrimitiveBase"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classPonca_1_1PrimitiveBase')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="classPonca_1_1PrimitiveBase.html">Ponca::PrimitiveBase&lt; DataPoint, _WFunctor &gt;</a></td></tr>
-<tr class="memitem:a008e1acfad08864ea8df9979e5cd6015 inherit pub_methods_classPonca_1_1PrimitiveBase"><td class="memItemLeft" align="right" valign="top"><a id="a008e1acfad08864ea8df9979e5cd6015"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1PrimitiveBase.html#a008e1acfad08864ea8df9979e5cd6015">PrimitiveBase</a> ()</td></tr>
-<tr class="memdesc:a008e1acfad08864ea8df9979e5cd6015 inherit pub_methods_classPonca_1_1PrimitiveBase"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default constructor. <br /></td></tr>
-<tr class="separator:a008e1acfad08864ea8df9979e5cd6015 inherit pub_methods_classPonca_1_1PrimitiveBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4b665dda3ef3071f3d9c78a7a1a2507f inherit pub_methods_classPonca_1_1PrimitiveBase"><td class="memItemLeft" align="right" valign="top"><a id="a4b665dda3ef3071f3d9c78a7a1a2507f"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1PrimitiveBase.html#a4b665dda3ef3071f3d9c78a7a1a2507f">resetPrimitive</a> ()</td></tr>
-<tr class="memdesc:a4b665dda3ef3071f3d9c78a7a1a2507f inherit pub_methods_classPonca_1_1PrimitiveBase"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reset fitting state status. <br /></td></tr>
-<tr class="separator:a4b665dda3ef3071f3d9c78a7a1a2507f inherit pub_methods_classPonca_1_1PrimitiveBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7f67aff61af9b364ffa983364f1d2165 inherit pub_methods_classPonca_1_1PrimitiveBase"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1PrimitiveBase.html#a7f67aff61af9b364ffa983364f1d2165">isReady</a> () const</td></tr>
-<tr class="memdesc:a7f67aff61af9b364ffa983364f1d2165 inherit pub_methods_classPonca_1_1PrimitiveBase"><td class="mdescLeft">&#160;</td><td class="mdescRight">Is the primitive well fitted an ready to use (finalize has been called)  <a href="classPonca_1_1PrimitiveBase.html#a7f67aff61af9b364ffa983364f1d2165">More...</a><br /></td></tr>
-<tr class="separator:a7f67aff61af9b364ffa983364f1d2165 inherit pub_methods_classPonca_1_1PrimitiveBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ada0d81900921e0a922ce459ba1d3ec2c inherit pub_methods_classPonca_1_1PrimitiveBase"><td class="memItemLeft" align="right" valign="top"><a id="ada0d81900921e0a922ce459ba1d3ec2c"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1PrimitiveBase.html#ada0d81900921e0a922ce459ba1d3ec2c">isStable</a> () const</td></tr>
-<tr class="memdesc:ada0d81900921e0a922ce459ba1d3ec2c inherit pub_methods_classPonca_1_1PrimitiveBase"><td class="mdescLeft">&#160;</td><td class="mdescRight">Is the plane fitted an ready to use (finalize has been called and the result is stable, eq. having more than 6 neighbors) <br /></td></tr>
-<tr class="separator:ada0d81900921e0a922ce459ba1d3ec2c inherit pub_methods_classPonca_1_1PrimitiveBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a19945873f15545be8791ceb7d5c49c1a inherit pub_methods_classPonca_1_1PrimitiveBase"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__fitting.html#gabfd697aebf07c1b5c8be5ee401e2dc84">FIT_RESULT</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1PrimitiveBase.html#a19945873f15545be8791ceb7d5c49c1a">getCurrentState</a> () const</td></tr>
-<tr class="separator:a19945873f15545be8791ceb7d5c49c1a inherit pub_methods_classPonca_1_1PrimitiveBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-types"></a>
 Protected Types</h2></td></tr>
-<tr class="memitem:af69f2a87913e0ae3a1514963af6dfc68"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom">{ <a class="el" href="classPonca_1_1Line.html#af69f2a87913e0ae3a1514963af6dfc68ad0b9935b8fe271a017bdd32001751043">PROVIDES_LINE</a>
+<tr class="memitem:af69f2a87913e0ae3a1514963af6dfc68"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom">{ <a class="el" href="classPonca_1_1Line.html#af69f2a87913e0ae3a1514963af6dfc68af21467c31a6db11c5c91e29c75c8ee48">check</a> = Base::PROVIDES_PRIMITIVE_BASE, 
+<a class="el" href="classPonca_1_1Line.html#af69f2a87913e0ae3a1514963af6dfc68ad0b9935b8fe271a017bdd32001751043">PROVIDES_LINE</a>
  }</td></tr>
 <tr class="separator:af69f2a87913e0ae3a1514963af6dfc68"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="inherited"></a>
-Additional Inherited Members</h2></td></tr>
-<tr class="inherit_header pro_attribs_classPonca_1_1PrimitiveBase"><td colspan="2" onclick="javascript:toggleInherit('pro_attribs_classPonca_1_1PrimitiveBase')"><img src="closed.png" alt="-"/>&#160;Protected Attributes inherited from <a class="el" href="classPonca_1_1PrimitiveBase.html">Ponca::PrimitiveBase&lt; DataPoint, _WFunctor &gt;</a></td></tr>
-<tr class="memitem:ae90892c0b382040d748e16a10990ec49 inherit pro_attribs_classPonca_1_1PrimitiveBase"><td class="memItemLeft" align="right" valign="top"><a id="ae90892c0b382040d748e16a10990ec49"></a>
-<a class="el" href="group__fitting.html#gabfd697aebf07c1b5c8be5ee401e2dc84">FIT_RESULT</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1PrimitiveBase.html#ae90892c0b382040d748e16a10990ec49">m_eCurrentState</a></td></tr>
-<tr class="memdesc:ae90892c0b382040d748e16a10990ec49 inherit pro_attribs_classPonca_1_1PrimitiveBase"><td class="mdescLeft">&#160;</td><td class="mdescRight">Represent the current state of the fit (finalize function update the state) <br /></td></tr>
-<tr class="separator:ae90892c0b382040d748e16a10990ec49 inherit pro_attribs_classPonca_1_1PrimitiveBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:affee95252016666ddd5d0d1b01dbe25a inherit pro_attribs_classPonca_1_1PrimitiveBase"><td class="memItemLeft" align="right" valign="top"><a id="affee95252016666ddd5d0d1b01dbe25a"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1PrimitiveBase.html#affee95252016666ddd5d0d1b01dbe25a">m_nbNeighbors</a></td></tr>
-<tr class="memdesc:affee95252016666ddd5d0d1b01dbe25a inherit pro_attribs_classPonca_1_1PrimitiveBase"><td class="mdescLeft">&#160;</td><td class="mdescRight">Give the number of neighbors. <br /></td></tr>
-<tr class="separator:affee95252016666ddd5d0d1b01dbe25a inherit pro_attribs_classPonca_1_1PrimitiveBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Member Enumeration Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><h3>template&lt;class DataPoint, class _WFunctor, typename T&gt;<br />
+class Ponca::Line&lt; DataPoint, _WFunctor, T &gt;</h3>
+
+<p>A parametrized line is defined by an origin point \(\mathbf{o}\) and a unit direction vector \(\overrightarrow{\mathbf{d}}\) such that the line corresponds to the set \(l(t)=\mathbf{o}+t\overrightarrow{\mathbf{d}}, t\in \mathbb{R}\). </p>
+<p>This class inherits Eigen::ParametrizedLine.</p>
+<p>This primitive requires the definition of n-dimensionnal vectors (VectorType) in Concept::PointConcept.</p>
+<p>This primitive provides: </p><pre class="fragment">PROVIDES_LINE </pre> 
+<p class="definition">Definition at line <a class="el" href="linePrimitive_8h_source.html#l00036">36</a> of file <a class="el" href="linePrimitive_8h_source.html">linePrimitive.h</a>.</p>
+</div><h2 class="groupheader">Member Enumeration Documentation</h2>
 <a id="af69f2a87913e0ae3a1514963af6dfc68"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#af69f2a87913e0ae3a1514963af6dfc68">&#9670;&nbsp;</a></span>anonymous enum</h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;class DataPoint , class _WFunctor , typename T  = void&gt; </div>
+template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
@@ -238,20 +238,56 @@ template&lt;class DataPoint , class _WFunctor , typename T  = void&gt; </div>
 </table>
 </div><div class="memdoc">
 <table class="fieldtable">
-<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="af69f2a87913e0ae3a1514963af6dfc68ad0b9935b8fe271a017bdd32001751043"></a>PROVIDES_LINE&#160;</td><td class="fielddoc"><p>Provides <a class="el" href="classPonca_1_1Line.html" title="A parametrized line is defined by an origin point  and a unit direction vector  such that the line co...">Line</a>. </p>
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="af69f2a87913e0ae3a1514963af6dfc68af21467c31a6db11c5c91e29c75c8ee48"></a>check&#160;</td><td class="fielddoc"><p>Requires <a class="el" href="classPonca_1_1PrimitiveBase.html" title="Primitive base class.">PrimitiveBase</a>. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="af69f2a87913e0ae3a1514963af6dfc68ad0b9935b8fe271a017bdd32001751043"></a>PROVIDES_LINE&#160;</td><td class="fielddoc"><p>Provides <a class="el" href="classPonca_1_1Line.html" title="A parametrized line is defined by an origin point  and a unit direction vector  such that the line co...">Line</a>. </p>
 </td></tr>
 </table>
+
+<p class="definition">Definition at line <a class="el" href="linePrimitive_8h_source.html#l00047">47</a> of file <a class="el" href="linePrimitive_8h_source.html">linePrimitive.h</a>.</p>
 
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
+<a id="a398ea691c79a3a5cf8e7610109f2bfae"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a398ea691c79a3a5cf8e7610109f2bfae">&#9670;&nbsp;</a></span>isValid()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool <a class="el" href="classPonca_1_1Line.html">Ponca::Line</a>&lt; DataPoint, _WFunctor, T &gt;::isValid </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Tell if the line as been correctly set. Used to set CONFLICT_ERROR_FOUND during fitting. </p>
+<dl class="section return"><dt>Returns</dt><dd>false when called straight after <a class="el" href="classPonca_1_1Line.html#a8ad80a68b6de494b50499127c0eb69ff" title="Set the scalar field values to 0 and reset the distance() and origin() status.">init</a>. Should be true after fitting </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="linePrimitive_8h_source.html#l00069">69</a> of file <a class="el" href="linePrimitive_8h_source.html">linePrimitive.h</a>.</p>
+
+</div>
+</div>
 <a id="a2be50f01b5e7ba741e67d80711495add"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a2be50f01b5e7ba741e67d80711495add">&#9670;&nbsp;</a></span>setLine()</h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;class DataPoint , class _WFunctor , typename T  = void&gt; </div>
+template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
@@ -259,13 +295,13 @@ template&lt;class DataPoint , class _WFunctor , typename T  = void&gt; </div>
         <tr>
           <td class="memname">void <a class="el" href="classPonca_1_1Line.html">Ponca::Line</a>&lt; DataPoint, _WFunctor, T &gt;::setLine </td>
           <td>(</td>
-          <td class="paramtype">const <a class="el" href="classPonca_1_1Line.html#aef66490b8846d22e0da8b07f82d9ba3c">VectorType</a> &amp;&#160;</td>
+          <td class="paramtype">const <a class="el" href="classPonca_1_1Line.html#a423e9d0178e924d62143af82dcf644ca">VectorType</a> &amp;&#160;</td>
           <td class="paramname"><em>origin</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const <a class="el" href="classPonca_1_1Line.html#aef66490b8846d22e0da8b07f82d9ba3c">VectorType</a> &amp;&#160;</td>
+          <td class="paramtype">const <a class="el" href="classPonca_1_1Line.html#a423e9d0178e924d62143af82dcf644ca">VectorType</a> &amp;&#160;</td>
           <td class="paramname"><em>direction</em>&#160;</td>
         </tr>
         <tr>
@@ -284,20 +320,26 @@ template&lt;class DataPoint , class _WFunctor , typename T  = void&gt; </div>
 <p>Init the line from a direction and a position. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">_dir</td><td>Orientation of the line, does not need to be normalized </td></tr>
-    <tr><td class="paramname">_pos</td><td>Position of the line </td></tr>
+    <tr><td class="paramname">direction</td><td>Orientation of the line, does not need to be normalized </td></tr>
+    <tr><td class="paramname">origin</td><td>Position of the line </td></tr>
   </table>
   </dd>
 </dl>
 
+<p class="definition">Definition at line <a class="el" href="linePrimitive_8h_source.html#l00088">88</a> of file <a class="el" href="linePrimitive_8h_source.html">linePrimitive.h</a>.</p>
+
 </div>
 </div>
 </div><!-- contents -->
+</div><!-- doc-content -->
 <!-- start footer part -->
-<hr class="footer"/><address class="footer"><small>
-Generated on Tue Aug 2 2022 09:22:55 for Ponca by &#160;<a href="http://www.doxygen.org/index.html">
-<img class="footer" src="doxygen.png" alt="doxygen"/>
-</a> 1.8.17
-</small></address>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="namespacePonca.html">Ponca</a></li><li class="navelem"><a class="el" href="classPonca_1_1Line.html">Line</a></li>
+    <li class="footer">Generated on Fri Sep 9 2022 12:28:20 for Ponca by
+    <a href="http://www.doxygen.org/index.html">
+    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.17 </li>
+  </ul>
+</div>
 </body>
 </html>

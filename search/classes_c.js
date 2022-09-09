@@ -1,9 +1,26 @@
 var searchData=
 [
-  ['plane_358',['Plane',['../classPonca_1_1Plane.html',1,'Ponca']]],
-  ['plane_3c_20datapoint_2c_20_5fwfunctor_20_3e_359',['Plane&lt; DataPoint, _WFunctor &gt;',['../classPonca_1_1Plane.html',1,'Ponca']]],
-  ['pointconcept_360',['PointConcept',['../classPonca_1_1Concept_1_1PointConcept.html',1,'Ponca::Concept']]],
-  ['primitivebase_361',['PrimitiveBase',['../classPonca_1_1PrimitiveBase.html',1,'Ponca']]],
-  ['primitivebase_3c_20datapoint_2c_20_5fwfunctor_20_3e_362',['PrimitiveBase&lt; DataPoint, _WFunctor &gt;',['../classPonca_1_1PrimitiveBase.html',1,'Ponca']]],
-  ['projectednormalcovariancecurvature_363',['ProjectedNormalCovarianceCurvature',['../classPonca_1_1ProjectedNormalCovarianceCurvature.html',1,'Ponca']]]
+  ['query_351',['Query',['../structPonca_1_1Query.html',1,'Ponca']]],
+  ['query_3c_20queryinputisindex_2c_20queryoutputisknearest_3c_20datapoint_3a_3ascalar_20_3e_20_3e_352',['Query&lt; QueryInputIsIndex, QueryOutputIsKNearest&lt; DataPoint::Scalar &gt; &gt;',['../structPonca_1_1Query.html',1,'Ponca']]],
+  ['query_3c_20queryinputisindex_2c_20queryoutputisknearest_3c_20scalar_20_3e_20_3e_353',['Query&lt; QueryInputIsIndex, QueryOutputIsKNearest&lt; Scalar &gt; &gt;',['../structPonca_1_1Query.html',1,'Ponca']]],
+  ['query_3c_20queryinputisindex_2c_20queryoutputisnearest_3c_20datapoint_3a_3ascalar_20_3e_20_3e_354',['Query&lt; QueryInputIsIndex, QueryOutputIsNearest&lt; DataPoint::Scalar &gt; &gt;',['../structPonca_1_1Query.html',1,'Ponca']]],
+  ['query_3c_20queryinputisindex_2c_20queryoutputisnearest_3c_20scalar_20_3e_20_3e_355',['Query&lt; QueryInputIsIndex, QueryOutputIsNearest&lt; Scalar &gt; &gt;',['../structPonca_1_1Query.html',1,'Ponca']]],
+  ['query_3c_20queryinputisindex_2c_20queryoutputisrange_3c_20datapoint_3a_3ascalar_20_3e_20_3e_356',['Query&lt; QueryInputIsIndex, QueryOutputIsRange&lt; DataPoint::Scalar &gt; &gt;',['../structPonca_1_1Query.html',1,'Ponca']]],
+  ['query_3c_20queryinputisindex_2c_20queryoutputisrange_3c_20scalar_20_3e_20_3e_357',['Query&lt; QueryInputIsIndex, QueryOutputIsRange&lt; Scalar &gt; &gt;',['../structPonca_1_1Query.html',1,'Ponca']]],
+  ['query_3c_20queryinputisposition_3c_20datapoint_20_3e_2c_20queryoutputisknearest_3c_20datapoint_3a_3ascalar_20_3e_20_3e_358',['Query&lt; QueryInputIsPosition&lt; DataPoint &gt;, QueryOutputIsKNearest&lt; DataPoint::Scalar &gt; &gt;',['../structPonca_1_1Query.html',1,'Ponca']]],
+  ['query_3c_20queryinputisposition_3c_20datapoint_20_3e_2c_20queryoutputisnearest_3c_20datapoint_3a_3ascalar_20_3e_20_3e_359',['Query&lt; QueryInputIsPosition&lt; DataPoint &gt;, QueryOutputIsNearest&lt; DataPoint::Scalar &gt; &gt;',['../structPonca_1_1Query.html',1,'Ponca']]],
+  ['query_3c_20queryinputisposition_3c_20datapoint_20_3e_2c_20queryoutputisrange_3c_20datapoint_3a_3ascalar_20_3e_20_3e_360',['Query&lt; QueryInputIsPosition&lt; DataPoint &gt;, QueryOutputIsRange&lt; DataPoint::Scalar &gt; &gt;',['../structPonca_1_1Query.html',1,'Ponca']]],
+  ['queryinput_361',['QueryInput',['../structPonca_1_1QueryInput.html',1,'Ponca']]],
+  ['queryinput_3c_20datapoint_3a_3avectortype_20_3e_362',['QueryInput&lt; DataPoint::VectorType &gt;',['../structPonca_1_1QueryInput.html',1,'Ponca']]],
+  ['queryinput_3c_20int_20_3e_363',['QueryInput&lt; int &gt;',['../structPonca_1_1QueryInput.html',1,'Ponca']]],
+  ['queryinputbase_364',['QueryInputBase',['../structPonca_1_1QueryInputBase.html',1,'Ponca']]],
+  ['queryinputisindex_365',['QueryInputIsIndex',['../structPonca_1_1QueryInputIsIndex.html',1,'Ponca']]],
+  ['queryinputisposition_366',['QueryInputIsPosition',['../structPonca_1_1QueryInputIsPosition.html',1,'Ponca']]],
+  ['queryoutputbase_367',['QueryOutputBase',['../structPonca_1_1QueryOutputBase.html',1,'Ponca']]],
+  ['queryoutputisknearest_368',['QueryOutputIsKNearest',['../structPonca_1_1QueryOutputIsKNearest.html',1,'Ponca']]],
+  ['queryoutputisknearest_3c_20datapoint_3a_3ascalar_20_3e_369',['QueryOutputIsKNearest&lt; DataPoint::Scalar &gt;',['../structPonca_1_1QueryOutputIsKNearest.html',1,'Ponca']]],
+  ['queryoutputisnearest_370',['QueryOutputIsNearest',['../structPonca_1_1QueryOutputIsNearest.html',1,'Ponca']]],
+  ['queryoutputisnearest_3c_20datapoint_3a_3ascalar_20_3e_371',['QueryOutputIsNearest&lt; DataPoint::Scalar &gt;',['../structPonca_1_1QueryOutputIsNearest.html',1,'Ponca']]],
+  ['queryoutputisrange_372',['QueryOutputIsRange',['../structPonca_1_1QueryOutputIsRange.html',1,'Ponca']]],
+  ['queryoutputisrange_3c_20datapoint_3a_3ascalar_20_3e_373',['QueryOutputIsRange&lt; DataPoint::Scalar &gt;',['../structPonca_1_1QueryOutputIsRange.html',1,'Ponca']]]
 ];

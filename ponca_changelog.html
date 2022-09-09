@@ -1,3 +1,4 @@
+<!-- HTML header for doxygen 1.9.1-->
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -5,10 +6,14 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.17"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Ponca: Ponca&#39;s changelog</title>
+<title>Ponca: Releases overview</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
@@ -20,7 +25,23 @@
 </script>
 <script type="text/javascript" async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js"></script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only-darkmode-toggle.css" rel="stylesheet" type="text/css"/>
 <link href="ponca.css" rel="stylesheet" type="text/css"/>
+<!-- ... other metadata & script includes ... -->
+<script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+<script type="text/javascript">
+    DoxygenAwesomeDarkModeToggle.init()
+</script>
+<script type="text/javascript" src="doxygen-awesome-fragment-copy-button.js"></script>
+<script type="text/javascript">
+    DoxygenAwesomeFragmentCopyButton.init()
+</script>
+<script type="text/javascript" src="doxygen-awesome-paragraph-link.js"></script>
+<script type="text/javascript">
+    DoxygenAwesomeParagraphLink.init()
+</script>
 </head>
 <body>
 <div id="top"><!-- do not remove this div, it is closed by doxygen! -->
@@ -30,7 +51,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Ponca
-   &#160;<span id="projectnumber">8976dc5e97f677a334261616e8d2314551b8ce3d</span>
+   &#160;<span id="projectnumber">d844664447d2173c00cc41660408e8eb5b3a41d6</span>
    </div>
    <div id="projectbrief">Point Cloud Analysis library</div>
   </td>
@@ -55,6 +76,23 @@ $(function() {
 });
 /* @license-end */</script>
 <div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(document).ready(function(){initNavTree('ponca_changelog.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -69,24 +107,84 @@ $(function() {
 </iframe>
 </div>
 
-</div><!-- top -->
 <div class="PageDoc"><div class="header">
   <div class="headertitle">
-<div class="title"><a class="el" href="namespacePonca.html" title="This module provides efficient methods for the fitting and analysis of point-clouds in arbitrary dime...">Ponca</a>'s changelog </div>  </div>
+<div class="title">Releases overview </div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><pre class="fragment">Ponca changelog
+<div class="textblock"><p>Check latest release at: <a href="https://github.com/poncateam/ponca/releases/latest">https://github.com/poncateam/ponca/releases/latest</a></p>
+<h1><a class="anchor" id="ponca_releases_overview"></a>
+Principal features of the latest releases</h1>
+<h2><a class="anchor" id="ponca_v03_sec"></a>
+V0.3: adding Spatial Partitioning module</h2>
+<ul>
+<li>Fix bugs in <a class="el" href="spatialpartitioning.html">Spatial Partitioning</a></li>
+<li>Clean and extend API of the <a class="el" href="fitting.html">Fitting Module</a>. Fix bugs.</li>
+<li>Improve tests and documentation</li>
+</ul>
+<div class="fragment"><div class="line">git checkout v0.3</div>
+</div><!-- fragment --><h2><a class="anchor" id="ponca_v02_sec"></a>
+V0.2: adding Spatial Partitioning module</h2>
+<ul>
+<li>Add a new <a class="el" href="spatialpartitioning.html">Spatial Partitioning module</a> with a KdTree and several queries</li>
+<li>Add a new <a class="el" href="common.html">Common module</a> for general purpose code</li>
+<li>Improvements of the cmake build chain (dependencies management and use a submodule). <div class="fragment"><div class="line">git checkout v0.2-alpha-patch1</div>
+</div><!-- fragment --></li>
+</ul>
+<h1><a class="anchor" id="ponca_changelog_sec"></a>
+Complete Changelog</h1>
+<pre class="fragment">Ponca changelog
 
 
+
+--------------------------------------------------------------------------------
+Current head (v.1.0 RC)
+This release introduces several changes in the API in order to
+   - improve the computation timings (we reported x1.2 to x1.4 gain depending on
+     the situation)
+   - reduce code duplication
+   - ease the design of new estimators
+The changes introduced in this version mostly are all introduced by PR #56.
+
+- API
+    - [fitting] Factorize neighbors weight computation (#56)
+    - [fitting] Factorize neighbors weight derivative computation (add class
+      PrimitiveDer and BasketDiff) (#56)
+    - [fitting] Add new classes for intermediate computation, which reduces code
+      duplication across estimators: MeanPosition, MeanNormal, MeanPositionDer,
+      CovarianceFit, CovarianceFitDer (#56)
+    - [fitting] Improve genericity by allowing to build objets computing multiple
+      fits at once (#56)
+    - [fitting] Add a mechanism to detect conflicting computations (#56)
+    - [fitting] Move iScaleDer out of internal namespace + name enum (#56)
+
+- Bug-fixes and code improvements
+    - [fitting] Reduce objets sizes by removing unnecessary attributes (#56)
+    - [fitting] Set default fields values (#56)
+    - [fitting] Remove explicit implementation of default constructors (#56)
+    - [fitting] Add macros to simplify headers writing (#56)
+    - [fitting] Fix several warnings when compiling with MSVC (#56)
+
+- Tests
+    - [fitting] Update according to API changes (#56)
+
+-Docs
+    - Switch to doxygen-awesome-css (#56)
+    - Fix several warnings (#56)
+    - [common] Add main page (#56)
+    - [common] Add concept page (#56)
+    - [common] Reformat page User Manual (#56)
+    - [fitting] Rewrite User Manual (#56)
+    - [fitting] Rewrite Concept page (#56)
 
 --------------------------------------------------------------------------------
 v.0.3
 - API
     - [spatialpartitioning] Remove duplicated code and clean API (#32,#51)
     - [spatialpartitioning] Fix a bug in range queries (#46)
-    - [spatialpartitioning] Add a counter of leaf in the KdTree (55#)
+    - [spatialpartitioning] Add a counter of leaf in the KdTree (#55)
     - [spatialpartitioning] Add editInput on Queries to allow query re-usability
-      between different request (57#)
+      between different request (#57)
     - [fitting] Add Line primitive and LeastSquaresLineFitting (#39)
     - [fitting] Rename several classes for better name consistency (#42)
     - [fitting] Add DryFit: a dummy fit object useful for debugging or monitoring (#52, #53)
@@ -309,11 +407,14 @@ V0.1.2
    # Remove unused include directives
 </pre> </div></div><!-- contents -->
 </div><!-- PageDoc -->
+</div><!-- doc-content -->
 <!-- start footer part -->
-<hr class="footer"/><address class="footer"><small>
-Generated on Tue Aug 2 2022 09:22:55 for Ponca by &#160;<a href="http://www.doxygen.org/index.html">
-<img class="footer" src="doxygen.png" alt="doxygen"/>
-</a> 1.8.17
-</small></address>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="footer">Generated on Fri Sep 9 2022 12:28:20 for Ponca by
+    <a href="http://www.doxygen.org/index.html">
+    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.17 </li>
+  </ul>
+</div>
 </body>
 </html>

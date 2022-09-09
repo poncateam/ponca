@@ -1,3 +1,4 @@
+<!-- HTML header for doxygen 1.9.1-->
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -9,6 +10,10 @@
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
@@ -20,7 +25,23 @@
 </script>
 <script type="text/javascript" async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js"></script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only-darkmode-toggle.css" rel="stylesheet" type="text/css"/>
 <link href="ponca.css" rel="stylesheet" type="text/css"/>
+<!-- ... other metadata & script includes ... -->
+<script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+<script type="text/javascript">
+    DoxygenAwesomeDarkModeToggle.init()
+</script>
+<script type="text/javascript" src="doxygen-awesome-fragment-copy-button.js"></script>
+<script type="text/javascript">
+    DoxygenAwesomeFragmentCopyButton.init()
+</script>
+<script type="text/javascript" src="doxygen-awesome-paragraph-link.js"></script>
+<script type="text/javascript">
+    DoxygenAwesomeParagraphLink.init()
+</script>
 </head>
 <body>
 <div id="top"><!-- do not remove this div, it is closed by doxygen! -->
@@ -30,7 +51,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Ponca
-   &#160;<span id="projectnumber">8976dc5e97f677a334261616e8d2314551b8ce3d</span>
+   &#160;<span id="projectnumber">d844664447d2173c00cc41660408e8eb5b3a41d6</span>
    </div>
    <div id="projectbrief">Point Cloud Analysis library</div>
   </td>
@@ -55,6 +76,23 @@ $(function() {
 });
 /* @license-end */</script>
 <div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(document).ready(function(){initNavTree('gls_8h_source.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -69,11 +107,6 @@ $(function() {
 </iframe>
 </div>
 
-<div id="nav-path" class="navpath">
-  <ul>
-<li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_695d95a8d8fbec601a248c0414764298.html">Ponca</a></li><li class="navelem"><a class="el" href="dir_ce16314fc45f8638543c5146aff64d4a.html">src</a></li><li class="navelem"><a class="el" href="dir_221133f19e4af6803e4ee7d78db21786.html">Fitting</a></li>  </ul>
-</div>
-</div><!-- top -->
 <div class="header">
   <div class="headertitle">
 <div class="title">gls.h</div>  </div>
@@ -96,183 +129,127 @@ $(function() {
 <div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;<span class="keyword">template</span> &lt; <span class="keyword">class</span> DataPo<span class="keywordtype">int</span>, <span class="keyword">class</span> _WFunctor, <span class="keyword">typename</span> T&gt;</div>
 <div class="line"><a name="l00043"></a><span class="lineno"><a class="line" href="classPonca_1_1GLSParam.html">   43</a></span>&#160;<span class="keyword">class </span><a class="code" href="classPonca_1_1GLSParam.html">GLSParam</a> : <span class="keyword">public</span> T</div>
 <div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;{</div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;<span class="keyword">private</span>:</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    <span class="keyword">typedef</span> T Base;</div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160; </div>
+<div class="line"><a name="l00045"></a><span class="lineno"><a class="line" href="classPonca_1_1GLSParam.html#a76837e2a9254dbefaff256add3023e7f">   45</a></span>&#160;    PONCA_FITTING_DECLARE_DEFAULT_TYPES</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160; </div>
 <div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;<span class="keyword">protected</span>:</div>
 <div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    <span class="keyword">enum</span></div>
 <div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    {</div>
 <div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;        Check = Base::PROVIDES_ALGEBRAIC_SPHERE,</div>
 <div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;        PROVIDES_GLS_PARAMETRIZATION</div>
 <div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    };</div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160; </div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;<span class="keyword">public</span>:</div>
-<div class="line"><a name="l00056"></a><span class="lineno"><a class="line" href="classPonca_1_1GLSParam.html#a21cddbd7a99a8705c5f55afca94d77a1">   56</a></span>&#160;    <span class="keyword">typedef</span> <span class="keyword">typename</span> Base::Scalar     <a class="code" href="classPonca_1_1GLSParam.html#a21cddbd7a99a8705c5f55afca94d77a1">Scalar</a>;     </div>
-<div class="line"><a name="l00057"></a><span class="lineno"><a class="line" href="classPonca_1_1GLSParam.html#aab8b65a3f3b588a734a41bd7d3c2e347">   57</a></span>&#160;    <span class="keyword">typedef</span> <span class="keyword">typename</span> Base::VectorType <a class="code" href="classPonca_1_1GLSParam.html#aab8b65a3f3b588a734a41bd7d3c2e347">VectorType</a>; </div>
-<div class="line"><a name="l00058"></a><span class="lineno"><a class="line" href="classPonca_1_1GLSParam.html#ae6ce8e5f546367614968fab4fe0d6588">   58</a></span>&#160;    <span class="keyword">typedef</span> <span class="keyword">typename</span> Base::WFunctor   <a class="code" href="classPonca_1_1GLSParam.html#ae6ce8e5f546367614968fab4fe0d6588">WFunctor</a>;   </div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;<span class="keyword">protected</span>:</div>
-<div class="line"><a name="l00062"></a><span class="lineno"><a class="line" href="classPonca_1_1GLSParam.html#ad03c716d97e30ec02cf342952e065557">   62</a></span>&#160;    <a class="code" href="classPonca_1_1GLSParam.html#a21cddbd7a99a8705c5f55afca94d77a1">Scalar</a> <a class="code" href="classPonca_1_1GLSParam.html#ad03c716d97e30ec02cf342952e065557">m_t</a>;         </div>
-<div class="line"><a name="l00063"></a><span class="lineno"><a class="line" href="classPonca_1_1GLSParam.html#ade62f517fea12b7fdb0dd30ec8e9f3ea">   63</a></span>&#160;    <a class="code" href="classPonca_1_1GLSParam.html#a21cddbd7a99a8705c5f55afca94d77a1">Scalar</a> <a class="code" href="classPonca_1_1GLSParam.html#ade62f517fea12b7fdb0dd30ec8e9f3ea">m_fitness</a>;   </div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;<span class="keyword">public</span>:</div>
-<div class="line"><a name="l00067"></a><span class="lineno"><a class="line" href="classPonca_1_1GLSParam.html#a36f5eca1299758cea30dda2b69a22320">   67</a></span>&#160;    PONCA_MULTIARCH <span class="keyword">inline</span> <a class="code" href="classPonca_1_1GLSParam.html#a36f5eca1299758cea30dda2b69a22320">GLSParam</a>() : <a class="code" href="classPonca_1_1GLSParam.html#ad03c716d97e30ec02cf342952e065557">m_t</a>(0) {}</div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160; </div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;<span class="comment">    /**************************************************************************/</span></div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;    <span class="comment">/* Initialization                                                         */</span></div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;<span class="comment">    /**************************************************************************/</span></div>
-<div class="line"><a name="l00073"></a><span class="lineno"><a class="line" href="classPonca_1_1GLSParam.html#a4606b39de74522ce448724e5a84e5127">   73</a></span>&#160;    PONCA_MULTIARCH <span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code" href="classPonca_1_1GLSParam.html#a4606b39de74522ce448724e5a84e5127">setWeightFunc</a>(<span class="keyword">const</span> <a class="code" href="classPonca_1_1GLSParam.html#ae6ce8e5f546367614968fab4fe0d6588">WFunctor</a>&amp; _w)</div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;    {</div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;        Base::setWeightFunc(_w);</div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;        <a class="code" href="classPonca_1_1GLSParam.html#ad03c716d97e30ec02cf342952e065557">m_t</a> = _w.evalScale();</div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;    }</div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160; </div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;<span class="comment">    /**************************************************************************/</span></div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;    <span class="comment">/* Processing                                                             */</span></div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;<span class="comment">    /**************************************************************************/</span></div>
-<div class="line"><a name="l00083"></a><span class="lineno"><a class="line" href="classPonca_1_1GLSParam.html#a8704166d57165ec8bfcf2a2dc960ebd2">   83</a></span>&#160;    PONCA_MULTIARCH <span class="keyword">inline</span> <a class="code" href="group__fitting.html#gabfd697aebf07c1b5c8be5ee401e2dc84">FIT_RESULT</a> <a class="code" href="classPonca_1_1GLSParam.html#a8704166d57165ec8bfcf2a2dc960ebd2">finalize</a>()</div>
-<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;    {</div>
-<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;        <a class="code" href="group__fitting.html#gabfd697aebf07c1b5c8be5ee401e2dc84">FIT_RESULT</a> bResult = Base::finalize();</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160; </div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;<span class="keyword">protected</span>:</div>
+<div class="line"><a name="l00057"></a><span class="lineno"><a class="line" href="classPonca_1_1GLSParam.html#ade62f517fea12b7fdb0dd30ec8e9f3ea">   57</a></span>&#160;    <a class="code" href="classPonca_1_1GLSParam.html#a4e0419931490aae532de4230b028eb1a">Scalar</a> <a class="code" href="classPonca_1_1GLSParam.html#ade62f517fea12b7fdb0dd30ec8e9f3ea">m_fitness</a> {0};   </div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00060"></a><span class="lineno"><a class="line" href="classPonca_1_1GLSParam.html#ae1fc6e960555dd1a20c6d80cf8009d20">   60</a></span>&#160;    PONCA_EXPLICIT_CAST_OPERATORS(<a class="code" href="classPonca_1_1GLSParam.html">GLSParam</a>,<a class="code" href="classPonca_1_1GLSParam.html#a13f7121b694ff5dc8ad75e146f0eb168">glsParam</a>)</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;    PONCA_FITTING_DECLARE_FINALIZE</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160; </div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;<span class="comment">    /**************************************************************************/</span></div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;    <span class="comment">/* Use results                                                            */</span></div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;<span class="comment">    /**************************************************************************/</span></div>
+<div class="line"><a name="l00067"></a><span class="lineno"><a class="line" href="classPonca_1_1GLSParam.html#ab44732a836ac2426812c1a28de87368b">   67</a></span>&#160;    PONCA_MULTIARCH <span class="keyword">inline</span> <a class="code" href="classPonca_1_1GLSParam.html#a4e0419931490aae532de4230b028eb1a">Scalar</a> <a class="code" href="classPonca_1_1GLSParam.html#ab44732a836ac2426812c1a28de87368b">tau</a>()<span class="keyword"> const</span></div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;<span class="keyword">    </span>{</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;        <span class="keywordflow">return</span> Base::isNormalized() ? Base::m_uc : Base::m_uc / Base::prattNorm();</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;    }</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160; </div>
+<div class="line"><a name="l00073"></a><span class="lineno"><a class="line" href="classPonca_1_1GLSParam.html#aa07f37f4c54c4b16de9e3eb81682eebd">   73</a></span>&#160;    PONCA_MULTIARCH <span class="keyword">inline</span> <a class="code" href="classPonca_1_1GLSParam.html#af2a7a07c8fafb337a110fcdc3c72d067">VectorType</a> <a class="code" href="classPonca_1_1GLSParam.html#aa07f37f4c54c4b16de9e3eb81682eebd">eta</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> Base::primitiveGradient(); }</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160; </div>
+<div class="line"><a name="l00076"></a><span class="lineno"><a class="line" href="classPonca_1_1GLSParam.html#af50e8af7862b3dcb185ff21c573fa784">   76</a></span>&#160;    PONCA_MULTIARCH <span class="keyword">inline</span> <a class="code" href="classPonca_1_1GLSParam.html#a4e0419931490aae532de4230b028eb1a">Scalar</a> <a class="code" href="classPonca_1_1GLSParam.html#af50e8af7862b3dcb185ff21c573fa784">kappa</a>()<span class="keyword"> const</span></div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;<span class="keyword">    </span>{</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;        <span class="keywordflow">return</span> <a class="code" href="classPonca_1_1GLSParam.html#a4e0419931490aae532de4230b028eb1a">Scalar</a>(2.) * (Base::isNormalized() ? Base::m_uq : Base::m_uq / Base::prattNorm());</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;    }</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160; </div>
+<div class="line"><a name="l00082"></a><span class="lineno"><a class="line" href="classPonca_1_1GLSParam.html#a4640a61e78f4b56b6897ee24c406de08">   82</a></span>&#160;    PONCA_MULTIARCH <span class="keyword">inline</span> <a class="code" href="classPonca_1_1GLSParam.html#a4e0419931490aae532de4230b028eb1a">Scalar</a> <a class="code" href="classPonca_1_1GLSParam.html#a4640a61e78f4b56b6897ee24c406de08">tau_normalized</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> <a class="code" href="classPonca_1_1GLSParam.html#ab44732a836ac2426812c1a28de87368b">tau</a>() / Base::m_w.evalScale(); }</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160; </div>
+<div class="line"><a name="l00085"></a><span class="lineno"><a class="line" href="classPonca_1_1GLSParam.html#aa7c5b0f5db15161d8c11243f97172f63">   85</a></span>&#160;    PONCA_MULTIARCH <span class="keyword">inline</span> <a class="code" href="classPonca_1_1GLSParam.html#af2a7a07c8fafb337a110fcdc3c72d067">VectorType</a> <a class="code" href="classPonca_1_1GLSParam.html#aa7c5b0f5db15161d8c11243f97172f63">eta_normalized</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> <a class="code" href="classPonca_1_1GLSParam.html#aa07f37f4c54c4b16de9e3eb81682eebd">eta</a>(); }</div>
 <div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160; </div>
-<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;        <span class="keywordflow">if</span>(bResult != <a class="code" href="group__fitting.html#ggabfd697aebf07c1b5c8be5ee401e2dc84a08d57dd200082f67128b5274049dda41">UNDEFINED</a>)</div>
-<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;        {</div>
-<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;            <a class="code" href="classPonca_1_1GLSParam.html#ade62f517fea12b7fdb0dd30ec8e9f3ea">m_fitness</a> = <a class="code" href="classPonca_1_1GLSParam.html#a21cddbd7a99a8705c5f55afca94d77a1">Scalar</a>(1.) - Base::prattNorm2();</div>
-<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;        }</div>
-<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160; </div>
-<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;        <span class="keywordflow">return</span> bResult;</div>
-<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;    }</div>
-<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160; </div>
-<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;<span class="comment">    /**************************************************************************/</span></div>
-<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;    <span class="comment">/* Use results                                                            */</span></div>
-<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;<span class="comment">    /**************************************************************************/</span></div>
-<div class="line"><a name="l00099"></a><span class="lineno"><a class="line" href="classPonca_1_1GLSParam.html#ab44732a836ac2426812c1a28de87368b">   99</a></span>&#160;    PONCA_MULTIARCH <span class="keyword">inline</span> <a class="code" href="classPonca_1_1GLSParam.html#a21cddbd7a99a8705c5f55afca94d77a1">Scalar</a> <a class="code" href="classPonca_1_1GLSParam.html#ab44732a836ac2426812c1a28de87368b">tau</a>()<span class="keyword"> const</span></div>
+<div class="line"><a name="l00088"></a><span class="lineno"><a class="line" href="classPonca_1_1GLSParam.html#abec25f5fc1914516c36082df250ee50e">   88</a></span>&#160;    PONCA_MULTIARCH <span class="keyword">inline</span> <a class="code" href="classPonca_1_1GLSParam.html#a4e0419931490aae532de4230b028eb1a">Scalar</a> <a class="code" href="classPonca_1_1GLSParam.html#abec25f5fc1914516c36082df250ee50e">kappa_normalized</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> <a class="code" href="classPonca_1_1GLSParam.html#af50e8af7862b3dcb185ff21c573fa784">kappa</a>() * Base::m_w.evalScale(); }</div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160; </div>
+<div class="line"><a name="l00091"></a><span class="lineno"><a class="line" href="classPonca_1_1GLSParam.html#ab2be9d68d199d09968a0c1ce3d3bd148">   91</a></span>&#160;    PONCA_MULTIARCH <span class="keyword">inline</span> <a class="code" href="classPonca_1_1GLSParam.html#a4e0419931490aae532de4230b028eb1a">Scalar</a> <a class="code" href="classPonca_1_1GLSParam.html#ab2be9d68d199d09968a0c1ce3d3bd148">fitness</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> <a class="code" href="classPonca_1_1GLSParam.html#ade62f517fea12b7fdb0dd30ec8e9f3ea">m_fitness</a>; }</div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160; </div>
+<div class="line"><a name="l00098"></a><span class="lineno"><a class="line" href="classPonca_1_1GLSParam.html#a420d2089a5420d60814b1e7a1fbd7e12">   98</a></span>&#160;    PONCA_MULTIARCH <span class="keyword">inline</span> <a class="code" href="classPonca_1_1GLSParam.html#a4e0419931490aae532de4230b028eb1a">Scalar</a> <a class="code" href="classPonca_1_1GLSParam.html#a420d2089a5420d60814b1e7a1fbd7e12">compareTo</a> (<span class="keyword">const</span> <a class="code" href="classPonca_1_1GLSParam.html">GLSParam&lt;DataPoint, _WFunctor, T&gt;</a>&amp; _other,</div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;                                        <span class="keywordtype">bool</span> _useFitness = <span class="keyword">true</span>)<span class="keyword"> const</span></div>
 <div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;<span class="keyword">    </span>{</div>
-<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;        <span class="keywordflow">return</span> Base::isNormalized() ? Base::m_uc : Base::m_uc / Base::prattNorm();</div>
-<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;    }</div>
-<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160; </div>
-<div class="line"><a name="l00105"></a><span class="lineno"><a class="line" href="classPonca_1_1GLSParam.html#aa07f37f4c54c4b16de9e3eb81682eebd">  105</a></span>&#160;    PONCA_MULTIARCH <span class="keyword">inline</span> <a class="code" href="classPonca_1_1GLSParam.html#aab8b65a3f3b588a734a41bd7d3c2e347">VectorType</a> <a class="code" href="classPonca_1_1GLSParam.html#aa07f37f4c54c4b16de9e3eb81682eebd">eta</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> Base::primitiveGradient(); }</div>
-<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160; </div>
-<div class="line"><a name="l00108"></a><span class="lineno"><a class="line" href="classPonca_1_1GLSParam.html#af50e8af7862b3dcb185ff21c573fa784">  108</a></span>&#160;    PONCA_MULTIARCH <span class="keyword">inline</span> <a class="code" href="classPonca_1_1GLSParam.html#a21cddbd7a99a8705c5f55afca94d77a1">Scalar</a> <a class="code" href="classPonca_1_1GLSParam.html#af50e8af7862b3dcb185ff21c573fa784">kappa</a>()<span class="keyword"> const</span></div>
-<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;<span class="keyword">    </span>{</div>
-<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;        <span class="keywordflow">return</span> <a class="code" href="classPonca_1_1GLSParam.html#a21cddbd7a99a8705c5f55afca94d77a1">Scalar</a>(2.) * (Base::isNormalized() ? Base::m_uq : Base::m_uq / Base::prattNorm());</div>
-<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;    }</div>
-<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160; </div>
-<div class="line"><a name="l00114"></a><span class="lineno"><a class="line" href="classPonca_1_1GLSParam.html#a4640a61e78f4b56b6897ee24c406de08">  114</a></span>&#160;    PONCA_MULTIARCH <span class="keyword">inline</span> <a class="code" href="classPonca_1_1GLSParam.html#a21cddbd7a99a8705c5f55afca94d77a1">Scalar</a> <a class="code" href="classPonca_1_1GLSParam.html#a4640a61e78f4b56b6897ee24c406de08">tau_normalized</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> <a class="code" href="classPonca_1_1GLSParam.html#ab44732a836ac2426812c1a28de87368b">tau</a>() / <a class="code" href="classPonca_1_1GLSParam.html#ad03c716d97e30ec02cf342952e065557">m_t</a>; }</div>
-<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160; </div>
-<div class="line"><a name="l00117"></a><span class="lineno"><a class="line" href="classPonca_1_1GLSParam.html#aa7c5b0f5db15161d8c11243f97172f63">  117</a></span>&#160;    PONCA_MULTIARCH <span class="keyword">inline</span> <a class="code" href="classPonca_1_1GLSParam.html#aab8b65a3f3b588a734a41bd7d3c2e347">VectorType</a> <a class="code" href="classPonca_1_1GLSParam.html#aa7c5b0f5db15161d8c11243f97172f63">eta_normalized</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> <a class="code" href="classPonca_1_1GLSParam.html#aa07f37f4c54c4b16de9e3eb81682eebd">eta</a>(); }</div>
-<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160; </div>
-<div class="line"><a name="l00120"></a><span class="lineno"><a class="line" href="classPonca_1_1GLSParam.html#abec25f5fc1914516c36082df250ee50e">  120</a></span>&#160;    PONCA_MULTIARCH <span class="keyword">inline</span> <a class="code" href="classPonca_1_1GLSParam.html#a21cddbd7a99a8705c5f55afca94d77a1">Scalar</a> <a class="code" href="classPonca_1_1GLSParam.html#abec25f5fc1914516c36082df250ee50e">kappa_normalized</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> <a class="code" href="classPonca_1_1GLSParam.html#af50e8af7862b3dcb185ff21c573fa784">kappa</a>() * <a class="code" href="classPonca_1_1GLSParam.html#ad03c716d97e30ec02cf342952e065557">m_t</a>; }</div>
-<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160; </div>
-<div class="line"><a name="l00123"></a><span class="lineno"><a class="line" href="classPonca_1_1GLSParam.html#ab2be9d68d199d09968a0c1ce3d3bd148">  123</a></span>&#160;    PONCA_MULTIARCH <span class="keyword">inline</span> <a class="code" href="classPonca_1_1GLSParam.html#a21cddbd7a99a8705c5f55afca94d77a1">Scalar</a> <a class="code" href="classPonca_1_1GLSParam.html#ab2be9d68d199d09968a0c1ce3d3bd148">fitness</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> <a class="code" href="classPonca_1_1GLSParam.html#ade62f517fea12b7fdb0dd30ec8e9f3ea">m_fitness</a>; }</div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;        <a class="code" href="classPonca_1_1GLSParam.html#a4e0419931490aae532de4230b028eb1a">Scalar</a> nTau     = this-&gt;<a class="code" href="classPonca_1_1GLSParam.html#a4640a61e78f4b56b6897ee24c406de08">tau_normalized</a>()   - _other.<a class="code" href="classPonca_1_1GLSParam.html#a4640a61e78f4b56b6897ee24c406de08">tau_normalized</a>();</div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;        <a class="code" href="classPonca_1_1GLSParam.html#a4e0419931490aae532de4230b028eb1a">Scalar</a> nKappa   = this-&gt;<a class="code" href="classPonca_1_1GLSParam.html#abec25f5fc1914516c36082df250ee50e">kappa_normalized</a>() - _other.<a class="code" href="classPonca_1_1GLSParam.html#abec25f5fc1914516c36082df250ee50e">kappa_normalized</a>();</div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;        <a class="code" href="classPonca_1_1GLSParam.html#a4e0419931490aae532de4230b028eb1a">Scalar</a> nFitness = _useFitness ? this-&gt;<a class="code" href="classPonca_1_1GLSParam.html#ab2be9d68d199d09968a0c1ce3d3bd148">fitness</a>() - _other.<a class="code" href="classPonca_1_1GLSParam.html#ab2be9d68d199d09968a0c1ce3d3bd148">fitness</a>() : <a class="code" href="classPonca_1_1GLSParam.html#a4e0419931490aae532de4230b028eb1a">Scalar</a>(0.);</div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160; </div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;        <span class="keywordflow">return</span> nTau * nTau + nKappa * nKappa + nFitness * nFitness;</div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;    }</div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160; </div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;}; <span class="comment">//class GLSParam</span></div>
+<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160; </div>
+<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160; </div>
+<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;<span class="keyword">template</span> &lt; <span class="keyword">class</span> DataPo<span class="keywordtype">int</span>, <span class="keyword">class</span> _WFunctor, <span class="keywordtype">int</span> DiffType, <span class="keyword">typename</span> T&gt;</div>
+<div class="line"><a name="l00120"></a><span class="lineno"><a class="line" href="classPonca_1_1GLSDer.html">  120</a></span>&#160;<span class="keyword">class </span><a class="code" href="classPonca_1_1GLSDer.html">GLSDer</a> : <span class="keyword">public</span> T</div>
+<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;{</div>
+<div class="line"><a name="l00122"></a><span class="lineno"><a class="line" href="classPonca_1_1GLSDer.html#a32d85724652edc75856d9740ced050a1">  122</a></span>&#160;PONCA_FITTING_DECLARE_DEFAULT_TYPES</div>
+<div class="line"><a name="l00123"></a><span class="lineno"><a class="line" href="classPonca_1_1GLSDer.html#a7d9df6358450bdf21737300864dd3b7c">  123</a></span>&#160;PONCA_FITTING_DECLARE_DEFAULT_DER_TYPES</div>
 <div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160; </div>
-<div class="line"><a name="l00130"></a><span class="lineno"><a class="line" href="classPonca_1_1GLSParam.html#a420d2089a5420d60814b1e7a1fbd7e12">  130</a></span>&#160;    PONCA_MULTIARCH <span class="keyword">inline</span> <a class="code" href="classPonca_1_1GLSParam.html#a21cddbd7a99a8705c5f55afca94d77a1">Scalar</a> <a class="code" href="classPonca_1_1GLSParam.html#a420d2089a5420d60814b1e7a1fbd7e12">compareTo</a> (<span class="keyword">const</span> <a class="code" href="classPonca_1_1GLSParam.html">GLSParam&lt;DataPoint, _WFunctor, T&gt;</a>&amp; _other,</div>
-<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;                                        <span class="keywordtype">bool</span> _useFitness = <span class="keyword">true</span>)<span class="keyword"> const</span></div>
-<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;<span class="keyword">    </span>{</div>
-<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;        <a class="code" href="classPonca_1_1GLSParam.html#a21cddbd7a99a8705c5f55afca94d77a1">Scalar</a> nTau     = this-&gt;<a class="code" href="classPonca_1_1GLSParam.html#a4640a61e78f4b56b6897ee24c406de08">tau_normalized</a>()   - _other.<a class="code" href="classPonca_1_1GLSParam.html#a4640a61e78f4b56b6897ee24c406de08">tau_normalized</a>();</div>
-<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;        <a class="code" href="classPonca_1_1GLSParam.html#a21cddbd7a99a8705c5f55afca94d77a1">Scalar</a> nKappa   = this-&gt;<a class="code" href="classPonca_1_1GLSParam.html#abec25f5fc1914516c36082df250ee50e">kappa_normalized</a>() - _other.<a class="code" href="classPonca_1_1GLSParam.html#abec25f5fc1914516c36082df250ee50e">kappa_normalized</a>();</div>
-<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;        <a class="code" href="classPonca_1_1GLSParam.html#a21cddbd7a99a8705c5f55afca94d77a1">Scalar</a> nFitness = _useFitness ? this-&gt;<a class="code" href="classPonca_1_1GLSParam.html#ab2be9d68d199d09968a0c1ce3d3bd148">fitness</a>() - _other.<a class="code" href="classPonca_1_1GLSParam.html#ab2be9d68d199d09968a0c1ce3d3bd148">fitness</a>() : <a class="code" href="classPonca_1_1GLSParam.html#a21cddbd7a99a8705c5f55afca94d77a1">Scalar</a>(0.);</div>
-<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160; </div>
-<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;        <span class="keywordflow">return</span> nTau * nTau + nKappa * nKappa + nFitness * nFitness;</div>
-<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;    }</div>
-<div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160; </div>
-<div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160;}; <span class="comment">//class GLSParam</span></div>
-<div class="line"><a name="l00141"></a><span class="lineno">  141</span>&#160; </div>
-<div class="line"><a name="l00142"></a><span class="lineno">  142</span>&#160; </div>
-<div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;<span class="keyword">template</span> &lt; <span class="keyword">class</span> DataPo<span class="keywordtype">int</span>, <span class="keyword">class</span> _WFunctor, <span class="keyword">typename</span> T&gt;</div>
-<div class="line"><a name="l00152"></a><span class="lineno"><a class="line" href="classPonca_1_1GLSDer.html">  152</a></span>&#160;<span class="keyword">class </span><a class="code" href="classPonca_1_1GLSDer.html">GLSDer</a> : <span class="keyword">public</span> T</div>
-<div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160;{</div>
-<div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160;<span class="keyword">private</span>:</div>
-<div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160;    <span class="keyword">typedef</span> T Base;</div>
-<div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160; </div>
-<div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160;<span class="keyword">protected</span>:</div>
-<div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160;    <span class="keyword">enum</span></div>
-<div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160;    {</div>
-<div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160;        Check = Base::PROVIDES_GLS_PARAMETRIZATION &amp; Base::PROVIDES_ALGEBRAIC_SPHERE_DERIVATIVE,</div>
-<div class="line"><a name="l00161"></a><span class="lineno">  161</span>&#160;        PROVIDES_GLS_DERIVATIVE</div>
-<div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160;    };</div>
-<div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160; </div>
-<div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160;<span class="keyword">public</span>:</div>
-<div class="line"><a name="l00165"></a><span class="lineno"><a class="line" href="classPonca_1_1GLSDer.html#aa6991bb6cbba119d217ed455d1e3aaa3">  165</a></span>&#160;    <span class="keyword">typedef</span> <span class="keyword">typename</span> Base::Scalar     <a class="code" href="classPonca_1_1GLSDer.html#aa6991bb6cbba119d217ed455d1e3aaa3">Scalar</a>;      </div>
-<div class="line"><a name="l00166"></a><span class="lineno"><a class="line" href="classPonca_1_1GLSDer.html#aba8fcafc4238152c6469ed53d932689b">  166</a></span>&#160;    <span class="keyword">typedef</span> <span class="keyword">typename</span> Base::VectorType <a class="code" href="classPonca_1_1GLSDer.html#aba8fcafc4238152c6469ed53d932689b">VectorType</a>;  </div>
-<div class="line"><a name="l00167"></a><span class="lineno"><a class="line" href="classPonca_1_1GLSDer.html#acea07a33f86b1dd73cfd780f1eb8d381">  167</a></span>&#160;    <span class="keyword">typedef</span> <span class="keyword">typename</span> Base::WFunctor   <a class="code" href="classPonca_1_1GLSDer.html#acea07a33f86b1dd73cfd780f1eb8d381">WFunctor</a>;    </div>
-<div class="line"><a name="l00169"></a><span class="lineno"><a class="line" href="classPonca_1_1GLSDer.html#a056995e666e1f363d45ff41d58a351f9">  169</a></span>&#160;    <span class="keyword">typedef</span> <span class="keyword">typename</span> Base::VectorArray <a class="code" href="classPonca_1_1GLSDer.html#a056995e666e1f363d45ff41d58a351f9">VectorArray</a>; </div>
-<div class="line"><a name="l00170"></a><span class="lineno"><a class="line" href="classPonca_1_1GLSDer.html#abb14925325640fba6e357729141997ca">  170</a></span>&#160;    <span class="keyword">typedef</span> <span class="keyword">typename</span> Base::ScalarArray <a class="code" href="classPonca_1_1GLSDer.html#abb14925325640fba6e357729141997ca">ScalarArray</a>; </div>
-<div class="line"><a name="l00172"></a><span class="lineno">  172</span>&#160;    <span class="keyword">using</span> Base::isScaleDer;   <span class="comment">// forward methods provided by PROVIDES_ALGEBRAIC_SPHERE_DERIVATIVE</span></div>
-<div class="line"><a name="l00173"></a><span class="lineno">  173</span>&#160;    <span class="keyword">using</span> Base::isSpaceDer;   <span class="comment">// forward methods provided by PROVIDES_ALGEBRAIC_SPHERE_DERIVATIVE</span></div>
-<div class="line"><a name="l00174"></a><span class="lineno">  174</span>&#160;    <span class="keyword">using</span> Base::derDimension; <span class="comment">// forward methods provided by PROVIDES_ALGEBRAIC_SPHERE_DERIVATIVE</span></div>
-<div class="line"><a name="l00175"></a><span class="lineno">  175</span>&#160; </div>
-<div class="line"><a name="l00176"></a><span class="lineno">  176</span>&#160;    PONCA_MULTIARCH <span class="keyword">inline</span> <a class="code" href="classPonca_1_1GLSDer.html#abb14925325640fba6e357729141997ca">ScalarArray</a> <a class="code" href="classPonca_1_1GLSDer.html#a53b616aa2a9b6b34a624deec487bff6b">dtau</a>()   <span class="keyword">const</span>; </div>
-<div class="line"><a name="l00177"></a><span class="lineno">  177</span>&#160;    PONCA_MULTIARCH <span class="keyword">inline</span> <a class="code" href="classPonca_1_1GLSDer.html#a056995e666e1f363d45ff41d58a351f9">VectorArray</a> <a class="code" href="classPonca_1_1GLSDer.html#a0ae73609529b5939e87dabcd94c15e77">deta</a>()   <span class="keyword">const</span>; </div>
-<div class="line"><a name="l00178"></a><span class="lineno">  178</span>&#160;    PONCA_MULTIARCH <span class="keyword">inline</span> <a class="code" href="classPonca_1_1GLSDer.html#abb14925325640fba6e357729141997ca">ScalarArray</a> <a class="code" href="classPonca_1_1GLSDer.html#ab1052e2f2ac916cd93052ab924bf18c5">dkappa</a>() <span class="keyword">const</span>; </div>
-<div class="line"><a name="l00180"></a><span class="lineno">  180</span>&#160;    PONCA_MULTIARCH <span class="keyword">inline</span> <a class="code" href="classPonca_1_1GLSDer.html#abb14925325640fba6e357729141997ca">ScalarArray</a> <a class="code" href="classPonca_1_1GLSDer.html#aff71c2bff10e4de965930237d2ba31b5">dtau_normalized</a>()   <span class="keyword">const</span>; </div>
-<div class="line"><a name="l00181"></a><span class="lineno">  181</span>&#160;    PONCA_MULTIARCH <span class="keyword">inline</span> <a class="code" href="classPonca_1_1GLSDer.html#a056995e666e1f363d45ff41d58a351f9">VectorArray</a> <a class="code" href="classPonca_1_1GLSDer.html#acdfeca54b193d8511a07b7ec1e96a442">deta_normalized</a>()   <span class="keyword">const</span>; </div>
-<div class="line"><a name="l00182"></a><span class="lineno">  182</span>&#160;    PONCA_MULTIARCH <span class="keyword">inline</span> <a class="code" href="classPonca_1_1GLSDer.html#abb14925325640fba6e357729141997ca">ScalarArray</a> <a class="code" href="classPonca_1_1GLSDer.html#adc8e409ff7dc9d83eeca4024ddbf5f2b">dkappa_normalized</a>() <span class="keyword">const</span>; </div>
-<div class="line"><a name="l00183"></a><span class="lineno">  183</span>&#160;}; <span class="comment">//class GLSScaleDer</span></div>
-<div class="line"><a name="l00184"></a><span class="lineno">  184</span>&#160; </div>
-<div class="line"><a name="l00185"></a><span class="lineno">  185</span>&#160; </div>
-<div class="line"><a name="l00203"></a><span class="lineno">  203</span>&#160;<span class="keyword">template</span> &lt; <span class="keyword">class</span> DataPo<span class="keywordtype">int</span>, <span class="keyword">class</span> _WFunctor, <span class="keyword">typename</span> T&gt;</div>
-<div class="line"><a name="l00204"></a><span class="lineno"><a class="line" href="classPonca_1_1GLSGeomVar.html">  204</a></span>&#160;<span class="keyword">class </span><a class="code" href="classPonca_1_1GLSGeomVar.html">GLSGeomVar</a> : <span class="keyword">public</span> T</div>
-<div class="line"><a name="l00205"></a><span class="lineno">  205</span>&#160;{</div>
-<div class="line"><a name="l00206"></a><span class="lineno">  206</span>&#160;<span class="keyword">private</span>:</div>
-<div class="line"><a name="l00207"></a><span class="lineno">  207</span>&#160;    <span class="keyword">typedef</span> T Base;</div>
-<div class="line"><a name="l00208"></a><span class="lineno">  208</span>&#160; </div>
-<div class="line"><a name="l00209"></a><span class="lineno">  209</span>&#160;<span class="keyword">protected</span>:</div>
-<div class="line"><a name="l00210"></a><span class="lineno">  210</span>&#160;    <span class="keyword">enum</span></div>
-<div class="line"><a name="l00211"></a><span class="lineno">  211</span>&#160;    {</div>
-<div class="line"><a name="l00212"></a><span class="lineno">  212</span>&#160;        Check = Base::PROVIDES_GLS_DERIVATIVE,</div>
-<div class="line"><a name="l00213"></a><span class="lineno">  213</span>&#160;        PROVIDES_GLS_GEOM_VAR</div>
-<div class="line"><a name="l00214"></a><span class="lineno">  214</span>&#160;    };</div>
-<div class="line"><a name="l00215"></a><span class="lineno">  215</span>&#160; </div>
-<div class="line"><a name="l00216"></a><span class="lineno">  216</span>&#160;<span class="keyword">public</span>:</div>
-<div class="line"><a name="l00217"></a><span class="lineno"><a class="line" href="classPonca_1_1GLSGeomVar.html#a3c4e246e694d70961c18d3c4658c78dc">  217</a></span>&#160;    <span class="keyword">typedef</span> <span class="keyword">typename</span> Base::Scalar <a class="code" href="classPonca_1_1GLSGeomVar.html#a3c4e246e694d70961c18d3c4658c78dc">Scalar</a>;  </div>
-<div class="line"><a name="l00222"></a><span class="lineno">  222</span>&#160;    PONCA_MULTIARCH <span class="keyword">inline</span> <a class="code" href="classPonca_1_1GLSGeomVar.html#a3c4e246e694d70961c18d3c4658c78dc">Scalar</a> <a class="code" href="classPonca_1_1GLSGeomVar.html#a7aeaaf096b64838dae9b4f3865c8f417">geomVar</a>(<a class="code" href="classPonca_1_1GLSGeomVar.html#a3c4e246e694d70961c18d3c4658c78dc">Scalar</a> wtau   = <a class="code" href="classPonca_1_1GLSGeomVar.html#a3c4e246e694d70961c18d3c4658c78dc">Scalar</a>(1),</div>
-<div class="line"><a name="l00223"></a><span class="lineno">  223</span>&#160;                                    <a class="code" href="classPonca_1_1GLSGeomVar.html#a3c4e246e694d70961c18d3c4658c78dc">Scalar</a> weta   = <a class="code" href="classPonca_1_1GLSGeomVar.html#a3c4e246e694d70961c18d3c4658c78dc">Scalar</a>(1),</div>
-<div class="line"><a name="l00224"></a><span class="lineno">  224</span>&#160;                                    <a class="code" href="classPonca_1_1GLSGeomVar.html#a3c4e246e694d70961c18d3c4658c78dc">Scalar</a> wkappa = <a class="code" href="classPonca_1_1GLSGeomVar.html#a3c4e246e694d70961c18d3c4658c78dc">Scalar</a>(1)) <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00225"></a><span class="lineno">  225</span>&#160;};</div>
-<div class="line"><a name="l00226"></a><span class="lineno">  226</span>&#160; </div>
-<div class="line"><a name="l00227"></a><span class="lineno">  227</span>&#160; </div>
-<div class="line"><a name="l00228"></a><span class="lineno">  228</span>&#160;<span class="preprocessor">#include &quot;gls.hpp&quot;</span></div>
-<div class="line"><a name="l00229"></a><span class="lineno">  229</span>&#160; </div>
-<div class="line"><a name="l00230"></a><span class="lineno">  230</span>&#160;} <span class="comment">//namespace Ponca</span></div>
+<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;<span class="keyword">protected</span>:</div>
+<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;    <span class="keyword">enum</span></div>
+<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;    {</div>
+<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;        Check = Base::PROVIDES_GLS_PARAMETRIZATION &amp;</div>
+<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;                Base::PROVIDES_PRIMITIVE_DERIVATIVE &amp;</div>
+<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;                Base::PROVIDES_ALGEBRAIC_SPHERE_DERIVATIVE,</div>
+<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;        PROVIDES_GLS_DERIVATIVE,</div>
+<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;        PROVIDES_GLS_GEOM_VAR</div>
+<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;    };</div>
+<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160; </div>
+<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00136"></a><span class="lineno"><a class="line" href="classPonca_1_1GLSDer.html#a1d4771818921b7c35007f40c91e1e774">  136</a></span>&#160;    PONCA_EXPLICIT_CAST_OPERATORS_DER(<a class="code" href="classPonca_1_1GLSDer.html">GLSDer</a>,<a class="code" href="classPonca_1_1GLSDer.html#ae7a673d901e2df2096d4dd8ee95192ed">glsDer</a>)</div>
+<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160; </div>
+<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;    PONCA_MULTIARCH <span class="keyword">inline</span> <a class="code" href="classPonca_1_1GLSDer.html#a044d378d72bfd4defb6fd983ab2b891a">ScalarArray</a> <a class="code" href="classPonca_1_1GLSDer.html#a80806f8fcef05be360d635c659402ed9">dtau</a>()   <span class="keyword">const</span>; </div>
+<div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160;    PONCA_MULTIARCH <span class="keyword">inline</span> <a class="code" href="classPonca_1_1GLSDer.html#a7d9df6358450bdf21737300864dd3b7c">VectorArray</a> <a class="code" href="classPonca_1_1GLSDer.html#a0065b0f2ce27da66bca5fbea19d02dc5">deta</a>()   <span class="keyword">const</span>; </div>
+<div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160;    PONCA_MULTIARCH <span class="keyword">inline</span> <a class="code" href="classPonca_1_1GLSDer.html#a044d378d72bfd4defb6fd983ab2b891a">ScalarArray</a> <a class="code" href="classPonca_1_1GLSDer.html#a8de7954673b1012d9ddbe02ade8478d6">dkappa</a>() <span class="keyword">const</span>; </div>
+<div class="line"><a name="l00142"></a><span class="lineno">  142</span>&#160;    PONCA_MULTIARCH <span class="keyword">inline</span> <a class="code" href="classPonca_1_1GLSDer.html#a044d378d72bfd4defb6fd983ab2b891a">ScalarArray</a> <a class="code" href="classPonca_1_1GLSDer.html#ab4deee54228db7bb46a9368786e52900">dtau_normalized</a>()   <span class="keyword">const</span>; </div>
+<div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160;    PONCA_MULTIARCH <span class="keyword">inline</span> <a class="code" href="classPonca_1_1GLSDer.html#a7d9df6358450bdf21737300864dd3b7c">VectorArray</a> <a class="code" href="classPonca_1_1GLSDer.html#a9432273d0901462c435363ec0e11a114">deta_normalized</a>()   <span class="keyword">const</span>; </div>
+<div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160;    PONCA_MULTIARCH <span class="keyword">inline</span> <a class="code" href="classPonca_1_1GLSDer.html#a044d378d72bfd4defb6fd983ab2b891a">ScalarArray</a> <a class="code" href="classPonca_1_1GLSDer.html#ab04c75763861d4719f9ef90e29cb42b9">dkappa_normalized</a>() <span class="keyword">const</span>; </div>
+<div class="line"><a name="l00161"></a><span class="lineno">  161</span>&#160;    PONCA_MULTIARCH <span class="keyword">inline</span> <a class="code" href="classPonca_1_1GLSDer.html#a56cbb2a753e27f4d90a031e52b9d82ce">Scalar</a> <a class="code" href="classPonca_1_1GLSDer.html#a3fd8fbf2503faba9a22a4f711d33675a">geomVar</a>(<a class="code" href="classPonca_1_1GLSDer.html#a56cbb2a753e27f4d90a031e52b9d82ce">Scalar</a> wtau   = <a class="code" href="classPonca_1_1GLSDer.html#a56cbb2a753e27f4d90a031e52b9d82ce">Scalar</a>(1),</div>
+<div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160;                                          <a class="code" href="classPonca_1_1GLSDer.html#a56cbb2a753e27f4d90a031e52b9d82ce">Scalar</a> weta   = <a class="code" href="classPonca_1_1GLSDer.html#a56cbb2a753e27f4d90a031e52b9d82ce">Scalar</a>(1),</div>
+<div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160;                                          <a class="code" href="classPonca_1_1GLSDer.html#a56cbb2a753e27f4d90a031e52b9d82ce">Scalar</a> wkappa = <a class="code" href="classPonca_1_1GLSDer.html#a56cbb2a753e27f4d90a031e52b9d82ce">Scalar</a>(1)) <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160;}; <span class="comment">//class GLSScaleDer</span></div>
+<div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160; </div>
+<div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160; </div>
+<div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160;<span class="preprocessor">#include &quot;gls.hpp&quot;</span></div>
+<div class="line"><a name="l00168"></a><span class="lineno">  168</span>&#160; </div>
+<div class="line"><a name="l00169"></a><span class="lineno">  169</span>&#160;} <span class="comment">//namespace Ponca</span></div>
 </div><!-- fragment --></div><!-- contents -->
-<div class="ttc" id="aclassPonca_1_1GLSParam_html_af50e8af7862b3dcb185ff21c573fa784"><div class="ttname"><a href="classPonca_1_1GLSParam.html#af50e8af7862b3dcb185ff21c573fa784">Ponca::GLSParam::kappa</a></div><div class="ttdeci">Scalar kappa() const</div><div class="ttdoc">Compute and return .</div><div class="ttdef"><b>Definition:</b> gls.h:108</div></div>
-<div class="ttc" id="anamespacePonca_html"><div class="ttname"><a href="namespacePonca.html">Ponca</a></div><div class="ttdoc">This module provides efficient methods for the fitting and analysis of point-clouds in arbitrary dime...</div><div class="ttdef"><b>Definition:</b> limitedPriorityQueue.h:14</div></div>
-<div class="ttc" id="aclassPonca_1_1GLSDer_html_acdfeca54b193d8511a07b7ec1e96a442"><div class="ttname"><a href="classPonca_1_1GLSDer.html#acdfeca54b193d8511a07b7ec1e96a442">Ponca::GLSDer::deta_normalized</a></div><div class="ttdeci">VectorArray deta_normalized() const</div><div class="ttdoc">Compute and return .</div><div class="ttdef"><b>Definition:</b> gls.hpp:59</div></div>
-<div class="ttc" id="aclassPonca_1_1GLSParam_html_aab8b65a3f3b588a734a41bd7d3c2e347"><div class="ttname"><a href="classPonca_1_1GLSParam.html#aab8b65a3f3b588a734a41bd7d3c2e347">Ponca::GLSParam::VectorType</a></div><div class="ttdeci">Base::VectorType VectorType</div><div class="ttdoc">Inherited vector type.</div><div class="ttdef"><b>Definition:</b> gls.h:57</div></div>
-<div class="ttc" id="aclassPonca_1_1GLSParam_html_ab44732a836ac2426812c1a28de87368b"><div class="ttname"><a href="classPonca_1_1GLSParam.html#ab44732a836ac2426812c1a28de87368b">Ponca::GLSParam::tau</a></div><div class="ttdeci">Scalar tau() const</div><div class="ttdoc">Compute and return .</div><div class="ttdef"><b>Definition:</b> gls.h:99</div></div>
-<div class="ttc" id="aclassPonca_1_1GLSParam_html_a4640a61e78f4b56b6897ee24c406de08"><div class="ttname"><a href="classPonca_1_1GLSParam.html#a4640a61e78f4b56b6897ee24c406de08">Ponca::GLSParam::tau_normalized</a></div><div class="ttdeci">Scalar tau_normalized() const</div><div class="ttdoc">Compute and return .</div><div class="ttdef"><b>Definition:</b> gls.h:114</div></div>
-<div class="ttc" id="aclassPonca_1_1GLSDer_html_ab1052e2f2ac916cd93052ab924bf18c5"><div class="ttname"><a href="classPonca_1_1GLSDer.html#ab1052e2f2ac916cd93052ab924bf18c5">Ponca::GLSDer::dkappa</a></div><div class="ttdeci">ScalarArray dkappa() const</div><div class="ttdoc">Compute and return  derivatives.</div><div class="ttdef"><b>Definition:</b> gls.hpp:37</div></div>
-<div class="ttc" id="aclassPonca_1_1GLSParam_html_a420d2089a5420d60814b1e7a1fbd7e12"><div class="ttname"><a href="classPonca_1_1GLSParam.html#a420d2089a5420d60814b1e7a1fbd7e12">Ponca::GLSParam::compareTo</a></div><div class="ttdeci">Scalar compareTo(const GLSParam&lt; DataPoint, _WFunctor, T &gt; &amp;_other, bool _useFitness=true) const</div><div class="ttdoc">Compare current instance with other.</div><div class="ttdef"><b>Definition:</b> gls.h:130</div></div>
-<div class="ttc" id="aclassPonca_1_1GLSDer_html_adc8e409ff7dc9d83eeca4024ddbf5f2b"><div class="ttname"><a href="classPonca_1_1GLSDer.html#adc8e409ff7dc9d83eeca4024ddbf5f2b">Ponca::GLSDer::dkappa_normalized</a></div><div class="ttdeci">ScalarArray dkappa_normalized() const</div><div class="ttdoc">Compute and return .</div><div class="ttdef"><b>Definition:</b> gls.hpp:67</div></div>
-<div class="ttc" id="agroup__fitting_html_gabfd697aebf07c1b5c8be5ee401e2dc84"><div class="ttname"><a href="group__fitting.html#gabfd697aebf07c1b5c8be5ee401e2dc84">Ponca::FIT_RESULT</a></div><div class="ttdeci">FIT_RESULT</div><div class="ttdef"><b>Definition:</b> enums.h:16</div></div>
-<div class="ttc" id="aclassPonca_1_1GLSDer_html_a53b616aa2a9b6b34a624deec487bff6b"><div class="ttname"><a href="classPonca_1_1GLSDer.html#a53b616aa2a9b6b34a624deec487bff6b">Ponca::GLSDer::dtau</a></div><div class="ttdeci">ScalarArray dtau() const</div><div class="ttdoc">Compute and return  derivatives.</div><div class="ttdef"><b>Definition:</b> gls.hpp:10</div></div>
-<div class="ttc" id="aclassPonca_1_1GLSParam_html_aa7c5b0f5db15161d8c11243f97172f63"><div class="ttname"><a href="classPonca_1_1GLSParam.html#aa7c5b0f5db15161d8c11243f97172f63">Ponca::GLSParam::eta_normalized</a></div><div class="ttdeci">VectorType eta_normalized() const</div><div class="ttdoc">Compute and return .</div><div class="ttdef"><b>Definition:</b> gls.h:117</div></div>
-<div class="ttc" id="aclassPonca_1_1GLSParam_html_a8704166d57165ec8bfcf2a2dc960ebd2"><div class="ttname"><a href="classPonca_1_1GLSParam.html#a8704166d57165ec8bfcf2a2dc960ebd2">Ponca::GLSParam::finalize</a></div><div class="ttdeci">FIT_RESULT finalize()</div><div class="ttdoc">Finalize the fitting procedure.</div><div class="ttdef"><b>Definition:</b> gls.h:83</div></div>
-<div class="ttc" id="aclassPonca_1_1GLSParam_html_aa07f37f4c54c4b16de9e3eb81682eebd"><div class="ttname"><a href="classPonca_1_1GLSParam.html#aa07f37f4c54c4b16de9e3eb81682eebd">Ponca::GLSParam::eta</a></div><div class="ttdeci">VectorType eta() const</div><div class="ttdoc">Compute and return .</div><div class="ttdef"><b>Definition:</b> gls.h:105</div></div>
-<div class="ttc" id="aclassPonca_1_1GLSDer_html_aa6991bb6cbba119d217ed455d1e3aaa3"><div class="ttname"><a href="classPonca_1_1GLSDer.html#aa6991bb6cbba119d217ed455d1e3aaa3">Ponca::GLSDer::Scalar</a></div><div class="ttdeci">Base::Scalar Scalar</div><div class="ttdoc">Inherited scalar type.</div><div class="ttdef"><b>Definition:</b> gls.h:165</div></div>
-<div class="ttc" id="aclassPonca_1_1GLSGeomVar_html_a3c4e246e694d70961c18d3c4658c78dc"><div class="ttname"><a href="classPonca_1_1GLSGeomVar.html#a3c4e246e694d70961c18d3c4658c78dc">Ponca::GLSGeomVar::Scalar</a></div><div class="ttdeci">Base::Scalar Scalar</div><div class="ttdoc">Inherited scalar type.</div><div class="ttdef"><b>Definition:</b> gls.h:217</div></div>
-<div class="ttc" id="aclassPonca_1_1GLSParam_html_abec25f5fc1914516c36082df250ee50e"><div class="ttname"><a href="classPonca_1_1GLSParam.html#abec25f5fc1914516c36082df250ee50e">Ponca::GLSParam::kappa_normalized</a></div><div class="ttdeci">Scalar kappa_normalized() const</div><div class="ttdoc">Compute and return .</div><div class="ttdef"><b>Definition:</b> gls.h:120</div></div>
-<div class="ttc" id="aclassPonca_1_1GLSParam_html_a36f5eca1299758cea30dda2b69a22320"><div class="ttname"><a href="classPonca_1_1GLSParam.html#a36f5eca1299758cea30dda2b69a22320">Ponca::GLSParam::GLSParam</a></div><div class="ttdeci">GLSParam()</div><div class="ttdoc">Default constructor.</div><div class="ttdef"><b>Definition:</b> gls.h:67</div></div>
-<div class="ttc" id="aclassPonca_1_1GLSGeomVar_html"><div class="ttname"><a href="classPonca_1_1GLSGeomVar.html">Ponca::GLSGeomVar</a></div><div class="ttdoc">Extension to compute the Geometric Variation of GLSParam.</div><div class="ttdef"><b>Definition:</b> gls.h:204</div></div>
-<div class="ttc" id="aclassPonca_1_1GLSDer_html_aff71c2bff10e4de965930237d2ba31b5"><div class="ttname"><a href="classPonca_1_1GLSDer.html#aff71c2bff10e4de965930237d2ba31b5">Ponca::GLSDer::dtau_normalized</a></div><div class="ttdeci">ScalarArray dtau_normalized() const</div><div class="ttdoc">Compute and return  derivatives.</div><div class="ttdef"><b>Definition:</b> gls.hpp:51</div></div>
-<div class="ttc" id="aclassPonca_1_1GLSDer_html_a056995e666e1f363d45ff41d58a351f9"><div class="ttname"><a href="classPonca_1_1GLSDer.html#a056995e666e1f363d45ff41d58a351f9">Ponca::GLSDer::VectorArray</a></div><div class="ttdeci">Base::VectorArray VectorArray</div><div class="ttdoc">Inherited vector array type.</div><div class="ttdef"><b>Definition:</b> gls.h:169</div></div>
-<div class="ttc" id="aclassPonca_1_1GLSDer_html_abb14925325640fba6e357729141997ca"><div class="ttname"><a href="classPonca_1_1GLSDer.html#abb14925325640fba6e357729141997ca">Ponca::GLSDer::ScalarArray</a></div><div class="ttdeci">Base::ScalarArray ScalarArray</div><div class="ttdoc">Inherited scalar array type.</div><div class="ttdef"><b>Definition:</b> gls.h:170</div></div>
-<div class="ttc" id="aclassPonca_1_1GLSDer_html"><div class="ttname"><a href="classPonca_1_1GLSDer.html">Ponca::GLSDer</a></div><div class="ttdoc">Differentiation of GLSParam.</div><div class="ttdef"><b>Definition:</b> gls.h:152</div></div>
-<div class="ttc" id="aclassPonca_1_1GLSParam_html"><div class="ttname"><a href="classPonca_1_1GLSParam.html">Ponca::GLSParam</a></div><div class="ttdoc">Growing Least Squares reparemetrization of the OrientedSphereFit.</div><div class="ttdef"><b>Definition:</b> gls.h:43</div></div>
-<div class="ttc" id="aclassPonca_1_1GLSDer_html_aba8fcafc4238152c6469ed53d932689b"><div class="ttname"><a href="classPonca_1_1GLSDer.html#aba8fcafc4238152c6469ed53d932689b">Ponca::GLSDer::VectorType</a></div><div class="ttdeci">Base::VectorType VectorType</div><div class="ttdoc">Inherited vector type.</div><div class="ttdef"><b>Definition:</b> gls.h:166</div></div>
-<div class="ttc" id="agroup__fitting_html_ggabfd697aebf07c1b5c8be5ee401e2dc84a08d57dd200082f67128b5274049dda41"><div class="ttname"><a href="group__fitting.html#ggabfd697aebf07c1b5c8be5ee401e2dc84a08d57dd200082f67128b5274049dda41">Ponca::UNDEFINED</a></div><div class="ttdeci">@ UNDEFINED</div><div class="ttdoc">The fitting is undefined, you can't use it for valid results (and having less than 3 neighbors)</div><div class="ttdef"><b>Definition:</b> enums.h:26</div></div>
-<div class="ttc" id="aclassPonca_1_1GLSParam_html_a21cddbd7a99a8705c5f55afca94d77a1"><div class="ttname"><a href="classPonca_1_1GLSParam.html#a21cddbd7a99a8705c5f55afca94d77a1">Ponca::GLSParam::Scalar</a></div><div class="ttdeci">Base::Scalar Scalar</div><div class="ttdoc">Inherited scalar type.</div><div class="ttdef"><b>Definition:</b> gls.h:56</div></div>
-<div class="ttc" id="aclassPonca_1_1GLSDer_html_a0ae73609529b5939e87dabcd94c15e77"><div class="ttname"><a href="classPonca_1_1GLSDer.html#a0ae73609529b5939e87dabcd94c15e77">Ponca::GLSDer::deta</a></div><div class="ttdeci">VectorArray deta() const</div><div class="ttdoc">Compute and return  derivatives.</div><div class="ttdef"><b>Definition:</b> gls.hpp:29</div></div>
-<div class="ttc" id="aclassPonca_1_1GLSParam_html_ab2be9d68d199d09968a0c1ce3d3bd148"><div class="ttname"><a href="classPonca_1_1GLSParam.html#ab2be9d68d199d09968a0c1ce3d3bd148">Ponca::GLSParam::fitness</a></div><div class="ttdeci">Scalar fitness() const</div><div class="ttdoc">Return the fitness, e.g. the pratt norm of the initial scalar field.</div><div class="ttdef"><b>Definition:</b> gls.h:123</div></div>
-<div class="ttc" id="aclassPonca_1_1GLSDer_html_acea07a33f86b1dd73cfd780f1eb8d381"><div class="ttname"><a href="classPonca_1_1GLSDer.html#acea07a33f86b1dd73cfd780f1eb8d381">Ponca::GLSDer::WFunctor</a></div><div class="ttdeci">Base::WFunctor WFunctor</div><div class="ttdoc">Weight Function.</div><div class="ttdef"><b>Definition:</b> gls.h:167</div></div>
-<div class="ttc" id="aclassPonca_1_1GLSParam_html_ad03c716d97e30ec02cf342952e065557"><div class="ttname"><a href="classPonca_1_1GLSParam.html#ad03c716d97e30ec02cf342952e065557">Ponca::GLSParam::m_t</a></div><div class="ttdeci">Scalar m_t</div><div class="ttdoc">Evaluation scale. Needed to computed the normalized values.</div><div class="ttdef"><b>Definition:</b> gls.h:62</div></div>
-<div class="ttc" id="aclassPonca_1_1GLSParam_html_ade62f517fea12b7fdb0dd30ec8e9f3ea"><div class="ttname"><a href="classPonca_1_1GLSParam.html#ade62f517fea12b7fdb0dd30ec8e9f3ea">Ponca::GLSParam::m_fitness</a></div><div class="ttdeci">Scalar m_fitness</div><div class="ttdoc">Save the fitness value to avoid side effect with Pratt normalization.</div><div class="ttdef"><b>Definition:</b> gls.h:63</div></div>
-<div class="ttc" id="aclassPonca_1_1GLSParam_html_ae6ce8e5f546367614968fab4fe0d6588"><div class="ttname"><a href="classPonca_1_1GLSParam.html#ae6ce8e5f546367614968fab4fe0d6588">Ponca::GLSParam::WFunctor</a></div><div class="ttdeci">Base::WFunctor WFunctor</div><div class="ttdoc">Weight Function.</div><div class="ttdef"><b>Definition:</b> gls.h:58</div></div>
-<div class="ttc" id="aclassPonca_1_1GLSParam_html_a4606b39de74522ce448724e5a84e5127"><div class="ttname"><a href="classPonca_1_1GLSParam.html#a4606b39de74522ce448724e5a84e5127">Ponca::GLSParam::setWeightFunc</a></div><div class="ttdeci">void setWeightFunc(const WFunctor &amp;_w)</div><div class="ttdoc">Init the WeightFunc, without changing the other internal states.</div><div class="ttdef"><b>Definition:</b> gls.h:73</div></div>
-<div class="ttc" id="aclassPonca_1_1GLSGeomVar_html_a7aeaaf096b64838dae9b4f3865c8f417"><div class="ttname"><a href="classPonca_1_1GLSGeomVar.html#a7aeaaf096b64838dae9b4f3865c8f417">Ponca::GLSGeomVar::geomVar</a></div><div class="ttdeci">Scalar geomVar(Scalar wtau=Scalar(1), Scalar weta=Scalar(1), Scalar wkappa=Scalar(1)) const</div><div class="ttdoc">Compute and return the Geometric Variation.</div><div class="ttdef"><b>Definition:</b> gls.hpp:77</div></div>
+</div><!-- doc-content -->
+<div class="ttc" id="aclassPonca_1_1GLSParam_html_af50e8af7862b3dcb185ff21c573fa784"><div class="ttname"><a href="classPonca_1_1GLSParam.html#af50e8af7862b3dcb185ff21c573fa784">Ponca::GLSParam::kappa</a></div><div class="ttdeci">Scalar kappa() const</div><div class="ttdoc">Compute and return .</div><div class="ttdef"><b>Definition:</b> <a href="gls_8h_source.html#l00076">gls.h:76</a></div></div>
+<div class="ttc" id="anamespacePonca_html"><div class="ttname"><a href="namespacePonca.html">Ponca</a></div><div class="ttdoc">This Source Code Form is subject to the terms of the Mozilla Public License, v.</div><div class="ttdef"><b>Definition:</b> <a href="limitedPriorityQueue_8h_source.html#l00014">limitedPriorityQueue.h:14</a></div></div>
+<div class="ttc" id="aclassPonca_1_1GLSDer_html_a7d9df6358450bdf21737300864dd3b7c"><div class="ttname"><a href="classPonca_1_1GLSDer.html#a7d9df6358450bdf21737300864dd3b7c">Ponca::GLSDer::VectorArray</a></div><div class="ttdeci">typename Base::VectorArray VectorArray</div><div class="ttdoc">Alias to vector derivatives array.</div><div class="ttdef"><b>Definition:</b> <a href="gls_8h_source.html#l00123">gls.h:123</a></div></div>
+<div class="ttc" id="aclassPonca_1_1GLSParam_html_ab44732a836ac2426812c1a28de87368b"><div class="ttname"><a href="classPonca_1_1GLSParam.html#ab44732a836ac2426812c1a28de87368b">Ponca::GLSParam::tau</a></div><div class="ttdeci">Scalar tau() const</div><div class="ttdoc">Compute and return .</div><div class="ttdef"><b>Definition:</b> <a href="gls_8h_source.html#l00067">gls.h:67</a></div></div>
+<div class="ttc" id="aclassPonca_1_1GLSParam_html_a4640a61e78f4b56b6897ee24c406de08"><div class="ttname"><a href="classPonca_1_1GLSParam.html#a4640a61e78f4b56b6897ee24c406de08">Ponca::GLSParam::tau_normalized</a></div><div class="ttdeci">Scalar tau_normalized() const</div><div class="ttdoc">Compute and return .</div><div class="ttdef"><b>Definition:</b> <a href="gls_8h_source.html#l00082">gls.h:82</a></div></div>
+<div class="ttc" id="aclassPonca_1_1GLSParam_html_a13f7121b694ff5dc8ad75e146f0eb168"><div class="ttname"><a href="classPonca_1_1GLSParam.html#a13f7121b694ff5dc8ad75e146f0eb168">Ponca::GLSParam::glsParam</a></div><div class="ttdeci">GLSParam&lt; DataPoint, _WFunctor, T &gt; &amp; glsParam()</div><div class="ttdoc">Explicit conversion to GLSParam , to access methods potentially hidden by heritage.</div><div class="ttdef"><b>Definition:</b> <a href="gls_8h_source.html#l00060">gls.h:60</a></div></div>
+<div class="ttc" id="aclassPonca_1_1GLSParam_html_a420d2089a5420d60814b1e7a1fbd7e12"><div class="ttname"><a href="classPonca_1_1GLSParam.html#a420d2089a5420d60814b1e7a1fbd7e12">Ponca::GLSParam::compareTo</a></div><div class="ttdeci">Scalar compareTo(const GLSParam&lt; DataPoint, _WFunctor, T &gt; &amp;_other, bool _useFitness=true) const</div><div class="ttdoc">Compare current instance with other.</div><div class="ttdef"><b>Definition:</b> <a href="gls_8h_source.html#l00098">gls.h:98</a></div></div>
+<div class="ttc" id="aclassPonca_1_1GLSDer_html_a8de7954673b1012d9ddbe02ade8478d6"><div class="ttname"><a href="classPonca_1_1GLSDer.html#a8de7954673b1012d9ddbe02ade8478d6">Ponca::GLSDer::dkappa</a></div><div class="ttdeci">ScalarArray dkappa() const</div><div class="ttdoc">Compute and return  derivatives.</div><div class="ttdef"><b>Definition:</b> <a href="gls_8hpp_source.html#l00050">gls.hpp:50</a></div></div>
+<div class="ttc" id="aclassPonca_1_1GLSParam_html_a4e0419931490aae532de4230b028eb1a"><div class="ttname"><a href="classPonca_1_1GLSParam.html#a4e0419931490aae532de4230b028eb1a">Ponca::GLSParam::Scalar</a></div><div class="ttdeci">typename DataPoint::Scalar Scalar</div><div class="ttdoc">Alias to scalar type.</div><div class="ttdef"><b>Definition:</b> <a href="gls_8h_source.html#l00045">gls.h:45</a></div></div>
+<div class="ttc" id="aclassPonca_1_1GLSDer_html_a9432273d0901462c435363ec0e11a114"><div class="ttname"><a href="classPonca_1_1GLSDer.html#a9432273d0901462c435363ec0e11a114">Ponca::GLSDer::deta_normalized</a></div><div class="ttdeci">VectorArray deta_normalized() const</div><div class="ttdoc">Compute and return .</div><div class="ttdef"><b>Definition:</b> <a href="gls_8hpp_source.html#l00072">gls.hpp:72</a></div></div>
+<div class="ttc" id="aclassPonca_1_1GLSParam_html_aa7c5b0f5db15161d8c11243f97172f63"><div class="ttname"><a href="classPonca_1_1GLSParam.html#aa7c5b0f5db15161d8c11243f97172f63">Ponca::GLSParam::eta_normalized</a></div><div class="ttdeci">VectorType eta_normalized() const</div><div class="ttdoc">Compute and return .</div><div class="ttdef"><b>Definition:</b> <a href="gls_8h_source.html#l00085">gls.h:85</a></div></div>
+<div class="ttc" id="aclassPonca_1_1GLSParam_html_aa07f37f4c54c4b16de9e3eb81682eebd"><div class="ttname"><a href="classPonca_1_1GLSParam.html#aa07f37f4c54c4b16de9e3eb81682eebd">Ponca::GLSParam::eta</a></div><div class="ttdeci">VectorType eta() const</div><div class="ttdoc">Compute and return .</div><div class="ttdef"><b>Definition:</b> <a href="gls_8h_source.html#l00073">gls.h:73</a></div></div>
+<div class="ttc" id="aclassPonca_1_1GLSDer_html_a3fd8fbf2503faba9a22a4f711d33675a"><div class="ttname"><a href="classPonca_1_1GLSDer.html#a3fd8fbf2503faba9a22a4f711d33675a">Ponca::GLSDer::geomVar</a></div><div class="ttdeci">Scalar geomVar(Scalar wtau=Scalar(1), Scalar weta=Scalar(1), Scalar wkappa=Scalar(1)) const</div><div class="ttdoc">The Geometric Variation is computed as the weighted sum of the GLS scale-invariant partial derivative...</div><div class="ttdef"><b>Definition:</b> <a href="gls_8hpp_source.html#l00090">gls.hpp:90</a></div></div>
+<div class="ttc" id="aclassPonca_1_1GLSDer_html_ab4deee54228db7bb46a9368786e52900"><div class="ttname"><a href="classPonca_1_1GLSDer.html#ab4deee54228db7bb46a9368786e52900">Ponca::GLSDer::dtau_normalized</a></div><div class="ttdeci">ScalarArray dtau_normalized() const</div><div class="ttdoc">Compute and return  derivatives.</div><div class="ttdef"><b>Definition:</b> <a href="gls_8hpp_source.html#l00064">gls.hpp:64</a></div></div>
+<div class="ttc" id="aclassPonca_1_1GLSParam_html_abec25f5fc1914516c36082df250ee50e"><div class="ttname"><a href="classPonca_1_1GLSParam.html#abec25f5fc1914516c36082df250ee50e">Ponca::GLSParam::kappa_normalized</a></div><div class="ttdeci">Scalar kappa_normalized() const</div><div class="ttdoc">Compute and return .</div><div class="ttdef"><b>Definition:</b> <a href="gls_8h_source.html#l00088">gls.h:88</a></div></div>
+<div class="ttc" id="aclassPonca_1_1GLSDer_html_a044d378d72bfd4defb6fd983ab2b891a"><div class="ttname"><a href="classPonca_1_1GLSDer.html#a044d378d72bfd4defb6fd983ab2b891a">Ponca::GLSDer::ScalarArray</a></div><div class="ttdeci">typename Base::ScalarArray ScalarArray</div><div class="ttdoc">Alias to scalar derivatives array.</div><div class="ttdef"><b>Definition:</b> <a href="gls_8h_source.html#l00123">gls.h:123</a></div></div>
+<div class="ttc" id="aclassPonca_1_1GLSParam_html_af2a7a07c8fafb337a110fcdc3c72d067"><div class="ttname"><a href="classPonca_1_1GLSParam.html#af2a7a07c8fafb337a110fcdc3c72d067">Ponca::GLSParam::VectorType</a></div><div class="ttdeci">typename Base::VectorType VectorType</div><div class="ttdoc">Alias to vector type.</div><div class="ttdef"><b>Definition:</b> <a href="gls_8h_source.html#l00045">gls.h:45</a></div></div>
+<div class="ttc" id="aclassPonca_1_1GLSDer_html"><div class="ttname"><a href="classPonca_1_1GLSDer.html">Ponca::GLSDer</a></div><div class="ttdoc">Differentiation of GLSParam.</div><div class="ttdef"><b>Definition:</b> <a href="gls_8h_source.html#l00120">gls.h:120</a></div></div>
+<div class="ttc" id="aclassPonca_1_1GLSDer_html_a0065b0f2ce27da66bca5fbea19d02dc5"><div class="ttname"><a href="classPonca_1_1GLSDer.html#a0065b0f2ce27da66bca5fbea19d02dc5">Ponca::GLSDer::deta</a></div><div class="ttdeci">VectorArray deta() const</div><div class="ttdoc">Compute and return  derivatives.</div><div class="ttdef"><b>Definition:</b> <a href="gls_8hpp_source.html#l00042">gls.hpp:42</a></div></div>
+<div class="ttc" id="aclassPonca_1_1GLSDer_html_a80806f8fcef05be360d635c659402ed9"><div class="ttname"><a href="classPonca_1_1GLSDer.html#a80806f8fcef05be360d635c659402ed9">Ponca::GLSDer::dtau</a></div><div class="ttdeci">ScalarArray dtau() const</div><div class="ttdoc">Compute and return  derivatives.</div><div class="ttdef"><b>Definition:</b> <a href="gls_8hpp_source.html#l00023">gls.hpp:23</a></div></div>
+<div class="ttc" id="aclassPonca_1_1GLSParam_html"><div class="ttname"><a href="classPonca_1_1GLSParam.html">Ponca::GLSParam</a></div><div class="ttdoc">Growing Least Squares reparemetrization of the OrientedSphereFit.</div><div class="ttdef"><b>Definition:</b> <a href="gls_8h_source.html#l00043">gls.h:43</a></div></div>
+<div class="ttc" id="aclassPonca_1_1GLSDer_html_ab04c75763861d4719f9ef90e29cb42b9"><div class="ttname"><a href="classPonca_1_1GLSDer.html#ab04c75763861d4719f9ef90e29cb42b9">Ponca::GLSDer::dkappa_normalized</a></div><div class="ttdeci">ScalarArray dkappa_normalized() const</div><div class="ttdoc">Compute and return .</div><div class="ttdef"><b>Definition:</b> <a href="gls_8hpp_source.html#l00080">gls.hpp:80</a></div></div>
+<div class="ttc" id="aclassPonca_1_1GLSDer_html_ae7a673d901e2df2096d4dd8ee95192ed"><div class="ttname"><a href="classPonca_1_1GLSDer.html#ae7a673d901e2df2096d4dd8ee95192ed">Ponca::GLSDer::glsDer</a></div><div class="ttdeci">GLSDer&lt; DataPoint, _WFunctor, DiffType, T &gt; &amp; glsDer()</div><div class="ttdoc">Explicit conversion to GLSDer , to access methods potentially hidden by heritage.</div><div class="ttdef"><b>Definition:</b> <a href="gls_8h_source.html#l00136">gls.h:136</a></div></div>
+<div class="ttc" id="aclassPonca_1_1GLSParam_html_ab2be9d68d199d09968a0c1ce3d3bd148"><div class="ttname"><a href="classPonca_1_1GLSParam.html#ab2be9d68d199d09968a0c1ce3d3bd148">Ponca::GLSParam::fitness</a></div><div class="ttdeci">Scalar fitness() const</div><div class="ttdoc">Return the fitness, e.g.</div><div class="ttdef"><b>Definition:</b> <a href="gls_8h_source.html#l00091">gls.h:91</a></div></div>
+<div class="ttc" id="aclassPonca_1_1GLSParam_html_ade62f517fea12b7fdb0dd30ec8e9f3ea"><div class="ttname"><a href="classPonca_1_1GLSParam.html#ade62f517fea12b7fdb0dd30ec8e9f3ea">Ponca::GLSParam::m_fitness</a></div><div class="ttdeci">Scalar m_fitness</div><div class="ttdoc">[Requirements]</div><div class="ttdef"><b>Definition:</b> <a href="gls_8h_source.html#l00057">gls.h:57</a></div></div>
+<div class="ttc" id="aclassPonca_1_1GLSDer_html_a56cbb2a753e27f4d90a031e52b9d82ce"><div class="ttname"><a href="classPonca_1_1GLSDer.html#a56cbb2a753e27f4d90a031e52b9d82ce">Ponca::GLSDer::Scalar</a></div><div class="ttdeci">typename DataPoint::Scalar Scalar</div><div class="ttdoc">Alias to scalar type.</div><div class="ttdef"><b>Definition:</b> <a href="gls_8h_source.html#l00122">gls.h:122</a></div></div>
 <!-- start footer part -->
-<hr class="footer"/><address class="footer"><small>
-Generated on Tue Aug 2 2022 09:22:55 for Ponca by &#160;<a href="http://www.doxygen.org/index.html">
-<img class="footer" src="doxygen.png" alt="doxygen"/>
-</a> 1.8.17
-</small></address>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_695d95a8d8fbec601a248c0414764298.html">Ponca</a></li><li class="navelem"><a class="el" href="dir_ce16314fc45f8638543c5146aff64d4a.html">src</a></li><li class="navelem"><a class="el" href="dir_221133f19e4af6803e4ee7d78db21786.html">Fitting</a></li><li class="navelem"><b>gls.h</b></li>
+    <li class="footer">Generated on Fri Sep 9 2022 12:28:20 for Ponca by
+    <a href="http://www.doxygen.org/index.html">
+    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.17 </li>
+  </ul>
+</div>
 </body>
 </html>

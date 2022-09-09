@@ -1,3 +1,4 @@
+<!-- HTML header for doxygen 1.9.1-->
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -9,6 +10,10 @@
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
@@ -20,7 +25,23 @@
 </script>
 <script type="text/javascript" async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js"></script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only-darkmode-toggle.css" rel="stylesheet" type="text/css"/>
 <link href="ponca.css" rel="stylesheet" type="text/css"/>
+<!-- ... other metadata & script includes ... -->
+<script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+<script type="text/javascript">
+    DoxygenAwesomeDarkModeToggle.init()
+</script>
+<script type="text/javascript" src="doxygen-awesome-fragment-copy-button.js"></script>
+<script type="text/javascript">
+    DoxygenAwesomeFragmentCopyButton.init()
+</script>
+<script type="text/javascript" src="doxygen-awesome-paragraph-link.js"></script>
+<script type="text/javascript">
+    DoxygenAwesomeParagraphLink.init()
+</script>
 </head>
 <body>
 <div id="top"><!-- do not remove this div, it is closed by doxygen! -->
@@ -30,7 +51,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Ponca
-   &#160;<span id="projectnumber">8976dc5e97f677a334261616e8d2314551b8ce3d</span>
+   &#160;<span id="projectnumber">d844664447d2173c00cc41660408e8eb5b3a41d6</span>
    </div>
    <div id="projectbrief">Point Cloud Analysis library</div>
   </td>
@@ -55,6 +76,23 @@ $(function() {
 });
 /* @license-end */</script>
 <div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(document).ready(function(){initNavTree('query_8h_source.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -69,11 +107,6 @@ $(function() {
 </iframe>
 </div>
 
-<div id="nav-path" class="navpath">
-  <ul>
-<li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_695d95a8d8fbec601a248c0414764298.html">Ponca</a></li><li class="navelem"><a class="el" href="dir_ce16314fc45f8638543c5146aff64d4a.html">src</a></li><li class="navelem"><a class="el" href="dir_12c32e53c838db195d209d78f62f8479.html">SpatialPartitioning</a></li>  </ul>
-</div>
-</div><!-- top -->
 <div class="header">
   <div class="headertitle">
 <div class="title">query.h</div>  </div>
@@ -164,7 +197,7 @@ $(function() {
 <div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;        <span class="keyword">using</span> OutputParameter = Scalar;</div>
 <div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160; </div>
 <div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;        <span class="keyword">inline</span> <a class="code" href="structPonca_1_1QueryOutputIsRange.html">QueryOutputIsRange</a>(OutputParameter radius = OutputParameter(0))</div>
-<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;                : m_squared_radius(std::pow(radius, 2)) {}</div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;                : m_squared_radius(std::pow(radius, OutputParameter(2))) {}</div>
 <div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160; </div>
 <div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;        <span class="keyword">inline</span> Scalar radius()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> std::sqrt(m_squared_radius); }</div>
 <div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160; </div>
@@ -244,27 +277,31 @@ $(function() {
 <div class="line"><a name="l00190"></a><span class="lineno">  190</span>&#160;<span class="preprocessor">#undef DECLARE_POINT_QUERY_CLASS</span></div>
 <div class="line"><a name="l00191"></a><span class="lineno">  191</span>&#160;<span class="preprocessor">}</span></div>
 </div><!-- fragment --></div><!-- contents -->
-<div class="ttc" id="anamespacePonca_html"><div class="ttname"><a href="namespacePonca.html">Ponca</a></div><div class="ttdoc">This module provides efficient methods for the fitting and analysis of point-clouds in arbitrary dime...</div><div class="ttdef"><b>Definition:</b> limitedPriorityQueue.h:14</div></div>
-<div class="ttc" id="astructPonca_1_1QueryOutputIsNearest_html"><div class="ttname"><a href="structPonca_1_1QueryOutputIsNearest.html">Ponca::QueryOutputIsNearest</a></div><div class="ttdoc">Base class for nearest queries.</div><div class="ttdef"><b>Definition:</b> query.h:125</div></div>
-<div class="ttc" id="aclassPonca_1_1limited__priority__queue_html"><div class="ttname"><a href="classPonca_1_1limited__priority__queue.html">Ponca::limited_priority_queue</a></div><div class="ttdoc">The limited_priority_queue class is similar to std::priority_queue but has a limited capacity and han...</div><div class="ttdef"><b>Definition:</b> limitedPriorityQueue.h:78</div></div>
-<div class="ttc" id="astructPonca_1_1QueryOutputIsKNearest_html_a89468c51f6e1ca0d4aa5d114a26d7699"><div class="ttname"><a href="structPonca_1_1QueryOutputIsKNearest.html#a89468c51f6e1ca0d4aa5d114a26d7699">Ponca::QueryOutputIsKNearest::reset</a></div><div class="ttdeci">void reset()</div><div class="ttdoc">Reset Query for a new search.</div><div class="ttdef"><b>Definition:</b> query.h:154</div></div>
-<div class="ttc" id="astructPonca_1_1QueryInput_html_a2e838e934caab5ac2ba8f7ea45909e72"><div class="ttname"><a href="structPonca_1_1QueryInput.html#a2e838e934caab5ac2ba8f7ea45909e72">Ponca::QueryInput::editInput</a></div><div class="ttdeci">void editInput(const InputType &amp;input)</div><div class="ttdoc">Edit the input Need to be used carefully. Modifying a query input while iterating on the query will r...</div><div class="ttdef"><b>Definition:</b> query.h:74</div></div>
-<div class="ttc" id="astructPonca_1_1QueryOutputBase_1_1DummyOutputParameter_html"><div class="ttname"><a href="structPonca_1_1QueryOutputBase_1_1DummyOutputParameter.html">Ponca::QueryOutputBase::DummyOutputParameter</a></div><div class="ttdef"><b>Definition:</b> query.h:57</div></div>
-<div class="ttc" id="astructPonca_1_1QueryInputBase_html"><div class="ttname"><a href="structPonca_1_1QueryInputBase.html">Ponca::QueryInputBase</a></div><div class="ttdoc">Base class for queries input type.</div><div class="ttdef"><b>Definition:</b> query.h:52</div></div>
-<div class="ttc" id="astructPonca_1_1QueryInputIsPosition_html"><div class="ttname"><a href="structPonca_1_1QueryInputIsPosition.html">Ponca::QueryInputIsPosition</a></div><div class="ttdoc">Base class for queries storing points.</div><div class="ttdef"><b>Definition:</b> query.h:93</div></div>
-<div class="ttc" id="astructPonca_1_1QueryOutputIsKNearest_html"><div class="ttname"><a href="structPonca_1_1QueryOutputIsKNearest.html">Ponca::QueryOutputIsKNearest</a></div><div class="ttdoc">Base class for knearest queries.</div><div class="ttdef"><b>Definition:</b> query.h:145</div></div>
-<div class="ttc" id="astructPonca_1_1QueryOutputIsRange_html_a73753f4754f294ca0300cb73114be9e9"><div class="ttname"><a href="structPonca_1_1QueryOutputIsRange.html#a73753f4754f294ca0300cb73114be9e9">Ponca::QueryOutputIsRange::reset</a></div><div class="ttdeci">void reset()</div><div class="ttdoc">Reset Query for a new search.</div><div class="ttdef"><b>Definition:</b> query.h:119</div></div>
-<div class="ttc" id="astructPonca_1_1QueryInput_html"><div class="ttname"><a href="structPonca_1_1QueryInput.html">Ponca::QueryInput</a></div><div class="ttdoc">Base class for typed queries input type.</div><div class="ttdef"><b>Definition:</b> query.h:63</div></div>
-<div class="ttc" id="astructPonca_1_1QueryOutputIsNearest_html_a1a25cb2ddb73abe46a1f8fc0a4522fbf"><div class="ttname"><a href="structPonca_1_1QueryOutputIsNearest.html#a1a25cb2ddb73abe46a1f8fc0a4522fbf">Ponca::QueryOutputIsNearest::reset</a></div><div class="ttdeci">void reset()</div><div class="ttdoc">Reset Query for a new search.</div><div class="ttdef"><b>Definition:</b> query.h:134</div></div>
-<div class="ttc" id="astructPonca_1_1Query_html"><div class="ttname"><a href="structPonca_1_1Query.html">Ponca::Query</a></div><div class="ttdef"><b>Definition:</b> query.h:163</div></div>
-<div class="ttc" id="astructPonca_1_1QueryInputIsIndex_html"><div class="ttname"><a href="structPonca_1_1QueryInputIsIndex.html">Ponca::QueryInputIsIndex</a></div><div class="ttdoc">Base class for queries storing points.</div><div class="ttdef"><b>Definition:</b> query.h:83</div></div>
-<div class="ttc" id="astructPonca_1_1QueryOutputBase_html"><div class="ttname"><a href="structPonca_1_1QueryOutputBase.html">Ponca::QueryOutputBase</a></div><div class="ttdoc">Base class for queries output type.</div><div class="ttdef"><b>Definition:</b> query.h:56</div></div>
-<div class="ttc" id="astructPonca_1_1QueryOutputIsRange_html"><div class="ttname"><a href="structPonca_1_1QueryOutputIsRange.html">Ponca::QueryOutputIsRange</a></div><div class="ttdoc">Base class for range queries.</div><div class="ttdef"><b>Definition:</b> query.h:103</div></div>
+</div><!-- doc-content -->
+<div class="ttc" id="anamespacePonca_html"><div class="ttname"><a href="namespacePonca.html">Ponca</a></div><div class="ttdoc">This Source Code Form is subject to the terms of the Mozilla Public License, v.</div><div class="ttdef"><b>Definition:</b> <a href="limitedPriorityQueue_8h_source.html#l00014">limitedPriorityQueue.h:14</a></div></div>
+<div class="ttc" id="astructPonca_1_1QueryOutputIsNearest_html"><div class="ttname"><a href="structPonca_1_1QueryOutputIsNearest.html">Ponca::QueryOutputIsNearest</a></div><div class="ttdoc">Base class for nearest queries.</div><div class="ttdef"><b>Definition:</b> <a href="query_8h_source.html#l00125">query.h:125</a></div></div>
+<div class="ttc" id="aclassPonca_1_1limited__priority__queue_html"><div class="ttname"><a href="classPonca_1_1limited__priority__queue.html">Ponca::limited_priority_queue</a></div><div class="ttdoc">The limited_priority_queue class is similar to std::priority_queue but has a limited capacity and han...</div><div class="ttdef"><b>Definition:</b> <a href="limitedPriorityQueue_8h_source.html#l00078">limitedPriorityQueue.h:78</a></div></div>
+<div class="ttc" id="astructPonca_1_1QueryOutputIsKNearest_html_a89468c51f6e1ca0d4aa5d114a26d7699"><div class="ttname"><a href="structPonca_1_1QueryOutputIsKNearest.html#a89468c51f6e1ca0d4aa5d114a26d7699">Ponca::QueryOutputIsKNearest::reset</a></div><div class="ttdeci">void reset()</div><div class="ttdoc">Reset Query for a new search.</div><div class="ttdef"><b>Definition:</b> <a href="query_8h_source.html#l00154">query.h:154</a></div></div>
+<div class="ttc" id="astructPonca_1_1QueryInput_html_a2e838e934caab5ac2ba8f7ea45909e72"><div class="ttname"><a href="structPonca_1_1QueryInput.html#a2e838e934caab5ac2ba8f7ea45909e72">Ponca::QueryInput::editInput</a></div><div class="ttdeci">void editInput(const InputType &amp;input)</div><div class="ttdoc">Edit the input Need to be used carefully. Modifying a query input while iterating on the query will r...</div><div class="ttdef"><b>Definition:</b> <a href="query_8h_source.html#l00074">query.h:74</a></div></div>
+<div class="ttc" id="astructPonca_1_1QueryOutputBase_1_1DummyOutputParameter_html"><div class="ttname"><a href="structPonca_1_1QueryOutputBase_1_1DummyOutputParameter.html">Ponca::QueryOutputBase::DummyOutputParameter</a></div><div class="ttdef"><b>Definition:</b> <a href="query_8h_source.html#l00057">query.h:57</a></div></div>
+<div class="ttc" id="astructPonca_1_1QueryInputBase_html"><div class="ttname"><a href="structPonca_1_1QueryInputBase.html">Ponca::QueryInputBase</a></div><div class="ttdoc">Base class for queries input type.</div><div class="ttdef"><b>Definition:</b> <a href="query_8h_source.html#l00052">query.h:52</a></div></div>
+<div class="ttc" id="astructPonca_1_1QueryInputIsPosition_html"><div class="ttname"><a href="structPonca_1_1QueryInputIsPosition.html">Ponca::QueryInputIsPosition</a></div><div class="ttdoc">Base class for queries storing points.</div><div class="ttdef"><b>Definition:</b> <a href="query_8h_source.html#l00093">query.h:93</a></div></div>
+<div class="ttc" id="astructPonca_1_1QueryOutputIsKNearest_html"><div class="ttname"><a href="structPonca_1_1QueryOutputIsKNearest.html">Ponca::QueryOutputIsKNearest</a></div><div class="ttdoc">Base class for knearest queries.</div><div class="ttdef"><b>Definition:</b> <a href="query_8h_source.html#l00145">query.h:145</a></div></div>
+<div class="ttc" id="astructPonca_1_1QueryOutputIsRange_html_a73753f4754f294ca0300cb73114be9e9"><div class="ttname"><a href="structPonca_1_1QueryOutputIsRange.html#a73753f4754f294ca0300cb73114be9e9">Ponca::QueryOutputIsRange::reset</a></div><div class="ttdeci">void reset()</div><div class="ttdoc">Reset Query for a new search.</div><div class="ttdef"><b>Definition:</b> <a href="query_8h_source.html#l00119">query.h:119</a></div></div>
+<div class="ttc" id="astructPonca_1_1QueryInput_html"><div class="ttname"><a href="structPonca_1_1QueryInput.html">Ponca::QueryInput</a></div><div class="ttdoc">Base class for typed queries input type.</div><div class="ttdef"><b>Definition:</b> <a href="query_8h_source.html#l00063">query.h:63</a></div></div>
+<div class="ttc" id="astructPonca_1_1QueryOutputIsNearest_html_a1a25cb2ddb73abe46a1f8fc0a4522fbf"><div class="ttname"><a href="structPonca_1_1QueryOutputIsNearest.html#a1a25cb2ddb73abe46a1f8fc0a4522fbf">Ponca::QueryOutputIsNearest::reset</a></div><div class="ttdeci">void reset()</div><div class="ttdoc">Reset Query for a new search.</div><div class="ttdef"><b>Definition:</b> <a href="query_8h_source.html#l00134">query.h:134</a></div></div>
+<div class="ttc" id="astructPonca_1_1Query_html"><div class="ttname"><a href="structPonca_1_1Query.html">Ponca::Query</a></div><div class="ttdef"><b>Definition:</b> <a href="query_8h_source.html#l00163">query.h:163</a></div></div>
+<div class="ttc" id="astructPonca_1_1QueryInputIsIndex_html"><div class="ttname"><a href="structPonca_1_1QueryInputIsIndex.html">Ponca::QueryInputIsIndex</a></div><div class="ttdoc">Base class for queries storing points.</div><div class="ttdef"><b>Definition:</b> <a href="query_8h_source.html#l00083">query.h:83</a></div></div>
+<div class="ttc" id="astructPonca_1_1QueryOutputBase_html"><div class="ttname"><a href="structPonca_1_1QueryOutputBase.html">Ponca::QueryOutputBase</a></div><div class="ttdoc">Base class for queries output type.</div><div class="ttdef"><b>Definition:</b> <a href="query_8h_source.html#l00056">query.h:56</a></div></div>
+<div class="ttc" id="astructPonca_1_1QueryOutputIsRange_html"><div class="ttname"><a href="structPonca_1_1QueryOutputIsRange.html">Ponca::QueryOutputIsRange</a></div><div class="ttdoc">Base class for range queries.</div><div class="ttdef"><b>Definition:</b> <a href="query_8h_source.html#l00103">query.h:103</a></div></div>
 <!-- start footer part -->
-<hr class="footer"/><address class="footer"><small>
-Generated on Tue Aug 2 2022 09:22:55 for Ponca by &#160;<a href="http://www.doxygen.org/index.html">
-<img class="footer" src="doxygen.png" alt="doxygen"/>
-</a> 1.8.17
-</small></address>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_695d95a8d8fbec601a248c0414764298.html">Ponca</a></li><li class="navelem"><a class="el" href="dir_ce16314fc45f8638543c5146aff64d4a.html">src</a></li><li class="navelem"><a class="el" href="dir_12c32e53c838db195d209d78f62f8479.html">SpatialPartitioning</a></li><li class="navelem"><b>query.h</b></li>
+    <li class="footer">Generated on Fri Sep 9 2022 12:28:20 for Ponca by
+    <a href="http://www.doxygen.org/index.html">
+    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.17 </li>
+  </ul>
+</div>
 </body>
 </html>

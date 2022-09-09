@@ -1,3 +1,4 @@
+<!-- HTML header for doxygen 1.9.1-->
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -9,6 +10,10 @@
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
@@ -20,7 +25,23 @@
 </script>
 <script type="text/javascript" async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js"></script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only-darkmode-toggle.css" rel="stylesheet" type="text/css"/>
 <link href="ponca.css" rel="stylesheet" type="text/css"/>
+<!-- ... other metadata & script includes ... -->
+<script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+<script type="text/javascript">
+    DoxygenAwesomeDarkModeToggle.init()
+</script>
+<script type="text/javascript" src="doxygen-awesome-fragment-copy-button.js"></script>
+<script type="text/javascript">
+    DoxygenAwesomeFragmentCopyButton.init()
+</script>
+<script type="text/javascript" src="doxygen-awesome-paragraph-link.js"></script>
+<script type="text/javascript">
+    DoxygenAwesomeParagraphLink.init()
+</script>
 </head>
 <body>
 <div id="top"><!-- do not remove this div, it is closed by doxygen! -->
@@ -30,7 +51,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Ponca
-   &#160;<span id="projectnumber">8976dc5e97f677a334261616e8d2314551b8ce3d</span>
+   &#160;<span id="projectnumber">d844664447d2173c00cc41660408e8eb5b3a41d6</span>
    </div>
    <div id="projectbrief">Point Cloud Analysis library</div>
   </td>
@@ -55,6 +76,23 @@ $(function() {
 });
 /* @license-end */</script>
 <div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(document).ready(function(){initNavTree('ponca_getting_started_page.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -69,7 +107,6 @@ $(function() {
 </iframe>
 </div>
 
-</div><!-- top -->
 <div class="PageDoc"><div class="header">
   <div class="headertitle">
 <div class="title">Getting started </div>  </div>
@@ -77,19 +114,19 @@ $(function() {
 <div class="contents">
 <div class="textblock"><h1><a class="anchor" id="getting_started_requirements_sec"></a>
 Requirements</h1>
-<p>The only external library that is absolutely necessary to make <a class="el" href="namespacePonca.html" title="This module provides efficient methods for the fitting and analysis of point-clouds in arbitrary dime...">Ponca</a> work is <a href="http://eigen.tuxfamily.org/" target="_blank"><b>Eigen</b></a>, the swiss army knife of linear algebra. Some examples will require additional libraries in an effort to keep them lean and legible. We'll try to keep these dependencies to the minimum necessary, promised.</p>
-<p>The modules are also compatible with CUDA, so that you may run <a class="el" href="namespacePonca.html" title="This module provides efficient methods for the fitting and analysis of point-clouds in arbitrary dime...">Ponca</a> on the GPU, provided you own an NVidia graphics card. This is an efficient way to make <a class="el" href="namespacePonca.html" title="This module provides efficient methods for the fitting and analysis of point-clouds in arbitrary dime...">Ponca</a> available through CUDA-compatible languages such as Matlab or Python. Eigen can be compiled by nvcc (NVIDIA CUDA Compiler Driver), see <a href="http://eigen.tuxfamily.org/dox-devel/TopicCUDA.html" target="_blank">Eigen documentation</a> for more details.</p>
+<p>The only external library that is absolutely necessary to make <a class="el" href="namespacePonca.html" title="This Source Code Form is subject to the terms of the Mozilla Public License, v.">Ponca</a> work is <a href="http://eigen.tuxfamily.org/" target="_blank"><b>Eigen</b></a>, the swiss army knife of linear algebra. Some examples will require additional libraries in an effort to keep them lean and legible. We'll try to keep these dependencies to the minimum necessary, promised.</p>
+<p>The modules are also compatible with CUDA, so that you may run <a class="el" href="namespacePonca.html" title="This Source Code Form is subject to the terms of the Mozilla Public License, v.">Ponca</a> on the GPU, provided you own an NVidia graphics card. This is an efficient way to make <a class="el" href="namespacePonca.html" title="This Source Code Form is subject to the terms of the Mozilla Public License, v.">Ponca</a> available through CUDA-compatible languages such as Matlab or Python. Eigen can be compiled by nvcc (NVIDIA CUDA Compiler Driver), see <a href="http://eigen.tuxfamily.org/dox-devel/TopicCUDA.html" target="_blank">Eigen documentation</a> for more details.</p>
 <h1><a class="anchor" id="getting_started_download_sec"></a>
 Download</h1>
-<p>The <a class="el" href="namespacePonca.html" title="This module provides efficient methods for the fitting and analysis of point-clouds in arbitrary dime...">Ponca</a> library is currently under active development and some functionalities have already been implemented and thoroughly tested. If you want to get a taste of these prime features, use the latest package available here: <a href="https://github.com/poncateam/ponca/releases/latest/">https://github.com/poncateam/ponca/releases/latest/</a>.</p>
+<p>The <a class="el" href="namespacePonca.html" title="This Source Code Form is subject to the terms of the Mozilla Public License, v.">Ponca</a> library is currently under active development and some functionalities have already been implemented and thoroughly tested. If you want to get a taste of these prime features, use the latest package available here: <a href="https://github.com/poncateam/ponca/releases/latest/">https://github.com/poncateam/ponca/releases/latest/</a>.</p>
 <p>You may also want to monitor our efforts in developing the library, in which case you will want to access the development repository and use the <code>master</code> branch: </p><div class="fragment"><div class="line">git clone https:<span class="comment">//github.com/poncateam/ponca.git</span></div>
 </div><!-- fragment --><h1><a class="anchor" id="getting_started_installation_sec"></a>
 Installation</h1>
-<p><a class="el" href="namespacePonca.html" title="This module provides efficient methods for the fitting and analysis of point-clouds in arbitrary dime...">Ponca</a> is an header-only library. It could not be easier to install: the only thing you have to do is to include the main header in your code. </p><div class="fragment"><div class="line"><span class="preprocessor">#include &lt;Ponca/Ponca&gt;</span></div>
+<p><a class="el" href="namespacePonca.html" title="This Source Code Form is subject to the terms of the Mozilla Public License, v.">Ponca</a> is an header-only library. It could not be easier to install: the only thing you have to do is to include the main header in your code. </p><div class="fragment"><div class="line"><span class="preprocessor">#include &lt;Ponca/Ponca&gt;</span></div>
 </div><!-- fragment --><p> To speed-up compilation, you may only use the header corresponding to the module you are interested in. For example: </p><div class="fragment"><div class="line"><span class="preprocessor">#include &lt;Ponca/Fitting&gt;</span></div>
 </div><!-- fragment --><h2><a class="anchor" id="getting_started_installation_cmakesubdirectory_subsec"></a>
 Use as cmake subdirectory</h2>
-<p>Since version 0.2, <a class="el" href="namespacePonca.html" title="This module provides efficient methods for the fitting and analysis of point-clouds in arbitrary dime...">Ponca</a> can be included in existing cmake projects using <code>add_subdirectory</code>, as demonstrated at <a href="https://github.com/poncateam/ci-submodule-helper">https://github.com/poncateam/ci-submodule-helper</a>. In this example, <a class="el" href="namespacePonca.html" title="This module provides efficient methods for the fitting and analysis of point-clouds in arbitrary dime...">Ponca</a> is included as a git submodule, and included in the main <code>CMakeLists.txt</code> as follow: </p><div class="fragment"><div class="line">find_package(Eigen3 QUIET)</div>
+<p>Since version 0.2, <a class="el" href="namespacePonca.html" title="This Source Code Form is subject to the terms of the Mozilla Public License, v.">Ponca</a> can be included in existing cmake projects using <code>add_subdirectory</code>, as demonstrated at <a href="https://github.com/poncateam/ci-submodule-helper">https://github.com/poncateam/ci-submodule-helper</a>. In this example, <a class="el" href="namespacePonca.html" title="This Source Code Form is subject to the terms of the Mozilla Public License, v.">Ponca</a> is included as a git submodule, and included in the main <code>CMakeLists.txt</code> as follow: </p><div class="fragment"><div class="line">find_package(Eigen3 QUIET)</div>
 <div class="line"> </div>
 <div class="line">add_subdirectory(ponca)</div>
 <div class="line"> </div>
@@ -97,13 +134,19 @@ Use as cmake subdirectory</h2>
 <div class="line">target_link_libraries(test Ponca::Fitting)</div>
 </div><!-- fragment --><h2><a class="anchor" id="getting_started_installation_compilation_subsec"></a>
 Compilation</h2>
-<p>If you want to see <a class="el" href="namespacePonca.html" title="This module provides efficient methods for the fitting and analysis of point-clouds in arbitrary dime...">Ponca</a> in action, you will of course have to compile examples. And the same is true if you want to get the latest version of the documentation you are presently reading (well, not the exact same documentation, unless you've already compiled it, but then why are you reading this?). In both cases, you will have to use <code>cmake</code>, e.g.: </p><div class="fragment"><div class="line">mkdir build &amp;&amp; cd build</div>
+<p>If you want to see <a class="el" href="namespacePonca.html" title="This Source Code Form is subject to the terms of the Mozilla Public License, v.">Ponca</a> in action, you will of course have to compile examples. And the same is true if you want to get the latest version of the documentation you are presently reading (well, not the exact same documentation, unless you've already compiled it, but then why are you reading this?). In both cases, you will have to use <code>cmake</code>, e.g.: </p><div class="fragment"><div class="line">mkdir build &amp;&amp; cd build</div>
 <div class="line">cmake ..</div>
-</div><!-- fragment --><p> Available cmake options: </p><div class="fragment"><div class="line">OPTION( PONCA_CONFIGURE_EXAMPLES <span class="stringliteral">&quot;Include compilation rules for built-in examples&quot;</span>      ON)</div>
-<div class="line">OPTION( PONCA_CONFIGURE_DOC      <span class="stringliteral">&quot;Include compilation rules for built-in documentation&quot;</span> ON)</div>
-<div class="line">OPTION( PONCA_CONFIGURE_TESTS    <span class="stringliteral">&quot;Include compilation rules for built-in tests&quot;</span>         ON)</div>
-<div class="line">OPTION( PONCA_COVERAGE_TESTING   <span class="stringliteral">&quot;Enable coverage reporting&quot;</span> OFF)</div>
-</div><!-- fragment --><p> Then compile using </p><div class="fragment"><div class="line">cmake --build . --target TARGET</div>
+</div><!-- fragment --><p>Available cmake options:  </p><div class="fragment"><div class="line"><span class="preprocessor">## USER OPTIONS</span></div>
+<div class="line"><span class="preprocessor">##</span></div>
+<div class="line"> </div>
+<div class="line">OPTION( PONCA_CONFIGURE_EXAMPLES   <span class="stringliteral">&quot;Include compilation rules for built-in examples&quot;</span>      ON)</div>
+<div class="line">OPTION( PONCA_CONFIGURE_DOC        <span class="stringliteral">&quot;Include compilation rules for built-in documentation&quot;</span> ON)</div>
+<div class="line">OPTION( PONCA_CONFIGURE_TESTS      <span class="stringliteral">&quot;Include compilation rules for built-in tests&quot;</span>         ON)</div>
+<div class="line">OPTION( PONCA_GENERATE_IDE_TARGETS <span class="stringliteral">&quot;Generate targets to show source files in IDEs&quot;</span>        ON)</div>
+<div class="line"> </div>
+<div class="line"><span class="preprocessor">##</span></div>
+<div class="line"><span class="preprocessor">## END USER OPTIONS</span></div>
+</div><!-- fragment --><p>Then compile using </p><div class="fragment"><div class="line">cmake --build . --target TARGET</div>
 </div><!-- fragment --><p> with <code>TARGET</code> equals to:</p><ul>
 <li><code>ponca-doc</code>: generate documentation using Doxygen (requires <code>PONCA_CONFIGURE_DOC</code>)</li>
 <li><code>ponca-examples</code>: compile examples (requires <code>PONCA_CONFIGURE_EXAMPLES</code>)</li>
@@ -113,7 +156,7 @@ Compilation</h2>
 </ul>
 <h2><a class="anchor" id="getting_started_installation_cmake_subsec"></a>
 Cmake package</h2>
-<p>We also provide a relocatable <code>cmake</code> package, generated by the <code>install</code> target. Example of file <code>CMakeLists.txt</code> using <a class="el" href="namespacePonca.html" title="This module provides efficient methods for the fitting and analysis of point-clouds in arbitrary dime...">Ponca</a>'s cmake package: </p><div class="fragment"><div class="line">cmake_minimum_required(VERSION 3.11)</div>
+<p>We also provide a relocatable <code>cmake</code> package, generated by the <code>install</code> target. Example of file <code>CMakeLists.txt</code> using <a class="el" href="namespacePonca.html" title="This Source Code Form is subject to the terms of the Mozilla Public License, v.">Ponca</a>'s cmake package: </p><div class="fragment"><div class="line">cmake_minimum_required(VERSION 3.11)</div>
 <div class="line"> </div>
 <div class="line">project(PoncaTest LANGUAGES CXX)</div>
 <div class="line"> </div>
@@ -121,19 +164,22 @@ Cmake package</h2>
 <div class="line"> </div>
 <div class="line">add_executable(test main.cpp)</div>
 <div class="line">target_link_libraries(test Ponca::Fitting)</div>
-</div><!-- fragment --><p>That said, the (quite heavy) use of templates in some modules may increase compilation times. Precompiled headers are recommended if this becomes a source of frustration. You will also have to pre-compile <a class="el" href="namespacePonca.html" title="This module provides efficient methods for the fitting and analysis of point-clouds in arbitrary dime...">Ponca</a> using nvcc if you want to use CUDA versions. This is explained in more details in related examples.</p>
+</div><!-- fragment --><p>That said, the (quite heavy) use of templates in some modules may increase compilation times. Precompiled headers are recommended if this becomes a source of frustration. You will also have to pre-compile <a class="el" href="namespacePonca.html" title="This Source Code Form is subject to the terms of the Mozilla Public License, v.">Ponca</a> using nvcc if you want to use CUDA versions. This is explained in more details in related examples.</p>
 <h1><a class="anchor" id="getting_started_first_step_sec"></a>
 First steps</h1>
 <p>You're now ready to play with Ponca! Checkout the user manual here: <a class="el" href="user_manual_page.html">User Manual</a>.</p>
-<p>If you get stuck or have a problem/bug using <a class="el" href="namespacePonca.html" title="This module provides efficient methods for the fitting and analysis of point-clouds in arbitrary dime...">Ponca</a>, please open an issue here: <a href="https://github.com/poncateam/ponca/issues">https://github.com/poncateam/ponca/issues</a>. Remember that the library is under development so we are pleased to get your feedback. </p>
+<p>If you get stuck or have a problem/bug using <a class="el" href="namespacePonca.html" title="This Source Code Form is subject to the terms of the Mozilla Public License, v.">Ponca</a>, please open an issue here: <a href="https://github.com/poncateam/ponca/issues">https://github.com/poncateam/ponca/issues</a>. Remember that the library is under development so we are pleased to get your feedback. </p>
 </div></div><!-- contents -->
 </div><!-- PageDoc -->
-<div class="ttc" id="anamespacePonca_html"><div class="ttname"><a href="namespacePonca.html">Ponca</a></div><div class="ttdoc">This module provides efficient methods for the fitting and analysis of point-clouds in arbitrary dime...</div><div class="ttdef"><b>Definition:</b> limitedPriorityQueue.h:14</div></div>
+</div><!-- doc-content -->
+<div class="ttc" id="anamespacePonca_html"><div class="ttname"><a href="namespacePonca.html">Ponca</a></div><div class="ttdoc">This Source Code Form is subject to the terms of the Mozilla Public License, v.</div><div class="ttdef"><b>Definition:</b> <a href="limitedPriorityQueue_8h_source.html#l00014">limitedPriorityQueue.h:14</a></div></div>
 <!-- start footer part -->
-<hr class="footer"/><address class="footer"><small>
-Generated on Tue Aug 2 2022 09:22:55 for Ponca by &#160;<a href="http://www.doxygen.org/index.html">
-<img class="footer" src="doxygen.png" alt="doxygen"/>
-</a> 1.8.17
-</small></address>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="footer">Generated on Fri Sep 9 2022 12:28:20 for Ponca by
+    <a href="http://www.doxygen.org/index.html">
+    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.17 </li>
+  </ul>
+</div>
 </body>
 </html>

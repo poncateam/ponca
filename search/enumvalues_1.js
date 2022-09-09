@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['derdim_573',['DerDim',['../classPonca_1_1MlsSphereFitDer.html#a51b7346e0d6d17dca079efa7f0915e0dacc15fb4dace21f8d034e5bf912789db0',1,'Ponca::MlsSphereFitDer']]],
-  ['dim_574',['Dim',['../classPonca_1_1MlsSphereFitDer.html#a51b7346e0d6d17dca079efa7f0915e0da71e661938445332a666114e9011e5e79',1,'Ponca::MlsSphereFitDer::Dim()'],['../classPonca_1_1UnorientedSphereFit.html#a35734ef3e3a6aa53e0803bbfff7a39f7a3b113b78d8cc78c0d97e1c995b1fb548',1,'Ponca::UnorientedSphereFit::Dim()']]]
+  ['derdim_577',['DerDim',['../classPonca_1_1MlsSphereFitDer.html#ab6736c24af97b1a52d0b9b4225e4b563a9635c518977c87e2b5f43e7b298805f9',1,'Ponca::MlsSphereFitDer']]],
+  ['dim_578',['Dim',['../classPonca_1_1MlsSphereFitDer.html#ab6736c24af97b1a52d0b9b4225e4b563a38a7dfbdf6aa4eea7c5ae9e9823aec0f',1,'Ponca::MlsSphereFitDer']]]
 ];

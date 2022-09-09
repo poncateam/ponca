@@ -8,7 +8,6 @@
  viewBox="0.00 0.00 169.00 204.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 <g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 200)">
 <title>Ponca::QueryOutputIsNearest&lt; Scalar &gt;</title>
-<polygon fill="white" stroke="transparent" points="-4,4 -4,-200 165,-200 165,4 -4,4"/>
 <!-- Node1 -->
 <g id="node1" class="node">
 <title>Node1</title>
@@ -30,7 +29,7 @@
 <g id="node2" class="node">
 <title>Node2</title>
 <g id="a_node2"><a xlink:href="structPonca_1_1QueryOutputBase.html" target="_top" xlink:title="Base class for queries output type.">
-<polygon fill="white" stroke="black" points="11.5,-138.5 11.5,-195.5 149.5,-195.5 149.5,-138.5 11.5,-138.5"/>
+<polygon fill="none" stroke="black" points="11.5,-138.5 11.5,-195.5 149.5,-195.5 149.5,-138.5 11.5,-138.5"/>
 <text text-anchor="middle" x="80.5" y="-183.5" font-family="Helvetica,sans-Serif" font-size="10.00">Ponca::QueryOutputBase</text>
 <polyline fill="none" stroke="black" points="11.5,-176.5 149.5,-176.5 "/>
 <text text-anchor="middle" x="80.5" y="-164.5" font-family="Helvetica,sans-Serif" font-size="10.00"> </text>

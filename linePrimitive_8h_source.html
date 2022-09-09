@@ -1,3 +1,4 @@
+<!-- HTML header for doxygen 1.9.1-->
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -9,6 +10,10 @@
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
@@ -20,7 +25,23 @@
 </script>
 <script type="text/javascript" async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js"></script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only-darkmode-toggle.css" rel="stylesheet" type="text/css"/>
 <link href="ponca.css" rel="stylesheet" type="text/css"/>
+<!-- ... other metadata & script includes ... -->
+<script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+<script type="text/javascript">
+    DoxygenAwesomeDarkModeToggle.init()
+</script>
+<script type="text/javascript" src="doxygen-awesome-fragment-copy-button.js"></script>
+<script type="text/javascript">
+    DoxygenAwesomeFragmentCopyButton.init()
+</script>
+<script type="text/javascript" src="doxygen-awesome-paragraph-link.js"></script>
+<script type="text/javascript">
+    DoxygenAwesomeParagraphLink.init()
+</script>
 </head>
 <body>
 <div id="top"><!-- do not remove this div, it is closed by doxygen! -->
@@ -30,7 +51,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Ponca
-   &#160;<span id="projectnumber">8976dc5e97f677a334261616e8d2314551b8ce3d</span>
+   &#160;<span id="projectnumber">d844664447d2173c00cc41660408e8eb5b3a41d6</span>
    </div>
    <div id="projectbrief">Point Cloud Analysis library</div>
   </td>
@@ -55,6 +76,23 @@ $(function() {
 });
 /* @license-end */</script>
 <div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(document).ready(function(){initNavTree('linePrimitive_8h_source.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -69,11 +107,6 @@ $(function() {
 </iframe>
 </div>
 
-<div id="nav-path" class="navpath">
-  <ul>
-<li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_695d95a8d8fbec601a248c0414764298.html">Ponca</a></li><li class="navelem"><a class="el" href="dir_ce16314fc45f8638543c5146aff64d4a.html">src</a></li><li class="navelem"><a class="el" href="dir_221133f19e4af6803e4ee7d78db21786.html">Fitting</a></li>  </ul>
-</div>
-</div><!-- top -->
 <div class="header">
   <div class="headertitle">
 <div class="title">linePrimitive.h</div>  </div>
@@ -91,128 +124,107 @@ $(function() {
 <div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="preprocessor">#pragma once</span></div>
 <div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160; </div>
 <div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="preprocessor">#include &quot;./defines.h&quot;</span></div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="preprocessor">#include &quot;./primitive.h&quot;</span> <span class="comment">// PrimitiveBase</span></div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="preprocessor">#include &lt;Eigen/Geometry&gt;</span></div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="preprocessor">#include &lt;Eigen/Core&gt;</span></div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160; </div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="keyword">namespace </span><a class="code" href="namespacePonca.html">Ponca</a></div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;{</div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160; </div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;<span class="keyword">template</span> &lt; <span class="keyword">class</span> DataPo<span class="keywordtype">int</span>, <span class="keyword">class</span> _WFunctor, <span class="keyword">typename</span> T = <span class="keywordtype">void</span>  &gt;</div>
-<div class="line"><a name="l00037"></a><span class="lineno"><a class="line" href="classPonca_1_1Line.html">   37</a></span>&#160;<span class="keyword">class </span><a class="code" href="classPonca_1_1Line.html">Line</a> : <span class="keyword">public</span> <a class="code" href="classPonca_1_1PrimitiveBase.html">PrimitiveBase</a>&lt;DataPoint, _WFunctor&gt;,</div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;             <span class="keyword">public</span> Eigen::ParametrizedLine&lt;typename DataPoint::Scalar, DataPoint::Dim &gt;</div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;{</div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;<span class="keyword">private</span>:</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160; </div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;   <span class="keyword">typedef</span> <a class="code" href="classPonca_1_1PrimitiveBase.html">PrimitiveBase&lt;DataPoint, _WFunctor&gt;</a> <a class="code" href="classPonca_1_1PrimitiveBase.html">Base</a>;</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160; </div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;<span class="keyword">public</span>:</div>
-<div class="line"><a name="l00046"></a><span class="lineno"><a class="line" href="classPonca_1_1Line.html#a3f3084f67fea22fdfce80178636f2b30">   46</a></span>&#160;    <span class="keyword">using</span> <a class="code" href="classPonca_1_1Line.html#a3f3084f67fea22fdfce80178636f2b30">EigenBase</a> = Eigen::ParametrizedLine&lt;typename DataPoint::Scalar, DataPoint::Dim &gt;;</div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160; </div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;<span class="keyword">protected</span>:</div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160; </div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    <span class="keyword">enum</span></div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    {</div>
-<div class="line"><a name="l00052"></a><span class="lineno"><a class="line" href="classPonca_1_1Line.html#af69f2a87913e0ae3a1514963af6dfc68ad0b9935b8fe271a017bdd32001751043">   52</a></span>&#160;        <a class="code" href="classPonca_1_1Line.html#af69f2a87913e0ae3a1514963af6dfc68ad0b9935b8fe271a017bdd32001751043">PROVIDES_LINE</a> </div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    };</div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160; </div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;<span class="keyword">public</span>:</div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160; </div>
-<div class="line"><a name="l00058"></a><span class="lineno"><a class="line" href="classPonca_1_1Line.html#a5c1c9fa1304c588030f9ca41a9592a8c">   58</a></span>&#160;    <span class="keyword">typedef</span> <span class="keyword">typename</span> DataPoint::Scalar      <a class="code" href="classPonca_1_1Line.html#a5c1c9fa1304c588030f9ca41a9592a8c">Scalar</a>;</div>
-<div class="line"><a name="l00060"></a><span class="lineno"><a class="line" href="classPonca_1_1Line.html#aef66490b8846d22e0da8b07f82d9ba3c">   60</a></span>&#160;    <span class="keyword">typedef</span> <span class="keyword">typename</span> DataPoint::VectorType  <a class="code" href="classPonca_1_1Line.html#aef66490b8846d22e0da8b07f82d9ba3c">VectorType</a>;</div>
-<div class="line"><a name="l00062"></a><span class="lineno"><a class="line" href="classPonca_1_1Line.html#a4956ae0de5d57c9a16f7a4c744e4b80f">   62</a></span>&#160;    <span class="keyword">typedef</span> <span class="keyword">typename</span> DataPoint::MatrixType  <a class="code" href="classPonca_1_1Line.html#a4956ae0de5d57c9a16f7a4c744e4b80f">MatrixType</a>;</div>
-<div class="line"><a name="l00064"></a><span class="lineno"><a class="line" href="classPonca_1_1Line.html#a7a05b85ea7b127dede86b6ca5dffc01f">   64</a></span>&#160;    <span class="keyword">typedef</span> _WFunctor                       <a class="code" href="classPonca_1_1Line.html#a7a05b85ea7b127dede86b6ca5dffc01f">WFunctor</a>;</div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="preprocessor">#include &lt;Eigen/Geometry&gt;</span></div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="preprocessor">#include &lt;Eigen/Core&gt;</span></div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160; </div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="keyword">namespace </span><a class="code" href="namespacePonca.html">Ponca</a></div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;{</div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160; </div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;<span class="keyword">template</span> &lt; <span class="keyword">class</span> DataPo<span class="keywordtype">int</span>, <span class="keyword">class</span> _WFunctor, <span class="keyword">typename</span> T &gt;</div>
+<div class="line"><a name="l00036"></a><span class="lineno"><a class="line" href="classPonca_1_1Line.html">   36</a></span>&#160;<span class="keyword">class </span><a class="code" href="classPonca_1_1Line.html">Line</a> : <span class="keyword">public</span> T,</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;             <span class="keyword">public</span> Eigen::ParametrizedLine&lt;typename DataPoint::Scalar, DataPoint::Dim &gt;</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;{</div>
+<div class="line"><a name="l00039"></a><span class="lineno"><a class="line" href="classPonca_1_1Line.html#ab87f6b326c72ee2588b149f5e20fd0e5">   39</a></span>&#160;PONCA_FITTING_DECLARE_DEFAULT_TYPES</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160; </div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00043"></a><span class="lineno"><a class="line" href="classPonca_1_1Line.html#a3f3084f67fea22fdfce80178636f2b30">   43</a></span>&#160;    <span class="keyword">using</span> <a class="code" href="classPonca_1_1Line.html#a3f3084f67fea22fdfce80178636f2b30">EigenBase</a> = Eigen::ParametrizedLine&lt;typename DataPoint::Scalar, DataPoint::Dim &gt;;</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160; </div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;<span class="keyword">protected</span>:</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160; </div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;    <span class="keyword">enum</span></div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    {</div>
+<div class="line"><a name="l00049"></a><span class="lineno"><a class="line" href="classPonca_1_1Line.html#af69f2a87913e0ae3a1514963af6dfc68af21467c31a6db11c5c91e29c75c8ee48">   49</a></span>&#160;        <a class="code" href="classPonca_1_1Line.html#af69f2a87913e0ae3a1514963af6dfc68af21467c31a6db11c5c91e29c75c8ee48">check</a> = Base::PROVIDES_PRIMITIVE_BASE,  </div>
+<div class="line"><a name="l00050"></a><span class="lineno"><a class="line" href="classPonca_1_1Line.html#af69f2a87913e0ae3a1514963af6dfc68ad0b9935b8fe271a017bdd32001751043">   50</a></span>&#160;        <a class="code" href="classPonca_1_1Line.html#af69f2a87913e0ae3a1514963af6dfc68ad0b9935b8fe271a017bdd32001751043">PROVIDES_LINE</a>                           </div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    };</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160; </div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00054"></a><span class="lineno"><a class="line" href="classPonca_1_1Line.html#a3ed454a596c67e1db60c3ea2ded2aea2">   54</a></span>&#160;    PONCA_EXPLICIT_CAST_OPERATORS(<a class="code" href="classPonca_1_1Line.html">Line</a>,<a class="code" href="classPonca_1_1Line.html#af56b74e2353a1ca4b35f7dbc35ef626c">line</a>)</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160; </div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;    </div>
+<div class="line"><a name="l00059"></a><span class="lineno"><a class="line" href="classPonca_1_1Line.html#a8ad80a68b6de494b50499127c0eb69ff">   59</a></span>&#160;    PONCA_MULTIARCH inline <span class="keywordtype">void</span> <a class="code" href="classPonca_1_1Line.html#a8ad80a68b6de494b50499127c0eb69ff">init</a>(const <a class="code" href="classPonca_1_1Line.html#a423e9d0178e924d62143af82dcf644ca">VectorType</a>&amp; _basisCenter = <a class="code" href="classPonca_1_1Line.html#a423e9d0178e924d62143af82dcf644ca">VectorType</a>::Zero())</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;    {</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;        Base::init(_basisCenter);</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;        EigenBase::origin().setZero();</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;        EigenBase::direction().setZero();</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;    }</div>
 <div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160; </div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;<span class="keyword">private</span>:</div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160; </div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;    <a class="code" href="classPonca_1_1Line.html#aef66490b8846d22e0da8b07f82d9ba3c">VectorType</a> m_p;</div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160; </div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;<span class="keyword">public</span>:</div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160; </div>
-<div class="line"><a name="l00074"></a><span class="lineno"><a class="line" href="classPonca_1_1Line.html#ac8d2bcd6bc64acf0cd7f4bf23fb63e7b">   74</a></span>&#160;    PONCA_MULTIARCH <span class="keyword">inline</span> <a class="code" href="classPonca_1_1Line.html#ac8d2bcd6bc64acf0cd7f4bf23fb63e7b">Line</a>()</div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;        : <a class="code" href="classPonca_1_1PrimitiveBase.html">Base</a>()</div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;    {</div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;        m_p = VectorType::Zero();</div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;        <a class="code" href="classPonca_1_1Line.html#ae31d6ffff7dfb6a6f5cd5ec4335e515f">resetPrimitive</a>();</div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;    }</div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160; </div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160; </div>
-<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;    PONCA_MULTIARCH <span class="keyword">inline</span></div>
-<div class="line"><a name="l00084"></a><span class="lineno"><a class="line" href="classPonca_1_1Line.html#a24d0dcc58ea6069c7cc92b2abeca484e">   84</a></span>&#160;    <a class="code" href="classPonca_1_1Line.html">Line&lt;DataPoint, WFunctor, T&gt;</a>&amp; <a class="code" href="classPonca_1_1Line.html#a24d0dcc58ea6069c7cc92b2abeca484e">line</a>()</div>
-<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;    { <span class="keywordflow">return</span> * <span class="keyword">static_cast&lt;</span><a class="code" href="classPonca_1_1Line.html">Line&lt;DataPoint, WFunctor, T&gt;</a>*<span class="keyword">&gt;</span>(<span class="keyword">this</span>); }</div>
-<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160; </div>
-<div class="line"><a name="l00090"></a><span class="lineno"><a class="line" href="classPonca_1_1Line.html#ae31d6ffff7dfb6a6f5cd5ec4335e515f">   90</a></span>&#160;    PONCA_MULTIARCH <span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code" href="classPonca_1_1Line.html#ae31d6ffff7dfb6a6f5cd5ec4335e515f">resetPrimitive</a>()</div>
-<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;    {</div>
-<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;        <a class="code" href="classPonca_1_1PrimitiveBase.html#a4b665dda3ef3071f3d9c78a7a1a2507f">Base::resetPrimitive</a>();</div>
-<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;        <a class="code" href="classPonca_1_1Line.html#a3f3084f67fea22fdfce80178636f2b30">EigenBase</a>* cc = <span class="keyword">static_cast&lt;</span><a class="code" href="classPonca_1_1Line.html#a3f3084f67fea22fdfce80178636f2b30">EigenBase</a>*<span class="keyword">&gt;</span>(<span class="keyword">this</span>);</div>
-<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;        *cc = <a class="code" href="classPonca_1_1Line.html#a3f3084f67fea22fdfce80178636f2b30">EigenBase</a>();</div>
-<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;    }</div>
-<div class="line"><a name="l00097"></a><span class="lineno"><a class="line" href="classPonca_1_1Line.html#ade5bd02e317099f64d8e476d6cfddf75">   97</a></span>&#160;    PONCA_MULTIARCH <span class="keyword">inline</span> <span class="keywordtype">bool</span> <a class="code" href="classPonca_1_1Line.html#ade5bd02e317099f64d8e476d6cfddf75">operator==</a>(<span class="keyword">const</span> <a class="code" href="classPonca_1_1Line.html">Line&lt;DataPoint, WFunctor, T&gt;</a>&amp; other)<span class="keyword"> const</span>{</div>
-<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;        <span class="keywordflow">return</span> EigenBase::isApprox(other);</div>
-<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;    }</div>
-<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160; </div>
-<div class="line"><a name="l00102"></a><span class="lineno"><a class="line" href="classPonca_1_1Line.html#ae5249ccb0238a2be5ff2dc774643dc73">  102</a></span>&#160;    PONCA_MULTIARCH <span class="keyword">inline</span> <span class="keywordtype">bool</span> <a class="code" href="classPonca_1_1Line.html#ae5249ccb0238a2be5ff2dc774643dc73">operator!=</a>(<span class="keyword">const</span> <a class="code" href="classPonca_1_1Line.html">Line&lt;DataPoint, WFunctor, T&gt;</a>&amp; other)<span class="keyword"> const</span>{</div>
-<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;        <span class="keywordflow">return</span> ! ((*this) == other);</div>
-<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;    }</div>
-<div class="line"><a name="l00106"></a><span class="lineno"><a class="line" href="classPonca_1_1Line.html#ad7e2cd2a32e170f545453cc8d4a838ff">  106</a></span>&#160;    PONCA_MULTIARCH <span class="keyword">inline</span> <span class="keyword">const</span> <a class="code" href="classPonca_1_1Line.html#aef66490b8846d22e0da8b07f82d9ba3c">VectorType</a>&amp; <a class="code" href="classPonca_1_1Line.html#ad7e2cd2a32e170f545453cc8d4a838ff">basisCenter</a> ()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> m_p; }</div>
-<div class="line"><a name="l00108"></a><span class="lineno"><a class="line" href="classPonca_1_1Line.html#ad833201fb22c6bc9fb6566910e4964e7">  108</a></span>&#160;    PONCA_MULTIARCH <span class="keyword">inline</span>       <a class="code" href="classPonca_1_1Line.html#aef66490b8846d22e0da8b07f82d9ba3c">VectorType</a>&amp; <a class="code" href="classPonca_1_1Line.html#ad833201fb22c6bc9fb6566910e4964e7">basisCenter</a> ()       { <span class="keywordflow">return</span> m_p; }</div>
-<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160; </div>
+<div class="line"><a name="l00069"></a><span class="lineno"><a class="line" href="classPonca_1_1Line.html#a398ea691c79a3a5cf8e7610109f2bfae">   69</a></span>&#160;    PONCA_MULTIARCH <span class="keyword">inline</span> <span class="keywordtype">bool</span> <a class="code" href="classPonca_1_1Line.html#a398ea691c79a3a5cf8e7610109f2bfae">isValid</a>()<span class="keyword"> const</span>{</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;        <span class="keyword">static</span> <span class="keyword">const</span> <span class="keyword">typename</span> EigenBase::VectorType zeros = EigenBase::VectorType::Zero();</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;        <span class="keywordflow">return</span> ! ( EigenBase::origin().isApprox(zeros) &amp;&amp; EigenBase::direction().isApprox(zeros) ) ;</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;    }</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160; </div>
+<div class="line"><a name="l00075"></a><span class="lineno"><a class="line" href="classPonca_1_1Line.html#ade5bd02e317099f64d8e476d6cfddf75">   75</a></span>&#160;    PONCA_MULTIARCH <span class="keyword">inline</span> <span class="keywordtype">bool</span> <a class="code" href="classPonca_1_1Line.html#ade5bd02e317099f64d8e476d6cfddf75">operator==</a>(<span class="keyword">const</span> <a class="code" href="classPonca_1_1Line.html">Line&lt;DataPoint, WFunctor, T&gt;</a>&amp; other)<span class="keyword"> const</span>{</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;        <span class="keywordflow">return</span> EigenBase::isApprox(other);</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;    }</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160; </div>
+<div class="line"><a name="l00080"></a><span class="lineno"><a class="line" href="classPonca_1_1Line.html#ae5249ccb0238a2be5ff2dc774643dc73">   80</a></span>&#160;    PONCA_MULTIARCH <span class="keyword">inline</span> <span class="keywordtype">bool</span> <a class="code" href="classPonca_1_1Line.html#ae5249ccb0238a2be5ff2dc774643dc73">operator!=</a>(<span class="keyword">const</span> <a class="code" href="classPonca_1_1Line.html">Line&lt;DataPoint, WFunctor, T&gt;</a>&amp; other)<span class="keyword"> const</span>{</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;        <span class="keywordflow">return</span> ! ((*this) == other);</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;    }</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160; </div>
+<div class="line"><a name="l00088"></a><span class="lineno"><a class="line" href="classPonca_1_1Line.html#a2be50f01b5e7ba741e67d80711495add">   88</a></span>&#160;    PONCA_MULTIARCH <span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code" href="classPonca_1_1Line.html#a2be50f01b5e7ba741e67d80711495add">setLine</a> (<span class="keyword">const</span> <a class="code" href="classPonca_1_1Line.html#a423e9d0178e924d62143af82dcf644ca">VectorType</a>&amp; origin,</div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;                                         <span class="keyword">const</span> <a class="code" href="classPonca_1_1Line.html#a423e9d0178e924d62143af82dcf644ca">VectorType</a>&amp; direction)</div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;    {</div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;        <a class="code" href="classPonca_1_1Line.html#a3f3084f67fea22fdfce80178636f2b30">EigenBase</a>* cc = <span class="keyword">static_cast&lt;</span><a class="code" href="classPonca_1_1Line.html#a3f3084f67fea22fdfce80178636f2b30">EigenBase</a>*<span class="keyword">&gt;</span>(<span class="keyword">this</span>);</div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;        *cc = <a class="code" href="classPonca_1_1Line.html#a3f3084f67fea22fdfce80178636f2b30">EigenBase</a>(origin, direction);</div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;    }</div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160; </div>
+<div class="line"><a name="l00096"></a><span class="lineno"><a class="line" href="classPonca_1_1Line.html#ad624614bf466e2b0edc710414026bfe2">   96</a></span>&#160;    PONCA_MULTIARCH <span class="keyword">inline</span> <a class="code" href="classPonca_1_1Line.html#ab84c7954e61467637df87040e798a641">Scalar</a> <a class="code" href="classPonca_1_1Line.html#ad624614bf466e2b0edc710414026bfe2">potential</a> ( )<span class="keyword"> const</span></div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;<span class="keyword">    </span>{</div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;        <span class="comment">// The potential is the distance from a point to the line</span></div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;        <span class="keywordflow">return</span> EigenBase::squaredDistance(VectorType::Zero());</div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;    }</div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160; </div>
+<div class="line"><a name="l00105"></a><span class="lineno"><a class="line" href="classPonca_1_1Line.html#a50a96df292866f49341e8b5429679a52">  105</a></span>&#160;    PONCA_MULTIARCH <span class="keyword">inline</span> <a class="code" href="classPonca_1_1Line.html#ab84c7954e61467637df87040e798a641">Scalar</a> <a class="code" href="classPonca_1_1Line.html#a50a96df292866f49341e8b5429679a52">potential</a> (<span class="keyword">const</span> <a class="code" href="classPonca_1_1Line.html#a423e9d0178e924d62143af82dcf644ca">VectorType</a>&amp; _q)<span class="keyword"> const</span></div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;<span class="keyword">    </span>{</div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;        <span class="comment">// The potential is the distance from a point to the line</span></div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;        <span class="keywordflow">return</span> EigenBase::squaredDistance(Base::m_w.convertToLocalBasis(_q));</div>
+<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;    }</div>
 <div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160; </div>
-<div class="line"><a name="l00115"></a><span class="lineno"><a class="line" href="classPonca_1_1Line.html#a2be50f01b5e7ba741e67d80711495add">  115</a></span>&#160;    PONCA_MULTIARCH <span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code" href="classPonca_1_1Line.html#a2be50f01b5e7ba741e67d80711495add">setLine</a> (<span class="keyword">const</span> <a class="code" href="classPonca_1_1Line.html#aef66490b8846d22e0da8b07f82d9ba3c">VectorType</a>&amp; origin,</div>
-<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;                                         <span class="keyword">const</span> <a class="code" href="classPonca_1_1Line.html#aef66490b8846d22e0da8b07f82d9ba3c">VectorType</a>&amp; direction)</div>
-<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;    {</div>
-<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;        <a class="code" href="classPonca_1_1Line.html#a3f3084f67fea22fdfce80178636f2b30">EigenBase</a>* cc = <span class="keyword">static_cast&lt;</span><a class="code" href="classPonca_1_1Line.html#a3f3084f67fea22fdfce80178636f2b30">EigenBase</a>*<span class="keyword">&gt;</span>(<span class="keyword">this</span>);</div>
-<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;        *cc = <a class="code" href="classPonca_1_1Line.html#a3f3084f67fea22fdfce80178636f2b30">EigenBase</a>(origin, direction);</div>
-<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;    }</div>
-<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160; </div>
-<div class="line"><a name="l00123"></a><span class="lineno"><a class="line" href="classPonca_1_1Line.html#ad624614bf466e2b0edc710414026bfe2">  123</a></span>&#160;    PONCA_MULTIARCH <span class="keyword">inline</span> <a class="code" href="classPonca_1_1Line.html#a5c1c9fa1304c588030f9ca41a9592a8c">Scalar</a> <a class="code" href="classPonca_1_1Line.html#ad624614bf466e2b0edc710414026bfe2">potential</a> ( )<span class="keyword"> const</span></div>
-<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;<span class="keyword">    </span>{</div>
-<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;        <span class="comment">// The potential is the distance from a point to the line</span></div>
-<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;        <span class="keywordflow">return</span> EigenBase::squaredDistance( m_p);</div>
-<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;    }</div>
-<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160; </div>
-<div class="line"><a name="l00132"></a><span class="lineno"><a class="line" href="classPonca_1_1Line.html#a50a96df292866f49341e8b5429679a52">  132</a></span>&#160;    PONCA_MULTIARCH <span class="keyword">inline</span> <a class="code" href="classPonca_1_1Line.html#a5c1c9fa1304c588030f9ca41a9592a8c">Scalar</a> <a class="code" href="classPonca_1_1Line.html#a50a96df292866f49341e8b5429679a52">potential</a> (<span class="keyword">const</span> <a class="code" href="classPonca_1_1Line.html#aef66490b8846d22e0da8b07f82d9ba3c">VectorType</a>&amp; _q)<span class="keyword"> const</span></div>
-<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;<span class="keyword">    </span>{</div>
-<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;        <span class="comment">// The potential is the distance from a point to the line</span></div>
-<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;        <span class="keywordflow">return</span> EigenBase::squaredDistance(_q - m_p);</div>
-<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;    }</div>
-<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160; </div>
-<div class="line"><a name="l00139"></a><span class="lineno"><a class="line" href="classPonca_1_1Line.html#a438adedc217dc8ee8bdd4ded42b5c5cf">  139</a></span>&#160;    PONCA_MULTIARCH <span class="keyword">inline</span> <a class="code" href="classPonca_1_1Line.html#aef66490b8846d22e0da8b07f82d9ba3c">VectorType</a> <a class="code" href="classPonca_1_1Line.html#a438adedc217dc8ee8bdd4ded42b5c5cf">project</a> (<span class="keyword">const</span> <a class="code" href="classPonca_1_1Line.html#aef66490b8846d22e0da8b07f82d9ba3c">VectorType</a>&amp; _q)<span class="keyword"> const</span></div>
-<div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160;<span class="keyword">    </span>{</div>
-<div class="line"><a name="l00141"></a><span class="lineno">  141</span>&#160;        <span class="comment">// Project on the normal vector and add the offset value</span></div>
-<div class="line"><a name="l00142"></a><span class="lineno">  142</span>&#160;        <span class="keywordflow">return</span> EigenBase::projection(_q - m_p) + m_p;</div>
-<div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160;    }</div>
-<div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160;}; <span class="comment">//class Line</span></div>
-<div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160; </div>
-<div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160; </div>
-<div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;}</div>
+<div class="line"><a name="l00112"></a><span class="lineno"><a class="line" href="classPonca_1_1Line.html#a438adedc217dc8ee8bdd4ded42b5c5cf">  112</a></span>&#160;    PONCA_MULTIARCH <span class="keyword">inline</span> <a class="code" href="classPonca_1_1Line.html#a423e9d0178e924d62143af82dcf644ca">VectorType</a> <a class="code" href="classPonca_1_1Line.html#a438adedc217dc8ee8bdd4ded42b5c5cf">project</a> (<span class="keyword">const</span> <a class="code" href="classPonca_1_1Line.html#a423e9d0178e924d62143af82dcf644ca">VectorType</a>&amp; _q)<span class="keyword"> const</span></div>
+<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;<span class="keyword">    </span>{</div>
+<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;        <span class="comment">// Project on the normal vector and add the offset value</span></div>
+<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;        <span class="keywordflow">return</span> EigenBase::projection(Base::m_w.convertToLocalBasis(_q)) + Base::m_w.basisCenter();</div>
+<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;    }</div>
+<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;}; <span class="comment">//class Line</span></div>
+<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160; </div>
+<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160; </div>
+<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;}</div>
 </div><!-- fragment --></div><!-- contents -->
-<div class="ttc" id="aclassPonca_1_1Line_html_a5c1c9fa1304c588030f9ca41a9592a8c"><div class="ttname"><a href="classPonca_1_1Line.html#a5c1c9fa1304c588030f9ca41a9592a8c">Ponca::Line::Scalar</a></div><div class="ttdeci">DataPoint::Scalar Scalar</div><div class="ttdoc">Scalar type inherited from DataPoint.</div><div class="ttdef"><b>Definition:</b> linePrimitive.h:58</div></div>
-<div class="ttc" id="anamespacePonca_html"><div class="ttname"><a href="namespacePonca.html">Ponca</a></div><div class="ttdoc">This module provides efficient methods for the fitting and analysis of point-clouds in arbitrary dime...</div><div class="ttdef"><b>Definition:</b> limitedPriorityQueue.h:14</div></div>
-<div class="ttc" id="aclassPonca_1_1Line_html_aef66490b8846d22e0da8b07f82d9ba3c"><div class="ttname"><a href="classPonca_1_1Line.html#aef66490b8846d22e0da8b07f82d9ba3c">Ponca::Line::VectorType</a></div><div class="ttdeci">DataPoint::VectorType VectorType</div><div class="ttdoc">Vector type inherited from DataPoint.</div><div class="ttdef"><b>Definition:</b> linePrimitive.h:60</div></div>
-<div class="ttc" id="aclassPonca_1_1Line_html_a438adedc217dc8ee8bdd4ded42b5c5cf"><div class="ttname"><a href="classPonca_1_1Line.html#a438adedc217dc8ee8bdd4ded42b5c5cf">Ponca::Line::project</a></div><div class="ttdeci">VectorType project(const VectorType &amp;_q) const</div><div class="ttdoc">Project a point on the line.</div><div class="ttdef"><b>Definition:</b> linePrimitive.h:139</div></div>
-<div class="ttc" id="aclassPonca_1_1Line_html_a50a96df292866f49341e8b5429679a52"><div class="ttname"><a href="classPonca_1_1Line.html#a50a96df292866f49341e8b5429679a52">Ponca::Line::potential</a></div><div class="ttdeci">Scalar potential(const VectorType &amp;_q) const</div><div class="ttdoc">Value of the scalar field at the location , defined as the squared distance between  and the line.</div><div class="ttdef"><b>Definition:</b> linePrimitive.h:132</div></div>
-<div class="ttc" id="aclassPonca_1_1Line_html_a3f3084f67fea22fdfce80178636f2b30"><div class="ttname"><a href="classPonca_1_1Line.html#a3f3084f67fea22fdfce80178636f2b30">Ponca::Line&lt; DataPoint, _WFunctor &gt;::EigenBase</a></div><div class="ttdeci">Eigen::ParametrizedLine&lt; typename DataPoint::Scalar, DataPoint::Dim &gt; EigenBase</div><div class="ttdoc">Specialization of Eigen::ParametrizedLine inherited by Ponca::Line.</div><div class="ttdef"><b>Definition:</b> linePrimitive.h:46</div></div>
-<div class="ttc" id="aclassPonca_1_1Line_html_a4956ae0de5d57c9a16f7a4c744e4b80f"><div class="ttname"><a href="classPonca_1_1Line.html#a4956ae0de5d57c9a16f7a4c744e4b80f">Ponca::Line::MatrixType</a></div><div class="ttdeci">DataPoint::MatrixType MatrixType</div><div class="ttdoc">Matrix type inherited from DataPoint.</div><div class="ttdef"><b>Definition:</b> linePrimitive.h:62</div></div>
-<div class="ttc" id="aclassPonca_1_1Line_html"><div class="ttname"><a href="classPonca_1_1Line.html">Ponca::Line</a></div><div class="ttdoc">A parametrized line is defined by an origin point  and a unit direction vector  such that the line co...</div><div class="ttdef"><b>Definition:</b> linePrimitive.h:37</div></div>
-<div class="ttc" id="aclassPonca_1_1PrimitiveBase_html_a4b665dda3ef3071f3d9c78a7a1a2507f"><div class="ttname"><a href="classPonca_1_1PrimitiveBase.html#a4b665dda3ef3071f3d9c78a7a1a2507f">Ponca::PrimitiveBase&lt; DataPoint, _WFunctor &gt;::resetPrimitive</a></div><div class="ttdeci">void resetPrimitive()</div><div class="ttdoc">Reset fitting state status.</div><div class="ttdef"><b>Definition:</b> primitive.h:48</div></div>
-<div class="ttc" id="aclassPonca_1_1Line_html_af69f2a87913e0ae3a1514963af6dfc68ad0b9935b8fe271a017bdd32001751043"><div class="ttname"><a href="classPonca_1_1Line.html#af69f2a87913e0ae3a1514963af6dfc68ad0b9935b8fe271a017bdd32001751043">Ponca::Line::PROVIDES_LINE</a></div><div class="ttdeci">@ PROVIDES_LINE</div><div class="ttdoc">Provides Line.</div><div class="ttdef"><b>Definition:</b> linePrimitive.h:52</div></div>
-<div class="ttc" id="aclassPonca_1_1Line_html_ade5bd02e317099f64d8e476d6cfddf75"><div class="ttname"><a href="classPonca_1_1Line.html#ade5bd02e317099f64d8e476d6cfddf75">Ponca::Line::operator==</a></div><div class="ttdeci">bool operator==(const Line&lt; DataPoint, WFunctor, T &gt; &amp;other) const</div><div class="ttdoc">Comparison operator.</div><div class="ttdef"><b>Definition:</b> linePrimitive.h:97</div></div>
-<div class="ttc" id="aclassPonca_1_1Line_html_ac8d2bcd6bc64acf0cd7f4bf23fb63e7b"><div class="ttname"><a href="classPonca_1_1Line.html#ac8d2bcd6bc64acf0cd7f4bf23fb63e7b">Ponca::Line::Line</a></div><div class="ttdeci">Line()</div><div class="ttdoc">Default constructor.</div><div class="ttdef"><b>Definition:</b> linePrimitive.h:74</div></div>
-<div class="ttc" id="aclassPonca_1_1Line_html_ad624614bf466e2b0edc710414026bfe2"><div class="ttname"><a href="classPonca_1_1Line.html#ad624614bf466e2b0edc710414026bfe2">Ponca::Line::potential</a></div><div class="ttdeci">Scalar potential() const</div><div class="ttdoc">Value of the scalar field at the evaluation point.</div><div class="ttdef"><b>Definition:</b> linePrimitive.h:123</div></div>
-<div class="ttc" id="aclassPonca_1_1Line_html_ad7e2cd2a32e170f545453cc8d4a838ff"><div class="ttname"><a href="classPonca_1_1Line.html#ad7e2cd2a32e170f545453cc8d4a838ff">Ponca::Line::basisCenter</a></div><div class="ttdeci">const VectorType &amp; basisCenter() const</div><div class="ttdoc">Reading access to the basis center (evaluation position)</div><div class="ttdef"><b>Definition:</b> linePrimitive.h:106</div></div>
-<div class="ttc" id="aclassPonca_1_1Line_html_ad833201fb22c6bc9fb6566910e4964e7"><div class="ttname"><a href="classPonca_1_1Line.html#ad833201fb22c6bc9fb6566910e4964e7">Ponca::Line::basisCenter</a></div><div class="ttdeci">VectorType &amp; basisCenter()</div><div class="ttdoc">Writing access to the (evaluation position)</div><div class="ttdef"><b>Definition:</b> linePrimitive.h:108</div></div>
-<div class="ttc" id="aclassPonca_1_1Line_html_ae5249ccb0238a2be5ff2dc774643dc73"><div class="ttname"><a href="classPonca_1_1Line.html#ae5249ccb0238a2be5ff2dc774643dc73">Ponca::Line::operator!=</a></div><div class="ttdeci">bool operator!=(const Line&lt; DataPoint, WFunctor, T &gt; &amp;other) const</div><div class="ttdoc">Comparison operator, convenience function.</div><div class="ttdef"><b>Definition:</b> linePrimitive.h:102</div></div>
-<div class="ttc" id="aclassPonca_1_1Line_html_a2be50f01b5e7ba741e67d80711495add"><div class="ttname"><a href="classPonca_1_1Line.html#a2be50f01b5e7ba741e67d80711495add">Ponca::Line::setLine</a></div><div class="ttdeci">void setLine(const VectorType &amp;origin, const VectorType &amp;direction)</div><div class="ttdoc">Init the line from a direction and a position.</div><div class="ttdef"><b>Definition:</b> linePrimitive.h:115</div></div>
-<div class="ttc" id="aclassPonca_1_1Line_html_a24d0dcc58ea6069c7cc92b2abeca484e"><div class="ttname"><a href="classPonca_1_1Line.html#a24d0dcc58ea6069c7cc92b2abeca484e">Ponca::Line::line</a></div><div class="ttdeci">Line&lt; DataPoint, WFunctor, T &gt; &amp; line()</div><div class="ttdoc">Explicit conversion to Line, to access methods potentially hidden by inheritage.</div><div class="ttdef"><b>Definition:</b> linePrimitive.h:84</div></div>
-<div class="ttc" id="aclassPonca_1_1PrimitiveBase_html"><div class="ttname"><a href="classPonca_1_1PrimitiveBase.html">Ponca::PrimitiveBase</a></div><div class="ttdoc">Primitive base class.</div><div class="ttdef"><b>Definition:</b> primitive.h:29</div></div>
-<div class="ttc" id="aclassPonca_1_1Line_html_a7a05b85ea7b127dede86b6ca5dffc01f"><div class="ttname"><a href="classPonca_1_1Line.html#a7a05b85ea7b127dede86b6ca5dffc01f">Ponca::Line::WFunctor</a></div><div class="ttdeci">_WFunctor WFunctor</div><div class="ttdoc">Weight Function.</div><div class="ttdef"><b>Definition:</b> linePrimitive.h:64</div></div>
-<div class="ttc" id="aclassPonca_1_1Line_html_ae31d6ffff7dfb6a6f5cd5ec4335e515f"><div class="ttname"><a href="classPonca_1_1Line.html#ae31d6ffff7dfb6a6f5cd5ec4335e515f">Ponca::Line::resetPrimitive</a></div><div class="ttdeci">void resetPrimitive()</div><div class="ttdoc">Set the scalar field values to 0 and reset the distance() and origin() status.</div><div class="ttdef"><b>Definition:</b> linePrimitive.h:90</div></div>
+</div><!-- doc-content -->
+<div class="ttc" id="anamespacePonca_html"><div class="ttname"><a href="namespacePonca.html">Ponca</a></div><div class="ttdoc">This Source Code Form is subject to the terms of the Mozilla Public License, v.</div><div class="ttdef"><b>Definition:</b> <a href="limitedPriorityQueue_8h_source.html#l00014">limitedPriorityQueue.h:14</a></div></div>
+<div class="ttc" id="aclassPonca_1_1Line_html_a8ad80a68b6de494b50499127c0eb69ff"><div class="ttname"><a href="classPonca_1_1Line.html#a8ad80a68b6de494b50499127c0eb69ff">Ponca::Line::init</a></div><div class="ttdeci">void init(const VectorType &amp;_basisCenter=VectorType::Zero())</div><div class="ttdoc">Set the scalar field values to 0 and reset the distance() and origin() status.</div><div class="ttdef"><b>Definition:</b> <a href="linePrimitive_8h_source.html#l00059">linePrimitive.h:59</a></div></div>
+<div class="ttc" id="aclassPonca_1_1Line_html_a438adedc217dc8ee8bdd4ded42b5c5cf"><div class="ttname"><a href="classPonca_1_1Line.html#a438adedc217dc8ee8bdd4ded42b5c5cf">Ponca::Line::project</a></div><div class="ttdeci">VectorType project(const VectorType &amp;_q) const</div><div class="ttdoc">Project a point on the line.</div><div class="ttdef"><b>Definition:</b> <a href="linePrimitive_8h_source.html#l00112">linePrimitive.h:112</a></div></div>
+<div class="ttc" id="aclassPonca_1_1Line_html_a50a96df292866f49341e8b5429679a52"><div class="ttname"><a href="classPonca_1_1Line.html#a50a96df292866f49341e8b5429679a52">Ponca::Line::potential</a></div><div class="ttdeci">Scalar potential(const VectorType &amp;_q) const</div><div class="ttdoc">Value of the scalar field at the location , defined as the squared distance between  and the line.</div><div class="ttdef"><b>Definition:</b> <a href="linePrimitive_8h_source.html#l00105">linePrimitive.h:105</a></div></div>
+<div class="ttc" id="aclassPonca_1_1Line_html_a3f3084f67fea22fdfce80178636f2b30"><div class="ttname"><a href="classPonca_1_1Line.html#a3f3084f67fea22fdfce80178636f2b30">Ponca::Line::EigenBase</a></div><div class="ttdeci">Eigen::ParametrizedLine&lt; typename DataPoint::Scalar, DataPoint::Dim &gt; EigenBase</div><div class="ttdoc">Specialization of Eigen::ParametrizedLine inherited by Ponca::Line.</div><div class="ttdef"><b>Definition:</b> <a href="linePrimitive_8h_source.html#l00043">linePrimitive.h:43</a></div></div>
+<div class="ttc" id="aclassPonca_1_1Line_html"><div class="ttname"><a href="classPonca_1_1Line.html">Ponca::Line</a></div><div class="ttdoc">A parametrized line is defined by an origin point  and a unit direction vector  such that the line co...</div><div class="ttdef"><b>Definition:</b> <a href="linePrimitive_8h_source.html#l00036">linePrimitive.h:36</a></div></div>
+<div class="ttc" id="aclassPonca_1_1Line_html_af69f2a87913e0ae3a1514963af6dfc68ad0b9935b8fe271a017bdd32001751043"><div class="ttname"><a href="classPonca_1_1Line.html#af69f2a87913e0ae3a1514963af6dfc68ad0b9935b8fe271a017bdd32001751043">Ponca::Line::PROVIDES_LINE</a></div><div class="ttdeci">@ PROVIDES_LINE</div><div class="ttdoc">Provides Line.</div><div class="ttdef"><b>Definition:</b> <a href="linePrimitive_8h_source.html#l00050">linePrimitive.h:50</a></div></div>
+<div class="ttc" id="aclassPonca_1_1Line_html_ade5bd02e317099f64d8e476d6cfddf75"><div class="ttname"><a href="classPonca_1_1Line.html#ade5bd02e317099f64d8e476d6cfddf75">Ponca::Line::operator==</a></div><div class="ttdeci">bool operator==(const Line&lt; DataPoint, WFunctor, T &gt; &amp;other) const</div><div class="ttdoc">Comparison operator.</div><div class="ttdef"><b>Definition:</b> <a href="linePrimitive_8h_source.html#l00075">linePrimitive.h:75</a></div></div>
+<div class="ttc" id="aclassPonca_1_1Line_html_ad624614bf466e2b0edc710414026bfe2"><div class="ttname"><a href="classPonca_1_1Line.html#ad624614bf466e2b0edc710414026bfe2">Ponca::Line::potential</a></div><div class="ttdeci">Scalar potential() const</div><div class="ttdoc">Value of the scalar field at the evaluation point.</div><div class="ttdef"><b>Definition:</b> <a href="linePrimitive_8h_source.html#l00096">linePrimitive.h:96</a></div></div>
+<div class="ttc" id="aclassPonca_1_1Line_html_ab84c7954e61467637df87040e798a641"><div class="ttname"><a href="classPonca_1_1Line.html#ab84c7954e61467637df87040e798a641">Ponca::Line::Scalar</a></div><div class="ttdeci">typename DataPoint::Scalar Scalar</div><div class="ttdoc">Alias to scalar type.</div><div class="ttdef"><b>Definition:</b> <a href="linePrimitive_8h_source.html#l00039">linePrimitive.h:39</a></div></div>
+<div class="ttc" id="aclassPonca_1_1Line_html_a423e9d0178e924d62143af82dcf644ca"><div class="ttname"><a href="classPonca_1_1Line.html#a423e9d0178e924d62143af82dcf644ca">Ponca::Line::VectorType</a></div><div class="ttdeci">typename Base::VectorType VectorType</div><div class="ttdoc">Alias to vector type.</div><div class="ttdef"><b>Definition:</b> <a href="linePrimitive_8h_source.html#l00039">linePrimitive.h:39</a></div></div>
+<div class="ttc" id="aclassPonca_1_1Line_html_af56b74e2353a1ca4b35f7dbc35ef626c"><div class="ttname"><a href="classPonca_1_1Line.html#af56b74e2353a1ca4b35f7dbc35ef626c">Ponca::Line::line</a></div><div class="ttdeci">Line&lt; DataPoint, _WFunctor, T &gt; &amp; line()</div><div class="ttdoc">Explicit conversion to Line , to access methods potentially hidden by heritage.</div><div class="ttdef"><b>Definition:</b> <a href="linePrimitive_8h_source.html#l00054">linePrimitive.h:54</a></div></div>
+<div class="ttc" id="aclassPonca_1_1Line_html_ae5249ccb0238a2be5ff2dc774643dc73"><div class="ttname"><a href="classPonca_1_1Line.html#ae5249ccb0238a2be5ff2dc774643dc73">Ponca::Line::operator!=</a></div><div class="ttdeci">bool operator!=(const Line&lt; DataPoint, WFunctor, T &gt; &amp;other) const</div><div class="ttdoc">Comparison operator, convenience function.</div><div class="ttdef"><b>Definition:</b> <a href="linePrimitive_8h_source.html#l00080">linePrimitive.h:80</a></div></div>
+<div class="ttc" id="aclassPonca_1_1Line_html_af69f2a87913e0ae3a1514963af6dfc68af21467c31a6db11c5c91e29c75c8ee48"><div class="ttname"><a href="classPonca_1_1Line.html#af69f2a87913e0ae3a1514963af6dfc68af21467c31a6db11c5c91e29c75c8ee48">Ponca::Line::check</a></div><div class="ttdeci">@ check</div><div class="ttdoc">Requires PrimitiveBase.</div><div class="ttdef"><b>Definition:</b> <a href="linePrimitive_8h_source.html#l00049">linePrimitive.h:49</a></div></div>
+<div class="ttc" id="aclassPonca_1_1Line_html_a2be50f01b5e7ba741e67d80711495add"><div class="ttname"><a href="classPonca_1_1Line.html#a2be50f01b5e7ba741e67d80711495add">Ponca::Line::setLine</a></div><div class="ttdeci">void setLine(const VectorType &amp;origin, const VectorType &amp;direction)</div><div class="ttdoc">Init the line from a direction and a position.</div><div class="ttdef"><b>Definition:</b> <a href="linePrimitive_8h_source.html#l00088">linePrimitive.h:88</a></div></div>
+<div class="ttc" id="aclassPonca_1_1Line_html_a398ea691c79a3a5cf8e7610109f2bfae"><div class="ttname"><a href="classPonca_1_1Line.html#a398ea691c79a3a5cf8e7610109f2bfae">Ponca::Line::isValid</a></div><div class="ttdeci">bool isValid() const</div><div class="ttdoc">Tell if the line as been correctly set. Used to set CONFLICT_ERROR_FOUND during fitting.</div><div class="ttdef"><b>Definition:</b> <a href="linePrimitive_8h_source.html#l00069">linePrimitive.h:69</a></div></div>
 <!-- start footer part -->
-<hr class="footer"/><address class="footer"><small>
-Generated on Tue Aug 2 2022 09:22:55 for Ponca by &#160;<a href="http://www.doxygen.org/index.html">
-<img class="footer" src="doxygen.png" alt="doxygen"/>
-</a> 1.8.17
-</small></address>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_695d95a8d8fbec601a248c0414764298.html">Ponca</a></li><li class="navelem"><a class="el" href="dir_ce16314fc45f8638543c5146aff64d4a.html">src</a></li><li class="navelem"><a class="el" href="dir_221133f19e4af6803e4ee7d78db21786.html">Fitting</a></li><li class="navelem"><b>linePrimitive.h</b></li>
+    <li class="footer">Generated on Fri Sep 9 2022 12:28:20 for Ponca by
+    <a href="http://www.doxygen.org/index.html">
+    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.17 </li>
+  </ul>
+</div>
 </body>
 </html>

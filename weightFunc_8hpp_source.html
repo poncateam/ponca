@@ -1,3 +1,4 @@
+<!-- HTML header for doxygen 1.9.1-->
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -9,6 +10,10 @@
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
@@ -20,7 +25,23 @@
 </script>
 <script type="text/javascript" async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js"></script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only-darkmode-toggle.css" rel="stylesheet" type="text/css"/>
 <link href="ponca.css" rel="stylesheet" type="text/css"/>
+<!-- ... other metadata & script includes ... -->
+<script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+<script type="text/javascript">
+    DoxygenAwesomeDarkModeToggle.init()
+</script>
+<script type="text/javascript" src="doxygen-awesome-fragment-copy-button.js"></script>
+<script type="text/javascript">
+    DoxygenAwesomeFragmentCopyButton.init()
+</script>
+<script type="text/javascript" src="doxygen-awesome-paragraph-link.js"></script>
+<script type="text/javascript">
+    DoxygenAwesomeParagraphLink.init()
+</script>
 </head>
 <body>
 <div id="top"><!-- do not remove this div, it is closed by doxygen! -->
@@ -30,7 +51,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Ponca
-   &#160;<span id="projectnumber">8976dc5e97f677a334261616e8d2314551b8ce3d</span>
+   &#160;<span id="projectnumber">d844664447d2173c00cc41660408e8eb5b3a41d6</span>
    </div>
    <div id="projectbrief">Point Cloud Analysis library</div>
   </td>
@@ -55,6 +76,23 @@ $(function() {
 });
 /* @license-end */</script>
 <div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(document).ready(function(){initNavTree('weightFunc_8hpp_source.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -69,11 +107,6 @@ $(function() {
 </iframe>
 </div>
 
-<div id="nav-path" class="navpath">
-  <ul>
-<li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_695d95a8d8fbec601a248c0414764298.html">Ponca</a></li><li class="navelem"><a class="el" href="dir_ce16314fc45f8638543c5146aff64d4a.html">src</a></li><li class="navelem"><a class="el" href="dir_221133f19e4af6803e4ee7d78db21786.html">Fitting</a></li>  </ul>
-</div>
-</div><!-- top -->
 <div class="header">
   <div class="headertitle">
 <div class="title">weightFunc.hpp</div>  </div>
@@ -86,87 +119,102 @@ $(function() {
 <div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="comment">*/</span></div>
 <div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160; </div>
 <div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160; </div>
-<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160; </div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="keyword">template</span> &lt;<span class="keyword">class</span> DataPo<span class="keywordtype">int</span>, <span class="keyword">class</span> WeightKernel&gt;</div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="keyword">typename</span> DistWeightFunc&lt;DataPoint, WeightKernel&gt;::Scalar</div>
-<div class="line"><a name="l00011"></a><span class="lineno"><a class="line" href="classPonca_1_1DistWeightFunc.html#a4cd43a14f76abb8005c17f0906d7d33a">   11</a></span>&#160;<a class="code" href="classPonca_1_1DistWeightFunc.html">DistWeightFunc&lt;DataPoint, WeightKernel&gt;::w</a>( <span class="keyword">const</span> <a class="code" href="classPonca_1_1DistWeightFunc.html#a593aa4afa29801a53bac8f583caaa81a">VectorType</a>&amp; _q, </div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;                                            <span class="keyword">const</span> DataPoint&amp;)<span class="keyword"> const</span></div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="keyword"></span>{</div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;    <a class="code" href="classPonca_1_1DistWeightFunc.html#a119a15fd2a71d064f9f8794f2cd52681">Scalar</a> d  = _q.norm();  </div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;    <span class="keywordflow">return</span> (d &lt;= m_t) ? m_wk.f(d/m_t) : <a class="code" href="classPonca_1_1DistWeightFunc.html#a119a15fd2a71d064f9f8794f2cd52681">Scalar</a>(0.);</div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;}</div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160; </div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="keyword">template</span> &lt;<span class="keyword">class</span> DataPo<span class="keywordtype">int</span>, <span class="keyword">class</span> WeightKernel&gt;</div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="keyword">typename</span> <a class="code" href="classPonca_1_1DistWeightFunc.html#a593aa4afa29801a53bac8f583caaa81a">DistWeightFunc&lt;DataPoint, WeightKernel&gt;::VectorType</a></div>
-<div class="line"><a name="l00020"></a><span class="lineno"><a class="line" href="classPonca_1_1DistWeightFunc.html#a679c75736d7715aada70bbf2e221fb02">   20</a></span>&#160;<a class="code" href="classPonca_1_1DistWeightFunc.html">DistWeightFunc&lt;DataPoint, WeightKernel&gt;::spacedw</a>(   <span class="keyword">const</span> <a class="code" href="classPonca_1_1DistWeightFunc.html#a593aa4afa29801a53bac8f583caaa81a">VectorType</a>&amp; _q, </div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;                                                    <span class="keyword">const</span> DataPoint&amp;)<span class="keyword"> const</span></div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="keyword"></span>{</div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;    <a class="code" href="classPonca_1_1DistWeightFunc.html#a593aa4afa29801a53bac8f583caaa81a">VectorType</a> result = VectorType::Zero();</div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;    <a class="code" href="classPonca_1_1DistWeightFunc.html#a119a15fd2a71d064f9f8794f2cd52681">Scalar</a> d = _q.norm();</div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    <span class="keywordflow">if</span> (d &lt;= m_t &amp;&amp; d != <a class="code" href="classPonca_1_1DistWeightFunc.html#a119a15fd2a71d064f9f8794f2cd52681">Scalar</a>(0.)) result = (_q / (d * m_t)) * m_wk.df(d/m_t);</div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    <span class="keywordflow">return</span> result;</div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;}</div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160; </div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="keyword">template</span> &lt;<span class="keyword">class</span> DataPo<span class="keywordtype">int</span>, <span class="keyword">class</span> WeightKernel&gt;</div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="keyword">typename</span> <a class="code" href="classPonca_1_1DistWeightFunc.html#a5cfb73392920104ebb36ed27ebfd0f49">DistWeightFunc&lt;DataPoint, WeightKernel&gt;::MatrixType</a></div>
-<div class="line"><a name="l00031"></a><span class="lineno"><a class="line" href="classPonca_1_1DistWeightFunc.html#a303ff5053abe6961771053c9647688c4">   31</a></span>&#160;<a class="code" href="classPonca_1_1DistWeightFunc.html">DistWeightFunc&lt;DataPoint, WeightKernel&gt;::spaced2w</a>(   <span class="keyword">const</span> <a class="code" href="classPonca_1_1DistWeightFunc.html#a593aa4afa29801a53bac8f583caaa81a">VectorType</a>&amp; _q,</div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;                                                     <span class="keyword">const</span> DataPoint&amp;)<span class="keyword"> const</span></div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;<span class="keyword"></span>{</div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;    <a class="code" href="classPonca_1_1DistWeightFunc.html#a5cfb73392920104ebb36ed27ebfd0f49">MatrixType</a> result = MatrixType::Zero();</div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;    <a class="code" href="classPonca_1_1DistWeightFunc.html#a119a15fd2a71d064f9f8794f2cd52681">Scalar</a> d = _q.norm();</div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;    <span class="keywordflow">if</span> (d &lt;= m_t &amp;&amp; d != <a class="code" href="classPonca_1_1DistWeightFunc.html#a119a15fd2a71d064f9f8794f2cd52681">Scalar</a>(0.))</div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;    {</div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;        <a class="code" href="classPonca_1_1DistWeightFunc.html#a119a15fd2a71d064f9f8794f2cd52681">Scalar</a> der = m_wk.df(d/m_t);</div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;        result = _q*_q.transpose()/d*(m_wk.ddf(d/m_t)/m_t - der/d);</div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;        result.diagonal().array() += der;</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;        result *= <a class="code" href="classPonca_1_1DistWeightFunc.html#a119a15fd2a71d064f9f8794f2cd52681">Scalar</a>(1.)/(m_t*d);</div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    }</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    <span class="keywordflow">return</span> result;</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;}</div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160; </div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;<span class="keyword">template</span> &lt;<span class="keyword">class</span> DataPo<span class="keywordtype">int</span>, <span class="keyword">class</span> WeightKernel&gt;</div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;<span class="keyword">typename</span> <a class="code" href="classPonca_1_1DistWeightFunc.html#a119a15fd2a71d064f9f8794f2cd52681">DistWeightFunc&lt;DataPoint, WeightKernel&gt;::Scalar</a></div>
-<div class="line"><a name="l00048"></a><span class="lineno"><a class="line" href="classPonca_1_1DistWeightFunc.html#a182289b2f19a436381af1c94a7bfb0f5">   48</a></span>&#160;<a class="code" href="classPonca_1_1DistWeightFunc.html">DistWeightFunc&lt;DataPoint, WeightKernel&gt;::scaledw</a>(   <span class="keyword">const</span> <a class="code" href="classPonca_1_1DistWeightFunc.html#a593aa4afa29801a53bac8f583caaa81a">VectorType</a>&amp; _q, </div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;                                                    <span class="keyword">const</span> DataPoint&amp;)<span class="keyword"> const</span></div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;<span class="keyword"></span>{</div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    <a class="code" href="classPonca_1_1DistWeightFunc.html#a119a15fd2a71d064f9f8794f2cd52681">Scalar</a> d  = _q.norm();  </div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    <span class="keywordflow">return</span> (d &lt;= m_t) ? <a class="code" href="classPonca_1_1DistWeightFunc.html#a119a15fd2a71d064f9f8794f2cd52681">Scalar</a>( - d*m_wk.df(d/m_t)/(m_t*m_t) ) : <a class="code" href="classPonca_1_1DistWeightFunc.html#a119a15fd2a71d064f9f8794f2cd52681">Scalar</a>(0.);</div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="keyword">template</span> &lt;<span class="keyword">class</span> DataPo<span class="keywordtype">int</span>, <span class="keyword">class</span> WeightKernel&gt;</div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="keyword">typename</span> DistWeightFunc&lt;DataPoint, WeightKernel&gt;::VectorType</div>
+<div class="line"><a name="l00010"></a><span class="lineno"><a class="line" href="classPonca_1_1DistWeightFunc.html#a0c1f6d4c4beea246b39fb8929c45e1ee">   10</a></span>&#160;<a class="code" href="classPonca_1_1DistWeightFunc.html">DistWeightFunc&lt;DataPoint, WeightKernel&gt;::convertToLocalBasis</a>(<span class="keyword">const</span> <a class="code" href="classPonca_1_1DistWeightFunc.html#ae7a2237f5c6983f49cfe6b73146666f2">VectorType</a>&amp; _q)<span class="keyword"> const</span></div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="keyword"></span>{</div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;    <span class="keywordflow">return</span> _q - m_p;</div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;}</div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160; </div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="keyword">template</span> &lt;<span class="keyword">class</span> DataPo<span class="keywordtype">int</span>, <span class="keyword">class</span> WeightKernel&gt;</div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="keyword">typename</span> <a class="code" href="classPonca_1_1DistWeightFunc.html#a9f637587b83b4a0e7db3a5499f939010">DistWeightFunc&lt;DataPoint, WeightKernel&gt;::WeightReturnType</a></div>
+<div class="line"><a name="l00017"></a><span class="lineno"><a class="line" href="classPonca_1_1DistWeightFunc.html#a470646999a2bcc787ed211de36d43e4e">   17</a></span>&#160;<a class="code" href="classPonca_1_1DistWeightFunc.html">DistWeightFunc&lt;DataPoint, WeightKernel&gt;::w</a>( <span class="keyword">const</span> <a class="code" href="classPonca_1_1DistWeightFunc.html#ae7a2237f5c6983f49cfe6b73146666f2">VectorType</a>&amp; _q, </div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;                                            <span class="keyword">const</span> DataPoint&amp;)<span class="keyword"> const</span></div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="keyword"></span>{</div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;    <a class="code" href="classPonca_1_1DistWeightFunc.html#ae7a2237f5c6983f49cfe6b73146666f2">VectorType</a> q = convertToLocalBasis(_q);</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;    <a class="code" href="classPonca_1_1DistWeightFunc.html#aa78e3ea4b72c62d9a0dc117fb7babab5">Scalar</a> d  = q.norm();</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;    <span class="keywordflow">return</span> { (d &lt;= m_t) ? m_wk.f(d/m_t) : <a class="code" href="classPonca_1_1DistWeightFunc.html#aa78e3ea4b72c62d9a0dc117fb7babab5">Scalar</a>(0.), q };</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;}</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160; </div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="keyword">template</span> &lt;<span class="keyword">class</span> DataPo<span class="keywordtype">int</span>, <span class="keyword">class</span> WeightKernel&gt;</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="keyword">typename</span> <a class="code" href="classPonca_1_1DistWeightFunc.html#ae7a2237f5c6983f49cfe6b73146666f2">DistWeightFunc&lt;DataPoint, WeightKernel&gt;::VectorType</a></div>
+<div class="line"><a name="l00027"></a><span class="lineno"><a class="line" href="classPonca_1_1DistWeightFunc.html#a679c75736d7715aada70bbf2e221fb02">   27</a></span>&#160;<a class="code" href="classPonca_1_1DistWeightFunc.html">DistWeightFunc&lt;DataPoint, WeightKernel&gt;::spacedw</a>(   <span class="keyword">const</span> <a class="code" href="classPonca_1_1DistWeightFunc.html#ae7a2237f5c6983f49cfe6b73146666f2">VectorType</a>&amp; _q, </div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;                                                    <span class="keyword">const</span> DataPoint&amp;)<span class="keyword"> const</span></div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="keyword"></span>{</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;    <a class="code" href="classPonca_1_1DistWeightFunc.html#ae7a2237f5c6983f49cfe6b73146666f2">VectorType</a> result = VectorType::Zero();</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;    <a class="code" href="classPonca_1_1DistWeightFunc.html#ae7a2237f5c6983f49cfe6b73146666f2">VectorType</a> q = convertToLocalBasis(_q);</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;    <a class="code" href="classPonca_1_1DistWeightFunc.html#aa78e3ea4b72c62d9a0dc117fb7babab5">Scalar</a> d = q.norm();</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;    <span class="keywordflow">if</span> (d &lt;= m_t &amp;&amp; d != <a class="code" href="classPonca_1_1DistWeightFunc.html#aa78e3ea4b72c62d9a0dc117fb7babab5">Scalar</a>(0.)) result = (q / (d * m_t)) * m_wk.df(d/m_t);</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;    <span class="keywordflow">return</span> result;</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;}</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160; </div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;<span class="keyword">template</span> &lt;<span class="keyword">class</span> DataPo<span class="keywordtype">int</span>, <span class="keyword">class</span> WeightKernel&gt;</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;<span class="keyword">typename</span> <a class="code" href="classPonca_1_1DistWeightFunc.html#a38d697c8aa86a39be3dca740f8cf3232">DistWeightFunc&lt;DataPoint, WeightKernel&gt;::MatrixType</a></div>
+<div class="line"><a name="l00039"></a><span class="lineno"><a class="line" href="classPonca_1_1DistWeightFunc.html#a303ff5053abe6961771053c9647688c4">   39</a></span>&#160;<a class="code" href="classPonca_1_1DistWeightFunc.html">DistWeightFunc&lt;DataPoint, WeightKernel&gt;::spaced2w</a>(   <span class="keyword">const</span> <a class="code" href="classPonca_1_1DistWeightFunc.html#ae7a2237f5c6983f49cfe6b73146666f2">VectorType</a>&amp; _q,</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;                                                     <span class="keyword">const</span> DataPoint&amp;)<span class="keyword"> const</span></div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;<span class="keyword"></span>{</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    <a class="code" href="classPonca_1_1DistWeightFunc.html#a38d697c8aa86a39be3dca740f8cf3232">MatrixType</a> result = MatrixType::Zero();</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    <a class="code" href="classPonca_1_1DistWeightFunc.html#ae7a2237f5c6983f49cfe6b73146666f2">VectorType</a> q = convertToLocalBasis(_q);</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    <a class="code" href="classPonca_1_1DistWeightFunc.html#aa78e3ea4b72c62d9a0dc117fb7babab5">Scalar</a> d = q.norm();</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    <span class="keywordflow">if</span> (d &lt;= m_t &amp;&amp; d != <a class="code" href="classPonca_1_1DistWeightFunc.html#aa78e3ea4b72c62d9a0dc117fb7babab5">Scalar</a>(0.))</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    {</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;        <a class="code" href="classPonca_1_1DistWeightFunc.html#aa78e3ea4b72c62d9a0dc117fb7babab5">Scalar</a> der = m_wk.df(d/m_t);</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;        result = q*q.transpose()/d*(m_wk.ddf(d/m_t)/m_t - der/d);</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;        result.diagonal().array() += der;</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;        result *= <a class="code" href="classPonca_1_1DistWeightFunc.html#aa78e3ea4b72c62d9a0dc117fb7babab5">Scalar</a>(1.)/(m_t*d);</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    }</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    <span class="keywordflow">return</span> result;</div>
 <div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;}</div>
 <div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160; </div>
 <div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;<span class="keyword">template</span> &lt;<span class="keyword">class</span> DataPo<span class="keywordtype">int</span>, <span class="keyword">class</span> WeightKernel&gt;</div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;<span class="keyword">typename</span> <a class="code" href="classPonca_1_1DistWeightFunc.html#a119a15fd2a71d064f9f8794f2cd52681">DistWeightFunc&lt;DataPoint, WeightKernel&gt;::Scalar</a></div>
-<div class="line"><a name="l00057"></a><span class="lineno"><a class="line" href="classPonca_1_1DistWeightFunc.html#a1ccbacac342ed1e66ef0423fdaf9c00d">   57</a></span>&#160;<a class="code" href="classPonca_1_1DistWeightFunc.html">DistWeightFunc&lt;DataPoint, WeightKernel&gt;::scaled2w</a>(   <span class="keyword">const</span> <a class="code" href="classPonca_1_1DistWeightFunc.html#a593aa4afa29801a53bac8f583caaa81a">VectorType</a>&amp; _q,</div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;                                                     <span class="keyword">const</span> DataPoint&amp;)<span class="keyword"> const</span></div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;<span class="keyword">typename</span> <a class="code" href="classPonca_1_1DistWeightFunc.html#aa78e3ea4b72c62d9a0dc117fb7babab5">DistWeightFunc&lt;DataPoint, WeightKernel&gt;::Scalar</a></div>
+<div class="line"><a name="l00057"></a><span class="lineno"><a class="line" href="classPonca_1_1DistWeightFunc.html#a182289b2f19a436381af1c94a7bfb0f5">   57</a></span>&#160;<a class="code" href="classPonca_1_1DistWeightFunc.html">DistWeightFunc&lt;DataPoint, WeightKernel&gt;::scaledw</a>(   <span class="keyword">const</span> <a class="code" href="classPonca_1_1DistWeightFunc.html#ae7a2237f5c6983f49cfe6b73146666f2">VectorType</a>&amp; _q, </div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;                                                    <span class="keyword">const</span> DataPoint&amp;)<span class="keyword"> const</span></div>
 <div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;<span class="keyword"></span>{</div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;    <a class="code" href="classPonca_1_1DistWeightFunc.html#a119a15fd2a71d064f9f8794f2cd52681">Scalar</a> d  = _q.norm();</div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;    <span class="keywordflow">return</span> (d &lt;= m_t) ? <a class="code" href="classPonca_1_1DistWeightFunc.html#a119a15fd2a71d064f9f8794f2cd52681">Scalar</a>(<a class="code" href="classPonca_1_1DistWeightFunc.html#a119a15fd2a71d064f9f8794f2cd52681">Scalar</a>(2.)*d/(m_t*m_t*m_t)*m_wk.df(d/m_t) +</div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;                               d*d/(m_t*m_t*m_t*m_t)*m_wk.ddf(d/m_t)) :</div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;                        <a class="code" href="classPonca_1_1DistWeightFunc.html#a119a15fd2a71d064f9f8794f2cd52681">Scalar</a>(0.);</div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;}</div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160; </div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;<span class="keyword">template</span> &lt;<span class="keyword">class</span> DataPo<span class="keywordtype">int</span>, <span class="keyword">class</span> WeightKernel&gt;</div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;<span class="keyword">typename</span> <a class="code" href="classPonca_1_1DistWeightFunc.html#a593aa4afa29801a53bac8f583caaa81a">DistWeightFunc&lt;DataPoint, WeightKernel&gt;::VectorType</a></div>
-<div class="line"><a name="l00068"></a><span class="lineno"><a class="line" href="classPonca_1_1DistWeightFunc.html#a26332be7b205ec289253c4b366c46110">   68</a></span>&#160;<a class="code" href="classPonca_1_1DistWeightFunc.html">DistWeightFunc&lt;DataPoint, WeightKernel&gt;::scaleSpaced2w</a>(   <span class="keyword">const</span> <a class="code" href="classPonca_1_1DistWeightFunc.html#a593aa4afa29801a53bac8f583caaa81a">VectorType</a>&amp; _q,</div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;                                                          <span class="keyword">const</span> DataPoint&amp;)<span class="keyword"> const</span></div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;<span class="keyword"></span>{</div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;    <a class="code" href="classPonca_1_1DistWeightFunc.html#a593aa4afa29801a53bac8f583caaa81a">VectorType</a> result = VectorType::Zero();</div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;    <a class="code" href="classPonca_1_1DistWeightFunc.html#a119a15fd2a71d064f9f8794f2cd52681">Scalar</a> d = _q.norm();</div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;    <span class="keywordflow">if</span> (d &lt;= m_t &amp;&amp; d != <a class="code" href="classPonca_1_1DistWeightFunc.html#a119a15fd2a71d064f9f8794f2cd52681">Scalar</a>(0.))</div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;        result = -_q/(m_t*m_t)*(m_wk.df(d/m_t)/d + m_wk.ddf(d/m_t)/m_t);</div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;    <span class="keywordflow">return</span> result;</div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;}</div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160; </div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160; </div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;    <a class="code" href="classPonca_1_1DistWeightFunc.html#aa78e3ea4b72c62d9a0dc117fb7babab5">Scalar</a> d  = convertToLocalBasis(_q).norm();</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;    <span class="keywordflow">return</span> (d &lt;= m_t) ? <a class="code" href="classPonca_1_1DistWeightFunc.html#aa78e3ea4b72c62d9a0dc117fb7babab5">Scalar</a>( - d*m_wk.df(d/m_t)/(m_t*m_t) ) : <a class="code" href="classPonca_1_1DistWeightFunc.html#aa78e3ea4b72c62d9a0dc117fb7babab5">Scalar</a>(0.);</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;}</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160; </div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;<span class="keyword">template</span> &lt;<span class="keyword">class</span> DataPo<span class="keywordtype">int</span>, <span class="keyword">class</span> WeightKernel&gt;</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;<span class="keyword">typename</span> <a class="code" href="classPonca_1_1DistWeightFunc.html#aa78e3ea4b72c62d9a0dc117fb7babab5">DistWeightFunc&lt;DataPoint, WeightKernel&gt;::Scalar</a></div>
+<div class="line"><a name="l00066"></a><span class="lineno"><a class="line" href="classPonca_1_1DistWeightFunc.html#a1ccbacac342ed1e66ef0423fdaf9c00d">   66</a></span>&#160;<a class="code" href="classPonca_1_1DistWeightFunc.html">DistWeightFunc&lt;DataPoint, WeightKernel&gt;::scaled2w</a>(   <span class="keyword">const</span> <a class="code" href="classPonca_1_1DistWeightFunc.html#ae7a2237f5c6983f49cfe6b73146666f2">VectorType</a>&amp; _q,</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;                                                     <span class="keyword">const</span> DataPoint&amp;)<span class="keyword"> const</span></div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;<span class="keyword"></span>{</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;    <a class="code" href="classPonca_1_1DistWeightFunc.html#aa78e3ea4b72c62d9a0dc117fb7babab5">Scalar</a> d  = convertToLocalBasis(_q).norm();</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;    <span class="keywordflow">return</span> (d &lt;= m_t) ? <a class="code" href="classPonca_1_1DistWeightFunc.html#aa78e3ea4b72c62d9a0dc117fb7babab5">Scalar</a>(<a class="code" href="classPonca_1_1DistWeightFunc.html#aa78e3ea4b72c62d9a0dc117fb7babab5">Scalar</a>(2.)*d/(m_t*m_t*m_t)*m_wk.df(d/m_t) +</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;                               d*d/(m_t*m_t*m_t*m_t)*m_wk.ddf(d/m_t)) :</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;                        <a class="code" href="classPonca_1_1DistWeightFunc.html#aa78e3ea4b72c62d9a0dc117fb7babab5">Scalar</a>(0.);</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;}</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160; </div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;<span class="keyword">template</span> &lt;<span class="keyword">class</span> DataPo<span class="keywordtype">int</span>, <span class="keyword">class</span> WeightKernel&gt;</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;<span class="keyword">typename</span> <a class="code" href="classPonca_1_1DistWeightFunc.html#ae7a2237f5c6983f49cfe6b73146666f2">DistWeightFunc&lt;DataPoint, WeightKernel&gt;::VectorType</a></div>
+<div class="line"><a name="l00077"></a><span class="lineno"><a class="line" href="classPonca_1_1DistWeightFunc.html#a26332be7b205ec289253c4b366c46110">   77</a></span>&#160;<a class="code" href="classPonca_1_1DistWeightFunc.html">DistWeightFunc&lt;DataPoint, WeightKernel&gt;::scaleSpaced2w</a>(   <span class="keyword">const</span> <a class="code" href="classPonca_1_1DistWeightFunc.html#ae7a2237f5c6983f49cfe6b73146666f2">VectorType</a>&amp; _q,</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;                                                          <span class="keyword">const</span> DataPoint&amp;)<span class="keyword"> const</span></div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;<span class="keyword"></span>{</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;    <a class="code" href="classPonca_1_1DistWeightFunc.html#ae7a2237f5c6983f49cfe6b73146666f2">VectorType</a> result = VectorType::Zero();</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;    <a class="code" href="classPonca_1_1DistWeightFunc.html#ae7a2237f5c6983f49cfe6b73146666f2">VectorType</a> q = convertToLocalBasis(_q);</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;    <a class="code" href="classPonca_1_1DistWeightFunc.html#aa78e3ea4b72c62d9a0dc117fb7babab5">Scalar</a> d = q.norm();</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;    <span class="keywordflow">if</span> (d &lt;= m_t &amp;&amp; d != <a class="code" href="classPonca_1_1DistWeightFunc.html#aa78e3ea4b72c62d9a0dc117fb7babab5">Scalar</a>(0.))</div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;        result = -q/(m_t*m_t)*(m_wk.df(d/m_t)/d + m_wk.ddf(d/m_t)/m_t);</div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;    <span class="keywordflow">return</span> result;</div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;}</div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160; </div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160; </div>
 </div><!-- fragment --></div><!-- contents -->
-<div class="ttc" id="aclassPonca_1_1DistWeightFunc_html_a119a15fd2a71d064f9f8794f2cd52681"><div class="ttname"><a href="classPonca_1_1DistWeightFunc.html#a119a15fd2a71d064f9f8794f2cd52681">Ponca::DistWeightFunc::Scalar</a></div><div class="ttdeci">DataPoint::Scalar Scalar</div><div class="ttdoc">Scalar type from DataPoint.</div><div class="ttdef"><b>Definition:</b> weightFunc.h:33</div></div>
-<div class="ttc" id="aclassPonca_1_1DistWeightFunc_html_a5cfb73392920104ebb36ed27ebfd0f49"><div class="ttname"><a href="classPonca_1_1DistWeightFunc.html#a5cfb73392920104ebb36ed27ebfd0f49">Ponca::DistWeightFunc::MatrixType</a></div><div class="ttdeci">DataPoint::MatrixType MatrixType</div><div class="ttdoc">Matrix type from DataPoint.</div><div class="ttdef"><b>Definition:</b> weightFunc.h:37</div></div>
-<div class="ttc" id="aclassPonca_1_1DistWeightFunc_html_a593aa4afa29801a53bac8f583caaa81a"><div class="ttname"><a href="classPonca_1_1DistWeightFunc.html#a593aa4afa29801a53bac8f583caaa81a">Ponca::DistWeightFunc::VectorType</a></div><div class="ttdeci">DataPoint::VectorType VectorType</div><div class="ttdoc">Vector type from DataPoint.</div><div class="ttdef"><b>Definition:</b> weightFunc.h:35</div></div>
-<div class="ttc" id="aclassPonca_1_1DistWeightFunc_html"><div class="ttname"><a href="classPonca_1_1DistWeightFunc.html">Ponca::DistWeightFunc</a></div><div class="ttdoc">Weighting function based on the euclidean distance between a query and a reference position.</div><div class="ttdef"><b>Definition:</b> weightFunc.h:29</div></div>
+</div><!-- doc-content -->
+<div class="ttc" id="aclassPonca_1_1DistWeightFunc_html_a9f637587b83b4a0e7db3a5499f939010"><div class="ttname"><a href="classPonca_1_1DistWeightFunc.html#a9f637587b83b4a0e7db3a5499f939010">Ponca::DistWeightFunc::WeightReturnType</a></div><div class="ttdeci">std::pair&lt; Scalar, VectorType &gt; WeightReturnType</div><div class="ttdoc">Return type of the method w()</div><div class="ttdef"><b>Definition:</b> <a href="weightFunc_8h_source.html#l00040">weightFunc.h:40</a></div></div>
+<div class="ttc" id="aclassPonca_1_1DistWeightFunc_html_a38d697c8aa86a39be3dca740f8cf3232"><div class="ttname"><a href="classPonca_1_1DistWeightFunc.html#a38d697c8aa86a39be3dca740f8cf3232">Ponca::DistWeightFunc::MatrixType</a></div><div class="ttdeci">typename DataPoint::MatrixType MatrixType</div><div class="ttdoc">Matrix type from DataPoint.</div><div class="ttdef"><b>Definition:</b> <a href="weightFunc_8h_source.html#l00038">weightFunc.h:38</a></div></div>
+<div class="ttc" id="aclassPonca_1_1DistWeightFunc_html_ae7a2237f5c6983f49cfe6b73146666f2"><div class="ttname"><a href="classPonca_1_1DistWeightFunc.html#ae7a2237f5c6983f49cfe6b73146666f2">Ponca::DistWeightFunc::VectorType</a></div><div class="ttdeci">typename DataPoint::VectorType VectorType</div><div class="ttdoc">Vector type from DataPoint.</div><div class="ttdef"><b>Definition:</b> <a href="weightFunc_8h_source.html#l00036">weightFunc.h:36</a></div></div>
+<div class="ttc" id="aclassPonca_1_1DistWeightFunc_html_aa78e3ea4b72c62d9a0dc117fb7babab5"><div class="ttname"><a href="classPonca_1_1DistWeightFunc.html#aa78e3ea4b72c62d9a0dc117fb7babab5">Ponca::DistWeightFunc::Scalar</a></div><div class="ttdeci">typename DataPoint::Scalar Scalar</div><div class="ttdoc">Scalar type from DataPoint.</div><div class="ttdef"><b>Definition:</b> <a href="weightFunc_8h_source.html#l00034">weightFunc.h:34</a></div></div>
+<div class="ttc" id="aclassPonca_1_1DistWeightFunc_html"><div class="ttname"><a href="classPonca_1_1DistWeightFunc.html">Ponca::DistWeightFunc</a></div><div class="ttdoc">Weighting function based on the euclidean distance between a query and a reference position.</div><div class="ttdef"><b>Definition:</b> <a href="weightFunc_8h_source.html#l00030">weightFunc.h:30</a></div></div>
 <!-- start footer part -->
-<hr class="footer"/><address class="footer"><small>
-Generated on Tue Aug 2 2022 09:22:55 for Ponca by &#160;<a href="http://www.doxygen.org/index.html">
-<img class="footer" src="doxygen.png" alt="doxygen"/>
-</a> 1.8.17
-</small></address>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_695d95a8d8fbec601a248c0414764298.html">Ponca</a></li><li class="navelem"><a class="el" href="dir_ce16314fc45f8638543c5146aff64d4a.html">src</a></li><li class="navelem"><a class="el" href="dir_221133f19e4af6803e4ee7d78db21786.html">Fitting</a></li><li class="navelem"><b>weightFunc.hpp</b></li>
+    <li class="footer">Generated on Fri Sep 9 2022 12:28:20 for Ponca by
+    <a href="http://www.doxygen.org/index.html">
+    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.17 </li>
+  </ul>
+</div>
 </body>
 </html>

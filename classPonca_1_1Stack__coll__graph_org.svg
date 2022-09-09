@@ -8,7 +8,6 @@
  viewBox="0.00 0.00 220.50 469.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 <g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 465)">
 <title>Ponca::Stack&lt; T, N &gt;</title>
-<polygon fill="white" stroke="transparent" points="-4,4 -4,-465 216.5,-465 216.5,4 -4,4"/>
 <!-- Node1 -->
 <g id="node1" class="node">
 <title>Node1</title>
@@ -34,7 +33,7 @@
 <g id="node2" class="node">
 <title>Node2</title>
 <g id="a_node2"><a xlink:title=" ">
-<polygon fill="white" stroke="#bfbfbf" points="8,-193.5 8,-250.5 113,-250.5 113,-193.5 8,-193.5"/>
+<polygon fill="none" stroke="#bfbfbf" points="8,-193.5 8,-250.5 113,-250.5 113,-193.5 8,-193.5"/>
 <text text-anchor="middle" x="60.5" y="-238.5" font-family="Helvetica,sans-Serif" font-size="10.00">std::array&lt; T, N &gt;</text>
 <polyline fill="none" stroke="#bfbfbf" points="8,-231.5 113,-231.5 "/>
 <text text-anchor="middle" x="60.5" y="-219.5" font-family="Helvetica,sans-Serif" font-size="10.00"> </text>
@@ -54,7 +53,7 @@
 <g id="node3" class="node">
 <title>Node3</title>
 <g id="a_node3"><a xlink:title=" ">
-<polygon fill="white" stroke="#bfbfbf" points="46,-403.5 46,-460.5 75,-460.5 75,-403.5 46,-403.5"/>
+<polygon fill="none" stroke="#bfbfbf" points="46,-403.5 46,-460.5 75,-460.5 75,-403.5 46,-403.5"/>
 <text text-anchor="middle" x="60.5" y="-448.5" font-family="Helvetica,sans-Serif" font-size="10.00">T</text>
 <polyline fill="none" stroke="#bfbfbf" points="46,-441.5 75,-441.5 "/>
 <text text-anchor="middle" x="60.5" y="-429.5" font-family="Helvetica,sans-Serif" font-size="10.00"> </text>
@@ -74,7 +73,7 @@
 <g id="node4" class="node">
 <title>Node4</title>
 <g id="a_node4"><a xlink:title="STL class.">
-<polygon fill="white" stroke="#bfbfbf" points="120.5,-298.5 120.5,-355.5 212.5,-355.5 212.5,-298.5 120.5,-298.5"/>
+<polygon fill="none" stroke="#bfbfbf" points="120.5,-298.5 120.5,-355.5 212.5,-355.5 212.5,-298.5 120.5,-298.5"/>
 <text text-anchor="middle" x="166.5" y="-343.5" font-family="Helvetica,sans-Serif" font-size="10.00">std::array&lt; T &gt;</text>
 <polyline fill="none" stroke="#bfbfbf" points="120.5,-336.5 212.5,-336.5 "/>
 <text text-anchor="middle" x="166.5" y="-324.5" font-family="Helvetica,sans-Serif" font-size="10.00"> </text>

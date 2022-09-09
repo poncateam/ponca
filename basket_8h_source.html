@@ -1,3 +1,4 @@
+<!-- HTML header for doxygen 1.9.1-->
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -9,6 +10,10 @@
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
@@ -20,7 +25,23 @@
 </script>
 <script type="text/javascript" async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js"></script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only-darkmode-toggle.css" rel="stylesheet" type="text/css"/>
 <link href="ponca.css" rel="stylesheet" type="text/css"/>
+<!-- ... other metadata & script includes ... -->
+<script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+<script type="text/javascript">
+    DoxygenAwesomeDarkModeToggle.init()
+</script>
+<script type="text/javascript" src="doxygen-awesome-fragment-copy-button.js"></script>
+<script type="text/javascript">
+    DoxygenAwesomeFragmentCopyButton.init()
+</script>
+<script type="text/javascript" src="doxygen-awesome-paragraph-link.js"></script>
+<script type="text/javascript">
+    DoxygenAwesomeParagraphLink.init()
+</script>
 </head>
 <body>
 <div id="top"><!-- do not remove this div, it is closed by doxygen! -->
@@ -30,7 +51,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Ponca
-   &#160;<span id="projectnumber">8976dc5e97f677a334261616e8d2314551b8ce3d</span>
+   &#160;<span id="projectnumber">d844664447d2173c00cc41660408e8eb5b3a41d6</span>
    </div>
    <div id="projectbrief">Point Cloud Analysis library</div>
   </td>
@@ -55,6 +76,23 @@ $(function() {
 });
 /* @license-end */</script>
 <div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(document).ready(function(){initNavTree('basket_8h_source.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -69,11 +107,6 @@ $(function() {
 </iframe>
 </div>
 
-<div id="nav-path" class="navpath">
-  <ul>
-<li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_695d95a8d8fbec601a248c0414764298.html">Ponca</a></li><li class="navelem"><a class="el" href="dir_ce16314fc45f8638543c5146aff64d4a.html">src</a></li><li class="navelem"><a class="el" href="dir_221133f19e4af6803e4ee7d78db21786.html">Fitting</a></li>  </ul>
-</div>
-</div><!-- top -->
 <div class="header">
   <div class="headertitle">
 <div class="title">basket.h</div>  </div>
@@ -89,83 +122,179 @@ $(function() {
 <div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160; </div>
 <div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#include &quot;defines.h&quot;</span></div>
 <div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="preprocessor">#include &quot;enums.h&quot;</span></div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160; </div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="preprocessor">#include PONCA_MULTIARCH_INCLUDE_STD(iterator)</span></div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160; </div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="keyword">namespace </span><a class="code" href="namespacePonca.html">Ponca</a></div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;{</div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160; </div>
-<div class="line"><a name="l00018"></a><span class="lineno"><a class="line" href="namespacePonca_1_1internal.html">   18</a></span>&#160;<span class="keyword">namespace </span>internal</div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;{</div>
-<div class="line"><a name="l00021"></a><span class="lineno"><a class="line" href="classPonca_1_1internal_1_1Forward.html">   21</a></span>&#160;    <span class="keyword">template</span> &lt;<span class="keyword">class</span>, <span class="keyword">class</span>, <span class="keyword">typename</span> T&gt; <span class="keyword">class </span><a class="code" href="classPonca_1_1internal_1_1Forward.html">Forward</a>: <span class="keyword">public</span> T {};</div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;}</div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160; </div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160; </div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="preprocessor">#define BASKET_TP(I) template &lt;class, class, typename&gt; class Ext##I = internal::Forward</span></div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160; </div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;    <span class="keyword">template</span> &lt; <span class="keyword">class</span> P, <span class="keyword">class</span> W, <span class="keyword">template</span> &lt;<span class="keyword">class</span>, <span class="keyword">class</span>, <span class="keyword">typename</span>&gt;<span class="keyword">class </span>Fit,</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;        BASKET_TP(0), BASKET_TP(1), BASKET_TP(2), BASKET_TP(3), BASKET_TP(4), BASKET_TP(5), BASKET_TP(6), BASKET_TP(7), BASKET_TP(8), BASKET_TP(9), BASKET_TP(10), BASKET_TP(11) &gt;</div>
-<div class="line"><a name="l00049"></a><span class="lineno"><a class="line" href="classPonca_1_1Basket.html">   49</a></span>&#160;    <span class="keyword">class </span><a class="code" href="classPonca_1_1Basket.html">Basket</a></div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;        : <span class="keyword">public</span> Ext11&lt;P,W, Ext10&lt;P,W, Ext9&lt;P,W, Ext8&lt;P,W, Ext7&lt;P,W, Ext6&lt;P,W, Ext5&lt;P,W, Ext4&lt;P,W, Ext3&lt;P,W, Ext2&lt;P,W, Ext1&lt;P,W, Ext0&lt;P,W, Fit&lt;P,W,void&gt; &gt; &gt; &gt; &gt; &gt; &gt; &gt; &gt; &gt; &gt; &gt; &gt;</div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    {</div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    <span class="keyword">public</span>:</div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;        <span class="keyword">typedef</span> P DataPoint;</div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;        <span class="keyword">typedef</span> W WeightFunction;</div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;        <span class="keyword">template</span> &lt;<span class="keyword">typename</span> IteratorBegin, <span class="keyword">typename</span> IteratorEnd&gt;</div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;        PONCA_MULTIARCH <span class="keyword">inline</span></div>
-<div class="line"><a name="l00064"></a><span class="lineno"><a class="line" href="classPonca_1_1Basket.html#ae2adecf8ec48cf365c6569e2fa013293">   64</a></span>&#160;        <a class="code" href="group__fitting.html#gabfd697aebf07c1b5c8be5ee401e2dc84">FIT_RESULT</a> <a class="code" href="classPonca_1_1Basket.html#ae2adecf8ec48cf365c6569e2fa013293">compute</a>(<span class="keyword">const</span> IteratorBegin&amp; begin, <span class="keyword">const</span> IteratorEnd&amp; end){</div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;            <a class="code" href="group__fitting.html#gabfd697aebf07c1b5c8be5ee401e2dc84">FIT_RESULT</a> res = <a class="code" href="group__fitting.html#ggabfd697aebf07c1b5c8be5ee401e2dc84a08d57dd200082f67128b5274049dda41">UNDEFINED</a>;</div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;            <span class="keywordflow">do</span> {</div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;                <span class="keywordflow">for</span> (<span class="keyword">auto</span> it = begin; it != end; ++it){</div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;                    this-&gt;addNeighbor(*it);</div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;                }</div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;                res = this-&gt;finalize();</div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;            } <span class="keywordflow">while</span> ( res == <a class="code" href="group__fitting.html#ggabfd697aebf07c1b5c8be5ee401e2dc84a0d50cd1855fec459b2c5756ec38d4a17">NEED_OTHER_PASS</a> );</div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;            <span class="keywordflow">return</span> res;</div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;        }</div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160; </div>
-<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;        <span class="keyword">template</span> &lt;<span class="keyword">typename</span> IndexRange, <span class="keyword">typename</span> Po<span class="keywordtype">int</span>Container&gt;</div>
-<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;        PONCA_MULTIARCH <span class="keyword">inline</span></div>
-<div class="line"><a name="l00088"></a><span class="lineno"><a class="line" href="classPonca_1_1Basket.html#a76430bb5572c9fe8c79befb81bc978e9">   88</a></span>&#160;        <a class="code" href="group__fitting.html#gabfd697aebf07c1b5c8be5ee401e2dc84">FIT_RESULT</a> <a class="code" href="classPonca_1_1Basket.html#a76430bb5572c9fe8c79befb81bc978e9">computeWithIds</a>(IndexRange ids, <span class="keyword">const</span> PointContainer&amp; points){</div>
-<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;            <a class="code" href="group__fitting.html#gabfd697aebf07c1b5c8be5ee401e2dc84">FIT_RESULT</a> res = <a class="code" href="group__fitting.html#ggabfd697aebf07c1b5c8be5ee401e2dc84a08d57dd200082f67128b5274049dda41">UNDEFINED</a>;</div>
-<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;            <span class="keywordflow">do</span> {</div>
-<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;                <span class="keywordflow">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span>&amp; i : ids){</div>
-<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;                    this-&gt;addNeighbor(points[i]);</div>
-<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;                }</div>
-<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;                res = this-&gt;finalize();</div>
-<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;            } <span class="keywordflow">while</span> ( res == <a class="code" href="group__fitting.html#ggabfd697aebf07c1b5c8be5ee401e2dc84a0d50cd1855fec459b2c5756ec38d4a17">NEED_OTHER_PASS</a> );</div>
-<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;            <span class="keywordflow">return</span> res;</div>
-<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;        }</div>
-<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160; </div>
-<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;<span class="preprocessor">#ifdef PONCA_CPU_ARCH</span></div>
-<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160; </div>
-<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;        <span class="keyword">template</span> &lt;<span class="keyword">typename</span> Container&gt;</div>
-<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;        PONCA_MULTIARCH <span class="keyword">inline</span></div>
-<div class="line"><a name="l00107"></a><span class="lineno"><a class="line" href="classPonca_1_1Basket.html#a23a96f5fe416cfd4648f4ae01b3bc90b">  107</a></span>&#160;        <a class="code" href="group__fitting.html#gabfd697aebf07c1b5c8be5ee401e2dc84">FIT_RESULT</a> <a class="code" href="classPonca_1_1Basket.html#a23a96f5fe416cfd4648f4ae01b3bc90b">compute</a>(<span class="keyword">const</span> Container&amp; c){</div>
-<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;            <span class="keywordflow">return</span> <a class="code" href="classPonca_1_1Basket.html#ae2adecf8ec48cf365c6569e2fa013293">compute</a>(std::begin(c), std::end(c));</div>
-<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;        }</div>
-<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;    }; <span class="comment">// class Basket</span></div>
-<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160; </div>
-<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;<span class="preprocessor">#undef BASKET_TP</span></div>
-<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160; </div>
-<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;}<span class="comment">// namespace Ponca</span></div>
-<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160; </div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="preprocessor">#include &quot;primitive.h&quot;</span></div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160; </div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="preprocessor">#include PONCA_MULTIARCH_INCLUDE_STD(iterator)</span></div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160; </div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="keyword">namespace </span><a class="code" href="namespacePonca.html">Ponca</a></div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;{</div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160; </div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="preprocessor">#ifndef PARSED_WITH_DOXYGEN</span></div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160; </div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="keyword">namespace </span>internal</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;{</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;    <span class="keyword">template</span> &lt;<span class="keyword">class</span>, <span class="keyword">class</span>, <span class="keyword">typename</span> T&gt; <span class="keyword">class </span>Forward: <span class="keyword">public</span> T {};</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    <span class="keyword">template</span> &lt;<span class="keyword">class</span>, <span class="keyword">class</span>, <span class="keywordtype">int</span> Type, <span class="keyword">typename</span> T&gt; <span class="keyword">class </span>ForwardDiff: <span class="keyword">public</span> T {};</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;}</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160; </div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="preprocessor">#ifdef PONCA_CPU_ARCH</span></div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="preprocessor">#   define WRITE_BASKET_SINGLE_HOST_FUNCTIONS                                                         \</span></div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;<span class="preprocessor">                           \</span></div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="preprocessor">    template &lt;typename Container&gt;                                                                     \</span></div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;<span class="preprocessor">    PONCA_MULTIARCH inline                                                                            \</span></div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;<span class="preprocessor">    FIT_RESULT compute(const Container&amp; c){                                                           \</span></div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;<span class="preprocessor">        return Self::compute(std::begin(c), std::end(c));                                             \</span></div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;<span class="preprocessor">    }</span></div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;<span class="preprocessor">#else</span></div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;<span class="preprocessor">#   define WRITE_BASKET_SINGLE_HOST_FUNCTIONS</span></div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160; </div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;<span class="preprocessor">#define WRITE_BASKET_FUNCTIONS                                                                        \</span></div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;<span class="preprocessor">                           \</span></div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;<span class="preprocessor"> \</span></div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;<span class="preprocessor">                          \</span></div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;<span class="preprocessor">                                                                         \</span></div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;<span class="preprocessor">    template &lt;typename IteratorBegin, typename IteratorEnd&gt;                                           \</span></div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;<span class="preprocessor">    PONCA_MULTIARCH inline                                                                            \</span></div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;<span class="preprocessor">    FIT_RESULT compute(const IteratorBegin&amp; begin, const IteratorEnd&amp; end){                           \</span></div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;<span class="preprocessor">        FIT_RESULT res = UNDEFINED;                                                                   \</span></div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;<span class="preprocessor">        do {                                                                                          \</span></div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;<span class="preprocessor">            for (auto it = begin; it != end; ++it){                                                   \</span></div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;<span class="preprocessor">                Self::addNeighbor(*it);                                                               \</span></div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;<span class="preprocessor">            }                                                                                         \</span></div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;<span class="preprocessor">            res = Base::finalize();                                                                   \</span></div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;<span class="preprocessor">        } while ( res == NEED_OTHER_PASS );                                                           \</span></div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;<span class="preprocessor">        return res;                                                                                   \</span></div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;<span class="preprocessor">    }                                                                                                 \</span></div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;<span class="preprocessor">       \</span></div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;<span class="preprocessor">           \</span></div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;<span class="preprocessor">                         \</span></div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;<span class="preprocessor">                               \</span></div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;<span class="preprocessor">                       \</span></div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;<span class="preprocessor">    template &lt;typename IndexRange, typename PointContainer&gt;                                           \</span></div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;<span class="preprocessor">    PONCA_MULTIARCH inline                                                                            \</span></div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;<span class="preprocessor">    FIT_RESULT computeWithIds(IndexRange ids, const PointContainer&amp; points){                          \</span></div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;<span class="preprocessor">        FIT_RESULT res = UNDEFINED;                                                                   \</span></div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;<span class="preprocessor">            do {                                                                                      \</span></div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;<span class="preprocessor">                for (const auto&amp; i : ids){                                                            \</span></div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;<span class="preprocessor">                    this-&gt;addNeighbor(points[i]);                                                     \</span></div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;<span class="preprocessor">                }                                                                                     \</span></div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;<span class="preprocessor">                res = this-&gt;finalize();                                                               \</span></div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;<span class="preprocessor">            } while ( res == NEED_OTHER_PASS );                                                       \</span></div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;<span class="preprocessor">            return res;return Self::computeWithIds(ids, points);                                      \</span></div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;<span class="preprocessor">    }                                                                                                 \</span></div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;<span class="preprocessor">    WRITE_BASKET_SINGLE_HOST_FUNCTIONS</span></div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160; </div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;<span class="preprocessor">#define BASKETDIFF_TP(I) template &lt;class, class, int, typename&gt; class Ext##I = internal::ForwardDiff</span></div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;<span class="preprocessor">#define BSKW typename BasketType::WeightFunction</span></div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;<span class="preprocessor">#define BSKP typename BasketType::DataPoint</span></div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160; </div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160; </div>
+<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;    <span class="keyword">template</span> &lt; <span class="keyword">typename</span> BasketType, <span class="keywordtype">int</span> Type,</div>
+<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;            BASKETDIFF_TP(0), BASKETDIFF_TP(1), BASKETDIFF_TP(2), BASKETDIFF_TP(3), BASKETDIFF_TP(4), BASKETDIFF_TP(5), BASKETDIFF_TP(6), BASKETDIFF_TP(7), BASKETDIFF_TP(8), BASKETDIFF_TP(9), BASKETDIFF_TP(10), BASKETDIFF_TP(11) &gt;</div>
+<div class="line"><a name="l00120"></a><span class="lineno"><a class="line" href="classPonca_1_1BasketDiff.html">  120</a></span>&#160;    <span class="keyword">class </span><a class="code" href="classPonca_1_1BasketDiff.html">BasketDiff</a></div>
+<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;        : <span class="keyword">public</span> Ext11&lt;BSKP,BSKW,Type, Ext10&lt;BSKP,BSKW,Type, Ext9&lt;BSKP,BSKW,Type, Ext8&lt;BSKP,BSKW,Type, Ext7&lt;BSKP,BSKW,Type, Ext6&lt;BSKP,BSKW,Type, Ext5&lt;BSKP,BSKW,Type, Ext4&lt;BSKP,BSKW,Type, Ext3&lt;BSKP,BSKW,Type, Ext2&lt;BSKP,BSKW,Type, Ext1&lt;BSKP,BSKW,Type,Ext0&lt;BSKP,BSKW, Type, PrimitiveDer&lt;BSKP,BSKW,Type, BasketType &gt; &gt; &gt; &gt; &gt; &gt; &gt; &gt; &gt; &gt; &gt; &gt; &gt; {</div>
+<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;    <span class="keyword">private</span>:</div>
+<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;        <span class="keyword">using</span> <a class="code" href="classPonca_1_1BasketDiff.html">Self</a>   = <a class="code" href="classPonca_1_1BasketDiff.html">BasketDiff</a>;</div>
+<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;    <span class="keyword">public</span>:</div>
+<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;    <span class="keyword">using</span> <a class="code" href="classPonca_1_1BasketDiff.html#aec85a475f8f960d47685284b6d40ec67">Base</a> = Ext11 &lt;BSKP, BSKW, Type,</div>
+<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;            Ext10&lt; BSKP, BSKW, Type,</div>
+<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;            Ext9 &lt; BSKP, BSKW, Type,</div>
+<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;            Ext8 &lt; BSKP, BSKW, Type,</div>
+<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;            Ext7 &lt; BSKP, BSKW, Type,</div>
+<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;            Ext6 &lt; BSKP, BSKW, Type,</div>
+<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;            Ext5 &lt; BSKP, BSKW, Type,</div>
+<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;            Ext4 &lt; BSKP, BSKW, Type,</div>
+<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;            Ext3 &lt; BSKP, BSKW, Type,</div>
+<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;            Ext2 &lt; BSKP, BSKW, Type,</div>
+<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;            Ext1 &lt; BSKP, BSKW, Type,</div>
+<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;            Ext0 &lt; BSKP, BSKW, Type,</div>
+<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;            <a class="code" href="classPonca_1_1PrimitiveDer.html">PrimitiveDer</a>&lt;BSKP,BSKW,Type,</div>
+<div class="line"><a name="l00139"></a><span class="lineno"><a class="line" href="classPonca_1_1BasketDiff.html#aec85a475f8f960d47685284b6d40ec67">  139</a></span>&#160;            BasketType &gt; &gt; &gt; &gt; &gt; &gt; &gt; &gt; &gt; &gt; &gt; &gt; &gt;;</div>
+<div class="line"><a name="l00141"></a><span class="lineno"><a class="line" href="classPonca_1_1BasketDiff.html#a9c84fb6df553337b105dafbcd2ec1040">  141</a></span>&#160;    <span class="keyword">using</span> <a class="code" href="classPonca_1_1BasketDiff.html#a9c84fb6df553337b105dafbcd2ec1040">WeightFunction</a> = BSKW;</div>
+<div class="line"><a name="l00143"></a><span class="lineno"><a class="line" href="classPonca_1_1BasketDiff.html#a41a3b256f0bdc84bb345dc98cd7ddaad">  143</a></span>&#160;    <span class="keyword">using</span> <a class="code" href="classPonca_1_1BasketDiff.html#a41a3b256f0bdc84bb345dc98cd7ddaad">DataPoint</a> = BSKP;</div>
+<div class="line"><a name="l00145"></a><span class="lineno"><a class="line" href="classPonca_1_1BasketDiff.html#a1e071b8214fe5de7e3b9a2a91d78bc56">  145</a></span>&#160;    <span class="keyword">using</span> <a class="code" href="classPonca_1_1BasketDiff.html#a1e071b8214fe5de7e3b9a2a91d78bc56">Scalar</a> = <span class="keyword">typename</span> DataPoint::Scalar;</div>
+<div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160; </div>
+<div class="line"><a name="l00147"></a><span class="lineno"><a class="line" href="classPonca_1_1BasketDiff.html#aa48663abf84d9f546fbaec22c2216244">  147</a></span>&#160;    WRITE_BASKET_FUNCTIONS</div>
+<div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160; </div>
+<div class="line"><a name="l00150"></a><span class="lineno"><a class="line" href="classPonca_1_1BasketDiff.html#a8a4a85161b1a03988961606229bec11f">  150</a></span>&#160;    PONCA_MULTIARCH <span class="keyword">inline</span> <span class="keywordtype">bool</span> <a class="code" href="classPonca_1_1BasketDiff.html#a8a4a85161b1a03988961606229bec11f">addNeighbor</a>(<span class="keyword">const</span> <a class="code" href="classPonca_1_1BasketDiff.html#a41a3b256f0bdc84bb345dc98cd7ddaad">DataPoint</a> &amp;_nei) {</div>
+<div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;        <span class="comment">// compute weight</span></div>
+<div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160;        <span class="keyword">auto</span> wres = Base::m_w.w(_nei.pos(), _nei);</div>
+<div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160;        <span class="keyword">typename</span> Base::ScalarArray dw;</div>
+<div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160; </div>
+<div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160;        <span class="keywordflow">if</span> (wres.first &gt; <a class="code" href="classPonca_1_1BasketDiff.html#a1e071b8214fe5de7e3b9a2a91d78bc56">Scalar</a>(0.)) {</div>
+<div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160;            Base::addLocalNeighbor(wres.first, wres.second, _nei, dw);</div>
+<div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160;            Base::m_sumW += (wres.first);</div>
+<div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160;            ++(Base::m_nbNeighbors);</div>
+<div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160;            <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160;        }</div>
+<div class="line"><a name="l00161"></a><span class="lineno">  161</span>&#160;        <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160;    }</div>
+<div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160;};</div>
+<div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160; </div>
+<div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160;<span class="preprocessor">#undef BASKETDIFF_TP</span></div>
+<div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160; </div>
+<div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160; </div>
+<div class="line"><a name="l00168"></a><span class="lineno">  168</span>&#160;<span class="preprocessor">#define BASKET_TP(I) template &lt;class, class, typename&gt; class Ext##I = internal::Forward</span></div>
+<div class="line"><a name="l00169"></a><span class="lineno">  169</span>&#160; </div>
+<div class="line"><a name="l00205"></a><span class="lineno">  205</span>&#160;    <span class="keyword">template</span> &lt; <span class="keyword">class </span>P, <span class="keyword">class </span>W,</div>
+<div class="line"><a name="l00206"></a><span class="lineno">  206</span>&#160;        BASKET_TP(0), BASKET_TP(1), BASKET_TP(2), BASKET_TP(3), BASKET_TP(4), BASKET_TP(5), BASKET_TP(6), BASKET_TP(7), BASKET_TP(8), BASKET_TP(9), BASKET_TP(10), BASKET_TP(11) &gt;</div>
+<div class="line"><a name="l00207"></a><span class="lineno"><a class="line" href="classPonca_1_1Basket.html">  207</a></span>&#160;    <span class="keyword">class </span><a class="code" href="classPonca_1_1Basket.html">Basket</a></div>
+<div class="line"><a name="l00208"></a><span class="lineno">  208</span>&#160;        : <span class="keyword">public</span> Ext11&lt;P,W, Ext10&lt;P,W, Ext9&lt;P,W, Ext8&lt;P,W, Ext7&lt;P,W, Ext6&lt;P,W, Ext5&lt;P,W, Ext4&lt;P,W, Ext3&lt;P,W, Ext2&lt;P,W, Ext1&lt;P,W, Ext0&lt;P,W, PrimitiveBase&lt;P,W&gt; &gt; &gt; &gt; &gt; &gt; &gt; &gt; &gt; &gt; &gt; &gt; &gt;</div>
+<div class="line"><a name="l00209"></a><span class="lineno">  209</span>&#160;    {</div>
+<div class="line"><a name="l00210"></a><span class="lineno">  210</span>&#160;    <span class="keyword">private</span>:</div>
+<div class="line"><a name="l00211"></a><span class="lineno">  211</span>&#160;        <span class="keyword">using</span> <a class="code" href="classPonca_1_1Basket.html">Self</a>   = <a class="code" href="classPonca_1_1Basket.html">Basket</a>;</div>
+<div class="line"><a name="l00212"></a><span class="lineno">  212</span>&#160;    <span class="keyword">public</span>:</div>
+<div class="line"><a name="l00214"></a><span class="lineno"><a class="line" href="classPonca_1_1Basket.html#a73961edd019f5984c9fd69f8ce86591e">  214</a></span>&#160;        <span class="keyword">using</span> <a class="code" href="classPonca_1_1Basket.html#a73961edd019f5984c9fd69f8ce86591e">Base</a> = Ext11&lt;P,W, Ext10&lt;P,W, Ext9&lt;P,W, Ext8&lt;P,W, Ext7&lt;P,W, Ext6&lt;P,W, Ext5&lt;P,W, Ext4&lt;P,W, Ext3&lt;P,W, Ext2&lt;P,W, Ext1&lt;P,W, Ext0&lt;P,W, PrimitiveBase&lt;P,W&gt; &gt; &gt; &gt; &gt; &gt; &gt; &gt; &gt; &gt; &gt; &gt; &gt;;</div>
+<div class="line"><a name="l00216"></a><span class="lineno"><a class="line" href="classPonca_1_1Basket.html#a46033cd7d04110f9cb9509015b961ee2">  216</a></span>&#160;        <span class="keyword">using</span> <a class="code" href="classPonca_1_1Basket.html#a46033cd7d04110f9cb9509015b961ee2">Scalar</a> = <span class="keyword">typename</span> P::Scalar;</div>
+<div class="line"><a name="l00218"></a><span class="lineno"><a class="line" href="classPonca_1_1Basket.html#a5c434baff79e8d7b3bce21c10f1b9fc2">  218</a></span>&#160;        <span class="keyword">using</span> <a class="code" href="classPonca_1_1Basket.html#a5c434baff79e8d7b3bce21c10f1b9fc2">DataPoint</a> = P;</div>
+<div class="line"><a name="l00220"></a><span class="lineno"><a class="line" href="classPonca_1_1Basket.html#a9aa604f9995412fc71ad769a41ec8f53">  220</a></span>&#160;        <span class="keyword">using</span> <a class="code" href="classPonca_1_1Basket.html#a9aa604f9995412fc71ad769a41ec8f53">WeightFunction</a> = W;</div>
+<div class="line"><a name="l00221"></a><span class="lineno">  221</span>&#160; </div>
+<div class="line"><a name="l00222"></a><span class="lineno"><a class="line" href="classPonca_1_1Basket.html#aa4951f011ff54da29a8e3606f9dc6e0e">  222</a></span>&#160;        WRITE_BASKET_FUNCTIONS;</div>
+<div class="line"><a name="l00223"></a><span class="lineno">  223</span>&#160; </div>
+<div class="line"><a name="l00226"></a><span class="lineno"><a class="line" href="classPonca_1_1Basket.html#abe967d3aae87dc8f19b6d1ae7597e2a4">  226</a></span>&#160;        PONCA_MULTIARCH <span class="keyword">inline</span> <span class="keywordtype">bool</span> <a class="code" href="classPonca_1_1Basket.html#abe967d3aae87dc8f19b6d1ae7597e2a4">addNeighbor</a>(<span class="keyword">const</span> <a class="code" href="classPonca_1_1Basket.html#a5c434baff79e8d7b3bce21c10f1b9fc2">DataPoint</a> &amp;_nei) {</div>
+<div class="line"><a name="l00227"></a><span class="lineno">  227</span>&#160;            <span class="comment">// compute weight</span></div>
+<div class="line"><a name="l00228"></a><span class="lineno">  228</span>&#160;            <span class="keyword">auto</span> wres = Base::m_w.w(_nei.pos(), _nei);</div>
+<div class="line"><a name="l00229"></a><span class="lineno">  229</span>&#160; </div>
+<div class="line"><a name="l00230"></a><span class="lineno">  230</span>&#160;            <span class="keywordflow">if</span> (wres.first &gt; <a class="code" href="classPonca_1_1Basket.html#a46033cd7d04110f9cb9509015b961ee2">Scalar</a>(0.)) {</div>
+<div class="line"><a name="l00231"></a><span class="lineno">  231</span>&#160;                Base::addLocalNeighbor(wres.first, wres.second, _nei);</div>
+<div class="line"><a name="l00232"></a><span class="lineno">  232</span>&#160;                Base::m_sumW += (wres.first);</div>
+<div class="line"><a name="l00233"></a><span class="lineno">  233</span>&#160;                ++(Base::m_nbNeighbors);</div>
+<div class="line"><a name="l00234"></a><span class="lineno">  234</span>&#160;                <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><a name="l00235"></a><span class="lineno">  235</span>&#160;            }</div>
+<div class="line"><a name="l00236"></a><span class="lineno">  236</span>&#160;            <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00237"></a><span class="lineno">  237</span>&#160;        }</div>
+<div class="line"><a name="l00238"></a><span class="lineno">  238</span>&#160;    }; <span class="comment">// class Basket</span></div>
+<div class="line"><a name="l00239"></a><span class="lineno">  239</span>&#160; </div>
+<div class="line"><a name="l00240"></a><span class="lineno">  240</span>&#160;<span class="preprocessor">#undef BASKET_TP</span></div>
+<div class="line"><a name="l00241"></a><span class="lineno">  241</span>&#160; </div>
+<div class="line"><a name="l00242"></a><span class="lineno">  242</span>&#160;}<span class="comment">// namespace Ponca</span></div>
+<div class="line"><a name="l00243"></a><span class="lineno">  243</span>&#160; </div>
 </div><!-- fragment --></div><!-- contents -->
-<div class="ttc" id="anamespacePonca_html"><div class="ttname"><a href="namespacePonca.html">Ponca</a></div><div class="ttdoc">This module provides efficient methods for the fitting and analysis of point-clouds in arbitrary dime...</div><div class="ttdef"><b>Definition:</b> limitedPriorityQueue.h:14</div></div>
-<div class="ttc" id="aclassPonca_1_1Basket_html_ae2adecf8ec48cf365c6569e2fa013293"><div class="ttname"><a href="classPonca_1_1Basket.html#ae2adecf8ec48cf365c6569e2fa013293">Ponca::Basket::compute</a></div><div class="ttdeci">FIT_RESULT compute(const IteratorBegin &amp;begin, const IteratorEnd &amp;end)</div><div class="ttdoc">Convenience function for STL-like iterators.</div><div class="ttdef"><b>Definition:</b> basket.h:64</div></div>
-<div class="ttc" id="agroup__fitting_html_gabfd697aebf07c1b5c8be5ee401e2dc84"><div class="ttname"><a href="group__fitting.html#gabfd697aebf07c1b5c8be5ee401e2dc84">Ponca::FIT_RESULT</a></div><div class="ttdeci">FIT_RESULT</div><div class="ttdef"><b>Definition:</b> enums.h:16</div></div>
-<div class="ttc" id="aclassPonca_1_1Basket_html"><div class="ttname"><a href="classPonca_1_1Basket.html">Ponca::Basket</a></div><div class="ttdoc">Agregator class used to declare specialized structures using CRTP (Curiously Recurring Template Patte...</div><div class="ttdef"><b>Definition:</b> basket.h:49</div></div>
-<div class="ttc" id="aclassPonca_1_1Basket_html_a76430bb5572c9fe8c79befb81bc978e9"><div class="ttname"><a href="classPonca_1_1Basket.html#a76430bb5572c9fe8c79befb81bc978e9">Ponca::Basket::computeWithIds</a></div><div class="ttdeci">FIT_RESULT computeWithIds(IndexRange ids, const PointContainer &amp;points)</div><div class="ttdoc">Convenience function for STL-like iterators.</div><div class="ttdef"><b>Definition:</b> basket.h:88</div></div>
-<div class="ttc" id="aclassPonca_1_1Basket_html_a23a96f5fe416cfd4648f4ae01b3bc90b"><div class="ttname"><a href="classPonca_1_1Basket.html#a23a96f5fe416cfd4648f4ae01b3bc90b">Ponca::Basket::compute</a></div><div class="ttdeci">FIT_RESULT compute(const Container &amp;c)</div><div class="ttdoc">Convenience function for STL-like containers.</div><div class="ttdef"><b>Definition:</b> basket.h:107</div></div>
-<div class="ttc" id="agroup__fitting_html_ggabfd697aebf07c1b5c8be5ee401e2dc84a08d57dd200082f67128b5274049dda41"><div class="ttname"><a href="group__fitting.html#ggabfd697aebf07c1b5c8be5ee401e2dc84a08d57dd200082f67128b5274049dda41">Ponca::UNDEFINED</a></div><div class="ttdeci">@ UNDEFINED</div><div class="ttdoc">The fitting is undefined, you can't use it for valid results (and having less than 3 neighbors)</div><div class="ttdef"><b>Definition:</b> enums.h:26</div></div>
-<div class="ttc" id="agroup__fitting_html_ggabfd697aebf07c1b5c8be5ee401e2dc84a0d50cd1855fec459b2c5756ec38d4a17"><div class="ttname"><a href="group__fitting.html#ggabfd697aebf07c1b5c8be5ee401e2dc84a0d50cd1855fec459b2c5756ec38d4a17">Ponca::NEED_OTHER_PASS</a></div><div class="ttdeci">@ NEED_OTHER_PASS</div><div class="ttdoc">The fitting procedure needs to analyse the neighborhood another time.</div><div class="ttdef"><b>Definition:</b> enums.h:29</div></div>
-<div class="ttc" id="aclassPonca_1_1internal_1_1Forward_html"><div class="ttname"><a href="classPonca_1_1internal_1_1Forward.html">Ponca::internal::Forward</a></div><div class="ttdoc">Internal class used to build the Basket structure.</div><div class="ttdef"><b>Definition:</b> basket.h:21</div></div>
+</div><!-- doc-content -->
+<div class="ttc" id="anamespacePonca_html"><div class="ttname"><a href="namespacePonca.html">Ponca</a></div><div class="ttdoc">This Source Code Form is subject to the terms of the Mozilla Public License, v.</div><div class="ttdef"><b>Definition:</b> <a href="limitedPriorityQueue_8h_source.html#l00014">limitedPriorityQueue.h:14</a></div></div>
+<div class="ttc" id="aclassPonca_1_1BasketDiff_html_a1e071b8214fe5de7e3b9a2a91d78bc56"><div class="ttname"><a href="classPonca_1_1BasketDiff.html#a1e071b8214fe5de7e3b9a2a91d78bc56">Ponca::BasketDiff::Scalar</a></div><div class="ttdeci">typename DataPoint::Scalar Scalar</div><div class="ttdoc">Scalar type used for computation, as defined from Basket.</div><div class="ttdef"><b>Definition:</b> <a href="basket_8h_source.html#l00145">basket.h:145</a></div></div>
+<div class="ttc" id="aclassPonca_1_1Basket_html_a46033cd7d04110f9cb9509015b961ee2"><div class="ttname"><a href="classPonca_1_1Basket.html#a46033cd7d04110f9cb9509015b961ee2">Ponca::Basket::Scalar</a></div><div class="ttdeci">typename P::Scalar Scalar</div><div class="ttdoc">Scalar type used for computation, as defined from template parameter P</div><div class="ttdef"><b>Definition:</b> <a href="basket_8h_source.html#l00216">basket.h:216</a></div></div>
+<div class="ttc" id="aclassPonca_1_1PrimitiveDer_html"><div class="ttname"><a href="classPonca_1_1PrimitiveDer.html">Ponca::PrimitiveDer</a></div><div class="ttdoc">Generic class performing the Fit derivation.</div><div class="ttdef"><b>Definition:</b> <a href="primitive_8h_source.html#l00133">primitive.h:133</a></div></div>
+<div class="ttc" id="aclassPonca_1_1Basket_html"><div class="ttname"><a href="classPonca_1_1Basket.html">Ponca::Basket</a></div><div class="ttdoc">Aggregator class used to declare specialized structures using CRTP.</div><div class="ttdef"><b>Definition:</b> <a href="basket_8h_source.html#l00207">basket.h:207</a></div></div>
+<div class="ttc" id="aclassPonca_1_1Basket_html_a73961edd019f5984c9fd69f8ce86591e"><div class="ttname"><a href="classPonca_1_1Basket.html#a73961edd019f5984c9fd69f8ce86591e">Ponca::Basket::Base</a></div><div class="ttdeci">Ext11&lt; P, W, Ext10&lt; P, W, Ext9&lt; P, W, Ext8&lt; P, W, Ext7&lt; P, W, Ext6&lt; P, W, Ext5&lt; P, W, Ext4&lt; P, W, Ext3&lt; P, W, Ext2&lt; P, W, Ext1&lt; P, W, Ext0&lt; P, W, PrimitiveBase&lt; P, W &gt; &gt; &gt; &gt; &gt; &gt; &gt; &gt; &gt; &gt; &gt; &gt; &gt; Base</div><div class="ttdoc">Base type, which aggregates all the computational objects using the CRTP.</div><div class="ttdef"><b>Definition:</b> <a href="basket_8h_source.html#l00214">basket.h:214</a></div></div>
+<div class="ttc" id="aclassPonca_1_1BasketDiff_html_a8a4a85161b1a03988961606229bec11f"><div class="ttname"><a href="classPonca_1_1BasketDiff.html#a8a4a85161b1a03988961606229bec11f">Ponca::BasketDiff::addNeighbor</a></div><div class="ttdeci">bool addNeighbor(const DataPoint &amp;_nei)</div><div class="ttdoc">Hide Basket::addNeighbor.</div><div class="ttdef"><b>Definition:</b> <a href="basket_8h_source.html#l00150">basket.h:150</a></div></div>
+<div class="ttc" id="aclassPonca_1_1BasketDiff_html_a9c84fb6df553337b105dafbcd2ec1040"><div class="ttname"><a href="classPonca_1_1BasketDiff.html#a9c84fb6df553337b105dafbcd2ec1040">Ponca::BasketDiff::WeightFunction</a></div><div class="ttdeci">typename BasketType::WeightFunction WeightFunction</div><div class="ttdoc">Weighting function.</div><div class="ttdef"><b>Definition:</b> <a href="basket_8h_source.html#l00141">basket.h:141</a></div></div>
+<div class="ttc" id="aclassPonca_1_1BasketDiff_html_aec85a475f8f960d47685284b6d40ec67"><div class="ttname"><a href="classPonca_1_1BasketDiff.html#aec85a475f8f960d47685284b6d40ec67">Ponca::BasketDiff::Base</a></div><div class="ttdeci">Ext11&lt; typename BasketType::DataPoint, typename BasketType::WeightFunction, Type, Ext10&lt; typename BasketType::DataPoint, typename BasketType::WeightFunction, Type, Ext9&lt; typename BasketType::DataPoint, typename BasketType::WeightFunction, Type, Ext8&lt; typename BasketType::DataPoint, typename BasketType::WeightFunction, Type, Ext7&lt; typename BasketType::DataPoint, typename BasketType::WeightFunction, Type, Ext6&lt; typename BasketType::DataPoint, typename BasketType::WeightFunction, Type, Ext5&lt; typename BasketType::DataPoint, typename BasketType::WeightFunction, Type, Ext4&lt; typename BasketType::DataPoint, typename BasketType::WeightFunction, Type, Ext3&lt; typename BasketType::DataPoint, typename BasketType::WeightFunction, Type, Ext2&lt; typename BasketType::DataPoint, typename BasketType::WeightFunction, Type, Ext1&lt; typename BasketType::DataPoint, typename BasketType::WeightFunction, Type, Ext0&lt; typename BasketType::DataPoint, typename BasketType::WeightFunction, Type, PrimitiveDer&lt; typename BasketType::DataPoint, typename BasketType::WeightFunction,Type, BasketType &gt; &gt; &gt; &gt; &gt; &gt; &gt; &gt; &gt; &gt; &gt; &gt; &gt; Base</div><div class="ttdoc">Base type, which aggregates all the computational objects using the CRTP.</div><div class="ttdef"><b>Definition:</b> <a href="basket_8h_source.html#l00139">basket.h:139</a></div></div>
+<div class="ttc" id="aclassPonca_1_1BasketDiff_html"><div class="ttname"><a href="classPonca_1_1BasketDiff.html">Ponca::BasketDiff</a></div><div class="ttdoc">Aggregator class used to declare specialized structures with derivatives computations,...</div><div class="ttdef"><b>Definition:</b> <a href="basket_8h_source.html#l00120">basket.h:120</a></div></div>
+<div class="ttc" id="aclassPonca_1_1Basket_html_a9aa604f9995412fc71ad769a41ec8f53"><div class="ttname"><a href="classPonca_1_1Basket.html#a9aa604f9995412fc71ad769a41ec8f53">Ponca::Basket::WeightFunction</a></div><div class="ttdeci">W WeightFunction</div><div class="ttdoc">Weighting function.</div><div class="ttdef"><b>Definition:</b> <a href="basket_8h_source.html#l00220">basket.h:220</a></div></div>
+<div class="ttc" id="aclassPonca_1_1Basket_html_a5c434baff79e8d7b3bce21c10f1b9fc2"><div class="ttname"><a href="classPonca_1_1Basket.html#a5c434baff79e8d7b3bce21c10f1b9fc2">Ponca::Basket::DataPoint</a></div><div class="ttdeci">P DataPoint</div><div class="ttdoc">Point type used for computation.</div><div class="ttdef"><b>Definition:</b> <a href="basket_8h_source.html#l00218">basket.h:218</a></div></div>
+<div class="ttc" id="aclassPonca_1_1BasketDiff_html_a41a3b256f0bdc84bb345dc98cd7ddaad"><div class="ttname"><a href="classPonca_1_1BasketDiff.html#a41a3b256f0bdc84bb345dc98cd7ddaad">Ponca::BasketDiff::DataPoint</a></div><div class="ttdeci">typename BasketType::DataPoint DataPoint</div><div class="ttdoc">Point type used for computation.</div><div class="ttdef"><b>Definition:</b> <a href="basket_8h_source.html#l00143">basket.h:143</a></div></div>
+<div class="ttc" id="aclassPonca_1_1Basket_html_abe967d3aae87dc8f19b6d1ae7597e2a4"><div class="ttname"><a href="classPonca_1_1Basket.html#abe967d3aae87dc8f19b6d1ae7597e2a4">Ponca::Basket::addNeighbor</a></div><div class="ttdeci">bool addNeighbor(const DataPoint &amp;_nei)</div><div class="ttdoc">Add a neighbor to perform the fit.</div><div class="ttdef"><b>Definition:</b> <a href="basket_8h_source.html#l00226">basket.h:226</a></div></div>
 <!-- start footer part -->
-<hr class="footer"/><address class="footer"><small>
-Generated on Tue Aug 2 2022 09:22:55 for Ponca by &#160;<a href="http://www.doxygen.org/index.html">
-<img class="footer" src="doxygen.png" alt="doxygen"/>
-</a> 1.8.17
-</small></address>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_695d95a8d8fbec601a248c0414764298.html">Ponca</a></li><li class="navelem"><a class="el" href="dir_ce16314fc45f8638543c5146aff64d4a.html">src</a></li><li class="navelem"><a class="el" href="dir_221133f19e4af6803e4ee7d78db21786.html">Fitting</a></li><li class="navelem"><b>basket.h</b></li>
+    <li class="footer">Generated on Fri Sep 9 2022 12:28:20 for Ponca by
+    <a href="http://www.doxygen.org/index.html">
+    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.17 </li>
+  </ul>
+</div>
 </body>
 </html>

@@ -8,7 +8,6 @@
  viewBox="0.00 0.00 235.00 424.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 <g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 420)">
 <title>Ponca::Stack&lt; T, N &gt;</title>
-<polygon fill="white" stroke="transparent" points="-4,4 -4,-420 231,-420 231,4 -4,4"/>
 <!-- Node1 -->
 <g id="node1" class="node">
 <title>Node1</title>
@@ -35,7 +34,7 @@
 <g id="node2" class="node">
 <title>Node2</title>
 <g id="a_node2"><a xlink:href="classPonca_1_1Stack.html" target="_top" xlink:title=" ">
-<polygon fill="white" stroke="black" points="0,-0.5 0,-189.5 134,-189.5 134,-0.5 0,-0.5"/>
+<polygon fill="none" stroke="black" points="0,-0.5 0,-189.5 134,-189.5 134,-0.5 0,-0.5"/>
 <text text-anchor="start" x="8" y="-177.5" font-family="Helvetica,sans-Serif" font-size="10.00">Ponca::Stack&lt; Ponca</text>
 <text text-anchor="start" x="8" y="-166.5" font-family="Helvetica,sans-Serif" font-size="10.00">::IndexSquaredDistance</text>
 <text text-anchor="start" x="8" y="-155.5" font-family="Helvetica,sans-Serif" font-size="10.00">&lt; typename DataPoint::</text>

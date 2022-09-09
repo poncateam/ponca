@@ -1,5 +1,5 @@
-<map id="Ponca::GLSDer&lt; DataPoint, _WFunctor, T &gt;" name="Ponca::GLSDer&lt; DataPoint, _WFunctor, T &gt;">
-<area shape="rect" id="node1" title="Differentiation of GLSParam." alt="" coords="123,189,323,355"/>
-<area shape="rect" id="node2" href="$classPonca_1_1Concept_1_1FittingExtensionConcept.html" title="Describes how to add features to an existing fitting procedure." alt="" coords="5,5,267,141"/>
-<area shape="rect" id="node3" title=" " alt="" coords="290,35,329,112"/>
+<map id="Ponca::GLSDer&lt; DataPoint, _WFunctor, DiffType, T &gt;" name="Ponca::GLSDer&lt; DataPoint, _WFunctor, DiffType, T &gt;">
+<area shape="rect" id="node1" title="Differentiation of GLSParam." alt="" coords="62,131,262,340"/>
+<area shape="rect" id="node2" title=" " alt="" coords="5,5,185,83"/>
+<area shape="rect" id="node3" title=" " alt="" coords="209,5,248,83"/>
 </map>

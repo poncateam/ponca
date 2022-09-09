@@ -8,7 +8,6 @@
  viewBox="0.00 0.00 253.50 438.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 <g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 434)">
 <title>Ponca::QueryInputIsPosition&lt; DataPoint &gt;</title>
-<polygon fill="white" stroke="transparent" points="-4,4 -4,-434 249.5,-434 249.5,4 -4,4"/>
 <!-- Node1 -->
 <g id="node1" class="node">
 <title>Node1</title>
@@ -27,7 +26,7 @@
 <g id="node2" class="node">
 <title>Node2</title>
 <g id="a_node2"><a xlink:href="structPonca_1_1QueryInput.html" target="_top" xlink:title=" ">
-<polygon fill="white" stroke="black" points="7.5,-106.5 7.5,-196.5 145.5,-196.5 145.5,-106.5 7.5,-106.5"/>
+<polygon fill="none" stroke="black" points="7.5,-106.5 7.5,-196.5 145.5,-196.5 145.5,-106.5 7.5,-106.5"/>
 <text text-anchor="start" x="15.5" y="-184.5" font-family="Helvetica,sans-Serif" font-size="10.00">Ponca::QueryInput&lt;</text>
 <text text-anchor="middle" x="76.5" y="-173.5" font-family="Helvetica,sans-Serif" font-size="10.00"> DataPoint::VectorType &gt;</text>
 <polyline fill="none" stroke="black" points="7.5,-166.5 145.5,-166.5 "/>
@@ -49,7 +48,7 @@
 <g id="node3" class="node">
 <title>Node3</title>
 <g id="a_node3"><a xlink:href="structPonca_1_1QueryInputBase.html" target="_top" xlink:title="Base class for queries input type.">
-<polygon fill="white" stroke="black" points="7.5,-372.5 7.5,-429.5 137.5,-429.5 137.5,-372.5 7.5,-372.5"/>
+<polygon fill="none" stroke="black" points="7.5,-372.5 7.5,-429.5 137.5,-429.5 137.5,-372.5 7.5,-372.5"/>
 <text text-anchor="middle" x="72.5" y="-417.5" font-family="Helvetica,sans-Serif" font-size="10.00">Ponca::QueryInputBase</text>
 <polyline fill="none" stroke="black" points="7.5,-410.5 137.5,-410.5 "/>
 <text text-anchor="middle" x="72.5" y="-398.5" font-family="Helvetica,sans-Serif" font-size="10.00"> </text>
@@ -68,7 +67,7 @@
 <g id="node4" class="node">
 <title>Node4</title>
 <g id="a_node4"><a xlink:href="structPonca_1_1QueryInput.html" target="_top" xlink:title="Base class for typed queries input type.">
-<polygon fill="white" stroke="black" points="88.5,-244.5 88.5,-334.5 202.5,-334.5 202.5,-244.5 88.5,-244.5"/>
+<polygon fill="none" stroke="black" points="88.5,-244.5 88.5,-334.5 202.5,-334.5 202.5,-244.5 88.5,-244.5"/>
 <text text-anchor="start" x="96.5" y="-322.5" font-family="Helvetica,sans-Serif" font-size="10.00">Ponca::QueryInput&lt;</text>
 <text text-anchor="middle" x="145.5" y="-311.5" font-family="Helvetica,sans-Serif" font-size="10.00"> InputType_ &gt;</text>
 <polyline fill="none" stroke="black" points="88.5,-304.5 202.5,-304.5 "/>

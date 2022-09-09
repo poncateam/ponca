@@ -1,3 +1,4 @@
+<!-- HTML header for doxygen 1.9.1-->
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -9,6 +10,10 @@
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
@@ -20,7 +25,23 @@
 </script>
 <script type="text/javascript" async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js"></script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only-darkmode-toggle.css" rel="stylesheet" type="text/css"/>
 <link href="ponca.css" rel="stylesheet" type="text/css"/>
+<!-- ... other metadata & script includes ... -->
+<script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+<script type="text/javascript">
+    DoxygenAwesomeDarkModeToggle.init()
+</script>
+<script type="text/javascript" src="doxygen-awesome-fragment-copy-button.js"></script>
+<script type="text/javascript">
+    DoxygenAwesomeFragmentCopyButton.init()
+</script>
+<script type="text/javascript" src="doxygen-awesome-paragraph-link.js"></script>
+<script type="text/javascript">
+    DoxygenAwesomeParagraphLink.init()
+</script>
 </head>
 <body>
 <div id="top"><!-- do not remove this div, it is closed by doxygen! -->
@@ -30,7 +51,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Ponca
-   &#160;<span id="projectnumber">8976dc5e97f677a334261616e8d2314551b8ce3d</span>
+   &#160;<span id="projectnumber">d844664447d2173c00cc41660408e8eb5b3a41d6</span>
    </div>
    <div id="projectbrief">Point Cloud Analysis library</div>
   </td>
@@ -55,6 +76,23 @@ $(function() {
 });
 /* @license-end */</script>
 <div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(document).ready(function(){initNavTree('example_cxx_pcl_page.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -69,26 +107,21 @@ $(function() {
 </iframe>
 </div>
 
-<div id="nav-path" class="navpath">
-  <ul>
-<li class="navelem"><a class="el" href="example_page.html">Examples</a></li>  </ul>
-</div>
-</div><!-- top -->
 <div class="PageDoc"><div class="header">
   <div class="headertitle">
-<div class="title">Using <a class="el" href="namespacePonca.html" title="This module provides efficient methods for the fitting and analysis of point-clouds in arbitrary dime...">Ponca</a> to compute surface curvature in PCL </div>  </div>
+<div class="title">Using <a class="el" href="namespacePonca.html" title="This Source Code Form is subject to the terms of the Mozilla Public License, v.">Ponca</a> to compute surface curvature in PCL </div>  </div>
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><h1><a class="anchor" id="pcl_intro_sec"></a>
 Introduction</h1>
-<p>This is an example that use <a class="el" href="namespacePonca.html" title="This module provides efficient methods for the fitting and analysis of point-clouds in arbitrary dime...">Ponca</a> to compute surface curvature with <a href="http://http://pointclouds.org/">Point Cloud Library (PCL)</a> (recommended version: 1.9) It provides a class implementation to be incorporate in the PCL tree, section "features", and a method to use that feature and visualize data using a colormap.</p>
+<p>This is an example that use <a class="el" href="namespacePonca.html" title="This Source Code Form is subject to the terms of the Mozilla Public License, v.">Ponca</a> to compute surface curvature with <a href="http://http://pointclouds.org/">Point Cloud Library (PCL)</a> (recommended version: 1.9) It provides a class implementation to be incorporate in the PCL tree, section "features", and a method to use that feature and visualize data using a colormap.</p>
 <h2><a class="anchor" id="pcl_usage_sec"></a>
 Usage</h2>
 <p>To compile this example, you need to enable the compilation of the examples with <code>cmake</code>, and build the examples:</p>
 <div class="fragment"><div class="line">cmake [..] -DPONCA_CONFIGURE_EXAMPLES=ON</div>
 <div class="line">make ponca-examples <span class="comment">// or make ponca_pclwrapper</span></div>
 </div><!-- fragment --><dl class="section note"><dt>Note</dt><dd>Tip if you are using visual studio: if you have a problem with boost or pcl exceptions, go to Project -&gt; Properties -&gt; C/C++ -&gt; Code Generation -&gt; Enable C++ exceptions and turn it to "Yes (/EHsc)"</dd></dl>
-<p>Then execute the program and you will visualize two color point clouds: on the left, the signed curvature estimated using <a class="el" href="namespacePonca.html" title="This module provides efficient methods for the fitting and analysis of point-clouds in arbitrary dime...">Ponca</a>, and on the right, the unsigned curvature estimated using PCL. </p><div class="image">
+<p>Then execute the program and you will visualize two color point clouds: on the left, the signed curvature estimated using <a class="el" href="namespacePonca.html" title="This Source Code Form is subject to the terms of the Mozilla Public License, v.">Ponca</a>, and on the right, the unsigned curvature estimated using PCL. </p><div class="image">
 <img src="pcl_wrapper.png" alt=""/>
 <div class="caption">
 Surface Curvature on a point cloud using GLS method</div></div>
@@ -99,7 +132,7 @@ PCL wrapper</h1>
 Datastructures declaration</h2>
 <ul>
 <li><code>GlsPoint</code> defines how point samples are represented,</li>
-<li><code>pcl::GlsCurvature</code> defines the wrapper that brings <a class="el" href="namespacePonca.html" title="This module provides efficient methods for the fitting and analysis of point-clouds in arbitrary dime...">Ponca</a> algorithms into the PCL API</li>
+<li><code>pcl::GlsCurvature</code> defines the wrapper that brings <a class="el" href="namespacePonca.html" title="This Source Code Form is subject to the terms of the Mozilla Public License, v.">Ponca</a> algorithms into the PCL API</li>
 </ul>
 <p>Source file: <code>pcl_wrapper.h</code> </p><div class="fragment"><div class="line"><span class="comment">/*</span></div>
 <div class="line"><span class="comment"> This Source Code Form is subject to the terms of the Mozilla Public</span></div>
@@ -233,7 +266,7 @@ Datastructures implementation</h2>
 <div class="line">    <span class="keyword">typedef</span> GlsPoint::Scalar Scalar;</div>
 <div class="line">    <span class="keyword">typedef</span> <a class="code" href="classPonca_1_1DistWeightFunc.html">Ponca::DistWeightFunc&lt;GlsPoint, Ponca::SmoothWeightKernel&lt;Scalar&gt;</a> &gt; WeightFunc;</div>
 <div class="line">    <span class="comment">//typedef Ponca::Basket&lt;GlsPoint, WeightFunc, Ponca::MeanPlaneFit, Ponca::NormalCovarianceCurvature&gt; Fit;</span></div>
-<div class="line">    <span class="keyword">typedef</span> <a class="code" href="classPonca_1_1Basket.html">Ponca::Basket&lt;GlsPoint, WeightFunc, Ponca::CovariancePlaneFit, Ponca::CovariancePlaneSpaceDer, Ponca::CurvatureEstimator&gt;</a> Fit;</div>
+<div class="line">    <span class="keyword">typedef</span> <a class="code" href="classPonca_1_1Basket.html">Ponca::Basket&lt;GlsPoint, WeightFunc, Ponca::CovariancePlaneFit, Ponca::CovariancePlaneSpaceDer, Ponca::NormalDerivativesCurvatureEstimator&gt;</a> Fit;</div>
 <div class="line"> </div>
 <div class="line">    Fit fit;</div>
 <div class="line">    <span class="comment">// Set a weighting function instance using the search radius of the tree as scale</span></div>
@@ -467,13 +500,17 @@ Main program</h2>
 <div class="line">}</div>
 </div><!-- fragment --> </div></div><!-- contents -->
 </div><!-- PageDoc -->
-<div class="ttc" id="aclassPonca_1_1Basket_html"><div class="ttname"><a href="classPonca_1_1Basket.html">Ponca::Basket</a></div><div class="ttdoc">Agregator class used to declare specialized structures using CRTP (Curiously Recurring Template Patte...</div><div class="ttdef"><b>Definition:</b> basket.h:49</div></div>
-<div class="ttc" id="aclassPonca_1_1DistWeightFunc_html"><div class="ttname"><a href="classPonca_1_1DistWeightFunc.html">Ponca::DistWeightFunc</a></div><div class="ttdoc">Weighting function based on the euclidean distance between a query and a reference position.</div><div class="ttdef"><b>Definition:</b> weightFunc.h:29</div></div>
+</div><!-- doc-content -->
+<div class="ttc" id="aclassPonca_1_1Basket_html"><div class="ttname"><a href="classPonca_1_1Basket.html">Ponca::Basket</a></div><div class="ttdoc">Aggregator class used to declare specialized structures using CRTP.</div><div class="ttdef"><b>Definition:</b> <a href="basket_8h_source.html#l00207">basket.h:207</a></div></div>
+<div class="ttc" id="aclassPonca_1_1DistWeightFunc_html"><div class="ttname"><a href="classPonca_1_1DistWeightFunc.html">Ponca::DistWeightFunc</a></div><div class="ttdoc">Weighting function based on the euclidean distance between a query and a reference position.</div><div class="ttdef"><b>Definition:</b> <a href="weightFunc_8h_source.html#l00030">weightFunc.h:30</a></div></div>
 <!-- start footer part -->
-<hr class="footer"/><address class="footer"><small>
-Generated on Tue Aug 2 2022 09:22:55 for Ponca by &#160;<a href="http://www.doxygen.org/index.html">
-<img class="footer" src="doxygen.png" alt="doxygen"/>
-</a> 1.8.17
-</small></address>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="example_page.html">Examples</a></li>
+    <li class="footer">Generated on Fri Sep 9 2022 12:28:20 for Ponca by
+    <a href="http://www.doxygen.org/index.html">
+    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.17 </li>
+  </ul>
+</div>
 </body>
 </html>

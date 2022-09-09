@@ -1,3 +1,4 @@
+<!-- HTML header for doxygen 1.9.1-->
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -9,6 +10,10 @@
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
@@ -20,7 +25,23 @@
 </script>
 <script type="text/javascript" async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js"></script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only-darkmode-toggle.css" rel="stylesheet" type="text/css"/>
 <link href="ponca.css" rel="stylesheet" type="text/css"/>
+<!-- ... other metadata & script includes ... -->
+<script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+<script type="text/javascript">
+    DoxygenAwesomeDarkModeToggle.init()
+</script>
+<script type="text/javascript" src="doxygen-awesome-fragment-copy-button.js"></script>
+<script type="text/javascript">
+    DoxygenAwesomeFragmentCopyButton.init()
+</script>
+<script type="text/javascript" src="doxygen-awesome-paragraph-link.js"></script>
+<script type="text/javascript">
+    DoxygenAwesomeParagraphLink.init()
+</script>
 </head>
 <body>
 <div id="top"><!-- do not remove this div, it is closed by doxygen! -->
@@ -30,7 +51,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Ponca
-   &#160;<span id="projectnumber">8976dc5e97f677a334261616e8d2314551b8ce3d</span>
+   &#160;<span id="projectnumber">d844664447d2173c00cc41660408e8eb5b3a41d6</span>
    </div>
    <div id="projectbrief">Point Cloud Analysis library</div>
   </td>
@@ -55,6 +76,23 @@ $(function() {
 });
 /* @license-end */</script>
 <div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(document).ready(function(){initNavTree('plane_8h_source.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -69,11 +107,6 @@ $(function() {
 </iframe>
 </div>
 
-<div id="nav-path" class="navpath">
-  <ul>
-<li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_695d95a8d8fbec601a248c0414764298.html">Ponca</a></li><li class="navelem"><a class="el" href="dir_ce16314fc45f8638543c5146aff64d4a.html">src</a></li><li class="navelem"><a class="el" href="dir_221133f19e4af6803e4ee7d78db21786.html">Fitting</a></li>  </ul>
-</div>
-</div><!-- top -->
 <div class="header">
   <div class="headertitle">
 <div class="title">plane.h</div>  </div>
@@ -90,145 +123,116 @@ $(function() {
 <div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#pragma once</span></div>
 <div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160; </div>
 <div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="preprocessor">#include &quot;./defines.h&quot;</span></div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="preprocessor">#include &quot;./primitive.h&quot;</span></div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="preprocessor">#include &lt;Eigen/Geometry&gt;</span></div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160; </div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="keyword">namespace </span><a class="code" href="namespacePonca.html">Ponca</a></div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;{</div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160; </div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;<span class="keyword">template</span> &lt; <span class="keyword">class</span> DataPo<span class="keywordtype">int</span>, <span class="keyword">class</span> _WFunctor, <span class="keyword">typename</span> T = <span class="keywordtype">void</span>  &gt;</div>
-<div class="line"><a name="l00039"></a><span class="lineno"><a class="line" href="classPonca_1_1Plane.html">   39</a></span>&#160;<span class="keyword">class </span><a class="code" href="classPonca_1_1Plane.html">Plane</a> : <span class="keyword">public</span> <a class="code" href="classPonca_1_1PrimitiveBase.html">PrimitiveBase</a>&lt;DataPoint, _WFunctor&gt;,</div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;              <span class="keyword">public</span> Eigen::Hyperplane&lt;typename DataPoint::Scalar, DataPoint::Dim &gt;</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;{</div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;<span class="keyword">private</span>:</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160; </div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    <span class="keyword">using</span> <a class="code" href="classPonca_1_1PrimitiveBase.html">Base</a>      = <a class="code" href="classPonca_1_1PrimitiveBase.html">PrimitiveBase&lt;DataPoint, _WFunctor&gt;</a>;</div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160; </div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;<span class="keyword">public</span>:</div>
-<div class="line"><a name="l00048"></a><span class="lineno"><a class="line" href="classPonca_1_1Plane.html#a0b86da18f6a6d769e24b783d842b2bfe">   48</a></span>&#160;    <span class="keyword">using</span> <a class="code" href="classPonca_1_1Plane.html#a0b86da18f6a6d769e24b783d842b2bfe">EigenBase</a> = Eigen::Hyperplane&lt;typename DataPoint::Scalar, DataPoint::Dim &gt;;</div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="preprocessor">#include &lt;Eigen/Geometry&gt;</span></div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160; </div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="keyword">namespace </span><a class="code" href="namespacePonca.html">Ponca</a></div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;{</div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160; </div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;<span class="keyword">template</span> &lt; <span class="keyword">class</span> DataPo<span class="keywordtype">int</span>, <span class="keyword">class</span> _WFunctor, <span class="keyword">typename</span> T &gt;</div>
+<div class="line"><a name="l00038"></a><span class="lineno"><a class="line" href="classPonca_1_1Plane.html">   38</a></span>&#160;<span class="keyword">class </span><a class="code" href="classPonca_1_1Plane.html">Plane</a> : <span class="keyword">public</span> T,</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;              <span class="keyword">public</span> Eigen::Hyperplane&lt;typename DataPoint::Scalar, DataPoint::Dim &gt;</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;{</div>
+<div class="line"><a name="l00041"></a><span class="lineno"><a class="line" href="classPonca_1_1Plane.html#aab59c89c503d324f8bb4efa14e542915">   41</a></span>&#160;    PONCA_FITTING_DECLARE_DEFAULT_TYPES</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160; </div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00045"></a><span class="lineno"><a class="line" href="classPonca_1_1Plane.html#a0b86da18f6a6d769e24b783d842b2bfe">   45</a></span>&#160;    <span class="keyword">using</span> <a class="code" href="classPonca_1_1Plane.html#a0b86da18f6a6d769e24b783d842b2bfe">EigenBase</a> = Eigen::Hyperplane&lt;typename DataPoint::Scalar, DataPoint::Dim &gt;;</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160; </div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;<span class="keyword">protected</span>:</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    <span class="keyword">enum</span> { check = Base::PROVIDES_PRIMITIVE_BASE, PROVIDES_PLANE };</div>
 <div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160; </div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160; </div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;<span class="keyword">protected</span>:</div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160; </div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    <span class="keyword">enum</span></div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;    {</div>
-<div class="line"><a name="l00055"></a><span class="lineno"><a class="line" href="classPonca_1_1Plane.html#aee542df3bc7ddb9708bd532b5b57a9e6a6b7d4160826f431bf9d8ddd3e72a7178">   55</a></span>&#160;        <a class="code" href="classPonca_1_1Plane.html#aee542df3bc7ddb9708bd532b5b57a9e6a6b7d4160826f431bf9d8ddd3e72a7178">PROVIDES_PLANE</a> </div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;    };</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160; </div>
+<div class="line"><a name="l00053"></a><span class="lineno"><a class="line" href="classPonca_1_1Plane.html#a588a8ed4bc3185aba32021d409ddd380">   53</a></span>&#160;    PONCA_MULTIARCH <span class="keyword">inline</span> <a class="code" href="classPonca_1_1Plane.html#a588a8ed4bc3185aba32021d409ddd380">Plane</a>() : Base(), <a class="code" href="classPonca_1_1Plane.html#a0b86da18f6a6d769e24b783d842b2bfe">EigenBase</a>() { <a class="code" href="classPonca_1_1Plane.html#ae4c6696fa815a6cfc3864e9f7b33d9a3">init</a>(VectorType::Zero()); }</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160; </div>
+<div class="line"><a name="l00055"></a><span class="lineno"><a class="line" href="classPonca_1_1Plane.html#a574e2f877ccaac6977081fc3b273f2bc">   55</a></span>&#160;    PONCA_EXPLICIT_CAST_OPERATORS(<a class="code" href="classPonca_1_1Plane.html">Plane</a>,<a class="code" href="classPonca_1_1Plane.html#ad0d5161db4d761c67449143155f4e458">compactPlane</a>) <span class="comment">//&lt; \fixme To be removed, kept for compatibility only</span></div>
+<div class="line"><a name="l00056"></a><span class="lineno"><a class="line" href="classPonca_1_1Plane.html#a3974eb069770f9aede3592acd7815a60">   56</a></span>&#160;    PONCA_EXPLICIT_CAST_OPERATORS(<a class="code" href="classPonca_1_1Plane.html">Plane</a>,<a class="code" href="classPonca_1_1Plane.html#a52341139ec80fcf7d3b6bd6af0a66786">plane</a>)</div>
 <div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160; </div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;<span class="keyword">public</span>:</div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160; </div>
-<div class="line"><a name="l00061"></a><span class="lineno"><a class="line" href="classPonca_1_1Plane.html#a9c9d1bb6f9272d8143607d4d0723cd42">   61</a></span>&#160;    <span class="keyword">typedef</span> <span class="keyword">typename</span> DataPoint::Scalar      <a class="code" href="classPonca_1_1Plane.html#a9c9d1bb6f9272d8143607d4d0723cd42">Scalar</a>;</div>
-<div class="line"><a name="l00063"></a><span class="lineno"><a class="line" href="classPonca_1_1Plane.html#a4855b9d53d3ab5e251b0344d8ea2cbf2">   63</a></span>&#160;    <span class="keyword">typedef</span> <span class="keyword">typename</span> DataPoint::VectorType  <a class="code" href="classPonca_1_1Plane.html#a4855b9d53d3ab5e251b0344d8ea2cbf2">VectorType</a>;</div>
-<div class="line"><a name="l00065"></a><span class="lineno"><a class="line" href="classPonca_1_1Plane.html#afdb7adae71601bba760e8bea3df1e0c7">   65</a></span>&#160;    <span class="keyword">typedef</span> <span class="keyword">typename</span> DataPoint::MatrixType  <a class="code" href="classPonca_1_1Plane.html#afdb7adae71601bba760e8bea3df1e0c7">MatrixType</a>;</div>
-<div class="line"><a name="l00067"></a><span class="lineno"><a class="line" href="classPonca_1_1Plane.html#af30d1f88b1336f6f63b818b5b434d080">   67</a></span>&#160;    <span class="keyword">typedef</span> _WFunctor                       <a class="code" href="classPonca_1_1Plane.html#af30d1f88b1336f6f63b818b5b434d080">WFunctor</a>;</div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160; </div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;<span class="keyword">private</span>:</div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160; </div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;    <a class="code" href="classPonca_1_1Plane.html#a4855b9d53d3ab5e251b0344d8ea2cbf2">VectorType</a> m_p;</div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160; </div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160; </div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;<span class="keyword">public</span>:</div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160; </div>
-<div class="line"><a name="l00078"></a><span class="lineno"><a class="line" href="classPonca_1_1Plane.html#a588a8ed4bc3185aba32021d409ddd380">   78</a></span>&#160;    PONCA_MULTIARCH <span class="keyword">inline</span> <a class="code" href="classPonca_1_1Plane.html#a588a8ed4bc3185aba32021d409ddd380">Plane</a>()</div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;        : <a class="code" href="classPonca_1_1PrimitiveBase.html">Base</a>(), <a class="code" href="classPonca_1_1Plane.html#a0b86da18f6a6d769e24b783d842b2bfe">EigenBase</a>()</div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;    {</div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;        m_p = VectorType::Zero();</div>
-<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;        <a class="code" href="classPonca_1_1Plane.html#ab75740fc55b07d04b2d6823359bc717a">resetPrimitive</a>();</div>
-<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;    }</div>
-<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160; </div>
-<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;    PONCA_MULTIARCH <span class="keyword">inline</span></div>
-<div class="line"><a name="l00087"></a><span class="lineno"><a class="line" href="classPonca_1_1Plane.html#ae53a83e024c16571f538790ad9b92dfa">   87</a></span>&#160;    <a class="code" href="classPonca_1_1Plane.html">Plane&lt;DataPoint, WFunctor, T&gt;</a>&amp; <a class="code" href="classPonca_1_1Plane.html#ae53a83e024c16571f538790ad9b92dfa">compactPlane</a>()</div>
-<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;    { <span class="keywordflow">return</span> * <span class="keyword">static_cast&lt;</span><a class="code" href="classPonca_1_1Plane.html">Plane&lt;DataPoint, WFunctor, T&gt;</a>*<span class="keyword">&gt;</span>(<span class="keyword">this</span>); }</div>
-<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160; </div>
-<div class="line"><a name="l00092"></a><span class="lineno"><a class="line" href="classPonca_1_1Plane.html#ab75740fc55b07d04b2d6823359bc717a">   92</a></span>&#160;    PONCA_MULTIARCH <span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code" href="classPonca_1_1Plane.html#ab75740fc55b07d04b2d6823359bc717a">resetPrimitive</a>()</div>
-<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;    {</div>
-<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;        <a class="code" href="classPonca_1_1PrimitiveBase.html#a4b665dda3ef3071f3d9c78a7a1a2507f">Base::resetPrimitive</a>();</div>
-<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;        <a class="code" href="classPonca_1_1Plane.html#a0b86da18f6a6d769e24b783d842b2bfe">EigenBase</a>* cc = <span class="keyword">static_cast&lt;</span><a class="code" href="classPonca_1_1Plane.html#a0b86da18f6a6d769e24b783d842b2bfe">EigenBase</a>*<span class="keyword">&gt;</span>(<span class="keyword">this</span>);</div>
-<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;        *cc = <a class="code" href="classPonca_1_1Plane.html#a0b86da18f6a6d769e24b783d842b2bfe">EigenBase</a>();</div>
-<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;    }</div>
-<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160; </div>
-<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;    PONCA_MULTIARCH <span class="keyword">inline</span> <span class="keywordtype">bool</span> operator==(<span class="keyword">const</span> <a class="code" href="classPonca_1_1Plane.html">Plane&lt;DataPoint, WFunctor, T&gt;</a>&amp; other)<span class="keyword"> const</span>{</div>
-<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;        <span class="keywordflow">return</span> EigenBase::isApprox(other);</div>
-<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;    }</div>
-<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160; </div>
-<div class="line"><a name="l00104"></a><span class="lineno"><a class="line" href="classPonca_1_1Plane.html#ad1a40b2bd6aab48a8e0ca3e32d7d02ce">  104</a></span>&#160;    PONCA_MULTIARCH <span class="keyword">inline</span> <span class="keywordtype">bool</span> <a class="code" href="classPonca_1_1Plane.html#ad1a40b2bd6aab48a8e0ca3e32d7d02ce">operator!=</a>(<span class="keyword">const</span> <a class="code" href="classPonca_1_1Plane.html">Plane&lt;DataPoint, WFunctor, T&gt;</a>&amp; other)<span class="keyword"> const</span>{</div>
-<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;        <span class="keywordflow">return</span> ! ((*this) == other);</div>
-<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;    }</div>
-<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160; </div>
-<div class="line"><a name="l00109"></a><span class="lineno"><a class="line" href="classPonca_1_1Plane.html#a3d8d4a4d3d34d18f7e17a4a06993dcf1">  109</a></span>&#160;    PONCA_MULTIARCH <span class="keyword">inline</span> <span class="keyword">const</span> <a class="code" href="classPonca_1_1Plane.html#a4855b9d53d3ab5e251b0344d8ea2cbf2">VectorType</a>&amp; <a class="code" href="classPonca_1_1Plane.html#a3d8d4a4d3d34d18f7e17a4a06993dcf1">basisCenter</a> ()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> m_p; }</div>
-<div class="line"><a name="l00111"></a><span class="lineno"><a class="line" href="classPonca_1_1Plane.html#a07ebddf795ed1940ff3ae7ac9b5accc1">  111</a></span>&#160;    PONCA_MULTIARCH <span class="keyword">inline</span>       <a class="code" href="classPonca_1_1Plane.html#a4855b9d53d3ab5e251b0344d8ea2cbf2">VectorType</a>&amp; <a class="code" href="classPonca_1_1Plane.html#a07ebddf795ed1940ff3ae7ac9b5accc1">basisCenter</a> ()       { <span class="keywordflow">return</span> m_p; }</div>
-<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160; </div>
-<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;    <span class="comment">/* \brief Init the plane from a direction and a position</span></div>
-<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;<span class="comment">       \param _dir Orientation of the plane, does not need to be normalized</span></div>
-<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;<span class="comment">       \param _pos Position of the plane</span></div>
-<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;<span class="comment">    */</span></div>
-<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;    PONCA_MULTIARCH <span class="keyword">inline</span> <span class="keywordtype">void</span> setPlane (<span class="keyword">const</span> <a class="code" href="classPonca_1_1Plane.html#a4855b9d53d3ab5e251b0344d8ea2cbf2">VectorType</a>&amp; _dir,</div>
-<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;                                    <span class="keyword">const</span> <a class="code" href="classPonca_1_1Plane.html#a4855b9d53d3ab5e251b0344d8ea2cbf2">VectorType</a>&amp; _pos)</div>
-<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;    {</div>
-<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;        <a class="code" href="classPonca_1_1Plane.html#a0b86da18f6a6d769e24b783d842b2bfe">EigenBase</a>* cc = <span class="keyword">static_cast&lt;</span><a class="code" href="classPonca_1_1Plane.html#a0b86da18f6a6d769e24b783d842b2bfe">EigenBase</a>*<span class="keyword">&gt;</span>(<span class="keyword">this</span>);</div>
-<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;        *cc = <a class="code" href="classPonca_1_1Plane.html#a0b86da18f6a6d769e24b783d842b2bfe">EigenBase</a>(_dir.normalized(), _pos);</div>
-<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;    }</div>
-<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160; </div>
-<div class="line"><a name="l00125"></a><span class="lineno"><a class="line" href="classPonca_1_1Plane.html#a8cd4d0cad6e6c43d1217d01d3b9497ee">  125</a></span>&#160;    PONCA_MULTIARCH <span class="keyword">inline</span> <a class="code" href="classPonca_1_1Plane.html#a9c9d1bb6f9272d8143607d4d0723cd42">Scalar</a> <a class="code" href="classPonca_1_1Plane.html#a8cd4d0cad6e6c43d1217d01d3b9497ee">potential</a> ( )<span class="keyword"> const</span></div>
-<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;<span class="keyword">    </span>{</div>
-<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;        <span class="keywordflow">return</span> EigenBase::signedDistance(VectorType::Zero());</div>
-<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;    }</div>
-<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160; </div>
-<div class="line"><a name="l00131"></a><span class="lineno"><a class="line" href="classPonca_1_1Plane.html#a7c05e3d35bd506b83f5a74ed234cd290">  131</a></span>&#160;    PONCA_MULTIARCH <span class="keyword">inline</span> <a class="code" href="classPonca_1_1Plane.html#a9c9d1bb6f9272d8143607d4d0723cd42">Scalar</a> <a class="code" href="classPonca_1_1Plane.html#a7c05e3d35bd506b83f5a74ed234cd290">potential</a> (<span class="keyword">const</span> <a class="code" href="classPonca_1_1Plane.html#a4855b9d53d3ab5e251b0344d8ea2cbf2">VectorType</a>&amp; _q)<span class="keyword"> const</span></div>
-<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;<span class="keyword">    </span>{</div>
-<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;        <span class="comment">// The potential is the distance from the point to the plane</span></div>
-<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;        <span class="keywordflow">return</span> EigenBase::signedDistance(_q - m_p);</div>
-<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;    }</div>
-<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160; </div>
-<div class="line"><a name="l00138"></a><span class="lineno"><a class="line" href="classPonca_1_1Plane.html#a4c8dfa7374f71e788ebdfb8f91d80187">  138</a></span>&#160;    PONCA_MULTIARCH <span class="keyword">inline</span> <a class="code" href="classPonca_1_1Plane.html#a4855b9d53d3ab5e251b0344d8ea2cbf2">VectorType</a> <a class="code" href="classPonca_1_1Plane.html#a4c8dfa7374f71e788ebdfb8f91d80187">project</a> (<span class="keyword">const</span> <a class="code" href="classPonca_1_1Plane.html#a4855b9d53d3ab5e251b0344d8ea2cbf2">VectorType</a>&amp; _q)<span class="keyword"> const</span></div>
-<div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160;<span class="keyword">    </span>{</div>
-<div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160;        <span class="comment">// Project on the normal vector and add the offset value</span></div>
-<div class="line"><a name="l00141"></a><span class="lineno">  141</span>&#160;        <span class="keywordflow">return</span> EigenBase::projection(_q - m_p) + m_p;</div>
-<div class="line"><a name="l00142"></a><span class="lineno">  142</span>&#160;    }</div>
-<div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160; </div>
-<div class="line"><a name="l00145"></a><span class="lineno"><a class="line" href="classPonca_1_1Plane.html#a3cabe0850b4d4cff4013a97a06ce1617">  145</a></span>&#160;    PONCA_MULTIARCH <span class="keyword">inline</span> <a class="code" href="classPonca_1_1Plane.html#a4855b9d53d3ab5e251b0344d8ea2cbf2">VectorType</a> <a class="code" href="classPonca_1_1Plane.html#a3cabe0850b4d4cff4013a97a06ce1617">primitiveGradient</a> ()<span class="keyword"> const</span></div>
-<div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160;<span class="keyword">    </span>{</div>
-<div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;        <span class="comment">// Uniform gradient defined only by the orientation of the plane</span></div>
-<div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;        <span class="keywordflow">return</span> EigenBase::normal();</div>
-<div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;    }</div>
-<div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160; </div>
-<div class="line"><a name="l00152"></a><span class="lineno"><a class="line" href="classPonca_1_1Plane.html#aaf943f5bcf752d7871c8475369022ef9">  152</a></span>&#160;    PONCA_MULTIARCH <span class="keyword">inline</span> <a class="code" href="classPonca_1_1Plane.html#a4855b9d53d3ab5e251b0344d8ea2cbf2">VectorType</a> <a class="code" href="classPonca_1_1Plane.html#aaf943f5bcf752d7871c8475369022ef9">primitiveGradient</a> (<span class="keyword">const</span> <a class="code" href="classPonca_1_1Plane.html#a4855b9d53d3ab5e251b0344d8ea2cbf2">VectorType</a>&amp;)<span class="keyword"> const</span></div>
-<div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160;<span class="keyword">    </span>{</div>
-<div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160;        <span class="comment">// Uniform gradient defined only by the orientation of the plane</span></div>
-<div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160;        <span class="keywordflow">return</span> EigenBase::normal();</div>
-<div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160;    }</div>
-<div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160; </div>
-<div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160; </div>
-<div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160;}; <span class="comment">//class Plane</span></div>
-<div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160; </div>
-<div class="line"><a name="l00161"></a><span class="lineno">  161</span>&#160;}</div>
+<div class="line"><a name="l00059"></a><span class="lineno"><a class="line" href="classPonca_1_1Plane.html#ae4c6696fa815a6cfc3864e9f7b33d9a3">   59</a></span>&#160;    PONCA_MULTIARCH inline <span class="keywordtype">void</span> <a class="code" href="classPonca_1_1Plane.html#ae4c6696fa815a6cfc3864e9f7b33d9a3">init</a>(const <a class="code" href="classPonca_1_1Plane.html#ac3962c2f2212db7441747f4174236eb2">VectorType</a>&amp; _basisCenter = <a class="code" href="classPonca_1_1Plane.html#ac3962c2f2212db7441747f4174236eb2">VectorType</a>::Zero())</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;    {</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;        Base::init(_basisCenter);</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;        EigenBase::coeffs().setZero();</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;    }</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160; </div>
+<div class="line"><a name="l00068"></a><span class="lineno"><a class="line" href="classPonca_1_1Plane.html#a8c7b6fdadc393bebdc3c436794f0acb2">   68</a></span>&#160;    PONCA_MULTIARCH <span class="keyword">inline</span> <span class="keywordtype">bool</span> <a class="code" href="classPonca_1_1Plane.html#a8c7b6fdadc393bebdc3c436794f0acb2">isValid</a>()<span class="keyword"> const</span>{</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;        <span class="keywordflow">return</span> ! EigenBase::coeffs().isApprox(EigenBase::Coefficients::Zero());</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;    }</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160; </div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;    PONCA_MULTIARCH <span class="keyword">inline</span> <span class="keywordtype">bool</span> operator==(<span class="keyword">const</span> <a class="code" href="classPonca_1_1Plane.html">Plane&lt;DataPoint, WFunctor, T&gt;</a>&amp; other)<span class="keyword"> const</span>{</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;        <span class="keywordflow">return</span> EigenBase::isApprox(other);</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;    }</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160; </div>
+<div class="line"><a name="l00077"></a><span class="lineno"><a class="line" href="classPonca_1_1Plane.html#ad1a40b2bd6aab48a8e0ca3e32d7d02ce">   77</a></span>&#160;    PONCA_MULTIARCH <span class="keyword">inline</span> <span class="keywordtype">bool</span> <a class="code" href="classPonca_1_1Plane.html#ad1a40b2bd6aab48a8e0ca3e32d7d02ce">operator!=</a>(<span class="keyword">const</span> <a class="code" href="classPonca_1_1Plane.html">Plane&lt;DataPoint, WFunctor, T&gt;</a>&amp; other)<span class="keyword"> const</span>{</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;        <span class="keywordflow">return</span> ! ((*this) == other);</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;    }</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160; </div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;    <span class="comment">/* \brief Init the plane from a direction and a position</span></div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;<span class="comment">       \param _dir Orientation of the plane, does not need to be normalized</span></div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;<span class="comment">       \param _pos Position of the plane</span></div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;<span class="comment">    */</span></div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;    PONCA_MULTIARCH <span class="keyword">inline</span> <span class="keywordtype">void</span> setPlane (<span class="keyword">const</span> <a class="code" href="classPonca_1_1Plane.html#ac3962c2f2212db7441747f4174236eb2">VectorType</a>&amp; _dir,</div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;                                    <span class="keyword">const</span> <a class="code" href="classPonca_1_1Plane.html#ac3962c2f2212db7441747f4174236eb2">VectorType</a>&amp; _pos)</div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;    {</div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;        <a class="code" href="classPonca_1_1Plane.html#a0b86da18f6a6d769e24b783d842b2bfe">EigenBase</a>* cc = <span class="keyword">static_cast&lt;</span><a class="code" href="classPonca_1_1Plane.html#a0b86da18f6a6d769e24b783d842b2bfe">EigenBase</a>*<span class="keyword">&gt;</span>(<span class="keyword">this</span>);</div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;        *cc = <a class="code" href="classPonca_1_1Plane.html#a0b86da18f6a6d769e24b783d842b2bfe">EigenBase</a>(_dir.normalized(), _pos);</div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;    }</div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160; </div>
+<div class="line"><a name="l00093"></a><span class="lineno"><a class="line" href="classPonca_1_1Plane.html#a8cd4d0cad6e6c43d1217d01d3b9497ee">   93</a></span>&#160;    PONCA_MULTIARCH <span class="keyword">inline</span> <a class="code" href="classPonca_1_1Plane.html#a882c308e20a7b2c161b8eb13e9a3df29">Scalar</a> <a class="code" href="classPonca_1_1Plane.html#a8cd4d0cad6e6c43d1217d01d3b9497ee">potential</a> ( )<span class="keyword"> const</span></div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;<span class="keyword">    </span>{</div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;        <span class="keywordflow">return</span> EigenBase::signedDistance(VectorType::Zero());</div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;    }</div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160; </div>
+<div class="line"><a name="l00099"></a><span class="lineno"><a class="line" href="classPonca_1_1Plane.html#a7c05e3d35bd506b83f5a74ed234cd290">   99</a></span>&#160;    PONCA_MULTIARCH <span class="keyword">inline</span> <a class="code" href="classPonca_1_1Plane.html#a882c308e20a7b2c161b8eb13e9a3df29">Scalar</a> <a class="code" href="classPonca_1_1Plane.html#a7c05e3d35bd506b83f5a74ed234cd290">potential</a> (<span class="keyword">const</span> <a class="code" href="classPonca_1_1Plane.html#ac3962c2f2212db7441747f4174236eb2">VectorType</a>&amp; _q)<span class="keyword"> const</span></div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;<span class="keyword">    </span>{</div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;        <span class="comment">// The potential is the distance from the point to the plane</span></div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;        <span class="keywordflow">return</span> EigenBase::signedDistance(Base::m_w.convertToLocalBasis(_q) );</div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;    }</div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160; </div>
+<div class="line"><a name="l00106"></a><span class="lineno"><a class="line" href="classPonca_1_1Plane.html#a4c8dfa7374f71e788ebdfb8f91d80187">  106</a></span>&#160;    PONCA_MULTIARCH <span class="keyword">inline</span> <a class="code" href="classPonca_1_1Plane.html#ac3962c2f2212db7441747f4174236eb2">VectorType</a> <a class="code" href="classPonca_1_1Plane.html#a4c8dfa7374f71e788ebdfb8f91d80187">project</a> (<span class="keyword">const</span> <a class="code" href="classPonca_1_1Plane.html#ac3962c2f2212db7441747f4174236eb2">VectorType</a>&amp; _q)<span class="keyword"> const</span></div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;<span class="keyword">    </span>{</div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;        <span class="comment">// Project on the normal vector and add the offset value</span></div>
+<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;        <span class="keywordflow">return</span> EigenBase::projection(Base::m_w.convertToLocalBasis(_q)) + Base::m_w.basisCenter();</div>
+<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;    }</div>
+<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160; </div>
+<div class="line"><a name="l00113"></a><span class="lineno"><a class="line" href="classPonca_1_1Plane.html#a3cabe0850b4d4cff4013a97a06ce1617">  113</a></span>&#160;    PONCA_MULTIARCH <span class="keyword">inline</span> <a class="code" href="classPonca_1_1Plane.html#ac3962c2f2212db7441747f4174236eb2">VectorType</a> <a class="code" href="classPonca_1_1Plane.html#a3cabe0850b4d4cff4013a97a06ce1617">primitiveGradient</a> ()<span class="keyword"> const</span></div>
+<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;<span class="keyword">    </span>{</div>
+<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;        <span class="comment">// Uniform gradient defined only by the orientation of the plane</span></div>
+<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;        <span class="keywordflow">return</span> EigenBase::normal();</div>
+<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;    }</div>
+<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160; </div>
+<div class="line"><a name="l00120"></a><span class="lineno"><a class="line" href="classPonca_1_1Plane.html#aaf943f5bcf752d7871c8475369022ef9">  120</a></span>&#160;    PONCA_MULTIARCH <span class="keyword">inline</span> <a class="code" href="classPonca_1_1Plane.html#ac3962c2f2212db7441747f4174236eb2">VectorType</a> <a class="code" href="classPonca_1_1Plane.html#aaf943f5bcf752d7871c8475369022ef9">primitiveGradient</a> (<span class="keyword">const</span> <a class="code" href="classPonca_1_1Plane.html#ac3962c2f2212db7441747f4174236eb2">VectorType</a>&amp;)<span class="keyword"> const</span></div>
+<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;<span class="keyword">    </span>{</div>
+<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;        <span class="comment">// Uniform gradient defined only by the orientation of the plane</span></div>
+<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;        <span class="keywordflow">return</span> EigenBase::normal();</div>
+<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;    }</div>
+<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;}; <span class="comment">//class Plane</span></div>
+<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160; </div>
+<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;}</div>
 </div><!-- fragment --></div><!-- contents -->
-<div class="ttc" id="aclassPonca_1_1Plane_html_aee542df3bc7ddb9708bd532b5b57a9e6a6b7d4160826f431bf9d8ddd3e72a7178"><div class="ttname"><a href="classPonca_1_1Plane.html#aee542df3bc7ddb9708bd532b5b57a9e6a6b7d4160826f431bf9d8ddd3e72a7178">Ponca::Plane::PROVIDES_PLANE</a></div><div class="ttdeci">@ PROVIDES_PLANE</div><div class="ttdoc">Provides a Plane primitive.</div><div class="ttdef"><b>Definition:</b> plane.h:55</div></div>
-<div class="ttc" id="aclassPonca_1_1Plane_html_afdb7adae71601bba760e8bea3df1e0c7"><div class="ttname"><a href="classPonca_1_1Plane.html#afdb7adae71601bba760e8bea3df1e0c7">Ponca::Plane::MatrixType</a></div><div class="ttdeci">DataPoint::MatrixType MatrixType</div><div class="ttdoc">Matrix type inherited from DataPoint.</div><div class="ttdef"><b>Definition:</b> plane.h:65</div></div>
-<div class="ttc" id="anamespacePonca_html"><div class="ttname"><a href="namespacePonca.html">Ponca</a></div><div class="ttdoc">This module provides efficient methods for the fitting and analysis of point-clouds in arbitrary dime...</div><div class="ttdef"><b>Definition:</b> limitedPriorityQueue.h:14</div></div>
-<div class="ttc" id="aclassPonca_1_1Plane_html_a4855b9d53d3ab5e251b0344d8ea2cbf2"><div class="ttname"><a href="classPonca_1_1Plane.html#a4855b9d53d3ab5e251b0344d8ea2cbf2">Ponca::Plane::VectorType</a></div><div class="ttdeci">DataPoint::VectorType VectorType</div><div class="ttdoc">Vector type inherited from DataPoint.</div><div class="ttdef"><b>Definition:</b> plane.h:63</div></div>
-<div class="ttc" id="aclassPonca_1_1Plane_html_a7c05e3d35bd506b83f5a74ed234cd290"><div class="ttname"><a href="classPonca_1_1Plane.html#a7c05e3d35bd506b83f5a74ed234cd290">Ponca::Plane::potential</a></div><div class="ttdeci">Scalar potential(const VectorType &amp;_q) const</div><div class="ttdoc">Value of the scalar field at the location .</div><div class="ttdef"><b>Definition:</b> plane.h:131</div></div>
-<div class="ttc" id="aclassPonca_1_1Plane_html_a3d8d4a4d3d34d18f7e17a4a06993dcf1"><div class="ttname"><a href="classPonca_1_1Plane.html#a3d8d4a4d3d34d18f7e17a4a06993dcf1">Ponca::Plane::basisCenter</a></div><div class="ttdeci">const VectorType &amp; basisCenter() const</div><div class="ttdoc">Reading access to the basis center (evaluation position)</div><div class="ttdef"><b>Definition:</b> plane.h:109</div></div>
-<div class="ttc" id="aclassPonca_1_1PrimitiveBase_html_a4b665dda3ef3071f3d9c78a7a1a2507f"><div class="ttname"><a href="classPonca_1_1PrimitiveBase.html#a4b665dda3ef3071f3d9c78a7a1a2507f">Ponca::PrimitiveBase&lt; DataPoint, _WFunctor &gt;::resetPrimitive</a></div><div class="ttdeci">void resetPrimitive()</div><div class="ttdoc">Reset fitting state status.</div><div class="ttdef"><b>Definition:</b> primitive.h:48</div></div>
-<div class="ttc" id="aclassPonca_1_1Plane_html_ab75740fc55b07d04b2d6823359bc717a"><div class="ttname"><a href="classPonca_1_1Plane.html#ab75740fc55b07d04b2d6823359bc717a">Ponca::Plane::resetPrimitive</a></div><div class="ttdeci">void resetPrimitive()</div><div class="ttdoc">Set the scalar field values to 0 status.</div><div class="ttdef"><b>Definition:</b> plane.h:92</div></div>
-<div class="ttc" id="aclassPonca_1_1Plane_html_a8cd4d0cad6e6c43d1217d01d3b9497ee"><div class="ttname"><a href="classPonca_1_1Plane.html#a8cd4d0cad6e6c43d1217d01d3b9497ee">Ponca::Plane::potential</a></div><div class="ttdeci">Scalar potential() const</div><div class="ttdoc">Value of the scalar field at the evaluation point.</div><div class="ttdef"><b>Definition:</b> plane.h:125</div></div>
-<div class="ttc" id="aclassPonca_1_1Plane_html_a588a8ed4bc3185aba32021d409ddd380"><div class="ttname"><a href="classPonca_1_1Plane.html#a588a8ed4bc3185aba32021d409ddd380">Ponca::Plane::Plane</a></div><div class="ttdeci">Plane()</div><div class="ttdoc">Default constructor.</div><div class="ttdef"><b>Definition:</b> plane.h:78</div></div>
-<div class="ttc" id="aclassPonca_1_1Plane_html_a07ebddf795ed1940ff3ae7ac9b5accc1"><div class="ttname"><a href="classPonca_1_1Plane.html#a07ebddf795ed1940ff3ae7ac9b5accc1">Ponca::Plane::basisCenter</a></div><div class="ttdeci">VectorType &amp; basisCenter()</div><div class="ttdoc">Writing access to the (evaluation position)</div><div class="ttdef"><b>Definition:</b> plane.h:111</div></div>
-<div class="ttc" id="aclassPonca_1_1Plane_html_a9c9d1bb6f9272d8143607d4d0723cd42"><div class="ttname"><a href="classPonca_1_1Plane.html#a9c9d1bb6f9272d8143607d4d0723cd42">Ponca::Plane::Scalar</a></div><div class="ttdeci">DataPoint::Scalar Scalar</div><div class="ttdoc">Scalar type inherited from DataPoint.</div><div class="ttdef"><b>Definition:</b> plane.h:61</div></div>
-<div class="ttc" id="aclassPonca_1_1Plane_html_a0b86da18f6a6d769e24b783d842b2bfe"><div class="ttname"><a href="classPonca_1_1Plane.html#a0b86da18f6a6d769e24b783d842b2bfe">Ponca::Plane&lt; DataPoint, _WFunctor &gt;::EigenBase</a></div><div class="ttdeci">Eigen::Hyperplane&lt; typename DataPoint::Scalar, DataPoint::Dim &gt; EigenBase</div><div class="ttdoc">Specialization of Eigen::Hyperplane inherited by Ponca::Plane.</div><div class="ttdef"><b>Definition:</b> plane.h:48</div></div>
-<div class="ttc" id="aclassPonca_1_1PrimitiveBase_html"><div class="ttname"><a href="classPonca_1_1PrimitiveBase.html">Ponca::PrimitiveBase</a></div><div class="ttdoc">Primitive base class.</div><div class="ttdef"><b>Definition:</b> primitive.h:29</div></div>
-<div class="ttc" id="aclassPonca_1_1Plane_html_ad1a40b2bd6aab48a8e0ca3e32d7d02ce"><div class="ttname"><a href="classPonca_1_1Plane.html#ad1a40b2bd6aab48a8e0ca3e32d7d02ce">Ponca::Plane::operator!=</a></div><div class="ttdeci">bool operator!=(const Plane&lt; DataPoint, WFunctor, T &gt; &amp;other) const</div><div class="ttdoc">Comparison operator, convenience function.</div><div class="ttdef"><b>Definition:</b> plane.h:104</div></div>
-<div class="ttc" id="aclassPonca_1_1Plane_html_aaf943f5bcf752d7871c8475369022ef9"><div class="ttname"><a href="classPonca_1_1Plane.html#aaf943f5bcf752d7871c8475369022ef9">Ponca::Plane::primitiveGradient</a></div><div class="ttdeci">VectorType primitiveGradient(const VectorType &amp;) const</div><div class="ttdoc">Scalar field gradient direction at .</div><div class="ttdef"><b>Definition:</b> plane.h:152</div></div>
-<div class="ttc" id="aclassPonca_1_1Plane_html_ae53a83e024c16571f538790ad9b92dfa"><div class="ttname"><a href="classPonca_1_1Plane.html#ae53a83e024c16571f538790ad9b92dfa">Ponca::Plane::compactPlane</a></div><div class="ttdeci">Plane&lt; DataPoint, WFunctor, T &gt; &amp; compactPlane()</div><div class="ttdoc">Explicit conversion to Plane, to access methods potentially hidden by inheritage.</div><div class="ttdef"><b>Definition:</b> plane.h:87</div></div>
-<div class="ttc" id="aclassPonca_1_1Plane_html_a4c8dfa7374f71e788ebdfb8f91d80187"><div class="ttname"><a href="classPonca_1_1Plane.html#a4c8dfa7374f71e788ebdfb8f91d80187">Ponca::Plane::project</a></div><div class="ttdeci">VectorType project(const VectorType &amp;_q) const</div><div class="ttdoc">Project a point on the plane.</div><div class="ttdef"><b>Definition:</b> plane.h:138</div></div>
-<div class="ttc" id="aclassPonca_1_1Plane_html_af30d1f88b1336f6f63b818b5b434d080"><div class="ttname"><a href="classPonca_1_1Plane.html#af30d1f88b1336f6f63b818b5b434d080">Ponca::Plane::WFunctor</a></div><div class="ttdeci">_WFunctor WFunctor</div><div class="ttdoc">Weight Function.</div><div class="ttdef"><b>Definition:</b> plane.h:67</div></div>
-<div class="ttc" id="aclassPonca_1_1Plane_html"><div class="ttname"><a href="classPonca_1_1Plane.html">Ponca::Plane</a></div><div class="ttdoc">Implicit hyperplane defined by an homogeneous vector .</div><div class="ttdef"><b>Definition:</b> plane.h:39</div></div>
-<div class="ttc" id="aclassPonca_1_1Plane_html_a3cabe0850b4d4cff4013a97a06ce1617"><div class="ttname"><a href="classPonca_1_1Plane.html#a3cabe0850b4d4cff4013a97a06ce1617">Ponca::Plane::primitiveGradient</a></div><div class="ttdeci">VectorType primitiveGradient() const</div><div class="ttdoc">Scalar field gradient direction at the evaluation point.</div><div class="ttdef"><b>Definition:</b> plane.h:145</div></div>
+</div><!-- doc-content -->
+<div class="ttc" id="anamespacePonca_html"><div class="ttname"><a href="namespacePonca.html">Ponca</a></div><div class="ttdoc">This Source Code Form is subject to the terms of the Mozilla Public License, v.</div><div class="ttdef"><b>Definition:</b> <a href="limitedPriorityQueue_8h_source.html#l00014">limitedPriorityQueue.h:14</a></div></div>
+<div class="ttc" id="aclassPonca_1_1Plane_html_a7c05e3d35bd506b83f5a74ed234cd290"><div class="ttname"><a href="classPonca_1_1Plane.html#a7c05e3d35bd506b83f5a74ed234cd290">Ponca::Plane::potential</a></div><div class="ttdeci">Scalar potential(const VectorType &amp;_q) const</div><div class="ttdoc">Value of the scalar field at the location .</div><div class="ttdef"><b>Definition:</b> <a href="plane_8h_source.html#l00099">plane.h:99</a></div></div>
+<div class="ttc" id="aclassPonca_1_1Plane_html_ae4c6696fa815a6cfc3864e9f7b33d9a3"><div class="ttname"><a href="classPonca_1_1Plane.html#ae4c6696fa815a6cfc3864e9f7b33d9a3">Ponca::Plane::init</a></div><div class="ttdeci">void init(const VectorType &amp;_basisCenter=VectorType::Zero())</div><div class="ttdoc">Set the scalar field values to 0.</div><div class="ttdef"><b>Definition:</b> <a href="plane_8h_source.html#l00059">plane.h:59</a></div></div>
+<div class="ttc" id="aclassPonca_1_1Plane_html_a8cd4d0cad6e6c43d1217d01d3b9497ee"><div class="ttname"><a href="classPonca_1_1Plane.html#a8cd4d0cad6e6c43d1217d01d3b9497ee">Ponca::Plane::potential</a></div><div class="ttdeci">Scalar potential() const</div><div class="ttdoc">Value of the scalar field at the evaluation point.</div><div class="ttdef"><b>Definition:</b> <a href="plane_8h_source.html#l00093">plane.h:93</a></div></div>
+<div class="ttc" id="aclassPonca_1_1Plane_html_a588a8ed4bc3185aba32021d409ddd380"><div class="ttname"><a href="classPonca_1_1Plane.html#a588a8ed4bc3185aba32021d409ddd380">Ponca::Plane::Plane</a></div><div class="ttdeci">Plane()</div><div class="ttdoc">Default constructor.</div><div class="ttdef"><b>Definition:</b> <a href="plane_8h_source.html#l00053">plane.h:53</a></div></div>
+<div class="ttc" id="aclassPonca_1_1Plane_html_a0b86da18f6a6d769e24b783d842b2bfe"><div class="ttname"><a href="classPonca_1_1Plane.html#a0b86da18f6a6d769e24b783d842b2bfe">Ponca::Plane::EigenBase</a></div><div class="ttdeci">Eigen::Hyperplane&lt; typename DataPoint::Scalar, DataPoint::Dim &gt; EigenBase</div><div class="ttdoc">Specialization of Eigen::Hyperplane inherited by Ponca::Plane.</div><div class="ttdef"><b>Definition:</b> <a href="plane_8h_source.html#l00045">plane.h:45</a></div></div>
+<div class="ttc" id="aclassPonca_1_1Plane_html_a882c308e20a7b2c161b8eb13e9a3df29"><div class="ttname"><a href="classPonca_1_1Plane.html#a882c308e20a7b2c161b8eb13e9a3df29">Ponca::Plane::Scalar</a></div><div class="ttdeci">typename DataPoint::Scalar Scalar</div><div class="ttdoc">Alias to scalar type.</div><div class="ttdef"><b>Definition:</b> <a href="plane_8h_source.html#l00041">plane.h:41</a></div></div>
+<div class="ttc" id="aclassPonca_1_1Plane_html_ad0d5161db4d761c67449143155f4e458"><div class="ttname"><a href="classPonca_1_1Plane.html#ad0d5161db4d761c67449143155f4e458">Ponca::Plane::compactPlane</a></div><div class="ttdeci">Plane&lt; DataPoint, _WFunctor, T &gt; &amp; compactPlane()</div><div class="ttdoc">Explicit conversion to Plane , to access methods potentially hidden by heritage.</div><div class="ttdef"><b>Definition:</b> <a href="plane_8h_source.html#l00055">plane.h:55</a></div></div>
+<div class="ttc" id="aclassPonca_1_1Plane_html_a52341139ec80fcf7d3b6bd6af0a66786"><div class="ttname"><a href="classPonca_1_1Plane.html#a52341139ec80fcf7d3b6bd6af0a66786">Ponca::Plane::plane</a></div><div class="ttdeci">Plane&lt; DataPoint, _WFunctor, T &gt; &amp; plane()</div><div class="ttdoc">Explicit conversion to Plane , to access methods potentially hidden by heritage.</div><div class="ttdef"><b>Definition:</b> <a href="plane_8h_source.html#l00056">plane.h:56</a></div></div>
+<div class="ttc" id="aclassPonca_1_1Plane_html_a8c7b6fdadc393bebdc3c436794f0acb2"><div class="ttname"><a href="classPonca_1_1Plane.html#a8c7b6fdadc393bebdc3c436794f0acb2">Ponca::Plane::isValid</a></div><div class="ttdeci">bool isValid() const</div><div class="ttdoc">Tell if the plane as been correctly set. Used to set CONFLICT_ERROR_FOUND during fitting.</div><div class="ttdef"><b>Definition:</b> <a href="plane_8h_source.html#l00068">plane.h:68</a></div></div>
+<div class="ttc" id="aclassPonca_1_1Plane_html_ac3962c2f2212db7441747f4174236eb2"><div class="ttname"><a href="classPonca_1_1Plane.html#ac3962c2f2212db7441747f4174236eb2">Ponca::Plane::VectorType</a></div><div class="ttdeci">typename Base::VectorType VectorType</div><div class="ttdoc">Alias to vector type.</div><div class="ttdef"><b>Definition:</b> <a href="plane_8h_source.html#l00041">plane.h:41</a></div></div>
+<div class="ttc" id="aclassPonca_1_1Plane_html_ad1a40b2bd6aab48a8e0ca3e32d7d02ce"><div class="ttname"><a href="classPonca_1_1Plane.html#ad1a40b2bd6aab48a8e0ca3e32d7d02ce">Ponca::Plane::operator!=</a></div><div class="ttdeci">bool operator!=(const Plane&lt; DataPoint, WFunctor, T &gt; &amp;other) const</div><div class="ttdoc">Comparison operator, convenience function.</div><div class="ttdef"><b>Definition:</b> <a href="plane_8h_source.html#l00077">plane.h:77</a></div></div>
+<div class="ttc" id="aclassPonca_1_1Plane_html_aaf943f5bcf752d7871c8475369022ef9"><div class="ttname"><a href="classPonca_1_1Plane.html#aaf943f5bcf752d7871c8475369022ef9">Ponca::Plane::primitiveGradient</a></div><div class="ttdeci">VectorType primitiveGradient(const VectorType &amp;) const</div><div class="ttdoc">Scalar field gradient direction at .</div><div class="ttdef"><b>Definition:</b> <a href="plane_8h_source.html#l00120">plane.h:120</a></div></div>
+<div class="ttc" id="aclassPonca_1_1Plane_html_a4c8dfa7374f71e788ebdfb8f91d80187"><div class="ttname"><a href="classPonca_1_1Plane.html#a4c8dfa7374f71e788ebdfb8f91d80187">Ponca::Plane::project</a></div><div class="ttdeci">VectorType project(const VectorType &amp;_q) const</div><div class="ttdoc">Project a point on the plane.</div><div class="ttdef"><b>Definition:</b> <a href="plane_8h_source.html#l00106">plane.h:106</a></div></div>
+<div class="ttc" id="aclassPonca_1_1Plane_html"><div class="ttname"><a href="classPonca_1_1Plane.html">Ponca::Plane</a></div><div class="ttdoc">Implicit hyperplane defined by an homogeneous vector .</div><div class="ttdef"><b>Definition:</b> <a href="plane_8h_source.html#l00038">plane.h:38</a></div></div>
+<div class="ttc" id="aclassPonca_1_1Plane_html_a3cabe0850b4d4cff4013a97a06ce1617"><div class="ttname"><a href="classPonca_1_1Plane.html#a3cabe0850b4d4cff4013a97a06ce1617">Ponca::Plane::primitiveGradient</a></div><div class="ttdeci">VectorType primitiveGradient() const</div><div class="ttdoc">Scalar field gradient direction at the evaluation point.</div><div class="ttdef"><b>Definition:</b> <a href="plane_8h_source.html#l00113">plane.h:113</a></div></div>
 <!-- start footer part -->
-<hr class="footer"/><address class="footer"><small>
-Generated on Tue Aug 2 2022 09:22:55 for Ponca by &#160;<a href="http://www.doxygen.org/index.html">
-<img class="footer" src="doxygen.png" alt="doxygen"/>
-</a> 1.8.17
-</small></address>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_695d95a8d8fbec601a248c0414764298.html">Ponca</a></li><li class="navelem"><a class="el" href="dir_ce16314fc45f8638543c5146aff64d4a.html">src</a></li><li class="navelem"><a class="el" href="dir_221133f19e4af6803e4ee7d78db21786.html">Fitting</a></li><li class="navelem"><b>plane.h</b></li>
+    <li class="footer">Generated on Fri Sep 9 2022 12:28:20 for Ponca by
+    <a href="http://www.doxygen.org/index.html">
+    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.17 </li>
+  </ul>
+</div>
 </body>
 </html>

@@ -1,5 +1,0 @@
-<map id="Ponca::Concept::WeightKernelConcept&lt; _Scalar &gt;" name="Ponca::Concept::WeightKernelConcept&lt; _Scalar &gt;">
-<area shape="rect" id="node1" title="A 1D weighting function and its derivatives." alt="" coords="120,5,336,127"/>
-<area shape="rect" id="node2" href="$classPonca_1_1ConstantWeightKernel.html" title="Concept::WeightKernelConcept returning a constant value." alt="" coords="5,175,219,325"/>
-<area shape="rect" id="node3" href="$classPonca_1_1SmoothWeightKernel.html" title="Smooth WeightKernel defined in ." alt="" coords="243,189,448,311"/>
-</map>

@@ -1,3 +1,4 @@
+<!-- HTML header for doxygen 1.9.1-->
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -9,6 +10,10 @@
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
@@ -20,7 +25,23 @@
 </script>
 <script type="text/javascript" async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js"></script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only-darkmode-toggle.css" rel="stylesheet" type="text/css"/>
 <link href="ponca.css" rel="stylesheet" type="text/css"/>
+<!-- ... other metadata & script includes ... -->
+<script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+<script type="text/javascript">
+    DoxygenAwesomeDarkModeToggle.init()
+</script>
+<script type="text/javascript" src="doxygen-awesome-fragment-copy-button.js"></script>
+<script type="text/javascript">
+    DoxygenAwesomeFragmentCopyButton.init()
+</script>
+<script type="text/javascript" src="doxygen-awesome-paragraph-link.js"></script>
+<script type="text/javascript">
+    DoxygenAwesomeParagraphLink.init()
+</script>
 </head>
 <body>
 <div id="top"><!-- do not remove this div, it is closed by doxygen! -->
@@ -30,7 +51,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Ponca
-   &#160;<span id="projectnumber">8976dc5e97f677a334261616e8d2314551b8ce3d</span>
+   &#160;<span id="projectnumber">d844664447d2173c00cc41660408e8eb5b3a41d6</span>
    </div>
    <div id="projectbrief">Point Cloud Analysis library</div>
   </td>
@@ -55,6 +76,23 @@ $(function() {
 });
 /* @license-end */</script>
 <div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(document).ready(function(){initNavTree('classPonca_1_1Plane.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -69,11 +107,6 @@ $(function() {
 </iframe>
 </div>
 
-<div id="nav-path" class="navpath">
-  <ul>
-<li class="navelem"><a class="el" href="namespacePonca.html">Ponca</a></li><li class="navelem"><a class="el" href="classPonca_1_1Plane.html">Plane</a></li>  </ul>
-</div>
-</div><!-- top -->
 <div class="header">
   <div class="headertitle">
 <div class="title">Ponca::Plane&lt; DataPoint, _WFunctor, T &gt; Member List</div>  </div>
@@ -82,37 +115,36 @@ $(function() {
 
 <p>This is the complete list of members for <a class="el" href="classPonca_1_1Plane.html">Ponca::Plane&lt; DataPoint, _WFunctor, T &gt;</a>, including all inherited members.</p>
 <table class="directory">
-  <tr class="even"><td class="entry"><a class="el" href="classPonca_1_1Plane.html#a3d8d4a4d3d34d18f7e17a4a06993dcf1">basisCenter</a>() const</td><td class="entry"><a class="el" href="classPonca_1_1Plane.html">Ponca::Plane&lt; DataPoint, _WFunctor, T &gt;</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
-  <tr><td class="entry"><a class="el" href="classPonca_1_1Plane.html#a07ebddf795ed1940ff3ae7ac9b5accc1">basisCenter</a>()</td><td class="entry"><a class="el" href="classPonca_1_1Plane.html">Ponca::Plane&lt; DataPoint, _WFunctor, T &gt;</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="classPonca_1_1Plane.html#ae53a83e024c16571f538790ad9b92dfa">compactPlane</a>()</td><td class="entry"><a class="el" href="classPonca_1_1Plane.html">Ponca::Plane&lt; DataPoint, _WFunctor, T &gt;</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
+  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>check</b> enum value (defined in <a class="el" href="classPonca_1_1Plane.html">Ponca::Plane&lt; DataPoint, _WFunctor, T &gt;</a>)</td><td class="entry"><a class="el" href="classPonca_1_1Plane.html">Ponca::Plane&lt; DataPoint, _WFunctor, T &gt;</a></td><td class="entry"><span class="mlabel">protected</span></td></tr>
+  <tr><td class="entry"><a class="el" href="classPonca_1_1Plane.html#ad0d5161db4d761c67449143155f4e458">compactPlane</a>()</td><td class="entry"><a class="el" href="classPonca_1_1Plane.html">Ponca::Plane&lt; DataPoint, _WFunctor, T &gt;</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="classPonca_1_1Plane.html#a574e2f877ccaac6977081fc3b273f2bc">compactPlane</a>() const</td><td class="entry"><a class="el" href="classPonca_1_1Plane.html">Ponca::Plane&lt; DataPoint, _WFunctor, T &gt;</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
   <tr><td class="entry"><a class="el" href="classPonca_1_1Plane.html#a0b86da18f6a6d769e24b783d842b2bfe">EigenBase</a> typedef</td><td class="entry"><a class="el" href="classPonca_1_1Plane.html">Ponca::Plane&lt; DataPoint, _WFunctor, T &gt;</a></td><td class="entry"></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="classPonca_1_1PrimitiveBase.html#a19945873f15545be8791ceb7d5c49c1a">getCurrentState</a>() const</td><td class="entry"><a class="el" href="classPonca_1_1PrimitiveBase.html">Ponca::PrimitiveBase&lt; DataPoint, _WFunctor &gt;</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
-  <tr><td class="entry"><a class="el" href="classPonca_1_1PrimitiveBase.html#a7f67aff61af9b364ffa983364f1d2165">isReady</a>() const</td><td class="entry"><a class="el" href="classPonca_1_1PrimitiveBase.html">Ponca::PrimitiveBase&lt; DataPoint, _WFunctor &gt;</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="classPonca_1_1PrimitiveBase.html#ada0d81900921e0a922ce459ba1d3ec2c">isStable</a>() const</td><td class="entry"><a class="el" href="classPonca_1_1PrimitiveBase.html">Ponca::PrimitiveBase&lt; DataPoint, _WFunctor &gt;</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
-  <tr><td class="entry"><a class="el" href="classPonca_1_1PrimitiveBase.html#ae90892c0b382040d748e16a10990ec49">m_eCurrentState</a></td><td class="entry"><a class="el" href="classPonca_1_1PrimitiveBase.html">Ponca::PrimitiveBase&lt; DataPoint, _WFunctor &gt;</a></td><td class="entry"><span class="mlabel">protected</span></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="classPonca_1_1PrimitiveBase.html#affee95252016666ddd5d0d1b01dbe25a">m_nbNeighbors</a></td><td class="entry"><a class="el" href="classPonca_1_1PrimitiveBase.html">Ponca::PrimitiveBase&lt; DataPoint, _WFunctor &gt;</a></td><td class="entry"><span class="mlabel">protected</span></td></tr>
-  <tr><td class="entry"><a class="el" href="classPonca_1_1Plane.html#afdb7adae71601bba760e8bea3df1e0c7">MatrixType</a> typedef</td><td class="entry"><a class="el" href="classPonca_1_1Plane.html">Ponca::Plane&lt; DataPoint, _WFunctor, T &gt;</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="classPonca_1_1Plane.html#ae4c6696fa815a6cfc3864e9f7b33d9a3">init</a>(const VectorType &amp;_basisCenter=VectorType::Zero())</td><td class="entry"><a class="el" href="classPonca_1_1Plane.html">Ponca::Plane&lt; DataPoint, _WFunctor, T &gt;</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
+  <tr><td class="entry"><a class="el" href="classPonca_1_1Plane.html#a8c7b6fdadc393bebdc3c436794f0acb2">isValid</a>() const</td><td class="entry"><a class="el" href="classPonca_1_1Plane.html">Ponca::Plane&lt; DataPoint, _WFunctor, T &gt;</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
   <tr class="even"><td class="entry"><a class="el" href="classPonca_1_1Plane.html#ad1a40b2bd6aab48a8e0ca3e32d7d02ce">operator!=</a>(const Plane&lt; DataPoint, WFunctor, T &gt; &amp;other) const</td><td class="entry"><a class="el" href="classPonca_1_1Plane.html">Ponca::Plane&lt; DataPoint, _WFunctor, T &gt;</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
   <tr bgcolor="#f0f0f0"><td class="entry"><b>operator==</b>(const Plane&lt; DataPoint, WFunctor, T &gt; &amp;other) const (defined in <a class="el" href="classPonca_1_1Plane.html">Ponca::Plane&lt; DataPoint, _WFunctor, T &gt;</a>)</td><td class="entry"><a class="el" href="classPonca_1_1Plane.html">Ponca::Plane&lt; DataPoint, _WFunctor, T &gt;</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
   <tr class="even"><td class="entry"><a class="el" href="classPonca_1_1Plane.html#a588a8ed4bc3185aba32021d409ddd380">Plane</a>()</td><td class="entry"><a class="el" href="classPonca_1_1Plane.html">Ponca::Plane&lt; DataPoint, _WFunctor, T &gt;</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
+  <tr><td class="entry"><a class="el" href="classPonca_1_1Plane.html#a52341139ec80fcf7d3b6bd6af0a66786">plane</a>()</td><td class="entry"><a class="el" href="classPonca_1_1Plane.html">Ponca::Plane&lt; DataPoint, _WFunctor, T &gt;</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="classPonca_1_1Plane.html#a3974eb069770f9aede3592acd7815a60">plane</a>() const</td><td class="entry"><a class="el" href="classPonca_1_1Plane.html">Ponca::Plane&lt; DataPoint, _WFunctor, T &gt;</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
   <tr><td class="entry"><a class="el" href="classPonca_1_1Plane.html#a8cd4d0cad6e6c43d1217d01d3b9497ee">potential</a>() const</td><td class="entry"><a class="el" href="classPonca_1_1Plane.html">Ponca::Plane&lt; DataPoint, _WFunctor, T &gt;</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
   <tr class="even"><td class="entry"><a class="el" href="classPonca_1_1Plane.html#a7c05e3d35bd506b83f5a74ed234cd290">potential</a>(const VectorType &amp;_q) const</td><td class="entry"><a class="el" href="classPonca_1_1Plane.html">Ponca::Plane&lt; DataPoint, _WFunctor, T &gt;</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
-  <tr><td class="entry"><a class="el" href="classPonca_1_1PrimitiveBase.html#a008e1acfad08864ea8df9979e5cd6015">PrimitiveBase</a>()</td><td class="entry"><a class="el" href="classPonca_1_1PrimitiveBase.html">Ponca::PrimitiveBase&lt; DataPoint, _WFunctor &gt;</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="classPonca_1_1Plane.html#a3cabe0850b4d4cff4013a97a06ce1617">primitiveGradient</a>() const</td><td class="entry"><a class="el" href="classPonca_1_1Plane.html">Ponca::Plane&lt; DataPoint, _WFunctor, T &gt;</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
-  <tr><td class="entry"><a class="el" href="classPonca_1_1Plane.html#aaf943f5bcf752d7871c8475369022ef9">primitiveGradient</a>(const VectorType &amp;) const</td><td class="entry"><a class="el" href="classPonca_1_1Plane.html">Ponca::Plane&lt; DataPoint, _WFunctor, T &gt;</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="classPonca_1_1Plane.html#a4c8dfa7374f71e788ebdfb8f91d80187">project</a>(const VectorType &amp;_q) const</td><td class="entry"><a class="el" href="classPonca_1_1Plane.html">Ponca::Plane&lt; DataPoint, _WFunctor, T &gt;</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
-  <tr><td class="entry"><a class="el" href="classPonca_1_1Plane.html#aee542df3bc7ddb9708bd532b5b57a9e6a6b7d4160826f431bf9d8ddd3e72a7178">PROVIDES_PLANE</a> enum value</td><td class="entry"><a class="el" href="classPonca_1_1Plane.html">Ponca::Plane&lt; DataPoint, _WFunctor, T &gt;</a></td><td class="entry"><span class="mlabel">protected</span></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="classPonca_1_1Plane.html#ab75740fc55b07d04b2d6823359bc717a">resetPrimitive</a>()</td><td class="entry"><a class="el" href="classPonca_1_1Plane.html">Ponca::Plane&lt; DataPoint, _WFunctor, T &gt;</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
-  <tr><td class="entry"><a class="el" href="classPonca_1_1Plane.html#a9c9d1bb6f9272d8143607d4d0723cd42">Scalar</a> typedef</td><td class="entry"><a class="el" href="classPonca_1_1Plane.html">Ponca::Plane&lt; DataPoint, _WFunctor, T &gt;</a></td><td class="entry"></td></tr>
+  <tr><td class="entry"><a class="el" href="classPonca_1_1Plane.html#a3cabe0850b4d4cff4013a97a06ce1617">primitiveGradient</a>() const</td><td class="entry"><a class="el" href="classPonca_1_1Plane.html">Ponca::Plane&lt; DataPoint, _WFunctor, T &gt;</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="classPonca_1_1Plane.html#aaf943f5bcf752d7871c8475369022ef9">primitiveGradient</a>(const VectorType &amp;) const</td><td class="entry"><a class="el" href="classPonca_1_1Plane.html">Ponca::Plane&lt; DataPoint, _WFunctor, T &gt;</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
+  <tr><td class="entry"><a class="el" href="classPonca_1_1Plane.html#a4c8dfa7374f71e788ebdfb8f91d80187">project</a>(const VectorType &amp;_q) const</td><td class="entry"><a class="el" href="classPonca_1_1Plane.html">Ponca::Plane&lt; DataPoint, _WFunctor, T &gt;</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
+  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>PROVIDES_PLANE</b> enum value (defined in <a class="el" href="classPonca_1_1Plane.html">Ponca::Plane&lt; DataPoint, _WFunctor, T &gt;</a>)</td><td class="entry"><a class="el" href="classPonca_1_1Plane.html">Ponca::Plane&lt; DataPoint, _WFunctor, T &gt;</a></td><td class="entry"><span class="mlabel">protected</span></td></tr>
+  <tr><td class="entry"><a class="el" href="classPonca_1_1Plane.html#a882c308e20a7b2c161b8eb13e9a3df29">Scalar</a> typedef</td><td class="entry"><a class="el" href="classPonca_1_1Plane.html">Ponca::Plane&lt; DataPoint, _WFunctor, T &gt;</a></td><td class="entry"></td></tr>
   <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>setPlane</b>(const VectorType &amp;_dir, const VectorType &amp;_pos) (defined in <a class="el" href="classPonca_1_1Plane.html">Ponca::Plane&lt; DataPoint, _WFunctor, T &gt;</a>)</td><td class="entry"><a class="el" href="classPonca_1_1Plane.html">Ponca::Plane&lt; DataPoint, _WFunctor, T &gt;</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
-  <tr><td class="entry"><a class="el" href="classPonca_1_1Plane.html#a4855b9d53d3ab5e251b0344d8ea2cbf2">VectorType</a> typedef</td><td class="entry"><a class="el" href="classPonca_1_1Plane.html">Ponca::Plane&lt; DataPoint, _WFunctor, T &gt;</a></td><td class="entry"></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="classPonca_1_1Plane.html#af30d1f88b1336f6f63b818b5b434d080">WFunctor</a> typedef</td><td class="entry"><a class="el" href="classPonca_1_1Plane.html">Ponca::Plane&lt; DataPoint, _WFunctor, T &gt;</a></td><td class="entry"></td></tr>
+  <tr><td class="entry"><a class="el" href="classPonca_1_1Plane.html#ac3962c2f2212db7441747f4174236eb2">VectorType</a> typedef</td><td class="entry"><a class="el" href="classPonca_1_1Plane.html">Ponca::Plane&lt; DataPoint, _WFunctor, T &gt;</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="classPonca_1_1Plane.html#aab59c89c503d324f8bb4efa14e542915">WFunctor</a> typedef</td><td class="entry"><a class="el" href="classPonca_1_1Plane.html">Ponca::Plane&lt; DataPoint, _WFunctor, T &gt;</a></td><td class="entry"></td></tr>
 </table></div><!-- contents -->
+</div><!-- doc-content -->
 <!-- start footer part -->
-<hr class="footer"/><address class="footer"><small>
-Generated on Tue Aug 2 2022 09:22:55 for Ponca by &#160;<a href="http://www.doxygen.org/index.html">
-<img class="footer" src="doxygen.png" alt="doxygen"/>
-</a> 1.8.17
-</small></address>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="footer">Generated on Fri Sep 9 2022 12:28:20 for Ponca by
+    <a href="http://www.doxygen.org/index.html">
+    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.17 </li>
+  </ul>
+</div>
 </body>
 </html>

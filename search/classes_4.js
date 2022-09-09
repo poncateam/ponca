@@ -1,7 +1,5 @@
 var searchData=
 [
-  ['fittingextensionconcept_311',['FittingExtensionConcept',['../classPonca_1_1Concept_1_1FittingExtensionConcept.html',1,'Ponca::Concept']]],
-  ['fittingprocedureconcept_312',['FittingProcedureConcept',['../classPonca_1_1Concept_1_1FittingProcedureConcept.html',1,'Ponca::Concept']]],
-  ['forward_313',['Forward',['../classPonca_1_1internal_1_1Forward.html',1,'Ponca::internal']]],
-  ['forward_3c_20p_2c_20w_2c_20internal_3a_3aforward_3c_20p_2c_20w_2c_20internal_3a_3aforward_3c_20p_2c_20w_2c_20internal_3a_3aforward_3c_20p_2c_20w_2c_20internal_3a_3aforward_3c_20p_2c_20w_2c_20internal_3a_3aforward_3c_20p_2c_20w_2c_20internal_3a_3aforward_3c_20p_2c_20w_2c_20internal_3a_3aforward_3c_20p_2c_20w_2c_20internal_3a_3aforward_3c_20p_2c_20w_2c_20internal_3a_3aforward_3c_20p_2c_20w_2c_20internal_3a_3aforward_3c_20p_2c_20w_2c_20internal_3a_3aforward_3c_20p_2c_20w_2c_20fit_3c_20p_2c_20w_2c_20void_20_3e_20_3e_20_3e_20_3e_20_3e_20_3e_20_3e_20_3e_20_3e_20_3e_20_3e_20_3e_20_3e_314',['Forward&lt; P, W, internal::Forward&lt; P, W, internal::Forward&lt; P, W, internal::Forward&lt; P, W, internal::Forward&lt; P, W, internal::Forward&lt; P, W, internal::Forward&lt; P, W, internal::Forward&lt; P, W, internal::Forward&lt; P, W, internal::Forward&lt; P, W, internal::Forward&lt; P, W, internal::Forward&lt; P, W, Fit&lt; P, W, void &gt; &gt; &gt; &gt; &gt; &gt; &gt; &gt; &gt; &gt; &gt; &gt; &gt;',['../classPonca_1_1internal_1_1Forward.html',1,'Ponca::internal']]]
+  ['glsder_308',['GLSDer',['../classPonca_1_1GLSDer.html',1,'Ponca']]],
+  ['glsparam_309',['GLSParam',['../classPonca_1_1GLSParam.html',1,'Ponca']]]
 ];

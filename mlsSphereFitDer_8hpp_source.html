@@ -1,3 +1,4 @@
+<!-- HTML header for doxygen 1.9.1-->
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -9,6 +10,10 @@
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
@@ -20,7 +25,23 @@
 </script>
 <script type="text/javascript" async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js"></script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only-darkmode-toggle.css" rel="stylesheet" type="text/css"/>
 <link href="ponca.css" rel="stylesheet" type="text/css"/>
+<!-- ... other metadata & script includes ... -->
+<script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+<script type="text/javascript">
+    DoxygenAwesomeDarkModeToggle.init()
+</script>
+<script type="text/javascript" src="doxygen-awesome-fragment-copy-button.js"></script>
+<script type="text/javascript">
+    DoxygenAwesomeFragmentCopyButton.init()
+</script>
+<script type="text/javascript" src="doxygen-awesome-paragraph-link.js"></script>
+<script type="text/javascript">
+    DoxygenAwesomeParagraphLink.init()
+</script>
 </head>
 <body>
 <div id="top"><!-- do not remove this div, it is closed by doxygen! -->
@@ -30,7 +51,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Ponca
-   &#160;<span id="projectnumber">8976dc5e97f677a334261616e8d2314551b8ce3d</span>
+   &#160;<span id="projectnumber">d844664447d2173c00cc41660408e8eb5b3a41d6</span>
    </div>
    <div id="projectbrief">Point Cloud Analysis library</div>
   </td>
@@ -55,6 +76,23 @@ $(function() {
 });
 /* @license-end */</script>
 <div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(document).ready(function(){initNavTree('mlsSphereFitDer_8hpp_source.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -69,11 +107,6 @@ $(function() {
 </iframe>
 </div>
 
-<div id="nav-path" class="navpath">
-  <ul>
-<li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_695d95a8d8fbec601a248c0414764298.html">Ponca</a></li><li class="navelem"><a class="el" href="dir_ce16314fc45f8638543c5146aff64d4a.html">src</a></li><li class="navelem"><a class="el" href="dir_221133f19e4af6803e4ee7d78db21786.html">Fitting</a></li>  </ul>
-</div>
-</div><!-- top -->
 <div class="header">
   <div class="headertitle">
 <div class="title">mlsSphereFitDer.hpp</div>  </div>
@@ -86,9 +119,9 @@ $(function() {
 <div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="comment">*/</span></div>
 <div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160; </div>
 <div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160; </div>
-<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="keyword">template</span> &lt; <span class="keyword">class</span> DataPo<span class="keywordtype">int</span>, <span class="keyword">class</span> _WFunctor, <span class="keyword">typename</span> T&gt;</div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="keyword">template</span> &lt; <span class="keyword">class</span> DataPo<span class="keywordtype">int</span>, <span class="keyword">class</span> _WFunctor, <span class="keywordtype">int</span> DiffType, <span class="keyword">typename</span> T&gt;</div>
 <div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="keywordtype">void</span></div>
-<div class="line"><a name="l00010"></a><span class="lineno"><a class="line" href="classPonca_1_1MlsSphereFitDer.html#ad362727ca7fcf319ee1c7cd23552465f">   10</a></span>&#160;<a class="code" href="classPonca_1_1MlsSphereFitDer.html">MlsSphereFitDer&lt;DataPoint, _WFunctor, T&gt;::init</a>(<span class="keyword">const</span> <a class="code" href="classPonca_1_1MlsSphereFitDer.html#ab27fa90ee60f684927095ac906cfef14">VectorType</a>&amp; _evalPos)</div>
+<div class="line"><a name="l00010"></a><span class="lineno"><a class="line" href="classPonca_1_1MlsSphereFitDer.html#a4fbafff234dc57507bcd6c84feb8a847">   10</a></span>&#160;<a class="code" href="classPonca_1_1MlsSphereFitDer.html">MlsSphereFitDer&lt;DataPoint, _WFunctor, DiffType, T&gt;::init</a>(<span class="keyword">const</span> <a class="code" href="classPonca_1_1MlsSphereFitDer.html#a11a8dba6b3543b35f1cb6e699f4a26ca">VectorType</a>&amp; _evalPos)</div>
 <div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;{</div>
 <div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;    Base::init(_evalPos);</div>
 <div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160; </div>
@@ -104,206 +137,209 @@ $(function() {
 <div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;    m_d2SumN = MatrixArray::Zero();</div>
 <div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;}</div>
 <div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160; </div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="keyword">template</span> &lt; <span class="keyword">class</span> DataPo<span class="keywordtype">int</span>, <span class="keyword">class</span> _WFunctor, <span class="keyword">typename</span> T&gt;</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="keyword">template</span> &lt; <span class="keyword">class</span> DataPo<span class="keywordtype">int</span>, <span class="keyword">class</span> _WFunctor, <span class="keywordtype">int</span> DiffType, <span class="keyword">typename</span> T&gt;</div>
 <div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="keywordtype">bool</span></div>
-<div class="line"><a name="l00028"></a><span class="lineno"><a class="line" href="classPonca_1_1MlsSphereFitDer.html#a3833c0409ce542843559d1afbda2779b">   28</a></span>&#160;<a class="code" href="classPonca_1_1MlsSphereFitDer.html">MlsSphereFitDer&lt;DataPoint, _WFunctor, T&gt;::addNeighbor</a>(<span class="keyword">const</span> DataPoint&amp; _nei)</div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;{</div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;    <span class="keywordtype">bool</span> bResult = Base::addNeighbor(_nei);</div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160; </div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;    <span class="keywordflow">if</span>(bResult)</div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;    {</div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;        <span class="comment">// centered basis</span></div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;        <a class="code" href="classPonca_1_1MlsSphereFitDer.html#ab27fa90ee60f684927095ac906cfef14">VectorType</a> q = _nei.pos() - Base::basisCenter();</div>
+<div class="line"><a name="l00028"></a><span class="lineno"><a class="line" href="classPonca_1_1MlsSphereFitDer.html#a2f20f8092b21bb028a5832dc22c019b9">   28</a></span>&#160;<a class="code" href="classPonca_1_1MlsSphereFitDer.html">MlsSphereFitDer&lt;DataPoint, _WFunctor, DiffType, T&gt;::addLocalNeighbor</a>(<a class="code" href="classPonca_1_1MlsSphereFitDer.html#af0219bcdc54d55e9391414982907d730">Scalar</a> w,</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;                                                              <span class="keyword">const</span> <a class="code" href="classPonca_1_1MlsSphereFitDer.html#a11a8dba6b3543b35f1cb6e699f4a26ca">VectorType</a> &amp;localQ,</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;                                                              <span class="keyword">const</span> DataPoint &amp;attributes,</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;                                                              <a class="code" href="classPonca_1_1MlsSphereFitDer.html#adb6557177816169e4694ca724c918170">ScalarArray</a> &amp;dw)</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;{</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;    <span class="keywordflow">if</span>( Base::addLocalNeighbor(w, localQ, attributes, dw) ) {</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;        <span class="comment">// compute weight derivatives</span></div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;        <a class="code" href="classPonca_1_1MlsSphereFitDer.html#a0290d2bbb57e39a332276b467bc91458">Matrix</a> d2w = Matrix::Zero();</div>
 <div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160; </div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;        <span class="comment">// compute weight derivatives</span></div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;        <a class="code" href="classPonca_1_1MlsSphereFitDer.html#aebc80fce4f79a9acd1792a549c900ead">Matrix</a> d2w = Matrix::Zero();</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;        <span class="keywordflow">if</span> (Base::isScaleDer())</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;            d2w(0,0) = Base::m_w.scaled2w(localQ, attributes);</div>
 <div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160; </div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;        <span class="keywordflow">if</span> (Base::isScaleDer())</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;            d2w(0,0) = Base::m_w.scaled2w(q, _nei);</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;        <span class="keywordflow">if</span> (Base::isSpaceDer())</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;            d2w.template bottomRightCorner&lt;Dim,Dim&gt;() = Base::m_w.spaced2w(localQ, attributes);</div>
 <div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160; </div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;        <span class="keywordflow">if</span> (Base::isSpaceDer())</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;            d2w.template bottomRightCorner&lt;Dim,Dim&gt;() = Base::m_w.spaced2w(q, _nei);</div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160; </div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;        <span class="keywordflow">if</span> (Base::isScaleDer() &amp;&amp; Base::isSpaceDer())</div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;        {</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;            d2w.template bottomLeftCorner&lt;Dim,1&gt;() = Base::m_w.scaleSpaced2w(q,_nei);</div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;            d2w.template topRightCorner&lt;1,Dim&gt;() = d2w.template bottomLeftCorner&lt;Dim,1&gt;().transpose();</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;        }</div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160; </div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;        m_d2SumDotPN += d2w * _nei.normal().dot(q);</div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;        m_d2SumDotPP += d2w * q.squaredNorm();</div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;        m_d2SumW     += d2w;</div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160; </div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;        <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i=0; i&lt;Dim; ++i)</div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;        {</div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;            m_d2SumP.template block&lt;DerDim,DerDim&gt;(0,i*DerDim) += d2w * q[i];</div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;            m_d2SumN.template block&lt;DerDim,DerDim&gt;(0,i*DerDim) += d2w * _nei.normal()[i];</div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;        }</div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;    }</div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;    <span class="keywordflow">return</span> bResult;</div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;}</div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160; </div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;<span class="keyword">template</span> &lt; <span class="keyword">class</span> DataPo<span class="keywordtype">int</span>, <span class="keyword">class</span> _WFunctor, <span class="keyword">typename</span> T&gt;</div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;<a class="code" href="group__fitting.html#gabfd697aebf07c1b5c8be5ee401e2dc84">FIT_RESULT</a></div>
-<div class="line"><a name="l00067"></a><span class="lineno"><a class="line" href="classPonca_1_1MlsSphereFitDer.html#a32ebaaf56aa7808cd3c4812dc60b91f1">   67</a></span>&#160;<a class="code" href="classPonca_1_1MlsSphereFitDer.html">MlsSphereFitDer&lt;DataPoint, _WFunctor, T&gt;::finalize</a>()</div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;{</div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;    Base::finalize();</div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160; </div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;    <span class="keywordflow">if</span> (this-&gt;isReady())</div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;    {</div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;        <a class="code" href="classPonca_1_1MlsSphereFitDer.html#aebc80fce4f79a9acd1792a549c900ead">Matrix</a> sumdSumPdSumN  = Matrix::Zero();</div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;        <a class="code" href="classPonca_1_1MlsSphereFitDer.html#aebc80fce4f79a9acd1792a549c900ead">Matrix</a> sumd2SumPdSumN = Matrix::Zero();</div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;        <a class="code" href="classPonca_1_1MlsSphereFitDer.html#aebc80fce4f79a9acd1792a549c900ead">Matrix</a> sumd2SumNdSumP = Matrix::Zero();</div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;        <a class="code" href="classPonca_1_1MlsSphereFitDer.html#aebc80fce4f79a9acd1792a549c900ead">Matrix</a> sumdSumPdSumP  = Matrix::Zero();</div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;        <a class="code" href="classPonca_1_1MlsSphereFitDer.html#aebc80fce4f79a9acd1792a549c900ead">Matrix</a> sumd2SumPdSumP = Matrix::Zero();</div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160; </div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;        <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i=0; i&lt;Dim; ++i)</div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;        {</div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;            sumdSumPdSumN  += Base::m_dSumN.row(i).transpose()*Base::m_dSumP.row(i);</div>
-<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;            sumd2SumPdSumN += m_d2SumP.template block&lt;DerDim,DerDim&gt;(0,i*DerDim)*Base::m_sumN(i);</div>
-<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;            sumd2SumNdSumP += m_d2SumN.template block&lt;DerDim,DerDim&gt;(0,i*DerDim)*Base::m_sumP(i);</div>
-<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;            sumdSumPdSumP  += Base::m_dSumP.row(i).transpose()*Base::m_dSumP.row(i);</div>
-<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;            sumd2SumPdSumP += m_d2SumP.template block&lt;DerDim,DerDim&gt;(0,i*DerDim)*Base::m_sumP(i);</div>
-<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;        }</div>
-<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160; </div>
-<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;        <a class="code" href="classPonca_1_1MlsSphereFitDer.html#a4a9f1177061522659f45d9cd3640ffdf">Scalar</a> invSumW = <a class="code" href="classPonca_1_1MlsSphereFitDer.html#a4a9f1177061522659f45d9cd3640ffdf">Scalar</a>(1.)/Base::m_sumW;</div>
-<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160; </div>
-<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;        <a class="code" href="classPonca_1_1MlsSphereFitDer.html#aebc80fce4f79a9acd1792a549c900ead">Matrix</a> d2Nume = m_d2SumDotPN</div>
-<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;            - invSumW*invSumW*invSumW*invSumW*(</div>
-<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;                    Base::m_sumW*Base::m_sumW*(  Base::m_sumW*(sumdSumPdSumN+sumdSumPdSumN.transpose()+sumd2SumPdSumN+sumd2SumNdSumP)</div>
-<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;                                               + Base::m_dSumW.transpose()*(Base::m_sumN.transpose()*Base::m_dSumP + Base::m_sumP.transpose()*Base::m_dSumN)</div>
-<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;                                               - (Base::m_sumP.transpose()*Base::m_sumN)*m_d2SumW.transpose()</div>
-<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;                                               - (Base::m_dSumN.transpose()*Base::m_sumP + Base::m_dSumP.transpose()*Base::m_sumN)*Base::m_dSumW)</div>
-<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;                    - <a class="code" href="classPonca_1_1MlsSphereFitDer.html#a4a9f1177061522659f45d9cd3640ffdf">Scalar</a>(2.)*Base::m_sumW*Base::m_dSumW.transpose()*(Base::m_sumW*(Base::m_sumN.transpose()*Base::m_dSumP + Base::m_sumP.transpose()*Base::m_dSumN)</div>
-<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;                                                                         - (Base::m_sumP.transpose()*Base::m_sumN)*Base::m_dSumW));</div>
-<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160; </div>
-<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;        <a class="code" href="classPonca_1_1MlsSphereFitDer.html#aebc80fce4f79a9acd1792a549c900ead">Matrix</a> d2Deno = m_d2SumDotPP</div>
-<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;            - invSumW*invSumW*invSumW*invSumW*(</div>
-<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;                Base::m_sumW*Base::m_sumW*(  <a class="code" href="classPonca_1_1MlsSphereFitDer.html#a4a9f1177061522659f45d9cd3640ffdf">Scalar</a>(2.)*Base::m_sumW*(sumdSumPdSumP+sumd2SumPdSumP)</div>
-<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;                                           + <a class="code" href="classPonca_1_1MlsSphereFitDer.html#a4a9f1177061522659f45d9cd3640ffdf">Scalar</a>(2.)*Base::m_dSumW.transpose()*(Base::m_sumP.transpose()*Base::m_dSumP)</div>
-<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;                                           - (Base::m_sumP.transpose()*Base::m_sumP)*m_d2SumW.transpose()</div>
-<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;                                           - <a class="code" href="classPonca_1_1MlsSphereFitDer.html#a4a9f1177061522659f45d9cd3640ffdf">Scalar</a>(2.)*(Base::m_dSumP.transpose()*Base::m_sumP)*Base::m_dSumW)</div>
-<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;                - <a class="code" href="classPonca_1_1MlsSphereFitDer.html#a4a9f1177061522659f45d9cd3640ffdf">Scalar</a>(2.)*Base::m_sumW*Base::m_dSumW.transpose()*(<a class="code" href="classPonca_1_1MlsSphereFitDer.html#a4a9f1177061522659f45d9cd3640ffdf">Scalar</a>(2.)*Base::m_sumW*Base::m_sumP.transpose()*Base::m_dSumP</div>
-<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;                                                                     - (Base::m_sumP.transpose()*Base::m_sumP)*Base::m_dSumW));</div>
-<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160; </div>
-<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;        <a class="code" href="classPonca_1_1MlsSphereFitDer.html#a4a9f1177061522659f45d9cd3640ffdf">Scalar</a> deno2 = Base::m_deno*Base::m_deno;</div>
-<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160; </div>
-<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;        m_d2Uq = <a class="code" href="classPonca_1_1MlsSphereFitDer.html#a4a9f1177061522659f45d9cd3640ffdf">Scalar</a>(.5)/(deno2*deno2)*(deno2*(  Base::m_dDeno.transpose()*Base::m_dNume</div>
-<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;                                                  + Base::m_deno*d2Nume</div>
-<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;                                                  - Base::m_dNume.transpose()*Base::m_dDeno</div>
-<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;                                                  - Base::m_nume*d2Deno)</div>
-<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;                                           - <a class="code" href="classPonca_1_1MlsSphereFitDer.html#a4a9f1177061522659f45d9cd3640ffdf">Scalar</a>(2.)*Base::m_deno*Base::m_dDeno.transpose()*(Base::m_deno*Base::m_dNume - Base::m_nume*Base::m_dDeno));</div>
-<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160; </div>
-<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;        <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i=0; i&lt;Dim; ++i)</div>
-<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;        {</div>
-<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;            m_d2Ul.template block&lt;DerDim,DerDim&gt;(0,i*DerDim) = invSumW*(</div>
-<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;                  m_d2SumN.template block&lt;DerDim,DerDim&gt;(0,i*DerDim)</div>
-<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;                - <a class="code" href="classPonca_1_1MlsSphereFitDer.html#a4a9f1177061522659f45d9cd3640ffdf">Scalar</a>(2.)*(  m_d2Uq*Base::m_sumP[i]</div>
-<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;                              + Base::m_dSumP.row(i).transpose()*Base::m_dUq</div>
-<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;                              + Base::m_uq*m_d2SumP.template block&lt;DerDim,DerDim&gt;(0,i*DerDim)</div>
-<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;                              + Base::m_dUq.transpose()*Base::m_dSumP.row(i))</div>
-<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;                - Base::m_ul[i]*m_d2SumW</div>
-<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;                - Base::m_dUl.row(i).transpose()*Base::m_dSumW</div>
-<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;                - Base::m_dSumW.transpose()*Base::m_dUl.row(i));</div>
-<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;        }</div>
-<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;        </div>
-<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;        <a class="code" href="classPonca_1_1MlsSphereFitDer.html#aebc80fce4f79a9acd1792a549c900ead">Matrix</a> sumdUldSumP = Matrix::Zero();</div>
-<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;        <a class="code" href="classPonca_1_1MlsSphereFitDer.html#aebc80fce4f79a9acd1792a549c900ead">Matrix</a> sumUld2SumP = Matrix::Zero();</div>
-<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;        <a class="code" href="classPonca_1_1MlsSphereFitDer.html#aebc80fce4f79a9acd1792a549c900ead">Matrix</a> sumd2UlsumP = Matrix::Zero();</div>
-<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;        <a class="code" href="classPonca_1_1MlsSphereFitDer.html#aebc80fce4f79a9acd1792a549c900ead">Matrix</a> sumdSumPdUl = Matrix::Zero();</div>
-<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160; </div>
-<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;        <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i=0; i&lt;Dim; ++i)</div>
-<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;        {</div>
-<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;            sumdUldSumP += Base::m_dUl.row(i).transpose()*Base::m_dSumP.row(i);</div>
-<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;            sumUld2SumP += Base::m_ul[i]*m_d2SumP.template block&lt;DerDim,DerDim&gt;(0,i*DerDim);</div>
-<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;            sumd2UlsumP += m_d2Ul.template block&lt;DerDim,DerDim&gt;(0,i*DerDim)*Base::m_sumP[i];</div>
-<div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160;            sumdSumPdUl += Base::m_dSumP.row(i).transpose()*Base::m_dUl.row(i);</div>
-<div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160;        }</div>
-<div class="line"><a name="l00141"></a><span class="lineno">  141</span>&#160; </div>
-<div class="line"><a name="l00142"></a><span class="lineno">  142</span>&#160;        m_d2Uc = -invSumW*(</div>
-<div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160;              sumdUldSumP</div>
-<div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160;            + sumUld2SumP</div>
-<div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160;            + sumd2UlsumP</div>
-<div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160;            + sumdSumPdUl</div>
-<div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;            + Base::m_dUq.transpose()*Base::m_dSumDotPP</div>
-<div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;            + Base::m_uq*m_d2SumDotPP</div>
-<div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;            + Base::m_dSumDotPP.transpose()*Base::m_dUq</div>
-<div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;            + m_d2Uq*Base::m_sumDotPP</div>
-<div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;            + Base::m_uc*m_d2SumW</div>
-<div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160;            + Base::m_dUc.transpose()*Base::m_dSumW</div>
-<div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160;            + Base::m_dSumW.transpose()*Base::m_dUc);</div>
-<div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160;    }</div>
-<div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160; </div>
-<div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160;    <span class="keywordflow">return</span> Base::m_eCurrentState;</div>
-<div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160;}</div>
-<div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160; </div>
-<div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160;<span class="keyword">template</span> &lt; <span class="keyword">class</span> DataPo<span class="keywordtype">int</span>, <span class="keyword">class</span> _WFunctor, <span class="keyword">typename</span> T&gt;</div>
-<div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160;<span class="keyword">typename</span> <a class="code" href="classPonca_1_1MlsSphereFitDer.html#af130d69024535e88f14fcc334225042c">MlsSphereFitDer&lt;DataPoint, _WFunctor, T&gt;::ScalarArray</a></div>
-<div class="line"><a name="l00161"></a><span class="lineno"><a class="line" href="classPonca_1_1MlsSphereFitDer.html#afe27146c2bd9cdbea89eb0bc10c1e6e3">  161</a></span>&#160;<a class="code" href="classPonca_1_1MlsSphereFitDer.html">MlsSphereFitDer&lt;DataPoint, _WFunctor, T&gt;::dPotential</a>()<span class="keyword"> const</span></div>
-<div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160;<span class="keyword"></span>{</div>
-<div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160;    <span class="comment">// Compute the 1st order derivative of the scalar field s = uc + x^T ul + x^T x uq</span></div>
-<div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160;    <span class="comment">// In a centered basis (x=0), we obtain:</span></div>
-<div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160;    <span class="comment">//   the scale derivative:   d_t(s)(t,0) = d_t(uc)(t,0)</span></div>
-<div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160;    <span class="comment">//   the spatial derivative: d_x(s)(t,0) = d_x(uc)(t,0) + ul(t,0)</span></div>
-<div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160;    <a class="code" href="classPonca_1_1MlsSphereFitDer.html#af130d69024535e88f14fcc334225042c">ScalarArray</a> result = Base::m_dUc;</div>
-<div class="line"><a name="l00168"></a><span class="lineno">  168</span>&#160; </div>
-<div class="line"><a name="l00169"></a><span class="lineno">  169</span>&#160;    <span class="keywordflow">if</span>(Base::isSpaceDer())</div>
-<div class="line"><a name="l00170"></a><span class="lineno">  170</span>&#160;        result.template tail&lt;Dim&gt;() += Base::m_ul;</div>
-<div class="line"><a name="l00171"></a><span class="lineno">  171</span>&#160; </div>
-<div class="line"><a name="l00172"></a><span class="lineno">  172</span>&#160;    <span class="keywordflow">return</span> result;</div>
-<div class="line"><a name="l00173"></a><span class="lineno">  173</span>&#160;}</div>
-<div class="line"><a name="l00174"></a><span class="lineno">  174</span>&#160; </div>
-<div class="line"><a name="l00175"></a><span class="lineno">  175</span>&#160;<span class="keyword">template</span> &lt; <span class="keyword">class</span> DataPo<span class="keywordtype">int</span>, <span class="keyword">class</span> _WFunctor, <span class="keyword">typename</span> T&gt;</div>
-<div class="line"><a name="l00176"></a><span class="lineno">  176</span>&#160;<span class="keyword">typename</span> <a class="code" href="classPonca_1_1MlsSphereFitDer.html#ab27fa90ee60f684927095ac906cfef14">MlsSphereFitDer&lt;DataPoint, _WFunctor, T&gt;::VectorType</a></div>
-<div class="line"><a name="l00177"></a><span class="lineno"><a class="line" href="classPonca_1_1MlsSphereFitDer.html#afe8dacfa43d2a2cb8cd0d219582c22ff">  177</a></span>&#160;<a class="code" href="classPonca_1_1MlsSphereFitDer.html">MlsSphereFitDer&lt;DataPoint, _WFunctor, T&gt;::normal</a>()<span class="keyword"> const</span></div>
-<div class="line"><a name="l00178"></a><span class="lineno">  178</span>&#160;<span class="keyword"></span>{</div>
-<div class="line"><a name="l00179"></a><span class="lineno">  179</span>&#160;    <span class="comment">// Compute the 1st order derivative of the scalar field and normalize it</span></div>
-<div class="line"><a name="l00180"></a><span class="lineno">  180</span>&#160;    <a class="code" href="classPonca_1_1MlsSphereFitDer.html#ab27fa90ee60f684927095ac906cfef14">VectorType</a> grad = Base::m_dUc.template tail&lt;Dim&gt;().transpose() + Base::m_ul;</div>
-<div class="line"><a name="l00181"></a><span class="lineno">  181</span>&#160;    <span class="keywordflow">return</span> grad.normalized();</div>
-<div class="line"><a name="l00182"></a><span class="lineno">  182</span>&#160;}</div>
-<div class="line"><a name="l00183"></a><span class="lineno">  183</span>&#160; </div>
-<div class="line"><a name="l00184"></a><span class="lineno">  184</span>&#160;<span class="keyword">template</span> &lt; <span class="keyword">class</span> DataPo<span class="keywordtype">int</span>, <span class="keyword">class</span> _WFunctor, <span class="keyword">typename</span> T&gt;</div>
-<div class="line"><a name="l00185"></a><span class="lineno">  185</span>&#160;<span class="keyword">typename</span> <a class="code" href="classPonca_1_1MlsSphereFitDer.html#a37cd8681ab28f4261cac6c4bba9683bf">MlsSphereFitDer&lt;DataPoint, _WFunctor, T&gt;::VectorArray</a></div>
-<div class="line"><a name="l00186"></a><span class="lineno"><a class="line" href="classPonca_1_1MlsSphereFitDer.html#af032b3b2a3b79801fb101bbe73e471b7">  186</a></span>&#160;<a class="code" href="classPonca_1_1MlsSphereFitDer.html">MlsSphereFitDer&lt;DataPoint, _WFunctor, T&gt;::dNormal</a>()<span class="keyword"> const</span></div>
-<div class="line"><a name="l00187"></a><span class="lineno">  187</span>&#160;<span class="keyword"></span>{</div>
-<div class="line"><a name="l00188"></a><span class="lineno">  188</span>&#160;    <span class="comment">// Compute the 1st order derivative of the normal, which is the normalized gradient N = d_x(s) / |d_x(s)|</span></div>
-<div class="line"><a name="l00189"></a><span class="lineno">  189</span>&#160;    <span class="comment">// We obtain:</span></div>
-<div class="line"><a name="l00190"></a><span class="lineno">  190</span>&#160;    <span class="comment">//   the scale derivative:   d_t(N) = (I-N N^T) / |d_x(s)| d2_tx(s)</span></div>
-<div class="line"><a name="l00191"></a><span class="lineno">  191</span>&#160;    <span class="comment">//   the spatial derivative: d_x(N) = (I-N N^T) / |d_x(s)| d2_x2(s)</span></div>
-<div class="line"><a name="l00192"></a><span class="lineno">  192</span>&#160;    <span class="comment">// Where in a centered basis (x=0), we have:</span></div>
-<div class="line"><a name="l00193"></a><span class="lineno">  193</span>&#160;    <span class="comment">//   d2_tx(s) = d2_tx(uc) + d_t(ul)</span></div>
-<div class="line"><a name="l00194"></a><span class="lineno">  194</span>&#160;    <span class="comment">//   d2_x2(s) = d2_x2(uc) + d_x(ul) + d_x(ul)^T + 2 uq I</span></div>
-<div class="line"><a name="l00195"></a><span class="lineno">  195</span>&#160;    <a class="code" href="classPonca_1_1MlsSphereFitDer.html#a37cd8681ab28f4261cac6c4bba9683bf">VectorArray</a> result = VectorArray::Zero();</div>
-<div class="line"><a name="l00196"></a><span class="lineno">  196</span>&#160; </div>
-<div class="line"><a name="l00197"></a><span class="lineno">  197</span>&#160;    <a class="code" href="classPonca_1_1MlsSphereFitDer.html#ab27fa90ee60f684927095ac906cfef14">VectorType</a> grad = Base::m_dUc.template tail&lt;Dim&gt;().transpose() + Base::m_ul;</div>
-<div class="line"><a name="l00198"></a><span class="lineno">  198</span>&#160;    <a class="code" href="classPonca_1_1MlsSphereFitDer.html#a4a9f1177061522659f45d9cd3640ffdf">Scalar</a> gradNorm = grad.norm();</div>
-<div class="line"><a name="l00199"></a><span class="lineno">  199</span>&#160; </div>
-<div class="line"><a name="l00200"></a><span class="lineno">  200</span>&#160;    <span class="keywordflow">if</span>(Base::isScaleDer())</div>
-<div class="line"><a name="l00201"></a><span class="lineno">  201</span>&#160;        result.col(0) = m_d2Uc.template topRightCorner&lt;1,Dim&gt;().transpose() + Base::m_dUl.col(0);</div>
-<div class="line"><a name="l00202"></a><span class="lineno">  202</span>&#160; </div>
-<div class="line"><a name="l00203"></a><span class="lineno">  203</span>&#160;    <span class="keywordflow">if</span>(Base::isSpaceDer())</div>
-<div class="line"><a name="l00204"></a><span class="lineno">  204</span>&#160;    {</div>
-<div class="line"><a name="l00205"></a><span class="lineno">  205</span>&#160;        result.template rightCols&lt;Dim&gt;() = m_d2Uc.template bottomRightCorner&lt;Dim,Dim&gt;().transpose()</div>
-<div class="line"><a name="l00206"></a><span class="lineno">  206</span>&#160;                                           + Base::m_dUl.template rightCols&lt;Dim&gt;().transpose()</div>
-<div class="line"><a name="l00207"></a><span class="lineno">  207</span>&#160;                                           + Base::m_dUl.template rightCols&lt;Dim&gt;();</div>
-<div class="line"><a name="l00208"></a><span class="lineno">  208</span>&#160;        result.template rightCols&lt;Dim&gt;().diagonal().array() += <a class="code" href="classPonca_1_1MlsSphereFitDer.html#a4a9f1177061522659f45d9cd3640ffdf">Scalar</a>(2.)*Base::m_uq;</div>
-<div class="line"><a name="l00209"></a><span class="lineno">  209</span>&#160;    }</div>
-<div class="line"><a name="l00210"></a><span class="lineno">  210</span>&#160; </div>
-<div class="line"><a name="l00211"></a><span class="lineno">  211</span>&#160;    <span class="keywordflow">return</span> result/gradNorm - grad*grad.transpose()/(gradNorm*gradNorm)*result;</div>
-<div class="line"><a name="l00212"></a><span class="lineno">  212</span>&#160;}</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;        <span class="keywordflow">if</span> (Base::isScaleDer() &amp;&amp; Base::isSpaceDer())</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;        {</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;            d2w.template bottomLeftCorner&lt;Dim,1&gt;() = Base::m_w.scaleSpaced2w(localQ,attributes);</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;            d2w.template topRightCorner&lt;1,Dim&gt;() = d2w.template bottomLeftCorner&lt;Dim,1&gt;().transpose();</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;        }</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160; </div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;        m_d2SumDotPN += d2w * attributes.normal().dot(localQ);</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;        m_d2SumDotPP += d2w * localQ.squaredNorm();</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;        m_d2SumW     += d2w;</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160; </div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;        <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i=0; i&lt;Dim; ++i)</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;        {</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;            m_d2SumP.template block&lt;DerDim,DerDim&gt;(0,i*DerDim) += d2w * localQ[i];</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;            m_d2SumN.template block&lt;DerDim,DerDim&gt;(0,i*DerDim) += d2w * attributes.normal()[i];</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;        }</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160; </div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;        <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;    }</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;    <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;}</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160; </div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;<span class="keyword">template</span> &lt; <span class="keyword">class</span> DataPo<span class="keywordtype">int</span>, <span class="keyword">class</span> _WFunctor, <span class="keywordtype">int</span> DiffType, <span class="keyword">typename</span> T&gt;</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;<a class="code" href="group__fitting.html#gabfd697aebf07c1b5c8be5ee401e2dc84">FIT_RESULT</a></div>
+<div class="line"><a name="l00066"></a><span class="lineno"><a class="line" href="classPonca_1_1MlsSphereFitDer.html#a32ebaaf56aa7808cd3c4812dc60b91f1">   66</a></span>&#160;<a class="code" href="classPonca_1_1MlsSphereFitDer.html">MlsSphereFitDer&lt;DataPoint, _WFunctor, DiffType, T&gt;::finalize</a>()</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;{</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;    Base::finalize();</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160; </div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;    <span class="keywordflow">if</span> (this-&gt;isReady())</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;    {</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;        <a class="code" href="classPonca_1_1MlsSphereFitDer.html#a0290d2bbb57e39a332276b467bc91458">Matrix</a> sumdSumPdSumN  = Matrix::Zero();</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;        <a class="code" href="classPonca_1_1MlsSphereFitDer.html#a0290d2bbb57e39a332276b467bc91458">Matrix</a> sumd2SumPdSumN = Matrix::Zero();</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;        <a class="code" href="classPonca_1_1MlsSphereFitDer.html#a0290d2bbb57e39a332276b467bc91458">Matrix</a> sumd2SumNdSumP = Matrix::Zero();</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;        <a class="code" href="classPonca_1_1MlsSphereFitDer.html#a0290d2bbb57e39a332276b467bc91458">Matrix</a> sumdSumPdSumP  = Matrix::Zero();</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;        <a class="code" href="classPonca_1_1MlsSphereFitDer.html#a0290d2bbb57e39a332276b467bc91458">Matrix</a> sumd2SumPdSumP = Matrix::Zero();</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160; </div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;        <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i=0; i&lt;Dim; ++i)</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;        {</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;            sumdSumPdSumN  += Base::m_dSumN.row(i).transpose()*Base::m_dSumP.row(i);</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;            sumd2SumPdSumN += m_d2SumP.template block&lt;DerDim,DerDim&gt;(0,i*DerDim)*Base::m_sumN(i);</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;            sumd2SumNdSumP += m_d2SumN.template block&lt;DerDim,DerDim&gt;(0,i*DerDim)*Base::m_sumP(i);</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;            sumdSumPdSumP  += Base::m_dSumP.row(i).transpose()*Base::m_dSumP.row(i);</div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;            sumd2SumPdSumP += m_d2SumP.template block&lt;DerDim,DerDim&gt;(0,i*DerDim)*Base::m_sumP(i);</div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;        }</div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160; </div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;        <a class="code" href="classPonca_1_1MlsSphereFitDer.html#af0219bcdc54d55e9391414982907d730">Scalar</a> invSumW = <a class="code" href="classPonca_1_1MlsSphereFitDer.html#af0219bcdc54d55e9391414982907d730">Scalar</a>(1.)/Base::m_sumW;</div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160; </div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;        <a class="code" href="classPonca_1_1MlsSphereFitDer.html#a0290d2bbb57e39a332276b467bc91458">Matrix</a> d2Nume = m_d2SumDotPN</div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;            - invSumW*invSumW*invSumW*invSumW*(</div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;                    Base::m_sumW*Base::m_sumW*(  Base::m_sumW*(sumdSumPdSumN+sumdSumPdSumN.transpose()+sumd2SumPdSumN+sumd2SumNdSumP)</div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;                                               + Base::m_dSumW.transpose()*(Base::m_sumN.transpose()*Base::m_dSumP + Base::m_sumP.transpose()*Base::m_dSumN)</div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;                                               - (Base::m_sumP.transpose()*Base::m_sumN)*m_d2SumW.transpose()</div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;                                               - (Base::m_dSumN.transpose()*Base::m_sumP + Base::m_dSumP.transpose()*Base::m_sumN)*Base::m_dSumW)</div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;                    - <a class="code" href="classPonca_1_1MlsSphereFitDer.html#af0219bcdc54d55e9391414982907d730">Scalar</a>(2.)*Base::m_sumW*Base::m_dSumW.transpose()*(Base::m_sumW*(Base::m_sumN.transpose()*Base::m_dSumP + Base::m_sumP.transpose()*Base::m_dSumN)</div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;                                                                         - (Base::m_sumP.transpose()*Base::m_sumN)*Base::m_dSumW));</div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160; </div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;        <a class="code" href="classPonca_1_1MlsSphereFitDer.html#a0290d2bbb57e39a332276b467bc91458">Matrix</a> d2Deno = m_d2SumDotPP</div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;            - invSumW*invSumW*invSumW*invSumW*(</div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;                Base::m_sumW*Base::m_sumW*(  <a class="code" href="classPonca_1_1MlsSphereFitDer.html#af0219bcdc54d55e9391414982907d730">Scalar</a>(2.)*Base::m_sumW*(sumdSumPdSumP+sumd2SumPdSumP)</div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;                                           + <a class="code" href="classPonca_1_1MlsSphereFitDer.html#af0219bcdc54d55e9391414982907d730">Scalar</a>(2.)*Base::m_dSumW.transpose()*(Base::m_sumP.transpose()*Base::m_dSumP)</div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;                                           - (Base::m_sumP.transpose()*Base::m_sumP)*m_d2SumW.transpose()</div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;                                           - <a class="code" href="classPonca_1_1MlsSphereFitDer.html#af0219bcdc54d55e9391414982907d730">Scalar</a>(2.)*(Base::m_dSumP.transpose()*Base::m_sumP)*Base::m_dSumW)</div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;                - <a class="code" href="classPonca_1_1MlsSphereFitDer.html#af0219bcdc54d55e9391414982907d730">Scalar</a>(2.)*Base::m_sumW*Base::m_dSumW.transpose()*(<a class="code" href="classPonca_1_1MlsSphereFitDer.html#af0219bcdc54d55e9391414982907d730">Scalar</a>(2.)*Base::m_sumW*Base::m_sumP.transpose()*Base::m_dSumP</div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;                                                                     - (Base::m_sumP.transpose()*Base::m_sumP)*Base::m_dSumW));</div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160; </div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;        <a class="code" href="classPonca_1_1MlsSphereFitDer.html#af0219bcdc54d55e9391414982907d730">Scalar</a> deno2 = Base::m_deno*Base::m_deno;</div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160; </div>
+<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;        m_d2Uq = <a class="code" href="classPonca_1_1MlsSphereFitDer.html#af0219bcdc54d55e9391414982907d730">Scalar</a>(.5)/(deno2*deno2)*(deno2*(  Base::m_dDeno.transpose()*Base::m_dNume</div>
+<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;                                                  + Base::m_deno*d2Nume</div>
+<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;                                                  - Base::m_dNume.transpose()*Base::m_dDeno</div>
+<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;                                                  - Base::m_nume*d2Deno)</div>
+<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;                                           - <a class="code" href="classPonca_1_1MlsSphereFitDer.html#af0219bcdc54d55e9391414982907d730">Scalar</a>(2.)*Base::m_deno*Base::m_dDeno.transpose()*(Base::m_deno*Base::m_dNume - Base::m_nume*Base::m_dDeno));</div>
+<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160; </div>
+<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;        <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i=0; i&lt;Dim; ++i)</div>
+<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;        {</div>
+<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;            m_d2Ul.template block&lt;DerDim,DerDim&gt;(0,i*DerDim) = invSumW*(</div>
+<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;                  m_d2SumN.template block&lt;DerDim,DerDim&gt;(0,i*DerDim)</div>
+<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;                - <a class="code" href="classPonca_1_1MlsSphereFitDer.html#af0219bcdc54d55e9391414982907d730">Scalar</a>(2.)*(  m_d2Uq*Base::m_sumP[i]</div>
+<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;                              + Base::m_dSumP.row(i).transpose()*Base::m_dUq</div>
+<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;                              + Base::m_uq*m_d2SumP.template block&lt;DerDim,DerDim&gt;(0,i*DerDim)</div>
+<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;                              + Base::m_dUq.transpose()*Base::m_dSumP.row(i))</div>
+<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;                - Base::m_ul[i]*m_d2SumW</div>
+<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;                - Base::m_dUl.row(i).transpose()*Base::m_dSumW</div>
+<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;                - Base::m_dSumW.transpose()*Base::m_dUl.row(i));</div>
+<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;        }</div>
+<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;        </div>
+<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;        <a class="code" href="classPonca_1_1MlsSphereFitDer.html#a0290d2bbb57e39a332276b467bc91458">Matrix</a> sumdUldSumP = Matrix::Zero();</div>
+<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;        <a class="code" href="classPonca_1_1MlsSphereFitDer.html#a0290d2bbb57e39a332276b467bc91458">Matrix</a> sumUld2SumP = Matrix::Zero();</div>
+<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;        <a class="code" href="classPonca_1_1MlsSphereFitDer.html#a0290d2bbb57e39a332276b467bc91458">Matrix</a> sumd2UlsumP = Matrix::Zero();</div>
+<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;        <a class="code" href="classPonca_1_1MlsSphereFitDer.html#a0290d2bbb57e39a332276b467bc91458">Matrix</a> sumdSumPdUl = Matrix::Zero();</div>
+<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160; </div>
+<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;        <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i=0; i&lt;Dim; ++i)</div>
+<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;        {</div>
+<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;            sumdUldSumP += Base::m_dUl.row(i).transpose()*Base::m_dSumP.row(i);</div>
+<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;            sumUld2SumP += Base::m_ul[i]*m_d2SumP.template block&lt;DerDim,DerDim&gt;(0,i*DerDim);</div>
+<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;            sumd2UlsumP += m_d2Ul.template block&lt;DerDim,DerDim&gt;(0,i*DerDim)*Base::m_sumP[i];</div>
+<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;            sumdSumPdUl += Base::m_dSumP.row(i).transpose()*Base::m_dUl.row(i);</div>
+<div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160;        }</div>
+<div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160; </div>
+<div class="line"><a name="l00141"></a><span class="lineno">  141</span>&#160;        m_d2Uc = -invSumW*(</div>
+<div class="line"><a name="l00142"></a><span class="lineno">  142</span>&#160;              sumdUldSumP</div>
+<div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160;            + sumUld2SumP</div>
+<div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160;            + sumd2UlsumP</div>
+<div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160;            + sumdSumPdUl</div>
+<div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160;            + Base::m_dUq.transpose()*Base::m_dSumDotPP</div>
+<div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;            + Base::m_uq*m_d2SumDotPP</div>
+<div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;            + Base::m_dSumDotPP.transpose()*Base::m_dUq</div>
+<div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;            + m_d2Uq*Base::m_sumDotPP</div>
+<div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;            + Base::m_uc*m_d2SumW</div>
+<div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;            + Base::m_dUc.transpose()*Base::m_dSumW</div>
+<div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160;            + Base::m_dSumW.transpose()*Base::m_dUc);</div>
+<div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160;    }</div>
+<div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160; </div>
+<div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160;    <span class="keywordflow">return</span> Base::m_eCurrentState;</div>
+<div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160;}</div>
+<div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160; </div>
+<div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160;<span class="keyword">template</span> &lt; <span class="keyword">class</span> DataPo<span class="keywordtype">int</span>, <span class="keyword">class</span> _WFunctor, <span class="keywordtype">int</span> DiffType, <span class="keyword">typename</span> T&gt;</div>
+<div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160;<span class="keyword">typename</span> <a class="code" href="classPonca_1_1MlsSphereFitDer.html#adb6557177816169e4694ca724c918170">MlsSphereFitDer&lt;DataPoint, _WFunctor, DiffType, T&gt;::ScalarArray</a></div>
+<div class="line"><a name="l00160"></a><span class="lineno"><a class="line" href="classPonca_1_1MlsSphereFitDer.html#a011b6572b50b817388ebf6098f6d4015">  160</a></span>&#160;<a class="code" href="classPonca_1_1MlsSphereFitDer.html">MlsSphereFitDer&lt;DataPoint, _WFunctor, DiffType, T&gt;::dPotential</a>()<span class="keyword"> const</span></div>
+<div class="line"><a name="l00161"></a><span class="lineno">  161</span>&#160;<span class="keyword"></span>{</div>
+<div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160;    <span class="comment">// Compute the 1st order derivative of the scalar field s = uc + x^T ul + x^T x uq</span></div>
+<div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160;    <span class="comment">// In a centered basis (x=0), we obtain:</span></div>
+<div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160;    <span class="comment">//   the scale derivative:   d_t(s)(t,0) = d_t(uc)(t,0)</span></div>
+<div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160;    <span class="comment">//   the spatial derivative: d_x(s)(t,0) = d_x(uc)(t,0) + ul(t,0)</span></div>
+<div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160;    <a class="code" href="classPonca_1_1MlsSphereFitDer.html#adb6557177816169e4694ca724c918170">ScalarArray</a> result = Base::m_dUc;</div>
+<div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160; </div>
+<div class="line"><a name="l00168"></a><span class="lineno">  168</span>&#160;    <span class="keywordflow">if</span>(Base::isSpaceDer())</div>
+<div class="line"><a name="l00169"></a><span class="lineno">  169</span>&#160;        result.template tail&lt;Dim&gt;() += Base::m_ul;</div>
+<div class="line"><a name="l00170"></a><span class="lineno">  170</span>&#160; </div>
+<div class="line"><a name="l00171"></a><span class="lineno">  171</span>&#160;    <span class="keywordflow">return</span> result;</div>
+<div class="line"><a name="l00172"></a><span class="lineno">  172</span>&#160;}</div>
+<div class="line"><a name="l00173"></a><span class="lineno">  173</span>&#160; </div>
+<div class="line"><a name="l00174"></a><span class="lineno">  174</span>&#160;<span class="keyword">template</span> &lt; <span class="keyword">class</span> DataPo<span class="keywordtype">int</span>, <span class="keyword">class</span> _WFunctor, <span class="keywordtype">int</span> DiffType, <span class="keyword">typename</span> T&gt;</div>
+<div class="line"><a name="l00175"></a><span class="lineno">  175</span>&#160;<span class="keyword">typename</span> <a class="code" href="classPonca_1_1MlsSphereFitDer.html#a11a8dba6b3543b35f1cb6e699f4a26ca">MlsSphereFitDer&lt;DataPoint, _WFunctor, DiffType, T&gt;::VectorType</a></div>
+<div class="line"><a name="l00176"></a><span class="lineno"><a class="line" href="classPonca_1_1MlsSphereFitDer.html#ab2812ca0747f89b185561b31c2f8deff">  176</a></span>&#160;<a class="code" href="classPonca_1_1MlsSphereFitDer.html">MlsSphereFitDer&lt;DataPoint, _WFunctor, DiffType, T&gt;::normal</a>()<span class="keyword"> const</span></div>
+<div class="line"><a name="l00177"></a><span class="lineno">  177</span>&#160;<span class="keyword"></span>{</div>
+<div class="line"><a name="l00178"></a><span class="lineno">  178</span>&#160;    <span class="comment">// Compute the 1st order derivative of the scalar field and normalize it</span></div>
+<div class="line"><a name="l00179"></a><span class="lineno">  179</span>&#160;    <a class="code" href="classPonca_1_1MlsSphereFitDer.html#a11a8dba6b3543b35f1cb6e699f4a26ca">VectorType</a> grad = Base::m_dUc.template tail&lt;Dim&gt;().transpose() + Base::m_ul;</div>
+<div class="line"><a name="l00180"></a><span class="lineno">  180</span>&#160;    <span class="keywordflow">return</span> grad.normalized();</div>
+<div class="line"><a name="l00181"></a><span class="lineno">  181</span>&#160;}</div>
+<div class="line"><a name="l00182"></a><span class="lineno">  182</span>&#160; </div>
+<div class="line"><a name="l00183"></a><span class="lineno">  183</span>&#160;<span class="keyword">template</span> &lt; <span class="keyword">class</span> DataPo<span class="keywordtype">int</span>, <span class="keyword">class</span> _WFunctor, <span class="keywordtype">int</span> DiffType, <span class="keyword">typename</span> T&gt;</div>
+<div class="line"><a name="l00184"></a><span class="lineno">  184</span>&#160;<span class="keyword">typename</span> <a class="code" href="classPonca_1_1MlsSphereFitDer.html#ac57e51349b1aaba25de164468dbf312c">MlsSphereFitDer&lt;DataPoint, _WFunctor, DiffType, T&gt;::VectorArray</a></div>
+<div class="line"><a name="l00185"></a><span class="lineno"><a class="line" href="classPonca_1_1MlsSphereFitDer.html#ab1506b844c97039c339cf1b311caf6b3">  185</a></span>&#160;<a class="code" href="classPonca_1_1MlsSphereFitDer.html">MlsSphereFitDer&lt;DataPoint, _WFunctor, DiffType, T&gt;::dNormal</a>()<span class="keyword"> const</span></div>
+<div class="line"><a name="l00186"></a><span class="lineno">  186</span>&#160;<span class="keyword"></span>{</div>
+<div class="line"><a name="l00187"></a><span class="lineno">  187</span>&#160;    <span class="comment">// Compute the 1st order derivative of the normal, which is the normalized gradient N = d_x(s) / |d_x(s)|</span></div>
+<div class="line"><a name="l00188"></a><span class="lineno">  188</span>&#160;    <span class="comment">// We obtain:</span></div>
+<div class="line"><a name="l00189"></a><span class="lineno">  189</span>&#160;    <span class="comment">//   the scale derivative:   d_t(N) = (I-N N^T) / |d_x(s)| d2_tx(s)</span></div>
+<div class="line"><a name="l00190"></a><span class="lineno">  190</span>&#160;    <span class="comment">//   the spatial derivative: d_x(N) = (I-N N^T) / |d_x(s)| d2_x2(s)</span></div>
+<div class="line"><a name="l00191"></a><span class="lineno">  191</span>&#160;    <span class="comment">// Where in a centered basis (x=0), we have:</span></div>
+<div class="line"><a name="l00192"></a><span class="lineno">  192</span>&#160;    <span class="comment">//   d2_tx(s) = d2_tx(uc) + d_t(ul)</span></div>
+<div class="line"><a name="l00193"></a><span class="lineno">  193</span>&#160;    <span class="comment">//   d2_x2(s) = d2_x2(uc) + d_x(ul) + d_x(ul)^T + 2 uq I</span></div>
+<div class="line"><a name="l00194"></a><span class="lineno">  194</span>&#160;    <a class="code" href="classPonca_1_1MlsSphereFitDer.html#ac57e51349b1aaba25de164468dbf312c">VectorArray</a> result = VectorArray::Zero();</div>
+<div class="line"><a name="l00195"></a><span class="lineno">  195</span>&#160; </div>
+<div class="line"><a name="l00196"></a><span class="lineno">  196</span>&#160;    <a class="code" href="classPonca_1_1MlsSphereFitDer.html#a11a8dba6b3543b35f1cb6e699f4a26ca">VectorType</a> grad = Base::m_dUc.template tail&lt;Dim&gt;().transpose() + Base::m_ul;</div>
+<div class="line"><a name="l00197"></a><span class="lineno">  197</span>&#160;    <a class="code" href="classPonca_1_1MlsSphereFitDer.html#af0219bcdc54d55e9391414982907d730">Scalar</a> gradNorm = grad.norm();</div>
+<div class="line"><a name="l00198"></a><span class="lineno">  198</span>&#160; </div>
+<div class="line"><a name="l00199"></a><span class="lineno">  199</span>&#160;    <span class="keywordflow">if</span>(Base::isScaleDer())</div>
+<div class="line"><a name="l00200"></a><span class="lineno">  200</span>&#160;        result.col(0) = m_d2Uc.template topRightCorner&lt;1,Dim&gt;().transpose() + Base::m_dUl.col(0);</div>
+<div class="line"><a name="l00201"></a><span class="lineno">  201</span>&#160; </div>
+<div class="line"><a name="l00202"></a><span class="lineno">  202</span>&#160;    <span class="keywordflow">if</span>(Base::isSpaceDer())</div>
+<div class="line"><a name="l00203"></a><span class="lineno">  203</span>&#160;    {</div>
+<div class="line"><a name="l00204"></a><span class="lineno">  204</span>&#160;        result.template rightCols&lt;Dim&gt;() = m_d2Uc.template bottomRightCorner&lt;Dim,Dim&gt;().transpose()</div>
+<div class="line"><a name="l00205"></a><span class="lineno">  205</span>&#160;                                           + Base::m_dUl.template rightCols&lt;Dim&gt;().transpose()</div>
+<div class="line"><a name="l00206"></a><span class="lineno">  206</span>&#160;                                           + Base::m_dUl.template rightCols&lt;Dim&gt;();</div>
+<div class="line"><a name="l00207"></a><span class="lineno">  207</span>&#160;        result.template rightCols&lt;Dim&gt;().diagonal().array() += <a class="code" href="classPonca_1_1MlsSphereFitDer.html#af0219bcdc54d55e9391414982907d730">Scalar</a>(2.)*Base::m_uq;</div>
+<div class="line"><a name="l00208"></a><span class="lineno">  208</span>&#160;    }</div>
+<div class="line"><a name="l00209"></a><span class="lineno">  209</span>&#160; </div>
+<div class="line"><a name="l00210"></a><span class="lineno">  210</span>&#160;    <span class="keywordflow">return</span> result/gradNorm - grad*grad.transpose()/(gradNorm*gradNorm)*result;</div>
+<div class="line"><a name="l00211"></a><span class="lineno">  211</span>&#160;}</div>
 </div><!-- fragment --></div><!-- contents -->
-<div class="ttc" id="aclassPonca_1_1MlsSphereFitDer_html"><div class="ttname"><a href="classPonca_1_1MlsSphereFitDer.html">Ponca::MlsSphereFitDer</a></div><div class="ttdoc">Extension performing derivation of the mls surface.</div><div class="ttdef"><b>Definition:</b> mlsSphereFitDer.h:25</div></div>
-<div class="ttc" id="aclassPonca_1_1MlsSphereFitDer_html_af130d69024535e88f14fcc334225042c"><div class="ttname"><a href="classPonca_1_1MlsSphereFitDer.html#af130d69024535e88f14fcc334225042c">Ponca::MlsSphereFitDer::ScalarArray</a></div><div class="ttdeci">Base::ScalarArray ScalarArray</div><div class="ttdoc">Inherited scalar array type.</div><div class="ttdef"><b>Definition:</b> mlsSphereFitDer.h:48</div></div>
-<div class="ttc" id="agroup__fitting_html_gabfd697aebf07c1b5c8be5ee401e2dc84"><div class="ttname"><a href="group__fitting.html#gabfd697aebf07c1b5c8be5ee401e2dc84">Ponca::FIT_RESULT</a></div><div class="ttdeci">FIT_RESULT</div><div class="ttdef"><b>Definition:</b> enums.h:16</div></div>
-<div class="ttc" id="aclassPonca_1_1MlsSphereFitDer_html_aebc80fce4f79a9acd1792a549c900ead"><div class="ttname"><a href="classPonca_1_1MlsSphereFitDer.html#aebc80fce4f79a9acd1792a549c900ead">Ponca::MlsSphereFitDer::Matrix</a></div><div class="ttdeci">Eigen::Matrix&lt; Scalar, DerDim, DerDim &gt; Matrix</div><div class="ttdoc">Static squared matrix of scalars with a size adapted to the differentiation type.</div><div class="ttdef"><b>Definition:</b> mlsSphereFitDer.h:59</div></div>
-<div class="ttc" id="aclassPonca_1_1MlsSphereFitDer_html_ab27fa90ee60f684927095ac906cfef14"><div class="ttname"><a href="classPonca_1_1MlsSphereFitDer.html#ab27fa90ee60f684927095ac906cfef14">Ponca::MlsSphereFitDer::VectorType</a></div><div class="ttdeci">Base::VectorType VectorType</div><div class="ttdoc">Inherited vector type.</div><div class="ttdef"><b>Definition:</b> mlsSphereFitDer.h:45</div></div>
-<div class="ttc" id="aclassPonca_1_1MlsSphereFitDer_html_a4a9f1177061522659f45d9cd3640ffdf"><div class="ttname"><a href="classPonca_1_1MlsSphereFitDer.html#a4a9f1177061522659f45d9cd3640ffdf">Ponca::MlsSphereFitDer::Scalar</a></div><div class="ttdeci">Base::Scalar Scalar</div><div class="ttdoc">Inherited scalar type.</div><div class="ttdef"><b>Definition:</b> mlsSphereFitDer.h:44</div></div>
-<div class="ttc" id="aclassPonca_1_1MlsSphereFitDer_html_a37cd8681ab28f4261cac6c4bba9683bf"><div class="ttname"><a href="classPonca_1_1MlsSphereFitDer.html#a37cd8681ab28f4261cac6c4bba9683bf">Ponca::MlsSphereFitDer::VectorArray</a></div><div class="ttdeci">Base::VectorArray VectorArray</div><div class="ttdoc">Inherited vector array type.</div><div class="ttdef"><b>Definition:</b> mlsSphereFitDer.h:47</div></div>
+</div><!-- doc-content -->
+<div class="ttc" id="aclassPonca_1_1MlsSphereFitDer_html"><div class="ttname"><a href="classPonca_1_1MlsSphereFitDer.html">Ponca::MlsSphereFitDer</a></div><div class="ttdoc">Extension performing derivation of the mls surface.</div><div class="ttdef"><b>Definition:</b> <a href="mlsSphereFitDer_8h_source.html#l00026">mlsSphereFitDer.h:26</a></div></div>
+<div class="ttc" id="aclassPonca_1_1MlsSphereFitDer_html_ac57e51349b1aaba25de164468dbf312c"><div class="ttname"><a href="classPonca_1_1MlsSphereFitDer.html#ac57e51349b1aaba25de164468dbf312c">Ponca::MlsSphereFitDer::VectorArray</a></div><div class="ttdeci">typename Base::VectorArray VectorArray</div><div class="ttdoc">Alias to vector derivatives array.</div><div class="ttdef"><b>Definition:</b> <a href="mlsSphereFitDer_8h_source.html#l00029">mlsSphereFitDer.h:29</a></div></div>
+<div class="ttc" id="aclassPonca_1_1MlsSphereFitDer_html_a11a8dba6b3543b35f1cb6e699f4a26ca"><div class="ttname"><a href="classPonca_1_1MlsSphereFitDer.html#a11a8dba6b3543b35f1cb6e699f4a26ca">Ponca::MlsSphereFitDer::VectorType</a></div><div class="ttdeci">typename Base::VectorType VectorType</div><div class="ttdoc">Alias to vector type.</div><div class="ttdef"><b>Definition:</b> <a href="mlsSphereFitDer_8h_source.html#l00028">mlsSphereFitDer.h:28</a></div></div>
+<div class="ttc" id="agroup__fitting_html_gabfd697aebf07c1b5c8be5ee401e2dc84"><div class="ttname"><a href="group__fitting.html#gabfd697aebf07c1b5c8be5ee401e2dc84">Ponca::FIT_RESULT</a></div><div class="ttdeci">FIT_RESULT</div><div class="ttdoc">Enum corresponding to the state of a fitting method (and what the finalize function can return)</div><div class="ttdef"><b>Definition:</b> <a href="enums_8h_source.html#l00016">enums.h:16</a></div></div>
+<div class="ttc" id="aclassPonca_1_1MlsSphereFitDer_html_adb6557177816169e4694ca724c918170"><div class="ttname"><a href="classPonca_1_1MlsSphereFitDer.html#adb6557177816169e4694ca724c918170">Ponca::MlsSphereFitDer::ScalarArray</a></div><div class="ttdeci">typename Base::ScalarArray ScalarArray</div><div class="ttdoc">Alias to scalar derivatives array.</div><div class="ttdef"><b>Definition:</b> <a href="mlsSphereFitDer_8h_source.html#l00029">mlsSphereFitDer.h:29</a></div></div>
+<div class="ttc" id="aclassPonca_1_1MlsSphereFitDer_html_af0219bcdc54d55e9391414982907d730"><div class="ttname"><a href="classPonca_1_1MlsSphereFitDer.html#af0219bcdc54d55e9391414982907d730">Ponca::MlsSphereFitDer::Scalar</a></div><div class="ttdeci">typename DataPoint::Scalar Scalar</div><div class="ttdoc">Alias to scalar type.</div><div class="ttdef"><b>Definition:</b> <a href="mlsSphereFitDer_8h_source.html#l00028">mlsSphereFitDer.h:28</a></div></div>
+<div class="ttc" id="aclassPonca_1_1MlsSphereFitDer_html_a0290d2bbb57e39a332276b467bc91458"><div class="ttname"><a href="classPonca_1_1MlsSphereFitDer.html#a0290d2bbb57e39a332276b467bc91458">Ponca::MlsSphereFitDer::Matrix</a></div><div class="ttdeci">Eigen::Matrix&lt; Scalar, DerDim, DerDim &gt; Matrix</div><div class="ttdoc">Static squared matrix of scalars with a size adapted to the differentiation type.</div><div class="ttdef"><b>Definition:</b> <a href="mlsSphereFitDer_8h_source.html#l00056">mlsSphereFitDer.h:56</a></div></div>
 <!-- start footer part -->
-<hr class="footer"/><address class="footer"><small>
-Generated on Tue Aug 2 2022 09:22:55 for Ponca by &#160;<a href="http://www.doxygen.org/index.html">
-<img class="footer" src="doxygen.png" alt="doxygen"/>
-</a> 1.8.17
-</small></address>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_695d95a8d8fbec601a248c0414764298.html">Ponca</a></li><li class="navelem"><a class="el" href="dir_ce16314fc45f8638543c5146aff64d4a.html">src</a></li><li class="navelem"><a class="el" href="dir_221133f19e4af6803e4ee7d78db21786.html">Fitting</a></li><li class="navelem"><b>mlsSphereFitDer.hpp</b></li>
+    <li class="footer">Generated on Fri Sep 9 2022 12:28:20 for Ponca by
+    <a href="http://www.doxygen.org/index.html">
+    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.17 </li>
+  </ul>
+</div>
 </body>
 </html>

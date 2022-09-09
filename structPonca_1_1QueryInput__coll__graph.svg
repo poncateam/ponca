@@ -8,7 +8,6 @@
  viewBox="0.00 0.00 138.00 193.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 <g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 189)">
 <title>Ponca::QueryInput&lt; InputType_ &gt;</title>
-<polygon fill="white" stroke="transparent" points="-4,4 -4,-189 134,-189 134,4 -4,4"/>
 <!-- Node1 -->
 <g id="node1" class="node">
 <title>Node1</title>
@@ -29,7 +28,7 @@
 <g id="node2" class="node">
 <title>Node2</title>
 <g id="a_node2"><a xlink:href="structPonca_1_1QueryInputBase.html" target="_top" xlink:title="Base class for queries input type.">
-<polygon fill="white" stroke="black" points="0,-127.5 0,-184.5 130,-184.5 130,-127.5 0,-127.5"/>
+<polygon fill="none" stroke="black" points="0,-127.5 0,-184.5 130,-184.5 130,-127.5 0,-127.5"/>
 <text text-anchor="middle" x="65" y="-172.5" font-family="Helvetica,sans-Serif" font-size="10.00">Ponca::QueryInputBase</text>
 <polyline fill="none" stroke="black" points="0,-165.5 130,-165.5 "/>
 <text text-anchor="middle" x="65" y="-153.5" font-family="Helvetica,sans-Serif" font-size="10.00"> </text>

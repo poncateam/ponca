@@ -1,3 +1,4 @@
+<!-- HTML header for doxygen 1.9.1-->
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -9,6 +10,10 @@
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
@@ -20,7 +25,23 @@
 </script>
 <script type="text/javascript" async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js"></script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only-darkmode-toggle.css" rel="stylesheet" type="text/css"/>
 <link href="ponca.css" rel="stylesheet" type="text/css"/>
+<!-- ... other metadata & script includes ... -->
+<script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+<script type="text/javascript">
+    DoxygenAwesomeDarkModeToggle.init()
+</script>
+<script type="text/javascript" src="doxygen-awesome-fragment-copy-button.js"></script>
+<script type="text/javascript">
+    DoxygenAwesomeFragmentCopyButton.init()
+</script>
+<script type="text/javascript" src="doxygen-awesome-paragraph-link.js"></script>
+<script type="text/javascript">
+    DoxygenAwesomeParagraphLink.init()
+</script>
 </head>
 <body>
 <div id="top"><!-- do not remove this div, it is closed by doxygen! -->
@@ -30,7 +51,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Ponca
-   &#160;<span id="projectnumber">8976dc5e97f677a334261616e8d2314551b8ce3d</span>
+   &#160;<span id="projectnumber">d844664447d2173c00cc41660408e8eb5b3a41d6</span>
    </div>
    <div id="projectbrief">Point Cloud Analysis library</div>
   </td>
@@ -56,6 +77,22 @@ $(function() {
 /* @license-end */</script>
 <div id="main-nav"></div>
 </div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(document).ready(function(){initNavTree('index.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -71,37 +108,25 @@ $(function() {
 </div>
 
 <div class="PageDoc"><div class="contents">
-<div class="textblock"><h1><a class="anchor" id="ponca_news_sec"></a>
-New release 0.2: adding Spatial Partitioning module</h1>
-<h2><a class="anchor" id="ponca_news_subsec"></a>
-Principal features</h2>
-<p>In this new version, we updated and extended the API:</p><ul>
-<li>we added a new module Spatial Partitioning with a KdTree and several queries</li>
-<li>we added a new module Common for general purpose code</li>
-<li>we improved the cmake buildchain to improve dependencies management. We also added use a submodule.</li>
-</ul>
-<p>Get the code by calling: </p><div class="fragment"><div class="line">git clone https:<span class="comment">//github.com/poncateam/ponca.git</span></div>
-<div class="line">git checkout v0.2-alpha-patch1</div>
-</div><!-- fragment --><p>See the <a class="el" href="ponca_changelog.html">complete changelog</a> for details.</p>
-<h1><a class="anchor" id="ponca_about_sec"></a>
+<div class="textblock"><h1><a class="anchor" id="ponca_about_sec"></a>
 About Ponca</h1>
-<p><a class="el" href="namespacePonca.html" title="This module provides efficient methods for the fitting and analysis of point-clouds in arbitrary dime...">Ponca</a> is a header only library coded in C++, and compatible with CUDA. It is maintained by researchers in Computer Graphics, and released under the MPL license. Source code is available at: <a href="https://github.com/poncateam/ponca">https://github.com/poncateam/ponca</a></p>
-<p><a class="el" href="namespacePonca.html" title="This module provides efficient methods for the fitting and analysis of point-clouds in arbitrary dime...">Ponca</a> provides a collection of techniques for Point Cloud Analysis that incorporate the latest innovations from CNRS and INRIA research teams working in the field. It strives for efficiency and ease-of-use by focusing on low-level core operators and key algorithms. The central goal of the library is to drastically reduce the time and efforts required to turn a research paper into a ready-to-use solution, for both commercial and academic purposes.</p>
+<p><a class="el" href="namespacePonca.html" title="This Source Code Form is subject to the terms of the Mozilla Public License, v.">Ponca</a> is a header only library coded in C++, and compatible with CUDA. It is maintained by researchers in Computer Graphics, and released under the MPL license. Source code is available at: <a href="https://github.com/poncateam/ponca">https://github.com/poncateam/ponca</a></p>
+<p><a class="el" href="namespacePonca.html" title="This Source Code Form is subject to the terms of the Mozilla Public License, v.">Ponca</a> provides a collection of techniques for Point Cloud Analysis that incorporate the latest innovations from CNRS and INRIA research teams working in the field. It strives for efficiency and ease-of-use by focusing on low-level core operators and key algorithms. The central goal of the library is to drastically reduce the time and efforts required to turn a research paper into a ready-to-use solution, for both commercial and academic purposes.</p>
 <p>The library is still in its infancy and we're actively working on it to bring you the latest of our published research techniques.</p>
 <h1><a class="anchor" id="ponca_instructions_sec"></a>
 Basic FAQs</h1>
 <ul>
-<li><b> How do I get <a class="el" href="namespacePonca.html" title="This module provides efficient methods for the fitting and analysis of point-clouds in arbitrary dime...">Ponca</a> to work with my computer? </b><br  />
+<li><b> How do I get <a class="el" href="namespacePonca.html" title="This Source Code Form is subject to the terms of the Mozilla Public License, v.">Ponca</a> to work with my computer? </b><br  />
  If by that you mean "How can I download and install your library?", then the best place to start is the <a class="el" href="ponca_getting_started_page.html">Getting started</a> section, as you might have guessed from the onset.</li>
-<li><b> What can I develop with <a class="el" href="namespacePonca.html" title="This module provides efficient methods for the fitting and analysis of point-clouds in arbitrary dime...">Ponca</a>? Do you have code examples? </b><br  />
+<li><b> What can I develop with <a class="el" href="namespacePonca.html" title="This Source Code Form is subject to the terms of the Mozilla Public License, v.">Ponca</a>? Do you have code examples? </b><br  />
  I guess you're looking for a <a class="el" href="user_manual_page.html">User Manual</a>, or even an <a class="el" href="example_page.html">Examples</a> page? This might give you enough suggestions to start experimenting with your own recipies.</li>
 <li><b> Where do these approaches come from originally? </b><br  />
- The <a class="el" href="namespacePonca.html" title="This module provides efficient methods for the fitting and analysis of point-clouds in arbitrary dime...">Ponca</a> library relies on published scientific papers that we have collected in the <a class="el" href="citelist.html">Citation</a> section of the documentation. These will prove useful if you want to dig into the implementation of operators and algorithms. If the <a class="el" href="namespacePonca.html" title="This module provides efficient methods for the fitting and analysis of point-clouds in arbitrary dime...">Ponca</a> library contributes to a project that leads to a scientific publication or a commercial or free software, all we ask is to tell us about it, or at least cite the project using the bibtex entry provided at the end of this page.</li>
+ The <a class="el" href="namespacePonca.html" title="This Source Code Form is subject to the terms of the Mozilla Public License, v.">Ponca</a> library relies on published scientific papers that we have collected in the <a class="el" href="citelist.html">Citation</a> section of the documentation. These will prove useful if you want to dig into the implementation of operators and algorithms. If the <a class="el" href="namespacePonca.html" title="This Source Code Form is subject to the terms of the Mozilla Public License, v.">Ponca</a> library contributes to a project that leads to a scientific publication or a commercial or free software, all we ask is to tell us about it, or at least cite the project using the bibtex entry provided at the end of this page.</li>
 <li><b> What can I do if I get mashed in trouble? </b><br  />
- If you get stuck or have a problem/bug using <a class="el" href="namespacePonca.html" title="This module provides efficient methods for the fitting and analysis of point-clouds in arbitrary dime...">Ponca</a>, open an issue on <a href="https://github.com/poncateam/ponca/issues" target="_blank">Github</a> for further assistance. Remember that the library is under development so we are pleased to get your feedback.</li>
+ If you get stuck or have a problem/bug using <a class="el" href="namespacePonca.html" title="This Source Code Form is subject to the terms of the Mozilla Public License, v.">Ponca</a>, open an issue on <a href="https://github.com/poncateam/ponca/issues" target="_blank">Github</a> for further assistance. Remember that the library is under development so we are pleased to get your feedback.</li>
 <li><b> What does "Ponca" mean, actually? </b><br  />
  "Ponca" stands for POiNt Cloud Analysis. Currently, it provides fitting techniques and spatial queries accelerators (e.g. KdTree), to approximate sets of points by planes or spheres. Upcoming release should bring Moving Least Squares surfaces.</li>
-<li><b> How is <a class="el" href="namespacePonca.html" title="This module provides efficient methods for the fitting and analysis of point-clouds in arbitrary dime...">Ponca</a> licensed? </b><br  />
+<li><b> How is <a class="el" href="namespacePonca.html" title="This Source Code Form is subject to the terms of the Mozilla Public License, v.">Ponca</a> licensed? </b><br  />
  The source code of the library is licensed under the Mozilla Public License (MPL), v. 2.0. Its main advantage is to grant inclusion of template files as long as the source code itself is not modified. For more details, a copy of the MPL can be found at <a href="http://mozilla.org/MPL/2.0/">http://mozilla.org/MPL/2.0/</a> .</li>
 </ul>
 <h1><a class="anchor" id="ponca_credits_sec"></a>
@@ -120,7 +145,7 @@ Developers and contributors</h2>
 </ul>
 <h2><a class="anchor" id="ponca_credits_subsection_grenaille"></a>
 Patate/Grenaille crew and contributors</h2>
-<p><a class="el" href="namespacePonca.html" title="This module provides efficient methods for the fitting and analysis of point-clouds in arbitrary dime...">Ponca</a> is a fork of Patate, module Grenaille, which is now deprecated, and which was developed by:</p><ul>
+<p><a class="el" href="namespacePonca.html" title="This Source Code Form is subject to the terms of the Mozilla Public License, v.">Ponca</a> is a fork of Patate, module Grenaille, which is now deprecated, and which was developed by:</p><ul>
 <li><b> Nicolas Mellado </b>: conception, implementation and examples <br  />
 </li>
 <li><b> Gael Guennebaud </b>: conception and implementation <br  />
@@ -154,11 +179,14 @@ Users</h2>
 </ul>
 </div></div><!-- PageDoc -->
 </div><!-- contents -->
+</div><!-- doc-content -->
 <!-- start footer part -->
-<hr class="footer"/><address class="footer"><small>
-Generated on Tue Aug 2 2022 09:22:55 for Ponca by &#160;<a href="http://www.doxygen.org/index.html">
-<img class="footer" src="doxygen.png" alt="doxygen"/>
-</a> 1.8.17
-</small></address>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="footer">Generated on Fri Sep 9 2022 12:28:20 for Ponca by
+    <a href="http://www.doxygen.org/index.html">
+    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.17 </li>
+  </ul>
+</div>
 </body>
 </html>

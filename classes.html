@@ -1,3 +1,4 @@
+<!-- HTML header for doxygen 1.9.1-->
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -9,6 +10,10 @@
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
@@ -20,7 +25,23 @@
 </script>
 <script type="text/javascript" async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js"></script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only-darkmode-toggle.css" rel="stylesheet" type="text/css"/>
 <link href="ponca.css" rel="stylesheet" type="text/css"/>
+<!-- ... other metadata & script includes ... -->
+<script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+<script type="text/javascript">
+    DoxygenAwesomeDarkModeToggle.init()
+</script>
+<script type="text/javascript" src="doxygen-awesome-fragment-copy-button.js"></script>
+<script type="text/javascript">
+    DoxygenAwesomeFragmentCopyButton.init()
+</script>
+<script type="text/javascript" src="doxygen-awesome-paragraph-link.js"></script>
+<script type="text/javascript">
+    DoxygenAwesomeParagraphLink.init()
+</script>
 </head>
 <body>
 <div id="top"><!-- do not remove this div, it is closed by doxygen! -->
@@ -30,7 +51,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Ponca
-   &#160;<span id="projectnumber">8976dc5e97f677a334261616e8d2314551b8ce3d</span>
+   &#160;<span id="projectnumber">d844664447d2173c00cc41660408e8eb5b3a41d6</span>
    </div>
    <div id="projectbrief">Point Cloud Analysis library</div>
   </td>
@@ -56,6 +77,22 @@ $(function() {
 /* @license-end */</script>
 <div id="main-nav"></div>
 </div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(document).ready(function(){initNavTree('classes.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -75,7 +112,7 @@ $(function() {
 <div class="title">Class Index</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="qindex"><a class="qindex" href="#letter_a">a</a>&#160;|&#160;<a class="qindex" href="#letter_b">b</a>&#160;|&#160;<a class="qindex" href="#letter_c">c</a>&#160;|&#160;<a class="qindex" href="#letter_d">d</a>&#160;|&#160;<a class="qindex" href="#letter_f">f</a>&#160;|&#160;<a class="qindex" href="#letter_g">g</a>&#160;|&#160;<a class="qindex" href="#letter_i">i</a>&#160;|&#160;<a class="qindex" href="#letter_k">k</a>&#160;|&#160;<a class="qindex" href="#letter_l">l</a>&#160;|&#160;<a class="qindex" href="#letter_m">m</a>&#160;|&#160;<a class="qindex" href="#letter_n">n</a>&#160;|&#160;<a class="qindex" href="#letter_o">o</a>&#160;|&#160;<a class="qindex" href="#letter_p">p</a>&#160;|&#160;<a class="qindex" href="#letter_q">q</a>&#160;|&#160;<a class="qindex" href="#letter_r">r</a>&#160;|&#160;<a class="qindex" href="#letter_s">s</a>&#160;|&#160;<a class="qindex" href="#letter_u">u</a>&#160;|&#160;<a class="qindex" href="#letter_w">w</a>&#160;|&#160;<a class="qindex" href="#letter_x">x</a></div>
+<div class="qindex"><a class="qindex" href="#letter_a">a</a>&#160;|&#160;<a class="qindex" href="#letter_b">b</a>&#160;|&#160;<a class="qindex" href="#letter_c">c</a>&#160;|&#160;<a class="qindex" href="#letter_d">d</a>&#160;|&#160;<a class="qindex" href="#letter_g">g</a>&#160;|&#160;<a class="qindex" href="#letter_i">i</a>&#160;|&#160;<a class="qindex" href="#letter_k">k</a>&#160;|&#160;<a class="qindex" href="#letter_l">l</a>&#160;|&#160;<a class="qindex" href="#letter_m">m</a>&#160;|&#160;<a class="qindex" href="#letter_n">n</a>&#160;|&#160;<a class="qindex" href="#letter_o">o</a>&#160;|&#160;<a class="qindex" href="#letter_p">p</a>&#160;|&#160;<a class="qindex" href="#letter_q">q</a>&#160;|&#160;<a class="qindex" href="#letter_r">r</a>&#160;|&#160;<a class="qindex" href="#letter_s">s</a>&#160;|&#160;<a class="qindex" href="#letter_u">u</a></div>
 <table class="classindex">
 <tr><td rowspan="2" valign="bottom"><a name="letter_a"></a><table border="0" cellspacing="0" cellpadding="0"><tr><td><div class="ah">&#160;&#160;a&#160;&#160;</div></td></tr></table>
 </td>
@@ -88,168 +125,151 @@ $(function() {
 </tr>
 <tr><td rowspan="2" valign="bottom"><a name="letter_b"></a><table border="0" cellspacing="0" cellpadding="0"><tr><td><div class="ah">&#160;&#160;b&#160;&#160;</div></td></tr></table>
 </td>
-<td valign="top"><a class="el" href="classPonca_1_1MeanPlaneFit.html">MeanPlaneFit</a> (<a class="el" href="namespacePonca.html">Ponca</a>)&#160;&#160;&#160;</td>
+<td valign="top"><a class="el" href="classPonca_1_1MeanNormal.html">MeanNormal</a> (<a class="el" href="namespacePonca.html">Ponca</a>)&#160;&#160;&#160;</td>
 </tr>
-<tr><td valign="top"><a class="el" href="classPonca_1_1MlsSphereFitDer.html">MlsSphereFitDer</a> (<a class="el" href="namespacePonca.html">Ponca</a>)&#160;&#160;&#160;</td>
-</tr>
-<tr><td valign="top"><a class="el" href="classPonca_1_1BaseCurvatureEstimator.html">BaseCurvatureEstimator</a> (<a class="el" href="namespacePonca.html">Ponca</a>)&#160;&#160;&#160;</td>
-<td valign="top"><a class="el" href="classPonca_1_1MongePatch.html">MongePatch</a> (<a class="el" href="namespacePonca.html">Ponca</a>)&#160;&#160;&#160;</td>
+<tr><td valign="top"><a class="el" href="classPonca_1_1MeanPlaneFitImpl.html">MeanPlaneFitImpl</a> (<a class="el" href="namespacePonca.html">Ponca</a>)&#160;&#160;&#160;</td>
 </tr>
 <tr><td valign="top"><a class="el" href="classPonca_1_1Basket.html">Basket</a> (<a class="el" href="namespacePonca.html">Ponca</a>)&#160;&#160;&#160;</td>
-<td rowspan="2" valign="bottom"><a name="letter_n"></a><table border="0" cellspacing="0" cellpadding="0"><tr><td><div class="ah">&#160;&#160;n&#160;&#160;</div></td></tr></table>
-</td>
+<td valign="top"><a class="el" href="classPonca_1_1MeanPosition.html">MeanPosition</a> (<a class="el" href="namespacePonca.html">Ponca</a>)&#160;&#160;&#160;</td>
+</tr>
+<tr><td valign="top"><a class="el" href="classPonca_1_1BasketDiff.html">BasketDiff</a> (<a class="el" href="namespacePonca.html">Ponca</a>)&#160;&#160;&#160;</td>
+<td valign="top"><a class="el" href="classPonca_1_1MeanPositionDer.html">MeanPositionDer</a> (<a class="el" href="namespacePonca.html">Ponca</a>)&#160;&#160;&#160;</td>
 </tr>
 <tr><td rowspan="2" valign="bottom"><a name="letter_c"></a><table border="0" cellspacing="0" cellpadding="0"><tr><td><div class="ah">&#160;&#160;c&#160;&#160;</div></td></tr></table>
 </td>
+<td valign="top"><a class="el" href="classPonca_1_1MlsSphereFitDer.html">MlsSphereFitDer</a> (<a class="el" href="namespacePonca.html">Ponca</a>)&#160;&#160;&#160;</td>
 </tr>
-<tr><td valign="top"><a class="el" href="structPonca_1_1NearestIndexQuery.html">NearestIndexQuery</a> (<a class="el" href="namespacePonca.html">Ponca</a>)&#160;&#160;&#160;</td>
+<tr><td valign="top"><a class="el" href="classPonca_1_1MongePatch.html">MongePatch</a> (<a class="el" href="namespacePonca.html">Ponca</a>)&#160;&#160;&#160;</td>
 </tr>
 <tr><td valign="top"><a class="el" href="classPonca_1_1ConstantWeightKernel.html">ConstantWeightKernel</a> (<a class="el" href="namespacePonca.html">Ponca</a>)&#160;&#160;&#160;</td>
+<td rowspan="2" valign="bottom"><a name="letter_n"></a><table border="0" cellspacing="0" cellpadding="0"><tr><td><div class="ah">&#160;&#160;n&#160;&#160;</div></td></tr></table>
+</td>
+</tr>
+<tr><td valign="top"><a class="el" href="classPonca_1_1CovarianceFitBase.html">CovarianceFitBase</a> (<a class="el" href="namespacePonca.html">Ponca</a>)&#160;&#160;&#160;</td>
+</tr>
+<tr><td valign="top"><a class="el" href="classPonca_1_1CovarianceFitDer.html">CovarianceFitDer</a> (<a class="el" href="namespacePonca.html">Ponca</a>)&#160;&#160;&#160;</td>
+<td valign="top"><a class="el" href="structPonca_1_1NearestIndexQuery.html">NearestIndexQuery</a> (<a class="el" href="namespacePonca.html">Ponca</a>)&#160;&#160;&#160;</td>
+</tr>
+<tr><td valign="top"><a class="el" href="classPonca_1_1CovarianceLineFitImpl.html">CovarianceLineFitImpl</a> (<a class="el" href="namespacePonca.html">Ponca</a>)&#160;&#160;&#160;</td>
 <td valign="top"><a class="el" href="structPonca_1_1NearestPointQuery.html">NearestPointQuery</a> (<a class="el" href="namespacePonca.html">Ponca</a>)&#160;&#160;&#160;</td>
 </tr>
-<tr><td valign="top"><a class="el" href="classPonca_1_1CovarianceLineFit.html">CovarianceLineFit</a> (<a class="el" href="namespacePonca.html">Ponca</a>)&#160;&#160;&#160;</td>
-<td valign="top"><a class="el" href="classPonca_1_1NormalCovarianceCurvature.html">NormalCovarianceCurvature</a> (<a class="el" href="namespacePonca.html">Ponca</a>)&#160;&#160;&#160;</td>
+<tr><td valign="top"><a class="el" href="classPonca_1_1CovariancePlaneDerImpl.html">CovariancePlaneDerImpl</a> (<a class="el" href="namespacePonca.html">Ponca</a>)&#160;&#160;&#160;</td>
+<td valign="top"><a class="el" href="classPonca_1_1NormalCovarianceCurvatureEstimator.html">NormalCovarianceCurvatureEstimator</a> (<a class="el" href="namespacePonca.html">Ponca</a>)&#160;&#160;&#160;</td>
 </tr>
-<tr><td valign="top"><a class="el" href="classPonca_1_1internal_1_1CovariancePlaneDer.html">CovariancePlaneDer</a> (<a class="el" href="namespacePonca_1_1internal.html">Ponca::internal</a>)&#160;&#160;&#160;</td>
+<tr><td valign="top"><a class="el" href="classPonca_1_1CovariancePlaneFitImpl.html">CovariancePlaneFitImpl</a> (<a class="el" href="namespacePonca.html">Ponca</a>)&#160;&#160;&#160;</td>
+<td valign="top"><a class="el" href="classPonca_1_1NormalDerivativesCurvatureEstimator.html">NormalDerivativesCurvatureEstimator</a> (<a class="el" href="namespacePonca.html">Ponca</a>)&#160;&#160;&#160;</td>
+</tr>
+<tr><td valign="top"><a class="el" href="classPonca_1_1CurvatureEstimatorBase.html">CurvatureEstimatorBase</a> (<a class="el" href="namespacePonca.html">Ponca</a>)&#160;&#160;&#160;</td>
 <td rowspan="2" valign="bottom"><a name="letter_o"></a><table border="0" cellspacing="0" cellpadding="0"><tr><td><div class="ah">&#160;&#160;o&#160;&#160;</div></td></tr></table>
 </td>
 </tr>
-<tr><td valign="top"><a class="el" href="classPonca_1_1CovariancePlaneFit.html">CovariancePlaneFit</a> (<a class="el" href="namespacePonca.html">Ponca</a>)&#160;&#160;&#160;</td>
-</tr>
-<tr><td valign="top"><a class="el" href="classPonca_1_1CovariancePlaneScaleDer.html">CovariancePlaneScaleDer</a> (<a class="el" href="namespacePonca.html">Ponca</a>)&#160;&#160;&#160;</td>
-<td valign="top"><a class="el" href="classPonca_1_1internal_1_1OrientedSphereDer.html">OrientedSphereDer</a> (<a class="el" href="namespacePonca_1_1internal.html">Ponca::internal</a>)&#160;&#160;&#160;</td>
-</tr>
-<tr><td valign="top"><a class="el" href="classPonca_1_1CovariancePlaneScaleSpaceDer.html">CovariancePlaneScaleSpaceDer</a> (<a class="el" href="namespacePonca.html">Ponca</a>)&#160;&#160;&#160;</td>
-<td valign="top"><a class="el" href="classPonca_1_1OrientedSphereFit.html">OrientedSphereFit</a> (<a class="el" href="namespacePonca.html">Ponca</a>)&#160;&#160;&#160;</td>
-</tr>
-<tr><td valign="top"><a class="el" href="classPonca_1_1CovariancePlaneSpaceDer.html">CovariancePlaneSpaceDer</a> (<a class="el" href="namespacePonca.html">Ponca</a>)&#160;&#160;&#160;</td>
-<td valign="top"><a class="el" href="classPonca_1_1OrientedSphereScaleDer.html">OrientedSphereScaleDer</a> (<a class="el" href="namespacePonca.html">Ponca</a>)&#160;&#160;&#160;</td>
-</tr>
-<tr><td valign="top"><a class="el" href="classPonca_1_1CurvatureEstimator.html">CurvatureEstimator</a> (<a class="el" href="namespacePonca.html">Ponca</a>)&#160;&#160;&#160;</td>
-<td valign="top"><a class="el" href="classPonca_1_1OrientedSphereScaleSpaceDer.html">OrientedSphereScaleSpaceDer</a> (<a class="el" href="namespacePonca.html">Ponca</a>)&#160;&#160;&#160;</td>
-</tr>
 <tr><td rowspan="2" valign="bottom"><a name="letter_d"></a><table border="0" cellspacing="0" cellpadding="0"><tr><td><div class="ah">&#160;&#160;d&#160;&#160;</div></td></tr></table>
 </td>
-<td valign="top"><a class="el" href="classPonca_1_1OrientedSphereSpaceDer.html">OrientedSphereSpaceDer</a> (<a class="el" href="namespacePonca.html">Ponca</a>)&#160;&#160;&#160;</td>
 </tr>
-<tr><td rowspan="2" valign="bottom"><a name="letter_p"></a><table border="0" cellspacing="0" cellpadding="0"><tr><td><div class="ah">&#160;&#160;p&#160;&#160;</div></td></tr></table>
-</td>
+<tr><td valign="top"><a class="el" href="classPonca_1_1OrientedSphereDerImpl.html">OrientedSphereDerImpl</a> (<a class="el" href="namespacePonca.html">Ponca</a>)&#160;&#160;&#160;</td>
 </tr>
 <tr><td valign="top"><a class="el" href="structPonca_1_1KdTree_1_1DefaultConverter.html">KdTree::DefaultConverter</a> (<a class="el" href="namespacePonca.html">Ponca</a>)&#160;&#160;&#160;</td>
+<td valign="top"><a class="el" href="classPonca_1_1OrientedSphereFitImpl.html">OrientedSphereFitImpl</a> (<a class="el" href="namespacePonca.html">Ponca</a>)&#160;&#160;&#160;</td>
 </tr>
 <tr><td valign="top"><a class="el" href="classPonca_1_1DistWeightFunc.html">DistWeightFunc</a> (<a class="el" href="namespacePonca.html">Ponca</a>)&#160;&#160;&#160;</td>
-<td valign="top"><a class="el" href="classPonca_1_1Plane.html">Plane</a> (<a class="el" href="namespacePonca.html">Ponca</a>)&#160;&#160;&#160;</td>
+<td rowspan="2" valign="bottom"><a name="letter_p"></a><table border="0" cellspacing="0" cellpadding="0"><tr><td><div class="ah">&#160;&#160;p&#160;&#160;</div></td></tr></table>
+</td>
 </tr>
 <tr><td valign="top"><a class="el" href="classPonca_1_1DryFit.html">DryFit</a> (<a class="el" href="namespacePonca.html">Ponca</a>)&#160;&#160;&#160;</td>
-<td valign="top"><a class="el" href="classPonca_1_1Concept_1_1PointConcept.html">PointConcept</a> (<a class="el" href="namespacePonca_1_1Concept.html">Ponca::Concept</a>)&#160;&#160;&#160;</td>
 </tr>
 <tr><td valign="top"><a class="el" href="structPonca_1_1QueryOutputBase_1_1DummyOutputParameter.html">QueryOutputBase::DummyOutputParameter</a> (<a class="el" href="namespacePonca.html">Ponca</a>)&#160;&#160;&#160;</td>
-<td valign="top"><a class="el" href="classPonca_1_1PrimitiveBase.html">PrimitiveBase</a> (<a class="el" href="namespacePonca.html">Ponca</a>)&#160;&#160;&#160;</td>
-</tr>
-<tr><td rowspan="2" valign="bottom"><a name="letter_f"></a><table border="0" cellspacing="0" cellpadding="0"><tr><td><div class="ah">&#160;&#160;f&#160;&#160;</div></td></tr></table>
-</td>
-<td valign="top"><a class="el" href="classPonca_1_1ProjectedNormalCovarianceCurvature.html">ProjectedNormalCovarianceCurvature</a> (<a class="el" href="namespacePonca.html">Ponca</a>)&#160;&#160;&#160;</td>
-</tr>
-<tr><td rowspan="2" valign="bottom"><a name="letter_q"></a><table border="0" cellspacing="0" cellpadding="0"><tr><td><div class="ah">&#160;&#160;q&#160;&#160;</div></td></tr></table>
-</td>
-</tr>
-<tr><td valign="top"><a class="el" href="classPonca_1_1Concept_1_1FittingExtensionConcept.html">FittingExtensionConcept</a> (<a class="el" href="namespacePonca_1_1Concept.html">Ponca::Concept</a>)&#160;&#160;&#160;</td>
-</tr>
-<tr><td valign="top"><a class="el" href="classPonca_1_1Concept_1_1FittingProcedureConcept.html">FittingProcedureConcept</a> (<a class="el" href="namespacePonca_1_1Concept.html">Ponca::Concept</a>)&#160;&#160;&#160;</td>
-<td valign="top"><a class="el" href="structPonca_1_1Query.html">Query</a> (<a class="el" href="namespacePonca.html">Ponca</a>)&#160;&#160;&#160;</td>
-</tr>
-<tr><td valign="top"><a class="el" href="classPonca_1_1internal_1_1Forward.html">Forward</a> (<a class="el" href="namespacePonca_1_1internal.html">Ponca::internal</a>)&#160;&#160;&#160;</td>
-<td valign="top"><a class="el" href="structPonca_1_1QueryInput.html">QueryInput</a> (<a class="el" href="namespacePonca.html">Ponca</a>)&#160;&#160;&#160;</td>
+<td valign="top"><a class="el" href="classPonca_1_1Plane.html">Plane</a> (<a class="el" href="namespacePonca.html">Ponca</a>)&#160;&#160;&#160;</td>
 </tr>
 <tr><td rowspan="2" valign="bottom"><a name="letter_g"></a><table border="0" cellspacing="0" cellpadding="0"><tr><td><div class="ah">&#160;&#160;g&#160;&#160;</div></td></tr></table>
+</td>
+<td valign="top"><a class="el" href="classPonca_1_1PrimitiveBase.html">PrimitiveBase</a> (<a class="el" href="namespacePonca.html">Ponca</a>)&#160;&#160;&#160;</td>
+</tr>
+<tr><td valign="top"><a class="el" href="classPonca_1_1PrimitiveDer.html">PrimitiveDer</a> (<a class="el" href="namespacePonca.html">Ponca</a>)&#160;&#160;&#160;</td>
+</tr>
+<tr><td valign="top"><a class="el" href="classPonca_1_1GLSDer.html">GLSDer</a> (<a class="el" href="namespacePonca.html">Ponca</a>)&#160;&#160;&#160;</td>
+<td valign="top"><a class="el" href="classPonca_1_1ProjectedNormalCovarianceCurvatureEstimator.html">ProjectedNormalCovarianceCurvatureEstimator</a> (<a class="el" href="namespacePonca.html">Ponca</a>)&#160;&#160;&#160;</td>
+</tr>
+<tr><td valign="top"><a class="el" href="classPonca_1_1GLSParam.html">GLSParam</a> (<a class="el" href="namespacePonca.html">Ponca</a>)&#160;&#160;&#160;</td>
+<td rowspan="2" valign="bottom"><a name="letter_q"></a><table border="0" cellspacing="0" cellpadding="0"><tr><td><div class="ah">&#160;&#160;q&#160;&#160;</div></td></tr></table>
+</td>
+</tr>
+<tr><td rowspan="2" valign="bottom"><a name="letter_i"></a><table border="0" cellspacing="0" cellpadding="0"><tr><td><div class="ah">&#160;&#160;i&#160;&#160;</div></td></tr></table>
+</td>
+</tr>
+<tr><td valign="top"><a class="el" href="structPonca_1_1Query.html">Query</a> (<a class="el" href="namespacePonca.html">Ponca</a>)&#160;&#160;&#160;</td>
+</tr>
+<tr><td valign="top"><a class="el" href="structPonca_1_1IndexSquaredDistance.html">IndexSquaredDistance</a> (<a class="el" href="namespacePonca.html">Ponca</a>)&#160;&#160;&#160;</td>
+<td valign="top"><a class="el" href="structPonca_1_1QueryInput.html">QueryInput</a> (<a class="el" href="namespacePonca.html">Ponca</a>)&#160;&#160;&#160;</td>
+</tr>
+<tr><td rowspan="2" valign="bottom"><a name="letter_k"></a><table border="0" cellspacing="0" cellpadding="0"><tr><td><div class="ah">&#160;&#160;k&#160;&#160;</div></td></tr></table>
 </td>
 <td valign="top"><a class="el" href="structPonca_1_1QueryInputBase.html">QueryInputBase</a> (<a class="el" href="namespacePonca.html">Ponca</a>)&#160;&#160;&#160;</td>
 </tr>
 <tr><td valign="top"><a class="el" href="structPonca_1_1QueryInputIsIndex.html">QueryInputIsIndex</a> (<a class="el" href="namespacePonca.html">Ponca</a>)&#160;&#160;&#160;</td>
 </tr>
-<tr><td valign="top"><a class="el" href="classPonca_1_1GLSDer.html">GLSDer</a> (<a class="el" href="namespacePonca.html">Ponca</a>)&#160;&#160;&#160;</td>
+<tr><td valign="top"><a class="el" href="classPonca_1_1KdTree.html">KdTree</a> (<a class="el" href="namespacePonca.html">Ponca</a>)&#160;&#160;&#160;</td>
 <td valign="top"><a class="el" href="structPonca_1_1QueryInputIsPosition.html">QueryInputIsPosition</a> (<a class="el" href="namespacePonca.html">Ponca</a>)&#160;&#160;&#160;</td>
 </tr>
-<tr><td valign="top"><a class="el" href="classPonca_1_1GLSGeomVar.html">GLSGeomVar</a> (<a class="el" href="namespacePonca.html">Ponca</a>)&#160;&#160;&#160;</td>
+<tr><td valign="top"><a class="el" href="classPonca_1_1KdTreeKNearestIndexQuery.html">KdTreeKNearestIndexQuery</a> (<a class="el" href="namespacePonca.html">Ponca</a>)&#160;&#160;&#160;</td>
 <td valign="top"><a class="el" href="structPonca_1_1QueryOutputBase.html">QueryOutputBase</a> (<a class="el" href="namespacePonca.html">Ponca</a>)&#160;&#160;&#160;</td>
 </tr>
-<tr><td valign="top"><a class="el" href="classPonca_1_1GLSParam.html">GLSParam</a> (<a class="el" href="namespacePonca.html">Ponca</a>)&#160;&#160;&#160;</td>
+<tr><td valign="top"><a class="el" href="classPonca_1_1KdTreeKNearestIterator.html">KdTreeKNearestIterator</a> (<a class="el" href="namespacePonca.html">Ponca</a>)&#160;&#160;&#160;</td>
 <td valign="top"><a class="el" href="structPonca_1_1QueryOutputIsKNearest.html">QueryOutputIsKNearest</a> (<a class="el" href="namespacePonca.html">Ponca</a>)&#160;&#160;&#160;</td>
 </tr>
-<tr><td rowspan="2" valign="bottom"><a name="letter_i"></a><table border="0" cellspacing="0" cellpadding="0"><tr><td><div class="ah">&#160;&#160;i&#160;&#160;</div></td></tr></table>
-</td>
+<tr><td valign="top"><a class="el" href="classPonca_1_1KdTreeKNearestPointQuery.html">KdTreeKNearestPointQuery</a> (<a class="el" href="namespacePonca.html">Ponca</a>)&#160;&#160;&#160;</td>
 <td valign="top"><a class="el" href="structPonca_1_1QueryOutputIsNearest.html">QueryOutputIsNearest</a> (<a class="el" href="namespacePonca.html">Ponca</a>)&#160;&#160;&#160;</td>
 </tr>
-<tr><td valign="top"><a class="el" href="structPonca_1_1QueryOutputIsRange.html">QueryOutputIsRange</a> (<a class="el" href="namespacePonca.html">Ponca</a>)&#160;&#160;&#160;</td>
+<tr><td valign="top"><a class="el" href="classPonca_1_1KdTreeNearestIndexQuery.html">KdTreeNearestIndexQuery</a> (<a class="el" href="namespacePonca.html">Ponca</a>)&#160;&#160;&#160;</td>
+<td valign="top"><a class="el" href="structPonca_1_1QueryOutputIsRange.html">QueryOutputIsRange</a> (<a class="el" href="namespacePonca.html">Ponca</a>)&#160;&#160;&#160;</td>
 </tr>
-<tr><td valign="top"><a class="el" href="structPonca_1_1IndexSquaredDistance.html">IndexSquaredDistance</a> (<a class="el" href="namespacePonca.html">Ponca</a>)&#160;&#160;&#160;</td>
+<tr><td valign="top"><a class="el" href="classPonca_1_1KdTreeNearestIterator.html">KdTreeNearestIterator</a> (<a class="el" href="namespacePonca.html">Ponca</a>)&#160;&#160;&#160;</td>
 <td rowspan="2" valign="bottom"><a name="letter_r"></a><table border="0" cellspacing="0" cellpadding="0"><tr><td><div class="ah">&#160;&#160;r&#160;&#160;</div></td></tr></table>
 </td>
 </tr>
-<tr><td rowspan="2" valign="bottom"><a name="letter_k"></a><table border="0" cellspacing="0" cellpadding="0"><tr><td><div class="ah">&#160;&#160;k&#160;&#160;</div></td></tr></table>
-</td>
-</tr>
-<tr><td valign="top"><a class="el" href="structPonca_1_1RangeIndexQuery.html">RangeIndexQuery</a> (<a class="el" href="namespacePonca.html">Ponca</a>)&#160;&#160;&#160;</td>
-</tr>
-<tr><td valign="top"><a class="el" href="classPonca_1_1KdTree.html">KdTree</a> (<a class="el" href="namespacePonca.html">Ponca</a>)&#160;&#160;&#160;</td>
-<td valign="top"><a class="el" href="structPonca_1_1RangePointQuery.html">RangePointQuery</a> (<a class="el" href="namespacePonca.html">Ponca</a>)&#160;&#160;&#160;</td>
-</tr>
-<tr><td valign="top"><a class="el" href="classPonca_1_1KdTreeKNearestIndexQuery.html">KdTreeKNearestIndexQuery</a> (<a class="el" href="namespacePonca.html">Ponca</a>)&#160;&#160;&#160;</td>
-<td rowspan="2" valign="bottom"><a name="letter_s"></a><table border="0" cellspacing="0" cellpadding="0"><tr><td><div class="ah">&#160;&#160;s&#160;&#160;</div></td></tr></table>
-</td>
-</tr>
-<tr><td valign="top"><a class="el" href="classPonca_1_1KdTreeKNearestIterator.html">KdTreeKNearestIterator</a> (<a class="el" href="namespacePonca.html">Ponca</a>)&#160;&#160;&#160;</td>
-</tr>
-<tr><td valign="top"><a class="el" href="classPonca_1_1KdTreeKNearestPointQuery.html">KdTreeKNearestPointQuery</a> (<a class="el" href="namespacePonca.html">Ponca</a>)&#160;&#160;&#160;</td>
-<td valign="top"><a class="el" href="classPonca_1_1SmoothWeightKernel.html">SmoothWeightKernel</a> (<a class="el" href="namespacePonca.html">Ponca</a>)&#160;&#160;&#160;</td>
-</tr>
-<tr><td valign="top"><a class="el" href="classPonca_1_1KdTreeNearestIndexQuery.html">KdTreeNearestIndexQuery</a> (<a class="el" href="namespacePonca.html">Ponca</a>)&#160;&#160;&#160;</td>
-<td valign="top"><a class="el" href="classPonca_1_1SphereFit.html">SphereFit</a> (<a class="el" href="namespacePonca.html">Ponca</a>)&#160;&#160;&#160;</td>
-</tr>
-<tr><td valign="top"><a class="el" href="classPonca_1_1KdTreeNearestIterator.html">KdTreeNearestIterator</a> (<a class="el" href="namespacePonca.html">Ponca</a>)&#160;&#160;&#160;</td>
-<td valign="top"><a class="el" href="classPonca_1_1Stack.html">Stack</a> (<a class="el" href="namespacePonca.html">Ponca</a>)&#160;&#160;&#160;</td>
-</tr>
 <tr><td valign="top"><a class="el" href="classPonca_1_1KdTreeNearestPointQuery.html">KdTreeNearestPointQuery</a> (<a class="el" href="namespacePonca.html">Ponca</a>)&#160;&#160;&#160;</td>
-<td rowspan="2" valign="bottom"><a name="letter_u"></a><table border="0" cellspacing="0" cellpadding="0"><tr><td><div class="ah">&#160;&#160;u&#160;&#160;</div></td></tr></table>
-</td>
 </tr>
 <tr><td valign="top"><a class="el" href="structPonca_1_1KdTreeNode.html">KdTreeNode</a> (<a class="el" href="namespacePonca.html">Ponca</a>)&#160;&#160;&#160;</td>
+<td valign="top"><a class="el" href="structPonca_1_1RangeIndexQuery.html">RangeIndexQuery</a> (<a class="el" href="namespacePonca.html">Ponca</a>)&#160;&#160;&#160;</td>
 </tr>
 <tr><td valign="top"><a class="el" href="classPonca_1_1KdTreeQuery.html">KdTreeQuery</a> (<a class="el" href="namespacePonca.html">Ponca</a>)&#160;&#160;&#160;</td>
-<td valign="top"><a class="el" href="classPonca_1_1UnorientedSphereFit.html">UnorientedSphereFit</a> (<a class="el" href="namespacePonca.html">Ponca</a>)&#160;&#160;&#160;</td>
+<td valign="top"><a class="el" href="structPonca_1_1RangePointQuery.html">RangePointQuery</a> (<a class="el" href="namespacePonca.html">Ponca</a>)&#160;&#160;&#160;</td>
 </tr>
 <tr><td valign="top"><a class="el" href="classPonca_1_1KdTreeRangeIndexQuery.html">KdTreeRangeIndexQuery</a> (<a class="el" href="namespacePonca.html">Ponca</a>)&#160;&#160;&#160;</td>
-<td rowspan="2" valign="bottom"><a name="letter_w"></a><table border="0" cellspacing="0" cellpadding="0"><tr><td><div class="ah">&#160;&#160;w&#160;&#160;</div></td></tr></table>
+<td rowspan="2" valign="bottom"><a name="letter_s"></a><table border="0" cellspacing="0" cellpadding="0"><tr><td><div class="ah">&#160;&#160;s&#160;&#160;</div></td></tr></table>
 </td>
 </tr>
 <tr><td valign="top"><a class="el" href="classPonca_1_1KdTreeRangeIterator.html">KdTreeRangeIterator</a> (<a class="el" href="namespacePonca.html">Ponca</a>)&#160;&#160;&#160;</td>
 </tr>
 <tr><td valign="top"><a class="el" href="classPonca_1_1KdTreeRangePointQuery.html">KdTreeRangePointQuery</a> (<a class="el" href="namespacePonca.html">Ponca</a>)&#160;&#160;&#160;</td>
-<td valign="top"><a class="el" href="classPonca_1_1Concept_1_1WeightFuncConcept.html">WeightFuncConcept</a> (<a class="el" href="namespacePonca_1_1Concept.html">Ponca::Concept</a>)&#160;&#160;&#160;</td>
+<td valign="top"><a class="el" href="classPonca_1_1SmoothWeightKernel.html">SmoothWeightKernel</a> (<a class="el" href="namespacePonca.html">Ponca</a>)&#160;&#160;&#160;</td>
 </tr>
 <tr><td valign="top"><a class="el" href="structPonca_1_1KNearestIndexQuery.html">KNearestIndexQuery</a> (<a class="el" href="namespacePonca.html">Ponca</a>)&#160;&#160;&#160;</td>
-<td valign="top"><a class="el" href="classPonca_1_1Concept_1_1WeightKernelConcept.html">WeightKernelConcept</a> (<a class="el" href="namespacePonca_1_1Concept.html">Ponca::Concept</a>)&#160;&#160;&#160;</td>
+<td valign="top"><a class="el" href="classPonca_1_1SphereFitImpl.html">SphereFitImpl</a> (<a class="el" href="namespacePonca.html">Ponca</a>)&#160;&#160;&#160;</td>
 </tr>
 <tr><td valign="top"><a class="el" href="structPonca_1_1KNearestPointQuery.html">KNearestPointQuery</a> (<a class="el" href="namespacePonca.html">Ponca</a>)&#160;&#160;&#160;</td>
-<td rowspan="2" valign="bottom"><a name="letter_x"></a><table border="0" cellspacing="0" cellpadding="0"><tr><td><div class="ah">&#160;&#160;x&#160;&#160;</div></td></tr></table>
-</td>
+<td valign="top"><a class="el" href="classPonca_1_1Stack.html">Stack</a> (<a class="el" href="namespacePonca.html">Ponca</a>)&#160;&#160;&#160;</td>
 </tr>
 <tr><td rowspan="2" valign="bottom"><a name="letter_l"></a><table border="0" cellspacing="0" cellpadding="0"><tr><td><div class="ah">&#160;&#160;l&#160;&#160;</div></td></tr></table>
 </td>
+<td rowspan="2" valign="bottom"><a name="letter_u"></a><table border="0" cellspacing="0" cellpadding="0"><tr><td><div class="ah">&#160;&#160;u&#160;&#160;</div></td></tr></table>
+</td>
 </tr>
-<tr><td valign="top"><a class="el" href="structXXXXXXXXXX__The__unkown__type__is__.html">XXXXXXXXXX_The_unkown_type_is_</a>&#160;&#160;&#160;</td>
-</tr>
+<tr><td></td></tr>
 <tr><td valign="top"><a class="el" href="classPonca_1_1limited__priority__queue.html">limited_priority_queue</a> (<a class="el" href="namespacePonca.html">Ponca</a>)&#160;&#160;&#160;</td>
-<td></td></tr>
+<td valign="top"><a class="el" href="classPonca_1_1UnorientedSphereFitImpl.html">UnorientedSphereFitImpl</a> (<a class="el" href="namespacePonca.html">Ponca</a>)&#160;&#160;&#160;</td>
+</tr>
 <tr><td></td><td></td></tr>
 </table>
-<div class="qindex"><a class="qindex" href="#letter_a">a</a>&#160;|&#160;<a class="qindex" href="#letter_b">b</a>&#160;|&#160;<a class="qindex" href="#letter_c">c</a>&#160;|&#160;<a class="qindex" href="#letter_d">d</a>&#160;|&#160;<a class="qindex" href="#letter_f">f</a>&#160;|&#160;<a class="qindex" href="#letter_g">g</a>&#160;|&#160;<a class="qindex" href="#letter_i">i</a>&#160;|&#160;<a class="qindex" href="#letter_k">k</a>&#160;|&#160;<a class="qindex" href="#letter_l">l</a>&#160;|&#160;<a class="qindex" href="#letter_m">m</a>&#160;|&#160;<a class="qindex" href="#letter_n">n</a>&#160;|&#160;<a class="qindex" href="#letter_o">o</a>&#160;|&#160;<a class="qindex" href="#letter_p">p</a>&#160;|&#160;<a class="qindex" href="#letter_q">q</a>&#160;|&#160;<a class="qindex" href="#letter_r">r</a>&#160;|&#160;<a class="qindex" href="#letter_s">s</a>&#160;|&#160;<a class="qindex" href="#letter_u">u</a>&#160;|&#160;<a class="qindex" href="#letter_w">w</a>&#160;|&#160;<a class="qindex" href="#letter_x">x</a></div>
+<div class="qindex"><a class="qindex" href="#letter_a">a</a>&#160;|&#160;<a class="qindex" href="#letter_b">b</a>&#160;|&#160;<a class="qindex" href="#letter_c">c</a>&#160;|&#160;<a class="qindex" href="#letter_d">d</a>&#160;|&#160;<a class="qindex" href="#letter_g">g</a>&#160;|&#160;<a class="qindex" href="#letter_i">i</a>&#160;|&#160;<a class="qindex" href="#letter_k">k</a>&#160;|&#160;<a class="qindex" href="#letter_l">l</a>&#160;|&#160;<a class="qindex" href="#letter_m">m</a>&#160;|&#160;<a class="qindex" href="#letter_n">n</a>&#160;|&#160;<a class="qindex" href="#letter_o">o</a>&#160;|&#160;<a class="qindex" href="#letter_p">p</a>&#160;|&#160;<a class="qindex" href="#letter_q">q</a>&#160;|&#160;<a class="qindex" href="#letter_r">r</a>&#160;|&#160;<a class="qindex" href="#letter_s">s</a>&#160;|&#160;<a class="qindex" href="#letter_u">u</a></div>
 </div><!-- contents -->
+</div><!-- doc-content -->
 <!-- start footer part -->
-<hr class="footer"/><address class="footer"><small>
-Generated on Tue Aug 2 2022 09:22:55 for Ponca by &#160;<a href="http://www.doxygen.org/index.html">
-<img class="footer" src="doxygen.png" alt="doxygen"/>
-</a> 1.8.17
-</small></address>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="footer">Generated on Fri Sep 9 2022 12:28:20 for Ponca by
+    <a href="http://www.doxygen.org/index.html">
+    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.17 </li>
+  </ul>
+</div>
 </body>
 </html>

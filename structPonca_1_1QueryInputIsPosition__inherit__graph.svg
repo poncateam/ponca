@@ -54,7 +54,6 @@ var sectionId = 'dynsection-0';
 <svg id="graph" class="graph">
 <g id="viewport">
 <title>Ponca::QueryInputIsPosition&lt; DataPoint &gt;</title>
-<polygon fill="white" stroke="transparent" points="-4,4 -4,-807 645.5,-807 645.5,4 -4,4"/>
 <!-- Node1 -->
 <g id="node1" class="node">
 <title>Node1</title>
@@ -73,7 +72,7 @@ var sectionId = 'dynsection-0';
 <g id="node5" class="node">
 <title>Node5</title>
 <g id="a_node5"><a xlink:href="structPonca_1_1Query.html" target="_top" xlink:title=" ">
-<polygon fill="white" stroke="black" points="0,-245.5 0,-335.5 209,-335.5 209,-245.5 0,-245.5"/>
+<polygon fill="none" stroke="black" points="0,-245.5 0,-335.5 209,-335.5 209,-245.5 0,-245.5"/>
 <text text-anchor="start" x="8" y="-323.5" font-family="Helvetica,sans-Serif" font-size="10.00">Query&lt; QueryInputIsPosition</text>
 <text text-anchor="start" x="8" y="-312.5" font-family="Helvetica,sans-Serif" font-size="10.00">&lt; DataPoint &gt;, QueryOutputIsKNearest</text>
 <text text-anchor="middle" x="104.5" y="-301.5" font-family="Helvetica,sans-Serif" font-size="10.00">&lt; DataPoint::Scalar &gt; &gt;</text>
@@ -95,7 +94,7 @@ var sectionId = 'dynsection-0';
 <g id="node8" class="node">
 <title>Node8</title>
 <g id="a_node8"><a xlink:href="structPonca_1_1Query.html" target="_top" xlink:title=" ">
-<polygon fill="white" stroke="black" points="227.5,-245.5 227.5,-335.5 429.5,-335.5 429.5,-245.5 227.5,-245.5"/>
+<polygon fill="none" stroke="black" points="227.5,-245.5 227.5,-335.5 429.5,-335.5 429.5,-245.5 227.5,-245.5"/>
 <text text-anchor="start" x="235.5" y="-323.5" font-family="Helvetica,sans-Serif" font-size="10.00">Query&lt; QueryInputIsPosition</text>
 <text text-anchor="start" x="235.5" y="-312.5" font-family="Helvetica,sans-Serif" font-size="10.00">&lt; DataPoint &gt;, QueryOutputIsNearest</text>
 <text text-anchor="middle" x="328.5" y="-301.5" font-family="Helvetica,sans-Serif" font-size="10.00">&lt; DataPoint::Scalar &gt; &gt;</text>
@@ -117,7 +116,7 @@ var sectionId = 'dynsection-0';
 <g id="node11" class="node">
 <title>Node11</title>
 <g id="a_node11"><a xlink:href="structPonca_1_1Query.html" target="_top" xlink:title=" ">
-<polygon fill="white" stroke="black" points="447.5,-245.5 447.5,-335.5 641.5,-335.5 641.5,-245.5 447.5,-245.5"/>
+<polygon fill="none" stroke="black" points="447.5,-245.5 447.5,-335.5 641.5,-335.5 641.5,-245.5 447.5,-245.5"/>
 <text text-anchor="start" x="455.5" y="-323.5" font-family="Helvetica,sans-Serif" font-size="10.00">Query&lt; QueryInputIsPosition</text>
 <text text-anchor="start" x="455.5" y="-312.5" font-family="Helvetica,sans-Serif" font-size="10.00">&lt; DataPoint &gt;, QueryOutputIsRange</text>
 <text text-anchor="middle" x="544.5" y="-301.5" font-family="Helvetica,sans-Serif" font-size="10.00">&lt; DataPoint::Scalar &gt; &gt;</text>
@@ -139,7 +138,7 @@ var sectionId = 'dynsection-0';
 <g id="node2" class="node">
 <title>Node2</title>
 <g id="a_node2"><a xlink:href="structPonca_1_1QueryInput.html" target="_top" xlink:title=" ">
-<polygon fill="white" stroke="black" points="259.5,-479.5 259.5,-569.5 397.5,-569.5 397.5,-479.5 259.5,-479.5"/>
+<polygon fill="none" stroke="black" points="259.5,-479.5 259.5,-569.5 397.5,-569.5 397.5,-479.5 259.5,-479.5"/>
 <text text-anchor="start" x="267.5" y="-557.5" font-family="Helvetica,sans-Serif" font-size="10.00">Ponca::QueryInput&lt;</text>
 <text text-anchor="middle" x="328.5" y="-546.5" font-family="Helvetica,sans-Serif" font-size="10.00"> DataPoint::VectorType &gt;</text>
 <polyline fill="none" stroke="black" points="259.5,-539.5 397.5,-539.5 "/>
@@ -161,7 +160,7 @@ var sectionId = 'dynsection-0';
 <g id="node3" class="node">
 <title>Node3</title>
 <g id="a_node3"><a xlink:href="structPonca_1_1QueryInputBase.html" target="_top" xlink:title="Base class for queries input type.">
-<polygon fill="white" stroke="black" points="259.5,-745.5 259.5,-802.5 389.5,-802.5 389.5,-745.5 259.5,-745.5"/>
+<polygon fill="none" stroke="black" points="259.5,-745.5 259.5,-802.5 389.5,-802.5 389.5,-745.5 259.5,-745.5"/>
 <text text-anchor="middle" x="324.5" y="-790.5" font-family="Helvetica,sans-Serif" font-size="10.00">Ponca::QueryInputBase</text>
 <polyline fill="none" stroke="black" points="259.5,-783.5 389.5,-783.5 "/>
 <text text-anchor="middle" x="324.5" y="-771.5" font-family="Helvetica,sans-Serif" font-size="10.00"> </text>
@@ -180,7 +179,7 @@ var sectionId = 'dynsection-0';
 <g id="node4" class="node">
 <title>Node4</title>
 <g id="a_node4"><a xlink:href="structPonca_1_1QueryInput.html" target="_top" xlink:title="Base class for typed queries input type.">
-<polygon fill="white" stroke="black" points="340.5,-617.5 340.5,-707.5 454.5,-707.5 454.5,-617.5 340.5,-617.5"/>
+<polygon fill="none" stroke="black" points="340.5,-617.5 340.5,-707.5 454.5,-707.5 454.5,-617.5 340.5,-617.5"/>
 <text text-anchor="start" x="348.5" y="-695.5" font-family="Helvetica,sans-Serif" font-size="10.00">Ponca::QueryInput&lt;</text>
 <text text-anchor="middle" x="397.5" y="-684.5" font-family="Helvetica,sans-Serif" font-size="10.00"> InputType_ &gt;</text>
 <polyline fill="none" stroke="black" points="340.5,-677.5 454.5,-677.5 "/>
@@ -209,7 +208,7 @@ var sectionId = 'dynsection-0';
 <g id="node6" class="node">
 <title>Node6</title>
 <g id="a_node6"><a xlink:href="structPonca_1_1KNearestPointQuery.html" target="_top" xlink:title="Base Query class combining QueryInputIsPosition and QueryOutputIsKNearest.">
-<polygon fill="white" stroke="black" points="29,-139.5 29,-207.5 180,-207.5 180,-139.5 29,-139.5"/>
+<polygon fill="none" stroke="black" points="29,-139.5 29,-207.5 180,-207.5 180,-139.5 29,-139.5"/>
 <text text-anchor="start" x="37" y="-195.5" font-family="Helvetica,sans-Serif" font-size="10.00">Ponca::KNearestPointQuery</text>
 <text text-anchor="middle" x="104.5" y="-184.5" font-family="Helvetica,sans-Serif" font-size="10.00">&lt; DataPoint &gt;</text>
 <polyline fill="none" stroke="black" points="29,-177.5 180,-177.5 "/>
@@ -229,7 +228,7 @@ var sectionId = 'dynsection-0';
 <g id="node7" class="node">
 <title>Node7</title>
 <g id="a_node7"><a xlink:href="classPonca_1_1KdTreeKNearestPointQuery.html" target="_top" xlink:title=" ">
-<polygon fill="white" stroke="black" points="21,-0.5 21,-101.5 188,-101.5 188,-0.5 21,-0.5"/>
+<polygon fill="none" stroke="black" points="21,-0.5 21,-101.5 188,-101.5 188,-0.5 21,-0.5"/>
 <text text-anchor="start" x="29" y="-89.5" font-family="Helvetica,sans-Serif" font-size="10.00">Ponca::KdTreeKNearestPoint</text>
 <text text-anchor="middle" x="104.5" y="-78.5" font-family="Helvetica,sans-Serif" font-size="10.00">Query&lt; DataPoint &gt;</text>
 <polyline fill="none" stroke="black" points="21,-71.5 188,-71.5 "/>
@@ -252,7 +251,7 @@ var sectionId = 'dynsection-0';
 <g id="node9" class="node">
 <title>Node9</title>
 <g id="a_node9"><a xlink:href="structPonca_1_1NearestPointQuery.html" target="_top" xlink:title="Base Query class combining QueryInputIsPosition and QueryOutputIsNearest.">
-<polygon fill="white" stroke="black" points="256.5,-139.5 256.5,-207.5 400.5,-207.5 400.5,-139.5 256.5,-139.5"/>
+<polygon fill="none" stroke="black" points="256.5,-139.5 256.5,-207.5 400.5,-207.5 400.5,-139.5 256.5,-139.5"/>
 <text text-anchor="start" x="264.5" y="-195.5" font-family="Helvetica,sans-Serif" font-size="10.00">Ponca::NearestPointQuery</text>
 <text text-anchor="middle" x="328.5" y="-184.5" font-family="Helvetica,sans-Serif" font-size="10.00">&lt; DataPoint &gt;</text>
 <polyline fill="none" stroke="black" points="256.5,-177.5 400.5,-177.5 "/>
@@ -272,7 +271,7 @@ var sectionId = 'dynsection-0';
 <g id="node10" class="node">
 <title>Node10</title>
 <g id="a_node10"><a xlink:href="classPonca_1_1KdTreeNearestPointQuery.html" target="_top" xlink:title=" ">
-<polygon fill="white" stroke="black" points="248,-0.5 248,-101.5 409,-101.5 409,-0.5 248,-0.5"/>
+<polygon fill="none" stroke="black" points="248,-0.5 248,-101.5 409,-101.5 409,-0.5 248,-0.5"/>
 <text text-anchor="start" x="256" y="-89.5" font-family="Helvetica,sans-Serif" font-size="10.00">Ponca::KdTreeNearestPoint</text>
 <text text-anchor="middle" x="328.5" y="-78.5" font-family="Helvetica,sans-Serif" font-size="10.00">Query&lt; DataPoint &gt;</text>
 <polyline fill="none" stroke="black" points="248,-71.5 409,-71.5 "/>
@@ -295,7 +294,7 @@ var sectionId = 'dynsection-0';
 <g id="node12" class="node">
 <title>Node12</title>
 <g id="a_node12"><a xlink:href="structPonca_1_1RangePointQuery.html" target="_top" xlink:title="Base Query class combining QueryInputIsPosition and QueryOutputIsRange.">
-<polygon fill="white" stroke="black" points="476,-139.5 476,-207.5 613,-207.5 613,-139.5 476,-139.5"/>
+<polygon fill="none" stroke="black" points="476,-139.5 476,-207.5 613,-207.5 613,-139.5 476,-139.5"/>
 <text text-anchor="start" x="484" y="-195.5" font-family="Helvetica,sans-Serif" font-size="10.00">Ponca::RangePointQuery</text>
 <text text-anchor="middle" x="544.5" y="-184.5" font-family="Helvetica,sans-Serif" font-size="10.00">&lt; DataPoint &gt;</text>
 <polyline fill="none" stroke="black" points="476,-177.5 613,-177.5 "/>
@@ -315,7 +314,7 @@ var sectionId = 'dynsection-0';
 <g id="node13" class="node">
 <title>Node13</title>
 <g id="a_node13"><a xlink:href="classPonca_1_1KdTreeRangePointQuery.html" target="_top" xlink:title=" ">
-<polygon fill="white" stroke="black" points="459.5,-0.5 459.5,-101.5 629.5,-101.5 629.5,-0.5 459.5,-0.5"/>
+<polygon fill="none" stroke="black" points="459.5,-0.5 459.5,-101.5 629.5,-101.5 629.5,-0.5 459.5,-0.5"/>
 <text text-anchor="start" x="467.5" y="-89.5" font-family="Helvetica,sans-Serif" font-size="10.00">Ponca::KdTreeRangePointQuery</text>
 <text text-anchor="middle" x="544.5" y="-78.5" font-family="Helvetica,sans-Serif" font-size="10.00">&lt; DataPoint &gt;</text>
 <polyline fill="none" stroke="black" points="459.5,-71.5 629.5,-71.5 "/>

@@ -1,3 +1,4 @@
+<!-- HTML header for doxygen 1.9.1-->
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -9,6 +10,10 @@
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
@@ -20,7 +25,23 @@
 </script>
 <script type="text/javascript" async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js"></script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only-darkmode-toggle.css" rel="stylesheet" type="text/css"/>
 <link href="ponca.css" rel="stylesheet" type="text/css"/>
+<!-- ... other metadata & script includes ... -->
+<script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+<script type="text/javascript">
+    DoxygenAwesomeDarkModeToggle.init()
+</script>
+<script type="text/javascript" src="doxygen-awesome-fragment-copy-button.js"></script>
+<script type="text/javascript">
+    DoxygenAwesomeFragmentCopyButton.init()
+</script>
+<script type="text/javascript" src="doxygen-awesome-paragraph-link.js"></script>
+<script type="text/javascript">
+    DoxygenAwesomeParagraphLink.init()
+</script>
 </head>
 <body>
 <div id="top"><!-- do not remove this div, it is closed by doxygen! -->
@@ -30,7 +51,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Ponca
-   &#160;<span id="projectnumber">8976dc5e97f677a334261616e8d2314551b8ce3d</span>
+   &#160;<span id="projectnumber">d844664447d2173c00cc41660408e8eb5b3a41d6</span>
    </div>
    <div id="projectbrief">Point Cloud Analysis library</div>
   </td>
@@ -56,6 +77,22 @@ $(function() {
 /* @license-end */</script>
 <div id="main-nav"></div>
 </div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(document).ready(function(){initNavTree('functions_s.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -75,47 +112,61 @@ $(function() {
 
 <h3><a id="index_s"></a>- s -</h3><ul>
 <li>Scalar
-: <a class="el" href="classPonca_1_1AlgebraicSphere.html#ad3bac8280671388e33b36091f6cfe9df">Ponca::AlgebraicSphere&lt; DataPoint, _WFunctor, T &gt;</a>
-, <a class="el" href="classPonca_1_1BaseCurvatureEstimator.html#a1d014f294c21316d3f62ded2daf825bc">Ponca::BaseCurvatureEstimator&lt; DataPoint, _WFunctor, T &gt;</a>
-, <a class="el" href="classPonca_1_1Concept_1_1PointConcept.html#a3413ccba00a5c55e0d96e284727431aa">Ponca::Concept::PointConcept</a>
+: <a class="el" href="classPonca_1_1AlgebraicSphere.html#a90d67318da4e0597fad0d6b53cefe0d1">Ponca::AlgebraicSphere&lt; DataPoint, _WFunctor, T &gt;</a>
+, <a class="el" href="classPonca_1_1Basket.html#a46033cd7d04110f9cb9509015b961ee2">Ponca::Basket&lt; P, W, Ext0, Ext1, Ext2, Ext3, Ext4, Ext5, Ext6, Ext7, Ext8, Ext9, Ext10, Ext11 &gt;</a>
+, <a class="el" href="classPonca_1_1BasketDiff.html#a1e071b8214fe5de7e3b9a2a91d78bc56">Ponca::BasketDiff&lt; BasketType, Type, Ext0, Ext1, Ext2, Ext3, Ext4, Ext5, Ext6, Ext7, Ext8, Ext9, Ext10, Ext11 &gt;</a>
 , <a class="el" href="classPonca_1_1ConstantWeightKernel.html#acc41c440bf91c0d9a24b220c2c45f459">Ponca::ConstantWeightKernel&lt; _Scalar &gt;</a>
-, <a class="el" href="classPonca_1_1CovarianceLineFit.html#a57630b8ee8785a75b41f7b42c3ec2358">Ponca::CovarianceLineFit&lt; DataPoint, _WFunctor, T &gt;</a>
-, <a class="el" href="classPonca_1_1CovariancePlaneFit.html#a07ca072d38daa8385bce36548661c184">Ponca::CovariancePlaneFit&lt; DataPoint, _WFunctor, T &gt;</a>
-, <a class="el" href="classPonca_1_1CurvatureEstimator.html#ab7fd1319c8fe88b6f3978fe36607a17f">Ponca::CurvatureEstimator&lt; DataPoint, _WFunctor, T &gt;</a>
-, <a class="el" href="classPonca_1_1DistWeightFunc.html#a119a15fd2a71d064f9f8794f2cd52681">Ponca::DistWeightFunc&lt; DataPoint, WeightKernel &gt;</a>
-, <a class="el" href="classPonca_1_1DryFit.html#a8cd3234cc7d2ed9e9d06e6bc3b4d9ccb">Ponca::DryFit&lt; DataPoint, _WFunctor, T &gt;</a>
-, <a class="el" href="classPonca_1_1GLSDer.html#aa6991bb6cbba119d217ed455d1e3aaa3">Ponca::GLSDer&lt; DataPoint, _WFunctor, T &gt;</a>
-, <a class="el" href="classPonca_1_1GLSGeomVar.html#a3c4e246e694d70961c18d3c4658c78dc">Ponca::GLSGeomVar&lt; DataPoint, _WFunctor, T &gt;</a>
-, <a class="el" href="classPonca_1_1GLSParam.html#a21cddbd7a99a8705c5f55afca94d77a1">Ponca::GLSParam&lt; DataPoint, _WFunctor, T &gt;</a>
-, <a class="el" href="classPonca_1_1internal_1_1CovariancePlaneDer.html#a40482eae9dc5bab5bfdac726a88e48dc">Ponca::internal::CovariancePlaneDer&lt; DataPoint, _WFunctor, T, Type &gt;</a>
-, <a class="el" href="classPonca_1_1internal_1_1OrientedSphereDer.html#a4c02ba63406ee746c113eb310823f7bf">Ponca::internal::OrientedSphereDer&lt; DataPoint, _WFunctor, T, _Type &gt;</a>
-, <a class="el" href="classPonca_1_1Line.html#a5c1c9fa1304c588030f9ca41a9592a8c">Ponca::Line&lt; DataPoint, _WFunctor, T &gt;</a>
-, <a class="el" href="classPonca_1_1MeanPlaneFit.html#a4ba033344fa0dddddb808f3a9412dfd5">Ponca::MeanPlaneFit&lt; DataPoint, _WFunctor, T &gt;</a>
-, <a class="el" href="classPonca_1_1MlsSphereFitDer.html#a4a9f1177061522659f45d9cd3640ffdf">Ponca::MlsSphereFitDer&lt; DataPoint, _WFunctor, T &gt;</a>
-, <a class="el" href="classPonca_1_1MongePatch.html#af05d7b64e140ddc676cf97d4c55b1d18">Ponca::MongePatch&lt; DataPoint, _WFunctor, T &gt;</a>
-, <a class="el" href="classPonca_1_1NormalCovarianceCurvature.html#afbd796fa9b00beea7ee5418f119a591e">Ponca::NormalCovarianceCurvature&lt; DataPoint, _WFunctor, T &gt;</a>
-, <a class="el" href="classPonca_1_1OrientedSphereFit.html#abb031171698a479eb6fc9315f6c95d48">Ponca::OrientedSphereFit&lt; DataPoint, _WFunctor, T &gt;</a>
-, <a class="el" href="classPonca_1_1Plane.html#a9c9d1bb6f9272d8143607d4d0723cd42">Ponca::Plane&lt; DataPoint, _WFunctor, T &gt;</a>
-, <a class="el" href="classPonca_1_1ProjectedNormalCovarianceCurvature.html#a24c1959f167c2b1de173d127184b8b0f">Ponca::ProjectedNormalCovarianceCurvature&lt; DataPoint, _WFunctor, T &gt;</a>
+, <a class="el" href="classPonca_1_1CovarianceFitBase.html#a867c54a0c017ea6e1676e3923809d2c9">Ponca::CovarianceFitBase&lt; DataPoint, _WFunctor, T &gt;</a>
+, <a class="el" href="classPonca_1_1CovarianceFitDer.html#ab9d9a337827ef72744c3ed84b326f669">Ponca::CovarianceFitDer&lt; DataPoint, _WFunctor, DiffType, T &gt;</a>
+, <a class="el" href="classPonca_1_1CovarianceLineFitImpl.html#a76e5f9c84f7c8bd3b9dbf1553db033de">Ponca::CovarianceLineFitImpl&lt; DataPoint, _WFunctor, T &gt;</a>
+, <a class="el" href="classPonca_1_1CovariancePlaneDerImpl.html#aa6ad3df0b4c704fc507add8bf249d777">Ponca::CovariancePlaneDerImpl&lt; DataPoint, _WFunctor, DiffType, T &gt;</a>
+, <a class="el" href="classPonca_1_1CovariancePlaneFitImpl.html#adb7f4a2880175224e619d80ab054e99c">Ponca::CovariancePlaneFitImpl&lt; DataPoint, _WFunctor, T &gt;</a>
+, <a class="el" href="classPonca_1_1CurvatureEstimatorBase.html#a8752f5fe0c7a86ff843eabd0aafb4245">Ponca::CurvatureEstimatorBase&lt; DataPoint, _WFunctor, DiffType, T &gt;</a>
+, <a class="el" href="classPonca_1_1DistWeightFunc.html#aa78e3ea4b72c62d9a0dc117fb7babab5">Ponca::DistWeightFunc&lt; DataPoint, WeightKernel &gt;</a>
+, <a class="el" href="classPonca_1_1DryFit.html#abc1e3382df703f856cd6fdcde58caca4">Ponca::DryFit&lt; DataPoint, _WFunctor, T &gt;</a>
+, <a class="el" href="classPonca_1_1GLSDer.html#a56cbb2a753e27f4d90a031e52b9d82ce">Ponca::GLSDer&lt; DataPoint, _WFunctor, DiffType, T &gt;</a>
+, <a class="el" href="classPonca_1_1GLSParam.html#a4e0419931490aae532de4230b028eb1a">Ponca::GLSParam&lt; DataPoint, _WFunctor, T &gt;</a>
+, <a class="el" href="classPonca_1_1Line.html#ab84c7954e61467637df87040e798a641">Ponca::Line&lt; DataPoint, _WFunctor, T &gt;</a>
+, <a class="el" href="classPonca_1_1MeanNormal.html#aae52db0f459485c961e64f772c47ba84">Ponca::MeanNormal&lt; DataPoint, _WFunctor, T &gt;</a>
+, <a class="el" href="classPonca_1_1MeanPlaneFitImpl.html#a3458c49ef33bca75fe5de260fc5bceaa">Ponca::MeanPlaneFitImpl&lt; DataPoint, _WFunctor, T &gt;</a>
+, <a class="el" href="classPonca_1_1MeanPosition.html#aa9c7077883604f0a39a4f59d7cfe30f5">Ponca::MeanPosition&lt; DataPoint, _WFunctor, T &gt;</a>
+, <a class="el" href="classPonca_1_1MeanPositionDer.html#a706ae35e198ee9e1bd9fd67590f80702">Ponca::MeanPositionDer&lt; DataPoint, _WFunctor, DiffType, T &gt;</a>
+, <a class="el" href="classPonca_1_1MlsSphereFitDer.html#af0219bcdc54d55e9391414982907d730">Ponca::MlsSphereFitDer&lt; DataPoint, _WFunctor, DiffType, T &gt;</a>
+, <a class="el" href="classPonca_1_1MongePatch.html#a7400b89b87e3e0073b9322f775c70afe">Ponca::MongePatch&lt; DataPoint, _WFunctor, T &gt;</a>
+, <a class="el" href="classPonca_1_1NormalCovarianceCurvatureEstimator.html#a17506112dc7e62634354cf7ccbdbe9ea">Ponca::NormalCovarianceCurvatureEstimator&lt; DataPoint, _WFunctor, DiffType, T &gt;</a>
+, <a class="el" href="classPonca_1_1NormalDerivativesCurvatureEstimator.html#aef4892f0edaa7020d2cb487a2020f10a">Ponca::NormalDerivativesCurvatureEstimator&lt; DataPoint, _WFunctor, DiffType, T &gt;</a>
+, <a class="el" href="classPonca_1_1OrientedSphereDerImpl.html#a6418adff6cd9ef6d92b2222bc6d61a6c">Ponca::OrientedSphereDerImpl&lt; DataPoint, _WFunctor, DiffType, T &gt;</a>
+, <a class="el" href="classPonca_1_1OrientedSphereFitImpl.html#a0ee6d7eac55ac54832a9f411bff91d5b">Ponca::OrientedSphereFitImpl&lt; DataPoint, _WFunctor, T &gt;</a>
+, <a class="el" href="classPonca_1_1Plane.html#a882c308e20a7b2c161b8eb13e9a3df29">Ponca::Plane&lt; DataPoint, _WFunctor, T &gt;</a>
+, <a class="el" href="classPonca_1_1PrimitiveBase.html#a77761998e98215527441b0307c9917c4">Ponca::PrimitiveBase&lt; DataPoint, _WFunctor, T &gt;</a>
+, <a class="el" href="classPonca_1_1PrimitiveDer.html#a99dec75252fb149ed4d2d24e4581dfbd">Ponca::PrimitiveDer&lt; DataPoint, _WFunctor, Type, T &gt;</a>
+, <a class="el" href="classPonca_1_1ProjectedNormalCovarianceCurvatureEstimator.html#a7d645e8b11e89aff2a25b6b6f91d4edc">Ponca::ProjectedNormalCovarianceCurvatureEstimator&lt; DataPoint, _WFunctor, DiffType, T &gt;</a>
 , <a class="el" href="classPonca_1_1SmoothWeightKernel.html#afc1411e8e5e085f37f74a669f30d9433">Ponca::SmoothWeightKernel&lt; _Scalar &gt;</a>
-, <a class="el" href="classPonca_1_1SphereFit.html#a5d04e7ac81cc0f65faa95a18e5fed013">Ponca::SphereFit&lt; DataPoint, _WFunctor, T &gt;</a>
-, <a class="el" href="classPonca_1_1UnorientedSphereFit.html#a611af0d643e4351e9c1d04c5bffc5da7">Ponca::UnorientedSphereFit&lt; DataPoint, _WFunctor, T &gt;</a>
+, <a class="el" href="classPonca_1_1SphereFitImpl.html#a46860628ec6f220ee8577b4ce41f4031">Ponca::SphereFitImpl&lt; DataPoint, _WFunctor, T &gt;</a>
+, <a class="el" href="classPonca_1_1UnorientedSphereFitImpl.html#a30fed7a8befe26587d6b2199213357e8">Ponca::UnorientedSphereFitImpl&lt; DataPoint, _WFunctor, T &gt;</a>
 </li>
 <li>ScalarArray
-: <a class="el" href="classPonca_1_1GLSDer.html#abb14925325640fba6e357729141997ca">Ponca::GLSDer&lt; DataPoint, _WFunctor, T &gt;</a>
-, <a class="el" href="classPonca_1_1internal_1_1CovariancePlaneDer.html#a711464d067b5160064dda31c1055e876">Ponca::internal::CovariancePlaneDer&lt; DataPoint, _WFunctor, T, Type &gt;</a>
-, <a class="el" href="classPonca_1_1internal_1_1OrientedSphereDer.html#acaeef225361a90873222662c96ada8fb">Ponca::internal::OrientedSphereDer&lt; DataPoint, _WFunctor, T, _Type &gt;</a>
-, <a class="el" href="classPonca_1_1MlsSphereFitDer.html#af130d69024535e88f14fcc334225042c">Ponca::MlsSphereFitDer&lt; DataPoint, _WFunctor, T &gt;</a>
+: <a class="el" href="classPonca_1_1CovarianceFitDer.html#aa9e4163f42f6e29666c2c2d2fc89e45a">Ponca::CovarianceFitDer&lt; DataPoint, _WFunctor, DiffType, T &gt;</a>
+, <a class="el" href="classPonca_1_1CovariancePlaneDerImpl.html#a34c1bd04080647e8086738682434ae97">Ponca::CovariancePlaneDerImpl&lt; DataPoint, _WFunctor, DiffType, T &gt;</a>
+, <a class="el" href="classPonca_1_1GLSDer.html#a044d378d72bfd4defb6fd983ab2b891a">Ponca::GLSDer&lt; DataPoint, _WFunctor, DiffType, T &gt;</a>
+, <a class="el" href="classPonca_1_1MeanPositionDer.html#a0fae2778f05711f906b5021b805b1780">Ponca::MeanPositionDer&lt; DataPoint, _WFunctor, DiffType, T &gt;</a>
+, <a class="el" href="classPonca_1_1MlsSphereFitDer.html#adb6557177816169e4694ca724c918170">Ponca::MlsSphereFitDer&lt; DataPoint, _WFunctor, DiffType, T &gt;</a>
+, <a class="el" href="classPonca_1_1NormalCovarianceCurvatureEstimator.html#a27815b0e96c5dd732123309860979cc7">Ponca::NormalCovarianceCurvatureEstimator&lt; DataPoint, _WFunctor, DiffType, T &gt;</a>
+, <a class="el" href="classPonca_1_1OrientedSphereDerImpl.html#a6b0bc5a2bff7bc3d3d2d7726aa9f9ce7">Ponca::OrientedSphereDerImpl&lt; DataPoint, _WFunctor, DiffType, T &gt;</a>
+, <a class="el" href="classPonca_1_1PrimitiveDer.html#a861a58b13026580029e2bb3fc14767a8">Ponca::PrimitiveDer&lt; DataPoint, _WFunctor, Type, T &gt;</a>
+, <a class="el" href="classPonca_1_1ProjectedNormalCovarianceCurvatureEstimator.html#aa899efe0c679620e2bdf722b1f213ba3">Ponca::ProjectedNormalCovarianceCurvatureEstimator&lt; DataPoint, _WFunctor, DiffType, T &gt;</a>
 </li>
 <li>scaled2w()
 : <a class="el" href="classPonca_1_1DistWeightFunc.html#a1ccbacac342ed1e66ef0423fdaf9c00d">Ponca::DistWeightFunc&lt; DataPoint, WeightKernel &gt;</a>
 </li>
 <li>scaledw()
-: <a class="el" href="classPonca_1_1Concept_1_1WeightFuncConcept.html#a2b296c4e3d407e9528c7de4b7aa28252">Ponca::Concept::WeightFuncConcept&lt; Point &gt;</a>
-, <a class="el" href="classPonca_1_1DistWeightFunc.html#a182289b2f19a436381af1c94a7bfb0f5">Ponca::DistWeightFunc&lt; DataPoint, WeightKernel &gt;</a>
+: <a class="el" href="classPonca_1_1DistWeightFunc.html#a182289b2f19a436381af1c94a7bfb0f5">Ponca::DistWeightFunc&lt; DataPoint, WeightKernel &gt;</a>
 </li>
 <li>scaleSpaced2w()
 : <a class="el" href="classPonca_1_1DistWeightFunc.html#a26332be7b205ec289253c4b366c46110">Ponca::DistWeightFunc&lt; DataPoint, WeightKernel &gt;</a>
+</li>
+<li>setCurvatureValues()
+: <a class="el" href="classPonca_1_1CurvatureEstimatorBase.html#acf704004859704be8a86f5fadc1a5937">Ponca::CurvatureEstimatorBase&lt; DataPoint, _WFunctor, DiffType, T &gt;</a>
 </li>
 <li>setLine()
 : <a class="el" href="classPonca_1_1Line.html#a2be50f01b5e7ba741e67d80711495add">Ponca::Line&lt; DataPoint, _WFunctor, T &gt;</a>
@@ -124,57 +175,45 @@ $(function() {
 : <a class="el" href="classPonca_1_1ConstantWeightKernel.html#abfdd7c48d31e98cb1f566724dccf06c0">Ponca::ConstantWeightKernel&lt; _Scalar &gt;</a>
 </li>
 <li>setWeightFunc()
-: <a class="el" href="classPonca_1_1Concept_1_1FittingExtensionConcept.html#ad847ed952507ed9e46e220f99f076af4">Ponca::Concept::FittingExtensionConcept&lt; DataPoint, _WFunctor, T &gt;</a>
-, <a class="el" href="classPonca_1_1Concept_1_1FittingProcedureConcept.html#a1501914de67d1689b6128ffb4c65f37b">Ponca::Concept::FittingProcedureConcept&lt; DataPoint, _WFunctor, T &gt;</a>
-, <a class="el" href="classPonca_1_1CovarianceLineFit.html#a02126d48a206a548e64783e6bc677a09">Ponca::CovarianceLineFit&lt; DataPoint, _WFunctor, T &gt;</a>
-, <a class="el" href="classPonca_1_1CovariancePlaneFit.html#a6158d614a1ce446614474d0be289b2e5">Ponca::CovariancePlaneFit&lt; DataPoint, _WFunctor, T &gt;</a>
-, <a class="el" href="classPonca_1_1DryFit.html#a9f44668108e39cfd3e10175c17244481">Ponca::DryFit&lt; DataPoint, _WFunctor, T &gt;</a>
-, <a class="el" href="classPonca_1_1GLSParam.html#a4606b39de74522ce448724e5a84e5127">Ponca::GLSParam&lt; DataPoint, _WFunctor, T &gt;</a>
-, <a class="el" href="classPonca_1_1MeanPlaneFit.html#adbcc153a3bc7953899c6bab16bc2b3b1">Ponca::MeanPlaneFit&lt; DataPoint, _WFunctor, T &gt;</a>
-, <a class="el" href="classPonca_1_1OrientedSphereFit.html#acb676db97cebd819e38672270a75bed4">Ponca::OrientedSphereFit&lt; DataPoint, _WFunctor, T &gt;</a>
-, <a class="el" href="classPonca_1_1SphereFit.html#ac761c038416c74e2d0032adb8e8a6767">Ponca::SphereFit&lt; DataPoint, _WFunctor, T &gt;</a>
-, <a class="el" href="classPonca_1_1UnorientedSphereFit.html#a66f986326cf5e65d0bf2318320c4f26d">Ponca::UnorientedSphereFit&lt; DataPoint, _WFunctor, T &gt;</a>
+: <a class="el" href="classPonca_1_1DryFit.html#a9f44668108e39cfd3e10175c17244481">Ponca::DryFit&lt; DataPoint, _WFunctor, T &gt;</a>
+, <a class="el" href="classPonca_1_1PrimitiveBase.html#a4a323e4cd8d65e0808f85ac38f96fdb4">Ponca::PrimitiveBase&lt; DataPoint, _WFunctor, T &gt;</a>
 </li>
 <li>size()
 : <a class="el" href="classPonca_1_1Stack.html#a394fe3f9b308bde808322121799db11d">Ponca::Stack&lt; T, N &gt;</a>
 </li>
 <li>solver()
-: <a class="el" href="classPonca_1_1CovarianceLineFit.html#a51640a262a2170914202f4520200b9e4">Ponca::CovarianceLineFit&lt; DataPoint, _WFunctor, T &gt;</a>
+: <a class="el" href="classPonca_1_1CovarianceFitBase.html#ae271c56cf8b52e207cdd2c80b0444838">Ponca::CovarianceFitBase&lt; DataPoint, _WFunctor, T &gt;</a>
 </li>
 <li>Solver
-: <a class="el" href="classPonca_1_1CovarianceLineFit.html#a866c38badbb4e1134ef59ee7d1585c0a">Ponca::CovarianceLineFit&lt; DataPoint, _WFunctor, T &gt;</a>
-</li>
-<li>solver()
-: <a class="el" href="classPonca_1_1CovariancePlaneFit.html#a80936cc908161b2041d5d12cc8f9941b">Ponca::CovariancePlaneFit&lt; DataPoint, _WFunctor, T &gt;</a>
-</li>
-<li>Solver
-: <a class="el" href="classPonca_1_1CovariancePlaneFit.html#a8c5e225126dfd77b097e8ec822d67729">Ponca::CovariancePlaneFit&lt; DataPoint, _WFunctor, T &gt;</a>
-, <a class="el" href="classPonca_1_1NormalCovarianceCurvature.html#ac849643242f3feca6a4216a74af6c7d1">Ponca::NormalCovarianceCurvature&lt; DataPoint, _WFunctor, T &gt;</a>
-, <a class="el" href="classPonca_1_1ProjectedNormalCovarianceCurvature.html#a66d82ab89a41ac57b269504f3c47e991">Ponca::ProjectedNormalCovarianceCurvature&lt; DataPoint, _WFunctor, T &gt;</a>
+: <a class="el" href="classPonca_1_1CovarianceFitBase.html#a4213e183cb3fb89932e41e4ef30954ee">Ponca::CovarianceFitBase&lt; DataPoint, _WFunctor, T &gt;</a>
+, <a class="el" href="classPonca_1_1NormalCovarianceCurvatureEstimator.html#aa77fce47bef0aa0f9f7410b786250fca">Ponca::NormalCovarianceCurvatureEstimator&lt; DataPoint, _WFunctor, DiffType, T &gt;</a>
+, <a class="el" href="classPonca_1_1ProjectedNormalCovarianceCurvatureEstimator.html#a7b9616544d9c19cccd0d2de530950774">Ponca::ProjectedNormalCovarianceCurvatureEstimator&lt; DataPoint, _WFunctor, DiffType, T &gt;</a>
 </li>
 <li>spaced2w()
 : <a class="el" href="classPonca_1_1DistWeightFunc.html#a303ff5053abe6961771053c9647688c4">Ponca::DistWeightFunc&lt; DataPoint, WeightKernel &gt;</a>
 </li>
 <li>spacedw()
-: <a class="el" href="classPonca_1_1Concept_1_1WeightFuncConcept.html#a621923bcb49bfb89eb6eb554dd11ccee">Ponca::Concept::WeightFuncConcept&lt; Point &gt;</a>
-, <a class="el" href="classPonca_1_1DistWeightFunc.html#a679c75736d7715aada70bbf2e221fb02">Ponca::DistWeightFunc&lt; DataPoint, WeightKernel &gt;</a>
+: <a class="el" href="classPonca_1_1DistWeightFunc.html#a679c75736d7715aada70bbf2e221fb02">Ponca::DistWeightFunc&lt; DataPoint, WeightKernel &gt;</a>
 </li>
-<li>SphereFit()
-: <a class="el" href="classPonca_1_1SphereFit.html#ab26454582ae829162e5184338d5b3df8">Ponca::SphereFit&lt; DataPoint, _WFunctor, T &gt;</a>
+<li>sphereFit()
+: <a class="el" href="classPonca_1_1SphereFitImpl.html#ac287432f38c4b5c8a1af1a8ed2026599">Ponca::SphereFitImpl&lt; DataPoint, _WFunctor, T &gt;</a>
 </li>
 <li>squared_distance
 : <a class="el" href="structPonca_1_1IndexSquaredDistance.html#abe4927b13e6538e21f0749e1c985c4f9">Ponca::IndexSquaredDistance&lt; Scalar &gt;</a>
 </li>
 <li>surfaceVariation()
-: <a class="el" href="classPonca_1_1CovariancePlaneFit.html#a1c8fdcc36659a5bce174009e7f282688">Ponca::CovariancePlaneFit&lt; DataPoint, _WFunctor, T &gt;</a>
+: <a class="el" href="classPonca_1_1CovarianceFitBase.html#adc7fcdb906bb6efbeb8f6fb447cff64f">Ponca::CovarianceFitBase&lt; DataPoint, _WFunctor, T &gt;</a>
 </li>
 </ul>
 </div><!-- contents -->
+</div><!-- doc-content -->
 <!-- start footer part -->
-<hr class="footer"/><address class="footer"><small>
-Generated on Tue Aug 2 2022 09:22:55 for Ponca by &#160;<a href="http://www.doxygen.org/index.html">
-<img class="footer" src="doxygen.png" alt="doxygen"/>
-</a> 1.8.17
-</small></address>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="footer">Generated on Fri Sep 9 2022 12:28:20 for Ponca by
+    <a href="http://www.doxygen.org/index.html">
+    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.17 </li>
+  </ul>
+</div>
 </body>
 </html>

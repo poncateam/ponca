@@ -1,9 +1,0 @@
-<map id="Ponca::CovarianceLineFit&lt; DataPoint, _WFunctor, T &gt;" name="Ponca::CovarianceLineFit&lt; DataPoint, _WFunctor, T &gt;">
-<area shape="rect" id="node1" title="Line fitting procedure that minimize the orthogonal distance between the samples and the fitted primi..." alt="" coords="101,1037,309,1276"/>
-<area shape="rect" id="node2" href="$classPonca_1_1Concept_1_1FittingProcedureConcept.html" title="Describes the procedure to fit a primitive to point samples." alt="" coords="5,801,267,937"/>
-<area shape="rect" id="node3" href="$classPonca_1_1Line.html" title=" " alt="" coords="291,749,469,988"/>
-<area shape="rect" id="node4" href="$classPonca_1_1PrimitiveBase.html" title=" " alt="" coords="473,233,665,399"/>
-<area shape="rect" id="node7" href="$classPonca_1_1Line.html" title="A parametrized line is defined by an origin point &#160;and a unit direction vector &#160;such that the line co..." alt="" coords="359,448,537,687"/>
-<area shape="rect" id="node5" href="$classPonca_1_1PrimitiveBase.html" title="Primitive base class." alt="" coords="465,5,673,171"/>
-<area shape="rect" id="node6" title=" " alt="" coords="217,263,439,369"/>
-</map>

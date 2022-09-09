@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['w_504',['w',['../classPonca_1_1DistWeightFunc.html#a4cd43a14f76abb8005c17f0906d7d33a',1,'Ponca::DistWeightFunc::w()'],['../classPonca_1_1Concept_1_1WeightFuncConcept.html#ac5fc599973820bb0d75064c0aceac64d',1,'Ponca::Concept::WeightFuncConcept::w()']]],
-  ['worldtotangentplane_505',['worldToTangentPlane',['../classPonca_1_1CovariancePlaneFit.html#a94e3df5491b37303db96efb452577318',1,'Ponca::CovariancePlaneFit']]]
+  ['w_497',['w',['../classPonca_1_1DistWeightFunc.html#a470646999a2bcc787ed211de36d43e4e',1,'Ponca::DistWeightFunc']]],
+  ['worldtotangentplane_498',['worldToTangentPlane',['../classPonca_1_1CovariancePlaneFitImpl.html#aa44dec5b14d4f995235d533a93c53378',1,'Ponca::CovariancePlaneFitImpl']]]
 ];

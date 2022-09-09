@@ -1,3 +1,4 @@
+<!-- HTML header for doxygen 1.9.1-->
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -9,6 +10,10 @@
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
@@ -20,7 +25,23 @@
 </script>
 <script type="text/javascript" async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js"></script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only-darkmode-toggle.css" rel="stylesheet" type="text/css"/>
 <link href="ponca.css" rel="stylesheet" type="text/css"/>
+<!-- ... other metadata & script includes ... -->
+<script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+<script type="text/javascript">
+    DoxygenAwesomeDarkModeToggle.init()
+</script>
+<script type="text/javascript" src="doxygen-awesome-fragment-copy-button.js"></script>
+<script type="text/javascript">
+    DoxygenAwesomeFragmentCopyButton.init()
+</script>
+<script type="text/javascript" src="doxygen-awesome-paragraph-link.js"></script>
+<script type="text/javascript">
+    DoxygenAwesomeParagraphLink.init()
+</script>
 </head>
 <body>
 <div id="top"><!-- do not remove this div, it is closed by doxygen! -->
@@ -30,7 +51,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Ponca
-   &#160;<span id="projectnumber">8976dc5e97f677a334261616e8d2314551b8ce3d</span>
+   &#160;<span id="projectnumber">d844664447d2173c00cc41660408e8eb5b3a41d6</span>
    </div>
    <div id="projectbrief">Point Cloud Analysis library</div>
   </td>
@@ -55,6 +76,23 @@ $(function() {
 });
 /* @license-end */</script>
 <div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(document).ready(function(){initNavTree('meanPlaneFit_8h_source.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -69,11 +107,6 @@ $(function() {
 </iframe>
 </div>
 
-<div id="nav-path" class="navpath">
-  <ul>
-<li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_695d95a8d8fbec601a248c0414764298.html">Ponca</a></li><li class="navelem"><a class="el" href="dir_ce16314fc45f8638543c5146aff64d4a.html">src</a></li><li class="navelem"><a class="el" href="dir_221133f19e4af6803e4ee7d78db21786.html">Fitting</a></li>  </ul>
-</div>
-</div><!-- top -->
 <div class="header">
   <div class="headertitle">
 <div class="title">meanPlaneFit.h</div>  </div>
@@ -90,86 +123,62 @@ $(function() {
 <div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#pragma once</span></div>
 <div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160; </div>
 <div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="preprocessor">#include &quot;./plane.h&quot;</span></div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160; </div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="keyword">namespace </span><a class="code" href="namespacePonca.html">Ponca</a></div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;{</div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160; </div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="keyword">template</span> &lt; <span class="keyword">class</span> DataPo<span class="keywordtype">int</span>, <span class="keyword">class</span> _WFunctor, <span class="keyword">typename</span> T &gt;</div>
-<div class="line"><a name="l00028"></a><span class="lineno"><a class="line" href="classPonca_1_1MeanPlaneFit.html">   28</a></span>&#160;<span class="keyword">class </span><a class="code" href="classPonca_1_1MeanPlaneFit.html">MeanPlaneFit</a> : <span class="keyword">public</span> <a class="code" href="classPonca_1_1Plane.html">Plane</a>&lt;DataPoint, _WFunctor&gt;</div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;{</div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="keyword">private</span>:</div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;    <span class="keyword">typedef</span> <a class="code" href="classPonca_1_1Plane.html">Plane&lt;DataPoint, _WFunctor&gt;</a> <a class="code" href="classPonca_1_1Plane.html">Base</a>;</div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160; </div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;<span class="keyword">protected</span>:</div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;    <span class="keyword">enum</span></div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;    {</div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;        Check = <a class="code" href="classPonca_1_1Plane.html#aee542df3bc7ddb9708bd532b5b57a9e6a6b7d4160826f431bf9d8ddd3e72a7178">Base::PROVIDES_PLANE</a></div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;    };</div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160; </div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="preprocessor">#include &quot;./mean.h&quot;</span></div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160; </div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="keyword">namespace </span><a class="code" href="namespacePonca.html">Ponca</a></div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;{</div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160; </div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="keyword">template</span> &lt; <span class="keyword">class</span> DataPo<span class="keywordtype">int</span>, <span class="keyword">class</span> _WFunctor, <span class="keyword">typename</span> T &gt;</div>
+<div class="line"><a name="l00030"></a><span class="lineno"><a class="line" href="classPonca_1_1MeanPlaneFitImpl.html">   30</a></span>&#160;<span class="keyword">class </span><a class="code" href="classPonca_1_1MeanPlaneFitImpl.html">MeanPlaneFitImpl</a> : <span class="keyword">public</span> T</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;{</div>
+<div class="line"><a name="l00032"></a><span class="lineno"><a class="line" href="classPonca_1_1MeanPlaneFitImpl.html#ae99ba87572a539c9d8442b3baec4a61a">   32</a></span>&#160;PONCA_FITTING_DECLARE_DEFAULT_TYPES</div>
+<div class="line"><a name="l00033"></a><span class="lineno"><a class="line" href="classPonca_1_1MeanPlaneFitImpl.html#a040ced24f2465b795c631dd6eaec1244">   33</a></span>&#160;PONCA_FITTING_DECLARE_MATRIX_TYPE</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160; </div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;<span class="keyword">protected</span>:</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;    <span class="keyword">enum</span> { Check = Base::PROVIDES_MEAN_POSITION &amp;&amp; Base::PROVIDES_MEAN_NORMAL &amp;&amp; Base::PROVIDES_PLANE };</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160; </div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00039"></a><span class="lineno"><a class="line" href="classPonca_1_1MeanPlaneFitImpl.html#a963cf51e39231b0353a3336cc83df93e">   39</a></span>&#160;    PONCA_EXPLICIT_CAST_OPERATORS(<a class="code" href="classPonca_1_1MeanPlaneFitImpl.html">MeanPlaneFitImpl</a>,<a class="code" href="classPonca_1_1MeanPlaneFitImpl.html#a8c4e5968a4242a35de7b37c7e2ed2985">meanPlaneFit</a>)</div>
 <div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160; </div>
-<div class="line"><a name="l00042"></a><span class="lineno"><a class="line" href="classPonca_1_1MeanPlaneFit.html#a4ba033344fa0dddddb808f3a9412dfd5">   42</a></span>&#160;    <span class="keyword">typedef</span> <span class="keyword">typename</span> <a class="code" href="classPonca_1_1Plane.html#a9c9d1bb6f9272d8143607d4d0723cd42">Base::Scalar</a>     <a class="code" href="classPonca_1_1MeanPlaneFit.html#a4ba033344fa0dddddb808f3a9412dfd5">Scalar</a>;</div>
-<div class="line"><a name="l00044"></a><span class="lineno"><a class="line" href="classPonca_1_1MeanPlaneFit.html#a4bdf06c9844a61b654c4ff9a1df9ad6f">   44</a></span>&#160;    <span class="keyword">typedef</span> <span class="keyword">typename</span> <a class="code" href="classPonca_1_1Plane.html#a4855b9d53d3ab5e251b0344d8ea2cbf2">Base::VectorType</a> <a class="code" href="classPonca_1_1MeanPlaneFit.html#a4bdf06c9844a61b654c4ff9a1df9ad6f">VectorType</a>;</div>
-<div class="line"><a name="l00046"></a><span class="lineno"><a class="line" href="classPonca_1_1MeanPlaneFit.html#a8cbc6491e9bb55ec3e186ddd90e2a3af">   46</a></span>&#160;    <span class="keyword">typedef</span> <span class="keyword">typename</span> <a class="code" href="classPonca_1_1Plane.html#afdb7adae71601bba760e8bea3df1e0c7">Base::MatrixType</a> <a class="code" href="classPonca_1_1MeanPlaneFit.html#a8cbc6491e9bb55ec3e186ddd90e2a3af">MatrixType</a>;</div>
-<div class="line"><a name="l00048"></a><span class="lineno"><a class="line" href="classPonca_1_1MeanPlaneFit.html#adb26156794ac88ec9f36ef8da6cd4855">   48</a></span>&#160;    <span class="keyword">typedef</span> _WFunctor                 <a class="code" href="classPonca_1_1MeanPlaneFit.html#adb26156794ac88ec9f36ef8da6cd4855">WFunctor</a>;</div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160; </div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160; <span class="keyword">protected</span>:</div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160; </div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    <span class="comment">// computation data</span></div>
-<div class="line"><a name="l00053"></a><span class="lineno"><a class="line" href="classPonca_1_1MeanPlaneFit.html#a95ef9b020d54e81b684f153476e21592">   53</a></span>&#160;    <a class="code" href="classPonca_1_1MeanPlaneFit.html#a4ba033344fa0dddddb808f3a9412dfd5">Scalar</a>      <a class="code" href="classPonca_1_1MeanPlaneFit.html#a95ef9b020d54e81b684f153476e21592">m_sumW</a>;    </div>
-<div class="line"><a name="l00054"></a><span class="lineno"><a class="line" href="classPonca_1_1MeanPlaneFit.html#a461ac5b491eec10af6129ae9002829da">   54</a></span>&#160;    <a class="code" href="classPonca_1_1MeanPlaneFit.html#a4bdf06c9844a61b654c4ff9a1df9ad6f">VectorType</a>  <a class="code" href="classPonca_1_1MeanPlaneFit.html#a461ac5b491eec10af6129ae9002829da">m_sumN</a>,    </div>
-<div class="line"><a name="l00055"></a><span class="lineno"><a class="line" href="classPonca_1_1MeanPlaneFit.html#a8a3343452041c39ed8741e4334a28c53">   55</a></span>&#160;                <a class="code" href="classPonca_1_1MeanPlaneFit.html#a8a3343452041c39ed8741e4334a28c53">m_sumP</a>;    </div>
-<div class="line"><a name="l00057"></a><span class="lineno"><a class="line" href="classPonca_1_1MeanPlaneFit.html#a5076665a7cede8c970b40722128e8fa2">   57</a></span>&#160;    <a class="code" href="classPonca_1_1MeanPlaneFit.html#adb26156794ac88ec9f36ef8da6cd4855">WFunctor</a> <a class="code" href="classPonca_1_1MeanPlaneFit.html#a5076665a7cede8c970b40722128e8fa2">m_w</a>;     </div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;<span class="keyword">public</span>:</div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160; </div>
-<div class="line"><a name="l00062"></a><span class="lineno"><a class="line" href="classPonca_1_1MeanPlaneFit.html#a845966882b678a521ae0564eed68ee4a">   62</a></span>&#160;    PONCA_MULTIARCH <span class="keyword">inline</span> <a class="code" href="classPonca_1_1MeanPlaneFit.html#a845966882b678a521ae0564eed68ee4a">MeanPlaneFit</a>() : <a class="code" href="classPonca_1_1Plane.html">Base</a>() {}</div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160; </div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;<span class="comment">    /**************************************************************************/</span></div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;    <span class="comment">/* Initialization                                                         */</span></div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;<span class="comment">    /**************************************************************************/</span></div>
-<div class="line"><a name="l00068"></a><span class="lineno"><a class="line" href="classPonca_1_1MeanPlaneFit.html#adbcc153a3bc7953899c6bab16bc2b3b1">   68</a></span>&#160;    PONCA_MULTIARCH <span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code" href="classPonca_1_1MeanPlaneFit.html#adbcc153a3bc7953899c6bab16bc2b3b1">setWeightFunc</a> (<span class="keyword">const</span> <a class="code" href="classPonca_1_1MeanPlaneFit.html#adb26156794ac88ec9f36ef8da6cd4855">WFunctor</a>&amp; _w) { <a class="code" href="classPonca_1_1MeanPlaneFit.html#a5076665a7cede8c970b40722128e8fa2">m_w</a>  = _w; }</div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160; </div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;    PONCA_MULTIARCH <span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code" href="classPonca_1_1MeanPlaneFit.html#a5e90db6ffe2dca8666baee852799dce2">init</a> (<span class="keyword">const</span> <a class="code" href="classPonca_1_1MeanPlaneFit.html#a4bdf06c9844a61b654c4ff9a1df9ad6f">VectorType</a>&amp; _evalPos);</div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160; </div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;<span class="comment">    /**************************************************************************/</span></div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;    <span class="comment">/* Processing                                                             */</span></div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;<span class="comment">    /**************************************************************************/</span></div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;    PONCA_MULTIARCH <span class="keyword">inline</span> <span class="keywordtype">bool</span> <a class="code" href="classPonca_1_1MeanPlaneFit.html#aa2dd61a13ca04daf21c133ef7f7ea962">addNeighbor</a>(<span class="keyword">const</span> DataPoint &amp;_nei);</div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160; </div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;    PONCA_MULTIARCH <span class="keyword">inline</span> <a class="code" href="group__fitting.html#gabfd697aebf07c1b5c8be5ee401e2dc84">FIT_RESULT</a> <a class="code" href="classPonca_1_1MeanPlaneFit.html#a80c1cf03899947e46bedf5a3fc911e44">finalize</a>();</div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;}; <span class="comment">//class MeanPlaneFit</span></div>
-<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160; </div>
-<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160; </div>
-<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;<span class="preprocessor">#include &quot;meanPlaneFit.hpp&quot;</span></div>
-<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160; </div>
-<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;} <span class="comment">//namespace Ponca</span></div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    PONCA_FITTING_APIDOC_FINALIZE</div>
+<div class="line"><a name="l00042"></a><span class="lineno"><a class="line" href="classPonca_1_1MeanPlaneFitImpl.html#a3c9791929ffcfe379dbaa950dc82f32c">   42</a></span>&#160;    PONCA_MULTIARCH <span class="keyword">inline</span> <a class="code" href="group__fitting.html#gabfd697aebf07c1b5c8be5ee401e2dc84">FIT_RESULT</a> <a class="code" href="classPonca_1_1MeanPlaneFitImpl.html#a3c9791929ffcfe379dbaa950dc82f32c">finalize</a>()</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    {</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;        <span class="comment">// handle specific configurations</span></div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;        <span class="keywordflow">if</span>(Base::finalize() == <a class="code" href="group__fitting.html#ggabfd697aebf07c1b5c8be5ee401e2dc84a86d1e5381a39092fbe5560583c23d64c">STABLE</a>)</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;        {</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;            <span class="keywordflow">if</span> (Base::plane().isValid()) Base::m_eCurrentState = <a class="code" href="group__fitting.html#ggabfd697aebf07c1b5c8be5ee401e2dc84a23aa2882b31e320fa4130218dd98c1a6">CONFLICT_ERROR_FOUND</a>;</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;            Base::setPlane(Base::m_sumN / Base::m_sumW, Base::barycenter());</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;        }</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;        <span class="keywordflow">return</span> Base::m_eCurrentState;</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    }</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;}; <span class="comment">//class MeanPlaneFitImpl</span></div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160; </div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    <span class="keyword">template</span> &lt; <span class="keyword">class</span> DataPo<span class="keywordtype">int</span>, <span class="keyword">class</span> _WFunctor, <span class="keyword">typename</span> T&gt;</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;    <span class="keyword">using</span> <a class="code" href="namespacePonca.html#a13ebe442f2119e12b35714a12a15560b">MeanPlaneFit</a> =</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;    MeanPlaneFitImpl&lt;DataPoint, _WFunctor,</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;        MeanNormal&lt;DataPoint, _WFunctor,</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;            MeanPosition&lt;DataPoint, _WFunctor,</div>
+<div class="line"><a name="l00062"></a><span class="lineno"><a class="line" href="namespacePonca.html#a13ebe442f2119e12b35714a12a15560b">   62</a></span>&#160;                <a class="code" href="classPonca_1_1Plane.html">Plane&lt;DataPoint, _WFunctor,T&gt;</a>&gt;&gt;&gt;;</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;} <span class="comment">//namespace Ponca</span></div>
 </div><!-- fragment --></div><!-- contents -->
-<div class="ttc" id="aclassPonca_1_1Plane_html_aee542df3bc7ddb9708bd532b5b57a9e6a6b7d4160826f431bf9d8ddd3e72a7178"><div class="ttname"><a href="classPonca_1_1Plane.html#aee542df3bc7ddb9708bd532b5b57a9e6a6b7d4160826f431bf9d8ddd3e72a7178">Ponca::Plane&lt; DataPoint, _WFunctor &gt;::PROVIDES_PLANE</a></div><div class="ttdeci">@ PROVIDES_PLANE</div><div class="ttdoc">Provides a Plane primitive.</div><div class="ttdef"><b>Definition:</b> plane.h:55</div></div>
-<div class="ttc" id="aclassPonca_1_1Plane_html_afdb7adae71601bba760e8bea3df1e0c7"><div class="ttname"><a href="classPonca_1_1Plane.html#afdb7adae71601bba760e8bea3df1e0c7">Ponca::Plane&lt; DataPoint, _WFunctor &gt;::MatrixType</a></div><div class="ttdeci">DataPoint::MatrixType MatrixType</div><div class="ttdoc">Matrix type inherited from DataPoint.</div><div class="ttdef"><b>Definition:</b> plane.h:65</div></div>
-<div class="ttc" id="anamespacePonca_html"><div class="ttname"><a href="namespacePonca.html">Ponca</a></div><div class="ttdoc">This module provides efficient methods for the fitting and analysis of point-clouds in arbitrary dime...</div><div class="ttdef"><b>Definition:</b> limitedPriorityQueue.h:14</div></div>
-<div class="ttc" id="aclassPonca_1_1Plane_html_a4855b9d53d3ab5e251b0344d8ea2cbf2"><div class="ttname"><a href="classPonca_1_1Plane.html#a4855b9d53d3ab5e251b0344d8ea2cbf2">Ponca::Plane&lt; DataPoint, _WFunctor &gt;::VectorType</a></div><div class="ttdeci">DataPoint::VectorType VectorType</div><div class="ttdoc">Vector type inherited from DataPoint.</div><div class="ttdef"><b>Definition:</b> plane.h:63</div></div>
-<div class="ttc" id="aclassPonca_1_1MeanPlaneFit_html_a95ef9b020d54e81b684f153476e21592"><div class="ttname"><a href="classPonca_1_1MeanPlaneFit.html#a95ef9b020d54e81b684f153476e21592">Ponca::MeanPlaneFit::m_sumW</a></div><div class="ttdeci">Scalar m_sumW</div><div class="ttdoc">Sum of queries weight.</div><div class="ttdef"><b>Definition:</b> meanPlaneFit.h:53</div></div>
-<div class="ttc" id="aclassPonca_1_1MeanPlaneFit_html_adb26156794ac88ec9f36ef8da6cd4855"><div class="ttname"><a href="classPonca_1_1MeanPlaneFit.html#adb26156794ac88ec9f36ef8da6cd4855">Ponca::MeanPlaneFit::WFunctor</a></div><div class="ttdeci">_WFunctor WFunctor</div><div class="ttdoc">Weight Function.</div><div class="ttdef"><b>Definition:</b> meanPlaneFit.h:48</div></div>
-<div class="ttc" id="aclassPonca_1_1MeanPlaneFit_html_a4ba033344fa0dddddb808f3a9412dfd5"><div class="ttname"><a href="classPonca_1_1MeanPlaneFit.html#a4ba033344fa0dddddb808f3a9412dfd5">Ponca::MeanPlaneFit::Scalar</a></div><div class="ttdeci">Base::Scalar Scalar</div><div class="ttdoc">Scalar type inherited from DataPoint.</div><div class="ttdef"><b>Definition:</b> meanPlaneFit.h:42</div></div>
-<div class="ttc" id="aclassPonca_1_1MeanPlaneFit_html_a4bdf06c9844a61b654c4ff9a1df9ad6f"><div class="ttname"><a href="classPonca_1_1MeanPlaneFit.html#a4bdf06c9844a61b654c4ff9a1df9ad6f">Ponca::MeanPlaneFit::VectorType</a></div><div class="ttdeci">Base::VectorType VectorType</div><div class="ttdoc">Vector type inherited from DataPoint.</div><div class="ttdef"><b>Definition:</b> meanPlaneFit.h:44</div></div>
-<div class="ttc" id="agroup__fitting_html_gabfd697aebf07c1b5c8be5ee401e2dc84"><div class="ttname"><a href="group__fitting.html#gabfd697aebf07c1b5c8be5ee401e2dc84">Ponca::FIT_RESULT</a></div><div class="ttdeci">FIT_RESULT</div><div class="ttdef"><b>Definition:</b> enums.h:16</div></div>
-<div class="ttc" id="aclassPonca_1_1MeanPlaneFit_html_adbcc153a3bc7953899c6bab16bc2b3b1"><div class="ttname"><a href="classPonca_1_1MeanPlaneFit.html#adbcc153a3bc7953899c6bab16bc2b3b1">Ponca::MeanPlaneFit::setWeightFunc</a></div><div class="ttdeci">void setWeightFunc(const WFunctor &amp;_w)</div><div class="ttdoc">Init the WeightFunc, without changing the other internal states.</div><div class="ttdef"><b>Definition:</b> meanPlaneFit.h:68</div></div>
-<div class="ttc" id="aclassPonca_1_1MeanPlaneFit_html_a8cbc6491e9bb55ec3e186ddd90e2a3af"><div class="ttname"><a href="classPonca_1_1MeanPlaneFit.html#a8cbc6491e9bb55ec3e186ddd90e2a3af">Ponca::MeanPlaneFit::MatrixType</a></div><div class="ttdeci">Base::MatrixType MatrixType</div><div class="ttdoc">Vector type inherited from DataPoint.</div><div class="ttdef"><b>Definition:</b> meanPlaneFit.h:46</div></div>
-<div class="ttc" id="aclassPonca_1_1MeanPlaneFit_html_a5e90db6ffe2dca8666baee852799dce2"><div class="ttname"><a href="classPonca_1_1MeanPlaneFit.html#a5e90db6ffe2dca8666baee852799dce2">Ponca::MeanPlaneFit::init</a></div><div class="ttdeci">void init(const VectorType &amp;_evalPos)</div><div class="ttdoc">Set the evaluation position and reset the internal states.</div><div class="ttdef"><b>Definition:</b> meanPlaneFit.hpp:12</div></div>
-<div class="ttc" id="aclassPonca_1_1Plane_html_a9c9d1bb6f9272d8143607d4d0723cd42"><div class="ttname"><a href="classPonca_1_1Plane.html#a9c9d1bb6f9272d8143607d4d0723cd42">Ponca::Plane&lt; DataPoint, _WFunctor &gt;::Scalar</a></div><div class="ttdeci">DataPoint::Scalar Scalar</div><div class="ttdoc">Scalar type inherited from DataPoint.</div><div class="ttdef"><b>Definition:</b> plane.h:61</div></div>
-<div class="ttc" id="aclassPonca_1_1MeanPlaneFit_html_a8a3343452041c39ed8741e4334a28c53"><div class="ttname"><a href="classPonca_1_1MeanPlaneFit.html#a8a3343452041c39ed8741e4334a28c53">Ponca::MeanPlaneFit::m_sumP</a></div><div class="ttdeci">VectorType m_sumP</div><div class="ttdoc">Sum of the relative positions.</div><div class="ttdef"><b>Definition:</b> meanPlaneFit.h:55</div></div>
-<div class="ttc" id="aclassPonca_1_1MeanPlaneFit_html_a461ac5b491eec10af6129ae9002829da"><div class="ttname"><a href="classPonca_1_1MeanPlaneFit.html#a461ac5b491eec10af6129ae9002829da">Ponca::MeanPlaneFit::m_sumN</a></div><div class="ttdeci">VectorType m_sumN</div><div class="ttdoc">Sum of the normal vectors.</div><div class="ttdef"><b>Definition:</b> meanPlaneFit.h:54</div></div>
-<div class="ttc" id="aclassPonca_1_1MeanPlaneFit_html"><div class="ttname"><a href="classPonca_1_1MeanPlaneFit.html">Ponca::MeanPlaneFit</a></div><div class="ttdoc">Plane fitting procedure computing the mean position and orientation from oriented points.</div><div class="ttdef"><b>Definition:</b> meanPlaneFit.h:28</div></div>
-<div class="ttc" id="aclassPonca_1_1MeanPlaneFit_html_a5076665a7cede8c970b40722128e8fa2"><div class="ttname"><a href="classPonca_1_1MeanPlaneFit.html#a5076665a7cede8c970b40722128e8fa2">Ponca::MeanPlaneFit::m_w</a></div><div class="ttdeci">WFunctor m_w</div><div class="ttdoc">Weight function (must inherits BaseWeightFunc)</div><div class="ttdef"><b>Definition:</b> meanPlaneFit.h:57</div></div>
-<div class="ttc" id="aclassPonca_1_1MeanPlaneFit_html_a845966882b678a521ae0564eed68ee4a"><div class="ttname"><a href="classPonca_1_1MeanPlaneFit.html#a845966882b678a521ae0564eed68ee4a">Ponca::MeanPlaneFit::MeanPlaneFit</a></div><div class="ttdeci">MeanPlaneFit()</div><div class="ttdoc">Default constructor.</div><div class="ttdef"><b>Definition:</b> meanPlaneFit.h:62</div></div>
-<div class="ttc" id="aclassPonca_1_1MeanPlaneFit_html_a80c1cf03899947e46bedf5a3fc911e44"><div class="ttname"><a href="classPonca_1_1MeanPlaneFit.html#a80c1cf03899947e46bedf5a3fc911e44">Ponca::MeanPlaneFit::finalize</a></div><div class="ttdeci">FIT_RESULT finalize()</div><div class="ttdoc">Finalize the fitting procedure.</div><div class="ttdef"><b>Definition:</b> meanPlaneFit.hpp:47</div></div>
-<div class="ttc" id="aclassPonca_1_1Plane_html"><div class="ttname"><a href="classPonca_1_1Plane.html">Ponca::Plane</a></div><div class="ttdoc">Implicit hyperplane defined by an homogeneous vector .</div><div class="ttdef"><b>Definition:</b> plane.h:39</div></div>
-<div class="ttc" id="aclassPonca_1_1MeanPlaneFit_html_aa2dd61a13ca04daf21c133ef7f7ea962"><div class="ttname"><a href="classPonca_1_1MeanPlaneFit.html#aa2dd61a13ca04daf21c133ef7f7ea962">Ponca::MeanPlaneFit::addNeighbor</a></div><div class="ttdeci">bool addNeighbor(const DataPoint &amp;_nei)</div><div class="ttdoc">Add a neighbor to perform the fit.</div><div class="ttdef"><b>Definition:</b> meanPlaneFit.hpp:26</div></div>
+</div><!-- doc-content -->
+<div class="ttc" id="anamespacePonca_html"><div class="ttname"><a href="namespacePonca.html">Ponca</a></div><div class="ttdoc">This Source Code Form is subject to the terms of the Mozilla Public License, v.</div><div class="ttdef"><b>Definition:</b> <a href="limitedPriorityQueue_8h_source.html#l00014">limitedPriorityQueue.h:14</a></div></div>
+<div class="ttc" id="agroup__fitting_html_ggabfd697aebf07c1b5c8be5ee401e2dc84a86d1e5381a39092fbe5560583c23d64c"><div class="ttname"><a href="group__fitting.html#ggabfd697aebf07c1b5c8be5ee401e2dc84a86d1e5381a39092fbe5560583c23d64c">Ponca::STABLE</a></div><div class="ttdeci">@ STABLE</div><div class="ttdoc">The fitting is stable an ready to use (and having more than 6 neighbours)</div><div class="ttdef"><b>Definition:</b> <a href="enums_8h_source.html#l00020">enums.h:20</a></div></div>
+<div class="ttc" id="anamespacePonca_html_a13ebe442f2119e12b35714a12a15560b"><div class="ttname"><a href="namespacePonca.html#a13ebe442f2119e12b35714a12a15560b">Ponca::MeanPlaneFit</a></div><div class="ttdeci">MeanPlaneFitImpl&lt; DataPoint, _WFunctor, MeanNormal&lt; DataPoint, _WFunctor, MeanPosition&lt; DataPoint, _WFunctor, Plane&lt; DataPoint, _WFunctor, T &gt; &gt;&gt; &gt; MeanPlaneFit</div><div class="ttdoc">Helper alias for Plane fitting on points using MeanPlaneFitImpl.</div><div class="ttdef"><b>Definition:</b> <a href="meanPlaneFit_8h_source.html#l00062">meanPlaneFit.h:62</a></div></div>
+<div class="ttc" id="aclassPonca_1_1MeanPlaneFitImpl_html"><div class="ttname"><a href="classPonca_1_1MeanPlaneFitImpl.html">Ponca::MeanPlaneFitImpl</a></div><div class="ttdoc">Plane fitting procedure computing the mean position and orientation from oriented points.</div><div class="ttdef"><b>Definition:</b> <a href="meanPlaneFit_8h_source.html#l00030">meanPlaneFit.h:30</a></div></div>
+<div class="ttc" id="aclassPonca_1_1MeanPlaneFitImpl_html_a3c9791929ffcfe379dbaa950dc82f32c"><div class="ttname"><a href="classPonca_1_1MeanPlaneFitImpl.html#a3c9791929ffcfe379dbaa950dc82f32c">Ponca::MeanPlaneFitImpl::finalize</a></div><div class="ttdeci">FIT_RESULT finalize()</div><div class="ttdoc">Finalize the procedure.</div><div class="ttdef"><b>Definition:</b> <a href="meanPlaneFit_8h_source.html#l00042">meanPlaneFit.h:42</a></div></div>
+<div class="ttc" id="aclassPonca_1_1MeanPlaneFitImpl_html_a8c4e5968a4242a35de7b37c7e2ed2985"><div class="ttname"><a href="classPonca_1_1MeanPlaneFitImpl.html#a8c4e5968a4242a35de7b37c7e2ed2985">Ponca::MeanPlaneFitImpl::meanPlaneFit</a></div><div class="ttdeci">MeanPlaneFitImpl&lt; DataPoint, _WFunctor, T &gt; &amp; meanPlaneFit()</div><div class="ttdoc">Explicit conversion to MeanPlaneFitImpl , to access methods potentially hidden by heritage.</div><div class="ttdef"><b>Definition:</b> <a href="meanPlaneFit_8h_source.html#l00039">meanPlaneFit.h:39</a></div></div>
+<div class="ttc" id="agroup__fitting_html_gabfd697aebf07c1b5c8be5ee401e2dc84"><div class="ttname"><a href="group__fitting.html#gabfd697aebf07c1b5c8be5ee401e2dc84">Ponca::FIT_RESULT</a></div><div class="ttdeci">FIT_RESULT</div><div class="ttdoc">Enum corresponding to the state of a fitting method (and what the finalize function can return)</div><div class="ttdef"><b>Definition:</b> <a href="enums_8h_source.html#l00016">enums.h:16</a></div></div>
+<div class="ttc" id="agroup__fitting_html_ggabfd697aebf07c1b5c8be5ee401e2dc84a23aa2882b31e320fa4130218dd98c1a6"><div class="ttname"><a href="group__fitting.html#ggabfd697aebf07c1b5c8be5ee401e2dc84a23aa2882b31e320fa4130218dd98c1a6">Ponca::CONFLICT_ERROR_FOUND</a></div><div class="ttdeci">@ CONFLICT_ERROR_FOUND</div><div class="ttdoc">Multiple classes of the fitting procedure initialize the primitive.</div><div class="ttdef"><b>Definition:</b> <a href="enums_8h_source.html#l00031">enums.h:31</a></div></div>
+<div class="ttc" id="aclassPonca_1_1Plane_html"><div class="ttname"><a href="classPonca_1_1Plane.html">Ponca::Plane</a></div><div class="ttdoc">Implicit hyperplane defined by an homogeneous vector .</div><div class="ttdef"><b>Definition:</b> <a href="plane_8h_source.html#l00038">plane.h:38</a></div></div>
 <!-- start footer part -->
-<hr class="footer"/><address class="footer"><small>
-Generated on Tue Aug 2 2022 09:22:55 for Ponca by &#160;<a href="http://www.doxygen.org/index.html">
-<img class="footer" src="doxygen.png" alt="doxygen"/>
-</a> 1.8.17
-</small></address>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_695d95a8d8fbec601a248c0414764298.html">Ponca</a></li><li class="navelem"><a class="el" href="dir_ce16314fc45f8638543c5146aff64d4a.html">src</a></li><li class="navelem"><a class="el" href="dir_221133f19e4af6803e4ee7d78db21786.html">Fitting</a></li><li class="navelem"><b>meanPlaneFit.h</b></li>
+    <li class="footer">Generated on Fri Sep 9 2022 12:28:20 for Ponca by
+    <a href="http://www.doxygen.org/index.html">
+    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.17 </li>
+  </ul>
+</div>
 </body>
 </html>

@@ -1,3 +1,4 @@
+<!-- HTML header for doxygen 1.9.1-->
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -9,6 +10,10 @@
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
@@ -20,7 +25,23 @@
 </script>
 <script type="text/javascript" async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js"></script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only-darkmode-toggle.css" rel="stylesheet" type="text/css"/>
 <link href="ponca.css" rel="stylesheet" type="text/css"/>
+<!-- ... other metadata & script includes ... -->
+<script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+<script type="text/javascript">
+    DoxygenAwesomeDarkModeToggle.init()
+</script>
+<script type="text/javascript" src="doxygen-awesome-fragment-copy-button.js"></script>
+<script type="text/javascript">
+    DoxygenAwesomeFragmentCopyButton.init()
+</script>
+<script type="text/javascript" src="doxygen-awesome-paragraph-link.js"></script>
+<script type="text/javascript">
+    DoxygenAwesomeParagraphLink.init()
+</script>
 </head>
 <body>
 <div id="top"><!-- do not remove this div, it is closed by doxygen! -->
@@ -30,7 +51,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Ponca
-   &#160;<span id="projectnumber">8976dc5e97f677a334261616e8d2314551b8ce3d</span>
+   &#160;<span id="projectnumber">d844664447d2173c00cc41660408e8eb5b3a41d6</span>
    </div>
    <div id="projectbrief">Point Cloud Analysis library</div>
   </td>
@@ -55,6 +76,23 @@ $(function() {
 });
 /* @license-end */</script>
 <div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(document).ready(function(){initNavTree('classPonca_1_1MlsSphereFitDer.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -69,51 +107,50 @@ $(function() {
 </iframe>
 </div>
 
-<div id="nav-path" class="navpath">
-  <ul>
-<li class="navelem"><a class="el" href="namespacePonca.html">Ponca</a></li><li class="navelem"><a class="el" href="classPonca_1_1MlsSphereFitDer.html">MlsSphereFitDer</a></li>  </ul>
-</div>
-</div><!-- top -->
 <div class="header">
   <div class="headertitle">
-<div class="title">Ponca::MlsSphereFitDer&lt; DataPoint, _WFunctor, T &gt; Member List</div>  </div>
+<div class="title">Ponca::MlsSphereFitDer&lt; DataPoint, _WFunctor, DiffType, T &gt; Member List</div>  </div>
 </div><!--header-->
 <div class="contents">
 
-<p>This is the complete list of members for <a class="el" href="classPonca_1_1MlsSphereFitDer.html">Ponca::MlsSphereFitDer&lt; DataPoint, _WFunctor, T &gt;</a>, including all inherited members.</p>
+<p>This is the complete list of members for <a class="el" href="classPonca_1_1MlsSphereFitDer.html">Ponca::MlsSphereFitDer&lt; DataPoint, _WFunctor, DiffType, T &gt;</a>, including all inherited members.</p>
 <table class="directory">
-  <tr class="even"><td class="entry"><a class="el" href="classPonca_1_1MlsSphereFitDer.html#a3833c0409ce542843559d1afbda2779b">addNeighbor</a>(const DataPoint &amp;nei)</td><td class="entry"><a class="el" href="classPonca_1_1MlsSphereFitDer.html">Ponca::MlsSphereFitDer&lt; DataPoint, _WFunctor, T &gt;</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0"><td class="entry"><b>Check</b> enum value (defined in <a class="el" href="classPonca_1_1MlsSphereFitDer.html">Ponca::MlsSphereFitDer&lt; DataPoint, _WFunctor, T &gt;</a>)</td><td class="entry"><a class="el" href="classPonca_1_1MlsSphereFitDer.html">Ponca::MlsSphereFitDer&lt; DataPoint, _WFunctor, T &gt;</a></td><td class="entry"><span class="mlabel">protected</span></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="classPonca_1_1MlsSphereFitDer.html#a51b7346e0d6d17dca079efa7f0915e0dacc15fb4dace21f8d034e5bf912789db0">DerDim</a> enum value</td><td class="entry"><a class="el" href="classPonca_1_1MlsSphereFitDer.html">Ponca::MlsSphereFitDer&lt; DataPoint, _WFunctor, T &gt;</a></td><td class="entry"><span class="mlabel">protected</span></td></tr>
-  <tr><td class="entry"><a class="el" href="classPonca_1_1MlsSphereFitDer.html#a51b7346e0d6d17dca079efa7f0915e0da71e661938445332a666114e9011e5e79">Dim</a> enum value</td><td class="entry"><a class="el" href="classPonca_1_1MlsSphereFitDer.html">Ponca::MlsSphereFitDer&lt; DataPoint, _WFunctor, T &gt;</a></td><td class="entry"><span class="mlabel">protected</span></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="classPonca_1_1MlsSphereFitDer.html#af032b3b2a3b79801fb101bbe73e471b7">dNormal</a>() const</td><td class="entry"><a class="el" href="classPonca_1_1MlsSphereFitDer.html">Ponca::MlsSphereFitDer&lt; DataPoint, _WFunctor, T &gt;</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
-  <tr><td class="entry"><a class="el" href="classPonca_1_1MlsSphereFitDer.html#afe27146c2bd9cdbea89eb0bc10c1e6e3">dPotential</a>() const</td><td class="entry"><a class="el" href="classPonca_1_1MlsSphereFitDer.html">Ponca::MlsSphereFitDer&lt; DataPoint, _WFunctor, T &gt;</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="classPonca_1_1MlsSphereFitDer.html#a32ebaaf56aa7808cd3c4812dc60b91f1">finalize</a>()</td><td class="entry"><a class="el" href="classPonca_1_1MlsSphereFitDer.html">Ponca::MlsSphereFitDer&lt; DataPoint, _WFunctor, T &gt;</a></td><td class="entry"></td></tr>
-  <tr><td class="entry"><a class="el" href="classPonca_1_1MlsSphereFitDer.html#ad362727ca7fcf319ee1c7cd23552465f">init</a>(const VectorType &amp;evalPos)</td><td class="entry"><a class="el" href="classPonca_1_1MlsSphereFitDer.html">Ponca::MlsSphereFitDer&lt; DataPoint, _WFunctor, T &gt;</a></td><td class="entry"></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="classPonca_1_1Concept_1_1FittingExtensionConcept.html#a0e3bd00887c6c9ab95d2d6c84b17d748">Ponca::Concept::FittingExtensionConcept::init</a>(const VectorType &amp;evalPos)</td><td class="entry"><a class="el" href="classPonca_1_1Concept_1_1FittingExtensionConcept.html">Ponca::Concept::FittingExtensionConcept&lt; DataPoint, _WFunctor, T &gt;</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
-  <tr><td class="entry"><a class="el" href="classPonca_1_1MlsSphereFitDer.html#ace9efd19ce3043bc0b5c1b762ac12724">m_d2SumDotPN</a></td><td class="entry"><a class="el" href="classPonca_1_1MlsSphereFitDer.html">Ponca::MlsSphereFitDer&lt; DataPoint, _WFunctor, T &gt;</a></td><td class="entry"><span class="mlabel">protected</span></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="classPonca_1_1MlsSphereFitDer.html#acbb29c1d69ef3651ee748550b4ba17af">m_d2SumDotPP</a></td><td class="entry"><a class="el" href="classPonca_1_1MlsSphereFitDer.html">Ponca::MlsSphereFitDer&lt; DataPoint, _WFunctor, T &gt;</a></td><td class="entry"><span class="mlabel">protected</span></td></tr>
-  <tr><td class="entry"><a class="el" href="classPonca_1_1MlsSphereFitDer.html#a50f3b8d120149057bd07ac7473461824">m_d2SumN</a></td><td class="entry"><a class="el" href="classPonca_1_1MlsSphereFitDer.html">Ponca::MlsSphereFitDer&lt; DataPoint, _WFunctor, T &gt;</a></td><td class="entry"><span class="mlabel">protected</span></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="classPonca_1_1MlsSphereFitDer.html#a262ce2960272a6f5cb56288080ce5d64">m_d2SumP</a></td><td class="entry"><a class="el" href="classPonca_1_1MlsSphereFitDer.html">Ponca::MlsSphereFitDer&lt; DataPoint, _WFunctor, T &gt;</a></td><td class="entry"><span class="mlabel">protected</span></td></tr>
-  <tr><td class="entry"><a class="el" href="classPonca_1_1MlsSphereFitDer.html#a5bcf7deedcc18959f60ffc32e29ae825">m_d2SumW</a></td><td class="entry"><a class="el" href="classPonca_1_1MlsSphereFitDer.html">Ponca::MlsSphereFitDer&lt; DataPoint, _WFunctor, T &gt;</a></td><td class="entry"><span class="mlabel">protected</span></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="classPonca_1_1MlsSphereFitDer.html#afe64480ef07f726f2a8dc0b32c8fa925">m_d2Uc</a></td><td class="entry"><a class="el" href="classPonca_1_1MlsSphereFitDer.html">Ponca::MlsSphereFitDer&lt; DataPoint, _WFunctor, T &gt;</a></td><td class="entry"></td></tr>
-  <tr><td class="entry"><a class="el" href="classPonca_1_1MlsSphereFitDer.html#aa83825d3bb5f581e2457e1a9982d1f3c">m_d2Ul</a></td><td class="entry"><a class="el" href="classPonca_1_1MlsSphereFitDer.html">Ponca::MlsSphereFitDer&lt; DataPoint, _WFunctor, T &gt;</a></td><td class="entry"></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="classPonca_1_1MlsSphereFitDer.html#af4b3a8cff11f2f32e3390293ad1b2698">m_d2Uq</a></td><td class="entry"><a class="el" href="classPonca_1_1MlsSphereFitDer.html">Ponca::MlsSphereFitDer&lt; DataPoint, _WFunctor, T &gt;</a></td><td class="entry"></td></tr>
-  <tr><td class="entry"><a class="el" href="classPonca_1_1MlsSphereFitDer.html#aebc80fce4f79a9acd1792a549c900ead">Matrix</a> typedef</td><td class="entry"><a class="el" href="classPonca_1_1MlsSphereFitDer.html">Ponca::MlsSphereFitDer&lt; DataPoint, _WFunctor, T &gt;</a></td><td class="entry"></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="classPonca_1_1MlsSphereFitDer.html#a0a9ee90e8d6a32c6cb4033f26c9effde">MatrixArray</a> typedef</td><td class="entry"><a class="el" href="classPonca_1_1MlsSphereFitDer.html">Ponca::MlsSphereFitDer&lt; DataPoint, _WFunctor, T &gt;</a></td><td class="entry"></td></tr>
-  <tr><td class="entry"><a class="el" href="classPonca_1_1MlsSphereFitDer.html#afe8dacfa43d2a2cb8cd0d219582c22ff">normal</a>() const</td><td class="entry"><a class="el" href="classPonca_1_1MlsSphereFitDer.html">Ponca::MlsSphereFitDer&lt; DataPoint, _WFunctor, T &gt;</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
-  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>PROVIDES_NORMAL_SPACE_DERIVATIVE</b> enum value (defined in <a class="el" href="classPonca_1_1MlsSphereFitDer.html">Ponca::MlsSphereFitDer&lt; DataPoint, _WFunctor, T &gt;</a>)</td><td class="entry"><a class="el" href="classPonca_1_1MlsSphereFitDer.html">Ponca::MlsSphereFitDer&lt; DataPoint, _WFunctor, T &gt;</a></td><td class="entry"><span class="mlabel">protected</span></td></tr>
-  <tr><td class="entry"><a class="el" href="classPonca_1_1MlsSphereFitDer.html#a4a9f1177061522659f45d9cd3640ffdf">Scalar</a> typedef</td><td class="entry"><a class="el" href="classPonca_1_1MlsSphereFitDer.html">Ponca::MlsSphereFitDer&lt; DataPoint, _WFunctor, T &gt;</a></td><td class="entry"></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="classPonca_1_1MlsSphereFitDer.html#af130d69024535e88f14fcc334225042c">ScalarArray</a> typedef</td><td class="entry"><a class="el" href="classPonca_1_1MlsSphereFitDer.html">Ponca::MlsSphereFitDer&lt; DataPoint, _WFunctor, T &gt;</a></td><td class="entry"></td></tr>
-  <tr><td class="entry"><a class="el" href="classPonca_1_1Concept_1_1FittingExtensionConcept.html#ad847ed952507ed9e46e220f99f076af4">setWeightFunc</a>(const WFunctor &amp;w)</td><td class="entry"><a class="el" href="classPonca_1_1Concept_1_1FittingExtensionConcept.html">Ponca::Concept::FittingExtensionConcept&lt; DataPoint, _WFunctor, T &gt;</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="classPonca_1_1MlsSphereFitDer.html#a37cd8681ab28f4261cac6c4bba9683bf">VectorArray</a> typedef</td><td class="entry"><a class="el" href="classPonca_1_1MlsSphereFitDer.html">Ponca::MlsSphereFitDer&lt; DataPoint, _WFunctor, T &gt;</a></td><td class="entry"></td></tr>
-  <tr><td class="entry"><a class="el" href="classPonca_1_1MlsSphereFitDer.html#ab27fa90ee60f684927095ac906cfef14">VectorType</a> typedef</td><td class="entry"><a class="el" href="classPonca_1_1MlsSphereFitDer.html">Ponca::MlsSphereFitDer&lt; DataPoint, _WFunctor, T &gt;</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="classPonca_1_1MlsSphereFitDer.html#a2f20f8092b21bb028a5832dc22c019b9">addLocalNeighbor</a>(Scalar w, const VectorType &amp;localQ, const DataPoint &amp;attributes, ScalarArray &amp;dw)</td><td class="entry"><a class="el" href="classPonca_1_1MlsSphereFitDer.html">Ponca::MlsSphereFitDer&lt; DataPoint, _WFunctor, DiffType, T &gt;</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
+  <tr bgcolor="#f0f0f0"><td class="entry"><b>Check</b> enum value (defined in <a class="el" href="classPonca_1_1MlsSphereFitDer.html">Ponca::MlsSphereFitDer&lt; DataPoint, _WFunctor, DiffType, T &gt;</a>)</td><td class="entry"><a class="el" href="classPonca_1_1MlsSphereFitDer.html">Ponca::MlsSphereFitDer&lt; DataPoint, _WFunctor, DiffType, T &gt;</a></td><td class="entry"><span class="mlabel">protected</span></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="classPonca_1_1MlsSphereFitDer.html#ab6736c24af97b1a52d0b9b4225e4b563a9635c518977c87e2b5f43e7b298805f9">DerDim</a> enum value</td><td class="entry"><a class="el" href="classPonca_1_1MlsSphereFitDer.html">Ponca::MlsSphereFitDer&lt; DataPoint, _WFunctor, DiffType, T &gt;</a></td><td class="entry"><span class="mlabel">protected</span></td></tr>
+  <tr><td class="entry"><a class="el" href="classPonca_1_1MlsSphereFitDer.html#ab6736c24af97b1a52d0b9b4225e4b563a38a7dfbdf6aa4eea7c5ae9e9823aec0f">Dim</a> enum value</td><td class="entry"><a class="el" href="classPonca_1_1MlsSphereFitDer.html">Ponca::MlsSphereFitDer&lt; DataPoint, _WFunctor, DiffType, T &gt;</a></td><td class="entry"><span class="mlabel">protected</span></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="classPonca_1_1MlsSphereFitDer.html#ab1506b844c97039c339cf1b311caf6b3">dNormal</a>() const</td><td class="entry"><a class="el" href="classPonca_1_1MlsSphereFitDer.html">Ponca::MlsSphereFitDer&lt; DataPoint, _WFunctor, DiffType, T &gt;</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
+  <tr><td class="entry"><a class="el" href="classPonca_1_1MlsSphereFitDer.html#a011b6572b50b817388ebf6098f6d4015">dPotential</a>() const</td><td class="entry"><a class="el" href="classPonca_1_1MlsSphereFitDer.html">Ponca::MlsSphereFitDer&lt; DataPoint, _WFunctor, DiffType, T &gt;</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="classPonca_1_1MlsSphereFitDer.html#a32ebaaf56aa7808cd3c4812dc60b91f1">finalize</a>()</td><td class="entry"><a class="el" href="classPonca_1_1MlsSphereFitDer.html">Ponca::MlsSphereFitDer&lt; DataPoint, _WFunctor, DiffType, T &gt;</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
+  <tr><td class="entry"><a class="el" href="classPonca_1_1MlsSphereFitDer.html#a4fbafff234dc57507bcd6c84feb8a847">init</a>(const VectorType &amp;_evalPos)</td><td class="entry"><a class="el" href="classPonca_1_1MlsSphereFitDer.html">Ponca::MlsSphereFitDer&lt; DataPoint, _WFunctor, DiffType, T &gt;</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="classPonca_1_1MlsSphereFitDer.html#a24daa8c270c55e70188f0decebaa2879">m_d2SumDotPN</a></td><td class="entry"><a class="el" href="classPonca_1_1MlsSphereFitDer.html">Ponca::MlsSphereFitDer&lt; DataPoint, _WFunctor, DiffType, T &gt;</a></td><td class="entry"><span class="mlabel">protected</span></td></tr>
+  <tr><td class="entry"><a class="el" href="classPonca_1_1MlsSphereFitDer.html#a85d8de7e5dd640712adc77470503b78a">m_d2SumDotPP</a></td><td class="entry"><a class="el" href="classPonca_1_1MlsSphereFitDer.html">Ponca::MlsSphereFitDer&lt; DataPoint, _WFunctor, DiffType, T &gt;</a></td><td class="entry"><span class="mlabel">protected</span></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="classPonca_1_1MlsSphereFitDer.html#acf744933df3938814cb14963596badb8">m_d2SumN</a></td><td class="entry"><a class="el" href="classPonca_1_1MlsSphereFitDer.html">Ponca::MlsSphereFitDer&lt; DataPoint, _WFunctor, DiffType, T &gt;</a></td><td class="entry"><span class="mlabel">protected</span></td></tr>
+  <tr><td class="entry"><a class="el" href="classPonca_1_1MlsSphereFitDer.html#a23b0ea991bdc17d29f35484a3a772c21">m_d2SumP</a></td><td class="entry"><a class="el" href="classPonca_1_1MlsSphereFitDer.html">Ponca::MlsSphereFitDer&lt; DataPoint, _WFunctor, DiffType, T &gt;</a></td><td class="entry"><span class="mlabel">protected</span></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="classPonca_1_1MlsSphereFitDer.html#ac7caf0e9d6a2365f29554b6345b425c0">m_d2SumW</a></td><td class="entry"><a class="el" href="classPonca_1_1MlsSphereFitDer.html">Ponca::MlsSphereFitDer&lt; DataPoint, _WFunctor, DiffType, T &gt;</a></td><td class="entry"><span class="mlabel">protected</span></td></tr>
+  <tr><td class="entry"><a class="el" href="classPonca_1_1MlsSphereFitDer.html#a56e054a09dedee17c3403a1fd1cff3ca">m_d2Uc</a></td><td class="entry"><a class="el" href="classPonca_1_1MlsSphereFitDer.html">Ponca::MlsSphereFitDer&lt; DataPoint, _WFunctor, DiffType, T &gt;</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="classPonca_1_1MlsSphereFitDer.html#a8bd9759d80ef46a7d1831739876f292d">m_d2Ul</a></td><td class="entry"><a class="el" href="classPonca_1_1MlsSphereFitDer.html">Ponca::MlsSphereFitDer&lt; DataPoint, _WFunctor, DiffType, T &gt;</a></td><td class="entry"></td></tr>
+  <tr><td class="entry"><a class="el" href="classPonca_1_1MlsSphereFitDer.html#af79b73805038ac86da1376316639890d">m_d2Uq</a></td><td class="entry"><a class="el" href="classPonca_1_1MlsSphereFitDer.html">Ponca::MlsSphereFitDer&lt; DataPoint, _WFunctor, DiffType, T &gt;</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="classPonca_1_1MlsSphereFitDer.html#a0290d2bbb57e39a332276b467bc91458">Matrix</a> typedef</td><td class="entry"><a class="el" href="classPonca_1_1MlsSphereFitDer.html">Ponca::MlsSphereFitDer&lt; DataPoint, _WFunctor, DiffType, T &gt;</a></td><td class="entry"></td></tr>
+  <tr><td class="entry"><a class="el" href="classPonca_1_1MlsSphereFitDer.html#a504fddcb6b15eed4139ca43b3351a515">MatrixArray</a> typedef</td><td class="entry"><a class="el" href="classPonca_1_1MlsSphereFitDer.html">Ponca::MlsSphereFitDer&lt; DataPoint, _WFunctor, DiffType, T &gt;</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="classPonca_1_1MlsSphereFitDer.html#a14d54b2f3e69d13650c151fd9e3aad67">mlsSphereFitDer</a>()</td><td class="entry"><a class="el" href="classPonca_1_1MlsSphereFitDer.html">Ponca::MlsSphereFitDer&lt; DataPoint, _WFunctor, DiffType, T &gt;</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
+  <tr><td class="entry"><a class="el" href="classPonca_1_1MlsSphereFitDer.html#aff3b116f3c2ff49cd7c34a1bc96b65bc">mlsSphereFitDer</a>() const</td><td class="entry"><a class="el" href="classPonca_1_1MlsSphereFitDer.html">Ponca::MlsSphereFitDer&lt; DataPoint, _WFunctor, DiffType, T &gt;</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="classPonca_1_1MlsSphereFitDer.html#ab2812ca0747f89b185561b31c2f8deff">normal</a>() const</td><td class="entry"><a class="el" href="classPonca_1_1MlsSphereFitDer.html">Ponca::MlsSphereFitDer&lt; DataPoint, _WFunctor, DiffType, T &gt;</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
+  <tr bgcolor="#f0f0f0"><td class="entry"><b>PROVIDES_NORMAL_DERIVATIVE</b> enum value (defined in <a class="el" href="classPonca_1_1MlsSphereFitDer.html">Ponca::MlsSphereFitDer&lt; DataPoint, _WFunctor, DiffType, T &gt;</a>)</td><td class="entry"><a class="el" href="classPonca_1_1MlsSphereFitDer.html">Ponca::MlsSphereFitDer&lt; DataPoint, _WFunctor, DiffType, T &gt;</a></td><td class="entry"><span class="mlabel">protected</span></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="classPonca_1_1MlsSphereFitDer.html#af0219bcdc54d55e9391414982907d730">Scalar</a> typedef</td><td class="entry"><a class="el" href="classPonca_1_1MlsSphereFitDer.html">Ponca::MlsSphereFitDer&lt; DataPoint, _WFunctor, DiffType, T &gt;</a></td><td class="entry"></td></tr>
+  <tr><td class="entry"><a class="el" href="classPonca_1_1MlsSphereFitDer.html#adb6557177816169e4694ca724c918170">ScalarArray</a> typedef</td><td class="entry"><a class="el" href="classPonca_1_1MlsSphereFitDer.html">Ponca::MlsSphereFitDer&lt; DataPoint, _WFunctor, DiffType, T &gt;</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="classPonca_1_1MlsSphereFitDer.html#ac57e51349b1aaba25de164468dbf312c">VectorArray</a> typedef</td><td class="entry"><a class="el" href="classPonca_1_1MlsSphereFitDer.html">Ponca::MlsSphereFitDer&lt; DataPoint, _WFunctor, DiffType, T &gt;</a></td><td class="entry"></td></tr>
+  <tr><td class="entry"><a class="el" href="classPonca_1_1MlsSphereFitDer.html#a11a8dba6b3543b35f1cb6e699f4a26ca">VectorType</a> typedef</td><td class="entry"><a class="el" href="classPonca_1_1MlsSphereFitDer.html">Ponca::MlsSphereFitDer&lt; DataPoint, _WFunctor, DiffType, T &gt;</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="classPonca_1_1MlsSphereFitDer.html#a2c2bade7184469e73787817d8cb5c4d7">WFunctor</a> typedef</td><td class="entry"><a class="el" href="classPonca_1_1MlsSphereFitDer.html">Ponca::MlsSphereFitDer&lt; DataPoint, _WFunctor, DiffType, T &gt;</a></td><td class="entry"></td></tr>
 </table></div><!-- contents -->
+</div><!-- doc-content -->
 <!-- start footer part -->
-<hr class="footer"/><address class="footer"><small>
-Generated on Tue Aug 2 2022 09:22:55 for Ponca by &#160;<a href="http://www.doxygen.org/index.html">
-<img class="footer" src="doxygen.png" alt="doxygen"/>
-</a> 1.8.17
-</small></address>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="footer">Generated on Fri Sep 9 2022 12:28:20 for Ponca by
+    <a href="http://www.doxygen.org/index.html">
+    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.17 </li>
+  </ul>
+</div>
 </body>
 </html>

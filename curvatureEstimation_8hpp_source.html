@@ -1,3 +1,4 @@
+<!-- HTML header for doxygen 1.9.1-->
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -9,6 +10,10 @@
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
@@ -20,7 +25,23 @@
 </script>
 <script type="text/javascript" async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js"></script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only-darkmode-toggle.css" rel="stylesheet" type="text/css"/>
 <link href="ponca.css" rel="stylesheet" type="text/css"/>
+<!-- ... other metadata & script includes ... -->
+<script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+<script type="text/javascript">
+    DoxygenAwesomeDarkModeToggle.init()
+</script>
+<script type="text/javascript" src="doxygen-awesome-fragment-copy-button.js"></script>
+<script type="text/javascript">
+    DoxygenAwesomeFragmentCopyButton.init()
+</script>
+<script type="text/javascript" src="doxygen-awesome-paragraph-link.js"></script>
+<script type="text/javascript">
+    DoxygenAwesomeParagraphLink.init()
+</script>
 </head>
 <body>
 <div id="top"><!-- do not remove this div, it is closed by doxygen! -->
@@ -30,7 +51,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Ponca
-   &#160;<span id="projectnumber">8976dc5e97f677a334261616e8d2314551b8ce3d</span>
+   &#160;<span id="projectnumber">d844664447d2173c00cc41660408e8eb5b3a41d6</span>
    </div>
    <div id="projectbrief">Point Cloud Analysis library</div>
   </td>
@@ -55,6 +76,23 @@ $(function() {
 });
 /* @license-end */</script>
 <div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(document).ready(function(){initNavTree('curvatureEstimation_8hpp_source.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -69,227 +107,323 @@ $(function() {
 </iframe>
 </div>
 
-<div id="nav-path" class="navpath">
-  <ul>
-<li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_695d95a8d8fbec601a248c0414764298.html">Ponca</a></li><li class="navelem"><a class="el" href="dir_ce16314fc45f8638543c5146aff64d4a.html">src</a></li><li class="navelem"><a class="el" href="dir_221133f19e4af6803e4ee7d78db21786.html">Fitting</a></li>  </ul>
-</div>
-</div><!-- top -->
 <div class="header">
   <div class="headertitle">
 <div class="title">curvatureEstimation.hpp</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160; </div>
-<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="keyword">template</span> &lt; <span class="keyword">class</span> DataPo<span class="keywordtype">int</span>, <span class="keyword">class</span> _WFunctor, <span class="keyword">typename</span> T&gt;</div>
-<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="keywordtype">void</span></div>
-<div class="line"><a name="l00004"></a><span class="lineno"><a class="line" href="classPonca_1_1BaseCurvatureEstimator.html#a217e1c02b4bf0de257fa64fe7a51cd37">    4</a></span>&#160;<a class="code" href="classPonca_1_1BaseCurvatureEstimator.html">BaseCurvatureEstimator&lt;DataPoint, _WFunctor, T&gt;::init</a>(<span class="keyword">const</span> <a class="code" href="classPonca_1_1BaseCurvatureEstimator.html#a9bbf7b964dfeca42748109d1b3d1590b">VectorType</a>&amp; _evalPos)</div>
-<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;{</div>
-<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;    Base::init(_evalPos);</div>
-<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160; </div>
-<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;    m_k1 = 0;</div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;    m_k2 = 0;</div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;    m_v1 = VectorType::Zero();</div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;    m_v2 = VectorType::Zero();</div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;}</div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160; </div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160; </div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="keyword">template</span> &lt; <span class="keyword">class</span> DataPo<span class="keywordtype">int</span>, <span class="keyword">class</span> _WFunctor, <span class="keyword">typename</span> T&gt;</div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="keywordtype">void</span></div>
-<div class="line"><a name="l00017"></a><span class="lineno"><a class="line" href="classPonca_1_1NormalCovarianceCurvature.html#a52584f3c6d1b29f13b43997ca6033361">   17</a></span>&#160;<a class="code" href="classPonca_1_1NormalCovarianceCurvature.html">NormalCovarianceCurvature&lt;DataPoint, _WFunctor, T&gt;::init</a>(<span class="keyword">const</span> <a class="code" href="classPonca_1_1BaseCurvatureEstimator.html#a9bbf7b964dfeca42748109d1b3d1590b">VectorType</a>&amp; _evalPos)</div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;{</div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;    Base::init(_evalPos);</div>
+<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="keyword">template</span> &lt; <span class="keyword">class</span> DataPo<span class="keywordtype">int</span>, <span class="keyword">class</span> _WFunctor, <span class="keywordtype">int</span> DiffType, <span class="keyword">typename</span> T&gt;</div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<a class="code" href="group__fitting.html#gabfd697aebf07c1b5c8be5ee401e2dc84">FIT_RESULT</a></div>
+<div class="line"><a name="l00003"></a><span class="lineno"><a class="line" href="classPonca_1_1NormalDerivativesCurvatureEstimator.html#a3a6fb40a5ccca05435ffae82e1cb894a">    3</a></span>&#160;<a class="code" href="classPonca_1_1NormalDerivativesCurvatureEstimator.html">NormalDerivativesCurvatureEstimator&lt;DataPoint, _WFunctor, DiffType, T&gt;::finalize</a>()</div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;{</div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;    <span class="keywordflow">if</span> (Base::finalize() == <a class="code" href="group__fitting.html#ggabfd697aebf07c1b5c8be5ee401e2dc84a86d1e5381a39092fbe5560583c23d64c">STABLE</a>) {</div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;        <span class="keywordflow">if</span> (Base::curvatureEstimatorBase().isValid()) Base::m_eCurrentState = <a class="code" href="group__fitting.html#ggabfd697aebf07c1b5c8be5ee401e2dc84a23aa2882b31e320fa4130218dd98c1a6">CONFLICT_ERROR_FOUND</a>;</div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;        Base::m_eCurrentState = computeCurvature(<span class="keyword">false</span>);</div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;    }</div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160; </div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;    <span class="keywordflow">return</span> Base::m_eCurrentState;</div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;}</div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160; </div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="keyword">template</span> &lt; <span class="keyword">class</span> DataPo<span class="keywordtype">int</span>, <span class="keyword">class</span> _WFunctor, <span class="keywordtype">int</span> DiffType, <span class="keyword">typename</span> T&gt;</div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<a class="code" href="group__fitting.html#gabfd697aebf07c1b5c8be5ee401e2dc84">FIT_RESULT</a> <a class="code" href="classPonca_1_1NormalDerivativesCurvatureEstimator.html">NormalDerivativesCurvatureEstimator&lt;DataPoint, _WFunctor, DiffType, T&gt;::computeCurvature</a>(<span class="keywordtype">bool</span> useNormal)</div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;{</div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;    PONCA_MULTIARCH_STD_MATH(abs);</div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160; </div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;    <span class="comment">// Get the object space Weingarten map dN</span></div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;    MatrixType dN = Base::dNormal().template middleCols&lt;DataPoint::Dim&gt;(Base::isScaleDer() ? 1: 0);</div>
 <div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160; </div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;    m_cov = MatrixType::Zero();</div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;    m_cog = VectorType::Zero();</div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;}</div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160; </div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="keyword">template</span> &lt; <span class="keyword">class</span> DataPo<span class="keywordtype">int</span>, <span class="keyword">class</span> _WFunctor, <span class="keyword">typename</span> T&gt;</div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="keywordtype">bool</span></div>
-<div class="line"><a name="l00027"></a><span class="lineno"><a class="line" href="classPonca_1_1NormalCovarianceCurvature.html#af193fcf844dd9f67e0decb2c7b05e3cb">   27</a></span>&#160;<a class="code" href="classPonca_1_1NormalCovarianceCurvature.html">NormalCovarianceCurvature&lt;DataPoint, _WFunctor, T&gt;::addNeighbor</a>(<span class="keyword">const</span> DataPoint&amp; _nei)</div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;{</div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;    <span class="keywordtype">bool</span> bResult = Base::addNeighbor(_nei);</div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160; </div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;    <span class="keywordflow">if</span>(bResult)</div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;    {</div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;        m_cov += _nei.normal() * _nei.normal().transpose();</div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;        m_cog += _nei.normal();</div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;    }</div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;    <span class="keywordflow">return</span> bResult;</div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;}</div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160; </div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;<span class="keyword">template</span> &lt; <span class="keyword">class</span> DataPo<span class="keywordtype">int</span>, <span class="keyword">class</span> _WFunctor, <span class="keyword">typename</span> T&gt;</div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;<a class="code" href="group__fitting.html#gabfd697aebf07c1b5c8be5ee401e2dc84">FIT_RESULT</a></div>
-<div class="line"><a name="l00041"></a><span class="lineno"><a class="line" href="classPonca_1_1NormalCovarianceCurvature.html#a34e500109bca4a1c522c119cc6635c53">   41</a></span>&#160;<a class="code" href="classPonca_1_1NormalCovarianceCurvature.html">NormalCovarianceCurvature&lt;DataPoint, _WFunctor, T&gt;::finalize</a> ()</div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;{</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    <span class="keyword">typedef</span> <span class="keyword">typename</span> VectorType::Index Index;</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;    <span class="comment">// Compute tangent-space basis</span></div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;    Mat32 B = tangentPlane(useNormal);</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160; </div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;    <span class="comment">// Compute the 2x2 matrix representing the shape operator by transforming dN to the basis B.</span></div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    <span class="comment">// Recall that dN is a bilinear form, it thus transforms as follows:</span></div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    Mat22 S = B.transpose() * dN * B;</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160; </div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    <span class="comment">// Recall that at this stage, the shape operator represented by S describes the normal curvature K_n(u) in the direction u \in R^2 as follows:</span></div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;    <span class="comment">//   K_n(u) = u^T S u</span></div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;    <span class="comment">// The principal curvatures are fully defined by the values and the directions of the extrema of K_n.</span></div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;    <span class="comment">//</span></div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;    <span class="comment">// If the normal field N(x) comes from the gradient of a scalar field, then N(x) is curl-free, and dN and S are symmetric matrices.</span></div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;    <span class="comment">// In this case, the extrema of the previous quadratic form are directly obtained by the the eigenvalue decomposition of S.</span></div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;    <span class="comment">// However, if N(x) is only an approximation of the normal field of a surface, then N(x) is not necessarily curl-free, and in this case S is not symmetric.</span></div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;    <span class="comment">// In this case, we first have to find an equivalent symmetric matrix S&#39; such that:</span></div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;    <span class="comment">//   K_n(u) = u^T S&#39; u,</span></div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;    <span class="comment">// for any u \in R^2.</span></div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;    <span class="comment">// It is easy to see that such a S&#39; is simply obtained as:</span></div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    <span class="comment">//   S&#39; = (S + S^T)/2</span></div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160; </div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    S(0,1) = S(1,0) = (S(0,1) + S(1,0))/Scalar(2);</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    Eigen::SelfAdjointEigenSolver&lt;Mat22&gt; eig2;</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    eig2.computeDirect(S);</div>
 <div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160; </div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    PONCA_MULTIARCH_STD_MATH(abs);</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    <span class="keywordflow">if</span> (eig2.info() != Eigen::Success) <span class="keywordflow">return</span> <a class="code" href="group__fitting.html#ggabfd697aebf07c1b5c8be5ee401e2dc84a08d57dd200082f67128b5274049dda41">UNDEFINED</a>;</div>
 <div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160; </div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;    <a class="code" href="group__fitting.html#gabfd697aebf07c1b5c8be5ee401e2dc84">FIT_RESULT</a> res = Base::finalize();</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160; </div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    <span class="keywordflow">if</span>(this-&gt;isReady())</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    {</div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;        <span class="comment">// center of gravity (mean)</span></div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;        m_cog /= Base::m_nbNeighbors;</div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160; </div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;        <span class="comment">// covariance matrix</span></div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;        m_cov /= Base::m_nbNeighbors;</div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;        m_cov -= m_cog*m_cog.transpose();</div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160; </div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;        m_solver.computeDirect(m_cov);</div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160; </div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;        Base::m_k1 = m_solver.eigenvalues()(1);</div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;        Base::m_k2 = m_solver.eigenvalues()(2);</div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160; </div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;        Base::m_v1 = m_solver.eigenvectors().col(1);</div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;        Base::m_v2 = m_solver.eigenvectors().col(2);</div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160; </div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;        <span class="comment">//TODO(thib) which epsilon value should be chosen ?</span></div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;<span class="comment">//        Scalar epsilon = Eigen::NumTraits&lt;Scalar&gt;::dummy_precision();</span></div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;        <a class="code" href="classPonca_1_1BaseCurvatureEstimator.html#a1d014f294c21316d3f62ded2daf825bc">Scalar</a> epsilon = <a class="code" href="classPonca_1_1BaseCurvatureEstimator.html#a1d014f294c21316d3f62ded2daf825bc">Scalar</a>(1e-3);</div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;        <span class="keywordflow">if</span>(Base::m_k1&lt;epsilon &amp;&amp; Base::m_k2&lt;epsilon)</div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;        {</div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;            Base::m_k1 = <a class="code" href="classPonca_1_1BaseCurvatureEstimator.html#a1d014f294c21316d3f62ded2daf825bc">Scalar</a>(0);</div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;            Base::m_k2 = <a class="code" href="classPonca_1_1BaseCurvatureEstimator.html#a1d014f294c21316d3f62ded2daf825bc">Scalar</a>(0);</div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160; </div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;            <span class="comment">// set principal directions from normals center of gravity</span></div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;            <a class="code" href="classPonca_1_1BaseCurvatureEstimator.html#a9bbf7b964dfeca42748109d1b3d1590b">VectorType</a> n = m_cog.normalized();</div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;            Index i0 = -1, i1 = -1, i2 = -1;</div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;            n.rowwise().squaredNorm().minCoeff(&amp;i0);</div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;            i1 = (i0+1)%3;</div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;            i2 = (i0+2)%3;</div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;            Base::m_v1[i0] = 0;</div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;            Base::m_v1[i1] = n[i2];</div>
-<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;            Base::m_v1[i2] = -n[i1];</div>
-<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;            Base::m_v2[i0] = n[i1]*n[i1] + n[i2]*n[i2];</div>
-<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;            Base::m_v2[i1] = -n[i1]*n[i0];</div>
-<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;            Base::m_v2[i2] = -n[i2]*n[i0];</div>
-<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;        }</div>
-<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;    }</div>
-<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;    <span class="keywordflow">return</span> res;</div>
-<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;}</div>
-<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160; </div>
-<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;<span class="keyword">template</span> &lt; <span class="keyword">class</span> DataPo<span class="keywordtype">int</span>, <span class="keyword">class</span> _WFunctor, <span class="keyword">typename</span> T&gt;</div>
-<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;<span class="keywordtype">void</span></div>
-<div class="line"><a name="l00093"></a><span class="lineno"><a class="line" href="classPonca_1_1ProjectedNormalCovarianceCurvature.html#a646c668b7e39b50356408a318f65b8da">   93</a></span>&#160;<a class="code" href="classPonca_1_1ProjectedNormalCovarianceCurvature.html">ProjectedNormalCovarianceCurvature&lt;DataPoint, _WFunctor, T&gt;::init</a>(<span class="keyword">const</span> <a class="code" href="classPonca_1_1BaseCurvatureEstimator.html#a9bbf7b964dfeca42748109d1b3d1590b">VectorType</a>&amp; _evalPos)</div>
-<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;{</div>
-<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;    Base::init(_evalPos);</div>
-<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160; </div>
-<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;    m_cog = Vector2::Zero();</div>
-<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;    m_cov = Mat22::Zero();</div>
-<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;    m_pass = FIRST_PASS;</div>
-<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;    m_tframe = Mat32::Zero();</div>
-<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;}</div>
-<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160; </div>
-<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;<span class="keyword">template</span> &lt; <span class="keyword">class</span> DataPo<span class="keywordtype">int</span>, <span class="keyword">class</span> _WFunctor, <span class="keyword">typename</span> T&gt;</div>
-<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;<span class="keywordtype">bool</span></div>
-<div class="line"><a name="l00105"></a><span class="lineno"><a class="line" href="classPonca_1_1ProjectedNormalCovarianceCurvature.html#aa97eac19c3f08a6a933be90d4501a341">  105</a></span>&#160;<a class="code" href="classPonca_1_1ProjectedNormalCovarianceCurvature.html">ProjectedNormalCovarianceCurvature&lt;DataPoint, _WFunctor, T&gt;::addNeighbor</a>(<span class="keyword">const</span> DataPoint&amp; _nei)</div>
-<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;{</div>
-<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;    <span class="keywordflow">if</span>(m_pass == FIRST_PASS)</div>
-<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;    {</div>
-<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;        <span class="keywordflow">return</span> Base::addNeighbor(_nei);</div>
-<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;    }</div>
-<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;    <span class="keywordflow">else</span> <span class="keywordflow">if</span>(m_pass == SECOND_PASS)</div>
-<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;    {</div>
-<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;        <a class="code" href="classPonca_1_1BaseCurvatureEstimator.html#a9bbf7b964dfeca42748109d1b3d1590b">VectorType</a> q = _nei.pos() - Base::m_evalPos;</div>
-<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;        <span class="keywordflow">if</span>(Base::m_w.w(q, _nei)&gt;0)</div>
-<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;        {</div>
-<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;            <span class="comment">// project normal on plane</span></div>
-<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;            <a class="code" href="classPonca_1_1BaseCurvatureEstimator.html#a9bbf7b964dfeca42748109d1b3d1590b">VectorType</a> n = _nei.normal();</div>
-<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;            Vector2 proj = m_tframe.transpose() * n;</div>
-<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160; </div>
-<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;            m_cov += proj * proj.transpose();</div>
-<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;            m_cog += proj;</div>
-<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;            <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
-<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;        }</div>
-<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;    }</div>
-<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;    <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
-<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;}</div>
-<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160; </div>
-<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;<span class="keyword">template</span> &lt; <span class="keyword">class</span> DataPo<span class="keywordtype">int</span>, <span class="keyword">class</span> _WFunctor, <span class="keyword">typename</span> T&gt;</div>
-<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;<a class="code" href="group__fitting.html#gabfd697aebf07c1b5c8be5ee401e2dc84">FIT_RESULT</a></div>
-<div class="line"><a name="l00130"></a><span class="lineno"><a class="line" href="classPonca_1_1ProjectedNormalCovarianceCurvature.html#aabcdb2d0117e078751af12b4a344e811">  130</a></span>&#160;<a class="code" href="classPonca_1_1ProjectedNormalCovarianceCurvature.html">ProjectedNormalCovarianceCurvature&lt;DataPoint, _WFunctor, T&gt;::finalize</a> ()</div>
-<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;{</div>
-<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;    <span class="keywordflow">if</span>(m_pass == FIRST_PASS)</div>
-<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;    {</div>
-<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;        <a class="code" href="group__fitting.html#gabfd697aebf07c1b5c8be5ee401e2dc84">FIT_RESULT</a> res = Base::finalize();</div>
-<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160; </div>
-<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;        <span class="keywordflow">if</span>(res != <a class="code" href="group__fitting.html#ggabfd697aebf07c1b5c8be5ee401e2dc84a08d57dd200082f67128b5274049dda41">UNDEFINED</a>)</div>
-<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;        {</div>
-<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;            <span class="comment">// get normal of fitted plane</span></div>
-<div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160;            <a class="code" href="classPonca_1_1BaseCurvatureEstimator.html#a9bbf7b964dfeca42748109d1b3d1590b">VectorType</a> n = this-&gt;primitiveGradient(<a class="code" href="classPonca_1_1BaseCurvatureEstimator.html#a9bbf7b964dfeca42748109d1b3d1590b">VectorType</a>());</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;    Base::setCurvatureValues(eig2.eigenvalues()(0), eig2.eigenvalues()(1),</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;                             B * eig2.eigenvectors().col(0), B * eig2.eigenvectors().col(1));</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160; </div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    <span class="keywordflow">return</span> Base::m_eCurrentState;</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;}</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160; </div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;<span class="keyword">template</span> &lt; <span class="keyword">class</span> DataPo<span class="keywordtype">int</span>, <span class="keyword">class</span> _WFunctor, <span class="keywordtype">int</span> DiffType, <span class="keyword">typename</span> T&gt;</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;<span class="keyword">typename</span> NormalDerivativesCurvatureEstimator&lt;DataPoint, _WFunctor, DiffType, T&gt;::Mat32</div>
+<div class="line"><a name="l00055"></a><span class="lineno"><a class="line" href="classPonca_1_1NormalDerivativesCurvatureEstimator.html#a518ef710dec77937088090c649df3d53">   55</a></span>&#160;<a class="code" href="classPonca_1_1NormalDerivativesCurvatureEstimator.html">NormalDerivativesCurvatureEstimator&lt;DataPoint, _WFunctor, DiffType, T&gt;::tangentPlane</a>(<span class="keywordtype">bool</span> useNormal)<span class="keyword"> const</span></div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;<span class="keyword"></span>{</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    <span class="keyword">typedef</span> <span class="keyword">typename</span> VectorType::Index Index;</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160; </div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;    PONCA_MULTIARCH_STD_MATH(sqrt);</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;    PONCA_MULTIARCH_STD_MATH(abs);</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160; </div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;    Mat32 B;</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;    Index i0=Index(-1), i1=Index(-1), i2=Index(-1);</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160; </div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;    <span class="comment">// Two choices to compute a basis of the tangent plane</span></div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;    <span class="keywordflow">if</span>(useNormal)</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;    {</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;        <span class="comment">// Use a vector orthogonal to the surface (the gradient) and compute an</span></div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;        <span class="comment">// orthonormal basis from it</span></div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;        <a class="code" href="classPonca_1_1NormalDerivativesCurvatureEstimator.html#ae022ffb42769f7bf4a95d13708bedf1f">VectorType</a> n = Base::primitiveGradient();</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;        n.array().abs().minCoeff(&amp;i0); <span class="comment">// i0: dimension where n extends the least</span></div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;        i1 = (i0+1)%3;</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;        i2 = (i0+2)%3;</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160; </div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;        B.col(0)[i0] = 0;</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;        B.col(0)[i1] = n[i2];</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;        B.col(0)[i2] = -n[i1];</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160; </div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;        B.col(0).normalize();</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;        B.col(1) = B.col(0).cross(n);</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;    }</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;    <span class="keywordflow">else</span></div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;    {</div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;        <span class="comment">// Use the spatial derivative of the normal. This option leads to NaN</span></div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;        <span class="comment">// values if dN is null (like in the case of a perfect plane)</span></div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160; </div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;        <span class="comment">// Get the object space Weingarten map dN</span></div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;        <a class="code" href="classPonca_1_1NormalDerivativesCurvatureEstimator.html#a286e5354ba3dad3d33d52738fc71f63a">MatrixType</a> dN = Base::dNormal().template middleCols&lt;DataPoint::Dim&gt;(Base::isScaleDer() ? 1: 0);</div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160; </div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;        <span class="comment">// Compute tangent-space basis from dN</span></div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;        <span class="comment">//   1 - pick the column with maximal norm as the first tangent vector,</span></div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;        <a class="code" href="classPonca_1_1NormalDerivativesCurvatureEstimator.html#aef4892f0edaa7020d2cb487a2020f10a">Scalar</a> sqNorm = dN.colwise().squaredNorm().maxCoeff(&amp;i0);</div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;        B.col(0) = dN.col(i0) / sqrt(sqNorm);</div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;        <span class="comment">//   2 - orthogonalize the other column vectors, and pick the most reliable one</span></div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;        i1 = (i0+1)%3;</div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;        i2 = (i0+2)%3;</div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;        <a class="code" href="classPonca_1_1NormalDerivativesCurvatureEstimator.html#ae022ffb42769f7bf4a95d13708bedf1f">VectorType</a> v1 = dN.col(i1) - B.col(0).dot(dN.col(i1)) * B.col(0);</div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;        <a class="code" href="classPonca_1_1NormalDerivativesCurvatureEstimator.html#ae022ffb42769f7bf4a95d13708bedf1f">VectorType</a> v2 = dN.col(i2) - B.col(0).dot(dN.col(i2)) * B.col(0);</div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;        <a class="code" href="classPonca_1_1NormalDerivativesCurvatureEstimator.html#aef4892f0edaa7020d2cb487a2020f10a">Scalar</a> v1norm2 = v1.squaredNorm();</div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;        <a class="code" href="classPonca_1_1NormalDerivativesCurvatureEstimator.html#aef4892f0edaa7020d2cb487a2020f10a">Scalar</a> v2norm2 = v2.squaredNorm();</div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;        <span class="keywordflow">if</span>(v1norm2 &gt; v2norm2) B.col(1) = v1 / sqrt(v1norm2);</div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;        <span class="keywordflow">else</span>                  B.col(1) = v2 / sqrt(v2norm2);</div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;    }</div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160; </div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;    <span class="keywordflow">return</span> B;</div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;}</div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160; </div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;<span class="keyword">template</span> &lt; <span class="keyword">class</span> DataPo<span class="keywordtype">int</span>, <span class="keyword">class</span> _WFunctor, <span class="keywordtype">int</span> DiffType, <span class="keyword">typename</span> T&gt;</div>
+<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;<span class="keywordtype">void</span></div>
+<div class="line"><a name="l00110"></a><span class="lineno"><a class="line" href="classPonca_1_1NormalCovarianceCurvatureEstimator.html#a9acb8c5de1979a6440f95e4019c19d8a">  110</a></span>&#160;<a class="code" href="classPonca_1_1NormalCovarianceCurvatureEstimator.html">NormalCovarianceCurvatureEstimator&lt;DataPoint, _WFunctor, DiffType, T&gt;::init</a>(<span class="keyword">const</span> <a class="code" href="classPonca_1_1NormalCovarianceCurvatureEstimator.html#a8ef0ce1e43349715c04c695bddf57b45">VectorType</a>&amp; _evalPos)</div>
+<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;{</div>
+<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;    Base::init(_evalPos);</div>
+<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;    m_cov = MatrixType::Zero();</div>
+<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;    m_cog = VectorType::Zero();</div>
+<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;}</div>
+<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160; </div>
+<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;<span class="keyword">template</span> &lt; <span class="keyword">class</span> DataPo<span class="keywordtype">int</span>, <span class="keyword">class</span> _WFunctor, <span class="keywordtype">int</span> DiffType, <span class="keyword">typename</span> T&gt;</div>
+<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;<span class="keywordtype">bool</span></div>
+<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;<a class="code" href="classPonca_1_1NormalCovarianceCurvatureEstimator.html">NormalCovarianceCurvatureEstimator&lt;DataPoint, _WFunctor, DiffType, T&gt;::addLocalNeighbor</a></div>
+<div class="line"><a name="l00120"></a><span class="lineno"><a class="line" href="classPonca_1_1NormalCovarianceCurvatureEstimator.html#a64213f9d010d488d119881eb1a52147d">  120</a></span>&#160;        (<a class="code" href="classPonca_1_1NormalCovarianceCurvatureEstimator.html#a17506112dc7e62634354cf7ccbdbe9ea">Scalar</a> w, <span class="keyword">const</span> <a class="code" href="classPonca_1_1NormalCovarianceCurvatureEstimator.html#a8ef0ce1e43349715c04c695bddf57b45">VectorType</a> &amp;localQ, <span class="keyword">const</span> DataPoint &amp;attributes, <a class="code" href="classPonca_1_1NormalCovarianceCurvatureEstimator.html#a27815b0e96c5dd732123309860979cc7">ScalarArray</a> &amp;dw)</div>
+<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;{</div>
+<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;    <span class="keywordflow">if</span>( Base::addLocalNeighbor(w, localQ, attributes, dw) )</div>
+<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;    {</div>
+<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;        m_cov += w * attributes.normal() * attributes.normal().transpose();</div>
+<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;        m_cog += attributes.normal();</div>
+<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;        <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;    }</div>
+<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;    <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;}</div>
+<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160; </div>
+<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;<span class="keyword">template</span> &lt; <span class="keyword">class</span> DataPo<span class="keywordtype">int</span>, <span class="keyword">class</span> _WFunctor, <span class="keywordtype">int</span> DiffType, <span class="keyword">typename</span> T&gt;</div>
+<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;<a class="code" href="group__fitting.html#gabfd697aebf07c1b5c8be5ee401e2dc84">FIT_RESULT</a></div>
+<div class="line"><a name="l00133"></a><span class="lineno"><a class="line" href="classPonca_1_1NormalCovarianceCurvatureEstimator.html#ac5862fdb79c1ec38b99602da6029a0dd">  133</a></span>&#160;<a class="code" href="classPonca_1_1NormalCovarianceCurvatureEstimator.html">NormalCovarianceCurvatureEstimator&lt;DataPoint, _WFunctor, DiffType, T&gt;::finalize</a> ()</div>
+<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;{</div>
+<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;    <span class="keyword">typedef</span> <span class="keyword">typename</span> VectorType::Index Index;</div>
+<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160; </div>
+<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;    PONCA_MULTIARCH_STD_MATH(abs);</div>
+<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160; </div>
+<div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160;    <a class="code" href="group__fitting.html#gabfd697aebf07c1b5c8be5ee401e2dc84">FIT_RESULT</a> res = Base::finalize();</div>
 <div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160; </div>
-<div class="line"><a name="l00141"></a><span class="lineno">  141</span>&#160;            <span class="comment">// compute orthonormal frame of the tangent plane</span></div>
-<div class="line"><a name="l00142"></a><span class="lineno">  142</span>&#160;            Index i0 = -1, i1 = -1, i2 = -1;</div>
-<div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160;            n.rowwise().squaredNorm().minCoeff(&amp;i0);</div>
-<div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160;            i1 = (i0+1)%3;</div>
-<div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160;            i2 = (i0+2)%3;</div>
-<div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160;            m_tframe.col(0)[i0] = 0;</div>
-<div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;            m_tframe.col(0)[i1] = n[i2];</div>
-<div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;            m_tframe.col(0)[i2] = -n[i1];</div>
-<div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;            m_tframe.col(1)[i0] = n[i1]*n[i1] + n[i2]*n[i2];</div>
-<div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;            m_tframe.col(1)[i1] = -n[i1]*n[i0];</div>
-<div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;            m_tframe.col(1)[i2] = -n[i2]*n[i0];</div>
-<div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160; </div>
-<div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160;            <span class="comment">// go to second pass</span></div>
-<div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160;            m_pass = SECOND_PASS;</div>
-<div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160;            <span class="keywordflow">return</span> <a class="code" href="group__fitting.html#ggabfd697aebf07c1b5c8be5ee401e2dc84a0d50cd1855fec459b2c5756ec38d4a17">NEED_OTHER_PASS</a>;</div>
-<div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160;        }</div>
-<div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160;        <span class="keywordflow">else</span></div>
-<div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160;        {</div>
-<div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160;            <span class="keywordflow">return</span> <a class="code" href="group__fitting.html#ggabfd697aebf07c1b5c8be5ee401e2dc84a08d57dd200082f67128b5274049dda41">UNDEFINED</a>;</div>
-<div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160;        }</div>
-<div class="line"><a name="l00161"></a><span class="lineno">  161</span>&#160;    }</div>
-<div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160;    <span class="keywordflow">else</span> <span class="keywordflow">if</span>(m_pass == SECOND_PASS)</div>
-<div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160;    {</div>
-<div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160;        <span class="comment">// center of gravity (mean)</span></div>
-<div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160;        m_cog /= Base::m_nbNeighbors;</div>
-<div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160; </div>
-<div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160;        <span class="comment">// covariance matrix</span></div>
-<div class="line"><a name="l00168"></a><span class="lineno">  168</span>&#160;        m_cov /= Base::m_nbNeighbors;</div>
-<div class="line"><a name="l00169"></a><span class="lineno">  169</span>&#160;        m_cov -= m_cog*m_cog.transpose();</div>
-<div class="line"><a name="l00170"></a><span class="lineno">  170</span>&#160; </div>
-<div class="line"><a name="l00171"></a><span class="lineno">  171</span>&#160;        m_solver.computeDirect(m_cov);</div>
-<div class="line"><a name="l00172"></a><span class="lineno">  172</span>&#160; </div>
-<div class="line"><a name="l00173"></a><span class="lineno">  173</span>&#160;        Base::m_k1 = m_solver.eigenvalues()(0);</div>
-<div class="line"><a name="l00174"></a><span class="lineno">  174</span>&#160;        Base::m_k2 = m_solver.eigenvalues()(1);</div>
-<div class="line"><a name="l00175"></a><span class="lineno">  175</span>&#160; </div>
-<div class="line"><a name="l00176"></a><span class="lineno">  176</span>&#160;        <span class="comment">// transform from local plane coordinates to world coordinates</span></div>
-<div class="line"><a name="l00177"></a><span class="lineno">  177</span>&#160;        Base::m_v1 = m_tframe * m_solver.eigenvectors().col(0);</div>
-<div class="line"><a name="l00178"></a><span class="lineno">  178</span>&#160;        Base::m_v2 = m_tframe * m_solver.eigenvectors().col(1);</div>
-<div class="line"><a name="l00179"></a><span class="lineno">  179</span>&#160; </div>
-<div class="line"><a name="l00180"></a><span class="lineno">  180</span>&#160;        <span class="comment">//TODO(thib) which epsilon value should be chosen ?</span></div>
-<div class="line"><a name="l00181"></a><span class="lineno">  181</span>&#160;<span class="comment">//        Scalar epsilon = Eigen::NumTraits&lt;Scalar&gt;::dummy_precision();</span></div>
-<div class="line"><a name="l00182"></a><span class="lineno">  182</span>&#160;        <a class="code" href="classPonca_1_1BaseCurvatureEstimator.html#a1d014f294c21316d3f62ded2daf825bc">Scalar</a> epsilon = <a class="code" href="classPonca_1_1BaseCurvatureEstimator.html#a1d014f294c21316d3f62ded2daf825bc">Scalar</a>(1e-3);</div>
-<div class="line"><a name="l00183"></a><span class="lineno">  183</span>&#160;        <span class="keywordflow">if</span>(Base::m_k1&lt;epsilon &amp;&amp; Base::m_k2&lt;epsilon)</div>
-<div class="line"><a name="l00184"></a><span class="lineno">  184</span>&#160;        {</div>
-<div class="line"><a name="l00185"></a><span class="lineno">  185</span>&#160;            Base::m_k1 = <a class="code" href="classPonca_1_1BaseCurvatureEstimator.html#a1d014f294c21316d3f62ded2daf825bc">Scalar</a>(0);</div>
-<div class="line"><a name="l00186"></a><span class="lineno">  186</span>&#160;            Base::m_k2 = <a class="code" href="classPonca_1_1BaseCurvatureEstimator.html#a1d014f294c21316d3f62ded2daf825bc">Scalar</a>(0);</div>
-<div class="line"><a name="l00187"></a><span class="lineno">  187</span>&#160; </div>
-<div class="line"><a name="l00188"></a><span class="lineno">  188</span>&#160;            <span class="comment">// set principal directions from fitted plane</span></div>
-<div class="line"><a name="l00189"></a><span class="lineno">  189</span>&#160;            Base::m_v2 = m_tframe.col(0);</div>
-<div class="line"><a name="l00190"></a><span class="lineno">  190</span>&#160;            Base::m_v1 = m_tframe.col(1);</div>
-<div class="line"><a name="l00191"></a><span class="lineno">  191</span>&#160;        }</div>
-<div class="line"><a name="l00192"></a><span class="lineno">  192</span>&#160; </div>
-<div class="line"><a name="l00193"></a><span class="lineno">  193</span>&#160;        <span class="keywordflow">return</span> <a class="code" href="group__fitting.html#ggabfd697aebf07c1b5c8be5ee401e2dc84a86d1e5381a39092fbe5560583c23d64c">STABLE</a>;</div>
-<div class="line"><a name="l00194"></a><span class="lineno">  194</span>&#160;    }</div>
-<div class="line"><a name="l00195"></a><span class="lineno">  195</span>&#160;    <span class="keywordflow">return</span> <a class="code" href="group__fitting.html#ggabfd697aebf07c1b5c8be5ee401e2dc84a08d57dd200082f67128b5274049dda41">UNDEFINED</a>;</div>
-<div class="line"><a name="l00196"></a><span class="lineno">  196</span>&#160;}</div>
+<div class="line"><a name="l00141"></a><span class="lineno">  141</span>&#160;    <span class="keywordflow">if</span>(this-&gt;isReady())</div>
+<div class="line"><a name="l00142"></a><span class="lineno">  142</span>&#160;    {</div>
+<div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160;        <span class="comment">// center of gravity (mean)</span></div>
+<div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160;        m_cog /= Base::m_sumW;</div>
+<div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160; </div>
+<div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160;        <span class="comment">// Center the covariance on the centroid</span></div>
+<div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;        m_cov = m_cov/Base::m_sumW - m_cog * m_cog.transpose();</div>
+<div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160; </div>
+<div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;        m_solver.computeDirect(m_cov);</div>
+<div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160; </div>
+<div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;        <a class="code" href="classPonca_1_1NormalCovarianceCurvatureEstimator.html#a17506112dc7e62634354cf7ccbdbe9ea">Scalar</a> k1 = m_solver.eigenvalues()(1);</div>
+<div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160;        <a class="code" href="classPonca_1_1NormalCovarianceCurvatureEstimator.html#a17506112dc7e62634354cf7ccbdbe9ea">Scalar</a> k2 = m_solver.eigenvalues()(2);</div>
+<div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160; </div>
+<div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160;        <a class="code" href="classPonca_1_1NormalCovarianceCurvatureEstimator.html#a8ef0ce1e43349715c04c695bddf57b45">VectorType</a> v1 = m_solver.eigenvectors().col(1);</div>
+<div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160;        <a class="code" href="classPonca_1_1NormalCovarianceCurvatureEstimator.html#a8ef0ce1e43349715c04c695bddf57b45">VectorType</a> v2 = m_solver.eigenvectors().col(2);</div>
+<div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160; </div>
+<div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160;        <span class="comment">// fallback</span></div>
+<div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160;        <span class="comment">// TODO(thib) which epsilon value should be chosen ?</span></div>
+<div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160;        <a class="code" href="classPonca_1_1NormalCovarianceCurvatureEstimator.html#a17506112dc7e62634354cf7ccbdbe9ea">Scalar</a> epsilon = <a class="code" href="classPonca_1_1NormalCovarianceCurvatureEstimator.html#a17506112dc7e62634354cf7ccbdbe9ea">Scalar</a>(1e-3);</div>
+<div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160;        <span class="keywordflow">if</span>(k1&lt;epsilon &amp;&amp; k2&lt;epsilon)</div>
+<div class="line"><a name="l00161"></a><span class="lineno">  161</span>&#160;        {</div>
+<div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160;            k1 = <a class="code" href="classPonca_1_1NormalCovarianceCurvatureEstimator.html#a17506112dc7e62634354cf7ccbdbe9ea">Scalar</a>(0);</div>
+<div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160;            k2 = <a class="code" href="classPonca_1_1NormalCovarianceCurvatureEstimator.html#a17506112dc7e62634354cf7ccbdbe9ea">Scalar</a>(0);</div>
+<div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160; </div>
+<div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160;            <span class="comment">// set principal directions from normals center of gravity</span></div>
+<div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160;            <a class="code" href="classPonca_1_1NormalCovarianceCurvatureEstimator.html#a8ef0ce1e43349715c04c695bddf57b45">VectorType</a> n = m_cog.normalized();</div>
+<div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160;            Index i0 = -1, i1 = -1, i2 = -1;</div>
+<div class="line"><a name="l00168"></a><span class="lineno">  168</span>&#160;            n.rowwise().squaredNorm().minCoeff(&amp;i0);</div>
+<div class="line"><a name="l00169"></a><span class="lineno">  169</span>&#160;            i1 = (i0+1)%3;</div>
+<div class="line"><a name="l00170"></a><span class="lineno">  170</span>&#160;            i2 = (i0+2)%3;</div>
+<div class="line"><a name="l00171"></a><span class="lineno">  171</span>&#160;            v1[i0] = 0;</div>
+<div class="line"><a name="l00172"></a><span class="lineno">  172</span>&#160;            v1[i1] = n[i2];</div>
+<div class="line"><a name="l00173"></a><span class="lineno">  173</span>&#160;            v1[i2] = -n[i1];</div>
+<div class="line"><a name="l00174"></a><span class="lineno">  174</span>&#160;            v2[i0] = n[i1]*n[i1] + n[i2]*n[i2];</div>
+<div class="line"><a name="l00175"></a><span class="lineno">  175</span>&#160;            v2[i1] = -n[i1]*n[i0];</div>
+<div class="line"><a name="l00176"></a><span class="lineno">  176</span>&#160;            v2[i2] = -n[i2]*n[i0];</div>
+<div class="line"><a name="l00177"></a><span class="lineno">  177</span>&#160;        }</div>
+<div class="line"><a name="l00178"></a><span class="lineno">  178</span>&#160; </div>
+<div class="line"><a name="l00179"></a><span class="lineno">  179</span>&#160;        Base::setCurvatureValues(k1, k2, v1, v2);</div>
+<div class="line"><a name="l00180"></a><span class="lineno">  180</span>&#160;    }</div>
+<div class="line"><a name="l00181"></a><span class="lineno">  181</span>&#160;    <span class="keywordflow">return</span> res;</div>
+<div class="line"><a name="l00182"></a><span class="lineno">  182</span>&#160;}</div>
+<div class="line"><a name="l00183"></a><span class="lineno">  183</span>&#160; </div>
+<div class="line"><a name="l00184"></a><span class="lineno">  184</span>&#160;<span class="keyword">template</span> &lt; <span class="keyword">class</span> DataPo<span class="keywordtype">int</span>, <span class="keyword">class</span> _WFunctor, <span class="keywordtype">int</span> DiffType, <span class="keyword">typename</span> T&gt;</div>
+<div class="line"><a name="l00185"></a><span class="lineno">  185</span>&#160;<span class="keywordtype">void</span></div>
+<div class="line"><a name="l00186"></a><span class="lineno"><a class="line" href="classPonca_1_1ProjectedNormalCovarianceCurvatureEstimator.html#a823f9f3df5a3ca963d9d6566a3576edc">  186</a></span>&#160;<a class="code" href="classPonca_1_1ProjectedNormalCovarianceCurvatureEstimator.html">ProjectedNormalCovarianceCurvatureEstimator&lt;DataPoint, _WFunctor, DiffType, T&gt;::init</a>(<span class="keyword">const</span> <a class="code" href="classPonca_1_1ProjectedNormalCovarianceCurvatureEstimator.html#a645e4fad5e3c4c22db03cb95727ce872">VectorType</a>&amp; _evalPos)</div>
+<div class="line"><a name="l00187"></a><span class="lineno">  187</span>&#160;{</div>
+<div class="line"><a name="l00188"></a><span class="lineno">  188</span>&#160;    Base::init(_evalPos);</div>
+<div class="line"><a name="l00189"></a><span class="lineno">  189</span>&#160; </div>
+<div class="line"><a name="l00190"></a><span class="lineno">  190</span>&#160;    m_cog = Vector2::Zero();</div>
+<div class="line"><a name="l00191"></a><span class="lineno">  191</span>&#160;    m_cov = Mat22::Zero();</div>
+<div class="line"><a name="l00192"></a><span class="lineno">  192</span>&#160;    m_pass = FIRST_PASS;</div>
+<div class="line"><a name="l00193"></a><span class="lineno">  193</span>&#160;    m_tframe = Mat32::Zero();</div>
+<div class="line"><a name="l00194"></a><span class="lineno">  194</span>&#160;}</div>
+<div class="line"><a name="l00195"></a><span class="lineno">  195</span>&#160; </div>
+<div class="line"><a name="l00196"></a><span class="lineno">  196</span>&#160;<span class="keyword">template</span> &lt; <span class="keyword">class</span> DataPo<span class="keywordtype">int</span>, <span class="keyword">class</span> _WFunctor, <span class="keywordtype">int</span> DiffType, <span class="keyword">typename</span> T&gt;</div>
+<div class="line"><a name="l00197"></a><span class="lineno">  197</span>&#160;<span class="keywordtype">bool</span></div>
+<div class="line"><a name="l00198"></a><span class="lineno">  198</span>&#160;<a class="code" href="classPonca_1_1ProjectedNormalCovarianceCurvatureEstimator.html">ProjectedNormalCovarianceCurvatureEstimator&lt;DataPoint, _WFunctor, DiffType, T&gt;::addLocalNeighbor</a></div>
+<div class="line"><a name="l00199"></a><span class="lineno"><a class="line" href="classPonca_1_1ProjectedNormalCovarianceCurvatureEstimator.html#a64f7094e63575105ad0df959145c35d1">  199</a></span>&#160;        (<a class="code" href="classPonca_1_1ProjectedNormalCovarianceCurvatureEstimator.html#a7d645e8b11e89aff2a25b6b6f91d4edc">Scalar</a> w, <span class="keyword">const</span> <a class="code" href="classPonca_1_1ProjectedNormalCovarianceCurvatureEstimator.html#a645e4fad5e3c4c22db03cb95727ce872">VectorType</a> &amp;localQ, <span class="keyword">const</span> DataPoint &amp;attributes, <a class="code" href="classPonca_1_1ProjectedNormalCovarianceCurvatureEstimator.html#aa899efe0c679620e2bdf722b1f213ba3">ScalarArray</a> &amp;dw)</div>
+<div class="line"><a name="l00200"></a><span class="lineno">  200</span>&#160;{</div>
+<div class="line"><a name="l00201"></a><span class="lineno">  201</span>&#160;    <span class="keywordflow">if</span>(m_pass == FIRST_PASS)</div>
+<div class="line"><a name="l00202"></a><span class="lineno">  202</span>&#160;    {</div>
+<div class="line"><a name="l00203"></a><span class="lineno">  203</span>&#160;        <span class="keywordflow">return</span> Base::addLocalNeighbor(w, localQ, attributes, dw);</div>
+<div class="line"><a name="l00204"></a><span class="lineno">  204</span>&#160;    }</div>
+<div class="line"><a name="l00205"></a><span class="lineno">  205</span>&#160;    <span class="keywordflow">else</span> <span class="keywordflow">if</span>(m_pass == SECOND_PASS)</div>
+<div class="line"><a name="l00206"></a><span class="lineno">  206</span>&#160;    {</div>
+<div class="line"><a name="l00207"></a><span class="lineno">  207</span>&#160;        <span class="comment">// project normal on plane</span></div>
+<div class="line"><a name="l00208"></a><span class="lineno">  208</span>&#160;        <a class="code" href="classPonca_1_1ProjectedNormalCovarianceCurvatureEstimator.html#a645e4fad5e3c4c22db03cb95727ce872">VectorType</a> n = attributes.normal();</div>
+<div class="line"><a name="l00209"></a><span class="lineno">  209</span>&#160;        Vector2 proj = m_tframe.transpose() * n;</div>
+<div class="line"><a name="l00210"></a><span class="lineno">  210</span>&#160; </div>
+<div class="line"><a name="l00211"></a><span class="lineno">  211</span>&#160;        m_cov += proj * proj.transpose();</div>
+<div class="line"><a name="l00212"></a><span class="lineno">  212</span>&#160;        m_cog += w * proj;</div>
+<div class="line"><a name="l00213"></a><span class="lineno">  213</span>&#160;        <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><a name="l00214"></a><span class="lineno">  214</span>&#160;    }</div>
+<div class="line"><a name="l00215"></a><span class="lineno">  215</span>&#160;    <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00216"></a><span class="lineno">  216</span>&#160;}</div>
+<div class="line"><a name="l00217"></a><span class="lineno">  217</span>&#160; </div>
+<div class="line"><a name="l00218"></a><span class="lineno">  218</span>&#160;<span class="keyword">template</span> &lt; <span class="keyword">class</span> DataPo<span class="keywordtype">int</span>, <span class="keyword">class</span> _WFunctor, <span class="keywordtype">int</span> DiffType, <span class="keyword">typename</span> T&gt;</div>
+<div class="line"><a name="l00219"></a><span class="lineno">  219</span>&#160;<a class="code" href="group__fitting.html#gabfd697aebf07c1b5c8be5ee401e2dc84">FIT_RESULT</a></div>
+<div class="line"><a name="l00220"></a><span class="lineno"><a class="line" href="classPonca_1_1ProjectedNormalCovarianceCurvatureEstimator.html#a08f4188e75e437d0a44dd4a1013d5ce5">  220</a></span>&#160;<a class="code" href="classPonca_1_1ProjectedNormalCovarianceCurvatureEstimator.html">ProjectedNormalCovarianceCurvatureEstimator&lt;DataPoint, _WFunctor, DiffType, T&gt;::finalize</a> ()</div>
+<div class="line"><a name="l00221"></a><span class="lineno">  221</span>&#160;{</div>
+<div class="line"><a name="l00222"></a><span class="lineno">  222</span>&#160;    <span class="keywordflow">if</span>(m_pass == FIRST_PASS)</div>
+<div class="line"><a name="l00223"></a><span class="lineno">  223</span>&#160;    {</div>
+<div class="line"><a name="l00224"></a><span class="lineno">  224</span>&#160;        <a class="code" href="group__fitting.html#gabfd697aebf07c1b5c8be5ee401e2dc84">FIT_RESULT</a> res = Base::finalize();</div>
+<div class="line"><a name="l00225"></a><span class="lineno">  225</span>&#160; </div>
+<div class="line"><a name="l00226"></a><span class="lineno">  226</span>&#160;        <span class="keywordflow">if</span>(res != <a class="code" href="group__fitting.html#ggabfd697aebf07c1b5c8be5ee401e2dc84a08d57dd200082f67128b5274049dda41">UNDEFINED</a>)</div>
+<div class="line"><a name="l00227"></a><span class="lineno">  227</span>&#160;        {</div>
+<div class="line"><a name="l00228"></a><span class="lineno">  228</span>&#160;            <span class="comment">// get normal of fitted plane</span></div>
+<div class="line"><a name="l00229"></a><span class="lineno">  229</span>&#160;            <a class="code" href="classPonca_1_1ProjectedNormalCovarianceCurvatureEstimator.html#a645e4fad5e3c4c22db03cb95727ce872">VectorType</a> n = this-&gt;primitiveGradient(<a class="code" href="classPonca_1_1ProjectedNormalCovarianceCurvatureEstimator.html#a645e4fad5e3c4c22db03cb95727ce872">VectorType</a>());</div>
+<div class="line"><a name="l00230"></a><span class="lineno">  230</span>&#160; </div>
+<div class="line"><a name="l00231"></a><span class="lineno">  231</span>&#160;            <span class="comment">// compute orthonormal frame of the tangent plane</span></div>
+<div class="line"><a name="l00232"></a><span class="lineno">  232</span>&#160;            Index i0 = -1, i1 = -1, i2 = -1;</div>
+<div class="line"><a name="l00233"></a><span class="lineno">  233</span>&#160;            n.rowwise().squaredNorm().minCoeff(&amp;i0);</div>
+<div class="line"><a name="l00234"></a><span class="lineno">  234</span>&#160;            i1 = (i0+1)%3;</div>
+<div class="line"><a name="l00235"></a><span class="lineno">  235</span>&#160;            i2 = (i0+2)%3;</div>
+<div class="line"><a name="l00236"></a><span class="lineno">  236</span>&#160;            m_tframe.col(0)[i0] = 0;</div>
+<div class="line"><a name="l00237"></a><span class="lineno">  237</span>&#160;            m_tframe.col(0)[i1] = n[i2];</div>
+<div class="line"><a name="l00238"></a><span class="lineno">  238</span>&#160;            m_tframe.col(0)[i2] = -n[i1];</div>
+<div class="line"><a name="l00239"></a><span class="lineno">  239</span>&#160;            m_tframe.col(1)[i0] = n[i1]*n[i1] + n[i2]*n[i2];</div>
+<div class="line"><a name="l00240"></a><span class="lineno">  240</span>&#160;            m_tframe.col(1)[i1] = -n[i1]*n[i0];</div>
+<div class="line"><a name="l00241"></a><span class="lineno">  241</span>&#160;            m_tframe.col(1)[i2] = -n[i2]*n[i0];</div>
+<div class="line"><a name="l00242"></a><span class="lineno">  242</span>&#160; </div>
+<div class="line"><a name="l00243"></a><span class="lineno">  243</span>&#160;            <span class="comment">// go to second pass</span></div>
+<div class="line"><a name="l00244"></a><span class="lineno">  244</span>&#160;            m_pass = SECOND_PASS;</div>
+<div class="line"><a name="l00245"></a><span class="lineno">  245</span>&#160;            <span class="keywordflow">return</span> <a class="code" href="group__fitting.html#ggabfd697aebf07c1b5c8be5ee401e2dc84a0d50cd1855fec459b2c5756ec38d4a17">NEED_OTHER_PASS</a>;</div>
+<div class="line"><a name="l00246"></a><span class="lineno">  246</span>&#160;        }</div>
+<div class="line"><a name="l00247"></a><span class="lineno">  247</span>&#160;        <span class="keywordflow">else</span></div>
+<div class="line"><a name="l00248"></a><span class="lineno">  248</span>&#160;        {</div>
+<div class="line"><a name="l00249"></a><span class="lineno">  249</span>&#160;            <span class="keywordflow">return</span> <a class="code" href="group__fitting.html#ggabfd697aebf07c1b5c8be5ee401e2dc84a08d57dd200082f67128b5274049dda41">UNDEFINED</a>;</div>
+<div class="line"><a name="l00250"></a><span class="lineno">  250</span>&#160;        }</div>
+<div class="line"><a name="l00251"></a><span class="lineno">  251</span>&#160;    }</div>
+<div class="line"><a name="l00252"></a><span class="lineno">  252</span>&#160;    <span class="keywordflow">else</span> <span class="keywordflow">if</span>(m_pass == SECOND_PASS)</div>
+<div class="line"><a name="l00253"></a><span class="lineno">  253</span>&#160;    {</div>
+<div class="line"><a name="l00254"></a><span class="lineno">  254</span>&#160;        <span class="comment">// center of gravity (mean)</span></div>
+<div class="line"><a name="l00255"></a><span class="lineno">  255</span>&#160;        m_cog /= Base::m_sumW;</div>
+<div class="line"><a name="l00256"></a><span class="lineno">  256</span>&#160; </div>
+<div class="line"><a name="l00257"></a><span class="lineno">  257</span>&#160;        <span class="comment">// Center the covariance on the centroid</span></div>
+<div class="line"><a name="l00258"></a><span class="lineno">  258</span>&#160;        m_cov = m_cov/Base::m_sumW - m_cog * m_cog.transpose();</div>
+<div class="line"><a name="l00259"></a><span class="lineno">  259</span>&#160; </div>
+<div class="line"><a name="l00260"></a><span class="lineno">  260</span>&#160;        m_solver.computeDirect(m_cov);</div>
+<div class="line"><a name="l00261"></a><span class="lineno">  261</span>&#160; </div>
+<div class="line"><a name="l00262"></a><span class="lineno">  262</span>&#160;        Base::m_k1 = m_solver.eigenvalues()(0);</div>
+<div class="line"><a name="l00263"></a><span class="lineno">  263</span>&#160;        Base::m_k2 = m_solver.eigenvalues()(1);</div>
+<div class="line"><a name="l00264"></a><span class="lineno">  264</span>&#160; </div>
+<div class="line"><a name="l00265"></a><span class="lineno">  265</span>&#160;        <span class="comment">// transform from local plane coordinates to world coordinates</span></div>
+<div class="line"><a name="l00266"></a><span class="lineno">  266</span>&#160;        Base::m_v1 = m_tframe * m_solver.eigenvectors().col(0);</div>
+<div class="line"><a name="l00267"></a><span class="lineno">  267</span>&#160;        Base::m_v2 = m_tframe * m_solver.eigenvectors().col(1);</div>
+<div class="line"><a name="l00268"></a><span class="lineno">  268</span>&#160; </div>
+<div class="line"><a name="l00269"></a><span class="lineno">  269</span>&#160;        <span class="comment">//TODO(thib) which epsilon value should be chosen ?</span></div>
+<div class="line"><a name="l00270"></a><span class="lineno">  270</span>&#160;<span class="comment">//        Scalar epsilon = Eigen::NumTraits&lt;Scalar&gt;::dummy_precision();</span></div>
+<div class="line"><a name="l00271"></a><span class="lineno">  271</span>&#160;        <a class="code" href="classPonca_1_1ProjectedNormalCovarianceCurvatureEstimator.html#a7d645e8b11e89aff2a25b6b6f91d4edc">Scalar</a> epsilon = <a class="code" href="classPonca_1_1ProjectedNormalCovarianceCurvatureEstimator.html#a7d645e8b11e89aff2a25b6b6f91d4edc">Scalar</a>(1e-3);</div>
+<div class="line"><a name="l00272"></a><span class="lineno">  272</span>&#160;        <span class="keywordflow">if</span>(Base::m_k1&lt;epsilon &amp;&amp; Base::m_k2&lt;epsilon)</div>
+<div class="line"><a name="l00273"></a><span class="lineno">  273</span>&#160;        {</div>
+<div class="line"><a name="l00274"></a><span class="lineno">  274</span>&#160;            Base::m_k1 = <a class="code" href="classPonca_1_1ProjectedNormalCovarianceCurvatureEstimator.html#a7d645e8b11e89aff2a25b6b6f91d4edc">Scalar</a>(0);</div>
+<div class="line"><a name="l00275"></a><span class="lineno">  275</span>&#160;            Base::m_k2 = <a class="code" href="classPonca_1_1ProjectedNormalCovarianceCurvatureEstimator.html#a7d645e8b11e89aff2a25b6b6f91d4edc">Scalar</a>(0);</div>
+<div class="line"><a name="l00276"></a><span class="lineno">  276</span>&#160; </div>
+<div class="line"><a name="l00277"></a><span class="lineno">  277</span>&#160;            <span class="comment">// set principal directions from fitted plane</span></div>
+<div class="line"><a name="l00278"></a><span class="lineno">  278</span>&#160;            Base::m_v2 = m_tframe.col(0);</div>
+<div class="line"><a name="l00279"></a><span class="lineno">  279</span>&#160;            Base::m_v1 = m_tframe.col(1);</div>
+<div class="line"><a name="l00280"></a><span class="lineno">  280</span>&#160;        }</div>
+<div class="line"><a name="l00281"></a><span class="lineno">  281</span>&#160; </div>
+<div class="line"><a name="l00282"></a><span class="lineno">  282</span>&#160;        <span class="keywordflow">return</span> <a class="code" href="group__fitting.html#ggabfd697aebf07c1b5c8be5ee401e2dc84a86d1e5381a39092fbe5560583c23d64c">STABLE</a>;</div>
+<div class="line"><a name="l00283"></a><span class="lineno">  283</span>&#160;    }</div>
+<div class="line"><a name="l00284"></a><span class="lineno">  284</span>&#160;    <span class="keywordflow">return</span> <a class="code" href="group__fitting.html#ggabfd697aebf07c1b5c8be5ee401e2dc84a08d57dd200082f67128b5274049dda41">UNDEFINED</a>;</div>
+<div class="line"><a name="l00285"></a><span class="lineno">  285</span>&#160;}</div>
 </div><!-- fragment --></div><!-- contents -->
-<div class="ttc" id="agroup__fitting_html_ggabfd697aebf07c1b5c8be5ee401e2dc84a86d1e5381a39092fbe5560583c23d64c"><div class="ttname"><a href="group__fitting.html#ggabfd697aebf07c1b5c8be5ee401e2dc84a86d1e5381a39092fbe5560583c23d64c">Ponca::STABLE</a></div><div class="ttdeci">@ STABLE</div><div class="ttdoc">The fitting is stable an ready to use (and having more than 6 neighbours)</div><div class="ttdef"><b>Definition:</b> enums.h:20</div></div>
-<div class="ttc" id="aclassPonca_1_1BaseCurvatureEstimator_html"><div class="ttname"><a href="classPonca_1_1BaseCurvatureEstimator.html">Ponca::BaseCurvatureEstimator</a></div><div class="ttdoc">Base class for any 3d curvature estimator: holds k1, k2 and associated vectors.</div><div class="ttdef"><b>Definition:</b> curvatureEstimation.h:21</div></div>
-<div class="ttc" id="aclassPonca_1_1NormalCovarianceCurvature_html"><div class="ttname"><a href="classPonca_1_1NormalCovarianceCurvature.html">Ponca::NormalCovarianceCurvature</a></div><div class="ttdoc">Extension to compute curvature values based on a covariance analysis of normal vectors of neighbors.</div><div class="ttdef"><b>Definition:</b> curvatureEstimation.h:104</div></div>
-<div class="ttc" id="aclassPonca_1_1ProjectedNormalCovarianceCurvature_html"><div class="ttname"><a href="classPonca_1_1ProjectedNormalCovarianceCurvature.html">Ponca::ProjectedNormalCovarianceCurvature</a></div><div class="ttdoc">Extension to compute curvature values based on a covariance analysis of normal vectors of neighbors p...</div><div class="ttdef"><b>Definition:</b> curvatureEstimation.h:162</div></div>
-<div class="ttc" id="agroup__fitting_html_gabfd697aebf07c1b5c8be5ee401e2dc84"><div class="ttname"><a href="group__fitting.html#gabfd697aebf07c1b5c8be5ee401e2dc84">Ponca::FIT_RESULT</a></div><div class="ttdeci">FIT_RESULT</div><div class="ttdef"><b>Definition:</b> enums.h:16</div></div>
-<div class="ttc" id="aclassPonca_1_1BaseCurvatureEstimator_html_a1d014f294c21316d3f62ded2daf825bc"><div class="ttname"><a href="classPonca_1_1BaseCurvatureEstimator.html#a1d014f294c21316d3f62ded2daf825bc">Ponca::BaseCurvatureEstimator::Scalar</a></div><div class="ttdeci">Base::Scalar Scalar</div><div class="ttdoc">Inherited scalar type.</div><div class="ttdef"><b>Definition:</b> curvatureEstimation.h:33</div></div>
-<div class="ttc" id="agroup__fitting_html_ggabfd697aebf07c1b5c8be5ee401e2dc84a08d57dd200082f67128b5274049dda41"><div class="ttname"><a href="group__fitting.html#ggabfd697aebf07c1b5c8be5ee401e2dc84a08d57dd200082f67128b5274049dda41">Ponca::UNDEFINED</a></div><div class="ttdeci">@ UNDEFINED</div><div class="ttdoc">The fitting is undefined, you can't use it for valid results (and having less than 3 neighbors)</div><div class="ttdef"><b>Definition:</b> enums.h:26</div></div>
-<div class="ttc" id="agroup__fitting_html_ggabfd697aebf07c1b5c8be5ee401e2dc84a0d50cd1855fec459b2c5756ec38d4a17"><div class="ttname"><a href="group__fitting.html#ggabfd697aebf07c1b5c8be5ee401e2dc84a0d50cd1855fec459b2c5756ec38d4a17">Ponca::NEED_OTHER_PASS</a></div><div class="ttdeci">@ NEED_OTHER_PASS</div><div class="ttdoc">The fitting procedure needs to analyse the neighborhood another time.</div><div class="ttdef"><b>Definition:</b> enums.h:29</div></div>
-<div class="ttc" id="aclassPonca_1_1BaseCurvatureEstimator_html_a9bbf7b964dfeca42748109d1b3d1590b"><div class="ttname"><a href="classPonca_1_1BaseCurvatureEstimator.html#a9bbf7b964dfeca42748109d1b3d1590b">Ponca::BaseCurvatureEstimator::VectorType</a></div><div class="ttdeci">Base::VectorType VectorType</div><div class="ttdoc">Inherited vector type.</div><div class="ttdef"><b>Definition:</b> curvatureEstimation.h:34</div></div>
+</div><!-- doc-content -->
+<div class="ttc" id="agroup__fitting_html_ggabfd697aebf07c1b5c8be5ee401e2dc84a86d1e5381a39092fbe5560583c23d64c"><div class="ttname"><a href="group__fitting.html#ggabfd697aebf07c1b5c8be5ee401e2dc84a86d1e5381a39092fbe5560583c23d64c">Ponca::STABLE</a></div><div class="ttdeci">@ STABLE</div><div class="ttdoc">The fitting is stable an ready to use (and having more than 6 neighbours)</div><div class="ttdef"><b>Definition:</b> <a href="enums_8h_source.html#l00020">enums.h:20</a></div></div>
+<div class="ttc" id="aclassPonca_1_1NormalCovarianceCurvatureEstimator_html_a8ef0ce1e43349715c04c695bddf57b45"><div class="ttname"><a href="classPonca_1_1NormalCovarianceCurvatureEstimator.html#a8ef0ce1e43349715c04c695bddf57b45">Ponca::NormalCovarianceCurvatureEstimator::VectorType</a></div><div class="ttdeci">typename Base::VectorType VectorType</div><div class="ttdoc">Alias to vector type.</div><div class="ttdef"><b>Definition:</b> <a href="curvatureEstimation_8h_source.html#l00080">curvatureEstimation.h:80</a></div></div>
+<div class="ttc" id="aclassPonca_1_1ProjectedNormalCovarianceCurvatureEstimator_html_aa899efe0c679620e2bdf722b1f213ba3"><div class="ttname"><a href="classPonca_1_1ProjectedNormalCovarianceCurvatureEstimator.html#aa899efe0c679620e2bdf722b1f213ba3">Ponca::ProjectedNormalCovarianceCurvatureEstimator::ScalarArray</a></div><div class="ttdeci">typename Base::ScalarArray ScalarArray</div><div class="ttdoc">Alias to scalar derivatives array.</div><div class="ttdef"><b>Definition:</b> <a href="curvatureEstimation_8h_source.html#l00133">curvatureEstimation.h:133</a></div></div>
+<div class="ttc" id="aclassPonca_1_1ProjectedNormalCovarianceCurvatureEstimator_html_a645e4fad5e3c4c22db03cb95727ce872"><div class="ttname"><a href="classPonca_1_1ProjectedNormalCovarianceCurvatureEstimator.html#a645e4fad5e3c4c22db03cb95727ce872">Ponca::ProjectedNormalCovarianceCurvatureEstimator::VectorType</a></div><div class="ttdeci">typename Base::VectorType VectorType</div><div class="ttdoc">Alias to vector type.</div><div class="ttdef"><b>Definition:</b> <a href="curvatureEstimation_8h_source.html#l00131">curvatureEstimation.h:131</a></div></div>
+<div class="ttc" id="agroup__fitting_html_gabfd697aebf07c1b5c8be5ee401e2dc84"><div class="ttname"><a href="group__fitting.html#gabfd697aebf07c1b5c8be5ee401e2dc84">Ponca::FIT_RESULT</a></div><div class="ttdeci">FIT_RESULT</div><div class="ttdoc">Enum corresponding to the state of a fitting method (and what the finalize function can return)</div><div class="ttdef"><b>Definition:</b> <a href="enums_8h_source.html#l00016">enums.h:16</a></div></div>
+<div class="ttc" id="aclassPonca_1_1NormalDerivativesCurvatureEstimator_html_a286e5354ba3dad3d33d52738fc71f63a"><div class="ttname"><a href="classPonca_1_1NormalDerivativesCurvatureEstimator.html#a286e5354ba3dad3d33d52738fc71f63a">Ponca::NormalDerivativesCurvatureEstimator::MatrixType</a></div><div class="ttdeci">typename DataPoint::MatrixType MatrixType</div><div class="ttdoc">Alias to matrix type.</div><div class="ttdef"><b>Definition:</b> <a href="curvatureEstimation_8h_source.html#l00027">curvatureEstimation.h:27</a></div></div>
+<div class="ttc" id="aclassPonca_1_1NormalDerivativesCurvatureEstimator_html"><div class="ttname"><a href="classPonca_1_1NormalDerivativesCurvatureEstimator.html">Ponca::NormalDerivativesCurvatureEstimator</a></div><div class="ttdoc">Extension to compute curvature values from the Weingarten map .</div><div class="ttdef"><b>Definition:</b> <a href="curvatureEstimation_8h_source.html#l00024">curvatureEstimation.h:24</a></div></div>
+<div class="ttc" id="agroup__fitting_html_ggabfd697aebf07c1b5c8be5ee401e2dc84a23aa2882b31e320fa4130218dd98c1a6"><div class="ttname"><a href="group__fitting.html#ggabfd697aebf07c1b5c8be5ee401e2dc84a23aa2882b31e320fa4130218dd98c1a6">Ponca::CONFLICT_ERROR_FOUND</a></div><div class="ttdeci">@ CONFLICT_ERROR_FOUND</div><div class="ttdoc">Multiple classes of the fitting procedure initialize the primitive.</div><div class="ttdef"><b>Definition:</b> <a href="enums_8h_source.html#l00031">enums.h:31</a></div></div>
+<div class="ttc" id="aclassPonca_1_1NormalCovarianceCurvatureEstimator_html_a27815b0e96c5dd732123309860979cc7"><div class="ttname"><a href="classPonca_1_1NormalCovarianceCurvatureEstimator.html#a27815b0e96c5dd732123309860979cc7">Ponca::NormalCovarianceCurvatureEstimator::ScalarArray</a></div><div class="ttdeci">typename Base::ScalarArray ScalarArray</div><div class="ttdoc">Alias to scalar derivatives array.</div><div class="ttdef"><b>Definition:</b> <a href="curvatureEstimation_8h_source.html#l00082">curvatureEstimation.h:82</a></div></div>
+<div class="ttc" id="aclassPonca_1_1ProjectedNormalCovarianceCurvatureEstimator_html_a7d645e8b11e89aff2a25b6b6f91d4edc"><div class="ttname"><a href="classPonca_1_1ProjectedNormalCovarianceCurvatureEstimator.html#a7d645e8b11e89aff2a25b6b6f91d4edc">Ponca::ProjectedNormalCovarianceCurvatureEstimator::Scalar</a></div><div class="ttdeci">typename DataPoint::Scalar Scalar</div><div class="ttdoc">Alias to scalar type.</div><div class="ttdef"><b>Definition:</b> <a href="curvatureEstimation_8h_source.html#l00131">curvatureEstimation.h:131</a></div></div>
+<div class="ttc" id="agroup__fitting_html_ggabfd697aebf07c1b5c8be5ee401e2dc84a08d57dd200082f67128b5274049dda41"><div class="ttname"><a href="group__fitting.html#ggabfd697aebf07c1b5c8be5ee401e2dc84a08d57dd200082f67128b5274049dda41">Ponca::UNDEFINED</a></div><div class="ttdeci">@ UNDEFINED</div><div class="ttdoc">The fitting is undefined, you can't use it for valid results (and having less than 3 neighbors)</div><div class="ttdef"><b>Definition:</b> <a href="enums_8h_source.html#l00026">enums.h:26</a></div></div>
+<div class="ttc" id="aclassPonca_1_1NormalCovarianceCurvatureEstimator_html"><div class="ttname"><a href="classPonca_1_1NormalCovarianceCurvatureEstimator.html">Ponca::NormalCovarianceCurvatureEstimator</a></div><div class="ttdoc">Extension to compute curvature values based on a covariance analysis of normal vectors of neighbors.</div><div class="ttdef"><b>Definition:</b> <a href="curvatureEstimation_8h_source.html#l00078">curvatureEstimation.h:78</a></div></div>
+<div class="ttc" id="aclassPonca_1_1NormalDerivativesCurvatureEstimator_html_aef4892f0edaa7020d2cb487a2020f10a"><div class="ttname"><a href="classPonca_1_1NormalDerivativesCurvatureEstimator.html#aef4892f0edaa7020d2cb487a2020f10a">Ponca::NormalDerivativesCurvatureEstimator::Scalar</a></div><div class="ttdeci">typename DataPoint::Scalar Scalar</div><div class="ttdoc">Alias to scalar type.</div><div class="ttdef"><b>Definition:</b> <a href="curvatureEstimation_8h_source.html#l00026">curvatureEstimation.h:26</a></div></div>
+<div class="ttc" id="aclassPonca_1_1ProjectedNormalCovarianceCurvatureEstimator_html"><div class="ttname"><a href="classPonca_1_1ProjectedNormalCovarianceCurvatureEstimator.html">Ponca::ProjectedNormalCovarianceCurvatureEstimator</a></div><div class="ttdoc">Extension to compute curvature values based on a covariance analysis of normal vectors of neighbors p...</div><div class="ttdef"><b>Definition:</b> <a href="curvatureEstimation_8h_source.html#l00126">curvatureEstimation.h:126</a></div></div>
+<div class="ttc" id="agroup__fitting_html_ggabfd697aebf07c1b5c8be5ee401e2dc84a0d50cd1855fec459b2c5756ec38d4a17"><div class="ttname"><a href="group__fitting.html#ggabfd697aebf07c1b5c8be5ee401e2dc84a0d50cd1855fec459b2c5756ec38d4a17">Ponca::NEED_OTHER_PASS</a></div><div class="ttdeci">@ NEED_OTHER_PASS</div><div class="ttdoc">The fitting procedure needs to analyse the neighborhood another time.</div><div class="ttdef"><b>Definition:</b> <a href="enums_8h_source.html#l00029">enums.h:29</a></div></div>
+<div class="ttc" id="aclassPonca_1_1NormalDerivativesCurvatureEstimator_html_ae022ffb42769f7bf4a95d13708bedf1f"><div class="ttname"><a href="classPonca_1_1NormalDerivativesCurvatureEstimator.html#ae022ffb42769f7bf4a95d13708bedf1f">Ponca::NormalDerivativesCurvatureEstimator::VectorType</a></div><div class="ttdeci">typename Base::VectorType VectorType</div><div class="ttdoc">Alias to vector type.</div><div class="ttdef"><b>Definition:</b> <a href="curvatureEstimation_8h_source.html#l00026">curvatureEstimation.h:26</a></div></div>
+<div class="ttc" id="aclassPonca_1_1NormalCovarianceCurvatureEstimator_html_a17506112dc7e62634354cf7ccbdbe9ea"><div class="ttname"><a href="classPonca_1_1NormalCovarianceCurvatureEstimator.html#a17506112dc7e62634354cf7ccbdbe9ea">Ponca::NormalCovarianceCurvatureEstimator::Scalar</a></div><div class="ttdeci">typename DataPoint::Scalar Scalar</div><div class="ttdoc">Alias to scalar type.</div><div class="ttdef"><b>Definition:</b> <a href="curvatureEstimation_8h_source.html#l00080">curvatureEstimation.h:80</a></div></div>
 <!-- start footer part -->
-<hr class="footer"/><address class="footer"><small>
-Generated on Tue Aug 2 2022 09:22:55 for Ponca by &#160;<a href="http://www.doxygen.org/index.html">
-<img class="footer" src="doxygen.png" alt="doxygen"/>
-</a> 1.8.17
-</small></address>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_695d95a8d8fbec601a248c0414764298.html">Ponca</a></li><li class="navelem"><a class="el" href="dir_ce16314fc45f8638543c5146aff64d4a.html">src</a></li><li class="navelem"><a class="el" href="dir_221133f19e4af6803e4ee7d78db21786.html">Fitting</a></li><li class="navelem"><b>curvatureEstimation.hpp</b></li>
+    <li class="footer">Generated on Fri Sep 9 2022 12:28:20 for Ponca by
+    <a href="http://www.doxygen.org/index.html">
+    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.17 </li>
+  </ul>
+</div>
 </body>
 </html>

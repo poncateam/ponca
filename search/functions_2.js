@@ -1,15 +1,18 @@
 var searchData=
 [
-  ['center_408',['center',['../classPonca_1_1AlgebraicSphere.html#abe53aba84bb693f553804c734d69da13',1,'Ponca::AlgebraicSphere']]],
-  ['changebasis_409',['changeBasis',['../classPonca_1_1AlgebraicSphere.html#a054a41e20c9ca517af359aa591bca9e7',1,'Ponca::AlgebraicSphere']]],
-  ['clear_410',['clear',['../classPonca_1_1Stack.html#a00f925370381e2f455d52141e1f13b22',1,'Ponca::Stack']]],
-  ['compactplane_411',['compactPlane',['../classPonca_1_1Plane.html#ae53a83e024c16571f538790ad9b92dfa',1,'Ponca::Plane']]],
-  ['compareto_412',['compareTo',['../classPonca_1_1GLSParam.html#a420d2089a5420d60814b1e7a1fbd7e12',1,'Ponca::GLSParam']]],
-  ['compute_413',['compute',['../classPonca_1_1Basket.html#ae2adecf8ec48cf365c6569e2fa013293',1,'Ponca::Basket::compute(const IteratorBegin &amp;begin, const IteratorEnd &amp;end)'],['../classPonca_1_1Basket.html#a23a96f5fe416cfd4648f4ae01b3bc90b',1,'Ponca::Basket::compute(const Container &amp;c)']]],
-  ['computecurvature_414',['computeCurvature',['../classPonca_1_1CurvatureEstimator.html#af4fa845da433ca227ede3109a316606c',1,'Ponca::CurvatureEstimator']]],
-  ['computewithids_415',['computeWithIds',['../classPonca_1_1Basket.html#a76430bb5572c9fe8c79befb81bc978e9',1,'Ponca::Basket']]],
-  ['constantweightkernel_416',['ConstantWeightKernel',['../classPonca_1_1ConstantWeightKernel.html#ad82ebb52c8cc18253cc6777282741930',1,'Ponca::ConstantWeightKernel']]],
-  ['covariancelinefit_417',['CovarianceLineFit',['../classPonca_1_1CovarianceLineFit.html#a000126060c29a08dfc1c9b194a826399',1,'Ponca::CovarianceLineFit']]],
-  ['covarianceplanefit_418',['CovariancePlaneFit',['../classPonca_1_1CovariancePlaneFit.html#a5e0a114ec9b7e3fea6723269d969afb3',1,'Ponca::CovariancePlaneFit::CovariancePlaneFit()'],['../classPonca_1_1CovariancePlaneFit.html#a2ea6fcbf577e12e37aa99d48aa38c35d',1,'Ponca::CovariancePlaneFit::covariancePlaneFit()']]],
-  ['curvatureestimator_419',['CurvatureEstimator',['../classPonca_1_1CurvatureEstimator.html#a10dd9b2fa17873fb099e66a30b702e61',1,'Ponca::CurvatureEstimator']]]
+  ['center_392',['center',['../classPonca_1_1AlgebraicSphere.html#abe53aba84bb693f553804c734d69da13',1,'Ponca::AlgebraicSphere']]],
+  ['changebasis_393',['changeBasis',['../classPonca_1_1AlgebraicSphere.html#a054a41e20c9ca517af359aa591bca9e7',1,'Ponca::AlgebraicSphere']]],
+  ['clear_394',['clear',['../classPonca_1_1Stack.html#a00f925370381e2f455d52141e1f13b22',1,'Ponca::Stack']]],
+  ['compactplane_395',['compactPlane',['../classPonca_1_1Plane.html#ad0d5161db4d761c67449143155f4e458',1,'Ponca::Plane::compactPlane()'],['../classPonca_1_1Plane.html#a574e2f877ccaac6977081fc3b273f2bc',1,'Ponca::Plane::compactPlane() const']]],
+  ['compareto_396',['compareTo',['../classPonca_1_1GLSParam.html#a420d2089a5420d60814b1e7a1fbd7e12',1,'Ponca::GLSParam']]],
+  ['compute_397',['compute',['../classPonca_1_1BasketDiff.html#a0f61e79ff842c2c1940c89006c325335',1,'Ponca::BasketDiff::compute(const IteratorBegin &amp;begin, const IteratorEnd &amp;end)'],['../classPonca_1_1BasketDiff.html#ab508f9e1dae3071343caec6ebe57339b',1,'Ponca::BasketDiff::compute(const Container &amp;c)'],['../classPonca_1_1Basket.html#a623c44aa8821f64e09e1768a98149930',1,'Ponca::Basket::compute(const IteratorBegin &amp;begin, const IteratorEnd &amp;end)'],['../classPonca_1_1Basket.html#af22be0984729641a49494cb7cf006325',1,'Ponca::Basket::compute(const Container &amp;c)']]],
+  ['computewithids_398',['computeWithIds',['../classPonca_1_1BasketDiff.html#aa48663abf84d9f546fbaec22c2216244',1,'Ponca::BasketDiff::computeWithIds()'],['../classPonca_1_1Basket.html#aa4951f011ff54da29a8e3606f9dc6e0e',1,'Ponca::Basket::computeWithIds()']]],
+  ['constantweightkernel_399',['ConstantWeightKernel',['../classPonca_1_1ConstantWeightKernel.html#ad82ebb52c8cc18253cc6777282741930',1,'Ponca::ConstantWeightKernel']]],
+  ['converttolocalbasis_400',['convertToLocalBasis',['../classPonca_1_1DistWeightFunc.html#a0c1f6d4c4beea246b39fb8929c45e1ee',1,'Ponca::DistWeightFunc']]],
+  ['covariancefit_401',['covarianceFit',['../classPonca_1_1CovarianceFitBase.html#aa604ff21c0956c1e20e7b25da5d77d8e',1,'Ponca::CovarianceFitBase::covarianceFit()'],['../classPonca_1_1CovarianceFitBase.html#a05221db583d7b7b537c3a44d4a8df30c',1,'Ponca::CovarianceFitBase::covarianceFit() const']]],
+  ['covariancefitder_402',['covarianceFitDer',['../classPonca_1_1CovarianceFitDer.html#a5ae6aa6d4fa911f897adaa27ae301940',1,'Ponca::CovarianceFitDer::covarianceFitDer()'],['../classPonca_1_1CovarianceFitDer.html#a5800fb871ac5f363fca3372522e55778',1,'Ponca::CovarianceFitDer::covarianceFitDer() const']]],
+  ['covariancelinefit_403',['covarianceLineFit',['../classPonca_1_1CovarianceLineFitImpl.html#a0a3cdfd2a47f10cc3006fc3143d2e732',1,'Ponca::CovarianceLineFitImpl::covarianceLineFit()'],['../classPonca_1_1CovarianceLineFitImpl.html#a7bdcf24ddff8378d15bed994b083891b',1,'Ponca::CovarianceLineFitImpl::covarianceLineFit() const']]],
+  ['covarianceplaneder_404',['covariancePlaneDer',['../classPonca_1_1CovariancePlaneDerImpl.html#a295134d1f21ef59e78f04bb7602d2123',1,'Ponca::CovariancePlaneDerImpl::covariancePlaneDer()'],['../classPonca_1_1CovariancePlaneDerImpl.html#a8bcc6c4b50f901311704956525e2620d',1,'Ponca::CovariancePlaneDerImpl::covariancePlaneDer() const']]],
+  ['covarianceplanefit_405',['covariancePlaneFit',['../classPonca_1_1CovariancePlaneFitImpl.html#a2fbc8ff9caada4c241bead355e56d095',1,'Ponca::CovariancePlaneFitImpl::covariancePlaneFit()'],['../classPonca_1_1CovariancePlaneFitImpl.html#a7aa2944ee7635687f3b80e0baf7f2729',1,'Ponca::CovariancePlaneFitImpl::covariancePlaneFit() const']]],
+  ['curvatureestimatorbase_406',['curvatureEstimatorBase',['../classPonca_1_1CurvatureEstimatorBase.html#af0a0b082b3b9b9f17a09f74079cc46f2',1,'Ponca::CurvatureEstimatorBase::curvatureEstimatorBase()'],['../classPonca_1_1CurvatureEstimatorBase.html#ab34844762ee4b0bce605f931b886902d',1,'Ponca::CurvatureEstimatorBase::curvatureEstimatorBase() const']]]
 ];

@@ -1,4 +1,0 @@
-<map id="Ponca::Concept::WeightFuncConcept&lt; Point &gt;" name="Ponca::Concept::WeightFuncConcept&lt; Point &gt;">
-<area shape="rect" id="node1" title="Applies a Concept::WeightKernelConcept to a Concept::PointConcept query." alt="" coords="8,5,213,141"/>
-<area shape="rect" id="node2" href="$classPonca_1_1DistWeightFunc.html" title="Weighting function based on the euclidean distance between a query and a reference position." alt="" coords="5,189,216,399"/>
-</map>

@@ -1,3 +1,4 @@
+<!-- HTML header for doxygen 1.9.1-->
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -9,6 +10,10 @@
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
@@ -20,7 +25,23 @@
 </script>
 <script type="text/javascript" async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js"></script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only-darkmode-toggle.css" rel="stylesheet" type="text/css"/>
 <link href="ponca.css" rel="stylesheet" type="text/css"/>
+<!-- ... other metadata & script includes ... -->
+<script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+<script type="text/javascript">
+    DoxygenAwesomeDarkModeToggle.init()
+</script>
+<script type="text/javascript" src="doxygen-awesome-fragment-copy-button.js"></script>
+<script type="text/javascript">
+    DoxygenAwesomeFragmentCopyButton.init()
+</script>
+<script type="text/javascript" src="doxygen-awesome-paragraph-link.js"></script>
+<script type="text/javascript">
+    DoxygenAwesomeParagraphLink.init()
+</script>
 </head>
 <body>
 <div id="top"><!-- do not remove this div, it is closed by doxygen! -->
@@ -30,7 +51,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Ponca
-   &#160;<span id="projectnumber">8976dc5e97f677a334261616e8d2314551b8ce3d</span>
+   &#160;<span id="projectnumber">d844664447d2173c00cc41660408e8eb5b3a41d6</span>
    </div>
    <div id="projectbrief">Point Cloud Analysis library</div>
   </td>
@@ -55,6 +76,23 @@ $(function() {
 });
 /* @license-end */</script>
 <div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(document).ready(function(){initNavTree('classPonca_1_1MongePatch.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -69,11 +107,6 @@ $(function() {
 </iframe>
 </div>
 
-<div id="nav-path" class="navpath">
-  <ul>
-<li class="navelem"><a class="el" href="namespacePonca.html">Ponca</a></li><li class="navelem"><a class="el" href="classPonca_1_1MongePatch.html">MongePatch</a></li>  </ul>
-</div>
-</div><!-- top -->
 <div class="header">
   <div class="summary">
 <a href="#pub-types">Public Types</a> &#124;
@@ -86,13 +119,16 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 
+<p>Extension to compute the best fit quadric on 3d points expressed as \(f(u,v)=h\).  
+ <a href="classPonca_1_1MongePatch.html#details">More...</a></p>
+
 <p><code>#include &lt;<a class="el" href="mongePatch_8h_source.html">mongePatch.h</a>&gt;</code></p>
 <div id="dynsection-0" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-0-trigger" src="closed.png" alt="+"/> Inheritance diagram for Ponca::MongePatch&lt; DataPoint, _WFunctor, T &gt;:</div>
 <div id="dynsection-0-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-0-content" class="dyncontent" style="display:none;">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classPonca_1_1MongePatch__inherit__graph.svg" width="208" height="492"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classPonca_1_1MongePatch__inherit__graph.svg" width="208" height="419"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
 </div>
 <div id="dynsection-1" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
@@ -100,129 +136,125 @@ $(function() {
 <div id="dynsection-1-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-1-content" class="dyncontent" style="display:none;">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classPonca_1_1MongePatch__coll__graph.svg" width="208" height="492"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classPonca_1_1MongePatch__coll__graph.svg" width="208" height="419"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
 </div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-types"></a>
+Public Types</h2></td></tr>
+<tr class="memitem:a7400b89b87e3e0073b9322f775c70afe"><td class="memItemLeft" align="right" valign="top"><a id="a7400b89b87e3e0073b9322f775c70afe"></a>
+using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1MongePatch.html#a7400b89b87e3e0073b9322f775c70afe">Scalar</a> = typename DataPoint::Scalar</td></tr>
+<tr class="memdesc:a7400b89b87e3e0073b9322f775c70afe"><td class="mdescLeft">&#160;</td><td class="mdescRight">Alias to scalar type. <br /></td></tr>
+<tr class="separator:a7400b89b87e3e0073b9322f775c70afe"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0268f212403253ece19251419ef7c217"><td class="memItemLeft" align="right" valign="top"><a id="a0268f212403253ece19251419ef7c217"></a>
+using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1MongePatch.html#a0268f212403253ece19251419ef7c217">VectorType</a> = typename Base::VectorType</td></tr>
+<tr class="memdesc:a0268f212403253ece19251419ef7c217"><td class="mdescLeft">&#160;</td><td class="mdescRight">Alias to vector type. <br /></td></tr>
+<tr class="separator:a0268f212403253ece19251419ef7c217"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aeee3391c352385accffa8ee52b02c7c1"><td class="memItemLeft" align="right" valign="top"><a id="aeee3391c352385accffa8ee52b02c7c1"></a>
+using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1MongePatch.html#aeee3391c352385accffa8ee52b02c7c1">WFunctor</a> = typename Base::WFunctor</td></tr>
+<tr class="memdesc:aeee3391c352385accffa8ee52b02c7c1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Alias to weight function. <br /></td></tr>
+<tr class="separator:aeee3391c352385accffa8ee52b02c7c1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9ac42821829af4f27b0e9caf374d3e7b"><td class="memItemLeft" align="right" valign="top"><a id="a9ac42821829af4f27b0e9caf374d3e7b"></a>
+using&#160;</td><td class="memItemRight" valign="bottom"><b>SampleMatrix</b> = Eigen::Matrix&lt; <a class="el" href="classPonca_1_1MongePatch.html#a7400b89b87e3e0073b9322f775c70afe">Scalar</a>, Eigen::Dynamic, Eigen::Dynamic &gt;</td></tr>
+<tr class="separator:a9ac42821829af4f27b0e9caf374d3e7b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acc327631864a02a8047701c56ab3d38a"><td class="memItemLeft" align="right" valign="top"><a id="acc327631864a02a8047701c56ab3d38a"></a>
+using&#160;</td><td class="memItemRight" valign="bottom"><b>Vector6</b> = Eigen::Matrix&lt; <a class="el" href="classPonca_1_1MongePatch.html#a7400b89b87e3e0073b9322f775c70afe">Scalar</a>, 6, 1 &gt;</td></tr>
+<tr class="separator:acc327631864a02a8047701c56ab3d38a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
+Public Member Functions</h2></td></tr>
+<tr class="memitem:a2b4f600aaf89d9e6bd88a469843618de"><td class="memItemLeft" align="right" valign="top"><a id="a2b4f600aaf89d9e6bd88a469843618de"></a>
+<a class="el" href="classPonca_1_1MongePatch.html">MongePatch</a>&lt; DataPoint, _WFunctor, T &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1MongePatch.html#a2b4f600aaf89d9e6bd88a469843618de">mongePatch</a> ()</td></tr>
+<tr class="memdesc:a2b4f600aaf89d9e6bd88a469843618de"><td class="mdescLeft">&#160;</td><td class="mdescRight">Explicit conversion to <a class="el" href="classPonca_1_1MongePatch.html" title="Extension to compute the best fit quadric on 3d points expressed as .">MongePatch</a> , to access methods potentially hidden by heritage. <br /></td></tr>
+<tr class="separator:a2b4f600aaf89d9e6bd88a469843618de"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a61e4e2d916c76b8fd9c9a655cb98ba24"><td class="memItemLeft" align="right" valign="top"><a id="a61e4e2d916c76b8fd9c9a655cb98ba24"></a>
+const PONCA_MULTIARCH <a class="el" href="classPonca_1_1MongePatch.html">MongePatch</a>&lt; DataPoint, _WFunctor, T &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1MongePatch.html#a61e4e2d916c76b8fd9c9a655cb98ba24">mongePatch</a> () const</td></tr>
+<tr class="memdesc:a61e4e2d916c76b8fd9c9a655cb98ba24"><td class="mdescLeft">&#160;</td><td class="mdescRight">Explicit conversion to <a class="el" href="classPonca_1_1MongePatch.html" title="Extension to compute the best fit quadric on 3d points expressed as .">MongePatch</a> , to access methods potentially hidden by heritage. <br /></td></tr>
+<tr class="separator:a61e4e2d916c76b8fd9c9a655cb98ba24"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac04375f5c955bd380dda7a16559700a2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1MongePatch.html#ac04375f5c955bd380dda7a16559700a2">init</a> (const <a class="el" href="classPonca_1_1MongePatch.html#a0268f212403253ece19251419ef7c217">VectorType</a> &amp;_evalPos)</td></tr>
+<tr class="memdesc:ac04375f5c955bd380dda7a16559700a2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the evaluation position and reset the internal states.  <a href="classPonca_1_1MongePatch.html#ac04375f5c955bd380dda7a16559700a2">More...</a><br /></td></tr>
+<tr class="separator:ac04375f5c955bd380dda7a16559700a2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2eb2b79fc90ed59b2f6c3cb07d21249a"><td class="memItemLeft" align="right" valign="top">PONCA_MULTIARCH bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1MongePatch.html#a2eb2b79fc90ed59b2f6c3cb07d21249a">addLocalNeighbor</a> (<a class="el" href="classPonca_1_1MongePatch.html#a7400b89b87e3e0073b9322f775c70afe">Scalar</a> w, const <a class="el" href="classPonca_1_1MongePatch.html#a0268f212403253ece19251419ef7c217">VectorType</a> &amp;localQ, const DataPoint &amp;attributes)</td></tr>
+<tr class="memdesc:a2eb2b79fc90ed59b2f6c3cb07d21249a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Add a neighbor to perform the fit.  <a href="classPonca_1_1MongePatch.html#a2eb2b79fc90ed59b2f6c3cb07d21249a">More...</a><br /></td></tr>
+<tr class="separator:a2eb2b79fc90ed59b2f6c3cb07d21249a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a772867de5a6a396bb51ee6add816cdae"><td class="memItemLeft" align="right" valign="top">PONCA_MULTIARCH <a class="el" href="group__fitting.html#gabfd697aebf07c1b5c8be5ee401e2dc84">FIT_RESULT</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1MongePatch.html#a772867de5a6a396bb51ee6add816cdae">finalize</a> ()</td></tr>
+<tr class="memdesc:a772867de5a6a396bb51ee6add816cdae"><td class="mdescLeft">&#160;</td><td class="mdescRight">Finalize the procedure.  <a href="classPonca_1_1MongePatch.html#a772867de5a6a396bb51ee6add816cdae">More...</a><br /></td></tr>
+<tr class="separator:a772867de5a6a396bb51ee6add816cdae"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a577334b5f0eb551c969135e70b1d849e"><td class="memItemLeft" align="right" valign="top"><a id="a577334b5f0eb551c969135e70b1d849e"></a>
+<a class="el" href="classPonca_1_1MongePatch.html#a7400b89b87e3e0073b9322f775c70afe">Scalar</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1MongePatch.html#a577334b5f0eb551c969135e70b1d849e">kMean</a> () const</td></tr>
+<tr class="memdesc:a577334b5f0eb551c969135e70b1d849e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns an estimate of the mean curvature. <br /></td></tr>
+<tr class="separator:a577334b5f0eb551c969135e70b1d849e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a16025aa98336fd14c49ed0c473c0cb70"><td class="memItemLeft" align="right" valign="top"><a id="a16025aa98336fd14c49ed0c473c0cb70"></a>
+<a class="el" href="classPonca_1_1MongePatch.html#a7400b89b87e3e0073b9322f775c70afe">Scalar</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1MongePatch.html#a16025aa98336fd14c49ed0c473c0cb70">GaussianCurvature</a> () const</td></tr>
+<tr class="memdesc:a16025aa98336fd14c49ed0c473c0cb70"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns an estimate of the Gaussian curvature. <br /></td></tr>
+<tr class="separator:a16025aa98336fd14c49ed0c473c0cb70"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa38806dfc06749fd080f503c9bcf9b03"><td class="memItemLeft" align="right" valign="top"><a id="aa38806dfc06749fd080f503c9bcf9b03"></a>
+<a class="el" href="classPonca_1_1MongePatch.html#a7400b89b87e3e0073b9322f775c70afe">Scalar</a>&#160;</td><td class="memItemRight" valign="bottom"><b>evalUV</b> (<a class="el" href="classPonca_1_1MongePatch.html#a7400b89b87e3e0073b9322f775c70afe">Scalar</a> u, <a class="el" href="classPonca_1_1MongePatch.html#a7400b89b87e3e0073b9322f775c70afe">Scalar</a> v) const</td></tr>
+<tr class="separator:aa38806dfc06749fd080f503c9bcf9b03"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adf18699bc0f6b7fc660643cb55738fc7"><td class="memItemLeft" align="right" valign="top"><a id="adf18699bc0f6b7fc660643cb55738fc7"></a>
+<a class="el" href="classPonca_1_1MongePatch.html#a7400b89b87e3e0073b9322f775c70afe">Scalar</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1MongePatch.html#adf18699bc0f6b7fc660643cb55738fc7">potential</a> (const <a class="el" href="classPonca_1_1MongePatch.html#a0268f212403253ece19251419ef7c217">VectorType</a> &amp;_q) const</td></tr>
+<tr class="memdesc:adf18699bc0f6b7fc660643cb55738fc7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Value of the scalar field at the evaluation point. <br /></td></tr>
+<tr class="separator:adf18699bc0f6b7fc660643cb55738fc7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a67e933ee11703000d16fe31d8baf4b0b"><td class="memItemLeft" align="right" valign="top"><a id="a67e933ee11703000d16fe31d8baf4b0b"></a>
+<a class="el" href="classPonca_1_1MongePatch.html#a0268f212403253ece19251419ef7c217">VectorType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1MongePatch.html#a67e933ee11703000d16fe31d8baf4b0b">project</a> (const <a class="el" href="classPonca_1_1MongePatch.html#a0268f212403253ece19251419ef7c217">VectorType</a> &amp;_q) const</td></tr>
+<tr class="memdesc:a67e933ee11703000d16fe31d8baf4b0b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Orthogonal projecting on the patch, such that h = f(u,v) <br /></td></tr>
+<tr class="separator:a67e933ee11703000d16fe31d8baf4b0b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afd960f06c8bff06b84af91c20c051c4a"><td class="memItemLeft" align="right" valign="top"><a id="afd960f06c8bff06b84af91c20c051c4a"></a>
+const <a class="el" href="classPonca_1_1MongePatch.html#a7400b89b87e3e0073b9322f775c70afe">Scalar</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>h_uu</b> () const</td></tr>
+<tr class="separator:afd960f06c8bff06b84af91c20c051c4a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a001efd4d8f439cf7bdae8bc2fa63167d"><td class="memItemLeft" align="right" valign="top"><a id="a001efd4d8f439cf7bdae8bc2fa63167d"></a>
+const <a class="el" href="classPonca_1_1MongePatch.html#a7400b89b87e3e0073b9322f775c70afe">Scalar</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>h_vv</b> () const</td></tr>
+<tr class="separator:a001efd4d8f439cf7bdae8bc2fa63167d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adab04f79da2db295fa8139d67f8500d2"><td class="memItemLeft" align="right" valign="top"><a id="adab04f79da2db295fa8139d67f8500d2"></a>
+const <a class="el" href="classPonca_1_1MongePatch.html#a7400b89b87e3e0073b9322f775c70afe">Scalar</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>h_uv</b> () const</td></tr>
+<tr class="separator:adab04f79da2db295fa8139d67f8500d2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad6f20488093918824ff6dd0f0debafd5"><td class="memItemLeft" align="right" valign="top"><a id="ad6f20488093918824ff6dd0f0debafd5"></a>
+const <a class="el" href="classPonca_1_1MongePatch.html#a7400b89b87e3e0073b9322f775c70afe">Scalar</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>h_u</b> () const</td></tr>
+<tr class="separator:ad6f20488093918824ff6dd0f0debafd5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a30ce9735478b46ba616208dbe7ae5303"><td class="memItemLeft" align="right" valign="top"><a id="a30ce9735478b46ba616208dbe7ae5303"></a>
+const <a class="el" href="classPonca_1_1MongePatch.html#a7400b89b87e3e0073b9322f775c70afe">Scalar</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>h_v</b> () const</td></tr>
+<tr class="separator:a30ce9735478b46ba616208dbe7ae5303"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a04dc8d740105686d0e56e86c0b16a2a2"><td class="memItemLeft" align="right" valign="top"><a id="a04dc8d740105686d0e56e86c0b16a2a2"></a>
+const <a class="el" href="classPonca_1_1MongePatch.html#a7400b89b87e3e0073b9322f775c70afe">Scalar</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>h_c</b> () const</td></tr>
+<tr class="separator:a04dc8d740105686d0e56e86c0b16a2a2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-types"></a>
+Protected Types</h2></td></tr>
+<tr class="memitem:a2bddb3749aa61b520022acd37c1b4940"><td class="memItemLeft" align="right" valign="top"><a id="a2bddb3749aa61b520022acd37c1b4940"></a>enum &#160;</td><td class="memItemRight" valign="bottom">{ <b>Check</b> = Base::PROVIDES_PLANE &amp;&amp; Base::PROVIDES_TANGENT_PLANE_BASIS
+ }</td></tr>
+<tr class="separator:a2bddb3749aa61b520022acd37c1b4940"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-attribs"></a>
+Protected Attributes</h2></td></tr>
+<tr class="memitem:a2d9dba8870d248e496a84edaf7109d03"><td class="memItemLeft" align="right" valign="top"><a id="a2d9dba8870d248e496a84edaf7109d03"></a>
+SampleMatrix&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1MongePatch.html#a2d9dba8870d248e496a84edaf7109d03">m_A</a></td></tr>
+<tr class="memdesc:a2d9dba8870d248e496a84edaf7109d03"><td class="mdescLeft">&#160;</td><td class="mdescRight">Quadric input samples. <br /></td></tr>
+<tr class="separator:a2d9dba8870d248e496a84edaf7109d03"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab50aac038943f7b3f6a5977243285dd0"><td class="memItemLeft" align="right" valign="top"><a id="ab50aac038943f7b3f6a5977243285dd0"></a>
+Vector6&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1MongePatch.html#ab50aac038943f7b3f6a5977243285dd0">m_x</a> {Vector6::Zero()}</td></tr>
+<tr class="memdesc:ab50aac038943f7b3f6a5977243285dd0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Quadric parameters. <br /></td></tr>
+<tr class="separator:ab50aac038943f7b3f6a5977243285dd0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4efaa778e709ff38ea4fad569714cf17"><td class="memItemLeft" align="right" valign="top"><a id="a4efaa778e709ff38ea4fad569714cf17"></a>
+Vector6&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1MongePatch.html#a4efaa778e709ff38ea4fad569714cf17">m_b</a> {Vector6::Zero()}</td></tr>
+<tr class="memdesc:a4efaa778e709ff38ea4fad569714cf17"><td class="mdescLeft">&#160;</td><td class="mdescRight">Observations. <br /></td></tr>
+<tr class="separator:a4efaa778e709ff38ea4fad569714cf17"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab5a28e7e673d5ad3f9a5aa23187dad30"><td class="memItemLeft" align="right" valign="top"><a id="ab5a28e7e673d5ad3f9a5aa23187dad30"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>m_planeIsReady</b> {false}</td></tr>
+<tr class="separator:ab5a28e7e673d5ad3f9a5aa23187dad30"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><h3>template&lt;class DataPoint, class _WFunctor, typename T&gt;<br />
 class Ponca::MongePatch&lt; DataPoint, _WFunctor, T &gt;</h3>
 
 <p>Extension to compute the best fit quadric on 3d points expressed as \(f(u,v)=h\). </p>
 <dl class="section note"><dt>Note</dt><dd>This procedure requires at least two passes, the first one for plane fitting, the second one for quadric fitting. </dd></dl>
-<dl class="section warning"><dt>Warning</dt><dd>This class is valid only in 3D. </dd></dl>
-</div><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-types"></a>
-Public Types</h2></td></tr>
-<tr class="memitem:af05d7b64e140ddc676cf97d4c55b1d18"><td class="memItemLeft" align="right" valign="top"><a id="af05d7b64e140ddc676cf97d4c55b1d18"></a>
-typedef Base::Scalar&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1MongePatch.html#af05d7b64e140ddc676cf97d4c55b1d18">Scalar</a></td></tr>
-<tr class="memdesc:af05d7b64e140ddc676cf97d4c55b1d18"><td class="mdescLeft">&#160;</td><td class="mdescRight">Inherited scalar type. <br /></td></tr>
-<tr class="separator:af05d7b64e140ddc676cf97d4c55b1d18"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0432d127bd24f30887b796206dd2f3e9"><td class="memItemLeft" align="right" valign="top"><a id="a0432d127bd24f30887b796206dd2f3e9"></a>
-typedef Base::VectorType&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1MongePatch.html#a0432d127bd24f30887b796206dd2f3e9">VectorType</a></td></tr>
-<tr class="memdesc:a0432d127bd24f30887b796206dd2f3e9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Inherited vector type. <br /></td></tr>
-<tr class="separator:a0432d127bd24f30887b796206dd2f3e9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a97eaadc062c92e95ac5fbf3068b46cef"><td class="memItemLeft" align="right" valign="top"><a id="a97eaadc062c92e95ac5fbf3068b46cef"></a>
-typedef DataPoint::MatrixType&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1MongePatch.html#a97eaadc062c92e95ac5fbf3068b46cef">MatrixType</a></td></tr>
-<tr class="memdesc:a97eaadc062c92e95ac5fbf3068b46cef"><td class="mdescLeft">&#160;</td><td class="mdescRight">Matrix type inherited from DataPoint. <br /></td></tr>
-<tr class="separator:a97eaadc062c92e95ac5fbf3068b46cef"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aca6cbe03830478c6e32c8f771f08e546"><td class="memItemLeft" align="right" valign="top"><a id="aca6cbe03830478c6e32c8f771f08e546"></a>
-typedef _WFunctor&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1MongePatch.html#aca6cbe03830478c6e32c8f771f08e546">WFunctor</a></td></tr>
-<tr class="memdesc:aca6cbe03830478c6e32c8f771f08e546"><td class="mdescLeft">&#160;</td><td class="mdescRight">Weight Function. <br /></td></tr>
-<tr class="separator:aca6cbe03830478c6e32c8f771f08e546"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a46dc06a0d704297a04e267f974e56c84"><td class="memItemLeft" align="right" valign="top"><a id="a46dc06a0d704297a04e267f974e56c84"></a>
-typedef Eigen::Matrix&lt; <a class="el" href="classPonca_1_1MongePatch.html#af05d7b64e140ddc676cf97d4c55b1d18">Scalar</a>, 2, 1 &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>Vector2</b></td></tr>
-<tr class="separator:a46dc06a0d704297a04e267f974e56c84"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3b82984735eb0cdd811f35655bc3c6f1"><td class="memItemLeft" align="right" valign="top"><a id="a3b82984735eb0cdd811f35655bc3c6f1"></a>
-typedef Eigen::Matrix&lt; <a class="el" href="classPonca_1_1MongePatch.html#af05d7b64e140ddc676cf97d4c55b1d18">Scalar</a>, Eigen::Dynamic, 1 &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>VectorX</b></td></tr>
-<tr class="separator:a3b82984735eb0cdd811f35655bc3c6f1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af48109448f74d0ee1370a211983b9f77"><td class="memItemLeft" align="right" valign="top"><a id="af48109448f74d0ee1370a211983b9f77"></a>
-typedef Eigen::Matrix&lt; <a class="el" href="classPonca_1_1MongePatch.html#af05d7b64e140ddc676cf97d4c55b1d18">Scalar</a>, Eigen::Dynamic, Eigen::Dynamic &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>MatrixX</b></td></tr>
-<tr class="separator:af48109448f74d0ee1370a211983b9f77"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
-Public Member Functions</h2></td></tr>
-<tr class="memitem:a1062d4f81df29288f4f14526bc6e4166"><td class="memItemLeft" align="right" valign="top"><a id="a1062d4f81df29288f4f14526bc6e4166"></a>
-<a class="el" href="classPonca_1_1MongePatch.html">MongePatch</a>&lt; DataPoint, <a class="el" href="classPonca_1_1MongePatch.html#aca6cbe03830478c6e32c8f771f08e546">WFunctor</a>, T &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1MongePatch.html#a1062d4f81df29288f4f14526bc6e4166">mongePatch</a> ()</td></tr>
-<tr class="memdesc:a1062d4f81df29288f4f14526bc6e4166"><td class="mdescLeft">&#160;</td><td class="mdescRight">Explicit conversion to <a class="el" href="classPonca_1_1MongePatch.html" title="Extension to compute the best fit quadric on 3d points expressed as .">MongePatch</a>, to access methods potentially hidden by inheritage. <br /></td></tr>
-<tr class="separator:a1062d4f81df29288f4f14526bc6e4166"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac04375f5c955bd380dda7a16559700a2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1MongePatch.html#ac04375f5c955bd380dda7a16559700a2">init</a> (const <a class="el" href="classPonca_1_1MongePatch.html#a0432d127bd24f30887b796206dd2f3e9">VectorType</a> &amp;_evalPos)</td></tr>
-<tr class="memdesc:ac04375f5c955bd380dda7a16559700a2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the evaluation position and reset the internal states.  <a href="classPonca_1_1MongePatch.html#ac04375f5c955bd380dda7a16559700a2">More...</a><br /></td></tr>
-<tr class="separator:ac04375f5c955bd380dda7a16559700a2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7a1fbacaa52f3a6a6602999f0e776ac6"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1MongePatch.html#a7a1fbacaa52f3a6a6602999f0e776ac6">addNeighbor</a> (const DataPoint &amp;_nei)</td></tr>
-<tr class="memdesc:a7a1fbacaa52f3a6a6602999f0e776ac6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Add a neighbor to perform the fit.  <a href="classPonca_1_1MongePatch.html#a7a1fbacaa52f3a6a6602999f0e776ac6">More...</a><br /></td></tr>
-<tr class="separator:a7a1fbacaa52f3a6a6602999f0e776ac6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a772867de5a6a396bb51ee6add816cdae"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__fitting.html#gabfd697aebf07c1b5c8be5ee401e2dc84">FIT_RESULT</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1MongePatch.html#a772867de5a6a396bb51ee6add816cdae">finalize</a> ()</td></tr>
-<tr class="memdesc:a772867de5a6a396bb51ee6add816cdae"><td class="mdescLeft">&#160;</td><td class="mdescRight">Finalize the fitting procedure.  <a href="classPonca_1_1MongePatch.html#a772867de5a6a396bb51ee6add816cdae">More...</a><br /></td></tr>
-<tr class="separator:a772867de5a6a396bb51ee6add816cdae"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a577334b5f0eb551c969135e70b1d849e"><td class="memItemLeft" align="right" valign="top"><a id="a577334b5f0eb551c969135e70b1d849e"></a>
-<a class="el" href="classPonca_1_1MongePatch.html#af05d7b64e140ddc676cf97d4c55b1d18">Scalar</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1MongePatch.html#a577334b5f0eb551c969135e70b1d849e">kMean</a> () const</td></tr>
-<tr class="memdesc:a577334b5f0eb551c969135e70b1d849e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns an estimate of the mean curvature. <br /></td></tr>
-<tr class="separator:a577334b5f0eb551c969135e70b1d849e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a16025aa98336fd14c49ed0c473c0cb70"><td class="memItemLeft" align="right" valign="top"><a id="a16025aa98336fd14c49ed0c473c0cb70"></a>
-<a class="el" href="classPonca_1_1MongePatch.html#af05d7b64e140ddc676cf97d4c55b1d18">Scalar</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1MongePatch.html#a16025aa98336fd14c49ed0c473c0cb70">GaussianCurvature</a> () const</td></tr>
-<tr class="memdesc:a16025aa98336fd14c49ed0c473c0cb70"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns an estimate of the Gaussian curvature. <br /></td></tr>
-<tr class="separator:a16025aa98336fd14c49ed0c473c0cb70"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa38806dfc06749fd080f503c9bcf9b03"><td class="memItemLeft" align="right" valign="top"><a id="aa38806dfc06749fd080f503c9bcf9b03"></a>
-<a class="el" href="classPonca_1_1MongePatch.html#af05d7b64e140ddc676cf97d4c55b1d18">Scalar</a>&#160;</td><td class="memItemRight" valign="bottom"><b>evalUV</b> (<a class="el" href="classPonca_1_1MongePatch.html#af05d7b64e140ddc676cf97d4c55b1d18">Scalar</a> u, <a class="el" href="classPonca_1_1MongePatch.html#af05d7b64e140ddc676cf97d4c55b1d18">Scalar</a> v) const</td></tr>
-<tr class="separator:aa38806dfc06749fd080f503c9bcf9b03"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:adf18699bc0f6b7fc660643cb55738fc7"><td class="memItemLeft" align="right" valign="top"><a id="adf18699bc0f6b7fc660643cb55738fc7"></a>
-<a class="el" href="classPonca_1_1MongePatch.html#af05d7b64e140ddc676cf97d4c55b1d18">Scalar</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1MongePatch.html#adf18699bc0f6b7fc660643cb55738fc7">potential</a> (const <a class="el" href="classPonca_1_1MongePatch.html#a0432d127bd24f30887b796206dd2f3e9">VectorType</a> &amp;_q) const</td></tr>
-<tr class="memdesc:adf18699bc0f6b7fc660643cb55738fc7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Value of the scalar field at the evaluation point. <br /></td></tr>
-<tr class="separator:adf18699bc0f6b7fc660643cb55738fc7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a67e933ee11703000d16fe31d8baf4b0b"><td class="memItemLeft" align="right" valign="top"><a id="a67e933ee11703000d16fe31d8baf4b0b"></a>
-<a class="el" href="classPonca_1_1MongePatch.html#a0432d127bd24f30887b796206dd2f3e9">VectorType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1MongePatch.html#a67e933ee11703000d16fe31d8baf4b0b">project</a> (const <a class="el" href="classPonca_1_1MongePatch.html#a0432d127bd24f30887b796206dd2f3e9">VectorType</a> &amp;_q) const</td></tr>
-<tr class="memdesc:a67e933ee11703000d16fe31d8baf4b0b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Orthogonal projecting on the patch, such that h = f(u,v) <br /></td></tr>
-<tr class="separator:a67e933ee11703000d16fe31d8baf4b0b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afd960f06c8bff06b84af91c20c051c4a"><td class="memItemLeft" align="right" valign="top"><a id="afd960f06c8bff06b84af91c20c051c4a"></a>
-const <a class="el" href="classPonca_1_1MongePatch.html#af05d7b64e140ddc676cf97d4c55b1d18">Scalar</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>h_uu</b> () const</td></tr>
-<tr class="separator:afd960f06c8bff06b84af91c20c051c4a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a001efd4d8f439cf7bdae8bc2fa63167d"><td class="memItemLeft" align="right" valign="top"><a id="a001efd4d8f439cf7bdae8bc2fa63167d"></a>
-const <a class="el" href="classPonca_1_1MongePatch.html#af05d7b64e140ddc676cf97d4c55b1d18">Scalar</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>h_vv</b> () const</td></tr>
-<tr class="separator:a001efd4d8f439cf7bdae8bc2fa63167d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:adab04f79da2db295fa8139d67f8500d2"><td class="memItemLeft" align="right" valign="top"><a id="adab04f79da2db295fa8139d67f8500d2"></a>
-const <a class="el" href="classPonca_1_1MongePatch.html#af05d7b64e140ddc676cf97d4c55b1d18">Scalar</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>h_uv</b> () const</td></tr>
-<tr class="separator:adab04f79da2db295fa8139d67f8500d2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad6f20488093918824ff6dd0f0debafd5"><td class="memItemLeft" align="right" valign="top"><a id="ad6f20488093918824ff6dd0f0debafd5"></a>
-const <a class="el" href="classPonca_1_1MongePatch.html#af05d7b64e140ddc676cf97d4c55b1d18">Scalar</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>h_u</b> () const</td></tr>
-<tr class="separator:ad6f20488093918824ff6dd0f0debafd5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a30ce9735478b46ba616208dbe7ae5303"><td class="memItemLeft" align="right" valign="top"><a id="a30ce9735478b46ba616208dbe7ae5303"></a>
-const <a class="el" href="classPonca_1_1MongePatch.html#af05d7b64e140ddc676cf97d4c55b1d18">Scalar</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>h_v</b> () const</td></tr>
-<tr class="separator:a30ce9735478b46ba616208dbe7ae5303"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a04dc8d740105686d0e56e86c0b16a2a2"><td class="memItemLeft" align="right" valign="top"><a id="a04dc8d740105686d0e56e86c0b16a2a2"></a>
-const <a class="el" href="classPonca_1_1MongePatch.html#af05d7b64e140ddc676cf97d4c55b1d18">Scalar</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>h_c</b> () const</td></tr>
-<tr class="separator:a04dc8d740105686d0e56e86c0b16a2a2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-types"></a>
-Protected Types</h2></td></tr>
-<tr class="memitem:a0afe7c5ae6e536905af195f2b6eb2898"><td class="memItemLeft" align="right" valign="top"><a id="a0afe7c5ae6e536905af195f2b6eb2898"></a>enum &#160;</td><td class="memItemRight" valign="bottom">{ <b>Check</b> = Base::PROVIDES_PLANE &amp;&amp; Base::PROVIDES_TANGENT_PLANE_BASIS
- }</td></tr>
-<tr class="separator:a0afe7c5ae6e536905af195f2b6eb2898"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-attribs"></a>
-Protected Attributes</h2></td></tr>
-<tr class="memitem:a004713a95d15ef6d52fcfb656818ed19"><td class="memItemLeft" align="right" valign="top"><a id="a004713a95d15ef6d52fcfb656818ed19"></a>
-MatrixX&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1MongePatch.html#a004713a95d15ef6d52fcfb656818ed19">m_A</a></td></tr>
-<tr class="memdesc:a004713a95d15ef6d52fcfb656818ed19"><td class="mdescLeft">&#160;</td><td class="mdescRight">Quadric input samples. <br /></td></tr>
-<tr class="separator:a004713a95d15ef6d52fcfb656818ed19"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1fea1ce65a5d5899cece5e21eba5a973"><td class="memItemLeft" align="right" valign="top"><a id="a1fea1ce65a5d5899cece5e21eba5a973"></a>
-MatrixX&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1MongePatch.html#a1fea1ce65a5d5899cece5e21eba5a973">m_x</a></td></tr>
-<tr class="memdesc:a1fea1ce65a5d5899cece5e21eba5a973"><td class="mdescLeft">&#160;</td><td class="mdescRight">Quadric parameters. <br /></td></tr>
-<tr class="separator:a1fea1ce65a5d5899cece5e21eba5a973"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a71b9b6bd1b4240f4be7713978f1d8643"><td class="memItemLeft" align="right" valign="top"><a id="a71b9b6bd1b4240f4be7713978f1d8643"></a>
-VectorX&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1MongePatch.html#a71b9b6bd1b4240f4be7713978f1d8643">m_b</a></td></tr>
-<tr class="memdesc:a71b9b6bd1b4240f4be7713978f1d8643"><td class="mdescLeft">&#160;</td><td class="mdescRight">Obervations. <br /></td></tr>
-<tr class="separator:a71b9b6bd1b4240f4be7713978f1d8643"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0a7d2e7b5727ca66a0e23b7c996c2b65"><td class="memItemLeft" align="right" valign="top"><a id="a0a7d2e7b5727ca66a0e23b7c996c2b65"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1MongePatch.html#a0a7d2e7b5727ca66a0e23b7c996c2b65">m_neiIdx</a></td></tr>
-<tr class="memdesc:a0a7d2e7b5727ca66a0e23b7c996c2b65"><td class="mdescLeft">&#160;</td><td class="mdescRight">Counter of observations, used in addNeighhor() <br /></td></tr>
-<tr class="separator:a0a7d2e7b5727ca66a0e23b7c996c2b65"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab5a28e7e673d5ad3f9a5aa23187dad30"><td class="memItemLeft" align="right" valign="top"><a id="ab5a28e7e673d5ad3f9a5aa23187dad30"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>m_planeIsReady</b></td></tr>
-<tr class="separator:ab5a28e7e673d5ad3f9a5aa23187dad30"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table>
-<h2 class="groupheader">Member Function Documentation</h2>
-<a id="a7a1fbacaa52f3a6a6602999f0e776ac6"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a7a1fbacaa52f3a6a6602999f0e776ac6">&#9670;&nbsp;</a></span>addNeighbor()</h2>
+<dl class="section warning"><dt>Warning</dt><dd>This class is valid only in 3D.</dd></dl>
+<dl class="section note"><dt>Note</dt><dd>This class mixes the primitive (<a class="el" href="classPonca_1_1MongePatch.html" title="Extension to compute the best fit quadric on 3d points expressed as .">MongePatch</a>) and its fitting procedure. Could makes sense to split the two </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="mongePatch_8h_source.html#l00028">28</a> of file <a class="el" href="mongePatch_8h_source.html">mongePatch.h</a>.</p>
+</div><h2 class="groupheader">Member Function Documentation</h2>
+<a id="a2eb2b79fc90ed59b2f6c3cb07d21249a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2eb2b79fc90ed59b2f6c3cb07d21249a">&#9670;&nbsp;</a></span>addLocalNeighbor()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -233,11 +265,27 @@ template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">bool MongePatch::addNeighbor </td>
+          <td class="memname">bool MongePatch::addLocalNeighbor </td>
           <td>(</td>
-          <td class="paramtype">const DataPoint &amp;&#160;</td>
-          <td class="paramname"><em>_nei</em></td><td>)</td>
+          <td class="paramtype"><a class="el" href="classPonca_1_1MongePatch.html#a7400b89b87e3e0073b9322f775c70afe">Scalar</a>&#160;</td>
+          <td class="paramname"><em>w</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype">const <a class="el" href="classPonca_1_1MongePatch.html#a0268f212403253ece19251419ef7c217">VectorType</a> &amp;&#160;</td>
+          <td class="paramname"><em>localQ</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const DataPoint &amp;&#160;</td>
+          <td class="paramname"><em>attributes</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
         </tr>
       </table>
   </td>
@@ -249,6 +297,8 @@ template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
 
 <p>Add a neighbor to perform the fit. </p>
 <dl class="section return"><dt>Returns</dt><dd>false if param nei is not a valid neighbour (weight = 0) </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="mongePatch_8hpp_source.html#l00018">18</a> of file <a class="el" href="mongePatch_8hpp_source.html">mongePatch.hpp</a>.</p>
 
 </div>
 </div>
@@ -277,9 +327,11 @@ template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p>Finalize the fitting procedure. </p>
-<dl class="section return"><dt>Returns</dt><dd>the corresponding state of the fitting </dd></dl>
+<p>Finalize the procedure. </p>
+<dl class="section return"><dt>Returns</dt><dd>Fitting Status </dd></dl>
 <dl class="section warning"><dt>Warning</dt><dd>Must be called be for any use of the fitting output </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="mongePatch_8hpp_source.html#l00046">46</a> of file <a class="el" href="mongePatch_8hpp_source.html">mongePatch.hpp</a>.</p>
 
 </div>
 </div>
@@ -297,7 +349,7 @@ template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
         <tr>
           <td class="memname">void MongePatch::init </td>
           <td>(</td>
-          <td class="paramtype">const <a class="el" href="classPonca_1_1MongePatch.html#a0432d127bd24f30887b796206dd2f3e9">VectorType</a> &amp;&#160;</td>
+          <td class="paramtype">const <a class="el" href="classPonca_1_1MongePatch.html#a0268f212403253ece19251419ef7c217">VectorType</a> &amp;&#160;</td>
           <td class="paramname"><em>_evalPos</em></td><td>)</td>
           <td></td>
         </tr>
@@ -312,14 +364,20 @@ template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
 <p>Set the evaluation position and reset the internal states. </p>
 <dl class="section warning"><dt>Warning</dt><dd>Must be called be for any computation </dd></dl>
 
+<p class="definition">Definition at line <a class="el" href="mongePatch_8hpp_source.html#l00007">7</a> of file <a class="el" href="mongePatch_8hpp_source.html">mongePatch.hpp</a>.</p>
+
 </div>
 </div>
 </div><!-- contents -->
+</div><!-- doc-content -->
 <!-- start footer part -->
-<hr class="footer"/><address class="footer"><small>
-Generated on Tue Aug 2 2022 09:22:55 for Ponca by &#160;<a href="http://www.doxygen.org/index.html">
-<img class="footer" src="doxygen.png" alt="doxygen"/>
-</a> 1.8.17
-</small></address>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="namespacePonca.html">Ponca</a></li><li class="navelem"><a class="el" href="classPonca_1_1MongePatch.html">MongePatch</a></li>
+    <li class="footer">Generated on Fri Sep 9 2022 12:28:20 for Ponca by
+    <a href="http://www.doxygen.org/index.html">
+    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.17 </li>
+  </ul>
+</div>
 </body>
 </html>
