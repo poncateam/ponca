@@ -3,7 +3,7 @@ name: Deploy documentation to gh-pages
 
 on:
   push:
-    branches: [ master ]
+    branches: [ master, updateDoxAction ]
 
 jobs:
   deploy-doc:
@@ -17,19 +17,20 @@ jobs:
         uses: actions/checkout@master
         with:
           path: src/
-      - name: Install packages
+      - name: Install packages (only used to generate Doxyfile)
         run : |
-          sudo apt-get install doxygen graphviz doxygen-latex
+          sudo apt-get install doxygen
       - name: Configure Doc
         run: |
           cd build/
           cmake ../src/ -DCMAKE_EXECUTE_PROCESS_COMMAND_ECHO=STDOUT -DPONCA_CONFIGURE_EXAMPLES=OFF -DPONCA_CONFIGURE_TESTS=OFF
       - name: Build Doc
-        run: |
-          cd build/
-          cmake --build . --target ponca-doc
-      - name: Deploy Doc
-        uses: peaceiris/actions-gh-pages@v3
+        uses: mattnotmitt/doxygen-action@v1.9.4
         with:
-          github_token: ${{ secrets.REPO_ACCESS_TOKEN }}
-          publish_dir: 'build/doc/html'
+           working-directory: 'build/'
+           doxyfile-path: 'doc'
+#      - name: Deploy Doc
+#        uses: peaceiris/actions-gh-pages@v3
+#        with:
+#          github_token: ${{ secrets.REPO_ACCESS_TOKEN }}
+#          publish_dir: 'build/doc/html'
