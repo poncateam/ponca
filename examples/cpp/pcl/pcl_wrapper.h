@@ -45,7 +45,6 @@ namespace pcl
     *
     *
     * \author Gautier Ciaudo
-    * \ingroup features
     */
     template<typename PointInT, typename PointOutT>
     class GlsCurvature : public Feature<PointInT, PointOutT>

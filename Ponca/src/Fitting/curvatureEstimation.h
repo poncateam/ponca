@@ -17,8 +17,6 @@ namespace Ponca
     This class extracts curvature information from the spatial derivatives of the normal field \f$ N \f$.
     It first assemble a 2x2 matrix representation of the shape operator, and then performs an eigenvalue decomposition
     using Eigen::SelfAdjointEigenSolver::computeDirect.
-
-    \ingroup fitting
 */
     template < class DataPoint, class _WFunctor, int DiffType, typename T>
     class NormalDerivativesCurvatureEstimator : public T
@@ -72,7 +70,6 @@ namespace Ponca
  * \warning Not it test suite, to be added !
  *
  * \warning This class is valid only in 3D.
- * \ingroup fitting
  */
 template < class DataPoint, class _WFunctor, int DiffType, typename T>
 class NormalCovarianceCurvatureEstimator : public T
@@ -118,7 +115,6 @@ public:
  * \note This procedure requires two passes, the first one for plane fitting
  * and local frame estimation, and the second one for covariance analysis.
  * \warning This class is valid only in 3D.
- * \ingroup fitting
  *
  * \warning Not it test suite, to be added !
  */

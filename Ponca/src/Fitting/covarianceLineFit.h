@@ -28,7 +28,6 @@ namespace Ponca
    \todo Add equations
 
    \warning This class is valid only in 3D.
-   \ingroup fitting
  */
 
 template < class DataPoint, class _WFunctor, typename T>
@@ -58,7 +57,6 @@ public:
 };
 
 /// \brief Helper alias for Line fitting on 3D points using CovarianceLineFitImpl
-/// \ingroup fittingalias
 template < class DataPoint, class _WFunctor, typename T>
 using CovarianceLineFit =
                 CovarianceLineFitImpl<DataPoint, _WFunctor,

@@ -23,8 +23,6 @@ namespace Ponca
     \inherit Concept::FittingProcedureConcept
 
     \see class AlgebraicSphere, class OrientedSphereFit
-
-    \ingroup fitting
 */
 template < class DataPoint, class _WFunctor, typename T >
 class UnorientedSphereFitImpl : public T
@@ -48,7 +46,6 @@ public:
 }; // class UnorientedSphereFitImpl
 
 /// \brief Helper alias for Oriented Sphere fitting on 3D points using UnorientedSphereFitImpl
-/// \ingroup fittingalias
 template < class DataPoint, class _WFunctor, typename T>
 using UnorientedSphereFit =
 UnorientedSphereFitImpl<DataPoint, _WFunctor,

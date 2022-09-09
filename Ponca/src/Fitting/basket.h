@@ -97,7 +97,6 @@ namespace internal
          > myFitDer;                       // Final structure to fit and derive a primitive over weighted samples
          \endcode
 
-         \ingroup fitting
          \see Basket for the aggregation of \ref concepts_computObjectBasket "ComputationalObjectConcept"
 
          \tparam BasketType Existing Basket, to be differentiated
@@ -184,7 +183,6 @@ namespace internal
         > myFit;                     // Final structure to fit a primitive over weighted samples
     \endcode
 
-    \ingroup fitting
     \see BasketDiff for the aggregation of \ref concepts_computObjectBasketDiff "ComputationalDerivativesConcept"
 
     \tparam P Implements \ref ponca_concepts "PointConcept"

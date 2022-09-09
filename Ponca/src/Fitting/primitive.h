@@ -26,8 +26,6 @@ namespace Ponca
 
     \note This class should not be inherited explicitly: this is done by the
     #Basket class.
-
-    \ingroup fitting
 */
 template < class DataPoint, class _WFunctor, typename T = void  >
 class PrimitiveBase

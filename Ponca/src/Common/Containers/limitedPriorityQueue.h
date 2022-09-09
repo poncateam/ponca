@@ -71,8 +71,6 @@ namespace Ponca {
 //!     push(5) adds the value 5 and remove the value 2
 //!     push(0) do nothing
 //!
-//!
-//! \ingroup common
 template<class T,
          class CompareT = std::less<T>>
 class limited_priority_queue

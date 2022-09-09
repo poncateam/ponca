@@ -19,8 +19,6 @@ namespace Ponca {
 
     This primitive provides:
     \verbatim PROVIDES_MEAN_POSITION \endverbatim
-
-    \ingroup fitting
 */
     template<class DataPoint, class _WFunctor, typename T>
     class MeanPosition : public T {
@@ -59,8 +57,6 @@ namespace Ponca {
     currently stored in MeanPosition.
 
     \todo Add scale and space derivatives
-
-    \ingroup fitting
 */
     template<class DataPoint, class _WFunctor, typename T>
     class MeanNormal : public T {

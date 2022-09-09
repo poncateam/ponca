@@ -17,10 +17,6 @@ namespace Ponca
 
 /*!
    \brief Empty fitting object doing no computation
-
-   \inherit Concept::FittingProcedureConcept
-
-   \ingroup fitting
  */
 
     template < class DataPoint, class _WFunctor, typename T>

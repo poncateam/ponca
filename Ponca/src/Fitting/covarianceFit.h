@@ -26,7 +26,6 @@ namespace Ponca
    \todo Add equations
 
    \warning This class is valid only in 3D.
-   \ingroup fitting
  */
 
     template < class DataPoint, class _WFunctor, typename T>
@@ -70,8 +69,6 @@ namespace Ponca
     \brief Internal generic class computing the derivatives of covariance matrix
     computed by CovarianceFitBase
     \inherit Concept::FittingExtensionConcept
-
-    \ingroup fitting
 */
     template < class DataPoint, class _WFunctor, int DiffType, typename T>
     class CovarianceFitDer : public T
