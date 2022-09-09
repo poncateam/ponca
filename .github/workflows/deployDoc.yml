@@ -3,7 +3,7 @@ name: Deploy documentation to gh-pages
 
 on:
   push:
-    branches: [ master, updateDoxAction ]
+    branches: [ master ]
 
 jobs:
   deploy-doc:
@@ -17,7 +17,9 @@ jobs:
         uses: actions/checkout@master
         with:
           path: src/
-      - name: Download recent doxygen
+      - name: Install packages
+        run : sudo apt-get install graphviz texlive-bibtex-extra
+      - name: Fetch recent doxygen (1.9.3)
         run: |
           curl https://www.doxygen.nl/files/doxygen-1.9.3.linux.bin.tar.gz -o  doxygen-1.9.3.linux.bin.tar.gz
           tar -xvzf doxygen-1.9.3.linux.bin.tar.gz
@@ -29,7 +31,6 @@ jobs:
         run: |
           cd build/
           cmake --build . --target ponca-doc
-#          ./doxygen-1.9.3/bin/doxygen ./build/doc/Doxyfile
       - name: Deploy Doc
         uses: peaceiris/actions-gh-pages@v3
         with:
