@@ -51,7 +51,7 @@ MathJax.Hub.Config({
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Ponca
-   &#160;<span id="projectnumber">15d1db921a9a8365d8cf636d0c485437e25af8f3</span>
+   &#160;<span id="projectnumber">5e48b75fc32b415f7296ffc4771c6b9e6c065a7a</span>
    </div>
    <div id="projectbrief">Point Cloud Analysis library</div>
   </td>
@@ -156,7 +156,7 @@ $(document).ready(function(){initNavTree('kdTree_8hpp_source.html',''); initResi
 <div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span> </div>
 <div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span><span class="keyword">template</span>&lt;<span class="keyword">class</span> DataPo<span class="keywordtype">int</span>&gt;</div>
 <div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span><span class="keyword">template</span>&lt;<span class="keyword">typename</span> Po<span class="keywordtype">int</span>UserContainer, <span class="keyword">typename</span> Converter&gt;</div>
-<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span><span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code hl_function" href="group__spatialpartitioning.html#a78c639475215277202a3016cd33a492b">KdTree&lt;DataPoint&gt;::build</a>(<span class="keyword">const</span> PointUserContainer&amp; points, Converter c)</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span><span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code hl_function" href="classPonca_1_1KdTree.html#a78c639475215277202a3016cd33a492b">KdTree&lt;DataPoint&gt;::build</a>(<span class="keyword">const</span> PointUserContainer&amp; points, Converter c)</div>
 <div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>{</div>
 <div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>    std::vector&lt;int&gt; ids(points.size());</div>
 <div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>    std::iota(ids.begin(), ids.end(), 0);</div>
@@ -165,7 +165,7 @@ $(document).ready(function(){initNavTree('kdTree_8hpp_source.html',''); initResi
 <div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span> </div>
 <div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span><span class="keyword">template</span>&lt;<span class="keyword">class</span> DataPo<span class="keywordtype">int</span>&gt;</div>
 <div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span><span class="keyword">template</span>&lt;<span class="keyword">typename</span> Po<span class="keywordtype">int</span>UserContainer, <span class="keyword">typename</span> IndexUserContainer, <span class="keyword">typename</span> Converter&gt;</div>
-<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span><span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code hl_function" href="group__spatialpartitioning.html#a1fcfb4279b06dbb9e744bec2b91557e0">KdTree&lt;DataPoint&gt;::buildWithSampling</a>(<span class="keyword">const</span> PointUserContainer&amp; points,</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span><span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code hl_function" href="classPonca_1_1KdTree.html#a1fcfb4279b06dbb9e744bec2b91557e0">KdTree&lt;DataPoint&gt;::buildWithSampling</a>(<span class="keyword">const</span> PointUserContainer&amp; points,</div>
 <div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>                                                 <span class="keyword">const</span> IndexUserContainer&amp; sampling,</div>
 <div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>                                                 Converter c)</div>
 <div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>{</div>
@@ -378,15 +378,15 @@ $(document).ready(function(){initNavTree('kdTree_8hpp_source.html',''); initResi
 <div class="line"><a id="l00264" name="l00264"></a><span class="lineno">  264</span>    <span class="keywordflow">return</span> <span class="keyword">static_cast&lt;</span><span class="keywordtype">int</span><span class="keyword">&gt;</span>(distance);</div>
 <div class="line"><a id="l00265" name="l00265"></a><span class="lineno">  265</span>}</div>
 <div class="line"><a id="l00266" name="l00266"></a><span class="lineno">  266</span> </div>
-<div class="ttc" id="agroup__spatialpartitioning_html_a1fcfb4279b06dbb9e744bec2b91557e0"><div class="ttname"><a href="group__spatialpartitioning.html#a1fcfb4279b06dbb9e744bec2b91557e0">Ponca::KdTree&lt; DataPoint &gt;::buildWithSampling</a></div><div class="ttdeci">void buildWithSampling(const PointUserContainer &amp;points, const IndexUserContainer &amp;sampling)</div><div class="ttdef"><b>Definition:</b> <a href="kdTree_8h_source.html#l00113">kdTree.h:113</a></div></div>
-<div class="ttc" id="agroup__spatialpartitioning_html_a78c639475215277202a3016cd33a492b"><div class="ttname"><a href="group__spatialpartitioning.html#a78c639475215277202a3016cd33a492b">Ponca::KdTree&lt; DataPoint &gt;::build</a></div><div class="ttdeci">void build(const PointUserContainer &amp;points)</div><div class="ttdef"><b>Definition:</b> <a href="kdTree_8h_source.html#l00099">kdTree.h:99</a></div></div>
+<div class="ttc" id="aclassPonca_1_1KdTree_html_a1fcfb4279b06dbb9e744bec2b91557e0"><div class="ttname"><a href="classPonca_1_1KdTree.html#a1fcfb4279b06dbb9e744bec2b91557e0">Ponca::KdTree&lt; DataPoint &gt;::buildWithSampling</a></div><div class="ttdeci">void buildWithSampling(const PointUserContainer &amp;points, const IndexUserContainer &amp;sampling)</div><div class="ttdef"><b>Definition:</b> <a href="kdTree_8h_source.html#l00111">kdTree.h:111</a></div></div>
+<div class="ttc" id="aclassPonca_1_1KdTree_html_a78c639475215277202a3016cd33a492b"><div class="ttname"><a href="classPonca_1_1KdTree.html#a78c639475215277202a3016cd33a492b">Ponca::KdTree&lt; DataPoint &gt;::build</a></div><div class="ttdeci">void build(const PointUserContainer &amp;points)</div><div class="ttdef"><b>Definition:</b> <a href="kdTree_8h_source.html#l00097">kdTree.h:97</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_695d95a8d8fbec601a248c0414764298.html">Ponca</a></li><li class="navelem"><a class="el" href="dir_ce16314fc45f8638543c5146aff64d4a.html">src</a></li><li class="navelem"><a class="el" href="dir_12c32e53c838db195d209d78f62f8479.html">SpatialPartitioning</a></li><li class="navelem"><a class="el" href="dir_1714f3cab0d35a638840fab853fb5d40.html">KdTree</a></li><li class="navelem"><b>kdTree.hpp</b></li>
-    <li class="footer">Generated on Fri Sep 9 2022 13:45:37 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.3 </li>
+    <li class="footer">Generated on Fri Sep 9 2022 13:54:58 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.3 </li>
   </ul>
 </div>
 </body>

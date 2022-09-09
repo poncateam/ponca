@@ -1,6 +1,6 @@
 <map id="Ponca::KdTreeRangePointQuery&lt; DataPoint &gt;" name="Ponca::KdTreeRangePointQuery&lt; DataPoint &gt;">
 <area shape="rect" id="node1" title=" " alt="" coords="148,1157,375,1293"/>
-<area shape="rect" id="node2" href="$group__spatialpartitioning.html#classPonca_1_1KdTreeQuery" title=" " alt="" coords="169,987,321,1108"/>
+<area shape="rect" id="node2" href="$classPonca_1_1KdTreeQuery.html" title=" " alt="" coords="169,987,321,1108"/>
 <area shape="rect" id="node3" href="$group__spatialpartitioning.html#structPonca_1_1RangePointQuery" title="Base Query class combining QueryInputIsPosition and QueryOutputIsRange." alt="" coords="346,1001,529,1093"/>
 <area shape="rect" id="node4" href="$group__spatialpartitioning.html" title=" " alt="" coords="340,801,535,937"/>
 <area shape="rect" id="node5" href="$group__spatialpartitioning.html#structPonca_1_1QueryInputIsPosition" title="Base class for queries storing points." alt="" coords="91,581,295,673"/>

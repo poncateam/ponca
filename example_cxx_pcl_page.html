@@ -51,7 +51,7 @@ MathJax.Hub.Config({
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Ponca
-   &#160;<span id="projectnumber">15d1db921a9a8365d8cf636d0c485437e25af8f3</span>
+   &#160;<span id="projectnumber">5e48b75fc32b415f7296ffc4771c6b9e6c065a7a</span>
    </div>
    <div id="projectbrief">Point Cloud Analysis library</div>
   </td>
@@ -264,9 +264,9 @@ Datastructures implementation</h2>
 <div class="line">                                                         <span class="keywordtype">float</span> &amp;curvature)</div>
 <div class="line">{</div>
 <div class="line">    <span class="keyword">typedef</span> GlsPoint::Scalar Scalar;</div>
-<div class="line">    <span class="keyword">typedef</span> <a class="code hl_class" href="group__fitting.html#classPonca_1_1DistWeightFunc">Ponca::DistWeightFunc&lt;GlsPoint, Ponca::SmoothWeightKernel&lt;Scalar&gt;</a> &gt; WeightFunc;</div>
+<div class="line">    <span class="keyword">typedef</span> <a class="code hl_class" href="classPonca_1_1DistWeightFunc.html">Ponca::DistWeightFunc&lt;GlsPoint, Ponca::SmoothWeightKernel&lt;Scalar&gt;</a> &gt; WeightFunc;</div>
 <div class="line">    <span class="comment">//typedef Ponca::Basket&lt;GlsPoint, WeightFunc, Ponca::MeanPlaneFit, Ponca::NormalCovarianceCurvature&gt; Fit;</span></div>
-<div class="line">    <span class="keyword">typedef</span> <a class="code hl_class" href="group__fitting.html#classPonca_1_1Basket">Ponca::Basket&lt;GlsPoint, WeightFunc, Ponca::CovariancePlaneFit, Ponca::CovariancePlaneSpaceDer, Ponca::NormalDerivativesCurvatureEstimator&gt;</a> Fit;</div>
+<div class="line">    <span class="keyword">typedef</span> <a class="code hl_class" href="classPonca_1_1Basket.html">Ponca::Basket&lt;GlsPoint, WeightFunc, Ponca::CovariancePlaneFit, Ponca::CovariancePlaneSpaceDer, Ponca::NormalDerivativesCurvatureEstimator&gt;</a> Fit;</div>
 <div class="line"> </div>
 <div class="line">    Fit fit;</div>
 <div class="line">    <span class="comment">// Set a weighting function instance using the search radius of the tree as scale</span></div>
@@ -282,7 +282,7 @@ Datastructures implementation</h2>
 <div class="line">    {</div>
 <div class="line">        <span class="keywordtype">int</span> <span class="keywordtype">id</span> = indices[idx];</div>
 <div class="line"> </div>
-<div class="line">        fit.<a class="code hl_function" href="group__fitting.html#abe967d3aae87dc8f19b6d1ae7597e2a4">addNeighbor</a>(GlsPoint(cloud.points[<span class="keywordtype">id</span>].getVector3fMap(), cloud.points[<span class="keywordtype">id</span>].getNormalVector3fMap()));</div>
+<div class="line">        fit.<a class="code hl_function" href="classPonca_1_1Basket.html#abe967d3aae87dc8f19b6d1ae7597e2a4">addNeighbor</a>(GlsPoint(cloud.points[<span class="keywordtype">id</span>].getVector3fMap(), cloud.points[<span class="keywordtype">id</span>].getNormalVector3fMap()));</div>
 <div class="line">    }</div>
 <div class="line"> </div>
 <div class="line">    <span class="comment">// Finalize fitting</span></div>
@@ -301,9 +301,9 @@ Datastructures implementation</h2>
 <div class="line"> </div>
 <div class="line"><span class="preprocessor">#define PCL_INSTANTIATE_GlsCurvature(T, OutT) template class PCL_EXPORTS pcl::GlsCurvature&lt;T, OutT&gt;;</span></div>
 <div class="line"> </div>
-<div class="ttc" id="agroup__fitting_html_abe967d3aae87dc8f19b6d1ae7597e2a4"><div class="ttname"><a href="group__fitting.html#abe967d3aae87dc8f19b6d1ae7597e2a4">Ponca::Basket::addNeighbor</a></div><div class="ttdeci">bool addNeighbor(const DataPoint &amp;_nei)</div><div class="ttdoc">Add a neighbor to perform the fit.</div><div class="ttdef"><b>Definition:</b> <a href="basket_8h_source.html#l00226">basket.h:226</a></div></div>
-<div class="ttc" id="agroup__fitting_html_classPonca_1_1Basket"><div class="ttname"><a href="group__fitting.html#classPonca_1_1Basket">Ponca::Basket</a></div><div class="ttdoc">Aggregator class used to declare specialized structures using CRTP.</div><div class="ttdef"><b>Definition:</b> <a href="basket_8h_source.html#l00207">basket.h:209</a></div></div>
-<div class="ttc" id="agroup__fitting_html_classPonca_1_1DistWeightFunc"><div class="ttname"><a href="group__fitting.html#classPonca_1_1DistWeightFunc">Ponca::DistWeightFunc</a></div><div class="ttdoc">Weighting function based on the euclidean distance between a query and a reference position.</div><div class="ttdef"><b>Definition:</b> <a href="weightFunc_8h_source.html#l00030">weightFunc.h:31</a></div></div>
+<div class="ttc" id="aclassPonca_1_1Basket_html"><div class="ttname"><a href="classPonca_1_1Basket.html">Ponca::Basket</a></div><div class="ttdoc">Aggregator class used to declare specialized structures using CRTP.</div><div class="ttdef"><b>Definition:</b> <a href="basket_8h_source.html#l00205">basket.h:207</a></div></div>
+<div class="ttc" id="aclassPonca_1_1Basket_html_abe967d3aae87dc8f19b6d1ae7597e2a4"><div class="ttname"><a href="classPonca_1_1Basket.html#abe967d3aae87dc8f19b6d1ae7597e2a4">Ponca::Basket::addNeighbor</a></div><div class="ttdeci">bool addNeighbor(const DataPoint &amp;_nei)</div><div class="ttdoc">Add a neighbor to perform the fit.</div><div class="ttdef"><b>Definition:</b> <a href="basket_8h_source.html#l00224">basket.h:224</a></div></div>
+<div class="ttc" id="aclassPonca_1_1DistWeightFunc_html"><div class="ttname"><a href="classPonca_1_1DistWeightFunc.html">Ponca::DistWeightFunc</a></div><div class="ttdoc">Weighting function based on the euclidean distance between a query and a reference position.</div><div class="ttdef"><b>Definition:</b> <a href="weightFunc_8h_source.html#l00028">weightFunc.h:29</a></div></div>
 </div><!-- fragment --><h2><a class="anchor" id="pcl_wrapper_sec_pcl_wrapper_sec_cpp"></a>
 Datastructures instanciation</h2>
 <p >Source file: <code>pcl_wrapper.cpp</code> </p><div class="fragment"><div class="line"><span class="comment">/*</span></div>
@@ -508,7 +508,7 @@ Main program</h2>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="example_page.html">Examples</a></li>
-    <li class="footer">Generated on Fri Sep 9 2022 13:45:37 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.3 </li>
+    <li class="footer">Generated on Fri Sep 9 2022 13:54:58 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.3 </li>
   </ul>
 </div>
 </body>

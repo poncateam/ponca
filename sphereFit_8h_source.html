@@ -51,7 +51,7 @@ MathJax.Hub.Config({
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Ponca
-   &#160;<span id="projectnumber">15d1db921a9a8365d8cf636d0c485437e25af8f3</span>
+   &#160;<span id="projectnumber">5e48b75fc32b415f7296ffc4771c6b9e6c065a7a</span>
    </div>
    <div id="projectbrief">Point Cloud Analysis library</div>
   </td>
@@ -126,41 +126,41 @@ $(document).ready(function(){initNavTree('sphereFit_8h_source.html',''); initRes
 <div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespacePonca.html">Ponca</a></div>
 <div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span>{</div>
 <div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span> </div>
-<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span><span class="keyword">template</span> &lt; <span class="keyword">class</span> DataPo<span class="keywordtype">int</span>, <span class="keyword">class</span> _WFunctor, <span class="keyword">typename</span> T &gt;</div>
-<div class="line"><a id="l00027" name="l00027"></a><span class="lineno"><a class="line" href="group__fitting.html">   27</a></span><span class="keyword">class </span><a class="code hl_class" href="group__fitting.html#classPonca_1_1SphereFitImpl">SphereFitImpl</a> : <span class="keyword">public</span> T</div>
-<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>{</div>
-<div class="line"><a id="l00029" name="l00029"></a><span class="lineno"><a class="line" href="group__fitting.html#a46860628ec6f220ee8577b4ce41f4031">   29</a></span>PONCA_FITTING_DECLARE_DEFAULT_TYPES</div>
-<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span> </div>
-<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span><span class="keyword">protected</span>:</div>
-<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>    <span class="keyword">enum</span></div>
-<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>    {</div>
-<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>        Check = Base::PROVIDES_ALGEBRAIC_SPHERE</div>
-<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>    };</div>
-<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span><span class="keyword">protected</span>:</div>
-<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>    <span class="keyword">typedef</span> Eigen::Matrix&lt;Scalar, DataPoint::Dim+2, 1&gt;      VectorA;</div>
-<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>    <span class="keyword">typedef</span> Eigen::Matrix&lt;Scalar, DataPoint::Dim+2, DataPoint::Dim+2&gt;  MatrixA;</div>
-<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span> </div>
-<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>    <span class="comment">// computation data</span></div>
-<div class="line"><a id="l00041" name="l00041"></a><span class="lineno"><a class="line" href="group__fitting.html#a1eb6ac83b61f21504abb7652be9e1773">   41</a></span>    MatrixA  <a class="code hl_variable" href="group__fitting.html#a1eb6ac83b61f21504abb7652be9e1773">m_matA</a> {MatrixA::Zero()};  </div>
-<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span><span class="keyword">public</span>:</div>
-<div class="line"><a id="l00044" name="l00044"></a><span class="lineno"><a class="line" href="group__fitting.html#a66722b8ae547b85191220bc33306d40b">   44</a></span>    PONCA_EXPLICIT_CAST_OPERATORS(<a class="code hl_class" href="group__fitting.html#classPonca_1_1SphereFitImpl">SphereFitImpl</a>,<a class="code hl_function" href="group__fitting.html#a66722b8ae547b85191220bc33306d40b">sphereFit</a>)</div>
-<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>    PONCA_FITTING_DECLARE_INIT_ADD_FINALIZE</div>
-<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>}; <span class="comment">//class SphereFit</span></div>
-<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span> </div>
-<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span><span class="keyword">template</span> &lt; <span class="keyword">class</span> DataPo<span class="keywordtype">int</span>, <span class="keyword">class</span> _WFunctor, <span class="keyword">typename</span> T&gt;</div>
-<div class="line"><a id="l00051" name="l00051"></a><span class="lineno"><a class="line" href="namespacePonca.html#a84d1648a0b69de78edbc72278d74bde2">   51</a></span><span class="keyword">using</span> <a class="code hl_class" href="group__fitting.html#classPonca_1_1SphereFitImpl">SphereFit</a> =</div>
-<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>    <a class="code hl_class" href="group__fitting.html#classPonca_1_1SphereFitImpl">SphereFitImpl</a>&lt;DataPoint, _WFunctor,</div>
-<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>        <a class="code hl_class" href="group__fitting.html#classPonca_1_1AlgebraicSphere">AlgebraicSphere&lt;DataPoint, _WFunctor,T&gt;</a>&gt;;</div>
-<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span> </div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span><span class="keyword">template</span> &lt; <span class="keyword">class</span> DataPo<span class="keywordtype">int</span>, <span class="keyword">class</span> _WFunctor, <span class="keyword">typename</span> T &gt;</div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno"><a class="line" href="classPonca_1_1SphereFitImpl.html">   25</a></span><span class="keyword">class </span><a class="code hl_class" href="classPonca_1_1SphereFitImpl.html">SphereFitImpl</a> : <span class="keyword">public</span> T</div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>{</div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno"><a class="line" href="classPonca_1_1SphereFitImpl.html#a46860628ec6f220ee8577b4ce41f4031">   27</a></span>PONCA_FITTING_DECLARE_DEFAULT_TYPES</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span> </div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span><span class="keyword">protected</span>:</div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>    <span class="keyword">enum</span></div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>    {</div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>        Check = Base::PROVIDES_ALGEBRAIC_SPHERE</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>    };</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span><span class="keyword">protected</span>:</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>    <span class="keyword">typedef</span> Eigen::Matrix&lt;Scalar, DataPoint::Dim+2, 1&gt;      VectorA;</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>    <span class="keyword">typedef</span> Eigen::Matrix&lt;Scalar, DataPoint::Dim+2, DataPoint::Dim+2&gt;  MatrixA;</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span> </div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>    <span class="comment">// computation data</span></div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno"><a class="line" href="classPonca_1_1SphereFitImpl.html#a1eb6ac83b61f21504abb7652be9e1773">   39</a></span>    MatrixA  <a class="code hl_variable" href="classPonca_1_1SphereFitImpl.html#a1eb6ac83b61f21504abb7652be9e1773">m_matA</a> {MatrixA::Zero()};  </div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno"><a class="line" href="classPonca_1_1SphereFitImpl.html#a66722b8ae547b85191220bc33306d40b">   42</a></span>    PONCA_EXPLICIT_CAST_OPERATORS(<a class="code hl_class" href="classPonca_1_1SphereFitImpl.html">SphereFitImpl</a>,<a class="code hl_function" href="classPonca_1_1SphereFitImpl.html#a66722b8ae547b85191220bc33306d40b">sphereFit</a>)</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>    PONCA_FITTING_DECLARE_INIT_ADD_FINALIZE</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>}; <span class="comment">//class SphereFit</span></div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span> </div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span><span class="keyword">template</span> &lt; <span class="keyword">class</span> DataPo<span class="keywordtype">int</span>, <span class="keyword">class</span> _WFunctor, <span class="keyword">typename</span> T&gt;</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno"><a class="line" href="namespacePonca.html#a84d1648a0b69de78edbc72278d74bde2">   48</a></span><span class="keyword">using</span> <a class="code hl_class" href="classPonca_1_1SphereFitImpl.html">SphereFit</a> =</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>    <a class="code hl_class" href="classPonca_1_1SphereFitImpl.html">SphereFitImpl</a>&lt;DataPoint, _WFunctor,</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>        <a class="code hl_class" href="classPonca_1_1AlgebraicSphere.html">AlgebraicSphere&lt;DataPoint, _WFunctor,T&gt;</a>&gt;;</div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span> </div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span> </div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span> </div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span><span class="preprocessor">#include &quot;sphereFit.hpp&quot;</span></div>
 <div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span> </div>
-<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span> </div>
-<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span><span class="preprocessor">#include &quot;sphereFit.hpp&quot;</span></div>
-<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span> </div>
-<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>} <span class="comment">//namespace Ponca</span></div>
-<div class="ttc" id="agroup__fitting_html_a1eb6ac83b61f21504abb7652be9e1773"><div class="ttname"><a href="group__fitting.html#a1eb6ac83b61f21504abb7652be9e1773">Ponca::SphereFitImpl::m_matA</a></div><div class="ttdeci">MatrixA m_matA</div><div class="ttdoc">Covariance matrix of [1, p, p^2].</div><div class="ttdef"><b>Definition:</b> <a href="sphereFit_8h_source.html#l00041">sphereFit.h:41</a></div></div>
-<div class="ttc" id="agroup__fitting_html_a66722b8ae547b85191220bc33306d40b"><div class="ttname"><a href="group__fitting.html#a66722b8ae547b85191220bc33306d40b">Ponca::SphereFitImpl::sphereFit</a></div><div class="ttdeci">SphereFitImpl&lt; DataPoint, _WFunctor, T &gt; &amp; sphereFit()</div><div class="ttdoc">Explicit conversion to SphereFitImpl , to access methods potentially hidden by heritage.</div><div class="ttdef"><b>Definition:</b> <a href="sphereFit_8h_source.html#l00044">sphereFit.h:44</a></div></div>
-<div class="ttc" id="agroup__fitting_html_classPonca_1_1AlgebraicSphere"><div class="ttname"><a href="group__fitting.html#classPonca_1_1AlgebraicSphere">Ponca::AlgebraicSphere</a></div><div class="ttdoc">Algebraic Sphere primitive.</div><div class="ttdef"><b>Definition:</b> <a href="algebraicSphere_8h_source.html#l00048">algebraicSphere.h:49</a></div></div>
-<div class="ttc" id="agroup__fitting_html_classPonca_1_1SphereFitImpl"><div class="ttname"><a href="group__fitting.html#classPonca_1_1SphereFitImpl">Ponca::SphereFitImpl</a></div><div class="ttdoc">Algebraic Sphere fitting procedure on point sets without normals.</div><div class="ttdef"><b>Definition:</b> <a href="sphereFit_8h_source.html#l00027">sphereFit.h:28</a></div></div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>} <span class="comment">//namespace Ponca</span></div>
+<div class="ttc" id="aclassPonca_1_1AlgebraicSphere_html"><div class="ttname"><a href="classPonca_1_1AlgebraicSphere.html">Ponca::AlgebraicSphere</a></div><div class="ttdoc">Algebraic Sphere primitive.</div><div class="ttdef"><b>Definition:</b> <a href="algebraicSphere_8h_source.html#l00046">algebraicSphere.h:47</a></div></div>
+<div class="ttc" id="aclassPonca_1_1SphereFitImpl_html"><div class="ttname"><a href="classPonca_1_1SphereFitImpl.html">Ponca::SphereFitImpl</a></div><div class="ttdoc">Algebraic Sphere fitting procedure on point sets without normals.</div><div class="ttdef"><b>Definition:</b> <a href="sphereFit_8h_source.html#l00025">sphereFit.h:26</a></div></div>
+<div class="ttc" id="aclassPonca_1_1SphereFitImpl_html_a1eb6ac83b61f21504abb7652be9e1773"><div class="ttname"><a href="classPonca_1_1SphereFitImpl.html#a1eb6ac83b61f21504abb7652be9e1773">Ponca::SphereFitImpl::m_matA</a></div><div class="ttdeci">MatrixA m_matA</div><div class="ttdoc">Covariance matrix of [1, p, p^2].</div><div class="ttdef"><b>Definition:</b> <a href="sphereFit_8h_source.html#l00039">sphereFit.h:39</a></div></div>
+<div class="ttc" id="aclassPonca_1_1SphereFitImpl_html_a66722b8ae547b85191220bc33306d40b"><div class="ttname"><a href="classPonca_1_1SphereFitImpl.html#a66722b8ae547b85191220bc33306d40b">Ponca::SphereFitImpl::sphereFit</a></div><div class="ttdeci">SphereFitImpl&lt; DataPoint, _WFunctor, T &gt; &amp; sphereFit()</div><div class="ttdoc">Explicit conversion to SphereFitImpl , to access methods potentially hidden by heritage.</div><div class="ttdef"><b>Definition:</b> <a href="sphereFit_8h_source.html#l00042">sphereFit.h:42</a></div></div>
 <div class="ttc" id="anamespacePonca_html"><div class="ttname"><a href="namespacePonca.html">Ponca</a></div><div class="ttdoc">This Source Code Form is subject to the terms of the Mozilla Public License, v.</div><div class="ttdef"><b>Definition:</b> <a href="limitedPriorityQueue_8h_source.html#l00014">limitedPriorityQueue.h:14</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
@@ -168,7 +168,7 @@ $(document).ready(function(){initNavTree('sphereFit_8h_source.html',''); initRes
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_695d95a8d8fbec601a248c0414764298.html">Ponca</a></li><li class="navelem"><a class="el" href="dir_ce16314fc45f8638543c5146aff64d4a.html">src</a></li><li class="navelem"><a class="el" href="dir_221133f19e4af6803e4ee7d78db21786.html">Fitting</a></li><li class="navelem"><b>sphereFit.h</b></li>
-    <li class="footer">Generated on Fri Sep 9 2022 13:45:37 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.3 </li>
+    <li class="footer">Generated on Fri Sep 9 2022 13:54:57 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.3 </li>
   </ul>
 </div>
 </body>

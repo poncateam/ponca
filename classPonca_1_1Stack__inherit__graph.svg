@@ -33,7 +33,7 @@
 <!-- Node2 -->
 <g id="node2" class="node">
 <title>Node2</title>
-<g id="a_node2"><a xlink:href="group__common.html" target="_top" xlink:title=" ">
+<g id="a_node2"><a xlink:href="classPonca_1_1Stack.html" target="_top" xlink:title=" ">
 <polygon fill="none" stroke="black" points="0,-0.5 0,-189.5 134,-189.5 134,-0.5 0,-0.5"/>
 <text text-anchor="start" x="8" y="-177.5" font-family="Helvetica,sans-Serif" font-size="10.00">Ponca::Stack&lt; Ponca</text>
 <text text-anchor="start" x="8" y="-166.5" font-family="Helvetica,sans-Serif" font-size="10.00">::IndexSquaredDistance</text>

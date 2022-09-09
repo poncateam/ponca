@@ -1,6 +1,6 @@
 <map id="Ponca::KdTreeNearestIndexQuery&lt; DataPoint &gt;" name="Ponca::KdTreeNearestIndexQuery&lt; DataPoint &gt;">
 <area shape="rect" id="node1" title=" " alt="" coords="41,1360,259,1496"/>
-<area shape="rect" id="node2" href="$group__spatialpartitioning.html#classPonca_1_1KdTreeQuery" title=" " alt="" coords="58,1189,210,1311"/>
+<area shape="rect" id="node2" href="$classPonca_1_1KdTreeQuery.html" title=" " alt="" coords="58,1189,210,1311"/>
 <area shape="rect" id="node3" href="$group__spatialpartitioning.html" title=" " alt="" coords="234,1204,429,1296"/>
 <area shape="rect" id="node4" href="$group__spatialpartitioning.html" title=" " alt="" coords="120,864,343,985"/>
 <area shape="rect" id="node5" href="$group__spatialpartitioning.html#structPonca_1_1QueryInputIsIndex" title="Base class for queries storing points." alt="" coords="424,665,612,743"/>

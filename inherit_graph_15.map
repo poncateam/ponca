@@ -1,5 +1,5 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="node1" href="$group__spatialpartitioning.html#classPonca_1_1KdTreeQuery" title=" " alt="" coords="1034,247,1186,288"/>
+<area shape="rect" id="node1" href="$classPonca_1_1KdTreeQuery.html" title=" " alt="" coords="1034,247,1186,288"/>
 <area shape="rect" id="node2" href="$classPonca_1_1KdTreeKNearestIndexQuery.html" title=" " alt="" coords="1270,304,1479,345"/>
 <area shape="rect" id="node3" href="$classPonca_1_1KdTreeKNearestPointQuery.html" title=" " alt="" coords="1271,44,1478,85"/>
 <area shape="rect" id="node4" href="$classPonca_1_1KdTreeNearestIndexQuery.html" title=" " alt="" coords="1275,373,1475,415"/>

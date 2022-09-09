@@ -74,7 +74,7 @@ var sectionId = 'dynsection-0';
 <!-- Node2 -->
 <g id="node2" class="node">
 <title>Node2</title>
-<g id="a_node2"><a xlink:href="group__spatialpartitioning.html#classPonca_1_1KdTreeQuery" target="_top" xlink:title=" ">
+<g id="a_node2"><a xlink:href="classPonca_1_1KdTreeQuery.html" target="_top" xlink:title=" ">
 <polygon fill="none" stroke="#bfbfbf" points="41.81,-139.5 41.81,-229.5 155.81,-229.5 155.81,-139.5 41.81,-139.5"/>
 <text text-anchor="start" x="49.81" y="-217.5" font-family="Helvetica,sans-Serif" font-size="10.00">Ponca::KdTreeQuery</text>
 <text text-anchor="middle" x="98.81" y="-206.5" font-family="Helvetica,sans-Serif" font-size="10.00">&lt; DataPoint &gt;</text>

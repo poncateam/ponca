@@ -71,7 +71,9 @@ var NAVTREE =
 
 var NAVTREEINDEX =
 [
-"annotated.html"
+"annotated.html",
+"classPonca_1_1MeanPosition.html#aa9c7077883604f0a39a4f59d7cfe30f5",
+"example_cxx_pcl_page.html#pcl_wrapper_sec_pcl_wrapper_sec_hpp"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

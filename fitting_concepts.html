@@ -51,7 +51,7 @@ MathJax.Hub.Config({
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Ponca
-   &#160;<span id="projectnumber">15d1db921a9a8365d8cf636d0c485437e25af8f3</span>
+   &#160;<span id="projectnumber">5e48b75fc32b415f7296ffc4771c6b9e6c065a7a</span>
    </div>
    <div id="projectbrief">Point Cloud Analysis library</div>
   </td>
@@ -115,12 +115,12 @@ $(document).ready(function(){initNavTree('fitting_concepts.html',''); initResiza
 <div class="textblock"><center>[<a class="el" href="fitting.html">Go back to Fitting user manual</a>]</center> <center>[<a class="el" href="ponca_concepts.html">Go back to concept manual</a>]</center> <center>[<a class="el" href="user_manual_page.html">Go back to user manual</a>]</center><hr  />
 <p ><a class="el" href="namespacePonca.html" title="This Source Code Form is subject to the terms of the Mozilla Public License, v.">Ponca</a> <a class="el" href="fitting.html">Fitting Module</a> is structured around the following concepts:</p><ul>
 <li><code>WeightKernelConcept</code>: defines how neighbor samples should be weighted</li>
-<li><code>ComputationalObjectConcept</code> and <code>ComputationalDerivativesConcept</code>: define API of the computational objects used in <a class="el" href="group__fitting.html#classPonca_1_1Basket" title="Aggregator class used to declare specialized structures using CRTP.">Basket</a> and <a class="el" href="group__fitting.html#classPonca_1_1BasketDiff" title="Aggregator class used to declare specialized structures with derivatives computations,...">BasketDiff</a> respectively.</li>
+<li><code>ComputationalObjectConcept</code> and <code>ComputationalDerivativesConcept</code>: define API of the computational objects used in <a class="el" href="classPonca_1_1Basket.html" title="Aggregator class used to declare specialized structures using CRTP.">Basket</a> and <a class="el" href="classPonca_1_1BasketDiff.html" title="Aggregator class used to declare specialized structures with derivatives computations,...">BasketDiff</a> respectively.</li>
 </ul>
 <h1><a class="anchor" id="concepts_computObject"></a>
 API of Computational Objects</h1>
 <p >Computations will always follow the same pattern: </p><div class="fragment"><div class="line"><span class="comment">// Definition</span></div>
-<div class="line"><span class="keyword">typedef</span> <a class="code hl_class" href="group__fitting.html#classPonca_1_1Basket">Basket</a>&lt;MyPointStructure,MyWeightingFunction,MyFittingProcedure...&gt; Fit;</div>
+<div class="line"><span class="keyword">typedef</span> <a class="code hl_class" href="classPonca_1_1Basket.html">Basket</a>&lt;MyPointStructure,MyWeightingFunction,MyFittingProcedure...&gt; Fit;</div>
 <div class="line"> </div>
 <div class="line"><span class="comment">// Initialization</span></div>
 <div class="line">MyWeightingFunction w ( some_parameters );  <span class="comment">//&lt; Init weight function</span></div>
@@ -138,11 +138,11 @@ API of Computational Objects</h1>
 <div class="line">{</div>
 <div class="line">    <span class="comment">// use the fit ...</span></div>
 <div class="line">}</div>
-<div class="ttc" id="agroup__fitting_html_classPonca_1_1Basket"><div class="ttname"><a href="group__fitting.html#classPonca_1_1Basket">Ponca::Basket</a></div><div class="ttdoc">Aggregator class used to declare specialized structures using CRTP.</div><div class="ttdef"><b>Definition:</b> <a href="basket_8h_source.html#l00207">basket.h:209</a></div></div>
-</div><!-- fragment --><p >Note that in the above example, the type <code>Fit</code> can be either a <a class="el" href="group__fitting.html#classPonca_1_1Basket" title="Aggregator class used to declare specialized structures using CRTP.">Basket</a> or a <a class="el" href="group__fitting.html#classPonca_1_1BasketDiff" title="Aggregator class used to declare specialized structures with derivatives computations,...">BasketDiff</a>, without affecting the rest of the code.</p>
+<div class="ttc" id="aclassPonca_1_1Basket_html"><div class="ttname"><a href="classPonca_1_1Basket.html">Ponca::Basket</a></div><div class="ttdoc">Aggregator class used to declare specialized structures using CRTP.</div><div class="ttdef"><b>Definition:</b> <a href="basket_8h_source.html#l00205">basket.h:207</a></div></div>
+</div><!-- fragment --><p >Note that in the above example, the type <code>Fit</code> can be either a <a class="el" href="classPonca_1_1Basket.html" title="Aggregator class used to declare specialized structures using CRTP.">Basket</a> or a <a class="el" href="classPonca_1_1BasketDiff.html" title="Aggregator class used to declare specialized structures with derivatives computations,...">BasketDiff</a>, without affecting the rest of the code.</p>
 <h2><a class="anchor" id="concepts_computObjectBasket"></a>
 Objects used in Basket</h2>
-<p >Objects used in <a class="el" href="group__fitting.html#classPonca_1_1Basket" title="Aggregator class used to declare specialized structures using CRTP.">Basket</a> should respect the following API: </p><div class="fragment"><div class="line">        <span class="keyword">template</span> &lt; <span class="keyword">class</span> DataPo<span class="keywordtype">int</span>, <span class="keyword">class</span> _WFunctor, <span class="keyword">typename</span> T = <span class="keywordtype">void</span>  &gt;</div>
+<p >Objects used in <a class="el" href="classPonca_1_1Basket.html" title="Aggregator class used to declare specialized structures using CRTP.">Basket</a> should respect the following API: </p><div class="fragment"><div class="line">        <span class="keyword">template</span> &lt; <span class="keyword">class</span> DataPo<span class="keywordtype">int</span>, <span class="keyword">class</span> _WFunctor, <span class="keyword">typename</span> T = <span class="keywordtype">void</span>  &gt;</div>
 <div class="line">        <span class="keyword">class </span>ComputationalObjectConcept</div>
 <div class="line">        {</div>
 <div class="line">        <span class="keyword">protected</span>:</div>
@@ -177,12 +177,12 @@ Objects used in Basket</h2>
 <div class="line">            <span class="comment">// Finalize the fitting procedure.</span></div>
 <div class="line">            <span class="comment">// \return State of fitting</span></div>
 <div class="line">            <span class="comment">// \warning Must be called be for any use of the fitting output</span></div>
-<div class="line">            PONCA_MULTIARCH <span class="keyword">inline</span> <a class="code hl_enumeration" href="group__fitting.html#gabfd697aebf07c1b5c8be5ee401e2dc84">FIT_RESULT</a> finalize();</div>
+<div class="line">            PONCA_MULTIARCH <span class="keyword">inline</span> <a class="code hl_enumeration" href="namespacePonca.html#abfd697aebf07c1b5c8be5ee401e2dc84">FIT_RESULT</a> finalize();</div>
 <div class="line">        }; <span class="comment">//class ComputationalObjectConcept</span></div>
-<div class="ttc" id="agroup__fitting_html_gabfd697aebf07c1b5c8be5ee401e2dc84"><div class="ttname"><a href="group__fitting.html#gabfd697aebf07c1b5c8be5ee401e2dc84">Ponca::FIT_RESULT</a></div><div class="ttdeci">FIT_RESULT</div><div class="ttdoc">Enum corresponding to the state of a fitting method (and what the finalize function can return)</div><div class="ttdef"><b>Definition:</b> <a href="enums_8h_source.html#l00016">enums.h:17</a></div></div>
+<div class="ttc" id="anamespacePonca_html_abfd697aebf07c1b5c8be5ee401e2dc84"><div class="ttname"><a href="namespacePonca.html#abfd697aebf07c1b5c8be5ee401e2dc84">Ponca::FIT_RESULT</a></div><div class="ttdeci">FIT_RESULT</div><div class="ttdoc">Enum corresponding to the state of a fitting method (and what the finalize function can return.</div><div class="ttdef"><b>Definition:</b> <a href="enums_8h_source.html#l00014">enums.h:15</a></div></div>
 </div><!-- fragment --><h2><a class="anchor" id="concepts_computObjectBasketDiff"></a>
 Objects used in BasketDiff</h2>
-<p >Objects used in <a class="el" href="group__fitting.html#classPonca_1_1BasketDiff" title="Aggregator class used to declare specialized structures with derivatives computations,...">BasketDiff</a> should respect the following API: </p><div class="fragment"><div class="line">        <span class="keyword">template</span> &lt; <span class="keyword">class</span> DataPo<span class="keywordtype">int</span>, <span class="keyword">class</span> _WFunctor, <span class="keywordtype">int</span> Type, <span class="keyword">typename</span> T&gt;</div>
+<p >Objects used in <a class="el" href="classPonca_1_1BasketDiff.html" title="Aggregator class used to declare specialized structures with derivatives computations,...">BasketDiff</a> should respect the following API: </p><div class="fragment"><div class="line">        <span class="keyword">template</span> &lt; <span class="keyword">class</span> DataPo<span class="keywordtype">int</span>, <span class="keyword">class</span> _WFunctor, <span class="keywordtype">int</span> Type, <span class="keyword">typename</span> T&gt;</div>
 <div class="line">        <span class="keyword">class </span>ComputationalDerivativesConcept</div>
 <div class="line">        {</div>
 <div class="line">        <span class="keyword">protected</span>:</div>
@@ -224,12 +224,12 @@ Objects used in BasketDiff</h2>
 <div class="line">            <span class="comment">// Finalize the fitting procedure.</span></div>
 <div class="line">            <span class="comment">// \return State of fitting</span></div>
 <div class="line">            <span class="comment">// \warning Must be called be for any use of the fitting output</span></div>
-<div class="line">            PONCA_MULTIARCH <span class="keyword">inline</span> <a class="code hl_enumeration" href="group__fitting.html#gabfd697aebf07c1b5c8be5ee401e2dc84">FIT_RESULT</a> finalize();</div>
+<div class="line">            PONCA_MULTIARCH <span class="keyword">inline</span> <a class="code hl_enumeration" href="namespacePonca.html#abfd697aebf07c1b5c8be5ee401e2dc84">FIT_RESULT</a> finalize();</div>
 <div class="line">        }; <span class="comment">//class ComputationalDerivativesConcept</span></div>
-</div><!-- fragment --><dl class="section note"><dt>Note</dt><dd><a class="el" href="classPonca_1_1PrimitiveDer.html" title="Generic class performing the Fit derivation.">PrimitiveDer</a> defines the default entry point to most classes used in <a class="el" href="group__fitting.html#classPonca_1_1BasketDiff" title="Aggregator class used to declare specialized structures with derivatives computations,...">BasketDiff</a>.</dd></dl>
+</div><!-- fragment --><dl class="section note"><dt>Note</dt><dd><a class="el" href="classPonca_1_1PrimitiveDer.html" title="Generic class performing the Fit derivation.">PrimitiveDer</a> defines the default entry point to most classes used in <a class="el" href="classPonca_1_1BasketDiff.html" title="Aggregator class used to declare specialized structures with derivatives computations,...">BasketDiff</a>.</dd></dl>
 <h1><a class="anchor" id="concepts_weighting"></a>
 Concepts related to weighting functions</h1>
-<p >Weighting functions are critical components of the library. They are represented by <a class="el" href="group__fitting.html#classPonca_1_1DistWeightFunc" title="Weighting function based on the euclidean distance between a query and a reference position.">DistWeightFunc</a>, which is defined from the euclidean distance field centered at the evaluation position (see <a class="el" href="group__fitting.html#afb3037c32c9882c290daf1fbb63af9b8">DistWeightFunc::init()</a>). Given a distance to this evaluation position, the weight is computed (see <a class="el" href="group__fitting.html#a470646999a2bcc787ed211de36d43e4e">DistWeightFunc::w()</a>) by applying a 1d weighting function defined as follows:</p>
+<p >Weighting functions are critical components of the library. They are represented by <a class="el" href="classPonca_1_1DistWeightFunc.html" title="Weighting function based on the euclidean distance between a query and a reference position.">DistWeightFunc</a>, which is defined from the euclidean distance field centered at the evaluation position (see <a class="el" href="classPonca_1_1DistWeightFunc.html#afb3037c32c9882c290daf1fbb63af9b8">DistWeightFunc::init()</a>). Given a distance to this evaluation position, the weight is computed (see <a class="el" href="classPonca_1_1DistWeightFunc.html#a470646999a2bcc787ed211de36d43e4e">DistWeightFunc::w()</a>) by applying a 1d weighting function defined as follows:</p>
 <div class="fragment"><div class="line">        <span class="comment">// \brief Concept of a 1D weighting function and its derivatives.</span></div>
 <div class="line">        <span class="keyword">template</span> &lt;<span class="keyword">typename</span> _Scalar&gt;</div>
 <div class="line">        <span class="keyword">class </span>WeightKernelConcept{</div>
@@ -243,7 +243,7 @@ Concepts related to weighting functions</h1>
 <div class="line">            <span class="comment">// \brief Apply the second derivative of the weighting kernel to the scalar value f&#39;&#39;(x)</span></div>
 <div class="line">            PONCA_MULTIARCH <span class="keyword">inline</span> Scalar ddf(<span class="keyword">const</span> Scalar&amp; x)<span class="keyword"> const </span>{}</div>
 <div class="line">        };<span class="comment">// class WeightKernelConcept</span></div>
-</div><!-- fragment --><p ><a class="el" href="group__fitting.html#classPonca_1_1DistWeightFunc" title="Weighting function based on the euclidean distance between a query and a reference position.">DistWeightFunc</a> also provides computation of the first and second order derivatives of the weight, both in scale (<a class="el" href="group__fitting.html#a182289b2f19a436381af1c94a7bfb0f5">DistWeightFunc::scaledw()</a>, <a class="el" href="group__fitting.html#a1ccbacac342ed1e66ef0423fdaf9c00d">DistWeightFunc::scaled2w()</a>) and space (<a class="el" href="group__fitting.html#a679c75736d7715aada70bbf2e221fb02">DistWeightFunc::spacedw()</a>, <a class="el" href="group__fitting.html#a303ff5053abe6961771053c9647688c4">DistWeightFunc::spaced2w()</a>), and their cross derivatives (<a class="el" href="group__fitting.html#a26332be7b205ec289253c4b366c46110">DistWeightFunc::scaleSpaced2w()</a>).</p>
+</div><!-- fragment --><p ><a class="el" href="classPonca_1_1DistWeightFunc.html" title="Weighting function based on the euclidean distance between a query and a reference position.">DistWeightFunc</a> also provides computation of the first and second order derivatives of the weight, both in scale (<a class="el" href="classPonca_1_1DistWeightFunc.html#a182289b2f19a436381af1c94a7bfb0f5">DistWeightFunc::scaledw()</a>, <a class="el" href="classPonca_1_1DistWeightFunc.html#a1ccbacac342ed1e66ef0423fdaf9c00d">DistWeightFunc::scaled2w()</a>) and space (<a class="el" href="classPonca_1_1DistWeightFunc.html#a679c75736d7715aada70bbf2e221fb02">DistWeightFunc::spacedw()</a>, <a class="el" href="classPonca_1_1DistWeightFunc.html#a303ff5053abe6961771053c9647688c4">DistWeightFunc::spaced2w()</a>), and their cross derivatives (<a class="el" href="classPonca_1_1DistWeightFunc.html#a26332be7b205ec289253c4b366c46110">DistWeightFunc::scaleSpaced2w()</a>).</p>
 <hr  />
  <center>[<a class="el" href="fitting.html">Go back to Fitting user manual</a>]</center> <center>[<a class="el" href="ponca_concepts.html">Go back to concept manual</a>]</center> <center>[<a class="el" href="user_manual_page.html">Go back to user manual</a>]</center> </div></div><!-- contents -->
 </div><!-- PageDoc -->
@@ -252,7 +252,7 @@ Concepts related to weighting functions</h1>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="user_manual_page.html">User Manual</a></li><li class="navelem"><a class="el" href="fitting.html">Fitting Module: User Manual</a></li>
-    <li class="footer">Generated on Fri Sep 9 2022 13:45:37 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.3 </li>
+    <li class="footer">Generated on Fri Sep 9 2022 13:54:58 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.3 </li>
   </ul>
 </div>
 </body>

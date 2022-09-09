@@ -1,10 +1,10 @@
 var searchData=
 [
-  ['constantweightkernel_0',['ConstantWeightKernel',['../group__fitting.html#classPonca_1_1ConstantWeightKernel',1,'Ponca']]],
-  ['covariancefitbase_1',['CovarianceFitBase',['../group__fitting.html#classPonca_1_1CovarianceFitBase',1,'Ponca']]],
-  ['covariancefitder_2',['CovarianceFitDer',['../group__fitting.html#classPonca_1_1CovarianceFitDer',1,'Ponca']]],
-  ['covariancelinefitimpl_3',['CovarianceLineFitImpl',['../group__fitting.html#classPonca_1_1CovarianceLineFitImpl',1,'Ponca']]],
-  ['covarianceplanederimpl_4',['CovariancePlaneDerImpl',['../group__fitting.html#classPonca_1_1CovariancePlaneDerImpl',1,'Ponca']]],
-  ['covarianceplanefitimpl_5',['CovariancePlaneFitImpl',['../group__fitting.html#classPonca_1_1CovariancePlaneFitImpl',1,'Ponca']]],
-  ['curvatureestimatorbase_6',['CurvatureEstimatorBase',['../group__fitting.html#classPonca_1_1CurvatureEstimatorBase',1,'Ponca']]]
+  ['constantweightkernel_0',['ConstantWeightKernel',['../classPonca_1_1ConstantWeightKernel.html',1,'Ponca']]],
+  ['covariancefitbase_1',['CovarianceFitBase',['../classPonca_1_1CovarianceFitBase.html',1,'Ponca']]],
+  ['covariancefitder_2',['CovarianceFitDer',['../classPonca_1_1CovarianceFitDer.html',1,'Ponca']]],
+  ['covariancelinefitimpl_3',['CovarianceLineFitImpl',['../classPonca_1_1CovarianceLineFitImpl.html',1,'Ponca']]],
+  ['covarianceplanederimpl_4',['CovariancePlaneDerImpl',['../classPonca_1_1CovariancePlaneDerImpl.html',1,'Ponca']]],
+  ['covarianceplanefitimpl_5',['CovariancePlaneFitImpl',['../classPonca_1_1CovariancePlaneFitImpl.html',1,'Ponca']]],
+  ['curvatureestimatorbase_6',['CurvatureEstimatorBase',['../classPonca_1_1CurvatureEstimatorBase.html',1,'Ponca']]]
 ];

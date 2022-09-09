@@ -177,7 +177,7 @@
 <!-- Node9 -->
 <g id="node9" class="node">
 <title>Node9</title>
-<g id="a_node9"><a xlink:href="group__common.html" target="_top" xlink:title=" ">
+<g id="a_node9"><a xlink:href="classPonca_1_1limited__priority__queue.html" target="_top" xlink:title=" ">
 <polygon fill="none" stroke="black" points="308,-404.5 308,-604.5 516,-604.5 516,-404.5 308,-404.5"/>
 <text text-anchor="start" x="316" y="-592.5" font-family="Helvetica,sans-Serif" font-size="10.00">Ponca::limited_priority</text>
 <text text-anchor="start" x="316" y="-581.5" font-family="Helvetica,sans-Serif" font-size="10.00">_queue&lt; Ponca::IndexSquaredDistance</text>
@@ -273,7 +273,7 @@
 <!-- Node13 -->
 <g id="node13" class="node">
 <title>Node13</title>
-<g id="a_node13"><a xlink:href="group__common.html#classPonca_1_1limited__priority__queue" target="_top" xlink:title="The limited_priority_queue class is similar to std::priority_queue but has a limited capacity and han...">
+<g id="a_node13"><a xlink:href="classPonca_1_1limited__priority__queue.html" target="_top" xlink:title="The limited_priority_queue class is similar to std::priority_queue but has a limited capacity and han...">
 <polygon fill="none" stroke="black" points="369,-663.5 369,-863.5 523,-863.5 523,-663.5 369,-663.5"/>
 <text text-anchor="start" x="377" y="-851.5" font-family="Helvetica,sans-Serif" font-size="10.00">Ponca::limited_priority</text>
 <text text-anchor="middle" x="446" y="-840.5" font-family="Helvetica,sans-Serif" font-size="10.00">_queue&lt; T, CompareT &gt;</text>

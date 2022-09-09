@@ -28,7 +28,7 @@
 <!-- Node2 -->
 <g id="node2" class="node">
 <title>Node2</title>
-<g id="a_node2"><a xlink:href="group__spatialpartitioning.html#classPonca_1_1KdTreeQuery" target="_top" xlink:title=" ">
+<g id="a_node2"><a xlink:href="classPonca_1_1KdTreeQuery.html" target="_top" xlink:title=" ">
 <polygon fill="none" stroke="#bfbfbf" points="602,-139.5 602,-218.5 716,-218.5 716,-139.5 602,-139.5"/>
 <text text-anchor="start" x="610" y="-206.5" font-family="Helvetica,sans-Serif" font-size="10.00">Ponca::KdTreeQuery</text>
 <text text-anchor="middle" x="659" y="-195.5" font-family="Helvetica,sans-Serif" font-size="10.00">&lt; DataPoint &gt;</text>
@@ -49,7 +49,7 @@
 <!-- Node3 -->
 <g id="node3" class="node">
 <title>Node3</title>
-<g id="a_node3"><a xlink:href="group__spatialpartitioning.html" target="_top" xlink:title=" ">
+<g id="a_node3"><a xlink:href="classPonca_1_1KdTree.html" target="_top" xlink:title=" ">
 <polygon fill="none" stroke="black" points="252.5,-266.5 252.5,-444.5 407.5,-444.5 407.5,-266.5 252.5,-266.5"/>
 <text text-anchor="middle" x="330" y="-432.5" font-family="Helvetica,sans-Serif" font-size="10.00">Ponca::KdTree&lt; DataPoint &gt;</text>
 <polyline fill="none" stroke="black" points="252.5,-425.5 407.5,-425.5 "/>
@@ -100,7 +100,7 @@
 <!-- Node9 -->
 <g id="node9" class="node">
 <title>Node9</title>
-<g id="a_node9"><a xlink:href="group__spatialpartitioning.html#classPonca_1_1KdTree" target="_top" xlink:title=" ">
+<g id="a_node9"><a xlink:href="classPonca_1_1KdTree.html" target="_top" xlink:title=" ">
 <polygon fill="none" stroke="black" points="132.5,-514.5 132.5,-692.5 293.5,-692.5 293.5,-514.5 132.5,-514.5"/>
 <text text-anchor="middle" x="213" y="-680.5" font-family="Helvetica,sans-Serif" font-size="10.00">Ponca::KdTree&lt; _DataPoint &gt;</text>
 <polyline fill="none" stroke="black" points="132.5,-673.5 293.5,-673.5 "/>
@@ -287,7 +287,7 @@
 <!-- Node10 -->
 <g id="node10" class="node">
 <title>Node10</title>
-<g id="a_node10"><a xlink:href="group__common.html" target="_top" xlink:title=" ">
+<g id="a_node10"><a xlink:href="classPonca_1_1Stack.html" target="_top" xlink:title=" ">
 <polygon fill="none" stroke="black" points="592,-266.5 592,-444.5 726,-444.5 726,-266.5 592,-266.5"/>
 <text text-anchor="start" x="600" y="-432.5" font-family="Helvetica,sans-Serif" font-size="10.00">Ponca::Stack&lt; Ponca</text>
 <text text-anchor="start" x="600" y="-421.5" font-family="Helvetica,sans-Serif" font-size="10.00">::IndexSquaredDistance</text>
@@ -341,7 +341,7 @@
 <!-- Node12 -->
 <g id="node12" class="node">
 <title>Node12</title>
-<g id="a_node12"><a xlink:href="group__spatialpartitioning.html" target="_top" xlink:title=" ">
+<g id="a_node12"><a xlink:href="structPonca_1_1IndexSquaredDistance.html" target="_top" xlink:title=" ">
 <polygon fill="none" stroke="black" points="663,-1013.5 663,-1092.5 839,-1092.5 839,-1013.5 663,-1013.5"/>
 <text text-anchor="start" x="671" y="-1080.5" font-family="Helvetica,sans-Serif" font-size="10.00">Ponca::IndexSquaredDistance</text>
 <text text-anchor="middle" x="751" y="-1069.5" font-family="Helvetica,sans-Serif" font-size="10.00">&lt; typename DataPoint::Scalar &gt;</text>
@@ -363,7 +363,7 @@
 <!-- Node13 -->
 <g id="node13" class="node">
 <title>Node13</title>
-<g id="a_node13"><a xlink:href="group__spatialpartitioning.html#structPonca_1_1IndexSquaredDistance" target="_top" xlink:title="Associates an index with a distance.">
+<g id="a_node13"><a xlink:href="structPonca_1_1IndexSquaredDistance.html" target="_top" xlink:title="Associates an index with a distance.">
 <polygon fill="none" stroke="black" points="670.5,-1168 670.5,-1247 831.5,-1247 831.5,-1168 670.5,-1168"/>
 <text text-anchor="start" x="678.5" y="-1235" font-family="Helvetica,sans-Serif" font-size="10.00">Ponca::IndexSquaredDistance</text>
 <text text-anchor="middle" x="751" y="-1224" font-family="Helvetica,sans-Serif" font-size="10.00">&lt; Scalar &gt;</text>
@@ -401,7 +401,7 @@
 <!-- Node15 -->
 <g id="node15" class="node">
 <title>Node15</title>
-<g id="a_node15"><a xlink:href="group__common.html#classPonca_1_1Stack" target="_top" xlink:title="Stack with fixed&#45;size storage.">
+<g id="a_node15"><a xlink:href="classPonca_1_1Stack.html" target="_top" xlink:title="Stack with fixed&#45;size storage.">
 <polygon fill="none" stroke="black" points="510.5,-531 510.5,-676 631.5,-676 631.5,-531 510.5,-531"/>
 <text text-anchor="middle" x="571" y="-664" font-family="Helvetica,sans-Serif" font-size="10.00">Ponca::Stack&lt; T, N &gt;</text>
 <polyline fill="none" stroke="black" points="510.5,-657 631.5,-657 "/>

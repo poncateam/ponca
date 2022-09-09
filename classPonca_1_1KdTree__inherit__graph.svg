@@ -48,7 +48,7 @@ if (edges && edges.length) {
 <script type="text/javascript">
 var viewWidth = 169;
 var viewHeight = 479;
-var sectionId = 'dynsection-5';
+var sectionId = 'dynsection-0';
 </script>
 <script xlink:href="svgpan.js"/>
 <svg id="graph" class="graph">
@@ -84,7 +84,7 @@ var sectionId = 'dynsection-5';
 <!-- Node2 -->
 <g id="node2" class="node">
 <title>Node2</title>
-<g id="a_node2"><a xlink:href="group__spatialpartitioning.html" target="_top" xlink:title=" ">
+<g id="a_node2"><a xlink:href="classPonca_1_1KdTree.html" target="_top" xlink:title=" ">
 <polygon fill="none" stroke="black" points="3,-0.5 3,-211.5 158,-211.5 158,-0.5 3,-0.5"/>
 <text text-anchor="middle" x="80.5" y="-199.5" font-family="Helvetica,sans-Serif" font-size="10.00">Ponca::KdTree&lt; DataPoint &gt;</text>
 <polyline fill="none" stroke="black" points="3,-192.5 158,-192.5 "/>

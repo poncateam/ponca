@@ -1,6 +1,6 @@
 <map id="Ponca::KdTreeRangeIndexQuery&lt; DataPoint &gt;" name="Ponca::KdTreeRangeIndexQuery&lt; DataPoint &gt;">
 <area shape="rect" id="node1" title=" " alt="" coords="30,1448,259,1599"/>
-<area shape="rect" id="node2" href="$group__spatialpartitioning.html#classPonca_1_1KdTreeQuery" title=" " alt="" coords="53,1277,205,1399"/>
+<area shape="rect" id="node2" href="$classPonca_1_1KdTreeQuery.html" title=" " alt="" coords="53,1277,205,1399"/>
 <area shape="rect" id="node3" href="$group__spatialpartitioning.html" title=" " alt="" coords="229,1292,415,1384"/>
 <area shape="rect" id="node4" href="$group__spatialpartitioning.html" title=" " alt="" coords="121,952,333,1073"/>
 <area shape="rect" id="node5" href="$group__spatialpartitioning.html#structPonca_1_1QueryInputIsIndex" title="Base class for queries storing points." alt="" coords="413,739,601,816"/>

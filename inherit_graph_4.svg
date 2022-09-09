@@ -20,7 +20,7 @@
 <!-- Node1 -->
 <g id="node2" class="node">
 <title>Node1</title>
-<g id="a_node2"><a xlink:href="group__fitting.html#classPonca_1_1BasketDiff" target="_top" xlink:title="Aggregator class used to declare specialized structures with derivatives computations,...">
+<g id="a_node2"><a xlink:href="classPonca_1_1BasketDiff.html" target="_top" xlink:title="Aggregator class used to declare specialized structures with derivatives computations,...">
 <polygon fill="none" stroke="black" points="152,-0.5 152,-63.5 286,-63.5 286,-0.5 152,-0.5"/>
 <text text-anchor="start" x="160" y="-51.5" font-family="Helvetica,sans-Serif" font-size="10.00">Ponca::BasketDiff&lt;</text>
 <text text-anchor="start" x="160" y="-40.5" font-family="Helvetica,sans-Serif" font-size="10.00"> BasketType, Type, Ext0,</text>

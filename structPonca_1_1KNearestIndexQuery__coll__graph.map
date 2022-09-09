@@ -7,11 +7,11 @@
 <area shape="rect" id="node6" href="$group__spatialpartitioning.html#structPonca_1_1QueryInput" title="Base class for typed queries input type." alt="" coords="100,373,252,495"/>
 <area shape="rect" id="node7" href="$group__spatialpartitioning.html#structPonca_1_1QueryOutputIsKNearest" title="Base class for knearest queries." alt="" coords="395,976,618,1097"/>
 <area shape="rect" id="node8" href="$group__spatialpartitioning.html#structPonca_1_1QueryOutputBase" title="Base class for queries output type." alt="" coords="208,741,392,818"/>
-<area shape="rect" id="node9" href="$group__common.html" title=" " alt="" coords="416,645,693,913"/>
+<area shape="rect" id="node9" href="$classPonca_1_1limited__priority__queue.html" title=" " alt="" coords="416,645,693,913"/>
 <area shape="rect" id="node10" title=" " alt="" coords="297,381,473,487"/>
 <area shape="rect" id="node11" title=" " alt="" coords="321,145,450,223"/>
 <area shape="rect" id="node12" title=" " alt="" coords="366,5,405,83"/>
-<area shape="rect" id="node13" href="$group__common.html#classPonca_1_1limited__priority__queue" title="The limited_priority_queue class is similar to std::priority_queue but has a limited capacity and han..." alt="" coords="497,300,703,568"/>
+<area shape="rect" id="node13" href="$classPonca_1_1limited__priority__queue.html" title="The limited_priority_queue class is similar to std::priority_queue but has a limited capacity and han..." alt="" coords="497,300,703,568"/>
 <area shape="rect" id="node14" href="$group__spatialpartitioning.html#structPonca_1_1Query" title=" " alt="" coords="671,983,827,1090"/>
 <area shape="rect" id="node15" title=" " alt="" coords="718,741,781,818"/>
 <area shape="rect" id="node16" title=" " alt="" coords="805,741,878,818"/>

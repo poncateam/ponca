@@ -48,7 +48,7 @@ if (edges && edges.length) {
 <script type="text/javascript">
 var viewWidth = 950;
 var viewHeight = 1286;
-var sectionId = 'dynsection-37';
+var sectionId = 'dynsection-26';
 </script>
 <script xlink:href="svgpan.js"/>
 <svg id="graph" class="graph">
@@ -247,7 +247,7 @@ var sectionId = 'dynsection-37';
 <!-- Node9 -->
 <g id="node9" class="node">
 <title>Node9</title>
-<g id="a_node9"><a xlink:href="group__common.html" target="_top" xlink:title=" ">
+<g id="a_node9"><a xlink:href="classPonca_1_1limited__priority__queue.html" target="_top" xlink:title=" ">
 <polygon fill="none" stroke="black" points="581,-553.5 581,-753.5 789,-753.5 789,-553.5 581,-553.5"/>
 <text text-anchor="start" x="589" y="-741.5" font-family="Helvetica,sans-Serif" font-size="10.00">Ponca::limited_priority</text>
 <text text-anchor="start" x="589" y="-730.5" font-family="Helvetica,sans-Serif" font-size="10.00">_queue&lt; Ponca::IndexSquaredDistance</text>
@@ -302,7 +302,7 @@ var sectionId = 'dynsection-37';
 <!-- Node11 -->
 <g id="node11" class="node">
 <title>Node11</title>
-<g id="a_node11"><a xlink:href="group__spatialpartitioning.html" target="_top" xlink:title=" ">
+<g id="a_node11"><a xlink:href="structPonca_1_1IndexSquaredDistance.html" target="_top" xlink:title=" ">
 <polygon fill="none" stroke="black" points="751.5,-1071.5 751.5,-1150.5 912.5,-1150.5 912.5,-1071.5 751.5,-1071.5"/>
 <text text-anchor="start" x="759.5" y="-1138.5" font-family="Helvetica,sans-Serif" font-size="10.00">Ponca::IndexSquaredDistance</text>
 <text text-anchor="middle" x="832" y="-1127.5" font-family="Helvetica,sans-Serif" font-size="10.00">&lt; DataPoint::Scalar &gt;</text>
@@ -324,7 +324,7 @@ var sectionId = 'dynsection-37';
 <!-- Node12 -->
 <g id="node12" class="node">
 <title>Node12</title>
-<g id="a_node12"><a xlink:href="group__spatialpartitioning.html#structPonca_1_1IndexSquaredDistance" target="_top" xlink:title="Associates an index with a distance.">
+<g id="a_node12"><a xlink:href="structPonca_1_1IndexSquaredDistance.html" target="_top" xlink:title="Associates an index with a distance.">
 <polygon fill="none" stroke="black" points="751.5,-1198.5 751.5,-1277.5 912.5,-1277.5 912.5,-1198.5 751.5,-1198.5"/>
 <text text-anchor="start" x="759.5" y="-1265.5" font-family="Helvetica,sans-Serif" font-size="10.00">Ponca::IndexSquaredDistance</text>
 <text text-anchor="middle" x="832" y="-1254.5" font-family="Helvetica,sans-Serif" font-size="10.00">&lt; Scalar &gt;</text>
@@ -410,7 +410,7 @@ var sectionId = 'dynsection-37';
 <!-- Node15 -->
 <g id="node15" class="node">
 <title>Node15</title>
-<g id="a_node15"><a xlink:href="group__common.html#classPonca_1_1limited__priority__queue" target="_top" xlink:title="The limited_priority_queue class is similar to std::priority_queue but has a limited capacity and han...">
+<g id="a_node15"><a xlink:href="classPonca_1_1limited__priority__queue.html" target="_top" xlink:title="The limited_priority_queue class is similar to std::priority_queue but has a limited capacity and han...">
 <polygon fill="none" stroke="black" points="583,-812.5 583,-1012.5 737,-1012.5 737,-812.5 583,-812.5"/>
 <text text-anchor="start" x="591" y="-1000.5" font-family="Helvetica,sans-Serif" font-size="10.00">Ponca::limited_priority</text>
 <text text-anchor="middle" x="660" y="-989.5" font-family="Helvetica,sans-Serif" font-size="10.00">_queue&lt; T, CompareT &gt;</text>
@@ -444,7 +444,7 @@ var sectionId = 'dynsection-37';
 <!-- Node17 -->
 <g id="node17" class="node">
 <title>Node17</title>
-<g id="a_node17"><a xlink:href="group__common.html" target="_top" xlink:title=" ">
+<g id="a_node17"><a xlink:href="classPonca_1_1limited__priority__queue.html" target="_top" xlink:title=" ">
 <polygon fill="none" stroke="black" points="355,-553.5 355,-753.5 563,-753.5 563,-553.5 355,-553.5"/>
 <text text-anchor="start" x="363" y="-741.5" font-family="Helvetica,sans-Serif" font-size="10.00">Ponca::limited_priority</text>
 <text text-anchor="start" x="363" y="-730.5" font-family="Helvetica,sans-Serif" font-size="10.00">_queue&lt; Ponca::IndexSquaredDistance</text>
