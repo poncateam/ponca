@@ -24,6 +24,8 @@ jobs:
         run: |
           cd build/
           cmake ../src/ -DCMAKE_EXECUTE_PROCESS_COMMAND_ECHO=STDOUT -DPONCA_CONFIGURE_EXAMPLES=OFF -DPONCA_CONFIGURE_TESTS=OFF
+          ls doc/
+          cat Doxyfile
       - name: Build Doc
         uses: mattnotmitt/doxygen-action@v1.9.4
         with:
