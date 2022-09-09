@@ -24,10 +24,12 @@ jobs:
       - name: Configure Doc
         run: |
           cd build/
-          cmake ../src/ -DCMAKE_EXECUTE_PROCESS_COMMAND_ECHO=STDOUT -DPONCA_CONFIGURE_EXAMPLES=OFF -DPONCA_CONFIGURE_TESTS=OFF
+          cmake ../src/ -DCMAKE_EXECUTE_PROCESS_COMMAND_ECHO=STDOUT -DPONCA_CONFIGURE_EXAMPLES=OFF -DPONCA_CONFIGURE_TESTS=OFF -DDOXYGEN_EXECUTABLE=../doxygen-1.9.3/bin/doxygen
       - name: Build doc
         run: |
-          ./doxygen-1.9.3/bin/doxygen ./build/doc/Doxyfile
+          cd build/
+          cmake --build . --target ponca-doc
+#          ./doxygen-1.9.3/bin/doxygen ./build/doc/Doxyfile
       - name: Deploy Doc
         uses: peaceiris/actions-gh-pages@v3
         with:
