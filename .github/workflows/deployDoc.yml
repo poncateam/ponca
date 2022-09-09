@@ -19,7 +19,7 @@ jobs:
           path: src/
       - name: Install packages (only used to generate Doxyfile)
         run : |
-          sudo apt-get install doxygen
+          sudo apt-get install doxygen graphviz doxygen-latex
       - name: Configure Doc
         run: |
           cd build/
@@ -27,8 +27,8 @@ jobs:
       - name: Build Doc
         uses: mattnotmitt/doxygen-action@v1.9.4
         with:
-           working-directory: 'build/'
-           doxyfile-path: 'doc'
+           working-directory: 'build/doc'
+           doxyfile-path: 'Doxyfile'
 #      - name: Deploy Doc
 #        uses: peaceiris/actions-gh-pages@v3
 #        with:
