@@ -2,25 +2,24 @@
 namespace Ponca
 {
   /*!
-    \page ponca_concepts Ponca Concepts
+    \page ponca_concepts %Ponca Concepts
 
     <center>[\ref user_manual_page "Go back to user manual"]</center>
 
     <hr>
 
-    Ponca is designed to be lightweight and easy to integrate in existing code bases.
+    %Ponca is designed to be lightweight and easy to integrate in existing code bases.
     To achieve this goal:
-     - Ponca does not include datastructures to represent and store point cloud data, and let clients defining how to
+     - %Ponca does not include datastructures to represent and store point cloud data, and let clients defining how to
        store and access data,
-     - Ponca cannot rely on C++ polymorphism to define its API: most computational objects used through the library
+     - %Ponca cannot rely on C++ polymorphism to define its API: most computational objects used through the library
        involve very small computation. Combining these computation using polymorphism requires to use virtual functions,
-       which introduce a very high overhead (considering the small computation of each class). Instead, Ponca is based
-       on 'Concepts' that need to be followed to use/extend the library.
+       which introduce a very high overhead (considering the small computation of each class).
+     - Instead, %Ponca is based on 'Concepts' that need to be followed to use/extend the library.
 
-    To achieve this goal,
-    Instead, we expect client code to define how point data can be accessed, by respecting the following interface:
+    Hence, we expect client code to define how point data can be accessed, by respecting the following interface:
     \snippet concepts.hpp PointConcept
-    This represents the minimal API required to use Ponca:
+    This represents the minimal API required to use %Ponca:
      - an integer `Dim` defining the number of dimensions of the ambient space (3 for 3d point clouds)
      - types `Scalar` and `VectorType` that will be used by the library to represent scalars and vectors
      - a default constructor
@@ -49,7 +48,7 @@ namespace Ponca
 
     <hr>
 
-    Ponca @ref fitting "Fitting Module" is structured around the following concepts:
+    %Ponca @ref fitting "Fitting Module" is structured around the following concepts:
     - `WeightKernelConcept`: defines how neighbor samples should be weighted
     - `ComputationalObjectConcept` and `ComputationalDerivativesConcept`: define API of the computational objects used
     in Basket and BasketDiff respectively.
