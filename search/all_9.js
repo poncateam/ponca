@@ -1,9 +1,26 @@
 var searchData=
 [
-  ['limited_5fpriority_5fqueue_0',['limited_priority_queue',['../classPonca_1_1limited__priority__queue.html',1,'Ponca']]],
-  ['limited_5fpriority_5fqueue_3c_20indexsquareddistance_3c_20scalar_20_3e_20_3e_1',['limited_priority_queue&lt; IndexSquaredDistance&lt; Scalar &gt; &gt;',['../classPonca_1_1limited__priority__queue.html',1,'Ponca']]],
-  ['limited_5fpriority_5fqueue_3c_20ponca_3a_3aindexsquareddistance_3c_20datapoint_3a_3ascalar_20_3e_20_3e_2',['limited_priority_queue&lt; Ponca::IndexSquaredDistance&lt; DataPoint::Scalar &gt; &gt;',['../classPonca_1_1limited__priority__queue.html',1,'Ponca']]],
-  ['limited_5fpriority_5fqueue_3c_20ponca_3a_3aindexsquareddistance_3c_20scalar_20_3e_20_3e_3',['limited_priority_queue&lt; Ponca::IndexSquaredDistance&lt; Scalar &gt; &gt;',['../classPonca_1_1limited__priority__queue.html',1,'Ponca']]],
-  ['line_4',['line',['../classPonca_1_1Line.html#afb4dcc5479a1443200a67cb347fd3d3e',1,'Ponca::Line::line()'],['../classPonca_1_1Line.html#aaddf681edbd030ca33492f1cd1f5f84a',1,'Ponca::Line::line() const']]],
-  ['line_5',['Line',['../classPonca_1_1Line.html',1,'Ponca']]]
+  ['k1_0',['k1',['../classPonca_1_1CurvatureEstimatorBase.html#a877d9ead3ac1045ebbd94d1045fc38c6',1,'Ponca::CurvatureEstimatorBase']]],
+  ['k1direction_1',['k1Direction',['../classPonca_1_1CurvatureEstimatorBase.html#afb9830d3cd98bbf9b4c715bd6c6875a8',1,'Ponca::CurvatureEstimatorBase']]],
+  ['k2_2',['k2',['../classPonca_1_1CurvatureEstimatorBase.html#a4be6423b13b5ffe0cef33cddbb7d7cfc',1,'Ponca::CurvatureEstimatorBase']]],
+  ['k2direction_3',['k2Direction',['../classPonca_1_1CurvatureEstimatorBase.html#a8dad959069ee07f91a51ddb44eed9218',1,'Ponca::CurvatureEstimatorBase']]],
+  ['kappa_4',['kappa',['../classPonca_1_1GLSParam.html#af50e8af7862b3dcb185ff21c573fa784',1,'Ponca::GLSParam']]],
+  ['kappa_5fnormalized_5',['kappa_normalized',['../classPonca_1_1GLSParam.html#abec25f5fc1914516c36082df250ee50e',1,'Ponca::GLSParam']]],
+  ['kdtree_6',['KdTree',['../classPonca_1_1KdTree.html',1,'Ponca']]],
+  ['kdtree_3c_20datapoint_20_3e_7',['KdTree&lt; DataPoint &gt;',['../classPonca_1_1KdTree.html',1,'Ponca']]],
+  ['kdtreeknearestindexquery_8',['KdTreeKNearestIndexQuery',['../classPonca_1_1KdTreeKNearestIndexQuery.html',1,'Ponca']]],
+  ['kdtreeknearestiterator_9',['KdTreeKNearestIterator',['../classPonca_1_1KdTreeKNearestIterator.html',1,'Ponca']]],
+  ['kdtreeknearestpointquery_10',['KdTreeKNearestPointQuery',['../classPonca_1_1KdTreeKNearestPointQuery.html',1,'Ponca']]],
+  ['kdtreenearestindexquery_11',['KdTreeNearestIndexQuery',['../classPonca_1_1KdTreeNearestIndexQuery.html',1,'Ponca']]],
+  ['kdtreenearestiterator_12',['KdTreeNearestIterator',['../classPonca_1_1KdTreeNearestIterator.html',1,'Ponca']]],
+  ['kdtreenearestpointquery_13',['KdTreeNearestPointQuery',['../classPonca_1_1KdTreeNearestPointQuery.html',1,'Ponca']]],
+  ['kdtreenode_14',['KdTreeNode',['../structPonca_1_1KdTreeNode.html',1,'Ponca']]],
+  ['kdtreequery_15',['KdTreeQuery',['../classPonca_1_1KdTreeQuery.html',1,'Ponca']]],
+  ['kdtreerangeindexquery_16',['KdTreeRangeIndexQuery',['../classPonca_1_1KdTreeRangeIndexQuery.html',1,'Ponca']]],
+  ['kdtreerangeiterator_17',['KdTreeRangeIterator',['../classPonca_1_1KdTreeRangeIterator.html',1,'Ponca']]],
+  ['kdtreerangepointquery_18',['KdTreeRangePointQuery',['../classPonca_1_1KdTreeRangePointQuery.html',1,'Ponca']]],
+  ['kmean_19',['kMean',['../classPonca_1_1CurvatureEstimatorBase.html#a2806aae38a187798de67d5eb38771c50',1,'Ponca::CurvatureEstimatorBase::kMean()'],['../classPonca_1_1MongePatch.html#a577334b5f0eb551c969135e70b1d849e',1,'Ponca::MongePatch::kMean()']]],
+  ['knearestindexquery_20',['KNearestIndexQuery',['../group__spatialpartitioning.html#structPonca_1_1KNearestIndexQuery',1,'Ponca']]],
+  ['knearestindexquery_3c_20datapoint_3a_3ascalar_20_3e_21',['KNearestIndexQuery&lt; DataPoint::Scalar &gt;',['../group__spatialpartitioning.html',1,'Ponca']]],
+  ['knearestpointquery_22',['KNearestPointQuery',['../group__spatialpartitioning.html#structPonca_1_1KNearestPointQuery',1,'Ponca']]]
 ];

@@ -1,9 +1,26 @@
 var searchData=
 [
-  ['radius_0',['radius',['../classPonca_1_1AlgebraicSphere.html#a51dbbb073bcef4ad2f021544dc104da4',1,'Ponca::AlgebraicSphere']]],
-  ['rangeindexquery_1',['RangeIndexQuery',['../group__spatialpartitioning.html#structPonca_1_1RangeIndexQuery',1,'Ponca']]],
-  ['rangeindexquery_3c_20datapoint_3a_3ascalar_20_3e_2',['RangeIndexQuery&lt; DataPoint::Scalar &gt;',['../group__spatialpartitioning.html',1,'Ponca']]],
-  ['rangepointquery_3',['RangePointQuery',['../group__spatialpartitioning.html#structPonca_1_1RangePointQuery',1,'Ponca']]],
-  ['releases_20overview_4',['Releases overview',['../ponca_changelog.html',1,'']]],
-  ['reset_5',['reset',['../classPonca_1_1KdTreeQuery.html#af9886f3d133c0e6a7465b5f9e2be0fe5',1,'Ponca::KdTreeQuery::reset()'],['../group__spatialpartitioning.html#a73753f4754f294ca0300cb73114be9e9',1,'Ponca::QueryOutputIsRange::reset()'],['../group__spatialpartitioning.html#a1a25cb2ddb73abe46a1f8fc0a4522fbf',1,'Ponca::QueryOutputIsNearest::reset()'],['../group__spatialpartitioning.html#a89468c51f6e1ca0d4aa5d114a26d7699',1,'Ponca::QueryOutputIsKNearest::reset()']]]
+  ['query_0',['Query',['../group__spatialpartitioning.html#structPonca_1_1Query',1,'Ponca']]],
+  ['query_3c_20queryinputisindex_2c_20queryoutputisknearest_3c_20datapoint_3a_3ascalar_20_3e_20_3e_1',['Query&lt; QueryInputIsIndex, QueryOutputIsKNearest&lt; DataPoint::Scalar &gt; &gt;',['../group__spatialpartitioning.html',1,'Ponca']]],
+  ['query_3c_20queryinputisindex_2c_20queryoutputisknearest_3c_20scalar_20_3e_20_3e_2',['Query&lt; QueryInputIsIndex, QueryOutputIsKNearest&lt; Scalar &gt; &gt;',['../group__spatialpartitioning.html',1,'Ponca']]],
+  ['query_3c_20queryinputisindex_2c_20queryoutputisnearest_3c_20datapoint_3a_3ascalar_20_3e_20_3e_3',['Query&lt; QueryInputIsIndex, QueryOutputIsNearest&lt; DataPoint::Scalar &gt; &gt;',['../group__spatialpartitioning.html',1,'Ponca']]],
+  ['query_3c_20queryinputisindex_2c_20queryoutputisnearest_3c_20scalar_20_3e_20_3e_4',['Query&lt; QueryInputIsIndex, QueryOutputIsNearest&lt; Scalar &gt; &gt;',['../group__spatialpartitioning.html',1,'Ponca']]],
+  ['query_3c_20queryinputisindex_2c_20queryoutputisrange_3c_20datapoint_3a_3ascalar_20_3e_20_3e_5',['Query&lt; QueryInputIsIndex, QueryOutputIsRange&lt; DataPoint::Scalar &gt; &gt;',['../group__spatialpartitioning.html',1,'Ponca']]],
+  ['query_3c_20queryinputisindex_2c_20queryoutputisrange_3c_20scalar_20_3e_20_3e_6',['Query&lt; QueryInputIsIndex, QueryOutputIsRange&lt; Scalar &gt; &gt;',['../group__spatialpartitioning.html',1,'Ponca']]],
+  ['query_3c_20queryinputisposition_3c_20datapoint_20_3e_2c_20queryoutputisknearest_3c_20datapoint_3a_3ascalar_20_3e_20_3e_7',['Query&lt; QueryInputIsPosition&lt; DataPoint &gt;, QueryOutputIsKNearest&lt; DataPoint::Scalar &gt; &gt;',['../group__spatialpartitioning.html',1,'Ponca']]],
+  ['query_3c_20queryinputisposition_3c_20datapoint_20_3e_2c_20queryoutputisnearest_3c_20datapoint_3a_3ascalar_20_3e_20_3e_8',['Query&lt; QueryInputIsPosition&lt; DataPoint &gt;, QueryOutputIsNearest&lt; DataPoint::Scalar &gt; &gt;',['../group__spatialpartitioning.html',1,'Ponca']]],
+  ['query_3c_20queryinputisposition_3c_20datapoint_20_3e_2c_20queryoutputisrange_3c_20datapoint_3a_3ascalar_20_3e_20_3e_9',['Query&lt; QueryInputIsPosition&lt; DataPoint &gt;, QueryOutputIsRange&lt; DataPoint::Scalar &gt; &gt;',['../group__spatialpartitioning.html',1,'Ponca']]],
+  ['queryinput_10',['QueryInput',['../group__spatialpartitioning.html#structPonca_1_1QueryInput',1,'Ponca']]],
+  ['queryinput_3c_20datapoint_3a_3avectortype_20_3e_11',['QueryInput&lt; DataPoint::VectorType &gt;',['../group__spatialpartitioning.html',1,'Ponca']]],
+  ['queryinput_3c_20int_20_3e_12',['QueryInput&lt; int &gt;',['../group__spatialpartitioning.html',1,'Ponca']]],
+  ['queryinputbase_13',['QueryInputBase',['../group__spatialpartitioning.html#structPonca_1_1QueryInputBase',1,'Ponca']]],
+  ['queryinputisindex_14',['QueryInputIsIndex',['../group__spatialpartitioning.html#structPonca_1_1QueryInputIsIndex',1,'Ponca']]],
+  ['queryinputisposition_15',['QueryInputIsPosition',['../group__spatialpartitioning.html#structPonca_1_1QueryInputIsPosition',1,'Ponca']]],
+  ['queryoutputbase_16',['QueryOutputBase',['../group__spatialpartitioning.html#structPonca_1_1QueryOutputBase',1,'Ponca']]],
+  ['queryoutputisknearest_17',['QueryOutputIsKNearest',['../group__spatialpartitioning.html#structPonca_1_1QueryOutputIsKNearest',1,'Ponca']]],
+  ['queryoutputisknearest_3c_20datapoint_3a_3ascalar_20_3e_18',['QueryOutputIsKNearest&lt; DataPoint::Scalar &gt;',['../group__spatialpartitioning.html',1,'Ponca']]],
+  ['queryoutputisnearest_19',['QueryOutputIsNearest',['../group__spatialpartitioning.html#structPonca_1_1QueryOutputIsNearest',1,'Ponca']]],
+  ['queryoutputisnearest_3c_20datapoint_3a_3ascalar_20_3e_20',['QueryOutputIsNearest&lt; DataPoint::Scalar &gt;',['../group__spatialpartitioning.html',1,'Ponca']]],
+  ['queryoutputisrange_21',['QueryOutputIsRange',['../group__spatialpartitioning.html#structPonca_1_1QueryOutputIsRange',1,'Ponca']]],
+  ['queryoutputisrange_3c_20datapoint_3a_3ascalar_20_3e_22',['QueryOutputIsRange&lt; DataPoint::Scalar &gt;',['../group__spatialpartitioning.html',1,'Ponca']]]
 ];

@@ -51,7 +51,7 @@ MathJax.Hub.Config({
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Ponca
-   &#160;<span id="projectnumber">b47810e64756ba58739011e4c032cc287b119cc9</span>
+   &#160;<span id="projectnumber">c7ccb9ac23d1f1266aae6875e09049dad621d74a</span>
    </div>
    <div id="projectbrief">Point Cloud Analysis library</div>
   </td>
@@ -134,9 +134,18 @@ Use as cmake subdirectory</h2>
 <div class="line">target_link_libraries(test Ponca::Fitting)</div>
 </div><!-- fragment --><h2><a class="anchor" id="getting_started_installation_compilation_subsec"></a>
 Compilation</h2>
-<p >If you want to see <a class="el" href="namespacePonca.html" title="This Source Code Form is subject to the terms of the Mozilla Public License, v.">Ponca</a> in action, you will of course have to compile examples. And the same is true if you want to get the latest version of the documentation you are presently reading (well, not the exact same documentation, unless you've already compiled it, but then why are you reading this?). In both cases, you will have to use <code>cmake</code>, e.g.: </p><div class="fragment"><div class="line">mkdir build &amp;&amp; cd build</div>
-<div class="line">cmake ..</div>
-</div><!-- fragment --><p >Available cmake options: ../CMakeLists.txt </p><div class="fragment"></div><!-- fragment --><p> Then compile using </p><div class="fragment"><div class="line">cmake --build . --target TARGET</div>
+<p >If you want to see <a class="el" href="namespacePonca.html" title="This Source Code Form is subject to the terms of the Mozilla Public License, v.">Ponca</a> in action, you will of course have to compile examples. And the same is true if you want to get the latest version of the documentation you are presently reading (well, not the exact same documentation, unless you've already compiled it, but then why are you reading this?). In both cases, you will have to use <code>cmake</code>, e.g.: </p><div class="fragment"><div class="line">cmake . -B build  # Creates build folder and run cmake in it</div>
+</div><!-- fragment --><p >Available cmake options:  </p><div class="fragment"><div class="line"><span class="preprocessor">## USER OPTIONS</span></div>
+<div class="line"><span class="preprocessor">##</span></div>
+<div class="line"> </div>
+<div class="line">OPTION( PONCA_CONFIGURE_EXAMPLES   <span class="stringliteral">&quot;Include compilation rules for built-in examples&quot;</span>      ON)</div>
+<div class="line">OPTION( PONCA_CONFIGURE_DOC        <span class="stringliteral">&quot;Include compilation rules for built-in documentation&quot;</span> ON)</div>
+<div class="line">OPTION( PONCA_CONFIGURE_TESTS      <span class="stringliteral">&quot;Include compilation rules for built-in tests&quot;</span>         ON)</div>
+<div class="line">OPTION( PONCA_GENERATE_IDE_TARGETS <span class="stringliteral">&quot;Generate targets to show source files in IDEs&quot;</span>        ON)</div>
+<div class="line"> </div>
+<div class="line"><span class="preprocessor">##</span></div>
+<div class="line"><span class="preprocessor">## END USER OPTIONS</span></div>
+</div><!-- fragment --><p> Then compile using </p><div class="fragment"><div class="line">cmake --build . --target TARGET</div>
 </div><!-- fragment --><p> with <code>TARGET</code> equals to:</p><ul>
 <li><code>ponca-doc</code>: generate documentation using Doxygen (requires <code>PONCA_CONFIGURE_DOC</code>)</li>
 <li><code>ponca-examples</code>: compile examples (requires <code>PONCA_CONFIGURE_EXAMPLES</code>)</li>
@@ -166,7 +175,7 @@ First steps</h1>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generated on Fri Sep 9 2022 14:16:33 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.3 </li>
+    <li class="footer">Generated on Tue Sep 20 2022 12:31:12 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.3 </li>
   </ul>
 </div>
 </body>

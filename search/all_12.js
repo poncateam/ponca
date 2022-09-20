@@ -1,10 +1,8 @@
 var searchData=
 [
-  ['undefined_0',['UNDEFINED',['../namespacePonca.html#abfd697aebf07c1b5c8be5ee401e2dc84a08d57dd200082f67128b5274049dda41',1,'Ponca']]],
-  ['unorientedspherefit_1',['unorientedSphereFit',['../classPonca_1_1UnorientedSphereFitImpl.html#a585b7e38fcff129a27f49bf0c8929348',1,'Ponca::UnorientedSphereFitImpl::unorientedSphereFit()'],['../classPonca_1_1UnorientedSphereFitImpl.html#a3e7a553a4a799a55f50fba6332c94e98',1,'Ponca::UnorientedSphereFitImpl::unorientedSphereFit() const']]],
-  ['unorientedspherefit_2',['UnorientedSphereFit',['../namespacePonca.html#ac22c4266774d911c5c597d132477c264',1,'Ponca']]],
-  ['unorientedspherefitimpl_3',['UnorientedSphereFitImpl',['../classPonca_1_1UnorientedSphereFitImpl.html',1,'Ponca']]],
-  ['unstable_4',['UNSTABLE',['../namespacePonca.html#abfd697aebf07c1b5c8be5ee401e2dc84ab13222e506596eb607093af1a1de3e39',1,'Ponca']]],
-  ['user_20manual_5',['User Manual',['../user_manual_page.html',1,'']]],
-  ['using_20ponca_20to_20compute_20surface_20curvature_20in_20pcl_6',['Using Ponca to compute surface curvature in PCL',['../example_cxx_pcl_page.html',1,'example_page']]]
+  ['tangentplane_0',['tangentPlane',['../classPonca_1_1NormalDerivativesCurvatureEstimator.html#a518ef710dec77937088090c649df3d53',1,'Ponca::NormalDerivativesCurvatureEstimator']]],
+  ['tangentplanetoworld_1',['tangentPlaneToWorld',['../classPonca_1_1CovariancePlaneFitImpl.html#ae023b7de8be8e2826810acd7fe9db910',1,'Ponca::CovariancePlaneFitImpl']]],
+  ['tau_2',['tau',['../classPonca_1_1GLSParam.html#ab44732a836ac2426812c1a28de87368b',1,'Ponca::GLSParam']]],
+  ['tau_5fnormalized_3',['tau_normalized',['../classPonca_1_1GLSParam.html#a4640a61e78f4b56b6897ee24c406de08',1,'Ponca::GLSParam']]],
+  ['top_4',['top',['../classPonca_1_1Stack.html#af7a9b21992c2a9fc54f57169717184db',1,'Ponca::Stack::top() const'],['../classPonca_1_1Stack.html#aa591b6a41039b60ee5a6ae3412c48841',1,'Ponca::Stack::top()']]]
 ];

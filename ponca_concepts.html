@@ -51,7 +51,7 @@ MathJax.Hub.Config({
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Ponca
-   &#160;<span id="projectnumber">b47810e64756ba58739011e4c032cc287b119cc9</span>
+   &#160;<span id="projectnumber">c7ccb9ac23d1f1266aae6875e09049dad621d74a</span>
    </div>
    <div id="projectbrief">Point Cloud Analysis library</div>
   </td>
@@ -109,15 +109,16 @@ $(document).ready(function(){initNavTree('ponca_concepts.html',''); initResizabl
 </div>
 
 <div><div class="header">
-  <div class="headertitle"><div class="title"><a class="el" href="namespacePonca.html" title="This Source Code Form is subject to the terms of the Mozilla Public License, v.">Ponca</a> Concepts </div></div>
+  <div class="headertitle"><div class="title">Ponca Concepts </div></div>
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><center>[<a class="el" href="user_manual_page.html">Go back to user manual</a>]</center><hr  />
-<p ><a class="el" href="namespacePonca.html" title="This Source Code Form is subject to the terms of the Mozilla Public License, v.">Ponca</a> is designed to be lightweight and easy to integrate in existing code bases. To achieve this goal:</p><ul>
-<li><a class="el" href="namespacePonca.html" title="This Source Code Form is subject to the terms of the Mozilla Public License, v.">Ponca</a> does not include datastructures to represent and store point cloud data, and let clients defining how to store and access data,</li>
-<li><a class="el" href="namespacePonca.html" title="This Source Code Form is subject to the terms of the Mozilla Public License, v.">Ponca</a> cannot rely on C++ polymorphism to define its API: most computational objects used through the library involve very small computation. Combining these computation using polymorphism requires to use virtual functions, which introduce a very high overhead (considering the small computation of each class). Instead, <a class="el" href="namespacePonca.html" title="This Source Code Form is subject to the terms of the Mozilla Public License, v.">Ponca</a> is based on 'Concepts' that need to be followed to use/extend the library.</li>
+<p >Ponca is designed to be lightweight and easy to integrate in existing code bases. To achieve this goal:</p><ul>
+<li>Ponca does not include datastructures to represent and store point cloud data, and let clients defining how to store and access data,</li>
+<li>Ponca cannot rely on C++ polymorphism to define its API: most computational objects used through the library involve very small computation. Combining these computation using polymorphism requires to use virtual functions, which introduce a very high overhead (considering the small computation of each class).</li>
+<li>Instead, Ponca is based on 'Concepts' that need to be followed to use/extend the library.</li>
 </ul>
-<p >To achieve this goal, Instead, we expect client code to define how point data can be accessed, by respecting the following interface: </p><div class="fragment"><div class="line">        <span class="keyword">class </span>PointConcept {</div>
+<p >Hence, we expect client code to define how point data can be accessed, by respecting the following interface: </p><div class="fragment"><div class="line">        <span class="keyword">class </span>PointConcept {</div>
 <div class="line">        <span class="keyword">public</span>:</div>
 <div class="line">            <span class="comment">/* \brief Defines the ambient space dimension, 3 in this example */</span></div>
 <div class="line">            <span class="keyword">enum</span> {</div>
@@ -140,7 +141,7 @@ $(document).ready(function(){initNavTree('ponca_concepts.html',''); initResizabl
 <div class="line">            <span class="comment">// \note Same constraints on return type</span></div>
 <div class="line">            PONCA_MULTIARCH <span class="keyword">inline</span> VectorType&amp; pos();</div>
 <div class="line">        }; <span class="comment">//class PointConcept</span></div>
-</div><!-- fragment --><p> This represents the minimal API required to use <a class="el" href="namespacePonca.html" title="This Source Code Form is subject to the terms of the Mozilla Public License, v.">Ponca</a>:</p><ul>
+</div><!-- fragment --><p> This represents the minimal API required to use Ponca:</p><ul>
 <li>an integer <code>Dim</code> defining the number of dimensions of the ambient space (3 for 3d point clouds)</li>
 <li>types <code>Scalar</code> and <code>VectorType</code> that will be used by the library to represent scalars and vectors</li>
 <li>a default constructor</li>
@@ -160,7 +161,7 @@ $(document).ready(function(){initNavTree('ponca_concepts.html',''); initResizabl
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="user_manual_page.html">User Manual</a></li>
-    <li class="footer">Generated on Fri Sep 9 2022 14:16:33 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.3 </li>
+    <li class="footer">Generated on Tue Sep 20 2022 12:31:12 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.3 </li>
   </ul>
 </div>
 </body>
