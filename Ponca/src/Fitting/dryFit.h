@@ -44,7 +44,7 @@ namespace Ponca
         PONCA_MULTIARCH inline Scalar potential ( ) const { return Scalar(0); }
 
         //! \brief Simulate Scalar field computation
-        PONCA_MULTIARCH inline Scalar potential (const VectorType& _q) const { return Scalar(0); }
+        PONCA_MULTIARCH inline Scalar potential (const VectorType& /*_q*/) const { return Scalar(0); }
 
         //! \brief Simulate point projection
         PONCA_MULTIARCH inline VectorType project (const VectorType& _q) const { return _q; }
