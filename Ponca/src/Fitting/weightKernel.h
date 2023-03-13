@@ -73,6 +73,8 @@ public:
     \brief Wendland WeightKernel defined in \f$\left[0 : 1\right]\f$
 
     \inherit Concept::WeightKernelConcept
+
+    Weight function is an implementation of equation 2 in \cite Alexa:2009:Hermite
 */
 
 template <typename _Scalar>
@@ -105,6 +107,8 @@ public:
     \brief Singular WeightKernel defined in \f$\left[0 : 1\right]\f$
 
     \inherit Concept::WeightKernelConcept
+
+    Weight function is an implementation of an unnumbered equation but defined in the Appendices in \cite Alexa:2009:Hermite
 */
 
 template <typename _Scalar>
@@ -120,7 +124,7 @@ public:
         return Scalar(1.) / (_x * _x);
     }
     /*! \brief Defines the Singular first order weighting function \f$ \nabla w(x) = -2 / (x^3) \f$ */
-    PONCA_MULTIARCH inline Scalar df (const Scalar& __x) const {
+    PONCA_MULTIARCH inline Scalar df (const Scalar& _x) const {
         return Scalar(-2.) / (_x * _x * _x);
     }
     /*! \brief Defines the Singular second order weighting function \f$ \nabla^2 w(x) = 6 / (x^4) \f$ */
