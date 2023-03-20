@@ -136,9 +136,9 @@ int main(int argc, char** argv)
 
     cout << "Verify Wendland weight kernel derivatives" << endl;
 
-    callSmoothSubTests<long double>();
+    callWendlandSubTests<long double>();
 
     cout << "Verify singular weight kernel derivatives" << endl;
 
-    callSmoothSubTests<long double>();
+    callSingularSubTests<long double>();
 }
