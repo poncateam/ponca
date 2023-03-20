@@ -5,8 +5,8 @@
 */
 
 /*!
-    \file test/Grenaille/smooth_weight_kernel.cpp
-    \brief Test smooth weight kernel derivatives
+    \file test/Grenaille/weight_kernel.cpp
+    \brief Test weight kernel derivatives
  */
 
 #include "../common/testing.h"
@@ -82,12 +82,40 @@ void testFunction()
 }
 
 template<typename Scalar>
-void callSubTests()
+void callSmoothSubTests()
 {
     typedef Eigen::AutoDiffScalar<Eigen::Matrix<Scalar,1,1>> ScalarDiff;
 
     typedef SmoothWeightKernel<Scalar> Kernel;
     typedef SmoothWeightKernel<ScalarDiff> KernelAutoDiff;
+
+    CALL_SUBTEST(( testFunction<Kernel>() ));
+    CALL_SUBTEST(( testFunctionAutoDiff<KernelAutoDiff>() ));
+
+    cout << "ok" << endl;
+}
+
+template<typename Scalar>
+void callWendlandSubTests()
+{
+    typedef Eigen::AutoDiffScalar<Eigen::Matrix<Scalar,1,1>> ScalarDiff;
+
+    typedef WendlandWeightKernel<Scalar> Kernel;
+    typedef WendlandWeightKernel<ScalarDiff> KernelAutoDiff;
+
+    CALL_SUBTEST(( testFunction<Kernel>() ));
+    CALL_SUBTEST(( testFunctionAutoDiff<KernelAutoDiff>() ));
+
+    cout << "ok" << endl;
+}
+
+template<typename Scalar>
+void callSingularSubTests()
+{
+    typedef Eigen::AutoDiffScalar<Eigen::Matrix<Scalar,1,1>> ScalarDiff;
+
+    typedef SingularWeightKernel<Scalar> Kernel;
+    typedef SingularWeightKernel<ScalarDiff> KernelAutoDiff;
 
     CALL_SUBTEST(( testFunction<Kernel>() ));
     CALL_SUBTEST(( testFunctionAutoDiff<KernelAutoDiff>() ));
@@ -104,5 +132,13 @@ int main(int argc, char** argv)
 
     cout << "Verify smooth weight kernel derivatives" << endl;
 
-    callSubTests<long double>();
+    callSmoothSubTests<long double>();
+
+    cout << "Verify Wendland weight kernel derivatives" << endl;
+
+    callSmoothSubTests<long double>();
+
+    cout << "Verify singular weight kernel derivatives" << endl;
+
+    callSmoothSubTests<long double>();
 }
