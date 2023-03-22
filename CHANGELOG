@@ -9,7 +9,7 @@ This release introduces several changes in the API in order to
      the situation)
    - reduce code duplication
    - ease the design of new estimators
-The changes introduced in this version mostly are all introduced by PR #56.
+The changes introduced in this version mostly are introduced by PR #56.
 
 - API
     - [fitting] Factorize neighbors weight computation (#56)
