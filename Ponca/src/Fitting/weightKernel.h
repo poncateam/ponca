@@ -98,7 +98,7 @@ public:
     /*! \brief Defines the Wendland second order weighting function \f$ \nabla^2 w(x) = (x−1)^2 * (80x−20) \f$ */
     PONCA_MULTIARCH inline Scalar ddf(const Scalar& _x) const {
         const Scalar v = _x - Scalar(1.);
-        return v * v * (Scalar(80.) * _x - Scalar(20))
+        return v * v * (Scalar(80.) * _x - Scalar(20));
     }
 };//class WendlandWeightKernel
 
