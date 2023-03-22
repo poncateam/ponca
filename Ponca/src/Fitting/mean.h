@@ -33,7 +33,9 @@ namespace Ponca {
         PONCA_FITTING_DECLARE_INIT
         PONCA_FITTING_DECLARE_ADDNEIGHBOR
 
-        //! \brief Value of the scalar field at the location \f$ \mathbf{q} \f$
+        /// \brief Barycenter of the input points
+        ///
+        /// Defined as \f$ \frac{\sum w(\mathbf{x}) \mathbf{x}}{\sum w(\mathbf{x})} \f$
         PONCA_MULTIARCH inline VectorType barycenter() const {
             return (m_sumP / Base::m_sumW);
         }
@@ -92,12 +94,35 @@ namespace Ponca {
         PONCA_FITTING_DECLARE_INIT
         PONCA_FITTING_DECLARE_ADDNEIGHBOR_DER
 
-        /// \brief Compute derivatives of the barycenter. \see MeanPosition::barycenter()
+        /// \brief Compute derivatives of the barycenter.
+        /// \see MeanPosition::barycenter()
+        ///
+        /// ### Step-by-step derivation from the barycenter definition
+        /// Given the definition of the barycenter \f$ b(\mathbf{x}) = \frac{\sum w(\mathbf{x}) \mathbf{x}}{\sum w(\mathbf{x})} \f$ :
+        ///
+        /// We denote \f$ t(\mathbf{x}) = \sum w(\mathbf{x}) \mathbf{x} \f$ and \f$ s(\mathbf{x}) = \sum w(\mathbf{x})\f$,
+        /// such that \f$ b(\mathbf{x}) = \frac{t(\mathbf{x})}{s(\mathbf{x})}\f$.
+        ///
+        /// By definition, \f$ b'(\mathbf{x}) = \frac{s(\mathbf{x})t'(\mathbf{x}) - t(\mathbf{x})s'(\mathbf{x})}{s(\mathbf{x})^2}\f$.
+        /// We have \f$ s'(\mathbf{x}) = \sum w'(\mathbf{x}) \f$.
+        ///
+        /// We rewrite \f$ t(\mathbf{x}) = \sum u(\mathbf{x})v(\mathbf{x}) \f$, with \f$ u(\mathbf{x}) = w(\mathbf{x}) \f$ and \f$ v(\mathbf{x}) = \mathbf{x} \f$.
+        ///
+        /// By definition, \f$ t'(\mathbf{x}) = \sum u(\mathbf{x})v'(\mathbf{x}) + u'(\mathbf{x})v(\mathbf{x}) \f$, with  \f$ u'(\mathbf{x}) = w'(\mathbf{x})\f$ and \f$ v'(\mathbf{x}) = \mathbf{1}\f$.
+        ///
+        /// Which leads to \f$ b'(\mathbf{x}) = \frac{\sum w(\mathbf{x})\left(\mathbf{1} \sum w(\mathbf{x}) + w'(\mathbf{x})\mathbf{x}\right) - \left(\sum w(\mathbf{x})\mathbf{x}\right)\sum w'(\mathbf{x})}{\left(\sum w(\mathbf{x})\right)^2} \f$
+        ///
+        /// Simplifying by \f$ \sum w(\mathbf{x}) \f$ we obtain:
+        ///
+        /// \f$ b'(\mathbf{x}) = \frac{\mathbf{1} \sum w(\mathbf{x})  + w'(\mathbf{x})\mathbf{x} - b(\mathbf{x})\sum w'(\mathbf{x})}{\sum w(\mathbf{x})} \f$
+        ///
+        /// \note This code is not directly tested, but rather indirectly by testing CovariancePlaneDer::dNormal()
         PONCA_MULTIARCH VectorArray barycenterDerivatives() const
         {
             VectorArray barycenterDer;
+            const VectorType vSumW = VectorType::Constant(Base::m_sumW);
             for(int k=0; k<Base::NbDerivatives; ++k)
-                barycenterDer.col(k) = (m_dSumP.col(k) - Base::m_dSumW(k) * Base::m_sumP) / Base::m_sumW;
+                barycenterDer.col(k) = (vSumW + m_dSumP.col(k) - Base::m_dSumW(k) * Base::barycenter()) / Base::m_sumW;
             return barycenterDer;
         }
 
