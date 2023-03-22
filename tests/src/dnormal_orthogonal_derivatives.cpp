@@ -112,7 +112,7 @@ void test_orthoDerivatives(Functor f, bool skipCov = false)
     Scalar radius = Eigen::internal::random<Scalar>(1,10);
     Scalar curvature = Scalar(1.)/radius;
     VectorType center = VectorType::Random() * Eigen::internal::random<Scalar>(1, 10000);
-    Scalar analysisScale = Eigen::internal::random<Scalar>(0.3, std::sqrt(2.f)) * radius;
+    Scalar analysisScale = Eigen::internal::random<Scalar>(Scalar(0.3), std::sqrt(Scalar(2))) * radius;
     Scalar epsilon = testEpsilon<Scalar>();
 
     vector<Point> vecs(nbPoints);
