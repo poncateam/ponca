@@ -90,15 +90,15 @@ public:
         const Scalar v = Scalar(1.) - _x;
         return v * v * v * v * ((Scalar(4.) * _x) + Scalar(1.));
     }
-    /*! \brief Defines the Wendland first order weighting function \f$ \nabla w(x) = 4(1-x)^4 - 4(4x-1)(1-x)^3 \f$ */
+    /*! \brief Defines the Wendland first order weighting function \f$ \nabla w(x) = 20x * (x−1)^3 \f$ */
     PONCA_MULTIARCH inline Scalar df (const Scalar& _x) const {
-        const Scalar v = Scalar(1.) - _x;
-        return Scalar(4.) * v * v * v * v - Scalar(4.) * (Scalar(4.) * _x - Scalar(1.)) * v * v * v;
+        const Scalar v = _x - Scalar(1.);
+        return Scalar(20.) * _x * v * v * v;
     }
-    /*! \brief Defines the Wendland second order weighting function \f$ \nabla^2 w(x) = 12(4x-1)(1-x)^2 - 32(1-x)^3 \f$ */
+    /*! \brief Defines the Wendland second order weighting function \f$ \nabla^2 w(x) = (x−1)^2 * (80x−20) \f$ */
     PONCA_MULTIARCH inline Scalar ddf(const Scalar& _x) const {
-        const Scalar v = Scalar(1.) - _x;
-        return Scalar(12.) * (Scalar(4.) * _x - Scalar(1.)) * v * v - Scalar(32.) * v * v * v;
+        const Scalar v = _x - Scalar(1.);
+        return v * v * (Scalar(80.) * _x - Scalar(20))
     }
 };//class WendlandWeightKernel
 
