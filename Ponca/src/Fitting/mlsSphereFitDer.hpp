@@ -173,7 +173,7 @@ MlsSphereFitDer<DataPoint, _WFunctor, DiffType, T>::dPotential() const
 
 template < class DataPoint, class _WFunctor, int DiffType, typename T>
 typename MlsSphereFitDer<DataPoint, _WFunctor, DiffType, T>::VectorType
-MlsSphereFitDer<DataPoint, _WFunctor, DiffType, T>::normal() const
+MlsSphereFitDer<DataPoint, _WFunctor, DiffType, T>::primitiveGradient() const
 {
     // Compute the 1st order derivative of the scalar field and normalize it
     VectorType grad = Base::m_dUc.template tail<Dim>().transpose() + Base::m_ul;

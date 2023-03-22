@@ -97,7 +97,7 @@ public:
     PONCA_MULTIARCH inline ScalarArray dPotential() const;
 
     /*! \brief Value of the normal of the primitive at the evaluation point */
-    PONCA_MULTIARCH inline VectorType normal() const;
+    PONCA_MULTIARCH inline VectorType primitiveGradient() const;
 
     /*! \brief Returns the second derivatives of the scalar field at the evaluation point */
     PONCA_MULTIARCH inline VectorArray dNormal() const;
