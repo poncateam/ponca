@@ -27,7 +27,7 @@ void testFunctionAutoDiff()
     typedef typename ScalarDiff::Scalar Scalar;
 
     Scalar step = Scalar(0.05);
-    int n = Scalar(1.)/step;
+    int n = int(Scalar(1)/Scalar(step));
 
     Kernel k;
     Scalar epsilon = testEpsilon<Scalar>();
@@ -55,7 +55,7 @@ void testFunction()
     typedef typename Kernel::Scalar Scalar;
 
     Scalar step = Scalar(0.05);
-    int n = Scalar(1.)/step;
+    int n = int(Scalar(1)/Scalar(step));
 
     Kernel k;
     Scalar h = Scalar(1e-6);
