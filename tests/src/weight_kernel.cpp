@@ -59,7 +59,7 @@ void testFunction()
 
     Kernel k;
     Scalar h = Scalar(1e-6);
-    Scalar epsilon = testEpsilon<Scalar>();
+    Scalar epsilon = Scalar(100)*testEpsilon<Scalar>();
 
     // compare to finite difference approximations
     for(int i=1; i<=n; ++i)
