@@ -26,7 +26,7 @@ jobs:
       - name: Configure Doc
         run: |
           cd build/
-          cmake ../src/ -DCMAKE_EXECUTE_PROCESS_COMMAND_ECHO=STDOUT -DPONCA_CONFIGURE_EXAMPLES=OFF -DPONCA_CONFIGURE_TESTS=OFF -DDOXYGEN_EXECUTABLE=../doxygen-1.9.3/bin/doxygen
+          cmake ../src/ -DCMAKE_EXECUTE_PROCESS_COMMAND_ECHO=STDOUT -DPONCA_CONFIGURE_EXAMPLES=OFF -DPONCA_CONFIGURE_TESTS=OFF -DDOXYGEN_EXECUTABLE=../doxygen-1.9.6/bin/doxygen
       - name: Build doc
         run: |
           cd build/
