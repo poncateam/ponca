@@ -22,6 +22,7 @@ The changes introduced in this version mostly are all introduced by PR #56.
       fits at once (#56)
     - [fitting] Add a mechanism to detect conflicting computations (#56)
     - [fitting] Move iScaleDer out of internal namespace + name enum (#56)
+    - [fitting] Rename normal() as primitiveGradient in MlsSphereFit (#72)
 
 - Bug-fixes and code improvements
     - [fitting] Reduce objets sizes by removing unnecessary attributes (#56)
@@ -29,9 +30,11 @@ The changes introduced in this version mostly are all introduced by PR #56.
     - [fitting] Remove explicit implementation of default constructors (#56)
     - [fitting] Add macros to simplify headers writing (#56)
     - [fitting] Fix several warnings when compiling with MSVC (#56)
+    - [fitting] Fix a bug in barycenterDer computation (#72)
 
 - Tests
     - [fitting] Update according to API changes (#56)
+    - [fitting] Rewrite test on dNormal (#72)
 
 -Docs
     - Switch to doxygen-awesome-css (#56)
@@ -41,6 +44,7 @@ The changes introduced in this version mostly are all introduced by PR #56.
     - [common] Reformat page User Manual (#56)
     - [fitting] Rewrite User Manual (#56)
     - [fitting] Rewrite Concept page (#56)
+    - [fitting] Add mathematical details about barycenter and barycenterDer (#72)
 
 --------------------------------------------------------------------------------
 v.0.3
