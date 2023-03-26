@@ -33,7 +33,10 @@ namespace Ponca {
         PONCA_FITTING_DECLARE_INIT
         PONCA_FITTING_DECLARE_ADDNEIGHBOR
 
-        //! \brief Value of the scalar field at the location \f$ \mathbf{q} \f$
+        /// \brief Barycenter of the input points
+        ///
+        /// Defined as \f$ b(\mathbf{x}) = \frac{\sum_i w_\mathbf{x}(\mathbf{p_i}) \mathbf{p_i}}{\sum_i w_\mathbf{x}(\mathbf{p_i})} \f$,
+        ///  where \f$\left[\mathbf{p_i} \in \text{neighborhood}(\mathbf{x})\right]\f$ are all the point samples in \f$\mathbf{x}\f$'s neighborhood
         PONCA_MULTIARCH inline VectorType barycenter() const {
             return (m_sumP / Base::m_sumW);
         }
@@ -92,13 +95,29 @@ namespace Ponca {
         PONCA_FITTING_DECLARE_INIT
         PONCA_FITTING_DECLARE_ADDNEIGHBOR_DER
 
-        /// \brief Compute derivatives of the barycenter. \see MeanPosition::barycenter()
+        /// \brief Compute derivatives of the barycenter.
+        /// \see MeanPosition::barycenter()
+        ///
+        /// ### Step-by-step derivation from the barycenter definition
+        /// Given the definition of the barycenter \f$ b(\mathbf{x}) = \frac{\sum_i w_\mathbf{x}(\mathbf{p_i}) \mathbf{p_i}}{\sum_i w_\mathbf{x}(\mathbf{p_i})} \f$,
+        /// where \f$\left[\mathbf{p_i} \in \text{neighborhood}(\mathbf{x})\right]\f$ are all the point samples in \f$\mathbf{x}\f$'s neighborhood.
+        ///
+        /// We denote \f$ t(\mathbf{x}) = \sum_i w_\mathbf{x}(\mathbf{p_i}) \mathbf{p_i} \f$ and \f$ s(\mathbf{x}) = \sum_i w_\mathbf{x}(\mathbf{p_i})\f$,
+        /// such that \f$ b(\mathbf{x}) = \frac{t(\mathbf{x})}{s(\mathbf{x})}\f$.
+        ///
+        /// By definition, \f$ b'(\mathbf{x}) = \frac{s(\mathbf{x})t'(\mathbf{x}) - t(\mathbf{x})s'(\mathbf{x})}{s(\mathbf{x})^2}\f$.
+        /// We have \f$ s'(\mathbf{x}) = \sum_i w'_\mathbf{x}(\mathbf{p_i}) \f$.
+        ///
+        /// We rewrite \f$ t(\mathbf{x}) = \sum u(\mathbf{x})v(\mathbf{x}) \f$, with \f$ u(\mathbf{x}) = w_\mathbf{x}(\mathbf{p_i}) \f$ and \f$ v(\mathbf{x}) = \mathbf{p_i} \f$.
+        ///
+        /// As the point cloud coordinates are constants, \f$v(\mathbf{x})\f$ is constant, its derivative is null, and so \f$  t'(\mathbf{x}) = \sum_i u'(\mathbf{x}) v(\mathbf{x}) = \sum_i w'_\mathbf{x}(\mathbf{p_i}) \mathbf{p_i} \f$.
+        ///
+        /// Which leads to \f$ b'(\mathbf{x}) = \frac{\sum_i w'_\mathbf{x}(\mathbf{p_i}) \mathbf{p_i} - b(\mathbf{x})\sum w'(\mathbf{x})}{\sum_i w_\mathbf{x}(\mathbf{p_i})} \f$
+        ///
+        /// \note This code is not directly tested, but rather indirectly by testing CovariancePlaneDer::dNormal()
         PONCA_MULTIARCH VectorArray barycenterDerivatives() const
         {
-            VectorArray barycenterDer;
-            for(int k=0; k<Base::NbDerivatives; ++k)
-                barycenterDer.col(k) = (m_dSumP.col(k) - Base::m_dSumW(k) * Base::m_sumP) / Base::m_sumW;
-            return barycenterDer;
+            return ( m_dSumP - Base::barycenter() * Base::m_dSumW ) / Base::m_sumW;
         }
 
     }; //class MeanPositionDer
