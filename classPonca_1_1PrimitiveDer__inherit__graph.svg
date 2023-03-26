@@ -12,15 +12,15 @@
 <g id="node1" class="node">
 <title>Node1</title>
 <g id="a_node1"><a xlink:title="Generic class performing the Fit derivation.">
-<polygon fill="#bfbfbf" stroke="black" points="53.5,-0.5 53.5,-145.5 189.5,-145.5 189.5,-0.5 53.5,-0.5"/>
+<polygon fill="#999999" stroke="#666666" points="53.5,-0.5 53.5,-145.5 189.5,-145.5 189.5,-0.5 53.5,-0.5"/>
 <text text-anchor="start" x="61.5" y="-133.5" font-family="Helvetica,sans-Serif" font-size="10.00">Ponca::PrimitiveDer</text>
 <text text-anchor="start" x="61.5" y="-122.5" font-family="Helvetica,sans-Serif" font-size="10.00">&lt; DataPoint, _WFunctor,</text>
 <text text-anchor="middle" x="121.5" y="-111.5" font-family="Helvetica,sans-Serif" font-size="10.00"> Type, T &gt;</text>
-<polyline fill="none" stroke="black" points="53.5,-104.5 189.5,-104.5 "/>
+<polyline fill="none" stroke="#666666" points="53.5,-104.5 189.5,-104.5 "/>
 <text text-anchor="start" x="61.5" y="-92.5" font-family="Helvetica,sans-Serif" font-size="10.00"># m_dSumW</text>
 <text text-anchor="start" x="61.5" y="-81.5" font-family="Helvetica,sans-Serif" font-size="10.00"># NbDerivatives</text>
 <text text-anchor="start" x="61.5" y="-70.5" font-family="Helvetica,sans-Serif" font-size="10.00"># DerStorageOrder</text>
-<polyline fill="none" stroke="black" points="53.5,-63.5 189.5,-63.5 "/>
+<polyline fill="none" stroke="#666666" points="53.5,-63.5 189.5,-63.5 "/>
 <text text-anchor="start" x="61.5" y="-51.5" font-family="Helvetica,sans-Serif" font-size="10.00">+ init()</text>
 <text text-anchor="start" x="61.5" y="-40.5" font-family="Helvetica,sans-Serif" font-size="10.00">+ addLocalNeighbor()</text>
 <text text-anchor="start" x="61.5" y="-29.5" font-family="Helvetica,sans-Serif" font-size="10.00">+ isScaleDer()</text>
@@ -33,7 +33,7 @@
 <g id="node2" class="node">
 <title>Node2</title>
 <g id="a_node2"><a xlink:title=" ">
-<polygon fill="none" stroke="#bfbfbf" points="0,-182.5 0,-250.5 141,-250.5 141,-182.5 0,-182.5"/>
+<polygon fill="white" stroke="#bfbfbf" points="0,-182.5 0,-250.5 141,-250.5 141,-182.5 0,-182.5"/>
 <text text-anchor="start" x="8" y="-238.5" font-family="Helvetica,sans-Serif" font-size="10.00">Concept::FittingExtension</text>
 <text text-anchor="middle" x="70.5" y="-227.5" font-family="Helvetica,sans-Serif" font-size="10.00">Concept</text>
 <polyline fill="none" stroke="#bfbfbf" points="0,-220.5 141,-220.5 "/>
@@ -46,14 +46,14 @@
 <!-- Node2&#45;&gt;Node1 -->
 <g id="edge1" class="edge">
 <title>Node2&#45;&gt;Node1</title>
-<path fill="none" stroke="midnightblue" d="M85.94,-172.65C89.02,-164.13 92.32,-154.96 95.63,-145.77"/>
-<polygon fill="none" stroke="midnightblue" points="82.56,-171.73 82.46,-182.32 89.14,-174.1 82.56,-171.73"/>
+<path fill="none" stroke="#63b8ff" d="M85.94,-172.65C89.02,-164.13 92.32,-154.96 95.63,-145.77"/>
+<polygon fill="none" stroke="#63b8ff" points="82.56,-171.73 82.46,-182.32 89.14,-174.1 82.56,-171.73"/>
 </g>
 <!-- Node3 -->
 <g id="node3" class="node">
 <title>Node3</title>
 <g id="a_node3"><a xlink:title=" ">
-<polygon fill="none" stroke="#bfbfbf" points="159,-188 159,-245 188,-245 188,-188 159,-188"/>
+<polygon fill="white" stroke="#bfbfbf" points="159,-188 159,-245 188,-245 188,-188 159,-188"/>
 <text text-anchor="middle" x="173.5" y="-233" font-family="Helvetica,sans-Serif" font-size="10.00">T</text>
 <polyline fill="none" stroke="#bfbfbf" points="159,-226 188,-226 "/>
 <text text-anchor="middle" x="173.5" y="-214" font-family="Helvetica,sans-Serif" font-size="10.00"> </text>
@@ -65,8 +65,8 @@
 <!-- Node3&#45;&gt;Node1 -->
 <g id="edge2" class="edge">
 <title>Node3&#45;&gt;Node1</title>
-<path fill="none" stroke="midnightblue" d="M159.81,-178.23C156.1,-168.15 151.96,-156.89 147.81,-145.6"/>
-<polygon fill="none" stroke="midnightblue" points="156.62,-179.7 163.35,-187.88 163.19,-177.29 156.62,-179.7"/>
+<path fill="none" stroke="#63b8ff" d="M159.81,-178.23C156.1,-168.15 151.96,-156.89 147.81,-145.6"/>
+<polygon fill="none" stroke="#63b8ff" points="156.62,-179.7 163.35,-187.88 163.19,-177.29 156.62,-179.7"/>
 </g>
 </g>
 </svg>

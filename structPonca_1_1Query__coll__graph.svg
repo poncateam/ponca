@@ -12,12 +12,12 @@
 <g id="node1" class="node">
 <title>Node1</title>
 <g id="a_node1"><a xlink:title=" ">
-<polygon fill="#bfbfbf" stroke="black" points="0,-0.5 0,-79.5 117,-79.5 117,-0.5 0,-0.5"/>
+<polygon fill="#999999" stroke="#666666" points="0,-0.5 0,-79.5 117,-79.5 117,-0.5 0,-0.5"/>
 <text text-anchor="start" x="8" y="-67.5" font-family="Helvetica,sans-Serif" font-size="10.00">Ponca::Query&lt; Input</text>
 <text text-anchor="middle" x="58.5" y="-56.5" font-family="Helvetica,sans-Serif" font-size="10.00">_, Output_ &gt;</text>
-<polyline fill="none" stroke="black" points="0,-49.5 117,-49.5 "/>
+<polyline fill="none" stroke="#666666" points="0,-49.5 117,-49.5 "/>
 <text text-anchor="middle" x="58.5" y="-37.5" font-family="Helvetica,sans-Serif" font-size="10.00"> </text>
-<polyline fill="none" stroke="black" points="0,-30.5 117,-30.5 "/>
+<polyline fill="none" stroke="#666666" points="0,-30.5 117,-30.5 "/>
 <text text-anchor="start" x="8" y="-18.5" font-family="Helvetica,sans-Serif" font-size="10.00">+ Query()</text>
 <text text-anchor="start" x="8" y="-7.5" font-family="Helvetica,sans-Serif" font-size="10.00">+ Query()</text>
 </a>
@@ -27,7 +27,7 @@
 <g id="node2" class="node">
 <title>Node2</title>
 <g id="a_node2"><a xlink:title=" ">
-<polygon fill="none" stroke="#bfbfbf" points="1,-116.5 1,-173.5 48,-173.5 48,-116.5 1,-116.5"/>
+<polygon fill="white" stroke="#bfbfbf" points="1,-116.5 1,-173.5 48,-173.5 48,-116.5 1,-116.5"/>
 <text text-anchor="middle" x="24.5" y="-161.5" font-family="Helvetica,sans-Serif" font-size="10.00">Input_</text>
 <polyline fill="none" stroke="#bfbfbf" points="1,-154.5 48,-154.5 "/>
 <text text-anchor="middle" x="24.5" y="-142.5" font-family="Helvetica,sans-Serif" font-size="10.00"> </text>
@@ -39,14 +39,14 @@
 <!-- Node2&#45;&gt;Node1 -->
 <g id="edge1" class="edge">
 <title>Node2&#45;&gt;Node1</title>
-<path fill="none" stroke="midnightblue" d="M36.8,-106.73C39.72,-97.88 42.85,-88.42 45.78,-79.52"/>
-<polygon fill="none" stroke="midnightblue" points="33.42,-105.8 33.61,-116.4 40.07,-108 33.42,-105.8"/>
+<path fill="none" stroke="#63b8ff" d="M36.8,-106.73C39.72,-97.88 42.85,-88.42 45.78,-79.52"/>
+<polygon fill="none" stroke="#63b8ff" points="33.42,-105.8 33.61,-116.4 40.07,-108 33.42,-105.8"/>
 </g>
 <!-- Node3 -->
 <g id="node3" class="node">
 <title>Node3</title>
 <g id="a_node3"><a xlink:title=" ">
-<polygon fill="none" stroke="#bfbfbf" points="66,-116.5 66,-173.5 121,-173.5 121,-116.5 66,-116.5"/>
+<polygon fill="white" stroke="#bfbfbf" points="66,-116.5 66,-173.5 121,-173.5 121,-116.5 66,-116.5"/>
 <text text-anchor="middle" x="93.5" y="-161.5" font-family="Helvetica,sans-Serif" font-size="10.00">Output_</text>
 <polyline fill="none" stroke="#bfbfbf" points="66,-154.5 121,-154.5 "/>
 <text text-anchor="middle" x="93.5" y="-142.5" font-family="Helvetica,sans-Serif" font-size="10.00"> </text>
@@ -58,8 +58,8 @@
 <!-- Node3&#45;&gt;Node1 -->
 <g id="edge2" class="edge">
 <title>Node3&#45;&gt;Node1</title>
-<path fill="none" stroke="midnightblue" d="M80.83,-106.73C77.83,-97.88 74.61,-88.42 71.59,-79.52"/>
-<polygon fill="none" stroke="midnightblue" points="77.59,-108.06 84.12,-116.4 84.22,-105.8 77.59,-108.06"/>
+<path fill="none" stroke="#63b8ff" d="M80.83,-106.73C77.83,-97.88 74.61,-88.42 71.59,-79.52"/>
+<polygon fill="none" stroke="#63b8ff" points="77.59,-108.06 84.12,-116.4 84.22,-105.8 77.59,-108.06"/>
 </g>
 </g>
 </svg>

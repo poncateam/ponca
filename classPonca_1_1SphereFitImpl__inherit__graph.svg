@@ -12,12 +12,12 @@
 <g id="node1" class="node">
 <title>Node1</title>
 <g id="a_node1"><a xlink:title="Algebraic Sphere fitting procedure on point sets without normals.">
-<polygon fill="#bfbfbf" stroke="black" points="45,-0.5 45,-112.5 201,-112.5 201,-0.5 45,-0.5"/>
+<polygon fill="#999999" stroke="#666666" points="45,-0.5 45,-112.5 201,-112.5 201,-0.5 45,-0.5"/>
 <text text-anchor="start" x="53" y="-100.5" font-family="Helvetica,sans-Serif" font-size="10.00">Ponca::SphereFitImpl</text>
 <text text-anchor="middle" x="123" y="-89.5" font-family="Helvetica,sans-Serif" font-size="10.00">&lt; DataPoint, _WFunctor, T &gt;</text>
-<polyline fill="none" stroke="black" points="45,-82.5 201,-82.5 "/>
+<polyline fill="none" stroke="#666666" points="45,-82.5 201,-82.5 "/>
 <text text-anchor="start" x="53" y="-70.5" font-family="Helvetica,sans-Serif" font-size="10.00"># m_matA</text>
-<polyline fill="none" stroke="black" points="45,-63.5 201,-63.5 "/>
+<polyline fill="none" stroke="#666666" points="45,-63.5 201,-63.5 "/>
 <text text-anchor="start" x="53" y="-51.5" font-family="Helvetica,sans-Serif" font-size="10.00">+ sphereFit()</text>
 <text text-anchor="start" x="53" y="-40.5" font-family="Helvetica,sans-Serif" font-size="10.00">+ sphereFit()</text>
 <text text-anchor="start" x="53" y="-29.5" font-family="Helvetica,sans-Serif" font-size="10.00">+ init()</text>
@@ -30,7 +30,7 @@
 <g id="node2" class="node">
 <title>Node2</title>
 <g id="a_node2"><a xlink:title=" ">
-<polygon fill="none" stroke="#bfbfbf" points="0,-149.5 0,-217.5 142,-217.5 142,-149.5 0,-149.5"/>
+<polygon fill="white" stroke="#bfbfbf" points="0,-149.5 0,-217.5 142,-217.5 142,-149.5 0,-149.5"/>
 <text text-anchor="start" x="8" y="-205.5" font-family="Helvetica,sans-Serif" font-size="10.00">Concept::FittingProcedure</text>
 <text text-anchor="middle" x="71" y="-194.5" font-family="Helvetica,sans-Serif" font-size="10.00">Concept</text>
 <polyline fill="none" stroke="#bfbfbf" points="0,-187.5 142,-187.5 "/>
@@ -43,14 +43,14 @@
 <!-- Node2&#45;&gt;Node1 -->
 <g id="edge1" class="edge">
 <title>Node2&#45;&gt;Node1</title>
-<path fill="none" stroke="midnightblue" d="M88.67,-140.03C92.34,-131.21 96.26,-121.79 100.08,-112.59"/>
-<polygon fill="none" stroke="midnightblue" points="85.41,-138.75 84.8,-149.33 91.87,-141.44 85.41,-138.75"/>
+<path fill="none" stroke="#63b8ff" d="M88.67,-140.03C92.34,-131.21 96.26,-121.79 100.08,-112.59"/>
+<polygon fill="none" stroke="#63b8ff" points="85.41,-138.75 84.8,-149.33 91.87,-141.44 85.41,-138.75"/>
 </g>
 <!-- Node3 -->
 <g id="node3" class="node">
 <title>Node3</title>
 <g id="a_node3"><a xlink:title=" ">
-<polygon fill="none" stroke="#bfbfbf" points="160.5,-155 160.5,-212 189.5,-212 189.5,-155 160.5,-155"/>
+<polygon fill="white" stroke="#bfbfbf" points="160.5,-155 160.5,-212 189.5,-212 189.5,-155 160.5,-155"/>
 <text text-anchor="middle" x="175" y="-200" font-family="Helvetica,sans-Serif" font-size="10.00">T</text>
 <polyline fill="none" stroke="#bfbfbf" points="160.5,-193 189.5,-193 "/>
 <text text-anchor="middle" x="175" y="-181" font-family="Helvetica,sans-Serif" font-size="10.00"> </text>
@@ -62,8 +62,8 @@
 <!-- Node3&#45;&gt;Node1 -->
 <g id="edge2" class="edge">
 <title>Node3&#45;&gt;Node1</title>
-<path fill="none" stroke="midnightblue" d="M159.52,-145.29C155.25,-135.01 150.52,-123.64 145.92,-112.59"/>
-<polygon fill="none" stroke="midnightblue" points="156.39,-146.87 163.46,-154.76 162.85,-144.18 156.39,-146.87"/>
+<path fill="none" stroke="#63b8ff" d="M159.52,-145.29C155.25,-135.01 150.52,-123.64 145.92,-112.59"/>
+<polygon fill="none" stroke="#63b8ff" points="156.39,-146.87 163.46,-154.76 162.85,-144.18 156.39,-146.87"/>
 </g>
 </g>
 </svg>

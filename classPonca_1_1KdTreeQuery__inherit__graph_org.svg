@@ -12,13 +12,13 @@
 <g id="node1" class="node">
 <title>Node1</title>
 <g id="a_node1"><a xlink:title=" ">
-<polygon fill="#bfbfbf" stroke="black" points="488,-149.5 488,-239.5 602,-239.5 602,-149.5 488,-149.5"/>
+<polygon fill="#999999" stroke="#666666" points="488,-149.5 488,-239.5 602,-239.5 602,-149.5 488,-149.5"/>
 <text text-anchor="start" x="496" y="-227.5" font-family="Helvetica,sans-Serif" font-size="10.00">Ponca::KdTreeQuery</text>
 <text text-anchor="middle" x="545" y="-216.5" font-family="Helvetica,sans-Serif" font-size="10.00">&lt; DataPoint &gt;</text>
-<polyline fill="none" stroke="black" points="488,-209.5 602,-209.5 "/>
+<polyline fill="none" stroke="#666666" points="488,-209.5 602,-209.5 "/>
 <text text-anchor="start" x="496" y="-197.5" font-family="Helvetica,sans-Serif" font-size="10.00"># m_kdtree</text>
 <text text-anchor="start" x="496" y="-186.5" font-family="Helvetica,sans-Serif" font-size="10.00"># m_stack</text>
-<polyline fill="none" stroke="black" points="488,-179.5 602,-179.5 "/>
+<polyline fill="none" stroke="#666666" points="488,-179.5 602,-179.5 "/>
 <text text-anchor="start" x="496" y="-167.5" font-family="Helvetica,sans-Serif" font-size="10.00">+ KdTreeQuery()</text>
 <text text-anchor="start" x="496" y="-156.5" font-family="Helvetica,sans-Serif" font-size="10.00"># reset()</text>
 </a>
@@ -28,7 +28,7 @@
 <g id="node2" class="node">
 <title>Node2</title>
 <g id="a_node2"><a xlink:href="classPonca_1_1KdTreeKNearestIndexQuery.html" target="_top" xlink:title=" ">
-<polygon fill="none" stroke="#bfbfbf" points="0,-6 0,-107 170,-107 170,-6 0,-6"/>
+<polygon fill="white" stroke="#bfbfbf" points="0,-6 0,-107 170,-107 170,-6 0,-6"/>
 <text text-anchor="start" x="8" y="-95" font-family="Helvetica,sans-Serif" font-size="10.00">Ponca::KdTreeKNearestIndex</text>
 <text text-anchor="middle" x="85" y="-84" font-family="Helvetica,sans-Serif" font-size="10.00">Query&lt; DataPoint &gt;</text>
 <polyline fill="none" stroke="#bfbfbf" points="0,-77 170,-77 "/>
@@ -44,14 +44,14 @@
 <!-- Node1&#45;&gt;Node2 -->
 <g id="edge1" class="edge">
 <title>Node1&#45;&gt;Node2</title>
-<path fill="none" stroke="midnightblue" d="M477.64,-185.21C402.76,-174.51 279.18,-152.42 179,-113 174.41,-111.2 169.79,-109.19 165.18,-107.03"/>
-<polygon fill="none" stroke="midnightblue" points="477.49,-188.72 487.88,-186.64 478.46,-181.79 477.49,-188.72"/>
+<path fill="none" stroke="#63b8ff" d="M477.64,-185.21C402.76,-174.51 279.18,-152.42 179,-113 174.41,-111.2 169.79,-109.19 165.18,-107.03"/>
+<polygon fill="none" stroke="#63b8ff" points="477.49,-188.72 487.88,-186.64 478.46,-181.79 477.49,-188.72"/>
 </g>
 <!-- Node3 -->
 <g id="node3" class="node">
 <title>Node3</title>
 <g id="a_node3"><a xlink:href="classPonca_1_1KdTreeKNearestPointQuery.html" target="_top" xlink:title=" ">
-<polygon fill="none" stroke="#bfbfbf" points="188.5,-6 188.5,-107 355.5,-107 355.5,-6 188.5,-6"/>
+<polygon fill="white" stroke="#bfbfbf" points="188.5,-6 188.5,-107 355.5,-107 355.5,-6 188.5,-6"/>
 <text text-anchor="start" x="196.5" y="-95" font-family="Helvetica,sans-Serif" font-size="10.00">Ponca::KdTreeKNearestPoint</text>
 <text text-anchor="middle" x="272" y="-84" font-family="Helvetica,sans-Serif" font-size="10.00">Query&lt; DataPoint &gt;</text>
 <polyline fill="none" stroke="#bfbfbf" points="188.5,-77 355.5,-77 "/>
@@ -67,14 +67,14 @@
 <!-- Node1&#45;&gt;Node3 -->
 <g id="edge2" class="edge">
 <title>Node1&#45;&gt;Node3</title>
-<path fill="none" stroke="midnightblue" d="M478.35,-166.21C443.75,-151.46 401.07,-132.33 364,-113 360.36,-111.1 356.67,-109.12 352.96,-107.08"/>
-<polygon fill="none" stroke="midnightblue" points="477.32,-169.57 487.89,-170.25 480.05,-163.13 477.32,-169.57"/>
+<path fill="none" stroke="#63b8ff" d="M478.35,-166.21C443.75,-151.46 401.07,-132.33 364,-113 360.36,-111.1 356.67,-109.12 352.96,-107.08"/>
+<polygon fill="none" stroke="#63b8ff" points="477.32,-169.57 487.89,-170.25 480.05,-163.13 477.32,-169.57"/>
 </g>
 <!-- Node4 -->
 <g id="node4" class="node">
 <title>Node4</title>
 <g id="a_node4"><a xlink:href="classPonca_1_1KdTreeNearestIndexQuery.html" target="_top" xlink:title=" ">
-<polygon fill="none" stroke="#bfbfbf" points="373.5,-6 373.5,-107 536.5,-107 536.5,-6 373.5,-6"/>
+<polygon fill="white" stroke="#bfbfbf" points="373.5,-6 373.5,-107 536.5,-107 536.5,-6 373.5,-6"/>
 <text text-anchor="start" x="381.5" y="-95" font-family="Helvetica,sans-Serif" font-size="10.00">Ponca::KdTreeNearestIndex</text>
 <text text-anchor="middle" x="455" y="-84" font-family="Helvetica,sans-Serif" font-size="10.00">Query&lt; DataPoint &gt;</text>
 <polyline fill="none" stroke="#bfbfbf" points="373.5,-77 536.5,-77 "/>
@@ -90,14 +90,14 @@
 <!-- Node1&#45;&gt;Node4 -->
 <g id="edge3" class="edge">
 <title>Node1&#45;&gt;Node4</title>
-<path fill="none" stroke="midnightblue" d="M510.23,-140.96C502.86,-129.83 495.11,-118.11 487.82,-107.09"/>
-<polygon fill="none" stroke="midnightblue" points="507.34,-142.94 515.78,-149.34 513.18,-139.07 507.34,-142.94"/>
+<path fill="none" stroke="#63b8ff" d="M510.23,-140.96C502.86,-129.83 495.11,-118.11 487.82,-107.09"/>
+<polygon fill="none" stroke="#63b8ff" points="507.34,-142.94 515.78,-149.34 513.18,-139.07 507.34,-142.94"/>
 </g>
 <!-- Node5 -->
 <g id="node5" class="node">
 <title>Node5</title>
 <g id="a_node5"><a xlink:href="classPonca_1_1KdTreeNearestPointQuery.html" target="_top" xlink:title=" ">
-<polygon fill="none" stroke="#bfbfbf" points="554.5,-6 554.5,-107 715.5,-107 715.5,-6 554.5,-6"/>
+<polygon fill="white" stroke="#bfbfbf" points="554.5,-6 554.5,-107 715.5,-107 715.5,-6 554.5,-6"/>
 <text text-anchor="start" x="562.5" y="-95" font-family="Helvetica,sans-Serif" font-size="10.00">Ponca::KdTreeNearestPoint</text>
 <text text-anchor="middle" x="635" y="-84" font-family="Helvetica,sans-Serif" font-size="10.00">Query&lt; DataPoint &gt;</text>
 <polyline fill="none" stroke="#bfbfbf" points="554.5,-77 715.5,-77 "/>
@@ -113,14 +113,14 @@
 <!-- Node1&#45;&gt;Node5 -->
 <g id="edge4" class="edge">
 <title>Node1&#45;&gt;Node5</title>
-<path fill="none" stroke="midnightblue" d="M579.77,-140.96C587.14,-129.83 594.89,-118.11 602.18,-107.09"/>
-<polygon fill="none" stroke="midnightblue" points="576.82,-139.07 574.22,-149.34 582.66,-142.94 576.82,-139.07"/>
+<path fill="none" stroke="#63b8ff" d="M579.77,-140.96C587.14,-129.83 594.89,-118.11 602.18,-107.09"/>
+<polygon fill="none" stroke="#63b8ff" points="576.82,-139.07 574.22,-149.34 582.66,-142.94 576.82,-139.07"/>
 </g>
 <!-- Node6 -->
 <g id="node6" class="node">
 <title>Node6</title>
 <g id="a_node6"><a xlink:href="classPonca_1_1KdTreeRangeIndexQuery.html" target="_top" xlink:title=" ">
-<polygon fill="none" stroke="#bfbfbf" points="734,-0.5 734,-112.5 906,-112.5 906,-0.5 734,-0.5"/>
+<polygon fill="white" stroke="#bfbfbf" points="734,-0.5 734,-112.5 906,-112.5 906,-0.5 734,-0.5"/>
 <text text-anchor="start" x="742" y="-100.5" font-family="Helvetica,sans-Serif" font-size="10.00">Ponca::KdTreeRangeIndexQuery</text>
 <text text-anchor="middle" x="820" y="-89.5" font-family="Helvetica,sans-Serif" font-size="10.00">&lt; DataPoint &gt;</text>
 <polyline fill="none" stroke="#bfbfbf" points="734,-82.5 906,-82.5 "/>
@@ -137,14 +137,14 @@
 <!-- Node1&#45;&gt;Node6 -->
 <g id="edge5" class="edge">
 <title>Node1&#45;&gt;Node6</title>
-<path fill="none" stroke="midnightblue" d="M611.54,-165.79C645.85,-150.99 688.12,-131.95 725,-113 727.89,-111.52 730.81,-109.98 733.75,-108.42"/>
-<polygon fill="none" stroke="midnightblue" points="609.9,-162.68 602.09,-169.84 612.66,-169.12 609.9,-162.68"/>
+<path fill="none" stroke="#63b8ff" d="M611.54,-165.79C645.85,-150.99 688.12,-131.95 725,-113 727.89,-111.52 730.81,-109.98 733.75,-108.42"/>
+<polygon fill="none" stroke="#63b8ff" points="609.9,-162.68 602.09,-169.84 612.66,-169.12 609.9,-162.68"/>
 </g>
 <!-- Node7 -->
 <g id="node7" class="node">
 <title>Node7</title>
 <g id="a_node7"><a xlink:href="classPonca_1_1KdTreeRangePointQuery.html" target="_top" xlink:title=" ">
-<polygon fill="none" stroke="#bfbfbf" points="924,-6 924,-107 1094,-107 1094,-6 924,-6"/>
+<polygon fill="white" stroke="#bfbfbf" points="924,-6 924,-107 1094,-107 1094,-6 924,-6"/>
 <text text-anchor="start" x="932" y="-95" font-family="Helvetica,sans-Serif" font-size="10.00">Ponca::KdTreeRangePointQuery</text>
 <text text-anchor="middle" x="1009" y="-84" font-family="Helvetica,sans-Serif" font-size="10.00">&lt; DataPoint &gt;</text>
 <polyline fill="none" stroke="#bfbfbf" points="924,-77 1094,-77 "/>
@@ -160,8 +160,8 @@
 <!-- Node1&#45;&gt;Node7 -->
 <g id="edge6" class="edge">
 <title>Node1&#45;&gt;Node7</title>
-<path fill="none" stroke="midnightblue" d="M612.44,-185.41C688.08,-174.85 813.44,-152.83 915,-113 919.59,-111.2 924.21,-109.19 928.82,-107.04"/>
-<polygon fill="none" stroke="midnightblue" points="611.54,-182 602.11,-186.83 612.49,-188.94 611.54,-182"/>
+<path fill="none" stroke="#63b8ff" d="M612.44,-185.41C688.08,-174.85 813.44,-152.83 915,-113 919.59,-111.2 924.21,-109.19 928.82,-107.04"/>
+<polygon fill="none" stroke="#63b8ff" points="611.54,-182 602.11,-186.83 612.49,-188.94 611.54,-182"/>
 </g>
 </g>
 </svg>

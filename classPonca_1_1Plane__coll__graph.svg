@@ -12,12 +12,12 @@
 <g id="node1" class="node">
 <title>Node1</title>
 <g id="a_node1"><a xlink:title="Implicit hyperplane defined by an homogeneous vector .">
-<polygon fill="#bfbfbf" stroke="black" points="0,-0.5 0,-222.5 141,-222.5 141,-0.5 0,-0.5"/>
+<polygon fill="#999999" stroke="#666666" points="0,-0.5 0,-222.5 141,-222.5 141,-0.5 0,-0.5"/>
 <text text-anchor="start" x="8" y="-210.5" font-family="Helvetica,sans-Serif" font-size="10.00">Ponca::Plane&lt; DataPoint,</text>
 <text text-anchor="middle" x="70.5" y="-199.5" font-family="Helvetica,sans-Serif" font-size="10.00"> _WFunctor, T &gt;</text>
-<polyline fill="none" stroke="black" points="0,-192.5 141,-192.5 "/>
+<polyline fill="none" stroke="#666666" points="0,-192.5 141,-192.5 "/>
 <text text-anchor="middle" x="70.5" y="-180.5" font-family="Helvetica,sans-Serif" font-size="10.00"> </text>
-<polyline fill="none" stroke="black" points="0,-173.5 141,-173.5 "/>
+<polyline fill="none" stroke="#666666" points="0,-173.5 141,-173.5 "/>
 <text text-anchor="start" x="8" y="-161.5" font-family="Helvetica,sans-Serif" font-size="10.00">+ Plane()</text>
 <text text-anchor="start" x="8" y="-150.5" font-family="Helvetica,sans-Serif" font-size="10.00">+ compactPlane()</text>
 <text text-anchor="start" x="8" y="-139.5" font-family="Helvetica,sans-Serif" font-size="10.00">+ compactPlane()</text>
@@ -40,7 +40,7 @@
 <g id="node2" class="node">
 <title>Node2</title>
 <g id="a_node2"><a xlink:title=" ">
-<polygon fill="none" stroke="#bfbfbf" points="11,-270.5 11,-327.5 40,-327.5 40,-270.5 11,-270.5"/>
+<polygon fill="white" stroke="#bfbfbf" points="11,-270.5 11,-327.5 40,-327.5 40,-270.5 11,-270.5"/>
 <text text-anchor="middle" x="25.5" y="-315.5" font-family="Helvetica,sans-Serif" font-size="10.00">T</text>
 <polyline fill="none" stroke="#bfbfbf" points="11,-308.5 40,-308.5 "/>
 <text text-anchor="middle" x="25.5" y="-296.5" font-family="Helvetica,sans-Serif" font-size="10.00"> </text>
@@ -52,14 +52,14 @@
 <!-- Node2&#45;&gt;Node1 -->
 <g id="edge1" class="edge">
 <title>Node2&#45;&gt;Node1</title>
-<path fill="none" stroke="midnightblue" d="M34.63,-260.37C37.37,-249.07 40.53,-236.06 43.81,-222.54"/>
-<polygon fill="none" stroke="midnightblue" points="31.19,-259.69 32.24,-270.23 38,-261.34 31.19,-259.69"/>
+<path fill="none" stroke="#63b8ff" d="M34.63,-260.37C37.37,-249.07 40.53,-236.06 43.81,-222.54"/>
+<polygon fill="none" stroke="#63b8ff" points="31.19,-259.69 32.24,-270.23 38,-261.34 31.19,-259.69"/>
 </g>
 <!-- Node3 -->
 <g id="node3" class="node">
 <title>Node3</title>
 <g id="a_node3"><a xlink:title=" ">
-<polygon fill="none" stroke="#bfbfbf" points="58.5,-259.5 58.5,-338.5 172.5,-338.5 172.5,-259.5 58.5,-259.5"/>
+<polygon fill="white" stroke="#bfbfbf" points="58.5,-259.5 58.5,-338.5 172.5,-338.5 172.5,-259.5 58.5,-259.5"/>
 <text text-anchor="start" x="66.5" y="-326.5" font-family="Helvetica,sans-Serif" font-size="10.00">Eigen::Hyperplane&lt;</text>
 <text text-anchor="start" x="66.5" y="-315.5" font-family="Helvetica,sans-Serif" font-size="10.00"> DataPoint::Scalar,</text>
 <text text-anchor="middle" x="115.5" y="-304.5" font-family="Helvetica,sans-Serif" font-size="10.00"> DataPoint::Dim &gt;</text>
@@ -73,8 +73,8 @@
 <!-- Node3&#45;&gt;Node1 -->
 <g id="edge2" class="edge">
 <title>Node3&#45;&gt;Node1</title>
-<path fill="none" stroke="midnightblue" d="M103.68,-249.27C101.65,-240.92 99.48,-231.96 97.25,-222.75"/>
-<polygon fill="none" stroke="midnightblue" points="100.31,-250.22 106.07,-259.11 107.11,-248.57 100.31,-250.22"/>
+<path fill="none" stroke="#63b8ff" d="M103.68,-249.27C101.65,-240.92 99.48,-231.96 97.25,-222.75"/>
+<polygon fill="none" stroke="#63b8ff" points="100.31,-250.22 106.07,-259.11 107.11,-248.57 100.31,-250.22"/>
 </g>
 </g>
 </svg>

@@ -12,12 +12,12 @@
 <g id="node1" class="node">
 <title>Node1</title>
 <g id="a_node1"><a xlink:title="Base class for typed queries input type.">
-<polygon fill="#bfbfbf" stroke="black" points="8,-0.5 8,-90.5 122,-90.5 122,-0.5 8,-0.5"/>
+<polygon fill="#999999" stroke="#666666" points="8,-0.5 8,-90.5 122,-90.5 122,-0.5 8,-0.5"/>
 <text text-anchor="start" x="16" y="-78.5" font-family="Helvetica,sans-Serif" font-size="10.00">Ponca::QueryInput&lt;</text>
 <text text-anchor="middle" x="65" y="-67.5" font-family="Helvetica,sans-Serif" font-size="10.00"> InputType_ &gt;</text>
-<polyline fill="none" stroke="black" points="8,-60.5 122,-60.5 "/>
+<polyline fill="none" stroke="#666666" points="8,-60.5 122,-60.5 "/>
 <text text-anchor="middle" x="65" y="-48.5" font-family="Helvetica,sans-Serif" font-size="10.00"> </text>
-<polyline fill="none" stroke="black" points="8,-41.5 122,-41.5 "/>
+<polyline fill="none" stroke="#666666" points="8,-41.5 122,-41.5 "/>
 <text text-anchor="start" x="16" y="-29.5" font-family="Helvetica,sans-Serif" font-size="10.00">+ QueryInput()</text>
 <text text-anchor="start" x="16" y="-18.5" font-family="Helvetica,sans-Serif" font-size="10.00">+ input()</text>
 <text text-anchor="start" x="16" y="-7.5" font-family="Helvetica,sans-Serif" font-size="10.00"># editInput()</text>
@@ -28,11 +28,11 @@
 <g id="node2" class="node">
 <title>Node2</title>
 <g id="a_node2"><a xlink:href="group__spatialpartitioning.html#structPonca_1_1QueryInputBase" target="_top" xlink:title="Base class for queries input type.">
-<polygon fill="none" stroke="black" points="0,-127.5 0,-184.5 130,-184.5 130,-127.5 0,-127.5"/>
+<polygon fill="white" stroke="#666666" points="0,-127.5 0,-184.5 130,-184.5 130,-127.5 0,-127.5"/>
 <text text-anchor="middle" x="65" y="-172.5" font-family="Helvetica,sans-Serif" font-size="10.00">Ponca::QueryInputBase</text>
-<polyline fill="none" stroke="black" points="0,-165.5 130,-165.5 "/>
+<polyline fill="none" stroke="#666666" points="0,-165.5 130,-165.5 "/>
 <text text-anchor="middle" x="65" y="-153.5" font-family="Helvetica,sans-Serif" font-size="10.00"> </text>
-<polyline fill="none" stroke="black" points="0,-146.5 130,-146.5 "/>
+<polyline fill="none" stroke="#666666" points="0,-146.5 130,-146.5 "/>
 <text text-anchor="middle" x="65" y="-134.5" font-family="Helvetica,sans-Serif" font-size="10.00"> </text>
 </a>
 </g>
@@ -40,8 +40,8 @@
 <!-- Node2&#45;&gt;Node1 -->
 <g id="edge1" class="edge">
 <title>Node2&#45;&gt;Node1</title>
-<path fill="none" stroke="midnightblue" d="M65,-117.21C65,-108.61 65,-99.39 65,-90.55"/>
-<polygon fill="none" stroke="midnightblue" points="61.5,-117.34 65,-127.34 68.5,-117.34 61.5,-117.34"/>
+<path fill="none" stroke="#63b8ff" d="M65,-117.21C65,-108.61 65,-99.39 65,-90.55"/>
+<polygon fill="none" stroke="#63b8ff" points="61.5,-117.34 65,-127.34 68.5,-117.34 61.5,-117.34"/>
 </g>
 </g>
 </svg>

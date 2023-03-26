@@ -12,12 +12,12 @@
 <g id="node1" class="node">
 <title>Node1</title>
 <g id="a_node1"><a xlink:title="Base class for knearest queries.">
-<polygon fill="#bfbfbf" stroke="black" points="41.5,-0.5 41.5,-90.5 208.5,-90.5 208.5,-0.5 41.5,-0.5"/>
+<polygon fill="#999999" stroke="#666666" points="41.5,-0.5 41.5,-90.5 208.5,-90.5 208.5,-0.5 41.5,-0.5"/>
 <text text-anchor="start" x="49.5" y="-78.5" font-family="Helvetica,sans-Serif" font-size="10.00">Ponca::QueryOutputIsKNearest</text>
 <text text-anchor="middle" x="125" y="-67.5" font-family="Helvetica,sans-Serif" font-size="10.00">&lt; Scalar &gt;</text>
-<polyline fill="none" stroke="black" points="41.5,-60.5 208.5,-60.5 "/>
+<polyline fill="none" stroke="#666666" points="41.5,-60.5 208.5,-60.5 "/>
 <text text-anchor="middle" x="125" y="-48.5" font-family="Helvetica,sans-Serif" font-size="10.00"> </text>
-<polyline fill="none" stroke="black" points="41.5,-41.5 208.5,-41.5 "/>
+<polyline fill="none" stroke="#666666" points="41.5,-41.5 208.5,-41.5 "/>
 <text text-anchor="start" x="49.5" y="-29.5" font-family="Helvetica,sans-Serif" font-size="10.00">+ QueryOutputIsKNearest()</text>
 <text text-anchor="start" x="49.5" y="-18.5" font-family="Helvetica,sans-Serif" font-size="10.00">+ queue()</text>
 <text text-anchor="start" x="49.5" y="-7.5" font-family="Helvetica,sans-Serif" font-size="10.00"># reset()</text>
@@ -28,11 +28,11 @@
 <g id="node2" class="node">
 <title>Node2</title>
 <g id="a_node2"><a xlink:href="group__spatialpartitioning.html#structPonca_1_1QueryOutputBase" target="_top" xlink:title="Base class for queries output type.">
-<polygon fill="none" stroke="black" points="0,-210 0,-267 138,-267 138,-210 0,-210"/>
+<polygon fill="white" stroke="#666666" points="0,-210 0,-267 138,-267 138,-210 0,-210"/>
 <text text-anchor="middle" x="69" y="-255" font-family="Helvetica,sans-Serif" font-size="10.00">Ponca::QueryOutputBase</text>
-<polyline fill="none" stroke="black" points="0,-248 138,-248 "/>
+<polyline fill="none" stroke="#666666" points="0,-248 138,-248 "/>
 <text text-anchor="middle" x="69" y="-236" font-family="Helvetica,sans-Serif" font-size="10.00"> </text>
-<polyline fill="none" stroke="black" points="0,-229 138,-229 "/>
+<polyline fill="none" stroke="#666666" points="0,-229 138,-229 "/>
 <text text-anchor="middle" x="69" y="-217" font-family="Helvetica,sans-Serif" font-size="10.00"> </text>
 </a>
 </g>
@@ -40,21 +40,21 @@
 <!-- Node2&#45;&gt;Node1 -->
 <g id="edge1" class="edge">
 <title>Node2&#45;&gt;Node1</title>
-<path fill="none" stroke="midnightblue" d="M79.98,-200.03C89.19,-168.62 102.36,-123.72 112.08,-90.58"/>
-<polygon fill="none" stroke="midnightblue" points="76.6,-199.15 77.14,-209.73 83.32,-201.12 76.6,-199.15"/>
+<path fill="none" stroke="#63b8ff" d="M79.98,-200.03C89.19,-168.62 102.36,-123.72 112.08,-90.58"/>
+<polygon fill="none" stroke="#63b8ff" points="76.6,-199.15 77.14,-209.73 83.32,-201.12 76.6,-199.15"/>
 </g>
 <!-- Node3 -->
 <g id="node3" class="node">
 <title>Node3</title>
 <g id="a_node3"><a xlink:href="classPonca_1_1limited__priority__queue.html" target="_top" xlink:title=" ">
-<polygon fill="none" stroke="black" points="156,-138.5 156,-338.5 364,-338.5 364,-138.5 156,-138.5"/>
+<polygon fill="white" stroke="#666666" points="156,-138.5 156,-338.5 364,-338.5 364,-138.5 156,-138.5"/>
 <text text-anchor="start" x="164" y="-326.5" font-family="Helvetica,sans-Serif" font-size="10.00">Ponca::limited_priority</text>
 <text text-anchor="start" x="164" y="-315.5" font-family="Helvetica,sans-Serif" font-size="10.00">_queue&lt; Ponca::IndexSquaredDistance</text>
 <text text-anchor="middle" x="260" y="-304.5" font-family="Helvetica,sans-Serif" font-size="10.00">&lt; Scalar &gt; &gt;</text>
-<polyline fill="none" stroke="black" points="156,-297.5 364,-297.5 "/>
+<polyline fill="none" stroke="#666666" points="156,-297.5 364,-297.5 "/>
 <text text-anchor="start" x="164" y="-285.5" font-family="Helvetica,sans-Serif" font-size="10.00"># m_comp</text>
 <text text-anchor="start" x="164" y="-274.5" font-family="Helvetica,sans-Serif" font-size="10.00"># m_size</text>
-<polyline fill="none" stroke="black" points="156,-267.5 364,-267.5 "/>
+<polyline fill="none" stroke="#666666" points="156,-267.5 364,-267.5 "/>
 <text text-anchor="start" x="164" y="-255.5" font-family="Helvetica,sans-Serif" font-size="10.00">+ limited_priority_queue()</text>
 <text text-anchor="start" x="164" y="-244.5" font-family="Helvetica,sans-Serif" font-size="10.00">+ limited_priority_queue()</text>
 <text text-anchor="start" x="164" y="-233.5" font-family="Helvetica,sans-Serif" font-size="10.00">+ limited_priority_queue()</text>
@@ -80,13 +80,13 @@
 <g id="node4" class="node">
 <title>Node4</title>
 <g id="a_node4"><a xlink:title=" ">
-<polygon fill="none" stroke="black" points="87,-458 87,-537 219,-537 219,-458 87,-458"/>
+<polygon fill="white" stroke="#666666" points="87,-458 87,-537 219,-537 219,-458 87,-458"/>
 <text text-anchor="start" x="95" y="-525" font-family="Helvetica,sans-Serif" font-size="10.00">std::vector&lt; Ponca</text>
 <text text-anchor="start" x="95" y="-514" font-family="Helvetica,sans-Serif" font-size="10.00">::IndexSquaredDistance</text>
 <text text-anchor="middle" x="153" y="-503" font-family="Helvetica,sans-Serif" font-size="10.00">&lt; Scalar &gt; &gt;</text>
-<polyline fill="none" stroke="black" points="87,-496 219,-496 "/>
+<polyline fill="none" stroke="#666666" points="87,-496 219,-496 "/>
 <text text-anchor="start" x="95" y="-484" font-family="Helvetica,sans-Serif" font-size="10.00">+ elements</text>
-<polyline fill="none" stroke="black" points="87,-477 219,-477 "/>
+<polyline fill="none" stroke="#666666" points="87,-477 219,-477 "/>
 <text text-anchor="middle" x="153" y="-465" font-family="Helvetica,sans-Serif" font-size="10.00"> </text>
 </a>
 </g>
@@ -102,11 +102,11 @@
 <g id="node5" class="node">
 <title>Node5</title>
 <g id="a_node5"><a xlink:title=" ">
-<polygon fill="none" stroke="black" points="104.5,-656.5 104.5,-713.5 201.5,-713.5 201.5,-656.5 104.5,-656.5"/>
+<polygon fill="white" stroke="#666666" points="104.5,-656.5 104.5,-713.5 201.5,-713.5 201.5,-656.5 104.5,-656.5"/>
 <text text-anchor="middle" x="153" y="-701.5" font-family="Helvetica,sans-Serif" font-size="10.00">std::vector&lt; T &gt;</text>
-<polyline fill="none" stroke="black" points="104.5,-694.5 201.5,-694.5 "/>
+<polyline fill="none" stroke="#666666" points="104.5,-694.5 201.5,-694.5 "/>
 <text text-anchor="middle" x="153" y="-682.5" font-family="Helvetica,sans-Serif" font-size="10.00"> </text>
-<polyline fill="none" stroke="black" points="104.5,-675.5 201.5,-675.5 "/>
+<polyline fill="none" stroke="#666666" points="104.5,-675.5 201.5,-675.5 "/>
 <text text-anchor="middle" x="153" y="-663.5" font-family="Helvetica,sans-Serif" font-size="10.00"> </text>
 </a>
 </g>
@@ -123,7 +123,7 @@
 <g id="node6" class="node">
 <title>Node6</title>
 <g id="a_node6"><a xlink:title=" ">
-<polygon fill="none" stroke="#bfbfbf" points="138.5,-761.5 138.5,-818.5 167.5,-818.5 167.5,-761.5 138.5,-761.5"/>
+<polygon fill="white" stroke="#bfbfbf" points="138.5,-761.5 138.5,-818.5 167.5,-818.5 167.5,-761.5 138.5,-761.5"/>
 <text text-anchor="middle" x="153" y="-806.5" font-family="Helvetica,sans-Serif" font-size="10.00">T</text>
 <polyline fill="none" stroke="#bfbfbf" points="138.5,-799.5 167.5,-799.5 "/>
 <text text-anchor="middle" x="153" y="-787.5" font-family="Helvetica,sans-Serif" font-size="10.00"> </text>
@@ -143,14 +143,14 @@
 <g id="node7" class="node">
 <title>Node7</title>
 <g id="a_node7"><a xlink:href="classPonca_1_1limited__priority__queue.html" target="_top" xlink:title="The limited_priority_queue class is similar to std::priority_queue but has a limited capacity and han...">
-<polygon fill="none" stroke="black" points="237,-397.5 237,-597.5 391,-597.5 391,-397.5 237,-397.5"/>
+<polygon fill="white" stroke="#666666" points="237,-397.5 237,-597.5 391,-597.5 391,-397.5 237,-397.5"/>
 <text text-anchor="start" x="245" y="-585.5" font-family="Helvetica,sans-Serif" font-size="10.00">Ponca::limited_priority</text>
 <text text-anchor="middle" x="314" y="-574.5" font-family="Helvetica,sans-Serif" font-size="10.00">_queue&lt; T, CompareT &gt;</text>
-<polyline fill="none" stroke="black" points="237,-567.5 391,-567.5 "/>
+<polyline fill="none" stroke="#666666" points="237,-567.5 391,-567.5 "/>
 <text text-anchor="start" x="245" y="-555.5" font-family="Helvetica,sans-Serif" font-size="10.00"># m_c</text>
 <text text-anchor="start" x="245" y="-544.5" font-family="Helvetica,sans-Serif" font-size="10.00"># m_comp</text>
 <text text-anchor="start" x="245" y="-533.5" font-family="Helvetica,sans-Serif" font-size="10.00"># m_size</text>
-<polyline fill="none" stroke="black" points="237,-526.5 391,-526.5 "/>
+<polyline fill="none" stroke="#666666" points="237,-526.5 391,-526.5 "/>
 <text text-anchor="start" x="245" y="-514.5" font-family="Helvetica,sans-Serif" font-size="10.00">+ limited_priority_queue()</text>
 <text text-anchor="start" x="245" y="-503.5" font-family="Helvetica,sans-Serif" font-size="10.00">+ limited_priority_queue()</text>
 <text text-anchor="start" x="245" y="-492.5" font-family="Helvetica,sans-Serif" font-size="10.00">+ limited_priority_queue()</text>

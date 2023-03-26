@@ -12,12 +12,12 @@
 <g id="node1" class="node">
 <title>Node1</title>
 <g id="a_node1"><a xlink:title="Plane fitting procedure computing the mean position and orientation from oriented points.">
-<polygon fill="#bfbfbf" stroke="black" points="45,-0.5 45,-90.5 201,-90.5 201,-0.5 45,-0.5"/>
+<polygon fill="#999999" stroke="#666666" points="45,-0.5 45,-90.5 201,-90.5 201,-0.5 45,-0.5"/>
 <text text-anchor="start" x="53" y="-78.5" font-family="Helvetica,sans-Serif" font-size="10.00">Ponca::MeanPlaneFitImpl</text>
 <text text-anchor="middle" x="123" y="-67.5" font-family="Helvetica,sans-Serif" font-size="10.00">&lt; DataPoint, _WFunctor, T &gt;</text>
-<polyline fill="none" stroke="black" points="45,-60.5 201,-60.5 "/>
+<polyline fill="none" stroke="#666666" points="45,-60.5 201,-60.5 "/>
 <text text-anchor="middle" x="123" y="-48.5" font-family="Helvetica,sans-Serif" font-size="10.00"> </text>
-<polyline fill="none" stroke="black" points="45,-41.5 201,-41.5 "/>
+<polyline fill="none" stroke="#666666" points="45,-41.5 201,-41.5 "/>
 <text text-anchor="start" x="53" y="-29.5" font-family="Helvetica,sans-Serif" font-size="10.00">+ meanPlaneFit()</text>
 <text text-anchor="start" x="53" y="-18.5" font-family="Helvetica,sans-Serif" font-size="10.00">+ meanPlaneFit()</text>
 <text text-anchor="start" x="53" y="-7.5" font-family="Helvetica,sans-Serif" font-size="10.00">+ finalize()</text>
@@ -28,7 +28,7 @@
 <g id="node2" class="node">
 <title>Node2</title>
 <g id="a_node2"><a xlink:title=" ">
-<polygon fill="none" stroke="#bfbfbf" points="0,-127.5 0,-195.5 142,-195.5 142,-127.5 0,-127.5"/>
+<polygon fill="white" stroke="#bfbfbf" points="0,-127.5 0,-195.5 142,-195.5 142,-127.5 0,-127.5"/>
 <text text-anchor="start" x="8" y="-183.5" font-family="Helvetica,sans-Serif" font-size="10.00">Concept::FittingProcedure</text>
 <text text-anchor="middle" x="71" y="-172.5" font-family="Helvetica,sans-Serif" font-size="10.00">Concept</text>
 <polyline fill="none" stroke="#bfbfbf" points="0,-165.5 142,-165.5 "/>
@@ -41,14 +41,14 @@
 <!-- Node2&#45;&gt;Node1 -->
 <g id="edge1" class="edge">
 <title>Node2&#45;&gt;Node1</title>
-<path fill="none" stroke="midnightblue" d="M90.34,-118.11C94.43,-109.14 98.75,-99.66 102.87,-90.64"/>
-<polygon fill="none" stroke="midnightblue" points="87.15,-116.67 86.18,-127.22 93.51,-119.57 87.15,-116.67"/>
+<path fill="none" stroke="#63b8ff" d="M90.34,-118.11C94.43,-109.14 98.75,-99.66 102.87,-90.64"/>
+<polygon fill="none" stroke="#63b8ff" points="87.15,-116.67 86.18,-127.22 93.51,-119.57 87.15,-116.67"/>
 </g>
 <!-- Node3 -->
 <g id="node3" class="node">
 <title>Node3</title>
 <g id="a_node3"><a xlink:title=" ">
-<polygon fill="none" stroke="#bfbfbf" points="160.5,-133 160.5,-190 189.5,-190 189.5,-133 160.5,-133"/>
+<polygon fill="white" stroke="#bfbfbf" points="160.5,-133 160.5,-190 189.5,-190 189.5,-133 160.5,-133"/>
 <text text-anchor="middle" x="175" y="-178" font-family="Helvetica,sans-Serif" font-size="10.00">T</text>
 <polyline fill="none" stroke="#bfbfbf" points="160.5,-171 189.5,-171 "/>
 <text text-anchor="middle" x="175" y="-159" font-family="Helvetica,sans-Serif" font-size="10.00"> </text>
@@ -60,8 +60,8 @@
 <!-- Node3&#45;&gt;Node1 -->
 <g id="edge2" class="edge">
 <title>Node3&#45;&gt;Node1</title>
-<path fill="none" stroke="midnightblue" d="M158.18,-123.62C153.39,-113.13 148.14,-101.61 143.18,-90.74"/>
-<polygon fill="none" stroke="midnightblue" points="155.08,-125.26 162.41,-132.9 161.45,-122.35 155.08,-125.26"/>
+<path fill="none" stroke="#63b8ff" d="M158.18,-123.62C153.39,-113.13 148.14,-101.61 143.18,-90.74"/>
+<polygon fill="none" stroke="#63b8ff" points="155.08,-125.26 162.41,-132.9 161.45,-122.35 155.08,-125.26"/>
 </g>
 </g>
 </svg>

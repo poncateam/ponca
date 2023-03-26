@@ -12,12 +12,12 @@
 <g id="node1" class="node">
 <title>Node1</title>
 <g id="a_node1"><a xlink:title="A parametrized line is defined by an origin point &#160;and a unit direction vector &#160;such that the line co...">
-<polygon fill="#bfbfbf" stroke="black" points="5.5,-0.5 5.5,-167.5 139.5,-167.5 139.5,-0.5 5.5,-0.5"/>
+<polygon fill="#999999" stroke="#666666" points="5.5,-0.5 5.5,-167.5 139.5,-167.5 139.5,-0.5 5.5,-0.5"/>
 <text text-anchor="start" x="13.5" y="-155.5" font-family="Helvetica,sans-Serif" font-size="10.00">Ponca::Line&lt; DataPoint,</text>
 <text text-anchor="middle" x="72.5" y="-144.5" font-family="Helvetica,sans-Serif" font-size="10.00"> _WFunctor, T &gt;</text>
-<polyline fill="none" stroke="black" points="5.5,-137.5 139.5,-137.5 "/>
+<polyline fill="none" stroke="#666666" points="5.5,-137.5 139.5,-137.5 "/>
 <text text-anchor="middle" x="72.5" y="-125.5" font-family="Helvetica,sans-Serif" font-size="10.00"> </text>
-<polyline fill="none" stroke="black" points="5.5,-118.5 139.5,-118.5 "/>
+<polyline fill="none" stroke="#666666" points="5.5,-118.5 139.5,-118.5 "/>
 <text text-anchor="start" x="13.5" y="-106.5" font-family="Helvetica,sans-Serif" font-size="10.00">+ line()</text>
 <text text-anchor="start" x="13.5" y="-95.5" font-family="Helvetica,sans-Serif" font-size="10.00">+ line()</text>
 <text text-anchor="start" x="13.5" y="-84.5" font-family="Helvetica,sans-Serif" font-size="10.00">+ init()</text>
@@ -35,7 +35,7 @@
 <g id="node2" class="node">
 <title>Node2</title>
 <g id="a_node2"><a xlink:title=" ">
-<polygon fill="none" stroke="#bfbfbf" points="0,-215.5 0,-272.5 29,-272.5 29,-215.5 0,-215.5"/>
+<polygon fill="white" stroke="#bfbfbf" points="0,-215.5 0,-272.5 29,-272.5 29,-215.5 0,-215.5"/>
 <text text-anchor="middle" x="14.5" y="-260.5" font-family="Helvetica,sans-Serif" font-size="10.00">T</text>
 <polyline fill="none" stroke="#bfbfbf" points="0,-253.5 29,-253.5 "/>
 <text text-anchor="middle" x="14.5" y="-241.5" font-family="Helvetica,sans-Serif" font-size="10.00"> </text>
@@ -47,14 +47,14 @@
 <!-- Node2&#45;&gt;Node1 -->
 <g id="edge1" class="edge">
 <title>Node2&#45;&gt;Node1</title>
-<path fill="none" stroke="midnightblue" d="M28.17,-205.77C32.42,-194.19 37.28,-180.93 42.2,-167.54"/>
-<polygon fill="none" stroke="midnightblue" points="24.76,-204.88 24.6,-215.48 31.33,-207.3 24.76,-204.88"/>
+<path fill="none" stroke="#63b8ff" d="M28.17,-205.77C32.42,-194.19 37.28,-180.93 42.2,-167.54"/>
+<polygon fill="none" stroke="#63b8ff" points="24.76,-204.88 24.6,-215.48 31.33,-207.3 24.76,-204.88"/>
 </g>
 <!-- Node3 -->
 <g id="node3" class="node">
 <title>Node3</title>
 <g id="a_node3"><a xlink:title=" ">
-<polygon fill="none" stroke="#bfbfbf" points="47.5,-204.5 47.5,-283.5 213.5,-283.5 213.5,-204.5 47.5,-204.5"/>
+<polygon fill="white" stroke="#bfbfbf" points="47.5,-204.5 47.5,-283.5 213.5,-283.5 213.5,-204.5 47.5,-204.5"/>
 <text text-anchor="start" x="55.5" y="-271.5" font-family="Helvetica,sans-Serif" font-size="10.00">Eigen::ParametrizedLine</text>
 <text text-anchor="start" x="55.5" y="-260.5" font-family="Helvetica,sans-Serif" font-size="10.00">&lt; DataPoint::Scalar, DataPoint</text>
 <text text-anchor="middle" x="130.5" y="-249.5" font-family="Helvetica,sans-Serif" font-size="10.00">::Dim &gt;</text>
@@ -68,8 +68,8 @@
 <!-- Node3&#45;&gt;Node1 -->
 <g id="edge2" class="edge">
 <title>Node3&#45;&gt;Node1</title>
-<path fill="none" stroke="midnightblue" d="M112.82,-194.82C109.63,-186.14 106.23,-176.87 102.8,-167.53"/>
-<polygon fill="none" stroke="midnightblue" points="109.58,-196.17 116.31,-204.35 116.15,-193.76 109.58,-196.17"/>
+<path fill="none" stroke="#63b8ff" d="M112.82,-194.82C109.63,-186.14 106.23,-176.87 102.8,-167.53"/>
+<polygon fill="none" stroke="#63b8ff" points="109.58,-196.17 116.31,-204.35 116.15,-193.76 109.58,-196.17"/>
 </g>
 </g>
 </svg>

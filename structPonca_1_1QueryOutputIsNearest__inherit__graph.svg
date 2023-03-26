@@ -46,7 +46,7 @@ if (edges && edges.length) {
         </defs>
 
 <script type="text/javascript">
-var viewWidth = 522;
+var viewWidth = 525;
 var viewHeight = 748;
 var sectionId = 'dynsection-13';
 </script>
@@ -58,13 +58,13 @@ var sectionId = 'dynsection-13';
 <g id="node1" class="node">
 <title>Node1</title>
 <g id="a_node1"><a xlink:title="Base class for nearest queries.">
-<polygon fill="#bfbfbf" stroke="black" points="93,-543.5 93,-644.5 254,-644.5 254,-543.5 93,-543.5"/>
+<polygon fill="#999999" stroke="#666666" points="93,-543.5 93,-644.5 254,-644.5 254,-543.5 93,-543.5"/>
 <text text-anchor="start" x="101" y="-632.5" font-family="Helvetica,sans-Serif" font-size="10.00">Ponca::QueryOutputIsNearest</text>
 <text text-anchor="middle" x="173.5" y="-621.5" font-family="Helvetica,sans-Serif" font-size="10.00">&lt; Scalar &gt;</text>
-<polyline fill="none" stroke="black" points="93,-614.5 254,-614.5 "/>
+<polyline fill="none" stroke="#666666" points="93,-614.5 254,-614.5 "/>
 <text text-anchor="start" x="101" y="-602.5" font-family="Helvetica,sans-Serif" font-size="10.00"># m_nearest</text>
 <text text-anchor="start" x="101" y="-591.5" font-family="Helvetica,sans-Serif" font-size="10.00"># m_squared_distance</text>
-<polyline fill="none" stroke="black" points="93,-584.5 254,-584.5 "/>
+<polyline fill="none" stroke="#666666" points="93,-584.5 254,-584.5 "/>
 <text text-anchor="start" x="101" y="-572.5" font-family="Helvetica,sans-Serif" font-size="10.00">+ QueryOutputIsNearest()</text>
 <text text-anchor="start" x="101" y="-561.5" font-family="Helvetica,sans-Serif" font-size="10.00">+ get()</text>
 <text text-anchor="start" x="101" y="-550.5" font-family="Helvetica,sans-Serif" font-size="10.00"># reset()</text>
@@ -75,7 +75,7 @@ var sectionId = 'dynsection-13';
 <g id="node3" class="node">
 <title>Node3</title>
 <g id="a_node3"><a xlink:href="group__spatialpartitioning.html" target="_top" xlink:title=" ">
-<polygon fill="none" stroke="#bfbfbf" points="0,-400 0,-490 167,-490 167,-400 0,-400"/>
+<polygon fill="white" stroke="#bfbfbf" points="0,-400 0,-490 167,-490 167,-400 0,-400"/>
 <text text-anchor="start" x="8" y="-478" font-family="Helvetica,sans-Serif" font-size="10.00">Ponca::Query&lt; QueryInput</text>
 <text text-anchor="start" x="8" y="-467" font-family="Helvetica,sans-Serif" font-size="10.00">IsIndex, QueryOutputIsNearest</text>
 <text text-anchor="middle" x="83.5" y="-456" font-family="Helvetica,sans-Serif" font-size="10.00">&lt; Scalar &gt; &gt;</text>
@@ -90,20 +90,20 @@ var sectionId = 'dynsection-13';
 <!-- Node1&#45;&gt;Node3 -->
 <g id="edge2" class="edge">
 <title>Node1&#45;&gt;Node3</title>
-<path fill="none" stroke="midnightblue" d="M137.78,-534.65C128.73,-519.87 119.16,-504.24 110.62,-490.29"/>
-<polygon fill="none" stroke="midnightblue" points="134.82,-536.53 143.03,-543.23 140.79,-532.88 134.82,-536.53"/>
+<path fill="none" stroke="#63b8ff" d="M137.78,-534.65C128.73,-519.87 119.16,-504.24 110.62,-490.29"/>
+<polygon fill="none" stroke="#63b8ff" points="134.82,-536.53 143.03,-543.23 140.79,-532.88 134.82,-536.53"/>
 </g>
 <!-- Node7 -->
 <g id="node7" class="node">
 <title>Node7</title>
 <g id="a_node7"><a xlink:href="group__spatialpartitioning.html" target="_top" xlink:title=" ">
-<polygon fill="none" stroke="black" points="185,-394.5 185,-495.5 346,-495.5 346,-394.5 185,-394.5"/>
+<polygon fill="white" stroke="#666666" points="185,-394.5 185,-495.5 346,-495.5 346,-394.5 185,-394.5"/>
 <text text-anchor="start" x="193" y="-483.5" font-family="Helvetica,sans-Serif" font-size="10.00">Ponca::QueryOutputIsNearest</text>
 <text text-anchor="middle" x="265.5" y="-472.5" font-family="Helvetica,sans-Serif" font-size="10.00">&lt; DataPoint::Scalar &gt;</text>
-<polyline fill="none" stroke="black" points="185,-465.5 346,-465.5 "/>
+<polyline fill="none" stroke="#666666" points="185,-465.5 346,-465.5 "/>
 <text text-anchor="start" x="193" y="-453.5" font-family="Helvetica,sans-Serif" font-size="10.00"># m_nearest</text>
 <text text-anchor="start" x="193" y="-442.5" font-family="Helvetica,sans-Serif" font-size="10.00"># m_squared_distance</text>
-<polyline fill="none" stroke="black" points="185,-435.5 346,-435.5 "/>
+<polyline fill="none" stroke="#666666" points="185,-435.5 346,-435.5 "/>
 <text text-anchor="start" x="193" y="-423.5" font-family="Helvetica,sans-Serif" font-size="10.00">+ QueryOutputIsNearest()</text>
 <text text-anchor="start" x="193" y="-412.5" font-family="Helvetica,sans-Serif" font-size="10.00">+ get()</text>
 <text text-anchor="start" x="193" y="-401.5" font-family="Helvetica,sans-Serif" font-size="10.00"># reset()</text>
@@ -121,11 +121,11 @@ var sectionId = 'dynsection-13';
 <g id="node2" class="node">
 <title>Node2</title>
 <g id="a_node2"><a xlink:href="group__spatialpartitioning.html#structPonca_1_1QueryOutputBase" target="_top" xlink:title="Base class for queries output type.">
-<polygon fill="none" stroke="black" points="104.5,-682.5 104.5,-739.5 242.5,-739.5 242.5,-682.5 104.5,-682.5"/>
+<polygon fill="white" stroke="#666666" points="104.5,-682.5 104.5,-739.5 242.5,-739.5 242.5,-682.5 104.5,-682.5"/>
 <text text-anchor="middle" x="173.5" y="-727.5" font-family="Helvetica,sans-Serif" font-size="10.00">Ponca::QueryOutputBase</text>
-<polyline fill="none" stroke="black" points="104.5,-720.5 242.5,-720.5 "/>
+<polyline fill="none" stroke="#666666" points="104.5,-720.5 242.5,-720.5 "/>
 <text text-anchor="middle" x="173.5" y="-708.5" font-family="Helvetica,sans-Serif" font-size="10.00"> </text>
-<polyline fill="none" stroke="black" points="104.5,-701.5 242.5,-701.5 "/>
+<polyline fill="none" stroke="#666666" points="104.5,-701.5 242.5,-701.5 "/>
 <text text-anchor="middle" x="173.5" y="-689.5" font-family="Helvetica,sans-Serif" font-size="10.00"> </text>
 </a>
 </g>
@@ -133,19 +133,19 @@ var sectionId = 'dynsection-13';
 <!-- Node2&#45;&gt;Node1 -->
 <g id="edge1" class="edge">
 <title>Node2&#45;&gt;Node1</title>
-<path fill="none" stroke="midnightblue" d="M173.5,-672.19C173.5,-663.43 173.5,-653.99 173.5,-644.81"/>
-<polygon fill="none" stroke="midnightblue" points="170,-672.45 173.5,-682.45 177,-672.45 170,-672.45"/>
+<path fill="none" stroke="#63b8ff" d="M173.5,-672.19C173.5,-663.43 173.5,-653.99 173.5,-644.81"/>
+<polygon fill="none" stroke="#63b8ff" points="170,-672.45 173.5,-682.45 177,-672.45 170,-672.45"/>
 </g>
 <!-- Node4 -->
 <g id="node4" class="node">
 <title>Node4</title>
 <g id="a_node4"><a xlink:href="group__spatialpartitioning.html#structPonca_1_1NearestIndexQuery" target="_top" xlink:title="Base Query class combining QueryInputIsIndex and QueryOutputIsNearest.">
-<polygon fill="none" stroke="black" points="10.5,-272 10.5,-340 156.5,-340 156.5,-272 10.5,-272"/>
+<polygon fill="white" stroke="#666666" points="10.5,-272 10.5,-340 156.5,-340 156.5,-272 10.5,-272"/>
 <text text-anchor="start" x="18.5" y="-328" font-family="Helvetica,sans-Serif" font-size="10.00">Ponca::NearestIndexQuery</text>
 <text text-anchor="middle" x="83.5" y="-317" font-family="Helvetica,sans-Serif" font-size="10.00">&lt; Scalar &gt;</text>
-<polyline fill="none" stroke="black" points="10.5,-310 156.5,-310 "/>
+<polyline fill="none" stroke="#666666" points="10.5,-310 156.5,-310 "/>
 <text text-anchor="middle" x="83.5" y="-298" font-family="Helvetica,sans-Serif" font-size="10.00"> </text>
-<polyline fill="none" stroke="black" points="10.5,-291 156.5,-291 "/>
+<polyline fill="none" stroke="#666666" points="10.5,-291 156.5,-291 "/>
 <text text-anchor="middle" x="83.5" y="-279" font-family="Helvetica,sans-Serif" font-size="10.00"> </text>
 </a>
 </g>
@@ -153,146 +153,140 @@ var sectionId = 'dynsection-13';
 <!-- Node3&#45;&gt;Node4 -->
 <g id="edge3" class="edge">
 <title>Node3&#45;&gt;Node4</title>
-<path fill="none" stroke="midnightblue" d="M83.5,-389.67C83.5,-372.93 83.5,-355.01 83.5,-340.15"/>
-<polygon fill="none" stroke="midnightblue" points="80,-389.9 83.5,-399.9 87,-389.9 80,-389.9"/>
+<path fill="none" stroke="#63b8ff" d="M83.5,-389.67C83.5,-372.93 83.5,-355.01 83.5,-340.15"/>
+<polygon fill="none" stroke="#63b8ff" points="80,-389.9 83.5,-399.9 87,-389.9 80,-389.9"/>
 </g>
 <!-- Node5 -->
 <g id="node5" class="node">
 <title>Node5</title>
 <g id="a_node5"><a xlink:href="group__spatialpartitioning.html" target="_top" xlink:title=" ">
-<polygon fill="none" stroke="black" points="119.5,-139.5 119.5,-207.5 265.5,-207.5 265.5,-139.5 119.5,-139.5"/>
-<text text-anchor="start" x="127.5" y="-195.5" font-family="Helvetica,sans-Serif" font-size="10.00">Ponca::NearestIndexQuery</text>
-<text text-anchor="middle" x="192.5" y="-184.5" font-family="Helvetica,sans-Serif" font-size="10.00">&lt; DataPoint::Scalar &gt;</text>
-<polyline fill="none" stroke="black" points="119.5,-177.5 265.5,-177.5 "/>
-<text text-anchor="middle" x="192.5" y="-165.5" font-family="Helvetica,sans-Serif" font-size="10.00"> </text>
-<polyline fill="none" stroke="black" points="119.5,-158.5 265.5,-158.5 "/>
-<text text-anchor="middle" x="192.5" y="-146.5" font-family="Helvetica,sans-Serif" font-size="10.00"> </text>
+<polygon fill="white" stroke="#666666" points="10.5,-139.5 10.5,-207.5 156.5,-207.5 156.5,-139.5 10.5,-139.5"/>
+<text text-anchor="start" x="18.5" y="-195.5" font-family="Helvetica,sans-Serif" font-size="10.00">Ponca::NearestIndexQuery</text>
+<text text-anchor="middle" x="83.5" y="-184.5" font-family="Helvetica,sans-Serif" font-size="10.00">&lt; DataPoint::Scalar &gt;</text>
+<polyline fill="none" stroke="#666666" points="10.5,-177.5 156.5,-177.5 "/>
+<text text-anchor="middle" x="83.5" y="-165.5" font-family="Helvetica,sans-Serif" font-size="10.00"> </text>
+<polyline fill="none" stroke="#666666" points="10.5,-158.5 156.5,-158.5 "/>
+<text text-anchor="middle" x="83.5" y="-146.5" font-family="Helvetica,sans-Serif" font-size="10.00"> </text>
 </a>
 </g>
 </g>
 <!-- Node4&#45;&gt;Node5 -->
 <g id="edge4" class="edge">
 <title>Node4&#45;&gt;Node5</title>
-<path fill="none" stroke="orange" d="M90.52,-261.91C94.09,-249.41 99.45,-236.36 107.5,-226 112.79,-219.19 119.26,-213.07 126.24,-207.64"/>
-<polygon fill="orange" stroke="orange" points="87.09,-261.19 88.03,-271.74 93.88,-262.91 87.09,-261.19"/>
-<text text-anchor="middle" x="162.5" y="-229" font-family="Helvetica,sans-Serif" font-size="10.00"> &lt; DataPoint::Scalar &gt;</text>
+<path fill="none" stroke="orange" d="M83.5,-261.7C83.5,-244.11 83.5,-224.11 83.5,-207.71"/>
+<polygon fill="orange" stroke="orange" points="80,-261.73 83.5,-271.73 87,-261.73 80,-261.73"/>
+<text text-anchor="middle" x="138.5" y="-229" font-family="Helvetica,sans-Serif" font-size="10.00"> &lt; DataPoint::Scalar &gt;</text>
 </g>
 <!-- Node6 -->
 <g id="node6" class="node">
 <title>Node6</title>
 <g id="a_node6"><a xlink:href="classPonca_1_1KdTreeNearestIndexQuery.html" target="_top" xlink:title=" ">
-<polygon fill="none" stroke="#bfbfbf" points="111,-0.5 111,-101.5 274,-101.5 274,-0.5 111,-0.5"/>
-<text text-anchor="start" x="119" y="-89.5" font-family="Helvetica,sans-Serif" font-size="10.00">Ponca::KdTreeNearestIndex</text>
-<text text-anchor="middle" x="192.5" y="-78.5" font-family="Helvetica,sans-Serif" font-size="10.00">Query&lt; DataPoint &gt;</text>
-<polyline fill="none" stroke="#bfbfbf" points="111,-71.5 274,-71.5 "/>
-<text text-anchor="middle" x="192.5" y="-59.5" font-family="Helvetica,sans-Serif" font-size="10.00"> </text>
-<polyline fill="none" stroke="#bfbfbf" points="111,-52.5 274,-52.5 "/>
-<text text-anchor="start" x="119" y="-40.5" font-family="Helvetica,sans-Serif" font-size="10.00">+ KdTreeNearestIndexQuery()</text>
-<text text-anchor="start" x="119" y="-29.5" font-family="Helvetica,sans-Serif" font-size="10.00">+ begin()</text>
-<text text-anchor="start" x="119" y="-18.5" font-family="Helvetica,sans-Serif" font-size="10.00">+ end()</text>
-<text text-anchor="start" x="119" y="-7.5" font-family="Helvetica,sans-Serif" font-size="10.00"># search()</text>
+<polygon fill="white" stroke="#bfbfbf" points="2,-0.5 2,-101.5 165,-101.5 165,-0.5 2,-0.5"/>
+<text text-anchor="start" x="10" y="-89.5" font-family="Helvetica,sans-Serif" font-size="10.00">Ponca::KdTreeNearestIndex</text>
+<text text-anchor="middle" x="83.5" y="-78.5" font-family="Helvetica,sans-Serif" font-size="10.00">Query&lt; DataPoint &gt;</text>
+<polyline fill="none" stroke="#bfbfbf" points="2,-71.5 165,-71.5 "/>
+<text text-anchor="middle" x="83.5" y="-59.5" font-family="Helvetica,sans-Serif" font-size="10.00"> </text>
+<polyline fill="none" stroke="#bfbfbf" points="2,-52.5 165,-52.5 "/>
+<text text-anchor="start" x="10" y="-40.5" font-family="Helvetica,sans-Serif" font-size="10.00">+ KdTreeNearestIndexQuery()</text>
+<text text-anchor="start" x="10" y="-29.5" font-family="Helvetica,sans-Serif" font-size="10.00">+ begin()</text>
+<text text-anchor="start" x="10" y="-18.5" font-family="Helvetica,sans-Serif" font-size="10.00">+ end()</text>
+<text text-anchor="start" x="10" y="-7.5" font-family="Helvetica,sans-Serif" font-size="10.00"># search()</text>
 </a>
 </g>
 </g>
 <!-- Node5&#45;&gt;Node6 -->
 <g id="edge5" class="edge">
 <title>Node5&#45;&gt;Node6</title>
-<path fill="none" stroke="midnightblue" d="M192.5,-129.15C192.5,-120.29 192.5,-110.91 192.5,-101.84"/>
-<polygon fill="none" stroke="midnightblue" points="189,-129.25 192.5,-139.25 196,-129.25 189,-129.25"/>
+<path fill="none" stroke="#63b8ff" d="M83.5,-129.15C83.5,-120.29 83.5,-110.91 83.5,-101.84"/>
+<polygon fill="none" stroke="#63b8ff" points="80,-129.25 83.5,-139.25 87,-129.25 80,-129.25"/>
 </g>
 <!-- Node8 -->
 <g id="node8" class="node">
 <title>Node8</title>
 <g id="a_node8"><a xlink:href="group__spatialpartitioning.html" target="_top" xlink:title=" ">
-<polygon fill="none" stroke="#bfbfbf" points="175,-261 175,-351 342,-351 342,-261 175,-261"/>
-<text text-anchor="start" x="183" y="-339" font-family="Helvetica,sans-Serif" font-size="10.00">Ponca::Query&lt; QueryInput</text>
-<text text-anchor="start" x="183" y="-328" font-family="Helvetica,sans-Serif" font-size="10.00">IsIndex, QueryOutputIsNearest</text>
-<text text-anchor="middle" x="258.5" y="-317" font-family="Helvetica,sans-Serif" font-size="10.00">&lt; DataPoint::Scalar &gt; &gt;</text>
-<polyline fill="none" stroke="#bfbfbf" points="175,-310 342,-310 "/>
-<text text-anchor="middle" x="258.5" y="-298" font-family="Helvetica,sans-Serif" font-size="10.00"> </text>
-<polyline fill="none" stroke="#bfbfbf" points="175,-291 342,-291 "/>
-<text text-anchor="start" x="183" y="-279" font-family="Helvetica,sans-Serif" font-size="10.00">+ Query()</text>
-<text text-anchor="start" x="183" y="-268" font-family="Helvetica,sans-Serif" font-size="10.00">+ Query()</text>
+<polygon fill="white" stroke="#bfbfbf" points="178,-261 178,-351 345,-351 345,-261 178,-261"/>
+<text text-anchor="start" x="186" y="-339" font-family="Helvetica,sans-Serif" font-size="10.00">Ponca::Query&lt; QueryInput</text>
+<text text-anchor="start" x="186" y="-328" font-family="Helvetica,sans-Serif" font-size="10.00">IsIndex, QueryOutputIsNearest</text>
+<text text-anchor="middle" x="261.5" y="-317" font-family="Helvetica,sans-Serif" font-size="10.00">&lt; DataPoint::Scalar &gt; &gt;</text>
+<polyline fill="none" stroke="#bfbfbf" points="178,-310 345,-310 "/>
+<text text-anchor="middle" x="261.5" y="-298" font-family="Helvetica,sans-Serif" font-size="10.00"> </text>
+<polyline fill="none" stroke="#bfbfbf" points="178,-291 345,-291 "/>
+<text text-anchor="start" x="186" y="-279" font-family="Helvetica,sans-Serif" font-size="10.00">+ Query()</text>
+<text text-anchor="start" x="186" y="-268" font-family="Helvetica,sans-Serif" font-size="10.00">+ Query()</text>
 </a>
 </g>
 </g>
 <!-- Node7&#45;&gt;Node8 -->
 <g id="edge7" class="edge">
 <title>Node7&#45;&gt;Node8</title>
-<path fill="none" stroke="midnightblue" d="M262.44,-384.1C261.87,-373.03 261.29,-361.65 260.76,-351.14"/>
-<polygon fill="none" stroke="midnightblue" points="258.95,-384.34 262.95,-394.15 265.94,-383.99 258.95,-384.34"/>
+<path fill="none" stroke="#63b8ff" d="M263.75,-384.1C263.43,-373.03 263.1,-361.65 262.79,-351.14"/>
+<polygon fill="none" stroke="#63b8ff" points="260.25,-384.26 264.04,-394.15 267.25,-384.05 260.25,-384.26"/>
 </g>
 <!-- Node9 -->
 <g id="node9" class="node">
 <title>Node9</title>
 <g id="a_node9"><a xlink:href="group__spatialpartitioning.html" target="_top" xlink:title=" ">
-<polygon fill="none" stroke="#bfbfbf" points="360.5,-255.5 360.5,-356.5 506.5,-356.5 506.5,-255.5 360.5,-255.5"/>
-<text text-anchor="start" x="368.5" y="-344.5" font-family="Helvetica,sans-Serif" font-size="10.00">Ponca::Query&lt; QueryInput</text>
-<text text-anchor="start" x="368.5" y="-333.5" font-family="Helvetica,sans-Serif" font-size="10.00">IsPosition&lt; DataPoint</text>
-<text text-anchor="start" x="368.5" y="-322.5" font-family="Helvetica,sans-Serif" font-size="10.00"> &gt;, QueryOutputIsNearest</text>
-<text text-anchor="middle" x="433.5" y="-311.5" font-family="Helvetica,sans-Serif" font-size="10.00">&lt; DataPoint::Scalar &gt; &gt;</text>
-<polyline fill="none" stroke="#bfbfbf" points="360.5,-304.5 506.5,-304.5 "/>
-<text text-anchor="middle" x="433.5" y="-292.5" font-family="Helvetica,sans-Serif" font-size="10.00"> </text>
-<polyline fill="none" stroke="#bfbfbf" points="360.5,-285.5 506.5,-285.5 "/>
-<text text-anchor="start" x="368.5" y="-273.5" font-family="Helvetica,sans-Serif" font-size="10.00">+ Query()</text>
-<text text-anchor="start" x="368.5" y="-262.5" font-family="Helvetica,sans-Serif" font-size="10.00">+ Query()</text>
+<polygon fill="white" stroke="#bfbfbf" points="363.5,-255.5 363.5,-356.5 509.5,-356.5 509.5,-255.5 363.5,-255.5"/>
+<text text-anchor="start" x="371.5" y="-344.5" font-family="Helvetica,sans-Serif" font-size="10.00">Ponca::Query&lt; QueryInput</text>
+<text text-anchor="start" x="371.5" y="-333.5" font-family="Helvetica,sans-Serif" font-size="10.00">IsPosition&lt; DataPoint</text>
+<text text-anchor="start" x="371.5" y="-322.5" font-family="Helvetica,sans-Serif" font-size="10.00"> &gt;, QueryOutputIsNearest</text>
+<text text-anchor="middle" x="436.5" y="-311.5" font-family="Helvetica,sans-Serif" font-size="10.00">&lt; DataPoint::Scalar &gt; &gt;</text>
+<polyline fill="none" stroke="#bfbfbf" points="363.5,-304.5 509.5,-304.5 "/>
+<text text-anchor="middle" x="436.5" y="-292.5" font-family="Helvetica,sans-Serif" font-size="10.00"> </text>
+<polyline fill="none" stroke="#bfbfbf" points="363.5,-285.5 509.5,-285.5 "/>
+<text text-anchor="start" x="371.5" y="-273.5" font-family="Helvetica,sans-Serif" font-size="10.00">+ Query()</text>
+<text text-anchor="start" x="371.5" y="-262.5" font-family="Helvetica,sans-Serif" font-size="10.00">+ Query()</text>
 </a>
 </g>
 </g>
 <!-- Node7&#45;&gt;Node9 -->
-<g id="edge9" class="edge">
-<title>Node7&#45;&gt;Node9</title>
-<path fill="none" stroke="midnightblue" d="M334.45,-387.77C347.13,-377.43 360.28,-366.71 372.7,-356.58"/>
-<polygon fill="none" stroke="midnightblue" points="332.17,-385.12 326.63,-394.15 336.59,-390.54 332.17,-385.12"/>
-</g>
-<!-- Node8&#45;&gt;Node5 -->
 <g id="edge8" class="edge">
-<title>Node8&#45;&gt;Node5</title>
-<path fill="none" stroke="midnightblue" d="M234.15,-251.6C230.04,-242.99 225.73,-234.21 221.5,-226 218.4,-219.98 214.97,-213.64 211.59,-207.55"/>
-<polygon fill="none" stroke="midnightblue" points="231.09,-253.3 238.53,-260.84 237.41,-250.3 231.09,-253.3"/>
+<title>Node7&#45;&gt;Node9</title>
+<path fill="none" stroke="#63b8ff" d="M335.68,-387.77C348.59,-377.43 361.97,-366.71 374.61,-356.58"/>
+<polygon fill="none" stroke="#63b8ff" points="333.33,-385.17 327.72,-394.15 337.71,-390.63 333.33,-385.17"/>
 </g>
 <!-- Node10 -->
 <g id="node10" class="node">
 <title>Node10</title>
 <g id="a_node10"><a xlink:href="group__spatialpartitioning.html#structPonca_1_1NearestPointQuery" target="_top" xlink:title="Base Query class combining QueryInputIsPosition and QueryOutputIsNearest.">
-<polygon fill="none" stroke="black" points="361.5,-139.5 361.5,-207.5 505.5,-207.5 505.5,-139.5 361.5,-139.5"/>
-<text text-anchor="start" x="369.5" y="-195.5" font-family="Helvetica,sans-Serif" font-size="10.00">Ponca::NearestPointQuery</text>
-<text text-anchor="middle" x="433.5" y="-184.5" font-family="Helvetica,sans-Serif" font-size="10.00">&lt; DataPoint &gt;</text>
-<polyline fill="none" stroke="black" points="361.5,-177.5 505.5,-177.5 "/>
-<text text-anchor="middle" x="433.5" y="-165.5" font-family="Helvetica,sans-Serif" font-size="10.00"> </text>
-<polyline fill="none" stroke="black" points="361.5,-158.5 505.5,-158.5 "/>
-<text text-anchor="middle" x="433.5" y="-146.5" font-family="Helvetica,sans-Serif" font-size="10.00"> </text>
+<polygon fill="white" stroke="#666666" points="364.5,-139.5 364.5,-207.5 508.5,-207.5 508.5,-139.5 364.5,-139.5"/>
+<text text-anchor="start" x="372.5" y="-195.5" font-family="Helvetica,sans-Serif" font-size="10.00">Ponca::NearestPointQuery</text>
+<text text-anchor="middle" x="436.5" y="-184.5" font-family="Helvetica,sans-Serif" font-size="10.00">&lt; DataPoint &gt;</text>
+<polyline fill="none" stroke="#666666" points="364.5,-177.5 508.5,-177.5 "/>
+<text text-anchor="middle" x="436.5" y="-165.5" font-family="Helvetica,sans-Serif" font-size="10.00"> </text>
+<polyline fill="none" stroke="#666666" points="364.5,-158.5 508.5,-158.5 "/>
+<text text-anchor="middle" x="436.5" y="-146.5" font-family="Helvetica,sans-Serif" font-size="10.00"> </text>
 </a>
 </g>
 </g>
 <!-- Node9&#45;&gt;Node10 -->
-<g id="edge10" class="edge">
+<g id="edge9" class="edge">
 <title>Node9&#45;&gt;Node10</title>
-<path fill="none" stroke="midnightblue" d="M433.5,-245.03C433.5,-232.12 433.5,-218.93 433.5,-207.51"/>
-<polygon fill="none" stroke="midnightblue" points="430,-245.29 433.5,-255.29 437,-245.29 430,-245.29"/>
+<path fill="none" stroke="#63b8ff" d="M436.5,-245.03C436.5,-232.12 436.5,-218.93 436.5,-207.51"/>
+<polygon fill="none" stroke="#63b8ff" points="433,-245.29 436.5,-255.29 440,-245.29 433,-245.29"/>
 </g>
 <!-- Node11 -->
 <g id="node11" class="node">
 <title>Node11</title>
 <g id="a_node11"><a xlink:href="classPonca_1_1KdTreeNearestPointQuery.html" target="_top" xlink:title=" ">
-<polygon fill="none" stroke="#bfbfbf" points="353,-0.5 353,-101.5 514,-101.5 514,-0.5 353,-0.5"/>
-<text text-anchor="start" x="361" y="-89.5" font-family="Helvetica,sans-Serif" font-size="10.00">Ponca::KdTreeNearestPoint</text>
-<text text-anchor="middle" x="433.5" y="-78.5" font-family="Helvetica,sans-Serif" font-size="10.00">Query&lt; DataPoint &gt;</text>
-<polyline fill="none" stroke="#bfbfbf" points="353,-71.5 514,-71.5 "/>
-<text text-anchor="middle" x="433.5" y="-59.5" font-family="Helvetica,sans-Serif" font-size="10.00"> </text>
-<polyline fill="none" stroke="#bfbfbf" points="353,-52.5 514,-52.5 "/>
-<text text-anchor="start" x="361" y="-40.5" font-family="Helvetica,sans-Serif" font-size="10.00">+ KdTreeNearestPointQuery()</text>
-<text text-anchor="start" x="361" y="-29.5" font-family="Helvetica,sans-Serif" font-size="10.00">+ begin()</text>
-<text text-anchor="start" x="361" y="-18.5" font-family="Helvetica,sans-Serif" font-size="10.00">+ end()</text>
-<text text-anchor="start" x="361" y="-7.5" font-family="Helvetica,sans-Serif" font-size="10.00"># search()</text>
+<polygon fill="white" stroke="#bfbfbf" points="356,-0.5 356,-101.5 517,-101.5 517,-0.5 356,-0.5"/>
+<text text-anchor="start" x="364" y="-89.5" font-family="Helvetica,sans-Serif" font-size="10.00">Ponca::KdTreeNearestPoint</text>
+<text text-anchor="middle" x="436.5" y="-78.5" font-family="Helvetica,sans-Serif" font-size="10.00">Query&lt; DataPoint &gt;</text>
+<polyline fill="none" stroke="#bfbfbf" points="356,-71.5 517,-71.5 "/>
+<text text-anchor="middle" x="436.5" y="-59.5" font-family="Helvetica,sans-Serif" font-size="10.00"> </text>
+<polyline fill="none" stroke="#bfbfbf" points="356,-52.5 517,-52.5 "/>
+<text text-anchor="start" x="364" y="-40.5" font-family="Helvetica,sans-Serif" font-size="10.00">+ KdTreeNearestPointQuery()</text>
+<text text-anchor="start" x="364" y="-29.5" font-family="Helvetica,sans-Serif" font-size="10.00">+ begin()</text>
+<text text-anchor="start" x="364" y="-18.5" font-family="Helvetica,sans-Serif" font-size="10.00">+ end()</text>
+<text text-anchor="start" x="364" y="-7.5" font-family="Helvetica,sans-Serif" font-size="10.00"># search()</text>
 </a>
 </g>
 </g>
 <!-- Node10&#45;&gt;Node11 -->
-<g id="edge11" class="edge">
+<g id="edge10" class="edge">
 <title>Node10&#45;&gt;Node11</title>
-<path fill="none" stroke="midnightblue" d="M433.5,-129.15C433.5,-120.29 433.5,-110.91 433.5,-101.84"/>
-<polygon fill="none" stroke="midnightblue" points="430,-129.25 433.5,-139.25 437,-129.25 430,-129.25"/>
+<path fill="none" stroke="#63b8ff" d="M436.5,-129.15C436.5,-120.29 436.5,-110.91 436.5,-101.84"/>
+<polygon fill="none" stroke="#63b8ff" points="433,-129.25 436.5,-139.25 440,-129.25 433,-129.25"/>
 </g>
 </g>
 </svg>

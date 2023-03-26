@@ -12,13 +12,13 @@
 <g id="node1" class="node">
 <title>Node1</title>
 <g id="a_node1"><a xlink:title="Extension to compute curvature values from the Weingarten map .">
-<polygon fill="#bfbfbf" stroke="black" points="34.5,-0.5 34.5,-134.5 208.5,-134.5 208.5,-0.5 34.5,-0.5"/>
+<polygon fill="#999999" stroke="#666666" points="34.5,-0.5 34.5,-134.5 208.5,-134.5 208.5,-0.5 34.5,-0.5"/>
 <text text-anchor="start" x="42.5" y="-122.5" font-family="Helvetica,sans-Serif" font-size="10.00">Ponca::NormalDerivatives</text>
 <text text-anchor="start" x="42.5" y="-111.5" font-family="Helvetica,sans-Serif" font-size="10.00">CurvatureEstimator&lt; DataPoint,</text>
 <text text-anchor="middle" x="121.5" y="-100.5" font-family="Helvetica,sans-Serif" font-size="10.00"> _WFunctor, DiffType, T &gt;</text>
-<polyline fill="none" stroke="black" points="34.5,-93.5 208.5,-93.5 "/>
+<polyline fill="none" stroke="#666666" points="34.5,-93.5 208.5,-93.5 "/>
 <text text-anchor="middle" x="121.5" y="-81.5" font-family="Helvetica,sans-Serif" font-size="10.00"> </text>
-<polyline fill="none" stroke="black" points="34.5,-74.5 208.5,-74.5 "/>
+<polyline fill="none" stroke="#666666" points="34.5,-74.5 208.5,-74.5 "/>
 <text text-anchor="start" x="42.5" y="-62.5" font-family="Helvetica,sans-Serif" font-size="10.00">+ normalDerivativesCurvature</text>
 <text text-anchor="start" x="42.5" y="-51.5" font-family="Helvetica,sans-Serif" font-size="10.00">Estimator()</text>
 <text text-anchor="start" x="42.5" y="-40.5" font-family="Helvetica,sans-Serif" font-size="10.00">+ normalDerivativesCurvature</text>
@@ -32,7 +32,7 @@
 <g id="node2" class="node">
 <title>Node2</title>
 <g id="a_node2"><a xlink:title=" ">
-<polygon fill="none" stroke="#bfbfbf" points="0,-171.5 0,-239.5 141,-239.5 141,-171.5 0,-171.5"/>
+<polygon fill="white" stroke="#bfbfbf" points="0,-171.5 0,-239.5 141,-239.5 141,-171.5 0,-171.5"/>
 <text text-anchor="start" x="8" y="-227.5" font-family="Helvetica,sans-Serif" font-size="10.00">Concept::FittingExtension</text>
 <text text-anchor="middle" x="70.5" y="-216.5" font-family="Helvetica,sans-Serif" font-size="10.00">Concept</text>
 <polyline fill="none" stroke="#bfbfbf" points="0,-209.5 141,-209.5 "/>
@@ -45,14 +45,14 @@
 <!-- Node2&#45;&gt;Node1 -->
 <g id="edge1" class="edge">
 <title>Node2&#45;&gt;Node1</title>
-<path fill="none" stroke="midnightblue" d="M86.51,-161.79C89.75,-153.16 93.22,-143.9 96.68,-134.68"/>
-<polygon fill="none" stroke="midnightblue" points="83.21,-160.64 82.98,-171.23 89.76,-163.1 83.21,-160.64"/>
+<path fill="none" stroke="#63b8ff" d="M86.51,-161.79C89.75,-153.16 93.22,-143.9 96.68,-134.68"/>
+<polygon fill="none" stroke="#63b8ff" points="83.21,-160.64 82.98,-171.23 89.76,-163.1 83.21,-160.64"/>
 </g>
 <!-- Node3 -->
 <g id="node3" class="node">
 <title>Node3</title>
 <g id="a_node3"><a xlink:title=" ">
-<polygon fill="none" stroke="#bfbfbf" points="159,-177 159,-234 188,-234 188,-177 159,-177"/>
+<polygon fill="white" stroke="#bfbfbf" points="159,-177 159,-234 188,-234 188,-177 159,-177"/>
 <text text-anchor="middle" x="173.5" y="-222" font-family="Helvetica,sans-Serif" font-size="10.00">T</text>
 <polyline fill="none" stroke="#bfbfbf" points="159,-215 188,-215 "/>
 <text text-anchor="middle" x="173.5" y="-203" font-family="Helvetica,sans-Serif" font-size="10.00"> </text>
@@ -64,8 +64,8 @@
 <!-- Node3&#45;&gt;Node1 -->
 <g id="edge2" class="edge">
 <title>Node3&#45;&gt;Node1</title>
-<path fill="none" stroke="midnightblue" d="M159.4,-167.62C155.51,-157.44 151.16,-146.08 146.84,-134.78"/>
-<polygon fill="none" stroke="midnightblue" points="156.14,-168.89 162.98,-176.98 162.67,-166.39 156.14,-168.89"/>
+<path fill="none" stroke="#63b8ff" d="M159.4,-167.62C155.51,-157.44 151.16,-146.08 146.84,-134.78"/>
+<polygon fill="none" stroke="#63b8ff" points="156.14,-168.89 162.98,-176.98 162.67,-166.39 156.14,-168.89"/>
 </g>
 </g>
 </svg>

@@ -12,14 +12,14 @@
 <g id="node1" class="node">
 <title>Node1</title>
 <g id="a_node1"><a xlink:title="Weighting function based on the euclidean distance between a query and a reference position.">
-<polygon fill="#bfbfbf" stroke="black" points="0,-0.5 0,-211.5 158,-211.5 158,-0.5 0,-0.5"/>
+<polygon fill="#999999" stroke="#666666" points="0,-0.5 0,-211.5 158,-211.5 158,-0.5 0,-0.5"/>
 <text text-anchor="start" x="8" y="-199.5" font-family="Helvetica,sans-Serif" font-size="10.00">Ponca::DistWeightFunc</text>
 <text text-anchor="middle" x="79" y="-188.5" font-family="Helvetica,sans-Serif" font-size="10.00">&lt; DataPoint, WeightKernel &gt;</text>
-<polyline fill="none" stroke="black" points="0,-181.5 158,-181.5 "/>
+<polyline fill="none" stroke="#666666" points="0,-181.5 158,-181.5 "/>
 <text text-anchor="start" x="8" y="-169.5" font-family="Helvetica,sans-Serif" font-size="10.00"># m_t</text>
 <text text-anchor="start" x="8" y="-158.5" font-family="Helvetica,sans-Serif" font-size="10.00"># m_wk</text>
 <text text-anchor="start" x="8" y="-147.5" font-family="Helvetica,sans-Serif" font-size="10.00"># m_p</text>
-<polyline fill="none" stroke="black" points="0,-140.5 158,-140.5 "/>
+<polyline fill="none" stroke="#666666" points="0,-140.5 158,-140.5 "/>
 <text text-anchor="start" x="8" y="-128.5" font-family="Helvetica,sans-Serif" font-size="10.00">+ DistWeightFunc()</text>
 <text text-anchor="start" x="8" y="-117.5" font-family="Helvetica,sans-Serif" font-size="10.00">+ init()</text>
 <text text-anchor="start" x="8" y="-106.5" font-family="Helvetica,sans-Serif" font-size="10.00">+ basisCenter()</text>

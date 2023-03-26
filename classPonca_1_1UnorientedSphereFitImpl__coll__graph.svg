@@ -12,13 +12,13 @@
 <g id="node1" class="node">
 <title>Node1</title>
 <g id="a_node1"><a xlink:title="Algebraic Sphere fitting procedure on point sets with non&#45;oriented normals.">
-<polygon fill="#bfbfbf" stroke="black" points="34,-0.5 34,-123.5 212,-123.5 212,-0.5 34,-0.5"/>
+<polygon fill="#999999" stroke="#666666" points="34,-0.5 34,-123.5 212,-123.5 212,-0.5 34,-0.5"/>
 <text text-anchor="start" x="42" y="-111.5" font-family="Helvetica,sans-Serif" font-size="10.00">Ponca::UnorientedSphereFit</text>
 <text text-anchor="middle" x="123" y="-100.5" font-family="Helvetica,sans-Serif" font-size="10.00">Impl&lt; DataPoint, _WFunctor, T &gt;</text>
-<polyline fill="none" stroke="black" points="34,-93.5 212,-93.5 "/>
+<polyline fill="none" stroke="#666666" points="34,-93.5 212,-93.5 "/>
 <text text-anchor="start" x="42" y="-81.5" font-family="Helvetica,sans-Serif" font-size="10.00"># m_matA</text>
 <text text-anchor="start" x="42" y="-70.5" font-family="Helvetica,sans-Serif" font-size="10.00"># m_sumDotPP</text>
-<polyline fill="none" stroke="black" points="34,-63.5 212,-63.5 "/>
+<polyline fill="none" stroke="#666666" points="34,-63.5 212,-63.5 "/>
 <text text-anchor="start" x="42" y="-51.5" font-family="Helvetica,sans-Serif" font-size="10.00">+ unorientedSphereFit()</text>
 <text text-anchor="start" x="42" y="-40.5" font-family="Helvetica,sans-Serif" font-size="10.00">+ unorientedSphereFit()</text>
 <text text-anchor="start" x="42" y="-29.5" font-family="Helvetica,sans-Serif" font-size="10.00">+ init()</text>
@@ -31,7 +31,7 @@
 <g id="node2" class="node">
 <title>Node2</title>
 <g id="a_node2"><a xlink:title=" ">
-<polygon fill="none" stroke="#bfbfbf" points="0,-160.5 0,-228.5 142,-228.5 142,-160.5 0,-160.5"/>
+<polygon fill="white" stroke="#bfbfbf" points="0,-160.5 0,-228.5 142,-228.5 142,-160.5 0,-160.5"/>
 <text text-anchor="start" x="8" y="-216.5" font-family="Helvetica,sans-Serif" font-size="10.00">Concept::FittingProcedure</text>
 <text text-anchor="middle" x="71" y="-205.5" font-family="Helvetica,sans-Serif" font-size="10.00">Concept</text>
 <polyline fill="none" stroke="#bfbfbf" points="0,-198.5 142,-198.5 "/>
@@ -44,14 +44,14 @@
 <!-- Node2&#45;&gt;Node1 -->
 <g id="edge1" class="edge">
 <title>Node2&#45;&gt;Node1</title>
-<path fill="none" stroke="midnightblue" d="M88.04,-150.73C91.5,-142.05 95.2,-132.77 98.85,-123.61"/>
-<polygon fill="none" stroke="midnightblue" points="84.71,-149.65 84.26,-160.23 91.21,-152.24 84.71,-149.65"/>
+<path fill="none" stroke="#63b8ff" d="M88.04,-150.73C91.5,-142.05 95.2,-132.77 98.85,-123.61"/>
+<polygon fill="none" stroke="#63b8ff" points="84.71,-149.65 84.26,-160.23 91.21,-152.24 84.71,-149.65"/>
 </g>
 <!-- Node3 -->
 <g id="node3" class="node">
 <title>Node3</title>
 <g id="a_node3"><a xlink:title=" ">
-<polygon fill="none" stroke="#bfbfbf" points="160.5,-166 160.5,-223 189.5,-223 189.5,-166 160.5,-166"/>
+<polygon fill="white" stroke="#bfbfbf" points="160.5,-166 160.5,-223 189.5,-223 189.5,-166 160.5,-166"/>
 <text text-anchor="middle" x="175" y="-211" font-family="Helvetica,sans-Serif" font-size="10.00">T</text>
 <polyline fill="none" stroke="#bfbfbf" points="160.5,-204 189.5,-204 "/>
 <text text-anchor="middle" x="175" y="-192" font-family="Helvetica,sans-Serif" font-size="10.00"> </text>
@@ -63,8 +63,8 @@
 <!-- Node3&#45;&gt;Node1 -->
 <g id="edge2" class="edge">
 <title>Node3&#45;&gt;Node1</title>
-<path fill="none" stroke="midnightblue" d="M160.22,-156.42C156.15,-146.2 151.63,-134.84 147.17,-123.66"/>
-<polygon fill="none" stroke="midnightblue" points="157.02,-157.83 163.97,-165.82 163.52,-155.24 157.02,-157.83"/>
+<path fill="none" stroke="#63b8ff" d="M160.22,-156.42C156.15,-146.2 151.63,-134.84 147.17,-123.66"/>
+<polygon fill="none" stroke="#63b8ff" points="157.02,-157.83 163.97,-165.82 163.52,-155.24 157.02,-157.83"/>
 </g>
 </g>
 </svg>

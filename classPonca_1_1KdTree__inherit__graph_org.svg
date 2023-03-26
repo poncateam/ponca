@@ -12,15 +12,15 @@
 <g id="node1" class="node">
 <title>Node1</title>
 <g id="a_node1"><a xlink:title=" ">
-<polygon fill="#bfbfbf" stroke="black" points="0,-259.5 0,-470.5 161,-470.5 161,-259.5 0,-259.5"/>
+<polygon fill="#999999" stroke="#666666" points="0,-259.5 0,-470.5 161,-470.5 161,-259.5 0,-259.5"/>
 <text text-anchor="middle" x="80.5" y="-458.5" font-family="Helvetica,sans-Serif" font-size="10.00">Ponca::KdTree&lt; _DataPoint &gt;</text>
-<polyline fill="none" stroke="black" points="0,-451.5 161,-451.5 "/>
+<polyline fill="none" stroke="#666666" points="0,-451.5 161,-451.5 "/>
 <text text-anchor="start" x="8" y="-439.5" font-family="Helvetica,sans-Serif" font-size="10.00"># m_points</text>
 <text text-anchor="start" x="8" y="-428.5" font-family="Helvetica,sans-Serif" font-size="10.00"># m_nodes</text>
 <text text-anchor="start" x="8" y="-417.5" font-family="Helvetica,sans-Serif" font-size="10.00"># m_indices</text>
 <text text-anchor="start" x="8" y="-406.5" font-family="Helvetica,sans-Serif" font-size="10.00"># m_min_cell_size</text>
 <text text-anchor="start" x="8" y="-395.5" font-family="Helvetica,sans-Serif" font-size="10.00"># m_leaf_count</text>
-<polyline fill="none" stroke="black" points="0,-388.5 161,-388.5 "/>
+<polyline fill="none" stroke="#666666" points="0,-388.5 161,-388.5 "/>
 <text text-anchor="start" x="8" y="-376.5" font-family="Helvetica,sans-Serif" font-size="10.00">+ KdTree()</text>
 <text text-anchor="start" x="8" y="-365.5" font-family="Helvetica,sans-Serif" font-size="10.00">+ KdTree()</text>
 <text text-anchor="start" x="8" y="-354.5" font-family="Helvetica,sans-Serif" font-size="10.00">+ KdTree()</text>
@@ -39,15 +39,15 @@
 <g id="node2" class="node">
 <title>Node2</title>
 <g id="a_node2"><a xlink:href="classPonca_1_1KdTree.html" target="_top" xlink:title=" ">
-<polygon fill="none" stroke="black" points="3,-0.5 3,-211.5 158,-211.5 158,-0.5 3,-0.5"/>
+<polygon fill="white" stroke="#666666" points="3,-0.5 3,-211.5 158,-211.5 158,-0.5 3,-0.5"/>
 <text text-anchor="middle" x="80.5" y="-199.5" font-family="Helvetica,sans-Serif" font-size="10.00">Ponca::KdTree&lt; DataPoint &gt;</text>
-<polyline fill="none" stroke="black" points="3,-192.5 158,-192.5 "/>
+<polyline fill="none" stroke="#666666" points="3,-192.5 158,-192.5 "/>
 <text text-anchor="start" x="11" y="-180.5" font-family="Helvetica,sans-Serif" font-size="10.00"># m_points</text>
 <text text-anchor="start" x="11" y="-169.5" font-family="Helvetica,sans-Serif" font-size="10.00"># m_nodes</text>
 <text text-anchor="start" x="11" y="-158.5" font-family="Helvetica,sans-Serif" font-size="10.00"># m_indices</text>
 <text text-anchor="start" x="11" y="-147.5" font-family="Helvetica,sans-Serif" font-size="10.00"># m_min_cell_size</text>
 <text text-anchor="start" x="11" y="-136.5" font-family="Helvetica,sans-Serif" font-size="10.00"># m_leaf_count</text>
-<polyline fill="none" stroke="black" points="3,-129.5 158,-129.5 "/>
+<polyline fill="none" stroke="#666666" points="3,-129.5 158,-129.5 "/>
 <text text-anchor="start" x="11" y="-117.5" font-family="Helvetica,sans-Serif" font-size="10.00">+ KdTree()</text>
 <text text-anchor="start" x="11" y="-106.5" font-family="Helvetica,sans-Serif" font-size="10.00">+ KdTree()</text>
 <text text-anchor="start" x="11" y="-95.5" font-family="Helvetica,sans-Serif" font-size="10.00">+ KdTree()</text>

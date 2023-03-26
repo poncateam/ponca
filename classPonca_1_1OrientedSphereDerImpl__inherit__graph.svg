@@ -12,11 +12,11 @@
 <g id="node1" class="node">
 <title>Node1</title>
 <g id="a_node1"><a xlink:title="[OrientedSphereFit Definition]">
-<polygon fill="#bfbfbf" stroke="black" points="0,-0.5 0,-277.5 158,-277.5 158,-0.5 0,-0.5"/>
+<polygon fill="#999999" stroke="#666666" points="0,-0.5 0,-277.5 158,-277.5 158,-0.5 0,-0.5"/>
 <text text-anchor="start" x="8" y="-265.5" font-family="Helvetica,sans-Serif" font-size="10.00">Ponca::OrientedSphereDer</text>
 <text text-anchor="start" x="8" y="-254.5" font-family="Helvetica,sans-Serif" font-size="10.00">Impl&lt; DataPoint, _WFunctor,</text>
 <text text-anchor="middle" x="79" y="-243.5" font-family="Helvetica,sans-Serif" font-size="10.00"> DiffType, T &gt;</text>
-<polyline fill="none" stroke="black" points="0,-236.5 158,-236.5 "/>
+<polyline fill="none" stroke="#666666" points="0,-236.5 158,-236.5 "/>
 <text text-anchor="start" x="8" y="-224.5" font-family="Helvetica,sans-Serif" font-size="10.00">+ m_dUc</text>
 <text text-anchor="start" x="8" y="-213.5" font-family="Helvetica,sans-Serif" font-size="10.00">+ m_dUq</text>
 <text text-anchor="start" x="8" y="-202.5" font-family="Helvetica,sans-Serif" font-size="10.00">+ m_dUl</text>
@@ -25,7 +25,7 @@
 <text text-anchor="start" x="8" y="-169.5" font-family="Helvetica,sans-Serif" font-size="10.00"># m_dSumDotPP</text>
 <text text-anchor="start" x="8" y="-158.5" font-family="Helvetica,sans-Serif" font-size="10.00"># m_dNume</text>
 <text text-anchor="start" x="8" y="-147.5" font-family="Helvetica,sans-Serif" font-size="10.00"># m_dDeno</text>
-<polyline fill="none" stroke="black" points="0,-140.5 158,-140.5 "/>
+<polyline fill="none" stroke="#666666" points="0,-140.5 158,-140.5 "/>
 <text text-anchor="start" x="8" y="-128.5" font-family="Helvetica,sans-Serif" font-size="10.00">+ orientedSphereDer()</text>
 <text text-anchor="start" x="8" y="-117.5" font-family="Helvetica,sans-Serif" font-size="10.00">+ orientedSphereDer()</text>
 <text text-anchor="start" x="8" y="-106.5" font-family="Helvetica,sans-Serif" font-size="10.00">+ init()</text>
@@ -45,7 +45,7 @@
 <g id="node2" class="node">
 <title>Node2</title>
 <g id="a_node2"><a xlink:title=" ">
-<polygon fill="none" stroke="#bfbfbf" points="64.5,-314.5 64.5,-371.5 93.5,-371.5 93.5,-314.5 64.5,-314.5"/>
+<polygon fill="white" stroke="#bfbfbf" points="64.5,-314.5 64.5,-371.5 93.5,-371.5 93.5,-314.5 64.5,-314.5"/>
 <text text-anchor="middle" x="79" y="-359.5" font-family="Helvetica,sans-Serif" font-size="10.00">T</text>
 <polyline fill="none" stroke="#bfbfbf" points="64.5,-352.5 93.5,-352.5 "/>
 <text text-anchor="middle" x="79" y="-340.5" font-family="Helvetica,sans-Serif" font-size="10.00"> </text>
@@ -57,8 +57,8 @@
 <!-- Node2&#45;&gt;Node1 -->
 <g id="edge1" class="edge">
 <title>Node2&#45;&gt;Node1</title>
-<path fill="none" stroke="midnightblue" d="M79,-304.27C79,-296.18 79,-287.19 79,-277.7"/>
-<polygon fill="none" stroke="midnightblue" points="75.5,-304.34 79,-314.34 82.5,-304.34 75.5,-304.34"/>
+<path fill="none" stroke="#63b8ff" d="M79,-304.27C79,-296.18 79,-287.19 79,-277.7"/>
+<polygon fill="none" stroke="#63b8ff" points="75.5,-304.34 79,-314.34 82.5,-304.34 75.5,-304.34"/>
 </g>
 </g>
 </svg>

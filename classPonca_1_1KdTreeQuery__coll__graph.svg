@@ -58,12 +58,12 @@ var sectionId = 'dynsection-1';
 <g id="node1" class="node">
 <title>Node1</title>
 <g id="a_node1"><a xlink:title=" ">
-<polygon fill="#bfbfbf" stroke="black" points="395,-0.5 395,-79.5 509,-79.5 509,-0.5 395,-0.5"/>
+<polygon fill="#999999" stroke="#666666" points="395,-0.5 395,-79.5 509,-79.5 509,-0.5 395,-0.5"/>
 <text text-anchor="start" x="403" y="-67.5" font-family="Helvetica,sans-Serif" font-size="10.00">Ponca::KdTreeQuery</text>
 <text text-anchor="middle" x="452" y="-56.5" font-family="Helvetica,sans-Serif" font-size="10.00">&lt; DataPoint &gt;</text>
-<polyline fill="none" stroke="black" points="395,-49.5 509,-49.5 "/>
+<polyline fill="none" stroke="#666666" points="395,-49.5 509,-49.5 "/>
 <text text-anchor="middle" x="452" y="-37.5" font-family="Helvetica,sans-Serif" font-size="10.00"> </text>
-<polyline fill="none" stroke="black" points="395,-30.5 509,-30.5 "/>
+<polyline fill="none" stroke="#666666" points="395,-30.5 509,-30.5 "/>
 <text text-anchor="start" x="403" y="-18.5" font-family="Helvetica,sans-Serif" font-size="10.00">+ KdTreeQuery()</text>
 <text text-anchor="start" x="403" y="-7.5" font-family="Helvetica,sans-Serif" font-size="10.00"># reset()</text>
 </a>
@@ -73,12 +73,12 @@ var sectionId = 'dynsection-1';
 <g id="node2" class="node">
 <title>Node2</title>
 <g id="a_node2"><a xlink:href="classPonca_1_1KdTree.html" target="_top" xlink:title=" ">
-<polygon fill="none" stroke="black" points="514.5,-127.5 514.5,-305.5 669.5,-305.5 669.5,-127.5 514.5,-127.5"/>
+<polygon fill="white" stroke="#666666" points="514.5,-127.5 514.5,-305.5 669.5,-305.5 669.5,-127.5 514.5,-127.5"/>
 <text text-anchor="middle" x="592" y="-293.5" font-family="Helvetica,sans-Serif" font-size="10.00">Ponca::KdTree&lt; DataPoint &gt;</text>
-<polyline fill="none" stroke="black" points="514.5,-286.5 669.5,-286.5 "/>
+<polyline fill="none" stroke="#666666" points="514.5,-286.5 669.5,-286.5 "/>
 <text text-anchor="start" x="522.5" y="-274.5" font-family="Helvetica,sans-Serif" font-size="10.00"># m_min_cell_size</text>
 <text text-anchor="start" x="522.5" y="-263.5" font-family="Helvetica,sans-Serif" font-size="10.00"># m_leaf_count</text>
-<polyline fill="none" stroke="black" points="514.5,-256.5 669.5,-256.5 "/>
+<polyline fill="none" stroke="#666666" points="514.5,-256.5 669.5,-256.5 "/>
 <text text-anchor="start" x="522.5" y="-244.5" font-family="Helvetica,sans-Serif" font-size="10.00">+ KdTree()</text>
 <text text-anchor="start" x="522.5" y="-233.5" font-family="Helvetica,sans-Serif" font-size="10.00">+ KdTree()</text>
 <text text-anchor="start" x="522.5" y="-222.5" font-family="Helvetica,sans-Serif" font-size="10.00">+ KdTree()</text>
@@ -104,11 +104,11 @@ var sectionId = 'dynsection-1';
 <g id="node3" class="node">
 <title>Node3</title>
 <g id="a_node3"><a xlink:title=" ">
-<polygon fill="none" stroke="black" points="599.5,-618 599.5,-675 738.5,-675 738.5,-618 599.5,-618"/>
+<polygon fill="white" stroke="#666666" points="599.5,-618 599.5,-675 738.5,-675 738.5,-618 599.5,-618"/>
 <text text-anchor="middle" x="669" y="-663" font-family="Helvetica,sans-Serif" font-size="10.00">std::vector&lt; DataPoint &gt;</text>
-<polyline fill="none" stroke="black" points="599.5,-656 738.5,-656 "/>
+<polyline fill="none" stroke="#666666" points="599.5,-656 738.5,-656 "/>
 <text text-anchor="start" x="607.5" y="-644" font-family="Helvetica,sans-Serif" font-size="10.00">+ elements</text>
-<polyline fill="none" stroke="black" points="599.5,-637 738.5,-637 "/>
+<polyline fill="none" stroke="#666666" points="599.5,-637 738.5,-637 "/>
 <text text-anchor="middle" x="669" y="-625" font-family="Helvetica,sans-Serif" font-size="10.00"> </text>
 </a>
 </g>
@@ -124,12 +124,12 @@ var sectionId = 'dynsection-1';
 <g id="node8" class="node">
 <title>Node8</title>
 <g id="a_node8"><a xlink:href="classPonca_1_1KdTree.html" target="_top" xlink:title=" ">
-<polygon fill="none" stroke="black" points="667.5,-375.5 667.5,-553.5 828.5,-553.5 828.5,-375.5 667.5,-375.5"/>
+<polygon fill="white" stroke="#666666" points="667.5,-375.5 667.5,-553.5 828.5,-553.5 828.5,-375.5 667.5,-375.5"/>
 <text text-anchor="middle" x="748" y="-541.5" font-family="Helvetica,sans-Serif" font-size="10.00">Ponca::KdTree&lt; _DataPoint &gt;</text>
-<polyline fill="none" stroke="black" points="667.5,-534.5 828.5,-534.5 "/>
+<polyline fill="none" stroke="#666666" points="667.5,-534.5 828.5,-534.5 "/>
 <text text-anchor="start" x="675.5" y="-522.5" font-family="Helvetica,sans-Serif" font-size="10.00"># m_min_cell_size</text>
 <text text-anchor="start" x="675.5" y="-511.5" font-family="Helvetica,sans-Serif" font-size="10.00"># m_leaf_count</text>
-<polyline fill="none" stroke="black" points="667.5,-504.5 828.5,-504.5 "/>
+<polyline fill="none" stroke="#666666" points="667.5,-504.5 828.5,-504.5 "/>
 <text text-anchor="start" x="675.5" y="-492.5" font-family="Helvetica,sans-Serif" font-size="10.00">+ KdTree()</text>
 <text text-anchor="start" x="675.5" y="-481.5" font-family="Helvetica,sans-Serif" font-size="10.00">+ KdTree()</text>
 <text text-anchor="start" x="675.5" y="-470.5" font-family="Helvetica,sans-Serif" font-size="10.00">+ KdTree()</text>
@@ -155,11 +155,11 @@ var sectionId = 'dynsection-1';
 <g id="node4" class="node">
 <title>Node4</title>
 <g id="a_node4"><a xlink:title=" ">
-<polygon fill="none" stroke="black" points="575.5,-761.5 575.5,-818.5 672.5,-818.5 672.5,-761.5 575.5,-761.5"/>
+<polygon fill="white" stroke="#666666" points="575.5,-761.5 575.5,-818.5 672.5,-818.5 672.5,-761.5 575.5,-761.5"/>
 <text text-anchor="middle" x="624" y="-806.5" font-family="Helvetica,sans-Serif" font-size="10.00">std::vector&lt; T &gt;</text>
-<polyline fill="none" stroke="black" points="575.5,-799.5 672.5,-799.5 "/>
+<polyline fill="none" stroke="#666666" points="575.5,-799.5 672.5,-799.5 "/>
 <text text-anchor="middle" x="624" y="-787.5" font-family="Helvetica,sans-Serif" font-size="10.00"> </text>
-<polyline fill="none" stroke="black" points="575.5,-780.5 672.5,-780.5 "/>
+<polyline fill="none" stroke="#666666" points="575.5,-780.5 672.5,-780.5 "/>
 <text text-anchor="middle" x="624" y="-768.5" font-family="Helvetica,sans-Serif" font-size="10.00"> </text>
 </a>
 </g>
@@ -175,12 +175,12 @@ var sectionId = 'dynsection-1';
 <g id="node6" class="node">
 <title>Node6</title>
 <g id="a_node6"><a xlink:title=" ">
-<polygon fill="none" stroke="black" points="442,-612.5 442,-680.5 580,-680.5 580,-612.5 442,-612.5"/>
+<polygon fill="white" stroke="#666666" points="442,-612.5 442,-680.5 580,-680.5 580,-612.5 442,-612.5"/>
 <text text-anchor="start" x="450" y="-668.5" font-family="Helvetica,sans-Serif" font-size="10.00">std::vector&lt; KdTreeNode</text>
 <text text-anchor="middle" x="511" y="-657.5" font-family="Helvetica,sans-Serif" font-size="10.00">&lt; Scalar &gt; &gt;</text>
-<polyline fill="none" stroke="black" points="442,-650.5 580,-650.5 "/>
+<polyline fill="none" stroke="#666666" points="442,-650.5 580,-650.5 "/>
 <text text-anchor="start" x="450" y="-638.5" font-family="Helvetica,sans-Serif" font-size="10.00">+ elements</text>
-<polyline fill="none" stroke="black" points="442,-631.5 580,-631.5 "/>
+<polyline fill="none" stroke="#666666" points="442,-631.5 580,-631.5 "/>
 <text text-anchor="middle" x="511" y="-619.5" font-family="Helvetica,sans-Serif" font-size="10.00"> </text>
 </a>
 </g>
@@ -196,11 +196,11 @@ var sectionId = 'dynsection-1';
 <g id="node7" class="node">
 <title>Node7</title>
 <g id="a_node7"><a xlink:title=" ">
-<polygon fill="none" stroke="black" points="757,-618 757,-675 861,-675 861,-618 757,-618"/>
+<polygon fill="white" stroke="#666666" points="757,-618 757,-675 861,-675 861,-618 757,-618"/>
 <text text-anchor="middle" x="809" y="-663" font-family="Helvetica,sans-Serif" font-size="10.00">std::vector&lt; int &gt;</text>
-<polyline fill="none" stroke="black" points="757,-656 861,-656 "/>
+<polyline fill="none" stroke="#666666" points="757,-656 861,-656 "/>
 <text text-anchor="start" x="765" y="-644" font-family="Helvetica,sans-Serif" font-size="10.00">+ elements</text>
-<polyline fill="none" stroke="black" points="757,-637 861,-637 "/>
+<polyline fill="none" stroke="#666666" points="757,-637 861,-637 "/>
 <text text-anchor="middle" x="809" y="-625" font-family="Helvetica,sans-Serif" font-size="10.00"> </text>
 </a>
 </g>
@@ -216,7 +216,7 @@ var sectionId = 'dynsection-1';
 <g id="node5" class="node">
 <title>Node5</title>
 <g id="a_node5"><a xlink:title=" ">
-<polygon fill="none" stroke="#bfbfbf" points="432.5,-899.5 432.5,-956.5 461.5,-956.5 461.5,-899.5 432.5,-899.5"/>
+<polygon fill="white" stroke="#bfbfbf" points="432.5,-899.5 432.5,-956.5 461.5,-956.5 461.5,-899.5 432.5,-899.5"/>
 <text text-anchor="middle" x="447" y="-944.5" font-family="Helvetica,sans-Serif" font-size="10.00">T</text>
 <polyline fill="none" stroke="#bfbfbf" points="432.5,-937.5 461.5,-937.5 "/>
 <text text-anchor="middle" x="447" y="-925.5" font-family="Helvetica,sans-Serif" font-size="10.00"> </text>
@@ -236,11 +236,11 @@ var sectionId = 'dynsection-1';
 <g id="node13" class="node">
 <title>Node13</title>
 <g id="a_node13"><a xlink:title=" ">
-<polygon fill="none" stroke="black" points="319,-761.5 319,-818.5 411,-818.5 411,-761.5 319,-761.5"/>
+<polygon fill="white" stroke="#666666" points="319,-761.5 319,-818.5 411,-818.5 411,-761.5 319,-761.5"/>
 <text text-anchor="middle" x="365" y="-806.5" font-family="Helvetica,sans-Serif" font-size="10.00">std::array&lt; T &gt;</text>
-<polyline fill="none" stroke="black" points="319,-799.5 411,-799.5 "/>
+<polyline fill="none" stroke="#666666" points="319,-799.5 411,-799.5 "/>
 <text text-anchor="middle" x="365" y="-787.5" font-family="Helvetica,sans-Serif" font-size="10.00"> </text>
-<polyline fill="none" stroke="black" points="319,-780.5 411,-780.5 "/>
+<polyline fill="none" stroke="#666666" points="319,-780.5 411,-780.5 "/>
 <text text-anchor="middle" x="365" y="-768.5" font-family="Helvetica,sans-Serif" font-size="10.00"> </text>
 </a>
 </g>
@@ -256,11 +256,11 @@ var sectionId = 'dynsection-1';
 <g id="node15" class="node">
 <title>Node15</title>
 <g id="a_node15"><a xlink:title=" ">
-<polygon fill="none" stroke="black" points="318.5,-618 318.5,-675 423.5,-675 423.5,-618 318.5,-618"/>
+<polygon fill="white" stroke="#666666" points="318.5,-618 318.5,-675 423.5,-675 423.5,-618 318.5,-618"/>
 <text text-anchor="middle" x="371" y="-663" font-family="Helvetica,sans-Serif" font-size="10.00">std::array&lt; T, N &gt;</text>
-<polyline fill="none" stroke="black" points="318.5,-656 423.5,-656 "/>
+<polyline fill="none" stroke="#666666" points="318.5,-656 423.5,-656 "/>
 <text text-anchor="middle" x="371" y="-644" font-family="Helvetica,sans-Serif" font-size="10.00"> </text>
-<polyline fill="none" stroke="black" points="318.5,-637 423.5,-637 "/>
+<polyline fill="none" stroke="#666666" points="318.5,-637 423.5,-637 "/>
 <text text-anchor="middle" x="371" y="-625" font-family="Helvetica,sans-Serif" font-size="10.00"> </text>
 </a>
 </g>
@@ -311,14 +311,14 @@ var sectionId = 'dynsection-1';
 <g id="node9" class="node">
 <title>Node9</title>
 <g id="a_node9"><a xlink:href="classPonca_1_1Stack.html" target="_top" xlink:title=" ">
-<polygon fill="none" stroke="black" points="252,-127.5 252,-305.5 386,-305.5 386,-127.5 252,-127.5"/>
+<polygon fill="white" stroke="#666666" points="252,-127.5 252,-305.5 386,-305.5 386,-127.5 252,-127.5"/>
 <text text-anchor="start" x="260" y="-293.5" font-family="Helvetica,sans-Serif" font-size="10.00">Ponca::Stack&lt; Ponca</text>
 <text text-anchor="start" x="260" y="-282.5" font-family="Helvetica,sans-Serif" font-size="10.00">::IndexSquaredDistance</text>
 <text text-anchor="start" x="260" y="-271.5" font-family="Helvetica,sans-Serif" font-size="10.00">&lt; typename DataPoint::</text>
 <text text-anchor="middle" x="319" y="-260.5" font-family="Helvetica,sans-Serif" font-size="10.00">Scalar &gt;, 2 *32 &gt;</text>
-<polyline fill="none" stroke="black" points="252,-253.5 386,-253.5 "/>
+<polyline fill="none" stroke="#666666" points="252,-253.5 386,-253.5 "/>
 <text text-anchor="start" x="260" y="-241.5" font-family="Helvetica,sans-Serif" font-size="10.00"># m_size</text>
-<polyline fill="none" stroke="black" points="252,-234.5 386,-234.5 "/>
+<polyline fill="none" stroke="#666666" points="252,-234.5 386,-234.5 "/>
 <text text-anchor="start" x="260" y="-222.5" font-family="Helvetica,sans-Serif" font-size="10.00">+ Stack()</text>
 <text text-anchor="start" x="260" y="-211.5" font-family="Helvetica,sans-Serif" font-size="10.00">+ top()</text>
 <text text-anchor="start" x="260" y="-200.5" font-family="Helvetica,sans-Serif" font-size="10.00">+ top()</text>
@@ -342,14 +342,14 @@ var sectionId = 'dynsection-1';
 <g id="node10" class="node">
 <title>Node10</title>
 <g id="a_node10"><a xlink:title=" ">
-<polygon fill="none" stroke="black" points="105,-601.5 105,-691.5 233,-691.5 233,-601.5 105,-601.5"/>
+<polygon fill="white" stroke="#666666" points="105,-601.5 105,-691.5 233,-691.5 233,-601.5 105,-601.5"/>
 <text text-anchor="start" x="113" y="-679.5" font-family="Helvetica,sans-Serif" font-size="10.00">std::array&lt; Ponca::</text>
 <text text-anchor="start" x="113" y="-668.5" font-family="Helvetica,sans-Serif" font-size="10.00">IndexSquaredDistance</text>
 <text text-anchor="start" x="113" y="-657.5" font-family="Helvetica,sans-Serif" font-size="10.00">&lt; typename DataPoint</text>
 <text text-anchor="middle" x="169" y="-646.5" font-family="Helvetica,sans-Serif" font-size="10.00">::Scalar &gt;, N &gt;</text>
-<polyline fill="none" stroke="black" points="105,-639.5 233,-639.5 "/>
+<polyline fill="none" stroke="#666666" points="105,-639.5 233,-639.5 "/>
 <text text-anchor="middle" x="169" y="-627.5" font-family="Helvetica,sans-Serif" font-size="10.00"> </text>
-<polyline fill="none" stroke="black" points="105,-620.5 233,-620.5 "/>
+<polyline fill="none" stroke="#666666" points="105,-620.5 233,-620.5 "/>
 <text text-anchor="middle" x="169" y="-608.5" font-family="Helvetica,sans-Serif" font-size="10.00"> </text>
 </a>
 </g>
@@ -365,13 +365,13 @@ var sectionId = 'dynsection-1';
 <g id="node11" class="node">
 <title>Node11</title>
 <g id="a_node11"><a xlink:href="structPonca_1_1IndexSquaredDistance.html" target="_top" xlink:title=" ">
-<polygon fill="none" stroke="black" points="0,-750.5 0,-829.5 176,-829.5 176,-750.5 0,-750.5"/>
+<polygon fill="white" stroke="#666666" points="0,-750.5 0,-829.5 176,-829.5 176,-750.5 0,-750.5"/>
 <text text-anchor="start" x="8" y="-817.5" font-family="Helvetica,sans-Serif" font-size="10.00">Ponca::IndexSquaredDistance</text>
 <text text-anchor="middle" x="88" y="-806.5" font-family="Helvetica,sans-Serif" font-size="10.00">&lt; typename DataPoint::Scalar &gt;</text>
-<polyline fill="none" stroke="black" points="0,-799.5 176,-799.5 "/>
+<polyline fill="none" stroke="#666666" points="0,-799.5 176,-799.5 "/>
 <text text-anchor="start" x="8" y="-787.5" font-family="Helvetica,sans-Serif" font-size="10.00">+ index</text>
 <text text-anchor="start" x="8" y="-776.5" font-family="Helvetica,sans-Serif" font-size="10.00">+ squared_distance</text>
-<polyline fill="none" stroke="black" points="0,-769.5 176,-769.5 "/>
+<polyline fill="none" stroke="#666666" points="0,-769.5 176,-769.5 "/>
 <text text-anchor="start" x="8" y="-757.5" font-family="Helvetica,sans-Serif" font-size="10.00">+ operator&lt;()</text>
 </a>
 </g>
@@ -387,13 +387,13 @@ var sectionId = 'dynsection-1';
 <g id="node12" class="node">
 <title>Node12</title>
 <g id="a_node12"><a xlink:href="structPonca_1_1IndexSquaredDistance.html" target="_top" xlink:title="Associates an index with a distance.">
-<polygon fill="none" stroke="black" points="7.5,-888.5 7.5,-967.5 168.5,-967.5 168.5,-888.5 7.5,-888.5"/>
+<polygon fill="white" stroke="#666666" points="7.5,-888.5 7.5,-967.5 168.5,-967.5 168.5,-888.5 7.5,-888.5"/>
 <text text-anchor="start" x="15.5" y="-955.5" font-family="Helvetica,sans-Serif" font-size="10.00">Ponca::IndexSquaredDistance</text>
 <text text-anchor="middle" x="88" y="-944.5" font-family="Helvetica,sans-Serif" font-size="10.00">&lt; Scalar &gt;</text>
-<polyline fill="none" stroke="black" points="7.5,-937.5 168.5,-937.5 "/>
+<polyline fill="none" stroke="#666666" points="7.5,-937.5 168.5,-937.5 "/>
 <text text-anchor="start" x="15.5" y="-925.5" font-family="Helvetica,sans-Serif" font-size="10.00">+ index</text>
 <text text-anchor="start" x="15.5" y="-914.5" font-family="Helvetica,sans-Serif" font-size="10.00">+ squared_distance</text>
-<polyline fill="none" stroke="black" points="7.5,-907.5 168.5,-907.5 "/>
+<polyline fill="none" stroke="#666666" points="7.5,-907.5 168.5,-907.5 "/>
 <text text-anchor="start" x="15.5" y="-895.5" font-family="Helvetica,sans-Serif" font-size="10.00">+ operator&lt;()</text>
 </a>
 </g>
@@ -425,11 +425,11 @@ var sectionId = 'dynsection-1';
 <g id="node14" class="node">
 <title>Node14</title>
 <g id="a_node14"><a xlink:href="classPonca_1_1Stack.html" target="_top" xlink:title="Stack with fixed&#45;size storage.">
-<polygon fill="none" stroke="black" points="280.5,-392 280.5,-537 401.5,-537 401.5,-392 280.5,-392"/>
+<polygon fill="white" stroke="#666666" points="280.5,-392 280.5,-537 401.5,-537 401.5,-392 280.5,-392"/>
 <text text-anchor="middle" x="341" y="-525" font-family="Helvetica,sans-Serif" font-size="10.00">Ponca::Stack&lt; T, N &gt;</text>
-<polyline fill="none" stroke="black" points="280.5,-518 401.5,-518 "/>
+<polyline fill="none" stroke="#666666" points="280.5,-518 401.5,-518 "/>
 <text text-anchor="start" x="288.5" y="-506" font-family="Helvetica,sans-Serif" font-size="10.00"># m_size</text>
-<polyline fill="none" stroke="black" points="280.5,-499 401.5,-499 "/>
+<polyline fill="none" stroke="#666666" points="280.5,-499 401.5,-499 "/>
 <text text-anchor="start" x="288.5" y="-487" font-family="Helvetica,sans-Serif" font-size="10.00">+ Stack()</text>
 <text text-anchor="start" x="288.5" y="-476" font-family="Helvetica,sans-Serif" font-size="10.00">+ top()</text>
 <text text-anchor="start" x="288.5" y="-465" font-family="Helvetica,sans-Serif" font-size="10.00">+ top()</text>

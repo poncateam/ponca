@@ -12,12 +12,12 @@
 <g id="node1" class="node">
 <title>Node1</title>
 <g id="a_node1"><a xlink:title="Stack with fixed&#45;size storage.">
-<polygon fill="#bfbfbf" stroke="black" points="6.5,-259.5 6.5,-415.5 127.5,-415.5 127.5,-259.5 6.5,-259.5"/>
+<polygon fill="#999999" stroke="#666666" points="6.5,-259.5 6.5,-415.5 127.5,-415.5 127.5,-259.5 6.5,-259.5"/>
 <text text-anchor="middle" x="67" y="-403.5" font-family="Helvetica,sans-Serif" font-size="10.00">Ponca::Stack&lt; T, N &gt;</text>
-<polyline fill="none" stroke="black" points="6.5,-396.5 127.5,-396.5 "/>
+<polyline fill="none" stroke="#666666" points="6.5,-396.5 127.5,-396.5 "/>
 <text text-anchor="start" x="14.5" y="-384.5" font-family="Helvetica,sans-Serif" font-size="10.00"># m_size</text>
 <text text-anchor="start" x="14.5" y="-373.5" font-family="Helvetica,sans-Serif" font-size="10.00"># m_data</text>
-<polyline fill="none" stroke="black" points="6.5,-366.5 127.5,-366.5 "/>
+<polyline fill="none" stroke="#666666" points="6.5,-366.5 127.5,-366.5 "/>
 <text text-anchor="start" x="14.5" y="-354.5" font-family="Helvetica,sans-Serif" font-size="10.00">+ Stack()</text>
 <text text-anchor="start" x="14.5" y="-343.5" font-family="Helvetica,sans-Serif" font-size="10.00">+ top()</text>
 <text text-anchor="start" x="14.5" y="-332.5" font-family="Helvetica,sans-Serif" font-size="10.00">+ top()</text>
@@ -34,15 +34,15 @@
 <g id="node2" class="node">
 <title>Node2</title>
 <g id="a_node2"><a xlink:href="classPonca_1_1Stack.html" target="_top" xlink:title=" ">
-<polygon fill="none" stroke="black" points="0,-0.5 0,-189.5 134,-189.5 134,-0.5 0,-0.5"/>
+<polygon fill="white" stroke="#666666" points="0,-0.5 0,-189.5 134,-189.5 134,-0.5 0,-0.5"/>
 <text text-anchor="start" x="8" y="-177.5" font-family="Helvetica,sans-Serif" font-size="10.00">Ponca::Stack&lt; Ponca</text>
 <text text-anchor="start" x="8" y="-166.5" font-family="Helvetica,sans-Serif" font-size="10.00">::IndexSquaredDistance</text>
 <text text-anchor="start" x="8" y="-155.5" font-family="Helvetica,sans-Serif" font-size="10.00">&lt; typename DataPoint::</text>
 <text text-anchor="middle" x="67" y="-144.5" font-family="Helvetica,sans-Serif" font-size="10.00">Scalar &gt;, 2 *32 &gt;</text>
-<polyline fill="none" stroke="black" points="0,-137.5 134,-137.5 "/>
+<polyline fill="none" stroke="#666666" points="0,-137.5 134,-137.5 "/>
 <text text-anchor="start" x="8" y="-125.5" font-family="Helvetica,sans-Serif" font-size="10.00"># m_size</text>
 <text text-anchor="start" x="8" y="-114.5" font-family="Helvetica,sans-Serif" font-size="10.00"># m_data</text>
-<polyline fill="none" stroke="black" points="0,-107.5 134,-107.5 "/>
+<polyline fill="none" stroke="#666666" points="0,-107.5 134,-107.5 "/>
 <text text-anchor="start" x="8" y="-95.5" font-family="Helvetica,sans-Serif" font-size="10.00">+ Stack()</text>
 <text text-anchor="start" x="8" y="-84.5" font-family="Helvetica,sans-Serif" font-size="10.00">+ top()</text>
 <text text-anchor="start" x="8" y="-73.5" font-family="Helvetica,sans-Serif" font-size="10.00">+ top()</text>

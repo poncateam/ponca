@@ -12,17 +12,17 @@
 <g id="node1" class="node">
 <title>Node1</title>
 <g id="a_node1"><a xlink:title="Extension to compute curvature values based on a covariance analysis of normal vectors of neighbors p...">
-<polygon fill="#bfbfbf" stroke="black" points="0,-0.5 0,-189.5 188,-189.5 188,-0.5 0,-0.5"/>
+<polygon fill="#999999" stroke="#666666" points="0,-0.5 0,-189.5 188,-189.5 188,-0.5 0,-0.5"/>
 <text text-anchor="start" x="8" y="-177.5" font-family="Helvetica,sans-Serif" font-size="10.00">Ponca::ProjectedNormalCovariance</text>
 <text text-anchor="start" x="8" y="-166.5" font-family="Helvetica,sans-Serif" font-size="10.00">CurvatureEstimator&lt; DataPoint,</text>
 <text text-anchor="middle" x="94" y="-155.5" font-family="Helvetica,sans-Serif" font-size="10.00"> _WFunctor, DiffType, T &gt;</text>
-<polyline fill="none" stroke="black" points="0,-148.5 188,-148.5 "/>
+<polyline fill="none" stroke="#666666" points="0,-148.5 188,-148.5 "/>
 <text text-anchor="start" x="8" y="-136.5" font-family="Helvetica,sans-Serif" font-size="10.00"># m_cog</text>
 <text text-anchor="start" x="8" y="-125.5" font-family="Helvetica,sans-Serif" font-size="10.00"># m_cov</text>
 <text text-anchor="start" x="8" y="-114.5" font-family="Helvetica,sans-Serif" font-size="10.00"># m_solver</text>
 <text text-anchor="start" x="8" y="-103.5" font-family="Helvetica,sans-Serif" font-size="10.00"># m_pass</text>
 <text text-anchor="start" x="8" y="-92.5" font-family="Helvetica,sans-Serif" font-size="10.00"># m_tframe</text>
-<polyline fill="none" stroke="black" points="0,-85.5 188,-85.5 "/>
+<polyline fill="none" stroke="#666666" points="0,-85.5 188,-85.5 "/>
 <text text-anchor="start" x="8" y="-73.5" font-family="Helvetica,sans-Serif" font-size="10.00">+ projectedNormalCovariance</text>
 <text text-anchor="start" x="8" y="-62.5" font-family="Helvetica,sans-Serif" font-size="10.00">Curvature()</text>
 <text text-anchor="start" x="8" y="-51.5" font-family="Helvetica,sans-Serif" font-size="10.00">+ projectedNormalCovariance</text>
@@ -37,7 +37,7 @@
 <g id="node2" class="node">
 <title>Node2</title>
 <g id="a_node2"><a xlink:title=" ">
-<polygon fill="none" stroke="#bfbfbf" points="79.5,-226.5 79.5,-283.5 108.5,-283.5 108.5,-226.5 79.5,-226.5"/>
+<polygon fill="white" stroke="#bfbfbf" points="79.5,-226.5 79.5,-283.5 108.5,-283.5 108.5,-226.5 79.5,-226.5"/>
 <text text-anchor="middle" x="94" y="-271.5" font-family="Helvetica,sans-Serif" font-size="10.00">T</text>
 <polyline fill="none" stroke="#bfbfbf" points="79.5,-264.5 108.5,-264.5 "/>
 <text text-anchor="middle" x="94" y="-252.5" font-family="Helvetica,sans-Serif" font-size="10.00"> </text>
@@ -49,8 +49,8 @@
 <!-- Node2&#45;&gt;Node1 -->
 <g id="edge1" class="edge">
 <title>Node2&#45;&gt;Node1</title>
-<path fill="none" stroke="midnightblue" d="M94,-216.22C94,-208.01 94,-198.99 94,-189.68"/>
-<polygon fill="none" stroke="midnightblue" points="90.5,-216.48 94,-226.48 97.5,-216.48 90.5,-216.48"/>
+<path fill="none" stroke="#63b8ff" d="M94,-216.22C94,-208.01 94,-198.99 94,-189.68"/>
+<polygon fill="none" stroke="#63b8ff" points="90.5,-216.48 94,-226.48 97.5,-216.48 90.5,-216.48"/>
 </g>
 </g>
 </svg>
