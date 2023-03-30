@@ -90,11 +90,16 @@ template<typename Scalar, template <typename > class KernelT>
 void callSubTests()
 {
     typedef Eigen::AutoDiffScalar<Eigen::Matrix<Scalar,1,1>> ScalarDiff;
-
     typedef KernelT<Scalar> Kernel;
-    typedef KernelT<ScalarDiff> KernelAutoDiff;
-
     CALL_SUBTEST(( testFunction<Kernel>() ));
+
+    cout << "ok" << endl;
+}
+template<typename Scalar, template <typename > class KernelT>
+void callAutoDiffSubTests()
+{
+    typedef Eigen::AutoDiffScalar<Eigen::Matrix<Scalar,1,1>> ScalarDiff;
+    typedef KernelT<ScalarDiff> KernelAutoDiff;
     CALL_SUBTEST(( testFunctionAutoDiff<KernelAutoDiff>() ));
 
     cout << "ok" << endl;
@@ -108,14 +113,18 @@ int main(int argc, char** argv)
     }
 
     cout << "Verify smooth weight kernel derivatives" << endl;
-
     callSubTests<long double, SmoothWeightKernel>();
+    callAutoDiffSubTests<long double, SmoothWeightKernel>();
 
     cout << "Verify Wendland weight kernel derivatives" << endl;
-
     callSubTests<long double, WendlandWeightKernel>();
+    callAutoDiffSubTests<long double, SmoothWeightKernel>();
 
     cout << "Verify singular weight kernel derivatives" << endl;
-
     callSubTests<long double, SingularWeightKernel>();
+    callAutoDiffSubTests<long double, SmoothWeightKernel>();
+
+    cout << "Verify Compact Exponential weight kernel derivatives" << endl;
+    callSubTests<long double, CompactExpWeightKernel>();
+    /// autodiffs are not compatible with pow, used in this class
 }
