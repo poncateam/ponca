@@ -166,6 +166,8 @@ var hierarchy =
     ] ],
     [ "Concept::WeightKernelConcept", null, [
       [ "Ponca::ConstantWeightKernel< _Scalar >", "classPonca_1_1ConstantWeightKernel.html", null ],
-      [ "Ponca::SmoothWeightKernel< _Scalar >", "classPonca_1_1SmoothWeightKernel.html", null ]
+      [ "Ponca::SingularWeightKernel< _Scalar >", "classPonca_1_1SingularWeightKernel.html", null ],
+      [ "Ponca::SmoothWeightKernel< _Scalar >", "classPonca_1_1SmoothWeightKernel.html", null ],
+      [ "Ponca::WendlandWeightKernel< _Scalar >", "classPonca_1_1WendlandWeightKernel.html", null ]
     ] ]
 ];

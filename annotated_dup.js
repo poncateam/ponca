@@ -59,9 +59,11 @@ var annotated_dup =
       [ "QueryOutputIsRange", "group__spatialpartitioning.html#structPonca_1_1QueryOutputIsRange", "group__spatialpartitioning_structPonca_1_1QueryOutputIsRange" ],
       [ "RangeIndexQuery", "group__spatialpartitioning.html#structPonca_1_1RangeIndexQuery", null ],
       [ "RangePointQuery", "group__spatialpartitioning.html#structPonca_1_1RangePointQuery", null ],
+      [ "SingularWeightKernel", "classPonca_1_1SingularWeightKernel.html", "classPonca_1_1SingularWeightKernel" ],
       [ "SmoothWeightKernel", "classPonca_1_1SmoothWeightKernel.html", "classPonca_1_1SmoothWeightKernel" ],
       [ "SphereFitImpl", "classPonca_1_1SphereFitImpl.html", "classPonca_1_1SphereFitImpl" ],
       [ "Stack", "classPonca_1_1Stack.html", "classPonca_1_1Stack" ],
-      [ "UnorientedSphereFitImpl", "classPonca_1_1UnorientedSphereFitImpl.html", "classPonca_1_1UnorientedSphereFitImpl" ]
+      [ "UnorientedSphereFitImpl", "classPonca_1_1UnorientedSphereFitImpl.html", "classPonca_1_1UnorientedSphereFitImpl" ],
+      [ "WendlandWeightKernel", "classPonca_1_1WendlandWeightKernel.html", "classPonca_1_1WendlandWeightKernel" ]
     ] ]
 ];

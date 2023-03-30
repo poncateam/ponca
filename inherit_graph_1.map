@@ -1,5 +1,7 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="node1" title=" " alt="" coords="5,45,228,70"/>
-<area shape="rect" id="node2" href="$classPonca_1_1ConstantWeightKernel.html" title="Concept::WeightKernelConcept returning a constant value." alt="" coords="276,5,489,45"/>
-<area shape="rect" id="node3" href="$classPonca_1_1SmoothWeightKernel.html" title="Smooth WeightKernel defined in ." alt="" coords="280,69,485,109"/>
+<area shape="rect" id="node1" title=" " alt="" coords="5,109,228,134"/>
+<area shape="rect" id="node2" href="$classPonca_1_1ConstantWeightKernel.html" title="Concept::WeightKernelConcept returning a constant value." alt="" coords="279,5,492,45"/>
+<area shape="rect" id="node3" href="$classPonca_1_1SingularWeightKernel.html" title="Singular WeightKernel defined in ." alt="" coords="281,69,489,109"/>
+<area shape="rect" id="node4" href="$classPonca_1_1SmoothWeightKernel.html" title="Smooth WeightKernel defined in ." alt="" coords="283,133,488,173"/>
+<area shape="rect" id="node5" href="$classPonca_1_1WendlandWeightKernel.html" title="Wendland WeightKernel defined in ." alt="" coords="276,197,495,237"/>
 </map>
