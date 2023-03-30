@@ -68,4 +68,69 @@ public:
     PONCA_MULTIARCH inline Scalar ddf(const Scalar& _x) const { return Scalar(12.)*_x*_x - Scalar(4.); }
 };//class SmoothWeightKernel
 
+
+/*!
+    \brief Wendland WeightKernel defined in \f$\left[0 : 1\right]\f$
+
+    \inherit Concept::WeightKernelConcept
+
+    Weight function is an implementation of equation 2 in \cite Alexa:2009:Hermite
+*/
+
+template <typename _Scalar>
+class WendlandWeightKernel
+{
+public:
+    /*! \brief Scalar type defined outside the class*/
+    typedef _Scalar Scalar;
+
+    // Functor
+    /*! \brief Defines the Wendland weighting function \f$ w(x) = (1-x)^4(4x+1) \f$ */
+    PONCA_MULTIARCH inline Scalar f  (const Scalar& _x) const {
+        const Scalar v = Scalar(1.) - _x;
+        return v * v * v * v * ((Scalar(4.) * _x) + Scalar(1.));
+    }
+    /*! \brief Defines the Wendland first order weighting function \f$ \nabla w(x) = 20x * (x−1)^3 \f$ */
+    PONCA_MULTIARCH inline Scalar df (const Scalar& _x) const {
+        const Scalar v = _x - Scalar(1.);
+        return Scalar(20.) * _x * v * v * v;
+    }
+    /*! \brief Defines the Wendland second order weighting function \f$ \nabla^2 w(x) = (x−1)^2 * (80x−20) \f$ */
+    PONCA_MULTIARCH inline Scalar ddf(const Scalar& _x) const {
+        const Scalar v = _x - Scalar(1.);
+        return v * v * (Scalar(80.) * _x - Scalar(20));
+    }
+};//class WendlandWeightKernel
+
+
+/*!
+    \brief Singular WeightKernel defined in \f$\left[0 : 1\right]\f$
+
+    \inherit Concept::WeightKernelConcept
+
+    Weight function is an implementation of an unnumbered equation but defined in the Appendices in \cite Alexa:2009:Hermite
+*/
+
+template <typename _Scalar>
+class SingularWeightKernel
+{
+public:
+    /*! \brief Scalar type defined outside the class*/
+    typedef _Scalar Scalar;
+
+    // Functor
+    /*! \brief Defines the Singular weighting function \f$ w(x) = 1 / (x^2) \f$ */
+    PONCA_MULTIARCH inline Scalar f  (const Scalar& _x) const {
+        return Scalar(1.) / (_x * _x);
+    }
+    /*! \brief Defines the Singular first order weighting function \f$ \nabla w(x) = -2 / (x^3) \f$ */
+    PONCA_MULTIARCH inline Scalar df (const Scalar& _x) const {
+        return Scalar(-2.) / (_x * _x * _x);
+    }
+    /*! \brief Defines the Singular second order weighting function \f$ \nabla^2 w(x) = 6 / (x^4) \f$ */
+    PONCA_MULTIARCH inline Scalar ddf(const Scalar& _x) const {
+        return Scalar(6.) / (_x * _x * _x * _x);
+    }
+};//class SingularWeightKernel
+
 }// namespace Ponca

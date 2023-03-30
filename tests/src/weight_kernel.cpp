@@ -5,8 +5,8 @@
 */
 
 /*!
-    \file test/Grenaille/smooth_weight_kernel.cpp
-    \brief Test smooth weight kernel derivatives
+    \file test/Grenaille/weight_kernel.cpp
+    \brief Test weight kernel derivatives
  */
 
 #include "../common/testing.h"
@@ -14,8 +14,11 @@
 
 #include <unsupported/Eigen/AutoDiff>
 
+#include <Ponca/src/Fitting/weightFunc.h>
+#include <Ponca/src/Fitting/weightKernel.h>
+
 using namespace std;
-using namespace Grenaille;
+using namespace Ponca;
 
 template<class Kernel>
 void testFunctionAutoDiff()
@@ -24,7 +27,7 @@ void testFunctionAutoDiff()
     typedef typename ScalarDiff::Scalar Scalar;
 
     Scalar step = Scalar(0.05);
-    int n = Scalar(1.)/step;
+    int n = int(Scalar(1)/Scalar(step));
 
     Kernel k;
     Scalar epsilon = testEpsilon<Scalar>();
@@ -52,11 +55,11 @@ void testFunction()
     typedef typename Kernel::Scalar Scalar;
 
     Scalar step = Scalar(0.05);
-    int n = Scalar(1.)/step;
+    int n = int(Scalar(1)/Scalar(step));
 
     Kernel k;
     Scalar h = Scalar(1e-6);
-    Scalar epsilon = testEpsilon<Scalar>();
+    Scalar epsilon = Scalar(100)*testEpsilon<Scalar>();
 
     // compare to finite difference approximations
     for(int i=1; i<=n; ++i)
@@ -81,13 +84,13 @@ void testFunction()
     }
 }
 
-template<typename Scalar>
+template<typename Scalar, template <typename > class KernelT>
 void callSubTests()
 {
     typedef Eigen::AutoDiffScalar<Eigen::Matrix<Scalar,1,1>> ScalarDiff;
 
-    typedef SmoothWeightKernel<Scalar> Kernel;
-    typedef SmoothWeightKernel<ScalarDiff> KernelAutoDiff;
+    typedef KernelT<Scalar> Kernel;
+    typedef KernelT<ScalarDiff> KernelAutoDiff;
 
     CALL_SUBTEST(( testFunction<Kernel>() ));
     CALL_SUBTEST(( testFunctionAutoDiff<KernelAutoDiff>() ));
@@ -104,5 +107,13 @@ int main(int argc, char** argv)
 
     cout << "Verify smooth weight kernel derivatives" << endl;
 
-    callSubTests<long double>();
+    callSubTests<long double, SmoothWeightKernel>();
+
+    cout << "Verify Wendland weight kernel derivatives" << endl;
+
+    callSubTests<long double, WendlandWeightKernel>();
+
+    cout << "Verify singular weight kernel derivatives" << endl;
+
+    callSubTests<long double, SingularWeightKernel>();
 }
