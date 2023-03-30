@@ -27,6 +27,7 @@ typename DistWeightFunc<DataPoint, WeightKernel>::VectorType
 DistWeightFunc<DataPoint, WeightKernel>::spacedw(   const VectorType& _q, 
 						                            const DataPoint&) const
 {
+    static_assert(WeightKernel::isDValid, "First order derivatives are required");
     VectorType result = VectorType::Zero();
     VectorType q = convertToLocalBasis(_q);
     Scalar d = q.norm();
@@ -39,6 +40,7 @@ typename DistWeightFunc<DataPoint, WeightKernel>::MatrixType
 DistWeightFunc<DataPoint, WeightKernel>::spaced2w(   const VectorType& _q,
                                                      const DataPoint&) const
 {
+    static_assert(WeightKernel::isDDValid, "Second order derivatives are required");
     MatrixType result = MatrixType::Zero();
     VectorType q = convertToLocalBasis(_q);
     Scalar d = q.norm();
@@ -57,6 +59,7 @@ typename DistWeightFunc<DataPoint, WeightKernel>::Scalar
 DistWeightFunc<DataPoint, WeightKernel>::scaledw(   const VectorType& _q, 
 						                            const DataPoint&) const
 {
+    static_assert(WeightKernel::isDValid, "First order derivatives are required");
     Scalar d  = convertToLocalBasis(_q).norm();
     return (d <= m_t) ? Scalar( - d*m_wk.df(d/m_t)/(m_t*m_t) ) : Scalar(0.);
 }
@@ -66,6 +69,7 @@ typename DistWeightFunc<DataPoint, WeightKernel>::Scalar
 DistWeightFunc<DataPoint, WeightKernel>::scaled2w(   const VectorType& _q,
                                                      const DataPoint&) const
 {
+    static_assert(WeightKernel::isDDValid, "Second order derivatives are required");
     Scalar d  = convertToLocalBasis(_q).norm();
     return (d <= m_t) ? Scalar(Scalar(2.)*d/(m_t*m_t*m_t)*m_wk.df(d/m_t) +
                                d*d/(m_t*m_t*m_t*m_t)*m_wk.ddf(d/m_t)) :
@@ -77,6 +81,7 @@ typename DistWeightFunc<DataPoint, WeightKernel>::VectorType
 DistWeightFunc<DataPoint, WeightKernel>::scaleSpaced2w(   const VectorType& _q,
                                                           const DataPoint&) const
 {
+    static_assert(WeightKernel::isDDValid, "Second order derivatives are required");
     VectorType result = VectorType::Zero();
     VectorType q = convertToLocalBasis(_q);
     Scalar d = q.norm();

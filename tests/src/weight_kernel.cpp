@@ -70,17 +70,19 @@ void testFunction()
         Scalar fr   = k.f(a+h);
         Scalar fl   = k.f(a-h);
 
-        Scalar df   = k.df(a);
-        Scalar ddf  = k.ddf(a);
+        if (k.isDValid){ // test first order derivative
+            Scalar df   = k.df(a);
+            Scalar df_  = (fr - fl)/(Scalar(2.)*h);
+            Scalar diff1 = std::abs(df-df_);
+            VERIFY(diff1 < epsilon);
+        }
 
-        Scalar df_  = (fr - fl)/(Scalar(2.)*h);
-        Scalar ddf_ = (fr - Scalar(2.)*f + fl)/(h*h);
-
-        Scalar diff1 = std::abs(df-df_);
-        Scalar diff2 = std::abs(ddf-ddf_);
-
-        VERIFY(diff1 < epsilon);
-        VERIFY(diff2 < epsilon);
+        if (k.isDDValid){
+            Scalar ddf  = k.ddf(a);
+            Scalar ddf_ = (fr - Scalar(2.)*f + fl)/(h*h);
+            Scalar diff2 = std::abs(ddf-ddf_);
+            VERIFY(diff2 < epsilon);
+        }
     }
 }
 

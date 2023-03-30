@@ -41,6 +41,11 @@ public:
     //! \brief Return \f$ 0 \f$
     PONCA_MULTIARCH inline Scalar ddf(const Scalar&) const { return Scalar(0.); }
 
+    //! \brief #df is defined and valid on the definition interval
+    static constexpr bool isDValid = true;
+    //! \brief #ddf is defined and valid on the definition interval
+    static constexpr bool isDDValid = true;
+
 private:
     Scalar m_y; /*!< \brief Constant value returned by the kernel */
 };// class ConstantWeightKernel
@@ -66,6 +71,10 @@ public:
     PONCA_MULTIARCH inline Scalar df (const Scalar& _x) const { return Scalar(4.)*_x*(_x*_x-Scalar(1.)); }
     /*! \brief Defines the smooth second order weighting function \f$ \nabla^2 w(x) = 12x^2-4 \f$ */
     PONCA_MULTIARCH inline Scalar ddf(const Scalar& _x) const { return Scalar(12.)*_x*_x - Scalar(4.); }
+    //! \brief #df is defined and valid on the definition interval
+    static constexpr bool isDValid = true;
+    //! \brief #ddf is defined and valid on the definition interval
+    static constexpr bool isDDValid = true;
 };//class SmoothWeightKernel
 
 
@@ -100,6 +109,10 @@ public:
         const Scalar v = _x - Scalar(1.);
         return v * v * (Scalar(80.) * _x - Scalar(20));
     }
+    //! \brief #df is defined and valid on the definition interval
+    static constexpr bool isDValid = true;
+    //! \brief #ddf is defined and valid on the definition interval
+    static constexpr bool isDDValid = true;
 };//class WendlandWeightKernel
 
 
@@ -131,6 +144,10 @@ public:
     PONCA_MULTIARCH inline Scalar ddf(const Scalar& _x) const {
         return Scalar(6.) / (_x * _x * _x * _x);
     }
+    //! \brief #df is defined and valid on the definition interval
+    static constexpr bool isDValid = true;
+    //! \brief #ddf is defined and valid on the definition interval
+    static constexpr bool isDDValid = true;
 };//class SingularWeightKernel
 
 

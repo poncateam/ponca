@@ -94,6 +94,8 @@ public:
         where \f$ \left|\mathbf{q}_\mathsf{x}\right| \f$ represents the norm of the
         query coordinates expressed in centered basis,
         for each spatial dimensions \f$ \mathsf{x}\f$.
+
+        \warning Requires \f$\nabla w(x)\f$ to be valid
     */
     PONCA_MULTIARCH inline VectorType spacedw(const VectorType& _q,
         const DataPoint&  /*attributes*/) const;
@@ -114,6 +116,8 @@ public:
         where \f$ \left|\mathbf{q}_\mathsf{x}\right| \f$ represents the norm of the
         query coordinates expressed in centered basis,
         for each spatial dimensions \f$ \mathsf{x}\f$.
+
+        \warning Requires \f$\nabla^2 w(x)\f$ to be valid
     */
     PONCA_MULTIARCH inline MatrixType spaced2w(const VectorType& _q,
         const DataPoint&  /*attributes*/) const;
@@ -127,6 +131,8 @@ public:
 
         where \f$ \left|\mathbf{q}\right| \f$ represents the norm of the
         query coordinates expressed in centered basis.
+
+        \warning Requires \f$\nabla w(x)\f$ to be valid
     */
     PONCA_MULTIARCH inline Scalar scaledw(const VectorType& _q,
         const DataPoint&  /*attributes*/) const;
@@ -144,6 +150,8 @@ public:
 
         where \f$ \left|\mathbf{q}\right| \f$ represents the norm of the
         query coordinates expressed in centered basis.
+
+        \warning Requires \f$\nabla^2 w(x)\f$ to be valid
     */
     PONCA_MULTIARCH inline Scalar scaled2w(const VectorType& _q,
         const DataPoint&  /*attributes*/) const;
@@ -162,6 +170,8 @@ public:
 
         where \f$ \left|\mathbf{q}_\mathsf{x}\right| \f$ represents the norm of the
         query coordinates expressed in centered basis.
+
+        \warning Requires \f$\nabla^2 w(x)\f$ to be valid
     */
     PONCA_MULTIARCH inline VectorType scaleSpaced2w(const VectorType& _q,
         const DataPoint&  /*attributes*/) const;
