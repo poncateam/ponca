@@ -19,10 +19,12 @@ namespace Ponca
 /*! \brief Namespace used for structure or classes used internally by the lib */
 namespace internal
 {
-    /*! \brief Internal class used to build the Basket structure */
-    template <class, class, typename T> class Forward: public T {};
     /*! \brief Internal class used to build the BasketDiff structure */
-    template <class, class, int Type, typename T> class ForwardDiff: public T {};
+    template <class, class, int Type, typename T> struct FwdD: public T {};
+    /*! \brief Internal class used to build the Basket structure */
+    template <class P, class W, typename T> struct Fwd: public T {
+        template <class _p, class _w, int _dt, typename _t> using AutoDiff = FwdD<_p, _w, _dt, _t>;
+    };
 }
 #endif
 
@@ -74,7 +76,7 @@ namespace internal
     }                                                                                                 \
     WRITE_BASKET_SINGLE_HOST_FUNCTIONS
 
-#define BASKETDIFF_TP(I) template <class, class, int, typename> class Ext##I = internal::ForwardDiff
+#define BASKETDIFF_TP(I) template <class, class, int, typename> class Ext##I = internal::FwdD
 #define BSKW typename BasketType::WeightFunction
 #define BSKP typename BasketType::DataPoint
 
@@ -164,7 +166,7 @@ namespace internal
 #undef BASKETDIFF_TP
 
 
-#define BASKET_TP(I) template <class, class, typename> class Ext##I = internal::Forward
+#define BASKET_TP(I) template <class, class, typename> class Ext##I = internal::Fwd
 /*!
     \brief Aggregator class used to declare specialized structures using CRTP
 
