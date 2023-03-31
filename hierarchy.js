@@ -165,6 +165,7 @@ var hierarchy =
       [ "Ponca::UnorientedSphereFitImpl< DataPoint, _WFunctor, T >", "classPonca_1_1UnorientedSphereFitImpl.html", null ]
     ] ],
     [ "Concept::WeightKernelConcept", null, [
+      [ "Ponca::CompactExpWeightKernel< _Scalar >", "classPonca_1_1CompactExpWeightKernel.html", null ],
       [ "Ponca::ConstantWeightKernel< _Scalar >", "classPonca_1_1ConstantWeightKernel.html", null ],
       [ "Ponca::SingularWeightKernel< _Scalar >", "classPonca_1_1SingularWeightKernel.html", null ],
       [ "Ponca::SmoothWeightKernel< _Scalar >", "classPonca_1_1SmoothWeightKernel.html", null ],

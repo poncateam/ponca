@@ -1,5 +1,10 @@
 var NAVTREEINDEX2 =
 {
+"example_cu_ssc_page.html#cu_ssgl_cuda_weight_sec":[3,5,1,1],
+"example_cu_ssc_page.html#cu_ssgl_intro_sec":[3,5,0],
+"example_cu_ssc_page.html#cu_ssgl_sec":[3,5,2],
+"example_cu_ssc_page.html#cu_ssgl_sec_dep_subsec":[3,5,0,0],
+"example_cxx_basic_page.html":[3,0],
 "example_cxx_binding_page.html":[3,3],
 "example_cxx_fit_line_page.html":[3,2],
 "example_cxx_fit_plane_page.html":[3,1],
@@ -123,10 +128,10 @@ var NAVTREEINDEX2 =
 "ponca_getting_started_page.html#getting_started_requirements_sec":[5,0],
 "spatialpartitioning.html":[6,3],
 "spatialpartitioning.html#spatialpartitioning_intro":[6,3,0],
-"structPonca_1_1IndexSquaredDistance.html":[8,0,0,14],
-"structPonca_1_1IndexSquaredDistance.html#abe4927b13e6538e21f0749e1c985c4f9":[8,0,0,14,1],
-"structPonca_1_1IndexSquaredDistance.html#aebcbd56b3c1a0473e090d7fb8eba8a10":[8,0,0,14,0],
-"structPonca_1_1KdTreeNode.html":[8,0,0,22],
-"structPonca_1_1KdTree_1_1DefaultConverter.html":[8,0,0,15,0],
+"structPonca_1_1IndexSquaredDistance.html":[8,0,0,15],
+"structPonca_1_1IndexSquaredDistance.html#abe4927b13e6538e21f0749e1c985c4f9":[8,0,0,15,1],
+"structPonca_1_1IndexSquaredDistance.html#aebcbd56b3c1a0473e090d7fb8eba8a10":[8,0,0,15,0],
+"structPonca_1_1KdTreeNode.html":[8,0,0,23],
+"structPonca_1_1KdTree_1_1DefaultConverter.html":[8,0,0,16,0],
 "user_manual_page.html":[6]
 };

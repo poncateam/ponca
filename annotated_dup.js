@@ -4,6 +4,7 @@ var annotated_dup =
       [ "AlgebraicSphere", "classPonca_1_1AlgebraicSphere.html", "classPonca_1_1AlgebraicSphere" ],
       [ "Basket", "classPonca_1_1Basket.html", "classPonca_1_1Basket" ],
       [ "BasketDiff", "classPonca_1_1BasketDiff.html", "classPonca_1_1BasketDiff" ],
+      [ "CompactExpWeightKernel", "classPonca_1_1CompactExpWeightKernel.html", "classPonca_1_1CompactExpWeightKernel" ],
       [ "ConstantWeightKernel", "classPonca_1_1ConstantWeightKernel.html", "classPonca_1_1ConstantWeightKernel" ],
       [ "CovarianceFitBase", "classPonca_1_1CovarianceFitBase.html", "classPonca_1_1CovarianceFitBase" ],
       [ "CovarianceFitDer", "classPonca_1_1CovarianceFitDer.html", "classPonca_1_1CovarianceFitDer" ],

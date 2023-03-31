@@ -51,7 +51,7 @@ MathJax.Hub.Config({
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Ponca
-   &#160;<span id="projectnumber">268fe69147f7ae6ad31639438fb1688063f84482</span>
+   &#160;<span id="projectnumber">ab9c8e3f273b014b97f99d229b73b3eaba39a0f6</span>
    </div>
    <div id="projectbrief">Point Cloud Analysis library</div>
   </td>
@@ -166,6 +166,8 @@ The changes introduced in this version mostly are introduced by PR #56.
     - [fitting] Add a mechanism to detect conflicting computations (#56)
     - [fitting] Move iScaleDer out of internal namespace + name enum (#56)
     - [fitting] Rename normal() as primitiveGradient in MlsSphereFit (#72)
+    - [fitting] Add new weight kernels (#71,#74)
+    - [fitting] Add mechanism to check weight derivatives validity (#74)
 
 - Bug-fixes and code improvements
     - [fitting] Reduce objets sizes by removing unnecessary attributes (#56)
@@ -174,6 +176,7 @@ The changes introduced in this version mostly are introduced by PR #56.
     - [fitting] Add macros to simplify headers writing (#56)
     - [fitting] Fix several warnings when compiling with MSVC (#56)
     - [fitting] Fix a bug in barycenterDer computation (#72)
+    - [fitting] Improve weight kernel testing (#71,#74)
 
 - Tests
     - [fitting] Update according to API changes (#56)
@@ -423,7 +426,7 @@ V0.1.2
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generated on Thu Mar 30 2023 13:47:52 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.6 </li>
+    <li class="footer">Generated on Fri Mar 31 2023 08:30:30 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.6 </li>
   </ul>
 </div>
 </body>
