@@ -70,17 +70,19 @@ void testFunction()
         Scalar fr   = k.f(a+h);
         Scalar fl   = k.f(a-h);
 
-        Scalar df   = k.df(a);
-        Scalar ddf  = k.ddf(a);
+        if (k.isDValid){ // test first order derivative
+            Scalar df   = k.df(a);
+            Scalar df_  = (fr - fl)/(Scalar(2.)*h);
+            Scalar diff1 = std::abs(df-df_);
+            VERIFY(diff1 < epsilon);
+        }
 
-        Scalar df_  = (fr - fl)/(Scalar(2.)*h);
-        Scalar ddf_ = (fr - Scalar(2.)*f + fl)/(h*h);
-
-        Scalar diff1 = std::abs(df-df_);
-        Scalar diff2 = std::abs(ddf-ddf_);
-
-        VERIFY(diff1 < epsilon);
-        VERIFY(diff2 < epsilon);
+        if (k.isDDValid){
+            Scalar ddf  = k.ddf(a);
+            Scalar ddf_ = (fr - Scalar(2.)*f + fl)/(h*h);
+            Scalar diff2 = std::abs(ddf-ddf_);
+            VERIFY(diff2 < epsilon);
+        }
     }
 }
 
@@ -88,11 +90,16 @@ template<typename Scalar, template <typename > class KernelT>
 void callSubTests()
 {
     typedef Eigen::AutoDiffScalar<Eigen::Matrix<Scalar,1,1>> ScalarDiff;
-
     typedef KernelT<Scalar> Kernel;
-    typedef KernelT<ScalarDiff> KernelAutoDiff;
-
     CALL_SUBTEST(( testFunction<Kernel>() ));
+
+    cout << "ok" << endl;
+}
+template<typename Scalar, template <typename > class KernelT>
+void callAutoDiffSubTests()
+{
+    typedef Eigen::AutoDiffScalar<Eigen::Matrix<Scalar,1,1>> ScalarDiff;
+    typedef KernelT<ScalarDiff> KernelAutoDiff;
     CALL_SUBTEST(( testFunctionAutoDiff<KernelAutoDiff>() ));
 
     cout << "ok" << endl;
@@ -106,14 +113,18 @@ int main(int argc, char** argv)
     }
 
     cout << "Verify smooth weight kernel derivatives" << endl;
-
     callSubTests<long double, SmoothWeightKernel>();
+    callAutoDiffSubTests<long double, SmoothWeightKernel>();
 
     cout << "Verify Wendland weight kernel derivatives" << endl;
-
     callSubTests<long double, WendlandWeightKernel>();
+    callAutoDiffSubTests<long double, SmoothWeightKernel>();
 
     cout << "Verify singular weight kernel derivatives" << endl;
-
     callSubTests<long double, SingularWeightKernel>();
+    callAutoDiffSubTests<long double, SmoothWeightKernel>();
+
+    cout << "Verify Compact Exponential weight kernel derivatives" << endl;
+    callSubTests<long double, CompactExpWeightKernel>();
+    /// autodiffs are not compatible with pow, used in this class
 }
