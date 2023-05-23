@@ -122,6 +122,27 @@ namespace Ponca {
 
     }; //class MeanPositionDer
 
+
+    template<class DataPoint, class _WFunctor, int DiffType, typename T>
+    class MeanNormalDer : public T {
+        PONCA_FITTING_DECLARE_DEFAULT_TYPES
+        PONCA_FITTING_DECLARE_DEFAULT_DER_TYPES
+
+    protected:
+        enum {
+            Check = Base::PROVIDES_PRIMITIVE_DERIVATIVE and
+                    Base::PROVIDES_MEAN_NORMAL,
+            PROVIDES_MEAN_NORMAL_DERIVATIVE,
+        };
+
+        VectorArray m_dSumN {VectorArray::Zero()};
+
+    public:
+        PONCA_EXPLICIT_CAST_OPERATORS_DER(MeanNormalDer,meanNormalDer)
+        PONCA_FITTING_DECLARE_INIT
+        PONCA_FITTING_DECLARE_ADDNEIGHBOR_DER
+    }; //class MeanNormalDer
+
 #include "mean.hpp"
 
 } //namespace Ponca
