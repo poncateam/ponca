@@ -8,19 +8,23 @@
 
 #pragma once
 
-#include "./plane.h"
-#include "./mean.h"
+#include "./defines.h"
+#include "./mean.h"                 // used to define MeanPlaneFit
+#include "./plane.h"                // used to define MeanPlaneFit
+#include "./localFrame.h"           // used to define MeanPlaneFit
+#include "./localFrameEstimation.h" // used to define MeanPlaneFit
+
 
 namespace Ponca
 {
 
-    /*!
-        \brief Plane fitting procedure computing the mean position and orientation
-        from oriented points
+/*!
+        \brief Plane fitting procedure computing the frame plane using mean position and normal
 
         \inherit Concept::FittingProcedureConcept
 
         \see Plane
+        \see localFrame
 
         \todo Add local frame computation to enable PROVIDES_TANGENT_PLANE_BASIS
     */
@@ -32,13 +36,25 @@ namespace Ponca
 
     protected:
         enum
-        {
-            Check = Base::PROVIDES_MEAN_POSITION && Base::PROVIDES_MEAN_NORMAL && Base::PROVIDES_PLANE
+        {   Check = Base::PROVIDES_PLANE
+                && Base::PROVIDES_MEAN_POSITION
+                && Base::PROVIDES_MEAN_NORMAL
+                && Base::PROVIDES_LOCAL_FRAME
         };
 
     public:
         PONCA_EXPLICIT_CAST_OPERATORS(MeanPlaneFitImpl, meanPlaneFit)
 
+
+        /*!
+         * \brief This function fits the plane using mean normal and position.
+
+         * We use the localFrame class to store the frame informations.
+         * Given the mean normal, we compute the frame plane axes m_u and m_v.
+         * m_u and m_v are computed using the cross product, to ensure orthogonality.
+         * \see LocalFrame
+         * \see computeFrameFromNormalVector
+         */
         PONCA_FITTING_APIDOC_FINALIZE
         PONCA_MULTIARCH inline FIT_RESULT finalize()
         {
@@ -47,7 +63,9 @@ namespace Ponca
             {
                 if (Base::plane().isValid())
                     Base::m_eCurrentState = CONFLICT_ERROR_FOUND;
-                Base::setPlane(Base::m_sumN / Base::getWeightSum(), Base::barycenterLocal());
+                VectorType norm = Base::meanNormalVector();
+                Base::setPlane(norm, Base::barycenterLocal());
+                Base::computeFrameFromNormalVector(norm);
             }
             return Base::m_eCurrentState;
         }
@@ -59,6 +77,7 @@ namespace Ponca
     template <class DataPoint, class _NFilter, typename T>
     using MeanPlaneFit = MeanPlaneFitImpl<
         DataPoint, _NFilter,
-        MeanNormal<DataPoint, _NFilter, MeanPosition<DataPoint, _NFilter, Plane<DataPoint, _NFilter, T>>>>;
+        MeanNormal<DataPoint, _NFilter, MeanPosition<DataPoint, _NFilter, LocalFrameEstimator<DataPoint, _NFilter,
+            LocalFrame<DataPoint, _NFilter, Plane<DataPoint, _NFilter, T>>>>>>;
     //! [MeanPlaneFit Definition]
 } // namespace Ponca

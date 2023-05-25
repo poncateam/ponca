@@ -140,11 +140,27 @@ namespace Ponca
         template <typename Matrix2Derived>
         PONCA_MULTIARCH inline void weingartenMap(Matrix2Derived& w) const;
 
-        /// \copydoc CovariancePlaneFitImpl::worldToTangentPlane
+        /*!
+         * \brief Express a point in ambient space relatively to the tangent plane.
+         *
+         * Output vector is: [h, u, v]^T, where u, v are 2d coordinates on the plane,
+         * and h the height of the sample.
+         * \param _q Vector expressed in ambient space
+         * \param _isPositionVector Indicate if the input vector `_q` is a position that is influenced by translations
+         *        (e.g., in contrast to displacement or normal vectors)
+         * \return Vector expressed in local tangent frame
+         */
         PONCA_MULTIARCH inline VectorType worldToTangentPlane(const VectorType& _q,
                                                               bool _isPositionVector = true) const;
 
-        /// \copydoc CovariancePlaneFitImpl::tangentPlaneToWorld
+        /*!
+         * \brief Transform a point from the tangent plane [h, u, v]^T to ambient space
+         *
+         * \param _q Vector expressed in local tangent frame
+         * \param _isPositionVector Indicate if the input vector `_q` is a position that is influenced by translations
+         *        (e.g., in contrast to displacement or normal vectors)
+         * \return Vector expressed in ambient space
+         */
         PONCA_MULTIARCH inline VectorType tangentPlaneToWorld(const VectorType& _q,
                                                               bool _isPositionVector = true) const;
     };
