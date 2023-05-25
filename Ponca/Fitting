@@ -18,6 +18,7 @@
 #include "src/Fitting/linePrimitive.h"
 #include "src/Fitting/plane.h"
 #include "src/Fitting/algebraicSphere.h"
+#include "src/Fitting/meanPlane.h"
 
 // Fitting tools
 #include "src/Fitting/mean.h"
