@@ -8,12 +8,10 @@
 
 #include "./kdTreeNode.h"
 
-#include <Eigen/Eigen>
-#include <Eigen/Geometry> // aabb
-
 #include <memory>
-#include <vector>
 #include <numeric>
+#include <type_traits>
+#include <vector>
 
 #include "../../Common/Assert.h"
 
@@ -28,22 +26,51 @@
 
 namespace Ponca {
 ///
+template <typename DataPoint>
+struct DefaultKdTreeCompatibility
+{
+    typedef typename DataPoint::Scalar     Scalar;
+    typedef typename DataPoint::VectorType VectorType;
+
+    typedef int DimType;
+    typedef int DepthType;
+
+    // Containers
+    typedef std::vector<DataPoint> PointContainer;
+    typedef std::vector<int>       IndexContainer;
+
+    typedef std::vector<DefaultKdTreeNode<DataPoint>> NodeContainer;
+};
+
+///
 /// \tparam DataPoint
 ///
 /// \todo Better handle sampling: do not store non-selected points (requires to store original indices
-template<class _DataPoint>
+template<class _DataPoint,
+         class Compatibility = DefaultKdTreeCompatibility<_DataPoint>>
 class KdTree
 {
 public:
-    typedef          _DataPoint            DataPoint;
-    typedef typename DataPoint::Scalar     Scalar;  // Scalar given by user
-    typedef typename DataPoint::VectorType VectorType;  // VectorType given by user
+    typedef          _DataPoint                DataPoint;
+    typedef typename Compatibility::Scalar     Scalar; // Scalar given by user
+    typedef typename Compatibility::VectorType VectorType; // VectorType given by user
 
-    typedef typename Eigen::AlignedBox<Scalar, DataPoint::Dim> Aabb; // Intersections
+    typedef typename Compatibility::DimType   DimType;
+    typedef typename Compatibility::DepthType DepthType;
 
-    typedef typename std::vector<DataPoint> PointContainer; // Container for VectorType used inside the KdTree
-    typedef typename std::vector<int> IndexContainer; // Container for indices used inside the KdTree
-    typedef typename std::vector<KdTreeNode<Scalar>> NodeContainer;  // Container for nodes used inside the KdTree
+    typedef typename Compatibility::PointContainer PointContainer; // Container for VectorType used inside the KdTree
+    typedef typename Compatibility::IndexContainer IndexContainer; // Container for indices used inside the KdTree
+    typedef typename Compatibility::NodeContainer  NodeContainer; // Container for nodes used inside the KdTree
+
+    typedef typename IndexContainer::value_type IndexType;
+    typedef typename NodeContainer::value_type  NodeType;
+    typedef typename PointContainer::size_type  PointCountType;
+    typedef typename IndexContainer::size_type  IndexCountType;
+    typedef typename NodeContainer::size_type   NodeCountType;
+
+    typedef typename NodeType::LeafSizeType LeafSizeType;
+
+    static_assert(std::is_same_v<typename PointContainer::value_type, DataPoint>, "Point container must contain DataPoints");
 
     inline KdTree():
         m_points(PointContainer()),
@@ -133,10 +160,25 @@ public:
 
     // Accessors ---------------------------------------------------------------
 public:
-    inline int node_count() const;
-    inline int index_count() const;
-    inline int point_count() const;
-    inline int leaf_count() const;
+    inline NodeCountType node_count() const
+    {
+        return m_nodes.size();
+    }
+
+    inline IndexCountType index_count() const
+    {
+        return m_indices.size();
+    }
+
+    inline PointCountType point_count() const
+    {
+        return m_points.size();
+    }
+
+    inline NodeCountType leaf_count() const
+    {
+        return m_leaf_count;
+    }
 
     inline PointContainer& point_data()
     {
@@ -155,7 +197,7 @@ public:
 
     inline NodeContainer& node_data()
     {
-        return *m_nodes.get();
+        return m_nodes;
     }
 
     inline const IndexContainer& index_data() const
@@ -170,45 +212,52 @@ public:
 
     // Parameters --------------------------------------------------------------
 public:
-    inline int min_cell_size() const;
-    inline void set_min_cell_size(int min_cell_size);
+    inline LeafSizeType min_cell_size() const
+    {
+        return m_min_cell_size;
+    }
+
+    inline void set_min_cell_size(int min_cell_size)
+    {
+        m_min_cell_size = min_cell_size;
+    }
 
     // Internal ----------------------------------------------------------------
 public:
-    inline void build_rec(int node_id, int start, int end, int level);
-    inline int partition(int start, int end, int dim, Scalar value);
+    inline void build_rec(NodeCountType node_id, IndexCountType start, IndexCountType end, DepthType level);
+    inline IndexCountType partition(IndexCountType start, IndexCountType end, DimType dim, Scalar value);
 
 
     // Query -------------------------------------------------------------------
 public :
-    KdTreeKNearestPointQuery<DataPoint> k_nearest_neighbors(const VectorType& point, int k) const
+    KdTreeKNearestPointQuery<DataPoint, Compatibility> k_nearest_neighbors(const VectorType& point, int k) const
     {
-        return KdTreeKNearestPointQuery<DataPoint>(this, k, point);
+        return KdTreeKNearestPointQuery<DataPoint, Compatibility>(this, k, point);
     }
 
-    KdTreeKNearestIndexQuery<DataPoint> k_nearest_neighbors(int index, int k) const
+    KdTreeKNearestIndexQuery<DataPoint, Compatibility> k_nearest_neighbors(int index, int k) const
     {
-        return KdTreeKNearestIndexQuery<DataPoint>(this, k, index);
+        return KdTreeKNearestIndexQuery<DataPoint, Compatibility>(this, k, index);
     }
 
-    KdTreeNearestPointQuery<DataPoint> nearest_neighbor(const VectorType& point) const
+    KdTreeNearestPointQuery<DataPoint, Compatibility> nearest_neighbor(const VectorType& point) const
     {
-        return KdTreeNearestPointQuery<DataPoint>(this, point);
+        return KdTreeNearestPointQuery<DataPoint, Compatibility>(this, point);
     }
 
-    KdTreeNearestIndexQuery<DataPoint> nearest_neighbor(int index) const
+    KdTreeNearestIndexQuery<DataPoint, Compatibility> nearest_neighbor(int index) const
     {
-        return KdTreeNearestIndexQuery<DataPoint>(this, index);
+        return KdTreeNearestIndexQuery<DataPoint, Compatibility>(this, index);
     }
 
-    KdTreeRangePointQuery<DataPoint> range_neighbors(const VectorType& point, Scalar r) const
+    KdTreeRangePointQuery<DataPoint, Compatibility> range_neighbors(const VectorType& point, Scalar r) const
     {
-        return KdTreeRangePointQuery<DataPoint>(this, r, point);
+        return KdTreeRangePointQuery<DataPoint, Compatibility>(this, r, point);
     }
 
-    KdTreeRangeIndexQuery<DataPoint> range_neighbors(int index, Scalar r) const
+    KdTreeRangeIndexQuery<DataPoint, Compatibility> range_neighbors(int index, Scalar r) const
     {
-        return KdTreeRangeIndexQuery<DataPoint>(this, r, index);
+        return KdTreeRangeIndexQuery<DataPoint, Compatibility>(this, r, index);
     }
     
 
@@ -218,8 +267,8 @@ protected:
     NodeContainer m_nodes;
     IndexContainer m_indices;
 
-    int m_min_cell_size;
-    int m_leaf_count; ///< Number of leafs in the Kdtree (computed during construction)
+    LeafSizeType m_min_cell_size;
+    NodeCountType m_leaf_count; ///< Number of leaves in the Kdtree (computed during construction)
 };
 
 #include "./kdTree.hpp"

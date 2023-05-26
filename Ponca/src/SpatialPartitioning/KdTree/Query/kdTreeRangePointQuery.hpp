@@ -4,8 +4,8 @@
  file, You can obtain one at http://mozilla.org/MPL/2.0/.
 */
 
-template <class DataPoint>
-typename KdTreeRangePointQuery<DataPoint>::Iterator KdTreeRangePointQuery<DataPoint>::begin()
+template <class DataPoint, class Compatibility>
+typename KdTreeRangePointQuery<DataPoint, Compatibility>::Iterator KdTreeRangePointQuery<DataPoint, Compatibility>::begin()
 {
     QueryAccelType::reset();
     QueryType::reset();
@@ -14,14 +14,14 @@ typename KdTreeRangePointQuery<DataPoint>::Iterator KdTreeRangePointQuery<DataPo
     return it;
 }
 
-template <class DataPoint>
-typename KdTreeRangePointQuery<DataPoint>::Iterator KdTreeRangePointQuery<DataPoint>::end()
+template <class DataPoint, class Compatibility>
+typename KdTreeRangePointQuery<DataPoint, Compatibility>::Iterator KdTreeRangePointQuery<DataPoint, Compatibility>::end()
 {
     return Iterator(this, QueryAccelType::m_kdtree->point_count());
 }
 
-template <class DataPoint>
-void KdTreeRangePointQuery<DataPoint>::advance(Iterator& it)
+template <class DataPoint, class Compatibility>
+void KdTreeRangePointQuery<DataPoint, Compatibility>::advance(Iterator& it)
 {
     const auto& nodes   = QueryAccelType::m_kdtree->node_data();
     const auto& points  = QueryAccelType::m_kdtree->point_data();

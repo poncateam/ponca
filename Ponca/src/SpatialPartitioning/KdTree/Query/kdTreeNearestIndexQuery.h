@@ -12,17 +12,17 @@
 
 namespace Ponca {
 
-template <class DataPoint>
-class KdTreeNearestIndexQuery : public KdTreeQuery<DataPoint>, public NearestIndexQuery<typename DataPoint::Scalar>
+template <class DataPoint, class Compatibility>
+class KdTreeNearestIndexQuery : public KdTreeQuery<DataPoint, Compatibility>, public NearestIndexQuery<typename DataPoint::Scalar>
 {
 public:
     using Scalar          = typename DataPoint::Scalar;
     using VectorType      = typename DataPoint::VectorType;
     using QueryType       = NearestIndexQuery<typename DataPoint::Scalar>;
-    using QueryAccelType  = KdTreeQuery<DataPoint>;
+    using QueryAccelType  = KdTreeQuery<DataPoint, Compatibility>;
 
-    KdTreeNearestIndexQuery(const KdTree<DataPoint>* kdtree, int index) :
-        KdTreeQuery<DataPoint>(kdtree), NearestIndexQuery<Scalar>(index)
+    KdTreeNearestIndexQuery(const KdTree<DataPoint, Compatibility>* kdtree, int index) :
+        KdTreeQuery<DataPoint, Compatibility>(kdtree), NearestIndexQuery<Scalar>(index)
     {
     }
 
