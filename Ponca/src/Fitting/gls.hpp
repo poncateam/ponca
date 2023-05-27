@@ -91,10 +91,10 @@ GLSDer <DataPoint, _WFunctor, DiffType, T>::geomVar(  Scalar wtau,
                                                       Scalar weta,
                                                       Scalar wkappa ) const
 {
-    static_assert( Base::isScaleDer, "Scale derivatives are required to compute Geometric Variation" );
-    Scalar dtau   = Base::dtau_normalized().col(0)(0);
-    Scalar deta   = Base::deta_normalized().col(0).norm();
-    Scalar dkappa = Base::dkappa_normalized().col(0)(0);
+    static_assert( bool(DiffType & FitScaleDer), "Scale derivatives are required to compute Geometric Variation" );
+    Scalar dtau   = dtau_normalized().col(0)(0);
+    Scalar deta   = deta_normalized().col(0).norm();
+    Scalar dkappa = dkappa_normalized().col(0)(0);
 
     return wtau*dtau*dtau + weta*deta*deta + wkappa*dkappa*dkappa;
 }
