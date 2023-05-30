@@ -11,7 +11,10 @@
 #include <memory>
 #include <numeric>
 #include <type_traits>
+#include <utility>
 #include <vector>
+
+#include <Eigen/Geometry> // aabb
 
 #include "../../Common/Assert.h"
 
@@ -27,10 +30,14 @@
 namespace Ponca {
 ///
 template <typename DataPoint>
-struct DefaultKdTreeCompatibility
+struct DefaultKdTreeAdapter
 {
+private:
     typedef typename DataPoint::Scalar     Scalar;
     typedef typename DataPoint::VectorType VectorType;
+
+public:
+    typedef Eigen::AlignedBox<Scalar, DataPoint::Dim> AabbType;
 
     typedef int DimType;
     typedef int DepthType;
@@ -39,28 +46,42 @@ struct DefaultKdTreeCompatibility
     typedef std::vector<DataPoint> PointContainer;
     typedef std::vector<int>       IndexContainer;
 
-    typedef std::vector<DefaultKdTreeNode<DataPoint>> NodeContainer;
+    typedef std::vector<DefaultKdTreeNode<DataPoint, AabbType>> NodeContainer;
+
+    static DimType max_dim(const VectorType& vec)
+    {
+        DimType dim;
+        vec.maxCoeff(dim);
+        return dim;
+    }
+
+    static Scalar vec_component(const VectorType& vec, DimType dim)
+    {
+        return vec(dim);
+    }
 };
 
 ///
 /// \tparam DataPoint
+/// \tparam Adapter
 ///
 /// \todo Better handle sampling: do not store non-selected points (requires to store original indices
-template<class _DataPoint,
-         class Compatibility = DefaultKdTreeCompatibility<_DataPoint>>
+template<class _DataPoint, class Adapter = DefaultKdTreeAdapter<_DataPoint>>
 class KdTree
 {
 public:
-    typedef          _DataPoint                DataPoint;
-    typedef typename Compatibility::Scalar     Scalar; // Scalar given by user
-    typedef typename Compatibility::VectorType VectorType; // VectorType given by user
+    typedef          _DataPoint            DataPoint;
+    typedef typename DataPoint::Scalar     Scalar; // Scalar given by user
+    typedef typename DataPoint::VectorType VectorType; // VectorType given by user
 
-    typedef typename Compatibility::DimType   DimType;
-    typedef typename Compatibility::DepthType DepthType;
+    typedef typename Adapter::AabbType AabbType;
 
-    typedef typename Compatibility::PointContainer PointContainer; // Container for VectorType used inside the KdTree
-    typedef typename Compatibility::IndexContainer IndexContainer; // Container for indices used inside the KdTree
-    typedef typename Compatibility::NodeContainer  NodeContainer; // Container for nodes used inside the KdTree
+    typedef typename Adapter::DimType   DimType;
+    typedef typename Adapter::DepthType DepthType;
+
+    typedef typename Adapter::PointContainer PointContainer; // Container for VectorType used inside the KdTree
+    typedef typename Adapter::IndexContainer IndexContainer; // Container for indices used inside the KdTree
+    typedef typename Adapter::NodeContainer  NodeContainer; // Container for nodes used inside the KdTree
 
     typedef typename IndexContainer::value_type IndexType;
     typedef typename NodeContainer::value_type  NodeType;
@@ -70,7 +91,7 @@ public:
 
     typedef typename NodeType::LeafSizeType LeafSizeType;
 
-    static_assert(std::is_same_v<typename PointContainer::value_type, DataPoint>, "Point container must contain DataPoints");
+    static_assert(std::is_same<typename PointContainer::value_type, DataPoint>::value, "Point container must contain DataPoints");
 
     inline KdTree():
         m_points(PointContainer()),
@@ -82,38 +103,39 @@ public:
     };
 
     template<typename PointUserContainer>
-    inline KdTree(const PointUserContainer& points): // PointUserContainer => Given by user, transformed to PointContainer
+    inline KdTree(PointUserContainer&& points): // PointUserContainer => Given by user, transformed to PointContainer
         m_points(PointContainer()),
         m_nodes(NodeContainer()),
         m_indices(IndexContainer()),
         m_min_cell_size(64),
         m_leaf_count(0)
     {
-        this->build(points);
+        this->build(std::forward<PointUserContainer>(points));
     };
 
     template<typename PointUserContainer, typename IndexUserContainer>
-    inline KdTree(const PointUserContainer& points, const IndexUserContainer& sampling): // PointUserContainer => Given by user, transformed to PointContainer
-                                                                                         // IndexUserContainer => Given by user, transformed to IndexContainer
+    inline KdTree(PointUserContainer&& points, IndexUserContainer sampling): // PointUserContainer => Given by user, transformed to PointContainer
+                                                                             // IndexUserContainer => Given by user, transformed to IndexContainer
         m_points(),
         m_nodes(),
         m_indices(),
         m_min_cell_size(64),
         m_leaf_count(0)
     {
-        buildWithSampling(points, sampling);
+        buildWithSampling(std::forward<PointUserContainer>(points), std::move(sampling));
     };
 
     inline void clear();
 
     struct DefaultConverter{
         template <typename Input>
-        inline void operator()( const Input& i, PointContainer & o ) {
-            if constexpr ( std::is_same<Input, PointContainer>::value )
+        inline void operator()( Input&& i, PointContainer & o ) {
+            typedef typename std::remove_cv<typename std::remove_reference<Input>::type>::type InputContainer;
+            if constexpr ( std::is_same<InputContainer, PointContainer>::value )
                 o = i;
             else
                 std::transform(i.cbegin(), i.cend(), std::back_inserter(o),
-                               [](const typename Input::value_type &p) -> DataPoint { return DataPoint(p); });
+                               [](const typename InputContainer::value_type &p) -> DataPoint { return DataPoint(p); });
         }
     };
 
@@ -121,23 +143,29 @@ public:
     /// \tparam PointUserContainer Input point container, transformed to PointContainer
     /// \param points Input points
     template<typename PointUserContainer>
-    inline void build(const PointUserContainer& points) { build(points, DefaultConverter()); }
+    inline void build(PointUserContainer&& points)
+    {
+        build(std::forward<PointUserContainer>(points), DefaultConverter());
+    }
+
     ///
     /// \tparam PointUserContainer Input point container, transformed to PointContainer
     /// \tparam IndexUserContainer Input sampling container, transformed to IndexContainer
     /// \param points Input points
     /// \param c Cast/Convert input point type to DataType
     template<typename PointUserContainer, typename Converter>
-    inline void build(const PointUserContainer& points, Converter c);
+    inline void build(PointUserContainer&& points, Converter c);
 
     /// \tparam PointUserContainer Input point, transformed to PointContainer
     /// \tparam IndexUserContainer Input sampling, transformed to IndexContainer
     /// \param points Input points
     /// \param sampling Indices of points used in the tree
     template<typename PointUserContainer, typename IndexUserContainer>
-    inline void buildWithSampling(const PointUserContainer& points,
-                                  const IndexUserContainer& sampling)
-                                  { buildWithSampling(points, sampling, DefaultConverter());}
+    inline void buildWithSampling(PointUserContainer&& points,
+                                  IndexUserContainer sampling)
+    {
+        buildWithSampling(std::forward<PointUserContainer>(points), std::move(sampling), DefaultConverter());
+    }
 
     /// \tparam PointUserContainer Input point, transformed to PointContainer
     /// \tparam IndexUserContainer Input sampling, transformed to IndexContainer
@@ -146,13 +174,13 @@ public:
     /// \param sampling Indices of points used in the tree
     /// \param c Cast/Convert input point type to DataType
     template<typename PointUserContainer, typename IndexUserContainer, typename Converter>
-    inline void buildWithSampling(const PointUserContainer& points,
-                                  const IndexUserContainer& sampling,
+    inline void buildWithSampling(PointUserContainer&& points,
+                                  IndexUserContainer sampling,
                                   Converter c);
 
 
     template<typename IndexUserContainer>
-    inline void rebuild(const IndexUserContainer& sampling); // IndexUserContainer => Given by user, transformed to IndexContainer
+    inline void rebuild(IndexUserContainer sampling); // IndexUserContainer => Given by user, transformed to IndexContainer
 
 
     inline bool valid() const;
@@ -217,8 +245,9 @@ public:
         return m_min_cell_size;
     }
 
-    inline void set_min_cell_size(int min_cell_size)
+    inline void set_min_cell_size(LeafSizeType min_cell_size)
     {
+        PONCA_DEBUG_ASSERT(min_cell_size > 0);
         m_min_cell_size = min_cell_size;
     }
 
@@ -227,37 +256,36 @@ public:
     inline void build_rec(NodeCountType node_id, IndexCountType start, IndexCountType end, DepthType level);
     inline IndexCountType partition(IndexCountType start, IndexCountType end, DimType dim, Scalar value);
 
-
     // Query -------------------------------------------------------------------
 public :
-    KdTreeKNearestPointQuery<DataPoint, Compatibility> k_nearest_neighbors(const VectorType& point, int k) const
+    KdTreeKNearestPointQuery<DataPoint, Adapter> k_nearest_neighbors(const VectorType& point, int k) const
     {
-        return KdTreeKNearestPointQuery<DataPoint, Compatibility>(this, k, point);
+        return KdTreeKNearestPointQuery<DataPoint, Adapter>(this, k, point);
     }
 
-    KdTreeKNearestIndexQuery<DataPoint, Compatibility> k_nearest_neighbors(int index, int k) const
+    KdTreeKNearestIndexQuery<DataPoint, Adapter> k_nearest_neighbors(int index, int k) const
     {
-        return KdTreeKNearestIndexQuery<DataPoint, Compatibility>(this, k, index);
+        return KdTreeKNearestIndexQuery<DataPoint, Adapter>(this, k, index);
     }
 
-    KdTreeNearestPointQuery<DataPoint, Compatibility> nearest_neighbor(const VectorType& point) const
+    KdTreeNearestPointQuery<DataPoint, Adapter> nearest_neighbor(const VectorType& point) const
     {
-        return KdTreeNearestPointQuery<DataPoint, Compatibility>(this, point);
+        return KdTreeNearestPointQuery<DataPoint, Adapter>(this, point);
     }
 
-    KdTreeNearestIndexQuery<DataPoint, Compatibility> nearest_neighbor(int index) const
+    KdTreeNearestIndexQuery<DataPoint, Adapter> nearest_neighbor(int index) const
     {
-        return KdTreeNearestIndexQuery<DataPoint, Compatibility>(this, index);
+        return KdTreeNearestIndexQuery<DataPoint, Adapter>(this, index);
     }
 
-    KdTreeRangePointQuery<DataPoint, Compatibility> range_neighbors(const VectorType& point, Scalar r) const
+    KdTreeRangePointQuery<DataPoint, Adapter> range_neighbors(const VectorType& point, Scalar r) const
     {
-        return KdTreeRangePointQuery<DataPoint, Compatibility>(this, r, point);
+        return KdTreeRangePointQuery<DataPoint, Adapter>(this, r, point);
     }
 
-    KdTreeRangeIndexQuery<DataPoint, Compatibility> range_neighbors(int index, Scalar r) const
+    KdTreeRangeIndexQuery<DataPoint, Adapter> range_neighbors(int index, Scalar r) const
     {
-        return KdTreeRangeIndexQuery<DataPoint, Compatibility>(this, r, index);
+        return KdTreeRangeIndexQuery<DataPoint, Adapter>(this, r, index);
     }
     
 

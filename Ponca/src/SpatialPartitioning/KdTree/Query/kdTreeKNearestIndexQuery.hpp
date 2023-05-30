@@ -4,8 +4,8 @@
  file, You can obtain one at http://mozilla.org/MPL/2.0/.
 */
 
-template<class DataPoint, class Compatibility>
-KdTreeKNearestIterator<DataPoint> KdTreeKNearestIndexQuery<DataPoint, Compatibility>::begin()
+template<class DataPoint, class Adapter>
+KdTreeKNearestIterator<DataPoint> KdTreeKNearestIndexQuery<DataPoint, Adapter>::begin()
 {
     QueryAccelType::reset();
     QueryType::reset();
@@ -13,14 +13,14 @@ KdTreeKNearestIterator<DataPoint> KdTreeKNearestIndexQuery<DataPoint, Compatibil
     return KdTreeKNearestIterator<DataPoint>(QueryType::m_queue.begin());
 }
 
-template<class DataPoint, class Compatibility>
-KdTreeKNearestIterator<DataPoint> KdTreeKNearestIndexQuery<DataPoint, Compatibility>::end()
+template<class DataPoint, class Adapter>
+KdTreeKNearestIterator<DataPoint> KdTreeKNearestIndexQuery<DataPoint, Adapter>::end()
 {
     return KdTreeKNearestIterator<DataPoint>(QueryType::m_queue.end());
 }
 
-template<class DataPoint, class Compatibility>
-void KdTreeKNearestIndexQuery<DataPoint, Compatibility>::search()
+template<class DataPoint, class Adapter>
+void KdTreeKNearestIndexQuery<DataPoint, Adapter>::search()
 {
     const auto& nodes   = QueryAccelType::m_kdtree->node_data();
     const auto& points  = QueryAccelType::m_kdtree->point_data();

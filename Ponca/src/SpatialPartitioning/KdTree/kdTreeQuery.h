@@ -13,16 +13,16 @@
 #define PCA_KDTREE_MAX_DEPTH 32
 
 namespace Ponca {
-template <class DataPoint, class Compatibility> class KdTree;
+template <class DataPoint, class Adapter> class KdTree;
 
-template <class DataPoint, class Compatibility>
+template <class DataPoint, class Adapter>
 class KdTreeQuery
 {
 public:
     using Scalar          = typename DataPoint::Scalar;
     using VectorType      = typename DataPoint::VectorType;
 
-    explicit inline KdTreeQuery(const KdTree<DataPoint, Compatibility>* kdtree) : m_kdtree( kdtree ), m_stack() {}
+    explicit inline KdTreeQuery(const KdTree<DataPoint, Adapter>* kdtree) : m_kdtree( kdtree ), m_stack() {}
 
 protected:
     /// \brief Init stack for a new search
@@ -31,7 +31,7 @@ protected:
         m_stack.push({0,0});
     }
 
-    const KdTree<DataPoint, Compatibility>* m_kdtree { nullptr };
+    const KdTree<DataPoint, Adapter>* m_kdtree { nullptr };
     Stack<IndexSquaredDistance<typename DataPoint::Scalar>, 2 * PCA_KDTREE_MAX_DEPTH> m_stack;
 };
 

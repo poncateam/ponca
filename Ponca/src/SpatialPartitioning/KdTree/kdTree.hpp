@@ -6,8 +6,8 @@
 
 // KdTree ----------------------------------------------------------------------
 
-template<class DataPoint, class Compatibility>
-void KdTree<DataPoint, Compatibility>::clear()
+template<class DataPoint, class Adapter>
+void KdTree<DataPoint, Adapter>::clear()
 {
     m_points.clear();
     m_nodes.clear();
@@ -15,55 +15,55 @@ void KdTree<DataPoint, Compatibility>::clear()
     m_leaf_count = 0;
 }
 
-template<class DataPoint, class Compatibility>
+template<class DataPoint, class Adapter>
 template<typename PointUserContainer, typename Converter>
-inline void KdTree<DataPoint, Compatibility>::build(const PointUserContainer& points, Converter c)
+inline void KdTree<DataPoint, Adapter>::build(PointUserContainer&& points, Converter c)
 {
     IndexContainer ids(points.size());
     std::iota(ids.begin(), ids.end(), 0);
-    this->buildWithSampling(points, std::move(ids), c);
+    this->buildWithSampling(std::forward<PointUserContainer>(points), std::move(ids), std::move(c));
 }
 
-template<class DataPoint, class Compatibility>
+template<class DataPoint, class Adapter>
 template<typename PointUserContainer, typename IndexUserContainer, typename Converter>
-inline void KdTree<DataPoint, Compatibility>::buildWithSampling(const PointUserContainer& points,
-                                                                const IndexUserContainer& sampling,
-                                                                Converter c)
+inline void KdTree<DataPoint, Adapter>::buildWithSampling(PointUserContainer&& points,
+                                                          IndexUserContainer sampling,
+                                                          Converter c)
 {
     this->clear();
 
     // Copy or convert input samples
-    c( points, m_points );
+    c(std::forward<PointUserContainer>(points), m_points);
 
     m_nodes = NodeContainer();
     m_nodes.reserve(4 * point_count() / m_min_cell_size);
     m_nodes.emplace_back();
 
-    m_indices = IndexContainer(sampling);//move operator ou std copy
+    m_indices = std::move(sampling);
 
     this->build_rec(0, 0, index_count(), 1);
 
     PONCA_DEBUG_ASSERT(this->valid());
 }
 
-template<class DataPoint, class Compatibility>
+template<class DataPoint, class Adapter>
 template<typename IndexUserContainer>
-inline void KdTree<DataPoint, Compatibility>::rebuild(const IndexUserContainer & sampling)
+inline void KdTree<DataPoint, Adapter>::rebuild(IndexUserContainer sampling)
 {
     PONCA_DEBUG_ASSERT(sampling.size() <= m_points->size());
 
     m_nodes.clear();
     m_nodes.emplace_back();
 
-    m_indices = sampling;
+    m_indices = std::move(sampling);
 
     this->build_rec(0, 0, index_count(), 1);
 
     PONCA_DEBUG_ASSERT(this->valid());
 }
 
-template<class DataPoint, class Compatibility>
-bool KdTree<DataPoint, Compatibility>::valid() const
+template<class DataPoint, class Adapter>
+bool KdTree<DataPoint, Adapter>::valid() const
 {
     PONCA_DEBUG_ERROR;
     return false;
@@ -123,8 +123,8 @@ bool KdTree<DataPoint, Compatibility>::valid() const
     return true;
 }
 
-template<class DataPoint, class Compatibility>
-std::string KdTree<DataPoint, Compatibility>::to_string() const
+template<class DataPoint, class Adapter>
+std::string KdTree<DataPoint, Adapter>::to_string() const
 {
     if (m_indices.empty()) return "";
     
@@ -151,8 +151,8 @@ std::string KdTree<DataPoint, Compatibility>::to_string() const
     return str.str();
 }
 
-template<class DataPoint, class Compatibility>
-void KdTree<DataPoint, Compatibility>::build_rec(NodeCountType node_id, IndexCountType start, IndexCountType end, DepthType level)
+template<class DataPoint, class Adapter>
+void KdTree<DataPoint, Adapter>::build_rec(NodeCountType node_id, IndexCountType start, IndexCountType end, DepthType level)
 {
     NodeType& node = m_nodes[node_id];
     for(IndexCountType i=start; i<end; ++i)
@@ -160,8 +160,6 @@ void KdTree<DataPoint, Compatibility>::build_rec(NodeCountType node_id, IndexCou
 
     if (end-start <= m_min_cell_size || level >= PCA_KDTREE_MAX_DEPTH)
     {
-        PONCA_ASSERT_MSG(end-start <= std::numeric_limits<LeafSizeType>::max(), "Leaf size overflow");
-
         node.set_is_leaf(true);
 
         node.leaf.start = start;
@@ -173,9 +171,13 @@ void KdTree<DataPoint, Compatibility>::build_rec(NodeCountType node_id, IndexCou
         node.set_is_leaf(false);
 
         DimType dim;
-        (Scalar(0.5) * (node.aabb.max() - node.aabb.min())).maxCoeff(&dim);
+        if constexpr (std::is_floating_point<Scalar>::value)
+            dim = Adapter::max_dim(Scalar(0.5) * (node.aabb.max() - node.aabb.min()));
+        else
+            dim = Adapter::max_dim((node.aabb.max() - node.aabb.min()) / Scalar(2));
+
         node.inner.dim = dim;
-        node.inner.split_value = node.aabb.center()(dim);
+        node.inner.split_value = Adapter::vec_component(node.aabb.center(), dim);
 
         IndexCountType mid_id = this->partition(start, end, dim, node.inner.split_value);
         node.inner.first_child_id = m_nodes.size();
@@ -187,8 +189,8 @@ void KdTree<DataPoint, Compatibility>::build_rec(NodeCountType node_id, IndexCou
     }
 }
 
-template<class DataPoint, class Compatibility>
-auto KdTree<DataPoint, Compatibility>::partition(IndexCountType start, IndexCountType end, DimType dim, Scalar value)
+template<class DataPoint, class Adapter>
+auto KdTree<DataPoint, Adapter>::partition(IndexCountType start, IndexCountType end, DimType dim, Scalar value)
     -> IndexCountType
 {
     const auto& points = m_points;
@@ -196,9 +198,9 @@ auto KdTree<DataPoint, Compatibility>::partition(IndexCountType start, IndexCoun
     
     auto it = std::partition(indices.begin()+start, indices.begin()+end, [&](IndexType i)
     {
-        return points[i].pos()[dim] < value;
+        return Adapter::vec_component(points[i].pos(), dim) < value;
     });
-        
+
     auto distance = std::distance(m_indices.begin(), it);
     
     return static_cast<IndexCountType>(distance);
