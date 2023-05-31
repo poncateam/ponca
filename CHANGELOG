@@ -3,7 +3,10 @@ Ponca changelog
 
 
 --------------------------------------------------------------------------------
-Current head (v.1.0 RC)
+Current head (v.1.1 RC)
+
+--------------------------------------------------------------------------------
+v.1.0
 This release introduces several changes in the API in order to
    - improve the computation timings (we reported x1.2 to x1.4 gain depending on
      the situation)
@@ -32,6 +35,7 @@ The changes introduced in this version mostly are introduced by PR #56.
     - [fitting] Remove explicit implementation of default constructors (#56)
     - [fitting] Add macros to simplify headers writing (#56)
     - [fitting] Fix several warnings when compiling with MSVC (#56)
+    - [fitting] Fix compilation error in GLSDer (#68)
     - [fitting] Fix a bug in barycenterDer computation (#72)
     - [fitting] Improve weight kernel testing (#71,#74)
 
