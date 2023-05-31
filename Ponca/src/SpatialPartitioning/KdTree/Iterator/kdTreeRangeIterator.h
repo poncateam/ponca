@@ -8,7 +8,7 @@
 
 namespace Ponca {
 
-template<class DataPoint, class QueryT_>
+template<typename Index, typename DataPoint, typename QueryT_>
 class KdTreeRangeIterator
 {
 protected:
@@ -19,19 +19,19 @@ public:
     using QueryType = QueryT_;
 
     inline KdTreeRangeIterator() = default;
-    inline KdTreeRangeIterator(QueryType* query, int index = -1) :
+    inline KdTreeRangeIterator(QueryType* query, Index index = -1) :
         m_query(query), m_index(index), m_start(0), m_end(0) {}
 
-    inline bool operator !=(const KdTreeRangeIterator<DataPoint,QueryType>& other) const
+    inline bool operator !=(const KdTreeRangeIterator& other) const
     {return m_index != other.m_index;}
     inline void operator ++(int) {m_query->advance(*this);}
-    inline KdTreeRangeIterator<DataPoint,QueryType>& operator++() {m_query->advance(*this); return *this;}
-    inline int operator *() const {return m_index;}
+    inline KdTreeRangeIterator& operator++() {m_query->advance(*this); return *this;}
+    inline Index operator *() const {return m_index;}
 
 protected:
     QueryType* m_query {nullptr};
-    int m_index {-1};
-    int m_start {0};
-    int m_end {0};
+    Index m_index {-1};
+    Index m_start {0};
+    Index m_end {0};
 };
 } // namespace ponca

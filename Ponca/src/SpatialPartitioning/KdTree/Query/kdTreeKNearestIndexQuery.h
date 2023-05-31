@@ -14,22 +14,23 @@ namespace Ponca {
 
 template<class DataPoint, class Adapter>
 class KdTreeKNearestIndexQuery : public KdTreeQuery<DataPoint, Adapter>,
-    public KNearestIndexQuery<typename DataPoint::Scalar>
+    public KNearestIndexQuery<typename Adapter::IndexType, typename DataPoint::Scalar>
 {
 public:
+    using IndexType       = typename Adapter::IndexType;
     using Scalar          = typename DataPoint::Scalar;
     using VectorType      = typename DataPoint::VectorType;
-    using QueryType       = KNearestIndexQuery<typename DataPoint::Scalar>;
+    using QueryType       = KNearestIndexQuery<IndexType, typename DataPoint::Scalar>;
     using QueryAccelType  = KdTreeQuery<DataPoint, Adapter>;
 
-    KdTreeKNearestIndexQuery(const KdTree<DataPoint, Adapter>* kdtree, int k, int index) :
-        KdTreeQuery<DataPoint, Adapter>(kdtree), KNearestIndexQuery<Scalar>(k, index)
+    KdTreeKNearestIndexQuery(const KdTree<DataPoint, Adapter>* kdtree, IndexType k, IndexType index) :
+        KdTreeQuery<DataPoint, Adapter>(kdtree), KNearestIndexQuery<IndexType, Scalar>(k, index)
     {
     }
 
 public:
-    KdTreeKNearestIterator<DataPoint> begin();
-    KdTreeKNearestIterator<DataPoint> end();
+    KdTreeKNearestIterator<IndexType, DataPoint> begin();
+    KdTreeKNearestIterator<IndexType, DataPoint> end();
 
 protected:
     void search();

@@ -7,16 +7,18 @@
 #pragma once
 
 #include <limits>
+#include <type_traits>
+
 #include "./defines.h"
 
 namespace Ponca {
 
 /// \brief Associates an index with a distance
-template<typename Scalar>
+template<typename Index, typename Scalar>
 struct IndexSquaredDistance
 {
     //// Index of the closest point
-    int index {-1};
+    Index index {-1};
 
     /// Distance to the closest point
     Scalar squared_distance { std::numeric_limits<Scalar>::max() };

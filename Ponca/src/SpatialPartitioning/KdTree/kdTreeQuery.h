@@ -19,6 +19,7 @@ template <class DataPoint, class Adapter>
 class KdTreeQuery
 {
 public:
+    using IndexType       = typename Adapter::IndexType;
     using Scalar          = typename DataPoint::Scalar;
     using VectorType      = typename DataPoint::VectorType;
 
@@ -32,7 +33,7 @@ protected:
     }
 
     const KdTree<DataPoint, Adapter>* m_kdtree { nullptr };
-    Stack<IndexSquaredDistance<typename DataPoint::Scalar>, 2 * PCA_KDTREE_MAX_DEPTH> m_stack;
+    Stack<IndexSquaredDistance<IndexType, Scalar>, 2 * PCA_KDTREE_MAX_DEPTH> m_stack;
 };
 
 } // namespace Ponca

@@ -18,10 +18,8 @@ struct DefaultKdTreeInnerNode
 
 struct DefaultKdTreeLeafNode
 {
-    using SizeType = unsigned short;
-
-    unsigned int start;
-    SizeType     size;
+    unsigned int   start;
+    unsigned short size;
 };
 
 template<typename DataPoint>
@@ -34,7 +32,7 @@ private:
     typedef DefaultKdTreeLeafNode          LeafType;
 
 public:
-    typedef typename LeafType::SizeType LeafSizeType;
+    typedef unsigned short LeafSizeType;
 
     union
     {

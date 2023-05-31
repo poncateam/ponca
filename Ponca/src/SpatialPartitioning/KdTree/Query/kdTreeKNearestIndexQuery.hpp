@@ -5,18 +5,18 @@
 */
 
 template<class DataPoint, class Adapter>
-KdTreeKNearestIterator<DataPoint> KdTreeKNearestIndexQuery<DataPoint, Adapter>::begin()
+KdTreeKNearestIterator<typename Adapter::IndexType, DataPoint> KdTreeKNearestIndexQuery<DataPoint, Adapter>::begin()
 {
     QueryAccelType::reset();
     QueryType::reset();
     this->search();
-    return KdTreeKNearestIterator<DataPoint>(QueryType::m_queue.begin());
+    return KdTreeKNearestIterator<IndexType, DataPoint>(QueryType::m_queue.begin());
 }
 
 template<class DataPoint, class Adapter>
-KdTreeKNearestIterator<DataPoint> KdTreeKNearestIndexQuery<DataPoint, Adapter>::end()
+KdTreeKNearestIterator<typename Adapter::IndexType, DataPoint> KdTreeKNearestIndexQuery<DataPoint, Adapter>::end()
 {
-    return KdTreeKNearestIterator<DataPoint>(QueryType::m_queue.end());
+    return KdTreeKNearestIterator<IndexType, DataPoint>(QueryType::m_queue.end());
 }
 
 template<class DataPoint, class Adapter>
@@ -34,33 +34,33 @@ void KdTreeKNearestIndexQuery<DataPoint, Adapter>::search()
 
         if(qnode.squared_distance < QueryType::m_queue.bottom().squared_distance)
         {
-            if(node.leaf)
+            if(node.is_leaf())
             {
                 QueryAccelType::m_stack.pop();
-                int end = node.start + node.size;
-                for(int i=node.start; i<end; ++i)
+                IndexType end = node.leaf.start + node.leaf.size;
+                for(IndexType i=node.leaf.start; i<end; ++i)
                 {
-                    int idx = indices[i];
+                    IndexType idx = indices[i];
                     if(QueryType::input() == idx) continue;
 
-                    Scalar d = (point - points[idx].pos()).squaredNorm();
+                    Scalar d = Adapter::squared_norm(point - points[idx].pos());
                     QueryType::m_queue.push({idx, d});
                 }
             }
             else
             {
                 // replace the stack top by the farthest and push the closest
-                Scalar newOff = point[node.dim] - node.splitValue;
+                Scalar newOff = point[node.inner.dim] - node.inner.split_value;
                 QueryAccelType::m_stack.push();
                 if(newOff < 0)
                 {
-                    QueryAccelType::m_stack.top().index = node.firstChildId;
-                    qnode.index         = node.firstChildId+1;
+                    QueryAccelType::m_stack.top().index = node.inner.first_child_id;
+                    qnode.index         = node.inner.first_child_id+1;
                 }
                 else
                 {
-                    QueryAccelType::m_stack.top().index = node.firstChildId+1;
-                    qnode.index         = node.firstChildId;
+                    QueryAccelType::m_stack.top().index = node.inner.first_child_id+1;
+                    qnode.index         = node.inner.first_child_id;
                 }
                 QueryAccelType::m_stack.top().squared_distance = qnode.squared_distance;
                 qnode.squared_distance         = newOff*newOff;
