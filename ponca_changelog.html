@@ -51,7 +51,7 @@ MathJax.Hub.Config({
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Ponca
-   &#160;<span id="projectnumber">50a9856b8b46356f2326a09f3c9e919392d81b33</span>
+   &#160;<span id="projectnumber">9feca1d7be159154e4da65b50269dfda8e9ab8b1</span>
    </div>
    <div id="projectbrief">Point Cloud Analysis library</div>
   </td>
@@ -122,6 +122,15 @@ $(document).ready(function(){initNavTree('ponca_changelog.html',''); initResizab
 <div class="textblock"><p>Check latest release at: <a href="https://github.com/poncateam/ponca/releases/latest">https://github.com/poncateam/ponca/releases/latest</a>.</p>
 <h1><a class="anchor" id="ponca_releases_overview"></a>
 Principal features of the latest releases</h1>
+<h2><a class="anchor" id="ponca_v10_sec"></a>
+V1.0: adding Spatial Partitioning module</h2>
+<ul>
+<li>improve the computation timings (we reported x1.2 to x1.4 gain depending on the situation)</li>
+<li>reduce code duplication</li>
+<li><p class="startli">ease the design of new estimators</p>
+<div class="fragment"><div class="line">git checkout v1.0</div>
+</div><!-- fragment --></li>
+</ul>
 <h2><a class="anchor" id="ponca_v03_sec"></a>
 V0.3: adding Spatial Partitioning module</h2>
 <ul>
@@ -146,7 +155,10 @@ Complete Changelog</h1>
 
 
 --------------------------------------------------------------------------------
-Current head (v.1.0 RC)
+Current head (v.1.1 RC)
+
+--------------------------------------------------------------------------------
+v.1.0
 This release introduces several changes in the API in order to
    - improve the computation timings (we reported x1.2 to x1.4 gain depending on
      the situation)
@@ -175,6 +187,7 @@ The changes introduced in this version mostly are introduced by PR #56.
     - [fitting] Remove explicit implementation of default constructors (#56)
     - [fitting] Add macros to simplify headers writing (#56)
     - [fitting] Fix several warnings when compiling with MSVC (#56)
+    - [fitting] Fix compilation error in GLSDer (#68)
     - [fitting] Fix a bug in barycenterDer computation (#72)
     - [fitting] Improve weight kernel testing (#71,#74)
 
@@ -426,7 +439,7 @@ V0.1.2
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generated on Sat May 27 2023 20:31:11 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.6 </li>
+    <li class="footer">Generated on Wed May 31 2023 17:27:11 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.6 </li>
   </ul>
 </div>
 </body>
