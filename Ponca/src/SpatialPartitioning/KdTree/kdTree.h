@@ -28,7 +28,6 @@
 #define PCA_KDTREE_MAX_DEPTH 32
 
 namespace Ponca {
-///
 template <typename DataPoint>
 struct DefaultKdTreeAdapter
 {
@@ -46,8 +45,9 @@ public:
     typedef std::vector<DataPoint> PointContainer;
     typedef std::vector<int>       IndexContainer;
 
-    typedef std::vector<DefaultKdTreeNode<DataPoint, AabbType>> NodeContainer;
+    typedef std::vector<DefaultKdTreeNode<DataPoint>> NodeContainer;
 
+public:
     static DimType max_dim(const VectorType& vec)
     {
         DimType dim;
@@ -91,7 +91,8 @@ public:
 
     typedef typename NodeType::LeafSizeType LeafSizeType;
 
-    static_assert(std::is_same<typename PointContainer::value_type, DataPoint>::value, "Point container must contain DataPoints");
+    static_assert(std::is_same<typename PointContainer::value_type, DataPoint>::value,
+        "PointContainer must contain DataPoints");
 
     inline KdTree():
         m_points(PointContainer()),
@@ -103,39 +104,40 @@ public:
     };
 
     template<typename PointUserContainer>
-    inline KdTree(PointUserContainer&& points): // PointUserContainer => Given by user, transformed to PointContainer
+    inline KdTree(PointUserContainer points): // PointUserContainer => Given by user, transformed to PointContainer
         m_points(PointContainer()),
         m_nodes(NodeContainer()),
         m_indices(IndexContainer()),
         m_min_cell_size(64),
         m_leaf_count(0)
     {
-        this->build(std::forward<PointUserContainer>(points));
+        this->build(std::move(points));
     };
 
     template<typename PointUserContainer, typename IndexUserContainer>
-    inline KdTree(PointUserContainer&& points, IndexUserContainer sampling): // PointUserContainer => Given by user, transformed to PointContainer
-                                                                             // IndexUserContainer => Given by user, transformed to IndexContainer
+    inline KdTree(PointUserContainer points, IndexUserContainer sampling): // PointUserContainer => Given by user, transformed to PointContainer
+                                                                           // IndexUserContainer => Given by user, transformed to IndexContainer
         m_points(),
         m_nodes(),
         m_indices(),
         m_min_cell_size(64),
         m_leaf_count(0)
     {
-        buildWithSampling(std::forward<PointUserContainer>(points), std::move(sampling));
+        buildWithSampling(std::move(points), std::move(sampling));
     };
 
     inline void clear();
 
-    struct DefaultConverter{
+    struct DefaultConverter
+    {
         template <typename Input>
-        inline void operator()( Input&& i, PointContainer & o ) {
-            typedef typename std::remove_cv<typename std::remove_reference<Input>::type>::type InputContainer;
-            if constexpr ( std::is_same<InputContainer, PointContainer>::value )
-                o = i;
+        inline void operator()(Input i, PointContainer& o)
+        {
+            if constexpr (std::is_same<Input, PointContainer>::value)
+                o = std::move(i);
             else
                 std::transform(i.cbegin(), i.cend(), std::back_inserter(o),
-                               [](const typename InputContainer::value_type &p) -> DataPoint { return DataPoint(p); });
+                               [](const typename Input::value_type &p) -> DataPoint { return DataPoint(p); });
         }
     };
 
@@ -143,9 +145,9 @@ public:
     /// \tparam PointUserContainer Input point container, transformed to PointContainer
     /// \param points Input points
     template<typename PointUserContainer>
-    inline void build(PointUserContainer&& points)
+    inline void build(PointUserContainer points)
     {
-        build(std::forward<PointUserContainer>(points), DefaultConverter());
+        build(std::move(points), DefaultConverter());
     }
 
     ///
@@ -154,17 +156,17 @@ public:
     /// \param points Input points
     /// \param c Cast/Convert input point type to DataType
     template<typename PointUserContainer, typename Converter>
-    inline void build(PointUserContainer&& points, Converter c);
+    inline void build(PointUserContainer points, Converter c);
 
     /// \tparam PointUserContainer Input point, transformed to PointContainer
     /// \tparam IndexUserContainer Input sampling, transformed to IndexContainer
     /// \param points Input points
     /// \param sampling Indices of points used in the tree
     template<typename PointUserContainer, typename IndexUserContainer>
-    inline void buildWithSampling(PointUserContainer&& points,
+    inline void buildWithSampling(PointUserContainer points,
                                   IndexUserContainer sampling)
     {
-        buildWithSampling(std::forward<PointUserContainer>(points), std::move(sampling), DefaultConverter());
+        buildWithSampling(std::move(points), std::move(sampling), DefaultConverter());
     }
 
     /// \tparam PointUserContainer Input point, transformed to PointContainer
@@ -174,7 +176,7 @@ public:
     /// \param sampling Indices of points used in the tree
     /// \param c Cast/Convert input point type to DataType
     template<typename PointUserContainer, typename IndexUserContainer, typename Converter>
-    inline void buildWithSampling(PointUserContainer&& points,
+    inline void buildWithSampling(PointUserContainer points,
                                   IndexUserContainer sampling,
                                   Converter c);
 
