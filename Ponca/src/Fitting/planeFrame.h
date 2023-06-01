@@ -7,9 +7,15 @@
 
 namespace Ponca
 {
+/*!
+    \brief Class extending Plane to provide a local frame
 
+    This class can be used to do base change from the global frame to the local frame of the plane.
+
+    \see Plane
+*/
 template < class DataPoint, class _WFunctor, typename T >
-class MeanPlane : public T
+class PlaneFrame : public T
 {
     PONCA_FITTING_DECLARE_DEFAULT_TYPES
     PONCA_FITTING_DECLARE_MATRIX_TYPE
@@ -17,15 +23,17 @@ class MeanPlane : public T
 protected:
     enum
     {
-        check = Base::PROVIDES_MEAN_POSITION && Base::PROVIDES_MEAN_NORMAL && Base::PROVIDES_PLANE,  /*!< \brief Requires PrimitiveBase */
-        PROVIDES_MEAN_PLANE_BASIS                                       /*!< \brief Provides Algebraic Sphere */
+        check = Base::PROVIDES_PLANE,  /*!< \brief Requires PrimitiveBase */
+        PROVIDES_PLANE_FRAME           /*!< \brief Provides PlaneFrame */
     };
 
 protected:
-    MatrixType B; // local frame
+    // local frame
+    VectorType m_u; 
+    VectorType m_v;
 
 public:
-    PONCA_EXPLICIT_CAST_OPERATORS(MeanPlane,meanPlane)
+    PONCA_EXPLICIT_CAST_OPERATORS(PlaneFrame,planeFrame)
     /*! \brief Set the scalar field values to 0 and reset the isNormalized() status
 
         \warning Set m_ul to Zero(), which leads to nans in OrientedSphere::normal()
@@ -33,7 +41,8 @@ public:
     PONCA_MULTIARCH inline void init(const VectorType& _basisCenter = VectorType::Zero())
     {
         Base::init(_basisCenter);
-        B = MatrixType::Identity();
+        m_u = VectorType::Zero();
+        m_v = VectorType::Zero();
     }
 
     /*!
@@ -58,8 +67,8 @@ public:
     template <bool ignoreTranslation = false>
     PONCA_MULTIARCH inline VectorType tangentPlaneToWorld(const VectorType &_q) const;
 
-}; //class MeanPlane
+}; //class PlaneFrame
 
-#include "meanPlane.hpp"
+#include "planeFrame.hpp"
 
 } // namespace Ponca
