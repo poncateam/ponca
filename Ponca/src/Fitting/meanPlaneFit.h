@@ -10,20 +10,17 @@
 
 #include "./plane.h"
 #include "./mean.h"
-#include "./meanPlane.h"
+#include "./planeFrame.h"
 
 namespace Ponca
 {
 
 /*!
-    \brief Plane fitting procedure computing the mean position and orientation
-    from oriented points
+    \brief Plane fitting procedure computing the frame plane using mean position and normal
 
     \inherit Concept::FittingProcedureConcept
 
-    \see Plane
-
-    \todo Add local frame computation to enable PROVIDES_TANGENT_PLANE_BASIS
+    \see Plane, PlaneFrame
 */
 template < class DataPoint, class _NFilter, typename T >
 class MeanPlaneFitImpl : public T
@@ -32,8 +29,7 @@ PONCA_FITTING_DECLARE_DEFAULT_TYPES
 PONCA_FITTING_DECLARE_MATRIX_TYPE
 
 protected:
-    enum { Check = Base::PROVIDES_MEAN_PLANE_BASIS and
-            Base::PROVIDES_PLANE};
+    enum { Check = Base::PROVIDES_PLANE_FRAME and Base::PROVIDES_PLANE };
 
 
 public:
@@ -48,7 +44,6 @@ public:
             if (Base::plane().isValid()) Base::m_eCurrentState = CONFLICT_ERROR_FOUND;
             Base::setPlane(Base::m_sumN / Base::m_sumW, Base::barycenter());
             VectorType norm = Base::plane().normal();
-            Base::B.col(0) = norm;
             VectorType a;
             if (std::abs(norm.x()) > std::abs(norm.z())) {
                 a = VectorType(-norm.y(), norm.x(), 0);
@@ -57,10 +52,10 @@ public:
             }
             a.normalize();
             // use cross product to generate a orthogonal basis
-            Base::B.col(1) = norm.cross(a);
-            Base::B.col(1).normalize();
-            Base::B.col(2) = norm.cross(Base::B.col(1));
-            Base::B.col(2).normalize();
+            Base::m_u = norm.cross(a);
+            Base::m_u.normalize();
+            Base::m_v = norm.cross(Base::m_u);
+            Base::m_v.normalize();
         }
         return Base::m_eCurrentState;
     }
@@ -72,7 +67,7 @@ public:
     template < class DataPoint, class _NFilter, typename T>
     using MeanPlaneFit =
     MeanPlaneFitImpl<DataPoint, _NFilter,
-        MeanPlane<DataPoint, _NFilter,
+        MeanNormal<DataPoint, _NFilter,
             MeanNormal<DataPoint, _NFilter,
                 MeanPosition<DataPoint, _NFilter,
                     Plane<DataPoint, _NFilter, T>>>>>;

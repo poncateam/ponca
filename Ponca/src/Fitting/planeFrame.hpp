@@ -1,10 +1,10 @@
-
-
 template < class DataPoint, class _WFunctor, typename T>
 template <bool ignoreTranslation>
-typename MeanPlane<DataPoint, _WFunctor, T>::VectorType
-MeanPlane<DataPoint, _WFunctor, T>::worldToTangentPlane (const VectorType& _q) const
+typename PlaneFrame<DataPoint, _WFunctor, T>::VectorType
+PlaneFrame<DataPoint, _WFunctor, T>::worldToTangentPlane (const VectorType& _q) const
 {
+  MatrixType B;
+  B << Base::plane().normal(), m_u, m_v;
   if (ignoreTranslation)
     return B.transpose() * _q;
   else {
@@ -15,9 +15,11 @@ MeanPlane<DataPoint, _WFunctor, T>::worldToTangentPlane (const VectorType& _q) c
 
 template < class DataPoint, class _WFunctor, typename T>
 template <bool ignoreTranslation>
-typename MeanPlane<DataPoint, _WFunctor, T>::VectorType
-MeanPlane<DataPoint, _WFunctor, T>::tangentPlaneToWorld (const VectorType& _lq) const
+typename PlaneFrame<DataPoint, _WFunctor, T>::VectorType
+PlaneFrame<DataPoint, _WFunctor, T>::tangentPlaneToWorld (const VectorType& _lq) const
 {
+  MatrixType B;
+  B << Base::plane().normal(), m_u, m_v;
   if (ignoreTranslation)
     return B * _lq;
   else {
