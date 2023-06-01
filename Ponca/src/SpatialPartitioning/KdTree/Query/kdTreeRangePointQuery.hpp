@@ -57,7 +57,7 @@ void KdTreeRangePointQuery<DataPoint, Adapter>::advance(Iterator& it)
                 {
                     IndexType idx = indices[i];
 
-                    Scalar d = (point - points[idx].pos()).squaredNorm();
+                    Scalar d = Adapter::squared_norm(point - points[idx].pos());
                     if(d < QueryType::m_squared_radius)
                     {
                         it.m_index = idx;
