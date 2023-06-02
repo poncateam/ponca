@@ -48,7 +48,7 @@ void KdTreeNearestIndexQuery<Traits>::search()
                     IndexType idx = indices[i];
                     if(QueryType::input() == idx) continue;
 
-                    Scalar d = Traits::squared_norm(point - points[idx].pos());
+                    Scalar d = (point - points[idx].pos()).squaredNorm();
                     if(d < QueryType::m_squared_distance)
                     {
                         QueryType::m_nearest = idx;

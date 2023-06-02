@@ -28,32 +28,17 @@
 namespace Ponca {
 template <typename Traits> class KdTreeBase;
 
-///
-/// \tparam DataPoint
 template <typename DataPoint>
 using KdTree = KdTreeBase<KdTreeDefaultTraits<DataPoint>>;
 
-///
-/// \tparam Traits
-///
-/// \todo Finish documentation
-/// The specified traits type must have the following interface:
-///
-/// DataPoint
-///
-/// AabbType
-///
-/// IndexType
-/// PointContainer
-/// IndexContainer
-/// NodeContainer
-///
-/// MAX_DEPTH
-///
-/// PointContainer::value_type must match DataPoint
-/// IndexContainer::value_type must match IndexType
-///
-/// \todo Better handle sampling: do not store non-selected points (requires to store original indices)
+/*!
+ * \tparam Traits Traits type providing the types and constants used by the kd-tree. Must have the
+ * same interface as the default traits type.
+ *
+ * \see KdTreeDefaultTraits for the trait interface documentation.
+ *
+ * \todo Better handle sampling: do not store non-selected points (requires to store original indices)
+ */
 template <typename Traits>
 class KdTreeBase
 {
@@ -71,6 +56,15 @@ public:
     using NodeType      = typename NodeContainer::value_type;
     using NodeCountType = typename NodeContainer::size_type;
     using LeafSizeType  = typename NodeType::LeafSizeType;
+
+    enum
+    {
+        /*!
+         * The maximum number of points that can be stored in the kd-tree, considering how many
+         * bits the inner nodes use to store their children indices.
+         */
+        MAX_POINT_COUNT = 2 << NodeType::InnerType::INDEX_BITS,
+    };
 
     static_assert(std::is_same<typename PointContainer::value_type, DataPoint>::value,
         "PointContainer must contain DataPoints");
@@ -91,26 +85,26 @@ public:
     };
 
     template<typename PointUserContainer>
-    inline KdTreeBase(PointUserContainer points): // PointUserContainer => Given by user, transformed to PointContainer
+    inline KdTreeBase(PointUserContainer&& points): // PointUserContainer => Given by user, transformed to PointContainer
         m_points(PointContainer()),
         m_nodes(NodeContainer()),
         m_indices(IndexContainer()),
         m_min_cell_size(64),
         m_leaf_count(0)
     {
-        this->build(std::move(points));
+        this->build(std::forward<PointUserContainer>(points));
     };
 
     template<typename PointUserContainer, typename IndexUserContainer>
-    inline KdTreeBase(PointUserContainer points, IndexUserContainer sampling): // PointUserContainer => Given by user, transformed to PointContainer
-                                                                               // IndexUserContainer => Given by user, transformed to IndexContainer
+    inline KdTreeBase(PointUserContainer&& points, IndexUserContainer sampling): // PointUserContainer => Given by user, transformed to PointContainer
+                                                                                 // IndexUserContainer => Given by user, transformed to IndexContainer
         m_points(),
         m_nodes(),
         m_indices(),
         m_min_cell_size(64),
         m_leaf_count(0)
     {
-        buildWithSampling(std::move(points), std::move(sampling));
+        buildWithSampling(std::forward<PointUserContainer>(points), std::move(sampling));
     };
 
     inline void clear();
@@ -118,13 +112,14 @@ public:
     struct DefaultConverter
     {
         template <typename Input>
-        inline void operator()(Input i, PointContainer& o)
+        inline void operator()(Input&& i, PointContainer& o)
         {
-            if constexpr (std::is_same<Input, PointContainer>::value)
-                o = std::move(i);
+            using InputContainer = typename std::remove_reference<Input>::type;
+            if constexpr (std::is_same<InputContainer, PointContainer>::value)
+                o = std::forward<Input>(i); // Either move or copy
             else
                 std::transform(i.cbegin(), i.cend(), std::back_inserter(o),
-                               [](const typename Input::value_type &p) -> DataPoint { return DataPoint(p); });
+                               [](const typename InputContainer::value_type &p) -> DataPoint { return DataPoint(p); });
         }
     };
 
@@ -132,9 +127,9 @@ public:
     /// \tparam PointUserContainer Input point container, transformed to PointContainer
     /// \param points Input points
     template<typename PointUserContainer>
-    inline void build(PointUserContainer points)
+    inline void build(PointUserContainer&& points)
     {
-        build(std::move(points), DefaultConverter());
+        build(std::forward<PointUserContainer>(points), DefaultConverter());
     }
 
     ///
@@ -143,17 +138,17 @@ public:
     /// \param points Input points
     /// \param c Cast/Convert input point type to DataType
     template<typename PointUserContainer, typename Converter>
-    inline void build(PointUserContainer points, Converter c);
+    inline void build(PointUserContainer&& points, Converter c);
 
     /// \tparam PointUserContainer Input point, transformed to PointContainer
     /// \tparam IndexUserContainer Input sampling, transformed to IndexContainer
     /// \param points Input points
     /// \param sampling Indices of points used in the tree
     template<typename PointUserContainer, typename IndexUserContainer>
-    inline void buildWithSampling(PointUserContainer points,
+    inline void buildWithSampling(PointUserContainer&& points,
                                   IndexUserContainer sampling)
     {
-        buildWithSampling(std::move(points), std::move(sampling), DefaultConverter());
+        buildWithSampling(std::forward<PointUserContainer>(points), std::move(sampling), DefaultConverter());
     }
 
     /// \tparam PointUserContainer Input point, transformed to PointContainer
@@ -163,7 +158,7 @@ public:
     /// \param sampling Indices of points used in the tree
     /// \param c Cast/Convert input point type to DataType
     template<typename PointUserContainer, typename IndexUserContainer, typename Converter>
-    inline void buildWithSampling(PointUserContainer points,
+    inline void buildWithSampling(PointUserContainer&& points,
                                   IndexUserContainer sampling,
                                   Converter c);
 

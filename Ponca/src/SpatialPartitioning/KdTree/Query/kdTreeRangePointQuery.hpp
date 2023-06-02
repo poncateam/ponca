@@ -32,7 +32,7 @@ void KdTreeRangePointQuery<Traits>::advance(Iterator& it)
     {
         IndexType idx = indices[i];
 
-        Scalar d = Traits::squared_norm(point - points[idx].pos());
+        Scalar d = (point - points[idx].pos()).squaredNorm();
         if(d < QueryType::m_squared_radius)
         {
             it.m_index = idx;
@@ -57,7 +57,7 @@ void KdTreeRangePointQuery<Traits>::advance(Iterator& it)
                 {
                     IndexType idx = indices[i];
 
-                    Scalar d = Traits::squared_norm(point - points[idx].pos());
+                    Scalar d = (point - points[idx].pos()).squaredNorm();
                     if(d < QueryType::m_squared_radius)
                     {
                         it.m_index = idx;

@@ -45,7 +45,7 @@ void KdTreeKNearestIndexQuery<Traits>::search()
                     IndexType idx = indices[i];
                     if(QueryType::input() == idx) continue;
 
-                    Scalar d = Traits::squared_norm(point - points[idx].pos());
+                    Scalar d = (point - points[idx].pos()).squaredNorm();
                     QueryType::m_queue.push({idx, d});
                 }
             }

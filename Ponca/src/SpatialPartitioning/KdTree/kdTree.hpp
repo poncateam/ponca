@@ -17,23 +17,24 @@ void KdTreeBase<Traits>::clear()
 
 template<typename Traits>
 template<typename PointUserContainer, typename Converter>
-inline void KdTreeBase<Traits>::build(PointUserContainer points, Converter c)
+inline void KdTreeBase<Traits>::build(PointUserContainer&& points, Converter c)
 {
     IndexContainer ids(points.size());
     std::iota(ids.begin(), ids.end(), 0);
-    this->buildWithSampling(std::move(points), std::move(ids), std::move(c));
+    this->buildWithSampling(std::forward<PointUserContainer>(points), std::move(ids), std::move(c));
 }
 
 template<typename Traits>
 template<typename PointUserContainer, typename IndexUserContainer, typename Converter>
-inline void KdTreeBase<Traits>::buildWithSampling(PointUserContainer points,
+inline void KdTreeBase<Traits>::buildWithSampling(PointUserContainer&& points,
                                                   IndexUserContainer sampling,
                                                   Converter c)
 {
+    PONCA_DEBUG_ASSERT(points.size() <= MAX_POINT_COUNT);
     this->clear();
 
-    // Copy or convert input samples
-    c(std::move(points), m_points);
+    // Move, copy or convert input samples
+    c(std::forward<PointUserContainer>(points), m_points);
 
     m_nodes = NodeContainer();
     m_nodes.reserve(4 * point_count() / m_min_cell_size);
@@ -168,9 +169,10 @@ void KdTreeBase<Traits>::build_rec(NodeCountType node_id, IndexType start, Index
     }
     else
     {
-        int dim = Traits::max_dim(Scalar(0.5) * (aabb.max() - aabb.min()));
+        int dim = 0;
+        (Scalar(0.5) * (aabb.max() - aabb.min())).maxCoeff(&dim);
         node.inner.dim = dim;
-        node.inner.split_value = Traits::vec_component(aabb.center(), dim);
+        node.inner.split_value = aabb.center()[dim];
 
         IndexType mid_id = this->partition(start, end, dim, node.inner.split_value);
         node.inner.first_child_id = m_nodes.size();
@@ -191,7 +193,7 @@ auto KdTreeBase<Traits>::partition(IndexType start, IndexType end, int dim, Scal
     
     auto it = std::partition(indices.begin()+start, indices.begin()+end, [&](IndexType i)
     {
-        return Traits::vec_component(points[i].pos(), dim) < value;
+        return points[i].pos()[dim] < value;
     });
 
     auto distance = std::distance(m_indices.begin(), it);
