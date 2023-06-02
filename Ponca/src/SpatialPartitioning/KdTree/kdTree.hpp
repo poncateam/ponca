@@ -6,8 +6,8 @@
 
 // KdTree ----------------------------------------------------------------------
 
-template<class DataPoint, class Adapter>
-void KdTree<DataPoint, Adapter>::clear()
+template<typename Traits>
+void KdTreeBase<Traits>::clear()
 {
     m_points.clear();
     m_nodes.clear();
@@ -15,20 +15,20 @@ void KdTree<DataPoint, Adapter>::clear()
     m_leaf_count = 0;
 }
 
-template<class DataPoint, class Adapter>
+template<typename Traits>
 template<typename PointUserContainer, typename Converter>
-inline void KdTree<DataPoint, Adapter>::build(PointUserContainer points, Converter c)
+inline void KdTreeBase<Traits>::build(PointUserContainer points, Converter c)
 {
     IndexContainer ids(points.size());
     std::iota(ids.begin(), ids.end(), 0);
     this->buildWithSampling(std::move(points), std::move(ids), std::move(c));
 }
 
-template<class DataPoint, class Adapter>
+template<typename Traits>
 template<typename PointUserContainer, typename IndexUserContainer, typename Converter>
-inline void KdTree<DataPoint, Adapter>::buildWithSampling(PointUserContainer points,
-                                                          IndexUserContainer sampling,
-                                                          Converter c)
+inline void KdTreeBase<Traits>::buildWithSampling(PointUserContainer points,
+                                                  IndexUserContainer sampling,
+                                                  Converter c)
 {
     this->clear();
 
@@ -46,9 +46,9 @@ inline void KdTree<DataPoint, Adapter>::buildWithSampling(PointUserContainer poi
     PONCA_DEBUG_ASSERT(this->valid());
 }
 
-template<class DataPoint, class Adapter>
+template<typename Traits>
 template<typename IndexUserContainer>
-inline void KdTree<DataPoint, Adapter>::rebuild(IndexUserContainer sampling)
+inline void KdTreeBase<Traits>::rebuild(IndexUserContainer sampling)
 {
     PONCA_DEBUG_ASSERT(sampling.size() <= m_points->size());
 
@@ -62,8 +62,8 @@ inline void KdTree<DataPoint, Adapter>::rebuild(IndexUserContainer sampling)
     PONCA_DEBUG_ASSERT(this->valid());
 }
 
-template<class DataPoint, class Adapter>
-bool KdTree<DataPoint, Adapter>::valid() const
+template<typename Traits>
+bool KdTreeBase<Traits>::valid() const
 {
     PONCA_DEBUG_ERROR;
     return false;
@@ -84,7 +84,7 @@ bool KdTree<DataPoint, Adapter>::valid() const
     }
         
     std::vector<bool> b(point_count(), false);
-    for(int idx : m_indices)
+    for(IndexType idx : m_indices)
     {
         if(idx < 0 || point_count() <= idx || b[idx])
         {
@@ -123,8 +123,8 @@ bool KdTree<DataPoint, Adapter>::valid() const
     return true;
 }
 
-template<class DataPoint, class Adapter>
-std::string KdTree<DataPoint, Adapter>::to_string() const
+template<typename Traits>
+std::string KdTreeBase<Traits>::to_string() const
 {
     if (m_indices.empty()) return "";
     
@@ -151,29 +151,26 @@ std::string KdTree<DataPoint, Adapter>::to_string() const
     return str.str();
 }
 
-template<class DataPoint, class Adapter>
-void KdTree<DataPoint, Adapter>::build_rec(NodeCountType node_id, IndexType start, IndexType end, DepthType level)
+template<typename Traits>
+void KdTreeBase<Traits>::build_rec(NodeCountType node_id, IndexType start, IndexType end, int level)
 {
     NodeType& node = m_nodes[node_id];
     AabbType aabb;
     for(IndexType i=start; i<end; ++i)
         aabb.extend(m_points[m_indices[i]].pos());
 
-    if (end-start <= m_min_cell_size || level >= PCA_KDTREE_MAX_DEPTH)
+    node.set_is_leaf(end-start <= m_min_cell_size || level >= Traits::MAX_DEPTH);
+    if (node.is_leaf())
     {
-        node.set_is_leaf(true);
-
         node.leaf.start = start;
         node.leaf.size = static_cast<LeafSizeType>(end-start);
         ++m_leaf_count;
     }
     else
     {
-        node.set_is_leaf(false);
-
-        DimType dim = Adapter::max_dim(Scalar(0.5) * (aabb.max() - aabb.min()));
+        int dim = Traits::max_dim(Scalar(0.5) * (aabb.max() - aabb.min()));
         node.inner.dim = dim;
-        node.inner.split_value = Adapter::vec_component(aabb.center(), dim);
+        node.inner.split_value = Traits::vec_component(aabb.center(), dim);
 
         IndexType mid_id = this->partition(start, end, dim, node.inner.split_value);
         node.inner.first_child_id = m_nodes.size();
@@ -185,8 +182,8 @@ void KdTree<DataPoint, Adapter>::build_rec(NodeCountType node_id, IndexType star
     }
 }
 
-template<class DataPoint, class Adapter>
-auto KdTree<DataPoint, Adapter>::partition(IndexType start, IndexType end, DimType dim, Scalar value)
+template<typename Traits>
+auto KdTreeBase<Traits>::partition(IndexType start, IndexType end, int dim, Scalar value)
     -> IndexType
 {
     const auto& points = m_points;
@@ -194,7 +191,7 @@ auto KdTree<DataPoint, Adapter>::partition(IndexType start, IndexType end, DimTy
     
     auto it = std::partition(indices.begin()+start, indices.begin()+end, [&](IndexType i)
     {
-        return Adapter::vec_component(points[i].pos(), dim) < value;
+        return Traits::vec_component(points[i].pos(), dim) < value;
     });
 
     auto distance = std::distance(m_indices.begin(), it);

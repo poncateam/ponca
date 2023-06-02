@@ -12,19 +12,20 @@
 
 namespace Ponca {
 
-template<class DataPoint, class Adapter>
-class KdTreeKNearestIndexQuery : public KdTreeQuery<DataPoint, Adapter>,
-    public KNearestIndexQuery<typename Adapter::IndexType, typename DataPoint::Scalar>
+template <typename Traits>
+class KdTreeKNearestIndexQuery : public KdTreeQuery<Traits>,
+    public KNearestIndexQuery<typename Traits::IndexType, typename Traits::DataPoint::Scalar>
 {
 public:
-    using IndexType       = typename Adapter::IndexType;
-    using Scalar          = typename DataPoint::Scalar;
-    using VectorType      = typename DataPoint::VectorType;
-    using QueryType       = KNearestIndexQuery<IndexType, typename DataPoint::Scalar>;
-    using QueryAccelType  = KdTreeQuery<DataPoint, Adapter>;
+    using DataPoint      = typename Traits::DataPoint;
+    using IndexType      = typename Traits::IndexType;
+    using Scalar         = typename DataPoint::Scalar;
+    using VectorType     = typename DataPoint::VectorType;
+    using QueryType      = KNearestIndexQuery<IndexType, typename DataPoint::Scalar>;
+    using QueryAccelType = KdTreeQuery<Traits>;
 
-    KdTreeKNearestIndexQuery(const KdTree<DataPoint, Adapter>* kdtree, IndexType k, IndexType index) :
-        KdTreeQuery<DataPoint, Adapter>(kdtree), KNearestIndexQuery<IndexType, Scalar>(k, index)
+    KdTreeKNearestIndexQuery(const KdTreeBase<Traits>* kdtree, IndexType k, IndexType index) :
+        KdTreeQuery<Traits>(kdtree), KNearestIndexQuery<IndexType, Scalar>(k, index)
     {
     }
 

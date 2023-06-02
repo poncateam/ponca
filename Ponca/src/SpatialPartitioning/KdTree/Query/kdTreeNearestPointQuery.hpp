@@ -4,8 +4,9 @@
  file, You can obtain one at http://mozilla.org/MPL/2.0/.
 */
 
-template <class DataPoint, class Adapter>
-KdTreeNearestIterator<typename Adapter::IndexType> KdTreeNearestPointQuery<DataPoint, Adapter>::begin()
+template <typename Traits>
+auto KdTreeNearestPointQuery<Traits>::begin()
+    -> KdTreeNearestIterator<IndexType>
 {
     QueryAccelType::reset();
     QueryType::reset();
@@ -13,14 +14,15 @@ KdTreeNearestIterator<typename Adapter::IndexType> KdTreeNearestPointQuery<DataP
     return KdTreeNearestIterator<IndexType>(QueryType::m_nearest);
 }
 
-template <class DataPoint, class Adapter>
-KdTreeNearestIterator<typename Adapter::IndexType> KdTreeNearestPointQuery<DataPoint, Adapter>::end()
+template <typename Traits>
+auto KdTreeNearestPointQuery<Traits>::end()
+    -> KdTreeNearestIterator<IndexType>
 {
     return KdTreeNearestIterator<IndexType>(QueryType::m_nearest + 1);
 }
 
-template <class DataPoint, class Adapter>
-void KdTreeNearestPointQuery<DataPoint, Adapter>::search()
+template <typename Traits>
+void KdTreeNearestPointQuery<Traits>::search()
 {
     const auto& nodes   = QueryAccelType::m_kdtree->node_data();
     const auto& points  = QueryAccelType::m_kdtree->point_data();
@@ -44,7 +46,7 @@ void KdTreeNearestPointQuery<DataPoint, Adapter>::search()
                 for(IndexType i=node.leaf.start; i<end; ++i)
                 {
                     IndexType idx = indices[i];
-                    Scalar d = Adapter::squared_norm(point - points[idx].pos());
+                    Scalar d = Traits::squared_norm(point - points[idx].pos());
                     if(d < QueryType::m_squared_distance)
                     {
                         QueryType::m_nearest = idx;

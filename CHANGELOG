@@ -28,6 +28,7 @@ The changes introduced in this version mostly are introduced by PR #56.
     - [fitting] Rename normal() as primitiveGradient in MlsSphereFit (#72)
     - [fitting] Add new weight kernels (#71,#74)
     - [fitting] Add mechanism to check weight derivatives validity (#74)
+    - [spatialPartitioning] Add kd-tree traits type (#80)
 
 - Bug-fixes and code improvements
     - [fitting] Reduce objets sizes by removing unnecessary attributes (#56)

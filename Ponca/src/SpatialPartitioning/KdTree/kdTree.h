@@ -6,7 +6,7 @@
 
 #pragma once
 
-#include "./kdTreeNode.h"
+#include "./kdTreeTraits.h"
 
 #include <memory>
 #include <numeric>
@@ -25,75 +25,52 @@
 #include "Query/kdTreeRangeIndexQuery.h"
 #include "Query/kdTreeRangePointQuery.h"
 
-#define PCA_KDTREE_MAX_DEPTH 32
-
 namespace Ponca {
-template <typename DataPoint>
-struct DefaultKdTreeAdapter
-{
-private:
-    typedef typename DataPoint::Scalar     Scalar;
-    typedef typename DataPoint::VectorType VectorType;
-
-public:
-    typedef Eigen::AlignedBox<Scalar, DataPoint::Dim> AabbType;
-
-    typedef int IndexType;
-    typedef int DimType;
-    typedef int DepthType;
-
-    // Containers
-    typedef std::vector<DataPoint> PointContainer;
-    typedef std::vector<IndexType> IndexContainer;
-
-    typedef std::vector<DefaultKdTreeNode<DataPoint>> NodeContainer;
-
-public:
-    static Scalar squared_norm(const VectorType& vec)
-    {
-        return vec.squaredNorm();
-    }
-
-    static DimType max_dim(const VectorType& vec)
-    {
-        DimType dim;
-        vec.maxCoeff(&dim);
-        return dim;
-    }
-
-    static Scalar vec_component(const VectorType& vec, DimType dim)
-    {
-        return vec(dim);
-    }
-};
+template <typename Traits> class KdTreeBase;
 
 ///
 /// \tparam DataPoint
-/// \tparam Adapter
+template <typename DataPoint>
+using KdTree = KdTreeBase<KdTreeDefaultTraits<DataPoint>>;
+
 ///
-/// \todo Better handle sampling: do not store non-selected points (requires to store original indices
-template<class _DataPoint, class Adapter = DefaultKdTreeAdapter<_DataPoint>>
-class KdTree
+/// \tparam Traits
+///
+/// \todo Finish documentation
+/// The specified traits type must have the following interface:
+///
+/// DataPoint
+///
+/// AabbType
+///
+/// IndexType
+/// PointContainer
+/// IndexContainer
+/// NodeContainer
+///
+/// MAX_DEPTH
+///
+/// PointContainer::value_type must match DataPoint
+/// IndexContainer::value_type must match IndexType
+///
+/// \todo Better handle sampling: do not store non-selected points (requires to store original indices)
+template <typename Traits>
+class KdTreeBase
 {
 public:
-    typedef          _DataPoint            DataPoint;
-    typedef typename DataPoint::Scalar     Scalar; // Scalar given by user
-    typedef typename DataPoint::VectorType VectorType; // VectorType given by user
+    using DataPoint  = typename Traits::DataPoint;
+    using Scalar     = typename DataPoint::Scalar; // Scalar given by user
+    using VectorType = typename DataPoint::VectorType; // VectorType given by user
+    using AabbType   = typename Traits::AabbType;
 
-    typedef typename Adapter::AabbType AabbType;
+    using IndexType      = typename Traits::IndexType;
+    using PointContainer = typename Traits::PointContainer; // Container for DataPoint used inside the KdTree
+    using IndexContainer = typename Traits::IndexContainer; // Container for indices used inside the KdTree
+    using NodeContainer  = typename Traits::NodeContainer; // Container for nodes used inside the KdTree
 
-    typedef typename Adapter::IndexType IndexType;
-    typedef typename Adapter::DimType   DimType;
-    typedef typename Adapter::DepthType DepthType;
-
-    typedef typename Adapter::PointContainer PointContainer; // Container for VectorType used inside the KdTree
-    typedef typename Adapter::IndexContainer IndexContainer; // Container for indices used inside the KdTree
-    typedef typename Adapter::NodeContainer  NodeContainer; // Container for nodes used inside the KdTree
-
-    typedef typename NodeContainer::value_type NodeType;
-    typedef typename NodeContainer::size_type  NodeCountType;
-
-    typedef typename NodeType::LeafSizeType LeafSizeType;
+    using NodeType      = typename NodeContainer::value_type;
+    using NodeCountType = typename NodeContainer::size_type;
+    using LeafSizeType  = typename NodeType::LeafSizeType;
 
     static_assert(std::is_same<typename PointContainer::value_type, DataPoint>::value,
         "PointContainer must contain DataPoints");
@@ -102,7 +79,9 @@ public:
     static_assert(std::is_signed<IndexType>::value, "Index type must be signed");
     static_assert(std::is_same<typename IndexContainer::value_type, IndexType>::value, "Index type mismatch");
 
-    inline KdTree():
+    static_assert(Traits::MAX_DEPTH > 0, "Max depth must be strictly positive");
+
+    inline KdTreeBase():
         m_points(PointContainer()),
         m_nodes(NodeContainer()),
         m_indices(IndexContainer()),
@@ -112,7 +91,7 @@ public:
     };
 
     template<typename PointUserContainer>
-    inline KdTree(PointUserContainer points): // PointUserContainer => Given by user, transformed to PointContainer
+    inline KdTreeBase(PointUserContainer points): // PointUserContainer => Given by user, transformed to PointContainer
         m_points(PointContainer()),
         m_nodes(NodeContainer()),
         m_indices(IndexContainer()),
@@ -123,8 +102,8 @@ public:
     };
 
     template<typename PointUserContainer, typename IndexUserContainer>
-    inline KdTree(PointUserContainer points, IndexUserContainer sampling): // PointUserContainer => Given by user, transformed to PointContainer
-                                                                           // IndexUserContainer => Given by user, transformed to IndexContainer
+    inline KdTreeBase(PointUserContainer points, IndexUserContainer sampling): // PointUserContainer => Given by user, transformed to PointContainer
+                                                                               // IndexUserContainer => Given by user, transformed to IndexContainer
         m_points(),
         m_nodes(),
         m_indices(),
@@ -263,39 +242,39 @@ public:
 
     // Internal ----------------------------------------------------------------
 public:
-    inline void build_rec(NodeCountType node_id, IndexType start, IndexType end, DepthType level);
-    inline IndexType partition(IndexType start, IndexType end, DimType dim, Scalar value);
+    inline void build_rec(NodeCountType node_id, IndexType start, IndexType end, int level);
+    inline IndexType partition(IndexType start, IndexType end, int dim, Scalar value);
 
     // Query -------------------------------------------------------------------
 public :
-    KdTreeKNearestPointQuery<DataPoint, Adapter> k_nearest_neighbors(const VectorType& point, IndexType k) const
+    KdTreeKNearestPointQuery<Traits> k_nearest_neighbors(const VectorType& point, IndexType k) const
     {
-        return KdTreeKNearestPointQuery<DataPoint, Adapter>(this, k, point);
+        return KdTreeKNearestPointQuery<Traits>(this, k, point);
     }
 
-    KdTreeKNearestIndexQuery<DataPoint, Adapter> k_nearest_neighbors(IndexType index, IndexType k) const
+    KdTreeKNearestIndexQuery<Traits> k_nearest_neighbors(IndexType index, IndexType k) const
     {
-        return KdTreeKNearestIndexQuery<DataPoint, Adapter>(this, k, index);
+        return KdTreeKNearestIndexQuery<Traits>(this, k, index);
     }
 
-    KdTreeNearestPointQuery<DataPoint, Adapter> nearest_neighbor(const VectorType& point) const
+    KdTreeNearestPointQuery<Traits> nearest_neighbor(const VectorType& point) const
     {
-        return KdTreeNearestPointQuery<DataPoint, Adapter>(this, point);
+        return KdTreeNearestPointQuery<Traits>(this, point);
     }
 
-    KdTreeNearestIndexQuery<DataPoint, Adapter> nearest_neighbor(IndexType index) const
+    KdTreeNearestIndexQuery<Traits> nearest_neighbor(IndexType index) const
     {
-        return KdTreeNearestIndexQuery<DataPoint, Adapter>(this, index);
+        return KdTreeNearestIndexQuery<Traits>(this, index);
     }
 
-    KdTreeRangePointQuery<DataPoint, Adapter> range_neighbors(const VectorType& point, Scalar r) const
+    KdTreeRangePointQuery<Traits> range_neighbors(const VectorType& point, Scalar r) const
     {
-        return KdTreeRangePointQuery<DataPoint, Adapter>(this, r, point);
+        return KdTreeRangePointQuery<Traits>(this, r, point);
     }
 
-    KdTreeRangeIndexQuery<DataPoint, Adapter> range_neighbors(IndexType index, Scalar r) const
+    KdTreeRangeIndexQuery<Traits> range_neighbors(IndexType index, Scalar r) const
     {
-        return KdTreeRangeIndexQuery<DataPoint, Adapter>(this, r, index);
+        return KdTreeRangeIndexQuery<Traits>(this, r, index);
     }
     
 

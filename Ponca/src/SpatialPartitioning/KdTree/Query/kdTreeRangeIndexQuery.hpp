@@ -4,8 +4,8 @@
  file, You can obtain one at http://mozilla.org/MPL/2.0/.
 */
 
-template<class DataPoint, class Adapter>
-typename KdTreeRangeIndexQuery<DataPoint, Adapter>::Iterator KdTreeRangeIndexQuery<DataPoint, Adapter>::begin()
+template<typename Traits>
+auto KdTreeRangeIndexQuery<Traits>::begin() -> Iterator
 {
     QueryAccelType::reset();
     QueryType::reset();
@@ -14,14 +14,14 @@ typename KdTreeRangeIndexQuery<DataPoint, Adapter>::Iterator KdTreeRangeIndexQue
     return it;
 }
 
-template<class DataPoint, class Adapter>
-typename KdTreeRangeIndexQuery<DataPoint, Adapter>::Iterator KdTreeRangeIndexQuery<DataPoint, Adapter>::end()
+template<typename Traits>
+auto KdTreeRangeIndexQuery<Traits>::end() -> Iterator
 {
     return Iterator(this, QueryAccelType::m_kdtree->point_count());
 }
 
-template<class DataPoint, class Adapter>
-void KdTreeRangeIndexQuery<DataPoint, Adapter>::advance(Iterator& it)
+template<typename Traits>
+void KdTreeRangeIndexQuery<Traits>::advance(Iterator& it)
 {
     const auto& nodes   = QueryAccelType::m_kdtree->node_data();
     const auto& points  = QueryAccelType::m_kdtree->point_data();
@@ -59,7 +59,7 @@ void KdTreeRangeIndexQuery<DataPoint, Adapter>::advance(Iterator& it)
                     IndexType idx = indices[i];
                     if(idx == QueryType::input()) continue;
 
-                    Scalar d = Adapter::squared_norm(point - points[idx].pos());
+                    Scalar d = Traits::squared_norm(point - points[idx].pos());
                     if(d < QueryType::m_squared_radius)
                     {
                         it.m_index = idx;
