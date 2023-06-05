@@ -35,3 +35,4 @@ add_dependencies(ponca-examples ponca_fit_line)
 ponca_handle_eigen_dependency(ponca_fit_line)
 
 add_subdirectory(pcl)
+add_subdirectory(nanoflann)
