@@ -54,7 +54,7 @@ jobs:
       - name: Add PR remote
         run: cd repo/ponca && git remote add prRemote ${{ github.event.pull_request.head.repo.full_name }}
       - name: Update ponca submodule to current PR
-        run: cd repo/ponca && git fetch -all && git checkout prRemote/${{ github.head_ref }}
+        run: cd repo/ponca && git fetch --all && git checkout prRemote/${{ github.head_ref }}
       - name: Configure cmake project with installed eigen
         run : mkdir build && cd build && cmake ../repo -DEigen3_DIR=../eigen_installed/share/eigen3/cmake/
         if: ${{ matrix.config.installEigen == 'COMPILE'}}
