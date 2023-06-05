@@ -15,14 +15,60 @@
 namespace Ponca
 {
 
+#define BSKW typename BasketType::WeightFunction
+#define BSKP typename BasketType::DataPoint
+
 #ifndef PARSED_WITH_DOXYGEN
 /*! \brief Namespace used for structure or classes used internally by the lib */
 namespace internal
 {
+    template <class P, class W,
+        typename Aggregate,
+        template <class, class, typename> class Ext,
+        template <class, class, typename> class... Exts>
+    struct BasketAggregateImpl
+    {
+        using type = typename BasketAggregateImpl<P, W, Ext<P, W, Aggregate>, Exts...>::type;
+    };
+
+    template <class P, class W,
+        typename Aggregate,
+        template <class, class, typename> class Ext>
+    struct BasketAggregateImpl<P, W, Aggregate, Ext>
+    {
+        using type = Ext<P, W, Aggregate>;
+    };
+
     /*! \brief Internal class used to build the Basket structure */
-    template <class, class, typename T> class Forward: public T {};
+    template <class P, class W,
+        template <class, class, typename> class... Exts>
+    struct BasketAggregate : BasketAggregateImpl<P, W, PrimitiveBase<P, W>, Exts...>
+    {
+    };
+
+    template <typename BasketType, int Type,
+        typename Aggregate,
+        template <class, class, int, typename> class Ext,
+        template <class, class, int, typename> class... Exts>
+    struct BasketDiffAggregateImpl
+    {
+        using type = typename BasketDiffAggregateImpl<BasketType, Type, Ext<BSKP, BSKW, Type, Aggregate>, Exts...>::type;
+    };
+
+    template <typename BasketType, int Type,
+        typename Aggregate,
+        template <class, class, int, typename> class Ext>
+    struct BasketDiffAggregateImpl<BasketType, Type, Aggregate, Ext>
+    {
+        using type = Ext<BSKP, BSKW, Type, Aggregate>;
+    };
+
     /*! \brief Internal class used to build the BasketDiff structure */
-    template <class, class, int Type, typename T> class ForwardDiff: public T {};
+    template <typename BasketType, int Type,
+        template <class, class, int, typename> class... Exts>
+    struct BasketDiffAggregate : BasketDiffAggregateImpl<BasketType, Type, BasketType, PrimitiveDer, Exts...>
+    {
+    };
 }
 #endif
 
@@ -76,11 +122,6 @@ namespace internal
     }                                                                                                 \
     WRITE_BASKET_SINGLE_HOST_FUNCTIONS
 
-#define BASKETDIFF_TP(I) template <class, class, int, typename> class Ext##I = internal::ForwardDiff
-#define BSKW typename BasketType::WeightFunction
-#define BSKP typename BasketType::DataPoint
-
-
     /*!
          \brief Aggregator class used to declare specialized structures with derivatives computations, using CRTP
 
@@ -104,40 +145,17 @@ namespace internal
          \tparam BasketType Existing Basket, to be differentiated
          \tparam Type Differentiation space: FitScaleDer, FitSpaceDer, or FitScaleDer|FitSpaceDer
          \tparam Ext0 Implements \ref concepts_computObjectBasketDiff "ComputationalDerivativesConcept"
-         \tparam Ext1 Implements \ref concepts_computObjectBasketDiff "ComputationalDerivativesConcept" (optional)
-         \tparam Ext2 Implements \ref concepts_computObjectBasketDiff "ComputationalDerivativesConcept" (optional)
-         \tparam Ext3 Implements \ref concepts_computObjectBasketDiff "ComputationalDerivativesConcept" (optional)
-         \tparam Ext4 Implements \ref concepts_computObjectBasketDiff "ComputationalDerivativesConcept" (optional)
-         \tparam Ext5 Implements \ref concepts_computObjectBasketDiff "ComputationalDerivativesConcept" (optional)
-         \tparam Ext6 Implements \ref concepts_computObjectBasketDiff "ComputationalDerivativesConcept" (optional)
-         \tparam Ext7 Implements \ref concepts_computObjectBasketDiff "ComputationalDerivativesConcept" (optional)
-         \tparam Ext8 Implements \ref concepts_computObjectBasketDiff "ComputationalDerivativesConcept" (optional)
-         \tparam Ext9 Implements \ref concepts_computObjectBasketDiff "ComputationalDerivativesConcept" (optional)
-         \tparam Ext10 Implements \ref concepts_computObjectBasketDiff "ComputationalDerivativesConcept" (optional)
-         \tparam Ext11 Implements \ref concepts_computObjectBasketDiff "ComputationalDerivativesConcept" (optional)
+         \tparam Exts Implements \ref concepts_computObjectBasketDiff "ComputationalDerivativesConcept" (optional)
      */
-    template < typename BasketType, int Type,
-            BASKETDIFF_TP(0), BASKETDIFF_TP(1), BASKETDIFF_TP(2), BASKETDIFF_TP(3), BASKETDIFF_TP(4), BASKETDIFF_TP(5), BASKETDIFF_TP(6), BASKETDIFF_TP(7), BASKETDIFF_TP(8), BASKETDIFF_TP(9), BASKETDIFF_TP(10), BASKETDIFF_TP(11) >
-    class BasketDiff
-        : public Ext11<BSKP,BSKW,Type, Ext10<BSKP,BSKW,Type, Ext9<BSKP,BSKW,Type, Ext8<BSKP,BSKW,Type, Ext7<BSKP,BSKW,Type, Ext6<BSKP,BSKW,Type, Ext5<BSKP,BSKW,Type, Ext4<BSKP,BSKW,Type, Ext3<BSKP,BSKW,Type, Ext2<BSKP,BSKW,Type, Ext1<BSKP,BSKW,Type,Ext0<BSKP,BSKW, Type, PrimitiveDer<BSKP,BSKW,Type, BasketType > > > > > > > > > > > > > {
+    template <typename BasketType, int Type,
+        template <class, class, int, typename> class Ext0,
+        template <class, class, int, typename> class... Exts>
+    class BasketDiff : public internal::BasketDiffAggregate<BasketType, Type, Ext0, Exts...>::type {
     private:
         using Self   = BasketDiff;
     public:
     /// Base type, which aggregates all the computational objects using the CRTP
-    using Base = Ext11 <BSKP, BSKW, Type,
-            Ext10< BSKP, BSKW, Type,
-            Ext9 < BSKP, BSKW, Type,
-            Ext8 < BSKP, BSKW, Type,
-            Ext7 < BSKP, BSKW, Type,
-            Ext6 < BSKP, BSKW, Type,
-            Ext5 < BSKP, BSKW, Type,
-            Ext4 < BSKP, BSKW, Type,
-            Ext3 < BSKP, BSKW, Type,
-            Ext2 < BSKP, BSKW, Type,
-            Ext1 < BSKP, BSKW, Type,
-            Ext0 < BSKP, BSKW, Type,
-            PrimitiveDer<BSKP,BSKW,Type,
-            BasketType > > > > > > > > > > > > >;
+    using Base = typename internal::BasketDiffAggregate<BasketType, Type, Ext0, Exts...>::type;
         /// Weighting function
     using WeightFunction = BSKW;
     /// Point type used for computation
@@ -161,10 +179,6 @@ namespace internal
     }
 };
 
-#undef BASKETDIFF_TP
-
-
-#define BASKET_TP(I) template <class, class, typename> class Ext##I = internal::Forward
 /*!
     \brief Aggregator class used to declare specialized structures using CRTP
 
@@ -188,28 +202,18 @@ namespace internal
     \tparam P Implements \ref ponca_concepts "PointConcept"
     \tparam W Implements \ref concepts_weighting "WeightKernelConcept"
     \tparam Ext0 Implements \ref concepts_computObjectBasket "ComputationalObjectConcept"
-    \tparam Ext1 Implements \ref concepts_computObjectBasket "ComputationalObjectConcept" (optional)
-    \tparam Ext2 Implements \ref concepts_computObjectBasket "ComputationalObjectConcept" (optional)
-    \tparam Ext3 Implements \ref concepts_computObjectBasket "ComputationalObjectConcept" (optional)
-    \tparam Ext4 Implements \ref concepts_computObjectBasket "ComputationalObjectConcept" (optional)
-    \tparam Ext5 Implements \ref concepts_computObjectBasket "ComputationalObjectConcept" (optional)
-    \tparam Ext6 Implements \ref concepts_computObjectBasket "ComputationalObjectConcept" (optional)
-    \tparam Ext7 Implements \ref concepts_computObjectBasket "ComputationalObjectConcept" (optional)
-    \tparam Ext8 Implements \ref concepts_computObjectBasket "ComputationalObjectConcept" (optional)
-    \tparam Ext9 Implements \ref concepts_computObjectBasket "ComputationalObjectConcept" (optional)
-    \tparam Ext10 Implements \ref concepts_computObjectBasket "ComputationalObjectConcept" (optional)
-    \tparam Ext11 Implements \ref concepts_computObjectBasket "ComputationalObjectConcept" (optional)
+    \tparam Exts Implements \ref concepts_computObjectBasket "ComputationalObjectConcept" (optional)
 */
-    template < class P, class W,
-        BASKET_TP(0), BASKET_TP(1), BASKET_TP(2), BASKET_TP(3), BASKET_TP(4), BASKET_TP(5), BASKET_TP(6), BASKET_TP(7), BASKET_TP(8), BASKET_TP(9), BASKET_TP(10), BASKET_TP(11) >
-    class Basket
-        : public Ext11<P,W, Ext10<P,W, Ext9<P,W, Ext8<P,W, Ext7<P,W, Ext6<P,W, Ext5<P,W, Ext4<P,W, Ext3<P,W, Ext2<P,W, Ext1<P,W, Ext0<P,W, PrimitiveBase<P,W> > > > > > > > > > > > >
+    template <class P, class W,
+        template <class, class, typename> class Ext0,
+        template <class, class, typename> class... Exts>
+    class Basket : public internal::BasketAggregate<P, W, Ext0, Exts...>::type
     {
     private:
         using Self   = Basket;
     public:
         /// Base type, which aggregates all the computational objects using the CRTP
-        using Base = Ext11<P,W, Ext10<P,W, Ext9<P,W, Ext8<P,W, Ext7<P,W, Ext6<P,W, Ext5<P,W, Ext4<P,W, Ext3<P,W, Ext2<P,W, Ext1<P,W, Ext0<P,W, PrimitiveBase<P,W> > > > > > > > > > > > >;
+        using Base = typename internal::BasketAggregate<P, W, Ext0, Exts...>::type;
         /// Scalar type used for computation, as defined from template parameter `P`
         using Scalar = typename P::Scalar;
         /// Point type used for computation
@@ -237,7 +241,5 @@ namespace internal
         }
     }; // class Basket
 
-#undef BASKET_TP
-
-}// namespace Ponca
+} //namespace Ponca
 
