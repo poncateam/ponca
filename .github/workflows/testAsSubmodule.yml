@@ -51,8 +51,15 @@ jobs:
         run: git clone https://github.com/poncateam/ci-submodule-helper.git repo
       - name: Checkout submodule (Ponca) of helper repository
         run: cd repo &&  git submodule update --init
+      - name: Add PR remote (fork)
+        run: cd repo/ponca && git remote add prRemote ${{ github.event.pull_request.head.repo.clone_url }}
+        if: ${{ github.event.pull_request.head.repo.full_name != 'poncateam/ponca' }}
+      - name: Update ponca submodule to current PR (fork)
+        run: cd repo/ponca && git fetch --all && git checkout prRemote/${{ github.head_ref }}
+        if: ${{ github.event.pull_request.head.repo.full_name != 'poncateam/ponca' }}
       - name: Update ponca submodule to current PR
         run: cd repo/ponca && git fetch && git checkout ${{ github.head_ref }}
+        if: ${{ github.event.pull_request.head.repo.full_name == 'poncateam/ponca' }}
       - name: Configure cmake project with installed eigen
         run : mkdir build && cd build && cmake ../repo -DEigen3_DIR=../eigen_installed/share/eigen3/cmake/
         if: ${{ matrix.config.installEigen == 'COMPILE'}}
