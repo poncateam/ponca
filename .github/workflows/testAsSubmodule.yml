@@ -52,7 +52,7 @@ jobs:
       - name: Checkout submodule (Ponca) of helper repository
         run: cd repo &&  git submodule update --init
       - name: Add PR remote (fork)
-        run: cd repo/ponca && git remote add prRemote ${{ github.event.pull_request.head.repo.full_name }}
+        run: cd repo/ponca && git remote add prRemote ${{ github.event.pull_request.head.repo.clone_url }}
         if: ${{ github.event.pull_request.head.repo.full_name != 'poncateam/ponca' }}
       - name: Update ponca submodule to current PR (fork)
         run: cd repo/ponca && git fetch --all && git checkout prRemote/${{ github.head_ref }}
