@@ -8,11 +8,12 @@
 
 namespace Ponca {
 
+template<typename Index>
 class KdTreeNearestIterator
 {
 public:
     inline KdTreeNearestIterator() = default;
-    inline KdTreeNearestIterator(int index) : m_index(index) {}
+    inline KdTreeNearestIterator(Index index) : m_index(index) {}
     virtual inline ~KdTreeNearestIterator() = default;
 
 public:
@@ -20,10 +21,10 @@ public:
     {return m_index != other.m_index;}
     inline void operator ++(int) {++m_index;}
     inline KdTreeNearestIterator& operator ++() {++m_index; return *this;}
-    inline int  operator * () const {return m_index;}
+    inline Index operator * () const {return m_index;}
 
 protected:
-    int m_index {-1};
+    Index m_index {-1};
 };
 
 } // namespace ponca

@@ -4,23 +4,25 @@
  file, You can obtain one at http://mozilla.org/MPL/2.0/.
 */
 
-template <class DataPoint>
-KdTreeKNearestIterator<DataPoint> KdTreeKNearestPointQuery<DataPoint>::begin()
+template <typename Traits>
+auto KdTreeKNearestPointQuery<Traits>::begin()
+    -> KdTreeKNearestIterator<IndexType, DataPoint>
 {
     QueryAccelType::reset();
     QueryType::reset();
     this->search();
-    return KdTreeKNearestIterator<DataPoint>(QueryType::m_queue.begin());
+    return KdTreeKNearestIterator<IndexType, DataPoint>(QueryType::m_queue.begin());
 }
 
-template <class DataPoint>
-KdTreeKNearestIterator<DataPoint> KdTreeKNearestPointQuery<DataPoint>::end()
+template <typename Traits>
+auto KdTreeKNearestPointQuery<Traits>::end()
+    -> KdTreeKNearestIterator<IndexType, DataPoint>
 {
-    return KdTreeKNearestIterator<DataPoint>(QueryType::m_queue.end());
+    return KdTreeKNearestIterator<IndexType, DataPoint>(QueryType::m_queue.end());
 }
 
-template <class DataPoint>
-void KdTreeKNearestPointQuery<DataPoint>::search()
+template <typename Traits>
+void KdTreeKNearestPointQuery<Traits>::search()
 {
     const auto& nodes   = QueryAccelType::m_kdtree->node_data();
     const auto& points  = QueryAccelType::m_kdtree->point_data();
@@ -34,13 +36,13 @@ void KdTreeKNearestPointQuery<DataPoint>::search()
 
         if(qnode.squared_distance < QueryType::m_queue.bottom().squared_distance)
         {
-            if(node.leaf)
+            if(node.is_leaf())
             {
                 QueryAccelType::m_stack.pop();
-                int end = node.start + node.size;
-                for(int i=node.start; i<end; ++i)
+                IndexType end = node.leaf.start + node.leaf.size;
+                for(IndexType i=node.leaf.start; i<end; ++i)
                 {
-                    int idx = indices[i];
+                    IndexType idx = indices[i];
 
                     Scalar d = (point - points[idx].pos()).squaredNorm();
                     QueryType::m_queue.push({idx, d});
@@ -49,17 +51,17 @@ void KdTreeKNearestPointQuery<DataPoint>::search()
             else
             {
                 // replace the stack top by the farthest and push the closest
-                Scalar newOff = point[node.dim] - node.splitValue;
+                Scalar newOff = point[node.inner.dim] - node.inner.split_value;
                 QueryAccelType::m_stack.push();
                 if(newOff < 0)
                 {
-                    QueryAccelType::m_stack.top().index = node.firstChildId;
-                    qnode.index         = node.firstChildId+1;
+                    QueryAccelType::m_stack.top().index = node.inner.first_child_id;
+                    qnode.index         = node.inner.first_child_id+1;
                 }
                 else
                 {
-                    QueryAccelType::m_stack.top().index = node.firstChildId+1;
-                    qnode.index         = node.firstChildId;
+                    QueryAccelType::m_stack.top().index = node.inner.first_child_id+1;
+                    qnode.index         = node.inner.first_child_id;
                 }
                 QueryAccelType::m_stack.top().squared_distance = qnode.squared_distance;
                 qnode.squared_distance         = newOff*newOff;

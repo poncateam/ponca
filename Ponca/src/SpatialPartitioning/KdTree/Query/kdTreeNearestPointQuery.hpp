@@ -4,23 +4,25 @@
  file, You can obtain one at http://mozilla.org/MPL/2.0/.
 */
 
-template <class DataPoint>
-KdTreeNearestIterator KdTreeNearestPointQuery<DataPoint>::begin()
+template <typename Traits>
+auto KdTreeNearestPointQuery<Traits>::begin()
+    -> KdTreeNearestIterator<IndexType>
 {
     QueryAccelType::reset();
     QueryType::reset();
     this->search();
-    return KdTreeNearestIterator(QueryType::m_nearest);
+    return KdTreeNearestIterator<IndexType>(QueryType::m_nearest);
 }
 
-template <class DataPoint>
-KdTreeNearestIterator KdTreeNearestPointQuery<DataPoint>::end()
+template <typename Traits>
+auto KdTreeNearestPointQuery<Traits>::end()
+    -> KdTreeNearestIterator<IndexType>
 {
-    return KdTreeNearestIterator(QueryType::m_nearest + 1);
+    return KdTreeNearestIterator<IndexType>(QueryType::m_nearest + 1);
 }
 
-template <class DataPoint>
-void KdTreeNearestPointQuery<DataPoint>::search()
+template <typename Traits>
+void KdTreeNearestPointQuery<Traits>::search()
 {
     const auto& nodes   = QueryAccelType::m_kdtree->node_data();
     const auto& points  = QueryAccelType::m_kdtree->point_data();
@@ -37,13 +39,13 @@ void KdTreeNearestPointQuery<DataPoint>::search()
 
         if(qnode.squared_distance < QueryType::m_squared_distance)
         {
-            if(node.leaf)
+            if(node.is_leaf())
             {
                 QueryAccelType::m_stack.pop();
-                int end = node.start + node.size;
-                for(int i=node.start; i<end; ++i)
+                IndexType end = node.leaf.start + node.leaf.size;
+                for(IndexType i=node.leaf.start; i<end; ++i)
                 {
-                    int idx = indices[i];
+                    IndexType idx = indices[i];
                     Scalar d = (point - points[idx].pos()).squaredNorm();
                     if(d < QueryType::m_squared_distance)
                     {
@@ -55,17 +57,17 @@ void KdTreeNearestPointQuery<DataPoint>::search()
             else
             {
                 // replace the stack top by the farthest and push the closest
-                Scalar newOff = point[node.dim] - node.splitValue;
+                Scalar newOff = point[node.inner.dim] - node.inner.split_value;
                 QueryAccelType::m_stack.push();
                 if(newOff < 0)
                 {
-                    QueryAccelType::m_stack.top().index = node.firstChildId;
-                    qnode.index         = node.firstChildId+1;
+                    QueryAccelType::m_stack.top().index = node.inner.first_child_id;
+                    qnode.index         = node.inner.first_child_id+1;
                 }
                 else
                 {
-                    QueryAccelType::m_stack.top().index = node.firstChildId+1;
-                    qnode.index         = node.firstChildId;
+                    QueryAccelType::m_stack.top().index = node.inner.first_child_id+1;
+                    qnode.index         = node.inner.first_child_id;
                 }
                 QueryAccelType::m_stack.top().squared_distance = qnode.squared_distance;
                 qnode.squared_distance         = newOff*newOff;

@@ -9,20 +9,19 @@
 #include "../indexSquaredDistance.h"
 #include "../../Common/Containers/stack.h"
 
-
-#define PCA_KDTREE_MAX_DEPTH 32
-
 namespace Ponca {
-template<class DataPoint> class KdTree;
+template <typename Traits> class KdTreeBase;
 
-template <class DataPoint>
+template <typename Traits>
 class KdTreeQuery
 {
 public:
-    using Scalar          = typename DataPoint::Scalar;
-    using VectorType      = typename DataPoint::VectorType;
+    using DataPoint  = typename Traits::DataPoint;
+    using IndexType  = typename Traits::IndexType;
+    using Scalar     = typename DataPoint::Scalar;
+    using VectorType = typename DataPoint::VectorType;
 
-    explicit inline KdTreeQuery(const KdTree<DataPoint>* kdtree) : m_kdtree( kdtree ), m_stack() {}
+    explicit inline KdTreeQuery(const KdTreeBase<Traits>* kdtree) : m_kdtree( kdtree ), m_stack() {}
 
 protected:
     /// \brief Init stack for a new search
@@ -31,8 +30,7 @@ protected:
         m_stack.push({0,0});
     }
 
-    const KdTree<DataPoint>* m_kdtree { nullptr };
-    Stack<IndexSquaredDistance<typename DataPoint::Scalar>, 2 * PCA_KDTREE_MAX_DEPTH> m_stack;
+    const KdTreeBase<Traits>* m_kdtree { nullptr };
+    Stack<IndexSquaredDistance<IndexType, Scalar>, 2 * Traits::MAX_DEPTH> m_stack;
 };
-
 } // namespace Ponca

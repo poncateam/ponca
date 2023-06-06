@@ -60,12 +60,15 @@ void testKdTreeRangePoint(bool quick = true)
     std::generate(points.begin(), points.end(), []() {return DataPoint(VectorType::Random()); });
 
 	int seed = 0;
+
+    /// [Kdtree sampling construction]
 	std::vector<int> indices(N);
 	std::vector<int> sampling(N / 2);
 	std::iota(indices.begin(), indices.end(), 0);
 	std::sample(indices.begin(), indices.end(), sampling.begin(), N / 2, std::mt19937(seed));
 
 	KdTree<DataPoint> structure(points, sampling);
+    /// [Kdtree sampling construction]
 
 #pragma omp parallel for
 	for (int i = 0; i < N; ++i)

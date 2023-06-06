@@ -4,8 +4,8 @@
  file, You can obtain one at http://mozilla.org/MPL/2.0/.
 */
 
-template <class DataPoint>
-typename KdTreeRangePointQuery<DataPoint>::Iterator KdTreeRangePointQuery<DataPoint>::begin()
+template <typename Traits>
+auto KdTreeRangePointQuery<Traits>::begin() -> Iterator
 {
     QueryAccelType::reset();
     QueryType::reset();
@@ -14,23 +14,23 @@ typename KdTreeRangePointQuery<DataPoint>::Iterator KdTreeRangePointQuery<DataPo
     return it;
 }
 
-template <class DataPoint>
-typename KdTreeRangePointQuery<DataPoint>::Iterator KdTreeRangePointQuery<DataPoint>::end()
+template <typename Traits>
+auto KdTreeRangePointQuery<Traits>::end() -> Iterator
 {
     return Iterator(this, QueryAccelType::m_kdtree->point_count());
 }
 
-template <class DataPoint>
-void KdTreeRangePointQuery<DataPoint>::advance(Iterator& it)
+template <typename Traits>
+void KdTreeRangePointQuery<Traits>::advance(Iterator& it)
 {
     const auto& nodes   = QueryAccelType::m_kdtree->node_data();
     const auto& points  = QueryAccelType::m_kdtree->point_data();
     const auto& indices = QueryAccelType::m_kdtree->index_data();
     const auto& point   = QueryType::input();
 
-    for(int i=it.m_start; i<it.m_end; ++i)
+    for(IndexType i=it.m_start; i<it.m_end; ++i)
     {
-        int idx = indices[i];
+        IndexType idx = indices[i];
 
         Scalar d = (point - points[idx].pos()).squaredNorm();
         if(d < QueryType::m_squared_radius)
@@ -48,14 +48,14 @@ void KdTreeRangePointQuery<DataPoint>::advance(Iterator& it)
 
         if(qnode.squared_distance < QueryType::m_squared_radius)
         {
-            if(node.leaf)
+            if(node.is_leaf())
             {
                 QueryAccelType::m_stack.pop();
-                it.m_start = node.start;
-                it.m_end   = node.start + node.size;
-                for(int i=it.m_start; i<it.m_end; ++i)
+                it.m_start = node.leaf.start;
+                it.m_end   = node.leaf.start + node.leaf.size;
+                for(IndexType i=it.m_start; i<it.m_end; ++i)
                 {
-                    int idx = indices[i];
+                    IndexType idx = indices[i];
 
                     Scalar d = (point - points[idx].pos()).squaredNorm();
                     if(d < QueryType::m_squared_radius)
@@ -69,17 +69,17 @@ void KdTreeRangePointQuery<DataPoint>::advance(Iterator& it)
             else
             {
                 // replace the stack top by the farthest and push the closest
-                Scalar newOff = point[node.dim] - node.splitValue;
+                Scalar newOff = point[node.inner.dim] - node.inner.split_value;
                 QueryAccelType::m_stack.push();
                 if(newOff < 0)
                 {
-                    QueryAccelType::m_stack.top().index = node.firstChildId;
-                    qnode.index         = node.firstChildId+1;
+                    QueryAccelType::m_stack.top().index = node.inner.first_child_id;
+                    qnode.index         = node.inner.first_child_id+1;
                 }
                 else
                 {
-                    QueryAccelType::m_stack.top().index = node.firstChildId+1;
-                    qnode.index         = node.firstChildId;
+                    QueryAccelType::m_stack.top().index = node.inner.first_child_id+1;
+                    qnode.index         = node.inner.first_child_id;
                 }
                 QueryAccelType::m_stack.top().squared_distance = qnode.squared_distance;
                 qnode.squared_distance         = newOff*newOff;
@@ -90,5 +90,5 @@ void KdTreeRangePointQuery<DataPoint>::advance(Iterator& it)
             QueryAccelType::m_stack.pop();
         }
     }
-    it.m_index = static_cast<int>(points.size());
+    it.m_index = static_cast<IndexType>(points.size());
 }

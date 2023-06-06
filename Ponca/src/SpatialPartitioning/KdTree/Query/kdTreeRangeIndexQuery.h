@@ -12,23 +12,26 @@
 
 namespace Ponca {
 
-
-template <class DataPoint>
-class KdTreeRangeIndexQuery : public KdTreeQuery<DataPoint>, public RangeIndexQuery<typename DataPoint::Scalar>
+template <typename Traits>
+class KdTreeRangeIndexQuery : public KdTreeQuery<Traits>,
+    public RangeIndexQuery<typename Traits::IndexType, typename Traits::DataPoint::Scalar>
 {
-    using Scalar          = typename DataPoint::Scalar;
-    using VectorType      = typename DataPoint::VectorType;
-    using QueryType       = RangeIndexQuery<typename DataPoint::Scalar>;
-    using QueryAccelType  = KdTreeQuery<DataPoint>;
-    using Iterator        = KdTreeRangeIterator<DataPoint, KdTreeRangeIndexQuery>;
+public:
+    using DataPoint      = typename Traits::DataPoint;
+    using IndexType      = typename Traits::IndexType;
+    using Scalar         = typename DataPoint::Scalar;
+    using VectorType     = typename DataPoint::VectorType;
+    using QueryType      = RangeIndexQuery<IndexType, typename DataPoint::Scalar>;
+    using QueryAccelType = KdTreeQuery<Traits>;
+    using Iterator       = KdTreeRangeIterator<IndexType, DataPoint, KdTreeRangeIndexQuery>;
 
 protected:
     friend Iterator;
 
 public:
 
-    KdTreeRangeIndexQuery(const KdTree<DataPoint>* kdtree, Scalar radius, int index) :
-        KdTreeQuery<DataPoint>(kdtree), RangeIndexQuery<Scalar>(radius, index)
+    KdTreeRangeIndexQuery(const KdTreeBase<Traits>* kdtree, Scalar radius, IndexType index) :
+        KdTreeQuery<Traits>(kdtree), RangeIndexQuery<IndexType, Scalar>(radius, index)
     {
     }
 
