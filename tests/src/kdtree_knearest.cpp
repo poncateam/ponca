@@ -52,10 +52,12 @@ void testKdTreeKNearestPoint(bool quick = true)
 
 	const int N = quick ? 100 : 10000;
 	const int k = quick ? 5 : 15;
+    /// [Kdtree construction]
 	auto points = VectorContainer(N);
     std::generate(points.begin(), points.end(), []() {return DataPoint(VectorType::Random()); });
 
 	KdTree<DataPoint> structure(points);
+    /// [Kdtree construction]
 
 #pragma omp parallel for
 	for (int i = 0; i < N; ++i)
