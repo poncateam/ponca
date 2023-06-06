@@ -28,10 +28,22 @@
 namespace Ponca {
 template <typename Traits> class KdTreeBase;
 
+/*!
+ * \brief Public interface for KdTree datastructure.
+ *
+ * Provides default implementation of the KdTree
+ *
+ * \see KdTreeDefaultTraits for the default trait interface documentation.
+ * \see KdTreeBase for complete API
+ */
 template <typename DataPoint>
 using KdTree = KdTreeBase<KdTreeDefaultTraits<DataPoint>>;
 
 /*!
+ * \brief Customizable base class for KdTree datastructure
+ *
+ * \see Ponca::KdTree
+ *
  * \tparam Traits Traits type providing the types and constants used by the kd-tree. Must have the
  * same interface as the default traits type.
  *
@@ -43,15 +55,15 @@ template <typename Traits>
 class KdTreeBase
 {
 public:
-    using DataPoint  = typename Traits::DataPoint;
-    using Scalar     = typename DataPoint::Scalar; // Scalar given by user
-    using VectorType = typename DataPoint::VectorType; // VectorType given by user
-    using AabbType   = typename Traits::AabbType;
+    using DataPoint  = typename Traits::DataPoint; ///< DataPoint given by user via Traits
+    using Scalar     = typename DataPoint::Scalar; ///< Scalar given by user via DataPoint
+    using VectorType = typename DataPoint::VectorType; ///< VectorType given by user via DataPoint
+    using AabbType   = typename Traits::AabbType; ///< Bounding box type given by user via DataPoint
 
     using IndexType      = typename Traits::IndexType;
-    using PointContainer = typename Traits::PointContainer; // Container for DataPoint used inside the KdTree
-    using IndexContainer = typename Traits::IndexContainer; // Container for indices used inside the KdTree
-    using NodeContainer  = typename Traits::NodeContainer; // Container for nodes used inside the KdTree
+    using PointContainer = typename Traits::PointContainer; ///< Container for DataPoint used inside the KdTree
+    using IndexContainer = typename Traits::IndexContainer; ///< Container for indices used inside the KdTree
+    using NodeContainer  = typename Traits::NodeContainer; ///< Container for nodes used inside the KdTree
 
     using NodeType      = typename NodeContainer::value_type;
     using NodeCountType = typename NodeContainer::size_type;
@@ -75,6 +87,7 @@ public:
 
     static_assert(Traits::MAX_DEPTH > 0, "Max depth must be strictly positive");
 
+    /// Default constructor creating an empty tree. \see build \see buildWithSampling
     inline KdTreeBase():
         m_points(PointContainer()),
         m_nodes(NodeContainer()),
@@ -84,8 +97,9 @@ public:
     {
     };
 
+    /// Constructor generating a tree from a custom contained type converted using DefaultConverter
     template<typename PointUserContainer>
-    inline KdTreeBase(PointUserContainer&& points): // PointUserContainer => Given by user, transformed to PointContainer
+    inline KdTreeBase(PointUserContainer&& points):
         m_points(PointContainer()),
         m_nodes(NodeContainer()),
         m_indices(IndexContainer()),
@@ -95,6 +109,7 @@ public:
         this->build(std::forward<PointUserContainer>(points));
     };
 
+    /// Constructor generating a tree sampled from a custom contained type converted using DefaultConverter
     template<typename PointUserContainer, typename IndexUserContainer>
     inline KdTreeBase(PointUserContainer&& points, IndexUserContainer sampling): // PointUserContainer => Given by user, transformed to PointContainer
                                                                                  // IndexUserContainer => Given by user, transformed to IndexContainer
@@ -107,8 +122,10 @@ public:
         buildWithSampling(std::forward<PointUserContainer>(points), std::move(sampling));
     };
 
+    /// Clear tree data
     inline void clear();
 
+    /// Convert a CustomPointContainer to the KdTree PointContainer using DataPoint default constructor
     struct DefaultConverter
     {
         template <typename Input>
@@ -123,7 +140,7 @@ public:
         }
     };
 
-    ///
+    /// Generate a tree from a custom contained type converted using DefaultConverter
     /// \tparam PointUserContainer Input point container, transformed to PointContainer
     /// \param points Input points
     template<typename PointUserContainer>
@@ -132,7 +149,7 @@ public:
         build(std::forward<PointUserContainer>(points), DefaultConverter());
     }
 
-    ///
+    /// Generate a tree from a custom contained type converted using DefaultConverter
     /// \tparam PointUserContainer Input point container, transformed to PointContainer
     /// \tparam IndexUserContainer Input sampling container, transformed to IndexContainer
     /// \param points Input points
@@ -140,6 +157,7 @@ public:
     template<typename PointUserContainer, typename Converter>
     inline void build(PointUserContainer&& points, Converter c);
 
+    /// Generate a tree sampled from a custom contained type converted using DefaultConverter
     /// \tparam PointUserContainer Input point, transformed to PointContainer
     /// \tparam IndexUserContainer Input sampling, transformed to IndexContainer
     /// \param points Input points
@@ -151,6 +169,7 @@ public:
         buildWithSampling(std::forward<PointUserContainer>(points), std::move(sampling), DefaultConverter());
     }
 
+    /// Generate a tree sampled from a custom contained type converted using DefaultConverter
     /// \tparam PointUserContainer Input point, transformed to PointContainer
     /// \tparam IndexUserContainer Input sampling, transformed to IndexContainer
     /// \tparam Converter
@@ -163,9 +182,9 @@ public:
                                   Converter c);
 
 
+    /// Update sampling of an existing tree
     template<typename IndexUserContainer>
     inline void rebuild(IndexUserContainer sampling); // IndexUserContainer => Given by user, transformed to IndexContainer
-
 
     inline bool valid() const;
     inline std::string to_string() const;
@@ -224,11 +243,13 @@ public:
 
     // Parameters --------------------------------------------------------------
 public:
+    /// Read leaf min size
     inline LeafSizeType min_cell_size() const
     {
         return m_min_cell_size;
     }
 
+    /// Write leaf min size
     inline void set_min_cell_size(LeafSizeType min_cell_size)
     {
         PONCA_DEBUG_ASSERT(min_cell_size > 0);
@@ -236,7 +257,7 @@ public:
     }
 
     // Internal ----------------------------------------------------------------
-public:
+protected:
     inline void build_rec(NodeCountType node_id, IndexType start, IndexType end, int level);
     inline IndexType partition(IndexType start, IndexType end, int dim, Scalar value);
 
