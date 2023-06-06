@@ -2,7 +2,7 @@ var searchData=
 [
   ['center_0',['center',['../classPonca_1_1AlgebraicSphere.html#abe53aba84bb693f553804c734d69da13',1,'Ponca::AlgebraicSphere']]],
   ['changebasis_1',['changeBasis',['../classPonca_1_1AlgebraicSphere.html#a054a41e20c9ca517af359aa591bca9e7',1,'Ponca::AlgebraicSphere']]],
-  ['clear_2',['clear',['../classPonca_1_1Stack.html#a00f925370381e2f455d52141e1f13b22',1,'Ponca::Stack']]],
+  ['clear_2',['clear',['../classPonca_1_1Stack.html#a00f925370381e2f455d52141e1f13b22',1,'Ponca::Stack::clear()'],['../classPonca_1_1KdTreeBase.html#aa970788748efae78b46f38c21945fac2',1,'Ponca::KdTreeBase::clear()']]],
   ['compactplane_3',['compactPlane',['../classPonca_1_1Plane.html#a6a57e3f4ec93d16f08fa60f6da0d38fe',1,'Ponca::Plane::compactPlane()'],['../classPonca_1_1Plane.html#a089d075e29588c195601dacad6e81d34',1,'Ponca::Plane::compactPlane() const']]],
   ['compareto_4',['compareTo',['../classPonca_1_1GLSParam.html#a420d2089a5420d60814b1e7a1fbd7e12',1,'Ponca::GLSParam']]],
   ['compute_5',['compute',['../classPonca_1_1BasketDiff.html#a0f61e79ff842c2c1940c89006c325335',1,'Ponca::BasketDiff::compute(const IteratorBegin &amp;begin, const IteratorEnd &amp;end)'],['../classPonca_1_1BasketDiff.html#a0fbe1b0d8f696a41bf6a087cd5f56f21',1,'Ponca::BasketDiff::compute(const Container &amp;c)'],['../classPonca_1_1Basket.html#a623c44aa8821f64e09e1768a98149930',1,'Ponca::Basket::compute(const IteratorBegin &amp;begin, const IteratorEnd &amp;end)'],['../classPonca_1_1Basket.html#af4a0f365440a153aeaa3712824f9c8e7',1,'Ponca::Basket::compute(const Container &amp;c)']]],

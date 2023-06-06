@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.9.6"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Ponca: Ponca::KdTreeQuery&lt; DataPoint &gt; Class Template Reference</title>
+<title>Ponca: Ponca::KdTreeQuery&lt; Traits &gt; Class Template Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -51,7 +51,7 @@ MathJax.Hub.Config({
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Ponca
-   &#160;<span id="projectnumber">a21e89d6827d5427dbd7bac78bce9f439f3adab6</span>
+   &#160;<span id="projectnumber">35a9881ca68c698192536a4bd5cc189cdea5a84a</span>
    </div>
    <div id="projectbrief">Point Cloud Analysis library</div>
   </td>
@@ -122,11 +122,11 @@ $(document).ready(function(){initNavTree('classPonca_1_1KdTreeQuery.html',''); i
 <a href="#pro-methods">Protected Member Functions</a> &#124;
 <a href="#pro-attribs">Protected Attributes</a> &#124;
 <a href="classPonca_1_1KdTreeQuery-members.html">List of all members</a>  </div>
-  <div class="headertitle"><div class="title">Ponca::KdTreeQuery&lt; DataPoint &gt; Class Template Reference</div></div>
+  <div class="headertitle"><div class="title">Ponca::KdTreeQuery&lt; Traits &gt; Class Template Reference</div></div>
 </div><!--header-->
 <div class="contents">
 <div id="dynsection-0" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
-  <img id="dynsection-0-trigger" src="closed.png" alt="+"/> Inheritance diagram for Ponca::KdTreeQuery&lt; DataPoint &gt;:</div>
+  <img id="dynsection-0-trigger" src="closed.png" alt="+"/> Inheritance diagram for Ponca::KdTreeQuery&lt; Traits &gt;:</div>
 <div id="dynsection-0-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-0-content" class="dyncontent" style="display:none;">
@@ -134,7 +134,7 @@ $(document).ready(function(){initNavTree('classPonca_1_1KdTreeQuery.html',''); i
 </div>
 </div>
 <div id="dynsection-1" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
-  <img id="dynsection-1-trigger" src="closed.png" alt="+"/> Collaboration diagram for Ponca::KdTreeQuery&lt; DataPoint &gt;:</div>
+  <img id="dynsection-1-trigger" src="closed.png" alt="+"/> Collaboration diagram for Ponca::KdTreeQuery&lt; Traits &gt;:</div>
 <div id="dynsection-1-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-1-content" class="dyncontent" style="display:none;">
@@ -144,44 +144,102 @@ $(document).ready(function(){initNavTree('classPonca_1_1KdTreeQuery.html',''); i
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-types" name="pub-types"></a>
 Public Types</h2></td></tr>
-<tr class="memitem:a9f503d54192d327655a388d4aaee4946"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1KdTreeQuery.html#a9f503d54192d327655a388d4aaee4946">Scalar</a> = typename DataPoint::Scalar</td></tr>
-<tr class="separator:a9f503d54192d327655a388d4aaee4946"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a63886df8aa6207556f2594f13115256c"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1KdTreeQuery.html#a63886df8aa6207556f2594f13115256c">VectorType</a> = typename DataPoint::VectorType</td></tr>
-<tr class="separator:a63886df8aa6207556f2594f13115256c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac585cd363341c2979d149341c2aaa12f"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1KdTreeQuery.html#ac585cd363341c2979d149341c2aaa12f">DataPoint</a> = typename Traits::DataPoint</td></tr>
+<tr class="separator:ac585cd363341c2979d149341c2aaa12f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7909aab83bbce8ee0f460b7a2b96b349"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1KdTreeQuery.html#a7909aab83bbce8ee0f460b7a2b96b349">IndexType</a> = typename Traits::IndexType</td></tr>
+<tr class="separator:a7909aab83bbce8ee0f460b7a2b96b349"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7f1a731d1d34a5097804530fbcfe691f"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1KdTreeQuery.html#a7f1a731d1d34a5097804530fbcfe691f">Scalar</a> = typename DataPoint::Scalar</td></tr>
+<tr class="separator:a7f1a731d1d34a5097804530fbcfe691f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af79b6dac6c304eaa35004607fe673509"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1KdTreeQuery.html#af79b6dac6c304eaa35004607fe673509">VectorType</a> = typename DataPoint::VectorType</td></tr>
+<tr class="separator:af79b6dac6c304eaa35004607fe673509"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:ac4177e91b4f836b5bb194deaa5005994"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1KdTreeQuery.html#ac4177e91b4f836b5bb194deaa5005994">KdTreeQuery</a> (const <a class="el" href="classPonca_1_1KdTree.html">KdTree</a>&lt; DataPoint &gt; *kdtree)</td></tr>
-<tr class="separator:ac4177e91b4f836b5bb194deaa5005994"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a99519c713356cb03f4e25a081acf2ffb"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1KdTreeQuery.html#a99519c713356cb03f4e25a081acf2ffb">KdTreeQuery</a> (const <a class="el" href="classPonca_1_1KdTreeBase.html">KdTreeBase</a>&lt; Traits &gt; *kdtree)</td></tr>
+<tr class="separator:a99519c713356cb03f4e25a081acf2ffb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-methods" name="pro-methods"></a>
 Protected Member Functions</h2></td></tr>
-<tr class="memitem:af9886f3d133c0e6a7465b5f9e2be0fe5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1KdTreeQuery.html#af9886f3d133c0e6a7465b5f9e2be0fe5">reset</a> ()</td></tr>
-<tr class="memdesc:af9886f3d133c0e6a7465b5f9e2be0fe5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Init stack for a new search.  <br /></td></tr>
-<tr class="separator:af9886f3d133c0e6a7465b5f9e2be0fe5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2c02164e69a15dbf89c4b80b625cc0ac"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1KdTreeQuery.html#a2c02164e69a15dbf89c4b80b625cc0ac">reset</a> ()</td></tr>
+<tr class="memdesc:a2c02164e69a15dbf89c4b80b625cc0ac"><td class="mdescLeft">&#160;</td><td class="mdescRight">Init stack for a new search.  <br /></td></tr>
+<tr class="separator:a2c02164e69a15dbf89c4b80b625cc0ac"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-attribs" name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
-<tr class="memitem:ac9e4bbca43f2e32910be831af73fec70"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="classPonca_1_1KdTree.html">KdTree</a>&lt; DataPoint &gt; *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1KdTreeQuery.html#ac9e4bbca43f2e32910be831af73fec70">m_kdtree</a> { nullptr }</td></tr>
-<tr class="separator:ac9e4bbca43f2e32910be831af73fec70"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a98dfd61c512456eafd4613a00a39db8f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classPonca_1_1Stack.html">Stack</a>&lt; <a class="el" href="structPonca_1_1IndexSquaredDistance.html">IndexSquaredDistance</a>&lt; typename DataPoint::Scalar &gt;, 2 *32 &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1KdTreeQuery.html#a98dfd61c512456eafd4613a00a39db8f">m_stack</a></td></tr>
-<tr class="separator:a98dfd61c512456eafd4613a00a39db8f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae44fd9c230d857ffdca7171ac6418ab0"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="classPonca_1_1KdTreeBase.html">KdTreeBase</a>&lt; Traits &gt; *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1KdTreeQuery.html#ae44fd9c230d857ffdca7171ac6418ab0">m_kdtree</a> { nullptr }</td></tr>
+<tr class="separator:ae44fd9c230d857ffdca7171ac6418ab0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6d3590a201b336ce0858be23ef006001"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classPonca_1_1Stack.html">Stack</a>&lt; <a class="el" href="structPonca_1_1IndexSquaredDistance.html">IndexSquaredDistance</a>&lt; IndexType, Scalar &gt;, 2 *Traits::MAX_DEPTH &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1KdTreeQuery.html#a6d3590a201b336ce0858be23ef006001">m_stack</a></td></tr>
+<tr class="separator:a6d3590a201b336ce0858be23ef006001"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><div class="compoundTemplParams">template&lt;class DataPoint&gt;<br />
-class Ponca::KdTreeQuery&lt; DataPoint &gt;</div>
-<p class="definition">Definition at line <a class="el" href="kdTreeQuery_8h_source.html#l00019">19</a> of file <a class="el" href="kdTreeQuery_8h_source.html">kdTreeQuery.h</a>.</p>
+<div class="textblock"><div class="compoundTemplParams">template&lt;typename Traits&gt;<br />
+class Ponca::KdTreeQuery&lt; Traits &gt;</div>
+<p class="definition">Definition at line <a class="el" href="kdTreeQuery_8h_source.html#l00016">16</a> of file <a class="el" href="kdTreeQuery_8h_source.html">kdTreeQuery.h</a>.</p>
 </div><h2 class="groupheader">Member Typedef Documentation</h2>
-<a id="a9f503d54192d327655a388d4aaee4946" name="a9f503d54192d327655a388d4aaee4946"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a9f503d54192d327655a388d4aaee4946">&#9670;&#160;</a></span>Scalar</h2>
+<a id="ac585cd363341c2979d149341c2aaa12f" name="ac585cd363341c2979d149341c2aaa12f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac585cd363341c2979d149341c2aaa12f">&#9670;&#160;</a></span>DataPoint</h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;class DataPoint &gt; </div>
+template&lt;typename Traits &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">using <a class="el" href="classPonca_1_1KdTreeQuery.html">Ponca::KdTreeQuery</a>&lt; DataPoint &gt;::Scalar =  typename DataPoint::Scalar</td>
+          <td class="memname">using <a class="el" href="classPonca_1_1KdTreeQuery.html">Ponca::KdTreeQuery</a>&lt; Traits &gt;::DataPoint =  typename Traits::DataPoint</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="kdTreeQuery_8h_source.html#l00019">19</a> of file <a class="el" href="kdTreeQuery_8h_source.html">kdTreeQuery.h</a>.</p>
+
+</div>
+</div>
+<a id="a7909aab83bbce8ee0f460b7a2b96b349" name="a7909aab83bbce8ee0f460b7a2b96b349"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7909aab83bbce8ee0f460b7a2b96b349">&#9670;&#160;</a></span>IndexType</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Traits &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="classPonca_1_1KdTreeQuery.html">Ponca::KdTreeQuery</a>&lt; Traits &gt;::IndexType =  typename Traits::IndexType</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="kdTreeQuery_8h_source.html#l00020">20</a> of file <a class="el" href="kdTreeQuery_8h_source.html">kdTreeQuery.h</a>.</p>
+
+</div>
+</div>
+<a id="a7f1a731d1d34a5097804530fbcfe691f" name="a7f1a731d1d34a5097804530fbcfe691f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7f1a731d1d34a5097804530fbcfe691f">&#9670;&#160;</a></span>Scalar</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Traits &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="classPonca_1_1KdTreeQuery.html">Ponca::KdTreeQuery</a>&lt; Traits &gt;::Scalar =  typename DataPoint::Scalar</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="kdTreeQuery_8h_source.html#l00021">21</a> of file <a class="el" href="kdTreeQuery_8h_source.html">kdTreeQuery.h</a>.</p>
+
+</div>
+</div>
+<a id="af79b6dac6c304eaa35004607fe673509" name="af79b6dac6c304eaa35004607fe673509"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af79b6dac6c304eaa35004607fe673509">&#9670;&#160;</a></span>VectorType</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Traits &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="classPonca_1_1KdTreeQuery.html">Ponca::KdTreeQuery</a>&lt; Traits &gt;::VectorType =  typename DataPoint::VectorType</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -190,40 +248,22 @@ template&lt;class DataPoint &gt; </div>
 
 </div>
 </div>
-<a id="a63886df8aa6207556f2594f13115256c" name="a63886df8aa6207556f2594f13115256c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a63886df8aa6207556f2594f13115256c">&#9670;&#160;</a></span>VectorType</h2>
-
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;class DataPoint &gt; </div>
-      <table class="memname">
-        <tr>
-          <td class="memname">using <a class="el" href="classPonca_1_1KdTreeQuery.html">Ponca::KdTreeQuery</a>&lt; DataPoint &gt;::VectorType =  typename DataPoint::VectorType</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p class="definition">Definition at line <a class="el" href="kdTreeQuery_8h_source.html#l00023">23</a> of file <a class="el" href="kdTreeQuery_8h_source.html">kdTreeQuery.h</a>.</p>
-
-</div>
-</div>
 <h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a id="ac4177e91b4f836b5bb194deaa5005994" name="ac4177e91b4f836b5bb194deaa5005994"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac4177e91b4f836b5bb194deaa5005994">&#9670;&#160;</a></span>KdTreeQuery()</h2>
+<a id="a99519c713356cb03f4e25a081acf2ffb" name="a99519c713356cb03f4e25a081acf2ffb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a99519c713356cb03f4e25a081acf2ffb">&#9670;&#160;</a></span>KdTreeQuery()</h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;class DataPoint &gt; </div>
+template&lt;typename Traits &gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classPonca_1_1KdTreeQuery.html">Ponca::KdTreeQuery</a>&lt; DataPoint &gt;::KdTreeQuery </td>
+          <td class="memname"><a class="el" href="classPonca_1_1KdTreeQuery.html">Ponca::KdTreeQuery</a>&lt; Traits &gt;::KdTreeQuery </td>
           <td>(</td>
-          <td class="paramtype">const <a class="el" href="classPonca_1_1KdTree.html">KdTree</a>&lt; DataPoint &gt; *&#160;</td>
+          <td class="paramtype">const <a class="el" href="classPonca_1_1KdTreeBase.html">KdTreeBase</a>&lt; Traits &gt; *&#160;</td>
           <td class="paramname"><em>kdtree</em></td><td>)</td>
           <td></td>
         </tr>
@@ -235,24 +275,24 @@ template&lt;class DataPoint &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="kdTreeQuery_8h_source.html#l00025">25</a> of file <a class="el" href="kdTreeQuery_8h_source.html">kdTreeQuery.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="kdTreeQuery_8h_source.html#l00024">24</a> of file <a class="el" href="kdTreeQuery_8h_source.html">kdTreeQuery.h</a>.</p>
 
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a id="af9886f3d133c0e6a7465b5f9e2be0fe5" name="af9886f3d133c0e6a7465b5f9e2be0fe5"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af9886f3d133c0e6a7465b5f9e2be0fe5">&#9670;&#160;</a></span>reset()</h2>
+<a id="a2c02164e69a15dbf89c4b80b625cc0ac" name="a2c02164e69a15dbf89c4b80b625cc0ac"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2c02164e69a15dbf89c4b80b625cc0ac">&#9670;&#160;</a></span>reset()</h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;class DataPoint &gt; </div>
+template&lt;typename Traits &gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">void <a class="el" href="classPonca_1_1KdTreeQuery.html">Ponca::KdTreeQuery</a>&lt; DataPoint &gt;::reset </td>
+          <td class="memname">void <a class="el" href="classPonca_1_1KdTreeQuery.html">Ponca::KdTreeQuery</a>&lt; Traits &gt;::reset </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -267,24 +307,50 @@ template&lt;class DataPoint &gt; </div>
 
 <p>Init stack for a new search. </p>
 
-<p class="definition">Definition at line <a class="el" href="kdTreeQuery_8h_source.html#l00029">29</a> of file <a class="el" href="kdTreeQuery_8h_source.html">kdTreeQuery.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="kdTreeQuery_8h_source.html#l00028">28</a> of file <a class="el" href="kdTreeQuery_8h_source.html">kdTreeQuery.h</a>.</p>
 
 </div>
 </div>
 <h2 class="groupheader">Member Data Documentation</h2>
-<a id="ac9e4bbca43f2e32910be831af73fec70" name="ac9e4bbca43f2e32910be831af73fec70"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac9e4bbca43f2e32910be831af73fec70">&#9670;&#160;</a></span>m_kdtree</h2>
+<a id="ae44fd9c230d857ffdca7171ac6418ab0" name="ae44fd9c230d857ffdca7171ac6418ab0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae44fd9c230d857ffdca7171ac6418ab0">&#9670;&#160;</a></span>m_kdtree</h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;class DataPoint &gt; </div>
+template&lt;typename Traits &gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">const <a class="el" href="classPonca_1_1KdTree.html">KdTree</a>&lt;DataPoint&gt;* <a class="el" href="classPonca_1_1KdTreeQuery.html">Ponca::KdTreeQuery</a>&lt; DataPoint &gt;::m_kdtree { nullptr }</td>
+          <td class="memname">const <a class="el" href="classPonca_1_1KdTreeBase.html">KdTreeBase</a>&lt;Traits&gt;* <a class="el" href="classPonca_1_1KdTreeQuery.html">Ponca::KdTreeQuery</a>&lt; Traits &gt;::m_kdtree { nullptr }</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="kdTreeQuery_8h_source.html#l00033">33</a> of file <a class="el" href="kdTreeQuery_8h_source.html">kdTreeQuery.h</a>.</p>
+
+</div>
+</div>
+<a id="a6d3590a201b336ce0858be23ef006001" name="a6d3590a201b336ce0858be23ef006001"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6d3590a201b336ce0858be23ef006001">&#9670;&#160;</a></span>m_stack</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Traits &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classPonca_1_1Stack.html">Stack</a>&lt;<a class="el" href="structPonca_1_1IndexSquaredDistance.html">IndexSquaredDistance</a>&lt;IndexType, Scalar&gt;, 2 * Traits::MAX_DEPTH&gt; <a class="el" href="classPonca_1_1KdTreeQuery.html">Ponca::KdTreeQuery</a>&lt; Traits &gt;::m_stack</td>
         </tr>
       </table>
   </td>
@@ -298,39 +364,13 @@ template&lt;class DataPoint &gt; </div>
 
 </div>
 </div>
-<a id="a98dfd61c512456eafd4613a00a39db8f" name="a98dfd61c512456eafd4613a00a39db8f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a98dfd61c512456eafd4613a00a39db8f">&#9670;&#160;</a></span>m_stack</h2>
-
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;class DataPoint &gt; </div>
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="classPonca_1_1Stack.html">Stack</a>&lt;<a class="el" href="structPonca_1_1IndexSquaredDistance.html">IndexSquaredDistance</a>&lt;typename DataPoint::Scalar&gt;, 2 * 32 &gt; <a class="el" href="classPonca_1_1KdTreeQuery.html">Ponca::KdTreeQuery</a>&lt; DataPoint &gt;::m_stack</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p class="definition">Definition at line <a class="el" href="kdTreeQuery_8h_source.html#l00035">35</a> of file <a class="el" href="kdTreeQuery_8h_source.html">kdTreeQuery.h</a>.</p>
-
-</div>
-</div>
 </div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="namespacePonca.html">Ponca</a></li><li class="navelem"><a class="el" href="classPonca_1_1KdTreeQuery.html">KdTreeQuery</a></li>
-    <li class="footer">Generated on Mon Jun 5 2023 13:01:47 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.6 </li>
+    <li class="footer">Generated on Tue Jun 6 2023 21:25:50 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.6 </li>
   </ul>
 </div>
 </body>

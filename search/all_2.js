@@ -7,6 +7,6 @@ var searchData=
   ['basket_4',['Basket',['../classPonca_1_1Basket.html',1,'Ponca']]],
   ['basketdiff_5',['BasketDiff',['../classPonca_1_1BasketDiff.html',1,'Ponca']]],
   ['bibliography_6',['Bibliography',['../citelist.html',1,'']]],
-  ['build_7',['build',['../classPonca_1_1KdTree.html#a78c639475215277202a3016cd33a492b',1,'Ponca::KdTree::build(const PointUserContainer &amp;points)'],['../classPonca_1_1KdTree.html#a2fe4a7e45cac60d1536e9433005f9598',1,'Ponca::KdTree::build(const PointUserContainer &amp;points, Converter c)']]],
-  ['buildwithsampling_8',['buildWithSampling',['../classPonca_1_1KdTree.html#a1fcfb4279b06dbb9e744bec2b91557e0',1,'Ponca::KdTree::buildWithSampling(const PointUserContainer &amp;points, const IndexUserContainer &amp;sampling)'],['../classPonca_1_1KdTree.html#aa16132259ce9493eb13df6387b1a88f6',1,'Ponca::KdTree::buildWithSampling(const PointUserContainer &amp;points, const IndexUserContainer &amp;sampling, Converter c)']]]
+  ['build_7',['build',['../classPonca_1_1KdTreeBase.html#a99006c2a38313a2a472d92f68ff2d38d',1,'Ponca::KdTreeBase::build(PointUserContainer &amp;&amp;points)'],['../classPonca_1_1KdTreeBase.html#a4571ce576ef11454f524a102f7644d01',1,'Ponca::KdTreeBase::build(PointUserContainer &amp;&amp;points, Converter c)']]],
+  ['buildwithsampling_8',['buildWithSampling',['../classPonca_1_1KdTreeBase.html#aaa423035de54c90cdcf787de39cbfcc8',1,'Ponca::KdTreeBase::buildWithSampling(PointUserContainer &amp;&amp;points, IndexUserContainer sampling)'],['../classPonca_1_1KdTreeBase.html#afeff799fa0a293195e04735a21852ae0',1,'Ponca::KdTreeBase::buildWithSampling(PointUserContainer &amp;&amp;points, IndexUserContainer sampling, Converter c)']]]
 ];

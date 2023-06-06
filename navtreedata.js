@@ -73,8 +73,8 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "annotated.html",
-"classPonca_1_1MeanPosition.html#a408415520337d643d9403e3622b33f19",
-"example_cu_ssc_page.html#cu_ssgl_cuda_weight_sec"
+"classPonca_1_1MeanNormal.html#a7e5925d88878ba32024d97904bdb6e08",
+"classPonca_1_1WendlandWeightKernel.html#a3ce3f4e507808b3934b9d0b4fbc69396"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

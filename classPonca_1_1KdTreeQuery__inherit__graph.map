@@ -1,4 +1,4 @@
-<map id="Ponca::KdTreeQuery&lt; DataPoint &gt;" name="Ponca::KdTreeQuery&lt; DataPoint &gt;">
+<map id="Ponca::KdTreeQuery&lt; Traits &gt;" name="Ponca::KdTreeQuery&lt; Traits &gt;">
 <area shape="rect" id="node1" title=" " alt="" coords="656,5,808,127"/>
 <area shape="rect" id="node2" href="$classPonca_1_1KdTreeKNearestIndexQuery.html" title=" " alt="" coords="5,182,232,318"/>
 <area shape="rect" id="node3" href="$classPonca_1_1KdTreeKNearestPointQuery.html" title=" " alt="" coords="257,182,479,318"/>

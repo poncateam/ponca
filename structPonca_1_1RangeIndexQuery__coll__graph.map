@@ -1,7 +1,7 @@
-<map id="Ponca::RangeIndexQuery&lt; Scalar &gt;" name="Ponca::RangeIndexQuery&lt; Scalar &gt;">
+<map id="Ponca::RangeIndexQuery&lt; Index, Scalar &gt;" name="Ponca::RangeIndexQuery&lt; Index, Scalar &gt;">
 <area shape="rect" id="node1" title="Base Query class combining QueryInputIsIndex and QueryOutputIsRange." alt="" coords="227,915,412,1007"/>
-<area shape="rect" id="node2" href="$group__spatialpartitioning.html" title=" " alt="" coords="213,744,425,865"/>
-<area shape="rect" id="node3" href="$group__spatialpartitioning.html#structPonca_1_1QueryInputIsIndex" title="Base class for queries storing points." alt="" coords="5,531,193,608"/>
+<area shape="rect" id="node2" href="$group__spatialpartitioning.html" title=" " alt="" coords="206,744,433,865"/>
+<area shape="rect" id="node3" href="$group__spatialpartitioning.html#structPonca_1_1QueryInputIsIndex" title="Base class for queries storing points." alt="" coords="5,523,193,615"/>
 <area shape="rect" id="node4" href="$group__spatialpartitioning.html" title=" " alt="" coords="23,316,175,437"/>
 <area shape="rect" id="node5" href="$group__spatialpartitioning.html#structPonca_1_1QueryInputBase" title="Base class for queries input type." alt="" coords="7,5,181,83"/>
 <area shape="rect" id="node6" href="$group__spatialpartitioning.html#structPonca_1_1QueryInput" title="Base class for typed queries input type." alt="" coords="115,132,267,253"/>

@@ -4,7 +4,7 @@ var searchData=
   ['changebasis_1',['changeBasis',['../classPonca_1_1AlgebraicSphere.html#a054a41e20c9ca517af359aa591bca9e7',1,'Ponca::AlgebraicSphere']]],
   ['check_2',['check',['../classPonca_1_1Line.html#af69f2a87913e0ae3a1514963af6dfc68af21467c31a6db11c5c91e29c75c8ee48',1,'Ponca::Line::check()'],['../classPonca_1_1AlgebraicSphere.html#a39a8fedcfda62899968236d51d82063aa652f7be31584b31da49fbda06a3fcf86',1,'Ponca::AlgebraicSphere::check()']]],
   ['check_3',['Check',['../classPonca_1_1PrimitiveDer.html#ac708b8677302110cf9dfc6f191a11996ac792952f4f9bacc0482b7b026cee2916',1,'Ponca::PrimitiveDer']]],
-  ['clear_4',['clear',['../classPonca_1_1Stack.html#a00f925370381e2f455d52141e1f13b22',1,'Ponca::Stack']]],
+  ['clear_4',['clear',['../classPonca_1_1KdTreeBase.html#aa970788748efae78b46f38c21945fac2',1,'Ponca::KdTreeBase::clear()'],['../classPonca_1_1Stack.html#a00f925370381e2f455d52141e1f13b22',1,'Ponca::Stack::clear()']]],
   ['common_20module_5',['Common module',['../group__common.html',1,'']]],
   ['common_20module_3a_20user_20manual_6',['Common module: User Manual',['../common.html',1,'user_manual_page']]],
   ['compactexpweightkernel_7',['CompactExpWeightKernel',['../classPonca_1_1CompactExpWeightKernel.html',1,'Ponca']]],

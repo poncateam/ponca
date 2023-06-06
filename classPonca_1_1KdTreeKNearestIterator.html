@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.9.6"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Ponca: Ponca::KdTreeKNearestIterator&lt; DataPoint &gt; Class Template Reference</title>
+<title>Ponca: Ponca::KdTreeKNearestIterator&lt; Index, DataPoint &gt; Class Template Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -51,7 +51,7 @@ MathJax.Hub.Config({
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Ponca
-   &#160;<span id="projectnumber">a21e89d6827d5427dbd7bac78bce9f439f3adab6</span>
+   &#160;<span id="projectnumber">35a9881ca68c698192536a4bd5cc189cdea5a84a</span>
    </div>
    <div id="projectbrief">Point Cloud Analysis library</div>
   </td>
@@ -121,11 +121,11 @@ $(document).ready(function(){initNavTree('classPonca_1_1KdTreeKNearestIterator.h
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="#pro-attribs">Protected Attributes</a> &#124;
 <a href="classPonca_1_1KdTreeKNearestIterator-members.html">List of all members</a>  </div>
-  <div class="headertitle"><div class="title">Ponca::KdTreeKNearestIterator&lt; DataPoint &gt; Class Template Reference</div></div>
+  <div class="headertitle"><div class="title">Ponca::KdTreeKNearestIterator&lt; Index, DataPoint &gt; Class Template Reference</div></div>
 </div><!--header-->
 <div class="contents">
 <div id="dynsection-0" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
-  <img id="dynsection-0-trigger" src="closed.png" alt="+"/> Collaboration diagram for Ponca::KdTreeKNearestIterator&lt; DataPoint &gt;:</div>
+  <img id="dynsection-0-trigger" src="closed.png" alt="+"/> Collaboration diagram for Ponca::KdTreeKNearestIterator&lt; Index, DataPoint &gt;:</div>
 <div id="dynsection-0-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-0-content" class="dyncontent" style="display:none;">
@@ -135,44 +135,44 @@ $(document).ready(function(){initNavTree('classPonca_1_1KdTreeKNearestIterator.h
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-types" name="pub-types"></a>
 Public Types</h2></td></tr>
-<tr class="memitem:a60ace91d8ed5a93b581ee0936d7a9793"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1KdTreeKNearestIterator.html#a60ace91d8ed5a93b581ee0936d7a9793">Scalar</a> = typename DataPoint::Scalar</td></tr>
-<tr class="separator:a60ace91d8ed5a93b581ee0936d7a9793"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae8de8cc6b834173533de5af96e4f9bfc"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1KdTreeKNearestIterator.html#ae8de8cc6b834173533de5af96e4f9bfc">Iterator</a> = typename <a class="el" href="classPonca_1_1limited__priority__queue.html">limited_priority_queue</a>&lt; <a class="el" href="structPonca_1_1IndexSquaredDistance.html">IndexSquaredDistance</a>&lt; Scalar &gt; &gt;::iterator</td></tr>
-<tr class="separator:ae8de8cc6b834173533de5af96e4f9bfc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad05b3a7971ffa4ccc1a1e92a716b3236"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1KdTreeKNearestIterator.html#ad05b3a7971ffa4ccc1a1e92a716b3236">Scalar</a> = typename DataPoint::Scalar</td></tr>
+<tr class="separator:ad05b3a7971ffa4ccc1a1e92a716b3236"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adb885b5cedf84e6a78ed637882248ea2"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1KdTreeKNearestIterator.html#adb885b5cedf84e6a78ed637882248ea2">Iterator</a> = typename <a class="el" href="classPonca_1_1limited__priority__queue.html">limited_priority_queue</a>&lt; <a class="el" href="structPonca_1_1IndexSquaredDistance.html">IndexSquaredDistance</a>&lt; Index, Scalar &gt; &gt;::iterator</td></tr>
+<tr class="separator:adb885b5cedf84e6a78ed637882248ea2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:aae5a381a04df79871cef48db15daa7ab"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1KdTreeKNearestIterator.html#aae5a381a04df79871cef48db15daa7ab">KdTreeKNearestIterator</a> (const Iterator &amp;iterator)</td></tr>
-<tr class="separator:aae5a381a04df79871cef48db15daa7ab"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8b5223a312e4b798d9a7e7f0e642aca8"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1KdTreeKNearestIterator.html#a8b5223a312e4b798d9a7e7f0e642aca8">operator!=</a> (const <a class="el" href="classPonca_1_1KdTreeKNearestIterator.html">KdTreeKNearestIterator</a>&lt; DataPoint &gt; &amp;other) const</td></tr>
-<tr class="separator:a8b5223a312e4b798d9a7e7f0e642aca8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7f1517ddf71688e24417106abc6c2fdb"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1KdTreeKNearestIterator.html#a7f1517ddf71688e24417106abc6c2fdb">operator++</a> ()</td></tr>
-<tr class="separator:a7f1517ddf71688e24417106abc6c2fdb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a009c1707a25e68b50b8d82fd3e93a260"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1KdTreeKNearestIterator.html#a009c1707a25e68b50b8d82fd3e93a260">operator*</a> () const</td></tr>
-<tr class="separator:a009c1707a25e68b50b8d82fd3e93a260"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6d6727266fc2870bce5fe820106ea3b3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1KdTreeKNearestIterator.html#a6d6727266fc2870bce5fe820106ea3b3">operator+=</a> (int i)</td></tr>
-<tr class="separator:a6d6727266fc2870bce5fe820106ea3b3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a21c7874f9008ef882d664307693f7b9c"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1KdTreeKNearestIterator.html#a21c7874f9008ef882d664307693f7b9c">KdTreeKNearestIterator</a> (const Iterator &amp;iterator)</td></tr>
+<tr class="separator:a21c7874f9008ef882d664307693f7b9c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a76d6467b9bf94b23d3a1a52e44fc74bf"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1KdTreeKNearestIterator.html#a76d6467b9bf94b23d3a1a52e44fc74bf">operator!=</a> (const <a class="el" href="classPonca_1_1KdTreeKNearestIterator.html">KdTreeKNearestIterator</a> &amp;other) const</td></tr>
+<tr class="separator:a76d6467b9bf94b23d3a1a52e44fc74bf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6a427b8506d838cea2542a1bb7b294fa"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1KdTreeKNearestIterator.html#a6a427b8506d838cea2542a1bb7b294fa">operator++</a> ()</td></tr>
+<tr class="separator:a6a427b8506d838cea2542a1bb7b294fa"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a54cfe29771c7d84c3af6fcac07bdf0d7"><td class="memItemLeft" align="right" valign="top">Index&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1KdTreeKNearestIterator.html#a54cfe29771c7d84c3af6fcac07bdf0d7">operator*</a> () const</td></tr>
+<tr class="separator:a54cfe29771c7d84c3af6fcac07bdf0d7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3a6a5e65d18903972bf821f76db9863a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1KdTreeKNearestIterator.html#a3a6a5e65d18903972bf821f76db9863a">operator+=</a> (int i)</td></tr>
+<tr class="separator:a3a6a5e65d18903972bf821f76db9863a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-attribs" name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
-<tr class="memitem:a5f48448b6fa0b08c5b4cb8def61002bb"><td class="memItemLeft" align="right" valign="top">Iterator&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1KdTreeKNearestIterator.html#a5f48448b6fa0b08c5b4cb8def61002bb">m_iterator</a></td></tr>
-<tr class="separator:a5f48448b6fa0b08c5b4cb8def61002bb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad97c67a24ed62cfc3d32ab9c9c5bb4fb"><td class="memItemLeft" align="right" valign="top">Iterator&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1KdTreeKNearestIterator.html#ad97c67a24ed62cfc3d32ab9c9c5bb4fb">m_iterator</a></td></tr>
+<tr class="separator:ad97c67a24ed62cfc3d32ab9c9c5bb4fb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><div class="compoundTemplParams">template&lt;class DataPoint&gt;<br />
-class Ponca::KdTreeKNearestIterator&lt; DataPoint &gt;</div>
+<div class="textblock"><div class="compoundTemplParams">template&lt;typename Index, typename DataPoint&gt;<br />
+class Ponca::KdTreeKNearestIterator&lt; Index, DataPoint &gt;</div>
 <p class="definition">Definition at line <a class="el" href="kdTreeKNearestIterator_8h_source.html#l00012">12</a> of file <a class="el" href="kdTreeKNearestIterator_8h_source.html">kdTreeKNearestIterator.h</a>.</p>
 </div><h2 class="groupheader">Member Typedef Documentation</h2>
-<a id="ae8de8cc6b834173533de5af96e4f9bfc" name="ae8de8cc6b834173533de5af96e4f9bfc"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae8de8cc6b834173533de5af96e4f9bfc">&#9670;&#160;</a></span>Iterator</h2>
+<a id="adb885b5cedf84e6a78ed637882248ea2" name="adb885b5cedf84e6a78ed637882248ea2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adb885b5cedf84e6a78ed637882248ea2">&#9670;&#160;</a></span>Iterator</h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;class DataPoint &gt; </div>
+template&lt;typename Index , typename DataPoint &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">using <a class="el" href="classPonca_1_1KdTreeKNearestIterator.html">Ponca::KdTreeKNearestIterator</a>&lt; DataPoint &gt;::Iterator =  typename <a class="el" href="classPonca_1_1limited__priority__queue.html">limited_priority_queue</a>&lt;<a class="el" href="structPonca_1_1IndexSquaredDistance.html">IndexSquaredDistance</a>&lt;Scalar&gt; &gt;::iterator</td>
+          <td class="memname">using <a class="el" href="classPonca_1_1KdTreeKNearestIterator.html">Ponca::KdTreeKNearestIterator</a>&lt; Index, DataPoint &gt;::Iterator =  typename <a class="el" href="classPonca_1_1limited__priority__queue.html">limited_priority_queue</a>&lt;<a class="el" href="structPonca_1_1IndexSquaredDistance.html">IndexSquaredDistance</a>&lt;Index, Scalar&gt; &gt;::iterator</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -181,16 +181,16 @@ template&lt;class DataPoint &gt; </div>
 
 </div>
 </div>
-<a id="a60ace91d8ed5a93b581ee0936d7a9793" name="a60ace91d8ed5a93b581ee0936d7a9793"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a60ace91d8ed5a93b581ee0936d7a9793">&#9670;&#160;</a></span>Scalar</h2>
+<a id="ad05b3a7971ffa4ccc1a1e92a716b3236" name="ad05b3a7971ffa4ccc1a1e92a716b3236"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad05b3a7971ffa4ccc1a1e92a716b3236">&#9670;&#160;</a></span>Scalar</h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;class DataPoint &gt; </div>
+template&lt;typename Index , typename DataPoint &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">using <a class="el" href="classPonca_1_1KdTreeKNearestIterator.html">Ponca::KdTreeKNearestIterator</a>&lt; DataPoint &gt;::Scalar =  typename DataPoint::Scalar</td>
+          <td class="memname">using <a class="el" href="classPonca_1_1KdTreeKNearestIterator.html">Ponca::KdTreeKNearestIterator</a>&lt; Index, DataPoint &gt;::Scalar =  typename DataPoint::Scalar</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -200,19 +200,19 @@ template&lt;class DataPoint &gt; </div>
 </div>
 </div>
 <h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a id="aae5a381a04df79871cef48db15daa7ab" name="aae5a381a04df79871cef48db15daa7ab"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aae5a381a04df79871cef48db15daa7ab">&#9670;&#160;</a></span>KdTreeKNearestIterator()</h2>
+<a id="a21c7874f9008ef882d664307693f7b9c" name="a21c7874f9008ef882d664307693f7b9c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a21c7874f9008ef882d664307693f7b9c">&#9670;&#160;</a></span>KdTreeKNearestIterator()</h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;class DataPoint &gt; </div>
+template&lt;typename Index , typename DataPoint &gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classPonca_1_1KdTreeKNearestIterator.html">Ponca::KdTreeKNearestIterator</a>&lt; DataPoint &gt;::KdTreeKNearestIterator </td>
+          <td class="memname"><a class="el" href="classPonca_1_1KdTreeKNearestIterator.html">Ponca::KdTreeKNearestIterator</a>&lt; Index, DataPoint &gt;::KdTreeKNearestIterator </td>
           <td>(</td>
           <td class="paramtype">const Iterator &amp;&#160;</td>
           <td class="paramname"><em>iterator</em></td><td>)</td>
@@ -231,21 +231,21 @@ template&lt;class DataPoint &gt; </div>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a id="a8b5223a312e4b798d9a7e7f0e642aca8" name="a8b5223a312e4b798d9a7e7f0e642aca8"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a8b5223a312e4b798d9a7e7f0e642aca8">&#9670;&#160;</a></span>operator!=()</h2>
+<a id="a76d6467b9bf94b23d3a1a52e44fc74bf" name="a76d6467b9bf94b23d3a1a52e44fc74bf"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a76d6467b9bf94b23d3a1a52e44fc74bf">&#9670;&#160;</a></span>operator!=()</h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;class DataPoint &gt; </div>
+template&lt;typename Index , typename DataPoint &gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">bool <a class="el" href="classPonca_1_1KdTreeKNearestIterator.html">Ponca::KdTreeKNearestIterator</a>&lt; DataPoint &gt;::operator!= </td>
+          <td class="memname">bool <a class="el" href="classPonca_1_1KdTreeKNearestIterator.html">Ponca::KdTreeKNearestIterator</a>&lt; Index, DataPoint &gt;::operator!= </td>
           <td>(</td>
-          <td class="paramtype">const <a class="el" href="classPonca_1_1KdTreeKNearestIterator.html">KdTreeKNearestIterator</a>&lt; DataPoint &gt; &amp;&#160;</td>
+          <td class="paramtype">const <a class="el" href="classPonca_1_1KdTreeKNearestIterator.html">KdTreeKNearestIterator</a>&lt; Index, DataPoint &gt; &amp;&#160;</td>
           <td class="paramname"><em>other</em></td><td>)</td>
           <td> const</td>
         </tr>
@@ -261,19 +261,19 @@ template&lt;class DataPoint &gt; </div>
 
 </div>
 </div>
-<a id="a009c1707a25e68b50b8d82fd3e93a260" name="a009c1707a25e68b50b8d82fd3e93a260"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a009c1707a25e68b50b8d82fd3e93a260">&#9670;&#160;</a></span>operator*()</h2>
+<a id="a54cfe29771c7d84c3af6fcac07bdf0d7" name="a54cfe29771c7d84c3af6fcac07bdf0d7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a54cfe29771c7d84c3af6fcac07bdf0d7">&#9670;&#160;</a></span>operator*()</h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;class DataPoint &gt; </div>
+template&lt;typename Index , typename DataPoint &gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">int <a class="el" href="classPonca_1_1KdTreeKNearestIterator.html">Ponca::KdTreeKNearestIterator</a>&lt; DataPoint &gt;::operator* </td>
+          <td class="memname">Index <a class="el" href="classPonca_1_1KdTreeKNearestIterator.html">Ponca::KdTreeKNearestIterator</a>&lt; Index, DataPoint &gt;::operator* </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td> const</td>
@@ -290,19 +290,19 @@ template&lt;class DataPoint &gt; </div>
 
 </div>
 </div>
-<a id="a7f1517ddf71688e24417106abc6c2fdb" name="a7f1517ddf71688e24417106abc6c2fdb"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a7f1517ddf71688e24417106abc6c2fdb">&#9670;&#160;</a></span>operator++()</h2>
+<a id="a6a427b8506d838cea2542a1bb7b294fa" name="a6a427b8506d838cea2542a1bb7b294fa"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6a427b8506d838cea2542a1bb7b294fa">&#9670;&#160;</a></span>operator++()</h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;class DataPoint &gt; </div>
+template&lt;typename Index , typename DataPoint &gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">void <a class="el" href="classPonca_1_1KdTreeKNearestIterator.html">Ponca::KdTreeKNearestIterator</a>&lt; DataPoint &gt;::operator++ </td>
+          <td class="memname">void <a class="el" href="classPonca_1_1KdTreeKNearestIterator.html">Ponca::KdTreeKNearestIterator</a>&lt; Index, DataPoint &gt;::operator++ </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -319,19 +319,19 @@ template&lt;class DataPoint &gt; </div>
 
 </div>
 </div>
-<a id="a6d6727266fc2870bce5fe820106ea3b3" name="a6d6727266fc2870bce5fe820106ea3b3"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a6d6727266fc2870bce5fe820106ea3b3">&#9670;&#160;</a></span>operator+=()</h2>
+<a id="a3a6a5e65d18903972bf821f76db9863a" name="a3a6a5e65d18903972bf821f76db9863a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3a6a5e65d18903972bf821f76db9863a">&#9670;&#160;</a></span>operator+=()</h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;class DataPoint &gt; </div>
+template&lt;typename Index , typename DataPoint &gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">void <a class="el" href="classPonca_1_1KdTreeKNearestIterator.html">Ponca::KdTreeKNearestIterator</a>&lt; DataPoint &gt;::operator+= </td>
+          <td class="memname">void <a class="el" href="classPonca_1_1KdTreeKNearestIterator.html">Ponca::KdTreeKNearestIterator</a>&lt; Index, DataPoint &gt;::operator+= </td>
           <td>(</td>
           <td class="paramtype">int&#160;</td>
           <td class="paramname"><em>i</em></td><td>)</td>
@@ -350,19 +350,19 @@ template&lt;class DataPoint &gt; </div>
 </div>
 </div>
 <h2 class="groupheader">Member Data Documentation</h2>
-<a id="a5f48448b6fa0b08c5b4cb8def61002bb" name="a5f48448b6fa0b08c5b4cb8def61002bb"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a5f48448b6fa0b08c5b4cb8def61002bb">&#9670;&#160;</a></span>m_iterator</h2>
+<a id="ad97c67a24ed62cfc3d32ab9c9c5bb4fb" name="ad97c67a24ed62cfc3d32ab9c9c5bb4fb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad97c67a24ed62cfc3d32ab9c9c5bb4fb">&#9670;&#160;</a></span>m_iterator</h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;class DataPoint &gt; </div>
+template&lt;typename Index , typename DataPoint &gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">Iterator <a class="el" href="classPonca_1_1KdTreeKNearestIterator.html">Ponca::KdTreeKNearestIterator</a>&lt; DataPoint &gt;::m_iterator</td>
+          <td class="memname">Iterator <a class="el" href="classPonca_1_1KdTreeKNearestIterator.html">Ponca::KdTreeKNearestIterator</a>&lt; Index, DataPoint &gt;::m_iterator</td>
         </tr>
       </table>
   </td>
@@ -382,7 +382,7 @@ template&lt;class DataPoint &gt; </div>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="namespacePonca.html">Ponca</a></li><li class="navelem"><a class="el" href="classPonca_1_1KdTreeKNearestIterator.html">KdTreeKNearestIterator</a></li>
-    <li class="footer">Generated on Mon Jun 5 2023 13:01:47 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.6 </li>
+    <li class="footer">Generated on Tue Jun 6 2023 21:25:50 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.6 </li>
   </ul>
 </div>
 </body>

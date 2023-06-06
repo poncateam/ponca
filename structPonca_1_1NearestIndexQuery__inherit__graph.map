@@ -1,8 +1,8 @@
-<map id="Ponca::NearestIndexQuery&lt; Scalar &gt;" name="Ponca::NearestIndexQuery&lt; Scalar &gt;">
+<map id="Ponca::NearestIndexQuery&lt; Index, Scalar &gt;" name="Ponca::NearestIndexQuery&lt; Index, Scalar &gt;">
 <area shape="rect" id="node1" title="Base Query class combining QueryInputIsIndex and QueryOutputIsNearest." alt="" coords="227,885,422,977"/>
-<area shape="rect" id="node12" href="$group__spatialpartitioning.html" title=" " alt="" coords="227,1040,422,1132"/>
-<area shape="rect" id="node2" href="$group__spatialpartitioning.html" title=" " alt="" coords="213,715,436,836"/>
-<area shape="rect" id="node3" href="$group__spatialpartitioning.html#structPonca_1_1QueryInputIsIndex" title="Base class for queries storing points." alt="" coords="5,516,193,593"/>
+<area shape="rect" id="node12" href="$group__spatialpartitioning.html" title=" " alt="" coords="227,1069,422,1176"/>
+<area shape="rect" id="node2" href="$group__spatialpartitioning.html" title=" " alt="" coords="211,715,438,836"/>
+<area shape="rect" id="node3" href="$group__spatialpartitioning.html#structPonca_1_1QueryInputIsIndex" title="Base class for queries storing points." alt="" coords="5,509,193,601"/>
 <area shape="rect" id="node4" href="$group__spatialpartitioning.html" title=" " alt="" coords="23,316,175,437"/>
 <area shape="rect" id="node5" href="$group__spatialpartitioning.html#structPonca_1_1QueryInputBase" title="Base class for queries input type." alt="" coords="7,5,181,83"/>
 <area shape="rect" id="node6" href="$group__spatialpartitioning.html#structPonca_1_1QueryInput" title="Base class for typed queries input type." alt="" coords="115,132,267,253"/>
@@ -11,5 +11,5 @@
 <area shape="rect" id="node9" href="$group__spatialpartitioning.html#structPonca_1_1Query" title=" " alt="" coords="456,501,612,608"/>
 <area shape="rect" id="node10" title=" " alt="" coords="472,338,535,415"/>
 <area shape="rect" id="node11" title=" " alt="" coords="559,338,632,415"/>
-<area shape="rect" id="node13" href="$classPonca_1_1KdTreeNearestIndexQuery.html" title=" " alt="" coords="216,1181,433,1317"/>
+<area shape="rect" id="node13" href="$classPonca_1_1KdTreeNearestIndexQuery.html" title=" " alt="" coords="216,1225,433,1361"/>
 </map>

@@ -1,4 +1,6 @@
 var searchData=
 [
-  ['datapoint_0',['DataPoint',['../classPonca_1_1BasketDiff.html#a41a3b256f0bdc84bb345dc98cd7ddaad',1,'Ponca::BasketDiff::DataPoint()'],['../classPonca_1_1Basket.html#a5c434baff79e8d7b3bce21c10f1b9fc2',1,'Ponca::Basket::DataPoint()']]]
+  ['covariancelinefit_0',['CovarianceLineFit',['../namespacePonca.html#a48607b788b902a2a488e4ffba6db3186',1,'Ponca']]],
+  ['covarianceplaneder_1',['CovariancePlaneDer',['../namespacePonca.html#a693db62262bbd8eddf89839ca6ab9a32',1,'Ponca']]],
+  ['covarianceplanefit_2',['CovariancePlaneFit',['../namespacePonca.html#aa4b1806ad54a3b70849bd5997002a8c7',1,'Ponca']]]
 ];

@@ -1,13 +1,17 @@
-<map id="Ponca::QueryOutputIsRange&lt; Scalar &gt;" name="Ponca::QueryOutputIsRange&lt; Scalar &gt;">
-<area shape="rect" id="node1" title="Base class for range queries." alt="" coords="133,132,337,297"/>
-<area shape="rect" id="node3" href="$group__spatialpartitioning.html" title=" " alt="" coords="14,382,226,503"/>
-<area shape="rect" id="node7" href="$group__spatialpartitioning.html" title=" " alt="" coords="250,360,454,525"/>
-<area shape="rect" id="node2" href="$group__spatialpartitioning.html#structPonca_1_1QueryOutputBase" title="Base class for queries output type." alt="" coords="143,5,327,83"/>
-<area shape="rect" id="node4" href="$group__spatialpartitioning.html#structPonca_1_1RangeIndexQuery" title="Base Query class combining QueryInputIsIndex and QueryOutputIsRange." alt="" coords="27,597,213,689"/>
-<area shape="rect" id="node5" href="$group__spatialpartitioning.html" title=" " alt="" coords="27,773,213,865"/>
-<area shape="rect" id="node6" href="$classPonca_1_1KdTreeRangeIndexQuery.html" title=" " alt="" coords="5,915,235,1065"/>
-<area shape="rect" id="node8" href="$group__spatialpartitioning.html" title=" " alt="" coords="241,582,453,703"/>
-<area shape="rect" id="node9" href="$group__spatialpartitioning.html" title=" " alt="" coords="477,575,672,711"/>
-<area shape="rect" id="node10" href="$group__spatialpartitioning.html#structPonca_1_1RangePointQuery" title="Base Query class combining QueryInputIsPosition and QueryOutputIsRange." alt="" coords="483,773,666,865"/>
-<area shape="rect" id="node11" href="$classPonca_1_1KdTreeRangePointQuery.html" title=" " alt="" coords="461,922,688,1058"/>
+<map id="Ponca::QueryOutputIsRange&lt; Index, Scalar &gt;" name="Ponca::QueryOutputIsRange&lt; Index, Scalar &gt;">
+<area shape="rect" id="node1" title="Base class for range queries." alt="" coords="393,132,597,297"/>
+<area shape="rect" id="node3" href="$group__spatialpartitioning.html" title=" " alt="" coords="20,419,247,540"/>
+<area shape="rect" id="node7" href="$group__spatialpartitioning.html" title=" " alt="" coords="274,389,478,569"/>
+<area shape="rect" id="node9" href="$group__spatialpartitioning.html" title=" " alt="" coords="504,389,723,569"/>
+<area shape="rect" id="node11" href="$group__spatialpartitioning.html" title=" " alt="" coords="757,397,965,562"/>
+<area shape="rect" id="node2" href="$group__spatialpartitioning.html#structPonca_1_1QueryOutputBase" title="Base class for queries output type." alt="" coords="403,5,587,83"/>
+<area shape="rect" id="node4" href="$group__spatialpartitioning.html#structPonca_1_1RangeIndexQuery" title="Base Query class combining QueryInputIsIndex and QueryOutputIsRange." alt="" coords="27,648,213,740"/>
+<area shape="rect" id="node5" href="$group__spatialpartitioning.html" title=" " alt="" coords="25,861,215,968"/>
+<area shape="rect" id="node6" href="$classPonca_1_1KdTreeRangeIndexQuery.html" title=" " alt="" coords="5,1045,235,1196"/>
+<area shape="rect" id="node8" href="$group__spatialpartitioning.html" title=" " alt="" coords="237,619,467,769"/>
+<area shape="rect" id="node10" href="$group__spatialpartitioning.html" title=" " alt="" coords="491,626,738,762"/>
+<area shape="rect" id="node12" href="$group__spatialpartitioning.html" title=" " alt="" coords="762,626,985,762"/>
+<area shape="rect" id="node13" href="$group__spatialpartitioning.html#structPonca_1_1RangePointQuery" title="Base Query class combining QueryInputIsPosition and QueryOutputIsRange." alt="" coords="782,869,965,961"/>
+<area shape="rect" id="node14" href="$group__spatialpartitioning.html" title=" " alt="" coords="779,1067,968,1174"/>
+<area shape="rect" id="node15" href="$classPonca_1_1KdTreeRangePointQuery.html" title=" " alt="" coords="760,1245,987,1381"/>
 </map>

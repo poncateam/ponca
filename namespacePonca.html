@@ -51,7 +51,7 @@ MathJax.Hub.Config({
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Ponca
-   &#160;<span id="projectnumber">a21e89d6827d5427dbd7bac78bce9f439f3adab6</span>
+   &#160;<span id="projectnumber">35a9881ca68c698192536a4bd5cc189cdea5a84a</span>
    </div>
    <div id="projectbrief">Point Cloud Analysis library</div>
   </td>
@@ -177,7 +177,18 @@ Classes</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structPonca_1_1IndexSquaredDistance.html">IndexSquaredDistance</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Associates an index with a distance.  <a href="structPonca_1_1IndexSquaredDistance.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1KdTree.html">KdTree</a></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1KdTreeBase.html">KdTreeBase</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Customizable base class for KdTree datastructure.  <a href="classPonca_1_1KdTreeBase.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structPonca_1_1KdTreeDefaultInnerNode.html">KdTreeDefaultInnerNode</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structPonca_1_1KdTreeDefaultLeafNode.html">KdTreeDefaultLeafNode</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structPonca_1_1KdTreeDefaultNode.html">KdTreeDefaultNode</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">The node type used by default by the kd-tree.  <a href="structPonca_1_1KdTreeDefaultNode.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structPonca_1_1KdTreeDefaultTraits.html">KdTreeDefaultTraits</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">The default traits type used by the kd-tree.  <a href="structPonca_1_1KdTreeDefaultTraits.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1KdTreeKNearestIndexQuery.html">KdTreeKNearestIndexQuery</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -190,8 +201,6 @@ Classes</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1KdTreeNearestIterator.html">KdTreeNearestIterator</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1KdTreeNearestPointQuery.html">KdTreeNearestPointQuery</a></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structPonca_1_1KdTreeNode.html">KdTreeNode</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1KdTreeQuery.html">KdTreeQuery</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -345,6 +354,10 @@ Typedefs</h2></td></tr>
 <tr class="memitem:ac22c4266774d911c5c597d132477c264"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacePonca.html#ac22c4266774d911c5c597d132477c264">UnorientedSphereFit</a> = <a class="el" href="classPonca_1_1UnorientedSphereFitImpl.html">UnorientedSphereFitImpl</a>&lt; DataPoint, _WFunctor, <a class="el" href="classPonca_1_1MeanPosition.html">MeanPosition</a>&lt; DataPoint, _WFunctor, <a class="el" href="classPonca_1_1AlgebraicSphere.html">AlgebraicSphere</a>&lt; DataPoint, _WFunctor, T &gt; &gt; &gt;</td></tr>
 <tr class="memdesc:ac22c4266774d911c5c597d132477c264"><td class="mdescLeft">&#160;</td><td class="mdescRight">Helper alias for Oriented Sphere fitting on 3D points using <a class="el" href="classPonca_1_1UnorientedSphereFitImpl.html" title="Algebraic Sphere fitting procedure on point sets with non-oriented normals.">UnorientedSphereFitImpl</a>.  <br /></td></tr>
 <tr class="separator:ac22c4266774d911c5c597d132477c264"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abdeec7124bd618c93bfd5374d56e7155"><td class="memTemplParams" colspan="2">template&lt;typename DataPoint &gt; </td></tr>
+<tr class="memitem:abdeec7124bd618c93bfd5374d56e7155"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacePonca.html#abdeec7124bd618c93bfd5374d56e7155">KdTree</a> = <a class="el" href="classPonca_1_1KdTreeBase.html">KdTreeBase</a>&lt; <a class="el" href="structPonca_1_1KdTreeDefaultTraits.html">KdTreeDefaultTraits</a>&lt; DataPoint &gt; &gt;</td></tr>
+<tr class="memdesc:abdeec7124bd618c93bfd5374d56e7155"><td class="mdescLeft">&#160;</td><td class="mdescRight">Public interface for KdTree datastructure.  <br /></td></tr>
+<tr class="separator:abdeec7124bd618c93bfd5374d56e7155"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="enum-members" name="enum-members"></a>
 Enumerations</h2></td></tr>
@@ -431,6 +444,30 @@ template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
 <p>Helper alias for <a class="el" href="classPonca_1_1Plane.html" title="Implicit hyperplane defined by an homogeneous vector .">Plane</a> fitting on 3D points using <a class="el" href="classPonca_1_1CovariancePlaneFitImpl.html" title="Plane fitting procedure using only points position.">CovariancePlaneFitImpl</a> [CovariancePlaneFit Definition]. </p>
 
 <p class="definition">Definition at line <a class="el" href="covariancePlaneFit_8h_source.html#l00086">86</a> of file <a class="el" href="covariancePlaneFit_8h_source.html">covariancePlaneFit.h</a>.</p>
+
+</div>
+</div>
+<a id="abdeec7124bd618c93bfd5374d56e7155" name="abdeec7124bd618c93bfd5374d56e7155"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abdeec7124bd618c93bfd5374d56e7155">&#9670;&#160;</a></span>KdTree</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename DataPoint &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="namespacePonca.html#abdeec7124bd618c93bfd5374d56e7155">Ponca::KdTree</a> = typedef <a class="el" href="classPonca_1_1KdTreeBase.html">KdTreeBase</a>&lt;<a class="el" href="structPonca_1_1KdTreeDefaultTraits.html">KdTreeDefaultTraits</a>&lt;DataPoint&gt; &gt;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Public interface for KdTree datastructure. </p>
+<p>Provides default implementation of the KdTree</p>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="structPonca_1_1KdTreeDefaultTraits.html" title="The default traits type used by the kd-tree.">KdTreeDefaultTraits</a> for the default trait interface documentation. </dd>
+<dd>
+<a class="el" href="classPonca_1_1KdTreeBase.html" title="Customizable base class for KdTree datastructure.">KdTreeBase</a> for complete API </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="kdTree_8h_source.html#l00040">40</a> of file <a class="el" href="kdTree_8h_source.html">kdTree.h</a>.</p>
 
 </div>
 </div>
@@ -601,7 +638,7 @@ template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="namespacePonca.html">Ponca</a></li>
-    <li class="footer">Generated on Mon Jun 5 2023 13:01:47 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.6 </li>
+    <li class="footer">Generated on Tue Jun 6 2023 21:25:50 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.6 </li>
   </ul>
 </div>
 </body>

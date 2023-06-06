@@ -10,7 +10,13 @@ var user_manual_page =
       [ "Concepts related to weighting functions", "fitting_concepts.html#concepts_weighting", null ]
     ] ],
     [ "Spatial Partitioning: User Manual", "spatialpartitioning.html", [
-      [ "Introduction", "spatialpartitioning.html#spatialpartitioning_intro", null ]
+      [ "Introduction", "spatialpartitioning.html#spatialpartitioning_intro", [
+        [ "Basic usage", "spatialpartitioning.html#spatialpartitioning_kdtree_usage", [
+          [ "Construction", "spatialpartitioning.html#spatialpartitioning_kdtree_usage_construction", null ],
+          [ "Queries", "spatialpartitioning.html#spatialpartitioning_kdtree_usage_queries", null ]
+        ] ],
+        [ "Extending KdTree", "spatialpartitioning.html#spatialpartitioning_kdtree_extending", null ]
+      ] ]
     ] ],
     [ "Common module: User Manual", "common.html", [
       [ "Overview of the proposed tools", "common.html#common_intro", null ]

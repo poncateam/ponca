@@ -1,4 +1,4 @@
-<map id="Ponca::QueryOutputIsKNearest&lt; Scalar &gt;" name="Ponca::QueryOutputIsKNearest&lt; Scalar &gt;">
+<map id="Ponca::QueryOutputIsKNearest&lt; Index, Scalar &gt;" name="Ponca::QueryOutputIsKNearest&lt; Index, Scalar &gt;">
 <area shape="rect" id="node1" title="Base class for knearest queries." alt="" coords="61,976,283,1097"/>
 <area shape="rect" id="node2" href="$group__spatialpartitioning.html#structPonca_1_1QueryOutputBase" title="Base class for queries output type." alt="" coords="5,741,189,818"/>
 <area shape="rect" id="node3" href="$classPonca_1_1limited__priority__queue.html" title=" " alt="" coords="213,645,491,913"/>

@@ -1,7 +1,7 @@
-<map id="Ponca::KNearestIndexQuery&lt; Scalar &gt;" name="Ponca::KNearestIndexQuery&lt; Scalar &gt;">
+<map id="Ponca::KNearestIndexQuery&lt; Index, Scalar &gt;" name="Ponca::KNearestIndexQuery&lt; Index, Scalar &gt;">
 <area shape="rect" id="node1" title="Base Query class combining QueryInputIsIndex and QueryOutputIsKNearest." alt="" coords="405,1360,609,1452"/>
-<area shape="rect" id="node2" href="$group__spatialpartitioning.html" title=" " alt="" coords="391,1189,622,1311"/>
-<area shape="rect" id="node3" href="$group__spatialpartitioning.html#structPonca_1_1QueryInputIsIndex" title="Base class for queries storing points." alt="" coords="123,998,311,1075"/>
+<area shape="rect" id="node2" href="$group__spatialpartitioning.html" title=" " alt="" coords="393,1189,620,1311"/>
+<area shape="rect" id="node3" href="$group__spatialpartitioning.html#structPonca_1_1QueryInputIsIndex" title="Base class for queries storing points." alt="" coords="123,991,311,1083"/>
 <area shape="rect" id="node4" href="$group__spatialpartitioning.html" title=" " alt="" coords="32,719,184,840"/>
 <area shape="rect" id="node5" href="$group__spatialpartitioning.html#structPonca_1_1QueryInputBase" title="Base class for queries input type." alt="" coords="5,145,179,223"/>
 <area shape="rect" id="node6" href="$group__spatialpartitioning.html#structPonca_1_1QueryInput" title="Base class for typed queries input type." alt="" coords="100,373,252,495"/>

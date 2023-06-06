@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['orientedsphereder_0',['OrientedSphereDer',['../namespacePonca.html#a06452e78533ff7c62bbbd01106dc0020',1,'Ponca']]],
-  ['orientedspherefit_1',['OrientedSphereFit',['../namespacePonca.html#a2f53f5c61ca5df7c3e3f8cf2219a14d4',1,'Ponca']]]
+  ['indexcontainer_0',['IndexContainer',['../classPonca_1_1KdTreeBase.html#a46573f7eada88708072ebb5b5601c64c',1,'Ponca::KdTreeBase']]],
+  ['innertype_1',['InnerType',['../structPonca_1_1KdTreeDefaultNode.html#a6bd7401bc30beb9d6c308f38f392bd19',1,'Ponca::KdTreeDefaultNode']]]
 ];
