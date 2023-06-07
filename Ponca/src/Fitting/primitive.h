@@ -83,6 +83,9 @@ public:
     and the result is stable, eq. having more than 6 neighbors) */
     PONCA_MULTIARCH inline bool isStable() const { return m_eCurrentState == STABLE; }
 
+    /*! \brief Get number of points added in the neighborhood (with non negative weight)  */
+     PONCA_MULTIARCH inline int getNumNeighbors() const { return m_nbNeighbors; }
+
     /*! \return the current test of the fit */
     PONCA_MULTIARCH inline FIT_RESULT getCurrentState() const
     {
