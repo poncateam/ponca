@@ -1,7 +1,7 @@
 template < class DataPoint, class _WFunctor, typename T>
 template <bool ignoreTranslation>
 typename PlaneFrame<DataPoint, _WFunctor, T>::VectorType
-PlaneFrame<DataPoint, _WFunctor, T>::worldToTangentPlane (const VectorType& _q) const
+PlaneFrame<DataPoint, _WFunctor, T>::worldToLocalFrame (const VectorType& _q) const
 {
   MatrixType B;
   B << Base::plane().normal(), m_u, m_v;
@@ -16,7 +16,7 @@ PlaneFrame<DataPoint, _WFunctor, T>::worldToTangentPlane (const VectorType& _q) 
 template < class DataPoint, class _WFunctor, typename T>
 template <bool ignoreTranslation>
 typename PlaneFrame<DataPoint, _WFunctor, T>::VectorType
-PlaneFrame<DataPoint, _WFunctor, T>::tangentPlaneToWorld (const VectorType& _lq) const
+PlaneFrame<DataPoint, _WFunctor, T>::localFrameToWorld (const VectorType& _lq) const
 {
   MatrixType B;
   B << Base::plane().normal(), m_u, m_v;
