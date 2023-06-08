@@ -42,7 +42,13 @@ namespace Ponca
   \note As queries are objets that are independent from the KdTree, they can be created and used in parallel from
   multiple threads.
 
-
+  \subsection spatialpartitioning_kdtree_examples Examples
+  KdTree usage is demonstrated both in tests and examples:
+   - `tests/src/basket.cpp`
+   - `tests/src/kdtree_knearest.cpp`
+   - `tests/src/kdtree_nearest.cpp`
+   - `tests/src/kdtree_range.cpp`
+   - `examples/cpp/nanoflann/ponca_nanoflann.cpp`
 
   \subsection spatialpartitioning_kdtree_extending Extending KdTree
   Ponca::KdTreeBase is a customizable version of Ponca::KdTree, which can be controlled using `Traits`.
