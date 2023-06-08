@@ -64,13 +64,13 @@ namespace internal
     PONCA_MULTIARCH inline                                                                            \
     FIT_RESULT computeWithIds(IndexRange ids, const PointContainer& points){                          \
         FIT_RESULT res = UNDEFINED;                                                                   \
-            do {                                                                                      \
-                for (const auto& i : ids){                                                            \
-                    this->addNeighbor(points[i]);                                                     \
-                }                                                                                     \
-                res = this->finalize();                                                               \
-            } while ( res == NEED_OTHER_PASS );                                                       \
-            return res;return Self::computeWithIds(ids, points);                                      \
+        do {                                                                                          \
+            for (const auto& i : ids){                                                                \
+                this->addNeighbor(points[i]);                                                         \
+            }                                                                                         \
+            res = this->finalize();                                                                   \
+        } while ( res == NEED_OTHER_PASS );                                                           \
+        return res;                                                                                   \
     }                                                                                                 \
     WRITE_BASKET_SINGLE_HOST_FUNCTIONS
 

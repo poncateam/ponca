@@ -1,0 +1,53 @@
+/*
+ This Source Code Form is subject to the terms of the Mozilla Public
+ License, v. 2.0. If a copy of the MPL was not distributed with this
+ file, You can obtain one at http://mozilla.org/MPL/2.0/.
+*/
+
+
+/*!
+  \page example_cxx_nanoflann_page Comparison between Nanoflann and Ponca KdTree APIs
+
+  \section nanoflann_intro_sec Introduction
+
+  This example demonstrates how to use Ponca and <a href="https://github.com/jlblancoc/nanoflann" target="_blank">
+  Nanoflann</a> (v1.5.0) KdTrees on the same data, and compare runtime performances.
+
+  \subsection nanoflann_compilation_sec Compilation
+
+  As for other examples, you need to enable the compilation of the examples with `cmake`, and build the examples:
+
+  \code
+  cmake [..] -DPONCA_CONFIGURE_EXAMPLES=ON
+  make ponca-examples // or make ponca_nanoflann
+  \endcode
+
+  \section nanoflann_comparison_sec API comparisons
+
+  Task             | Ponca                                                 | Nanoflann
+  ---------------- | ----------------------------------------------------- | -------------
+  KdTree Creation  | \snippet ponca_nanoflann.cpp Create Ponca KdTree      | \snippet ponca_nanoflann.cpp Create NanoFlann KdTree
+  Range Query      | \snippet ponca_nanoflann.cpp Use Ponca KdTree  | \snippet ponca_nanoflann.cpp Use NanoFlann KdTree
+
+  The fitting object is a Ponca::DryFit, an object that filter the neighbors according to their weight (out of scale points
+  are not counted), but do not perform any other computation:
+  \snippet ponca_nanoflann.cpp Define Fit Type
+
+  \section nanoflann_timings_sec Timings
+  The example output the time required to collect the neighbors, and the number of neighbors collected:
+  \code
+Timings:
+Raw :       0.168698
+Ponca :     0.025475
+Nanoflann : 0.027746
+Number of neighbors:
+Raw :       950618
+Ponca :     950618
+Nanoflann : 950618
+  \endcode
+
+  \section nanoflann_sourcecode_sec Example source code
+  Source file: `ponca_nanoflann.cpp`
+  \include ponca_nanoflann.cpp
+
+ */

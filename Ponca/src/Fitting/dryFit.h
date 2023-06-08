@@ -37,9 +37,6 @@ namespace Ponca
         PONCA_FITTING_APIDOC_FINALIZE
         PONCA_MULTIARCH inline FIT_RESULT finalize() { return Base::finalize(); }
 
-        PONCA_FITTING_APIDOC_SETWFUNC
-        PONCA_MULTIARCH inline void setWeightFunc (const WFunctor& /*_w*/) { }
-
         //! \brief Simulate Scalar field computation
         PONCA_MULTIARCH inline Scalar potential ( ) const { return Scalar(0); }
 

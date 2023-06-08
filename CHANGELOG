@@ -4,6 +4,20 @@ Ponca changelog
 
 --------------------------------------------------------------------------------
 Current head (v.1.1 RC)
+This release improves the Spatial Partitioning Package with new features and
+improved doc.
+
+- API
+    - [spatialPartitioning] Add kd-tree traits type (#80)
+    - [fitting] Add Primitive::getNumNeighbors (#86)
+
+- Bug-fixes and code improvements
+    - [spatialPartitioning] Fix unwanted function hiding with DryFit::setWeightFunc (#86)
+    - [fitting] Remove deadcode in Basket (#86)
+
+-Docs
+    - [spatialPartitioning] Update module page with a minimal doc and examples (#86)
+    - [spatialPartitioning] Add NanoFlann example (#86)
 
 --------------------------------------------------------------------------------
 v.1.0
@@ -28,7 +42,6 @@ The changes introduced in this version mostly are introduced by PR #56.
     - [fitting] Rename normal() as primitiveGradient in MlsSphereFit (#72)
     - [fitting] Add new weight kernels (#71,#74)
     - [fitting] Add mechanism to check weight derivatives validity (#74)
-    - [spatialPartitioning] Add kd-tree traits type (#80)
 
 - Bug-fixes and code improvements
     - [fitting] Reduce objets sizes by removing unnecessary attributes (#56)
