@@ -73,7 +73,7 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "annotated.html",
-"classPonca_1_1MeanNormal.html#a7e5925d88878ba32024d97904bdb6e08",
+"classPonca_1_1MeanNormal.html#a9d61f6ab2597bcb856a642af44e83763",
 "classPonca_1_1WendlandWeightKernel.html#a3ce3f4e507808b3934b9d0b4fbc69396"
 ];
 

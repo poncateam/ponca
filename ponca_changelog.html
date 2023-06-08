@@ -51,7 +51,7 @@ MathJax.Hub.Config({
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Ponca
-   &#160;<span id="projectnumber">35a9881ca68c698192536a4bd5cc189cdea5a84a</span>
+   &#160;<span id="projectnumber">6023f1e04ce57c696146068829fdce3ffa66418f</span>
    </div>
    <div id="projectbrief">Point Cloud Analysis library</div>
   </td>
@@ -156,6 +156,20 @@ Complete Changelog</h1>
 
 --------------------------------------------------------------------------------
 Current head (v.1.1 RC)
+This release improves the Spatial Partitioning Package with new features and
+improved doc.
+
+- API
+    - [spatialPartitioning] Add kd-tree traits type (#80)
+    - [fitting] Add Primitive::getNumNeighbors (#86)
+
+- Bug-fixes and code improvements
+    - [spatialPartitioning] Fix unwanted function hiding with DryFit::setWeightFunc (#86)
+    - [fitting] Remove deadcode in Basket (#86)
+
+-Docs
+    - [spatialPartitioning] Update module page with a minimal doc and examples (#86)
+    - [spatialPartitioning] Add NanoFlann example (#86)
 
 --------------------------------------------------------------------------------
 v.1.0
@@ -180,7 +194,6 @@ The changes introduced in this version mostly are introduced by PR #56.
     - [fitting] Rename normal() as primitiveGradient in MlsSphereFit (#72)
     - [fitting] Add new weight kernels (#71,#74)
     - [fitting] Add mechanism to check weight derivatives validity (#74)
-    - [spatialPartitioning] Add kd-tree traits type (#80)
 
 - Bug-fixes and code improvements
     - [fitting] Reduce objets sizes by removing unnecessary attributes (#56)
@@ -440,7 +453,7 @@ V0.1.2
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generated on Tue Jun 6 2023 21:25:50 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.6 </li>
+    <li class="footer">Generated on Thu Jun 8 2023 10:17:56 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.6 </li>
   </ul>
 </div>
 </body>

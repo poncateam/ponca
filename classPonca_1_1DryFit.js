@@ -11,6 +11,5 @@ var classPonca_1_1DryFit =
     [ "potential", "classPonca_1_1DryFit.html#aca48cd7161daa8675083acc40f19e0dd", null ],
     [ "primitiveGradient", "classPonca_1_1DryFit.html#ae2ddb4fcb50e4f5a8b47e8ca7cd52023", null ],
     [ "primitiveGradient", "classPonca_1_1DryFit.html#a8a3968909bdac847b94a77c6ba7bf56c", null ],
-    [ "project", "classPonca_1_1DryFit.html#a5ea5756da815d7bc610be42613a8897d", null ],
-    [ "setWeightFunc", "classPonca_1_1DryFit.html#a9f44668108e39cfd3e10175c17244481", null ]
+    [ "project", "classPonca_1_1DryFit.html#a5ea5756da815d7bc610be42613a8897d", null ]
 ];

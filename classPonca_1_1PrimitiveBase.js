@@ -6,6 +6,7 @@ var classPonca_1_1PrimitiveBase =
     [ "addLocalNeighbor", "classPonca_1_1PrimitiveBase.html#aea8e5b48d7ed6a92a86571e202550158", null ],
     [ "finalize", "classPonca_1_1PrimitiveBase.html#a3ab480149d49ce60ad1ed7dca11ee9ef", null ],
     [ "getCurrentState", "classPonca_1_1PrimitiveBase.html#a19945873f15545be8791ceb7d5c49c1a", null ],
+    [ "getNumNeighbors", "classPonca_1_1PrimitiveBase.html#ab255848c96e9dbe1f95f54f502cbd83c", null ],
     [ "init", "classPonca_1_1PrimitiveBase.html#af20277c1bd8e48d55b43bf7e8f970cc3", null ],
     [ "isReady", "classPonca_1_1PrimitiveBase.html#a7f67aff61af9b364ffa983364f1d2165", null ],
     [ "isStable", "classPonca_1_1PrimitiveBase.html#ada0d81900921e0a922ce459ba1d3ec2c", null ],

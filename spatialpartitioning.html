@@ -51,7 +51,7 @@ MathJax.Hub.Config({
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Ponca
-   &#160;<span id="projectnumber">35a9881ca68c698192536a4bd5cc189cdea5a84a</span>
+   &#160;<span id="projectnumber">6023f1e04ce57c696146068829fdce3ffa66418f</span>
    </div>
    <div id="projectbrief">Point Cloud Analysis library</div>
   </td>
@@ -124,6 +124,7 @@ $(document).ready(function(){initNavTree('spatialpartitioning.html',''); initRes
 <li class="level3"><a href="#spatialpartitioning_kdtree_usage_queries">Queries</a></li>
 </ul>
 </li>
+<li class="level2"><a href="#spatialpartitioning_kdtree_examples">Examples</a></li>
 <li class="level2"><a href="#spatialpartitioning_kdtree_extending">Extending KdTree</a></li>
 </ul>
 </li>
@@ -175,6 +176,15 @@ Queries</h3>
 <li><a class="el" href="classPonca_1_1KdTreeRangeIndexQuery.html">KdTreeRangeIndexQuery</a> and <a class="el" href="classPonca_1_1KdTreeRangePointQuery.html">KdTreeRangePointQuery</a></li>
 </ul>
 <dl class="section note"><dt>Note</dt><dd>As queries are objets that are independent from the KdTree, they can be created and used in parallel from multiple threads.</dd></dl>
+<h2><a class="anchor" id="spatialpartitioning_kdtree_examples"></a>
+Examples</h2>
+<p>KdTree usage is demonstrated both in tests and examples:</p><ul>
+<li><code>tests/src/basket.cpp</code></li>
+<li><code>tests/src/kdtree_knearest.cpp</code></li>
+<li><code>tests/src/kdtree_nearest.cpp</code></li>
+<li><code>tests/src/kdtree_range.cpp</code></li>
+<li><code>examples/cpp/nanoflann/ponca_nanoflann.cpp</code></li>
+</ul>
 <h2><a class="anchor" id="spatialpartitioning_kdtree_extending"></a>
 Extending KdTree</h2>
 <p><a class="el" href="classPonca_1_1KdTreeBase.html" title="Customizable base class for KdTree datastructure.">Ponca::KdTreeBase</a> is a customizable version of <a class="el" href="namespacePonca.html#abdeec7124bd618c93bfd5374d56e7155" title="Public interface for KdTree datastructure.">Ponca::KdTree</a>, which can be controlled using <code>Traits</code>. See <a class="el" href="structPonca_1_1KdTreeDefaultTraits.html" title="The default traits type used by the kd-tree.">KdTreeDefaultTraits</a> for customization API.</p>
@@ -185,7 +195,7 @@ Extending KdTree</h2>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="user_manual_page.html">User Manual</a></li>
-    <li class="footer">Generated on Tue Jun 6 2023 21:25:50 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.6 </li>
+    <li class="footer">Generated on Thu Jun 8 2023 10:17:56 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.6 </li>
   </ul>
 </div>
 </body>

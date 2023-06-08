@@ -51,7 +51,7 @@ MathJax.Hub.Config({
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Ponca
-   &#160;<span id="projectnumber">35a9881ca68c698192536a4bd5cc189cdea5a84a</span>
+   &#160;<span id="projectnumber">6023f1e04ce57c696146068829fdce3ffa66418f</span>
    </div>
    <div id="projectbrief">Point Cloud Analysis library</div>
   </td>
@@ -135,7 +135,7 @@ $(document).ready(function(){initNavTree('classPonca_1_1PrimitiveBase.html','');
 <div id="dynsection-0-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-0-content" class="dyncontent" style="display:none;">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classPonca_1_1PrimitiveBase__coll__graph.svg" width="219" height="235"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classPonca_1_1PrimitiveBase__coll__graph.svg" width="219" height="250"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
 </div>
 <table class="memberdecls">
@@ -165,6 +165,10 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:ada0d81900921e0a922ce459ba1d3ec2c"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1PrimitiveBase.html#ada0d81900921e0a922ce459ba1d3ec2c">isStable</a> () const</td></tr>
 <tr class="memdesc:ada0d81900921e0a922ce459ba1d3ec2c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Is the plane fitted an ready to use (finalize has been called and the result is stable, eq.  <br /></td></tr>
 <tr class="separator:ada0d81900921e0a922ce459ba1d3ec2c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab255848c96e9dbe1f95f54f502cbd83c"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1PrimitiveBase.html#ab255848c96e9dbe1f95f54f502cbd83c">getNumNeighbors</a> () const</td></tr>
+<tr class="memdesc:ab255848c96e9dbe1f95f54f502cbd83c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get number of points added in the neighborhood (with non negative weight) <br  />
+  <br /></td></tr>
+<tr class="separator:ab255848c96e9dbe1f95f54f502cbd83c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a19945873f15545be8791ceb7d5c49c1a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespacePonca.html#abfd697aebf07c1b5c8be5ee401e2dc84">FIT_RESULT</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1PrimitiveBase.html#a19945873f15545be8791ceb7d5c49c1a">getCurrentState</a> () const</td></tr>
 <tr class="separator:a19945873f15545be8791ceb7d5c49c1a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aea8e5b48d7ed6a92a86571e202550158"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1PrimitiveBase.html#aea8e5b48d7ed6a92a86571e202550158">addLocalNeighbor</a> (<a class="el" href="classPonca_1_1PrimitiveBase.html#a77761998e98215527441b0307c9917c4">Scalar</a>, const <a class="el" href="classPonca_1_1PrimitiveBase.html#a7f748267416717715bed50e246780269">VectorType</a> &amp;, const DataPoint &amp;)</td></tr>
@@ -341,7 +345,7 @@ template&lt;class DataPoint , class _WFunctor , typename T  = void&gt; </div>
 <p>Add a neighbor to perform the fit. </p>
 <dl class="section return"><dt>Returns</dt><dd>false if param nei is not a valid neighbour (weight = 0) </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="primitive_8h_source.html#l00093">93</a> of file <a class="el" href="primitive_8h_source.html">primitive.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="primitive_8h_source.html#l00096">96</a> of file <a class="el" href="primitive_8h_source.html">primitive.h</a>.</p>
 
 </div>
 </div>
@@ -374,7 +378,7 @@ template&lt;class DataPoint , class _WFunctor , typename T  = void&gt; </div>
 <dl class="section return"><dt>Returns</dt><dd>Fitting Status </dd></dl>
 <dl class="section warning"><dt>Warning</dt><dd>Must be called be for any use of the fitting output </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="primitive_8h_source.html#l00098">98</a> of file <a class="el" href="primitive_8h_source.html">primitive.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="primitive_8h_source.html#l00101">101</a> of file <a class="el" href="primitive_8h_source.html">primitive.h</a>.</p>
 
 </div>
 </div>
@@ -403,6 +407,38 @@ template&lt;class DataPoint , class _WFunctor , typename T  = void&gt; </div>
 </table>
 </div><div class="memdoc">
 <dl class="section return"><dt>Returns</dt><dd>the current test of the fit </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="primitive_8h_source.html#l00090">90</a> of file <a class="el" href="primitive_8h_source.html">primitive.h</a>.</p>
+
+</div>
+</div>
+<a id="ab255848c96e9dbe1f95f54f502cbd83c" name="ab255848c96e9dbe1f95f54f502cbd83c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab255848c96e9dbe1f95f54f502cbd83c">&#9670;&#160;</a></span>getNumNeighbors()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class DataPoint , class _WFunctor , typename T  = void&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int <a class="el" href="classPonca_1_1PrimitiveBase.html">Ponca::PrimitiveBase</a>&lt; DataPoint, _WFunctor, T &gt;::getNumNeighbors </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Get number of points added in the neighborhood (with non negative weight) <br  />
+ </p>
 
 <p class="definition">Definition at line <a class="el" href="primitive_8h_source.html#l00087">87</a> of file <a class="el" href="primitive_8h_source.html">primitive.h</a>.</p>
 
@@ -657,7 +693,7 @@ template&lt;class DataPoint , class _WFunctor , typename T  = void&gt; </div>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="namespacePonca.html">Ponca</a></li><li class="navelem"><a class="el" href="classPonca_1_1PrimitiveBase.html">PrimitiveBase</a></li>
-    <li class="footer">Generated on Tue Jun 6 2023 21:25:51 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.6 </li>
+    <li class="footer">Generated on Thu Jun 8 2023 10:17:56 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.6 </li>
   </ul>
 </div>
 </body>

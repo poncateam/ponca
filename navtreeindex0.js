@@ -161,7 +161,6 @@ var NAVTREEINDEX0 =
 "classPonca_1_1DryFit.html#a5ea5756da815d7bc610be42613a8897d":[8,0,0,12,11],
 "classPonca_1_1DryFit.html#a8a3968909bdac847b94a77c6ba7bf56c":[8,0,0,12,10],
 "classPonca_1_1DryFit.html#a9da25ae4b6ad6af3909ad2a6ccdd4bc5":[8,0,0,12,4],
-"classPonca_1_1DryFit.html#a9f44668108e39cfd3e10175c17244481":[8,0,0,12,12],
 "classPonca_1_1DryFit.html#aa8643c7da3d1221c5f7d719762560fdc":[8,0,0,12,3],
 "classPonca_1_1DryFit.html#abc1e3382df703f856cd6fdcde58caca4":[8,0,0,12,0],
 "classPonca_1_1DryFit.html#aca48cd7161daa8675083acc40f19e0dd":[8,0,0,12,8],
@@ -249,5 +248,6 @@ var NAVTREEINDEX0 =
 "classPonca_1_1MeanNormal.html#a37f400c71ef088be6043ee89bfe96c26":[8,0,0,35,1],
 "classPonca_1_1MeanNormal.html#a4826374e9574980fdb0f3631abbe9a9a":[8,0,0,35,4],
 "classPonca_1_1MeanNormal.html#a51e0f1aabd11c128149323e45754faa2":[8,0,0,35,3],
-"classPonca_1_1MeanNormal.html#a71f3f4f71ae9d363a34e7c60ea59f728":[8,0,0,35,7]
+"classPonca_1_1MeanNormal.html#a71f3f4f71ae9d363a34e7c60ea59f728":[8,0,0,35,7],
+"classPonca_1_1MeanNormal.html#a7e5925d88878ba32024d97904bdb6e08":[8,0,0,35,2]
 };

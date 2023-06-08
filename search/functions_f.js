@@ -7,7 +7,7 @@ var searchData=
   ['setcurvaturevalues_4',['setCurvatureValues',['../classPonca_1_1CurvatureEstimatorBase.html#acf704004859704be8a86f5fadc1a5937',1,'Ponca::CurvatureEstimatorBase']]],
   ['setline_5',['setLine',['../classPonca_1_1Line.html#a2be50f01b5e7ba741e67d80711495add',1,'Ponca::Line']]],
   ['setvalue_6',['setValue',['../classPonca_1_1ConstantWeightKernel.html#abfdd7c48d31e98cb1f566724dccf06c0',1,'Ponca::ConstantWeightKernel']]],
-  ['setweightfunc_7',['setWeightFunc',['../classPonca_1_1DryFit.html#a9f44668108e39cfd3e10175c17244481',1,'Ponca::DryFit::setWeightFunc()'],['../classPonca_1_1PrimitiveBase.html#a4a323e4cd8d65e0808f85ac38f96fdb4',1,'Ponca::PrimitiveBase::setWeightFunc()']]],
+  ['setweightfunc_7',['setWeightFunc',['../classPonca_1_1PrimitiveBase.html#a4a323e4cd8d65e0808f85ac38f96fdb4',1,'Ponca::PrimitiveBase']]],
   ['size_8',['size',['../classPonca_1_1Stack.html#a394fe3f9b308bde808322121799db11d',1,'Ponca::Stack']]],
   ['solver_9',['solver',['../classPonca_1_1CovarianceFitBase.html#ab469c0f1be340100a266f419a8386468',1,'Ponca::CovarianceFitBase']]],
   ['spaced2w_10',['spaced2w',['../classPonca_1_1DistWeightFunc.html#a303ff5053abe6961771053c9647688c4',1,'Ponca::DistWeightFunc']]],

@@ -40,5 +40,13 @@ var example_page =
         [ "Memory access", "example_python_ssc_page.html#pyssgl_cuda_access_sec", null ]
       ] ],
       [ "Python script", "example_python_ssc_page.html#pyssgl_python_sec", null ]
+    ] ],
+    [ "Comparison between Nanoflann and Ponca KdTree APIs", "example_cxx_nanoflann_page.html", [
+      [ "Introduction", "example_cxx_nanoflann_page.html#nanoflann_intro_sec", [
+        [ "Compilation", "example_cxx_nanoflann_page.html#nanoflann_compilation_sec", null ]
+      ] ],
+      [ "API comparisons", "example_cxx_nanoflann_page.html#nanoflann_comparison_sec", null ],
+      [ "Timings", "example_cxx_nanoflann_page.html#nanoflann_timings_sec", null ],
+      [ "Example source code", "example_cxx_nanoflann_page.html#nanoflann_sourcecode_sec", null ]
     ] ]
 ];
