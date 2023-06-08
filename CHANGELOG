@@ -9,6 +9,15 @@ improved doc.
 
 - API
     - [spatialPartitioning] Add kd-tree traits type (#80)
+    - [fitting] Add Primitive::getNumNeighbors (#86)
+
+- Bug-fixes and code improvements
+    - [spatialPartitioning] Fix unwanted function hiding with DryFit::setWeightFunc (#86)
+    - [fitting] Remove deadcode in Basket (#86)
+
+-Docs
+    - [spatialPartitioning] Update module page with a minimal doc and examples (#86)
+    - [spatialPartitioning] Add NanoFlann example (#86)
 
 --------------------------------------------------------------------------------
 v.1.0
