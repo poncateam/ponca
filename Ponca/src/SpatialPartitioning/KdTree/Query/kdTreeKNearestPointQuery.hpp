@@ -29,23 +29,30 @@ void KdTreeKNearestPointQuery<Traits>::search()
     const auto& indices = QueryAccelType::m_kdtree->index_data();
     const auto& point   = QueryType::input();
 
+    if (nodes.empty() || points.empty() || indices.empty())
+        throw std::invalid_argument("Empty KdTree");
+
     while(!QueryAccelType::m_stack.empty())
     {
         auto& qnode = QueryAccelType::m_stack.top();
-        const auto& node  = nodes[qnode.index];
+        const auto& node = nodes[qnode.index];
 
-        if(qnode.squared_distance < QueryType::m_queue.bottom().squared_distance)
+        if(qnode.squared_distance < QueryType::descentDistanceThreshold())
         {
             if(node.is_leaf())
             {
                 QueryAccelType::m_stack.pop();
+                IndexType start = node.leaf.start;
                 IndexType end = node.leaf.start + node.leaf.size;
-                for(IndexType i=node.leaf.start; i<end; ++i)
+                for(IndexType i=start; i<end; ++i)
                 {
                     IndexType idx = indices[i];
-
                     Scalar d = (point - points[idx].pos()).squaredNorm();
-                    QueryType::m_queue.push({idx, d});
+
+                    if(d < QueryType::descentDistanceThreshold())
+                    {
+                        QueryType::m_queue.push({idx, d});
+                    }
                 }
             }
             else

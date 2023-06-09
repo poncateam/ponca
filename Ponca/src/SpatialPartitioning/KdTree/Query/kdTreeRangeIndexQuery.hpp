@@ -28,13 +28,16 @@ void KdTreeRangeIndexQuery<Traits>::advance(Iterator& it)
     const auto& indices = QueryAccelType::m_kdtree->index_data();
     const auto& point   = points[QueryType::input()].pos();
 
+    if (nodes.empty() || points.empty() || indices.empty())
+        throw std::invalid_argument("Empty KdTree");
+
     for(IndexType i=it.m_start; i<it.m_end; ++i)
     {
         IndexType idx = indices[i];
         if(idx == QueryType::input()) continue;
 
         Scalar d = (point - points[idx].pos()).squaredNorm();
-        if(d < QueryType::m_squared_radius)
+        if(d < QueryType::descentDistanceThreshold())
         {
             it.m_index = idx;
             it.m_start = i+1;
@@ -47,20 +50,23 @@ void KdTreeRangeIndexQuery<Traits>::advance(Iterator& it)
         auto& qnode = QueryAccelType::m_stack.top();
         const auto& node = nodes[qnode.index];
 
-        if(qnode.squared_distance < QueryType::m_squared_radius)
+        if(qnode.squared_distance < QueryType::descentDistanceThreshold())
         {
             if(node.is_leaf())
             {
                 QueryAccelType::m_stack.pop();
-                it.m_start = node.leaf.start;
-                it.m_end   = node.leaf.start + node.leaf.size;
-                for(IndexType i=it.m_start; i<it.m_end; ++i)
+                IndexType start = node.leaf.start;
+                IndexType end = node.leaf.start + node.leaf.size;
+                it.m_start = start;
+                it.m_end   = end;
+                for(IndexType i=start; i<end; ++i)
                 {
                     IndexType idx = indices[i];
                     if(idx == QueryType::input()) continue;
 
                     Scalar d = (point - points[idx].pos()).squaredNorm();
-                    if(d < QueryType::m_squared_radius)
+
+                    if(d < QueryType::descentDistanceThreshold())
                     {
                         it.m_index = idx;
                         it.m_start = i+1;
