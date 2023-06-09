@@ -10,6 +10,7 @@
   \brief Test validity of the spatial differentiation of normal
 */
 
+#include "../split_test_helper.h"
 #include "../common/testing.h"
 #include "../common/testUtils.h"
 
@@ -202,14 +203,14 @@ int main(int argc, char** argv)
 
     cout << "Test orthogonality between the normal vector and its derivatives..." << endl;
 
-    testFits<float,  2>();
-    testFits<double,  2>();
+    CALL_SUBTEST_1((testFits<float,  2>()));
+    CALL_SUBTEST_2((testFits<double,  2>()));
 
-    testFits<float,  3>();
-    testFits<double,  3>();
+    CALL_SUBTEST_3((testFits<float,  3>()));
+    CALL_SUBTEST_4((testFits<double,  3>()));
 
-    testFits<float,  4>();
-    testFits<double,  4>();
+    CALL_SUBTEST_5((testFits<float,  4>()));
+    CALL_SUBTEST_6((testFits<double,  4>()));
 
     return EXIT_SUCCESS;
 }

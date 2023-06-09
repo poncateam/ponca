@@ -14,6 +14,7 @@ improved doc.
 - Bug-fixes and code improvements
     - [spatialPartitioning] Fix unwanted function hiding with DryFit::setWeightFunc (#86)
     - [fitting] Remove deadcode in Basket (#86)
+    - [ci] Fix Compiler is out of heap space error on Github (MSVC), by splitting tests (#87)
 
 -Docs
     - [spatialPartitioning] Update module page with a minimal doc and examples (#86)
