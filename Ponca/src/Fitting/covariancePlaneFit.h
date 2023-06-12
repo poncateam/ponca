@@ -40,8 +40,7 @@ PONCA_FITTING_DECLARE_MATRIX_TYPE
 protected:
     enum
     {
-        Check = Base::PROVIDES_POSITION_COVARIANCE
-            and Base::PROVIDES_PLANE_FRAME,
+        Check = Base::PROVIDES_POSITION_COVARIANCE && Base::PROVIDES_PLANE_FRAME,
         /*!
          * \brief Fit the tangent plane and store it into Plane and PlaneFrame which turn a point
          * in ambient 3D space to the tangent plane.
