@@ -20,6 +20,7 @@
 #include <Ponca/src/Fitting/basket.h>
 #include <Ponca/src/Fitting/covariancePlaneFit.h>
 #include <Ponca/src/Fitting/meanPlaneFit.h>
+#include <Ponca/src/Fitting/RimlsPlaneFit.h>
 #include <Ponca/src/Fitting/weightFunc.h>
 #include <Ponca/src/Fitting/weightKernel.h>
 
@@ -143,6 +144,9 @@ void callSubTests()
     typedef Basket<Point, WeightSmoothFunc, MeanPlaneFit> MeanFitSmooth;
     typedef Basket<Point, WeightConstantFunc, MeanPlaneFit> MeanFitConstant;
 
+    typedef Basket<Point, WeightSmoothFunc, RimlsPlaneFit> RimlsFitSmooth;
+    typedef Basket<Point, WeightConstantFunc, RimlsPlaneFit> RimlsFitConstant;
+
     // test if conflicts are detected
     //! [Conflicting type]
     typedef Basket<Point, WeightConstantFunc, Plane,
@@ -161,6 +165,8 @@ void callSubTests()
         CALL_SUBTEST(( testFunction<Point, CovFitConstant, WeightConstantFunc, true>() ));
         CALL_SUBTEST(( testFunction<Point, MeanFitSmooth, WeightSmoothFunc, false>() ));
         CALL_SUBTEST(( testFunction<Point, MeanFitConstant, WeightConstantFunc, false>() ));
+        CALL_SUBTEST(( testFunction<Point, RimlsFitSmooth, WeightSmoothFunc, false>() ));
+        CALL_SUBTEST(( testFunction<Point, RimlsFitConstant, WeightConstantFunc, false>() ));
         // Check if fitting conflict is detected
         CALL_SUBTEST(( testFunction<Point, Hybrid1, WeightConstantFunc, false>(false, false, false, true) ));
         CALL_SUBTEST(( testFunction<Point, Hybrid2, WeightConstantFunc, false>(false, false, false, true) ));
@@ -172,6 +178,8 @@ void callSubTests()
     {
         CALL_SUBTEST(( testFunction<Point, CovFitSmooth, WeightSmoothFunc, true>(false, true, true) ));
         CALL_SUBTEST(( testFunction<Point, CovFitConstant, WeightConstantFunc, true>(false, true, true) ));
+        CALL_SUBTEST(( testFunction<Point, RimlsFitSmooth, WeightSmoothFunc, false>(false, true, true, false) ));
+        CALL_SUBTEST(( testFunction<Point, RimlsFitConstant, WeightConstantFunc, false>(false, true, true, false) ));
     }
     cout << "Ok!" << endl;
 }

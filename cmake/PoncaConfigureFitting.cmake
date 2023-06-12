@@ -28,6 +28,8 @@ set(ponca_Fitting_INCLUDE
     "${PONCA_src_ROOT}/Ponca/src/Fitting/orientedSphereFit.hpp"
     "${PONCA_src_ROOT}/Ponca/src/Fitting/plane.h"
     "${PONCA_src_ROOT}/Ponca/src/Fitting/primitive.h"
+    "${PONCA_src_ROOT}/Ponca/src/Fitting/rimlsPlaneFit.h"
+    "${PONCA_src_ROOT}/Ponca/src/Fitting/rimlsPlaneFit.hpp"
     "${PONCA_src_ROOT}/Ponca/src/Fitting/sphereFit.h"
     "${PONCA_src_ROOT}/Ponca/src/Fitting/sphereFit.hpp"
     "${PONCA_src_ROOT}/Ponca/src/Fitting/unorientedSphereFit.h"
