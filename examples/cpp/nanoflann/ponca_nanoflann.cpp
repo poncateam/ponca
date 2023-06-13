@@ -124,6 +124,7 @@ f.init(_p);
 // Compute
 auto res = Ponca::UNDEFINED;
 do {
+    f.startNewPass();
     for (const auto& r : resultSet.m_indices_dists){
         f.addNeighbor(_vecs[r.first]);
     }

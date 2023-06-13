@@ -36,14 +36,14 @@ CovarianceFitBase<DataPoint, _WFunctor, T>::finalize ()
 {
     // handle specific configurations
     // With less than 3 neighbors the fitting is undefined
-    if(Base::finalize() != STABLE || Base::m_nbNeighbors < 3)
+    if(Base::finalize() != STABLE || Base::getNumNeighbors() < 3)
     {
         return Base::m_eCurrentState = UNDEFINED;
     }
 
     // Center the covariance on the centroid
     auto centroid = Base::barycenter();
-    m_cov = m_cov/Base::m_sumW - centroid * centroid.transpose();
+    m_cov = m_cov/Base::getWeightSum() - centroid * centroid.transpose();
 
 #ifdef __CUDACC__
     m_solver.computeDirect(m_cov);

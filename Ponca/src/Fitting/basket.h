@@ -155,8 +155,6 @@ namespace internal
 
         if (wres.first > Scalar(0.)) {
             Base::addLocalNeighbor(wres.first, wres.second, _nei, dw);
-            Base::m_sumW += (wres.first);
-            ++(Base::m_nbNeighbors);
             return true;
         }
         return false;
@@ -222,7 +220,10 @@ namespace internal
         WRITE_BASKET_FUNCTIONS;
 
         /// \brief Add a neighbor to perform the fit
-        /// When using by hand, don't forget to set m_nbNeighbors to 0 when performing a new pass (see PONCA::NEED_OTHER_PASS).
+        ///
+        /// When called directly, don't forget to call PrimitiveBase::startNewPass when starting multiple passes
+        /// \see compute Prefer when using a range of Points
+        /// \see computeWithIds Prefer when using a range of ids
         /// \return false if param nei is not a valid neighbor (weight = 0)
         PONCA_MULTIARCH inline bool addNeighbor(const DataPoint &_nei) {
             // compute weight
@@ -230,8 +231,6 @@ namespace internal
 
             if (wres.first > Scalar(0.)) {
                 Base::addLocalNeighbor(wres.first, wres.second, _nei);
-                Base::m_sumW += (wres.first);
-                ++(Base::m_nbNeighbors);
                 return true;
             }
             return false;

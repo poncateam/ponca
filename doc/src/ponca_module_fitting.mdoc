@@ -159,6 +159,7 @@ namespace Ponca
   Some methods require multiple fitting passes, e.g. \ref MongePatch.
   This is directly handled by the `compute` method.
   If you don't use it, you need to check if `eResults == NEED_ANOTHER_PASS` and repeat the `addNeighbor()`/`finalize()` steps.
+  Don't forget to call `startNewPass()` at each iteration.
 
   \warning You should avoid data of low magnitude (i.e., 1 should be a significant value) to get good results; thus rescaling might be necessary.
 

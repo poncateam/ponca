@@ -141,10 +141,10 @@ NormalCovarianceCurvatureEstimator<DataPoint, _WFunctor, DiffType, T>::finalize 
     if(this->isReady())
     {
         // center of gravity (mean)
-        m_cog /= Base::m_sumW;
+        m_cog /= Base::getWeightSum();
 
         // Center the covariance on the centroid
-        m_cov = m_cov/Base::m_sumW - m_cog * m_cog.transpose();
+        m_cov = m_cov/Base::getWeightSum() - m_cog * m_cog.transpose();
 
         m_solver.computeDirect(m_cov);
 
@@ -252,10 +252,10 @@ ProjectedNormalCovarianceCurvatureEstimator<DataPoint, _WFunctor, DiffType, T>::
     else if(m_pass == SECOND_PASS)
     {
         // center of gravity (mean)
-        m_cog /= Base::m_sumW;
+        m_cog /= Base::getWeightSum();
 
         // Center the covariance on the centroid
-        m_cov = m_cov/Base::m_sumW - m_cog * m_cog.transpose();
+        m_cov = m_cov/Base::getWeightSum() - m_cog * m_cog.transpose();
 
         m_solver.computeDirect(m_cov);
 

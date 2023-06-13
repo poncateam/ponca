@@ -21,9 +21,6 @@ namespace Ponca
     This class stores and provides public access to the fitting state, and must
     be inherited by classes implementing new primitives.
 
-    Protected fields #m_eCurrentState and #m_nbNeighbors should be updated
-    during the fitting process by the inheriting class.
-
     \note This class should not be inherited explicitly: this is done by the
     #Basket class.
 */
@@ -40,34 +37,36 @@ public:
     using VectorType = typename DataPoint::VectorType; /*!< \brief Inherited vector type*/
     using WFunctor   = _WFunctor;                      /*!< \brief Weight Function*/
 
+private:
+    //! \brief Number of neighbors
+    int m_nbNeighbors {0};
+
+    //! \brief Sum of the neighbors weights
+    Scalar m_sumW {0};
+
 protected:
 
     //! \brief Represent the current state of the fit (finalize function
     //! update the state)
     FIT_RESULT m_eCurrentState {UNDEFINED};
 
-    //! \brief Give the number of neighbors
-    int m_nbNeighbors {0};
-
     //! \brief Weight function (must inherits BaseWeightFunc)
     WFunctor   m_w;
-
-    //! \brief Sum of the neighbors weights
-    Scalar m_sumW {0};
 
 public:
     /**************************************************************************/
     /* Initialization                                                         */
     /**************************************************************************/
     PONCA_FITTING_APIDOC_SETWFUNC
-    PONCA_MULTIARCH inline void setWeightFunc (const WFunctor& _w) { m_w  = _w; }
+    PONCA_MULTIARCH inline void setWeightFunc (const WFunctor& _w) {
+        m_w  = _w;
+    }
 
     PONCA_FITTING_APIDOC_INIT
     PONCA_MULTIARCH inline void init(const VectorType& _basisCenter = VectorType::Zero())
     {
         m_eCurrentState = UNDEFINED;
-        m_nbNeighbors = 0;
-        m_sumW = Scalar(0);
+        startNewPass();
         m_w.init( _basisCenter );
     }
 
@@ -79,12 +78,24 @@ public:
         return (m_eCurrentState == STABLE) || (m_eCurrentState == UNSTABLE);
     }
 
-    /*! \brief Is the plane fitted an ready to use (finalize has been called
-    and the result is stable, eq. having more than 6 neighbors) */
+    /*! \brief Is the fitted primitive ready to use (finalize has been called and the result is stable) */
     PONCA_MULTIARCH inline bool isStable() const { return m_eCurrentState == STABLE; }
 
+    /*! \brief Is another pass required for fitting (finalize has been called and the result is #NEED_OTHER_PASS)
+     * \see startNewPass */
+    PONCA_MULTIARCH inline bool needAnotherPass() const { return m_eCurrentState == NEED_OTHER_PASS; }
+
     /*! \brief Get number of points added in the neighborhood (with non negative weight)  */
-     PONCA_MULTIARCH inline int getNumNeighbors() const { return m_nbNeighbors; }
+    PONCA_MULTIARCH inline int getNumNeighbors() const { return m_nbNeighbors; }
+
+    /*! \brief Get the sum of the weights */
+    PONCA_MULTIARCH inline Scalar getWeightSum() const { return m_sumW; }
+
+    /*! \brief To be called when starting a new processing pass, ie. when `getCurrentState()==#NEED_ANOTHER_PASS` */
+    PONCA_MULTIARCH inline void startNewPass() {
+        m_nbNeighbors = 0;
+        m_sumW = Scalar(0);
+    }
 
     /*! \return the current test of the fit */
     PONCA_MULTIARCH inline FIT_RESULT getCurrentState() const
@@ -93,7 +104,9 @@ public:
     }
 
     PONCA_FITTING_APIDOC_ADDNEIGHBOR
-    PONCA_MULTIARCH inline bool addLocalNeighbor(Scalar, const VectorType &, const DataPoint &) {
+    PONCA_MULTIARCH inline bool addLocalNeighbor(Scalar w, const VectorType &, const DataPoint &) {
+        m_sumW += w;
+        ++(m_nbNeighbors);
         return true;
     }
 

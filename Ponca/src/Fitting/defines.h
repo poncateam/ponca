@@ -64,9 +64,9 @@ using VectorArray = typename Base::VectorArray;     /*!< \brief Alias to vector 
 
 // FIT API DOCUMENTATION
 #define PONCA_FITTING_APIDOC_SETWFUNC \
-/*! Init the WeightFunc, without changing the other internal states. \warning Must be called be for any computation */
+/*! Init the WeightFunc, without changing the other internal states. Calls #startNewPass internally. \warning Must be called be for any computation (and before #init). */
 #define PONCA_FITTING_APIDOC_INIT \
-/*! Set the evaluation position and reset the internal states. \warning Must be called be for any computation */
+/*! Set the evaluation position and reset the internal states. \warning Must be called be for any computation (but after #setWeightFunc) */
 #define PONCA_FITTING_APIDOC_ADDNEIGHBOR \
 /*! Add a neighbor to perform the fit \return false if param nei is not a valid neighbour (weight = 0) */
 #define PONCA_FITTING_APIDOC_ADDNEIGHBOR_DER \
