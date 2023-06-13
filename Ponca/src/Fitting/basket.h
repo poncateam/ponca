@@ -48,6 +48,7 @@ namespace internal
     FIT_RESULT compute(const IteratorBegin& begin, const IteratorEnd& end){                           \
         FIT_RESULT res = UNDEFINED;                                                                   \
         do {                                                                                          \
+            Self::startNewPass();                                                                     \
             for (auto it = begin; it != end; ++it){                                                   \
                 Self::addNeighbor(*it);                                                               \
             }                                                                                         \
@@ -65,6 +66,7 @@ namespace internal
     FIT_RESULT computeWithIds(IndexRange ids, const PointContainer& points){                          \
         FIT_RESULT res = UNDEFINED;                                                                   \
         do {                                                                                          \
+            Self::startNewPass();                                                                     \
             for (const auto& i : ids){                                                                \
                 this->addNeighbor(points[i]);                                                         \
             }                                                                                         \
@@ -220,6 +222,7 @@ namespace internal
         WRITE_BASKET_FUNCTIONS;
 
         /// \brief Add a neighbor to perform the fit
+        /// When using by hand, don't forget to set m_nbNeighbors to 0 when performing a new pass (see PONCA::NEED_OTHER_PASS).
         /// \return false if param nei is not a valid neighbor (weight = 0)
         PONCA_MULTIARCH inline bool addNeighbor(const DataPoint &_nei) {
             // compute weight
