@@ -117,7 +117,7 @@ public:
 
 
 /*!
-    \brief Singular WeightKernel defined in \f$\left[0 : 1\right]\f$
+    \brief Singular WeightKernel defined in \f$\left]0 : 1\right]\f$
 
     \inherit Concept::WeightKernelConcept
 
