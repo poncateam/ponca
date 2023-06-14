@@ -84,6 +84,6 @@ private:
         Plane< DataPoint, _WFunctor, T > >;
 //! [RimlsPlaneFit Definition]
 
-#include "RimlsPlaneFit.hpp"
+#include "rimlsPlaneFit.hpp"
 } //namespace Ponca
 
