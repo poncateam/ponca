@@ -118,11 +118,11 @@ int main(int argc, char** argv)
 
     cout << "Verify Wendland weight kernel derivatives" << endl;
     callSubTests<long double, WendlandWeightKernel>();
-    callAutoDiffSubTests<long double, SmoothWeightKernel>();
+    callAutoDiffSubTests<long double, WendlandWeightKernel>();
 
     cout << "Verify singular weight kernel derivatives" << endl;
     callSubTests<long double, SingularWeightKernel>();
-    callAutoDiffSubTests<long double, SmoothWeightKernel>();
+    callAutoDiffSubTests<long double, SingularWeightKernel>();
 
     cout << "Verify Compact Exponential weight kernel derivatives" << endl;
     callSubTests<long double, CompactExpWeightKernel>();
