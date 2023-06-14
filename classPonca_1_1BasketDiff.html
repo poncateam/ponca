@@ -51,7 +51,7 @@ MathJax.Hub.Config({
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Ponca
-   &#160;<span id="projectnumber">efec0de66f5bd3996eccad5aa4088218eec44dcc</span>
+   &#160;<span id="projectnumber">3f2124f1f4537664e80eca80ab24f920b625da1d</span>
    </div>
    <div id="projectbrief">Point Cloud Analysis library</div>
   </td>
@@ -179,7 +179,7 @@ Public Member Functions</h2></td></tr>
   <br /></td></tr>
 <tr class="separator:a0fbe1b0d8f696a41bf6a087cd5f56f21"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8a4a85161b1a03988961606229bec11f"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1BasketDiff.html#a8a4a85161b1a03988961606229bec11f">addNeighbor</a> (const <a class="el" href="classPonca_1_1BasketDiff.html#a41a3b256f0bdc84bb345dc98cd7ddaad">DataPoint</a> &amp;_nei)</td></tr>
-<tr class="memdesc:a8a4a85161b1a03988961606229bec11f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Hide <a class="el" href="classPonca_1_1Basket.html#abe967d3aae87dc8f19b6d1ae7597e2a4" title="Add a neighbor to perform the fit.">Basket::addNeighbor</a>.  <br /></td></tr>
+<tr class="memdesc:a8a4a85161b1a03988961606229bec11f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Add a neighbor to perform the fit.    <br /></td></tr>
 <tr class="separator:a8a4a85161b1a03988961606229bec11f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
@@ -193,7 +193,7 @@ class Ponca::BasketDiff&lt; BasketType, Type, Ext0, Ext1, Ext2, Ext3, Ext4, Ext5
 <div class="line">ComputationalDerivativesConcept2, <span class="comment">// Implementation of ComputationalDerivativesConcept</span></div>
 <div class="line">... ,                             <span class="comment">//</span></div>
 <div class="line">&gt; myFitDer;                       <span class="comment">// Final structure to fit and derive a primitive over weighted samples</span></div>
-<div class="ttc" id="aclassPonca_1_1BasketDiff_html"><div class="ttname"><a href="classPonca_1_1BasketDiff.html">Ponca::BasketDiff</a></div><div class="ttdoc">Aggregator class used to declare specialized structures with derivatives computations,...</div><div class="ttdef"><b>Definition:</b> <a href="basket_8h_source.html#l00119">basket.h:120</a></div></div>
+<div class="ttc" id="aclassPonca_1_1BasketDiff_html"><div class="ttname"><a href="classPonca_1_1BasketDiff.html">Ponca::BasketDiff</a></div><div class="ttdoc">Aggregator class used to declare specialized structures with derivatives computations,...</div><div class="ttdef"><b>Definition:</b> <a href="basket_8h_source.html#l00121">basket.h:122</a></div></div>
 <div class="ttc" id="anamespacePonca_html_a7beaddc698523e7f9c041ea8bc4c535a"><div class="ttname"><a href="namespacePonca.html#a7beaddc698523e7f9c041ea8bc4c535a">Ponca::DiffType</a></div><div class="ttdeci">DiffType</div><div class="ttdoc">Flags defining which derivatives need to be computed.</div><div class="ttdef"><b>Definition:</b> <a href="enums_8h_source.html#l00035">enums.h:36</a></div></div>
 </div><!-- fragment --><dl class="section see"><dt>See also</dt><dd><a class="el" href="classPonca_1_1Basket.html" title="Aggregator class used to declare specialized structures using CRTP.">Basket</a> for the aggregation of <a class="el" href="fitting_concepts.html#concepts_computObjectBasket">ComputationalObjectConcept</a></dd></dl>
 <dl class="tparams"><dt>Template Parameters</dt><dd>
@@ -216,7 +216,7 @@ class Ponca::BasketDiff&lt; BasketType, Type, Ext0, Ext1, Ext2, Ext3, Ext4, Ext5
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="basket_8h_source.html#l00119">119</a> of file <a class="el" href="basket_8h_source.html">basket.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="basket_8h_source.html#l00121">121</a> of file <a class="el" href="basket_8h_source.html">basket.h</a>.</p>
 </div><h2 class="groupheader">Member Typedef Documentation</h2>
 <a id="aec85a475f8f960d47685284b6d40ec67" name="aec85a475f8f960d47685284b6d40ec67"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#aec85a475f8f960d47685284b6d40ec67">&#9670;&#160;</a></span>Base</h2>
@@ -234,7 +234,7 @@ template&lt;typename BasketType , int Type, template&lt; class, class, int, type
 
 <p>Base type, which aggregates all the computational objects using the CRTP. </p>
 
-<p class="definition">Definition at line <a class="el" href="basket_8h_source.html#l00125">125</a> of file <a class="el" href="basket_8h_source.html">basket.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="basket_8h_source.html#l00127">127</a> of file <a class="el" href="basket_8h_source.html">basket.h</a>.</p>
 
 </div>
 </div>
@@ -254,7 +254,7 @@ template&lt;typename BasketType , int Type, template&lt; class, class, int, type
 
 <p>Point type used for computation. </p>
 
-<p class="definition">Definition at line <a class="el" href="basket_8h_source.html#l00142">142</a> of file <a class="el" href="basket_8h_source.html">basket.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="basket_8h_source.html#l00144">144</a> of file <a class="el" href="basket_8h_source.html">basket.h</a>.</p>
 
 </div>
 </div>
@@ -274,7 +274,7 @@ template&lt;typename BasketType , int Type, template&lt; class, class, int, type
 
 <p>Scalar type used for computation, as defined from <a class="el" href="classPonca_1_1Basket.html" title="Aggregator class used to declare specialized structures using CRTP.">Basket</a>. </p>
 
-<p class="definition">Definition at line <a class="el" href="basket_8h_source.html#l00144">144</a> of file <a class="el" href="basket_8h_source.html">basket.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="basket_8h_source.html#l00146">146</a> of file <a class="el" href="basket_8h_source.html">basket.h</a>.</p>
 
 </div>
 </div>
@@ -294,7 +294,7 @@ template&lt;typename BasketType , int Type, template&lt; class, class, int, type
 
 <p>Weighting function. </p>
 
-<p class="definition">Definition at line <a class="el" href="basket_8h_source.html#l00140">140</a> of file <a class="el" href="basket_8h_source.html">basket.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="basket_8h_source.html#l00142">142</a> of file <a class="el" href="basket_8h_source.html">basket.h</a>.</p>
 
 </div>
 </div>
@@ -325,9 +325,13 @@ template&lt;typename BasketType , int Type, template&lt; class, class, int, type
 </table>
 </div><div class="memdoc">
 
-<p>Hide <a class="el" href="classPonca_1_1Basket.html#abe967d3aae87dc8f19b6d1ae7597e2a4" title="Add a neighbor to perform the fit.">Basket::addNeighbor</a>. </p>
+<p>Add a neighbor to perform the fit.   </p>
+<p>When called directly, don't forget to call <a class="el" href="classPonca_1_1PrimitiveBase.html#a1a81ae5c5555d8bd7d2367d9bad04340" title="To be called when starting a new processing pass, ie.">PrimitiveBase::startNewPass</a> when starting multiple passes </p><dl class="section see"><dt>See also</dt><dd><a class="el" href="classPonca_1_1BasketDiff.html#a0f61e79ff842c2c1940c89006c325335" title="Convenience function for STL-like iterators">compute</a> Prefer when using a range of Points </dd>
+<dd>
+<a class="el" href="classPonca_1_1BasketDiff.html#a8fb4abc7e68eeed5dfc6befcdc1282f5" title="Convenience function to iterate over a subset of samples in a PointContainer">computeWithIds</a> Prefer when using a range of ids </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>false if param nei is not a valid neighbor (weight = 0)   </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="basket_8h_source.html#l00149">149</a> of file <a class="el" href="basket_8h_source.html">basket.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="basket_8h_source.html#l00151">151</a> of file <a class="el" href="basket_8h_source.html">basket.h</a>.</p>
 
 </div>
 </div>
@@ -363,11 +367,11 @@ template&lt;typename Container &gt; </div>
    <br  />
  </p>
 <p>Add neighbors stored in a container using STL-like iterators, and call finalize at the end.</p>
-<p>The fit is evaluated multiple time if needed (see NEED_OTHER_PASS)</p>
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="classPonca_1_1BasketDiff.html#a8a4a85161b1a03988961606229bec11f" title="Hide Basket::addNeighbor.">addNeighbor()</a>   <br  />
+<p>The fit is evaluated multiple time if needed (see <a class="el" href="namespacePonca.html#abfd697aebf07c1b5c8be5ee401e2dc84a0d50cd1855fec459b2c5756ec38d4a17" title="The fitting procedure needs to analyse the neighborhood another time.">NEED_OTHER_PASS</a>)</p>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="classPonca_1_1BasketDiff.html#a8a4a85161b1a03988961606229bec11f" title="Add a neighbor to perform the fit.">addNeighbor()</a>   <br  />
  </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="basket_8h_source.html#l00146">146</a> of file <a class="el" href="basket_8h_source.html">basket.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="basket_8h_source.html#l00148">148</a> of file <a class="el" href="basket_8h_source.html">basket.h</a>.</p>
 
 </div>
 </div>
@@ -412,10 +416,10 @@ template&lt;typename IteratorBegin , typename IteratorEnd &gt; </div>
 <p>Convenience function for STL-like iterators <br  />
  </p>
 <p>Add neighbors stored in a container using STL-like iterators, and call finalize at the end.</p>
-<p>The fit is evaluated multiple time if needed (see NEED_OTHER_PASS)</p>
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="classPonca_1_1BasketDiff.html#a8a4a85161b1a03988961606229bec11f" title="Hide Basket::addNeighbor.">addNeighbor()</a> </dd></dl>
+<p>The fit is evaluated multiple time if needed (see <a class="el" href="namespacePonca.html#abfd697aebf07c1b5c8be5ee401e2dc84a0d50cd1855fec459b2c5756ec38d4a17" title="The fitting procedure needs to analyse the neighborhood another time.">NEED_OTHER_PASS</a>)</p>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="classPonca_1_1BasketDiff.html#a8a4a85161b1a03988961606229bec11f" title="Add a neighbor to perform the fit.">addNeighbor()</a> </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="basket_8h_source.html#l00146">146</a> of file <a class="el" href="basket_8h_source.html">basket.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="basket_8h_source.html#l00148">148</a> of file <a class="el" href="basket_8h_source.html">basket.h</a>.</p>
 
 </div>
 </div>
@@ -470,7 +474,7 @@ template&lt;typename IndexRange , typename PointContainer &gt; </div>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="classPonca_1_1BasketDiff.html#a0f61e79ff842c2c1940c89006c325335" title="Convenience function for STL-like iterators">compute(const IteratorBegin&amp; begin, const IteratorEnd&amp; end)</a> <br  />
  </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="basket_8h_source.html#l00146">146</a> of file <a class="el" href="basket_8h_source.html">basket.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="basket_8h_source.html#l00148">148</a> of file <a class="el" href="basket_8h_source.html">basket.h</a>.</p>
 
 </div>
 </div>
@@ -480,7 +484,7 @@ template&lt;typename IndexRange , typename PointContainer &gt; </div>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="namespacePonca.html">Ponca</a></li><li class="navelem"><a class="el" href="classPonca_1_1BasketDiff.html">BasketDiff</a></li>
-    <li class="footer">Generated on Fri Jun 9 2023 15:34:30 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.6 </li>
+    <li class="footer">Generated on Wed Jun 14 2023 11:57:43 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.6 </li>
   </ul>
 </div>
 </body>

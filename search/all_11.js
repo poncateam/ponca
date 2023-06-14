@@ -29,5 +29,6 @@ var searchData=
   ['stable_26',['STABLE',['../namespacePonca.html#abfd697aebf07c1b5c8be5ee401e2dc84a86d1e5381a39092fbe5560583c23d64c',1,'Ponca']]],
   ['stack_27',['Stack',['../classPonca_1_1Stack.html',1,'Ponca']]],
   ['stack_3c_20ponca_3a_3aindexsquareddistance_3c_20indextype_2c_20scalar_20_3e_2c_202_20_2atraits_3a_3amax_5fdepth_20_3e_28',['Stack&lt; Ponca::IndexSquaredDistance&lt; IndexType, Scalar &gt;, 2 *Traits::MAX_DEPTH &gt;',['../classPonca_1_1Stack.html',1,'Ponca']]],
-  ['surfacevariation_29',['surfaceVariation',['../classPonca_1_1CovarianceFitBase.html#adc7fcdb906bb6efbeb8f6fb447cff64f',1,'Ponca::CovarianceFitBase']]]
+  ['startnewpass_29',['startNewPass',['../classPonca_1_1PrimitiveBase.html#a1a81ae5c5555d8bd7d2367d9bad04340',1,'Ponca::PrimitiveBase']]],
+  ['surfacevariation_30',['surfaceVariation',['../classPonca_1_1CovarianceFitBase.html#adc7fcdb906bb6efbeb8f6fb447cff64f',1,'Ponca::CovarianceFitBase']]]
 ];

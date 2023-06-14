@@ -51,7 +51,7 @@ MathJax.Hub.Config({
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Ponca
-   &#160;<span id="projectnumber">efec0de66f5bd3996eccad5aa4088218eec44dcc</span>
+   &#160;<span id="projectnumber">3f2124f1f4537664e80eca80ab24f920b625da1d</span>
    </div>
    <div id="projectbrief">Point Cloud Analysis library</div>
   </td>
@@ -211,15 +211,15 @@ $(document).ready(function(){initNavTree('unorientedSphereFit_8hpp_source.html',
 <div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>    <span class="keyword">constexpr</span> <span class="keywordtype">int</span> Dim = DataPoint::Dim;</div>
 <div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span> </div>
 <div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span>    <span class="comment">// Compute status</span></div>
-<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>    <span class="keywordflow">if</span>(Base::finalize() != <a class="code hl_enumvalue" href="namespacePonca.html#abfd697aebf07c1b5c8be5ee401e2dc84a86d1e5381a39092fbe5560583c23d64c">STABLE</a> || Base::m_nbNeighbors &lt; 3)</div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>    <span class="keywordflow">if</span>(Base::finalize() != <a class="code hl_enumvalue" href="namespacePonca.html#abfd697aebf07c1b5c8be5ee401e2dc84a86d1e5381a39092fbe5560583c23d64c">STABLE</a> || Base::getNumNeighbors() &lt; 3)</div>
 <div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>        <span class="keywordflow">return</span> Base::m_eCurrentState;</div>
 <div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>    <span class="keywordflow">if</span> (Base::algebraicSphere().isValid())</div>
 <div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span>        Base::m_eCurrentState = <a class="code hl_enumvalue" href="namespacePonca.html#abfd697aebf07c1b5c8be5ee401e2dc84a23aa2882b31e320fa4130218dd98c1a6">CONFLICT_ERROR_FOUND</a>;</div>
 <div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>    <span class="keywordflow">else</span></div>
-<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span>        Base::m_eCurrentState = Base::m_nbNeighbors &lt; 6 ? <a class="code hl_enumvalue" href="namespacePonca.html#abfd697aebf07c1b5c8be5ee401e2dc84ab13222e506596eb607093af1a1de3e39">UNSTABLE</a> : <a class="code hl_enumvalue" href="namespacePonca.html#abfd697aebf07c1b5c8be5ee401e2dc84a86d1e5381a39092fbe5560583c23d64c">STABLE</a>;</div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span>        Base::m_eCurrentState = Base::getNumNeighbors() &lt; 6 ? <a class="code hl_enumvalue" href="namespacePonca.html#abfd697aebf07c1b5c8be5ee401e2dc84ab13222e506596eb607093af1a1de3e39">UNSTABLE</a> : <a class="code hl_enumvalue" href="namespacePonca.html#abfd697aebf07c1b5c8be5ee401e2dc84a86d1e5381a39092fbe5560583c23d64c">STABLE</a>;</div>
 <div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span> </div>
 <div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span>    <span class="comment">// 1. finalize sphere fitting</span></div>
-<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span>    <a class="code hl_typedef" href="classPonca_1_1UnorientedSphereFitImpl.html#a30fed7a8befe26587d6b2199213357e8">Scalar</a> invSumW = <a class="code hl_typedef" href="classPonca_1_1UnorientedSphereFitImpl.html#a30fed7a8befe26587d6b2199213357e8">Scalar</a>(1.) / Base::m_sumW;</div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span>    <a class="code hl_typedef" href="classPonca_1_1UnorientedSphereFitImpl.html#a30fed7a8befe26587d6b2199213357e8">Scalar</a> invSumW = <a class="code hl_typedef" href="classPonca_1_1UnorientedSphereFitImpl.html#a30fed7a8befe26587d6b2199213357e8">Scalar</a>(1.) / Base::getWeightSum();</div>
 <div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span> </div>
 <div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span> </div>
 <div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span>    MatrixBB Q;</div>
@@ -321,16 +321,16 @@ $(document).ready(function(){initNavTree('unorientedSphereFit_8hpp_source.html',
 <div class="line"><a id="l00200" name="l00200"></a><span class="lineno">  200</span>    <span class="keywordflow">if</span> (this-&gt;isReady())</div>
 <div class="line"><a id="l00201" name="l00201"></a><span class="lineno">  201</span>    {</div>
 <div class="line"><a id="l00202" name="l00202"></a><span class="lineno">  202</span> </div>
-<div class="line"><a id="l00203" name="l00203"></a><span class="lineno">  203</span>        Scalar invSumW = Scalar(1.)/Base::m_sumW;</div>
+<div class="line"><a id="l00203" name="l00203"></a><span class="lineno">  203</span>        Scalar invSumW = Scalar(1.)/Base::getWeightSum();</div>
 <div class="line"><a id="l00204" name="l00204"></a><span class="lineno">  204</span> </div>
 <div class="line"><a id="l00205" name="l00205"></a><span class="lineno">  205</span>        Scalar nume  = Base::m_sumDotPN - invSumW*Base::m_sumP.dot(Base::m_sumN);</div>
 <div class="line"><a id="l00206" name="l00206"></a><span class="lineno">  206</span>        Scalar deno  = Base::m_sumDotPP - invSumW*Base::m_sumP.dot(Base::m_sumP);</div>
 <div class="line"><a id="l00207" name="l00207"></a><span class="lineno">  207</span> </div>
-<div class="line"><a id="l00208" name="l00208"></a><span class="lineno">  208</span>        ScalarArray dNume = m_dSumDotPN - invSumW*invSumW * ( Base::m_sumW * (</div>
+<div class="line"><a id="l00208" name="l00208"></a><span class="lineno">  208</span>        ScalarArray dNume = m_dSumDotPN - invSumW*invSumW * ( Base::getWeightSum() * (</div>
 <div class="line"><a id="l00209" name="l00209"></a><span class="lineno">  209</span>                                                            Base::m_sumN.transpose() * m_dSumP +</div>
 <div class="line"><a id="l00210" name="l00210"></a><span class="lineno">  210</span>                                                            Base::m_sumP.transpose() * m_dSumN )</div>
 <div class="line"><a id="l00211" name="l00211"></a><span class="lineno">  211</span>                                                            - m_dSumW*Base::m_sumP.dot(Base::m_sumN) );</div>
-<div class="line"><a id="l00212" name="l00212"></a><span class="lineno">  212</span>        ScalarArray dDeno = m_dSumDotPP - invSumW*invSumW*( Scalar(2.)*Base::m_sumW * Base::m_sumP.transpose()*m_dSumP</div>
+<div class="line"><a id="l00212" name="l00212"></a><span class="lineno">  212</span>        ScalarArray dDeno = m_dSumDotPP - invSumW*invSumW*( Scalar(2.)*Base::getWeightSum() * Base::m_sumP.transpose()*m_dSumP</div>
 <div class="line"><a id="l00213" name="l00213"></a><span class="lineno">  213</span>                                                            - m_dSumW*Base::m_sumP.dot(Base::m_sumP) );</div>
 <div class="line"><a id="l00214" name="l00214"></a><span class="lineno">  214</span> </div>
 <div class="line"><a id="l00215" name="l00215"></a><span class="lineno">  215</span>        m_dUq =  Scalar(.5) * (deno * dNume - dDeno * nume)/(deno*deno);</div>
@@ -385,7 +385,7 @@ $(document).ready(function(){initNavTree('unorientedSphereFit_8hpp_source.html',
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_695d95a8d8fbec601a248c0414764298.html">Ponca</a></li><li class="navelem"><a class="el" href="dir_ce16314fc45f8638543c5146aff64d4a.html">src</a></li><li class="navelem"><a class="el" href="dir_221133f19e4af6803e4ee7d78db21786.html">Fitting</a></li><li class="navelem"><b>unorientedSphereFit.hpp</b></li>
-    <li class="footer">Generated on Fri Jun 9 2023 15:34:30 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.6 </li>
+    <li class="footer">Generated on Wed Jun 14 2023 11:57:42 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.6 </li>
   </ul>
 </div>
 </body>

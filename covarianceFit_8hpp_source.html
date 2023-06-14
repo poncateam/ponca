@@ -51,7 +51,7 @@ MathJax.Hub.Config({
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Ponca
-   &#160;<span id="projectnumber">efec0de66f5bd3996eccad5aa4088218eec44dcc</span>
+   &#160;<span id="projectnumber">3f2124f1f4537664e80eca80ab24f920b625da1d</span>
    </div>
    <div id="projectbrief">Point Cloud Analysis library</div>
   </td>
@@ -157,14 +157,14 @@ $(document).ready(function(){initNavTree('covarianceFit_8hpp_source.html',''); i
 <div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>{</div>
 <div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>    <span class="comment">// handle specific configurations</span></div>
 <div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>    <span class="comment">// With less than 3 neighbors the fitting is undefined</span></div>
-<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>    <span class="keywordflow">if</span>(Base::finalize() != <a class="code hl_enumvalue" href="namespacePonca.html#abfd697aebf07c1b5c8be5ee401e2dc84a86d1e5381a39092fbe5560583c23d64c">STABLE</a> || Base::m_nbNeighbors &lt; 3)</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>    <span class="keywordflow">if</span>(Base::finalize() != <a class="code hl_enumvalue" href="namespacePonca.html#abfd697aebf07c1b5c8be5ee401e2dc84a86d1e5381a39092fbe5560583c23d64c">STABLE</a> || Base::getNumNeighbors() &lt; 3)</div>
 <div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>    {</div>
 <div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>        <span class="keywordflow">return</span> Base::m_eCurrentState = <a class="code hl_enumvalue" href="namespacePonca.html#abfd697aebf07c1b5c8be5ee401e2dc84a08d57dd200082f67128b5274049dda41">UNDEFINED</a>;</div>
 <div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>    }</div>
 <div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span> </div>
 <div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>    <span class="comment">// Center the covariance on the centroid</span></div>
 <div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>    <span class="keyword">auto</span> centroid = Base::barycenter();</div>
-<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>    m_cov = m_cov/Base::m_sumW - centroid * centroid.transpose();</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>    m_cov = m_cov/Base::getWeightSum() - centroid * centroid.transpose();</div>
 <div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span> </div>
 <div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span><span class="preprocessor">#ifdef __CUDACC__</span></div>
 <div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>    m_solver.computeDirect(m_cov);</div>
@@ -257,7 +257,7 @@ $(document).ready(function(){initNavTree('covarianceFit_8hpp_source.html',''); i
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_695d95a8d8fbec601a248c0414764298.html">Ponca</a></li><li class="navelem"><a class="el" href="dir_ce16314fc45f8638543c5146aff64d4a.html">src</a></li><li class="navelem"><a class="el" href="dir_221133f19e4af6803e4ee7d78db21786.html">Fitting</a></li><li class="navelem"><b>covarianceFit.hpp</b></li>
-    <li class="footer">Generated on Fri Jun 9 2023 15:34:30 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.6 </li>
+    <li class="footer">Generated on Wed Jun 14 2023 11:57:42 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.6 </li>
   </ul>
 </div>
 </body>

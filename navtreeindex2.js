@@ -1,5 +1,6 @@
 var NAVTREEINDEX2 =
 {
+"classPonca_1_1WendlandWeightKernel.html":[8,0,0,67],
 "classPonca_1_1WendlandWeightKernel.html#a3ce3f4e507808b3934b9d0b4fbc69396":[8,0,0,67,0],
 "classPonca_1_1WendlandWeightKernel.html#acad25024f6a75c79edfc20717a772c37":[8,0,0,67,2],
 "classPonca_1_1WendlandWeightKernel.html#ae7197a07d3d93888bba8dffd99fad9cd":[8,0,0,67,1],

@@ -51,7 +51,7 @@ MathJax.Hub.Config({
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Ponca
-   &#160;<span id="projectnumber">efec0de66f5bd3996eccad5aa4088218eec44dcc</span>
+   &#160;<span id="projectnumber">3f2124f1f4537664e80eca80ab24f920b625da1d</span>
    </div>
    <div id="projectbrief">Point Cloud Analysis library</div>
   </td>
@@ -135,7 +135,7 @@ $(document).ready(function(){initNavTree('classPonca_1_1PrimitiveBase.html','');
 <div id="dynsection-0-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-0-content" class="dyncontent" style="display:none;">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classPonca_1_1PrimitiveBase__coll__graph.svg" width="219" height="250"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classPonca_1_1PrimitiveBase__coll__graph.svg" width="219" height="264"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
 </div>
 <table class="memberdecls">
@@ -163,17 +163,26 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:a7f67aff61af9b364ffa983364f1d2165"><td class="mdescLeft">&#160;</td><td class="mdescRight">Is the primitive well fitted an ready to use (finalize has been called)  <br /></td></tr>
 <tr class="separator:a7f67aff61af9b364ffa983364f1d2165"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ada0d81900921e0a922ce459ba1d3ec2c"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1PrimitiveBase.html#ada0d81900921e0a922ce459ba1d3ec2c">isStable</a> () const</td></tr>
-<tr class="memdesc:ada0d81900921e0a922ce459ba1d3ec2c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Is the plane fitted an ready to use (finalize has been called and the result is stable, eq.  <br /></td></tr>
+<tr class="memdesc:ada0d81900921e0a922ce459ba1d3ec2c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Is the fitted primitive ready to use (finalize has been called and the result is stable)  <br /></td></tr>
 <tr class="separator:ada0d81900921e0a922ce459ba1d3ec2c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac70b0df49cb26246d394486fa5bd3a34"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1PrimitiveBase.html#ac70b0df49cb26246d394486fa5bd3a34">needAnotherPass</a> () const</td></tr>
+<tr class="memdesc:ac70b0df49cb26246d394486fa5bd3a34"><td class="mdescLeft">&#160;</td><td class="mdescRight">Is another pass required for fitting (finalize has been called and the result is <a class="el" href="namespacePonca.html#abfd697aebf07c1b5c8be5ee401e2dc84a0d50cd1855fec459b2c5756ec38d4a17" title="The fitting procedure needs to analyse the neighborhood another time.">NEED_OTHER_PASS</a>)  <br /></td></tr>
+<tr class="separator:ac70b0df49cb26246d394486fa5bd3a34"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab255848c96e9dbe1f95f54f502cbd83c"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1PrimitiveBase.html#ab255848c96e9dbe1f95f54f502cbd83c">getNumNeighbors</a> () const</td></tr>
 <tr class="memdesc:ab255848c96e9dbe1f95f54f502cbd83c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get number of points added in the neighborhood (with non negative weight) <br  />
   <br /></td></tr>
 <tr class="separator:ab255848c96e9dbe1f95f54f502cbd83c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a25f5d80766e9c103a8f9708e6e11ba58"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classPonca_1_1PrimitiveBase.html#a77761998e98215527441b0307c9917c4">Scalar</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1PrimitiveBase.html#a25f5d80766e9c103a8f9708e6e11ba58">getWeightSum</a> () const</td></tr>
+<tr class="memdesc:a25f5d80766e9c103a8f9708e6e11ba58"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the sum of the weights.  <br /></td></tr>
+<tr class="separator:a25f5d80766e9c103a8f9708e6e11ba58"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1a81ae5c5555d8bd7d2367d9bad04340"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1PrimitiveBase.html#a1a81ae5c5555d8bd7d2367d9bad04340">startNewPass</a> ()</td></tr>
+<tr class="memdesc:a1a81ae5c5555d8bd7d2367d9bad04340"><td class="mdescLeft">&#160;</td><td class="mdescRight">To be called when starting a new processing pass, ie.  <br /></td></tr>
+<tr class="separator:a1a81ae5c5555d8bd7d2367d9bad04340"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a19945873f15545be8791ceb7d5c49c1a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespacePonca.html#abfd697aebf07c1b5c8be5ee401e2dc84">FIT_RESULT</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1PrimitiveBase.html#a19945873f15545be8791ceb7d5c49c1a">getCurrentState</a> () const</td></tr>
 <tr class="separator:a19945873f15545be8791ceb7d5c49c1a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aea8e5b48d7ed6a92a86571e202550158"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1PrimitiveBase.html#aea8e5b48d7ed6a92a86571e202550158">addLocalNeighbor</a> (<a class="el" href="classPonca_1_1PrimitiveBase.html#a77761998e98215527441b0307c9917c4">Scalar</a>, const <a class="el" href="classPonca_1_1PrimitiveBase.html#a7f748267416717715bed50e246780269">VectorType</a> &amp;, const DataPoint &amp;)</td></tr>
-<tr class="memdesc:aea8e5b48d7ed6a92a86571e202550158"><td class="mdescLeft">&#160;</td><td class="mdescRight">Add a neighbor to perform the fit.  <br /></td></tr>
-<tr class="separator:aea8e5b48d7ed6a92a86571e202550158"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7cf227cdf5bd9970402953286659c0ad"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1PrimitiveBase.html#a7cf227cdf5bd9970402953286659c0ad">addLocalNeighbor</a> (<a class="el" href="classPonca_1_1PrimitiveBase.html#a77761998e98215527441b0307c9917c4">Scalar</a> w, const <a class="el" href="classPonca_1_1PrimitiveBase.html#a7f748267416717715bed50e246780269">VectorType</a> &amp;, const DataPoint &amp;)</td></tr>
+<tr class="memdesc:a7cf227cdf5bd9970402953286659c0ad"><td class="mdescLeft">&#160;</td><td class="mdescRight">Add a neighbor to perform the fit.  <br /></td></tr>
+<tr class="separator:a7cf227cdf5bd9970402953286659c0ad"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3ab480149d49ce60ad1ed7dca11ee9ef"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespacePonca.html#abfd697aebf07c1b5c8be5ee401e2dc84">FIT_RESULT</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1PrimitiveBase.html#a3ab480149d49ce60ad1ed7dca11ee9ef">finalize</a> ()</td></tr>
 <tr class="memdesc:a3ab480149d49ce60ad1ed7dca11ee9ef"><td class="mdescLeft">&#160;</td><td class="mdescRight">Finalize the procedure.  <br /></td></tr>
 <tr class="separator:a3ab480149d49ce60ad1ed7dca11ee9ef"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -189,24 +198,17 @@ Protected Attributes</h2></td></tr>
 <tr class="memitem:ae90892c0b382040d748e16a10990ec49"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespacePonca.html#abfd697aebf07c1b5c8be5ee401e2dc84">FIT_RESULT</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1PrimitiveBase.html#ae90892c0b382040d748e16a10990ec49">m_eCurrentState</a> {<a class="el" href="namespacePonca.html#abfd697aebf07c1b5c8be5ee401e2dc84a08d57dd200082f67128b5274049dda41">UNDEFINED</a>}</td></tr>
 <tr class="memdesc:ae90892c0b382040d748e16a10990ec49"><td class="mdescLeft">&#160;</td><td class="mdescRight">Represent the current state of the fit (finalize function update the state)  <br /></td></tr>
 <tr class="separator:ae90892c0b382040d748e16a10990ec49"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:affee95252016666ddd5d0d1b01dbe25a"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1PrimitiveBase.html#affee95252016666ddd5d0d1b01dbe25a">m_nbNeighbors</a> {0}</td></tr>
-<tr class="memdesc:affee95252016666ddd5d0d1b01dbe25a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Give the number of neighbors.  <br /></td></tr>
-<tr class="separator:affee95252016666ddd5d0d1b01dbe25a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a17f013e561a9cab069212f9d89d33959"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classPonca_1_1PrimitiveBase.html#a6ede1c5f7b3171b9f3e827d2634abe74">WFunctor</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1PrimitiveBase.html#a17f013e561a9cab069212f9d89d33959">m_w</a></td></tr>
 <tr class="memdesc:a17f013e561a9cab069212f9d89d33959"><td class="mdescLeft">&#160;</td><td class="mdescRight">Weight function (must inherits BaseWeightFunc)  <br /></td></tr>
 <tr class="separator:a17f013e561a9cab069212f9d89d33959"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa29b229e99121de995f1739604ff4846"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classPonca_1_1PrimitiveBase.html#a77761998e98215527441b0307c9917c4">Scalar</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1PrimitiveBase.html#aa29b229e99121de995f1739604ff4846">m_sumW</a> {0}</td></tr>
-<tr class="memdesc:aa29b229e99121de995f1739604ff4846"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sum of the neighbors weights.  <br /></td></tr>
-<tr class="separator:aa29b229e99121de995f1739604ff4846"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><div class="compoundTemplParams">template&lt;class DataPoint, class _WFunctor, typename T = void&gt;<br />
 class Ponca::PrimitiveBase&lt; DataPoint, _WFunctor, T &gt;</div><p>Primitive base class. </p>
 <p>This class stores and provides public access to the fitting state, and must be inherited by classes implementing new primitives.</p>
-<p>Protected fields <a class="el" href="classPonca_1_1PrimitiveBase.html#ae90892c0b382040d748e16a10990ec49" title="Represent the current state of the fit (finalize function update the state)">m_eCurrentState</a> and <a class="el" href="classPonca_1_1PrimitiveBase.html#affee95252016666ddd5d0d1b01dbe25a" title="Give the number of neighbors.">m_nbNeighbors</a> should be updated during the fitting process by the inheriting class.</p>
 <dl class="section note"><dt>Note</dt><dd>This class should not be inherited explicitly: this is done by the #Basket class. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="primitive_8h_source.html#l00031">31</a> of file <a class="el" href="primitive_8h_source.html">primitive.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="primitive_8h_source.html#l00028">28</a> of file <a class="el" href="primitive_8h_source.html">primitive.h</a>.</p>
 </div><h2 class="groupheader">Member Typedef Documentation</h2>
 <a id="a77761998e98215527441b0307c9917c4" name="a77761998e98215527441b0307c9917c4"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a77761998e98215527441b0307c9917c4">&#9670;&#160;</a></span>Scalar</h2>
@@ -224,7 +226,7 @@ template&lt;class DataPoint , class _WFunctor , typename T  = void&gt; </div>
 
 <p>Inherited scalar type. </p>
 
-<p class="definition">Definition at line <a class="el" href="primitive_8h_source.html#l00039">39</a> of file <a class="el" href="primitive_8h_source.html">primitive.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="primitive_8h_source.html#l00036">36</a> of file <a class="el" href="primitive_8h_source.html">primitive.h</a>.</p>
 
 </div>
 </div>
@@ -244,7 +246,7 @@ template&lt;class DataPoint , class _WFunctor , typename T  = void&gt; </div>
 
 <p>Inherited vector type. </p>
 
-<p class="definition">Definition at line <a class="el" href="primitive_8h_source.html#l00040">40</a> of file <a class="el" href="primitive_8h_source.html">primitive.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="primitive_8h_source.html#l00037">37</a> of file <a class="el" href="primitive_8h_source.html">primitive.h</a>.</p>
 
 </div>
 </div>
@@ -264,7 +266,7 @@ template&lt;class DataPoint , class _WFunctor , typename T  = void&gt; </div>
 
 <p>Weight Function. </p>
 
-<p class="definition">Definition at line <a class="el" href="primitive_8h_source.html#l00041">41</a> of file <a class="el" href="primitive_8h_source.html">primitive.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="primitive_8h_source.html#l00038">38</a> of file <a class="el" href="primitive_8h_source.html">primitive.h</a>.</p>
 
 </div>
 </div>
@@ -295,13 +297,13 @@ template&lt;class DataPoint , class _WFunctor , typename T  = void&gt; </div>
 </td></tr>
 </table>
 
-<p class="definition">Definition at line <a class="el" href="primitive_8h_source.html#l00034">34</a> of file <a class="el" href="primitive_8h_source.html">primitive.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="primitive_8h_source.html#l00031">31</a> of file <a class="el" href="primitive_8h_source.html">primitive.h</a>.</p>
 
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a id="aea8e5b48d7ed6a92a86571e202550158" name="aea8e5b48d7ed6a92a86571e202550158"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aea8e5b48d7ed6a92a86571e202550158">&#9670;&#160;</a></span>addLocalNeighbor()</h2>
+<a id="a7cf227cdf5bd9970402953286659c0ad" name="a7cf227cdf5bd9970402953286659c0ad"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7cf227cdf5bd9970402953286659c0ad">&#9670;&#160;</a></span>addLocalNeighbor()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -315,7 +317,7 @@ template&lt;class DataPoint , class _WFunctor , typename T  = void&gt; </div>
           <td class="memname">bool <a class="el" href="classPonca_1_1PrimitiveBase.html">Ponca::PrimitiveBase</a>&lt; DataPoint, _WFunctor, T &gt;::addLocalNeighbor </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="classPonca_1_1PrimitiveBase.html#a77761998e98215527441b0307c9917c4">Scalar</a>&#160;</td>
-          <td class="paramname">, </td>
+          <td class="paramname"><em>w</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -345,7 +347,7 @@ template&lt;class DataPoint , class _WFunctor , typename T  = void&gt; </div>
 <p>Add a neighbor to perform the fit. </p>
 <dl class="section return"><dt>Returns</dt><dd>false if param nei is not a valid neighbour (weight = 0) </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="primitive_8h_source.html#l00096">96</a> of file <a class="el" href="primitive_8h_source.html">primitive.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="primitive_8h_source.html#l00107">107</a> of file <a class="el" href="primitive_8h_source.html">primitive.h</a>.</p>
 
 </div>
 </div>
@@ -378,7 +380,7 @@ template&lt;class DataPoint , class _WFunctor , typename T  = void&gt; </div>
 <dl class="section return"><dt>Returns</dt><dd>Fitting Status </dd></dl>
 <dl class="section warning"><dt>Warning</dt><dd>Must be called be for any use of the fitting output </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="primitive_8h_source.html#l00101">101</a> of file <a class="el" href="primitive_8h_source.html">primitive.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="primitive_8h_source.html#l00114">114</a> of file <a class="el" href="primitive_8h_source.html">primitive.h</a>.</p>
 
 </div>
 </div>
@@ -408,7 +410,7 @@ template&lt;class DataPoint , class _WFunctor , typename T  = void&gt; </div>
 </div><div class="memdoc">
 <dl class="section return"><dt>Returns</dt><dd>the current test of the fit </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="primitive_8h_source.html#l00090">90</a> of file <a class="el" href="primitive_8h_source.html">primitive.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="primitive_8h_source.html#l00101">101</a> of file <a class="el" href="primitive_8h_source.html">primitive.h</a>.</p>
 
 </div>
 </div>
@@ -440,7 +442,38 @@ template&lt;class DataPoint , class _WFunctor , typename T  = void&gt; </div>
 <p>Get number of points added in the neighborhood (with non negative weight) <br  />
  </p>
 
-<p class="definition">Definition at line <a class="el" href="primitive_8h_source.html#l00087">87</a> of file <a class="el" href="primitive_8h_source.html">primitive.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="primitive_8h_source.html#l00089">89</a> of file <a class="el" href="primitive_8h_source.html">primitive.h</a>.</p>
+
+</div>
+</div>
+<a id="a25f5d80766e9c103a8f9708e6e11ba58" name="a25f5d80766e9c103a8f9708e6e11ba58"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a25f5d80766e9c103a8f9708e6e11ba58">&#9670;&#160;</a></span>getWeightSum()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class DataPoint , class _WFunctor , typename T  = void&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classPonca_1_1PrimitiveBase.html#a77761998e98215527441b0307c9917c4">Scalar</a> <a class="el" href="classPonca_1_1PrimitiveBase.html">Ponca::PrimitiveBase</a>&lt; DataPoint, _WFunctor, T &gt;::getWeightSum </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Get the sum of the weights. </p>
+
+<p class="definition">Definition at line <a class="el" href="primitive_8h_source.html#l00092">92</a> of file <a class="el" href="primitive_8h_source.html">primitive.h</a>.</p>
 
 </div>
 </div>
@@ -471,7 +504,7 @@ template&lt;class DataPoint , class _WFunctor , typename T  = void&gt; </div>
 </div><div class="memdoc">
 
 <p>Set the evaluation position and reset the internal states. </p>
-<dl class="section warning"><dt>Warning</dt><dd>Must be called be for any computation </dd></dl>
+<dl class="section warning"><dt>Warning</dt><dd>Must be called be for any computation (but after <a class="el" href="classPonca_1_1PrimitiveBase.html#a4a323e4cd8d65e0808f85ac38f96fdb4" title="Init the WeightFunc, without changing the other internal states.">setWeightFunc</a>) </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="primitive_8h_source.html#l00066">66</a> of file <a class="el" href="primitive_8h_source.html">primitive.h</a>.</p>
 
@@ -505,7 +538,7 @@ template&lt;class DataPoint , class _WFunctor , typename T  = void&gt; </div>
 <p>Is the primitive well fitted an ready to use (finalize has been called) </p>
 <dl class="section warning"><dt>Warning</dt><dd>The fit can be unstable (having neighbors between 3 and 6) </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="primitive_8h_source.html#l00077">77</a> of file <a class="el" href="primitive_8h_source.html">primitive.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="primitive_8h_source.html#l00076">76</a> of file <a class="el" href="primitive_8h_source.html">primitive.h</a>.</p>
 
 </div>
 </div>
@@ -534,10 +567,41 @@ template&lt;class DataPoint , class _WFunctor , typename T  = void&gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p>Is the plane fitted an ready to use (finalize has been called and the result is stable, eq. </p>
-<p>having more than 6 neighbors) </p>
+<p>Is the fitted primitive ready to use (finalize has been called and the result is stable) </p>
 
-<p class="definition">Definition at line <a class="el" href="primitive_8h_source.html#l00084">84</a> of file <a class="el" href="primitive_8h_source.html">primitive.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="primitive_8h_source.html#l00082">82</a> of file <a class="el" href="primitive_8h_source.html">primitive.h</a>.</p>
+
+</div>
+</div>
+<a id="ac70b0df49cb26246d394486fa5bd3a34" name="ac70b0df49cb26246d394486fa5bd3a34"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac70b0df49cb26246d394486fa5bd3a34">&#9670;&#160;</a></span>needAnotherPass()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class DataPoint , class _WFunctor , typename T  = void&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool <a class="el" href="classPonca_1_1PrimitiveBase.html">Ponca::PrimitiveBase</a>&lt; DataPoint, _WFunctor, T &gt;::needAnotherPass </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Is another pass required for fitting (finalize has been called and the result is <a class="el" href="namespacePonca.html#abfd697aebf07c1b5c8be5ee401e2dc84a0d50cd1855fec459b2c5756ec38d4a17" title="The fitting procedure needs to analyse the neighborhood another time.">NEED_OTHER_PASS</a>) </p>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="classPonca_1_1PrimitiveBase.html#a1a81ae5c5555d8bd7d2367d9bad04340" title="To be called when starting a new processing pass, ie.">startNewPass</a> </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="primitive_8h_source.html#l00086">86</a> of file <a class="el" href="primitive_8h_source.html">primitive.h</a>.</p>
 
 </div>
 </div>
@@ -568,9 +632,41 @@ template&lt;class DataPoint , class _WFunctor , typename T  = void&gt; </div>
 </div><div class="memdoc">
 
 <p>Init the WeightFunc, without changing the other internal states. </p>
-<dl class="section warning"><dt>Warning</dt><dd>Must be called be for any computation </dd></dl>
+<p>Calls <a class="el" href="classPonca_1_1PrimitiveBase.html#a1a81ae5c5555d8bd7d2367d9bad04340" title="To be called when starting a new processing pass, ie.">startNewPass</a> internally. </p><dl class="section warning"><dt>Warning</dt><dd>Must be called be for any computation (and before <a class="el" href="classPonca_1_1PrimitiveBase.html#af20277c1bd8e48d55b43bf7e8f970cc3" title="Set the evaluation position and reset the internal states.">init</a>). </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="primitive_8h_source.html#l00063">63</a> of file <a class="el" href="primitive_8h_source.html">primitive.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="primitive_8h_source.html#l00061">61</a> of file <a class="el" href="primitive_8h_source.html">primitive.h</a>.</p>
+
+</div>
+</div>
+<a id="a1a81ae5c5555d8bd7d2367d9bad04340" name="a1a81ae5c5555d8bd7d2367d9bad04340"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1a81ae5c5555d8bd7d2367d9bad04340">&#9670;&#160;</a></span>startNewPass()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class DataPoint , class _WFunctor , typename T  = void&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="classPonca_1_1PrimitiveBase.html">Ponca::PrimitiveBase</a>&lt; DataPoint, _WFunctor, T &gt;::startNewPass </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>To be called when starting a new processing pass, ie. </p>
+<p>when <code><a class="el" href="classPonca_1_1PrimitiveBase.html#a19945873f15545be8791ceb7d5c49c1a">getCurrentState()</a>==#NEED_ANOTHER_PASS</code> </p>
+
+<p class="definition">Definition at line <a class="el" href="primitive_8h_source.html#l00095">95</a> of file <a class="el" href="primitive_8h_source.html">primitive.h</a>.</p>
 
 </div>
 </div>
@@ -599,63 +695,7 @@ template&lt;class DataPoint , class _WFunctor , typename T  = void&gt; </div>
 
 <p>Represent the current state of the fit (finalize function update the state) </p>
 
-<p class="definition">Definition at line <a class="el" href="primitive_8h_source.html#l00047">47</a> of file <a class="el" href="primitive_8h_source.html">primitive.h</a>.</p>
-
-</div>
-</div>
-<a id="affee95252016666ddd5d0d1b01dbe25a" name="affee95252016666ddd5d0d1b01dbe25a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#affee95252016666ddd5d0d1b01dbe25a">&#9670;&#160;</a></span>m_nbNeighbors</h2>
-
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;class DataPoint , class _WFunctor , typename T  = void&gt; </div>
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">int <a class="el" href="classPonca_1_1PrimitiveBase.html">Ponca::PrimitiveBase</a>&lt; DataPoint, _WFunctor, T &gt;::m_nbNeighbors {0}</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Give the number of neighbors. </p>
-
-<p class="definition">Definition at line <a class="el" href="primitive_8h_source.html#l00050">50</a> of file <a class="el" href="primitive_8h_source.html">primitive.h</a>.</p>
-
-</div>
-</div>
-<a id="aa29b229e99121de995f1739604ff4846" name="aa29b229e99121de995f1739604ff4846"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa29b229e99121de995f1739604ff4846">&#9670;&#160;</a></span>m_sumW</h2>
-
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;class DataPoint , class _WFunctor , typename T  = void&gt; </div>
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="classPonca_1_1PrimitiveBase.html#a77761998e98215527441b0307c9917c4">Scalar</a> <a class="el" href="classPonca_1_1PrimitiveBase.html">Ponca::PrimitiveBase</a>&lt; DataPoint, _WFunctor, T &gt;::m_sumW {0}</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Sum of the neighbors weights. </p>
-
-<p class="definition">Definition at line <a class="el" href="primitive_8h_source.html#l00056">56</a> of file <a class="el" href="primitive_8h_source.html">primitive.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="primitive_8h_source.html#l00051">51</a> of file <a class="el" href="primitive_8h_source.html">primitive.h</a>.</p>
 
 </div>
 </div>
@@ -683,7 +723,7 @@ template&lt;class DataPoint , class _WFunctor , typename T  = void&gt; </div>
 
 <p>Weight function (must inherits BaseWeightFunc) </p>
 
-<p class="definition">Definition at line <a class="el" href="primitive_8h_source.html#l00053">53</a> of file <a class="el" href="primitive_8h_source.html">primitive.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="primitive_8h_source.html#l00054">54</a> of file <a class="el" href="primitive_8h_source.html">primitive.h</a>.</p>
 
 </div>
 </div>
@@ -693,7 +733,7 @@ template&lt;class DataPoint , class _WFunctor , typename T  = void&gt; </div>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="namespacePonca.html">Ponca</a></li><li class="navelem"><a class="el" href="classPonca_1_1PrimitiveBase.html">PrimitiveBase</a></li>
-    <li class="footer">Generated on Fri Jun 9 2023 15:34:31 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.6 </li>
+    <li class="footer">Generated on Wed Jun 14 2023 11:57:43 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.6 </li>
   </ul>
 </div>
 </body>

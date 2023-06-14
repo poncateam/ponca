@@ -51,7 +51,7 @@ MathJax.Hub.Config({
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Ponca
-   &#160;<span id="projectnumber">efec0de66f5bd3996eccad5aa4088218eec44dcc</span>
+   &#160;<span id="projectnumber">3f2124f1f4537664e80eca80ab24f920b625da1d</span>
    </div>
    <div id="projectbrief">Point Cloud Analysis library</div>
   </td>
@@ -325,9 +325,12 @@ template&lt;class P , class W , template&lt; class, class, typename &gt; class E
 </div><div class="memdoc">
 
 <p>Add a neighbor to perform the fit. </p>
+<p>When called directly, don't forget to call <a class="el" href="classPonca_1_1PrimitiveBase.html#a1a81ae5c5555d8bd7d2367d9bad04340" title="To be called when starting a new processing pass, ie.">PrimitiveBase::startNewPass</a> when starting multiple passes </p><dl class="section see"><dt>See also</dt><dd><a class="el" href="classPonca_1_1Basket.html#a623c44aa8821f64e09e1768a98149930" title="Convenience function for STL-like iterators">compute</a> Prefer when using a range of Points </dd>
+<dd>
+<a class="el" href="classPonca_1_1Basket.html#aa93476ce9142d80e5a15553fc26b1965" title="Convenience function to iterate over a subset of samples in a PointContainer">computeWithIds</a> Prefer when using a range of ids </dd></dl>
 <dl class="section return"><dt>Returns</dt><dd>false if param nei is not a valid neighbor (weight = 0) </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="basket_8h_source.html#l00224">224</a> of file <a class="el" href="basket_8h_source.html">basket.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="basket_8h_source.html#l00228">228</a> of file <a class="el" href="basket_8h_source.html">basket.h</a>.</p>
 
 </div>
 </div>
@@ -363,7 +366,7 @@ template&lt;typename Container &gt; </div>
    <br  />
  </p>
 <p>Add neighbors stored in a container using STL-like iterators, and call finalize at the end.</p>
-<p>The fit is evaluated multiple time if needed (see NEED_OTHER_PASS)</p>
+<p>The fit is evaluated multiple time if needed (see <a class="el" href="namespacePonca.html#abfd697aebf07c1b5c8be5ee401e2dc84a0d50cd1855fec459b2c5756ec38d4a17" title="The fitting procedure needs to analyse the neighborhood another time.">NEED_OTHER_PASS</a>)</p>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="classPonca_1_1Basket.html#abe967d3aae87dc8f19b6d1ae7597e2a4" title="Add a neighbor to perform the fit.">addNeighbor()</a>   <br  />
  </dd></dl>
 
@@ -412,7 +415,7 @@ template&lt;typename IteratorBegin , typename IteratorEnd &gt; </div>
 <p>Convenience function for STL-like iterators <br  />
  </p>
 <p>Add neighbors stored in a container using STL-like iterators, and call finalize at the end.</p>
-<p>The fit is evaluated multiple time if needed (see NEED_OTHER_PASS)</p>
+<p>The fit is evaluated multiple time if needed (see <a class="el" href="namespacePonca.html#abfd697aebf07c1b5c8be5ee401e2dc84a0d50cd1855fec459b2c5756ec38d4a17" title="The fitting procedure needs to analyse the neighborhood another time.">NEED_OTHER_PASS</a>)</p>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="classPonca_1_1Basket.html#abe967d3aae87dc8f19b6d1ae7597e2a4" title="Add a neighbor to perform the fit.">addNeighbor()</a> </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="basket_8h_source.html#l00220">220</a> of file <a class="el" href="basket_8h_source.html">basket.h</a>.</p>
@@ -480,7 +483,7 @@ template&lt;typename IndexRange , typename PointContainer &gt; </div>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="namespacePonca.html">Ponca</a></li><li class="navelem"><a class="el" href="classPonca_1_1Basket.html">Basket</a></li>
-    <li class="footer">Generated on Fri Jun 9 2023 15:34:30 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.6 </li>
+    <li class="footer">Generated on Wed Jun 14 2023 11:57:43 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.6 </li>
   </ul>
 </div>
 </body>

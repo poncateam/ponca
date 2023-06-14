@@ -13,5 +13,6 @@ var searchData=
   ['spaced2w_10',['spaced2w',['../classPonca_1_1DistWeightFunc.html#a303ff5053abe6961771053c9647688c4',1,'Ponca::DistWeightFunc']]],
   ['spacedw_11',['spacedw',['../classPonca_1_1DistWeightFunc.html#a679c75736d7715aada70bbf2e221fb02',1,'Ponca::DistWeightFunc']]],
   ['spherefit_12',['sphereFit',['../classPonca_1_1SphereFitImpl.html#a66722b8ae547b85191220bc33306d40b',1,'Ponca::SphereFitImpl::sphereFit()'],['../classPonca_1_1SphereFitImpl.html#a84c4dbe77db905d3955e07bb9db66334',1,'Ponca::SphereFitImpl::sphereFit() const']]],
-  ['surfacevariation_13',['surfaceVariation',['../classPonca_1_1CovarianceFitBase.html#adc7fcdb906bb6efbeb8f6fb447cff64f',1,'Ponca::CovarianceFitBase']]]
+  ['startnewpass_13',['startNewPass',['../classPonca_1_1PrimitiveBase.html#a1a81ae5c5555d8bd7d2367d9bad04340',1,'Ponca::PrimitiveBase']]],
+  ['surfacevariation_14',['surfaceVariation',['../classPonca_1_1CovarianceFitBase.html#adc7fcdb906bb6efbeb8f6fb447cff64f',1,'Ponca::CovarianceFitBase']]]
 ];
