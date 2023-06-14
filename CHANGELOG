@@ -17,6 +17,9 @@ improved doc.
     - [fitting] Remove deadcode in Basket (#86)
     - [ci] Fix Compiler is out of heap space error on Github (MSVC), by splitting tests (#87)
 
+- Tests
+    - Fix WeightKernel test (failing on windows due to finite differences) (#91)
+
 -Docs
     - [spatialPartitioning] Update module page with a minimal doc and examples (#86)
     - [spatialPartitioning] Add NanoFlann example (#86)

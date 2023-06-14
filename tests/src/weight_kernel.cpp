@@ -50,21 +50,21 @@ void testFunctionAutoDiff()
 }
 
 template<class Kernel>
-void testFunction()
+void testFunction(typename Kernel::Scalar mmin = 0, typename Kernel::Scalar mmax = 1)
 {
     typedef typename Kernel::Scalar Scalar;
 
     Scalar step = Scalar(0.05);
-    int n = int(Scalar(1)/Scalar(step));
+    int n = int((mmax - mmin)/Scalar(step));
 
     Kernel k;
     Scalar h = Scalar(1e-6);
     Scalar epsilon = Scalar(100)*testEpsilon<Scalar>();
 
     // compare to finite difference approximations
-    for(int i=1; i<=n; ++i)
+    for(int i=1; i<n; ++i)
     {
-        Scalar a = i*step;
+        Scalar a = mmin + i*step;
 
         Scalar f    = k.f(a);
         Scalar fr   = k.f(a+h);
@@ -87,11 +87,11 @@ void testFunction()
 }
 
 template<typename Scalar, template <typename > class KernelT>
-void callSubTests()
+void callSubTests(Scalar mmin = 0, Scalar mmax = 1)
 {
     typedef Eigen::AutoDiffScalar<Eigen::Matrix<Scalar,1,1>> ScalarDiff;
     typedef KernelT<Scalar> Kernel;
-    CALL_SUBTEST(( testFunction<Kernel>() ));
+    CALL_SUBTEST(( testFunction<Kernel>(mmin, mmax) ));
 
     cout << "ok" << endl;
 }
@@ -118,11 +118,13 @@ int main(int argc, char** argv)
 
     cout << "Verify Wendland weight kernel derivatives" << endl;
     callSubTests<long double, WendlandWeightKernel>();
-    callAutoDiffSubTests<long double, SmoothWeightKernel>();
+    callAutoDiffSubTests<long double, WendlandWeightKernel>();
 
     cout << "Verify singular weight kernel derivatives" << endl;
-    callSubTests<long double, SingularWeightKernel>();
-    callAutoDiffSubTests<long double, SmoothWeightKernel>();
+    // do not compute for x<0.4, as the derivatives are too big
+    // (which leads to numerical errors with some compiler (confirmed with MSVC)
+    callSubTests<long double, SingularWeightKernel>(0.4);
+    callAutoDiffSubTests<long double, SingularWeightKernel>();
 
     cout << "Verify Compact Exponential weight kernel derivatives" << endl;
     callSubTests<long double, CompactExpWeightKernel>();
