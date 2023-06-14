@@ -84,24 +84,24 @@ MlsSphereFitDer<DataPoint, _WFunctor, DiffType, T>::finalize()
             sumd2SumPdSumP += m_d2SumP.template block<DerDim,DerDim>(0,i*DerDim)*Base::m_sumP(i);
         }
 
-        Scalar invSumW = Scalar(1.)/Base::m_sumW;
+        Scalar invSumW = Scalar(1.)/Base::getWeightSum();
 
         Matrix d2Nume = m_d2SumDotPN
             - invSumW*invSumW*invSumW*invSumW*(
-                    Base::m_sumW*Base::m_sumW*(  Base::m_sumW*(sumdSumPdSumN+sumdSumPdSumN.transpose()+sumd2SumPdSumN+sumd2SumNdSumP)
+                    Base::getWeightSum()*Base::getWeightSum()*(  Base::getWeightSum()*(sumdSumPdSumN+sumdSumPdSumN.transpose()+sumd2SumPdSumN+sumd2SumNdSumP)
                                                + Base::m_dSumW.transpose()*(Base::m_sumN.transpose()*Base::m_dSumP + Base::m_sumP.transpose()*Base::m_dSumN)
                                                - (Base::m_sumP.transpose()*Base::m_sumN)*m_d2SumW.transpose()
                                                - (Base::m_dSumN.transpose()*Base::m_sumP + Base::m_dSumP.transpose()*Base::m_sumN)*Base::m_dSumW)
-                    - Scalar(2.)*Base::m_sumW*Base::m_dSumW.transpose()*(Base::m_sumW*(Base::m_sumN.transpose()*Base::m_dSumP + Base::m_sumP.transpose()*Base::m_dSumN)
+                    - Scalar(2.)*Base::getWeightSum()*Base::m_dSumW.transpose()*(Base::getWeightSum()*(Base::m_sumN.transpose()*Base::m_dSumP + Base::m_sumP.transpose()*Base::m_dSumN)
                                                                          - (Base::m_sumP.transpose()*Base::m_sumN)*Base::m_dSumW));
 
         Matrix d2Deno = m_d2SumDotPP
             - invSumW*invSumW*invSumW*invSumW*(
-                Base::m_sumW*Base::m_sumW*(  Scalar(2.)*Base::m_sumW*(sumdSumPdSumP+sumd2SumPdSumP)
+                Base::getWeightSum()*Base::getWeightSum()*(  Scalar(2.)*Base::getWeightSum()*(sumdSumPdSumP+sumd2SumPdSumP)
                                            + Scalar(2.)*Base::m_dSumW.transpose()*(Base::m_sumP.transpose()*Base::m_dSumP)
                                            - (Base::m_sumP.transpose()*Base::m_sumP)*m_d2SumW.transpose()
                                            - Scalar(2.)*(Base::m_dSumP.transpose()*Base::m_sumP)*Base::m_dSumW)
-                - Scalar(2.)*Base::m_sumW*Base::m_dSumW.transpose()*(Scalar(2.)*Base::m_sumW*Base::m_sumP.transpose()*Base::m_dSumP
+                - Scalar(2.)*Base::getWeightSum()*Base::m_dSumW.transpose()*(Scalar(2.)*Base::getWeightSum()*Base::m_sumP.transpose()*Base::m_dSumP
                                                                      - (Base::m_sumP.transpose()*Base::m_sumP)*Base::m_dSumW));
 
         Scalar deno2 = Base::m_deno*Base::m_deno;

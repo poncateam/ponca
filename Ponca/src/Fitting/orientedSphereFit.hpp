@@ -41,17 +41,17 @@ OrientedSphereFitImpl<DataPoint, _WFunctor, T>::finalize ()
     PONCA_MULTIARCH_STD_MATH(abs);
 
     // Compute status
-    if(Base::finalize() != STABLE  || Base::m_nbNeighbors < 3)
+    if(Base::finalize() != STABLE  || Base::getNumNeighbors() < 3)
         return Base::m_eCurrentState;
     if (Base::algebraicSphere().isValid())
         Base::m_eCurrentState = CONFLICT_ERROR_FOUND;
     else
-        Base::m_eCurrentState = Base::m_nbNeighbors < 6 ? UNSTABLE : STABLE;
+        Base::m_eCurrentState = Base::getNumNeighbors() < 6 ? UNSTABLE : STABLE;
 
     // 1. finalize sphere fitting
     Scalar epsilon = Eigen::NumTraits<Scalar>::dummy_precision();
 
-    Scalar invSumW = Scalar(1.)/Base::m_sumW;
+    Scalar invSumW = Scalar(1.)/Base::getWeightSum();
 
     m_nume = (m_sumDotPN - invSumW * Base::m_sumP.dot(Base::m_sumN));
     Scalar den1 = invSumW * Base::m_sumP.dot(Base::m_sumP);
@@ -126,7 +126,7 @@ OrientedSphereDerImpl<DataPoint, _WFunctor, DiffType, T>::finalize()
     // Test if base finalize end on a viable case (stable / unstable)
     if (this->isReady())
     {
-        Scalar invSumW = Scalar(1.)/Base::m_sumW;
+        Scalar invSumW = Scalar(1.)/Base::getWeightSum();
 
         Scalar nume  = Base::m_sumDotPN - invSumW*Base::m_sumP.dot(Base::m_sumN);
         Scalar deno  = Base::m_sumDotPP - invSumW*Base::m_sumP.dot(Base::m_sumP);
@@ -135,11 +135,11 @@ OrientedSphereDerImpl<DataPoint, _WFunctor, DiffType, T>::finalize()
         // issues for spacial derivatives because, (d sum w_i P_i)/(d x) is supposed to be tangent to the surface whereas
         // "sum w_i N_i" is normal to the surface...
         m_dNume = m_dSumDotPN
-            - invSumW*invSumW * ( Base::m_sumW * ( Base::m_sumN.transpose() * Base::m_dSumP + Base::m_sumP.transpose() * m_dSumN )
+            - invSumW*invSumW * ( Base::getWeightSum() * ( Base::m_sumN.transpose() * Base::m_dSumP + Base::m_sumP.transpose() * m_dSumN )
             - Base::m_dSumW*Base::m_sumP.dot(Base::m_sumN) );
 
         m_dDeno = m_dSumDotPP
-            - invSumW*invSumW*(   Scalar(2.) * Base::m_sumW * Base::m_sumP.transpose() * Base::m_dSumP
+            - invSumW*invSumW*(   Scalar(2.) * Base::getWeightSum() * Base::m_sumP.transpose() * Base::m_dSumP
             - Base::m_dSumW*Base::m_sumP.dot(Base::m_sumP) );
 
         m_dUq =  Scalar(.5) * (deno * m_dNume - m_dDeno * nume)/(deno*deno);

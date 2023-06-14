@@ -90,15 +90,15 @@ UnorientedSphereFitImpl<DataPoint, _WFunctor, T>::finalize ()
     constexpr int Dim = DataPoint::Dim;
 
     // Compute status
-    if(Base::finalize() != STABLE || Base::m_nbNeighbors < 3)
+    if(Base::finalize() != STABLE || Base::getNumNeighbors() < 3)
         return Base::m_eCurrentState;
     if (Base::algebraicSphere().isValid())
         Base::m_eCurrentState = CONFLICT_ERROR_FOUND;
     else
-        Base::m_eCurrentState = Base::m_nbNeighbors < 6 ? UNSTABLE : STABLE;
+        Base::m_eCurrentState = Base::getNumNeighbors() < 6 ? UNSTABLE : STABLE;
 
     // 1. finalize sphere fitting
-    Scalar invSumW = Scalar(1.) / Base::m_sumW;
+    Scalar invSumW = Scalar(1.) / Base::getWeightSum();
 
 
     MatrixBB Q;
@@ -200,16 +200,16 @@ OrientedSphereDer<DataPoint, _WFunctor, T, Type>::finalize()
     if (this->isReady())
     {
 
-        Scalar invSumW = Scalar(1.)/Base::m_sumW;
+        Scalar invSumW = Scalar(1.)/Base::getWeightSum();
 
         Scalar nume  = Base::m_sumDotPN - invSumW*Base::m_sumP.dot(Base::m_sumN);
         Scalar deno  = Base::m_sumDotPP - invSumW*Base::m_sumP.dot(Base::m_sumP);
 
-        ScalarArray dNume = m_dSumDotPN - invSumW*invSumW * ( Base::m_sumW * (
+        ScalarArray dNume = m_dSumDotPN - invSumW*invSumW * ( Base::getWeightSum() * (
                                                             Base::m_sumN.transpose() * m_dSumP +
                                                             Base::m_sumP.transpose() * m_dSumN )
                                                             - m_dSumW*Base::m_sumP.dot(Base::m_sumN) );
-        ScalarArray dDeno = m_dSumDotPP - invSumW*invSumW*( Scalar(2.)*Base::m_sumW * Base::m_sumP.transpose()*m_dSumP
+        ScalarArray dDeno = m_dSumDotPP - invSumW*invSumW*( Scalar(2.)*Base::getWeightSum() * Base::m_sumP.transpose()*m_dSumP
                                                             - m_dSumW*Base::m_sumP.dot(Base::m_sumP) );
 
         m_dUq =  Scalar(.5) * (deno * dNume - dDeno * nume)/(deno*deno);

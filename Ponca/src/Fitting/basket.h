@@ -41,13 +41,14 @@ namespace internal
 #define WRITE_BASKET_FUNCTIONS                                                                        \
     /*! \brief Convenience function for STL-like iterators               */                           \
     /*! Add neighbors stored in a container using STL-like iterators, and call finalize at the end.*/ \
-    /*! The fit is evaluated multiple time if needed (see NEED_OTHER_PASS)*/                          \
+    /*! The fit is evaluated multiple time if needed (see #NEED_OTHER_PASS)*/                         \
     /*! \see addNeighbor() */                                                                         \
     template <typename IteratorBegin, typename IteratorEnd>                                           \
     PONCA_MULTIARCH inline                                                                            \
     FIT_RESULT compute(const IteratorBegin& begin, const IteratorEnd& end){                           \
         FIT_RESULT res = UNDEFINED;                                                                   \
         do {                                                                                          \
+            Self::startNewPass();                                                                     \
             for (auto it = begin; it != end; ++it){                                                   \
                 Self::addNeighbor(*it);                                                               \
             }                                                                                         \
@@ -65,6 +66,7 @@ namespace internal
     FIT_RESULT computeWithIds(IndexRange ids, const PointContainer& points){                          \
         FIT_RESULT res = UNDEFINED;                                                                   \
         do {                                                                                          \
+            Self::startNewPass();                                                                     \
             for (const auto& i : ids){                                                                \
                 this->addNeighbor(points[i]);                                                         \
             }                                                                                         \
@@ -145,7 +147,7 @@ namespace internal
 
     WRITE_BASKET_FUNCTIONS
 
-    /// Hide Basket::addNeighbor
+    /// \copydoc Basket::addNeighbor
     PONCA_MULTIARCH inline bool addNeighbor(const DataPoint &_nei) {
         // compute weight
         auto wres = Base::m_w.w(_nei.pos(), _nei);
@@ -153,8 +155,6 @@ namespace internal
 
         if (wres.first > Scalar(0.)) {
             Base::addLocalNeighbor(wres.first, wres.second, _nei, dw);
-            Base::m_sumW += (wres.first);
-            ++(Base::m_nbNeighbors);
             return true;
         }
         return false;
@@ -220,6 +220,10 @@ namespace internal
         WRITE_BASKET_FUNCTIONS;
 
         /// \brief Add a neighbor to perform the fit
+        ///
+        /// When called directly, don't forget to call PrimitiveBase::startNewPass when starting multiple passes
+        /// \see compute Prefer when using a range of Points
+        /// \see computeWithIds Prefer when using a range of ids
         /// \return false if param nei is not a valid neighbor (weight = 0)
         PONCA_MULTIARCH inline bool addNeighbor(const DataPoint &_nei) {
             // compute weight
@@ -227,8 +231,6 @@ namespace internal
 
             if (wres.first > Scalar(0.)) {
                 Base::addLocalNeighbor(wres.first, wres.second, _nei);
-                Base::m_sumW += (wres.first);
-                ++(Base::m_nbNeighbors);
                 return true;
             }
             return false;

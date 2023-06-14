@@ -38,7 +38,7 @@ namespace Ponca {
         /// Defined as \f$ b(\mathbf{x}) = \frac{\sum_i w_\mathbf{x}(\mathbf{p_i}) \mathbf{p_i}}{\sum_i w_\mathbf{x}(\mathbf{p_i})} \f$,
         ///  where \f$\left[\mathbf{p_i} \in \text{neighborhood}(\mathbf{x})\right]\f$ are all the point samples in \f$\mathbf{x}\f$'s neighborhood
         PONCA_MULTIARCH inline VectorType barycenter() const {
-            return (m_sumP / Base::m_sumW);
+            return (m_sumP / Base::getWeightSum());
         }
 
     }; //class MeanPosition
@@ -117,7 +117,7 @@ namespace Ponca {
         /// \note This code is not directly tested, but rather indirectly by testing CovariancePlaneDer::dNormal()
         PONCA_MULTIARCH VectorArray barycenterDerivatives() const
         {
-            return ( m_dSumP - Base::barycenter() * Base::m_dSumW ) / Base::m_sumW;
+            return ( m_dSumP - Base::barycenter() * Base::m_dSumW ) / Base::getWeightSum();
         }
 
     }; //class MeanPositionDer

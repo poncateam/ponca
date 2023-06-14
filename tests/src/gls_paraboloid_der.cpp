@@ -149,7 +149,7 @@ void testFunction(bool isSigned = true)
         // Take into account centered basis:
 //         if(k>0) uc        += -f.m_ul(k-1) * h + f.m_uq * h * h;
 //         if(k>0) ul[k-1]   -= 2. * f.m_uq * h;
-//         if(k>0) sumP[k-1] += f.m_sumW * h;
+//         if(k>0) sumP[k-1] += f.getWeightSum() * h;
 
 //         dSumP.col(k)  = ( f.m_cog      - ref_fit.m_cog ) / h;
 //         dSumP.col(k)  = ( sumP      - ref_fit.m_sumP  ) / h;

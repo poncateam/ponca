@@ -41,12 +41,12 @@ FIT_RESULT
 SphereFitImpl<DataPoint, _WFunctor, T>::finalize ()
 {
     // Compute status
-    if(Base::finalize() != STABLE || Base::m_nbNeighbors < 3)
+    if(Base::finalize() != STABLE || Base::getNumNeighbors() < 3)
         return Base::m_eCurrentState = UNDEFINED;
     if (Base::algebraicSphere().isValid())
         Base::m_eCurrentState = CONFLICT_ERROR_FOUND;
     else
-        Base::m_eCurrentState = Base::m_nbNeighbors < 6 ? UNSTABLE : STABLE;
+        Base::m_eCurrentState = Base::getNumNeighbors() < 6 ? UNSTABLE : STABLE;
 
     MatrixA matC;
     matC.setIdentity();
