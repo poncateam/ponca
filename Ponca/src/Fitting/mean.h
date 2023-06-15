@@ -87,7 +87,7 @@ namespace Ponca {
             PROVIDES_MEAN_POSITION_DERIVATIVE,    /*!< \brief Provides derivative of the mean position*/
         };
 
-        /*! \brief Derivatives of the of the input points vectors */
+        /*! \brief Derivatives of the input points vectors */
         VectorArray m_dSumP {VectorArray::Zero()};
 
     public:
