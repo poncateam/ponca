@@ -148,19 +148,19 @@ NormalCovarianceCurvatureEstimator<DataPoint, _WFunctor, DiffType, T>::finalize 
 
         m_solver.computeDirect(m_cov);
 
-        Scalar k1 = m_solver.eigenvalues()(1);
-        Scalar k2 = m_solver.eigenvalues()(2);
+        Scalar kmin = m_solver.eigenvalues()(1);
+        Scalar kmax = m_solver.eigenvalues()(2);
 
-        VectorType v1 = m_solver.eigenvectors().col(1);
-        VectorType v2 = m_solver.eigenvectors().col(2);
+        VectorType vmin = m_solver.eigenvectors().col(1);
+        VectorType vmax = m_solver.eigenvectors().col(2);
 
         // fallback
         // TODO(thib) which epsilon value should be chosen ?
         Scalar epsilon = Scalar(1e-3);
-        if(k1<epsilon && k2<epsilon)
+        if(kmin<epsilon && kmax<epsilon)
         {
-            k1 = Scalar(0);
-            k2 = Scalar(0);
+            kmin = Scalar(0);
+            kmax = Scalar(0);
 
             // set principal directions from normals center of gravity
             VectorType n = m_cog.normalized();
@@ -168,15 +168,15 @@ NormalCovarianceCurvatureEstimator<DataPoint, _WFunctor, DiffType, T>::finalize 
             n.rowwise().squaredNorm().minCoeff(&i0);
             i1 = (i0+1)%3;
             i2 = (i0+2)%3;
-            v1[i0] = 0;
-            v1[i1] = n[i2];
-            v1[i2] = -n[i1];
-            v2[i0] = n[i1]*n[i1] + n[i2]*n[i2];
-            v2[i1] = -n[i1]*n[i0];
-            v2[i2] = -n[i2]*n[i0];
+            vmin[i0] = 0;
+            vmin[i1] = n[i2];
+            vmin[i2] = -n[i1];
+            vmax[i0] = n[i1]*n[i1] + n[i2]*n[i2];
+            vmax[i1] = -n[i1]*n[i0];
+            vmax[i2] = -n[i2]*n[i0];
         }
 
-        Base::setCurvatureValues(k1, k2, v1, v2);
+        Base::setCurvatureValues(kmin, kmax, vmin, vmax);
     }
     return res;
 }
@@ -259,8 +259,8 @@ ProjectedNormalCovarianceCurvatureEstimator<DataPoint, _WFunctor, DiffType, T>::
 
         m_solver.computeDirect(m_cov);
 
-        Base::m_k1 = m_solver.eigenvalues()(0);
-        Base::m_k2 = m_solver.eigenvalues()(1);
+        Base::m_kmin = m_solver.eigenvalues()(0);
+        Base::m_kmax = m_solver.eigenvalues()(1);
 
         // transform from local plane coordinates to world coordinates
         Base::m_v1 = m_tframe * m_solver.eigenvectors().col(0);
@@ -269,10 +269,10 @@ ProjectedNormalCovarianceCurvatureEstimator<DataPoint, _WFunctor, DiffType, T>::
         //TODO(thib) which epsilon value should be chosen ?
 //        Scalar epsilon = Eigen::NumTraits<Scalar>::dummy_precision();
         Scalar epsilon = Scalar(1e-3);
-        if(Base::m_k1<epsilon && Base::m_k2<epsilon)
+        if(Base::m_kmin<epsilon && Base::m_kmax<epsilon)
         {
-            Base::m_k1 = Scalar(0);
-            Base::m_k2 = Scalar(0);
+            Base::m_kmin = Scalar(0);
+            Base::m_kmax = Scalar(0);
 
             // set principal directions from fitted plane
             Base::m_v2 = m_tframe.col(0);

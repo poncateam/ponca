@@ -252,7 +252,7 @@ namespace Ponca
   \note There is currently no formal description of the API provided by each capability. This will be fixed in upcoming releases.
   These relations are currently implicitly defined (and used), but not documented.
   For instance, a tool with the capability `PROVIDES_PRINCIPAL_CURVATURES` provides the following methods:
-  `k1()`, `k2()`, `k1Direction()`, `k2Direction()`, `kMean()`, `GaussianCurvature()`, see CurvatureEstimatorBase.
+  `kmin()`, `kmax()`, `kminDirection()`, `kmaxDirection()`, `kMean()`, `GaussianCurvature()`, see CurvatureEstimatorBase.
 
   In order to ease tools combinations, each class declare a set of *required* and *provided* capabilities, as listed in the two following table:
 

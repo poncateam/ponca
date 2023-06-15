@@ -51,9 +51,9 @@ subTestSpatial<true, 3>::eval(const Fit& _fit,
                            Scalar /*_fitRadiusKappa*/,
                            Scalar /*_fitRadiusAlgebraic*/){
 
-    Scalar k1      = _fit.k1();
-    Scalar k2      = _fit.k2();
-    Scalar kmean   = (k1 + k2) / Scalar (2.);
+    Scalar kmin      = _fit.kmin();
+    Scalar kmax      = _fit.kmax();
+    Scalar kmean   = (kmin + kmax) / Scalar (2.);
     Scalar radius  = Scalar(1.) / kmean;
 
     //Test value

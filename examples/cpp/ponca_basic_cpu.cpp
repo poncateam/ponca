@@ -152,10 +152,10 @@ int main()
   if(fit3.isStable())
   {
     cout << "eigen values: "<< endl;
-    cout << fit3.k1() << endl;
-    cout << fit3.k2() << endl;
+    cout << fit3.kmin() << endl;
+    cout << fit3.kmax() << endl;
     cout << "eigen vectors: "<< endl;
-    cout << fit3.k1Direction() << endl << endl;
-    cout << fit3.k2Direction() << endl;
+    cout << fit3.kminDirection() << endl << endl;
+    cout << fit3.kmaxDirection() << endl;
   }
 }
