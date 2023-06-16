@@ -23,7 +23,7 @@ CovarianceFitBase<DataPoint, _WFunctor, T>::addLocalNeighbor(Scalar w,
                                                               const DataPoint &attributes)
 {
     if( Base::addLocalNeighbor(w, localQ, attributes) ) {
-        m_cov  += localQ * localQ.transpose();
+        m_cov  += w * localQ * localQ.transpose();
         return true;
     }
     return false;
