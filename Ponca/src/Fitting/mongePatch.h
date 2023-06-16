@@ -29,7 +29,7 @@ class MongePatch : public T
 PONCA_FITTING_DECLARE_DEFAULT_TYPES
 
 protected:
-    enum { Check = Base::PROVIDES_PLANE_FRAME };
+    enum { Check = Base::PROVIDES_LOCAL_FRAME };
 
 public:
     using SampleMatrix = Eigen::Matrix<Scalar,Eigen::Dynamic,Eigen::Dynamic>;
@@ -86,7 +86,7 @@ template < class DataPoint, class _WFunctor, typename T>
                             Ponca::CovariancePlaneFitImpl<DataPoint, _WFunctor,
                                 Ponca::CovarianceFitBase<DataPoint, _WFunctor,
                                         Ponca::MeanPosition<DataPoint, _WFunctor,
-                                            Ponca::PlaneFrame<DataPoint, _WFunctor,
+                                            Ponca::LocalFrame<DataPoint, _WFunctor,
                                                 Ponca::Plane<DataPoint, _WFunctor,T>>>>>>;
 //! [MongePatchFit Definition]
 

@@ -158,11 +158,11 @@ void callSubTests()
 
     // test if conflicts are detected
     //! [Conflicting type]
-    typedef Basket<Point, NoWeightFuncGlobal, Plane, PlaneFrame,
+    typedef Basket<Point, NoWeightFuncGlobal, Plane, LocalFrame,
             MeanNormal, MeanPosition, MeanPlaneFitImpl,
             CovarianceFitBase, CovariancePlaneFitImpl> Hybrid1; //test conflict detection in one direction
     //! [Conflicting type]
-    typedef Basket<Point, NoWeightFuncGlobal, Plane, PlaneFrame,
+    typedef Basket<Point, NoWeightFuncGlobal, Plane, LocalFrame,
             MeanPosition, CovarianceFitBase, CovariancePlaneFitImpl,
             MeanNormal, MeanPlaneFitImpl> Hybrid2;  //test conflict detection in the second direction
 

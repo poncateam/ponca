@@ -10,7 +10,7 @@
 
 #include "./plane.h"
 #include "./mean.h"
-#include "./planeFrame.h"
+#include "./localFrame.h"
 
 namespace Ponca
 {
@@ -30,7 +30,7 @@ PONCA_FITTING_DECLARE_DEFAULT_TYPES
 PONCA_FITTING_DECLARE_MATRIX_TYPE
 
 protected:
-    enum { Check = Base::PROVIDES_PLANE_FRAME && Base::PROVIDES_PLANE };
+    enum { Check = Base::PROVIDES_LOCAL_FRAME && Base::PROVIDES_PLANE };
 
 
 public:
@@ -69,8 +69,8 @@ public:
     using MeanPlaneFit =
     MeanPlaneFitImpl<DataPoint, _NFilter,
         MeanNormal<DataPoint, _NFilter,
-            MeanNormal<DataPoint, _NFilter,
-                MeanPosition<DataPoint, _NFilter,
+            MeanPosition<DataPoint, _NFilter,
+                LocalFrame<DataPoint, _NFilter,
                     Plane<DataPoint, _NFilter, T>>>>>;
 //! [MeanPlaneFit Definition]
 

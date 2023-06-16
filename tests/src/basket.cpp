@@ -182,7 +182,7 @@ void callSubTests()
     //! [HybridType]
     // Create an hybrid structure fitting a plane and a sphere at the same time
     using Hybrid = Basket<Point, NeighborFilter,
-                          AlgebraicSphere, Plane, PlaneFrame,         // primitives
+                          AlgebraicSphere, Plane, LocalFrame,         // primitives
                           MeanNormal, MeanPosition,                   // shared computation
                           OrientedSphereFitImpl,                      // sphere fitting
                           CovarianceFitBase, CovariancePlaneFitImpl>; // plane fitting
