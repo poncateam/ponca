@@ -8,7 +8,8 @@
 namespace Ponca
 {
 /*!
-    \brief Class extending Plane to provide a local frame
+    \brief Class extending Plane to provide a local Frame
+    It could be used to compute basis conversion from the global frame to the local frame.
 
     This class can be used to do base change from the global frame to the local frame of the plane.
 
@@ -17,7 +18,7 @@ namespace Ponca
     \see localFrameToWorld
 */
 template < class DataPoint, class _WFunctor, typename T >
-class PlaneFrame : public T
+class LocalFrame : public T
 {
     PONCA_FITTING_DECLARE_DEFAULT_TYPES
     PONCA_FITTING_DECLARE_MATRIX_TYPE
@@ -26,7 +27,7 @@ protected:
     enum
     {
         check = Base::PROVIDES_PLANE,  /*!< \brief Requires PrimitiveBase */
-        PROVIDES_PLANE_FRAME           /*!< \brief Provides PlaneFrame */
+        PROVIDES_LOCAL_FRAME           /*!< \brief Provides LocalFrame */
     };
 
 protected:
@@ -35,7 +36,7 @@ protected:
     VectorType m_v;
 
 public:
-    PONCA_EXPLICIT_CAST_OPERATORS(PlaneFrame,planeFrame)
+    PONCA_EXPLICIT_CAST_OPERATORS(LocalFrame,localFrame)
 
     /*! \brief Set the vectors of the local frame to zero 
      *  \param _basisCenter Center of the local frame
@@ -69,8 +70,8 @@ public:
     template <bool ignoreTranslation = false>
     PONCA_MULTIARCH inline VectorType localFrameToWorld(const VectorType &_q) const;
 
-}; //class PlaneFrame
+}; //class LocalFrame
 
-#include "planeFrame.hpp"
+#include "localFrame.hpp"
 
 } // namespace Ponca
