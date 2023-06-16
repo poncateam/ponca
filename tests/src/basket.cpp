@@ -13,6 +13,8 @@
 #include "../common/testing.h"
 #include "../common/testUtils.h"
 
+#include "../split_test_helper.h"
+
 #include <Ponca/src/Fitting/basket.h>
 #include <Ponca/src/Fitting/orientedSphereFit.h>
 #include <Ponca/src/Fitting/covariancePlaneFit.h>
@@ -292,14 +294,14 @@ int main(int argc, char** argv)
     }
 
     cout << "Test Basket functions in 3 dimensions: float" << flush;
-    callSubTests<float, 3>();
+    CALL_SUBTEST_1((callSubTests<float, 3>()));
     cout << " (ok), double" << flush;
-    callSubTests<double, 3>();
+    CALL_SUBTEST_2((callSubTests<double, 3>()));
     cout << " (ok)" << flush;
     // don't know why, but we have problems when using the kdtree with long doubles on windows
 #ifndef WIN32
     cout << ", long double" << flush;
-    callSubTests<long double, 3>();
+    CALL_SUBTEST_3((callSubTests<long double, 3>()));
     cout << " (ok)" << endl;
 #endif
 
