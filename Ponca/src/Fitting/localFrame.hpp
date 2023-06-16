@@ -1,10 +1,10 @@
 template < class DataPoint, class _WFunctor, typename T>
 template <bool ignoreTranslation>
-typename PlaneFrame<DataPoint, _WFunctor, T>::VectorType
-PlaneFrame<DataPoint, _WFunctor, T>::worldToLocalFrame (const VectorType& _q) const
+typename LocalFrame<DataPoint, _WFunctor, T>::VectorType
+LocalFrame<DataPoint, _WFunctor, T>::worldToLocalFrame (const VectorType& _q) const
 {
   MatrixType B;
-  B << Base::plane().normal(), m_u, m_v;
+  B << Base::primitiveGradient(), m_u, m_v;
   if (ignoreTranslation)
     return B.transpose() * _q;
   else {
@@ -15,11 +15,11 @@ PlaneFrame<DataPoint, _WFunctor, T>::worldToLocalFrame (const VectorType& _q) co
 
 template < class DataPoint, class _WFunctor, typename T>
 template <bool ignoreTranslation>
-typename PlaneFrame<DataPoint, _WFunctor, T>::VectorType
-PlaneFrame<DataPoint, _WFunctor, T>::localFrameToWorld (const VectorType& _lq) const
+typename LocalFrame<DataPoint, _WFunctor, T>::VectorType
+LocalFrame<DataPoint, _WFunctor, T>::localFrameToWorld (const VectorType& _lq) const
 {
   MatrixType B;
-  B << Base::plane().normal(), m_u, m_v;
+  B << Base::primitiveGradient(), m_u, m_v;
   if (ignoreTranslation)
     return B * _lq;
   else {
