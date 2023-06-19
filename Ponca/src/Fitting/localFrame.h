@@ -8,12 +8,13 @@
 namespace Ponca
 {
 /*!
-    \brief Class extending Plane to provide a local Frame
-    It could be used to compute basis conversion from the global frame to the local frame.
+    \brief Class provides a local Frame
 
-    This class can be used to do base change from the global frame to the local frame of the plane.
+    This class can be used to do base change from the global frame to a local frame described by its axis m_u and m_v.
+    The local frame is defined by the three vectors m_u, m_v and Base::primitiveGradient().
 
-    \see Plane
+    It could be used to do the translation/rotation of a point.
+
     \see worldToLocalFrame
     \see localFrameToWorld
 */
@@ -23,16 +24,17 @@ class LocalFrame : public T
     PONCA_FITTING_DECLARE_DEFAULT_TYPES
     PONCA_FITTING_DECLARE_MATRIX_TYPE
 
+private:
+
+    // local frame
+    VectorType m_u; 
+    VectorType m_v;
+
 protected:
     enum
     {
         PROVIDES_LOCAL_FRAME           /*!< \brief Provides LocalFrame */
     };
-
-protected:
-    // local frame
-    VectorType m_u; 
-    VectorType m_v;
 
 public:
     PONCA_EXPLICIT_CAST_OPERATORS(LocalFrame,localFrame)
@@ -47,6 +49,27 @@ public:
         m_v = VectorType::Zero();
     }
 
+    /*!
+     * \brief Return the first axis of the local frame
+     */
+    PONCA_MULTIARCH inline VectorType getFrameU() const { return m_u; }
+
+    /*!
+     * \brief Return the second axis of the local frame
+     */
+    PONCA_MULTIARCH inline VectorType getFrameV() const { return m_v; }
+
+    /*!
+     * \brief Set the axis of the local frame
+     * The frame will be defined by the two vectors m_u and m_v and the normal given by Base::primitiveGradient().
+     * At the end, we have the basis B = [Base::primitiveGradient(), _u, _v].
+     * \param _u First axis of the local frame
+     * \param _v Second axis of the local frame
+     */
+    PONCA_MULTIARCH inline void setFrameUV(const VectorType& _u, const VectorType& _v) { 
+        m_u = _u;
+        m_v = _v;
+    }
     /*!
      * \brief Express a point in ambient space relatively to the local frame.
      *
