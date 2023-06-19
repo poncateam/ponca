@@ -7,7 +7,6 @@
 #pragma once
 
 #include "./defines.h"
-#include "../Common/Assert.h"
 
 #include <Eigen/Eigenvalues>
 #include <Eigen/Core>
@@ -77,7 +76,9 @@ namespace Ponca
     protected:
         /// \brief Set curvature values. To be called in finalize() by child classes
         ///
-        /// \warning Require \f$ k_{\min} <= k_{\max} \f$ and \f$ v_{\min} . v_{\max} = 0 \f$
+        /// If the given parameters are such that \f$ k_{\min} > k_{\max} \f$, then this
+        /// method swap the two curvature values and directions and store them such that
+        /// \f$ k_{\min} <= k_{\max} \f$.
         ///
         PONCA_MULTIARCH inline void setCurvatureValues(Scalar kmin, Scalar kmax, const VectorType& vmin, const VectorType& vmax);
     };
