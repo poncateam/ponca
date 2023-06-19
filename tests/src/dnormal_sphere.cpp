@@ -25,7 +25,7 @@ void testFunction(bool _bAddPositionNoise = false, bool _bAddNormalNoise = false
     typedef typename DataPoint::VectorType VectorType;
     typedef typename DataPoint::MatrixType MatrixType;
 
-    //generate sampled plane
+    //generate sampled sphere
     int nbPoints = Eigen::internal::random<int>(100, 1000);
 
     Scalar radius = Eigen::internal::random<Scalar>(1,10);

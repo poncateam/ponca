@@ -135,7 +135,7 @@ public:
 
 }; //class OrientedSphereDerImpl
 
-/// \brief Helper alias for Plane fitting on 3D points using CovariancePlaneFitImpl
+/// \brief Helper alias for Oriented Sphere fitting on 3D points using OrientedSphereDerImpl
     template < class DataPoint, class _WFunctor, int DiffType, typename T>
     using OrientedSphereDer =
         OrientedSphereDerImpl<DataPoint, _WFunctor, DiffType,

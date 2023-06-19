@@ -42,8 +42,12 @@ namespace Ponca
   \note As queries are objets that are independent from the KdTree, they can be created and used in parallel from
   multiple threads.
 
+  \warning Queries from an index (KdTreeKNearestIndexQuery, KdTreeNearestIndexQuery and KdTreeRangeIndexQuery) do not iterate on the queried index.
+
   \subsection spatialpartitioning_kdtree_examples Examples
-  KdTree usage is demonstrated both in tests and examples:
+
+  Several KdTree queries are illustrated in the example \ref example_cxx_neighbor_search.
+  KdTree usage is also demonstrated both in tests and examples:
    - `tests/src/basket.cpp`
    - `tests/src/kdtree_knearest.cpp`
    - `tests/src/kdtree_nearest.cpp`
@@ -54,6 +58,16 @@ namespace Ponca
   Ponca::KdTreeBase is a customizable version of Ponca::KdTree, which can be controlled using `Traits`.
   See KdTreeDefaultTraits for customization API.
 
+  \subsection spatialpartitioning_kdtree_implementation Implementation details
+
+  The kd-tree is a binary search tree that
+  - is balanced (cuts at the median at each node)
+  - cuts along the dimension that extends the most at each node
+  - has a maximal depth (KdTreeDefaultTraits::MAX_DEPTH)
+  - has a minimal number of points per leaf (KdTreeBase::m_min_cell_size)
+  - only stores points in the leafs
+  - uses depth-first search with a static stack for queries
+  - keeps the initial order of points
 
   <center>[\ref user_manual_page "Go back to user manual"]</center>
  */

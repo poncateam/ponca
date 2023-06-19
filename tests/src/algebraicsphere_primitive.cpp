@@ -7,7 +7,7 @@
 
 /*!
     \file test/Grenaille/okabe_primitive.cpp
-    \brief Test validity Plane Primitive
+    \brief Test validity Algebraic Sphere Primitive
  */
 
 #include "../common/testing.h"
