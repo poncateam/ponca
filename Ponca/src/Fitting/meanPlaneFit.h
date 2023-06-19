@@ -36,6 +36,13 @@ protected:
 public:
     PONCA_EXPLICIT_CAST_OPERATORS(MeanPlaneFitImpl,meanPlaneFit)
 
+    /*!
+     * \brief Fitting of the plane using the mean position and mean normal
+     * We use the localFrame class to sorte the frame information.
+     * Given the mean normal, we can compute the frame plane.
+     * m_u and m_v are computed using the cross product, to ensure orthogonality.
+     * \see LocalFrame
+     */
     PONCA_FITTING_APIDOC_FINALIZE
     PONCA_MULTIARCH inline FIT_RESULT finalize()
     {
@@ -53,10 +60,11 @@ public:
             }
             a.normalize();
             // use cross product to generate a orthogonal basis
-            Base::m_u = norm.cross(a);
-            Base::m_u.normalize();
-            Base::m_v = norm.cross(Base::m_u);
-            Base::m_v.normalize();
+            VectorType m_u = norm.cross(a);
+            m_u.normalize();
+            VectorType m_v = norm.cross(m_u);
+            m_v.normalize();
+            Base::setFrameUV (m_u, m_v);
         }
         return Base::m_eCurrentState;
     }

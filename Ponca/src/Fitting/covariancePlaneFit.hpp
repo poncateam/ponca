@@ -18,8 +18,9 @@ CovariancePlaneFitImpl<DataPoint, _NFilter, T>::finalize ()
         if (Base::plane().isValid()) Base::m_eCurrentState = CONFLICT_ERROR_FOUND;
         Base::setPlane(Base::m_solver.eigenvectors().col(0), Base::barycenterLocal());
     }
-    Base::m_u = Base::m_solver.eigenvectors().col(1);
-    Base::m_v = Base::m_solver.eigenvectors().col(2);
+    VectorType m_u = Base::m_solver.eigenvectors().col(1);
+    VectorType m_v = Base::m_solver.eigenvectors().col(2);
+    Base::setFrameUV (m_u, m_v);
     return Base::m_eCurrentState;
 }
 
