@@ -41,6 +41,7 @@ var example_page =
       ] ],
       [ "Python script", "example_python_ssc_page.html#pyssgl_python_sec", null ]
     ] ],
+    [ "Ponca::KdTree neighbor searches", "example_cxx_neighbor_search.html", null ],
     [ "Comparison between Nanoflann and Ponca KdTree APIs", "example_cxx_nanoflann_page.html", [
       [ "Introduction", "example_cxx_nanoflann_page.html#nanoflann_intro_sec", [
         [ "Compilation", "example_cxx_nanoflann_page.html#nanoflann_compilation_sec", null ]

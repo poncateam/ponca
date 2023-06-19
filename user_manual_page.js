@@ -16,7 +16,8 @@ var user_manual_page =
           [ "Queries", "spatialpartitioning.html#spatialpartitioning_kdtree_usage_queries", null ]
         ] ],
         [ "Examples", "spatialpartitioning.html#spatialpartitioning_kdtree_examples", null ],
-        [ "Extending KdTree", "spatialpartitioning.html#spatialpartitioning_kdtree_extending", null ]
+        [ "Extending KdTree", "spatialpartitioning.html#spatialpartitioning_kdtree_extending", null ],
+        [ "Implementation details", "spatialpartitioning.html#spatialpartitioning_kdtree_implementation", null ]
       ] ]
     ] ],
     [ "Common module: User Manual", "common.html", [

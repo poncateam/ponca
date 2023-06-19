@@ -51,7 +51,7 @@ MathJax.Hub.Config({
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Ponca
-   &#160;<span id="projectnumber">c6afa7b812217a4ce3143dc89ef88906a3f741b5</span>
+   &#160;<span id="projectnumber">8b3654134e6842aaef8b94a5a0af9c79bcd98ee0</span>
    </div>
    <div id="projectbrief">Point Cloud Analysis library</div>
   </td>
@@ -126,6 +126,7 @@ $(document).ready(function(){initNavTree('spatialpartitioning.html',''); initRes
 </li>
 <li class="level2"><a href="#spatialpartitioning_kdtree_examples">Examples</a></li>
 <li class="level2"><a href="#spatialpartitioning_kdtree_extending">Extending KdTree</a></li>
+<li class="level2"><a href="#spatialpartitioning_kdtree_implementation">Implementation details</a></li>
 </ul>
 </li>
 </ul>
@@ -176,9 +177,10 @@ Queries</h3>
 <li><a class="el" href="classPonca_1_1KdTreeRangeIndexQuery.html">KdTreeRangeIndexQuery</a> and <a class="el" href="classPonca_1_1KdTreeRangePointQuery.html">KdTreeRangePointQuery</a></li>
 </ul>
 <dl class="section note"><dt>Note</dt><dd>As queries are objets that are independent from the KdTree, they can be created and used in parallel from multiple threads.</dd></dl>
+<dl class="section warning"><dt>Warning</dt><dd>Queries from an index (<a class="el" href="classPonca_1_1KdTreeKNearestIndexQuery.html">KdTreeKNearestIndexQuery</a>, <a class="el" href="classPonca_1_1KdTreeNearestIndexQuery.html">KdTreeNearestIndexQuery</a> and <a class="el" href="classPonca_1_1KdTreeRangeIndexQuery.html">KdTreeRangeIndexQuery</a>) do not iterate on the queried index.</dd></dl>
 <h2><a class="anchor" id="spatialpartitioning_kdtree_examples"></a>
 Examples</h2>
-<p>KdTree usage is demonstrated both in tests and examples:</p><ul>
+<p>Several KdTree queries are illustrated in the example <a class="el" href="example_cxx_neighbor_search.html">Ponca::KdTree neighbor searches</a>. KdTree usage is also demonstrated both in tests and examples:</p><ul>
 <li><code>tests/src/basket.cpp</code></li>
 <li><code>tests/src/kdtree_knearest.cpp</code></li>
 <li><code>tests/src/kdtree_nearest.cpp</code></li>
@@ -188,6 +190,17 @@ Examples</h2>
 <h2><a class="anchor" id="spatialpartitioning_kdtree_extending"></a>
 Extending KdTree</h2>
 <p><a class="el" href="classPonca_1_1KdTreeBase.html" title="Customizable base class for KdTree datastructure.">Ponca::KdTreeBase</a> is a customizable version of <a class="el" href="namespacePonca.html#abdeec7124bd618c93bfd5374d56e7155" title="Public interface for KdTree datastructure.">Ponca::KdTree</a>, which can be controlled using <code>Traits</code>. See <a class="el" href="structPonca_1_1KdTreeDefaultTraits.html" title="The default traits type used by the kd-tree.">KdTreeDefaultTraits</a> for customization API.</p>
+<h2><a class="anchor" id="spatialpartitioning_kdtree_implementation"></a>
+Implementation details</h2>
+<p>The kd-tree is a binary search tree that</p><ul>
+<li>is balanced (cuts at the median at each node)</li>
+<li>cuts along the dimension that extends the most at each node</li>
+<li>has a maximal depth (<a class="el" href="structPonca_1_1KdTreeDefaultTraits.html#ad691afc82edb89d968098084034d3261a18654af852e0d09608dd048edd84128a" title="A compile-time constant specifying the maximum depth of the kd-tree.">KdTreeDefaultTraits::MAX_DEPTH</a>)</li>
+<li>has a minimal number of points per leaf (<a class="el" href="classPonca_1_1KdTreeBase.html#ac738881c29dd526796a08f4b3947711b" title="Minimal number of points per leaf.">KdTreeBase::m_min_cell_size</a>)</li>
+<li>only stores points in the leafs</li>
+<li>uses depth-first search with a static stack for queries</li>
+<li>keeps the initial order of points</li>
+</ul>
 <center>[<a class="el" href="user_manual_page.html">Go back to user manual</a>]</center> </div></div><!-- contents -->
 </div><!-- PageDoc -->
 </div><!-- doc-content -->
@@ -195,7 +208,7 @@ Extending KdTree</h2>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="user_manual_page.html">User Manual</a></li>
-    <li class="footer">Generated on Fri Jun 16 2023 14:03:57 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.6 </li>
+    <li class="footer">Generated on Mon Jun 19 2023 12:22:32 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.6 </li>
   </ul>
 </div>
 </body>

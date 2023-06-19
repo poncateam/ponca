@@ -215,6 +215,7 @@ var NAVTREEINDEX0 =
 "classPonca_1_1KdTreeBase.html#aaa423035de54c90cdcf787de39cbfcc8":[8,0,0,16,13],
 "classPonca_1_1KdTreeBase.html#ab03cf0da552980bd25d27952b9ee3886":[8,0,0,16,8],
 "classPonca_1_1KdTreeBase.html#abda91fbc025f6e2f7d2bb79db05f18b3":[8,0,0,16,10],
+"classPonca_1_1KdTreeBase.html#ac738881c29dd526796a08f4b3947711b":[8,0,0,16,20],
 "classPonca_1_1KdTreeBase.html#ad40e23b73f4deb08c6aa1003218ae57d":[8,0,0,16,1],
 "classPonca_1_1KdTreeBase.html#aed2d70bd45302b752359989adef0bc91":[8,0,0,16,7],
 "classPonca_1_1KdTreeBase.html#afeff799fa0a293195e04735a21852ae0":[8,0,0,16,14],
@@ -248,6 +249,5 @@ var NAVTREEINDEX0 =
 "classPonca_1_1MeanNormal.html#a37f400c71ef088be6043ee89bfe96c26":[8,0,0,35,1],
 "classPonca_1_1MeanNormal.html#a4826374e9574980fdb0f3631abbe9a9a":[8,0,0,35,4],
 "classPonca_1_1MeanNormal.html#a51e0f1aabd11c128149323e45754faa2":[8,0,0,35,3],
-"classPonca_1_1MeanNormal.html#a71f3f4f71ae9d363a34e7c60ea59f728":[8,0,0,35,7],
-"classPonca_1_1MeanNormal.html#a7e5925d88878ba32024d97904bdb6e08":[8,0,0,35,2]
+"classPonca_1_1MeanNormal.html#a71f3f4f71ae9d363a34e7c60ea59f728":[8,0,0,35,7]
 };
