@@ -60,23 +60,23 @@ void testFunction(bool _bAddPositionNoise = false, bool _bAddNormalNoise = false
         if( fit.isStable() )
         {
             // Check if principal curvature values are equal to the inverse radius
-//            VERIFY( Eigen::internal::isMuchSmallerThan(std::abs(fit.k1()-curvature), Scalar(1.), epsilon) );
-//            VERIFY( Eigen::internal::isMuchSmallerThan(std::abs(fit.k2()-curvature), Scalar(1.), epsilon) );
+//            VERIFY( Eigen::internal::isMuchSmallerThan(std::abs(fit.kmin()-curvature), Scalar(1.), epsilon) );
+//            VERIFY( Eigen::internal::isMuchSmallerThan(std::abs(fit.kmax()-curvature), Scalar(1.), epsilon) );
 
             // Check if principal curvature directions are tangent to the sphere
             VectorType normal = (vectorPoints[i].pos()-center).normalized();
 
-            if(!Eigen::internal::isMuchSmallerThan(std::abs(fit.k1Direction().dot(normal)), Scalar(1.), epsilon) ||
-               !Eigen::internal::isMuchSmallerThan(std::abs(fit.k2Direction().dot(normal)), Scalar(1.), epsilon))
+            if(!Eigen::internal::isMuchSmallerThan(std::abs(fit.kminDirection().dot(normal)), Scalar(1.), epsilon) ||
+               !Eigen::internal::isMuchSmallerThan(std::abs(fit.kmaxDirection().dot(normal)), Scalar(1.), epsilon))
             {
-                Scalar dot1 = std::abs(fit.k1Direction().dot(normal));
-                Scalar dot2 = std::abs(fit.k2Direction().dot(normal));
+                Scalar dot1 = std::abs(fit.kminDirection().dot(normal));
+                Scalar dot2 = std::abs(fit.kmaxDirection().dot(normal));
                 cout << "dot1 = " << dot1 << endl;
                 cout << "dot2 = " << dot2 << endl;
             }
 
-            VERIFY( Eigen::internal::isMuchSmallerThan(std::abs(fit.k1Direction().dot(normal)), Scalar(1.), epsilon) );
-            VERIFY( Eigen::internal::isMuchSmallerThan(std::abs(fit.k2Direction().dot(normal)), Scalar(1.), epsilon) );
+            VERIFY( Eigen::internal::isMuchSmallerThan(std::abs(fit.kminDirection().dot(normal)), Scalar(1.), epsilon) );
+            VERIFY( Eigen::internal::isMuchSmallerThan(std::abs(fit.kmaxDirection().dot(normal)), Scalar(1.), epsilon) );
         }
         else {
             VERIFY(FITTING_FAILED);

@@ -204,8 +204,11 @@ void testFunction(bool isSigned = true)
       VectorType normal = flip_fit * fit.primitiveGradient().template cast<Scalar>();
 //       Scalar kmean = fit.kappa();
 
-      Scalar kappa1 = flip_fit * fit.k1();
-      Scalar kappa2 = flip_fit * fit.k2();
+      // principal curvatures k1,k2 are used here such that |k1| > |k2| (instead of kmin < kmax)
+      Scalar kmin = fit.kmin();
+      Scalar kmax = fit.kmax();
+      Scalar kappa1 = flip_fit * (std::abs(kmin)<std::abs(kmax) ? kmax : kmin);
+      Scalar kappa2 = flip_fit * (std::abs(kmin)<std::abs(kmax) ? kmin : kmax);
       Scalar kmeanFromK1K2 = (kappa1 + kappa2) * Scalar(.5);
       Scalar gaussian = fit.GaussianCurvature();
 
