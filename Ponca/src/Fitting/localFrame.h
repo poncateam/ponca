@@ -26,7 +26,6 @@ class LocalFrame : public T
 protected:
     enum
     {
-        check = Base::PROVIDES_PLANE,  /*!< \brief Requires PrimitiveBase */
         PROVIDES_LOCAL_FRAME           /*!< \brief Provides LocalFrame */
     };
 
