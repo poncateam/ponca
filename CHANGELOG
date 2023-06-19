@@ -10,6 +10,7 @@ improved doc.
 - API
     - [spatialPartitioning] Add kd-tree traits type (#80)
     - [fitting] Add Primitive::getNumNeighbors (#86)
+    - [fitting] Change naming convention and rational for principal curvatures in CurvatureEstimatorBase (#94)
 
 - Bug-fixes and code improvements
     - [spatialPartitioning] Fix unwanted function hiding with DryFit::setWeightFunc (#86)
