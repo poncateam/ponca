@@ -35,14 +35,14 @@ MlsSphereFitDer<DataPoint, _WFunctor, DiffType, T>::addLocalNeighbor(Scalar w,
         Matrix d2w = Matrix::Zero();
 
         if (Base::isScaleDer())
-            d2w(0,0) = Base::m_w.scaled2w(localQ, attributes);
+            d2w(0,0) = Base::m_w.scaled2w(attributes.pos(), attributes);
 
         if (Base::isSpaceDer())
-            d2w.template bottomRightCorner<Dim,Dim>() = Base::m_w.spaced2w(localQ, attributes);
+            d2w.template bottomRightCorner<Dim,Dim>() = Base::m_w.spaced2w(attributes.pos(), attributes);
 
         if (Base::isScaleDer() && Base::isSpaceDer())
         {
-            d2w.template bottomLeftCorner<Dim,1>() = Base::m_w.scaleSpaced2w(localQ,attributes);
+            d2w.template bottomLeftCorner<Dim,1>() = Base::m_w.scaleSpaced2w(attributes.pos(),attributes);
             d2w.template topRightCorner<1,Dim>() = d2w.template bottomLeftCorner<Dim,1>().transpose();
         }
 
