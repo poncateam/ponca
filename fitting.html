@@ -51,7 +51,7 @@ MathJax.Hub.Config({
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Ponca
-   &#160;<span id="projectnumber">8b3654134e6842aaef8b94a5a0af9c79bcd98ee0</span>
+   &#160;<span id="projectnumber">f947bf3da91592a96927e670bad6fb594eb4bc78</span>
    </div>
    <div id="projectbrief">Point Cloud Analysis library</div>
   </td>
@@ -349,7 +349,7 @@ Computational objets capabilities and requirements</h2>
 <div class="line">                ~~~~~~^</div>
 <div class="ttc" id="anamespacePonca_html"><div class="ttname"><a href="namespacePonca.html">Ponca</a></div><div class="ttdoc">This Source Code Form is subject to the terms of the Mozilla Public License, v.</div><div class="ttdef"><b>Definition:</b> <a href="limitedPriorityQueue_8h_source.html#l00014">limitedPriorityQueue.h:14</a></div></div>
 </div><!-- fragment --><p> The capability <code>PROVIDES_GLS_PARAMETRIZATION</code> tells that <a class="el" href="classPonca_1_1GLSParam.html" title="Growing Least Squares reparemetrization of the OrientedSphereFit.">GLSParam</a> provides the GLS parameterization <a class="el" href="citelist.html#CITEREF_Mellado:2012:GLS">[10]</a>, and other components can access the related information.</p>
-<dl class="section note"><dt>Note</dt><dd>There is currently no formal description of the API provided by each capability. This will be fixed in upcoming releases. These relations are currently implicitly defined (and used), but not documented. For instance, a tool with the capability <code>PROVIDES_PRINCIPAL_CURVATURES</code> provides the following methods: <code>k1()</code>, <code>k2()</code>, <code>k1Direction()</code>, <code>k2Direction()</code>, <code>kMean()</code>, <code>GaussianCurvature()</code>, see <a class="el" href="classPonca_1_1CurvatureEstimatorBase.html" title="Base class for any 3d curvature estimator: holds ,  and associated vectors.">CurvatureEstimatorBase</a>.</dd></dl>
+<dl class="section note"><dt>Note</dt><dd>There is currently no formal description of the API provided by each capability. This will be fixed in upcoming releases. These relations are currently implicitly defined (and used), but not documented. For instance, a tool with the capability <code>PROVIDES_PRINCIPAL_CURVATURES</code> provides the following methods: <code>kmin()</code>, <code>kmax()</code>, <code>kminDirection()</code>, <code>kmaxDirection()</code>, <code>kMean()</code>, <code>GaussianCurvature()</code>, see <a class="el" href="classPonca_1_1CurvatureEstimatorBase.html" title="Base class for any 3d curvature estimator: holds ,  and associated vectors, such that .">CurvatureEstimatorBase</a>.</dd></dl>
 <p>In order to ease tools combinations, each class declare a set of <em>required</em> and <em>provided</em> capabilities, as listed in the two following table:</p>
 <table class="markdownTable">
 <tr class="markdownTableHead">
@@ -401,7 +401,7 @@ Computational objets capabilities and requirements</h2>
 <tr class="markdownTableRowEven">
 <td class="markdownTableBodyNone"><a class="el" href="classPonca_1_1GLSDer.html" title="Differentiation of GLSParam.">GLSDer</a>   </td><td class="markdownTableBodyNone"><code>PROVIDES_GLS_PARAMETRIZATION</code>,<code>PROVIDES_PRIMITIVE_DERIVATIVE</code>,<code>PROVIDES_ALGEBRAIC_SPHERE_DERIVATIVE</code>   </td><td class="markdownTableBodyNone"><code>PROVIDES_GLS_DERIVATIVE</code>,<code>PROVIDES_GLS_GEOM_VAR</code>    </td></tr>
 <tr class="markdownTableRowOdd">
-<td class="markdownTableBodyNone"><a class="el" href="classPonca_1_1CurvatureEstimatorBase.html" title="Base class for any 3d curvature estimator: holds ,  and associated vectors.">CurvatureEstimatorBase</a>   </td><td class="markdownTableBodyNone"></td><td class="markdownTableBodyNone"><code>PROVIDES_PRINCIPAL_CURVATURES</code>    </td></tr>
+<td class="markdownTableBodyNone"><a class="el" href="classPonca_1_1CurvatureEstimatorBase.html" title="Base class for any 3d curvature estimator: holds ,  and associated vectors, such that .">CurvatureEstimatorBase</a>   </td><td class="markdownTableBodyNone"></td><td class="markdownTableBodyNone"><code>PROVIDES_PRINCIPAL_CURVATURES</code>    </td></tr>
 <tr class="markdownTableRowEven">
 <td class="markdownTableBodyNone"><a class="el" href="classPonca_1_1NormalDerivativesCurvatureEstimator.html" title="Extension to compute curvature values from the Weingarten map .">NormalDerivativesCurvatureEstimator</a>   </td><td class="markdownTableBodyNone"><code>PROVIDES_NORMAL_DERIVATIVE</code>,<code>PROVIDES_PRINCIPAL_CURVATURES</code>   </td><td class="markdownTableBodyNone"></td></tr>
 <tr class="markdownTableRowOdd">
@@ -463,7 +463,7 @@ Cuda</h2>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="user_manual_page.html">User Manual</a></li>
-    <li class="footer">Generated on Mon Jun 19 2023 12:22:32 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.6 </li>
+    <li class="footer">Generated on Mon Jun 19 2023 13:34:24 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.6 </li>
   </ul>
 </div>
 </body>

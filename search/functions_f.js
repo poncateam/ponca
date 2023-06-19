@@ -4,7 +4,7 @@ var searchData=
   ['scaledw_1',['scaledw',['../classPonca_1_1DistWeightFunc.html#a182289b2f19a436381af1c94a7bfb0f5',1,'Ponca::DistWeightFunc']]],
   ['scalespaced2w_2',['scaleSpaced2w',['../classPonca_1_1DistWeightFunc.html#a26332be7b205ec289253c4b366c46110',1,'Ponca::DistWeightFunc']]],
   ['set_5fmin_5fcell_5fsize_3',['set_min_cell_size',['../classPonca_1_1KdTreeBase.html#a1d262e481f035fc33a8b063fc4c2c20c',1,'Ponca::KdTreeBase']]],
-  ['setcurvaturevalues_4',['setCurvatureValues',['../classPonca_1_1CurvatureEstimatorBase.html#acf704004859704be8a86f5fadc1a5937',1,'Ponca::CurvatureEstimatorBase']]],
+  ['setcurvaturevalues_4',['setCurvatureValues',['../classPonca_1_1CurvatureEstimatorBase.html#abb3e80f564f79066d2f12105db1bd604',1,'Ponca::CurvatureEstimatorBase']]],
   ['setline_5',['setLine',['../classPonca_1_1Line.html#a2be50f01b5e7ba741e67d80711495add',1,'Ponca::Line']]],
   ['setvalue_6',['setValue',['../classPonca_1_1ConstantWeightKernel.html#abfdd7c48d31e98cb1f566724dccf06c0',1,'Ponca::ConstantWeightKernel']]],
   ['setweightfunc_7',['setWeightFunc',['../classPonca_1_1PrimitiveBase.html#a4a323e4cd8d65e0808f85ac38f96fdb4',1,'Ponca::PrimitiveBase']]],

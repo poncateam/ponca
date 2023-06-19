@@ -51,7 +51,7 @@ MathJax.Hub.Config({
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Ponca
-   &#160;<span id="projectnumber">8b3654134e6842aaef8b94a5a0af9c79bcd98ee0</span>
+   &#160;<span id="projectnumber">f947bf3da91592a96927e670bad6fb594eb4bc78</span>
    </div>
    <div id="projectbrief">Point Cloud Analysis library</div>
   </td>
@@ -269,19 +269,19 @@ $(document).ready(function(){initNavTree('curvatureEstimation_8hpp_source.html',
 <div class="line"><a id="l00148" name="l00148"></a><span class="lineno">  148</span> </div>
 <div class="line"><a id="l00149" name="l00149"></a><span class="lineno">  149</span>        m_solver.computeDirect(m_cov);</div>
 <div class="line"><a id="l00150" name="l00150"></a><span class="lineno">  150</span> </div>
-<div class="line"><a id="l00151" name="l00151"></a><span class="lineno">  151</span>        <a class="code hl_typedef" href="classPonca_1_1NormalCovarianceCurvatureEstimator.html#a17506112dc7e62634354cf7ccbdbe9ea">Scalar</a> k1 = m_solver.eigenvalues()(1);</div>
-<div class="line"><a id="l00152" name="l00152"></a><span class="lineno">  152</span>        <a class="code hl_typedef" href="classPonca_1_1NormalCovarianceCurvatureEstimator.html#a17506112dc7e62634354cf7ccbdbe9ea">Scalar</a> k2 = m_solver.eigenvalues()(2);</div>
+<div class="line"><a id="l00151" name="l00151"></a><span class="lineno">  151</span>        <a class="code hl_typedef" href="classPonca_1_1NormalCovarianceCurvatureEstimator.html#a17506112dc7e62634354cf7ccbdbe9ea">Scalar</a> kmin = m_solver.eigenvalues()(1);</div>
+<div class="line"><a id="l00152" name="l00152"></a><span class="lineno">  152</span>        <a class="code hl_typedef" href="classPonca_1_1NormalCovarianceCurvatureEstimator.html#a17506112dc7e62634354cf7ccbdbe9ea">Scalar</a> kmax = m_solver.eigenvalues()(2);</div>
 <div class="line"><a id="l00153" name="l00153"></a><span class="lineno">  153</span> </div>
-<div class="line"><a id="l00154" name="l00154"></a><span class="lineno">  154</span>        <a class="code hl_typedef" href="classPonca_1_1NormalCovarianceCurvatureEstimator.html#a8ef0ce1e43349715c04c695bddf57b45">VectorType</a> v1 = m_solver.eigenvectors().col(1);</div>
-<div class="line"><a id="l00155" name="l00155"></a><span class="lineno">  155</span>        <a class="code hl_typedef" href="classPonca_1_1NormalCovarianceCurvatureEstimator.html#a8ef0ce1e43349715c04c695bddf57b45">VectorType</a> v2 = m_solver.eigenvectors().col(2);</div>
+<div class="line"><a id="l00154" name="l00154"></a><span class="lineno">  154</span>        <a class="code hl_typedef" href="classPonca_1_1NormalCovarianceCurvatureEstimator.html#a8ef0ce1e43349715c04c695bddf57b45">VectorType</a> vmin = m_solver.eigenvectors().col(1);</div>
+<div class="line"><a id="l00155" name="l00155"></a><span class="lineno">  155</span>        <a class="code hl_typedef" href="classPonca_1_1NormalCovarianceCurvatureEstimator.html#a8ef0ce1e43349715c04c695bddf57b45">VectorType</a> vmax = m_solver.eigenvectors().col(2);</div>
 <div class="line"><a id="l00156" name="l00156"></a><span class="lineno">  156</span> </div>
 <div class="line"><a id="l00157" name="l00157"></a><span class="lineno">  157</span>        <span class="comment">// fallback</span></div>
 <div class="line"><a id="l00158" name="l00158"></a><span class="lineno">  158</span>        <span class="comment">// TODO(thib) which epsilon value should be chosen ?</span></div>
 <div class="line"><a id="l00159" name="l00159"></a><span class="lineno">  159</span>        <a class="code hl_typedef" href="classPonca_1_1NormalCovarianceCurvatureEstimator.html#a17506112dc7e62634354cf7ccbdbe9ea">Scalar</a> epsilon = <a class="code hl_typedef" href="classPonca_1_1NormalCovarianceCurvatureEstimator.html#a17506112dc7e62634354cf7ccbdbe9ea">Scalar</a>(1e-3);</div>
-<div class="line"><a id="l00160" name="l00160"></a><span class="lineno">  160</span>        <span class="keywordflow">if</span>(k1&lt;epsilon &amp;&amp; k2&lt;epsilon)</div>
+<div class="line"><a id="l00160" name="l00160"></a><span class="lineno">  160</span>        <span class="keywordflow">if</span>(kmin&lt;epsilon &amp;&amp; kmax&lt;epsilon)</div>
 <div class="line"><a id="l00161" name="l00161"></a><span class="lineno">  161</span>        {</div>
-<div class="line"><a id="l00162" name="l00162"></a><span class="lineno">  162</span>            k1 = <a class="code hl_typedef" href="classPonca_1_1NormalCovarianceCurvatureEstimator.html#a17506112dc7e62634354cf7ccbdbe9ea">Scalar</a>(0);</div>
-<div class="line"><a id="l00163" name="l00163"></a><span class="lineno">  163</span>            k2 = <a class="code hl_typedef" href="classPonca_1_1NormalCovarianceCurvatureEstimator.html#a17506112dc7e62634354cf7ccbdbe9ea">Scalar</a>(0);</div>
+<div class="line"><a id="l00162" name="l00162"></a><span class="lineno">  162</span>            kmin = <a class="code hl_typedef" href="classPonca_1_1NormalCovarianceCurvatureEstimator.html#a17506112dc7e62634354cf7ccbdbe9ea">Scalar</a>(0);</div>
+<div class="line"><a id="l00163" name="l00163"></a><span class="lineno">  163</span>            kmax = <a class="code hl_typedef" href="classPonca_1_1NormalCovarianceCurvatureEstimator.html#a17506112dc7e62634354cf7ccbdbe9ea">Scalar</a>(0);</div>
 <div class="line"><a id="l00164" name="l00164"></a><span class="lineno">  164</span> </div>
 <div class="line"><a id="l00165" name="l00165"></a><span class="lineno">  165</span>            <span class="comment">// set principal directions from normals center of gravity</span></div>
 <div class="line"><a id="l00166" name="l00166"></a><span class="lineno">  166</span>            <a class="code hl_typedef" href="classPonca_1_1NormalCovarianceCurvatureEstimator.html#a8ef0ce1e43349715c04c695bddf57b45">VectorType</a> n = m_cog.normalized();</div>
@@ -289,15 +289,15 @@ $(document).ready(function(){initNavTree('curvatureEstimation_8hpp_source.html',
 <div class="line"><a id="l00168" name="l00168"></a><span class="lineno">  168</span>            n.rowwise().squaredNorm().minCoeff(&amp;i0);</div>
 <div class="line"><a id="l00169" name="l00169"></a><span class="lineno">  169</span>            i1 = (i0+1)%3;</div>
 <div class="line"><a id="l00170" name="l00170"></a><span class="lineno">  170</span>            i2 = (i0+2)%3;</div>
-<div class="line"><a id="l00171" name="l00171"></a><span class="lineno">  171</span>            v1[i0] = 0;</div>
-<div class="line"><a id="l00172" name="l00172"></a><span class="lineno">  172</span>            v1[i1] = n[i2];</div>
-<div class="line"><a id="l00173" name="l00173"></a><span class="lineno">  173</span>            v1[i2] = -n[i1];</div>
-<div class="line"><a id="l00174" name="l00174"></a><span class="lineno">  174</span>            v2[i0] = n[i1]*n[i1] + n[i2]*n[i2];</div>
-<div class="line"><a id="l00175" name="l00175"></a><span class="lineno">  175</span>            v2[i1] = -n[i1]*n[i0];</div>
-<div class="line"><a id="l00176" name="l00176"></a><span class="lineno">  176</span>            v2[i2] = -n[i2]*n[i0];</div>
+<div class="line"><a id="l00171" name="l00171"></a><span class="lineno">  171</span>            vmin[i0] = 0;</div>
+<div class="line"><a id="l00172" name="l00172"></a><span class="lineno">  172</span>            vmin[i1] = n[i2];</div>
+<div class="line"><a id="l00173" name="l00173"></a><span class="lineno">  173</span>            vmin[i2] = -n[i1];</div>
+<div class="line"><a id="l00174" name="l00174"></a><span class="lineno">  174</span>            vmax[i0] = n[i1]*n[i1] + n[i2]*n[i2];</div>
+<div class="line"><a id="l00175" name="l00175"></a><span class="lineno">  175</span>            vmax[i1] = -n[i1]*n[i0];</div>
+<div class="line"><a id="l00176" name="l00176"></a><span class="lineno">  176</span>            vmax[i2] = -n[i2]*n[i0];</div>
 <div class="line"><a id="l00177" name="l00177"></a><span class="lineno">  177</span>        }</div>
 <div class="line"><a id="l00178" name="l00178"></a><span class="lineno">  178</span> </div>
-<div class="line"><a id="l00179" name="l00179"></a><span class="lineno">  179</span>        Base::setCurvatureValues(k1, k2, v1, v2);</div>
+<div class="line"><a id="l00179" name="l00179"></a><span class="lineno">  179</span>        Base::setCurvatureValues(kmin, kmax, vmin, vmax);</div>
 <div class="line"><a id="l00180" name="l00180"></a><span class="lineno">  180</span>    }</div>
 <div class="line"><a id="l00181" name="l00181"></a><span class="lineno">  181</span>    <span class="keywordflow">return</span> res;</div>
 <div class="line"><a id="l00182" name="l00182"></a><span class="lineno">  182</span>}</div>
@@ -380,8 +380,8 @@ $(document).ready(function(){initNavTree('curvatureEstimation_8hpp_source.html',
 <div class="line"><a id="l00259" name="l00259"></a><span class="lineno">  259</span> </div>
 <div class="line"><a id="l00260" name="l00260"></a><span class="lineno">  260</span>        m_solver.computeDirect(m_cov);</div>
 <div class="line"><a id="l00261" name="l00261"></a><span class="lineno">  261</span> </div>
-<div class="line"><a id="l00262" name="l00262"></a><span class="lineno">  262</span>        Base::m_k1 = m_solver.eigenvalues()(0);</div>
-<div class="line"><a id="l00263" name="l00263"></a><span class="lineno">  263</span>        Base::m_k2 = m_solver.eigenvalues()(1);</div>
+<div class="line"><a id="l00262" name="l00262"></a><span class="lineno">  262</span>        Base::m_kmin = m_solver.eigenvalues()(0);</div>
+<div class="line"><a id="l00263" name="l00263"></a><span class="lineno">  263</span>        Base::m_kmax = m_solver.eigenvalues()(1);</div>
 <div class="line"><a id="l00264" name="l00264"></a><span class="lineno">  264</span> </div>
 <div class="line"><a id="l00265" name="l00265"></a><span class="lineno">  265</span>        <span class="comment">// transform from local plane coordinates to world coordinates</span></div>
 <div class="line"><a id="l00266" name="l00266"></a><span class="lineno">  266</span>        Base::m_v1 = m_tframe * m_solver.eigenvectors().col(0);</div>
@@ -390,10 +390,10 @@ $(document).ready(function(){initNavTree('curvatureEstimation_8hpp_source.html',
 <div class="line"><a id="l00269" name="l00269"></a><span class="lineno">  269</span>        <span class="comment">//TODO(thib) which epsilon value should be chosen ?</span></div>
 <div class="line"><a id="l00270" name="l00270"></a><span class="lineno">  270</span><span class="comment">//        Scalar epsilon = Eigen::NumTraits&lt;Scalar&gt;::dummy_precision();</span></div>
 <div class="line"><a id="l00271" name="l00271"></a><span class="lineno">  271</span>        <a class="code hl_typedef" href="classPonca_1_1ProjectedNormalCovarianceCurvatureEstimator.html#a7d645e8b11e89aff2a25b6b6f91d4edc">Scalar</a> epsilon = <a class="code hl_typedef" href="classPonca_1_1ProjectedNormalCovarianceCurvatureEstimator.html#a7d645e8b11e89aff2a25b6b6f91d4edc">Scalar</a>(1e-3);</div>
-<div class="line"><a id="l00272" name="l00272"></a><span class="lineno">  272</span>        <span class="keywordflow">if</span>(Base::m_k1&lt;epsilon &amp;&amp; Base::m_k2&lt;epsilon)</div>
+<div class="line"><a id="l00272" name="l00272"></a><span class="lineno">  272</span>        <span class="keywordflow">if</span>(Base::m_kmin&lt;epsilon &amp;&amp; Base::m_kmax&lt;epsilon)</div>
 <div class="line"><a id="l00273" name="l00273"></a><span class="lineno">  273</span>        {</div>
-<div class="line"><a id="l00274" name="l00274"></a><span class="lineno">  274</span>            Base::m_k1 = <a class="code hl_typedef" href="classPonca_1_1ProjectedNormalCovarianceCurvatureEstimator.html#a7d645e8b11e89aff2a25b6b6f91d4edc">Scalar</a>(0);</div>
-<div class="line"><a id="l00275" name="l00275"></a><span class="lineno">  275</span>            Base::m_k2 = <a class="code hl_typedef" href="classPonca_1_1ProjectedNormalCovarianceCurvatureEstimator.html#a7d645e8b11e89aff2a25b6b6f91d4edc">Scalar</a>(0);</div>
+<div class="line"><a id="l00274" name="l00274"></a><span class="lineno">  274</span>            Base::m_kmin = <a class="code hl_typedef" href="classPonca_1_1ProjectedNormalCovarianceCurvatureEstimator.html#a7d645e8b11e89aff2a25b6b6f91d4edc">Scalar</a>(0);</div>
+<div class="line"><a id="l00275" name="l00275"></a><span class="lineno">  275</span>            Base::m_kmax = <a class="code hl_typedef" href="classPonca_1_1ProjectedNormalCovarianceCurvatureEstimator.html#a7d645e8b11e89aff2a25b6b6f91d4edc">Scalar</a>(0);</div>
 <div class="line"><a id="l00276" name="l00276"></a><span class="lineno">  276</span> </div>
 <div class="line"><a id="l00277" name="l00277"></a><span class="lineno">  277</span>            <span class="comment">// set principal directions from fitted plane</span></div>
 <div class="line"><a id="l00278" name="l00278"></a><span class="lineno">  278</span>            Base::m_v2 = m_tframe.col(0);</div>
@@ -427,7 +427,7 @@ $(document).ready(function(){initNavTree('curvatureEstimation_8hpp_source.html',
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_695d95a8d8fbec601a248c0414764298.html">Ponca</a></li><li class="navelem"><a class="el" href="dir_ce16314fc45f8638543c5146aff64d4a.html">src</a></li><li class="navelem"><a class="el" href="dir_221133f19e4af6803e4ee7d78db21786.html">Fitting</a></li><li class="navelem"><b>curvatureEstimation.hpp</b></li>
-    <li class="footer">Generated on Mon Jun 19 2023 12:22:32 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.6 </li>
+    <li class="footer">Generated on Mon Jun 19 2023 13:34:24 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.6 </li>
   </ul>
 </div>
 </body>

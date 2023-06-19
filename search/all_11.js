@@ -8,7 +8,7 @@ var searchData=
   ['screen_20space_20curvature_20using_20cuda_20and_20python_5',['Screen Space Curvature using Cuda and Python',['../example_python_ssc_page.html',1,'example_page']]],
   ['screen_20space_20curvature_20using_20cuda_2fc_2b_2b_6',['Screen Space Curvature using Cuda/C++',['../example_cu_ssc_page.html',1,'example_page']]],
   ['set_5fmin_5fcell_5fsize_7',['set_min_cell_size',['../classPonca_1_1KdTreeBase.html#a1d262e481f035fc33a8b063fc4c2c20c',1,'Ponca::KdTreeBase']]],
-  ['setcurvaturevalues_8',['setCurvatureValues',['../classPonca_1_1CurvatureEstimatorBase.html#acf704004859704be8a86f5fadc1a5937',1,'Ponca::CurvatureEstimatorBase']]],
+  ['setcurvaturevalues_8',['setCurvatureValues',['../classPonca_1_1CurvatureEstimatorBase.html#abb3e80f564f79066d2f12105db1bd604',1,'Ponca::CurvatureEstimatorBase']]],
   ['setline_9',['setLine',['../classPonca_1_1Line.html#a2be50f01b5e7ba741e67d80711495add',1,'Ponca::Line']]],
   ['setvalue_10',['setValue',['../classPonca_1_1ConstantWeightKernel.html#abfdd7c48d31e98cb1f566724dccf06c0',1,'Ponca::ConstantWeightKernel']]],
   ['setweightfunc_11',['setWeightFunc',['../classPonca_1_1PrimitiveBase.html#a4a323e4cd8d65e0808f85ac38f96fdb4',1,'Ponca::PrimitiveBase']]],

@@ -9,10 +9,10 @@ var classPonca_1_1CurvatureEstimatorBase =
     [ "GaussianCurvature", "classPonca_1_1CurvatureEstimatorBase.html#a50cdaae9b0b5540c7fd4ffb448afdc98", null ],
     [ "init", "classPonca_1_1CurvatureEstimatorBase.html#a9c2a91ffddb543b96b19a5025fcf2818", null ],
     [ "isValid", "classPonca_1_1CurvatureEstimatorBase.html#aaecbd104c08bbaae29c284d4a1ec70a9", null ],
-    [ "k1", "classPonca_1_1CurvatureEstimatorBase.html#a877d9ead3ac1045ebbd94d1045fc38c6", null ],
-    [ "k1Direction", "classPonca_1_1CurvatureEstimatorBase.html#afb9830d3cd98bbf9b4c715bd6c6875a8", null ],
-    [ "k2", "classPonca_1_1CurvatureEstimatorBase.html#a4be6423b13b5ffe0cef33cddbb7d7cfc", null ],
-    [ "k2Direction", "classPonca_1_1CurvatureEstimatorBase.html#a8dad959069ee07f91a51ddb44eed9218", null ],
+    [ "kmax", "classPonca_1_1CurvatureEstimatorBase.html#a94235972fc3a63695413f7ce8dc479a1", null ],
+    [ "kmaxDirection", "classPonca_1_1CurvatureEstimatorBase.html#afcee7a07503a67e81ddde954982bfe00", null ],
     [ "kMean", "classPonca_1_1CurvatureEstimatorBase.html#a2806aae38a187798de67d5eb38771c50", null ],
-    [ "setCurvatureValues", "classPonca_1_1CurvatureEstimatorBase.html#acf704004859704be8a86f5fadc1a5937", null ]
+    [ "kmin", "classPonca_1_1CurvatureEstimatorBase.html#a96dffeac050d368bed883f03f9d7652b", null ],
+    [ "kminDirection", "classPonca_1_1CurvatureEstimatorBase.html#a68fd5de356c97aac92b3f11753d205f6", null ],
+    [ "setCurvatureValues", "classPonca_1_1CurvatureEstimatorBase.html#abb3e80f564f79066d2f12105db1bd604", null ]
 ];

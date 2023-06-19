@@ -23,7 +23,7 @@
 <area shape="rect" id="node22" href="$classPonca_1_1Line.html" title="A parametrized line is defined by an origin point &#160;and a unit direction vector &#160;such that the line co..." alt="" coords="281,1758,459,1798"/>
 <area shape="rect" id="node23" title=" " alt="" coords="81,888,119,913"/>
 <area shape="rect" id="node24" href="$classPonca_1_1AlgebraicSphere.html" title="Algebraic Sphere primitive." alt="" coords="266,1550,474,1590"/>
-<area shape="rect" id="node25" href="$classPonca_1_1CurvatureEstimatorBase.html" title="Base class for any 3d curvature estimator: holds , &#160;and associated vectors." alt="" coords="263,1615,477,1669"/>
+<area shape="rect" id="node25" href="$classPonca_1_1CurvatureEstimatorBase.html" title="Base class for any 3d curvature estimator: holds , &#160;and associated vectors, such that ." alt="" coords="263,1615,477,1669"/>
 <area shape="rect" id="node26" href="$classPonca_1_1DryFit.html" title="Empty fitting object doing no computation." alt="" coords="275,1105,465,1145"/>
 <area shape="rect" id="node27" href="$classPonca_1_1MeanPositionDer.html" title=" " alt="" coords="279,1169,461,1224"/>
 <area shape="rect" id="node28" href="$classPonca_1_1MongePatch.html" title="Extension to compute the best fit quadric on 3d points expressed as ." alt="" coords="271,1249,469,1289"/>

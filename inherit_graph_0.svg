@@ -475,7 +475,7 @@
 <!-- Node15 -->
 <g id="node25" class="node">
 <title>Node15</title>
-<g id="a_node25"><a xlink:href="classPonca_1_1CurvatureEstimatorBase.html" target="_top" xlink:title="Base class for any 3d curvature estimator: holds , &#160;and associated vectors.">
+<g id="a_node25"><a xlink:href="classPonca_1_1CurvatureEstimatorBase.html" target="_top" xlink:title="Base class for any 3d curvature estimator: holds , &#160;and associated vectors, such that .">
 <polygon fill="white" stroke="#666666" points="353.5,-137.5 193.5,-137.5 193.5,-96.5 353.5,-96.5 353.5,-137.5"/>
 <text text-anchor="start" x="201.5" y="-125.5" font-family="Helvetica,sans-Serif" font-size="10.00">Ponca::CurvatureEstimator</text>
 <text text-anchor="start" x="201.5" y="-114.5" font-family="Helvetica,sans-Serif" font-size="10.00">Base&lt; DataPoint, _WFunctor,</text>
