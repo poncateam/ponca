@@ -73,6 +73,17 @@ public:
     }
 
     /*!
+     * \brief Given a normal vector, this function computes a local coordinate frame (orthogonal basis).
+     *
+     * It starts by generating a non-collinear vector to the normal (to ensure that the their cross product is non-zero). 
+     * The vector, obtained via the cross product, becomes the first axis (m_u) of the frame.
+     * The second axis (m_v) is computed by taking the cross product between the normal and the first axis.
+     * At the end, we obtain the basis B = [Base::primitiveGradient(), m_u, m_v].
+     * \param _norm Normal vector for which the local frame will be computed.
+     */
+    PONCA_MULTIARCH inline void computeFrameFromNormalVector(const VectorType& _norm);
+
+    /*!
      * \brief Express a point in ambient space relatively to the local frame.
      *
      * Output vector is: [h, u, v]^T, where u, v are 2d coordinates on the plane,
@@ -84,7 +95,7 @@ public:
     template <bool ignoreTranslation = false>
     PONCA_MULTIARCH inline VectorType worldToLocalFrame(const VectorType &_q) const;
 
-        /*!
+    /*!
      * \brief Transform a point from the local frame [h, u, v]^T to ambient space
      *
      * \tparam ignoreTranslation must be set to true when passing vectors instead of points

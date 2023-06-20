@@ -8,9 +8,7 @@
 
 #pragma once
 
-#include "./plane.h"
-#include "./mean.h"
-#include "./localFrame.h"
+#include "./defines.h"
 
 namespace Ponca
 {
@@ -21,7 +19,7 @@ namespace Ponca
     \inherit Concept::FittingProcedureConcept
 
     \see Plane
-    \see PlaneFrame
+    \see localFrame
 */
 template < class DataPoint, class _NFilter, typename T >
 class MeanPlaneFitImpl : public T
@@ -41,11 +39,13 @@ public:
     PONCA_EXPLICIT_CAST_OPERATORS(MeanPlaneFitImpl,meanPlaneFit)
 
     /*!
-     * \brief Fitting of the plane using the mean position and mean normal
-     * We use the localFrame class to sorte the frame information.
+     * \brief This function fits the plane using mean normal and position.
+
+     * We use the localFrame class to store the frame informations.
      * Given the mean normal, we can compute the frame plane.
      * m_u and m_v are computed using the cross product, to ensure orthogonality.
      * \see LocalFrame
+     * \see computeFrameFromNormalVector
      */
     PONCA_FITTING_APIDOC_FINALIZE
     PONCA_MULTIARCH inline FIT_RESULT finalize()
@@ -54,21 +54,9 @@ public:
         if(Base::finalize() == STABLE)
         {
             if (Base::plane().isValid()) Base::m_eCurrentState = CONFLICT_ERROR_FOUND;
-            Base::setPlane(Base::m_sumN / Base::m_sumW, Base::barycenter());
-            VectorType norm = Base::plane().normal();
-            VectorType a;
-            if (std::abs(norm.x()) > std::abs(norm.z())) {
-                a = VectorType(-norm.y(), norm.x(), 0);
-            } else {
-                a = VectorType(0, -norm.z(), norm.y());
-            }
-            a.normalize();
-            // use cross product to generate a orthogonal basis
-            VectorType m_u = norm.cross(a);
-            m_u.normalize();
-            VectorType m_v = norm.cross(m_u);
-            m_v.normalize();
-            Base::setFrameUV (m_u, m_v);
+            VectorType norm = Base::m_sumN / Base::getWeightSum();
+            Base::setPlane(norm, Base::barycenter());
+            Base::computeFrameFromNormalVector(norm);
         }
         return Base::m_eCurrentState;
     }

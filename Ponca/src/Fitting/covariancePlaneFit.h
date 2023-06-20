@@ -10,11 +10,6 @@
 #pragma once
 
 #include "./defines.h"
-#include "./plane.h"
-#include "./primitive.h"
-#include "./mean.h"          // used to define CovarianceLineFit
-#include "./covarianceFit.h" // use to define CovariancePlaneFit
-#include "./localFrame.h"    // use to define CovariancePlaneFit
 
 #include <Eigen/Eigenvalues>
 
@@ -40,14 +35,14 @@ PONCA_FITTING_DECLARE_MATRIX_TYPE
 protected:
     enum
     {
-        Check = Base::PROVIDES_POSITION_COVARIANCE && Base::PROVIDES_LOCAL_FRAME,
         /*!
-         * \brief Fit the tangent plane and store it into Plane and PlaneFrame which turn a point
+         * \brief Fit the tangent plane and store it into Plane and LocalFrame which turn a point
          * in ambient 3D space to the tangent plane.
-         * \see PlaneFrame
+         * \see LocalFrame
          */
-        PROVIDES_TANGENT_PLANE_BASIS
-    };
+        Check = Base::PROVIDES_POSITION_COVARIANCE &&
+                Base::PROVIDES_LOCAL_FRAME
+        };
 
 public:
     PONCA_EXPLICIT_CAST_OPERATORS(CovariancePlaneFitImpl,covariancePlaneFit)
