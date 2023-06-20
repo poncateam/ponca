@@ -9,6 +9,10 @@
 #pragma once
 
 #include "./defines.h"
+#include "./mean.h"       // used to define MeanPlaneFit
+#include "./plane.h"      // used to define MeanPlaneFit
+#include "./localFrame.h" // used to define MeanPlaneFit
+
 
 namespace Ponca
 {
