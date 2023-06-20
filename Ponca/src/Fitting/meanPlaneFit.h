@@ -30,7 +30,11 @@ PONCA_FITTING_DECLARE_DEFAULT_TYPES
 PONCA_FITTING_DECLARE_MATRIX_TYPE
 
 protected:
-    enum { Check = Base::PROVIDES_LOCAL_FRAME && Base::PROVIDES_PLANE };
+    enum { Check = Base::PROVIDES_PLANE
+                && Base::PROVIDES_MEAN_POSITION 
+                && Base::PROVIDES_MEAN_NORMAL 
+                && Base::PROVIDES_LOCAL_FRAME
+         };
 
 
 public:
