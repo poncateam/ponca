@@ -52,15 +52,16 @@ public:
     /*!
      * \brief Return the first axis of the local frame
      */
-    PONCA_MULTIARCH inline VectorType getFrameU() const { return m_u; }
+    PONCA_MULTIARCH inline const VectorType& getFrameU() const { return m_u; }
 
     /*!
      * \brief Return the second axis of the local frame
      */
-    PONCA_MULTIARCH inline VectorType getFrameV() const { return m_v; }
+    PONCA_MULTIARCH inline const VectorType& getFrameV() const { return m_v; }
 
     /*!
      * \brief Set the axis of the local frame
+     *
      * The frame will be defined by the two vectors m_u and m_v and the normal given by Base::primitiveGradient().
      * At the end, we have the basis B = [Base::primitiveGradient(), _u, _v].
      * \param _u First axis of the local frame
@@ -70,6 +71,7 @@ public:
         m_u = _u;
         m_v = _v;
     }
+
     /*!
      * \brief Express a point in ambient space relatively to the local frame.
      *
