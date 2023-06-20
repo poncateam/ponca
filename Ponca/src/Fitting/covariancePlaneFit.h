@@ -10,6 +10,10 @@
 #pragma once
 
 #include "./defines.h"
+#include "./mean.h"          // used to define CovariancePlaneFit
+#include "./plane.h"         // used to define CovariancePlaneFit
+#include "./localFrame.h"    // used to define CovariancePlaneFit
+#include "./covarianceFit.h" // used to define CovariancePlaneFit
 
 #include <Eigen/Eigenvalues>
 
