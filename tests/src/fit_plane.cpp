@@ -18,6 +18,10 @@
 #include "../common/testUtils.h"
 
 #include <Ponca/src/Fitting/basket.h>
+#include <Ponca/src/Fitting/mean.h>
+#include <Ponca/src/Fitting/plane.h>
+#include <Ponca/src/Fitting/localFrame.h>
+#include <Ponca/src/Fitting/covarianceFit.h>
 #include <Ponca/src/Fitting/covariancePlaneFit.h>
 #include <Ponca/src/Fitting/meanPlaneFit.h>
 #include <Ponca/src/Fitting/weightFunc.h>
