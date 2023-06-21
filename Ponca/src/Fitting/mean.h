@@ -163,10 +163,9 @@ namespace Ponca {
     /// and so \f$ t'(\mathbf{x}) = \sum_i u'(\mathbf{x}) v(\mathbf{x}) = \sum_i w'_\mathbf{x}(\mathbf{n_i}) \mathbf{n_i} \f$.
     ///
     /// Which leads to \f$ n'(\mathbf{x}) = \frac{\sum_i w'\mathbf{x}(\mathbf{n_i}) \mathbf{n_i} - n(\mathbf{x})\sum w'(\mathbf{x})}{\sum_i w\mathbf{x}(\mathbf{n_i})} \f$.
-    
     /// \note This code is not directly tested. 
 
-    PONCA_MULTIARCH inline const VectorArray& normalDerivatives() const 
+    PONCA_MULTIARCH inline const VectorArray& dMeanNormal() const
     { 
         return m_dSumN; 
     }
