@@ -11,6 +11,7 @@ improved doc.
     - [spatialPartitioning] Add kd-tree traits type (#80)
     - [fitting] Add Primitive::getNumNeighbors (#86)
     - [fitting] Change naming convention and rational for principal curvatures in CurvatureEstimatorBase (#94)
+    - [fitting] Add class MeanNormalDer to compute derivatives of the mean normal vector (#78)
 
 - Bug-fixes and code improvements
     - [spatialPartitioning] Fix unwanted function hiding with DryFit::setWeightFunc (#86)
