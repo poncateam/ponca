@@ -37,6 +37,7 @@ var annotated_dup =
       [ "limited_priority_queue", "classPonca_1_1limited__priority__queue.html", null ],
       [ "Line", "classPonca_1_1Line.html", "classPonca_1_1Line" ],
       [ "MeanNormal", "classPonca_1_1MeanNormal.html", "classPonca_1_1MeanNormal" ],
+      [ "MeanNormalDer", "classPonca_1_1MeanNormalDer.html", "classPonca_1_1MeanNormalDer" ],
       [ "MeanPlaneFitImpl", "classPonca_1_1MeanPlaneFitImpl.html", "classPonca_1_1MeanPlaneFitImpl" ],
       [ "MeanPosition", "classPonca_1_1MeanPosition.html", "classPonca_1_1MeanPosition" ],
       [ "MeanPositionDer", "classPonca_1_1MeanPositionDer.html", "classPonca_1_1MeanPositionDer" ],

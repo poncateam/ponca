@@ -183,6 +183,7 @@ var hierarchy =
       [ "Ponca::GLSParam< DataPoint, _WFunctor, T >", "classPonca_1_1GLSParam.html", null ],
       [ "Ponca::Line< DataPoint, _WFunctor, T >", "classPonca_1_1Line.html", null ],
       [ "Ponca::MeanNormal< DataPoint, _WFunctor, T >", "classPonca_1_1MeanNormal.html", null ],
+      [ "Ponca::MeanNormalDer< DataPoint, _WFunctor, DiffType, T >", "classPonca_1_1MeanNormalDer.html", null ],
       [ "Ponca::MeanPlaneFitImpl< DataPoint, _WFunctor, T >", "classPonca_1_1MeanPlaneFitImpl.html", null ],
       [ "Ponca::MeanPosition< DataPoint, _WFunctor, T >", "classPonca_1_1MeanPosition.html", null ],
       [ "Ponca::MeanPositionDer< DataPoint, _WFunctor, DiffType, T >", "classPonca_1_1MeanPositionDer.html", null ],
