@@ -4,7 +4,10 @@
  file, You can obtain one at http://mozilla.org/MPL/2.0/.
 */
 
+
 #pragma once
+
+#include <Eigen/Geometry>
 
 namespace Ponca {
 #ifndef PARSED_WITH_DOXYGEN

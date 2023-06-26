@@ -16,7 +16,8 @@ namespace Ponca
     template < class DataPoint, class _WFunctor, int DiffType, typename T>
 /**
  *
- * \brief Base class for any 3d curvature estimator: holds \f$k_1\f$, \f$k_2\f$ and associated vectors
+ * \brief Base class for any 3d curvature estimator: holds \f$k_{\min}\f$, \f$k_{\max}\f$ and associated vectors,
+ * such that \f$ k_{\min} <= k_{\max} \f$
  */
     class CurvatureEstimatorBase : public T
     {
@@ -30,14 +31,14 @@ namespace Ponca
         };
 
     private:
-        /// \brief Principal curvature with highest absolute magnitude
-        Scalar m_k1 {0},
-        /// \brief Principal curvature with smallest absolute magnitude
-        m_k2 {0};
-        /// \brief Direction associated to the principal curvature with highest absolute magnitude
-        VectorType m_v1 {VectorType::Zero()},
-        /// \brief Direction associated to the principal curvature with highest smallest magnitude
-        m_v2 {VectorType::Zero()};
+        /// \brief Minimal principal curvature
+        Scalar m_kmin {0},
+        /// \brief Maximal principal curvature
+        m_kmax {0};
+        /// \brief Direction associated to the minimal principal curvature
+        VectorType m_vmin {VectorType::Zero()},
+        /// \brief Direction associated to the maximal principal curvature
+        m_vmax {VectorType::Zero()};
 
         /// \brief Internal state indicating if the curvature are set to default (false), or have been computed (true)
         bool m_isValid {false};
@@ -54,38 +55,32 @@ namespace Ponca
         /**************************************************************************/
         /* Use results                                                            */
         /**************************************************************************/
-        //! \brief Returns an estimate of the first principal curvature value
-        //!
-        //! It is the greatest curvature in <b>absolute value</b>.
-        PONCA_MULTIARCH inline Scalar k1() const { return m_k1; }
+        //! \brief Returns an estimate of the minimal principal curvature value
+        PONCA_MULTIARCH inline Scalar kmin() const { return m_kmin; }
 
-        //! \brief Returns an estimate of the second principal curvature value
-        //!
-        //! It is the smallest curvature in <b>absolute value</b>.
-        PONCA_MULTIARCH inline Scalar k2() const { return m_k2; }
+        //! \brief Returns an estimate of the maximal principal curvature value
+        PONCA_MULTIARCH inline Scalar kmax() const { return m_kmax; }
 
-        //! \brief Returns an estimate of the first principal curvature direction
-        //!
-        //! It is the greatest curvature in <b>absolute value</b>.
-        PONCA_MULTIARCH inline VectorType k1Direction() const { return m_v1; }
+        //! \brief Returns an estimate of the minimal principal curvature direction
+        PONCA_MULTIARCH inline VectorType kminDirection() const { return m_vmin; }
 
-        //! \brief Returns an estimate of the second principal curvature direction
-        //!
-        //! It is the smallest curvature in <b>absolute value</b>.
-        PONCA_MULTIARCH inline VectorType k2Direction() const { return m_v2; }
+        //! \brief Returns an estimate of the maximal principal curvature direction
+        PONCA_MULTIARCH inline VectorType kmaxDirection() const { return m_vmax; }
 
         //! \brief Returns an estimate of the mean curvature
-        PONCA_MULTIARCH inline Scalar kMean() const { return (m_k1 + m_k2)/Scalar(2);}
+        PONCA_MULTIARCH inline Scalar kMean() const { return (m_kmin + m_kmax)/Scalar(2);}
 
         //! \brief Returns an estimate of the Gaussian curvature
-        PONCA_MULTIARCH inline Scalar GaussianCurvature() const { return m_k1 * m_k2;}
+        PONCA_MULTIARCH inline Scalar GaussianCurvature() const { return m_kmin * m_kmax;}
 
     protected:
         /// \brief Set curvature values. To be called in finalize() by child classes
         ///
-        /// Principal curvatures are re-ordered depending on their magnitude,
-        /// such that \f$ |k_1| > |k_2| \f$
-        PONCA_MULTIARCH inline void setCurvatureValues(Scalar k1, Scalar k2, const VectorType& v1, const VectorType& v2);
+        /// If the given parameters are such that \f$ k_{\min} > k_{\max} \f$, then this
+        /// method swap the two curvature values and directions and store them such that
+        /// \f$ k_{\min} <= k_{\max} \f$.
+        ///
+        PONCA_MULTIARCH inline void setCurvatureValues(Scalar kmin, Scalar kmax, const VectorType& vmin, const VectorType& vmax);
     };
 
 } //namespace Ponca

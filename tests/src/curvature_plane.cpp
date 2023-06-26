@@ -64,12 +64,12 @@ void testFunction(bool _bAddPositionNoise = false, bool _bAddNormalNoise = false
         if( fit.isStable() ){
 
             // Check if principal curvature values are null
-            VERIFY( Eigen::internal::isMuchSmallerThan(std::abs(fit.k1()), Scalar(1.), epsilon) );
-            VERIFY( Eigen::internal::isMuchSmallerThan(std::abs(fit.k2()), Scalar(1.), epsilon) );
+            VERIFY( Eigen::internal::isMuchSmallerThan(std::abs(fit.kmin()), Scalar(1.), epsilon) );
+            VERIFY( Eigen::internal::isMuchSmallerThan(std::abs(fit.kmax()), Scalar(1.), epsilon) );
 
             // Check if principal curvature directions lie on the plane
-            VERIFY( Eigen::internal::isMuchSmallerThan(std::abs(fit.k1Direction().dot(direction)), Scalar(1.), epsilon) );
-            VERIFY( Eigen::internal::isMuchSmallerThan(std::abs(fit.k2Direction().dot(direction)), Scalar(1.), epsilon) );
+            VERIFY( Eigen::internal::isMuchSmallerThan(std::abs(fit.kminDirection().dot(direction)), Scalar(1.), epsilon) );
+            VERIFY( Eigen::internal::isMuchSmallerThan(std::abs(fit.kmaxDirection().dot(direction)), Scalar(1.), epsilon) );
         }
         else {
             VERIFY(FITTING_FAILED);

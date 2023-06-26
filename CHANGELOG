@@ -10,9 +10,12 @@ improved doc.
 - API
     - [spatialPartitioning] Add kd-tree traits type (#80)
     - [fitting] Add Primitive::getNumNeighbors (#86)
+    - [fitting] Change naming convention and rational for principal curvatures in CurvatureEstimatorBase (#94)
+    - [fitting] Add class MeanNormalDer to compute derivatives of the mean normal vector (#78)
 
 - Bug-fixes and code improvements
     - [spatialPartitioning] Fix unwanted function hiding with DryFit::setWeightFunc (#86)
+    - [spatialPartitioning] Fix missing include directive in kdTreeTraits.h (#92)
     - [fitting] Fix a potential bug when using multi-pass fitting (#89)
     - [fitting] Fix a bug in CovarianceFit (#93)
     - [fitting] Remove deadcode in Basket (#86)
@@ -22,7 +25,7 @@ improved doc.
     - Fix WeightKernel test (failing on windows due to finite differences) (#91)
 
 -Docs
-    - [spatialPartitioning] Update module page with a minimal doc and examples (#86)
+    - [spatialPartitioning] Update module page with a minimal doc and examples (#86, #92)
     - [spatialPartitioning] Add NanoFlann example (#86)
 
 --------------------------------------------------------------------------------
