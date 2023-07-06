@@ -51,7 +51,7 @@ MathJax.Hub.Config({
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Ponca
-   &#160;<span id="projectnumber">493df42264818f79f3a879d3a18d7bee10e55abb</span>
+   &#160;<span id="projectnumber">b9402b34b7510ae6d7cacf65301ce9df27c106c2</span>
    </div>
    <div id="projectbrief">Point Cloud Analysis library</div>
   </td>
@@ -151,7 +151,7 @@ $(document).ready(function(){initNavTree('gls_8hpp_source.html',''); initResizab
 <div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>    <a class="code hl_typedef" href="classPonca_1_1GLSDer.html#a044d378d72bfd4defb6fd983ab2b891a">ScalarArray</a> dfield = Base::m_dUc;</div>
 <div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>    <span class="comment">// Recall that tau is the field function at the evaluation point, we thus must take care about</span></div>
 <div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>    <span class="comment">// its variation when differentiating in space:</span></div>
-<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>    <span class="keywordflow">if</span>(this-&gt;isScaleDer())</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>    <span class="keywordflow">if</span>(this-&gt;isSpaceDer())</div>
 <div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>      dfield.template tail&lt;DataPoint::Dim&gt;() += Base::m_ul;</div>
 <div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span> </div>
 <div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>    <span class="keywordflow">return</span> (dfield * prattNorm - Base::m_uc * cfactor * Base::dprattNorm2()) / prattNorm2;</div>
@@ -233,7 +233,7 @@ $(document).ready(function(){initNavTree('gls_8hpp_source.html',''); initResizab
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_695d95a8d8fbec601a248c0414764298.html">Ponca</a></li><li class="navelem"><a class="el" href="dir_ce16314fc45f8638543c5146aff64d4a.html">src</a></li><li class="navelem"><a class="el" href="dir_221133f19e4af6803e4ee7d78db21786.html">Fitting</a></li><li class="navelem"><b>gls.hpp</b></li>
-    <li class="footer">Generated on Wed Jun 21 2023 08:06:08 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.6 </li>
+    <li class="footer">Generated on Thu Jul 6 2023 19:33:01 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.6 </li>
   </ul>
 </div>
 </body>
