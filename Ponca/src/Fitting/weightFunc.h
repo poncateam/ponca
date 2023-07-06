@@ -71,6 +71,8 @@ public:
     /*!
         \brief Compute the weight of the given query with respect to its coordinates.
 
+        \param _q Query in global coordinate
+
         As the query \f$\mathbf{q}\f$ is expressed in global coordinate, it is
         first converted to the centered basis. Then, the WeightKernel is directly
         applied to the norm of its coordinates with respect to the current scale  \f$ t \f$ :
@@ -86,6 +88,8 @@ public:
 
     /*!
         \brief First order derivative in space (for each spatial dimension \f$\mathsf{x})\f$
+
+        \param _q Query in global coordinate
 
         \f$ \frac{\delta \frac{\left|\mathbf{q}_\mathsf{x}\right|}{t}}{\delta \mathsf{x}}
         \nabla w(\frac{\left|\mathbf{q}_\mathsf{x}\right|}{t})
@@ -103,6 +107,8 @@ public:
 
     /*!
         \brief Second order derivative in space (for each spatial dimension \f$\mathsf{x})\f$
+
+        \param _q Query in global coordinate
 
         \f$ \frac{\delta^2 \frac{\left|\mathbf{q}_\mathsf{x}\right|}{t}}{\delta \mathsf{x}^2}
         \nabla w(\frac{\left|\mathbf{q}_\mathsf{x}\right|}{t}) +
@@ -125,6 +131,8 @@ public:
     /*!
         \brief First order derivative in scale  \f$t\f$
 
+        \param _q Query in global coordinate
+
         \f$ \frac{\delta \frac{\left|\mathbf{q}\right|}{t}}{\delta t}
         \nabla w(\frac{\left|\mathbf{q}\right|}{t})
         = - \frac{\left|\mathbf{q}\right|}{t^2} \nabla{w(\frac{\left|\mathbf{q}\right|}{t})} \f$
@@ -139,6 +147,8 @@ public:
 
     /*!
         \brief Second order derivative in scale  \f$t\f$
+
+        \param _q Query in global coordinate
 
         \f$ \frac{\delta^2 \frac{\left|\mathbf{q}\right|}{t}}{\delta t^2}
         \nabla w(\frac{\left|\mathbf{q}\right|}{t}) +
@@ -158,6 +168,8 @@ public:
 
     /*!
         \brief Cross derivative in scale \f$t\f$ and in space (for each spatial dimension \f$\mathsf{x})\f$
+
+        \param _q Query in global coordinate
 
         \f$ \frac{\delta^2 \frac{\left|\mathbf{q}_\mathsf{x}\right|}{t}}{\delta t\ \delta \mathsf{x}}
         \nabla w(\frac{\left|\mathbf{q}_\mathsf{x}\right|}{t}) +
