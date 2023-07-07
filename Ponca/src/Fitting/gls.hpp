@@ -30,7 +30,7 @@ GLSDer <DataPoint, _WFunctor, DiffType, T>::dtau() const
     ScalarArray dfield = Base::m_dUc;
     // Recall that tau is the field function at the evaluation point, we thus must take care about
     // its variation when differentiating in space:
-    if(this->isScaleDer())
+    if(this->isSpaceDer())
       dfield.template tail<DataPoint::Dim>() += Base::m_ul;
 
     return (dfield * prattNorm - Base::m_uc * cfactor * Base::dprattNorm2()) / prattNorm2;
