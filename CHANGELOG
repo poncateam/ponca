@@ -19,6 +19,8 @@ improved doc.
     - [fitting] Fix a potential bug when using multi-pass fitting (#89)
     - [fitting] Fix a bug in CovarianceFit (#93)
     - [fitting] Remove deadcode in Basket (#86)
+    - [fitting] Fix a bug in dtau computation for scale-only derivation (#98)
+    - [fitting] Fix a bug in MlsSphereFitDer weight derivatives (#97)
     - [ci] Fix Compiler is out of heap space error on Github (MSVC), by splitting tests (#87)
 
 - Tests
