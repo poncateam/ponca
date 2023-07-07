@@ -51,7 +51,7 @@ MathJax.Hub.Config({
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Ponca
-   &#160;<span id="projectnumber">b9402b34b7510ae6d7cacf65301ce9df27c106c2</span>
+   &#160;<span id="projectnumber">9e207cd7083d7a58420851d5a7df80df860fc59d</span>
    </div>
    <div id="projectbrief">Point Cloud Analysis library</div>
   </td>
@@ -422,7 +422,7 @@ template&lt;class DataPoint , class WeightKernel &gt; </div>
 
 <p>Access to the evaluation position set during the initialization. </p>
 
-<p class="definition">Definition at line <a class="el" href="weightFunc_8h_source.html#l00183">183</a> of file <a class="el" href="weightFunc_8h_source.html">weightFunc.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="weightFunc_8h_source.html#l00195">195</a> of file <a class="el" href="weightFunc_8h_source.html">weightFunc.h</a>.</p>
 
 </div>
 </div>
@@ -453,7 +453,7 @@ template&lt;class DataPoint , class WeightKernel &gt; </div>
 
 <p>Access to the evaluation scale set during the initialization. </p>
 
-<p class="definition">Definition at line <a class="el" href="weightFunc_8h_source.html#l00180">180</a> of file <a class="el" href="weightFunc_8h_source.html">weightFunc.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="weightFunc_8h_source.html#l00192">192</a> of file <a class="el" href="weightFunc_8h_source.html">weightFunc.h</a>.</p>
 
 </div>
 </div>
@@ -532,6 +532,12 @@ template&lt;class DataPoint , class WeightKernel &gt; </div>
 </div><div class="memdoc">
 
 <p>Second order derivative in scale \(t\). </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">_q</td><td><a class="el" href="group__spatialpartitioning.html#structPonca_1_1Query">Query</a> in global coordinate</td></tr>
+  </table>
+  </dd>
+</dl>
 <p>\( \frac{\delta^2 \frac{\left|\mathbf{q}\right|}{t}}{\delta t^2}
 \nabla w(\frac{\left|\mathbf{q}\right|}{t}) +
 \left(\frac{\delta \frac{\left|\mathbf{q}\right|}{t}}{\delta t}\right)^2
@@ -583,6 +589,12 @@ template&lt;class DataPoint , class WeightKernel &gt; </div>
 </div><div class="memdoc">
 
 <p>First order derivative in scale \(t\). </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">_q</td><td><a class="el" href="group__spatialpartitioning.html#structPonca_1_1Query">Query</a> in global coordinate</td></tr>
+  </table>
+  </dd>
+</dl>
 <p>\( \frac{\delta \frac{\left|\mathbf{q}\right|}{t}}{\delta t}
 \nabla w(\frac{\left|\mathbf{q}\right|}{t})
 = - \frac{\left|\mathbf{q}\right|}{t^2} \nabla{w(\frac{\left|\mathbf{q}\right|}{t})} \)</p>
@@ -630,6 +642,12 @@ template&lt;class DataPoint , class WeightKernel &gt; </div>
 </div><div class="memdoc">
 
 <p>Cross derivative in scale \(t\) and in space (for each spatial dimension \(\mathsf{x})\). </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">_q</td><td><a class="el" href="group__spatialpartitioning.html#structPonca_1_1Query">Query</a> in global coordinate</td></tr>
+  </table>
+  </dd>
+</dl>
 <p>\( \frac{\delta^2 \frac{\left|\mathbf{q}_\mathsf{x}\right|}{t}}{\delta t\ \delta \mathsf{x}}
 \nabla w(\frac{\left|\mathbf{q}_\mathsf{x}\right|}{t}) +
 \frac{\delta \frac{\left|\mathbf{q}_\mathsf{x}\right|}{t}}{\delta \mathsf{x}}
@@ -682,6 +700,12 @@ template&lt;class DataPoint , class WeightKernel &gt; </div>
 </div><div class="memdoc">
 
 <p>Second order derivative in space (for each spatial dimension \(\mathsf{x})\). </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">_q</td><td><a class="el" href="group__spatialpartitioning.html#structPonca_1_1Query">Query</a> in global coordinate</td></tr>
+  </table>
+  </dd>
+</dl>
 <p>\( \frac{\delta^2 \frac{\left|\mathbf{q}_\mathsf{x}\right|}{t}}{\delta \mathsf{x}^2}
 \nabla w(\frac{\left|\mathbf{q}_\mathsf{x}\right|}{t}) +
 \left(\frac{\delta \frac{\left|\mathbf{q}_\mathsf{x}\right|}{t}}{\delta \mathsf{x}}\right)^2
@@ -734,6 +758,12 @@ template&lt;class DataPoint , class WeightKernel &gt; </div>
 </div><div class="memdoc">
 
 <p>First order derivative in space (for each spatial dimension \(\mathsf{x})\). </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">_q</td><td><a class="el" href="group__spatialpartitioning.html#structPonca_1_1Query">Query</a> in global coordinate</td></tr>
+  </table>
+  </dd>
+</dl>
 <p>\( \frac{\delta \frac{\left|\mathbf{q}_\mathsf{x}\right|}{t}}{\delta \mathsf{x}}
 \nabla w(\frac{\left|\mathbf{q}_\mathsf{x}\right|}{t})
 = \frac{\mathbf{q}}{t\left|q\right|}  \nabla{w(\frac{\left|\mathbf{q}_\mathsf{x}\right|}{t})}  \)</p>
@@ -781,6 +811,12 @@ template&lt;class DataPoint , class WeightKernel &gt; </div>
 </div><div class="memdoc">
 
 <p>Compute the weight of the given query with respect to its coordinates. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">_q</td><td><a class="el" href="group__spatialpartitioning.html#structPonca_1_1Query">Query</a> in global coordinate</td></tr>
+  </table>
+  </dd>
+</dl>
 <p>As the query \(\mathbf{q}\) is expressed in global coordinate, it is first converted to the centered basis. Then, the WeightKernel is directly applied to the norm of its coordinates with respect to the current scale \( t \) :</p>
 <p>\( w(\frac{\left|\mathbf{q}_\mathsf{x}\right|}{t}) \)</p>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="classPonca_1_1DistWeightFunc.html#a0c1f6d4c4beea246b39fb8929c45e1ee" title="Convert query from global to local coordinate system.">convertToLocalBasis</a> </dd></dl>
@@ -815,7 +851,7 @@ template&lt;class DataPoint , class WeightKernel &gt; </div>
 
 <p>basis center </p>
 
-<p class="definition">Definition at line <a class="el" href="weightFunc_8h_source.html#l00188">188</a> of file <a class="el" href="weightFunc_8h_source.html">weightFunc.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="weightFunc_8h_source.html#l00200">200</a> of file <a class="el" href="weightFunc_8h_source.html">weightFunc.h</a>.</p>
 
 </div>
 </div>
@@ -843,7 +879,7 @@ template&lt;class DataPoint , class WeightKernel &gt; </div>
 
 <p>Evaluation scale. </p>
 
-<p class="definition">Definition at line <a class="el" href="weightFunc_8h_source.html#l00186">186</a> of file <a class="el" href="weightFunc_8h_source.html">weightFunc.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="weightFunc_8h_source.html#l00198">198</a> of file <a class="el" href="weightFunc_8h_source.html">weightFunc.h</a>.</p>
 
 </div>
 </div>
@@ -871,7 +907,7 @@ template&lt;class DataPoint , class WeightKernel &gt; </div>
 
 <p>1D function applied to weight queries </p>
 
-<p class="definition">Definition at line <a class="el" href="weightFunc_8h_source.html#l00187">187</a> of file <a class="el" href="weightFunc_8h_source.html">weightFunc.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="weightFunc_8h_source.html#l00199">199</a> of file <a class="el" href="weightFunc_8h_source.html">weightFunc.h</a>.</p>
 
 </div>
 </div>
@@ -881,7 +917,7 @@ template&lt;class DataPoint , class WeightKernel &gt; </div>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="namespacePonca.html">Ponca</a></li><li class="navelem"><a class="el" href="classPonca_1_1DistWeightFunc.html">DistWeightFunc</a></li>
-    <li class="footer">Generated on Thu Jul 6 2023 19:33:02 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.6 </li>
+    <li class="footer">Generated on Fri Jul 7 2023 09:13:40 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.6 </li>
   </ul>
 </div>
 </body>

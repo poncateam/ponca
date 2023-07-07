@@ -51,7 +51,7 @@ MathJax.Hub.Config({
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Ponca
-   &#160;<span id="projectnumber">b9402b34b7510ae6d7cacf65301ce9df27c106c2</span>
+   &#160;<span id="projectnumber">9e207cd7083d7a58420851d5a7df80df860fc59d</span>
    </div>
    <div id="projectbrief">Point Cloud Analysis library</div>
   </td>
@@ -156,14 +156,14 @@ $(document).ready(function(){initNavTree('mlsSphereFitDer_8hpp_source.html','');
 <div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>        <a class="code hl_typedef" href="classPonca_1_1MlsSphereFitDer.html#a0290d2bbb57e39a332276b467bc91458">Matrix</a> d2w = Matrix::Zero();</div>
 <div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span> </div>
 <div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>        <span class="keywordflow">if</span> (Base::isScaleDer())</div>
-<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>            d2w(0,0) = Base::m_w.scaled2w(localQ, attributes);</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>            d2w(0,0) = Base::m_w.scaled2w(attributes.pos(), attributes);</div>
 <div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span> </div>
 <div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>        <span class="keywordflow">if</span> (Base::isSpaceDer())</div>
-<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>            d2w.template bottomRightCorner&lt;Dim,Dim&gt;() = Base::m_w.spaced2w(localQ, attributes);</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>            d2w.template bottomRightCorner&lt;Dim,Dim&gt;() = Base::m_w.spaced2w(attributes.pos(), attributes);</div>
 <div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span> </div>
 <div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>        <span class="keywordflow">if</span> (Base::isScaleDer() &amp;&amp; Base::isSpaceDer())</div>
 <div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>        {</div>
-<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>            d2w.template bottomLeftCorner&lt;Dim,1&gt;() = Base::m_w.scaleSpaced2w(localQ,attributes);</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>            d2w.template bottomLeftCorner&lt;Dim,1&gt;() = Base::m_w.scaleSpaced2w(attributes.pos(),attributes);</div>
 <div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>            d2w.template topRightCorner&lt;1,Dim&gt;() = d2w.template bottomLeftCorner&lt;Dim,1&gt;().transpose();</div>
 <div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>        }</div>
 <div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span> </div>
@@ -343,7 +343,7 @@ $(document).ready(function(){initNavTree('mlsSphereFitDer_8hpp_source.html','');
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_695d95a8d8fbec601a248c0414764298.html">Ponca</a></li><li class="navelem"><a class="el" href="dir_ce16314fc45f8638543c5146aff64d4a.html">src</a></li><li class="navelem"><a class="el" href="dir_221133f19e4af6803e4ee7d78db21786.html">Fitting</a></li><li class="navelem"><b>mlsSphereFitDer.hpp</b></li>
-    <li class="footer">Generated on Thu Jul 6 2023 19:33:02 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.6 </li>
+    <li class="footer">Generated on Fri Jul 7 2023 09:13:39 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.6 </li>
   </ul>
 </div>
 </body>
