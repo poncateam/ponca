@@ -128,7 +128,7 @@ public:
     \left[u_c - \mathbf{u}_l^T.\mathbf{\Delta} + u_q \mathbf{\Delta}^T.\mathbf{\Delta}\right] + \left[\mathbf{u}_l - 2 u_q \mathbf{\Delta}\right]^T.\mathbf{x} + u_q \mathbf{x}^T.\mathbf{x} = 0 
     \end{equation}
 
-    By identification, the parametrization \f$\left[u_c', \mathbf{u}_l'^T, u_q'\right]\f$ of the sphere in the new basis is given by
+    By identification, the parametrization \f$\left[u_c', \mathbf{u}_l'^T, u_q'\right]^T\f$ of the sphere in the new basis is given by
 
     \f$u_c' = u_c - \mathbf{u}_l^T.\mathbf{\Delta} + u_q \mathbf{\Delta}^T.\mathbf{\Delta}\f$
 
