@@ -104,7 +104,35 @@ public:
         return ! ((*this) == other);
     }
 
-    /*! \brief Express the scalar field relatively to a new basis */
+    /*! \brief Express the scalar field relatively to a new basis 
+    
+    The sphere in dimension \f$d\f$ is parametrized in the original basis by \f$\mathbf{u} = \left[u_c, \mathbf{u}_l^T, u_q\right]^T \in \mathbb{R}^{d+2}\f$.
+    The sphere equation is given in this basis by:
+
+    \begin{equation}
+    u_c + \mathbf{u}_l^T.\mathbf{x} + u_q \mathbf{x}^T.\mathbf{x}= 0 
+    \end{equation}
+
+    The same equation written in a different basis is:
+    \begin{equation}
+    u_c + \mathbf{u}_l^T.(\mathbf{x}-\mathbf{\Delta}) + u_q (\mathbf{x}-\mathbf{\Delta})^T.(\mathbf{x}-\mathbf{\Delta})= 0 
+    \end{equation}
+    where \f$\mathbf{\Delta}\f$ is the difference vector between the two basis: \f$\mathbf{\Delta} = \mathbf{b}_\mathrm{original}-\mathbf{b}_\mathrm{new}\f$.
+    It corresponds to a translation of \f$\Delta\f$ of the sphere.
+    This develops in:
+    \begin{equation}
+    \left[u_c - \mathbf{u}_l^T.\mathbf{\Delta} + u_q \mathbf{\Delta}^T.\mathbf{\Delta}\right] + \left[\mathbf{u}_l - 2 u_q \mathbf{\Delta}\right]^T.\mathbf{x} + u_q \mathbf{x}^T.\mathbf{x} = 0 
+    \end{equation}
+
+    By identification, the parametrization \f$\left[u_c', \mathbf{u}_l'^T, u_q'\right]\f$ of the sphere in the new basis is given by
+
+    \f$u_c' = u_c - \mathbf{u}_l^T.\mathbf{\Delta} + u_q \mathbf{\Delta}^T.\mathbf{\Delta}\f$
+
+    \f$\mathbf{u}_l' = \mathbf{u}_l - 2 u_q \mathbf{\Delta}\f$
+
+    \f$u_q'=u_q\f$
+
+    */
     PONCA_MULTIARCH inline void changeBasis(const VectorType& newbasis)
     {
         VectorType diff = Base::m_w.basisCenter() - newbasis;
