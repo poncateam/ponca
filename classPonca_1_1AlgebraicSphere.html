@@ -51,7 +51,7 @@ MathJax.Hub.Config({
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Ponca
-   &#160;<span id="projectnumber">9e207cd7083d7a58420851d5a7df80df860fc59d</span>
+   &#160;<span id="projectnumber">e24146e1c599debd7ec9a2a6911c0bfe1a7e94ba</span>
    </div>
    <div id="projectbrief">Point Cloud Analysis library</div>
   </td>
@@ -443,7 +443,7 @@ template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
 <p>Normalize the scalar field by the Pratt norm. </p>
 <dl class="section return"><dt>Returns</dt><dd>false when the normalization fails (sphere is already normalized) </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="algebraicSphere_8h_source.html#l00136">136</a> of file <a class="el" href="algebraicSphere_8h_source.html">algebraicSphere.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="algebraicSphere_8h_source.html#l00164">164</a> of file <a class="el" href="algebraicSphere_8h_source.html">algebraicSphere.h</a>.</p>
 
 </div>
 </div>
@@ -475,7 +475,7 @@ template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
 <p>return the estimated center of the sphere </p>
 <dl class="section warning"><dt>Warning</dt><dd>return Vector inf if the fitted surface is planar </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="algebraicSphere_8h_source.html#l00176">176</a> of file <a class="el" href="algebraicSphere_8h_source.html">algebraicSphere.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="algebraicSphere_8h_source.html#l00204">204</a> of file <a class="el" href="algebraicSphere_8h_source.html">algebraicSphere.h</a>.</p>
 
 </div>
 </div>
@@ -506,8 +506,15 @@ template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
 </div><div class="memdoc">
 
 <p>Express the scalar field relatively to a new basis. </p>
+<p>The sphere in dimension \(d\) is parametrized in the original basis by \(\mathbf{u} = \left[u_c, \mathbf{u}_l^T, u_q\right]^T \in \mathbb{R}^{d+2}\). The sphere equation is given in this basis by:</p>
+<p>\begin{equation} u_c + \mathbf{u}_l^T.\mathbf{x} + u_q \mathbf{x}^T.\mathbf{x}= 0 \end{equation}</p>
+<p>The same equation written in a different basis is: \begin{equation} u_c + \mathbf{u}_l^T.(\mathbf{x}-\mathbf{\Delta}) + u_q (\mathbf{x}-\mathbf{\Delta})^T.(\mathbf{x}-\mathbf{\Delta})= 0 \end{equation} where \(\mathbf{\Delta}\) is the difference vector between the two basis: \(\mathbf{\Delta} = \mathbf{b}_\mathrm{original}-\mathbf{b}_\mathrm{new}\). It corresponds to a translation of \(\Delta\) of the sphere. This develops in: \begin{equation} \left[u_c - \mathbf{u}_l^T.\mathbf{\Delta} + u_q \mathbf{\Delta}^T.\mathbf{\Delta}\right] + \left[\mathbf{u}_l - 2 u_q \mathbf{\Delta}\right]^T.\mathbf{x} + u_q \mathbf{x}^T.\mathbf{x} = 0 \end{equation}</p>
+<p>By identification, the parametrization \(\left[u_c&#39;, \mathbf{u}_l&#39;^T, u_q&#39;\right]^T\) of the sphere in the new basis is given by</p>
+<p>\(u_c&#39; = u_c - \mathbf{u}_l^T.\mathbf{\Delta} + u_q \mathbf{\Delta}^T.\mathbf{\Delta}\)</p>
+<p>\(\mathbf{u}_l&#39; = \mathbf{u}_l - 2 u_q \mathbf{\Delta}\)</p>
+<p>\(u_q&#39;=u_q\) </p>
 
-<p class="definition">Definition at line <a class="el" href="algebraicSphere_8h_source.html#l00108">108</a> of file <a class="el" href="algebraicSphere_8h_source.html">algebraicSphere.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="algebraicSphere_8h_source.html#l00136">136</a> of file <a class="el" href="algebraicSphere_8h_source.html">algebraicSphere.h</a>.</p>
 
 </div>
 </div>
@@ -571,7 +578,7 @@ template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
 
 <p>State indicating when the sphere has been normalized. </p>
 
-<p class="definition">Definition at line <a class="el" href="algebraicSphere_8h_source.html#l00193">193</a> of file <a class="el" href="algebraicSphere_8h_source.html">algebraicSphere.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="algebraicSphere_8h_source.html#l00221">221</a> of file <a class="el" href="algebraicSphere_8h_source.html">algebraicSphere.h</a>.</p>
 
 </div>
 </div>
@@ -603,7 +610,7 @@ template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
 <p>Used to know if the fitting result to a plane. </p>
 <dl class="section return"><dt>Returns</dt><dd>true if finalize() have been called and the fitting result to a plane </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="algebraicSphere_8h_source.html#l00230">230</a> of file <a class="el" href="algebraicSphere_8h_source.html">algebraicSphere.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="algebraicSphere_8h_source.html#l00258">258</a> of file <a class="el" href="algebraicSphere_8h_source.html">algebraicSphere.h</a>.</p>
 
 </div>
 </div>
@@ -732,7 +739,7 @@ template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
 
 <p>Value of the scalar field at the evaluation point. </p>
 
-<p class="definition">Definition at line <a class="el" href="algebraicSphere_8h_source.html#l00199">199</a> of file <a class="el" href="algebraicSphere_8h_source.html">algebraicSphere.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="algebraicSphere_8h_source.html#l00227">227</a> of file <a class="el" href="algebraicSphere_8h_source.html">algebraicSphere.h</a>.</p>
 
 </div>
 </div>
@@ -795,7 +802,7 @@ template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
 
 <p>compute the Pratt norm of the implicit scalar field. </p>
 
-<p class="definition">Definition at line <a class="el" href="algebraicSphere_8h_source.html#l00120">120</a> of file <a class="el" href="algebraicSphere_8h_source.html">algebraicSphere.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="algebraicSphere_8h_source.html#l00148">148</a> of file <a class="el" href="algebraicSphere_8h_source.html">algebraicSphere.h</a>.</p>
 
 </div>
 </div>
@@ -826,7 +833,7 @@ template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
 
 <p>compute the squared Pratt norm of the implicit scalar field. </p>
 
-<p class="definition">Definition at line <a class="el" href="algebraicSphere_8h_source.html#l00127">127</a> of file <a class="el" href="algebraicSphere_8h_source.html">algebraicSphere.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="algebraicSphere_8h_source.html#l00155">155</a> of file <a class="el" href="algebraicSphere_8h_source.html">algebraicSphere.h</a>.</p>
 
 </div>
 </div>
@@ -857,7 +864,7 @@ template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
 
 <p>Approximation of the scalar field gradient at the evaluation point. </p>
 
-<p class="definition">Definition at line <a class="el" href="algebraicSphere_8h_source.html#l00224">224</a> of file <a class="el" href="algebraicSphere_8h_source.html">algebraicSphere.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="algebraicSphere_8h_source.html#l00252">252</a> of file <a class="el" href="algebraicSphere_8h_source.html">algebraicSphere.h</a>.</p>
 
 </div>
 </div>
@@ -1004,7 +1011,7 @@ template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
 <p>return the estimated radius of the sphere </p>
 <dl class="section warning"><dt>Warning</dt><dd>return inf if the fitted surface is planar </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="algebraicSphere_8h_source.html#l00154">154</a> of file <a class="el" href="algebraicSphere_8h_source.html">algebraicSphere.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="algebraicSphere_8h_source.html#l00182">182</a> of file <a class="el" href="algebraicSphere_8h_source.html">algebraicSphere.h</a>.</p>
 
 </div>
 </div>
@@ -1103,7 +1110,7 @@ template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="namespacePonca.html">Ponca</a></li><li class="navelem"><a class="el" href="classPonca_1_1AlgebraicSphere.html">AlgebraicSphere</a></li>
-    <li class="footer">Generated on Fri Jul 7 2023 09:13:39 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.6 </li>
+    <li class="footer">Generated on Mon Jul 24 2023 15:46:01 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.6 </li>
   </ul>
 </div>
 </body>

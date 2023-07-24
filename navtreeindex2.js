@@ -1,5 +1,6 @@
 var NAVTREEINDEX2 =
 {
+"classPonca_1_1Stack.html#acd2f90bb550b5048db6b1c20780b1777":[8,0,0,66,2],
 "classPonca_1_1Stack.html#af7a9b21992c2a9fc54f57169717184db":[8,0,0,66,8],
 "classPonca_1_1UnorientedSphereFitImpl.html":[8,0,0,67],
 "classPonca_1_1UnorientedSphereFitImpl.html#a0d040049d62b02ac3520986dea1d621e":[8,0,0,67,2],
