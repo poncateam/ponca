@@ -10,6 +10,7 @@ improved doc.
 - API
     - [spatialPartitioning] Add kd-tree traits type (#80)
     - [fitting] Add Primitive::getNumNeighbors (#86)
+    - [fitting] Add Primitive::getWeightFunc (#99)
     - [fitting] Change naming convention and rational for principal curvatures in CurvatureEstimatorBase (#94)
     - [fitting] Add class MeanNormalDer to compute derivatives of the mean normal vector (#78)
 
@@ -29,6 +30,7 @@ improved doc.
 -Docs
     - [spatialPartitioning] Update module page with a minimal doc and examples (#86, #92)
     - [spatialPartitioning] Add NanoFlann example (#86)
+    - [fitting] Update documentation of AlgebraicSphere::changeBasis (#99)
 
 --------------------------------------------------------------------------------
 v.1.0
