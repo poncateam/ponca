@@ -97,6 +97,13 @@ public:
         m_sumW = Scalar(0);
     }
 
+    /*! \brief Read access to the WeightFunc \see setWeightFunc */
+    PONCA_MULTIARCH inline const WFunctor& getWeightFunc() const
+    {
+        return m_w;
+    }
+
+
     /*! \return the current test of the fit */
     PONCA_MULTIARCH inline FIT_RESULT getCurrentState() const
     {

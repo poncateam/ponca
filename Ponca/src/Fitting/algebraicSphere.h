@@ -89,10 +89,6 @@ public:
         return !( m_ul.isApprox(VectorType::Zero()) && m_uc == Scalar(0) && m_uq == Scalar(0) );
     }
 
-    PONCA_MULTIARCH inline VectorType getBasisCenter() const{
-      return Base::m_w.basisCenter();
-    }
-
     /// \brief Comparison operator \warning Assume that other shares the same basis \see changeBasis()
     PONCA_MULTIARCH inline bool operator==(const AlgebraicSphere<DataPoint, WFunctor, T>& other) const{
         PONCA_MULTIARCH_STD_MATH(pow);
