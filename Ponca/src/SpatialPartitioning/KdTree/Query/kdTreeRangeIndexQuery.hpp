@@ -23,12 +23,11 @@ auto KdTreeRangeIndexQuery<Traits>::end() -> Iterator
 template<typename Traits>
 void KdTreeRangeIndexQuery<Traits>::advance(Iterator& it)
 {
-    const auto& nodes   = QueryAccelType::m_kdtree->node_data();
     const auto& points  = QueryAccelType::m_kdtree->point_data();
     const auto& indices = QueryAccelType::m_kdtree->index_data();
     const auto& point   = points[QueryType::input()].pos();
 
-    if (nodes.empty() || points.empty() || indices.empty())
+    if (points.empty() || indices.empty())
         throw std::invalid_argument("Empty KdTree");
 
     for(IndexType i=it.m_start; i<it.m_end; ++i)
@@ -45,58 +44,20 @@ void KdTreeRangeIndexQuery<Traits>::advance(Iterator& it)
         }
     }
 
-    while(!QueryAccelType::m_stack.empty())
-    {
-        auto& qnode = QueryAccelType::m_stack.top();
-        const auto& node = nodes[qnode.index];
-
-        if(qnode.squared_distance < QueryType::descentDistanceThreshold())
-        {
-            if(node.is_leaf())
-            {
-                QueryAccelType::m_stack.pop();
-                IndexType start = node.leaf.start;
-                IndexType end = node.leaf.start + node.leaf.size;
-                it.m_start = start;
-                it.m_end   = end;
-                for(IndexType i=start; i<end; ++i)
-                {
-                    IndexType idx = indices[i];
-                    if(idx == QueryType::input()) continue;
-
-                    Scalar d = (point - points[idx].pos()).squaredNorm();
-
-                    if(d < QueryType::descentDistanceThreshold())
-                    {
-                        it.m_index = idx;
-                        it.m_start = i+1;
-                        return;
-                    }
-                }
-            }
-            else
-            {
-                // replace the stack top by the farthest and push the closest
-                Scalar newOff = point[node.inner.dim] - node.inner.split_value;
-                QueryAccelType::m_stack.push();
-                if(newOff < 0)
-                {
-                    QueryAccelType::m_stack.top().index = node.inner.first_child_id;
-                    qnode.index         = node.inner.first_child_id+1;
-                }
-                else
-                {
-                    QueryAccelType::m_stack.top().index = node.inner.first_child_id+1;
-                    qnode.index         = node.inner.first_child_id;
-                }
-                QueryAccelType::m_stack.top().squared_distance = qnode.squared_distance;
-                qnode.squared_distance         = newOff*newOff;
-            }
-        }
-        else
-        {
-            QueryAccelType::m_stack.pop();
-        }
-    }
-    it.m_index = static_cast<IndexType>(points.size());
+    if (KdTreeQuery<Traits>::search_internal(point,
+                                             [&it](IndexType start, IndexType end)
+                                             {
+                                                 it.m_start = start;
+                                                 it.m_end   = end;
+                                             },
+                                             [this](){return QueryType::descentDistanceThreshold();},
+                                             [this](IndexType idx){return QueryType::input() == idx;},
+                                             [&it](IndexType idx, IndexType i, Scalar)
+                                             {
+                                                 it.m_index = idx;
+                                                 it.m_start = i+1;
+                                                 return true;
+                                             }
+        ))
+        it.m_index = static_cast<IndexType>(points.size());
 }
