@@ -12,28 +12,26 @@
 
 namespace Ponca {
 
-template <typename Traits>
-class KdTreeRangeIndexQuery : public KdTreeQuery<Traits>,
-    public RangeIndexQuery<typename Traits::IndexType, typename Traits::DataPoint::Scalar>
+template <typename Traits,
+        template <typename,typename,typename> typename IteratorType,
+        typename QueryType>
+class KdTreeRangeQueryBase : public KdTreeQuery<Traits>, public QueryType
+                              //public RangeIndexQuery<typename Traits::IndexType, typename Traits::DataPoint::Scalar>
 {
 public:
     using DataPoint      = typename Traits::DataPoint;
     using IndexType      = typename Traits::IndexType;
     using Scalar         = typename DataPoint::Scalar;
     using VectorType     = typename DataPoint::VectorType;
-    using QueryType      = RangeIndexQuery<IndexType, typename DataPoint::Scalar>;
     using QueryAccelType = KdTreeQuery<Traits>;
-    using Iterator       = KdTreeRangeIterator<IndexType, DataPoint, KdTreeRangeIndexQuery>;
+    using Iterator       = IteratorType<IndexType, DataPoint, KdTreeRangeQueryBase>;
 
 protected:
     friend Iterator;
 
 public:
-
-    KdTreeRangeIndexQuery(const KdTreeBase<Traits>* kdtree, Scalar radius, IndexType index) :
-        KdTreeQuery<Traits>(kdtree), RangeIndexQuery<IndexType, Scalar>(radius, index)
-    {
-    }
+    KdTreeRangeQueryBase(const KdTreeBase<Traits>* kdtree, Scalar radius, typename QueryType::InputType input) :
+            KdTreeQuery<Traits>(kdtree), QueryType(radius, input){}
 
 public:
     inline Iterator begin(){
@@ -51,10 +49,10 @@ protected:
     inline void advance(Iterator& it){
         const auto& points  = QueryAccelType::m_kdtree->point_data();
         const auto& indices = QueryAccelType::m_kdtree->index_data();
-        const auto& point   = QueryAccelType::m_kdtree->point_data()[QueryType::input()].pos();
+        const auto& point   = QueryType::getInputPosition(points);
 
         auto descentDistanceThreshold = [this](){return QueryType::descentDistanceThreshold();};
-        auto skipFunctor              = [this](IndexType idx){return QueryType::input() == idx;};
+        auto skipFunctor              = [this](IndexType idx){return QueryType::skipIndexFunctor(idx);};
         auto processNeighborFunctor   = [&it](IndexType idx, IndexType i, Scalar)
         {
             it.m_index = idx;
@@ -89,4 +87,11 @@ protected:
             it.m_index = static_cast<IndexType>(points.size());
     }
 };
+
+template <typename Traits>
+using KdTreeRangeIndexQuery = KdTreeRangeQueryBase< Traits, KdTreeRangeIterator,
+        RangeIndexQuery<typename Traits::IndexType, typename Traits::DataPoint::Scalar>>;
+template <typename Traits>
+using KdTreeRangePointQuery = KdTreeRangeQueryBase< Traits, KdTreeRangeIterator,
+        RangePointQuery<typename Traits::IndexType, typename Traits::DataPoint>>;
 } // namespace ponca

@@ -87,6 +87,14 @@ struct  OUT_TYPE##PointQuery : Query<QueryInputIsPosition<DataPoint>, \
 
         inline QueryInputIsIndex(const InputType &point = -1)
                 : Base(point) {}
+    protected:
+        /// Functor used to check if a given Idx must be skipped
+        template <typename IndexType>
+        inline bool skipIndexFunctor(IndexType idx) const {return Base::input() == idx;};
+        /// Generic method to access input position. Container is expected to hold kdtree positions
+        template <typename Container>
+        inline auto getInputPosition(const Container &c) -> const typename Container::value_type::VectorType
+        { return c[Base::input()].pos(); }
     };
 
 /// \brief Base class for queries storing points
@@ -97,6 +105,14 @@ struct  OUT_TYPE##PointQuery : Query<QueryInputIsPosition<DataPoint>, \
 
         inline QueryInputIsPosition(const InputType &point = InputType::Zero())
                 : Base(point) {}
+    protected:
+        /// Functor used to check if a given Idx must be skipped
+        template <typename IndexType>
+        inline bool skipIndexFunctor(IndexType idx) const {return false;};
+        /// Generic method to access input position. Container is expected to hold kdtree positions
+        template <typename Container>
+        inline auto getInputPosition(const Container &) -> const typename Container::value_type::VectorType
+        { return Base::input(); }
     };
 
 /// \brief Base class for range queries

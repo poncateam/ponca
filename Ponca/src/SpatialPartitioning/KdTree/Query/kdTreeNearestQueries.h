@@ -12,23 +12,21 @@
 
 namespace Ponca {
 
-template <typename Traits>
-class KdTreeNearestPointQuery : public KdTreeQuery<Traits>,
-    public NearestPointQuery<typename Traits::IndexType, typename Traits::DataPoint>
+template <typename Traits,
+          template <typename> typename IteratorType,
+          typename QueryType>
+class KdTreeNearestQueryBase : public KdTreeQuery<Traits>, public QueryType
 {
 public:
     using DataPoint      = typename Traits::DataPoint;
     using IndexType      = typename Traits::IndexType;
     using Scalar         = typename DataPoint::Scalar;
     using VectorType     = typename DataPoint::VectorType;
-    using QueryType      = NearestPointQuery<IndexType, DataPoint>;
     using QueryAccelType = KdTreeQuery<Traits>;
-    using Iterator       = KdTreeNearestIterator<IndexType>;
+    using Iterator       = IteratorType<typename Traits::IndexType>;
 
-    inline KdTreeNearestPointQuery(const KdTreeBase<Traits>* kdtree, const VectorType& point) :
-        KdTreeQuery<Traits>(kdtree), NearestPointQuery<IndexType, DataPoint>(point)
-    {
-    }
+    KdTreeNearestQueryBase(const KdTreeBase<Traits>* kdtree, typename QueryType::InputType input) :
+            KdTreeQuery<Traits>(kdtree), QueryType(input){}
 
 public:
     inline Iterator begin(){
@@ -37,16 +35,16 @@ public:
         this->search();
         return Iterator(QueryType::m_nearest);
     }
-    Iterator end(){
+    inline Iterator end(){
         return Iterator(QueryType::m_nearest + 1);
     }
 
 protected:
     inline void search(){
-        KdTreeQuery<Traits>::search_internal(QueryType::input(),
+        KdTreeQuery<Traits>::search_internal(QueryType::getInputPosition(QueryAccelType::m_kdtree->point_data()),
                                              [](IndexType, IndexType){},
                                              [this](){return QueryType::descentDistanceThreshold();},
-                                             [](IndexType){return false;},
+                                             [this](IndexType idx){return QueryType::skipIndexFunctor(idx);},
                                              [this](IndexType idx, IndexType, Scalar d)
                                              {
                                                  QueryType::m_nearest = idx;
@@ -56,4 +54,11 @@ protected:
         );
     }
 };
+
+template <typename Traits>
+using KdTreeNearestIndexQuery = KdTreeNearestQueryBase< Traits, KdTreeNearestIterator,
+                                NearestIndexQuery<typename Traits::IndexType, typename Traits::DataPoint::Scalar>>;
+template <typename Traits>
+using KdTreeNearestPointQuery = KdTreeNearestQueryBase< Traits, KdTreeNearestIterator,
+                                NearestPointQuery<typename Traits::IndexType, typename Traits::DataPoint>>;
 } // namespace ponca
