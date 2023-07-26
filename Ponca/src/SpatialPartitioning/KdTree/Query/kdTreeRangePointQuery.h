@@ -29,19 +29,63 @@ protected:
     friend Iterator;
 
 public:
-
     inline KdTreeRangePointQuery(const KdTreeBase<Traits>* kdtree, Scalar radius, const VectorType& point) :
         KdTreeQuery<Traits>(kdtree), RangePointQuery<IndexType, DataPoint>(radius, point)
     {
     }
 
 public:
-    inline Iterator begin();
-    inline Iterator end();
+    inline Iterator begin(){
+        QueryAccelType::reset();
+        QueryType::reset();
+        Iterator it(this);
+        this->advance(it);
+        return it;
+    }
+    inline Iterator end(){
+        return Iterator(this, QueryAccelType::m_kdtree->point_count());
+    }
 
 protected:
-    inline void advance(Iterator& iterator);
-};
+    inline void advance(Iterator& it){
+        const auto& points  = QueryAccelType::m_kdtree->point_data();
+        const auto& indices = QueryAccelType::m_kdtree->index_data();
+        const auto& point   = QueryType::input();
 
-#include "./kdTreeRangePointQuery.hpp"
+        auto descentDistanceThreshold = [this](){return QueryType::descentDistanceThreshold();};
+        auto skipFunctor              = [](IndexType){return false;};
+        auto processNeighborFunctor   = [&it](IndexType idx, IndexType i, Scalar)
+        {
+            it.m_index = idx;
+            it.m_start = i+1;
+            return true;
+        };
+
+        if (points.empty() || indices.empty())
+            throw std::invalid_argument("Empty KdTree");
+
+        for(IndexType i=it.m_start; i<it.m_end; ++i)
+        {
+            IndexType idx = indices[i];
+            if(skipFunctor(idx)) continue;
+
+            Scalar d = (point - points[idx].pos()).squaredNorm();
+            if(d < descentDistanceThreshold())
+            {
+                if( processNeighborFunctor(idx, i, d) ) return;
+            }
+        }
+
+        if (KdTreeQuery<Traits>::search_internal(point,
+                                                 [&it](IndexType start, IndexType end)
+                                                 {
+                                                     it.m_start = start;
+                                                     it.m_end   = end;
+                                                 },
+                                                 descentDistanceThreshold,
+                                                 skipFunctor,
+                                                 processNeighborFunctor))
+            it.m_index = static_cast<IndexType>(points.size());
+    }
+};
 } // namespace ponca

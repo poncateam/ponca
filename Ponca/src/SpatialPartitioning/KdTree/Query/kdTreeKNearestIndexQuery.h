@@ -23,6 +23,7 @@ public:
     using VectorType     = typename DataPoint::VectorType;
     using QueryType      = KNearestIndexQuery<IndexType, typename DataPoint::Scalar>;
     using QueryAccelType = KdTreeQuery<Traits>;
+    using Iterator       = KdTreeKNearestIterator<IndexType, DataPoint>;
 
     KdTreeKNearestIndexQuery(const KdTreeBase<Traits>* kdtree, IndexType k, IndexType index) :
         KdTreeQuery<Traits>(kdtree), KNearestIndexQuery<IndexType, Scalar>(k, index)
@@ -30,12 +31,24 @@ public:
     }
 
 public:
-    KdTreeKNearestIterator<IndexType, DataPoint> begin();
-    KdTreeKNearestIterator<IndexType, DataPoint> end();
+    Iterator begin(){
+        QueryAccelType::reset();
+        QueryType::reset();
+        this->search();
+        return Iterator(QueryType::m_queue.begin());
+    }
+    Iterator end(){
+        return Iterator(QueryType::m_queue.end());
+    }
 
 protected:
-    void search();
+    void search(){
+        KdTreeQuery<Traits>::search_internal(QueryAccelType::m_kdtree->point_data()[QueryType::input()].pos(),
+                                             [](IndexType, IndexType){},
+                                             [this](){return QueryType::descentDistanceThreshold();},
+                                             [this](IndexType idx){return QueryType::input() == idx;},
+                                             [this](IndexType idx, IndexType, Scalar d){QueryType::m_queue.push({idx, d}); return false;}
+        );
+    }
 };
-
-#include "./kdTreeKNearestIndexQuery.hpp"
 } // namespace ponca

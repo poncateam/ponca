@@ -23,20 +23,32 @@ public:
     using VectorType     = typename DataPoint::VectorType;
     using QueryType      = KNearestPointQuery<IndexType, DataPoint>;
     using QueryAccelType = KdTreeQuery<Traits>;
+    using Iterator       = KdTreeKNearestIterator<IndexType, DataPoint>;
 
-    KdTreeKNearestPointQuery(const KdTreeBase<Traits>* kdtree, IndexType k, const VectorType& point) :
+    inline KdTreeKNearestPointQuery(const KdTreeBase<Traits>* kdtree, IndexType k, const VectorType& point) :
         KdTreeQuery<Traits>(kdtree), KNearestPointQuery<IndexType, DataPoint>(k, point)
     {
     }
 
 public:
-    KdTreeKNearestIterator<IndexType, DataPoint> begin();
-    KdTreeKNearestIterator<IndexType, DataPoint> end();
+    inline Iterator begin(){
+        QueryAccelType::reset();
+        QueryType::reset();
+        this->search();
+        return Iterator(QueryType::m_queue.begin());
+    }
+    inline Iterator end(){
+        return Iterator(QueryType::m_queue.end());
+    }
 
 protected:
-   void search();
+   inline void search(){
+       KdTreeQuery<Traits>::search_internal(QueryType::input(),
+                                            [](IndexType, IndexType){},
+                                            [this](){return QueryType::descentDistanceThreshold();},
+                                            [](IndexType){return false;},
+                                            [this](IndexType idx, IndexType, Scalar d){QueryType::m_queue.push({idx, d}); return false;}
+       );
+   }
 };
-
-#include "./kdTreeKNearestPointQuery.hpp"
 } // namespace Ponca
-
