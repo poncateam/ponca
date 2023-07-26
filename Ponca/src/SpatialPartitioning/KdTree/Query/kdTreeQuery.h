@@ -6,8 +6,8 @@
 
 #pragma once
 
-#include "../indexSquaredDistance.h"
-#include "../../Common/Containers/stack.h"
+#include "../../indexSquaredDistance.h"
+#include "../../../Common/Containers/stack.h"
 
 namespace Ponca {
 template <typename Traits> class KdTreeBase;
