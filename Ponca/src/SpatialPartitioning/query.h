@@ -87,6 +87,14 @@ struct  OUT_TYPE##PointQuery : Query<QueryInputIsPosition<DataPoint>, \
 
         inline QueryInputIsIndex(const InputType &point = -1)
                 : Base(point) {}
+    protected:
+        /// Functor used to check if a given Idx must be skipped
+        template <typename IndexType>
+        inline bool skipIndexFunctor(IndexType idx) const {return Base::input() == idx;};
+        /// Generic method to access input position. Container is expected to hold kdtree positions
+        template <typename Container>
+        inline auto getInputPosition(const Container &c) -> const typename Container::value_type::VectorType
+        { return c[Base::input()].pos(); }
     };
 
 /// \brief Base class for queries storing points
@@ -97,6 +105,14 @@ struct  OUT_TYPE##PointQuery : Query<QueryInputIsPosition<DataPoint>, \
 
         inline QueryInputIsPosition(const InputType &point = InputType::Zero())
                 : Base(point) {}
+    protected:
+        /// Functor used to check if a given Idx must be skipped
+        template <typename IndexType>
+        inline bool skipIndexFunctor(IndexType idx) const {return false;};
+        /// Generic method to access input position. Container is expected to hold kdtree positions
+        template <typename Container>
+        inline auto getInputPosition(const Container &) -> const typename Container::value_type::VectorType
+        { return Base::input(); }
     };
 
 /// \brief Base class for range queries
@@ -118,6 +134,8 @@ struct  OUT_TYPE##PointQuery : Query<QueryInputIsPosition<DataPoint>, \
     protected:
         /// \brief Reset Query for a new search
         inline void reset() { }
+        /// \brief Distance threshold used during tree descent to select nodes to explore
+        inline Scalar descentDistanceThreshold() const { return m_squared_radius; }
         Scalar m_squared_radius{0};
     };
 
@@ -136,6 +154,8 @@ struct  OUT_TYPE##PointQuery : Query<QueryInputIsPosition<DataPoint>, \
             m_nearest = -1;
             m_squared_distance = std::numeric_limits<Scalar>::max();
         }
+        /// \brief Distance threshold used during tree descent to select nodes to explore
+        inline Scalar descentDistanceThreshold() const { return m_squared_distance; }
 
         Index m_nearest {-1};
         Scalar m_squared_distance {std::numeric_limits<Scalar>::max()};
@@ -156,6 +176,8 @@ struct  OUT_TYPE##PointQuery : Query<QueryInputIsPosition<DataPoint>, \
             m_queue.clear();
             m_queue.push({-1,std::numeric_limits<Scalar>::max()});
         }
+        /// \brief Distance threshold used during tree descent to select nodes to explore
+        inline Scalar descentDistanceThreshold() const { return m_queue.bottom().squared_distance; }
         limited_priority_queue<IndexSquaredDistance<Index, Scalar>> m_queue;
     };
 

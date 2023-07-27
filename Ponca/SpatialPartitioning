@@ -12,5 +12,4 @@
 #include "src/SpatialPartitioning/indexSquaredDistance.h"
 #include "src/SpatialPartitioning/query.h"
 #include "src/SpatialPartitioning/KdTree/kdTree.h"
-#include "src/SpatialPartitioning/KdTree/kdTreeQuery.h"
 #include "src/SpatialPartitioning/KdTree/kdTreeTraits.h"

@@ -18,12 +18,9 @@
 
 #include "../../Common/Assert.h"
 
-#include "Query/kdTreeNearestPointQuery.h"
-#include "Query/kdTreeNearestIndexQuery.h"
-#include "Query/kdTreeKNearestPointQuery.h"
-#include "Query/kdTreeKNearestIndexQuery.h"
-#include "Query/kdTreeRangeIndexQuery.h"
-#include "Query/kdTreeRangePointQuery.h"
+#include "Query/kdTreeNearestQueries.h"
+#include "Query/kdTreeKNearestQueries.h"
+#include "Query/kdTreeRangeQueries.h"
 
 namespace Ponca {
 template <typename Traits> class KdTreeBase;
