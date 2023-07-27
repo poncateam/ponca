@@ -2,25 +2,25 @@
 
 #include <vector>
 
-namespace pca {
+namespace Ponca {
 
-class KNNGraph;
+class KnnGraph;
 
-class KNNGraphQuery
+class KnnGraphQuery
 {
 public:
     using iterator = std::vector<int>::const_iterator;
 
 public:
-    KNNGraphQuery();
-    KNNGraphQuery(const KNNGraph* graph, int index);
+    KnnGraphQuery();
+    KnnGraphQuery(const KnnGraph* graph, int index);
 
     iterator begin() const;
     iterator end() const;
 
 protected:
-    const KNNGraph* m_graph;
+    const KnnGraph* m_graph;
     int m_index;
 };
 
-} // namespace pca
+} // namespace Ponca

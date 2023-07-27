@@ -1,11 +1,9 @@
-#include <PCA/SpacePartitioning/KNNGraph/Query/KNNGraphRangeQuery.h>
-#include <PCA/SpacePartitioning/KNNGraph/KNNGraph.h>
+#include "knnGraphRangeQuery.h"
+#include "../knnGraph.h"
 
-#include <PCA/Common/Assert.h>
+namespace Ponca {
 
-namespace pca {
-
-KNNGraphRangeQuery::KNNGraphRangeQuery() :
+KnnGraphRangeQuery::KnnGraphRangeQuery() :
     RangeIndexQuery(),
     m_graph(nullptr),
     m_flag(),
@@ -13,7 +11,7 @@ KNNGraphRangeQuery::KNNGraphRangeQuery() :
 {
 }
 
-KNNGraphRangeQuery::KNNGraphRangeQuery(const KNNGraph* graph) :
+KnnGraphRangeQuery::KnnGraphRangeQuery(const KnnGraph* graph) :
     RangeIndexQuery(),
     m_graph(graph),
     m_flag(graph->size()),
@@ -21,7 +19,7 @@ KNNGraphRangeQuery::KNNGraphRangeQuery(const KNNGraph* graph) :
 {
 }
 
-KNNGraphRangeQuery::KNNGraphRangeQuery(const KNNGraph* graph, Scalar radius) :
+KnnGraphRangeQuery::KnnGraphRangeQuery(const KnnGraph* graph, Scalar radius) :
     RangeIndexQuery(radius),
     m_graph(graph),
     m_flag(graph->size()),
@@ -29,7 +27,7 @@ KNNGraphRangeQuery::KNNGraphRangeQuery(const KNNGraph* graph, Scalar radius) :
 {
 }
 
-KNNGraphRangeQuery::KNNGraphRangeQuery(const KNNGraph* graph, Scalar radius, int index) :
+KnnGraphRangeQuery::KnnGraphRangeQuery(const KnnGraph* graph, Scalar radius, int index) :
     RangeIndexQuery(radius, index),
     m_graph(graph),
     m_flag(graph->size()),
@@ -37,20 +35,20 @@ KNNGraphRangeQuery::KNNGraphRangeQuery(const KNNGraph* graph, Scalar radius, int
 {
 }
 
-KNNGraphRangeIterator KNNGraphRangeQuery::begin()
+KnnGraphRangeIterator KnnGraphRangeQuery::begin()
 {
-    KNNGraphRangeIterator it(this);
+    KnnGraphRangeIterator it(this);
     this->initialize(it);
     this->advance(it);
     return it;
 }
 
-KNNGraphRangeIterator KNNGraphRangeQuery::end()
+KnnGraphRangeIterator KnnGraphRangeQuery::end()
 {
-    return KNNGraphRangeIterator(this, m_graph->size());
+    return KnnGraphRangeIterator(this, m_graph->size());
 }
 
-void KNNGraphRangeQuery::initialize(KNNGraphRangeIterator& iterator)
+void KnnGraphRangeQuery::initialize(KnnGraphRangeIterator& iterator)
 {
     m_flag.resize(m_graph->size());
     std::fill(m_flag.begin(), m_flag.end(), false);
@@ -62,7 +60,7 @@ void KNNGraphRangeQuery::initialize(KNNGraphRangeIterator& iterator)
     iterator.m_index = -1;
 }
 
-void KNNGraphRangeQuery::advance(KNNGraphRangeIterator& iterator)
+void KnnGraphRangeQuery::advance(KnnGraphRangeIterator& iterator)
 {
     const auto& points  = m_graph->point_data();
     const auto& point   = points[m_index];
@@ -91,4 +89,4 @@ void KNNGraphRangeQuery::advance(KNNGraphRangeIterator& iterator)
     }
 }
 
-} // namespace pca
+} // namespace Ponca

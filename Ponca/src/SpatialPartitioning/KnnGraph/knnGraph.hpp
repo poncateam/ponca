@@ -1,13 +1,11 @@
-#include <PCA/SpacePartitioning/KNNGraph/KNNGraph.h>
-#include <PCA/SpacePartitioning/KdTree/KdTree.h>
+#include "knnGraph.h"
+#include "../KdTree/KdTree.h"
 
-#include <PCA/Common/Progress.h>
+namespace Ponca {
 
-namespace pca {
+// knnGraph --------------------------------------------------------------------
 
-// KNNGraph --------------------------------------------------------------------
-
-KNNGraph::KNNGraph() :
+KnnGraph::KnnGraph() :
     m_k(0),
     m_points(nullptr),
     m_indices(nullptr),
@@ -15,7 +13,7 @@ KNNGraph::KNNGraph() :
 {
 }
 
-KNNGraph::KNNGraph(int k) :
+KnnGraph::KnnGraph(int k) :
     m_k(k),
     m_points(nullptr),
     m_indices(nullptr),
@@ -23,13 +21,13 @@ KNNGraph::KNNGraph(int k) :
 {
 }
 
-void KNNGraph::clear()
+void KnnGraph::clear()
 {
     m_points  = nullptr;
     m_indices = nullptr;
 }
 
-void KNNGraph::build(const KdTree& kdtree)
+void KnnGraph::build(const KdTree& kdtree)
 {
     this->clear();
 
@@ -58,13 +56,13 @@ void KNNGraph::build(const KdTree& kdtree)
     }
 }
 
-void KNNGraph::build(const KdTree& kdtree, int k)
+void KnnGraph::build(const KdTree& kdtree, int k)
 {
     m_k = k;
     this->build(kdtree);
 }
 
-void KNNGraph::build(const KdTree& kdtree, const std::vector<int>& indices)
+void KnnGraph::build(const KdTree& kdtree, const std::vector<int>& indices)
 {
     this->clear();
 
@@ -92,7 +90,7 @@ void KNNGraph::build(const KdTree& kdtree, const std::vector<int>& indices)
     }
 }
 
-void KNNGraph::build(const KdTree& kdtree, int k, const std::vector<int>& indices)
+void KnnGraph::build(const KdTree& kdtree, int k, const std::vector<int>& indices)
 {
     m_k = k;
     this->build(kdtree, indices);
@@ -100,63 +98,63 @@ void KNNGraph::build(const KdTree& kdtree, int k, const std::vector<int>& indice
 
 // Query -----------------------------------------------------------------------
 
-KNNGraphQuery KNNGraph::k_nearest_neighbors(int index) const
+knnGraphQuery KnnGraph::k_nearest_neighbors(int index) const
 {
-    return KNNGraphQuery(this, index);
+    return KnnGraphQuery(this, index);
 }
 
-KNNGraphRangeQuery KNNGraph::range_neighbors(int index, Scalar r) const
+knnGraphRangeQuery KnnGraph::range_neighbors(int index, Scalar r) const
 {
-    return KNNGraphRangeQuery(this, r, index);
+    return knnGraphRangeQuery(this, r, index);
 }
 
-int KNNGraph::k_neighbor(int idx_point, int i) const
+int KnnGraph::k_neighbor(int idx_point, int i) const
 {
     return m_indices->operator[](idx_point * m_k + i);
 }
 
 // Empty Query -----------------------------------------------------------------
 
-KNNGraphRangeQuery KNNGraph::range_query(Scalar r) const
+knnGraphRangeQuery KnnGraph::range_query(Scalar r) const
 {
     return RangeIndexQuery(this, r);
 }
 
 // Accessors -------------------------------------------------------------------
 
-int KNNGraph::k() const
+int KnnGraph::k() const
 {
     return m_k;
 }
 
-int KNNGraph::size() const
+int KnnGraph::size() const
 {
     return m_points->size();
 }
 
-const Vector3Array& KNNGraph::point_data() const
+const Vector3Array& KnnGraph::point_data() const
 {
     return *m_points;
 }
 
-Vector3Array& KNNGraph::point_data()
+Vector3Array& KnnGraph::point_data()
 {
     return *m_points;
 }
 
-const std::vector<int>& KNNGraph::index_data() const
+const std::vector<int>& KnnGraph::index_data() const
 {
     return *m_indices.get();
 }
 
-std::vector<int>& KNNGraph::index_data()
+std::vector<int>& KnnGraph::index_data()
 {
     return *m_indices.get();
 }
 
-void KNNGraph::set_verbose(bool verbose)
+void KnnGraph::set_verbose(bool verbose)
 {
     m_verbose = verbose;
 }
 
-} // namespace pca
+} // namespace Ponca

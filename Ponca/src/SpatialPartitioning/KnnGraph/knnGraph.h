@@ -1,26 +1,25 @@
 #pragma once
 
-#include <PCA/Geometry/LinearAlgebra.h>
-#include <PCA/SpacePartitioning/KNNGraph/Query/KNNGraphQuery.h>
-#include <PCA/SpacePartitioning/KNNGraph/Query/KNNGraphRangeQuery.h>
+#include "Query/knnGraphQuery.h"
+#include "Query/knnGraphRangeQuery.h"
 
 #include <memory>
 
-namespace pca {
+namespace Ponca {
 
 class KdTree;
 
-class KNNGraph
+class KnnGraph
 {
     // Types -------------------------------------------------------------------
 public:
-    using KNearestIndexQuery = KNNGraphQuery;
-    using RangeIndexQuery    = KNNGraphRangeQuery;
+    using KNearestIndexQuery = KnnGraphQuery;
+    using RangeIndexQuery    = KnnGraphRangeQuery;
 
-    // KNNGraph ----------------------------------------------------------------
+    // knnGraph ----------------------------------------------------------------
 public:
-    KNNGraph();
-    KNNGraph(int k);
+    KnnGraph();
+    KnnGraph(int k);
 
     void clear();
     void build(const KdTree& kdtree);
@@ -62,4 +61,4 @@ protected:
     bool m_verbose;
 };
 
-} // namespace pca
+} // namespace Ponca
