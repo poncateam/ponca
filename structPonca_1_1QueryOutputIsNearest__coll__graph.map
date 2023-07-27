@@ -1,4 +1,4 @@
 <map id="Ponca::QueryOutputIsNearest&lt; Index, Scalar &gt;" name="Ponca::QueryOutputIsNearest&lt; Index, Scalar &gt;">
-<area shape="rect" id="node1" title="Base class for nearest queries." alt="" coords="5,131,220,267"/>
-<area shape="rect" id="node2" href="$group__spatialpartitioning.html#structPonca_1_1QueryOutputBase" title="Base class for queries output type." alt="" coords="21,5,205,83"/>
+<area shape="rect" id="node1" title="Base class for nearest queries." alt="" coords="5,131,224,281"/>
+<area shape="rect" id="node2" href="$group__spatialpartitioning.html#structPonca_1_1QueryOutputBase" title="Base class for queries output type." alt="" coords="23,5,207,83"/>
 </map>

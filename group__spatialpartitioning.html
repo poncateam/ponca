@@ -51,7 +51,7 @@ MathJax.Hub.Config({
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Ponca
-   &#160;<span id="projectnumber">e24146e1c599debd7ec9a2a6911c0bfe1a7e94ba</span>
+   &#160;<span id="projectnumber">85767c177dc6ec661991ad60137d465751074a36</span>
    </div>
    <div id="projectbrief">Point Cloud Analysis library</div>
   </td>
@@ -455,7 +455,7 @@ struct Ponca::QueryInputIsIndex&lt; Index &gt;</div><p>Base class for queries st
 <div id="dynsection-8-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-8-content" class="dyncontent" style="display:none;">
-<div class="center"><iframe scrolling="no" frameborder="0" src="structPonca_1_1QueryInputIsIndex__coll__graph.svg" width="274" height="584"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="structPonca_1_1QueryInputIsIndex__coll__graph.svg" width="100%" height="600"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 </div>
 <table class="memberdecls">
@@ -475,9 +475,15 @@ struct Ponca::QueryInputIsIndex&lt; Index &gt;</div><p>Base class for queries st
 <tr class="separator:a00cb8f43f8e4ab6a20cb8f24dbc13b3e inherit pub_methods_group__spatialpartitioning"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae8daacbf35275acfe22e2a66685bbb6b inherit pub_methods_group__spatialpartitioning"><td class="memItemLeft" align="right" valign="top">const InputType &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__spatialpartitioning.html#ae8daacbf35275acfe22e2a66685bbb6b">input</a> () const</td></tr>
 <tr class="separator:ae8daacbf35275acfe22e2a66685bbb6b inherit pub_methods_group__spatialpartitioning"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="inherited" name="inherited"></a>
-Additional Inherited Members</h2></td></tr>
+<tr><td colspan="2"><h3>Protected Member Functions</h3></td></tr>
+<tr class="memitem:a448d0bd3791241c94c41a9b20879164f"><td class="memTemplParams" colspan="2">template&lt;typename IndexType &gt; </td></tr>
+<tr class="memitem:a448d0bd3791241c94c41a9b20879164f"><td class="memTemplItemLeft" align="right" valign="top">bool&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__spatialpartitioning.html#a448d0bd3791241c94c41a9b20879164f">skipIndexFunctor</a> (IndexType idx) const</td></tr>
+<tr class="memdesc:a448d0bd3791241c94c41a9b20879164f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Functor used to check if a given Idx must be skipped.  <br /></td></tr>
+<tr class="separator:a448d0bd3791241c94c41a9b20879164f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a24addb19f8a57f8993bbd7dd6cd11851"><td class="memTemplParams" colspan="2">template&lt;typename Container &gt; </td></tr>
+<tr class="memitem:a24addb19f8a57f8993bbd7dd6cd11851"><td class="memTemplItemLeft" align="right" valign="top">auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__spatialpartitioning.html#a24addb19f8a57f8993bbd7dd6cd11851">getInputPosition</a> (const Container &amp;c) -&gt; const typename Container::value_type::VectorType</td></tr>
+<tr class="memdesc:a24addb19f8a57f8993bbd7dd6cd11851"><td class="mdescLeft">&#160;</td><td class="mdescRight">Generic method to access input position. Container is expected to hold kdtree positions.  <br /></td></tr>
+<tr class="separator:a24addb19f8a57f8993bbd7dd6cd11851"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pro_methods_group__spatialpartitioning"><td colspan="2" onclick="javascript:toggleInherit('pro_methods_group__spatialpartitioning')"><img src="closed.png" alt="-"/>&#160;Protected Member Functions inherited from <a class="el" href="group__spatialpartitioning.html">Ponca::QueryInput&lt; Index &gt;</a></td></tr>
 <tr class="memitem:a2e838e934caab5ac2ba8f7ea45909e72 inherit pro_methods_group__spatialpartitioning"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__spatialpartitioning.html#a2e838e934caab5ac2ba8f7ea45909e72">editInput</a> (const InputType &amp;input)</td></tr>
 <tr class="memdesc:a2e838e934caab5ac2ba8f7ea45909e72 inherit pro_methods_group__spatialpartitioning"><td class="mdescLeft">&#160;</td><td class="mdescRight">Edit the input Need to be used carefully. Modifying a query input while iterating on the query will result in undefined behavior. Simplest way to avoid this is to restart the iteration on the query. Usefull to avoid query reallocation between different requests.  <br /></td></tr>
@@ -551,6 +557,76 @@ template&lt;typename Index &gt; </div>
 
 </div>
 </div>
+<h4 class="groupheader">Member Function Documentation</h4>
+<a id="a24addb19f8a57f8993bbd7dd6cd11851" name="a24addb19f8a57f8993bbd7dd6cd11851"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a24addb19f8a57f8993bbd7dd6cd11851">&#9670;&#160;</a></span>getInputPosition()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Index &gt; </div>
+<div class="memtemplate">
+template&lt;typename Container &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">auto <a class="el" href="group__spatialpartitioning.html#structPonca_1_1QueryInputIsIndex">Ponca::QueryInputIsIndex</a>&lt; Index &gt;::getInputPosition </td>
+          <td>(</td>
+          <td class="paramtype">const Container &amp;&#160;</td>
+          <td class="paramname"><em>c</em></td><td>)</td>
+          <td> -&gt; const typename Container::value_type::VectorType
+        </td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Generic method to access input position. Container is expected to hold kdtree positions. </p>
+
+<p class="definition">Definition at line <a class="el" href="query_8h_source.html#l00096">96</a> of file <a class="el" href="query_8h_source.html">query.h</a>.</p>
+
+</div>
+</div>
+<a id="a448d0bd3791241c94c41a9b20879164f" name="a448d0bd3791241c94c41a9b20879164f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a448d0bd3791241c94c41a9b20879164f">&#9670;&#160;</a></span>skipIndexFunctor()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Index &gt; </div>
+<div class="memtemplate">
+template&lt;typename IndexType &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool <a class="el" href="group__spatialpartitioning.html#structPonca_1_1QueryInputIsIndex">Ponca::QueryInputIsIndex</a>&lt; Index &gt;::skipIndexFunctor </td>
+          <td>(</td>
+          <td class="paramtype">IndexType&#160;</td>
+          <td class="paramname"><em>idx</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Functor used to check if a given Idx must be skipped. </p>
+
+<p class="definition">Definition at line <a class="el" href="query_8h_source.html#l00093">93</a> of file <a class="el" href="query_8h_source.html">query.h</a>.</p>
+
+</div>
+</div>
 
 </div>
 </div>
@@ -568,7 +644,7 @@ template&lt;typename Index &gt; </div>
 <div class="textblock"><div class="compoundTemplParams">template&lt;typename DataPoint&gt;<br />
 struct Ponca::QueryInputIsPosition&lt; DataPoint &gt;</div><p>Base class for queries storing points. </p>
 
-<p class="definition">Definition at line <a class="el" href="query_8h_source.html#l00094">94</a> of file <a class="el" href="query_8h_source.html">query.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="query_8h_source.html#l00102">102</a> of file <a class="el" href="query_8h_source.html">query.h</a>.</p>
 </div><div id="dynsection-9" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-9-trigger" src="closed.png" alt="+"/> Inheritance diagram for Ponca::QueryInputIsPosition&lt; DataPoint &gt;:</div>
 <div id="dynsection-9-summary" class="dynsummary" style="display:block;">
@@ -582,7 +658,7 @@ struct Ponca::QueryInputIsPosition&lt; DataPoint &gt;</div><p>Base class for que
 <div id="dynsection-10-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-10-content" class="dyncontent" style="display:none;">
-<div class="center"><iframe scrolling="no" frameborder="0" src="structPonca_1_1QueryInputIsPosition__coll__graph.svg" width="339" height="584"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="structPonca_1_1QueryInputIsPosition__coll__graph.svg" width="100%" height="600"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 </div>
 <table class="memberdecls">
@@ -602,9 +678,15 @@ struct Ponca::QueryInputIsPosition&lt; DataPoint &gt;</div><p>Base class for que
 <tr class="separator:a00cb8f43f8e4ab6a20cb8f24dbc13b3e inherit pub_methods_group__spatialpartitioning"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae8daacbf35275acfe22e2a66685bbb6b inherit pub_methods_group__spatialpartitioning"><td class="memItemLeft" align="right" valign="top">const InputType &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__spatialpartitioning.html#ae8daacbf35275acfe22e2a66685bbb6b">input</a> () const</td></tr>
 <tr class="separator:ae8daacbf35275acfe22e2a66685bbb6b inherit pub_methods_group__spatialpartitioning"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="inherited" name="inherited"></a>
-Additional Inherited Members</h2></td></tr>
+<tr><td colspan="2"><h3>Protected Member Functions</h3></td></tr>
+<tr class="memitem:aea244b4f6838bbb9218d098c321b77f9"><td class="memTemplParams" colspan="2">template&lt;typename IndexType &gt; </td></tr>
+<tr class="memitem:aea244b4f6838bbb9218d098c321b77f9"><td class="memTemplItemLeft" align="right" valign="top">bool&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__spatialpartitioning.html#aea244b4f6838bbb9218d098c321b77f9">skipIndexFunctor</a> (IndexType idx) const</td></tr>
+<tr class="memdesc:aea244b4f6838bbb9218d098c321b77f9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Functor used to check if a given Idx must be skipped.  <br /></td></tr>
+<tr class="separator:aea244b4f6838bbb9218d098c321b77f9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5dbbdc86462e24f755683a886e23345f"><td class="memTemplParams" colspan="2">template&lt;typename Container &gt; </td></tr>
+<tr class="memitem:a5dbbdc86462e24f755683a886e23345f"><td class="memTemplItemLeft" align="right" valign="top">auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__spatialpartitioning.html#a5dbbdc86462e24f755683a886e23345f">getInputPosition</a> (const Container &amp;) -&gt; const typename Container::value_type::VectorType</td></tr>
+<tr class="memdesc:a5dbbdc86462e24f755683a886e23345f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Generic method to access input position. Container is expected to hold kdtree positions.  <br /></td></tr>
+<tr class="separator:a5dbbdc86462e24f755683a886e23345f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pro_methods_group__spatialpartitioning"><td colspan="2" onclick="javascript:toggleInherit('pro_methods_group__spatialpartitioning')"><img src="closed.png" alt="-"/>&#160;Protected Member Functions inherited from <a class="el" href="group__spatialpartitioning.html">Ponca::QueryInput&lt; DataPoint::VectorType &gt;</a></td></tr>
 <tr class="memitem:a2e838e934caab5ac2ba8f7ea45909e72 inherit pro_methods_group__spatialpartitioning"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__spatialpartitioning.html#a2e838e934caab5ac2ba8f7ea45909e72">editInput</a> (const InputType &amp;input)</td></tr>
 <tr class="memdesc:a2e838e934caab5ac2ba8f7ea45909e72 inherit pro_methods_group__spatialpartitioning"><td class="mdescLeft">&#160;</td><td class="mdescRight">Edit the input Need to be used carefully. Modifying a query input while iterating on the query will result in undefined behavior. Simplest way to avoid this is to restart the iteration on the query. Usefull to avoid query reallocation between different requests.  <br /></td></tr>
@@ -625,7 +707,7 @@ template&lt;typename DataPoint &gt; </div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="query_8h_source.html#l00095">95</a> of file <a class="el" href="query_8h_source.html">query.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="query_8h_source.html#l00103">103</a> of file <a class="el" href="query_8h_source.html">query.h</a>.</p>
 
 </div>
 </div>
@@ -643,7 +725,7 @@ template&lt;typename DataPoint &gt; </div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="query_8h_source.html#l00096">96</a> of file <a class="el" href="query_8h_source.html">query.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="query_8h_source.html#l00104">104</a> of file <a class="el" href="query_8h_source.html">query.h</a>.</p>
 
 </div>
 </div>
@@ -674,7 +756,77 @@ template&lt;typename DataPoint &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="query_8h_source.html#l00098">98</a> of file <a class="el" href="query_8h_source.html">query.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="query_8h_source.html#l00106">106</a> of file <a class="el" href="query_8h_source.html">query.h</a>.</p>
+
+</div>
+</div>
+<h4 class="groupheader">Member Function Documentation</h4>
+<a id="a5dbbdc86462e24f755683a886e23345f" name="a5dbbdc86462e24f755683a886e23345f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5dbbdc86462e24f755683a886e23345f">&#9670;&#160;</a></span>getInputPosition()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename DataPoint &gt; </div>
+<div class="memtemplate">
+template&lt;typename Container &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">auto <a class="el" href="group__spatialpartitioning.html#structPonca_1_1QueryInputIsPosition">Ponca::QueryInputIsPosition</a>&lt; DataPoint &gt;::getInputPosition </td>
+          <td>(</td>
+          <td class="paramtype">const Container &amp;&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td> -&gt; const typename Container::value_type::VectorType
+        </td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Generic method to access input position. Container is expected to hold kdtree positions. </p>
+
+<p class="definition">Definition at line <a class="el" href="query_8h_source.html#l00114">114</a> of file <a class="el" href="query_8h_source.html">query.h</a>.</p>
+
+</div>
+</div>
+<a id="aea244b4f6838bbb9218d098c321b77f9" name="aea244b4f6838bbb9218d098c321b77f9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aea244b4f6838bbb9218d098c321b77f9">&#9670;&#160;</a></span>skipIndexFunctor()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename DataPoint &gt; </div>
+<div class="memtemplate">
+template&lt;typename IndexType &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool <a class="el" href="group__spatialpartitioning.html#structPonca_1_1QueryInputIsPosition">Ponca::QueryInputIsPosition</a>&lt; DataPoint &gt;::skipIndexFunctor </td>
+          <td>(</td>
+          <td class="paramtype">IndexType&#160;</td>
+          <td class="paramname"><em>idx</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Functor used to check if a given Idx must be skipped. </p>
+
+<p class="definition">Definition at line <a class="el" href="query_8h_source.html#l00111">111</a> of file <a class="el" href="query_8h_source.html">query.h</a>.</p>
 
 </div>
 </div>
@@ -695,7 +847,7 @@ template&lt;typename DataPoint &gt; </div>
 <div class="textblock"><div class="compoundTemplParams">template&lt;typename Index, typename Scalar&gt;<br />
 struct Ponca::QueryOutputIsRange&lt; Index, Scalar &gt;</div><p>Base class for range queries. </p>
 
-<p class="definition">Definition at line <a class="el" href="query_8h_source.html#l00104">104</a> of file <a class="el" href="query_8h_source.html">query.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="query_8h_source.html#l00120">120</a> of file <a class="el" href="query_8h_source.html">query.h</a>.</p>
 </div><div id="dynsection-11" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-11-trigger" src="closed.png" alt="+"/> Inheritance diagram for Ponca::QueryOutputIsRange&lt; Index, Scalar &gt;:</div>
 <div id="dynsection-11-summary" class="dynsummary" style="display:block;">
@@ -709,7 +861,7 @@ struct Ponca::QueryOutputIsRange&lt; Index, Scalar &gt;</div><p>Base class for r
 <div id="dynsection-12-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-12-content" class="dyncontent" style="display:none;">
-<div class="center"><iframe scrolling="no" frameborder="0" src="structPonca_1_1QueryOutputIsRange__coll__graph.svg" width="215" height="302"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><iframe scrolling="no" frameborder="0" src="structPonca_1_1QueryOutputIsRange__coll__graph.svg" width="230" height="316"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
 </div>
 <table class="memberdecls">
@@ -731,6 +883,9 @@ struct Ponca::QueryOutputIsRange&lt; Index, Scalar &gt;</div><p>Base class for r
 <tr class="memitem:a6d86ff545f12d50e52b63ce36a843b6d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__spatialpartitioning.html#a6d86ff545f12d50e52b63ce36a843b6d">reset</a> ()</td></tr>
 <tr class="memdesc:a6d86ff545f12d50e52b63ce36a843b6d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reset <a class="el" href="group__spatialpartitioning.html#structPonca_1_1Query">Query</a> for a new search.  <br /></td></tr>
 <tr class="separator:a6d86ff545f12d50e52b63ce36a843b6d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a37658d986660ed8b8c5801d754f36a12"><td class="memItemLeft" align="right" valign="top">Scalar&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__spatialpartitioning.html#a37658d986660ed8b8c5801d754f36a12">descentDistanceThreshold</a> () const</td></tr>
+<tr class="memdesc:a37658d986660ed8b8c5801d754f36a12"><td class="mdescLeft">&#160;</td><td class="mdescRight">Distance threshold used during tree descent to select nodes to explore.  <br /></td></tr>
+<tr class="separator:a37658d986660ed8b8c5801d754f36a12"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr><td colspan="2"><h3>Protected Attributes</h3></td></tr>
 <tr class="memitem:a700e5a832fa5c0ad10c5d0272194a181"><td class="memItemLeft" align="right" valign="top">Scalar&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__spatialpartitioning.html#a700e5a832fa5c0ad10c5d0272194a181">m_squared_radius</a> {0}</td></tr>
 <tr class="separator:a700e5a832fa5c0ad10c5d0272194a181"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -750,7 +905,7 @@ template&lt;typename Index , typename Scalar &gt; </div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="query_8h_source.html#l00105">105</a> of file <a class="el" href="query_8h_source.html">query.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="query_8h_source.html#l00121">121</a> of file <a class="el" href="query_8h_source.html">query.h</a>.</p>
 
 </div>
 </div>
@@ -781,11 +936,42 @@ template&lt;typename Index , typename Scalar &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="query_8h_source.html#l00107">107</a> of file <a class="el" href="query_8h_source.html">query.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="query_8h_source.html#l00123">123</a> of file <a class="el" href="query_8h_source.html">query.h</a>.</p>
 
 </div>
 </div>
 <h4 class="groupheader">Member Function Documentation</h4>
+<a id="a37658d986660ed8b8c5801d754f36a12" name="a37658d986660ed8b8c5801d754f36a12"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a37658d986660ed8b8c5801d754f36a12">&#9670;&#160;</a></span>descentDistanceThreshold()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Index , typename Scalar &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">Scalar <a class="el" href="group__spatialpartitioning.html#structPonca_1_1QueryOutputIsRange">Ponca::QueryOutputIsRange</a>&lt; Index, Scalar &gt;::descentDistanceThreshold </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Distance threshold used during tree descent to select nodes to explore. </p>
+
+<p class="definition">Definition at line <a class="el" href="query_8h_source.html#l00138">138</a> of file <a class="el" href="query_8h_source.html">query.h</a>.</p>
+
+</div>
+</div>
 <a id="a64a50e36492bd40b97d08b855bb4d5ee" name="a64a50e36492bd40b97d08b855bb4d5ee"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a64a50e36492bd40b97d08b855bb4d5ee">&#9670;&#160;</a></span>radius()</h2>
 
@@ -811,7 +997,7 @@ template&lt;typename Index , typename Scalar &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="query_8h_source.html#l00110">110</a> of file <a class="el" href="query_8h_source.html">query.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="query_8h_source.html#l00126">126</a> of file <a class="el" href="query_8h_source.html">query.h</a>.</p>
 
 </div>
 </div>
@@ -842,7 +1028,7 @@ template&lt;typename Index , typename Scalar &gt; </div>
 
 <p>Reset <a class="el" href="group__spatialpartitioning.html#structPonca_1_1Query">Query</a> for a new search. </p>
 
-<p class="definition">Definition at line <a class="el" href="query_8h_source.html#l00120">120</a> of file <a class="el" href="query_8h_source.html">query.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="query_8h_source.html#l00136">136</a> of file <a class="el" href="query_8h_source.html">query.h</a>.</p>
 
 </div>
 </div>
@@ -872,7 +1058,7 @@ template&lt;typename Index , typename Scalar &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="query_8h_source.html#l00114">114</a> of file <a class="el" href="query_8h_source.html">query.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="query_8h_source.html#l00130">130</a> of file <a class="el" href="query_8h_source.html">query.h</a>.</p>
 
 </div>
 </div>
@@ -902,7 +1088,7 @@ template&lt;typename Index , typename Scalar &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="query_8h_source.html#l00116">116</a> of file <a class="el" href="query_8h_source.html">query.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="query_8h_source.html#l00132">132</a> of file <a class="el" href="query_8h_source.html">query.h</a>.</p>
 
 </div>
 </div>
@@ -931,7 +1117,7 @@ template&lt;typename Index , typename Scalar &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="query_8h_source.html#l00112">112</a> of file <a class="el" href="query_8h_source.html">query.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="query_8h_source.html#l00128">128</a> of file <a class="el" href="query_8h_source.html">query.h</a>.</p>
 
 </div>
 </div>
@@ -958,7 +1144,7 @@ template&lt;typename Index , typename Scalar &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="query_8h_source.html#l00121">121</a> of file <a class="el" href="query_8h_source.html">query.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="query_8h_source.html#l00139">139</a> of file <a class="el" href="query_8h_source.html">query.h</a>.</p>
 
 </div>
 </div>
@@ -979,7 +1165,7 @@ template&lt;typename Index , typename Scalar &gt; </div>
 <div class="textblock"><div class="compoundTemplParams">template&lt;typename Index, typename Scalar&gt;<br />
 struct Ponca::QueryOutputIsNearest&lt; Index, Scalar &gt;</div><p>Base class for nearest queries. </p>
 
-<p class="definition">Definition at line <a class="el" href="query_8h_source.html#l00126">126</a> of file <a class="el" href="query_8h_source.html">query.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="query_8h_source.html#l00144">144</a> of file <a class="el" href="query_8h_source.html">query.h</a>.</p>
 </div><div id="dynsection-13" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-13-trigger" src="closed.png" alt="+"/> Inheritance diagram for Ponca::QueryOutputIsNearest&lt; Index, Scalar &gt;:</div>
 <div id="dynsection-13-summary" class="dynsummary" style="display:block;">
@@ -993,7 +1179,7 @@ struct Ponca::QueryOutputIsNearest&lt; Index, Scalar &gt;</div><p>Base class for
 <div id="dynsection-14-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-14-content" class="dyncontent" style="display:none;">
-<div class="center"><iframe scrolling="no" frameborder="0" src="structPonca_1_1QueryOutputIsNearest__coll__graph.svg" width="226" height="272"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><iframe scrolling="no" frameborder="0" src="structPonca_1_1QueryOutputIsNearest__coll__graph.svg" width="230" height="287"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
 </div>
 <table class="memberdecls">
@@ -1007,6 +1193,9 @@ struct Ponca::QueryOutputIsNearest&lt; Index, Scalar &gt;</div><p>Base class for
 <tr class="memitem:a92333a653df9e9b440ff7ba465753a66"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__spatialpartitioning.html#a92333a653df9e9b440ff7ba465753a66">reset</a> ()</td></tr>
 <tr class="memdesc:a92333a653df9e9b440ff7ba465753a66"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reset <a class="el" href="group__spatialpartitioning.html#structPonca_1_1Query">Query</a> for a new search.  <br /></td></tr>
 <tr class="separator:a92333a653df9e9b440ff7ba465753a66"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a153ff7330ab8fcf78413f387e054bb26"><td class="memItemLeft" align="right" valign="top">Scalar&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__spatialpartitioning.html#a153ff7330ab8fcf78413f387e054bb26">descentDistanceThreshold</a> () const</td></tr>
+<tr class="memdesc:a153ff7330ab8fcf78413f387e054bb26"><td class="mdescLeft">&#160;</td><td class="mdescRight">Distance threshold used during tree descent to select nodes to explore.  <br /></td></tr>
+<tr class="separator:a153ff7330ab8fcf78413f387e054bb26"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr><td colspan="2"><h3>Protected Attributes</h3></td></tr>
 <tr class="memitem:a561ce273e8b3238e61d2c91733784520"><td class="memItemLeft" align="right" valign="top">Index&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__spatialpartitioning.html#a561ce273e8b3238e61d2c91733784520">m_nearest</a> {-1}</td></tr>
 <tr class="separator:a561ce273e8b3238e61d2c91733784520"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -1028,7 +1217,7 @@ template&lt;typename Index , typename Scalar &gt; </div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="query_8h_source.html#l00127">127</a> of file <a class="el" href="query_8h_source.html">query.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="query_8h_source.html#l00145">145</a> of file <a class="el" href="query_8h_source.html">query.h</a>.</p>
 
 </div>
 </div>
@@ -1058,11 +1247,42 @@ template&lt;typename Index , typename Scalar &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="query_8h_source.html#l00129">129</a> of file <a class="el" href="query_8h_source.html">query.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="query_8h_source.html#l00147">147</a> of file <a class="el" href="query_8h_source.html">query.h</a>.</p>
 
 </div>
 </div>
 <h4 class="groupheader">Member Function Documentation</h4>
+<a id="a153ff7330ab8fcf78413f387e054bb26" name="a153ff7330ab8fcf78413f387e054bb26"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a153ff7330ab8fcf78413f387e054bb26">&#9670;&#160;</a></span>descentDistanceThreshold()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Index , typename Scalar &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">Scalar <a class="el" href="group__spatialpartitioning.html#structPonca_1_1QueryOutputIsNearest">Ponca::QueryOutputIsNearest</a>&lt; Index, Scalar &gt;::descentDistanceThreshold </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Distance threshold used during tree descent to select nodes to explore. </p>
+
+<p class="definition">Definition at line <a class="el" href="query_8h_source.html#l00158">158</a> of file <a class="el" href="query_8h_source.html">query.h</a>.</p>
+
+</div>
+</div>
 <a id="a035df03d9e59c0f20a12c85d5bec6749" name="a035df03d9e59c0f20a12c85d5bec6749"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a035df03d9e59c0f20a12c85d5bec6749">&#9670;&#160;</a></span>get()</h2>
 
@@ -1088,7 +1308,7 @@ template&lt;typename Index , typename Scalar &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="query_8h_source.html#l00131">131</a> of file <a class="el" href="query_8h_source.html">query.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="query_8h_source.html#l00149">149</a> of file <a class="el" href="query_8h_source.html">query.h</a>.</p>
 
 </div>
 </div>
@@ -1119,7 +1339,7 @@ template&lt;typename Index , typename Scalar &gt; </div>
 
 <p>Reset <a class="el" href="group__spatialpartitioning.html#structPonca_1_1Query">Query</a> for a new search. </p>
 
-<p class="definition">Definition at line <a class="el" href="query_8h_source.html#l00135">135</a> of file <a class="el" href="query_8h_source.html">query.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="query_8h_source.html#l00153">153</a> of file <a class="el" href="query_8h_source.html">query.h</a>.</p>
 
 </div>
 </div>
@@ -1146,7 +1366,7 @@ template&lt;typename Index , typename Scalar &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="query_8h_source.html#l00140">140</a> of file <a class="el" href="query_8h_source.html">query.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="query_8h_source.html#l00160">160</a> of file <a class="el" href="query_8h_source.html">query.h</a>.</p>
 
 </div>
 </div>
@@ -1172,7 +1392,7 @@ template&lt;typename Index , typename Scalar &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="query_8h_source.html#l00141">141</a> of file <a class="el" href="query_8h_source.html">query.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="query_8h_source.html#l00161">161</a> of file <a class="el" href="query_8h_source.html">query.h</a>.</p>
 
 </div>
 </div>
@@ -1193,7 +1413,7 @@ template&lt;typename Index , typename Scalar &gt; </div>
 <div class="textblock"><div class="compoundTemplParams">template&lt;typename Index, typename Scalar&gt;<br />
 struct Ponca::QueryOutputIsKNearest&lt; Index, Scalar &gt;</div><p>Base class for knearest queries. </p>
 
-<p class="definition">Definition at line <a class="el" href="query_8h_source.html#l00146">146</a> of file <a class="el" href="query_8h_source.html">query.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="query_8h_source.html#l00166">166</a> of file <a class="el" href="query_8h_source.html">query.h</a>.</p>
 </div><div id="dynsection-15" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-15-trigger" src="closed.png" alt="+"/> Inheritance diagram for Ponca::QueryOutputIsKNearest&lt; Index, Scalar &gt;:</div>
 <div id="dynsection-15-summary" class="dynsummary" style="display:block;">
@@ -1223,6 +1443,9 @@ struct Ponca::QueryOutputIsKNearest&lt; Index, Scalar &gt;</div><p>Base class fo
 <tr class="memitem:a8156b77a6bd1c52ad640488bfede42b5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__spatialpartitioning.html#a8156b77a6bd1c52ad640488bfede42b5">reset</a> ()</td></tr>
 <tr class="memdesc:a8156b77a6bd1c52ad640488bfede42b5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reset <a class="el" href="group__spatialpartitioning.html#structPonca_1_1Query">Query</a> for a new search.  <br /></td></tr>
 <tr class="separator:a8156b77a6bd1c52ad640488bfede42b5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adadfb78e62512f4d5d714b3e59085cf7"><td class="memItemLeft" align="right" valign="top">Scalar&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__spatialpartitioning.html#adadfb78e62512f4d5d714b3e59085cf7">descentDistanceThreshold</a> () const</td></tr>
+<tr class="memdesc:adadfb78e62512f4d5d714b3e59085cf7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Distance threshold used during tree descent to select nodes to explore.  <br /></td></tr>
+<tr class="separator:adadfb78e62512f4d5d714b3e59085cf7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr><td colspan="2"><h3>Protected Attributes</h3></td></tr>
 <tr class="memitem:a436a5ad248cbb5019d64864a31412444"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classPonca_1_1limited__priority__queue.html">limited_priority_queue</a>&lt; <a class="el" href="structPonca_1_1IndexSquaredDistance.html">IndexSquaredDistance</a>&lt; Index, Scalar &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__spatialpartitioning.html#a436a5ad248cbb5019d64864a31412444">m_queue</a></td></tr>
 <tr class="separator:a436a5ad248cbb5019d64864a31412444"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -1242,7 +1465,7 @@ template&lt;typename Index , typename Scalar &gt; </div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="query_8h_source.html#l00147">147</a> of file <a class="el" href="query_8h_source.html">query.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="query_8h_source.html#l00167">167</a> of file <a class="el" href="query_8h_source.html">query.h</a>.</p>
 
 </div>
 </div>
@@ -1273,11 +1496,42 @@ template&lt;typename Index , typename Scalar &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="query_8h_source.html#l00149">149</a> of file <a class="el" href="query_8h_source.html">query.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="query_8h_source.html#l00169">169</a> of file <a class="el" href="query_8h_source.html">query.h</a>.</p>
 
 </div>
 </div>
 <h4 class="groupheader">Member Function Documentation</h4>
+<a id="adadfb78e62512f4d5d714b3e59085cf7" name="adadfb78e62512f4d5d714b3e59085cf7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adadfb78e62512f4d5d714b3e59085cf7">&#9670;&#160;</a></span>descentDistanceThreshold()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Index , typename Scalar &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">Scalar <a class="el" href="group__spatialpartitioning.html#structPonca_1_1QueryOutputIsKNearest">Ponca::QueryOutputIsKNearest</a>&lt; Index, Scalar &gt;::descentDistanceThreshold </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Distance threshold used during tree descent to select nodes to explore. </p>
+
+<p class="definition">Definition at line <a class="el" href="query_8h_source.html#l00180">180</a> of file <a class="el" href="query_8h_source.html">query.h</a>.</p>
+
+</div>
+</div>
 <a id="ad590cf0bfbf1c0784ba79cbac8b00bcd" name="ad590cf0bfbf1c0784ba79cbac8b00bcd"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ad590cf0bfbf1c0784ba79cbac8b00bcd">&#9670;&#160;</a></span>queue()</h2>
 
@@ -1303,7 +1557,7 @@ template&lt;typename Index , typename Scalar &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="query_8h_source.html#l00151">151</a> of file <a class="el" href="query_8h_source.html">query.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="query_8h_source.html#l00171">171</a> of file <a class="el" href="query_8h_source.html">query.h</a>.</p>
 
 </div>
 </div>
@@ -1334,7 +1588,7 @@ template&lt;typename Index , typename Scalar &gt; </div>
 
 <p>Reset <a class="el" href="group__spatialpartitioning.html#structPonca_1_1Query">Query</a> for a new search. </p>
 
-<p class="definition">Definition at line <a class="el" href="query_8h_source.html#l00155">155</a> of file <a class="el" href="query_8h_source.html">query.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="query_8h_source.html#l00175">175</a> of file <a class="el" href="query_8h_source.html">query.h</a>.</p>
 
 </div>
 </div>
@@ -1361,7 +1615,7 @@ template&lt;typename Index , typename Scalar &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="query_8h_source.html#l00159">159</a> of file <a class="el" href="query_8h_source.html">query.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="query_8h_source.html#l00181">181</a> of file <a class="el" href="query_8h_source.html">query.h</a>.</p>
 
 </div>
 </div>
@@ -1381,7 +1635,7 @@ template&lt;typename Index , typename Scalar &gt; </div>
 </div><div class="memdoc">
 <div class="textblock"><div class="compoundTemplParams">template&lt;typename Input_, typename Output_&gt;<br />
 struct Ponca::Query&lt; Input_, Output_ &gt;</div>
-<p class="definition">Definition at line <a class="el" href="query_8h_source.html#l00164">164</a> of file <a class="el" href="query_8h_source.html">query.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="query_8h_source.html#l00186">186</a> of file <a class="el" href="query_8h_source.html">query.h</a>.</p>
 </div><div id="dynsection-17" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-17-trigger" src="closed.png" alt="+"/> Inheritance diagram for Ponca::Query&lt; Input_, Output_ &gt;:</div>
 <div id="dynsection-17-summary" class="dynsummary" style="display:block;">
@@ -1425,7 +1679,7 @@ template&lt;typename Input_ , typename Output_ &gt; </div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="query_8h_source.html#l00165">165</a> of file <a class="el" href="query_8h_source.html">query.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="query_8h_source.html#l00187">187</a> of file <a class="el" href="query_8h_source.html">query.h</a>.</p>
 
 </div>
 </div>
@@ -1443,7 +1697,7 @@ template&lt;typename Input_ , typename Output_ &gt; </div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="query_8h_source.html#l00166">166</a> of file <a class="el" href="query_8h_source.html">query.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="query_8h_source.html#l00188">188</a> of file <a class="el" href="query_8h_source.html">query.h</a>.</p>
 
 </div>
 </div>
@@ -1474,7 +1728,7 @@ template&lt;typename Input_ , typename Output_ &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="query_8h_source.html#l00173">173</a> of file <a class="el" href="query_8h_source.html">query.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="query_8h_source.html#l00195">195</a> of file <a class="el" href="query_8h_source.html">query.h</a>.</p>
 
 </div>
 </div>
@@ -1514,7 +1768,7 @@ template&lt;typename Input_ , typename Output_ &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="query_8h_source.html#l00176">176</a> of file <a class="el" href="query_8h_source.html">query.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="query_8h_source.html#l00198">198</a> of file <a class="el" href="query_8h_source.html">query.h</a>.</p>
 
 </div>
 </div>
@@ -1535,7 +1789,7 @@ template&lt;typename Input_ , typename Output_ &gt; </div>
 <div class="textblock"><div class="compoundTemplParams">template&lt;typename Index, typename Scalar&gt;<br />
 struct Ponca::KNearestIndexQuery&lt; Index, Scalar &gt;</div><p>Base <a class="el" href="group__spatialpartitioning.html#structPonca_1_1Query">Query</a> class combining <a class="el" href="group__spatialpartitioning.html#structPonca_1_1QueryInputIsIndex" title="Base class for queries storing points.">QueryInputIsIndex</a> and <a class="el" href="group__spatialpartitioning.html#structPonca_1_1QueryOutputIsKNearest" title="Base class for knearest queries.">QueryOutputIsKNearest</a>. </p>
 
-<p class="definition">Definition at line <a class="el" href="query_8h_source.html#l00181">181</a> of file <a class="el" href="query_8h_source.html">query.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="query_8h_source.html#l00203">203</a> of file <a class="el" href="query_8h_source.html">query.h</a>.</p>
 </div><div id="dynsection-19" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-19-trigger" src="closed.png" alt="+"/> Inheritance diagram for Ponca::KNearestIndexQuery&lt; Index, Scalar &gt;:</div>
 <div id="dynsection-19-summary" class="dynsummary" style="display:block;">
@@ -1593,6 +1847,15 @@ Additional Inherited Members</h2></td></tr>
 <tr class="separator:a2898fbb571a2c09fc23327dcb1610dd5 inherit pub_methods_group__spatialpartitioning"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad590cf0bfbf1c0784ba79cbac8b00bcd inherit pub_methods_group__spatialpartitioning"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classPonca_1_1limited__priority__queue.html">limited_priority_queue</a>&lt; <a class="el" href="structPonca_1_1IndexSquaredDistance.html">IndexSquaredDistance</a>&lt; Index, Scalar &gt; &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__spatialpartitioning.html#ad590cf0bfbf1c0784ba79cbac8b00bcd">queue</a> ()</td></tr>
 <tr class="separator:ad590cf0bfbf1c0784ba79cbac8b00bcd inherit pub_methods_group__spatialpartitioning"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pro_methods_group__spatialpartitioning"><td colspan="2" onclick="javascript:toggleInherit('pro_methods_group__spatialpartitioning')"><img src="closed.png" alt="-"/>&#160;Protected Member Functions inherited from <a class="el" href="group__spatialpartitioning.html#structPonca_1_1QueryInputIsIndex">Ponca::QueryInputIsIndex&lt; Index &gt;</a></td></tr>
+<tr class="memitem:a448d0bd3791241c94c41a9b20879164f inherit pro_methods_group__spatialpartitioning"><td class="memTemplParams" colspan="2">template&lt;typename IndexType &gt; </td></tr>
+<tr class="memitem:a448d0bd3791241c94c41a9b20879164f inherit pro_methods_group__spatialpartitioning"><td class="memTemplItemLeft" align="right" valign="top">bool&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__spatialpartitioning.html#a448d0bd3791241c94c41a9b20879164f">skipIndexFunctor</a> (IndexType idx) const</td></tr>
+<tr class="memdesc:a448d0bd3791241c94c41a9b20879164f inherit pro_methods_group__spatialpartitioning"><td class="mdescLeft">&#160;</td><td class="mdescRight">Functor used to check if a given Idx must be skipped.  <br /></td></tr>
+<tr class="separator:a448d0bd3791241c94c41a9b20879164f inherit pro_methods_group__spatialpartitioning"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a24addb19f8a57f8993bbd7dd6cd11851 inherit pro_methods_group__spatialpartitioning"><td class="memTemplParams" colspan="2">template&lt;typename Container &gt; </td></tr>
+<tr class="memitem:a24addb19f8a57f8993bbd7dd6cd11851 inherit pro_methods_group__spatialpartitioning"><td class="memTemplItemLeft" align="right" valign="top">auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__spatialpartitioning.html#a24addb19f8a57f8993bbd7dd6cd11851">getInputPosition</a> (const Container &amp;c) -&gt; const typename Container::value_type::VectorType</td></tr>
+<tr class="memdesc:a24addb19f8a57f8993bbd7dd6cd11851 inherit pro_methods_group__spatialpartitioning"><td class="mdescLeft">&#160;</td><td class="mdescRight">Generic method to access input position. Container is expected to hold kdtree positions.  <br /></td></tr>
+<tr class="separator:a24addb19f8a57f8993bbd7dd6cd11851 inherit pro_methods_group__spatialpartitioning"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pro_methods_group__spatialpartitioning"><td colspan="2" onclick="javascript:toggleInherit('pro_methods_group__spatialpartitioning')"><img src="closed.png" alt="-"/>&#160;Protected Member Functions inherited from <a class="el" href="group__spatialpartitioning.html">Ponca::QueryInput&lt; Index &gt;</a></td></tr>
 <tr class="memitem:a2e838e934caab5ac2ba8f7ea45909e72 inherit pro_methods_group__spatialpartitioning"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__spatialpartitioning.html#a2e838e934caab5ac2ba8f7ea45909e72">editInput</a> (const InputType &amp;input)</td></tr>
 <tr class="memdesc:a2e838e934caab5ac2ba8f7ea45909e72 inherit pro_methods_group__spatialpartitioning"><td class="mdescLeft">&#160;</td><td class="mdescRight">Edit the input Need to be used carefully. Modifying a query input while iterating on the query will result in undefined behavior. Simplest way to avoid this is to restart the iteration on the query. Usefull to avoid query reallocation between different requests.  <br /></td></tr>
@@ -1601,6 +1864,9 @@ Additional Inherited Members</h2></td></tr>
 <tr class="memitem:a8156b77a6bd1c52ad640488bfede42b5 inherit pro_methods_group__spatialpartitioning"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__spatialpartitioning.html#a8156b77a6bd1c52ad640488bfede42b5">reset</a> ()</td></tr>
 <tr class="memdesc:a8156b77a6bd1c52ad640488bfede42b5 inherit pro_methods_group__spatialpartitioning"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reset <a class="el" href="group__spatialpartitioning.html#structPonca_1_1Query">Query</a> for a new search.  <br /></td></tr>
 <tr class="separator:a8156b77a6bd1c52ad640488bfede42b5 inherit pro_methods_group__spatialpartitioning"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adadfb78e62512f4d5d714b3e59085cf7 inherit pro_methods_group__spatialpartitioning"><td class="memItemLeft" align="right" valign="top">Scalar&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__spatialpartitioning.html#adadfb78e62512f4d5d714b3e59085cf7">descentDistanceThreshold</a> () const</td></tr>
+<tr class="memdesc:adadfb78e62512f4d5d714b3e59085cf7 inherit pro_methods_group__spatialpartitioning"><td class="mdescLeft">&#160;</td><td class="mdescRight">Distance threshold used during tree descent to select nodes to explore.  <br /></td></tr>
+<tr class="separator:adadfb78e62512f4d5d714b3e59085cf7 inherit pro_methods_group__spatialpartitioning"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pro_attribs_group__spatialpartitioning"><td colspan="2" onclick="javascript:toggleInherit('pro_attribs_group__spatialpartitioning')"><img src="closed.png" alt="-"/>&#160;Protected Attributes inherited from <a class="el" href="group__spatialpartitioning.html#structPonca_1_1QueryOutputIsKNearest">Ponca::QueryOutputIsKNearest&lt; Index, Scalar &gt;</a></td></tr>
 <tr class="memitem:a436a5ad248cbb5019d64864a31412444 inherit pro_attribs_group__spatialpartitioning"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classPonca_1_1limited__priority__queue.html">limited_priority_queue</a>&lt; <a class="el" href="structPonca_1_1IndexSquaredDistance.html">IndexSquaredDistance</a>&lt; Index, Scalar &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__spatialpartitioning.html#a436a5ad248cbb5019d64864a31412444">m_queue</a></td></tr>
 <tr class="separator:a436a5ad248cbb5019d64864a31412444 inherit pro_attribs_group__spatialpartitioning"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -1620,7 +1886,7 @@ template&lt;typename Index , typename Scalar &gt; </div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="query_8h_source.html#l00181">181</a> of file <a class="el" href="query_8h_source.html">query.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="query_8h_source.html#l00203">203</a> of file <a class="el" href="query_8h_source.html">query.h</a>.</p>
 
 </div>
 </div>
@@ -1641,7 +1907,7 @@ template&lt;typename Index , typename Scalar &gt; </div>
 <div class="textblock"><div class="compoundTemplParams">template&lt;typename Index, typename Scalar&gt;<br />
 struct Ponca::NearestIndexQuery&lt; Index, Scalar &gt;</div><p>Base <a class="el" href="group__spatialpartitioning.html#structPonca_1_1Query">Query</a> class combining <a class="el" href="group__spatialpartitioning.html#structPonca_1_1QueryInputIsIndex" title="Base class for queries storing points.">QueryInputIsIndex</a> and <a class="el" href="group__spatialpartitioning.html#structPonca_1_1QueryOutputIsNearest" title="Base class for nearest queries.">QueryOutputIsNearest</a>. </p>
 
-<p class="definition">Definition at line <a class="el" href="query_8h_source.html#l00182">182</a> of file <a class="el" href="query_8h_source.html">query.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="query_8h_source.html#l00204">204</a> of file <a class="el" href="query_8h_source.html">query.h</a>.</p>
 </div><div id="dynsection-21" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-21-trigger" src="closed.png" alt="+"/> Inheritance diagram for Ponca::NearestIndexQuery&lt; Index, Scalar &gt;:</div>
 <div id="dynsection-21-summary" class="dynsummary" style="display:block;">
@@ -1697,6 +1963,15 @@ Additional Inherited Members</h2></td></tr>
 <tr class="inherit_header pub_methods_group__spatialpartitioning"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_group__spatialpartitioning')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="group__spatialpartitioning.html#structPonca_1_1QueryOutputIsNearest">Ponca::QueryOutputIsNearest&lt; Index, Scalar &gt;</a></td></tr>
 <tr class="memitem:a035df03d9e59c0f20a12c85d5bec6749 inherit pub_methods_group__spatialpartitioning"><td class="memItemLeft" align="right" valign="top">Index&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__spatialpartitioning.html#a035df03d9e59c0f20a12c85d5bec6749">get</a> () const</td></tr>
 <tr class="separator:a035df03d9e59c0f20a12c85d5bec6749 inherit pub_methods_group__spatialpartitioning"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pro_methods_group__spatialpartitioning"><td colspan="2" onclick="javascript:toggleInherit('pro_methods_group__spatialpartitioning')"><img src="closed.png" alt="-"/>&#160;Protected Member Functions inherited from <a class="el" href="group__spatialpartitioning.html#structPonca_1_1QueryInputIsIndex">Ponca::QueryInputIsIndex&lt; Index &gt;</a></td></tr>
+<tr class="memitem:a448d0bd3791241c94c41a9b20879164f inherit pro_methods_group__spatialpartitioning"><td class="memTemplParams" colspan="2">template&lt;typename IndexType &gt; </td></tr>
+<tr class="memitem:a448d0bd3791241c94c41a9b20879164f inherit pro_methods_group__spatialpartitioning"><td class="memTemplItemLeft" align="right" valign="top">bool&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__spatialpartitioning.html#a448d0bd3791241c94c41a9b20879164f">skipIndexFunctor</a> (IndexType idx) const</td></tr>
+<tr class="memdesc:a448d0bd3791241c94c41a9b20879164f inherit pro_methods_group__spatialpartitioning"><td class="mdescLeft">&#160;</td><td class="mdescRight">Functor used to check if a given Idx must be skipped.  <br /></td></tr>
+<tr class="separator:a448d0bd3791241c94c41a9b20879164f inherit pro_methods_group__spatialpartitioning"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a24addb19f8a57f8993bbd7dd6cd11851 inherit pro_methods_group__spatialpartitioning"><td class="memTemplParams" colspan="2">template&lt;typename Container &gt; </td></tr>
+<tr class="memitem:a24addb19f8a57f8993bbd7dd6cd11851 inherit pro_methods_group__spatialpartitioning"><td class="memTemplItemLeft" align="right" valign="top">auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__spatialpartitioning.html#a24addb19f8a57f8993bbd7dd6cd11851">getInputPosition</a> (const Container &amp;c) -&gt; const typename Container::value_type::VectorType</td></tr>
+<tr class="memdesc:a24addb19f8a57f8993bbd7dd6cd11851 inherit pro_methods_group__spatialpartitioning"><td class="mdescLeft">&#160;</td><td class="mdescRight">Generic method to access input position. Container is expected to hold kdtree positions.  <br /></td></tr>
+<tr class="separator:a24addb19f8a57f8993bbd7dd6cd11851 inherit pro_methods_group__spatialpartitioning"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pro_methods_group__spatialpartitioning"><td colspan="2" onclick="javascript:toggleInherit('pro_methods_group__spatialpartitioning')"><img src="closed.png" alt="-"/>&#160;Protected Member Functions inherited from <a class="el" href="group__spatialpartitioning.html">Ponca::QueryInput&lt; Index &gt;</a></td></tr>
 <tr class="memitem:a2e838e934caab5ac2ba8f7ea45909e72 inherit pro_methods_group__spatialpartitioning"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__spatialpartitioning.html#a2e838e934caab5ac2ba8f7ea45909e72">editInput</a> (const InputType &amp;input)</td></tr>
 <tr class="memdesc:a2e838e934caab5ac2ba8f7ea45909e72 inherit pro_methods_group__spatialpartitioning"><td class="mdescLeft">&#160;</td><td class="mdescRight">Edit the input Need to be used carefully. Modifying a query input while iterating on the query will result in undefined behavior. Simplest way to avoid this is to restart the iteration on the query. Usefull to avoid query reallocation between different requests.  <br /></td></tr>
@@ -1705,6 +1980,9 @@ Additional Inherited Members</h2></td></tr>
 <tr class="memitem:a92333a653df9e9b440ff7ba465753a66 inherit pro_methods_group__spatialpartitioning"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__spatialpartitioning.html#a92333a653df9e9b440ff7ba465753a66">reset</a> ()</td></tr>
 <tr class="memdesc:a92333a653df9e9b440ff7ba465753a66 inherit pro_methods_group__spatialpartitioning"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reset <a class="el" href="group__spatialpartitioning.html#structPonca_1_1Query">Query</a> for a new search.  <br /></td></tr>
 <tr class="separator:a92333a653df9e9b440ff7ba465753a66 inherit pro_methods_group__spatialpartitioning"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a153ff7330ab8fcf78413f387e054bb26 inherit pro_methods_group__spatialpartitioning"><td class="memItemLeft" align="right" valign="top">Scalar&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__spatialpartitioning.html#a153ff7330ab8fcf78413f387e054bb26">descentDistanceThreshold</a> () const</td></tr>
+<tr class="memdesc:a153ff7330ab8fcf78413f387e054bb26 inherit pro_methods_group__spatialpartitioning"><td class="mdescLeft">&#160;</td><td class="mdescRight">Distance threshold used during tree descent to select nodes to explore.  <br /></td></tr>
+<tr class="separator:a153ff7330ab8fcf78413f387e054bb26 inherit pro_methods_group__spatialpartitioning"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pro_attribs_group__spatialpartitioning"><td colspan="2" onclick="javascript:toggleInherit('pro_attribs_group__spatialpartitioning')"><img src="closed.png" alt="-"/>&#160;Protected Attributes inherited from <a class="el" href="group__spatialpartitioning.html#structPonca_1_1QueryOutputIsNearest">Ponca::QueryOutputIsNearest&lt; Index, Scalar &gt;</a></td></tr>
 <tr class="memitem:a561ce273e8b3238e61d2c91733784520 inherit pro_attribs_group__spatialpartitioning"><td class="memItemLeft" align="right" valign="top">Index&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__spatialpartitioning.html#a561ce273e8b3238e61d2c91733784520">m_nearest</a> {-1}</td></tr>
 <tr class="separator:a561ce273e8b3238e61d2c91733784520 inherit pro_attribs_group__spatialpartitioning"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -1726,7 +2004,7 @@ template&lt;typename Index , typename Scalar &gt; </div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="query_8h_source.html#l00182">182</a> of file <a class="el" href="query_8h_source.html">query.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="query_8h_source.html#l00204">204</a> of file <a class="el" href="query_8h_source.html">query.h</a>.</p>
 
 </div>
 </div>
@@ -1747,7 +2025,7 @@ template&lt;typename Index , typename Scalar &gt; </div>
 <div class="textblock"><div class="compoundTemplParams">template&lt;typename Index, typename Scalar&gt;<br />
 struct Ponca::RangeIndexQuery&lt; Index, Scalar &gt;</div><p>Base <a class="el" href="group__spatialpartitioning.html#structPonca_1_1Query">Query</a> class combining <a class="el" href="group__spatialpartitioning.html#structPonca_1_1QueryInputIsIndex" title="Base class for queries storing points.">QueryInputIsIndex</a> and <a class="el" href="group__spatialpartitioning.html#structPonca_1_1QueryOutputIsRange" title="Base class for range queries.">QueryOutputIsRange</a>. </p>
 
-<p class="definition">Definition at line <a class="el" href="query_8h_source.html#l00183">183</a> of file <a class="el" href="query_8h_source.html">query.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="query_8h_source.html#l00205">205</a> of file <a class="el" href="query_8h_source.html">query.h</a>.</p>
 </div><div id="dynsection-23" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-23-trigger" src="closed.png" alt="+"/> Inheritance diagram for Ponca::RangeIndexQuery&lt; Index, Scalar &gt;:</div>
 <div id="dynsection-23-summary" class="dynsummary" style="display:block;">
@@ -1811,6 +2089,15 @@ Additional Inherited Members</h2></td></tr>
 <tr class="separator:a614c9e69f56b91e286e42d3da7a0c24a inherit pub_methods_group__spatialpartitioning"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac36243d9acaf5c787b0cf56bf3432727 inherit pub_methods_group__spatialpartitioning"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__spatialpartitioning.html#ac36243d9acaf5c787b0cf56bf3432727">set_squared_radius</a> (Scalar radius)</td></tr>
 <tr class="separator:ac36243d9acaf5c787b0cf56bf3432727 inherit pub_methods_group__spatialpartitioning"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pro_methods_group__spatialpartitioning"><td colspan="2" onclick="javascript:toggleInherit('pro_methods_group__spatialpartitioning')"><img src="closed.png" alt="-"/>&#160;Protected Member Functions inherited from <a class="el" href="group__spatialpartitioning.html#structPonca_1_1QueryInputIsIndex">Ponca::QueryInputIsIndex&lt; Index &gt;</a></td></tr>
+<tr class="memitem:a448d0bd3791241c94c41a9b20879164f inherit pro_methods_group__spatialpartitioning"><td class="memTemplParams" colspan="2">template&lt;typename IndexType &gt; </td></tr>
+<tr class="memitem:a448d0bd3791241c94c41a9b20879164f inherit pro_methods_group__spatialpartitioning"><td class="memTemplItemLeft" align="right" valign="top">bool&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__spatialpartitioning.html#a448d0bd3791241c94c41a9b20879164f">skipIndexFunctor</a> (IndexType idx) const</td></tr>
+<tr class="memdesc:a448d0bd3791241c94c41a9b20879164f inherit pro_methods_group__spatialpartitioning"><td class="mdescLeft">&#160;</td><td class="mdescRight">Functor used to check if a given Idx must be skipped.  <br /></td></tr>
+<tr class="separator:a448d0bd3791241c94c41a9b20879164f inherit pro_methods_group__spatialpartitioning"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a24addb19f8a57f8993bbd7dd6cd11851 inherit pro_methods_group__spatialpartitioning"><td class="memTemplParams" colspan="2">template&lt;typename Container &gt; </td></tr>
+<tr class="memitem:a24addb19f8a57f8993bbd7dd6cd11851 inherit pro_methods_group__spatialpartitioning"><td class="memTemplItemLeft" align="right" valign="top">auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__spatialpartitioning.html#a24addb19f8a57f8993bbd7dd6cd11851">getInputPosition</a> (const Container &amp;c) -&gt; const typename Container::value_type::VectorType</td></tr>
+<tr class="memdesc:a24addb19f8a57f8993bbd7dd6cd11851 inherit pro_methods_group__spatialpartitioning"><td class="mdescLeft">&#160;</td><td class="mdescRight">Generic method to access input position. Container is expected to hold kdtree positions.  <br /></td></tr>
+<tr class="separator:a24addb19f8a57f8993bbd7dd6cd11851 inherit pro_methods_group__spatialpartitioning"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pro_methods_group__spatialpartitioning"><td colspan="2" onclick="javascript:toggleInherit('pro_methods_group__spatialpartitioning')"><img src="closed.png" alt="-"/>&#160;Protected Member Functions inherited from <a class="el" href="group__spatialpartitioning.html">Ponca::QueryInput&lt; Index &gt;</a></td></tr>
 <tr class="memitem:a2e838e934caab5ac2ba8f7ea45909e72 inherit pro_methods_group__spatialpartitioning"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__spatialpartitioning.html#a2e838e934caab5ac2ba8f7ea45909e72">editInput</a> (const InputType &amp;input)</td></tr>
 <tr class="memdesc:a2e838e934caab5ac2ba8f7ea45909e72 inherit pro_methods_group__spatialpartitioning"><td class="mdescLeft">&#160;</td><td class="mdescRight">Edit the input Need to be used carefully. Modifying a query input while iterating on the query will result in undefined behavior. Simplest way to avoid this is to restart the iteration on the query. Usefull to avoid query reallocation between different requests.  <br /></td></tr>
@@ -1819,6 +2106,9 @@ Additional Inherited Members</h2></td></tr>
 <tr class="memitem:a6d86ff545f12d50e52b63ce36a843b6d inherit pro_methods_group__spatialpartitioning"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__spatialpartitioning.html#a6d86ff545f12d50e52b63ce36a843b6d">reset</a> ()</td></tr>
 <tr class="memdesc:a6d86ff545f12d50e52b63ce36a843b6d inherit pro_methods_group__spatialpartitioning"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reset <a class="el" href="group__spatialpartitioning.html#structPonca_1_1Query">Query</a> for a new search.  <br /></td></tr>
 <tr class="separator:a6d86ff545f12d50e52b63ce36a843b6d inherit pro_methods_group__spatialpartitioning"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a37658d986660ed8b8c5801d754f36a12 inherit pro_methods_group__spatialpartitioning"><td class="memItemLeft" align="right" valign="top">Scalar&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__spatialpartitioning.html#a37658d986660ed8b8c5801d754f36a12">descentDistanceThreshold</a> () const</td></tr>
+<tr class="memdesc:a37658d986660ed8b8c5801d754f36a12 inherit pro_methods_group__spatialpartitioning"><td class="mdescLeft">&#160;</td><td class="mdescRight">Distance threshold used during tree descent to select nodes to explore.  <br /></td></tr>
+<tr class="separator:a37658d986660ed8b8c5801d754f36a12 inherit pro_methods_group__spatialpartitioning"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pro_attribs_group__spatialpartitioning"><td colspan="2" onclick="javascript:toggleInherit('pro_attribs_group__spatialpartitioning')"><img src="closed.png" alt="-"/>&#160;Protected Attributes inherited from <a class="el" href="group__spatialpartitioning.html#structPonca_1_1QueryOutputIsRange">Ponca::QueryOutputIsRange&lt; Index, Scalar &gt;</a></td></tr>
 <tr class="memitem:a700e5a832fa5c0ad10c5d0272194a181 inherit pro_attribs_group__spatialpartitioning"><td class="memItemLeft" align="right" valign="top">Scalar&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__spatialpartitioning.html#a700e5a832fa5c0ad10c5d0272194a181">m_squared_radius</a> {0}</td></tr>
 <tr class="separator:a700e5a832fa5c0ad10c5d0272194a181 inherit pro_attribs_group__spatialpartitioning"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -1838,7 +2128,7 @@ template&lt;typename Index , typename Scalar &gt; </div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="query_8h_source.html#l00183">183</a> of file <a class="el" href="query_8h_source.html">query.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="query_8h_source.html#l00205">205</a> of file <a class="el" href="query_8h_source.html">query.h</a>.</p>
 
 </div>
 </div>
@@ -1859,7 +2149,7 @@ template&lt;typename Index , typename Scalar &gt; </div>
 <div class="textblock"><div class="compoundTemplParams">template&lt;typename Index, typename DataPoint&gt;<br />
 struct Ponca::KNearestPointQuery&lt; Index, DataPoint &gt;</div><p>Base <a class="el" href="group__spatialpartitioning.html#structPonca_1_1Query">Query</a> class combining <a class="el" href="group__spatialpartitioning.html#structPonca_1_1QueryInputIsPosition" title="Base class for queries storing points.">QueryInputIsPosition</a> and <a class="el" href="group__spatialpartitioning.html#structPonca_1_1QueryOutputIsKNearest" title="Base class for knearest queries.">QueryOutputIsKNearest</a>. </p>
 
-<p class="definition">Definition at line <a class="el" href="query_8h_source.html#l00184">184</a> of file <a class="el" href="query_8h_source.html">query.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="query_8h_source.html#l00206">206</a> of file <a class="el" href="query_8h_source.html">query.h</a>.</p>
 </div><div id="dynsection-25" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-25-trigger" src="closed.png" alt="+"/> Inheritance diagram for Ponca::KNearestPointQuery&lt; Index, DataPoint &gt;:</div>
 <div id="dynsection-25-summary" class="dynsummary" style="display:block;">
@@ -1917,6 +2207,15 @@ Additional Inherited Members</h2></td></tr>
 <tr class="separator:a2898fbb571a2c09fc23327dcb1610dd5 inherit pub_methods_group__spatialpartitioning"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad590cf0bfbf1c0784ba79cbac8b00bcd inherit pub_methods_group__spatialpartitioning"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classPonca_1_1limited__priority__queue.html">limited_priority_queue</a>&lt; <a class="el" href="structPonca_1_1IndexSquaredDistance.html">IndexSquaredDistance</a>&lt; Index, DataPoint::Scalar &gt; &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__spatialpartitioning.html#ad590cf0bfbf1c0784ba79cbac8b00bcd">queue</a> ()</td></tr>
 <tr class="separator:ad590cf0bfbf1c0784ba79cbac8b00bcd inherit pub_methods_group__spatialpartitioning"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pro_methods_group__spatialpartitioning"><td colspan="2" onclick="javascript:toggleInherit('pro_methods_group__spatialpartitioning')"><img src="closed.png" alt="-"/>&#160;Protected Member Functions inherited from <a class="el" href="group__spatialpartitioning.html#structPonca_1_1QueryInputIsPosition">Ponca::QueryInputIsPosition&lt; DataPoint &gt;</a></td></tr>
+<tr class="memitem:aea244b4f6838bbb9218d098c321b77f9 inherit pro_methods_group__spatialpartitioning"><td class="memTemplParams" colspan="2">template&lt;typename IndexType &gt; </td></tr>
+<tr class="memitem:aea244b4f6838bbb9218d098c321b77f9 inherit pro_methods_group__spatialpartitioning"><td class="memTemplItemLeft" align="right" valign="top">bool&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__spatialpartitioning.html#aea244b4f6838bbb9218d098c321b77f9">skipIndexFunctor</a> (IndexType idx) const</td></tr>
+<tr class="memdesc:aea244b4f6838bbb9218d098c321b77f9 inherit pro_methods_group__spatialpartitioning"><td class="mdescLeft">&#160;</td><td class="mdescRight">Functor used to check if a given Idx must be skipped.  <br /></td></tr>
+<tr class="separator:aea244b4f6838bbb9218d098c321b77f9 inherit pro_methods_group__spatialpartitioning"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5dbbdc86462e24f755683a886e23345f inherit pro_methods_group__spatialpartitioning"><td class="memTemplParams" colspan="2">template&lt;typename Container &gt; </td></tr>
+<tr class="memitem:a5dbbdc86462e24f755683a886e23345f inherit pro_methods_group__spatialpartitioning"><td class="memTemplItemLeft" align="right" valign="top">auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__spatialpartitioning.html#a5dbbdc86462e24f755683a886e23345f">getInputPosition</a> (const Container &amp;) -&gt; const typename Container::value_type::VectorType</td></tr>
+<tr class="memdesc:a5dbbdc86462e24f755683a886e23345f inherit pro_methods_group__spatialpartitioning"><td class="mdescLeft">&#160;</td><td class="mdescRight">Generic method to access input position. Container is expected to hold kdtree positions.  <br /></td></tr>
+<tr class="separator:a5dbbdc86462e24f755683a886e23345f inherit pro_methods_group__spatialpartitioning"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pro_methods_group__spatialpartitioning"><td colspan="2" onclick="javascript:toggleInherit('pro_methods_group__spatialpartitioning')"><img src="closed.png" alt="-"/>&#160;Protected Member Functions inherited from <a class="el" href="group__spatialpartitioning.html">Ponca::QueryInput&lt; DataPoint::VectorType &gt;</a></td></tr>
 <tr class="memitem:a2e838e934caab5ac2ba8f7ea45909e72 inherit pro_methods_group__spatialpartitioning"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__spatialpartitioning.html#a2e838e934caab5ac2ba8f7ea45909e72">editInput</a> (const InputType &amp;input)</td></tr>
 <tr class="memdesc:a2e838e934caab5ac2ba8f7ea45909e72 inherit pro_methods_group__spatialpartitioning"><td class="mdescLeft">&#160;</td><td class="mdescRight">Edit the input Need to be used carefully. Modifying a query input while iterating on the query will result in undefined behavior. Simplest way to avoid this is to restart the iteration on the query. Usefull to avoid query reallocation between different requests.  <br /></td></tr>
@@ -1925,6 +2224,9 @@ Additional Inherited Members</h2></td></tr>
 <tr class="memitem:a8156b77a6bd1c52ad640488bfede42b5 inherit pro_methods_group__spatialpartitioning"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__spatialpartitioning.html#a8156b77a6bd1c52ad640488bfede42b5">reset</a> ()</td></tr>
 <tr class="memdesc:a8156b77a6bd1c52ad640488bfede42b5 inherit pro_methods_group__spatialpartitioning"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reset <a class="el" href="group__spatialpartitioning.html#structPonca_1_1Query">Query</a> for a new search.  <br /></td></tr>
 <tr class="separator:a8156b77a6bd1c52ad640488bfede42b5 inherit pro_methods_group__spatialpartitioning"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adadfb78e62512f4d5d714b3e59085cf7 inherit pro_methods_group__spatialpartitioning"><td class="memItemLeft" align="right" valign="top">DataPoint::Scalar&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__spatialpartitioning.html#adadfb78e62512f4d5d714b3e59085cf7">descentDistanceThreshold</a> () const</td></tr>
+<tr class="memdesc:adadfb78e62512f4d5d714b3e59085cf7 inherit pro_methods_group__spatialpartitioning"><td class="mdescLeft">&#160;</td><td class="mdescRight">Distance threshold used during tree descent to select nodes to explore.  <br /></td></tr>
+<tr class="separator:adadfb78e62512f4d5d714b3e59085cf7 inherit pro_methods_group__spatialpartitioning"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pro_attribs_group__spatialpartitioning"><td colspan="2" onclick="javascript:toggleInherit('pro_attribs_group__spatialpartitioning')"><img src="closed.png" alt="-"/>&#160;Protected Attributes inherited from <a class="el" href="group__spatialpartitioning.html">Ponca::QueryOutputIsKNearest&lt; Index, DataPoint::Scalar &gt;</a></td></tr>
 <tr class="memitem:a436a5ad248cbb5019d64864a31412444 inherit pro_attribs_group__spatialpartitioning"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classPonca_1_1limited__priority__queue.html">limited_priority_queue</a>&lt; <a class="el" href="structPonca_1_1IndexSquaredDistance.html">IndexSquaredDistance</a>&lt; Index, DataPoint::Scalar &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__spatialpartitioning.html#a436a5ad248cbb5019d64864a31412444">m_queue</a></td></tr>
 <tr class="separator:a436a5ad248cbb5019d64864a31412444 inherit pro_attribs_group__spatialpartitioning"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -1944,7 +2246,7 @@ template&lt;typename Index , typename DataPoint &gt; </div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="query_8h_source.html#l00184">184</a> of file <a class="el" href="query_8h_source.html">query.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="query_8h_source.html#l00206">206</a> of file <a class="el" href="query_8h_source.html">query.h</a>.</p>
 
 </div>
 </div>
@@ -1965,7 +2267,7 @@ template&lt;typename Index , typename DataPoint &gt; </div>
 <div class="textblock"><div class="compoundTemplParams">template&lt;typename Index, typename DataPoint&gt;<br />
 struct Ponca::NearestPointQuery&lt; Index, DataPoint &gt;</div><p>Base <a class="el" href="group__spatialpartitioning.html#structPonca_1_1Query">Query</a> class combining <a class="el" href="group__spatialpartitioning.html#structPonca_1_1QueryInputIsPosition" title="Base class for queries storing points.">QueryInputIsPosition</a> and <a class="el" href="group__spatialpartitioning.html#structPonca_1_1QueryOutputIsNearest" title="Base class for nearest queries.">QueryOutputIsNearest</a>. </p>
 
-<p class="definition">Definition at line <a class="el" href="query_8h_source.html#l00185">185</a> of file <a class="el" href="query_8h_source.html">query.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="query_8h_source.html#l00207">207</a> of file <a class="el" href="query_8h_source.html">query.h</a>.</p>
 </div><div id="dynsection-27" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-27-trigger" src="closed.png" alt="+"/> Inheritance diagram for Ponca::NearestPointQuery&lt; Index, DataPoint &gt;:</div>
 <div id="dynsection-27-summary" class="dynsummary" style="display:block;">
@@ -2021,6 +2323,15 @@ Additional Inherited Members</h2></td></tr>
 <tr class="inherit_header pub_methods_group__spatialpartitioning"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_group__spatialpartitioning')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="group__spatialpartitioning.html">Ponca::QueryOutputIsNearest&lt; Index, DataPoint::Scalar &gt;</a></td></tr>
 <tr class="memitem:a035df03d9e59c0f20a12c85d5bec6749 inherit pub_methods_group__spatialpartitioning"><td class="memItemLeft" align="right" valign="top">Index&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__spatialpartitioning.html#a035df03d9e59c0f20a12c85d5bec6749">get</a> () const</td></tr>
 <tr class="separator:a035df03d9e59c0f20a12c85d5bec6749 inherit pub_methods_group__spatialpartitioning"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pro_methods_group__spatialpartitioning"><td colspan="2" onclick="javascript:toggleInherit('pro_methods_group__spatialpartitioning')"><img src="closed.png" alt="-"/>&#160;Protected Member Functions inherited from <a class="el" href="group__spatialpartitioning.html#structPonca_1_1QueryInputIsPosition">Ponca::QueryInputIsPosition&lt; DataPoint &gt;</a></td></tr>
+<tr class="memitem:aea244b4f6838bbb9218d098c321b77f9 inherit pro_methods_group__spatialpartitioning"><td class="memTemplParams" colspan="2">template&lt;typename IndexType &gt; </td></tr>
+<tr class="memitem:aea244b4f6838bbb9218d098c321b77f9 inherit pro_methods_group__spatialpartitioning"><td class="memTemplItemLeft" align="right" valign="top">bool&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__spatialpartitioning.html#aea244b4f6838bbb9218d098c321b77f9">skipIndexFunctor</a> (IndexType idx) const</td></tr>
+<tr class="memdesc:aea244b4f6838bbb9218d098c321b77f9 inherit pro_methods_group__spatialpartitioning"><td class="mdescLeft">&#160;</td><td class="mdescRight">Functor used to check if a given Idx must be skipped.  <br /></td></tr>
+<tr class="separator:aea244b4f6838bbb9218d098c321b77f9 inherit pro_methods_group__spatialpartitioning"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5dbbdc86462e24f755683a886e23345f inherit pro_methods_group__spatialpartitioning"><td class="memTemplParams" colspan="2">template&lt;typename Container &gt; </td></tr>
+<tr class="memitem:a5dbbdc86462e24f755683a886e23345f inherit pro_methods_group__spatialpartitioning"><td class="memTemplItemLeft" align="right" valign="top">auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__spatialpartitioning.html#a5dbbdc86462e24f755683a886e23345f">getInputPosition</a> (const Container &amp;) -&gt; const typename Container::value_type::VectorType</td></tr>
+<tr class="memdesc:a5dbbdc86462e24f755683a886e23345f inherit pro_methods_group__spatialpartitioning"><td class="mdescLeft">&#160;</td><td class="mdescRight">Generic method to access input position. Container is expected to hold kdtree positions.  <br /></td></tr>
+<tr class="separator:a5dbbdc86462e24f755683a886e23345f inherit pro_methods_group__spatialpartitioning"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pro_methods_group__spatialpartitioning"><td colspan="2" onclick="javascript:toggleInherit('pro_methods_group__spatialpartitioning')"><img src="closed.png" alt="-"/>&#160;Protected Member Functions inherited from <a class="el" href="group__spatialpartitioning.html">Ponca::QueryInput&lt; DataPoint::VectorType &gt;</a></td></tr>
 <tr class="memitem:a2e838e934caab5ac2ba8f7ea45909e72 inherit pro_methods_group__spatialpartitioning"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__spatialpartitioning.html#a2e838e934caab5ac2ba8f7ea45909e72">editInput</a> (const InputType &amp;input)</td></tr>
 <tr class="memdesc:a2e838e934caab5ac2ba8f7ea45909e72 inherit pro_methods_group__spatialpartitioning"><td class="mdescLeft">&#160;</td><td class="mdescRight">Edit the input Need to be used carefully. Modifying a query input while iterating on the query will result in undefined behavior. Simplest way to avoid this is to restart the iteration on the query. Usefull to avoid query reallocation between different requests.  <br /></td></tr>
@@ -2029,6 +2340,9 @@ Additional Inherited Members</h2></td></tr>
 <tr class="memitem:a92333a653df9e9b440ff7ba465753a66 inherit pro_methods_group__spatialpartitioning"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__spatialpartitioning.html#a92333a653df9e9b440ff7ba465753a66">reset</a> ()</td></tr>
 <tr class="memdesc:a92333a653df9e9b440ff7ba465753a66 inherit pro_methods_group__spatialpartitioning"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reset <a class="el" href="group__spatialpartitioning.html#structPonca_1_1Query">Query</a> for a new search.  <br /></td></tr>
 <tr class="separator:a92333a653df9e9b440ff7ba465753a66 inherit pro_methods_group__spatialpartitioning"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a153ff7330ab8fcf78413f387e054bb26 inherit pro_methods_group__spatialpartitioning"><td class="memItemLeft" align="right" valign="top">DataPoint::Scalar&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__spatialpartitioning.html#a153ff7330ab8fcf78413f387e054bb26">descentDistanceThreshold</a> () const</td></tr>
+<tr class="memdesc:a153ff7330ab8fcf78413f387e054bb26 inherit pro_methods_group__spatialpartitioning"><td class="mdescLeft">&#160;</td><td class="mdescRight">Distance threshold used during tree descent to select nodes to explore.  <br /></td></tr>
+<tr class="separator:a153ff7330ab8fcf78413f387e054bb26 inherit pro_methods_group__spatialpartitioning"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pro_attribs_group__spatialpartitioning"><td colspan="2" onclick="javascript:toggleInherit('pro_attribs_group__spatialpartitioning')"><img src="closed.png" alt="-"/>&#160;Protected Attributes inherited from <a class="el" href="group__spatialpartitioning.html">Ponca::QueryOutputIsNearest&lt; Index, DataPoint::Scalar &gt;</a></td></tr>
 <tr class="memitem:a561ce273e8b3238e61d2c91733784520 inherit pro_attribs_group__spatialpartitioning"><td class="memItemLeft" align="right" valign="top">Index&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__spatialpartitioning.html#a561ce273e8b3238e61d2c91733784520">m_nearest</a></td></tr>
 <tr class="separator:a561ce273e8b3238e61d2c91733784520 inherit pro_attribs_group__spatialpartitioning"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -2050,7 +2364,7 @@ template&lt;typename Index , typename DataPoint &gt; </div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="query_8h_source.html#l00185">185</a> of file <a class="el" href="query_8h_source.html">query.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="query_8h_source.html#l00207">207</a> of file <a class="el" href="query_8h_source.html">query.h</a>.</p>
 
 </div>
 </div>
@@ -2071,7 +2385,7 @@ template&lt;typename Index , typename DataPoint &gt; </div>
 <div class="textblock"><div class="compoundTemplParams">template&lt;typename Index, typename DataPoint&gt;<br />
 struct Ponca::RangePointQuery&lt; Index, DataPoint &gt;</div><p>Base <a class="el" href="group__spatialpartitioning.html#structPonca_1_1Query">Query</a> class combining <a class="el" href="group__spatialpartitioning.html#structPonca_1_1QueryInputIsPosition" title="Base class for queries storing points.">QueryInputIsPosition</a> and <a class="el" href="group__spatialpartitioning.html#structPonca_1_1QueryOutputIsRange" title="Base class for range queries.">QueryOutputIsRange</a>. </p>
 
-<p class="definition">Definition at line <a class="el" href="query_8h_source.html#l00186">186</a> of file <a class="el" href="query_8h_source.html">query.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="query_8h_source.html#l00208">208</a> of file <a class="el" href="query_8h_source.html">query.h</a>.</p>
 </div><div id="dynsection-29" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-29-trigger" src="closed.png" alt="+"/> Inheritance diagram for Ponca::RangePointQuery&lt; Index, DataPoint &gt;:</div>
 <div id="dynsection-29-summary" class="dynsummary" style="display:block;">
@@ -2135,6 +2449,15 @@ Additional Inherited Members</h2></td></tr>
 <tr class="separator:a614c9e69f56b91e286e42d3da7a0c24a inherit pub_methods_group__spatialpartitioning"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac36243d9acaf5c787b0cf56bf3432727 inherit pub_methods_group__spatialpartitioning"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__spatialpartitioning.html#ac36243d9acaf5c787b0cf56bf3432727">set_squared_radius</a> (DataPoint::Scalar radius)</td></tr>
 <tr class="separator:ac36243d9acaf5c787b0cf56bf3432727 inherit pub_methods_group__spatialpartitioning"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pro_methods_group__spatialpartitioning"><td colspan="2" onclick="javascript:toggleInherit('pro_methods_group__spatialpartitioning')"><img src="closed.png" alt="-"/>&#160;Protected Member Functions inherited from <a class="el" href="group__spatialpartitioning.html#structPonca_1_1QueryInputIsPosition">Ponca::QueryInputIsPosition&lt; DataPoint &gt;</a></td></tr>
+<tr class="memitem:aea244b4f6838bbb9218d098c321b77f9 inherit pro_methods_group__spatialpartitioning"><td class="memTemplParams" colspan="2">template&lt;typename IndexType &gt; </td></tr>
+<tr class="memitem:aea244b4f6838bbb9218d098c321b77f9 inherit pro_methods_group__spatialpartitioning"><td class="memTemplItemLeft" align="right" valign="top">bool&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__spatialpartitioning.html#aea244b4f6838bbb9218d098c321b77f9">skipIndexFunctor</a> (IndexType idx) const</td></tr>
+<tr class="memdesc:aea244b4f6838bbb9218d098c321b77f9 inherit pro_methods_group__spatialpartitioning"><td class="mdescLeft">&#160;</td><td class="mdescRight">Functor used to check if a given Idx must be skipped.  <br /></td></tr>
+<tr class="separator:aea244b4f6838bbb9218d098c321b77f9 inherit pro_methods_group__spatialpartitioning"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5dbbdc86462e24f755683a886e23345f inherit pro_methods_group__spatialpartitioning"><td class="memTemplParams" colspan="2">template&lt;typename Container &gt; </td></tr>
+<tr class="memitem:a5dbbdc86462e24f755683a886e23345f inherit pro_methods_group__spatialpartitioning"><td class="memTemplItemLeft" align="right" valign="top">auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__spatialpartitioning.html#a5dbbdc86462e24f755683a886e23345f">getInputPosition</a> (const Container &amp;) -&gt; const typename Container::value_type::VectorType</td></tr>
+<tr class="memdesc:a5dbbdc86462e24f755683a886e23345f inherit pro_methods_group__spatialpartitioning"><td class="mdescLeft">&#160;</td><td class="mdescRight">Generic method to access input position. Container is expected to hold kdtree positions.  <br /></td></tr>
+<tr class="separator:a5dbbdc86462e24f755683a886e23345f inherit pro_methods_group__spatialpartitioning"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pro_methods_group__spatialpartitioning"><td colspan="2" onclick="javascript:toggleInherit('pro_methods_group__spatialpartitioning')"><img src="closed.png" alt="-"/>&#160;Protected Member Functions inherited from <a class="el" href="group__spatialpartitioning.html">Ponca::QueryInput&lt; DataPoint::VectorType &gt;</a></td></tr>
 <tr class="memitem:a2e838e934caab5ac2ba8f7ea45909e72 inherit pro_methods_group__spatialpartitioning"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__spatialpartitioning.html#a2e838e934caab5ac2ba8f7ea45909e72">editInput</a> (const InputType &amp;input)</td></tr>
 <tr class="memdesc:a2e838e934caab5ac2ba8f7ea45909e72 inherit pro_methods_group__spatialpartitioning"><td class="mdescLeft">&#160;</td><td class="mdescRight">Edit the input Need to be used carefully. Modifying a query input while iterating on the query will result in undefined behavior. Simplest way to avoid this is to restart the iteration on the query. Usefull to avoid query reallocation between different requests.  <br /></td></tr>
@@ -2143,6 +2466,9 @@ Additional Inherited Members</h2></td></tr>
 <tr class="memitem:a6d86ff545f12d50e52b63ce36a843b6d inherit pro_methods_group__spatialpartitioning"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__spatialpartitioning.html#a6d86ff545f12d50e52b63ce36a843b6d">reset</a> ()</td></tr>
 <tr class="memdesc:a6d86ff545f12d50e52b63ce36a843b6d inherit pro_methods_group__spatialpartitioning"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reset <a class="el" href="group__spatialpartitioning.html#structPonca_1_1Query">Query</a> for a new search.  <br /></td></tr>
 <tr class="separator:a6d86ff545f12d50e52b63ce36a843b6d inherit pro_methods_group__spatialpartitioning"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a37658d986660ed8b8c5801d754f36a12 inherit pro_methods_group__spatialpartitioning"><td class="memItemLeft" align="right" valign="top">DataPoint::Scalar&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__spatialpartitioning.html#a37658d986660ed8b8c5801d754f36a12">descentDistanceThreshold</a> () const</td></tr>
+<tr class="memdesc:a37658d986660ed8b8c5801d754f36a12 inherit pro_methods_group__spatialpartitioning"><td class="mdescLeft">&#160;</td><td class="mdescRight">Distance threshold used during tree descent to select nodes to explore.  <br /></td></tr>
+<tr class="separator:a37658d986660ed8b8c5801d754f36a12 inherit pro_methods_group__spatialpartitioning"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pro_attribs_group__spatialpartitioning"><td colspan="2" onclick="javascript:toggleInherit('pro_attribs_group__spatialpartitioning')"><img src="closed.png" alt="-"/>&#160;Protected Attributes inherited from <a class="el" href="group__spatialpartitioning.html">Ponca::QueryOutputIsRange&lt; Index, DataPoint::Scalar &gt;</a></td></tr>
 <tr class="memitem:a700e5a832fa5c0ad10c5d0272194a181 inherit pro_attribs_group__spatialpartitioning"><td class="memItemLeft" align="right" valign="top">DataPoint::Scalar&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__spatialpartitioning.html#a700e5a832fa5c0ad10c5d0272194a181">m_squared_radius</a></td></tr>
 <tr class="separator:a700e5a832fa5c0ad10c5d0272194a181 inherit pro_attribs_group__spatialpartitioning"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -2162,7 +2488,7 @@ template&lt;typename Index , typename DataPoint &gt; </div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="query_8h_source.html#l00186">186</a> of file <a class="el" href="query_8h_source.html">query.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="query_8h_source.html#l00208">208</a> of file <a class="el" href="query_8h_source.html">query.h</a>.</p>
 
 </div>
 </div>
@@ -2174,7 +2500,7 @@ template&lt;typename Index , typename DataPoint &gt; </div>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generated on Mon Jul 24 2023 15:46:01 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.6 </li>
+    <li class="footer">Generated on Thu Jul 27 2023 07:06:39 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.6 </li>
   </ul>
 </div>
 </body>

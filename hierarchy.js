@@ -35,29 +35,8 @@ var hierarchy =
     [ "Ponca::IndexSquaredDistance< Index, Scalar >", "structPonca_1_1IndexSquaredDistance.html", null ],
     [ "Ponca::IndexSquaredDistance< Index, DataPoint::Scalar >", "structPonca_1_1IndexSquaredDistance.html", null ],
     [ "Ponca::IndexSquaredDistance< IndexType, Scalar >", "structPonca_1_1IndexSquaredDistance.html", null ],
-    [ "Ponca::IndexSquaredDistance< Traits::IndexType, DataPoint::Scalar >", "structPonca_1_1IndexSquaredDistance.html", null ],
-    [ "Ponca::IndexSquaredDistance< Traits::IndexType, Traits::DataPoint::Scalar >", "structPonca_1_1IndexSquaredDistance.html", null ],
     [ "Input_", null, [
-      [ "Ponca::Query< Input_, Output_ >", "group__spatialpartitioning.html#structPonca_1_1Query", [
-        [ "Ponca::KNearestIndexQuery< Traits::IndexType, Traits::DataPoint::Scalar >", "group__spatialpartitioning.html", [
-          [ "Ponca::KdTreeKNearestIndexQuery< Traits >", "classPonca_1_1KdTreeKNearestIndexQuery.html", null ]
-        ] ],
-        [ "Ponca::KNearestPointQuery< Traits::IndexType, Traits::DataPoint >", "group__spatialpartitioning.html", [
-          [ "Ponca::KdTreeKNearestPointQuery< Traits >", "classPonca_1_1KdTreeKNearestPointQuery.html", null ]
-        ] ],
-        [ "Ponca::NearestIndexQuery< Traits::IndexType, Traits::DataPoint::Scalar >", "group__spatialpartitioning.html", [
-          [ "Ponca::KdTreeNearestIndexQuery< Traits >", "classPonca_1_1KdTreeNearestIndexQuery.html", null ]
-        ] ],
-        [ "Ponca::NearestPointQuery< Traits::IndexType, Traits::DataPoint >", "group__spatialpartitioning.html", [
-          [ "Ponca::KdTreeNearestPointQuery< Traits >", "classPonca_1_1KdTreeNearestPointQuery.html", null ]
-        ] ],
-        [ "Ponca::RangeIndexQuery< Traits::IndexType, Traits::DataPoint::Scalar >", "group__spatialpartitioning.html", [
-          [ "Ponca::KdTreeRangeIndexQuery< Traits >", "classPonca_1_1KdTreeRangeIndexQuery.html", null ]
-        ] ],
-        [ "Ponca::RangePointQuery< Traits::IndexType, Traits::DataPoint >", "group__spatialpartitioning.html", [
-          [ "Ponca::KdTreeRangePointQuery< Traits >", "classPonca_1_1KdTreeRangePointQuery.html", null ]
-        ] ]
-      ] ]
+      [ "Ponca::Query< Input_, Output_ >", "group__spatialpartitioning.html#structPonca_1_1Query", null ]
     ] ],
     [ "Ponca::KdTreeBase< Traits >", "classPonca_1_1KdTreeBase.html", null ],
     [ "Ponca::KdTreeDefaultInnerNode< Index, Scalar, DIM >", "structPonca_1_1KdTreeDefaultInnerNode.html", null ],
@@ -68,20 +47,15 @@ var hierarchy =
     [ "Ponca::KdTreeKNearestIterator< Index, DataPoint >", "classPonca_1_1KdTreeKNearestIterator.html", null ],
     [ "Ponca::KdTreeNearestIterator< Index >", "classPonca_1_1KdTreeNearestIterator.html", null ],
     [ "Ponca::KdTreeQuery< Traits >", "classPonca_1_1KdTreeQuery.html", [
-      [ "Ponca::KdTreeKNearestIndexQuery< Traits >", "classPonca_1_1KdTreeKNearestIndexQuery.html", null ],
-      [ "Ponca::KdTreeKNearestPointQuery< Traits >", "classPonca_1_1KdTreeKNearestPointQuery.html", null ],
-      [ "Ponca::KdTreeNearestIndexQuery< Traits >", "classPonca_1_1KdTreeNearestIndexQuery.html", null ],
-      [ "Ponca::KdTreeNearestPointQuery< Traits >", "classPonca_1_1KdTreeNearestPointQuery.html", null ],
-      [ "Ponca::KdTreeRangeIndexQuery< Traits >", "classPonca_1_1KdTreeRangeIndexQuery.html", null ],
-      [ "Ponca::KdTreeRangePointQuery< Traits >", "classPonca_1_1KdTreeRangePointQuery.html", null ]
+      [ "Ponca::KdTreeKNearestQueryBase< Traits, IteratorType, QueryType >", "classPonca_1_1KdTreeKNearestQueryBase.html", null ],
+      [ "Ponca::KdTreeNearestQueryBase< Traits, IteratorType, QueryType >", "classPonca_1_1KdTreeNearestQueryBase.html", null ],
+      [ "Ponca::KdTreeRangeQueryBase< Traits, IteratorType, QueryType >", "classPonca_1_1KdTreeRangeQueryBase.html", null ]
     ] ],
     [ "Ponca::KdTreeRangeIterator< Index, DataPoint, QueryT_ >", "classPonca_1_1KdTreeRangeIterator.html", null ],
     [ "Ponca::limited_priority_queue< T, CompareT >", "classPonca_1_1limited__priority__queue.html", null ],
     [ "Ponca::limited_priority_queue< IndexSquaredDistance< Index, Scalar > >", "classPonca_1_1limited__priority__queue.html", null ],
     [ "Ponca::limited_priority_queue< Ponca::IndexSquaredDistance< Index, DataPoint::Scalar > >", "classPonca_1_1limited__priority__queue.html", null ],
     [ "Ponca::limited_priority_queue< Ponca::IndexSquaredDistance< Index, Scalar > >", "classPonca_1_1limited__priority__queue.html", null ],
-    [ "Ponca::limited_priority_queue< Ponca::IndexSquaredDistance< Traits::IndexType, DataPoint::Scalar > >", "classPonca_1_1limited__priority__queue.html", null ],
-    [ "Ponca::limited_priority_queue< Ponca::IndexSquaredDistance< Traits::IndexType, Traits::DataPoint::Scalar > >", "classPonca_1_1limited__priority__queue.html", null ],
     [ "Output_", null, [
       [ "Ponca::Query< Input_, Output_ >", "group__spatialpartitioning.html#structPonca_1_1Query", null ]
     ] ],
@@ -90,25 +64,6 @@ var hierarchy =
     ] ],
     [ "Ponca::PrimitiveBase< DataPoint, _WFunctor, T >", "classPonca_1_1PrimitiveBase.html", null ],
     [ "Ponca::QueryInputBase", "group__spatialpartitioning.html#structPonca_1_1QueryInputBase", [
-      [ "Ponca::QueryInput< Traits::IndexType >", "group__spatialpartitioning.html", null ],
-      [ "Ponca::QueryInput< DataPoint::VectorType >", "group__spatialpartitioning.html", [
-        [ "Ponca::QueryInputIsPosition< Traits::DataPoint >", "group__spatialpartitioning.html", [
-          [ "Ponca::Query< QueryInputIsPosition< Traits::DataPoint >, QueryOutputIsKNearest< Traits::IndexType, DataPoint::Scalar > >", "group__spatialpartitioning.html", null ],
-          [ "Ponca::Query< QueryInputIsPosition< Traits::DataPoint >, QueryOutputIsNearest< Traits::IndexType, DataPoint::Scalar > >", "group__spatialpartitioning.html", null ],
-          [ "Ponca::Query< QueryInputIsPosition< Traits::DataPoint >, QueryOutputIsRange< Traits::IndexType, DataPoint::Scalar > >", "group__spatialpartitioning.html", null ]
-        ] ],
-        [ "Ponca::QueryInputIsPosition< DataPoint >", "group__spatialpartitioning.html#structPonca_1_1QueryInputIsPosition", [
-          [ "Ponca::Query< QueryInputIsPosition< DataPoint >, QueryOutputIsKNearest< Index, DataPoint::Scalar > >", "group__spatialpartitioning.html", [
-            [ "Ponca::KNearestPointQuery< Index, DataPoint >", "group__spatialpartitioning.html#structPonca_1_1KNearestPointQuery", null ]
-          ] ],
-          [ "Ponca::Query< QueryInputIsPosition< DataPoint >, QueryOutputIsNearest< Index, DataPoint::Scalar > >", "group__spatialpartitioning.html", [
-            [ "Ponca::NearestPointQuery< Index, DataPoint >", "group__spatialpartitioning.html#structPonca_1_1NearestPointQuery", null ]
-          ] ],
-          [ "Ponca::Query< QueryInputIsPosition< DataPoint >, QueryOutputIsRange< Index, DataPoint::Scalar > >", "group__spatialpartitioning.html", [
-            [ "Ponca::RangePointQuery< Index, DataPoint >", "group__spatialpartitioning.html#structPonca_1_1RangePointQuery", null ]
-          ] ]
-        ] ]
-      ] ],
       [ "Ponca::QueryInput< Index >", "group__spatialpartitioning.html", [
         [ "Ponca::QueryInputIsIndex< Index >", "group__spatialpartitioning.html#structPonca_1_1QueryInputIsIndex", [
           [ "Ponca::Query< QueryInputIsIndex< Index >, QueryOutputIsKNearest< Index, Scalar > >", "group__spatialpartitioning.html", [
@@ -122,38 +77,27 @@ var hierarchy =
           ] ]
         ] ]
       ] ],
-      [ "Ponca::QueryInput< InputType_ >", "group__spatialpartitioning.html#structPonca_1_1QueryInput", [
-        [ "Ponca::QueryInputIsIndex< Traits::IndexType >", "group__spatialpartitioning.html", [
-          [ "Ponca::Query< QueryInputIsIndex< Traits::IndexType >, QueryOutputIsKNearest< Traits::IndexType, Traits::DataPoint::Scalar > >", "group__spatialpartitioning.html", null ],
-          [ "Ponca::Query< QueryInputIsIndex< Traits::IndexType >, QueryOutputIsNearest< Traits::IndexType, Traits::DataPoint::Scalar > >", "group__spatialpartitioning.html", null ],
-          [ "Ponca::Query< QueryInputIsIndex< Traits::IndexType >, QueryOutputIsRange< Traits::IndexType, Traits::DataPoint::Scalar > >", "group__spatialpartitioning.html", null ]
+      [ "Ponca::QueryInput< DataPoint::VectorType >", "group__spatialpartitioning.html", [
+        [ "Ponca::QueryInputIsPosition< DataPoint >", "group__spatialpartitioning.html#structPonca_1_1QueryInputIsPosition", [
+          [ "Ponca::Query< QueryInputIsPosition< DataPoint >, QueryOutputIsKNearest< Index, DataPoint::Scalar > >", "group__spatialpartitioning.html", [
+            [ "Ponca::KNearestPointQuery< Index, DataPoint >", "group__spatialpartitioning.html#structPonca_1_1KNearestPointQuery", null ]
+          ] ],
+          [ "Ponca::Query< QueryInputIsPosition< DataPoint >, QueryOutputIsNearest< Index, DataPoint::Scalar > >", "group__spatialpartitioning.html", [
+            [ "Ponca::NearestPointQuery< Index, DataPoint >", "group__spatialpartitioning.html#structPonca_1_1NearestPointQuery", null ]
+          ] ],
+          [ "Ponca::Query< QueryInputIsPosition< DataPoint >, QueryOutputIsRange< Index, DataPoint::Scalar > >", "group__spatialpartitioning.html", [
+            [ "Ponca::RangePointQuery< Index, DataPoint >", "group__spatialpartitioning.html#structPonca_1_1RangePointQuery", null ]
+          ] ]
         ] ]
-      ] ]
+      ] ],
+      [ "Ponca::QueryInput< InputType_ >", "group__spatialpartitioning.html#structPonca_1_1QueryInput", null ]
     ] ],
     [ "Ponca::QueryOutputBase", "group__spatialpartitioning.html#structPonca_1_1QueryOutputBase", [
       [ "Ponca::QueryOutputIsKNearest< Index, DataPoint::Scalar >", "group__spatialpartitioning.html", [
         [ "Ponca::Query< QueryInputIsPosition< DataPoint >, QueryOutputIsKNearest< Index, DataPoint::Scalar > >", "group__spatialpartitioning.html", null ]
       ] ],
-      [ "Ponca::QueryOutputIsKNearest< Traits::IndexType, Traits::DataPoint::Scalar >", "group__spatialpartitioning.html", [
-        [ "Ponca::Query< QueryInputIsIndex< Traits::IndexType >, QueryOutputIsKNearest< Traits::IndexType, Traits::DataPoint::Scalar > >", "group__spatialpartitioning.html", null ]
-      ] ],
-      [ "Ponca::QueryOutputIsKNearest< Traits::IndexType, DataPoint::Scalar >", "group__spatialpartitioning.html", [
-        [ "Ponca::Query< QueryInputIsPosition< Traits::DataPoint >, QueryOutputIsKNearest< Traits::IndexType, DataPoint::Scalar > >", "group__spatialpartitioning.html", null ]
-      ] ],
-      [ "Ponca::QueryOutputIsNearest< Traits::IndexType, Traits::DataPoint::Scalar >", "group__spatialpartitioning.html", [
-        [ "Ponca::Query< QueryInputIsIndex< Traits::IndexType >, QueryOutputIsNearest< Traits::IndexType, Traits::DataPoint::Scalar > >", "group__spatialpartitioning.html", null ]
-      ] ],
-      [ "Ponca::QueryOutputIsNearest< Traits::IndexType, DataPoint::Scalar >", "group__spatialpartitioning.html", [
-        [ "Ponca::Query< QueryInputIsPosition< Traits::DataPoint >, QueryOutputIsNearest< Traits::IndexType, DataPoint::Scalar > >", "group__spatialpartitioning.html", null ]
-      ] ],
       [ "Ponca::QueryOutputIsNearest< Index, DataPoint::Scalar >", "group__spatialpartitioning.html", [
         [ "Ponca::Query< QueryInputIsPosition< DataPoint >, QueryOutputIsNearest< Index, DataPoint::Scalar > >", "group__spatialpartitioning.html", null ]
-      ] ],
-      [ "Ponca::QueryOutputIsRange< Traits::IndexType, Traits::DataPoint::Scalar >", "group__spatialpartitioning.html", [
-        [ "Ponca::Query< QueryInputIsIndex< Traits::IndexType >, QueryOutputIsRange< Traits::IndexType, Traits::DataPoint::Scalar > >", "group__spatialpartitioning.html", null ]
-      ] ],
-      [ "Ponca::QueryOutputIsRange< Traits::IndexType, DataPoint::Scalar >", "group__spatialpartitioning.html", [
-        [ "Ponca::Query< QueryInputIsPosition< Traits::DataPoint >, QueryOutputIsRange< Traits::IndexType, DataPoint::Scalar > >", "group__spatialpartitioning.html", null ]
       ] ],
       [ "Ponca::QueryOutputIsRange< Index, DataPoint::Scalar >", "group__spatialpartitioning.html", [
         [ "Ponca::Query< QueryInputIsPosition< DataPoint >, QueryOutputIsRange< Index, DataPoint::Scalar > >", "group__spatialpartitioning.html", null ]
@@ -167,6 +111,11 @@ var hierarchy =
       [ "Ponca::QueryOutputIsRange< Index, Scalar >", "group__spatialpartitioning.html#structPonca_1_1QueryOutputIsRange", [
         [ "Ponca::Query< QueryInputIsIndex< Index >, QueryOutputIsRange< Index, Scalar > >", "group__spatialpartitioning.html", null ]
       ] ]
+    ] ],
+    [ "QueryType", null, [
+      [ "Ponca::KdTreeKNearestQueryBase< Traits, IteratorType, QueryType >", "classPonca_1_1KdTreeKNearestQueryBase.html", null ],
+      [ "Ponca::KdTreeNearestQueryBase< Traits, IteratorType, QueryType >", "classPonca_1_1KdTreeNearestQueryBase.html", null ],
+      [ "Ponca::KdTreeRangeQueryBase< Traits, IteratorType, QueryType >", "classPonca_1_1KdTreeRangeQueryBase.html", null ]
     ] ],
     [ "Ponca::Stack< T, N >", "classPonca_1_1Stack.html", null ],
     [ "Ponca::Stack< Ponca::IndexSquaredDistance< IndexType, Scalar >, 2 *Traits::MAX_DEPTH >", "classPonca_1_1Stack.html", null ],

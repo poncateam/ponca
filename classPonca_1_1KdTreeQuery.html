@@ -51,7 +51,7 @@ MathJax.Hub.Config({
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Ponca
-   &#160;<span id="projectnumber">e24146e1c599debd7ec9a2a6911c0bfe1a7e94ba</span>
+   &#160;<span id="projectnumber">85767c177dc6ec661991ad60137d465751074a36</span>
    </div>
    <div id="projectbrief">Point Cloud Analysis library</div>
   </td>
@@ -130,7 +130,7 @@ $(document).ready(function(){initNavTree('classPonca_1_1KdTreeQuery.html',''); i
 <div id="dynsection-0-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-0-content" class="dyncontent" style="display:none;">
-<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="classPonca_1_1KdTreeQuery__inherit__graph.svg" width="100%" height="548"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="classPonca_1_1KdTreeQuery__inherit__graph.svg" width="100%" height="559"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 </div>
 <div id="dynsection-1" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
@@ -163,6 +163,9 @@ Protected Member Functions</h2></td></tr>
 <tr class="memitem:a2c02164e69a15dbf89c4b80b625cc0ac"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1KdTreeQuery.html#a2c02164e69a15dbf89c4b80b625cc0ac">reset</a> ()</td></tr>
 <tr class="memdesc:a2c02164e69a15dbf89c4b80b625cc0ac"><td class="mdescLeft">&#160;</td><td class="mdescRight">Init stack for a new search.  <br /></td></tr>
 <tr class="separator:a2c02164e69a15dbf89c4b80b625cc0ac"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa2a201d3185968aa93f0a9856ac14fc8"><td class="memTemplParams" colspan="2">template&lt;typename LeafPreparationFunctor , typename DescentDistanceThresholdFunctor , typename SkipIndexFunctor , typename ProcessNeighborFunctor &gt; </td></tr>
+<tr class="memitem:aa2a201d3185968aa93f0a9856ac14fc8"><td class="memTemplItemLeft" align="right" valign="top">bool&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classPonca_1_1KdTreeQuery.html#aa2a201d3185968aa93f0a9856ac14fc8">search_internal</a> (const VectorType &amp;point, LeafPreparationFunctor prepareLeafTraversal, DescentDistanceThresholdFunctor descentDistanceThreshold, SkipIndexFunctor skipFunctor, ProcessNeighborFunctor processNeighborFunctor)</td></tr>
+<tr class="separator:aa2a201d3185968aa93f0a9856ac14fc8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-attribs" name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
@@ -311,6 +314,66 @@ template&lt;typename Traits &gt; </div>
 
 </div>
 </div>
+<a id="aa2a201d3185968aa93f0a9856ac14fc8" name="aa2a201d3185968aa93f0a9856ac14fc8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa2a201d3185968aa93f0a9856ac14fc8">&#9670;&#160;</a></span>search_internal()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Traits &gt; </div>
+<div class="memtemplate">
+template&lt;typename LeafPreparationFunctor , typename DescentDistanceThresholdFunctor , typename SkipIndexFunctor , typename ProcessNeighborFunctor &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool <a class="el" href="classPonca_1_1KdTreeQuery.html">Ponca::KdTreeQuery</a>&lt; Traits &gt;::search_internal </td>
+          <td>(</td>
+          <td class="paramtype">const VectorType &amp;&#160;</td>
+          <td class="paramname"><em>point</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">LeafPreparationFunctor&#160;</td>
+          <td class="paramname"><em>prepareLeafTraversal</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">DescentDistanceThresholdFunctor&#160;</td>
+          <td class="paramname"><em>descentDistanceThreshold</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">SkipIndexFunctor&#160;</td>
+          <td class="paramname"><em>skipFunctor</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">ProcessNeighborFunctor&#160;</td>
+          <td class="paramname"><em>processNeighborFunctor</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="kdTreeQuery_8h_source.html#l00040">40</a> of file <a class="el" href="kdTreeQuery_8h_source.html">kdTreeQuery.h</a>.</p>
+
+</div>
+</div>
 <h2 class="groupheader">Member Data Documentation</h2>
 <a id="ae44fd9c230d857ffdca7171ac6418ab0" name="ae44fd9c230d857ffdca7171ac6418ab0"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ae44fd9c230d857ffdca7171ac6418ab0">&#9670;&#160;</a></span>m_kdtree</h2>
@@ -370,7 +433,7 @@ template&lt;typename Traits &gt; </div>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="namespacePonca.html">Ponca</a></li><li class="navelem"><a class="el" href="classPonca_1_1KdTreeQuery.html">KdTreeQuery</a></li>
-    <li class="footer">Generated on Mon Jul 24 2023 15:46:01 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.6 </li>
+    <li class="footer">Generated on Thu Jul 27 2023 07:06:39 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.6 </li>
   </ul>
 </div>
 </body>

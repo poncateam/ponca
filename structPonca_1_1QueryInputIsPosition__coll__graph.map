@@ -1,5 +1,5 @@
 <map id="Ponca::QueryInputIsPosition&lt; DataPoint &gt;" name="Ponca::QueryInputIsPosition&lt; DataPoint &gt;">
-<area shape="rect" id="node1" title="Base class for queries storing points." alt="" coords="5,487,209,579"/>
+<area shape="rect" id="node1" title="Base class for queries storing points." alt="" coords="5,487,209,608"/>
 <area shape="rect" id="node2" href="$group__spatialpartitioning.html" title=" " alt="" coords="15,316,199,437"/>
 <area shape="rect" id="node3" href="$group__spatialpartitioning.html#structPonca_1_1QueryInputBase" title="Base class for queries input type." alt="" coords="15,5,189,83"/>
 <area shape="rect" id="node4" href="$group__spatialpartitioning.html#structPonca_1_1QueryInput" title="Base class for typed queries input type." alt="" coords="123,132,275,253"/>

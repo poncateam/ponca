@@ -51,7 +51,7 @@ MathJax.Hub.Config({
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Ponca
-   &#160;<span id="projectnumber">e24146e1c599debd7ec9a2a6911c0bfe1a7e94ba</span>
+   &#160;<span id="projectnumber">85767c177dc6ec661991ad60137d465751074a36</span>
    </div>
    <div id="projectbrief">Point Cloud Analysis library</div>
   </td>
@@ -166,18 +166,18 @@ Queries</h3>
 <div class="line">        <span class="keywordtype">bool</span> res = check_k_nearest_neighbors&lt;Scalar, VectorContainer&gt;(points, i, k, results);</div>
 <div class="line">        VERIFY(res);</div>
 <div class="line">    }</div>
-<div class="ttc" id="aclassPonca_1_1KdTreeBase_html"><div class="ttname"><a href="classPonca_1_1KdTreeBase.html">Ponca::KdTreeBase</a></div><div class="ttdoc">Customizable base class for KdTree datastructure.</div><div class="ttdef"><b>Definition:</b> <a href="kdTree_8h_source.html#l00055">kdTree.h:56</a></div></div>
+<div class="ttc" id="aclassPonca_1_1KdTreeBase_html"><div class="ttname"><a href="classPonca_1_1KdTreeBase.html">Ponca::KdTreeBase</a></div><div class="ttdoc">Customizable base class for KdTree datastructure.</div><div class="ttdef"><b>Definition:</b> <a href="kdTree_8h_source.html#l00052">kdTree.h:53</a></div></div>
 </div><!-- fragment --><p> which can be seamlessly combined with <a class="el" href="classPonca_1_1Basket.html#aa93476ce9142d80e5a15553fc26b1965" title="Convenience function to iterate over a subset of samples in a PointContainer">Basket::computeWithIds</a> </p><div class="fragment"><div class="line">            Fit fit3;</div>
 <div class="line">            fit3.setWeightFunc(WeightFunc(analysisScale));</div>
 <div class="line">            fit3.init(fitInitPos);</div>
 <div class="line">            fit3.computeWithIds( tree.range_neighbors(fitInitPos, analysisScale), vectorPoints );</div>
 </div><!-- fragment --><p>Several query types are provided (see <a class="el" href="classPonca_1_1KdTreeBase.html" title="Customizable base class for KdTree datastructure.">KdTreeBase</a> for related method list):</p><ul>
-<li><a class="el" href="classPonca_1_1KdTreeKNearestIndexQuery.html">KdTreeKNearestIndexQuery</a> and <a class="el" href="classPonca_1_1KdTreeKNearestPointQuery.html">KdTreeKNearestPointQuery</a></li>
-<li><a class="el" href="classPonca_1_1KdTreeNearestIndexQuery.html">KdTreeNearestIndexQuery</a> and <a class="el" href="classPonca_1_1KdTreeNearestPointQuery.html">KdTreeNearestPointQuery</a></li>
-<li><a class="el" href="classPonca_1_1KdTreeRangeIndexQuery.html">KdTreeRangeIndexQuery</a> and <a class="el" href="classPonca_1_1KdTreeRangePointQuery.html">KdTreeRangePointQuery</a></li>
+<li>KdTreeKNearestIndexQuery and KdTreeKNearestPointQuery</li>
+<li>KdTreeNearestIndexQuery and KdTreeNearestPointQuery</li>
+<li>KdTreeRangeIndexQuery and KdTreeRangePointQuery</li>
 </ul>
 <dl class="section note"><dt>Note</dt><dd>As queries are objets that are independent from the KdTree, they can be created and used in parallel from multiple threads.</dd></dl>
-<dl class="section warning"><dt>Warning</dt><dd>Queries from an index (<a class="el" href="classPonca_1_1KdTreeKNearestIndexQuery.html">KdTreeKNearestIndexQuery</a>, <a class="el" href="classPonca_1_1KdTreeNearestIndexQuery.html">KdTreeNearestIndexQuery</a> and <a class="el" href="classPonca_1_1KdTreeRangeIndexQuery.html">KdTreeRangeIndexQuery</a>) do not iterate on the queried index.</dd></dl>
+<dl class="section warning"><dt>Warning</dt><dd>Queries from an index (KdTreeKNearestIndexQuery, KdTreeNearestIndexQuery and KdTreeRangeIndexQuery) do not iterate on the queried index.</dd></dl>
 <h2><a class="anchor" id="spatialpartitioning_kdtree_examples"></a>
 Examples</h2>
 <p>Several KdTree queries are illustrated in the example <a class="el" href="example_cxx_neighbor_search.html">Ponca::KdTree neighbor searches</a>. KdTree usage is also demonstrated both in tests and examples:</p><ul>
@@ -208,7 +208,7 @@ Implementation details</h2>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="user_manual_page.html">User Manual</a></li>
-    <li class="footer">Generated on Mon Jul 24 2023 15:46:01 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.6 </li>
+    <li class="footer">Generated on Thu Jul 27 2023 07:06:39 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.6 </li>
   </ul>
 </div>
 </body>
