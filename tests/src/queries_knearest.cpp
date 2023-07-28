@@ -10,6 +10,7 @@
 #include "../common/kdtree_utils.h"
 
 #include <Ponca/src/SpatialPartitioning/KdTree/kdTree.h>
+#include <Ponca/src/SpatialPartitioning/KnnGraph/knnGraph.h>
 
 using namespace Ponca;
 
@@ -25,6 +26,7 @@ void testKdTreeKNearestIndex(bool quick = true)
 	auto points = VectorContainer(N);
     std::generate(points.begin(), points.end(), []() {return DataPoint(VectorType::Random()); });
 
+    auto kdStart = std::chrono::system_clock::now();
 	/// [Kdtree construction and query]
 	Ponca::KdTree<DataPoint> structure(points);
 
@@ -41,6 +43,34 @@ void testKdTreeKNearestIndex(bool quick = true)
 		VERIFY(res);
 	}
     /// [Kdtree construction and query]
+    auto kdEnd = std::chrono::system_clock::now();
+
+
+    auto graphStart = std::chrono::system_clock::now();
+    /// [KnnGraph construction and query]
+    Ponca::KnnGraph<DataPoint> knnGraph(structure, k);
+#pragma omp parallel for
+    for (int i = 0; i < N; ++i)
+    {
+        std::vector<int> results; results.reserve( k );
+        for (int j : knnGraph.k_nearest_neighbors(i))
+        {
+            results.push_back(j);
+        }
+
+        bool res = check_k_nearest_neighbors<Scalar, VectorContainer>(points, i, k, results);
+        VERIFY(res);
+    }
+    /// [KnnGraph construction and query]
+    auto graphEnd = std::chrono::system_clock::now();
+
+
+    std::chrono::duration<double> kdDiff = (kdEnd-kdStart);
+    std::chrono::duration<double> graphDiff = (graphEnd-graphStart);
+
+    std::cout << "Timings: " << "\n"
+              << "KdTree   : " <<  kdDiff.count() << "\n"
+              << "KnnGraph : " <<  graphDiff.count() << "\n";
 }
 
 template<typename DataPoint>

@@ -6,27 +6,33 @@
 
 #pragma once
 
+#include "../Iterator/knnGraphRangeIterator.h"
 #include <vector>
 
 namespace Ponca {
 
-class KnnGraph;
+template <typename Traits>class KnnGraphBase; // Need forward declaration to avoid mutual inclusion
 
-class KnnGraphQuery
+/// \todo Inherit from Base queries
+template <typename Traits>class KnnGraphQuery
 {
 public:
-    using iterator = std::vector<int>::const_iterator;
+    using Iterator = typename Traits::IndexContainer::const_iterator;
 
 public:
-    KnnGraphQuery();
-    KnnGraphQuery(const KnnGraph* graph, int index);
+    inline KnnGraphQuery(const KnnGraphBase<Traits>* graph, int index)
+        : m_graph(graph), m_index(index){}
 
-    iterator begin() const;
-    iterator end() const;
+    inline Iterator begin() const{
+        return m_graph->index_data().begin() + m_index * m_graph->k();
+    }
+    inline Iterator end() const{
+        return m_graph->index_data().begin() + (m_index+1) * m_graph->k();
+    }
 
 protected:
-    const KnnGraph* m_graph;
-    int m_index;
+    const KnnGraphBase<Traits>* m_graph {nullptr};
+    int m_index {-1};
 };
 
 } // namespace Ponca

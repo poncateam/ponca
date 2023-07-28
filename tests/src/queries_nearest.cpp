@@ -10,6 +10,7 @@
 #include "../common/kdtree_utils.h"
 
 #include <Ponca/src/SpatialPartitioning/KdTree/kdTree.h>
+#include <Ponca/src/SpatialPartitioning/KnnGraph/knnGraph.h>
 
 using namespace Ponca;
 
@@ -38,6 +39,20 @@ void testKdTreeNearestIndex(bool quick = true)
 		bool res = check_nearest_neighbor<Scalar, VectorContainer>(points, i, results.front());
         VERIFY(res);
 	}
+
+    Ponca::KnnGraph<DataPoint> knnGraph(structure, 1);
+#pragma omp parallel for
+    for (int i = 0; i < N; ++i)
+    {
+        std::vector<int> results; results.reserve( 1 );
+        for (int j : knnGraph.k_nearest_neighbors(i))
+        {
+            results.push_back(j);
+        }
+        VERIFY(results.size() == 1);
+        bool res = check_nearest_neighbor<Scalar, VectorContainer>(points, i, results.front());
+        VERIFY(res);
+    }
 }
 
 template<typename DataPoint>

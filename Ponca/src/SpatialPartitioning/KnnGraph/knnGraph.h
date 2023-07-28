@@ -11,6 +11,8 @@
 #include "Query/knnGraphQuery.h"
 #include "Query/knnGraphRangeQuery.h"
 
+#include "../KdTree/kdTree.h"
+
 #include <memory>
 
 namespace Ponca {
@@ -28,7 +30,6 @@ template <typename Traits> class KnnGraphBase;
 template <typename DataPoint>
 using KnnGraph = KnnGraphBase<KnnGraphDefaultTraits<DataPoint>>;
 
-class KdTree;
 /*!
  * \brief Customizable base class for KnnGraph datastructure
  *
@@ -51,52 +52,69 @@ public:
     using PointContainer = typename Traits::PointContainer; ///< Container for DataPoint used inside the KdTree
     using IndexContainer = typename Traits::IndexContainer; ///< Container for indices used inside the KdTree
 
-    using KNearestIndexQuery = KnnGraphQuery;
-    using RangeIndexQuery    = KnnGraphRangeQuery;
+    using KNearestIndexQuery = KnnGraphQuery<Traits>;
+    using RangeIndexQuery    = KnnGraphRangeQuery<Traits>;
 
     // knnGraph ----------------------------------------------------------------
 public:
-    KnnGraphBase();
-    KnnGraphBase(int k);
+    /// \brief Build a KnnGraph from a KdTree
+    /// \warning Stores a const reference to kdtree.point_data()
+    /// \warning KdTreeTraits compatibility is checked with static assertion
+    template<typename KdTreeTraits>
+    inline KnnGraphBase(const KdTreeBase<KdTreeTraits>& kdtree, int k = 6)
+            : m_k(k), m_points(kdtree.point_data())
+    {
+        static_assert( std::is_same_v<typename Traits::DataPoint, typename KdTreeTraits::DataPoint>,
+                       "KdTreeTraits::DataPoint is not equal to Traits::DataPoint" );
+        static_assert( std::is_same_v<typename Traits::PointContainer, typename KdTreeTraits::PointContainer>,
+                       "KdTreeTraits::PointContainer is not equal to Traits::PointContainer" );
 
-    void clear();
-    void build(const KdTree& kdtree);
-    void build(const KdTree& kdtree, int k);
-    void build(const KdTree& kdtree, const IndexContainer& indices);
-    void build(const KdTree& kdtree, int k, const IndexContainer& indices);
+        const int size = kdtree.index_count();
+        m_indices.resize(size * m_k, -1);
 
+#pragma omp parallel for shared(kdtree, size) default(none)
+        for(int i=0; i<size; ++i)
+        {
+            int j = 0;
+            for(int n : kdtree.k_nearest_neighbors(typename KdTreeTraits::IndexType(i),
+                                                   typename KdTreeTraits::IndexType(m_k)))
+            {
+                m_indices[i * m_k + j] = n;
+                ++j;
+            }
+        }
+    }
 
     // Query -------------------------------------------------------------------
 public:
-    KNearestIndexQuery k_nearest_neighbors(int index) const;
-    RangeIndexQuery    range_neighbors(int index, Scalar r) const;
+    inline KNearestIndexQuery k_nearest_neighbors(int index) const{
+        return KnnGraphQuery(this, index);
+    }
 
-    int k_neighbor(int index, int i) const;
+    inline RangeIndexQuery    range_neighbors(int index, Scalar r) const{
+        return knnGraphRangeQuery(this, r, index);
+    }
 
-    // Empty Query -------------------------------------------------------------
-public:
-    RangeIndexQuery range_query(Scalar r = 0) const;
+    /// \brief Get id of the i-th neighbor of a vertex
+    /// \param index Vertex id
+    /// \param i Neighbor id
+    inline int k_neighbor(int index, int i) const{
+        return m_indices->operator[](index * m_k + i);
+    }
 
     // Accessors ---------------------------------------------------------------
 public:
-    int k() const;
-    int size() const;
+    inline int k() const { return m_k; }
+    inline int size() const { return m_points.size(); }
 
-    const PointContainer& point_data() const;
-          PointContainer& point_data();
-
-    const IndexContainer& index_data() const;
-          IndexContainer& index_data();
-
-    void set_verbose(bool verbose = true);
+    inline const PointContainer& point_data() const { return m_points; };
+    inline const IndexContainer& index_data() const { return m_indices; };
 
     // Data --------------------------------------------------------------------
-protected:
-    int m_k;
-    std::shared_ptr<PointContainer>   m_points;
-    std::shared_ptr<IndexContainer> m_indices;
-
-    bool m_verbose;
+private:
+    const int m_k;
+    const PointContainer& m_points;
+    IndexContainer m_indices; ///< \brief Stores neighborhood relations
 };
 
 } // namespace Ponca

@@ -10,6 +10,7 @@
 #include "../common/kdtree_utils.h"
 
 #include <Ponca/src/SpatialPartitioning/KdTree/kdTree.h>
+#include <Ponca/src/SpatialPartitioning/KnnGraph/knnGraph.h>
 
 using namespace Ponca;
 
@@ -35,17 +36,31 @@ void testKdTreeRangeIndex(bool quick = true)
 	KdTree<DataPoint> structure(points, sampling);
 
 #pragma omp parallel for
-	for (int i = 0; i < N; ++i)
-	{
+    for (int i = 0; i < N; ++i)
+    {
         Scalar r = Eigen::internal::random<Scalar>(0., 0.5);
         std::vector<int> results;
 
-		for (int j : structure.range_neighbors(i, r)) {
-			results.push_back(j);
-		}
-		bool res = check_range_neighbors<Scalar, VectorContainer>(points, sampling, i, r, results);
+        for (int j : structure.range_neighbors(i, r)) {
+            results.push_back(j);
+        }
+        bool res = check_range_neighbors<Scalar, VectorContainer>(points, sampling, i, r, results);
         VERIFY(res);
-	}
+    }
+
+    Ponca::KnnGraph<DataPoint> knnGraph(structure, 10);
+#pragma omp parallel for
+    for (int i = 0; i < N; ++i)
+    {
+        Scalar r = Eigen::internal::random<Scalar>(0., 0.5);
+        std::vector<int> results;
+
+        for (int j : knnGraph.range_neighbors(i, r)) {
+            results.push_back(j);
+        }
+        bool res = check_range_neighbors<Scalar, VectorContainer>(points, sampling, i, r, results);
+        VERIFY(res);
+    }
 
 }
 template<typename DataPoint>
