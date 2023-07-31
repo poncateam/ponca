@@ -28,13 +28,13 @@ void testKdTreeKNearestIndex(bool quick = true)
 
     auto kdStart = std::chrono::system_clock::now();
 	/// [Kdtree construction and query]
-	Ponca::KdTree<DataPoint> structure(points);
+	Ponca::KdTree<DataPoint> kdTree(points);
 
 #pragma omp parallel for
 	for (int i = 0; i < N; ++i)
 	{
         std::vector<int> results; results.reserve( k );
-		for (int j : structure.k_nearest_neighbors(i, k))
+		for (int j : kdTree.k_nearest_neighbors(i, k))
 		{
 			results.push_back(j);
 		}
@@ -48,7 +48,7 @@ void testKdTreeKNearestIndex(bool quick = true)
 
     auto graphStart = std::chrono::system_clock::now();
     /// [KnnGraph construction and query]
-    Ponca::KnnGraph<DataPoint> knnGraph(structure, k);
+    Ponca::KnnGraph<DataPoint> knnGraph(kdTree, k);
 #pragma omp parallel for
     for (int i = 0; i < N; ++i)
     {

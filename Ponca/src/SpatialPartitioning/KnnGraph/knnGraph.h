@@ -8,7 +8,7 @@
 
 #include "./knnGraphTraits.h"
 
-#include "Query/knnGraphQuery.h"
+#include "Query/knnGraphKNearestQuery.h"
 #include "Query/knnGraphRangeQuery.h"
 
 #include "../KdTree/kdTree.h"
@@ -52,11 +52,11 @@ public:
     using PointContainer = typename Traits::PointContainer; ///< Container for DataPoint used inside the KdTree
     using IndexContainer = typename Traits::IndexContainer; ///< Container for indices used inside the KdTree
 
-    using KNearestIndexQuery = KnnGraphQuery<Traits>;
+    using KNearestIndexQuery = KnnGraphKNearestQuery<Traits>;
     using RangeIndexQuery    = KnnGraphRangeQuery<Traits>;
 
-    friend class KnnGraphQuery<Traits>;      // This type must be equal to KnnGraphBase::KNearestIndexQuery
-    friend class KnnGraphRangeQuery<Traits>; // This type must be equal to KnnGraphBase::RangeIndexQuery
+    friend class KnnGraphKNearestQuery<Traits>; // This type must be equal to KnnGraphBase::KNearestIndexQuery
+    friend class KnnGraphRangeQuery<Traits>;    // This type must be equal to KnnGraphBase::RangeIndexQuery
 
     // knnGraph ----------------------------------------------------------------
 public:
@@ -107,7 +107,7 @@ public:
     // Query -------------------------------------------------------------------
 public:
     inline KNearestIndexQuery k_nearest_neighbors(int index) const{
-        return KnnGraphQuery(this, index);
+        return KnnGraphKNearestQuery(this, index);
     }
 
     inline RangeIndexQuery    range_neighbors(int index, Scalar r) const{
