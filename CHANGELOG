@@ -3,9 +3,12 @@ Ponca changelog
 
 
 --------------------------------------------------------------------------------
-Current head (v.1.1 RC)
+Current head (v.1.2 RC)
+
+--------------------------------------------------------------------------------
+v.1.1 RC
 This release improves the Spatial Partitioning Package with new features and
-improved doc.
+improved doc, as well as several bug fixes and API improvements.
 
 - API
     - [spatialPartitioning] Add kd-tree traits type (#80)
