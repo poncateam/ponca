@@ -51,7 +51,7 @@ MathJax.Hub.Config({
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Ponca
-   &#160;<span id="projectnumber">89cccae76664ce461a4f73a4285e45ca90cc725b</span>
+   &#160;<span id="projectnumber">0a48bd0b09cc2a1a5cb94be4bf07a40ff5459adc</span>
    </div>
    <div id="projectbrief">Point Cloud Analysis library</div>
   </td>
@@ -122,6 +122,15 @@ $(document).ready(function(){initNavTree('ponca_changelog.html',''); initResizab
 <div class="textblock"><p>Check latest release at: <a href="https://github.com/poncateam/ponca/releases/latest">https://github.com/poncateam/ponca/releases/latest</a>.</p>
 <h1><a class="anchor" id="ponca_releases_overview"></a>
 Principal features of the latest releases</h1>
+<h2><a class="anchor" id="ponca_v11_sec"></a>
+V1.1: improve Spatial Partitioning module + bug fixes</h2>
+<ul>
+<li>add KdTreeTraits to customize KdTree, add KnnGraph</li>
+<li>fix several mathematical bugs in Fitting package</li>
+<li><p class="startli">update documentation and examples</p>
+<div class="fragment"><div class="line">git checkout v1.1</div>
+</div><!-- fragment --></li>
+</ul>
 <h2><a class="anchor" id="ponca_v10_sec"></a>
 V1.0: adding Spatial Partitioning module</h2>
 <ul>
@@ -155,9 +164,12 @@ Complete Changelog</h1>
 
 
 --------------------------------------------------------------------------------
-Current head (v.1.1 RC)
+Current head (v.1.2 RC)
+
+--------------------------------------------------------------------------------
+v.1.1 RC
 This release improves the Spatial Partitioning Package with new features and
-improved doc.
+improved doc, as well as several bug fixes and API improvements.
 
 - API
     - [spatialPartitioning] Add kd-tree traits type (#80)
@@ -468,7 +480,7 @@ V0.1.2
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generated on Mon Jul 31 2023 16:14:53 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.6 </li>
+    <li class="footer">Generated on Mon Jul 31 2023 16:16:50 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.6 </li>
   </ul>
 </div>
 </body>

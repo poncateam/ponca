@@ -36,6 +36,7 @@ var NAVTREE =
     [ "Examples", "example_page.html", "example_page" ],
     [ "Releases overview", "ponca_changelog.html", [
       [ "Principal features of the latest releases", "ponca_changelog.html#ponca_releases_overview", [
+        [ "V1.1: improve Spatial Partitioning module + bug fixes", "ponca_changelog.html#ponca_v11_sec", null ],
         [ "V1.0: adding Spatial Partitioning module", "ponca_changelog.html#ponca_v10_sec", null ],
         [ "V0.3: adding Spatial Partitioning module", "ponca_changelog.html#ponca_v03_sec", null ],
         [ "V0.2: adding Spatial Partitioning module", "ponca_changelog.html#ponca_v02_sec", null ]
