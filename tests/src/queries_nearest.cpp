@@ -10,6 +10,7 @@
 #include "../common/kdtree_utils.h"
 
 #include <Ponca/src/SpatialPartitioning/KdTree/kdTree.h>
+#include <Ponca/src/SpatialPartitioning/KnnGraph/knnGraph.h>
 
 using namespace Ponca;
 
@@ -24,13 +25,13 @@ void testKdTreeNearestIndex(bool quick = true)
 	auto points = VectorContainer(N);
     std::generate(points.begin(), points.end(), []() {return DataPoint(VectorType::Random()); });
 
-	KdTree<DataPoint> structure(points);
+	KdTree<DataPoint> kdTree(points);
 
 #pragma omp parallel for
 	for (int i = 0; i < N; ++i)
 	{
         std::vector<int> results; results.reserve( 1 );
-		for (int j : structure.nearest_neighbor(i))
+		for (int j : kdTree.nearest_neighbor(i))
 		{
 			results.push_back(j);
 		}
@@ -38,6 +39,22 @@ void testKdTreeNearestIndex(bool quick = true)
 		bool res = check_nearest_neighbor<Scalar, VectorContainer>(points, i, results.front());
         VERIFY(res);
 	}
+
+    /// [KnnGraph construction]
+    Ponca::KnnGraph<DataPoint> knnGraph(kdTree, 1);
+    /// [KnnGraph construction]
+#pragma omp parallel for
+    for (int i = 0; i < N; ++i)
+    {
+        std::vector<int> results; results.reserve( 1 );
+        for (int j : knnGraph.k_nearest_neighbors(i))
+        {
+            results.push_back(j);
+        }
+        VERIFY(results.size() == 1);
+        bool res = check_nearest_neighbor<Scalar, VectorContainer>(points, i, results.front());
+        VERIFY(res);
+    }
 }
 
 template<typename DataPoint>
