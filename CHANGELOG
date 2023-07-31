@@ -9,6 +9,7 @@ improved doc.
 
 - API
     - [spatialPartitioning] Add kd-tree traits type (#80)
+    - [spatialPartitioning] Add knn-graphs (#101)
     - [fitting] Add Primitive::getNumNeighbors (#86)
     - [fitting] Add Primitive::getWeightFunc (#99)
     - [fitting] Change naming convention and rational for principal curvatures in CurvatureEstimatorBase (#94)
