@@ -1,0 +1,16 @@
+<map id="Ponca::KnnGraphRangeQuery&lt; Traits &gt;" name="Ponca::KnnGraphRangeQuery&lt; Traits &gt;">
+<area shape="rect" id="node1" title=" " alt="" coords="70,1269,283,1449"/>
+<area shape="rect" id="node2" href="$group__spatialpartitioning.html" title=" " alt="" coords="82,1113,271,1220"/>
+<area shape="rect" id="node3" href="$group__spatialpartitioning.html#structPonca_1_1Query" title=" " alt="" coords="5,523,161,630"/>
+<area shape="rect" id="node4" title=" " alt="" coords="180,338,243,415"/>
+<area shape="rect" id="node14" href="$group__spatialpartitioning.html#structPonca_1_1Query" title=" " alt="" coords="185,523,341,630"/>
+<area shape="rect" id="node5" title=" " alt="" coords="76,338,149,415"/>
+<area shape="rect" id="node6" href="$group__spatialpartitioning.html#structPonca_1_1RangeIndexQuery" title="Base Query class combining QueryInputIsIndex and QueryOutputIsRange." alt="" coords="203,929,388,1021"/>
+<area shape="rect" id="node7" href="$group__spatialpartitioning.html" title=" " alt="" coords="254,759,481,880"/>
+<area shape="rect" id="node8" href="$group__spatialpartitioning.html#structPonca_1_1QueryInputIsIndex" title="Base class for queries storing points." alt="" coords="617,516,805,637"/>
+<area shape="rect" id="node9" href="$group__spatialpartitioning.html" title=" " alt="" coords="635,316,787,437"/>
+<area shape="rect" id="node10" href="$group__spatialpartitioning.html#structPonca_1_1QueryInputBase" title="Base class for queries input type." alt="" coords="601,5,774,83"/>
+<area shape="rect" id="node11" href="$group__spatialpartitioning.html#structPonca_1_1QueryInput" title="Base class for typed queries input type." alt="" coords="709,132,861,253"/>
+<area shape="rect" id="node12" href="$group__spatialpartitioning.html#structPonca_1_1QueryOutputIsRange" title="Base class for range queries." alt="" coords="374,487,593,667"/>
+<area shape="rect" id="node13" href="$group__spatialpartitioning.html#structPonca_1_1QueryOutputBase" title="Base class for queries output type." alt="" coords="391,338,575,415"/>
+</map>

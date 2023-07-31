@@ -51,7 +51,7 @@ MathJax.Hub.Config({
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Ponca
-   &#160;<span id="projectnumber">85767c177dc6ec661991ad60137d465751074a36</span>
+   &#160;<span id="projectnumber">89cccae76664ce461a4f73a4285e45ca90cc725b</span>
    </div>
    <div id="projectbrief">Point Cloud Analysis library</div>
   </td>
@@ -210,6 +210,18 @@ Classes</h2></td></tr>
 <tr class="memitem:structPonca_1_1KNearestPointQuery"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__spatialpartitioning.html#structPonca_1_1KNearestPointQuery">KNearestPointQuery</a></td></tr>
 <tr class="memdesc:structPonca_1_1KNearestPointQuery"><td class="mdescLeft">&#160;</td><td class="mdescRight">Base <a class="el" href="group__spatialpartitioning.html#structPonca_1_1Query">Query</a> class combining <a class="el" href="group__spatialpartitioning.html#structPonca_1_1QueryInputIsPosition" title="Base class for queries storing points.">QueryInputIsPosition</a> and <a class="el" href="group__spatialpartitioning.html#structPonca_1_1QueryOutputIsKNearest" title="Base class for knearest queries.">QueryOutputIsKNearest</a>.  <a href="group__spatialpartitioning.html#structPonca_1_1KNearestPointQuery">More...</a><br /></td></tr>
 <tr class="separator:structPonca_1_1KNearestPointQuery"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1KnnGraphBase.html">KnnGraphBase</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Customizable base class for KnnGraph datastructure.  <a href="classPonca_1_1KnnGraphBase.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structPonca_1_1KnnGraphDefaultTraits.html">KnnGraphDefaultTraits</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">The default traits type used by the kd-tree.  <a href="structPonca_1_1KnnGraphDefaultTraits.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1KnnGraphKNearestQuery.html">KnnGraphKNearestQuery</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1KnnGraphRangeIterator.html">KnnGraphRangeIterator</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1KnnGraphRangeQuery.html">KnnGraphRangeQuery</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1limited__priority__queue.html">limited_priority_queue</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">The <a class="el" href="classPonca_1_1limited__priority__queue.html" title="The limited_priority_queue class is similar to std::priority_queue but has a limited capacity and han...">limited_priority_queue</a> class is similar to std::priority_queue but has a limited capacity and handles the comparison differently.  <a href="classPonca_1_1limited__priority__queue.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -372,6 +384,10 @@ Typedefs</h2></td></tr>
 <tr class="memitem:ac3fc0a276495b2cb4a0a0b0e31556781"><td class="memTemplParams" colspan="2">template&lt;typename Traits &gt; </td></tr>
 <tr class="memitem:ac3fc0a276495b2cb4a0a0b0e31556781"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacePonca.html#ac3fc0a276495b2cb4a0a0b0e31556781">KdTreeRangePointQuery</a> = <a class="el" href="classPonca_1_1KdTreeRangeQueryBase.html">KdTreeRangeQueryBase</a>&lt; Traits, <a class="el" href="classPonca_1_1KdTreeRangeIterator.html">KdTreeRangeIterator</a>, <a class="el" href="group__spatialpartitioning.html#structPonca_1_1RangePointQuery">RangePointQuery</a>&lt; typename Traits::IndexType, typename Traits::DataPoint &gt; &gt;</td></tr>
 <tr class="separator:ac3fc0a276495b2cb4a0a0b0e31556781"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab7bf93ae8146ea5f4471c1d06fa8895e"><td class="memTemplParams" colspan="2">template&lt;typename DataPoint &gt; </td></tr>
+<tr class="memitem:ab7bf93ae8146ea5f4471c1d06fa8895e"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacePonca.html#ab7bf93ae8146ea5f4471c1d06fa8895e">KnnGraph</a> = <a class="el" href="classPonca_1_1KnnGraphBase.html">KnnGraphBase</a>&lt; <a class="el" href="structPonca_1_1KnnGraphDefaultTraits.html">KnnGraphDefaultTraits</a>&lt; DataPoint &gt; &gt;</td></tr>
+<tr class="memdesc:ab7bf93ae8146ea5f4471c1d06fa8895e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Public interface for KnnGraph datastructure.  <br /></td></tr>
+<tr class="separator:ab7bf93ae8146ea5f4471c1d06fa8895e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="enum-members" name="enum-members"></a>
 Enumerations</h2></td></tr>
@@ -593,6 +609,30 @@ template&lt;typename Traits &gt; </div>
 
 </div>
 </div>
+<a id="ab7bf93ae8146ea5f4471c1d06fa8895e" name="ab7bf93ae8146ea5f4471c1d06fa8895e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab7bf93ae8146ea5f4471c1d06fa8895e">&#9670;&#160;</a></span>KnnGraph</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename DataPoint &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="namespacePonca.html#ab7bf93ae8146ea5f4471c1d06fa8895e">Ponca::KnnGraph</a> = typedef <a class="el" href="classPonca_1_1KnnGraphBase.html">KnnGraphBase</a>&lt;<a class="el" href="structPonca_1_1KnnGraphDefaultTraits.html">KnnGraphDefaultTraits</a>&lt;DataPoint&gt; &gt;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Public interface for KnnGraph datastructure. </p>
+<p>Provides default implementation of the KnnGraph</p>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="structPonca_1_1KnnGraphDefaultTraits.html" title="The default traits type used by the kd-tree.">KnnGraphDefaultTraits</a> for the default trait interface documentation. </dd>
+<dd>
+<a class="el" href="classPonca_1_1KnnGraphBase.html" title="Customizable base class for KnnGraph datastructure.">KnnGraphBase</a> for complete API </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="knnGraph_8h_source.html#l00031">31</a> of file <a class="el" href="knnGraph_8h_source.html">knnGraph.h</a>.</p>
+
+</div>
+</div>
 <a id="a13ebe442f2119e12b35714a12a15560b" name="a13ebe442f2119e12b35714a12a15560b"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a13ebe442f2119e12b35714a12a15560b">&#9670;&#160;</a></span>MeanPlaneFit</h2>
 
@@ -760,7 +800,7 @@ template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="namespacePonca.html">Ponca</a></li>
-    <li class="footer">Generated on Thu Jul 27 2023 07:06:39 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.6 </li>
+    <li class="footer">Generated on Mon Jul 31 2023 16:14:53 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.6 </li>
   </ul>
 </div>
 </body>

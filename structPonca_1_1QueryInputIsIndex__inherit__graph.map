@@ -1,12 +1,19 @@
 <map id="Ponca::QueryInputIsIndex&lt; Index &gt;" name="Ponca::QueryInputIsIndex&lt; Index &gt;">
-<area shape="rect" id="node1" title="Base class for queries storing points." alt="" coords="275,487,463,608"/>
-<area shape="rect" id="node5" href="$group__spatialpartitioning.html" title=" " alt="" coords="5,657,232,779"/>
-<area shape="rect" id="node7" href="$group__spatialpartitioning.html" title=" " alt="" coords="256,657,483,779"/>
-<area shape="rect" id="node9" href="$group__spatialpartitioning.html" title=" " alt="" coords="507,657,733,779"/>
-<area shape="rect" id="node2" href="$group__spatialpartitioning.html" title=" " alt="" coords="293,316,445,437"/>
-<area shape="rect" id="node3" href="$group__spatialpartitioning.html#structPonca_1_1QueryInputBase" title="Base class for queries input type." alt="" coords="277,5,451,83"/>
-<area shape="rect" id="node4" href="$group__spatialpartitioning.html#structPonca_1_1QueryInput" title="Base class for typed queries input type." alt="" coords="385,132,537,253"/>
-<area shape="rect" id="node6" href="$group__spatialpartitioning.html#structPonca_1_1KNearestIndexQuery" title="Base Query class combining QueryInputIsIndex and QueryOutputIsKNearest." alt="" coords="17,828,221,920"/>
-<area shape="rect" id="node8" href="$group__spatialpartitioning.html#structPonca_1_1NearestIndexQuery" title="Base Query class combining QueryInputIsIndex and QueryOutputIsNearest." alt="" coords="272,828,467,920"/>
-<area shape="rect" id="node10" href="$group__spatialpartitioning.html#structPonca_1_1RangeIndexQuery" title="Base Query class combining QueryInputIsIndex and QueryOutputIsRange." alt="" coords="527,828,713,920"/>
+<area shape="rect" id="node1" title="Base class for queries storing points." alt="" coords="403,487,591,608"/>
+<area shape="rect" id="node5" href="$group__spatialpartitioning.html" title=" " alt="" coords="8,671,235,792"/>
+<area shape="rect" id="node9" href="$group__spatialpartitioning.html" title=" " alt="" coords="259,671,485,792"/>
+<area shape="rect" id="node11" href="$group__spatialpartitioning.html" title=" " alt="" coords="509,671,736,792"/>
+<area shape="rect" id="node15" href="$group__spatialpartitioning.html" title=" " alt="" coords="761,671,949,792"/>
+<area shape="rect" id="node2" href="$group__spatialpartitioning.html" title=" " alt="" coords="421,316,573,437"/>
+<area shape="rect" id="node3" href="$group__spatialpartitioning.html#structPonca_1_1QueryInputBase" title="Base class for queries input type." alt="" coords="405,5,579,83"/>
+<area shape="rect" id="node4" href="$group__spatialpartitioning.html#structPonca_1_1QueryInput" title="Base class for typed queries input type." alt="" coords="513,132,665,253"/>
+<area shape="rect" id="node6" href="$group__spatialpartitioning.html#structPonca_1_1KNearestIndexQuery" title="Base Query class combining QueryInputIsIndex and QueryOutputIsKNearest." alt="" coords="19,871,223,963"/>
+<area shape="rect" id="node7" href="$group__spatialpartitioning.html" title=" " alt="" coords="19,1084,223,1191"/>
+<area shape="rect" id="node8" href="$classPonca_1_1KnnGraphKNearestQuery.html" title=" " alt="" coords="5,1269,237,1391"/>
+<area shape="rect" id="node10" href="$group__spatialpartitioning.html#structPonca_1_1NearestIndexQuery" title="Base Query class combining QueryInputIsIndex and QueryOutputIsNearest." alt="" coords="275,871,469,963"/>
+<area shape="rect" id="node12" href="$group__spatialpartitioning.html#structPonca_1_1RangeIndexQuery" title="Base Query class combining QueryInputIsIndex and QueryOutputIsRange." alt="" coords="530,871,715,963"/>
+<area shape="rect" id="node13" href="$group__spatialpartitioning.html" title=" " alt="" coords="528,1084,717,1191"/>
+<area shape="rect" id="node14" href="$classPonca_1_1KnnGraphRangeQuery.html" title=" " alt="" coords="516,1240,729,1420"/>
+<area shape="rect" id="node16" href="$group__spatialpartitioning.html" title=" " alt="" coords="747,841,946,992"/>
+<area shape="rect" id="node17" href="$group__spatialpartitioning.html" title=" " alt="" coords="970,841,1201,992"/>
 </map>

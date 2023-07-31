@@ -14,5 +14,11 @@ var searchData=
   ['kdtreerangeiterator_11',['KdTreeRangeIterator',['../classPonca_1_1KdTreeRangeIterator.html',1,'Ponca']]],
   ['kdtreerangequerybase_12',['KdTreeRangeQueryBase',['../classPonca_1_1KdTreeRangeQueryBase.html',1,'Ponca']]],
   ['knearestindexquery_13',['KNearestIndexQuery',['../group__spatialpartitioning.html#structPonca_1_1KNearestIndexQuery',1,'Ponca']]],
-  ['knearestpointquery_14',['KNearestPointQuery',['../group__spatialpartitioning.html#structPonca_1_1KNearestPointQuery',1,'Ponca']]]
+  ['knearestindexquery_3c_20traits_3a_3aindextype_2c_20traits_3a_3adatapoint_3a_3ascalar_20_3e_14',['KNearestIndexQuery&lt; Traits::IndexType, Traits::DataPoint::Scalar &gt;',['../group__spatialpartitioning.html',1,'Ponca']]],
+  ['knearestpointquery_15',['KNearestPointQuery',['../group__spatialpartitioning.html#structPonca_1_1KNearestPointQuery',1,'Ponca']]],
+  ['knngraphbase_16',['KnnGraphBase',['../classPonca_1_1KnnGraphBase.html',1,'Ponca']]],
+  ['knngraphdefaulttraits_17',['KnnGraphDefaultTraits',['../structPonca_1_1KnnGraphDefaultTraits.html',1,'Ponca']]],
+  ['knngraphknearestquery_18',['KnnGraphKNearestQuery',['../classPonca_1_1KnnGraphKNearestQuery.html',1,'Ponca']]],
+  ['knngraphrangeiterator_19',['KnnGraphRangeIterator',['../classPonca_1_1KnnGraphRangeIterator.html',1,'Ponca']]],
+  ['knngraphrangequery_20',['KnnGraphRangeQuery',['../classPonca_1_1KnnGraphRangeQuery.html',1,'Ponca']]]
 ];

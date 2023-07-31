@@ -1,9 +1,13 @@
 <map id="Ponca::QueryOutputIsKNearest&lt; Index, Scalar &gt;" name="Ponca::QueryOutputIsKNearest&lt; Index, Scalar &gt;">
-<area shape="rect" id="node1" title="Base class for knearest queries." alt="" coords="131,132,354,268"/>
-<area shape="rect" id="node3" href="$group__spatialpartitioning.html" title=" " alt="" coords="5,353,232,474"/>
-<area shape="rect" id="node5" href="$group__spatialpartitioning.html" title=" " alt="" coords="257,345,479,481"/>
-<area shape="rect" id="node2" href="$group__spatialpartitioning.html#structPonca_1_1QueryOutputBase" title="Base class for queries output type." alt="" coords="151,5,335,83"/>
-<area shape="rect" id="node4" href="$group__spatialpartitioning.html#structPonca_1_1KNearestIndexQuery" title="Base Query class combining QueryInputIsIndex and QueryOutputIsKNearest." alt="" coords="17,553,221,645"/>
-<area shape="rect" id="node6" href="$group__spatialpartitioning.html" title=" " alt="" coords="257,531,479,667"/>
-<area shape="rect" id="node7" href="$group__spatialpartitioning.html#structPonca_1_1KNearestPointQuery" title="Base Query class combining QueryInputIsPosition and QueryOutputIsKNearest." alt="" coords="267,716,469,808"/>
+<area shape="rect" id="node1" title="Base class for knearest queries." alt="" coords="259,132,482,268"/>
+<area shape="rect" id="node3" href="$group__spatialpartitioning.html" title=" " alt="" coords="8,375,235,496"/>
+<area shape="rect" id="node7" href="$group__spatialpartitioning.html" title=" " alt="" coords="259,367,482,503"/>
+<area shape="rect" id="node10" href="$group__spatialpartitioning.html" title=" " alt="" coords="506,360,729,511"/>
+<area shape="rect" id="node2" href="$group__spatialpartitioning.html#structPonca_1_1QueryOutputBase" title="Base class for queries output type." alt="" coords="279,5,463,83"/>
+<area shape="rect" id="node4" href="$group__spatialpartitioning.html#structPonca_1_1KNearestIndexQuery" title="Base Query class combining QueryInputIsIndex and QueryOutputIsKNearest." alt="" coords="19,589,223,681"/>
+<area shape="rect" id="node5" href="$group__spatialpartitioning.html" title=" " alt="" coords="19,803,223,909"/>
+<area shape="rect" id="node6" href="$classPonca_1_1KnnGraphKNearestQuery.html" title=" " alt="" coords="5,959,237,1080"/>
+<area shape="rect" id="node8" href="$group__spatialpartitioning.html" title=" " alt="" coords="259,567,482,703"/>
+<area shape="rect" id="node9" href="$group__spatialpartitioning.html#structPonca_1_1KNearestPointQuery" title="Base Query class combining QueryInputIsPosition and QueryOutputIsKNearest." alt="" coords="270,810,471,902"/>
+<area shape="rect" id="node11" href="$group__spatialpartitioning.html" title=" " alt="" coords="518,560,717,711"/>
 </map>

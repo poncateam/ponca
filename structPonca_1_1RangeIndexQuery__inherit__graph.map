@@ -1,5 +1,6 @@
 <map id="Ponca::RangeIndexQuery&lt; Index, Scalar &gt;" name="Ponca::RangeIndexQuery&lt; Index, Scalar &gt;">
 <area shape="rect" id="node1" title="Base Query class combining QueryInputIsIndex and QueryOutputIsRange." alt="" coords="235,929,420,1021"/>
+<area shape="rect" id="node12" href="$group__spatialpartitioning.html" title=" " alt="" coords="233,1113,422,1220"/>
 <area shape="rect" id="node2" href="$group__spatialpartitioning.html" title=" " alt="" coords="214,759,441,880"/>
 <area shape="rect" id="node3" href="$group__spatialpartitioning.html#structPonca_1_1QueryInputIsIndex" title="Base class for queries storing points." alt="" coords="5,516,193,637"/>
 <area shape="rect" id="node4" href="$group__spatialpartitioning.html" title=" " alt="" coords="23,316,175,437"/>
@@ -10,4 +11,5 @@
 <area shape="rect" id="node9" href="$group__spatialpartitioning.html#structPonca_1_1Query" title=" " alt="" coords="461,523,617,630"/>
 <area shape="rect" id="node10" title=" " alt="" coords="476,338,539,415"/>
 <area shape="rect" id="node11" title=" " alt="" coords="563,338,636,415"/>
+<area shape="rect" id="node13" href="$classPonca_1_1KnnGraphRangeQuery.html" title=" " alt="" coords="221,1269,434,1449"/>
 </map>

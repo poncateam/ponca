@@ -8,7 +8,7 @@ var searchData=
   ['setline_5',['setLine',['../classPonca_1_1Line.html#a2be50f01b5e7ba741e67d80711495add',1,'Ponca::Line']]],
   ['setvalue_6',['setValue',['../classPonca_1_1ConstantWeightKernel.html#abfdd7c48d31e98cb1f566724dccf06c0',1,'Ponca::ConstantWeightKernel']]],
   ['setweightfunc_7',['setWeightFunc',['../classPonca_1_1PrimitiveBase.html#a4a323e4cd8d65e0808f85ac38f96fdb4',1,'Ponca::PrimitiveBase']]],
-  ['size_8',['size',['../classPonca_1_1Stack.html#a394fe3f9b308bde808322121799db11d',1,'Ponca::Stack']]],
+  ['size_8',['size',['../classPonca_1_1KnnGraphBase.html#a06e2b8fa53685d24cda85211d5763731',1,'Ponca::KnnGraphBase::size()'],['../classPonca_1_1Stack.html#a394fe3f9b308bde808322121799db11d',1,'Ponca::Stack::size()']]],
   ['skipindexfunctor_9',['skipIndexFunctor',['../group__spatialpartitioning.html#a448d0bd3791241c94c41a9b20879164f',1,'Ponca::QueryInputIsIndex::skipIndexFunctor()'],['../group__spatialpartitioning.html#aea244b4f6838bbb9218d098c321b77f9',1,'Ponca::QueryInputIsPosition::skipIndexFunctor()']]],
   ['solver_10',['solver',['../classPonca_1_1CovarianceFitBase.html#ab469c0f1be340100a266f419a8386468',1,'Ponca::CovarianceFitBase']]],
   ['spaced2w_11',['spaced2w',['../classPonca_1_1DistWeightFunc.html#a303ff5053abe6961771053c9647688c4',1,'Ponca::DistWeightFunc']]],

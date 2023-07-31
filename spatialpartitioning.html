@@ -51,7 +51,7 @@ MathJax.Hub.Config({
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Ponca
-   &#160;<span id="projectnumber">85767c177dc6ec661991ad60137d465751074a36</span>
+   &#160;<span id="projectnumber">89cccae76664ce461a4f73a4285e45ca90cc725b</span>
    </div>
    <div id="projectbrief">Point Cloud Analysis library</div>
   </td>
@@ -120,7 +120,11 @@ $(document).ready(function(){initNavTree('spatialpartitioning.html',''); initRes
 </div><!--header-->
 <div class="contents">
 <div class="toc"><h3>Table of Contents</h3>
-<ul><li class="level1"><a href="#spatialpartitioning_intro">Introduction</a><ul><li class="level2"><a href="#spatialpartitioning_kdtree_usage">Basic usage</a><ul><li class="level3"><a href="#spatialpartitioning_kdtree_usage_construction">Construction</a></li>
+<ul><li class="level1"><a href="#spatialpartitioning_intro">Introduction</a><ul><li class="level2"><a href="#spatialpartitioning_intro_structures">Datastructures</a></li>
+<li class="level2"><a href="#spatialpartitioning_intro_queries">Queries</a></li>
+</ul>
+</li>
+<li class="level1"><a href="#spatialpartitioning_kdtree">KdTree</a><ul><li class="level2"><a href="#spatialpartitioning_kdtree_usage">Basic usage</a><ul><li class="level3"><a href="#spatialpartitioning_kdtree_usage_construction">Construction</a></li>
 <li class="level3"><a href="#spatialpartitioning_kdtree_usage_queries">Queries</a></li>
 </ul>
 </li>
@@ -129,11 +133,49 @@ $(document).ready(function(){initNavTree('spatialpartitioning.html',''); initRes
 <li class="level2"><a href="#spatialpartitioning_kdtree_implementation">Implementation details</a></li>
 </ul>
 </li>
+<li class="level1"><a href="#spatialpartitioning_knngraph">KnnGraph</a><ul><li class="level2"><a href="#spatialpartitioning_knngraph_usage">Basic usage</a><ul><li class="level3"><a href="#spatialpartitioning_knngraph_usage_construction">Construction</a></li>
+<li class="level3"><a href="#spatialpartitioning_knngraph_usage_queries">Queries</a></li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 </div>
 <div class="textblock"><center>[<a class="el" href="user_manual_page.html">Go back to user manual</a>]</center><h1><a class="anchor" id="spatialpartitioning_intro"></a>
 Introduction</h1>
-<p>This module provides spatial datastructures (e.g., <a class="el" href="namespacePonca.html#abdeec7124bd618c93bfd5374d56e7155" title="Public interface for KdTree datastructure.">Ponca::KdTree</a>) to speed up spatial queries (e.g., neighbors search).</p>
+<p>This module provides spatial datastructures to speed up spatial queries (e.g., neighbors search).</p>
+<h2><a class="anchor" id="spatialpartitioning_intro_structures"></a>
+Datastructures</h2>
+<ul>
+<li><a class="el" href="namespacePonca.html#abdeec7124bd618c93bfd5374d56e7155" title="Public interface for KdTree datastructure.">Ponca::KdTree</a> : a binary search tree (<a href="https://en.wikipedia.org/wiki/K-d_tree">https://en.wikipedia.org/wiki/K-d_tree</a>)</li>
+<li><a class="el" href="namespacePonca.html#ab7bf93ae8146ea5f4471c1d06fa8895e" title="Public interface for KnnGraph datastructure.">Ponca::KnnGraph</a> : a nearest neighbor graph (<a href="https://en.wikipedia.org/wiki/Nearest_neighbor_graph">https://en.wikipedia.org/wiki/Nearest_neighbor_graph</a>). Constructed from a <a class="el" href="namespacePonca.html#abdeec7124bd618c93bfd5374d56e7155" title="Public interface for KdTree datastructure.">Ponca::KdTree</a>.</li>
+</ul>
+<p>All datastructures are available in arbitrary dimensions.</p>
+<h2><a class="anchor" id="spatialpartitioning_intro_queries"></a>
+Queries</h2>
+<p><a class="el" href="namespacePonca.html" title="This Source Code Form is subject to the terms of the Mozilla Public License, v.">Ponca</a> queries are defined according to their input type (<a class="el" href="group__spatialpartitioning.html#structPonca_1_1QueryInputIsIndex" title="Base class for queries storing points.">QueryInputIsIndex</a>, or <a class="el" href="group__spatialpartitioning.html#structPonca_1_1QueryInputIsPosition" title="Base class for queries storing points.">QueryInputIsPosition</a>) and their output type (closest point with <a class="el" href="group__spatialpartitioning.html#structPonca_1_1QueryOutputIsNearest" title="Base class for nearest queries.">QueryOutputIsNearest</a>, k-neighborhood with <a class="el" href="group__spatialpartitioning.html#structPonca_1_1QueryOutputIsKNearest" title="Base class for knearest queries.">QueryOutputIsKNearest</a>, and range neighborhood with <a class="el" href="group__spatialpartitioning.html#structPonca_1_1QueryOutputIsRange" title="Base class for range queries.">QueryOutputIsRange</a>):</p>
+<table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadNone">QueryType   </th><th class="markdownTableHeadNone">Closest Point   </th><th class="markdownTableHeadNone">k-neighborhood   </th><th class="markdownTableHeadNone">Range neighborhood    </th></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">Index   </td><td class="markdownTableBodyNone"><a class="el" href="group__spatialpartitioning.html#structPonca_1_1NearestIndexQuery" title="Base Query class combining QueryInputIsIndex and QueryOutputIsNearest.">NearestIndexQuery</a>   </td><td class="markdownTableBodyNone"><a class="el" href="group__spatialpartitioning.html#structPonca_1_1KNearestIndexQuery" title="Base Query class combining QueryInputIsIndex and QueryOutputIsKNearest.">KNearestIndexQuery</a>   </td><td class="markdownTableBodyNone"><a class="el" href="group__spatialpartitioning.html#structPonca_1_1RangeIndexQuery" title="Base Query class combining QueryInputIsIndex and QueryOutputIsRange.">RangeIndexQuery</a>    </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">Coordinate   </td><td class="markdownTableBodyNone"><a class="el" href="group__spatialpartitioning.html#structPonca_1_1NearestPointQuery" title="Base Query class combining QueryInputIsPosition and QueryOutputIsNearest.">NearestPointQuery</a>   </td><td class="markdownTableBodyNone"><a class="el" href="group__spatialpartitioning.html#structPonca_1_1KNearestPointQuery" title="Base Query class combining QueryInputIsPosition and QueryOutputIsKNearest.">KNearestPointQuery</a>   </td><td class="markdownTableBodyNone"><a class="el" href="group__spatialpartitioning.html#structPonca_1_1RangePointQuery" title="Base Query class combining QueryInputIsPosition and QueryOutputIsRange.">RangePointQuery</a>   </td></tr>
+</table>
+<p>These classes provide a consistent API for all datastructures, where the results are exposed as <code>Range</code> and thus accessed through iterators, ie.: </p><div class="fragment"><div class="line"><span class="preprocessor">#pragma omp parallel for</span></div>
+<div class="line"><span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; nbVert; ++i) <span class="comment">// for all the vertices of the point cloud</span></div>
+<div class="line">  <span class="keywordflow">for</span> (<span class="keywordtype">int</span> neiId : myDataStructure.k_nearest_neighbors(i, k)) <span class="comment">// collect k-nearest neighbors</span></div>
+<div class="line">  {</div>
+<div class="line">    <span class="comment">// process neighbor at index neiId</span></div>
+<div class="line">  }</div>
+</div><!-- fragment --><dl class="section note"><dt>Note</dt><dd>As queries are objets that are independent from the datastructure, they can be created and used in parallel from multiple threads. The queries are always constructed by the datastructure.</dd></dl>
+<p>Thanks to the iterator formalism, queries can be seamlessly combined with <a class="el" href="classPonca_1_1Basket.html#aa93476ce9142d80e5a15553fc26b1965" title="Convenience function to iterate over a subset of samples in a PointContainer">Basket::computeWithIds</a>: </p><div class="fragment"><div class="line">Fit fit;</div>
+<div class="line">fit.setWeightFunc(MyWeightFunc(scale));</div>
+<div class="line">fit.init(fitInitPos);</div>
+<div class="line">fit.computeWithIds( myDataStructure.range_neighbors(fitInitPos, scale), vectorPoints );</div>
+</div><!-- fragment --><dl class="section warning"><dt>Warning</dt><dd>Queries from an index (<a class="el" href="group__spatialpartitioning.html#structPonca_1_1NearestIndexQuery" title="Base Query class combining QueryInputIsIndex and QueryOutputIsNearest.">NearestIndexQuery</a>, <a class="el" href="group__spatialpartitioning.html#structPonca_1_1KNearestIndexQuery" title="Base Query class combining QueryInputIsIndex and QueryOutputIsKNearest.">KNearestIndexQuery</a> and <a class="el" href="group__spatialpartitioning.html#structPonca_1_1RangeIndexQuery" title="Base Query class combining QueryInputIsIndex and QueryOutputIsRange.">RangeIndexQuery</a>) do not iterate on the queried index.</dd></dl>
+<h1><a class="anchor" id="spatialpartitioning_kdtree"></a>
+KdTree</h1>
 <h2><a class="anchor" id="spatialpartitioning_kdtree_usage"></a>
 Basic usage</h2>
 <p>The class <a class="el" href="namespacePonca.html#abdeec7124bd618c93bfd5374d56e7155" title="Public interface for KdTree datastructure.">Ponca::KdTree</a> provides methods to construct a tree and query points neighborhoods.</p>
@@ -152,13 +194,13 @@ Construction</h3>
 <div class="line">    KdTree&lt;DataPoint&gt; structure(points, sampling);</div>
 </div><!-- fragment --><h3><a class="anchor" id="spatialpartitioning_kdtree_usage_queries"></a>
 Queries</h3>
-<p>Queries are objects generated by <a class="el" href="namespacePonca.html#abdeec7124bd618c93bfd5374d56e7155" title="Public interface for KdTree datastructure.">Ponca::KdTree</a>, and are designed as <code>Range</code>: accessing the neighbors requires to iterate over the query. Here an example from the test suite, where the indices returned from the queries are compared with an explicit search </p><div class="fragment"><div class="line">    <a class="code hl_class" href="classPonca_1_1KdTreeBase.html">Ponca::KdTree&lt;DataPoint&gt;</a> structure(points);</div>
+<p>As for other datastructures, queries are objects generated by <a class="el" href="namespacePonca.html#abdeec7124bd618c93bfd5374d56e7155" title="Public interface for KdTree datastructure.">Ponca::KdTree</a>, and are designed as <code>Range</code>: accessing the neighbors requires to iterate over the query. Here an example from the test suite, where the indices returned from the queries are compared with an explicit search </p><div class="fragment"><div class="line">    <a class="code hl_class" href="classPonca_1_1KdTreeBase.html">Ponca::KdTree&lt;DataPoint&gt;</a> kdTree(points);</div>
 <div class="line"> </div>
 <div class="line"><span class="preprocessor">#pragma omp parallel for</span></div>
 <div class="line">    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; N; ++i)</div>
 <div class="line">    {</div>
 <div class="line">        std::vector&lt;int&gt; results; results.reserve( k );</div>
-<div class="line">        <span class="keywordflow">for</span> (<span class="keywordtype">int</span> j : structure.k_nearest_neighbors(i, k))</div>
+<div class="line">        <span class="keywordflow">for</span> (<span class="keywordtype">int</span> j : kdTree.k_nearest_neighbors(i, k))</div>
 <div class="line">        {</div>
 <div class="line">            results.push_back(j);</div>
 <div class="line">        }</div>
@@ -167,24 +209,18 @@ Queries</h3>
 <div class="line">        VERIFY(res);</div>
 <div class="line">    }</div>
 <div class="ttc" id="aclassPonca_1_1KdTreeBase_html"><div class="ttname"><a href="classPonca_1_1KdTreeBase.html">Ponca::KdTreeBase</a></div><div class="ttdoc">Customizable base class for KdTree datastructure.</div><div class="ttdef"><b>Definition:</b> <a href="kdTree_8h_source.html#l00052">kdTree.h:53</a></div></div>
-</div><!-- fragment --><p> which can be seamlessly combined with <a class="el" href="classPonca_1_1Basket.html#aa93476ce9142d80e5a15553fc26b1965" title="Convenience function to iterate over a subset of samples in a PointContainer">Basket::computeWithIds</a> </p><div class="fragment"><div class="line">            Fit fit3;</div>
-<div class="line">            fit3.setWeightFunc(WeightFunc(analysisScale));</div>
-<div class="line">            fit3.init(fitInitPos);</div>
-<div class="line">            fit3.computeWithIds( tree.range_neighbors(fitInitPos, analysisScale), vectorPoints );</div>
 </div><!-- fragment --><p>Several query types are provided (see <a class="el" href="classPonca_1_1KdTreeBase.html" title="Customizable base class for KdTree datastructure.">KdTreeBase</a> for related method list):</p><ul>
-<li>KdTreeKNearestIndexQuery and KdTreeKNearestPointQuery</li>
-<li>KdTreeNearestIndexQuery and KdTreeNearestPointQuery</li>
-<li>KdTreeRangeIndexQuery and KdTreeRangePointQuery</li>
+<li><a class="el" href="classPonca_1_1KdTreeKNearestQueryBase.html">KdTreeKNearestQueryBase</a>, specialized by KdTreeKNearestIndexQuery and KdTreeKNearestPointQuery</li>
+<li><a class="el" href="classPonca_1_1KdTreeNearestQueryBase.html">KdTreeNearestQueryBase</a>, specialized by KdTreeNearestIndexQuery and KdTreeNearestPointQuery</li>
+<li><a class="el" href="classPonca_1_1KdTreeRangeQueryBase.html">KdTreeRangeQueryBase</a>, specialized by KdTreeRangeIndexQuery and KdTreeRangePointQuery</li>
 </ul>
-<dl class="section note"><dt>Note</dt><dd>As queries are objets that are independent from the KdTree, they can be created and used in parallel from multiple threads.</dd></dl>
-<dl class="section warning"><dt>Warning</dt><dd>Queries from an index (KdTreeKNearestIndexQuery, KdTreeNearestIndexQuery and KdTreeRangeIndexQuery) do not iterate on the queried index.</dd></dl>
 <h2><a class="anchor" id="spatialpartitioning_kdtree_examples"></a>
 Examples</h2>
 <p>Several KdTree queries are illustrated in the example <a class="el" href="example_cxx_neighbor_search.html">Ponca::KdTree neighbor searches</a>. KdTree usage is also demonstrated both in tests and examples:</p><ul>
 <li><code>tests/src/basket.cpp</code></li>
-<li><code>tests/src/kdtree_knearest.cpp</code></li>
-<li><code>tests/src/kdtree_nearest.cpp</code></li>
-<li><code>tests/src/kdtree_range.cpp</code></li>
+<li><code>tests/src/queries_knearest.cpp</code></li>
+<li><code>tests/src/queries_nearest.cpp</code></li>
+<li><code>tests/src/queries_range.cpp</code></li>
 <li><code>examples/cpp/nanoflann/ponca_nanoflann.cpp</code></li>
 </ul>
 <h2><a class="anchor" id="spatialpartitioning_kdtree_extending"></a>
@@ -201,14 +237,45 @@ Implementation details</h2>
 <li>uses depth-first search with a static stack for queries</li>
 <li>keeps the initial order of points</li>
 </ul>
-<center>[<a class="el" href="user_manual_page.html">Go back to user manual</a>]</center> </div></div><!-- contents -->
+<h1><a class="anchor" id="spatialpartitioning_knngraph"></a>
+KnnGraph</h1>
+<h2><a class="anchor" id="spatialpartitioning_knngraph_usage"></a>
+Basic usage</h2>
+<p>The class <a class="el" href="namespacePonca.html#ab7bf93ae8146ea5f4471c1d06fa8895e" title="Public interface for KnnGraph datastructure.">Ponca::KnnGraph</a> provides methods to construct a neighbor graph and query points neighborhoods.</p>
+<h3><a class="anchor" id="spatialpartitioning_knngraph_usage_construction"></a>
+Construction</h3>
+<p>The graph is constructed from an existing <a class="el" href="namespacePonca.html#abdeec7124bd618c93bfd5374d56e7155" title="Public interface for KdTree datastructure.">Ponca::KdTree</a>, and the point collection is accessed through it (with no copy). Here an example from the test-suite where a graph is constructed, where only closest neighbors are connected: </p><div class="fragment"><div class="line">    <a class="code hl_class" href="classPonca_1_1KnnGraphBase.html">Ponca::KnnGraph&lt;DataPoint&gt;</a> knnGraph(kdTree, 1);</div>
+<div class="ttc" id="aclassPonca_1_1KnnGraphBase_html"><div class="ttname"><a href="classPonca_1_1KnnGraphBase.html">Ponca::KnnGraphBase</a></div><div class="ttdoc">Customizable base class for KnnGraph datastructure.</div><div class="ttdef"><b>Definition:</b> <a href="knnGraph_8h_source.html#l00044">knnGraph.h:45</a></div></div>
+</div><!-- fragment --><dl class="section warning"><dt>Warning</dt><dd>KnnGraph can only be constructed from KdTree without sub-sampling.</dd></dl>
+<h3><a class="anchor" id="spatialpartitioning_knngraph_usage_queries"></a>
+Queries</h3>
+<p>As for other datastructures, queries are objects generated by <a class="el" href="namespacePonca.html#abdeec7124bd618c93bfd5374d56e7155" title="Public interface for KdTree datastructure.">Ponca::KdTree</a>, and are designed as <code>Range</code>: accessing the neighbors requires to iterate over the query. </p><div class="fragment"><div class="line">    <a class="code hl_class" href="classPonca_1_1KnnGraphBase.html">Ponca::KnnGraph&lt;DataPoint&gt;</a> knnGraph(kdTree, k);</div>
+<div class="line"><span class="preprocessor">#pragma omp parallel for</span></div>
+<div class="line">    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; N; ++i)</div>
+<div class="line">    {</div>
+<div class="line">        std::vector&lt;int&gt; results; results.reserve( k );</div>
+<div class="line">        <span class="keywordflow">for</span> (<span class="keywordtype">int</span> j : knnGraph.k_nearest_neighbors(i))</div>
+<div class="line">        {</div>
+<div class="line">            results.push_back(j);</div>
+<div class="line">        }</div>
+<div class="line"> </div>
+<div class="line">        <span class="keywordtype">bool</span> res = check_k_nearest_neighbors&lt;Scalar, VectorContainer&gt;(points, i, k, results);</div>
+<div class="line">        VERIFY(res);</div>
+<div class="line">    }</div>
+</div><!-- fragment --><dl class="section note"><dt>Note</dt><dd>By construction, the KnnGraph can be queried only from an index.</dd></dl>
+<p>Two types of queries are provided (see <a class="el" href="classPonca_1_1KnnGraphBase.html" title="Customizable base class for KnnGraph datastructure.">KnnGraphBase</a> for related method list):</p><ul>
+<li><a class="el" href="classPonca_1_1KnnGraphRangeQuery.html">KnnGraphRangeQuery</a></li>
+<li><a class="el" href="classPonca_1_1KnnGraphKNearestQuery.html">KnnGraphKNearestQuery</a>: the number of neighbors is defined at construction-time: a k-neighbor graph gives access to k-neighborhoods only. <dl class="section note"><dt>Note</dt><dd>The query KnnGraphNearestQuery does not need to exist explicitly as it boils down to <a class="el" href="classPonca_1_1KnnGraphKNearestQuery.html">KnnGraphKNearestQuery</a> with <code>k=1</code>.</dd></dl>
+<center>[<a class="el" href="user_manual_page.html">Go back to user manual</a>]</center> </li>
+</ul>
+</div></div><!-- contents -->
 </div><!-- PageDoc -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="user_manual_page.html">User Manual</a></li>
-    <li class="footer">Generated on Thu Jul 27 2023 07:06:39 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.6 </li>
+    <li class="footer">Generated on Mon Jul 31 2023 16:14:53 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.6 </li>
   </ul>
 </div>
 </body>

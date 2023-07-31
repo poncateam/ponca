@@ -1,0 +1,16 @@
+<map id="Ponca::KnnGraphKNearestQuery&lt; Traits &gt;" name="Ponca::KnnGraphKNearestQuery&lt; Traits &gt;">
+<area shape="rect" id="node1" title=" " alt="" coords="66,1225,298,1347"/>
+<area shape="rect" id="node2" href="$group__spatialpartitioning.html" title=" " alt="" coords="80,1069,284,1176"/>
+<area shape="rect" id="node3" href="$group__spatialpartitioning.html#structPonca_1_1Query" title=" " alt="" coords="5,501,161,608"/>
+<area shape="rect" id="node4" title=" " alt="" coords="180,338,243,415"/>
+<area shape="rect" id="node14" href="$group__spatialpartitioning.html#structPonca_1_1Query" title=" " alt="" coords="185,501,341,608"/>
+<area shape="rect" id="node5" title=" " alt="" coords="76,338,149,415"/>
+<area shape="rect" id="node6" href="$group__spatialpartitioning.html#structPonca_1_1KNearestIndexQuery" title="Base Query class combining QueryInputIsIndex and QueryOutputIsKNearest." alt="" coords="204,885,408,977"/>
+<area shape="rect" id="node7" href="$group__spatialpartitioning.html" title=" " alt="" coords="269,715,495,836"/>
+<area shape="rect" id="node8" href="$group__spatialpartitioning.html#structPonca_1_1QueryInputIsIndex" title="Base class for queries storing points." alt="" coords="629,494,817,615"/>
+<area shape="rect" id="node9" href="$group__spatialpartitioning.html" title=" " alt="" coords="647,316,799,437"/>
+<area shape="rect" id="node10" href="$group__spatialpartitioning.html#structPonca_1_1QueryInputBase" title="Base class for queries input type." alt="" coords="613,5,786,83"/>
+<area shape="rect" id="node11" href="$group__spatialpartitioning.html#structPonca_1_1QueryInput" title="Base class for typed queries input type." alt="" coords="721,132,873,253"/>
+<area shape="rect" id="node12" href="$group__spatialpartitioning.html#structPonca_1_1QueryOutputIsKNearest" title="Base class for knearest queries." alt="" coords="383,487,605,623"/>
+<area shape="rect" id="node13" href="$group__spatialpartitioning.html#structPonca_1_1QueryOutputBase" title="Base class for queries output type." alt="" coords="402,338,586,415"/>
+</map>

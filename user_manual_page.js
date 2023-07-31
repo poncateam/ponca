@@ -11,6 +11,10 @@ var user_manual_page =
     ] ],
     [ "Spatial Partitioning: User Manual", "spatialpartitioning.html", [
       [ "Introduction", "spatialpartitioning.html#spatialpartitioning_intro", [
+        [ "Datastructures", "spatialpartitioning.html#spatialpartitioning_intro_structures", null ],
+        [ "Queries", "spatialpartitioning.html#spatialpartitioning_intro_queries", null ]
+      ] ],
+      [ "KdTree", "spatialpartitioning.html#spatialpartitioning_kdtree", [
         [ "Basic usage", "spatialpartitioning.html#spatialpartitioning_kdtree_usage", [
           [ "Construction", "spatialpartitioning.html#spatialpartitioning_kdtree_usage_construction", null ],
           [ "Queries", "spatialpartitioning.html#spatialpartitioning_kdtree_usage_queries", null ]
@@ -18,6 +22,12 @@ var user_manual_page =
         [ "Examples", "spatialpartitioning.html#spatialpartitioning_kdtree_examples", null ],
         [ "Extending KdTree", "spatialpartitioning.html#spatialpartitioning_kdtree_extending", null ],
         [ "Implementation details", "spatialpartitioning.html#spatialpartitioning_kdtree_implementation", null ]
+      ] ],
+      [ "KnnGraph", "spatialpartitioning.html#spatialpartitioning_knngraph", [
+        [ "Basic usage", "spatialpartitioning.html#spatialpartitioning_knngraph_usage", [
+          [ "Construction", "spatialpartitioning.html#spatialpartitioning_knngraph_usage_construction", null ],
+          [ "Queries", "spatialpartitioning.html#spatialpartitioning_knngraph_usage_queries", null ]
+        ] ]
       ] ]
     ] ],
     [ "Common module: User Manual", "common.html", [
