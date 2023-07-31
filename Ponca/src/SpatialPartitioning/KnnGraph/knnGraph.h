@@ -55,28 +55,47 @@ public:
     using KNearestIndexQuery = KnnGraphQuery<Traits>;
     using RangeIndexQuery    = KnnGraphRangeQuery<Traits>;
 
+    friend class KnnGraphQuery<Traits>;      // This type must be equal to KnnGraphBase::KNearestIndexQuery
+    friend class KnnGraphRangeQuery<Traits>; // This type must be equal to KnnGraphBase::RangeIndexQuery
+
     // knnGraph ----------------------------------------------------------------
 public:
     /// \brief Build a KnnGraph from a KdTree
+    ///
+    /// \warning In the current version, the graph does not support kdtree with subsampling
+    /// \param k Number of requested neighbors. Might be reduced if k is larger than the kdtree size - 1
+    ///          (query point is not included in query output, thus -1)
+    ///
     /// \warning Stores a const reference to kdtree.point_data()
     /// \warning KdTreeTraits compatibility is checked with static assertion
     template<typename KdTreeTraits>
     inline KnnGraphBase(const KdTreeBase<KdTreeTraits>& kdtree, int k = 6)
-            : m_k(k), m_points(kdtree.point_data())
+            : m_k(std::min(k,kdtree.index_count()-1)),
+              m_kdTreePoints(kdtree.point_data())
     {
         static_assert( std::is_same_v<typename Traits::DataPoint, typename KdTreeTraits::DataPoint>,
                        "KdTreeTraits::DataPoint is not equal to Traits::DataPoint" );
         static_assert( std::is_same_v<typename Traits::PointContainer, typename KdTreeTraits::PointContainer>,
                        "KdTreeTraits::PointContainer is not equal to Traits::PointContainer" );
+        static_assert( std::is_same_v<typename Traits::IndexContainer, typename KdTreeTraits::IndexContainer>,
+                       "KdTreeTraits::IndexContainer is not equal to Traits::IndexContainer" );
 
-        const int size = kdtree.index_count();
-        m_indices.resize(size * m_k, -1);
+        // We need to account for the entire point set, irrespectively of the sampling. This is because the kdtree
+        // (k_nearest_neighbors) return ids of the entire point set, not it sub-sampled list of ids.
+        // \fixme Update API to properly handle kdtree subsampling
+        const int cloudSize   = kdtree.point_count();
+        {
+            const int samplesSize = kdtree.index_count();
+            eigen_assert(cloudSize == samplesSize);
+        }
 
-#pragma omp parallel for shared(kdtree, size) default(none)
-        for(int i=0; i<size; ++i)
+        m_indices.resize(cloudSize * m_k, -1);
+
+#pragma omp parallel for shared(kdtree, cloudSize) default(none)
+        for(int i=0; i<cloudSize; ++i)
         {
             int j = 0;
-            for(int n : kdtree.k_nearest_neighbors(typename KdTreeTraits::IndexType(i),
+            for(auto n : kdtree.k_nearest_neighbors(typename KdTreeTraits::IndexType(i),
                                                    typename KdTreeTraits::IndexType(m_k)))
             {
                 m_indices[i * m_k + j] = n;
@@ -92,29 +111,24 @@ public:
     }
 
     inline RangeIndexQuery    range_neighbors(int index, Scalar r) const{
-        return knnGraphRangeQuery(this, r, index);
-    }
-
-    /// \brief Get id of the i-th neighbor of a vertex
-    /// \param index Vertex id
-    /// \param i Neighbor id
-    inline int k_neighbor(int index, int i) const{
-        return m_indices->operator[](index * m_k + i);
+        return RangeIndexQuery(this, r, index);
     }
 
     // Accessors ---------------------------------------------------------------
 public:
+    /// \brief Number of neighbor per vertex
     inline int k() const { return m_k; }
-    inline int size() const { return m_points.size(); }
-
-    inline const PointContainer& point_data() const { return m_points; };
-    inline const IndexContainer& index_data() const { return m_indices; };
+    /// \brief Number of vertices in the neighborhood graph
+    inline int size() const { return m_indices.size()/m_k; }
 
     // Data --------------------------------------------------------------------
 private:
     const int m_k;
-    const PointContainer& m_points;
     IndexContainer m_indices; ///< \brief Stores neighborhood relations
+
+protected: // for friends relations
+    const PointContainer& m_kdTreePoints;
+    inline const IndexContainer& index_data() const { return m_indices; };
 };
 
 } // namespace Ponca

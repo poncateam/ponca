@@ -8,26 +8,34 @@
 
 namespace Ponca {
 
+template <typename Traits>
 class KnnGraphRangeQuery;
 
+template <typename Traits>
 class KnnGraphRangeIterator
 {
 protected:
-    friend class KnnGraphRangeQuery;
+    friend class KnnGraphRangeQuery<Traits>;
 
 public:
-    KnnGraphRangeIterator();
-    KnnGraphRangeIterator(KnnGraphRangeQuery* query);
-    KnnGraphRangeIterator(KnnGraphRangeQuery* query, int index);
+    inline KnnGraphRangeIterator(KnnGraphRangeQuery<Traits>* query, int index = -1) : m_query(query), m_index(index) {}
 
 public:
-    bool operator != (const KnnGraphRangeIterator& other) const;
-    void operator ++ ();
-    int  operator *  () const;
+    bool operator != (const KnnGraphRangeIterator& other) const{
+        return m_index != other.m_index;
+    }
+
+    void operator ++ (){
+        m_query->advance(*this);
+    }
+
+    int  operator *  () const{
+        return m_index;
+    }
 
 protected:
-    KnnGraphRangeQuery* m_query;
-    int m_index;
+    KnnGraphRangeQuery<Traits>* m_query {nullptr};
+    int m_index {-1};
 };
 
 } // namespace Ponca
