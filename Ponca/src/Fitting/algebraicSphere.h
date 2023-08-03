@@ -71,9 +71,9 @@ public:
 
         \warning Set m_ul to Zero(), which leads to nans in OrientedSphere::normal()
     */
-    PONCA_MULTIARCH inline void init(const VectorType& _basisCenter = VectorType::Zero())
+    PONCA_MULTIARCH inline void init()
     {
-        Base::init(_basisCenter);
+        Base::init();
 
         m_uc = Scalar(0);
         m_ul = VectorType::Zero();
