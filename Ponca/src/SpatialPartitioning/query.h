@@ -76,7 +76,7 @@ struct  OUT_TYPE##PointQuery : Query<QueryInputIsPosition<DataPoint>, \
     
     private:
         /// Index of the queried point
-        const InputType m_input;
+        InputType m_input;
     };
 
 
