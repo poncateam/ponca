@@ -55,21 +55,33 @@ void testKdTreeRangeIndex(bool quick = QUICK_TESTS)
     }
 
 #pragma omp parallel for
-    for (int i = 0; i < N; ++i)
-    {
-        Scalar r = Eigen::internal::random<Scalar>(0., 0.5);
-        std::vector<int> resultsTree;
+    for (int i = 0; i < N; ++i) {
 
-        for (int j : kdtree->range_neighbors(i, r)) {
-            resultsTree.push_back(j);
-        }
-        if( SampleKdTree ) {
-            bool resTree = check_range_neighbors<Scalar, VectorContainer>(points, sampling, i, r, resultsTree);
-            VERIFY(resTree);
-        }
-        else {
-            bool resTree = check_range_neighbors<Scalar, VectorContainer>(points, sampling, i, r, resultsTree);
-            VERIFY(resTree);
+//        auto query = KdTreeRangeIndexQuery<KdTreeDefaultTraits<DataPoint>>(kdtree, 0, 0.);
+        auto query = kdtree->range_neighbors(0, 0);
+
+        for (int repeatRadius = 0; repeatRadius != 10; ++repeatRadius) {
+            std::vector<int> resultsTree, resultsMutable;
+            Scalar r = Eigen::internal::random<Scalar>(0.01, 0.5);
+
+            for (int j: kdtree->range_neighbors(i, r)) {
+                resultsTree.push_back(j);
+            }
+            //        for (int j : kdtree->range_neighbors(i, r)) {
+            for (int j: query(i, r)) {
+                resultsMutable.push_back(j);
+            }
+            if (SampleKdTree) {
+                bool resTree = check_range_neighbors<Scalar, VectorContainer>(points, sampling, i, r, resultsTree);
+                bool resMutable = check_range_neighbors<Scalar, VectorContainer>(points, sampling, i, r, resultsMutable);
+                VERIFY(resTree);
+                VERIFY(resMutable);
+            } else {
+                bool resTree = check_range_neighbors<Scalar, VectorContainer>(points, sampling, i, r, resultsTree);
+                bool resMutable = check_range_neighbors<Scalar, VectorContainer>(points, sampling, i, r, resultsMutable);
+                VERIFY(resTree);
+                VERIFY(resMutable);
+            }
         }
     }
 
