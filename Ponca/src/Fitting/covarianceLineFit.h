@@ -50,8 +50,10 @@ public:
     PONCA_MULTIARCH inline FIT_RESULT finalize()
     {
         static const int smallestEigenValue = DataPoint::Dim - 1;
-        if (Base::finalize() == STABLE)
+        if (Base::finalize() == STABLE) {
+            if (Base::line().isValid()) Base::m_eCurrentState = CONFLICT_ERROR_FOUND;
             Base::setLine(Base::barycenter(), Base::m_solver.eigenvectors().col(smallestEigenValue).normalized());
+        }
         return Base::m_eCurrentState;
     }
 };
