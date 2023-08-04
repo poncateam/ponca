@@ -9,18 +9,16 @@
 namespace Ponca
 {
    /*!
-      Enum corresponding to the state of a fitting method (and what the finalize function can return
+      Enum corresponding to the state of a fitting method (and what the finalize function returns)
     */
     enum FIT_RESULT : unsigned char
     {
-        /*! \brief The fitting is stable an ready to use (and having more than 6
-          neighbours)*/
+        /*! \brief The fitting is stable and ready to use*/
         STABLE    = 0,
-        /*! \brief The fitting is ready to use but it can be unstable (and
-          having between 3 and 6 neighbors)*/
+        /*! \brief The fitting is ready to use but it is considered 
+        as unstable (if the number of neighbors is low for example)*/
         UNSTABLE  = 1,
-        /*! \brief The fitting is undefined, you can't use it for valid results
-          (and having less than 3 neighbors)*/
+        /*! \brief The fitting is undefined, you can't use it for valid results*/
         UNDEFINED = 2,
         /*! \brief The fitting procedure needs to analyse the neighborhood
           another time*/
