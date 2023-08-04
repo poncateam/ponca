@@ -41,7 +41,9 @@ FIT_RESULT
 SphereFitImpl<DataPoint, _WFunctor, T>::finalize ()
 {
     // Compute status
-    if(Base::finalize() != STABLE || Base::getNumNeighbors() < 3)
+    if(Base::finalize() != STABLE)
+        return Base::m_eCurrentState;
+    if(Base::getNumNeighbors() < 3)
         return Base::m_eCurrentState = UNDEFINED;
     if (Base::algebraicSphere().isValid())
         Base::m_eCurrentState = CONFLICT_ERROR_FOUND;
