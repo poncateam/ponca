@@ -23,12 +23,6 @@ var hierarchy =
       [ "Ponca::SphereFitImpl< DataPoint, _WFunctor, T >", "classPonca_1_1SphereFitImpl.html", null ],
       [ "Ponca::UnorientedSphereFitImpl< DataPoint, _WFunctor, T >", "classPonca_1_1UnorientedSphereFitImpl.html", null ]
     ] ],
-    [ "internal::Forward", null, [
-      [ "Ponca::Basket< P, W, Ext0, Ext1, Ext2, Ext3, Ext4, Ext5, Ext6, Ext7, Ext8, Ext9, Ext10, Ext11 >", "classPonca_1_1Basket.html", null ]
-    ] ],
-    [ "internal::ForwardDiff", null, [
-      [ "Ponca::BasketDiff< BasketType, Type, Ext0, Ext1, Ext2, Ext3, Ext4, Ext5, Ext6, Ext7, Ext8, Ext9, Ext10, Ext11 >", "classPonca_1_1BasketDiff.html", null ]
-    ] ],
     [ "Eigen::Hyperplane", null, [
       [ "Ponca::Plane< DataPoint, _WFunctor, T >", "classPonca_1_1Plane.html", null ]
     ] ],
@@ -171,6 +165,12 @@ var hierarchy =
       [ "Ponca::ProjectedNormalCovarianceCurvatureEstimator< DataPoint, _WFunctor, DiffType, T >", "classPonca_1_1ProjectedNormalCovarianceCurvatureEstimator.html", null ],
       [ "Ponca::SphereFitImpl< DataPoint, _WFunctor, T >", "classPonca_1_1SphereFitImpl.html", null ],
       [ "Ponca::UnorientedSphereFitImpl< DataPoint, _WFunctor, T >", "classPonca_1_1UnorientedSphereFitImpl.html", null ]
+    ] ],
+    [ "internal::BasketAggregate::type", null, [
+      [ "Ponca::Basket< P, W, Ext0, Exts >", "classPonca_1_1Basket.html", null ]
+    ] ],
+    [ "internal::BasketDiffAggregate::type", null, [
+      [ "Ponca::BasketDiff< BasketType, Type, Ext0, Exts >", "classPonca_1_1BasketDiff.html", null ]
     ] ],
     [ "Concept::WeightKernelConcept", null, [
       [ "Ponca::CompactExpWeightKernel< _Scalar >", "classPonca_1_1CompactExpWeightKernel.html", null ],

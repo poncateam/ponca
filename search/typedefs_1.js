@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['base_0',['Base',['../classPonca_1_1BasketDiff.html#aec85a475f8f960d47685284b6d40ec67',1,'Ponca::BasketDiff::Base()'],['../classPonca_1_1Basket.html#a73961edd019f5984c9fd69f8ce86591e',1,'Ponca::Basket::Base()']]]
+  ['base_0',['Base',['../classPonca_1_1BasketDiff.html#a4069710e568b7ca56652ef232c452932',1,'Ponca::BasketDiff::Base()'],['../classPonca_1_1Basket.html#ae98b6b8c88b049c7f3643e886b1acc3f',1,'Ponca::Basket::Base()']]]
 ];

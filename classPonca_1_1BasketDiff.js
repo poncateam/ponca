@@ -1,11 +1,11 @@
 var classPonca_1_1BasketDiff =
 [
-    [ "Base", "classPonca_1_1BasketDiff.html#aec85a475f8f960d47685284b6d40ec67", null ],
-    [ "DataPoint", "classPonca_1_1BasketDiff.html#a41a3b256f0bdc84bb345dc98cd7ddaad", null ],
-    [ "Scalar", "classPonca_1_1BasketDiff.html#a1e071b8214fe5de7e3b9a2a91d78bc56", null ],
-    [ "WeightFunction", "classPonca_1_1BasketDiff.html#a9c84fb6df553337b105dafbcd2ec1040", null ],
-    [ "addNeighbor", "classPonca_1_1BasketDiff.html#a8a4a85161b1a03988961606229bec11f", null ],
-    [ "compute", "classPonca_1_1BasketDiff.html#a0fbe1b0d8f696a41bf6a087cd5f56f21", null ],
-    [ "compute", "classPonca_1_1BasketDiff.html#a0f61e79ff842c2c1940c89006c325335", null ],
-    [ "computeWithIds", "classPonca_1_1BasketDiff.html#a8fb4abc7e68eeed5dfc6befcdc1282f5", null ]
+    [ "Base", "classPonca_1_1BasketDiff.html#a4069710e568b7ca56652ef232c452932", null ],
+    [ "DataPoint", "classPonca_1_1BasketDiff.html#a24cafc02fc3353e9e0a165250de23609", null ],
+    [ "Scalar", "classPonca_1_1BasketDiff.html#a7a4c4c2fa22c19a95da6a551733bae30", null ],
+    [ "WeightFunction", "classPonca_1_1BasketDiff.html#a8d77653514b6095f8f2e834c7c0e0536", null ],
+    [ "addNeighbor", "classPonca_1_1BasketDiff.html#a5ea7daddae9d7bd58b3da8fc99ff31b4", null ],
+    [ "compute", "classPonca_1_1BasketDiff.html#a6a2d08670a8fc93bf97fd7b39e7cd8e7", null ],
+    [ "compute", "classPonca_1_1BasketDiff.html#a5b4c99335b1ac12c530f147f3f292dd5", null ],
+    [ "computeWithIds", "classPonca_1_1BasketDiff.html#a4116252183c5ef69a5617d1df081de9e", null ]
 ];
