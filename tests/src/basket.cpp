@@ -193,14 +193,6 @@ void hasSamePlaneDerivatives(const Fit1& fit1, const Fit2& fit2) {
     VERIFY(dnor1.isApprox( dnor2 ));
 }
 
-// For BasketAutoDiff
-template <class P, class W, typename T>
-struct TestExt0 : public T
-{
-    template <class D, class W_, int Di, typename TT>
-    using DDerType = OrientedSphereDerImpl<D, W_, Di, TT>;
-};
-
 template<typename Scalar, int Dim>
 void callSubTests()
 {
@@ -237,10 +229,6 @@ void callSubTests()
     using HybridScaleDiff = BasketDiff<Hybrid, FitScaleDer, CovariancePlaneDer>;
     using HybridSpaceDiff = BasketDiff<Hybrid, FitSpaceDer, CovariancePlaneDer>;
     using HybridScaleSpaceDiff = BasketDiff<Hybrid, FitScaleSpaceDer, CovariancePlaneDer>;
-
-    //! [BasketAutoDiff]
-    using AutoDiff = BasketAutoDiff<Point, WeightFunc, FitScaleDer, TestExt0, OrientedSphereFit>;
-    //! [BasketAutoDiff]
 
     KdTree<Point>tree;
     Scalar scale = generateData(tree);
