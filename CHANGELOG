@@ -5,6 +5,9 @@ Ponca changelog
 --------------------------------------------------------------------------------
 Current head (v.1.2 RC)
 
+- Examples
+    - Fix example cuda/ponca_ssgls (#109)
+
 --------------------------------------------------------------------------------
 v.1.1 RC
 This release improves the Spatial Partitioning Package with new features and
