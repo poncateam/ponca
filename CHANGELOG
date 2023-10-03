@@ -8,6 +8,9 @@ Current head (v.1.2 RC)
 - Examples
     - Fix example cuda/ponca_ssgls (#109)
 
+- Bug-fixes and code improvements
+    - [fitting] Use variadic template for basket extensions (#85)
+
 --------------------------------------------------------------------------------
 v.1.1 RC
 This release improves the Spatial Partitioning Package with new features and
@@ -31,7 +34,6 @@ improved doc, as well as several bug fixes and API improvements.
     - [fitting] Fix a bug in dtau computation for scale-only derivation (#98)
     - [fitting] Fix a bug in MlsSphereFitDer weight derivatives (#97)
     - [ci] Fix Compiler is out of heap space error on Github (MSVC), by splitting tests (#87)
-    - [fitting] Use variadic template for basket extensions (#85)
 
 - Tests
     - Fix WeightKernel test (failing on windows due to finite differences) (#91)
