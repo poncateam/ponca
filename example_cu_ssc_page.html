@@ -51,7 +51,7 @@ MathJax.Hub.Config({
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Ponca
-   &#160;<span id="projectnumber">0a48bd0b09cc2a1a5cb94be4bf07a40ff5459adc</span>
+   &#160;<span id="projectnumber">23cc0f01ab3a2704e80c33c3b0e6af8553189a91</span>
    </div>
    <div id="projectbrief">Point Cloud Analysis library</div>
   </td>
@@ -176,21 +176,23 @@ Define weighting functions</h2>
 <div class="line">public:</div>
 <div class="line">    typedef ScreenSpacePoint::Scalar Scalar;</div>
 <div class="line">    typedef ScreenSpacePoint::VectorType VectorType;</div>
+<div class="line">    typedef Ponca::DistWeightFunc&lt;ScreenSpacePoint,Ponca::SmoothWeightKernel&lt;Scalar&gt; &gt;::WeightReturnType WeightReturnType;</div>
+<div class="line"> </div>
 <div class="line"> </div>
 <div class="line">    PONCA_MULTIARCH inline ProjectedWeightFunc(const Scalar&amp; _t = Scalar(1.), const Scalar _dz = 0.f)</div>
 <div class="line">        : Ponca::DistWeightFunc&lt;ScreenSpacePoint,Ponca::SmoothWeightKernel&lt;Scalar&gt; &gt;(_t),</div>
 <div class="line">          m_dz(_dz) {}</div>
 <div class="line"> </div>
-<div class="line">    PONCA_MULTIARCH inline Scalar w(const VectorType&amp; _relativePos, const ScreenSpacePoint&amp;  _attributes) const</div>
+<div class="line">    PONCA_MULTIARCH inline WeightReturnType w(const VectorType&amp; _relativePos, const ScreenSpacePoint&amp;  _attributes) const</div>
 <div class="line">    {</div>
 <div class="line">        PONCA_MULTIARCH_STD_MATH(abs);</div>
 <div class="line">        Scalar d  = _attributes.spos().norm();</div>
 <div class="line">        const float dz = abs(_relativePos[2]);</div>
 <div class="line">        if (d &gt; m_t || (m_dz != Scalar(0) &amp;&amp; dz &gt; m_dz))</div>
 <div class="line">        {</div>
-<div class="line">            return Scalar(0.);</div>
+<div class="line">            return {Scalar(0.), _relativePos};</div>
 <div class="line">        }</div>
-<div class="line">        return m_wk.f(d/m_t);</div>
+<div class="line">        return {m_wk.f(d/m_t), _relativePos};</div>
 <div class="line">    }</div>
 <div class="line">private:</div>
 <div class="line">    float m_dz;</div>
@@ -582,21 +584,23 @@ The whole code</h1>
 <div class="line">public:</div>
 <div class="line">    typedef ScreenSpacePoint::Scalar Scalar;</div>
 <div class="line">    typedef ScreenSpacePoint::VectorType VectorType;</div>
+<div class="line">    typedef Ponca::DistWeightFunc&lt;ScreenSpacePoint,Ponca::SmoothWeightKernel&lt;Scalar&gt; &gt;::WeightReturnType WeightReturnType;</div>
+<div class="line"> </div>
 <div class="line"> </div>
 <div class="line">    PONCA_MULTIARCH inline ProjectedWeightFunc(const Scalar&amp; _t = Scalar(1.), const Scalar _dz = 0.f)</div>
 <div class="line">        : Ponca::DistWeightFunc&lt;ScreenSpacePoint,Ponca::SmoothWeightKernel&lt;Scalar&gt; &gt;(_t),</div>
 <div class="line">          m_dz(_dz) {}</div>
 <div class="line"> </div>
-<div class="line">    PONCA_MULTIARCH inline Scalar w(const VectorType&amp; _relativePos, const ScreenSpacePoint&amp;  _attributes) const</div>
+<div class="line">    PONCA_MULTIARCH inline WeightReturnType w(const VectorType&amp; _relativePos, const ScreenSpacePoint&amp;  _attributes) const</div>
 <div class="line">    {</div>
 <div class="line">        PONCA_MULTIARCH_STD_MATH(abs);</div>
 <div class="line">        Scalar d  = _attributes.spos().norm();</div>
 <div class="line">        const float dz = abs(_relativePos[2]);</div>
 <div class="line">        if (d &gt; m_t || (m_dz != Scalar(0) &amp;&amp; dz &gt; m_dz))</div>
 <div class="line">        {</div>
-<div class="line">            return Scalar(0.);</div>
+<div class="line">            return {Scalar(0.), _relativePos};</div>
 <div class="line">        }</div>
-<div class="line">        return m_wk.f(d/m_t);</div>
+<div class="line">        return {m_wk.f(d/m_t), _relativePos};</div>
 <div class="line">    }</div>
 <div class="line">private:</div>
 <div class="line">    float m_dz;</div>
@@ -976,7 +980,7 @@ The whole code</h1>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="example_page.html">Examples</a></li>
-    <li class="footer">Generated on Mon Jul 31 2023 16:16:50 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.6 </li>
+    <li class="footer">Generated on Tue Oct 3 2023 12:58:52 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.6 </li>
   </ul>
 </div>
 </body>
