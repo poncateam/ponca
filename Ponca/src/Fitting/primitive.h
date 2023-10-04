@@ -120,9 +120,7 @@ public:
     PONCA_FITTING_APIDOC_FINALIZE
     PONCA_MULTIARCH inline FIT_RESULT finalize(){
         // handle specific configurations
-        // We need to have at least one neighbor to compute the mean
         if (m_sumW == Scalar(0.) || m_nbNeighbors < 1) {
-            init( m_w.basisCenter() );
             return m_eCurrentState = UNDEFINED;
         }
         return m_eCurrentState = STABLE;

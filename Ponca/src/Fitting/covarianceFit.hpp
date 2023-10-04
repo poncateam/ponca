@@ -35,11 +35,11 @@ FIT_RESULT
 CovarianceFitBase<DataPoint, _WFunctor, T>::finalize ()
 {
     // handle specific configurations
-    // With less than 3 neighbors the fitting is undefined
-    if(Base::finalize() != STABLE || Base::getNumNeighbors() < 3)
-    {
+    if(Base::finalize() != STABLE) 
+        return Base::m_eCurrentState;
+    // With less than Dim neighbors the fitting is undefined
+    if(Base::getNumNeighbors() < DataPoint::Dim)
         return Base::m_eCurrentState = UNDEFINED;
-    }
 
     // Center the covariance on the centroid
     auto centroid = Base::barycenter();
