@@ -51,7 +51,7 @@ MathJax.Hub.Config({
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Ponca
-   &#160;<span id="projectnumber">2e948d6c707a4814ce9d8e53b81c126976c5592b</span>
+   &#160;<span id="projectnumber">75c4b163dd1fcc3f70e9fa344717da2a470a562f</span>
    </div>
    <div id="projectbrief">Point Cloud Analysis library</div>
   </td>
@@ -274,8 +274,8 @@ Check fitting status</h2>
 <div class="fragment"><div class="line"><a class="code hl_enumeration" href="namespacePonca.html#abfd697aebf07c1b5c8be5ee401e2dc84">FIT_RESULT</a> eResult = fit.compute(vecs.begin(), vecs.end()); <span class="comment">// or eResult = fit.finalize();</span></div>
 <div class="line"><span class="keywordflow">if</span>(eResult == <a class="code hl_enumvalue" href="namespacePonca.html#abfd697aebf07c1b5c8be5ee401e2dc84a86d1e5381a39092fbe5560583c23d64c">STABLE</a>)                                       <span class="comment">// or fit.isStable()</span></div>
 <div class="line">      <span class="comment">//do your things...</span></div>
-<div class="ttc" id="anamespacePonca_html_abfd697aebf07c1b5c8be5ee401e2dc84"><div class="ttname"><a href="namespacePonca.html#abfd697aebf07c1b5c8be5ee401e2dc84">Ponca::FIT_RESULT</a></div><div class="ttdeci">FIT_RESULT</div><div class="ttdoc">Enum corresponding to the state of a fitting method (and what the finalize function can return.</div><div class="ttdef"><b>Definition:</b> <a href="enums_8h_source.html#l00014">enums.h:15</a></div></div>
-<div class="ttc" id="anamespacePonca_html_abfd697aebf07c1b5c8be5ee401e2dc84a86d1e5381a39092fbe5560583c23d64c"><div class="ttname"><a href="namespacePonca.html#abfd697aebf07c1b5c8be5ee401e2dc84a86d1e5381a39092fbe5560583c23d64c">Ponca::STABLE</a></div><div class="ttdeci">@ STABLE</div><div class="ttdoc">The fitting is stable an ready to use (and having more than 6 neighbours)</div><div class="ttdef"><b>Definition:</b> <a href="enums_8h_source.html#l00018">enums.h:18</a></div></div>
+<div class="ttc" id="anamespacePonca_html_abfd697aebf07c1b5c8be5ee401e2dc84"><div class="ttname"><a href="namespacePonca.html#abfd697aebf07c1b5c8be5ee401e2dc84">Ponca::FIT_RESULT</a></div><div class="ttdeci">FIT_RESULT</div><div class="ttdoc">Enum corresponding to the state of a fitting method (and what the finalize function returns)</div><div class="ttdef"><b>Definition:</b> <a href="enums_8h_source.html#l00014">enums.h:15</a></div></div>
+<div class="ttc" id="anamespacePonca_html_abfd697aebf07c1b5c8be5ee401e2dc84a86d1e5381a39092fbe5560583c23d64c"><div class="ttname"><a href="namespacePonca.html#abfd697aebf07c1b5c8be5ee401e2dc84a86d1e5381a39092fbe5560583c23d64c">Ponca::STABLE</a></div><div class="ttdeci">@ STABLE</div><div class="ttdoc">The fitting is stable and ready to use.</div><div class="ttdef"><b>Definition:</b> <a href="enums_8h_source.html#l00017">enums.h:17</a></div></div>
 </div><!-- fragment --><p>Some methods require multiple fitting passes, e.g. <a class="el" href="classPonca_1_1MongePatch.html">MongePatch</a>. This is directly handled by the <code>compute</code> method. If you don't use it, you need to check if <code>eResults == NEED_ANOTHER_PASS</code> and repeat the <code>addNeighbor()</code>/<code>finalize()</code> steps. Don't forget to call <code>startNewPass()</code> at each iteration.</p>
 <dl class="section warning"><dt>Warning</dt><dd>You should avoid data of low magnitude (i.e., 1 should be a significant value) to get good results; thus rescaling might be necessary.</dd></dl>
 <h2><a class="anchor" id="fitting_outputs"></a>
@@ -463,7 +463,7 @@ Cuda</h2>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="user_manual_page.html">User Manual</a></li>
-    <li class="footer">Generated on Tue Oct 3 2023 21:04:08 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.6 </li>
+    <li class="footer">Generated on Wed Oct 4 2023 10:34:34 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.6 </li>
   </ul>
 </div>
 </body>

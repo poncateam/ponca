@@ -51,7 +51,7 @@ MathJax.Hub.Config({
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Ponca
-   &#160;<span id="projectnumber">2e948d6c707a4814ce9d8e53b81c126976c5592b</span>
+   &#160;<span id="projectnumber">75c4b163dd1fcc3f70e9fa344717da2a470a562f</span>
    </div>
    <div id="projectbrief">Point Cloud Analysis library</div>
   </td>
@@ -401,7 +401,7 @@ Enumerations</h2></td></tr>
 , <a class="el" href="namespacePonca.html#abfd697aebf07c1b5c8be5ee401e2dc84a405923cb4af5edb343e87ec895c01c2c">NBMAX</a>
 <br />
  }</td></tr>
-<tr class="memdesc:abfd697aebf07c1b5c8be5ee401e2dc84"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enum corresponding to the state of a fitting method (and what the finalize function can return.  <a href="namespacePonca.html#abfd697aebf07c1b5c8be5ee401e2dc84">More...</a><br /></td></tr>
+<tr class="memdesc:abfd697aebf07c1b5c8be5ee401e2dc84"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enum corresponding to the state of a fitting method (and what the finalize function returns)  <a href="namespacePonca.html#abfd697aebf07c1b5c8be5ee401e2dc84">More...</a><br /></td></tr>
 <tr class="separator:abfd697aebf07c1b5c8be5ee401e2dc84"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7beaddc698523e7f9c041ea8bc4c535a"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacePonca.html#a7beaddc698523e7f9c041ea8bc4c535a">DiffType</a> : unsigned int { <a class="el" href="namespacePonca.html#a7beaddc698523e7f9c041ea8bc4c535aad5783c67f35bea36742f02b599df3190">FitScaleDer</a> = 0x01
 , <a class="el" href="namespacePonca.html#a7beaddc698523e7f9c041ea8bc4c535aa531be147d843adfef25ce7fd7d5032ff">FitSpaceDer</a> = 0x02
@@ -433,7 +433,7 @@ template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
 
 <p>Helper alias for <a class="el" href="classPonca_1_1Line.html" title="A parametrized line is defined by an origin point  and a unit direction vector  such that the line co...">Line</a> fitting on 3D points using <a class="el" href="classPonca_1_1CovarianceLineFitImpl.html" title="Line fitting procedure that minimize the orthogonal distance between the samples and the fitted primi...">CovarianceLineFitImpl</a>. </p>
 
-<p class="definition">Definition at line <a class="el" href="covarianceLineFit_8h_source.html#l00061">61</a> of file <a class="el" href="covarianceLineFit_8h_source.html">covarianceLineFit.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="covarianceLineFit_8h_source.html#l00063">63</a> of file <a class="el" href="covarianceLineFit_8h_source.html">covarianceLineFit.h</a>.</p>
 
 </div>
 </div>
@@ -757,7 +757,7 @@ template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
 </td></tr>
 </table>
 
-<p class="definition">Definition at line <a class="el" href="enums_8h_source.html#l00035">35</a> of file <a class="el" href="enums_8h_source.html">enums.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="enums_8h_source.html#l00033">33</a> of file <a class="el" href="enums_8h_source.html">enums.h</a>.</p>
 
 </div>
 </div>
@@ -773,13 +773,13 @@ template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
       </table>
 </div><div class="memdoc">
 
-<p>Enum corresponding to the state of a fitting method (and what the finalize function can return. </p>
+<p>Enum corresponding to the state of a fitting method (and what the finalize function returns) </p>
 <table class="fieldtable">
-<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="abfd697aebf07c1b5c8be5ee401e2dc84a86d1e5381a39092fbe5560583c23d64c" name="abfd697aebf07c1b5c8be5ee401e2dc84a86d1e5381a39092fbe5560583c23d64c"></a>STABLE&#160;</td><td class="fielddoc"><p>The fitting is stable an ready to use (and having more than 6 neighbours) </p>
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="abfd697aebf07c1b5c8be5ee401e2dc84a86d1e5381a39092fbe5560583c23d64c" name="abfd697aebf07c1b5c8be5ee401e2dc84a86d1e5381a39092fbe5560583c23d64c"></a>STABLE&#160;</td><td class="fielddoc"><p>The fitting is stable and ready to use. </p>
 </td></tr>
-<tr><td class="fieldname"><a id="abfd697aebf07c1b5c8be5ee401e2dc84ab13222e506596eb607093af1a1de3e39" name="abfd697aebf07c1b5c8be5ee401e2dc84ab13222e506596eb607093af1a1de3e39"></a>UNSTABLE&#160;</td><td class="fielddoc"><p>The fitting is ready to use but it can be unstable (and having between 3 and 6 neighbors) </p>
+<tr><td class="fieldname"><a id="abfd697aebf07c1b5c8be5ee401e2dc84ab13222e506596eb607093af1a1de3e39" name="abfd697aebf07c1b5c8be5ee401e2dc84ab13222e506596eb607093af1a1de3e39"></a>UNSTABLE&#160;</td><td class="fielddoc"><p>The fitting is ready to use but it is considered as unstable (if the number of neighbors is low for example) </p>
 </td></tr>
-<tr><td class="fieldname"><a id="abfd697aebf07c1b5c8be5ee401e2dc84a08d57dd200082f67128b5274049dda41" name="abfd697aebf07c1b5c8be5ee401e2dc84a08d57dd200082f67128b5274049dda41"></a>UNDEFINED&#160;</td><td class="fielddoc"><p>The fitting is undefined, you can't use it for valid results (and having less than 3 neighbors) </p>
+<tr><td class="fieldname"><a id="abfd697aebf07c1b5c8be5ee401e2dc84a08d57dd200082f67128b5274049dda41" name="abfd697aebf07c1b5c8be5ee401e2dc84a08d57dd200082f67128b5274049dda41"></a>UNDEFINED&#160;</td><td class="fielddoc"><p>The fitting is undefined, you can't use it for valid results. </p>
 </td></tr>
 <tr><td class="fieldname"><a id="abfd697aebf07c1b5c8be5ee401e2dc84a0d50cd1855fec459b2c5756ec38d4a17" name="abfd697aebf07c1b5c8be5ee401e2dc84a0d50cd1855fec459b2c5756ec38d4a17"></a>NEED_OTHER_PASS&#160;</td><td class="fielddoc"><p>The fitting procedure needs to analyse the neighborhood another time. </p>
 </td></tr>
@@ -800,7 +800,7 @@ template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="namespacePonca.html">Ponca</a></li>
-    <li class="footer">Generated on Tue Oct 3 2023 21:04:08 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.6 </li>
+    <li class="footer">Generated on Wed Oct 4 2023 10:34:34 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.6 </li>
   </ul>
 </div>
 </body>
