@@ -240,7 +240,7 @@ var NAVTREEINDEX0 =
 "classPonca_1_1KnnGraphRangeIterator.html":[8,0,0,33],
 "classPonca_1_1KnnGraphRangeQuery.html":[8,0,0,34],
 "classPonca_1_1KnnGraphRangeQuery.html#a96c2a4379e427a5954ba2aaf2b2fe36f":[8,0,0,34,1],
-"classPonca_1_1KnnGraphRangeQuery.html#a9f55d12cb2038dfb7c63b2161524ccee":[8,0,0,34,0],
+"classPonca_1_1KnnGraphRangeQuery.html#aa59ea82b83f64cc2fb489c34a014b3dd":[8,0,0,34,0],
 "classPonca_1_1Line.html":[8,0,0,36],
 "classPonca_1_1Line.html#a2be50f01b5e7ba741e67d80711495add":[8,0,0,36,13],
 "classPonca_1_1Line.html#a398ea691c79a3a5cf8e7610109f2bfae":[8,0,0,36,5],

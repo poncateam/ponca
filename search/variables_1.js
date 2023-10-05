@@ -27,7 +27,7 @@ var searchData=
   ['m_5fduq_24',['m_dUq',['../classPonca_1_1OrientedSphereDerImpl.html#ae6b7afcc1259c40be14a0559f18eac6e',1,'Ponca::OrientedSphereDerImpl']]],
   ['m_5fecurrentstate_25',['m_eCurrentState',['../classPonca_1_1PrimitiveBase.html#ae90892c0b382040d748e16a10990ec49',1,'Ponca::PrimitiveBase']]],
   ['m_5ffitness_26',['m_fitness',['../classPonca_1_1GLSParam.html#ade62f517fea12b7fdb0dd30ec8e9f3ea',1,'Ponca::GLSParam']]],
-  ['m_5fflag_27',['m_flag',['../classPonca_1_1KnnGraphRangeQuery.html#a9f55d12cb2038dfb7c63b2161524ccee',1,'Ponca::KnnGraphRangeQuery']]],
+  ['m_5fflag_27',['m_flag',['../classPonca_1_1KnnGraphRangeQuery.html#aa59ea82b83f64cc2fb489c34a014b3dd',1,'Ponca::KnnGraphRangeQuery']]],
   ['m_5fisnormalized_28',['m_isNormalized',['../classPonca_1_1AlgebraicSphere.html#a32776b0267366928921d6cd1aaad65a3',1,'Ponca::AlgebraicSphere']]],
   ['m_5fleaf_5fcount_29',['m_leaf_count',['../classPonca_1_1KdTreeBase.html#a987ad52fb6613c74a684083767af23e5',1,'Ponca::KdTreeBase']]],
   ['m_5fmata_30',['m_matA',['../classPonca_1_1SphereFitImpl.html#a1eb6ac83b61f21504abb7652be9e1773',1,'Ponca::SphereFitImpl::m_matA()'],['../classPonca_1_1UnorientedSphereFitImpl.html#a2297dc0e5c02be0398440c3dd909869b',1,'Ponca::UnorientedSphereFitImpl::m_matA()']]],

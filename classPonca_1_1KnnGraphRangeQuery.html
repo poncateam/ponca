@@ -51,7 +51,7 @@ MathJax.Hub.Config({
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Ponca
-   &#160;<span id="projectnumber">75c4b163dd1fcc3f70e9fa344717da2a470a562f</span>
+   &#160;<span id="projectnumber">d2cda8378fcc27c8f27be1f94bca85f90e35796a</span>
    </div>
    <div id="projectbrief">Point Cloud Analysis library</div>
   </td>
@@ -195,9 +195,9 @@ Protected Member Functions</h2></td></tr>
 Protected Attributes</h2></td></tr>
 <tr class="memitem:aef5515dc2e214c64c951d4fbfec7036b"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="classPonca_1_1KnnGraphBase.html">KnnGraphBase</a>&lt; Traits &gt; *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1KnnGraphRangeQuery.html#aef5515dc2e214c64c951d4fbfec7036b">m_graph</a> {nullptr}</td></tr>
 <tr class="separator:aef5515dc2e214c64c951d4fbfec7036b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9f55d12cb2038dfb7c63b2161524ccee"><td class="memItemLeft" align="right" valign="top">std::vector&lt; bool &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1KnnGraphRangeQuery.html#a9f55d12cb2038dfb7c63b2161524ccee">m_flag</a></td></tr>
-<tr class="memdesc:a9f55d12cb2038dfb7c63b2161524ccee"><td class="mdescLeft">&#160;</td><td class="mdescRight">hold ids status (ids range from 0 to point cloud size)  <br /></td></tr>
-<tr class="separator:a9f55d12cb2038dfb7c63b2161524ccee"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa59ea82b83f64cc2fb489c34a014b3dd"><td class="memItemLeft" align="right" valign="top">std::set&lt; int &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1KnnGraphRangeQuery.html#aa59ea82b83f64cc2fb489c34a014b3dd">m_flag</a></td></tr>
+<tr class="memdesc:aa59ea82b83f64cc2fb489c34a014b3dd"><td class="mdescLeft">&#160;</td><td class="mdescRight">store visited ids  <br /></td></tr>
+<tr class="separator:aa59ea82b83f64cc2fb489c34a014b3dd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a96c2a4379e427a5954ba2aaf2b2fe36f"><td class="memItemLeft" align="right" valign="top">std::stack&lt; int &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1KnnGraphRangeQuery.html#a96c2a4379e427a5954ba2aaf2b2fe36f">m_stack</a></td></tr>
 <tr class="memdesc:a96c2a4379e427a5954ba2aaf2b2fe36f"><td class="mdescLeft">&#160;</td><td class="mdescRight">hold ids (ids range from 0 to point cloud size)  <br /></td></tr>
 <tr class="separator:a96c2a4379e427a5954ba2aaf2b2fe36f"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -210,7 +210,7 @@ Friends</h2></td></tr>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><div class="compoundTemplParams">template&lt;typename Traits&gt;<br />
 class Ponca::KnnGraphRangeQuery&lt; Traits &gt;</div>
-<p class="definition">Definition at line <a class="el" href="knnGraphRangeQuery_8h_source.html#l00019">19</a> of file <a class="el" href="knnGraphRangeQuery_8h_source.html">knnGraphRangeQuery.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="knnGraphRangeQuery_8h_source.html#l00020">20</a> of file <a class="el" href="knnGraphRangeQuery_8h_source.html">knnGraphRangeQuery.h</a>.</p>
 </div><h2 class="groupheader">Member Typedef Documentation</h2>
 <a id="a935b3907f470772413cbbe1522e97e1b" name="a935b3907f470772413cbbe1522e97e1b"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a935b3907f470772413cbbe1522e97e1b">&#9670;&#160;</a></span>DataPoint</h2>
@@ -226,7 +226,7 @@ template&lt;typename Traits &gt; </div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="knnGraphRangeQuery_8h_source.html#l00026">26</a> of file <a class="el" href="knnGraphRangeQuery_8h_source.html">knnGraphRangeQuery.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="knnGraphRangeQuery_8h_source.html#l00027">27</a> of file <a class="el" href="knnGraphRangeQuery_8h_source.html">knnGraphRangeQuery.h</a>.</p>
 
 </div>
 </div>
@@ -244,7 +244,7 @@ template&lt;typename Traits &gt; </div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="knnGraphRangeQuery_8h_source.html#l00027">27</a> of file <a class="el" href="knnGraphRangeQuery_8h_source.html">knnGraphRangeQuery.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="knnGraphRangeQuery_8h_source.html#l00028">28</a> of file <a class="el" href="knnGraphRangeQuery_8h_source.html">knnGraphRangeQuery.h</a>.</p>
 
 </div>
 </div>
@@ -262,7 +262,7 @@ template&lt;typename Traits &gt; </div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="knnGraphRangeQuery_8h_source.html#l00030">30</a> of file <a class="el" href="knnGraphRangeQuery_8h_source.html">knnGraphRangeQuery.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="knnGraphRangeQuery_8h_source.html#l00031">31</a> of file <a class="el" href="knnGraphRangeQuery_8h_source.html">knnGraphRangeQuery.h</a>.</p>
 
 </div>
 </div>
@@ -288,7 +288,7 @@ template&lt;typename Traits &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="knnGraphRangeQuery_8h_source.html#l00022">22</a> of file <a class="el" href="knnGraphRangeQuery_8h_source.html">knnGraphRangeQuery.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="knnGraphRangeQuery_8h_source.html#l00023">23</a> of file <a class="el" href="knnGraphRangeQuery_8h_source.html">knnGraphRangeQuery.h</a>.</p>
 
 </div>
 </div>
@@ -306,7 +306,7 @@ template&lt;typename Traits &gt; </div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="knnGraphRangeQuery_8h_source.html#l00028">28</a> of file <a class="el" href="knnGraphRangeQuery_8h_source.html">knnGraphRangeQuery.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="knnGraphRangeQuery_8h_source.html#l00029">29</a> of file <a class="el" href="knnGraphRangeQuery_8h_source.html">knnGraphRangeQuery.h</a>.</p>
 
 </div>
 </div>
@@ -324,7 +324,7 @@ template&lt;typename Traits &gt; </div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="knnGraphRangeQuery_8h_source.html#l00029">29</a> of file <a class="el" href="knnGraphRangeQuery_8h_source.html">knnGraphRangeQuery.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="knnGraphRangeQuery_8h_source.html#l00030">30</a> of file <a class="el" href="knnGraphRangeQuery_8h_source.html">knnGraphRangeQuery.h</a>.</p>
 
 </div>
 </div>
@@ -371,7 +371,7 @@ template&lt;typename Traits &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="knnGraphRangeQuery_8h_source.html#l00033">33</a> of file <a class="el" href="knnGraphRangeQuery_8h_source.html">knnGraphRangeQuery.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="knnGraphRangeQuery_8h_source.html#l00034">34</a> of file <a class="el" href="knnGraphRangeQuery_8h_source.html">knnGraphRangeQuery.h</a>.</p>
 
 </div>
 </div>
@@ -431,7 +431,7 @@ template&lt;typename Traits &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="knnGraphRangeQuery_8h_source.html#l00040">40</a> of file <a class="el" href="knnGraphRangeQuery_8h_source.html">knnGraphRangeQuery.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="knnGraphRangeQuery_8h_source.html#l00041">41</a> of file <a class="el" href="knnGraphRangeQuery_8h_source.html">knnGraphRangeQuery.h</a>.</p>
 
 </div>
 </div>
@@ -460,7 +460,7 @@ template&lt;typename Traits &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="knnGraphRangeQuery_8h_source.html#l00047">47</a> of file <a class="el" href="knnGraphRangeQuery_8h_source.html">knnGraphRangeQuery.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="knnGraphRangeQuery_8h_source.html#l00048">48</a> of file <a class="el" href="knnGraphRangeQuery_8h_source.html">knnGraphRangeQuery.h</a>.</p>
 
 </div>
 </div>
@@ -490,7 +490,7 @@ template&lt;typename Traits &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="knnGraphRangeQuery_8h_source.html#l00052">52</a> of file <a class="el" href="knnGraphRangeQuery_8h_source.html">knnGraphRangeQuery.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="knnGraphRangeQuery_8h_source.html#l00053">53</a> of file <a class="el" href="knnGraphRangeQuery_8h_source.html">knnGraphRangeQuery.h</a>.</p>
 
 </div>
 </div>
@@ -522,8 +522,8 @@ template&lt;typename Traits &gt; </div>
 </div>
 </div>
 <h2 class="groupheader">Member Data Documentation</h2>
-<a id="a9f55d12cb2038dfb7c63b2161524ccee" name="a9f55d12cb2038dfb7c63b2161524ccee"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a9f55d12cb2038dfb7c63b2161524ccee">&#9670;&#160;</a></span>m_flag</h2>
+<a id="aa59ea82b83f64cc2fb489c34a014b3dd" name="aa59ea82b83f64cc2fb489c34a014b3dd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa59ea82b83f64cc2fb489c34a014b3dd">&#9670;&#160;</a></span>m_flag</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -534,7 +534,7 @@ template&lt;typename Traits &gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">std::vector&lt;bool&gt; <a class="el" href="classPonca_1_1KnnGraphRangeQuery.html">Ponca::KnnGraphRangeQuery</a>&lt; Traits &gt;::m_flag</td>
+          <td class="memname">std::set&lt;int&gt; <a class="el" href="classPonca_1_1KnnGraphRangeQuery.html">Ponca::KnnGraphRangeQuery</a>&lt; Traits &gt;::m_flag</td>
         </tr>
       </table>
   </td>
@@ -544,9 +544,9 @@ template&lt;typename Traits &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p>hold ids status (ids range from 0 to point cloud size) </p>
+<p>store visited ids </p>
 
-<p class="definition">Definition at line <a class="el" href="knnGraphRangeQuery_8h_source.html#l00099">99</a> of file <a class="el" href="knnGraphRangeQuery_8h_source.html">knnGraphRangeQuery.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="knnGraphRangeQuery_8h_source.html#l00098">98</a> of file <a class="el" href="knnGraphRangeQuery_8h_source.html">knnGraphRangeQuery.h</a>.</p>
 
 </div>
 </div>
@@ -572,7 +572,7 @@ template&lt;typename Traits &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="knnGraphRangeQuery_8h_source.html#l00098">98</a> of file <a class="el" href="knnGraphRangeQuery_8h_source.html">knnGraphRangeQuery.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="knnGraphRangeQuery_8h_source.html#l00097">97</a> of file <a class="el" href="knnGraphRangeQuery_8h_source.html">knnGraphRangeQuery.h</a>.</p>
 
 </div>
 </div>
@@ -600,7 +600,7 @@ template&lt;typename Traits &gt; </div>
 
 <p>hold ids (ids range from 0 to point cloud size) </p>
 
-<p class="definition">Definition at line <a class="el" href="knnGraphRangeQuery_8h_source.html#l00100">100</a> of file <a class="el" href="knnGraphRangeQuery_8h_source.html">knnGraphRangeQuery.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="knnGraphRangeQuery_8h_source.html#l00099">99</a> of file <a class="el" href="knnGraphRangeQuery_8h_source.html">knnGraphRangeQuery.h</a>.</p>
 
 </div>
 </div>
@@ -610,7 +610,7 @@ template&lt;typename Traits &gt; </div>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="namespacePonca.html">Ponca</a></li><li class="navelem"><a class="el" href="classPonca_1_1KnnGraphRangeQuery.html">KnnGraphRangeQuery</a></li>
-    <li class="footer">Generated on Wed Oct 4 2023 10:34:34 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.6 </li>
+    <li class="footer">Generated on Thu Oct 5 2023 10:31:46 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.6 </li>
   </ul>
 </div>
 </body>

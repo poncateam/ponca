@@ -58,17 +58,17 @@ var sectionId = 'dynsection-1';
 <g id="node1" class="node">
 <title>Node1</title>
 <g id="a_node1"><a xlink:title=" ">
-<polygon fill="#999999" stroke="#666666" points="301.5,-0.5 301.5,-112.5 461.5,-112.5 461.5,-0.5 301.5,-0.5"/>
-<text text-anchor="start" x="309.5" y="-100.5" font-family="Helvetica,sans-Serif" font-size="10.00">Ponca::KnnGraphRangeQuery</text>
-<text text-anchor="middle" x="381.5" y="-89.5" font-family="Helvetica,sans-Serif" font-size="10.00">&lt; Traits &gt;</text>
-<polyline fill="none" stroke="#666666" points="301.5,-82.5 461.5,-82.5 "/>
-<text text-anchor="start" x="309.5" y="-70.5" font-family="Helvetica,sans-Serif" font-size="10.00"># m_graph</text>
-<polyline fill="none" stroke="#666666" points="301.5,-63.5 461.5,-63.5 "/>
-<text text-anchor="start" x="309.5" y="-51.5" font-family="Helvetica,sans-Serif" font-size="10.00">+ KnnGraphRangeQuery()</text>
-<text text-anchor="start" x="309.5" y="-40.5" font-family="Helvetica,sans-Serif" font-size="10.00">+ begin()</text>
-<text text-anchor="start" x="309.5" y="-29.5" font-family="Helvetica,sans-Serif" font-size="10.00">+ end()</text>
-<text text-anchor="start" x="309.5" y="-18.5" font-family="Helvetica,sans-Serif" font-size="10.00"># initialize()</text>
-<text text-anchor="start" x="309.5" y="-7.5" font-family="Helvetica,sans-Serif" font-size="10.00"># advance()</text>
+<polygon fill="#999999" stroke="#666666" points="338.5,-0.5 338.5,-112.5 498.5,-112.5 498.5,-0.5 338.5,-0.5"/>
+<text text-anchor="start" x="346.5" y="-100.5" font-family="Helvetica,sans-Serif" font-size="10.00">Ponca::KnnGraphRangeQuery</text>
+<text text-anchor="middle" x="418.5" y="-89.5" font-family="Helvetica,sans-Serif" font-size="10.00">&lt; Traits &gt;</text>
+<polyline fill="none" stroke="#666666" points="338.5,-82.5 498.5,-82.5 "/>
+<text text-anchor="start" x="346.5" y="-70.5" font-family="Helvetica,sans-Serif" font-size="10.00"># m_graph</text>
+<polyline fill="none" stroke="#666666" points="338.5,-63.5 498.5,-63.5 "/>
+<text text-anchor="start" x="346.5" y="-51.5" font-family="Helvetica,sans-Serif" font-size="10.00">+ KnnGraphRangeQuery()</text>
+<text text-anchor="start" x="346.5" y="-40.5" font-family="Helvetica,sans-Serif" font-size="10.00">+ begin()</text>
+<text text-anchor="start" x="346.5" y="-29.5" font-family="Helvetica,sans-Serif" font-size="10.00">+ end()</text>
+<text text-anchor="start" x="346.5" y="-18.5" font-family="Helvetica,sans-Serif" font-size="10.00"># initialize()</text>
+<text text-anchor="start" x="346.5" y="-7.5" font-family="Helvetica,sans-Serif" font-size="10.00"># advance()</text>
 </a>
 </g>
 </g>
@@ -76,22 +76,22 @@ var sectionId = 'dynsection-1';
 <g id="node2" class="node">
 <title>Node2</title>
 <g id="a_node2"><a xlink:href="group__spatialpartitioning.html" target="_top" xlink:title=" ">
-<polygon fill="white" stroke="#666666" points="165.5,-160.5 165.5,-239.5 307.5,-239.5 307.5,-160.5 165.5,-160.5"/>
-<text text-anchor="start" x="173.5" y="-227.5" font-family="Helvetica,sans-Serif" font-size="10.00">Ponca::RangeIndexQuery</text>
-<text text-anchor="start" x="173.5" y="-216.5" font-family="Helvetica,sans-Serif" font-size="10.00">&lt; Traits::IndexType, Traits</text>
-<text text-anchor="middle" x="236.5" y="-205.5" font-family="Helvetica,sans-Serif" font-size="10.00">::DataPoint::Scalar &gt;</text>
-<polyline fill="none" stroke="#666666" points="165.5,-198.5 307.5,-198.5 "/>
-<text text-anchor="middle" x="236.5" y="-186.5" font-family="Helvetica,sans-Serif" font-size="10.00"> </text>
-<polyline fill="none" stroke="#666666" points="165.5,-179.5 307.5,-179.5 "/>
-<text text-anchor="middle" x="236.5" y="-167.5" font-family="Helvetica,sans-Serif" font-size="10.00"> </text>
+<polygon fill="white" stroke="#666666" points="214.5,-160.5 214.5,-239.5 356.5,-239.5 356.5,-160.5 214.5,-160.5"/>
+<text text-anchor="start" x="222.5" y="-227.5" font-family="Helvetica,sans-Serif" font-size="10.00">Ponca::RangeIndexQuery</text>
+<text text-anchor="start" x="222.5" y="-216.5" font-family="Helvetica,sans-Serif" font-size="10.00">&lt; Traits::IndexType, Traits</text>
+<text text-anchor="middle" x="285.5" y="-205.5" font-family="Helvetica,sans-Serif" font-size="10.00">::DataPoint::Scalar &gt;</text>
+<polyline fill="none" stroke="#666666" points="214.5,-198.5 356.5,-198.5 "/>
+<text text-anchor="middle" x="285.5" y="-186.5" font-family="Helvetica,sans-Serif" font-size="10.00"> </text>
+<polyline fill="none" stroke="#666666" points="214.5,-179.5 356.5,-179.5 "/>
+<text text-anchor="middle" x="285.5" y="-167.5" font-family="Helvetica,sans-Serif" font-size="10.00"> </text>
 </a>
 </g>
 </g>
 <!-- Node2&#45;&gt;Node1 -->
 <g id="edge1" class="edge">
 <title>Node2&#45;&gt;Node1</title>
-<path fill="none" stroke="#63b8ff" d="M283.36,-153.27C296.66,-140.29 311.28,-126.03 325.08,-112.56"/>
-<polygon fill="none" stroke="#63b8ff" points="280.83,-150.85 276.12,-160.33 285.72,-155.86 280.83,-150.85"/>
+<path fill="none" stroke="#63b8ff" d="M328.82,-152.91C340.93,-140.03 354.2,-125.9 366.75,-112.56"/>
+<polygon fill="none" stroke="#63b8ff" points="326.14,-150.65 321.84,-160.33 331.24,-155.45 326.14,-150.65"/>
 </g>
 <!-- Node3 -->
 <g id="node3" class="node">
@@ -111,8 +111,8 @@ var sectionId = 'dynsection-1';
 <!-- Node3&#45;&gt;Node2 -->
 <g id="edge2" class="edge">
 <title>Node3&#45;&gt;Node2</title>
-<path fill="none" stroke="#63b8ff" d="M70,-602.85C86.93,-535.12 121.68,-409.41 168.5,-309 179.74,-284.9 195.38,-259.67 208.83,-239.65"/>
-<polygon fill="none" stroke="#63b8ff" points="66.54,-602.27 67.54,-612.82 73.34,-603.95 66.54,-602.27"/>
+<path fill="none" stroke="#63b8ff" d="M76.27,-603.26C101.97,-535.61 152.68,-409.58 209.5,-309 223.03,-285.05 240.58,-259.82 255.4,-239.77"/>
+<polygon fill="none" stroke="#63b8ff" points="72.92,-602.22 72.66,-612.81 79.47,-604.69 72.92,-602.22"/>
 </g>
 <!-- Node4 -->
 <g id="node4" class="node">
@@ -183,46 +183,46 @@ var sectionId = 'dynsection-1';
 <g id="node6" class="node">
 <title>Node6</title>
 <g id="a_node6"><a xlink:href="group__spatialpartitioning.html#structPonca_1_1RangeIndexQuery" target="_top" xlink:title="Base Query class combining QueryInputIsIndex and QueryOutputIsRange.">
-<polygon fill="white" stroke="#666666" points="178,-309.5 178,-377.5 317,-377.5 317,-309.5 178,-309.5"/>
-<text text-anchor="start" x="186" y="-365.5" font-family="Helvetica,sans-Serif" font-size="10.00">Ponca::RangeIndexQuery</text>
-<text text-anchor="middle" x="247.5" y="-354.5" font-family="Helvetica,sans-Serif" font-size="10.00">&lt; Index, Scalar &gt;</text>
-<polyline fill="none" stroke="#666666" points="178,-347.5 317,-347.5 "/>
-<text text-anchor="middle" x="247.5" y="-335.5" font-family="Helvetica,sans-Serif" font-size="10.00"> </text>
-<polyline fill="none" stroke="#666666" points="178,-328.5 317,-328.5 "/>
-<text text-anchor="middle" x="247.5" y="-316.5" font-family="Helvetica,sans-Serif" font-size="10.00"> </text>
+<polygon fill="white" stroke="#666666" points="219,-309.5 219,-377.5 358,-377.5 358,-309.5 219,-309.5"/>
+<text text-anchor="start" x="227" y="-365.5" font-family="Helvetica,sans-Serif" font-size="10.00">Ponca::RangeIndexQuery</text>
+<text text-anchor="middle" x="288.5" y="-354.5" font-family="Helvetica,sans-Serif" font-size="10.00">&lt; Index, Scalar &gt;</text>
+<polyline fill="none" stroke="#666666" points="219,-347.5 358,-347.5 "/>
+<text text-anchor="middle" x="288.5" y="-335.5" font-family="Helvetica,sans-Serif" font-size="10.00"> </text>
+<polyline fill="none" stroke="#666666" points="219,-328.5 358,-328.5 "/>
+<text text-anchor="middle" x="288.5" y="-316.5" font-family="Helvetica,sans-Serif" font-size="10.00"> </text>
 </a>
 </g>
 </g>
 <!-- Node6&#45;&gt;Node2 -->
 <g id="edge5" class="edge">
 <title>Node6&#45;&gt;Node2</title>
-<path fill="none" stroke="orange" d="M244.13,-299.16C242.66,-280.2 240.94,-258.14 239.51,-239.73"/>
-<polygon fill="orange" stroke="orange" points="240.66,-299.63 244.92,-309.32 247.64,-299.08 240.66,-299.63"/>
-<text text-anchor="start" x="243.5" y="-283" font-family="Helvetica,sans-Serif" font-size="10.00"> &lt; Traits::IndexType,</text>
-<text text-anchor="start" x="243.5" y="-272" font-family="Helvetica,sans-Serif" font-size="10.00"> Traits::DataPoint::</text>
-<text text-anchor="middle" x="293.5" y="-261" font-family="Helvetica,sans-Serif" font-size="10.00">Scalar &gt;</text>
+<path fill="none" stroke="orange" d="M287.58,-299.16C287.18,-280.2 286.71,-258.14 286.32,-239.73"/>
+<polygon fill="orange" stroke="orange" points="284.09,-299.4 287.8,-309.32 291.08,-299.25 284.09,-299.4"/>
+<text text-anchor="start" x="287.5" y="-283" font-family="Helvetica,sans-Serif" font-size="10.00"> &lt; Traits::IndexType,</text>
+<text text-anchor="start" x="287.5" y="-272" font-family="Helvetica,sans-Serif" font-size="10.00"> Traits::DataPoint::</text>
+<text text-anchor="middle" x="337.5" y="-261" font-family="Helvetica,sans-Serif" font-size="10.00">Scalar &gt;</text>
 </g>
 <!-- Node7 -->
 <g id="node7" class="node">
 <title>Node7</title>
 <g id="a_node7"><a xlink:href="group__spatialpartitioning.html" target="_top" xlink:title=" ">
-<polygon fill="white" stroke="#bfbfbf" points="225.5,-425.5 225.5,-515.5 395.5,-515.5 395.5,-425.5 225.5,-425.5"/>
-<text text-anchor="start" x="233.5" y="-503.5" font-family="Helvetica,sans-Serif" font-size="10.00">Ponca::Query&lt; QueryInput</text>
-<text text-anchor="start" x="233.5" y="-492.5" font-family="Helvetica,sans-Serif" font-size="10.00">IsIndex&lt; Index &gt;, QueryOutput</text>
-<text text-anchor="middle" x="310.5" y="-481.5" font-family="Helvetica,sans-Serif" font-size="10.00">IsRange&lt; Index, Scalar &gt; &gt;</text>
-<polyline fill="none" stroke="#bfbfbf" points="225.5,-474.5 395.5,-474.5 "/>
-<text text-anchor="middle" x="310.5" y="-462.5" font-family="Helvetica,sans-Serif" font-size="10.00"> </text>
-<polyline fill="none" stroke="#bfbfbf" points="225.5,-455.5 395.5,-455.5 "/>
-<text text-anchor="start" x="233.5" y="-443.5" font-family="Helvetica,sans-Serif" font-size="10.00">+ Query()</text>
-<text text-anchor="start" x="233.5" y="-432.5" font-family="Helvetica,sans-Serif" font-size="10.00">+ Query()</text>
+<polygon fill="white" stroke="#bfbfbf" points="210.5,-425.5 210.5,-515.5 380.5,-515.5 380.5,-425.5 210.5,-425.5"/>
+<text text-anchor="start" x="218.5" y="-503.5" font-family="Helvetica,sans-Serif" font-size="10.00">Ponca::Query&lt; QueryInput</text>
+<text text-anchor="start" x="218.5" y="-492.5" font-family="Helvetica,sans-Serif" font-size="10.00">IsIndex&lt; Index &gt;, QueryOutput</text>
+<text text-anchor="middle" x="295.5" y="-481.5" font-family="Helvetica,sans-Serif" font-size="10.00">IsRange&lt; Index, Scalar &gt; &gt;</text>
+<polyline fill="none" stroke="#bfbfbf" points="210.5,-474.5 380.5,-474.5 "/>
+<text text-anchor="middle" x="295.5" y="-462.5" font-family="Helvetica,sans-Serif" font-size="10.00"> </text>
+<polyline fill="none" stroke="#bfbfbf" points="210.5,-455.5 380.5,-455.5 "/>
+<text text-anchor="start" x="218.5" y="-443.5" font-family="Helvetica,sans-Serif" font-size="10.00">+ Query()</text>
+<text text-anchor="start" x="218.5" y="-432.5" font-family="Helvetica,sans-Serif" font-size="10.00">+ Query()</text>
 </a>
 </g>
 </g>
 <!-- Node7&#45;&gt;Node6 -->
 <g id="edge6" class="edge">
 <title>Node7&#45;&gt;Node6</title>
-<path fill="none" stroke="#63b8ff" d="M283.75,-416.42C277.1,-403.24 270.17,-389.48 264.17,-377.57"/>
-<polygon fill="none" stroke="#63b8ff" points="280.66,-418.07 288.29,-425.43 286.91,-414.92 280.66,-418.07"/>
+<path fill="none" stroke="#63b8ff" d="M292.46,-415.28C291.74,-402.44 291,-389.13 290.35,-377.57"/>
+<polygon fill="none" stroke="#63b8ff" points="288.98,-415.64 293.03,-425.43 295.97,-415.25 288.98,-415.64"/>
 </g>
 <!-- Node8 -->
 <g id="node8" class="node">
@@ -243,8 +243,8 @@ var sectionId = 'dynsection-1';
 <!-- Node8&#45;&gt;Node7 -->
 <g id="edge7" class="edge">
 <title>Node8&#45;&gt;Node7</title>
-<path fill="none" stroke="#63b8ff" d="M468.52,-600.72C462.11,-595.4 455.67,-590.09 449.5,-585 421.61,-562.02 390.45,-536.56 364.72,-515.59"/>
-<polygon fill="none" stroke="#63b8ff" points="466.69,-603.75 476.62,-607.44 471.16,-598.36 466.69,-603.75"/>
+<path fill="none" stroke="#63b8ff" d="M469.53,-601.01C462.81,-595.55 456.04,-590.12 449.5,-585 419.56,-561.55 385.59,-536.38 357.19,-515.71"/>
+<polygon fill="none" stroke="#63b8ff" points="467.4,-603.79 477.36,-607.42 471.83,-598.38 467.4,-603.79"/>
 </g>
 <!-- Node9 -->
 <g id="node9" class="node">
@@ -339,8 +339,8 @@ var sectionId = 'dynsection-1';
 <!-- Node12&#45;&gt;Node7 -->
 <g id="edge12" class="edge">
 <title>Node12&#45;&gt;Node7</title>
-<path fill="none" stroke="#63b8ff" d="M356.28,-575.15C354.5,-561.24 351.73,-547.02 347.5,-534 345.51,-527.88 342.85,-521.72 339.86,-515.78"/>
-<polygon fill="none" stroke="#63b8ff" points="352.82,-575.66 357.41,-585.2 359.77,-574.88 352.82,-575.66"/>
+<path fill="none" stroke="#63b8ff" d="M358.06,-575.28C356.12,-561.19 352.84,-546.87 347.5,-534 344.9,-527.74 341.45,-521.63 337.55,-515.84"/>
+<polygon fill="none" stroke="#63b8ff" points="354.62,-575.95 359.24,-585.48 361.57,-575.14 354.62,-575.95"/>
 </g>
 <!-- Node13 -->
 <g id="node13" class="node">
@@ -364,8 +364,8 @@ var sectionId = 'dynsection-1';
 <!-- Node14&#45;&gt;Node7 -->
 <g id="edge14" class="edge">
 <title>Node14&#45;&gt;Node7</title>
-<path fill="none" stroke="orange" d="M178.38,-602.74C174.34,-580.29 174.05,-554.22 186.5,-534 195.79,-518.91 209.97,-507.34 225.46,-498.5"/>
-<polygon fill="orange" stroke="orange" points="175,-603.69 180.46,-612.76 181.85,-602.26 175,-603.69"/>
+<path fill="none" stroke="orange" d="M178.82,-602.78C174.94,-580.46 174.64,-554.47 186.5,-534 192.46,-523.71 200.82,-514.97 210.29,-507.59"/>
+<polygon fill="orange" stroke="orange" points="175.43,-603.64 180.83,-612.75 182.29,-602.26 175.43,-603.64"/>
 <text text-anchor="start" x="186.5" y="-559" font-family="Helvetica,sans-Serif" font-size="10.00"> &lt; QueryInputIsIndex</text>
 <text text-anchor="start" x="186.5" y="-548" font-family="Helvetica,sans-Serif" font-size="10.00">&lt; Index &gt;, QueryOutputIsRange</text>
 <text text-anchor="middle" x="265" y="-537" font-family="Helvetica,sans-Serif" font-size="10.00">&lt; Index, Scalar &gt; &gt;</text>
@@ -374,108 +374,121 @@ var sectionId = 'dynsection-1';
 <g id="node15" class="node">
 <title>Node15</title>
 <g id="a_node15"><a xlink:title=" ">
-<polygon fill="white" stroke="#666666" points="325.5,-171.5 325.5,-228.5 437.5,-228.5 437.5,-171.5 325.5,-171.5"/>
-<text text-anchor="middle" x="381.5" y="-216.5" font-family="Helvetica,sans-Serif" font-size="10.00">std::vector&lt; bool &gt;</text>
-<polyline fill="none" stroke="#666666" points="325.5,-209.5 437.5,-209.5 "/>
-<text text-anchor="start" x="333.5" y="-197.5" font-family="Helvetica,sans-Serif" font-size="10.00">+ elements</text>
-<polyline fill="none" stroke="#666666" points="325.5,-190.5 437.5,-190.5 "/>
-<text text-anchor="middle" x="381.5" y="-178.5" font-family="Helvetica,sans-Serif" font-size="10.00"> </text>
+<polygon fill="white" stroke="#666666" points="374.5,-171.5 374.5,-228.5 462.5,-228.5 462.5,-171.5 374.5,-171.5"/>
+<text text-anchor="middle" x="418.5" y="-216.5" font-family="Helvetica,sans-Serif" font-size="10.00">std::set&lt; int &gt;</text>
+<polyline fill="none" stroke="#666666" points="374.5,-209.5 462.5,-209.5 "/>
+<text text-anchor="start" x="382.5" y="-197.5" font-family="Helvetica,sans-Serif" font-size="10.00">+ keys</text>
+<polyline fill="none" stroke="#666666" points="374.5,-190.5 462.5,-190.5 "/>
+<text text-anchor="middle" x="418.5" y="-178.5" font-family="Helvetica,sans-Serif" font-size="10.00"> </text>
 </a>
 </g>
 </g>
 <!-- Node15&#45;&gt;Node1 -->
 <g id="edge17" class="edge">
 <title>Node15&#45;&gt;Node1</title>
-<path fill="none" stroke="#404040" d="M381.5,-171.38C381.5,-158.05 381.5,-141.42 381.5,-125.01"/>
-<polygon fill="none" stroke="#404040" points="381.5,-124.57 377.5,-118.57 381.5,-112.57 385.5,-118.57 381.5,-124.57"/>
-<text text-anchor="middle" x="404" y="-134" font-family="Helvetica,sans-Serif" font-size="10.00"> #m_flag</text>
+<path fill="none" stroke="#404040" d="M418.5,-171.38C418.5,-158.05 418.5,-141.42 418.5,-125.01"/>
+<polygon fill="none" stroke="#404040" points="418.5,-124.57 414.5,-118.57 418.5,-112.57 422.5,-118.57 418.5,-124.57"/>
+<text text-anchor="middle" x="441" y="-134" font-family="Helvetica,sans-Serif" font-size="10.00"> #m_flag</text>
 </g>
 <!-- Node16 -->
 <g id="node16" class="node">
 <title>Node16</title>
 <g id="a_node16"><a xlink:title=" ">
-<polygon fill="white" stroke="#666666" points="340,-315 340,-372 437,-372 437,-315 340,-315"/>
-<text text-anchor="middle" x="388.5" y="-360" font-family="Helvetica,sans-Serif" font-size="10.00">std::vector&lt; T &gt;</text>
-<polyline fill="none" stroke="#666666" points="340,-353 437,-353 "/>
-<text text-anchor="middle" x="388.5" y="-341" font-family="Helvetica,sans-Serif" font-size="10.00"> </text>
-<polyline fill="none" stroke="#666666" points="340,-334 437,-334 "/>
-<text text-anchor="middle" x="388.5" y="-322" font-family="Helvetica,sans-Serif" font-size="10.00"> </text>
+<polygon fill="white" stroke="#666666" points="377.5,-315 377.5,-372 459.5,-372 459.5,-315 377.5,-315"/>
+<text text-anchor="middle" x="418.5" y="-360" font-family="Helvetica,sans-Serif" font-size="10.00">std::set&lt; K &gt;</text>
+<polyline fill="none" stroke="#666666" points="377.5,-353 459.5,-353 "/>
+<text text-anchor="middle" x="418.5" y="-341" font-family="Helvetica,sans-Serif" font-size="10.00"> </text>
+<polyline fill="none" stroke="#666666" points="377.5,-334 459.5,-334 "/>
+<text text-anchor="middle" x="418.5" y="-322" font-family="Helvetica,sans-Serif" font-size="10.00"> </text>
 </a>
 </g>
 </g>
 <!-- Node16&#45;&gt;Node15 -->
 <g id="edge18" class="edge">
 <title>Node16&#45;&gt;Node15</title>
-<path fill="none" stroke="orange" d="M386.63,-304.71C385.44,-280.73 383.94,-250.25 382.86,-228.55"/>
-<polygon fill="orange" stroke="orange" points="383.14,-305.07 387.13,-314.88 390.14,-304.72 383.14,-305.07"/>
-<text text-anchor="middle" x="410" y="-272" font-family="Helvetica,sans-Serif" font-size="10.00"> &lt; bool &gt;</text>
+<path fill="none" stroke="orange" d="M418.5,-304.71C418.5,-280.73 418.5,-250.25 418.5,-228.55"/>
+<polygon fill="orange" stroke="orange" points="415,-304.88 418.5,-314.88 422,-304.88 415,-304.88"/>
+<text text-anchor="middle" x="438" y="-272" font-family="Helvetica,sans-Serif" font-size="10.00"> &lt; int &gt;</text>
 </g>
 <!-- Node17 -->
 <g id="node17" class="node">
 <title>Node17</title>
 <g id="a_node17"><a xlink:title=" ">
-<polygon fill="white" stroke="#bfbfbf" points="456,-442 456,-499 485,-499 485,-442 456,-442"/>
-<text text-anchor="middle" x="470.5" y="-487" font-family="Helvetica,sans-Serif" font-size="10.00">T</text>
-<polyline fill="none" stroke="#bfbfbf" points="456,-480 485,-480 "/>
-<text text-anchor="middle" x="470.5" y="-468" font-family="Helvetica,sans-Serif" font-size="10.00"> </text>
-<polyline fill="none" stroke="#bfbfbf" points="456,-461 485,-461 "/>
-<text text-anchor="middle" x="470.5" y="-449" font-family="Helvetica,sans-Serif" font-size="10.00"> </text>
+<polygon fill="white" stroke="#bfbfbf" points="404,-442 404,-499 433,-499 433,-442 404,-442"/>
+<text text-anchor="middle" x="418.5" y="-487" font-family="Helvetica,sans-Serif" font-size="10.00">K</text>
+<polyline fill="none" stroke="#bfbfbf" points="404,-480 433,-480 "/>
+<text text-anchor="middle" x="418.5" y="-468" font-family="Helvetica,sans-Serif" font-size="10.00"> </text>
+<polyline fill="none" stroke="#bfbfbf" points="404,-461 433,-461 "/>
+<text text-anchor="middle" x="418.5" y="-449" font-family="Helvetica,sans-Serif" font-size="10.00"> </text>
 </a>
 </g>
 </g>
 <!-- Node17&#45;&gt;Node16 -->
 <g id="edge19" class="edge">
 <title>Node17&#45;&gt;Node16</title>
-<path fill="none" stroke="#404040" d="M455.84,-450.74C446.51,-438.53 434.37,-422.12 424.5,-407 419.51,-399.36 414.44,-391 409.75,-382.96"/>
-<polygon fill="none" stroke="#404040" points="409.59,-382.69 403.14,-379.48 403.62,-372.28 410.08,-375.49 409.59,-382.69"/>
-<text text-anchor="middle" x="453.5" y="-399" font-family="Helvetica,sans-Serif" font-size="10.00"> +elements</text>
-</g>
-<!-- Node19 -->
-<g id="node19" class="node">
-<title>Node19</title>
-<g id="a_node19"><a xlink:title=" ">
-<polygon fill="white" stroke="#666666" points="457.5,-315 457.5,-372 549.5,-372 549.5,-315 457.5,-315"/>
-<text text-anchor="middle" x="503.5" y="-360" font-family="Helvetica,sans-Serif" font-size="10.00">std::stack&lt; T &gt;</text>
-<polyline fill="none" stroke="#666666" points="457.5,-353 549.5,-353 "/>
-<text text-anchor="middle" x="503.5" y="-341" font-family="Helvetica,sans-Serif" font-size="10.00"> </text>
-<polyline fill="none" stroke="#666666" points="457.5,-334 549.5,-334 "/>
-<text text-anchor="middle" x="503.5" y="-322" font-family="Helvetica,sans-Serif" font-size="10.00"> </text>
-</a>
-</g>
-</g>
-<!-- Node17&#45;&gt;Node19 -->
-<g id="edge22" class="edge">
-<title>Node17&#45;&gt;Node19</title>
-<path fill="none" stroke="#404040" d="M477.82,-441.76C482.31,-424.77 488.12,-402.75 493.08,-383.96"/>
-<polygon fill="none" stroke="#404040" points="493.13,-383.77 490.8,-376.94 496.2,-372.16 498.53,-378.99 493.13,-383.77"/>
-<text text-anchor="middle" x="517.5" y="-399" font-family="Helvetica,sans-Serif" font-size="10.00"> +elements</text>
+<path fill="none" stroke="#404040" d="M418.5,-441.76C418.5,-424.85 418.5,-402.96 418.5,-384.23"/>
+<polygon fill="none" stroke="#404040" points="418.5,-384.16 414.5,-378.16 418.5,-372.16 422.5,-378.16 418.5,-384.16"/>
+<text text-anchor="middle" x="435.5" y="-399" font-family="Helvetica,sans-Serif" font-size="10.00"> +keys</text>
 </g>
 <!-- Node18 -->
 <g id="node18" class="node">
 <title>Node18</title>
 <g id="a_node18"><a xlink:title=" ">
-<polygon fill="white" stroke="#666666" points="456,-171.5 456,-228.5 555,-228.5 555,-171.5 456,-171.5"/>
-<text text-anchor="middle" x="505.5" y="-216.5" font-family="Helvetica,sans-Serif" font-size="10.00">std::stack&lt; int &gt;</text>
-<polyline fill="none" stroke="#666666" points="456,-209.5 555,-209.5 "/>
-<text text-anchor="start" x="464" y="-197.5" font-family="Helvetica,sans-Serif" font-size="10.00">+ elements</text>
-<polyline fill="none" stroke="#666666" points="456,-190.5 555,-190.5 "/>
-<text text-anchor="middle" x="505.5" y="-178.5" font-family="Helvetica,sans-Serif" font-size="10.00"> </text>
+<polygon fill="white" stroke="#666666" points="481,-171.5 481,-228.5 580,-228.5 580,-171.5 481,-171.5"/>
+<text text-anchor="middle" x="530.5" y="-216.5" font-family="Helvetica,sans-Serif" font-size="10.00">std::stack&lt; int &gt;</text>
+<polyline fill="none" stroke="#666666" points="481,-209.5 580,-209.5 "/>
+<text text-anchor="start" x="489" y="-197.5" font-family="Helvetica,sans-Serif" font-size="10.00">+ elements</text>
+<polyline fill="none" stroke="#666666" points="481,-190.5 580,-190.5 "/>
+<text text-anchor="middle" x="530.5" y="-178.5" font-family="Helvetica,sans-Serif" font-size="10.00"> </text>
 </a>
 </g>
 </g>
 <!-- Node18&#45;&gt;Node1 -->
 <g id="edge20" class="edge">
 <title>Node18&#45;&gt;Node1</title>
-<path fill="none" stroke="#404040" d="M481.3,-171.38C468.81,-157.14 453.02,-139.12 437.71,-121.64"/>
-<polygon fill="none" stroke="#404040" points="437.67,-121.6 430.71,-119.72 429.76,-112.57 436.73,-114.45 437.67,-121.6"/>
-<text text-anchor="middle" x="482" y="-134" font-family="Helvetica,sans-Serif" font-size="10.00"> #m_stack</text>
+<path fill="none" stroke="#404040" d="M508.64,-171.38C497.47,-157.27 483.36,-139.45 469.65,-122.12"/>
+<polygon fill="none" stroke="#404040" points="469.54,-121.98 462.68,-119.76 462.09,-112.57 468.95,-114.8 469.54,-121.98"/>
+<text text-anchor="middle" x="512" y="-134" font-family="Helvetica,sans-Serif" font-size="10.00"> #m_stack</text>
+</g>
+<!-- Node19 -->
+<g id="node19" class="node">
+<title>Node19</title>
+<g id="a_node19"><a xlink:title=" ">
+<polygon fill="white" stroke="#666666" points="484.5,-315 484.5,-372 576.5,-372 576.5,-315 484.5,-315"/>
+<text text-anchor="middle" x="530.5" y="-360" font-family="Helvetica,sans-Serif" font-size="10.00">std::stack&lt; T &gt;</text>
+<polyline fill="none" stroke="#666666" points="484.5,-353 576.5,-353 "/>
+<text text-anchor="middle" x="530.5" y="-341" font-family="Helvetica,sans-Serif" font-size="10.00"> </text>
+<polyline fill="none" stroke="#666666" points="484.5,-334 576.5,-334 "/>
+<text text-anchor="middle" x="530.5" y="-322" font-family="Helvetica,sans-Serif" font-size="10.00"> </text>
+</a>
+</g>
 </g>
 <!-- Node19&#45;&gt;Node18 -->
 <g id="edge21" class="edge">
 <title>Node19&#45;&gt;Node18</title>
-<path fill="none" stroke="orange" d="M504.03,-304.71C504.37,-280.73 504.8,-250.25 505.11,-228.55"/>
-<polygon fill="orange" stroke="orange" points="500.53,-304.83 503.89,-314.88 507.53,-304.93 500.53,-304.83"/>
-<text text-anchor="middle" x="524" y="-272" font-family="Helvetica,sans-Serif" font-size="10.00"> &lt; int &gt;</text>
+<path fill="none" stroke="orange" d="M530.5,-304.71C530.5,-280.73 530.5,-250.25 530.5,-228.55"/>
+<polygon fill="orange" stroke="orange" points="527,-304.88 530.5,-314.88 534,-304.88 527,-304.88"/>
+<text text-anchor="middle" x="550" y="-272" font-family="Helvetica,sans-Serif" font-size="10.00"> &lt; int &gt;</text>
+</g>
+<!-- Node20 -->
+<g id="node20" class="node">
+<title>Node20</title>
+<g id="a_node20"><a xlink:title=" ">
+<polygon fill="white" stroke="#bfbfbf" points="516,-442 516,-499 545,-499 545,-442 516,-442"/>
+<text text-anchor="middle" x="530.5" y="-487" font-family="Helvetica,sans-Serif" font-size="10.00">T</text>
+<polyline fill="none" stroke="#bfbfbf" points="516,-480 545,-480 "/>
+<text text-anchor="middle" x="530.5" y="-468" font-family="Helvetica,sans-Serif" font-size="10.00"> </text>
+<polyline fill="none" stroke="#bfbfbf" points="516,-461 545,-461 "/>
+<text text-anchor="middle" x="530.5" y="-449" font-family="Helvetica,sans-Serif" font-size="10.00"> </text>
+</a>
+</g>
+</g>
+<!-- Node20&#45;&gt;Node19 -->
+<g id="edge22" class="edge">
+<title>Node20&#45;&gt;Node19</title>
+<path fill="none" stroke="#404040" d="M530.5,-441.76C530.5,-424.85 530.5,-402.96 530.5,-384.23"/>
+<polygon fill="none" stroke="#404040" points="530.5,-384.16 526.5,-378.16 530.5,-372.16 534.5,-378.16 530.5,-384.16"/>
+<text text-anchor="middle" x="559.5" y="-399" font-family="Helvetica,sans-Serif" font-size="10.00"> +elements</text>
 </g>
 </g>
 </svg>
