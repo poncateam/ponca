@@ -5,6 +5,8 @@ Ponca changelog
 --------------------------------------------------------------------------------
 Current head (v.1.2 RC)
 
+- API
+    - [spatialPartitioning] Optimize memory use in knngraph queries (#104)
 - Examples
     - Fix example cuda/ponca_ssgls (#109)
 
