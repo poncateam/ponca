@@ -256,8 +256,8 @@ namespace internal
     }; // class Basket
 
     template <class P, class W, int Type,
-        template <class, class, int, typename> class Ext0,
-        template <class, class, int, typename> class... Exts>
+        template <class, class, typename> class Ext0,
+        template <class, class, typename> class... Exts>
     class BasketAutoDiff : public internal::BasketAutoDiffAggregate<P, W, Type, Ext0, Exts...>::type
     {
     }; // class BasketAutoDiff
