@@ -69,6 +69,20 @@ namespace internal
     struct BasketDiffAggregate : BasketDiffAggregateImpl<BasketType, Type, BasketType, PrimitiveDer, Exts...>
     {
     };
+
+    /*! \brief Internal class used to build the BasketAutoDiff structure */
+    template <class P, class W, int Type,
+        template <class, class, typename> class Ext0,
+        template <class, class, typename> class... Exts>
+    struct BasketAutoDiffAggregate
+    {
+    private:
+        using Base = Ext0<P, W, PrimitiveBase<P, W>>;
+        using Aggregate = typename BasketAggregateImpl<P, W, Base, Exts...>::type; // Same impl
+
+    public:
+        using type = typename Base::template DDerType<P, W, Type, PrimitiveDer<P, W, Type, Aggregate>>;
+    };
 }
 #endif
 
@@ -240,6 +254,13 @@ namespace internal
             return false;
         }
     }; // class Basket
+
+    template <class P, class W, int Type,
+        template <class, class, int, typename> class Ext0,
+        template <class, class, int, typename> class... Exts>
+    class BasketAutoDiff : public internal::BasketAutoDiffAggregate<P, W, Type, Ext0, Exts...>::type
+    {
+    }; // class BasketAutoDiff
 
 } //namespace Ponca
 
