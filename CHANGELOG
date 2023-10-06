@@ -13,6 +13,7 @@ Current head (v.1.2 RC)
 - Bug-fixes and code improvements
     - [fitting] Use variadic template for basket extensions (#85)
     - [fitting] Fix current status issue (#108)
+    - [spatialPartitioning] Fix potential compilation issues in KnnGraph (#111) 
 
 -Docs
     - [fitting] Clarify documentation on FIT_RESULT (#108)

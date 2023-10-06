@@ -73,11 +73,11 @@ public:
             : m_k(std::min(k,kdtree.index_count()-1)),
               m_kdTreePoints(kdtree.point_data())
     {
-        static_assert( std::is_same_v<typename Traits::DataPoint, typename KdTreeTraits::DataPoint>,
+        static_assert( std::is_same<typename Traits::DataPoint, typename KdTreeTraits::DataPoint>::value,
                        "KdTreeTraits::DataPoint is not equal to Traits::DataPoint" );
-        static_assert( std::is_same_v<typename Traits::PointContainer, typename KdTreeTraits::PointContainer>,
+        static_assert( std::is_same<typename Traits::PointContainer, typename KdTreeTraits::PointContainer>::value,
                        "KdTreeTraits::PointContainer is not equal to Traits::PointContainer" );
-        static_assert( std::is_same_v<typename Traits::IndexContainer, typename KdTreeTraits::IndexContainer>,
+        static_assert( std::is_same<typename Traits::IndexContainer, typename KdTreeTraits::IndexContainer>::value,
                        "KdTreeTraits::IndexContainer is not equal to Traits::IndexContainer" );
 
         // We need to account for the entire point set, irrespectively of the sampling. This is because the kdtree
@@ -107,7 +107,7 @@ public:
     // Query -------------------------------------------------------------------
 public:
     inline KNearestIndexQuery k_nearest_neighbors(int index) const{
-        return KnnGraphKNearestQuery(this, index);
+        return KNearestIndexQuery(this, index);
     }
 
     inline RangeIndexQuery    range_neighbors(int index, Scalar r) const{
