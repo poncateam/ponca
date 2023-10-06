@@ -39,14 +39,14 @@ public:
 
 public:
     inline Iterator begin(){
-        KnnGraphRangeIterator it(this);
+        Iterator it(this);
         this->initialize(it);
         this->advance(it);
         return it;
     }
 
     inline Iterator end(){
-        return KnnGraphRangeIterator(this, m_graph->size());
+        return Iterator(this, m_graph->size());
     }
 
 protected:
