@@ -19,6 +19,7 @@ file, You can obtain one at http://mozilla.org/MPL/2.0/.
 #include <Ponca/src/Fitting/gls.h>
 #include <Ponca/src/Fitting/orientedSphereFit.h>
 #include <Ponca/src/Fitting/unorientedSphereFit.h>
+#include <Ponca/src/Fitting/sphereFit.h>
 #include <Ponca/src/Fitting/weightFunc.h>
 #include <Ponca/src/Fitting/weightKernel.h>
 #include <Ponca/src/Fitting/curvatureEstimation.h>
@@ -72,7 +73,7 @@ typedef DistWeightFunc<MyPoint,SmoothWeightKernel<Scalar> > WeightFunc;
 using Fit1 = Basket<MyPoint,WeightFunc,OrientedSphereFit,   GLSParam>;
 using Fit2 = Basket<MyPoint,WeightFunc,UnorientedSphereFit, GLSParam>;
 using Fit3 = BasketDiff< Fit1, FitSpaceDer, OrientedSphereDer, GLSDer, CurvatureEstimatorBase, NormalDerivativesCurvatureEstimator>;
-
+using Fit4 = Basket<MyPoint,WeightFunc,SphereFit, GLSParam>;
 
 template<typename Fit>
 void test_fit(Fit& _fit, const KdTree<MyPoint>& tree, const VectorType& _p)
@@ -158,4 +159,10 @@ int main()
     cout << fit3.kminDirection() << endl << endl;
     cout << fit3.kmaxDirection() << endl;
   }
+
+  std::cout << "\n\n====================\nSphereFit:\n";
+  Fit4 fit4;
+  test_fit(fit4, tree, p);
+
+  return 0;
 }
