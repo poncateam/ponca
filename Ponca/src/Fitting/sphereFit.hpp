@@ -64,6 +64,12 @@ SphereFitImpl<DataPoint, _WFunctor, T>::finalize ()
     invCpratt.template topLeftCorner<1,1>()     << 0;
     invCpratt.template bottomRightCorner<1,1>() << 0;
 
+    // Remarks:
+    //   A and C are symmetric so all eigenvalues and eigenvectors are real
+    //   we look for the minimal positive eigenvalue (eigenvalues may be negative)
+    //   C^{-1}A is not symmetric
+    //   calling Eigen::GeneralizedEigenSolver on (A,C) and Eigen::EigenSolver on C^{-1}A is equivalent
+    //   C is not positive definite so Eigen::GeneralizedSelfAdjointEigenSolver cannot be used
 #ifdef __CUDACC__
     m_solver.computeDirect(invCpratt * m_matA);
 #else
