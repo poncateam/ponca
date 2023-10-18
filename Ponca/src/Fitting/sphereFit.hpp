@@ -64,13 +64,12 @@ SphereFitImpl<DataPoint, _WFunctor, T>::finalize ()
     invCpratt.template topLeftCorner<1,1>()     << 0;
     invCpratt.template bottomRightCorner<1,1>() << 0;
 
-    Eigen::EigenSolver<MatrixA> solver;
 #ifdef __CUDACC__
-    solver.computeDirect(invCpratt * m_matA);
+    m_solver.computeDirect(invCpratt * m_matA);
 #else
-    solver.compute(invCpratt * m_matA);
+    m_solver.compute(invCpratt * m_matA);
 #endif
-    VectorA eivals = solver.eigenvalues().real();
+    VectorA eivals = m_solver.eigenvalues().real();
     int minId = -1;
     for(int i=0 ; i<DataPoint::Dim+2 ; ++i)
     {
@@ -80,7 +79,7 @@ SphereFitImpl<DataPoint, _WFunctor, T>::finalize ()
     }
 
     //mLambda = eivals(minId);
-    VectorA vecU = solver.eigenvectors().col(minId).real();
+    VectorA vecU = m_solver.eigenvectors().col(minId).real();
     Base::m_uq = vecU[1+DataPoint::Dim];
     Base::m_ul = vecU.template segment<DataPoint::Dim>(1);
     Base::m_uc = vecU[0];

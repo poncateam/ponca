@@ -66,12 +66,21 @@ protected:
     typedef Eigen::Matrix<Scalar, DataPoint::Dim+2, 1>      VectorA;
     typedef Eigen::Matrix<Scalar, DataPoint::Dim+2, DataPoint::Dim+2>  MatrixA;
 
+public:
+    using Solver = Eigen::EigenSolver<MatrixA>;
+
+protected:
     // computation data
     MatrixA  m_matA {MatrixA::Zero()};  /*!< \brief Covariance matrix of [1, p, p^2] */
+
+    Solver m_solver;
 
 public:
     PONCA_EXPLICIT_CAST_OPERATORS(SphereFitImpl,sphereFit)
     PONCA_FITTING_DECLARE_INIT_ADD_FINALIZE
+
+    PONCA_MULTIARCH inline const Solver& solver() const { return m_solver; }
+
 }; //class SphereFit
 
 /// \brief Helper alias for Sphere fitting on 3D points using SphereFitImpl
