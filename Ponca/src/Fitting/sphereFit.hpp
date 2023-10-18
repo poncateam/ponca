@@ -64,15 +64,11 @@ SphereFitImpl<DataPoint, _WFunctor, T>::finalize ()
     invCpratt.template topLeftCorner<1,1>()     << 0;
     invCpratt.template bottomRightCorner<1,1>() << 0;
 
-    MatrixA M = invCpratt * m_matA;
-    // go to positive semi-definite matrix to be compatible with
-    // SelfAdjointEigenSolver requirements
-    // Note: This does not affect the eigen vectors order
-    Eigen::SelfAdjointEigenSolver<MatrixA> solver;
+    Eigen::EigenSolver<MatrixA> solver;
 #ifdef __CUDACC__
-    solver.computeDirect(M.transpose() * M);
+    solver.computeDirect(invCpratt * m_matA);
 #else
-    solver.compute(M.transpose() * M);
+    solver.compute(invCpratt * m_matA);
 #endif
     VectorA eivals = solver.eigenvalues().real();
     int minId = -1;
