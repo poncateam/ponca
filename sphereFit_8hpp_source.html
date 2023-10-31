@@ -51,7 +51,7 @@ MathJax.Hub.Config({
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Ponca
-   &#160;<span id="projectnumber">0abee611e96fdc83c1e0d5270ffae78a35bad99d</span>
+   &#160;<span id="projectnumber">f8e54a568fe54b9ed78eb612b9ec97101c79df80</span>
    </div>
    <div id="projectbrief">Point Cloud Analysis library</div>
   </td>
@@ -185,38 +185,39 @@ $(document).ready(function(){initNavTree('sphereFit_8hpp_source.html',''); initR
 <div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>    invCpratt.template topLeftCorner&lt;1,1&gt;()     &lt;&lt; 0;</div>
 <div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>    invCpratt.template bottomRightCorner&lt;1,1&gt;() &lt;&lt; 0;</div>
 <div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span> </div>
-<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>    MatrixA M = invCpratt * m_matA;</div>
-<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>    <span class="comment">// go to positive semi-definite matrix to be compatible with</span></div>
-<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>    <span class="comment">// SelfAdjointEigenSolver requirements</span></div>
-<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>    <span class="comment">// Note: This does not affect the eigen vectors order</span></div>
-<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>    Eigen::SelfAdjointEigenSolver&lt;MatrixA&gt; solver;</div>
-<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span><span class="preprocessor">#ifdef __CUDACC__</span></div>
-<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>    solver.computeDirect(M.transpose() * M);</div>
-<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span><span class="preprocessor">#else</span></div>
-<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>    solver.compute(M.transpose() * M);</div>
-<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span><span class="preprocessor">#endif</span></div>
-<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>    VectorA eivals = solver.eigenvalues().real();</div>
-<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>    <span class="keywordtype">int</span> minId = -1;</div>
-<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>    <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i=0 ; i&lt;DataPoint::Dim+2 ; ++i)</div>
-<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>    {</div>
-<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>    <a class="code hl_typedef" href="classPonca_1_1SphereFitImpl.html#a46860628ec6f220ee8577b4ce41f4031">Scalar</a> ev = eivals(i);</div>
-<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>    <span class="keywordflow">if</span>((ev&gt;0) &amp;&amp; (minId==-1 || ev&lt;eivals(minId)))</div>
-<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>    minId = i;</div>
-<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>    }</div>
-<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span> </div>
-<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>    <span class="comment">//mLambda = eivals(minId);</span></div>
-<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>    VectorA vecU = solver.eigenvectors().col(minId).real();</div>
-<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>    Base::m_uq = vecU[1+DataPoint::Dim];</div>
-<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>    Base::m_ul = vecU.template segment&lt;DataPoint::Dim&gt;(1);</div>
-<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>    Base::m_uc = vecU[0];</div>
-<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span> </div>
-<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span>    Base::m_isNormalized = <span class="keyword">false</span>;</div>
-<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span> </div>
-<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>    <span class="keywordflow">return</span> Base::m_eCurrentState;</div>
-<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>}</div>
-<div class="ttc" id="aclassPonca_1_1SphereFitImpl_html"><div class="ttname"><a href="classPonca_1_1SphereFitImpl.html">Ponca::SphereFitImpl</a></div><div class="ttdoc">Algebraic Sphere fitting procedure on point sets without normals.</div><div class="ttdef"><b>Definition:</b> <a href="sphereFit_8h_source.html#l00025">sphereFit.h:26</a></div></div>
-<div class="ttc" id="aclassPonca_1_1SphereFitImpl_html_a46860628ec6f220ee8577b4ce41f4031"><div class="ttname"><a href="classPonca_1_1SphereFitImpl.html#a46860628ec6f220ee8577b4ce41f4031">Ponca::SphereFitImpl::Scalar</a></div><div class="ttdeci">typename DataPoint::Scalar Scalar</div><div class="ttdoc">Alias to scalar type.</div><div class="ttdef"><b>Definition:</b> <a href="sphereFit_8h_source.html#l00027">sphereFit.h:27</a></div></div>
-<div class="ttc" id="aclassPonca_1_1SphereFitImpl_html_a512c58df188356f2423e029eacba019b"><div class="ttname"><a href="classPonca_1_1SphereFitImpl.html#a512c58df188356f2423e029eacba019b">Ponca::SphereFitImpl::VectorType</a></div><div class="ttdeci">typename Base::VectorType VectorType</div><div class="ttdoc">Alias to vector type.</div><div class="ttdef"><b>Definition:</b> <a href="sphereFit_8h_source.html#l00027">sphereFit.h:27</a></div></div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>    <span class="comment">// Remarks:</span></div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>    <span class="comment">//   A and C are symmetric so all eigenvalues and eigenvectors are real</span></div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>    <span class="comment">//   we look for the minimal positive eigenvalue (eigenvalues may be negative)</span></div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>    <span class="comment">//   C^{-1}A is not symmetric</span></div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>    <span class="comment">//   calling Eigen::GeneralizedEigenSolver on (A,C) and Eigen::EigenSolver on C^{-1}A is equivalent</span></div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>    <span class="comment">//   C is not positive definite so Eigen::GeneralizedSelfAdjointEigenSolver cannot be used</span></div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span><span class="preprocessor">#ifdef __CUDACC__</span></div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>    m_solver.computeDirect(invCpratt * m_matA);</div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span><span class="preprocessor">#else</span></div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>    m_solver.compute(invCpratt * m_matA);</div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>    VectorA eivals = m_solver.eigenvalues().real();</div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>    <span class="keywordtype">int</span> minId = -1;</div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>    <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i=0 ; i&lt;DataPoint::Dim+2 ; ++i)</div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>    {</div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>    <a class="code hl_typedef" href="classPonca_1_1SphereFitImpl.html#a46860628ec6f220ee8577b4ce41f4031">Scalar</a> ev = eivals(i);</div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>    <span class="keywordflow">if</span>((ev&gt;0) &amp;&amp; (minId==-1 || ev&lt;eivals(minId)))</div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>    minId = i;</div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>    }</div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span> </div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>    <span class="comment">//mLambda = eivals(minId);</span></div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>    VectorA vecU = m_solver.eigenvectors().col(minId).real();</div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>    Base::m_uq = vecU[1+DataPoint::Dim];</div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>    Base::m_ul = vecU.template segment&lt;DataPoint::Dim&gt;(1);</div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>    Base::m_uc = vecU[0];</div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span> </div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>    Base::m_isNormalized = <span class="keyword">false</span>;</div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span> </div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>    <span class="keywordflow">return</span> Base::m_eCurrentState;</div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span>}</div>
+<div class="ttc" id="aclassPonca_1_1SphereFitImpl_html"><div class="ttname"><a href="classPonca_1_1SphereFitImpl.html">Ponca::SphereFitImpl</a></div><div class="ttdoc">Algebraic Sphere fitting procedure on point set without normals.</div><div class="ttdef"><b>Definition:</b> <a href="sphereFit_8h_source.html#l00056">sphereFit.h:57</a></div></div>
+<div class="ttc" id="aclassPonca_1_1SphereFitImpl_html_a46860628ec6f220ee8577b4ce41f4031"><div class="ttname"><a href="classPonca_1_1SphereFitImpl.html#a46860628ec6f220ee8577b4ce41f4031">Ponca::SphereFitImpl::Scalar</a></div><div class="ttdeci">typename DataPoint::Scalar Scalar</div><div class="ttdoc">Alias to scalar type.</div><div class="ttdef"><b>Definition:</b> <a href="sphereFit_8h_source.html#l00058">sphereFit.h:58</a></div></div>
+<div class="ttc" id="aclassPonca_1_1SphereFitImpl_html_a512c58df188356f2423e029eacba019b"><div class="ttname"><a href="classPonca_1_1SphereFitImpl.html#a512c58df188356f2423e029eacba019b">Ponca::SphereFitImpl::VectorType</a></div><div class="ttdeci">typename Base::VectorType VectorType</div><div class="ttdoc">Alias to vector type.</div><div class="ttdef"><b>Definition:</b> <a href="sphereFit_8h_source.html#l00058">sphereFit.h:58</a></div></div>
 <div class="ttc" id="anamespacePonca_html_abfd697aebf07c1b5c8be5ee401e2dc84"><div class="ttname"><a href="namespacePonca.html#abfd697aebf07c1b5c8be5ee401e2dc84">Ponca::FIT_RESULT</a></div><div class="ttdeci">FIT_RESULT</div><div class="ttdoc">Enum corresponding to the state of a fitting method (and what the finalize function returns)</div><div class="ttdef"><b>Definition:</b> <a href="enums_8h_source.html#l00014">enums.h:15</a></div></div>
 <div class="ttc" id="anamespacePonca_html_abfd697aebf07c1b5c8be5ee401e2dc84a08d57dd200082f67128b5274049dda41"><div class="ttname"><a href="namespacePonca.html#abfd697aebf07c1b5c8be5ee401e2dc84a08d57dd200082f67128b5274049dda41">Ponca::UNDEFINED</a></div><div class="ttdeci">@ UNDEFINED</div><div class="ttdoc">The fitting is undefined, you can't use it for valid results.</div><div class="ttdef"><b>Definition:</b> <a href="enums_8h_source.html#l00022">enums.h:22</a></div></div>
 <div class="ttc" id="anamespacePonca_html_abfd697aebf07c1b5c8be5ee401e2dc84a23aa2882b31e320fa4130218dd98c1a6"><div class="ttname"><a href="namespacePonca.html#abfd697aebf07c1b5c8be5ee401e2dc84a23aa2882b31e320fa4130218dd98c1a6">Ponca::CONFLICT_ERROR_FOUND</a></div><div class="ttdeci">@ CONFLICT_ERROR_FOUND</div><div class="ttdoc">Multiple classes of the fitting procedure initialize the primitive.</div><div class="ttdef"><b>Definition:</b> <a href="enums_8h_source.html#l00027">enums.h:27</a></div></div>
@@ -228,7 +229,7 @@ $(document).ready(function(){initNavTree('sphereFit_8hpp_source.html',''); initR
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_695d95a8d8fbec601a248c0414764298.html">Ponca</a></li><li class="navelem"><a class="el" href="dir_ce16314fc45f8638543c5146aff64d4a.html">src</a></li><li class="navelem"><a class="el" href="dir_221133f19e4af6803e4ee7d78db21786.html">Fitting</a></li><li class="navelem"><b>sphereFit.hpp</b></li>
-    <li class="footer">Generated on Tue Oct 31 2023 12:22:57 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.6 </li>
+    <li class="footer">Generated on Tue Oct 31 2023 12:46:42 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.6 </li>
   </ul>
 </div>
 </body>

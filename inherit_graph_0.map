@@ -15,7 +15,7 @@
 <area shape="rect" id="node14" href="$classPonca_1_1MeanPlaneFitImpl.html" title="Plane fitting procedure computing the mean position and orientation from oriented points." alt="" coords="266,591,474,631"/>
 <area shape="rect" id="node15" href="$classPonca_1_1MeanPosition.html" title="Compute the barycenter of the input points." alt="" coords="266,655,474,695"/>
 <area shape="rect" id="node16" href="$classPonca_1_1OrientedSphereFitImpl.html" title="Algebraic Sphere fitting procedure on oriented point sets." alt="" coords="251,719,489,759"/>
-<area shape="rect" id="node17" href="$classPonca_1_1SphereFitImpl.html" title="Algebraic Sphere fitting procedure on point sets without normals." alt="" coords="266,783,474,823"/>
+<area shape="rect" id="node17" href="$classPonca_1_1SphereFitImpl.html" title="Algebraic Sphere fitting procedure on point set without normals." alt="" coords="266,783,474,823"/>
 <area shape="rect" id="node18" href="$classPonca_1_1UnorientedSphereFitImpl.html" title="Algebraic Sphere fitting procedure on point sets with non&#45;oriented normals." alt="" coords="251,847,489,887"/>
 <area shape="rect" id="node19" title=" " alt="" coords="29,1779,171,1804"/>
 <area shape="rect" id="node20" href="$classPonca_1_1Plane.html" title="Implicit hyperplane defined by an homogeneous vector ." alt="" coords="276,1771,464,1811"/>

@@ -260,7 +260,7 @@
 <!-- Node12 -->
 <g id="node17" class="node">
 <title>Node12</title>
-<g id="a_node17"><a xlink:href="classPonca_1_1SphereFitImpl.html" target="_top" xlink:title="Algebraic Sphere fitting procedure on point sets without normals.">
+<g id="a_node17"><a xlink:href="classPonca_1_1SphereFitImpl.html" target="_top" xlink:title="Algebraic Sphere fitting procedure on point set without normals.">
 <polygon fill="white" stroke="#666666" points="351.5,-819 195.5,-819 195.5,-789 351.5,-789 351.5,-819"/>
 <text text-anchor="start" x="203.5" y="-807" font-family="Helvetica,sans-Serif" font-size="10.00">Ponca::SphereFitImpl</text>
 <text text-anchor="middle" x="273.5" y="-796" font-family="Helvetica,sans-Serif" font-size="10.00">&lt; DataPoint, _WFunctor, T &gt;</text>
