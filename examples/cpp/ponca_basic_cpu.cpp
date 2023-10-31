@@ -89,7 +89,7 @@ void test_fit(Fit& _fit, const KdTree<MyPoint>& tree, const VectorType& _p)
   // Iterate over samples and _fit the primitive
   for(int i : tree.range_neighbors(_p, tmax) )
   {
-      _fit.addNeighbor( tree.point_data()[i] );
+      _fit.addNeighbor( tree.points()[i] );
   }
 
   //finalize fitting

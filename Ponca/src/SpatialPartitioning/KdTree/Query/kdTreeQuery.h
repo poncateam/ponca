@@ -44,9 +44,9 @@ protected:
                          ProcessNeighborFunctor processNeighborFunctor
                          )
     {
-        const auto& nodes   = m_kdtree->node_data();
-        const auto& points  = m_kdtree->point_data();
-        const auto& indices = m_kdtree->index_data();
+        const auto& nodes   = m_kdtree->nodes();
+        const auto& points  = m_kdtree->points();
+        const auto& indices = m_kdtree->sample_indices();
 
         if (nodes.empty() || points.empty() || indices.empty())
             throw std::invalid_argument("Empty KdTree");

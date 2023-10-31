@@ -42,7 +42,7 @@ inline void KdTreeBase<Traits>::buildWithSampling(PointUserContainer&& points,
 
     m_indices = std::move(sampling);
 
-    this->build_rec(0, 0, index_count(), 1);
+    this->build_rec(0, 0, sample_count(), 1);
 
     PONCA_DEBUG_ASSERT(this->valid());
 }
@@ -58,7 +58,7 @@ inline void KdTreeBase<Traits>::rebuild(IndexUserContainer sampling)
 
     m_indices = std::move(sampling);
 
-    this->build_rec(0, 0, index_count(), 1);
+    this->build_rec(0, 0, sample_count(), 1);
 
     PONCA_DEBUG_ASSERT(this->valid());
 }
@@ -71,19 +71,19 @@ bool KdTreeBase<Traits>::valid() const
 
     if (m_points.empty())
         return m_nodes.empty() && m_indices.empty();
-        
+
     if(m_nodes.empty() || m_indices.empty())
     {
         PONCA_DEBUG_ERROR;
         return false;
     }
-        
-    if(point_count() < index_count())
+
+    if(point_count() < sample_count())
     {
         PONCA_DEBUG_ERROR;
         return false;
     }
-        
+
     std::vector<bool> b(point_count(), false);
     for(IndexType idx : m_indices)
     {
@@ -100,7 +100,7 @@ bool KdTreeBase<Traits>::valid() const
         const NodeType& node = m_nodes.operator[](n);
         if(node.is_leaf())
         {
-            if(index_count() <= node.leaf_start() || index_count() < node.leaf_start()+node.leaf_size())
+            if(sample_count() <= node.leaf_start() || sample_count() < node.leaf_start()+node.leaf_size())
             {
                 PONCA_DEBUG_ERROR;
                 return false;
@@ -128,10 +128,10 @@ template<typename Traits>
 std::string KdTreeBase<Traits>::to_string() const
 {
     if (m_indices.empty()) return "";
-    
+
     std::stringstream str;
-    str << "indices (" << index_count() << ") :\n";
-    for(IndexType i=0; i<index_count(); ++i)
+    str << "indices (" << sample_count() << ") :\n";
+    for(IndexType i=0; i<sample_count(); ++i)
     {
         str << "  " << i << ": " << m_indices.operator[](i) << "\n";
     }
@@ -192,13 +192,13 @@ auto KdTreeBase<Traits>::partition(IndexType start, IndexType end, int dim, Scal
 {
     const auto& points = m_points;
     auto& indices  = m_indices;
-    
+
     auto it = std::partition(indices.begin()+start, indices.begin()+end, [&](IndexType i)
     {
         return points[i].pos()[dim] < value;
     });
 
     auto distance = std::distance(m_indices.begin(), it);
-    
+
     return static_cast<IndexType>(distance);
 }

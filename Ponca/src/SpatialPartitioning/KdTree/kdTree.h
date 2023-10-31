@@ -82,7 +82,7 @@ public:
 
     static_assert(std::is_same<typename PointContainer::value_type, DataPoint>::value,
         "PointContainer must contain DataPoints");
-    
+
     // Queries use a value of -1 for invalid indices
     static_assert(std::is_signed<IndexType>::value, "Index type must be signed");
 
@@ -195,52 +195,52 @@ public:
 
     // Accessors ---------------------------------------------------------------
 public:
+    /// \brief The number of nodes in the kd-tree (including leaves).
     inline NodeIndexType node_count() const
     {
         return m_nodes.size();
     }
 
-    inline IndexType index_count() const
+    /// \brief The number of points sampled by the kd-tree.
+    inline IndexType sample_count() const
     {
         return (IndexType)m_indices.size();
     }
 
+    /// \brief The number of points in the base point container.
     inline IndexType point_count() const
     {
         return (IndexType)m_points.size();
     }
 
+    /// \brief The number of leaf nodes in the kd-tree.
     inline NodeIndexType leaf_count() const
     {
         return m_leaf_count;
     }
 
-    inline PointContainer& point_data()
+    /// \brief The base points the kd-tree samples into.
+    /// \warning Changing the order of points will invalidate the kd-tree.
+    inline PointContainer& points()
     {
         return m_points;
     };
 
-    inline const PointContainer& point_data() const
+    /// \brief The base points the kd-tree samples into.
+    inline const PointContainer& points() const
     {
         return m_points;
     };
 
-    inline const NodeContainer& node_data() const
+    /// \brief The flat container of nodes used internally by the kd-tree.
+    inline const NodeContainer& nodes() const
     {
         return m_nodes;
     }
 
-    inline NodeContainer& node_data()
-    {
-        return m_nodes;
-    }
-
-    inline const IndexContainer& index_data() const
-    {
-        return m_indices;
-    }
-
-    inline IndexContainer& index_data()
+    /// \brief The indices of the points sampled by the kd-tree.
+    /// \note The order will vary depending on the geometry of the points.
+    inline const IndexContainer& sample_indices() const
     {
         return m_indices;
     }
@@ -296,7 +296,6 @@ public :
     {
         return KdTreeRangeIndexQuery<Traits>(this, r, index);
     }
-    
 
     // Data --------------------------------------------------------------------
 protected:
