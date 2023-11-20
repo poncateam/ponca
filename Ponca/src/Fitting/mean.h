@@ -25,7 +25,8 @@ namespace Ponca {
     PONCA_FITTING_DECLARE_DEFAULT_TYPES
 
     protected:
-        enum { PROVIDES_MEAN_POSITION };
+        PROVIDES(MEAN_POSITION);
+
         VectorType m_sumP {VectorType::Zero()}; /*!< \brief Sum of the input points vectors */
 
     public:
@@ -66,7 +67,8 @@ namespace Ponca {
     PONCA_FITTING_DECLARE_DEFAULT_TYPES
 
     protected:
-        enum { PROVIDES_MEAN_NORMAL };
+        PROVIDES(MEAN_NORMAL);
+
         VectorType m_sumN;    /*!< \brief Sum of the normal vectors */
 
     public:
@@ -81,11 +83,9 @@ namespace Ponca {
     PONCA_FITTING_DECLARE_DEFAULT_DER_TYPES
 
     protected:
-        enum {
-            Check = Base::PROVIDES_PRIMITIVE_DERIVATIVE &&
-                    Base::PROVIDES_MEAN_POSITION,
-            PROVIDES_MEAN_POSITION_DERIVATIVE,    /*!< \brief Provides derivative of the mean position*/
-        };
+        REQUIRES(PRIMITIVE_DERIVATIVE);
+        REQUIRES(MEAN_POSITION);
+        PROVIDES(MEAN_POSITION_DERIVATIVE);
 
         /*! \brief Derivatives of the input points vectors */
         VectorArray m_dSumP {VectorArray::Zero()};
@@ -128,11 +128,9 @@ namespace Ponca {
         PONCA_FITTING_DECLARE_DEFAULT_DER_TYPES
 
     protected:
-        enum {
-            Check = Base::PROVIDES_PRIMITIVE_DERIVATIVE && 
-                    Base::PROVIDES_MEAN_NORMAL,
-            PROVIDES_MEAN_NORMAL_DERIVATIVE,  /*!< \brief Provides derivative of the mean normal*/
-        };
+        REQUIRES(PRIMITIVE_DERIVATIVE);
+        REQUIRES(MEAN_NORMAL);
+        PROVIDES(MEAN_NORMAL_DERIVATIVE);
 
         private:
         /*! \brief Derivatives of the input normals of the input points vectors*/

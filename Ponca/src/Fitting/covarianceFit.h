@@ -34,11 +34,8 @@ namespace Ponca
     PONCA_FITTING_DECLARE_DEFAULT_TYPES
 
     protected:
-        enum
-        {
-            Check = Base::PROVIDES_MEAN_POSITION,
-            PROVIDES_POSITION_COVARIANCE
-        };
+        REQUIRES(MEAN_POSITION);
+        PROVIDES(POSITION_COVARIANCE);
 
     public:
         using MatrixType = typename DataPoint::MatrixType; /*!< \brief Alias to matrix type*/
@@ -78,13 +75,10 @@ namespace Ponca
     PONCA_FITTING_DECLARE_DEFAULT_DER_TYPES
 
     protected:
-        enum
-        {
-            Check = Base::PROVIDES_PRIMITIVE_DERIVATIVE &&
-                    Base::PROVIDES_MEAN_POSITION_DERIVATIVE &&
-                    Base::PROVIDES_POSITION_COVARIANCE,
-            PROVIDES_POSITION_COVARIANCE_DERIVATIVE
-        };
+        REQUIRES(PRIMITIVE_DERIVATIVE);
+        REQUIRES(MEAN_POSITION_DERIVATIVE);
+        REQUIRES(POSITION_COVARIANCE);
+        PROVIDES(POSITION_COVARIANCE_DERIVATIVE);
 
     protected:
         /// Computation data: derivatives of the covariance matrix

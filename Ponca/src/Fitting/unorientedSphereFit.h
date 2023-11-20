@@ -30,7 +30,8 @@ class UnorientedSphereFitImpl : public T
 PONCA_FITTING_DECLARE_DEFAULT_TYPES
 
 protected:
-    enum { Check = Base::PROVIDES_ALGEBRAIC_SPHERE && Base::PROVIDES_MEAN_POSITION };
+    REQUIRES(ALGEBRAIC_SPHERE);
+    REQUIRES(MEAN_POSITION);
 
     typedef Eigen::Matrix<Scalar, DataPoint::Dim+1, 1>      VectorB;
     typedef Eigen::Matrix<Scalar, DataPoint::Dim+1, DataPoint::Dim+1>  MatrixBB;
@@ -81,11 +82,8 @@ private:
     typedef T Base; /*!< \brief Generic base type */
 
 protected:
-    enum
-    {
-        Check = Base::PROVIDES_ALGEBRAIC_SPHERE, /*!< \brief Needs Algebraic Sphere */
-        PROVIDES_ALGEBRAIC_SPHERE_DERIVATIVE     /*!< \brief Provides Algebraic Sphere derivative*/
-    };
+    REQUIRES(ALGEBRAIC_SPHERE);
+    PROVIDES(ALGEBRAIC_SPHERE_DERIVATIVE);
 
 public:
     typedef typename Base::Scalar     Scalar;     /*!< \brief Inherited scalar type*/
@@ -193,7 +191,7 @@ class UnorientedSphereScaleDer:public internal::UnorientedSphereDer<DataPoint, _
 protected:
     /*! \brief Inherited class */
     typedef internal::UnorientedSphereDer<DataPoint, _WFunctor, T, internal::FitScaleDer> Base;
-    enum { PROVIDES_ALGEBRAIC_SPHERE_SCALE_DERIVATIVE };
+    PROVIDES(ALGEBRAIC_SPHERE_SCALE_DERIVATIVE);
 };
 
 
@@ -212,7 +210,7 @@ class UnorientedSphereSpaceDer:public internal::UnorientedSphereDer<DataPoint, _
 protected:
     /*! \brief Inherited class */
     typedef internal::UnorientedSphereDer<DataPoint, _WFunctor, T, internal::FitSpaceDer> Base;
-    enum {  PROVIDES_ALGEBRAIC_SPHERE_SPACE_DERIVATIVE };
+    PROVIDES(ALGEBRAIC_SPHERE_SPACE_DERIVATIVE);
 };
 
 
@@ -233,11 +231,8 @@ class UnorientedSphereScaleSpaceDer:public internal::UnorientedSphereDer<DataPoi
 protected:
     /*! \brief Inherited class */
     typedef internal::UnorientedSphereDer<DataPoint, _WFunctor, T, FitScaleSpaceDer> Base;
-    enum
-    {
-        PROVIDES_ALGEBRAIC_SPHERE_SCALE_DERIVATIVE,
-        PROVIDES_ALGEBRAIC_SPHERE_SPACE_DERIVATIVE
-    };
+    PROVIDES(ALGEBRAIC_SPHERE_SCALE_DERIVATIVE);
+    PROVIDES(ALGEBRAIC_SPHERE_SPACE_DERIVATIVE);
 };
 
 #endif // end TOBEIMPLEMENTED
