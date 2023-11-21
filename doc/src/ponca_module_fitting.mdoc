@@ -244,6 +244,14 @@ namespace Ponca
   \endcode
   The capability `GLS_PARAMETRIZATION` tells that GLSParam provides the GLS parameterization \cite Mellado:2012:GLS, and other components can access the related information.
 
+  The macro `IS_PROVIDED` check at compile-time if a capability is provided or not:
+  \code
+    if constexpr(IS_PROVIDED(GLS_PARAMETRIZATION)) {
+      // use this->tau(), this->eta(), ...
+    }
+    std::conditional<IS_PROVIDED(GLS_PARAMETRIZATION), double, float>::type var;
+  \endcode
+
   \note There is currently no formal description of the API provided by each capability. This will be fixed in upcoming releases.
   These relations are currently implicitly defined (and used), but not documented.
   For instance, a tool with the capability `PRINCIPAL_CURVATURES` provides the following methods:
