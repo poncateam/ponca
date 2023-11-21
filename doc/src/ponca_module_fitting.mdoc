@@ -209,7 +209,7 @@ namespace Ponca
 
 
 
-  \subsection fitting_extensions_deps Computational objets, basket and CRTP
+  \subsection fitting_extensions_deps Computational objects, basket and CRTP
   In addition to Primitive fitting, Ponca allows to compute geometrical properties of the input samples.
   This is done by aggregating multiple tool classes in the Basket, for instance to compute the Growing Least Squares
   descriptor \cite Mellado:2012:GLS (see GLSParam) from multiple sphere fitting techniques:
@@ -225,67 +225,62 @@ namespace Ponca
   and Ponca::MeanPlaneFit, among others.
   \snippet{lineno} meanPlaneFit.h MeanPlaneFit Definition
 
-  \subsection fitting_capabilities Computational objets capabilities and requirements
+  \subsection fitting_capabilities Computational objects capabilities and requirements
   Aggregating small computational objects allows to minimize code duplication, but also to easily combine different techniques.
   For instance, GLSDer can be used independently of the fitting technique, e.g. Ponca::OrientedSphereFit or Ponca::UnorientedSphereFit, as long as the fitted \ref PrimitiveBase "Primitive" is an AlgebraicSphere.
 
-  In order to detect if the computational objects are correctly combined, Ponca provides a compile-time equirement/capability system:
+  In order to detect if the computational objects are correctly combined, Ponca provides a compile-time requirement/capability system:
   each computational objects check if the other classes of the CRTP provides the required computations.
-  For instance, in the GLSParam class, we define the following enum:
+  For instance, in the GLSParam class, we require and declare capabilities:
   \snippet{lineno} gls.h Requirements
-  `Base` is a type defined from the CRTP and that represents the inherited classes.
-  If `Base` does not define `PROVIDES_ALGEBRAIC_SPHERE`, this line generates an error when compiling the program.
+  If no base class define `ALGEBRAIC_SPHERE`, this line generates an error when compiling the program.
   For instance, compiling the type
   \code
     typedef Basket<Point, WeightSmoothFunc, GLSParam> FitSmoothOriented;
   \endcode
   generates the following error:
   \code
-  Building CXX object /xxxxx/wrongType.cpp.o
-  In file included from /xxxxx/wrongType.cpp:19:
-  /xxxxx/ponca/Ponca/src/Fitting/gls.h:51:23: error: no member named 'PROVIDES_ALGEBRAIC_SPHERE' in 'Ponca::PrimitiveBase<PointPositionNormal<float, 3>, Ponca::DistWeightFunc<PointPositionNormal<float, 3>, Ponca::SmoothWeightKernel<float> >, void>'
-          Check = Base::PROVIDES_ALGEBRAIC_SPHERE,
-                  ~~~~~~^
+    error: static assertion failed: Ponca capability 'ALGEBRAIC_SPHERE' not provided by any base class
   \endcode
-  The capability `PROVIDES_GLS_PARAMETRIZATION` tells that GLSParam provides the GLS parameterization \cite Mellado:2012:GLS, and other components can access the related information.
+  The capability `GLS_PARAMETRIZATION` tells that GLSParam provides the GLS parameterization \cite Mellado:2012:GLS, and other components can access the related information.
 
   \note There is currently no formal description of the API provided by each capability. This will be fixed in upcoming releases.
   These relations are currently implicitly defined (and used), but not documented.
-  For instance, a tool with the capability `PROVIDES_PRINCIPAL_CURVATURES` provides the following methods:
+  For instance, a tool with the capability `PRINCIPAL_CURVATURES` provides the following methods:
   `kmin()`, `kmax()`, `kminDirection()`, `kmaxDirection()`, `kMean()`, `GaussianCurvature()`, see CurvatureEstimatorBase.
 
   In order to ease tools combinations, each class declare a set of *required* and *provided* capabilities, as listed in the two following table:
 
     Fit/Tool (used in Basket)                   | Requires                                                                                              | Provides                                                            |
     ------------------------------------------- | ----------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------- |
-    MeanPosition                                |                                                                                                       | `PROVIDES_MEAN_POSITION`                                            |
-    MeanNormal                                  |                                                                                                       | `PROVIDES_MEAN_NORMAL`                                              |
-    PrimitiveBase                               |                                                                                                       | `PROVIDES_PRIMITIVE_BASE`                                           |
-    DryFit                                      | `PROVIDES_PRIMITIVE_BASE`                                                                             |                                                                     |
-    Plane                                       | `PROVIDES_PRIMITIVE_BASE`                                                                             | `PROVIDES_PLANE`                                                    |
-    Ponca::MeanPlaneFitImpl                     | `PROVIDES_MEAN_POSITION`,`PROVIDES_MEAN_NORMAL`,`PROVIDES_PLANE`                                      |                                                                     |
-    CovarianceFitBase                           | `PROVIDES_MEAN_POSITION`                                                                              | `PROVIDES_POSITION_COVARIANCE`                                      |
-    Ponca::CovarianceLineFitImpl                | `PROVIDES_LINE`,`PROVIDES_POSITION_COVARIANCE`                                                        |                                                                     |
-    Ponca::CovariancePlaneFitImpl               | `PROVIDES_PLANE`,`PROVIDES_POSITION_COVARIANCE`                                                       | `PROVIDES_TANGENT_PLANE_BASIS`                                      |
-    MongePatch                                  | `PROVIDES_TANGENT_PLANE_BASIS`,`PROVIDES_PLANE`                                                       |                                                                     |
-    AlgebraicSphere                             | `PROVIDES_PRIMITIVE_BASE`                                                                             | `PROVIDES_ALGEBRAIC_SPHERE`                                         |
-    Ponca::SphereFitImpl                        | `PROVIDES_ALGEBRAIC_SPHERE`                                                                           |                                                                     |
-    Ponca::OrientedSphereFitImpl                | `PROVIDES_ALGEBRAIC_SPHERE`,`PROVIDES_MEAN_NORMAL`,`PROVIDES_MEAN_POSITION`                           |                                                                     |
-    Ponca::UnorientedSphereFitImpl              | `PROVIDES_ALGEBRAIC_SPHERE`,`PROVIDES_MEAN_POSITION`                                                  |                                                                     |
-    GLSParam                                    | `PROVIDES_ALGEBRAIC_SPHERE`                                                                           | `PROVIDES_GLS_PARAMETRIZATION`                                      |
+    MeanPosition                                |                                                                                                       | `MEAN_POSITION`                                                     |
+    MeanNormal                                  |                                                                                                       | `MEAN_NORMAL`                                                       |
+    PrimitiveBase                               |                                                                                                       | `PRIMITIVE_BASE`                                                    |
+    DryFit                                      | `PRIMITIVE_BASE`                                                                                      |                                                                     |
+    Plane                                       | `PRIMITIVE_BASE`                                                                                      | `PLANE`                                                             |
+    Ponca::MeanPlaneFitImpl                     | `MEAN_POSITION`,`MEAN_NORMAL`,`PLANE`                                                                 |                                                                     |
+    CovarianceFitBase                           | `MEAN_POSITION`                                                                                       | `POSITION_COVARIANCE`                                               |
+    Ponca::CovarianceLineFitImpl                | `LINE`,`POSITION_COVARIANCE`                                                                          |                                                                     |
+    Ponca::CovariancePlaneFitImpl               | `PLANE`,`POSITION_COVARIANCE`                                                                         | `TANGENT_PLANE_BASIS`                                               |
+    MongePatch                                  | `TANGENT_PLANE_BASIS`,`PLANE`                                                                         |                                                                     |
+    AlgebraicSphere                             | `PRIMITIVE_BASE`                                                                                      | `ALGEBRAIC_SPHERE`                                                  |
+    Ponca::SphereFitImpl                        | `ALGEBRAIC_SPHERE`                                                                                    |                                                                     |
+    Ponca::OrientedSphereFitImpl                | `ALGEBRAIC_SPHERE`,`MEAN_NORMAL`,`MEAN_POSITION`                                                      |                                                                     |
+    Ponca::UnorientedSphereFitImpl              | `ALGEBRAIC_SPHERE`,`MEAN_POSITION`                                                                    |                                                                     |
+    GLSParam                                    | `ALGEBRAIC_SPHERE`                                                                                    | `GLS_PARAMETRIZATION`                                               |
 
     Fit/Tool (used in BasketDiff)               | Requires                                                                                              | Provides                                                            |
     ------------------------------------------- | ----------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------- |
-    PrimitiveDer                                | `PROVIDES_PRIMITIVE_BASE`                                                                             | `PROVIDES_PRIMITIVE_DERIVATIVE`                                     |
-    CovarianceFitDer                            | `PROVIDES_PRIMITIVE_DERIVATIVE`,`PROVIDES_MEAN_POSITION_DERIVATIVE`,`PROVIDES_POSITION_COVARIANCE`    | `PROVIDES_POSITION_COVARIANCE_DERIVATIVE`                           |
-    Ponca::CovariancePlaneDerImpl               | `PROVIDES_PLANE`,`PROVIDES_POSITION_COVARIANCE_DERIVATIVE`                                            | `PROVIDES_COVARIANCE_PLANE_DERIVATIVE`,`PROVIDES_NORMAL_DERIVATIVE` |
-    Ponca::OrientedSphereDerImpl                | `PROVIDES_ALGEBRAIC_SPHERE`,`PROVIDES_MEAN_POSITION_DERIVATIVE`,`PROVIDES_PRIMITIVE_DERIVATIVE`       | `PROVIDES_ALGEBRAIC_SPHERE_DERIVATIVE`,`PROVIDES_NORMAL_DERIVATIVE` |
-    MlsSphereFitDer                             | `PROVIDES_PRIMITIVE_DERIVATIVE`,`PROVIDES_ALGEBRAIC_SPHERE_DERIVATIVE`                                | `PROVIDES_NORMAL_DERIVATIVE`                                        |
-    GLSDer                                      | `PROVIDES_GLS_PARAMETRIZATION`,`PROVIDES_PRIMITIVE_DERIVATIVE`,`PROVIDES_ALGEBRAIC_SPHERE_DERIVATIVE` | `PROVIDES_GLS_DERIVATIVE`,`PROVIDES_GLS_GEOM_VAR`                   |
-    CurvatureEstimatorBase                      |                                                                                                       | `PROVIDES_PRINCIPAL_CURVATURES`                                     |
-    NormalDerivativesCurvatureEstimator         | `PROVIDES_NORMAL_DERIVATIVE`,`PROVIDES_PRINCIPAL_CURVATURES`                                          |                                                                     |
-    NormalCovarianceCurvatureEstimator          | `PROVIDES_PRINCIPAL_CURVATURES`                                                                       |                                                                     |
-    ProjectedNormalCovarianceCurvatureEstimator | `PROVIDES_PLANE`                                                                                      |                                                                     |
+    PrimitiveDer                                | `PRIMITIVE_BASE`                                                                                      | `PRIMITIVE_DERIVATIVE`                                              |
+    CovarianceFitDer                            | `PRIMITIVE_DERIVATIVE`,`MEAN_POSITION_DERIVATIVE`,`POSITION_COVARIANCE`                               | `POSITION_COVARIANCE_DERIVATIVE`                                    |
+    Ponca::CovariancePlaneDerImpl               | `PLANE`,`POSITION_COVARIANCE_DERIVATIVE`                                                              | `COVARIANCE_PLANE_DERIVATIVE`,`NORMAL_DERIVATIVE`                   |
+    Ponca::OrientedSphereDerImpl                | `ALGEBRAIC_SPHERE`,`MEAN_POSITION_DERIVATIVE`,`PRIMITIVE_DERIVATIVE`                                  | `ALGEBRAIC_SPHERE_DERIVATIVE`,`NORMAL_DERIVATIVE`                   |
+    MlsSphereFitDer                             | `PRIMITIVE_DERIVATIVE`,`ALGEBRAIC_SPHERE_DERIVATIVE`                                                  | `NORMAL_DERIVATIVE`                                                 |
+    GLSDer                                      | `GLS_PARAMETRIZATION`,`PRIMITIVE_DERIVATIVE`,`ALGEBRAIC_SPHERE_DERIVATIVE`                            | `GLS_DERIVATIVE`,`GLS_GEOM_VAR`                                     |
+    CurvatureEstimatorBase                      |                                                                                                       | `PRINCIPAL_CURVATURES`                                              |
+    NormalDerivativesCurvatureEstimator         | `NORMAL_DERIVATIVE`,`PRINCIPAL_CURVATURES`                                                            |                                                                     |
+    NormalCovarianceCurvatureEstimator          | `PRINCIPAL_CURVATURES`                                                                                |                                                                     |
+    ProjectedNormalCovarianceCurvatureEstimator | `PLANE`                                                                                               |                                                                     |
 
     \note In its current version, the requirement/capability system offer limited protection over the combination of tools providing the same capabilities.
     Indeed, it is possible to build ill-formed combinations where two computations attempt to save their results at the same place, e.g. when using two fitting technique for the same primitive:
