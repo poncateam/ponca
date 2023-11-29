@@ -1,5 +1,6 @@
 var classPonca_1_1SphereFitImpl =
 [
+    [ "Base", "classPonca_1_1SphereFitImpl.html#a78348bd199cdeee9b5df5e9f8a9f6717", null ],
     [ "Scalar", "classPonca_1_1SphereFitImpl.html#a46860628ec6f220ee8577b4ce41f4031", null ],
     [ "VectorType", "classPonca_1_1SphereFitImpl.html#a512c58df188356f2423e029eacba019b", null ],
     [ "WFunctor", "classPonca_1_1SphereFitImpl.html#a6447636c219a23e78e36be388637ff22", null ],

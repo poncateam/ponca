@@ -1,5 +1,6 @@
 var classPonca_1_1MeanPositionDer =
 [
+    [ "Base", "classPonca_1_1MeanPositionDer.html#aadda0323d9d997f9478706b817f050b3", null ],
     [ "Scalar", "classPonca_1_1MeanPositionDer.html#a706ae35e198ee9e1bd9fd67590f80702", null ],
     [ "ScalarArray", "classPonca_1_1MeanPositionDer.html#a0fae2778f05711f906b5021b805b1780", null ],
     [ "VectorArray", "classPonca_1_1MeanPositionDer.html#a9baef63fca75ebab6dd9c236c898b8da", null ],

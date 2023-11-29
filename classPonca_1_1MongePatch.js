@@ -1,5 +1,6 @@
 var classPonca_1_1MongePatch =
 [
+    [ "Base", "classPonca_1_1MongePatch.html#a8c3a5222897291f86cf7b40b125b650e", null ],
     [ "Scalar", "classPonca_1_1MongePatch.html#a7400b89b87e3e0073b9322f775c70afe", null ],
     [ "VectorType", "classPonca_1_1MongePatch.html#a0268f212403253ece19251419ef7c217", null ],
     [ "WFunctor", "classPonca_1_1MongePatch.html#aeee3391c352385accffa8ee52b02c7c1", null ],

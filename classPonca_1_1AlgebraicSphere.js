@@ -1,5 +1,6 @@
 var classPonca_1_1AlgebraicSphere =
 [
+    [ "Base", "classPonca_1_1AlgebraicSphere.html#a277679eb295a15c5e074200b90811a8c", null ],
     [ "Scalar", "classPonca_1_1AlgebraicSphere.html#a90d67318da4e0597fad0d6b53cefe0d1", null ],
     [ "VectorType", "classPonca_1_1AlgebraicSphere.html#af30386a4406c056b736100eaa950d3d0", null ],
     [ "WFunctor", "classPonca_1_1AlgebraicSphere.html#aaf462225e8ff42cbf327d04bccc14d1f", null ],

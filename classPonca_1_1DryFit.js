@@ -1,5 +1,6 @@
 var classPonca_1_1DryFit =
 [
+    [ "Base", "classPonca_1_1DryFit.html#ab867234fd8e4806c8e9babb12dc5ba71", null ],
     [ "Scalar", "classPonca_1_1DryFit.html#abc1e3382df703f856cd6fdcde58caca4", null ],
     [ "VectorType", "classPonca_1_1DryFit.html#a4f172702f4ce04efab93a6528f44a219", null ],
     [ "WFunctor", "classPonca_1_1DryFit.html#adc410c1b2e5f282b46e39c458726e211", null ],

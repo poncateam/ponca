@@ -74,8 +74,8 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "annotated.html",
-"classPonca_1_1Line.html#ab84c7954e61467637df87040e798a641",
-"classPonca_1_1SphereFitImpl.html#afec608609ed7d45186a810d7379b0a90"
+"classPonca_1_1KnnGraphRangeQuery.html#aa59ea82b83f64cc2fb489c34a014b3dd",
+"classPonca_1_1ProjectedNormalCovarianceCurvatureEstimator.html#aebcbf0a12a3bfbce85aa6b92c15e58b4"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

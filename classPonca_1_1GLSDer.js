@@ -1,5 +1,6 @@
 var classPonca_1_1GLSDer =
 [
+    [ "Base", "classPonca_1_1GLSDer.html#a41149a32ca7631f7bd5125bf6bac88a5", null ],
     [ "Scalar", "classPonca_1_1GLSDer.html#a56cbb2a753e27f4d90a031e52b9d82ce", null ],
     [ "ScalarArray", "classPonca_1_1GLSDer.html#a044d378d72bfd4defb6fd983ab2b891a", null ],
     [ "VectorArray", "classPonca_1_1GLSDer.html#a7d9df6358450bdf21737300864dd3b7c", null ],

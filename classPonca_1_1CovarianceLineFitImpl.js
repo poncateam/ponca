@@ -1,5 +1,6 @@
 var classPonca_1_1CovarianceLineFitImpl =
 [
+    [ "Base", "classPonca_1_1CovarianceLineFitImpl.html#a8e05e2c15411b950cef16a40fcb91a86", null ],
     [ "MatrixType", "classPonca_1_1CovarianceLineFitImpl.html#a98c6cdd9f8fec93751dbf5760d1eb6f9", null ],
     [ "Scalar", "classPonca_1_1CovarianceLineFitImpl.html#a76e5f9c84f7c8bd3b9dbf1553db033de", null ],
     [ "VectorType", "classPonca_1_1CovarianceLineFitImpl.html#a2d56c1ae866fee4949d611e805235895", null ],

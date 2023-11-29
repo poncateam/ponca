@@ -1,5 +1,6 @@
 var classPonca_1_1CurvatureEstimatorBase =
 [
+    [ "Base", "classPonca_1_1CurvatureEstimatorBase.html#a035cffb76efecc80c09691f5053de0ee", null ],
     [ "MatrixType", "classPonca_1_1CurvatureEstimatorBase.html#a509dab220f236a4e89175800a9247ac9", null ],
     [ "Scalar", "classPonca_1_1CurvatureEstimatorBase.html#a8752f5fe0c7a86ff843eabd0aafb4245", null ],
     [ "VectorType", "classPonca_1_1CurvatureEstimatorBase.html#af025c2c232dc1f09dd9cc16e3ae7efff", null ],

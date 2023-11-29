@@ -1,5 +1,6 @@
 var classPonca_1_1MeanNormal =
 [
+    [ "Base", "classPonca_1_1MeanNormal.html#a78203f71a77c9c54f63c6e7f954b4838", null ],
     [ "Scalar", "classPonca_1_1MeanNormal.html#aae52db0f459485c961e64f772c47ba84", null ],
     [ "VectorType", "classPonca_1_1MeanNormal.html#a37f400c71ef088be6043ee89bfe96c26", null ],
     [ "WFunctor", "classPonca_1_1MeanNormal.html#a7e5925d88878ba32024d97904bdb6e08", null ],

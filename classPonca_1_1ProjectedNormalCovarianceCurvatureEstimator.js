@@ -1,5 +1,6 @@
 var classPonca_1_1ProjectedNormalCovarianceCurvatureEstimator =
 [
+    [ "Base", "classPonca_1_1ProjectedNormalCovarianceCurvatureEstimator.html#aa8b0949ae032d568c203324454f67312", null ],
     [ "MatrixType", "classPonca_1_1ProjectedNormalCovarianceCurvatureEstimator.html#a2deffdfe0673c8dd1f9b3d92b05a700b", null ],
     [ "Scalar", "classPonca_1_1ProjectedNormalCovarianceCurvatureEstimator.html#a7d645e8b11e89aff2a25b6b6f91d4edc", null ],
     [ "ScalarArray", "classPonca_1_1ProjectedNormalCovarianceCurvatureEstimator.html#aa899efe0c679620e2bdf722b1f213ba3", null ],

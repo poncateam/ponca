@@ -1,5 +1,6 @@
 var classPonca_1_1NormalDerivativesCurvatureEstimator =
 [
+    [ "Base", "classPonca_1_1NormalDerivativesCurvatureEstimator.html#ac7332806fbb4226a4beda4b4bc79c4c8", null ],
     [ "MatrixType", "classPonca_1_1NormalDerivativesCurvatureEstimator.html#a286e5354ba3dad3d33d52738fc71f63a", null ],
     [ "Scalar", "classPonca_1_1NormalDerivativesCurvatureEstimator.html#aef4892f0edaa7020d2cb487a2020f10a", null ],
     [ "VectorType", "classPonca_1_1NormalDerivativesCurvatureEstimator.html#ae022ffb42769f7bf4a95d13708bedf1f", null ],

@@ -1,5 +1,6 @@
 var classPonca_1_1MeanNormalDer =
 [
+    [ "Base", "classPonca_1_1MeanNormalDer.html#a535d5b87ddfb495b125da45c52347ff0", null ],
     [ "Scalar", "classPonca_1_1MeanNormalDer.html#a73ff46709466704a222b6418602c0de2", null ],
     [ "ScalarArray", "classPonca_1_1MeanNormalDer.html#a3ba6c0831ece9a161535c4c1f6318898", null ],
     [ "VectorArray", "classPonca_1_1MeanNormalDer.html#a2f5c34609e27317c351ce7b209c175d2", null ],

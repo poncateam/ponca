@@ -1,5 +1,6 @@
 var classPonca_1_1GLSParam =
 [
+    [ "Base", "classPonca_1_1GLSParam.html#a5df631e6dad04ab8be25b63501e282fc", null ],
     [ "Scalar", "classPonca_1_1GLSParam.html#a4e0419931490aae532de4230b028eb1a", null ],
     [ "VectorType", "classPonca_1_1GLSParam.html#af2a7a07c8fafb337a110fcdc3c72d067", null ],
     [ "WFunctor", "classPonca_1_1GLSParam.html#a76837e2a9254dbefaff256add3023e7f", null ],

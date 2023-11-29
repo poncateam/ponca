@@ -1,5 +1,6 @@
 var classPonca_1_1MeanPlaneFitImpl =
 [
+    [ "Base", "classPonca_1_1MeanPlaneFitImpl.html#adc65917aa34b4c6b6ca9111a483b42bb", null ],
     [ "MatrixType", "classPonca_1_1MeanPlaneFitImpl.html#a040ced24f2465b795c631dd6eaec1244", null ],
     [ "Scalar", "classPonca_1_1MeanPlaneFitImpl.html#a3458c49ef33bca75fe5de260fc5bceaa", null ],
     [ "VectorType", "classPonca_1_1MeanPlaneFitImpl.html#a93b63f734142423083d5a596df17938f", null ],

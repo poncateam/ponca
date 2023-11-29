@@ -1,5 +1,6 @@
 var classPonca_1_1OrientedSphereDerImpl =
 [
+    [ "Base", "classPonca_1_1OrientedSphereDerImpl.html#a00ab86244aa0cb459705111ca4b788e1", null ],
     [ "Scalar", "classPonca_1_1OrientedSphereDerImpl.html#a6418adff6cd9ef6d92b2222bc6d61a6c", null ],
     [ "ScalarArray", "classPonca_1_1OrientedSphereDerImpl.html#a6b0bc5a2bff7bc3d3d2d7726aa9f9ce7", null ],
     [ "VectorArray", "classPonca_1_1OrientedSphereDerImpl.html#ad04ac0a9999d5a0e54527cd0a7e455d1", null ],

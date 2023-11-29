@@ -1,5 +1,6 @@
 var classPonca_1_1CovariancePlaneDerImpl =
 [
+    [ "Base", "classPonca_1_1CovariancePlaneDerImpl.html#a76679674ae7aeed133bfa2e5850b35d1", null ],
     [ "MatrixType", "classPonca_1_1CovariancePlaneDerImpl.html#aefa4783faec464de63d2a2fb8021db95", null ],
     [ "Scalar", "classPonca_1_1CovariancePlaneDerImpl.html#aa6ad3df0b4c704fc507add8bf249d777", null ],
     [ "ScalarArray", "classPonca_1_1CovariancePlaneDerImpl.html#a34c1bd04080647e8086738682434ae97", null ],

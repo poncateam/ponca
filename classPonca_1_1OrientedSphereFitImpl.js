@@ -1,5 +1,6 @@
 var classPonca_1_1OrientedSphereFitImpl =
 [
+    [ "Base", "classPonca_1_1OrientedSphereFitImpl.html#ad2cca21aacbb3cc08d21903ee589cad9", null ],
     [ "Scalar", "classPonca_1_1OrientedSphereFitImpl.html#a0ee6d7eac55ac54832a9f411bff91d5b", null ],
     [ "VectorType", "classPonca_1_1OrientedSphereFitImpl.html#a35bd2f9b6c2b5749bec974593189aac3", null ],
     [ "WFunctor", "classPonca_1_1OrientedSphereFitImpl.html#a48bf3913c56c13d754dcbd283301bbfa", null ],

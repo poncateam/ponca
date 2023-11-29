@@ -1,5 +1,6 @@
 var classPonca_1_1CovarianceFitDer =
 [
+    [ "Base", "classPonca_1_1CovarianceFitDer.html#a548d37ae14a0d2d6328c6397046a3ad5", null ],
     [ "MatrixType", "classPonca_1_1CovarianceFitDer.html#a06657dfc47d7add9035fd703d4a44965", null ],
     [ "Scalar", "classPonca_1_1CovarianceFitDer.html#ab9d9a337827ef72744c3ed84b326f669", null ],
     [ "ScalarArray", "classPonca_1_1CovarianceFitDer.html#aa9e4163f42f6e29666c2c2d2fc89e45a", null ],
