@@ -44,7 +44,7 @@ const CLASSNAME<DataPoint, _WFunctor, DiffType, T>& CONVERTER() const           
 
 /// Declare the following defaults types: Base, Scalar, VectorType, WFunctor
 #define PONCA_FITTING_DECLARE_DEFAULT_TYPES                                                                         \
-private:                                                                                                            \
+protected:                                                                                                          \
 using Base = T;  /*!< \brief Base class of the procedure*/                                                          \
 public:                                                                                                             \
 using Scalar     = typename DataPoint::Scalar; /*!< \brief Alias to scalar type*/                                   \
