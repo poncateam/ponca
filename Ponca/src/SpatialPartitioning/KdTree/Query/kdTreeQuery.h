@@ -61,8 +61,8 @@ protected:
                 if(node.is_leaf())
                 {
                     m_stack.pop();
-                    IndexType start = node.leaf.start;
-                    IndexType end = node.leaf.start + node.leaf.size;
+                    IndexType start = node.leaf_start();
+                    IndexType end = node.leaf_start() + node.leaf_size();
                     prepareLeafTraversal(start, end);
                     for(IndexType i=start; i<end; ++i)
                     {
@@ -80,17 +80,17 @@ protected:
                 else
                 {
                     // replace the stack top by the farthest and push the closest
-                    Scalar newOff = point[node.inner.dim] - node.inner.split_value;
+                    Scalar newOff = point[node.inner_split_dim()] - node.inner_split_value();
                     m_stack.push();
                     if(newOff < 0)
                     {
-                        m_stack.top().index = node.inner.first_child_id;
-                        qnode.index         = node.inner.first_child_id+1;
+                        m_stack.top().index = node.inner_first_child_id();
+                        qnode.index         = node.inner_first_child_id()+1;
                     }
                     else
                     {
-                        m_stack.top().index = node.inner.first_child_id+1;
-                        qnode.index         = node.inner.first_child_id;
+                        m_stack.top().index = node.inner_first_child_id()+1;
+                        qnode.index         = node.inner_first_child_id();
                     }
                     m_stack.top().squared_distance = qnode.squared_distance;
                     qnode.squared_distance         = newOff*newOff;
