@@ -70,8 +70,12 @@ public:
     enum
     {
         /*!
-         * The maximum number of points that can be stored in the kd-tree,
-         * considering the bit width of the index type.
+         * \brief The maximum number of nodes that the kd-tree can have.
+         */
+        MAX_NODE_COUNT = NodeType::MAX_COUNT,
+
+        /*!
+         * \brief The maximum number of points that can be stored in the kd-tree.
          */
         MAX_POINT_COUNT = std::size_t(2) << sizeof(IndexType)*8,
     };

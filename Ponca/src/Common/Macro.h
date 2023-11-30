@@ -43,3 +43,12 @@
     PONCA_CRASH;                                                                \
     PONCA_MACRO_END
 
+#ifdef __has_builtin
+#if __has_builtin(__builtin_clz)
+#define PONCA_HAS_BUILTIN_CLZ 1
+#endif
+#endif
+
+#ifndef PONCA_HAS_BUILTIN_CLZ
+#define PONCA_HAS_BUILTIN_CLZ 0
+#endif

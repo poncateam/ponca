@@ -7,19 +7,11 @@
 
 #pragma once
 
-#include <Eigen/Geometry>
+#include "../../Common/Macro.h"
 
 #include <cstddef>
 
-#ifdef __has_builtin
-#if __has_builtin(__builtin_clz)
-#define PONCA_HAS_BUILTIN_CLZ 1
-#endif
-#endif
-
-#ifndef PONCA_HAS_BUILTIN_CLZ
-#define PONCA_HAS_BUILTIN_CLZ 0
-#endif
+#include <Eigen/Geometry>
 
 namespace Ponca {
 #ifndef PARSED_WITH_DOXYGEN
@@ -28,7 +20,7 @@ namespace internal
     constexpr int clz(unsigned int value)
     {
 #if PONCA_HAS_BUILTIN_CLZ
-	    return __builtin_clz(value);
+        return __builtin_clz(value);
 #else
         if (value == 0)
         {
@@ -50,9 +42,6 @@ template <typename NodeIndex, typename Scalar, int DIM>
 struct KdTreeDefaultInnerNode
 {
 private:
-    // We're using unsigned indices since we're using bitfields.
-    using UIndex = typename std::make_unsigned<NodeIndex>::type;
-
     enum
     {
         // The minimum bit width required to store the split dimension.
@@ -67,6 +56,9 @@ private:
         // The MSB has an index of 3, so we store the dimension on 3 bits.
         DIM_BITS = sizeof(unsigned int)*8 - internal::clz((unsigned int)DIM),
     };
+
+    // The node stores bitfields as unsigned indices.
+    using UIndex = typename std::make_unsigned<NodeIndex>::type;
 
 public:
     enum
@@ -97,9 +89,20 @@ template <typename Index, typename NodeIndex, typename DataPoint,
 class KdTreeDefaultNode
 {
 private:
-    using Scalar = typename DataPoint::Scalar;
+    using Scalar    = typename DataPoint::Scalar;
+    using LeafType  = KdTreeDefaultLeafNode<Index, LeafSize>;
+    using InnerType = KdTreeDefaultInnerNode<NodeIndex, Scalar, DataPoint::Dim>;
 
 public:
+    enum
+    {
+        /*!
+         * \brief The maximum number of nodes that a kd-tree can have when using
+         * this node type.
+         */
+        MAX_COUNT = std::size_t(2) << InnerType::INDEX_BITS,
+    };
+
     /*!
      * \brief The type used to store node bounding boxes.
      *
@@ -109,14 +112,22 @@ public:
     using AabbType = Eigen::AlignedBox<Scalar, DataPoint::Dim>;
 
     KdTreeDefaultNode() = default;
-
-    /*!*/
+    
     bool is_leaf() const { return m_is_leaf; }
-
-    /*!*/
     void set_is_leaf(bool is_leaf) { m_is_leaf = is_leaf; }
 
-    /*!*/
+    /*!
+     * \brief Configures the range of the node in the sample index array of the
+     * kd-tree.
+     *
+     * \see the leaf node accessors for a more detailed explanation of each
+     * argument.
+     *
+     * \note The AABB is not required by the implementation, so nodes don't
+     * have to make it available.
+     *
+     * Called after \ref set_is_leaf during kd-tree construction.
+     */
     void configure_range(Index start, Index size, const AabbType &aabb)
     {
         if (m_is_leaf)
@@ -126,7 +137,15 @@ public:
         }
     }
 
-    /*!*/
+    /*!
+     * \brief Configures the inner node information.
+     *
+     * \see the inner node accessors for a more detailed explanation of each
+     * argument.
+     *
+     * Called after \ref set_is_leaf and \ref configure_range during kd-tree
+     * construction.
+     */
     void configure_inner(Scalar split_value, Index first_child_id, Index split_dim)
     {
         if (!m_is_leaf)
@@ -137,19 +156,34 @@ public:
         }
     }
 
-    /*!*/
+    /*!
+     * \brief The start index of the range of the leaf node in the sample
+     * index array.
+     */
     Index leaf_start() const { return m_leaf.start; }
 
-    /*!*/
+    /*!
+     * \brief The size of the range of the leaf node in the sample index array.
+     */
     LeafSize leaf_size() const { return m_leaf.size; }
 
-    /*!*/
+    /*!
+     * \brief The position of the AABB split of the inner node.
+     */
     Scalar inner_split_value() const { return m_inner.split_value; }
     
-    /*!*/
+    /*!
+     * \brief Which axis the split of the AABB of the inner node was done on.
+     */
     int inner_split_dim() const { return (int)m_inner.split_dim; }
     
-    /*!*/
+    /*!
+     * \brief The index of the first child of the node in the node array of the
+     * kd-tree.
+     *
+     * \note The second child is stored directly after the first in the array
+     * (i.e. `first_child_id + 1`).
+     */
     Index inner_first_child_id() const { return (Index)m_inner.first_child_id; }
 
 private:
