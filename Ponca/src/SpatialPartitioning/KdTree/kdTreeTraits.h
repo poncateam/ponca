@@ -7,6 +7,10 @@
 
 #pragma once
 
+#include "../../Common/Macro.h"
+
+#include <cstddef>
+
 #include <Eigen/Geometry>
 
 namespace Ponca {
@@ -15,7 +19,7 @@ namespace internal
 {
     constexpr int clz(unsigned int value)
     {
-#if defined(__has_builtin) && __has_builtin(__builtin_clz)
+#if PONCA_HAS_BUILTIN_CLZ
         return __builtin_clz(value);
 #else
         if (value == 0)
@@ -31,123 +35,164 @@ namespace internal
         return count;
 #endif
     }
-
-    /*!
-     * \brief Calculates bitfield sizes of a default kd-tree inner node at compile-time.
-     *
-     * \tparam Index The type used to index data points.
-     * \tparam DIM The dimension of the data points.
-     */
-    template <typename Index, int DIM>
-    struct KdTreeDefaultInnerNodeBitfieldInfo
-    {
-        using UIndex = typename std::make_unsigned<Index>::type;
-
-        static_assert(DIM >= 0, "Dim must be positive");
-
-        enum
-        {
-            /*!
-             * \brief The minimum bit width required to store the point dimension.
-             *
-             * Equal to the index of DIM's most significant bit (starting at 1), e.g.:
-             * With DIM = 4,
-             *             -------------
-             * DIM =    0b | 1 | 0 | 0 |
-             *             -------------
-             * Bit index =  #3  #2  #1
-             *
-             * The MSB has an index of 3, so we store the dimension on 3 bits.
-             */
-            DIM_BITS = sizeof(unsigned int)*8 - internal::clz((unsigned int)DIM),
-            UINDEX_BITS = sizeof(UIndex)*8,
-        };
-
-        // 1 bit is reserved for the leaf flag
-        static_assert(DIM_BITS < UINDEX_BITS - 1,
-            "Dim does not fit in the index bitfield of a default inner node");
-
-        enum
-        {
-            /*!
-             * \brief The number of remaining bits that can be used to store indices.
-             */
-            CHILD_ID_BITS = UINDEX_BITS - (DIM_BITS + 1),
-        };
-    };
 }
 #endif
 
-template <typename Index, typename Scalar, int DIM>
+template <typename NodeIndex, typename Scalar, int DIM>
 struct KdTreeDefaultInnerNode
 {
 private:
-    using BitfieldInfo = internal::KdTreeDefaultInnerNodeBitfieldInfo<Index, DIM>;
-    using UIndex       = typename BitfieldInfo::UIndex;
+    enum
+    {
+        // The minimum bit width required to store the split dimension.
+        // 
+        // Equal to the index of DIM's most significant bit (starting at 1), e.g.:
+        // With DIM = 4,
+        //             -------------
+        // DIM =    0b | 1 | 0 | 0 |
+        //             -------------
+        // Bit index =  #3  #2  #1
+        // 
+        // The MSB has an index of 3, so we store the dimension on 3 bits.
+        DIM_BITS = sizeof(unsigned int)*8 - internal::clz((unsigned int)DIM),
+    };
+
+    // The node stores bitfields as unsigned indices.
+    using UIndex = typename std::make_unsigned<NodeIndex>::type;
 
 public:
     enum
     {
         /*!
-         * \brief The number of bits used to store the point dimension.
-         *
-         * Points being in higher dimensions will result in less possible points being stored in the kd-tree.
+         * \brief The bit width used to store the first child index.
          */
-        DIM_BITS = BitfieldInfo::DIM_BITS,
-
-        /*!
-         * \brief The number of bits used to store point indices.
-         */
-        INDEX_BITS = BitfieldInfo::CHILD_ID_BITS,
+        INDEX_BITS = sizeof(UIndex)*8 - DIM_BITS,
     };
 
     Scalar split_value;
     UIndex first_child_id : INDEX_BITS;
-    UIndex dim : DIM_BITS;
-    UIndex leaf : 1;
+    UIndex split_dim : DIM_BITS;
 };
 
 template <typename Index, typename Size>
 struct KdTreeDefaultLeafNode
 {
     Index start;
-    Size  size;
+    Size size;
 };
 
 /*!
  * \brief The node type used by default by the kd-tree.
  */
-template <typename Index, typename Scalar, int DIM>
-struct KdTreeDefaultNode
+template <typename Index, typename NodeIndex, typename DataPoint,
+          typename LeafSize = Index>
+class KdTreeDefaultNode
 {
-    /*!
-     * \brief The type of the `inner` member.
-     *
-     * Must provide a `split_value` member of type `Scalar`, a `first_child_id` member and a `dim` member.
-     *
-     * Must also provide `DIM_BITS` and `INDEX_BITS` compile-time constants specifying the number of
-     * bits used to store `dim` and `first_child_id` respecitvely. These constants are used to
-     * determine the maximum number of points the kd-tree can store.
-     */
-    using InnerType    = KdTreeDefaultInnerNode<Index, Scalar, DIM>;
-    using LeafSizeType = unsigned short;
+private:
+    using Scalar    = typename DataPoint::Scalar;
+    using LeafType  = KdTreeDefaultLeafNode<Index, LeafSize>;
+    using InnerType = KdTreeDefaultInnerNode<NodeIndex, Scalar, DataPoint::Dim>;
 
-    /*!
-     * \brief The type of the `leaf` member.
-     *
-     * Must provide a `start` and a `size` member. `size` must be of type `LeafSizeType` and
-     * `start` must be large enough to store point indices.
-     */
-    using LeafType = KdTreeDefaultLeafNode<Index, LeafSizeType>;
-
-    union
+public:
+    enum
     {
-        InnerType inner;
-        LeafType  leaf;
+        /*!
+         * \brief The maximum number of nodes that a kd-tree can have when using
+         * this node type.
+         */
+        MAX_COUNT = std::size_t(2) << InnerType::INDEX_BITS,
     };
 
-    bool is_leaf() const { return inner.leaf; }
-    void set_is_leaf(bool new_is_leaf) { inner.leaf = new_is_leaf; }
+    /*!
+     * \brief The type used to store node bounding boxes.
+     *
+     * Must provide `diagonal()`, and `center()` functions, all returning a
+     * `DataPoint::VectorType`.
+     */
+    using AabbType = Eigen::AlignedBox<Scalar, DataPoint::Dim>;
+
+    KdTreeDefaultNode() = default;
+    
+    bool is_leaf() const { return m_is_leaf; }
+    void set_is_leaf(bool is_leaf) { m_is_leaf = is_leaf; }
+
+    /*!
+     * \brief Configures the range of the node in the sample index array of the
+     * kd-tree.
+     *
+     * \see the leaf node accessors for a more detailed explanation of each
+     * argument.
+     *
+     * \note The AABB is not required by the implementation, so nodes don't
+     * have to make it available.
+     *
+     * Called after \ref set_is_leaf during kd-tree construction.
+     */
+    void configure_range(Index start, Index size, const AabbType &aabb)
+    {
+        if (m_is_leaf)
+        {
+            m_leaf.start = start;
+            m_leaf.size = (LeafSize)size;
+        }
+    }
+
+    /*!
+     * \brief Configures the inner node information.
+     *
+     * \see the inner node accessors for a more detailed explanation of each
+     * argument.
+     *
+     * Called after \ref set_is_leaf and \ref configure_range during kd-tree
+     * construction.
+     */
+    void configure_inner(Scalar split_value, Index first_child_id, Index split_dim)
+    {
+        if (!m_is_leaf)
+        {
+            m_inner.split_value = split_value;
+            m_inner.first_child_id = first_child_id;
+            m_inner.split_dim = split_dim;
+        }
+    }
+
+    /*!
+     * \brief The start index of the range of the leaf node in the sample
+     * index array.
+     */
+    Index leaf_start() const { return m_leaf.start; }
+
+    /*!
+     * \brief The size of the range of the leaf node in the sample index array.
+     */
+    LeafSize leaf_size() const { return m_leaf.size; }
+
+    /*!
+     * \brief The position of the AABB split of the inner node.
+     */
+    Scalar inner_split_value() const { return m_inner.split_value; }
+    
+    /*!
+     * \brief Which axis the split of the AABB of the inner node was done on.
+     */
+    int inner_split_dim() const { return (int)m_inner.split_dim; }
+    
+    /*!
+     * \brief The index of the first child of the node in the node array of the
+     * kd-tree.
+     *
+     * \note The second child is stored directly after the first in the array
+     * (i.e. `first_child_id + 1`).
+     */
+    Index inner_first_child_id() const { return (Index)m_inner.first_child_id; }
+
+private:
+    bool m_is_leaf;
+    union
+    {
+        KdTreeDefaultLeafNode<Index, LeafSize> m_leaf;
+        KdTreeDefaultInnerNode<NodeIndex, Scalar, DataPoint::Dim> m_inner;
+    };
 };
 
 /*!
@@ -156,22 +201,6 @@ struct KdTreeDefaultNode
 template <typename _DataPoint>
 struct KdTreeDefaultTraits
 {
-    /*!
-     * \brief The type used to store point data.
-     *
-     * Must provide `Scalar` and `VectorType` typedefs.
-     *
-     * `VectorType` must provide a `squaredNorm()` function returning a `Scalar`, as well as a
-     * `maxCoeff(int*)` function returning the dimension index of its largest scalar in its output
-     * parameter (e.g. 0 for *x*, 1 for *y*, etc.).
-     */
-    using DataPoint = _DataPoint;
-
-private:
-    using Scalar     = typename DataPoint::Scalar;
-    using VectorType = typename DataPoint::VectorType;
-
-public:
     enum
     {
         /*!
@@ -181,24 +210,25 @@ public:
     };
 
     /*!
-     * \brief The type used to calculate node bounding boxes.
+     * \brief The type used to store point data.
      *
-     * Must provide `min()`, `max()`, and `center()` functions, all returning a `VectorType`.
+     * Must provide `Scalar` and `VectorType` typedefs.
+     *
+     * `VectorType` must provide a `squaredNorm()` function returning a `Scalar`, as well as a
+     * `maxCoeff(int*)` function returning the dimension index of its largest scalar in its output
+     * parameter (e.g. 0 for *x*, 1 for *y*, etc.).
      */
-    using AabbType = Eigen::AlignedBox<Scalar, DataPoint::Dim>;
+    using DataPoint    = _DataPoint;
+    using IndexType    = int;
+    using LeafSizeType = unsigned short;
 
     // Containers
-    using IndexType      = int;
     using PointContainer = std::vector<DataPoint>;
     using IndexContainer = std::vector<IndexType>;
 
-    /*!
-     * \brief The container used to store nodes.
-     *
-     * \note The node type is deduced from the node container type via `NodeContainer::value_type`.
-     *
-     * \see KdTreeDefaultNode for the node interface documentation.
-     */
-    using NodeContainer = std::vector<KdTreeDefaultNode<IndexType, Scalar, DataPoint::Dim>>;
+    // Nodes
+    using NodeIndexType = std::size_t;
+    using NodeType      = KdTreeDefaultNode<IndexType, NodeIndexType, DataPoint, LeafSizeType>;
+    using NodeContainer = std::vector<NodeType>;
 };
 } // namespace Ponca

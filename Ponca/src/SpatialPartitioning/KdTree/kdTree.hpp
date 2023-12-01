@@ -95,12 +95,12 @@ bool KdTreeBase<Traits>::valid() const
         b[idx] = true;
     }
 
-    for(NodeCountType n=0;n<node_count();++n)
+    for(NodeIndexType n=0;n<node_count();++n)
     {
         const NodeType& node = m_nodes.operator[](n);
         if(node.is_leaf())
         {
-            if(index_count() <= node.leaf.start || index_count() < node.leaf.start+node.leaf.size)
+            if(index_count() <= node.leaf_start() || index_count() < node.leaf_start()+node.leaf_size())
             {
                 PONCA_DEBUG_ERROR;
                 return false;
@@ -108,12 +108,12 @@ bool KdTreeBase<Traits>::valid() const
         }
         else
         {
-            if(node.inner.dim < 0 || 2 < node.inner.dim)
+            if(node.inner_dim() < 0 || 2 < node.inner_dim())
             {
                 PONCA_DEBUG_ERROR;
                 return false;
             }
-            if(node_count() <= node.inner.first_child_id || node_count() <= node.inner.first_child_id+1)
+            if(node_count() <= node.inner_first_child_id() || node_count() <= node.inner_first_child_id()+1)
             {
                 PONCA_DEBUG_ERROR;
                 return false;
@@ -136,51 +136,53 @@ std::string KdTreeBase<Traits>::to_string() const
         str << "  " << i << ": " << m_indices.operator[](i) << "\n";
     }
     str << "nodes (" << node_count() << ") :\n";
-    for(NodeCountType n=0; n< node_count(); ++n)
+    for(NodeIndexType n=0; n< node_count(); ++n)
     {
         const NodeType& node = m_nodes.operator[](n);
         if(node.is_leaf())
         {
-            auto end = node.leaf.start + node.leaf.size;
-            str << "  leaf: start=" << node.leaf.start << " end=" << end << " (size=" << node.leaf.size << ")\n";
+            auto end = node.leaf_start() + node.leaf_size();
+            str << "  leaf: start=" << node.leaf_start() << " end=" << end << " (size=" << node.leaf_size() << ")\n";
         }
         else
         {
-            str << "  node: dim=" << node.inner.dim << " split=" << node.inner.split_value << " child=" << node.inner.first_child_id << "\n";
+            str << "  node: dim=" << node.inner_dim() << " split=" << node.inner_split_value() << " child=" << node.inner_first_child_id() << "\n";
         }
     }
     return str.str();
 }
 
 template<typename Traits>
-void KdTreeBase<Traits>::build_rec(NodeCountType node_id, IndexType start, IndexType end, int level)
+void KdTreeBase<Traits>::build_rec(NodeIndexType node_id, IndexType start, IndexType end, int level)
 {
     NodeType& node = m_nodes[node_id];
     AabbType aabb;
     for(IndexType i=start; i<end; ++i)
         aabb.extend(m_points[m_indices[i]].pos());
 
-    node.set_is_leaf(end-start <= m_min_cell_size || level >= Traits::MAX_DEPTH);
+    node.set_is_leaf(
+        end-start <= m_min_cell_size ||
+        level >= Traits::MAX_DEPTH ||
+        // Since we add 2 nodes per inner node we need to stop if we can't add
+        // them both
+        (NodeIndexType)m_nodes.size() > MAX_NODE_COUNT - 2);
+
+    node.configure_range(start, end-start, aabb);
     if (node.is_leaf())
     {
-        node.leaf.start = start;
-        node.leaf.size = static_cast<LeafSizeType>(end-start);
         ++m_leaf_count;
     }
     else
     {
-        int dim = 0;
-        (Scalar(0.5) * (aabb.max() - aabb.min())).maxCoeff(&dim);
-        node.inner.dim = dim;
-        node.inner.split_value = aabb.center()[dim];
-
-        IndexType mid_id = this->partition(start, end, dim, node.inner.split_value);
-        node.inner.first_child_id = m_nodes.size();
+        int split_dim = 0;
+        (Scalar(0.5) * aabb.diagonal()).maxCoeff(&split_dim);
+        node.configure_inner(aabb.center()[split_dim], m_nodes.size(), split_dim);
         m_nodes.emplace_back();
         m_nodes.emplace_back();
 
-        build_rec(node.inner.first_child_id, start, mid_id, level+1);
-        build_rec(node.inner.first_child_id+1, mid_id, end, level+1);
+        IndexType mid_id = this->partition(start, end, split_dim, node.inner_split_value());
+        build_rec(node.inner_first_child_id(), start, mid_id, level+1);
+        build_rec(node.inner_first_child_id()+1, mid_id, end, level+1);
     }
 }
 

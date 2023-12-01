@@ -52,27 +52,32 @@ template <typename Traits>
 class KdTreeBase
 {
 public:
-    using DataPoint  = typename Traits::DataPoint; ///< DataPoint given by user via Traits
-    using Scalar     = typename DataPoint::Scalar; ///< Scalar given by user via DataPoint
-    using VectorType = typename DataPoint::VectorType; ///< VectorType given by user via DataPoint
-    using AabbType   = typename Traits::AabbType; ///< Bounding box type given by user via DataPoint
+    using DataPoint    = typename Traits::DataPoint; ///< DataPoint given by user via Traits
+    using IndexType    = typename Traits::IndexType; ///< Type used to index points into the PointContainer
+    using LeafSizeType = typename Traits::LeafSizeType; ///< Type used to store the size of leaf nodes
 
-    using IndexType      = typename Traits::IndexType;
     using PointContainer = typename Traits::PointContainer; ///< Container for DataPoint used inside the KdTree
     using IndexContainer = typename Traits::IndexContainer; ///< Container for indices used inside the KdTree
+
+    using NodeIndexType  = typename Traits::NodeIndexType; ///< Type used to index nodes into the NodeContainer
+    using NodeType       = typename Traits::NodeType; ///< Type of nodes used inside the KdTree
     using NodeContainer  = typename Traits::NodeContainer; ///< Container for nodes used inside the KdTree
 
-    using NodeType      = typename NodeContainer::value_type;
-    using NodeCountType = typename NodeContainer::size_type;
-    using LeafSizeType  = typename NodeType::LeafSizeType;
+    using Scalar     = typename DataPoint::Scalar; ///< Scalar given by user via DataPoint
+    using VectorType = typename DataPoint::VectorType; ///< VectorType given by user via DataPoint
+    using AabbType   = typename NodeType::AabbType; ///< Bounding box type given by user via NodeType
 
     enum
     {
         /*!
-         * The maximum number of points that can be stored in the kd-tree, considering how many
-         * bits the inner nodes use to store their children indices.
+         * \brief The maximum number of nodes that the kd-tree can have.
          */
-        MAX_POINT_COUNT = 2 << NodeType::InnerType::INDEX_BITS,
+        MAX_NODE_COUNT = NodeType::MAX_COUNT,
+
+        /*!
+         * \brief The maximum number of points that can be stored in the kd-tree.
+         */
+        MAX_POINT_COUNT = std::size_t(2) << sizeof(IndexType)*8,
     };
 
     static_assert(std::is_same<typename PointContainer::value_type, DataPoint>::value,
@@ -80,7 +85,9 @@ public:
     
     // Queries use a value of -1 for invalid indices
     static_assert(std::is_signed<IndexType>::value, "Index type must be signed");
+
     static_assert(std::is_same<typename IndexContainer::value_type, IndexType>::value, "Index type mismatch");
+    static_assert(std::is_same<typename NodeContainer::value_type, NodeType>::value, "Node type mismatch");
 
     static_assert(Traits::MAX_DEPTH > 0, "Max depth must be strictly positive");
 
@@ -188,7 +195,7 @@ public:
 
     // Accessors ---------------------------------------------------------------
 public:
-    inline NodeCountType node_count() const
+    inline NodeIndexType node_count() const
     {
         return m_nodes.size();
     }
@@ -203,7 +210,7 @@ public:
         return (IndexType)m_points.size();
     }
 
-    inline NodeCountType leaf_count() const
+    inline NodeIndexType leaf_count() const
     {
         return m_leaf_count;
     }
@@ -255,7 +262,7 @@ public:
 
     // Internal ----------------------------------------------------------------
 protected:
-    inline void build_rec(NodeCountType node_id, IndexType start, IndexType end, int level);
+    inline void build_rec(NodeIndexType node_id, IndexType start, IndexType end, int level);
     inline IndexType partition(IndexType start, IndexType end, int dim, Scalar value);
 
     // Query -------------------------------------------------------------------
@@ -298,7 +305,7 @@ protected:
     IndexContainer m_indices;
 
     LeafSizeType m_min_cell_size; ///< Minimal number of points per leaf
-    NodeCountType m_leaf_count; ///< Number of leaves in the Kdtree (computed during construction)
+    NodeIndexType m_leaf_count; ///< Number of leaves in the Kdtree (computed during construction)
 };
 
 #include "./kdTree.hpp"
