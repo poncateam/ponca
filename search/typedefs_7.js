@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['leaftype_0',['LeafType',['../structPonca_1_1KdTreeDefaultNode.html#ae01259a44f8224a5b2274a6ba043a6bb',1,'Ponca::KdTreeDefaultNode']]]
+  ['leafsizetype_0',['LeafSizeType',['../classPonca_1_1KdTreeBase.html#ae5a3bb1b5aaab27bad9968f98afdc169',1,'Ponca::KdTreeBase']]]
 ];

@@ -51,7 +51,7 @@ MathJax.Hub.Config({
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Ponca
-   &#160;<span id="projectnumber">822a7255148f608ff4568ca2a90193923289de47</span>
+   &#160;<span id="projectnumber">ea4ecb474d822244d9c1b439170b4cce544769d7</span>
    </div>
    <div id="projectbrief">Point Cloud Analysis library</div>
   </td>
@@ -181,8 +181,8 @@ $(document).ready(function(){initNavTree('kdTreeQuery_8h_source.html',''); initR
 <div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>                <span class="keywordflow">if</span>(node.is_leaf())</div>
 <div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>                {</div>
 <div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>                    m_stack.pop();</div>
-<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>                    IndexType start = node.leaf.start;</div>
-<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>                    IndexType end = node.leaf.start + node.leaf.size;</div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>                    IndexType start = node.leaf_start();</div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>                    IndexType end = node.leaf_start() + node.leaf_size();</div>
 <div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>                    prepareLeafTraversal(start, end);</div>
 <div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>                    <span class="keywordflow">for</span>(IndexType i=start; i&lt;end; ++i)</div>
 <div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>                    {</div>
@@ -200,17 +200,17 @@ $(document).ready(function(){initNavTree('kdTreeQuery_8h_source.html',''); initR
 <div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>                <span class="keywordflow">else</span></div>
 <div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>                {</div>
 <div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>                    <span class="comment">// replace the stack top by the farthest and push the closest</span></div>
-<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>                    Scalar newOff = point[node.inner.dim] - node.inner.split_value;</div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>                    Scalar newOff = point[node.inner_split_dim()] - node.inner_split_value();</div>
 <div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>                    m_stack.push();</div>
 <div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>                    <span class="keywordflow">if</span>(newOff &lt; 0)</div>
 <div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>                    {</div>
-<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>                        m_stack.top().index = node.inner.first_child_id;</div>
-<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>                        qnode.index         = node.inner.first_child_id+1;</div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>                        m_stack.top().index = node.inner_first_child_id();</div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>                        qnode.index         = node.inner_first_child_id()+1;</div>
 <div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>                    }</div>
 <div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>                    <span class="keywordflow">else</span></div>
 <div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>                    {</div>
-<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span>                        m_stack.top().index = node.inner.first_child_id+1;</div>
-<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>                        qnode.index         = node.inner.first_child_id;</div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span>                        m_stack.top().index = node.inner_first_child_id()+1;</div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>                        qnode.index         = node.inner_first_child_id();</div>
 <div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>                    }</div>
 <div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>                    m_stack.top().squared_distance = qnode.squared_distance;</div>
 <div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span>                    qnode.squared_distance         = newOff*newOff;</div>
@@ -235,7 +235,7 @@ $(document).ready(function(){initNavTree('kdTreeQuery_8h_source.html',''); initR
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_695d95a8d8fbec601a248c0414764298.html">Ponca</a></li><li class="navelem"><a class="el" href="dir_ce16314fc45f8638543c5146aff64d4a.html">src</a></li><li class="navelem"><a class="el" href="dir_12c32e53c838db195d209d78f62f8479.html">SpatialPartitioning</a></li><li class="navelem"><a class="el" href="dir_1714f3cab0d35a638840fab853fb5d40.html">KdTree</a></li><li class="navelem"><a class="el" href="dir_78945f6d57580a0e0a066fb3a369c0e6.html">Query</a></li><li class="navelem"><b>kdTreeQuery.h</b></li>
-    <li class="footer">Generated on Wed Nov 29 2023 18:05:06 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.6 </li>
+    <li class="footer">Generated on Fri Dec 1 2023 21:56:40 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.6 </li>
   </ul>
 </div>
 </body>

@@ -20,7 +20,7 @@ var annotated_dup =
       [ "KdTreeBase", "classPonca_1_1KdTreeBase.html", "classPonca_1_1KdTreeBase" ],
       [ "KdTreeDefaultInnerNode", "structPonca_1_1KdTreeDefaultInnerNode.html", null ],
       [ "KdTreeDefaultLeafNode", "structPonca_1_1KdTreeDefaultLeafNode.html", null ],
-      [ "KdTreeDefaultNode", "structPonca_1_1KdTreeDefaultNode.html", "structPonca_1_1KdTreeDefaultNode" ],
+      [ "KdTreeDefaultNode", "classPonca_1_1KdTreeDefaultNode.html", "classPonca_1_1KdTreeDefaultNode" ],
       [ "KdTreeDefaultTraits", "structPonca_1_1KdTreeDefaultTraits.html", "structPonca_1_1KdTreeDefaultTraits" ],
       [ "KdTreeKNearestIterator", "classPonca_1_1KdTreeKNearestIterator.html", null ],
       [ "KdTreeKNearestQueryBase", "classPonca_1_1KdTreeKNearestQueryBase.html", null ],

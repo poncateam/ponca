@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.9.6"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Ponca: Ponca::KdTreeDefaultInnerNode&lt; Index, Scalar, DIM &gt; Struct Template Reference</title>
+<title>Ponca: Ponca::KdTreeDefaultInnerNode&lt; NodeIndex, Scalar, DIM &gt; Struct Template Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -51,7 +51,7 @@ MathJax.Hub.Config({
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Ponca
-   &#160;<span id="projectnumber">822a7255148f608ff4568ca2a90193923289de47</span>
+   &#160;<span id="projectnumber">ea4ecb474d822244d9c1b439170b4cce544769d7</span>
    </div>
    <div id="projectbrief">Point Cloud Analysis library</div>
   </td>
@@ -120,48 +120,53 @@ $(document).ready(function(){initNavTree('structPonca_1_1KdTreeDefaultInnerNode.
 <a href="#pub-types">Public Types</a> &#124;
 <a href="#pub-attribs">Public Attributes</a> &#124;
 <a href="structPonca_1_1KdTreeDefaultInnerNode-members.html">List of all members</a>  </div>
-  <div class="headertitle"><div class="title">Ponca::KdTreeDefaultInnerNode&lt; Index, Scalar, DIM &gt; Struct Template Reference</div></div>
+  <div class="headertitle"><div class="title">Ponca::KdTreeDefaultInnerNode&lt; NodeIndex, Scalar, DIM &gt; Struct Template Reference</div></div>
 </div><!--header-->
 <div class="contents">
 <div id="dynsection-0" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
-  <img id="dynsection-0-trigger" src="closed.png" alt="+"/> Collaboration diagram for Ponca::KdTreeDefaultInnerNode&lt; Index, Scalar, DIM &gt;:</div>
+  <img id="dynsection-0-trigger" src="closed.png" alt="+"/> Inheritance diagram for Ponca::KdTreeDefaultInnerNode&lt; NodeIndex, Scalar, DIM &gt;:</div>
 <div id="dynsection-0-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-0-content" class="dyncontent" style="display:none;">
-<div class="center"><iframe scrolling="no" frameborder="0" src="structPonca_1_1KdTreeDefaultInnerNode__coll__graph.svg" width="215" height="147"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><iframe scrolling="no" frameborder="0" src="structPonca_1_1KdTreeDefaultInnerNode__inherit__graph.svg" width="272" height="346"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+<div id="dynsection-1" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-1-trigger" src="closed.png" alt="+"/> Collaboration diagram for Ponca::KdTreeDefaultInnerNode&lt; NodeIndex, Scalar, DIM &gt;:</div>
+<div id="dynsection-1-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-1-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="structPonca_1_1KdTreeDefaultInnerNode__coll__graph.svg" width="250" height="132"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
 </div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-types" name="pub-types"></a>
 Public Types</h2></td></tr>
-<tr class="memitem:a3cb6dc9b86fa3101261a840b700efc81"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom">{ <a class="el" href="structPonca_1_1KdTreeDefaultInnerNode.html#a3cb6dc9b86fa3101261a840b700efc81ac706904879420dd771410a9b2cf9e4da">DIM_BITS</a> = BitfieldInfo::DIM_BITS
-, <a class="el" href="structPonca_1_1KdTreeDefaultInnerNode.html#a3cb6dc9b86fa3101261a840b700efc81af157b2586d61894cff1ce97f426b30a6">INDEX_BITS</a> = BitfieldInfo::CHILD_ID_BITS
+<tr class="memitem:ab5a89b3a74facd46d35ba61913455066"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom">{ <a class="el" href="structPonca_1_1KdTreeDefaultInnerNode.html#ab5a89b3a74facd46d35ba61913455066ab63682ac1ec5e5f0446f6a6ecbd54ee7">INDEX_BITS</a> = sizeof(UIndex)*8 - DIM_BITS
  }</td></tr>
-<tr class="separator:a3cb6dc9b86fa3101261a840b700efc81"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="separator:ab5a89b3a74facd46d35ba61913455066"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
-<tr class="memitem:aa13628d10c47c3d74c2d70abb269908c"><td class="memItemLeft" align="right" valign="top">Scalar&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structPonca_1_1KdTreeDefaultInnerNode.html#aa13628d10c47c3d74c2d70abb269908c">split_value</a></td></tr>
-<tr class="separator:aa13628d10c47c3d74c2d70abb269908c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a295865fd80b36fd6264caafb63110a1c"><td class="memItemLeft" align="right" valign="top">UIndex&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structPonca_1_1KdTreeDefaultInnerNode.html#a295865fd80b36fd6264caafb63110a1c">first_child_id</a>: <a class="el" href="structPonca_1_1KdTreeDefaultInnerNode.html#a3cb6dc9b86fa3101261a840b700efc81af157b2586d61894cff1ce97f426b30a6">INDEX_BITS</a></td></tr>
-<tr class="separator:a295865fd80b36fd6264caafb63110a1c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5eefd70bdaf2fc7bcbe0812a3c92295c"><td class="memItemLeft" align="right" valign="top">UIndex&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structPonca_1_1KdTreeDefaultInnerNode.html#a5eefd70bdaf2fc7bcbe0812a3c92295c">dim</a>: <a class="el" href="structPonca_1_1KdTreeDefaultInnerNode.html#a3cb6dc9b86fa3101261a840b700efc81ac706904879420dd771410a9b2cf9e4da">DIM_BITS</a></td></tr>
-<tr class="separator:a5eefd70bdaf2fc7bcbe0812a3c92295c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9edd0c125a621684d24df74c9579b897"><td class="memItemLeft" align="right" valign="top">UIndex&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structPonca_1_1KdTreeDefaultInnerNode.html#a9edd0c125a621684d24df74c9579b897">leaf</a>: 1</td></tr>
-<tr class="separator:a9edd0c125a621684d24df74c9579b897"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a593316d64117c0d9b8521fd70303e4a7"><td class="memItemLeft" align="right" valign="top">Scalar&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structPonca_1_1KdTreeDefaultInnerNode.html#a593316d64117c0d9b8521fd70303e4a7">split_value</a></td></tr>
+<tr class="separator:a593316d64117c0d9b8521fd70303e4a7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acc2420b108626a90608118c1a7c604a4"><td class="memItemLeft" align="right" valign="top">UIndex&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structPonca_1_1KdTreeDefaultInnerNode.html#acc2420b108626a90608118c1a7c604a4">first_child_id</a>: <a class="el" href="structPonca_1_1KdTreeDefaultInnerNode.html#ab5a89b3a74facd46d35ba61913455066ab63682ac1ec5e5f0446f6a6ecbd54ee7">INDEX_BITS</a></td></tr>
+<tr class="separator:acc2420b108626a90608118c1a7c604a4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a55932c95a2cbf60d7015cf0bda8cdff1"><td class="memItemLeft" align="right" valign="top">UIndex&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structPonca_1_1KdTreeDefaultInnerNode.html#a55932c95a2cbf60d7015cf0bda8cdff1">split_dim</a>: DIM_BITS</td></tr>
+<tr class="separator:a55932c95a2cbf60d7015cf0bda8cdff1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><div class="compoundTemplParams">template&lt;typename Index, typename Scalar, int DIM&gt;<br />
-struct Ponca::KdTreeDefaultInnerNode&lt; Index, Scalar, DIM &gt;</div>
-<p class="definition">Definition at line <a class="el" href="kdTreeTraits_8h_source.html#l00082">82</a> of file <a class="el" href="kdTreeTraits_8h_source.html">kdTreeTraits.h</a>.</p>
+<div class="textblock"><div class="compoundTemplParams">template&lt;typename NodeIndex, typename Scalar, int DIM&gt;<br />
+struct Ponca::KdTreeDefaultInnerNode&lt; NodeIndex, Scalar, DIM &gt;</div>
+<p class="definition">Definition at line <a class="el" href="kdTreeTraits_8h_source.html#l00042">42</a> of file <a class="el" href="kdTreeTraits_8h_source.html">kdTreeTraits.h</a>.</p>
 </div><h2 class="groupheader">Member Enumeration Documentation</h2>
-<a id="a3cb6dc9b86fa3101261a840b700efc81" name="a3cb6dc9b86fa3101261a840b700efc81"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a3cb6dc9b86fa3101261a840b700efc81">&#9670;&#160;</a></span>anonymous enum</h2>
+<a id="ab5a89b3a74facd46d35ba61913455066" name="ab5a89b3a74facd46d35ba61913455066"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab5a89b3a74facd46d35ba61913455066">&#9670;&#160;</a></span>anonymous enum</h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename Index , typename Scalar , int DIM&gt; </div>
+template&lt;typename NodeIndex , typename Scalar , int DIM&gt; </div>
       <table class="memname">
         <tr>
           <td class="memname">anonymous enum</td>
@@ -169,87 +174,66 @@ template&lt;typename Index , typename Scalar , int DIM&gt; </div>
       </table>
 </div><div class="memdoc">
 <table class="fieldtable">
-<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="a3cb6dc9b86fa3101261a840b700efc81ac706904879420dd771410a9b2cf9e4da" name="a3cb6dc9b86fa3101261a840b700efc81ac706904879420dd771410a9b2cf9e4da"></a>DIM_BITS&#160;</td><td class="fielddoc"><p>The number of bits used to store the point dimension. </p>
-<p>Points being in higher dimensions will result in less possible points being stored in the kd-tree. </p>
-</td></tr>
-<tr><td class="fieldname"><a id="a3cb6dc9b86fa3101261a840b700efc81af157b2586d61894cff1ce97f426b30a6" name="a3cb6dc9b86fa3101261a840b700efc81af157b2586d61894cff1ce97f426b30a6"></a>INDEX_BITS&#160;</td><td class="fielddoc"><p>The number of bits used to store point indices. </p>
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="ab5a89b3a74facd46d35ba61913455066ab63682ac1ec5e5f0446f6a6ecbd54ee7" name="ab5a89b3a74facd46d35ba61913455066ab63682ac1ec5e5f0446f6a6ecbd54ee7"></a>INDEX_BITS&#160;</td><td class="fielddoc"><p>The bit width used to store the first child index. </p>
 </td></tr>
 </table>
 
-<p class="definition">Definition at line <a class="el" href="kdTreeTraits_8h_source.html#l00089">89</a> of file <a class="el" href="kdTreeTraits_8h_source.html">kdTreeTraits.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="kdTreeTraits_8h_source.html#l00064">64</a> of file <a class="el" href="kdTreeTraits_8h_source.html">kdTreeTraits.h</a>.</p>
 
 </div>
 </div>
 <h2 class="groupheader">Member Data Documentation</h2>
-<a id="a5eefd70bdaf2fc7bcbe0812a3c92295c" name="a5eefd70bdaf2fc7bcbe0812a3c92295c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a5eefd70bdaf2fc7bcbe0812a3c92295c">&#9670;&#160;</a></span>dim</h2>
+<a id="acc2420b108626a90608118c1a7c604a4" name="acc2420b108626a90608118c1a7c604a4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acc2420b108626a90608118c1a7c604a4">&#9670;&#160;</a></span>first_child_id</h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename Index , typename Scalar , int DIM&gt; </div>
+template&lt;typename NodeIndex , typename Scalar , int DIM&gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">UIndex <a class="el" href="structPonca_1_1KdTreeDefaultInnerNode.html">Ponca::KdTreeDefaultInnerNode</a>&lt; Index, Scalar, DIM &gt;::dim</td>
+          <td class="memname">UIndex <a class="el" href="structPonca_1_1KdTreeDefaultInnerNode.html">Ponca::KdTreeDefaultInnerNode</a>&lt; NodeIndex, Scalar, DIM &gt;::first_child_id</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="kdTreeTraits_8h_source.html#l00106">106</a> of file <a class="el" href="kdTreeTraits_8h_source.html">kdTreeTraits.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="kdTreeTraits_8h_source.html#l00073">73</a> of file <a class="el" href="kdTreeTraits_8h_source.html">kdTreeTraits.h</a>.</p>
 
 </div>
 </div>
-<a id="a295865fd80b36fd6264caafb63110a1c" name="a295865fd80b36fd6264caafb63110a1c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a295865fd80b36fd6264caafb63110a1c">&#9670;&#160;</a></span>first_child_id</h2>
+<a id="a55932c95a2cbf60d7015cf0bda8cdff1" name="a55932c95a2cbf60d7015cf0bda8cdff1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a55932c95a2cbf60d7015cf0bda8cdff1">&#9670;&#160;</a></span>split_dim</h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename Index , typename Scalar , int DIM&gt; </div>
+template&lt;typename NodeIndex , typename Scalar , int DIM&gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">UIndex <a class="el" href="structPonca_1_1KdTreeDefaultInnerNode.html">Ponca::KdTreeDefaultInnerNode</a>&lt; Index, Scalar, DIM &gt;::first_child_id</td>
+          <td class="memname">UIndex <a class="el" href="structPonca_1_1KdTreeDefaultInnerNode.html">Ponca::KdTreeDefaultInnerNode</a>&lt; NodeIndex, Scalar, DIM &gt;::split_dim</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="kdTreeTraits_8h_source.html#l00105">105</a> of file <a class="el" href="kdTreeTraits_8h_source.html">kdTreeTraits.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="kdTreeTraits_8h_source.html#l00074">74</a> of file <a class="el" href="kdTreeTraits_8h_source.html">kdTreeTraits.h</a>.</p>
 
 </div>
 </div>
-<a id="a9edd0c125a621684d24df74c9579b897" name="a9edd0c125a621684d24df74c9579b897"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a9edd0c125a621684d24df74c9579b897">&#9670;&#160;</a></span>leaf</h2>
+<a id="a593316d64117c0d9b8521fd70303e4a7" name="a593316d64117c0d9b8521fd70303e4a7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a593316d64117c0d9b8521fd70303e4a7">&#9670;&#160;</a></span>split_value</h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename Index , typename Scalar , int DIM&gt; </div>
+template&lt;typename NodeIndex , typename Scalar , int DIM&gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">UIndex <a class="el" href="structPonca_1_1KdTreeDefaultInnerNode.html">Ponca::KdTreeDefaultInnerNode</a>&lt; Index, Scalar, DIM &gt;::leaf</td>
+          <td class="memname">Scalar <a class="el" href="structPonca_1_1KdTreeDefaultInnerNode.html">Ponca::KdTreeDefaultInnerNode</a>&lt; NodeIndex, Scalar, DIM &gt;::split_value</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="kdTreeTraits_8h_source.html#l00107">107</a> of file <a class="el" href="kdTreeTraits_8h_source.html">kdTreeTraits.h</a>.</p>
-
-</div>
-</div>
-<a id="aa13628d10c47c3d74c2d70abb269908c" name="aa13628d10c47c3d74c2d70abb269908c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa13628d10c47c3d74c2d70abb269908c">&#9670;&#160;</a></span>split_value</h2>
-
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;typename Index , typename Scalar , int DIM&gt; </div>
-      <table class="memname">
-        <tr>
-          <td class="memname">Scalar <a class="el" href="structPonca_1_1KdTreeDefaultInnerNode.html">Ponca::KdTreeDefaultInnerNode</a>&lt; Index, Scalar, DIM &gt;::split_value</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p class="definition">Definition at line <a class="el" href="kdTreeTraits_8h_source.html#l00104">104</a> of file <a class="el" href="kdTreeTraits_8h_source.html">kdTreeTraits.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="kdTreeTraits_8h_source.html#l00072">72</a> of file <a class="el" href="kdTreeTraits_8h_source.html">kdTreeTraits.h</a>.</p>
 
 </div>
 </div>
@@ -259,7 +243,7 @@ template&lt;typename Index , typename Scalar , int DIM&gt; </div>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="namespacePonca.html">Ponca</a></li><li class="navelem"><a class="el" href="structPonca_1_1KdTreeDefaultInnerNode.html">KdTreeDefaultInnerNode</a></li>
-    <li class="footer">Generated on Wed Nov 29 2023 18:05:06 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.6 </li>
+    <li class="footer">Generated on Fri Dec 1 2023 21:56:40 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.6 </li>
   </ul>
 </div>
 </body>

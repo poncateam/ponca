@@ -51,7 +51,7 @@ MathJax.Hub.Config({
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Ponca
-   &#160;<span id="projectnumber">822a7255148f608ff4568ca2a90193923289de47</span>
+   &#160;<span id="projectnumber">ea4ecb474d822244d9c1b439170b4cce544769d7</span>
    </div>
    <div id="projectbrief">Point Cloud Analysis library</div>
   </td>
@@ -148,38 +148,43 @@ Classes</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-types" name="pub-types"></a>
 Public Types</h2></td></tr>
-<tr class="memitem:a8462aa0e64f314dae040179dfa14e025"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom">{ <a class="el" href="classPonca_1_1KdTreeBase.html#a8462aa0e64f314dae040179dfa14e025acb338289dd4aa718e573232d8ea5678d">MAX_POINT_COUNT</a> = 2 &lt;&lt; NodeType::InnerType::INDEX_BITS
+<tr class="memitem:a8462aa0e64f314dae040179dfa14e025"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom">{ <a class="el" href="classPonca_1_1KdTreeBase.html#a8462aa0e64f314dae040179dfa14e025abb1b68aecd96cfb407f40c9ce8b33c97">MAX_NODE_COUNT</a> = NodeType::MAX_COUNT
+, <a class="el" href="classPonca_1_1KdTreeBase.html#a8462aa0e64f314dae040179dfa14e025acb338289dd4aa718e573232d8ea5678d">MAX_POINT_COUNT</a> = std::size_t(2) &lt;&lt; sizeof(IndexType)*8
  }</td></tr>
 <tr class="separator:a8462aa0e64f314dae040179dfa14e025"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1ab56f3a651919947c4632320922510e"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1KdTreeBase.html#a1ab56f3a651919947c4632320922510e">DataPoint</a> = typename Traits::DataPoint</td></tr>
 <tr class="memdesc:a1ab56f3a651919947c4632320922510e"><td class="mdescLeft">&#160;</td><td class="mdescRight">DataPoint given by user via Traits.  <br /></td></tr>
 <tr class="separator:a1ab56f3a651919947c4632320922510e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1f43e24fea1c29f06b144bc771db7318"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1KdTreeBase.html#a1f43e24fea1c29f06b144bc771db7318">Scalar</a> = typename DataPoint::Scalar</td></tr>
-<tr class="memdesc:a1f43e24fea1c29f06b144bc771db7318"><td class="mdescLeft">&#160;</td><td class="mdescRight">Scalar given by user via DataPoint.  <br /></td></tr>
-<tr class="separator:a1f43e24fea1c29f06b144bc771db7318"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aed2d70bd45302b752359989adef0bc91"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1KdTreeBase.html#aed2d70bd45302b752359989adef0bc91">VectorType</a> = typename DataPoint::VectorType</td></tr>
-<tr class="memdesc:aed2d70bd45302b752359989adef0bc91"><td class="mdescLeft">&#160;</td><td class="mdescRight">VectorType given by user via DataPoint.  <br /></td></tr>
-<tr class="separator:aed2d70bd45302b752359989adef0bc91"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad40e23b73f4deb08c6aa1003218ae57d"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1KdTreeBase.html#ad40e23b73f4deb08c6aa1003218ae57d">AabbType</a> = typename Traits::AabbType</td></tr>
-<tr class="memdesc:ad40e23b73f4deb08c6aa1003218ae57d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Bounding box type given by user via DataPoint.  <br /></td></tr>
-<tr class="separator:ad40e23b73f4deb08c6aa1003218ae57d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a26084353cfa874ce84c9acfb069a8a2e"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1KdTreeBase.html#a26084353cfa874ce84c9acfb069a8a2e">IndexType</a> = typename Traits::IndexType</td></tr>
+<tr class="memdesc:a26084353cfa874ce84c9acfb069a8a2e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Type used to index points into the PointContainer.  <br /></td></tr>
 <tr class="separator:a26084353cfa874ce84c9acfb069a8a2e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae5a3bb1b5aaab27bad9968f98afdc169"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1KdTreeBase.html#ae5a3bb1b5aaab27bad9968f98afdc169">LeafSizeType</a> = typename Traits::LeafSizeType</td></tr>
+<tr class="memdesc:ae5a3bb1b5aaab27bad9968f98afdc169"><td class="mdescLeft">&#160;</td><td class="mdescRight">Type used to store the size of leaf nodes.  <br /></td></tr>
+<tr class="separator:ae5a3bb1b5aaab27bad9968f98afdc169"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa729820113ec273e46953241a9c9588d"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1KdTreeBase.html#aa729820113ec273e46953241a9c9588d">PointContainer</a> = typename Traits::PointContainer</td></tr>
 <tr class="memdesc:aa729820113ec273e46953241a9c9588d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Container for DataPoint used inside the KdTree.  <br /></td></tr>
 <tr class="separator:aa729820113ec273e46953241a9c9588d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a46573f7eada88708072ebb5b5601c64c"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1KdTreeBase.html#a46573f7eada88708072ebb5b5601c64c">IndexContainer</a> = typename Traits::IndexContainer</td></tr>
 <tr class="memdesc:a46573f7eada88708072ebb5b5601c64c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Container for indices used inside the KdTree.  <br /></td></tr>
 <tr class="separator:a46573f7eada88708072ebb5b5601c64c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9613c7140e98d39214c8ae16e51a1d0c"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1KdTreeBase.html#a9613c7140e98d39214c8ae16e51a1d0c">NodeIndexType</a> = typename Traits::NodeIndexType</td></tr>
+<tr class="memdesc:a9613c7140e98d39214c8ae16e51a1d0c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Type used to index nodes into the NodeContainer.  <br /></td></tr>
+<tr class="separator:a9613c7140e98d39214c8ae16e51a1d0c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a21a632642f089b5f94952bd43d45b4b1"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1KdTreeBase.html#a21a632642f089b5f94952bd43d45b4b1">NodeType</a> = typename Traits::NodeType</td></tr>
+<tr class="memdesc:a21a632642f089b5f94952bd43d45b4b1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Type of nodes used inside the KdTree.  <br /></td></tr>
+<tr class="separator:a21a632642f089b5f94952bd43d45b4b1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5e793f60b97ed505f977161d576cf76b"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1KdTreeBase.html#a5e793f60b97ed505f977161d576cf76b">NodeContainer</a> = typename Traits::NodeContainer</td></tr>
 <tr class="memdesc:a5e793f60b97ed505f977161d576cf76b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Container for nodes used inside the KdTree.  <br /></td></tr>
 <tr class="separator:a5e793f60b97ed505f977161d576cf76b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a324bffaa1c20f6b69e627d0f7ebe4ca7"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1KdTreeBase.html#a324bffaa1c20f6b69e627d0f7ebe4ca7">NodeType</a> = typename NodeContainer::value_type</td></tr>
-<tr class="separator:a324bffaa1c20f6b69e627d0f7ebe4ca7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:adffc6dbfd908eee4585f83dcd9acca3b"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1KdTreeBase.html#adffc6dbfd908eee4585f83dcd9acca3b">NodeCountType</a> = typename NodeContainer::size_type</td></tr>
-<tr class="separator:adffc6dbfd908eee4585f83dcd9acca3b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae1c05c12f5bfc48f920fe252a2ea618a"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1KdTreeBase.html#ae1c05c12f5bfc48f920fe252a2ea618a">LeafSizeType</a> = typename NodeType::LeafSizeType</td></tr>
-<tr class="separator:ae1c05c12f5bfc48f920fe252a2ea618a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1f43e24fea1c29f06b144bc771db7318"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1KdTreeBase.html#a1f43e24fea1c29f06b144bc771db7318">Scalar</a> = typename DataPoint::Scalar</td></tr>
+<tr class="memdesc:a1f43e24fea1c29f06b144bc771db7318"><td class="mdescLeft">&#160;</td><td class="mdescRight">Scalar given by user via DataPoint.  <br /></td></tr>
+<tr class="separator:a1f43e24fea1c29f06b144bc771db7318"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aed2d70bd45302b752359989adef0bc91"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1KdTreeBase.html#aed2d70bd45302b752359989adef0bc91">VectorType</a> = typename DataPoint::VectorType</td></tr>
+<tr class="memdesc:aed2d70bd45302b752359989adef0bc91"><td class="mdescLeft">&#160;</td><td class="mdescRight">VectorType given by user via DataPoint.  <br /></td></tr>
+<tr class="separator:aed2d70bd45302b752359989adef0bc91"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad7582402868b5e0090aaf12e0e509a58"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1KdTreeBase.html#ad7582402868b5e0090aaf12e0e509a58">AabbType</a> = typename NodeType::AabbType</td></tr>
+<tr class="memdesc:ad7582402868b5e0090aaf12e0e509a58"><td class="mdescLeft">&#160;</td><td class="mdescRight">Bounding box type given by user via NodeType.  <br /></td></tr>
+<tr class="separator:ad7582402868b5e0090aaf12e0e509a58"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
@@ -222,14 +227,14 @@ template&lt;typename IndexUserContainer &gt; </td></tr>
 <tr class="separator:af6189c5497854053a177b93cfea31f97"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a29a81669d2fa0d7e0e7a7325b0e1d7fa"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1KdTreeBase.html#a29a81669d2fa0d7e0e7a7325b0e1d7fa">to_string</a> () const</td></tr>
 <tr class="separator:a29a81669d2fa0d7e0e7a7325b0e1d7fa"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0dc3699d8c8b11a62bc39b3abeea6344"><td class="memItemLeft" align="right" valign="top">NodeCountType&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1KdTreeBase.html#a0dc3699d8c8b11a62bc39b3abeea6344">node_count</a> () const</td></tr>
-<tr class="separator:a0dc3699d8c8b11a62bc39b3abeea6344"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0eae043d678292fbf5ffdc9544fa807d"><td class="memItemLeft" align="right" valign="top">IndexType&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1KdTreeBase.html#a0eae043d678292fbf5ffdc9544fa807d">index_count</a> () const</td></tr>
+<tr class="memitem:a312cd2f793932c9eacd02df771e9e339"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classPonca_1_1KdTreeBase.html#a9613c7140e98d39214c8ae16e51a1d0c">NodeIndexType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1KdTreeBase.html#a312cd2f793932c9eacd02df771e9e339">node_count</a> () const</td></tr>
+<tr class="separator:a312cd2f793932c9eacd02df771e9e339"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0eae043d678292fbf5ffdc9544fa807d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classPonca_1_1KdTreeBase.html#a26084353cfa874ce84c9acfb069a8a2e">IndexType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1KdTreeBase.html#a0eae043d678292fbf5ffdc9544fa807d">index_count</a> () const</td></tr>
 <tr class="separator:a0eae043d678292fbf5ffdc9544fa807d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5ba6dabda1a3222fdee53a4045e9b404"><td class="memItemLeft" align="right" valign="top">IndexType&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1KdTreeBase.html#a5ba6dabda1a3222fdee53a4045e9b404">point_count</a> () const</td></tr>
+<tr class="memitem:a5ba6dabda1a3222fdee53a4045e9b404"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classPonca_1_1KdTreeBase.html#a26084353cfa874ce84c9acfb069a8a2e">IndexType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1KdTreeBase.html#a5ba6dabda1a3222fdee53a4045e9b404">point_count</a> () const</td></tr>
 <tr class="separator:a5ba6dabda1a3222fdee53a4045e9b404"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a49d85939353eca57977ba80a07e22baa"><td class="memItemLeft" align="right" valign="top">NodeCountType&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1KdTreeBase.html#a49d85939353eca57977ba80a07e22baa">leaf_count</a> () const</td></tr>
-<tr class="separator:a49d85939353eca57977ba80a07e22baa"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a17259f7189273ad4f178ff67aa13052d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classPonca_1_1KdTreeBase.html#a9613c7140e98d39214c8ae16e51a1d0c">NodeIndexType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1KdTreeBase.html#a17259f7189273ad4f178ff67aa13052d">leaf_count</a> () const</td></tr>
+<tr class="separator:a17259f7189273ad4f178ff67aa13052d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6ad33057fa55cce0373560240adda0f7"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classPonca_1_1KdTreeBase.html#aa729820113ec273e46953241a9c9588d">PointContainer</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1KdTreeBase.html#a6ad33057fa55cce0373560240adda0f7">point_data</a> ()</td></tr>
 <tr class="separator:a6ad33057fa55cce0373560240adda0f7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a03d0884bbd5816521180dbec870a9828"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="classPonca_1_1KdTreeBase.html#aa729820113ec273e46953241a9c9588d">PointContainer</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1KdTreeBase.html#a03d0884bbd5816521180dbec870a9828">point_data</a> () const</td></tr>
@@ -242,23 +247,23 @@ template&lt;typename IndexUserContainer &gt; </td></tr>
 <tr class="separator:a6dfecd278504e93929dbc6bda0b86d93"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a540ee7a75c48a0d5e51a0ba1aeca6149"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classPonca_1_1KdTreeBase.html#a46573f7eada88708072ebb5b5601c64c">IndexContainer</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1KdTreeBase.html#a540ee7a75c48a0d5e51a0ba1aeca6149">index_data</a> ()</td></tr>
 <tr class="separator:a540ee7a75c48a0d5e51a0ba1aeca6149"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a443f3258670a3fd7e0b7d6c6555506d7"><td class="memItemLeft" align="right" valign="top">LeafSizeType&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1KdTreeBase.html#a443f3258670a3fd7e0b7d6c6555506d7">min_cell_size</a> () const</td></tr>
+<tr class="memitem:a443f3258670a3fd7e0b7d6c6555506d7"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classPonca_1_1KdTreeBase.html#ae5a3bb1b5aaab27bad9968f98afdc169">LeafSizeType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1KdTreeBase.html#a443f3258670a3fd7e0b7d6c6555506d7">min_cell_size</a> () const</td></tr>
 <tr class="memdesc:a443f3258670a3fd7e0b7d6c6555506d7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Read leaf min size.  <br /></td></tr>
 <tr class="separator:a443f3258670a3fd7e0b7d6c6555506d7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1d262e481f035fc33a8b063fc4c2c20c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1KdTreeBase.html#a1d262e481f035fc33a8b063fc4c2c20c">set_min_cell_size</a> (LeafSizeType <a class="el" href="classPonca_1_1KdTreeBase.html#a443f3258670a3fd7e0b7d6c6555506d7">min_cell_size</a>)</td></tr>
+<tr class="memitem:a1d262e481f035fc33a8b063fc4c2c20c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1KdTreeBase.html#a1d262e481f035fc33a8b063fc4c2c20c">set_min_cell_size</a> (<a class="el" href="classPonca_1_1KdTreeBase.html#ae5a3bb1b5aaab27bad9968f98afdc169">LeafSizeType</a> <a class="el" href="classPonca_1_1KdTreeBase.html#a443f3258670a3fd7e0b7d6c6555506d7">min_cell_size</a>)</td></tr>
 <tr class="memdesc:a1d262e481f035fc33a8b063fc4c2c20c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Write leaf min size.  <br /></td></tr>
 <tr class="separator:a1d262e481f035fc33a8b063fc4c2c20c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a769c9ecd74f2f5d091129420f7fcf7c6"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classPonca_1_1KdTreeKNearestQueryBase.html">KdTreeKNearestPointQuery</a>&lt; Traits &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1KdTreeBase.html#a769c9ecd74f2f5d091129420f7fcf7c6">k_nearest_neighbors</a> (const <a class="el" href="classPonca_1_1KdTreeBase.html#aed2d70bd45302b752359989adef0bc91">VectorType</a> &amp;point, IndexType k) const</td></tr>
+<tr class="memitem:a769c9ecd74f2f5d091129420f7fcf7c6"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classPonca_1_1KdTreeKNearestQueryBase.html">KdTreeKNearestPointQuery</a>&lt; Traits &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1KdTreeBase.html#a769c9ecd74f2f5d091129420f7fcf7c6">k_nearest_neighbors</a> (const <a class="el" href="classPonca_1_1KdTreeBase.html#aed2d70bd45302b752359989adef0bc91">VectorType</a> &amp;point, <a class="el" href="classPonca_1_1KdTreeBase.html#a26084353cfa874ce84c9acfb069a8a2e">IndexType</a> k) const</td></tr>
 <tr class="separator:a769c9ecd74f2f5d091129420f7fcf7c6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aee1c0dff3b4081a8dd9e50cb18bee88d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classPonca_1_1KdTreeKNearestQueryBase.html">KdTreeKNearestIndexQuery</a>&lt; Traits &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1KdTreeBase.html#aee1c0dff3b4081a8dd9e50cb18bee88d">k_nearest_neighbors</a> (IndexType index, IndexType k) const</td></tr>
+<tr class="memitem:aee1c0dff3b4081a8dd9e50cb18bee88d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classPonca_1_1KdTreeKNearestQueryBase.html">KdTreeKNearestIndexQuery</a>&lt; Traits &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1KdTreeBase.html#aee1c0dff3b4081a8dd9e50cb18bee88d">k_nearest_neighbors</a> (<a class="el" href="classPonca_1_1KdTreeBase.html#a26084353cfa874ce84c9acfb069a8a2e">IndexType</a> index, <a class="el" href="classPonca_1_1KdTreeBase.html#a26084353cfa874ce84c9acfb069a8a2e">IndexType</a> k) const</td></tr>
 <tr class="separator:aee1c0dff3b4081a8dd9e50cb18bee88d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a96821bf3a99f3751cd29b3f095afce94"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classPonca_1_1KdTreeNearestQueryBase.html">KdTreeNearestPointQuery</a>&lt; Traits &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1KdTreeBase.html#a96821bf3a99f3751cd29b3f095afce94">nearest_neighbor</a> (const <a class="el" href="classPonca_1_1KdTreeBase.html#aed2d70bd45302b752359989adef0bc91">VectorType</a> &amp;point) const</td></tr>
 <tr class="separator:a96821bf3a99f3751cd29b3f095afce94"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae507852f8b3f99aba80b74b068e904b3"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classPonca_1_1KdTreeNearestQueryBase.html">KdTreeNearestIndexQuery</a>&lt; Traits &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1KdTreeBase.html#ae507852f8b3f99aba80b74b068e904b3">nearest_neighbor</a> (IndexType index) const</td></tr>
+<tr class="memitem:ae507852f8b3f99aba80b74b068e904b3"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classPonca_1_1KdTreeNearestQueryBase.html">KdTreeNearestIndexQuery</a>&lt; Traits &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1KdTreeBase.html#ae507852f8b3f99aba80b74b068e904b3">nearest_neighbor</a> (<a class="el" href="classPonca_1_1KdTreeBase.html#a26084353cfa874ce84c9acfb069a8a2e">IndexType</a> index) const</td></tr>
 <tr class="separator:ae507852f8b3f99aba80b74b068e904b3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae8081ffeeb69bdb609a518414f905361"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classPonca_1_1KdTreeRangeQueryBase.html">KdTreeRangePointQuery</a>&lt; Traits &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1KdTreeBase.html#ae8081ffeeb69bdb609a518414f905361">range_neighbors</a> (const <a class="el" href="classPonca_1_1KdTreeBase.html#aed2d70bd45302b752359989adef0bc91">VectorType</a> &amp;point, <a class="el" href="classPonca_1_1KdTreeBase.html#a1f43e24fea1c29f06b144bc771db7318">Scalar</a> r) const</td></tr>
 <tr class="separator:ae8081ffeeb69bdb609a518414f905361"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1a51e902f02535faa105cab15fccbcf1"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classPonca_1_1KdTreeRangeQueryBase.html">KdTreeRangeIndexQuery</a>&lt; Traits &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1KdTreeBase.html#a1a51e902f02535faa105cab15fccbcf1">range_neighbors</a> (IndexType index, <a class="el" href="classPonca_1_1KdTreeBase.html#a1f43e24fea1c29f06b144bc771db7318">Scalar</a> r) const</td></tr>
+<tr class="memitem:a1a51e902f02535faa105cab15fccbcf1"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classPonca_1_1KdTreeRangeQueryBase.html">KdTreeRangeIndexQuery</a>&lt; Traits &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1KdTreeBase.html#a1a51e902f02535faa105cab15fccbcf1">range_neighbors</a> (<a class="el" href="classPonca_1_1KdTreeBase.html#a26084353cfa874ce84c9acfb069a8a2e">IndexType</a> index, <a class="el" href="classPonca_1_1KdTreeBase.html#a1f43e24fea1c29f06b144bc771db7318">Scalar</a> r) const</td></tr>
 <tr class="separator:a1a51e902f02535faa105cab15fccbcf1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4571ce576ef11454f524a102f7644d01"><td class="memTemplParams" colspan="2">template&lt;typename PointUserContainer , typename Converter &gt; </td></tr>
 <tr class="memitem:a4571ce576ef11454f524a102f7644d01"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classPonca_1_1KdTreeBase.html#a4571ce576ef11454f524a102f7644d01">build</a> (PointUserContainer &amp;&amp;points, Converter c)</td></tr>
@@ -272,9 +277,9 @@ template&lt;typename IndexUserContainer &gt; </td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-methods" name="pro-methods"></a>
 Protected Member Functions</h2></td></tr>
-<tr class="memitem:a0349f3f2d8598191af8f69ba9eec14ff"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1KdTreeBase.html#a0349f3f2d8598191af8f69ba9eec14ff">build_rec</a> (NodeCountType node_id, IndexType start, IndexType end, int level)</td></tr>
-<tr class="separator:a0349f3f2d8598191af8f69ba9eec14ff"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac0dadbb3f2a7587daa09e74c141eaafd"><td class="memItemLeft" align="right" valign="top">IndexType&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1KdTreeBase.html#ac0dadbb3f2a7587daa09e74c141eaafd">partition</a> (IndexType start, IndexType end, int dim, <a class="el" href="classPonca_1_1KdTreeBase.html#a1f43e24fea1c29f06b144bc771db7318">Scalar</a> value)</td></tr>
+<tr class="memitem:afc6f84af4b6c3f23315416ed4dae1705"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1KdTreeBase.html#afc6f84af4b6c3f23315416ed4dae1705">build_rec</a> (<a class="el" href="classPonca_1_1KdTreeBase.html#a9613c7140e98d39214c8ae16e51a1d0c">NodeIndexType</a> node_id, <a class="el" href="classPonca_1_1KdTreeBase.html#a26084353cfa874ce84c9acfb069a8a2e">IndexType</a> start, <a class="el" href="classPonca_1_1KdTreeBase.html#a26084353cfa874ce84c9acfb069a8a2e">IndexType</a> end, int level)</td></tr>
+<tr class="separator:afc6f84af4b6c3f23315416ed4dae1705"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac0dadbb3f2a7587daa09e74c141eaafd"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classPonca_1_1KdTreeBase.html#a26084353cfa874ce84c9acfb069a8a2e">IndexType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1KdTreeBase.html#ac0dadbb3f2a7587daa09e74c141eaafd">partition</a> (<a class="el" href="classPonca_1_1KdTreeBase.html#a26084353cfa874ce84c9acfb069a8a2e">IndexType</a> start, <a class="el" href="classPonca_1_1KdTreeBase.html#a26084353cfa874ce84c9acfb069a8a2e">IndexType</a> end, int dim, <a class="el" href="classPonca_1_1KdTreeBase.html#a1f43e24fea1c29f06b144bc771db7318">Scalar</a> value)</td></tr>
 <tr class="separator:ac0dadbb3f2a7587daa09e74c141eaafd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-attribs" name="pro-attribs"></a>
@@ -285,12 +290,12 @@ Protected Attributes</h2></td></tr>
 <tr class="separator:a98a1fb6005e0975d7c3ccf71f217c3b7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a35fb72162be6f660104dacb7a348e6ee"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classPonca_1_1KdTreeBase.html#a46573f7eada88708072ebb5b5601c64c">IndexContainer</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1KdTreeBase.html#a35fb72162be6f660104dacb7a348e6ee">m_indices</a></td></tr>
 <tr class="separator:a35fb72162be6f660104dacb7a348e6ee"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac738881c29dd526796a08f4b3947711b"><td class="memItemLeft" align="right" valign="top">LeafSizeType&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1KdTreeBase.html#ac738881c29dd526796a08f4b3947711b">m_min_cell_size</a></td></tr>
+<tr class="memitem:ac738881c29dd526796a08f4b3947711b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classPonca_1_1KdTreeBase.html#ae5a3bb1b5aaab27bad9968f98afdc169">LeafSizeType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1KdTreeBase.html#ac738881c29dd526796a08f4b3947711b">m_min_cell_size</a></td></tr>
 <tr class="memdesc:ac738881c29dd526796a08f4b3947711b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Minimal number of points per leaf.  <br /></td></tr>
 <tr class="separator:ac738881c29dd526796a08f4b3947711b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a987ad52fb6613c74a684083767af23e5"><td class="memItemLeft" align="right" valign="top">NodeCountType&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1KdTreeBase.html#a987ad52fb6613c74a684083767af23e5">m_leaf_count</a></td></tr>
-<tr class="memdesc:a987ad52fb6613c74a684083767af23e5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Number of leaves in the Kdtree (computed during construction)  <br /></td></tr>
-<tr class="separator:a987ad52fb6613c74a684083767af23e5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa951cbb6b419fde33ab8c6a9c7f8ee8f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classPonca_1_1KdTreeBase.html#a9613c7140e98d39214c8ae16e51a1d0c">NodeIndexType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1KdTreeBase.html#aa951cbb6b419fde33ab8c6a9c7f8ee8f">m_leaf_count</a></td></tr>
+<tr class="memdesc:aa951cbb6b419fde33ab8c6a9c7f8ee8f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Number of leaves in the Kdtree (computed during construction)  <br /></td></tr>
+<tr class="separator:aa951cbb6b419fde33ab8c6a9c7f8ee8f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><div class="compoundTemplParams">template&lt;typename Traits&gt;<br />
@@ -306,8 +311,8 @@ class Ponca::KdTreeBase&lt; Traits &gt;</div><p>Customizable base class for KdTr
 
 <p class="definition">Definition at line <a class="el" href="kdTree_8h_source.html#l00052">52</a> of file <a class="el" href="kdTree_8h_source.html">kdTree.h</a>.</p>
 </div><h2 class="groupheader">Member Typedef Documentation</h2>
-<a id="ad40e23b73f4deb08c6aa1003218ae57d" name="ad40e23b73f4deb08c6aa1003218ae57d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad40e23b73f4deb08c6aa1003218ae57d">&#9670;&#160;</a></span>AabbType</h2>
+<a id="ad7582402868b5e0090aaf12e0e509a58" name="ad7582402868b5e0090aaf12e0e509a58"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad7582402868b5e0090aaf12e0e509a58">&#9670;&#160;</a></span>AabbType</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -315,14 +320,14 @@ class Ponca::KdTreeBase&lt; Traits &gt;</div><p>Customizable base class for KdTr
 template&lt;typename Traits &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">using <a class="el" href="classPonca_1_1KdTreeBase.html">Ponca::KdTreeBase</a>&lt; Traits &gt;::AabbType =  typename Traits::AabbType</td>
+          <td class="memname">using <a class="el" href="classPonca_1_1KdTreeBase.html">Ponca::KdTreeBase</a>&lt; Traits &gt;::AabbType =  typename NodeType::AabbType</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>Bounding box type given by user via DataPoint. </p>
+<p>Bounding box type given by user via NodeType. </p>
 
-<p class="definition">Definition at line <a class="el" href="kdTree_8h_source.html#l00058">58</a> of file <a class="el" href="kdTree_8h_source.html">kdTree.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="kdTree_8h_source.html#l00068">68</a> of file <a class="el" href="kdTree_8h_source.html">kdTree.h</a>.</p>
 
 </div>
 </div>
@@ -362,7 +367,7 @@ template&lt;typename Traits &gt; </div>
 
 <p>Container for indices used inside the KdTree. </p>
 
-<p class="definition">Definition at line <a class="el" href="kdTree_8h_source.html#l00062">62</a> of file <a class="el" href="kdTree_8h_source.html">kdTree.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="kdTree_8h_source.html#l00060">60</a> of file <a class="el" href="kdTree_8h_source.html">kdTree.h</a>.</p>
 
 </div>
 </div>
@@ -380,12 +385,14 @@ template&lt;typename Traits &gt; </div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="kdTree_8h_source.html#l00060">60</a> of file <a class="el" href="kdTree_8h_source.html">kdTree.h</a>.</p>
+<p>Type used to index points into the PointContainer. </p>
+
+<p class="definition">Definition at line <a class="el" href="kdTree_8h_source.html#l00056">56</a> of file <a class="el" href="kdTree_8h_source.html">kdTree.h</a>.</p>
 
 </div>
 </div>
-<a id="ae1c05c12f5bfc48f920fe252a2ea618a" name="ae1c05c12f5bfc48f920fe252a2ea618a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae1c05c12f5bfc48f920fe252a2ea618a">&#9670;&#160;</a></span>LeafSizeType</h2>
+<a id="ae5a3bb1b5aaab27bad9968f98afdc169" name="ae5a3bb1b5aaab27bad9968f98afdc169"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae5a3bb1b5aaab27bad9968f98afdc169">&#9670;&#160;</a></span>LeafSizeType</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -393,12 +400,14 @@ template&lt;typename Traits &gt; </div>
 template&lt;typename Traits &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">using <a class="el" href="classPonca_1_1KdTreeBase.html">Ponca::KdTreeBase</a>&lt; Traits &gt;::LeafSizeType =  typename NodeType::LeafSizeType</td>
+          <td class="memname">using <a class="el" href="classPonca_1_1KdTreeBase.html">Ponca::KdTreeBase</a>&lt; Traits &gt;::LeafSizeType =  typename Traits::LeafSizeType</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="kdTree_8h_source.html#l00067">67</a> of file <a class="el" href="kdTree_8h_source.html">kdTree.h</a>.</p>
+<p>Type used to store the size of leaf nodes. </p>
+
+<p class="definition">Definition at line <a class="el" href="kdTree_8h_source.html#l00057">57</a> of file <a class="el" href="kdTree_8h_source.html">kdTree.h</a>.</p>
 
 </div>
 </div>
@@ -418,43 +427,47 @@ template&lt;typename Traits &gt; </div>
 
 <p>Container for nodes used inside the KdTree. </p>
 
+<p class="definition">Definition at line <a class="el" href="kdTree_8h_source.html#l00064">64</a> of file <a class="el" href="kdTree_8h_source.html">kdTree.h</a>.</p>
+
+</div>
+</div>
+<a id="a9613c7140e98d39214c8ae16e51a1d0c" name="a9613c7140e98d39214c8ae16e51a1d0c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9613c7140e98d39214c8ae16e51a1d0c">&#9670;&#160;</a></span>NodeIndexType</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Traits &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="classPonca_1_1KdTreeBase.html">Ponca::KdTreeBase</a>&lt; Traits &gt;::NodeIndexType =  typename Traits::NodeIndexType</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Type used to index nodes into the NodeContainer. </p>
+
+<p class="definition">Definition at line <a class="el" href="kdTree_8h_source.html#l00062">62</a> of file <a class="el" href="kdTree_8h_source.html">kdTree.h</a>.</p>
+
+</div>
+</div>
+<a id="a21a632642f089b5f94952bd43d45b4b1" name="a21a632642f089b5f94952bd43d45b4b1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a21a632642f089b5f94952bd43d45b4b1">&#9670;&#160;</a></span>NodeType</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Traits &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="classPonca_1_1KdTreeBase.html">Ponca::KdTreeBase</a>&lt; Traits &gt;::NodeType =  typename Traits::NodeType</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Type of nodes used inside the KdTree. </p>
+
 <p class="definition">Definition at line <a class="el" href="kdTree_8h_source.html#l00063">63</a> of file <a class="el" href="kdTree_8h_source.html">kdTree.h</a>.</p>
-
-</div>
-</div>
-<a id="adffc6dbfd908eee4585f83dcd9acca3b" name="adffc6dbfd908eee4585f83dcd9acca3b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#adffc6dbfd908eee4585f83dcd9acca3b">&#9670;&#160;</a></span>NodeCountType</h2>
-
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;typename Traits &gt; </div>
-      <table class="memname">
-        <tr>
-          <td class="memname">using <a class="el" href="classPonca_1_1KdTreeBase.html">Ponca::KdTreeBase</a>&lt; Traits &gt;::NodeCountType =  typename NodeContainer::size_type</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p class="definition">Definition at line <a class="el" href="kdTree_8h_source.html#l00066">66</a> of file <a class="el" href="kdTree_8h_source.html">kdTree.h</a>.</p>
-
-</div>
-</div>
-<a id="a324bffaa1c20f6b69e627d0f7ebe4ca7" name="a324bffaa1c20f6b69e627d0f7ebe4ca7"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a324bffaa1c20f6b69e627d0f7ebe4ca7">&#9670;&#160;</a></span>NodeType</h2>
-
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;typename Traits &gt; </div>
-      <table class="memname">
-        <tr>
-          <td class="memname">using <a class="el" href="classPonca_1_1KdTreeBase.html">Ponca::KdTreeBase</a>&lt; Traits &gt;::NodeType =  typename NodeContainer::value_type</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p class="definition">Definition at line <a class="el" href="kdTree_8h_source.html#l00065">65</a> of file <a class="el" href="kdTree_8h_source.html">kdTree.h</a>.</p>
 
 </div>
 </div>
@@ -474,7 +487,7 @@ template&lt;typename Traits &gt; </div>
 
 <p>Container for DataPoint used inside the KdTree. </p>
 
-<p class="definition">Definition at line <a class="el" href="kdTree_8h_source.html#l00061">61</a> of file <a class="el" href="kdTree_8h_source.html">kdTree.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="kdTree_8h_source.html#l00059">59</a> of file <a class="el" href="kdTree_8h_source.html">kdTree.h</a>.</p>
 
 </div>
 </div>
@@ -494,7 +507,7 @@ template&lt;typename Traits &gt; </div>
 
 <p>Scalar given by user via DataPoint. </p>
 
-<p class="definition">Definition at line <a class="el" href="kdTree_8h_source.html#l00056">56</a> of file <a class="el" href="kdTree_8h_source.html">kdTree.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="kdTree_8h_source.html#l00066">66</a> of file <a class="el" href="kdTree_8h_source.html">kdTree.h</a>.</p>
 
 </div>
 </div>
@@ -514,7 +527,7 @@ template&lt;typename Traits &gt; </div>
 
 <p>VectorType given by user via DataPoint. </p>
 
-<p class="definition">Definition at line <a class="el" href="kdTree_8h_source.html#l00057">57</a> of file <a class="el" href="kdTree_8h_source.html">kdTree.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="kdTree_8h_source.html#l00067">67</a> of file <a class="el" href="kdTree_8h_source.html">kdTree.h</a>.</p>
 
 </div>
 </div>
@@ -533,11 +546,13 @@ template&lt;typename Traits &gt; </div>
       </table>
 </div><div class="memdoc">
 <table class="fieldtable">
-<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="a8462aa0e64f314dae040179dfa14e025acb338289dd4aa718e573232d8ea5678d" name="a8462aa0e64f314dae040179dfa14e025acb338289dd4aa718e573232d8ea5678d"></a>MAX_POINT_COUNT&#160;</td><td class="fielddoc"><p>The maximum number of points that can be stored in the kd-tree, considering how many bits the inner nodes use to store their children indices. </p>
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="a8462aa0e64f314dae040179dfa14e025abb1b68aecd96cfb407f40c9ce8b33c97" name="a8462aa0e64f314dae040179dfa14e025abb1b68aecd96cfb407f40c9ce8b33c97"></a>MAX_NODE_COUNT&#160;</td><td class="fielddoc"><p>The maximum number of nodes that the kd-tree can have. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a8462aa0e64f314dae040179dfa14e025acb338289dd4aa718e573232d8ea5678d" name="a8462aa0e64f314dae040179dfa14e025acb338289dd4aa718e573232d8ea5678d"></a>MAX_POINT_COUNT&#160;</td><td class="fielddoc"><p>The maximum number of points that can be stored in the kd-tree. </p>
 </td></tr>
 </table>
 
-<p class="definition">Definition at line <a class="el" href="kdTree_8h_source.html#l00069">69</a> of file <a class="el" href="kdTree_8h_source.html">kdTree.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="kdTree_8h_source.html#l00070">70</a> of file <a class="el" href="kdTree_8h_source.html">kdTree.h</a>.</p>
 
 </div>
 </div>
@@ -572,7 +587,7 @@ template&lt;typename Traits &gt; </div>
 <dd>
 <a class="el" href="classPonca_1_1KdTreeBase.html#aaa423035de54c90cdcf787de39cbfcc8" title="Generate a tree sampled from a custom contained type converted using DefaultConverter.">buildWithSampling</a> </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="kdTree_8h_source.html#l00088">88</a> of file <a class="el" href="kdTree_8h_source.html">kdTree.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="kdTree_8h_source.html#l00095">95</a> of file <a class="el" href="kdTree_8h_source.html">kdTree.h</a>.</p>
 
 </div>
 </div>
@@ -606,7 +621,7 @@ template&lt;typename PointUserContainer &gt; </div>
 
 <p>Constructor generating a tree from a custom contained type converted using <a class="el" href="structPonca_1_1KdTreeBase_1_1DefaultConverter.html" title="Convert a CustomPointContainer to the KdTree PointContainer using DataPoint default constructor.">DefaultConverter</a>. </p>
 
-<p class="definition">Definition at line <a class="el" href="kdTree_8h_source.html#l00099">99</a> of file <a class="el" href="kdTree_8h_source.html">kdTree.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="kdTree_8h_source.html#l00106">106</a> of file <a class="el" href="kdTree_8h_source.html">kdTree.h</a>.</p>
 
 </div>
 </div>
@@ -650,7 +665,7 @@ template&lt;typename PointUserContainer , typename IndexUserContainer &gt; </div
 
 <p>Constructor generating a tree sampled from a custom contained type converted using <a class="el" href="structPonca_1_1KdTreeBase_1_1DefaultConverter.html" title="Convert a CustomPointContainer to the KdTree PointContainer using DataPoint default constructor.">DefaultConverter</a>. </p>
 
-<p class="definition">Definition at line <a class="el" href="kdTree_8h_source.html#l00111">111</a> of file <a class="el" href="kdTree_8h_source.html">kdTree.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="kdTree_8h_source.html#l00118">118</a> of file <a class="el" href="kdTree_8h_source.html">kdTree.h</a>.</p>
 
 </div>
 </div>
@@ -697,7 +712,7 @@ template&lt;typename PointUserContainer &gt; </div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="kdTree_8h_source.html#l00144">144</a> of file <a class="el" href="kdTree_8h_source.html">kdTree.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="kdTree_8h_source.html#l00151">151</a> of file <a class="el" href="kdTree_8h_source.html">kdTree.h</a>.</p>
 
 </div>
 </div>
@@ -799,8 +814,8 @@ template&lt;typename PointUserContainer , typename Converter &gt; </div>
 
 </div>
 </div>
-<a id="a0349f3f2d8598191af8f69ba9eec14ff" name="a0349f3f2d8598191af8f69ba9eec14ff"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a0349f3f2d8598191af8f69ba9eec14ff">&#9670;&#160;</a></span>build_rec()</h2>
+<a id="afc6f84af4b6c3f23315416ed4dae1705" name="afc6f84af4b6c3f23315416ed4dae1705"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afc6f84af4b6c3f23315416ed4dae1705">&#9670;&#160;</a></span>build_rec()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -813,19 +828,19 @@ template&lt;typename Traits &gt; </div>
         <tr>
           <td class="memname">void KdTreeBase::build_rec </td>
           <td>(</td>
-          <td class="paramtype">NodeCountType&#160;</td>
+          <td class="paramtype"><a class="el" href="classPonca_1_1KdTreeBase.html#a9613c7140e98d39214c8ae16e51a1d0c">NodeIndexType</a>&#160;</td>
           <td class="paramname"><em>node_id</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">IndexType&#160;</td>
+          <td class="paramtype"><a class="el" href="classPonca_1_1KdTreeBase.html#a26084353cfa874ce84c9acfb069a8a2e">IndexType</a>&#160;</td>
           <td class="paramname"><em>start</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">IndexType&#160;</td>
+          <td class="paramtype"><a class="el" href="classPonca_1_1KdTreeBase.html#a26084353cfa874ce84c9acfb069a8a2e">IndexType</a>&#160;</td>
           <td class="paramname"><em>end</em>, </td>
         </tr>
         <tr>
@@ -905,7 +920,7 @@ template&lt;typename PointUserContainer , typename IndexUserContainer &gt; </div
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="kdTree_8h_source.html#l00163">163</a> of file <a class="el" href="kdTree_8h_source.html">kdTree.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="kdTree_8h_source.html#l00170">170</a> of file <a class="el" href="kdTree_8h_source.html">kdTree.h</a>.</p>
 
 </div>
 </div>
@@ -1064,7 +1079,7 @@ template&lt;typename Traits &gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">IndexType <a class="el" href="classPonca_1_1KdTreeBase.html">Ponca::KdTreeBase</a>&lt; Traits &gt;::index_count </td>
+          <td class="memname"><a class="el" href="classPonca_1_1KdTreeBase.html#a26084353cfa874ce84c9acfb069a8a2e">IndexType</a> <a class="el" href="classPonca_1_1KdTreeBase.html">Ponca::KdTreeBase</a>&lt; Traits &gt;::index_count </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td> const</td>
@@ -1077,7 +1092,7 @@ template&lt;typename Traits &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="kdTree_8h_source.html#l00196">196</a> of file <a class="el" href="kdTree_8h_source.html">kdTree.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="kdTree_8h_source.html#l00203">203</a> of file <a class="el" href="kdTree_8h_source.html">kdTree.h</a>.</p>
 
 </div>
 </div>
@@ -1106,7 +1121,7 @@ template&lt;typename Traits &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="kdTree_8h_source.html#l00236">236</a> of file <a class="el" href="kdTree_8h_source.html">kdTree.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="kdTree_8h_source.html#l00243">243</a> of file <a class="el" href="kdTree_8h_source.html">kdTree.h</a>.</p>
 
 </div>
 </div>
@@ -1135,7 +1150,7 @@ template&lt;typename Traits &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="kdTree_8h_source.html#l00231">231</a> of file <a class="el" href="kdTree_8h_source.html">kdTree.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="kdTree_8h_source.html#l00238">238</a> of file <a class="el" href="kdTree_8h_source.html">kdTree.h</a>.</p>
 
 </div>
 </div>
@@ -1159,7 +1174,7 @@ template&lt;typename Traits &gt; </div>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">IndexType&#160;</td>
+          <td class="paramtype"><a class="el" href="classPonca_1_1KdTreeBase.html#a26084353cfa874ce84c9acfb069a8a2e">IndexType</a>&#160;</td>
           <td class="paramname"><em>k</em>&#160;</td>
         </tr>
         <tr>
@@ -1175,7 +1190,7 @@ template&lt;typename Traits &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="kdTree_8h_source.html#l00263">263</a> of file <a class="el" href="kdTree_8h_source.html">kdTree.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="kdTree_8h_source.html#l00270">270</a> of file <a class="el" href="kdTree_8h_source.html">kdTree.h</a>.</p>
 
 </div>
 </div>
@@ -1193,13 +1208,13 @@ template&lt;typename Traits &gt; </div>
         <tr>
           <td class="memname"><a class="el" href="classPonca_1_1KdTreeKNearestQueryBase.html">KdTreeKNearestIndexQuery</a>&lt; Traits &gt; <a class="el" href="classPonca_1_1KdTreeBase.html">Ponca::KdTreeBase</a>&lt; Traits &gt;::k_nearest_neighbors </td>
           <td>(</td>
-          <td class="paramtype">IndexType&#160;</td>
+          <td class="paramtype"><a class="el" href="classPonca_1_1KdTreeBase.html#a26084353cfa874ce84c9acfb069a8a2e">IndexType</a>&#160;</td>
           <td class="paramname"><em>index</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">IndexType&#160;</td>
+          <td class="paramtype"><a class="el" href="classPonca_1_1KdTreeBase.html#a26084353cfa874ce84c9acfb069a8a2e">IndexType</a>&#160;</td>
           <td class="paramname"><em>k</em>&#160;</td>
         </tr>
         <tr>
@@ -1215,12 +1230,12 @@ template&lt;typename Traits &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="kdTree_8h_source.html#l00268">268</a> of file <a class="el" href="kdTree_8h_source.html">kdTree.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="kdTree_8h_source.html#l00275">275</a> of file <a class="el" href="kdTree_8h_source.html">kdTree.h</a>.</p>
 
 </div>
 </div>
-<a id="a49d85939353eca57977ba80a07e22baa" name="a49d85939353eca57977ba80a07e22baa"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a49d85939353eca57977ba80a07e22baa">&#9670;&#160;</a></span>leaf_count()</h2>
+<a id="a17259f7189273ad4f178ff67aa13052d" name="a17259f7189273ad4f178ff67aa13052d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a17259f7189273ad4f178ff67aa13052d">&#9670;&#160;</a></span>leaf_count()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1231,7 +1246,7 @@ template&lt;typename Traits &gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">NodeCountType <a class="el" href="classPonca_1_1KdTreeBase.html">Ponca::KdTreeBase</a>&lt; Traits &gt;::leaf_count </td>
+          <td class="memname"><a class="el" href="classPonca_1_1KdTreeBase.html#a9613c7140e98d39214c8ae16e51a1d0c">NodeIndexType</a> <a class="el" href="classPonca_1_1KdTreeBase.html">Ponca::KdTreeBase</a>&lt; Traits &gt;::leaf_count </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td> const</td>
@@ -1244,7 +1259,7 @@ template&lt;typename Traits &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="kdTree_8h_source.html#l00206">206</a> of file <a class="el" href="kdTree_8h_source.html">kdTree.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="kdTree_8h_source.html#l00213">213</a> of file <a class="el" href="kdTree_8h_source.html">kdTree.h</a>.</p>
 
 </div>
 </div>
@@ -1260,7 +1275,7 @@ template&lt;typename Traits &gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">LeafSizeType <a class="el" href="classPonca_1_1KdTreeBase.html">Ponca::KdTreeBase</a>&lt; Traits &gt;::min_cell_size </td>
+          <td class="memname"><a class="el" href="classPonca_1_1KdTreeBase.html#ae5a3bb1b5aaab27bad9968f98afdc169">LeafSizeType</a> <a class="el" href="classPonca_1_1KdTreeBase.html">Ponca::KdTreeBase</a>&lt; Traits &gt;::min_cell_size </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td> const</td>
@@ -1275,7 +1290,7 @@ template&lt;typename Traits &gt; </div>
 
 <p>Read leaf min size. </p>
 
-<p class="definition">Definition at line <a class="el" href="kdTree_8h_source.html#l00244">244</a> of file <a class="el" href="kdTree_8h_source.html">kdTree.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="kdTree_8h_source.html#l00251">251</a> of file <a class="el" href="kdTree_8h_source.html">kdTree.h</a>.</p>
 
 </div>
 </div>
@@ -1305,7 +1320,7 @@ template&lt;typename Traits &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="kdTree_8h_source.html#l00273">273</a> of file <a class="el" href="kdTree_8h_source.html">kdTree.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="kdTree_8h_source.html#l00280">280</a> of file <a class="el" href="kdTree_8h_source.html">kdTree.h</a>.</p>
 
 </div>
 </div>
@@ -1323,7 +1338,7 @@ template&lt;typename Traits &gt; </div>
         <tr>
           <td class="memname"><a class="el" href="classPonca_1_1KdTreeNearestQueryBase.html">KdTreeNearestIndexQuery</a>&lt; Traits &gt; <a class="el" href="classPonca_1_1KdTreeBase.html">Ponca::KdTreeBase</a>&lt; Traits &gt;::nearest_neighbor </td>
           <td>(</td>
-          <td class="paramtype">IndexType&#160;</td>
+          <td class="paramtype"><a class="el" href="classPonca_1_1KdTreeBase.html#a26084353cfa874ce84c9acfb069a8a2e">IndexType</a>&#160;</td>
           <td class="paramname"><em>index</em></td><td>)</td>
           <td> const</td>
         </tr>
@@ -1335,12 +1350,12 @@ template&lt;typename Traits &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="kdTree_8h_source.html#l00278">278</a> of file <a class="el" href="kdTree_8h_source.html">kdTree.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="kdTree_8h_source.html#l00285">285</a> of file <a class="el" href="kdTree_8h_source.html">kdTree.h</a>.</p>
 
 </div>
 </div>
-<a id="a0dc3699d8c8b11a62bc39b3abeea6344" name="a0dc3699d8c8b11a62bc39b3abeea6344"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a0dc3699d8c8b11a62bc39b3abeea6344">&#9670;&#160;</a></span>node_count()</h2>
+<a id="a312cd2f793932c9eacd02df771e9e339" name="a312cd2f793932c9eacd02df771e9e339"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a312cd2f793932c9eacd02df771e9e339">&#9670;&#160;</a></span>node_count()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1351,7 +1366,7 @@ template&lt;typename Traits &gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">NodeCountType <a class="el" href="classPonca_1_1KdTreeBase.html">Ponca::KdTreeBase</a>&lt; Traits &gt;::node_count </td>
+          <td class="memname"><a class="el" href="classPonca_1_1KdTreeBase.html#a9613c7140e98d39214c8ae16e51a1d0c">NodeIndexType</a> <a class="el" href="classPonca_1_1KdTreeBase.html">Ponca::KdTreeBase</a>&lt; Traits &gt;::node_count </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td> const</td>
@@ -1364,7 +1379,7 @@ template&lt;typename Traits &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="kdTree_8h_source.html#l00191">191</a> of file <a class="el" href="kdTree_8h_source.html">kdTree.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="kdTree_8h_source.html#l00198">198</a> of file <a class="el" href="kdTree_8h_source.html">kdTree.h</a>.</p>
 
 </div>
 </div>
@@ -1393,7 +1408,7 @@ template&lt;typename Traits &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="kdTree_8h_source.html#l00226">226</a> of file <a class="el" href="kdTree_8h_source.html">kdTree.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="kdTree_8h_source.html#l00233">233</a> of file <a class="el" href="kdTree_8h_source.html">kdTree.h</a>.</p>
 
 </div>
 </div>
@@ -1422,7 +1437,7 @@ template&lt;typename Traits &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="kdTree_8h_source.html#l00221">221</a> of file <a class="el" href="kdTree_8h_source.html">kdTree.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="kdTree_8h_source.html#l00228">228</a> of file <a class="el" href="kdTree_8h_source.html">kdTree.h</a>.</p>
 
 </div>
 </div>
@@ -1440,13 +1455,13 @@ template&lt;typename Traits &gt; </div>
         <tr>
           <td class="memname">auto KdTreeBase::partition </td>
           <td>(</td>
-          <td class="paramtype">IndexType&#160;</td>
+          <td class="paramtype"><a class="el" href="classPonca_1_1KdTreeBase.html#a26084353cfa874ce84c9acfb069a8a2e">IndexType</a>&#160;</td>
           <td class="paramname"><em>start</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">IndexType&#160;</td>
+          <td class="paramtype"><a class="el" href="classPonca_1_1KdTreeBase.html#a26084353cfa874ce84c9acfb069a8a2e">IndexType</a>&#160;</td>
           <td class="paramname"><em>end</em>, </td>
         </tr>
         <tr>
@@ -1474,7 +1489,7 @@ template&lt;typename Traits &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="kdTree_8hpp_source.html#l00188">188</a> of file <a class="el" href="kdTree_8hpp_source.html">kdTree.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="kdTree_8hpp_source.html#l00190">190</a> of file <a class="el" href="kdTree_8hpp_source.html">kdTree.hpp</a>.</p>
 
 </div>
 </div>
@@ -1490,7 +1505,7 @@ template&lt;typename Traits &gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">IndexType <a class="el" href="classPonca_1_1KdTreeBase.html">Ponca::KdTreeBase</a>&lt; Traits &gt;::point_count </td>
+          <td class="memname"><a class="el" href="classPonca_1_1KdTreeBase.html#a26084353cfa874ce84c9acfb069a8a2e">IndexType</a> <a class="el" href="classPonca_1_1KdTreeBase.html">Ponca::KdTreeBase</a>&lt; Traits &gt;::point_count </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td> const</td>
@@ -1503,7 +1518,7 @@ template&lt;typename Traits &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="kdTree_8h_source.html#l00201">201</a> of file <a class="el" href="kdTree_8h_source.html">kdTree.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="kdTree_8h_source.html#l00208">208</a> of file <a class="el" href="kdTree_8h_source.html">kdTree.h</a>.</p>
 
 </div>
 </div>
@@ -1532,7 +1547,7 @@ template&lt;typename Traits &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="kdTree_8h_source.html#l00211">211</a> of file <a class="el" href="kdTree_8h_source.html">kdTree.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="kdTree_8h_source.html#l00218">218</a> of file <a class="el" href="kdTree_8h_source.html">kdTree.h</a>.</p>
 
 </div>
 </div>
@@ -1561,7 +1576,7 @@ template&lt;typename Traits &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="kdTree_8h_source.html#l00216">216</a> of file <a class="el" href="kdTree_8h_source.html">kdTree.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="kdTree_8h_source.html#l00223">223</a> of file <a class="el" href="kdTree_8h_source.html">kdTree.h</a>.</p>
 
 </div>
 </div>
@@ -1601,7 +1616,7 @@ template&lt;typename Traits &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="kdTree_8h_source.html#l00283">283</a> of file <a class="el" href="kdTree_8h_source.html">kdTree.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="kdTree_8h_source.html#l00290">290</a> of file <a class="el" href="kdTree_8h_source.html">kdTree.h</a>.</p>
 
 </div>
 </div>
@@ -1619,7 +1634,7 @@ template&lt;typename Traits &gt; </div>
         <tr>
           <td class="memname"><a class="el" href="classPonca_1_1KdTreeRangeQueryBase.html">KdTreeRangeIndexQuery</a>&lt; Traits &gt; <a class="el" href="classPonca_1_1KdTreeBase.html">Ponca::KdTreeBase</a>&lt; Traits &gt;::range_neighbors </td>
           <td>(</td>
-          <td class="paramtype">IndexType&#160;</td>
+          <td class="paramtype"><a class="el" href="classPonca_1_1KdTreeBase.html#a26084353cfa874ce84c9acfb069a8a2e">IndexType</a>&#160;</td>
           <td class="paramname"><em>index</em>, </td>
         </tr>
         <tr>
@@ -1641,7 +1656,7 @@ template&lt;typename Traits &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="kdTree_8h_source.html#l00288">288</a> of file <a class="el" href="kdTree_8h_source.html">kdTree.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="kdTree_8h_source.html#l00295">295</a> of file <a class="el" href="kdTree_8h_source.html">kdTree.h</a>.</p>
 
 </div>
 </div>
@@ -1691,7 +1706,7 @@ template&lt;typename Traits &gt; </div>
         <tr>
           <td class="memname">void <a class="el" href="classPonca_1_1KdTreeBase.html">Ponca::KdTreeBase</a>&lt; Traits &gt;::set_min_cell_size </td>
           <td>(</td>
-          <td class="paramtype">LeafSizeType&#160;</td>
+          <td class="paramtype"><a class="el" href="classPonca_1_1KdTreeBase.html#ae5a3bb1b5aaab27bad9968f98afdc169">LeafSizeType</a>&#160;</td>
           <td class="paramname"><em>min_cell_size</em></td><td>)</td>
           <td></td>
         </tr>
@@ -1705,7 +1720,7 @@ template&lt;typename Traits &gt; </div>
 
 <p>Write leaf min size. </p>
 
-<p class="definition">Definition at line <a class="el" href="kdTree_8h_source.html#l00250">250</a> of file <a class="el" href="kdTree_8h_source.html">kdTree.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="kdTree_8h_source.html#l00257">257</a> of file <a class="el" href="kdTree_8h_source.html">kdTree.h</a>.</p>
 
 </div>
 </div>
@@ -1790,12 +1805,12 @@ template&lt;typename Traits &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="kdTree_8h_source.html#l00298">298</a> of file <a class="el" href="kdTree_8h_source.html">kdTree.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="kdTree_8h_source.html#l00305">305</a> of file <a class="el" href="kdTree_8h_source.html">kdTree.h</a>.</p>
 
 </div>
 </div>
-<a id="a987ad52fb6613c74a684083767af23e5" name="a987ad52fb6613c74a684083767af23e5"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a987ad52fb6613c74a684083767af23e5">&#9670;&#160;</a></span>m_leaf_count</h2>
+<a id="aa951cbb6b419fde33ab8c6a9c7f8ee8f" name="aa951cbb6b419fde33ab8c6a9c7f8ee8f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa951cbb6b419fde33ab8c6a9c7f8ee8f">&#9670;&#160;</a></span>m_leaf_count</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1806,7 +1821,7 @@ template&lt;typename Traits &gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">NodeCountType <a class="el" href="classPonca_1_1KdTreeBase.html">Ponca::KdTreeBase</a>&lt; Traits &gt;::m_leaf_count</td>
+          <td class="memname"><a class="el" href="classPonca_1_1KdTreeBase.html#a9613c7140e98d39214c8ae16e51a1d0c">NodeIndexType</a> <a class="el" href="classPonca_1_1KdTreeBase.html">Ponca::KdTreeBase</a>&lt; Traits &gt;::m_leaf_count</td>
         </tr>
       </table>
   </td>
@@ -1818,7 +1833,7 @@ template&lt;typename Traits &gt; </div>
 
 <p>Number of leaves in the Kdtree (computed during construction) </p>
 
-<p class="definition">Definition at line <a class="el" href="kdTree_8h_source.html#l00301">301</a> of file <a class="el" href="kdTree_8h_source.html">kdTree.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="kdTree_8h_source.html#l00308">308</a> of file <a class="el" href="kdTree_8h_source.html">kdTree.h</a>.</p>
 
 </div>
 </div>
@@ -1834,7 +1849,7 @@ template&lt;typename Traits &gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">LeafSizeType <a class="el" href="classPonca_1_1KdTreeBase.html">Ponca::KdTreeBase</a>&lt; Traits &gt;::m_min_cell_size</td>
+          <td class="memname"><a class="el" href="classPonca_1_1KdTreeBase.html#ae5a3bb1b5aaab27bad9968f98afdc169">LeafSizeType</a> <a class="el" href="classPonca_1_1KdTreeBase.html">Ponca::KdTreeBase</a>&lt; Traits &gt;::m_min_cell_size</td>
         </tr>
       </table>
   </td>
@@ -1846,7 +1861,7 @@ template&lt;typename Traits &gt; </div>
 
 <p>Minimal number of points per leaf. </p>
 
-<p class="definition">Definition at line <a class="el" href="kdTree_8h_source.html#l00300">300</a> of file <a class="el" href="kdTree_8h_source.html">kdTree.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="kdTree_8h_source.html#l00307">307</a> of file <a class="el" href="kdTree_8h_source.html">kdTree.h</a>.</p>
 
 </div>
 </div>
@@ -1872,7 +1887,7 @@ template&lt;typename Traits &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="kdTree_8h_source.html#l00297">297</a> of file <a class="el" href="kdTree_8h_source.html">kdTree.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="kdTree_8h_source.html#l00304">304</a> of file <a class="el" href="kdTree_8h_source.html">kdTree.h</a>.</p>
 
 </div>
 </div>
@@ -1898,7 +1913,7 @@ template&lt;typename Traits &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="kdTree_8h_source.html#l00296">296</a> of file <a class="el" href="kdTree_8h_source.html">kdTree.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="kdTree_8h_source.html#l00303">303</a> of file <a class="el" href="kdTree_8h_source.html">kdTree.h</a>.</p>
 
 </div>
 </div>
@@ -1908,7 +1923,7 @@ template&lt;typename Traits &gt; </div>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="namespacePonca.html">Ponca</a></li><li class="navelem"><a class="el" href="classPonca_1_1KdTreeBase.html">KdTreeBase</a></li>
-    <li class="footer">Generated on Wed Nov 29 2023 18:05:06 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.6 </li>
+    <li class="footer">Generated on Fri Dec 1 2023 21:56:40 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.6 </li>
   </ul>
 </div>
 </body>

@@ -51,7 +51,7 @@ MathJax.Hub.Config({
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Ponca
-   &#160;<span id="projectnumber">822a7255148f608ff4568ca2a90193923289de47</span>
+   &#160;<span id="projectnumber">ea4ecb474d822244d9c1b439170b4cce544769d7</span>
    </div>
    <div id="projectbrief">Point Cloud Analysis library</div>
   </td>
@@ -138,52 +138,33 @@ $(document).ready(function(){initNavTree('structPonca_1_1KdTreeDefaultTraits.htm
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-types" name="pub-types"></a>
 Public Types</h2></td></tr>
-<tr class="memitem:a84be24eaf86c2f3772f6524ebf98165e"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom">{ <a class="el" href="structPonca_1_1KdTreeDefaultTraits.html#a84be24eaf86c2f3772f6524ebf98165ea18654af852e0d09608dd048edd84128a">MAX_DEPTH</a> = 32
+<tr class="memitem:a5eb03ed59ec6c135275b603770cde052"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom">{ <a class="el" href="structPonca_1_1KdTreeDefaultTraits.html#a5eb03ed59ec6c135275b603770cde052a18654af852e0d09608dd048edd84128a">MAX_DEPTH</a> = 32
  }</td></tr>
-<tr class="separator:a84be24eaf86c2f3772f6524ebf98165e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="separator:a5eb03ed59ec6c135275b603770cde052"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a598b74accb354214047ed1f1b11d0c91"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structPonca_1_1KdTreeDefaultTraits.html#a598b74accb354214047ed1f1b11d0c91">DataPoint</a> = _DataPoint</td></tr>
 <tr class="memdesc:a598b74accb354214047ed1f1b11d0c91"><td class="mdescLeft">&#160;</td><td class="mdescRight">The type used to store point data.  <br /></td></tr>
 <tr class="separator:a598b74accb354214047ed1f1b11d0c91"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad257c42dbd8124b30b26ce0d722e0feb"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structPonca_1_1KdTreeDefaultTraits.html#ad257c42dbd8124b30b26ce0d722e0feb">AabbType</a> = Eigen::AlignedBox&lt; Scalar, DataPoint::Dim &gt;</td></tr>
-<tr class="memdesc:ad257c42dbd8124b30b26ce0d722e0feb"><td class="mdescLeft">&#160;</td><td class="mdescRight">The type used to calculate node bounding boxes.  <br /></td></tr>
-<tr class="separator:ad257c42dbd8124b30b26ce0d722e0feb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:adb9140260e6a424c9044df2e74495330"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structPonca_1_1KdTreeDefaultTraits.html#adb9140260e6a424c9044df2e74495330">IndexType</a> = int</td></tr>
 <tr class="separator:adb9140260e6a424c9044df2e74495330"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8524f7e35023b14b2293223296fce12d"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structPonca_1_1KdTreeDefaultTraits.html#a8524f7e35023b14b2293223296fce12d">LeafSizeType</a> = unsigned short</td></tr>
+<tr class="separator:a8524f7e35023b14b2293223296fce12d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa0b0e5d0155265ca9fe7cf1d67702f8e"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structPonca_1_1KdTreeDefaultTraits.html#aa0b0e5d0155265ca9fe7cf1d67702f8e">PointContainer</a> = std::vector&lt; <a class="el" href="structPonca_1_1KdTreeDefaultTraits.html#a598b74accb354214047ed1f1b11d0c91">DataPoint</a> &gt;</td></tr>
 <tr class="separator:aa0b0e5d0155265ca9fe7cf1d67702f8e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abbb38a70d805643d963a59a57a55c6c4"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structPonca_1_1KdTreeDefaultTraits.html#abbb38a70d805643d963a59a57a55c6c4">IndexContainer</a> = std::vector&lt; IndexType &gt;</td></tr>
 <tr class="separator:abbb38a70d805643d963a59a57a55c6c4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aac45c9c9e6dc7b4508072f5ceb53a7ff"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structPonca_1_1KdTreeDefaultTraits.html#aac45c9c9e6dc7b4508072f5ceb53a7ff">NodeContainer</a> = std::vector&lt; <a class="el" href="structPonca_1_1KdTreeDefaultNode.html">KdTreeDefaultNode</a>&lt; IndexType, Scalar, DataPoint::Dim &gt; &gt;</td></tr>
-<tr class="memdesc:aac45c9c9e6dc7b4508072f5ceb53a7ff"><td class="mdescLeft">&#160;</td><td class="mdescRight">The container used to store nodes.  <br /></td></tr>
-<tr class="separator:aac45c9c9e6dc7b4508072f5ceb53a7ff"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adf26f8eaca330dedecb19848314f4314"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structPonca_1_1KdTreeDefaultTraits.html#adf26f8eaca330dedecb19848314f4314">NodeIndexType</a> = std::size_t</td></tr>
+<tr class="separator:adf26f8eaca330dedecb19848314f4314"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2f3bc549c63fb80e6127dadd1c24f9e6"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structPonca_1_1KdTreeDefaultTraits.html#a2f3bc549c63fb80e6127dadd1c24f9e6">NodeType</a> = <a class="el" href="classPonca_1_1KdTreeDefaultNode.html">KdTreeDefaultNode</a>&lt; IndexType, NodeIndexType, <a class="el" href="structPonca_1_1KdTreeDefaultTraits.html#a598b74accb354214047ed1f1b11d0c91">DataPoint</a>, LeafSizeType &gt;</td></tr>
+<tr class="separator:a2f3bc549c63fb80e6127dadd1c24f9e6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4d1be52b3f7d936ec1d83297ac5047ae"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structPonca_1_1KdTreeDefaultTraits.html#a4d1be52b3f7d936ec1d83297ac5047ae">NodeContainer</a> = std::vector&lt; <a class="el" href="classPonca_1_1KdTreeDefaultNode.html">NodeType</a> &gt;</td></tr>
+<tr class="separator:a4d1be52b3f7d936ec1d83297ac5047ae"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><div class="compoundTemplParams">template&lt;typename _DataPoint&gt;<br />
 struct Ponca::KdTreeDefaultTraits&lt; _DataPoint &gt;</div><p>The default traits type used by the kd-tree. </p>
 
-<p class="definition">Definition at line <a class="el" href="kdTreeTraits_8h_source.html#l00157">157</a> of file <a class="el" href="kdTreeTraits_8h_source.html">kdTreeTraits.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="kdTreeTraits_8h_source.html#l00202">202</a> of file <a class="el" href="kdTreeTraits_8h_source.html">kdTreeTraits.h</a>.</p>
 </div><h2 class="groupheader">Member Typedef Documentation</h2>
-<a id="ad257c42dbd8124b30b26ce0d722e0feb" name="ad257c42dbd8124b30b26ce0d722e0feb"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad257c42dbd8124b30b26ce0d722e0feb">&#9670;&#160;</a></span>AabbType</h2>
-
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;typename _DataPoint &gt; </div>
-      <table class="memname">
-        <tr>
-          <td class="memname">using <a class="el" href="structPonca_1_1KdTreeDefaultTraits.html">Ponca::KdTreeDefaultTraits</a>&lt; _DataPoint &gt;::AabbType =  Eigen::AlignedBox&lt;Scalar, DataPoint::Dim&gt;</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>The type used to calculate node bounding boxes. </p>
-<p>Must provide <code>min()</code>, <code>max()</code>, and <code>center()</code> functions, all returning a <code>VectorType</code>. </p>
-
-<p class="definition">Definition at line <a class="el" href="kdTreeTraits_8h_source.html#l00188">188</a> of file <a class="el" href="kdTreeTraits_8h_source.html">kdTreeTraits.h</a>.</p>
-
-</div>
-</div>
 <a id="a598b74accb354214047ed1f1b11d0c91" name="a598b74accb354214047ed1f1b11d0c91"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a598b74accb354214047ed1f1b11d0c91">&#9670;&#160;</a></span>DataPoint</h2>
 
@@ -202,7 +183,7 @@ template&lt;typename _DataPoint &gt; </div>
 <p>Must provide <code>Scalar</code> and <code>VectorType</code> typedefs.</p>
 <p><code>VectorType</code> must provide a <code>squaredNorm()</code> function returning a <code>Scalar</code>, as well as a <code>maxCoeff(int*)</code> function returning the dimension index of its largest scalar in its output parameter (e.g. 0 for <em>x</em>, 1 for <em>y</em>, etc.). </p>
 
-<p class="definition">Definition at line <a class="el" href="kdTreeTraits_8h_source.html#l00168">168</a> of file <a class="el" href="kdTreeTraits_8h_source.html">kdTreeTraits.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="kdTreeTraits_8h_source.html#l00221">221</a> of file <a class="el" href="kdTreeTraits_8h_source.html">kdTreeTraits.h</a>.</p>
 
 </div>
 </div>
@@ -220,7 +201,7 @@ template&lt;typename _DataPoint &gt; </div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="kdTreeTraits_8h_source.html#l00193">193</a> of file <a class="el" href="kdTreeTraits_8h_source.html">kdTreeTraits.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="kdTreeTraits_8h_source.html#l00227">227</a> of file <a class="el" href="kdTreeTraits_8h_source.html">kdTreeTraits.h</a>.</p>
 
 </div>
 </div>
@@ -238,12 +219,12 @@ template&lt;typename _DataPoint &gt; </div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="kdTreeTraits_8h_source.html#l00191">191</a> of file <a class="el" href="kdTreeTraits_8h_source.html">kdTreeTraits.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="kdTreeTraits_8h_source.html#l00222">222</a> of file <a class="el" href="kdTreeTraits_8h_source.html">kdTreeTraits.h</a>.</p>
 
 </div>
 </div>
-<a id="aac45c9c9e6dc7b4508072f5ceb53a7ff" name="aac45c9c9e6dc7b4508072f5ceb53a7ff"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aac45c9c9e6dc7b4508072f5ceb53a7ff">&#9670;&#160;</a></span>NodeContainer</h2>
+<a id="a8524f7e35023b14b2293223296fce12d" name="a8524f7e35023b14b2293223296fce12d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8524f7e35023b14b2293223296fce12d">&#9670;&#160;</a></span>LeafSizeType</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -251,16 +232,66 @@ template&lt;typename _DataPoint &gt; </div>
 template&lt;typename _DataPoint &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">using <a class="el" href="structPonca_1_1KdTreeDefaultTraits.html">Ponca::KdTreeDefaultTraits</a>&lt; _DataPoint &gt;::NodeContainer =  std::vector&lt;<a class="el" href="structPonca_1_1KdTreeDefaultNode.html">KdTreeDefaultNode</a>&lt;IndexType, Scalar, DataPoint::Dim&gt; &gt;</td>
+          <td class="memname">using <a class="el" href="structPonca_1_1KdTreeDefaultTraits.html">Ponca::KdTreeDefaultTraits</a>&lt; _DataPoint &gt;::LeafSizeType =  unsigned short</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>The container used to store nodes. </p>
-<dl class="section note"><dt>Note</dt><dd>The node type is deduced from the node container type via <code>NodeContainer::value_type</code>.</dd></dl>
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="structPonca_1_1KdTreeDefaultNode.html" title="The node type used by default by the kd-tree.">KdTreeDefaultNode</a> for the node interface documentation. </dd></dl>
+<p class="definition">Definition at line <a class="el" href="kdTreeTraits_8h_source.html#l00223">223</a> of file <a class="el" href="kdTreeTraits_8h_source.html">kdTreeTraits.h</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="kdTreeTraits_8h_source.html#l00202">202</a> of file <a class="el" href="kdTreeTraits_8h_source.html">kdTreeTraits.h</a>.</p>
+</div>
+</div>
+<a id="a4d1be52b3f7d936ec1d83297ac5047ae" name="a4d1be52b3f7d936ec1d83297ac5047ae"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4d1be52b3f7d936ec1d83297ac5047ae">&#9670;&#160;</a></span>NodeContainer</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename _DataPoint &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="structPonca_1_1KdTreeDefaultTraits.html">Ponca::KdTreeDefaultTraits</a>&lt; _DataPoint &gt;::NodeContainer =  std::vector&lt;<a class="el" href="classPonca_1_1KdTreeDefaultNode.html">NodeType</a>&gt;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="kdTreeTraits_8h_source.html#l00232">232</a> of file <a class="el" href="kdTreeTraits_8h_source.html">kdTreeTraits.h</a>.</p>
+
+</div>
+</div>
+<a id="adf26f8eaca330dedecb19848314f4314" name="adf26f8eaca330dedecb19848314f4314"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adf26f8eaca330dedecb19848314f4314">&#9670;&#160;</a></span>NodeIndexType</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename _DataPoint &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="structPonca_1_1KdTreeDefaultTraits.html">Ponca::KdTreeDefaultTraits</a>&lt; _DataPoint &gt;::NodeIndexType =  std::size_t</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="kdTreeTraits_8h_source.html#l00230">230</a> of file <a class="el" href="kdTreeTraits_8h_source.html">kdTreeTraits.h</a>.</p>
+
+</div>
+</div>
+<a id="a2f3bc549c63fb80e6127dadd1c24f9e6" name="a2f3bc549c63fb80e6127dadd1c24f9e6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2f3bc549c63fb80e6127dadd1c24f9e6">&#9670;&#160;</a></span>NodeType</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename _DataPoint &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="structPonca_1_1KdTreeDefaultTraits.html">Ponca::KdTreeDefaultTraits</a>&lt; _DataPoint &gt;::NodeType =  <a class="el" href="classPonca_1_1KdTreeDefaultNode.html">KdTreeDefaultNode</a>&lt;IndexType, NodeIndexType, <a class="el" href="structPonca_1_1KdTreeDefaultTraits.html#a598b74accb354214047ed1f1b11d0c91">DataPoint</a>, LeafSizeType&gt;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="kdTreeTraits_8h_source.html#l00231">231</a> of file <a class="el" href="kdTreeTraits_8h_source.html">kdTreeTraits.h</a>.</p>
 
 </div>
 </div>
@@ -278,13 +309,13 @@ template&lt;typename _DataPoint &gt; </div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="kdTreeTraits_8h_source.html#l00192">192</a> of file <a class="el" href="kdTreeTraits_8h_source.html">kdTreeTraits.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="kdTreeTraits_8h_source.html#l00226">226</a> of file <a class="el" href="kdTreeTraits_8h_source.html">kdTreeTraits.h</a>.</p>
 
 </div>
 </div>
 <h2 class="groupheader">Member Enumeration Documentation</h2>
-<a id="a84be24eaf86c2f3772f6524ebf98165e" name="a84be24eaf86c2f3772f6524ebf98165e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a84be24eaf86c2f3772f6524ebf98165e">&#9670;&#160;</a></span>anonymous enum</h2>
+<a id="a5eb03ed59ec6c135275b603770cde052" name="a5eb03ed59ec6c135275b603770cde052"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5eb03ed59ec6c135275b603770cde052">&#9670;&#160;</a></span>anonymous enum</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -297,11 +328,11 @@ template&lt;typename _DataPoint &gt; </div>
       </table>
 </div><div class="memdoc">
 <table class="fieldtable">
-<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="a84be24eaf86c2f3772f6524ebf98165ea18654af852e0d09608dd048edd84128a" name="a84be24eaf86c2f3772f6524ebf98165ea18654af852e0d09608dd048edd84128a"></a>MAX_DEPTH&#160;</td><td class="fielddoc"><p>A compile-time constant specifying the maximum depth of the kd-tree. </p>
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="a5eb03ed59ec6c135275b603770cde052a18654af852e0d09608dd048edd84128a" name="a5eb03ed59ec6c135275b603770cde052a18654af852e0d09608dd048edd84128a"></a>MAX_DEPTH&#160;</td><td class="fielddoc"><p>A compile-time constant specifying the maximum depth of the kd-tree. </p>
 </td></tr>
 </table>
 
-<p class="definition">Definition at line <a class="el" href="kdTreeTraits_8h_source.html#l00175">175</a> of file <a class="el" href="kdTreeTraits_8h_source.html">kdTreeTraits.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="kdTreeTraits_8h_source.html#l00204">204</a> of file <a class="el" href="kdTreeTraits_8h_source.html">kdTreeTraits.h</a>.</p>
 
 </div>
 </div>
@@ -311,7 +342,7 @@ template&lt;typename _DataPoint &gt; </div>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="namespacePonca.html">Ponca</a></li><li class="navelem"><a class="el" href="structPonca_1_1KdTreeDefaultTraits.html">KdTreeDefaultTraits</a></li>
-    <li class="footer">Generated on Wed Nov 29 2023 18:05:06 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.6 </li>
+    <li class="footer">Generated on Fri Dec 1 2023 21:56:40 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.6 </li>
   </ul>
 </div>
 </body>

@@ -29,7 +29,7 @@ var searchData=
   ['m_5ffitness_26',['m_fitness',['../classPonca_1_1GLSParam.html#ade62f517fea12b7fdb0dd30ec8e9f3ea',1,'Ponca::GLSParam']]],
   ['m_5fflag_27',['m_flag',['../classPonca_1_1KnnGraphRangeQuery.html#aa59ea82b83f64cc2fb489c34a014b3dd',1,'Ponca::KnnGraphRangeQuery']]],
   ['m_5fisnormalized_28',['m_isNormalized',['../classPonca_1_1AlgebraicSphere.html#a32776b0267366928921d6cd1aaad65a3',1,'Ponca::AlgebraicSphere']]],
-  ['m_5fleaf_5fcount_29',['m_leaf_count',['../classPonca_1_1KdTreeBase.html#a987ad52fb6613c74a684083767af23e5',1,'Ponca::KdTreeBase']]],
+  ['m_5fleaf_5fcount_29',['m_leaf_count',['../classPonca_1_1KdTreeBase.html#aa951cbb6b419fde33ab8c6a9c7f8ee8f',1,'Ponca::KdTreeBase']]],
   ['m_5fmata_30',['m_matA',['../classPonca_1_1SphereFitImpl.html#a1eb6ac83b61f21504abb7652be9e1773',1,'Ponca::SphereFitImpl::m_matA()'],['../classPonca_1_1UnorientedSphereFitImpl.html#a2297dc0e5c02be0398440c3dd909869b',1,'Ponca::UnorientedSphereFitImpl::m_matA()']]],
   ['m_5fmin_5fcell_5fsize_31',['m_min_cell_size',['../classPonca_1_1KdTreeBase.html#ac738881c29dd526796a08f4b3947711b',1,'Ponca::KdTreeBase']]],
   ['m_5fnume_32',['m_nume',['../classPonca_1_1OrientedSphereFitImpl.html#ada582ba0476ea527794f9c47a76287e5',1,'Ponca::OrientedSphereFitImpl']]],
