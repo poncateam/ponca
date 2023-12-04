@@ -14,6 +14,10 @@
 #include "../common/testUtils.h"
 
 #include <Ponca/src/Fitting/basket.h>
+#include <Ponca/src/Fitting/mean.h>
+#include <Ponca/src/Fitting/plane.h>
+#include <Ponca/src/Fitting/localFrame.h>
+#include <Ponca/src/Fitting/covarianceFit.h>
 #include <Ponca/src/Fitting/orientedSphereFit.h>
 #include <Ponca/src/Fitting/covariancePlaneFit.h>
 #include <Ponca/src/Fitting/weightFunc.h>
@@ -214,7 +218,7 @@ void callSubTests()
     //! [HybridType]
     // Create an hybrid structure fitting a plane and a sphere at the same time
     using Hybrid = Basket<Point, WeightFunc,
-                          AlgebraicSphere, Plane,                     // primitives
+                          AlgebraicSphere, Plane, LocalFrame,         // primitives
                           MeanNormal, MeanPosition,                   // shared computation
                           OrientedSphereFitImpl,                      // sphere fitting
                           CovarianceFitBase, CovariancePlaneFitImpl>; // plane fitting

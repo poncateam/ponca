@@ -18,6 +18,10 @@
 #include "../common/testUtils.h"
 
 #include <Ponca/src/Fitting/basket.h>
+#include <Ponca/src/Fitting/mean.h>
+#include <Ponca/src/Fitting/plane.h>
+#include <Ponca/src/Fitting/localFrame.h>
+#include <Ponca/src/Fitting/covarianceFit.h>
 #include <Ponca/src/Fitting/covariancePlaneFit.h>
 #include <Ponca/src/Fitting/meanPlaneFit.h>
 #include <Ponca/src/Fitting/weightFunc.h>
@@ -145,11 +149,11 @@ void callSubTests()
 
     // test if conflicts are detected
     //! [Conflicting type]
-    typedef Basket<Point, WeightConstantFunc, Plane,
+    typedef Basket<Point, WeightConstantFunc, Plane, LocalFrame,
             MeanNormal, MeanPosition, MeanPlaneFitImpl,
             CovarianceFitBase, CovariancePlaneFitImpl> Hybrid1; //test conflict detection in one direction
     //! [Conflicting type]
-    typedef Basket<Point, WeightConstantFunc, Plane,
+    typedef Basket<Point, WeightConstantFunc, Plane, LocalFrame,
             MeanPosition, CovarianceFitBase, CovariancePlaneFitImpl,
             MeanNormal, MeanPlaneFitImpl> Hybrid2;  //test conflict detection in the second direction
 

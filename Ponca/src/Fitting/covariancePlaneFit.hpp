@@ -15,36 +15,11 @@ CovariancePlaneFitImpl<DataPoint, _WFunctor, T>::finalize ()
         if (Base::plane().isValid()) Base::m_eCurrentState = CONFLICT_ERROR_FOUND;
         Base::setPlane(Base::m_solver.eigenvectors().col(0), Base::barycenter());
     }
-
+    VectorType m_u = Base::m_solver.eigenvectors().col(1);
+    VectorType m_v = Base::m_solver.eigenvectors().col(2);
+    Base::setFrameUV (m_u, m_v);
     return Base::m_eCurrentState;
 }
-
-template < class DataPoint, class _WFunctor, typename T>
-template <bool ignoreTranslation>
-typename CovariancePlaneFitImpl<DataPoint, _WFunctor, T>::VectorType
-CovariancePlaneFitImpl<DataPoint, _WFunctor, T>::worldToTangentPlane (const VectorType& _q) const
-{
-  if (ignoreTranslation)
-    return Base::m_solver.eigenvectors().transpose() * _q;
-  else {
-    // apply rotation and translation to get uv coordinates
-    return Base::m_solver.eigenvectors().transpose() * (Base::m_w.convertToLocalBasis(_q));
-  }
-}
-
-template < class DataPoint, class _WFunctor, typename T>
-template <bool ignoreTranslation>
-typename CovariancePlaneFitImpl<DataPoint, _WFunctor, T>::VectorType
-CovariancePlaneFitImpl<DataPoint, _WFunctor, T>::tangentPlaneToWorld (const VectorType& _lq) const
-{
-  if (ignoreTranslation)
-    return Base::m_solver.eigenvectors().transpose().inverse() * _lq;
-  else {
-    return Base::m_solver.eigenvectors().transpose().inverse() * _lq + Base::m_w.basisCenter();
-  }
-}
-
-
 
 template < class DataPoint, class _WFunctor, int DiffType, typename T>
 FIT_RESULT
