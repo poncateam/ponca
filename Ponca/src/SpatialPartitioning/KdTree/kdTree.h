@@ -185,11 +185,6 @@ public:
                                   IndexUserContainer sampling,
                                   Converter c);
 
-
-    /// Update sampling of an existing tree
-    template<typename IndexUserContainer>
-    inline void rebuild(IndexUserContainer sampling); // IndexUserContainer => Given by user, transformed to IndexContainer
-
     inline bool valid() const;
     inline std::string to_string() const;
 
@@ -230,17 +225,7 @@ public:
         return m_nodes;
     }
 
-    inline NodeContainer& node_data()
-    {
-        return m_nodes;
-    }
-
     inline const IndexContainer& index_data() const
-    {
-        return m_indices;
-    }
-
-    inline IndexContainer& index_data()
     {
         return m_indices;
     }
