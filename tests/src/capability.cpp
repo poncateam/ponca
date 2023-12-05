@@ -27,15 +27,6 @@ using DataPoint = PointPosition<float, Dim>;
 using Kernel = ConstantWeightKernel<float>;
 using WeightFunc = DistWeightFunc<DataPoint, Kernel>;
 
-// compile-time and run-time check if a given value is true or false
-// this template function is required because "Outside a template, a discarded 
-// statement is fully checked." (cppreference.com/w/cpp/language/if) 
-template<bool b>
-void CHECK() {
-    static_assert(b);
-    VERIFY(b);
-}
-
 // extension that test if PLANE is provided
 template<class P, class W, typename T>
 class InitTestExtensionPlane : public T
