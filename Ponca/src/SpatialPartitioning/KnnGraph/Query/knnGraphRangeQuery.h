@@ -75,13 +75,13 @@ protected:
             int idx_current = m_stack.top();
             m_stack.pop();
 
-            PONCA_DEBUG_ASSERT((point - points[idx_current]).squaredNorm() < m_squared_radius);
+            PONCA_DEBUG_ASSERT((point - points[idx_current].pos()).squaredNorm() < QueryType::squared_radius());
 
             iterator.m_index = idx_current;
 
             for(int idx_nei : m_graph->k_nearest_neighbors(idx_current))
             {
-                PONCA_DEBUG_ASSERT(idx_nei>0);
+                PONCA_DEBUG_ASSERT(idx_nei>=0);
                 Scalar d  = (point - points[idx_nei].pos()).squaredNorm();
                 Scalar th = QueryType::descentDistanceThreshold();
                 if((point - points[idx_nei].pos()).squaredNorm() < QueryType::descentDistanceThreshold() && m_flag.insert(idx_nei).second)
