@@ -1,6 +1,5 @@
 var NAVTREEINDEX1 =
 {
-"classPonca_1_1KnnGraphBase.html":[8,0,0,30],
 "classPonca_1_1KnnGraphBase.html#a06e2b8fa53685d24cda85211d5763731":[8,0,0,30,7],
 "classPonca_1_1KnnGraphBase.html#a0c1974309b84d76d58291be618262ef4":[8,0,0,30,2],
 "classPonca_1_1KnnGraphBase.html#a6cd904aa2d5ea8f9703c4dded72793d6":[8,0,0,30,0],
@@ -249,5 +248,6 @@ var NAVTREEINDEX1 =
 "classPonca_1_1ProjectedNormalCovarianceCurvatureEstimator.html#a004cc3ac78d1807693fce44d9d4b85dc":[8,0,0,53,16],
 "classPonca_1_1ProjectedNormalCovarianceCurvatureEstimator.html#a08f4188e75e437d0a44dd4a1013d5ce5":[8,0,0,53,10],
 "classPonca_1_1ProjectedNormalCovarianceCurvatureEstimator.html#a0d05e3fbd2f8c2652ab65ad0247f9351":[8,0,0,53,5],
-"classPonca_1_1ProjectedNormalCovarianceCurvatureEstimator.html#a1800e689b32c7c455b266b6b5bfacdd5":[8,0,0,53,17]
+"classPonca_1_1ProjectedNormalCovarianceCurvatureEstimator.html#a1800e689b32c7c455b266b6b5bfacdd5":[8,0,0,53,17],
+"classPonca_1_1ProjectedNormalCovarianceCurvatureEstimator.html#a215ad82421e4513e6bf1af17e554d537":[8,0,0,53,7]
 };

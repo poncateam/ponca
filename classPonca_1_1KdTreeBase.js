@@ -21,7 +21,6 @@ var classPonca_1_1KdTreeBase =
     [ "buildWithSampling", "classPonca_1_1KdTreeBase.html#afeff799fa0a293195e04735a21852ae0", null ],
     [ "clear", "classPonca_1_1KdTreeBase.html#aa970788748efae78b46f38c21945fac2", null ],
     [ "min_cell_size", "classPonca_1_1KdTreeBase.html#a443f3258670a3fd7e0b7d6c6555506d7", null ],
-    [ "rebuild", "classPonca_1_1KdTreeBase.html#a0986759a3eb7ddd8ae685124dc0f2bf0", null ],
     [ "set_min_cell_size", "classPonca_1_1KdTreeBase.html#a1d262e481f035fc33a8b063fc4c2c20c", null ],
     [ "m_leaf_count", "classPonca_1_1KdTreeBase.html#aa951cbb6b419fde33ab8c6a9c7f8ee8f", null ],
     [ "m_min_cell_size", "classPonca_1_1KdTreeBase.html#ac738881c29dd526796a08f4b3947711b", null ]

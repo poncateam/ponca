@@ -209,9 +209,8 @@ var NAVTREEINDEX0 =
 "classPonca_1_1GLSParam.html#af2a7a07c8fafb337a110fcdc3c72d067":[8,0,0,14,2],
 "classPonca_1_1GLSParam.html#af50e8af7862b3dcb185ff21c573fa784":[8,0,0,14,11],
 "classPonca_1_1KdTreeBase.html":[8,0,0,16],
-"classPonca_1_1KdTreeBase.html#a0986759a3eb7ddd8ae685124dc0f2bf0":[8,0,0,16,21],
 "classPonca_1_1KdTreeBase.html#a1ab56f3a651919947c4632320922510e":[8,0,0,16,2],
-"classPonca_1_1KdTreeBase.html#a1d262e481f035fc33a8b063fc4c2c20c":[8,0,0,16,22],
+"classPonca_1_1KdTreeBase.html#a1d262e481f035fc33a8b063fc4c2c20c":[8,0,0,16,21],
 "classPonca_1_1KdTreeBase.html#a1f43e24fea1c29f06b144bc771db7318":[8,0,0,16,10],
 "classPonca_1_1KdTreeBase.html#a21a632642f089b5f94952bd43d45b4b1":[8,0,0,16,8],
 "classPonca_1_1KdTreeBase.html#a26084353cfa874ce84c9acfb069a8a2e":[8,0,0,16,4],
@@ -223,12 +222,12 @@ var NAVTREEINDEX0 =
 "classPonca_1_1KdTreeBase.html#a9613c7140e98d39214c8ae16e51a1d0c":[8,0,0,16,7],
 "classPonca_1_1KdTreeBase.html#a99006c2a38313a2a472d92f68ff2d38d":[8,0,0,16,15],
 "classPonca_1_1KdTreeBase.html#aa729820113ec273e46953241a9c9588d":[8,0,0,16,9],
-"classPonca_1_1KdTreeBase.html#aa951cbb6b419fde33ab8c6a9c7f8ee8f":[8,0,0,16,23],
+"classPonca_1_1KdTreeBase.html#aa951cbb6b419fde33ab8c6a9c7f8ee8f":[8,0,0,16,22],
 "classPonca_1_1KdTreeBase.html#aa970788748efae78b46f38c21945fac2":[8,0,0,16,19],
 "classPonca_1_1KdTreeBase.html#aaa423035de54c90cdcf787de39cbfcc8":[8,0,0,16,17],
 "classPonca_1_1KdTreeBase.html#ab03cf0da552980bd25d27952b9ee3886":[8,0,0,16,12],
 "classPonca_1_1KdTreeBase.html#abda91fbc025f6e2f7d2bb79db05f18b3":[8,0,0,16,14],
-"classPonca_1_1KdTreeBase.html#ac738881c29dd526796a08f4b3947711b":[8,0,0,16,24],
+"classPonca_1_1KdTreeBase.html#ac738881c29dd526796a08f4b3947711b":[8,0,0,16,23],
 "classPonca_1_1KdTreeBase.html#ad7582402868b5e0090aaf12e0e509a58":[8,0,0,16,1],
 "classPonca_1_1KdTreeBase.html#ae5a3bb1b5aaab27bad9968f98afdc169":[8,0,0,16,5],
 "classPonca_1_1KdTreeBase.html#aed2d70bd45302b752359989adef0bc91":[8,0,0,16,11],
@@ -249,5 +248,6 @@ var NAVTREEINDEX0 =
 "classPonca_1_1KdTreeQuery.html":[8,0,0,25],
 "classPonca_1_1KdTreeQuery.html#a2c02164e69a15dbf89c4b80b625cc0ac":[8,0,0,25,0],
 "classPonca_1_1KdTreeRangeIterator.html":[8,0,0,26],
-"classPonca_1_1KdTreeRangeQueryBase.html":[8,0,0,27]
+"classPonca_1_1KdTreeRangeQueryBase.html":[8,0,0,27],
+"classPonca_1_1KnnGraphBase.html":[8,0,0,30]
 };
