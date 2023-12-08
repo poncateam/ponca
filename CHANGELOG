@@ -18,6 +18,7 @@ Current head (v.1.2 RC)
     - [fitting] Use variadic template for basket extensions (#85)
     - [fitting] Fix current status issue (#108)
     - [spatialPartitioning] Fix potential compilation issues in KnnGraph (#111) 
+    - [spatialPartitioning] Fix debug macros in KnnGraphRangeQuery (#121)
     - [fitting] Fix sphere fit eigen solver (#112)
 
 -Docs
