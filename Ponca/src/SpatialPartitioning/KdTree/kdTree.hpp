@@ -48,48 +48,21 @@ inline void KdTreeBase<Traits>::buildWithSampling(PointUserContainer&& points,
 }
 
 template<typename Traits>
-template<typename IndexUserContainer>
-inline void KdTreeBase<Traits>::rebuild(IndexUserContainer sampling)
-{
-    PONCA_DEBUG_ASSERT(sampling.size() <= m_points->size());
-
-    m_nodes.clear();
-    m_nodes.emplace_back();
-
-    m_indices = std::move(sampling);
-
-    this->build_rec(0, 0, index_count(), 1);
-
-    PONCA_DEBUG_ASSERT(this->valid());
-}
-
-template<typename Traits>
 bool KdTreeBase<Traits>::valid() const
 {
-    PONCA_DEBUG_ERROR;
-    return false;
-
     if (m_points.empty())
         return m_nodes.empty() && m_indices.empty();
-        
+
     if(m_nodes.empty() || m_indices.empty())
     {
-        PONCA_DEBUG_ERROR;
         return false;
     }
-        
-    if(point_count() < index_count())
-    {
-        PONCA_DEBUG_ERROR;
-        return false;
-    }
-        
+
     std::vector<bool> b(point_count(), false);
     for(IndexType idx : m_indices)
     {
         if(idx < 0 || point_count() <= idx || b[idx])
         {
-            PONCA_DEBUG_ERROR;
             return false;
         }
         b[idx] = true;
@@ -97,25 +70,22 @@ bool KdTreeBase<Traits>::valid() const
 
     for(NodeIndexType n=0;n<node_count();++n)
     {
-        const NodeType& node = m_nodes.operator[](n);
+        const NodeType& node = m_nodes[n];
         if(node.is_leaf())
         {
-            if(index_count() <= node.leaf_start() || index_count() < node.leaf_start()+node.leaf_size())
+            if(index_count() <= node.leaf_start() || node.leaf_start()+node.leaf_size() > index_count())
             {
-                PONCA_DEBUG_ERROR;
                 return false;
             }
         }
         else
         {
-            if(node.inner_dim() < 0 || 2 < node.inner_dim())
+            if(node.inner_split_dim() < 0 || DataPoint::Dim-1 < node.inner_split_dim())
             {
-                PONCA_DEBUG_ERROR;
                 return false;
             }
             if(node_count() <= node.inner_first_child_id() || node_count() <= node.inner_first_child_id()+1)
             {
-                PONCA_DEBUG_ERROR;
                 return false;
             }
         }
