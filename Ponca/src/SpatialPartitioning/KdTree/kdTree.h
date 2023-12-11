@@ -298,7 +298,7 @@ protected:
 } // namespace Ponca
 
 template <typename Traits>
-std::ostream& operator<<(std::ostream& os, Ponca::KdTreeBase<Traits>& kdtree)
+std::ostream& operator<<(std::ostream& os, const Ponca::KdTreeBase<Traits>& kdtree)
 {
     kdtree.print(os);
     return os;
