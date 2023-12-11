@@ -8,6 +8,7 @@
 
 #include "./kdTreeTraits.h"
 
+#include <iostream>
 #include <memory>
 #include <numeric>
 #include <type_traits>
@@ -186,7 +187,7 @@ public:
                                   Converter c);
 
     inline bool valid() const;
-    inline std::string to_string(bool verbose = false) const;
+    inline void print(std::ostream& os, bool verbose = false) const;
 
     // Accessors ---------------------------------------------------------------
 public:
@@ -195,7 +196,7 @@ public:
         return m_nodes.size();
     }
 
-    inline IndexType index_count() const
+    inline IndexType sample_count() const
     {
         return (IndexType)m_indices.size();
     }
@@ -210,22 +211,22 @@ public:
         return m_leaf_count;
     }
 
-    inline PointContainer& point_data()
+    inline PointContainer& points()
     {
         return m_points;
     };
 
-    inline const PointContainer& point_data() const
+    inline const PointContainer& points() const
     {
         return m_points;
     };
 
-    inline const NodeContainer& node_data() const
+    inline const NodeContainer& nodes() const
     {
         return m_nodes;
     }
 
-    inline const IndexContainer& index_data() const
+    inline const IndexContainer& samples() const
     {
         return m_indices;
     }
@@ -295,3 +296,10 @@ protected:
 
 #include "./kdTree.hpp"
 } // namespace Ponca
+
+template <typename Traits>
+std::ostream& operator<<(std::ostream& os, Ponca::KdTreeBase<Traits>& kdtree)
+{
+    kdtree.print(os);
+    return os;
+}

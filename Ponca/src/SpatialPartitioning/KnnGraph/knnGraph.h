@@ -70,8 +70,8 @@ public:
     /// \warning KdTreeTraits compatibility is checked with static assertion
     template<typename KdTreeTraits>
     inline KnnGraphBase(const KdTreeBase<KdTreeTraits>& kdtree, int k = 6)
-            : m_k(std::min(k,kdtree.index_count()-1)),
-              m_kdTreePoints(kdtree.point_data())
+            : m_k(std::min(k,kdtree.sample_count()-1)),
+              m_kdTreePoints(kdtree.points())
     {
         static_assert( std::is_same<typename Traits::DataPoint, typename KdTreeTraits::DataPoint>::value,
                        "KdTreeTraits::DataPoint is not equal to Traits::DataPoint" );
@@ -85,7 +85,7 @@ public:
         // \fixme Update API to properly handle kdtree subsampling
         const int cloudSize   = kdtree.point_count();
         {
-            const int samplesSize = kdtree.index_count();
+            const int samplesSize = kdtree.sample_count();
             eigen_assert(cloudSize == samplesSize);
         }
 
