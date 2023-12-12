@@ -186,7 +186,7 @@ public:
                                   Converter c);
 
     inline bool valid() const;
-    inline std::string to_string() const;
+    inline std::string to_string(bool verbose = false) const;
 
     // Accessors ---------------------------------------------------------------
 public:

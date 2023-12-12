@@ -20,6 +20,7 @@ Current head (v.1.2 RC)
     - [spatialPartitioning] Fix potential compilation issues in KnnGraph (#111) 
     - [spatialPartitioning] Fix debug macros in KnnGraphRangeQuery (#121)
     - [fitting] Fix sphere fit eigen solver (#112)
+    - [spatialPartitioning] Improve kdtree to_string to output data in YAML format (#125)
 
 -Docs
     - [fitting] Clarify documentation on FIT_RESULT (#108)
