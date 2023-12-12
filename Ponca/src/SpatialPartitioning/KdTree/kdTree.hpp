@@ -95,30 +95,51 @@ bool KdTreeBase<Traits>::valid() const
 }
 
 template<typename Traits>
-std::string KdTreeBase<Traits>::to_string() const
+std::string KdTreeBase<Traits>::to_string(bool verbose) const
 {
-    if (m_indices.empty()) return "";
-    
     std::stringstream str;
-    str << "indices (" << index_count() << ") :\n";
-    for(IndexType i=0; i<index_count(); ++i)
+
+    str << "KdTree:";
+    str << "\n  MaxNodes: " << MAX_NODE_COUNT;
+    str << "\n  MaxPoints: " << MAX_POINT_COUNT;
+    str << "\n  MaxDepth: " << Traits::MAX_DEPTH;
+    str << "\n  PointCount: " << point_count();
+    str << "\n  SampleCount: " << index_count();
+    str << "\n  NodeCount: " << node_count();
+
+    if (!verbose)
     {
-        str << "  " << i << ": " << m_indices.operator[](i) << "\n";
+        return str.str();
     }
-    str << "nodes (" << node_count() << ") :\n";
-    for(NodeIndexType n=0; n< node_count(); ++n)
+
+    str << "\n  Samples: [";
+    static constexpr IndexType SAMPLES_PER_LINE = 10;
+    for (IndexType i = 0; i < index_count(); ++i)
     {
-        const NodeType& node = m_nodes.operator[](n);
-        if(node.is_leaf())
+        str << (i == 0 ? "" : ",");
+        str << (i % SAMPLES_PER_LINE == 0 ? "\n    " : " ");
+        str << m_indices[i];
+    }
+
+    str << "]\n  Nodes:";
+    for (NodeIndexType n = 0; n < node_count(); ++n)
+    {
+        const NodeType& node = m_nodes[n];
+        if (node.is_leaf())
         {
-            auto end = node.leaf_start() + node.leaf_size();
-            str << "  leaf: start=" << node.leaf_start() << " end=" << end << " (size=" << node.leaf_size() << ")\n";
+            str << "\n    - Type: Leaf";
+            str << "\n      Start: " << node.leaf_start();
+            str << "\n      Size: " << node.leaf_size();
         }
         else
         {
-            str << "  node: dim=" << node.inner_dim() << " split=" << node.inner_split_value() << " child=" << node.inner_first_child_id() << "\n";
+            str << "\n    - Type: Inner";
+            str << "\n      SplitDim: " << node.inner_split_dim();
+            str << "\n      SplitValue: " << node.inner_split_value();
+            str << "\n      FirstChild: " << node.inner_first_child_id();
         }
     }
+
     return str.str();
 }
 
