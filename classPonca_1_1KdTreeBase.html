@@ -51,7 +51,7 @@ MathJax.Hub.Config({
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Ponca
-   &#160;<span id="projectnumber">9b42731f8bf88a8f71d037f29f6564e8aeeb82e4</span>
+   &#160;<span id="projectnumber">280968b5f50964ef309f33dfc23f6269198669ce</span>
    </div>
    <div id="projectbrief">Point Cloud Analysis library</div>
   </td>
@@ -220,8 +220,8 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:afeff799fa0a293195e04735a21852ae0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af6189c5497854053a177b93cfea31f97"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1KdTreeBase.html#af6189c5497854053a177b93cfea31f97">valid</a> () const</td></tr>
 <tr class="separator:af6189c5497854053a177b93cfea31f97"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a29a81669d2fa0d7e0e7a7325b0e1d7fa"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1KdTreeBase.html#a29a81669d2fa0d7e0e7a7325b0e1d7fa">to_string</a> () const</td></tr>
-<tr class="separator:a29a81669d2fa0d7e0e7a7325b0e1d7fa"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a194e3431a1acb5c6341e0cda393589ce"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1KdTreeBase.html#a194e3431a1acb5c6341e0cda393589ce">to_string</a> (bool verbose=false) const</td></tr>
+<tr class="separator:a194e3431a1acb5c6341e0cda393589ce"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a312cd2f793932c9eacd02df771e9e339"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classPonca_1_1KdTreeBase.html#a9613c7140e98d39214c8ae16e51a1d0c">NodeIndexType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1KdTreeBase.html#a312cd2f793932c9eacd02df771e9e339">node_count</a> () const</td></tr>
 <tr class="separator:a312cd2f793932c9eacd02df771e9e339"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0eae043d678292fbf5ffdc9544fa807d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classPonca_1_1KdTreeBase.html#a26084353cfa874ce84c9acfb069a8a2e">IndexType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1KdTreeBase.html#a0eae043d678292fbf5ffdc9544fa807d">index_count</a> () const</td></tr>
@@ -850,7 +850,7 @@ template&lt;typename Traits &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="kdTree_8hpp_source.html#l00126">126</a> of file <a class="el" href="kdTree_8hpp_source.html">kdTree.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="kdTree_8hpp_source.html#l00147">147</a> of file <a class="el" href="kdTree_8hpp_source.html">kdTree.hpp</a>.</p>
 
 </div>
 </div>
@@ -1419,7 +1419,7 @@ template&lt;typename Traits &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="kdTree_8hpp_source.html#l00160">160</a> of file <a class="el" href="kdTree_8hpp_source.html">kdTree.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="kdTree_8hpp_source.html#l00181">181</a> of file <a class="el" href="kdTree_8hpp_source.html">kdTree.hpp</a>.</p>
 
 </div>
 </div>
@@ -1622,8 +1622,8 @@ template&lt;typename Traits &gt; </div>
 
 </div>
 </div>
-<a id="a29a81669d2fa0d7e0e7a7325b0e1d7fa" name="a29a81669d2fa0d7e0e7a7325b0e1d7fa"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a29a81669d2fa0d7e0e7a7325b0e1d7fa">&#9670;&#160;</a></span>to_string()</h2>
+<a id="a194e3431a1acb5c6341e0cda393589ce" name="a194e3431a1acb5c6341e0cda393589ce"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a194e3431a1acb5c6341e0cda393589ce">&#9670;&#160;</a></span>to_string()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1636,7 +1636,8 @@ template&lt;typename Traits &gt; </div>
         <tr>
           <td class="memname">std::string KdTreeBase::to_string </td>
           <td>(</td>
-          <td class="paramname"></td><td>)</td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>verbose</em> = <code>false</code></td><td>)</td>
           <td> const</td>
         </tr>
       </table>
@@ -1821,7 +1822,7 @@ template&lt;typename Traits &gt; </div>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="namespacePonca.html">Ponca</a></li><li class="navelem"><a class="el" href="classPonca_1_1KdTreeBase.html">KdTreeBase</a></li>
-    <li class="footer">Generated on Fri Dec 8 2023 12:56:22 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.6 </li>
+    <li class="footer">Generated on Tue Dec 12 2023 14:07:37 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.6 </li>
   </ul>
 </div>
 </body>
