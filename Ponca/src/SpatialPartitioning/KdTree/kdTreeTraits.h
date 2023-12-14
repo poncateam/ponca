@@ -196,7 +196,9 @@ private:
     {
         // We need an explicit constructor here, see https://stackoverflow.com/a/70428826
         constexpr Data() : m_leaf() {}
-        constexpr Data(Data&&d) = default;
+        // Needed to satisfy MoveInsertable requirement https://en.cppreference.com/w/cpp/named_req/MoveInsertable
+        constexpr Data(const Data&d) : m_leaf(d.m_leaf) {}
+
         ~Data() {}
         LeafType m_leaf;
         InnerType m_inner;
