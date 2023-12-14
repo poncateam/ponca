@@ -189,6 +189,8 @@ public:
 protected:
     [[nodiscard]] inline LeafType& getAsLeaf() { return data.m_leaf; }
     [[nodiscard]] inline InnerType& getAsInner() { return data.m_inner; }
+    [[nodiscard]] inline const LeafType& getAsLeaf() const { return data.m_leaf; }
+    [[nodiscard]] inline const InnerType& getAsInner() const { return data.m_inner; }
 
 private:
     bool m_is_leaf{true};
