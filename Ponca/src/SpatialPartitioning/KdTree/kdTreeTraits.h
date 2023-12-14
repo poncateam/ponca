@@ -196,6 +196,8 @@ private:
     {
         // We need an explicit constructor here, see https://stackoverflow.com/a/70428826
         constexpr Data() : m_leaf() {}
+        constexpr Data(Data&&d) = default;
+        ~Data() {}
         LeafType m_leaf;
         InnerType m_inner;
     };
