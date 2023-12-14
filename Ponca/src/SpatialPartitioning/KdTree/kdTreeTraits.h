@@ -83,6 +83,24 @@ struct KdTreeDefaultLeafNode
 
 /*!
  * \brief The node type used by default by the kd-tree.
+ *
+ * It is possible to modify the Inner and Leaf node types by inheritance. For instance, to add a Bounding box to inner
+ * nodes, define a custom inner node type:
+ *
+ * \snippet ponca_customize_kdtree.cpp CustomInnerNodeDefinition
+ *
+ * Define a custom node type to use it, and expose custom data (inner/leaf node are not exposed directly):
+ *
+ * \snippet ponca_customize_kdtree.cpp CustomNodeDefinition
+ *
+ * To use in the KdTree, define a type using the custom node:
+ *
+ * \snippet ponca_customize_kdtree.cpp KdTreeTypeWithCustomNode
+ *
+ * The added attribute can be accessed
+ *
+ * \snippet ponca_customize_kdtree.cpp ReadCustomProperties
+ *
  */
 template <typename Index, typename NodeIndex, typename DataPoint,
           typename LeafSize = Index,
@@ -220,6 +238,8 @@ struct KdTreeDefaultNode : public KdTreeCustomizableNode<Index, NodeIndex, DataP
 
 /*!
  * \brief The default traits type used by the kd-tree.
+ *
+ * \see KdTreeCustomizableNode Helper class to modify Inner/Leaf nodes without redefining a Trait class
  *
  * \tparam _NodeType Type used to store nodes, set by default to #KdTreeDefaultNode
  */
