@@ -159,7 +159,7 @@ void testFunction(bool isSigned = true)
 //         dTau(k)    = ( f.tau()   - ref_fit.tau()   ) / h;
 
         dPotential(k) = ( flip_f*f.potential() - flip_ref * ref_fit.potential()   ) / h;
-        dN.col(k)     = ( flip_f*f.primitiveGradient()    - flip_ref * ref_fit.primitiveGradient()      ) / h;
+        dN.col(k)     = ( flip_f*f.primitiveGradient().normalized() - flip_ref * ref_fit.primitiveGradient().normalized() ) / h;
 //         dKappa(k)     = ( f.kappa() - ref_fit.kappa() ) / h;
       }
 
