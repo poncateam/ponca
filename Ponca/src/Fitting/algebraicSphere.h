@@ -249,7 +249,7 @@ public:
     PONCA_MULTIARCH inline VectorType primitiveGradient (const VectorType& _q) const;
 
     /*! \brief Approximation of the scalar field gradient at the evaluation point */
-    PONCA_MULTIARCH inline VectorType primitiveGradient () const { return m_ul.normalized(); }
+    PONCA_MULTIARCH inline VectorType primitiveGradient () const { return m_ul; }
 
     /*!
         \brief Used to know if the fitting result to a plane
