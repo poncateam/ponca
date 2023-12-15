@@ -245,10 +245,12 @@ public:
      */
     PONCA_MULTIARCH inline VectorType projectDescent (const VectorType& _q, int nbIter = 16) const;
 
-    //! \brief Approximation of the scalar field gradient at \f$ \mathbf{q} (not normalized) \f$
+    /*! \brief Approximation of the scalar field gradient at \f$ \mathbf{q}\f$
+        \warning The gradient is not normalized by default */
     PONCA_MULTIARCH inline VectorType primitiveGradient (const VectorType& _q) const;
 
-    /*! \brief Approximation of the scalar field gradient at the evaluation point */
+    /*! \brief Approximation of the scalar field gradient at the evaluation point
+        \warning The gradient is not normalized by default */
     PONCA_MULTIARCH inline const VectorType& primitiveGradient () const { return m_ul; }
 
     /*!
