@@ -69,7 +69,7 @@ public:
         INDEX_BITS = sizeof(UIndex)*8 - DIM_BITS,
     };
 
-    Scalar split_value;
+    Scalar split_value{0};
     UIndex first_child_id : INDEX_BITS;
     UIndex split_dim : DIM_BITS;
 };
@@ -77,21 +77,41 @@ public:
 template <typename Index, typename Size>
 struct KdTreeDefaultLeafNode
 {
-    Index start;
-    Size size;
+    Index start{0};
+    Size size{0};
 };
 
 /*!
  * \brief The node type used by default by the kd-tree.
+ *
+ * It is possible to modify the Inner and Leaf node types by inheritance. For instance, to add a Bounding box to inner
+ * nodes, define a custom inner node type:
+ *
+ * \snippet ponca_customize_kdtree.cpp CustomInnerNodeDefinition
+ *
+ * Define a custom node type to use it, and expose custom data (inner/leaf node are not exposed directly):
+ *
+ * \snippet ponca_customize_kdtree.cpp CustomNodeDefinition
+ *
+ * To use in the KdTree, define a type using the custom node:
+ *
+ * \snippet ponca_customize_kdtree.cpp KdTreeTypeWithCustomNode
+ *
+ * The added attribute can be accessed
+ *
+ * \snippet ponca_customize_kdtree.cpp ReadCustomProperties
+ *
  */
 template <typename Index, typename NodeIndex, typename DataPoint,
-          typename LeafSize = Index>
-class KdTreeDefaultNode
+          typename LeafSize = Index,
+          typename _InnerNodeType = KdTreeDefaultInnerNode<NodeIndex, typename DataPoint::Scalar, DataPoint::Dim>,
+          typename _LeafNodeType = KdTreeDefaultLeafNode<Index, LeafSize>>
+class KdTreeCustomizableNode
 {
 private:
     using Scalar    = typename DataPoint::Scalar;
-    using LeafType  = KdTreeDefaultLeafNode<Index, LeafSize>;
-    using InnerType = KdTreeDefaultInnerNode<NodeIndex, Scalar, DataPoint::Dim>;
+    using InnerType = _InnerNodeType;
+    using LeafType  = _LeafNodeType;
 
 public:
     enum
@@ -110,10 +130,8 @@ public:
      * `DataPoint::VectorType`.
      */
     using AabbType = Eigen::AlignedBox<Scalar, DataPoint::Dim>;
-
-    KdTreeDefaultNode() = default;
     
-    bool is_leaf() const { return m_is_leaf; }
+    [[nodiscard]] bool is_leaf() const { return m_is_leaf; }
     void set_is_leaf(bool is_leaf) { m_is_leaf = is_leaf; }
 
     /*!
@@ -132,8 +150,8 @@ public:
     {
         if (m_is_leaf)
         {
-            m_leaf.start = start;
-            m_leaf.size = (LeafSize)size;
+            data.m_leaf.start = start;
+            data.m_leaf.size = (LeafSize)size;
         }
     }
 
@@ -150,9 +168,9 @@ public:
     {
         if (!m_is_leaf)
         {
-            m_inner.split_value = split_value;
-            m_inner.first_child_id = first_child_id;
-            m_inner.split_dim = split_dim;
+            data.m_inner.split_value = split_value;
+            data.m_inner.first_child_id = first_child_id;
+            data.m_inner.split_dim = split_dim;
         }
     }
 
@@ -160,22 +178,22 @@ public:
      * \brief The start index of the range of the leaf node in the sample
      * index array.
      */
-    Index leaf_start() const { return m_leaf.start; }
+    [[nodiscard]] Index leaf_start() const { return data.m_leaf.start; }
 
     /*!
      * \brief The size of the range of the leaf node in the sample index array.
      */
-    LeafSize leaf_size() const { return m_leaf.size; }
+    [[nodiscard]] LeafSize leaf_size() const { return data.m_leaf.size; }
 
     /*!
      * \brief The position of the AABB split of the inner node.
      */
-    Scalar inner_split_value() const { return m_inner.split_value; }
+    [[nodiscard]] Scalar inner_split_value() const { return data.m_inner.split_value; }
     
     /*!
      * \brief Which axis the split of the AABB of the inner node was done on.
      */
-    int inner_split_dim() const { return (int)m_inner.split_dim; }
+    [[nodiscard]] int inner_split_dim() const { return (int)data.m_inner.split_dim; }
     
     /*!
      * \brief The index of the first child of the node in the node array of the
@@ -184,21 +202,52 @@ public:
      * \note The second child is stored directly after the first in the array
      * (i.e. `first_child_id + 1`).
      */
-    Index inner_first_child_id() const { return (Index)m_inner.first_child_id; }
+    [[nodiscard]] Index inner_first_child_id() const { return (Index)data.m_inner.first_child_id; }
+
+protected:
+    [[nodiscard]] inline LeafType& getAsLeaf() { return data.m_leaf; }
+    [[nodiscard]] inline InnerType& getAsInner() { return data.m_inner; }
+    [[nodiscard]] inline const LeafType& getAsLeaf() const { return data.m_leaf; }
+    [[nodiscard]] inline const InnerType& getAsInner() const { return data.m_inner; }
 
 private:
-    bool m_is_leaf;
-    union
+    bool m_is_leaf{true};
+    union Data
     {
-        KdTreeDefaultLeafNode<Index, LeafSize> m_leaf;
-        KdTreeDefaultInnerNode<NodeIndex, Scalar, DataPoint::Dim> m_inner;
+        // We need an explicit constructor here, see https://stackoverflow.com/a/70428826
+        constexpr Data() : m_leaf() {}
+        // Needed to satisfy MoveInsertable requirement https://en.cppreference.com/w/cpp/named_req/MoveInsertable
+        constexpr Data(const Data&d) : m_leaf(d.m_leaf) {}
+
+        ~Data() {}
+        LeafType m_leaf;
+        InnerType m_inner;
     };
+    Data data;
+};
+
+template <typename Index, typename NodeIndex, typename DataPoint,
+        typename LeafSize = Index>
+struct KdTreeDefaultNode : public KdTreeCustomizableNode<Index, NodeIndex, DataPoint, LeafSize,
+        KdTreeDefaultInnerNode<NodeIndex, typename DataPoint::Scalar, DataPoint::Dim>,
+        KdTreeDefaultLeafNode<Index, LeafSize>> {
+    using Base =  KdTreeCustomizableNode<Index, NodeIndex, DataPoint, LeafSize,
+            KdTreeDefaultInnerNode<NodeIndex, typename DataPoint::Scalar, DataPoint::Dim>,
+            KdTreeDefaultLeafNode<Index, LeafSize>>;
 };
 
 /*!
  * \brief The default traits type used by the kd-tree.
+ *
+ * \see KdTreeCustomizableNode Helper class to modify Inner/Leaf nodes without redefining a Trait class
+ *
+ * \tparam _NodeType Type used to store nodes, set by default to #KdTreeDefaultNode
  */
-template <typename _DataPoint>
+template <typename _DataPoint,
+        template <typename /*Index*/,
+                  typename /*NodeIndex*/,
+                  typename /*DataPoint*/,
+                  typename /*LeafSize*/> typename _NodeType = KdTreeDefaultNode>
 struct KdTreeDefaultTraits
 {
     enum
@@ -228,7 +277,7 @@ struct KdTreeDefaultTraits
 
     // Nodes
     using NodeIndexType = std::size_t;
-    using NodeType      = KdTreeDefaultNode<IndexType, NodeIndexType, DataPoint, LeafSizeType>;
+    using NodeType      = _NodeType<IndexType, NodeIndexType, DataPoint, LeafSizeType>;
     using NodeContainer = std::vector<NodeType>;
 };
 } // namespace Ponca

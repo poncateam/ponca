@@ -8,6 +8,7 @@ Current head (v.1.2 RC)
 - API
     - [spatialPartitioning] Optimize memory use in knngraph queries (#104)
     - [spatialPartitioning] Clean KdTree API (#122)
+    - [spatialPartitioning] Simplify node customization (#128)
     - [fitting] Mark `Base` type as protected instead of private in CRTP classes (#119)
     - [fitting] Improve KdTreeNodes API by hiding internal memory layout, improve methods naming (#120)
 

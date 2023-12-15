@@ -35,12 +35,20 @@ add_dependencies(ponca-examples ponca_fit_line)
 ponca_handle_eigen_dependency(ponca_fit_line)
 
 set(ponca_neighbor_search_SRCS
-    ponca_neighbor_search.cpp
+        ponca_neighbor_search.cpp
 )
 add_executable(ponca_neighbor_search ${ponca_neighbor_search_SRCS})
 target_include_directories(ponca_neighbor_search PRIVATE ${PONCA_src_ROOT})
 add_dependencies(ponca-examples ponca_neighbor_search)
 ponca_handle_eigen_dependency(ponca_neighbor_search)
+
+set(ponca_customize_kdtree_SRCS
+        ponca_customize_kdtree.cpp
+)
+add_executable(ponca_customize_kdtree ${ponca_customize_kdtree_SRCS})
+target_include_directories(ponca_customize_kdtree PRIVATE ${PONCA_src_ROOT})
+add_dependencies(ponca-examples ponca_customize_kdtree)
+ponca_handle_eigen_dependency(ponca_customize_kdtree)
 
 add_subdirectory(pcl)
 add_subdirectory(nanoflann)
