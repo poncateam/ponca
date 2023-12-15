@@ -19,7 +19,7 @@ var classPonca_1_1AlgebraicSphere =
     [ "potential", "classPonca_1_1AlgebraicSphere.html#a91db544faea8bbb923d42fbe182cb6f4", null ],
     [ "prattNorm", "classPonca_1_1AlgebraicSphere.html#a9ec8a623959420c60d3a5ea0684a4aa5", null ],
     [ "prattNorm2", "classPonca_1_1AlgebraicSphere.html#aa24fba085ff0e4cfe9f4ecdba055a283", null ],
-    [ "primitiveGradient", "classPonca_1_1AlgebraicSphere.html#ad235445a725ffb7ebca47ee647590466", null ],
+    [ "primitiveGradient", "classPonca_1_1AlgebraicSphere.html#a13a01f75ac7c621f162fa8470c245116", null ],
     [ "primitiveGradient", "classPonca_1_1AlgebraicSphere.html#a925bb4f64c7ec303030e008ef3e2abab", null ],
     [ "project", "classPonca_1_1AlgebraicSphere.html#a71b4312849344f0c937e23c21cdea821", null ],
     [ "projectDescent", "classPonca_1_1AlgebraicSphere.html#ad93506e11c254b85343b6d7aac9426eb", null ],
