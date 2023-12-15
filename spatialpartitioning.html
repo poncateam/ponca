@@ -51,7 +51,7 @@ MathJax.Hub.Config({
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Ponca
-   &#160;<span id="projectnumber">280968b5f50964ef309f33dfc23f6269198669ce</span>
+   &#160;<span id="projectnumber">632e0e2b0d27882e2faf6d40eb9e1de719f69da4</span>
    </div>
    <div id="projectbrief">Point Cloud Analysis library</div>
   </td>
@@ -225,13 +225,15 @@ Examples</h2>
 </ul>
 <h2><a class="anchor" id="spatialpartitioning_kdtree_extending"></a>
 Extending KdTree</h2>
-<p><a class="el" href="classPonca_1_1KdTreeBase.html" title="Customizable base class for KdTree datastructure.">Ponca::KdTreeBase</a> is a customizable version of <a class="el" href="namespacePonca.html#abdeec7124bd618c93bfd5374d56e7155" title="Public interface for KdTree datastructure.">Ponca::KdTree</a>, which can be controlled using <code>Traits</code>. See <a class="el" href="structPonca_1_1KdTreeDefaultTraits.html" title="The default traits type used by the kd-tree.">KdTreeDefaultTraits</a> for customization API.</p>
+<p><a class="el" href="classPonca_1_1KdTreeBase.html" title="Customizable base class for KdTree datastructure.">Ponca::KdTreeBase</a> is a customizable version of <a class="el" href="namespacePonca.html#abdeec7124bd618c93bfd5374d56e7155" title="Public interface for KdTree datastructure.">Ponca::KdTree</a>, which can be controlled using <code>Traits</code>. See <a class="el" href="structPonca_1_1KdTreeDefaultTraits.html" title="The default traits type used by the kd-tree.">KdTreeDefaultTraits</a> and <a class="el" href="classPonca_1_1KdTreeCustomizableNode.html" title="The node type used by default by the kd-tree.">KdTreeCustomizableNode</a> for customization APIs. See also:</p><ul>
+<li><code>examples/cpp/ponca_customize_kdtree.cpp</code></li>
+</ul>
 <h2><a class="anchor" id="spatialpartitioning_kdtree_implementation"></a>
 Implementation details</h2>
 <p>The kd-tree is a binary search tree that</p><ul>
 <li>is balanced (cuts at the median at each node)</li>
 <li>cuts along the dimension that extends the most at each node</li>
-<li>has a maximal depth (<a class="el" href="structPonca_1_1KdTreeDefaultTraits.html#a5eb03ed59ec6c135275b603770cde052a18654af852e0d09608dd048edd84128a" title="A compile-time constant specifying the maximum depth of the kd-tree.">KdTreeDefaultTraits::MAX_DEPTH</a>)</li>
+<li>has a maximal depth (<a class="el" href="structPonca_1_1KdTreeDefaultTraits.html#a84be24eaf86c2f3772f6524ebf98165ea781cb6dc7e48ea52ebb73a3f353fa6c5" title="A compile-time constant specifying the maximum depth of the kd-tree.">KdTreeDefaultTraits::MAX_DEPTH</a>)</li>
 <li>has a minimal number of points per leaf (<a class="el" href="classPonca_1_1KdTreeBase.html#ac738881c29dd526796a08f4b3947711b" title="Minimal number of points per leaf.">KdTreeBase::m_min_cell_size</a>)</li>
 <li>only stores points in the leafs</li>
 <li>uses depth-first search with a static stack for queries</li>
@@ -275,7 +277,7 @@ Queries</h3>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="user_manual_page.html">User Manual</a></li>
-    <li class="footer">Generated on Tue Dec 12 2023 14:07:37 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.6 </li>
+    <li class="footer">Generated on Fri Dec 15 2023 13:44:16 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.6 </li>
   </ul>
 </div>
 </body>
