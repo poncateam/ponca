@@ -102,7 +102,7 @@ void KdTreeBase<Traits>::print(std::ostream& os, bool verbose) const
     os << "\n  MaxPoints: " << MAX_POINT_COUNT;
     os << "\n  MaxDepth: " << Traits::MAX_DEPTH;
     os << "\n  PointCount: " << point_count();
-    os << "\n  SampleCount: " << index_count();
+    os << "\n  SampleCount: " << sample_count();
     os << "\n  NodeCount: " << node_count();
 
     if (!verbose)
@@ -112,7 +112,7 @@ void KdTreeBase<Traits>::print(std::ostream& os, bool verbose) const
 
     os << "\n  Samples: [";
     static constexpr IndexType SAMPLES_PER_LINE = 10;
-    for (IndexType i = 0; i < index_count(); ++i)
+    for (IndexType i = 0; i < sample_count(); ++i)
     {
         os << (i == 0 ? "" : ",");
         os << (i % SAMPLES_PER_LINE == 0 ? "\n    " : " ");

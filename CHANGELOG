@@ -5,6 +5,8 @@ Ponca changelog
 --------------------------------------------------------------------------------
 Current head (v.1.3 RC)
 
+- API
+    - [SpatialPartitioning] Change part of the kdtree API (#123)
 
 --------------------------------------------------------------------------------
 v.1.2
@@ -16,7 +18,6 @@ This release introduces several bug fixes and minor improvements.
     - [spatialPartitioning] Simplify node customization (#128)
     - [fitting] Mark `Base` type as protected instead of private in CRTP classes (#119)
     - [fitting] Improve KdTreeNodes API by hiding internal memory layout, improve methods naming (#120)
-    - [SpatialPartitioning] Change part of the kdtree API (#123)
 
 - Examples
     - Fix example cuda/ponca_ssgls (#109)
