@@ -10,7 +10,7 @@
 #include "../../../Common/Containers/stack.h"
 
 namespace Ponca {
-template <typename Traits> class KdTreeBase;
+template <typename Traits> class KdTreeImplBase;
 
 template <typename Traits>
 class KdTreeQuery
@@ -21,7 +21,7 @@ public:
     using Scalar     = typename DataPoint::Scalar;
     using VectorType = typename DataPoint::VectorType;
 
-    explicit inline KdTreeQuery(const KdTreeBase<Traits>* kdtree) : m_kdtree( kdtree ), m_stack() {}
+    explicit inline KdTreeQuery(const KdTreeImplBase<Traits>* kdtree) : m_kdtree( kdtree ), m_stack() {}
 
 protected:
     /// \brief Init stack for a new search
@@ -30,7 +30,7 @@ protected:
         m_stack.push({0,0});
     }
 
-    const KdTreeBase<Traits>* m_kdtree { nullptr };
+    const KdTreeImplBase<Traits>* m_kdtree { nullptr };
     Stack<IndexSquaredDistance<IndexType, Scalar>, 2 * Traits::MAX_DEPTH> m_stack;
 
     template<typename LeafPreparationFunctor,
@@ -44,11 +44,10 @@ protected:
                          ProcessNeighborFunctor processNeighborFunctor
                          )
     {
-        const auto& nodes   = m_kdtree->nodes();
-        const auto& points  = m_kdtree->points();
-        const auto& indices = m_kdtree->samples();
+        const auto& nodes  = m_kdtree->nodes();
+        const auto& points = m_kdtree->points();
 
-        if (nodes.empty() || points.empty() || indices.empty())
+        if (nodes.empty() || points.empty() || m_kdtree->sample_count() == 0)
             throw std::invalid_argument("Empty KdTree");
 
         while(!m_stack.empty())
@@ -66,7 +65,7 @@ protected:
                     prepareLeafTraversal(start, end);
                     for(IndexType i=start; i<end; ++i)
                     {
-                        IndexType idx = indices[i];
+                        IndexType idx = m_kdtree->pointFromSample(i);
                         if(skipFunctor(idx)) continue;
 
                         Scalar d = (point - points[idx].pos()).squaredNorm();

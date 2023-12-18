@@ -60,16 +60,15 @@ public:
 
     // knnGraph ----------------------------------------------------------------
 public:
-    /// \brief Build a KnnGraph from a KdTree
+    /// \brief Build a KnnGraph from a KdTreeDense
     ///
-    /// \warning In the current version, the graph does not support kdtree with subsampling
     /// \param k Number of requested neighbors. Might be reduced if k is larger than the kdtree size - 1
     ///          (query point is not included in query output, thus -1)
     ///
     /// \warning Stores a const reference to kdtree.point_data()
     /// \warning KdTreeTraits compatibility is checked with static assertion
     template<typename KdTreeTraits>
-    inline KnnGraphBase(const KdTreeBase<KdTreeTraits>& kdtree, int k = 6)
+    inline KnnGraphBase(const KdTreeImplBase<KdTreeTraits>& kdtree, int k = 6)
             : m_k(std::min(k,kdtree.sample_count()-1)),
               m_kdTreePoints(kdtree.points())
     {

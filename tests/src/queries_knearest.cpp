@@ -18,7 +18,7 @@ template<typename DataPoint>
 void testKdTreeKNearestIndex(bool quick = true)
 {
 	using Scalar = typename DataPoint::Scalar;
-	using VectorContainer = typename KdTree<DataPoint>::PointContainer;
+	using VectorContainer = typename KdTreeImpl<DataPoint>::PointContainer;
 	using VectorType = typename DataPoint::VectorType;
 
 	const int N = quick ? 100 : 10000;
@@ -28,7 +28,7 @@ void testKdTreeKNearestIndex(bool quick = true)
 
     auto kdStart = std::chrono::system_clock::now();
 	/// [Kdtree construction and query]
-	Ponca::KdTree<DataPoint> kdTree(points);
+	Ponca::KdTreeDense<DataPoint> kdTree(points);
 
 #pragma omp parallel for
 	for (int i = 0; i < N; ++i)
@@ -77,7 +77,7 @@ template<typename DataPoint>
 void testKdTreeKNearestPoint(bool quick = true)
 {
 	using Scalar = typename DataPoint::Scalar;
-	using VectorContainer = typename KdTree<DataPoint>::PointContainer;
+	using VectorContainer = typename KdTreeImpl<DataPoint>::PointContainer;
 	using VectorType = typename DataPoint::VectorType;
 
 	const int N = quick ? 100 : 10000;
@@ -86,7 +86,7 @@ void testKdTreeKNearestPoint(bool quick = true)
 	auto points = VectorContainer(N);
     std::generate(points.begin(), points.end(), []() {return DataPoint(VectorType::Random()); });
 
-	KdTree<DataPoint> structure(points);
+	KdTreeDense<DataPoint> structure(points);
     /// [Kdtree construction]
 
 #pragma omp parallel for

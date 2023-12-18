@@ -18,14 +18,14 @@ template<typename DataPoint, bool SampleKdTree = true>
 void testKdTreeRangeIndex(bool quick = true)
 {
 	using Scalar = typename DataPoint::Scalar;
-	using VectorContainer = typename KdTree<DataPoint>::PointContainer;
+	using VectorContainer = typename KdTreeImpl<DataPoint>::PointContainer;
 	using VectorType = typename DataPoint::VectorType;
 
 	const int N = quick ? 100 : 5000;
 	auto points = VectorContainer(N);
     std::generate(points.begin(), points.end(), []() {return DataPoint(VectorType::Random()); });
 
-    KdTree<DataPoint> *kdtree {nullptr};
+    KdTreeImpl<DataPoint> *kdtree {nullptr};
 
     std::vector<int> sampling; // we need sampling for GT computation
     if(SampleKdTree){
@@ -37,14 +37,13 @@ void testKdTreeRangeIndex(bool quick = true)
         int seed = 0;
         std::sample(indices.begin(), indices.end(), sampling.begin(), N / 2, std::mt19937(seed));
 
-        kdtree = new KdTree<DataPoint> (points, sampling);
+        kdtree = new KdTreeSparse<DataPoint> (points, sampling);
 
     } else {
         sampling.resize(N);
         std::iota(sampling.begin(), sampling.end(), 0);
-        kdtree = new KdTree<DataPoint> (points);
+        kdtree = new KdTreeDense<DataPoint> (points);
     }
-
 
 #pragma omp parallel for
     for (int i = 0; i < N; ++i)
@@ -90,7 +89,7 @@ template<typename DataPoint>
 void testKdTreeRangePoint(bool quick = true)
 {
 	using Scalar = typename DataPoint::Scalar;
-	using VectorContainer = typename KdTree<DataPoint>::PointContainer;
+	using VectorContainer = typename KdTreeImpl<DataPoint>::PointContainer;
 	using VectorType = typename DataPoint::VectorType;
 
 	const int N = quick ? 100 : 10000;
@@ -105,7 +104,7 @@ void testKdTreeRangePoint(bool quick = true)
 	std::iota(indices.begin(), indices.end(), 0);
 	std::sample(indices.begin(), indices.end(), sampling.begin(), N / 2, std::mt19937(seed));
 
-	KdTree<DataPoint> structure(points, sampling);
+	KdTreeSparse<DataPoint> structure(points, sampling);
     /// [Kdtree sampling construction]
 
 #pragma omp parallel for

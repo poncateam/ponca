@@ -26,7 +26,7 @@ int main()
         return DataPoint{100 * DataPoint::VectorType::Random()};});
 
     // build the k-d tree
-    const Ponca::KdTree<DataPoint> kdtree(points);
+    const Ponca::KdTreeDense<DataPoint> kdtree(points);
 
     // neighbor searches are done below from these arbitrary index and point
     const int query_idx = 10;

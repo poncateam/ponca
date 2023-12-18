@@ -18,14 +18,14 @@ template<typename DataPoint>
 void testKdTreeNearestIndex(bool quick = true)
 {
 	using Scalar = typename DataPoint::Scalar;
-	using VectorContainer = typename KdTree<DataPoint>::PointContainer;
+	using VectorContainer = typename KdTreeImpl<DataPoint>::PointContainer;
 	using VectorType = typename DataPoint::VectorType;
 
 	const int N = quick ? 100 : 10000;
 	auto points = VectorContainer(N);
     std::generate(points.begin(), points.end(), []() {return DataPoint(VectorType::Random()); });
 
-	KdTree<DataPoint> kdTree(points);
+	KdTreeDense<DataPoint> kdTree(points);
 
 #pragma omp parallel for
 	for (int i = 0; i < N; ++i)
@@ -61,14 +61,14 @@ template<typename DataPoint>
 void testKdTreeNearestPoint(bool quick = true)
 {
 	using Scalar = typename DataPoint::Scalar;
-	using VectorContainer = typename KdTree<DataPoint>::PointContainer;
+	using VectorContainer = typename KdTreeImpl<DataPoint>::PointContainer;
 	using VectorType = typename DataPoint::VectorType;
 
 	const int N = quick ? 100 : 10000;
 	auto points = VectorContainer(N);
     std::generate(points.begin(), points.end(), []() {return DataPoint(VectorType::Random()); });
 
-	KdTree<DataPoint> structure(points);
+	KdTreeDense<DataPoint> structure(points);
 
 #pragma omp parallel for
 	for (int i = 0; i < N; ++i)

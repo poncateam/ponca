@@ -7,7 +7,16 @@
 // KdTree ----------------------------------------------------------------------
 
 template<typename Traits>
-void KdTreeBase<Traits>::clear()
+template<typename PointUserContainer, typename Converter>
+inline void KdTreeImplBase<Traits>::build(PointUserContainer&& points, Converter c)
+{
+    IndexContainer ids(points.size());
+    std::iota(ids.begin(), ids.end(), 0);
+    this->buildWithSampling(std::forward<PointUserContainer>(points), std::move(ids), std::move(c));
+}
+
+template<typename Traits>
+void KdTreeImplBase<Traits>::clear()
 {
     m_points.clear();
     m_nodes.clear();
@@ -16,39 +25,7 @@ void KdTreeBase<Traits>::clear()
 }
 
 template<typename Traits>
-template<typename PointUserContainer, typename Converter>
-inline void KdTreeBase<Traits>::build(PointUserContainer&& points, Converter c)
-{
-    IndexContainer ids(points.size());
-    std::iota(ids.begin(), ids.end(), 0);
-    this->buildWithSampling(std::forward<PointUserContainer>(points), std::move(ids), std::move(c));
-}
-
-template<typename Traits>
-template<typename PointUserContainer, typename IndexUserContainer, typename Converter>
-inline void KdTreeBase<Traits>::buildWithSampling(PointUserContainer&& points,
-                                                  IndexUserContainer sampling,
-                                                  Converter c)
-{
-    PONCA_DEBUG_ASSERT(points.size() <= MAX_POINT_COUNT);
-    this->clear();
-
-    // Move, copy or convert input samples
-    c(std::forward<PointUserContainer>(points), m_points);
-
-    m_nodes = NodeContainer();
-    m_nodes.reserve(4 * point_count() / m_min_cell_size);
-    m_nodes.emplace_back();
-
-    m_indices = std::move(sampling);
-
-    this->build_rec(0, 0, sample_count(), 1);
-
-    PONCA_DEBUG_ASSERT(this->valid());
-}
-
-template<typename Traits>
-bool KdTreeBase<Traits>::valid() const
+bool KdTreeImplBase<Traits>::valid() const
 {
     if (m_points.empty())
         return m_nodes.empty() && m_indices.empty();
@@ -95,12 +72,12 @@ bool KdTreeBase<Traits>::valid() const
 }
 
 template<typename Traits>
-void KdTreeBase<Traits>::print(std::ostream& os, bool verbose) const
+void KdTreeImplBase<Traits>::print(std::ostream& os, bool verbose) const
 {
     os << "KdTree:";
     os << "\n  MaxNodes: " << MAX_NODE_COUNT;
     os << "\n  MaxPoints: " << MAX_POINT_COUNT;
-    os << "\n  MaxDepth: " << Traits::MAX_DEPTH;
+    os << "\n  MaxDepth: " << MAX_DEPTH;
     os << "\n  PointCount: " << point_count();
     os << "\n  SampleCount: " << sample_count();
     os << "\n  NodeCount: " << node_count();
@@ -140,7 +117,30 @@ void KdTreeBase<Traits>::print(std::ostream& os, bool verbose) const
 }
 
 template<typename Traits>
-void KdTreeBase<Traits>::build_rec(NodeIndexType node_id, IndexType start, IndexType end, int level)
+template<typename PointUserContainer, typename IndexUserContainer, typename Converter>
+inline void KdTreeImplBase<Traits>::buildWithSampling(PointUserContainer&& points,
+                                                      IndexUserContainer sampling,
+                                                      Converter c)
+{
+    PONCA_DEBUG_ASSERT(points.size() <= MAX_POINT_COUNT);
+    this->clear();
+
+    // Move, copy or convert input samples
+    c(std::forward<PointUserContainer>(points), m_points);
+
+    m_nodes = NodeContainer();
+    m_nodes.reserve(4 * point_count() / m_min_cell_size);
+    m_nodes.emplace_back();
+
+    m_indices = std::move(sampling);
+
+    this->build_rec(0, 0, sample_count(), 1);
+
+    PONCA_DEBUG_ASSERT(this->valid());
+}
+
+template<typename Traits>
+void KdTreeImplBase<Traits>::build_rec(NodeIndexType node_id, IndexType start, IndexType end, int level)
 {
     NodeType& node = m_nodes[node_id];
     AabbType aabb;
@@ -174,7 +174,7 @@ void KdTreeBase<Traits>::build_rec(NodeIndexType node_id, IndexType start, Index
 }
 
 template<typename Traits>
-auto KdTreeBase<Traits>::partition(IndexType start, IndexType end, int dim, Scalar value)
+auto KdTreeImplBase<Traits>::partition(IndexType start, IndexType end, int dim, Scalar value)
     -> IndexType
 {
     const auto& points = m_points;

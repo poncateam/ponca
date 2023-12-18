@@ -26,7 +26,7 @@ using namespace std;
 using namespace Ponca;
 
 template<typename DataPoint>
-typename DataPoint::Scalar generateData(KdTree<DataPoint>& tree)
+typename DataPoint::Scalar generateData(KdTreeImpl<DataPoint>& tree)
 {
     typedef typename DataPoint::Scalar Scalar;
     typedef typename DataPoint::VectorType VectorType;
@@ -61,7 +61,7 @@ typename DataPoint::Scalar generateData(KdTree<DataPoint>& tree)
 }
 
 template<typename Fit>
-void testBasicFunctionalities(const KdTree<typename Fit::DataPoint>& tree, typename Fit::Scalar analysisScale)
+void testBasicFunctionalities(const KdTreeImpl<typename Fit::DataPoint>& tree, typename Fit::Scalar analysisScale)
 {
     using DataPoint = typename Fit::DataPoint;
 
@@ -124,7 +124,7 @@ void testBasicFunctionalities(const KdTree<typename Fit::DataPoint>& tree, typen
 }
 
 template<typename Fit1, typename Fit2, typename Functor>
-void testIsSame(const KdTree<typename Fit1::DataPoint>& tree,
+void testIsSame(const KdTreeImpl<typename Fit1::DataPoint>& tree,
                 typename Fit1::Scalar analysisScale,
                 Functor f)
 {
@@ -230,7 +230,7 @@ void callSubTests()
     using HybridSpaceDiff = BasketDiff<Hybrid, FitSpaceDer, CovariancePlaneDer>;
     using HybridScaleSpaceDiff = BasketDiff<Hybrid, FitScaleSpaceDer, CovariancePlaneDer>;
 
-    KdTree<Point>tree;
+    KdTreeDense<Point> tree;
     Scalar scale = generateData(tree);
 
     for(int i = 0; i < g_repeat; ++i)

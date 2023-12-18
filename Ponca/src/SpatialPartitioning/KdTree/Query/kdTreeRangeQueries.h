@@ -30,7 +30,7 @@ protected:
     friend Iterator;
 
 public:
-    KdTreeRangeQueryBase(const KdTreeBase<Traits>* kdtree, Scalar radius, typename QueryType::InputType input) :
+    KdTreeRangeQueryBase(const KdTreeImplBase<Traits>* kdtree, Scalar radius, typename QueryType::InputType input) :
             KdTreeQuery<Traits>(kdtree), QueryType(radius, input){}
 
 public:

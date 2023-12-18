@@ -98,7 +98,7 @@ int test_raw(FitType& f, const std::vector<MyPoint>& _vecs, VectorType _p)
     return f.getNumNeighbors();
 }
 
-int test_ponca_kdtree(FitType& f, const std::vector<MyPoint>& _vecs, VectorType _p, const KdTree<MyPoint>& tree, Scalar tmax){
+int test_ponca_kdtree(FitType& f, const std::vector<MyPoint>& _vecs, VectorType _p, const KdTreeImpl<MyPoint>& tree, Scalar tmax){
     f.init(_p);
     if(! (
             //! [Use Ponca KdTree]
@@ -147,7 +147,7 @@ int main()
     std::generate(vecs.begin(), vecs.end(), []() {return MyPoint::Random(); });
 
     //! [Create Ponca KdTree]
-KdTree<MyPoint> ponca_tree(vecs);
+KdTreeDense<MyPoint> ponca_tree(vecs);
     //! [Create Ponca KdTree]
 
     //! [Create NanoFlann KdTree]
