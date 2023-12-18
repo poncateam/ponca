@@ -42,7 +42,7 @@ inline void KdTreeBase<Traits>::buildWithSampling(PointUserContainer&& points,
 
     m_indices = std::move(sampling);
 
-    this->build_rec(0, 0, index_count(), 1);
+    this->build_rec(0, 0, sample_count(), 1);
 
     PONCA_DEBUG_ASSERT(this->valid());
 }
@@ -73,7 +73,7 @@ bool KdTreeBase<Traits>::valid() const
         const NodeType& node = m_nodes[n];
         if(node.is_leaf())
         {
-            if(index_count() <= node.leaf_start() || node.leaf_start()+node.leaf_size() > index_count())
+            if(sample_count() <= node.leaf_start() || node.leaf_start()+node.leaf_size() > sample_count())
             {
                 return false;
             }
@@ -95,52 +95,48 @@ bool KdTreeBase<Traits>::valid() const
 }
 
 template<typename Traits>
-std::string KdTreeBase<Traits>::to_string(bool verbose) const
+void KdTreeBase<Traits>::print(std::ostream& os, bool verbose) const
 {
-    std::stringstream str;
-
-    str << "KdTree:";
-    str << "\n  MaxNodes: " << MAX_NODE_COUNT;
-    str << "\n  MaxPoints: " << MAX_POINT_COUNT;
-    str << "\n  MaxDepth: " << Traits::MAX_DEPTH;
-    str << "\n  PointCount: " << point_count();
-    str << "\n  SampleCount: " << index_count();
-    str << "\n  NodeCount: " << node_count();
+    os << "KdTree:";
+    os << "\n  MaxNodes: " << MAX_NODE_COUNT;
+    os << "\n  MaxPoints: " << MAX_POINT_COUNT;
+    os << "\n  MaxDepth: " << Traits::MAX_DEPTH;
+    os << "\n  PointCount: " << point_count();
+    os << "\n  SampleCount: " << sample_count();
+    os << "\n  NodeCount: " << node_count();
 
     if (!verbose)
     {
-        return str.str();
+        return;
     }
 
-    str << "\n  Samples: [";
+    os << "\n  Samples: [";
     static constexpr IndexType SAMPLES_PER_LINE = 10;
-    for (IndexType i = 0; i < index_count(); ++i)
+    for (IndexType i = 0; i < sample_count(); ++i)
     {
-        str << (i == 0 ? "" : ",");
-        str << (i % SAMPLES_PER_LINE == 0 ? "\n    " : " ");
-        str << m_indices[i];
+        os << (i == 0 ? "" : ",");
+        os << (i % SAMPLES_PER_LINE == 0 ? "\n    " : " ");
+        os << m_indices[i];
     }
 
-    str << "]\n  Nodes:";
+    os << "]\n  Nodes:";
     for (NodeIndexType n = 0; n < node_count(); ++n)
     {
         const NodeType& node = m_nodes[n];
         if (node.is_leaf())
         {
-            str << "\n    - Type: Leaf";
-            str << "\n      Start: " << node.leaf_start();
-            str << "\n      Size: " << node.leaf_size();
+            os << "\n    - Type: Leaf";
+            os << "\n      Start: " << node.leaf_start();
+            os << "\n      Size: " << node.leaf_size();
         }
         else
         {
-            str << "\n    - Type: Inner";
-            str << "\n      SplitDim: " << node.inner_split_dim();
-            str << "\n      SplitValue: " << node.inner_split_value();
-            str << "\n      FirstChild: " << node.inner_first_child_id();
+            os << "\n    - Type: Inner";
+            os << "\n      SplitDim: " << node.inner_split_dim();
+            os << "\n      SplitValue: " << node.inner_split_value();
+            os << "\n      FirstChild: " << node.inner_first_child_id();
         }
     }
-
-    return str.str();
 }
 
 template<typename Traits>

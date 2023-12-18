@@ -80,7 +80,7 @@ int main()
               << *kdtree.nearest_neighbor(query_pt).begin() << std::endl;
 
     //! [ReadCustomProperties]
-    auto bbox = kdtree.node_data()[0].getAabb();
+    auto bbox = kdtree.nodes()[0].getAabb();
     if (bbox) {
         std::cout << "Root bounding box is as follows: \n"
                   << "  Center:   " << bbox->center()

@@ -47,8 +47,8 @@ public:
 
 protected:
     inline void advance(Iterator& it){
-        const auto& points  = QueryAccelType::m_kdtree->point_data();
-        const auto& indices = QueryAccelType::m_kdtree->index_data();
+        const auto& points  = QueryAccelType::m_kdtree->points();
+        const auto& indices = QueryAccelType::m_kdtree->samples();
         const auto& point   = QueryType::getInputPosition(points);
 
         auto descentDistanceThreshold = [this](){return QueryType::descentDistanceThreshold();};

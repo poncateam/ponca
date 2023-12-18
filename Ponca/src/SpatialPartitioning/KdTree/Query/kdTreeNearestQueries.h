@@ -41,7 +41,7 @@ public:
 
 protected:
     inline void search(){
-        KdTreeQuery<Traits>::search_internal(QueryType::getInputPosition(QueryAccelType::m_kdtree->point_data()),
+        KdTreeQuery<Traits>::search_internal(QueryType::getInputPosition(QueryAccelType::m_kdtree->points()),
                                              [](IndexType, IndexType){},
                                              [this](){return QueryType::descentDistanceThreshold();},
                                              [this](IndexType idx){return QueryType::skipIndexFunctor(idx);},
