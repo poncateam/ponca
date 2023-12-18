@@ -51,7 +51,7 @@ MathJax.Hub.Config({
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Ponca
-   &#160;<span id="projectnumber">32bffeb82b55c56f82ce9b72b725f91e14d1c66d</span>
+   &#160;<span id="projectnumber">8f9df5fa7fa096409346421e27dedfb3ca8361e0</span>
    </div>
    <div id="projectbrief">Point Cloud Analysis library</div>
   </td>
@@ -164,8 +164,8 @@ $(document).ready(function(){initNavTree('knnGraph_8h_source.html',''); initResi
 <div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span><span class="keyword">public</span>:</div>
 <div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>    <span class="keyword">template</span>&lt;<span class="keyword">typename</span> KdTreeTraits&gt;</div>
 <div class="line"><a id="l00072" name="l00072"></a><span class="lineno"><a class="line" href="classPonca_1_1KnnGraphBase.html#a7294b2f4e8983db302e2fac4777364d2">   72</a></span>    <span class="keyword">inline</span> <a class="code hl_function" href="classPonca_1_1KnnGraphBase.html#a7294b2f4e8983db302e2fac4777364d2">KnnGraphBase</a>(<span class="keyword">const</span> <a class="code hl_class" href="classPonca_1_1KdTreeBase.html">KdTreeBase&lt;KdTreeTraits&gt;</a>&amp; kdtree, <span class="keywordtype">int</span> <a class="code hl_function" href="classPonca_1_1KnnGraphBase.html#a88878dc3a1b39079a2d20c61c15fee6c">k</a> = 6)</div>
-<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>            : m_k(std::min(<a class="code hl_function" href="classPonca_1_1KnnGraphBase.html#a88878dc3a1b39079a2d20c61c15fee6c">k</a>,kdtree.index_count()-1)),</div>
-<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>              m_kdTreePoints(kdtree.point_data())</div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>            : m_k(std::min(<a class="code hl_function" href="classPonca_1_1KnnGraphBase.html#a88878dc3a1b39079a2d20c61c15fee6c">k</a>,kdtree.sample_count()-1)),</div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>              m_kdTreePoints(kdtree.points())</div>
 <div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>    {</div>
 <div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>        <span class="keyword">static_assert</span>( std::is_same&lt;typename Traits::DataPoint, typename KdTreeTraits::DataPoint&gt;::value,</div>
 <div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>                       <span class="stringliteral">&quot;KdTreeTraits::DataPoint is not equal to Traits::DataPoint&quot;</span> );</div>
@@ -179,7 +179,7 @@ $(document).ready(function(){initNavTree('knnGraph_8h_source.html',''); initResi
 <div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>        <span class="comment">// \fixme Update API to properly handle kdtree subsampling</span></div>
 <div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>        <span class="keyword">const</span> <span class="keywordtype">int</span> cloudSize   = kdtree.point_count();</div>
 <div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>        {</div>
-<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>            <span class="keyword">const</span> <span class="keywordtype">int</span> samplesSize = kdtree.index_count();</div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>            <span class="keyword">const</span> <span class="keywordtype">int</span> samplesSize = kdtree.sample_count();</div>
 <div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>            eigen_assert(cloudSize == samplesSize);</div>
 <div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>        }</div>
 <div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span> </div>
@@ -224,7 +224,7 @@ $(document).ready(function(){initNavTree('knnGraph_8h_source.html',''); initResi
 <div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span>};</div>
 <div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span> </div>
 <div class="line"><a id="l00134" name="l00134"></a><span class="lineno">  134</span>} <span class="comment">// namespace Ponca</span></div>
-<div class="ttc" id="aclassPonca_1_1KdTreeBase_html"><div class="ttname"><a href="classPonca_1_1KdTreeBase.html">Ponca::KdTreeBase</a></div><div class="ttdoc">Customizable base class for KdTree datastructure.</div><div class="ttdef"><b>Definition:</b> <a href="kdTree_8h_source.html#l00052">kdTree.h:53</a></div></div>
+<div class="ttc" id="aclassPonca_1_1KdTreeBase_html"><div class="ttname"><a href="classPonca_1_1KdTreeBase.html">Ponca::KdTreeBase</a></div><div class="ttdoc">Customizable base class for KdTree datastructure.</div><div class="ttdef"><b>Definition:</b> <a href="kdTree_8h_source.html#l00053">kdTree.h:54</a></div></div>
 <div class="ttc" id="aclassPonca_1_1KnnGraphBase_html"><div class="ttname"><a href="classPonca_1_1KnnGraphBase.html">Ponca::KnnGraphBase</a></div><div class="ttdoc">Customizable base class for KnnGraph datastructure.</div><div class="ttdef"><b>Definition:</b> <a href="knnGraph_8h_source.html#l00044">knnGraph.h:45</a></div></div>
 <div class="ttc" id="aclassPonca_1_1KnnGraphBase_html_a06e2b8fa53685d24cda85211d5763731"><div class="ttname"><a href="classPonca_1_1KnnGraphBase.html#a06e2b8fa53685d24cda85211d5763731">Ponca::KnnGraphBase::size</a></div><div class="ttdeci">int size() const</div><div class="ttdoc">Number of vertices in the neighborhood graph.</div><div class="ttdef"><b>Definition:</b> <a href="knnGraph_8h_source.html#l00122">knnGraph.h:122</a></div></div>
 <div class="ttc" id="aclassPonca_1_1KnnGraphBase_html_a0c1974309b84d76d58291be618262ef4"><div class="ttname"><a href="classPonca_1_1KnnGraphBase.html#a0c1974309b84d76d58291be618262ef4">Ponca::KnnGraphBase::PointContainer</a></div><div class="ttdeci">typename Traits::PointContainer PointContainer</div><div class="ttdoc">Container for DataPoint used inside the KdTree.</div><div class="ttdef"><b>Definition:</b> <a href="knnGraph_8h_source.html#l00052">knnGraph.h:52</a></div></div>
@@ -244,7 +244,7 @@ $(document).ready(function(){initNavTree('knnGraph_8h_source.html',''); initResi
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_695d95a8d8fbec601a248c0414764298.html">Ponca</a></li><li class="navelem"><a class="el" href="dir_ce16314fc45f8638543c5146aff64d4a.html">src</a></li><li class="navelem"><a class="el" href="dir_12c32e53c838db195d209d78f62f8479.html">SpatialPartitioning</a></li><li class="navelem"><a class="el" href="dir_83069b4d65bb98935cd28c435d204b1a.html">KnnGraph</a></li><li class="navelem"><b>knnGraph.h</b></li>
-    <li class="footer">Generated on Fri Dec 15 2023 14:19:32 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.6 </li>
+    <li class="footer">Generated on Mon Dec 18 2023 19:29:05 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.6 </li>
   </ul>
 </div>
 </body>
