@@ -272,19 +272,12 @@ protected:
     NodeContainer m_nodes;
     IndexContainer m_indices;
 
-    LeafSizeType m_min_cell_size; ///< Minimal number of points per leaf
-    NodeIndexType m_leaf_count; ///< Number of leaves in the Kdtree (computed during construction)
+    LeafSizeType m_min_cell_size {64}; ///< Minimal number of points per leaf
+    NodeIndexType m_leaf_count {0}; ///< Number of leaves in the Kdtree (computed during construction)
 
     // Internal ----------------------------------------------------------------
 protected:
-    inline KdTreeImplBase():
-        m_points(),
-        m_nodes(),
-        m_indices(),
-        m_min_cell_size(64),
-        m_leaf_count(0)
-    {
-    }
+    inline KdTreeImplBase() = default;
 
     /// Generate a tree sampled from a custom contained type converted using a `Converter`
     /// \tparam PointUserContainer Input point, transformed to PointContainer
