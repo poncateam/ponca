@@ -25,7 +25,10 @@ void testKdTreeRangeIndex(bool quick = true)
 	auto points = VectorContainer(N);
     std::generate(points.begin(), points.end(), []() {return DataPoint(VectorType::Random()); });
 
+    /// [KdTree pointer usage]
+    // Abstract pointer type that can receive KdTreeSparse or KdTreeDense objects
     KdTree<DataPoint> *kdtree {nullptr};
+    /// [KdTree pointer usage]
 
     std::vector<int> sampling; // we need sampling for GT computation
     if(SampleKdTree){
@@ -37,14 +40,19 @@ void testKdTreeRangeIndex(bool quick = true)
         int seed = 0;
         std::sample(indices.begin(), indices.end(), sampling.begin(), N / 2, std::mt19937(seed));
 
-        kdtree = new KdTree<DataPoint> (points, sampling);
+        /// [KdTree assign sparse]
+        // assign sparse
+        kdtree = new KdTreeSparse<DataPoint> (points, sampling);
+        /// [KdTree assign sparse]
 
     } else {
         sampling.resize(N);
         std::iota(sampling.begin(), sampling.end(), 0);
-        kdtree = new KdTree<DataPoint> (points);
+        /// [KdTree assign dense]
+        // assign dense
+        kdtree = new KdTreeDense<DataPoint> (points);
+        /// [KdTree assign dense]
     }
-
 
 #pragma omp parallel for
     for (int i = 0; i < N; ++i)
@@ -90,7 +98,7 @@ template<typename DataPoint>
 void testKdTreeRangePoint(bool quick = true)
 {
 	using Scalar = typename DataPoint::Scalar;
-	using VectorContainer = typename KdTree<DataPoint>::PointContainer;
+	using VectorContainer = typename KdTreeSparse<DataPoint>::PointContainer;
 	using VectorType = typename DataPoint::VectorType;
 
 	const int N = quick ? 100 : 10000;
@@ -105,7 +113,7 @@ void testKdTreeRangePoint(bool quick = true)
 	std::iota(indices.begin(), indices.end(), 0);
 	std::sample(indices.begin(), indices.end(), sampling.begin(), N / 2, std::mt19937(seed));
 
-	KdTree<DataPoint> structure(points, sampling);
+	KdTreeSparse<DataPoint> structure(points, sampling);
     /// [Kdtree sampling construction]
 
 #pragma omp parallel for

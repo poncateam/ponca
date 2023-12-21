@@ -136,7 +136,7 @@ int main()
 
   p = vecs.at(0).pos();
 
-  KdTree<MyPoint> tree {vecs};
+  KdTreeDense<MyPoint> tree {vecs};
 
   std::cout << "====================\nOrientedSphereFit:\n";
   Fit1 fit1;

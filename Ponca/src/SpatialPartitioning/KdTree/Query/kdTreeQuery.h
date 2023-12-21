@@ -30,7 +30,9 @@ protected:
         m_stack.push({0,0});
     }
 
+    /// [KdTreeQuery kdtree type]
     const KdTreeBase<Traits>* m_kdtree { nullptr };
+    /// [KdTreeQuery kdtree type]
     Stack<IndexSquaredDistance<IndexType, Scalar>, 2 * Traits::MAX_DEPTH> m_stack;
 
     template<typename LeafPreparationFunctor,
@@ -44,11 +46,10 @@ protected:
                          ProcessNeighborFunctor processNeighborFunctor
                          )
     {
-        const auto& nodes   = m_kdtree->nodes();
-        const auto& points  = m_kdtree->points();
-        const auto& indices = m_kdtree->samples();
+        const auto& nodes  = m_kdtree->nodes();
+        const auto& points = m_kdtree->points();
 
-        if (nodes.empty() || points.empty() || indices.empty())
+        if (nodes.empty() || points.empty() || m_kdtree->sample_count() == 0)
             throw std::invalid_argument("Empty KdTree");
 
         while(!m_stack.empty())
@@ -66,7 +67,7 @@ protected:
                     prepareLeafTraversal(start, end);
                     for(IndexType i=start; i<end; ++i)
                     {
-                        IndexType idx = indices[i];
+                        IndexType idx = m_kdtree->pointFromSample(i);
                         if(skipFunctor(idx)) continue;
 
                         Scalar d = (point - points[idx].pos()).squaredNorm();

@@ -147,7 +147,7 @@ int main()
     std::generate(vecs.begin(), vecs.end(), []() {return MyPoint::Random(); });
 
     //! [Create Ponca KdTree]
-KdTree<MyPoint> ponca_tree(vecs);
+KdTreeDense<MyPoint> ponca_tree(vecs);
     //! [Create Ponca KdTree]
 
     //! [Create NanoFlann KdTree]

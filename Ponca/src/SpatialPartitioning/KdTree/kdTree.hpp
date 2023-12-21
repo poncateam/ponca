@@ -7,15 +7,6 @@
 // KdTree ----------------------------------------------------------------------
 
 template<typename Traits>
-void KdTreeBase<Traits>::clear()
-{
-    m_points.clear();
-    m_nodes.clear();
-    m_indices.clear();
-    m_leaf_count = 0;
-}
-
-template<typename Traits>
 template<typename PointUserContainer, typename Converter>
 inline void KdTreeBase<Traits>::build(PointUserContainer&& points, Converter c)
 {
@@ -25,26 +16,12 @@ inline void KdTreeBase<Traits>::build(PointUserContainer&& points, Converter c)
 }
 
 template<typename Traits>
-template<typename PointUserContainer, typename IndexUserContainer, typename Converter>
-inline void KdTreeBase<Traits>::buildWithSampling(PointUserContainer&& points,
-                                                  IndexUserContainer sampling,
-                                                  Converter c)
+void KdTreeBase<Traits>::clear()
 {
-    PONCA_DEBUG_ASSERT(points.size() <= MAX_POINT_COUNT);
-    this->clear();
-
-    // Move, copy or convert input samples
-    c(std::forward<PointUserContainer>(points), m_points);
-
-    m_nodes = NodeContainer();
-    m_nodes.reserve(4 * point_count() / m_min_cell_size);
-    m_nodes.emplace_back();
-
-    m_indices = std::move(sampling);
-
-    this->build_rec(0, 0, sample_count(), 1);
-
-    PONCA_DEBUG_ASSERT(this->valid());
+    m_points.clear();
+    m_nodes.clear();
+    m_indices.clear();
+    m_leaf_count = 0;
 }
 
 template<typename Traits>
@@ -100,7 +77,7 @@ void KdTreeBase<Traits>::print(std::ostream& os, bool verbose) const
     os << "KdTree:";
     os << "\n  MaxNodes: " << MAX_NODE_COUNT;
     os << "\n  MaxPoints: " << MAX_POINT_COUNT;
-    os << "\n  MaxDepth: " << Traits::MAX_DEPTH;
+    os << "\n  MaxDepth: " << MAX_DEPTH;
     os << "\n  PointCount: " << point_count();
     os << "\n  SampleCount: " << sample_count();
     os << "\n  NodeCount: " << node_count();
@@ -137,6 +114,29 @@ void KdTreeBase<Traits>::print(std::ostream& os, bool verbose) const
             os << "\n      FirstChild: " << node.inner_first_child_id();
         }
     }
+}
+
+template<typename Traits>
+template<typename PointUserContainer, typename IndexUserContainer, typename Converter>
+inline void KdTreeBase<Traits>::buildWithSampling(PointUserContainer&& points,
+                                                  IndexUserContainer sampling,
+                                                  Converter c)
+{
+    PONCA_DEBUG_ASSERT(points.size() <= MAX_POINT_COUNT);
+    this->clear();
+
+    // Move, copy or convert input samples
+    c(std::forward<PointUserContainer>(points), m_points);
+
+    m_nodes = NodeContainer();
+    m_nodes.reserve(4 * point_count() / m_min_cell_size);
+    m_nodes.emplace_back();
+
+    m_indices = std::move(sampling);
+
+    this->build_rec(0, 0, sample_count(), 1);
+
+    PONCA_DEBUG_ASSERT(this->valid());
 }
 
 template<typename Traits>

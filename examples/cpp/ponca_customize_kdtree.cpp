@@ -61,7 +61,7 @@ int main()
         return DataPoint{100 * DataPoint::VectorType::Random()};});
 
 //! [KdTreeTypeWithCustomNode]
-    using CustomKdTree = Ponca::KdTreeBase<Ponca::KdTreeDefaultTraits<DataPoint,MyKdTreeNode>>;
+    using CustomKdTree = Ponca::KdTreeDenseBase<Ponca::KdTreeDefaultTraits<DataPoint,MyKdTreeNode>>;
 //! [KdTreeTypeWithCustomNode]
 
     // build the k-d tree

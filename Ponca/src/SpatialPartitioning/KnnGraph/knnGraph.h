@@ -60,9 +60,8 @@ public:
 
     // knnGraph ----------------------------------------------------------------
 public:
-    /// \brief Build a KnnGraph from a KdTree
+    /// \brief Build a KnnGraph from a KdTreeDense
     ///
-    /// \warning In the current version, the graph does not support kdtree with subsampling
     /// \param k Number of requested neighbors. Might be reduced if k is larger than the kdtree size - 1
     ///          (query point is not included in query output, thus -1)
     ///

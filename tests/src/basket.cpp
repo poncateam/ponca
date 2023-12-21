@@ -230,7 +230,7 @@ void callSubTests()
     using HybridSpaceDiff = BasketDiff<Hybrid, FitSpaceDer, CovariancePlaneDer>;
     using HybridScaleSpaceDiff = BasketDiff<Hybrid, FitScaleSpaceDer, CovariancePlaneDer>;
 
-    KdTree<Point>tree;
+    KdTreeDense<Point> tree;
     Scalar scale = generateData(tree);
 
     for(int i = 0; i < g_repeat; ++i)
