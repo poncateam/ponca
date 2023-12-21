@@ -12,9 +12,10 @@ namespace Ponca
 
   \subsection spatialpartitioning_intro_structures Datastructures
 
-   - Ponca::KdTreeDense and Ponca::KdTreeSparse: binary search trees (https://en.wikipedia.org/wiki/K-d_tree)
+   - Ponca::KdTreeDense and Ponca::KdTreeSparse: binary search trees (https://en.wikipedia.org/wiki/K-d_tree). Both
+     classes inherit from Ponca::KdTree.
    - Ponca::KnnGraph : a nearest neighbor graph (https://en.wikipedia.org/wiki/Nearest_neighbor_graph). Constructed from
-   a KdTree.
+   a Ponca::KdTree.
 
    All datastructures are available in arbitrary dimensions.
 
@@ -56,10 +57,21 @@ fit.computeWithIds( myDataStructure.range_neighbors(fitInitPos, scale), vectorPo
 
 
   \section spatialpartitioning_kdtree KdTree
+
+  \subsection spatialpartitioning_kdtree_implementation Specifications
+  In Ponca, the kd-tree is a binary search tree that
+  - is balanced (cuts at the median at each node),
+  - cuts along the dimension that extends the most at each node,
+  - has a maximal depth (KdTreeBase::MAX_DEPTH),
+  - has a minimal number of points per leaf (KdTreeBase::m_min_cell_size),
+  - only stores points in the leafs,
+  - uses depth-first search with a static stack for queries,
+  - keeps the initial order of points.
+
   \subsection spatialpartitioning_kdtree_usage Basic usage
   The class Ponca::KdTreeDense provides methods to construct a tree and query points neighborhoods. The class
   Ponca::KdTreeSparse provides the same functionalities as its dense counterpart, but allows construction from a subset
-  of points.
+  of points. They both share the same API with their abstract base class KdTree.
 
   \subsubsection spatialpartitioning_kdtree_usage_construction Construction
   As for the other modules, the point type is defined by a template parameter `DataPoint`.
@@ -84,6 +96,14 @@ fit.computeWithIds( myDataStructure.range_neighbors(fitInitPos, scale), vectorPo
    - KdTreeKNearestQueryBase, specialized by KdTreeKNearestIndexQuery and KdTreeKNearestPointQuery
    - KdTreeNearestQueryBase, specialized by KdTreeNearestIndexQuery and KdTreeNearestPointQuery
    - KdTreeRangeQueryBase, specialized by KdTreeRangeIndexQuery and KdTreeRangePointQuery
+
+  Several KdTree queries are illustrated in the example \ref example_cxx_neighbor_search.
+  KdTree usage is also demonstrated both in tests and examples:
+   - `tests/src/basket.cpp`
+   - `tests/src/queries_knearest.cpp`
+   - `tests/src/queries_nearest.cpp`
+   - `tests/src/queries_range.cpp`
+   - `examples/cpp/nanoflann/ponca_nanoflann.cpp`
   
   \subsubsection spatialpartitioning_kdtree_usage_samples_and_indexing Samples and indexing
   There are two main ways of iterating over a KdTree: over points or over samples. Points are the underlying data
@@ -99,32 +119,29 @@ fit.computeWithIds( myDataStructure.range_neighbors(fitInitPos, scale), vectorPo
   (e.g. when using a Ponca::KdTreeSparse). If you ever need to convert sample indices to point indices, see
   KdTreeBase::pointFromSample (see also KdTreeBase::pointDataFromSample).
 
-  \subsection spatialpartitioning_kdtree_examples Examples
-
-  Several KdTree queries are illustrated in the example \ref example_cxx_neighbor_search.
-  KdTree usage is also demonstrated both in tests and examples:
-   - `tests/src/basket.cpp`
-   - `tests/src/queries_knearest.cpp`
-   - `tests/src/queries_nearest.cpp`
-   - `tests/src/queries_range.cpp`
-   - `examples/cpp/nanoflann/ponca_nanoflann.cpp`
 
   \subsection spatialpartitioning_kdtree_extending Extending KdTree
-  Ponca::KdTreeDenseBase and Ponca::KdTreeSparseBase are customizable versions of Ponca::KdTreeDense and
-  Ponca::KdTreeSparse, which can be controlled using `Traits`.
-  See KdTreeDefaultTraits and KdTreeCustomizableNode for customization APIs. See also:
+  The trees can be customized using `Traits`, to change containers and nodes types. KdTreeDefaultTraits provides
+  general-purpose `Traits` that fit most usages, and is directly used by Ponca::KdTree, Ponca::KdTreeDense and
+  Ponca::KdTreeSparse:
+  \snippet kdTree.h KdTree type definition
+  \snippet kdTree.h KdTreeDense type definition
+  \snippet kdTree.h KdTreeSparse type definition
+
+  To use your own type of `Traits`, see KdTreeDefaultTraits and KdTreeCustomizableNode APIs. See also:
    - `examples/cpp/ponca_customize_kdtree.cpp`
 
-  \subsection spatialpartitioning_kdtree_implementation Implementation details
+  \subsection spatialpartitioning_kdtree_usage_which_class Usage of the convenience classes KdTree and KdTreeBase
+  KdTree provides the common interface of KdTreeDense and KdTreeSparse. This class can be used to store
+  or pass references/pointers that can be of either child type, see for instance:
+  \snippet queries_range.cpp KdTree pointer usage
+  \snippet queries_range.cpp KdTree assign sparse
+  \snippet queries_range.cpp KdTree assign dense
 
-  The kd-tree is a binary search tree that
-  - is balanced (cuts at the median at each node)
-  - cuts along the dimension that extends the most at each node
-  - has a maximal depth (KdTreeBase::MAX_DEPTH)
-  - has a minimal number of points per leaf (KdTreeBase::m_min_cell_size)
-  - only stores points in the leafs
-  - uses depth-first search with a static stack for queries
-  - keeps the initial order of points
+  KdTreeBase provides the same abstraction for arbitrary types of traits. When the type of `Traits` is not restricted,
+  it is recommended to use KdTreeBase to declare functions parameters or variables. In this example:
+  \snippet kdTreeQuery.h KdTreeQuery kdtree type
+  the variable `m_kdtree` can be either dense or sparse, and have any type of `Traits`.
 
   \section spatialpartitioning_knngraph KnnGraph
   \subsection spatialpartitioning_knngraph_usage Basic usage

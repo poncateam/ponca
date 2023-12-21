@@ -30,7 +30,9 @@ protected:
         m_stack.push({0,0});
     }
 
+    /// [KdTreeQuery kdtree type]
     const KdTreeBase<Traits>* m_kdtree { nullptr };
+    /// [KdTreeQuery kdtree type]
     Stack<IndexSquaredDistance<IndexType, Scalar>, 2 * Traits::MAX_DEPTH> m_stack;
 
     template<typename LeafPreparationFunctor,

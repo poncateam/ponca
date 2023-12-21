@@ -30,13 +30,27 @@ template <typename Traits> class KdTreeDenseBase;
 template <typename Traits> class KdTreeSparseBase;
 
 /*!
- * \brief Base type for default KdTree implementations
+ * \brief Abstract KdTree type with KdTreeDefaultTraits
  *
  * \see KdTreeDefaultTraits for the default trait interface documentation.
  * \see KdTreeBase for complete API
+ *
+ * \warning It is not possible to create instances of type KdTree. This type must only be used to store pointers
+ * to KdTreeDense or KdTreeSparse objects, e.g. the declaration
+ *   \snippet queries_range.cpp KdTree pointer usage
+ *   \snippet queries_range.cpp KdTree assign sparse
+ *   \snippet queries_range.cpp KdTree assign dense
  */
+#ifdef PARSED_WITH_DOXYGEN
+/// [KdTree type definition]
 template <typename DataPoint>
-using KdTree = KdTreeBase<KdTreeDefaultTraits<DataPoint>>;
+struct KdTree : public Ponca::KdTreeBase<KdTreeDefaultTraits<DataPoint>>{};
+/// [KdTree type definition]
+#else
+template <typename DataPoint>
+using KdTree = KdTreeBase<KdTreeDefaultTraits<DataPoint>>; // prefer alias to avoid redefining methods
+#endif
+
 
 /*!
  * \brief Public interface for dense KdTree datastructure.
@@ -46,8 +60,15 @@ using KdTree = KdTreeBase<KdTreeDefaultTraits<DataPoint>>;
  * \see KdTreeDefaultTraits for the default trait interface documentation.
  * \see KdTreeDenseBase for complete API
  */
+#ifdef PARSED_WITH_DOXYGEN
+/// [KdTreeDense type definition]
 template <typename DataPoint>
-using KdTreeDense = KdTreeDenseBase<KdTreeDefaultTraits<DataPoint>>;
+struct KdTreeDense : public Ponca::KdTreeDenseBase<KdTreeDefaultTraits<DataPoint>>{};
+/// [KdTreeDense type definition]
+#else
+template <typename DataPoint>
+using KdTreeDense = KdTreeDenseBase<KdTreeDefaultTraits<DataPoint>>; // prefer alias to avoid redefining methods
+#endif
 
 /*!
  * \brief Public interface for sparse KdTree datastructure.
@@ -57,8 +78,15 @@ using KdTreeDense = KdTreeDenseBase<KdTreeDefaultTraits<DataPoint>>;
  * \see KdTreeDefaultTraits for the default trait interface documentation.
  * \see KdTreeSparseBase for complete API
  */
+#ifdef PARSED_WITH_DOXYGEN
+/// [KdTreeSparse type definition]
+template <typename DataPoint>
+struct KdTreeSparse : Ponca::KdTreeSparseBase<KdTreeDefaultTraits<DataPoint>>{};
+/// [KdTreeSparse type definition]
+#else
 template <typename DataPoint>
 using KdTreeSparse = KdTreeSparseBase<KdTreeDefaultTraits<DataPoint>>;
+#endif
 
 /*!
  * \brief Customizable base class for KdTree datastructure implementations
@@ -70,8 +98,6 @@ using KdTreeSparse = KdTreeSparseBase<KdTreeDefaultTraits<DataPoint>>;
  * same interface as the default traits type.
  *
  * \see KdTreeDefaultTraits for the trait interface documentation.
- *
- * \todo Better handle sampling: do not store non-selected points (requires to store original indices)
  */
 template <typename Traits>
 class KdTreeBase
