@@ -11,7 +11,7 @@
 <!-- Node1 -->
 <g id="node1" class="node">
 <title>Node1</title>
-<g id="a_node1"><a xlink:title="Convert a CustomPointContainer to the KdTree PointContainer using DataPoint default constructor.">
+<g id="a_node1"><a xlink:title="Convert a custom point container to the KdTree PointContainer using DataPoint default constructor.">
 <polygon fill="#999999" stroke="#666666" points="0,-0.5 0,-68.5 147,-68.5 147,-0.5 0,-0.5"/>
 <text text-anchor="start" x="8" y="-56.5" font-family="Helvetica,sans-Serif" font-size="10.00">Ponca::KdTreeBase&lt;</text>
 <text text-anchor="middle" x="73.5" y="-45.5" font-family="Helvetica,sans-Serif" font-size="10.00"> Traits &gt;::DefaultConverter</text>

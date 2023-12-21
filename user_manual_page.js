@@ -15,13 +15,14 @@ var user_manual_page =
         [ "Queries", "spatialpartitioning.html#spatialpartitioning_intro_queries", null ]
       ] ],
       [ "KdTree", "spatialpartitioning.html#spatialpartitioning_kdtree", [
+        [ "Specifications", "spatialpartitioning.html#spatialpartitioning_kdtree_implementation", null ],
         [ "Basic usage", "spatialpartitioning.html#spatialpartitioning_kdtree_usage", [
           [ "Construction", "spatialpartitioning.html#spatialpartitioning_kdtree_usage_construction", null ],
-          [ "Queries", "spatialpartitioning.html#spatialpartitioning_kdtree_usage_queries", null ]
+          [ "Queries", "spatialpartitioning.html#spatialpartitioning_kdtree_usage_queries", null ],
+          [ "Samples and indexing", "spatialpartitioning.html#spatialpartitioning_kdtree_usage_samples_and_indexing", null ]
         ] ],
-        [ "Examples", "spatialpartitioning.html#spatialpartitioning_kdtree_examples", null ],
         [ "Extending KdTree", "spatialpartitioning.html#spatialpartitioning_kdtree_extending", null ],
-        [ "Implementation details", "spatialpartitioning.html#spatialpartitioning_kdtree_implementation", null ]
+        [ "Usage of the convenience classes KdTree and KdTreeBase", "spatialpartitioning.html#spatialpartitioning_kdtree_usage_which_class", null ]
       ] ],
       [ "KnnGraph", "spatialpartitioning.html#spatialpartitioning_knngraph", [
         [ "Basic usage", "spatialpartitioning.html#spatialpartitioning_knngraph_usage", [

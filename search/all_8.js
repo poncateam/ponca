@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['index_5fbits_0',['INDEX_BITS',['../structPonca_1_1KdTreeDefaultInnerNode.html#ab5a89b3a74facd46d35ba61913455066ab63682ac1ec5e5f0446f6a6ecbd54ee7',1,'Ponca::KdTreeDefaultInnerNode']]],
+  ['index_5fbits_0',['INDEX_BITS',['../structPonca_1_1KdTreeDefaultInnerNode.html#a3cb6dc9b86fa3101261a840b700efc81ab63682ac1ec5e5f0446f6a6ecbd54ee7',1,'Ponca::KdTreeDefaultInnerNode']]],
   ['indexcontainer_1',['IndexContainer',['../classPonca_1_1KdTreeBase.html#a46573f7eada88708072ebb5b5601c64c',1,'Ponca::KdTreeBase::IndexContainer()'],['../classPonca_1_1KnnGraphBase.html#acfbc89127579d2db8e6b927738dc9562',1,'Ponca::KnnGraphBase::IndexContainer()']]],
   ['indexsquareddistance_2',['IndexSquaredDistance',['../structPonca_1_1IndexSquaredDistance.html',1,'Ponca']]],
   ['indexsquareddistance_3c_20index_2c_20datapoint_3a_3ascalar_20_3e_3',['IndexSquaredDistance&lt; Index, DataPoint::Scalar &gt;',['../structPonca_1_1IndexSquaredDistance.html',1,'Ponca']]],

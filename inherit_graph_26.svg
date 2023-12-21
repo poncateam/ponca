@@ -15,7 +15,7 @@
 <polygon fill="white" stroke="#666666" points="208,-41 0,-41 0,0 208,0 208,-41"/>
 <text text-anchor="start" x="8" y="-29" font-family="Helvetica,sans-Serif" font-size="10.00">Ponca::limited_priority</text>
 <text text-anchor="start" x="8" y="-18" font-family="Helvetica,sans-Serif" font-size="10.00">_queue&lt; Ponca::IndexSquaredDistance</text>
-<text text-anchor="middle" x="104" y="-7" font-family="Helvetica,sans-Serif" font-size="10.00">&lt; Index, Scalar &gt; &gt;</text>
+<text text-anchor="middle" x="104" y="-7" font-family="Helvetica,sans-Serif" font-size="10.00">&lt; Index, DataPoint::Scalar &gt; &gt;</text>
 </a>
 </g>
 </g>

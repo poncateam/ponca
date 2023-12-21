@@ -40,7 +40,19 @@ var hierarchy =
         ] ]
       ] ]
     ] ],
-    [ "Ponca::KdTreeBase< Traits >", "classPonca_1_1KdTreeBase.html", null ],
+    [ "Ponca::KdTreeBase< Traits >", "classPonca_1_1KdTreeBase.html", [
+      [ "Ponca::KdTreeDenseBase< KdTreeDefaultTraits< DataPoint > >", "classPonca_1_1KdTreeDenseBase.html", [
+        [ "Ponca::KdTreeDense< DataPoint >", "structPonca_1_1KdTreeDense.html", null ]
+      ] ],
+      [ "Ponca::KdTreeSparseBase< KdTreeDefaultTraits< DataPoint > >", "classPonca_1_1KdTreeSparseBase.html", [
+        [ "Ponca::KdTreeSparse< DataPoint >", "structPonca_1_1KdTreeSparse.html", null ]
+      ] ],
+      [ "Ponca::KdTreeDenseBase< Traits >", "classPonca_1_1KdTreeDenseBase.html", null ],
+      [ "Ponca::KdTreeSparseBase< Traits >", "classPonca_1_1KdTreeSparseBase.html", null ]
+    ] ],
+    [ "Ponca::KdTreeBase< KdTreeDefaultTraits< DataPoint > >", "classPonca_1_1KdTreeBase.html", [
+      [ "Ponca::KdTree< DataPoint >", "structPonca_1_1KdTree.html", null ]
+    ] ],
     [ "Ponca::KdTreeCustomizableNode< Index, NodeIndex, DataPoint, LeafSize, _InnerNodeType, _LeafNodeType >", "classPonca_1_1KdTreeCustomizableNode.html", [
       [ "Ponca::KdTreeDefaultNode< Index, NodeIndex, DataPoint, LeafSize >", "structPonca_1_1KdTreeDefaultNode.html", null ]
     ] ],

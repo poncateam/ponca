@@ -51,7 +51,7 @@ MathJax.Hub.Config({
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Ponca
-   &#160;<span id="projectnumber">8f9df5fa7fa096409346421e27dedfb3ca8361e0</span>
+   &#160;<span id="projectnumber">a75f4aa0a7201c9008dcd74dfd8ce247a5e866e7</span>
    </div>
    <div id="projectbrief">Point Cloud Analysis library</div>
   </td>
@@ -116,10 +116,10 @@ $(document).ready(function(){initNavTree('example_cxx_neighbor_search.html','');
 </div>
 
 <div><div class="header">
-  <div class="headertitle"><div class="title"><a class="el" href="namespacePonca.html#abdeec7124bd618c93bfd5374d56e7155" title="Public interface for KdTree datastructure.">Ponca::KdTree</a> neighbor searches </div></div>
+  <div class="headertitle"><div class="title"><a class="el" href="structPonca_1_1KdTree.html" title="Abstract KdTree type with KdTreeDefaultTraits.">Ponca::KdTree</a> neighbor searches </div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><p>This is an example of how to use <a class="el" href="namespacePonca.html#abdeec7124bd618c93bfd5374d56e7155" title="Public interface for KdTree datastructure.">Ponca::KdTree</a> to perform nearest, k-nearest and range neighbor search.</p>
+<div class="textblock"><p>This is an example of how to use <a class="el" href="structPonca_1_1KdTree.html" title="Abstract KdTree type with KdTreeDefaultTraits.">Ponca::KdTree</a> to perform nearest, k-nearest and range neighbor search.</p>
 <div class="fragment"><div class="line"><span class="comment">/*</span></div>
 <div class="line"><span class="comment">This Source Code Form is subject to the terms of the Mozilla Public</span></div>
 <div class="line"><span class="comment">License, v. 2.0. If a copy of the MPL was not distributed with this</span></div>
@@ -148,7 +148,7 @@ $(document).ready(function(){initNavTree('example_cxx_neighbor_search.html','');
 <div class="line">        return DataPoint{100 * DataPoint::VectorType::Random()};});</div>
 <div class="line"> </div>
 <div class="line">    <span class="comment">// build the k-d tree</span></div>
-<div class="line">    <span class="keyword">const</span> <a class="code hl_class" href="classPonca_1_1KdTreeBase.html">Ponca::KdTree&lt;DataPoint&gt;</a> kdtree(points);</div>
+<div class="line">    <span class="keyword">const</span> <a class="code hl_struct" href="structPonca_1_1KdTreeDense.html">Ponca::KdTreeDense&lt;DataPoint&gt;</a> kdtree(points);</div>
 <div class="line"> </div>
 <div class="line">    <span class="comment">// neighbor searches are done below from these arbitrary index and point</span></div>
 <div class="line">    <span class="keyword">const</span> <span class="keywordtype">int</span> query_idx = 10;</div>
@@ -194,7 +194,7 @@ $(document).ready(function(){initNavTree('example_cxx_neighbor_search.html','');
 <div class="line"> </div>
 <div class="line">    <span class="keywordflow">return</span> 1;</div>
 <div class="line">}</div>
-<div class="ttc" id="aclassPonca_1_1KdTreeBase_html"><div class="ttname"><a href="classPonca_1_1KdTreeBase.html">Ponca::KdTreeBase</a></div><div class="ttdoc">Customizable base class for KdTree datastructure.</div><div class="ttdef"><b>Definition:</b> <a href="kdTree_8h_source.html#l00053">kdTree.h:54</a></div></div>
+<div class="ttc" id="astructPonca_1_1KdTreeDense_html"><div class="ttname"><a href="structPonca_1_1KdTreeDense.html">Ponca::KdTreeDense</a></div><div class="ttdoc">[KdTree type definition]</div><div class="ttdef"><b>Definition:</b> <a href="kdTree_8h_source.html#l00066">kdTree.h:66</a></div></div>
 </div><!-- fragment --> </div></div><!-- contents -->
 </div><!-- PageDoc -->
 </div><!-- doc-content -->
@@ -202,7 +202,7 @@ $(document).ready(function(){initNavTree('example_cxx_neighbor_search.html','');
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="example_page.html">Examples</a></li>
-    <li class="footer">Generated on Mon Dec 18 2023 19:29:05 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.6 </li>
+    <li class="footer">Generated on Thu Dec 21 2023 22:46:08 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.6 </li>
   </ul>
 </div>
 </body>

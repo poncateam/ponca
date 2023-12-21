@@ -51,7 +51,7 @@ MathJax.Hub.Config({
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Ponca
-   &#160;<span id="projectnumber">8f9df5fa7fa096409346421e27dedfb3ca8361e0</span>
+   &#160;<span id="projectnumber">a75f4aa0a7201c9008dcd74dfd8ce247a5e866e7</span>
    </div>
    <div id="projectbrief">Point Cloud Analysis library</div>
   </td>
@@ -154,10 +154,10 @@ Public Types</h2></td></tr>
 <tr class="memitem:a42b8c01097197577ec186861ba48dbea"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1KnnGraphBase.html#a42b8c01097197577ec186861ba48dbea">IndexType</a> = typename Traits::IndexType</td></tr>
 <tr class="separator:a42b8c01097197577ec186861ba48dbea"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0c1974309b84d76d58291be618262ef4"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1KnnGraphBase.html#a0c1974309b84d76d58291be618262ef4">PointContainer</a> = typename Traits::PointContainer</td></tr>
-<tr class="memdesc:a0c1974309b84d76d58291be618262ef4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Container for DataPoint used inside the KdTree.  <br /></td></tr>
+<tr class="memdesc:a0c1974309b84d76d58291be618262ef4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Container for DataPoint used inside the <a class="el" href="structPonca_1_1KdTree.html" title="Abstract KdTree type with KdTreeDefaultTraits.">KdTree</a>.  <br /></td></tr>
 <tr class="separator:a0c1974309b84d76d58291be618262ef4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:acfbc89127579d2db8e6b927738dc9562"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1KnnGraphBase.html#acfbc89127579d2db8e6b927738dc9562">IndexContainer</a> = typename Traits::IndexContainer</td></tr>
-<tr class="memdesc:acfbc89127579d2db8e6b927738dc9562"><td class="mdescLeft">&#160;</td><td class="mdescRight">Container for indices used inside the KdTree.  <br /></td></tr>
+<tr class="memdesc:acfbc89127579d2db8e6b927738dc9562"><td class="mdescLeft">&#160;</td><td class="mdescRight">Container for indices used inside the <a class="el" href="structPonca_1_1KdTree.html" title="Abstract KdTree type with KdTreeDefaultTraits.">KdTree</a>.  <br /></td></tr>
 <tr class="separator:acfbc89127579d2db8e6b927738dc9562"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afba6501bdf04f859b39342962540529e"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1KnnGraphBase.html#afba6501bdf04f859b39342962540529e">KNearestIndexQuery</a> = <a class="el" href="classPonca_1_1KnnGraphKNearestQuery.html">KnnGraphKNearestQuery</a>&lt; Traits &gt;</td></tr>
 <tr class="separator:afba6501bdf04f859b39342962540529e"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -168,7 +168,7 @@ Public Types</h2></td></tr>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a7294b2f4e8983db302e2fac4777364d2"><td class="memTemplParams" colspan="2">template&lt;typename KdTreeTraits &gt; </td></tr>
 <tr class="memitem:a7294b2f4e8983db302e2fac4777364d2"><td class="memTemplItemLeft" align="right" valign="top">&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classPonca_1_1KnnGraphBase.html#a7294b2f4e8983db302e2fac4777364d2">KnnGraphBase</a> (const <a class="el" href="classPonca_1_1KdTreeBase.html">KdTreeBase</a>&lt; KdTreeTraits &gt; &amp;kdtree, int <a class="el" href="classPonca_1_1KnnGraphBase.html#a88878dc3a1b39079a2d20c61c15fee6c">k</a>=6)</td></tr>
-<tr class="memdesc:a7294b2f4e8983db302e2fac4777364d2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Build a KnnGraph from a KdTree.  <br /></td></tr>
+<tr class="memdesc:a7294b2f4e8983db302e2fac4777364d2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Build a KnnGraph from a <a class="el" href="structPonca_1_1KdTreeDense.html" title="[KdTree type definition]">KdTreeDense</a>.  <br /></td></tr>
 <tr class="separator:a7294b2f4e8983db302e2fac4777364d2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4c03ceda6467940e8b73ebe2b28f7f3e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classPonca_1_1KnnGraphKNearestQuery.html">KNearestIndexQuery</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1KnnGraphBase.html#a4c03ceda6467940e8b73ebe2b28f7f3e">k_nearest_neighbors</a> (int index) const</td></tr>
 <tr class="separator:a4c03ceda6467940e8b73ebe2b28f7f3e"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -246,7 +246,7 @@ template&lt;typename Traits &gt; </div>
       </table>
 </div><div class="memdoc">
 
-<p>Container for indices used inside the KdTree. </p>
+<p>Container for indices used inside the <a class="el" href="structPonca_1_1KdTree.html" title="Abstract KdTree type with KdTreeDefaultTraits.">KdTree</a>. </p>
 
 <p class="definition">Definition at line <a class="el" href="knnGraph_8h_source.html#l00053">53</a> of file <a class="el" href="knnGraph_8h_source.html">knnGraph.h</a>.</p>
 
@@ -302,7 +302,7 @@ template&lt;typename Traits &gt; </div>
       </table>
 </div><div class="memdoc">
 
-<p>Container for DataPoint used inside the KdTree. </p>
+<p>Container for DataPoint used inside the <a class="el" href="structPonca_1_1KdTree.html" title="Abstract KdTree type with KdTreeDefaultTraits.">KdTree</a>. </p>
 
 <p class="definition">Definition at line <a class="el" href="knnGraph_8h_source.html#l00052">52</a> of file <a class="el" href="knnGraph_8h_source.html">knnGraph.h</a>.</p>
 
@@ -405,8 +405,7 @@ template&lt;typename KdTreeTraits &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p>Build a KnnGraph from a KdTree. </p>
-<dl class="section warning"><dt>Warning</dt><dd>In the current version, the graph does not support kdtree with subsampling </dd></dl>
+<p>Build a KnnGraph from a <a class="el" href="structPonca_1_1KdTreeDense.html" title="[KdTree type definition]">KdTreeDense</a>. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">k</td><td>Number of requested neighbors. Might be reduced if k is larger than the kdtree size - 1 (query point is not included in query output, thus -1)</td></tr>
@@ -417,7 +416,7 @@ template&lt;typename KdTreeTraits &gt; </div>
 <dd>
 KdTreeTraits compatibility is checked with static assertion </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="knnGraph_8h_source.html#l00072">72</a> of file <a class="el" href="knnGraph_8h_source.html">knnGraph.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="knnGraph_8h_source.html#l00071">71</a> of file <a class="el" href="knnGraph_8h_source.html">knnGraph.h</a>.</p>
 
 </div>
 </div>
@@ -447,7 +446,7 @@ template&lt;typename Traits &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="knnGraph_8h_source.html#l00131">131</a> of file <a class="el" href="knnGraph_8h_source.html">knnGraph.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="knnGraph_8h_source.html#l00130">130</a> of file <a class="el" href="knnGraph_8h_source.html">knnGraph.h</a>.</p>
 
 </div>
 </div>
@@ -478,7 +477,7 @@ template&lt;typename Traits &gt; </div>
 
 <p>Number of neighbor per vertex. </p>
 
-<p class="definition">Definition at line <a class="el" href="knnGraph_8h_source.html#l00120">120</a> of file <a class="el" href="knnGraph_8h_source.html">knnGraph.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="knnGraph_8h_source.html#l00119">119</a> of file <a class="el" href="knnGraph_8h_source.html">knnGraph.h</a>.</p>
 
 </div>
 </div>
@@ -508,7 +507,7 @@ template&lt;typename Traits &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="knnGraph_8h_source.html#l00109">109</a> of file <a class="el" href="knnGraph_8h_source.html">knnGraph.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="knnGraph_8h_source.html#l00108">108</a> of file <a class="el" href="knnGraph_8h_source.html">knnGraph.h</a>.</p>
 
 </div>
 </div>
@@ -548,7 +547,7 @@ template&lt;typename Traits &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="knnGraph_8h_source.html#l00113">113</a> of file <a class="el" href="knnGraph_8h_source.html">knnGraph.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="knnGraph_8h_source.html#l00112">112</a> of file <a class="el" href="knnGraph_8h_source.html">knnGraph.h</a>.</p>
 
 </div>
 </div>
@@ -579,7 +578,7 @@ template&lt;typename Traits &gt; </div>
 
 <p>Number of vertices in the neighborhood graph. </p>
 
-<p class="definition">Definition at line <a class="el" href="knnGraph_8h_source.html#l00122">122</a> of file <a class="el" href="knnGraph_8h_source.html">knnGraph.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="knnGraph_8h_source.html#l00121">121</a> of file <a class="el" href="knnGraph_8h_source.html">knnGraph.h</a>.</p>
 
 </div>
 </div>
@@ -659,7 +658,7 @@ template&lt;typename Traits &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="knnGraph_8h_source.html#l00130">130</a> of file <a class="el" href="knnGraph_8h_source.html">knnGraph.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="knnGraph_8h_source.html#l00129">129</a> of file <a class="el" href="knnGraph_8h_source.html">knnGraph.h</a>.</p>
 
 </div>
 </div>
@@ -669,7 +668,7 @@ template&lt;typename Traits &gt; </div>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="namespacePonca.html">Ponca</a></li><li class="navelem"><a class="el" href="classPonca_1_1KnnGraphBase.html">KnnGraphBase</a></li>
-    <li class="footer">Generated on Mon Dec 18 2023 19:29:05 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.6 </li>
+    <li class="footer">Generated on Thu Dec 21 2023 22:46:08 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.6 </li>
   </ul>
 </div>
 </body>
