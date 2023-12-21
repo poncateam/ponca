@@ -52,6 +52,7 @@ protected:
 public:
     PONCA_EXPLICIT_CAST_OPERATORS(CovariancePlaneFitImpl,covariancePlaneFit)
     PONCA_FITTING_DECLARE_FINALIZE
+    PONCA_FITTING_IS_SIGNED(false)
 
     /**************************************************************************/
     /* Results                                                                */

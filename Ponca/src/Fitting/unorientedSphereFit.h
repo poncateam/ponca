@@ -42,6 +42,7 @@ protected:
 public:
     PONCA_EXPLICIT_CAST_OPERATORS(UnorientedSphereFitImpl,unorientedSphereFit)
     PONCA_FITTING_DECLARE_INIT_ADD_FINALIZE
+    PONCA_FITTING_IS_SIGNED(false)
 
 }; // class UnorientedSphereFitImpl
 

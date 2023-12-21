@@ -47,6 +47,7 @@ public:
         }
         return Base::m_eCurrentState;
     }
+    PONCA_FITTING_IS_SIGNED(true)
 }; //class MeanPlaneFitImpl
 
 /// \brief Helper alias for Plane fitting on points using MeanPlaneFitImpl

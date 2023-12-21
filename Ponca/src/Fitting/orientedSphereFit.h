@@ -43,6 +43,7 @@ protected:
 public:
     PONCA_EXPLICIT_CAST_OPERATORS(OrientedSphereFitImpl,orientedSphereFit)
     PONCA_FITTING_DECLARE_INIT_ADD_FINALIZE
+    PONCA_FITTING_IS_SIGNED(true)
 }; //class OrientedSphereFitImpl
 
 /// \brief Helper alias for Oriented Sphere fitting on 3D points using OrientedSphereFitImpl
