@@ -92,12 +92,12 @@ fit.computeWithIds( myDataStructure.range_neighbors(fitInitPos, scale), vectorPo
 
   We call indices into the underlying point storage *point indices* and indices into the sample storage *sample
   indices*. Note that the sample storage stores point indices: sample number 0 may, for example, refer to point number 25.
-  The point storage can be accessed with KdTreeImplBase::points, while the array of samples can be accessed with
-  KdTreeImplBase::samples.
+  The point storage can be accessed with KdTreeBase::points, while the array of samples can be accessed with
+  KdTreeBase::samples.
 
   While most of the KdTree API is built on using point indices, it can still be useful to iterate over samples instead
   (e.g. when using a Ponca::KdTreeSparse). If you ever need to convert sample indices to point indices, see
-  KdTreeImplBase::pointFromSample (see also KdTreeImplBase::pointDataFromSample).
+  KdTreeBase::pointFromSample (see also KdTreeBase::pointDataFromSample).
 
   \subsection spatialpartitioning_kdtree_examples Examples
 
@@ -120,8 +120,8 @@ fit.computeWithIds( myDataStructure.range_neighbors(fitInitPos, scale), vectorPo
   The kd-tree is a binary search tree that
   - is balanced (cuts at the median at each node)
   - cuts along the dimension that extends the most at each node
-  - has a maximal depth (KdTreeImplBase::MAX_DEPTH)
-  - has a minimal number of points per leaf (KdTreeImplBase::m_min_cell_size)
+  - has a maximal depth (KdTreeBase::MAX_DEPTH)
+  - has a minimal number of points per leaf (KdTreeBase::m_min_cell_size)
   - only stores points in the leafs
   - uses depth-first search with a static stack for queries
   - keeps the initial order of points

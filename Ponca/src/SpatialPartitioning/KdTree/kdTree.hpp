@@ -8,7 +8,7 @@
 
 template<typename Traits>
 template<typename PointUserContainer, typename Converter>
-inline void KdTreeImplBase<Traits>::build(PointUserContainer&& points, Converter c)
+inline void KdTreeBase<Traits>::build(PointUserContainer&& points, Converter c)
 {
     IndexContainer ids(points.size());
     std::iota(ids.begin(), ids.end(), 0);
@@ -16,7 +16,7 @@ inline void KdTreeImplBase<Traits>::build(PointUserContainer&& points, Converter
 }
 
 template<typename Traits>
-void KdTreeImplBase<Traits>::clear()
+void KdTreeBase<Traits>::clear()
 {
     m_points.clear();
     m_nodes.clear();
@@ -25,7 +25,7 @@ void KdTreeImplBase<Traits>::clear()
 }
 
 template<typename Traits>
-bool KdTreeImplBase<Traits>::valid() const
+bool KdTreeBase<Traits>::valid() const
 {
     if (m_points.empty())
         return m_nodes.empty() && m_indices.empty();
@@ -72,7 +72,7 @@ bool KdTreeImplBase<Traits>::valid() const
 }
 
 template<typename Traits>
-void KdTreeImplBase<Traits>::print(std::ostream& os, bool verbose) const
+void KdTreeBase<Traits>::print(std::ostream& os, bool verbose) const
 {
     os << "KdTree:";
     os << "\n  MaxNodes: " << MAX_NODE_COUNT;
@@ -118,9 +118,9 @@ void KdTreeImplBase<Traits>::print(std::ostream& os, bool verbose) const
 
 template<typename Traits>
 template<typename PointUserContainer, typename IndexUserContainer, typename Converter>
-inline void KdTreeImplBase<Traits>::buildWithSampling(PointUserContainer&& points,
-                                                      IndexUserContainer sampling,
-                                                      Converter c)
+inline void KdTreeBase<Traits>::buildWithSampling(PointUserContainer&& points,
+                                                  IndexUserContainer sampling,
+                                                  Converter c)
 {
     PONCA_DEBUG_ASSERT(points.size() <= MAX_POINT_COUNT);
     this->clear();
@@ -140,7 +140,7 @@ inline void KdTreeImplBase<Traits>::buildWithSampling(PointUserContainer&& point
 }
 
 template<typename Traits>
-void KdTreeImplBase<Traits>::build_rec(NodeIndexType node_id, IndexType start, IndexType end, int level)
+void KdTreeBase<Traits>::build_rec(NodeIndexType node_id, IndexType start, IndexType end, int level)
 {
     NodeType& node = m_nodes[node_id];
     AabbType aabb;
@@ -174,7 +174,7 @@ void KdTreeImplBase<Traits>::build_rec(NodeIndexType node_id, IndexType start, I
 }
 
 template<typename Traits>
-auto KdTreeImplBase<Traits>::partition(IndexType start, IndexType end, int dim, Scalar value)
+auto KdTreeBase<Traits>::partition(IndexType start, IndexType end, int dim, Scalar value)
     -> IndexType
 {
     const auto& points = m_points;

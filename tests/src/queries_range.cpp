@@ -18,14 +18,14 @@ template<typename DataPoint, bool SampleKdTree = true>
 void testKdTreeRangeIndex(bool quick = true)
 {
 	using Scalar = typename DataPoint::Scalar;
-	using VectorContainer = typename KdTreeImpl<DataPoint>::PointContainer;
+	using VectorContainer = typename KdTree<DataPoint>::PointContainer;
 	using VectorType = typename DataPoint::VectorType;
 
 	const int N = quick ? 100 : 5000;
 	auto points = VectorContainer(N);
     std::generate(points.begin(), points.end(), []() {return DataPoint(VectorType::Random()); });
 
-    KdTreeImpl<DataPoint> *kdtree {nullptr};
+    KdTree<DataPoint> *kdtree {nullptr};
 
     std::vector<int> sampling; // we need sampling for GT computation
     if(SampleKdTree){
@@ -89,7 +89,7 @@ template<typename DataPoint>
 void testKdTreeRangePoint(bool quick = true)
 {
 	using Scalar = typename DataPoint::Scalar;
-	using VectorContainer = typename KdTreeImpl<DataPoint>::PointContainer;
+	using VectorContainer = typename KdTree<DataPoint>::PointContainer;
 	using VectorType = typename DataPoint::VectorType;
 
 	const int N = quick ? 100 : 10000;

@@ -68,7 +68,7 @@ public:
     /// \warning Stores a const reference to kdtree.point_data()
     /// \warning KdTreeTraits compatibility is checked with static assertion
     template<typename KdTreeTraits>
-    inline KnnGraphBase(const KdTreeImplBase<KdTreeTraits>& kdtree, int k = 6)
+    inline KnnGraphBase(const KdTreeBase<KdTreeTraits>& kdtree, int k = 6)
             : m_k(std::min(k,kdtree.sample_count()-1)),
               m_kdTreePoints(kdtree.points())
     {

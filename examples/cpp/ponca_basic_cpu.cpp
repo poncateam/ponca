@@ -76,7 +76,7 @@ using Fit3 = BasketDiff< Fit1, FitSpaceDer, OrientedSphereDer, GLSDer, Curvature
 using Fit4 = Basket<MyPoint,WeightFunc,SphereFit, GLSParam>;
 
 template<typename Fit>
-void test_fit(Fit& _fit, const KdTreeImpl<MyPoint>& tree, const VectorType& _p)
+void test_fit(Fit& _fit, const KdTree<MyPoint>& tree, const VectorType& _p)
 {
   Scalar tmax = 100.0;
 

@@ -25,7 +25,7 @@
 #include "Query/kdTreeRangeQueries.h"
 
 namespace Ponca {
-template <typename Traits> class KdTreeImplBase;
+template <typename Traits> class KdTreeBase;
 template <typename Traits> class KdTreeDenseBase;
 template <typename Traits> class KdTreeSparseBase;
 
@@ -33,10 +33,10 @@ template <typename Traits> class KdTreeSparseBase;
  * \brief Base type for default KdTree implementations
  *
  * \see KdTreeDefaultTraits for the default trait interface documentation.
- * \see KdTreeImplBase for complete API
+ * \see KdTreeBase for complete API
  */
 template <typename DataPoint>
-using KdTreeImpl = KdTreeImplBase<KdTreeDefaultTraits<DataPoint>>;
+using KdTree = KdTreeBase<KdTreeDefaultTraits<DataPoint>>;
 
 /*!
  * \brief Public interface for dense KdTree datastructure.
@@ -74,7 +74,7 @@ using KdTreeSparse = KdTreeSparseBase<KdTreeDefaultTraits<DataPoint>>;
  * \todo Better handle sampling: do not store non-selected points (requires to store original indices)
  */
 template <typename Traits>
-class KdTreeImplBase
+class KdTreeBase
 {
 public:
     using DataPoint      = typename Traits::DataPoint; ///< DataPoint given by user via Traits
@@ -277,7 +277,7 @@ protected:
 
     // Internal ----------------------------------------------------------------
 protected:
-    inline KdTreeImplBase() = default;
+    inline KdTreeBase() = default;
 
     /// Generate a tree sampled from a custom contained type converted using a `Converter`
     /// \tparam PointUserContainer Input point, transformed to PointContainer
@@ -291,7 +291,7 @@ protected:
                                   IndexUserContainer sampling,
                                   Converter c);
 
-    /// Generate a tree sampled from a custom contained type converted using a \ref KdTreeImplBase::DefaultConverter
+    /// Generate a tree sampled from a custom contained type converted using a \ref KdTreeBase::DefaultConverter
     /// \tparam PointUserContainer Input points, transformed to PointContainer
     /// \tparam IndexUserContainer Input sampling, transformed to IndexContainer
     /// \param points Input points
@@ -323,17 +323,17 @@ private:
  * \see KdTreeDefaultTraits for the trait interface documentation.
  */
 template <typename Traits>
-class KdTreeDenseBase : public KdTreeImplBase<Traits>
+class KdTreeDenseBase : public KdTreeBase<Traits>
 {
 private:
-    using Base = KdTreeImplBase<Traits>;
+    using Base = KdTreeBase<Traits>;
 
 public:
     /// Default constructor creating an empty tree
     /// \see build
     KdTreeDenseBase() = default;
 
-    /// Constructor generating a tree from a custom contained type converted using a \ref KdTreeImplBase::DefaultConverter
+    /// Constructor generating a tree from a custom contained type converted using a \ref KdTreeBase::DefaultConverter
     template<typename PointUserContainer>
     inline explicit KdTreeDenseBase(PointUserContainer&& points)
         : Base()
@@ -357,10 +357,10 @@ public:
  * \see KdTreeDefaultTraits for the trait interface documentation.
  */
 template <typename Traits>
-class KdTreeSparseBase : public KdTreeImplBase<Traits>
+class KdTreeSparseBase : public KdTreeBase<Traits>
 {
 private:
-    using Base = KdTreeImplBase<Traits>;
+    using Base = KdTreeBase<Traits>;
 
 public:
     static constexpr bool SUPPORTS_SUBSAMPLING = false;
@@ -369,7 +369,7 @@ public:
     /// \see build
     KdTreeSparseBase() = default;
 
-    /// Constructor generating a tree from a custom contained type converted using a \ref KdTreeImplBase::DefaultConverter
+    /// Constructor generating a tree from a custom contained type converted using a \ref KdTreeBase::DefaultConverter
     template<typename PointUserContainer>
     inline explicit KdTreeSparseBase(PointUserContainer&& points)
         : Base()
@@ -377,7 +377,7 @@ public:
         this->build(std::forward<PointUserContainer>(points));
     }
 
-    /// Constructor generating a tree sampled from a custom contained type converted using a \ref KdTreeImplBase::DefaultConverter
+    /// Constructor generating a tree sampled from a custom contained type converted using a \ref KdTreeBase::DefaultConverter
     /// \tparam PointUserContainer Input points, transformed to PointContainer
     /// \tparam IndexUserContainer Input sampling, transformed to IndexContainer
     /// \param point Input points
@@ -396,7 +396,7 @@ public:
 } // namespace Ponca
 
 template <typename Traits>
-std::ostream& operator<<(std::ostream& os, const Ponca::KdTreeImplBase<Traits>& kdtree)
+std::ostream& operator<<(std::ostream& os, const Ponca::KdTreeBase<Traits>& kdtree)
 {
     kdtree.print(os);
     return os;

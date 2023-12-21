@@ -25,7 +25,7 @@ public:
     using QueryAccelType = KdTreeQuery<Traits>;
     using Iterator       = IteratorType<typename Traits::IndexType, typename Traits::DataPoint>;
 
-    inline KdTreeKNearestQueryBase(const KdTreeImplBase<Traits>* kdtree, IndexType k, typename QueryType::InputType input) :
+    inline KdTreeKNearestQueryBase(const KdTreeBase<Traits>* kdtree, IndexType k, typename QueryType::InputType input) :
             KdTreeQuery<Traits>(kdtree), QueryType(k, input) { }
 
 public:

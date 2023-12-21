@@ -18,7 +18,7 @@ template<typename DataPoint>
 void testKdTreeNearestIndex(bool quick = true)
 {
 	using Scalar = typename DataPoint::Scalar;
-	using VectorContainer = typename KdTreeImpl<DataPoint>::PointContainer;
+	using VectorContainer = typename KdTree<DataPoint>::PointContainer;
 	using VectorType = typename DataPoint::VectorType;
 
 	const int N = quick ? 100 : 10000;
@@ -61,7 +61,7 @@ template<typename DataPoint>
 void testKdTreeNearestPoint(bool quick = true)
 {
 	using Scalar = typename DataPoint::Scalar;
-	using VectorContainer = typename KdTreeImpl<DataPoint>::PointContainer;
+	using VectorContainer = typename KdTree<DataPoint>::PointContainer;
 	using VectorType = typename DataPoint::VectorType;
 
 	const int N = quick ? 100 : 10000;
