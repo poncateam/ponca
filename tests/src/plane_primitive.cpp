@@ -37,7 +37,7 @@ void testFunction()
     f.setPlane(VectorType::Random(), query);
 
     // Test that the point on the plane returns a potential of 0
-    VERIFY( f.potential(query) <= epsilon);
+    VERIFY( std::abs(f.potential(query)) <= epsilon);
 
     // Use a random position in space
     query = VectorType::Random();

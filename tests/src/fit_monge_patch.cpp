@@ -88,7 +88,7 @@ void testFunction(bool _bUnoriented = false, bool _bAddPositionNoise = false, bo
 
             if(!_bAddPositionNoise) {
               // Check if the query point is on the plane
-              VERIFY(fit.potential(queryPos) <= epsilon);
+              VERIFY(std::abs(fit.potential(queryPos)) <= epsilon);
               // check if we well have a plane
               VERIFY(fit.kMean() <= epsilon);
               VERIFY(fit.GaussianCurvature() <= epsilon);

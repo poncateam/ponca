@@ -30,7 +30,7 @@ using namespace std;
 using namespace Ponca;
 
 template<typename Fit, typename RefFit, typename TestFit>
-void testFunction(bool isSigned = true)
+void testFunction()
 {
     // Define related structure
     //typedef typename Fit::WeightFunction WeightFunc;
@@ -89,7 +89,7 @@ void testFunction(bool isSigned = true)
     }
     fit.finalize();
 
-    Scalar flip_fit = (isSigned || (fit.primitiveGradient().template cast<Scalar>().dot(theoricNormal) > 0 )) ? Scalar(1) : Scalar(-1);
+    Scalar flip_fit = (fit.isSigned() || (fit.primitiveGradient().template cast<Scalar>().dot(theoricNormal) > 0 )) ? Scalar(1) : Scalar(-1);
     {
       // Check derivatives wrt numerical differentiation
       // Use long double for stable numerical differentiation
@@ -116,7 +116,7 @@ void testFunction(bool isSigned = true)
           ref_fit.addNeighbor(*it);
       }
       ref_fit.finalize();
-      RefScalar flip_ref = (isSigned || (ref_fit.primitiveGradient().dot(theoricNormal.template cast<RefScalar>()) > 0 )) ? RefScalar(1) : RefScalar(-1);
+      RefScalar flip_ref = (ref_fit.isSigned() || (ref_fit.primitiveGradient().dot(theoricNormal.template cast<RefScalar>()) > 0 )) ? RefScalar(1) : RefScalar(-1);
 
       RefScalar der_epsilon = epsilon*10;
       if(Eigen::internal::is_same<Scalar,float>::value)
@@ -140,7 +140,7 @@ void testFunction(bool isSigned = true)
         f.init(vFittingPoint.template cast<RefScalar>());
         f.compute(refVectorPoints);
 
-        RefScalar flip_f   = (isSigned || (f.primitiveGradient().dot(theoricNormal.template cast<RefScalar>()) > 0 )) ? RefScalar(1) : RefScalar(-1);
+        RefScalar flip_f   = (f.isSigned() || (f.primitiveGradient().dot(theoricNormal.template cast<RefScalar>()) > 0 )) ? RefScalar(1) : RefScalar(-1);
 
 //         Scalar uc = f.m_uc;
 //         typename RefFit::VectorType ul = f.m_ul;
@@ -268,7 +268,7 @@ void callSubTests()
 //    using TestFitSphereOriented = BasketDiff<Basket<TestPoint, TestWeightFunc, OrientedSphereFit>,
 //            internal::FitScaleDer | internal::FitScaleDer, OrientedSphereDer, NormalDerivativesCurvatureEstimator>;
 
-    CALL_SUBTEST(( testFunction<FitSphereOriented, RefFitSphereOriented, /*TestFitSphereOriented*/FitSphereOriented>(true) ));
+    CALL_SUBTEST(( testFunction<FitSphereOriented, RefFitSphereOriented, /*TestFitSphereOriented*/FitSphereOriented>() ));
 }
 
 int main(int argc, char** argv)

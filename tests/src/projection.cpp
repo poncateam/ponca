@@ -79,7 +79,7 @@ void testFunction()
             VectorType proj  = fit.project(p);
 
             // check that the projected point is on the surface
-            VERIFY( fit.potential(proj) < epsilon );
+            VERIFY( std::abs(fit.potential(proj)) < epsilon );
         }
 
 
