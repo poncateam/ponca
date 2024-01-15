@@ -78,9 +78,9 @@ using VectorArray = typename Base::VectorArray;     /*!< \brief Alias to vector 
 
 /// Declare Primitive::isiSigned()
 #define PONCA_FITTING_IS_SIGNED(IS_SIGNED)                                                                         \
-/*! \brief Is scalar field signed */                                                                               \
+/*! \brief Is scalar field signed. If not, the method the sign of `potential()` must be ignored */                 \
 PONCA_MULTIARCH inline                                                                                             \
-constexpr bool isSigned() { return IS_SIGNED; }                                                                   \
+constexpr bool isSigned() { return IS_SIGNED; }
 
 /// Declare Concept::ComputationalObjectConcept::init()
 #define PONCA_FITTING_DECLARE_INIT                                                                                 \

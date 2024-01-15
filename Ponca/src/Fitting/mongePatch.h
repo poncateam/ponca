@@ -55,7 +55,8 @@ public:
       return h_uu()*u*u + h_vv()*v*v + h_uv()*u*v + h_u()*u + h_v()*v + h_c();
     }
 
-    /*! \brief Value of the scalar field at the evaluation point */
+    //! \brief Value of the scalar field at the evaluation point
+    //! \see method `#isSigned` of the plane fit to check if the sign is reliable
     PONCA_MULTIARCH inline Scalar potential(const VectorType& _q) const {
       VectorType x = Base::worldToTangentPlane(_q);
       return evalUV(*(x.data()+1),*(x.data()+2)) - *(x.data());

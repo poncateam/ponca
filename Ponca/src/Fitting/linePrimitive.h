@@ -90,7 +90,8 @@ public:
         *cc = EigenBase(origin, direction);
     }
 
-    /*! \brief Value of the scalar field at the evaluation point */
+    //! \brief Value of the scalar field at the evaluation point
+    //! \see method `#isSigned` of the fit to check if the sign is reliable
     PONCA_MULTIARCH inline Scalar potential ( ) const
     {
         // The potential is the distance from a point to the line
@@ -99,6 +100,7 @@ public:
 
     /*!  \brief Value of the scalar field at the location \f$ \mathbf{q} \f$,
      * defined as the squared distance between \f$ \mathbf{q} \f$ and the line
+     *  \see method `#isSigned` of the fit to check if the sign is reliable
      */
     PONCA_MULTIARCH inline Scalar potential (const VectorType& _q) const
     {
