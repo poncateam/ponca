@@ -75,6 +75,13 @@ using VectorArray = typename Base::VectorArray;     /*!< \brief Alias to vector 
 /*! Finalize the procedure \return Fitting Status \warning Must be called be for any use of the fitting output */
 
 // FIT API DECLARATION
+
+/// Declare Primitive::isiSigned()
+#define PONCA_FITTING_IS_SIGNED(IS_SIGNED)                                                                         \
+/*! \brief Is scalar field signed. If not, the method the sign of `potential()` must be ignored */                 \
+PONCA_MULTIARCH inline                                                                                             \
+constexpr bool isSigned() { return IS_SIGNED; }
+
 /// Declare Concept::ComputationalObjectConcept::init()
 #define PONCA_FITTING_DECLARE_INIT                                                                                 \
 PONCA_FITTING_APIDOC_INIT                                                                                          \

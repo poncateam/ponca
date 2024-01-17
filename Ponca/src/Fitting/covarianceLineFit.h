@@ -56,6 +56,7 @@ public:
         }
         return Base::m_eCurrentState;
     }
+    PONCA_FITTING_IS_SIGNED(false)
 };
 
 /// \brief Helper alias for Line fitting on 3D points using CovarianceLineFitImpl

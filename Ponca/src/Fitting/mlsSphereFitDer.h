@@ -93,7 +93,8 @@ public:
     PONCA_EXPLICIT_CAST_OPERATORS_DER(MlsSphereFitDer,mlsSphereFitDer)
     PONCA_FITTING_DECLARE_INIT_ADDDER_FINALIZE
 
-    /*! \brief Returns the derivatives of the scalar field at the evaluation point */
+    //! \brief Returns the derivatives of the scalar field at the evaluation point
+    //! \see method `#isSigned` of the fit to check if the sign is reliable
     PONCA_MULTIARCH inline ScalarArray dPotential() const;
 
     /*! \brief Value of the normal of the primitive at the evaluation point */

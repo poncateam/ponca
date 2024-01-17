@@ -86,13 +86,15 @@ public:
         *cc = EigenBase(_dir.normalized(), _pos);
     }
 
-    /*! \brief Value of the scalar field at the evaluation point */
+    //! \brief Value of the scalar field at the evaluation point
+    //! \see method `#isSigned` of the fit to check if the sign is reliable
     PONCA_MULTIARCH inline Scalar potential ( ) const
     {
         return EigenBase::signedDistance(VectorType::Zero());
     }
 
     //! \brief Value of the scalar field at the location \f$ \mathbf{q} \f$
+    //! \see method `#isSigned` of the fit to check if the sign is reliable
     PONCA_MULTIARCH inline Scalar potential (const VectorType& _q) const
     {
         // The potential is the distance from the point to the plane

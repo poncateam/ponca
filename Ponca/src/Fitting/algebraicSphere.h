@@ -220,10 +220,12 @@ public:
     //! \brief State indicating when the sphere has been normalized
     PONCA_MULTIARCH inline bool isNormalized() const { return m_isNormalized; }
 
-    //! \brief Value of the scalar field at the location \f$ \mathbf{q} \f$
+    //! \brief Value of the scalar field at the location \f$ \mathbf{q}\f$.
+    //! \see method `#isSigned` of the fit to check if the sign is reliable
     PONCA_MULTIARCH inline Scalar potential (const VectorType& _q) const;
 
-    /*! \brief Value of the scalar field at the evaluation point */
+    //! \brief Value of the scalar field at the evaluation point
+    //! \see method `#isSigned` of the fit to check if the sign is reliable
     PONCA_MULTIARCH inline Scalar potential() const { return m_uc; }
 
     /*!

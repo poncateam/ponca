@@ -52,6 +52,7 @@ protected:
 public:
     PONCA_EXPLICIT_CAST_OPERATORS(CovariancePlaneFitImpl,covariancePlaneFit)
     PONCA_FITTING_DECLARE_FINALIZE
+    PONCA_FITTING_IS_SIGNED(false)
 
     /**************************************************************************/
     /* Results                                                                */
@@ -127,7 +128,8 @@ public:
     /* Use results                                                            */
     /**************************************************************************/
 
-    /*! \brief Returns the derivatives of the scalar field at the evaluation point */
+    // \brief Returns the derivatives of the scalar field at the evaluation point
+    //! \see method `#isSigned` of the fit to check if the sign is reliable
     PONCA_MULTIARCH inline ScalarArray dPotential() const { return m_dDist; }
 
     /*! \brief Returns the derivatives of the primitive normal */
