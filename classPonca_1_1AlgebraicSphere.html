@@ -51,7 +51,7 @@ MathJax.Hub.Config({
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Ponca
-   &#160;<span id="projectnumber">a75f4aa0a7201c9008dcd74dfd8ce247a5e866e7</span>
+   &#160;<span id="projectnumber">14b4da059d71dd3dc7e1695d75c7005d1f718cb6</span>
    </div>
    <div id="projectbrief">Point Cloud Analysis library</div>
   </td>
@@ -202,7 +202,7 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:ab1367679cd2a38f9910e9329b65797a7"><td class="mdescLeft">&#160;</td><td class="mdescRight">State indicating when the sphere has been normalized.  <br /></td></tr>
 <tr class="separator:ab1367679cd2a38f9910e9329b65797a7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a91db544faea8bbb923d42fbe182cb6f4"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classPonca_1_1AlgebraicSphere.html#a90d67318da4e0597fad0d6b53cefe0d1">Scalar</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1AlgebraicSphere.html#a91db544faea8bbb923d42fbe182cb6f4">potential</a> (const <a class="el" href="classPonca_1_1AlgebraicSphere.html#af30386a4406c056b736100eaa950d3d0">VectorType</a> &amp;_q) const</td></tr>
-<tr class="memdesc:a91db544faea8bbb923d42fbe182cb6f4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Value of the scalar field at the location \( \mathbf{q} \).  <br /></td></tr>
+<tr class="memdesc:a91db544faea8bbb923d42fbe182cb6f4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Value of the scalar field at the location \( \mathbf{q}\).  <br /></td></tr>
 <tr class="separator:a91db544faea8bbb923d42fbe182cb6f4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a15aadd172909ae086b0068c235e39b05"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classPonca_1_1AlgebraicSphere.html#a90d67318da4e0597fad0d6b53cefe0d1">Scalar</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1AlgebraicSphere.html#a15aadd172909ae086b0068c235e39b05">potential</a> () const</td></tr>
 <tr class="memdesc:a15aadd172909ae086b0068c235e39b05"><td class="mdescLeft">&#160;</td><td class="mdescRight">Value of the scalar field at the evaluation point.  <br /></td></tr>
@@ -641,7 +641,7 @@ template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
 <p>Used to know if the fitting result to a plane. </p>
 <dl class="section return"><dt>Returns</dt><dd>true if finalize() have been called and the fitting result to a plane </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="algebraicSphere_8h_source.html#l00260">260</a> of file <a class="el" href="algebraicSphere_8h_source.html">algebraicSphere.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="algebraicSphere_8h_source.html#l00262">262</a> of file <a class="el" href="algebraicSphere_8h_source.html">algebraicSphere.h</a>.</p>
 
 </div>
 </div>
@@ -769,8 +769,9 @@ template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
 </div><div class="memdoc">
 
 <p>Value of the scalar field at the evaluation point. </p>
+<dl class="section see"><dt>See also</dt><dd>method <code>#isSigned</code> of the fit to <a class="el" href="classPonca_1_1AlgebraicSphere.html#a39a8fedcfda62899968236d51d82063aa652f7be31584b31da49fbda06a3fcf86" title="Requires PrimitiveBase.">check</a> if the sign is reliable </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="algebraicSphere_8h_source.html#l00227">227</a> of file <a class="el" href="algebraicSphere_8h_source.html">algebraicSphere.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="algebraicSphere_8h_source.html#l00229">229</a> of file <a class="el" href="algebraicSphere_8h_source.html">algebraicSphere.h</a>.</p>
 
 </div>
 </div>
@@ -800,7 +801,8 @@ template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p>Value of the scalar field at the location \( \mathbf{q} \). </p>
+<p>Value of the scalar field at the location \( \mathbf{q}\). </p>
+<dl class="section see"><dt>See also</dt><dd>method <code>#isSigned</code> of the fit to <a class="el" href="classPonca_1_1AlgebraicSphere.html#a39a8fedcfda62899968236d51d82063aa652f7be31584b31da49fbda06a3fcf86" title="Requires PrimitiveBase.">check</a> if the sign is reliable </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="algebraicSphere_8hpp_source.html#l00061">61</a> of file <a class="el" href="algebraicSphere_8hpp_source.html">algebraicSphere.hpp</a>.</p>
 
@@ -896,7 +898,7 @@ template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
 <p>Approximation of the scalar field gradient at the evaluation point. </p>
 <dl class="section warning"><dt>Warning</dt><dd>The gradient is not normalized by default </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="algebraicSphere_8h_source.html#l00254">254</a> of file <a class="el" href="algebraicSphere_8h_source.html">algebraicSphere.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="algebraicSphere_8h_source.html#l00256">256</a> of file <a class="el" href="algebraicSphere_8h_source.html">algebraicSphere.h</a>.</p>
 
 </div>
 </div>
@@ -1143,7 +1145,7 @@ template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="namespacePonca.html">Ponca</a></li><li class="navelem"><a class="el" href="classPonca_1_1AlgebraicSphere.html">AlgebraicSphere</a></li>
-    <li class="footer">Generated on Thu Dec 21 2023 22:46:08 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.6 </li>
+    <li class="footer">Generated on Wed Jan 17 2024 16:44:13 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.6 </li>
   </ul>
 </div>
 </body>

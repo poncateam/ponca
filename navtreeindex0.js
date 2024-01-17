@@ -94,6 +94,7 @@ var NAVTREEINDEX0 =
 "classPonca_1_1CovarianceLineFitImpl.html":[8,0,0,7],
 "classPonca_1_1CovarianceLineFitImpl.html#a27ebd47142050c43e8132c1ede35505b":[8,0,0,7,4],
 "classPonca_1_1CovarianceLineFitImpl.html#a2d56c1ae866fee4949d611e805235895":[8,0,0,7,3],
+"classPonca_1_1CovarianceLineFitImpl.html#a4af239b7c72c975df3ae2c0e3bc0cb45":[8,0,0,7,8],
 "classPonca_1_1CovarianceLineFitImpl.html#a4f7465cf2eacf6d9c8b4530f15d85777":[8,0,0,7,5],
 "classPonca_1_1CovarianceLineFitImpl.html#a76e5f9c84f7c8bd3b9dbf1553db033de":[8,0,0,7,2],
 "classPonca_1_1CovarianceLineFitImpl.html#a8e05e2c15411b950cef16a40fcb91a86":[8,0,0,7,0],
@@ -118,10 +119,11 @@ var NAVTREEINDEX0 =
 "classPonca_1_1CovariancePlaneFitImpl.html#a1d0b630032c1d80ad0da315ef6d0cc72":[8,0,0,9,5],
 "classPonca_1_1CovariancePlaneFitImpl.html#a25e45331c266d0a51c87e8b5e77459d8":[8,0,0,9,1],
 "classPonca_1_1CovariancePlaneFitImpl.html#a2dfdda0e709b04ee6fce889c293d51fe":[8,0,0,9,6],
-"classPonca_1_1CovariancePlaneFitImpl.html#aa44dec5b14d4f995235d533a93c53378":[8,0,0,9,9],
+"classPonca_1_1CovariancePlaneFitImpl.html#a3b26f29204b3be1fb8813da4bc614000":[8,0,0,9,8],
+"classPonca_1_1CovariancePlaneFitImpl.html#aa44dec5b14d4f995235d533a93c53378":[8,0,0,9,10],
 "classPonca_1_1CovariancePlaneFitImpl.html#ac4a62f0b97e437ba626b6ca9b4880a7d":[8,0,0,9,4],
 "classPonca_1_1CovariancePlaneFitImpl.html#adb7f4a2880175224e619d80ab054e99c":[8,0,0,9,2],
-"classPonca_1_1CovariancePlaneFitImpl.html#ae023b7de8be8e2826810acd7fe9db910":[8,0,0,9,8],
+"classPonca_1_1CovariancePlaneFitImpl.html#ae023b7de8be8e2826810acd7fe9db910":[8,0,0,9,9],
 "classPonca_1_1CovariancePlaneFitImpl.html#af50cd1635f70143fa770e2921a247f93":[8,0,0,9,3],
 "classPonca_1_1CovariancePlaneFitImpl.html#afc314aab6e6c510a7b5c52212c0f766c":[8,0,0,9,0],
 "classPonca_1_1CurvatureEstimatorBase.html":[8,0,0,10],
@@ -247,7 +249,5 @@ var NAVTREEINDEX0 =
 "classPonca_1_1KdTreeKNearestIterator.html":[8,0,0,25],
 "classPonca_1_1KdTreeKNearestQueryBase.html":[8,0,0,26],
 "classPonca_1_1KdTreeNearestIterator.html":[8,0,0,27],
-"classPonca_1_1KdTreeNearestQueryBase.html":[8,0,0,28],
-"classPonca_1_1KdTreeQuery.html":[8,0,0,29],
-"classPonca_1_1KdTreeQuery.html#a2c02164e69a15dbf89c4b80b625cc0ac":[8,0,0,29,0]
+"classPonca_1_1KdTreeNearestQueryBase.html":[8,0,0,28]
 };

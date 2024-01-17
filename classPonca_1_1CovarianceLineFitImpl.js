@@ -7,5 +7,6 @@ var classPonca_1_1CovarianceLineFitImpl =
     [ "WFunctor", "classPonca_1_1CovarianceLineFitImpl.html#a27ebd47142050c43e8132c1ede35505b", null ],
     [ "covarianceLineFit", "classPonca_1_1CovarianceLineFitImpl.html#a4f7465cf2eacf6d9c8b4530f15d85777", null ],
     [ "covarianceLineFit", "classPonca_1_1CovarianceLineFitImpl.html#afcd7794421df13053d0db30da60b0374", null ],
-    [ "finalize", "classPonca_1_1CovarianceLineFitImpl.html#afb607414039edcb1bebc0ab2a7a1d87b", null ]
+    [ "finalize", "classPonca_1_1CovarianceLineFitImpl.html#afb607414039edcb1bebc0ab2a7a1d87b", null ],
+    [ "isSigned", "classPonca_1_1CovarianceLineFitImpl.html#a4af239b7c72c975df3ae2c0e3bc0cb45", null ]
 ];

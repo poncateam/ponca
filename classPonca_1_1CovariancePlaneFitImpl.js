@@ -8,6 +8,7 @@ var classPonca_1_1CovariancePlaneFitImpl =
     [ "covariancePlaneFit", "classPonca_1_1CovariancePlaneFitImpl.html#a1d0b630032c1d80ad0da315ef6d0cc72", null ],
     [ "covariancePlaneFit", "classPonca_1_1CovariancePlaneFitImpl.html#a2dfdda0e709b04ee6fce889c293d51fe", null ],
     [ "finalize", "classPonca_1_1CovariancePlaneFitImpl.html#a0925320772edfc9ad4765f5082604cc4", null ],
+    [ "isSigned", "classPonca_1_1CovariancePlaneFitImpl.html#a3b26f29204b3be1fb8813da4bc614000", null ],
     [ "tangentPlaneToWorld", "classPonca_1_1CovariancePlaneFitImpl.html#ae023b7de8be8e2826810acd7fe9db910", null ],
     [ "worldToTangentPlane", "classPonca_1_1CovariancePlaneFitImpl.html#aa44dec5b14d4f995235d533a93c53378", null ]
 ];

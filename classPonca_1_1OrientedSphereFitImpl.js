@@ -7,6 +7,7 @@ var classPonca_1_1OrientedSphereFitImpl =
     [ "addLocalNeighbor", "classPonca_1_1OrientedSphereFitImpl.html#aa4ced10031c777990d72fd923b04f982", null ],
     [ "finalize", "classPonca_1_1OrientedSphereFitImpl.html#af5d4835d31b75ebacfa4676efb488632", null ],
     [ "init", "classPonca_1_1OrientedSphereFitImpl.html#a4eafafe2b75c37c799b89c80933502d9", null ],
+    [ "isSigned", "classPonca_1_1OrientedSphereFitImpl.html#a703309b95209e99bb7a4fe87cd72c53b", null ],
     [ "orientedSphereFit", "classPonca_1_1OrientedSphereFitImpl.html#a27898737986ac216a12eedf2d6a9cf4d", null ],
     [ "orientedSphereFit", "classPonca_1_1OrientedSphereFitImpl.html#aa3cc98eeecb202880eda280606174231", null ],
     [ "m_deno", "classPonca_1_1OrientedSphereFitImpl.html#ab24dd64567e880458f568827b72ac9e1", null ],

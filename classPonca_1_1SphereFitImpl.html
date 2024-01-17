@@ -51,7 +51,7 @@ MathJax.Hub.Config({
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Ponca
-   &#160;<span id="projectnumber">a75f4aa0a7201c9008dcd74dfd8ce247a5e866e7</span>
+   &#160;<span id="projectnumber">14b4da059d71dd3dc7e1695d75c7005d1f718cb6</span>
    </div>
    <div id="projectbrief">Point Cloud Analysis library</div>
   </td>
@@ -135,7 +135,7 @@ $(document).ready(function(){initNavTree('classPonca_1_1SphereFitImpl.html','');
 <div id="dynsection-0-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-0-content" class="dyncontent" style="display:none;">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classPonca_1_1SphereFitImpl__inherit__graph.svg" width="279" height="331"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classPonca_1_1SphereFitImpl__inherit__graph.svg" width="279" height="346"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
 </div>
 <div id="dynsection-1" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
@@ -143,7 +143,7 @@ $(document).ready(function(){initNavTree('classPonca_1_1SphereFitImpl.html','');
 <div id="dynsection-1-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-1-content" class="dyncontent" style="display:none;">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classPonca_1_1SphereFitImpl__coll__graph.svg" width="279" height="331"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classPonca_1_1SphereFitImpl__coll__graph.svg" width="279" height="346"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
 </div>
 <table class="memberdecls">
@@ -178,6 +178,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:afec608609ed7d45186a810d7379b0a90"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespacePonca.html#abfd697aebf07c1b5c8be5ee401e2dc84">FIT_RESULT</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1SphereFitImpl.html#afec608609ed7d45186a810d7379b0a90">finalize</a> ()</td></tr>
 <tr class="memdesc:afec608609ed7d45186a810d7379b0a90"><td class="mdescLeft">&#160;</td><td class="mdescRight">Finalize the procedure.  <br /></td></tr>
 <tr class="separator:afec608609ed7d45186a810d7379b0a90"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa924d045fde5f106a5b95cf26fd83590"><td class="memItemLeft" align="right" valign="top">constexpr bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1SphereFitImpl.html#aa924d045fde5f106a5b95cf26fd83590">isSigned</a> ()</td></tr>
+<tr class="memdesc:aa924d045fde5f106a5b95cf26fd83590"><td class="mdescLeft">&#160;</td><td class="mdescRight">Is scalar field signed.  <br /></td></tr>
+<tr class="separator:aa924d045fde5f106a5b95cf26fd83590"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7bb60aed630829c7e9c8204c2955008d"><td class="memItemLeft" align="right" valign="top">const Solver &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1SphereFitImpl.html#a7bb60aed630829c7e9c8204c2955008d">solver</a> () const</td></tr>
 <tr class="separator:a7bb60aed630829c7e9c8204c2955008d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
@@ -546,6 +549,38 @@ template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
 
 </div>
 </div>
+<a id="aa924d045fde5f106a5b95cf26fd83590" name="aa924d045fde5f106a5b95cf26fd83590"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa924d045fde5f106a5b95cf26fd83590">&#9670;&#160;</a></span>isSigned()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr bool <a class="el" href="classPonca_1_1SphereFitImpl.html">Ponca::SphereFitImpl</a>&lt; DataPoint, _WFunctor, T &gt;::isSigned </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Is scalar field signed. </p>
+<p>If not, the method the sign of <code>potential()</code> must be ignored </p>
+
+<p class="definition">Definition at line <a class="el" href="sphereFit_8h_source.html#l00081">81</a> of file <a class="el" href="sphereFit_8h_source.html">sphereFit.h</a>.</p>
+
+</div>
+</div>
 <a id="a7bb60aed630829c7e9c8204c2955008d" name="a7bb60aed630829c7e9c8204c2955008d"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a7bb60aed630829c7e9c8204c2955008d">&#9670;&#160;</a></span>solver()</h2>
 
@@ -571,7 +606,7 @@ template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="sphereFit_8h_source.html#l00082">82</a> of file <a class="el" href="sphereFit_8h_source.html">sphereFit.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="sphereFit_8h_source.html#l00083">83</a> of file <a class="el" href="sphereFit_8h_source.html">sphereFit.h</a>.</p>
 
 </div>
 </div>
@@ -698,7 +733,7 @@ template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="namespacePonca.html">Ponca</a></li><li class="navelem"><a class="el" href="classPonca_1_1SphereFitImpl.html">SphereFitImpl</a></li>
-    <li class="footer">Generated on Thu Dec 21 2023 22:46:08 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.6 </li>
+    <li class="footer">Generated on Wed Jan 17 2024 16:44:13 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.6 </li>
   </ul>
 </div>
 </body>
