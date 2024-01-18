@@ -19,13 +19,15 @@
 #include <Ponca/src/Fitting/unorientedSphereFit.h>
 #include <Ponca/src/Fitting/weightFunc.h>
 #include <Ponca/src/Fitting/weightKernel.h>
+#include <Ponca/src/Fitting/curvature.h>
+#include <Ponca/src/Fitting/curvatureEstimation.h>
 
 #include <vector>
 
 using namespace std;
 using namespace Ponca;
 
-template<typename DataPoint, typename Fit, typename WeightFunc> //, typename Fit, typename WeightFunction>
+template<typename DataPoint, typename Fit, typename WeightFunc, bool CheckCurvatures = false> //, typename Fit, typename WeightFunction>
 void testFunction(bool _bAddPositionNoise = false, bool _bAddNormalNoise = false)
 {
     // Define related structure
@@ -102,6 +104,22 @@ void testFunction(bool _bAddPositionNoise = false, bool _bAddNormalNoise = false
             // Check eta coherance
             VERIFY( Eigen::internal::isMuchSmallerThan((eta1 - eta2).norm(), Scalar(1.), epsilon) );
             VERIFY( Eigen::internal::isMuchSmallerThan((eta1 - eta3).norm(), Scalar(1.), epsilon) );
+
+            if constexpr(CheckCurvatures)
+            {
+                const Scalar kmin1 = std::abs(fit.kmin());
+                const Scalar kmin2 = std::abs(fitReverse100.kmin());
+                const Scalar kmin3 = std::abs(fitReverseRandom.kmin());
+                const Scalar kmax1 = std::abs(fit.kmax());
+                const Scalar kmax2 = std::abs(fitReverse100.kmax());
+                const Scalar kmax3 = std::abs(fitReverseRandom.kmax());
+
+                // Check curvatures coherance
+                VERIFY( Eigen::internal::isMuchSmallerThan(std::abs(kmin1 - kmin2), Scalar(1.), epsilon) );
+                VERIFY( Eigen::internal::isMuchSmallerThan(std::abs(kmin1 - kmin3), Scalar(1.), epsilon) );
+                VERIFY( Eigen::internal::isMuchSmallerThan(std::abs(kmax1 - kmax2), Scalar(1.), epsilon) );
+                VERIFY( Eigen::internal::isMuchSmallerThan(std::abs(kmax1 - kmax3), Scalar(1.), epsilon) );
+            }
         }
     }
 }
@@ -117,12 +135,16 @@ void callSubTests()
     typedef Basket<Point, WeightSmoothFunc, UnorientedSphereFit, GLSParam> FitSmoothUnoriented;
     typedef Basket<Point, WeightConstantFunc, UnorientedSphereFit, GLSParam> FitConstantUnoriented;
 
+    typedef BasketDiff<FitSmoothUnoriented, FitScaleSpaceDer, UnorientedSphereDer, CurvatureEstimatorBase, NormalDerivativesCurvatureEstimator> FitSmoothUnorientedDiff;
+
     cout << "Testing with perfect sphere (unoriented)..." << endl;
     for(int i = 0; i < g_repeat; ++i)
     {
         //Test with perfect sphere
         CALL_SUBTEST(( testFunction<Point, FitSmoothUnoriented, WeightSmoothFunc>() ));
         CALL_SUBTEST(( testFunction<Point, FitConstantUnoriented, WeightConstantFunc>() ));
+        if constexpr(Dim == 3)
+            CALL_SUBTEST(( testFunction<Point, FitSmoothUnorientedDiff, WeightSmoothFunc, true>() ));
     }
     cout << "Ok!" << endl;
 
@@ -131,6 +153,8 @@ void callSubTests()
     {
         CALL_SUBTEST(( testFunction<Point, FitSmoothUnoriented, WeightSmoothFunc>(true, true) ));
         CALL_SUBTEST(( testFunction<Point, FitConstantUnoriented, WeightConstantFunc>(true, true) ));
+        if constexpr(Dim == 3)
+            CALL_SUBTEST(( testFunction<Point, FitSmoothUnorientedDiff, WeightSmoothFunc, true>(true, true) ));
     }
     cout << "Ok!" << endl;
 }
