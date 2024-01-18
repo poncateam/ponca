@@ -34,12 +34,16 @@ protected:
 
     typedef Eigen::Matrix<Scalar, DataPoint::Dim+1, 1>      VectorB;
     typedef Eigen::Matrix<Scalar, DataPoint::Dim+1, DataPoint::Dim+1>  MatrixBB;
+    
+public:
+    using Solver = Eigen::EigenSolver<MatrixBB>;
 
     MatrixBB    m_matA {MatrixBB::Zero()}; /*!< \brief The accumulated covariance matrix */
     MatrixBB    m_matQ {MatrixBB::Zero()}; /*!< \brief The constraint matrix */
     Scalar      m_sumDotPP {0};            /*!< \brief Sum of the squared relative positions */
 
-
+    Solver m_solver;
+    
 public:
     PONCA_EXPLICIT_CAST_OPERATORS(UnorientedSphereFitImpl,unorientedSphereFit)
     PONCA_FITTING_DECLARE_INIT_ADD_FINALIZE
