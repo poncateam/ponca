@@ -36,6 +36,7 @@ protected:
     typedef Eigen::Matrix<Scalar, DataPoint::Dim+1, DataPoint::Dim+1>  MatrixBB;
 
     MatrixBB    m_matA {MatrixBB::Zero()}; /*!< \brief The accumulated covariance matrix */
+    MatrixBB    m_matQ {MatrixBB::Zero()}; /*!< \brief The constraint matrix */
     Scalar      m_sumDotPP {0};            /*!< \brief Sum of the squared relative positions */
 
 
