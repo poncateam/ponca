@@ -109,12 +109,12 @@ UnorientedSphereFitImpl<DataPoint, _WFunctor, T>::finalize ()
     m_matQ(Dim,Dim) = m_sumDotPP * invSumW;
 
     MatrixBB M = m_matQ.inverse() * m_matA;
-    Eigen::EigenSolver<MatrixBB> eig(M);
-    VectorB eivals = eig.eigenvalues().real();
+    m_solver.compute(M);
+    VectorB eivals = m_solver.eigenvalues().real();
     int maxId = 0;
     eivals.maxCoeff(&maxId);
 
-    VectorB eivec = eig.eigenvectors().col(maxId).real();
+    VectorB eivec = m_solver.eigenvectors().col(maxId).real();
 
     // integrate
     Base::m_ul = eivec.template head<Dim>();
