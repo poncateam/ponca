@@ -108,7 +108,6 @@ UnorientedSphereFitImpl<DataPoint, _WFunctor, T>::finalize ()
     Q.col(Dim).template head<Dim>() = Base::m_sumP * invSumW;
     Q.row(Dim).template head<Dim>() = Base::m_sumP * invSumW;
     Q(Dim,Dim) = m_sumDotPP * invSumW;
-    m_matA *= invSumW;
 
     MatrixBB M = Q.inverse() * m_matA;
     Eigen::EigenSolver<MatrixBB> eig(M);
