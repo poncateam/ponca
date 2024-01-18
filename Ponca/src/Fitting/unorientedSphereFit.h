@@ -58,6 +58,55 @@ UnorientedSphereFitImpl<DataPoint, _WFunctor,
         MeanPosition<DataPoint, _WFunctor,
                 AlgebraicSphere<DataPoint, _WFunctor,T>>>;
 
+
+
+template < class DataPoint, class _WFunctor, int DiffType, typename T>
+class UnorientedSphereDerImpl : public T
+{
+protected:
+    PONCA_FITTING_DECLARE_DEFAULT_TYPES
+    PONCA_FITTING_DECLARE_DEFAULT_DER_TYPES
+
+    using VectorB = typename Base::VectorB;
+    using MatrixBB = typename Base::MatrixBB;
+
+protected:
+    enum
+    {
+        Check = Base::PROVIDES_ALGEBRAIC_SPHERE &
+                Base::PROVIDES_MEAN_POSITION_DERIVATIVE &
+                Base::PROVIDES_PRIMITIVE_DERIVATIVE,
+        PROVIDES_ALGEBRAIC_SPHERE_DERIVATIVE,
+        PROVIDES_NORMAL_DERIVATIVE
+    };
+
+protected:
+    // computation data
+    MatrixBB m_dmatA[Base::NbDerivatives];
+    ScalarArray m_dSumDotPP;
+
+public:
+    // results
+    ScalarArray m_dUc;
+    VectorArray m_dUl;
+    ScalarArray m_dUq;
+
+public:
+    PONCA_EXPLICIT_CAST_OPERATORS_DER(UnorientedSphereDerImpl,unorientedSphereDer)
+    PONCA_FITTING_DECLARE_INIT_ADDDER_FINALIZE
+
+    PONCA_MULTIARCH inline ScalarArray dPotential() const;
+    PONCA_MULTIARCH inline VectorArray dNormal() const;
+
+}; //class UnorientedSphereDerImpl
+
+
+template < class DataPoint, class _WFunctor, int DiffType, typename T>
+using UnorientedSphereDer =
+    UnorientedSphereDerImpl<DataPoint, _WFunctor, DiffType,
+        MeanPositionDer<DataPoint, _WFunctor, DiffType, T>>;
+
+
 } //namespace Ponca
 
 #include "unorientedSphereFit.hpp"
