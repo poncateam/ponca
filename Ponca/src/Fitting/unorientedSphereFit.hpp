@@ -60,6 +60,7 @@ UnorientedSphereFitImpl<DataPoint, _WFunctor, T>::init(const VectorType& _evalPo
 {
     Base::init(_evalPos);
     m_matA.setZero();
+    m_matQ.setZero();
     m_sumDotPP = Scalar(0.0);
 }
 
@@ -102,14 +103,12 @@ UnorientedSphereFitImpl<DataPoint, _WFunctor, T>::finalize ()
     // 1. finalize sphere fitting
     Scalar invSumW = Scalar(1.) / Base::getWeightSum();
 
+    m_matQ.template topLeftCorner<Dim,Dim>().setIdentity();
+    m_matQ.col(Dim).template head<Dim>() = Base::m_sumP * invSumW;
+    m_matQ.row(Dim).template head<Dim>() = Base::m_sumP * invSumW;
+    m_matQ(Dim,Dim) = m_sumDotPP * invSumW;
 
-    MatrixBB Q;
-    Q.template topLeftCorner<Dim,Dim>().setIdentity();
-    Q.col(Dim).template head<Dim>() = Base::m_sumP * invSumW;
-    Q.row(Dim).template head<Dim>() = Base::m_sumP * invSumW;
-    Q(Dim,Dim) = m_sumDotPP * invSumW;
-
-    MatrixBB M = Q.inverse() * m_matA;
+    MatrixBB M = m_matQ.inverse() * m_matA;
     Eigen::EigenSolver<MatrixBB> eig(M);
     VectorB eivals = eig.eigenvalues().real();
     int maxId = 0;
