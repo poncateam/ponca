@@ -18,7 +18,24 @@ namespace Ponca
 /*!
     \brief Algebraic Sphere fitting procedure on point sets with non-oriented normals
 
-    Method published in \cite Chen:2013:NOMG.
+    This method published in \cite Chen:2013:NOMG maximizes the sum of squared dot product between the input normal vectors and the gradient of the algebraic sphere.
+    The maximization is done under the constraint that the norm of the gradient is unitary on average.
+    In practice, it amounts to solve the generalized eigenvalue problem
+    \f[
+        A \mathbf{u} = \lambda Q \mathbf{u}
+    \f]
+    where
+    \f[
+        \mathbf{u} = \begin{bmatrix} u_l \\ u_q \end{bmatrix}
+    \f]
+    \f[
+        A = \sum_i w_i \begin{bmatrix} \mathbf{n}_i \\ \mathbf{n}_i^T\mathbf{p}_i \end{bmatrix}\begin{bmatrix} \mathbf{n}_i^T & \mathbf{n}_i^T\mathbf{p}_i \end{bmatrix}
+    \f]
+    \f[
+        Q = \frac{1}{\sum_i w_i} \begin{bmatrix} I & \sum_i w_i \mathbf{p}_i \\ \sum_i w_i \mathbf{p}_i^T & \sum_i w_i \mathbf{p}_i^T\mathbf{p}_i \end{bmatrix}
+    \f]
+    The constant coefficient \f$u_c\f$ is computed as in \ref OrientedSphereFitImpl by minimizing the sum of squared potential evaluated at the points \f$\mathbf{p}_i\f$.
+    This fitting method corresponds to the case where the scalar field is \f$ f^* \f$ in the Section 3.3 of \cite Chen:2013:NOMG.
 
     \inherit Concept::FittingProcedureConcept
 
