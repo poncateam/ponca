@@ -137,6 +137,25 @@ UnorientedSphereDerImpl<DataPoint, _WFunctor, DiffType, T>::finalize()
 
         const Scalar invSumW = Scalar(1) / Base::getWeightSum();
 
+        // the derivative of (A vi = li Q vi), where A and Q are symmetric real, is
+        //
+        //     dA vi + A dvi = dli Q vi + li dQ vi + li Q dvi
+        //
+        // left-multiply by vj (i!=j, associated to eigenvalue lj)
+        //
+        //     vj . dA vi + vj . A dvi = dli vj . Q vi + li vj . dQ vi + li vj . Q dvi
+        //                  ^^^^^^           ^^^^^^^^^
+        //                  = lj vj . Q         = 0
+        //
+        // which simplified to
+        //
+        //     (Q vj) . dvi = 1/(li - lj) vj . dQ vi
+        //
+        // therefore
+        //
+        //     dvi = sum_j (1/(li - lj) vj . dQ vi) Q vj
+        //         = Q sum_j (1/(li - lj) vj . ((dA - li dQ) vi)) vj
+        //
         for(int dim = 0; dim < Base::NbDerivatives; ++dim)
         {
             MatrixBB dQ;
