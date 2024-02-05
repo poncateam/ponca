@@ -49,7 +49,7 @@
   #define PONCA_CPU_ARCH
 #endif
 
-#ifdef NDEBUG
+#ifndef PONCA_DEBUG
 #define STD_SAFE_AT(C,i) C[i]
 #else
 #define STD_SAFE_AT(C,i) C.at(i)

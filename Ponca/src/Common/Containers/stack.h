@@ -40,7 +40,7 @@ public:
     inline int  size() const;
 
     /// Add an element on top of the stack.
-    /// \throw std::out_of_range when the Stack is full, only if not compiled with NDEBUG
+    /// \throw std::out_of_range when the Stack is full, only if compiled with PONCA_DEBUG
     inline void push(const T& value);
 
     /// Add an element with default initialization
