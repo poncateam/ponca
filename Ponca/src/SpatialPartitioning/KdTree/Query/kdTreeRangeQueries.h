@@ -51,6 +51,12 @@ protected:
         const auto& indices = QueryAccelType::m_kdtree->samples();
         const auto& point   = QueryType::getInputPosition(points);
 
+        if (points.empty() || indices.empty())
+        {
+            it = end();
+            return;
+        }
+
         auto descentDistanceThreshold = [this](){return QueryType::descentDistanceThreshold();};
         auto skipFunctor              = [this](IndexType idx){return QueryType::skipIndexFunctor(idx);};
         auto processNeighborFunctor   = [&it](IndexType idx, IndexType i, Scalar)
@@ -59,9 +65,6 @@ protected:
             it.m_start = i+1;
             return true;
         };
-
-        if (points.empty() || indices.empty())
-            throw std::invalid_argument("Empty KdTree");
 
         for(IndexType i=it.m_start; i<it.m_end; ++i)
         {
