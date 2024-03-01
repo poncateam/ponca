@@ -77,7 +77,7 @@ namespace Ponca {
         /// \brief Mean of the normals of the input points
         ///
         /// Defined as \f$ n(\mathbf{x}) = \frac{\sum_i w_\mathbf{x}(\mathbf{p_i}) \mathbf{n_i}}{\sum_i w_\mathbf{x}(\mathbf{p_i})} \f$,
-        ///  where \f$\left[\mathbf{p_i} \in \text{neighborhood}(\mathbf{x})\right]\f$ are all the point samples in \f$\mathbf{x}\f$'s neighborhood
+        ///  where \f$\left[\mathbf{p_i}, \mathbf{n_i} \in \text{neighborhood}(\mathbf{x})\right]\f$ are all the point and normal samples in \f$\mathbf{x}\f$'s neighborhood
         PONCA_MULTIARCH inline VectorType mean() const {
             return (m_sumN / Base::getWeightSum());
         }
@@ -156,7 +156,7 @@ namespace Ponca {
     /// 
     /// ### Step-by-step derivation of the mean normal : 
     ///  Given the definition of the mean normal \f$ n(\mathbf{x}) = \frac{\sum_i w_\mathbf{x}(\mathbf{p_i}) \mathbf{n_i}}{\sum_i w_\mathbf{x}(\mathbf{p_i})} \f$, 
-    /// where \f$\left[\mathbf{n_i} \in \text{neighborhood}(\mathbf{x})\right]\f$ are all the normal samples in \f$\mathbf{x}\f$'s neighborhood.
+    /// where \f$\left[\mathbf{p_i}, \mathbf{n_i} \in \text{neighborhood}(\mathbf{x})\right]\f$ are all the point and normal samples in \f$\mathbf{x}\f$'s neighborhood.
     ///
     /// We denote \f$ t(\mathbf{x}) = \sum_i w_\mathbf{x}(\mathbf{p_i}) \mathbf{n_i} \f$ and \f$ s(\mathbf{x}) = \sum_i w_\mathbf{x}(\mathbf{p_i})\f$, 
     /// such that \f$ n(\mathbf{x}) = \frac{t(\mathbf{x})}{s(\mathbf{x})}\f$.
@@ -170,10 +170,10 @@ namespace Ponca {
     /// Assuming the normal vectors themselves do not change with position, \f$v(\mathbf{x})\f$ is constant, its derivative is null, 
     /// and so \f$ t'(\mathbf{x}) = \sum_i u'(\mathbf{x}) v(\mathbf{x}) = \sum_i w'_\mathbf{x}(\mathbf{n_i}) \mathbf{n_i} \f$.
     ///
-    /// Which leads to \f$ n'(\mathbf{x}) = \frac{\sum_i w'\mathbf{x}(\mathbf{p_i}) \mathbf{n_i} - n(\mathbf{x})\sum w'(\mathbf{x})}{\sum_i w\mathbf{x}(\mathbf{p_i})} \f$.
+    /// Which leads to \f$ n'(\mathbf{x}) = \frac{\sum_i w'_\mathbf{x}(\mathbf{p_i}) \mathbf{n_i} - n(\mathbf{x})\sum_i w'_\mathbf{x}(\mathbf{p_i})}{\sum_i w_\mathbf{x}(\mathbf{p_i})} \f$.
     /// \note This code is not directly tested. 
 
-    PONCA_MULTIARCH inline const VectorArray& dMeanNormal() const
+    PONCA_MULTIARCH VectorArray dMeanNormal() const
     { 
         return ( m_dSumN - Base::mean() * Base::m_dSumW ) / Base::getWeightSum(); 
     }
