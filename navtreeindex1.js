@@ -2,8 +2,9 @@ var NAVTREEINDEX1 =
 {
 "classPonca_1_1KdTreeQuery.html":[8,0,0,29],
 "classPonca_1_1KdTreeQuery.html#a2c02164e69a15dbf89c4b80b625cc0ac":[8,0,0,29,0],
-"classPonca_1_1KdTreeQuery.html#a6d3590a201b336ce0858be23ef006001":[8,0,0,29,2],
-"classPonca_1_1KdTreeQuery.html#ae44fd9c230d857ffdca7171ac6418ab0":[8,0,0,29,1],
+"classPonca_1_1KdTreeQuery.html#a6d3590a201b336ce0858be23ef006001":[8,0,0,29,3],
+"classPonca_1_1KdTreeQuery.html#aa2a201d3185968aa93f0a9856ac14fc8":[8,0,0,29,1],
+"classPonca_1_1KdTreeQuery.html#ae44fd9c230d857ffdca7171ac6418ab0":[8,0,0,29,2],
 "classPonca_1_1KdTreeRangeIterator.html":[8,0,0,30],
 "classPonca_1_1KdTreeRangeQueryBase.html":[8,0,0,31],
 "classPonca_1_1KdTreeSparseBase.html":[8,0,0,33],
@@ -248,6 +249,5 @@ var NAVTREEINDEX1 =
 "classPonca_1_1PrimitiveBase.html#af20277c1bd8e48d55b43bf7e8f970cc3":[8,0,0,57,9],
 "classPonca_1_1PrimitiveDer.html":[8,0,0,58],
 "classPonca_1_1PrimitiveDer.html#a22e7dcb8b9b25ac37e288253cb5ab119":[8,0,0,58,4],
-"classPonca_1_1PrimitiveDer.html#a40d87b059535d4fbc623d6aba062ca30":[8,0,0,58,0],
-"classPonca_1_1PrimitiveDer.html#a5a2e8e3b07c6f8e4896ff40a1a4fd29f":[8,0,0,58,3]
+"classPonca_1_1PrimitiveDer.html#a40d87b059535d4fbc623d6aba062ca30":[8,0,0,58,0]
 };

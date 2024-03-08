@@ -1,5 +1,6 @@
 var NAVTREEINDEX2 =
 {
+"classPonca_1_1PrimitiveDer.html#a5a2e8e3b07c6f8e4896ff40a1a4fd29f":[8,0,0,58,3],
 "classPonca_1_1PrimitiveDer.html#a861a58b13026580029e2bb3fc14767a8":[8,0,0,58,2],
 "classPonca_1_1PrimitiveDer.html#a8d377287a3ce1ae6998617a5fa43788b":[8,0,0,58,5],
 "classPonca_1_1PrimitiveDer.html#a99dec75252fb149ed4d2d24e4581dfbd":[8,0,0,58,1],
@@ -248,6 +249,5 @@ var NAVTREEINDEX2 =
 "structPonca_1_1IndexSquaredDistance.html":[8,0,0,15],
 "structPonca_1_1IndexSquaredDistance.html#ab10ec93392459c072094f54a84cb4fa8":[8,0,0,15,0],
 "structPonca_1_1IndexSquaredDistance.html#abc31ae943b674619c4b851ef2559e0dd":[8,0,0,15,1],
-"structPonca_1_1KdTree.html":[8,0,0,16],
-"structPonca_1_1KdTreeBase_1_1DefaultConverter.html":[8,0,0,17,0]
+"structPonca_1_1KdTree.html":[8,0,0,16]
 };
