@@ -35,6 +35,7 @@ protected:
     /// [KdTreeQuery kdtree type]
     Stack<IndexSquaredDistance<IndexType, Scalar>, 2 * Traits::MAX_DEPTH> m_stack;
 
+    /// \return false if the kdtree is empty
     template<typename LeafPreparationFunctor,
             typename DescentDistanceThresholdFunctor,
             typename SkipIndexFunctor,
@@ -50,7 +51,7 @@ protected:
         const auto& points = m_kdtree->points();
 
         if (nodes.empty() || points.empty() || m_kdtree->sample_count() == 0)
-            throw std::invalid_argument("Empty KdTree");
+            return false;
 
         while(!m_stack.empty())
         {

@@ -44,6 +44,13 @@ if(    NOT cmake_build_type_tolower STREQUAL "debug"
 endif()
 
 
+if(    cmake_build_type_tolower STREQUAL "debug"
+    OR cmake_build_type_tolower STREQUAL "relwithdebinfo" )
+    message(STATUS "Compile with PONCA_DEBUG")
+    add_compile_definitions(PONCA_DEBUG)
+endif()
+
+
 # get changeset id
 find_package(Git)
 if(GIT_FOUND)

@@ -9,6 +9,9 @@ Current head (v.1.3 RC)
     - [SpatialPartitioning] Change part of the kdtree API (#123)
     - [spatialPartitioning] Refactor KdTree into KdTreeDense + KdTreeSparse (#129)
 
+- Bug-fixes and code improvements
+    - [all] Limit explicit use of exceptions and adapt to compilation mode (#135)
+
 - Docs
     - [spatialPartitioning] Update KdTree docs to reflect the kdtree API refactor (#129)
 
