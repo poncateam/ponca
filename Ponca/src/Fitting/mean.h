@@ -78,7 +78,7 @@ namespace Ponca {
         ///
         /// Defined as \f$ n(\mathbf{x}) = \frac{\sum_i w_\mathbf{x}(\mathbf{p_i}) \mathbf{n_i}}{\sum_i w_\mathbf{x}(\mathbf{p_i})} \f$,
         ///  where \f$\left[\mathbf{p_i}, \mathbf{n_i} \in \text{neighborhood}(\mathbf{x})\right]\f$ are all the point and normal samples in \f$\mathbf{x}\f$'s neighborhood
-        PONCA_MULTIARCH inline VectorType getMeanNormal() const {
+        PONCA_MULTIARCH inline VectorType meanNormalVector() const {
             return (m_sumN / Base::getWeightSum());
         }
 
@@ -175,7 +175,7 @@ namespace Ponca {
 
     PONCA_MULTIARCH VectorArray dMeanNormal() const
     { 
-        return ( m_dSumN - Base::getMeanNormal() * Base::m_dSumW ) / Base::getWeightSum(); 
+        return ( m_dSumN - Base::meanNormalVector() * Base::m_dSumW ) / Base::getWeightSum(); 
     }
 
     }; //class MeanNormalDer
