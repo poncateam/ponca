@@ -1,5 +1,7 @@
 var NAVTREEINDEX2 =
 {
+"classPonca_1_1PrimitiveDer.html#a22e7dcb8b9b25ac37e288253cb5ab119":[8,0,0,58,4],
+"classPonca_1_1PrimitiveDer.html#a40d87b059535d4fbc623d6aba062ca30":[8,0,0,58,0],
 "classPonca_1_1PrimitiveDer.html#a5a2e8e3b07c6f8e4896ff40a1a4fd29f":[8,0,0,58,3],
 "classPonca_1_1PrimitiveDer.html#a861a58b13026580029e2bb3fc14767a8":[8,0,0,58,2],
 "classPonca_1_1PrimitiveDer.html#a8d377287a3ce1ae6998617a5fa43788b":[8,0,0,58,5],
@@ -149,8 +151,8 @@ var NAVTREEINDEX2 =
 "fitting.html#fitting_multiprimitive":[6,1,2,3],
 "fitting.html#fitting_outputs":[6,1,1,5],
 "fitting.html#fitting_primitiveOverview":[6,1,0,1],
-"fitting_concepts.html":[6,2],
 "fitting_concepts.html":[6,1,3],
+"fitting_concepts.html":[6,2],
 "fitting_concepts.html#concepts_computObject":[6,1,3,0],
 "fitting_concepts.html#concepts_computObject":[6,2,0],
 "fitting_concepts.html#concepts_computObjectBasket":[6,2,0,0],
@@ -159,8 +161,8 @@ var NAVTREEINDEX2 =
 "fitting_concepts.html#concepts_computObjectBasketDiff":[6,1,3,0,1],
 "fitting_concepts.html#concepts_weighting":[6,1,3,1],
 "fitting_concepts.html#concepts_weighting":[6,2,1],
-"functions.html":[8,3,0],
 "functions.html":[8,3,0,0],
+"functions.html":[8,3,0],
 "functions_b.html":[8,3,0,1],
 "functions_c.html":[8,3,0,2],
 "functions_d.html":[8,3,0,3],
@@ -168,8 +170,8 @@ var NAVTREEINDEX2 =
 "functions_enum.html":[8,3,4],
 "functions_eval.html":[8,3,5],
 "functions_f.html":[8,3,0,5],
-"functions_func.html":[8,3,1],
 "functions_func.html":[8,3,1,0],
+"functions_func.html":[8,3,1],
 "functions_func_b.html":[8,3,1,1],
 "functions_func_c.html":[8,3,1,2],
 "functions_func_d.html":[8,3,1,3],
@@ -247,7 +249,5 @@ var NAVTREEINDEX2 =
 "spatialpartitioning.html#spatialpartitioning_knngraph_usage_construction":[6,3,2,0,0],
 "spatialpartitioning.html#spatialpartitioning_knngraph_usage_queries":[6,3,2,0,1],
 "structPonca_1_1IndexSquaredDistance.html":[8,0,0,15],
-"structPonca_1_1IndexSquaredDistance.html#ab10ec93392459c072094f54a84cb4fa8":[8,0,0,15,0],
-"structPonca_1_1IndexSquaredDistance.html#abc31ae943b674619c4b851ef2559e0dd":[8,0,0,15,1],
-"structPonca_1_1KdTree.html":[8,0,0,16]
+"structPonca_1_1IndexSquaredDistance.html#ab10ec93392459c072094f54a84cb4fa8":[8,0,0,15,0]
 };

@@ -51,7 +51,7 @@ MathJax.Hub.Config({
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Ponca
-   &#160;<span id="projectnumber">36b81e932c0cf27ea0e689816ebe639d02ac5e53</span>
+   &#160;<span id="projectnumber">2eadc3cfd8ae98a1a92c3ec3b5db82b5ea966db9</span>
    </div>
    <div id="projectbrief">Point Cloud Analysis library</div>
   </td>
@@ -120,6 +120,7 @@ $(document).ready(function(){initNavTree('classPonca_1_1MeanNormalDer.html','');
 <a href="#pub-types">Public Types</a> &#124;
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="#pro-types">Protected Types</a> &#124;
+<a href="#pro-attribs">Protected Attributes</a> &#124;
 <a href="classPonca_1_1MeanNormalDer-members.html">List of all members</a>  </div>
   <div class="headertitle"><div class="title">Ponca::MeanNormalDer&lt; DataPoint, _WFunctor, DiffType, T &gt; Class Template Reference</div></div>
 </div><!--header-->
@@ -173,9 +174,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a7475edc89cf6311b8226d9d198489cd1"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1MeanNormalDer.html#a7475edc89cf6311b8226d9d198489cd1">addLocalNeighbor</a> (<a class="el" href="classPonca_1_1MeanNormalDer.html#a73ff46709466704a222b6418602c0de2">Scalar</a> w, const <a class="el" href="classPonca_1_1MeanNormalDer.html#a516b27c0c6a6c5ef1b935bb4d905bd08">VectorType</a> &amp;localQ, const DataPoint &amp;attributes, <a class="el" href="classPonca_1_1MeanNormalDer.html#a3ba6c0831ece9a161535c4c1f6318898">ScalarArray</a> &amp;dw)</td></tr>
 <tr class="memdesc:a7475edc89cf6311b8226d9d198489cd1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Add a neighbor to perform the fit.  <br /></td></tr>
 <tr class="separator:a7475edc89cf6311b8226d9d198489cd1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a009c2dab1dda8f8b64638d2ab6580a25"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="classPonca_1_1MeanNormalDer.html#a2f5c34609e27317c351ce7b209c175d2">VectorArray</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1MeanNormalDer.html#a009c2dab1dda8f8b64638d2ab6580a25">dMeanNormal</a> () const</td></tr>
-<tr class="memdesc:a009c2dab1dda8f8b64638d2ab6580a25"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compute the derivative of the mean normal vector of the input points.  <br /></td></tr>
-<tr class="separator:a009c2dab1dda8f8b64638d2ab6580a25"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a550decc71a634f9607363020c4f0b6ca"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classPonca_1_1MeanNormalDer.html#a2f5c34609e27317c351ce7b209c175d2">VectorArray</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1MeanNormalDer.html#a550decc71a634f9607363020c4f0b6ca">dMeanNormal</a> () const</td></tr>
+<tr class="memdesc:a550decc71a634f9607363020c4f0b6ca"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compute the derivative of the mean normal vector of the input points.  <br /></td></tr>
+<tr class="separator:a550decc71a634f9607363020c4f0b6ca"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-types" name="pro-types"></a>
 Protected Types</h2></td></tr>
@@ -186,11 +187,17 @@ Protected Types</h2></td></tr>
 <tr class="memitem:a535d5b87ddfb495b125da45c52347ff0"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1MeanNormalDer.html#a535d5b87ddfb495b125da45c52347ff0">Base</a> = T</td></tr>
 <tr class="memdesc:a535d5b87ddfb495b125da45c52347ff0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Base class of the procedure.  <br /></td></tr>
 <tr class="separator:a535d5b87ddfb495b125da45c52347ff0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-attribs" name="pro-attribs"></a>
+Protected Attributes</h2></td></tr>
+<tr class="memitem:ad023d25a76aa758cca47caff4fc89674"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classPonca_1_1MeanNormalDer.html#a2f5c34609e27317c351ce7b209c175d2">VectorArray</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1MeanNormalDer.html#ad023d25a76aa758cca47caff4fc89674">m_dSumN</a> {VectorArray::Zero()}</td></tr>
+<tr class="memdesc:ad023d25a76aa758cca47caff4fc89674"><td class="mdescLeft">&#160;</td><td class="mdescRight">Derivatives of the input normals of the input points vectors.  <br /></td></tr>
+<tr class="separator:ad023d25a76aa758cca47caff4fc89674"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><div class="compoundTemplParams">template&lt;class DataPoint, class _WFunctor, int DiffType, typename T&gt;<br />
 class Ponca::MeanNormalDer&lt; DataPoint, _WFunctor, DiffType, T &gt;</div>
-<p class="definition">Definition at line <a class="el" href="mean_8h_source.html#l00126">126</a> of file <a class="el" href="mean_8h_source.html">mean.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="mean_8h_source.html#l00135">135</a> of file <a class="el" href="mean_8h_source.html">mean.h</a>.</p>
 </div><h2 class="groupheader">Member Typedef Documentation</h2>
 <a id="a535d5b87ddfb495b125da45c52347ff0" name="a535d5b87ddfb495b125da45c52347ff0"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a535d5b87ddfb495b125da45c52347ff0">&#9670;&#160;</a></span>Base</h2>
@@ -216,7 +223,7 @@ template&lt;class DataPoint , class _WFunctor , int DiffType, typename T &gt; </
 
 <p>Base class of the procedure. </p>
 
-<p class="definition">Definition at line <a class="el" href="mean_8h_source.html#l00127">127</a> of file <a class="el" href="mean_8h_source.html">mean.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="mean_8h_source.html#l00136">136</a> of file <a class="el" href="mean_8h_source.html">mean.h</a>.</p>
 
 </div>
 </div>
@@ -236,7 +243,7 @@ template&lt;class DataPoint , class _WFunctor , int DiffType, typename T &gt; </
 
 <p>Alias to scalar type. </p>
 
-<p class="definition">Definition at line <a class="el" href="mean_8h_source.html#l00127">127</a> of file <a class="el" href="mean_8h_source.html">mean.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="mean_8h_source.html#l00136">136</a> of file <a class="el" href="mean_8h_source.html">mean.h</a>.</p>
 
 </div>
 </div>
@@ -256,7 +263,7 @@ template&lt;class DataPoint , class _WFunctor , int DiffType, typename T &gt; </
 
 <p>Alias to scalar derivatives array. </p>
 
-<p class="definition">Definition at line <a class="el" href="mean_8h_source.html#l00128">128</a> of file <a class="el" href="mean_8h_source.html">mean.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="mean_8h_source.html#l00137">137</a> of file <a class="el" href="mean_8h_source.html">mean.h</a>.</p>
 
 </div>
 </div>
@@ -276,7 +283,7 @@ template&lt;class DataPoint , class _WFunctor , int DiffType, typename T &gt; </
 
 <p>Alias to vector derivatives array. </p>
 
-<p class="definition">Definition at line <a class="el" href="mean_8h_source.html#l00128">128</a> of file <a class="el" href="mean_8h_source.html">mean.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="mean_8h_source.html#l00137">137</a> of file <a class="el" href="mean_8h_source.html">mean.h</a>.</p>
 
 </div>
 </div>
@@ -296,7 +303,7 @@ template&lt;class DataPoint , class _WFunctor , int DiffType, typename T &gt; </
 
 <p>Alias to vector type. </p>
 
-<p class="definition">Definition at line <a class="el" href="mean_8h_source.html#l00127">127</a> of file <a class="el" href="mean_8h_source.html">mean.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="mean_8h_source.html#l00136">136</a> of file <a class="el" href="mean_8h_source.html">mean.h</a>.</p>
 
 </div>
 </div>
@@ -316,7 +323,7 @@ template&lt;class DataPoint , class _WFunctor , int DiffType, typename T &gt; </
 
 <p>Alias to weight function. </p>
 
-<p class="definition">Definition at line <a class="el" href="mean_8h_source.html#l00127">127</a> of file <a class="el" href="mean_8h_source.html">mean.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="mean_8h_source.html#l00136">136</a> of file <a class="el" href="mean_8h_source.html">mean.h</a>.</p>
 
 </div>
 </div>
@@ -347,7 +354,7 @@ template&lt;class DataPoint , class _WFunctor , int DiffType, typename T &gt; </
 </td></tr>
 </table>
 
-<p class="definition">Definition at line <a class="el" href="mean_8h_source.html#l00131">131</a> of file <a class="el" href="mean_8h_source.html">mean.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="mean_8h_source.html#l00140">140</a> of file <a class="el" href="mean_8h_source.html">mean.h</a>.</p>
 
 </div>
 </div>
@@ -407,8 +414,8 @@ template&lt;class DataPoint , class _WFunctor , int DiffType, typename T &gt; </
 
 </div>
 </div>
-<a id="a009c2dab1dda8f8b64638d2ab6580a25" name="a009c2dab1dda8f8b64638d2ab6580a25"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a009c2dab1dda8f8b64638d2ab6580a25">&#9670;&#160;</a></span>dMeanNormal()</h2>
+<a id="a550decc71a634f9607363020c4f0b6ca" name="a550decc71a634f9607363020c4f0b6ca"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a550decc71a634f9607363020c4f0b6ca">&#9670;&#160;</a></span>dMeanNormal()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -419,7 +426,7 @@ template&lt;class DataPoint , class _WFunctor , int DiffType, typename T &gt; </
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">const <a class="el" href="classPonca_1_1MeanNormalDer.html#a2f5c34609e27317c351ce7b209c175d2">VectorArray</a> &amp; <a class="el" href="classPonca_1_1MeanNormalDer.html">Ponca::MeanNormalDer</a>&lt; DataPoint, _WFunctor, <a class="el" href="namespacePonca.html#a7beaddc698523e7f9c041ea8bc4c535a">DiffType</a>, T &gt;::dMeanNormal </td>
+          <td class="memname"><a class="el" href="classPonca_1_1MeanNormalDer.html#a2f5c34609e27317c351ce7b209c175d2">VectorArray</a> <a class="el" href="classPonca_1_1MeanNormalDer.html">Ponca::MeanNormalDer</a>&lt; DataPoint, _WFunctor, <a class="el" href="namespacePonca.html#a7beaddc698523e7f9c041ea8bc4c535a">DiffType</a>, T &gt;::dMeanNormal </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td> const</td>
@@ -435,15 +442,15 @@ template&lt;class DataPoint , class _WFunctor , int DiffType, typename T &gt; </
 <p>Compute the derivative of the mean normal vector of the input points. </p>
 <h3><a class="anchor" id="autotoc_md1"></a>
 Step-by-step derivation of the mean normal :</h3>
-<p>Given the definition of the mean normal \( n(\mathbf{x}) = \frac{\sum_i w_\mathbf{x}(\mathbf{n_i}) \mathbf{n_i}}{\sum_i w_\mathbf{x}(\mathbf{n_i})} \), where \(\left[\mathbf{n_i} \in \text{neighborhood}(\mathbf{x})\right]\) are all the normal samples in \(\mathbf{x}\)'s neighborhood.</p>
-<p>We denote \( t(\mathbf{x}) = \sum_i w_\mathbf{x}(\mathbf{n_i}) \mathbf{n_i} \) and \( s(\mathbf{x}) = \sum_i w_\mathbf{x}(\mathbf{n_i})\), such that \( n(\mathbf{x}) = \frac{t(\mathbf{x})}{s(\mathbf{x})}\).</p>
+<p>Given the definition of the mean normal \( n(\mathbf{x}) = \frac{\sum_i w_\mathbf{x}(\mathbf{p_i}) \mathbf{n_i}}{\sum_i w_\mathbf{x}(\mathbf{p_i})} \), where \(\left[\mathbf{p_i}, \mathbf{n_i} \in \text{neighborhood}(\mathbf{x})\right]\) are all the point and normal samples in \(\mathbf{x}\)'s neighborhood.</p>
+<p>We denote \( t(\mathbf{x}) = \sum_i w_\mathbf{x}(\mathbf{p_i}) \mathbf{n_i} \) and \( s(\mathbf{x}) = \sum_i w_\mathbf{x}(\mathbf{p_i})\), such that \( n(\mathbf{x}) = \frac{t(\mathbf{x})}{s(\mathbf{x})}\).</p>
 <p>By definition, \( n&#39;(\mathbf{x}) = \frac{s(\mathbf{x})t&#39;(\mathbf{x}) - t(\mathbf{x})s&#39;(\mathbf{x})}{s(\mathbf{x})^2}\).</p>
-<p>Assuming the weight of each normal is dependent on the position, we have \( s&#39;(\mathbf{x}) = \sum_i w&#39;_\mathbf{x}(\mathbf{n_i}) \).</p>
-<p>We rewrite \( t(\mathbf{x}) = \sum u(\mathbf{x})v(\mathbf{x}) \), with \( u(\mathbf{x}) = w_\mathbf{x}(\mathbf{n_i}) \) and \( v(\mathbf{x}) = \mathbf{n_i} \).</p>
+<p>Assuming the weight of each normal is dependent on the position, we have \( s&#39;(\mathbf{x}) = \sum_i w&#39;_\mathbf{x}(\mathbf{p_i}) \).</p>
+<p>We rewrite \( t(\mathbf{x}) = \sum u(\mathbf{x})v(\mathbf{x}) \), with \( u(\mathbf{x}) = w_\mathbf{x}(\mathbf{p_i}) \) and \( v(\mathbf{x}) = \mathbf{n_i} \).</p>
 <p>Assuming the normal vectors themselves do not change with position, \(v(\mathbf{x})\) is constant, its derivative is null, and so \( t&#39;(\mathbf{x}) = \sum_i u&#39;(\mathbf{x}) v(\mathbf{x}) = \sum_i w&#39;_\mathbf{x}(\mathbf{n_i}) \mathbf{n_i} \).</p>
-<p>Which leads to \( n&#39;(\mathbf{x}) = \frac{\sum_i w&#39;\mathbf{x}(\mathbf{n_i}) \mathbf{n_i} - n(\mathbf{x})\sum w&#39;(\mathbf{x})}{\sum_i w\mathbf{x}(\mathbf{n_i})} \). </p><dl class="section note"><dt>Note</dt><dd>This code is not directly tested. </dd></dl>
+<p>Which leads to \( n&#39;(\mathbf{x}) = \frac{\sum_i w&#39;_\mathbf{x}(\mathbf{p_i}) \mathbf{n_i} - n(\mathbf{x})\sum_i w&#39;_\mathbf{x}(\mathbf{p_i})}{\sum_i w_\mathbf{x}(\mathbf{p_i})} \). </p><dl class="section note"><dt>Note</dt><dd>This code is not directly tested. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="mean_8h_source.html#l00168">168</a> of file <a class="el" href="mean_8h_source.html">mean.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="mean_8h_source.html#l00176">176</a> of file <a class="el" href="mean_8h_source.html">mean.h</a>.</p>
 
 </div>
 </div>
@@ -507,7 +514,7 @@ template&lt;class DataPoint , class _WFunctor , int DiffType, typename T &gt; </
 
 <p>Explicit conversion to <a class="el" href="classPonca_1_1MeanNormalDer.html">MeanNormalDer</a> , to access methods potentially hidden by heritage. </p>
 
-<p class="definition">Definition at line <a class="el" href="mean_8h_source.html#l00143">143</a> of file <a class="el" href="mean_8h_source.html">mean.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="mean_8h_source.html#l00151">151</a> of file <a class="el" href="mean_8h_source.html">mean.h</a>.</p>
 
 </div>
 </div>
@@ -538,7 +545,36 @@ template&lt;class DataPoint , class _WFunctor , int DiffType, typename T &gt; </
 
 <p>Explicit conversion to <a class="el" href="classPonca_1_1MeanNormalDer.html">MeanNormalDer</a> , to access methods potentially hidden by heritage. </p>
 
-<p class="definition">Definition at line <a class="el" href="mean_8h_source.html#l00143">143</a> of file <a class="el" href="mean_8h_source.html">mean.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="mean_8h_source.html#l00151">151</a> of file <a class="el" href="mean_8h_source.html">mean.h</a>.</p>
+
+</div>
+</div>
+<h2 class="groupheader">Member Data Documentation</h2>
+<a id="ad023d25a76aa758cca47caff4fc89674" name="ad023d25a76aa758cca47caff4fc89674"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad023d25a76aa758cca47caff4fc89674">&#9670;&#160;</a></span>m_dSumN</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class DataPoint , class _WFunctor , int DiffType, typename T &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classPonca_1_1MeanNormalDer.html#a2f5c34609e27317c351ce7b209c175d2">VectorArray</a> <a class="el" href="classPonca_1_1MeanNormalDer.html">Ponca::MeanNormalDer</a>&lt; DataPoint, _WFunctor, <a class="el" href="namespacePonca.html#a7beaddc698523e7f9c041ea8bc4c535a">DiffType</a>, T &gt;::m_dSumN {VectorArray::Zero()}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Derivatives of the input normals of the input points vectors. </p>
+
+<p class="definition">Definition at line <a class="el" href="mean_8h_source.html#l00147">147</a> of file <a class="el" href="mean_8h_source.html">mean.h</a>.</p>
 
 </div>
 </div>
@@ -548,7 +584,7 @@ template&lt;class DataPoint , class _WFunctor , int DiffType, typename T &gt; </
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="namespacePonca.html">Ponca</a></li><li class="navelem"><a class="el" href="classPonca_1_1MeanNormalDer.html">MeanNormalDer</a></li>
-    <li class="footer">Generated on Fri Mar 8 2024 16:49:19 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.6 </li>
+    <li class="footer">Generated on Wed Mar 13 2024 13:35:45 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.6 </li>
   </ul>
 </div>
 </body>

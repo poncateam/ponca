@@ -51,7 +51,7 @@ MathJax.Hub.Config({
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Ponca
-   &#160;<span id="projectnumber">36b81e932c0cf27ea0e689816ebe639d02ac5e53</span>
+   &#160;<span id="projectnumber">2eadc3cfd8ae98a1a92c3ec3b5db82b5ea966db9</span>
    </div>
    <div id="projectbrief">Point Cloud Analysis library</div>
   </td>
@@ -135,7 +135,7 @@ $(document).ready(function(){initNavTree('classPonca_1_1MeanNormal.html',''); in
 <div id="dynsection-0-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-0-content" class="dyncontent" style="display:none;">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classPonca_1_1MeanNormal__inherit__graph.svg" width="274" height="287"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classPonca_1_1MeanNormal__inherit__graph.svg" width="274" height="302"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
 </div>
 <div id="dynsection-1" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
@@ -143,7 +143,7 @@ $(document).ready(function(){initNavTree('classPonca_1_1MeanNormal.html',''); in
 <div id="dynsection-1-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-1-content" class="dyncontent" style="display:none;">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classPonca_1_1MeanNormal__coll__graph.svg" width="274" height="287"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classPonca_1_1MeanNormal__coll__graph.svg" width="274" height="302"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
 </div>
 <table class="memberdecls">
@@ -173,6 +173,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a51e0f1aabd11c128149323e45754faa2"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1MeanNormal.html#a51e0f1aabd11c128149323e45754faa2">addLocalNeighbor</a> (<a class="el" href="classPonca_1_1MeanNormal.html#aae52db0f459485c961e64f772c47ba84">Scalar</a> w, const <a class="el" href="classPonca_1_1MeanNormal.html#a37f400c71ef088be6043ee89bfe96c26">VectorType</a> &amp;localQ, const DataPoint &amp;attributes)</td></tr>
 <tr class="memdesc:a51e0f1aabd11c128149323e45754faa2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Add a neighbor to perform the fit.  <br /></td></tr>
 <tr class="separator:a51e0f1aabd11c128149323e45754faa2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab878115c7c4788b30e6e7b8606695a1d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classPonca_1_1MeanNormal.html#a37f400c71ef088be6043ee89bfe96c26">VectorType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1MeanNormal.html#ab878115c7c4788b30e6e7b8606695a1d">meanNormalVector</a> () const</td></tr>
+<tr class="memdesc:ab878115c7c4788b30e6e7b8606695a1d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Mean of the normals of the input points.  <br /></td></tr>
+<tr class="separator:ab878115c7c4788b30e6e7b8606695a1d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-types" name="pro-types"></a>
 Protected Types</h2></td></tr>
@@ -458,6 +461,38 @@ template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
 
 </div>
 </div>
+<a id="ab878115c7c4788b30e6e7b8606695a1d" name="ab878115c7c4788b30e6e7b8606695a1d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab878115c7c4788b30e6e7b8606695a1d">&#9670;&#160;</a></span>meanNormalVector()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classPonca_1_1MeanNormal.html#a37f400c71ef088be6043ee89bfe96c26">VectorType</a> <a class="el" href="classPonca_1_1MeanNormal.html">Ponca::MeanNormal</a>&lt; DataPoint, _WFunctor, T &gt;::meanNormalVector </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Mean of the normals of the input points. </p>
+<p>Defined as \( n(\mathbf{x}) = \frac{\sum_i w_\mathbf{x}(\mathbf{p_i}) \mathbf{n_i}}{\sum_i w_\mathbf{x}(\mathbf{p_i})} \), where \(\left[\mathbf{p_i}, \mathbf{n_i} \in \text{neighborhood}(\mathbf{x})\right]\) are all the point and normal samples in \(\mathbf{x}\)'s neighborhood </p>
+
+<p class="definition">Definition at line <a class="el" href="mean_8h_source.html#l00081">81</a> of file <a class="el" href="mean_8h_source.html">mean.h</a>.</p>
+
+</div>
+</div>
 <h2 class="groupheader">Member Data Documentation</h2>
 <a id="a71f3f4f71ae9d363a34e7c60ea59f728" name="a71f3f4f71ae9d363a34e7c60ea59f728"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a71f3f4f71ae9d363a34e7c60ea59f728">&#9670;&#160;</a></span>m_sumN</h2>
@@ -493,7 +528,7 @@ template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="namespacePonca.html">Ponca</a></li><li class="navelem"><a class="el" href="classPonca_1_1MeanNormal.html">MeanNormal</a></li>
-    <li class="footer">Generated on Fri Mar 8 2024 16:49:19 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.6 </li>
+    <li class="footer">Generated on Wed Mar 13 2024 13:35:45 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.6 </li>
   </ul>
 </div>
 </body>

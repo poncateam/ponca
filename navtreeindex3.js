@@ -1,5 +1,7 @@
 var NAVTREEINDEX3 =
 {
+"structPonca_1_1IndexSquaredDistance.html#abc31ae943b674619c4b851ef2559e0dd":[8,0,0,15,1],
+"structPonca_1_1KdTree.html":[8,0,0,16],
 "structPonca_1_1KdTreeBase_1_1DefaultConverter.html":[8,0,0,17,0],
 "structPonca_1_1KdTreeDefaultInnerNode.html":[8,0,0,19],
 "structPonca_1_1KdTreeDefaultLeafNode.html":[8,0,0,20],

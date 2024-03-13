@@ -19,7 +19,7 @@ var searchData=
   ['m_5fdnume_16',['m_dNume',['../classPonca_1_1OrientedSphereDerImpl.html#ac724b52eefa4de14f634bc883504f1cc',1,'Ponca::OrientedSphereDerImpl']]],
   ['m_5fdsumdotpn_17',['m_dSumDotPN',['../classPonca_1_1OrientedSphereDerImpl.html#a94de4cd1e4a3e4f06b93923527e05d73',1,'Ponca::OrientedSphereDerImpl']]],
   ['m_5fdsumdotpp_18',['m_dSumDotPP',['../classPonca_1_1OrientedSphereDerImpl.html#ae48310c81f3a77aa0f732cb549d03f2c',1,'Ponca::OrientedSphereDerImpl']]],
-  ['m_5fdsumn_19',['m_dSumN',['../classPonca_1_1OrientedSphereDerImpl.html#a1849cd77d16b689d78fdce5ea7106bb8',1,'Ponca::OrientedSphereDerImpl']]],
+  ['m_5fdsumn_19',['m_dSumN',['../classPonca_1_1MeanNormalDer.html#ad023d25a76aa758cca47caff4fc89674',1,'Ponca::MeanNormalDer::m_dSumN()'],['../classPonca_1_1OrientedSphereDerImpl.html#a1849cd77d16b689d78fdce5ea7106bb8',1,'Ponca::OrientedSphereDerImpl::m_dSumN()']]],
   ['m_5fdsump_20',['m_dSumP',['../classPonca_1_1MeanPositionDer.html#a063c77346f85916bfadbfb50f9baf37a',1,'Ponca::MeanPositionDer']]],
   ['m_5fdsumw_21',['m_dSumW',['../classPonca_1_1PrimitiveDer.html#af12bc9f446e39d323cd9d734bac914f0',1,'Ponca::PrimitiveDer']]],
   ['m_5fduc_22',['m_dUc',['../classPonca_1_1OrientedSphereDerImpl.html#a5f9d2dda2657d4827a78c368c2d3b3da',1,'Ponca::OrientedSphereDerImpl']]],

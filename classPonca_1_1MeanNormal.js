@@ -8,5 +8,6 @@ var classPonca_1_1MeanNormal =
     [ "init", "classPonca_1_1MeanNormal.html#a4826374e9574980fdb0f3631abbe9a9a", null ],
     [ "meanNormal", "classPonca_1_1MeanNormal.html#af326b3daa4a7d00a0cbacc52598fe280", null ],
     [ "meanNormal", "classPonca_1_1MeanNormal.html#a9d61f6ab2597bcb856a642af44e83763", null ],
+    [ "meanNormalVector", "classPonca_1_1MeanNormal.html#ab878115c7c4788b30e6e7b8606695a1d", null ],
     [ "m_sumN", "classPonca_1_1MeanNormal.html#a71f3f4f71ae9d363a34e7c60ea59f728", null ]
 ];
