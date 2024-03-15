@@ -48,11 +48,8 @@ class AlgebraicSphere : public T
     PONCA_FITTING_DECLARE_DEFAULT_TYPES
 
 protected:
-    enum
-    {
-        check = Base::PROVIDES_PRIMITIVE_BASE,  /*!< \brief Requires PrimitiveBase */
-        PROVIDES_ALGEBRAIC_SPHERE               /*!< \brief Provides Algebraic Sphere */
-    };
+    REQUIRES(PRIMITIVE_BASE);
+    PROVIDES(ALGEBRAIC_SPHERE);
 
 protected:
     //! \brief Is the implicit scalar field normalized using Pratt

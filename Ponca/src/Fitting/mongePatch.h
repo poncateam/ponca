@@ -28,8 +28,9 @@ class MongePatch : public T
 {
 PONCA_FITTING_DECLARE_DEFAULT_TYPES
 
-protected:
-    enum { Check = Base::PROVIDES_PLANE && Base::PROVIDES_TANGENT_PLANE_BASIS };
+protected:    
+    REQUIRES(PLANE);
+    REQUIRES(TANGENT_PLANE_BASIS);
 
 public:
     using SampleMatrix = Eigen::Matrix<Scalar,Eigen::Dynamic,Eigen::Dynamic>;

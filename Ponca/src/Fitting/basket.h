@@ -8,6 +8,7 @@
 
 #include "defines.h"
 #include "enums.h"
+#include "capabilities.h"
 #include "primitive.h"
 
 #include PONCA_MULTIARCH_INCLUDE_STD(iterator)

@@ -341,3 +341,12 @@ typename DataPoint::Scalar getKappaMean(const std::vector<DataPoint>& _vectorPoi
 
     return kappaMean / nbNei;
 }
+
+// compile-time and run-time check if a given value is true or false
+// this template function is required because "Outside a template, a discarded 
+// statement is fully checked." (cppreference.com/w/cpp/language/if) 
+template<bool b>
+void CHECK() {
+    static_assert(b);
+    VERIFY(b);
+}

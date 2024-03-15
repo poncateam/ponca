@@ -28,9 +28,7 @@ template < class DataPoint, class _WFunctor, typename T = void  >
 class PrimitiveBase
 {
 protected:
-    enum {
-        PROVIDES_PRIMITIVE_BASE,    /*!< \brief Provides base API for primitives*/
-    };
+    PROVIDES(PRIMITIVE_BASE);
 
 public:
     using Scalar     = typename DataPoint::Scalar;     /*!< \brief Inherited scalar type*/
@@ -155,10 +153,8 @@ private:
     typedef T Base; /*!< \brief Generic base type */
 
 protected:
-    enum {
-        Check = Base::PROVIDES_PRIMITIVE_BASE,    /*!< \brief Provides base API for primitives*/
-        PROVIDES_PRIMITIVE_DERIVATIVE
-    };
+    REQUIRES(PRIMITIVE_BASE);
+    PROVIDES(PRIMITIVE_DERIVATIVE);
 
 protected:
     static constexpr  int NbDerivatives   = ((Type & FitScaleDer) ? 1 : 0 ) + ((Type & FitSpaceDer) ? DataPoint::Dim : 0);

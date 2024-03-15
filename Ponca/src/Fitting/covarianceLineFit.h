@@ -37,11 +37,8 @@ class CovarianceLineFitImpl : public T
     PONCA_FITTING_DECLARE_MATRIX_TYPE
 
 protected:
-    enum
-    {
-        check = Base::PROVIDES_LINE &&
-                Base::PROVIDES_POSITION_COVARIANCE,
-    };
+    REQUIRES(LINE);
+    PROVIDES(POSITION_COVARIANCE);
 
 public:
     PONCA_EXPLICIT_CAST_OPERATORS(CovarianceLineFitImpl,covarianceLineFit)

@@ -36,18 +36,15 @@ PONCA_FITTING_DECLARE_DEFAULT_TYPES
 PONCA_FITTING_DECLARE_MATRIX_TYPE
 
 protected:
-    enum
-    {
-        Check = Base::PROVIDES_PLANE &&
-                Base::PROVIDES_POSITION_COVARIANCE,
-        /*!
-         * \brief Expose a method worldToTangentPlane(VectorType), which turns a point
-         * in ambient 3D space to the tangent plane.
-         * \see worldToTangentPlane
-         * \see tangentPlaneToWorld
-         */
-        PROVIDES_TANGENT_PLANE_BASIS
-    };
+    REQUIRES(PLANE);
+    REQUIRES(POSITION_COVARIANCE);
+    /*!
+        * \brief Expose a method worldToTangentPlane(VectorType), which turns a point
+        * in ambient 3D space to the tangent plane.
+        * \see worldToTangentPlane
+        * \see tangentPlaneToWorld
+        */
+    PROVIDES(TANGENT_PLANE_BASIS);
 
 public:
     PONCA_EXPLICIT_CAST_OPERATORS(CovariancePlaneFitImpl,covariancePlaneFit)
@@ -106,13 +103,10 @@ class CovariancePlaneDerImpl : public T
     static_assert ( DataPoint::Dim == 3, "CovariancePlaneDer is only valid in 3D");
 
 protected:
-    enum
-    {
-        Check = Base::PROVIDES_PLANE &
-                Base::PROVIDES_POSITION_COVARIANCE_DERIVATIVE,
-        PROVIDES_COVARIANCE_PLANE_DERIVATIVE,                    /*!< \brief Provides derivatives for hyper-planes */
-        PROVIDES_NORMAL_DERIVATIVE
-    };
+    REQUIRES(PLANE);
+    REQUIRES(POSITION_COVARIANCE_DERIVATIVE);
+    PROVIDES(COVARIANCE_PLANE_DERIVATIVE);
+    PROVIDES(NORMAL_DERIVATIVE);
 
 private:
     VectorArray m_dNormal {VectorArray::Zero()};    /*!< \brief Derivatives of the hyper-plane normal */

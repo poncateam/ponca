@@ -41,12 +41,8 @@ public:
     using EigenBase = Eigen::ParametrizedLine<typename DataPoint::Scalar, DataPoint::Dim >;
 
 protected:
-
-    enum
-    {
-        check = Base::PROVIDES_PRIMITIVE_BASE,  /*!< \brief Requires PrimitiveBase */
-        PROVIDES_LINE                           /*!< \brief Provides  Line */
-    };
+    REQUIRES(PRIMITIVE_BASE);
+    PROVIDES(LINE);
 
 public:
     PONCA_EXPLICIT_CAST_OPERATORS(Line,line)

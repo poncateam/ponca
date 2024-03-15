@@ -27,12 +27,9 @@ class OrientedSphereFitImpl : public T
     PONCA_FITTING_DECLARE_DEFAULT_TYPES
 
 protected:
-    enum
-    {
-        Check = Base::PROVIDES_ALGEBRAIC_SPHERE &&
-                Base::PROVIDES_MEAN_NORMAL &&
-                Base::PROVIDES_MEAN_POSITION
-    };
+    REQUIRES(ALGEBRAIC_SPHERE);
+    REQUIRES(MEAN_NORMAL);
+    REQUIRES(MEAN_POSITION);
 
     // computation data
     Scalar  m_sumDotPN, /*!< \brief Sum of the dot product betwen relative positions and normals */
@@ -66,14 +63,11 @@ class OrientedSphereDerImpl : public T
     PONCA_FITTING_DECLARE_DEFAULT_DER_TYPES
 
 protected:
-    enum
-    {
-        Check = Base::PROVIDES_ALGEBRAIC_SPHERE &
-                Base::PROVIDES_MEAN_POSITION_DERIVATIVE &
-                Base::PROVIDES_PRIMITIVE_DERIVATIVE,
-        PROVIDES_ALGEBRAIC_SPHERE_DERIVATIVE,
-        PROVIDES_NORMAL_DERIVATIVE
-    };
+    REQUIRES(ALGEBRAIC_SPHERE);
+    REQUIRES(MEAN_POSITION_DERIVATIVE);
+    REQUIRES(PRIMITIVE_DERIVATIVE);
+    PROVIDES(ALGEBRAIC_SPHERE_DERIVATIVE);
+    PROVIDES(NORMAL_DERIVATIVE);
 
     // computation data
     VectorArray m_dSumN;     /*!< \brief Sum of the normal vectors with differenciated weights */

@@ -42,7 +42,8 @@ public:
     using EigenBase = Eigen::Hyperplane<typename DataPoint::Scalar, DataPoint::Dim >;
 
 protected:
-    enum { check = Base::PROVIDES_PRIMITIVE_BASE, PROVIDES_PLANE };
+    REQUIRES(PRIMITIVE_BASE);
+    PROVIDES(PLANE);
 
 public:
 

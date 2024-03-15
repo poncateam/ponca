@@ -25,10 +25,8 @@ namespace Ponca
     PONCA_FITTING_DECLARE_MATRIX_TYPE
 
     protected:
-        enum
-        {
-            Check = Base::PROVIDES_NORMAL_DERIVATIVE && Base::PROVIDES_PRINCIPAL_CURVATURES
-        };
+        REQUIRES(NORMAL_DERIVATIVE);
+        REQUIRES(PRINCIPAL_CURVATURES);
 
     private:
         typedef Eigen::Matrix<Scalar,3,2> Mat32; /*!< \brief Matrix type for tangent plane basis \fixme formalize tangent plane basis */
@@ -79,10 +77,7 @@ PONCA_FITTING_DECLARE_MATRIX_TYPE
 PONCA_FITTING_DECLARE_DEFAULT_DER_TYPES
 
 protected:
-    enum
-    {
-        Check = Base::PROVIDES_PRINCIPAL_CURVATURES
-    };
+    REQUIRES(PRINCIPAL_CURVATURES);
 
     //TODO(thib) check the curvature values that might be wrong
     //TODO(thib) use weighting function
@@ -129,11 +124,8 @@ PONCA_FITTING_DECLARE_MATRIX_TYPE
 PONCA_FITTING_DECLARE_DEFAULT_DER_TYPES
 
 protected:
-    enum
-    {
-        Check = Base::PROVIDES_PRINCIPAL_CURVATURES &&
-                Base::PROVIDES_PLANE // \todo This class relies on the primitiveGradient, so update this
-    };
+    REQUIRES(PRINCIPAL_CURVATURES);
+    REQUIRES(PLAN); // \todo This class relies on the primitiveGradient, so update this
 
     /// \todo Use same pass management than MongePatch
     enum PASS : int

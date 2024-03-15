@@ -33,10 +33,9 @@ namespace Ponca {
         class ComputationalObjectConcept
         {
         protected:
-            enum {
-                Check = PROVIDES_CAPABILITY_1 && PROVIDES_CAPABILITY_2 //< List of required capabilities
-                PROVIDES_CAPABILITY,                                   //< List of provided capabilities
-            };
+            REQUIRES(CAPABILITY_1); //< List of required capabilities
+            REQUIRES(CAPABILITY_2);
+            PROVIDES(CAPABILITY); //< List of provided capabilities
 
         public:
             using Scalar     = typename DataPoint::Scalar;     //< Inherited scalar type
@@ -73,10 +72,9 @@ namespace Ponca {
         class ComputationalDerivativesConcept
         {
         protected:
-            enum {
-                Check = PROVIDES_CAPABILITY_1 && PROVIDES_CAPABILITY_2 //< List of required capabilities
-                PROVIDES_CAPABILITY,                                   //< List of provided capabilities
-            };
+            REQUIRES(CAPABILITY_1); //< List of required capabilities
+            REQUIRES(CAPABILITY_2);
+            PROVIDES(CAPABILITY); //< List of provided capabilities
 
         public:
             using Scalar     = typename DataPoint::Scalar;     //< Inherited scalar type

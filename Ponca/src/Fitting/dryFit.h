@@ -25,7 +25,7 @@ namespace Ponca
     PONCA_FITTING_DECLARE_DEFAULT_TYPES
 
     protected:
-        enum { check = Base::PROVIDES_PRIMITIVE_BASE };
+        PROVIDES(PRIMITIVE_BASE);
 
     public:
         PONCA_EXPLICIT_CAST_OPERATORS(DryFit,dryfit)
