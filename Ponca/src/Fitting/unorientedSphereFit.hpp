@@ -186,7 +186,7 @@ UnorientedSphereDerImpl<DataPoint, _WFunctor, DiffType, T>::finalize()
 
             deigvec = Base::m_matQ * deigvec;
 
-            m_dUq[dim] = 0.5 * deigvec[dim];
+            m_dUq[dim] = Scalar(.5) * deigvec[dim];
             m_dUl.col(dim) = deigvec.template head<Dim>();
         }
 
