@@ -27,6 +27,10 @@
 using namespace std;
 using namespace Ponca;
 
+//
+// if CheckCurvatures is true, then the test checks the coherence of kmin and kmax
+// it requires the use of BasketDiff in 3D, with the fitting extension CurvatureEstimatorBase
+//
 template<typename DataPoint, typename Fit, typename WeightFunc, bool CheckCurvatures = false> //, typename Fit, typename WeightFunction>
 void testFunction(bool _bAddPositionNoise = false, bool _bAddNormalNoise = false)
 {
