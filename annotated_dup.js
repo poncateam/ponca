@@ -76,6 +76,7 @@ var annotated_dup =
       [ "SmoothWeightKernel", "classPonca_1_1SmoothWeightKernel.html", "classPonca_1_1SmoothWeightKernel" ],
       [ "SphereFitImpl", "classPonca_1_1SphereFitImpl.html", "classPonca_1_1SphereFitImpl" ],
       [ "Stack", "classPonca_1_1Stack.html", "classPonca_1_1Stack" ],
+      [ "UnorientedSphereDerImpl", "classPonca_1_1UnorientedSphereDerImpl.html", "classPonca_1_1UnorientedSphereDerImpl" ],
       [ "UnorientedSphereFitImpl", "classPonca_1_1UnorientedSphereFitImpl.html", "classPonca_1_1UnorientedSphereFitImpl" ],
       [ "WendlandWeightKernel", "classPonca_1_1WendlandWeightKernel.html", "classPonca_1_1WendlandWeightKernel" ]
     ] ]

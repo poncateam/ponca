@@ -51,7 +51,7 @@ MathJax.Hub.Config({
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Ponca
-   &#160;<span id="projectnumber">2eadc3cfd8ae98a1a92c3ec3b5db82b5ea966db9</span>
+   &#160;<span id="projectnumber">e26a0e88a45818354616c1a7180bcd203aecad3c</span>
    </div>
    <div id="projectbrief">Point Cloud Analysis library</div>
   </td>
@@ -119,8 +119,8 @@ $(document).ready(function(){initNavTree('classPonca_1_1UnorientedSphereFitImpl.
   <div class="summary">
 <a href="#pub-types">Public Types</a> &#124;
 <a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pub-attribs">Public Attributes</a> &#124;
 <a href="#pro-types">Protected Types</a> &#124;
-<a href="#pro-attribs">Protected Attributes</a> &#124;
 <a href="classPonca_1_1UnorientedSphereFitImpl-members.html">List of all members</a>  </div>
   <div class="headertitle"><div class="title">Ponca::UnorientedSphereFitImpl&lt; DataPoint, _WFunctor, T &gt; Class Template Reference</div></div>
 </div><!--header-->
@@ -135,7 +135,7 @@ $(document).ready(function(){initNavTree('classPonca_1_1UnorientedSphereFitImpl.
 <div id="dynsection-0-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-0-content" class="dyncontent" style="display:none;">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classPonca_1_1UnorientedSphereFitImpl__inherit__graph.svg" width="294" height="331"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classPonca_1_1UnorientedSphereFitImpl__inherit__graph.svg" width="294" height="360"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
 </div>
 <div id="dynsection-1" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
@@ -143,7 +143,7 @@ $(document).ready(function(){initNavTree('classPonca_1_1UnorientedSphereFitImpl.
 <div id="dynsection-1-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-1-content" class="dyncontent" style="display:none;">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classPonca_1_1UnorientedSphereFitImpl__coll__graph.svg" width="294" height="331"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classPonca_1_1UnorientedSphereFitImpl__coll__graph.svg" width="294" height="360"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
 </div>
 <table class="memberdecls">
@@ -158,6 +158,8 @@ Public Types</h2></td></tr>
 <tr class="memitem:a0d040049d62b02ac3520986dea1d621e"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1UnorientedSphereFitImpl.html#a0d040049d62b02ac3520986dea1d621e">WFunctor</a> = typename Base::WFunctor</td></tr>
 <tr class="memdesc:a0d040049d62b02ac3520986dea1d621e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Alias to weight function.  <br /></td></tr>
 <tr class="separator:a0d040049d62b02ac3520986dea1d621e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1f07ec722747b8a5fc93f668307c5e4d"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1UnorientedSphereFitImpl.html#a1f07ec722747b8a5fc93f668307c5e4d">Solver</a> = Eigen::EigenSolver&lt; MatrixBB &gt;</td></tr>
+<tr class="separator:a1f07ec722747b8a5fc93f668307c5e4d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
@@ -167,18 +169,32 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a3e7a553a4a799a55f50fba6332c94e98"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="classPonca_1_1UnorientedSphereFitImpl.html">UnorientedSphereFitImpl</a>&lt; DataPoint, _WFunctor, T &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1UnorientedSphereFitImpl.html#a3e7a553a4a799a55f50fba6332c94e98">unorientedSphereFit</a> () const</td></tr>
 <tr class="memdesc:a3e7a553a4a799a55f50fba6332c94e98"><td class="mdescLeft">&#160;</td><td class="mdescRight">Explicit conversion to <a class="el" href="classPonca_1_1UnorientedSphereFitImpl.html" title="Algebraic Sphere fitting procedure on point sets with non-oriented normals.">UnorientedSphereFitImpl</a> , to access methods potentially hidden by heritage.  <br /></td></tr>
 <tr class="separator:a3e7a553a4a799a55f50fba6332c94e98"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa9721fe012289a217d82fc897b66e0ff"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1UnorientedSphereFitImpl.html#aa9721fe012289a217d82fc897b66e0ff">init</a> (const <a class="el" href="classPonca_1_1UnorientedSphereFitImpl.html#a11dcab6b4c7deadd8e990c51c43a408c">VectorType</a> &amp;_evalPos)</td></tr>
-<tr class="memdesc:aa9721fe012289a217d82fc897b66e0ff"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the evaluation position and reset the internal states.  <br /></td></tr>
-<tr class="separator:aa9721fe012289a217d82fc897b66e0ff"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab5bae63c214cb070e160dba07bc30167"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1UnorientedSphereFitImpl.html#ab5bae63c214cb070e160dba07bc30167">addLocalNeighbor</a> (<a class="el" href="classPonca_1_1UnorientedSphereFitImpl.html#a30fed7a8befe26587d6b2199213357e8">Scalar</a> w, const <a class="el" href="classPonca_1_1UnorientedSphereFitImpl.html#a11dcab6b4c7deadd8e990c51c43a408c">VectorType</a> &amp;localQ, const DataPoint &amp;attributes)</td></tr>
-<tr class="memdesc:ab5bae63c214cb070e160dba07bc30167"><td class="mdescLeft">&#160;</td><td class="mdescRight">Add a neighbor to perform the fit.  <br /></td></tr>
-<tr class="separator:ab5bae63c214cb070e160dba07bc30167"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af1a93ec07db595ba2f10cdc8da8bca59"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespacePonca.html#abfd697aebf07c1b5c8be5ee401e2dc84">FIT_RESULT</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1UnorientedSphereFitImpl.html#af1a93ec07db595ba2f10cdc8da8bca59">finalize</a> ()</td></tr>
-<tr class="memdesc:af1a93ec07db595ba2f10cdc8da8bca59"><td class="mdescLeft">&#160;</td><td class="mdescRight">Finalize the procedure.  <br /></td></tr>
-<tr class="separator:af1a93ec07db595ba2f10cdc8da8bca59"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae363de3fdbaf1e8afbbdf4106127bc17"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1UnorientedSphereFitImpl.html#ae363de3fdbaf1e8afbbdf4106127bc17">init</a> (const <a class="el" href="classPonca_1_1UnorientedSphereFitImpl.html#a11dcab6b4c7deadd8e990c51c43a408c">VectorType</a> &amp;_evalPos)</td></tr>
+<tr class="memdesc:ae363de3fdbaf1e8afbbdf4106127bc17"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the evaluation position and reset the internal states.  <br /></td></tr>
+<tr class="separator:ae363de3fdbaf1e8afbbdf4106127bc17"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1c6eafc56eb405bc071fce99b76c2840"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1UnorientedSphereFitImpl.html#a1c6eafc56eb405bc071fce99b76c2840">addLocalNeighbor</a> (<a class="el" href="classPonca_1_1UnorientedSphereFitImpl.html#a30fed7a8befe26587d6b2199213357e8">Scalar</a> w, const <a class="el" href="classPonca_1_1UnorientedSphereFitImpl.html#a11dcab6b4c7deadd8e990c51c43a408c">VectorType</a> &amp;localQ, const DataPoint &amp;attributes)</td></tr>
+<tr class="memdesc:a1c6eafc56eb405bc071fce99b76c2840"><td class="mdescLeft">&#160;</td><td class="mdescRight">Add a neighbor to perform the fit.  <br /></td></tr>
+<tr class="separator:a1c6eafc56eb405bc071fce99b76c2840"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2aa8045d25d64361171d0b9e7f66c7e3"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespacePonca.html#abfd697aebf07c1b5c8be5ee401e2dc84">FIT_RESULT</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1UnorientedSphereFitImpl.html#a2aa8045d25d64361171d0b9e7f66c7e3">finalize</a> ()</td></tr>
+<tr class="memdesc:a2aa8045d25d64361171d0b9e7f66c7e3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Finalize the procedure.  <br /></td></tr>
+<tr class="separator:a2aa8045d25d64361171d0b9e7f66c7e3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6e75337803c131a050c1edbd3b8e8b4f"><td class="memItemLeft" align="right" valign="top">constexpr bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1UnorientedSphereFitImpl.html#a6e75337803c131a050c1edbd3b8e8b4f">isSigned</a> ()</td></tr>
 <tr class="memdesc:a6e75337803c131a050c1edbd3b8e8b4f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Is scalar field signed.  <br /></td></tr>
 <tr class="separator:a6e75337803c131a050c1edbd3b8e8b4f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
+Public Attributes</h2></td></tr>
+<tr class="memitem:a2297dc0e5c02be0398440c3dd909869b"><td class="memItemLeft" align="right" valign="top">MatrixBB&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1UnorientedSphereFitImpl.html#a2297dc0e5c02be0398440c3dd909869b">m_matA</a> {MatrixBB::Zero()}</td></tr>
+<tr class="memdesc:a2297dc0e5c02be0398440c3dd909869b"><td class="mdescLeft">&#160;</td><td class="mdescRight">The accumulated covariance matrix.  <br /></td></tr>
+<tr class="separator:a2297dc0e5c02be0398440c3dd909869b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab2c40174b007a3cbb8971dca7f6d967a"><td class="memItemLeft" align="right" valign="top">MatrixBB&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1UnorientedSphereFitImpl.html#ab2c40174b007a3cbb8971dca7f6d967a">m_matQ</a> {MatrixBB::Zero()}</td></tr>
+<tr class="memdesc:ab2c40174b007a3cbb8971dca7f6d967a"><td class="mdescLeft">&#160;</td><td class="mdescRight">The constraint matrix.  <br /></td></tr>
+<tr class="separator:ab2c40174b007a3cbb8971dca7f6d967a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2de4db2e8666c560ff016680e099a4e3"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classPonca_1_1UnorientedSphereFitImpl.html#a30fed7a8befe26587d6b2199213357e8">Scalar</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1UnorientedSphereFitImpl.html#a2de4db2e8666c560ff016680e099a4e3">m_sumDotPP</a> {0}</td></tr>
+<tr class="memdesc:a2de4db2e8666c560ff016680e099a4e3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sum of the squared relative positions.  <br /></td></tr>
+<tr class="separator:a2de4db2e8666c560ff016680e099a4e3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae8a2b92aa10d4ab71cd356bc9e4e95f2"><td class="memItemLeft" align="right" valign="top">Solver&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1UnorientedSphereFitImpl.html#ae8a2b92aa10d4ab71cd356bc9e4e95f2">m_solver</a></td></tr>
+<tr class="separator:ae8a2b92aa10d4ab71cd356bc9e4e95f2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-types" name="pro-types"></a>
 Protected Types</h2></td></tr>
@@ -192,23 +208,34 @@ Protected Types</h2></td></tr>
 <tr class="separator:af19b805b774d2153ec428d2d9b5c8cc6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac7aecf4d237387afa118381cb9a62af1"><td class="memItemLeft" align="right" valign="top">typedef Eigen::Matrix&lt; <a class="el" href="classPonca_1_1UnorientedSphereFitImpl.html#a30fed7a8befe26587d6b2199213357e8">Scalar</a>, DataPoint::Dim+1, DataPoint::Dim+1 &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1UnorientedSphereFitImpl.html#ac7aecf4d237387afa118381cb9a62af1">MatrixBB</a></td></tr>
 <tr class="separator:ac7aecf4d237387afa118381cb9a62af1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-attribs" name="pro-attribs"></a>
-Protected Attributes</h2></td></tr>
-<tr class="memitem:a2297dc0e5c02be0398440c3dd909869b"><td class="memItemLeft" align="right" valign="top">MatrixBB&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1UnorientedSphereFitImpl.html#a2297dc0e5c02be0398440c3dd909869b">m_matA</a> {MatrixBB::Zero()}</td></tr>
-<tr class="memdesc:a2297dc0e5c02be0398440c3dd909869b"><td class="mdescLeft">&#160;</td><td class="mdescRight">The accumulated covariance matrix.  <br /></td></tr>
-<tr class="separator:a2297dc0e5c02be0398440c3dd909869b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2de4db2e8666c560ff016680e099a4e3"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classPonca_1_1UnorientedSphereFitImpl.html#a30fed7a8befe26587d6b2199213357e8">Scalar</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1UnorientedSphereFitImpl.html#a2de4db2e8666c560ff016680e099a4e3">m_sumDotPP</a> {0}</td></tr>
-<tr class="memdesc:a2de4db2e8666c560ff016680e099a4e3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sum of the squared relative positions.  <br /></td></tr>
-<tr class="separator:a2de4db2e8666c560ff016680e099a4e3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><div class="compoundTemplParams">template&lt;class DataPoint, class _WFunctor, typename T&gt;<br />
 class Ponca::UnorientedSphereFitImpl&lt; DataPoint, _WFunctor, T &gt;</div><p>Algebraic Sphere fitting procedure on point sets with non-oriented normals. </p>
-<p>Method published in <a class="el" href="citelist.html#CITEREF_Chen:2013:NOMG">[4]</a>.</p>
+<p>This method published in <a class="el" href="citelist.html#CITEREF_Chen:2013:NOMG">[4]</a> maximizes the sum of squared dot product between the input normal vectors and the gradient of the algebraic sphere. The maximization is done under the constraint that the norm of the gradient is unitary on average. In practice, it amounts to solve the generalized eigenvalue problem  </p><p class="formulaDsp">
+\[
+    A \mathbf{u} = \lambda Q \mathbf{u}
+\]
+</p>
+<p> where  </p><p class="formulaDsp">
+\[
+    \mathbf{u} = \begin{bmatrix} u_l \\ u_q \end{bmatrix}
+\]
+</p>
+  <p class="formulaDsp">
+\[
+    A = \sum_i w_i \begin{bmatrix} \mathbf{n}_i \\ \mathbf{n}_i^T\mathbf{p}_i \end{bmatrix}\begin{bmatrix} \mathbf{n}_i^T &amp; \mathbf{n}_i^T\mathbf{p}_i \end{bmatrix}
+\]
+</p>
+  <p class="formulaDsp">
+\[
+    Q = \frac{1}{\sum_i w_i} \begin{bmatrix} I &amp; \sum_i w_i \mathbf{p}_i \\ \sum_i w_i \mathbf{p}_i^T &amp; \sum_i w_i \mathbf{p}_i^T\mathbf{p}_i \end{bmatrix}
+\]
+</p>
+<p> The constant coefficient \(u_c\) is computed as in <a class="el" href="classPonca_1_1OrientedSphereFitImpl.html">OrientedSphereFitImpl</a> by minimizing the sum of squared potential evaluated at the points \(\mathbf{p}_i\). This fitting method corresponds to the case where the scalar field is \( f^* \) in the Section 3.3 of <a class="el" href="citelist.html#CITEREF_Chen:2013:NOMG">[4]</a>.</p>
 <dl class="section see"><dt>See also</dt><dd>class <a class="el" href="classPonca_1_1AlgebraicSphere.html" title="Algebraic Sphere primitive.">AlgebraicSphere</a>, class <a class="el" href="namespacePonca.html#a2f53f5c61ca5df7c3e3f8cf2219a14d4" title="Helper alias for Oriented Sphere fitting on 3D points using OrientedSphereFitImpl [OrientedSphereFit ...">OrientedSphereFit</a> </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="unorientedSphereFit_8h_source.html#l00028">28</a> of file <a class="el" href="unorientedSphereFit_8h_source.html">unorientedSphereFit.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="unorientedSphereFit_8h_source.html#l00045">45</a> of file <a class="el" href="unorientedSphereFit_8h_source.html">unorientedSphereFit.h</a>.</p>
 </div><h2 class="groupheader">Member Typedef Documentation</h2>
 <a id="a80d001fb2eb717d53d01ff455cc6a202" name="a80d001fb2eb717d53d01ff455cc6a202"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a80d001fb2eb717d53d01ff455cc6a202">&#9670;&#160;</a></span>Base</h2>
@@ -234,7 +261,7 @@ template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
 
 <p>Base class of the procedure. </p>
 
-<p class="definition">Definition at line <a class="el" href="unorientedSphereFit_8h_source.html#l00030">30</a> of file <a class="el" href="unorientedSphereFit_8h_source.html">unorientedSphereFit.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="unorientedSphereFit_8h_source.html#l00047">47</a> of file <a class="el" href="unorientedSphereFit_8h_source.html">unorientedSphereFit.h</a>.</p>
 
 </div>
 </div>
@@ -260,7 +287,7 @@ template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="unorientedSphereFit_8h_source.html#l00036">36</a> of file <a class="el" href="unorientedSphereFit_8h_source.html">unorientedSphereFit.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="unorientedSphereFit_8h_source.html#l00053">53</a> of file <a class="el" href="unorientedSphereFit_8h_source.html">unorientedSphereFit.h</a>.</p>
 
 </div>
 </div>
@@ -280,7 +307,25 @@ template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
 
 <p>Alias to scalar type. </p>
 
-<p class="definition">Definition at line <a class="el" href="unorientedSphereFit_8h_source.html#l00030">30</a> of file <a class="el" href="unorientedSphereFit_8h_source.html">unorientedSphereFit.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="unorientedSphereFit_8h_source.html#l00047">47</a> of file <a class="el" href="unorientedSphereFit_8h_source.html">unorientedSphereFit.h</a>.</p>
+
+</div>
+</div>
+<a id="a1f07ec722747b8a5fc93f668307c5e4d" name="a1f07ec722747b8a5fc93f668307c5e4d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1f07ec722747b8a5fc93f668307c5e4d">&#9670;&#160;</a></span>Solver</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="classPonca_1_1UnorientedSphereFitImpl.html">Ponca::UnorientedSphereFitImpl</a>&lt; DataPoint, _WFunctor, T &gt;::Solver =  Eigen::EigenSolver&lt;MatrixBB&gt;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="unorientedSphereFit_8h_source.html#l00056">56</a> of file <a class="el" href="unorientedSphereFit_8h_source.html">unorientedSphereFit.h</a>.</p>
 
 </div>
 </div>
@@ -306,7 +351,7 @@ template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="unorientedSphereFit_8h_source.html#l00035">35</a> of file <a class="el" href="unorientedSphereFit_8h_source.html">unorientedSphereFit.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="unorientedSphereFit_8h_source.html#l00052">52</a> of file <a class="el" href="unorientedSphereFit_8h_source.html">unorientedSphereFit.h</a>.</p>
 
 </div>
 </div>
@@ -326,7 +371,7 @@ template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
 
 <p>Alias to vector type. </p>
 
-<p class="definition">Definition at line <a class="el" href="unorientedSphereFit_8h_source.html#l00030">30</a> of file <a class="el" href="unorientedSphereFit_8h_source.html">unorientedSphereFit.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="unorientedSphereFit_8h_source.html#l00047">47</a> of file <a class="el" href="unorientedSphereFit_8h_source.html">unorientedSphereFit.h</a>.</p>
 
 </div>
 </div>
@@ -346,7 +391,7 @@ template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
 
 <p>Alias to weight function. </p>
 
-<p class="definition">Definition at line <a class="el" href="unorientedSphereFit_8h_source.html#l00030">30</a> of file <a class="el" href="unorientedSphereFit_8h_source.html">unorientedSphereFit.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="unorientedSphereFit_8h_source.html#l00047">47</a> of file <a class="el" href="unorientedSphereFit_8h_source.html">unorientedSphereFit.h</a>.</p>
 
 </div>
 </div>
@@ -373,13 +418,13 @@ template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="unorientedSphereFit_8h_source.html#l00033">33</a> of file <a class="el" href="unorientedSphereFit_8h_source.html">unorientedSphereFit.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="unorientedSphereFit_8h_source.html#l00050">50</a> of file <a class="el" href="unorientedSphereFit_8h_source.html">unorientedSphereFit.h</a>.</p>
 
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a id="ab5bae63c214cb070e160dba07bc30167" name="ab5bae63c214cb070e160dba07bc30167"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ab5bae63c214cb070e160dba07bc30167">&#9670;&#160;</a></span>addLocalNeighbor()</h2>
+<a id="a1c6eafc56eb405bc071fce99b76c2840" name="a1c6eafc56eb405bc071fce99b76c2840"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1c6eafc56eb405bc071fce99b76c2840">&#9670;&#160;</a></span>addLocalNeighbor()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -390,7 +435,7 @@ template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">bool UnorientedSphereFitImpl::addLocalNeighbor </td>
+          <td class="memname">bool <a class="el" href="classPonca_1_1UnorientedSphereFitImpl.html">Ponca::UnorientedSphereFitImpl</a>&lt; DataPoint, _WFunctor, T &gt;::addLocalNeighbor </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="classPonca_1_1UnorientedSphereFitImpl.html#a30fed7a8befe26587d6b2199213357e8">Scalar</a>&#160;</td>
           <td class="paramname"><em>w</em>, </td>
@@ -423,12 +468,12 @@ template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
 <p>Add a neighbor to perform the fit. </p>
 <dl class="section return"><dt>Returns</dt><dd>false if param nei is not a valid neighbour (weight = 0) </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="unorientedSphereFit_8hpp_source.html#l00068">68</a> of file <a class="el" href="unorientedSphereFit_8hpp_source.html">unorientedSphereFit.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="unorientedSphereFit_8hpp_source.html#l00022">22</a> of file <a class="el" href="unorientedSphereFit_8hpp_source.html">unorientedSphereFit.hpp</a>.</p>
 
 </div>
 </div>
-<a id="af1a93ec07db595ba2f10cdc8da8bca59" name="af1a93ec07db595ba2f10cdc8da8bca59"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af1a93ec07db595ba2f10cdc8da8bca59">&#9670;&#160;</a></span>finalize()</h2>
+<a id="a2aa8045d25d64361171d0b9e7f66c7e3" name="a2aa8045d25d64361171d0b9e7f66c7e3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2aa8045d25d64361171d0b9e7f66c7e3">&#9670;&#160;</a></span>finalize()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -439,10 +484,7 @@ template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="namespacePonca.html#abfd697aebf07c1b5c8be5ee401e2dc84">FIT_RESULT</a> UnorientedSphereFitImpl::finalize </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
+          <td class="memname"><a class="el" href="namespacePonca.html#abfd697aebf07c1b5c8be5ee401e2dc84">FIT_RESULT</a> <a class="el" href="classPonca_1_1UnorientedSphereFitImpl.html">Ponca::UnorientedSphereFitImpl</a>&lt; DataPoint, _WFunctor, T &gt;::finalize</td>
         </tr>
       </table>
   </td>
@@ -456,12 +498,12 @@ template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
 <dl class="section return"><dt>Returns</dt><dd>Fitting Status </dd></dl>
 <dl class="section warning"><dt>Warning</dt><dd>Must be called be for any use of the fitting output </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="unorientedSphereFit_8hpp_source.html#l00087">87</a> of file <a class="el" href="unorientedSphereFit_8hpp_source.html">unorientedSphereFit.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="unorientedSphereFit_8hpp_source.html#l00041">41</a> of file <a class="el" href="unorientedSphereFit_8hpp_source.html">unorientedSphereFit.hpp</a>.</p>
 
 </div>
 </div>
-<a id="aa9721fe012289a217d82fc897b66e0ff" name="aa9721fe012289a217d82fc897b66e0ff"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa9721fe012289a217d82fc897b66e0ff">&#9670;&#160;</a></span>init()</h2>
+<a id="ae363de3fdbaf1e8afbbdf4106127bc17" name="ae363de3fdbaf1e8afbbdf4106127bc17"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae363de3fdbaf1e8afbbdf4106127bc17">&#9670;&#160;</a></span>init()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -472,7 +514,7 @@ template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">void UnorientedSphereFitImpl::init </td>
+          <td class="memname">void <a class="el" href="classPonca_1_1UnorientedSphereFitImpl.html">Ponca::UnorientedSphereFitImpl</a>&lt; DataPoint, _WFunctor, T &gt;::init </td>
           <td>(</td>
           <td class="paramtype">const <a class="el" href="classPonca_1_1UnorientedSphereFitImpl.html#a11dcab6b4c7deadd8e990c51c43a408c">VectorType</a> &amp;&#160;</td>
           <td class="paramname"><em>_evalPos</em></td><td>)</td>
@@ -489,7 +531,7 @@ template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
 <p>Set the evaluation position and reset the internal states. </p>
 <dl class="section warning"><dt>Warning</dt><dd>Must be called be for any computation (but after #setWeightFunc) </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="unorientedSphereFit_8hpp_source.html#l00059">59</a> of file <a class="el" href="unorientedSphereFit_8hpp_source.html">unorientedSphereFit.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="unorientedSphereFit_8hpp_source.html#l00012">12</a> of file <a class="el" href="unorientedSphereFit_8hpp_source.html">unorientedSphereFit.hpp</a>.</p>
 
 </div>
 </div>
@@ -521,7 +563,7 @@ template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
 <p>Is scalar field signed. </p>
 <p>If not, the method the sign of <code>potential()</code> must be ignored </p>
 
-<p class="definition">Definition at line <a class="el" href="unorientedSphereFit_8h_source.html#l00045">45</a> of file <a class="el" href="unorientedSphereFit_8h_source.html">unorientedSphereFit.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="unorientedSphereFit_8h_source.html#l00067">67</a> of file <a class="el" href="unorientedSphereFit_8h_source.html">unorientedSphereFit.h</a>.</p>
 
 </div>
 </div>
@@ -552,7 +594,7 @@ template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
 
 <p>Explicit conversion to <a class="el" href="classPonca_1_1UnorientedSphereFitImpl.html" title="Algebraic Sphere fitting procedure on point sets with non-oriented normals.">UnorientedSphereFitImpl</a> , to access methods potentially hidden by heritage. </p>
 
-<p class="definition">Definition at line <a class="el" href="unorientedSphereFit_8h_source.html#l00043">43</a> of file <a class="el" href="unorientedSphereFit_8h_source.html">unorientedSphereFit.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="unorientedSphereFit_8h_source.html#l00065">65</a> of file <a class="el" href="unorientedSphereFit_8h_source.html">unorientedSphereFit.h</a>.</p>
 
 </div>
 </div>
@@ -583,7 +625,7 @@ template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
 
 <p>Explicit conversion to <a class="el" href="classPonca_1_1UnorientedSphereFitImpl.html" title="Algebraic Sphere fitting procedure on point sets with non-oriented normals.">UnorientedSphereFitImpl</a> , to access methods potentially hidden by heritage. </p>
 
-<p class="definition">Definition at line <a class="el" href="unorientedSphereFit_8h_source.html#l00043">43</a> of file <a class="el" href="unorientedSphereFit_8h_source.html">unorientedSphereFit.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="unorientedSphereFit_8h_source.html#l00065">65</a> of file <a class="el" href="unorientedSphereFit_8h_source.html">unorientedSphereFit.h</a>.</p>
 
 </div>
 </div>
@@ -595,24 +637,54 @@ template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
 <div class="memproto">
 <div class="memtemplate">
 template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname">MatrixBB <a class="el" href="classPonca_1_1UnorientedSphereFitImpl.html">Ponca::UnorientedSphereFitImpl</a>&lt; DataPoint, _WFunctor, T &gt;::m_matA {MatrixBB::Zero()}</td>
         </tr>
       </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
-  </tr>
-</table>
 </div><div class="memdoc">
 
 <p>The accumulated covariance matrix. </p>
 
-<p class="definition">Definition at line <a class="el" href="unorientedSphereFit_8h_source.html#l00038">38</a> of file <a class="el" href="unorientedSphereFit_8h_source.html">unorientedSphereFit.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="unorientedSphereFit_8h_source.html#l00058">58</a> of file <a class="el" href="unorientedSphereFit_8h_source.html">unorientedSphereFit.h</a>.</p>
+
+</div>
+</div>
+<a id="ab2c40174b007a3cbb8971dca7f6d967a" name="ab2c40174b007a3cbb8971dca7f6d967a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab2c40174b007a3cbb8971dca7f6d967a">&#9670;&#160;</a></span>m_matQ</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">MatrixBB <a class="el" href="classPonca_1_1UnorientedSphereFitImpl.html">Ponca::UnorientedSphereFitImpl</a>&lt; DataPoint, _WFunctor, T &gt;::m_matQ {MatrixBB::Zero()}</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>The constraint matrix. </p>
+
+<p class="definition">Definition at line <a class="el" href="unorientedSphereFit_8h_source.html#l00059">59</a> of file <a class="el" href="unorientedSphereFit_8h_source.html">unorientedSphereFit.h</a>.</p>
+
+</div>
+</div>
+<a id="ae8a2b92aa10d4ab71cd356bc9e4e95f2" name="ae8a2b92aa10d4ab71cd356bc9e4e95f2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae8a2b92aa10d4ab71cd356bc9e4e95f2">&#9670;&#160;</a></span>m_solver</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">Solver <a class="el" href="classPonca_1_1UnorientedSphereFitImpl.html">Ponca::UnorientedSphereFitImpl</a>&lt; DataPoint, _WFunctor, T &gt;::m_solver</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="unorientedSphereFit_8h_source.html#l00062">62</a> of file <a class="el" href="unorientedSphereFit_8h_source.html">unorientedSphereFit.h</a>.</p>
 
 </div>
 </div>
@@ -623,24 +695,16 @@ template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
 <div class="memproto">
 <div class="memtemplate">
 template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname"><a class="el" href="classPonca_1_1UnorientedSphereFitImpl.html#a30fed7a8befe26587d6b2199213357e8">Scalar</a> <a class="el" href="classPonca_1_1UnorientedSphereFitImpl.html">Ponca::UnorientedSphereFitImpl</a>&lt; DataPoint, _WFunctor, T &gt;::m_sumDotPP {0}</td>
         </tr>
       </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
-  </tr>
-</table>
 </div><div class="memdoc">
 
 <p>Sum of the squared relative positions. </p>
 
-<p class="definition">Definition at line <a class="el" href="unorientedSphereFit_8h_source.html#l00039">39</a> of file <a class="el" href="unorientedSphereFit_8h_source.html">unorientedSphereFit.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="unorientedSphereFit_8h_source.html#l00060">60</a> of file <a class="el" href="unorientedSphereFit_8h_source.html">unorientedSphereFit.h</a>.</p>
 
 </div>
 </div>
@@ -650,7 +714,7 @@ template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="namespacePonca.html">Ponca</a></li><li class="navelem"><a class="el" href="classPonca_1_1UnorientedSphereFitImpl.html">UnorientedSphereFitImpl</a></li>
-    <li class="footer">Generated on Wed Mar 13 2024 13:35:45 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.6 </li>
+    <li class="footer">Generated on Thu Apr 11 2024 23:02:07 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.6 </li>
   </ul>
 </div>
 </body>

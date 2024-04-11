@@ -1,5 +1,18 @@
 var NAVTREEINDEX3 =
 {
+"spatialpartitioning.html#spatialpartitioning_kdtree_extending":[6,3,1,2],
+"spatialpartitioning.html#spatialpartitioning_kdtree_implementation":[6,3,1,0],
+"spatialpartitioning.html#spatialpartitioning_kdtree_usage":[6,3,1,1],
+"spatialpartitioning.html#spatialpartitioning_kdtree_usage_construction":[6,3,1,1,0],
+"spatialpartitioning.html#spatialpartitioning_kdtree_usage_queries":[6,3,1,1,1],
+"spatialpartitioning.html#spatialpartitioning_kdtree_usage_samples_and_indexing":[6,3,1,1,2],
+"spatialpartitioning.html#spatialpartitioning_kdtree_usage_which_class":[6,3,1,3],
+"spatialpartitioning.html#spatialpartitioning_knngraph":[6,3,2],
+"spatialpartitioning.html#spatialpartitioning_knngraph_usage":[6,3,2,0],
+"spatialpartitioning.html#spatialpartitioning_knngraph_usage_construction":[6,3,2,0,0],
+"spatialpartitioning.html#spatialpartitioning_knngraph_usage_queries":[6,3,2,0,1],
+"structPonca_1_1IndexSquaredDistance.html":[8,0,0,15],
+"structPonca_1_1IndexSquaredDistance.html#ab10ec93392459c072094f54a84cb4fa8":[8,0,0,15,0],
 "structPonca_1_1IndexSquaredDistance.html#abc31ae943b674619c4b851ef2559e0dd":[8,0,0,15,1],
 "structPonca_1_1KdTree.html":[8,0,0,16],
 "structPonca_1_1KdTreeBase_1_1DefaultConverter.html":[8,0,0,17,0],

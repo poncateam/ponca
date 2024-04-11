@@ -178,6 +178,7 @@ var hierarchy =
       [ "Ponca::PrimitiveDer< DataPoint, _WFunctor, Type, T >", "classPonca_1_1PrimitiveDer.html", null ],
       [ "Ponca::ProjectedNormalCovarianceCurvatureEstimator< DataPoint, _WFunctor, DiffType, T >", "classPonca_1_1ProjectedNormalCovarianceCurvatureEstimator.html", null ],
       [ "Ponca::SphereFitImpl< DataPoint, _WFunctor, T >", "classPonca_1_1SphereFitImpl.html", null ],
+      [ "Ponca::UnorientedSphereDerImpl< DataPoint, _WFunctor, DiffType, T >", "classPonca_1_1UnorientedSphereDerImpl.html", null ],
       [ "Ponca::UnorientedSphereFitImpl< DataPoint, _WFunctor, T >", "classPonca_1_1UnorientedSphereFitImpl.html", null ]
     ] ],
     [ "internal::BasketAggregate::type", null, [
