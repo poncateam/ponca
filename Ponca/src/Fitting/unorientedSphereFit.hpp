@@ -4,55 +4,8 @@
  file, You can obtain one at http://mozilla.org/MPL/2.0/.
 */
 
-
-
-#if NEVERDEFINED
-
-MatrixBB cov = MatrixBB::Zero();
-VectorDd sumP = VectorDd::Zero();
-double sumDotPP = 0.;
-double sumOfWeights = 0.;
-
-// the normalization matrix
-MatrixBB Q = MatrixBB::Zero();
-
-for(uint i=0 ; i<nofSamples ; ++i)
+namespace Ponca
 {
-    VectorDd p = pNeighborhood->getNeighbor(i).position().cast<double>();
-    VectorDd n = pNeighborhood->getNeighbor(i).normal().cast<double>();
-    double w = pNeighborhood->getNeighborWeight(i);
-
-    VectorB basis;
-    basis << n, n.dot(p);
-
-    cov += w * basis * basis.transpose();
-    sumOfWeights += w;
-
-    MatrixBB q;
-    q <<  MatrixDDd::Identity(), p,
-        p.transpose(), p.squaredNorm();
-
-    Q += w * q;
-
-    sumP      += w * p;
-    sumDotPP  += w * p.squaredNorm();
-}
-cov /= sumOfWeights;
-Q   /= sumOfWeights;
-
-MatrixBB M = Q.inverse() * cov;
-Eigen::EigenSolver<MatrixBB> eig(M);
-VectorB eivals = eig.eigenvalues().real();
-int maxId = 0;
-double l = eivals.maxCoeff(&maxId);
-VectorB eivec = eig.eigenvectors().col(maxId).real();
-
-// integrate
-uLinear()   = eivec.start<Dim>().cast<Real>();
-uQuad()     = 0.5*eivec(Dim);
-uConstant() = -(1./sumOfWeights)*(eivec.start<Dim>().dot(sumP) + 0.5*eivec(Dim) * sumDotPP);
-
-#endif
 
 template < class DataPoint, class _WFunctor, typename T>
 void
@@ -60,6 +13,7 @@ UnorientedSphereFitImpl<DataPoint, _WFunctor, T>::init(const VectorType& _evalPo
 {
     Base::init(_evalPos);
     m_matA.setZero();
+    m_matQ.setZero();
     m_sumDotPP = Scalar(0.0);
 }
 
@@ -102,21 +56,18 @@ UnorientedSphereFitImpl<DataPoint, _WFunctor, T>::finalize ()
     // 1. finalize sphere fitting
     Scalar invSumW = Scalar(1.) / Base::getWeightSum();
 
+    m_matQ.template topLeftCorner<Dim,Dim>().setIdentity();
+    m_matQ.col(Dim).template head<Dim>() = Base::m_sumP * invSumW;
+    m_matQ.row(Dim).template head<Dim>() = Base::m_sumP * invSumW;
+    m_matQ(Dim,Dim) = m_sumDotPP * invSumW;
 
-    MatrixBB Q;
-    Q.template topLeftCorner<Dim,Dim>().setIdentity();
-    Q.col(Dim).template head<Dim>() = Base::m_sumP * invSumW;
-    Q.row(Dim).template head<Dim>() = Base::m_sumP * invSumW;
-    Q(Dim,Dim) = m_sumDotPP * invSumW;
-    m_matA *= invSumW;
-
-    MatrixBB M = Q.inverse() * m_matA;
-    Eigen::EigenSolver<MatrixBB> eig(M);
-    VectorB eivals = eig.eigenvalues().real();
+    MatrixBB M = m_matQ.inverse() * m_matA;
+    m_solver.compute(M);
+    VectorB eivals = m_solver.eigenvalues().real();
     int maxId = 0;
     eivals.maxCoeff(&maxId);
 
-    VectorB eivec = eig.eigenvectors().col(maxId).real();
+    VectorB eivec = m_solver.eigenvectors().col(maxId).real();
 
     // integrate
     Base::m_ul = eivec.template head<Dim>();
@@ -128,127 +79,151 @@ UnorientedSphereFitImpl<DataPoint, _WFunctor, T>::finalize ()
     return Base::m_eCurrentState;
 }
 
-#ifdef TOBEIMPLEMENTED
 
-namespace internal
-{
 
-template < class DataPoint, class _WFunctor, typename T, int Type>
+template < class DataPoint, class _WFunctor, int DiffType, typename T>
 void
-OrientedSphereDer<DataPoint, _WFunctor, T, Type>::init(const VectorType& _evalPos)
+UnorientedSphereDerImpl<DataPoint, _WFunctor, DiffType, T>::init(const VectorType& _evalPos)
 {
     Base::init(_evalPos);
-
-    m_dSumN     = VectorArray::Zero();
-    m_dSumP     = VectorArray::Zero();
-
-    m_dSumDotPN = ScalarArray::Zero();
+    for(int dim = 0; dim < Base::NbDerivatives; ++dim)
+        m_dmatA[dim] = MatrixBB::Zero();
     m_dSumDotPP = ScalarArray::Zero();
-    m_dSumW     = ScalarArray::Zero();
-
-    m_dUc       = ScalarArray::Zero();
-    m_dUq       = ScalarArray::Zero();
-    m_dUl       = VectorArray::Zero();
+    m_dUc = ScalarArray::Zero();
+    m_dUl = VectorArray::Zero();
+    m_dUq = ScalarArray::Zero();
 }
 
-
-template < class DataPoint, class _WFunctor, typename T, int Type>
+template < class DataPoint, class _WFunctor, int DiffType, typename T>
 bool
-OrientedSphereDer<DataPoint, _WFunctor, T, Type>::addNeighbor(const DataPoint  &_nei)
+UnorientedSphereDerImpl<DataPoint, _WFunctor, DiffType, T>::addLocalNeighbor(
+    Scalar w,
+    const VectorType &localQ,
+    const DataPoint &attributes,
+    ScalarArray& dw)
 {
-    bool bResult = Base::addNeighbor(_nei);
-    if(bResult)
+    if( Base::addLocalNeighbor(w, localQ, attributes, dw) )
     {
-        int spaceId = (Type & FitScaleDer) ? 1 : 0;
+        VectorB basis;
+        basis << attributes.normal(), attributes.normal().dot(localQ);
+        const MatrixBB prod = basis * basis.transpose();
 
-        ScalarArray w;
+        m_dSumDotPP += dw * localQ.squaredNorm();
 
-        // centered basis
-        VectorType q = _nei.pos() - Base::basisCenter();
-
-        // compute weight
-        if (Type & FitScaleDer)
-            w[0] = Base::m_w.scaledw(q, _nei);
-
-        if (Type & FitSpaceDer){
-            VectorType vw = Base::m_w.spacedw(q, _nei);
-            for(unsigned int i = 0; i < DataPoint::Dim; i++)
-                w[spaceId+i] = vw[i];
+        for(int dim = 0; dim < Base::NbDerivatives; ++dim)
+        {
+            m_dmatA[dim] += dw[dim] * prod;
         }
-
-        // increment
-        m_dSumW     += w;
-        m_dSumP     += q * w;
-        m_dSumN     += _nei.normal() * w;
-        m_dSumDotPN += w * _nei.normal().dot(q);
-        m_dSumDotPP += w * q.squaredNorm();
 
         return true;
     }
-
     return false;
 }
 
-
-template < class DataPoint, class _WFunctor, typename T, int Type>
+template < class DataPoint, class _WFunctor, int DiffType, typename T>
 FIT_RESULT
-OrientedSphereDer<DataPoint, _WFunctor, T, Type>::finalize()
+UnorientedSphereDerImpl<DataPoint, _WFunctor, DiffType, T>::finalize()
 {
-    PONCA_MULTIARCH_STD_MATH(sqrt);
+    constexpr int Dim = DataPoint::Dim;
+    constexpr Scalar epsilon = Eigen::NumTraits<Scalar>::dummy_precision();
 
     Base::finalize();
-
-    // Test if base finalize end on a viable case (stable / unstable)
-    if (this->isReady())
+    if(this->isReady())
     {
+        int i = 0;
+        Base::m_solver.eigenvalues().real().maxCoeff(&i);
+        const Scalar eigenval_i = Base::m_solver.eigenvalues().real()[i];
+        const VectorB eigenvec_i = Base::m_solver.eigenvectors().real().col(i);
 
-        Scalar invSumW = Scalar(1.)/Base::getWeightSum();
+        const Scalar invSumW = Scalar(1) / Base::getWeightSum();
 
-        Scalar nume  = Base::m_sumDotPN - invSumW*Base::m_sumP.dot(Base::m_sumN);
-        Scalar deno  = Base::m_sumDotPP - invSumW*Base::m_sumP.dot(Base::m_sumP);
+        // the derivative of (A vi = li Q vi), where A and Q are symmetric real, is
+        //
+        //     dA vi + A dvi = dli Q vi + li dQ vi + li Q dvi
+        //
+        // left-multiply by vj (i!=j, associated to eigenvalue lj)
+        //
+        //     vj . dA vi + vj . A dvi = dli vj . Q vi + li vj . dQ vi + li vj . Q dvi
+        //                  ^^^^^^           ^^^^^^^^^
+        //                  = lj vj . Q         = 0
+        //
+        // which simplified to
+        //
+        //     (Q vj) . dvi = 1/(li - lj) vj . dQ vi
+        //
+        // therefore
+        //
+        //     dvi = sum_j (1/(li - lj) vj . dQ vi) Q vj
+        //         = Q sum_j (1/(li - lj) vj . ((dA - li dQ) vi)) vj
+        //
+        for(int dim = 0; dim < Base::NbDerivatives; ++dim)
+        {
+            MatrixBB dQ;
+            dQ.template topLeftCorner<Dim,Dim>().setZero();
+            dQ.col(Dim).template head<Dim>() = Base::m_dSumP.col(dim);
+            dQ.row(Dim).template head<Dim>() = Base::m_dSumP.col(dim);
+            dQ(Dim,Dim) = m_dSumDotPP[dim];
+            dQ -= Base::m_dSumW[dim] * Base::m_matQ;
+            dQ *= invSumW;
 
-        ScalarArray dNume = m_dSumDotPN - invSumW*invSumW * ( Base::getWeightSum() * (
-                                                            Base::m_sumN.transpose() * m_dSumP +
-                                                            Base::m_sumP.transpose() * m_dSumN )
-                                                            - m_dSumW*Base::m_sumP.dot(Base::m_sumN) );
-        ScalarArray dDeno = m_dSumDotPP - invSumW*invSumW*( Scalar(2.)*Base::getWeightSum() * Base::m_sumP.transpose()*m_dSumP
-                                                            - m_dSumW*Base::m_sumP.dot(Base::m_sumP) );
+            const VectorB vec = (m_dmatA[dim] - eigenval_i * dQ) * eigenvec_i;
 
-        m_dUq =  Scalar(.5) * (deno * dNume - dDeno * nume)/(deno*deno);
-        m_dUl =  invSumW*((m_dSumN - Scalar(2.)*(m_dSumP*Base::m_uq+Base::m_sumP*m_dUq)) - Base::m_ul*m_dSumW);
-        m_dUc = -invSumW*( Base::m_sumP.transpose() * m_dUl +
-                            Base::m_sumDotPP * m_dUq + Base::m_ul.transpose() * m_dSumP +
-                            Base::m_uq*m_dSumDotPP + m_dSumW*Base::m_uc);
+            VectorB deigvec = VectorB::Zero();
+            for(int j = 0; j < Dim+1; ++j)
+            {
+                if(j != i)
+                {
+                    const Scalar eigenval_j = Base::m_solver.eigenvalues().real()[j];
+                    const Scalar eigengap = eigenval_i - eigenval_j; // positive since eigenval_i is the maximal eigenvalue
+
+                    if(eigengap > epsilon)
+                    {
+                        const VectorB eigenvec_j = Base::m_solver.eigenvectors().real().col(j);
+                        deigvec += Scalar(1)/eigengap * eigenvec_j.dot(vec) * eigenvec_j;
+                    }
+                }
+            }
+
+            deigvec = Base::m_matQ * deigvec;
+
+            m_dUq[dim] = Scalar(.5) * deigvec[dim];
+            m_dUl.col(dim) = deigvec.template head<Dim>();
+        }
+
+        // same as in OrientedSphereDerImpl::finalize()
+        m_dUc = -invSumW*( Base::m_sumP.transpose() * m_dUl
+            + Base::m_sumDotPP * m_dUq
+            + Base::m_ul.transpose() * Base::m_dSumP
+            + Base::m_uq * m_dSumDotPP
+            + Base::m_dSumW * Base::m_uc);
+
+        return FIT_RESULT::STABLE;
     }
-
     return Base::m_eCurrentState;
-
 }
 
-
-template < class DataPoint, class _WFunctor, typename T, int Type>
-bool
-OrientedSphereDer<DataPoint, _WFunctor, T, Type>::applyPrattNorm()
+template < class DataPoint, class _WFunctor, int DiffType, typename T>
+typename UnorientedSphereDerImpl<DataPoint, _WFunctor, DiffType, T>::ScalarArray
+UnorientedSphereDerImpl<DataPoint, _WFunctor, DiffType, T>::dPotential() const
 {
-    if(Base::isNormalized())
-        return false; //need original parameters without Pratt Normalization
-
-
-    PONCA_MULTIARCH_STD_MATH(sqrt);
-    Scalar pn2    = Base::prattNorm2();
-    Scalar pn     = sqrt(pn2);
-
-    ScalarArray dpn2   = dprattNorm2();
-    ScalarArray factor = Scalar(0.5) * dpn2 / pn;
-
-    m_dUc = ( m_dUc * pn - Base::m_uc * factor ) / pn2;
-    m_dUl = ( m_dUl * pn - Base::m_ul * factor ) / pn2;
-    m_dUq = ( m_dUq * pn - Base::m_uq * factor ) / pn2;
-
-    Base::applyPrattNorm();
-    return true;
+    // same as OrientedSphereDerImpl::dPotential()
+    ScalarArray dfield = m_dUc;
+    if(Base::isSpaceDer())
+        dfield.template tail<DataPoint::Dim>() += Base::m_ul;
+    return dfield;
 }
 
-}// namespace internal
+template < class DataPoint, class _WFunctor, int DiffType, typename T>
+typename UnorientedSphereDerImpl<DataPoint, _WFunctor, DiffType, T>::VectorArray
+UnorientedSphereDerImpl<DataPoint, _WFunctor, DiffType, T>::dNormal() const
+{
+    // same as OrientedSphereDerImpl::dNormal()
+    VectorArray dgrad = m_dUl;
+    if(Base::isSpaceDer())
+        dgrad.template rightCols<DataPoint::Dim>().diagonal().array() += Scalar(2)*Base::m_uq;
+    Scalar norm  = Base::m_ul.norm();
+    Scalar norm3 = norm*norm*norm;
+    return dgrad / norm - Base::m_ul * (Base::m_ul.transpose() * dgrad) / norm3;
+}
 
-#endif
+} //namespace Ponca
