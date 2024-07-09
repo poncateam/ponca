@@ -101,7 +101,7 @@ CovarianceFitTwoPassesBase<DataPoint, _WFunctor, T>::finalize ()
         auto ret = Base::finalize();
         if(ret == STABLE) {
             m_barycenterReady = true;
-            m_barycenter = Base::barycenter();
+            m_barycenter = Base::barycenterLocal();
             return NEED_OTHER_PASS;
         }
         // handle specific configurations

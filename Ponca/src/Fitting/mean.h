@@ -33,11 +33,25 @@ namespace Ponca {
         PONCA_FITTING_DECLARE_INIT
         PONCA_FITTING_DECLARE_ADDNEIGHBOR
 
-        /// \brief Barycenter of the input points
+        /// \brief Barycenter of the input points expressed in the global frame
         ///
         /// Defined as \f$ b(\mathbf{x}) = \frac{\sum_i w_\mathbf{x}(\mathbf{p_i}) \mathbf{p_i}}{\sum_i w_\mathbf{x}(\mathbf{p_i})} \f$,
         ///  where \f$\left[\mathbf{p_i} \in \text{neighborhood}(\mathbf{x})\right]\f$ are all the point samples in \f$\mathbf{x}\f$'s neighborhood
         PONCA_MULTIARCH inline VectorType barycenter() const {
+            return barycenterLocal() + Base::m_w.basisCenter();
+        }
+
+    protected:
+        /// \brief Barycenter of the input points expressed in the local frame
+        /// \see barycenter()
+        ///
+        /// \warning Provided for internal use only: any access to the barycenter in other computing classes must be
+        /// done using this function and not #barycenter()
+        ///
+        /// Defined as \f$ b(\mathbf{x}) = \frac{\sum_i w_\mathbf{x}(\mathbf{p_i}) \mathbf{p_i}}{\sum_i w_\mathbf{x}(\mathbf{p_i})} \f$,
+        ///  where \f$\left[\mathbf{p_i} \in \text{neighborhood}(\mathbf{x})\right]\f$ are all the point samples in
+        /// \f$\mathbf{x}\f$'s neighborhood
+        PONCA_MULTIARCH inline VectorType barycenterLocal() const {
             return (m_sumP / Base::getWeightSum());
         }
 
@@ -104,8 +118,8 @@ namespace Ponca {
         PONCA_FITTING_DECLARE_INIT
         PONCA_FITTING_DECLARE_ADDNEIGHBOR_DER
 
-        /// \brief Compute derivatives of the barycenter.
-        /// \see MeanPosition::barycenter()
+        /// \brief Compute derivatives of the barycenter (in local frame).
+        /// \see MeanPosition::barycenterLocal()
         ///
         /// ### Step-by-step derivation from the barycenter definition
         /// Given the definition of the barycenter \f$ b(\mathbf{x}) = \frac{\sum_i w_\mathbf{x}(\mathbf{p_i}) \mathbf{p_i}}{\sum_i w_\mathbf{x}(\mathbf{p_i})} \f$,
@@ -126,7 +140,7 @@ namespace Ponca {
         /// \note This code is not directly tested, but rather indirectly by testing CovariancePlaneDer::dNormal()
         PONCA_MULTIARCH VectorArray barycenterDerivatives() const
         {
-            return ( m_dSumP - Base::barycenter() * Base::m_dSumW ) / Base::getWeightSum();
+            return ( m_dSumP - Base::barycenterLocal() * Base::m_dSumW ) / Base::getWeightSum();
         }
 
     }; //class MeanPositionDer
