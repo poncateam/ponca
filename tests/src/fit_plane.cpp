@@ -22,6 +22,7 @@
 #include <Ponca/src/Fitting/meanPlaneFit.h>
 #include <Ponca/src/Fitting/weightFunc.h>
 #include <Ponca/src/Fitting/weightKernel.h>
+#include <Ponca/SpatialPartitioning>
 
 #include <vector>
 
@@ -93,6 +94,9 @@ void testFunction(bool _bUnoriented = false, bool _bAddPositionNoise = false, bo
     if ( _bAddPositionNoise) // relax a bit the testing threshold
       epsilon = Scalar(0.01*MAX_NOISE);
     // Test for each point if the fitted plane correspond to the theoretical plane
+
+    KdTreeDense<DataPoint> tree(vectorPoints);
+
 #ifdef DEBUG
 #pragma omp parallel for
 #endif
@@ -102,7 +106,7 @@ void testFunction(bool _bUnoriented = false, bool _bAddPositionNoise = false, bo
         Fit fit;
         fit.setWeightFunc(WeightFunc(analysisScale));
         fit.init(vectorPoints[i].pos());
-        fit.compute(vectorPoints);
+        fit.computeWithIds(tree.range_neighbors(vectorPoints[i].pos(),analysisScale),vectorPoints);
 
         auto ret = fit.getCurrentState();
 
@@ -136,12 +140,15 @@ void callSubTests()
 
     typedef DistWeightFunc<Point, SmoothWeightKernel<Scalar> > WeightSmoothFunc;
     typedef DistWeightFunc<Point, ConstantWeightKernel<Scalar> > WeightConstantFunc;
+    typedef NoWeightFunc<Point> WeightConstantFunc2;
 
     typedef Basket<Point, WeightSmoothFunc, CovariancePlaneFit> CovFitSmooth;
     typedef Basket<Point, WeightConstantFunc, CovariancePlaneFit> CovFitConstant;
+    typedef Basket<Point, WeightConstantFunc2, CovariancePlaneFit> CovFitConstant2;
 
     typedef Basket<Point, WeightSmoothFunc, MeanPlaneFit> MeanFitSmooth;
     typedef Basket<Point, WeightConstantFunc, MeanPlaneFit> MeanFitConstant;
+    typedef Basket<Point, WeightConstantFunc2, MeanPlaneFit> MeanFitConstant2;
 
     // test if conflicts are detected
     //! [Conflicting type]
@@ -159,8 +166,10 @@ void callSubTests()
         //Test with perfect plane
         CALL_SUBTEST(( testFunction<Point, CovFitSmooth, WeightSmoothFunc, true>() ));
         CALL_SUBTEST(( testFunction<Point, CovFitConstant, WeightConstantFunc, true>() ));
+        CALL_SUBTEST(( testFunction<Point, CovFitConstant2, WeightConstantFunc2, true>() ));
         CALL_SUBTEST(( testFunction<Point, MeanFitSmooth, WeightSmoothFunc, false>() ));
         CALL_SUBTEST(( testFunction<Point, MeanFitConstant, WeightConstantFunc, false>() ));
+        CALL_SUBTEST(( testFunction<Point, MeanFitConstant2, WeightConstantFunc2, false>() ));
         // Check if fitting conflict is detected
         CALL_SUBTEST(( testFunction<Point, Hybrid1, WeightConstantFunc, false>(false, false, false, true) ));
         CALL_SUBTEST(( testFunction<Point, Hybrid2, WeightConstantFunc, false>(false, false, false, true) ));
@@ -172,6 +181,7 @@ void callSubTests()
     {
         CALL_SUBTEST(( testFunction<Point, CovFitSmooth, WeightSmoothFunc, true>(false, true, true) ));
         CALL_SUBTEST(( testFunction<Point, CovFitConstant, WeightConstantFunc, true>(false, true, true) ));
+        CALL_SUBTEST(( testFunction<Point, CovFitConstant2, WeightConstantFunc2, true>(false, true, true) ));
     }
     cout << "Ok!" << endl;
 }
