@@ -8,7 +8,7 @@
 <area shape="rect" id="node7" href="$classPonca_1_1NormalDerivativesCurvatureEstimator.html" title="Extension to compute curvature values from the Weingarten map ." alt="" coords="254,292,486,347"/>
 <area shape="rect" id="node8" href="$classPonca_1_1PrimitiveDer.html" title="Generic class performing the Fit derivation." alt="" coords="279,371,461,425"/>
 <area shape="rect" id="node9" title=" " alt="" coords="5,785,195,825"/>
-<area shape="rect" id="node10" href="$classPonca_1_1CovarianceFitBase.html" title="Line fitting procedure that minimize the orthogonal distance between the samples and the fitted primi..." alt="" coords="266,529,474,569"/>
+<area shape="rect" id="node10" href="$classPonca_1_1CovarianceFitBase.html" title="Procedure that compute and decompose the covariance matrix of the neighbors positions in ." alt="" coords="266,529,474,569"/>
 <area shape="rect" id="node11" href="$classPonca_1_1CovarianceLineFitImpl.html" title="Line fitting procedure that minimize the orthogonal distance between the samples and the fitted primi..." alt="" coords="251,593,489,633"/>
 <area shape="rect" id="node12" href="$classPonca_1_1CovariancePlaneFitImpl.html" title="Plane fitting procedure using only points position." alt="" coords="251,657,489,697"/>
 <area shape="rect" id="node13" href="$classPonca_1_1MeanNormal.html" title="Compute the barycenter of the input points + their normals." alt="" coords="271,721,469,761"/>

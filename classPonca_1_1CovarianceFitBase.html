@@ -51,7 +51,7 @@ MathJax.Hub.Config({
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Ponca
-   &#160;<span id="projectnumber">e26a0e88a45818354616c1a7180bcd203aecad3c</span>
+   &#160;<span id="projectnumber">2472d73c9274ab1c1f63d0be3a6eb63a5a69ef3a</span>
    </div>
    <div id="projectbrief">Point Cloud Analysis library</div>
   </td>
@@ -126,7 +126,7 @@ $(document).ready(function(){initNavTree('classPonca_1_1CovarianceFitBase.html',
 </div><!--header-->
 <div class="contents">
 
-<p><a class="el" href="classPonca_1_1Line.html" title="A parametrized line is defined by an origin point  and a unit direction vector  such that the line co...">Line</a> fitting procedure that minimize the orthogonal distance between the samples and the fitted primitive.  
+<p>Procedure that compute and decompose the covariance matrix of the neighbors positions in \(3d\).  
  <a href="classPonca_1_1CovarianceFitBase.html#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="covarianceFit_8h_source.html">covarianceFit.h</a>&gt;</code></p>
@@ -168,10 +168,10 @@ Public Types</h2></td></tr>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:abe6d0402789126df9800bde5dd4c0959"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classPonca_1_1CovarianceFitBase.html">CovarianceFitBase</a>&lt; DataPoint, _WFunctor, T &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1CovarianceFitBase.html#abe6d0402789126df9800bde5dd4c0959">covarianceFit</a> ()</td></tr>
-<tr class="memdesc:abe6d0402789126df9800bde5dd4c0959"><td class="mdescLeft">&#160;</td><td class="mdescRight">Explicit conversion to <a class="el" href="classPonca_1_1CovarianceFitBase.html" title="Line fitting procedure that minimize the orthogonal distance between the samples and the fitted primi...">CovarianceFitBase</a> , to access methods potentially hidden by heritage.  <br /></td></tr>
+<tr class="memdesc:abe6d0402789126df9800bde5dd4c0959"><td class="mdescLeft">&#160;</td><td class="mdescRight">Explicit conversion to <a class="el" href="classPonca_1_1CovarianceFitBase.html" title="Procedure that compute and decompose the covariance matrix of the neighbors positions in .">CovarianceFitBase</a> , to access methods potentially hidden by heritage.  <br /></td></tr>
 <tr class="separator:abe6d0402789126df9800bde5dd4c0959"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a63a236306b65e42ccc17494d99799371"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="classPonca_1_1CovarianceFitBase.html">CovarianceFitBase</a>&lt; DataPoint, _WFunctor, T &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1CovarianceFitBase.html#a63a236306b65e42ccc17494d99799371">covarianceFit</a> () const</td></tr>
-<tr class="memdesc:a63a236306b65e42ccc17494d99799371"><td class="mdescLeft">&#160;</td><td class="mdescRight">Explicit conversion to <a class="el" href="classPonca_1_1CovarianceFitBase.html" title="Line fitting procedure that minimize the orthogonal distance between the samples and the fitted primi...">CovarianceFitBase</a> , to access methods potentially hidden by heritage.  <br /></td></tr>
+<tr class="memdesc:a63a236306b65e42ccc17494d99799371"><td class="mdescLeft">&#160;</td><td class="mdescRight">Explicit conversion to <a class="el" href="classPonca_1_1CovarianceFitBase.html" title="Procedure that compute and decompose the covariance matrix of the neighbors positions in .">CovarianceFitBase</a> , to access methods potentially hidden by heritage.  <br /></td></tr>
 <tr class="separator:a63a236306b65e42ccc17494d99799371"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:adf7b3942840b876ddf3bc1e69c3d1ad3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1CovarianceFitBase.html#adf7b3942840b876ddf3bc1e69c3d1ad3">init</a> (const <a class="el" href="classPonca_1_1CovarianceFitBase.html#ac86349b24e58b8770e684be787013a10">VectorType</a> &amp;_evalPos)</td></tr>
 <tr class="memdesc:adf7b3942840b876ddf3bc1e69c3d1ad3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the evaluation position and reset the internal states.  <br /></td></tr>
@@ -210,13 +210,30 @@ Protected Attributes</h2></td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><div class="compoundTemplParams">template&lt;class DataPoint, class _WFunctor, typename T&gt;<br />
-class Ponca::CovarianceFitBase&lt; DataPoint, _WFunctor, T &gt;</div><p><a class="el" href="classPonca_1_1Line.html" title="A parametrized line is defined by an origin point  and a unit direction vector  such that the line co...">Line</a> fitting procedure that minimize the orthogonal distance between the samples and the fitted primitive. </p>
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="classPonca_1_1Line.html" title="A parametrized line is defined by an origin point  and a unit direction vector  such that the line co...">Line</a> </dd>
-<dd>
-<a class="el" href="namespacePonca.html#aa4b1806ad54a3b70849bd5997002a8c7" title="Helper alias for Plane fitting on 3D points using CovariancePlaneFitImpl [CovariancePlaneFit Definiti...">CovariancePlaneFit</a> which use a similar approach for <a class="el" href="classPonca_1_1Plane.html" title="Implicit hyperplane defined by an homogeneous vector .">Plane</a> estimation</dd></dl>
+class Ponca::CovarianceFitBase&lt; DataPoint, _WFunctor, T &gt;</div><p>Procedure that compute and decompose the covariance matrix of the neighbors positions in \(3d\). </p>
+<p>This process is commonly used for plane fitting and local variance analysis. It is often called Principal Component Analysis (PCA) of the neighborhood, and used in Geometry Processing and Computer Vision.</p>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="namespacePonca.html#aa4b1806ad54a3b70849bd5997002a8c7" title="Helper alias for Plane fitting on 3D points using CovariancePlaneFitImpl [CovariancePlaneFit Definiti...">CovariancePlaneFit</a> which use a similar approach for <a class="el" href="classPonca_1_1Plane.html" title="Implicit hyperplane defined by an homogeneous vector .">Plane</a> estimation</dd></dl>
+<h3><a class="anchor" id="autotoc_md0"></a>
+Computation details</h3>
+<p>Standard PCA algorithm involves a two-steps process where the barycenter \(\mathbf{b}\) is first computed, and then the covariance matrix \(\text{C}\) (in the following, the weights are ignored for clarity but without loss of generality):  </p><p class="formulaDsp">
+\begin{align}
+\mathbf{b} &amp;= \frac{1}{n}\sum_i\mathbf{p}_i \\
+\text{C}   &amp;= \frac{1}{n}\sum_i(\mathbf{p}_i-\mathbf{b})(\mathbf{p}_i-\mathbf{b})^T
+\end{align}
+</p>
+<p> This class implements a single-pass version, where the first formulation is re-expressed as follows:  </p><p class="formulaDsp">
+\begin{align}
+\text{C} &amp;= \frac{1}{n}\sum_i (\mathbf{p}_i\mathbf{p}_i^T - \mathbf{b}\mathbf{p}_i^T - \mathbf{p}_i\mathbf{b}^T + \mathbf{b}\mathbf{b}^T) \\
+         &amp;= \frac{1}{n}\sum_i (\mathbf{p}_i\mathbf{p}_i^T) -  \frac{1}{n}\sum_i(\mathbf{b}\mathbf{p}_i^T)  -  \frac{1}{n}\sum_i(\mathbf{p}_i\mathbf{b}^T)  +  \frac{1}{n}\sum_i (\mathbf{b}\mathbf{b}^T) \\
+         &amp;= \frac{1}{n}\sum_i (\mathbf{p}_i\mathbf{p}_i^T) - \mathbf{b}\frac{1}{n}\sum_i(\mathbf{p}_i^T) - \frac{1}{n}\sum_i(\mathbf{p}_i)\mathbf{b}^T  + \frac{1}{n}\sum_i(1) \mathbf{b}\mathbf{b}^T \\
+         &amp;= \frac{1}{n}\sum_i (\mathbf{p}_i\mathbf{p}_i^T) - \mathbf{b}\mathbf{b}^T - \mathbf{b}\mathbf{b}^T + \mathbf{b}\mathbf{b}^T \end{align}
+</p>
+<p> Leading to a single pass where \(\text{C}\) is express by substracting two terms that can be computed independently in one run: </p><p class="formulaDsp">
+\[ \text{C} = \frac{1}{n}\sum_i (\mathbf{p}_i\mathbf{p}_i^T) - \mathbf{b}\mathbf{b}^T \]
+</p>
 <dl class="section warning"><dt>Warning</dt><dd>This class is valid only in 3D. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="covarianceFit_8h_source.html#l00032">32</a> of file <a class="el" href="covarianceFit_8h_source.html">covarianceFit.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="covarianceFit_8h_source.html#l00050">50</a> of file <a class="el" href="covarianceFit_8h_source.html">covarianceFit.h</a>.</p>
 </div><h2 class="groupheader">Member Typedef Documentation</h2>
 <a id="a5b142ef8e5479ba8bb1f3da97af53fe7" name="a5b142ef8e5479ba8bb1f3da97af53fe7"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a5b142ef8e5479ba8bb1f3da97af53fe7">&#9670;&#160;</a></span>Base</h2>
@@ -242,7 +259,7 @@ template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
 
 <p>Base class of the procedure. </p>
 
-<p class="definition">Definition at line <a class="el" href="covarianceFit_8h_source.html#l00034">34</a> of file <a class="el" href="covarianceFit_8h_source.html">covarianceFit.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="covarianceFit_8h_source.html#l00052">52</a> of file <a class="el" href="covarianceFit_8h_source.html">covarianceFit.h</a>.</p>
 
 </div>
 </div>
@@ -262,7 +279,7 @@ template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
 
 <p>Alias to matrix type. </p>
 
-<p class="definition">Definition at line <a class="el" href="covarianceFit_8h_source.html#l00044">44</a> of file <a class="el" href="covarianceFit_8h_source.html">covarianceFit.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="covarianceFit_8h_source.html#l00062">62</a> of file <a class="el" href="covarianceFit_8h_source.html">covarianceFit.h</a>.</p>
 
 </div>
 </div>
@@ -282,7 +299,7 @@ template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
 
 <p>Alias to scalar type. </p>
 
-<p class="definition">Definition at line <a class="el" href="covarianceFit_8h_source.html#l00034">34</a> of file <a class="el" href="covarianceFit_8h_source.html">covarianceFit.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="covarianceFit_8h_source.html#l00052">52</a> of file <a class="el" href="covarianceFit_8h_source.html">covarianceFit.h</a>.</p>
 
 </div>
 </div>
@@ -302,7 +319,7 @@ template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
 
 <p>Solver used to analyse the covariance matrix. </p>
 
-<p class="definition">Definition at line <a class="el" href="covarianceFit_8h_source.html#l00046">46</a> of file <a class="el" href="covarianceFit_8h_source.html">covarianceFit.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="covarianceFit_8h_source.html#l00064">64</a> of file <a class="el" href="covarianceFit_8h_source.html">covarianceFit.h</a>.</p>
 
 </div>
 </div>
@@ -322,7 +339,7 @@ template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
 
 <p>Alias to vector type. </p>
 
-<p class="definition">Definition at line <a class="el" href="covarianceFit_8h_source.html#l00034">34</a> of file <a class="el" href="covarianceFit_8h_source.html">covarianceFit.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="covarianceFit_8h_source.html#l00052">52</a> of file <a class="el" href="covarianceFit_8h_source.html">covarianceFit.h</a>.</p>
 
 </div>
 </div>
@@ -342,7 +359,7 @@ template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
 
 <p>Alias to weight function. </p>
 
-<p class="definition">Definition at line <a class="el" href="covarianceFit_8h_source.html#l00034">34</a> of file <a class="el" href="covarianceFit_8h_source.html">covarianceFit.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="covarianceFit_8h_source.html#l00052">52</a> of file <a class="el" href="covarianceFit_8h_source.html">covarianceFit.h</a>.</p>
 
 </div>
 </div>
@@ -369,7 +386,7 @@ template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="covarianceFit_8h_source.html#l00037">37</a> of file <a class="el" href="covarianceFit_8h_source.html">covarianceFit.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="covarianceFit_8h_source.html#l00055">55</a> of file <a class="el" href="covarianceFit_8h_source.html">covarianceFit.h</a>.</p>
 
 </div>
 </div>
@@ -448,9 +465,9 @@ template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p>Explicit conversion to <a class="el" href="classPonca_1_1CovarianceFitBase.html" title="Line fitting procedure that minimize the orthogonal distance between the samples and the fitted primi...">CovarianceFitBase</a> , to access methods potentially hidden by heritage. </p>
+<p>Explicit conversion to <a class="el" href="classPonca_1_1CovarianceFitBase.html" title="Procedure that compute and decompose the covariance matrix of the neighbors positions in .">CovarianceFitBase</a> , to access methods potentially hidden by heritage. </p>
 
-<p class="definition">Definition at line <a class="el" href="covarianceFit_8h_source.html#l00054">54</a> of file <a class="el" href="covarianceFit_8h_source.html">covarianceFit.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="covarianceFit_8h_source.html#l00072">72</a> of file <a class="el" href="covarianceFit_8h_source.html">covarianceFit.h</a>.</p>
 
 </div>
 </div>
@@ -479,9 +496,9 @@ template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p>Explicit conversion to <a class="el" href="classPonca_1_1CovarianceFitBase.html" title="Line fitting procedure that minimize the orthogonal distance between the samples and the fitted primi...">CovarianceFitBase</a> , to access methods potentially hidden by heritage. </p>
+<p>Explicit conversion to <a class="el" href="classPonca_1_1CovarianceFitBase.html" title="Procedure that compute and decompose the covariance matrix of the neighbors positions in .">CovarianceFitBase</a> , to access methods potentially hidden by heritage. </p>
 
-<p class="definition">Definition at line <a class="el" href="covarianceFit_8h_source.html#l00054">54</a> of file <a class="el" href="covarianceFit_8h_source.html">covarianceFit.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="covarianceFit_8h_source.html#l00072">72</a> of file <a class="el" href="covarianceFit_8h_source.html">covarianceFit.h</a>.</p>
 
 </div>
 </div>
@@ -578,7 +595,7 @@ template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
 
 <p>Reading access to the Solver used to analyse the covariance matrix. </p>
 
-<p class="definition">Definition at line <a class="el" href="covarianceFit_8h_source.html#l00064">64</a> of file <a class="el" href="covarianceFit_8h_source.html">covarianceFit.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="covarianceFit_8h_source.html#l00082">82</a> of file <a class="el" href="covarianceFit_8h_source.html">covarianceFit.h</a>.</p>
 
 </div>
 </div>
@@ -639,7 +656,7 @@ template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
 
 <p>Covariance matrix. </p>
 
-<p class="definition">Definition at line <a class="el" href="covarianceFit_8h_source.html#l00050">50</a> of file <a class="el" href="covarianceFit_8h_source.html">covarianceFit.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="covarianceFit_8h_source.html#l00068">68</a> of file <a class="el" href="covarianceFit_8h_source.html">covarianceFit.h</a>.</p>
 
 </div>
 </div>
@@ -667,7 +684,7 @@ template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
 
 <p>Solver used to analyse the covariance matrix. </p>
 
-<p class="definition">Definition at line <a class="el" href="covarianceFit_8h_source.html#l00051">51</a> of file <a class="el" href="covarianceFit_8h_source.html">covarianceFit.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="covarianceFit_8h_source.html#l00069">69</a> of file <a class="el" href="covarianceFit_8h_source.html">covarianceFit.h</a>.</p>
 
 </div>
 </div>
@@ -677,7 +694,7 @@ template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="namespacePonca.html">Ponca</a></li><li class="navelem"><a class="el" href="classPonca_1_1CovarianceFitBase.html">CovarianceFitBase</a></li>
-    <li class="footer">Generated on Thu Apr 11 2024 23:02:06 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.6 </li>
+    <li class="footer">Generated on Wed Jul 10 2024 20:30:26 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.6 </li>
   </ul>
 </div>
 </body>
