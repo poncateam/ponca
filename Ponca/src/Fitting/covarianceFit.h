@@ -16,14 +16,32 @@ namespace Ponca
 {
 
 /*!
-   \brief Line fitting procedure that minimize the orthogonal distance
-   between the samples and the fitted primitive.
+   \brief Procedure that compute and decompose the covariance matrix of the neighbors positions in \f$3d\f$.
+
+   This process is commonly used for plane fitting and local variance analysis. It is often called Principal
+   Component Analysis (PCA) of the neighborhood, and used in Geometry Processing and Computer Vision.
 
    \inherit Concept::FittingProcedureConcept
-   \see Line
    \see CovariancePlaneFit which use a similar approach for Plane estimation
 
-   \todo Add equations
+   ### Computation details
+   Standard PCA algorithm involves a two-steps process where the barycenter \f$\mathbf{b}\f$ is first computed,
+   and then the covariance matrix \f$\text{C}\f$ (in the following, the weights are ignored for clarity but without
+   loss of generality):
+   \f{align}
+   \mathbf{b} &= \frac{1}{n}\sum_i\mathbf{p}_i \\
+   \text{C}   &= \frac{1}{n}\sum_i(\mathbf{p}_i-\mathbf{b})(\mathbf{p}_i-\mathbf{b})^T
+   \f}
+   This class implements a single-pass version, where the first formulation is re-expressed as follows:
+   \f{align}
+   \text{C} &= \frac{1}{n}\sum_i (\mathbf{p}_i\mathbf{p}_i^T - \mathbf{b}\mathbf{p}_i^T - \mathbf{p}_i\mathbf{b}^T + \mathbf{b}\mathbf{b}^T) \\
+            &= \frac{1}{n}\sum_i (\mathbf{p}_i\mathbf{p}_i^T) -  \frac{1}{n}\sum_i(\mathbf{b}\mathbf{p}_i^T)  -  \frac{1}{n}\sum_i(\mathbf{p}_i\mathbf{b}^T)  +  \frac{1}{n}\sum_i (\mathbf{b}\mathbf{b}^T) \\
+            &= \frac{1}{n}\sum_i (\mathbf{p}_i\mathbf{p}_i^T) - \mathbf{b}\frac{1}{n}\sum_i(\mathbf{p}_i^T) - \frac{1}{n}\sum_i(\mathbf{p}_i)\mathbf{b}^T  + \frac{1}{n}\sum_i(1) \mathbf{b}\mathbf{b}^T \\
+            &= \frac{1}{n}\sum_i (\mathbf{p}_i\mathbf{p}_i^T) - \mathbf{b}\mathbf{b}^T - \mathbf{b}\mathbf{b}^T + \mathbf{b}\mathbf{b}^T \f}
+   Leading to a single pass where \f$\text{C}\f$ is express by substracting two terms that can be computed independently
+   in one run:
+   \f[ \text{C} = \frac{1}{n}\sum_i (\mathbf{p}_i\mathbf{p}_i^T) - \mathbf{b}\mathbf{b}^T \f]
+
 
    \warning This class is valid only in 3D.
  */
