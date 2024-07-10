@@ -7,6 +7,13 @@
 
 template <class DataPoint, class WeightKernel>
 typename DistWeightFunc<DataPoint, WeightKernel>::VectorType
+DistWeightFunc<DataPoint, WeightKernel>::convertToGlobalBasis(const VectorType& _q) const
+{
+    return _q + m_p;
+}
+
+template <class DataPoint, class WeightKernel>
+typename DistWeightFunc<DataPoint, WeightKernel>::VectorType
 DistWeightFunc<DataPoint, WeightKernel>::convertToLocalBasis(const VectorType& _q) const
 {
     return _q - m_p;

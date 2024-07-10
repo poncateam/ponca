@@ -40,7 +40,7 @@ CovariancePlaneFitImpl<DataPoint, _WFunctor, T>::tangentPlaneToWorld (const Vect
   if (ignoreTranslation)
     return Base::m_solver.eigenvectors().transpose().inverse() * _lq;
   else {
-    return Base::m_solver.eigenvectors().transpose().inverse() * _lq + Base::m_w.basisCenter();
+    return Base::m_w.convertToGlobalBasis(Base::m_solver.eigenvectors().transpose().inverse() * _lq);
   }
 }
 

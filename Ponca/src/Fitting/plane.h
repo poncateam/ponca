@@ -105,7 +105,7 @@ public:
     PONCA_MULTIARCH inline VectorType project (const VectorType& _q) const
     {
         // Project on the normal vector and add the offset value
-        return EigenBase::projection(Base::m_w.convertToLocalBasis(_q)) + Base::m_w.basisCenter();
+        return Base::m_w.convertToGlobalBasis(EigenBase::projection(Base::m_w.convertToLocalBasis(_q)));
     }
 
     //! \brief Scalar field gradient direction at the evaluation point
