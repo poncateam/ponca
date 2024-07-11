@@ -3,9 +3,14 @@ Ponca changelog
 
 
 --------------------------------------------------------------------------------
-Current head (v.1.3 RC)
+Current head (v.1.4 RC)
 
-- Breaking Changes
+--------------------------------------------------------------------------------
+v.1.3
+This release introduces several improvements around the KdTre API, as well as bug fixes, new features and doc
+(equations !!) for the fitting module.
+
+- Silent Breaking Changes
     - [fitting] Fix bad design where public barycenter() function was expressed in local coordinate (#141)
 
 - API
