@@ -214,7 +214,7 @@ public:
         }
 
         Scalar b = Scalar(1.)/m_uq;
-        return (Scalar(-0.5)*b)*m_ul + Base::m_w.basisCenter();
+        return Base::m_w.convertToGlobalBasis((Scalar(-0.5)*b)*m_ul);
     }
 
     //! \brief State indicating when the sphere has been normalized

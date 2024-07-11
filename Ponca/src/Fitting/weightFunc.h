@@ -58,11 +58,18 @@ public:
         m_p = _evalPos;
     }
 
-    /// \todo add convertToGlobalBasis, and remove this function
+    /// \brief Get access to basis center location in global coordinate system
     PONCA_MULTIARCH inline const VectorType& basisCenter() const { return m_p; }
 
     /*!
-     * \brief Convert query from global to local coordinate system
+     * \brief Convert position from local to global coordinate system
+     * @param _q Position in local coordinate
+     * @return Position expressed independently of the local basis center
+     */
+    PONCA_MULTIARCH inline VectorType convertToGlobalBasis(const VectorType& _q) const;
+
+    /*!
+     * \brief Convert query from global to local coordinate system (used internally(
      * @param _q Query in global coordinate
      * @return Query expressed relatively to the basis center
      */

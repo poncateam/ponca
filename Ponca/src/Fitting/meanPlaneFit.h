@@ -43,7 +43,7 @@ public:
         if(Base::finalize() == STABLE)
         {
             if (Base::plane().isValid()) Base::m_eCurrentState = CONFLICT_ERROR_FOUND;
-            Base::setPlane(Base::m_sumN / Base::getWeightSum(), Base::barycenter());
+            Base::setPlane(Base::m_sumN / Base::getWeightSum(), Base::barycenterLocal());
         }
         return Base::m_eCurrentState;
     }

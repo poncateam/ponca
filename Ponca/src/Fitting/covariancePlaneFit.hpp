@@ -13,7 +13,7 @@ CovariancePlaneFitImpl<DataPoint, _WFunctor, T>::finalize ()
 {
     if (Base::finalize() == STABLE) {
         if (Base::plane().isValid()) Base::m_eCurrentState = CONFLICT_ERROR_FOUND;
-        Base::setPlane(Base::m_solver.eigenvectors().col(0), Base::barycenter());
+        Base::setPlane(Base::m_solver.eigenvectors().col(0), Base::barycenterLocal());
     }
 
     return Base::m_eCurrentState;
@@ -40,7 +40,7 @@ CovariancePlaneFitImpl<DataPoint, _WFunctor, T>::tangentPlaneToWorld (const Vect
   if (ignoreTranslation)
     return Base::m_solver.eigenvectors().transpose().inverse() * _lq;
   else {
-    return Base::m_solver.eigenvectors().transpose().inverse() * _lq + Base::m_w.basisCenter();
+    return Base::m_w.convertToGlobalBasis(Base::m_solver.eigenvectors().transpose().inverse() * _lq);
   }
 }
 
@@ -56,7 +56,7 @@ CovariancePlaneDerImpl<DataPoint, _WFunctor, DiffType, T>::finalize()
     // Test if base finalize end on a viable case (stable / unstable)
     if (this->isReady())
     {
-      VectorType   barycenter = Base::barycenter();
+      VectorType   barycenter = Base::barycenterLocal();
       VectorArray dBarycenter = Base::barycenterDerivatives();
 
       // pre-compute shifted eigenvalues to apply the pseudo inverse of C - lambda_0 I

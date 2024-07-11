@@ -42,7 +42,7 @@ CovarianceFitBase<DataPoint, _WFunctor, T>::finalize ()
         return Base::m_eCurrentState = UNDEFINED;
 
     // Center the covariance on the centroid
-    auto centroid = Base::barycenter();
+    auto centroid = Base::barycenterLocal();
     m_cov = m_cov/Base::getWeightSum() - centroid * centroid.transpose();
 
 #ifdef __CUDACC__
@@ -103,7 +103,7 @@ CovarianceFitDer<DataPoint, _WFunctor, DiffType, T>::finalize()
     // Test if base finalize end on a viable case (stable / unstable)
     if (this->isReady())
     {
-        VectorType cog = Base::barycenter();
+        VectorType cog = Base::barycenterLocal();
         MatrixType cogSq = cog * cog.transpose();
         // \fixme Better use eigen here
         for(int k=0; k<Base::NbDerivatives; ++k)
