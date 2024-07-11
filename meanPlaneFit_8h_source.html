@@ -51,7 +51,7 @@ MathJax.Hub.Config({
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Ponca
-   &#160;<span id="projectnumber">2472d73c9274ab1c1f63d0be3a6eb63a5a69ef3a</span>
+   &#160;<span id="projectnumber">161053562e3b6790ec7fefb8ca56599177e9ded0</span>
    </div>
    <div id="projectbrief">Point Cloud Analysis library</div>
   </td>
@@ -154,7 +154,7 @@ $(document).ready(function(){initNavTree('meanPlaneFit_8h_source.html',''); init
 <div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>        <span class="keywordflow">if</span>(Base::finalize() == <a class="code hl_enumvalue" href="namespacePonca.html#abfd697aebf07c1b5c8be5ee401e2dc84a86d1e5381a39092fbe5560583c23d64c">STABLE</a>)</div>
 <div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>        {</div>
 <div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>            <span class="keywordflow">if</span> (Base::plane().isValid()) Base::m_eCurrentState = <a class="code hl_enumvalue" href="namespacePonca.html#abfd697aebf07c1b5c8be5ee401e2dc84a23aa2882b31e320fa4130218dd98c1a6">CONFLICT_ERROR_FOUND</a>;</div>
-<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>            Base::setPlane(Base::m_sumN / Base::getWeightSum(), Base::barycenter());</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>            Base::setPlane(Base::m_sumN / Base::getWeightSum(), Base::barycenterLocal());</div>
 <div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>        }</div>
 <div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>        <span class="keywordflow">return</span> Base::m_eCurrentState;</div>
 <div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>    }</div>
@@ -168,7 +168,7 @@ $(document).ready(function(){initNavTree('meanPlaneFit_8h_source.html',''); init
 <div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>            <a class="code hl_class" href="classPonca_1_1MeanPosition.html">MeanPosition</a>&lt;DataPoint, _WFunctor,</div>
 <div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>                <a class="code hl_class" href="classPonca_1_1Plane.html">Plane&lt;DataPoint, _WFunctor,T&gt;</a>&gt;&gt;&gt;;</div>
 <div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>} <span class="comment">//namespace Ponca</span></div>
-<div class="ttc" id="aclassPonca_1_1MeanNormal_html"><div class="ttname"><a href="classPonca_1_1MeanNormal.html">Ponca::MeanNormal</a></div><div class="ttdoc">Compute the barycenter of the input points + their normals.</div><div class="ttdef"><b>Definition:</b> <a href="mean_8h_source.html#l00065">mean.h:65</a></div></div>
+<div class="ttc" id="aclassPonca_1_1MeanNormal_html"><div class="ttname"><a href="classPonca_1_1MeanNormal.html">Ponca::MeanNormal</a></div><div class="ttdoc">Compute the barycenter of the input points + their normals.</div><div class="ttdef"><b>Definition:</b> <a href="mean_8h_source.html#l00079">mean.h:79</a></div></div>
 <div class="ttc" id="aclassPonca_1_1MeanPlaneFitImpl_html"><div class="ttname"><a href="classPonca_1_1MeanPlaneFitImpl.html">Ponca::MeanPlaneFitImpl</a></div><div class="ttdoc">Plane fitting procedure computing the mean position and orientation from oriented points.</div><div class="ttdef"><b>Definition:</b> <a href="meanPlaneFit_8h_source.html#l00028">meanPlaneFit.h:29</a></div></div>
 <div class="ttc" id="aclassPonca_1_1MeanPlaneFitImpl_html_a3bb0bc96c013136edd0a9a2448865510"><div class="ttname"><a href="classPonca_1_1MeanPlaneFitImpl.html#a3bb0bc96c013136edd0a9a2448865510">Ponca::MeanPlaneFitImpl::meanPlaneFit</a></div><div class="ttdeci">MeanPlaneFitImpl&lt; DataPoint, _WFunctor, T &gt; &amp; meanPlaneFit()</div><div class="ttdoc">Explicit conversion to MeanPlaneFitImpl , to access methods potentially hidden by heritage.</div><div class="ttdef"><b>Definition:</b> <a href="meanPlaneFit_8h_source.html#l00037">meanPlaneFit.h:37</a></div></div>
 <div class="ttc" id="aclassPonca_1_1MeanPlaneFitImpl_html_a3c9791929ffcfe379dbaa950dc82f32c"><div class="ttname"><a href="classPonca_1_1MeanPlaneFitImpl.html#a3c9791929ffcfe379dbaa950dc82f32c">Ponca::MeanPlaneFitImpl::finalize</a></div><div class="ttdeci">FIT_RESULT finalize()</div><div class="ttdoc">Finalize the procedure.</div><div class="ttdef"><b>Definition:</b> <a href="meanPlaneFit_8h_source.html#l00040">meanPlaneFit.h:40</a></div></div>
@@ -184,7 +184,7 @@ $(document).ready(function(){initNavTree('meanPlaneFit_8h_source.html',''); init
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_695d95a8d8fbec601a248c0414764298.html">Ponca</a></li><li class="navelem"><a class="el" href="dir_ce16314fc45f8638543c5146aff64d4a.html">src</a></li><li class="navelem"><a class="el" href="dir_221133f19e4af6803e4ee7d78db21786.html">Fitting</a></li><li class="navelem"><b>meanPlaneFit.h</b></li>
-    <li class="footer">Generated on Wed Jul 10 2024 20:30:26 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.6 </li>
+    <li class="footer">Generated on Thu Jul 11 2024 13:21:00 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.6 </li>
   </ul>
 </div>
 </body>

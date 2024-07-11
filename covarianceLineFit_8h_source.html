@@ -51,7 +51,7 @@ MathJax.Hub.Config({
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Ponca
-   &#160;<span id="projectnumber">2472d73c9274ab1c1f63d0be3a6eb63a5a69ef3a</span>
+   &#160;<span id="projectnumber">161053562e3b6790ec7fefb8ca56599177e9ded0</span>
    </div>
    <div id="projectbrief">Point Cloud Analysis library</div>
   </td>
@@ -160,7 +160,7 @@ $(document).ready(function(){initNavTree('covarianceLineFit_8h_source.html','');
 <div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>        <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">int</span> smallestEigenValue = DataPoint::Dim - 1;</div>
 <div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>        <span class="keywordflow">if</span> (Base::finalize() == <a class="code hl_enumvalue" href="namespacePonca.html#abfd697aebf07c1b5c8be5ee401e2dc84a86d1e5381a39092fbe5560583c23d64c">STABLE</a>) {</div>
 <div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>            <span class="keywordflow">if</span> (Base::line().isValid()) Base::m_eCurrentState = <a class="code hl_enumvalue" href="namespacePonca.html#abfd697aebf07c1b5c8be5ee401e2dc84a23aa2882b31e320fa4130218dd98c1a6">CONFLICT_ERROR_FOUND</a>;</div>
-<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>            Base::setLine(Base::barycenter(), Base::m_solver.eigenvectors().col(smallestEigenValue).normalized());</div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>            Base::setLine(Base::barycenterLocal(), Base::m_solver.eigenvectors().col(smallestEigenValue).normalized());</div>
 <div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>        }</div>
 <div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>        <span class="keywordflow">return</span> Base::m_eCurrentState;</div>
 <div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>    }</div>
@@ -191,7 +191,7 @@ $(document).ready(function(){initNavTree('covarianceLineFit_8h_source.html','');
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_695d95a8d8fbec601a248c0414764298.html">Ponca</a></li><li class="navelem"><a class="el" href="dir_ce16314fc45f8638543c5146aff64d4a.html">src</a></li><li class="navelem"><a class="el" href="dir_221133f19e4af6803e4ee7d78db21786.html">Fitting</a></li><li class="navelem"><b>covarianceLineFit.h</b></li>
-    <li class="footer">Generated on Wed Jul 10 2024 20:30:26 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.6 </li>
+    <li class="footer">Generated on Thu Jul 11 2024 13:21:00 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.6 </li>
   </ul>
 </div>
 </body>

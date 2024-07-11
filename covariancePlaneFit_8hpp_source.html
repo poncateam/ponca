@@ -51,7 +51,7 @@ MathJax.Hub.Config({
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Ponca
-   &#160;<span id="projectnumber">2472d73c9274ab1c1f63d0be3a6eb63a5a69ef3a</span>
+   &#160;<span id="projectnumber">161053562e3b6790ec7fefb8ca56599177e9ded0</span>
    </div>
    <div id="projectbrief">Point Cloud Analysis library</div>
   </td>
@@ -134,7 +134,7 @@ $(document).ready(function(){initNavTree('covariancePlaneFit_8hpp_source.html','
 <div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span>{</div>
 <div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span>    <span class="keywordflow">if</span> (Base::finalize() == <a class="code hl_enumvalue" href="namespacePonca.html#abfd697aebf07c1b5c8be5ee401e2dc84a86d1e5381a39092fbe5560583c23d64c">STABLE</a>) {</div>
 <div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span>        <span class="keywordflow">if</span> (Base::plane().isValid()) Base::m_eCurrentState = <a class="code hl_enumvalue" href="namespacePonca.html#abfd697aebf07c1b5c8be5ee401e2dc84a23aa2882b31e320fa4130218dd98c1a6">CONFLICT_ERROR_FOUND</a>;</div>
-<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span>        Base::setPlane(Base::m_solver.eigenvectors().col(0), Base::barycenter());</div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span>        Base::setPlane(Base::m_solver.eigenvectors().col(0), Base::barycenterLocal());</div>
 <div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span>    }</div>
 <div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span> </div>
 <div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>    <span class="keywordflow">return</span> Base::m_eCurrentState;</div>
@@ -161,7 +161,7 @@ $(document).ready(function(){initNavTree('covariancePlaneFit_8hpp_source.html','
 <div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>  <span class="keywordflow">if</span> (ignoreTranslation)</div>
 <div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>    <span class="keywordflow">return</span> Base::m_solver.eigenvectors().transpose().inverse() * _lq;</div>
 <div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>  <span class="keywordflow">else</span> {</div>
-<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>    <span class="keywordflow">return</span> Base::m_solver.eigenvectors().transpose().inverse() * _lq + Base::m_w.basisCenter();</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>    <span class="keywordflow">return</span> Base::m_w.convertToGlobalBasis(Base::m_solver.eigenvectors().transpose().inverse() * _lq);</div>
 <div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>  }</div>
 <div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>}</div>
 <div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span> </div>
@@ -177,7 +177,7 @@ $(document).ready(function(){initNavTree('covariancePlaneFit_8hpp_source.html','
 <div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>    <span class="comment">// Test if base finalize end on a viable case (stable / unstable)</span></div>
 <div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>    <span class="keywordflow">if</span> (this-&gt;isReady())</div>
 <div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>    {</div>
-<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>      <a class="code hl_typedef" href="classPonca_1_1CovariancePlaneDerImpl.html#ab20cd5c198ec858dbe2de91db8342fe6">VectorType</a>   barycenter = Base::barycenter();</div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>      <a class="code hl_typedef" href="classPonca_1_1CovariancePlaneDerImpl.html#ab20cd5c198ec858dbe2de91db8342fe6">VectorType</a>   barycenter = Base::barycenterLocal();</div>
 <div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>      <a class="code hl_typedef" href="classPonca_1_1CovariancePlaneDerImpl.html#abd2479f5f151d3155ea8b8640ab66843">VectorArray</a> dBarycenter = Base::barycenterDerivatives();</div>
 <div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span> </div>
 <div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>      <span class="comment">// pre-compute shifted eigenvalues to apply the pseudo inverse of C - lambda_0 I</span></div>
@@ -234,7 +234,7 @@ $(document).ready(function(){initNavTree('covariancePlaneFit_8hpp_source.html','
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_695d95a8d8fbec601a248c0414764298.html">Ponca</a></li><li class="navelem"><a class="el" href="dir_ce16314fc45f8638543c5146aff64d4a.html">src</a></li><li class="navelem"><a class="el" href="dir_221133f19e4af6803e4ee7d78db21786.html">Fitting</a></li><li class="navelem"><b>covariancePlaneFit.hpp</b></li>
-    <li class="footer">Generated on Wed Jul 10 2024 20:30:26 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.6 </li>
+    <li class="footer">Generated on Thu Jul 11 2024 13:21:00 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.6 </li>
   </ul>
 </div>
 </body>

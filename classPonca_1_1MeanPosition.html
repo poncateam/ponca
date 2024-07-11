@@ -51,7 +51,7 @@ MathJax.Hub.Config({
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Ponca
-   &#160;<span id="projectnumber">2472d73c9274ab1c1f63d0be3a6eb63a5a69ef3a</span>
+   &#160;<span id="projectnumber">161053562e3b6790ec7fefb8ca56599177e9ded0</span>
    </div>
    <div id="projectbrief">Point Cloud Analysis library</div>
   </td>
@@ -120,6 +120,7 @@ $(document).ready(function(){initNavTree('classPonca_1_1MeanPosition.html',''); 
 <a href="#pub-types">Public Types</a> &#124;
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="#pro-types">Protected Types</a> &#124;
+<a href="#pro-methods">Protected Member Functions</a> &#124;
 <a href="#pro-attribs">Protected Attributes</a> &#124;
 <a href="classPonca_1_1MeanPosition-members.html">List of all members</a>  </div>
   <div class="headertitle"><div class="title">Ponca::MeanPosition&lt; DataPoint, _WFunctor, T &gt; Class Template Reference</div></div>
@@ -135,7 +136,7 @@ $(document).ready(function(){initNavTree('classPonca_1_1MeanPosition.html',''); 
 <div id="dynsection-0-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-0-content" class="dyncontent" style="display:none;">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classPonca_1_1MeanPosition__inherit__graph.svg" width="279" height="302"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classPonca_1_1MeanPosition__inherit__graph.svg" width="279" height="316"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
 </div>
 <div id="dynsection-1" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
@@ -143,7 +144,7 @@ $(document).ready(function(){initNavTree('classPonca_1_1MeanPosition.html',''); 
 <div id="dynsection-1-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-1-content" class="dyncontent" style="display:none;">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classPonca_1_1MeanPosition__coll__graph.svg" width="279" height="302"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classPonca_1_1MeanPosition__coll__graph.svg" width="279" height="316"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
 </div>
 <table class="memberdecls">
@@ -174,7 +175,7 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:a408415520337d643d9403e3622b33f19"><td class="mdescLeft">&#160;</td><td class="mdescRight">Add a neighbor to perform the fit.  <br /></td></tr>
 <tr class="separator:a408415520337d643d9403e3622b33f19"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a64e2769dc034fcedc6ded6db2e354795"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classPonca_1_1MeanPosition.html#aba53b8040332f3aff231803e9944e519">VectorType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1MeanPosition.html#a64e2769dc034fcedc6ded6db2e354795">barycenter</a> () const</td></tr>
-<tr class="memdesc:a64e2769dc034fcedc6ded6db2e354795"><td class="mdescLeft">&#160;</td><td class="mdescRight">Barycenter of the input points.  <br /></td></tr>
+<tr class="memdesc:a64e2769dc034fcedc6ded6db2e354795"><td class="mdescLeft">&#160;</td><td class="mdescRight">Barycenter of the input points expressed in the global frame.  <br /></td></tr>
 <tr class="separator:a64e2769dc034fcedc6ded6db2e354795"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-types" name="pro-types"></a>
@@ -185,6 +186,12 @@ Protected Types</h2></td></tr>
 <tr class="memitem:a424440d234954beed158dd9df8ff9276"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1MeanPosition.html#a424440d234954beed158dd9df8ff9276">Base</a> = T</td></tr>
 <tr class="memdesc:a424440d234954beed158dd9df8ff9276"><td class="mdescLeft">&#160;</td><td class="mdescRight">Base class of the procedure.  <br /></td></tr>
 <tr class="separator:a424440d234954beed158dd9df8ff9276"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-methods" name="pro-methods"></a>
+Protected Member Functions</h2></td></tr>
+<tr class="memitem:a96adb850d544c7364316cc1efdc9fbc1"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classPonca_1_1MeanPosition.html#aba53b8040332f3aff231803e9944e519">VectorType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1MeanPosition.html#a96adb850d544c7364316cc1efdc9fbc1">barycenterLocal</a> () const</td></tr>
+<tr class="memdesc:a96adb850d544c7364316cc1efdc9fbc1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Barycenter of the input points expressed in the local frame.  <br /></td></tr>
+<tr class="separator:a96adb850d544c7364316cc1efdc9fbc1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-attribs" name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
@@ -389,10 +396,44 @@ template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p>Barycenter of the input points. </p>
+<p>Barycenter of the input points expressed in the global frame. </p>
 <p>Defined as \( b(\mathbf{x}) = \frac{\sum_i w_\mathbf{x}(\mathbf{p_i}) \mathbf{p_i}}{\sum_i w_\mathbf{x}(\mathbf{p_i})} \), where \(\left[\mathbf{p_i} \in \text{neighborhood}(\mathbf{x})\right]\) are all the point samples in \(\mathbf{x}\)'s neighborhood </p>
 
 <p class="definition">Definition at line <a class="el" href="mean_8h_source.html#l00040">40</a> of file <a class="el" href="mean_8h_source.html">mean.h</a>.</p>
+
+</div>
+</div>
+<a id="a96adb850d544c7364316cc1efdc9fbc1" name="a96adb850d544c7364316cc1efdc9fbc1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a96adb850d544c7364316cc1efdc9fbc1">&#9670;&#160;</a></span>barycenterLocal()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classPonca_1_1MeanPosition.html#aba53b8040332f3aff231803e9944e519">VectorType</a> <a class="el" href="classPonca_1_1MeanPosition.html">Ponca::MeanPosition</a>&lt; DataPoint, _WFunctor, T &gt;::barycenterLocal </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Barycenter of the input points expressed in the local frame. </p>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="classPonca_1_1MeanPosition.html#a64e2769dc034fcedc6ded6db2e354795" title="Barycenter of the input points expressed in the global frame.">barycenter()</a></dd></dl>
+<dl class="section warning"><dt>Warning</dt><dd>Provided for internal use only: any access to the barycenter in other computing classes must be done using this function and not <a class="el" href="classPonca_1_1MeanPosition.html#a64e2769dc034fcedc6ded6db2e354795" title="Barycenter of the input points expressed in the global frame.">barycenter()</a></dd></dl>
+<p>Defined as \( b(\mathbf{x}) = \frac{\sum_i w_\mathbf{x}(\mathbf{p_i}) \mathbf{p_i}}{\sum_i w_\mathbf{x}(\mathbf{p_i})} \), where \(\left[\mathbf{p_i} \in \text{neighborhood}(\mathbf{x})\right]\) are all the point samples in \(\mathbf{x}\)'s neighborhood </p>
+
+<p class="definition">Definition at line <a class="el" href="mean_8h_source.html#l00054">54</a> of file <a class="el" href="mean_8h_source.html">mean.h</a>.</p>
 
 </div>
 </div>
@@ -526,7 +567,7 @@ template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="namespacePonca.html">Ponca</a></li><li class="navelem"><a class="el" href="classPonca_1_1MeanPosition.html">MeanPosition</a></li>
-    <li class="footer">Generated on Wed Jul 10 2024 20:30:26 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.6 </li>
+    <li class="footer">Generated on Thu Jul 11 2024 13:21:00 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.6 </li>
   </ul>
 </div>
 </body>

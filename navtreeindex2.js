@@ -1,5 +1,7 @@
 var NAVTREEINDEX2 =
 {
+"classPonca_1_1PrimitiveBase.html#af20277c1bd8e48d55b43bf7e8f970cc3":[8,0,0,57,9],
+"classPonca_1_1PrimitiveDer.html":[8,0,0,58],
 "classPonca_1_1PrimitiveDer.html#a22e7dcb8b9b25ac37e288253cb5ab119":[8,0,0,58,4],
 "classPonca_1_1PrimitiveDer.html#a40d87b059535d4fbc623d6aba062ca30":[8,0,0,58,0],
 "classPonca_1_1PrimitiveDer.html#a5a2e8e3b07c6f8e4896ff40a1a4fd29f":[8,0,0,58,3],
@@ -247,7 +249,5 @@ var NAVTREEINDEX2 =
 "ponca_getting_started_page.html#getting_started_requirements_sec":[5,0],
 "spatialpartitioning.html":[6,3],
 "spatialpartitioning.html#spatialpartitioning_intro":[6,3,0],
-"spatialpartitioning.html#spatialpartitioning_intro_queries":[6,3,0,1],
-"spatialpartitioning.html#spatialpartitioning_intro_structures":[6,3,0,0],
-"spatialpartitioning.html#spatialpartitioning_kdtree":[6,3,1]
+"spatialpartitioning.html#spatialpartitioning_intro_queries":[6,3,0,1]
 };

@@ -51,7 +51,7 @@ MathJax.Hub.Config({
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Ponca
-   &#160;<span id="projectnumber">2472d73c9274ab1c1f63d0be3a6eb63a5a69ef3a</span>
+   &#160;<span id="projectnumber">161053562e3b6790ec7fefb8ca56599177e9ded0</span>
    </div>
    <div id="projectbrief">Point Cloud Analysis library</div>
   </td>
@@ -200,7 +200,7 @@ $(document).ready(function(){initNavTree('linePrimitive_8h_source.html',''); ini
 <div class="line"><a id="l00112" name="l00112"></a><span class="lineno"><a class="line" href="classPonca_1_1Line.html#a438adedc217dc8ee8bdd4ded42b5c5cf">  112</a></span>    PONCA_MULTIARCH <span class="keyword">inline</span> <a class="code hl_typedef" href="classPonca_1_1Line.html#a423e9d0178e924d62143af82dcf644ca">VectorType</a> <a class="code hl_function" href="classPonca_1_1Line.html#a438adedc217dc8ee8bdd4ded42b5c5cf">project</a> (<span class="keyword">const</span> <a class="code hl_typedef" href="classPonca_1_1Line.html#a423e9d0178e924d62143af82dcf644ca">VectorType</a>&amp; _q)<span class="keyword"> const</span></div>
 <div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span><span class="keyword">    </span>{</div>
 <div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span>        <span class="comment">// Project on the normal vector and add the offset value</span></div>
-<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span>        <span class="keywordflow">return</span> EigenBase::projection(Base::m_w.convertToLocalBasis(_q)) + Base::m_w.basisCenter();</div>
+<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span>        <span class="keywordflow">return</span> Base::m_w.convertToGlobalBasis(EigenBase::projection(Base::m_w.convertToLocalBasis(_q)));</div>
 <div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span>    }</div>
 <div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span>}; <span class="comment">//class Line</span></div>
 <div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span> </div>
@@ -228,7 +228,7 @@ $(document).ready(function(){initNavTree('linePrimitive_8h_source.html',''); ini
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_695d95a8d8fbec601a248c0414764298.html">Ponca</a></li><li class="navelem"><a class="el" href="dir_ce16314fc45f8638543c5146aff64d4a.html">src</a></li><li class="navelem"><a class="el" href="dir_221133f19e4af6803e4ee7d78db21786.html">Fitting</a></li><li class="navelem"><b>linePrimitive.h</b></li>
-    <li class="footer">Generated on Wed Jul 10 2024 20:30:26 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.6 </li>
+    <li class="footer">Generated on Thu Jul 11 2024 13:21:00 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.6 </li>
   </ul>
 </div>
 </body>

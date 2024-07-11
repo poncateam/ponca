@@ -1,5 +1,6 @@
 var NAVTREEINDEX1 =
 {
+"classPonca_1_1KdTreeNearestQueryBase.html":[8,0,0,28],
 "classPonca_1_1KdTreeQuery.html":[8,0,0,29],
 "classPonca_1_1KdTreeQuery.html#a2c02164e69a15dbf89c4b80b625cc0ac":[8,0,0,29,0],
 "classPonca_1_1KdTreeQuery.html#a6d3590a201b336ce0858be23ef006001":[8,0,0,29,3],
@@ -82,12 +83,13 @@ var NAVTREEINDEX1 =
 "classPonca_1_1MeanPosition.html#a408415520337d643d9403e3622b33f19":[8,0,0,46,4],
 "classPonca_1_1MeanPosition.html#a424440d234954beed158dd9df8ff9276":[8,0,0,46,0],
 "classPonca_1_1MeanPosition.html#a64e2769dc034fcedc6ded6db2e354795":[8,0,0,46,5],
-"classPonca_1_1MeanPosition.html#a873adc2e162aa2c0417ed610a618d7a6":[8,0,0,46,8],
-"classPonca_1_1MeanPosition.html#a98f57e6b0ef2db19e6d507c2f8528813":[8,0,0,46,9],
-"classPonca_1_1MeanPosition.html#aa451097cd1b5bb666ef0e1f9a0840669":[8,0,0,46,7],
+"classPonca_1_1MeanPosition.html#a873adc2e162aa2c0417ed610a618d7a6":[8,0,0,46,9],
+"classPonca_1_1MeanPosition.html#a96adb850d544c7364316cc1efdc9fbc1":[8,0,0,46,6],
+"classPonca_1_1MeanPosition.html#a98f57e6b0ef2db19e6d507c2f8528813":[8,0,0,46,10],
+"classPonca_1_1MeanPosition.html#aa451097cd1b5bb666ef0e1f9a0840669":[8,0,0,46,8],
 "classPonca_1_1MeanPosition.html#aa9c7077883604f0a39a4f59d7cfe30f5":[8,0,0,46,1],
 "classPonca_1_1MeanPosition.html#aba53b8040332f3aff231803e9944e519":[8,0,0,46,2],
-"classPonca_1_1MeanPosition.html#ad78e0f1ba86cd27419b636eb462512e5":[8,0,0,46,6],
+"classPonca_1_1MeanPosition.html#ad78e0f1ba86cd27419b636eb462512e5":[8,0,0,46,7],
 "classPonca_1_1MeanPositionDer.html":[8,0,0,47],
 "classPonca_1_1MeanPositionDer.html#a063c77346f85916bfadbfb50f9baf37a":[8,0,0,47,11],
 "classPonca_1_1MeanPositionDer.html#a0fae2778f05711f906b5021b805b1780":[8,0,0,47,2],
@@ -247,7 +249,5 @@ var NAVTREEINDEX1 =
 "classPonca_1_1PrimitiveBase.html#ab255848c96e9dbe1f95f54f502cbd83c":[8,0,0,57,6],
 "classPonca_1_1PrimitiveBase.html#ac70b0df49cb26246d394486fa5bd3a34":[8,0,0,57,12],
 "classPonca_1_1PrimitiveBase.html#ada0d81900921e0a922ce459ba1d3ec2c":[8,0,0,57,11],
-"classPonca_1_1PrimitiveBase.html#ae90892c0b382040d748e16a10990ec49":[8,0,0,57,15],
-"classPonca_1_1PrimitiveBase.html#af20277c1bd8e48d55b43bf7e8f970cc3":[8,0,0,57,9],
-"classPonca_1_1PrimitiveDer.html":[8,0,0,58]
+"classPonca_1_1PrimitiveBase.html#ae90892c0b382040d748e16a10990ec49":[8,0,0,57,15]
 };

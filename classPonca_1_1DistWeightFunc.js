@@ -6,6 +6,7 @@ var classPonca_1_1DistWeightFunc =
     [ "WeightReturnType", "classPonca_1_1DistWeightFunc.html#a9f637587b83b4a0e7db3a5499f939010", null ],
     [ "DistWeightFunc", "classPonca_1_1DistWeightFunc.html#a10dad373d1412d0ae669f2459aade80a", null ],
     [ "basisCenter", "classPonca_1_1DistWeightFunc.html#aa9d898ee2b8556f2fd91f9959e8370dd", null ],
+    [ "convertToGlobalBasis", "classPonca_1_1DistWeightFunc.html#a5d195fbfbdbdbac7dd41cc381078077e", null ],
     [ "convertToLocalBasis", "classPonca_1_1DistWeightFunc.html#a0c1f6d4c4beea246b39fb8929c45e1ee", null ],
     [ "evalPos", "classPonca_1_1DistWeightFunc.html#af6c2c5df61d3c1b4c245bbbc6c037ef1", null ],
     [ "evalScale", "classPonca_1_1DistWeightFunc.html#a3e6e344a75df11f64952f7b099355a36", null ],
