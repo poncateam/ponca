@@ -35,7 +35,7 @@ void testFunction(bool _bAddPositionNoise = false)
     typedef typename DataPoint::VectorType VectorType;
 
     //generate sampled line
-    int nbPoints = Eigen::internal::random<int>(100, 1000);
+    int nbPoints = Eigen::internal::random<int>(500, 1000);
 
     VectorType _direction = VectorType::Random().normalized();
 
