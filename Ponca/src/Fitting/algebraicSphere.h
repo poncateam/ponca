@@ -254,6 +254,8 @@ public:
         \warning The gradient is not normalized by default */
     PONCA_MULTIARCH inline const VectorType& primitiveGradient () const { return m_ul; }
 
+    ///\brief Mean curvature (inverse of the sphere radius). Return 0 for planes
+    PONCA_MULTIARCH inline Scalar meanCurvature () const { return Scalar(2)*m_uq; }
 
     ///\brief Read access to constant term \f$ u_c \f$
     PONCA_MULTIARCH inline Scalar uc() const { return m_uc; }
@@ -272,7 +274,7 @@ public:
     {
         PONCA_MULTIARCH_STD_MATH(abs);
         Scalar epsilon = Eigen::NumTraits<Scalar>::dummy_precision();
-        bool bPlanar   = Eigen::internal::isMuchSmallerThan(abs(m_uq), Scalar(1.), epsilon);
+        bool bPlanar   = Eigen::internal::isMuchSmallerThan(abs(meanCurvature()), Scalar(1.), epsilon);
         bool bReady    = Base::isReady();
 
         return bReady && bPlanar;
