@@ -46,7 +46,7 @@ install(TARGETS SpatialPartitioning
 install(EXPORT SpatialPartitioningTargets
   FILE PoncaTargets-SpatialPartitioning.cmake
   NAMESPACE Ponca::
-  DESTINATION lib/cmake
+  DESTINATION lib/cmake/Ponca
   COMPONENT Common
 )
 

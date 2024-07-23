@@ -68,7 +68,7 @@ install(TARGETS Fitting
 install(EXPORT FittingTargets
   FILE PoncaTargets-Fitting.cmake
   NAMESPACE Ponca::
-  DESTINATION lib/cmake
+  DESTINATION lib/cmake/Ponca
   COMPONENT Common
 )
 

@@ -31,7 +31,7 @@ install(TARGETS Common
 install(EXPORT CommonTargets
   FILE PoncaTargets-Common.cmake
   NAMESPACE Ponca::
-  DESTINATION lib/cmake
+  DESTINATION lib/cmake/Ponca
 )
 
 add_library(Ponca::Common ALIAS Common)
