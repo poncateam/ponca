@@ -52,7 +52,7 @@ install(EXPORT SpatialPartitioningTargets
 
 add_library(Ponca::SpatialPartitioning ALIAS SpatialPartitioning)
 export(EXPORT SpatialPartitioningTargets
-  FILE ${CMAKE_BINARY_DIR}/PoncaTargets-SpatialPartitioning.cmake
+  FILE ${CMAKE_CURRENT_BINARY_DIR}/PoncaTargets-SpatialPartitioning.cmake
   NAMESPACE Ponca::
 )
 

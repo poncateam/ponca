@@ -74,7 +74,7 @@ install(EXPORT FittingTargets
 
 add_library(Ponca::Fitting ALIAS Fitting)
 export(EXPORT FittingTargets
-  FILE ${CMAKE_BINARY_DIR}/PoncaTargets-Fitting.cmake
+  FILE ${CMAKE_CURRENT_BINARY_DIR}/PoncaTargets-Fitting.cmake
   NAMESPACE Ponca::
 )
 
