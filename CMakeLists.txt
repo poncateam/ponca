@@ -97,7 +97,7 @@ endmacro()
 ################################################################################
 set(Ponca_EXPORT_TARGET_DIR \${CMAKE_CURRENT_LIST_DIR})
 
-set(config_install_dir "${CMAKE_INSTALL_PREFIX}/lib/cmake/")
+set(config_install_dir "${CMAKE_INSTALL_PREFIX}/lib/cmake/Ponca")
 set(include_install_dir "${CMAKE_INSTALL_PREFIX}/include")
 set(generated_dir "${CMAKE_CURRENT_BINARY_DIR}/generated")
 
