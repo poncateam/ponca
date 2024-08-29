@@ -114,7 +114,7 @@ private:
     using LeafType  = _LeafNodeType;
 
 public:
-    enum
+    enum : std::size_t
     {
         /*!
          * \brief The maximum number of nodes that a kd-tree can have when using
