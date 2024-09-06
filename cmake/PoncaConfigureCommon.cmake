@@ -31,10 +31,14 @@ install(TARGETS Common
 install(EXPORT CommonTargets
   FILE PoncaTargets-Common.cmake
   NAMESPACE Ponca::
-  DESTINATION lib/cmake
+  DESTINATION lib/cmake/Ponca
 )
 
 add_library(Ponca::Common ALIAS Common)
+export(EXPORT CommonTargets
+  FILE ${CMAKE_CURRENT_BINARY_DIR}/PoncaTargets-Common.cmake
+  NAMESPACE Ponca::
+)
 
 #############################################
 # HACK: have the files showing in the IDE, under the name 'ponca-src'

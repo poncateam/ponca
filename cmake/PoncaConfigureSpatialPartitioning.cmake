@@ -46,11 +46,15 @@ install(TARGETS SpatialPartitioning
 install(EXPORT SpatialPartitioningTargets
   FILE PoncaTargets-SpatialPartitioning.cmake
   NAMESPACE Ponca::
-  DESTINATION lib/cmake
+  DESTINATION lib/cmake/Ponca
   COMPONENT Common
 )
 
 add_library(Ponca::SpatialPartitioning ALIAS SpatialPartitioning)
+export(EXPORT SpatialPartitioningTargets
+  FILE ${CMAKE_CURRENT_BINARY_DIR}/PoncaTargets-SpatialPartitioning.cmake
+  NAMESPACE Ponca::
+)
 
 #############################################
 # HACK: have the files showing in the IDE, under the name 'ponca-src'

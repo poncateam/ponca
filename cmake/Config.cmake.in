@@ -16,6 +16,7 @@ find_dependency(Eigen3 REQUIRED)
 
 include("@Ponca_EXPORT_TARGET_DIR@/PoncaTargets-Fitting.cmake")
 include("@Ponca_EXPORT_TARGET_DIR@/PoncaTargets-Common.cmake")
+include("@Ponca_EXPORT_TARGET_DIR@/PoncaTargets-SpatialPartitioning.cmake")
 
 
 # Compute paths

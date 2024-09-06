@@ -68,11 +68,15 @@ install(TARGETS Fitting
 install(EXPORT FittingTargets
   FILE PoncaTargets-Fitting.cmake
   NAMESPACE Ponca::
-  DESTINATION lib/cmake
+  DESTINATION lib/cmake/Ponca
   COMPONENT Common
 )
 
 add_library(Ponca::Fitting ALIAS Fitting)
+export(EXPORT FittingTargets
+  FILE ${CMAKE_CURRENT_BINARY_DIR}/PoncaTargets-Fitting.cmake
+  NAMESPACE Ponca::
+)
 
 #############################################
 # HACK: have the files showing in the IDE, under the name 'ponca-src'
