@@ -145,7 +145,7 @@ public:
     /// \param points Input points
     /// \param c Cast/Convert input point type to DataType
     template<typename PointUserContainer, typename Converter>
-    inline void build(PointUserContainer&& points, Converter c);
+    inline void build(PointUserContainer&& points, Converter c, LeafSizeType min_cell_size = DEFAULT_LEAF_SIZE );
 
     /// Convert a custom point container to the KdTree \ref PointContainer using \ref DataPoint default constructor
     struct DefaultConverter
@@ -166,9 +166,9 @@ public:
     /// \tparam PointUserContainer Input point container, transformed to PointContainer
     /// \param points Input points
     template<typename PointUserContainer>
-    inline void build(PointUserContainer&& points)
+    inline void build(PointUserContainer&& points, LeafSizeType min_cell_size = DEFAULT_LEAF_SIZE)
     {
-        build(std::forward<PointUserContainer>(points), DefaultConverter());
+        build(std::forward<PointUserContainer>(points), DefaultConverter(), min_cell_size);
     }
 
     /// Clear tree data
@@ -222,13 +222,6 @@ public:
     inline LeafSizeType min_cell_size() const
     {
         return m_min_cell_size;
-    }
-
-    /// Write leaf min size
-    inline void set_min_cell_size(LeafSizeType min_cell_size)
-    {
-        PONCA_DEBUG_ASSERT(min_cell_size > 0);
-        m_min_cell_size = min_cell_size;
     }
 
     // Index mapping -----------------------------------------------------------
@@ -298,7 +291,8 @@ protected:
     NodeContainer m_nodes;
     IndexContainer m_indices;
 
-    LeafSizeType m_min_cell_size {64}; ///< Minimal number of points per leaf
+    static const LeafSizeType DEFAULT_LEAF_SIZE = 64;
+    LeafSizeType m_min_cell_size {DEFAULT_LEAF_SIZE}; ///< Minimal number of points per leaf
     NodeIndexType m_leaf_count {0}; ///< Number of leaves in the Kdtree (computed during construction)
 
     // Internal ----------------------------------------------------------------
@@ -315,7 +309,8 @@ protected:
     template<typename PointUserContainer, typename IndexUserContainer, typename Converter>
     inline void buildWithSampling(PointUserContainer&& points,
                                   IndexUserContainer sampling,
-                                  Converter c);
+                                  Converter c,
+                                  LeafSizeType min_cell_size = DEFAULT_LEAF_SIZE);
 
     /// Generate a tree sampled from a custom contained type converted using a \ref KdTreeBase::DefaultConverter
     /// \tparam PointUserContainer Input points, transformed to PointContainer
@@ -324,9 +319,10 @@ protected:
     /// \param sampling Samples used in the tree
     template<typename PointUserContainer, typename IndexUserContainer>
     inline void buildWithSampling(PointUserContainer&& points,
-                                  IndexUserContainer sampling)
+                                  IndexUserContainer sampling,
+                                  LeafSizeType min_cell_size = DEFAULT_LEAF_SIZE)
     {
-        buildWithSampling(std::forward<PointUserContainer>(points), std::move(sampling), DefaultConverter());
+        buildWithSampling(std::forward<PointUserContainer>(points), std::move(sampling), DefaultConverter(), min_cell_size);
     }
 
 private:
@@ -361,10 +357,11 @@ public:
 
     /// Constructor generating a tree from a custom contained type converted using a \ref KdTreeBase::DefaultConverter
     template<typename PointUserContainer>
-    inline explicit KdTreeDenseBase(PointUserContainer&& points)
+    inline explicit KdTreeDenseBase(PointUserContainer&& points,
+                                    typename Base::LeafSizeType min_cell_size = Base::DEFAULT_LEAF_SIZE)
         : Base()
     {
-        this->build(std::forward<PointUserContainer>(points));
+        this->build(std::forward<PointUserContainer>(points), min_cell_size);
     }
 };
 
@@ -397,10 +394,11 @@ public:
 
     /// Constructor generating a tree from a custom contained type converted using a \ref KdTreeBase::DefaultConverter
     template<typename PointUserContainer>
-    inline explicit KdTreeSparseBase(PointUserContainer&& points)
+    inline explicit KdTreeSparseBase(PointUserContainer&& points,
+                                     typename Base::LeafSizeType min_cell_size = Base::DEFAULT_LEAF_SIZE)
         : Base()
     {
-        this->build(std::forward<PointUserContainer>(points));
+        this->build(std::forward<PointUserContainer>(points), min_cell_size);
     }
 
     /// Constructor generating a tree sampled from a custom contained type converted using a \ref KdTreeBase::DefaultConverter
@@ -409,10 +407,11 @@ public:
     /// \param point Input points
     /// \param sampling Samples used in the tree
     template<typename PointUserContainer, typename IndexUserContainer>
-    inline KdTreeSparseBase(PointUserContainer&& points, IndexUserContainer sampling)
+    inline KdTreeSparseBase(PointUserContainer&& points, IndexUserContainer sampling,
+                            typename Base::LeafSizeType min_cell_size = Base::DEFAULT_LEAF_SIZE)
         : Base()
     {
-        this->buildWithSampling(std::forward<PointUserContainer>(points), std::move(sampling));
+        this->buildWithSampling(std::forward<PointUserContainer>(points), std::move(sampling), min_cell_size);
     }
 
     using Base::buildWithSampling;

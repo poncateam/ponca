@@ -8,11 +8,11 @@
 
 template<typename Traits>
 template<typename PointUserContainer, typename Converter>
-inline void KdTreeBase<Traits>::build(PointUserContainer&& points, Converter c)
+inline void KdTreeBase<Traits>::build(PointUserContainer&& points, Converter c, LeafSizeType min_cell_size)
 {
     IndexContainer ids(points.size());
     std::iota(ids.begin(), ids.end(), 0);
-    this->buildWithSampling(std::forward<PointUserContainer>(points), std::move(ids), std::move(c));
+    this->buildWithSampling(std::forward<PointUserContainer>(points), std::move(ids), std::move(c), min_cell_size);
 }
 
 template<typename Traits>
@@ -120,10 +120,14 @@ template<typename Traits>
 template<typename PointUserContainer, typename IndexUserContainer, typename Converter>
 inline void KdTreeBase<Traits>::buildWithSampling(PointUserContainer&& points,
                                                   IndexUserContainer sampling,
-                                                  Converter c)
+                                                  Converter c,
+                                                  LeafSizeType min_cell_size)
 {
     PONCA_DEBUG_ASSERT(points.size() <= MAX_POINT_COUNT);
     this->clear();
+
+    // Set cell size
+    this->m_min_cell_size = min_cell_size;
 
     // Move, copy or convert input samples
     c(std::forward<PointUserContainer>(points), m_points);
