@@ -71,6 +71,35 @@ void testKdtreeWithDuplicate()
         test_tree(points, ids, cellSize);
     }
 
+    // Generate a small part of duplicates by extending the index container
+    {
+        const int nbDuplicates = N;
+
+        ids.resize(nbDuplicates+N);
+        std::generate(ids.begin()+N, ids.end(), [N]() {return Eigen::internal::random<int>(0,N-1); });
+
+        test_tree(points, ids, cellSize);
+    }
+
+    // Generate duplicated coordinates samples TODO
+    //    {
+//        const int nbDuplicates = N/10;
+//        const int nbUniques = N;
+//
+//        auto points = VectorContainer(nbUniques);
+//        std::generate(points.begin(), points.end(), []() {return DataPoint(VectorType::Random()); });
+//
+//        typename KdTreeDense<DataPoint>::IndexContainer ids(nbUniques);
+//        std::iota(ids.begin(), ids.end(), 0);
+//        ids.resize(nbDuplicates*nbUniques);
+//
+//        for (int i = 1; i < nbDuplicates; ++i)
+//        {
+//            std::copy(ids.begin(), ids.begin() + nbUniques, ids.begin()+(nbUniques*i));
+//        }
+//        test_tree(points, ids, cellSize);
+//    }
+
 }
 
 template<typename NodeType>

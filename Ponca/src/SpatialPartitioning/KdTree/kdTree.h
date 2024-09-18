@@ -282,7 +282,8 @@ public :
     
     // Utilities ---------------------------------------------------------------
 public:
-    inline bool valid() const;
+    /// \param ignore_duplicates By default, valid KdTree can have duplicated samples.
+    inline bool valid(bool ignore_duplicates = true) const;
     inline void print(std::ostream& os, bool verbose = false) const;
 
     // Data --------------------------------------------------------------------
