@@ -9,6 +9,9 @@ Current head (v.1.4 RC)
     - [build] Enable exportation of projects linking to Ponca targets (#150)
     - [install] Change output directory to `lib/cmake/Ponca` (#150)
 
+- Bug-fixes and code improvements
+   - [spatialPartitioning] Fix compilation error with `MAX_NODE_COUNT` when compiled with MSVC (#152)
+
 --------------------------------------------------------------------------------
 v.1.3
 This release introduces several improvements around the KdTre API, as well as bug fixes, new features and doc
