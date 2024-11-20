@@ -66,6 +66,8 @@ struct  OUT_TYPE##PointQuery : Query<QueryInputIsPosition<DataPoint>, \
         inline QueryInput(InputType input) : m_input(input) {}
 
         inline const InputType &input() const { return m_input; }
+
+        inline void operator()(InputType_ input) { m_input = input; }
     protected:
         /// \brief Edit the input 
         /// Need to be used carefully. Modifying a query input while iterating on the query will result in undefined behavior.
@@ -75,7 +77,7 @@ struct  OUT_TYPE##PointQuery : Query<QueryInputIsPosition<DataPoint>, \
     
     private:
         /// Index of the queried point
-        const InputType m_input;
+        InputType m_input;
     };
 
 
@@ -123,6 +125,10 @@ struct  OUT_TYPE##PointQuery : Query<QueryInputIsPosition<DataPoint>, \
         inline QueryOutputIsRange(OutputParameter radius = OutputParameter(0))
                 : m_squared_radius(std::pow(radius, OutputParameter(2))) {}
 
+        inline void operator() (OutputParameter radius){
+            m_squared_radius = std::pow(radius, OutputParameter(2));
+        }
+
         inline Scalar radius() const { return std::sqrt(m_squared_radius); }
 
         inline Scalar squared_radius() const { return m_squared_radius; }
@@ -146,6 +152,8 @@ struct  OUT_TYPE##PointQuery : Query<QueryInputIsPosition<DataPoint>, \
 
         QueryOutputIsNearest() {}
 
+        inline void operator() (){ }
+
         Index get() const { return m_nearest; }
 
     protected:
@@ -167,6 +175,8 @@ struct  OUT_TYPE##PointQuery : Query<QueryInputIsPosition<DataPoint>, \
         using OutputParameter = Index;
 
         inline QueryOutputIsKNearest(OutputParameter k = 0) : m_queue(k) {}
+
+        inline void operator() (OutputParameter k) { m_queue = limited_priority_queue<IndexSquaredDistance<Index, Scalar>>(k); }
 
         inline limited_priority_queue<IndexSquaredDistance<Index, Scalar>> &queue() { return m_queue; }
 
@@ -198,6 +208,21 @@ struct  OUT_TYPE##PointQuery : Query<QueryInputIsPosition<DataPoint>, \
         inline Query(const typename QueryOutType::OutputParameter &outParam,
                      const typename QueryInType::InputType &in)
                 : QueryOutType(outParam), QueryInType(in) {}
+
+        template<typename Base, typename... outputType>
+        inline Base& operator()(const typename QueryInType::InputType &in, outputType... out){
+            QueryInType:: operator()(in);
+            QueryOutType::operator()(out...);
+            QueryOutType::reset();
+            return *((Base*)(this));
+        }
+
+        template<typename Base>
+        inline Base& operator()(const typename QueryInType::InputType &in){
+            QueryInType:: operator()(in);
+            QueryOutType::reset();
+            return *((Base*)(this));
+        }
     };
 
 DECLARE_INDEX_QUERY_CLASS(KNearest) //KNearestIndexQuery
