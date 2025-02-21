@@ -130,6 +130,72 @@ public:
      * `DataPoint::VectorType`.
      */
     using AabbType = Eigen::AlignedBox<Scalar, DataPoint::Dim>;
+
+    KdTreeCustomizableNode() = default;
+
+    constexpr KdTreeCustomizableNode(KdTreeCustomizableNode&& n)
+        : m_is_leaf(n.m_is_leaf)
+    {
+        if (m_is_leaf)
+        {
+            data.m_leaf = n.data.m_leaf;
+        }
+        else
+        {
+            data.m_inner = n.data.m_inner;
+        }
+    }
+
+    constexpr KdTreeCustomizableNode& operator=(KdTreeCustomizableNode&& n)
+    {
+        if (&n != this)
+        {
+            m_is_leaf = n.m_is_leaf;
+            if (m_is_leaf)
+            {
+                data.m_leaf = n.data.m_leaf;
+            }
+            else
+            {
+                data.m_inner = n.data.m_inner;
+            }
+        }
+
+        return *this;
+    }
+
+    constexpr KdTreeCustomizableNode(const KdTreeCustomizableNode& n)
+        : m_is_leaf(n.m_is_leaf)
+    {
+        if (n.m_is_leaf)
+        {
+            data.m_leaf = n.data.m_leaf;
+        }
+        else
+        {
+            data.m_inner = n.data.m_inner;
+        }
+    }
+
+    constexpr KdTreeCustomizableNode& operator=(const KdTreeCustomizableNode& n)
+    {
+        if (&n != this)
+        {
+            m_is_leaf = n.m_is_leaf;
+            if (n.m_is_leaf)
+            {
+                data.m_leaf = n.data.m_leaf;
+            }
+            else
+            {
+                data.m_inner = n.data.m_inner;
+            }
+        }
+
+        return *this;
+    }
+
+    ~KdTreeCustomizableNode() {}
     
     [[nodiscard]] bool is_leaf() const { return m_is_leaf; }
     void set_is_leaf(bool is_leaf) { m_is_leaf = is_leaf; }
@@ -216,8 +282,6 @@ private:
     {
         // We need an explicit constructor here, see https://stackoverflow.com/a/70428826
         constexpr Data() : m_leaf() {}
-        // Needed to satisfy MoveInsertable requirement https://en.cppreference.com/w/cpp/named_req/MoveInsertable
-        constexpr Data(const Data&d) : m_leaf(d.m_leaf) {}
 
         ~Data() {}
         LeafType m_leaf;
