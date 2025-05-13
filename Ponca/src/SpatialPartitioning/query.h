@@ -197,7 +197,7 @@ struct  OUT_TYPE##PointQuery : Query<QueryInputIsPosition<DataPoint>, \
 
         inline Query(const typename QueryOutType::OutputParameter &outParam,
                      const typename QueryInType::InputType &in)
-                : QueryOutType(outParam), QueryInType(in) {}
+                : QueryInType(in), QueryOutType(outParam) {}
     };
 
 DECLARE_INDEX_QUERY_CLASS(KNearest) //KNearestIndexQuery
