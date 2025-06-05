@@ -61,9 +61,6 @@ pcl::GlsCurvature<PointInT, PointOutT>::computeCurvature(const pcl::PointCloud<P
 {
     typedef GlsPoint::Scalar Scalar;
     typedef Ponca::DistWeightFunc<GlsPoint, Ponca::SmoothWeightKernel<Scalar> > WeightFunc;
-    //typedef Ponca::Basket<GlsPoint, WeightFunc, Ponca::MeanPlaneFit, Ponca::NormalCovarianceCurvature> Fit;
-    //typedef Ponca::Basket<GlsPoint, WeightFunc, Ponca::CovariancePlaneFit, Ponca::CovariancePlaneSpaceDer, Ponca::NormalDerivativesCurvatureEstimator> Fit;
-
     typedef Ponca::Basket<GlsPoint, WeightFunc, Ponca::CovariancePlaneFit> FitBasket;
     typedef Ponca::BasketDiff<FitBasket, Ponca::FitScaleSpaceDer, Ponca::CovariancePlaneDer,  Ponca::CurvatureEstimatorBase, Ponca::NormalDerivativesCurvatureEstimator> Fit;
 
