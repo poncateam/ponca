@@ -620,7 +620,7 @@ int main()
     auto start = std::chrono::system_clock::now();
     for( int i = 0; i != nbrun; ++i) {
       doGLS_kernel<<<grid, block>>>(width, height, fScale, fMaxDepthDiff, positionsInfos_device, normalsInfos_device, results_device);
-      cudaThreadSynchronize();	// Wait for the GPU launched work to complete
+      cudaDeviceSynchronize();	// Wait for the GPU launched work to complete
     }
     auto end = std::chrono::system_clock::now();
     std::chrono::duration<double> diff = (end-start)/double(nbrun);
