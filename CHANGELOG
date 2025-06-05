@@ -13,6 +13,15 @@ Current head (v.1.4 RC)
    - [spatialPartitioning] Fix compilation error with `MAX_NODE_COUNT` when compiled with MSVC (#152)
    - [spatialPartitioning] Fix compilation error with AppleClang: wrong initializers ordering (#154)
 
+- Tests
+   - [fitting] Split Basket test in subtests (#96)
+   - [fitting] Fix random failure in Basket and Projection tests (#96)
+
+- Examples
+   - [ssgls] Fix compilation error with CUDA due to compiler mismatch (#96)
+   - [pcl] Fix compilation error due to outdated API usage (#96)
+   - [nanoflann] Add missing include directive (#96)
+
 --------------------------------------------------------------------------------
 v.1.3
 This release introduces several improvements around the KdTre API, as well as bug fixes, new features and doc
