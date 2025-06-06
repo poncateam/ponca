@@ -13,6 +13,7 @@
 #include "./nanoflann.hpp"
 
 #include <iostream>
+#include <chrono>
 
 using namespace Ponca;
 

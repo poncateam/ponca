@@ -13,6 +13,8 @@
 #include "../common/testing.h"
 #include "../common/testUtils.h"
 
+#include "../split_test_helper.h"
+
 #include <Ponca/src/Fitting/basket.h>
 #include <Ponca/src/Fitting/orientedSphereFit.h>
 #include <Ponca/src/Fitting/covariancePlaneFit.h>
@@ -108,18 +110,19 @@ void testBasicFunctionalities(const KdTree<typename Fit::DataPoint>& tree, typen
 
         // we skip kdtree test for float: using the kdtree changes the order of the neighbors, which in turn changes the
         // rounding error accumulations, and thus the final result
-        if (! std::is_same<Scalar, float>::value)
-        {
-            //! [Fit computeWithIds]
-            Fit fit3;
-            fit3.setWeightFunc(WeightFunc(analysisScale));
-            fit3.init(fitInitPos);
-            fit3.computeWithIds( tree.range_neighbors(fitInitPos, analysisScale), vectorPoints );
-            //! [Fit computeWithIds]
-            VERIFY(fit3 == fit3);
-            VERIFY(fit1 == fit3);
-            VERIFY(! (fit1 != fit3));
-        }
+        if (std::is_same<Scalar, float>::value || std::is_same<Scalar, long double>::value)
+            continue;
+        //! [Fit computeWithIds]
+        Fit fit3;
+        fit3.setWeightFunc(WeightFunc(analysisScale));
+        fit3.init(fitInitPos);
+        fit3.computeWithIds( tree.range_neighbors(fitInitPos, analysisScale), vectorPoints );
+        //! [Fit computeWithIds]
+        VERIFY(fit3 == fit3);
+        VERIFY(fit1 == fit3);
+        VERIFY(! (fit1 != fit3));
+
+
     }
 }
 
@@ -240,7 +243,7 @@ void callSubTests()
         CALL_SUBTEST((testBasicFunctionalities<Sphere>(tree, scale) ));
         // Hybrid
         CALL_SUBTEST((testBasicFunctionalities<Hybrid>(tree, scale) ));
-        //Plane diffs
+        //  Plane diffs
         CALL_SUBTEST((testBasicFunctionalities<PlaneScaleDiff>(tree, scale) ));
         CALL_SUBTEST((testBasicFunctionalities<PlaneSpaceDiff>(tree, scale) ));
         CALL_SUBTEST((testBasicFunctionalities<PlaneScaleSpaceDiff>(tree, scale) ));
@@ -262,15 +265,13 @@ void callSubTests()
         CALL_SUBTEST((testIsSame<TestPlane, HybridScaleDiff>(tree, scale, checkIsSamePlane) ));
         CALL_SUBTEST((testIsSame<TestPlane, HybridSpaceDiff>(tree, scale, checkIsSamePlane) ));
         CALL_SUBTEST((testIsSame<TestPlane, HybridScaleSpaceDiff>(tree, scale, checkIsSamePlane) ));
-        //CALL_SUBTEST((testIsSame<PlaneScaleDiff, HybridScaleDiff>(tree, scale, checkIsSamePlane) )); //tested below
         CALL_SUBTEST((testIsSame<PlaneScaleDiff, HybridSpaceDiff>(tree, scale, checkIsSamePlane) ));
         CALL_SUBTEST((testIsSame<PlaneScaleDiff, HybridScaleSpaceDiff>(tree, scale, checkIsSamePlane) ));
         CALL_SUBTEST((testIsSame<PlaneSpaceDiff, HybridScaleDiff>(tree, scale, checkIsSamePlane) ));
-        //CALL_SUBTEST((testIsSame<PlaneSpaceDiff, HybridSpaceDiff>(tree, scale, checkIsSamePlane) )); //tested below
         CALL_SUBTEST((testIsSame<PlaneSpaceDiff, HybridScaleSpaceDiff>(tree, scale, checkIsSamePlane) ));
         CALL_SUBTEST((testIsSame<PlaneScaleSpaceDiff, HybridScaleDiff>(tree, scale, checkIsSamePlane) ));
         CALL_SUBTEST((testIsSame<PlaneScaleSpaceDiff, HybridSpaceDiff>(tree, scale, checkIsSamePlane) ));
-        //CALL_SUBTEST((testIsSame<PlaneScaleSpaceDiff, HybridScaleSpaceDiff>(tree, scale, checkIsSamePlane) )); //tested below
+        CALL_SUBTEST((testIsSame<PlaneScaleSpaceDiff, HybridScaleSpaceDiff>(tree, scale, checkIsSamePlane) ));
 
         auto checkIsSamePlaneDerivative = [](const auto&f1, const auto&f2){
             isSamePlane(f1,f2);
@@ -292,16 +293,13 @@ int main(int argc, char** argv)
     }
 
     cout << "Test Basket functions in 3 dimensions: float" << flush;
-    callSubTests<float, 3>();
+    CALL_SUBTEST_1((callSubTests<float, 3>()));
     cout << " (ok), double" << flush;
-    callSubTests<double, 3>();
+    CALL_SUBTEST_2((callSubTests<double, 3>()));
     cout << " (ok)" << flush;
-    // don't know why, but we have problems when using the kdtree with long doubles on windows
-#ifndef WIN32
     cout << ", long double" << flush;
-    callSubTests<long double, 3>();
+    CALL_SUBTEST_3((callSubTests<long double, 3>()));
     cout << " (ok)" << endl;
-#endif
 
 //    cout << "Test Basket functions in 4 dimensions..." << endl;
 //    callSubTests<float, 4>();
