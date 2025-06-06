@@ -34,6 +34,7 @@ jobs:
         uses: actions/checkout@master
         with:
           path: src
+      - run : cmake --version
       - name: cmake
         run: mkdir build && cd build && cmake ../src  -GNinja -DCMAKE_CXX_COMPILER=${{ matrix.config.cxx }} -DCMAKE_C_COMPILER=${{ matrix.config.cc }} -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=../install -DPONCA_CONFIGURE_EXAMPLES=ON -DPONCA_CONFIGURE_DOC=ON -DPONCA_CONFIGURE_TESTS=ON
       - name: make buildtests
