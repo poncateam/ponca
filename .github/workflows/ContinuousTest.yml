@@ -27,9 +27,8 @@ jobs:
       - name: Add msbuild to PATH
         uses: seanmiddleditch/gha-setup-vsdevenv@master
         if: runner.os == 'Windows'
-      - run: echo ${{runner.os}}
       - name: Install PCL
-        run: sudo apt-get install libpcl-dev
+        run: sudo apt-get update && sudo apt-get install libpcl-dev
         if: runner.os == 'Linux'
       - name: Checkout remote head
         uses: actions/checkout@master
