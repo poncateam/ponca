@@ -54,11 +54,14 @@ subTestSpatial<true, 3>::eval(const Fit& _fit,
     Scalar kmin      = _fit.kmin();
     Scalar kmax      = _fit.kmax();
     Scalar kmean   = (kmin + kmax) / Scalar (2.);
-    Scalar radius  = Scalar(1.) / kmean;
+    Scalar radius1  = Scalar(1.) / kmean;
+    Scalar radius2  = Scalar(1.) / _fit.algebraicSphere().meanCurvature();
 
     //Test value
-    VERIFY( (radius > _radiusMin - _radiusEpsilon) &&
-            (radius < _radiusMax + _radiusEpsilon) );
+    VERIFY( (radius1 > _radiusMin - _radiusEpsilon) &&
+            (radius1 < _radiusMax + _radiusEpsilon) );
+    VERIFY( (radius2 > _radiusMin - _radiusEpsilon) &&
+            (radius2 < _radiusMax + _radiusEpsilon) );
 }
 
 

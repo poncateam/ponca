@@ -71,6 +71,7 @@ void testFunction()
                 // move basis center to a portion of the radius of the sphere
                 f2.changeBasis(fitInitPos + Scalar(0.1)*fit.radius()*VectorType::Random());
 
+                VERIFY(  fit.algebraicSphere().meanCurvature() - f2.algebraicSphere().meanCurvature() < epsilon );
                 VERIFY(  fit.radius() - f2.radius() < epsilon );
                 VERIFY( (fit.center() - f2.center() ).norm() < epsilon );
                 VERIFY( (fit.project(candidate) - f2.project(candidate)).norm() - Scalar(1.) < epsilon );
