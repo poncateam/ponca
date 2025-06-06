@@ -2,6 +2,8 @@
 if(${CMAKE_VERSION} VERSION_LESS "3.13.0")
     message("PCL example requires cmake 3.13")
 else()
+    enable_language(C) # For CMake 3.31 or newer (fix the import of PCL)
+
     find_package(PCL 1.6 QUIET)
     if(PCL_FOUND)
         set(CMAKE_INCLUDE_CURRENT_DIR ON)
