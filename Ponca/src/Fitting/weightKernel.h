@@ -56,7 +56,7 @@ private:
 
     \inherit Concept::WeightKernelConcept
 */
-template <typename _Scalar, int m, int n>
+template <typename _Scalar, int m, int n, bool enable_specialisation = true>
 class PolynomialSmoothWeightKernel
 {
 public:
@@ -84,7 +84,7 @@ public:
     \inherit Concept::WeightKernelConcept
 */
 template <typename _Scalar>
-class PolynomialSmoothWeightKernel<_Scalar, 2, 2>
+class PolynomialSmoothWeightKernel<_Scalar, 2, 2, true>
 {
 public:
     /*! \brief Scalar type defined outside the class*/

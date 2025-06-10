@@ -99,7 +99,7 @@ void testKernelDiff(int nToTest = 1000)
     {
         Scalar x = Scalar(i) / Scalar(nToTest);
         // Compare both kernel (should be equal)
-        cout << kernel1.ddf(x) << "     " << kernel2.ddf(x) << endl;
+        // cout << kernel1.ddf(x) << "     " << kernel2.ddf(x) << endl;
 
         VERIFY(Eigen::internal::isApprox(kernel1.f(x), kernel2.f(x), epsilon));
         VERIFY(Eigen::internal::isApprox(kernel1.df(x), kernel2.df(x), epsilon));
@@ -154,8 +154,9 @@ int main(int argc, char** argv)
 
     // Testing Smooth / QuadSmooth kernel
     cout << "Verify generalised smooth weight kernel" << endl;
-    testKernelDiff<PolynomialSmoothWeightKernel<double, 2, 2>, SmoothWeightKernel<double>>();
-    testKernelDiff<PolynomialSmoothWeightKernel<float, 2, 2>, SmoothWeightKernel<float>>();
-    testKernelDiff<PolynomialSmoothWeightKernel<long double, 2, 2>, SmoothWeightKernel<long double>>();
+    // We disable the template specialization to test the general formula on the second degree case
+    testKernelDiff<PolynomialSmoothWeightKernel<double, 2, 2, false>, SmoothWeightKernel<double>>();
+    testKernelDiff<PolynomialSmoothWeightKernel<float, 2, 2, false>, SmoothWeightKernel<float>>();
+    testKernelDiff<PolynomialSmoothWeightKernel<long double, 2, 2, false>, SmoothWeightKernel<long double>>();
 
 }
