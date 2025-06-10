@@ -51,33 +51,6 @@ private:
 
 
 /*!
-    \brief Smooth WeightKernel of 2nd degree, defined in \f$\left[0 : 1\right]\f$
-    \todo Add a degree value as template parameter (in this class or another one), with specialized functions for 2
-
-    \inherit Concept::WeightKernelConcept
-*/
-template <typename _Scalar>
-class SmoothWeightKernel
-{
-public:
-    /*! \brief Scalar type defined outside the class*/
-    typedef _Scalar Scalar;
-
-    // Functor
-    /*! \brief Defines the smooth weighting function \f$ w(x) = (x^2-1)^2 \f$ */
-    PONCA_MULTIARCH inline Scalar f  (const Scalar& _x) const { Scalar v = _x*_x - Scalar(1.); return v*v; }
-    /*! \brief Defines the smooth first order weighting function \f$ \nabla w(x) = 4x(x^2-1) \f$ */
-    PONCA_MULTIARCH inline Scalar df (const Scalar& _x) const { return Scalar(4.)*_x*(_x*_x-Scalar(1.)); }
-    /*! \brief Defines the smooth second order weighting function \f$ \nabla^2 w(x) = 12x^2-4 \f$ */
-    PONCA_MULTIARCH inline Scalar ddf(const Scalar& _x) const { return Scalar(12.)*_x*_x - Scalar(4.); }
-    //! \brief #df is defined and valid on the definition interval
-    static constexpr bool isDValid = true;
-    //! \brief #ddf is defined and valid on the definition interval
-    static constexpr bool isDDValid = true;
-};//class SmoothWeightKernel
-
-
-/*!
     \brief Generalised Smooth WeightKernel defined in \f$ w(x)=(x^n-1)^m \f$
     \todo Add a degree value as template parameter (in this class or another one), with specialized functions for 2
 
@@ -103,6 +76,35 @@ public:
     static constexpr bool isDDValid = true;
 };//class PolynomialSmoothWeightKernel
 
+
+/*!
+    \brief Smooth WeightKernel of 2nd degree, defined in \f$\left[0 : 1\right]\f$
+    \todo Add a degree value as template parameter (in this class or another one), with specialized functions for 2
+
+    \inherit Concept::WeightKernelConcept
+*/
+template <typename _Scalar>
+class PolynomialSmoothWeightKernel<_Scalar, 2, 2>
+{
+public:
+    /*! \brief Scalar type defined outside the class*/
+    typedef _Scalar Scalar;
+
+    // Functor
+    /*! \brief Defines the smooth weighting function \f$ w(x) = (x^2-1)^2 \f$ */
+    PONCA_MULTIARCH inline Scalar f  (const Scalar& _x) const { Scalar v = _x*_x - Scalar(1.); return v*v; }
+    /*! \brief Defines the smooth first order weighting function \f$ \nabla w(x) = 4x(x^2-1) \f$ */
+    PONCA_MULTIARCH inline Scalar df (const Scalar& _x) const { return Scalar(4.)*_x*(_x*_x-Scalar(1.)); }
+    /*! \brief Defines the smooth second order weighting function \f$ \nabla^2 w(x) = 12x^2-4 \f$ */
+    PONCA_MULTIARCH inline Scalar ddf(const Scalar& _x) const { return Scalar(12.)*_x*_x - Scalar(4.); }
+    //! \brief #df is defined and valid on the definition interval
+    static constexpr bool isDValid = true;
+    //! \brief #ddf is defined and valid on the definition interval
+    static constexpr bool isDDValid = true;
+};//class PolynomialSmoothWeightKernel
+
+template <typename _Scalar>
+using SmoothWeightKernel = PolynomialSmoothWeightKernel<_Scalar, 2, 2>;
 /*!
     \brief Wendland WeightKernel defined in \f$\left[0 : 1\right]\f$
 
