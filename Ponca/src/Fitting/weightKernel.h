@@ -51,7 +51,7 @@ private:
 
 
 /*!
-    \brief Smooth WeightKernel defined in \f$\left[0 : 1\right]\f$
+    \brief Smooth WeightKernel of 2nd degree, defined in \f$\left[0 : 1\right]\f$
     \todo Add a degree value as template parameter (in this class or another one), with specialized functions for 2
 
     \inherit Concept::WeightKernelConcept
@@ -84,7 +84,7 @@ public:
     \inherit Concept::WeightKernelConcept
 */
 template <typename _Scalar, int m, int n>
-class GeneralSmoothWeightKernel
+class PolynomialSmoothWeightKernel
 {
 public:
 
@@ -101,7 +101,7 @@ public:
     static constexpr bool isDValid = true;
     //! \brief #ddf is defined and valid on the definition interval
     static constexpr bool isDDValid = true;
-};//class GeneralSmoothWeightKernel
+};//class PolynomialSmoothWeightKernel
 
 /*!
     \brief Wendland WeightKernel defined in \f$\left[0 : 1\right]\f$
