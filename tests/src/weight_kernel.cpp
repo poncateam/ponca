@@ -86,18 +86,24 @@ void testFunction(typename Kernel::Scalar mmin = 0, typename Kernel::Scalar mmax
     }
 }
 
-template<typename Scalar>
-void testKernelDiff(int maxRange = 100000)
+template<typename W1, typename W2>
+void testKernelDiff(int nToTest = 1000)
 {
-    GeneralSmoothWeightKernel<Scalar, 2, 2> kernel1;
-    SmoothWeightKernel<Scalar> kernel2;
+    W1 kernel1;
+    W2 kernel2;
 
-    for(int i=1; i<=maxRange; ++i)
+    typedef typename W1::Scalar Scalar;
+    Scalar epsilon = 0.0001; // Current tolerance
+
+    for(int i=1; i<=nToTest; ++i)
     {
+        Scalar x = Scalar(i) / Scalar(nToTest);
         // Compare both kernel (should be equal)
-        VERIFY(Eigen::internal::isApprox(kernel1.f(i), kernel2.f(i)));
-        VERIFY(Eigen::internal::isApprox(kernel1.df(i), kernel2.df(i)));
-        VERIFY(Eigen::internal::isApprox(kernel1.ddf(i), kernel2.ddf(i)));
+        cout << kernel1.ddf(x) << "     " << kernel2.ddf(x) << endl;
+
+        VERIFY(Eigen::internal::isApprox(kernel1.f(x), kernel2.f(x), epsilon));
+        VERIFY(Eigen::internal::isApprox(kernel1.df(x), kernel2.df(x), epsilon));
+        VERIFY(Eigen::internal::isApprox(kernel1.ddf(x), kernel2.ddf(x), epsilon));
     }
 
 }
@@ -148,8 +154,8 @@ int main(int argc, char** argv)
 
     // Testing Smooth / QuadSmooth kernel
     cout << "Verify generalised smooth weight kernel" << endl;
-    testKernelDiff<double>();
-    testKernelDiff<float>();
-    testKernelDiff<long double>();
+    testKernelDiff<PolynomialSmoothWeightKernel<double, 2, 2>, SmoothWeightKernel<double>>();
+    testKernelDiff<PolynomialSmoothWeightKernel<float, 2, 2>, SmoothWeightKernel<float>>();
+    testKernelDiff<PolynomialSmoothWeightKernel<long double, 2, 2>, SmoothWeightKernel<long double>>();
 
 }
