@@ -86,6 +86,22 @@ void testFunction(typename Kernel::Scalar mmin = 0, typename Kernel::Scalar mmax
     }
 }
 
+template<typename Scalar>
+void testKernelDiff(int maxRange = 100000)
+{
+    GeneralSmoothWeightKernel<Scalar, 2, 2> kernel1;
+    SmoothWeightKernel<Scalar> kernel2;
+
+    for(int i=1; i<=maxRange; ++i)
+    {
+        // Compare both kernel (should be equal)
+        VERIFY(Eigen::internal::isApprox(kernel1.f(i), kernel2.f(i)));
+        VERIFY(Eigen::internal::isApprox(kernel1.df(i), kernel2.df(i)));
+        VERIFY(Eigen::internal::isApprox(kernel1.ddf(i), kernel2.ddf(i)));
+    }
+
+}
+
 template<typename Scalar, template <typename > class KernelT>
 void callSubTests(Scalar mmin = 0, Scalar mmax = 1)
 {
@@ -129,4 +145,11 @@ int main(int argc, char** argv)
     cout << "Verify Compact Exponential weight kernel derivatives" << endl;
     callSubTests<long double, CompactExpWeightKernel>();
     /// autodiffs are not compatible with pow, used in this class
+
+    // Testing Smooth / QuadSmooth kernel
+    cout << "Verify generalised smooth weight kernel" << endl;
+    testKernelDiff<double>();
+    testKernelDiff<float>();
+    testKernelDiff<long double>();
+
 }
