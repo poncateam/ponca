@@ -7,7 +7,7 @@ on:
 
 jobs:
   deploy-doc:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
     steps:
       - name: Prepare directories
         run: |
@@ -18,15 +18,11 @@ jobs:
         with:
           path: src/
       - name: Install packages
-        run : sudo apt-get install graphviz texlive-bibtex-extra
-      - name: Fetch recent doxygen (1.9.6)
-        run: |
-          curl https://www.doxygen.nl/files/doxygen-1.9.6.linux.bin.tar.gz -o  doxygen-1.9.6.linux.bin.tar.gz
-          tar -xvzf doxygen-1.9.6.linux.bin.tar.gz
+        run : sudo apt-get install graphviz texlive-bibtex-extra doxygen
       - name: Configure Doc
         run: |
           cd build/
-          cmake ../src/ -DCMAKE_EXECUTE_PROCESS_COMMAND_ECHO=STDOUT -DPONCA_CONFIGURE_EXAMPLES=OFF -DPONCA_CONFIGURE_TESTS=OFF -DDOXYGEN_EXECUTABLE=../doxygen-1.9.6/bin/doxygen
+          cmake ../src/ -DCMAKE_EXECUTE_PROCESS_COMMAND_ECHO=STDOUT -DPONCA_CONFIGURE_EXAMPLES=OFF -DPONCA_CONFIGURE_TESTS=OFF
       - name: Build doc
         run: |
           cd build/
