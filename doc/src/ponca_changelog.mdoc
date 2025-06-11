@@ -11,11 +11,22 @@
 
    \section ponca_releases_overview Principal features of the latest releases
 
-   \subsection ponca_v11_sec V1.1: improve Spatial Partitioning module + bug fixes
+   \subsection ponca_v12_sec V1.2: Bug fixes and optimization of the spatial partitioning algorithm
+   - Several bug fix on the \ref fitting "Fitting module"
+   - KdTree and KnnGraph improvements (bug fix and memory optimization)
+   - KdTreeNodes API was simplified by hiding the internal memory layout
+   - A cuda example was fixed
+   - Update the documentation on the \ref fitting "Fitting module"
+
+    \code
+    git checkout v1.2
+    \endcode
+
+   \subsection ponca_v11_sec V1.1: improves the Spatial Partitioning module + bug fixes
    
-   - add KdTreeTraits to customize KdTree, add KnnGraph
-   - fix several mathematical bugs in Fitting package
-   - update documentation and examples
+   - Add KdTreeTraits to customize KdTree, add KnnGraph on the \ref spatialpartitioning "Spatial Partitioning module"
+   - Fix several mathematical bugs in \ref fitting "Fitting module"
+   - Update documentation and examples
 
     \code
     git checkout v1.1
@@ -23,9 +34,9 @@
 
    \subsection ponca_v10_sec V1.0: adding Spatial Partitioning module
 
-   - improve the computation timings (we reported x1.2 to x1.4 gain depending on the situation)
-   - reduce code duplication
-   - ease the design of new estimators
+   - Improve the computation timings (we reported x1.2 to x1.4 gain depending on the situation)
+   - Reduce code duplication
+   - Ease the design of new estimators
 
     \code
     git checkout v1.0
@@ -33,8 +44,8 @@
 
    \subsection ponca_v03_sec V0.3: adding Spatial Partitioning module
 
-   - Fix bugs in \ref spatialpartitioning "Spatial Partitioning"
-   - Clean and extend API of the \ref fitting "Fitting Module". Fix bugs.
+   - Fix bugs in the \ref spatialpartitioning "Spatial Partitioning module"
+   - Clean and extend API of the \ref fitting "Fitting module". Fix bugs.
    - Improve tests and documentation
 
     \code
