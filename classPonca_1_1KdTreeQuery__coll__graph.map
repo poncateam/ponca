@@ -1,11 +1,21 @@
 <map id="Ponca::KdTreeQuery&lt; Traits &gt;" name="Ponca::KdTreeQuery&lt; Traits &gt;">
-<area shape="rect" id="node1" title=" " alt="" coords="202,1116,354,1237"/>
-<area shape="rect" id="node2" href="$classPonca_1_1Stack.html" title=" " alt="" coords="186,815,370,1053"/>
-<area shape="rect" id="node3" title=" " alt="" coords="121,359,320,465"/>
-<area shape="rect" id="node4" href="$structPonca_1_1IndexSquaredDistance.html" title=" " alt="" coords="5,175,220,281"/>
-<area shape="rect" id="node5" href="$structPonca_1_1IndexSquaredDistance.html" title="Associates an index with a distance." alt="" coords="5,5,220,112"/>
-<area shape="rect" id="node6" title=" " alt="" coords="375,189,498,267"/>
-<area shape="rect" id="node9" title=" " alt="" coords="395,373,535,451"/>
-<area shape="rect" id="node7" title=" " alt="" coords="475,20,513,97"/>
-<area shape="rect" id="node8" href="$classPonca_1_1Stack.html" title="Stack with fixed&#45;size storage." alt="" coords="365,528,527,723"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="205,1152,349,1272"/>
+<area shape="rect" id="Node000002" href="$classPonca_1_1Stack.html" title=" " alt="" coords="189,820,365,1089"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="279,1090,279,1135,274,1135,274,1090"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="121,345,312,440"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="224,440,263,804,258,804,219,441"/>
+<area shape="rect" id="Node000004" href="$structPonca_1_1IndexSquaredDistance.html" title=" " alt="" coords="5,168,212,268"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="103,268,104,295,112,320,120,332,116,334,108,322,99,296,97,269"/>
+<area shape="rect" id="Node000005" href="$structPonca_1_1IndexSquaredDistance.html" title="Associates an index with a distance." alt="" coords="5,5,212,105"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="111,119,111,168,106,168,106,119"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="379,185,494,251"/>
+<area shape="poly" id="edge5_Node000003_Node000006" title=" " alt="" coords="366,227,330,235,292,248,258,267,229,294,218,318,214,346,209,345,213,317,225,290,255,263,290,243,328,230,365,222"/>
+<area shape="rect" id="Node000009" title=" " alt="" coords="395,360,527,425"/>
+<area shape="poly" id="edge10_Node000009_Node000006" title=" " alt="" coords="446,264,459,360,454,360,440,265"/>
+<area shape="rect" id="Node000007" title=" " alt="" coords="480,23,503,88"/>
+<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="482,72,464,98,449,130,440,170,435,169,443,128,459,96,478,69"/>
+<area shape="poly" id="edge9_Node000009_Node000007" title=" " alt="" coords="505,76,517,100,526,128,528,135,531,136,543,133,557,124,570,119,575,122,578,130,573,161,555,222,519,322,505,348,500,346,514,320,550,221,568,160,572,131,571,126,569,125,559,129,545,137,531,142,524,138,521,130,512,102,501,78"/>
+<area shape="rect" id="Node000008" href="$classPonca_1_1Stack.html" title="Stack with fixed&#45;size storage." alt="" coords="364,503,517,728"/>
+<area shape="poly" id="edge7_Node000002_Node000008" title=" " alt="" coords="383,742,344,821,339,819,378,739"/>
+<area shape="poly" id="edge8_Node000008_Node000009" title=" " alt="" coords="460,426,455,486,450,486,455,425"/>
 </map>

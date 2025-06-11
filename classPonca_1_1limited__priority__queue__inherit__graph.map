@@ -1,7 +1,11 @@
 <map id="Ponca::limited_priority_queue&lt; T, CompareT &gt;" name="Ponca::limited_priority_queue&lt; T, CompareT &gt;">
-<area shape="rect" id="node1" title="The limited_priority_queue class is similar to std::priority_queue but has a limited capacity and han..." alt="" coords="481,5,687,273"/>
-<area shape="rect" id="node2" href="$classPonca_1_1limited__priority__queue.html" title=" " alt="" coords="5,373,283,655"/>
-<area shape="rect" id="node3" href="$classPonca_1_1limited__priority__queue.html" title=" " alt="" coords="307,365,584,663"/>
-<area shape="rect" id="node4" href="$classPonca_1_1limited__priority__queue.html" title=" " alt="" coords="609,373,839,655"/>
-<area shape="rect" id="node5" href="$classPonca_1_1limited__priority__queue.html" title=" " alt="" coords="864,373,1141,655"/>
+<area shape="rect" id="Node000001" title="The limited_priority_queue class is similar to std::priority_queue but has a limited capacity and han..." alt="" coords="469,5,667,325"/>
+<area shape="rect" id="Node000002" href="$classPonca_1_1limited__priority__queue.html" title=" " alt="" coords="5,425,275,759"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="457,207,401,232,342,265,285,304,235,351,210,386,189,425,184,423,205,383,231,348,281,300,339,260,398,228,455,202"/>
+<area shape="rect" id="Node000003" href="$classPonca_1_1limited__priority__queue.html" title=" " alt="" coords="299,417,568,767"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="468,339,464,350,447,417,442,416,459,349,463,337"/>
+<area shape="rect" id="Node000004" href="$classPonca_1_1limited__priority__queue.html" title=" " alt="" coords="593,425,815,759"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="673,337,677,349,695,424,690,425,672,350,668,339"/>
+<area shape="rect" id="Node000005" href="$classPonca_1_1limited__priority__queue.html" title=" " alt="" coords="840,425,1109,759"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="680,215,773,272,819,308,859,348,887,384,911,423,907,426,883,387,855,351,815,312,770,277,677,220"/>
 </map>

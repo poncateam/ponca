@@ -9,9 +9,9 @@
 <g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 34)">
 <title>Graphical Class Hierarchy</title>
 <!-- Node0 -->
-<g id="node1" class="node">
+<g id="Node000000" class="node">
 <title>Node0</title>
-<g id="a_node1"><a xlink:title=" ">
+<g id="a_Node000000"><a xlink:title=" ">
 <polygon fill="#e0e0e0" stroke="#999999" points="143,-30 0,-30 0,0 143,0 143,-30"/>
 <text text-anchor="start" x="8" y="-18" font-family="Helvetica,sans-Serif" font-size="10.00">internal::BasketAggregate</text>
 <text text-anchor="middle" x="71.5" y="-7" font-family="Helvetica,sans-Serif" font-size="10.00">::type</text>
@@ -19,9 +19,9 @@
 </g>
 </g>
 <!-- Node1 -->
-<g id="node2" class="node">
+<g id="Node000001" class="node">
 <title>Node1</title>
-<g id="a_node2"><a xlink:href="classPonca_1_1Basket.html" target="_top" xlink:title="Aggregator class used to declare specialized structures using CRTP.">
+<g id="a_Node000001"><a xlink:href="classPonca_1_1Basket.html" target="_top" xlink:title="Aggregator class used to declare specialized structures using CRTP.">
 <polygon fill="white" stroke="#666666" points="300,-30 179,-30 179,0 300,0 300,-30"/>
 <text text-anchor="start" x="187" y="-18" font-family="Helvetica,sans-Serif" font-size="10.00">Ponca::Basket&lt; P, W,</text>
 <text text-anchor="middle" x="239.5" y="-7" font-family="Helvetica,sans-Serif" font-size="10.00"> Ext0, Exts &gt;</text>
@@ -29,10 +29,13 @@
 </g>
 </g>
 <!-- Node0&#45;&gt;Node1 -->
-<g id="edge1" class="edge">
+<g id="edge58_Node000000_Node000001" class="edge">
 <title>Node0&#45;&gt;Node1</title>
+<g id="a_edge58_Node000000_Node000001"><a xlink:title=" ">
 <path fill="none" stroke="#63b8ff" d="M153.4,-15C161.97,-15 170.56,-15 178.82,-15"/>
 <polygon fill="#63b8ff" stroke="#63b8ff" points="153.38,-11.5 143.38,-15 153.38,-18.5 153.38,-11.5"/>
+</a>
+</g>
 </g>
 </g>
 </svg>

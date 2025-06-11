@@ -1,5 +1,7 @@
 <map id="Ponca::Line&lt; DataPoint, _WFunctor, T &gt;" name="Ponca::Line&lt; DataPoint, _WFunctor, T &gt;">
-<area shape="rect" id="node1" title="A parametrized line is defined by an origin point &#160;and a unit direction vector &#160;such that the line co..." alt="" coords="13,160,191,384"/>
-<area shape="rect" id="node2" title=" " alt="" coords="5,20,44,97"/>
-<area shape="rect" id="node3" title=" " alt="" coords="69,5,290,112"/>
+<area shape="rect" id="Node000001" title="A parametrized line is defined by an origin point &#160;and a unit direction vector &#160;such that the line co..." alt="" coords="5,148,176,408"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="9,20,31,85"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="37,98,52,147,47,148,32,99"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="56,5,269,100"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="146,114,135,149,130,147,141,112"/>
 </map>

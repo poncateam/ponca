@@ -1,5 +1,7 @@
 <map id="Ponca::GLSDer&lt; DataPoint, _WFunctor, DiffType, T &gt;" name="Ponca::GLSDer&lt; DataPoint, _WFunctor, DiffType, T &gt;">
-<area shape="rect" id="node1" title="Differentiation of GLSParam." alt="" coords="67,145,267,355"/>
-<area shape="rect" id="node2" title=" " alt="" coords="5,5,193,97"/>
-<area shape="rect" id="node3" title=" " alt="" coords="217,13,256,90"/>
+<area shape="rect" id="Node000001" title="Differentiation of GLSParam." alt="" coords="62,133,254,373"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,5,185,85"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="114,98,124,132,119,134,109,100"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="209,13,232,78"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="210,92,197,134,192,133,204,91"/>
 </map>

@@ -1,5 +1,7 @@
 <map id="Ponca::KdTree&lt; DataPoint &gt;" name="Ponca::KdTree&lt; DataPoint &gt;">
-<area shape="rect" id="node1" title="Abstract KdTree type with KdTreeDefaultTraits." alt="" coords="6,947,213,1024"/>
-<area shape="rect" id="node2" href="$classPonca_1_1KdTreeBase.html" title=" " alt="" coords="5,483,213,897"/>
-<area shape="rect" id="node3" href="$classPonca_1_1KdTreeBase.html" title="[KdTreeSparse type definition]" alt="" coords="5,5,213,405"/>
+<area shape="rect" id="Node000001" title="Abstract KdTree type with KdTreeDefaultTraits." alt="" coords="6,1147,205,1212"/>
+<area shape="rect" id="Node000002" href="$classPonca_1_1KdTreeBase.html" title=" " alt="" coords="5,583,205,1097"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="108,1111,108,1146,103,1146,103,1111"/>
+<area shape="rect" id="Node000003" href="$classPonca_1_1KdTreeBase.html" title="[KdTreeSparse type definition]" alt="" coords="5,5,205,505"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="108,519,108,583,103,583,103,519"/>
 </map>

@@ -1,4 +1,5 @@
 <map id="Ponca::Basket&lt; P, W, Ext0, Exts &gt;" name="Ponca::Basket&lt; P, W, Ext0, Exts &gt;">
-<area shape="rect" id="node1" title="Aggregator class used to declare specialized structures using CRTP." alt="" coords="26,145,187,281"/>
-<area shape="rect" id="node2" title=" " alt="" coords="5,5,208,97"/>
+<area shape="rect" id="Node000001" title="Aggregator class used to declare specialized structures using CRTP." alt="" coords="26,133,179,273"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,5,200,85"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="105,99,105,133,100,133,100,99"/>
 </map>

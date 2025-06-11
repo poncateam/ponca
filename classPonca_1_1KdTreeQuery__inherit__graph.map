@@ -1,6 +1,9 @@
 <map id="Ponca::KdTreeQuery&lt; Traits &gt;" name="Ponca::KdTreeQuery&lt; Traits &gt;">
-<area shape="rect" id="node1" title=" " alt="" coords="283,5,435,141"/>
-<area shape="rect" id="node2" href="$classPonca_1_1KdTreeKNearestQueryBase.html" title=" " alt="" coords="5,189,228,340"/>
-<area shape="rect" id="node3" href="$classPonca_1_1KdTreeNearestQueryBase.html" title=" " alt="" coords="253,189,466,340"/>
-<area shape="rect" id="node4" href="$classPonca_1_1KdTreeRangeQueryBase.html" title=" " alt="" coords="491,189,716,340"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="273,5,417,145"/>
+<area shape="rect" id="Node000002" href="$classPonca_1_1KdTreeKNearestQueryBase.html" title=" " alt="" coords="5,193,219,348"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="264,147,206,195,203,191,261,143"/>
+<area shape="rect" id="Node000003" href="$classPonca_1_1KdTreeNearestQueryBase.html" title=" " alt="" coords="243,193,448,348"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="348,159,348,193,343,193,343,159"/>
+<area shape="rect" id="Node000004" href="$classPonca_1_1KdTreeRangeQueryBase.html" title=" " alt="" coords="473,193,690,348"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="430,142,490,191,486,195,426,146"/>
 </map>

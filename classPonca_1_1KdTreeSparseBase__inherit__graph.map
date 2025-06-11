@@ -1,6 +1,9 @@
 <map id="Ponca::KdTreeSparseBase&lt; Traits &gt;" name="Ponca::KdTreeSparseBase&lt; Traits &gt;">
-<area shape="rect" id="node1" title="Customizable base class for KdTreeSparse datastructure." alt="" coords="5,455,213,620"/>
-<area shape="rect" id="node3" href="$classPonca_1_1KdTreeSparseBase.html" title=" " alt="" coords="5,697,213,877"/>
-<area shape="rect" id="node2" href="$classPonca_1_1KdTreeBase.html" title="[KdTreeSparse type definition]" alt="" coords="5,5,213,405"/>
-<area shape="rect" id="node4" href="$structPonca_1_1KdTreeSparse.html" title="[KdTreeDense type definition]" alt="" coords="31,927,188,1019"/>
+<area shape="rect" id="Node000001" title="Customizable base class for KdTreeSparse datastructure." alt="" coords="5,555,205,735"/>
+<area shape="rect" id="Node000003" href="$classPonca_1_1KdTreeSparseBase.html" title=" " alt="" coords="5,812,205,1007"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="108,748,108,812,103,812,103,748"/>
+<area shape="rect" id="Node000002" href="$classPonca_1_1KdTreeBase.html" title="[KdTreeSparse type definition]" alt="" coords="5,5,205,505"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="108,519,108,554,103,554,103,519"/>
+<area shape="rect" id="Node000004" href="$structPonca_1_1KdTreeSparse.html" title="[KdTreeDense type definition]" alt="" coords="31,1056,180,1136"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="108,1021,108,1056,103,1056,103,1021"/>
 </map>

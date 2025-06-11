@@ -1,5 +1,7 @@
 <map id="Ponca::CovarianceFitBase&lt; DataPoint, _WFunctor, T &gt;" name="Ponca::CovarianceFitBase&lt; DataPoint, _WFunctor, T &gt;">
-<area shape="rect" id="node1" title="Procedure that compute and decompose the covariance matrix of the neighbors positions in ." alt="" coords="65,145,273,340"/>
-<area shape="rect" id="node2" title=" " alt="" coords="5,5,195,97"/>
-<area shape="rect" id="node3" title=" " alt="" coords="219,13,258,90"/>
+<area shape="rect" id="Node000001" title="Procedure that compute and decompose the covariance matrix of the neighbors positions in ." alt="" coords="59,133,259,353"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,5,187,85"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="115,98,126,132,121,134,110,100"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="211,13,234,78"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="211,92,197,134,192,132,206,90"/>
 </map>

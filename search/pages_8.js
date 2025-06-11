@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['releases_20overview_0',['Releases overview',['../ponca_changelog.html',1,'']]]
+  ['kdtree_20apis_0',['Comparison between Nanoflann and Ponca KdTree APIs',['../example_cxx_nanoflann_page.html',1,'example_page']]]
 ];

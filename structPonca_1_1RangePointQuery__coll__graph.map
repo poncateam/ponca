@@ -1,14 +1,27 @@
 <map id="Ponca::RangePointQuery&lt; Index, DataPoint &gt;" name="Ponca::RangePointQuery&lt; Index, DataPoint &gt;">
-<area shape="rect" id="node1" title="Base Query class combining QueryInputIsPosition and QueryOutputIsRange." alt="" coords="365,1031,547,1123"/>
-<area shape="rect" id="node2" href="$group__spatialpartitioning.html" title=" " alt="" coords="345,845,567,981"/>
-<area shape="rect" id="node3" href="$group__spatialpartitioning.html#structPonca_1_1QueryInputIsPosition" title="Base class for queries storing points." alt="" coords="103,603,307,724"/>
-<area shape="rect" id="node4" href="$group__spatialpartitioning.html" title=" " alt="" coords="75,345,259,467"/>
-<area shape="rect" id="node5" href="$group__spatialpartitioning.html#structPonca_1_1QueryInputBase" title="Base class for queries input type." alt="" coords="5,5,179,83"/>
-<area shape="rect" id="node6" href="$group__spatialpartitioning.html#structPonca_1_1QueryInput" title="Base class for typed queries input type." alt="" coords="113,132,265,253"/>
-<area shape="rect" id="node7" href="$group__spatialpartitioning.html" title=" " alt="" coords="347,573,565,753"/>
-<area shape="rect" id="node8" href="$group__spatialpartitioning.html#structPonca_1_1QueryOutputBase" title="Base class for queries output type." alt="" coords="308,154,492,231"/>
-<area shape="rect" id="node9" href="$group__spatialpartitioning.html#structPonca_1_1QueryOutputIsRange" title="Base class for range queries." alt="" coords="401,316,620,496"/>
-<area shape="rect" id="node10" href="$group__spatialpartitioning.html#structPonca_1_1Query" title=" " alt="" coords="598,610,754,717"/>
-<area shape="rect" id="node11" title=" " alt="" coords="645,367,707,445"/>
-<area shape="rect" id="node12" title=" " alt="" coords="731,367,805,445"/>
+<area shape="rect" id="Node000001" title="Base Query class combining QueryInputIsPosition and QueryOutputIsRange." alt="" coords="346,1051,521,1131"/>
+<area shape="rect" id="Node000002" href="$group__spatialpartitioning.html" title=" " alt="" coords="326,872,541,1001"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="436,1015,436,1050,431,1050,431,1015"/>
+<area shape="rect" id="Node000003" href="$group__spatialpartitioning.html#structPonca_1_1QueryInputIsPosition" title="Base class for queries storing points." alt="" coords="91,620,287,740"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="257,748,374,870,370,874,254,752"/>
+<area shape="rect" id="Node000004" href="$group__spatialpartitioning.html" title=" " alt="" coords="60,343,236,463"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="162,476,183,619,178,620,156,477"/>
+<area shape="rect" id="Node000005" href="$group__spatialpartitioning.html#structPonca_1_1QueryInputBase" title="Base class for queries input type." alt="" coords="5,5,171,71"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="89,84,91,158,100,240,112,292,128,342,123,343,107,294,95,240,86,158,84,85"/>
+<area shape="rect" id="Node000006" href="$group__spatialpartitioning.html#structPonca_1_1QueryInput" title="Base class for typed queries input type." alt="" coords="109,120,253,240"/>
+<area shape="poly" id="edge6_Node000006_Node000005" title=" " alt="" coords="119,81,144,118,140,121,115,84"/>
+<area shape="poly" id="edge5_Node000004_Node000006" title=" " alt="" coords="154,254,152,264,147,304,147,342,141,342,142,303,147,264,149,253"/>
+<area shape="rect" id="Node000007" href="$group__spatialpartitioning.html" title=" " alt="" coords="328,580,539,780"/>
+<area shape="poly" id="edge7_Node000002_Node000007" title=" " alt="" coords="436,794,436,872,431,872,431,794"/>
+<area shape="rect" id="Node000008" href="$group__spatialpartitioning.html#structPonca_1_1QueryOutputBase" title="Base class for queries output type." alt="" coords="308,147,484,213"/>
+<area shape="poly" id="edge8_Node000007_Node000008" title=" " alt="" coords="387,227,373,303,364,403,366,447,373,502,394,579,389,580,368,503,360,447,359,403,368,302,382,226"/>
+<area shape="rect" id="Node000009" href="$group__spatialpartitioning.html#structPonca_1_1QueryOutputIsRange" title="Base class for range queries." alt="" coords="383,303,593,503"/>
+<area shape="poly" id="edge10_Node000009_Node000008" title=" " alt="" coords="417,224,449,302,444,304,412,226"/>
+<area shape="poly" id="edge9_Node000007_Node000009" title=" " alt="" coords="468,517,456,580,450,579,463,516"/>
+<area shape="rect" id="Node000010" href="$group__spatialpartitioning.html#structPonca_1_1Query" title=" " alt="" coords="570,630,718,730"/>
+<area shape="poly" id="edge11_Node000002_Node000010" title=" " alt="" coords="597,743,488,873,484,870,592,739"/>
+<area shape="rect" id="Node000011" title=" " alt="" coords="617,370,671,435"/>
+<area shape="poly" id="edge12_Node000010_Node000011" title=" " alt="" coords="647,449,647,630,641,630,641,449"/>
+<area shape="rect" id="Node000012" title=" " alt="" coords="695,370,761,435"/>
+<area shape="poly" id="edge13_Node000010_Node000012" title=" " alt="" coords="717,449,662,630,656,629,712,448"/>
 </map>

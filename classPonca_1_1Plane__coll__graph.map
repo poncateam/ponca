@@ -1,5 +1,7 @@
 <map id="Ponca::Plane&lt; DataPoint, _WFunctor, T &gt;" name="Ponca::Plane&lt; DataPoint, _WFunctor, T &gt;">
-<area shape="rect" id="node1" title="Implicit hyperplane defined by an homogeneous vector ." alt="" coords="5,160,193,457"/>
-<area shape="rect" id="node2" title=" " alt="" coords="20,20,59,97"/>
-<area shape="rect" id="node3" title=" " alt="" coords="83,5,235,112"/>
+<area shape="rect" id="Node000001" title="Implicit hyperplane defined by an homogeneous vector ." alt="" coords="5,148,185,508"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="31,20,53,85"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="53,99,63,147,58,148,48,100"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="78,5,222,100"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="141,114,134,148,129,147,135,113"/>
 </map>

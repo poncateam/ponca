@@ -9,9 +9,9 @@
 <g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 45)">
 <title>Graphical Class Hierarchy</title>
 <!-- Node0 -->
-<g id="node1" class="node">
+<g id="Node000000" class="node">
 <title>Node0</title>
-<g id="a_node1"><a xlink:title=" ">
+<g id="a_Node000000"><a xlink:title=" ">
 <polygon fill="#e0e0e0" stroke="#999999" points="161,-35.5 0,-35.5 0,-5.5 161,-5.5 161,-35.5"/>
 <text text-anchor="start" x="8" y="-23.5" font-family="Helvetica,sans-Serif" font-size="10.00">internal::BasketDiffAggregate</text>
 <text text-anchor="middle" x="80.5" y="-12.5" font-family="Helvetica,sans-Serif" font-size="10.00">::type</text>
@@ -19,9 +19,9 @@
 </g>
 </g>
 <!-- Node1 -->
-<g id="node2" class="node">
+<g id="Node000001" class="node">
 <title>Node1</title>
-<g id="a_node2"><a xlink:href="classPonca_1_1BasketDiff.html" target="_top" xlink:title="Aggregator class used to declare specialized structures with derivatives computations,...">
+<g id="a_Node000001"><a xlink:href="classPonca_1_1BasketDiff.html" target="_top" xlink:title="Aggregator class used to declare specialized structures with derivatives computations,...">
 <polygon fill="white" stroke="#666666" points="331,-41 197,-41 197,0 331,0 331,-41"/>
 <text text-anchor="start" x="205" y="-29" font-family="Helvetica,sans-Serif" font-size="10.00">Ponca::BasketDiff&lt;</text>
 <text text-anchor="start" x="205" y="-18" font-family="Helvetica,sans-Serif" font-size="10.00"> BasketType, Type, Ext0,</text>
@@ -30,10 +30,13 @@
 </g>
 </g>
 <!-- Node0&#45;&gt;Node1 -->
-<g id="edge1" class="edge">
+<g id="edge59_Node000000_Node000001" class="edge">
 <title>Node0&#45;&gt;Node1</title>
+<g id="a_edge59_Node000000_Node000001"><a xlink:title=" ">
 <path fill="none" stroke="#63b8ff" d="M171.2,-20.5C179.81,-20.5 188.44,-20.5 196.77,-20.5"/>
 <polygon fill="#63b8ff" stroke="#63b8ff" points="171.11,-17 161.11,-20.5 171.11,-24 171.11,-17"/>
+</a>
+</g>
 </g>
 </g>
 </svg>

@@ -1,11 +1,21 @@
 <map id="Ponca::KdTreeBase&lt; Traits &gt;" name="Ponca::KdTreeBase&lt; Traits &gt;">
-<area shape="rect" id="node1" title="[KdTreeSparse type definition]" alt="" coords="303,5,511,405"/>
-<area shape="rect" id="node2" href="$classPonca_1_1KdTreeDenseBase.html" title=" " alt="" coords="5,1004,192,1125"/>
-<area shape="rect" id="node4" href="$classPonca_1_1KdTreeSparseBase.html" title=" " alt="" coords="316,975,524,1155"/>
-<area shape="rect" id="node6" href="$classPonca_1_1KdTreeDenseBase.html" title="Customizable base class for dense KdTree datastructure." alt="" coords="92,637,279,743"/>
-<area shape="rect" id="node7" href="$classPonca_1_1KdTreeSparseBase.html" title="Customizable base class for KdTreeSparse datastructure." alt="" coords="303,607,511,773"/>
-<area shape="rect" id="node8" href="$classPonca_1_1KdTreeBase.html" title=" " alt="" coords="585,483,793,897"/>
-<area shape="rect" id="node3" href="$structPonca_1_1KdTreeDense.html" title="[KdTree type definition]" alt="" coords="21,1204,176,1296"/>
-<area shape="rect" id="node5" href="$structPonca_1_1KdTreeSparse.html" title="[KdTreeDense type definition]" alt="" coords="341,1204,499,1296"/>
-<area shape="rect" id="node9" href="$structPonca_1_1KdTree.html" title="Abstract KdTree type with KdTreeDefaultTraits." alt="" coords="586,1026,793,1103"/>
+<area shape="rect" id="Node000001" title="[KdTreeSparse type definition]" alt="" coords="303,5,503,505"/>
+<area shape="rect" id="Node000002" href="$classPonca_1_1KdTreeDenseBase.html" title=" " alt="" coords="5,1215,184,1329"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="294,337,237,386,180,444,129,511,108,546,90,584,64,668,48,757,42,847,43,935,49,1019,60,1095,83,1214,78,1215,54,1096,44,1020,38,936,36,847,43,757,58,667,86,582,103,544,125,508,176,441,233,382,290,333"/>
+<area shape="rect" id="Node000004" href="$classPonca_1_1KdTreeSparseBase.html" title=" " alt="" coords="315,1175,515,1369"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="503,518,517,582,534,707,546,869,547,952,545,1030,537,1098,524,1152,512,1176,507,1173,519,1150,532,1097,540,1029,542,952,540,869,528,708,512,583,498,519"/>
+<area shape="rect" id="Node000006" href="$classPonca_1_1KdTreeDenseBase.html" title="Customizable base class for dense KdTree datastructure." alt="" coords="100,790,279,890"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="309,520,210,790,205,789,304,518"/>
+<area shape="rect" id="Node000007" href="$classPonca_1_1KdTreeSparseBase.html" title="Customizable base class for KdTreeSparse datastructure." alt="" coords="303,750,503,930"/>
+<area shape="poly" id="edge7_Node000001_Node000007" title=" " alt="" coords="405,519,405,750,400,750,400,519"/>
+<area shape="rect" id="Node000008" href="$classPonca_1_1KdTreeBase.html" title=" " alt="" coords="577,583,777,1097"/>
+<area shape="poly" id="edge9_Node000001_Node000008" title=" " alt="" coords="512,433,561,528,585,581,580,584,556,530,507,435"/>
+<area shape="rect" id="Node000003" href="$structPonca_1_1KdTreeDense.html" title="[KdTree type definition]" alt="" coords="21,1419,168,1499"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="97,1343,97,1418,92,1418,92,1343"/>
+<area shape="rect" id="Node000005" href="$structPonca_1_1KdTreeSparse.html" title="[KdTreeDense type definition]" alt="" coords="340,1419,489,1499"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="417,1383,417,1418,412,1418,412,1383"/>
+<area shape="poly" id="edge6_Node000006_Node000002" title=" " alt="" coords="178,904,110,1215,104,1214,173,903"/>
+<area shape="poly" id="edge8_Node000007_Node000004" title=" " alt="" coords="383,944,372,1044,372,1098,377,1150,382,1174,377,1175,372,1151,367,1098,367,1044,378,943"/>
+<area shape="rect" id="Node000009" href="$structPonca_1_1KdTree.html" title="Abstract KdTree type with KdTreeDefaultTraits." alt="" coords="578,1239,777,1305"/>
+<area shape="poly" id="edge10_Node000008_Node000009" title=" " alt="" coords="680,1112,680,1239,675,1239,675,1112"/>
 </map>

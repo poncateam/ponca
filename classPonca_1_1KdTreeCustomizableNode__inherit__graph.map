@@ -1,5 +1,7 @@
 <map id="Ponca::KdTreeCustomizableNode&lt; Index, NodeIndex, DataPoint, LeafSize, _InnerNodeType, _LeafNodeType &gt;" name="Ponca::KdTreeCustomizableNode&lt; Index, NodeIndex, DataPoint, LeafSize, _InnerNodeType, _LeafNodeType &gt;">
-<area shape="rect" id="node1" title="The node type used by default by the kd&#45;tree." alt="" coords="143,5,377,303"/>
-<area shape="rect" id="node2" href="$structPonca_1_1KdTreeDefaultNode.html" title=" " alt="" coords="5,534,232,641"/>
-<area shape="rect" id="node3" href="$classPonca_1_1KdTreeCustomizableNode.html" title=" " alt="" coords="257,424,549,751"/>
+<area shape="rect" id="Node000001" title="The node type used by default by the kd&#45;tree." alt="" coords="139,5,365,355"/>
+<area shape="rect" id="Node000002" href="$structPonca_1_1KdTreeDefaultNode.html" title=" " alt="" coords="5,618,224,713"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="201,369,130,618,125,617,196,367"/>
+<area shape="rect" id="Node000003" href="$classPonca_1_1KdTreeCustomizableNode.html" title=" " alt="" coords="249,476,533,855"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="308,367,339,475,334,476,303,369"/>
 </map>

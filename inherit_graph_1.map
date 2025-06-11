@@ -1,8 +1,13 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="node1" title=" " alt="" coords="5,141,228,166"/>
-<area shape="rect" id="node2" href="$classPonca_1_1CompactExpWeightKernel.html" title="Compact Exponential WeightKernel defined in ." alt="" coords="276,5,513,45"/>
-<area shape="rect" id="node3" href="$classPonca_1_1ConstantWeightKernel.html" title="Concept::WeightKernelConcept returning a constant value." alt="" coords="288,69,501,109"/>
-<area shape="rect" id="node4" href="$classPonca_1_1SingularWeightKernel.html" title="Singular WeightKernel defined in ." alt="" coords="291,133,499,173"/>
-<area shape="rect" id="node5" href="$classPonca_1_1SmoothWeightKernel.html" title="Smooth WeightKernel defined in ." alt="" coords="292,197,497,237"/>
-<area shape="rect" id="node6" href="$classPonca_1_1WendlandWeightKernel.html" title="Wendland WeightKernel defined in ." alt="" coords="285,261,504,301"/>
+<area shape="rect" id="Node000000" title=" " alt="" coords="5,141,228,166"/>
+<area shape="rect" id="Node000001" href="$classPonca_1_1CompactExpWeightKernel.html" title="Compact Exponential WeightKernel defined in ." alt="" coords="276,5,513,45"/>
+<area shape="poly" id="edge47_Node000000_Node000001" title=" " alt="" coords="145,130,204,92,275,55,307,43,309,48,277,60,206,97,148,135"/>
+<area shape="rect" id="Node000002" href="$classPonca_1_1ConstantWeightKernel.html" title="Concept::WeightKernelConcept returning a constant value." alt="" coords="288,69,501,109"/>
+<area shape="poly" id="edge48_Node000000_Node000002" title=" " alt="" coords="185,135,306,107,308,112,187,140"/>
+<area shape="rect" id="Node000003" href="$classPonca_1_1SingularWeightKernel.html" title="Singular WeightKernel defined in ." alt="" coords="291,133,499,173"/>
+<area shape="poly" id="edge49_Node000000_Node000003" title=" " alt="" coords="242,151,291,151,291,156,242,156"/>
+<area shape="rect" id="Node000004" href="$classPonca_1_1SmoothWeightKernel.html" title="Smooth WeightKernel defined in ." alt="" coords="292,197,497,237"/>
+<area shape="poly" id="edge50_Node000000_Node000004" title=" " alt="" coords="187,167,308,195,306,200,185,172"/>
+<area shape="rect" id="Node000005" href="$classPonca_1_1WendlandWeightKernel.html" title="Wendland WeightKernel defined in ." alt="" coords="285,261,504,301"/>
+<area shape="poly" id="edge51_Node000000_Node000005" title=" " alt="" coords="148,172,206,210,277,247,309,259,307,264,275,252,204,214,145,176"/>
 </map>

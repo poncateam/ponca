@@ -1,4 +1,5 @@
 <map id="Ponca::DryFit&lt; DataPoint, _WFunctor, T &gt;" name="Ponca::DryFit&lt; DataPoint, _WFunctor, T &gt;">
-<area shape="rect" id="node1" title="Empty fitting object doing no computation." alt="" coords="5,131,196,340"/>
-<area shape="rect" id="node2" title=" " alt="" coords="81,5,120,83"/>
+<area shape="rect" id="Node000001" title="Empty fitting object doing no computation." alt="" coords="5,119,188,359"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="85,5,108,71"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="99,84,99,119,94,119,94,84"/>
 </map>

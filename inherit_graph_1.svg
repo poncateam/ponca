@@ -9,18 +9,18 @@
 <g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 226)">
 <title>Graphical Class Hierarchy</title>
 <!-- Node0 -->
-<g id="node1" class="node">
+<g id="Node000000" class="node">
 <title>Node0</title>
-<g id="a_node1"><a xlink:title=" ">
+<g id="a_Node000000"><a xlink:title=" ">
 <polygon fill="#e0e0e0" stroke="#999999" points="167,-120.5 0,-120.5 0,-101.5 167,-101.5 167,-120.5"/>
 <text text-anchor="middle" x="83.5" y="-108.5" font-family="Helvetica,sans-Serif" font-size="10.00">Concept::WeightKernelConcept</text>
 </a>
 </g>
 </g>
 <!-- Node1 -->
-<g id="node2" class="node">
+<g id="Node000001" class="node">
 <title>Node1</title>
-<g id="a_node2"><a xlink:href="classPonca_1_1CompactExpWeightKernel.html" target="_top" xlink:title="Compact Exponential WeightKernel defined in .">
+<g id="a_Node000001"><a xlink:href="classPonca_1_1CompactExpWeightKernel.html" target="_top" xlink:title="Compact Exponential WeightKernel defined in .">
 <polygon fill="white" stroke="#666666" points="381,-222 203,-222 203,-192 381,-192 381,-222"/>
 <text text-anchor="start" x="211" y="-210" font-family="Helvetica,sans-Serif" font-size="10.00">Ponca::CompactExpWeightKernel</text>
 <text text-anchor="middle" x="292" y="-199" font-family="Helvetica,sans-Serif" font-size="10.00">&lt; _Scalar &gt;</text>
@@ -28,15 +28,18 @@
 </g>
 </g>
 <!-- Node0&#45;&gt;Node1 -->
-<g id="edge1" class="edge">
+<g id="edge47_Node000000_Node000001" class="edge">
 <title>Node0&#45;&gt;Node1</title>
+<g id="a_edge47_Node000000_Node000001"><a xlink:title=" ">
 <path fill="none" stroke="#63b8ff" d="M106.02,-126.63C129.03,-142.72 167.08,-167.55 203,-183 210.71,-186.32 219,-189.29 227.3,-191.91"/>
 <polygon fill="#63b8ff" stroke="#63b8ff" points="107.87,-123.66 97.69,-120.73 103.83,-129.37 107.87,-123.66"/>
+</a>
+</g>
 </g>
 <!-- Node2 -->
-<g id="node3" class="node">
+<g id="Node000002" class="node">
 <title>Node2</title>
-<g id="a_node3"><a xlink:href="classPonca_1_1ConstantWeightKernel.html" target="_top" xlink:title="Concept::WeightKernelConcept returning a constant value.">
+<g id="a_Node000002"><a xlink:href="classPonca_1_1ConstantWeightKernel.html" target="_top" xlink:title="Concept::WeightKernelConcept returning a constant value.">
 <polygon fill="white" stroke="#666666" points="372,-174 212,-174 212,-144 372,-144 372,-174"/>
 <text text-anchor="start" x="220" y="-162" font-family="Helvetica,sans-Serif" font-size="10.00">Ponca::ConstantWeightKernel</text>
 <text text-anchor="middle" x="292" y="-151" font-family="Helvetica,sans-Serif" font-size="10.00">&lt; _Scalar &gt;</text>
@@ -44,15 +47,18 @@
 </g>
 </g>
 <!-- Node0&#45;&gt;Node2 -->
-<g id="edge2" class="edge">
+<g id="edge48_Node000000_Node000002" class="edge">
 <title>Node0&#45;&gt;Node2</title>
+<g id="a_edge48_Node000000_Node000002"><a xlink:title=" ">
 <path fill="none" stroke="#63b8ff" d="M135.56,-122.87C162.94,-129.23 196.97,-137.14 226.2,-143.94"/>
 <polygon fill="#63b8ff" stroke="#63b8ff" points="136.32,-119.45 125.79,-120.6 134.74,-126.27 136.32,-119.45"/>
+</a>
+</g>
 </g>
 <!-- Node3 -->
-<g id="node4" class="node">
+<g id="Node000003" class="node">
 <title>Node3</title>
-<g id="a_node4"><a xlink:href="classPonca_1_1SingularWeightKernel.html" target="_top" xlink:title="Singular WeightKernel defined in .">
+<g id="a_Node000003"><a xlink:href="classPonca_1_1SingularWeightKernel.html" target="_top" xlink:title="Singular WeightKernel defined in .">
 <polygon fill="white" stroke="#666666" points="370,-126 214,-126 214,-96 370,-96 370,-126"/>
 <text text-anchor="start" x="222" y="-114" font-family="Helvetica,sans-Serif" font-size="10.00">Ponca::SingularWeightKernel</text>
 <text text-anchor="middle" x="292" y="-103" font-family="Helvetica,sans-Serif" font-size="10.00">&lt; _Scalar &gt;</text>
@@ -60,15 +66,18 @@
 </g>
 </g>
 <!-- Node0&#45;&gt;Node3 -->
-<g id="edge3" class="edge">
+<g id="edge49_Node000000_Node000003" class="edge">
 <title>Node0&#45;&gt;Node3</title>
+<g id="a_edge49_Node000000_Node000003"><a xlink:title=" ">
 <path fill="none" stroke="#63b8ff" d="M177.26,-111C189.54,-111 202.01,-111 213.99,-111"/>
 <polygon fill="#63b8ff" stroke="#63b8ff" points="177,-107.5 167,-111 177,-114.5 177,-107.5"/>
+</a>
+</g>
 </g>
 <!-- Node4 -->
-<g id="node5" class="node">
+<g id="Node000004" class="node">
 <title>Node4</title>
-<g id="a_node5"><a xlink:href="classPonca_1_1SmoothWeightKernel.html" target="_top" xlink:title="Smooth WeightKernel defined in .">
+<g id="a_Node000004"><a xlink:href="classPonca_1_1SmoothWeightKernel.html" target="_top" xlink:title="Smooth WeightKernel defined in .">
 <polygon fill="white" stroke="#666666" points="369,-78 215,-78 215,-48 369,-48 369,-78"/>
 <text text-anchor="start" x="223" y="-66" font-family="Helvetica,sans-Serif" font-size="10.00">Ponca::SmoothWeightKernel</text>
 <text text-anchor="middle" x="292" y="-55" font-family="Helvetica,sans-Serif" font-size="10.00">&lt; _Scalar &gt;</text>
@@ -76,15 +85,18 @@
 </g>
 </g>
 <!-- Node0&#45;&gt;Node4 -->
-<g id="edge4" class="edge">
+<g id="edge50_Node000000_Node000004" class="edge">
 <title>Node0&#45;&gt;Node4</title>
+<g id="a_edge50_Node000000_Node000004"><a xlink:title=" ">
 <path fill="none" stroke="#63b8ff" d="M135.56,-99.13C162.94,-92.77 196.97,-84.86 226.2,-78.06"/>
 <polygon fill="#63b8ff" stroke="#63b8ff" points="134.74,-95.73 125.79,-101.4 136.32,-102.55 134.74,-95.73"/>
+</a>
+</g>
 </g>
 <!-- Node5 -->
-<g id="node6" class="node">
+<g id="Node000005" class="node">
 <title>Node5</title>
-<g id="a_node6"><a xlink:href="classPonca_1_1WendlandWeightKernel.html" target="_top" xlink:title="Wendland WeightKernel defined in .">
+<g id="a_Node000005"><a xlink:href="classPonca_1_1WendlandWeightKernel.html" target="_top" xlink:title="Wendland WeightKernel defined in .">
 <polygon fill="white" stroke="#666666" points="374,-30 210,-30 210,0 374,0 374,-30"/>
 <text text-anchor="start" x="218" y="-18" font-family="Helvetica,sans-Serif" font-size="10.00">Ponca::WendlandWeightKernel</text>
 <text text-anchor="middle" x="292" y="-7" font-family="Helvetica,sans-Serif" font-size="10.00">&lt; _Scalar &gt;</text>
@@ -92,10 +104,13 @@
 </g>
 </g>
 <!-- Node0&#45;&gt;Node5 -->
-<g id="edge5" class="edge">
+<g id="edge51_Node000000_Node000005" class="edge">
 <title>Node0&#45;&gt;Node5</title>
+<g id="a_edge51_Node000000_Node000005"><a xlink:title=" ">
 <path fill="none" stroke="#63b8ff" d="M106.02,-95.37C129.03,-79.28 167.08,-54.45 203,-39 210.71,-35.68 219,-32.71 227.3,-30.09"/>
 <polygon fill="#63b8ff" stroke="#63b8ff" points="103.83,-92.63 97.69,-101.27 107.87,-98.34 103.83,-92.63"/>
+</a>
+</g>
 </g>
 </g>
 </svg>

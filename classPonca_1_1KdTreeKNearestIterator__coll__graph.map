@@ -1,8 +1,13 @@
 <map id="Ponca::KdTreeKNearestIterator&lt; Index, DataPoint &gt;" name="Ponca::KdTreeKNearestIterator&lt; Index, DataPoint &gt;">
-<area shape="rect" id="node1" title=" " alt="" coords="171,976,392,1156"/>
-<area shape="rect" id="node2" href="$classPonca_1_1limited__priority__queue.html" title=" " alt="" coords="166,645,397,913"/>
-<area shape="rect" id="node3" title=" " alt="" coords="5,388,213,480"/>
-<area shape="rect" id="node4" title=" " alt="" coords="45,145,174,223"/>
-<area shape="rect" id="node5" title=" " alt="" coords="90,5,129,83"/>
-<area shape="rect" id="node6" href="$classPonca_1_1limited__priority__queue.html" title="The limited_priority_queue class is similar to std::priority_queue but has a limited capacity and han..." alt="" coords="237,300,443,568"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="165,1051,379,1251"/>
+<area shape="rect" id="Node000002" href="$classPonca_1_1limited__priority__queue.html" title=" " alt="" coords="161,673,383,988"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="275,988,275,1034,269,1034,269,988"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="5,396,205,476"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="124,475,202,657,197,659,119,477"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="45,133,166,199"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="108,213,108,396,103,396,103,213"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="94,5,117,71"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="108,71,108,117,103,117,103,71"/>
+<area shape="rect" id="Node000006" href="$classPonca_1_1limited__priority__queue.html" title="The limited_priority_queue class is similar to std::priority_queue but has a limited capacity and han..." alt="" coords="229,276,427,596"/>
+<area shape="poly" id="edge5_Node000002_Node000006" title=" " alt="" coords="306,610,297,673,292,672,301,610"/>
 </map>

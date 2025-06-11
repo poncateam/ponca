@@ -1,9 +1,15 @@
 <map id="Ponca::QueryOutputIsKNearest&lt; Index, Scalar &gt;" name="Ponca::QueryOutputIsKNearest&lt; Index, Scalar &gt;">
-<area shape="rect" id="node1" title="Base class for knearest queries." alt="" coords="61,976,283,1112"/>
-<area shape="rect" id="node2" href="$group__spatialpartitioning.html#structPonca_1_1QueryOutputBase" title="Base class for queries output type." alt="" coords="5,741,189,818"/>
-<area shape="rect" id="node3" href="$classPonca_1_1limited__priority__queue.html" title=" " alt="" coords="213,645,491,913"/>
-<area shape="rect" id="node4" title=" " alt="" coords="121,381,297,487"/>
-<area shape="rect" id="node5" title=" " alt="" coords="145,145,274,223"/>
-<area shape="rect" id="node6" title=" " alt="" coords="190,5,229,83"/>
-<area shape="rect" id="node7" href="$classPonca_1_1limited__priority__queue.html" title="The limited_priority_queue class is similar to std::priority_queue but has a limited capacity and han..." alt="" coords="321,300,527,568"/>
+<area shape="rect" id="Node000001" title="Base class for knearest queries." alt="" coords="58,1051,273,1191"/>
+<area shape="rect" id="Node000002" href="$group__spatialpartitioning.html#structPonca_1_1QueryOutputBase" title="Base class for queries output type." alt="" coords="5,798,181,863"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="107,877,151,1050,145,1051,102,878"/>
+<area shape="rect" id="Node000003" href="$classPonca_1_1limited__priority__queue.html" title=" " alt="" coords="205,673,475,988"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="247,990,218,1038,213,1035,243,987"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="119,389,287,483"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="221,483,282,657,277,659,216,484"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="142,133,263,199"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="205,213,205,388,200,388,200,213"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="191,5,214,71"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="205,71,205,117,200,117,200,71"/>
+<area shape="rect" id="Node000007" href="$classPonca_1_1limited__priority__queue.html" title="The limited_priority_queue class is similar to std::priority_queue but has a limited capacity and han..." alt="" coords="311,276,508,596"/>
+<area shape="poly" id="edge6_Node000003_Node000007" title=" " alt="" coords="381,610,370,673,365,672,376,609"/>
 </map>
