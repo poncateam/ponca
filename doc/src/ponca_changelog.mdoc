@@ -11,6 +11,18 @@
 
    \section ponca_releases_overview Principal features of the latest releases
 
+   \subsection ponca_v13_sec V1.3: introducing KdTre API change, new features in the Fitting module and general improvements
+   - KdTree was refactored
+   - A new sphere fitting method was added : UnorientedSphereDer
+   - Added equations to the documentation of the \ref fitting "Fitting module"
+   - Fixed the mean normal vector derivatives computation
+   - Added a test to the \ref fitting "Fitting module" to compare single-pass covariance
+   - Remove exceptions in release mode compilation
+
+    \code
+    git checkout v1.3
+    \endcode
+
    \subsection ponca_v12_sec V1.2: Bug fixes and optimization of the spatial partitioning algorithm
    - Several bug fix on the \ref fitting "Fitting module"
    - KdTree and KnnGraph improvements (bug fix and memory optimization)
