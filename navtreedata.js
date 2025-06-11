@@ -86,12 +86,6 @@ var NAVTREE =
       ] ]
     ] ],
     [ "Releases overview", "ponca_changelog.html", [
-      [ "Principal features of the latest releases", "ponca_changelog.html#ponca_releases_overview", [
-        [ "V1.1: improve Spatial Partitioning module + bug fixes", "ponca_changelog.html#ponca_v11_sec", null ],
-        [ "V1.0: adding Spatial Partitioning module", "ponca_changelog.html#ponca_v10_sec", null ],
-        [ "V0.3: adding Spatial Partitioning module", "ponca_changelog.html#ponca_v03_sec", null ],
-        [ "V0.2: adding Spatial Partitioning module", "ponca_changelog.html#ponca_v02_sec", null ]
-      ] ],
       [ "Complete Changelog", "ponca_changelog.html#ponca_changelog_sec", null ]
     ] ],
     [ "Getting started", "ponca_getting_started_page.html", [
@@ -192,7 +186,7 @@ var NAVTREEINDEX =
 "annotated.html",
 "classPonca_1_1KdTreeNearestQueryBase.html",
 "classPonca_1_1PrimitiveBase.html#af20277c1bd8e48d55b43bf7e8f970cc3",
-"spatialpartitioning.html#spatialpartitioning_intro_structures"
+"spatialpartitioning.html#spatialpartitioning_kdtree_usage_construction"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

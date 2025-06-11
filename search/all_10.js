@@ -1,18 +1,11 @@
 var searchData=
 [
-  ['nanoflann_20and_20ponca_20kdtree_20apis_0',['Comparison between Nanoflann and Ponca KdTree APIs',['../example_cxx_nanoflann_page.html',1,'example_page']]],
-  ['nbmax_1',['NBMAX',['../namespacePonca.html#abfd697aebf07c1b5c8be5ee401e2dc84a405923cb4af5edb343e87ec895c01c2c',1,'Ponca']]],
-  ['nearestindexquery_2',['NearestIndexQuery',['../group__spatialpartitioning.html#structPonca_1_1NearestIndexQuery',1,'Ponca']]],
-  ['nearestpointquery_3',['NearestPointQuery',['../group__spatialpartitioning.html#structPonca_1_1NearestPointQuery',1,'Ponca']]],
-  ['need_5fother_5fpass_4',['NEED_OTHER_PASS',['../namespacePonca.html#abfd697aebf07c1b5c8be5ee401e2dc84a0d50cd1855fec459b2c5756ec38d4a17',1,'Ponca']]],
-  ['needanotherpass_5',['needAnotherPass',['../classPonca_1_1PrimitiveBase.html#ac70b0df49cb26246d394486fa5bd3a34',1,'Ponca::PrimitiveBase']]],
-  ['neighbor_20searches_6',['Ponca::KdTree neighbor searches',['../example_cxx_neighbor_search.html',1,'example_page']]],
-  ['neighborhood_20properties_7',['Fitting primitives and compute neighborhood properties',['../fitting.html#fitting_primitiveOverview',1,'']]],
-  ['nodecontainer_8',['NodeContainer',['../classPonca_1_1KdTreeBase.html#a5e793f60b97ed505f977161d576cf76b',1,'Ponca::KdTreeBase']]],
-  ['nodeindextype_9',['NodeIndexType',['../classPonca_1_1KdTreeBase.html#a9613c7140e98d39214c8ae16e51a1d0c',1,'Ponca::KdTreeBase']]],
-  ['nodetype_10',['NodeType',['../classPonca_1_1KdTreeBase.html#a21a632642f089b5f94952bd43d45b4b1',1,'Ponca::KdTreeBase']]],
-  ['normal_20_3a_11',['Step-by-step derivation of the mean normal :',['../classPonca_1_1MeanNormalDer.html#autotoc_md2',1,'']]],
-  ['normalcovariancecurvatureestimator_12',['normalcovariancecurvatureestimator',['../classPonca_1_1NormalCovarianceCurvatureEstimator.html#a11712fc1797773cadb2a2e4428adbf18',1,'Ponca::NormalCovarianceCurvatureEstimator::normalCovarianceCurvatureEstimator()'],['../classPonca_1_1NormalCovarianceCurvatureEstimator.html#af43280afd82279ae3d45468e6a2dbfba',1,'Ponca::NormalCovarianceCurvatureEstimator::normalCovarianceCurvatureEstimator() const'],['../classPonca_1_1NormalCovarianceCurvatureEstimator.html',1,'Ponca::NormalCovarianceCurvatureEstimator&lt; DataPoint, _WFunctor, DiffType, T &gt;']]],
-  ['normalderivativescurvatureestimator_13',['normalderivativescurvatureestimator',['../classPonca_1_1NormalDerivativesCurvatureEstimator.html#a8b1e7e7663c7ec33be9d872086475fa6',1,'Ponca::NormalDerivativesCurvatureEstimator::normalDerivativesCurvatureEstimator()'],['../classPonca_1_1NormalDerivativesCurvatureEstimator.html#a3d5772628f0c7eac453f4e6299d33b05',1,'Ponca::NormalDerivativesCurvatureEstimator::normalDerivativesCurvatureEstimator() const'],['../classPonca_1_1NormalDerivativesCurvatureEstimator.html',1,'Ponca::NormalDerivativesCurvatureEstimator&lt; DataPoint, _WFunctor, DiffType, T &gt;']]],
-  ['notitle_14',['notitle',['../index.html',1,'']]]
+  ['radius_0',['radius',['../classPonca_1_1AlgebraicSphere.html#a51dbbb073bcef4ad2f021544dc104da4',1,'Ponca::AlgebraicSphere']]],
+  ['rangeindexquery_1',['RangeIndexQuery',['../group__spatialpartitioning.html#structPonca_1_1RangeIndexQuery',1,'Ponca']]],
+  ['rangeindexquery_3c_20traits_3a_3aindextype_2c_20traits_3a_3adatapoint_3a_3ascalar_20_3e_2',['RangeIndexQuery&lt; Traits::IndexType, Traits::DataPoint::Scalar &gt;',['../group__spatialpartitioning.html',1,'Ponca']]],
+  ['rangepointquery_3',['RangePointQuery',['../group__spatialpartitioning.html#structPonca_1_1RangePointQuery',1,'Ponca']]],
+  ['related_20to_20weighting_20functions_4',['Concepts related to weighting functions',['../fitting_concepts.html#concepts_weighting',1,'']]],
+  ['releases_20overview_5',['Releases overview',['../ponca_changelog.html',1,'']]],
+  ['requirements_6',['requirements',['../fitting.html#fitting_capabilities',1,'Computational objets capabilities and requirements'],['../ponca_getting_started_page.html#getting_started_requirements_sec',1,'Requirements']]],
+  ['reset_7',['reset',['../classPonca_1_1KdTreeQuery.html#a2c02164e69a15dbf89c4b80b625cc0ac',1,'Ponca::KdTreeQuery::reset()'],['../group__spatialpartitioning.html#a6d86ff545f12d50e52b63ce36a843b6d',1,'Ponca::QueryOutputIsRange::reset()'],['../group__spatialpartitioning.html#a92333a653df9e9b440ff7ba465753a66',1,'Ponca::QueryOutputIsNearest::reset()'],['../group__spatialpartitioning.html#a8156b77a6bd1c52ad640488bfede42b5',1,'Ponca::QueryOutputIsKNearest::reset()']]]
 ];

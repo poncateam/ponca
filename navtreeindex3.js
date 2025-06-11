@@ -1,10 +1,5 @@
 var NAVTREEINDEX3 =
 {
-"spatialpartitioning.html#spatialpartitioning_intro_structures":[6,3,0,0],
-"spatialpartitioning.html#spatialpartitioning_kdtree":[6,3,1],
-"spatialpartitioning.html#spatialpartitioning_kdtree_extending":[6,3,1,2],
-"spatialpartitioning.html#spatialpartitioning_kdtree_implementation":[6,3,1,0],
-"spatialpartitioning.html#spatialpartitioning_kdtree_usage":[6,3,1,1],
 "spatialpartitioning.html#spatialpartitioning_kdtree_usage_construction":[6,3,1,1,0],
 "spatialpartitioning.html#spatialpartitioning_kdtree_usage_queries":[6,3,1,1,1],
 "spatialpartitioning.html#spatialpartitioning_kdtree_usage_samples_and_indexing":[6,3,1,1,2],
