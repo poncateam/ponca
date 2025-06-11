@@ -155,8 +155,8 @@ int main(int argc, char** argv)
     // Testing Smooth / QuadSmooth kernel
     cout << "Verify generalised smooth weight kernel" << endl;
     // We disable the template specialization to test the general formula on the second degree case
-    testKernelDiff<PolynomialSmoothWeightKernel<double, 2, 2, false>, SmoothWeightKernel<double>>();
-    testKernelDiff<PolynomialSmoothWeightKernel<float, 2, 2, false>, SmoothWeightKernel<float>>();
-    testKernelDiff<PolynomialSmoothWeightKernel<long double, 2, 2, false>, SmoothWeightKernel<long double>>();
+    testKernelDiff<PolynomialSmoothWeightKernel<double, 2, 2>, SmoothWeightKernel<double>>();
+    testKernelDiff<PolynomialSmoothWeightKernel<float, 2, 2>, SmoothWeightKernel<float>>();
+    testKernelDiff<PolynomialSmoothWeightKernel<long double, 2, 2>, SmoothWeightKernel<long double>>();
 
 }
