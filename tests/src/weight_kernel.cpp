@@ -16,6 +16,7 @@
 
 #include <Ponca/src/Fitting/weightFunc.h>
 #include <Ponca/src/Fitting/weightKernel.h>
+#include <chrono>
 
 using namespace std;
 using namespace Ponca;
@@ -86,6 +87,58 @@ void testFunction(typename Kernel::Scalar mmin = 0, typename Kernel::Scalar mmax
     }
 }
 
+template<typename W1, typename W2>
+void testKernelDiff(int nbSteps = 1000)
+{
+    W1 kernel1;
+    W2 kernel2;
+
+    typedef typename W1::Scalar Scalar;
+    Scalar epsilon = 0.0001; // Current tolerance
+
+    for(int i=1; i<=nbSteps; ++i)
+    {
+        Scalar x = Scalar(i) / Scalar(nbSteps);
+        // Compare both kernel (should be equal)
+        // cout << kernel1.ddf(x) << "     " << kernel2.ddf(x) << endl;
+
+        VERIFY(Eigen::internal::isApprox(kernel1.f(x), kernel2.f(x), epsilon));
+        VERIFY(Eigen::internal::isApprox(kernel1.df(x), kernel2.df(x), epsilon));
+        VERIFY(Eigen::internal::isApprox(kernel1.ddf(x), kernel2.ddf(x), epsilon));
+    }
+
+    // do more tests to highlight timings differences
+    nbSteps *= nbSteps;
+
+    auto runComputation = [nbSteps](auto kernel ){
+        int sum = 0;
+        for(int i=1; i<=nbSteps; ++i)
+        {
+            Scalar x = Scalar(i) / Scalar(nbSteps);
+            sum += kernel.f(x) + kernel.df(x) + kernel.ddf(x);
+        }
+        return sum;
+    };
+
+    // test timings
+    auto start = std::chrono::system_clock::now();
+    auto res1 = runComputation( kernel1 );
+    auto end = std::chrono::system_clock::now();
+    std::chrono::duration<double> w1Time = (end-start);
+
+    start = std::chrono::system_clock::now();
+    auto res2 = runComputation( kernel2 );
+    end = std::chrono::system_clock::now();
+    std::chrono::duration<double> w2Time = (end-start);
+
+    // print output values to avoid that the compiler optimizes by deleting the functions
+    std::cout << "res: " << res1 << " " << res2 << std::endl;
+    std::cout << "time:" << w1Time.count() << " " << w2Time.count() << std::endl;
+
+    // we do not verify anything here, as the timings my evolve very differently depending on the compilation
+
+}
+
 template<typename Scalar, template <typename > class KernelT>
 void callSubTests(Scalar mmin = 0, Scalar mmax = 1)
 {
@@ -129,4 +182,12 @@ int main(int argc, char** argv)
     cout << "Verify Compact Exponential weight kernel derivatives" << endl;
     callSubTests<long double, CompactExpWeightKernel>();
     /// autodiffs are not compatible with pow, used in this class
+
+    // Testing Smooth / QuadSmooth kernel
+    cout << "Verify generalised smooth weight kernel" << endl;
+    // We disable the template specialization to test the general formula on the second degree case
+    testKernelDiff<PolynomialSmoothWeightKernel<double, 2, 2>, SmoothWeightKernel<double>>();
+    testKernelDiff<PolynomialSmoothWeightKernel<float, 2, 2>, SmoothWeightKernel<float>>();
+    testKernelDiff<PolynomialSmoothWeightKernel<long double, 2, 2>, SmoothWeightKernel<long double>>();
+
 }

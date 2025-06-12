@@ -3,7 +3,6 @@
  License, v. 2.0. If a copy of the MPL was not distributed with this
  file, You can obtain one at http://mozilla.org/MPL/2.0/.
 */
-
 #pragma once
 
 #include "./defines.h"
@@ -52,8 +51,8 @@ private:
 
 
 /*!
-    \brief Smooth WeightKernel defined in \f$\left[0 : 1\right]\f$
-    \todo Add a degree value as template parameter (in this class or another one), with specialized functions for 2
+    \brief Smooth WeightKernel of 2nd degree, defined in \f$\left[0 : 1\right]\f$
+    Special case of PolynomialSmoothWeightKernel<Scalar, 2, 2>
 
     \inherit Concept::WeightKernelConcept
 */
@@ -77,6 +76,30 @@ public:
     static constexpr bool isDDValid = true;
 };//class SmoothWeightKernel
 
+/*!
+    \brief Generalised version of SmoothWeightKernel with arbitrary degrees : \f$ w(x)=(x^n-1)^m \f$
+
+    \inherit Concept::WeightKernelConcept
+*/
+template <typename _Scalar, int m, int n>
+class PolynomialSmoothWeightKernel
+{
+public:
+
+    /*! \brief Scalar type defined outside the class*/
+    typedef _Scalar Scalar;
+    // Functor
+    /*! \brief Defines the smooth weighting function \f$  w(x)=(x^n-1)^m \f$ */
+    PONCA_MULTIARCH inline Scalar f  (const Scalar& _x) const { return pow(pow(_x, n) - Scalar(1.), m); }
+    /*! \brief Defines the smooth first order weighting function \f$ \nabla w(x) = m n x^{n-1} \left(x^n-1\right)^{m-1} \f$ */
+    PONCA_MULTIARCH inline Scalar df (const Scalar& _x) const { return pow(m*n*_x, n-1) * pow(pow(_x, n) -1, m-1); }
+    /*! \brief Defines the smooth second order weighting function \f$ \nabla^2 w(x) = (m-1) m n^2 x^{2 n-2} \left(x^n-1\right)^{m-2}+m (n-1) n x^{n-2} \left(x^n-1\right)^{m-1} \f$ */
+    PONCA_MULTIARCH inline Scalar ddf(const Scalar& _x) const { return (m-1)*m*n*n*pow(_x, 2*n-2)*pow(pow(_x, n)-1, m-2) + m*(n-1)*n*pow(_x, n-2) * pow(pow(_x, n)-1, m-1); }
+    //! \brief #df is defined and valid on the definition interval
+    static constexpr bool isDValid = true;
+    //! \brief #ddf is defined and valid on the definition interval
+    static constexpr bool isDDValid = true;
+};//class PolynomialSmoothWeightKernel
 
 /*!
     \brief Wendland WeightKernel defined in \f$\left[0 : 1\right]\f$
