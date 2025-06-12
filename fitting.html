@@ -51,7 +51,7 @@ MathJax.Hub.Config({
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Ponca
-   &#160;<span id="projectnumber">57fd477bb58e2253d3d9993bf5901a8a65eb8ac6</span>
+   &#160;<span id="projectnumber">624fc013d41bc7b7ad27159d1c16f7ce57f5a2e4</span>
    </div>
    <div id="projectbrief">Point Cloud Analysis library</div>
   </td>
@@ -245,7 +245,7 @@ Data Samples</h2>
 Definition of the Fitting object</h2>
 <p>Two template classes must be specialized to configure computations.</p>
 <ol type="1">
-<li>The first step consists in specifying a weighting function: it defines how neighbor samples will contribute to the fit, as illustrated in Figure 2(a) in 2D. In this example, we choose a weight based on the Euclidean distance using <a class="el" href="classPonca_1_1DistWeightFunc.html" title="Weighting function based on the euclidean distance between a query and a reference position.">Ponca::DistWeightFunc</a>, remapped through a bisquare kernel defined in <a class="el" href="classPonca_1_1SmoothWeightKernel.html" title="Smooth WeightKernel defined in .">Ponca::SmoothWeightKernel</a>: <div class="fragment"><div class="line">    <span class="keyword">using </span>WeightFunc = DistWeightFunc&lt;Point, SmoothWeightKernel&lt;Scalar&gt; &gt;;</div>
+<li>The first step consists in specifying a weighting function: it defines how neighbor samples will contribute to the fit, as illustrated in Figure 2(a) in 2D. In this example, we choose a weight based on the Euclidean distance using <a class="el" href="classPonca_1_1DistWeightFunc.html" title="Weighting function based on the euclidean distance between a query and a reference position.">Ponca::DistWeightFunc</a>, remapped through a bisquare kernel defined in <a class="el" href="classPonca_1_1SmoothWeightKernel.html" title="Smooth WeightKernel of 2nd degree, defined in  Special case of PolynomialSmoothWeightKernel&lt;Scalar,...">Ponca::SmoothWeightKernel</a>: <div class="fragment"><div class="line">    <span class="keyword">using </span>WeightFunc = DistWeightFunc&lt;Point, SmoothWeightKernel&lt;Scalar&gt; &gt;;</div>
 </div><!-- fragment --></li>
 <li>The second step identifies a complete fitting procedure through the specialization of a <a class="el" href="classPonca_1_1Basket.html" title="Aggregator class used to declare specialized structures using CRTP.">Ponca::Basket</a>. In our example, we want to apply an <a class="el" href="namespacePonca.html#a2f53f5c61ca5df7c3e3f8cf2219a14d4" title="Helper alias for Oriented Sphere fitting on 3D points using OrientedSphereFitImpl [OrientedSphereFit ...">Ponca::OrientedSphereFit</a> to input data points, which outputs an <a class="el" href="classPonca_1_1AlgebraicSphere.html" title="Algebraic Sphere primitive.">Ponca::AlgebraicSphere</a> by default. This leads to the following specialization: <div class="fragment"><div class="line">    <span class="keyword">using </span>Sphere = Basket&lt;Point, WeightFunc, OrientedSphereFit&gt;;</div>
 </div><!-- fragment --></li>
@@ -463,7 +463,7 @@ Cuda</h2>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="user_manual_page.html">User Manual</a></li>
-    <li class="footer">Generated on Wed Jun 11 2025 14:50:35 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
+    <li class="footer">Generated on Thu Jun 12 2025 14:13:46 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
   </ul>
 </div>
 </body>

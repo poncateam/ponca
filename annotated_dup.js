@@ -58,6 +58,7 @@ var annotated_dup =
       [ "OrientedSphereDerImpl", "classPonca_1_1OrientedSphereDerImpl.html", "classPonca_1_1OrientedSphereDerImpl" ],
       [ "OrientedSphereFitImpl", "classPonca_1_1OrientedSphereFitImpl.html", "classPonca_1_1OrientedSphereFitImpl" ],
       [ "Plane", "classPonca_1_1Plane.html", "classPonca_1_1Plane" ],
+      [ "PolynomialSmoothWeightKernel", "classPonca_1_1PolynomialSmoothWeightKernel.html", "classPonca_1_1PolynomialSmoothWeightKernel" ],
       [ "PrimitiveBase", "classPonca_1_1PrimitiveBase.html", "classPonca_1_1PrimitiveBase" ],
       [ "PrimitiveDer", "classPonca_1_1PrimitiveDer.html", "classPonca_1_1PrimitiveDer" ],
       [ "ProjectedNormalCovarianceCurvatureEstimator", "classPonca_1_1ProjectedNormalCovarianceCurvatureEstimator.html", "classPonca_1_1ProjectedNormalCovarianceCurvatureEstimator" ],

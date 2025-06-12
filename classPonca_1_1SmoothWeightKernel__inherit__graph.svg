@@ -21,7 +21,7 @@
 <!-- Node1 -->
 <g id="Node000001" class="node">
 <title>Node1</title>
-<g id="a_Node000001"><a xlink:title="Smooth WeightKernel defined in .">
+<g id="a_Node000001"><a xlink:title="Smooth WeightKernel of 2nd degree, defined in &#160;Special case of PolynomialSmoothWeightKernel&lt;Scalar,...">
 <polygon fill="#999999" stroke="transparent" points="154.5,-105 6.5,-105 6.5,0 154.5,0 154.5,-105"/>
 <text text-anchor="start" x="11.5" y="-92.5" font-family="Helvetica,sans-Serif" font-size="10.00">Ponca::SmoothWeightKernel</text>
 <text text-anchor="start" x="51.5" y="-81.5" font-family="Helvetica,sans-Serif" font-size="10.00">&lt; _Scalar &gt;</text>
