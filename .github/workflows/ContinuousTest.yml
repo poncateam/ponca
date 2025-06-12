@@ -42,7 +42,7 @@ jobs:
         run: cd build && cmake --build . --target test
       - name: Handle test failure
         if: ${{ failure() }}
-        run : cat /build/Testing/Temporary/LastTest.log
+        run : cat ./build/Testing/Temporary/LastTest.log
       - name: make ponca-examples
         run: cd build && cmake --build . --target ponca-examples
       - name: make install
