@@ -58,8 +58,7 @@ protected:
     //! \brief Is the implicit scalar field normalized using Pratt
     bool m_isNormalized;
 
-// results
-public:
+    // results
     Scalar m_uc {0},       /*!< \brief Constant parameter of the Algebraic hyper-sphere */
            m_uq {0};       /*!< \brief Quadratic parameter of the Algebraic hyper-sphere */
     VectorType m_ul {VectorType::Zero()};   /*!< \brief Linear parameter of the Algebraic hyper-sphere */
@@ -255,6 +254,18 @@ public:
         \warning The gradient is not normalized by default */
     PONCA_MULTIARCH inline const VectorType& primitiveGradient () const { return m_ul; }
 
+    ///\brief Mean curvature (inverse of the sphere radius). Return 0 for planes
+    PONCA_MULTIARCH inline Scalar meanCurvature () const { return Scalar(2)*m_uq; }
+
+    ///\brief Read access to constant term \f$ u_c \f$
+    PONCA_MULTIARCH inline Scalar uc() const { return m_uc; }
+
+    ///\brief Read access to linear term \f$ \mathbf{u}_l \f$
+    PONCA_MULTIARCH inline VectorType ul() const { return m_ul; }
+
+    ///\brief Read access to quadratic term \f$ u_q \f$
+    PONCA_MULTIARCH inline Scalar uq() const { return m_uq; }
+
     /*!
         \brief Used to know if the fitting result to a plane
         \return true if finalize() have been called and the fitting result to a plane
@@ -263,7 +274,7 @@ public:
     {
         PONCA_MULTIARCH_STD_MATH(abs);
         Scalar epsilon = Eigen::NumTraits<Scalar>::dummy_precision();
-        bool bPlanar   = Eigen::internal::isMuchSmallerThan(abs(m_uq), Scalar(1.), epsilon);
+        bool bPlanar   = Eigen::internal::isMuchSmallerThan(abs(meanCurvature()), Scalar(1.), epsilon);
         bool bReady    = Base::isReady();
 
         return bReady && bPlanar;
