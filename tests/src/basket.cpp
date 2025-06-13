@@ -299,13 +299,10 @@ int main(int argc, char** argv)
     cout << " (ok)" << flush;
     cout << ", long double" << flush;
     CALL_SUBTEST_3((callSubTests<long double, 3>()));
-    cout << " (ok)" << endl;
+    cout << " (ok)" << flush;
 
-//    cout << "Test Basket functions in 4 dimensions..." << endl;
-//    callSubTests<float, 4>();
-//    callSubTests<double, 4>();
-//    // don't know why, but we have problems when using the kdtree with long doubles on windows
-//#ifndef WIN32
-//    callSubTests<long double, 4>();
-//#endif
+    // cout << "Test Basket functions in 4 dimensions..." << endl;
+    // callSubTests<float, 4>();
+    // callSubTests<double, 4>();
+    // callSubTests<long double, 4>();
 }

@@ -40,7 +40,7 @@ jobs:
         run: cd build && cmake --build . --target buildtests
       - name: make ContinuousTest
         run: cd build && cmake --build . --target test
-      - name: Handle test failure
+      - name: Display test failure logs
         if: ${{ failure() }}
         run : cat ./build/Testing/Temporary/LastTest.log
       - name: make ponca-examples
