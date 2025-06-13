@@ -54,7 +54,7 @@ void testFunction(bool _bAddPositionNoise = false)
     for(int i = 0; i < int(vectorPoints.size()); ++i)
     {
         Fit fit;
-        fit.setWeightFunc(WeightFunc(1));
+        fit.setWeightFunc(WeightFunc(10));
         fit.init(vectorPoints[i].pos());
         fit.compute(vectorPoints);
 
