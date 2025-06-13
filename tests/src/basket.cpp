@@ -108,21 +108,18 @@ void testBasicFunctionalities(const KdTree<typename Fit::DataPoint>& tree, typen
         VERIFY(! (fit1 != fit2));
         VERIFY(! (fit2 != fit2));
 
-        // we skip kdtree test for float: using the kdtree changes the order of the neighbors, which in turn changes the
-        // rounding error accumulations, and thus the final result
-        if (std::is_same<Scalar, float>::value || std::is_same<Scalar, long double>::value)
-            continue;
+        // /!\ Because the kdtree changes the order of the neighbors, which in turn changes the rounding error accumulations
+        // We need to evaluate those tests with a greater epsilon tolerance
+        Scalar eps = 0.0001;
         //! [Fit computeWithIds]
         Fit fit3;
         fit3.setWeightFunc(WeightFunc(analysisScale));
         fit3.init(fitInitPos);
         fit3.computeWithIds( tree.range_neighbors(fitInitPos, analysisScale), vectorPoints );
         //! [Fit computeWithIds]
-        VERIFY(fit3 == fit3);
-        VERIFY(fit1 == fit3);
-        VERIFY(! (fit1 != fit3));
-
-
+        VERIFY(fit3.isApprox(fit3, eps)); // Test the isApprox function on trivial problems
+        VERIFY(fit1.isApprox(fit1, eps));
+        VERIFY(fit1.isApprox(fit3, eps)); // True test
     }
 }
 
