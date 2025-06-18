@@ -63,11 +63,10 @@ public:
     }
 
     PONCA_FITTING_APIDOC_INIT
-    PONCA_MULTIARCH inline void init(const VectorType& _basisCenter = VectorType::Zero())
+    PONCA_MULTIARCH inline void init()
     {
         m_eCurrentState = UNDEFINED;
         startNewPass();
-        m_w.init( _basisCenter );
     }
 
     /*! \brief Is the primitive well fitted an ready to use (finalize has been
