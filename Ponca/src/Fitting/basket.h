@@ -92,6 +92,7 @@ namespace internal
     template <typename IteratorBegin, typename IteratorEnd>                                           \
     PONCA_MULTIARCH inline                                                                            \
     FIT_RESULT compute(const IteratorBegin& begin, const IteratorEnd& end){                           \
+        this->init();                                                                                 \
         FIT_RESULT res = UNDEFINED;                                                                   \
         do {                                                                                          \
             Self::startNewPass();                                                                     \
@@ -110,6 +111,7 @@ namespace internal
     template <typename IndexRange, typename PointContainer>                                           \
     PONCA_MULTIARCH inline                                                                            \
     FIT_RESULT computeWithIds(IndexRange ids, const PointContainer& points){                          \
+        this->init();                                                                                 \
         FIT_RESULT res = UNDEFINED;                                                                   \
         do {                                                                                          \
             Self::startNewPass();                                                                     \
