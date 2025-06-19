@@ -54,9 +54,9 @@ public:
     /*!
      * \brief Set the scalar field values to 0 and reset the distance() and origin() status
     */
-    PONCA_MULTIARCH inline void init(const VectorType& _basisCenter = VectorType::Zero())
+    PONCA_MULTIARCH inline void init()
     {
-        Base::init(_basisCenter);
+        Base::init();
         EigenBase::origin().setZero();
         EigenBase::direction().setZero();
     }
