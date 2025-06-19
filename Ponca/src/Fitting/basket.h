@@ -111,7 +111,7 @@ namespace internal
     template <typename IndexRange, typename PointContainer>                                           \
     PONCA_MULTIARCH inline                                                                            \
     FIT_RESULT computeWithIds(IndexRange ids, const PointContainer& points){                          \
-        Base::init();                                                                                 \
+        this->init();                                                                                 \
         FIT_RESULT res = UNDEFINED;                                                                   \
         do {                                                                                          \
             Self::startNewPass();                                                                     \
