@@ -4,9 +4,9 @@
 
 template < class DataPoint, class _WFunctor, typename T>
 void
-MongePatch<DataPoint, _WFunctor, T>::init(const VectorType& _evalPos)
+MongePatch<DataPoint, _WFunctor, T>::init()
 {
-    Base::init(_evalPos);
+    Base::init();
 
     m_b.setZero();
     m_x.setZero();
