@@ -85,7 +85,7 @@ constexpr bool isSigned() { return IS_SIGNED; }
 /// Declare Concept::ComputationalObjectConcept::init()
 #define PONCA_FITTING_DECLARE_INIT                                                                                 \
 PONCA_FITTING_APIDOC_INIT                                                                                          \
-PONCA_MULTIARCH inline void init (const VectorType& _evalPos);
+PONCA_MULTIARCH inline void init ();
 
 /// Declare Concept::ComputationalObjectConcept::addLocalNeighbor
 #define PONCA_FITTING_DECLARE_ADDNEIGHBOR                                                                          \
