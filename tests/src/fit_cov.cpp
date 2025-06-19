@@ -64,9 +64,9 @@ public:
 
 template < class DataPoint, class _WFunctor, typename T>
 void
-CovarianceFitTwoPassesBase<DataPoint, _WFunctor, T>::init(const CovarianceFitTwoPassesBase<DataPoint, _WFunctor, T>::VectorType& _evalPos)
+CovarianceFitTwoPassesBase<DataPoint, _WFunctor, T>::init()
 {
-    Base::init(_evalPos);
+    Base::init();
     m_cov.setZero();
     m_barycenterReady = false;
     m_barycenter.setZero();
