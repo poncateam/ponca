@@ -58,8 +58,7 @@ void testFunction()
         const auto &fitInitPos = vecs[k].pos();
 
         Fit fit;
-        fit.setWeightFunc(WeightFunc(analysisScale));
-        fit.init(fitInitPos);
+        fit.setWeightFunc(WeightFunc(fitInitPos, analysisScale));
         fit.compute(vecs);
 
         if(fit.isStable())
