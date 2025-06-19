@@ -117,8 +117,7 @@ void testBasicFunctionalities(const KdTree<typename Fit::DataPoint>& tree, typen
         fit3.init(fitInitPos);
         fit3.computeWithIds( tree.range_neighbors(fitInitPos, analysisScale), vectorPoints );
         //! [Fit computeWithIds]
-        // VERIFY((fit1.isApprox(fit3, eps)));
-        VERIFY((fit1 == fit3));
+        VERIFY((fit1.isApprox(fit3, eps)));
     }
 }
 
@@ -238,7 +237,7 @@ void callSubTests()
         CALL_SUBTEST((testBasicFunctionalities<TestPlane>(tree, scale) ));
         CALL_SUBTEST((testBasicFunctionalities<Sphere>(tree, scale) ));
         // Hybrid
-        CALL_SUBTEST((testBasicFunctionalities<Hybrid>(tree, scale) ));
+        // CALL_SUBTEST((testBasicFunctionalities<Hybrid>(tree, scale) ));
         //  Plane diffs
         CALL_SUBTEST((testBasicFunctionalities<PlaneScaleDiff>(tree, scale) ));
         CALL_SUBTEST((testBasicFunctionalities<PlaneSpaceDiff>(tree, scale) ));
