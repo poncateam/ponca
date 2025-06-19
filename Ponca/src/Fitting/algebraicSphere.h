@@ -98,6 +98,16 @@ public:
                 pow(m_uq - other.m_uq, Scalar(2)) < squaredEpsilon &&
                  m_ul.isApprox(other.m_ul);
     }
+    /// \brief Approximate operator \warning Assume that other shares the same basis \see changeBasis()
+    template<typename Other>
+    PONCA_MULTIARCH inline bool isApprox(const Other& other, const Scalar& epsilon = Scalar::dummy_precision()) const{
+        PONCA_MULTIARCH_STD_MATH(pow);
+        const Scalar squaredEpsilon = epsilon*epsilon;
+        return  pow(m_uc - other.m_uc, Scalar(2)) < squaredEpsilon &&
+                pow(m_uq - other.m_uq, Scalar(2)) < squaredEpsilon &&
+                 m_ul.isApprox(other.m_ul);
+    }
+
 
     /*! \brief Comparison operator, convenience function */
     PONCA_MULTIARCH inline bool operator!=(const AlgebraicSphere<DataPoint, WFunctor, T>& other) const{
