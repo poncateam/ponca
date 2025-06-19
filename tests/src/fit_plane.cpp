@@ -104,8 +104,7 @@ void testFunction(bool _bUnoriented = false, bool _bAddPositionNoise = false, bo
     {
 
         Fit fit;
-        fit.setWeightFunc(WeightFunc(analysisScale));
-        fit.init(vectorPoints[i].pos());
+        fit.setWeightFunc(WeightFunc(vectorPoints[i].pos(), analysisScale));
         fit.computeWithIds(tree.range_neighbors(vectorPoints[i].pos(),analysisScale),vectorPoints);
 
         auto ret = fit.getCurrentState();
