@@ -64,8 +64,7 @@ void testFunction(bool _bUnoriented = false, bool _bAddPositionNoise = false, bo
         VectorType vEvaluationPoint = vectorPoints[i].pos() + distanceToPlane * vPlaneNormal;
 
         Fit fit;
-        fit.setWeightFunc(WeightFunc(analysisScale));
-        fit.init(vEvaluationPoint);
+        fit.setWeightFunc(WeightFunc(vEvaluationPoint, analysisScale));
         fit.compute(vectorPoints);
 
         if(fit.isStable())
