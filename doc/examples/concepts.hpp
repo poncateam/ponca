@@ -53,7 +53,7 @@ namespace Ponca {
 
             // Set the evaluation position and reset the internal states.
             // \warning Must be called be for any computation
-            PONCA_MULTIARCH inline void init(const VectorType& _basisCenter = VectorType::Zero());
+            PONCA_MULTIARCH inline void init();
 
             /**************************************************************************/
             /* Computations                                                           */
@@ -97,7 +97,7 @@ namespace Ponca {
 
             // Set the evaluation position and reset the internal states.
             // \warning Must be called be for any computation
-            PONCA_MULTIARCH inline void init(const VectorType& _basisCenter = VectorType::Zero());
+            PONCA_MULTIARCH inline void init();
 
             /**************************************************************************/
             /* Computations                                                           */
