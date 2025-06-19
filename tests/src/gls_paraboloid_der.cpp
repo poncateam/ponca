@@ -77,10 +77,9 @@ void testFunction()
     VectorType theoricNormal = VectorType(0, 0, -1);
 
     TestFit fit;
-
-    fit.setWeightFunc(TestWeightFunc(analysisScale));
     VectorType vFittingPoint = vCenter;
-    fit.init(vFittingPoint.template cast<TestScalar>());
+    fit.setWeightFunc(TestWeightFunc(vFittingPoint.template cast<TestScalar>(), analysisScale));
+
     for(typename vector<TestDataPoint>::iterator it = testVectorPoints.begin();
         it != testVectorPoints.end();
         ++it)
@@ -106,9 +105,8 @@ void testFunction()
 
       // Centered fit:
       RefFit ref_fit;
-      ref_fit.setWeightFunc(RefWeightFunc(analysisScale));
       VectorType vFittingPoint = vCenter;
-      ref_fit.init(vFittingPoint.template cast<RefScalar>());
+      ref_fit.setWeightFunc(RefWeightFunc(vFittingPoint.template cast<RefScalar>(), analysisScale));
       for(typename vector<RefPoint>::iterator it = refVectorPoints.begin();
           it != refVectorPoints.end();
           ++it)
@@ -131,13 +129,13 @@ void testFunction()
       for(int k = 0; k<4; ++k)
       {
         RefFit f;
-        f.setWeightFunc(RefWeightFunc(analysisScale));
+        auto p = vFittingPoint.template cast<RefScalar>();
+        f.setWeightFunc(RefWeightFunc(p, analysisScale));
         VectorType vFittingPoint = vCenter;
         if(k==0)
-          f.setWeightFunc(RefWeightFunc(analysisScale+h));
+          f.setWeightFunc(RefWeightFunc(p, analysisScale+h));
         else
           vFittingPoint(k-1) += h;
-        f.init(vFittingPoint.template cast<RefScalar>());
         f.compute(refVectorPoints);
 
         RefScalar flip_f   = (f.isSigned() || (f.primitiveGradient().dot(theoricNormal.template cast<RefScalar>()) > 0 )) ? RefScalar(1) : RefScalar(-1);
