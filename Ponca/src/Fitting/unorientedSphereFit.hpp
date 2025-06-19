@@ -9,9 +9,9 @@ namespace Ponca
 
 template < class DataPoint, class _WFunctor, typename T>
 void
-UnorientedSphereFitImpl<DataPoint, _WFunctor, T>::init(const VectorType& _evalPos)
+UnorientedSphereFitImpl<DataPoint, _WFunctor, T>::init()
 {
-    Base::init(_evalPos);
+    Base::init();
     m_matA.setZero();
     m_matQ.setZero();
     m_sumDotPP = Scalar(0.0);
@@ -83,9 +83,9 @@ UnorientedSphereFitImpl<DataPoint, _WFunctor, T>::finalize ()
 
 template < class DataPoint, class _WFunctor, int DiffType, typename T>
 void
-UnorientedSphereDerImpl<DataPoint, _WFunctor, DiffType, T>::init(const VectorType& _evalPos)
+UnorientedSphereDerImpl<DataPoint, _WFunctor, DiffType, T>::init()
 {
-    Base::init(_evalPos);
+    Base::init();
     for(int dim = 0; dim < Base::NbDerivatives; ++dim)
         m_dmatA[dim] = MatrixBB::Zero();
     m_dSumDotPP = ScalarArray::Zero();
