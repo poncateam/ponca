@@ -53,7 +53,7 @@ void testFunction()
     Scalar epsilon = Scalar(0.001); //Scalar(20.)*testEpsilon<Scalar>();
 
     Fit fit;
-    fit.setWeightFunc(WeightFunc(analysisScale, center));
+    fit.setWeightFunc(WeightFunc(center, analysisScale));
 
     for(int i = 0; i < nbPointsFit; ++i)
     {
