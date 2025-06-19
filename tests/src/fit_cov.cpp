@@ -162,13 +162,11 @@ void testFunction(bool _bUnoriented = false, bool _bAddPositionNoise = false, bo
     {
 
         Fit fit;
-        fit.setWeightFunc(WeightFunc(analysisScale));
-        fit.init(vectorPoints[i].pos());
+        fit.setWeightFunc(WeightFunc(vectorPoints[i].pos(), analysisScale));
         auto fitState = fit.compute(vectorPoints);
 
         FitRef ref;
-        ref.setWeightFunc(WeightFunc(analysisScale));
-        ref.init(vectorPoints[i].pos());
+        ref.setWeightFunc(WeightFunc(vectorPoints[i].pos(), analysisScale));
         auto refState = ref.compute(vectorPoints);
 
         VERIFY(fitState == refState);
