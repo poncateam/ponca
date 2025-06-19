@@ -51,7 +51,7 @@ namespace Ponca {
             // \warning Must be called be for any computation
             PONCA_MULTIARCH inline void setWeightFunc (const WFunctor& _w);
 
-            // Set the evaluation position and reset the internal states.
+            // Reset the internal states.
             // \warning Must be called be for any computation
             PONCA_MULTIARCH inline void init();
 
