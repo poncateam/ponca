@@ -274,8 +274,8 @@ public:
     typedef Ponca::DistWeightFunc<ScreenSpacePoint,Ponca::SmoothWeightKernel<Scalar> >::WeightReturnType WeightReturnType;
 
 
-    PONCA_MULTIARCH inline ProjectedWeightFunc(const Scalar& _t = Scalar(1.), const Scalar _dz = 0.f)
-        : Ponca::DistWeightFunc<ScreenSpacePoint,Ponca::SmoothWeightKernel<Scalar> >(_t),
+    PONCA_MULTIARCH inline ProjectedWeightFunc(const VectorType& _evalPos, const Scalar& _t = Scalar(1.), const Scalar _dz = 0.f)
+        : Ponca::DistWeightFunc<ScreenSpacePoint,Ponca::SmoothWeightKernel<Scalar> >({_evalPos, _t}),
           m_dz(_dz) {}
 
     PONCA_MULTIARCH inline WeightReturnType w(const VectorType& _relativePos, const ScreenSpacePoint&  _attributes) const
@@ -359,8 +359,8 @@ __global__ void doGLS_kernel( int _imgw, int _imgh, int _scale,
 //    return;
 
     ScreenSpaceFit fit;
-    fit.init(getVector(x, y, _imgw, _imgh, _positions) * 2.f - one);
-    fit.setWeightFunc(ProjectedWeightFunc(_scale, _maxDepthDiff));
+    fit.init();
+    fit.setWeightFunc(ProjectedWeightFunc(getVector(x, y, _imgw, _imgh, _positions) * 2.f - one, _scale, _maxDepthDiff));
 
     _result[idx] = 0.f;
 
