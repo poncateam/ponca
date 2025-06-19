@@ -10,9 +10,9 @@
 
 template < class DataPoint, class _WFunctor, typename T>
 void
-CovarianceFitBase<DataPoint, _WFunctor, T>::init(const VectorType& _evalPos)
+CovarianceFitBase<DataPoint, _WFunctor, T>::init()
 {
-    Base::init(_evalPos);
+    Base::init();
     m_cov.setZero();
 }
 
@@ -65,9 +65,9 @@ CovarianceFitBase<DataPoint, _WFunctor, T>::surfaceVariation () const
 
 template < class DataPoint, class _WFunctor, int DiffType, typename T>
 void
-CovarianceFitDer<DataPoint, _WFunctor, DiffType, T>::init(const VectorType& _evalPos)
+CovarianceFitDer<DataPoint, _WFunctor, DiffType, T>::init()
 {
-    Base::init(_evalPos);
+    Base::init();
 
     for(int k=0; k<Base::NbDerivatives; ++k)
         m_dCov[k].setZero();
