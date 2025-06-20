@@ -107,9 +107,9 @@ NormalDerivativesCurvatureEstimator<DataPoint, _WFunctor, DiffType, T>::tangentP
 
 template < class DataPoint, class _WFunctor, int DiffType, typename T>
 void
-NormalCovarianceCurvatureEstimator<DataPoint, _WFunctor, DiffType, T>::init(const VectorType& _evalPos)
+NormalCovarianceCurvatureEstimator<DataPoint, _WFunctor, DiffType, T>::init()
 {
-    Base::init(_evalPos);
+    Base::init();
     m_cov = MatrixType::Zero();
     m_cog = VectorType::Zero();
 }
@@ -183,9 +183,9 @@ NormalCovarianceCurvatureEstimator<DataPoint, _WFunctor, DiffType, T>::finalize 
 
 template < class DataPoint, class _WFunctor, int DiffType, typename T>
 void
-ProjectedNormalCovarianceCurvatureEstimator<DataPoint, _WFunctor, DiffType, T>::init(const VectorType& _evalPos)
+ProjectedNormalCovarianceCurvatureEstimator<DataPoint, _WFunctor, DiffType, T>::init()
 {
-    Base::init(_evalPos);
+    Base::init();
 
     m_cog = Vector2::Zero();
     m_cov = Mat22::Zero();

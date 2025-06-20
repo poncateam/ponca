@@ -36,18 +36,18 @@ void checkConsistency(const vector<DataPoint> vectorPoints, typename DataPoint::
     for(int i=0; i<nbPoints; ++i)
     {
         FitScaleDer fitScaleDer;
-        fitScaleDer.setWeightFunc(WeightFunc(analysisScale));
-        fitScaleDer.init(vectorPoints[i].pos());
+        fitScaleDer.setWeightFunc(WeightFunc(vectorPoints[i].pos(), analysisScale));
+        fitScaleDer.init();
         fitScaleDer.compute(vectorPoints);
 
         FitSpaceDer fitSpaceDer;
-        fitSpaceDer.setWeightFunc(WeightFunc(analysisScale));
-        fitSpaceDer.init(vectorPoints[i].pos());
+        fitSpaceDer.setWeightFunc(WeightFunc(vectorPoints[i].pos(), analysisScale));
+        fitScaleDer.init();
         fitSpaceDer.compute(vectorPoints);
 
         FitScaleSpaceDer fitScaleSpaceDer;
-        fitScaleSpaceDer.setWeightFunc(WeightFunc(analysisScale));
-        fitScaleSpaceDer.init(vectorPoints[i].pos());
+        fitScaleSpaceDer.setWeightFunc(WeightFunc(vectorPoints[i].pos(), analysisScale));
+        fitScaleSpaceDer.init();
         fitScaleSpaceDer.compute(vectorPoints);
 
         VERIFY( fitScaleDer.isStable()==fitSpaceDer.isStable() && fitScaleDer.isStable()==fitScaleSpaceDer.isStable() );

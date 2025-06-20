@@ -73,9 +73,8 @@ void testFunction(bool _bUnoriented = false, bool _bAddPositionNoise = false, bo
         const auto& queryPos = vectorPoints[i].pos();
 
         Fit fit;
-        fit.setWeightFunc(WeightFunc(analysisScale));
-        fit.init(queryPos);
-
+        fit.setWeightFunc(WeightFunc(queryPos, analysisScale));
+        fit.init();
         fit.compute(vectorPoints);
 
         if( fit.isStable() ){

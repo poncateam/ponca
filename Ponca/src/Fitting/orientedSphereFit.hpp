@@ -7,9 +7,9 @@
 
 template < class DataPoint, class _WFunctor, typename T>
 void
-OrientedSphereFitImpl<DataPoint, _WFunctor, T>::init(const VectorType& _evalPos)
+OrientedSphereFitImpl<DataPoint, _WFunctor, T>::init()
 {
-    Base::init(_evalPos);
+    Base::init();
 
     // Setup fitting internal values
     m_sumDotPN = Scalar(0.0);
@@ -83,9 +83,9 @@ OrientedSphereFitImpl<DataPoint, _WFunctor, T>::finalize ()
 
 template < class DataPoint, class _WFunctor, int DiffType, typename T>
 void
-OrientedSphereDerImpl<DataPoint, _WFunctor, DiffType, T>::init(const VectorType& _evalPos)
+OrientedSphereDerImpl<DataPoint, _WFunctor, DiffType, T>::init()
 {
-    Base::init(_evalPos);
+    Base::init();
 
     m_dSumN.setZero();
 

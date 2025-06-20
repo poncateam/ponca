@@ -71,16 +71,16 @@ void testFunction(bool _bAddPositionNoise = false, bool _bAddNormalNoise = false
     {
         Fit fit, fitReverse100, fitReverseRandom;
 
-        fit.setWeightFunc(WeightFunc(analysisScale));
-        fit.init(vectorPoints[i].pos());
+        fit.setWeightFunc(WeightFunc(vectorPoints[i].pos(), analysisScale));
+        fit.init();
         fit.compute(vectorPoints);
 
-        fitReverse100.setWeightFunc(WeightFunc(analysisScale));
-        fitReverse100.init(vectorReversedNormals100[i].pos());
+        fitReverse100.setWeightFunc(WeightFunc(vectorReversedNormals100[i].pos(), analysisScale));
+        fitReverse100.init();
         fitReverse100.compute(vectorPoints);
 
-        fitReverseRandom.setWeightFunc(WeightFunc(analysisScale));
-        fitReverseRandom.init(vectorReversedNormalsRandom[i].pos());
+        fitReverseRandom.setWeightFunc(WeightFunc(vectorReversedNormalsRandom[i].pos(), analysisScale));
+        fitReverseRandom.init();
         fitReverseRandom.compute(vectorPoints);
 
         if(fit.isStable() && fitReverse100.isStable() && fitReverseRandom.isStable())
