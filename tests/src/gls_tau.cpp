@@ -65,6 +65,7 @@ void testFunction(bool _bUnoriented = false, bool _bAddPositionNoise = false, bo
 
         Fit fit;
         fit.setWeightFunc(WeightFunc(vEvaluationPoint, analysisScale));
+        fit.init();
         fit.compute(vectorPoints);
 
         if(fit.isStable())
