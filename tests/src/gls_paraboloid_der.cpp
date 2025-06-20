@@ -79,6 +79,7 @@ void testFunction()
     TestFit fit;
     VectorType vFittingPoint = vCenter;
     fit.setWeightFunc(TestWeightFunc(vFittingPoint.template cast<TestScalar>(), analysisScale));
+    fit.init();
 
     for(typename vector<TestDataPoint>::iterator it = testVectorPoints.begin();
         it != testVectorPoints.end();
@@ -107,6 +108,7 @@ void testFunction()
       RefFit ref_fit;
       VectorType vFittingPoint = vCenter;
       ref_fit.setWeightFunc(RefWeightFunc(vFittingPoint.template cast<RefScalar>(), analysisScale));
+      ref_fit.init();
       for(typename vector<RefPoint>::iterator it = refVectorPoints.begin();
           it != refVectorPoints.end();
           ++it)
@@ -136,6 +138,8 @@ void testFunction()
           f.setWeightFunc(RefWeightFunc(p, analysisScale+h));
         else
           vFittingPoint(k-1) += h;
+
+        f.init();
         f.compute(refVectorPoints);
 
         RefScalar flip_f   = (f.isSigned() || (f.primitiveGradient().dot(theoricNormal.template cast<RefScalar>()) > 0 )) ? RefScalar(1) : RefScalar(-1);
