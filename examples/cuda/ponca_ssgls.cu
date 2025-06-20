@@ -275,7 +275,7 @@ public:
 
 
     PONCA_MULTIARCH inline ProjectedWeightFunc(const VectorType& _evalPos, const Scalar& _t = Scalar(1.), const Scalar _dz = 0.f)
-        : Ponca::DistWeightFunc<ScreenSpacePoint,Ponca::SmoothWeightKernel<Scalar> >({_evalPos, _t}),
+        : Ponca::DistWeightFunc<ScreenSpacePoint,Ponca::SmoothWeightKernel<Scalar> >(_evalPos, _t),
           m_dz(_dz) {}
 
     PONCA_MULTIARCH inline WeightReturnType w(const VectorType& _relativePos, const ScreenSpacePoint&  _attributes) const
