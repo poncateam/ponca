@@ -91,16 +91,14 @@ using my_kd_tree_t = nanoflann::KDTreeSingleIndexAdaptor<
         nanoflann::L2_Simple_Adaptor< Scalar, NFPointCloud>, NFPointCloud, 3>;
 ///// Enf of nanoflann stuff
 
-int test_raw(FitType& f, const std::vector<MyPoint>& _vecs, VectorType _p)
+int test_raw(FitType& f, const std::vector<MyPoint>& _vecs)
 {
-    f.init(_p);
     if(! (f.compute( _vecs ) == STABLE) )
         std::cerr << "[raw] Something weird happened" << std::endl;
     return f.getNumNeighbors();
 }
 
 int test_ponca_kdtree(FitType& f, const std::vector<MyPoint>& _vecs, VectorType _p, const KdTree<MyPoint>& tree, Scalar tmax){
-    f.init(_p);
     if(! (
             //! [Use Ponca KdTree]
 f.computeWithIds( tree.range_neighbors(_p, tmax), _vecs )
@@ -121,7 +119,7 @@ int test_nanflann_kdtree(FitType& f, const std::vector<MyPoint>& _vecs, VectorTy
     tree.findNeighbors(resultSet, _p.data());
 
     //! [Use NanoFlann KdTree]
-f.init(_p);
+f.init();
 // Compute
 auto res = Ponca::UNDEFINED;
 do {
@@ -159,7 +157,6 @@ my_kd_tree_t mat_index(3, nfcloud);
     Scalar tmax = 0.2;
 
     FitType fit;
-    fit.setWeightFunc(WeightFunc(tmax));
 
     int nbrun = 1000;
     std::vector<typename MyPoint::VectorType> queries (nbrun);
@@ -168,19 +165,28 @@ my_kd_tree_t mat_index(3, nfcloud);
     int neiRaw {0}, neiPonca {0}, neiFlann {0};
     auto start = std::chrono::system_clock::now();
     for(int i = 0; i != nbrun; ++i)
-        neiRaw += test_raw(fit, vecs, queries[i]);
+    {
+        fit.setWeightFunc(WeightFunc(queries[i], tmax));
+        neiRaw += test_raw(fit, vecs);
+    }
     auto end = std::chrono::system_clock::now();
     std::chrono::duration<double> rawDiff = (end-start);
 
     start = std::chrono::system_clock::now();
     for(int i = 0; i != nbrun; ++i)
+    {
+        fit.setWeightFunc(WeightFunc(queries[i], tmax));
         neiPonca += test_ponca_kdtree(fit, vecs, queries[i], ponca_tree, tmax);
+    }
     end = std::chrono::system_clock::now();
     std::chrono::duration<double> poncaDiff = (end-start);
 
     start = std::chrono::system_clock::now();
     for(int i = 0; i != nbrun; ++i)
+    {
+        fit.setWeightFunc(WeightFunc(queries[i], tmax));
         neiFlann += test_nanflann_kdtree(fit, vecs, queries[i], mat_index, tmax);
+    }
     end = std::chrono::system_clock::now();
     std::chrono::duration<double> nanoflannDiff = (end-start);
 
