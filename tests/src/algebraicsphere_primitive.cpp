@@ -59,6 +59,7 @@ void testFunction()
 
         Fit fit;
         fit.setWeightFunc(WeightFunc(fitInitPos, analysisScale));
+        fit.init();
         fit.compute(vecs);
 
         if(fit.isStable())
