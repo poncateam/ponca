@@ -75,11 +75,9 @@ void test_fit(Fit& _fit,
 {
     Scalar tmax = 100.0;
 
-    // Set a weighting function instance
-    _fit.setWeightFunc(WeightFunc(tmax));
-
-    // Set the evaluation position
-    _fit.init(_p);
+    // Set a weighting function instance with the evaluation position
+    _fit.setWeightFunc(WeightFunc(_p, tmax));
+    _fit.init();
 
     // Iterate over samples and _fit the primitive
     // A MyPoint instance is generated on the fly to bind the raw arrays to the
