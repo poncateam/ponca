@@ -78,8 +78,8 @@ void testFunction()
 
     TestFit fit;
     VectorType vFittingPoint = vCenter;
-    fit.setWeightFunc(TestWeightFunc(vFittingPoint.template cast<TestScalar>(), analysisScale));
     fit.init();
+    fit.setWeightFunc(TestWeightFunc(vFittingPoint.template cast<TestScalar>(), analysisScale));
 
     for(typename vector<TestDataPoint>::iterator it = testVectorPoints.begin();
         it != testVectorPoints.end();
@@ -107,8 +107,9 @@ void testFunction()
       // Centered fit:
       RefFit ref_fit;
       VectorType vFittingPoint = vCenter;
-      ref_fit.setWeightFunc(RefWeightFunc(vFittingPoint.template cast<RefScalar>(), analysisScale));
       ref_fit.init();
+      ref_fit.setWeightFunc(RefWeightFunc(vFittingPoint.template cast<RefScalar>(), analysisScale));
+
       for(typename vector<RefPoint>::iterator it = refVectorPoints.begin();
           it != refVectorPoints.end();
           ++it)
@@ -131,14 +132,13 @@ void testFunction()
       for(int k = 0; k<4; ++k)
       {
         RefFit f;
-        auto p = vFittingPoint.template cast<RefScalar>();
-        f.setWeightFunc(RefWeightFunc(p, analysisScale));
         VectorType vFittingPoint = vCenter;
-        if(k==0)
-          f.setWeightFunc(RefWeightFunc(p, analysisScale+h));
-        else
-          vFittingPoint(k-1) += h;
-
+        if(k==0) {
+            f.setWeightFunc(RefWeightFunc(vFittingPoint.template cast<RefScalar>(), analysisScale+h));
+        } else {
+            vFittingPoint(k - 1) += h;
+            f.setWeightFunc(RefWeightFunc(vFittingPoint.template cast<RefScalar>(), analysisScale));
+        }
         f.init();
         f.compute(refVectorPoints);
 
