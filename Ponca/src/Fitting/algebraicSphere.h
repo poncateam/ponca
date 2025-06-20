@@ -147,6 +147,7 @@ public:
     {
         VectorType diff = Base::m_w.basisCenter() - newbasis;
         Base::setWeightFunc({newbasis, Base::m_w.evalScale()});
+        Base::init();
         m_uc = m_uc - m_ul.dot(diff) + m_uq * diff.dot(diff);
         m_ul = m_ul - Scalar(2.)*m_uq*diff;
         //m_uq is not changed
