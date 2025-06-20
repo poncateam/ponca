@@ -54,6 +54,7 @@ void testFunction()
 
     Fit fit;
     fit.setWeightFunc(WeightFunc(center, analysisScale));
+    fit.init();
 
     for(int i = 0; i < nbPointsFit; ++i)
     {
