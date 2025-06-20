@@ -99,7 +99,7 @@ int test_raw(FitType& f, const std::vector<MyPoint>& _vecs)
     return f.getNumNeighbors();
 }
 
-int test_ponca_kdtree(FitType& f, const std::vector<MyPoint>& _vecs, const KdTree<MyPoint>& tree, Scalar tmax){
+int test_ponca_kdtree(FitType& f, const std::vector<MyPoint>& _vecs, VectorType _p, const KdTree<MyPoint>& tree, Scalar tmax){
     f.init();
     if(! (
             //! [Use Ponca KdTree]
@@ -178,7 +178,7 @@ my_kd_tree_t mat_index(3, nfcloud);
     for(int i = 0; i != nbrun; ++i)
     {
         fit.setWeightFunc(WeightFunc(queries[i], tmax));
-        neiPonca += test_ponca_kdtree(fit, vecs, ponca_tree, tmax);
+        neiPonca += test_ponca_kdtree(fit, vecs, queries[i], ponca_tree, tmax);
     }
     end = std::chrono::system_clock::now();
     std::chrono::duration<double> poncaDiff = (end-start);
