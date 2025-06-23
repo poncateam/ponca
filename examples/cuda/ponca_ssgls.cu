@@ -271,14 +271,12 @@ class ProjectedWeightFunc: public Ponca::DistWeightFunc<ScreenSpacePoint,Ponca::
 public:
     typedef ScreenSpacePoint::Scalar Scalar;
     typedef ScreenSpacePoint::VectorType VectorType;
-    typedef Ponca::DistWeightFunc<ScreenSpacePoint,Ponca::SmoothWeightKernel<Scalar> >::WeightReturnType WeightReturnType;
+    using Base = Ponca::DistWeightFunc<ScreenSpacePoint,Ponca::SmoothWeightKernel<Scalar> >;
 
+    PONCA_MULTIARCH inline explicit ProjectedWeightFunc(const VectorType& _evalPos = VectorType::Zero(), const Scalar& _t = Scalar(1.), const Scalar _dz = 0.f)
+        : Base(_evalPos, _t), m_dz(_dz) {}
 
-    PONCA_MULTIARCH inline ProjectedWeightFunc(const VectorType& _evalPos, const Scalar& _t = Scalar(1.), const Scalar _dz = 0.f)
-        : Ponca::DistWeightFunc<ScreenSpacePoint,Ponca::SmoothWeightKernel<Scalar> >(_evalPos, _t),
-          m_dz(_dz) {}
-
-    PONCA_MULTIARCH inline WeightReturnType w(const VectorType& _relativePos, const ScreenSpacePoint&  _attributes) const
+    PONCA_MULTIARCH inline Base::WeightReturnType w(const VectorType& _relativePos, const ScreenSpacePoint&  _attributes) const
     {
         PONCA_MULTIARCH_STD_MATH(abs);
         Scalar d  = _attributes.spos().norm();
