@@ -2,8 +2,8 @@
 namespace Ponca {
     template<class DataPoint, class _WFunctor, int DiffType, typename T>
     void
-    CurvatureEstimatorBase<DataPoint, _WFunctor, DiffType, T>::init(const VectorType &_evalPos) {
-        Base::init(_evalPos);
+    CurvatureEstimatorBase<DataPoint, _WFunctor, DiffType, T>::init() {
+        Base::init();
         m_kmin = 0;
         m_kmax = 0;
         m_vmin = VectorType::Zero();

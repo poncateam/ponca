@@ -47,15 +47,15 @@ protected:
 public:
 
     /*! \brief Default constructor */
-    PONCA_MULTIARCH inline Plane() : Base(), EigenBase() { init(VectorType::Zero()); }
+    PONCA_MULTIARCH inline Plane() : Base(), EigenBase() { init(); }
 
     PONCA_EXPLICIT_CAST_OPERATORS(Plane,compactPlane) //< \fixme To be removed, kept for compatibility only
     PONCA_EXPLICIT_CAST_OPERATORS(Plane,plane)
 
     /// \brief Set the scalar field values to 0
-    PONCA_MULTIARCH inline void init(const VectorType& _basisCenter = VectorType::Zero())
+    PONCA_MULTIARCH inline void init()
     {
-        Base::init(_basisCenter);
+        Base::init();
         EigenBase::coeffs().setZero();
     }
 
