@@ -108,18 +108,23 @@ void testBasicFunctionalities(const KdTree<typename Fit::DataPoint>& tree, typen
         VERIFY(! (fit1 != fit2));
         VERIFY(! (fit2 != fit2));
 
-        /* TODO : Sort the neighbors before doing the last test
-        // /!\ Because the kdtree changes the order of the neighbors, which in turn changes the rounding error accumulations
-        // We need to evaluate those tests with a greater epsilon tolerance
-        const Scalar epsilon = Scalar(0.001); // Greater tolerance than testEpsilon()
+        // /!\ Because the kdtree changes the order of the neighbors, which can in turn change the rounding error accumulations,
+        // We need to sort the neighborhood before the comparison
+
         //! [Fit computeWithIds]
         Fit fit3;
         fit3.setWeightFunc(WeightFunc(analysisScale));
         fit3.init(fitInitPos);
-        fit3.computeWithIds( tree.range_neighbors(fitInitPos, analysisScale), vectorPoints );
+        // Sort fit1
+        std::list<int> neighbors3;
+        for (int iNeighbor : tree.range_neighbors(fitInitPos, analysisScale))
+            neighbors3.push_back(iNeighbor);
+        neighbors3.sort();
+        // Compute the neighbors
+        fit3.computeWithIds( neighbors3, vectorPoints );
         //! [Fit computeWithIds]
-        VERIFY((fit1.isApprox(fit3, epsilon)));
-        */
+
+        VERIFY((fit1 == fit3));
     }
 }
 
