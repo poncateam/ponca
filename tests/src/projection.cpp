@@ -50,7 +50,7 @@ void testFunction()
     Scalar zmax = std::abs((coeff[0] + coeff[1]) * width*width);
     Scalar analysisScale = std::sqrt(zmax*zmax + width*width);
 
-    Scalar epsilon = Scalar(0.001); //Scalar(20.)*testEpsilon<Scalar>();
+    Scalar epsilon = Scalar(0.001); // We need a lesser precision for this test to pass
 
     Fit fit;
     fit.setWeightFunc(WeightFunc(analysisScale));
