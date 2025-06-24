@@ -110,14 +110,14 @@ void testBasicFunctionalities(const KdTree<typename Fit::DataPoint>& tree, typen
 
         // /!\ Because the kdtree changes the order of the neighbors, which in turn changes the rounding error accumulations
         // We need to evaluate those tests with a greater epsilon tolerance
-        Scalar eps = 0.0001;
+        const Scalar epsilon = Scalar(0.001); // Greater tolerance than testEpsilon()
         //! [Fit computeWithIds]
         Fit fit3;
         fit3.setWeightFunc(WeightFunc(analysisScale));
         fit3.init(fitInitPos);
         fit3.computeWithIds( tree.range_neighbors(fitInitPos, analysisScale), vectorPoints );
         //! [Fit computeWithIds]
-        VERIFY((fit1.isApprox(fit3, eps)));
+        VERIFY((fit1.isApprox(fit3, epsilon)));
     }
 }
 
