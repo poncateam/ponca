@@ -252,7 +252,10 @@ public:
     */
     PONCA_MULTIARCH inline WeightReturnType w(const VectorType& _q,
                                               const DataPoint&  /*attributes*/) const
-    { return {Scalar(1),_q}; }
+    {
+        VectorType q = convertToLocalBasis(_q);
+        return {Scalar(1), q};
+    }
 
 
     /*!
