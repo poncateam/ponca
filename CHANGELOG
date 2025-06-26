@@ -26,6 +26,9 @@ Current head (v.1.4 RC)
 - CI/Actions
     - Fix automatic doc deployment (#158)
 
+- Docs
+    - [Fitting] Updated the Fit user manual to account for the change of use of the curvature estimator
+
 --------------------------------------------------------------------------------
 v.1.3
 This release introduces several improvements around the KdTre API, as well as bug fixes, new features and doc
