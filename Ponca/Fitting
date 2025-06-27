@@ -31,6 +31,7 @@
 #include "src/Fitting/mongePatch.h"
 #include "src/Fitting/sphereFit.h"
 #include "src/Fitting/orientedSphereFit.h"
+#include "src/Fitting/rimlsPlaneFit.h"
 #ifndef __CUDACC__
 # include "src/Fitting/unorientedSphereFit.h"
 #endif
