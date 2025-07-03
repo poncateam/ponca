@@ -2,14 +2,12 @@
 
 // The different fit types are compiled depending on if they are defined through this macro or not
 #define ENUM_FITS \
-ENUM_FIT(ASO) \
-/*
-ENUM_FIT(APSS) \
 ENUM_FIT(PSS) \
-ENUM_FIT(Ellipsoid) \
-ENUM_FIT(ShapeOperator) \
+ENUM_FIT(ASO) \
+ENUM_FIT(APSS) \
 ENUM_FIT(PCA) \
-*/
+ENUM_FIT(Sphere) \
+
 
 ////////////////////////////////////////////////////////////
 
