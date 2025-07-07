@@ -132,7 +132,7 @@ namespace Estimators {
 
 
     // Basket fit wrapper. The Handler store the functors, called in the main loop
-    template < typename _FitT, bool _isOriented = false, int _fixedMLS = -1>
+    template < typename _FitT, bool _isOriented = false, int _nFixedMLS = -1>
     class Estimator final : public BaseEstimator< typename _FitT::DataPoint > {
         using Self = Estimator<_FitT>;
         using DataType = typename _FitT::DataPoint;
@@ -155,15 +155,15 @@ namespace Estimators {
             using WeightFunc = typename FitT::WeightFunction;
 
             Estimator() {
-                if (_fixedMLS != -1) {
+                if (_nFixedMLS != -1) {
                     fixedMLS = true;
-                    mls_max = _fixedMLS;
+                    mls_max = _nFixedMLS;
                 }
             }
             Estimator(std::string name) : name(std::move(name)) {
-                if (_fixedMLS != -1) {
+                if (_nFixedMLS != -1) {
                     fixedMLS = true;
-                    mls_max = _fixedMLS;
+                    mls_max = _nFixedMLS;
                 }
             }
 
