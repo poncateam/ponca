@@ -11,6 +11,8 @@ OPTION( PONCA_CONFIGURE_DOC        "Include compilation rules for built-in docum
 OPTION( PONCA_CONFIGURE_TESTS      "Include compilation rules for built-in tests"         ON)
 OPTION( PONCA_GENERATE_IDE_TARGETS "Generate targets to show source files in IDEs"        ON)
 
+include(${CMAKE_CURRENT_SOURCE_DIR}/Ponca/src/Fitting/Estimators/GenerateDefineEnum.cmake)
+
 ##
 ## END USER OPTIONS
 ####################################################################################################
