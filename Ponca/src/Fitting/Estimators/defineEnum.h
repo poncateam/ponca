@@ -11,7 +11,7 @@ ENUM_FIT(Sphere) \
 
 ////////////////////////////////////////////////////////////
 
-namespace Estimators {
+namespace Ponca::Estimators {
 
     /*! \brief Enum of every available fit type */
     enum class FitType {

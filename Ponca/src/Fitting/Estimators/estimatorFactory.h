@@ -7,7 +7,7 @@
 #include "estimator.h"
 
 
-namespace Estimators {
+namespace Ponca::Estimators {
 
     template <typename DataType, typename WeightFunc>
     class EstimatorFactory {
