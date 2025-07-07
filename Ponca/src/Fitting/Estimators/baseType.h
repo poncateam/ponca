@@ -1,7 +1,6 @@
 #pragma once
 
 #include <Eigen/Core>
-#include <Ponca/SpatialPartitioning>
 
 namespace Ponca {
     /// Map a block to a Ponca point

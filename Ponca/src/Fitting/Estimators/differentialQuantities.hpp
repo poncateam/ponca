@@ -1,7 +1,5 @@
 #pragma once
 
-#include <utility>
-#include <vector>
 #include <Eigen/Dense>
 
 namespace Ponca {
