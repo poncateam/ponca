@@ -7,8 +7,7 @@
 #include <Ponca/Fitting>
 
 
-namespace Estimators
-{
+namespace Ponca::Estimators {
     using SmoothWeightFunc      = Ponca::DistWeightFunc<PPAdapter, Ponca::SmoothWeightKernel<Scalar> >;
     // using SixSmoothWeightFunc   = Ponca::DistWeightFunc<PPAdapter, Ponca::SixSmoothWeightKernel<Scalar> >;
     // using FourSmoothWeightFunc  = Ponca::DistWeightFunc<PPAdapter, Ponca::FourSmoothWeightKernel<Scalar> >;

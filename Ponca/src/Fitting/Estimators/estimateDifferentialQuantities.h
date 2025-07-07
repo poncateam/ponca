@@ -3,7 +3,7 @@
 #include "differentialQuantities.hpp"
 #include "estimatorFactory.h"
 
-namespace Estimators {
+namespace Ponca::Estimators {
 
     /// Generic processing function: traverse point cloud and compute mean, first and second curvatures + their direction
     /// \tparam FitT Defines the type of estimator used for computation

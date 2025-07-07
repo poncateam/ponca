@@ -7,7 +7,7 @@
 #include "differentialQuantities.hpp"
 #include "defineEstimators.h"
 
-namespace Estimators {
+namespace Ponca::Estimators {
 
     template < typename _Fit >
     class InterfaceProcessHandler {
