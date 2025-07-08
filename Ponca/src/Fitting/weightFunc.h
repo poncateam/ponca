@@ -43,11 +43,10 @@ public:
     */
     PONCA_MULTIARCH inline DistWeightFunc(const VectorType & _evalPos = VectorType::Zero(),
                                           const Scalar& _t = Scalar(1.))
-    : m_p(_evalPos)
+    : m_t(_t), m_p(_evalPos)
     {
         //\todo manage that assrt on __host__ and __device__
         //assert(_t > Scalar(0));
-        m_t = _t;
     }
 
     /// \brief Get access to basis center location in global coordinate system
