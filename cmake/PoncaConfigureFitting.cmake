@@ -38,15 +38,30 @@ set(ponca_Fitting_INCLUDE
     "${PONCA_src_ROOT}/Ponca/src/Fitting/linePrimitive.h"
     )
 
-add_library(Fitting INTERFACE)
-target_include_directories(Fitting INTERFACE
-    "$<BUILD_INTERFACE:${PONCA_src_ROOT}>"
-    "$<INSTALL_INTERFACE:include/>"
+if(ESTIMATOR_USE_PCH)
+    add_library(Fitting SHARED)
+    target_sources(Fitting
+            PRIVATE
+            ${ponca_Fitting_INCLUDE}
+            ${PONCA_src_ROOT}/Ponca/examples/cpp/ponca_fit_line.cpp # A cpp source file required to precompile the header in a shared lib
     )
-target_sources(Fitting INTERFACE
-    "$<BUILD_INTERFACE:${ponca_Fitting_INCLUDE}>"
-    "$<INSTALL_INTERFACE:>"
+    target_include_directories(Fitting
+            PUBLIC ${PONCA_src_ROOT}
+            PRIVATE ${EIGEN3_INCLUDE_DIRS}
     )
+else()
+    add_library(Fitting INTERFACE)
+    target_include_directories(Fitting INTERFACE
+            "$<BUILD_INTERFACE:${PONCA_src_ROOT}>"
+            "$<INSTALL_INTERFACE:include/>"
+    )
+    target_sources(Fitting INTERFACE
+            "$<BUILD_INTERFACE:${ponca_Fitting_INCLUDE}>"
+            "$<INSTALL_INTERFACE:>"
+    )
+endif()
+
+
 add_dependencies(Fitting Common)
 
 set_target_properties(Fitting PROPERTIES
@@ -84,3 +99,12 @@ export(EXPORT FittingTargets
 if( ${PONCA_GENERATE_IDE_TARGETS} )
   add_custom_target(ponca_Fitting_IDE SOURCES ${ponca_Fitting_INCLUDE})
 endif()
+
+
+include(${CMAKE_CURRENT_SOURCE_DIR}/Ponca/src/Fitting/Estimators/GenerateDefineEnum.cmake)
+
+if(ESTIMATOR_USE_PCH)
+        target_precompile_headers(Fitting PRIVATE
+                ${CMAKE_CURRENT_SOURCE_DIR}/Ponca/src/Fitting/Estimators/estimateDifferentialQuantities.h
+        )
+endif ()
