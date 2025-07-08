@@ -95,7 +95,6 @@ void testBasicFunctionalities(const KdTree<typename Fit::DataPoint>& tree, typen
         // use compute function
         //! [Fit Compute]
         Fit fit2;
-        fit2.init();
         fit2.setWeightFunc(WeightFunc(fitInitPos, analysisScale));
         fit2.compute(vectorPoints);
         //! [Fit Compute]
