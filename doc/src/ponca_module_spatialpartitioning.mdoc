@@ -48,7 +48,6 @@ for (int i = 0; i < nbVert; ++i) // for all the vertices of the point cloud
   \code
 Fit fit;
 fit.setWeightFunc(MyWeightFunc(fitInitPos, scale));
-fit.init();
 fit.computeWithIds( myDataStructure.range_neighbors(fitInitPos, scale), vectorPoints );
   \endcode
 

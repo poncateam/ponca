@@ -244,7 +244,7 @@ void callSubTests()
         CALL_SUBTEST((testBasicFunctionalities<TestPlane>(tree, scale) ));
         CALL_SUBTEST((testBasicFunctionalities<Sphere>(tree, scale) ));
         // Hybrid
-        // CALL_SUBTEST((testBasicFunctionalities<Hybrid>(tree, scale) ));
+        CALL_SUBTEST((testBasicFunctionalities<Hybrid>(tree, scale) ));
         //  Plane diffs
         CALL_SUBTEST((testBasicFunctionalities<PlaneScaleDiff>(tree, scale) ));
         CALL_SUBTEST((testBasicFunctionalities<PlaneSpaceDiff>(tree, scale) ));
