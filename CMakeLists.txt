@@ -10,8 +10,7 @@ OPTION( PONCA_CONFIGURE_EXAMPLES   "Include compilation rules for built-in examp
 OPTION( PONCA_CONFIGURE_DOC        "Include compilation rules for built-in documentation" ON)
 OPTION( PONCA_CONFIGURE_TESTS      "Include compilation rules for built-in tests"         ON)
 OPTION( PONCA_GENERATE_IDE_TARGETS "Generate targets to show source files in IDEs"        ON)
-
-include(${CMAKE_CURRENT_SOURCE_DIR}/Ponca/src/Fitting/Estimators/GenerateDefineEnum.cmake)
+OPTION( PONCA_USE_PCH              "Build Ponca as a shared lib and use compiled header for the Estimator submodule" ON)
 
 ##
 ## END USER OPTIONS
