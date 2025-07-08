@@ -114,7 +114,6 @@ void testBasicFunctionalities(const KdTree<typename Fit::DataPoint>& tree, typen
         //! [Fit computeWithIds]
         Fit fit3;
         fit3.setWeightFunc(WeightFunc(fitInitPos, analysisScale));
-        fit3.init();
         fit3.computeWithIds( tree.range_neighbors(fitInitPos, analysisScale), vectorPoints );
         //! [Fit computeWithIds]
         VERIFY(fit3 == fit3);
@@ -152,11 +151,9 @@ void testIsSame(const KdTree<typename Fit1::DataPoint>& tree,
 
         // use compute function
         fit1.setWeightFunc(WeightFunc(vectorPoints[i].pos(), analysisScale));
-        fit1.init();
         fit1.computeWithIds( neighborhoodRange, vectorPoints );
 
         fit2.setWeightFunc(WeightFunc(vectorPoints[i].pos(), analysisScale));
-        fit2.init();
         fit2.computeWithIds( neighborhoodRange, vectorPoints );
 
         f(fit1, fit2);

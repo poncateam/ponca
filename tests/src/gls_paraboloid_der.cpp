@@ -139,7 +139,6 @@ void testFunction()
             vFittingPoint(k - 1) += h;
             f.setWeightFunc(RefWeightFunc(vFittingPoint.template cast<RefScalar>(), analysisScale));
         }
-        f.init();
         f.compute(refVectorPoints);
 
         RefScalar flip_f   = (f.isSigned() || (f.primitiveGradient().dot(theoricNormal.template cast<RefScalar>()) > 0 )) ? RefScalar(1) : RefScalar(-1);

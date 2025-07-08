@@ -62,10 +62,6 @@ void testFunction(bool _bUnoriented = false, bool _bAddPositionNoise = false, bo
         fit2.setWeightFunc(WeightFunc(sphere1[i+1].pos(), analysisScale));
         fit3.setWeightFunc(WeightFunc(sphere2[i].pos(), analysisScale));
 
-        fit1.init();
-        fit2.init();
-        fit3.init();
-
         fit1.compute(sphere1);
         fit2.compute(sphere1);
         fit3.compute(sphere2);
