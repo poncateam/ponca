@@ -76,6 +76,7 @@ var hierarchy =
     [ "Ponca::limited_priority_queue< Ponca::IndexSquaredDistance< Index, DataPoint::Scalar > >", "classPonca_1_1limited__priority__queue.html", null ],
     [ "Ponca::limited_priority_queue< Ponca::IndexSquaredDistance< Index, Scalar > >", "classPonca_1_1limited__priority__queue.html", null ],
     [ "Ponca::limited_priority_queue< Ponca::IndexSquaredDistance< Traits::IndexType, Traits::DataPoint::Scalar > >", "classPonca_1_1limited__priority__queue.html", null ],
+    [ "Ponca::NoWeightFunc< DataPoint >", "classPonca_1_1NoWeightFunc.html", null ],
     [ "Output_", null, [
       [ "Ponca::Query< Input_, Output_ >", "group__spatialpartitioning.html#structPonca_1_1Query", null ]
     ] ],

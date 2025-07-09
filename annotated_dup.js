@@ -55,6 +55,7 @@ var annotated_dup =
       [ "NearestPointQuery", "group__spatialpartitioning.html#structPonca_1_1NearestPointQuery", null ],
       [ "NormalCovarianceCurvatureEstimator", "classPonca_1_1NormalCovarianceCurvatureEstimator.html", "classPonca_1_1NormalCovarianceCurvatureEstimator" ],
       [ "NormalDerivativesCurvatureEstimator", "classPonca_1_1NormalDerivativesCurvatureEstimator.html", "classPonca_1_1NormalDerivativesCurvatureEstimator" ],
+      [ "NoWeightFunc", "classPonca_1_1NoWeightFunc.html", "classPonca_1_1NoWeightFunc" ],
       [ "OrientedSphereDerImpl", "classPonca_1_1OrientedSphereDerImpl.html", "classPonca_1_1OrientedSphereDerImpl" ],
       [ "OrientedSphereFitImpl", "classPonca_1_1OrientedSphereFitImpl.html", "classPonca_1_1OrientedSphereFitImpl" ],
       [ "Plane", "classPonca_1_1Plane.html", "classPonca_1_1Plane" ],
