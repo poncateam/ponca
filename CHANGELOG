@@ -17,6 +17,7 @@ Current head (v.1.4 RC)
 - Tests
    - [fitting] Split Basket test in subtests (#96)
    - [fitting] Fix random failure in Basket and Projection tests (#96)
+   - [fitting] Fix random failures in Basket (again yes) and Projection tests (#162)
 
 - Examples
    - [ssgls] Fix compilation error with CUDA due to compiler mismatch (#96)
@@ -25,6 +26,7 @@ Current head (v.1.4 RC)
 
 - CI/Actions
     - Fix automatic doc deployment (#158)
+    - [ci] Now display the errors on test failures (#162)
 
 --------------------------------------------------------------------------------
 v.1.3
