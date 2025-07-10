@@ -100,7 +100,7 @@ public:
     }
     /// \brief Approximate operator \warning Assume that other shares the same basis \see changeBasis()
     template<typename Other>
-    PONCA_MULTIARCH inline bool isApprox(const Other& other, const Scalar& epsilon = Scalar::dummy_precision()) const{
+    PONCA_MULTIARCH inline bool isApprox(const Other& other, const Scalar& epsilon = Eigen::NumTraits<Scalar>::dummy_precision()) const{
         PONCA_MULTIARCH_STD_MATH(pow);
         const Scalar squaredEpsilon = epsilon*epsilon;
         return  pow(m_uc - other.m_uc, Scalar(2)) < squaredEpsilon &&
