@@ -68,7 +68,6 @@ AlgebraicSphere<DataPoint, _WFunctor, T>::potential( const VectorType &_q ) cons
 }
 
 
-
 template < class DataPoint, class _WFunctor, typename T>
 typename AlgebraicSphere<DataPoint, _WFunctor, T>::VectorType
 AlgebraicSphere<DataPoint, _WFunctor, T>::primitiveGradient( const VectorType &_q ) const
