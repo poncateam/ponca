@@ -16,6 +16,7 @@ AlgebraicSphere<DataPoint, _WFunctor, T>::project(const VectorType& _q) const
     Scalar potential = m_uc + lq.dot(m_ul) + m_uq * lq.squaredNorm();
     VectorType grad = m_ul + Scalar(2) * m_uq * lq;
     Scalar norm = grad.norm();
+
     Scalar t;
     if(isPlane())
     {
@@ -23,8 +24,7 @@ AlgebraicSphere<DataPoint, _WFunctor, T>::project(const VectorType& _q) const
     }
     else
     {
-        Scalar disc = norm*norm - Scalar(4) * m_uq * potential;
-        t = - (norm - sqrt(disc)) / (Scalar(2) * m_uq * norm);
+        t = - (norm - sqrt(norm*norm - Scalar(4) * m_uq * potential)) / (Scalar(2) * m_uq * norm);
     }
 
     return Base::m_w.convertToGlobalBasis( lq + t * grad );
