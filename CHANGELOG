@@ -16,8 +16,7 @@ Current head (v.1.4 RC)
 
 - Tests
    - [fitting] Split Basket test in subtests (#96)
-   - [fitting] Fix random failure in Basket and Projection tests (#96)
-   - [fitting] Fix random failures in Basket (again yes) and Projection tests (#162)
+   - [fitting] Fix random failure in Basket and Projection tests (#96,#162)
 
 - Examples
    - [ssgls] Fix compilation error with CUDA due to compiler mismatch (#96)
