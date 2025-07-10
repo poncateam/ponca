@@ -272,7 +272,7 @@ public:
     PONCA_MULTIARCH inline bool isPlane() const
     {
         PONCA_MULTIARCH_STD_MATH(abs);
-        bool bPlanar   = m_uq == 0; // Overall, much better than isMuchSmallerThan(abs(m_uq), Scalar(1.), epsilon);
+        bool bPlanar   = Eigen::internal::isApprox(m_uq,Scalar(0)); 
         bool bReady    = Base::isReady();
         return bReady && bPlanar;
     }
