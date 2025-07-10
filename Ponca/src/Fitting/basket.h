@@ -19,6 +19,17 @@ namespace Ponca
 #define BSKW typename BasketType::WeightFunction
 #define BSKP typename BasketType::DataPoint
 
+template <class P, class W>
+struct BasketBase {
+    template <typename Container>
+    PONCA_MULTIARCH inline
+    FIT_RESULT compute(const Container& /*c*/) {};
+
+    template <typename IndexRange, typename PointContainer>
+    PONCA_MULTIARCH inline
+    FIT_RESULT computeWithIds(IndexRange /*ids*/, const PointContainer& /*points*/) {};
+};
+
 #ifndef PARSED_WITH_DOXYGEN
 /*! \brief Namespace used for structure or classes used internally by the lib */
 namespace internal
