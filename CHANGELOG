@@ -5,6 +5,9 @@ Ponca changelog
 --------------------------------------------------------------------------------
 Current head (v.1.4 RC)
 
+- API
+    - [fitting] Add class NoWeightFunc to skip weight computation (#144)
+
 - Cmake
     - [build] Enable exportation of projects linking to Ponca targets (#150)
     - [install] Change output directory to `lib/cmake/Ponca` (#150)

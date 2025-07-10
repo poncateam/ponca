@@ -208,6 +208,102 @@ protected:
 
 };// class DistWeightFunc
 
+
+/*!
+    \brief Weighting function that set uniform weight to all samples
+
+    In contrast to DistWeightFunc with ConstantWeight, it does not check for scale range.
+    It still performs local basis conversion to maintain computation accuracy
+*/
+template <class DataPoint>
+class NoWeightFunc
+{
+public:
+    /*! \brief Scalar type from DataPoint */
+    using Scalar =  typename DataPoint::Scalar;
+    /*! \brief Vector type from DataPoint */
+    using VectorType =  typename DataPoint::VectorType;
+    /*! \brief Matrix type from DataPoint */
+    using MatrixType = typename DataPoint::MatrixType;
+    /*! \brief Return type of the method #w() */
+    using WeightReturnType = PONCA_MULTIARCH_CU_STD_NAMESPACE(pair)<Scalar, VectorType>;
+
+    /*!
+        \brief Constructor that defines the current evaluation scale
+    */
+    PONCA_MULTIARCH inline NoWeightFunc(const Scalar& /*_t*/ = Scalar(0) ) : m_p(VectorType::Zero()){ }
+
+    /*!
+     * \brief Initialization method, called by the fitting procedure
+     * @param _evalPos Basis center
+     */
+    PONCA_MULTIARCH inline void init( const VectorType& _evalPos = VectorType::Zero() ) { m_p = _evalPos; }
+
+    PONCA_MULTIARCH inline const VectorType& basisCenter() const
+    { return m_p; }
+
+    /// \brief Convert query from global to local coordinate system
+    PONCA_MULTIARCH inline VectorType convertToLocalBasis(const VectorType& _q) const
+    { return _q - m_p; }
+
+    /*!
+        \brief Compute the weight of the given query, which is always $1$
+        \param _q Query in global coordinate
+    */
+    PONCA_MULTIARCH inline WeightReturnType w(const VectorType& _q,
+                                              const DataPoint&  /*attributes*/) const
+    {
+        VectorType q = convertToLocalBasis(_q);
+        return {Scalar(1), q};
+    }
+
+
+    /*!
+        \brief First order derivative in space (for each spatial dimension \f$\mathsf{x})\f$, which are always $0$
+        \param _q Query in global coordinate
+    */
+    PONCA_MULTIARCH inline VectorType spacedw(const VectorType& /*_q*/,
+                                              const DataPoint&  /*attributes*/) const
+    { return VectorType::Zeros(); }
+
+
+    /*!
+        \brief Second order derivative in space (for each spatial dimension \f$\mathsf{x})\f$, which are always $0$
+        \param _q Query in global coordinate
+    */
+    PONCA_MULTIARCH inline MatrixType spaced2w(const VectorType& /*_q*/,
+                                               const DataPoint&  /*attributes*/) const
+    { return MatrixType::Zeros(); }
+
+    /*!
+        \brief First order derivative in scale  \f$t\f$, which are always $0$
+        \param _q Query in global coordinate
+    */
+    PONCA_MULTIARCH inline Scalar scaledw(const VectorType& /*_q*/,
+                                          const DataPoint&  /*attributes*/) const
+    { return Scalar(0); }
+
+    /*!
+        \brief Second order derivative in scale  \f$t\f$, which are always $0$
+        \param _q Query in global coordinate
+    */
+    PONCA_MULTIARCH inline Scalar scaled2w(const VectorType& /*_q*/,
+                                           const DataPoint&  /*attributes*/) const
+    { return Scalar(0); }
+
+    /*!
+        \brief Cross derivative in scale \f$t\f$ and in space (for each spatial dimension \f$\mathsf{x})\f$, which are
+        always $0$
+        \param _q Query in global coordinate
+    */
+    PONCA_MULTIARCH inline VectorType scaleSpaced2w(const VectorType& /*_q*/,
+                                                    const DataPoint&  /*attributes*/) const
+    { return VectorType::Zeros(); }
+
+private:
+    VectorType   m_p;  /*!< \brief basis center */
+};// class DistWeightFunc
+
 #include "weightFunc.hpp"
 
 }// namespace Ponca
