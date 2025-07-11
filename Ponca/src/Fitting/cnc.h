@@ -17,7 +17,6 @@
 // triangle storing indices of points
 template < class DataPoint >
 struct Triangle {
-
     public : 
 
         typedef typename DataPoint::Scalar Scalar;
@@ -83,8 +82,7 @@ enum class TriangleGenerationMethod {
 };
 
 template < class DataPoint, class WeightFunc, TriangleGenerationMethod _method = UniformGeneration>
-class CNC : BasketBase<DataPoint, WeightFunc>
-{
+class CNC : BasketBase<DataPoint, WeightFunc> {
     PONCA_FITTING_DECLARE_DEFAULT_TYPES
     PONCA_FITTING_DECLARE_MATRIX_TYPE
     typedef Eigen::VectorXd  DenseVector;
@@ -158,28 +156,7 @@ public:
     template <typename PointContainer>
     PONCA_MULTIARCH inline bool generateTriangles(const PointContainer& points)
 
-
-    PONCA_MULTIARCH inline void chooseUniformGeneration( int maxtriangles = 100 ) {
-        _method = Method::UniformGeneration;
-        _maxtriangles = maxtriangles;
-    }
-
-    PONCA_MULTIARCH inline void chooseIndependentGeneration( int maxtriangles = 100 ) {
-        _method = Method::IndependentGeneration;
-        _maxtriangles = maxtriangles;
-    }
-
-    PONCA_MULTIARCH inline void chooseHexagramGeneration( Scalar average_normals_weight = 0.5 ) {
-        _method = Method::HexagramGeneration;
-        _avgnormals = average_normals_weight;
-    }
-
-    PONCA_MULTIARCH inline void chooseAvgHexagramGeneration( Scalar average_normals_weight = 0.5 ) {
-        _method = Method::AvgHexagramGeneration;
-        _avgnormals = average_normals_weight;
-    }
-
-    PONCA_MULTIARCH inline int getNumTriangles () {
+    PONCA_MULTIARCH inline int getNumTriangles() {
         return _nb_vt;
     }
 
@@ -207,15 +184,6 @@ public:
     PONCA_MULTIARCH inline Scalar kMean() { return _H; }
 
     PONCA_MULTIARCH inline Scalar kgauss() { return _G; }
-
-private: 
-
-    PONCA_MULTIARCH inline void construct_hexa(const DataPoint &evalPoint, const std::vector<VectorType>& _attribNeigs, const std::vector<VectorType>& _normNeigs);
-
-    PONCA_MULTIARCH inline void construct_avgHexa(const DataPoint &evalPoint, const std::vector<VectorType>& _attribNeigs, const std::vector<VectorType>& _normNeigs);
-
-
-
 }; //class triangleGeneration
 
 #include "triangleGeneration.hpp"
