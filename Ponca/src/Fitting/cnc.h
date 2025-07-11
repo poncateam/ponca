@@ -14,6 +14,14 @@
 
 #include "./CNCEigen.h"
 
+#define DEFINE_CNC_FUNC(CNC_FUNC)                                             \
+    inline Scalar CNC_FUNC      (bool differentOrder = false) {               \
+        return CNCEigen::CNC_FUNC(                                            \
+			 points[0],  points[2-differentOrder],  points[1+differentOrder], \
+			normals[0], normals[2-differentOrder], normals[1+differentOrder]  \
+		);                                                                    \
+    }
+
 // triangle storing indices of points
 template < class DataPoint >
 struct Triangle {
@@ -35,35 +43,19 @@ struct Triangle {
         }
 
         inline bool operator==(const Triangle& other) const {
-            return (points[0] == other.points[0]) && (points[1] == other.points[1]) && (points[2] == other.points[2]);
+            return (points[0] == other.points[0])
+				&& (points[1] == other.points[1])
+				&& (points[2] == other.points[2]);
         }
 
         inline bool operator!=(const Triangle& other) const {
             return !((*this) == other);
         }
 
-        inline Scalar mu0InterpolatedU      (bool differentOrder = false) { 
-            return (differentOrder) ? 
-                  CNCEigen::mu0InterpolatedU  (points[0], points[2], points[1], normals[0], normals[2], normals[1]) 
-                : CNCEigen::mu0InterpolatedU  (points[0], points[1], points[2], normals[0], normals[1], normals[2]);
-        }
-
-        inline Scalar mu1InterpolatedU      (bool differentOrder = false) { 
-            return (differentOrder) ? 
-                  CNCEigen::mu1InterpolatedU  (points[0], points[2], points[1], normals[0], normals[2], normals[1])
-                : CNCEigen::mu1InterpolatedU  (points[0], points[1], points[2], normals[0], normals[1], normals[2]); 
-        }
-        inline Scalar mu2InterpolatedU      (bool differentOrder = false) { 
-            return (differentOrder) ? 
-                  CNCEigen::mu2InterpolatedU  (points[0], points[2], points[1], normals[0], normals[2], normals[1]) 
-                : CNCEigen::mu2InterpolatedU  (points[0], points[1], points[2], normals[0], normals[1], normals[2]); 
-            }
-
-        inline MatrixType muXYInterpolatedU (bool differentOrder = false) { 
-            return (differentOrder) ? 
-                  CNCEigen::muXYInterpolatedU (points[0], points[2], points[1], normals[0], normals[2], normals[1])
-                : CNCEigen::muXYInterpolatedU (points[0], points[1], points[2], normals[0], normals[1], normals[2]); }
-
+		DEFINE_CNC_FUNC(mu0InterpolatedU)
+		DEFINE_CNC_FUNC(mu1InterpolatedU)
+		DEFINE_CNC_FUNC(mu2InterpolatedU)
+		DEFINE_CNC_FUNC(muXYInterpolatedU)
 };
 
 namespace Ponca
