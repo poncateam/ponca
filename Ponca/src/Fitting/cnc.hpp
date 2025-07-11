@@ -41,7 +41,7 @@ bool CNC<P, W, TriangleGenerationMethod::UniformGeneration>::generateTriangles(
 
 
 template < class P, class W, TriangleGenerationMethod M>
-FIT_RESULT CNC<P, W, M>::finalize( const VectorType& evalPointNormal) {
+FIT_RESULT CNC<P, W, M>::finalize( ) {
     _A = Scalar(0);
     _H = Scalar(0);
     _G = Scalar(0);
