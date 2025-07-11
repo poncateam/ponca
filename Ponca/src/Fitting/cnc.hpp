@@ -53,9 +53,9 @@ FIT_RESULT CNC<P, W, M>::finalize( const VectorType& evalPointNormal) {
         Scalar tA = _triangles[t].mu0InterpolatedU();
         if (tA < - CNCEigen::epsilon) {
             _A     -= tA;
-            _H     += _triangles[t].mu1InterpolatedU(true);
-            _G     += _triangles[t].mu2InterpolatedU(true);
-            localT += _triangles[t].muXYInterpolatedU(true);
+            _H     += _triangles[t].mu1InterpolatedU<true>();
+            _G     += _triangles[t].mu2InterpolatedU<true>();
+            localT += _triangles[t].muXYInterpolatedU<true>();
         }
         else if (tA > CNCEigen::epsilon) {
             _A     += tA;
