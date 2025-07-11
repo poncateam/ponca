@@ -15,34 +15,34 @@
 namespace Ponca
 {
 
-#define BSKW typename BasketType::WeightFunction
+#define BSKNF typename BasketType::WeightFunction
 #define BSKP typename BasketType::DataPoint
 
 #ifndef PARSED_WITH_DOXYGEN
 /*! \brief Namespace used for structure or classes used internally by the lib */
 namespace internal
 {
-    template <class P, class W,
+    template <class P, class NF,
         typename Aggregate,
         template <class, class, typename> class Ext,
         template <class, class, typename> class... Exts>
     struct BasketAggregateImpl
     {
-        using type = typename BasketAggregateImpl<P, W, Ext<P, W, Aggregate>, Exts...>::type;
+        using type = typename BasketAggregateImpl<P, NF, Ext<P, NF, Aggregate>, Exts...>::type;
     };
 
-    template <class P, class W,
+    template <class P, class NF,
         typename Aggregate,
         template <class, class, typename> class Ext>
-    struct BasketAggregateImpl<P, W, Aggregate, Ext>
+    struct BasketAggregateImpl<P, NF, Aggregate, Ext>
     {
-        using type = Ext<P, W, Aggregate>;
+        using type = Ext<P, NF, Aggregate>;
     };
 
     /*! \brief Internal class used to build the Basket structure */
-    template <class P, class W,
+    template <class P, class NF,
         template <class, class, typename> class... Exts>
-    struct BasketAggregate : BasketAggregateImpl<P, W, PrimitiveBase<P, W>, Exts...>
+    struct BasketAggregate : BasketAggregateImpl<P, NF, PrimitiveBase<P, NF>, Exts...>
     {
     };
 
@@ -52,7 +52,7 @@ namespace internal
         template <class, class, int, typename> class... Exts>
     struct BasketDiffAggregateImpl
     {
-        using type = typename BasketDiffAggregateImpl<BasketType, Type, Ext<BSKP, BSKW, Type, Aggregate>, Exts...>::type;
+        using type = typename BasketDiffAggregateImpl<BasketType, Type, Ext<BSKP, BSKNF, Type, Aggregate>, Exts...>::type;
     };
 
     template <typename BasketType, int Type,
@@ -60,7 +60,7 @@ namespace internal
         template <class, class, int, typename> class Ext>
     struct BasketDiffAggregateImpl<BasketType, Type, Aggregate, Ext>
     {
-        using type = Ext<BSKP, BSKW, Type, Aggregate>;
+        using type = Ext<BSKP, BSKNF, Type, Aggregate>;
     };
 
     /*! \brief Internal class used to build the BasketDiff structure */
@@ -188,7 +188,7 @@ namespace internal
     /// Base type, which aggregates all the computational objects using the CRTP
     using Base = typename internal::BasketDiffAggregate<BasketType, Type, Ext0, Exts...>::type;
     /// Weighting function
-    using WeightFunction = BSKW;
+    using WeightFunction = BSKNF;
     /// Point type used for computation
     using DataPoint = BSKP;
     /// Scalar type used for computation, as defined from Basket
@@ -200,11 +200,11 @@ namespace internal
     /// \copydoc Basket::addNeighbor
     PONCA_MULTIARCH inline bool addNeighbor(const DataPoint &_nei) {
         // compute weight
-        auto wres = Base::m_w.w(_nei.pos(), _nei);
+        auto neiFilterOutput = Base::m_nfilter(_nei);
         typename Base::ScalarArray dw;
 
-        if (wres.first > Scalar(0.)) {
-            Base::addLocalNeighbor(wres.first, wres.second, _nei, dw);
+        if (neiFilterOutput.first > Scalar(0.)) {
+            Base::addLocalNeighbor(neiFilterOutput.first, neiFilterOutput.second, _nei, dw);
             return true;
         }
         return false;
@@ -236,23 +236,23 @@ namespace internal
     \tparam Ext0 Implements \ref concepts_computObjectBasket "ComputationalObjectConcept"
     \tparam Exts Implements \ref concepts_computObjectBasket "ComputationalObjectConcept" (optional)
 */
-    template <class P, class W,
+    template <class P, class NF,
         template <class, class, typename> class Ext0,
         template <class, class, typename> class... Exts>
-    class Basket : public ComputeObject<Basket<P, W, Ext0, Exts...>>,
-                   public internal::BasketAggregate<P, W, Ext0, Exts...>::type
+    class Basket : public ComputeObject<Basket<P, NF, Ext0, Exts...>>,
+                   public internal::BasketAggregate<P, NF, Ext0, Exts...>::type
     {
     private:
         using Self   = Basket;
     public:
         /// Base type, which aggregates all the computational objects using the CRTP
-        using Base = typename internal::BasketAggregate<P, W, Ext0, Exts...>::type;
+        using Base = typename internal::BasketAggregate<P, NF, Ext0, Exts...>::type;
         /// Scalar type used for computation, as defined from template parameter `P`
         using Scalar = typename P::Scalar;
         /// Point type used for computation
         using DataPoint = P;
         /// Weighting function
-        using WeightFunction = W;
+        using NeighborhoodFilter = NF;
 
         using ComputeObject<Self>::compute; // Make the default compute accessible
         WRITE_COMPUTE_FUNCTIONS;
@@ -265,10 +265,10 @@ namespace internal
         /// \return false if param nei is not a valid neighbor (weight = 0)
         PONCA_MULTIARCH inline bool addNeighbor(const DataPoint &_nei) {
             // compute weight
-            auto wres = Base::m_w.w(_nei.pos(), _nei);
+            auto neiFilterOutput = Base::m_nfilter(_nei);
 
-            if (wres.first > Scalar(0.)) {
-                Base::addLocalNeighbor(wres.first, wres.second, _nei);
+            if (neiFilterOutput.first > Scalar(0.)) {
+                Base::addLocalNeighbor(neiFilterOutput.first, neiFilterOutput.second, _nei);
                 return true;
             }
             return false;
