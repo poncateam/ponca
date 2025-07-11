@@ -15,7 +15,8 @@
 #include "./CNCEigen.h"
 
 #define DEFINE_CNC_FUNC(CNC_FUNC)                                             \
-    inline Scalar CNC_FUNC      (bool differentOrder = false) {               \
+	template<bool differentOrder = false>                                     \
+    inline Scalar CNC_FUNC () {                                               \
         return CNCEigen::CNC_FUNC(                                            \
 			 points[0],  points[2-differentOrder],  points[1+differentOrder], \
 			normals[0], normals[2-differentOrder], normals[1+differentOrder]  \
