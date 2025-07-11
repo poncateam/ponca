@@ -83,6 +83,9 @@ class CNC : BasketBase<DataPoint, WeightFunc> {
     using randomInt = Eigen::internal::random<int>;
 
 protected:
+	// Basis
+	VectorType basisNormal   {VectorType::Zero()};
+
     //! \brief protected variables
     std::array < Scalar, 6 > _cos;
     std::array < Scalar, 6 > _sin;
@@ -122,9 +125,10 @@ public:
     /*! \brief Set the scalar field values to 0 and reset the isNormalized() status
 
     */
-    PONCA_MULTIARCH inline void init (const VectorType& _basisCenter)
-    {
-        Base::init(_basisCenter);
+
+	template <bool Point>
+    PONCA_MULTIARCH inline void init (const Point basis) {
+		basisNormal   = basis.normal;
 
         k1 = Scalar(0);
         k2 = Scalar(0);
@@ -144,7 +148,7 @@ public:
     }
 
     template <typename PointContainer>
-    PONCA_MULTIARCH inline bool compute(const PointContainer& points)
+    PONCA_MULTIARCH inline FIT_RESULT compute(const PointContainer& points)
 
     template <typename PointContainer>
     PONCA_MULTIARCH inline bool generateTriangles(const PointContainer& points)
