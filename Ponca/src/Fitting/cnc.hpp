@@ -5,7 +5,7 @@ bool CNC<P, W, M>::compute( const PointContainer& points ) {
 }
 
 /// Generates the triangle used by the CNC Fit depending on the method (UniformGeneration)
-template < class P, class W, TriangleGenerationMethod M>
+template < class P, class W>
 template <typename PointContainer>
 bool CNC<P, W, TriangleGenerationMethod::UniformGeneration>::generateTriangles(
 	const PointContainer& points
