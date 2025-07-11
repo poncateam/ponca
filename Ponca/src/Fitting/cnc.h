@@ -88,7 +88,7 @@ class CNC : BasketBase<DataPoint, WeightFunc> {
 
 protected:
 	// Basis
-	VectorType basisNormal   {VectorType::Zero()};
+	VectorType _evalPointNormal   {VectorType::Zero()};
 
     //! \brief protected variables
     std::array < Scalar, 6 > _cos;
@@ -130,10 +130,7 @@ public:
 
     */
 
-	template <typename Point>
-    PONCA_MULTIARCH inline void init(const Point basis) {
-		basisNormal   = basis.normal;
-
+    PONCA_MULTIARCH inline void init() {
         k1 = Scalar(0);
         k2 = Scalar(0);
 
@@ -152,12 +149,12 @@ public:
     }
 
     template <typename PointContainer>
-    PONCA_MULTIARCH inline FIT_RESULT compute(const PointContainer& points)
+    PONCA_MULTIARCH inline FIT_RESULT compute(const PointContainer& points);
 
     template <typename PointContainer>
-    PONCA_MULTIARCH inline bool generateTriangles(const PointContainer& points)
+    PONCA_MULTIARCH inline bool generateTriangles(const PointContainer& points);
 
-    PONCA_MULTIARCH inline int getNumTriangles() {
+    PONCA_MULTIARCH inline int getNumTriangles() const {
         return _nb_vt;
     }
 
@@ -173,6 +170,10 @@ public:
         }
 
     }
+
+	void setEvalPointNormal(const VectorType& evalPointNormal) {
+		_evalPointNormal = evalPointNormal;
+	}
 
     PONCA_MULTIARCH inline Scalar kmin() { return k1; }
 

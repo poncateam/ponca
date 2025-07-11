@@ -2,7 +2,7 @@ template < class P, class W, TriangleGenerationMethod M>
 template <typename PointContainer>
 FIT_RESULT CNC<P, W, M>::compute( const PointContainer& points ) {
     generateTriangles<PointContainer>(points);
-	return finalize(),
+	return finalize();
 }
 
 /// Generates the triangle used by the CNC Fit depending on the method (UniformGeneration)
@@ -38,7 +38,6 @@ bool CNC<P, W, TriangleGenerationMethod::UniformGeneration>::generateTriangles(
     }
     return _nb_vt > 0;
 }
-
 
 template < class P, class W, TriangleGenerationMethod M>
 FIT_RESULT CNC<P, W, M>::finalize( ) {
@@ -89,7 +88,7 @@ FIT_RESULT CNC<P, W, M>::finalize( ) {
         _G = Scalar(0);
     }
 
-    std::tie (k2, k1, v2, v1) = CNCEigen::curvaturesFromTensor(_T, 1.0, basisNormal);
+    std::tie (k2, k1, v2, v1) = CNCEigen::curvaturesFromTensor(_T, 1.0, _evalPointNormal);
 
     return STABLE;
 
