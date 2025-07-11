@@ -23,15 +23,21 @@
 		);                                                                    \
     }
 
+
+namespace Ponca
+{
+
+namespace internal {
+
 // triangle storing indices of points
 template < class DataPoint >
 struct Triangle {
-    public : 
+    public :
 
         typedef typename DataPoint::Scalar Scalar;
-        typedef typename DataPoint::VectorType VectorType;        
+        typedef typename DataPoint::VectorType VectorType;
         typedef typename DataPoint::MatrixType MatrixType;
-        
+
         std::array < VectorType, 3 > points;
         std::array < VectorType, 3 > normals;
         // Maybe need to store the normal too
@@ -57,10 +63,8 @@ struct Triangle {
 		DEFINE_CNC_FUNC(mu1InterpolatedU)
 		DEFINE_CNC_FUNC(mu2InterpolatedU)
 		DEFINE_CNC_FUNC(muXYInterpolatedU)
-};
-
-namespace Ponca
-{
+	};
+}
 
 /*!
     \brief CNC generation of triangles from a set of points
@@ -127,7 +131,7 @@ public:
     */
 
 	template <bool Point>
-    PONCA_MULTIARCH inline void init (const Point basis) {
+    PONCA_MULTIARCH inline void init(const Point basis) {
 		basisNormal   = basis.normal;
 
         k1 = Scalar(0);
