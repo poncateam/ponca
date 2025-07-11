@@ -22,6 +22,7 @@
 #include <Ponca/src/Fitting/weightKernel.h>
 
 #include <chrono>
+#include <math.h>
 
 using namespace std;
 using namespace Ponca;
@@ -44,6 +45,9 @@ void testFunction()
     {
         coeff = VectorType::Zero();
     }
+    // avoid saddles, which can cause issues with the sphere fitting
+    coeff.y() = std::copysign(coeff.y(), coeff.x());
+
     Scalar width = Eigen::internal::random<Scalar>(1., 10.);
     VectorType center = 1000 * VectorType::Random();
 
