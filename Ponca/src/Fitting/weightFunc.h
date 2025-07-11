@@ -222,7 +222,7 @@ public:
     /*!
         \brief Constructor that defines the current evaluation scale
     */
-    PONCA_MULTIARCH inline NoWeightFunc(const VectorType & _evalPos = VectorType::Zero(), const Scalar& /*_t*/ = Scalar(0)) : m_p(_evalPos){ }
+    PONCA_MULTIARCH inline NoWeightFunc(const VectorType & _evalPos = VectorType::Zero()) : m_p(_evalPos){ }
 
     /*!
      * \brief Initialization method, called by the fitting procedure
