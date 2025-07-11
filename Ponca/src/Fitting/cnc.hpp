@@ -33,7 +33,7 @@ bool CNC<P, W, TriangleGenerationMethod::UniformGeneration>::generateTriangles(
 			points[i3].normal
 		};
 
-        _triangles.push_back(Triangle<DataPoint>(positions, normals));
+        _triangles.push_back(internal::Triangle<DataPoint>(positions, normals));
         _nb_vt++;
     }
     return _nb_vt > 0;
