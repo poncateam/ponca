@@ -27,7 +27,7 @@ Current head (v.1.4 RC)
    - [nanoflann] Add missing include directive (#96)
 
 - CI/Actions
-    - Fix automatic doc deployment (#158)
+    - Fix automatic doc deployment (#158,#176)
     - Print error log on tests failure (#162)
 
 - Docs
