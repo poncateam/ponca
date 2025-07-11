@@ -252,18 +252,32 @@ DataPoint getPointOnPlane(typename DataPoint::VectorType _vPosition,
     return DataPoint(vRandomPoint, vLocalUp);
 }
 
+/// Generate z value using the equation z = ax^2 + by^2
 template<typename Scalar>
 inline Scalar
 getParaboloidZ(Scalar _x, Scalar _y, Scalar _a, Scalar _b)
 {
     return _a*_x*_x + _b*_y*_y;
 }
+/// Generate z value using the equation z = ax^2 + by^2
+template<typename VectorType>
+inline VectorType
+getParaboloidNormal(const VectorType& in,
+                    typename VectorType::Scalar _a,
+                    typename VectorType::Scalar _b)
+{
+    return VectorType((_a * in.x()), (_b * in.y()), -1.).normalized();;
+}
 
+/// Generate point samples on the primitive z = ax^2 + by^2
+/// Points (x,y) are generated in the interval [-_s, -s]^2
+/// See getParaboloidZ and getParaboloidNormal
 template<typename DataPoint>
-DataPoint getPointOnParaboloid(typename DataPoint::VectorType /*_vCenter*/,
-                               typename DataPoint::VectorType _vCoef,
-                               typename DataPoint::Scalar _analysisScale,
-                               bool _bAddNoise = true)
+[[nodiscard]] DataPoint
+getPointOnParaboloid(typename DataPoint::Scalar _a,
+                     typename DataPoint::Scalar _b,
+                     typename DataPoint::Scalar _s,
+                     bool _bAddNoise = true)
 {
     typedef typename DataPoint::Scalar Scalar;
     typedef typename DataPoint::VectorType VectorType;
@@ -271,28 +285,16 @@ DataPoint getPointOnParaboloid(typename DataPoint::VectorType /*_vCenter*/,
     VectorType vNormal;
     VectorType vPosition;
 
-    Scalar a = _vCoef.x();
-    Scalar b = _vCoef.y();
-    Scalar x, y, z;
+    Scalar x = Eigen::internal::random<Scalar>(-_s, _s),
+           y = Eigen::internal::random<Scalar>(-_s, _s);
 
-    x = Eigen::internal::random<Scalar>(-_analysisScale, _analysisScale);
-    y = Eigen::internal::random<Scalar>(-_analysisScale, _analysisScale);
-    z = getParaboloidZ(x, y, a, b);
+    vPosition = { x, y, getParaboloidZ(x, y, _a, _b)};
+    vNormal = getParaboloidNormal(vPosition, _a, _b);
 
-    vNormal = VectorType((a * x), (b * y), -1.).normalized();
-
-    vPosition.x() = x;
-    vPosition.y() = y;
-    vPosition.z() = z;
-
-    if(_bAddNoise)
+    if(_bAddNoise) //spherical noise
     {
-        //spherical noise
-        vPosition = vPosition + VectorType::Random().normalized() * Eigen::internal::random<Scalar>(Scalar(0), Scalar(1. - MIN_NOISE));
+        vPosition += VectorType::Random().normalized() * Eigen::internal::random<Scalar>(Scalar(0), Scalar(1. - MIN_NOISE));
     }
-
-    //vPosition = _qRotation * vPosition + _vCenter;
-    //vNormal = _qRotation * vNormal;
 
     return DataPoint(vPosition, vNormal);
 }

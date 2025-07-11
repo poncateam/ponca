@@ -58,8 +58,8 @@ void testFunction()
 
     for(int i = 0; i < nbPointsFit; ++i)
     {
-        DataPoint p = getPointOnParaboloid<DataPoint>(VectorType(),     // center (not used)
-                                                      coeff,
+        DataPoint p = getPointOnParaboloid<DataPoint>(coeff.x(),
+                                                      coeff.y(),
                                                       width,
                                                       false);           // noise
         p.pos() += center;
