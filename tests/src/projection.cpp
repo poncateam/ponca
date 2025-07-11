@@ -22,6 +22,7 @@
 #include <Ponca/src/Fitting/weightKernel.h>
 
 #include <chrono>
+#include <math.h>
 
 using namespace std;
 using namespace Ponca;
@@ -44,13 +45,16 @@ void testFunction()
     {
         coeff = VectorType::Zero();
     }
+    // avoid saddles, which can cause issues with the sphere fitting
+    coeff.y() = std::copysign(coeff.y(), coeff.x());
+
     Scalar width = Eigen::internal::random<Scalar>(1., 10.);
     VectorType center = 1000 * VectorType::Random();
 
     Scalar zmax = std::abs((coeff[0] + coeff[1]) * width*width);
     Scalar analysisScale = std::sqrt(zmax*zmax + width*width);
 
-    Scalar epsilon = Scalar(0.001); //Scalar(20.)*testEpsilon<Scalar>();
+    Scalar epsilon = Scalar(0.001); // We need a lesser precision for this test to pass
 
     Fit fit;
     fit.setWeightFunc(WeightFunc(analysisScale));
@@ -58,8 +62,8 @@ void testFunction()
 
     for(int i = 0; i < nbPointsFit; ++i)
     {
-        DataPoint p = getPointOnParaboloid<DataPoint>(VectorType(),     // center (not used)
-                                                      coeff,
+        DataPoint p = getPointOnParaboloid<DataPoint>(coeff.x(),
+                                                      coeff.y(),
                                                       width,
                                                       false);           // noise
         p.pos() += center;

@@ -19,7 +19,7 @@ Current head (v.1.4 RC)
 
 - Tests
    - [fitting] Split Basket test in subtests (#96)
-   - [fitting] Fix random failure in Basket and Projection tests (#96)
+   - [fitting] Fix random failure in Basket and Projection tests (#96,#162)
 
 - Examples
    - [ssgls] Fix compilation error with CUDA due to compiler mismatch (#96)
@@ -28,6 +28,7 @@ Current head (v.1.4 RC)
 
 - CI/Actions
     - Fix automatic doc deployment (#158)
+    - Print error log on tests failure (#162)
 
 - Docs
     - [Fitting] Updated the Fit user manual to account for the change of use of the curvature estimator
