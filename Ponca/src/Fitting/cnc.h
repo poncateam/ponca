@@ -130,7 +130,7 @@ public:
 
     */
 
-	template <bool Point>
+	template <typename Point>
     PONCA_MULTIARCH inline void init(const Point basis) {
 		basisNormal   = basis.normal;
 
