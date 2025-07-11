@@ -17,6 +17,8 @@ jobs:
         uses: actions/checkout@master
         with:
           path: src/
+      - name: Update apt
+        run : sudo apt-get update
       - name: Install packages
         run : sudo apt-get install graphviz texlive-bibtex-extra doxygen
       - name: Configure Doc
