@@ -24,7 +24,7 @@ namespace Ponca
     \note This class should not be inherited explicitly: this is done by the
     #Basket class.
 */
-template < class DataPoint, class _WFunctor, typename T = void  >
+template < class DataPoint, class _NFilter, typename T = void  >
 class PrimitiveBase
 {
 protected:
@@ -33,9 +33,9 @@ protected:
     };
 
 public:
-    using Scalar     = typename DataPoint::Scalar;     /*!< \brief Inherited scalar type*/
-    using VectorType = typename DataPoint::VectorType; /*!< \brief Inherited vector type*/
-    using WFunctor   = _WFunctor;                      /*!< \brief Weight Function*/
+    using Scalar         = typename DataPoint::Scalar;     /*!< \brief Inherited scalar type*/
+    using VectorType     = typename DataPoint::VectorType; /*!< \brief Inherited vector type*/
+    using NeighborFilter = _NFilter;                       /*!< \brief Filter applied on each neighbor*/
 
 private:
     //! \brief Number of neighbors
@@ -50,16 +50,16 @@ protected:
     //! update the state)
     FIT_RESULT m_eCurrentState {UNDEFINED};
 
-    //! \brief Weight function (must inherits BaseWeightFunc)
-    WFunctor   m_w;
+    //! \brief Neighborhood filter
+    NeighborFilter   m_nFilter;
 
 public:
     /**************************************************************************/
     /* Initialization                                                         */
     /**************************************************************************/
     PONCA_FITTING_APIDOC_SETWFUNC
-    PONCA_MULTIARCH inline void setWeightFunc (const WFunctor& _w) {
-        m_w  = _w;
+    PONCA_MULTIARCH inline void setNeighborFilter (const NeighborFilter& _nFilter) {
+        m_nFilter  = _nFilter;
     }
 
     PONCA_FITTING_APIDOC_INIT
@@ -97,9 +97,9 @@ public:
     }
 
     /*! \brief Read access to the WeightFunc \see setWeightFunc */
-    PONCA_MULTIARCH inline const WFunctor& getWeightFunc() const
+    PONCA_MULTIARCH inline const NeighborFilter& getNeighborFilter() const
     {
-        return m_w;
+        return m_nFilter;
     }
 
 
