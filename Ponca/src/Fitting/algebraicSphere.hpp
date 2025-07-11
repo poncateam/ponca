@@ -26,6 +26,7 @@ AlgebraicSphere<DataPoint, _WFunctor, T>::project(const VectorType& _q) const
     {
         t = - (norm - sqrt(norm*norm - Scalar(4) * m_uq * potential)) / (Scalar(2) * m_uq * norm);
     }
+
     return Base::m_w.convertToGlobalBasis( lq + t * grad );
 }
 

@@ -45,12 +45,10 @@ void testFunction()
     //generate sampled paraboloid
     int nbPoints = Eigen::internal::random<int>(10000, 20000);
 
-    // vCenter is ignored in getPointOnParaboloid
-    VectorType vCenter = VectorType::Zero(); //::Random() * Eigen::internal::random<Scalar>(0, 1);
-    VectorType vCoef = 100 * VectorType(Eigen::internal::random<Scalar>(-1,1), Eigen::internal::random<Scalar>(-1,1), 0);
+    Scalar paraboloidA = 100 * Eigen::internal::random<Scalar>(-1,1);
+    Scalar paraboloidB = 100 * Eigen::internal::random<Scalar>(-1,1);
 
     Scalar analysisScale {.001};// / std::max(std::abs(vCoef.x()), std::abs(vCoef.y()));
-    vCenter *= analysisScale;
 
     Scalar rotationAngle = Eigen::internal::random<Scalar>(Scalar(0.), Scalar(2 * M_PI));
     VectorType vRotationAxis = VectorType::Random().normalized();
@@ -63,11 +61,11 @@ void testFunction()
     vector<TestDataPoint> testVectorPoints(nbPoints);
     for(unsigned int i = 0; i < vectorPoints.size(); ++i)
     {
-      vectorPointsOrigin[i] = getPointOnParaboloid<DataPoint>(vCenter, vCoef, analysisScale*Scalar(1.2), false);
+      vectorPointsOrigin[i] = getPointOnParaboloid<DataPoint>(paraboloidA, paraboloidB, analysisScale*Scalar(1.2), false);
       // Add noise:
       // vectorPointsOrigin[i].pos() += VectorType::Random()*1e-6;
       //vectorPointsOrigin[i].normal() = (vectorPointsOrigin[i].normal() + VectorType::Random()*1e-6).normalized();
-      vectorPoints[i].pos() = vectorPointsOrigin[i].pos() + vCenter;
+      vectorPoints[i].pos() = vectorPointsOrigin[i].pos();
       vectorPoints[i].normal() = vectorPointsOrigin[i].normal();
 
       testVectorPoints[i].pos()    = vectorPoints[i].pos().template cast<TestScalar>();
@@ -77,9 +75,10 @@ void testFunction()
     VectorType theoricNormal = VectorType(0, 0, -1);
 
     TestFit fit;
-    VectorType vFittingPoint = vCenter;
-    fit.init();
+
+    VectorType vFittingPoint = VectorType::Zero();
     fit.setWeightFunc(TestWeightFunc(vFittingPoint.template cast<TestScalar>(), analysisScale));
+    fit.init();
 
     for(typename vector<TestDataPoint>::iterator it = testVectorPoints.begin();
         it != testVectorPoints.end();
@@ -106,7 +105,7 @@ void testFunction()
 
       // Centered fit:
       RefFit ref_fit;
-      VectorType vFittingPoint = vCenter;
+      VectorType vFittingPoint = VectorType::Zero();
       ref_fit.init();
       ref_fit.setWeightFunc(RefWeightFunc(vFittingPoint.template cast<RefScalar>(), analysisScale));
 
@@ -132,13 +131,14 @@ void testFunction()
       for(int k = 0; k<4; ++k)
       {
         RefFit f;
-        VectorType vFittingPoint = vCenter;
+        VectorType vFittingPoint = VectorType::Zero();
         if(k==0) {
             f.setWeightFunc(RefWeightFunc(vFittingPoint.template cast<RefScalar>(), analysisScale+h));
         } else {
             vFittingPoint(k - 1) += h;
             f.setWeightFunc(RefWeightFunc(vFittingPoint.template cast<RefScalar>(), analysisScale));
         }
+
         f.compute(refVectorPoints);
 
         RefScalar flip_f   = (f.isSigned() || (f.primitiveGradient().dot(theoricNormal.template cast<RefScalar>()) > 0 )) ? RefScalar(1) : RefScalar(-1);
@@ -191,15 +191,13 @@ void testFunction()
 
     if(fit.isStable())
     {
-      Scalar a = vCoef.x();
-      Scalar b = vCoef.y();
 
       Scalar theoricPotential = 0;
 //      Scalar theoricKmean        = (a + b) / Scalar(2.);
-      Scalar theoricAverageKmean = getKappaMean<DataPoint>(vectorPointsOrigin, vFittingPoint, a, b, analysisScale);
-      Scalar theoricK1 = (std::abs(a)<std::abs(b) ? b : a);
-      Scalar theoricK2 = (std::abs(a)<std::abs(b) ? a : b);
-      Scalar theoricGaussian = a * b;
+      Scalar theoricAverageKmean = getKappaMean<DataPoint>(vectorPointsOrigin, vFittingPoint, paraboloidA, paraboloidB, analysisScale);
+      Scalar theoricK1 = (std::abs(paraboloidA)<std::abs(paraboloidB) ? paraboloidB : paraboloidA);
+      Scalar theoricK2 = (std::abs(paraboloidA)<std::abs(paraboloidB) ? paraboloidA : paraboloidB);
+      Scalar theoricGaussian = paraboloidA * paraboloidB;
 
       Scalar potential  = flip_fit * fit.potential();
       VectorType normal = flip_fit * fit.primitiveGradient().template cast<Scalar>();
