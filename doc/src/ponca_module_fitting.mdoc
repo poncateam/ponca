@@ -40,12 +40,12 @@ namespace Ponca
   The type of computation is controlled by a type (called `Fit` in the example below) defined by the user by combining computational components offered in this module.
   Given an object of type `Fit`, the client code will always looks as follows:
   \code
-  Fit fit;                          // Create the user-defined fitting procedure
-  fit.setWeightFunc(WeightFunc(t)); // Set a weighting function to weight neighbors
-  fit.init(p);                      // Set the evaluation position
+  Fit fit;                             // Create the user-defined fitting procedure
+  fit.init();                          // Initialize internal state
+  fit.setWeightFunc(WeightFunc(p, t)); // Set a weighting function to weight neighbors from a reference point p
   for(auto& it = vecs.begin(); it != vecs.end(); it++)
-    fit.addNeighbor(*it);           // Traverse neighborhood
-  fit.finalize();                   // Finalize computations
+    fit.addNeighbor(*it);              // Traverse neighborhood
+  fit.finalize();                      // Finalize computations
   \endcode
 
   Once computations are done, the `Fit` object provides both getters to the neighborhood properties (e.g. estimated curvature), and procedures (e.g. projection operator onto the fitted primitive):

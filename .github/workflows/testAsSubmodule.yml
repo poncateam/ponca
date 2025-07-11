@@ -48,7 +48,7 @@ jobs:
         if: ${{ matrix.config.installEigen == 'COMPILE'}}
 
       - name: Checkout helper repository with Ponca as submodule (master branch)
-        run: git clone https://github.com/poncateam/ci-submodule-helper.git repo
+        run: git clone https://github.com/Me-k-01/ci-submodule-helper.git -b weight-func-refactor repo
       - name: Checkout submodule (Ponca) of helper repository
         run: cd repo &&  git submodule update --init
       - name: Add PR remote (fork)

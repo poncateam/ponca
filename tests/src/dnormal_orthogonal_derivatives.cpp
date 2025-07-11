@@ -128,8 +128,7 @@ void test_orthoDerivatives(Functor f, bool skipCov = false)
 #endif
     for(int k=0; k<int(vecs.size())/slice; ++k)
     {
-        fit.setWeightFunc(WeightFunc(analysisScale));
-        fit.init(vecs[k*slice].pos());
+        fit.setWeightFunc(WeightFunc(vecs[k*slice].pos(), analysisScale));
         fit.compute(vecs);
 
         if(fit.isStable())

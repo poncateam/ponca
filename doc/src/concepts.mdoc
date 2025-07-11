@@ -62,8 +62,8 @@ namespace Ponca
     // Initialization
     MyWeightingFunction w ( some_parameters );  //< Init weight function
     Fit fit;                                    //< Create a fit object
-    fit.init( referencePosition );              //< Init the internal state with respect to the reference position
-    fit.setWeightFunc( w );                     //< Set the weighting function (w can be shared accross multiple fits)
+    fit.init(  );                               //< Initialize the internal state
+    fit.setWeightFunc( {referencePosition, w} );  //< Set the weighting function (reference position and w can be shared accross multiple fits)
 
     // Computations
     foreach neighbors of referencePosition      //< Traverse neighborhood

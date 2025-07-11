@@ -47,8 +47,7 @@ for (int i = 0; i < nbVert; ++i) // for all the vertices of the point cloud
   Thanks to the iterator formalism, queries can be seamlessly combined with Basket::computeWithIds:
   \code
 Fit fit;
-fit.setWeightFunc(MyWeightFunc(scale));
-fit.init(fitInitPos);
+fit.setWeightFunc(MyWeightFunc(fitInitPos, scale));
 fit.computeWithIds( myDataStructure.range_neighbors(fitInitPos, scale), vectorPoints );
   \endcode
 
