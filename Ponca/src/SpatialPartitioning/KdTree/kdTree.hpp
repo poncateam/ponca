@@ -8,11 +8,11 @@
 
 template<typename Traits>
 template<typename PointUserContainer, typename Converter>
-inline void KdTreeBase<Traits>::build(PointUserContainer&& points, Converter c)
+inline void KdTreeBase<Traits>::build(PointUserContainer&& points, Converter c, LeafSizeType min_cell_size)
 {
     IndexContainer ids(points.size());
     std::iota(ids.begin(), ids.end(), 0);
-    this->buildWithSampling(std::forward<PointUserContainer>(points), std::move(ids), std::move(c));
+    this->buildWithSampling(std::forward<PointUserContainer>(points), std::move(ids), std::move(c), min_cell_size);
 }
 
 template<typename Traits>
@@ -25,11 +25,13 @@ void KdTreeBase<Traits>::clear()
 }
 
 template<typename Traits>
-bool KdTreeBase<Traits>::valid() const
+bool KdTreeBase<Traits>::valid(bool ignore_duplicates) const
 {
+    // Check if point container is empty
     if (m_points.empty())
         return m_nodes.empty() && m_indices.empty();
 
+    // Check that at least one node has been created, and index container is not empty
     if(m_nodes.empty() || m_indices.empty())
     {
         return false;
@@ -38,7 +40,7 @@ bool KdTreeBase<Traits>::valid() const
     std::vector<bool> b(point_count(), false);
     for(IndexType idx : m_indices)
     {
-        if(idx < 0 || point_count() <= idx || b[idx])
+        if(idx < 0 || point_count() <= idx || ( ignore_duplicates ? false : b[idx]))
         {
             return false;
         }
@@ -120,10 +122,14 @@ template<typename Traits>
 template<typename PointUserContainer, typename IndexUserContainer, typename Converter>
 inline void KdTreeBase<Traits>::buildWithSampling(PointUserContainer&& points,
                                                   IndexUserContainer sampling,
-                                                  Converter c)
+                                                  Converter c,
+                                                  LeafSizeType min_cell_size)
 {
     PONCA_DEBUG_ASSERT(points.size() <= MAX_POINT_COUNT);
     this->clear();
+
+    // Set cell size
+    this->m_min_cell_size = min_cell_size;
 
     // Move, copy or convert input samples
     c(std::forward<PointUserContainer>(points), m_points);
@@ -150,6 +156,8 @@ void KdTreeBase<Traits>::build_rec(NodeIndexType node_id, IndexType start, Index
     node.set_is_leaf(
         end-start <= m_min_cell_size ||
         level >= Traits::MAX_DEPTH ||
+        // Stop descending if the content of the node is not one unique point
+        aabb.diagonal().squaredNorm() <= Eigen::NumTraits<Scalar>::epsilon() ||
         // Since we add 2 nodes per inner node we need to stop if we can't add
         // them both
         (NodeIndexType)m_nodes.size() > MAX_NODE_COUNT - 2);
