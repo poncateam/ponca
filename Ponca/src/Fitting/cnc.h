@@ -7,12 +7,9 @@
 
 #pragma once
 
-#include "../defines.h"
-
+#include "defines.h"
 #include PONCA_MULTIARCH_INCLUDE_STD(cmath)
-#include PONCA_MULTIARCH_INCLUDE_STD(limits)
-
-#include "./CNCEigen.h"
+#include "cncFormulaEigen.h"
 
 #define DEFINE_CNC_FUNC(CNC_FUNC)                                             \
 	template<bool differentOrder = false>                                     \
@@ -32,39 +29,36 @@ namespace internal {
 // triangle storing indices of points
 template < class DataPoint >
 struct Triangle {
-    public :
+    typedef typename DataPoint::Scalar Scalar;
+    typedef typename DataPoint::VectorType VectorType;
+    typedef typename DataPoint::MatrixType MatrixType;
 
-        typedef typename DataPoint::Scalar Scalar;
-        typedef typename DataPoint::VectorType VectorType;
-        typedef typename DataPoint::MatrixType MatrixType;
+    std::array < VectorType, 3 > points;
+    std::array < VectorType, 3 > normals;
+    // Maybe need to store the normal too
 
-        std::array < VectorType, 3 > points;
-        std::array < VectorType, 3 > normals;
-        // Maybe need to store the normal too
+    Triangle(const std::array < VectorType, 3 >& points, const std::array < VectorType, 3 >& normals) {
+        this->points = points;
+        this->normals = normals;
+    }
 
-    public :
+    bool operator==(const Triangle& other) const {
+        return (points[0] == other.points[0])
+			&& (points[1] == other.points[1])
+			&& (points[2] == other.points[2]);
+    }
 
-        Triangle(const std::array < VectorType, 3 >& points, const std::array < VectorType, 3 >& normals) {
-            this->points = points;
-            this->normals = normals;
-        }
+    bool operator!=(const Triangle& other) const {
+        return !((*this) == other);
+    }
 
-        inline bool operator==(const Triangle& other) const {
-            return (points[0] == other.points[0])
-				&& (points[1] == other.points[1])
-				&& (points[2] == other.points[2]);
-        }
+	DEFINE_CNC_FUNC(mu0InterpolatedU)
+	DEFINE_CNC_FUNC(mu1InterpolatedU)
+	DEFINE_CNC_FUNC(mu2InterpolatedU)
+	DEFINE_CNC_FUNC(muXYInterpolatedU)
+};
 
-        inline bool operator!=(const Triangle& other) const {
-            return !((*this) == other);
-        }
-
-		DEFINE_CNC_FUNC(mu0InterpolatedU)
-		DEFINE_CNC_FUNC(mu1InterpolatedU)
-		DEFINE_CNC_FUNC(mu2InterpolatedU)
-		DEFINE_CNC_FUNC(muXYInterpolatedU)
-	};
-}
+} // namespace internal
 
 /*!
     \brief CNC generation of triangles from a set of points
@@ -78,24 +72,25 @@ enum class TriangleGenerationMethod {
     UniformGeneration
 };
 
-template < class DataPoint, class WeightFunc, TriangleGenerationMethod _method = UniformGeneration>
+template < class DataPoint, class WeightFunc, TriangleGenerationMethod _method = TriangleGenerationMethod::UniformGeneration>
 class CNC : BasketBase<DataPoint, WeightFunc> {
-    PONCA_FITTING_DECLARE_DEFAULT_TYPES
-    PONCA_FITTING_DECLARE_MATRIX_TYPE
+    using MatrixType = typename DataPoint::MatrixType;
+    using Scalar = typename DataPoint::Scalar;
+    using VectorType = typename DataPoint::VectorType;
     typedef Eigen::VectorXd  DenseVector;
     typedef Eigen::MatrixXd  DenseMatrix;
-    using randomInt = Eigen::internal::random<int>;
 
 protected:
+    static const auto& randomInt = Eigen::internal::random<int>;
 	// Basis
-	VectorType basisNormal   {VectorType::Zero()};
+	VectorType _evalPointNormal   {VectorType::Zero()};
 
     //! \brief protected variables
     std::array < Scalar, 6 > _cos;
     std::array < Scalar, 6 > _sin;
 
     int _nb_vt {0}; // Number of valide triangles
-    std::vector < Triangle < DataPoint > > _triangles;
+    std::vector <internal::Triangle < DataPoint > > _triangles;
     Scalar _A {0}; // Area
     Scalar _H {0}; // Mean Curvatures
     Scalar _G {0}; // Gaussian Curvatures
@@ -122,18 +117,13 @@ public:
     int _maxtriangles {100};
     Scalar _avgnormals {Scalar(0.5)};
 
-public:
-    PONCA_EXPLICIT_CAST_OPERATORS(TriangleGeneration,triangleGeneration)
     PONCA_FITTING_DECLARE_FINALIZE
 
     /*! \brief Set the scalar field values to 0 and reset the isNormalized() status
 
     */
 
-	template <typename Point>
-    PONCA_MULTIARCH inline void init(const Point basis) {
-		basisNormal   = basis.normal;
-
+    PONCA_MULTIARCH inline void init() {
         k1 = Scalar(0);
         k2 = Scalar(0);
 
@@ -148,20 +138,19 @@ public:
             _cos[ j ] = std::cos( a );
             _sin[ j ] = std::sin( a );
         }
-
     }
 
     template <typename PointContainer>
-    PONCA_MULTIARCH inline FIT_RESULT compute(const PointContainer& points)
+    PONCA_MULTIARCH inline FIT_RESULT compute( const PointContainer& points );
 
     template <typename PointContainer>
-    PONCA_MULTIARCH inline bool generateTriangles(const PointContainer& points)
+    PONCA_MULTIARCH inline std::enable_if_t<_method == TriangleGenerationMethod::UniformGeneration, bool> generateTriangles( const PointContainer& points );
 
-    PONCA_MULTIARCH inline int getNumTriangles() {
+    PONCA_MULTIARCH inline int getNumTriangles() const {
         return _nb_vt;
     }
 
-    PONCA_MULTIARCH inline void getTriangles(std::vector<std::array<Scalar, 3>>& triangles) {
+    PONCA_MULTIARCH inline void getTriangles( std::vector<std::array<Scalar, 3>>& triangles ) {
 
         for (int i = 0; i < _triangles.size(); i++) {
             std::array <Scalar, 3> point0 = {_triangles[i].points[0][0], _triangles[i].points[0][1], _triangles[i].points[0][2]};
@@ -174,6 +163,10 @@ public:
 
     }
 
+	void setEvalPointNormal(const VectorType& evalPointNormal) {
+		_evalPointNormal = evalPointNormal;
+	}
+
     PONCA_MULTIARCH inline Scalar kmin() { return k1; }
 
     PONCA_MULTIARCH inline Scalar kmax() { return k2; }
@@ -185,7 +178,8 @@ public:
     PONCA_MULTIARCH inline Scalar kMean() { return _H; }
 
     PONCA_MULTIARCH inline Scalar kgauss() { return _G; }
-}; //class triangleGeneration
+}; //class CNC
 
-#include "triangleGeneration.hpp"
-} //namespace Ponca
+} // namespace Ponca
+
+#include "cnc.hpp"
