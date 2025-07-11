@@ -1,5 +1,6 @@
 var NAVTREEINDEX1 =
 {
+"classPonca_1_1KdTreeNearestIterator.html":[8,0,0,27],
 "classPonca_1_1KdTreeNearestQueryBase.html":[8,0,0,28],
 "classPonca_1_1KdTreeQuery.html":[8,0,0,29],
 "classPonca_1_1KdTreeQuery.html#a2c02164e69a15dbf89c4b80b625cc0ac":[8,0,0,29,0],
@@ -248,6 +249,5 @@ var NAVTREEINDEX1 =
 "classPonca_1_1Plane.html#ad1a40b2bd6aab48a8e0ca3e32d7d02ce":[8,0,0,57,10],
 "classPonca_1_1Plane.html#ae4c6696fa815a6cfc3864e9f7b33d9a3":[8,0,0,57,8],
 "classPonca_1_1PolynomialSmoothWeightKernel.html":[8,0,0,58],
-"classPonca_1_1PolynomialSmoothWeightKernel.html#a4d05ca6e922eda8950c3ab0d9e4d1813":[8,0,0,58,0],
-"classPonca_1_1PolynomialSmoothWeightKernel.html#a57638efcd9b72fa08be0b3a9ff385e47":[8,0,0,58,2]
+"classPonca_1_1PolynomialSmoothWeightKernel.html#a4d05ca6e922eda8950c3ab0d9e4d1813":[8,0,0,58,0]
 };

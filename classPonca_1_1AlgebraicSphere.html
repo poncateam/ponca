@@ -51,7 +51,7 @@ MathJax.Hub.Config({
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Ponca
-   &#160;<span id="projectnumber">1ce7787987ae2c504d7710d35244b51f6dc9742b</span>
+   &#160;<span id="projectnumber">a3bcca651499c602bd353676d4b50af3643c4cad</span>
    </div>
    <div id="projectbrief">Point Cloud Analysis library</div>
   </td>
@@ -175,6 +175,10 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a73b2bb6a83bd2bb746ad27c3705da905" id="r_a73b2bb6a83bd2bb746ad27c3705da905"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1AlgebraicSphere.html#a73b2bb6a83bd2bb746ad27c3705da905">operator==</a> (const <a class="el" href="classPonca_1_1AlgebraicSphere.html">AlgebraicSphere</a>&lt; DataPoint, <a class="el" href="classPonca_1_1AlgebraicSphere.html#aaf462225e8ff42cbf327d04bccc14d1f">WFunctor</a>, T &gt; &amp;other) const</td></tr>
 <tr class="memdesc:a73b2bb6a83bd2bb746ad27c3705da905"><td class="mdescLeft">&#160;</td><td class="mdescRight">Comparison operator.  <br /></td></tr>
 <tr class="separator:a73b2bb6a83bd2bb746ad27c3705da905"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a54ec01c19a91e166c1ded642193e86ba" id="r_a54ec01c19a91e166c1ded642193e86ba"><td class="memTemplParams" colspan="2">template&lt;typename Other &gt; </td></tr>
+<tr class="memitem:a54ec01c19a91e166c1ded642193e86ba"><td class="memTemplItemLeft" align="right" valign="top">bool&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classPonca_1_1AlgebraicSphere.html#a54ec01c19a91e166c1ded642193e86ba">isApprox</a> (const Other &amp;other, const <a class="el" href="classPonca_1_1AlgebraicSphere.html#a90d67318da4e0597fad0d6b53cefe0d1">Scalar</a> &amp;epsilon=Eigen::NumTraits&lt; <a class="el" href="classPonca_1_1AlgebraicSphere.html#a90d67318da4e0597fad0d6b53cefe0d1">Scalar</a> &gt;::dummy_precision()) const</td></tr>
+<tr class="memdesc:a54ec01c19a91e166c1ded642193e86ba"><td class="mdescLeft">&#160;</td><td class="mdescRight">Approximate operator.  <br /></td></tr>
+<tr class="separator:a54ec01c19a91e166c1ded642193e86ba"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aaef184e3541aeedeed7951d76530b915" id="r_aaef184e3541aeedeed7951d76530b915"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1AlgebraicSphere.html#aaef184e3541aeedeed7951d76530b915">operator!=</a> (const <a class="el" href="classPonca_1_1AlgebraicSphere.html">AlgebraicSphere</a>&lt; DataPoint, <a class="el" href="classPonca_1_1AlgebraicSphere.html#aaf462225e8ff42cbf327d04bccc14d1f">WFunctor</a>, T &gt; &amp;other) const</td></tr>
 <tr class="memdesc:aaef184e3541aeedeed7951d76530b915"><td class="mdescLeft">&#160;</td><td class="mdescRight">Comparison operator, convenience function.  <br /></td></tr>
 <tr class="separator:aaef184e3541aeedeed7951d76530b915"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -472,7 +476,7 @@ template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
 <p>Normalize the scalar field by the Pratt norm. </p>
 <dl class="section return"><dt>Returns</dt><dd>false when the normalization fails (sphere is already normalized) </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="algebraicSphere_8h_source.html#l00164">164</a> of file <a class="el" href="algebraicSphere_8h_source.html">algebraicSphere.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="algebraicSphere_8h_source.html#l00174">174</a> of file <a class="el" href="algebraicSphere_8h_source.html">algebraicSphere.h</a>.</p>
 
 </div>
 </div>
@@ -504,7 +508,7 @@ template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
 <p>return the estimated center of the sphere </p>
 <dl class="section warning"><dt>Warning</dt><dd>return Vector inf if the fitted surface is planar </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="algebraicSphere_8h_source.html#l00204">204</a> of file <a class="el" href="algebraicSphere_8h_source.html">algebraicSphere.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="algebraicSphere_8h_source.html#l00214">214</a> of file <a class="el" href="algebraicSphere_8h_source.html">algebraicSphere.h</a>.</p>
 
 </div>
 </div>
@@ -543,7 +547,7 @@ template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
 <p>\(\mathbf{u}_l&#39; = \mathbf{u}_l - 2 u_q \mathbf{\Delta}\)</p>
 <p>\(u_q&#39;=u_q\) </p>
 
-<p class="definition">Definition at line <a class="el" href="algebraicSphere_8h_source.html#l00136">136</a> of file <a class="el" href="algebraicSphere_8h_source.html">algebraicSphere.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="algebraicSphere_8h_source.html#l00146">146</a> of file <a class="el" href="algebraicSphere_8h_source.html">algebraicSphere.h</a>.</p>
 
 </div>
 </div>
@@ -580,6 +584,52 @@ template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
 
 </div>
 </div>
+<a id="a54ec01c19a91e166c1ded642193e86ba" name="a54ec01c19a91e166c1ded642193e86ba"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a54ec01c19a91e166c1ded642193e86ba">&#9670;&#160;</a></span>isApprox()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
+<div class="memtemplate">
+template&lt;typename Other &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool <a class="el" href="classPonca_1_1AlgebraicSphere.html">Ponca::AlgebraicSphere</a>&lt; DataPoint, _WFunctor, T &gt;::isApprox </td>
+          <td>(</td>
+          <td class="paramtype">const Other &amp;&#160;</td>
+          <td class="paramname"><em>other</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="classPonca_1_1AlgebraicSphere.html#a90d67318da4e0597fad0d6b53cefe0d1">Scalar</a> &amp;&#160;</td>
+          <td class="paramname"><em>epsilon</em> = <code>Eigen::NumTraits&lt;<a class="el" href="classPonca_1_1AlgebraicSphere.html#a90d67318da4e0597fad0d6b53cefe0d1">Scalar</a>&gt;::dummy_precision()</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Approximate operator. </p>
+<dl class="section warning"><dt>Warning</dt><dd>Assume that other shares the same basis </dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="classPonca_1_1AlgebraicSphere.html#a054a41e20c9ca517af359aa591bca9e7" title="Express the scalar field relatively to a new basis.">changeBasis()</a> </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="algebraicSphere_8h_source.html#l00103">103</a> of file <a class="el" href="algebraicSphere_8h_source.html">algebraicSphere.h</a>.</p>
+
+</div>
+</div>
 <a id="ab1367679cd2a38f9910e9329b65797a7" name="ab1367679cd2a38f9910e9329b65797a7"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ab1367679cd2a38f9910e9329b65797a7">&#9670;&#160;</a></span>isNormalized()</h2>
 
@@ -607,7 +657,7 @@ template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
 
 <p>State indicating when the sphere has been normalized. </p>
 
-<p class="definition">Definition at line <a class="el" href="algebraicSphere_8h_source.html#l00221">221</a> of file <a class="el" href="algebraicSphere_8h_source.html">algebraicSphere.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="algebraicSphere_8h_source.html#l00231">231</a> of file <a class="el" href="algebraicSphere_8h_source.html">algebraicSphere.h</a>.</p>
 
 </div>
 </div>
@@ -639,7 +689,7 @@ template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
 <p>Used to know if the fitting result to a plane. </p>
 <dl class="section return"><dt>Returns</dt><dd>true if finalize() have been called and the fitting result to a plane </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="algebraicSphere_8h_source.html#l00262">262</a> of file <a class="el" href="algebraicSphere_8h_source.html">algebraicSphere.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="algebraicSphere_8h_source.html#l00272">272</a> of file <a class="el" href="algebraicSphere_8h_source.html">algebraicSphere.h</a>.</p>
 
 </div>
 </div>
@@ -703,7 +753,7 @@ template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
 
 <p>Comparison operator, convenience function. </p>
 
-<p class="definition">Definition at line <a class="el" href="algebraicSphere_8h_source.html#l00103">103</a> of file <a class="el" href="algebraicSphere_8h_source.html">algebraicSphere.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="algebraicSphere_8h_source.html#l00113">113</a> of file <a class="el" href="algebraicSphere_8h_source.html">algebraicSphere.h</a>.</p>
 
 </div>
 </div>
@@ -769,7 +819,7 @@ template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
 <p>Value of the scalar field at the evaluation point. </p>
 <dl class="section see"><dt>See also</dt><dd>method <code>#isSigned</code> of the fit to <a class="el" href="classPonca_1_1AlgebraicSphere.html#a39a8fedcfda62899968236d51d82063aa652f7be31584b31da49fbda06a3fcf86" title="Requires PrimitiveBase.">check</a> if the sign is reliable </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="algebraicSphere_8h_source.html#l00229">229</a> of file <a class="el" href="algebraicSphere_8h_source.html">algebraicSphere.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="algebraicSphere_8h_source.html#l00239">239</a> of file <a class="el" href="algebraicSphere_8h_source.html">algebraicSphere.h</a>.</p>
 
 </div>
 </div>
@@ -802,7 +852,7 @@ template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
 <p>Value of the scalar field at the location \( \mathbf{q}\). </p>
 <dl class="section see"><dt>See also</dt><dd>method <code>#isSigned</code> of the fit to <a class="el" href="classPonca_1_1AlgebraicSphere.html#a39a8fedcfda62899968236d51d82063aa652f7be31584b31da49fbda06a3fcf86" title="Requires PrimitiveBase.">check</a> if the sign is reliable </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="algebraicSphere_8hpp_source.html#l00061">61</a> of file <a class="el" href="algebraicSphere_8hpp_source.html">algebraicSphere.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="algebraicSphere_8hpp_source.html#l00062">62</a> of file <a class="el" href="algebraicSphere_8hpp_source.html">algebraicSphere.hpp</a>.</p>
 
 </div>
 </div>
@@ -833,7 +883,7 @@ template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
 
 <p>compute the Pratt norm of the implicit scalar field. </p>
 
-<p class="definition">Definition at line <a class="el" href="algebraicSphere_8h_source.html#l00148">148</a> of file <a class="el" href="algebraicSphere_8h_source.html">algebraicSphere.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="algebraicSphere_8h_source.html#l00158">158</a> of file <a class="el" href="algebraicSphere_8h_source.html">algebraicSphere.h</a>.</p>
 
 </div>
 </div>
@@ -864,7 +914,7 @@ template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
 
 <p>compute the squared Pratt norm of the implicit scalar field. </p>
 
-<p class="definition">Definition at line <a class="el" href="algebraicSphere_8h_source.html#l00155">155</a> of file <a class="el" href="algebraicSphere_8h_source.html">algebraicSphere.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="algebraicSphere_8h_source.html#l00165">165</a> of file <a class="el" href="algebraicSphere_8h_source.html">algebraicSphere.h</a>.</p>
 
 </div>
 </div>
@@ -896,7 +946,7 @@ template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
 <p>Approximation of the scalar field gradient at the evaluation point. </p>
 <dl class="section warning"><dt>Warning</dt><dd>The gradient is not normalized by default </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="algebraicSphere_8h_source.html#l00256">256</a> of file <a class="el" href="algebraicSphere_8h_source.html">algebraicSphere.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="algebraicSphere_8h_source.html#l00266">266</a> of file <a class="el" href="algebraicSphere_8h_source.html">algebraicSphere.h</a>.</p>
 
 </div>
 </div>
@@ -929,7 +979,7 @@ template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
 <p>Approximation of the scalar field gradient at \( \mathbf{q}\). </p>
 <dl class="section warning"><dt>Warning</dt><dd>The gradient is not normalized by default </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="algebraicSphere_8hpp_source.html#l00072">72</a> of file <a class="el" href="algebraicSphere_8hpp_source.html">algebraicSphere.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="algebraicSphere_8hpp_source.html#l00073">73</a> of file <a class="el" href="algebraicSphere_8hpp_source.html">algebraicSphere.hpp</a>.</p>
 
 </div>
 </div>
@@ -1012,7 +1062,7 @@ template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="algebraicSphere_8hpp_source.html#l00034">34</a> of file <a class="el" href="algebraicSphere_8hpp_source.html">algebraicSphere.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="algebraicSphere_8hpp_source.html#l00035">35</a> of file <a class="el" href="algebraicSphere_8hpp_source.html">algebraicSphere.hpp</a>.</p>
 
 </div>
 </div>
@@ -1044,7 +1094,7 @@ template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
 <p>return the estimated radius of the sphere </p>
 <dl class="section warning"><dt>Warning</dt><dd>return inf if the fitted surface is planar </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="algebraicSphere_8h_source.html#l00182">182</a> of file <a class="el" href="algebraicSphere_8h_source.html">algebraicSphere.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="algebraicSphere_8h_source.html#l00192">192</a> of file <a class="el" href="algebraicSphere_8h_source.html">algebraicSphere.h</a>.</p>
 
 </div>
 </div>
@@ -1143,7 +1193,7 @@ template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="namespacePonca.html">Ponca</a></li><li class="navelem"><a class="el" href="classPonca_1_1AlgebraicSphere.html">AlgebraicSphere</a></li>
-    <li class="footer">Generated on Wed Jul 9 2025 08:24:53 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
+    <li class="footer">Generated on Fri Jul 11 2025 13:55:35 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
   </ul>
 </div>
 </body>

@@ -184,9 +184,9 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "annotated.html",
-"classPonca_1_1KdTreeNearestQueryBase.html",
-"classPonca_1_1PolynomialSmoothWeightKernel.html#ad8adceb3c40734ed05d02ff4cf3b1ae3",
-"ponca_changelog.html"
+"classPonca_1_1KdTreeNearestIterator.html",
+"classPonca_1_1PolynomialSmoothWeightKernel.html#a57638efcd9b72fa08be0b3a9ff385e47",
+"pages.html"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

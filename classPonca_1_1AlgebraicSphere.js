@@ -10,6 +10,7 @@ var classPonca_1_1AlgebraicSphere =
     [ "center", "classPonca_1_1AlgebraicSphere.html#abe53aba84bb693f553804c734d69da13", null ],
     [ "changeBasis", "classPonca_1_1AlgebraicSphere.html#a054a41e20c9ca517af359aa591bca9e7", null ],
     [ "init", "classPonca_1_1AlgebraicSphere.html#a7144ddfa1a6f9e6f36dc995ec01ef267", null ],
+    [ "isApprox", "classPonca_1_1AlgebraicSphere.html#a54ec01c19a91e166c1ded642193e86ba", null ],
     [ "isNormalized", "classPonca_1_1AlgebraicSphere.html#ab1367679cd2a38f9910e9329b65797a7", null ],
     [ "isPlane", "classPonca_1_1AlgebraicSphere.html#a681d3ba71d704798a48e2eb7ebb5826a", null ],
     [ "isValid", "classPonca_1_1AlgebraicSphere.html#a065ea27863d0b88c900c24a5bb7f30c7", null ],

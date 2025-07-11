@@ -1,5 +1,6 @@
 var NAVTREEINDEX2 =
 {
+"classPonca_1_1PolynomialSmoothWeightKernel.html#a57638efcd9b72fa08be0b3a9ff385e47":[8,0,0,58,2],
 "classPonca_1_1PolynomialSmoothWeightKernel.html#ad8adceb3c40734ed05d02ff4cf3b1ae3":[8,0,0,58,1],
 "classPonca_1_1PolynomialSmoothWeightKernel.html#af29dbc91ddfad21d22534873a25be0a4":[8,0,0,58,3],
 "classPonca_1_1PrimitiveBase.html":[8,0,0,59],
@@ -248,6 +249,5 @@ var NAVTREEINDEX2 =
 "index.html#ponca_credits_subsection_crew":[2,0],
 "index.html#ponca_credits_subsection_grenaille":[2,1],
 "index.html#ponca_credits_subsection_users":[2,3],
-"index.html#ponca_instructions_sec":[1],
-"pages.html":[]
+"index.html#ponca_instructions_sec":[1]
 };

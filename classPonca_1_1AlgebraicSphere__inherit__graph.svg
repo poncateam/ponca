@@ -44,16 +44,16 @@
 <text text-anchor="start" x="14.5" y="-96.5" font-family="Helvetica,sans-Serif" font-size="10.00">+</text>
 <text text-anchor="start" x="38" y="-96.5" font-family="Helvetica,sans-Serif" font-size="10.00">operator==()</text>
 <text text-anchor="start" x="14.5" y="-81.5" font-family="Helvetica,sans-Serif" font-size="10.00">+</text>
-<text text-anchor="start" x="38" y="-81.5" font-family="Helvetica,sans-Serif" font-size="10.00">operator!=()</text>
+<text text-anchor="start" x="38" y="-81.5" font-family="Helvetica,sans-Serif" font-size="10.00">isApprox()</text>
 <text text-anchor="start" x="14.5" y="-66.5" font-family="Helvetica,sans-Serif" font-size="10.00">+</text>
-<text text-anchor="start" x="38" y="-66.5" font-family="Helvetica,sans-Serif" font-size="10.00">changeBasis()</text>
+<text text-anchor="start" x="38" y="-66.5" font-family="Helvetica,sans-Serif" font-size="10.00">operator!=()</text>
 <text text-anchor="start" x="14.5" y="-51.5" font-family="Helvetica,sans-Serif" font-size="10.00">+</text>
-<text text-anchor="start" x="38" y="-51.5" font-family="Helvetica,sans-Serif" font-size="10.00">prattNorm()</text>
+<text text-anchor="start" x="38" y="-51.5" font-family="Helvetica,sans-Serif" font-size="10.00">changeBasis()</text>
 <text text-anchor="start" x="14.5" y="-36.5" font-family="Helvetica,sans-Serif" font-size="10.00">+</text>
-<text text-anchor="start" x="38" y="-36.5" font-family="Helvetica,sans-Serif" font-size="10.00">prattNorm2()</text>
+<text text-anchor="start" x="38" y="-36.5" font-family="Helvetica,sans-Serif" font-size="10.00">prattNorm()</text>
 <text text-anchor="start" x="14.5" y="-21.5" font-family="Helvetica,sans-Serif" font-size="10.00">+</text>
-<text text-anchor="start" x="38" y="-21.5" font-family="Helvetica,sans-Serif" font-size="10.00">applyPrattNorm()</text>
-<text text-anchor="start" x="38" y="-6.5" font-family="Helvetica,sans-Serif" font-size="10.00">and 10 more...</text>
+<text text-anchor="start" x="38" y="-21.5" font-family="Helvetica,sans-Serif" font-size="10.00">prattNorm2()</text>
+<text text-anchor="start" x="38" y="-6.5" font-family="Helvetica,sans-Serif" font-size="10.00">and 11 more...</text>
 <polygon fill="#666666" stroke="#666666" points="0,-226.5 0,-226.5 150,-226.5 150,-226.5 0,-226.5"/>
 <polygon fill="#666666" stroke="#666666" points="0,-166.5 0,-166.5 36,-166.5 36,-166.5 0,-166.5"/>
 <polygon fill="#666666" stroke="#666666" points="36,-166.5 36,-166.5 150,-166.5 150,-166.5 36,-166.5"/>
