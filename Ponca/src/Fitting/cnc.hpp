@@ -1,18 +1,29 @@
+/*
+This Source Code Form is subject to the terms of the Mozilla Public
+ License, v. 2.0. If a copy of the MPL was not distributed with this
+ file, You can obtain one at http://mozilla.org/MPL/2.0/.
+*/
+
+#pragma once
+
+namespace Ponca {
+
 template < class P, class W, TriangleGenerationMethod M>
 template <typename PointContainer>
 FIT_RESULT CNC<P, W, M>::compute( const PointContainer& points ) {
     generateTriangles<PointContainer>(points);
-	return finalize(),
+	return finalize();
 }
 
 /// Generates the triangle used by the CNC Fit depending on the method (UniformGeneration)
-template < class P, class W>
+template <class P, class W, TriangleGenerationMethod M>
 template <typename PointContainer>
-bool CNC<P, W, TriangleGenerationMethod::UniformGeneration>::generateTriangles(
+std::enable_if_t<M == TriangleGenerationMethod::UniformGeneration, bool>
+CNC<P, W, M>::generateTriangles(
 	const PointContainer& points
 ) {
 
-    const int lengthIds = ids.size();
+    const int lengthPoints = points.size();
     _nb_vt = 0; // Number of valid generated triangles
 
     for (int i = 0; i < _maxtriangles; ++i){
@@ -33,12 +44,11 @@ bool CNC<P, W, TriangleGenerationMethod::UniformGeneration>::generateTriangles(
 			points[i3].normal
 		};
 
-        _triangles.push_back(internal::Triangle<DataPoint>(positions, normals));
+        _triangles.push_back(internal::Triangle<P>(positions, normals));
         _nb_vt++;
     }
     return _nb_vt > 0;
 }
-
 
 template < class P, class W, TriangleGenerationMethod M>
 FIT_RESULT CNC<P, W, M>::finalize( ) {
@@ -54,9 +64,9 @@ FIT_RESULT CNC<P, W, M>::finalize( ) {
         Scalar tA = _triangles[t].mu0InterpolatedU();
         if (tA < - CNCEigen::epsilon) {
             _A     -= tA;
-            _H     += _triangles[t].mu1InterpolatedU<true>();
-            _G     += _triangles[t].mu2InterpolatedU<true>();
-            localT += _triangles[t].muXYInterpolatedU<true>();
+            _H     += _triangles[t].template mu1InterpolatedU<true>();
+            _G     += _triangles[t].template mu2InterpolatedU<true>();
+            localT += _triangles[t].template muXYInterpolatedU<true>();
         }
         else if (tA > CNCEigen::epsilon) {
             _A     += tA;
@@ -89,8 +99,9 @@ FIT_RESULT CNC<P, W, M>::finalize( ) {
         _G = Scalar(0);
     }
 
-    std::tie (k2, k1, v2, v1) = CNCEigen::curvaturesFromTensor(_T, 1.0, basisNormal);
+    std::tie (k2, k1, v2, v1) = CNCEigen::curvaturesFromTensor(_T, 1.0, _evalPointNormal);
 
     return STABLE;
 
+}
 }
