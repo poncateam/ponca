@@ -3,7 +3,7 @@
 struct CNCEigen {
 
   /// Small constant used to approximate zero.
-  using epsilon = Eigen::NumTraits<float>::epsilon();
+  static constexpr float epsilon = Eigen::NumTraits<float>::epsilon();
 
   /// Represents a triangle on a sphere of radius one.
   struct SphericalTriangle {
