@@ -39,9 +39,9 @@ namespace Ponca {
             };
 
         public:
-            using Scalar     = typename DataPoint::Scalar;     //< Inherited scalar type
-            using VectorType = typename DataPoint::VectorType; //< Inherited vector type
-            using WFunctor   = _WFunctor;                      //< Weight Function
+            using Scalar         = typename DataPoint::Scalar;     //< Inherited scalar type
+            using VectorType     = typename DataPoint::VectorType; //< Inherited vector type
+            using NeighborFilter = _WFunctor;                      //< Filter applied on the neighbors
 
         public:
             /**************************************************************************/
@@ -49,7 +49,7 @@ namespace Ponca {
             /**************************************************************************/
             // Init the WeightFunc, without changing the other internal states.
             // \warning Must be called be for any computation
-            PONCA_MULTIARCH inline void setWeightFunc (const WFunctor& _w);
+            PONCA_MULTIARCH inline void setWeightFunc (const NeighborFilter& _w);
 
             // Reset the internal states.
             // \warning Must be called be for any computation
@@ -81,7 +81,7 @@ namespace Ponca {
         public:
             using Scalar     = typename DataPoint::Scalar;     //< Inherited scalar type
             using VectorType = typename DataPoint::VectorType; //< Inherited vector type
-            using WFunctor   = _WFunctor;                      //< Weight Function
+            using NeighborFilter = _WFunctor;                  //< Filter applied on the neighbors
             // Static array of scalars with a size adapted to the differentiation type
             using VectorArray = typename Base::VectorArray;
             // Static array of scalars with a size adapted to the differentiation type
@@ -93,7 +93,7 @@ namespace Ponca {
             /**************************************************************************/
             // Init the WeightFunc, without changing the other internal states.
             // \warning Must be called be for any computation
-            PONCA_MULTIARCH inline void setWeightFunc (const WFunctor& _w);
+            PONCA_MULTIARCH inline void setWeightFunc (const NeighborFilter& _w);
 
             // Set the evaluation position and reset the internal states.
             // \warning Must be called be for any computation

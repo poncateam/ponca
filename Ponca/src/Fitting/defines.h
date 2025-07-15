@@ -42,21 +42,21 @@ const CLASSNAME<DataPoint, _WFunctor, DiffType, T>& CONVERTER() const           
 
 // FIT DEFAULT TYPES
 
-/// Declare the following defaults types: Base, Scalar, VectorType, WFunctor
+/// Declare the following defaults types: Base, Scalar, VectorType, NeighborFilter
 #define PONCA_FITTING_DECLARE_DEFAULT_TYPES                                                                         \
 protected:                                                                                                          \
 using Base = T;  /*!< \brief Base class of the procedure*/                                                          \
 public:                                                                                                             \
-using Scalar     = typename DataPoint::Scalar; /*!< \brief Alias to scalar type*/                                   \
-using VectorType = typename Base::VectorType;  /*!< \brief Alias to vector type*/                                   \
-using WFunctor   = typename Base::WFunctor;    /*!< \brief Alias to weight function*/
+using Scalar         = typename DataPoint::Scalar;    /*!< \brief Alias to scalar type*/                            \
+using VectorType     = typename Base::VectorType;     /*!< \brief Alias to vector type*/                            \
+using NeighborFilter = typename Base::NeighborFilter; /*!< \brief Alias to the filter applied on the neighbors */
 
-/// Declare the following defaults types: Base, Scalar, VectorType, WFunctor
+/// Declare the following defaults types: Base, Scalar, VectorType, NeighborFilter
 #define PONCA_FITTING_DECLARE_MATRIX_TYPE                                                                           \
 public:                                                                                                             \
 using MatrixType  = typename DataPoint::MatrixType; /*!< \brief Alias to matrix type*/                              \
 
-/// Declare the following defaults types: Base, Scalar, VectorType, WFunctor
+/// Declare the following defaults types: Base, Scalar, VectorType, NeighborFilter
 #define PONCA_FITTING_DECLARE_DEFAULT_DER_TYPES                                                                     \
 public:                                                                                                             \
 using ScalarArray = typename Base::ScalarArray;     /*!< \brief Alias to scalar derivatives array */                \
