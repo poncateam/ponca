@@ -70,7 +70,7 @@ void testBasicFunctionalities(const KdTree<typename Fit::DataPoint>& tree, typen
     // Define related structure
     typedef typename DataPoint::Scalar Scalar;
     typedef typename DataPoint::VectorType VectorType;
-    typedef typename Fit::WFunctor WeightFunc;
+    typedef typename Fit::NeighborFilter NeighborFilter;
 
     const auto& vectorPoints = tree.points();
 
@@ -85,7 +85,7 @@ void testBasicFunctionalities(const KdTree<typename Fit::DataPoint>& tree, typen
         // use addNeighbor
         //! [Fit Manual Traversal]
         Fit fit1;
-        fit1.setWeightFunc(WeightFunc(fitInitPos, analysisScale));
+        fit1.setNeighborFilter(NeighborFilter(fitInitPos, analysisScale));
         fit1.init();
         for(auto it = vectorPoints.begin(); it != vectorPoints.end(); ++it)
            fit1.addNeighbor(*it);
@@ -95,7 +95,7 @@ void testBasicFunctionalities(const KdTree<typename Fit::DataPoint>& tree, typen
         // use compute function
         //! [Fit Compute]
         Fit fit2;
-        fit2.setWeightFunc(WeightFunc(fitInitPos, analysisScale));
+        fit2.setNeighborFilter(NeighborFilter(fitInitPos, analysisScale));
         fit2.compute(vectorPoints);
         //! [Fit Compute]
 
@@ -113,7 +113,7 @@ void testBasicFunctionalities(const KdTree<typename Fit::DataPoint>& tree, typen
             continue;
         //! [Fit computeWithIds]
         Fit fit3;
-        fit3.setWeightFunc(WeightFunc(fitInitPos, analysisScale));
+        fit3.setNeighborFilter(NeighborFilter(fitInitPos, analysisScale));
         // Sort fit1
         std::list<int> neighbors3;
         for (int iNeighbor : tree.range_neighbors(fitInitPos, analysisScale))
@@ -136,12 +136,12 @@ void testIsSame(const KdTree<typename Fit1::DataPoint>& tree,
                 Functor f)
 {
     static_assert(std::is_same<typename Fit1::DataPoint, typename Fit2::DataPoint>::value, "Both Fit should use the same point type");
-    static_assert(std::is_same<typename Fit1::WFunctor, typename Fit2::WFunctor>::value, "Both Fit should use the same WFunctor");
+    static_assert(std::is_same<typename Fit1::NeighborFilter, typename Fit2::NeighborFilter>::value, "Both Fit should use the same NeighborFilter");
 
     // Define related structure
-    typedef typename Fit1::Scalar     Scalar;
-    typedef typename Fit1::VectorType VectorType;
-    typedef typename Fit1::WFunctor   WeightFunc;
+    typedef typename Fit1::Scalar         Scalar;
+    typedef typename Fit1::VectorType     VectorType;
+    typedef typename Fit1::NeighborFilter NeighborFilter;
     const auto& vectorPoints = tree.points();
 
     // Test for each point if the fitted sphere correspond to the theoretical sphere
@@ -156,10 +156,10 @@ void testIsSame(const KdTree<typename Fit1::DataPoint>& tree,
         auto neighborhoodRange = tree.range_neighbors(vectorPoints[i].pos(), analysisScale);
 
         // use compute function
-        fit1.setWeightFunc(WeightFunc(vectorPoints[i].pos(), analysisScale));
+        fit1.setNeighborFilter(NeighborFilter(vectorPoints[i].pos(), analysisScale));
         fit1.computeWithIds( neighborhoodRange, vectorPoints );
 
-        fit2.setWeightFunc(WeightFunc(vectorPoints[i].pos(), analysisScale));
+        fit2.setNeighborFilter(NeighborFilter(vectorPoints[i].pos(), analysisScale));
         fit2.computeWithIds( neighborhoodRange, vectorPoints );
 
         f(fit1, fit2);
@@ -250,10 +250,9 @@ void callSubTests()
         CALL_SUBTEST((testBasicFunctionalities<PlaneSpaceDiff>(tree, scale) ));
         CALL_SUBTEST((testBasicFunctionalities<PlaneScaleSpaceDiff>(tree, scale) ));
         // Hybrid diffs
-        // TODO : Fix hybrid diffs (function calls are ambiguous on primitives)
-        // CALL_SUBTEST((testBasicFunctionalities<HybridScaleDiff>(tree, scale) ));
-        // CALL_SUBTEST((testBasicFunctionalities<HybridSpaceDiff>(tree, scale) ));
-        // CALL_SUBTEST((testBasicFunctionalities<HybridScaleSpaceDiff>(tree, scale) ));
+        CALL_SUBTEST((testBasicFunctionalities<HybridScaleDiff>(tree, scale) ));
+        CALL_SUBTEST((testBasicFunctionalities<HybridSpaceDiff>(tree, scale) ));
+        CALL_SUBTEST((testBasicFunctionalities<HybridScaleSpaceDiff>(tree, scale) ));
 
         // Check that we get the same Sphere, whatever the extensions
         auto checkIsSameSphere = [](const auto&f1, const auto&f2){isSameSphere(f1,f2);};

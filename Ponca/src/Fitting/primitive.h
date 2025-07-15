@@ -164,10 +164,10 @@ protected:
     static constexpr  int DerStorageOrder = (Type & FitSpaceDer) ? Eigen::RowMajor : Eigen::ColMajor;
 
 public:
-    using Scalar     = typename Base::Scalar;          /*!< \brief Inherited scalar type*/
-    using VectorType = typename Base::VectorType;      /*!< \brief Inherited vector type*/
-    using MatrixType = typename DataPoint::MatrixType; /*!< \brief Inherited matrix type*/
-    using WFunctor   = typename Base::WFunctor;        /*!< \brief Weight Function*/
+    using Scalar         = typename Base::Scalar;          /*!< \brief Inherited scalar type */
+    using VectorType     = typename Base::VectorType;      /*!< \brief Inherited vector type */
+    using MatrixType     = typename DataPoint::MatrixType; /*!< \brief Inherited matrix type */
+    using NeighborFilter = typename Base::NeighborFilter;  /*!< \brief Filter applied on the neighbors */
 
     /*! \brief Static array of scalars with a size adapted to the differentiation type */
     typedef Eigen::Matrix<Scalar, DataPoint::Dim, NbDerivatives, DerStorageOrder> VectorArray;

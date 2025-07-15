@@ -27,13 +27,13 @@
 using namespace std;
 using namespace Ponca;
 
-template<typename DataPoint, typename WeightFunc>
+template<typename DataPoint, typename NeighborFilter>
 void testFunction()
 {
     // Define related structure
     typedef typename DataPoint::Scalar Scalar;
     typedef typename DataPoint::VectorType VectorType;
-    typedef Basket<DataPoint, WeightFunc, OrientedSphereFit> Fit;
+    typedef Basket<DataPoint, NeighborFilter, OrientedSphereFit> Fit;
 
     //generate samples
     int nbPoints = Eigen::internal::random<int>(100, 1000);
@@ -57,7 +57,7 @@ void testFunction()
     Scalar epsilon = Scalar(0.001); // We need a lesser precision for this test to pass
 
     Fit fit;
-    fit.setWeightFunc(WeightFunc(center, analysisScale));
+    fit.setNeighborFilter(NeighborFilter(center, analysisScale));
     fit.init();
 
     for(int i = 0; i < nbPointsFit; ++i)

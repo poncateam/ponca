@@ -70,12 +70,12 @@ public:
     }
 
     /*! \brief Comparison operator */
-    PONCA_MULTIARCH inline bool operator==(const Line<DataPoint, WFunctor, T>& other) const{
+    PONCA_MULTIARCH inline bool operator==(const Line<DataPoint, NeighborFilter, T>& other) const{
         return EigenBase::isApprox(other);
     }
 
     /*! \brief Comparison operator, convenience function */
-    PONCA_MULTIARCH inline bool operator!=(const Line<DataPoint, WFunctor, T>& other) const{
+    PONCA_MULTIARCH inline bool operator!=(const Line<DataPoint, NeighborFilter, T>& other) const{
         return ! ((*this) == other);
     }
 

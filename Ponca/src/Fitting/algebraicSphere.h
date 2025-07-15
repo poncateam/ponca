@@ -90,7 +90,7 @@ public:
     }
 
     /// \brief Comparison operator \warning Assume that other shares the same basis \see changeBasis()
-    PONCA_MULTIARCH inline bool operator==(const AlgebraicSphere<DataPoint, WFunctor, T>& other) const{
+    PONCA_MULTIARCH inline bool operator==(const AlgebraicSphere<DataPoint, NeighborFilter, T>& other) const{
         PONCA_MULTIARCH_STD_MATH(pow);
         const Scalar epsilon        = Eigen::NumTraits<Scalar>::dummy_precision();
         const Scalar squaredEpsilon = epsilon*epsilon;
@@ -110,7 +110,7 @@ public:
 
 
     /*! \brief Comparison operator, convenience function */
-    PONCA_MULTIARCH inline bool operator!=(const AlgebraicSphere<DataPoint, WFunctor, T>& other) const{
+    PONCA_MULTIARCH inline bool operator!=(const AlgebraicSphere<DataPoint, NeighborFilter, T>& other) const{
         return ! ((*this) == other);
     }
 
@@ -146,7 +146,7 @@ public:
     PONCA_MULTIARCH inline void changeBasis(const VectorType& newbasis)
     {
         VectorType diff = Base::m_nFilter.basisCenter() - newbasis;
-        Base::setWeightFunc({newbasis, Base::m_nFilter.evalScale()});
+        Base::setNeighborFilter({newbasis, Base::m_nFilter.evalScale()});
         Base::init();
         m_uc = m_uc - m_ul.dot(diff) + m_uq * diff.dot(diff);
         m_ul = m_ul - Scalar(2.)*m_uq*diff;
