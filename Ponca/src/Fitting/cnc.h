@@ -72,10 +72,12 @@ enum class TriangleGenerationMethod {
     UniformGeneration
 };
 
-template < class DataPoint, class WeightFunc, TriangleGenerationMethod _method = TriangleGenerationMethod::UniformGeneration>
-class CNC : BasketBase<DataPoint, WeightFunc> {
+template < class P, class WeightFunc, TriangleGenerationMethod _method = TriangleGenerationMethod::UniformGeneration>
+class CNC : BasketBase<P, WeightFunc> {
+public:
+    using DataPoint = P;
     using MatrixType = typename DataPoint::MatrixType;
-    using Scalar = typename DataPoint::Scalar;
+    using Scalar     = typename DataPoint::Scalar;
     using VectorType = typename DataPoint::VectorType;
     typedef Eigen::VectorXd  DenseVector;
     typedef Eigen::MatrixXd  DenseMatrix;
@@ -89,7 +91,7 @@ protected:
     std::array < Scalar, 6 > _cos;
     std::array < Scalar, 6 > _sin;
 
-    int _nb_vt {0}; // Number of valide triangles
+    int _nb_vt {0}; // Number of valid triangles
     std::vector <internal::Triangle < DataPoint > > _triangles;
     Scalar _A {0}; // Area
     Scalar _H {0}; // Mean Curvatures
