@@ -18,7 +18,6 @@
 #include <Ponca/src/Fitting/basket.h>
 #include <Ponca/src/Fitting/orientedSphereFit.h>
 #include <Ponca/src/Fitting/covariancePlaneFit.h>
-#include <Ponca/src/Fitting/cnc.h>
 #include <Ponca/src/Fitting/weightFunc.h>
 #include <Ponca/src/Fitting/weightKernel.h>
 #include <Ponca/src/SpatialPartitioning/KdTree/kdTree.h>
@@ -215,10 +214,6 @@ void callSubTests()
     //! [FitType]
     using Sphere = Basket<Point, WeightFunc, OrientedSphereFit>;
     //! [FitType]
-
-    //! [CNCFitType]
-    using fit_CNC = CNC<Point, NoWeightFunc<Point>>;
-    //! [CNCFitType]
 
     //! [HybridType]
     // Create an hybrid structure fitting a plane and a sphere at the same time
