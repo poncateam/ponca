@@ -206,10 +206,10 @@ public:
             int spaceId = (Type & FitScaleDer) ? 1 : 0;
             // compute weight
             if (Type & FitScaleDer)
-                dw[0] = Base::m_w.scaledw(attributes.pos(), attributes);
+                dw[0] = Base::m_nFilter.scaledw(attributes.pos(), attributes);
 
             if (Type & FitSpaceDer)
-                dw.template segment<int(DataPoint::Dim)>(spaceId) = -Base::m_w.spacedw(attributes.pos(), attributes).transpose();
+                dw.template segment<int(DataPoint::Dim)>(spaceId) = -Base::m_nFilter.spacedw(attributes.pos(), attributes).transpose();
 
             m_dSumW += dw;
             return true;
