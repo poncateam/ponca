@@ -145,8 +145,8 @@ public:
     */
     PONCA_MULTIARCH inline void changeBasis(const VectorType& newbasis)
     {
-        VectorType diff = Base::m_w.basisCenter() - newbasis;
-        Base::setWeightFunc({newbasis, Base::m_w.evalScale()});
+        VectorType diff = Base::m_nFilter.basisCenter() - newbasis;
+        Base::setWeightFunc({newbasis, Base::m_nFilter.evalScale()});
         Base::init();
         m_uc = m_uc - m_ul.dot(diff) + m_uq * diff.dot(diff);
         m_ul = m_ul - Scalar(2.)*m_uq*diff;
@@ -225,7 +225,7 @@ public:
         }
 
         Scalar b = Scalar(1.)/m_uq;
-        return Base::m_w.convertToGlobalBasis((Scalar(-0.5)*b)*m_ul);
+        return Base::m_nFilter.convertToGlobalBasis((Scalar(-0.5)*b)*m_ul);
     }
 
     //! \brief State indicating when the sphere has been normalized
