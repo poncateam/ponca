@@ -89,7 +89,7 @@ protected:
     std::array < Scalar, 6 > _cos;
     std::array < Scalar, 6 > _sin;
 
-    int _nb_vt {0}; // Number of valide triangles
+    int _nb_vt {0}; // Number of valid triangles
     std::vector <internal::Triangle < DataPoint > > _triangles;
     Scalar _A {0}; // Area
     Scalar _H {0}; // Mean Curvatures
