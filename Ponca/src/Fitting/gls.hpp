@@ -71,7 +71,7 @@ template < class DataPoint, class _WFunctor, int DiffType, typename T>
 typename GLSDer <DataPoint, _WFunctor, DiffType, T>::VectorArray
 GLSDer <DataPoint, _WFunctor, DiffType, T>::deta_normalized() const
 {
-    return Base::m_w.evalScale() * deta();
+    return Base::m_nFilter.evalScale() * deta();
 }
 
 
@@ -79,7 +79,7 @@ template < class DataPoint, class _WFunctor, int DiffType, typename T>
 typename GLSDer <DataPoint, _WFunctor, DiffType, T>::ScalarArray
 GLSDer <DataPoint, _WFunctor, DiffType, T>::dkappa_normalized() const
 {
-    return dkappa() * Base::m_w.evalScale() * Base::m_w.evalScale();
+    return dkappa() * Base::m_nFilter.evalScale() * Base::m_nFilter.evalScale();
 }
 
 

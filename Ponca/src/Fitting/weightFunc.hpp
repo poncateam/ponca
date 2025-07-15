@@ -5,23 +5,23 @@
 */
 
 
-template <class DataPoint, class WeightKernel>
-typename DistWeightFunc<DataPoint, WeightKernel>::VectorType
-DistWeightFunc<DataPoint, WeightKernel>::convertToGlobalBasis(const VectorType& _q) const
+template <class DataPoint, class _NFilter>
+typename DistWeightFunc<DataPoint, _NFilter>::VectorType
+DistWeightFunc<DataPoint, _NFilter>::convertToGlobalBasis(const VectorType& _q) const
 {
     return _q + m_p;
 }
 
-template <class DataPoint, class WeightKernel>
-typename DistWeightFunc<DataPoint, WeightKernel>::VectorType
-DistWeightFunc<DataPoint, WeightKernel>::convertToLocalBasis(const VectorType& _q) const
+template <class DataPoint, class _NFilter>
+typename DistWeightFunc<DataPoint, _NFilter>::VectorType
+DistWeightFunc<DataPoint, _NFilter>::convertToLocalBasis(const VectorType& _q) const
 {
     return _q - m_p;
 }
 
-template <class DataPoint, class WeightKernel>
-typename DistWeightFunc<DataPoint, WeightKernel>::WeightReturnType
-DistWeightFunc<DataPoint, WeightKernel>::w( const VectorType& _q, 
+template <class DataPoint, class _NFilter>
+typename DistWeightFunc<DataPoint, _NFilter>::WeightReturnType
+DistWeightFunc<DataPoint, _NFilter>::w( const VectorType& _q,
 					                        const DataPoint&) const
 {
     VectorType q = convertToLocalBasis(_q);
@@ -29,12 +29,12 @@ DistWeightFunc<DataPoint, WeightKernel>::w( const VectorType& _q,
     return { (d <= m_t) ? m_wk.f(d/m_t) : Scalar(0.), q };
 }
 
-template <class DataPoint, class WeightKernel>
-typename DistWeightFunc<DataPoint, WeightKernel>::VectorType
-DistWeightFunc<DataPoint, WeightKernel>::spacedw(   const VectorType& _q, 
+template <class DataPoint, class _NFilter>
+typename DistWeightFunc<DataPoint, _NFilter>::VectorType
+DistWeightFunc<DataPoint, _NFilter>::spacedw(   const VectorType& _q,
 						                            const DataPoint&) const
 {
-    static_assert(WeightKernel::isDValid, "First order derivatives are required");
+    static_assert(_NFilter::isDValid, "First order derivatives are required");
     VectorType result = VectorType::Zero();
     VectorType q = convertToLocalBasis(_q);
     Scalar d = q.norm();
