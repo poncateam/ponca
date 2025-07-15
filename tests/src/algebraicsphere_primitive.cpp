@@ -24,7 +24,7 @@
 using namespace std;
 using namespace Ponca;
 
-template<typename Point, typename Fit, typename WeightFunc>
+template<typename Point, typename Fit, typename NeighborFilter>
 void testFunction()
 {
         // Define related structure
@@ -58,7 +58,7 @@ void testFunction()
         const auto &fitInitPos = vecs[k].pos();
 
         Fit fit;
-        fit.setWeightFunc(WeightFunc(fitInitPos, analysisScale));
+        fit.setNeighborFilter(NeighborFilter(fitInitPos, analysisScale));
         fit.compute(vecs);
 
         if(fit.isStable())

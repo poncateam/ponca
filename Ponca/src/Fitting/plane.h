@@ -66,12 +66,12 @@ public:
         return ! EigenBase::coeffs().isApprox(EigenBase::Coefficients::Zero());
     }
 
-    PONCA_MULTIARCH inline bool operator==(const Plane<DataPoint, WFunctor, T>& other) const{
+    PONCA_MULTIARCH inline bool operator==(const Plane<DataPoint, NeighborFilter, T>& other) const{
         return EigenBase::isApprox(other);
     }
 
     /*! \brief Comparison operator, convenience function */
-    PONCA_MULTIARCH inline bool operator!=(const Plane<DataPoint, WFunctor, T>& other) const{
+    PONCA_MULTIARCH inline bool operator!=(const Plane<DataPoint, NeighborFilter, T>& other) const{
         return ! ((*this) == other);
     }
 

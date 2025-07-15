@@ -120,7 +120,7 @@ CovarianceFitTwoPassesBase<DataPoint, _WFunctor, T>::finalize ()
 }
 
 
-template<typename DataPoint, typename Fit, typename FitRef, typename WeightFunc, bool _cSurfVar> //, typename Fit, typename WeightFunction>
+template<typename DataPoint, typename Fit, typename FitRef, typename NeighborFilter, bool _cSurfVar> //, typename Fit, typename WeightFunction>
 void testFunction(bool _bUnoriented = false, bool _bAddPositionNoise = false, bool _bAddNormalNoise = false)
 {
     // Define related structure
@@ -162,11 +162,11 @@ void testFunction(bool _bUnoriented = false, bool _bAddPositionNoise = false, bo
     {
 
         Fit fit;
-        fit.setWeightFunc(WeightFunc(vectorPoints[i].pos(), analysisScale));
+        fit.setNeighborFilter(NeighborFilter(vectorPoints[i].pos(), analysisScale));
         auto fitState = fit.compute(vectorPoints);
 
         FitRef ref;
-        ref.setWeightFunc(WeightFunc(vectorPoints[i].pos(), analysisScale));
+        ref.setNeighborFilter(NeighborFilter(vectorPoints[i].pos(), analysisScale));
         auto refState = ref.compute(vectorPoints);
 
         VERIFY(fitState == refState);

@@ -16,7 +16,7 @@
 namespace Ponca
 {
 
-#define BSKNF typename BasketType::WeightFunction
+#define BSKNF typename BasketType::NeighborFilter
 #define BSKP typename BasketType::DataPoint
 
 #ifndef PARSED_WITH_DOXYGEN
@@ -229,7 +229,7 @@ namespace internal
     /// \copydoc Basket::addNeighbor
     PONCA_MULTIARCH inline bool addNeighbor(const DataPoint &_nei) {
         // compute weight
-        auto neiFilterOutput = Base::m_nfilter(_nei);
+        auto neiFilterOutput = Base::getNeighborFilter()(_nei);
         typename Base::ScalarArray dw;
 
         if (neiFilterOutput.first > Scalar(0.)) {
@@ -275,7 +275,7 @@ namespace internal
         /// \return false if param nei is not a valid neighbor (weight = 0)
         PONCA_MULTIARCH inline bool addNeighbor(const DataPoint &_nei) {
             // compute weight
-            auto neiFilterOutput = Base::m_nfilter(_nei);
+            auto neiFilterOutput = Base::getNeighborFilter()(_nei);
 
             if (neiFilterOutput.first > Scalar(0.)) {
                 Base::addLocalNeighbor(neiFilterOutput.first, neiFilterOutput.second, _nei);
