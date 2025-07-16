@@ -69,7 +69,7 @@ void test_fit(Fit& _fit, vector<MyPoint>& _vecs, const VectorType& _p)
   Scalar tmax = 100.0;
 
   // Set a weighting function instance
-  _fit.setWeightFunc(WeightFunc(_p, tmax));
+  _fit.setNeighborFilter(WeightFunc(_p, tmax));
 
   // Fit plane (method compute handles multipass fitting
   _fit.compute( _vecs.begin(), _vecs.end() );
