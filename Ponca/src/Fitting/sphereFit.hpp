@@ -7,9 +7,9 @@
 
 template < class DataPoint, class _WFunctor, typename T>
 void
-SphereFitImpl<DataPoint, _WFunctor, T>::init(const VectorType& _evalPos)
+SphereFitImpl<DataPoint, _WFunctor, T>::init()
 {
-    Base::init(_evalPos);
+    Base::init();
     m_matA.setZero();
 }
 

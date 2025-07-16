@@ -66,10 +66,9 @@ pcl::GlsCurvature<PointInT, PointOutT>::computeCurvature(const pcl::PointCloud<P
 
     Fit fit;
     // Set a weighting function instance using the search radius of the tree as scale
-    fit.setWeightFunc(WeightFunc(search_radius_));
+    fit.setWeightFunc(WeightFunc(cloud.points[p_idx].getVector3fMap(), search_radius_));
 
-    // Set the evaluation position
-    fit.init(cloud.points[p_idx].getVector3fMap());
+    fit.init();
 
     // Iterate over indices and fit the primitive
     // A GlsPoint instance is generated on the fly to bind the positions to the

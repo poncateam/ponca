@@ -9,8 +9,8 @@
 
 template<class DataPoint, class _WFunctor, typename T>
 void
-MeanPosition<DataPoint, _WFunctor, T>::init(const VectorType &_evalPos) {
-    Base::init(_evalPos);
+MeanPosition<DataPoint, _WFunctor, T>::init() {
+    Base::init();
     m_sumP = VectorType::Zero();
 }
 
@@ -28,9 +28,9 @@ MeanPosition<DataPoint, _WFunctor, T>::addLocalNeighbor(Scalar w,
 
 template < class DataPoint, class _WFunctor, typename T>
 void
-MeanNormal<DataPoint, _WFunctor, T>::init(const VectorType& _evalPos)
+MeanNormal<DataPoint, _WFunctor, T>::init()
 {
-    Base::init(_evalPos);
+    Base::init();
     m_sumN = VectorType::Zero();
 }
 
@@ -49,8 +49,8 @@ MeanNormal<DataPoint, _WFunctor, T>::addLocalNeighbor(Scalar w,
 
 template<class DataPoint, class _WFunctor, int DiffType, typename T>
 void
-MeanPositionDer<DataPoint, _WFunctor, DiffType, T>::init(const VectorType &_evalPos) {
-    Base::init(_evalPos);
+MeanPositionDer<DataPoint, _WFunctor, DiffType, T>::init() {
+    Base::init();
     m_dSumP.setZero();
 }
 
@@ -72,8 +72,8 @@ MeanPositionDer<DataPoint, _WFunctor, DiffType, T>::addLocalNeighbor(Scalar w,
 
 template<class DataPoint, class _WFunctor, int DiffType, typename T>
 void
-MeanNormalDer<DataPoint, _WFunctor, DiffType, T>::init(const VectorType &_evalPos) {
-    Base::init(_evalPos);
+MeanNormalDer<DataPoint, _WFunctor, DiffType, T>::init() {
+    Base::init();
     m_dSumN.setZero();
 }
 

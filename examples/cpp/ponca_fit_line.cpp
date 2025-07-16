@@ -61,8 +61,7 @@ int main(int argc, char **argv) {
 
     // Fit line on data
     Fit _fit;
-    _fit.setWeightFunc(WeightFunc());
-    _fit.init(p);
+    _fit.setWeightFunc(WeightFunc(p));
     _fit.compute(points.cbegin(), points.cend());
 
     // Check Fit output

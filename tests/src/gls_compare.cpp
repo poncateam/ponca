@@ -58,13 +58,9 @@ void testFunction(bool _bUnoriented = false, bool _bAddPositionNoise = false, bo
     for(int i = 0; i < nbPoints - 1; ++i)
     {
         Fit fit1, fit2, fit3;
-        fit1.setWeightFunc(WeightFunc(analysisScale));
-        fit2.setWeightFunc(WeightFunc(analysisScale));
-        fit3.setWeightFunc(WeightFunc(analysisScale));
-
-        fit1.init(sphere1[i].pos());
-        fit2.init(sphere1[i+1].pos());
-        fit3.init(sphere2[i].pos());
+        fit1.setWeightFunc(WeightFunc(sphere1[i].pos(), analysisScale));
+        fit2.setWeightFunc(WeightFunc(sphere1[i+1].pos(), analysisScale));
+        fit3.setWeightFunc(WeightFunc(sphere2[i].pos(), analysisScale));
 
         fit1.compute(sphere1);
         fit2.compute(sphere1);

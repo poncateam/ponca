@@ -64,9 +64,9 @@ public:
 
 template < class DataPoint, class _WFunctor, typename T>
 void
-CovarianceFitTwoPassesBase<DataPoint, _WFunctor, T>::init(const CovarianceFitTwoPassesBase<DataPoint, _WFunctor, T>::VectorType& _evalPos)
+CovarianceFitTwoPassesBase<DataPoint, _WFunctor, T>::init()
 {
-    Base::init(_evalPos);
+    Base::init();
     m_cov.setZero();
     m_barycenterReady = false;
     m_barycenter.setZero();
@@ -162,13 +162,11 @@ void testFunction(bool _bUnoriented = false, bool _bAddPositionNoise = false, bo
     {
 
         Fit fit;
-        fit.setWeightFunc(WeightFunc(analysisScale));
-        fit.init(vectorPoints[i].pos());
+        fit.setWeightFunc(WeightFunc(vectorPoints[i].pos(), analysisScale));
         auto fitState = fit.compute(vectorPoints);
 
         FitRef ref;
-        ref.setWeightFunc(WeightFunc(analysisScale));
-        ref.init(vectorPoints[i].pos());
+        ref.setWeightFunc(WeightFunc(vectorPoints[i].pos(), analysisScale));
         auto refState = ref.compute(vectorPoints);
 
         VERIFY(fitState == refState);

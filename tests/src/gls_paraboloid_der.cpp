@@ -75,10 +75,9 @@ void testFunction()
     VectorType theoricNormal = VectorType(0, 0, -1);
 
     TestFit fit;
-
-    fit.setWeightFunc(TestWeightFunc(analysisScale));
-    VectorType vFittingPoint = VectorType::Zero();
-    fit.init(vFittingPoint.template cast<TestScalar>());
+    const VectorType vFittingPoint = VectorType::Zero();
+    fit.setWeightFunc(TestWeightFunc(vFittingPoint.template cast<TestScalar>(), analysisScale));
+    fit.init();
     for(typename vector<TestDataPoint>::iterator it = testVectorPoints.begin();
         it != testVectorPoints.end();
         ++it)
@@ -104,9 +103,8 @@ void testFunction()
 
       // Centered fit:
       RefFit ref_fit;
-      ref_fit.setWeightFunc(RefWeightFunc(analysisScale));
-      VectorType vFittingPoint = VectorType::Zero();
-      ref_fit.init(vFittingPoint.template cast<RefScalar>());
+      ref_fit.setWeightFunc(RefWeightFunc(vFittingPoint.template cast<RefScalar>(), analysisScale));
+      ref_fit.init();
       for(typename vector<RefPoint>::iterator it = refVectorPoints.begin();
           it != refVectorPoints.end();
           ++it)
@@ -123,19 +121,19 @@ void testFunction()
       typename RefFit::VectorArray /*dUl,*/ dN;
 //      typename RefFit::VectorArray dSumP;
       typename RefFit::ScalarArray dPotential/*, dUc, dUq, dTau, dKappa*/;
-      Scalar h = Scalar(0.000001)*analysisScale;
+      RefScalar h = RefScalar(0.000001)*RefScalar(analysisScale);
 
       // Differentiation along scale, x, y, z:
       for(int k = 0; k<4; ++k)
       {
         RefFit f;
-        f.setWeightFunc(RefWeightFunc(analysisScale));
-        VectorType vFittingPoint = VectorType::Zero();
+        typename RefPoint::VectorType p = vFittingPoint.template cast<RefScalar>();
+        auto scale = analysisScale;
         if(k==0)
-          f.setWeightFunc(RefWeightFunc(analysisScale+h));
+          scale += h;
         else
-          vFittingPoint(k-1) += h;
-        f.init(vFittingPoint.template cast<RefScalar>());
+          p(k-1) += h;
+        f.setWeightFunc(RefWeightFunc(p, scale));
         f.compute(refVectorPoints);
 
         RefScalar flip_f   = (f.isSigned() || (f.primitiveGradient().dot(theoricNormal.template cast<RefScalar>()) > 0 )) ? RefScalar(1) : RefScalar(-1);

@@ -7,9 +7,9 @@
 
 template < class DataPoint, class _WFunctor, int DiffType, typename T>
 void
-MlsSphereFitDer<DataPoint, _WFunctor, DiffType, T>::init(const VectorType& _evalPos)
+MlsSphereFitDer<DataPoint, _WFunctor, DiffType, T>::init()
 {
-    Base::init(_evalPos);
+    Base::init();
 
     m_d2Uc = Matrix::Zero(),
     m_d2Uq = Matrix::Zero();

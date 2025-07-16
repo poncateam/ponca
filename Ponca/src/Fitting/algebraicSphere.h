@@ -71,9 +71,9 @@ public:
 
         \warning Set m_ul to Zero(), which leads to nans in OrientedSphere::normal()
     */
-    PONCA_MULTIARCH inline void init(const VectorType& _basisCenter = VectorType::Zero())
+    PONCA_MULTIARCH inline void init()
     {
-        Base::init(_basisCenter);
+        Base::init();
 
         m_uc = Scalar(0);
         m_ul = VectorType::Zero();
@@ -146,7 +146,8 @@ public:
     PONCA_MULTIARCH inline void changeBasis(const VectorType& newbasis)
     {
         VectorType diff = Base::m_w.basisCenter() - newbasis;
-        Base::m_w.init( newbasis );
+        Base::setWeightFunc({newbasis, Base::m_w.evalScale()});
+        Base::init();
         m_uc = m_uc - m_ul.dot(diff) + m_uq * diff.dot(diff);
         m_ul = m_ul - Scalar(2.)*m_uq*diff;
         //m_uq is not changed

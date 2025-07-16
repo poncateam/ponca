@@ -63,15 +63,14 @@ public:
     }
 
     PONCA_FITTING_APIDOC_INIT
-    PONCA_MULTIARCH inline void init(const VectorType& _basisCenter = VectorType::Zero())
+    PONCA_MULTIARCH inline void init()
     {
         m_eCurrentState = UNDEFINED;
         startNewPass();
-        m_w.init( _basisCenter );
     }
 
-    /*! \brief Is the primitive well fitted an ready to use (finalize has been
-    called)
+    /*! \brief Is the primitive well fitted and ready to use (finalize has been
+    called) ?
     \warning The fit can be unstable (having neighbors between 3 and 6) */
     PONCA_MULTIARCH inline bool isReady() const
     {
@@ -186,8 +185,8 @@ public:
     /* Initialization                                                       */
     /************************************************************************/
     /*! \see Concept::FittingProcedureConcept::init() */
-    PONCA_MULTIARCH inline void init(const VectorType &_evalPos)
-    { Base::init(_evalPos); m_dSumW.setZero(); }
+    PONCA_MULTIARCH inline void init()
+    { Base::init(); m_dSumW.setZero(); }
 
     /************************************************************************/
     /* Processing                                                           */
