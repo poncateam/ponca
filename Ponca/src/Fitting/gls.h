@@ -37,7 +37,7 @@ namespace Ponca
     Provides:
     \verbatim PROVIDES_GLS_PARAMETRIZATION \endverbatim
 */
-template < class DataPoint, class _WFunctor, typename T>
+template < class DataPoint, class _NFilter, typename T>
 class GLSParam : public T
 {
     PONCA_FITTING_DECLARE_DEFAULT_TYPES
@@ -93,7 +93,7 @@ public:
     \return a distance between two fits (0 correspond to two similar fits)
     \warning Use the same scale to have a useful comparison (normalized value are used)
     */
-    PONCA_MULTIARCH inline Scalar compareTo (const GLSParam<DataPoint, _WFunctor, T>& _other,
+    PONCA_MULTIARCH inline Scalar compareTo (const GLSParam<DataPoint, _NFilter, T>& _other,
                                         bool _useFitness = true) const
     {
         Scalar nTau     = this->tau_normalized()   - _other.tau_normalized();
@@ -112,7 +112,7 @@ public:
 
     Method published in \cite Mellado:2012:GLS
 */
-template < class DataPoint, class _WFunctor, int DiffType, typename T>
+template < class DataPoint, class _NFilter, int DiffType, typename T>
 class GLSDer : public T
 {
 PONCA_FITTING_DECLARE_DEFAULT_TYPES

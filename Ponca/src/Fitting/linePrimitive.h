@@ -30,7 +30,7 @@ namespace Ponca
     \verbatim PROVIDES_LINE \endverbatim
 */
 
-template < class DataPoint, class _WFunctor, typename T >
+template < class DataPoint, class _NFilter, typename T >
 class Line : public T,
              public Eigen::ParametrizedLine<typename DataPoint::Scalar, DataPoint::Dim >
 {

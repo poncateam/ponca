@@ -7,16 +7,16 @@
  file, You can obtain one at http://mozilla.org/MPL/2.0/.
 */
 
-template<class DataPoint, class _WFunctor, typename T>
+template<class DataPoint, class _NFilter, typename T>
 void
-MeanPosition<DataPoint, _WFunctor, T>::init() {
+MeanPosition<DataPoint, _NFilter, T>::init() {
     Base::init();
     m_sumP = VectorType::Zero();
 }
 
-template<class DataPoint, class _WFunctor, typename T>
+template<class DataPoint, class _NFilter, typename T>
 bool
-MeanPosition<DataPoint, _WFunctor, T>::addLocalNeighbor(Scalar w,
+MeanPosition<DataPoint, _NFilter, T>::addLocalNeighbor(Scalar w,
                                                         const VectorType &localQ,
                                                         const DataPoint &attributes) {
     if( Base::addLocalNeighbor(w, localQ, attributes) ) {
@@ -26,18 +26,18 @@ MeanPosition<DataPoint, _WFunctor, T>::addLocalNeighbor(Scalar w,
     return false;
 }
 
-template < class DataPoint, class _WFunctor, typename T>
+template < class DataPoint, class _NFilter, typename T>
 void
-MeanNormal<DataPoint, _WFunctor, T>::init()
+MeanNormal<DataPoint, _NFilter, T>::init()
 {
     Base::init();
     m_sumN = VectorType::Zero();
 }
 
 
-template<class DataPoint, class _WFunctor, typename T>
+template<class DataPoint, class _NFilter, typename T>
 bool
-MeanNormal<DataPoint, _WFunctor, T>::addLocalNeighbor(Scalar w,
+MeanNormal<DataPoint, _NFilter, T>::addLocalNeighbor(Scalar w,
                                                       const VectorType &localQ,
                                                       const DataPoint &attributes) {
     if( Base::addLocalNeighbor(w, localQ, attributes) ) {
@@ -47,17 +47,17 @@ MeanNormal<DataPoint, _WFunctor, T>::addLocalNeighbor(Scalar w,
     return false;
 }
 
-template<class DataPoint, class _WFunctor, int DiffType, typename T>
+template<class DataPoint, class _NFilter, int DiffType, typename T>
 void
-MeanPositionDer<DataPoint, _WFunctor, DiffType, T>::init() {
+MeanPositionDer<DataPoint, _NFilter, DiffType, T>::init() {
     Base::init();
     m_dSumP.setZero();
 }
 
 
-template<class DataPoint, class _WFunctor, int DiffType, typename T>
+template<class DataPoint, class _NFilter, int DiffType, typename T>
 bool
-MeanPositionDer<DataPoint, _WFunctor, DiffType, T>::addLocalNeighbor(Scalar w,
+MeanPositionDer<DataPoint, _NFilter, DiffType, T>::addLocalNeighbor(Scalar w,
                                                                  const VectorType &localQ,
                                                                  const DataPoint &attributes,
                                                                  ScalarArray &dw) {
@@ -70,16 +70,16 @@ MeanPositionDer<DataPoint, _WFunctor, DiffType, T>::addLocalNeighbor(Scalar w,
 }
 
 
-template<class DataPoint, class _WFunctor, int DiffType, typename T>
+template<class DataPoint, class _NFilter, int DiffType, typename T>
 void
-MeanNormalDer<DataPoint, _WFunctor, DiffType, T>::init() {
+MeanNormalDer<DataPoint, _NFilter, DiffType, T>::init() {
     Base::init();
     m_dSumN.setZero();
 }
 
-template<class DataPoint, class _WFunctor, int DiffType, typename T>
+template<class DataPoint, class _NFilter, int DiffType, typename T>
 bool
-MeanNormalDer<DataPoint, _WFunctor, DiffType, T>::addLocalNeighbor(Scalar w,
+MeanNormalDer<DataPoint, _NFilter, DiffType, T>::addLocalNeighbor(Scalar w,
                                                                  const VectorType &localQ,
                                                                  const DataPoint &attributes,
                                                                  ScalarArray &dw) {

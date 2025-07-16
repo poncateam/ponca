@@ -7,9 +7,9 @@
  file, You can obtain one at http://mozilla.org/MPL/2.0/.
 */
 
-template < class DataPoint, class _WFunctor, typename T>
+template < class DataPoint, class _NFilter, typename T>
 FIT_RESULT
-CovariancePlaneFitImpl<DataPoint, _WFunctor, T>::finalize ()
+CovariancePlaneFitImpl<DataPoint, _NFilter, T>::finalize ()
 {
     if (Base::finalize() == STABLE) {
         if (Base::plane().isValid()) Base::m_eCurrentState = CONFLICT_ERROR_FOUND;
@@ -19,10 +19,10 @@ CovariancePlaneFitImpl<DataPoint, _WFunctor, T>::finalize ()
     return Base::m_eCurrentState;
 }
 
-template < class DataPoint, class _WFunctor, typename T>
+template < class DataPoint, class _NFilter, typename T>
 template <bool ignoreTranslation>
-typename CovariancePlaneFitImpl<DataPoint, _WFunctor, T>::VectorType
-CovariancePlaneFitImpl<DataPoint, _WFunctor, T>::worldToTangentPlane (const VectorType& _q) const
+typename CovariancePlaneFitImpl<DataPoint, _NFilter, T>::VectorType
+CovariancePlaneFitImpl<DataPoint, _NFilter, T>::worldToTangentPlane (const VectorType& _q) const
 {
   if (ignoreTranslation)
     return Base::m_solver.eigenvectors().transpose() * _q;
@@ -32,10 +32,10 @@ CovariancePlaneFitImpl<DataPoint, _WFunctor, T>::worldToTangentPlane (const Vect
   }
 }
 
-template < class DataPoint, class _WFunctor, typename T>
+template < class DataPoint, class _NFilter, typename T>
 template <bool ignoreTranslation>
-typename CovariancePlaneFitImpl<DataPoint, _WFunctor, T>::VectorType
-CovariancePlaneFitImpl<DataPoint, _WFunctor, T>::tangentPlaneToWorld (const VectorType& _lq) const
+typename CovariancePlaneFitImpl<DataPoint, _NFilter, T>::VectorType
+CovariancePlaneFitImpl<DataPoint, _NFilter, T>::tangentPlaneToWorld (const VectorType& _lq) const
 {
   if (ignoreTranslation)
     return Base::m_solver.eigenvectors().transpose().inverse() * _lq;
@@ -46,9 +46,9 @@ CovariancePlaneFitImpl<DataPoint, _WFunctor, T>::tangentPlaneToWorld (const Vect
 
 
 
-template < class DataPoint, class _WFunctor, int DiffType, typename T>
+template < class DataPoint, class _NFilter, int DiffType, typename T>
 FIT_RESULT
-CovariancePlaneDerImpl<DataPoint, _WFunctor, DiffType, T>::finalize()
+CovariancePlaneDerImpl<DataPoint, _NFilter, DiffType, T>::finalize()
 {
     PONCA_MULTIARCH_STD_MATH(sqrt);
 

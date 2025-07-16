@@ -30,7 +30,7 @@ namespace Ponca
    \warning This class is valid only in 3D.
  */
 
-template < class DataPoint, class _WFunctor, typename T>
+template < class DataPoint, class _NFilter, typename T>
 class CovarianceLineFitImpl : public T
 {
     PONCA_FITTING_DECLARE_DEFAULT_TYPES
@@ -60,11 +60,11 @@ public:
 };
 
 /// \brief Helper alias for Line fitting on 3D points using CovarianceLineFitImpl
-template < class DataPoint, class _WFunctor, typename T>
+template < class DataPoint, class _NFilter, typename T>
 using CovarianceLineFit =
-                CovarianceLineFitImpl<DataPoint, _WFunctor,
-                CovarianceFitBase<DataPoint, _WFunctor,
-                MeanPosition<DataPoint, _WFunctor,
-                Line<DataPoint, _WFunctor,T>>>>;
+                CovarianceLineFitImpl<DataPoint, _NFilter,
+                CovarianceFitBase<DataPoint, _NFilter,
+                MeanPosition<DataPoint, _NFilter,
+                Line<DataPoint, _NFilter, T>>>>;
 
 } //namespace Ponca

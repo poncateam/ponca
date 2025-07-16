@@ -31,7 +31,7 @@ namespace Ponca
     This primitive provides:
     \verbatim PROVIDES_PLANE \endverbatim
 */
-template < class DataPoint, class _WFunctor, typename T >
+template < class DataPoint, class _NFilter, typename T >
 class Plane : public T,
               public Eigen::Hyperplane<typename DataPoint::Scalar, DataPoint::Dim >
 {

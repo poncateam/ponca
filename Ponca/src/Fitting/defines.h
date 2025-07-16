@@ -20,24 +20,24 @@
 #define PONCA_EXPLICIT_CAST_OPERATORS(CLASSNAME,CONVERTER)                                                         \
 /*! \brief Explicit conversion to CLASSNAME, to access methods potentially hidden by heritage */                   \
 PONCA_MULTIARCH inline                                                                                             \
-CLASSNAME<DataPoint, _WFunctor, T>& CONVERTER()                                                                    \
-{ return * static_cast<CLASSNAME<DataPoint, _WFunctor, T>*>(this); }                                               \
+CLASSNAME<DataPoint, _NFilter, T>& CONVERTER()                                                                    \
+{ return * static_cast<CLASSNAME<DataPoint, _NFilter, T>*>(this); }                                               \
 /*! \brief Explicit conversion to CLASSNAME, to access methods potentially hidden by heritage */                   \
 PONCA_MULTIARCH inline                                                                                             \
-const CLASSNAME<DataPoint, _WFunctor, T>& CONVERTER() const                                                        \
-{ return * static_cast<const CLASSNAME<DataPoint, _WFunctor, T>*>(this); }
+const CLASSNAME<DataPoint, _NFilter, T>& CONVERTER() const                                                        \
+{ return * static_cast<const CLASSNAME<DataPoint, _NFilter, T>*>(this); }
 
 // CAST OPERATORS
 
 #define PONCA_EXPLICIT_CAST_OPERATORS_DER(CLASSNAME,CONVERTER)                                                     \
 /*! \brief Explicit conversion to CLASSNAME, to access methods potentially hidden by heritage */                   \
 PONCA_MULTIARCH inline                                                                                             \
-CLASSNAME<DataPoint, _WFunctor, DiffType, T>& CONVERTER()                                                          \
-{ return * static_cast<CLASSNAME<DataPoint, _WFunctor, DiffType, T>*>(this); }                                     \
+CLASSNAME<DataPoint, _NFilter, DiffType, T>& CONVERTER()                                                          \
+{ return * static_cast<CLASSNAME<DataPoint, _NFilter, DiffType, T>*>(this); }                                     \
 /*! \brief Explicit conversion to CLASSNAME, to access methods potentially hidden by heritage */                   \
 PONCA_MULTIARCH inline                                                                                             \
-const CLASSNAME<DataPoint, _WFunctor, DiffType, T>& CONVERTER() const                                              \
-{ return * static_cast<const CLASSNAME<DataPoint, _WFunctor, DiffType, T>*>(this); }
+const CLASSNAME<DataPoint, _NFilter, DiffType, T>& CONVERTER() const                                              \
+{ return * static_cast<const CLASSNAME<DataPoint, _NFilter, DiffType, T>*>(this); }
 
 
 // FIT DEFAULT TYPES

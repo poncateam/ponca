@@ -147,7 +147,7 @@ public:
     derDimension(), and the differentiation type by isScaleDer() and
     isSpaceDer().
  */
-template < class DataPoint, class _WFunctor, int Type, typename T>
+template < class DataPoint, class _NFilter, int Type, typename T>
 class PrimitiveDer : public T
 {
 private:

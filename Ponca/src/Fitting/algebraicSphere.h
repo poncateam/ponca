@@ -42,7 +42,7 @@ namespace Ponca
 */
 
 
-template < class DataPoint, class _WFunctor, typename T >
+template < class DataPoint, class _NFilter, typename T >
 class AlgebraicSphere : public T
 {
     PONCA_FITTING_DECLARE_DEFAULT_TYPES

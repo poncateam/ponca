@@ -29,7 +29,7 @@ namespace Ponca {
 //! [PointConcept]
 
 //! [ComputationalObjectConcept]
-        template < class DataPoint, class _WFunctor, typename T = void  >
+        template < class DataPoint, class _NFilter, typename T = void  >
         class ComputationalObjectConcept
         {
         protected:
@@ -41,7 +41,7 @@ namespace Ponca {
         public:
             using Scalar         = typename DataPoint::Scalar;     //< Inherited scalar type
             using VectorType     = typename DataPoint::VectorType; //< Inherited vector type
-            using NeighborFilter = _WFunctor;                      //< Filter applied on the neighbors
+            using NeighborFilter = _NFilter;                      //< Filter applied on the neighbors
 
         public:
             /**************************************************************************/
@@ -69,7 +69,7 @@ namespace Ponca {
 //! [ComputationalObjectConcept]
 
 //! [ComputationalDerivativesConcept]
-        template < class DataPoint, class _WFunctor, int Type, typename T>
+        template < class DataPoint, class _NFilter, int Type, typename T>
         class ComputationalDerivativesConcept
         {
         protected:
@@ -81,7 +81,7 @@ namespace Ponca {
         public:
             using Scalar     = typename DataPoint::Scalar;     //< Inherited scalar type
             using VectorType = typename DataPoint::VectorType; //< Inherited vector type
-            using NeighborFilter = _WFunctor;                  //< Filter applied on the neighbors
+            using NeighborFilter = _NFilter;                  //< Filter applied on the neighbors
             // Static array of scalars with a size adapted to the differentiation type
             using VectorArray = typename Base::VectorArray;
             // Static array of scalars with a size adapted to the differentiation type

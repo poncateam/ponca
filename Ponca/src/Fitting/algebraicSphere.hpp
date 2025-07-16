@@ -4,9 +4,9 @@
  file, You can obtain one at http://mozilla.org/MPL/2.0/.
 */
 
-template < class DataPoint, class _WFunctor, typename T>
-typename AlgebraicSphere<DataPoint, _WFunctor, T>::VectorType
-AlgebraicSphere<DataPoint, _WFunctor, T>::project(const VectorType& _q) const
+template < class DataPoint, class _NFilter, typename T>
+typename AlgebraicSphere<DataPoint, _NFilter, T>::VectorType
+AlgebraicSphere<DataPoint, _NFilter, T>::project(const VectorType& _q) const
 {
     PONCA_MULTIARCH_STD_MATH(sqrt);
 
@@ -29,9 +29,9 @@ AlgebraicSphere<DataPoint, _WFunctor, T>::project(const VectorType& _q) const
     return Base::m_nFilter.convertToGlobalBasis( lq + t * grad );
 }
 
-template < class DataPoint, class _WFunctor, typename T>
-typename AlgebraicSphere<DataPoint, _WFunctor, T>::VectorType
-AlgebraicSphere<DataPoint, _WFunctor, T>::projectDescent( const VectorType& _q, int nbIter) const
+template < class DataPoint, class _NFilter, typename T>
+typename AlgebraicSphere<DataPoint, _NFilter, T>::VectorType
+AlgebraicSphere<DataPoint, _NFilter, T>::projectDescent( const VectorType& _q, int nbIter) const
 {
     PONCA_MULTIARCH_STD_MATH(min)
 
@@ -56,9 +56,9 @@ AlgebraicSphere<DataPoint, _WFunctor, T>::projectDescent( const VectorType& _q, 
     return Base::m_nFilter.convertToGlobalBasis( proj );
 }
 
-template < class DataPoint, class _WFunctor, typename T>
-typename AlgebraicSphere<DataPoint, _WFunctor, T>::Scalar
-AlgebraicSphere<DataPoint, _WFunctor, T>::potential( const VectorType &_q ) const
+template < class DataPoint, class _NFilter, typename T>
+typename AlgebraicSphere<DataPoint, _NFilter, T>::Scalar
+AlgebraicSphere<DataPoint, _NFilter, T>::potential( const VectorType &_q ) const
 {
     // turn to centered basis
     const VectorType lq = Base::m_nFilter.convertToLocalBasis(_q);
@@ -67,9 +67,9 @@ AlgebraicSphere<DataPoint, _WFunctor, T>::potential( const VectorType &_q ) cons
 }
 
 
-template < class DataPoint, class _WFunctor, typename T>
-typename AlgebraicSphere<DataPoint, _WFunctor, T>::VectorType
-AlgebraicSphere<DataPoint, _WFunctor, T>::primitiveGradient( const VectorType &_q ) const
+template < class DataPoint, class _NFilter, typename T>
+typename AlgebraicSphere<DataPoint, _NFilter, T>::VectorType
+AlgebraicSphere<DataPoint, _NFilter, T>::primitiveGradient( const VectorType &_q ) const
 {
         // turn to centered basis
         const VectorType lq = Base::m_nFilter.convertToLocalBasis(_q);
