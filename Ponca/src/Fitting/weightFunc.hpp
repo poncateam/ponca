@@ -39,9 +39,8 @@ template <class DataPoint, class WeightKernel, bool _CenterCoordinates>
 typename DistWeightFuncBase<DataPoint, WeightKernel, _CenterCoordinates>::WeightReturnType
 DistWeightFuncBase<DataPoint, WeightKernel, _CenterCoordinates>::operator()( const DataPoint& _q) const
 {
-    VectorType q = NeighborhoodFrame::convertToLocalBasisInternal(_q.pos());
-    Scalar d  = q.norm();
-    return { (d <= m_t) ? m_wk.f(d/m_t) : Scalar(0.), q };
+    Scalar d  = NeighborhoodFrame::convertToLocalBasisInternal(_q.pos()).norm();
+    return { (d <= m_t) ? m_wk.f(d/m_t) : Scalar(0.), NeighborhoodFrame::convertToLocalBasis(_q.pos()) };
 }
 
 template <class DataPoint, class WeightKernel, bool _CenterCoordinates>
@@ -51,8 +50,8 @@ DistWeightFuncBase<DataPoint, WeightKernel, _CenterCoordinates>::spacedw( const 
 {
     static_assert(WeightKernel::isDValid, "First order derivatives are required");
     VectorType result = VectorType::Zero();
-    VectorType q = NeighborhoodFrame::convertToLocalBasisInternal(_q);
-    Scalar d = q.norm();
+    VectorType q = NeighborhoodFrame::convertToLocalBasis(_q);
+    Scalar d = NeighborhoodFrame::convertToLocalBasisInternal(_q).norm();
     if (d <= m_t && d != Scalar(0.)) result = (q / (d * m_t)) * m_wk.df(d/m_t);
     return result;
 }
@@ -64,8 +63,8 @@ DistWeightFuncBase<DataPoint, WeightKernel, _CenterCoordinates>::spaced2w( const
 {
     static_assert(WeightKernel::isDDValid, "Second order derivatives are required");
     MatrixType result = MatrixType::Zero();
-    VectorType q = NeighborhoodFrame::convertToLocalBasisInternal(_q);
-    Scalar d = q.norm();
+    VectorType q = NeighborhoodFrame::convertToLocalBasis(_q);
+    Scalar d = NeighborhoodFrame::convertToLocalBasisInternal(_q).norm();
     if (d <= m_t && d != Scalar(0.))
     {
         Scalar der = m_wk.df(d/m_t);
@@ -105,8 +104,8 @@ DistWeightFuncBase<DataPoint, WeightKernel, _CenterCoordinates>::scaleSpaced2w( 
 {
     static_assert(WeightKernel::isDDValid, "Second order derivatives are required");
     VectorType result = VectorType::Zero();
-    VectorType q = NeighborhoodFrame::convertToLocalBasisInternal(_q);
-    Scalar d = q.norm();
+    VectorType q = NeighborhoodFrame::convertToLocalBasis(_q);
+    Scalar d = NeighborhoodFrame::convertToLocalBasisInternal(_q).norm();
     if (d <= m_t && d != Scalar(0.))
         result = -q/(m_t*m_t)*(m_wk.df(d/m_t)/d + m_wk.ddf(d/m_t)/m_t);
     return result;
