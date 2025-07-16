@@ -21,7 +21,7 @@
 
 using namespace std;
 
-template<typename DataPoint, typename FitA, typename FitB, typename WeightFunc> //, typename Fit, typename WeightFunction>
+template<typename DataPoint, typename FitA, typename FitB, typename WeightFuncA, typename WeightFuncB> //, typename Fit, typename WeightFunction>
 void compareFit(bool _bAddPositionNoise = false, bool /*_bAddNormalNoise */= false)
 {
     // Define related structure
@@ -43,12 +43,12 @@ void compareFit(bool _bAddPositionNoise = false, bool /*_bAddNormalNoise */= fal
 
     FitA fitA;
     FitB fitB;
-    fitA.setWeightFunc(WeightFunc(VectorType::Zero(), analysisScale));
-    // fitB.setWeightFunc(WeightKernel(1));
-    // fitA.compute(vectorPoints);
-    // fitB.compute(vectorPoints);
-    // std::cout << fitA.barycenter() << std::endl; // Should be equal to center
-    // std::cout << fitB.barycenter() << std::endl; // Should be equal to center
+    fitA.setNeighborFilter(WeightFuncA(VectorType::Zero(), analysisScale));
+    fitB.setNeighborFilter(WeightFuncB(VectorType::Zero(), analysisScale));
+    fitA.compute(vectorPoints);
+    fitB.compute(vectorPoints);
+    std::cout << fitA.barycenter().transpose() << std::endl; // Should be equal to center
+    std::cout << fitB.barycenter().transpose() << std::endl; // Should be equal to center
 }
 
 template<typename Scalar, int Dim>
@@ -64,7 +64,7 @@ void callSubTests()
     cout << "Testing the barycenter..." << endl;
     for(int i = 0; i < g_repeat; ++i)
     {
-        CALL_SUBTEST(( compareFit<Point, FitLocal, FitGlobal, WeightConstantFuncLocal>( )));
+        CALL_SUBTEST(( compareFit<Point, FitLocal, FitGlobal, WeightConstantFuncLocal, WeightConstantFuncGlobal>( )));
     }
     cout << "Ok!" << endl;
 }
@@ -76,7 +76,7 @@ int main(int argc, char** argv)
         return EXIT_FAILURE;
     }
 
-    cout << "Test dnormal" << endl;
+    cout << "Test Global / Local Weight Kernel" << endl;
 
     callSubTests<float, 3>();
     callSubTests<long double, 3>();
