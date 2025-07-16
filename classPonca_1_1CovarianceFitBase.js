@@ -10,7 +10,7 @@ var classPonca_1_1CovarianceFitBase =
     [ "covarianceFit", "classPonca_1_1CovarianceFitBase.html#abe6d0402789126df9800bde5dd4c0959", null ],
     [ "covarianceFit", "classPonca_1_1CovarianceFitBase.html#a63a236306b65e42ccc17494d99799371", null ],
     [ "finalize", "classPonca_1_1CovarianceFitBase.html#ade46d86526068a8f880a702d2489904f", null ],
-    [ "init", "classPonca_1_1CovarianceFitBase.html#adf7b3942840b876ddf3bc1e69c3d1ad3", null ],
+    [ "init", "classPonca_1_1CovarianceFitBase.html#a2ef9c22c029f90c56329507177f4a0b1", null ],
     [ "solver", "classPonca_1_1CovarianceFitBase.html#ab469c0f1be340100a266f419a8386468", null ],
     [ "surfaceVariation", "classPonca_1_1CovarianceFitBase.html#adc7fcdb906bb6efbeb8f6fb447cff64f", null ],
     [ "m_cov", "classPonca_1_1CovarianceFitBase.html#a682053520ba5e1e755b1a0332d425631", null ],

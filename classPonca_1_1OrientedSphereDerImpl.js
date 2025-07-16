@@ -15,7 +15,7 @@ var classPonca_1_1OrientedSphereDerImpl =
     [ "dprattNorm2", "classPonca_1_1OrientedSphereDerImpl.html#a956872917f17a5e57998d11fd8a2d55d", null ],
     [ "dprattNorm2", "classPonca_1_1OrientedSphereDerImpl.html#a35fbb463e9f8bc9774efa1d6a1dd3a64", null ],
     [ "finalize", "classPonca_1_1OrientedSphereDerImpl.html#aad6f3ed1b76c5e114198c552425b7ff2", null ],
-    [ "init", "classPonca_1_1OrientedSphereDerImpl.html#ad3ac2d7ff8f4343cf6411d439e442846", null ],
+    [ "init", "classPonca_1_1OrientedSphereDerImpl.html#a038b6dfba8bef934be31928fe1e68ff8", null ],
     [ "orientedSphereDer", "classPonca_1_1OrientedSphereDerImpl.html#a0b161bb8ccb6d23a3cfefe2faecc15f1", null ],
     [ "orientedSphereDer", "classPonca_1_1OrientedSphereDerImpl.html#a1cd513c6b40bcd4bbdbdace798a92b1d", null ],
     [ "m_dDeno", "classPonca_1_1OrientedSphereDerImpl.html#a8c629f1fcb2ec2ce210adf3d4aefb91b", null ],

@@ -6,7 +6,7 @@ var classPonca_1_1UnorientedSphereFitImpl =
     [ "WFunctor", "classPonca_1_1UnorientedSphereFitImpl.html#a0d040049d62b02ac3520986dea1d621e", null ],
     [ "addLocalNeighbor", "classPonca_1_1UnorientedSphereFitImpl.html#a1c6eafc56eb405bc071fce99b76c2840", null ],
     [ "finalize", "classPonca_1_1UnorientedSphereFitImpl.html#a2aa8045d25d64361171d0b9e7f66c7e3", null ],
-    [ "init", "classPonca_1_1UnorientedSphereFitImpl.html#ae363de3fdbaf1e8afbbdf4106127bc17", null ],
+    [ "init", "classPonca_1_1UnorientedSphereFitImpl.html#a3f2fbb5d818ce17969592daa96731693", null ],
     [ "isSigned", "classPonca_1_1UnorientedSphereFitImpl.html#a6e75337803c131a050c1edbd3b8e8b4f", null ],
     [ "unorientedSphereFit", "classPonca_1_1UnorientedSphereFitImpl.html#a585b7e38fcff129a27f49bf0c8929348", null ],
     [ "unorientedSphereFit", "classPonca_1_1UnorientedSphereFitImpl.html#a3e7a553a4a799a55f50fba6332c94e98", null ],

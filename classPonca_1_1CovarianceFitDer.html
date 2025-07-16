@@ -51,7 +51,7 @@ MathJax.Hub.Config({
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Ponca
-   &#160;<span id="projectnumber">a3bcca651499c602bd353676d4b50af3643c4cad</span>
+   &#160;<span id="projectnumber">e0adfc6189000758e4f451f25cc5587b9620e968</span>
    </div>
    <div id="projectbrief">Point Cloud Analysis library</div>
   </td>
@@ -174,9 +174,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:ac835669815f79ceff0054d09ae97f6c3" id="r_ac835669815f79ceff0054d09ae97f6c3"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="classPonca_1_1CovarianceFitDer.html">CovarianceFitDer</a>&lt; DataPoint, _WFunctor, <a class="el" href="namespacePonca.html#a7beaddc698523e7f9c041ea8bc4c535a">DiffType</a>, T &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1CovarianceFitDer.html#ac835669815f79ceff0054d09ae97f6c3">covarianceFitDer</a> () const</td></tr>
 <tr class="memdesc:ac835669815f79ceff0054d09ae97f6c3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Explicit conversion to <a class="el" href="classPonca_1_1CovarianceFitDer.html" title="Internal generic class computing the derivatives of covariance matrix computed by CovarianceFitBase.">CovarianceFitDer</a> , to access methods potentially hidden by heritage.  <br /></td></tr>
 <tr class="separator:ac835669815f79ceff0054d09ae97f6c3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae557b51c2f349aa1b8ed547252bef5fb" id="r_ae557b51c2f349aa1b8ed547252bef5fb"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1CovarianceFitDer.html#ae557b51c2f349aa1b8ed547252bef5fb">init</a> (const <a class="el" href="classPonca_1_1CovarianceFitDer.html#a6eac3041b82cfcd68af4525b001d9342">VectorType</a> &amp;_evalPos)</td></tr>
-<tr class="memdesc:ae557b51c2f349aa1b8ed547252bef5fb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the evaluation position and reset the internal states.  <br /></td></tr>
-<tr class="separator:ae557b51c2f349aa1b8ed547252bef5fb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ade4d2c6a72e0d6c7504d728891be1ca6" id="r_ade4d2c6a72e0d6c7504d728891be1ca6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1CovarianceFitDer.html#ade4d2c6a72e0d6c7504d728891be1ca6">init</a> ()</td></tr>
+<tr class="memdesc:ade4d2c6a72e0d6c7504d728891be1ca6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the evaluation position and reset the internal states.  <br /></td></tr>
+<tr class="separator:ade4d2c6a72e0d6c7504d728891be1ca6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad91185f5567a7e6423206b182627e57e" id="r_ad91185f5567a7e6423206b182627e57e"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1CovarianceFitDer.html#ad91185f5567a7e6423206b182627e57e">addLocalNeighbor</a> (<a class="el" href="classPonca_1_1CovarianceFitDer.html#ab9d9a337827ef72744c3ed84b326f669">Scalar</a> w, const <a class="el" href="classPonca_1_1CovarianceFitDer.html#a6eac3041b82cfcd68af4525b001d9342">VectorType</a> &amp;localQ, const DataPoint &amp;attributes, <a class="el" href="classPonca_1_1CovarianceFitDer.html#aa9e4163f42f6e29666c2c2d2fc89e45a">ScalarArray</a> &amp;dw)</td></tr>
 <tr class="memdesc:ad91185f5567a7e6423206b182627e57e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Add a neighbor to perform the fit.  <br /></td></tr>
 <tr class="separator:ad91185f5567a7e6423206b182627e57e"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -532,8 +532,8 @@ template&lt;class DataPoint , class _WFunctor , int DiffType, typename T &gt; </
 
 </div>
 </div>
-<a id="ae557b51c2f349aa1b8ed547252bef5fb" name="ae557b51c2f349aa1b8ed547252bef5fb"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae557b51c2f349aa1b8ed547252bef5fb">&#9670;&#160;</a></span>init()</h2>
+<a id="ade4d2c6a72e0d6c7504d728891be1ca6" name="ade4d2c6a72e0d6c7504d728891be1ca6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ade4d2c6a72e0d6c7504d728891be1ca6">&#9670;&#160;</a></span>init()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -546,8 +546,7 @@ template&lt;class DataPoint , class _WFunctor , int DiffType, typename T &gt; </
         <tr>
           <td class="memname">void CovarianceFitDer::init </td>
           <td>(</td>
-          <td class="paramtype">const <a class="el" href="classPonca_1_1CovarianceFitDer.html#a6eac3041b82cfcd68af4525b001d9342">VectorType</a> &amp;&#160;</td>
-          <td class="paramname"><em>_evalPos</em></td><td>)</td>
+          <td class="paramname"></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -600,7 +599,7 @@ template&lt;class DataPoint , class _WFunctor , int DiffType, typename T &gt; </
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="namespacePonca.html">Ponca</a></li><li class="navelem"><a class="el" href="classPonca_1_1CovarianceFitDer.html">CovarianceFitDer</a></li>
-    <li class="footer">Generated on Fri Jul 11 2025 13:55:35 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
+    <li class="footer">Generated on Wed Jul 16 2025 11:46:02 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
   </ul>
 </div>
 </body>

@@ -51,7 +51,7 @@ MathJax.Hub.Config({
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Ponca
-   &#160;<span id="projectnumber">a3bcca651499c602bd353676d4b50af3643c4cad</span>
+   &#160;<span id="projectnumber">e0adfc6189000758e4f451f25cc5587b9620e968</span>
    </div>
    <div id="projectbrief">Point Cloud Analysis library</div>
   </td>
@@ -136,8 +136,8 @@ $(document).ready(function(){initNavTree('mean_8hpp_source.html',''); initResiza
 <div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="keyword">template</span>&lt;<span class="keyword">class</span> DataPo<span class="keywordtype">int</span>, <span class="keyword">class</span> _WFunctor, <span class="keyword">typename</span> T&gt;</div>
 <div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="keywordtype">void</span></div>
 <div class="foldopen" id="foldopen00012" data-start="{" data-end="}">
-<div class="line"><a id="l00012" name="l00012"></a><span class="lineno"><a class="line" href="classPonca_1_1MeanPosition.html#ad78e0f1ba86cd27419b636eb462512e5">   12</a></span><a class="code hl_class" href="classPonca_1_1MeanPosition.html">MeanPosition&lt;DataPoint, _WFunctor, T&gt;::init</a>(<span class="keyword">const</span> <a class="code hl_typedef" href="classPonca_1_1MeanPosition.html#aba53b8040332f3aff231803e9944e519">VectorType</a> &amp;_evalPos) {</div>
-<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span>    Base::init(_evalPos);</div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno"><a class="line" href="classPonca_1_1MeanPosition.html#af899fb0713e2630a11d7ef710a649754">   12</a></span><a class="code hl_class" href="classPonca_1_1MeanPosition.html">MeanPosition&lt;DataPoint, _WFunctor, T&gt;::init</a>() {</div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span>    Base::init();</div>
 <div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span>    m_sumP = VectorType::Zero();</div>
 <div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span>}</div>
 </div>
@@ -159,9 +159,9 @@ $(document).ready(function(){initNavTree('mean_8hpp_source.html',''); initResiza
 <div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span><span class="keyword">template</span> &lt; <span class="keyword">class</span> DataPo<span class="keywordtype">int</span>, <span class="keyword">class</span> _WFunctor, <span class="keyword">typename</span> T&gt;</div>
 <div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span><span class="keywordtype">void</span></div>
 <div class="foldopen" id="foldopen00031" data-start="{" data-end="}">
-<div class="line"><a id="l00031" name="l00031"></a><span class="lineno"><a class="line" href="classPonca_1_1MeanNormal.html#a4826374e9574980fdb0f3631abbe9a9a">   31</a></span><a class="code hl_class" href="classPonca_1_1MeanNormal.html">MeanNormal&lt;DataPoint, _WFunctor, T&gt;::init</a>(<span class="keyword">const</span> <a class="code hl_typedef" href="classPonca_1_1MeanNormal.html#a37f400c71ef088be6043ee89bfe96c26">VectorType</a>&amp; _evalPos)</div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno"><a class="line" href="classPonca_1_1MeanNormal.html#abbe2e0084fc3287ce9684a349baaf3d4">   31</a></span><a class="code hl_class" href="classPonca_1_1MeanNormal.html">MeanNormal&lt;DataPoint, _WFunctor, T&gt;::init</a>()</div>
 <div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>{</div>
-<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>    Base::init(_evalPos);</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>    Base::init();</div>
 <div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>    m_sumN = VectorType::Zero();</div>
 <div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>}</div>
 </div>
@@ -184,8 +184,8 @@ $(document).ready(function(){initNavTree('mean_8hpp_source.html',''); initResiza
 <div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span><span class="keyword">template</span>&lt;<span class="keyword">class</span> DataPo<span class="keywordtype">int</span>, <span class="keyword">class</span> _WFunctor, <span class="keywordtype">int</span> DiffType, <span class="keyword">typename</span> T&gt;</div>
 <div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span><span class="keywordtype">void</span></div>
 <div class="foldopen" id="foldopen00052" data-start="{" data-end="}">
-<div class="line"><a id="l00052" name="l00052"></a><span class="lineno"><a class="line" href="classPonca_1_1MeanPositionDer.html#a9623863a25f3cb41c1004d590f45ad0f">   52</a></span><a class="code hl_class" href="classPonca_1_1MeanPositionDer.html">MeanPositionDer&lt;DataPoint, _WFunctor, DiffType, T&gt;::init</a>(<span class="keyword">const</span> <a class="code hl_typedef" href="classPonca_1_1MeanPositionDer.html#aa64da7c72ed2b4e3e61eaf8fb436077a">VectorType</a> &amp;_evalPos) {</div>
-<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>    Base::init(_evalPos);</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno"><a class="line" href="classPonca_1_1MeanPositionDer.html#a752b00a83af5406d8a4b1f2ae7cfe2b0">   52</a></span><a class="code hl_class" href="classPonca_1_1MeanPositionDer.html">MeanPositionDer&lt;DataPoint, _WFunctor, DiffType, T&gt;::init</a>() {</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>    Base::init();</div>
 <div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>    m_dSumP.setZero();</div>
 <div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>}</div>
 </div>
@@ -211,8 +211,8 @@ $(document).ready(function(){initNavTree('mean_8hpp_source.html',''); initResiza
 <div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span><span class="keyword">template</span>&lt;<span class="keyword">class</span> DataPo<span class="keywordtype">int</span>, <span class="keyword">class</span> _WFunctor, <span class="keywordtype">int</span> DiffType, <span class="keyword">typename</span> T&gt;</div>
 <div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span><span class="keywordtype">void</span></div>
 <div class="foldopen" id="foldopen00075" data-start="{" data-end="}">
-<div class="line"><a id="l00075" name="l00075"></a><span class="lineno"><a class="line" href="classPonca_1_1MeanNormalDer.html#ad69f13d7462cb598cd4816faae3918b8">   75</a></span><a class="code hl_class" href="classPonca_1_1MeanNormalDer.html">MeanNormalDer&lt;DataPoint, _WFunctor, DiffType, T&gt;::init</a>(<span class="keyword">const</span> <a class="code hl_typedef" href="classPonca_1_1MeanNormalDer.html#a516b27c0c6a6c5ef1b935bb4d905bd08">VectorType</a> &amp;_evalPos) {</div>
-<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>    Base::init(_evalPos);</div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno"><a class="line" href="classPonca_1_1MeanNormalDer.html#a8e1aaa6f718b340cc3686ffa17a5d335">   75</a></span><a class="code hl_class" href="classPonca_1_1MeanNormalDer.html">MeanNormalDer&lt;DataPoint, _WFunctor, DiffType, T&gt;::init</a>() {</div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>    Base::init();</div>
 <div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>    m_dSumN.setZero();</div>
 <div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>}</div>
 </div>
@@ -252,7 +252,7 @@ $(document).ready(function(){initNavTree('mean_8hpp_source.html',''); initResiza
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_695d95a8d8fbec601a248c0414764298.html">Ponca</a></li><li class="navelem"><a class="el" href="dir_ce16314fc45f8638543c5146aff64d4a.html">src</a></li><li class="navelem"><a class="el" href="dir_221133f19e4af6803e4ee7d78db21786.html">Fitting</a></li><li class="navelem"><b>mean.hpp</b></li>
-    <li class="footer">Generated on Fri Jul 11 2025 13:55:35 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
+    <li class="footer">Generated on Wed Jul 16 2025 11:46:02 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
   </ul>
 </div>
 </body>

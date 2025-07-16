@@ -8,7 +8,7 @@ var classPonca_1_1UnorientedSphereDerImpl =
     [ "WFunctor", "classPonca_1_1UnorientedSphereDerImpl.html#afe4d504d6fa26154e25299b566195cd9", null ],
     [ "addLocalNeighbor", "classPonca_1_1UnorientedSphereDerImpl.html#a332b46d443d3ae6f093fcd270e31ae7f", null ],
     [ "finalize", "classPonca_1_1UnorientedSphereDerImpl.html#ae29b69671a670f3448f3ad39f972d2e4", null ],
-    [ "init", "classPonca_1_1UnorientedSphereDerImpl.html#acc78ec00a247095931456072c261654b", null ],
+    [ "init", "classPonca_1_1UnorientedSphereDerImpl.html#ad8da6145bdacf8bff72ba2ff388becd5", null ],
     [ "unorientedSphereDer", "classPonca_1_1UnorientedSphereDerImpl.html#a5b01359d0e103c9391793f23acf6f611", null ],
     [ "unorientedSphereDer", "classPonca_1_1UnorientedSphereDerImpl.html#a4ae7284fa435ac9eb1a8e62c0ddc0464", null ]
 ];

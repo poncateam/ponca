@@ -8,7 +8,7 @@ var classPonca_1_1MeanPositionDer =
     [ "WFunctor", "classPonca_1_1MeanPositionDer.html#a89bd743610af064fe37050a72d7ccd81", null ],
     [ "addLocalNeighbor", "classPonca_1_1MeanPositionDer.html#aceb327a7022a1edbb95c9954742d025e", null ],
     [ "barycenterDerivatives", "classPonca_1_1MeanPositionDer.html#a5880bc45d7dc11f0a882b6827578ba1e", null ],
-    [ "init", "classPonca_1_1MeanPositionDer.html#a9623863a25f3cb41c1004d590f45ad0f", null ],
+    [ "init", "classPonca_1_1MeanPositionDer.html#a752b00a83af5406d8a4b1f2ae7cfe2b0", null ],
     [ "meanPositionDer", "classPonca_1_1MeanPositionDer.html#a5384ae5024a4d09a9ab09db69a531a75", null ],
     [ "meanPositionDer", "classPonca_1_1MeanPositionDer.html#a167ec7be6f06a15ae67b6826f295a070", null ],
     [ "m_dSumP", "classPonca_1_1MeanPositionDer.html#a063c77346f85916bfadbfb50f9baf37a", null ]

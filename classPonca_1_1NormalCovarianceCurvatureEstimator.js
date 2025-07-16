@@ -10,7 +10,7 @@ var classPonca_1_1NormalCovarianceCurvatureEstimator =
     [ "WFunctor", "classPonca_1_1NormalCovarianceCurvatureEstimator.html#a1ad500db9fcffd75eb2088ef987e069d", null ],
     [ "addLocalNeighbor", "classPonca_1_1NormalCovarianceCurvatureEstimator.html#a64213f9d010d488d119881eb1a52147d", null ],
     [ "finalize", "classPonca_1_1NormalCovarianceCurvatureEstimator.html#ac5862fdb79c1ec38b99602da6029a0dd", null ],
-    [ "init", "classPonca_1_1NormalCovarianceCurvatureEstimator.html#a9acb8c5de1979a6440f95e4019c19d8a", null ],
+    [ "init", "classPonca_1_1NormalCovarianceCurvatureEstimator.html#a8cc87e3db57ccbbff88944f696431cae", null ],
     [ "normalCovarianceCurvatureEstimator", "classPonca_1_1NormalCovarianceCurvatureEstimator.html#a11712fc1797773cadb2a2e4428adbf18", null ],
     [ "normalCovarianceCurvatureEstimator", "classPonca_1_1NormalCovarianceCurvatureEstimator.html#af43280afd82279ae3d45468e6a2dbfba", null ],
     [ "m_cog", "classPonca_1_1NormalCovarianceCurvatureEstimator.html#aad3e26b46d2a4300187d3da664e7f534", null ],

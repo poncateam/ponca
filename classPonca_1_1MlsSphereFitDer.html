@@ -51,7 +51,7 @@ MathJax.Hub.Config({
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Ponca
-   &#160;<span id="projectnumber">a3bcca651499c602bd353676d4b50af3643c4cad</span>
+   &#160;<span id="projectnumber">e0adfc6189000758e4f451f25cc5587b9620e968</span>
    </div>
    <div id="projectbrief">Point Cloud Analysis library</div>
   </td>
@@ -178,9 +178,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a93b2694a93b48dc28d77d671688afb5b" id="r_a93b2694a93b48dc28d77d671688afb5b"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="classPonca_1_1MlsSphereFitDer.html">MlsSphereFitDer</a>&lt; DataPoint, _WFunctor, <a class="el" href="namespacePonca.html#a7beaddc698523e7f9c041ea8bc4c535a">DiffType</a>, T &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1MlsSphereFitDer.html#a93b2694a93b48dc28d77d671688afb5b">mlsSphereFitDer</a> () const</td></tr>
 <tr class="memdesc:a93b2694a93b48dc28d77d671688afb5b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Explicit conversion to <a class="el" href="classPonca_1_1MlsSphereFitDer.html" title="Extension performing derivation of the mls surface.">MlsSphereFitDer</a> , to access methods potentially hidden by heritage.  <br /></td></tr>
 <tr class="separator:a93b2694a93b48dc28d77d671688afb5b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4fbafff234dc57507bcd6c84feb8a847" id="r_a4fbafff234dc57507bcd6c84feb8a847"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1MlsSphereFitDer.html#a4fbafff234dc57507bcd6c84feb8a847">init</a> (const <a class="el" href="classPonca_1_1MlsSphereFitDer.html#a11a8dba6b3543b35f1cb6e699f4a26ca">VectorType</a> &amp;_evalPos)</td></tr>
-<tr class="memdesc:a4fbafff234dc57507bcd6c84feb8a847"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the evaluation position and reset the internal states.  <br /></td></tr>
-<tr class="separator:a4fbafff234dc57507bcd6c84feb8a847"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a54b405b7f73ca9af6f6fb2574fb02b8c" id="r_a54b405b7f73ca9af6f6fb2574fb02b8c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1MlsSphereFitDer.html#a54b405b7f73ca9af6f6fb2574fb02b8c">init</a> ()</td></tr>
+<tr class="memdesc:a54b405b7f73ca9af6f6fb2574fb02b8c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the evaluation position and reset the internal states.  <br /></td></tr>
+<tr class="separator:a54b405b7f73ca9af6f6fb2574fb02b8c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2f20f8092b21bb028a5832dc22c019b9" id="r_a2f20f8092b21bb028a5832dc22c019b9"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1MlsSphereFitDer.html#a2f20f8092b21bb028a5832dc22c019b9">addLocalNeighbor</a> (<a class="el" href="classPonca_1_1MlsSphereFitDer.html#af0219bcdc54d55e9391414982907d730">Scalar</a> w, const <a class="el" href="classPonca_1_1MlsSphereFitDer.html#a11a8dba6b3543b35f1cb6e699f4a26ca">VectorType</a> &amp;localQ, const DataPoint &amp;attributes, <a class="el" href="classPonca_1_1MlsSphereFitDer.html#adb6557177816169e4694ca724c918170">ScalarArray</a> &amp;dw)</td></tr>
 <tr class="memdesc:a2f20f8092b21bb028a5832dc22c019b9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Add a neighbor to perform the fit.  <br /></td></tr>
 <tr class="separator:a2f20f8092b21bb028a5832dc22c019b9"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -638,8 +638,8 @@ template&lt;class DataPoint , class _WFunctor , int DiffType, typename T &gt; </
 
 </div>
 </div>
-<a id="a4fbafff234dc57507bcd6c84feb8a847" name="a4fbafff234dc57507bcd6c84feb8a847"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a4fbafff234dc57507bcd6c84feb8a847">&#9670;&#160;</a></span>init()</h2>
+<a id="a54b405b7f73ca9af6f6fb2574fb02b8c" name="a54b405b7f73ca9af6f6fb2574fb02b8c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a54b405b7f73ca9af6f6fb2574fb02b8c">&#9670;&#160;</a></span>init()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -652,8 +652,7 @@ template&lt;class DataPoint , class _WFunctor , int DiffType, typename T &gt; </
         <tr>
           <td class="memname">void MlsSphereFitDer::init </td>
           <td>(</td>
-          <td class="paramtype">const <a class="el" href="classPonca_1_1MlsSphereFitDer.html#a11a8dba6b3543b35f1cb6e699f4a26ca">VectorType</a> &amp;&#160;</td>
-          <td class="paramname"><em>_evalPos</em></td><td>)</td>
+          <td class="paramname"></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -973,7 +972,7 @@ template&lt;class DataPoint , class _WFunctor , int DiffType, typename T &gt; </
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="namespacePonca.html">Ponca</a></li><li class="navelem"><a class="el" href="classPonca_1_1MlsSphereFitDer.html">MlsSphereFitDer</a></li>
-    <li class="footer">Generated on Fri Jul 11 2025 13:55:35 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
+    <li class="footer">Generated on Wed Jul 16 2025 11:46:02 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
   </ul>
 </div>
 </body>

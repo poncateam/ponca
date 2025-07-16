@@ -1,6 +1,5 @@
 var NAVTREEINDEX3 =
 {
-"pages.html":[],
 "ponca_changelog.html":[4],
 "ponca_changelog.html#ponca_changelog_sec":[4,0],
 "ponca_concepts.html":[6,0],

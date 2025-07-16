@@ -9,7 +9,7 @@ var classPonca_1_1AlgebraicSphere =
     [ "applyPrattNorm", "classPonca_1_1AlgebraicSphere.html#ad09e54e72635438337edab0bf9aa226b", null ],
     [ "center", "classPonca_1_1AlgebraicSphere.html#abe53aba84bb693f553804c734d69da13", null ],
     [ "changeBasis", "classPonca_1_1AlgebraicSphere.html#a054a41e20c9ca517af359aa591bca9e7", null ],
-    [ "init", "classPonca_1_1AlgebraicSphere.html#a7144ddfa1a6f9e6f36dc995ec01ef267", null ],
+    [ "init", "classPonca_1_1AlgebraicSphere.html#a5a9e78d06c7c3e3f7a8efaad1ab00d6a", null ],
     [ "isApprox", "classPonca_1_1AlgebraicSphere.html#a54ec01c19a91e166c1ded642193e86ba", null ],
     [ "isNormalized", "classPonca_1_1AlgebraicSphere.html#ab1367679cd2a38f9910e9329b65797a7", null ],
     [ "isPlane", "classPonca_1_1AlgebraicSphere.html#a681d3ba71d704798a48e2eb7ebb5826a", null ],

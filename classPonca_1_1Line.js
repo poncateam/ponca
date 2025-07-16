@@ -5,7 +5,7 @@ var classPonca_1_1Line =
     [ "Scalar", "classPonca_1_1Line.html#ab84c7954e61467637df87040e798a641", null ],
     [ "VectorType", "classPonca_1_1Line.html#a423e9d0178e924d62143af82dcf644ca", null ],
     [ "WFunctor", "classPonca_1_1Line.html#ab87f6b326c72ee2588b149f5e20fd0e5", null ],
-    [ "init", "classPonca_1_1Line.html#a8ad80a68b6de494b50499127c0eb69ff", null ],
+    [ "init", "classPonca_1_1Line.html#a134153ca383f34fb4c705e545093a7b5", null ],
     [ "isValid", "classPonca_1_1Line.html#a398ea691c79a3a5cf8e7610109f2bfae", null ],
     [ "line", "classPonca_1_1Line.html#afb4dcc5479a1443200a67cb347fd3d3e", null ],
     [ "line", "classPonca_1_1Line.html#aaddf681edbd030ca33492f1cd1f5f84a", null ],

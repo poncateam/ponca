@@ -8,7 +8,7 @@ var classPonca_1_1CurvatureEstimatorBase =
     [ "curvatureEstimatorBase", "classPonca_1_1CurvatureEstimatorBase.html#a934bf2ab4f16be62e5ee98c237e106cd", null ],
     [ "curvatureEstimatorBase", "classPonca_1_1CurvatureEstimatorBase.html#a68599bba116fdf465c0323a8a1909b22", null ],
     [ "GaussianCurvature", "classPonca_1_1CurvatureEstimatorBase.html#a50cdaae9b0b5540c7fd4ffb448afdc98", null ],
-    [ "init", "classPonca_1_1CurvatureEstimatorBase.html#a9c2a91ffddb543b96b19a5025fcf2818", null ],
+    [ "init", "classPonca_1_1CurvatureEstimatorBase.html#a98e2592f8cd8c52800554504de3fca86", null ],
     [ "isValid", "classPonca_1_1CurvatureEstimatorBase.html#aaecbd104c08bbaae29c284d4a1ec70a9", null ],
     [ "kmax", "classPonca_1_1CurvatureEstimatorBase.html#a94235972fc3a63695413f7ce8dc479a1", null ],
     [ "kmaxDirection", "classPonca_1_1CurvatureEstimatorBase.html#afcee7a07503a67e81ddde954982bfe00", null ],

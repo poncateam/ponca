@@ -51,7 +51,7 @@ MathJax.Hub.Config({
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Ponca
-   &#160;<span id="projectnumber">a3bcca651499c602bd353676d4b50af3643c4cad</span>
+   &#160;<span id="projectnumber">e0adfc6189000758e4f451f25cc5587b9620e968</span>
    </div>
    <div id="projectbrief">Point Cloud Analysis library</div>
   </td>
@@ -176,9 +176,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a958fb6140a05bd8d5fbd8e0b60192507" id="r_a958fb6140a05bd8d5fbd8e0b60192507"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="classPonca_1_1Plane.html">Plane</a>&lt; DataPoint, _WFunctor, T &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1Plane.html#a958fb6140a05bd8d5fbd8e0b60192507">plane</a> () const</td></tr>
 <tr class="memdesc:a958fb6140a05bd8d5fbd8e0b60192507"><td class="mdescLeft">&#160;</td><td class="mdescRight">Explicit conversion to <a class="el" href="classPonca_1_1Plane.html" title="Implicit hyperplane defined by an homogeneous vector .">Plane</a> , to access methods potentially hidden by heritage.  <br /></td></tr>
 <tr class="separator:a958fb6140a05bd8d5fbd8e0b60192507"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae4c6696fa815a6cfc3864e9f7b33d9a3" id="r_ae4c6696fa815a6cfc3864e9f7b33d9a3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1Plane.html#ae4c6696fa815a6cfc3864e9f7b33d9a3">init</a> (const <a class="el" href="classPonca_1_1Plane.html#ac3962c2f2212db7441747f4174236eb2">VectorType</a> &amp;_basisCenter=VectorType::Zero())</td></tr>
-<tr class="memdesc:ae4c6696fa815a6cfc3864e9f7b33d9a3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the scalar field values to 0.  <br /></td></tr>
-<tr class="separator:ae4c6696fa815a6cfc3864e9f7b33d9a3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6567c2da10ef8af9530134c18b5ec55b" id="r_a6567c2da10ef8af9530134c18b5ec55b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1Plane.html#a6567c2da10ef8af9530134c18b5ec55b">init</a> ()</td></tr>
+<tr class="memdesc:a6567c2da10ef8af9530134c18b5ec55b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the scalar field values to 0.  <br /></td></tr>
+<tr class="separator:a6567c2da10ef8af9530134c18b5ec55b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8c7b6fdadc393bebdc3c436794f0acb2" id="r_a8c7b6fdadc393bebdc3c436794f0acb2"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1Plane.html#a8c7b6fdadc393bebdc3c436794f0acb2">isValid</a> () const</td></tr>
 <tr class="memdesc:a8c7b6fdadc393bebdc3c436794f0acb2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Tell if the plane as been correctly set. Used to set CONFLICT_ERROR_FOUND during fitting.  <br /></td></tr>
 <tr class="separator:a8c7b6fdadc393bebdc3c436794f0acb2"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -456,8 +456,8 @@ template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
 
 </div>
 </div>
-<a id="ae4c6696fa815a6cfc3864e9f7b33d9a3" name="ae4c6696fa815a6cfc3864e9f7b33d9a3"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae4c6696fa815a6cfc3864e9f7b33d9a3">&#9670;&#160;</a></span>init()</h2>
+<a id="a6567c2da10ef8af9530134c18b5ec55b" name="a6567c2da10ef8af9530134c18b5ec55b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6567c2da10ef8af9530134c18b5ec55b">&#9670;&#160;</a></span>init()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -470,8 +470,7 @@ template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
         <tr>
           <td class="memname">void <a class="el" href="classPonca_1_1Plane.html">Ponca::Plane</a>&lt; DataPoint, _WFunctor, T &gt;::init </td>
           <td>(</td>
-          <td class="paramtype">const <a class="el" href="classPonca_1_1Plane.html#ac3962c2f2212db7441747f4174236eb2">VectorType</a> &amp;&#160;</td>
-          <td class="paramname"><em>_basisCenter</em> = <code>VectorType::Zero()</code></td><td>)</td>
+          <td class="paramname"></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -514,7 +513,7 @@ template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
 </div><div class="memdoc">
 
 <p>Tell if the plane as been correctly set. Used to set CONFLICT_ERROR_FOUND during fitting. </p>
-<dl class="section return"><dt>Returns</dt><dd>false when called straight after <a class="el" href="classPonca_1_1Plane.html#ae4c6696fa815a6cfc3864e9f7b33d9a3" title="Set the scalar field values to 0.">init</a>. Should be true after fitting </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>false when called straight after <a class="el" href="classPonca_1_1Plane.html#a6567c2da10ef8af9530134c18b5ec55b" title="Set the scalar field values to 0.">init</a>. Should be true after fitting </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="plane_8h_source.html#l00065">65</a> of file <a class="el" href="plane_8h_source.html">plane.h</a>.</p>
 
@@ -850,7 +849,7 @@ template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="namespacePonca.html">Ponca</a></li><li class="navelem"><a class="el" href="classPonca_1_1Plane.html">Plane</a></li>
-    <li class="footer">Generated on Fri Jul 11 2025 13:55:35 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
+    <li class="footer">Generated on Wed Jul 16 2025 11:46:02 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
   </ul>
 </div>
 </body>

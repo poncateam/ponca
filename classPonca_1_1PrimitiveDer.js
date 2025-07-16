@@ -8,7 +8,7 @@ var classPonca_1_1PrimitiveDer =
     [ "WFunctor", "classPonca_1_1PrimitiveDer.html#a8d377287a3ce1ae6998617a5fa43788b", null ],
     [ "addLocalNeighbor", "classPonca_1_1PrimitiveDer.html#afccc8fecb7a095ae1dc204ee7dddf99f", null ],
     [ "derDimension", "classPonca_1_1PrimitiveDer.html#abc0fcf3fb450ffcd5380ce0982a97f56", null ],
-    [ "init", "classPonca_1_1PrimitiveDer.html#af867666ca00d3a717d1278158d33bb4a", null ],
+    [ "init", "classPonca_1_1PrimitiveDer.html#ac51573dfc9ff7eb3fac80da519e4928e", null ],
     [ "isScaleDer", "classPonca_1_1PrimitiveDer.html#af0fd9de3fe4c507937ff4239fd043d84", null ],
     [ "isSpaceDer", "classPonca_1_1PrimitiveDer.html#abf4b419f351035fbc932b9d9482f025f", null ],
     [ "m_dSumW", "classPonca_1_1PrimitiveDer.html#af12bc9f446e39d323cd9d734bac914f0", null ]

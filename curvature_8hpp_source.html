@@ -51,7 +51,7 @@ MathJax.Hub.Config({
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Ponca
-   &#160;<span id="projectnumber">a3bcca651499c602bd353676d4b50af3643c4cad</span>
+   &#160;<span id="projectnumber">e0adfc6189000758e4f451f25cc5587b9620e968</span>
    </div>
    <div id="projectbrief">Point Cloud Analysis library</div>
   </td>
@@ -129,8 +129,8 @@ $(document).ready(function(){initNavTree('curvature_8hpp_source.html',''); initR
 <div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span>    <span class="keyword">template</span>&lt;<span class="keyword">class</span> DataPo<span class="keywordtype">int</span>, <span class="keyword">class</span> _WFunctor, <span class="keywordtype">int</span> DiffType, <span class="keyword">typename</span> T&gt;</div>
 <div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span>    <span class="keywordtype">void</span></div>
 <div class="foldopen" id="foldopen00005" data-start="{" data-end="}">
-<div class="line"><a id="l00005" name="l00005"></a><span class="lineno"><a class="line" href="classPonca_1_1CurvatureEstimatorBase.html#a9c2a91ffddb543b96b19a5025fcf2818">    5</a></span>    <a class="code hl_function" href="classPonca_1_1CurvatureEstimatorBase.html#a9c2a91ffddb543b96b19a5025fcf2818">CurvatureEstimatorBase&lt;DataPoint, _WFunctor, DiffType, T&gt;::init</a>(<span class="keyword">const</span> <a class="code hl_typedef" href="classPonca_1_1CurvatureEstimatorBase.html#af025c2c232dc1f09dd9cc16e3ae7efff">VectorType</a> &amp;_evalPos) {</div>
-<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span>        Base::init(_evalPos);</div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno"><a class="line" href="classPonca_1_1CurvatureEstimatorBase.html#a98e2592f8cd8c52800554504de3fca86">    5</a></span>    <a class="code hl_function" href="classPonca_1_1CurvatureEstimatorBase.html#a98e2592f8cd8c52800554504de3fca86">CurvatureEstimatorBase&lt;DataPoint, _WFunctor, DiffType, T&gt;::init</a>() {</div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span>        Base::init();</div>
 <div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span>        m_kmin = 0;</div>
 <div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span>        m_kmax = 0;</div>
 <div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span>        m_vmin = VectorType::Zero();</div>
@@ -161,7 +161,7 @@ $(document).ready(function(){initNavTree('curvature_8hpp_source.html',''); initR
 </div>
 <div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>}</div>
 <div class="ttc" id="aclassPonca_1_1CurvatureEstimatorBase_html_a8752f5fe0c7a86ff843eabd0aafb4245"><div class="ttname"><a href="classPonca_1_1CurvatureEstimatorBase.html#a8752f5fe0c7a86ff843eabd0aafb4245">Ponca::CurvatureEstimatorBase::Scalar</a></div><div class="ttdeci">typename DataPoint::Scalar Scalar</div><div class="ttdoc">Alias to scalar type.</div><div class="ttdef"><b>Definition</b> <a href="curvature_8h_source.html#l00024">curvature.h:24</a></div></div>
-<div class="ttc" id="aclassPonca_1_1CurvatureEstimatorBase_html_a9c2a91ffddb543b96b19a5025fcf2818"><div class="ttname"><a href="classPonca_1_1CurvatureEstimatorBase.html#a9c2a91ffddb543b96b19a5025fcf2818">Ponca::CurvatureEstimatorBase::init</a></div><div class="ttdeci">void init(const VectorType &amp;_evalPos)</div><div class="ttdoc">Set the evaluation position and reset the internal states.</div><div class="ttdef"><b>Definition</b> <a href="curvature_8hpp_source.html#l00005">curvature.hpp:5</a></div></div>
+<div class="ttc" id="aclassPonca_1_1CurvatureEstimatorBase_html_a98e2592f8cd8c52800554504de3fca86"><div class="ttname"><a href="classPonca_1_1CurvatureEstimatorBase.html#a98e2592f8cd8c52800554504de3fca86">Ponca::CurvatureEstimatorBase::init</a></div><div class="ttdeci">void init()</div><div class="ttdoc">Set the evaluation position and reset the internal states.</div><div class="ttdef"><b>Definition</b> <a href="curvature_8hpp_source.html#l00005">curvature.hpp:5</a></div></div>
 <div class="ttc" id="aclassPonca_1_1CurvatureEstimatorBase_html_abb3e80f564f79066d2f12105db1bd604"><div class="ttname"><a href="classPonca_1_1CurvatureEstimatorBase.html#abb3e80f564f79066d2f12105db1bd604">Ponca::CurvatureEstimatorBase::setCurvatureValues</a></div><div class="ttdeci">void setCurvatureValues(Scalar kmin, Scalar kmax, const VectorType &amp;vmin, const VectorType &amp;vmax)</div><div class="ttdoc">Set curvature values. To be called in finalize() by child classes.</div><div class="ttdef"><b>Definition</b> <a href="curvature_8hpp_source.html#l00017">curvature.hpp:17</a></div></div>
 <div class="ttc" id="aclassPonca_1_1CurvatureEstimatorBase_html_af025c2c232dc1f09dd9cc16e3ae7efff"><div class="ttname"><a href="classPonca_1_1CurvatureEstimatorBase.html#af025c2c232dc1f09dd9cc16e3ae7efff">Ponca::CurvatureEstimatorBase::VectorType</a></div><div class="ttdeci">typename Base::VectorType VectorType</div><div class="ttdoc">Alias to vector type.</div><div class="ttdef"><b>Definition</b> <a href="curvature_8h_source.html#l00024">curvature.h:24</a></div></div>
 <div class="ttc" id="anamespacePonca_html"><div class="ttname"><a href="namespacePonca.html">Ponca</a></div><div class="ttdoc">This Source Code Form is subject to the terms of the Mozilla Public License, v.</div><div class="ttdef"><b>Definition</b> <a href="limitedPriorityQueue_8h_source.html#l00014">limitedPriorityQueue.h:14</a></div></div>
@@ -171,7 +171,7 @@ $(document).ready(function(){initNavTree('curvature_8hpp_source.html',''); initR
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_695d95a8d8fbec601a248c0414764298.html">Ponca</a></li><li class="navelem"><a class="el" href="dir_ce16314fc45f8638543c5146aff64d4a.html">src</a></li><li class="navelem"><a class="el" href="dir_221133f19e4af6803e4ee7d78db21786.html">Fitting</a></li><li class="navelem"><b>curvature.hpp</b></li>
-    <li class="footer">Generated on Fri Jul 11 2025 13:55:35 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
+    <li class="footer">Generated on Wed Jul 16 2025 11:46:02 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
   </ul>
 </div>
 </body>

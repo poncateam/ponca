@@ -51,7 +51,7 @@ MathJax.Hub.Config({
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Ponca
-   &#160;<span id="projectnumber">a3bcca651499c602bd353676d4b50af3643c4cad</span>
+   &#160;<span id="projectnumber">e0adfc6189000758e4f451f25cc5587b9620e968</span>
    </div>
    <div id="projectbrief">Point Cloud Analysis library</div>
   </td>
@@ -238,9 +238,9 @@ $(document).ready(function(){initNavTree('curvatureEstimation_8hpp_source.html',
 <div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span><span class="keyword">template</span> &lt; <span class="keyword">class</span> DataPo<span class="keywordtype">int</span>, <span class="keyword">class</span> _WFunctor, <span class="keywordtype">int</span> DiffType, <span class="keyword">typename</span> T&gt;</div>
 <div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span><span class="keywordtype">void</span></div>
 <div class="foldopen" id="foldopen00110" data-start="{" data-end="}">
-<div class="line"><a id="l00110" name="l00110"></a><span class="lineno"><a class="line" href="classPonca_1_1NormalCovarianceCurvatureEstimator.html#a9acb8c5de1979a6440f95e4019c19d8a">  110</a></span><a class="code hl_class" href="classPonca_1_1NormalCovarianceCurvatureEstimator.html">NormalCovarianceCurvatureEstimator&lt;DataPoint, _WFunctor, DiffType, T&gt;::init</a>(<span class="keyword">const</span> <a class="code hl_typedef" href="classPonca_1_1NormalCovarianceCurvatureEstimator.html#a8ef0ce1e43349715c04c695bddf57b45">VectorType</a>&amp; _evalPos)</div>
+<div class="line"><a id="l00110" name="l00110"></a><span class="lineno"><a class="line" href="classPonca_1_1NormalCovarianceCurvatureEstimator.html#a8cc87e3db57ccbbff88944f696431cae">  110</a></span><a class="code hl_class" href="classPonca_1_1NormalCovarianceCurvatureEstimator.html">NormalCovarianceCurvatureEstimator&lt;DataPoint, _WFunctor, DiffType, T&gt;::init</a>()</div>
 <div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span>{</div>
-<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span>    Base::init(_evalPos);</div>
+<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span>    Base::init();</div>
 <div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span>    m_cov = MatrixType::Zero();</div>
 <div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span>    m_cog = VectorType::Zero();</div>
 <div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span>}</div>
@@ -320,9 +320,9 @@ $(document).ready(function(){initNavTree('curvatureEstimation_8hpp_source.html',
 <div class="line"><a id="l00184" name="l00184"></a><span class="lineno">  184</span><span class="keyword">template</span> &lt; <span class="keyword">class</span> DataPo<span class="keywordtype">int</span>, <span class="keyword">class</span> _WFunctor, <span class="keywordtype">int</span> DiffType, <span class="keyword">typename</span> T&gt;</div>
 <div class="line"><a id="l00185" name="l00185"></a><span class="lineno">  185</span><span class="keywordtype">void</span></div>
 <div class="foldopen" id="foldopen00186" data-start="{" data-end="}">
-<div class="line"><a id="l00186" name="l00186"></a><span class="lineno"><a class="line" href="classPonca_1_1ProjectedNormalCovarianceCurvatureEstimator.html#a823f9f3df5a3ca963d9d6566a3576edc">  186</a></span><a class="code hl_class" href="classPonca_1_1ProjectedNormalCovarianceCurvatureEstimator.html">ProjectedNormalCovarianceCurvatureEstimator&lt;DataPoint, _WFunctor, DiffType, T&gt;::init</a>(<span class="keyword">const</span> <a class="code hl_typedef" href="classPonca_1_1ProjectedNormalCovarianceCurvatureEstimator.html#a645e4fad5e3c4c22db03cb95727ce872">VectorType</a>&amp; _evalPos)</div>
+<div class="line"><a id="l00186" name="l00186"></a><span class="lineno"><a class="line" href="classPonca_1_1ProjectedNormalCovarianceCurvatureEstimator.html#ace3798318c6dfe544b294b5439b02099">  186</a></span><a class="code hl_class" href="classPonca_1_1ProjectedNormalCovarianceCurvatureEstimator.html">ProjectedNormalCovarianceCurvatureEstimator&lt;DataPoint, _WFunctor, DiffType, T&gt;::init</a>()</div>
 <div class="line"><a id="l00187" name="l00187"></a><span class="lineno">  187</span>{</div>
-<div class="line"><a id="l00188" name="l00188"></a><span class="lineno">  188</span>    Base::init(_evalPos);</div>
+<div class="line"><a id="l00188" name="l00188"></a><span class="lineno">  188</span>    Base::init();</div>
 <div class="line"><a id="l00189" name="l00189"></a><span class="lineno">  189</span> </div>
 <div class="line"><a id="l00190" name="l00190"></a><span class="lineno">  190</span>    m_cog = Vector2::Zero();</div>
 <div class="line"><a id="l00191" name="l00191"></a><span class="lineno">  191</span>    m_cov = Mat22::Zero();</div>
@@ -448,7 +448,7 @@ $(document).ready(function(){initNavTree('curvatureEstimation_8hpp_source.html',
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_695d95a8d8fbec601a248c0414764298.html">Ponca</a></li><li class="navelem"><a class="el" href="dir_ce16314fc45f8638543c5146aff64d4a.html">src</a></li><li class="navelem"><a class="el" href="dir_221133f19e4af6803e4ee7d78db21786.html">Fitting</a></li><li class="navelem"><b>curvatureEstimation.hpp</b></li>
-    <li class="footer">Generated on Fri Jul 11 2025 13:55:35 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
+    <li class="footer">Generated on Wed Jul 16 2025 11:46:02 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
   </ul>
 </div>
 </body>

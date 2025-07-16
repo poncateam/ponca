@@ -6,7 +6,7 @@ var searchData=
   ['deta_3',['deta',['../classPonca_1_1GLSDer.html#a0065b0f2ce27da66bca5fbea19d02dc5',1,'Ponca::GLSDer']]],
   ['deta_5fnormalized_4',['deta_normalized',['../classPonca_1_1GLSDer.html#a9432273d0901462c435363ec0e11a114',1,'Ponca::GLSDer']]],
   ['df_5',['df',['../classPonca_1_1ConstantWeightKernel.html#a2f513250c25690f2bca60f0a85a9b503',1,'Ponca::ConstantWeightKernel::df()'],['../classPonca_1_1SmoothWeightKernel.html#a0809c76f8efe18ac00756717eb1487ff',1,'Ponca::SmoothWeightKernel::df()'],['../classPonca_1_1PolynomialSmoothWeightKernel.html#a57638efcd9b72fa08be0b3a9ff385e47',1,'Ponca::PolynomialSmoothWeightKernel::df()'],['../classPonca_1_1WendlandWeightKernel.html#acad25024f6a75c79edfc20717a772c37',1,'Ponca::WendlandWeightKernel::df()'],['../classPonca_1_1SingularWeightKernel.html#a2c94bf86ef5ba090000d51cd5c719cfb',1,'Ponca::SingularWeightKernel::df()'],['../classPonca_1_1CompactExpWeightKernel.html#af814c8639d6ab82a9db30ea9e3e01973',1,'Ponca::CompactExpWeightKernel::df()']]],
-  ['distweightfunc_6',['DistWeightFunc',['../classPonca_1_1DistWeightFunc.html#a10dad373d1412d0ae669f2459aade80a',1,'Ponca::DistWeightFunc']]],
+  ['distweightfunc_6',['DistWeightFunc',['../classPonca_1_1DistWeightFunc.html#a3c1c1d4bab9cb7d98ccbdc9317f172a8',1,'Ponca::DistWeightFunc']]],
   ['dkappa_7',['dkappa',['../classPonca_1_1GLSDer.html#a8de7954673b1012d9ddbe02ade8478d6',1,'Ponca::GLSDer']]],
   ['dkappa_5fnormalized_8',['dkappa_normalized',['../classPonca_1_1GLSDer.html#ab04c75763861d4719f9ef90e29cb42b9',1,'Ponca::GLSDer']]],
   ['dmeannormal_9',['dMeanNormal',['../classPonca_1_1MeanNormalDer.html#a550decc71a634f9607363020c4f0b6ca',1,'Ponca::MeanNormalDer']]],

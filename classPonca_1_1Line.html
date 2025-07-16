@@ -51,7 +51,7 @@ MathJax.Hub.Config({
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Ponca
-   &#160;<span id="projectnumber">a3bcca651499c602bd353676d4b50af3643c4cad</span>
+   &#160;<span id="projectnumber">e0adfc6189000758e4f451f25cc5587b9620e968</span>
    </div>
    <div id="projectbrief">Point Cloud Analysis library</div>
   </td>
@@ -167,9 +167,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:aaddf681edbd030ca33492f1cd1f5f84a" id="r_aaddf681edbd030ca33492f1cd1f5f84a"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="classPonca_1_1Line.html">Line</a>&lt; DataPoint, _WFunctor, T &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1Line.html#aaddf681edbd030ca33492f1cd1f5f84a">line</a> () const</td></tr>
 <tr class="memdesc:aaddf681edbd030ca33492f1cd1f5f84a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Explicit conversion to <a class="el" href="classPonca_1_1Line.html" title="A parametrized line is defined by an origin point  and a unit direction vector  such that the line co...">Line</a> , to access methods potentially hidden by heritage.  <br /></td></tr>
 <tr class="separator:aaddf681edbd030ca33492f1cd1f5f84a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8ad80a68b6de494b50499127c0eb69ff" id="r_a8ad80a68b6de494b50499127c0eb69ff"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1Line.html#a8ad80a68b6de494b50499127c0eb69ff">init</a> (const <a class="el" href="classPonca_1_1Line.html#a423e9d0178e924d62143af82dcf644ca">VectorType</a> &amp;_basisCenter=VectorType::Zero())</td></tr>
-<tr class="memdesc:a8ad80a68b6de494b50499127c0eb69ff"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the scalar field values to 0 and reset the distance() and origin() status.  <br /></td></tr>
-<tr class="separator:a8ad80a68b6de494b50499127c0eb69ff"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a134153ca383f34fb4c705e545093a7b5" id="r_a134153ca383f34fb4c705e545093a7b5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1Line.html#a134153ca383f34fb4c705e545093a7b5">init</a> ()</td></tr>
+<tr class="memdesc:a134153ca383f34fb4c705e545093a7b5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the scalar field values to 0 and reset the distance() and origin() status.  <br /></td></tr>
+<tr class="separator:a134153ca383f34fb4c705e545093a7b5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a398ea691c79a3a5cf8e7610109f2bfae" id="r_a398ea691c79a3a5cf8e7610109f2bfae"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1Line.html#a398ea691c79a3a5cf8e7610109f2bfae">isValid</a> () const</td></tr>
 <tr class="memdesc:a398ea691c79a3a5cf8e7610109f2bfae"><td class="mdescLeft">&#160;</td><td class="mdescRight">Tell if the line as been correctly set. Used to set CONFLICT_ERROR_FOUND during fitting.  <br /></td></tr>
 <tr class="separator:a398ea691c79a3a5cf8e7610109f2bfae"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -352,8 +352,8 @@ template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a id="a8ad80a68b6de494b50499127c0eb69ff" name="a8ad80a68b6de494b50499127c0eb69ff"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a8ad80a68b6de494b50499127c0eb69ff">&#9670;&#160;</a></span>init()</h2>
+<a id="a134153ca383f34fb4c705e545093a7b5" name="a134153ca383f34fb4c705e545093a7b5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a134153ca383f34fb4c705e545093a7b5">&#9670;&#160;</a></span>init()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -366,8 +366,7 @@ template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
         <tr>
           <td class="memname">void <a class="el" href="classPonca_1_1Line.html">Ponca::Line</a>&lt; DataPoint, _WFunctor, T &gt;::init </td>
           <td>(</td>
-          <td class="paramtype">const <a class="el" href="classPonca_1_1Line.html#a423e9d0178e924d62143af82dcf644ca">VectorType</a> &amp;&#160;</td>
-          <td class="paramname"><em>_basisCenter</em> = <code>VectorType::Zero()</code></td><td>)</td>
+          <td class="paramname"></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -410,7 +409,7 @@ template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
 </div><div class="memdoc">
 
 <p>Tell if the line as been correctly set. Used to set CONFLICT_ERROR_FOUND during fitting. </p>
-<dl class="section return"><dt>Returns</dt><dd>false when called straight after <a class="el" href="classPonca_1_1Line.html#a8ad80a68b6de494b50499127c0eb69ff" title="Set the scalar field values to 0 and reset the distance() and origin() status.">init</a>. Should be true after fitting </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>false when called straight after <a class="el" href="classPonca_1_1Line.html#a134153ca383f34fb4c705e545093a7b5" title="Set the scalar field values to 0 and reset the distance() and origin() status.">init</a>. Should be true after fitting </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="linePrimitive_8h_source.html#l00067">67</a> of file <a class="el" href="linePrimitive_8h_source.html">linePrimitive.h</a>.</p>
 
@@ -694,7 +693,7 @@ template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="namespacePonca.html">Ponca</a></li><li class="navelem"><a class="el" href="classPonca_1_1Line.html">Line</a></li>
-    <li class="footer">Generated on Fri Jul 11 2025 13:55:35 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
+    <li class="footer">Generated on Wed Jul 16 2025 11:46:02 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
   </ul>
 </div>
 </body>

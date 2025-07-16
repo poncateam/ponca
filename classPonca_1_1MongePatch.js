@@ -7,7 +7,7 @@ var classPonca_1_1MongePatch =
     [ "addLocalNeighbor", "classPonca_1_1MongePatch.html#a2eb2b79fc90ed59b2f6c3cb07d21249a", null ],
     [ "finalize", "classPonca_1_1MongePatch.html#a772867de5a6a396bb51ee6add816cdae", null ],
     [ "GaussianCurvature", "classPonca_1_1MongePatch.html#a16025aa98336fd14c49ed0c473c0cb70", null ],
-    [ "init", "classPonca_1_1MongePatch.html#ac04375f5c955bd380dda7a16559700a2", null ],
+    [ "init", "classPonca_1_1MongePatch.html#adaf0f74d1b8946c309339372f9be09cb", null ],
     [ "kMean", "classPonca_1_1MongePatch.html#a577334b5f0eb551c969135e70b1d849e", null ],
     [ "mongePatch", "classPonca_1_1MongePatch.html#a020fbb64c05383e635b8ab7fada98898", null ],
     [ "mongePatch", "classPonca_1_1MongePatch.html#ab69a336803c0200d21ee126ad18790e5", null ],

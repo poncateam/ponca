@@ -15,7 +15,7 @@ var classPonca_1_1ProjectedNormalCovarianceCurvatureEstimator =
     ] ],
     [ "addLocalNeighbor", "classPonca_1_1ProjectedNormalCovarianceCurvatureEstimator.html#a64f7094e63575105ad0df959145c35d1", null ],
     [ "finalize", "classPonca_1_1ProjectedNormalCovarianceCurvatureEstimator.html#a08f4188e75e437d0a44dd4a1013d5ce5", null ],
-    [ "init", "classPonca_1_1ProjectedNormalCovarianceCurvatureEstimator.html#a823f9f3df5a3ca963d9d6566a3576edc", null ],
+    [ "init", "classPonca_1_1ProjectedNormalCovarianceCurvatureEstimator.html#ace3798318c6dfe544b294b5439b02099", null ],
     [ "projectedNormalCovarianceCurvature", "classPonca_1_1ProjectedNormalCovarianceCurvatureEstimator.html#aebcbf0a12a3bfbce85aa6b92c15e58b4", null ],
     [ "projectedNormalCovarianceCurvature", "classPonca_1_1ProjectedNormalCovarianceCurvatureEstimator.html#a2dc52674aedd5d008fb6a7268894baa1", null ],
     [ "m_cog", "classPonca_1_1ProjectedNormalCovarianceCurvatureEstimator.html#a6daee7277c930ef63642d00494152263", null ],

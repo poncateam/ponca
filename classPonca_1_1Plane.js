@@ -8,7 +8,7 @@ var classPonca_1_1Plane =
     [ "Plane", "classPonca_1_1Plane.html#a588a8ed4bc3185aba32021d409ddd380", null ],
     [ "compactPlane", "classPonca_1_1Plane.html#a6a57e3f4ec93d16f08fa60f6da0d38fe", null ],
     [ "compactPlane", "classPonca_1_1Plane.html#a089d075e29588c195601dacad6e81d34", null ],
-    [ "init", "classPonca_1_1Plane.html#ae4c6696fa815a6cfc3864e9f7b33d9a3", null ],
+    [ "init", "classPonca_1_1Plane.html#a6567c2da10ef8af9530134c18b5ec55b", null ],
     [ "isValid", "classPonca_1_1Plane.html#a8c7b6fdadc393bebdc3c436794f0acb2", null ],
     [ "operator!=", "classPonca_1_1Plane.html#ad1a40b2bd6aab48a8e0ca3e32d7d02ce", null ],
     [ "plane", "classPonca_1_1Plane.html#a025279b05ed71d76eb59fe210b55c9fb", null ],

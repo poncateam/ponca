@@ -31,7 +31,7 @@ var searchData=
   ['difftype_28',['DiffType',['../namespacePonca.html#a7beaddc698523e7f9c041ea8bc4c535a',1,'Ponca']]],
   ['dim_29',['Dim',['../classPonca_1_1MlsSphereFitDer.html#ab3c6380d45893bca49f9e5a8875cf3c5a38a7dfbdf6aa4eea7c5ae9e9823aec0f',1,'Ponca::MlsSphereFitDer']]],
   ['directives_30',['Include directives',['../fitting.html#fitting_codeStructure',1,'']]],
-  ['distweightfunc_31',['distweightfunc',['../classPonca_1_1DistWeightFunc.html',1,'Ponca::DistWeightFunc&lt; DataPoint, WeightKernel &gt;'],['../classPonca_1_1DistWeightFunc.html#a10dad373d1412d0ae669f2459aade80a',1,'Ponca::DistWeightFunc::DistWeightFunc()']]],
+  ['distweightfunc_31',['distweightfunc',['../classPonca_1_1DistWeightFunc.html',1,'Ponca::DistWeightFunc&lt; DataPoint, WeightKernel &gt;'],['../classPonca_1_1DistWeightFunc.html#a3c1c1d4bab9cb7d98ccbdc9317f172a8',1,'Ponca::DistWeightFunc::DistWeightFunc()']]],
   ['dkappa_32',['dkappa',['../classPonca_1_1GLSDer.html#a8de7954673b1012d9ddbe02ade8478d6',1,'Ponca::GLSDer']]],
   ['dkappa_5fnormalized_33',['dkappa_normalized',['../classPonca_1_1GLSDer.html#ab04c75763861d4719f9ef90e29cb42b9',1,'Ponca::GLSDer']]],
   ['dmeannormal_34',['dMeanNormal',['../classPonca_1_1MeanNormalDer.html#a550decc71a634f9607363020c4f0b6ca',1,'Ponca::MeanNormalDer']]],

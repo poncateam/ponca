@@ -11,6 +11,6 @@ var classPonca_1_1CovarianceFitDer =
     [ "covarianceFitDer", "classPonca_1_1CovarianceFitDer.html#a79cd564d9b4ba579d68d0a42c3a695df", null ],
     [ "covarianceFitDer", "classPonca_1_1CovarianceFitDer.html#ac835669815f79ceff0054d09ae97f6c3", null ],
     [ "finalize", "classPonca_1_1CovarianceFitDer.html#ac6363c1c537d25d38da46846b7341126", null ],
-    [ "init", "classPonca_1_1CovarianceFitDer.html#ae557b51c2f349aa1b8ed547252bef5fb", null ],
+    [ "init", "classPonca_1_1CovarianceFitDer.html#ade4d2c6a72e0d6c7504d728891be1ca6", null ],
     [ "m_dCov", "classPonca_1_1CovarianceFitDer.html#a16d3c5963523c995a77728a22f6c0e5d", null ]
 ];

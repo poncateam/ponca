@@ -4,7 +4,7 @@ var classPonca_1_1NoWeightFunc =
     [ "Scalar", "classPonca_1_1NoWeightFunc.html#af57f8fe8251c3ed53519076b9683cf8e", null ],
     [ "VectorType", "classPonca_1_1NoWeightFunc.html#ab2b253323bed99d433a65847e89bcffb", null ],
     [ "WeightReturnType", "classPonca_1_1NoWeightFunc.html#acbd705ad1001d0ceb8d5495df531f8c9", null ],
-    [ "NoWeightFunc", "classPonca_1_1NoWeightFunc.html#a17d0e922dfec7299707fe5f3e92b20c3", null ],
+    [ "NoWeightFunc", "classPonca_1_1NoWeightFunc.html#a7abc496f92887a14d3f8a86c3aca05fe", null ],
     [ "convertToLocalBasis", "classPonca_1_1NoWeightFunc.html#a8fd5d416a44753e10fb7242aa50c2ef1", null ],
     [ "init", "classPonca_1_1NoWeightFunc.html#aacec47e4267aa242f152405fc0aa2766", null ],
     [ "scaled2w", "classPonca_1_1NoWeightFunc.html#a0be164099dea9dd56903d15bbfd79d27", null ],

@@ -51,7 +51,7 @@ MathJax.Hub.Config({
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Ponca
-   &#160;<span id="projectnumber">a3bcca651499c602bd353676d4b50af3643c4cad</span>
+   &#160;<span id="projectnumber">e0adfc6189000758e4f451f25cc5587b9620e968</span>
    </div>
    <div id="projectbrief">Point Cloud Analysis library</div>
   </td>
@@ -197,10 +197,9 @@ $(document).ready(function(){initNavTree('example_cxx_basic_page.html',''); init
 <div class="line">  Scalar tmax = 100.0;</div>
 <div class="line"> </div>
 <div class="line">  <span class="comment">// Set a weighting function instance</span></div>
-<div class="line">  _fit.setWeightFunc(WeightFunc(tmax));</div>
+<div class="line">  _fit.setWeightFunc(WeightFunc(_p, tmax));</div>
 <div class="line"> </div>
-<div class="line">  <span class="comment">// Set the evaluation position</span></div>
-<div class="line">  _fit.init(_p);</div>
+<div class="line">  _fit.init();</div>
 <div class="line"> </div>
 <div class="line">  <span class="comment">// Iterate over samples and _fit the primitive</span></div>
 <div class="line">  <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i : tree.range_neighbors(_p, tmax) )</div>
@@ -282,9 +281,9 @@ $(document).ready(function(){initNavTree('example_cxx_basic_page.html',''); init
 <div class="line"> </div>
 <div class="line">  <span class="keywordflow">return</span> 0;</div>
 <div class="line">}</div>
-<div class="ttc" id="aclassPonca_1_1BasketDiff_html"><div class="ttname"><a href="classPonca_1_1BasketDiff.html">Ponca::BasketDiff</a></div><div class="ttdoc">Aggregator class used to declare specialized structures with derivatives computations,...</div><div class="ttdef"><b>Definition</b> <a href="basket_8h_source.html#l00153">basket.h:153</a></div></div>
-<div class="ttc" id="aclassPonca_1_1Basket_html"><div class="ttname"><a href="classPonca_1_1Basket.html">Ponca::Basket</a></div><div class="ttdoc">Aggregator class used to declare specialized structures using CRTP.</div><div class="ttdef"><b>Definition</b> <a href="basket_8h_source.html#l00210">basket.h:211</a></div></div>
-<div class="ttc" id="aclassPonca_1_1Basket_html_acde7a093c64aad976988dc8207930c74"><div class="ttname"><a href="classPonca_1_1Basket.html#acde7a093c64aad976988dc8207930c74">Ponca::Basket::addNeighbor</a></div><div class="ttdeci">bool addNeighbor(const DataPoint &amp;_nei)</div><div class="ttdoc">Add a neighbor to perform the fit.</div><div class="ttdef"><b>Definition</b> <a href="basket_8h_source.html#l00232">basket.h:232</a></div></div>
+<div class="ttc" id="aclassPonca_1_1BasketDiff_html"><div class="ttname"><a href="classPonca_1_1BasketDiff.html">Ponca::BasketDiff</a></div><div class="ttdoc">Aggregator class used to declare specialized structures with derivatives computations,...</div><div class="ttdef"><b>Definition</b> <a href="basket_8h_source.html#l00155">basket.h:155</a></div></div>
+<div class="ttc" id="aclassPonca_1_1Basket_html"><div class="ttname"><a href="classPonca_1_1Basket.html">Ponca::Basket</a></div><div class="ttdoc">Aggregator class used to declare specialized structures using CRTP.</div><div class="ttdef"><b>Definition</b> <a href="basket_8h_source.html#l00212">basket.h:213</a></div></div>
+<div class="ttc" id="aclassPonca_1_1Basket_html_acde7a093c64aad976988dc8207930c74"><div class="ttname"><a href="classPonca_1_1Basket.html#acde7a093c64aad976988dc8207930c74">Ponca::Basket::addNeighbor</a></div><div class="ttdeci">bool addNeighbor(const DataPoint &amp;_nei)</div><div class="ttdoc">Add a neighbor to perform the fit.</div><div class="ttdef"><b>Definition</b> <a href="basket_8h_source.html#l00234">basket.h:234</a></div></div>
 <div class="ttc" id="aclassPonca_1_1DistWeightFunc_html"><div class="ttname"><a href="classPonca_1_1DistWeightFunc.html">Ponca::DistWeightFunc</a></div><div class="ttdoc">Weighting function based on the euclidean distance between a query and a reference position.</div><div class="ttdef"><b>Definition</b> <a href="weightFunc_8h_source.html#l00028">weightFunc.h:29</a></div></div>
 <div class="ttc" id="anamespacePonca_html"><div class="ttname"><a href="namespacePonca.html">Ponca</a></div><div class="ttdoc">This Source Code Form is subject to the terms of the Mozilla Public License, v.</div><div class="ttdef"><b>Definition</b> <a href="limitedPriorityQueue_8h_source.html#l00014">limitedPriorityQueue.h:14</a></div></div>
 <div class="ttc" id="astructPonca_1_1KdTreeDense_html"><div class="ttname"><a href="structPonca_1_1KdTreeDense.html">Ponca::KdTreeDense</a></div><div class="ttdoc">[KdTree type definition]</div><div class="ttdef"><b>Definition</b> <a href="kdTree_8h_source.html#l00066">kdTree.h:66</a></div></div>
@@ -296,7 +295,7 @@ $(document).ready(function(){initNavTree('example_cxx_basic_page.html',''); init
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="example_page.html">Examples</a></li>
-    <li class="footer">Generated on Fri Jul 11 2025 13:55:35 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
+    <li class="footer">Generated on Wed Jul 16 2025 11:46:02 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
   </ul>
 </div>
 </body>

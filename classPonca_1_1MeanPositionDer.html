@@ -51,7 +51,7 @@ MathJax.Hub.Config({
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Ponca
-   &#160;<span id="projectnumber">a3bcca651499c602bd353676d4b50af3643c4cad</span>
+   &#160;<span id="projectnumber">e0adfc6189000758e4f451f25cc5587b9620e968</span>
    </div>
    <div id="projectbrief">Point Cloud Analysis library</div>
   </td>
@@ -166,9 +166,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a167ec7be6f06a15ae67b6826f295a070" id="r_a167ec7be6f06a15ae67b6826f295a070"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="classPonca_1_1MeanPositionDer.html">MeanPositionDer</a>&lt; DataPoint, _WFunctor, <a class="el" href="namespacePonca.html#a7beaddc698523e7f9c041ea8bc4c535a">DiffType</a>, T &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1MeanPositionDer.html#a167ec7be6f06a15ae67b6826f295a070">meanPositionDer</a> () const</td></tr>
 <tr class="memdesc:a167ec7be6f06a15ae67b6826f295a070"><td class="mdescLeft">&#160;</td><td class="mdescRight">Explicit conversion to <a class="el" href="classPonca_1_1MeanPositionDer.html">MeanPositionDer</a> , to access methods potentially hidden by heritage.  <br /></td></tr>
 <tr class="separator:a167ec7be6f06a15ae67b6826f295a070"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9623863a25f3cb41c1004d590f45ad0f" id="r_a9623863a25f3cb41c1004d590f45ad0f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1MeanPositionDer.html#a9623863a25f3cb41c1004d590f45ad0f">init</a> (const <a class="el" href="classPonca_1_1MeanPositionDer.html#aa64da7c72ed2b4e3e61eaf8fb436077a">VectorType</a> &amp;_evalPos)</td></tr>
-<tr class="memdesc:a9623863a25f3cb41c1004d590f45ad0f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the evaluation position and reset the internal states.  <br /></td></tr>
-<tr class="separator:a9623863a25f3cb41c1004d590f45ad0f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a752b00a83af5406d8a4b1f2ae7cfe2b0" id="r_a752b00a83af5406d8a4b1f2ae7cfe2b0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1MeanPositionDer.html#a752b00a83af5406d8a4b1f2ae7cfe2b0">init</a> ()</td></tr>
+<tr class="memdesc:a752b00a83af5406d8a4b1f2ae7cfe2b0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the evaluation position and reset the internal states.  <br /></td></tr>
+<tr class="separator:a752b00a83af5406d8a4b1f2ae7cfe2b0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aceb327a7022a1edbb95c9954742d025e" id="r_aceb327a7022a1edbb95c9954742d025e"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1MeanPositionDer.html#aceb327a7022a1edbb95c9954742d025e">addLocalNeighbor</a> (<a class="el" href="classPonca_1_1MeanPositionDer.html#a706ae35e198ee9e1bd9fd67590f80702">Scalar</a> w, const <a class="el" href="classPonca_1_1MeanPositionDer.html#aa64da7c72ed2b4e3e61eaf8fb436077a">VectorType</a> &amp;localQ, const DataPoint &amp;attributes, <a class="el" href="classPonca_1_1MeanPositionDer.html#a0fae2778f05711f906b5021b805b1780">ScalarArray</a> &amp;dw)</td></tr>
 <tr class="memdesc:aceb327a7022a1edbb95c9954742d025e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Add a neighbor to perform the fit.  <br /></td></tr>
 <tr class="separator:aceb327a7022a1edbb95c9954742d025e"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -453,8 +453,8 @@ Step-by-step derivation from the barycenter definition</h3>
 
 </div>
 </div>
-<a id="a9623863a25f3cb41c1004d590f45ad0f" name="a9623863a25f3cb41c1004d590f45ad0f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a9623863a25f3cb41c1004d590f45ad0f">&#9670;&#160;</a></span>init()</h2>
+<a id="a752b00a83af5406d8a4b1f2ae7cfe2b0" name="a752b00a83af5406d8a4b1f2ae7cfe2b0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a752b00a83af5406d8a4b1f2ae7cfe2b0">&#9670;&#160;</a></span>init()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -467,8 +467,7 @@ template&lt;class DataPoint , class _WFunctor , int DiffType, typename T &gt; </
         <tr>
           <td class="memname">void MeanPositionDer::init </td>
           <td>(</td>
-          <td class="paramtype">const <a class="el" href="classPonca_1_1MeanPositionDer.html#aa64da7c72ed2b4e3e61eaf8fb436077a">VectorType</a> &amp;&#160;</td>
-          <td class="paramname"><em>_evalPos</em></td><td>)</td>
+          <td class="paramname"></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -583,7 +582,7 @@ template&lt;class DataPoint , class _WFunctor , int DiffType, typename T &gt; </
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="namespacePonca.html">Ponca</a></li><li class="navelem"><a class="el" href="classPonca_1_1MeanPositionDer.html">MeanPositionDer</a></li>
-    <li class="footer">Generated on Fri Jul 11 2025 13:55:35 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
+    <li class="footer">Generated on Wed Jul 16 2025 11:46:02 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
   </ul>
 </div>
 </body>

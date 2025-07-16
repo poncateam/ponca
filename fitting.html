@@ -51,7 +51,7 @@ MathJax.Hub.Config({
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Ponca
-   &#160;<span id="projectnumber">a3bcca651499c602bd353676d4b50af3643c4cad</span>
+   &#160;<span id="projectnumber">e0adfc6189000758e4f451f25cc5587b9620e968</span>
    </div>
    <div id="projectbrief">Point Cloud Analysis library</div>
   </td>
@@ -159,12 +159,12 @@ Design choices and programing techniques</h2>
 <p>Because of some properties of the C++ language, our classes does not inherit from a <code>Base</code> interface defining the API, but rather follows concepts, as described in <a class="el" href="fitting_concepts.html">Fitting module: Concepts</a>.</p>
 <h2><a class="anchor" id="fitting_primitiveOverview"></a>
 Fitting primitives and compute neighborhood properties</h2>
-<p>The fitting module provides a unified API to perform computations (e.g. fit a <a class="el" href="classPonca_1_1PrimitiveBase.html">Primitive</a>, compute geometrical properties such as <a class="el" href="classPonca_1_1CurvatureEstimatorBase.html">Curvatures</a>) over the neighborhood of a given point. The type of computation is controlled by a type (called <code>Fit</code> in the example below) defined by the user by combining computational components offered in this module. Given an object of type <code>Fit</code>, the client code will always looks as follows: </p><div class="fragment"><div class="line">Fit fit;                          <span class="comment">// Create the user-defined fitting procedure</span></div>
-<div class="line">fit.setWeightFunc(WeightFunc(t)); <span class="comment">// Set a weighting function to weight neighbors</span></div>
-<div class="line">fit.init(p);                      <span class="comment">// Set the evaluation position</span></div>
+<p>The fitting module provides a unified API to perform computations (e.g. fit a <a class="el" href="classPonca_1_1PrimitiveBase.html">Primitive</a>, compute geometrical properties such as <a class="el" href="classPonca_1_1CurvatureEstimatorBase.html">Curvatures</a>) over the neighborhood of a given point. The type of computation is controlled by a type (called <code>Fit</code> in the example below) defined by the user by combining computational components offered in this module. Given an object of type <code>Fit</code>, the client code will always looks as follows: </p><div class="fragment"><div class="line">Fit fit;                             <span class="comment">// Create the user-defined fitting procedure</span></div>
+<div class="line">fit.init();                          <span class="comment">// Initialize internal state</span></div>
+<div class="line">fit.setWeightFunc(WeightFunc(p, t)); <span class="comment">// Set a weighting function to weight neighbors from a reference point p</span></div>
 <div class="line"><span class="keywordflow">for</span>(<span class="keyword">auto</span>&amp; it = vecs.begin(); it != vecs.end(); it++)</div>
-<div class="line">  fit.addNeighbor(*it);           <span class="comment">// Traverse neighborhood</span></div>
-<div class="line">fit.finalize();                   <span class="comment">// Finalize computations</span></div>
+<div class="line">  fit.addNeighbor(*it);              <span class="comment">// Traverse neighborhood</span></div>
+<div class="line">fit.finalize();                      <span class="comment">// Finalize computations</span></div>
 </div><!-- fragment --><p>Once computations are done, the <code>Fit</code> object provides both getters to the neighborhood properties (e.g. estimated curvature), and procedures (e.g. projection operator onto the fitted primitive): </p><div class="fragment"><div class="line">cout &lt;&lt; <span class="stringliteral">&quot;Estimated mean curvature: &quot;</span> &lt;&lt; fit.kMean()        &lt;&lt; <span class="stringliteral">&quot;\n&quot;</span></div>
 <div class="line">     &lt;&lt; <span class="stringliteral">&quot;The initial point &quot;</span> &lt;&lt; p.transpose()              &lt;&lt; <span class="stringliteral">&quot;\n&quot;</span></div>
 <div class="line">     &lt;&lt; <span class="stringliteral">&quot;Is projected at   &quot;</span> &lt;&lt; fit.project(p).transpose() &lt;&lt; endl;</div>
@@ -253,18 +253,16 @@ Definition of the Fitting object</h2>
 <h2><a class="anchor" id="fitting_Fitting"></a>
 Fitting Process</h2>
 <p>At this point, most of the hard job has already been performed. All we have to do now is to provide an instance of the weight function, where \(t\) refers to the neighborhood size, and initiate the fit at an arbitrary position \(\mathbf{p}\). </p><div class="fragment"><div class="line">        Fit fit1;</div>
-<div class="line">        fit1.setWeightFunc(WeightFunc(analysisScale));</div>
-<div class="line">        fit1.init(fitInitPos);</div>
+<div class="line">        fit1.setWeightFunc(WeightFunc(fitInitPos, analysisScale));</div>
+<div class="line">        fit1.init();</div>
 <div class="line">        <span class="keywordflow">for</span>(<span class="keyword">auto</span> it = vectorPoints.begin(); it != vectorPoints.end(); ++it)</div>
 <div class="line">           fit1.addNeighbor(*it);</div>
 <div class="line">        fit1.finalize();</div>
 </div><!-- fragment --><p>Then neighbors are added sequentially: in this example, we traverse a simple array, and samples outside of the neighborhood are automatically ignored by the weighting function. Once all neighbors have been incorporated, the fit is performed and results stored in the specialized <a class="el" href="classPonca_1_1Basket.html" title="Aggregator class used to declare specialized structures using CRTP.">Basket</a> object. STL-like iterators can be used directly for the fit by calling </p><div class="fragment"><div class="line">        Fit fit2;</div>
-<div class="line">        fit2.setWeightFunc(WeightFunc(analysisScale));</div>
-<div class="line">        fit2.init(fitInitPos);</div>
+<div class="line">        fit2.setWeightFunc(WeightFunc(fitInitPos, analysisScale));</div>
 <div class="line">        fit2.compute(vectorPoints);</div>
 </div><!-- fragment --><p>Spatial structures can be used to accelerate spatial queries. Consider for instance using the <a class="el" href="structPonca_1_1KdTree.html" title="Abstract KdTree type with KdTreeDefaultTraits.">KdTree</a> class with range queries: </p><div class="fragment"><div class="line">        Fit fit3;</div>
-<div class="line">        fit3.setWeightFunc(WeightFunc(analysisScale));</div>
-<div class="line">        fit3.init(fitInitPos);</div>
+<div class="line">        fit3.setWeightFunc(WeightFunc(fitInitPos, analysisScale));</div>
 <div class="line">        <span class="comment">// Sort fit1</span></div>
 <div class="line">        std::list&lt;int&gt; neighbors3;</div>
 <div class="line">        <span class="keywordflow">for</span> (<span class="keywordtype">int</span> iNeighbor : tree.range_neighbors(fitInitPos, analysisScale))</div>
@@ -469,7 +467,7 @@ Cuda</h2>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="user_manual_page.html">User Manual</a></li>
-    <li class="footer">Generated on Fri Jul 11 2025 13:55:35 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
+    <li class="footer">Generated on Wed Jul 16 2025 11:46:02 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
   </ul>
 </div>
 </body>

@@ -51,7 +51,7 @@ MathJax.Hub.Config({
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Ponca
-   &#160;<span id="projectnumber">a3bcca651499c602bd353676d4b50af3643c4cad</span>
+   &#160;<span id="projectnumber">e0adfc6189000758e4f451f25cc5587b9620e968</span>
    </div>
    <div id="projectbrief">Point Cloud Analysis library</div>
   </td>
@@ -168,9 +168,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a68599bba116fdf465c0323a8a1909b22" id="r_a68599bba116fdf465c0323a8a1909b22"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="classPonca_1_1CurvatureEstimatorBase.html">CurvatureEstimatorBase</a>&lt; DataPoint, _WFunctor, <a class="el" href="namespacePonca.html#a7beaddc698523e7f9c041ea8bc4c535a">DiffType</a>, T &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1CurvatureEstimatorBase.html#a68599bba116fdf465c0323a8a1909b22">curvatureEstimatorBase</a> () const</td></tr>
 <tr class="memdesc:a68599bba116fdf465c0323a8a1909b22"><td class="mdescLeft">&#160;</td><td class="mdescRight">Explicit conversion to <a class="el" href="classPonca_1_1CurvatureEstimatorBase.html" title="Base class for any 3d curvature estimator: holds ,  and associated vectors, such that .">CurvatureEstimatorBase</a> , to access methods potentially hidden by heritage.  <br /></td></tr>
 <tr class="separator:a68599bba116fdf465c0323a8a1909b22"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9c2a91ffddb543b96b19a5025fcf2818" id="r_a9c2a91ffddb543b96b19a5025fcf2818"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1CurvatureEstimatorBase.html#a9c2a91ffddb543b96b19a5025fcf2818">init</a> (const <a class="el" href="classPonca_1_1CurvatureEstimatorBase.html#af025c2c232dc1f09dd9cc16e3ae7efff">VectorType</a> &amp;_evalPos)</td></tr>
-<tr class="memdesc:a9c2a91ffddb543b96b19a5025fcf2818"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the evaluation position and reset the internal states.  <br /></td></tr>
-<tr class="separator:a9c2a91ffddb543b96b19a5025fcf2818"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a98e2592f8cd8c52800554504de3fca86" id="r_a98e2592f8cd8c52800554504de3fca86"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1CurvatureEstimatorBase.html#a98e2592f8cd8c52800554504de3fca86">init</a> ()</td></tr>
+<tr class="memdesc:a98e2592f8cd8c52800554504de3fca86"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the evaluation position and reset the internal states.  <br /></td></tr>
+<tr class="separator:a98e2592f8cd8c52800554504de3fca86"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aaecbd104c08bbaae29c284d4a1ec70a9" id="r_aaecbd104c08bbaae29c284d4a1ec70a9"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1CurvatureEstimatorBase.html#aaecbd104c08bbaae29c284d4a1ec70a9">isValid</a> () const</td></tr>
 <tr class="memdesc:aaecbd104c08bbaae29c284d4a1ec70a9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns true if contains valid curvature values (and not default ones)  <br /></td></tr>
 <tr class="separator:aaecbd104c08bbaae29c284d4a1ec70a9"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -443,8 +443,8 @@ template&lt;class DataPoint , class _WFunctor , int DiffType, typename T &gt; </
 
 </div>
 </div>
-<a id="a9c2a91ffddb543b96b19a5025fcf2818" name="a9c2a91ffddb543b96b19a5025fcf2818"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a9c2a91ffddb543b96b19a5025fcf2818">&#9670;&#160;</a></span>init()</h2>
+<a id="a98e2592f8cd8c52800554504de3fca86" name="a98e2592f8cd8c52800554504de3fca86"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a98e2592f8cd8c52800554504de3fca86">&#9670;&#160;</a></span>init()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -457,8 +457,7 @@ template&lt;class DataPoint , class _WFunctor , int DiffType, typename T &gt; </
         <tr>
           <td class="memname">void <a class="el" href="classPonca_1_1CurvatureEstimatorBase.html">Ponca::CurvatureEstimatorBase</a>&lt; DataPoint, _WFunctor, <a class="el" href="namespacePonca.html#a7beaddc698523e7f9c041ea8bc4c535a">DiffType</a>, T &gt;::init </td>
           <td>(</td>
-          <td class="paramtype">const <a class="el" href="classPonca_1_1CurvatureEstimatorBase.html#af025c2c232dc1f09dd9cc16e3ae7efff">VectorType</a> &amp;&#160;</td>
-          <td class="paramname"><em>_evalPos</em></td><td>)</td>
+          <td class="paramname"></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -723,7 +722,7 @@ template&lt;class DataPoint , class _WFunctor , int DiffType, typename T &gt; </
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="namespacePonca.html">Ponca</a></li><li class="navelem"><a class="el" href="classPonca_1_1CurvatureEstimatorBase.html">CurvatureEstimatorBase</a></li>
-    <li class="footer">Generated on Fri Jul 11 2025 13:55:35 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
+    <li class="footer">Generated on Wed Jul 16 2025 11:46:02 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
   </ul>
 </div>
 </body>
