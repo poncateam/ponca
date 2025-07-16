@@ -2,9 +2,9 @@
 #include <Eigen/SVD>
 #include <Eigen/Geometry>
 
-template < class DataPoint, class _WFunctor, typename T>
+template < class DataPoint, class _NFilter, typename T>
 void
-MongePatch<DataPoint, _WFunctor, T>::init()
+MongePatch<DataPoint, _NFilter, T>::init()
 {
     Base::init();
 
@@ -13,9 +13,9 @@ MongePatch<DataPoint, _WFunctor, T>::init()
     m_planeIsReady = false;
 }
 
-template < class DataPoint, class _WFunctor, typename T>
+template < class DataPoint, class _NFilter, typename T>
 bool
-MongePatch<DataPoint, _WFunctor, T>::addLocalNeighbor(Scalar w,
+MongePatch<DataPoint, _NFilter, T>::addLocalNeighbor(Scalar w,
                                                       const VectorType &localQ,
                                                       const DataPoint &attributes)
 {
@@ -41,9 +41,9 @@ MongePatch<DataPoint, _WFunctor, T>::addLocalNeighbor(Scalar w,
     return false;
 }
 
-template < class DataPoint, class _WFunctor, typename T>
+template < class DataPoint, class _NFilter, typename T>
 FIT_RESULT
-MongePatch<DataPoint, _WFunctor, T>::finalize ()
+MongePatch<DataPoint, _NFilter, T>::finalize ()
 {
     // end of the fitting process, check plane is ready
     if (! m_planeIsReady) {
@@ -68,9 +68,9 @@ MongePatch<DataPoint, _WFunctor, T>::finalize ()
     }
 }
 
-template < class DataPoint, class _WFunctor, typename T>
-typename MongePatch<DataPoint, _WFunctor, T>::Scalar
-MongePatch<DataPoint, _WFunctor, T>::kMean() const {
+template < class DataPoint, class _NFilter, typename T>
+typename MongePatch<DataPoint, _NFilter, T>::Scalar
+MongePatch<DataPoint, _NFilter, T>::kMean() const {
   PONCA_MULTIARCH_STD_MATH(pow);
   static const Scalar one (1);
   static const Scalar two (2);
@@ -79,9 +79,9 @@ MongePatch<DataPoint, _WFunctor, T>::kMean() const {
       (two * pow(one +pow(h_u(),two) + pow(h_v(),two),threeOverTwo));
 }
 
-template < class DataPoint, class _WFunctor, typename T>
-typename MongePatch<DataPoint, _WFunctor, T>::Scalar
-MongePatch<DataPoint, _WFunctor, T>::GaussianCurvature() const {
+template < class DataPoint, class _NFilter, typename T>
+typename MongePatch<DataPoint, _NFilter, T>::Scalar
+MongePatch<DataPoint, _NFilter, T>::GaussianCurvature() const {
     PONCA_MULTIARCH_STD_MATH(pow);
     static const Scalar one (1);
     static const Scalar two (2);

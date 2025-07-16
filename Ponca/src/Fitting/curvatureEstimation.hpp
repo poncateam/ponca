@@ -1,6 +1,6 @@
-﻿template < class DataPoint, class _WFunctor, int DiffType, typename T>
+﻿template < class DataPoint, class _NFilter, int DiffType, typename T>
 FIT_RESULT
-NormalDerivativesCurvatureEstimator<DataPoint, _WFunctor, DiffType, T>::finalize()
+NormalDerivativesCurvatureEstimator<DataPoint, _NFilter, DiffType, T>::finalize()
 {
     if (Base::finalize() == STABLE) {
         if (Base::curvatureEstimatorBase().isValid()) Base::m_eCurrentState = CONFLICT_ERROR_FOUND;
@@ -10,8 +10,8 @@ NormalDerivativesCurvatureEstimator<DataPoint, _WFunctor, DiffType, T>::finalize
     return Base::m_eCurrentState;
 }
 
-template < class DataPoint, class _WFunctor, int DiffType, typename T>
-FIT_RESULT NormalDerivativesCurvatureEstimator<DataPoint, _WFunctor, DiffType, T>::computeCurvature(bool useNormal)
+template < class DataPoint, class _NFilter, int DiffType, typename T>
+FIT_RESULT NormalDerivativesCurvatureEstimator<DataPoint, _NFilter, DiffType, T>::computeCurvature(bool useNormal)
 {
     PONCA_MULTIARCH_STD_MATH(abs);
 
@@ -50,9 +50,9 @@ FIT_RESULT NormalDerivativesCurvatureEstimator<DataPoint, _WFunctor, DiffType, T
     return Base::m_eCurrentState;
 }
 
-template < class DataPoint, class _WFunctor, int DiffType, typename T>
-typename NormalDerivativesCurvatureEstimator<DataPoint, _WFunctor, DiffType, T>::Mat32
-NormalDerivativesCurvatureEstimator<DataPoint, _WFunctor, DiffType, T>::tangentPlane(bool useNormal) const
+template < class DataPoint, class _NFilter, int DiffType, typename T>
+typename NormalDerivativesCurvatureEstimator<DataPoint, _NFilter, DiffType, T>::Mat32
+NormalDerivativesCurvatureEstimator<DataPoint, _NFilter, DiffType, T>::tangentPlane(bool useNormal) const
 {
     typedef typename VectorType::Index Index;
 
@@ -105,18 +105,18 @@ NormalDerivativesCurvatureEstimator<DataPoint, _WFunctor, DiffType, T>::tangentP
     return B;
 }
 
-template < class DataPoint, class _WFunctor, int DiffType, typename T>
+template < class DataPoint, class _NFilter, int DiffType, typename T>
 void
-NormalCovarianceCurvatureEstimator<DataPoint, _WFunctor, DiffType, T>::init()
+NormalCovarianceCurvatureEstimator<DataPoint, _NFilter, DiffType, T>::init()
 {
     Base::init();
     m_cov = MatrixType::Zero();
     m_cog = VectorType::Zero();
 }
 
-template < class DataPoint, class _WFunctor, int DiffType, typename T>
+template < class DataPoint, class _NFilter, int DiffType, typename T>
 bool
-NormalCovarianceCurvatureEstimator<DataPoint, _WFunctor, DiffType, T>::addLocalNeighbor
+NormalCovarianceCurvatureEstimator<DataPoint, _NFilter, DiffType, T>::addLocalNeighbor
         (Scalar w, const VectorType &localQ, const DataPoint &attributes, ScalarArray &dw)
 {
     if( Base::addLocalNeighbor(w, localQ, attributes, dw) )
@@ -128,9 +128,9 @@ NormalCovarianceCurvatureEstimator<DataPoint, _WFunctor, DiffType, T>::addLocalN
     return false;
 }
 
-template < class DataPoint, class _WFunctor, int DiffType, typename T>
+template < class DataPoint, class _NFilter, int DiffType, typename T>
 FIT_RESULT
-NormalCovarianceCurvatureEstimator<DataPoint, _WFunctor, DiffType, T>::finalize ()
+NormalCovarianceCurvatureEstimator<DataPoint, _NFilter, DiffType, T>::finalize ()
 {
     typedef typename VectorType::Index Index;
 
@@ -181,9 +181,9 @@ NormalCovarianceCurvatureEstimator<DataPoint, _WFunctor, DiffType, T>::finalize 
     return res;
 }
 
-template < class DataPoint, class _WFunctor, int DiffType, typename T>
+template < class DataPoint, class _NFilter, int DiffType, typename T>
 void
-ProjectedNormalCovarianceCurvatureEstimator<DataPoint, _WFunctor, DiffType, T>::init()
+ProjectedNormalCovarianceCurvatureEstimator<DataPoint, _NFilter, DiffType, T>::init()
 {
     Base::init();
 
@@ -193,9 +193,9 @@ ProjectedNormalCovarianceCurvatureEstimator<DataPoint, _WFunctor, DiffType, T>::
     m_tframe = Mat32::Zero();
 }
 
-template < class DataPoint, class _WFunctor, int DiffType, typename T>
+template < class DataPoint, class _NFilter, int DiffType, typename T>
 bool
-ProjectedNormalCovarianceCurvatureEstimator<DataPoint, _WFunctor, DiffType, T>::addLocalNeighbor
+ProjectedNormalCovarianceCurvatureEstimator<DataPoint, _NFilter, DiffType, T>::addLocalNeighbor
         (Scalar w, const VectorType &localQ, const DataPoint &attributes, ScalarArray &dw)
 {
     if(m_pass == FIRST_PASS)
@@ -215,9 +215,9 @@ ProjectedNormalCovarianceCurvatureEstimator<DataPoint, _WFunctor, DiffType, T>::
     return false;
 }
 
-template < class DataPoint, class _WFunctor, int DiffType, typename T>
+template < class DataPoint, class _NFilter, int DiffType, typename T>
 FIT_RESULT
-ProjectedNormalCovarianceCurvatureEstimator<DataPoint, _WFunctor, DiffType, T>::finalize ()
+ProjectedNormalCovarianceCurvatureEstimator<DataPoint, _NFilter, DiffType, T>::finalize ()
 {
     if(m_pass == FIRST_PASS)
     {

@@ -151,7 +151,7 @@ public:
     as base class (through the Basket). As a result, this class first asks to
     compute the Fit, and if it works properly, compute the weight derivatives.
  */
-template < class DataPoint, class _WFunctor, int Type, typename T>
+template < class DataPoint, class _NFilter, int Type, typename T>
 class PrimitiveDer : public T
 {
 private:
