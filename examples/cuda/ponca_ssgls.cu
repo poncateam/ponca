@@ -358,7 +358,7 @@ __global__ void doGLS_kernel( int _imgw, int _imgh, int _scale,
 
     ScreenSpaceFit fit;
     fit.init();
-    fit.setWeightFunc(ProjectedWeightFunc(getVector(x, y, _imgw, _imgh, _positions) * 2.f - one, _scale, _maxDepthDiff));
+    fit.setNeighborFilter(ProjectedWeightFunc(getVector(x, y, _imgw, _imgh, _positions) * 2.f - one, _scale, _maxDepthDiff));
 
     _result[idx] = 0.f;
 
