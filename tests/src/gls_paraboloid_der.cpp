@@ -243,7 +243,7 @@ void callSubTests()
 {
     typedef long double RefScalar;
     typedef PointPositionNormal<RefScalar, 3> RefPoint;
-    typedef DistWeightFunc<RefPoint, SmoothWeightKernel<RefScalar> > RefWeightFunc;
+    typedef DistWeightFunc<RefPoint, SmoothWeightKernel<RefScalar> > RefNeighborFilter;
 
     typedef ScalarPrecisionCheck<Scalar,RefScalar> TestScalar;
     TestScalar::check_enabled = false; // set it to true to track diverging computations
