@@ -5,8 +5,8 @@
 */
 
 /*!
-    \file test/Grenaille/dnormal_plane.cpp
-    \brief Test validity of dnormal
+    \file test/barycenter.cpp
+    \brief Test validity of Global and Local Weight Func
  */
 
 #include "../common/testing.h"
@@ -21,7 +21,7 @@
 
 using namespace std;
 
-template<typename DataPoint, typename FitA, typename FitB, typename WeightFuncA, typename WeightFuncB> //, typename Fit, typename WeightFunction>
+template<typename DataPoint, typename FitA, typename FitB, typename WeightFuncA, typename WeightFuncB>
 void compareFit(bool _bAddPositionNoise = false, bool /*_bAddNormalNoise */= false)
 {
     // Define related structure
@@ -31,24 +31,26 @@ void compareFit(bool _bAddPositionNoise = false, bool /*_bAddNormalNoise */= fal
 
     Scalar radius = Eigen::internal::random<Scalar>(1., 10.);
     int nbPoints = Eigen::internal::random<int>(100, 1000);
-    Scalar analysisScale = Scalar(10.) * std::sqrt( Scalar(4. * M_PI) * radius * radius / nbPoints);
     Scalar centerScale = Eigen::internal::random<Scalar>(1,10000);
     VectorType center = VectorType::Random() * centerScale;
 
     std::vector<DataPoint> vectorPoints(nbPoints);
     for(unsigned int i = 0; i < vectorPoints.size(); ++i)
-    {
         vectorPoints[i] = getPointOnSphere<DataPoint>(radius, center, false, false, false);
-    }
 
     FitA fitA;
     FitB fitB;
-    fitA.setNeighborFilter(WeightFuncA(VectorType::Zero(), analysisScale));
-    fitB.setNeighborFilter(WeightFuncB(VectorType::Zero(), analysisScale));
+    fitA.setNeighborFilter(WeightFuncA(center, radius));
+    fitB.setNeighborFilter(WeightFuncB(center, radius));
     fitA.compute(vectorPoints);
     fitB.compute(vectorPoints);
-    std::cout << fitA.barycenter().transpose() << std::endl; // Should be equal to center
-    std::cout << fitB.barycenter().transpose() << std::endl; // Should be equal to center
+
+    // std::cout << "Center :" << std::endl;
+    // std::cout << center.transpose() << std::endl;
+    // std::cout << fitA.barycenter().transpose() << std::endl;
+    // std::cout << fitB.barycenter().transpose() << std::endl;
+
+    VERIFY(fitA.barycenter().isApprox(fitB.barycenter()));
 }
 
 template<typename Scalar, int Dim>
@@ -76,7 +78,7 @@ int main(int argc, char** argv)
         return EXIT_FAILURE;
     }
 
-    cout << "Test Global / Local Weight Kernel" << endl;
+    cout << "Test Global / Local Weight Func" << endl;
 
     callSubTests<float, 3>();
     callSubTests<long double, 3>();
