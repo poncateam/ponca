@@ -27,8 +27,8 @@ This Source Code Form is subject to the terms of the Mozilla Public
 using namespace std;
 using namespace Ponca;
 
-template<typename Fit>
-void testBasicFunctionalities(const KdTree<typename Fit::DataPoint>& tree, typename Fit::Scalar analysisScale)
+template<typename Fit, typename KdTree>
+void testBasicFunctionalities(KdTree& tree, typename Fit::Scalar analysisScale)
 {
 
     using DataPoint = typename Fit::DataPoint;
@@ -38,7 +38,7 @@ void testBasicFunctionalities(const KdTree<typename Fit::DataPoint>& tree, typen
     typedef typename DataPoint::VectorType VectorType;
     typedef typename Fit::WFunctor WeightFunc;
 
-    const auto& vectorPoints = tree.points();
+    const auto& vectorPoints = tree->points();
 }
 
 template<typename Scalar, int Dim>
@@ -85,7 +85,7 @@ void callSubTests()
     kdtree = new KdTreeDense<Point> (points);
     /// [KdTree assign dense]
 
-    // CALL_SUBTEST((testBasicFunctionalities<TestPlane>(kdtree, 1) ));
+    CALL_SUBTEST((testBasicFunctionalities<TestPlane>(kdtree, 1) ));
 }
 
 int main(const int argc, char** argv)
