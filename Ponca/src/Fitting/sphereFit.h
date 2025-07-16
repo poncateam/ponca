@@ -52,7 +52,7 @@ namespace Ponca
 
     \see AlgebraicSphere
 */
-template < class DataPoint, class _WFunctor, typename T >
+template < class DataPoint, class _NFilter, typename T >
 class SphereFitImpl : public T
 {
 PONCA_FITTING_DECLARE_DEFAULT_TYPES
@@ -85,10 +85,10 @@ public:
 }; //class SphereFit
 
 /// \brief Helper alias for Sphere fitting on 3D points using SphereFitImpl
-template < class DataPoint, class _WFunctor, typename T>
+template < class DataPoint, class _NFilter, typename T>
 using SphereFit =
-    SphereFitImpl<DataPoint, _WFunctor,
-        AlgebraicSphere<DataPoint, _WFunctor,T>>;
+    SphereFitImpl<DataPoint, _NFilter,
+        AlgebraicSphere<DataPoint, _NFilter, T>>;
 
 
 
