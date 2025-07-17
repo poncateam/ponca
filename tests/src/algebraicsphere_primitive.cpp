@@ -84,12 +84,12 @@ void callSubTests()
     using Point = PointPositionNormal<Scalar, Dim>;
 
     // We test only primitive functions and not the fitting procedure
-    using WeightFunc = DistWeightFunc<Point, SmoothWeightKernel<Scalar> >;
-    using Sphere     = Basket<Point, WeightFunc, OrientedSphereFit>;
+    using NeighborFilter = DistWeightFunc<Point, SmoothWeightKernel<Scalar> >;
+    using Sphere     = Basket<Point, NeighborFilter, OrientedSphereFit>;
 
     for(int i = 0; i < g_repeat; ++i)
     {
-        CALL_SUBTEST(( testFunction<Point, Sphere, WeightFunc>() ));
+        CALL_SUBTEST(( testFunction<Point, Sphere, NeighborFilter>() ));
     }
 }
 
