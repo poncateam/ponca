@@ -120,7 +120,7 @@ CovarianceFitTwoPassesBase<DataPoint, _NFilter, T>::finalize ()
 }
 
 
-template<typename DataPoint, typename Fit, typename FitRef, typename NeighborFilter, bool _cSurfVar> //, typename Fit, typename WeightFunction>
+template<typename DataPoint, typename Fit, typename FitRef, typename NeighborFilter, bool _cSurfVar>
 void testFunction(bool _bUnoriented = false, bool _bAddPositionNoise = false, bool _bAddNormalNoise = false)
 {
     // Define related structure

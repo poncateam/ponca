@@ -63,7 +63,7 @@ subTestSpatial<true, 3>::eval(const Fit& _fit,
 
 
 
-template<typename DataPoint, typename Fit, typename NeighborFilter, bool isSpaceDer> //, typename Fit, typename WeightFunction>
+template<typename DataPoint, typename Fit, typename NeighborFilter, bool isSpaceDer>
 void testFunction(bool _bUnoriented = false, bool _bAddPositionNoise = false, bool _bAddNormalNoise = false)
 {
     // Define related structure
