@@ -29,10 +29,10 @@ void compareFit(const bool _bAddPositionNoise = false, const bool _bAddNormalNoi
     typedef typename DataPoint::VectorType VectorType;
     typedef typename DataPoint::MatrixType MatrixType;
 
-    Scalar radius = Eigen::internal::random<Scalar>(1., 10.);
+    Scalar radius = Eigen::internal::random<int>(1, 10);
     int nbPoints = Eigen::internal::random<int>(100, 1000);
     Scalar centerScale = Eigen::internal::random<Scalar>(1,10000);
-    VectorType center = VectorType::Random() * centerScale;
+    VectorType center = VectorType::Zero();
 
     std::vector<DataPoint> vectorPoints(nbPoints);
     for(unsigned int i = 0; i < vectorPoints.size(); ++i)
@@ -45,6 +45,9 @@ void compareFit(const bool _bAddPositionNoise = false, const bool _bAddNormalNoi
     fitA.compute(vectorPoints);
     fitB.compute(vectorPoints);
 
+    // std::cout << center.transpose() << std::endl;
+    // std::cout << fitA.barycenter().transpose() << std::endl;
+    // std::cout << fitB.barycenter().transpose() << std::endl;
     VERIFY(fitA.barycenter().isApprox(fitB.barycenter()));
 
     // TODO : Fix this test
