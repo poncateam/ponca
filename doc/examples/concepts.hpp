@@ -49,7 +49,7 @@ namespace Ponca {
             /**************************************************************************/
             // Init the WeightFunc, without changing the other internal states.
             // \warning Must be called be for any computation
-            PONCA_MULTIARCH inline void setWeightFunc (const NeighborFilter& _w);
+            PONCA_MULTIARCH inline void setNeighborFilter (const NeighborFilter& _w);
 
             // Reset the internal states.
             // \warning Must be called be for any computation
@@ -93,7 +93,7 @@ namespace Ponca {
             /**************************************************************************/
             // Init the WeightFunc, without changing the other internal states.
             // \warning Must be called be for any computation
-            PONCA_MULTIARCH inline void setWeightFunc (const NeighborFilter& _w);
+            PONCA_MULTIARCH inline void setNeighborFilter (const NeighborFilter& _w);
 
             // Set the evaluation position and reset the internal states.
             // \warning Must be called be for any computation
