@@ -39,36 +39,15 @@ struct CheckSurfaceVariation {
 
 template <>
 template <typename Fit, typename Scalar>
-void
-CheckSurfaceVariation<false>::run(const Fit& /*fit*/, Scalar /*epsilon*/){ }
+void CheckSurfaceVariation<false>::run(const Fit& /*fit*/, Scalar /*epsilon*/){ }
 
-// Argument adapter between WeightFunc and NoWeightFunc
-template<typename WeightFunc>
-struct WeightFuncAdapter
-{
-    template<typename VectorType, typename Scalar>
-    WeightFunc operator()(const VectorType& pos, Scalar analysisScale) const {
-        return WeightFunc(pos, analysisScale);
-    }
-};
 
-// Specialization for NoWeightFunc
-template<typename PointT>
-struct WeightFuncAdapter<NoWeightFunc<PointT>>
-{
-    template<typename VectorType, typename Scalar>
-    NoWeightFunc<PointT> operator()(const VectorType& pos, Scalar) const {
-        return NoWeightFunc<PointT>(pos);
-    }
-};
-
-template<typename DataPoint, typename Fit, typename NeighborFilter, bool _cSurfVar> //, typename Fit, typename WeightFunction>
+template<typename DataPoint, typename Fit, typename NeighborFilter, bool _cSurfVar>
 void testFunction(bool _bUnoriented = false, bool _bAddPositionNoise = false, bool _bAddNormalNoise = false, bool conflictAnnounced = false)
 {
     // Define related structure
     typedef typename DataPoint::Scalar Scalar;
     typedef typename DataPoint::VectorType VectorType;
-    WeightFuncAdapter<NeighborFilter> makeWeightFunc;
     //generate sampled plane
     int nbPoints = Eigen::internal::random<int>(100, 1000);
 
