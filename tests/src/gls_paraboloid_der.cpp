@@ -33,7 +33,6 @@ template<typename Fit, typename RefFit, typename TestFit>
 void testFunction()
 {
     // Define related structure
-    //typedef typename Fit::WeightFunction WeightFunc;
     typedef typename Fit::DataPoint DataPoint;
     typedef typename TestFit::NeighborFilter TestNeighborFilter;
     typedef typename TestFit::DataPoint TestDataPoint;
