@@ -22,7 +22,7 @@
 using namespace std;
 
 template<typename DataPoint, typename FitA, typename FitB, typename WeightFuncA, typename WeightFuncB>
-void compareFit(bool _bAddPositionNoise = false, bool /*_bAddNormalNoise */= false)
+void compareFit(const bool _bAddPositionNoise = false, const bool _bAddNormalNoise = false)
 {
     // Define related structure
     typedef typename DataPoint::Scalar Scalar;
@@ -36,7 +36,7 @@ void compareFit(bool _bAddPositionNoise = false, bool /*_bAddNormalNoise */= fal
 
     std::vector<DataPoint> vectorPoints(nbPoints);
     for(unsigned int i = 0; i < vectorPoints.size(); ++i)
-        vectorPoints[i] = getPointOnSphere<DataPoint>(radius, center, false, false, false);
+        vectorPoints[i] = getPointOnSphere<DataPoint>(radius, center, _bAddPositionNoise, _bAddNormalNoise, false);
 
     FitA fitA;
     FitB fitB;
@@ -44,11 +44,6 @@ void compareFit(bool _bAddPositionNoise = false, bool /*_bAddNormalNoise */= fal
     fitB.setNeighborFilter(WeightFuncB(center, radius));
     fitA.compute(vectorPoints);
     fitB.compute(vectorPoints);
-
-    // std::cout << "Center :" << std::endl;
-    // std::cout << center.transpose() << std::endl;
-    // std::cout << fitA.barycenter().transpose() << std::endl;
-    // std::cout << fitB.barycenter().transpose() << std::endl;
 
     VERIFY(fitA.barycenter().isApprox(fitB.barycenter()));
 }
@@ -64,19 +59,17 @@ void callSubTests()
     typedef Ponca::Basket<Point, WeightConstantFuncGlobal, Ponca::MeanPosition> FitGlobal;
 
     cout << "Testing the barycenter..." << endl;
+
     for(int i = 0; i < g_repeat; ++i)
-    {
         CALL_SUBTEST(( compareFit<Point, FitLocal, FitGlobal, WeightConstantFuncLocal, WeightConstantFuncGlobal>( )));
-    }
+
     cout << "Ok!" << endl;
 }
 
 int main(int argc, char** argv)
 {
     if(!init_testing(argc, argv))
-    {
         return EXIT_FAILURE;
-    }
 
     cout << "Test Global / Local Weight Func" << endl;
 
