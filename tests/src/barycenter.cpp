@@ -21,13 +21,12 @@
 
 using namespace std;
 
-template<typename DataPoint, typename FitA, typename FitB, typename WeightFuncA, typename WeightFuncB>
+template<typename DataPoint, typename FitA, typename FitB>
 void compareFit(const bool _bAddPositionNoise = false, const bool _bAddNormalNoise = false)
 {
     // Define related structure
     typedef typename DataPoint::Scalar Scalar;
     typedef typename DataPoint::VectorType VectorType;
-    typedef typename DataPoint::MatrixType MatrixType;
 
     Scalar radius = Eigen::internal::random<int>(1, 10);
     int nbPoints = Eigen::internal::random<int>(100, 1000);
@@ -40,8 +39,8 @@ void compareFit(const bool _bAddPositionNoise = false, const bool _bAddNormalNoi
 
     FitA fitA;
     FitB fitB;
-    fitA.setNeighborFilter(WeightFuncA(center, radius));
-    fitB.setNeighborFilter(WeightFuncB(center, radius));
+    fitA.setNeighborFilter({center, radius});
+    fitB.setNeighborFilter({center, radius});
     fitA.compute(vectorPoints);
     fitB.compute(vectorPoints);
 
@@ -75,8 +74,8 @@ void callSubTests()
     cout << "Testing the barycenter..." << endl;
 
     for(int i = 0; i < g_repeat; ++i) {
-        CALL_SUBTEST(( compareFit<Point, FitConstantLocal, FitConstantGlobal, WeightConstantFuncLocal, WeightConstantFuncGlobal>( )));
-        CALL_SUBTEST(( compareFit<Point, FitSmoothLocal, FitSmoothGlobal, WeightSmoothFuncLocal, WeightSmoothFuncGlobal>( )));
+        CALL_SUBTEST(( compareFit<Point, FitConstantLocal, FitConstantGlobal>( )));
+        CALL_SUBTEST(( compareFit<Point, FitSmoothLocal, FitSmoothGlobal>( )));
     }
 
     cout << "Ok!" << endl;
