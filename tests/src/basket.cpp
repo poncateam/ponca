@@ -202,9 +202,9 @@ void callSubTests()
     //! [SpecializedPointType]
 
     // We test only primitive functions and not the fitting procedure
-    //! [WeightFunction]
+    //! [NeighborFilter]
     using NeighborFilter = DistWeightFunc<Point, SmoothWeightKernel<Scalar> >;
-    //! [WeightFunction]
+    //! [NeighborFilter]
     using Sphere     = Basket<Point, NeighborFilter, OrientedSphereFit>;
     //! [PlaneFitType]
     using TestPlane = Basket<Point, NeighborFilter, CovariancePlaneFit>;
