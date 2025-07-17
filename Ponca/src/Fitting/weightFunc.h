@@ -45,7 +45,7 @@ public:
                                           const Scalar& _t = Scalar(1.))
     : m_t(_t), m_p(_evalPos)
     {
-        //\todo manage that assrt on __host__ and __device__
+        //\todo manage that assert on __host__ and __device__
         //assert(_t > Scalar(0));
     }
 
