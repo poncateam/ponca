@@ -24,7 +24,7 @@
 using namespace std;
 using namespace Ponca;
 
-template<typename DataPoint, typename Fit, typename NeighborFilter> //, typename Fit, typename WeightFunction>
+template<typename DataPoint, typename Fit, typename NeighborFilter>
 void testFunction(bool _bAddPositionNoise = false, bool _bAddNormalNoise = false)
 {
     // Define related structure
