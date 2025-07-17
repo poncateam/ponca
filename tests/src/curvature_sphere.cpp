@@ -16,7 +16,7 @@ using namespace std;
 using namespace Grenaille;
 
 
-template<typename DataPoint, typename Fit, typename WeightFunc> //, typename Fit, typename WeightFunction>
+template<typename DataPoint, typename Fit, typename NeighborFilter>
 void testFunction(bool _bAddPositionNoise = false, bool _bAddNormalNoise = false)
 {
     // Define related structure
@@ -53,7 +53,7 @@ void testFunction(bool _bAddPositionNoise = false, bool _bAddNormalNoise = false
         epsilon = 0.25; // large threshold
 
         Fit fit;
-        fit.setWeightFunc(WeightFunc(vectorPoints[i].pos(), analysisScale));
+        fit.setNeighborFilter(NeighborFilter(vectorPoints[i].pos(), analysisScale));
         fit.compute(vectorPoints);
 
         if( fit.isStable() )

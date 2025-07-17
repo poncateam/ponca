@@ -207,18 +207,18 @@ void callSubTests()
 
     // We test only primitive functions and not the fitting procedure
     //! [WeightFunction]
-    using WeightFunc = DistWeightFunc<Point, SmoothWeightKernel<Scalar> >;
+    using NeighborFilter = DistWeightFunc<Point, SmoothWeightKernel<Scalar> >;
     //! [WeightFunction]
-    using Sphere     = Basket<Point, WeightFunc, OrientedSphereFit>;
+    using Sphere     = Basket<Point, NeighborFilter, OrientedSphereFit>;
     //! [PlaneFitType]
-    using TestPlane = Basket<Point, WeightFunc, CovariancePlaneFit>;
+    using TestPlane = Basket<Point, NeighborFilter, CovariancePlaneFit>;
     //! [PlaneFitType]
     //! [FitType]
-    using Sphere = Basket<Point, WeightFunc, OrientedSphereFit>;
+    using Sphere = Basket<Point, NeighborFilter, OrientedSphereFit>;
     //! [FitType]
     //! [HybridType]
     // Create an hybrid structure fitting a plane and a sphere at the same time
-    using Hybrid = Basket<Point, WeightFunc,
+    using Hybrid = Basket<Point, NeighborFilter,
                           AlgebraicSphere, Plane,                     // primitives
                           MeanNormal, MeanPosition,                   // shared computation
                           OrientedSphereFitImpl,                      // sphere fitting
