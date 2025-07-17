@@ -96,7 +96,7 @@ public:
         m_sumW = Scalar(0);
     }
 
-    /*! \brief Read access to the WeightFunc \see setWeightFunc */
+    /*! \brief Read access to the NeighborFilter \see setNeighborFilter */
     PONCA_MULTIARCH inline const NeighborFilter& getNeighborFilter() const
     {
         return m_nFilter;
