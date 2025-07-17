@@ -23,7 +23,7 @@
 using namespace std;
 using namespace Ponca;
 
-template<typename DataPoint, typename Fit, typename WeightFunc>
+template<typename DataPoint, typename Fit>
 void testFunction()
 {
     // Define related structure
@@ -62,12 +62,12 @@ void callSubTests()
     typedef PointPosition<Scalar, Dim> Point;
 
     // We test only primitive functions and not the fitting procedure
-    typedef DistWeightFunc<Point, SmoothWeightKernel<Scalar> > WeightFunc;
-    typedef Basket<Point, WeightFunc, Plane> Plane;
+    typedef DistWeightFunc<Point, SmoothWeightKernel<Scalar> > NeighborFilter;
+    typedef Basket<Point, NeighborFilter, Plane> Plane;
 
     for(int i = 0; i < g_repeat; ++i)
     {
-        CALL_SUBTEST(( testFunction<Point, Plane, WeightFunc>() ));
+        CALL_SUBTEST(( testFunction<Point, Plane>() ));
     }
 }
 

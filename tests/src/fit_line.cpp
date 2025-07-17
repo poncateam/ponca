@@ -27,7 +27,7 @@ using namespace std;
 using namespace Ponca;
 
 
-template<typename DataPoint, typename Fit, typename WeightFunc> //, typename Fit, typename WeightFunction>
+template<typename DataPoint, typename Fit>
 void testFunction(bool _bAddPositionNoise = false)
 {
     // Define related structure
@@ -84,8 +84,8 @@ void callSubTests()
     for(int i = 0; i < g_repeat; ++i)
     {
         //Test with perfect line
-        CALL_SUBTEST(( testFunction<Point, LeastSquareFitSmooth, WeightSmoothFunc>() ));
-        CALL_SUBTEST(( testFunction<Point, LeastSquareFitConstant, WeightConstantFunc>() ));
+        CALL_SUBTEST(( testFunction<Point, LeastSquareFitSmooth>() ));
+        CALL_SUBTEST(( testFunction<Point, LeastSquareFitConstant>() ));
 
     }
     cout << "Ok!" << endl;
@@ -93,8 +93,8 @@ void callSubTests()
      cout << "Testing with noise on position" << endl;
      for(int i = 0; i < g_repeat; ++i)
      {
-         CALL_SUBTEST(( testFunction<Point, LeastSquareFitSmooth, WeightSmoothFunc>(true) ));
-         CALL_SUBTEST(( testFunction<Point, LeastSquareFitConstant, WeightConstantFunc>(true) ));
+         CALL_SUBTEST(( testFunction<Point, LeastSquareFitSmooth>(true) ));
+         CALL_SUBTEST(( testFunction<Point, LeastSquareFitConstant>(true) ));
      }
      cout << "Ok!" << endl;
 }
