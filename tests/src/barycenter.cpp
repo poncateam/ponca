@@ -46,6 +46,12 @@ void compareFit(const bool _bAddPositionNoise = false, const bool _bAddNormalNoi
     fitB.compute(vectorPoints);
 
     VERIFY(fitA.barycenter().isApprox(fitB.barycenter()));
+
+    // TODO : Fix this test
+    // Barycenter should also be somewhat close to the center
+    // float eps =  0.1f; // Greater tolerance
+    // VERIFY(center.isApprox(fitA.barycenter(), eps));
+    // VERIFY(center.isApprox(fitB.barycenter(), eps));
 }
 
 template<typename Scalar, int Dim>
@@ -55,13 +61,20 @@ void callSubTests()
 
     typedef Ponca::DistWeightFunc<Point, Ponca::ConstantWeightKernel<Scalar> > WeightConstantFuncLocal;
     typedef Ponca::DistWeightFuncGlobal<Point, Ponca::ConstantWeightKernel<Scalar> > WeightConstantFuncGlobal;
-    typedef Ponca::Basket<Point, WeightConstantFuncLocal, Ponca::MeanPosition> FitLocal;
-    typedef Ponca::Basket<Point, WeightConstantFuncGlobal, Ponca::MeanPosition> FitGlobal;
+    typedef Ponca::Basket<Point, WeightConstantFuncLocal, Ponca::MeanPosition> FitConstantLocal;
+    typedef Ponca::Basket<Point, WeightConstantFuncGlobal, Ponca::MeanPosition> FitConstantGlobal;
+
+    typedef Ponca::DistWeightFunc<Point, Ponca::SmoothWeightKernel<Scalar> > WeightSmoothFuncLocal;
+    typedef Ponca::DistWeightFuncGlobal<Point, Ponca::SmoothWeightKernel<Scalar> > WeightSmoothFuncGlobal;
+    typedef Ponca::Basket<Point, WeightSmoothFuncLocal, Ponca::MeanPosition> FitSmoothLocal;
+    typedef Ponca::Basket<Point, WeightSmoothFuncGlobal, Ponca::MeanPosition> FitSmoothGlobal;
 
     cout << "Testing the barycenter..." << endl;
 
-    for(int i = 0; i < g_repeat; ++i)
-        CALL_SUBTEST(( compareFit<Point, FitLocal, FitGlobal, WeightConstantFuncLocal, WeightConstantFuncGlobal>( )));
+    for(int i = 0; i < g_repeat; ++i) {
+        CALL_SUBTEST(( compareFit<Point, FitConstantLocal, FitConstantGlobal, WeightConstantFuncLocal, WeightConstantFuncGlobal>( )));
+        CALL_SUBTEST(( compareFit<Point, FitSmoothLocal, FitSmoothGlobal, WeightSmoothFuncLocal, WeightSmoothFuncGlobal>( )));
+    }
 
     cout << "Ok!" << endl;
 }
