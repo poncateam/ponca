@@ -17,6 +17,7 @@ Current head (v.1.4 RC)
 - Bug-fixes and code improvements
    - [spatialPartitioning] Fix compilation error with `MAX_NODE_COUNT` when compiled with MSVC (#152)
    - [spatialPartitioning] Fix compilation error with AppleClang: wrong initializers ordering (#154)
+   - [fitting] Fix typo in code (#182)
 
 - Tests
    - [fitting] Split Basket test in subtests (#96)
