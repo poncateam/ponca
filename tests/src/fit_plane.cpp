@@ -137,6 +137,7 @@ void callSubTests()
 
     typedef DistWeightFunc<Point, SmoothWeightKernel<Scalar> > WeightSmoothFunc;
     typedef DistWeightFunc<Point, ConstantWeightKernel<Scalar> > WeightConstantFunc;
+    typedef DistWeightFuncGlobal<Point, ConstantWeightKernel<Scalar> > WeightConstantFuncGlobal;
     typedef NoWeightFunc<Point> WeightConstantFunc2;
 
     typedef Basket<Point, WeightSmoothFunc, CovariancePlaneFit> CovFitSmooth;
@@ -146,6 +147,7 @@ void callSubTests()
     typedef Basket<Point, WeightSmoothFunc, MeanPlaneFit> MeanFitSmooth;
     typedef Basket<Point, WeightConstantFunc, MeanPlaneFit> MeanFitConstant;
     typedef Basket<Point, WeightConstantFunc2, MeanPlaneFit> MeanFitConstant2;
+    typedef Basket<Point, WeightConstantFuncGlobal, MeanPlaneFit> MeanFitConstantGlobal;
 
     // test if conflicts are detected
     //! [Conflicting type]
@@ -164,9 +166,11 @@ void callSubTests()
         CALL_SUBTEST(( testFunction<Point, CovFitSmooth, WeightSmoothFunc, true>() ));
         CALL_SUBTEST(( testFunction<Point, CovFitConstant, WeightConstantFunc, true>() ));
         CALL_SUBTEST(( testFunction<Point, CovFitConstant2, WeightConstantFunc2, true>() ));
+        CALL_SUBTEST(( testFunction<Point, MeanFitConstantGlobal, WeightConstantFuncGlobal, false>() ));
         CALL_SUBTEST(( testFunction<Point, MeanFitSmooth, WeightSmoothFunc, false>() ));
         CALL_SUBTEST(( testFunction<Point, MeanFitConstant, WeightConstantFunc, false>() ));
         CALL_SUBTEST(( testFunction<Point, MeanFitConstant2, WeightConstantFunc2, false>() ));
+        CALL_SUBTEST(( testFunction<Point, MeanFitConstantGlobal, WeightConstantFuncGlobal, false>() ));
         // Check if fitting conflict is detected
         CALL_SUBTEST(( testFunction<Point, Hybrid1, WeightConstantFunc, false>(false, false, false, true) ));
         CALL_SUBTEST(( testFunction<Point, Hybrid2, WeightConstantFunc, false>(false, false, false, true) ));
