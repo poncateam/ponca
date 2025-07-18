@@ -39,36 +39,15 @@ struct CheckSurfaceVariation {
 
 template <>
 template <typename Fit, typename Scalar>
-void
-CheckSurfaceVariation<false>::run(const Fit& /*fit*/, Scalar /*epsilon*/){ }
+void CheckSurfaceVariation<false>::run(const Fit& /*fit*/, Scalar /*epsilon*/){ }
 
-// Argument adapter between WeightFunc and NoWeightFunc
-template<typename WeightFunc>
-struct WeightFuncAdapter
-{
-    template<typename VectorType, typename Scalar>
-    WeightFunc operator()(const VectorType& pos, Scalar analysisScale) const {
-        return WeightFunc(pos, analysisScale);
-    }
-};
 
-// Specialization for NoWeightFunc
-template<typename PointT>
-struct WeightFuncAdapter<NoWeightFunc<PointT>>
-{
-    template<typename VectorType, typename Scalar>
-    NoWeightFunc<PointT> operator()(const VectorType& pos, Scalar) const {
-        return NoWeightFunc<PointT>(pos);
-    }
-};
-
-template<typename DataPoint, typename Fit, typename WeightFunc, bool _cSurfVar> //, typename Fit, typename WeightFunction>
+template<typename DataPoint, typename Fit, typename NeighborFilter, bool _cSurfVar>
 void testFunction(bool _bUnoriented = false, bool _bAddPositionNoise = false, bool _bAddNormalNoise = false, bool conflictAnnounced = false)
 {
     // Define related structure
     typedef typename DataPoint::Scalar Scalar;
     typedef typename DataPoint::VectorType VectorType;
-    WeightFuncAdapter<WeightFunc> makeWeightFunc;
     //generate sampled plane
     int nbPoints = Eigen::internal::random<int>(100, 1000);
 
@@ -123,7 +102,7 @@ void testFunction(bool _bUnoriented = false, bool _bAddPositionNoise = false, bo
     {
 
         Fit fit;
-        fit.setWeightFunc(makeWeightFunc(vectorPoints[i].pos(), analysisScale));
+        fit.setNeighborFilter(NeighborFilter(vectorPoints[i].pos(), analysisScale));
         fit.computeWithIds(tree.range_neighbors(vectorPoints[i].pos(),analysisScale),vectorPoints);
 
         auto ret = fit.getCurrentState();
@@ -158,6 +137,7 @@ void callSubTests()
 
     typedef DistWeightFunc<Point, SmoothWeightKernel<Scalar> > WeightSmoothFunc;
     typedef DistWeightFunc<Point, ConstantWeightKernel<Scalar> > WeightConstantFunc;
+    typedef DistWeightFuncGlobal<Point, ConstantWeightKernel<Scalar> > WeightConstantFuncGlobal;
     typedef NoWeightFunc<Point> WeightConstantFunc2;
 
     typedef Basket<Point, WeightSmoothFunc, CovariancePlaneFit> CovFitSmooth;
@@ -167,6 +147,7 @@ void callSubTests()
     typedef Basket<Point, WeightSmoothFunc, MeanPlaneFit> MeanFitSmooth;
     typedef Basket<Point, WeightConstantFunc, MeanPlaneFit> MeanFitConstant;
     typedef Basket<Point, WeightConstantFunc2, MeanPlaneFit> MeanFitConstant2;
+    typedef Basket<Point, WeightConstantFuncGlobal, MeanPlaneFit> MeanFitConstantGlobal;
 
     // test if conflicts are detected
     //! [Conflicting type]
@@ -185,9 +166,11 @@ void callSubTests()
         CALL_SUBTEST(( testFunction<Point, CovFitSmooth, WeightSmoothFunc, true>() ));
         CALL_SUBTEST(( testFunction<Point, CovFitConstant, WeightConstantFunc, true>() ));
         CALL_SUBTEST(( testFunction<Point, CovFitConstant2, WeightConstantFunc2, true>() ));
+        CALL_SUBTEST(( testFunction<Point, MeanFitConstantGlobal, WeightConstantFuncGlobal, false>() ));
         CALL_SUBTEST(( testFunction<Point, MeanFitSmooth, WeightSmoothFunc, false>() ));
         CALL_SUBTEST(( testFunction<Point, MeanFitConstant, WeightConstantFunc, false>() ));
         CALL_SUBTEST(( testFunction<Point, MeanFitConstant2, WeightConstantFunc2, false>() ));
+        CALL_SUBTEST(( testFunction<Point, MeanFitConstantGlobal, WeightConstantFuncGlobal, false>() ));
         // Check if fitting conflict is detected
         CALL_SUBTEST(( testFunction<Point, Hybrid1, WeightConstantFunc, false>(false, false, false, true) ));
         CALL_SUBTEST(( testFunction<Point, Hybrid2, WeightConstantFunc, false>(false, false, false, true) ));

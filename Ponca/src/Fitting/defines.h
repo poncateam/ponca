@@ -20,43 +20,43 @@
 #define PONCA_EXPLICIT_CAST_OPERATORS(CLASSNAME,CONVERTER)                                                         \
 /*! \brief Explicit conversion to CLASSNAME, to access methods potentially hidden by heritage */                   \
 PONCA_MULTIARCH inline                                                                                             \
-CLASSNAME<DataPoint, _WFunctor, T>& CONVERTER()                                                                    \
-{ return * static_cast<CLASSNAME<DataPoint, _WFunctor, T>*>(this); }                                               \
+CLASSNAME<DataPoint, _NFilter, T>& CONVERTER()                                                                    \
+{ return * static_cast<CLASSNAME<DataPoint, _NFilter, T>*>(this); }                                               \
 /*! \brief Explicit conversion to CLASSNAME, to access methods potentially hidden by heritage */                   \
 PONCA_MULTIARCH inline                                                                                             \
-const CLASSNAME<DataPoint, _WFunctor, T>& CONVERTER() const                                                        \
-{ return * static_cast<const CLASSNAME<DataPoint, _WFunctor, T>*>(this); }
+const CLASSNAME<DataPoint, _NFilter, T>& CONVERTER() const                                                        \
+{ return * static_cast<const CLASSNAME<DataPoint, _NFilter, T>*>(this); }
 
 // CAST OPERATORS
 
 #define PONCA_EXPLICIT_CAST_OPERATORS_DER(CLASSNAME,CONVERTER)                                                     \
 /*! \brief Explicit conversion to CLASSNAME, to access methods potentially hidden by heritage */                   \
 PONCA_MULTIARCH inline                                                                                             \
-CLASSNAME<DataPoint, _WFunctor, DiffType, T>& CONVERTER()                                                          \
-{ return * static_cast<CLASSNAME<DataPoint, _WFunctor, DiffType, T>*>(this); }                                     \
+CLASSNAME<DataPoint, _NFilter, DiffType, T>& CONVERTER()                                                          \
+{ return * static_cast<CLASSNAME<DataPoint, _NFilter, DiffType, T>*>(this); }                                     \
 /*! \brief Explicit conversion to CLASSNAME, to access methods potentially hidden by heritage */                   \
 PONCA_MULTIARCH inline                                                                                             \
-const CLASSNAME<DataPoint, _WFunctor, DiffType, T>& CONVERTER() const                                              \
-{ return * static_cast<const CLASSNAME<DataPoint, _WFunctor, DiffType, T>*>(this); }
+const CLASSNAME<DataPoint, _NFilter, DiffType, T>& CONVERTER() const                                              \
+{ return * static_cast<const CLASSNAME<DataPoint, _NFilter, DiffType, T>*>(this); }
 
 
 // FIT DEFAULT TYPES
 
-/// Declare the following defaults types: Base, Scalar, VectorType, WFunctor
+/// Declare the following defaults types: Base, Scalar, VectorType, NeighborFilter
 #define PONCA_FITTING_DECLARE_DEFAULT_TYPES                                                                         \
 protected:                                                                                                          \
 using Base = T;  /*!< \brief Base class of the procedure*/                                                          \
 public:                                                                                                             \
-using Scalar     = typename DataPoint::Scalar; /*!< \brief Alias to scalar type*/                                   \
-using VectorType = typename Base::VectorType;  /*!< \brief Alias to vector type*/                                   \
-using WFunctor   = typename Base::WFunctor;    /*!< \brief Alias to weight function*/
+using Scalar         = typename DataPoint::Scalar;    /*!< \brief Alias to scalar type*/                            \
+using VectorType     = typename Base::VectorType;     /*!< \brief Alias to vector type*/                            \
+using NeighborFilter = typename Base::NeighborFilter; /*!< \brief Alias to the filter applied on the neighbors */
 
-/// Declare the following defaults types: Base, Scalar, VectorType, WFunctor
+/// Declare the following defaults types: Base, Scalar, VectorType, NeighborFilter
 #define PONCA_FITTING_DECLARE_MATRIX_TYPE                                                                           \
 public:                                                                                                             \
 using MatrixType  = typename DataPoint::MatrixType; /*!< \brief Alias to matrix type*/                              \
 
-/// Declare the following defaults types: Base, Scalar, VectorType, WFunctor
+/// Declare the following defaults types: Base, Scalar, VectorType, NeighborFilter
 #define PONCA_FITTING_DECLARE_DEFAULT_DER_TYPES                                                                     \
 public:                                                                                                             \
 using ScalarArray = typename Base::ScalarArray;     /*!< \brief Alias to scalar derivatives array */                \
@@ -66,7 +66,7 @@ using VectorArray = typename Base::VectorArray;     /*!< \brief Alias to vector 
 #define PONCA_FITTING_APIDOC_SETWFUNC \
 /*! Init the WeightFunc, without changing the other internal states. Calls #startNewPass internally. \warning Must be called be for any computation (and before #init). \see getWeightFunc */
 #define PONCA_FITTING_APIDOC_INIT \
-/*! Set the evaluation position and reset the internal states. \warning Must be called be for any computation (but after #setWeightFunc) */
+/*! Set the evaluation position and reset the internal states. \warning Must be called be for any computation (but after #setNeighborFilter) */
 #define PONCA_FITTING_APIDOC_ADDNEIGHBOR \
 /*! Add a neighbor to perform the fit \return false if param nei is not a valid neighbour (weight = 0) */
 #define PONCA_FITTING_APIDOC_ADDNEIGHBOR_DER \
