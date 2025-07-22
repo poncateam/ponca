@@ -28,7 +28,7 @@ using namespace std;
 using namespace Ponca;
 
 template<typename DataPoint, typename NeighborFilter>
-void testFunction()
+void testFunction(typename DataPoint::Scalar lowPrecisionEpsilon = typename DataPoint::Scalar(0.1)) // Lesser precision for the paraboloid test
 {
     // Define related structure
     typedef typename DataPoint::Scalar Scalar;
@@ -54,8 +54,6 @@ void testFunction()
     Scalar zmax = std::abs((coeff[0] + coeff[1]) * width*width);
     Scalar analysisScale = std::sqrt(zmax*zmax + width*width);
 
-    Scalar epsilon = Scalar(0.001); // We need a lesser precision for this test to pass
-
     Fit fit;
     fit.setNeighborFilter(NeighborFilter(center, analysisScale));
     fit.init();
@@ -80,10 +78,9 @@ void testFunction()
         {
             VectorType p = center + analysisScale * VectorType::Random();
             samples[i] = p;
-            VectorType proj  = fit.project(p);
 
             // check that the projected point is on the surface
-            VERIFY( std::abs(fit.potential(proj)) < epsilon );
+            VERIFY( std::abs(fit.potential(fit.project(p))) < lowPrecisionEpsilon );
         }
 
         // check if direct projection gives same or better result than descent projection.
@@ -91,7 +88,7 @@ void testFunction()
         {
             VectorType res1 = fit.project( p );
             VectorType res2 = fit.projectDescent( p, 1000 ); // force high number of iterations
-            VERIFY( res1.isApprox( res2, epsilon ));
+            VERIFY( res1.isApprox( res2, lowPrecisionEpsilon ));
         }
 
         // Disable this test: not true with apple-clang 12.
@@ -124,12 +121,16 @@ void callSubTests()
 
     typedef DistWeightFunc<Point, SmoothWeightKernel<Scalar> > WeightSmoothFunc;
     typedef DistWeightFunc<Point, ConstantWeightKernel<Scalar> > WeightConstantFunc;
+    typedef DistWeightFuncGlobal<Point, ConstantWeightKernel<Scalar> > WeightConstantFuncGlobal;
+    typedef DistWeightFuncGlobal<Point, SmoothWeightKernel<Scalar> > WeightSmoothFuncGlobal;
 
     cout << "Testing with parabola..." << endl;
     for(int i = 0; i < g_repeat; ++i)
     {
         CALL_SUBTEST(( testFunction<Point, WeightSmoothFunc>() ));
         CALL_SUBTEST(( testFunction<Point, WeightConstantFunc>() ));
+        CALL_SUBTEST(( testFunction<Point, WeightSmoothFuncGlobal>(0.1) ));
+        CALL_SUBTEST(( testFunction<Point, WeightConstantFuncGlobal>(0.1) ));
     }
     cout << "Ok!" << endl;
 }
