@@ -28,7 +28,7 @@ using namespace std;
 using namespace Ponca;
 
 
-template<typename DataPoint, typename Fit, typename WeightFunc> //, typename Fit, typename WeightFunction>
+template<typename DataPoint, typename Fit, typename NeighborFilter>
 void testFunction(bool _bUnoriented = false, bool _bAddPositionNoise = false, bool _bAddNormalNoise = false)
 {
     // Define related structure
@@ -73,7 +73,7 @@ void testFunction(bool _bUnoriented = false, bool _bAddPositionNoise = false, bo
         const auto& queryPos = vectorPoints[i].pos();
 
         Fit fit;
-        fit.setWeightFunc(WeightFunc(queryPos, analysisScale));
+        fit.setNeighborFilter(NeighborFilter(queryPos, analysisScale));
         fit.compute(vectorPoints);
 
         if( fit.isStable() ){
