@@ -58,23 +58,37 @@ OrientedSphereFitImpl<DataPoint, _NFilter, T>::finalize ()
     m_nume = (m_sumDotPN - invSumW * Base::m_sumP.dot(Base::m_sumN));
     Scalar den1 = invSumW * Base::m_sumP.dot(Base::m_sumP);
     m_deno = m_sumDotPP - den1;
+    std::cout << "##### m_deno: " << m_deno << std::endl;
+    std::cout << "##### m_sumDotPP: " << m_sumDotPP << std::endl;
+    std::cout << "##### m_sumDotP: " << Base::m_sumP.transpose() << std::endl;
+    std::cout << "##### invSumW : " << invSumW << std::endl;
+    std::cout << "##### den1 = invSumW * m_sumP.dot(m_sumP) : " << den1 << std::endl;
+    std::cout << "##### epsilon: " << epsilon << std::endl;
+    std::cout << "##### epsilon * max(m_sumDotPP, den1): " << epsilon * max(m_sumDotPP, den1) << std::endl;
 
     // Deal with degenerate cases
-    if(abs(m_deno) < epsilon * max(m_sumDotPP, den1))
+    std::cout << "\033[1;36m" << "Degenerate case == " << ((abs(m_deno) < epsilon * max(m_sumDotPP, den1))? "True" : "False")<< "\033[0m\n" << std::endl;
+    if(abs(m_deno) < epsilon * max(m_sumDotPP, den1) && Base::m_ul.norm() != Scalar(0.0))
     {
         if (Base::m_ul.isZero(0))
             return Base::m_eCurrentState = UNDEFINED;
-        //plane
+        // Plane
         Scalar s   = Scalar(1.) / Base::m_ul.norm();
         Base::m_ul = s*Base::m_ul;
         Base::m_uc = s*Base::m_uc;
+        std::cout << "\033[1;33m";
+        std::cout << "m_ul set to : s*Base::m_ul = " << Base::m_ul.transpose() << std::endl;
+        std::cout << "\033[0m\n" << std::endl;
         Base::m_uq = Scalar(0.);
     }
     else
     {
-        //Generic case
+        // Generic case
         Base::m_uq = Scalar(.5) * m_nume / m_deno;
         Base::m_ul = (Base::m_sumN - Base::m_sumP * (Scalar(2.) * Base::m_uq)) * invSumW;
+        std::cout << "\033[1;33m";
+        std::cout << "m_ul set to : (m_sumN - m_sumP * (Scalar(2.) * m_uq)) * invSumW = " << Base::m_ul.transpose();
+        std::cout << "\033[0m\n" << std::endl;
         Base::m_uc = -invSumW * (Base::m_ul.dot(Base::m_sumP) + m_sumDotPP * Base::m_uq);
     }
 

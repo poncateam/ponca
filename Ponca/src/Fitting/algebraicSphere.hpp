@@ -26,6 +26,14 @@ AlgebraicSphere<DataPoint, _NFilter, T>::project(const VectorType& _q) const
     {
         t = - (norm - sqrt(norm*norm - Scalar(4) * m_uq * potential)) / (Scalar(2) * m_uq * norm);
     }
+    // std::cout << "----" << std::endl;
+    // std::cout << "m_uq : " << m_uq << "    m_uc : " << m_uc << "    m_ul : " << m_ul.transpose() << std::endl;
+    // std::cout << "lq : " << lq.transpose() << std::endl;
+    // std::cout << "t : " << t << std::endl;
+    // std::cout << "grad : " << norm << std::endl;
+    // std::cout << "norm : " << norm << std::endl;
+    // std::cout << "potential : " << potential << std::endl;
+    // std::cout << "----" << std::endl;
     return Base::m_nFilter.convertToGlobalBasis( lq + t * grad );
 }
 
