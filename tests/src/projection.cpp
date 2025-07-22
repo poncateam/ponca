@@ -23,17 +23,21 @@
 
 #include <chrono>
 #include <math.h>
+#include <iomanip>
 
 using namespace std;
 using namespace Ponca;
 
-template<typename DataPoint, typename NeighborFilter>
-void testFunction()
+/*
+ * Test the OrientedSphereFit on a paraboloid using a given neighborhood filter
+ */
+template<typename DataPoint, typename NF>
+void testFunction(typename DataPoint::Scalar lowPrecisionEpsilon = typename DataPoint::Scalar(0.001)) // Lesser precision for the paraboloid test
 {
     // Define related structure
     typedef typename DataPoint::Scalar Scalar;
     typedef typename DataPoint::VectorType VectorType;
-    typedef Basket<DataPoint, NeighborFilter, OrientedSphereFit> Fit;
+    typedef Basket<DataPoint, NF, OrientedSphereFit> Fit;
 
     //generate samples
     int nbPoints = Eigen::internal::random<int>(100, 1000);
@@ -54,10 +58,8 @@ void testFunction()
     Scalar zmax = std::abs((coeff[0] + coeff[1]) * width*width);
     Scalar analysisScale = std::sqrt(zmax*zmax + width*width);
 
-    Scalar epsilon = Scalar(0.001); // We need a lesser precision for this test to pass
-
     Fit fit;
-    fit.setNeighborFilter(NeighborFilter(center, analysisScale));
+    fit.setNeighborFilter(NF(center, analysisScale));
     fit.init();
 
     for(int i = 0; i < nbPointsFit; ++i)
@@ -70,7 +72,6 @@ void testFunction()
 
         fit.addNeighbor(p);
     }
-
     fit.finalize();
 
     if(fit.isStable())
@@ -78,20 +79,21 @@ void testFunction()
         std::vector<VectorType> samples (nbPoints);
         for (int i = 0; i < nbPoints; ++i)
         {
-            VectorType p = center + analysisScale * VectorType::Random();
-            samples[i] = p;
-            VectorType proj  = fit.project(p);
-
-            // check that the projected point is on the surface
-            VERIFY( std::abs(fit.potential(proj)) < epsilon );
+            samples[i] = center + analysisScale * VectorType::Random();
         }
-
-        // check if direct projection gives same or better result than descent projection.
-        for( const auto& p: samples )
+        for ( const auto& p: samples )
         {
-            VectorType res1 = fit.project( p );
-            VectorType res2 = fit.projectDescent( p, 1000 ); // force high number of iterations
-            VERIFY( res1.isApprox( res2, epsilon ));
+            // check that the projected point is on the surface
+            VectorType projD = fit.projectDescent( p, 1000 );
+            VERIFY( std::abs(fit.potential(projD)) < lowPrecisionEpsilon );
+
+            if constexpr (NF::isLocal) {
+                VectorType proj = fit.project( p );
+                VERIFY( std::abs(fit.potential(proj)) < lowPrecisionEpsilon );
+
+                // check if direct projection gives same or better result than descent projection.
+                VERIFY( proj.isApprox( projD, lowPrecisionEpsilon ));
+            }
         }
 
         // Disable this test: not true with apple-clang 12.
@@ -111,10 +113,7 @@ void testFunction()
         std::cout << "Default: " << elapsed_seconds1.count() << " Descent: " << elapsed_seconds2.count() << "s\n";
         VERIFY( elapsed_seconds1 <= elapsed_seconds2 );
 #endif
-
     }
-
-
 }
 
 template<typename Scalar, int Dim>
@@ -124,12 +123,16 @@ void callSubTests()
 
     typedef DistWeightFunc<Point, SmoothWeightKernel<Scalar> > WeightSmoothFunc;
     typedef DistWeightFunc<Point, ConstantWeightKernel<Scalar> > WeightConstantFunc;
+    typedef DistWeightFuncGlobal<Point, ConstantWeightKernel<Scalar> > WeightConstantFuncGlobal;
+    typedef DistWeightFuncGlobal<Point, SmoothWeightKernel<Scalar> > WeightSmoothFuncGlobal;
 
     cout << "Testing with parabola..." << endl;
     for(int i = 0; i < g_repeat; ++i)
     {
         CALL_SUBTEST(( testFunction<Point, WeightSmoothFunc>() ));
+        CALL_SUBTEST(( testFunction<Point, WeightSmoothFuncGlobal>(0.1) ));
         CALL_SUBTEST(( testFunction<Point, WeightConstantFunc>() ));
+        CALL_SUBTEST(( testFunction<Point, WeightConstantFuncGlobal>(0.1) ));
     }
     cout << "Ok!" << endl;
 }

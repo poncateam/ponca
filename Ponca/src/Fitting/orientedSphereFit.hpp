@@ -60,11 +60,11 @@ OrientedSphereFitImpl<DataPoint, _NFilter, T>::finalize ()
     m_deno = m_sumDotPP - den1;
 
     // Deal with degenerate cases
-    if(abs(m_deno) < epsilon * max(m_sumDotPP, den1))
+    if(abs(m_deno) < epsilon * max(m_sumDotPP, den1) && Base::m_ul.norm() != Scalar(0.0))
     {
         if (Base::m_ul.isZero(0))
             return Base::m_eCurrentState = UNDEFINED;
-        //plane
+        // Plane
         Scalar s   = Scalar(1.) / Base::m_ul.norm();
         Base::m_ul = s*Base::m_ul;
         Base::m_uc = s*Base::m_uc;
@@ -72,7 +72,7 @@ OrientedSphereFitImpl<DataPoint, _NFilter, T>::finalize ()
     }
     else
     {
-        //Generic case
+        // Generic case
         Base::m_uq = Scalar(.5) * m_nume / m_deno;
         Base::m_ul = (Base::m_sumN - Base::m_sumP * (Scalar(2.) * Base::m_uq)) * invSumW;
         Base::m_uc = -invSumW * (Base::m_ul.dot(Base::m_sumP) + m_sumDotPP * Base::m_uq);
