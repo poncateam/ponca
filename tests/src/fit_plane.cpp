@@ -110,7 +110,15 @@ void testFunction(bool _bUnoriented = false, bool _bAddPositionNoise = false, bo
         switch (ret){
             case STABLE: {
                 // Check if the plane orientation is equal to the generation direction
-                VERIFY(Scalar(1.) - std::abs(fit.primitiveGradient(vectorPoints[i].pos()).dot(direction)) <= epsilon);
+                auto primGrad = fit.primitiveGradient(vectorPoints[i].pos());
+                auto gen_dir = std::abs(primGrad.dot(direction));
+                std::cout << "vectorPoints[i].pos() : " << vectorPoints[i].pos().transpose() << std::endl;
+                std::cout << "direction : " << direction.transpose() << std::endl;
+                std::cout << "primGrad : " << primGrad.transpose() << std::endl;
+                std::cout << "gen_dir : " << gen_dir << std::endl;
+
+
+                VERIFY(Scalar(1.) - gen_dir <= epsilon);
 
                 // Check if the surface variation is small
                 CheckSurfaceVariation<_cSurfVar>::run(fit, _bAddPositionNoise ? epsilon*Scalar(10.): epsilon);
@@ -143,6 +151,7 @@ void callSubTests()
     typedef Basket<Point, WeightSmoothFunc, CovariancePlaneFit> CovFitSmooth;
     typedef Basket<Point, WeightConstantFunc, CovariancePlaneFit> CovFitConstant;
     typedef Basket<Point, WeightConstantFunc2, CovariancePlaneFit> CovFitConstant2;
+    typedef Basket<Point, WeightConstantFuncGlobal, CovariancePlaneFit> CovFitConstantGlobal;
 
     typedef Basket<Point, WeightSmoothFunc, MeanPlaneFit> MeanFitSmooth;
     typedef Basket<Point, WeightConstantFunc, MeanPlaneFit> MeanFitConstant;
@@ -183,6 +192,7 @@ void callSubTests()
         CALL_SUBTEST(( testFunction<Point, CovFitSmooth, WeightSmoothFunc, true>(false, true, true) ));
         CALL_SUBTEST(( testFunction<Point, CovFitConstant, WeightConstantFunc, true>(false, true, true) ));
         CALL_SUBTEST(( testFunction<Point, CovFitConstant2, WeightConstantFunc2, true>(false, true, true) ));
+        // CALL_SUBTEST(( testFunction<Point, CovFitConstantGlobal, WeightConstantFuncGlobal, true>(false, true, true) ));
     }
     cout << "Ok!" << endl;
 }
