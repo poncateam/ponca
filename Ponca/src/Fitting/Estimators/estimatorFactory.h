@@ -12,19 +12,18 @@ namespace Ponca::Estimators {
     template <typename DataType, typename WeightFunc>
     class EstimatorFactory {
 
-        std::shared_ptr< BaseEstimator< DataType > > estimatorsList[NUMBER_OF_FIT_TYPES];
+        std::shared_ptr< BasketBase< DataType, WeightFunc > > estimatorsList[NUMBER_OF_FIT_TYPES];
 
     public:
 
-
         EstimatorFactory() {
 #define ENUM_FIT(name) \
-            estimatorsList[Estimators::FitType::name] = std::make_shared<Estimators::Estimator ## _ ## name<WeightFunc>>(#name);
+            estimatorsList[Estimators::FitType::name] = std::make_shared<Estimators::Fit ## _ ## name<WeightFunc>>(#name);
 ENUM_FITS
 #undef ENUM_FIT
         }
 
-        std::shared_ptr< BaseEstimator<DataType> > getEstimator(FitType name) {
+        std::shared_ptr< BasketBase< DataType, WeightFunc > > getEstimator(FitType name) {
             if (estimatorsList[name] == nullptr)
                 throw std::runtime_error("Estimator type not found");
             return estimatorsList[name];

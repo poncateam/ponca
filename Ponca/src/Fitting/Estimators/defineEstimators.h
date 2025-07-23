@@ -2,13 +2,12 @@
 
 #include "poncaKernels.h"
 #include "estimator.h"
+#include "baseType.h"
 
 namespace Ponca::Estimators {
     /// Distance to PCA plane : Mean curvature
     template <typename WeightFunc>
-    using Fit_PCA = Ponca::Basket<PPAdapter, WeightFunc, Ponca::CovariancePlaneFit>;
-    template <typename WeightFunc>
-    using Estimator_PCA = Estimator<Fit_PCA<WeightFunc>, true>;
+    using Fit_PCA = Basket<PPAdapter, WeightFunc, Ponca::CovariancePlaneFit>;
 
     /// Distance to PCA plane : Curvature Tensor0
     // template <typename WeightFunc>
@@ -25,15 +24,11 @@ namespace Ponca::Estimators {
             Ponca::DiffType::FitSpaceDer,
             Ponca::CovariancePlaneDer,
     Ponca::CurvatureEstimatorBase, Ponca::NormalDerivativesCurvatureEstimator>;
-    template <typename WeightFunc>
-    using Estimator_PSS = Estimator<Fit_PSS<WeightFunc>, true>;
-
 
     /// Algebraic Point Set Surfaces : Mean curvature
     template <typename WeightFunc>
     using Fit_APSS = Ponca::Basket<PPAdapter, WeightFunc, Ponca::OrientedSphereFit>;
-    template <typename WeightFunc>
-    using Estimator_APSS = Estimator<Fit_APSS<WeightFunc>, true>;
+
     /// Algebraic Point Set Surfaces : Curvature Tensor
     // template <typename WeightFunc>
     // using Fit_APSS = Ponca::BasketDiff<
@@ -50,11 +45,6 @@ namespace Ponca::Estimators {
                 Ponca::DiffType::FitSpaceDer,
                 Ponca::OrientedSphereDer, Ponca::MlsSphereFitDer,
                 Ponca::CurvatureEstimatorBase, Ponca::NormalDerivativesCurvatureEstimator>;
-    template <typename WeightFunc>
-    using Estimator_ASO = Estimator<Fit_ASO<WeightFunc>, true>;
-
-
-
 
     /// Sphere
     // template <typename WeightFunc>
@@ -65,7 +55,5 @@ namespace Ponca::Estimators {
     //             Ponca::CurvatureEstimatorBase, Ponca::NormalDerivativesCurvatureEstimator>;
     template <typename WeightFunc>
     using Fit_Sphere = Ponca::Basket<PPAdapter, WeightFunc, Ponca::SphereFit>;
-    template <typename WeightFunc>
-    using Estimator_Sphere = Estimator<Fit_Sphere<WeightFunc>, false>;
 
 }

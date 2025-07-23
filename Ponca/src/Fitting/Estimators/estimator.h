@@ -4,218 +4,93 @@
 #include <utility>
 
 #include "differentialQuantities.hpp"
+#include "Ponca/src/Fitting/enums.h"
+#include "Ponca/src/Fitting/build_Estimator2/estimatorFactory.h"
+#include "Ponca/src/SpatialPartitioning/KdTree/kdTree.h"
 
 namespace Ponca::Estimators {
+    /// Generic processing function: traverse point cloud, compute fitting, and use functor to process fitting output
+    /// \note Functor is called only if fit is stable
+    template<typename FitT, typename PointContainer, typename Functor>
+    void processPointCloud(
+        const PointContainer& pointCloud,
+        const Functor f, // Functor called on each completion of the fitting process, for each points in the point cloud
+        const typename FitT::Scalar scale,
+        const int nbMLSIter = 1
+    ) {
+        #pragma omp parallel for
+        for (int i = 0; i < pointCloud.size(); ++i) {
+            FitT fit = computeFitForSinglePoint(i, pointCloud, scale, f, nbMLSIter);
+        }
+    }
 
-    template < typename _Fit >
-    class InterfaceProcessHandler {
+    /// Generic processing function: traverse point cloud, compute fitting, and use functor to process fitting output
+    /// \note Functor is called only if fit is stable
+    template<typename FitT, typename Functor>
+    void processTree(
+        const KdTree<PPAdapter>& tree,
+        const Functor f, // Functor called on each completion of the fitting process, for each points in the point cloud
+        const typename FitT::Scalar scale,
+        const int nbMLSIter = 1
+    ) {
+        #pragma omp parallel for
+        for (int i = 0; i < tree.samples().size(); ++i) {
+            FitT fit = computeFitForSinglePoint(i, tree.points(), scale, f, nbMLSIter, tree.range_neighbors(i, scale));
+        }
+    }
 
-        protected :
-            using FitT = _Fit;
-            using WeightFunc = typename FitT::WeightFunction;
-            using DataType = typename FitT::DataPoint;
+    /// Generic processing function: compute fitting on a PointContainer : use functor to process fitting output
+    /// \note Functor is called only if fit is stable
+    template<typename FitT, typename PointContainer, typename Functor, typename PointIterator>
+    Ponca::FIT_RESULT computeFitForSinglePoint(
+        const int indexQuery,
+        const PointContainer& pointCloud,
+        const typename FitT::Scalar scale,
+        const Functor f, // Function called when the fitting is completed and stable
+        const int nbMLSIter = 1,
+        const PointIterator& preComputedNeighborhoodIterator = nullptr, // Typically, set this to a kdtree or knnGraph range_neighbors(p, scale)
+        FitT fit = FitT()
+    ) {
+        Ponca::FIT_RESULT res = UNDEFINED;
+        typename FitT::VectorType positionQuery = pointCloud[indexQuery].pos();
 
-            VectorType               current_pos = VectorType::Zero();
-            Ponca::FIT_RESULT        current_fitResult = Ponca::UNDEFINED;
-            int                      current_NeighborsCount = 0;
+        for( int mm = 0; mm < nbMLSIter; ++mm) {
+            fit.setWeightFunc({ positionQuery, scale });
 
-        public:
-            virtual ~InterfaceProcessHandler() = default;
-            InterfaceProcessHandler() {
-                current_pos = VectorType::Zero();
-                current_fitResult = Ponca::UNDEFINED;
-                current_NeighborsCount = 0;
-            };
+            if (preComputedNeighborhoodIterator != nullptr)
+                res = fit.computeWithIds(preComputedNeighborhoodIterator);
+            else
+                res = fit.compute(pointCloud);
 
-            // [TODO] Careful with kNN queries
-            void initHandler( const DataType& init_data ) {
-                current_pos = init_data.pos();
+            if (res != Ponca::FIT_RESULT::STABLE) {
+                std::cerr << "Warning: fit " << indexQuery << " is not stable" << std::endl;
+                return res;
             }
+            positionQuery = fit.project( positionQuery );
+        }
 
-            void initEstimator( FitT &fit, const Scalar radius ) {
+        f(indexQuery, fit, positionQuery);
+        return res;
+    }
 
-                fit.setWeightFunc(WeightFunc(radius));
-                fit.init(current_pos);
+    /// Generic processing function: compute fitting on a PointContainer :
+    /// \note Functor is called only if fit is stable. Takes in parameter f(i, fit, positionQuery)
+    template<typename PointContainer, typename Functor, typename WeightFunc>
+    void estimateDifferentialQuantities(
+        FitType name,
+        const int indexQuery,
+        const PointContainer& pointCloud,
+        const PPAdapter::Scalar scale,
+        const Functor f,
+        const int nbMLSIter = 1
+    ) {
+        EstimatorFactory< PPAdapter, WeightFunc > factory = getEstimatorFactory<PPAdapter, WeightFunc>();
+        BasketBase< PPAdapter, WeightFunc > fit = factory->getEstimator(name);
 
-                current_NeighborsCount = 0;
-            }
+        if (!fit)
+            throw std::runtime_error("Invalid fit");
 
-            virtual void applyNeighbors( FitT & fit, const std::vector<DataType>& neighbors ) = 0;
-
-            Ponca::FIT_RESULT finalize ( FitT &fit ) {
-                current_fitResult = fit.finalize();
-                if ( current_fitResult == Ponca::STABLE )
-                    current_pos = fit.project( current_pos );
-
-                return current_fitResult;
-            }
-
-            void applyFunctor( FitT &fit, Quantity<Scalar> &diffQuantity ) {
-                diffQuantity.neighbor_count = current_NeighborsCount;
-                diffQuantity.non_stable = current_fitResult != Ponca::STABLE;
-
-                if (diffQuantity.non_stable) return;
-
-                diffQuantity.k1 = fit.kmin();
-                diffQuantity.k2 = fit.kmax();
-                diffQuantity.mean = fit.kMean();
-                diffQuantity.gauss = fit.GaussianCurvature();
-                diffQuantity.d1 = fit.kminDirection();
-                diffQuantity.d2 = fit.kmaxDirection();
-                diffQuantity.normal = fit.primitiveGradient();
-
-                diffQuantity.projection = current_pos;
-            }
-
-            virtual Scalar potential ( FitT &fit, const VectorType& pos ) = 0;
-    }; // InterfaceProcessHandler
-
-    // Generic ProcessHandler
-    template < typename _Fit >
-    class ProcessHandler : public InterfaceProcessHandler< _Fit > {
-
-        using Base = InterfaceProcessHandler< _Fit >;
-        using FitT = typename Base::FitT;
-        using DataType = typename FitT::DataPoint;
-
-        public :
-
-            ProcessHandler () : Base() {}
-            ~ProcessHandler() = default;
-
-            void applyNeighbors( FitT & fit, const std::vector<DataType>& neighbors ) override {
-                Base::current_NeighborsCount = 0;
-                fit.startNewPass();
-
-                for (const auto& neighbor : neighbors) {
-                    fit.addNeighbor( neighbor );
-                    Base::current_NeighborsCount += 1;
-                }
-            }
-
-            Scalar potential ( FitT &fit, const VectorType& pos ) override {
-                return fit.potential( pos );
-            }
-
-    }; // ProcessHandler
-
-
-    template <typename _DataType>
-    class BaseEstimator {
-        public :
-            using DataType = _DataType;
-
-            virtual ~BaseEstimator() = default;
-            virtual void setName(std::string name) const = 0;
-            [[nodiscard]] virtual std::string getName () const = 0;
-            [[nodiscard]] virtual std::string toString() const = 0;
-            [[nodiscard]] virtual bool isOriented() const = 0;
-            [[nodiscard]] virtual bool isFixedMLS () const = 0;
-
-            virtual void operator() ( const DataType &query,
-                                        const std::vector<DataType>& neighbors,
-                                        Quantity<Scalar> &quantity ) = 0;
-
-            virtual Scalar potential ( const VectorType& pos ) = 0;
-
-            virtual void setMLSMax( int mls_max ) = 0;
-
-            virtual void setRadius( const Scalar& size ) = 0;
-
-        private :
-
-            Scalar radius = 0;
-
-    }; // BaseEstimator
-
-
-    // Basket fit wrapper. The Handler store the functors, called in the main loop
-    template < typename _FitT, bool _isOriented = false, int _nFixedMLS = -1>
-    class Estimator final : public BaseEstimator< typename _FitT::DataPoint > {
-        using Self = Estimator<_FitT>;
-        using DataType = typename _FitT::DataPoint;
-
-        protected :
-            int mls_max = 1;
-            float radius = 0;
-
-            bool fixedMLS = false;
-            bool oriented = _isOriented;
-
-            _FitT computedFit;
-            bool isFinished = false;
-
-            std::string name = "None";
-        public :
-            // Overload the FitT
-            using FitT = _FitT;
-
-            using WeightFunc = typename FitT::WeightFunction;
-
-            Estimator() {
-                if (_nFixedMLS != -1) {
-                    fixedMLS = true;
-                    mls_max = _nFixedMLS;
-                }
-            }
-            Estimator(std::string name) : name(std::move(name)) {
-                if (_nFixedMLS != -1) {
-                    fixedMLS = true;
-                    mls_max = _nFixedMLS;
-                }
-            }
-
-            void setName (std::string name) const override { this.name = name; }
-
-            [[nodiscard]] std::string getName () const override {  return name; }
-
-            [[nodiscard]] bool isOriented() const override { return oriented; }
-
-            [[nodiscard]] bool isFixedMLS () const override { return fixedMLS; }
-
-            [[nodiscard]] std::string toString() const override { return name; }
-
-            void setMLSMax( int mls_max ) override {
-                if ( fixedMLS )
-                    throw std::runtime_error("MLS was fixed and can't be changed for this estimator");
-                this->mls_max = mls_max;
-            }
-
-            void setRadius( const Scalar& size ) override { radius = size; }
-
-            void operator() ( const DataType &query, const std::vector<DataType>& neighbors, Quantity<Scalar> &quantity ) override {
-
-                ProcessHandler<FitT> pHandler( );
-
-                int mls_current = 0;
-
-                pHandler.initHandler ( query );
-
-                for ( mls_current = 0 ; mls_current < mls_max ; mls_current ++ ){
-                    FitT fit;
-                    pHandler.initEstimator( fit, radius );
-
-                    Ponca::FIT_RESULT res;
-                    do {
-                        pHandler.applyNeighbors( fit, neighbors );
-                        res = pHandler.finalize( fit );
-                    } while ( res == Ponca::NEED_OTHER_PASS );
-
-                    if ( mls_current == mls_max - 1 ){
-                        pHandler.applyFunctor( fit, quantity );
-                        isFinished = true;
-                        computedFit = fit;
-                    }
-                }
-            }
-
-            Scalar potential ( const VectorType& pos ) override {
-                if ( !isFinished )
-                    return 0;
-                ProcessHandler<FitT> pHandler( name );
-                return pHandler.potential(computedFit, pos);
-            }
-
-    }; // Estimator
+        computeFitForSinglePoint(indexQuery, pointCloud, scale, f, nbMLSIter, fit);
+    }
 
 }
