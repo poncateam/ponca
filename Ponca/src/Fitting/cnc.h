@@ -72,10 +72,12 @@ enum class TriangleGenerationMethod {
     UniformGeneration
 };
 
-template < class DataPoint, class WeightFunc, TriangleGenerationMethod _method = TriangleGenerationMethod::UniformGeneration>
-class CNC : BasketBase<DataPoint, WeightFunc> {
+template < class P, class WeightFunc, TriangleGenerationMethod _method = TriangleGenerationMethod::UniformGeneration>
+class CNC : BasketBase<P, WeightFunc> {
+public:
+    using DataPoint = P;
     using MatrixType = typename DataPoint::MatrixType;
-    using Scalar = typename DataPoint::Scalar;
+    using Scalar     = typename DataPoint::Scalar;
     using VectorType = typename DataPoint::VectorType;
     typedef Eigen::VectorXd  DenseVector;
     typedef Eigen::MatrixXd  DenseMatrix;
