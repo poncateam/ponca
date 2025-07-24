@@ -6,21 +6,36 @@ This Source Code Form is subject to the terms of the Mozilla Public
 
 #pragma once
 
+#include <numeric>      // std::iota
+
 namespace Ponca {
 
 template < class P, class W, TriangleGenerationMethod M>
 template <typename PointContainer>
 FIT_RESULT CNC<P, W, M>::compute( const PointContainer& points ) {
-    generateTriangles<PointContainer>(points);
+
+    // Makes the default indices liste to iterate over the point container
+    std::vector<size_t> ids(points.size());
+    std::iota(ids.begin(), ids.end(), 0);
+
+    generateTriangles(points, ids);
+
 	return finalize();
+}
+template < class P, class W, TriangleGenerationMethod M>
+template <typename IndexContainer, typename PointContainer>
+FIT_RESULT CNC<P, W, M>::computeWithIds( const IndexContainer& ids, const PointContainer& points ) {
+    generateTriangles(points, ids);
+    return finalize();
 }
 
 /// Generates the triangle used by the CNC Fit depending on the method (UniformGeneration)
 template <class P, class W, TriangleGenerationMethod M>
-template <typename PointContainer>
+template <typename PointContainer, typename IndexContainer>
 std::enable_if_t<M == TriangleGenerationMethod::UniformGeneration, bool>
 CNC<P, W, M>::generateTriangles(
-	const PointContainer& points
+	const PointContainer& points,
+	const IndexContainer& ids
 ) {
 
     const int lengthPoints = points.size();
@@ -28,9 +43,9 @@ CNC<P, W, M>::generateTriangles(
 
     for (int i = 0; i < _maxtriangles; ++i){
         // Randomly select triangles
-        int i1 = Eigen::internal::random<int>(0, lengthPoints);
-        int i2 = Eigen::internal::random<int>(0, lengthPoints);
-        int i3 = Eigen::internal::random<int>(0, lengthPoints);
+        int i1 = ids[Eigen::internal::random<int>(0, lengthPoints)];
+        int i2 = ids[Eigen::internal::random<int>(0, lengthPoints)];
+        int i3 = ids[Eigen::internal::random<int>(0, lengthPoints)];
         if (i1 == i2 || i1 == i3 || i2 == i3) continue;
 
         std::array <VectorType, 3> positions  = {
