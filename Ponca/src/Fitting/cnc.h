@@ -137,11 +137,25 @@ public:
         }
     }
 
+    /*! \brief Compute function for STL-like containers */
+    /*! Add neighbors stored in a PointContainer and call finalize at the end.*/
     template <typename PointContainer>
     PONCA_MULTIARCH inline FIT_RESULT compute( const PointContainer& points );
 
-    template <typename PointContainer>
-    PONCA_MULTIARCH inline std::enable_if_t<_method == TriangleGenerationMethod::UniformGeneration, bool> generateTriangles( const PointContainer& points );
+    /*! \brief Compute function to iterate over a subset of samples in a PointContainer  */
+    /*! Add neighbors stored in a PointContainer and sampled using indices stored in ids.*/
+    /*! \tparam IndexContainer An STL-like container storing the indices of the neighbors */
+    /*! \tparam PointContainer An STL-like container storing the points */
+    template <typename IndexContainer, typename PointContainer>
+    PONCA_MULTIARCH inline FIT_RESULT computeWithIds( const IndexContainer& ids, const PointContainer& points );
+
+
+
+    template <typename PointContainer, typename IndexRange>
+    PONCA_MULTIARCH inline std::enable_if_t<_method == TriangleGenerationMethod::UniformGeneration, bool> generateTriangles(
+        const PointContainer& points,
+        const IndexRange& indexRange
+    );
 
     PONCA_MULTIARCH inline int getNumTriangles() const {
         return _nb_vt;
