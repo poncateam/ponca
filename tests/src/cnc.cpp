@@ -7,7 +7,7 @@ This Source Code Form is subject to the terms of the Mozilla Public
 
 /*!
  \file test/src/cnc.cpp
- \brief Test validity of the cnc fitting procedures
+ \brief Test validity of the CNC curvature estimator procedure
  */
 
 #include "../common/testing.h"
@@ -78,7 +78,6 @@ void testBasicFunctionalities(const KdTree<typename Fit::DataPoint>& tree, typen
         // use compute function
         //! [Fit Compute]
         Fit fit1;
-        // fit1.setWeightFunc({ fitInitPos });
         fit1.compute(vectorPoints);
         //! [Fit Compute]
 
@@ -86,21 +85,19 @@ void testBasicFunctionalities(const KdTree<typename Fit::DataPoint>& tree, typen
         VERIFY(fit1 == fit1);
         VERIFY(! (fit1 != fit1));
 
-        // //! [Fit computeWithIds]
-        // Fit fit2;
-        // // fit2.setWeightFunc({ fitInitPos });
-        // // Sort fit1
-        // std::list<int> neighbors3;
-        // for (int iNeighbor : tree.range_neighbors(fitInitPos, analysisScale))
-        //     neighbors3.push_back(iNeighbor);
-        // neighbors3.sort();
-        // // Compute the neighbors
-        // fit2.computeWithIds( neighbors3, vectorPoints );
-        // //! [Fit computeWithIds]
-        // VERIFY((fit2 == fit2));
-        // VERIFY((fit1 == fit1));
-        // VERIFY(! (fit1 != fit2));
-        // VERIFY((fit1 == fit2));
+        //! [Fit computeWithIds]
+        Fit fit2;
+        // Sort fit1
+        std::vector<int> neighbors3;
+        for (int iNeighbor : tree.range_neighbors(fitInitPos, analysisScale))
+            neighbors3.push_back(iNeighbor);
+        // Compute the neighbors
+        fit2.computeWithIds( neighbors3, vectorPoints );
+        //! [Fit computeWithIds]
+        VERIFY((fit2 == fit2));
+        VERIFY((fit1 == fit1));
+        VERIFY(! (fit1 != fit2));
+        VERIFY((fit1 == fit2));
     }
 }
 
@@ -115,13 +112,6 @@ void callSubTests()
     //! [WeightFunction]
     using WeightFunc = DistWeightFunc<Point, SmoothWeightKernel<Scalar> >;
     //! [WeightFunction]
-    using Sphere     = Basket<Point, WeightFunc, OrientedSphereFit>;
-    //! [PlaneFitType]
-    using TestPlane = Basket<Point, WeightFunc, CovariancePlaneFit>;
-    //! [PlaneFitType]
-    //! [FitType]
-    using Sphere = Basket<Point, WeightFunc, OrientedSphereFit>;
-    //! [FitType]
     //! [CNCFitType]
     using Fit_CNC = CNC<Point, NoWeightFunc<Point>>;
     //! [CNCFitType]
@@ -129,28 +119,6 @@ void callSubTests()
     KdTreeDense<Point> tree;
     Scalar scale = generateData(tree);
     CALL_SUBTEST((testBasicFunctionalities<Fit_CNC>(tree, scale) ));
-
- //    constexpr int N = 100;
- // using VectorContainer = typename KdTreeSparse<Point>::PointContainer;
- //    auto points = VectorContainer(N);
- //    typedef typename Point::VectorType VectorType;
- //
- //    std::generate(points.begin(), points.end(), []() {return Point(VectorType::Random()); });
- //
- //    /// [KdTree pointer usage]
- //    // Abstract pointer type that can receive KdTreeSparse or KdTreeDense objects
- //    KdTree<Point> *kdtree {nullptr};
- //    /// [KdTree pointer usage]
- //
- //
- //    std::vector<int> sampling;
- //    sampling.resize(N);
- //    std::iota(sampling.begin(), sampling.end(), 0);
- //    /// [KdTree assign dense]
- //    kdtree = new KdTreeDense<Point> (points);
- //    /// [KdTree assign dense]
-
-    // CALL_SUBTEST((testBasicFunctionalities<TestPlane>(kdtree, 1) ));
 }
 
 int main(const int argc, char** argv)
@@ -160,7 +128,12 @@ int main(const int argc, char** argv)
 
     cout << "Test for the CorrectedNormalCurrent fit method" << endl;
 
+    cout << "Tests CNC functions in 3 dimensions: float" << flush;
     callSubTests<float, 3>();
-    // callSubTests<double, 3>();
-    // callSubTests<long double, 3>();
+    cout << " (ok), double" << flush;
+    callSubTests<double, 3>();
+    cout << " (ok)" << flush;
+    cout << ", long double" << flush;
+    callSubTests<long double, 3>();
+    cout << " (ok)" << flush;
 }
