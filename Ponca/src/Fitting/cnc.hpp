@@ -62,12 +62,12 @@ FIT_RESULT CNC<P, W, M>::finalize( ) {
 
         // Simple estimation. 
         Scalar tA = _triangles[t].mu0InterpolatedU();
-        if (tA < - internal::CNCEigen::epsilon) {
+        if (tA < -internal::CNCEigen<P>::epsilon) {
             _A     -= tA;
             _H     += _triangles[t].template mu1InterpolatedU<true>();
             _G     += _triangles[t].template mu2InterpolatedU<true>();
             localT += _triangles[t].template muXYInterpolatedU<true>();
-        } else if (tA > internal::CNCEigen::epsilon) {
+        } else if (tA > internal::CNCEigen<P>::epsilon) {
             _A     += tA;
             _H     += _triangles[t].mu1InterpolatedU();
             _G     += _triangles[t].mu2InterpolatedU();
@@ -97,7 +97,7 @@ FIT_RESULT CNC<P, W, M>::finalize( ) {
         _G = Scalar(0);
     }
 
-    std::tie (k2, k1, v2, v1) = internal::CNCEigen::curvaturesFromTensor(T, 1.0, _evalPointNormal);
+    std::tie (k2, k1, v2, v1) = internal::CNCEigen<P>::curvaturesFromTensor(T, 1.0, _evalPointNormal);
 
     return STABLE;
 
