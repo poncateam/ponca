@@ -3,14 +3,17 @@
 
 namespace Ponca::internal {
 
+template<typename DataPoint>
 struct CNCEigen {
+	using MatrixType = typename DataPoint::MatrixType;
+	using Scalar     = typename DataPoint::Scalar;
+	using VectorType = typename DataPoint::VectorType;
 	/// Small constant used to approximate zero.
-	static constexpr float epsilon = Eigen::NumTraits<float>::epsilon();
+	static constexpr Scalar epsilon = Eigen::NumTraits<Scalar>::epsilon();
 
 	/// Represents a triangle on a sphere of radius one.
 	struct SphericalTriangle {
 		///Spherical point data type
-		template<typename Scalar, typename VectorType>
 		static bool isDegenerate(const VectorType& a, const VectorType& b, const VectorType& c) {
 			Scalar d[3] = {(a - b).norm(), (a - c).norm(), (b - c).norm()};
 			// Checks that the spherical triangle is small or thin.
@@ -24,7 +27,6 @@ struct CNCEigen {
 		}
 
 		/// @return the polar triangle associated with this triangle.
-		template<typename VectorType>
 		static void polarTriangle(
 			const VectorType& a, const VectorType& b, const VectorType& c,
 			VectorType& Ap     , VectorType& Bp     , VectorType& Cp
@@ -42,7 +44,6 @@ struct CNCEigen {
 		/// @param[out] alpha the interior angle at vertex A.
 		/// @param[out] beta  the interior angle at vertex B.
 		/// @param[out] gamma the interior angle at vertex C.
-		template<typename Scalar, typename VectorType>
 		static void interiorAngles(
 			const VectorType& a, const VectorType& b, const VectorType& c,
 		    Scalar& alpha      , Scalar& beta       , Scalar& gamma
@@ -66,10 +67,9 @@ struct CNCEigen {
 		}
 
 		/// @return the (unsigned) area of the spherical triangle (below 2pi).
-		template<typename Scalar, typename VectorType>
 		static Scalar area(const VectorType& a, const VectorType& b, const VectorType& c) {
 			Scalar alpha, beta, gamma;
-			if (isDegenerate<Scalar, VectorType>(a, b, c)) return 0.0;
+			if (isDegenerate(a, b, c)) return 0.0;
 			interiorAngles(a, b, c, alpha, beta, gamma);
 			return ((fabs(alpha) < epsilon)
 				       || (fabs(beta) < epsilon)
@@ -79,9 +79,8 @@ struct CNCEigen {
 		}
 
 		/// @return the (signed) area of the spherical triangle (below 2pi).
-		template<typename Scalar, typename VectorType>
 		static Scalar algebraicArea(const VectorType& a, const VectorType& b, const VectorType& c) {
-			Scalar S = area<Scalar, VectorType>(a, b, c);
+			Scalar S = area(a, b, c);
 			VectorType M = a + b + c;
 			VectorType X = (b - a).cross(c - a);
 			if (M.template lpNorm<1>() <= epsilon || X.template lpNorm<1>() <= epsilon) return 0.0;
@@ -107,7 +106,6 @@ public:
 	/// corrected normals should be made unitary, otherwise
 	/// interpolated corrected normals may have smaller norms.
 	/// @return the mu0-measure of triangle abc, i.e. its area.
-	template<typename Scalar, typename VectorType, typename MatrixType>
 	static Scalar mu0InterpolatedU(
 		const VectorType& a,
 	    const VectorType& b,
@@ -140,7 +138,6 @@ public:
 	/// corrected normals should be made unitary, otherwise
 	/// interpolated corrected normals may have smaller norms.
 	/// @return the mu1-measure of triangle abc, i.e. its mean curvature.
-	template<typename Scalar, typename VectorType, typename MatrixType>
 	static Scalar mu1InterpolatedU(
 		const VectorType& a,
 		const VectorType& b,
@@ -171,7 +168,6 @@ public:
 	/// corrected normals should be made unitary, otherwise
 	/// interpolated corrected normals may have smaller norms.
 	/// @return the mu2-measure of triangle abc, i.e. its Gaussian curvature.
-	template<typename Scalar, typename VectorType, typename MatrixType>
 	static Scalar mu2InterpolatedU(
 		const VectorType& a,
 		const VectorType& b,
@@ -185,7 +181,7 @@ public:
 		// MU2=1/2*det( uA, uB, uC )
 		// When normals are unitary, it is the area of a spherical triangle.
 		if (unit_u)
-			return SphericalTriangle::algebraicArea<Scalar, VectorType>(ua, ub, uc);
+			return SphericalTriangle::algebraicArea(ua, ub, uc);
 		else
 			return 0.5 * (ua.cross(ub).dot(uc));
 	}
@@ -200,7 +196,6 @@ public:
 	/// @param ub the corrected normal vector at point b
 	/// @param uc the corrected normal vector at point c
 	/// @return the muXY-measure of triangle abc, i.e. its anisotropic curvature.
-	template<typename Scalar, typename VectorType, typename MatrixType>
 	static MatrixType muXYInterpolatedU(
 		const VectorType& a,
 		const VectorType& b,
@@ -244,7 +239,6 @@ public:
 	/// @param area Area of the face
 	/// @param N the normal vector
 	/// @return a pair of principal directions.
-	template<typename Scalar, typename VectorType, typename MatrixType>
 	static std::pair<VectorType, VectorType> curvDirFromTensor(
 		const MatrixType& tensor,
 		const Scalar area,
@@ -277,7 +271,6 @@ public:
 	/// @param area Area of the face
 	/// @param N the normal vector
 	/// @return a pair of principal directions.
-	template<typename Scalar, typename VectorType, typename MatrixType>
 	static std::tuple<Scalar, Scalar, VectorType, VectorType> curvaturesFromTensor(
 		const MatrixType& tensor,
 		const Scalar area,
