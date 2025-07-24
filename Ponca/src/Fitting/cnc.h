@@ -165,6 +165,17 @@ public:
 		_evalPointNormal = evalPointNormal;
 	}
 
+    bool operator==(const CNC& other) const
+    {
+        // We use the matrix to compare the fitting results
+        return (_T11 == other._T11) && (_T12 == other._T12) && (_T13 == other._T13) && (_T22 == other._T22) && (_T23 == other._T23) && (_T33 == other._T33);
+    }
+    bool operator!=(const CNC& other) const
+    {
+        // We use the matrix to compare the fitting results
+        return !(this == &other);
+    }
+
     PONCA_MULTIARCH inline Scalar kmin() { return k1; }
 
     PONCA_MULTIARCH inline Scalar kmax() { return k2; }
