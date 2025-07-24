@@ -14,7 +14,7 @@
 #define DEFINE_CNC_FUNC(CNC_FUNC, RETURN_TYPE)                                \
 	template<bool differentOrder = false>                                     \
     inline RETURN_TYPE CNC_FUNC () {                                          \
-        return CNCEigen::CNC_FUNC(                                            \
+        return CNCEigen::CNC_FUNC<Scalar, VectorType, MatrixType>(            \
 			 points[0],  points[2-differentOrder],  points[1+differentOrder], \
 			normals[0], normals[2-differentOrder], normals[1+differentOrder]  \
 		);                                                                    \
