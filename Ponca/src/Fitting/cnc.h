@@ -62,10 +62,6 @@ struct Triangle {
 
 /*!
     \brief CNC generation of triangles from a set of points
-
-    \cite coucou 
-
-    \todo the code
 */
 
 enum class TriangleGenerationMethod {
