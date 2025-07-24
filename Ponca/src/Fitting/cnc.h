@@ -11,9 +11,9 @@
 #include PONCA_MULTIARCH_INCLUDE_STD(cmath)
 #include "cncFormulaEigen.h"
 
-#define DEFINE_CNC_FUNC(CNC_FUNC)                                             \
+#define DEFINE_CNC_FUNC(CNC_FUNC, RETURN_TYPE)                                \
 	template<bool differentOrder = false>                                     \
-    inline Scalar CNC_FUNC () {                                               \
+    inline RETURN_TYPE CNC_FUNC () {                                          \
         return CNCEigen::CNC_FUNC(                                            \
 			 points[0],  points[2-differentOrder],  points[1+differentOrder], \
 			normals[0], normals[2-differentOrder], normals[1+differentOrder]  \
@@ -52,10 +52,10 @@ struct Triangle {
         return !((*this) == other);
     }
 
-	DEFINE_CNC_FUNC(mu0InterpolatedU)
-	DEFINE_CNC_FUNC(mu1InterpolatedU)
-	DEFINE_CNC_FUNC(mu2InterpolatedU)
-	DEFINE_CNC_FUNC(muXYInterpolatedU)
+	DEFINE_CNC_FUNC(mu0InterpolatedU , Scalar)
+	DEFINE_CNC_FUNC(mu1InterpolatedU , Scalar)
+	DEFINE_CNC_FUNC(mu2InterpolatedU , Scalar)
+	DEFINE_CNC_FUNC(muXYInterpolatedU, MatrixType)
 };
 
 } // namespace internal
@@ -79,7 +79,6 @@ public:
     typedef Eigen::MatrixXd  DenseMatrix;
 
 protected:
-    static const auto& randomInt = Eigen::internal::random<int>;
 	// Basis
 	VectorType _evalPointNormal   {VectorType::Zero()};
 
