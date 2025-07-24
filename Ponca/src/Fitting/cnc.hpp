@@ -67,8 +67,7 @@ FIT_RESULT CNC<P, W, M>::finalize( ) {
             _H     += _triangles[t].template mu1InterpolatedU<true>();
             _G     += _triangles[t].template mu2InterpolatedU<true>();
             localT += _triangles[t].template muXYInterpolatedU<true>();
-        }
-        else if (tA > internal::CNCEigen::epsilon) {
+        } else if (tA > internal::CNCEigen::epsilon) {
             _A     += tA;
             _H     += _triangles[t].mu1InterpolatedU();
             _G     += _triangles[t].mu2InterpolatedU();
@@ -93,8 +92,7 @@ FIT_RESULT CNC<P, W, M>::finalize( ) {
         T /= _A;
         _H /= _A;
         _G /= _A;
-    }
-    else {
+    } else {
         _H = Scalar(0);
         _G = Scalar(0);
     }
