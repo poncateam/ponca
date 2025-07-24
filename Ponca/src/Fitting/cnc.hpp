@@ -28,20 +28,20 @@ CNC<P, W, M>::generateTriangles(
 
     for (int i = 0; i < _maxtriangles; ++i){
         // Randomly select triangles
-        int i1 = randomInt(0, lengthPoints);
-        int i2 = randomInt(0, lengthPoints);
-        int i3 = randomInt(0, lengthPoints);
+        int i1 = Eigen::internal::random<int>(0, lengthPoints);
+        int i2 = Eigen::internal::random<int>(0, lengthPoints);
+        int i3 = Eigen::internal::random<int>(0, lengthPoints);
         if (i1 == i2 || i1 == i3 || i2 == i3) continue;
 
         std::array <VectorType, 3> positions  = {
-			points[i1].position,
-			points[i2].position,
-			points[i3].position
+			points[i1].pos(),
+			points[i2].pos(),
+			points[i3].pos()
 		};
         std::array <VectorType, 3> normals = {
-			points[i1].normal,
-			points[i2].normal,
-			points[i3].normal
+			points[i1].normal(),
+			points[i2].normal(),
+			points[i3].normal()
 		};
 
         _triangles.push_back(internal::Triangle<P>(positions, normals));
@@ -62,13 +62,13 @@ FIT_RESULT CNC<P, W, M>::finalize( ) {
 
         // Simple estimation. 
         Scalar tA = _triangles[t].mu0InterpolatedU();
-        if (tA < - CNCEigen::epsilon) {
+        if (tA < - internal::CNCEigen::epsilon) {
             _A     -= tA;
             _H     += _triangles[t].template mu1InterpolatedU<true>();
             _G     += _triangles[t].template mu2InterpolatedU<true>();
             localT += _triangles[t].template muXYInterpolatedU<true>();
         }
-        else if (tA > CNCEigen::epsilon) {
+        else if (tA > internal::CNCEigen::epsilon) {
             _A     += tA;
             _H     += _triangles[t].mu1InterpolatedU();
             _G     += _triangles[t].mu2InterpolatedU();
@@ -84,13 +84,13 @@ FIT_RESULT CNC<P, W, M>::finalize( ) {
     _T23 = 0.5 * (localT(1,2) + localT(2,1));
     _T33 = localT(2,2);
 
-    MatrixType _T;
+    MatrixType T;
 
     if (_A != Scalar(0)){
-        _T  << _T11, _T12, _T13, 
+        T  << _T11, _T12, _T13,
                _T12, _T22, _T23, 
                _T13, _T23, _T33;
-        _T /= _A; 
+        T /= _A;
         _H /= _A;
         _G /= _A;
     }
@@ -99,7 +99,7 @@ FIT_RESULT CNC<P, W, M>::finalize( ) {
         _G = Scalar(0);
     }
 
-    std::tie (k2, k1, v2, v1) = CNCEigen::curvaturesFromTensor(_T, 1.0, _evalPointNormal);
+    std::tie (k2, k1, v2, v1) = internal::CNCEigen::curvaturesFromTensor(T, 1.0, _evalPointNormal);
 
     return STABLE;
 
