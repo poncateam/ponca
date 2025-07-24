@@ -64,11 +64,6 @@ typename DataPoint::Scalar generateData(KdTree<DataPoint>& tree)
 template<typename Fit>
 void testBasicFunctionalities(const KdTree<typename Fit::DataPoint>& tree, typename Fit::Scalar analysisScale)
 {
-    using DataPoint = typename Fit::DataPoint;
-
-    // Define related structure
-    typedef typename DataPoint::Scalar Scalar;
-    typedef typename DataPoint::VectorType VectorType;
 
     const auto& vectorPoints = tree.points();
 
@@ -103,17 +98,20 @@ void testBasicFunctionalities(const KdTree<typename Fit::DataPoint>& tree, typen
         VERIFY(! (fit1 != fit2));
         VERIFY(! (fit2 != fit2));
 
-        // we skip kdtree test for float: using the kdtree changes the order of the neighbors, which in turn changes the
-        // rounding error accumulations, and thus the final result
-        if (std::is_same<Scalar, float>::value || std::is_same<Scalar, long double>::value)
-            continue;
         //! [Fit computeWithIds]
         Fit fit3;
-        fit3.computeWithIds( tree.range_neighbors(fitInitPos, analysisScale), vectorPoints );
+        // Sort fit1
+        std::list<int> neighbors3;
+        for (int iNeighbor : tree.range_neighbors(fitInitPos, analysisScale))
+            neighbors3.push_back(iNeighbor);
+        neighbors3.sort();
+        // Compute the neighbors
+        fit3.computeWithIds( neighbors3, vectorPoints );
         //! [Fit computeWithIds]
-        VERIFY(fit3 == fit3);
-        VERIFY(fit1 == fit3);
+        VERIFY((fit3 == fit3));
+        VERIFY((fit1 == fit1));
         VERIFY(! (fit1 != fit3));
+        VERIFY((fit1 == fit3));
     }
 }
 
