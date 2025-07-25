@@ -7,7 +7,7 @@ This Source Code Form is subject to the terms of the Mozilla Public
 
 /*!
  \file test/src/cnc.cpp
- \brief Test validity of the cnc fitting procedures
+ \brief Test validity of the CNC curvature estimator procedure
  */
 
 #include "../common/testing.h"
