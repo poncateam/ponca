@@ -11,49 +11,58 @@ namespace Ponca {
 namespace internal
 {
     /*!
-        \brief Getting a random index
+        \internal
+        \brief Class to generate a random integer from a presetted boundary
+        \note Calling the () operator on this objet after the initialization of its boundary generates a random integer
     */
-    class GetRandomIndex {
+    class GetRandomInt {
     public:
-        int _indexMax {0};
+        int _nMin {0};
+        int _nMax {0};
 
-        GetRandomIndex(const int indexMax) : _indexMax(indexMax) { }
+        explicit GetRandomInt( const int nMax, const int nMin = 0 ) : _nMax(nMax), _nMin(nMin) { }
 
-        //! \brief Returns a random index in bounds of : [ 0, indexMax ]
+        /// \internal
+        /// \brief Returns a random integer in bounds of : [ 0, _nMax [
         int operator()() const {
             // random operator
-            int r = Eigen::internal::random<int>(0, _indexMax);
-            if (0 > r || r > _indexMax)
+            const int r = Eigen::internal::random<int>(0, _nMax);
+            if (_nMin > r || r > _nMax)
                 throw std::runtime_error(
-                "Random index values must be in range :"
-                    "0 < i < " + std::to_string(_indexMax) +
-                    " But got result : " + std::to_string(r));
+                    "Random index values must be in range :"
+                    + std::to_string(_nMin) + " <= i <= " + std::to_string(_nMax)
+                    + " But got result : " + std::to_string(r));
             return r;
         }
     };
 
     /*!
-        \brief Getting a random element from an STL-like container
+        \internal
+        \brief Getting a random element from an STL-like container.
+        Stores the container to then pick an element from it
+        \note Calling the () operator on this objet after the initialization of its boundary picks a random element from the container
         \inherit GetRandomIndex
     */
     template<typename Container>
-    class GetRandomElementFromContainer : GetRandomIndex {
+    class GetRandomElementFromContainer : GetRandomInt {
     private:
-        Container& _ids;
+        Container& _elements;
     public:
-        GetRandomElementFromContainer(const int indexMax, Container& ids) :
-            GetRandomIndex(indexMax), _ids(ids) { }
+        GetRandomElementFromContainer(Container& elements, const int nMax, const int nMin = 0) :
+            GetRandomInt(nMax, nMin), _elements(elements) { }
 
-        //! \brief Returns a random index from the index container
-        int operator()() const {
+        /// \internal
+        /// \brief Returns a random elements from the container in the index range of : [ 0, maxLength [
+        /// \note Overloads the () operator to return an element picked from the container with the random value, instead of a random integer
+        auto operator()() const {
             // random operator
-            int r = Eigen::internal::random<int>(0, _indexMax);
-            if (0 > r || r > _indexMax)
+            const int r = Eigen::internal::random<int>(_nMin, _nMax);
+            if (_nMin > r || r > _nMax)
                 throw std::runtime_error(
-                "Random index values must be in range :"
-                    "0 < i < " + std::to_string(_indexMax) +
-                    " But got result : " + std::to_string(r));
-            return _ids[r];
+                    "Random index values must be in range :"
+                    + std::to_string(_nMin) + " <= i <= " + std::to_string(_nMax)
+                    + " But got result : " + std::to_string(r));
+            return _elements[r];
         }
     };
 }
@@ -63,8 +72,8 @@ template < class P, class W, TriangleGenerationMethod M>
 template <typename PointContainer>
 FIT_RESULT CNC<P, W, M>::compute( const PointContainer& points ) {
     // Random index from the size of the point container
-    internal::GetRandomIndex rdmId( points.size()-1 );
-    generateTriangles( points, rdmId );
+    internal::GetRandomInt rdmIndex( points.size()-1 );
+    generateTriangles( points, rdmIndex );
 
 	return finalize();
 }
@@ -72,8 +81,8 @@ template < class P, class W, TriangleGenerationMethod M>
 template <typename IndexContainer, typename PointContainer>
 FIT_RESULT CNC<P, W, M>::computeWithIds( const IndexContainer& ids, const PointContainer& points ) {
     // Getting a random index from an index container
-    internal::GetRandomElementFromContainer rdmId( ids.size()-1, ids );
-    generateTriangles( points, rdmId );
+    internal::GetRandomElementFromContainer rdmIndex( ids, ids.size()-1 );
+    generateTriangles( points, rdmIndex );
 
     return finalize();
 }
