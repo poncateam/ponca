@@ -38,14 +38,14 @@ CNC<P, W, M>::generateTriangles(
 	const IndexContainer& ids
 ) {
 
-    const int lengthPoints = points.size();
+    const int lastIndex = points.size()-1;
     _nb_vt = 0; // Number of valid generated triangles
 
-    for (int i = 0; i < _maxtriangles; ++i){
+    for (int i = 0; i < _maxtriangles; ++i) {
         // Randomly select triangles
-        int i1 = ids[Eigen::internal::random<int>(0, lengthPoints)];
-        int i2 = ids[Eigen::internal::random<int>(0, lengthPoints)];
-        int i3 = ids[Eigen::internal::random<int>(0, lengthPoints)];
+        int i1 = ids[Eigen::internal::random<int>(0, lastIndex)];
+        int i2 = ids[Eigen::internal::random<int>(0, lastIndex)];
+        int i3 = ids[Eigen::internal::random<int>(0, lastIndex)];
         if (i1 == i2 || i1 == i3 || i2 == i3) continue;
 
         std::array <VectorType, 3> positions  = {
@@ -75,7 +75,7 @@ FIT_RESULT CNC<P, W, M>::finalize( ) {
 
     for (int t = 0; t < _nb_vt; ++t) {
 
-        // Simple estimation. 
+        // Simple estimation.
         Scalar tA = _triangles[t].mu0InterpolatedU();
         if (tA < -internal::CNCEigen<P>::epsilon) {
             _A     -= tA;
@@ -102,9 +102,9 @@ FIT_RESULT CNC<P, W, M>::finalize( ) {
 
     if (_A != Scalar(0)){
         T  << _T11, _T12, _T13,
-               _T12, _T22, _T23, 
-               _T13, _T23, _T33;
-        T /= _A;
+              _T12, _T22, _T23,
+              _T13, _T23, _T33;
+        T  /= _A;
         _H /= _A;
         _G /= _A;
     } else {
@@ -115,6 +115,5 @@ FIT_RESULT CNC<P, W, M>::finalize( ) {
     std::tie (k2, k1, v2, v1) = internal::CNCEigen<P>::curvaturesFromTensor(T, 1.0, _evalPointNormal);
 
     return STABLE;
-
 }
 }

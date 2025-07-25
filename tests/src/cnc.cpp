@@ -28,8 +28,7 @@ using namespace std;
 using namespace Ponca;
 
 template<typename DataPoint>
-typename DataPoint::Scalar generateData(KdTree<DataPoint>& tree)
-{
+typename DataPoint::Scalar generateData(KdTree<DataPoint>& tree) {
     typedef typename DataPoint::Scalar Scalar;
     typedef typename DataPoint::VectorType VectorType;
 
@@ -51,8 +50,7 @@ typename DataPoint::Scalar generateData(KdTree<DataPoint>& tree)
 #ifdef NDEBUG
 #pragma omp parallel for
 #endif
-    for(int i = 0; i < int(vectorPoints.size()); ++i)
-    {
+    for(int i = 0; i < int(vectorPoints.size()); ++i) {
         vectorPoints[i] = getPointOnSphere<DataPoint>(radius, center, false, false, false);
     }
 
@@ -62,9 +60,7 @@ typename DataPoint::Scalar generateData(KdTree<DataPoint>& tree)
     return analysisScale;
 }
 template<typename Fit>
-void testBasicFunctionalities(const KdTree<typename Fit::DataPoint>& tree, typename Fit::Scalar analysisScale)
-{
-
+void testBasicFunctionalities(const KdTree<typename Fit::DataPoint>& tree, typename Fit::Scalar analysisScale) {
     const auto& vectorPoints = tree.points();
 
     // Test for each point if the fitted sphere correspond to the theoretical sphere
@@ -94,16 +90,18 @@ void testBasicFunctionalities(const KdTree<typename Fit::DataPoint>& tree, typen
         // Compute the neighbors
         fit2.computeWithIds( neighbors3, vectorPoints );
         //! [Fit computeWithIds]
+
         VERIFY((fit2 == fit2));
-        VERIFY((fit1 == fit1));
-        VERIFY(! (fit1 != fit2));
+        VERIFY(! (fit2 != fit2));
+
         VERIFY((fit1 == fit2));
+        VERIFY((fit2 == fit1));
+        VERIFY(! (fit1 != fit2));
     }
 }
 
 template<typename Scalar, int Dim>
-void callSubTests()
-{
+void callSubTests() {
     //! [SpecializedPointType]
     typedef PointPositionNormal<Scalar, Dim> Point;
     //! [SpecializedPointType]
@@ -121,8 +119,7 @@ void callSubTests()
     CALL_SUBTEST((testBasicFunctionalities<Fit_CNC>(tree, scale) ));
 }
 
-int main(const int argc, char** argv)
-{
+int main(const int argc, char** argv) {
     if(!init_testing(argc, argv))
         return EXIT_FAILURE;
 
@@ -132,8 +129,7 @@ int main(const int argc, char** argv)
     callSubTests<float, 3>();
     cout << " (ok), double" << flush;
     callSubTests<double, 3>();
-    cout << " (ok)" << flush;
-    cout << ", long double" << flush;
+    cout << " (ok), long double" << flush;
     callSubTests<long double, 3>();
     cout << " (ok)" << flush;
 }
