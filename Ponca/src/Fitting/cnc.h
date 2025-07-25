@@ -149,10 +149,10 @@ public:
     template <typename IndexContainer, typename PointContainer>
     PONCA_MULTIARCH inline FIT_RESULT computeWithIds( const IndexContainer& ids, const PointContainer& points );
 
-    template <typename PointContainer, typename IndexContainer>
+    template <typename PointContainer, typename IndexRandomGetter>
     PONCA_MULTIARCH inline std::enable_if_t<_method == TriangleGenerationMethod::UniformGeneration, bool> generateTriangles(
         const PointContainer& points,
-        const IndexContainer& ids
+        const IndexRandomGetter& rdmId
     );
 
     PONCA_MULTIARCH inline int getNumTriangles() const {
