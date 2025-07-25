@@ -11,15 +11,6 @@
 #include PONCA_MULTIARCH_INCLUDE_STD(cmath)
 #include "cncFormulaEigen.h"
 
-#define DEFINE_CNC_FUNC(CNC_FUNC, RETURN_TYPE)                                \
-	template<bool differentOrder = false>                                     \
-    inline RETURN_TYPE CNC_FUNC () {                                          \
-        return CNCEigen<DataPoint>::CNC_FUNC(                                 \
-			 points[0],  points[2-differentOrder],  points[1+differentOrder], \
-			normals[0], normals[2-differentOrder], normals[1+differentOrder]  \
-		);                                                                    \
-    }
-
 
 namespace Ponca
 {
@@ -51,6 +42,15 @@ struct Triangle {
     bool operator!=(const Triangle& other) const {
         return !((*this) == other);
     }
+
+#define DEFINE_CNC_FUNC(CNC_FUNC, RETURN_TYPE)                                \
+    template<bool differentOrder = false>                                     \
+    inline RETURN_TYPE CNC_FUNC () {                                          \
+        return CNCEigen<DataPoint>::CNC_FUNC(                                 \
+            points[0] ,  points[2-differentOrder],  points[1+differentOrder], \
+            normals[0], normals[2-differentOrder], normals[1+differentOrder]  \
+        );                                                                    \
+}
 
 	DEFINE_CNC_FUNC(mu0InterpolatedU , Scalar)
 	DEFINE_CNC_FUNC(mu1InterpolatedU , Scalar)
@@ -129,8 +129,7 @@ public:
 
         // Instantiate the parameters
         _maxtriangles = 100;
-        for ( int j = 0; j < 6; j++ )
-        {
+        for ( int j = 0; j < 6; j++ ) {
             const Scalar a = j * M_PI / 3.0;
             _cos[ j ] = std::cos( a );
             _sin[ j ] = std::sin( a );
@@ -149,10 +148,10 @@ public:
     template <typename IndexContainer, typename PointContainer>
     PONCA_MULTIARCH inline FIT_RESULT computeWithIds( const IndexContainer& ids, const PointContainer& points );
 
-    template <typename PointContainer, typename IndexContainer>
+    template <typename PointContainer, typename RandomIndexGetter>
     PONCA_MULTIARCH inline std::enable_if_t<_method == TriangleGenerationMethod::UniformGeneration, bool> generateTriangles(
         const PointContainer& points,
-        const IndexContainer& ids
+        const RandomIndexGetter& rdmId
     );
 
     PONCA_MULTIARCH inline int getNumTriangles() const {
