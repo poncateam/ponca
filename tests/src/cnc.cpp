@@ -94,13 +94,6 @@ void testBasicFunctionalities(const KdTree<typename Fit::DataPoint>& tree, typen
         VERIFY((fit2 == fit2));
         VERIFY(! (fit2 != fit2));
 
-        // CNC is a stochastic algorithm, so we have to use an epsilon
-        // TODO : add an isApprox method
-        std::cout << "f1.kMean  = " << fit1.kMean()  << "            f2.kMean  = " << fit2.kMean()  << "         f1.kMean-f2.kMean   = " << std::abs(fit1.kMean() - fit2.kMean()) << std::endl;
-        std::cout << "f1.kGauss = " << fit1.kGauss() << "            f2.kGauss = " << fit2.kGauss() << "         f1.kGauss-f2.kGauss = " << std::abs(fit1.kGauss() - fit2.kGauss()) << std::endl;
-        std::cout << "f1.kminDirection  = " << fit1.kminDirection().transpose()  << "            f2.kminDirection  = " << fit2.kminDirection().transpose() << std::endl;
-        std::cout << "f1.kmaxDirection  = " << fit1.kmaxDirection().transpose()  << "            f2.kmaxDirection  = " << fit2.kmaxDirection().transpose() << std::endl;
-
         typename Fit::Scalar epsilon = testEpsilon<typename Fit::Scalar>();
         VERIFY((fit1.isApprox(fit2, epsilon)));
         VERIFY((fit2.isApprox(fit1, epsilon)));
@@ -113,10 +106,6 @@ void callSubTests() {
     typedef PointPositionNormal<Scalar, Dim> Point;
     //! [SpecializedPointType]
 
-    // We test only primitive functions and not the fitting procedure
-    //! [WeightFunction]
-    using WeightFunc = DistWeightFunc<Point, SmoothWeightKernel<Scalar> >;
-    //! [WeightFunction]
     //! [CNCFitType]
     using Fit_CNC = CNC<Point, NoWeightFunc<Point>>;
     //! [CNCFitType]

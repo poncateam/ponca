@@ -6,46 +6,102 @@ This Source Code Form is subject to the terms of the Mozilla Public
 
 #pragma once
 
-#include <numeric>      // std::iota
-
 namespace Ponca {
+
+namespace internal
+{
+    /*!
+        \internal
+        \brief Class to generate a random integer from a presetted boundary
+        \note Calling the () operator on this objet after the initialization of its boundary generates a random integer
+    */
+    class GetRandomInt {
+    public:
+        const int _nMin;
+        const int _nMax;
+
+        explicit GetRandomInt( const int nMax, const int nMin = 0 ) : _nMax(nMax), _nMin(nMin) { }
+
+        /// \internal
+        /// \brief Returns a random integer in bounds of : [ _nMin, _nMax ]
+        int operator()() const {
+            // random operator
+            const int r = Eigen::internal::random<int>(_nMin, _nMax);
+            if (_nMin > r || r > _nMax)
+                throw std::runtime_error(
+                    "Random index values must be in range :"
+                    + std::to_string(_nMin) + " <= i <= " + std::to_string(_nMax)
+                    + " But got result : " + std::to_string(r));
+            return r;
+        }
+    };
+
+    /*!
+        \internal
+        \brief Getting a random element from an STL-like container.
+        Stores the container to then pick an element from it
+        \note Calling the () operator on this objet after the initialization of its boundary picks a random element from the container
+        \inherit GetRandomIndex
+    */
+    template<typename Container>
+    class GetRandomElementFromContainer : GetRandomInt {
+    private:
+        Container& _elements;
+    public:
+        GetRandomElementFromContainer(Container& elements, const int nMax, const int nMin = 0) :
+            GetRandomInt(nMax, nMin), _elements(elements) { }
+
+        /// \internal
+        /// \brief Returns a random elements from the container in the index range of : [ _nMin, _nMax ]
+        /// \note Overloads the () operator to return an element picked from the container with the random value, instead of a random integer
+        auto operator()() const {
+            // random operator
+            const int r = Eigen::internal::random<int>(_nMin, _nMax);
+            if (_nMin > r || r > _nMax)
+                throw std::runtime_error(
+                    "Random index values must be in range :"
+                    + std::to_string(_nMin) + " <= i <= " + std::to_string(_nMax)
+                    + " But got result : " + std::to_string(r));
+            return _elements[r];
+        }
+    };
+}
+
 
 template < class P, class W, TriangleGenerationMethod M>
 template <typename PointContainer>
 FIT_RESULT CNC<P, W, M>::compute( const PointContainer& points ) {
-
-    // Makes the default indices liste to iterate over the point container
-    std::vector<size_t> ids(points.size());
-    std::iota(ids.begin(), ids.end(), 0);
-
-    generateTriangles(points, ids);
+    // Random index from the size of the point container
+    internal::GetRandomInt rdmIndex( points.size()-1 );
+    generateTriangles( points, rdmIndex );
 
 	return finalize();
 }
 template < class P, class W, TriangleGenerationMethod M>
 template <typename IndexContainer, typename PointContainer>
 FIT_RESULT CNC<P, W, M>::computeWithIds( const IndexContainer& ids, const PointContainer& points ) {
-    generateTriangles(points, ids);
+    // Getting a random index from an index container
+    internal::GetRandomElementFromContainer rdmIndex( ids, ids.size()-1 );
+    generateTriangles( points, rdmIndex );
+
     return finalize();
 }
 
 /// Generates the triangle used by the CNC Fit depending on the method (UniformGeneration)
 template <class P, class W, TriangleGenerationMethod M>
-template <typename PointContainer, typename IndexContainer>
+template <typename PointContainer, typename RandomIndexGetter>
 std::enable_if_t<M == TriangleGenerationMethod::UniformGeneration, bool>
 CNC<P, W, M>::generateTriangles(
 	const PointContainer& points,
-	const IndexContainer& ids
+    const RandomIndexGetter& rdmId
 ) {
-
-    const int lastIndex = points.size()-1;
     _nb_vt = 0; // Number of valid generated triangles
 
     for (int i = 0; i < _maxtriangles; ++i) {
         // Randomly select triangles
-        int i1 = ids[Eigen::internal::random<int>(0, lastIndex)];
-        int i2 = ids[Eigen::internal::random<int>(0, lastIndex)];
-        int i3 = ids[Eigen::internal::random<int>(0, lastIndex)];
+        int i1 = rdmId();
+        int i2 = rdmId();
+        int i3 = rdmId();
         if (i1 == i2 || i1 == i3 || i2 == i3) continue;
 
         std::array <VectorType, 3> positions  = {
