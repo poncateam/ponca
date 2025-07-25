@@ -106,10 +106,6 @@ void callSubTests() {
     typedef PointPositionNormal<Scalar, Dim> Point;
     //! [SpecializedPointType]
 
-    // We test only primitive functions and not the fitting procedure
-    //! [WeightFunction]
-    using WeightFunc = DistWeightFunc<Point, SmoothWeightKernel<Scalar> >;
-    //! [WeightFunction]
     //! [CNCFitType]
     using Fit_CNC = CNC<Point, NoWeightFunc<Point>>;
     //! [CNCFitType]

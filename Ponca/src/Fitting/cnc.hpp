@@ -17,16 +17,16 @@ namespace internal
     */
     class GetRandomInt {
     public:
-        int _nMin {0};
-        int _nMax {0};
+        const int _nMin;
+        const int _nMax;
 
         explicit GetRandomInt( const int nMax, const int nMin = 0 ) : _nMax(nMax), _nMin(nMin) { }
 
         /// \internal
-        /// \brief Returns a random integer in bounds of : [ 0, _nMax [
+        /// \brief Returns a random integer in bounds of : [ _nMin, _nMax ]
         int operator()() const {
             // random operator
-            const int r = Eigen::internal::random<int>(0, _nMax);
+            const int r = Eigen::internal::random<int>(_nMin, _nMax);
             if (_nMin > r || r > _nMax)
                 throw std::runtime_error(
                     "Random index values must be in range :"
@@ -52,7 +52,7 @@ namespace internal
             GetRandomInt(nMax, nMin), _elements(elements) { }
 
         /// \internal
-        /// \brief Returns a random elements from the container in the index range of : [ 0, maxLength [
+        /// \brief Returns a random elements from the container in the index range of : [ _nMin, _nMax ]
         /// \note Overloads the () operator to return an element picked from the container with the random value, instead of a random integer
         auto operator()() const {
             // random operator
