@@ -6,46 +6,93 @@ This Source Code Form is subject to the terms of the Mozilla Public
 
 #pragma once
 
-#include <numeric>      // std::iota
-
 namespace Ponca {
+
+namespace internal
+{
+    /*!
+        \brief Getting a random index
+    */
+    class GetRandomIndex {
+    public:
+        int _indexMax {0};
+
+        GetRandomIndex(const int indexMax) : _indexMax(indexMax) { }
+
+        //! \brief Returns a random index in bounds of : [ 0, indexMax ]
+        int operator()() const {
+            // random operator
+            int r = Eigen::internal::random<int>(0, _indexMax);
+            if (0 > r || r > _indexMax)
+                throw std::runtime_error(
+                "Random index values must be in range :"
+                    "0 < i < " + std::to_string(_indexMax) +
+                    " But got result : " + std::to_string(r));
+            return r;
+        }
+    };
+
+    /*!
+        \brief Getting a random element from an STL-like container
+        \inherit GetRandomIndex
+    */
+    template<typename Container>
+    class GetRandomElementFromContainer : GetRandomIndex {
+    private:
+        Container& _ids;
+    public:
+        GetRandomElementFromContainer(const int indexMax, Container& ids) :
+            GetRandomIndex(indexMax), _ids(ids) { }
+
+        //! \brief Returns a random index from the index container
+        int operator()() const {
+            // random operator
+            int r = Eigen::internal::random<int>(0, _indexMax);
+            if (0 > r || r > _indexMax)
+                throw std::runtime_error(
+                "Random index values must be in range :"
+                    "0 < i < " + std::to_string(_indexMax) +
+                    " But got result : " + std::to_string(r));
+            return _ids[r];
+        }
+    };
+}
+
 
 template < class P, class W, TriangleGenerationMethod M>
 template <typename PointContainer>
 FIT_RESULT CNC<P, W, M>::compute( const PointContainer& points ) {
-
-    // Makes the default indices liste to iterate over the point container
-    std::vector<size_t> ids(points.size());
-    std::iota(ids.begin(), ids.end(), 0);
-
-    generateTriangles(points, ids);
+    // Random index from the size of the point container
+    internal::GetRandomIndex rdmId( points.size()-1 );
+    generateTriangles( points, rdmId );
 
 	return finalize();
 }
 template < class P, class W, TriangleGenerationMethod M>
 template <typename IndexContainer, typename PointContainer>
 FIT_RESULT CNC<P, W, M>::computeWithIds( const IndexContainer& ids, const PointContainer& points ) {
-    generateTriangles(points, ids);
+    // Getting a random index from an index container
+    internal::GetRandomElementFromContainer rdmId( ids.size()-1, ids );
+    generateTriangles( points, rdmId );
+
     return finalize();
 }
 
 /// Generates the triangle used by the CNC Fit depending on the method (UniformGeneration)
 template <class P, class W, TriangleGenerationMethod M>
-template <typename PointContainer, typename IndexContainer>
+template <typename PointContainer, typename IndexRandomGetter>
 std::enable_if_t<M == TriangleGenerationMethod::UniformGeneration, bool>
 CNC<P, W, M>::generateTriangles(
 	const PointContainer& points,
-	const IndexContainer& ids
+    const IndexRandomGetter& rdmId
 ) {
-
-    const int lastIndex = points.size()-1;
     _nb_vt = 0; // Number of valid generated triangles
 
     for (int i = 0; i < _maxtriangles; ++i) {
         // Randomly select triangles
-        int i1 = ids[Eigen::internal::random<int>(0, lastIndex)];
-        int i2 = ids[Eigen::internal::random<int>(0, lastIndex)];
-        int i3 = ids[Eigen::internal::random<int>(0, lastIndex)];
+        int i1 = rdmId();
+        int i2 = rdmId();
+        int i3 = rdmId();
         if (i1 == i2 || i1 == i3 || i2 == i3) continue;
 
         std::array <VectorType, 3> positions  = {
