@@ -94,10 +94,9 @@ void testBasicFunctionalities(const KdTree<typename Fit::DataPoint>& tree, typen
         VERIFY((fit2 == fit2));
         VERIFY(! (fit2 != fit2));
 
-        // CNC is a stochastic algorithm, so we have to use an epsilon
-        // TODO : add an isApprox method
-        // VERIFY((fit1.isApprox(fit2)));
-        // VERIFY((fit2.isApprox(fit1)));
+        // CNC is a stochastic algorithm, so we have to use an isApprox method
+        VERIFY((fit1.isApprox(fit2)));
+        VERIFY((fit2.isApprox(fit1)));
     }
 }
 
