@@ -80,11 +80,11 @@ FIT_RESULT CNC<P, W, M>::computeWithIds( const IndexContainer& ids, const PointC
 
 /// Generates the triangle used by the CNC Fit depending on the method (UniformGeneration)
 template <class P, class W, TriangleGenerationMethod M>
-template <typename PointContainer, typename IndexRandomGetter>
+template <typename PointContainer, typename RandomIndexGetter>
 std::enable_if_t<M == TriangleGenerationMethod::UniformGeneration, bool>
 CNC<P, W, M>::generateTriangles(
 	const PointContainer& points,
-    const IndexRandomGetter& rdmId
+    const RandomIndexGetter& rdmId
 ) {
     _nb_vt = 0; // Number of valid generated triangles
 
