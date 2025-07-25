@@ -149,12 +149,10 @@ public:
     template <typename IndexContainer, typename PointContainer>
     PONCA_MULTIARCH inline FIT_RESULT computeWithIds( const IndexContainer& ids, const PointContainer& points );
 
-
-
-    template <typename PointContainer, typename IndexRange>
+    template <typename PointContainer, typename IndexContainer>
     PONCA_MULTIARCH inline std::enable_if_t<_method == TriangleGenerationMethod::UniformGeneration, bool> generateTriangles(
         const PointContainer& points,
-        const IndexRange& indexRange
+        const IndexContainer& ids
     );
 
     PONCA_MULTIARCH inline int getNumTriangles() const {
@@ -171,7 +169,6 @@ public:
             triangles.push_back(point1);
             triangles.push_back(point2);        
         }
-
     }
 
 	void setEvalPointNormal(const VectorType& evalPointNormal) {
