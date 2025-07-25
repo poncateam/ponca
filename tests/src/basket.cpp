@@ -103,6 +103,7 @@ void testBasicFunctionalities(const KdTree<typename Fit::DataPoint>& tree, typen
         VERIFY(fit1 == fit1);
         VERIFY(fit2 == fit2);
         VERIFY(fit1 == fit2);
+        VERIFY(fit2 == fit1);
         VERIFY(! (fit1 != fit1));
         VERIFY(! (fit1 != fit2));
         VERIFY(! (fit2 != fit2));
@@ -121,8 +122,7 @@ void testBasicFunctionalities(const KdTree<typename Fit::DataPoint>& tree, typen
         VERIFY(fit3 == fit3);
         VERIFY(fit1 == fit3);
         VERIFY(! (fit1 != fit3));
-
-        VERIFY((fit1 == fit3));
+        VERIFY(fit3 == fit1);
     }
 }
 
