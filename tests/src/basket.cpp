@@ -107,10 +107,6 @@ void testBasicFunctionalities(const KdTree<typename Fit::DataPoint>& tree, typen
         VERIFY(! (fit1 != fit2));
         VERIFY(! (fit2 != fit2));
 
-        // we skip kdtree test for float: using the kdtree changes the order of the neighbors, which in turn changes the
-        // rounding error accumulations, and thus the final result
-        if (std::is_same<Scalar, float>::value || std::is_same<Scalar, long double>::value)
-            continue;
         //! [Fit computeWithIds]
         Fit fit3;
         fit3.setWeightFunc(WeightFunc(fitInitPos, analysisScale));
