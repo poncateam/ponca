@@ -31,6 +31,7 @@ Current head (v.1.4 RC)
 - CI/Actions
     - Fix automatic doc deployment (#158,#176)
     - Print error log on tests failure (#162)
+    - Minor fix in the basket test (#186)
 
 - Docs
     - [Fitting] Updated the Fit user manual to account for the change of use of the curvature estimator
