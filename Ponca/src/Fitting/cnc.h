@@ -175,28 +175,32 @@ public:
 		_evalPointNormal = evalPointNormal;
 	}
 
-    bool operator==(const CNC& other) const
-    {
+    bool operator==(const CNC& other) const {
         // We use the matrix to compare the fitting results
         return (_T11 == other._T11) && (_T12 == other._T12) && (_T13 == other._T13) && (_T22 == other._T22) && (_T23 == other._T23) && (_T33 == other._T33);
     }
-    bool operator!=(const CNC& other) const
-    {
+    bool operator!=(const CNC& other) const {
         // We use the matrix to compare the fitting results
         return !(this == &other);
     }
 
-    PONCA_MULTIARCH inline Scalar kmin() { return k1; }
+    bool isApprox(const CNC& other, const Scalar& epsilon = Eigen::NumTraits<Scalar>::dummy_precision()) const {
+        // We use the matrix to compare the fitting results
+        return std::abs(kMean() - other.kMean()) < epsilon
+            && std::abs(kGauss() - other.kGauss()) < epsilon;
+    }
 
-    PONCA_MULTIARCH inline Scalar kmax() { return k2; }
+    PONCA_MULTIARCH inline Scalar kmin() const { return k1; }
 
-    PONCA_MULTIARCH inline VectorType kminDirection() { return v1; }
+    PONCA_MULTIARCH inline Scalar kmax() const { return k2; }
 
-    PONCA_MULTIARCH inline VectorType kmaxDirection() { return v2; }
+    PONCA_MULTIARCH inline VectorType kminDirection() const { return v1; }
 
-    PONCA_MULTIARCH inline Scalar kMean() { return _H; }
+    PONCA_MULTIARCH inline VectorType kmaxDirection() const { return v2; }
 
-    PONCA_MULTIARCH inline Scalar kgauss() { return _G; }
+    PONCA_MULTIARCH inline Scalar kMean() const { return _H; }
+
+    PONCA_MULTIARCH inline Scalar kGauss() const { return _G; }
 }; //class CNC
 
 } // namespace Ponca
