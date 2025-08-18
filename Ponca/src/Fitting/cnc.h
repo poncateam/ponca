@@ -65,7 +65,8 @@ struct Triangle {
 */
 
 enum class TriangleGenerationMethod {
-    UniformGeneration
+    UniformGeneration,
+    HexagramGeneration
 };
 
 template < class P, class WeightFunc, TriangleGenerationMethod _method = TriangleGenerationMethod::UniformGeneration>
@@ -139,7 +140,9 @@ public:
     /*! \brief Compute function for STL-like containers */
     /*! Add neighbors stored in a PointContainer and call finalize at the end.*/
     template <typename PointContainer>
-    PONCA_MULTIARCH inline FIT_RESULT compute( const PointContainer& points );
+    PONCA_MULTIARCH inline FIT_RESULT compute( const PointContainer& points);
+    template <typename PointContainer>
+    PONCA_MULTIARCH inline FIT_RESULT compute( const PointContainer& points, const P& evalPoint);
 
     /*! \brief Compute function to iterate over a subset of samples in a PointContainer  */
     /*! Add neighbors stored in a PointContainer and sampled using indices stored in ids.*/
@@ -147,11 +150,20 @@ public:
     /*! \tparam PointContainer An STL-like container storing the points */
     template <typename IndexContainer, typename PointContainer>
     PONCA_MULTIARCH inline FIT_RESULT computeWithIds( const IndexContainer& ids, const PointContainer& points );
+    template <typename IndexContainer, typename PointContainer>
+    PONCA_MULTIARCH inline FIT_RESULT computeWithIds( const IndexContainer& ids, const PointContainer& points, const P& evalPoint );
 
-    template <typename PointContainer, typename RandomIndexGetter>
+    template <typename PointContainer, typename IndexGetter>
     PONCA_MULTIARCH inline std::enable_if_t<_method == TriangleGenerationMethod::UniformGeneration, bool> generateTriangles(
         const PointContainer& points,
-        const RandomIndexGetter& rdmId
+        const IndexGetter& getIndex,
+        const P& evalPoint
+        );
+    template <typename PointContainer, typename IndexGetter>
+    PONCA_MULTIARCH inline std::enable_if_t<_method == TriangleGenerationMethod::HexagramGeneration, bool> generateTriangles(
+        const PointContainer& points,
+        const IndexGetter& getIndex,
+        const P& evalPoint
     );
 
     PONCA_MULTIARCH inline int getNumTriangles() const {
