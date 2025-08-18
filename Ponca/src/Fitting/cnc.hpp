@@ -5,6 +5,7 @@ This Source Code Form is subject to the terms of the Mozilla Public
 */
 
 #pragma once
+#include "cnc.h"
 
 namespace Ponca {
 
@@ -12,26 +13,33 @@ namespace internal
 {
     /*!
         \internal
-        \brief Class to generate a random integer from a presetted boundary
+        \brief Class to generate or generate a random integer from a presetted boundary
         \note Calling the () operator on this objet after the initialization of its boundary generates a random integer
     */
-    class GetRandomInt {
+    class GetInt {
     public:
         const int _nMin;
         const int _nMax;
+        explicit GetInt( const int nMax, const int nMin = 0 ) : _nMax(nMax), _nMin(nMin) { }
 
-        explicit GetRandomInt( const int nMax, const int nMin = 0 ) : _nMax(nMax), _nMin(nMin) { }
-
-        /// \internal
-        /// \brief Returns a random integer in bounds of : [ _nMin, _nMax ]
-        int operator()() const {
-            // random operator
-            const int r = Eigen::internal::random<int>(_nMin, _nMax);
-            if (_nMin > r || r > _nMax)
+        void verifyBounds(const int n) const {
+            if (_nMin > n || n > _nMax)
                 throw std::runtime_error(
                     "Random index values must be in range :"
                     + std::to_string(_nMin) + " <= i <= " + std::to_string(_nMax)
-                    + " But got result : " + std::to_string(r));
+                    + " But got result : " + std::to_string(n));
+        }
+        /// \brief Can be overwridden to something else in children class
+        [[nodiscard]] int get(const int n) const {
+            verifyBounds(n);
+            return n;
+        }
+        /// \internal
+        /// \brief Returns a random integer in bounds of : [ _nMin, _nMax ]
+        [[nodiscard]] int random() const {
+            // random operator
+            const int r = Eigen::internal::random<int>(_nMin, _nMax);
+            verifyBounds(r);
             return r;
         }
     };
@@ -44,17 +52,21 @@ namespace internal
         \inherit GetRandomIndex
     */
     template<typename Container>
-    class GetRandomElementFromContainer : GetRandomInt {
+    class GetElementFromContainer : GetInt {
     private:
         Container& _elements;
     public:
-        GetRandomElementFromContainer(Container& elements, const int nMax, const int nMin = 0) :
-            GetRandomInt(nMax, nMin), _elements(elements) { }
+        GetElementFromContainer(Container& elements, const int nMax, const int nMin = 0) :
+            GetInt(nMax, nMin), _elements(elements) { }
 
+        [[nodiscard]] int get(const int i) const {
+            verifyBounds(i);
+            return _elements[i];
+        }
         /// \internal
         /// \brief Returns a random elements from the container in the index range of : [ _nMin, _nMax ]
         /// \note Overloads the () operator to return an element picked from the container with the random value, instead of a random integer
-        auto operator()() const {
+        [[nodiscard]] int random() const {
             // random operator
             const int r = Eigen::internal::random<int>(_nMin, _nMax);
             if (_nMin > r || r > _nMax)
@@ -70,38 +82,68 @@ namespace internal
 
 template < class P, class W, TriangleGenerationMethod M>
 template <typename PointContainer>
-FIT_RESULT CNC<P, W, M>::compute( const PointContainer& points ) {
+    FIT_RESULT CNC<P, W, M>::compute( const PointContainer& points ) {
+    if (M != TriangleGenerationMethod::UniformGeneration) {
+        throw std::runtime_error("Used TriangleGenerationMethod UniformGeneration but forgot to precise the eval point");
+    }
+    auto p = points[0]; // Dummy point
     // Random index from the size of the point container
-    internal::GetRandomInt rdmIndex( points.size()-1 );
-    generateTriangles( points, rdmIndex );
+    internal::GetInt indexGetter( points.size()-1 );
+    generateTriangles( points, indexGetter, p);
+
+    return finalize();
+}
+
+template < class P, class W, TriangleGenerationMethod M>
+template <typename PointContainer>
+FIT_RESULT CNC<P, W, M>::compute( const PointContainer& points, const P& evalPoint ) {
+    // Random index from the size of the point container
+    internal::GetInt indexGetter( points.size()-1 );
+    generateTriangles( points, indexGetter, evalPoint);
 
 	return finalize();
 }
+
 template < class P, class W, TriangleGenerationMethod M>
 template <typename IndexContainer, typename PointContainer>
-FIT_RESULT CNC<P, W, M>::computeWithIds( const IndexContainer& ids, const PointContainer& points ) {
+    FIT_RESULT CNC<P, W, M>::computeWithIds( const IndexContainer& ids, const PointContainer& points ) {
+    if (M != TriangleGenerationMethod::UniformGeneration) {
+        throw std::runtime_error("Used TriangleGenerationMethod UniformGeneration but forgot to precise the eval point");
+    }
+    auto p = points[0]; // Dummy point
     // Getting a random index from an index container
-    internal::GetRandomElementFromContainer rdmIndex( ids, ids.size()-1 );
-    generateTriangles( points, rdmIndex );
+    internal::GetElementFromContainer indexGetter( ids, ids.size()-1);
+    generateTriangles( points, indexGetter, p);
+
+    return finalize();
+}
+
+template < class P, class W, TriangleGenerationMethod M>
+template <typename IndexContainer, typename PointContainer>
+FIT_RESULT CNC<P, W, M>::computeWithIds( const IndexContainer& ids, const PointContainer& points, const P& evalPoint ) {
+    // Getting a random index from an index container
+    internal::GetElementFromContainer indexGetter( ids, ids.size()-1 );
+    generateTriangles( points, indexGetter, evalPoint);
 
     return finalize();
 }
 
 /// Generates the triangle used by the CNC Fit depending on the method (UniformGeneration)
 template <class P, class W, TriangleGenerationMethod M>
-template <typename PointContainer, typename RandomIndexGetter>
+template <typename PointContainer, typename IndexGetter>
 std::enable_if_t<M == TriangleGenerationMethod::UniformGeneration, bool>
 CNC<P, W, M>::generateTriangles(
 	const PointContainer& points,
-    const RandomIndexGetter& rdmId
+    const IndexGetter& getIndex,
+    const P& /*evalPoint*/
 ) {
     _nb_vt = 0; // Number of valid generated triangles
 
     for (int i = 0; i < _maxtriangles; ++i) {
         // Randomly select triangles
-        int i1 = rdmId();
-        int i2 = rdmId();
-        int i3 = rdmId();
+        int i1 = getIndex.random();
+        int i2 = getIndex.random();
+        int i3 = getIndex.random();
         if (i1 == i2 || i1 == i3 || i2 == i3) continue;
 
         std::array <VectorType, 3> positions  = {
@@ -120,6 +162,90 @@ CNC<P, W, M>::generateTriangles(
     }
     return _nb_vt > 0;
 }
+
+/// Generates the triangle used by the CNC Fit depending on the method (HexagramGeneration)
+template <class P, class W, TriangleGenerationMethod M>
+template <typename PointContainer, typename IndexGetter>
+std::enable_if_t<M == TriangleGenerationMethod::HexagramGeneration, bool>
+CNC<P, W, M>::generateTriangles(
+    const PointContainer& points,
+    const IndexGetter& getIndex,
+    const P& evalPoint
+) {
+     // BIN
+    VectorType c = evalPoint.pos();
+    VectorType n = evalPoint.normal();
+    VectorType a;
+    a.setZero();
+
+    int iSource = -1;
+    Scalar avgd = Scalar(0);
+
+    for ( int i = getIndex.nMin ; i < getIndex.nMax ; i++ ) {
+        int index = getIndex.get(i);
+        avgd += ( points[ index ].pos() - c ).norm();
+        a    += points[ index ].normal();
+        // if avgd == 0 then it is the evalPoint
+        if ( iSource == -1 && points[ index ].pos() == c  ) {
+            iSource = index;
+        }
+    }
+
+    a /= a.norm();
+    n = ( Scalar(1) - _avgnormals ) * n + _avgnormals * a;
+    n /= n.norm();
+    avgd /= getIndex.nMax;
+
+    const int m = ( std::abs( n[0] ) > std::abs ( n[1] ))
+            ? ( ( std::abs( n[0] ) ) > std::abs( n[2] ) ? 0 : 2 )
+            : ( ( std::abs( n[1] ) ) > std::abs( n[2] ) ? 1 : 2 );
+    const VectorType e =
+        ( m == 0 ) ? VectorType( Scalar(0), Scalar(1), Scalar(0) ) :
+        ( m == 1 ) ? VectorType( Scalar(0), Scalar(0), Scalar(1) ) :
+        VectorType( Scalar(1), Scalar(0), Scalar(0) );
+
+    VectorType u = n.cross( e );
+    VectorType v = n.cross( u );
+    u /= u.norm();
+    v /= v.norm();
+
+    std::array<int, 6> indices = {iSource, iSource, iSource, iSource, iSource, iSource};
+
+    for ( int i = 0 ; i < 6 ; i++ ){
+        _distance2 [ i ] = avgd * avgd;
+        _targets   [ i ] = avgd * ( u * _cos[ i ] + v * _sin[ i ] );
+    }
+
+    for ( int i = 0 ; i < getIndex.nMax ; i++ ){
+        int index = getIndex.get( i );
+        VectorType p = points[ index ];
+        if ( p == c ) {
+            std::cout << "p == c" << std::endl;
+            continue;
+        }
+
+        const VectorType d = p - c;
+        for ( int j = 0 ; j < 6 ; j++ ){
+            const Scalar d2 = ( d - _targets[ j ]).squaredNorm();
+            if ( d2 < _distance2[ j ] ){
+                indices[ j ] = index;
+                _distance2[ j ] = d2;
+            }
+        }
+    }
+    std::array <VectorType, 3> t1_points  = {points[indices[0]].pos(), points[indices[2]].pos(), points[indices[4]].pos()};
+    std::array <VectorType, 3> t1_normals = {points[indices[0]].normal(), points[indices[2]].normal(), points[indices[4]].normal()};
+
+    std::array <VectorType, 3> t2_points  = {points[indices[1]].pos(), points[indices[3]].pos(), points[indices[5]].pos()};
+    std::array <VectorType, 3> t2_normals = {points[indices[1]].normal(), points[indices[3]].normal(), points[indices[5]].normal()};
+
+    _triangles.push_back(internal::Triangle<P>(t1_points, t1_normals));
+    _triangles.push_back(internal::Triangle<P>(t2_points, t2_normals));
+
+    _nb_vt = 2;
+    return true;
+}
+
 
 template < class P, class W, TriangleGenerationMethod M>
 FIT_RESULT CNC<P, W, M>::finalize( ) {
