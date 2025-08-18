@@ -68,20 +68,6 @@ enum TriangleGenerationMethod {
     UniformGeneration, HexagramGeneration
 };
 
-template <TriangleGenerationMethod Method, typename P>
-struct TriangleGenerator {
-    template <typename PointContainer, typename IndexGetter>
-    static bool generate(
-        const PointContainer& points,
-        const IndexGetter& getIndex,
-        const P& evalPoint,
-        std::vector<internal::Triangle<P>>& triangles)
-    {
-        static_assert(true, "Triangle generation method not implemented!");
-        return false;
-    }
-};
-
 template < class P, class WeightFunc, TriangleGenerationMethod _method = UniformGeneration>
 class CNC : BasketBase<P, WeightFunc> {
 public:

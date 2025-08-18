@@ -10,21 +10,22 @@ This Source Code Form is subject to the terms of the Mozilla Public
 
 namespace Ponca
 {
+    namespace internal {
         /*!
             \internal
             \brief Class to generate or generate a random integer from a presetted boundary
             \note Calling the () operator on this objet after the initialization of its boundary generates a random integer
         */
-        class GetInt {
+        class BoundedIntRange {
         public:
             const int _nMin;
             const int _nMax;
-            explicit GetInt( const int nMax, const int nMin = 0 ) : _nMin(nMin), _nMax(nMax) { }
+            explicit BoundedIntRange( const int nMax, const int nMin = 0 ) : _nMin(nMin), _nMax(nMax) { }
 
             void verifyBounds(const int n) const {
                 if (_nMin > n || n > _nMax)
                     throw std::runtime_error(
-                        "Random index values must be in range :"
+                        "Index values must be in range :"
                         + std::to_string(_nMin) + " <= i <= " + std::to_string(_nMax)
                         + " But got result : " + std::to_string(n));
             }
@@ -67,12 +68,12 @@ namespace Ponca
             \inherit GetRandomIndex
         */
         template<typename Container>
-        class GetElementFromContainer : public GetInt {
+        class ElementSampler : public BoundedIntRange {
         private:
             Container& _elements;
         public:
-            GetElementFromContainer(Container& elements, const int nMax, const int nMin = 0) :
-                GetInt(nMax, nMin), _elements(elements) { }
+            ElementSampler(Container& elements, const int nMax, const int nMin = 0) :
+                BoundedIntRange(nMax, nMin), _elements(elements) { }
 
             [[nodiscard]] int get(const int i) const {
                 verifyBounds(i);
@@ -84,18 +85,14 @@ namespace Ponca
             [[nodiscard]] int random() const {
                 // random operator
                 const int r = Eigen::internal::random<int>(_nMin, _nMax);
-                if (_nMin > r || r > _nMax)
-                    throw std::runtime_error(
-                        "Random index values must be in range :"
-                        + std::to_string(_nMin) + " <= i <= " + std::to_string(_nMax)
-                        + " But got result : " + std::to_string(r));
-                return _elements[r];
+                verifyBounds(r);
+                return _elements[r]; // Returns the element of the STL-like array
             }
             class Iterator {
-                const GetElementFromContainer& _parent;
+                const ElementSampler& _parent;
                 int _current;
             public:
-                Iterator(const GetElementFromContainer& parent, int start)
+                Iterator(const ElementSampler& parent, int start)
                     : _parent(parent), _current(start) {}
 
                 auto operator*() const { return _parent._elements[_current]; }
@@ -111,9 +108,24 @@ namespace Ponca
         };
 
 
+    /// Generates the triangle used by the CNC Fit depending on the method
+    template <TriangleGenerationMethod Method, typename P>
+    struct TriangleGenerator {
+        template <typename PointContainer, typename IndexGetter>
+        static bool generate(
+            const PointContainer& points,
+            const IndexGetter& getIndex,
+            const P& evalPoint,
+            std::vector<internal::Triangle<P>>& triangles)
+        {
+            static_assert(true, "Triangle generation method not implemented!");
+            return false;
+        }
+    };
+
+    /// Generates the triangle used by the CNC Fit depending on the method (UniformGeneration)
     template <typename P>
     struct TriangleGenerator<TriangleGenerationMethod::UniformGeneration, P> {
-
         template <typename PointContainer, typename IndexGetter>
         static int generate(
             const PointContainer& points,
@@ -150,10 +162,8 @@ namespace Ponca
     };
 
     /// Generates the triangle used by the CNC Fit depending on the method (HexagramGeneration)
-
     template <typename P>
-    struct TriangleGenerator<TriangleGenerationMethod::HexagramGeneration, P>
-    {
+    struct TriangleGenerator<TriangleGenerationMethod::HexagramGeneration, P> {
         using VectorType = typename P::VectorType;
         using Scalar = typename P::Scalar;
         // Hexagram
@@ -240,7 +250,7 @@ namespace Ponca
         }
     };
 
-
+    }
     template < class P, class W, TriangleGenerationMethod M>
     template <typename PointContainer>
     FIT_RESULT CNC<P, W, M>::compute( const PointContainer& points ) {
@@ -249,8 +259,8 @@ namespace Ponca
         }
         auto p = points[0]; // Dummy point
         // Random index from the size of the point container
-        GetInt indexGetter( points.size()-1 );
-        TriangleGenerator<M, P>::generate( points, indexGetter, p, _triangles);
+        internal::BoundedIntRange indexGetter( points.size()-1 );
+        internal::TriangleGenerator<M, P>::generate( points, indexGetter, p, _triangles);
 
         return finalize();
     }
@@ -259,8 +269,8 @@ namespace Ponca
     template <typename PointContainer>
     FIT_RESULT CNC<P, W, M>::compute( const PointContainer& points, const P& evalPoint ) {
         // Random index from the size of the point container
-        GetInt indexGetter( points.size()-1 );
-        TriangleGenerator<M, P>::generate( points, indexGetter, evalPoint, _triangles);
+        internal::BoundedIntRange indexGetter( points.size()-1 );
+        internal::TriangleGenerator<M, P>::generate( points, indexGetter, evalPoint, _triangles);
 
         return finalize();
     }
@@ -273,8 +283,8 @@ namespace Ponca
         }
         auto p = points[0]; // Dummy point
         // Getting a random index from an index container
-        GetElementFromContainer indexGetter( ids, ids.size()-1);
-        TriangleGenerator<M, P>::generate( points, indexGetter, p, _triangles);
+        internal::ElementSampler indexGetter( ids, ids.size()-1);
+        internal::TriangleGenerator<M, P>::generate( points, indexGetter, p, _triangles);
 
         return finalize();
     }
@@ -283,8 +293,8 @@ namespace Ponca
     template <typename IndexContainer, typename PointContainer>
     FIT_RESULT CNC<P, W, M>::computeWithIds( const IndexContainer& ids, const PointContainer& points, const P& evalPoint ) {
         // Getting a random index from an index container
-        GetElementFromContainer indexGetter( ids, ids.size()-1 );
-        generateTriangles( points, indexGetter, evalPoint, _triangles);
+        internal::ElementSampler indexGetter( ids, ids.size()-1 );
+        internal::TriangleGenerator<M, P>::generate( points, indexGetter, evalPoint, _triangles);
 
         return finalize();
     }
