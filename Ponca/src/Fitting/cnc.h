@@ -64,11 +64,11 @@ struct Triangle {
     \brief CNC generation of triangles from a set of points
 */
 
-enum class TriangleGenerationMethod {
-    UniformGeneration
+enum TriangleGenerationMethod {
+    UniformGeneration, HexagramGeneration, AvgHexagramGeneration, IndependentGeneration
 };
 
-template < class P, class WeightFunc, TriangleGenerationMethod _method = TriangleGenerationMethod::UniformGeneration>
+template < class P, class WeightFunc, TriangleGenerationMethod _method = UniformGeneration>
 class CNC : BasketBase<P, WeightFunc> {
 public:
     using DataPoint = P;
@@ -77,10 +77,9 @@ public:
     using VectorType = typename DataPoint::VectorType;
     typedef Eigen::VectorXd  DenseVector;
     typedef Eigen::MatrixXd  DenseMatrix;
-
 protected:
 	// Basis
-	VectorType _evalPointNormal   {VectorType::Zero()};
+    P _evalPoint;
 
     //! \brief protected variables
     std::array < Scalar, 6 > _cos;
@@ -104,16 +103,8 @@ protected:
     VectorType v1;
     VectorType v2;
 
-    // Hexagram
-    std::array< Scalar    ,    6 > _distance2;
-    std::array< VectorType,    6 > _targets;
-
 // results
 public:
-    /*!< \brief Parameters of the triangles */
-    int _maxtriangles {100};
-    Scalar _avgnormals {Scalar(0.5)};
-
     PONCA_FITTING_DECLARE_FINALIZE
 
     /*! \brief Set the scalar field values to 0 and reset the isNormalized() status
@@ -128,7 +119,6 @@ public:
         v2 = VectorType::Zero();
 
         // Instantiate the parameters
-        _maxtriangles = 100;
         for ( int j = 0; j < 6; j++ ) {
             const Scalar a = j * M_PI / 3.0;
             _cos[ j ] = std::cos( a );
@@ -139,7 +129,7 @@ public:
     /*! \brief Compute function for STL-like containers */
     /*! Add neighbors stored in a PointContainer and call finalize at the end.*/
     template <typename PointContainer>
-    PONCA_MULTIARCH inline FIT_RESULT compute( const PointContainer& points );
+    PONCA_MULTIARCH inline FIT_RESULT compute( const PointContainer& points);
 
     /*! \brief Compute function to iterate over a subset of samples in a PointContainer  */
     /*! Add neighbors stored in a PointContainer and sampled using indices stored in ids.*/
@@ -147,12 +137,6 @@ public:
     /*! \tparam PointContainer An STL-like container storing the points */
     template <typename IndexContainer, typename PointContainer>
     PONCA_MULTIARCH inline FIT_RESULT computeWithIds( const IndexContainer& ids, const PointContainer& points );
-
-    template <typename PointContainer, typename RandomIndexGetter>
-    PONCA_MULTIARCH inline std::enable_if_t<_method == TriangleGenerationMethod::UniformGeneration, bool> generateTriangles(
-        const PointContainer& points,
-        const RandomIndexGetter& rdmId
-    );
 
     PONCA_MULTIARCH inline int getNumTriangles() const {
         return _nb_vt;
@@ -170,8 +154,8 @@ public:
         }
     }
 
-	void setEvalPointNormal(const VectorType& evalPointNormal) {
-		_evalPointNormal = evalPointNormal;
+	void setEvalPoint(const P& evalPoint) {
+		_evalPoint = evalPoint;
 	}
 
     bool operator==(const CNC& other) const {
