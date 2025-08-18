@@ -64,12 +64,25 @@ struct Triangle {
     \brief CNC generation of triangles from a set of points
 */
 
-enum class TriangleGenerationMethod {
-    UniformGeneration,
-    HexagramGeneration
+enum TriangleGenerationMethod {
+    UniformGeneration, HexagramGeneration
 };
 
-template < class P, class WeightFunc, TriangleGenerationMethod _method = TriangleGenerationMethod::UniformGeneration>
+template <TriangleGenerationMethod Method, typename P>
+struct TriangleGenerator {
+    template <typename PointContainer, typename IndexGetter>
+    static bool generate(
+        const PointContainer& points,
+        const IndexGetter& getIndex,
+        const P& evalPoint,
+        std::vector<internal::Triangle<P>>& triangles)
+    {
+        static_assert(true, "Triangle generation method not implemented!");
+        return false;
+    }
+};
+
+template < class P, class WeightFunc, TriangleGenerationMethod _method = UniformGeneration>
 class CNC : BasketBase<P, WeightFunc> {
 public:
     using DataPoint = P;
@@ -78,7 +91,6 @@ public:
     using VectorType = typename DataPoint::VectorType;
     typedef Eigen::VectorXd  DenseVector;
     typedef Eigen::MatrixXd  DenseMatrix;
-
 protected:
 	// Basis
 	VectorType _evalPointNormal   {VectorType::Zero()};
@@ -105,16 +117,8 @@ protected:
     VectorType v1;
     VectorType v2;
 
-    // Hexagram
-    std::array< Scalar    ,    6 > _distance2;
-    std::array< VectorType,    6 > _targets;
-
 // results
 public:
-    /*!< \brief Parameters of the triangles */
-    int _maxtriangles {100};
-    Scalar _avgnormals {Scalar(0.5)};
-
     PONCA_FITTING_DECLARE_FINALIZE
 
     /*! \brief Set the scalar field values to 0 and reset the isNormalized() status
@@ -129,7 +133,6 @@ public:
         v2 = VectorType::Zero();
 
         // Instantiate the parameters
-        _maxtriangles = 100;
         for ( int j = 0; j < 6; j++ ) {
             const Scalar a = j * M_PI / 3.0;
             _cos[ j ] = std::cos( a );
@@ -152,19 +155,6 @@ public:
     PONCA_MULTIARCH inline FIT_RESULT computeWithIds( const IndexContainer& ids, const PointContainer& points );
     template <typename IndexContainer, typename PointContainer>
     PONCA_MULTIARCH inline FIT_RESULT computeWithIds( const IndexContainer& ids, const PointContainer& points, const P& evalPoint );
-
-    template <typename PointContainer, typename IndexGetter>
-    PONCA_MULTIARCH inline std::enable_if_t<_method == TriangleGenerationMethod::UniformGeneration, bool> generateTriangles(
-        const PointContainer& points,
-        const IndexGetter& getIndex,
-        const P& evalPoint
-        );
-    template <typename PointContainer, typename IndexGetter>
-    PONCA_MULTIARCH inline std::enable_if_t<_method == TriangleGenerationMethod::HexagramGeneration, bool> generateTriangles(
-        const PointContainer& points,
-        const IndexGetter& getIndex,
-        const P& evalPoint
-    );
 
     PONCA_MULTIARCH inline int getNumTriangles() const {
         return _nb_vt;
