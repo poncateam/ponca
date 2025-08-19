@@ -74,6 +74,7 @@ void testBasicFunctionalities(const KdTree<typename Fit::DataPoint>& tree, typen
         // use compute function
         //! [Fit Compute]
         Fit fit1;
+        fit1.setEvalPoint(vectorPoints[0]);
         fit1.compute(vectorPoints);
         //! [Fit Compute]
 
@@ -84,11 +85,12 @@ void testBasicFunctionalities(const KdTree<typename Fit::DataPoint>& tree, typen
         //! [Fit computeWithIds]
         Fit fit2;
         // Sort fit1
-        std::vector<int> neighbors3;
+        std::vector<int> neighbors2;
         for (int iNeighbor : tree.range_neighbors(fitInitPos, analysisScale))
-            neighbors3.push_back(iNeighbor);
+            neighbors2.push_back(iNeighbor);
+        fit2.setEvalPoint(vectorPoints[0]);
         // Compute the neighbors
-        fit2.computeWithIds( neighbors3, vectorPoints );
+        fit2.computeWithIds( neighbors2, vectorPoints );
         //! [Fit computeWithIds]
 
         VERIFY((fit2 == fit2));
@@ -107,7 +109,7 @@ void callSubTests() {
     //! [SpecializedPointType]
 
     //! [CNCFitType]
-    using Fit_CNC = CNC<Point, NoWeightFunc<Point>>;
+    using Fit_CNC = CNC<Point, NoWeightFunc<Point>, TriangleGenerationMethod::HexagramGeneration>;
     //! [CNCFitType]
 
     KdTreeDense<Point> tree;
