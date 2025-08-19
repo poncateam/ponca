@@ -28,6 +28,18 @@ struct Triangle {
     std::array < VectorType, 3 > normals;
     // Maybe need to store the normal too
 
+    Triangle(DataPoint pointA, DataPoint pointB, DataPoint pointC) {
+        points = {
+            pointA.pos(),
+            pointB.pos(),
+            pointC.pos()
+        };
+        normals = {
+            pointA.normal(),
+            pointB.normal(),
+            pointC.normal()
+        };
+    }
     Triangle(const std::array < VectorType, 3 >& points, const std::array < VectorType, 3 >& normals) {
         this->points = points;
         this->normals = normals;
