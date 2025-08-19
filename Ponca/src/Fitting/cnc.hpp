@@ -7,6 +7,8 @@ This Source Code Form is subject to the terms of the Mozilla Public
 #pragma once
 #include <iostream>
 #include <ostream>
+#include <random>
+#include <vector>
 
 namespace Ponca
 {
@@ -244,7 +246,44 @@ namespace Ponca
             return 2;
         }
     };
-    }
+
+    /// Generates the triangles used by the CNC Fit using IndependentGeneration
+    template <typename P>
+    struct TriangleGenerator<TriangleGenerationMethod::IndependentGeneration, P> {
+        using VectorType = typename P::VectorType;
+        using Scalar = typename P::Scalar;
+        template <typename PointContainer, typename IndexGetter>
+        static int generate(
+            const PointContainer& points,
+            const IndexGetter& getIndex,
+            const P& evalPoint,
+            std::vector<internal::Triangle<P>>& triangles)
+        {
+            int maxtriangles {100};
+            int nb_vt = 0; // Number of valid generated triangles
+            std::vector<int> indices(points.size());
+            // Shuffle the neighbors
+            for (int i = 0; i < indices.size(); ++i)
+                indices[i] = i;
+            std::random_device rd;
+            std::mt19937 rg(rd());
+            std::shuffle(indices.begin(), indices.end(), rg);
+
+            // Compute the triangles
+            triangles.clear();
+            int maxt = std::min(maxtriangles, (int)points.size()/3);
+            for ( ; nb_vt < maxt; ++nb_vt) {
+                int i1 = nb_vt;
+                int i2 = nb_vt+1;
+                int i3 = nb_vt+2;
+                std::array <VectorType, 3> points  = {points[indices[i1]].pos()   , points[indices[i2]].pos()   , points[indices[i3]].pos()};
+                std::array <VectorType, 3> normals = {points[indices[i1]].normal(), points[indices[i2]].normal(), points[indices[i3]].normal()};
+                triangles.push_back(internal::Triangle<P>(points, normals));
+            }
+            return nb_vt;
+        }
+    };
+    } // namespace internal
 
     template < class P, class W, TriangleGenerationMethod M>
     template <typename PointContainer>
