@@ -112,14 +112,14 @@ namespace Ponca
     template <TriangleGenerationMethod Method, typename P>
     struct TriangleGenerator {
         template <typename PointContainer, typename IndexGetter>
-        static bool generate(
+        static int generate(
             const PointContainer& points,
             const IndexGetter& getIndex,
             const P& evalPoint,
             std::vector<internal::Triangle<P>>& triangles)
         {
             static_assert(true, "Triangle generation method not implemented!");
-            return false;
+            return 0;
         }
     };
 
@@ -260,7 +260,7 @@ namespace Ponca
         auto p = points[0]; // Dummy point
         // Random index from the size of the point container
         internal::BoundedIntRange indexGetter( points.size()-1 );
-        internal::TriangleGenerator<M, P>::generate( points, indexGetter, p, _triangles);
+        _nb_vt = internal::TriangleGenerator<M, P>::generate( points, indexGetter, p, _triangles);
 
         return finalize();
     }
@@ -270,7 +270,7 @@ namespace Ponca
     FIT_RESULT CNC<P, W, M>::compute( const PointContainer& points, const P& evalPoint ) {
         // Random index from the size of the point container
         internal::BoundedIntRange indexGetter( points.size()-1 );
-        internal::TriangleGenerator<M, P>::generate( points, indexGetter, evalPoint, _triangles);
+        _nb_vt = internal::TriangleGenerator<M, P>::generate( points, indexGetter, evalPoint, _triangles);
 
         return finalize();
     }
@@ -284,7 +284,7 @@ namespace Ponca
         auto p = points[0]; // Dummy point
         // Getting a random index from an index container
         internal::ElementSampler indexGetter( ids, ids.size()-1);
-        internal::TriangleGenerator<M, P>::generate( points, indexGetter, p, _triangles);
+        _nb_vt = internal::TriangleGenerator<M, P>::generate( points, indexGetter, p, _triangles);
 
         return finalize();
     }
@@ -294,7 +294,7 @@ namespace Ponca
     FIT_RESULT CNC<P, W, M>::computeWithIds( const IndexContainer& ids, const PointContainer& points, const P& evalPoint ) {
         // Getting a random index from an index container
         internal::ElementSampler indexGetter( ids, ids.size()-1 );
-        internal::TriangleGenerator<M, P>::generate( points, indexGetter, evalPoint, _triangles);
+        _nb_vt = internal::TriangleGenerator<M, P>::generate( points, indexGetter, evalPoint, _triangles);
 
         return finalize();
     }
