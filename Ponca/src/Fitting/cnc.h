@@ -65,7 +65,7 @@ struct Triangle {
 */
 
 enum TriangleGenerationMethod {
-    UniformGeneration, HexagramGeneration
+    UniformGeneration, HexagramGeneration, AvgHexagramGeneration, IndependentGeneration
 };
 
 template < class P, class WeightFunc, TriangleGenerationMethod _method = UniformGeneration>
@@ -79,7 +79,7 @@ public:
     typedef Eigen::MatrixXd  DenseMatrix;
 protected:
 	// Basis
-	VectorType _evalPointNormal   {VectorType::Zero()};
+    P _evalPoint;
 
     //! \brief protected variables
     std::array < Scalar, 6 > _cos;
@@ -130,8 +130,6 @@ public:
     /*! Add neighbors stored in a PointContainer and call finalize at the end.*/
     template <typename PointContainer>
     PONCA_MULTIARCH inline FIT_RESULT compute( const PointContainer& points);
-    template <typename PointContainer>
-    PONCA_MULTIARCH inline FIT_RESULT compute( const PointContainer& points, const P& evalPoint);
 
     /*! \brief Compute function to iterate over a subset of samples in a PointContainer  */
     /*! Add neighbors stored in a PointContainer and sampled using indices stored in ids.*/
@@ -139,8 +137,6 @@ public:
     /*! \tparam PointContainer An STL-like container storing the points */
     template <typename IndexContainer, typename PointContainer>
     PONCA_MULTIARCH inline FIT_RESULT computeWithIds( const IndexContainer& ids, const PointContainer& points );
-    template <typename IndexContainer, typename PointContainer>
-    PONCA_MULTIARCH inline FIT_RESULT computeWithIds( const IndexContainer& ids, const PointContainer& points, const P& evalPoint );
 
     PONCA_MULTIARCH inline int getNumTriangles() const {
         return _nb_vt;
@@ -158,8 +154,8 @@ public:
         }
     }
 
-	void setEvalPointNormal(const VectorType& evalPointNormal) {
-		_evalPointNormal = evalPointNormal;
+	void setEvalPoint(const P& evalPoint) {
+		_evalPoint = evalPoint;
 	}
 
     bool operator==(const CNC& other) const {

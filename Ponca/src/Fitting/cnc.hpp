@@ -18,15 +18,15 @@ namespace Ponca
         */
         class BoundedIntRange {
         public:
-            const int _nMin;
-            const int _nMax;
+            const int _nMin; // included
+            const int _nMax; // excluded
             explicit BoundedIntRange( const int nMax, const int nMin = 0 ) : _nMin(nMin), _nMax(nMax) { }
 
             void verifyBounds(const int n) const {
                 if (_nMin > n || n > _nMax)
                     throw std::runtime_error(
                         "Index values must be in range :"
-                        + std::to_string(_nMin) + " <= i <= " + std::to_string(_nMax)
+                        + std::to_string(_nMin) + " <= i < " + std::to_string(_nMax)
                         + " But got result : " + std::to_string(n));
             }
 
@@ -46,7 +46,7 @@ namespace Ponca
             class Iterator {
                 int _current;
             public:
-                explicit Iterator(int start) : _current(start) {}
+                explicit Iterator(const int start) : _current(start) {}
 
                 int operator*() const { return _current; }
                 Iterator& operator++() { ++_current; return *this; }
@@ -80,7 +80,7 @@ namespace Ponca
                 return _elements[i];
             }
             /// \internal
-            /// \brief Returns a random elements from the container in the index range of : [ _nMin, _nMax ]
+            /// \brief Returns a random elements from the container in the index range of : [ _nMin, _nMax [
             /// \note Overloads the () operator to return an element picked from the container with the random value, instead of a random integer
             [[nodiscard]] int random() const {
                 // random operator
@@ -92,7 +92,7 @@ namespace Ponca
                 const ElementSampler& _parent;
                 int _current;
             public:
-                Iterator(const ElementSampler& parent, int start)
+                Iterator(const ElementSampler& parent, const int start)
                     : _parent(parent), _current(start) {}
 
                 auto operator*() const { return _parent._elements[_current]; }
@@ -108,7 +108,7 @@ namespace Ponca
         };
 
 
-    /// Generates the triangle used by the CNC Fit depending on the method
+    /// Generates the triangles used by the CNC Fit depending on the method
     template <TriangleGenerationMethod Method, typename P>
     struct TriangleGenerator {
         template <typename PointContainer, typename IndexGetter>
@@ -123,7 +123,7 @@ namespace Ponca
         }
     };
 
-    /// Generates the triangle used by the CNC Fit depending on the method (UniformGeneration)
+    /// Generates the triangles used by the CNC Fit using UniformGeneration
     template <typename P>
     struct TriangleGenerator<TriangleGenerationMethod::UniformGeneration, P> {
         template <typename PointContainer, typename IndexGetter>
@@ -161,15 +161,11 @@ namespace Ponca
         }
     };
 
-    /// Generates the triangle used by the CNC Fit depending on the method (HexagramGeneration)
+    /// Generates the triangles used by the CNC Fit using HexagramGeneration
     template <typename P>
     struct TriangleGenerator<TriangleGenerationMethod::HexagramGeneration, P> {
         using VectorType = typename P::VectorType;
         using Scalar = typename P::Scalar;
-        // Hexagram
-        static std::array< Scalar    ,    6 > _distance2;
-        static std::array< VectorType,    6 > _targets;
-
         template <typename PointContainer, typename IndexGetter>
         static int generate(
             const PointContainer& points,
@@ -177,6 +173,10 @@ namespace Ponca
             const P& evalPoint,
             std::vector<internal::Triangle<P>>& triangles)
         {
+            // Hexagram
+            static std::array< Scalar    ,    6 > _distance2;
+            static std::array< VectorType,    6 > _targets;
+
             Scalar avgnormals  = Scalar(0.5);
             // BIN
             VectorType c = evalPoint.pos();
@@ -223,11 +223,6 @@ namespace Ponca
 
             for ( int index : getIndex ) {
                 VectorType p = points[ index ].pos();
-                if ( p == c ) {
-                    std::cout << "p == c" << std::endl;
-                    continue;
-                }
-
                 const VectorType d = p - c;
                 for ( int j = 0 ; j < 6 ; j++ ){
                     const Scalar d2 = ( d - _targets[ j ]).squaredNorm();
@@ -249,52 +244,24 @@ namespace Ponca
             return 2;
         }
     };
-
     }
+
     template < class P, class W, TriangleGenerationMethod M>
     template <typename PointContainer>
     FIT_RESULT CNC<P, W, M>::compute( const PointContainer& points ) {
-        if (M != TriangleGenerationMethod::UniformGeneration) {
-            throw std::runtime_error("Used TriangleGenerationMethod UniformGeneration but forgot to precise the eval point");
-        }
-        auto p = points[0]; // Dummy point
-        // Random index from the size of the point container
-        internal::BoundedIntRange indexGetter( points.size()-1 );
-        _nb_vt = internal::TriangleGenerator<M, P>::generate( points, indexGetter, p, _triangles);
+        internal::BoundedIntRange indexGetter( points.size() );
+        _nb_vt = internal::TriangleGenerator<M, P>::generate( points, indexGetter, _evalPoint, _triangles);
 
         return finalize();
     }
 
-    template < class P, class W, TriangleGenerationMethod M>
-    template <typename PointContainer>
-    FIT_RESULT CNC<P, W, M>::compute( const PointContainer& points, const P& evalPoint ) {
-        // Random index from the size of the point container
-        internal::BoundedIntRange indexGetter( points.size()-1 );
-        _nb_vt = internal::TriangleGenerator<M, P>::generate( points, indexGetter, evalPoint, _triangles);
-
-        return finalize();
-    }
 
     template < class P, class W, TriangleGenerationMethod M>
     template <typename IndexContainer, typename PointContainer>
-        FIT_RESULT CNC<P, W, M>::computeWithIds( const IndexContainer& ids, const PointContainer& points ) {
-        if (M != TriangleGenerationMethod::UniformGeneration) {
-            throw std::runtime_error("Used TriangleGenerationMethod UniformGeneration but forgot to precise the eval point");
-        }
-        auto p = points[0]; // Dummy point
+    FIT_RESULT CNC<P, W, M>::computeWithIds( const IndexContainer& ids, const PointContainer& points ) {
         // Getting a random index from an index container
-        internal::ElementSampler indexGetter( ids, ids.size()-1);
-        _nb_vt = internal::TriangleGenerator<M, P>::generate( points, indexGetter, p, _triangles);
-
-        return finalize();
-    }
-
-    template < class P, class W, TriangleGenerationMethod M>
-    template <typename IndexContainer, typename PointContainer>
-    FIT_RESULT CNC<P, W, M>::computeWithIds( const IndexContainer& ids, const PointContainer& points, const P& evalPoint ) {
-        // Getting a random index from an index container
-        internal::ElementSampler indexGetter( ids, ids.size()-1 );
-        _nb_vt = internal::TriangleGenerator<M, P>::generate( points, indexGetter, evalPoint, _triangles);
+        internal::ElementSampler indexGetter( ids, ids.size() );
+        _nb_vt = internal::TriangleGenerator<M, P>::generate( points, indexGetter, _evalPoint, _triangles);
 
         return finalize();
     }
@@ -309,7 +276,6 @@ namespace Ponca
         MatrixType localT = MatrixType::Zero();
 
         for (int t = 0; t < _nb_vt; ++t) {
-
             // Simple estimation.
             Scalar tA = _triangles[t].mu0InterpolatedU();
             if (tA < -internal::CNCEigen<P>::epsilon) {
@@ -347,7 +313,7 @@ namespace Ponca
             _G = Scalar(0);
         }
 
-        std::tie (k2, k1, v2, v1) = internal::CNCEigen<P>::curvaturesFromTensor(T, 1.0, _evalPointNormal);
+        std::tie (k2, k1, v2, v1) = internal::CNCEigen<P>::curvaturesFromTensor(T, 1.0, _evalPoint.normal());
 
         return STABLE;
     }
