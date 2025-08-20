@@ -233,6 +233,7 @@ namespace Ponca
         }
     };
 
+    // TODO : Fix this
     /// Generates the triangles used by the CNC Fit using AvgHexagramGeneration
     template <typename P>
     struct TriangleGenerator<TriangleGenerationMethod::AvgHexagramGeneration, P> {
@@ -255,12 +256,11 @@ namespace Ponca
 
             std::array< VectorType,6 > array_avg_normals;
             std::array< VectorType,6 > array_avg_points;
-            std::array< size_t, 6 >    array_nb{};
+            std::array< size_t, 6 >    array_nb;
 
             for ( int index : indicesGetter ) {
-                VectorType position = points[ index ].pos();
-                avgd += ( position - evalPoint.pos() ).norm();
-                a    += position;
+                avgd += ( points[ index ].pos() - evalPoint.pos() ).norm();
+                a    += points[ index ].normal();
             }
 
             a /= a.norm();
@@ -350,7 +350,7 @@ namespace Ponca
 
             // Compute the triangles
             triangles.clear();
-            int maxt = std::min(maxTriangles, static_cast<int>(indicesGetter.getLength())/3);
+            const int maxt = std::min(maxTriangles, static_cast<int>(indicesGetter.getLength())/3);
             for ( ; nb_vt < maxt-2; nb_vt++) {
                 int i1 = indices[nb_vt];
                 int i2 = indices[nb_vt+1];
