@@ -138,10 +138,10 @@ namespace Ponca
             const P& /*evalPoint*/,
             std::vector<internal::Triangle<P>>& triangles)
         {
-            int maxtriangles {1000};
+            constexpr int maxTriangles {1000};
             int nb_vt = 0; // Number of valid generated triangles
 
-            for (int i = 0; i < maxtriangles; ++i) {
+            for (int i = 0; i < maxTriangles; ++i) {
                 // Randomly select triangles
                 int i1 = indicesGetter.random();
                 int i2 = indicesGetter.random();
@@ -210,7 +210,7 @@ namespace Ponca
 
             std::array<int, 6> indices = {iSource, iSource, iSource, iSource, iSource, iSource};
 
-            for ( int i = 0 ; i < 6 ; i++ ){
+            for ( int i = 0 ; i < 6 ; i++ ) {
                 _distance2 [ i ] = avgd * avgd;
                 _targets   [ i ] = avgd * ( u * std::cos( i * M_PI / 3.0 ) + v * std::sin( i * M_PI / 3.0 ) );
             }
@@ -245,13 +245,11 @@ namespace Ponca
             const P& evalPoint,
             std::vector<internal::Triangle<P>>& triangles
         ) {
-            VectorType c = evalPoint.pos();
             VectorType n = evalPoint.normal();
             Scalar avgd = Scalar(0);
             VectorType a;
             a.setZero();
             // Hexagram
-            std::array< Scalar    ,    6 > _distance2;
             std::array< VectorType,    6 > _targets;
             Scalar avgnormals  = Scalar(0.5);
 
@@ -261,7 +259,7 @@ namespace Ponca
 
             for ( int index : indicesGetter ) {
                 VectorType position = points[ index ].pos();
-                avgd += ( position - c ).norm();
+                avgd += ( position - evalPoint.pos() ).norm();
                 a    += position;
             }
 
@@ -273,30 +271,29 @@ namespace Ponca
             const int m = ( std::abs( n[0] ) > std::abs ( n[1] ))
                     ? ( ( std::abs( n[0] ) ) > std::abs( n[2] ) ? 0 : 2 )
                     : ( ( std::abs( n[1] ) ) > std::abs( n[2] ) ? 1 : 2 );
-            const VectorType e =
-                ( m == 0 ) ? VectorType( Scalar(0), Scalar(1), Scalar(0) ) :
-                ( m == 1 ) ? VectorType( Scalar(0), Scalar(0), Scalar(1) ) :
-                VectorType( Scalar(1), Scalar(0), Scalar(0) );
+
+            const VectorType e = ( m == 0 ) ? VectorType( 0, 1, 0 ) :
+                                 ( m == 1 ) ? VectorType( 0, 0, 1 ) :
+                                              VectorType( 1, 0, 0 ) ;
             VectorType u = n.cross( e );
             VectorType v = n.cross( u );
             u /= u.norm();
             v /= v.norm();
-            const VectorType zero = VectorType::Zero();
 
-            for (int i = 0 ; i < 6 ; i++ ){
+            for (int i = 0 ; i < 6 ; i++ ) {
                 _targets   [ i ] = avgd * ( u * std::cos( i * M_PI / 3.0 ) + v * std::sin( i * M_PI / 3.0 ) );
-                array_avg_normals[ i ] = zero;
-                array_avg_points[ i ]  = zero;
+                array_avg_normals[ i ] = VectorType::Zero();
+                array_avg_points[ i ]  = VectorType::Zero();
                 array_nb[i] = 0;
             }
 
-            for (int i : indicesGetter ) {
-                VectorType p = points[ i ].pos() - c;
+            for (const int i : indicesGetter ) {
+                VectorType p = points[ i ].pos() - evalPoint.pos();
                 int best_k = 0;
                 auto best_d2 = ( p - _targets[ 0 ] ).squaredNorm();
-                for (int k = 1 ; k < 6 ; k++ ){
+                for (int k = 1 ; k < 6 ; k++) {
                     const Scalar d2 = ( p - _targets[ k ] ).squaredNorm();
-                    if ( d2 < best_d2 ){
+                    if ( d2 < best_d2 ) {
                         best_k = k;
                         best_d2 = d2;
                     }
@@ -306,21 +303,20 @@ namespace Ponca
                 array_nb[ best_k ] += 1;
             }
 
-            for (int i = 0 ; i < 6 ; i++ ){
+            for (int i = 0 ; i < 6 ; i++) {
                 if ( array_nb[ i ] == 0 ) {
                     array_avg_normals[ i ] = n;
-                    array_avg_points[ i ]  = c;
-                }
-                else {
+                    array_avg_points[ i ]  = evalPoint.pos();
+                } else {
                     array_avg_normals[ i ] /= array_avg_normals[ i ].norm();
                     array_avg_points[ i ]  /= array_nb[ i ];
                 }
             }
 
-            std::array <VectorType, 3> t1_points = { array_avg_points[0], array_avg_points[2], array_avg_points[4] };
+            std::array <VectorType, 3> t1_points  = { array_avg_points[0] , array_avg_points[2] , array_avg_points[4] };
             std::array <VectorType, 3> t1_normals = { array_avg_normals[0], array_avg_normals[2], array_avg_normals[4] };
 
-            std::array <VectorType, 3> t2_points = { array_avg_points[1], array_avg_points[3], array_avg_points[5] };
+            std::array <VectorType, 3> t2_points  = { array_avg_points[1] , array_avg_points[3] , array_avg_points[5] };
             std::array <VectorType, 3> t2_normals = { array_avg_normals[1], array_avg_normals[3], array_avg_normals[5] };
 
             triangles.push_back(internal::Triangle<P>(t1_points, t1_normals));
@@ -339,14 +335,14 @@ namespace Ponca
         static int generate(
             const PointContainer& points,
             const IndicesGetter& indicesGetter,
-            const P& evalPoint,
+            const P& /*evalPoint*/,
             std::vector<internal::Triangle<P>>& triangles
         ) {
-            int maxtriangles {100};
+            constexpr int maxTriangles {100};
             int nb_vt = 0; // Number of valid generated triangles
             std::vector<int> indices(indicesGetter.getLength());
             // Shuffle the neighbors
-            for (int i : indicesGetter)
+            for (const int i : indicesGetter)
                 indices[i] = i;
             std::random_device rd;
             std::mt19937 rg(rd());
@@ -354,15 +350,12 @@ namespace Ponca
 
             // Compute the triangles
             triangles.clear();
-            int maxt = std::min(maxtriangles, (int)indicesGetter.getLength()/3);
-            for ( ; nb_vt < maxt-2; nb_vt++)
-            {
+            int maxt = std::min(maxTriangles, static_cast<int>(indicesGetter.getLength())/3);
+            for ( ; nb_vt < maxt-2; nb_vt++) {
                 int i1 = indices[nb_vt];
                 int i2 = indices[nb_vt+1];
                 int i3 = indices[nb_vt+2];
-                std::array <VectorType, 3> points  = {points[i1].pos()   , points[i2].pos()   , points[i3].pos()};
-                std::array <VectorType, 3> normals = {points[i1].normal(), points[i2].normal(), points[i3].normal()};
-                triangles.push_back(internal::Triangle<P>(points, normals));
+                triangles.push_back(internal::Triangle<P>(points[i1], points[i2], points[i3]));
             }
             return nb_vt;
         }
@@ -424,7 +417,7 @@ namespace Ponca
 
         MatrixType T;
 
-        if (_A != Scalar(0)){
+        if (_A != Scalar(0)) {
             T  << _T11, _T12, _T13,
                   _T12, _T22, _T23,
                   _T13, _T23, _T33;
