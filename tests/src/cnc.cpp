@@ -67,8 +67,7 @@ void testBasicFunctionalities(const KdTree<typename Fit::DataPoint>& tree, typen
 #ifdef NDEBUG
 #pragma omp parallel for
 #endif
-    for(int i = 0; i < static_cast<int>(vectorPoints.size()); ++i)
-    {
+    for (int i = 0; i < static_cast<int>(vectorPoints.size()); ++i) {
         const auto &fitInitPoints = vectorPoints[i];
 
         // use compute function
@@ -101,6 +100,9 @@ void testBasicFunctionalities(const KdTree<typename Fit::DataPoint>& tree, typen
         VERIFY((fit2 == fit2));
         VERIFY(! (fit2 != fit2));
 
+        // std::cout << "fit1.kMean() : " << fit1.kMean() << "           |           fit2.kMean() : " << fit2.kMean() << std::endl;
+        // std::cout << "fit1.kGauss() : " << fit1.kGauss() << "         |           fit2.kGauss() : " << fit2.kGauss() << std::endl;
+
         typename Fit::Scalar epsilon = testEpsilon<typename Fit::Scalar>();
         VERIFY((fit1.isApprox(fit2, epsilon)));
         VERIFY((fit2.isApprox(fit1, epsilon)));
@@ -114,7 +116,7 @@ void callSubTests() {
     //! [SpecializedPointType]
 
     //! [CNCFitType]
-    using Fit_CNC = CNC<Point, NoWeightFunc<Point>, TriangleGenerationMethod::UniformGeneration>;
+    using Fit_CNC = CNC<Point, NoWeightFunc<Point>, TriangleGenerationMethod::IndependentGeneration>;
     //! [CNCFitType]
 
     KdTreeDense<Point> tree;

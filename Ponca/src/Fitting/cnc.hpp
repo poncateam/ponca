@@ -121,8 +121,8 @@ namespace Ponca
             const PointContainer& points,
             const IndicesGetter& indicesGetter,
             const P& evalPoint,
-            std::vector<internal::Triangle<P>>& triangles)
-        {
+            std::vector<internal::Triangle<P>>& triangles
+        ) {
             static_assert(true, "Triangle generation method not implemented!");
             return 0;
         }
@@ -136,12 +136,12 @@ namespace Ponca
             const PointContainer& points,
             const IndicesGetter& indicesGetter,
             const P& /*evalPoint*/,
-            std::vector<internal::Triangle<P>>& triangles)
-        {
-            int maxtriangles {1000};
+            std::vector<internal::Triangle<P>>& triangles
+        ) {
+            constexpr int maxTriangles {1000};
             int nb_vt = 0; // Number of valid generated triangles
 
-            for (int i = 0; i < maxtriangles; ++i) {
+            for (int i = 0; i < maxTriangles; ++i) {
                 // Randomly select triangles
                 int i1 = indicesGetter.random();
                 int i2 = indicesGetter.random();
@@ -210,7 +210,7 @@ namespace Ponca
 
             std::array<int, 6> indices = {iSource, iSource, iSource, iSource, iSource, iSource};
 
-            for ( int i = 0 ; i < 6 ; i++ ){
+            for ( int i = 0 ; i < 6 ; i++ ) {
                 _distance2 [ i ] = avgd * avgd;
                 _targets   [ i ] = avgd * ( u * std::cos( i * M_PI / 3.0 ) + v * std::sin( i * M_PI / 3.0 ) );
             }
@@ -233,6 +233,7 @@ namespace Ponca
         }
     };
 
+    /* TODO : Fix this
     /// Generates the triangles used by the CNC Fit using AvgHexagramGeneration
     template <typename P>
     struct TriangleGenerator<TriangleGenerationMethod::AvgHexagramGeneration, P> {
@@ -245,82 +246,106 @@ namespace Ponca
             const P& evalPoint,
             std::vector<internal::Triangle<P>>& triangles
         ) {
-            VectorType c = evalPoint.pos();
             VectorType n = evalPoint.normal();
             Scalar avgd = Scalar(0);
             VectorType a;
             a.setZero();
             // Hexagram
-            std::array< Scalar    ,    6 > _distance2;
             std::array< VectorType,    6 > _targets;
             Scalar avgnormals  = Scalar(0.5);
 
-            std::array< VectorType,6 > array_avg_normals;
-            std::array< VectorType,6 > array_avg_points;
-            std::array< size_t, 6 >    array_nb{};
-
-            for ( int index : indicesGetter ) {
-                P position = points[ index ].pos();
-                avgd += ( position - c ).norm();
-                a    += position;
+            std::cout << "i = [";
+            for ( int i = indicesGetter._nMin; i < indicesGetter._nMax ; i++ ) {
+                std::cout << i << ", ";
             }
+            std::cout << "]" << std::endl ;
+            std::cout << "indicesGetter = [";
+            for ( int i = indicesGetter._nMin; i < indicesGetter._nMax ; i++ ) {
+                const int index = indicesGetter.get(i);
+                std::cout << index << ", ";
+                avgd += ( points[ index ].pos() - evalPoint.pos() ).norm();
+                a    += points[ index ].normal();
+            }
+            std::cout << "]" << std::endl;
 
             a /= a.norm();
             n = ( Scalar(1) - avgnormals ) * n + avgnormals * a;
             n /= n.norm();
-            avgd /= indicesGetter.size();
+            avgd /= indicesGetter.getLength();
 
-            const int m = ( std::abs( n[0] ) > std::abs ( n[1] ))
-                    ? ( ( std::abs( n[0] ) ) > std::abs( n[2] ) ? 0 : 2 )
-                    : ( ( std::abs( n[1] ) ) > std::abs( n[2] ) ? 1 : 2 );
-            const VectorType e =
-                ( m == 0 ) ? VectorType( Scalar(0), Scalar(1), Scalar(0) ) :
-                ( m == 1 ) ? VectorType( Scalar(0), Scalar(0), Scalar(1) ) :
-                VectorType( Scalar(1), Scalar(0), Scalar(0) );
+            int m; // = ( std::abs( n[0] ) > std::abs ( n[1] ))
+                  //  ? ( ( std::abs( n[0] ) ) > std::abs( n[2] ) ? 0 : 2 )
+                  //  : ( ( std::abs( n[1] ) ) > std::abs( n[2] ) ? 1 : 2 );
+
+            if (std::abs( n[0] ) > std::abs( n[1] )) {
+                if  ( ( std::abs( n[0] ) ) > std::abs( n[2] ) ) {
+                    m = 0;
+                } else {
+                    m = 2;
+                }
+            } else {
+                if (( std::abs( n[1] ) ) > std::abs( n[2] )) {
+                    m = 1;
+                } else {
+                    m = 2;
+                }
+            }
+
+            const VectorType e = ( m == 0 ) ? VectorType( 0, 1, 0 ) :
+                                 ( m == 1 ) ? VectorType( 0, 0, 1 ) :
+                                              VectorType( 1, 0, 0 ) ;
             VectorType u = n.cross( e );
             VectorType v = n.cross( u );
             u /= u.norm();
             v /= v.norm();
-            const VectorType zero = VectorType::Zero();
 
-            for (int i = 0 ; i < 6 ; i++ ){
-                _targets   [ i ] = avgd * ( u * std::cos( i * M_PI / 3.0 ) + v * std::sin( i * M_PI / 3.0 ) );
-                array_avg_normals[ i ] = zero;
-                array_avg_points[ i ]  = zero;
-                array_nb[i] = 0;
+            std::array< VectorType,6 > array_avg_normals{VectorType::Zero()};
+            std::array< VectorType,6 > array_avg_points{VectorType::Zero()};
+            std::array< int, 6 >    array_nb {0};
+
+            for (int i = 0 ; i < 6 ; i++ ) {
+                _targets[ i ]          = avgd * ( u * std::cos( i * M_PI / 3.0 ) + v * std::sin( i * M_PI / 3.0 ) );
+                array_avg_normals[ i ] = VectorType::Zero();
+                array_avg_points[ i ]  = VectorType::Zero();
             }
 
-            for (int i : indicesGetter ) {
-                VectorType p = points[ i ].pos() - c;
-                auto best_k = 0;
-                auto best_d2 = ( p - _targets[ 0 ] ).squaredNorm();
-                for (int k = 1 ; k < 6 ; k++ ){
+            for (int i = indicesGetter._nMin; i < indicesGetter._nMax ; i++) {
+                const int index = indicesGetter.get(i);
+
+                VectorType p = points[ index ].pos() - evalPoint.pos();
+                int best_k = 0;
+                Scalar best_d2 = ( p - _targets[ 0 ] ).squaredNorm();
+                for (int k = 1 ; k < 6 ; k++) {
                     const Scalar d2 = ( p - _targets[ k ] ).squaredNorm();
-                    if ( d2 < best_d2 ){
+                    if ( d2 < best_d2 ) {
                         best_k = k;
                         best_d2 = d2;
                     }
                 }
-                array_avg_normals[ best_k ] += points[ i ].normal();
-                array_avg_points[ best_k ]  += points[ i ].pos();
+                array_avg_normals[ best_k ] += points[ index ].normal();
+                array_avg_points[ best_k ]  += points[ index ].pos();
                 array_nb[ best_k ] += 1;
             }
+            std::cout << "array_nb = [" ;
+            for (int i : array_nb) {
+                std::cout << i << ", ";
+            }
+            std::cout << "]" << std::endl;
 
-            for (int i = 0 ; i < 6 ; i++ ){
+            for (int i = 0 ; i < 6 ; i++) {
                 if ( array_nb[ i ] == 0 ) {
                     array_avg_normals[ i ] = n;
-                    array_avg_points[ i ]  = c;
-                }
-                else {
+                    array_avg_points[ i ]  = evalPoint.pos();
+                } else {
                     array_avg_normals[ i ] /= array_avg_normals[ i ].norm();
                     array_avg_points[ i ]  /= array_nb[ i ];
                 }
             }
 
-            std::array <VectorType, 3> t1_points = { array_avg_points[0], array_avg_points[2], array_avg_points[4] };
+            std::array <VectorType, 3> t1_points  = { array_avg_points[0] , array_avg_points[2] , array_avg_points[4] };
             std::array <VectorType, 3> t1_normals = { array_avg_normals[0], array_avg_normals[2], array_avg_normals[4] };
 
-            std::array <VectorType, 3> t2_points = { array_avg_points[1], array_avg_points[3], array_avg_points[5] };
+            std::array <VectorType, 3> t2_points  = { array_avg_points[1] , array_avg_points[3] , array_avg_points[5] };
             std::array <VectorType, 3> t2_normals = { array_avg_normals[1], array_avg_normals[3], array_avg_normals[5] };
 
             triangles.push_back(internal::Triangle<P>(t1_points, t1_normals));
@@ -328,7 +353,7 @@ namespace Ponca
 
             return 2;
         }
-    };
+    };*/
 
     /// Generates the triangles used by the CNC Fit using IndependentGeneration
     template <typename P>
@@ -339,30 +364,28 @@ namespace Ponca
         static int generate(
             const PointContainer& points,
             const IndicesGetter& indicesGetter,
-            const P& evalPoint,
+            const P& /*evalPoint*/,
             std::vector<internal::Triangle<P>>& triangles
         ) {
-            int maxtriangles {100};
+            constexpr int maxTriangles {100};
             int nb_vt = 0; // Number of valid generated triangles
             std::vector<int> indices(indicesGetter.getLength());
             // Shuffle the neighbors
-            for (int i : indicesGetter)
-                indices[i] = i;
+            for (int i = indicesGetter._nMin; i < indicesGetter._nMax ; i++) {
+                indices[i] = indicesGetter.get(i);
+            }
             std::random_device rd;
             std::mt19937 rg(rd());
             std::shuffle(indices.begin(), indices.end(), rg);
 
             // Compute the triangles
             triangles.clear();
-            int maxt = std::min(maxtriangles, (int)indicesGetter.getLength()/3);
-            for ( ; nb_vt < maxt-2; nb_vt++)
-            {
+            const int maxt = std::min(maxTriangles, static_cast<int>(indicesGetter.getLength())/3);
+            for ( ; nb_vt < maxt-2; nb_vt++) {
                 int i1 = indices[nb_vt];
                 int i2 = indices[nb_vt+1];
                 int i3 = indices[nb_vt+2];
-                std::array <VectorType, 3> points  = {points[i1].pos()   , points[i2].pos()   , points[i3].pos()};
-                std::array <VectorType, 3> normals = {points[i1].normal(), points[i2].normal(), points[i3].normal()};
-                triangles.push_back(internal::Triangle<P>(points, normals));
+                triangles.push_back(internal::Triangle<P>(points[i1], points[i2], points[i3]));
             }
             return nb_vt;
         }
@@ -385,7 +408,6 @@ namespace Ponca
         // Getting a random index from an index container
         internal::ElementSampler indicesSample( ids, ids.size() );
         _nb_vt = internal::TriangleGenerator<M, P>::generate( points, indicesSample, _evalPoint, _triangles);
-
         return finalize();
     }
 
@@ -423,8 +445,7 @@ namespace Ponca
         _T33 = localT(2,2);
 
         MatrixType T;
-
-        if (_A != Scalar(0)){
+        if (_A != Scalar(0)) {
             T  << _T11, _T12, _T13,
                   _T12, _T22, _T23,
                   _T13, _T23, _T33;
