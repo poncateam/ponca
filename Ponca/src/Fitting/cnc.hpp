@@ -233,7 +233,6 @@ namespace Ponca
         }
     };
 
-    // TODO : Fix this
     /// Generates the triangles used by the CNC Fit using AvgHexagramGeneration
     template <typename P>
     struct TriangleGenerator<TriangleGenerationMethod::AvgHexagramGeneration, P> {
