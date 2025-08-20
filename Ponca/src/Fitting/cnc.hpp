@@ -260,7 +260,7 @@ namespace Ponca
             std::array< size_t, 6 >    array_nb{};
 
             for ( int index : indicesGetter ) {
-                P position = points[ index ].pos();
+                VectorType position = points[ index ].pos();
                 avgd += ( position - c ).norm();
                 a    += position;
             }
@@ -268,7 +268,7 @@ namespace Ponca
             a /= a.norm();
             n = ( Scalar(1) - avgnormals ) * n + avgnormals * a;
             n /= n.norm();
-            avgd /= indicesGetter.size();
+            avgd /= indicesGetter.getLength();
 
             const int m = ( std::abs( n[0] ) > std::abs ( n[1] ))
                     ? ( ( std::abs( n[0] ) ) > std::abs( n[2] ) ? 0 : 2 )
@@ -292,7 +292,7 @@ namespace Ponca
 
             for (int i : indicesGetter ) {
                 VectorType p = points[ i ].pos() - c;
-                auto best_k = 0;
+                int best_k = 0;
                 auto best_d2 = ( p - _targets[ 0 ] ).squaredNorm();
                 for (int k = 1 ; k < 6 ; k++ ){
                     const Scalar d2 = ( p - _targets[ k ] ).squaredNorm();
