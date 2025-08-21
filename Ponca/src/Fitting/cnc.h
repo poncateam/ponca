@@ -77,7 +77,7 @@ struct Triangle {
 */
 
 enum TriangleGenerationMethod {
-    UniformGeneration, HexagramGeneration, AvgHexagramGeneration, IndependentGeneration
+    UniformGeneration, HexagramGeneration, IndependentGeneration // AvgHexagramGeneration
 };
 
 template < class P, class WeightFunc, TriangleGenerationMethod _method = UniformGeneration>
@@ -181,7 +181,7 @@ public:
 
     bool isApprox(const CNC& other, const Scalar& epsilon = Eigen::NumTraits<Scalar>::dummy_precision()) const {
         // We use the matrix to compare the fitting results
-        return std::abs(kMean() - other.kMean()) < epsilon
+        return std::abs(kMean()  - other.kMean())  < epsilon
             && std::abs(kGauss() - other.kGauss()) < epsilon;
     }
 
