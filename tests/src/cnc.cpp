@@ -115,12 +115,16 @@ void callSubTests() {
     //! [SpecializedPointType]
 
     //! [CNCFitType]
-    using Fit_CNC = CNC<Point, NoWeightFunc<Point>, TriangleGenerationMethod::IndependentGeneration>;
+    using Fit_CNC_Independent = CNC<Point, NoWeightFunc<Point>, TriangleGenerationMethod::IndependentGeneration>;
+    using Fit_CNC_Uniform = CNC<Point, NoWeightFunc<Point>, TriangleGenerationMethod::UniformGeneration>;
+    using Fit_CNC_Hexagram = CNC<Point, NoWeightFunc<Point>, TriangleGenerationMethod::HexagramGeneration>;
     //! [CNCFitType]
 
     KdTreeDense<Point> tree;
     Scalar scale = generateData(tree);
-    CALL_SUBTEST((testBasicFunctionalities<Fit_CNC>(tree, scale) ));
+    CALL_SUBTEST((testBasicFunctionalities<Fit_CNC_Independent>(tree, scale) ));
+    CALL_SUBTEST((testBasicFunctionalities<Fit_CNC_Uniform>(tree, scale) ));
+    CALL_SUBTEST((testBasicFunctionalities<Fit_CNC_Hexagram>(tree, scale) ));
 }
 
 int main(const int argc, char** argv) {
