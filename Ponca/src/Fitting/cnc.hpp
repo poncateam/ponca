@@ -10,118 +10,132 @@ This Source Code Form is subject to the terms of the Mozilla Public
 #include <random>
 #include <vector>
 
-namespace Ponca
-{
-    namespace internal {
-        /*!
-            \internal
-            \brief Class to generate or generate a random integer from a presetted boundary
-            \note Calling the () operator on this objet after the initialization of its boundary generates a random integer
-        */
-        class BoundedIntRange {
+
+namespace Ponca::internal {
+    /*!
+        \internal
+        \brief Parent class to manage integers inside a boundary. Can be iterated over or used to generates a random integer inside the boundary
+        \note Calling the on this objet after the initialization of its boundary generates a random integer in between [_nMin, _nMax[
+    */
+    class BoundedIntRange {
+    public:
+        const int _nMin; // included
+        const int _nMax; // excluded
+        /// \internal
+        /// \brief The operations on this can be restricted to the bounds : [ _nMin, _nMax [
+        /// \note nMin is optional and is equal to zero by default, but an nMax must be provided
+        explicit BoundedIntRange( const int nMax, const int nMin = 0 ) : _nMin(nMin), _nMax(nMax) { }
+
+        void verifyBounds(const int n) const {
+            if (_nMin > n || n > _nMax)
+                throw std::runtime_error(
+                    "Index values must be in range :"
+                    + std::to_string(_nMin) + " <= i < " + std::to_string(_nMax)
+                    + " But got result : " + std::to_string(n));
+        }
+
+        /// \brief Simply verify that n is in bounds and returns it. Can be overwritten to something else in children class
+        [[nodiscard]] int get(const int n) const {
+            verifyBounds(n);
+            return n;
+        }
+
+        [[nodiscard]] int getLength() const {
+            return _nMax - _nMin;
+        }
+
+        /// \internal
+        /// \brief Returns a random integer in bounds of : [ _nMin, _nMax [
+        [[nodiscard]] int random() const {
+            // random operator
+            const int r = Eigen::internal::random<int>(_nMin, _nMax-1);
+            verifyBounds(r);
+            return r;
+        }
+
+        class Iterator {
+            int _current;
         public:
-            const int _nMin; // included
-            const int _nMax; // excluded
-            explicit BoundedIntRange( const int nMax, const int nMin = 0 ) : _nMin(nMin), _nMax(nMax) { }
+            explicit Iterator(const int start) : _current(start) {}
 
-            void verifyBounds(const int n) const {
-                if (_nMin > n || n > _nMax)
-                    throw std::runtime_error(
-                        "Index values must be in range :"
-                        + std::to_string(_nMin) + " <= i < " + std::to_string(_nMax)
-                        + " But got result : " + std::to_string(n));
+            int operator*() const { return _current; }
+            Iterator& operator++() { ++_current; return *this; }
+
+            bool operator!=(const Iterator& other) const {
+                return _current != other._current;
             }
-
-            /// \brief Can be overwridden to something else in children class
-            [[nodiscard]] int get(const int n) const {
-                verifyBounds(n);
-                return n;
-            }
-            [[nodiscard]] int getLength() const {
-                return _nMax - _nMin;
-            }
-            /// \internal
-            /// \brief Returns a random integer in bounds of : [ _nMin, _nMax ]
-            [[nodiscard]] int random() const {
-                // random operator
-                const int r = Eigen::internal::random<int>(_nMin, _nMax-1);
-                verifyBounds(r);
-                return r;
-            }
-            class Iterator {
-                int _current;
-            public:
-                explicit Iterator(const int start) : _current(start) {}
-
-                int operator*() const { return _current; }
-                Iterator& operator++() { ++_current; return *this; }
-
-                bool operator!=(const Iterator& other) const {
-                    return _current != other._current;
-                }
-            };
-
-            [[nodiscard]] Iterator begin() const { return Iterator(_nMin); }
-            [[nodiscard]] Iterator end() const { return Iterator(_nMax); }
         };
 
-        /*!
-            \internal
-            \brief Getting a random element from an STL-like container.
-            Stores the container to then pick an element from it
-            \note Calling the () operator on this objet after the initialization of its boundary picks a random element from the container
-            \inherit GetRandomIndex
-        */
-        template<typename Container>
-        class ElementSampler : public BoundedIntRange {
-        private:
-            Container& _elements;
+        [[nodiscard]] Iterator begin() const { return Iterator(_nMin); }
+        [[nodiscard]] Iterator end() const { return Iterator(_nMax); }
+    };
+
+    /*!
+        \internal
+        \brief Class that provides usefull operators to iterate over an STL-like container of ints (to manage indices map for instance).
+        It will store a reference to the container, and can iterate over it or pick an element from it (random or not)
+        \inherit BoundedIntRange
+    */
+    template<typename Container>
+    class ElementSampler : public BoundedIntRange {
+    private:
+        Container& _elements;
+    public:
+        /// \internal
+        /// \brief The operations on the container can be restricted to the bounds : [ _nMin, _nMax [
+        /// \note nMin is optional and is equal to zero by default, but an nMax must be provided
+        ElementSampler(Container& elements, const int nMax, const int nMin = 0) :
+            BoundedIntRange(nMax, nMin), _elements(elements) { }
+
+        /// \internal
+        /// \brief Returns an elements from the integer container after verifying that the index i is in bounds
+        [[nodiscard]] int get(const int i) const {
+            verifyBounds(i);
+            return _elements[i];
+        }
+        /// \internal
+        /// \brief Returns a random element from the integer container
+        [[nodiscard]] int random() const {
+            // random operator
+            const int r = Eigen::internal::random<int>(_nMin, _nMax-1);
+            verifyBounds(r);
+            return _elements[r]; // Returns the element of the STL-like array
+        }
+        /// \internal
+        /// \brief Makes the class iterable
+        class Iterator {
+            const ElementSampler& _parent;
+            int _current;
         public:
-            ElementSampler(Container& elements, const int nMax, const int nMin = 0) :
-                BoundedIntRange(nMax, nMin), _elements(elements) { }
+            Iterator(const ElementSampler& parent, const int start)
+                : _parent(parent), _current(start) {}
 
-            [[nodiscard]] int get(const int i) const {
-                verifyBounds(i);
-                return _elements[i];
+            auto operator*() const { return _parent._elements[_current]; }
+            Iterator& operator++() { ++_current; return *this; }
+
+            bool operator!=(const Iterator& other) const {
+                return _current != other._current;
             }
-            /// \internal
-            /// \brief Returns a random elements from the container in the index range of : [ _nMin, _nMax [
-            /// \note Overloads the () operator to return an element picked from the container with the random value, instead of a random integer
-            [[nodiscard]] int random() const {
-                // random operator
-                const int r = Eigen::internal::random<int>(_nMin, _nMax-1);
-                verifyBounds(r);
-                return _elements[r]; // Returns the element of the STL-like array
-            }
-            class Iterator {
-                const ElementSampler& _parent;
-                int _current;
-            public:
-                Iterator(const ElementSampler& parent, const int start)
-                    : _parent(parent), _current(start) {}
-
-                auto operator*() const { return _parent._elements[_current]; }
-                Iterator& operator++() { ++_current; return *this; }
-
-                bool operator!=(const Iterator& other) const {
-                    return _current != other._current;
-                }
-            };
-
-            Iterator begin() const { return Iterator(*this, _nMin); }
-            Iterator end() const { return Iterator(*this, _nMax); }
         };
+        Iterator begin() const { return Iterator(*this, _nMin); }
+        Iterator end() const { return Iterator(*this, _nMax); }
+    };
 
 
-    /// Generates the triangles used by the CNC Fit depending on the method
+    /*!
+        \internal
+        \brief Generates the triangles used by the CNC Fit depending on the method.
+            As an output, pushes every generated triangle into the "triangles" vector and returns the number of triangle that was pushed into the List.
+        \note Needs to be implemented for each triangle generation method by specializing the template over the TriangleGenerationMethod
+    */
     template <TriangleGenerationMethod Method, typename P>
     struct TriangleGenerator {
         template <typename PointContainer, typename IndicesGetter>
         static int generate(
-            const PointContainer& points,
-            const IndicesGetter& indicesGetter,
-            const P& evalPoint,
-            std::vector<internal::Triangle<P>>& triangles
+            const PointContainer& /*points*/,
+            const IndicesGetter& /*indicesGetter*/,
+            const P& /*evalPoint*/,
+            std::vector<Triangle<P>>& /*triangles*/
         ) {
             static_assert(true, "Triangle generation method not implemented!");
             return 0;
@@ -130,13 +144,13 @@ namespace Ponca
 
     /// Generates the triangles used by the CNC Fit using UniformGeneration
     template <typename P>
-    struct TriangleGenerator<TriangleGenerationMethod::UniformGeneration, P> {
+    struct TriangleGenerator<UniformGeneration, P> {
         template <typename PointContainer, typename IndicesGetter>
         static int generate(
             const PointContainer& points,
             const IndicesGetter& indicesGetter,
             const P& /*evalPoint*/,
-            std::vector<internal::Triangle<P>>& triangles
+            std::vector<Triangle<P>>& triangles
         ) {
             constexpr int maxTriangles {1000};
             int nb_vt = 0; // Number of valid generated triangles
@@ -157,7 +171,7 @@ namespace Ponca
 
     /// Generates the triangles used by the CNC Fit using HexagramGeneration
     template <typename P>
-    struct TriangleGenerator<TriangleGenerationMethod::HexagramGeneration, P> {
+    struct TriangleGenerator<HexagramGeneration, P> {
         using VectorType = typename P::VectorType;
         using Scalar = typename P::Scalar;
         template <typename PointContainer, typename IndicesGetter>
@@ -236,7 +250,7 @@ namespace Ponca
     /* TODO : Fix this
     /// Generates the triangles used by the CNC Fit using AvgHexagramGeneration
     template <typename P>
-    struct TriangleGenerator<TriangleGenerationMethod::AvgHexagramGeneration, P> {
+    struct TriangleGenerator<AvgHexagramGeneration, P> {
         using VectorType = typename P::VectorType;
         using Scalar = typename P::Scalar;
         template <typename PointContainer, typename IndicesGetter>
@@ -357,7 +371,7 @@ namespace Ponca
 
     /// Generates the triangles used by the CNC Fit using IndependentGeneration
     template <typename P>
-    struct TriangleGenerator<TriangleGenerationMethod::IndependentGeneration, P> {
+    struct TriangleGenerator<IndependentGeneration, P> {
         using VectorType = typename P::VectorType;
         using Scalar = typename P::Scalar;
         template <typename PointContainer, typename IndicesGetter>
@@ -390,11 +404,13 @@ namespace Ponca
             return nb_vt;
         }
     };
-    } // namespace internal
+} // namespace Ponca::internal
 
+namespace Ponca {
     template < class P, class W, TriangleGenerationMethod M>
     template <typename PointContainer>
     FIT_RESULT CNC<P, W, M>::compute( const PointContainer& points ) {
+        init();
         internal::BoundedIntRange indicesSample( points.size() );
         _nb_vt = internal::TriangleGenerator<M, P>::generate( points, indicesSample, _evalPoint, _triangles);
 
@@ -405,6 +421,7 @@ namespace Ponca
     template < class P, class W, TriangleGenerationMethod M>
     template <typename IndexContainer, typename PointContainer>
     FIT_RESULT CNC<P, W, M>::computeWithIds( const IndexContainer& ids, const PointContainer& points ) {
+        init();
         // Getting a random index from an index container
         internal::ElementSampler indicesSample( ids, ids.size() );
         _nb_vt = internal::TriangleGenerator<M, P>::generate( points, indicesSample, _evalPoint, _triangles);
@@ -461,5 +478,4 @@ namespace Ponca
 
         return STABLE;
     }
-
-}
+} // namespace Ponca
