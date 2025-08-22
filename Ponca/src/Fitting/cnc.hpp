@@ -152,7 +152,7 @@ namespace Ponca::internal {
             const P& /*evalPoint*/,
             std::vector<Triangle<P>>& triangles
         ) {
-            constexpr int maxTriangles {1000};
+            constexpr int maxTriangles {100};
             int nb_vt = 0; // Number of valid generated triangles
 
             for (int i = 0; i < maxTriangles; ++i) {
