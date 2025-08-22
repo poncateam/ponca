@@ -20,57 +20,105 @@ namespace Ponca
 
 #ifndef PARSED_WITH_DOXYGEN
 /*! \brief Namespace used for structure or classes used internally by the lib */
-namespace internal
-{
-    template <class P, class W,
-        typename Aggregate,
-        template <class, class, typename> class Ext,
-        template <class, class, typename> class... Exts>
-    struct BasketAggregateImpl
-    {
+namespace internal {
+    template<class P, class W,
+            typename Aggregate,
+            template<class, class, typename> class Ext,
+            template<class, class, typename> class... Exts>
+    struct BasketAggregateImpl {
         using type = typename BasketAggregateImpl<P, W, Ext<P, W, Aggregate>, Exts...>::type;
     };
 
-    template <class P, class W,
-        typename Aggregate,
-        template <class, class, typename> class Ext>
-    struct BasketAggregateImpl<P, W, Aggregate, Ext>
-    {
+    template<class P, class W,
+            typename Aggregate,
+            template<class, class, typename> class Ext>
+    struct BasketAggregateImpl<P, W, Aggregate, Ext> {
         using type = Ext<P, W, Aggregate>;
     };
 
     /*! \brief Internal class used to build the Basket structure */
-    template <class P, class W,
-        template <class, class, typename> class... Exts>
-    struct BasketAggregate : BasketAggregateImpl<P, W, PrimitiveBase<P, W>, Exts...>
-    {
+    template<class P, class W,
+            template<class, class, typename> class... Exts>
+    struct BasketAggregate : BasketAggregateImpl<P, W, PrimitiveBase<P, W>, Exts...> {
     };
 
-    template <typename BasketType, int Type,
-        typename Aggregate,
-        template <class, class, int, typename> class Ext,
-        template <class, class, int, typename> class... Exts>
-    struct BasketDiffAggregateImpl
-    {
+    template<typename BasketType, int Type,
+            typename Aggregate,
+            template<class, class, int, typename> class Ext,
+            template<class, class, int, typename> class... Exts>
+    struct BasketDiffAggregateImpl {
         using type = typename BasketDiffAggregateImpl<BasketType, Type, Ext<BSKP, BSKW, Type, Aggregate>, Exts...>::type;
     };
 
-    template <typename BasketType, int Type,
-        typename Aggregate,
-        template <class, class, int, typename> class Ext>
-    struct BasketDiffAggregateImpl<BasketType, Type, Aggregate, Ext>
-    {
+    template<typename BasketType, int Type,
+            typename Aggregate,
+            template<class, class, int, typename> class Ext>
+    struct BasketDiffAggregateImpl<BasketType, Type, Aggregate, Ext> {
         using type = Ext<BSKP, BSKW, Type, Aggregate>;
     };
 
     /*! \brief Internal class used to build the BasketDiff structure */
-    template <typename BasketType, int Type,
-        template <class, class, int, typename> class... Exts>
-    struct BasketDiffAggregate : BasketDiffAggregateImpl<BasketType, Type, BasketType, PrimitiveDer, Exts...>
-    {
+    template<typename BasketType, int Type,
+            template<class, class, int, typename> class... Exts>
+    struct BasketDiffAggregate : BasketDiffAggregateImpl<BasketType, Type, BasketType, PrimitiveDer, Exts...> {
     };
 }
 #endif
+
+namespace internal
+{
+    /// Iterator Transformers
+    /// source :  https://devblogs.microsoft.com/oldnewthing/20230523-00/?p=108233
+    template<typename Inner>
+    struct Wrap
+    {
+        Wrap(Inner const& inner) :
+                m_inner(inner) {}
+        Inner m_inner;
+    };
+
+    template<typename It, typename Transformer>
+    class transform_iterator : Wrap<Transformer>
+    {
+        It m_it;
+    public:
+        transform_iterator(It const& it,
+                           Transformer const& transformer) :
+                m_it(it),
+                Wrap<Transformer>(transformer) {}
+
+        // copy constructors and assignment operators defaulted
+
+        using difference_type = typename
+        std::iterator_traits<It>::difference_type;
+        using value_type = typename std::invoke_result<
+                Transformer, It>::type;
+        using pointer = void;
+        using reference = void;
+        using iterator_category = std::input_iterator_tag;
+
+        bool operator==(transform_iterator const& other)
+        { return m_it == other.m_it; }
+        bool operator!=(transform_iterator const& other)
+        { return m_it != other.m_it; }
+
+        auto operator*() const { return (*this)(*m_it); }
+
+        auto operator++() { ++m_it; return *this; }
+        auto operator++(int)
+        { auto prev = *this; ++m_it; return prev; }
+    };
+
+    // For C++14 (no CTAD)
+    template<typename It, typename Transformer>
+    auto make_transform_iterator(
+            It const& it, Transformer const& transformer)
+    {
+        return transform_iterator<It, Transformer>
+                (it, transformer);
+    }
+    /// End iterator Transformers
+}
 
 #ifdef PONCA_CPU_ARCH
 #   define WRITE_BASKET_SINGLE_HOST_FUNCTIONS                                                         \
@@ -79,6 +127,12 @@ namespace internal
     PONCA_MULTIARCH inline                                                                            \
     FIT_RESULT compute(const Container& c){                                                           \
         return Self::compute(std::begin(c), std::end(c));                                             \
+    }                                                                                                 \
+    /*! \copydoc transformAndCompute(const IteratorBegin&,const IteratorEnd&, Transformer const&) */  \
+    template <typename Container, typename Transformer>                                               \
+    PONCA_MULTIARCH inline                                                                            \
+    FIT_RESULT transformAndCompute(const Container& c,Transformer const& transformer){                \
+        return Self::compute(std::begin(c), std::end(c), transformer);                                \
     }
 #else
 #   define WRITE_BASKET_SINGLE_HOST_FUNCTIONS
@@ -102,6 +156,16 @@ namespace internal
             res = Base::finalize();                                                                   \
         } while ( res == NEED_OTHER_PASS );                                                           \
         return res;                                                                                   \
+    }                                                                                                 \
+    /*! \brief Convenience function to transform neighbors on the fly before fitting */               \
+    /*! \warning Must be used with care : neighbors are transformed at each addNeighbor() call*/      \
+    /*! \see compute(const IteratorBegin&, const IteratorEnd&) */                                     \
+    template <typename IteratorBegin, typename IteratorEnd, typename Transformer>                     \
+    PONCA_MULTIARCH inline                                                                            \
+    FIT_RESULT transformAndCompute(const IteratorBegin& begin, const IteratorEnd& end,                \
+                                   Transformer const& transformer){                                   \
+        return Self::compute(internal::transform_iterator(begin,transformer),                         \
+                             internal::transform_iterator(end,transformer));                          \
     }                                                                                                 \
     /*! \brief Convenience function to iterate over a subset of samples in a PointContainer  */       \
     /*! Add neighbors stored in a PointContainer and sampled using indices stored in ids.*/           \
