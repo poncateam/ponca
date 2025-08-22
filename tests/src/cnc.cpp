@@ -59,6 +59,7 @@ typename DataPoint::Scalar generateData(KdTree<DataPoint>& tree) {
 
     return analysisScale;
 }
+
 template<typename Fit>
 void testBasicFunctionalities(const KdTree<typename Fit::DataPoint>& tree, typename Fit::Scalar analysisScale) {
     const auto& vectorPoints = tree.points();
@@ -73,7 +74,6 @@ void testBasicFunctionalities(const KdTree<typename Fit::DataPoint>& tree, typen
         // use compute function
         //! [Fit Compute]
         Fit fit1;
-        fit1.init();
         // Sort fit1
         fit1.setEvalPoint(fitInitPoints);
         // Compute the neighbors
@@ -90,7 +90,6 @@ void testBasicFunctionalities(const KdTree<typename Fit::DataPoint>& tree, typen
             neighbors2.push_back(iNeighbor);
         }
         Fit fit2;
-        fit2.init();
         // Sort fit1
         fit2.setEvalPoint(fitInitPoints);
         // Compute the neighbors
