@@ -130,11 +130,12 @@ namespace Ponca::internal {
     */
     template <TriangleGenerationMethod Method, typename P>
     struct TriangleGenerator {
+        using VectorType = typename P::VectorType;
         template <typename PointContainer, typename IndicesGetter>
         static int generate(
             const PointContainer& /*points*/,
             const IndicesGetter& /*indicesGetter*/,
-            const P& /*evalPoint*/,
+            const VectorType& /*_evalPointPos*/, const VectorType& /*_evalPointNormal*/,
             std::vector<Triangle<P>>& /*triangles*/
         ) {
             static_assert(true, "Triangle generation method not implemented!");
@@ -145,11 +146,12 @@ namespace Ponca::internal {
     /// Generates the triangles used by the CNC Fit using UniformGeneration
     template <typename P>
     struct TriangleGenerator<UniformGeneration, P> {
+        using VectorType = typename P::VectorType;
         template <typename PointContainer, typename IndicesGetter>
         static int generate(
             const PointContainer& points,
             const IndicesGetter& indicesGetter,
-            const P& /*evalPoint*/,
+            const VectorType& /*_evalPointPos*/, const VectorType& /*_evalPointNormal*/,
             std::vector<Triangle<P>>& triangles
         ) {
             constexpr int maxTriangles {100};
@@ -178,7 +180,7 @@ namespace Ponca::internal {
         static int generate(
             const PointContainer& points,
             const IndicesGetter& indicesGetter,
-            const P& evalPoint,
+            const VectorType& _evalPointPos, const VectorType& _evalPointNormal,
             std::vector<internal::Triangle<P>>& triangles
         ) {
             // Hexagram
@@ -187,15 +189,16 @@ namespace Ponca::internal {
 
             Scalar avgnormals  = Scalar(0.5);
             // BIN
-            VectorType c = evalPoint.pos();
-            VectorType n = evalPoint.normal();
+            VectorType c = _evalPointPos;
+            VectorType n = _evalPointNormal;
             VectorType a;
             a.setZero();
 
             int iSource = -1;
             Scalar avgd = Scalar(0);
 
-            for ( int index : indicesGetter ) {
+            for ( int i = indicesGetter._nMin; i < indicesGetter._nMax ; i++ ) {
+                const int index = indicesGetter.get(i);
                 avgd += ( points[ index ].pos() - c ).norm();
                 a    += points[ index ].normal();
                 // if avgd == 0 then it is the evalPoint
@@ -207,7 +210,7 @@ namespace Ponca::internal {
             a /= a.norm();
             n = ( Scalar(1) - avgnormals ) * n + avgnormals * a;
             n /= n.norm();
-            avgd /= indicesGetter._nMax;
+            avgd /= indicesGetter.getLength();
 
             const int m = ( std::abs( n[0] ) > std::abs ( n[1] ))
                     ? ( ( std::abs( n[0] ) ) > std::abs( n[2] ) ? 0 : 2 )
@@ -229,7 +232,8 @@ namespace Ponca::internal {
                 _targets   [ i ] = avgd * ( u * std::cos( i * M_PI / 3.0 ) + v * std::sin( i * M_PI / 3.0 ) );
             }
 
-            for ( int index : indicesGetter ) {
+            for ( int i = indicesGetter._nMin; i < indicesGetter._nMax ; i++ ) {
+                const int index = indicesGetter.get(i);
                 VectorType p = points[ index ].pos();
                 const VectorType d = p - c;
                 for ( int j = 0 ; j < 6 ; j++ ){
@@ -240,6 +244,18 @@ namespace Ponca::internal {
                     }
                 }
             }
+            // std::array <VectorType, 3> t1_points = {points[indices[0]].pos(), points[indices[2]].pos(), points[indices[4]].pos()};
+            // std::array <VectorType, 3> t1_normals = {points[indices[0]].normal(), points[indices[2]].normal(), points[indices[4]].normal()};
+            //
+            // std::array <VectorType, 3> t2_points = {points[indices[1]].pos(), points[indices[3]].pos(), points[indices[5]].pos()};
+            // std::array <VectorType, 3> t2_normals = {points[indices[1]].normal(), points[indices[3]].normal(), points[indices[5]].normal()};
+            //
+            // triangles.push_back(internal::Triangle<P>(t1_points, t1_normals));
+            // triangles.push_back(internal::Triangle<P>(t2_points, t2_normals));
+            std::cout << "indices : " << indices[0] << ", " << indices[2] << ", " << indices[4] << std::endl;
+            std::cout << "indices 2 : " << indices[1] << ", " << indices[3] << ", " << indices[5] << std::endl;
+            std::cout << "point pos 0 : " << points[indices[0]].pos() << std::endl;
+
             triangles.push_back(internal::Triangle<P>(points[indices[0]], points[indices[2]], points[indices[4]]));
             triangles.push_back(internal::Triangle<P>(points[indices[1]], points[indices[3]], points[indices[5]]));
 
@@ -378,7 +394,8 @@ namespace Ponca::internal {
         static int generate(
             const PointContainer& points,
             const IndicesGetter& indicesGetter,
-            const P& /*evalPoint*/,
+            // const P& /*evalPoint*/,
+            const VectorType& /*_evalPointPos*/, const VectorType& /*_evalPointNormal*/,
             std::vector<internal::Triangle<P>>& triangles
         ) {
             constexpr int maxTriangles {100};
@@ -412,11 +429,10 @@ namespace Ponca {
     FIT_RESULT CNC<P, W, M>::compute( const PointContainer& points ) {
         init();
         internal::BoundedIntRange indicesSample( points.size() );
-        _nb_vt = internal::TriangleGenerator<M, P>::generate( points, indicesSample, _evalPoint, _triangles);
+        _nb_vt = internal::TriangleGenerator<M, P>::generate( points, indicesSample, _evalPointPos, _evalPointNormal, _triangles);
 
         return finalize();
     }
-
 
     template < class P, class W, TriangleGenerationMethod M>
     template <typename IndexContainer, typename PointContainer>
@@ -424,7 +440,7 @@ namespace Ponca {
         init();
         // Getting a random index from an index container
         internal::ElementSampler indicesSample( ids, ids.size() );
-        _nb_vt = internal::TriangleGenerator<M, P>::generate( points, indicesSample, _evalPoint, _triangles);
+        _nb_vt = internal::TriangleGenerator<M, P>::generate( points, indicesSample, _evalPointPos, _evalPointNormal, _triangles);
         return finalize();
     }
 
@@ -474,7 +490,7 @@ namespace Ponca {
             _G = Scalar(0);
         }
 
-        std::tie (k2, k1, v2, v1) = internal::CNCEigen<P>::curvaturesFromTensor(T, 1.0, _evalPoint.normal());
+        std::tie (k2, k1, v2, v1) = internal::CNCEigen<P>::curvaturesFromTensor(T, 1.0, _evalPointNormal);
 
         return STABLE;
     }
