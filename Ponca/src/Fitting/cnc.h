@@ -154,7 +154,11 @@ public:
 
 	void setEvalPoint(const DataPoint& evalPoint) {
         _evalPointNormal = evalPoint.normal();
-        _evalPointPos = evalPoint.pos();
+        _evalPointPos    = evalPoint.pos();
+    }
+    void setEvalPoint(const VectorType& evalPointNormal, const VectorType& evalPointPos) {
+        _evalPointNormal = evalPointNormal;
+        _evalPointPos    = evalPointPos;
     }
 
     bool operator==(const CNC& other) const {
