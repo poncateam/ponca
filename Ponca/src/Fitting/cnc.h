@@ -91,11 +91,8 @@ public:
     typedef Eigen::MatrixXd  DenseMatrix;
 protected:
 	// Basis
-    P _evalPoint;
-
-    //! \brief protected variables
-    std::array < Scalar, 6 > _cos;
-    std::array < Scalar, 6 > _sin;
+    VectorType _evalPointNormal = VectorType::Zero();
+    VectorType _evalPointPos = VectorType::Zero();
 
     int _nb_vt {0}; // Number of valid triangles
     std::vector <internal::Triangle < DataPoint > > _triangles;
@@ -120,22 +117,10 @@ public:
     PONCA_FITTING_DECLARE_FINALIZE
 
     /*! \brief Set the scalar field values to 0 and reset the isNormalized() status
-
     */
-
     PONCA_MULTIARCH inline void init() {
         k1 = Scalar(0);
         k2 = Scalar(0);
-
-        v1 = VectorType::Zero();
-        v2 = VectorType::Zero();
-
-        // Instantiate the parameters
-        for ( int j = 0; j < 6; j++ ) {
-            const Scalar a = j * M_PI / 3.0;
-            _cos[ j ] = std::cos( a );
-            _sin[ j ] = std::sin( a );
-        }
     }
 
     /*! \brief Compute function for STL-like containers */
@@ -162,13 +147,14 @@ public:
             std::array <Scalar, 3> point2 = {_triangles[i].points[2][0], _triangles[i].points[2][1], _triangles[i].points[2][2]};
             triangles.push_back(point0);
             triangles.push_back(point1);
-            triangles.push_back(point2);        
+            triangles.push_back(point2);
         }
     }
 
-	void setEvalPoint(const P& evalPoint) {
-		_evalPoint = evalPoint;
-	}
+	void setEvalPoint(const DataPoint& evalPoint) {
+        _evalPointNormal = evalPoint.normal();
+        _evalPointPos = evalPoint.pos();
+    }
 
     bool operator==(const CNC& other) const {
         // We use the matrix to compare the fitting results
