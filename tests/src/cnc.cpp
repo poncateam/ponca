@@ -115,9 +115,9 @@ void callSubTests() {
     //! [SpecializedPointType]
 
     //! [CNCFitType]
-    using Fit_CNC_Independent = CNC<Point, NoWeightFunc<Point>, TriangleGenerationMethod::IndependentGeneration>;
-    using Fit_CNC_Uniform = CNC<Point, NoWeightFunc<Point>, TriangleGenerationMethod::UniformGeneration>;
-    using Fit_CNC_Hexagram = CNC<Point, NoWeightFunc<Point>, TriangleGenerationMethod::HexagramGeneration>;
+    using Fit_CNC_Independent = CNC<Point, TriangleGenerationMethod::IndependentGeneration>;
+    using Fit_CNC_Uniform = CNC<Point, TriangleGenerationMethod::UniformGeneration>;
+    using Fit_CNC_Hexagram = CNC<Point, TriangleGenerationMethod::HexagramGeneration>;
     //! [CNCFitType]
 
     KdTreeDense<Point> tree;

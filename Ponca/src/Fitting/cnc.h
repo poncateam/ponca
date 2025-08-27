@@ -10,6 +10,7 @@
 #include "defines.h"
 #include PONCA_MULTIARCH_INCLUDE_STD(cmath)
 #include "cncFormulaEigen.h"
+#include <Ponca/src/Fitting/weightFunc.h>
 
 
 namespace Ponca
@@ -80,8 +81,8 @@ enum TriangleGenerationMethod {
     UniformGeneration, HexagramGeneration, IndependentGeneration // AvgHexagramGeneration
 };
 
-template < class P, class WeightFunc, TriangleGenerationMethod _method = UniformGeneration>
-class CNC : BasketBase<P, WeightFunc> {
+template < class P, TriangleGenerationMethod _method = UniformGeneration>
+class CNC : BasketBase<P, NoWeightFunc<P>> {
 public:
     using DataPoint = P;
     using MatrixType = typename DataPoint::MatrixType;
