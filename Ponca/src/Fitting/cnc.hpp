@@ -394,7 +394,6 @@ namespace Ponca::internal {
         static int generate(
             const PointContainer& points,
             const IndicesGetter& indicesGetter,
-            // const P& /*evalPoint*/,
             const VectorType& /*_evalPointPos*/, const VectorType& /*_evalPointNormal*/,
             std::vector<internal::Triangle<P>>& triangles
         ) {
@@ -424,9 +423,9 @@ namespace Ponca::internal {
 } // namespace Ponca::internal
 
 namespace Ponca {
-    template < class P, class W, TriangleGenerationMethod M>
+    template < class P, TriangleGenerationMethod M>
     template <typename PointContainer>
-    FIT_RESULT CNC<P, W, M>::compute( const PointContainer& points ) {
+    FIT_RESULT CNC<P, M>::compute( const PointContainer& points ) {
         init();
         internal::BoundedIntRange indicesSample( points.size() );
         _nb_vt = internal::TriangleGenerator<M, P>::generate( points, indicesSample, _evalPointPos, _evalPointNormal, _triangles);
@@ -434,9 +433,9 @@ namespace Ponca {
         return finalize();
     }
 
-    template < class P, class W, TriangleGenerationMethod M>
+    template < class P, TriangleGenerationMethod M>
     template <typename IndexContainer, typename PointContainer>
-    FIT_RESULT CNC<P, W, M>::computeWithIds( const IndexContainer& ids, const PointContainer& points ) {
+    FIT_RESULT CNC<P, M>::computeWithIds( const IndexContainer& ids, const PointContainer& points ) {
         init();
         // Getting a random index from an index container
         internal::ElementSampler indicesSample( ids, ids.size() );
@@ -445,8 +444,8 @@ namespace Ponca {
     }
 
 
-    template < class P, class W, TriangleGenerationMethod M>
-    FIT_RESULT CNC<P, W, M>::finalize( ) {
+    template < class P, TriangleGenerationMethod M>
+    FIT_RESULT CNC<P, M>::finalize( ) {
         _A = Scalar(0);
         _H = Scalar(0);
         _G = Scalar(0);
