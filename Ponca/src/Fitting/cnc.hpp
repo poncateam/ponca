@@ -244,18 +244,6 @@ namespace Ponca::internal {
                     }
                 }
             }
-            // std::array <VectorType, 3> t1_points = {points[indices[0]].pos(), points[indices[2]].pos(), points[indices[4]].pos()};
-            // std::array <VectorType, 3> t1_normals = {points[indices[0]].normal(), points[indices[2]].normal(), points[indices[4]].normal()};
-            //
-            // std::array <VectorType, 3> t2_points = {points[indices[1]].pos(), points[indices[3]].pos(), points[indices[5]].pos()};
-            // std::array <VectorType, 3> t2_normals = {points[indices[1]].normal(), points[indices[3]].normal(), points[indices[5]].normal()};
-            //
-            // triangles.push_back(internal::Triangle<P>(t1_points, t1_normals));
-            // triangles.push_back(internal::Triangle<P>(t2_points, t2_normals));
-            std::cout << "indices : " << indices[0] << ", " << indices[2] << ", " << indices[4] << std::endl;
-            std::cout << "indices 2 : " << indices[1] << ", " << indices[3] << ", " << indices[5] << std::endl;
-            std::cout << "point pos 0 : " << points[indices[0]].pos() << std::endl;
-
             triangles.push_back(internal::Triangle<P>(points[indices[0]], points[indices[2]], points[indices[4]]));
             triangles.push_back(internal::Triangle<P>(points[indices[1]], points[indices[3]], points[indices[5]]));
 
