@@ -187,9 +187,6 @@ public:
     PONCA_MULTIARCH inline Scalar kMean() const { return _H; }
 
     PONCA_MULTIARCH inline Scalar kGauss() const { return _G; }
-
-    PONCA_MULTIARCH inline VectorType project (const VectorType& _q) const
-    { return _q; }
 }; //class CNC
 
 } // namespace Ponca
