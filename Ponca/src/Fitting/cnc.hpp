@@ -313,7 +313,6 @@ namespace Ponca::internal {
 
                 VectorType p = points[ index ].pos() - c;
                 int best_k = 0;
-                // Because of floating point imprecision, the order which this computation is done matters
                 Scalar best_d2 = ( p - _targets[ 0 ] ).squaredNorm();
                 for (int k = 1 ; k < 6 ; k++) {
                     const Scalar d2 = ( p - _targets[ k ] ).squaredNorm();
