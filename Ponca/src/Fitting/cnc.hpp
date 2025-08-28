@@ -336,6 +336,9 @@ namespace Ponca::internal {
             for (int i = indicesGetter._nMin; i < indicesGetter._nMax ; i++) {
                 const int index = indicesGetter.get(i);
 
+                if ( points[ index ].pos() == c )
+                    continue;
+
                 VectorType p = points[ index ].pos() - c;
                 int best_k = 0;
                 Scalar best_d2 = ( p - _targets[ 0 ] ).squaredNorm();
