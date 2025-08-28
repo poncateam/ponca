@@ -276,48 +276,20 @@ namespace Ponca::internal {
             std::array< VectorType,    6 > _targets;
             Scalar avgnormals  = Scalar(0.5);
 
-            // std::cout << "i = [";
-            // for ( int i = indicesGetter._nMin; i < indicesGetter._nMax ; i++ ) {
-            //     std::cout << i << ", ";
-            // }
-            // std::cout << "]" << std::endl ;
-
-            std::cout << "indicesGetter = [";
             for ( int i = indicesGetter._nMin; i < indicesGetter._nMax ; i++ ) {
                 const int index = indicesGetter.get(i);
-                std::cout << index << ", ";
                 avgd += ( points[ index ].pos() - c ).norm();
                 a    += points[ index ].normal();
             }
-            std::cout << "]" << std::endl;
 
             a /= a.norm();
             n = ( Scalar(1) - avgnormals ) * n + avgnormals * a;
             n /= n.norm();
             avgd /= indicesGetter.getLength();
 
-            std::cout << "a = [" << a.transpose() << "]" << std::endl;
-            std::cout << "n = [" << n.transpose() << "]" << std::endl;
-            std::cout << "avgd = [" << avgd << "]" << std::endl;
-
             const int m = ( std::abs( n[0] ) > std::abs ( n[1] ))
                     ? ( ( std::abs( n[0] ) ) > std::abs( n[2] ) ? 0 : 2 )
                     : ( ( std::abs( n[1] ) ) > std::abs( n[2] ) ? 1 : 2 );
-
-            // Same as
-            // if (std::abs( n[0] ) > std::abs( n[1] )) {
-            //     if  ( ( std::abs( n[0] ) ) > std::abs( n[2] ) ) {
-            //         m = 0;
-            //     } else {
-            //         m = 2;
-            //     }
-            // } else {
-            //     if (( std::abs( n[1] ) ) > std::abs( n[2] )) {
-            //         m = 1;
-            //     } else {
-            //         m = 2;
-            //     }
-            // }
 
             const VectorType e = ( m == 0 ) ? VectorType( 0, 1, 0 ) :
                                  ( m == 1 ) ? VectorType( 0, 0, 1 ) :
@@ -341,6 +313,7 @@ namespace Ponca::internal {
 
                 VectorType p = points[ index ].pos() - c;
                 int best_k = 0;
+                // Because of floating point imprecision, the order which this computation is done matters
                 Scalar best_d2 = ( p - _targets[ 0 ] ).squaredNorm();
                 for (int k = 1 ; k < 6 ; k++) {
                     const Scalar d2 = ( p - _targets[ k ] ).squaredNorm();
@@ -350,23 +323,17 @@ namespace Ponca::internal {
                     }
                 }
                 array_avg_normals[ best_k ] += points[ index ].normal();
-                array_avg_points[ best_k ]  += points[ index ].pos();
+                array_avg_points [ best_k ] += points[ index ].pos();
                 array_nb[ best_k ] += 1;
             }
-
-            std::cout << "array_nb = [" ;
-            for (int i : array_nb) {
-                std::cout << i << ", ";
-            }
-            std::cout << "]" << std::endl;
 
             for (int i = 0 ; i < 6 ; i++) {
                 if ( array_nb[ i ] == 0 ) {
                     array_avg_normals[ i ] = n;
-                    array_avg_points[ i ]  = c;
+                    array_avg_points [ i ] = c;
                 } else {
                     array_avg_normals[ i ] /= array_avg_normals[ i ].norm();
-                    array_avg_points[ i ]  /= array_nb[ i ];
+                    array_avg_points [ i ] /= array_nb[ i ];
                 }
             }
 
@@ -375,27 +342,6 @@ namespace Ponca::internal {
 
             std::array <VectorType, 3> t2_points  = { array_avg_points[1] , array_avg_points[3] , array_avg_points[5] };
             std::array <VectorType, 3> t2_normals = { array_avg_normals[1], array_avg_normals[3], array_avg_normals[5] };
-
-            // std::cout << "t1_points = [" ;
-            // for (VectorType i : t1_points) {
-            //     std::cout << i.transpose() << ", " << std::endl;
-            // }
-            // std::cout << "]" << std::endl;
-            std::cout << "t1_normals = [" ;
-            for (VectorType i : t1_normals) {
-                std::cout << i.transpose() << ", " << std::endl;
-            }
-            std::cout << "]" << std::endl;
-            // std::cout << "t2_points = [" ;
-            // for (VectorType i : t2_points) {
-            //     std::cout << i.transpose() << ", " << std::endl;
-            // }
-            // std::cout << "]" << std::endl;
-            std::cout << "t2_normals = [" ;
-            for (VectorType i : t2_normals) {
-                std::cout << i.transpose() << ", " << std::endl;
-            }
-            std::cout << "]" << std::endl;
 
             triangles.push_back(internal::Triangle<P>(t1_points, t1_normals));
             triangles.push_back(internal::Triangle<P>(t2_points, t2_normals));
@@ -474,17 +420,14 @@ namespace Ponca {
         for (int t = 0; t < _nb_vt; ++t) {
             // Simple estimation.
             Scalar tA = _triangles[t].mu0InterpolatedU();
-            std::cout << "tA = " << tA << std::endl;
             if (tA < -internal::CNCEigen<P>::epsilon) {
                 _A     -= tA;
                 _H     += _triangles[t].template mu1InterpolatedU<true>();
                 _G     += _triangles[t].template mu2InterpolatedU<true>();
-                std::cout << "swapped H = " << _H << std::endl;
                 localT += _triangles[t].template muXYInterpolatedU<true>();
             } else if (tA > internal::CNCEigen<P>::epsilon) {
                 _A     += tA;
                 _H     += _triangles[t].mu1InterpolatedU();
-                std::cout << "regular H = " << _H << std::endl;
                 _G     += _triangles[t].mu2InterpolatedU();
                 localT += _triangles[t].muXYInterpolatedU();
             }
