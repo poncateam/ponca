@@ -27,7 +27,7 @@ namespace Ponca::internal {
         explicit BoundedIntRange( const int nMax, const int nMin = 0 ) : _nMin(nMin), _nMax(nMax) { }
 
         void verifyBounds(const int n) const {
-            if (_nMin > n || n > _nMax)
+            if (_nMin > n || n >= _nMax)
                 throw std::runtime_error(
                     "Index values must be in range :"
                     + std::to_string(_nMin) + " <= i < " + std::to_string(_nMax)
