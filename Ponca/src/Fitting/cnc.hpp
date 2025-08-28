@@ -235,6 +235,8 @@ namespace Ponca::internal {
             for ( int i = indicesGetter._nMin; i < indicesGetter._nMax ; i++ ) {
                 const int index = indicesGetter.get(i);
                 VectorType p = points[ index ].pos();
+                if ( p == c ) continue;
+
                 const VectorType d = p - c;
                 for ( int j = 0 ; j < 6 ; j++ ){
                     const Scalar d2 = ( d - _targets[ j ]).squaredNorm();
