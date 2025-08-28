@@ -120,9 +120,9 @@ void callSubTests() {
 
     KdTreeDense<Point> tree;
     Scalar scale = generateData(tree);
-    // CALL_SUBTEST((testBasicFunctionalities<Fit_CNC_Independent>(tree, scale) ));
-    // CALL_SUBTEST((testBasicFunctionalities<Fit_CNC_Uniform>(tree, scale) ));
-    // CALL_SUBTEST((testBasicFunctionalities<Fit_CNC_Hexagram>(tree, scale) ));
+    CALL_SUBTEST((testBasicFunctionalities<Fit_CNC_Independent>(tree, scale) ));
+    CALL_SUBTEST((testBasicFunctionalities<Fit_CNC_Uniform>(tree, scale) ));
+    CALL_SUBTEST((testBasicFunctionalities<Fit_CNC_Hexagram>(tree, scale) ));
     CALL_SUBTEST((testBasicFunctionalities<Fit_CNC_AvgHexagram>(tree, scale) ));
 }
 
