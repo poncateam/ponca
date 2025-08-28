@@ -70,7 +70,8 @@ void testBasicFunctionalities(const KdTree<typename Fit::DataPoint>& tree, typen
 #endif
     for (int i = 0; i < static_cast<int>(vectorPoints.size()); ++i) {
         const auto &fitInitPoints = vectorPoints[i];
-
+        std::cout << "#################################### New fit ####################################" << std::endl;
+        std::cout << "######### Fit 1 :" << std::endl;
         // use compute function
         //! [Fit Compute]
         Fit fit1;
@@ -89,6 +90,8 @@ void testBasicFunctionalities(const KdTree<typename Fit::DataPoint>& tree, typen
         for (int iNeighbor : tree.range_neighbors(fitInitPoints.pos(), analysisScale)) {
             neighbors2.push_back(iNeighbor);
         }
+        // stable_sort(neighbors2.begin(), neighbors2.end());
+        std::cout << "######### Fit 2 :" << std::endl;
         Fit fit2;
         // Sort fit1
         fit2.setEvalPoint(fitInitPoints);
@@ -99,8 +102,8 @@ void testBasicFunctionalities(const KdTree<typename Fit::DataPoint>& tree, typen
         VERIFY((fit2 == fit2));
         VERIFY(! (fit2 != fit2));
 
-        // std::cout << "fit1.kMean() : " << fit1.kMean() << "           |           fit2.kMean() : " << fit2.kMean() << std::endl;
-        // std::cout << "fit1.kGauss() : " << fit1.kGauss() << "         |           fit2.kGauss() : " << fit2.kGauss() << std::endl;
+        std::cout << "fit1.kMean() : " << fit1.kMean() << "           |           fit2.kMean() : " << fit2.kMean() << std::endl;
+        std::cout << "fit1.kGauss() : " << fit1.kGauss() << "         |           fit2.kGauss() : " << fit2.kGauss() << std::endl;
 
         typename Fit::Scalar epsilon = testEpsilon<typename Fit::Scalar>();
         VERIFY((fit1.isApprox(fit2, epsilon)));
@@ -118,13 +121,15 @@ void callSubTests() {
     using Fit_CNC_Independent = CNC<Point, TriangleGenerationMethod::IndependentGeneration>;
     using Fit_CNC_Uniform = CNC<Point, TriangleGenerationMethod::UniformGeneration>;
     using Fit_CNC_Hexagram = CNC<Point, TriangleGenerationMethod::HexagramGeneration>;
+    using Fit_CNC_AvgHexagram = CNC<Point, TriangleGenerationMethod::AvgHexagramGeneration>;
     //! [CNCFitType]
 
     KdTreeDense<Point> tree;
     Scalar scale = generateData(tree);
-    CALL_SUBTEST((testBasicFunctionalities<Fit_CNC_Independent>(tree, scale) ));
-    CALL_SUBTEST((testBasicFunctionalities<Fit_CNC_Uniform>(tree, scale) ));
-    CALL_SUBTEST((testBasicFunctionalities<Fit_CNC_Hexagram>(tree, scale) ));
+    // CALL_SUBTEST((testBasicFunctionalities<Fit_CNC_Independent>(tree, scale) ));
+    // CALL_SUBTEST((testBasicFunctionalities<Fit_CNC_Uniform>(tree, scale) ));
+    // CALL_SUBTEST((testBasicFunctionalities<Fit_CNC_Hexagram>(tree, scale) ));
+    CALL_SUBTEST((testBasicFunctionalities<Fit_CNC_AvgHexagram>(tree, scale) ));
 }
 
 int main(const int argc, char** argv) {
