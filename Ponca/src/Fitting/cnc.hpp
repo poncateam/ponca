@@ -187,7 +187,7 @@ namespace Ponca::internal {
             std::array< Scalar    ,    6 > _distance2;
             std::array< VectorType,    6 > _targets;
 
-            Scalar avgnormals  = Scalar(0.5);
+            Scalar avg_normal  = Scalar(0.5);
             // BIN
             VectorType c = _evalPointPos;
             VectorType n = _evalPointNormal;
@@ -197,8 +197,7 @@ namespace Ponca::internal {
             int iSource = -1;
             Scalar avgd = Scalar(0);
 
-            for ( int i = indicesGetter._nMin; i < indicesGetter._nMax ; i++ ) {
-                const int index = indicesGetter.get(i);
+            for ( int index : indicesGetter ) {
                 avgd += ( points[ index ].pos() - c ).norm();
                 a    += points[ index ].normal();
                 // if avgd == 0 then it is the evalPoint
@@ -208,7 +207,7 @@ namespace Ponca::internal {
             }
 
             a /= a.norm();
-            n = ( Scalar(1) - avgnormals ) * n + avgnormals * a;
+            n = ( Scalar(1) - avg_normal ) * n + avg_normal * a;
             n /= n.norm();
             avgd /= indicesGetter.getLength();
 
@@ -232,8 +231,7 @@ namespace Ponca::internal {
                 _targets   [ i ] = avgd * ( u * std::cos( i * M_PI / 3.0 ) + v * std::sin( i * M_PI / 3.0 ) );
             }
 
-            for ( int i = indicesGetter._nMin; i < indicesGetter._nMax ; i++ ) {
-                const int index = indicesGetter.get(i);
+            for ( int index : indicesGetter ) {
                 VectorType p = points[ index ].pos();
                 if ( p == c ) continue;
 
@@ -276,16 +274,15 @@ namespace Ponca::internal {
             std::array< int, 6 >    array_nb {0};
 
             std::array< VectorType,    6 > _targets;
-            Scalar avgnormals  = Scalar(0.5);
+            Scalar avg_normal  = Scalar(0.5);
 
-            for ( int i = indicesGetter._nMin; i < indicesGetter._nMax ; i++ ) {
-                const int index = indicesGetter.get(i);
+            for ( int index : indicesGetter ) {
                 avgd += ( points[ index ].pos() - c ).norm();
                 a    += points[ index ].normal();
             }
 
             a /= a.norm();
-            n = ( Scalar(1) - avgnormals ) * n + avgnormals * a;
+            n = ( Scalar(1) - avg_normal ) * n + avg_normal * a;
             n /= n.norm();
             avgd /= indicesGetter.getLength();
 
@@ -307,9 +304,7 @@ namespace Ponca::internal {
                 array_avg_points[ i ]  = VectorType::Zero();
             }
 
-            for (int i = indicesGetter._nMin; i < indicesGetter._nMax ; i++) {
-                const int index = indicesGetter.get(i);
-
+            for (int index : indicesGetter) {
                 if ( points[ index ].pos() == c )
                     continue;
 
