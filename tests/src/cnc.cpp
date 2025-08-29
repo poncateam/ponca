@@ -15,10 +15,7 @@ This Source Code Form is subject to the terms of the Mozilla Public
 
 #include <Ponca/src/Fitting/basket.h>
 #include <Ponca/src/Fitting/orientedSphereFit.h>
-#include <Ponca/src/Fitting/covariancePlaneFit.h>
 #include <Ponca/src/Fitting/cnc.h>
-#include <Ponca/src/Fitting/weightFunc.h>
-#include <Ponca/src/Fitting/weightKernel.h>
 #include <Ponca/src/SpatialPartitioning/KdTree/kdTree.h>
 
 #include <vector>
@@ -64,13 +61,13 @@ template<typename Fit>
 void testBasicFunctionalities(const KdTree<typename Fit::DataPoint>& tree, typename Fit::Scalar analysisScale) {
     const auto& vectorPoints = tree.points();
     auto rng = std::default_random_engine {};
+    typename Fit::Scalar eps = testEpsilon<typename Fit::Scalar>();
     // Test for each point if the fitted sphere correspond to the theoretical sphere
 #ifdef NDEBUG
 #pragma omp parallel for
 #endif
     for (int i = 0; i < static_cast<int>(vectorPoints.size()); ++i) {
         const auto &fitInitPoints = vectorPoints[i];
-
 
         //! [Fit compute]
         Fit fit1;
@@ -80,11 +77,14 @@ void testBasicFunctionalities(const KdTree<typename Fit::DataPoint>& tree, typen
         VERIFY(fit1 == fit1);
         VERIFY(! (fit1 != fit1));
 
+        // compute the indices list
         std::vector<int> pointsIndex;
         for (int j = 0; j < tree.points().size(); j++) {
             pointsIndex.push_back(j);
         }
+        // Shuffling the indices shouldn't change the outcome of this test
         std::shuffle(std::begin(pointsIndex), std::end(pointsIndex), rng);
+
         //! [Fit computeWithIds]
         Fit fit2;
         fit2.setEvalPoint(fitInitPoints);
@@ -93,9 +93,10 @@ void testBasicFunctionalities(const KdTree<typename Fit::DataPoint>& tree, typen
 
         VERIFY((fit2 == fit2));
         VERIFY(! (fit2 != fit2));
-        typename Fit::Scalar epsilon = testEpsilon<typename Fit::Scalar>();
-        VERIFY((fit1.isApprox(fit2, epsilon)));
-        VERIFY((fit2.isApprox(fit1, epsilon)));
+
+        // Compare computeWithIds with compute result
+        VERIFY((fit1.isApprox(fit2, eps)));
+        VERIFY((fit2.isApprox(fit1, eps)));
     }
 }
 
