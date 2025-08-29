@@ -171,7 +171,7 @@ public:
     }
 
     bool isApprox(const CNC& other, const Scalar& epsilon = Eigen::NumTraits<Scalar>::dummy_precision()) const {
-        // We use the matrix to compare the fitting results
+        // Simply compare the kMean and kGauss results
         return std::abs(kMean()  - other.kMean())  < epsilon
             && std::abs(kGauss() - other.kGauss()) < epsilon;
     }
