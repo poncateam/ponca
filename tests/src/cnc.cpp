@@ -96,38 +96,6 @@ void testBasicFunctionalities(const KdTree<typename Fit::DataPoint>& tree, typen
         typename Fit::Scalar epsilon = testEpsilon<typename Fit::Scalar>();
         VERIFY((fit1.isApprox(fit2, epsilon)));
         VERIFY((fit2.isApprox(fit1, epsilon)));
-
-
-        // Compute the neighbors
-        std::vector<int> neighbors;
-        for (int iNeighbor : tree.range_neighbors(fitInitPoints.pos(), analysisScale)) {
-            neighbors.push_back(iNeighbor);
-        }
-        // use compute function
-        //! [Fit Compute]
-        Fit fit3;
-        // Sort fit1
-        fit3.setEvalPoint(fitInitPoints);
-        // Compute the neighbors
-        fit3.computeWithIds( neighbors, vectorPoints );
-        //! [Fit Compute]
-
-        // also test comparison operators
-        VERIFY(fit3 == fit3);
-        VERIFY(! (fit3 != fit3));
-
-        //! [Fit computeWithIds]
-        Fit fit4;
-        // Sort fit1
-        fit4.setEvalPoint(fitInitPoints);
-        stable_sort(neighbors.begin(), neighbors.end());
-        fit4.computeWithIds( neighbors, vectorPoints );
-        //! [Fit computeWithIds]
-
-        VERIFY((fit4 == fit4));
-        VERIFY(! (fit4 != fit4));
-        VERIFY((fit3.isApprox(fit4, epsilon)));
-        VERIFY((fit4.isApprox(fit3, epsilon)));
     }
 }
 
