@@ -1,13 +1,14 @@
 #pragma once
 
 #include "baseType.h"
-#include <utility>
 
 #include "Ponca/src/Fitting/enums.h"
-#include "Ponca/src/Fitting/build_Estimator2/estimatorFactory.h"
+#include "defineEstimators.h"
+#include "defineEnum.h"
+#include "../basket.h"
 #include "Ponca/src/SpatialPartitioning/KdTree/kdTree.h"
 
-namespace Ponca::Estimators {
+namespace Ponca {
     /// Generic processing function: traverse point cloud, compute fitting, and use functor to process fitting output
     /// \note Functor is called only if fit is stable
     template<typename FitT, typename PointContainer, typename Functor>
@@ -87,20 +88,32 @@ namespace Ponca::Estimators {
         outputFunc(indexQuery, fit, positionQuery);
         return res;
     }
-
+    template <typename DataType, typename WeightFunc>
+    BasketBase< DataType, WeightFunc > getFit(const Estimators::FitType name) {
+        switch (name) {
+#define ENUM_FIT(name) \
+            case Estimators::FitType::name :   \
+                return Estimators::Fit ## _ ## name<WeightFunc>(); \
+                break;
+ENUM_FITS
+#undef ENUM_FIT
+        }
+        throw std::runtime_error("Unknown fit type");
+    }
     /// Generic processing function: compute fitting on a PointContainer :
     /// \note Functor is called only if fit is stable. Takes in parameter f(i, fit, positionQuery)
-    template<typename PointContainer, typename Functor, typename WeightFunc>
+    template<typename DataPoint, typename Scalar, typename PointContainer, typename Functor, typename WeightFunc>
     void estimateDifferentialQuantities(
-        FitType name,
+        Estimators::FitType name,
         const int indexQuery,
         const PointContainer& pointCloud,
-        const PPAdapter::Scalar scale,
+        const Scalar scale,
         const Functor f,
         const int nbMLSIter = 1
     ) {
-        EstimatorFactory< PPAdapter, WeightFunc > factory = getEstimatorFactory<PPAdapter, WeightFunc>();
-        BasketBase< PPAdapter, WeightFunc > fit = factory->getEstimator(name);
+        // auto factory = Ponca::Estimators::getEstimatorFactory<DataPoint, WeightFunc>();
+        // auto fit = factory->getEstimator(name);
+        auto fit = Ponca::getFit<DataPoint, WeightFunc>();
 
         if (!fit)
             throw std::runtime_error("Invalid fit");
