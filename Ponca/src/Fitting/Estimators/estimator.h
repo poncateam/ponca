@@ -3,7 +3,6 @@
 #include "baseType.h"
 #include <utility>
 
-#include "differentialQuantities.hpp"
 #include "Ponca/src/Fitting/enums.h"
 #include "Ponca/src/Fitting/build_Estimator2/estimatorFactory.h"
 #include "Ponca/src/SpatialPartitioning/KdTree/kdTree.h"
@@ -20,7 +19,7 @@ namespace Ponca::Estimators {
     ) {
         #pragma omp parallel for
         for (int i = 0; i < pointCloud.size(); ++i) {
-            FitT fit = computeFitForSinglePoint(i, pointCloud, scale, f, nbMLSIter);
+            computeSinglePointFitMLS(i, pointCloud, scale, f, nbMLSIter);
         }
     }
 
@@ -35,7 +34,7 @@ namespace Ponca::Estimators {
     ) {
         #pragma omp parallel for
         for (int i = 0; i < tree.samples().size(); ++i) {
-            FitT fit = computeFitForSinglePoint(i, tree.points(), scale, f, nbMLSIter, tree.range_neighbors(i, scale));
+            computeSinglePointFitMLS(i, tree.points(), scale, f, nbMLSIter, tree.range_neighbors(i, scale));
         }
     }
 
@@ -43,26 +42,19 @@ namespace Ponca::Estimators {
     /// \note Functor is called only if fit is stable
     template<typename FitT, typename PointContainer, typename PointIterator>
     FIT_RESULT computeSinglePointFit(
-        const int indexQuery,
+        const typename FitT::VectorType positionQuery,
         const PointContainer& pointCloud,
         const typename FitT::Scalar scale,
         const PointIterator& preComputedNeighborhoodIterator = nullptr, // Typically, set this to a kdtree or knnGraph range_neighbors(p, scale)
         FitT& fit = FitT()
     ) {
         FIT_RESULT res = UNDEFINED;
-        typename FitT::VectorType positionQuery = pointCloud[indexQuery].pos();
-
         fit.setWeightFunc({ positionQuery, scale });
 
         if (preComputedNeighborhoodIterator != nullptr)
             res = fit.computeWithIds(preComputedNeighborhoodIterator, pointCloud);
         else
             res = fit.compute(pointCloud);
-
-        if (res != FIT_RESULT::STABLE) {
-            std::cerr << "Warning: fit " << indexQuery << " is not stable" << std::endl;
-            return res;
-        }
 
         return res;
     }
@@ -81,10 +73,14 @@ namespace Ponca::Estimators {
         FitT& fit = FitT()
     ) {
         typename FitT::VectorType positionQuery = pointCloud[indexQuery].pos();
-        FIT_RESULT res = FIT_RESULT::STABLE;
+        FIT_RESULT res = UNDEFINED;
+
         for( int mm = 0; mm < nbMLSIter; ++mm) {
-            res = computeSinglePointFit(indexQuery, pointCloud, scale, preComputedNeighborhoodIterator, fit);
-            if (res != FIT_RESULT::STABLE) { return res; }
+            res = computeSinglePointFit(positionQuery, pointCloud, scale, preComputedNeighborhoodIterator, fit);
+            if (res != STABLE) {
+                std::cerr << "Warning: fit " << indexQuery << " is not stable" << std::endl;
+                return res;
+            }
             positionQuery = fit.project( positionQuery );
         }
 
