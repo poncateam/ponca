@@ -41,35 +41,54 @@ namespace Ponca::Estimators {
 
     /// Generic processing function: compute fitting on a PointContainer : use functor to process fitting output
     /// \note Functor is called only if fit is stable
-    template<typename FitT, typename PointContainer, typename Functor, typename PointIterator>
-    Ponca::FIT_RESULT computeFitForSinglePoint(
+    template<typename FitT, typename PointContainer, typename PointIterator>
+    FIT_RESULT computeSinglePointFit(
         const int indexQuery,
         const PointContainer& pointCloud,
         const typename FitT::Scalar scale,
-        const Functor f, // Function called when the fitting is completed and stable
-        const int nbMLSIter = 1,
         const PointIterator& preComputedNeighborhoodIterator = nullptr, // Typically, set this to a kdtree or knnGraph range_neighbors(p, scale)
-        FitT fit = FitT()
+        FitT& fit = FitT()
     ) {
-        Ponca::FIT_RESULT res = UNDEFINED;
+        FIT_RESULT res = UNDEFINED;
         typename FitT::VectorType positionQuery = pointCloud[indexQuery].pos();
 
+        fit.setWeightFunc({ positionQuery, scale });
+
+        if (preComputedNeighborhoodIterator != nullptr)
+            res = fit.computeWithIds(preComputedNeighborhoodIterator, pointCloud);
+        else
+            res = fit.compute(pointCloud);
+
+        if (res != FIT_RESULT::STABLE) {
+            std::cerr << "Warning: fit " << indexQuery << " is not stable" << std::endl;
+            return res;
+        }
+
+        return res;
+    }
+
+    /// Generic processing function: compute fitting on a PointContainer : use functor to process fitting output
+    /// The fit must have a projection method
+    /// \note Functor is called only if fit is stable
+    template<typename FitT, typename PointContainer, typename Functor, typename PointIterator>
+    FIT_RESULT computeSinglePointFitMLS(
+        const int indexQuery,
+        const PointContainer& pointCloud,
+        const typename FitT::Scalar scale,
+        const Functor outputFunc, // Function called when the fitting is completed and stable
+        const int nbMLSIter = 1,
+        const PointIterator& preComputedNeighborhoodIterator = nullptr, // Typically, set this to a kdtree or knnGraph range_neighbors(p, scale)
+        FitT& fit = FitT()
+    ) {
+        typename FitT::VectorType positionQuery = pointCloud[indexQuery].pos();
+        FIT_RESULT res = FIT_RESULT::STABLE;
         for( int mm = 0; mm < nbMLSIter; ++mm) {
-            fit.setWeightFunc({ positionQuery, scale });
-
-            if (preComputedNeighborhoodIterator != nullptr)
-                res = fit.computeWithIds(preComputedNeighborhoodIterator);
-            else
-                res = fit.compute(pointCloud);
-
-            if (res != Ponca::FIT_RESULT::STABLE) {
-                std::cerr << "Warning: fit " << indexQuery << " is not stable" << std::endl;
-                return res;
-            }
+            res = computeSinglePointFit(indexQuery, pointCloud, scale, preComputedNeighborhoodIterator, fit);
+            if (res != FIT_RESULT::STABLE) { return res; }
             positionQuery = fit.project( positionQuery );
         }
 
-        f(indexQuery, fit, positionQuery);
+        outputFunc(indexQuery, fit, positionQuery);
         return res;
     }
 
@@ -90,7 +109,7 @@ namespace Ponca::Estimators {
         if (!fit)
             throw std::runtime_error("Invalid fit");
 
-        computeFitForSinglePoint(indexQuery, pointCloud, scale, f, nbMLSIter, fit);
+        computeSinglePointFitMLS(indexQuery, pointCloud, scale, f, nbMLSIter, fit);
     }
 
 }
