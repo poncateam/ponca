@@ -8,6 +8,7 @@
 #include "../basket.h"
 #include "Ponca/src/SpatialPartitioning/KdTree/kdTree.h"
 
+/// Distance to PCA plane : Mean curvature
 namespace Ponca {
     /// Generic processing function: traverse point cloud, compute fitting, and use functor to process fitting output
     /// \note Functor is called only if fit is stable
@@ -88,12 +89,12 @@ namespace Ponca {
         outputFunc(indexQuery, fit, positionQuery);
         return res;
     }
-    template <typename DataType, typename WeightFunc>
-    BasketBase< DataType, WeightFunc > getFit(const Estimators::FitType name) {
+    template <typename DataPoint, typename WeightFunc>
+    BasketBase< DataPoint, WeightFunc > getFit(const Estimators::FitType name) {
         switch (name) {
 #define ENUM_FIT(name) \
             case Estimators::FitType::name :   \
-                return Estimators::Fit ## _ ## name<WeightFunc>(); \
+                return Estimators::Fit ## _ ## name<DataPoint, WeightFunc>(); \
                 break;
 ENUM_FITS
 #undef ENUM_FIT
