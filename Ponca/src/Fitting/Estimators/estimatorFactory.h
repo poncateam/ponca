@@ -42,16 +42,15 @@ namespace Ponca::Estimators {
 
 namespace Ponca
 {
-
-    template <typename DataType, typename WeightFunc>
-    std::shared_ptr<BasketBase< DataType, WeightFunc > > getFit(const Estimators::FitType name) {
+    template <typename DataPoint, typename WeightFunc>
+    std::shared_ptr<BasketBase< DataPoint, WeightFunc > > getFit(const Estimators::FitType name) {
         switch (name) {
-#define ENUM_FIT(name) \
-case Estimators::FitType::name :   \
-return std::make_shared<Estimators::Fit ## _ ## name<WeightFunc>>(#name); \
-break;
-            ENUM_FITS
-            #undef ENUM_FIT
+#define ENUM_FIT(name)                                                                               \
+            case Estimators::FitType::name :                                                         \
+                return std::make_shared<Estimators::Fit ## _ ## name<DataPoint, WeightFunc>>(#name); \
+                break;
+ENUM_FITS
+#undef ENUM_FIT
         }
         throw std::runtime_error("Unknown fit type");
     }

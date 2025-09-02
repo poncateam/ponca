@@ -89,12 +89,13 @@ namespace Ponca {
         outputFunc(indexQuery, fit, positionQuery);
         return res;
     }
+
     template <typename DataPoint, typename WeightFunc>
     BasketBase< DataPoint, WeightFunc > getFit(const Estimators::FitType name) {
         switch (name) {
-#define ENUM_FIT(name) \
-            case Estimators::FitType::name :   \
-                return Estimators::Fit ## _ ## name<DataPoint, WeightFunc>(); \
+#define ENUM_FIT(name)                                                         \
+            case Estimators::FitType::name :                                   \
+                return Estimators::Fit ## _ ## name<DataPoint, WeightFunc>();  \
                 break;
 ENUM_FITS
 #undef ENUM_FIT
