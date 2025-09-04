@@ -170,7 +170,7 @@ namespace internal
          > myFitDer;                       // Final structure to fit and derive a primitive over weighted samples
          \endcode
 
-         \see Basket for the aggregation of \ref concepts_computeObjectBasket "ComputationalObjectConcept"
+         \see Basket for the aggregation of \ref concepts_computObjectBasket "ComputationalObjectConcept"
 
          \tparam BasketType Existing Basket, to be differentiated
          \tparam Type Differentiation space: FitScaleDer, FitSpaceDer, or FitScaleDer|FitSpaceDer
