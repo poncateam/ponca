@@ -257,13 +257,15 @@ namespace internal
     private:
         using Self = Basket;
     public:
-        using Base = typename internal::BasketAggregate<P,W,Ext0,Exts...>::type;
-        /// Weight function
-        using WeightFunction = W;
+        /// Base type, which aggregates all the computational objects using the CRTP
+        using Base = typename internal::BasketAggregate<P, W, Ext0, Exts...>::type;
+        /// Scalar type used for computation, as defined from template parameter `P`
+        using Scalar = typename P::Scalar;
+        using VectorType = typename P::VectorType;
         /// Point type used for computation
         using DataPoint = P;
-        /// Scalar type used for computation, as defined from Basket
-        using Scalar = typename DataPoint::Scalar;
+        /// Weighting function
+        using WeightFunction = W;
 
         WRITE_COMPUTE_FUNCTIONS
 
@@ -282,6 +284,26 @@ namespace internal
                 return true;
             }
             return false;
+        }
+
+        template<typename PointContainer>
+        FIT_RESULT computeMLS(VectorType pos, PointContainer points, int mlsIter=5)
+        {
+            FIT_RESULT res = UNDEFINED;
+            VectorType lastPosMLS = pos;
+            // MLS Iteration
+            for( int mm = 0; mm < mlsIter; ++mm) {
+                // Starts a new pass and initialise the fit
+                res = Base::compute(points);
+
+                if (Base::isStable()) {
+                    lastPosMLS = Base::project( lastPosMLS );
+                } else {
+                    std::cerr << "Warning: fit at mls iteration " << mm << " is not stable" << std::endl;
+                    break;
+                }
+            }
+            return res;
         }
     }; // class Basket
 
