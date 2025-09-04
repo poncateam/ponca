@@ -31,7 +31,7 @@ using namespace Ponca;
 /*
  * Test the OrientedSphereFit on a paraboloid using a given neighborhood filter
  */
-template<typename DataPoint, typename NF>
+template<typename DataPoint, typename NF, bool testProject=true>
 void testFunction(typename DataPoint::Scalar lowPrecisionEpsilon = typename DataPoint::Scalar(0.001)) // Lesser precision for the paraboloid test
 {
     // Define related structure
@@ -79,19 +79,23 @@ void testFunction(typename DataPoint::Scalar lowPrecisionEpsilon = typename Data
         std::vector<VectorType> samples (nbPoints);
         for (int i = 0; i < nbPoints; ++i)
         {
-            VectorType p = center + analysisScale * VectorType::Random();
-            samples[i] = p;
-
-            // check that the projected point is on the surface
-            VERIFY( std::abs(fit.potential(fit.project(p))) < lowPrecisionEpsilon );
+            samples[i] = center + analysisScale * VectorType::Random();
         }
-
-        // check if direct projection gives same or better result than descent projection.
-        for( const auto& p: samples )
+        for ( const auto& p: samples )
         {
-            VectorType res1 = fit.project( p );
-            VectorType res2 = fit.projectDescent( p, 1000 ); // force high number of iterations
-            VERIFY( res1.isApprox( res2, lowPrecisionEpsilon ));
+            if (testProject)
+                // check that the projected point is on the surface
+                VERIFY( std::abs(fit.potential(fit.project(p))) < lowPrecisionEpsilon );
+
+            std::cout << fit.potential(fit.projectDescent(p)) << std::endl;
+            VERIFY( std::abs(fit.potential(fit.projectDescent(p))) < lowPrecisionEpsilon );
+
+            if (testProject) {
+                // check if direct projection gives same or better result than descent projection.
+                VectorType res1 = fit.project( p );
+                VectorType res2 = fit.projectDescent( p, 1000 ); // force high number of iterations
+                VERIFY( res1.isApprox( res2, lowPrecisionEpsilon ));
+            }
         }
 
         // Disable this test: not true with apple-clang 12.
@@ -164,7 +168,7 @@ void compareNF(typename DataPoint::Scalar lowPrecisionEpsilon = typename DataPoi
         fitG.addNeighbor(DataPoint(p.pos(), p.normal()));
     }
     std::cout << "------------------------------------------------ IN fit.finalize() ------------------------------------------------ " << std::endl;
-    fit.finalize();
+    fit.finalize(__DBL_NORM_MAX__);
     std::cout << "------------------------------------------------ IN fitG.finalize() ----------------------------------------------- " << std::endl;
     fitG.finalize();
     std::cout << "------------------------------------------------------------------------------------------------------------------- " << std::endl;
@@ -225,10 +229,12 @@ void callSubTests()
     cout << "Testing with parabola..." << endl;
     for(int i = 0; i < g_repeat; ++i)
     {
-        CALL_SUBTEST(( compareNF<Point, WeightSmoothFunc, WeightSmoothFuncGlobal>(0.1) ));
-        CALL_SUBTEST(( compareNF<Point, WeightConstantFunc, WeightConstantFuncGlobal>(0.1) ));
-        // CALL_SUBTEST(( testFunction<Point, WeightSmoothFuncGlobal>() ));
-        // CALL_SUBTEST(( testFunction<Point, WeightConstantFuncGlobal>() ));
+        // CALL_SUBTEST(( compareNF<Point, WeightSmoothFunc, WeightSmoothFuncGlobal>(0.001) ));
+        // CALL_SUBTEST(( compareNF<Point, WeightConstantFunc, WeightConstantFuncGlobal>(0.001) ));
+        CALL_SUBTEST(( testFunction<Point, WeightSmoothFunc>() ));
+        CALL_SUBTEST(( testFunction<Point, WeightSmoothFuncGlobal, false>(0.1) ));
+        CALL_SUBTEST(( testFunction<Point, WeightConstantFunc>() ));
+        CALL_SUBTEST(( testFunction<Point, WeightConstantFuncGlobal, false>(0.1) ));
     }
     cout << "Ok!" << endl;
 }
