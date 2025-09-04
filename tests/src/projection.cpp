@@ -72,6 +72,7 @@ void testFunction(typename DataPoint::Scalar lowPrecisionEpsilon = typename Data
 
         fit.addNeighbor(p);
     }
+    fit.finalize();
 
     if(fit.isStable())
     {
