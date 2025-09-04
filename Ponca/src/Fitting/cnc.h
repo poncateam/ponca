@@ -1,9 +1,11 @@
-/*
- This Source Code Form is subject to the terms of the Mozilla Public
- License, v. 2.0. If a copy of the MPL was not distributed with this
- file, You can obtain one at http://mozilla.org/MPL/2.0/.
-*/
+/**
+Copyright (c) 2022
+ Jacques-Olivier Lachaud (\c jacques-olivier.lachaud@univ-savoie.fr)
+ Laboratory of Mathematics (CNRS, UMR 5807), University of Savoie, France,
 
+All rights reserved.
+
+*/
 
 #pragma once
 
@@ -82,7 +84,7 @@ enum TriangleGenerationMethod {
 };
 
 template < class P, TriangleGenerationMethod _method = UniformGeneration>
-class CNC : BasketBase<P, NoWeightFunc<P>> {
+class CNC : ComputeObject<CNC<P, _method>> {
 public:
     using DataPoint = P;
     using MatrixType = typename DataPoint::MatrixType;
@@ -95,8 +97,11 @@ protected:
     VectorType _evalPointNormal = VectorType::Zero();
     VectorType _evalPointPos = VectorType::Zero();
 
+    // Triangles used for the computation
     int _nb_vt {0}; // Number of valid triangles
     std::vector <internal::Triangle < DataPoint > > _triangles;
+
+    // Results of the fit
     Scalar _A {0}; // Area
     Scalar _H {0}; // Mean Curvatures
     Scalar _G {0}; // Gaussian Curvatures
@@ -113,7 +118,6 @@ protected:
     VectorType v1;
     VectorType v2;
 
-// results
 public:
     PONCA_FITTING_DECLARE_FINALIZE
 
