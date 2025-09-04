@@ -83,18 +83,16 @@ void testFunction(typename DataPoint::Scalar lowPrecisionEpsilon = typename Data
         }
         for ( const auto& p: samples )
         {
-            if (testProject)
-                // check that the projected point is on the surface
-                VERIFY( std::abs(fit.potential(fit.project(p))) < lowPrecisionEpsilon );
+            VectorType projD = fit.projectDescent( p, 1000 );
 
-            std::cout << fit.potential(fit.projectDescent(p)) << std::endl;
-            VERIFY( std::abs(fit.potential(fit.projectDescent(p))) < lowPrecisionEpsilon );
+            VERIFY( std::abs(fit.potential(projD)) < lowPrecisionEpsilon );
 
             if (testProject) {
+                VectorType proj = fit.project( p );
+                // check that the projected point is on the surface
+                VERIFY( std::abs(fit.potential(proj)) < lowPrecisionEpsilon );
                 // check if direct projection gives same or better result than descent projection.
-                VectorType res1 = fit.project( p );
-                VectorType res2 = fit.projectDescent( p, 1000 ); // force high number of iterations
-                VERIFY( res1.isApprox( res2, lowPrecisionEpsilon ));
+                VERIFY( proj.isApprox( projD, lowPrecisionEpsilon ));
             }
         }
 
