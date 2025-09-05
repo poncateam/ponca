@@ -84,7 +84,7 @@ enum TriangleGenerationMethod {
 };
 
 template < class P, TriangleGenerationMethod _method = UniformGeneration>
-class CNC : BasketBase<P, NoWeightFunc<P>> {
+class CNC : ComputeObject<CNC<P, _method>> {
 public:
     using DataPoint = P;
     using MatrixType = typename DataPoint::MatrixType;
