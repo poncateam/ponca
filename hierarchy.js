@@ -1,5 +1,12 @@
 var hierarchy =
 [
+    [ "Ponca::ComputeObject< Derived >", "structPonca_1_1ComputeObject.html", null ],
+    [ "Ponca::ComputeObject< Basket< P, W, Ext0, Exts... > >", "structPonca_1_1ComputeObject.html", [
+      [ "Ponca::Basket< P, W, Ext0, Exts >", "classPonca_1_1Basket.html", null ]
+    ] ],
+    [ "Ponca::ComputeObject< BasketDiff< BasketType, Type, Ext0, Exts... > >", "structPonca_1_1ComputeObject.html", [
+      [ "Ponca::BasketDiff< BasketType, Type, Ext0, Exts >", "classPonca_1_1BasketDiff.html", null ]
+    ] ],
     [ "Ponca::KdTreeBase< Traits >::DefaultConverter", "structPonca_1_1KdTreeBase_1_1DefaultConverter.html", null ],
     [ "Ponca::DistWeightFunc< DataPoint, WeightKernel >", "classPonca_1_1DistWeightFunc.html", null ],
     [ "Ponca::QueryOutputBase::DummyOutputParameter", "group__spatialpartitioning.html#structPonca_1_1QueryOutputBase_1_1DummyOutputParameter", null ],

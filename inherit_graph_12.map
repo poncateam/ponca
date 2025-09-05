@@ -1,3 +1,15 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="Node000000" href="$structPonca_1_1KdTreeBase_1_1DefaultConverter.html" title="Convert a custom point container to the KdTree PointContainer using DataPoint default constructor." alt="" coords="5,5,201,45"/>
+<area shape="rect" id="Node000000" href="$classPonca_1_1KdTreeBase.html" title="[KdTreeSparse type definition]" alt="" coords="5,127,161,167"/>
+<area shape="rect" id="Node000001" href="$classPonca_1_1KdTreeDenseBase.html" title=" " alt="" coords="211,5,397,60"/>
+<area shape="poly" id="edge64_Node000000_Node000001" title=" " alt="" coords="126,117,208,70,234,58,237,63,211,75,129,122"/>
+<area shape="rect" id="Node000003" href="$classPonca_1_1KdTreeSparseBase.html" title=" " alt="" coords="209,84,399,139"/>
+<area shape="poly" id="edge66_Node000000_Node000003" title=" " alt="" coords="174,130,209,124,210,129,175,135"/>
+<area shape="rect" id="Node000005" href="$classPonca_1_1KdTreeDenseBase.html" title="Customizable base class for dense KdTree datastructure." alt="" coords="211,163,397,203"/>
+<area shape="poly" id="edge68_Node000000_Node000005" title=" " alt="" coords="175,160,211,165,210,171,174,165"/>
+<area shape="rect" id="Node000006" href="$classPonca_1_1KdTreeSparseBase.html" title="Customizable base class for KdTreeSparse datastructure." alt="" coords="209,227,399,267"/>
+<area shape="poly" id="edge69_Node000000_Node000006" title=" " alt="" coords="131,172,210,213,240,225,238,230,208,218,128,176"/>
+<area shape="rect" id="Node000002" href="$structPonca_1_1KdTreeDense.html" title="[KdTree type definition]" alt="" coords="448,13,603,53"/>
+<area shape="poly" id="edge65_Node000001_Node000002" title=" " alt="" coords="411,30,448,30,448,35,411,35"/>
+<area shape="rect" id="Node000004" href="$structPonca_1_1KdTreeSparse.html" title="[KdTreeDense type definition]" alt="" coords="447,91,604,131"/>
+<area shape="poly" id="edge67_Node000003_Node000004" title=" " alt="" coords="412,109,446,109,446,114,412,114"/>
 </map>

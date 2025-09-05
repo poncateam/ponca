@@ -1,5 +1,9 @@
 <map id="Ponca::Basket&lt; P, W, Ext0, Exts &gt;" name="Ponca::Basket&lt; P, W, Ext0, Exts &gt;">
-<area shape="rect" id="Node000001" title="Aggregator class used to declare specialized structures using CRTP." alt="" coords="26,133,179,273"/>
-<area shape="rect" id="Node000002" title=" " alt="" coords="5,5,200,85"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="105,99,105,133,100,133,100,99"/>
+<area shape="rect" id="Node000001" title="Aggregator class used to declare specialized structures using CRTP." alt="" coords="162,427,315,547"/>
+<area shape="rect" id="Node000002" href="$structPonca_1_1ComputeObject.html" title=" " alt="" coords="5,223,168,377"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="160,386,192,425,188,428,156,390"/>
+<area shape="rect" id="Node000003" href="$structPonca_1_1ComputeObject.html" title="ComputeObject is a virtual object that represents an algorithm which can be used with the compute fun..." alt="" coords="5,5,168,145"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="89,159,89,222,84,222,84,159"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="192,260,387,340"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="278,354,257,427,252,426,272,353"/>
 </map>

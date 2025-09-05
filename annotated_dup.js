@@ -5,6 +5,7 @@ var annotated_dup =
       [ "Basket", "classPonca_1_1Basket.html", "classPonca_1_1Basket" ],
       [ "BasketDiff", "classPonca_1_1BasketDiff.html", "classPonca_1_1BasketDiff" ],
       [ "CompactExpWeightKernel", "classPonca_1_1CompactExpWeightKernel.html", "classPonca_1_1CompactExpWeightKernel" ],
+      [ "ComputeObject", "structPonca_1_1ComputeObject.html", "structPonca_1_1ComputeObject" ],
       [ "ConstantWeightKernel", "classPonca_1_1ConstantWeightKernel.html", "classPonca_1_1ConstantWeightKernel" ],
       [ "CovarianceFitBase", "classPonca_1_1CovarianceFitBase.html", "classPonca_1_1CovarianceFitBase" ],
       [ "CovarianceFitDer", "classPonca_1_1CovarianceFitDer.html", "classPonca_1_1CovarianceFitDer" ],
