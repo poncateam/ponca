@@ -23,7 +23,7 @@ namespace Ponca
  * \note This class mixes the primitive (MongePatch) and its fitting procedure.
  *       Could makes sense to split the two
  */
-template < class DataPoint, class _WFunctor, typename T>
+template < class DataPoint, class _NFilter, typename T>
 class MongePatch : public T
 {
 PONCA_FITTING_DECLARE_DEFAULT_TYPES
@@ -63,6 +63,7 @@ public:
     }
 
     //! \brief Orthogonal projecting on the patch, such that h = f(u,v)
+    template <typename NF = NeighborFilter, std::enable_if_t<NF::isLocal, int> = 0> // Enable project only if NF::isLocal
     PONCA_MULTIARCH inline VectorType project (const VectorType& _q) const
     {
         VectorType x = Base::worldToTangentPlane(_q);

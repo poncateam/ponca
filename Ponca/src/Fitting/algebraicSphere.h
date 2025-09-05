@@ -42,7 +42,7 @@ namespace Ponca
 */
 
 
-template < class DataPoint, class _WFunctor, typename T >
+template < class DataPoint, class _NFilter, typename T >
 class AlgebraicSphere : public T
 {
     PONCA_FITTING_DECLARE_DEFAULT_TYPES
@@ -90,7 +90,7 @@ public:
     }
 
     /// \brief Comparison operator \warning Assume that other shares the same basis \see changeBasis()
-    PONCA_MULTIARCH inline bool operator==(const AlgebraicSphere<DataPoint, WFunctor, T>& other) const{
+    PONCA_MULTIARCH inline bool operator==(const AlgebraicSphere<DataPoint, NeighborFilter, T>& other) const{
         PONCA_MULTIARCH_STD_MATH(pow);
         const Scalar epsilon        = Eigen::NumTraits<Scalar>::dummy_precision();
         const Scalar squaredEpsilon = epsilon*epsilon;
@@ -110,7 +110,7 @@ public:
 
 
     /*! \brief Comparison operator, convenience function */
-    PONCA_MULTIARCH inline bool operator!=(const AlgebraicSphere<DataPoint, WFunctor, T>& other) const{
+    PONCA_MULTIARCH inline bool operator!=(const AlgebraicSphere<DataPoint, NeighborFilter, T>& other) const{
         return ! ((*this) == other);
     }
 
@@ -145,8 +145,8 @@ public:
     */
     PONCA_MULTIARCH inline void changeBasis(const VectorType& newbasis)
     {
-        VectorType diff = Base::m_w.basisCenter() - newbasis;
-        Base::setWeightFunc({newbasis, Base::m_w.evalScale()});
+        VectorType diff = Base::m_nFilter.basisCenter() - newbasis;
+        Base::setNeighborFilter({newbasis, Base::m_nFilter.evalScale()});
         Base::init();
         m_uc = m_uc - m_ul.dot(diff) + m_uq * diff.dot(diff);
         m_ul = m_ul - Scalar(2.)*m_uq*diff;
@@ -225,7 +225,7 @@ public:
         }
 
         Scalar b = Scalar(1.)/m_uq;
-        return Base::m_w.convertToGlobalBasis((Scalar(-0.5)*b)*m_ul);
+        return Base::m_nFilter.convertToGlobalBasis((Scalar(-0.5)*b)*m_ul);
     }
 
     //! \brief State indicating when the sphere has been normalized
@@ -247,6 +247,7 @@ public:
         projected on the primtive.
         \note This function is in most cases more accurate and faster than #projectDescent
      */
+    template <typename NF = NeighborFilter, std::enable_if_t<NF::isLocal, int> = 0> // Enable project only if NF::isLocal
     PONCA_MULTIARCH inline VectorType project (const VectorType& _q) const;
 
     /*!

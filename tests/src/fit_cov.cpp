@@ -29,7 +29,7 @@ using namespace Ponca;
 
 
 /// Class that perform the covariance fit using standard two-passes procedure
-template < class DataPoint, class _WFunctor, typename T>
+template < class DataPoint, class _NFilter, typename T>
 class CovarianceFitTwoPassesBase : public T
 {
     PONCA_FITTING_DECLARE_DEFAULT_TYPES
@@ -62,9 +62,9 @@ public:
     PONCA_MULTIARCH inline const Solver& solver() const { return m_solver; }
 };
 
-template < class DataPoint, class _WFunctor, typename T>
+template < class DataPoint, class _NFilter, typename T>
 void
-CovarianceFitTwoPassesBase<DataPoint, _WFunctor, T>::init()
+CovarianceFitTwoPassesBase<DataPoint, _NFilter, T>::init()
 {
     Base::init();
     m_cov.setZero();
@@ -73,9 +73,9 @@ CovarianceFitTwoPassesBase<DataPoint, _WFunctor, T>::init()
     sumW = Scalar(0);
 }
 
-template < class DataPoint, class _WFunctor, typename T>
+template < class DataPoint, class _NFilter, typename T>
 bool
-CovarianceFitTwoPassesBase<DataPoint, _WFunctor, T>::addLocalNeighbor(Scalar w,
+CovarianceFitTwoPassesBase<DataPoint, _NFilter, T>::addLocalNeighbor(Scalar w,
                                                              const VectorType &localQ,
                                                              const DataPoint &attributes)
 {
@@ -93,9 +93,9 @@ CovarianceFitTwoPassesBase<DataPoint, _WFunctor, T>::addLocalNeighbor(Scalar w,
 }
 
 
-template < class DataPoint, class _WFunctor, typename T>
+template < class DataPoint, class _NFilter, typename T>
 FIT_RESULT
-CovarianceFitTwoPassesBase<DataPoint, _WFunctor, T>::finalize ()
+CovarianceFitTwoPassesBase<DataPoint, _NFilter, T>::finalize ()
 {
     if( ! m_barycenterReady ){   /// end of the first pass
         auto ret = Base::finalize();
@@ -120,7 +120,7 @@ CovarianceFitTwoPassesBase<DataPoint, _WFunctor, T>::finalize ()
 }
 
 
-template<typename DataPoint, typename Fit, typename FitRef, typename WeightFunc, bool _cSurfVar> //, typename Fit, typename WeightFunction>
+template<typename DataPoint, typename Fit, typename FitRef, typename NeighborFilter, bool _cSurfVar>
 void testFunction(bool _bUnoriented = false, bool _bAddPositionNoise = false, bool _bAddNormalNoise = false)
 {
     // Define related structure
@@ -162,11 +162,11 @@ void testFunction(bool _bUnoriented = false, bool _bAddPositionNoise = false, bo
     {
 
         Fit fit;
-        fit.setWeightFunc(WeightFunc(vectorPoints[i].pos(), analysisScale));
+        fit.setNeighborFilter(NeighborFilter(vectorPoints[i].pos(), analysisScale));
         auto fitState = fit.compute(vectorPoints);
 
         FitRef ref;
-        ref.setWeightFunc(WeightFunc(vectorPoints[i].pos(), analysisScale));
+        ref.setNeighborFilter(NeighborFilter(vectorPoints[i].pos(), analysisScale));
         auto refState = ref.compute(vectorPoints);
 
         VERIFY(fitState == refState);

@@ -19,7 +19,7 @@ namespace Ponca
    \brief Empty fitting object doing no computation
  */
 
-    template < class DataPoint, class _WFunctor, typename T>
+    template < class DataPoint, class _NFilter, typename T>
     class DryFit :  public T
     {
     PONCA_FITTING_DECLARE_DEFAULT_TYPES
@@ -44,6 +44,7 @@ namespace Ponca
         PONCA_MULTIARCH inline Scalar potential (const VectorType& /*_q*/) const { return Scalar(0); }
 
         //! \brief Simulate point projection
+        template <typename NF = NeighborFilter, std::enable_if_t<NF::isLocal, int> = 0> // Enable project only if NF::isLocal
         PONCA_MULTIARCH inline VectorType project (const VectorType& _q) const { return _q; }
 
         //! \brief Simulate gradient direction computation

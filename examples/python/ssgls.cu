@@ -143,7 +143,7 @@ __global__ void doGLS_kernel(int* _params, //[w, h, scale]
         int nx, ny; // neighbor ids
 
         Gls gls;
-        gls.setWeightFunc(ProjectWeightFunc(scale, refPos));
+        gls.setNeighborFilter(ProjectWeightFunc(scale, refPos));
         gls.init( getVector(x,y,width,height,_positions) );
 
         if (getVector(x,y,width,height,_normals).squaredNorm() == 0.f )

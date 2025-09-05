@@ -25,7 +25,7 @@
 using namespace std;
 using namespace Ponca;
 
-template<typename DataPoint, typename Fit, typename WeightFunc> //, typename Fit, typename WeightFunction>
+template<typename DataPoint, typename Fit, typename NeighborFilter>
 void testFunction(bool _bUnoriented = false, bool _bAddPositionNoise = false, bool _bAddNormalNoise = false)
 {
     // Define related structure
@@ -58,9 +58,9 @@ void testFunction(bool _bUnoriented = false, bool _bAddPositionNoise = false, bo
     for(int i = 0; i < nbPoints - 1; ++i)
     {
         Fit fit1, fit2, fit3;
-        fit1.setWeightFunc(WeightFunc(sphere1[i].pos(), analysisScale));
-        fit2.setWeightFunc(WeightFunc(sphere1[i+1].pos(), analysisScale));
-        fit3.setWeightFunc(WeightFunc(sphere2[i].pos(), analysisScale));
+        fit1.setNeighborFilter(NeighborFilter(sphere1[i].pos(), analysisScale));
+        fit2.setNeighborFilter(NeighborFilter(sphere1[i+1].pos(), analysisScale));
+        fit3.setNeighborFilter(NeighborFilter(sphere2[i].pos(), analysisScale));
 
         fit1.compute(sphere1);
         fit2.compute(sphere1);
