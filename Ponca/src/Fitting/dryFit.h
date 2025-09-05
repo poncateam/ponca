@@ -44,6 +44,7 @@ namespace Ponca
         PONCA_MULTIARCH inline Scalar potential (const VectorType& /*_q*/) const { return Scalar(0); }
 
         //! \brief Simulate point projection
+        template <typename NF = NeighborFilter, std::enable_if_t<NF::isLocal, int> = 0> // Enable project only if NF::isLocal
         PONCA_MULTIARCH inline VectorType project (const VectorType& _q) const { return _q; }
 
         //! \brief Simulate gradient direction computation
