@@ -234,6 +234,7 @@ public:
         projected on the primtive.
         \note This function is in most cases more accurate and faster than #projectDescent
      */
+    template <typename NF = NeighborFilter, std::enable_if_t<NF::isLocal, int> = 0> // Enable project only if NF::isLocal
     PONCA_MULTIARCH inline VectorType project (const VectorType& _q) const;
 
     /*!

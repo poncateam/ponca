@@ -63,6 +63,7 @@ public:
     }
 
     //! \brief Orthogonal projecting on the patch, such that h = f(u,v)
+    template <typename NF = NeighborFilter, std::enable_if_t<NF::isLocal, int> = 0> // Enable project only if NF::isLocal
     PONCA_MULTIARCH inline VectorType project (const VectorType& _q) const
     {
         VectorType x = Base::worldToTangentPlane(_q);
