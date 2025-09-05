@@ -276,3 +276,4 @@ namespace internal
     }; // class Basket
 
 } //namespace Ponca
+
