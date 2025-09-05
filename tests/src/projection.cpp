@@ -31,7 +31,7 @@ using namespace Ponca;
 /*
  * Test the OrientedSphereFit on a paraboloid using a given neighborhood filter
  */
-template<typename DataPoint, typename NF, bool testProject=true>
+template<typename DataPoint, typename NF>
 void testFunction(typename DataPoint::Scalar lowPrecisionEpsilon = typename DataPoint::Scalar(0.001)) // Lesser precision for the paraboloid test
 {
     // Define related structure
@@ -83,14 +83,14 @@ void testFunction(typename DataPoint::Scalar lowPrecisionEpsilon = typename Data
         }
         for ( const auto& p: samples )
         {
+            // check that the projected point is on the surface
             VectorType projD = fit.projectDescent( p, 1000 );
-
             VERIFY( std::abs(fit.potential(projD)) < lowPrecisionEpsilon );
 
-            if (testProject) {
+            if constexpr (NF::isLocal) {
                 VectorType proj = fit.project( p );
-                // check that the projected point is on the surface
                 VERIFY( std::abs(fit.potential(proj)) < lowPrecisionEpsilon );
+
                 // check if direct projection gives same or better result than descent projection.
                 VERIFY( proj.isApprox( projD, lowPrecisionEpsilon ));
             }
@@ -130,9 +130,9 @@ void callSubTests()
     for(int i = 0; i < g_repeat; ++i)
     {
         CALL_SUBTEST(( testFunction<Point, WeightSmoothFunc>() ));
-        CALL_SUBTEST(( testFunction<Point, WeightSmoothFuncGlobal, false>(0.1) ));
+        CALL_SUBTEST(( testFunction<Point, WeightSmoothFuncGlobal>(0.1) ));
         CALL_SUBTEST(( testFunction<Point, WeightConstantFunc>() ));
-        CALL_SUBTEST(( testFunction<Point, WeightConstantFuncGlobal, false>(0.1) ));
+        CALL_SUBTEST(( testFunction<Point, WeightConstantFuncGlobal>(0.1) ));
     }
     cout << "Ok!" << endl;
 }
