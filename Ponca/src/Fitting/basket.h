@@ -72,20 +72,49 @@ namespace internal
 }
 #endif
 
+    /*!
+         \brief ComputeObject is a virtual object that represents an algorithm which can be used with the compute functions.
+         The compute(begin, end) and computeWithIds(ids, points) methods must be implemented by the inheriting class.
+         \note The compute(container) that is defined in this structure can be reused in the inheriting class by adding
+         "using ComputeObject<Self>::compute;" to make it accessible
+    */
+    template <typename Derived>
+    struct ComputeObject {
+    protected:
+        /// \brief Retrieve the top layer object
+        /// Returns a reference to the derived class so that we can use its overwritten methods
+        Derived& derived() { return static_cast<Derived&>(*this); }
+    public:
+
 #ifdef PONCA_CPU_ARCH
-#   define WRITE_BASKET_SINGLE_HOST_FUNCTIONS                                                         \
-    /*! \copydoc compute(const IteratorBegin&,const IteratorEnd&)        */                           \
-    template <typename Container>                                                                     \
-    PONCA_MULTIARCH inline                                                                            \
-    FIT_RESULT compute(const Container& c){                                                           \
-        return Self::compute(std::begin(c), std::end(c));                                             \
-    }
-#else
-#   define WRITE_BASKET_SINGLE_HOST_FUNCTIONS
+        /*! \brief Convenience function for STL-like container                                                        */
+        /*! Uses the compute(IteratorBegin, IteratorEnd) function                                                     */
+        /*! \tparam Container And STL-Like container                                                                  */
+        /*! \see #compute(const IteratorBegin& begin, const IteratorEnd& end)                                         */
+        template <typename Container>
+        FIT_RESULT compute(const Container& c) {
+            return derived().compute(std::begin(c), std::end(c));
+        }
 #endif
 
-#define WRITE_BASKET_FUNCTIONS                                                                        \
-    /*! \brief Convenience function for STL-like iterators               */                           \
+        /*! \brief Convenience function for STL-like iterators
+            \tparam IteratorBegin The beginning of the iterator (std::begin(iterator)
+            \tparam IteratorEnd   The end of the iterator (std::end(iterator)
+        */
+        template <typename IteratorBegin, typename IteratorEnd>
+        PONCA_MULTIARCH inline FIT_RESULT compute(const IteratorBegin& begin, const IteratorEnd& end) { return UNDEFINED; };
+
+        /*! \brief Convenience function to iterate over a subset of samples in a PointContainer
+            \tparam IndexRange STL-Like range storing indices of the neighbors
+            \tparam PointContainer STL-like container storing the points
+            \see #compute(const IteratorBegin& begin, const IteratorEnd& end)
+        */
+        template <typename IndexRange, typename PointContainer>
+        PONCA_MULTIARCH inline FIT_RESULT computeWithIds(IndexRange /*ids*/, const PointContainer& /*points*/) { return UNDEFINED; };
+    }; // struct ComputeObject
+
+#define WRITE_COMPUTE_FUNCTIONS                                                                       \
+    /*! \brief Convenience function for STL-like iterators                                         */ \
     /*! Add neighbors stored in a container using STL-like iterators, and call finalize at the end.*/ \
     /*! The fit is evaluated multiple time if needed (see #NEED_OTHER_PASS)*/                         \
     /*! \see addNeighbor() */                                                                         \
@@ -121,8 +150,7 @@ namespace internal
             res = this->finalize();                                                                   \
         } while ( res == NEED_OTHER_PASS );                                                           \
         return res;                                                                                   \
-    }                                                                                                 \
-    WRITE_BASKET_SINGLE_HOST_FUNCTIONS
+    }
 
     /*!
          \brief Aggregator class used to declare specialized structures with derivatives computations, using CRTP
@@ -152,20 +180,22 @@ namespace internal
     template <typename BasketType, int Type,
         template <class, class, int, typename> class Ext0,
         template <class, class, int, typename> class... Exts>
-    class BasketDiff : public internal::BasketDiffAggregate<BasketType, Type, Ext0, Exts...>::type {
+    class BasketDiff : public ComputeObject<BasketDiff<BasketType, Type, Ext0, Exts...>>,
+                       public internal::BasketDiffAggregate<BasketType, Type, Ext0, Exts...>::type {
     private:
         using Self   = BasketDiff;
     public:
     /// Base type, which aggregates all the computational objects using the CRTP
     using Base = typename internal::BasketDiffAggregate<BasketType, Type, Ext0, Exts...>::type;
-        /// Weighting function
+    /// Weighting function
     using WeightFunction = BSKW;
     /// Point type used for computation
     using DataPoint = BSKP;
     /// Scalar type used for computation, as defined from Basket
     using Scalar = typename DataPoint::Scalar;
 
-    WRITE_BASKET_FUNCTIONS
+    using ComputeObject<Self>::compute; // Make the default compute accessible
+    WRITE_COMPUTE_FUNCTIONS
 
     /// \copydoc Basket::addNeighbor
     PONCA_MULTIARCH inline bool addNeighbor(const DataPoint &_nei) {
@@ -209,7 +239,8 @@ namespace internal
     template <class P, class W,
         template <class, class, typename> class Ext0,
         template <class, class, typename> class... Exts>
-    class Basket : public internal::BasketAggregate<P, W, Ext0, Exts...>::type
+    class Basket : public ComputeObject<Basket<P, W, Ext0, Exts...>>,
+                   public internal::BasketAggregate<P, W, Ext0, Exts...>::type
     {
     private:
         using Self   = Basket;
@@ -223,7 +254,8 @@ namespace internal
         /// Weighting function
         using WeightFunction = W;
 
-        WRITE_BASKET_FUNCTIONS;
+        using ComputeObject<Self>::compute; // Make the default compute accessible
+        WRITE_COMPUTE_FUNCTIONS;
 
         /// \brief Add a neighbor to perform the fit
         ///
