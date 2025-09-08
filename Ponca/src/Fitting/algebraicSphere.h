@@ -233,7 +233,7 @@ public:
 
     //! \brief Value of the scalar field at the location \f$ \mathbf{q}\f$.
     //! \see method `#isSigned` of the fit to check if the sign is reliable
-    PONCA_MULTIARCH inline Scalar potential (const VectorType& _q) const;
+    PONCA_MULTIARCH inline Scalar potential (const VectorType& _q, const bool convertToLocalBasis = true) const;
 
     //! \brief Value of the scalar field at the evaluation point
     //! \see method `#isSigned` of the fit to check if the sign is reliable
@@ -261,7 +261,7 @@ public:
 
     /*! \brief Approximation of the scalar field gradient at \f$ \mathbf{q}\f$
         \warning The gradient is not normalized by default */
-    PONCA_MULTIARCH inline VectorType primitiveGradient (const VectorType& _q) const;
+    PONCA_MULTIARCH inline VectorType primitiveGradient (const VectorType& _q, const bool convertToLocalBasis = true) const;
 
     /*! \brief Approximation of the scalar field gradient at the evaluation point
         \warning The gradient is not normalized by default */
