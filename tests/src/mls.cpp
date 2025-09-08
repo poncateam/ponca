@@ -10,8 +10,6 @@
     \brief Test basket utility functions
  */
 
-#include "Ponca/src/Fitting/mls.h"
-
 #include "../common/testing.h"
 #include "../common/testUtils.h"
 
@@ -63,38 +61,31 @@ typename DataPoint::Scalar generateData(KdTree<DataPoint>& tree)
 
     return analysisScale;
 }
-template<typename Fit1, typename Fit2, typename Functor>
-void testMLSIsSame(const KdTree<typename Fit1::DataPoint>& tree,
-                typename Fit1::Scalar analysisScale,
-                Functor f)
-{
-    static_assert(std::is_same<typename Fit1::DataPoint, typename Fit2::DataPoint>::value, "Both Fit should use the same point type");
-    static_assert(std::is_same<typename Fit1::WFunctor, typename Fit2::WFunctor>::value, "Both Fit should use the same WFunctor");
-
+template<typename Fit, typename Functor>
+void testMLSIsSame(
+    const KdTree<typename Fit::DataPoint>& tree,
+    typename Fit::Scalar analysisScale,
+    Functor f
+) {
     // Define related structure
-    typedef typename Fit1::Scalar     Scalar;
-    typedef typename Fit1::VectorType VectorType;
-    typedef typename Fit1::WFunctor   WeightFunc;
     const auto& vectorPoints = tree.points();
 
     // Test for each point if the fitted sphere correspond to the theoretical sphere
 #ifdef NDEBUG
 #pragma omp parallel for
 #endif
-    for(int i = 0; i < int(vectorPoints.size()); ++i)
-    {
-        Fit1 fit1;
-        Fit2 fit2;
+    for(int i = 0; i < static_cast<int>(vectorPoints.size()); ++i) {
+        Fit fit1;
+        Fit fit2;
 
         auto neighborhoodRange = tree.range_neighbors(vectorPoints[i].pos(), analysisScale);
 
         // use compute function
-        fit1.setWeightFunc(WeightFunc(vectorPoints[i].pos(), analysisScale));
+        fit1.setWeightFunc({vectorPoints[i].pos(), analysisScale});
         fit1.computeWithIds( neighborhoodRange, vectorPoints );
 
-        fit2.setWeightFunc(WeightFunc(vectorPoints[i].pos(), analysisScale));
-        fit2.setIterMLS(3);
-        fit2.computeWithIdsMLS( neighborhoodRange, vectorPoints );
+        fit2.setWeightFunc({vectorPoints[i].pos(), analysisScale});
+        fit2.computeMLS( vectorPoints );
 
         f(fit1, fit2);
     }
@@ -144,10 +135,8 @@ void callSubTests()
     typedef DistWeightFunc<Point, SmoothWeightKernel<Scalar>> WeightFunc;
     //! [WeightFunction]
     typedef Basket<Point, WeightFunc, OrientedSphereFit>      Sphere;
-    typedef Basket<Point, WeightFunc, OrientedSphereFit, MLS> SphereMLS;
     //! [PlaneFitType]
     typedef Basket<Point, WeightFunc, CovariancePlaneFit>      Plane;
-    typedef Basket<Point, WeightFunc, CovariancePlaneFit, MLS> PlaneMLS;
     //! [PlaneFitType]
 
     //
@@ -164,18 +153,18 @@ void callSubTests()
     {
 
         //  Plane diffs
-        // CALL_SUBTEST((testBasicFunctionalities<PlaneScaleDiff>(tree, scale) ));
-        // CALL_SUBTEST((testBasicFunctionalities<PlaneSpaceDiff>(tree, scale) ));
+        // CALL_SUBTEST((testBasicFunctionalities<Sphere>(tree, scale) ));
+        // CALL_SUBTEST((testBasicFunctionalities<Plane>(tree, scale) ));
         // CALL_SUBTEST((testBasicFunctionalities<PlaneScaleSpaceDiff>(tree, scale) ));
 
         // // Check that we get the same Sphere, whatever the extensions
         auto checkIsSameSphere = [](const auto&f1, const auto&f2){isSameSphere(f1,f2);};
-        CALL_SUBTEST((testMLSIsSame<Sphere, SphereMLS>(tree, scale, checkIsSameSphere) ));
+        CALL_SUBTEST((testMLSIsSame<Sphere>(tree, scale, checkIsSameSphere) ));
         //
         // // Check that we get the same Plane, whatever the extensions
         auto checkIsSamePlane = [](const auto&f1, const auto&f2){isSamePlane(f1,f2);};
-        CALL_SUBTEST((testMLSIsSame<Plane, PlaneMLS>(tree, scale, checkIsSamePlane) ));
-        //
+        CALL_SUBTEST((testMLSIsSame<Plane>(tree, scale, checkIsSamePlane) ));
+
         // auto checkIsSamePlaneDerivative = [](const auto&f1, const auto&f2){
         //     isSamePlane(f1,f2);
         //     hasSamePlaneDerivatives(f1, f2);
