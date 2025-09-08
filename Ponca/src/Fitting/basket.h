@@ -292,25 +292,23 @@ namespace internal
          * @tparam PointContainer STL-like container storing the points
          * @param points An STL-like container of points
          * @param mlsIter The amount of MLS iteration that is being done for this fit
-         * @param lastPosition Outputs the last position after the MLS Iteration
          * @return The result of the fit
          */
         template<typename PointContainer>
-        FIT_RESULT computeMLS(PointContainer& points, const int mlsIter=5, VectorType& lastPosition = VectorType::Zero())
-        {
+        FIT_RESULT computeMLS(const PointContainer& points, const int mlsIter=5) {
             assert(mlsIter > 0);
-            FIT_RESULT res = UNDEFINED;
-            lastPosition   = Base::evalPos();
-            const int t    = Base::evalScale();
+            FIT_RESULT res     = UNDEFINED;
+            const int t        = Base::m_w.evalScale();
+            VectorType lastPos = Base::m_w.evalPos();
 
             // MLS Iteration
             for( int mm = 0; mm < mlsIter; ++mm) {
-                Base::setWeightFunc({lastPosition, t});
+                Base::setWeightFunc({lastPos, t});
                 // Initialize the fit and starts a new pass
                 res = compute(points);
 
                 if (Base::isStable()) {
-                    lastPosition = Base::project( lastPosition ); // Update the position
+                    lastPos = Base::project( lastPos ); // Update the position
                 } else {
                     std::cerr << "Warning: fit at mls iteration " << mm << " is not stable" << std::endl;
                     break;
