@@ -97,8 +97,11 @@ protected:
     VectorType _evalPointNormal = VectorType::Zero();
     VectorType _evalPointPos = VectorType::Zero();
 
+    // Triangles used for the computation
     int _nb_vt {0}; // Number of valid triangles
     std::vector <internal::Triangle < DataPoint > > _triangles;
+
+    // Results of the fit
     Scalar _A {0}; // Area
     Scalar _H {0}; // Mean Curvatures
     Scalar _G {0}; // Gaussian Curvatures
@@ -115,7 +118,6 @@ protected:
     VectorType v1;
     VectorType v2;
 
-// results
 public:
     PONCA_FITTING_DECLARE_FINALIZE
 
@@ -189,9 +191,6 @@ public:
     PONCA_MULTIARCH inline Scalar kMean() const { return _H; }
 
     PONCA_MULTIARCH inline Scalar kGauss() const { return _G; }
-
-    PONCA_MULTIARCH inline VectorType project(const VectorType& _q) const {return _q;}
-    PONCA_MULTIARCH inline VectorType primitiveGradient() const {return VectorType::Zero();}
 }; //class CNC
 
 } // namespace Ponca
