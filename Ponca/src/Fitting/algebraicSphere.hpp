@@ -40,18 +40,18 @@ AlgebraicSphere<DataPoint, _NFilter, T>::projectDescent( const VectorType& _q, i
     const VectorType lq = Base::m_nFilter.convertToLocalBasis(_q);
 
     VectorType grad;
-    VectorType dir  = m_ul+Scalar(2.)*m_uq*lq;
+    VectorType dir  = primitiveGradient(lq, false);
     Scalar ilg      = Scalar(1.)/dir.norm();
     dir             = dir*ilg;
-    Scalar ad       = m_uc + m_ul.dot(lq) + m_uq * lq.squaredNorm();
+    Scalar ad       = potential(lq, false);
     Scalar delta    = -ad*min(ilg,Scalar(1.));
     VectorType proj = lq + dir*delta;
 
     for (int i=0; i<nbIter; ++i)
     {
-        grad  = m_ul+Scalar(2.)*m_uq*proj;
+        grad  = primitiveGradient(proj, false);
         ilg   = Scalar(1.)/grad.norm();
-        delta = -(m_uc + proj.dot(m_ul) + m_uq * proj.squaredNorm())*min(ilg,Scalar(1.));
+        delta = -potential(proj, false)*min(ilg,Scalar(1.));
         proj += dir*delta;
     }
     return Base::m_nFilter.convertToGlobalBasis( proj );
@@ -59,21 +59,20 @@ AlgebraicSphere<DataPoint, _NFilter, T>::projectDescent( const VectorType& _q, i
 
 template < class DataPoint, class _NFilter, typename T>
 typename AlgebraicSphere<DataPoint, _NFilter, T>::Scalar
-AlgebraicSphere<DataPoint, _NFilter, T>::potential( const VectorType &_q ) const
+AlgebraicSphere<DataPoint, _NFilter, T>::potential( const VectorType &_q, const bool convertToLocalBasis ) const
 {
     // turn to centered basis
-    const VectorType lq = Base::m_nFilter.convertToLocalBasis(_q);
-
+    const VectorType lq = convertToLocalBasis? Base::m_nFilter.convertToLocalBasis(_q) : _q;
     return m_uc + lq.dot(m_ul) + m_uq * lq.squaredNorm();
 }
 
 
 template < class DataPoint, class _NFilter, typename T>
 typename AlgebraicSphere<DataPoint, _NFilter, T>::VectorType
-AlgebraicSphere<DataPoint, _NFilter, T>::primitiveGradient( const VectorType &_q ) const
+AlgebraicSphere<DataPoint, _NFilter, T>::primitiveGradient( const VectorType &_q, const bool convertToLocalBasis ) const
 {
         // turn to centered basis
-        const VectorType lq = Base::m_nFilter.convertToLocalBasis(_q);
-        return (m_ul + Scalar(2.f) * m_uq * lq);
+        const VectorType lq = convertToLocalBasis? Base::m_nFilter.convertToLocalBasis(_q) : _q;
+        return (m_ul + Scalar(2.) * m_uq * lq);
 }
 
