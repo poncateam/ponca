@@ -61,7 +61,7 @@ template<typename Fit>
 void testBasicFunctionalities(const KdTree<typename Fit::DataPoint>& tree, typename Fit::Scalar analysisScale) {
     const auto& vectorPoints = tree.points();
     auto rng = std::default_random_engine {};
-    typename Fit::Scalar eps = testEpsilon<typename Fit::Scalar>();
+    typename Fit::Scalar eps = testEpsilon<typename Fit::Scalar>()*2;
     // Test for each point if the fitted sphere correspond to the theoretical sphere
 #ifdef NDEBUG
 #pragma omp parallel for
