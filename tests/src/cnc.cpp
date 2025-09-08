@@ -58,7 +58,7 @@ typename DataPoint::Scalar generateData(KdTree<DataPoint>& tree) {
 }
 
 template<typename Fit>
-void testBasicFunctionalities(const KdTree<typename Fit::DataPoint>& tree, typename Fit::Scalar analysisScale) {
+void testBasicFunctionalities(const KdTree<typename Fit::DataPoint>& tree) {
     const auto& vectorPoints = tree.points();
     auto rng = std::default_random_engine {};
     typename Fit::Scalar eps = testEpsilon<typename Fit::Scalar>()*2;
@@ -114,11 +114,11 @@ void callSubTests() {
     //! [CNCFitType]
 
     KdTreeDense<Point> tree;
-    Scalar scale = generateData(tree);
-    CALL_SUBTEST((testBasicFunctionalities<Fit_CNC_Independent>(tree, scale) ));
-    CALL_SUBTEST((testBasicFunctionalities<Fit_CNC_Uniform>(tree, scale) ));
-    CALL_SUBTEST((testBasicFunctionalities<Fit_CNC_Hexagram>(tree, scale) ));
-    CALL_SUBTEST((testBasicFunctionalities<Fit_CNC_AvgHexagram>(tree, scale) ));
+    generateData(tree);
+    CALL_SUBTEST((testBasicFunctionalities<Fit_CNC_Independent>(tree) ));
+    CALL_SUBTEST((testBasicFunctionalities<Fit_CNC_Uniform>(tree) ));
+    CALL_SUBTEST((testBasicFunctionalities<Fit_CNC_Hexagram>(tree) ));
+    CALL_SUBTEST((testBasicFunctionalities<Fit_CNC_AvgHexagram>(tree) ));
 }
 
 int main(const int argc, char** argv) {
