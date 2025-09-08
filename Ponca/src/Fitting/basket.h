@@ -286,18 +286,31 @@ namespace internal
             return false;
         }
 
+        /*! \brief Computes the fit using the MLS iteration process.
+         * The position of the projected point is outputted through the lastPosition argument.
+         *
+         * @tparam PointContainer STL-like container storing the points
+         * @param points An STL-like container of points
+         * @param mlsIter The amount of MLS iteration that is being done for this fit
+         * @param lastPosition Outputs the last position after the MLS Iteration
+         * @return The result of the fit
+         */
         template<typename PointContainer>
-        FIT_RESULT computeMLS(VectorType pos, PointContainer points, int mlsIter=5)
+        FIT_RESULT computeMLS(PointContainer& points, const int mlsIter=5, VectorType& lastPosition = VectorType::Zero())
         {
+            assert(mlsIter > 0);
             FIT_RESULT res = UNDEFINED;
-            VectorType lastPosMLS = pos;
+            lastPosition   = Base::evalPos();
+            const int t    = Base::evalScale();
+
             // MLS Iteration
             for( int mm = 0; mm < mlsIter; ++mm) {
-                // Starts a new pass and initialise the fit
-                res = Base::compute(points);
+                Base::setWeightFunc({lastPosition, t});
+                // Initialize the fit and starts a new pass
+                res = compute(points);
 
                 if (Base::isStable()) {
-                    lastPosMLS = Base::project( lastPosMLS );
+                    lastPosition = Base::project( lastPosition ); // Update the position
                 } else {
                     std::cerr << "Warning: fit at mls iteration " << mm << " is not stable" << std::endl;
                     break;
