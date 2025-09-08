@@ -155,7 +155,11 @@ namespace Ponca::internal {
     /// Generates the triangles used by the CNC Fit using UniformGeneration
     template <typename P>
     struct TriangleGenerator<UniformGeneration, P> {
+    private:
+        static constexpr int maxTriangles {100};
+    public:
         using VectorType = typename P::VectorType;
+
         template <typename PointContainer, typename IndicesGetter>
         static int generate(
             const PointContainer& points,
@@ -163,7 +167,6 @@ namespace Ponca::internal {
             const VectorType& /*_evalPointPos*/, const VectorType& /*_evalPointNormal*/,
             std::vector<Triangle<P>>& triangles
         ) {
-            constexpr int maxTriangles {100};
             int nb_vt = 0; // Number of valid generated triangles
 
             for (int i = 0; i < maxTriangles; ++i) {
@@ -185,12 +188,13 @@ namespace Ponca::internal {
     struct TriangleGenerator<HexagramGeneration, P> {
         using VectorType = typename P::VectorType;
         using Scalar = typename P::Scalar;
+
         template <typename PointContainer, typename IndicesGetter>
         static int generate(
             const PointContainer& points,
             const IndicesGetter& indicesGetter,
             const VectorType& _evalPointPos, const VectorType& _evalPointNormal,
-            std::vector<internal::Triangle<P>>& triangles
+            std::vector<Triangle<P>>& triangles
         ) {
             // Hexagram
             std::array< Scalar    ,    6 > _distance2;
@@ -266,6 +270,7 @@ namespace Ponca::internal {
     struct TriangleGenerator<AvgHexagramGeneration, P> {
         using VectorType = typename P::VectorType;
         using Scalar = typename P::Scalar;
+
         template <typename PointContainer, typename IndicesGetter>
         static int generate(
             const PointContainer& points,
@@ -358,16 +363,19 @@ namespace Ponca::internal {
     /// Generates the triangles used by the CNC Fit using IndependentGeneration
     template <typename P>
     struct TriangleGenerator<IndependentGeneration, P> {
+    private:
+        static constexpr int maxTriangles {100};
+    public:
         using VectorType = typename P::VectorType;
         using Scalar = typename P::Scalar;
+
         template <typename PointContainer, typename IndicesGetter>
         static int generate(
             const PointContainer& points,
             const IndicesGetter& indicesGetter,
             const VectorType& /*_evalPointPos*/, const VectorType& /*_evalPointNormal*/,
-            std::vector<internal::Triangle<P>>& triangles
+            std::vector<Triangle<P>>& triangles
         ) {
-            constexpr int maxTriangles {100};
             int nb_vt = 0; // Number of valid generated triangles
             std::vector<int> indices(indicesGetter.getLength());
             // Shuffle the neighbors
