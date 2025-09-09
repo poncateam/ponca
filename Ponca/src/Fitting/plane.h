@@ -95,10 +95,12 @@ public:
 
     //! \brief Value of the scalar field at the location \f$ \mathbf{q} \f$
     //! \see method `#isSigned` of the fit to check if the sign is reliable
-    PONCA_MULTIARCH inline Scalar potential (const VectorType& _q) const
+    PONCA_MULTIARCH inline Scalar potential (const VectorType& _q, const bool convertToLocalBasis = true) const
     {
+        // turn to centered basis
+        const VectorType lq = convertToLocalBasis? Base::m_nFilter.convertToLocalBasis(_q) : _q;
         // The potential is the distance from the point to the plane
-        return EigenBase::signedDistance(Base::m_nFilter.convertToLocalBasis(_q) );
+        return EigenBase::signedDistance( lq );
     }
 
     //! \brief Project a point on the plane
@@ -117,7 +119,7 @@ public:
     }
 
     //! \brief Scalar field gradient direction at \f$ \mathbf{q}\f$
-    PONCA_MULTIARCH inline VectorType primitiveGradient (const VectorType&) const
+    PONCA_MULTIARCH inline VectorType primitiveGradient (const VectorType&, const bool /*convertToLocalBasis*/ = true) const
     {
         // Uniform gradient defined only by the orientation of the plane
         return EigenBase::normal();
