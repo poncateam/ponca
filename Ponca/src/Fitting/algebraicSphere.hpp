@@ -31,33 +31,6 @@ AlgebraicSphere<DataPoint, _NFilter, T>::project(const VectorType& _q) const
 }
 
 template < class DataPoint, class _NFilter, typename T>
-typename AlgebraicSphere<DataPoint, _NFilter, T>::VectorType
-AlgebraicSphere<DataPoint, _NFilter, T>::projectDescent( const VectorType& _q, int nbIter) const
-{
-    PONCA_MULTIARCH_STD_MATH(min)
-
-    // turn to centered basis
-    const VectorType lq = Base::m_nFilter.convertToLocalBasis(_q);
-
-    VectorType grad;
-    VectorType dir  = primitiveGradient(lq, false);
-    Scalar ilg      = Scalar(1.)/dir.norm();
-    dir             = dir*ilg;
-    Scalar ad       = potential(lq, false);
-    Scalar delta    = -ad*min(ilg,Scalar(1.));
-    VectorType proj = lq + dir*delta;
-
-    for (int i=0; i<nbIter; ++i)
-    {
-        grad  = primitiveGradient(proj, false);
-        ilg   = Scalar(1.)/grad.norm();
-        delta = -potential(proj, false)*min(ilg,Scalar(1.));
-        proj += dir*delta;
-    }
-    return Base::m_nFilter.convertToGlobalBasis( proj );
-}
-
-template < class DataPoint, class _NFilter, typename T>
 typename AlgebraicSphere<DataPoint, _NFilter, T>::Scalar
 AlgebraicSphere<DataPoint, _NFilter, T>::potential( const VectorType &_q, const bool convertToLocalBasis ) const
 {
