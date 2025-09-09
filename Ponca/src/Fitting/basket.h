@@ -264,6 +264,8 @@ namespace internal
         using DataPoint = P;
         /// Scalar type used for computation, as defined from Basket
         using Scalar = typename DataPoint::Scalar;
+        /// Vector type used for computation
+        using VectorType = typename DataPoint::VectorType;
 
         WRITE_COMPUTE_FUNCTIONS
 
@@ -282,6 +284,40 @@ namespace internal
                 return true;
             }
             return false;
+        }
+
+
+
+        /*!
+           \brief Project a point on the algebraic hypersphere using Gradient Descent
+           This projection is realized by following the gradient of the hypersphere scalar field
+           \warning This function is in most cases slower and less accurate than #project.
+           \param _q Starting point
+           \param nbIter Number of iterations (default = 16)
+         */
+        PONCA_MULTIARCH inline VectorType projectDescent (const VectorType& _q, int nbIter = 16) const
+        {
+            PONCA_MULTIARCH_STD_MATH(min)
+
+            // turn to centered basis
+            const VectorType lq = Base::m_nFilter.convertToLocalBasis(_q);
+
+            VectorType grad;
+            VectorType dir  = primitiveGradient(lq, false);
+            Scalar ilg      = Scalar(1.)/dir.norm();
+            dir             = dir*ilg;
+            Scalar ad       = potential(lq, false);
+            Scalar delta    = -ad*min(ilg,Scalar(1.));
+            VectorType proj = lq + dir*delta;
+
+            for (int i=0; i<nbIter; ++i)
+            {
+                grad  = primitiveGradient(proj, false);
+                ilg   = Scalar(1.)/grad.norm();
+                delta = -potential(proj, false)*min(ilg,Scalar(1.));
+                proj += dir*delta;
+            }
+            return Base::m_nFilter.convertToGlobalBasis( proj );
         }
     }; // class Basket
 
