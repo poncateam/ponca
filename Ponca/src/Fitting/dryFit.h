@@ -50,7 +50,7 @@ namespace Ponca
         PONCA_MULTIARCH inline VectorType primitiveGradient () const { return VectorType::Zero(); }
 
         //! \brief Simulate gradient direction computation
-        PONCA_MULTIARCH inline VectorType primitiveGradient (const VectorType&, const bool convertToLocalBasis = true) const { return VectorType::Zero(); }
+        PONCA_MULTIARCH inline VectorType primitiveGradient (const VectorType&, const bool /*convertToLocalBasis*/ = true) const { return VectorType::Zero(); }
     };
 
 } //namespace Ponca
