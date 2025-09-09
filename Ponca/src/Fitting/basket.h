@@ -260,18 +260,18 @@ namespace internal
             const VectorType lq = Base::m_nFilter.convertToLocalBasis(_q);
 
             VectorType grad;
-            VectorType dir  = primitiveGradient(lq, false);
+            VectorType dir  = Base::primitiveGradient(lq, false);
             Scalar ilg      = Scalar(1.)/dir.norm();
             dir             = dir*ilg;
-            Scalar ad       = potential(lq, false);
+            Scalar ad       = Base::potential(lq, false);
             Scalar delta    = -ad*min(ilg,Scalar(1.));
             VectorType proj = lq + dir*delta;
 
             for (int i=0; i<nbIter; ++i)
             {
-                grad  = primitiveGradient(proj, false);
+                grad  = Base::primitiveGradient(proj, false);
                 ilg   = Scalar(1.)/grad.norm();
-                delta = -potential(proj, false)*min(ilg,Scalar(1.));
+                delta = -Base::potential(proj, false)*min(ilg,Scalar(1.));
                 proj += dir*delta;
             }
             return Base::m_nFilter.convertToGlobalBasis( proj );
