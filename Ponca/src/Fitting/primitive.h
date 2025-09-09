@@ -154,9 +154,8 @@ public:
 template < class DataPoint, class _NFilter, int Type, typename T>
 class PrimitiveDer : public T
 {
-private:
-    typedef T Base; /*!< \brief Generic base type */
-
+    PONCA_FITTING_DECLARE_DEFAULT_TYPES
+    PONCA_FITTING_DECLARE_MATRIX_TYPE
 protected:
     enum {
         Check = Base::PROVIDES_PRIMITIVE_BASE,    /*!< \brief Provides base API for primitives*/
@@ -168,10 +167,6 @@ protected:
     static constexpr  int DerStorageOrder = (Type & FitSpaceDer) ? Eigen::RowMajor : Eigen::ColMajor;
 
 public:
-    using Scalar         = typename Base::Scalar;          /*!< \brief Inherited scalar type */
-    using VectorType     = typename Base::VectorType;      /*!< \brief Inherited vector type */
-    using MatrixType     = typename DataPoint::MatrixType; /*!< \brief Inherited matrix type */
-    using NeighborFilter = typename Base::NeighborFilter;  /*!< \brief Filter applied on the neighbors */
 
     /*! \brief Static array of scalars with a size adapted to the differentiation type */
     typedef Eigen::Matrix<Scalar, DataPoint::Dim, NbDerivatives, DerStorageOrder> VectorArray;
