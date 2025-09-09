@@ -102,10 +102,12 @@ public:
      * defined as the squared distance between \f$ \mathbf{q} \f$ and the line
      *  \see method `#isSigned` of the fit to check if the sign is reliable
      */
-    PONCA_MULTIARCH inline Scalar potential (const VectorType& _q) const
+    PONCA_MULTIARCH inline Scalar potential (const VectorType& _q, const bool convertToLocalBasis = true) const
     {
+        // turn to centered basis
+        const VectorType lq = convertToLocalBasis? Base::m_nFilter.convertToLocalBasis(_q) : _q;
         // The potential is the distance from a point to the line
-        return EigenBase::squaredDistance(Base::m_nFilter.convertToLocalBasis(_q));
+        return EigenBase::squaredDistance(lq);
     }
 
     //! \brief Project a point on the line
