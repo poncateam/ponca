@@ -357,9 +357,9 @@ namespace internal
 
 
         /*!
-           \brief Project a point on the algebraic hypersphere using Gradient Descent
-           This projection is realized by following the gradient of the hypersphere scalar field
-           \warning This function is in most cases slower and less accurate than #project.
+           \brief Project a point on the primitive using Gradient Descent
+           This projection is realized by following the gradient of the primitive scalar field
+           \warning This function is in most cases slower than #project.
            \param _q Starting point
            \param nbIter Number of iterations (default = 16)
          */
