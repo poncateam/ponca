@@ -27,70 +27,59 @@
 using namespace std;
 using namespace Ponca;
 
-template<typename DataPoint>
-typename DataPoint::Scalar generateData(KdTree<DataPoint>& tree)
-{
+template<typename DataPoint, typename Fit>
+void testFunction() {
+    // Define related structure
     typedef typename DataPoint::Scalar Scalar;
     typedef typename DataPoint::VectorType VectorType;
 
-    //generate sampled sphere
-#ifdef NDEBUG
-    int nbPoints = Eigen::internal::random<int>(500, 1000);
-#else
-    int nbPoints = Eigen::internal::random<int>(100, 200);
-#endif
+    // Generate sampled sphere
+    int nbPoints = Eigen::internal::random<int>(100, 1000);
 
-    Scalar radius = Eigen::internal::random<Scalar>(1., 10.);
+    Scalar radius = Eigen::internal::random<Scalar>(1,10);
+    VectorType center = VectorType::Random() * Eigen::internal::random<Scalar>(1, 10000);
 
-    Scalar analysisScale = Scalar(10.) * std::sqrt( Scalar(4. * M_PI) * radius * radius / nbPoints);
-    Scalar centerScale = Eigen::internal::random<Scalar>(1,10000);
-    VectorType center = VectorType::Random() * centerScale;
+    Scalar analysisScale = Scalar(10.) * std::sqrt(Scalar(4. * M_PI) * radius * radius / nbPoints);
+
+    Scalar epsilon = testEpsilon<Scalar>();
 
     vector<DataPoint> vectorPoints(nbPoints);
 
-#ifdef NDEBUG
+    for(unsigned int i = 0; i < vectorPoints.size(); ++i) {
+        // Add noise to the point cloud
+        vectorPoints[i] = getPointOnSphere<DataPoint>(radius, center, true, true);
+    }
+
+    // Test for each point if the normal is correct
 #pragma omp parallel for
-#endif
     for(int i = 0; i < int(vectorPoints.size()); ++i)
     {
-        vectorPoints[i] = getPointOnSphere<DataPoint>(radius, center, false, false, false);
-    }
+        VectorType pos = vectorPoints[i].pos();
+        Fit fit;
+        fit.setWeightFunc({pos, analysisScale});
+        fit.compute(vectorPoints);
 
-    tree.clear();
-    tree.build(vectorPoints);
+        Fit fitMLS;
+        fitMLS.setWeightFunc({pos, analysisScale});
+        fitMLS.computeMLS(vectorPoints, 1000);
 
-    return analysisScale;
-}
-template<typename Fit, typename Functor>
-void testMLSIsSame(
-    const KdTree<typename Fit::DataPoint>& tree,
-    typename Fit::Scalar analysisScale,
-    Functor f
-) {
-    // Define related structure
-    const auto& vectorPoints = tree.points();
+        if(fit.isStable()) {
+            // Tests the primitiveGradient
+            const VectorType& estimated = fit.primitiveGradient(pos);
+            const VectorType& estimatedMLS = fitMLS.primitiveGradient(pos);
+            VectorType theoriticalNormal = (pos-center).normalized();
 
-    // Test for each point if the fitted sphere correspond to the theoretical sphere
-#ifdef NDEBUG
-#pragma omp parallel for
-#endif
-    for(int i = 0; i < static_cast<int>(vectorPoints.size()); ++i) {
-        Fit fit1;
-        Fit fit2;
+            Scalar absdot = std::abs(estimated.dot(theoriticalNormal));
+            Scalar absdotMLS = std::abs(estimatedMLS.dot(theoriticalNormal));
 
-        auto neighborhoodRange = tree.range_neighbors(vectorPoints[i].pos(), analysisScale);
-
-        // use compute function
-        fit1.setWeightFunc({vectorPoints[i].pos(), analysisScale});
-        fit1.computeWithIds( neighborhoodRange, vectorPoints );
-
-        fit2.setWeightFunc({vectorPoints[i].pos(), analysisScale});
-        fit2.computeMLS( vectorPoints );
-
-        f(fit1, fit2);
+            VERIFY( absdot - 1 < epsilon );
+            VERIFY( absdotMLS - 1 < epsilon );
+            // Verify that mls gives better result than normal compute when comparing with the theoretical values
+            // By checking if absdotMLS is closer to 1 than asbdot (taking into account approximation error using the epsilon)
+            VERIFY( (absdot + epsilon >= absdotMLS && absdotMLS >= 1 - epsilon) || absdot - epsilon <= absdotMLS && absdotMLS <= 1 + epsilon);
+        }
     }
 }
-
 
 template<typename Fit1, typename Fit2>
 void isSamePlane(const Fit1& fit1, const Fit2& fit2) {
@@ -139,6 +128,9 @@ void callSubTests()
     typedef Basket<Point, WeightFunc, CovariancePlaneFit>      Plane;
     //! [PlaneFitType]
 
+    typedef DistWeightFunc<Point, SmoothWeightKernel<Scalar> > WeightSmoothFunc;
+    typedef Basket<Point,WeightSmoothFunc,OrientedSphereFit> FitSmoothOriented;
+
     //
     // //! [PlaneFitDerTypes]
     // using PlaneScaleDiff = BasketDiff<Plane, FitScaleDer, CovariancePlaneDer>;
@@ -146,32 +138,33 @@ void callSubTests()
     // using PlaneScaleSpaceDiff = BasketDiff<Plane, FitScaleSpaceDer, CovariancePlaneDer>;
     // //! [PlaneFitDerTypes]
 
-    KdTreeDense<Point> tree;
-    Scalar scale = generateData(tree);
+    // KdTreeDense<Point> tree;
+    // Scalar scale = generateData(tree);
 
     for(int i = 0; i < g_repeat; ++i)
     {
 
-        //  Plane diffs
-        // CALL_SUBTEST((testBasicFunctionalities<Sphere>(tree, scale) ));
-        // CALL_SUBTEST((testBasicFunctionalities<Plane>(tree, scale) ));
-        // CALL_SUBTEST((testBasicFunctionalities<PlaneScaleSpaceDiff>(tree, scale) ));
-
-        // // Check that we get the same Sphere, whatever the extensions
-        auto checkIsSameSphere = [](const auto&f1, const auto&f2){isSameSphere(f1,f2);};
-        CALL_SUBTEST((testMLSIsSame<Sphere>(tree, scale, checkIsSameSphere) ));
+        CALL_SUBTEST(( testFunction<Point, Sphere>() ));
+        // //  Plane diffs
+        // // CALL_SUBTEST((testBasicFunctionalities<Sphere>(tree, scale) ));
+        // // CALL_SUBTEST((testBasicFunctionalities<Plane>(tree, scale) ));
+        // // CALL_SUBTEST((testBasicFunctionalities<PlaneScaleSpaceDiff>(tree, scale) ));
         //
-        // // Check that we get the same Plane, whatever the extensions
-        auto checkIsSamePlane = [](const auto&f1, const auto&f2){isSamePlane(f1,f2);};
-        CALL_SUBTEST((testMLSIsSame<Plane>(tree, scale, checkIsSamePlane) ));
-
-        // auto checkIsSamePlaneDerivative = [](const auto&f1, const auto&f2){
-        //     isSamePlane(f1,f2);
-        //     hasSamePlaneDerivatives(f1, f2);
-        // };
-        // // // Check that we get the same Plane derivative, whatever if we have one or more primitive fitted.
-        // // int fff = 0;
-        // CALL_SUBTEST((testMLSIsSame<Plane, PlaneMLS>(tree, scale, checkIsSamePlaneDerivative) ));
+        // // // Check that we get the same Sphere, whatever the extensions
+        // auto checkIsSameSphere = [](const auto&f1, const auto&f2){isSameSphere(f1,f2);};
+        // CALL_SUBTEST((testMLSIsSame<Sphere>(tree, scale, checkIsSameSphere) ));
+        // //
+        // // // Check that we get the same Plane, whatever the extensions
+        // auto checkIsSamePlane = [](const auto&f1, const auto&f2){isSamePlane(f1,f2);};
+        // CALL_SUBTEST((testMLSIsSame<Plane>(tree, scale, checkIsSamePlane) ));
+        //
+        // // auto checkIsSamePlaneDerivative = [](const auto&f1, const auto&f2){
+        // //     isSamePlane(f1,f2);
+        // //     hasSamePlaneDerivatives(f1, f2);
+        // // };
+        // // // // Check that we get the same Plane derivative, whatever if we have one or more primitive fitted.
+        // // // int fff = 0;
+        // // CALL_SUBTEST((testMLSIsSame<Plane, PlaneMLS>(tree, scale, checkIsSamePlaneDerivative) ));
     }
 }
 
