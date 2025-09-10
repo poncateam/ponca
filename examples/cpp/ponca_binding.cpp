@@ -76,7 +76,7 @@ void test_fit(Fit& _fit,
     Scalar tmax = 100.0;
 
     // Set a weighting function instance with the evaluation position
-    _fit.setNeighborFilter(WeightFunc(_p, tmax));
+    _fit.setNeighborFilter({_p, tmax});
     _fit.init();
 
     // Iterate over samples and _fit the primitive
