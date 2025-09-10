@@ -16,7 +16,7 @@ using namespace std;
 using namespace Grenaille;
 
 
-template<typename DataPoint, typename Fit, typename NeighborFilter>
+template<typename DataPoint, typename Fit>
 void testFunction(bool _bAddPositionNoise = false, bool _bAddNormalNoise = false)
 {
     // Define related structure
@@ -57,7 +57,7 @@ void testFunction(bool _bAddPositionNoise = false, bool _bAddNormalNoise = false
           epsilon = Scalar(0.001*MAX_NOISE);
 
         Fit fit;
-        fit.setNeighborFilter(NeighborFilter(vectorPoints[i].pos(), analysisScale));
+        fit.setNeighborFilter({vectorPoints[i].pos(), analysisScale});
         fit.compute(vectorPoints);
 
         if( fit.isStable() ){
@@ -92,20 +92,20 @@ void callSubTests()
     cout << "Testing with perfect plane..." << endl;
     for(int i = 0; i < g_repeat; ++i)
     {
-        CALL_SUBTEST(( testFunction<Point, FitSmoothNormalCovariance, WeightSmoothFunc>() ));
-        CALL_SUBTEST(( testFunction<Point, FitConstantNormalCovariance, WeightConstantFunc>() ));
-        CALL_SUBTEST(( testFunction<Point, FitSmoothProjectedNormalCovariance, WeightSmoothFunc>() ));
-        CALL_SUBTEST(( testFunction<Point, FitConstantProjectedNormalCovariance, WeightConstantFunc>() ));
+        CALL_SUBTEST(( testFunction<Point, FitSmoothNormalCovariance>() ));
+        CALL_SUBTEST(( testFunction<Point, FitConstantNormalCovariance>() ));
+        CALL_SUBTEST(( testFunction<Point, FitSmoothProjectedNormalCovariance>() ));
+        CALL_SUBTEST(( testFunction<Point, FitConstantProjectedNormalCovariance>() ));
     }
     cout << "Ok..." << endl;
 
 //    cout << "Testing with noisy plane..." << endl;
 //    for(int i = 0; i < g_repeat; ++i)
 //    {
-//        CALL_SUBTEST(( testFunction<Point, FitSmoothNormalCovariance, WeightSmoothFunc>(true, true) ));
-//        CALL_SUBTEST(( testFunction<Point, FitConstantNormalCovariance, WeightConstantFunc>(true, true) ));
-//        CALL_SUBTEST(( testFunction<Point, FitSmoothProjectedNormalCovariance, WeightSmoothFunc>(true, true) ));
-//        CALL_SUBTEST(( testFunction<Point, FitConstantProjectedNormalCovariance, WeightConstantFunc>(true, true) ));
+//        CALL_SUBTEST(( testFunction<Point, FitSmoothNormalCovariance>(true, true) ));
+//        CALL_SUBTEST(( testFunction<Point, FitConstantNormalCovariance>(true, true) ));
+//        CALL_SUBTEST(( testFunction<Point, FitSmoothProjectedNormalCovariance>(true, true) ));
+//        CALL_SUBTEST(( testFunction<Point, FitConstantProjectedNormalCovariance>(true, true) ));
 //    }
 //    cout << "Ok..." << endl;
 }

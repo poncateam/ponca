@@ -63,7 +63,7 @@ subTestSpatial<true, 3>::eval(const Fit& _fit,
 
 
 
-template<typename DataPoint, typename Fit, typename NeighborFilter, bool isSpaceDer>
+template<typename DataPoint, typename Fit, bool isSpaceDer>
 void testFunction(bool _bUnoriented = false, bool _bAddPositionNoise = false, bool _bAddNormalNoise = false)
 {
     // Define related structure
@@ -98,7 +98,7 @@ void testFunction(bool _bUnoriented = false, bool _bAddPositionNoise = false, bo
     for(int i = 0; i < int(vectorPoints.size()); ++i)
     {
         Fit fit;
-        fit.setNeighborFilter(NeighborFilter(vectorPoints[i].pos(), analysisScale));
+        fit.setNeighborFilter({vectorPoints[i].pos(), analysisScale});
         fit.compute(vectorPoints);
 
         if(fit.isStable())
@@ -154,20 +154,20 @@ void callSubTests()
     for(int i = 0; i < g_repeat; ++i)
     {
         //Test with perfect sphere
-        CALL_SUBTEST(( testFunction<Point, FitSmoothOriented, WeightSmoothFunc, false>() ));
-        CALL_SUBTEST(( testFunction<Point, FitConstantOriented, WeightConstantFunc, false>() ));
-        CALL_SUBTEST(( testFunction<Point, FitSmoothUnoriented, WeightSmoothFunc, false>(true) ));
-        CALL_SUBTEST(( testFunction<Point, FitConstantUnoriented, WeightConstantFunc, false>(true) ));
+        CALL_SUBTEST(( testFunction<Point, FitSmoothOriented, false>() ));
+        CALL_SUBTEST(( testFunction<Point, FitConstantOriented, false>() ));
+        CALL_SUBTEST(( testFunction<Point, FitSmoothUnoriented, false>(true) ));
+        CALL_SUBTEST(( testFunction<Point, FitConstantUnoriented, false>(true) ));
     }
     cout << "Ok!" << endl;
 
     cout << "Testing with noise on position and normals (oriented / unoriented)..." << endl;
     for(int i = 0; i < g_repeat; ++i)
     {
-        CALL_SUBTEST(( testFunction<Point, FitSmoothOriented, WeightSmoothFunc, false>(false, true, true) ));
-        CALL_SUBTEST(( testFunction<Point, FitConstantOriented, WeightConstantFunc, false>(false, true, true) ));
-        CALL_SUBTEST(( testFunction<Point, FitSmoothUnoriented, WeightSmoothFunc, false>(true, true, true) ));
-        CALL_SUBTEST(( testFunction<Point, FitConstantUnoriented, WeightConstantFunc, false>(true, true, true) ));
+        CALL_SUBTEST(( testFunction<Point, FitSmoothOriented, false>(false, true, true) ));
+        CALL_SUBTEST(( testFunction<Point, FitConstantOriented, false>(false, true, true) ));
+        CALL_SUBTEST(( testFunction<Point, FitSmoothUnoriented, false>(true, true, true) ));
+        CALL_SUBTEST(( testFunction<Point, FitConstantUnoriented, false>(true, true, true) ));
     }
     cout << "Ok!" << endl;
 }
