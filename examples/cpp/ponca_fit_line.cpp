@@ -61,7 +61,7 @@ int main(int argc, char **argv) {
 
     // Fit line on data
     Fit _fit;
-    _fit.setNeighborFilter(WeightFunc(p));
+    _fit.setNeighborFilter({p, 1});
     _fit.compute(points.cbegin(), points.cend());
 
     // Check Fit output
