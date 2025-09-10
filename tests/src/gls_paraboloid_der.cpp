@@ -34,7 +34,6 @@ void testFunction()
 {
     // Define related structure
     typedef typename Fit::DataPoint DataPoint;
-    typedef typename TestFit::NeighborFilter TestNeighborFilter;
     typedef typename TestFit::DataPoint TestDataPoint;
     typedef typename TestDataPoint::Scalar TestScalar;
     typedef typename DataPoint::Scalar Scalar;
@@ -75,7 +74,7 @@ void testFunction()
 
     TestFit fit;
     const VectorType vFittingPoint = VectorType::Zero();
-    fit.setNeighborFilter(TestNeighborFilter(vFittingPoint.template cast<TestScalar>(), analysisScale));
+    fit.setNeighborFilter({vFittingPoint.template cast<TestScalar>(), analysisScale});
     fit.init();
     for(typename vector<TestDataPoint>::iterator it = testVectorPoints.begin();
         it != testVectorPoints.end();
@@ -91,7 +90,6 @@ void testFunction()
       // Use long double for stable numerical differentiation
       typedef long double RefScalar;
       typedef PointPositionNormal<RefScalar, 3> RefPoint;
-      typedef DistWeightFunc<RefPoint, SmoothWeightKernel<RefScalar> > RefNeighborFilter;
 
       vector<RefPoint> refVectorPoints(nbPoints);
       for(unsigned int i = 0; i < vectorPoints.size(); ++i)
@@ -102,7 +100,7 @@ void testFunction()
 
       // Centered fit:
       RefFit ref_fit;
-      ref_fit.setNeighborFilter(RefNeighborFilter(vFittingPoint.template cast<RefScalar>(), analysisScale));
+      ref_fit.setNeighborFilter({vFittingPoint.template cast<RefScalar>(), analysisScale});
       ref_fit.init();
       for(typename vector<RefPoint>::iterator it = refVectorPoints.begin();
           it != refVectorPoints.end();
@@ -132,7 +130,7 @@ void testFunction()
           scale += h;
         else
           p(k-1) += h;
-        f.setNeighborFilter(RefNeighborFilter(p, scale));
+        f.setNeighborFilter({p, scale});
         f.compute(refVectorPoints);
 
         RefScalar flip_f   = (f.isSigned() || (f.primitiveGradient().dot(theoricNormal.template cast<RefScalar>()) > 0 )) ? RefScalar(1) : RefScalar(-1);

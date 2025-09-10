@@ -69,8 +69,6 @@ void testBasicFunctionalities(const KdTree<typename Fit::DataPoint>& tree, typen
 
     // Define related structure
     typedef typename DataPoint::Scalar Scalar;
-    typedef typename DataPoint::VectorType VectorType;
-    typedef typename Fit::NeighborFilter NeighborFilter;
 
     const auto& vectorPoints = tree.points();
 
@@ -133,10 +131,6 @@ void testIsSame(const KdTree<typename Fit1::DataPoint>& tree,
     static_assert(std::is_same<typename Fit1::DataPoint, typename Fit2::DataPoint>::value, "Both Fit should use the same point type");
     static_assert(std::is_same<typename Fit1::NeighborFilter, typename Fit2::NeighborFilter>::value, "Both Fit should use the same NeighborFilter");
 
-    // Define related structure
-    typedef typename Fit1::Scalar         Scalar;
-    typedef typename Fit1::VectorType     VectorType;
-    typedef typename Fit1::NeighborFilter NeighborFilter;
     const auto& vectorPoints = tree.points();
 
     // Test for each point if the fitted sphere correspond to the theoretical sphere
@@ -148,7 +142,7 @@ void testIsSame(const KdTree<typename Fit1::DataPoint>& tree,
         using Fit = Fit1; // create an alias to ease doc snippet generation
         //! [Fit computeWithIds]
         Fit fit3;
-        fit3.setWeightFunc({vectorPoints[i].pos(), analysisScale});
+        fit3.setNeighborFilter({vectorPoints[i].pos(), analysisScale});
         auto neighborhoodRange = tree.range_neighbors(vectorPoints[i].pos(), analysisScale);
         fit3.computeWithIds( neighborhoodRange, vectorPoints );
         //! [Fit computeWithIds]

@@ -17,7 +17,7 @@
 using namespace std;
 using namespace Grenaille;
 
-template<typename DataPoint, typename FitScaleDer, typename FitSpaceDer, typename FitScaleSpaceDer, typename NeighborFilter>
+template<typename DataPoint, typename FitScaleDer, typename FitSpaceDer, typename FitScaleSpaceDer>
 void checkConsistency(const vector<DataPoint> vectorPoints, typename DataPoint::Scalar analysisScale, typename DataPoint::Scalar epsilon)
 {
     typedef typename DataPoint::Scalar Scalar;
@@ -36,15 +36,15 @@ void checkConsistency(const vector<DataPoint> vectorPoints, typename DataPoint::
     for(int i=0; i<nbPoints; ++i)
     {
         FitScaleDer fitScaleDer;
-        fitScaleDer.setNeighborFilter(NeighborFilter(vectorPoints[i].pos(), analysisScale));
+        fitScaleDer.setNeighborFilter({vectorPoints[i].pos(), analysisScale});
         fitScaleDer.compute(vectorPoints);
 
         FitSpaceDer fitSpaceDer;
-        fitSpaceDer.setNeighborFilter(NeighborFilter(vectorPoints[i].pos(), analysisScale));
+        fitSpaceDer.setNeighborFilter({vectorPoints[i].pos(), analysisScale});
         fitSpaceDer.compute(vectorPoints);
 
         FitScaleSpaceDer fitScaleSpaceDer;
-        fitScaleSpaceDer.setNeighborFilter(NeighborFilter(vectorPoints[i].pos(), analysisScale));
+        fitScaleSpaceDer.setNeighborFilter({vectorPoints[i].pos(), analysisScale});
         fitScaleSpaceDer.compute(vectorPoints);
 
         VERIFY( fitScaleDer.isStable()==fitSpaceDer.isStable() && fitScaleDer.isStable()==fitScaleSpaceDer.isStable() );
@@ -84,7 +84,7 @@ void checkConsistency(const vector<DataPoint> vectorPoints, typename DataPoint::
 
 
 
-template<typename DataPoint, typename Fit1, typename Fit2, typename Fit3, typename NeighborFilter>
+template<typename DataPoint, typename Fit1, typename Fit2, typename Fit3>
 void testFunction(bool _bAddNoise = false)
 {
     // Define related structure
@@ -174,10 +174,10 @@ void testFunction(bool _bAddNoise = false)
         vectorPointsRectangle[i].normal() = directionRectangle;
     }
 
-    checkConsistency<DataPoint, Fit1, Fit2, Fit3, NeighborFilter>(vectorPointsParaboloid, Scalar(1.2)*analysisScaleParaboloid, epsilon);
-    checkConsistency<DataPoint, Fit1, Fit2, Fit3, NeighborFilter>(vectorPointsPlane, analysisScalePlane, epsilon);
-    checkConsistency<DataPoint, Fit1, Fit2, Fit3, NeighborFilter>(vectorPointsSphere, analysisScaleSphere, epsilon);
-    checkConsistency<DataPoint, Fit1, Fit2, Fit3, NeighborFilter>(vectorPointsRectangle, analysisScaleRectangle, epsilon);
+    checkConsistency<DataPoint, Fit1, Fit2, Fit3>(vectorPointsParaboloid, Scalar(1.2)*analysisScaleParaboloid, epsilon);
+    checkConsistency<DataPoint, Fit1, Fit2, Fit3>(vectorPointsPlane, analysisScalePlane, epsilon);
+    checkConsistency<DataPoint, Fit1, Fit2, Fit3>(vectorPointsSphere, analysisScaleSphere, epsilon);
+    checkConsistency<DataPoint, Fit1, Fit2, Fit3>(vectorPointsRectangle, analysisScaleRectangle, epsilon);
 }
 
 template<typename Scalar, int Dim>
@@ -206,10 +206,10 @@ void callSubTests()
     cout << "Testing with perfect primitives..." << endl;
     for(int i = 0; i < g_repeat; ++i)
     {
-        CALL_SUBTEST(( testFunction<Point, FitConstantScaleDer, FitConstantSpaceDer, FitConstantScaleSpaceDer, WeightConstantFunc>() ));
-        CALL_SUBTEST(( testFunction<Point, FitConstantScaleMlsDer, FitConstantSpaceMlsDer, FitConstantScaleSpaceMlsDer, WeightConstantFunc>() ));
-        CALL_SUBTEST(( testFunction<Point, FitSmoothScaleDer, FitSmoothSpaceDer, FitSmoothScaleSpaceDer, WeightSmoothFunc>() ));
-        CALL_SUBTEST(( testFunction<Point, FitSmoothScaleMlsDer, FitSmoothSpaceMlsDer, FitSmoothScaleSpaceMlsDer, WeightSmoothFunc>() ));
+        CALL_SUBTEST(( testFunction<Point, FitConstantScaleDer, FitConstantSpaceDer, FitConstantScaleSpaceDer>() ));
+        CALL_SUBTEST(( testFunction<Point, FitConstantScaleMlsDer, FitConstantSpaceMlsDer, FitConstantScaleSpaceMlsDer>() ));
+        CALL_SUBTEST(( testFunction<Point, FitSmoothScaleDer, FitSmoothSpaceDer, FitSmoothScaleSpaceDer>() ));
+        CALL_SUBTEST(( testFunction<Point, FitSmoothScaleMlsDer, FitSmoothSpaceMlsDer, FitSmoothScaleSpaceMlsDer>() ));
     }
 }
 

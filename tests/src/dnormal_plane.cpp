@@ -17,7 +17,7 @@
 using namespace std;
 using namespace Grenaille;
 
-template<typename DataPoint, typename Fit, typename NeighborFilter>
+template<typename DataPoint, typename Fit>
 void testFunction(bool _bAddPositionNoise = false, bool /*_bAddNormalNoise */= false)
 {
     // Define related structure
@@ -70,7 +70,7 @@ void testFunction(bool _bAddPositionNoise = false, bool /*_bAddNormalNoise */= f
     for(int i = 0; i < int(vectorPoints.size()); ++i)
     {
         Fit fit;
-        fit.setNeighborFilter(NeighborFilter(vectorPoints[i].pos(), analysisScale));
+        fit.setNeighborFilter({vectorPoints[i].pos(), analysisScale});
         fit.compute(vectorPoints);
 
         if(fit.isStable())
@@ -102,14 +102,14 @@ void callSubTests()
     cout << "Testing with perfect plane (oriented / unoriented)..." << endl;
     for(int i = 0; i < g_repeat; ++i)
     {
-        CALL_SUBTEST(( testFunction<Point, FitSmoothOrientedSpaceDer, WeightSmoothFunc>() ));
-        CALL_SUBTEST(( testFunction<Point, FitConstantOrientedSpaceDer, WeightConstantFunc>() ));
-        CALL_SUBTEST(( testFunction<Point, FitSmoothOrientedScaleSpaceDer, WeightSmoothFunc>() ));
-        CALL_SUBTEST(( testFunction<Point, FitConstantOrientedScaleSpaceDer, WeightConstantFunc>() ));
-        CALL_SUBTEST(( testFunction<Point, FitSmoothOrientedSpaceMlsDer, WeightSmoothFunc>() ));
-        CALL_SUBTEST(( testFunction<Point, FitConstantOrientedSpaceMlsDer, WeightConstantFunc>() ));
-        CALL_SUBTEST(( testFunction<Point, FitSmoothOrientedScaleSpaceMlsDer, WeightSmoothFunc>() ));
-        CALL_SUBTEST(( testFunction<Point, FitConstantOrientedScaleSpaceMlsDer, WeightConstantFunc>() ));
+        CALL_SUBTEST(( testFunction<Point, FitSmoothOrientedSpaceDer>() ));
+        CALL_SUBTEST(( testFunction<Point, FitConstantOrientedSpaceDer>() ));
+        CALL_SUBTEST(( testFunction<Point, FitSmoothOrientedScaleSpaceDer>() ));
+        CALL_SUBTEST(( testFunction<Point, FitConstantOrientedScaleSpaceDer>() ));
+        CALL_SUBTEST(( testFunction<Point, FitSmoothOrientedSpaceMlsDer>() ));
+        CALL_SUBTEST(( testFunction<Point, FitConstantOrientedSpaceMlsDer>() ));
+        CALL_SUBTEST(( testFunction<Point, FitSmoothOrientedScaleSpaceMlsDer>() ));
+        CALL_SUBTEST(( testFunction<Point, FitConstantOrientedScaleSpaceMlsDer>() ));
     }
     cout << "Ok!" << endl;
 }

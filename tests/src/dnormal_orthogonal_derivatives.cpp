@@ -102,7 +102,6 @@ template<typename FitType, typename Functor>
 void test_orthoDerivatives(Functor f, bool skipCov = false)
 {
     using Point = typename FitType::DataPoint;
-    using NeighborFilter = typename FitType::NeighborFilter;
     using VectorType = typename Point::VectorType;
     using MatrixType = typename Point::MatrixType;
     using Scalar = typename FitType::Scalar;
@@ -128,7 +127,7 @@ void test_orthoDerivatives(Functor f, bool skipCov = false)
 #endif
     for(int k=0; k<int(vecs.size())/slice; ++k)
     {
-        fit.setNeighborFilter(NeighborFilter(vecs[k*slice].pos(), analysisScale));
+        fit.setNeighborFilter({vecs[k*slice].pos(), analysisScale});
         fit.compute(vecs);
 
         if(fit.isStable())

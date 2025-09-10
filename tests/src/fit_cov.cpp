@@ -120,7 +120,7 @@ CovarianceFitTwoPassesBase<DataPoint, _NFilter, T>::finalize ()
 }
 
 
-template<typename DataPoint, typename Fit, typename FitRef, typename NeighborFilter, bool _cSurfVar>
+template<typename DataPoint, typename Fit, typename FitRef>
 void testFunction(bool _bUnoriented = false, bool _bAddPositionNoise = false, bool _bAddNormalNoise = false)
 {
     // Define related structure
@@ -162,11 +162,11 @@ void testFunction(bool _bUnoriented = false, bool _bAddPositionNoise = false, bo
     {
 
         Fit fit;
-        fit.setNeighborFilter(NeighborFilter(vectorPoints[i].pos(), analysisScale));
+        fit.setNeighborFilter({vectorPoints[i].pos(), analysisScale});
         auto fitState = fit.compute(vectorPoints);
 
         FitRef ref;
-        ref.setNeighborFilter(NeighborFilter(vectorPoints[i].pos(), analysisScale));
+        ref.setNeighborFilter({vectorPoints[i].pos(), analysisScale});
         auto refState = ref.compute(vectorPoints);
 
         VERIFY(fitState == refState);
@@ -206,16 +206,16 @@ void callSubTests()
     for(int i = 0; i < g_repeat; ++i)
     {
         //Test with perfect plane
-        CALL_SUBTEST(( testFunction<Point, CovFitSmooth, RefFitSmooth, WeightSmoothFunc, true>() ));
-        CALL_SUBTEST(( testFunction<Point, CovFitConstant, RefFitConstant, WeightConstantFunc, true>() ));
+        CALL_SUBTEST(( testFunction<Point, CovFitSmooth, RefFitSmooth>() ));
+        CALL_SUBTEST(( testFunction<Point, CovFitConstant, RefFitConstant>() ));
     }
     cout << "Ok!" << endl;
 
     cout << "Testing with noise on position" << endl;
     for(int i = 0; i < g_repeat; ++i)
     {
-        CALL_SUBTEST(( testFunction<Point, CovFitSmooth, RefFitSmooth, WeightSmoothFunc, true>(false, true, true) ));
-        CALL_SUBTEST(( testFunction<Point, CovFitConstant, RefFitConstant, WeightConstantFunc, true>(false, true, true) ));
+        CALL_SUBTEST(( testFunction<Point, CovFitSmooth, RefFitSmooth>(false, true, true) ));
+        CALL_SUBTEST(( testFunction<Point, CovFitConstant, RefFitConstant>(false, true, true) ));
     }
     cout << "Ok!" << endl;
 }

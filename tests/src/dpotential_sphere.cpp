@@ -17,7 +17,7 @@
 using namespace std;
 using namespace Grenaille;
 
-template<typename DataPoint, typename Fit, typename NeighborFilter>
+template<typename DataPoint, typename Fit>
 void testFunction(bool _bAddPositionNoise = false, bool _bAddNormalNoise = false)
 {
     // Define related structure
@@ -47,7 +47,7 @@ void testFunction(bool _bAddPositionNoise = false, bool _bAddNormalNoise = false
     for(int i = 0; i < int(vectorPoints.size()); ++i)
     {
         Fit fit;
-        fit.setNeighborFilter(NeighborFilter(vectorPoints[i].pos(), analysisScale));
+        fit.setNeighborFilter({vectorPoints[i].pos(), analysisScale});
         fit.compute(vectorPoints);
 
         if(fit.isStable())
@@ -82,28 +82,28 @@ void callSubTests()
     cout << "Testing with perfect sphere (oriented / unoriented)..." << endl;
     for(int i = 0; i < g_repeat; ++i)
     {
-        CALL_SUBTEST(( testFunction<Point, FitSmoothSpaceDer, WeightSmoothFunc>() ));
-        CALL_SUBTEST(( testFunction<Point, FitConstantSpaceDer, WeightConstantFunc>() ));
-        CALL_SUBTEST(( testFunction<Point, FitSmoothScaleSpaceDer, WeightSmoothFunc>() ));
-        CALL_SUBTEST(( testFunction<Point, FitConstantScaleSpaceDer, WeightConstantFunc>() ));
-        CALL_SUBTEST(( testFunction<Point, FitSmoothSpaceMlsDer, WeightSmoothFunc>() ));
-        CALL_SUBTEST(( testFunction<Point, FitConstantSpaceMlsDer, WeightConstantFunc>() ));
-        CALL_SUBTEST(( testFunction<Point, FitSmoothScaleSpaceMlsDer, WeightSmoothFunc>() ));
-        CALL_SUBTEST(( testFunction<Point, FitConstantScaleSpaceMlsDer, WeightConstantFunc>() ));
+        CALL_SUBTEST(( testFunction<Point, FitSmoothSpaceDer>() ));
+        CALL_SUBTEST(( testFunction<Point, FitConstantSpaceDer>() ));
+        CALL_SUBTEST(( testFunction<Point, FitSmoothScaleSpaceDer>() ));
+        CALL_SUBTEST(( testFunction<Point, FitConstantScaleSpaceDer>() ));
+        CALL_SUBTEST(( testFunction<Point, FitSmoothSpaceMlsDer>() ));
+        CALL_SUBTEST(( testFunction<Point, FitConstantSpaceMlsDer>() ));
+        CALL_SUBTEST(( testFunction<Point, FitSmoothScaleSpaceMlsDer>() ));
+        CALL_SUBTEST(( testFunction<Point, FitConstantScaleSpaceMlsDer>() ));
     }
     cout << "Ok!" << endl;
 
     cout << "Testing with noise on position and normals (oriented / unoriented)..." << endl;
     for(int i = 0; i < g_repeat; ++i)
     {
-        CALL_SUBTEST(( testFunction<Point, FitSmoothSpaceDer, WeightSmoothFunc>(true, true) ));
-        CALL_SUBTEST(( testFunction<Point, FitConstantSpaceDer, WeightConstantFunc>(true, true) ));
-        CALL_SUBTEST(( testFunction<Point, FitSmoothScaleSpaceDer, WeightSmoothFunc>(true, true) ));
-        CALL_SUBTEST(( testFunction<Point, FitConstantScaleSpaceDer, WeightConstantFunc>(true, true) ));
-        CALL_SUBTEST(( testFunction<Point, FitSmoothSpaceMlsDer, WeightSmoothFunc>(true, true) ));
-        CALL_SUBTEST(( testFunction<Point, FitConstantSpaceMlsDer, WeightConstantFunc>(true, true) ));
-        CALL_SUBTEST(( testFunction<Point, FitSmoothScaleSpaceMlsDer, WeightSmoothFunc>(true, true) ));
-        CALL_SUBTEST(( testFunction<Point, FitConstantScaleSpaceMlsDer, WeightConstantFunc>(true, true) ));       
+        CALL_SUBTEST(( testFunction<Point, FitSmoothSpaceDer>(true, true) ));
+        CALL_SUBTEST(( testFunction<Point, FitConstantSpaceDer>(true, true) ));
+        CALL_SUBTEST(( testFunction<Point, FitSmoothScaleSpaceDer>(true, true) ));
+        CALL_SUBTEST(( testFunction<Point, FitConstantScaleSpaceDer>(true, true) ));
+        CALL_SUBTEST(( testFunction<Point, FitSmoothSpaceMlsDer>(true, true) ));
+        CALL_SUBTEST(( testFunction<Point, FitConstantSpaceMlsDer>(true, true) ));
+        CALL_SUBTEST(( testFunction<Point, FitSmoothScaleSpaceMlsDer>(true, true) ));
+        CALL_SUBTEST(( testFunction<Point, FitConstantScaleSpaceMlsDer>(true, true) ));
     }
     cout << "Ok!" << endl;
 }
