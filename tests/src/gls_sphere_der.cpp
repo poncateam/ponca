@@ -24,7 +24,7 @@
 using namespace std;
 using namespace Ponca;
 
-template<typename DataPoint, typename Fit, typename NeighborFilter>
+template<typename DataPoint, typename Fit>
 void testFunction(bool _bAddPositionNoise = false, bool _bAddNormalNoise = false)
 {
     // Define related structure
@@ -56,7 +56,7 @@ void testFunction(bool _bAddPositionNoise = false, bool _bAddNormalNoise = false
     for(int i = 0; i < int(vectorPoints.size()); ++i)
     {
         Fit fit;
-        fit.setNeighborFilter(NeighborFilter(vectorPoints[i].pos(), analysisScale));
+        fit.setNeighborFilter({vectorPoints[i].pos(), analysisScale});
         fit.compute(vectorPoints);
 
         if(fit.isStable())
@@ -84,14 +84,14 @@ void callSubTests()
     cout << "Testing with perfect sphere (oriented / unoriented)..." << endl;
     for(int i = 0; i < g_repeat; ++i)
     {
-        CALL_SUBTEST(( testFunction<Point, FitSmoothOriented, WeightSmoothFunc>() ));
+        CALL_SUBTEST(( testFunction<Point, FitSmoothOriented>() ));
     }
     cout << "Ok!" << endl;
 
     /*cout << "Testing with noise on position and normals (oriented / unoriented)..." << endl;
     for(int i = 0; i < g_repeat; ++i)
     {
-        CALL_SUBTEST(( testFunction<Point, FitSmoothOriented, WeightSmoothFunc>(true, true) ));
+        CALL_SUBTEST(( testFunction<Point, FitSmoothOriented>(true, true) ));
     }
     cout << "Ok!" << endl;*/
 }

@@ -42,7 +42,7 @@ template <typename Fit, typename Scalar>
 void CheckSurfaceVariation<false>::run(const Fit& /*fit*/, Scalar /*epsilon*/){ }
 
 
-template<typename DataPoint, typename Fit, typename NeighborFilter, bool _cSurfVar>
+template<typename DataPoint, typename Fit, bool _cSurfVar>
 void testFunction(bool _bUnoriented = false, bool _bAddPositionNoise = false, bool _bAddNormalNoise = false, bool conflictAnnounced = false)
 {
     // Define related structure
@@ -102,7 +102,7 @@ void testFunction(bool _bUnoriented = false, bool _bAddPositionNoise = false, bo
     {
 
         Fit fit;
-        fit.setNeighborFilter(NeighborFilter(vectorPoints[i].pos(), analysisScale));
+        fit.setNeighborFilter({vectorPoints[i].pos(), analysisScale});
         fit.computeWithIds(tree.range_neighbors(vectorPoints[i].pos(),analysisScale),vectorPoints);
 
         auto ret = fit.getCurrentState();
@@ -172,26 +172,26 @@ void callSubTests()
     for(int i = 0; i < g_repeat; ++i)
     {
         //Test with perfect plane
-        CALL_SUBTEST(( testFunction<Point, CovFitSmooth, WeightSmoothFunc, true>() ));
-        CALL_SUBTEST(( testFunction<Point, CovFitConstant, WeightConstantFunc, true>() ));
-        CALL_SUBTEST(( testFunction<Point, CovFitConstant2, WeightConstantFunc2, true>() ));
-        CALL_SUBTEST(( testFunction<Point, MeanFitConstantGlobal, WeightConstantFuncGlobal, false>() ));
-        CALL_SUBTEST(( testFunction<Point, MeanFitSmooth, WeightSmoothFunc, false>() ));
-        CALL_SUBTEST(( testFunction<Point, MeanFitConstant, WeightConstantFunc, false>() ));
-        CALL_SUBTEST(( testFunction<Point, MeanFitConstant2, WeightConstantFunc2, false>() ));
-        CALL_SUBTEST(( testFunction<Point, MeanFitConstantGlobal, WeightConstantFuncGlobal, false>() ));
+        CALL_SUBTEST(( testFunction<Point, CovFitSmooth, true>() ));
+        CALL_SUBTEST(( testFunction<Point, CovFitConstant, true>() ));
+        CALL_SUBTEST(( testFunction<Point, CovFitConstant2, true>() ));
+        CALL_SUBTEST(( testFunction<Point, MeanFitConstantGlobal, false>() ));
+        CALL_SUBTEST(( testFunction<Point, MeanFitSmooth, false>() ));
+        CALL_SUBTEST(( testFunction<Point, MeanFitConstant, false>() ));
+        CALL_SUBTEST(( testFunction<Point, MeanFitConstant2, false>() ));
+        CALL_SUBTEST(( testFunction<Point, MeanFitConstantGlobal, false>() ));
         // Check if fitting conflict is detected
-        CALL_SUBTEST(( testFunction<Point, Hybrid1, WeightConstantFunc, false>(false, false, false, true) ));
-        CALL_SUBTEST(( testFunction<Point, Hybrid2, WeightConstantFunc, false>(false, false, false, true) ));
+        CALL_SUBTEST(( testFunction<Point, Hybrid1, false>(false, false, false, true) ));
+        CALL_SUBTEST(( testFunction<Point, Hybrid2, false>(false, false, false, true) ));
     }
     cout << "Ok!" << endl;
 
     cout << "Testing with noise on position" << endl;
     for(int i = 0; i < g_repeat; ++i)
     {
-        CALL_SUBTEST(( testFunction<Point, CovFitSmooth, WeightSmoothFunc, true>(false, true, true) ));
-        CALL_SUBTEST(( testFunction<Point, CovFitConstant, WeightConstantFunc, true>(false, true, true) ));
-        CALL_SUBTEST(( testFunction<Point, CovFitConstant2, WeightConstantFunc2, true>(false, true, true) ));
+        CALL_SUBTEST(( testFunction<Point, CovFitSmooth, true>(false, true, true) ));
+        CALL_SUBTEST(( testFunction<Point, CovFitConstant, true>(false, true, true) ));
+        CALL_SUBTEST(( testFunction<Point, CovFitConstant2, true>(false, true, true) ));
         // CALL_SUBTEST(( testFunction<Point, CovFitConstantGlobal, WeightConstantFuncGlobal, true>(false, true, true) ));
     }
     cout << "Ok!" << endl;

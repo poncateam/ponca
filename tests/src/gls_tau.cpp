@@ -25,7 +25,7 @@
 using namespace std;
 using namespace Ponca;
 
-template<typename DataPoint, typename Fit, typename NeighborFilter>
+template<typename DataPoint, typename Fit>
 void testFunction(bool _bUnoriented = false, bool _bAddPositionNoise = false, bool _bAddNormalNoise = false)
 {
     // Define related structure
@@ -64,7 +64,7 @@ void testFunction(bool _bUnoriented = false, bool _bAddPositionNoise = false, bo
         VectorType vEvaluationPoint = vectorPoints[i].pos() + distanceToPlane * vPlaneNormal;
 
         Fit fit;
-        fit.setNeighborFilter(NeighborFilter(vEvaluationPoint, analysisScale));
+        fit.setNeighborFilter({vEvaluationPoint, analysisScale});
         fit.compute(vectorPoints);
 
         if(fit.isStable())
@@ -97,10 +97,10 @@ void callSubTests()
     cout << "Testing with perfect plane (oriented / unoriented)..." << endl;
     for(int i = 0; i < g_repeat; ++i)
     {
-        CALL_SUBTEST(( testFunction<Point, FitSmoothOriented, WeightSmoothFunc>() ));
-        CALL_SUBTEST(( testFunction<Point, FitConstantOriented, WeightConstantFunc>() ));
-        CALL_SUBTEST(( testFunction<Point, FitSmoothUnoriented, WeightSmoothFunc>() ));
-        CALL_SUBTEST(( testFunction<Point, FitConstantUnoriented, WeightConstantFunc>() ));
+        CALL_SUBTEST(( testFunction<Point, FitSmoothOriented>() ));
+        CALL_SUBTEST(( testFunction<Point, FitConstantOriented>() ));
+        CALL_SUBTEST(( testFunction<Point, FitSmoothUnoriented>() ));
+        CALL_SUBTEST(( testFunction<Point, FitConstantUnoriented>() ));
     }
     cout << "Ok..." << endl;
 
