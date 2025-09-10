@@ -11,6 +11,14 @@
 
 namespace Ponca
 {
+/*! \brief Defines a filter for neighboring points.
+ *
+ * This class framework can be extended to other concepts such as weighting functions (see class DistWeightFuncBase)
+ * \see DistWeightFuncBase
+ *
+ * @tparam DataPoint Point type used for computation
+ * @tparam _local Defines if this neighbor filter does the global to local coordinate system conversion
+ */
 template<class DataPoint, bool _local>
 class NeighborhoodFrameBase {
 public:
