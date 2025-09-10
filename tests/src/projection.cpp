@@ -59,7 +59,7 @@ void testFunction(typename DataPoint::Scalar lowPrecisionEpsilon = typename Data
     Scalar analysisScale = std::sqrt(zmax*zmax + width*width);
 
     Fit fit;
-    fit.setNeighborFilter(NF(center, analysisScale));
+    fit.setNeighborFilter({center, analysisScale});
     fit.init();
 
     for(int i = 0; i < nbPointsFit; ++i)

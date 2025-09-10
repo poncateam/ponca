@@ -24,7 +24,7 @@
 using namespace std;
 using namespace Ponca;
 
-template<typename Point, typename Fit, typename NeighborFilter>
+template<typename Point, typename Fit>
 void testFunction()
 {
         // Define related structure
@@ -58,7 +58,7 @@ void testFunction()
         const auto &fitInitPos = vecs[k].pos();
 
         Fit fit;
-        fit.setNeighborFilter(NeighborFilter(fitInitPos, analysisScale));
+        fit.setNeighborFilter({fitInitPos, analysisScale});
         fit.compute(vecs);
 
         if(fit.isStable())
@@ -89,7 +89,7 @@ void callSubTests()
 
     for(int i = 0; i < g_repeat; ++i)
     {
-        CALL_SUBTEST(( testFunction<Point, Sphere, NeighborFilter>() ));
+        CALL_SUBTEST(( testFunction<Point, Sphere>() ));
     }
 }
 
