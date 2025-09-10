@@ -76,13 +76,10 @@ void testFunction(typename DataPoint::Scalar lowPrecisionEpsilon = typename Data
 
     if(fit.isStable())
     {
-        std::vector<VectorType> samples (nbPoints);
         for (int i = 0; i < nbPoints; ++i)
         {
-            samples[i] = center + analysisScale * VectorType::Random();
-        }
-        for ( const auto& p: samples )
-        {
+            const VectorType p = center + analysisScale * VectorType::Random();
+
             // check that the projected point is on the surface
             VectorType projD = fit.projectDescent( p, 1000 );
             VERIFY( std::abs(fit.potential(projD)) < lowPrecisionEpsilon );
