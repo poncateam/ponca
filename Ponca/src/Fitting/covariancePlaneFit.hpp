@@ -31,7 +31,7 @@ CovariancePlaneFitImpl<DataPoint, _NFilter, T>::worldToTangentPlane (const Vecto
     return Base::m_solver.eigenvectors().transpose() * _q;
   else {
     // apply rotation and translation to get uv coordinates
-    return Base::m_solver.eigenvectors().transpose() * (Base::m_nFilter.convertToLocalBasis(_q));
+    return Base::m_solver.eigenvectors().transpose() * (Base::getNeighborFilter().convertToLocalBasis(_q));
   }
 }
 
@@ -43,7 +43,7 @@ CovariancePlaneFitImpl<DataPoint, _NFilter, T>::tangentPlaneToWorld (const Vecto
   if (ignoreTranslation)
     return Base::m_solver.eigenvectors().transpose().inverse() * _lq;
   else {
-    return Base::m_nFilter.convertToGlobalBasis(Base::m_solver.eigenvectors().transpose().inverse() * _lq);
+    return Base::getNeighborFilter().convertToGlobalBasis(Base::m_solver.eigenvectors().transpose().inverse() * _lq);
   }
 }
 

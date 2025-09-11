@@ -44,14 +44,14 @@ private:
     //! \brief Sum of the neighbors weights
     Scalar m_sumW {0};
 
+    //! \brief Neighborhood filter
+    NeighborFilter   m_nFilter;
+
 protected:
 
     //! \brief Represent the current state of the fit (finalize function
     //! update the state)
     FIT_RESULT m_eCurrentState {UNDEFINED};
-
-    //! \brief Neighborhood filter
-    NeighborFilter   m_nFilter;
 
 public:
     /**************************************************************************/
@@ -201,10 +201,10 @@ public:
             int spaceId = (Type & FitScaleDer) ? 1 : 0;
             // compute weight
             if (Type & FitScaleDer)
-                dw[0] = Base::m_nFilter.scaledw(attributes.pos(), attributes);
+                dw[0] = Base::getNeighborFilter().scaledw(attributes.pos(), attributes);
 
             if (Type & FitSpaceDer)
-                dw.template segment<int(DataPoint::Dim)>(spaceId) = -Base::m_nFilter.spacedw(attributes.pos(), attributes).transpose();
+                dw.template segment<int(DataPoint::Dim)>(spaceId) = -Base::getNeighborFilter().spacedw(attributes.pos(), attributes).transpose();
 
             m_dSumW += dw;
             return true;
