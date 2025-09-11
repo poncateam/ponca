@@ -12,7 +12,7 @@ AlgebraicSphere<DataPoint, _NFilter, T>::project(const VectorType& _q) const
     PONCA_MULTIARCH_STD_MATH(sqrt);
 
     // turn to centered basis
-    const VectorType lq = Base::m_nFilter.convertToLocalBasis(_q);
+    const VectorType lq = Base::getNeighborFilter().convertToLocalBasis(_q);
 
     Scalar potential = m_uc + lq.dot(m_ul) + m_uq * lq.squaredNorm();
     VectorType grad = m_ul + Scalar(2) * m_uq * lq;
@@ -27,7 +27,7 @@ AlgebraicSphere<DataPoint, _NFilter, T>::project(const VectorType& _q) const
     {
         t = - (norm - sqrt(norm*norm - Scalar(4) * m_uq * potential)) / (Scalar(2) * m_uq * norm);
     }
-    return Base::m_nFilter.convertToGlobalBasis( lq + t * grad );
+    return Base::getNeighborFilter().convertToGlobalBasis( lq + t * grad );
 }
 
 template < class DataPoint, class _NFilter, typename T>
@@ -35,7 +35,7 @@ typename AlgebraicSphere<DataPoint, _NFilter, T>::Scalar
 AlgebraicSphere<DataPoint, _NFilter, T>::potential( const VectorType &_q, const bool convertToLocalBasis ) const
 {
     // turn to centered basis
-    const VectorType lq = convertToLocalBasis? Base::m_nFilter.convertToLocalBasis(_q) : _q;
+    const VectorType lq = convertToLocalBasis? Base::getNeighborFilter().convertToLocalBasis(_q) : _q;
     return m_uc + lq.dot(m_ul) + m_uq * lq.squaredNorm();
 }
 
@@ -45,7 +45,7 @@ typename AlgebraicSphere<DataPoint, _NFilter, T>::VectorType
 AlgebraicSphere<DataPoint, _NFilter, T>::primitiveGradient( const VectorType &_q, const bool convertToLocalBasis ) const
 {
         // turn to centered basis
-        const VectorType lq = convertToLocalBasis? Base::m_nFilter.convertToLocalBasis(_q) : _q;
+        const VectorType lq = convertToLocalBasis? Base::getNeighborFilter().convertToLocalBasis(_q) : _q;
         return (m_ul + Scalar(2.) * m_uq * lq);
 }
 

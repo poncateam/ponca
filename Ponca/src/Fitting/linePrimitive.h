@@ -105,7 +105,7 @@ public:
     PONCA_MULTIARCH inline Scalar potential (const VectorType& _q, const bool convertToLocalBasis = true) const
     {
         // turn to centered basis
-        const VectorType lq = convertToLocalBasis? Base::m_nFilter.convertToLocalBasis(_q) : _q;
+        const VectorType lq = convertToLocalBasis? Base::getNeighborFilter().convertToLocalBasis(_q) : _q;
         // The potential is the distance from a point to the line
         return EigenBase::squaredDistance(lq);
     }
@@ -115,7 +115,7 @@ public:
     PONCA_MULTIARCH inline VectorType project (const VectorType& _q) const
     {
         // Project on the normal vector and add the offset value
-        return Base::m_nFilter.convertToGlobalBasis(EigenBase::projection(Base::m_nFilter.convertToLocalBasis(_q)));
+        return Base::getNeighborFilter().convertToGlobalBasis(EigenBase::projection(Base::getNeighborFilter().convertToLocalBasis(_q)));
     }
 }; //class Line
 

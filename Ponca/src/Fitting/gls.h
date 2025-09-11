@@ -77,13 +77,13 @@ public:
     }
 
     /*! \brief Compute and return \f$ \frac{\tau}{t} \f$ */
-    PONCA_MULTIARCH inline Scalar tau_normalized() const { return tau() / Base::m_nFilter.evalScale(); }
+    PONCA_MULTIARCH inline Scalar tau_normalized() const { return tau() / Base::getNeighborFilter().evalScale(); }
 
     /*! \brief Compute and return \f$ \eta \f$ */
     PONCA_MULTIARCH inline VectorType eta_normalized() const { return eta(); }
 
     /*! \brief Compute and return \f$ t \kappa \f$ */
-    PONCA_MULTIARCH inline Scalar kappa_normalized() const { return kappa() * Base::m_nFilter.evalScale(); }
+    PONCA_MULTIARCH inline Scalar kappa_normalized() const { return kappa() * Base::getNeighborFilter().evalScale(); }
 
     /*! \brief Return the fitness, e.g. the pratt norm of the initial scalar field */
     PONCA_MULTIARCH inline Scalar fitness() const { return m_fitness; }

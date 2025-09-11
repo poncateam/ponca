@@ -257,7 +257,7 @@ namespace internal
             PONCA_MULTIARCH_STD_MATH(min)
 
             // turn to centered basis
-            const VectorType lq = Base::m_nFilter.convertToLocalBasis(_q);
+            const VectorType lq = Base::getNeighborFilter().convertToLocalBasis(_q);
 
             VectorType grad;
             VectorType dir  = Base::primitiveGradient(lq, false);
@@ -274,7 +274,7 @@ namespace internal
                 delta = -Base::potential(proj, false)*min(ilg,Scalar(1.));
                 proj += dir*delta;
             }
-            return Base::m_nFilter.convertToGlobalBasis( proj );
+            return Base::getNeighborFilter().convertToGlobalBasis( proj );
         }
     }; // class Basket
 
