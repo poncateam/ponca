@@ -319,8 +319,9 @@ namespace internal
         /*! \brief Computes the fit using the MLS iteration process.
          * The position of the projected point is outputted through the lastPosition argument.
          *
-         * @tparam IndexRange STL-Like range storing indices of the neighbors
+         * @tparam IndexRange STL-Like range storing indices
          * @tparam PointContainer STL-like container storing the points
+         * @param ids An STL-like container of indeices of the neighbors
          * @param points An STL-like container of points
          * @param mlsIter The amount of MLS iteration that is being done for this fit
          * @return The result of the fit
