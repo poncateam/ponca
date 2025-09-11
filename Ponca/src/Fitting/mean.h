@@ -38,7 +38,7 @@ namespace Ponca {
         /// Defined as \f$ b(\mathbf{x}) = \frac{\sum_i w_\mathbf{x}(\mathbf{p_i}) \mathbf{p_i}}{\sum_i w_\mathbf{x}(\mathbf{p_i})} \f$,
         ///  where \f$\left[\mathbf{p_i} \in \text{neighborhood}(\mathbf{x})\right]\f$ are all the point samples in \f$\mathbf{x}\f$'s neighborhood
         PONCA_MULTIARCH inline VectorType barycenter() const {
-            return Base::m_nFilter.convertToGlobalBasis( barycenterLocal() );
+            return Base::getNeighborFilter().convertToGlobalBasis( barycenterLocal() );
         }
 
         /*! \brief The distance between the barycenter and the basis center.
