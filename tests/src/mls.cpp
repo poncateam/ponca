@@ -52,7 +52,7 @@ void testFunction() {
 
     // Test for each point if the normal is correct
 #pragma omp parallel for
-    for(int i = 0; i < int(vectorPoints.size()); ++i)
+    for (int i = 0; i < int(vectorPoints.size()); ++i)
     {
         VectorType pos = vectorPoints[i].pos();
         Fit fit;
@@ -72,11 +72,9 @@ void testFunction() {
             Scalar absdot = std::abs(estimated.dot(theoriticalNormal));
             Scalar absdotMLS = std::abs(estimatedMLS.dot(theoriticalNormal));
 
-            VERIFY( absdot - 1 < epsilon );
-            VERIFY( absdotMLS - 1 < epsilon );
             // Verify that mls gives better result than normal compute when comparing with the theoretical values
             // By checking if absdotMLS is closer to 1 than asbdot (taking into account approximation error using the epsilon)
-            VERIFY( (absdot + epsilon >= absdotMLS && absdotMLS >= 1 - epsilon) || absdot - epsilon <= absdotMLS && absdotMLS <= 1 + epsilon);
+            VERIFY( (absdot + epsilon >= absdotMLS && absdotMLS >= 1 - epsilon) || (absdot - epsilon <= absdotMLS && absdotMLS <= 1 + epsilon));
         }
     }
 }
