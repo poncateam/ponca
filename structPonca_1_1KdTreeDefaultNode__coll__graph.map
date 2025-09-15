@@ -1,5 +1,5 @@
 <map id="Ponca::KdTreeDefaultNode&lt; Index, NodeIndex, DataPoint, LeafSize &gt;" name="Ponca::KdTreeDefaultNode&lt; Index, NodeIndex, DataPoint, LeafSize &gt;">
-<area shape="rect" id="Node000001" title=" " alt="" coords="9,403,228,497"/>
-<area shape="rect" id="Node000002" href="$classPonca_1_1KdTreeCustomizableNode.html" title="The node type used by default by the kd&#45;tree." alt="" coords="5,5,232,355"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="121,368,121,402,116,402,116,368"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="9,523,228,617"/>
+<area shape="rect" id="Node000002" href="$classPonca_1_1KdTreeCustomizableNode.html" title="The node type used by default by the kd&#45;tree." alt="" coords="5,5,232,475"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="121,489,121,523,116,523,116,489"/>
 </map>
