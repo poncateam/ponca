@@ -74,6 +74,7 @@ void testFunction() {
 
             // Verify that mls gives better result than normal compute when comparing with the theoretical values
             // By checking if absdotMLS is closer to 1 than asbdot (taking into account approximation error using the epsilon)
+            // In other words : absdot >= absdotMLS >= 1 OR absdot <= absdotMLS <= 1
             VERIFY( (absdot + epsilon >= absdotMLS && absdotMLS >= 1 - epsilon) || (absdot - epsilon <= absdotMLS && absdotMLS <= 1 + epsilon));
         }
     }
