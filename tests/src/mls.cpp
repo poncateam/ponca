@@ -130,40 +130,15 @@ void callSubTests()
     typedef DistWeightFunc<Point, SmoothWeightKernel<Scalar> > WeightSmoothFunc;
     typedef Basket<Point,WeightSmoothFunc,OrientedSphereFit> FitSmoothOriented;
 
-    //
     // //! [PlaneFitDerTypes]
     // using PlaneScaleDiff = BasketDiff<Plane, FitScaleDer, CovariancePlaneDer>;
     // using PlaneSpaceDiff = BasketDiff<Plane, FitSpaceDer, CovariancePlaneDer>;
     // using PlaneScaleSpaceDiff = BasketDiff<Plane, FitScaleSpaceDer, CovariancePlaneDer>;
     // //! [PlaneFitDerTypes]
 
-    // KdTreeDense<Point> tree;
-    // Scalar scale = generateData(tree);
-
     for(int i = 0; i < g_repeat; ++i)
     {
-
         CALL_SUBTEST(( testFunction<Point, Sphere>() ));
-        // //  Plane diffs
-        // // CALL_SUBTEST((testBasicFunctionalities<Sphere>(tree, scale) ));
-        // // CALL_SUBTEST((testBasicFunctionalities<Plane>(tree, scale) ));
-        // // CALL_SUBTEST((testBasicFunctionalities<PlaneScaleSpaceDiff>(tree, scale) ));
-        //
-        // // // Check that we get the same Sphere, whatever the extensions
-        // auto checkIsSameSphere = [](const auto&f1, const auto&f2){isSameSphere(f1,f2);};
-        // CALL_SUBTEST((testMLSIsSame<Sphere>(tree, scale, checkIsSameSphere) ));
-        // //
-        // // // Check that we get the same Plane, whatever the extensions
-        // auto checkIsSamePlane = [](const auto&f1, const auto&f2){isSamePlane(f1,f2);};
-        // CALL_SUBTEST((testMLSIsSame<Plane>(tree, scale, checkIsSamePlane) ));
-        //
-        // // auto checkIsSamePlaneDerivative = [](const auto&f1, const auto&f2){
-        // //     isSamePlane(f1,f2);
-        // //     hasSamePlaneDerivatives(f1, f2);
-        // // };
-        // // // // Check that we get the same Plane derivative, whatever if we have one or more primitive fitted.
-        // // // int fff = 0;
-        // // CALL_SUBTEST((testMLSIsSame<Plane, PlaneMLS>(tree, scale, checkIsSamePlaneDerivative) ));
     }
 }
 
