@@ -81,31 +81,31 @@ namespace Ponca
         */
         PONCA_MULTIARCH inline Scalar surfaceVariation() const;
 
-        /*! \brief Implements the planarity.
+        /*! \brief Implements the planarity \cite Guinard:2017 .
             Planarity is defined as:
             \f[ \frac{\lambda_1 - \lambda_0}{\lambda_2} \f]
         */
         PONCA_MULTIARCH inline Scalar planarity() const;
 
-        /*! \brief Implements the linearity.
+        /*! \brief Implements the linearity \cite Guinard:2017 .
             Linearity is defined as:
             \f[ \frac{\lambda_2 - \lambda_1}{\lambda_2} \f]
         */
         PONCA_MULTIARCH inline Scalar linearity() const;
 
-        /*! \brief Implements the sphericity.
+        /*! \brief Implements the sphericity \cite Guinard:2017 .
             Sphericity is defined as:
             \f[ \frac{\lambda_0}{\lambda_2} \f]
         */
         PONCA_MULTIARCH inline Scalar sphericity() const;
 
-        /*! \brief Implements the anisotropy.
+        /*! \brief Implements the anisotropy \cite Guinard:2017 .
             Anisotropy is defined as:
             \f[ \frac{\lambda_2 - \lambda_0}{\lambda_2} \f]
         */
         PONCA_MULTIARCH inline Scalar anisotropy() const;
 
-        /*! \brief Implements the eigenentropy.
+        /*! \brief Implements the eigenentropy \cite Guinard:2017 .
             Eigenentropy is defined as:
             \f[ - \lambda_0 * \ln{\lambda_0} - \lambda_1 * \ln{\lambda_1} - \lambda_2 * \ln{\lambda_2} \f]
         */
