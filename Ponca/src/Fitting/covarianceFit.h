@@ -123,11 +123,6 @@ namespace Ponca
         */
         PONCA_MULTIARCH inline Scalar lambda_2() const;
 
-        /*! \brief The distance between the barycenter and the origin.
-            \return 0 for invalid fits
-        */
-        PONCA_MULTIARCH inline Scalar barycenterDistance() const;
-
         /*! \brief Reading access to the Solver used to analyse the covariance matrix */
         PONCA_MULTIARCH inline const Solver& solver() const { return m_solver; }
     };

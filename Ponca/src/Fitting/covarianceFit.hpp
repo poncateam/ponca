@@ -123,13 +123,6 @@ CovarianceFitBase<DataPoint, _WFunctor, T>::lambda_2() const
     return m_solver.eigenvalues()(2);
 }
 
-template <class DataPoint, class _WFunctor, typename T>
-typename CovarianceFitBase<DataPoint, _WFunctor, T>::Scalar
-CovarianceFitBase<DataPoint, _WFunctor, T>::barycenterDistance() const
-{
-    return Base::barycenterLocal().norm();
-}
-
 template < class DataPoint, class _WFunctor, int DiffType, typename T>
 void
 CovarianceFitDer<DataPoint, _WFunctor, DiffType, T>::init()
