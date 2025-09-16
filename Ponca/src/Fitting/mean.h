@@ -41,7 +41,7 @@ namespace Ponca {
             return Base::m_w.convertToGlobalBasis( barycenterLocal() );
         }
 
-        /*! \brief The distance between the barycenter and the origin.
+        /*! \brief The distance between the barycenter and the basis center.
             \return 0 for invalid fits
         */
         PONCA_MULTIARCH inline Scalar barycenterDistance() const {
