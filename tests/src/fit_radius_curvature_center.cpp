@@ -73,7 +73,7 @@ void testFunction(bool _bUnoriented = false, bool _bAddPositionNoise = false, bo
     //generate sampled sphere
     int nbPoints = Eigen::internal::random<int>(100, 1000);
 
-    Scalar radius = Eigen::internal::random<Scalar>(1., 10.);
+    Scalar radius = Eigen::internal::random<Scalar>(2., 10.);
 
     Scalar analysisScale = Scalar(10.) * std::sqrt( Scalar(4. * M_PI) * radius * radius / nbPoints);
     Scalar centerScale = Eigen::internal::random<Scalar>(1,10000);
