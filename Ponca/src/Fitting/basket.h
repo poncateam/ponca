@@ -288,10 +288,12 @@ namespace internal
             assert(mlsIter > 0);
             FIT_RESULT res     = UNDEFINED;
             const Scalar t     = Base::m_w.evalScale();
-            auto lastPos       = Base::m_w.evalPos();
+            VectorType lastPos = Base::m_w.evalPos();
+
             for( int mm = 0; mm < mlsIter; ++mm) {
                 Base::setWeightFunc({lastPos, t});
                 res = compute(points);
+
                 if (Base::isStable()) {
                     lastPos = Base::project( lastPos );
                 } else {
@@ -299,6 +301,7 @@ namespace internal
                     break;
                 }
             }
+
             return res;
         }
 
@@ -319,10 +322,12 @@ namespace internal
             assert(mlsIter > 0);
             FIT_RESULT res     = UNDEFINED;
             const Scalar t     = Base::m_w.evalScale();
-            auto lastPos       = Base::m_w.evalPos();
+            VectorType lastPos = Base::m_w.evalPos();
+
             for( int mm = 0; mm < mlsIter; ++mm) {
                 Base::setWeightFunc({lastPos, t});
                 res = computeWithIds(ids, points);
+
                 if (Base::isStable()) {
                     lastPos = Base::project( lastPos );
                 } else {
@@ -330,6 +335,7 @@ namespace internal
                     break;
                 }
             }
+
             return res;
         }
     }; // class Basket
