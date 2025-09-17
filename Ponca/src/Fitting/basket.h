@@ -155,8 +155,17 @@ namespace internal
     /// Scalar type used for computation, as defined from Basket
     using Scalar = typename DataPoint::Scalar;
 
-    using BasketType::compute; // Makes compute(container) and compute(begin, end) accessible
+
+    using ComputeObject<Self>::compute; // Make the default compute(container) accessible when not PONCA_CPU_ARCH
     using BasketType::computeWithIds;
+
+    // Resolves the ambiguity of the compute functions
+    /// \copydoc Basket::compute
+    template <typename IteratorBegin, typename IteratorEnd>
+    PONCA_MULTIARCH inline FIT_RESULT compute(const IteratorBegin& begin, const IteratorEnd& end) {
+        // This overwrite points to the function defined in Basket class
+        BasketType::compute(begin, end);
+    }
 
     /// \copydoc Basket::addNeighbor
     PONCA_MULTIARCH inline bool addNeighbor(const DataPoint &_nei) {
