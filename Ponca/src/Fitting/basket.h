@@ -155,8 +155,7 @@ namespace internal
     /// Scalar type used for computation, as defined from Basket
     using Scalar = typename DataPoint::Scalar;
 
-    using ComputeObject<Self>::compute; // Make the default compute accessible
-    using BasketType::compute;
+    using BasketType::compute; // Makes compute(container) and compute(begin, end) accessible
     using BasketType::computeWithIds;
 
     /// \copydoc Basket::addNeighbor
