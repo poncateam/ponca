@@ -103,9 +103,7 @@ namespace internal
             \tparam IteratorEnd   The end of the iterator (std::end(iterator)
         */
         template <typename IteratorBegin, typename IteratorEnd>
-        PONCA_MULTIARCH inline FIT_RESULT compute(const IteratorBegin& begin, const IteratorEnd& end)
-        {
-            std::cerr << "ERROR" << std::endl;
+        PONCA_MULTIARCH inline FIT_RESULT compute(const IteratorBegin& /*begin*/, const IteratorEnd& /*end*/) {
             return UNDEFINED;
         };
 
@@ -116,7 +114,6 @@ namespace internal
         */
         template <typename IndexRange, typename PointContainer>
         PONCA_MULTIARCH inline FIT_RESULT computeWithIds(IndexRange /*ids*/, const PointContainer& /*points*/) {
-            std::cerr << "ERROR" << std::endl;
             return UNDEFINED;
         };
     }; // struct ComputeObject
