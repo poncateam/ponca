@@ -89,6 +89,7 @@ namespace internal
 #ifdef PONCA_CPU_ARCH
         /*! \brief Convenience function for STL-like container                                                        */
         /*! Uses the compute(IteratorBegin, IteratorEnd) function                                                     */
+        /*! \note This method is only accessible when using a CPU architecture (PONCA_CPU_ARCH = true)                */
         /*! \tparam Container And STL-Like container                                                                  */
         /*! \see #compute(const IteratorBegin& begin, const IteratorEnd& end)                                         */
         template <typename Container>
@@ -123,13 +124,11 @@ namespace internal
     template<typename Derived, typename Base>
     struct BasketComputeObject : public ComputeObject<Derived> {
     protected:
-        /// \brief Retrieve the top layer object
-        /// Returns a reference to the derived class so that we can use its overwritten methods
-        Derived& derived() { return static_cast<Derived&>(*this); }
-        // Base& base() { return static_cast<Base&>(*this); }
+        using ComputeObject<Derived>::derived;
         Base& base() { return static_cast<Base&>(static_cast<Derived&>(*this)); }
     public:
-        using ComputeObject<Derived>::compute;
+        using ComputeObject<Derived>::compute; // Makes the default compute(container) accessible when using a CPU architecture
+
         /*!
          * \brief Convenience function for STL-like iterators
          * Add neighbors stored in a container using STL-like iterators, and call finalize at the end.
@@ -217,7 +216,7 @@ namespace internal
     /// Scalar type used for computation, as defined from Basket
     using Scalar = typename DataPoint::Scalar;
 
-    using BasketComputeObject<Self, Base>::compute; // Make the default compute(container) accessible when not PONCA_CPU_ARCH
+    using BasketComputeObject<Self, Base>::compute;
     using BasketComputeObject<Self, Base>::computeWithIds;
 
     /// \copydoc Basket::addNeighbor
@@ -277,7 +276,7 @@ namespace internal
         /// Weighting function
         using WeightFunction = W;
 
-        using BasketComputeObject<Self, Base>::compute; // Make the default compute(container) accessible when not PONCA_CPU_ARCH
+        using BasketComputeObject<Self, Base>::compute;
         using BasketComputeObject<Self, Base>::computeWithIds;
 
         /// \brief Add a neighbor to perform the fit
