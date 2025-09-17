@@ -163,8 +163,18 @@ namespace internal
     /// \copydoc Basket::compute
     template <typename IteratorBegin, typename IteratorEnd>
     PONCA_MULTIARCH inline FIT_RESULT compute(const IteratorBegin& begin, const IteratorEnd& end) {
-        // This overwrite points to the function defined in Basket class
-        Self::compute(begin, end);
+        Base::init();
+        FIT_RESULT res = UNDEFINED;
+
+        do {
+            Self::startNewPass();
+            for (auto it = begin; it != end; ++it){
+                Self::addNeighbor(*it);
+            }
+            res = Base::finalize();
+        } while ( res == NEED_OTHER_PASS );
+
+        return res;
     }
 
     /// \copydoc Basket::addNeighbor
