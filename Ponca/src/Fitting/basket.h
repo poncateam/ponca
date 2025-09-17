@@ -156,6 +156,8 @@ namespace internal
     using Scalar = typename DataPoint::Scalar;
 
     using ComputeObject<Self>::compute; // Make the default compute accessible
+    using BasketType::compute;
+    using BasketType::computeWithIds;
 
     /// \copydoc Basket::addNeighbor
     PONCA_MULTIARCH inline bool addNeighbor(const DataPoint &_nei) {
