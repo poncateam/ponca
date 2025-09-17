@@ -17,9 +17,10 @@ var searchData=
   ['and_20python_14',['Screen Space Curvature using Cuda and Python',['../example_python_ssc_page.html',1,'example_page']]],
   ['and_20requirements_15',['Computational objets capabilities and requirements',['../fitting.html#fitting_capabilities',1,'']]],
   ['and_20usage_16',['and usage',['../example_python_ssc_page.html#pyssgl_intro_sec_dep_subsec',1,'Installation and usage'],['../example_cu_ssc_page.html#cu_ssgl_sec_dep_subsec',1,'Installation and usage']]],
-  ['api_20comparisons_17',['API comparisons',['../example_cxx_nanoflann_page.html#nanoflann_comparison_sec',1,'']]],
-  ['api_20of_20computational_20objects_18',['API of Computational Objects',['../fitting_concepts.html#concepts_computObject',1,'']]],
-  ['apis_19',['Comparison between Nanoflann and Ponca KdTree APIs',['../example_cxx_nanoflann_page.html',1,'example_page']]],
-  ['applyprattnorm_20',['applyprattnorm',['../classPonca_1_1AlgebraicSphere.html#ad09e54e72635438337edab0bf9aa226b',1,'Ponca::AlgebraicSphere::applyPrattNorm()'],['../classPonca_1_1OrientedSphereDerImpl.html#ad00b0c092ddce7f2659254a2691b27ed',1,'Ponca::OrientedSphereDerImpl::applyPrattNorm()']]],
-  ['as_20cmake_20subdirectory_21',['Use as cmake subdirectory',['../ponca_getting_started_page.html#getting_started_installation_cmakesubdirectory_subsec',1,'']]]
+  ['anisotropy_17',['anisotropy',['../classPonca_1_1CovarianceFitBase.html#affc551a012a6044ae3c31c9b5235f9a4',1,'Ponca::CovarianceFitBase']]],
+  ['api_20comparisons_18',['API comparisons',['../example_cxx_nanoflann_page.html#nanoflann_comparison_sec',1,'']]],
+  ['api_20of_20computational_20objects_19',['API of Computational Objects',['../fitting_concepts.html#concepts_computObject',1,'']]],
+  ['apis_20',['Comparison between Nanoflann and Ponca KdTree APIs',['../example_cxx_nanoflann_page.html',1,'example_page']]],
+  ['applyprattnorm_21',['applyprattnorm',['../classPonca_1_1AlgebraicSphere.html#ad09e54e72635438337edab0bf9aa226b',1,'Ponca::AlgebraicSphere::applyPrattNorm()'],['../classPonca_1_1OrientedSphereDerImpl.html#ad00b0c092ddce7f2659254a2691b27ed',1,'Ponca::OrientedSphereDerImpl::applyPrattNorm()']]],
+  ['as_20cmake_20subdirectory_22',['Use as cmake subdirectory',['../ponca_getting_started_page.html#getting_started_installation_cmakesubdirectory_subsec',1,'']]]
 ];

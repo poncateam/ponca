@@ -1,7 +1,7 @@
 <map id="Ponca::MeanPosition&lt; DataPoint, _WFunctor, T &gt;" name="Ponca::MeanPosition&lt; DataPoint, _WFunctor, T &gt;">
-<area shape="rect" id="Node000001" title="Compute the barycenter of the input points." alt="" coords="59,133,259,313"/>
+<area shape="rect" id="Node000001" title="Compute the barycenter of the input points." alt="" coords="59,133,259,333"/>
 <area shape="rect" id="Node000002" title=" " alt="" coords="5,5,187,85"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="117,98,129,132,124,134,112,99"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="116,97,128,132,123,134,111,99"/>
 <area shape="rect" id="Node000003" title=" " alt="" coords="211,13,234,78"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="209,92,194,134,189,132,204,90"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="210,92,195,134,190,132,205,90"/>
 </map>

@@ -1,5 +1,14 @@
 var NAVTREEINDEX2 =
 {
+"classPonca_1_1Plane.html#aab59c89c503d324f8bb4efa14e542915":[8,0,0,58,4],
+"classPonca_1_1Plane.html#aaf943f5bcf752d7871c8475369022ef9":[8,0,0,58,16],
+"classPonca_1_1Plane.html#ac3962c2f2212db7441747f4174236eb2":[8,0,0,58,3],
+"classPonca_1_1Plane.html#ad1a40b2bd6aab48a8e0ca3e32d7d02ce":[8,0,0,58,10],
+"classPonca_1_1PolynomialSmoothWeightKernel.html":[8,0,0,59],
+"classPonca_1_1PolynomialSmoothWeightKernel.html#a4d05ca6e922eda8950c3ab0d9e4d1813":[8,0,0,59,0],
+"classPonca_1_1PolynomialSmoothWeightKernel.html#a57638efcd9b72fa08be0b3a9ff385e47":[8,0,0,59,2],
+"classPonca_1_1PolynomialSmoothWeightKernel.html#ad8adceb3c40734ed05d02ff4cf3b1ae3":[8,0,0,59,1],
+"classPonca_1_1PolynomialSmoothWeightKernel.html#af29dbc91ddfad21d22534873a25be0a4":[8,0,0,59,3],
 "classPonca_1_1PrimitiveBase.html":[8,0,0,60],
 "classPonca_1_1PrimitiveBase.html#a043f4589903e678ad9fa7c1e6b5a3d03":[8,0,0,60,7],
 "classPonca_1_1PrimitiveBase.html#a17f013e561a9cab069212f9d89d33959":[8,0,0,60,16],
@@ -240,14 +249,5 @@ var NAVTREEINDEX2 =
 "functions_w.html":[8,3,0,19],
 "hierarchy.html":[8,2],
 "index.html":[],
-"index.html#ponca_about_sec":[0],
-"index.html#ponca_credits_sec":[2],
-"index.html#ponca_credits_subsection_citation":[2,2],
-"index.html#ponca_credits_subsection_crew":[2,0],
-"index.html#ponca_credits_subsection_grenaille":[2,1],
-"index.html#ponca_credits_subsection_users":[2,3],
-"index.html#ponca_instructions_sec":[1],
-"pages.html":[],
-"ponca_changelog.html":[4],
-"ponca_changelog.html#ponca_changelog_sec":[4,0]
+"index.html#ponca_about_sec":[0]
 };
