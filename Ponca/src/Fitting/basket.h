@@ -200,7 +200,7 @@ namespace internal
         template <class, class, int, typename> class Ext0,
         template <class, class, int, typename> class... Exts>
     class BasketDiff : public BasketComputeObject<BasketDiff<BasketType, Type, Ext0, Exts...>, typename internal::BasketDiffAggregate<BasketType, Type, Ext0, Exts...>::type>,
-                       public internal::BasketDiffAggregate<BasketType, Type, Ext0, Exts...>::type {
+                       public virtual internal::BasketDiffAggregate<BasketType, Type, Ext0, Exts...>::type {
     private:
         using Self   = BasketDiff;
     public:
