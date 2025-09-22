@@ -38,7 +38,7 @@ jobs:
           git clone https://gitlab.com/libeigen/eigen.git eigen_src
           mkdir eigen_installed/
           cd eigen_src
-          git checkout 3.4.0
+          git checkout 5.0
         if: ${{ matrix.config.installEigen == 'COMPILE'}}
       - name: Configure Eigen
         run: mkdir eigen_build && cd eigen_build && cmake ../eigen_src -DCMAKE_INSTALL_PREFIX=../eigen_installed
