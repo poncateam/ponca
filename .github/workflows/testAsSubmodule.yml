@@ -38,7 +38,7 @@ jobs:
           git clone https://gitlab.com/libeigen/eigen.git eigen_src
           mkdir eigen_installed/
           cd eigen_src
-          git checkout 3.4.0
+          git checkout 5.0
         if: ${{ matrix.config.installEigen == 'COMPILE'}}
       - name: Configure Eigen
         run: | # Prepare Eigen Cmake without build https://gitlab.com/libeigen/eigen/-/blob/3.4/CMakeLists.txt?ref_type=heads#L90
