@@ -14,7 +14,7 @@ Current head (v.1.4 RC)
 - Cmake
     - [build] Enable exportation of projects linking to Ponca targets (#150)
     - [install] Change output directory to `lib/cmake/Ponca` (#150)
-    - [build] Fix the compilation of pcl_wrapper on newer CMake version by enabling the use of the C language (#155)
+    - [build] Fix the compilation of pcl_wrapper on newer CMake version by enabling the use of the C language (#156)
 
 - Bug-fixes and code improvements
    - [spatialPartitioning] Fix compilation error with `MAX_NODE_COUNT` when compiled with MSVC (#152)
