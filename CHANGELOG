@@ -37,7 +37,7 @@ Current head (v.1.4 RC)
     - Print error log on tests failure (#162)
 
 - Docs
-    - [Fitting] Updated the Fit user manual to account for the change of use of the curvature estimator
+    - [Fitting] Updated the Fit user manual to account for the change of use of the curvature estimator (#172)
 
 --------------------------------------------------------------------------------
 v.1.3
