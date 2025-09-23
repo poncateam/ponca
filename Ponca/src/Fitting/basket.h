@@ -89,6 +89,7 @@ namespace internal
 #ifdef PONCA_CPU_ARCH
         /*! \brief Convenience function for STL-like container                                                        */
         /*! Uses the compute(IteratorBegin, IteratorEnd) function                                                     */
+        /*! \note This method is only accessible when using a CPU architecture (PONCA_CPU_ARCH = true)                */
         /*! \tparam Container And STL-Like container                                                                  */
         /*! \see #compute(const IteratorBegin& begin, const IteratorEnd& end)                                         */
         template <typename Container>
@@ -102,7 +103,9 @@ namespace internal
             \tparam IteratorEnd   The end of the iterator (std::end(iterator)
         */
         template <typename IteratorBegin, typename IteratorEnd>
-        PONCA_MULTIARCH inline FIT_RESULT compute(const IteratorBegin& begin, const IteratorEnd& end) { return UNDEFINED; };
+        PONCA_MULTIARCH inline FIT_RESULT compute(const IteratorBegin& /*begin*/, const IteratorEnd& /*end*/) {
+            return UNDEFINED;
+        };
 
         /*! \brief Convenience function to iterate over a subset of samples in a PointContainer
             \tparam IndexRange STL-Like range storing indices of the neighbors
@@ -110,48 +113,64 @@ namespace internal
             \see #compute(const IteratorBegin& begin, const IteratorEnd& end)
         */
         template <typename IndexRange, typename PointContainer>
-        PONCA_MULTIARCH inline FIT_RESULT computeWithIds(IndexRange /*ids*/, const PointContainer& /*points*/) { return UNDEFINED; };
+        PONCA_MULTIARCH inline FIT_RESULT computeWithIds(IndexRange /*ids*/, const PointContainer& /*points*/) {
+            return UNDEFINED;
+        };
     }; // struct ComputeObject
 
-#define WRITE_COMPUTE_FUNCTIONS                                                                       \
-    /*! \brief Convenience function for STL-like iterators                                         */ \
-    /*! Add neighbors stored in a container using STL-like iterators, and call finalize at the end.*/ \
-    /*! The fit is evaluated multiple time if needed (see #NEED_OTHER_PASS)*/                         \
-    /*! \see addNeighbor() */                                                                         \
-    template <typename IteratorBegin, typename IteratorEnd>                                           \
-    PONCA_MULTIARCH inline                                                                            \
-    FIT_RESULT compute(const IteratorBegin& begin, const IteratorEnd& end){                           \
-        Base::init();                                                                                 \
-        FIT_RESULT res = UNDEFINED;                                                                   \
-        do {                                                                                          \
-            Self::startNewPass();                                                                     \
-            for (auto it = begin; it != end; ++it){                                                   \
-                Self::addNeighbor(*it);                                                               \
-            }                                                                                         \
-            res = Base::finalize();                                                                   \
-        } while ( res == NEED_OTHER_PASS );                                                           \
-        return res;                                                                                   \
-    }                                                                                                 \
-    /*! \brief Convenience function to iterate over a subset of samples in a PointContainer  */       \
-    /*! Add neighbors stored in a PointContainer and sampled using indices stored in ids.*/           \
-    /*! \tparam IndexRange STL-Like range storing indices of the neighbors */                         \
-    /*! \tparam PointContainer STL-like container storing the points */                               \
-    /*! \see #compute(const IteratorBegin& begin, const IteratorEnd& end)    */                       \
-    template <typename IndexRange, typename PointContainer>                                           \
-    PONCA_MULTIARCH inline                                                                            \
-    FIT_RESULT computeWithIds(IndexRange ids, const PointContainer& points){                          \
-        this->init();                                                                                 \
-        FIT_RESULT res = UNDEFINED;                                                                   \
-        do {                                                                                          \
-            Self::startNewPass();                                                                     \
-            for (const auto& i : ids){                                                                \
-                this->addNeighbor(points[i]);                                                         \
-            }                                                                                         \
-            res = this->finalize();                                                                   \
-        } while ( res == NEED_OTHER_PASS );                                                           \
-        return res;                                                                                   \
-    }
+    template<typename Derived, typename Base>
+    struct BasketComputeObject : public ComputeObject<Derived> {
+    protected:
+        using ComputeObject<Derived>::derived;
+        Base& base() { return static_cast<Base&>(static_cast<Derived&>(*this)); }
+    public:
+        using ComputeObject<Derived>::compute; // Makes the default compute(container) accessible when using a CPU architecture
 
+        /*!
+         * \brief Convenience function for STL-like iterators
+         * Add neighbors stored in a container using STL-like iterators, and call finalize at the end.
+         * The fit is evaluated multiple time if needed (see #NEED_OTHER_PASS)
+         * \see addNeighbor()
+         */
+        template <typename IteratorBegin, typename IteratorEnd>
+        PONCA_MULTIARCH inline FIT_RESULT compute(const IteratorBegin& begin, const IteratorEnd& end){
+            base().init();
+            FIT_RESULT res = UNDEFINED;
+
+            do {
+                derived().startNewPass();
+                for (auto it = begin; it != end; ++it){
+                    derived().addNeighbor(*it);
+                }
+                res = base().finalize();
+            } while ( res == NEED_OTHER_PASS );
+
+            return res;
+        }
+
+        /*!
+         * \brief Convenience function to iterate over a subset of samples in a PointContainer
+         * Add neighbors stored in a PointContainer and sampled using indices stored in ids.
+         * \tparam IndexRange STL-Like range storing indices of the neighbors
+         * \tparam PointContainer STL-like container storing the points
+         * \see #compute(const IteratorBegin& begin, const IteratorEnd& end)
+         */
+        template <typename IndexRange, typename PointContainer>
+        PONCA_MULTIARCH inline FIT_RESULT computeWithIds(IndexRange ids, const PointContainer& points){
+            base().init();
+            FIT_RESULT res = UNDEFINED;
+
+            do {
+                derived().startNewPass();
+                for (const auto& i : ids){
+                    derived().addNeighbor(points[i]);
+                }
+                res = base().finalize();
+            } while ( res == NEED_OTHER_PASS );
+
+            return res;
+        }
+    };
     /*!
          \brief Aggregator class used to declare specialized structures with derivatives computations, using CRTP
 
@@ -180,8 +199,8 @@ namespace internal
     template <typename BasketType, int Type,
         template <class, class, int, typename> class Ext0,
         template <class, class, int, typename> class... Exts>
-    class BasketDiff : public ComputeObject<BasketDiff<BasketType, Type, Ext0, Exts...>>,
-                       public internal::BasketDiffAggregate<BasketType, Type, Ext0, Exts...>::type {
+    class BasketDiff : public BasketComputeObject<BasketDiff<BasketType, Type, Ext0, Exts...>, typename internal::BasketDiffAggregate<BasketType, Type, Ext0, Exts...>::type>,
+                       public virtual internal::BasketDiffAggregate<BasketType, Type, Ext0, Exts...>::type {
     private:
         using Self   = BasketDiff;
     public:
@@ -194,8 +213,8 @@ namespace internal
     /// Scalar type used for computation, as defined from Basket
     using Scalar = typename DataPoint::Scalar;
 
-    using ComputeObject<Self>::compute; // Make the default compute accessible
-    WRITE_COMPUTE_FUNCTIONS
+    using BasketComputeObject<Self, Base>::compute;
+    using BasketComputeObject<Self, Base>::computeWithIds;
 
     /// \copydoc Basket::addNeighbor
     PONCA_MULTIARCH inline bool addNeighbor(const DataPoint &_nei) {
@@ -239,7 +258,7 @@ namespace internal
     template <class P, class W,
         template <class, class, typename> class Ext0,
         template <class, class, typename> class... Exts>
-    class Basket : public ComputeObject<Basket<P, W, Ext0, Exts...>>,
+    class Basket : public BasketComputeObject<Basket<P, W, Ext0, Exts...>, typename internal::BasketAggregate<P, W, Ext0, Exts...>::type>,
                    public internal::BasketAggregate<P, W, Ext0, Exts...>::type
     {
     private:
@@ -254,8 +273,8 @@ namespace internal
         /// Weighting function
         using WeightFunction = W;
 
-        using ComputeObject<Self>::compute; // Make the default compute accessible
-        WRITE_COMPUTE_FUNCTIONS;
+        using BasketComputeObject<Self, Base>::compute;
+        using BasketComputeObject<Self, Base>::computeWithIds;
 
         /// \brief Add a neighbor to perform the fit
         ///
