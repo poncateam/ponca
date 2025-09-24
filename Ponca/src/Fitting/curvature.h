@@ -84,7 +84,7 @@ namespace Ponca
     };
 
     template < class DataPoint, class WFunctor, int /*DiffType*/, typename T>
-    using CurvatureEstimatorDiff = CurvatureEstimatorBase<DataPoint, WFunctor, T>;
+    using CurvatureEstimatorBaseDiff = CurvatureEstimatorBase<DataPoint, WFunctor, T>;
 } //namespace Ponca
 
 #include "curvature.hpp"

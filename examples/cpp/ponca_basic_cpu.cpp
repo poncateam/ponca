@@ -42,7 +42,7 @@ typedef MyPoint::VectorType VectorType;
 typedef DistWeightFunc<MyPoint,SmoothWeightKernel<Scalar> > WeightFunc;
 using Fit1 = Basket<MyPoint,WeightFunc,OrientedSphereFit,   GLSParam>;
 using Fit2 = Basket<MyPoint,WeightFunc,UnorientedSphereFit, GLSParam>;
-using Fit3 = BasketDiff< Fit1, FitSpaceDer, OrientedSphereDer, GLSDer, CurvatureEstimatorDiff, NormalDerivativesCurvatureEstimator>;
+using Fit3 = BasketDiff< Fit1, FitSpaceDer, OrientedSphereDer, GLSDer, CurvatureEstimatorBaseDiff, NormalDerivativesCurvatureEstimator>;
 using Fit4 = Basket<MyPoint,WeightFunc,SphereFit, GLSParam>;
 
 template<typename Fit>
