@@ -13,7 +13,7 @@
 
 namespace Ponca
 {
-    template < class DataPoint, class _NFilter, int DiffType, typename T>
+    template < class DataPoint, class _NFilter, typename T>
 /**
  *
  * \brief Base class for any 3d curvature estimator: holds \f$k_{\min}\f$, \f$k_{\max}\f$ and associated vectors,
@@ -46,7 +46,7 @@ namespace Ponca
         static_assert ( DataPoint::Dim == 3, "CurvatureEstimatorBase is only valid in 3D");
 
     public:
-        PONCA_EXPLICIT_CAST_OPERATORS_DER(CurvatureEstimatorBase, curvatureEstimatorBase)
+        PONCA_EXPLICIT_CAST_OPERATORS(CurvatureEstimatorBase, curvatureEstimatorBase)
         PONCA_FITTING_DECLARE_INIT
 
         /// \brief Returns true if contains valid curvature values (and not default ones)
@@ -83,6 +83,8 @@ namespace Ponca
         PONCA_MULTIARCH inline void setCurvatureValues(Scalar kmin, Scalar kmax, const VectorType& vmin, const VectorType& vmax);
     };
 
+    template < class DataPoint, class WFunctor, int DiffType, typename T>
+    using CurvatureEstimatorDiff = CurvatureEstimatorBase<DataPoint, WFunctor, T>;
 } //namespace Ponca
 
 #include "curvature.hpp"
