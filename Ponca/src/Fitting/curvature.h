@@ -83,7 +83,7 @@ namespace Ponca
         PONCA_MULTIARCH inline void setCurvatureValues(Scalar kmin, Scalar kmax, const VectorType& vmin, const VectorType& vmax);
     };
 
-    template < class DataPoint, class WFunctor, int DiffType, typename T>
+    template < class DataPoint, class WFunctor, int /*DiffType*/, typename T>
     using CurvatureEstimatorDiff = CurvatureEstimatorBase<DataPoint, WFunctor, T>;
 } //namespace Ponca
 
