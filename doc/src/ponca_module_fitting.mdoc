@@ -36,7 +36,7 @@ namespace Ponca
   Because of some properties of the C++ language, our classes does not inherit from a `Base` interface defining the API, but rather follows concepts, as described in \subpage fitting_concepts.
 
   \subsection fitting_primitiveOverview Fitting primitives and compute neighborhood properties
-  The fitting module provides a unified API to perform computations (e.g. fit a \ref PrimitiveBase "Primitive", compute geometrical properties such as \ref CurvatureEstimatorDiff "Curvatures") over the neighborhood of a given point.
+  The fitting module provides a unified API to perform computations (e.g. fit a \ref PrimitiveBase "Primitive", compute geometrical properties such as \ref CurvatureEstimatorBase "Curvatures") over the neighborhood of a given point.
   The type of computation is controlled by a type (called `Fit` in the example below) defined by the user by combining computational components offered in this module.
   Given an object of type `Fit`, the client code will always looks as follows:
   \code
@@ -252,7 +252,7 @@ namespace Ponca
   \note There is currently no formal description of the API provided by each capability. This will be fixed in upcoming releases.
   These relations are currently implicitly defined (and used), but not documented.
   For instance, a tool with the capability `PROVIDES_PRINCIPAL_CURVATURES` provides the following methods:
-  `kmin()`, `kmax()`, `kminDirection()`, `kmaxDirection()`, `kMean()`, `GaussianCurvature()`, see CurvatureEstimatorDiff.
+  `kmin()`, `kmax()`, `kminDirection()`, `kmaxDirection()`, `kMean()`, `GaussianCurvature()`, see CurvatureEstimatorBase.
 
   In order to ease tools combinations, each class declare a set of *required* and *provided* capabilities, as listed in the two following table:
 
