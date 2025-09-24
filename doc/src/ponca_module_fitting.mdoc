@@ -41,7 +41,7 @@ namespace Ponca
   Because of some properties of the C++ language, our classes does not inherit from a `Base` interface defining the API, but rather follows concepts, as described in \ref fitting_concepts.
 
   \subsection fitting_primitiveOverview Fitting primitives and compute neighborhood properties
-  The fitting module provides a unified API to perform computations (e.g. fit a \ref PrimitiveBase "Primitive", compute geometrical properties such as \ref CurvatureEstimatorDiff "Curvatures") over the neighborhood of a given point.
+  The fitting module provides a unified API to perform computations (e.g. fit a \ref PrimitiveBase "Primitive", compute geometrical properties such as \ref CurvatureEstimatorBase "Curvatures") over the neighborhood of a given point.
   The type of computation is controlled by a type (called `Fit` in the example below) defined by the user by combining computational components offered in this module.
   Given an object of type `Fit`, the client code can look as follow (alternative way of doing the fit computation can be seen in \ref fitting_Fitting):
   \code
