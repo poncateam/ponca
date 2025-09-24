@@ -41,7 +41,7 @@ namespace Ponca
   Because of some properties of the C++ language, our classes does not inherit from a `Base` interface defining the API, but rather follows concepts, as described in \ref fitting_concepts.
 
   \subsection fitting_primitiveOverview Fitting primitives and compute neighborhood properties
-  The fitting module provides a unified API to perform computations (e.g. fit a \ref PrimitiveBase "Primitive", compute geometrical properties such as \ref CurvatureEstimatorBase "Curvatures") over the neighborhood of a given point.
+  The fitting module provides a unified API to perform computations (e.g. fit a \ref PrimitiveBase "Primitive", compute geometrical properties such as \ref CurvatureEstimatorDiff "Curvatures") over the neighborhood of a given point.
   The type of computation is controlled by a type (called `Fit` in the example below) defined by the user by combining computational components offered in this module.
   Given an object of type `Fit`, the client code can look as follow (alternative way of doing the fit computation can be seen in \ref fitting_Fitting):
   \code
@@ -279,9 +279,9 @@ namespace Ponca
   Distance to PCA plane \cite Digne:2011:scalespacemeshing       | Mean curvature           | `Basket<P,W,CovariancePlaneFit> // method potential()`                                                    |  +++   | -           |
   Surface Variation \cite Pauly:2002:PSSimplification            | Mean curvature           | `Basket<P,W,CovariancePlaneFit> // method surfaceVariation()`                                             |  +++   | -           |
   Growing Least Squares \cite Mellado:2012:GLS                   | Mean curvature           | `Basket<P,W,OrientedSphereFit,GLSParam> // method kappa()`                                                |  ++    | + +         |
-  Point Set Surfaces (PSS) \cite Alexa:2001:Pss                  | Curvature Tensor         | `Basket<P,W,CovariancePlaneFit,CovariancePlaneSpaceDer,CurvatureEstimatorBase,NormalDerivativesCurvatureEstimator>`              |  +++   | +           |
-  Algebraic Point Set Surfaces (APSS) \cite Guennebaud:2007:APSS | Curvature Tensor         | `Basket<P,W,OrientedSphereFit,OrientedSphereSpaceDer,CurvatureEstimatorBase,NormalDerivativesCurvatureEstimator>`                |  ++    | + +         |
-  Algebraic Shape Operator (ASO) \cite Lejemble:2021:stable      | Curvature Tensor         | `Basket<P,W,OrientedSphereFit,OrientedSphereSpaceDer,MlsSphereFitDer,CurvatureEstimatorBase,NormalDerivativesCurvatureEstimator>`|  +     | + + +       |
+  Point Set Surfaces (PSS) \cite Alexa:2001:Pss                  | Curvature Tensor         | `Basket<P,W,CovariancePlaneFit,CovariancePlaneSpaceDer,CurvatureEstimatorDiff,NormalDerivativesCurvatureEstimator>`              |  +++   | +           |
+  Algebraic Point Set Surfaces (APSS) \cite Guennebaud:2007:APSS | Curvature Tensor         | `Basket<P,W,OrientedSphereFit,OrientedSphereSpaceDer,CurvatureEstimatorDiff,NormalDerivativesCurvatureEstimator>`                |  ++    | + +         |
+  Algebraic Shape Operator (ASO) \cite Lejemble:2021:stable      | Curvature Tensor         | `Basket<P,W,OrientedSphereFit,OrientedSphereSpaceDer,MlsSphereFitDer,CurvatureEstimatorDiff,NormalDerivativesCurvatureEstimator>`|  +     | + + +       |
 
 
   \image html buste.png "Figure 3. Example of mean curvature (GLSParam::kappa) computed at a fine (left) and a coarse (right) scale, and rendered with a simple color map (orange for concavities, blue for convexities)."
