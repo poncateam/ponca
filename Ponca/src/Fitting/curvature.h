@@ -43,7 +43,7 @@ namespace Ponca
         /// \brief Internal state indicating if the curvature are set to default (false), or have been computed (true)
         bool m_isValid {false};
 
-        static_assert ( DataPoint::Dim == 3, "CurvatureEstimatorDiff is only valid in 3D");
+        static_assert ( DataPoint::Dim == 3, "CurvatureEstimatorBase is only valid in 3D");
 
     public:
         PONCA_EXPLICIT_CAST_OPERATORS(CurvatureEstimatorBase, curvatureEstimatorBase)
