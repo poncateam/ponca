@@ -255,10 +255,10 @@ void callSubTests()
 
     using FitSphereOriented    = BasketDiff<
             Basket<Point, WeightSmoothFunc, OrientedSphereFit>,
-            FitScaleSpaceDer, OrientedSphereDer, CurvatureEstimatorBase, NormalDerivativesCurvatureEstimator>;
+            FitScaleSpaceDer, OrientedSphereDer, CurvatureEstimatorDiff, NormalDerivativesCurvatureEstimator>;
     using RefFitSphereOriented = BasketDiff<
             Basket<RefPoint, RefWeightFunc, OrientedSphereFit>,
-            FitScaleSpaceDer, OrientedSphereDer, CurvatureEstimatorBase, NormalDerivativesCurvatureEstimator>;
+            FitScaleSpaceDer, OrientedSphereDer, CurvatureEstimatorDiff, NormalDerivativesCurvatureEstimator>;
 //    using TestFitSphereOriented = BasketDiff<Basket<TestPoint, TestWeightFunc, OrientedSphereFit>,
 //            internal::FitScaleDer | internal::FitScaleDer, OrientedSphereDer, NormalDerivativesCurvatureEstimator>;
 
