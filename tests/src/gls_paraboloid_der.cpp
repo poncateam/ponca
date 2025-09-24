@@ -240,7 +240,7 @@ void callSubTests()
 {
     typedef long double RefScalar;
     typedef PointPositionNormal<RefScalar, 3> RefPoint;
-    typedef DistWeightFunc<RefPoint, SmoothWeightKernel<RefScalar> > RefNeighborFilter;
+    typedef DistWeightFunc<RefPoint, SmoothWeightKernel<RefScalar> > RefWeightFunc;
 
     typedef ScalarPrecisionCheck<Scalar,RefScalar> TestScalar;
     TestScalar::check_enabled = false; // set it to true to track diverging computations
@@ -252,10 +252,10 @@ void callSubTests()
 
     using FitSphereOriented    = BasketDiff<
             Basket<Point, WeightSmoothFunc, OrientedSphereFit>,
-            FitScaleSpaceDer, OrientedSphereDer, CurvatureEstimatorDiff, NormalDerivativesCurvatureEstimator>;
+            FitScaleSpaceDer, OrientedSphereDer, CurvatureEstimatorBaseDiff, NormalDerivativesCurvatureEstimator>;
     using RefFitSphereOriented = BasketDiff<
-            Basket<RefPoint, RefNeighborFilter, OrientedSphereFit>,
-            FitScaleSpaceDer, OrientedSphereDer, CurvatureEstimatorDiff, NormalDerivativesCurvatureEstimator>;
+            Basket<RefPoint, RefWeightFunc, OrientedSphereFit>,
+            FitScaleSpaceDer, OrientedSphereDer, CurvatureEstimatorBaseDiff, NormalDerivativesCurvatureEstimator>;
 //    using TestFitSphereOriented = BasketDiff<Basket<TestPoint, TestWeightFunc, OrientedSphereFit>,
 //            internal::FitScaleDer | internal::FitScaleDer, OrientedSphereDer, NormalDerivativesCurvatureEstimator>;
 
