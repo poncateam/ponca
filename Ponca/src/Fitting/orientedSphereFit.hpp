@@ -62,8 +62,10 @@ OrientedSphereFitImpl<DataPoint, _WFunctor, T>::finalize ()
     // Deal with degenerate cases
     if(abs(m_deno) < epsilon * max(m_sumDotPP, den1))
     {
+        if (Base::m_ul.isZero(0))
+            return Base::m_eCurrentState = UNDEFINED;
         //plane
-        Scalar s   = Base::m_ul.norm() == 0 ? Scalar(1.) : Scalar(1.) / Base::m_ul.norm();
+        Scalar s   = Scalar(1.) / Base::m_ul.norm();
         Base::m_ul = s*Base::m_ul;
         Base::m_uc = s*Base::m_uc;
         Base::m_uq = Scalar(0.);
