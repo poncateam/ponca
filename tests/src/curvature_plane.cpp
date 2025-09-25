@@ -12,8 +12,15 @@
 
 #include <vector>
 
+#include "Ponca/src/Fitting/basket.h"
+#include "Ponca/src/Fitting/covariancePlaneFit.h"
+#include "Ponca/src/Fitting/curvature.h"
+#include "Ponca/src/Fitting/curvatureEstimation.h"
+#include "Ponca/src/Fitting/weightFunc.h"
+#include "Ponca/src/Fitting/weightKernel.h"
+
 using namespace std;
-using namespace Grenaille;
+using namespace Ponca;
 
 
 template<typename DataPoint, typename Fit>
@@ -87,18 +94,34 @@ void callSubTests()
     typedef DistWeightFunc<Point, SmoothWeightKernel<Scalar> > WeightSmoothFunc;
     typedef DistWeightFunc<Point, ConstantWeightKernel<Scalar> > WeightConstantFunc;
 
-    typedef Basket<Point, WeightSmoothFunc,   CompactPlane, CovariancePlaneFit, NormalCovarianceCurvature> FitSmoothNormalCovariance;
-    typedef Basket<Point, WeightConstantFunc, CompactPlane, CovariancePlaneFit, NormalCovarianceCurvature> FitConstantNormalCovariance;
-    typedef Basket<Point, WeightSmoothFunc,   CompactPlane, CovariancePlaneFit, ProjectedNormalCovarianceCurvature> FitSmoothProjectedNormalCovariance;
-    typedef Basket<Point, WeightConstantFunc, CompactPlane, CovariancePlaneFit, ProjectedNormalCovarianceCurvature> FitConstantProjectedNormalCovariance;
+    typedef Basket<Point, WeightSmoothFunc  , CovariancePlaneFit> FitSmoothNormalCovariance;
+    typedef Basket<Point, WeightConstantFunc, CovariancePlaneFit> FitConstantNormalCovariance;
+    typedef Basket<Point, WeightSmoothFunc  , CovariancePlaneFit> FitSmoothProjectedNormalCovariance;
+    typedef Basket<Point, WeightConstantFunc, CovariancePlaneFit> FitConstantProjectedNormalCovariance;
+
+    using FitSmoothNormalCovarianceDiff = BasketDiff< FitSmoothNormalCovariance,
+        DiffType::FitSpaceDer, CovariancePlaneDer,
+        CurvatureEstimatorBaseDiff, NormalDerivativesCurvatureEstimator>;
+
+    using FitConstantNormalCovarianceDiff = BasketDiff< FitConstantNormalCovariance,
+        DiffType::FitSpaceDer, CovariancePlaneDer,
+        CurvatureEstimatorBaseDiff, NormalDerivativesCurvatureEstimator>;
+
+    using FitSmoothProjectedNormalCovarianceDiff = BasketDiff< FitSmoothProjectedNormalCovariance,
+        DiffType::FitSpaceDer, CovariancePlaneDer,
+        CurvatureEstimatorBaseDiff, NormalDerivativesCurvatureEstimator>;
+
+    using FitConstantProjectedNormalCovarianceDiff = BasketDiff< FitConstantProjectedNormalCovariance,
+        DiffType::FitSpaceDer, CovariancePlaneDer,
+        CurvatureEstimatorBaseDiff, NormalDerivativesCurvatureEstimator>;
 
     cout << "Testing with perfect plane..." << endl;
     for(int i = 0; i < g_repeat; ++i)
     {
-        CALL_SUBTEST(( testFunction<Point, FitSmoothNormalCovariance>() ));
-        CALL_SUBTEST(( testFunction<Point, FitConstantNormalCovariance>() ));
-        CALL_SUBTEST(( testFunction<Point, FitSmoothProjectedNormalCovariance>() ));
-        CALL_SUBTEST(( testFunction<Point, FitConstantProjectedNormalCovariance>() ));
+        CALL_SUBTEST(( testFunction<Point, FitSmoothNormalCovarianceDiff>() ));
+        CALL_SUBTEST(( testFunction<Point, FitConstantNormalCovarianceDiff>() ));
+        CALL_SUBTEST(( testFunction<Point, FitSmoothProjectedNormalCovarianceDiff>() ));
+        CALL_SUBTEST(( testFunction<Point, FitConstantProjectedNormalCovarianceDiff>() ));
     }
     cout << "Ok..." << endl;
 
