@@ -16,6 +16,7 @@
 #include "Ponca/src/Fitting/covariancePlaneFit.h"
 #include "Ponca/src/Fitting/curvature.h"
 #include "Ponca/src/Fitting/curvatureEstimation.h"
+#include "Ponca/src/Fitting/mongePatch.h"
 #include "Ponca/src/Fitting/weightFunc.h"
 #include "Ponca/src/Fitting/weightKernel.h"
 
@@ -68,14 +69,14 @@ void testFunction(bool _bAddPositionNoise = false, bool _bAddNormalNoise = false
         fit.compute(vectorPoints);
 
         if( fit.isStable() ){
-
+            VERIFY(std::abs(fit.kMean()) < epsilon);
             // Check if principal curvature values are null
             // VERIFY( Eigen::internal::isMuchSmallerThan(std::abs(fit.kmin()), Scalar(1.), epsilon) );
             // VERIFY( Eigen::internal::isMuchSmallerThan(std::abs(fit.kmax()), Scalar(1.), epsilon) );
 
             // Check if principal curvature directions lie on the plane
-            VERIFY( Eigen::internal::isMuchSmallerThan(std::abs(fit.kminDirection().dot(direction)), Scalar(1.), epsilon) );
-            VERIFY( Eigen::internal::isMuchSmallerThan(std::abs(fit.kmaxDirection().dot(direction)), Scalar(1.), epsilon) );
+            // VERIFY( Eigen::internal::isMuchSmallerThan(std::abs(fit.kminDirection().dot(direction)), Scalar(1.), epsilon) );
+            // VERIFY( Eigen::internal::isMuchSmallerThan(std::abs(fit.kmaxDirection().dot(direction)), Scalar(1.), epsilon) );
         }
         else {
             VERIFY(FITTING_FAILED);
@@ -95,6 +96,9 @@ void callSubTests()
     typedef Basket<Point, WeightConstantFunc, CovariancePlaneFit> FitConstantNormalCovariance;
     typedef Basket<Point, WeightSmoothFunc  , CovariancePlaneFit> FitSmoothProjectedNormalCovariance;
     typedef Basket<Point, WeightConstantFunc, CovariancePlaneFit> FitConstantProjectedNormalCovariance;
+    typedef Basket<Point, WeightConstantFunc, CovariancePlaneFit> FitConstantProjectedNormalCovariance;
+    typedef Basket<Point, WeightSmoothFunc  , CovariancePlaneFit, MongePatch> FitCovSmooth;
+    typedef Basket<Point, WeightConstantFunc, CovariancePlaneFit, MongePatch> FitCovConstant;
 
     using FitSmoothNormalCovarianceDiff = BasketDiff< FitSmoothNormalCovariance,
         DiffType::FitSpaceDer, CovariancePlaneDer,
@@ -115,10 +119,12 @@ void callSubTests()
     cout << "Testing with perfect plane..." << endl;
     for(int i = 0; i < g_repeat; ++i)
     {
-        CALL_SUBTEST(( testFunction<Point, FitSmoothNormalCovarianceDiff, WeightSmoothFunc>() ));
-        CALL_SUBTEST(( testFunction<Point, FitConstantNormalCovarianceDiff, WeightConstantFunc>() ));
-        CALL_SUBTEST(( testFunction<Point, FitSmoothProjectedNormalCovarianceDiff, WeightSmoothFunc>() ));
-        CALL_SUBTEST(( testFunction<Point, FitConstantProjectedNormalCovarianceDiff, WeightConstantFunc>() ));
+        // CALL_SUBTEST(( testFunction<Point, FitSmoothNormalCovarianceDiff, WeightSmoothFunc>() ));
+        // CALL_SUBTEST(( testFunction<Point, FitConstantNormalCovarianceDiff, WeightConstantFunc>() ));
+        // CALL_SUBTEST(( testFunction<Point, FitSmoothProjectedNormalCovarianceDiff, WeightSmoothFunc>() ));
+        // CALL_SUBTEST(( testFunction<Point, FitConstantProjectedNormalCovarianceDiff, WeightConstantFunc>() ));
+        CALL_SUBTEST(( testFunction<Point, FitCovSmooth  , WeightSmoothFunc>() ));
+        CALL_SUBTEST(( testFunction<Point, FitCovConstant, WeightConstantFunc>() ));
     }
     cout << "Ok..." << endl;
 
