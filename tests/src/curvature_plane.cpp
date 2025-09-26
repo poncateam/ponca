@@ -61,6 +61,7 @@ void testFunction(bool _bAddPositionNoise = false, bool _bAddNormalNoise = false
     for(int i = 0; i < int(vectorPoints.size()); ++i)
     {
         epsilon = testEpsilon<Scalar>();
+        const auto& queryPos = vectorPoints[i].pos();
         if ( _bAddPositionNoise) // relax a bit the testing threshold
           epsilon = Scalar(0.001*MAX_NOISE);
 
@@ -69,16 +70,11 @@ void testFunction(bool _bAddPositionNoise = false, bool _bAddNormalNoise = false
         fit.compute(vectorPoints);
 
         if( fit.isStable() ){
+            VERIFY(Scalar(1.) - std::abs(fit.primitiveGradient(queryPos).dot(direction)) <= epsilon);
+            // Check if we have a plane
             VERIFY(std::abs(fit.kMean()) < epsilon);
-            // Check if principal curvature values are null
-            // VERIFY( Eigen::internal::isMuchSmallerThan(std::abs(fit.kmin()), Scalar(1.), epsilon) );
-            // VERIFY( Eigen::internal::isMuchSmallerThan(std::abs(fit.kmax()), Scalar(1.), epsilon) );
-
-            // Check if principal curvature directions lie on the plane
-            // VERIFY( Eigen::internal::isMuchSmallerThan(std::abs(fit.kminDirection().dot(direction)), Scalar(1.), epsilon) );
-            // VERIFY( Eigen::internal::isMuchSmallerThan(std::abs(fit.kmaxDirection().dot(direction)), Scalar(1.), epsilon) );
-        }
-        else {
+            VERIFY(fit.GaussianCurvature() <= epsilon);
+        } else {
             VERIFY(FITTING_FAILED);
         }
     }
@@ -92,37 +88,21 @@ void callSubTests()
     typedef DistWeightFunc<Point, SmoothWeightKernel<Scalar> > WeightSmoothFunc;
     typedef DistWeightFunc<Point, ConstantWeightKernel<Scalar> > WeightConstantFunc;
 
-    typedef Basket<Point, WeightSmoothFunc  , CovariancePlaneFit> FitSmoothNormalCovariance;
-    typedef Basket<Point, WeightConstantFunc, CovariancePlaneFit> FitConstantNormalCovariance;
-    typedef Basket<Point, WeightSmoothFunc  , CovariancePlaneFit> FitSmoothProjectedNormalCovariance;
-    typedef Basket<Point, WeightConstantFunc, CovariancePlaneFit> FitConstantProjectedNormalCovariance;
-    typedef Basket<Point, WeightConstantFunc, CovariancePlaneFit> FitConstantProjectedNormalCovariance;
+    typedef Basket<Point, WeightSmoothFunc  , CovariancePlaneFit, CurvatureEstimatorBase> FitSmoothNormalCovariance;
+    typedef Basket<Point, WeightConstantFunc, CovariancePlaneFit, CurvatureEstimatorBase> FitConstantNormalCovariance;
+    typedef Basket<Point, WeightSmoothFunc  , CovariancePlaneFit, CurvatureEstimatorBase> FitSmoothProjectedNormalCovariance;
+    typedef Basket<Point, WeightConstantFunc, CovariancePlaneFit, CurvatureEstimatorBase> FitConstantProjectedNormalCovariance;
+    typedef Basket<Point, WeightConstantFunc, CovariancePlaneFit, CurvatureEstimatorBase> FitConstantProjectedNormalCovariance;
     typedef Basket<Point, WeightSmoothFunc  , CovariancePlaneFit, MongePatch> FitCovSmooth;
     typedef Basket<Point, WeightConstantFunc, CovariancePlaneFit, MongePatch> FitCovConstant;
-
-    using FitSmoothNormalCovarianceDiff = BasketDiff< FitSmoothNormalCovariance,
-        DiffType::FitSpaceDer, CovariancePlaneDer,
-        CurvatureEstimatorBaseDiff, NormalDerivativesCurvatureEstimator>;
-
-    using FitConstantNormalCovarianceDiff = BasketDiff< FitConstantNormalCovariance,
-        DiffType::FitSpaceDer, CovariancePlaneDer,
-        CurvatureEstimatorBaseDiff, NormalDerivativesCurvatureEstimator>;
-
-    using FitSmoothProjectedNormalCovarianceDiff = BasketDiff< FitSmoothProjectedNormalCovariance,
-        DiffType::FitSpaceDer, CovariancePlaneDer,
-        CurvatureEstimatorBaseDiff, NormalDerivativesCurvatureEstimator>;
-
-    using FitConstantProjectedNormalCovarianceDiff = BasketDiff< FitConstantProjectedNormalCovariance,
-        DiffType::FitSpaceDer, CovariancePlaneDer,
-        CurvatureEstimatorBaseDiff, NormalDerivativesCurvatureEstimator>;
 
     cout << "Testing with perfect plane..." << endl;
     for(int i = 0; i < g_repeat; ++i)
     {
-        // CALL_SUBTEST(( testFunction<Point, FitSmoothNormalCovarianceDiff, WeightSmoothFunc>() ));
-        // CALL_SUBTEST(( testFunction<Point, FitConstantNormalCovarianceDiff, WeightConstantFunc>() ));
-        // CALL_SUBTEST(( testFunction<Point, FitSmoothProjectedNormalCovarianceDiff, WeightSmoothFunc>() ));
-        // CALL_SUBTEST(( testFunction<Point, FitConstantProjectedNormalCovarianceDiff, WeightConstantFunc>() ));
+        CALL_SUBTEST(( testFunction<Point, FitSmoothNormalCovariance, WeightSmoothFunc>() ));
+        CALL_SUBTEST(( testFunction<Point, FitConstantNormalCovariance, WeightConstantFunc>() ));
+        CALL_SUBTEST(( testFunction<Point, FitSmoothProjectedNormalCovariance, WeightSmoothFunc>() ));
+        CALL_SUBTEST(( testFunction<Point, FitConstantProjectedNormalCovariance, WeightConstantFunc>() ));
         CALL_SUBTEST(( testFunction<Point, FitCovSmooth  , WeightSmoothFunc>() ));
         CALL_SUBTEST(( testFunction<Point, FitCovConstant, WeightConstantFunc>() ));
     }
