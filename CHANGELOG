@@ -3,6 +3,30 @@ Ponca changelog
 
 --------------------------------------------------------------------------------
 Current head (v.2.0.alpha2 RC)
+This release introduces a major rework of the curvature estimation framework, and several minors improvements and fixes.
+
+- API
+    - [fitting] Refactor curvature estimation API (#201) : remove deadcode, add weingarten map and fundamental forms.
+    - [fitting] Refactor MongePatch-related classes (#201) : add Heightfields, separate patch definition and fitting
+    - [fitting] Introduce limited reflection methods (#201)
+
+- Bug-fixes and code improvements
+    - [fitting] Fix issues when converting vectors between local and global frames (#201)
+
+- Tests
+    - [utils] Improve point cloud generation functions (#201)
+    - [fitting] add a plane test for Basket curvature estimators (#201)
+    - [fitting] add test curvature_test (#201)
+    - [fitting] rework tests fit_monge_patch and glsParaboloidDer (#201)
+    - [fitting] fix failing test fit_plane (#201)
+    - [fitting] update tests according to curvature API changes (#201)
+    - [fitting] speed up gls_sphere_der using kdtree (#201)
+
+- Examples
+    - [all] Update according to API changes (#201)
+
+- Docs
+    - [doc] Update doc according to recent API changes and new curvature estimators (#201)
 
 --------------------------------------------------------------------------------
 v.2.0.alpha1
