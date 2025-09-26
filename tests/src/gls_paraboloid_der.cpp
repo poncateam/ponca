@@ -48,13 +48,13 @@ void testFunction()
     Scalar paraboloidA = 100 * Eigen::internal::random<Scalar>(-1,1);
     Scalar paraboloidB = 100 * Eigen::internal::random<Scalar>(-1,1);
 
-    Scalar analysisScale {.001};// / std::max(std::abs(vCoef.x()), std::abs(vCoef.y()));
+    Scalar analysisScale = static_cast<Scalar>(.001);// / std::max(std::abs(vCoef.x()), std::abs(vCoef.y()));
 
     Scalar rotationAngle = Eigen::internal::random<Scalar>(Scalar(0.), Scalar(2 * M_PI));
     VectorType vRotationAxis = VectorType::Random().normalized();
 
     Scalar epsilon = testEpsilon<Scalar>();
-    Scalar approxEpsilon {0.1};
+    Scalar approxEpsilon = static_cast<Scalar>(.1);
 
     vector<DataPoint> vectorPoints(nbPoints);
     vector<DataPoint> vectorPointsOrigin(nbPoints);
@@ -128,7 +128,7 @@ void testFunction()
       {
         RefFit f;
         typename RefPoint::VectorType p = vFittingPoint.template cast<RefScalar>();
-        auto scale = analysisScale;
+        auto scale = static_cast<RefScalar>(analysisScale);
         if(k==0)
           scale += h;
         else
