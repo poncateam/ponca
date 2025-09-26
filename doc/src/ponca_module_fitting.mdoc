@@ -282,7 +282,7 @@ namespace Ponca
     Ponca::OrientedSphereDerImpl                | `PROVIDES_ALGEBRAIC_SPHERE`,`PROVIDES_MEAN_POSITION_DERIVATIVE`,`PROVIDES_PRIMITIVE_DERIVATIVE`       | `PROVIDES_ALGEBRAIC_SPHERE_DERIVATIVE`,`PROVIDES_NORMAL_DERIVATIVE` |
     MlsSphereFitDer                             | `PROVIDES_PRIMITIVE_DERIVATIVE`,`PROVIDES_ALGEBRAIC_SPHERE_DERIVATIVE`                                | `PROVIDES_NORMAL_DERIVATIVE`                                        |
     GLSDer                                      | `PROVIDES_GLS_PARAMETRIZATION`,`PROVIDES_PRIMITIVE_DERIVATIVE`,`PROVIDES_ALGEBRAIC_SPHERE_DERIVATIVE` | `PROVIDES_GLS_DERIVATIVE`,`PROVIDES_GLS_GEOM_VAR`                   |
-    CurvatureEstimatorBase                      |                                                                                                       | `PROVIDES_PRINCIPAL_CURVATURES`                                     |
+    CurvatureEstimatorBaseDiff                      |                                                                                                       | `PROVIDES_PRINCIPAL_CURVATURES`                                     |
     NormalDerivativesCurvatureEstimator         | `PROVIDES_NORMAL_DERIVATIVE`,`PROVIDES_PRINCIPAL_CURVATURES`                                          |                                                                     |
     NormalCovarianceCurvatureEstimator          | `PROVIDES_PRINCIPAL_CURVATURES`                                                                       |                                                                     |
     ProjectedNormalCovarianceCurvatureEstimator | `PROVIDES_PLANE`                                                                                      |                                                                     |
@@ -308,9 +308,9 @@ namespace Ponca
   Distance to PCA plane \cite Digne:2011:scalespacemeshing       | Mean curvature           | `Basket<P,W,CovariancePlaneFit> // method potential()`                                                    |  +++   | -           |
   Surface Variation \cite Pauly:2002:PSSimplification            | Mean curvature           | `Basket<P,W,CovariancePlaneFit> // method surfaceVariation()`                                             |  +++   | -           |
   Growing Least Squares \cite Mellado:2012:GLS                   | Mean curvature           | `Basket<P,W,OrientedSphereFit,GLSParam> // method kappa()`                                                |  ++    | + +         |
-  Point Set Surfaces (PSS) \cite Alexa:2001:Pss                  | Curvature Tensor         | `Basket<P,W,CovariancePlaneFit,CovariancePlaneSpaceDer,CurvatureEstimatorBase,NormalDerivativesCurvatureEstimator>`              |  +++   | +           |
-  Algebraic Point Set Surfaces (APSS) \cite Guennebaud:2007:APSS | Curvature Tensor         | `Basket<P,W,OrientedSphereFit,OrientedSphereSpaceDer,CurvatureEstimatorBase,NormalDerivativesCurvatureEstimator>`                |  ++    | + +         |
-  Algebraic Shape Operator (ASO) \cite Lejemble:2021:stable      | Curvature Tensor         | `Basket<P,W,OrientedSphereFit,OrientedSphereSpaceDer,MlsSphereFitDer,CurvatureEstimatorBase,NormalDerivativesCurvatureEstimator>`|  +     | + + +       |
+  Point Set Surfaces (PSS) \cite Alexa:2001:Pss                  | Curvature Tensor         | `Basket<P,W,CovariancePlaneFit,CovariancePlaneSpaceDer,CurvatureEstimatorBaseDiff,NormalDerivativesCurvatureEstimator>`              |  +++   | +           |
+  Algebraic Point Set Surfaces (APSS) \cite Guennebaud:2007:APSS | Curvature Tensor         | `Basket<P,W,OrientedSphereFit,OrientedSphereSpaceDer,CurvatureEstimatorBaseDiff,NormalDerivativesCurvatureEstimator>`                |  ++    | + +         |
+  Algebraic Shape Operator (ASO) \cite Lejemble:2021:stable      | Curvature Tensor         | `Basket<P,W,OrientedSphereFit,OrientedSphereSpaceDer,MlsSphereFitDer,CurvatureEstimatorBaseDiff,NormalDerivativesCurvatureEstimator>`|  +     | + + +       |
 
 
   \image html buste.png "Figure 3. Example of mean curvature (GLSParam::kappa) computed at a fine (left) and a coarse (right) scale, and rendered with a simple color map (orange for concavities, blue for convexities)."
