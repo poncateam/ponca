@@ -22,6 +22,7 @@ Current head (v.1.4 RC)
    - [spatialPartitioning] Fix compilation error with AppleClang: wrong initializers ordering (#154)
    - [spatialPartitioning] Fix issues with KdTreeCustomizableNode copy and move constructors(#192)
    - [fitting] Fix typo in code (#182)
+   - [all] Added static cast to remove warnings (#203)
 
 - Tests
    - [fitting] Split Basket test in subtests (#96)
