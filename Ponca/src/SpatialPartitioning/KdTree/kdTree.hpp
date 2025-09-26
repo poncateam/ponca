@@ -10,7 +10,7 @@ template<typename Traits>
 template<typename PointUserContainer, typename Converter>
 inline void KdTreeBase<Traits>::build(PointUserContainer&& points, Converter c)
 {
-    IndexContainer ids(static_cast<IndexType>(points.size()));
+    IndexContainer ids(points.size());
     std::iota(ids.begin(), ids.end(), static_cast<IndexType>(0));
     this->buildWithSampling(std::forward<PointUserContainer>(points), std::move(ids), std::move(c));
 }
