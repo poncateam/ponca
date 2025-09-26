@@ -163,7 +163,7 @@ void KdTreeBase<Traits>::build_rec(NodeIndexType node_id, IndexType start, Index
     {
         IndexType split_dim = 0;
         (Scalar(0.5) * aabb.diagonal()).maxCoeff(&split_dim);
-        node.configure_inner(aabb.center()[split_dim], m_nodes.size(), split_dim);
+        node.configure_inner(aabb.center()[split_dim], static_cast<IndexType>(m_nodes.size()), split_dim);
         m_nodes.emplace_back();
         m_nodes.emplace_back();
 
