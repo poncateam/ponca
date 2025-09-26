@@ -326,7 +326,7 @@ typename DataPoint::Scalar getKappaMean(const std::vector<DataPoint>& _vectorPoi
     typedef typename DataPoint::Scalar Scalar;
     typedef typename DataPoint::VectorType VectorType;
 
-    int size = _vectorPoints.size();
+    int size = static_cast<int>(_vectorPoints.size());
     Scalar kappaMean = 0.;
     int nbNei = 0;
 

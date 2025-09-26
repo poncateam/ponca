@@ -94,7 +94,7 @@ void testKernelDiff(int nbSteps = 1000)
     W2 kernel2;
 
     typedef typename W1::Scalar Scalar;
-    Scalar epsilon = 0.0001; // Current tolerance
+    Scalar epsilon = Scalar(0.0001); // Current tolerance
 
     for(int i=1; i<=nbSteps; ++i)
     {
@@ -111,7 +111,7 @@ void testKernelDiff(int nbSteps = 1000)
     nbSteps *= nbSteps;
 
     auto runComputation = [nbSteps](auto kernel ){
-        int sum = 0;
+        Scalar sum = 0;
         for(int i=1; i<=nbSteps; ++i)
         {
             Scalar x = Scalar(i) / Scalar(nbSteps);
