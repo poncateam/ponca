@@ -122,7 +122,7 @@ inline void KdTreeBase<Traits>::buildWithSampling(PointUserContainer&& points,
                                                   IndexUserContainer sampling,
                                                   Converter c)
 {
-    PONCA_DEBUG_ASSERT(points.size() <= MAX_POINT_COUNT);
+    PONCA_DEBUG_ASSERT(static_cast<IndexType>(points.size()) <= MAX_POINT_COUNT);
     this->clear();
 
     // Move, copy or convert input samples
@@ -152,7 +152,7 @@ void KdTreeBase<Traits>::build_rec(NodeIndexType node_id, IndexType start, Index
         level >= Traits::MAX_DEPTH ||
         // Since we add 2 nodes per inner node we need to stop if we can't add
         // them both
-        (NodeIndexType)m_nodes.size() > MAX_NODE_COUNT - 2);
+        static_cast<NodeIndexType>(m_nodes.size()) > MAX_NODE_COUNT - 2);
 
     node.configure_range(start, end-start, aabb);
     if (node.is_leaf())
@@ -163,7 +163,7 @@ void KdTreeBase<Traits>::build_rec(NodeIndexType node_id, IndexType start, Index
     {
         int split_dim = 0;
         (Scalar(0.5) * aabb.diagonal()).maxCoeff(&split_dim);
-        node.configure_inner(aabb.center()[split_dim], m_nodes.size(), split_dim);
+        node.configure_inner(aabb.center()[split_dim], static_cast<NodeIndexType>(m_nodes.size()), split_dim);
         m_nodes.emplace_back();
         m_nodes.emplace_back();
 
