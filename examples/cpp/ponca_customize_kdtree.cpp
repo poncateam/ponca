@@ -55,7 +55,7 @@ struct MyKdTreeNode : Ponca::KdTreeCustomizableNode<Index, NodeIndex, DataPoint,
 int main()
 {
     // generate N random points
-    constexpr int N = 1e5;
+    constexpr int N = static_cast<int>(1e5);
     std::vector<DataPoint> points(N);
     std::generate(points.begin(), points.end(), [](){
         return DataPoint{100 * DataPoint::VectorType::Random()};});
