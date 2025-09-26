@@ -99,7 +99,7 @@ public:
     /*! \brief Defines the smooth first order weighting function \f$ \nabla w(x) = m n x^{n-1} \left(x^n-1\right)^{m-1} \f$ */
     PONCA_MULTIARCH inline Scalar df (const Scalar& _x) const {
         return std::pow(
-            Scalar(m*n*_x),
+            Scalar(m*n)*_x,
             Scalar(n-1)) * std::pow(std::pow(_x, Scalar(n)) -1, Scalar(m-1)
         );
     }
