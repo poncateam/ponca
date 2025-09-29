@@ -51,7 +51,7 @@ MathJax.Hub.Config({
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Ponca
-   &#160;<span id="projectnumber">f94e080262b67992bdde15cfdb4d6fae94e21ce8</span>
+   &#160;<span id="projectnumber">bc9576194e71908447e45b4f1a763480bee3ceb9</span>
    </div>
    <div id="projectbrief">Point Cloud Analysis library</div>
   </td>
@@ -193,161 +193,163 @@ $(document).ready(function(){initNavTree('orientedSphereFit_8hpp_source.html',''
 <div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>    <span class="comment">// Deal with degenerate cases</span></div>
 <div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>    <span class="keywordflow">if</span>(abs(m_deno) &lt; epsilon * max(m_sumDotPP, den1))</div>
 <div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>    {</div>
-<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>        <span class="comment">//plane</span></div>
-<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>        <a class="code hl_typedef" href="classPonca_1_1OrientedSphereFitImpl.html#a0ee6d7eac55ac54832a9f411bff91d5b">Scalar</a> s = <a class="code hl_typedef" href="classPonca_1_1OrientedSphereFitImpl.html#a0ee6d7eac55ac54832a9f411bff91d5b">Scalar</a>(1.) / Base::m_ul.norm();</div>
-<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>        Base::m_ul = s*Base::m_ul;</div>
-<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>        Base::m_uc = s*Base::m_uc;</div>
-<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>        Base::m_uq = <a class="code hl_typedef" href="classPonca_1_1OrientedSphereFitImpl.html#a0ee6d7eac55ac54832a9f411bff91d5b">Scalar</a>(0.);</div>
-<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>    }</div>
-<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>    <span class="keywordflow">else</span></div>
-<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>    {</div>
-<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>        <span class="comment">//Generic case</span></div>
-<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>        Base::m_uq = <a class="code hl_typedef" href="classPonca_1_1OrientedSphereFitImpl.html#a0ee6d7eac55ac54832a9f411bff91d5b">Scalar</a>(.5) * m_nume / m_deno;</div>
-<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>        Base::m_ul = (Base::m_sumN - Base::m_sumP * (<a class="code hl_typedef" href="classPonca_1_1OrientedSphereFitImpl.html#a0ee6d7eac55ac54832a9f411bff91d5b">Scalar</a>(2.) * Base::m_uq)) * invSumW;</div>
-<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>        Base::m_uc = -invSumW * (Base::m_ul.dot(Base::m_sumP) + m_sumDotPP * Base::m_uq);</div>
-<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>    }</div>
-<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span> </div>
-<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>    Base::m_isNormalized = <span class="keyword">false</span>;</div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>        <span class="keywordflow">if</span> (Base::m_ul.isZero(0))</div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>            <span class="keywordflow">return</span> Base::m_eCurrentState = <a class="code hl_enumvalue" href="namespacePonca.html#abfd697aebf07c1b5c8be5ee401e2dc84a08d57dd200082f67128b5274049dda41">UNDEFINED</a>;</div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>        <span class="comment">//plane</span></div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>        <a class="code hl_typedef" href="classPonca_1_1OrientedSphereFitImpl.html#a0ee6d7eac55ac54832a9f411bff91d5b">Scalar</a> s   = <a class="code hl_typedef" href="classPonca_1_1OrientedSphereFitImpl.html#a0ee6d7eac55ac54832a9f411bff91d5b">Scalar</a>(1.) / Base::m_ul.norm();</div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>        Base::m_ul = s*Base::m_ul;</div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>        Base::m_uc = s*Base::m_uc;</div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>        Base::m_uq = <a class="code hl_typedef" href="classPonca_1_1OrientedSphereFitImpl.html#a0ee6d7eac55ac54832a9f411bff91d5b">Scalar</a>(0.);</div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>    }</div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>    <span class="keywordflow">else</span></div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>    {</div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>        <span class="comment">//Generic case</span></div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>        Base::m_uq = <a class="code hl_typedef" href="classPonca_1_1OrientedSphereFitImpl.html#a0ee6d7eac55ac54832a9f411bff91d5b">Scalar</a>(.5) * m_nume / m_deno;</div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>        Base::m_ul = (Base::m_sumN - Base::m_sumP * (<a class="code hl_typedef" href="classPonca_1_1OrientedSphereFitImpl.html#a0ee6d7eac55ac54832a9f411bff91d5b">Scalar</a>(2.) * Base::m_uq)) * invSumW;</div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>        Base::m_uc = -invSumW * (Base::m_ul.dot(Base::m_sumP) + m_sumDotPP * Base::m_uq);</div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>    }</div>
 <div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span> </div>
-<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>    <span class="keywordflow">return</span> Base::m_eCurrentState;</div>
-<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>}</div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>    Base::m_isNormalized = <span class="keyword">false</span>;</div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span> </div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>    <span class="keywordflow">return</span> Base::m_eCurrentState;</div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>}</div>
 </div>
-<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span> </div>
-<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span><span class="keyword">template</span> &lt; <span class="keyword">class</span> DataPo<span class="keywordtype">int</span>, <span class="keyword">class</span> _WFunctor, <span class="keywordtype">int</span> DiffType, <span class="keyword">typename</span> T&gt;</div>
-<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span><span class="keywordtype">void</span></div>
-<div class="foldopen" id="foldopen00086" data-start="{" data-end="}">
-<div class="line"><a id="l00086" name="l00086"></a><span class="lineno"><a class="line" href="classPonca_1_1OrientedSphereDerImpl.html#a038b6dfba8bef934be31928fe1e68ff8">   86</a></span><a class="code hl_class" href="classPonca_1_1OrientedSphereDerImpl.html">OrientedSphereDerImpl&lt;DataPoint, _WFunctor, DiffType, T&gt;::init</a>()</div>
-<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>{</div>
-<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>    Base::init();</div>
-<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span> </div>
-<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>    m_dSumN.setZero();</div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span> </div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span><span class="keyword">template</span> &lt; <span class="keyword">class</span> DataPo<span class="keywordtype">int</span>, <span class="keyword">class</span> _WFunctor, <span class="keywordtype">int</span> DiffType, <span class="keyword">typename</span> T&gt;</div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span><span class="keywordtype">void</span></div>
+<div class="foldopen" id="foldopen00088" data-start="{" data-end="}">
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno"><a class="line" href="classPonca_1_1OrientedSphereDerImpl.html#a038b6dfba8bef934be31928fe1e68ff8">   88</a></span><a class="code hl_class" href="classPonca_1_1OrientedSphereDerImpl.html">OrientedSphereDerImpl&lt;DataPoint, _WFunctor, DiffType, T&gt;::init</a>()</div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>{</div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>    Base::init();</div>
 <div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span> </div>
-<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span>    m_dSumDotPN.setZero();</div>
-<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>    m_dSumDotPP.setZero();</div>
-<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>    m_dNume.setZero();</div>
-<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>    m_dDeno.setZero();</div>
-<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span> </div>
-<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>    m_dUc.setZero();</div>
-<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span>    m_dUq.setZero();</div>
-<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span>    m_dUl.setZero();</div>
-<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span>}</div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span>    m_dSumN.setZero();</div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span> </div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>    m_dSumDotPN.setZero();</div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>    m_dSumDotPP.setZero();</div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span>    m_dNume.setZero();</div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>    m_dDeno.setZero();</div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span> </div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span>    m_dUc.setZero();</div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span>    m_dUq.setZero();</div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span>    m_dUl.setZero();</div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span>}</div>
 </div>
-<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span> </div>
-<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span> </div>
-<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span><span class="keyword">template</span> &lt; <span class="keyword">class</span> DataPo<span class="keywordtype">int</span>, <span class="keyword">class</span> _WFunctor, <span class="keywordtype">int</span> DiffType, <span class="keyword">typename</span> T&gt;</div>
-<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span><span class="keywordtype">bool</span></div>
-<div class="foldopen" id="foldopen00105" data-start="{" data-end="}">
-<div class="line"><a id="l00105" name="l00105"></a><span class="lineno"><a class="line" href="classPonca_1_1OrientedSphereDerImpl.html#a125c24f93eaa6d1caa5d37db66b6bb87">  105</a></span><a class="code hl_class" href="classPonca_1_1OrientedSphereDerImpl.html">OrientedSphereDerImpl&lt;DataPoint, _WFunctor, DiffType, T&gt;::addLocalNeighbor</a>(<a class="code hl_typedef" href="classPonca_1_1OrientedSphereDerImpl.html#a6418adff6cd9ef6d92b2222bc6d61a6c">Scalar</a> w,</div>
-<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span>                                                                           <span class="keyword">const</span> <a class="code hl_typedef" href="classPonca_1_1OrientedSphereDerImpl.html#ac37600997dc74bd474ef7848e7c81e5d">VectorType</a> &amp;localQ,</div>
-<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span>                                                                           <span class="keyword">const</span> DataPoint &amp;attributes,</div>
-<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span>                                                                           <a class="code hl_typedef" href="classPonca_1_1OrientedSphereDerImpl.html#a6b0bc5a2bff7bc3d3d2d7726aa9f9ce7">ScalarArray</a> &amp;dw) {</div>
-<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span>    <span class="keywordflow">if</span>( Base::addLocalNeighbor(w, localQ, attributes, dw) ) {</div>
-<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span> </div>
-<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span>        m_dSumN     += attributes.normal() * dw;</div>
-<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span>        m_dSumDotPN += dw * attributes.normal().dot(localQ);</div>
-<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span>        m_dSumDotPP += dw * localQ.squaredNorm();</div>
-<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span> </div>
-<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span>        <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
-<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span>    }</div>
-<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span>    <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
-<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span>}</div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span> </div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span> </div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span><span class="keyword">template</span> &lt; <span class="keyword">class</span> DataPo<span class="keywordtype">int</span>, <span class="keyword">class</span> _WFunctor, <span class="keywordtype">int</span> DiffType, <span class="keyword">typename</span> T&gt;</div>
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span><span class="keywordtype">bool</span></div>
+<div class="foldopen" id="foldopen00107" data-start="{" data-end="}">
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno"><a class="line" href="classPonca_1_1OrientedSphereDerImpl.html#a125c24f93eaa6d1caa5d37db66b6bb87">  107</a></span><a class="code hl_class" href="classPonca_1_1OrientedSphereDerImpl.html">OrientedSphereDerImpl&lt;DataPoint, _WFunctor, DiffType, T&gt;::addLocalNeighbor</a>(<a class="code hl_typedef" href="classPonca_1_1OrientedSphereDerImpl.html#a6418adff6cd9ef6d92b2222bc6d61a6c">Scalar</a> w,</div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span>                                                                           <span class="keyword">const</span> <a class="code hl_typedef" href="classPonca_1_1OrientedSphereDerImpl.html#ac37600997dc74bd474ef7848e7c81e5d">VectorType</a> &amp;localQ,</div>
+<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span>                                                                           <span class="keyword">const</span> DataPoint &amp;attributes,</div>
+<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span>                                                                           <a class="code hl_typedef" href="classPonca_1_1OrientedSphereDerImpl.html#a6b0bc5a2bff7bc3d3d2d7726aa9f9ce7">ScalarArray</a> &amp;dw) {</div>
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span>    <span class="keywordflow">if</span>( Base::addLocalNeighbor(w, localQ, attributes, dw) ) {</div>
+<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span> </div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span>        m_dSumN     += attributes.normal() * dw;</div>
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span>        m_dSumDotPN += dw * attributes.normal().dot(localQ);</div>
+<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span>        m_dSumDotPP += dw * localQ.squaredNorm();</div>
+<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span> </div>
+<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span>        <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span>    }</div>
+<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span>    <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span>}</div>
 </div>
-<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span> </div>
-<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span> </div>
-<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span><span class="keyword">template</span> &lt; <span class="keyword">class</span> DataPo<span class="keywordtype">int</span>, <span class="keyword">class</span> _WFunctor, <span class="keywordtype">int</span> DiffType, <span class="keyword">typename</span> T&gt;</div>
-<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span><a class="code hl_enumeration" href="namespacePonca.html#abfd697aebf07c1b5c8be5ee401e2dc84">FIT_RESULT</a></div>
-<div class="foldopen" id="foldopen00123" data-start="{" data-end="}">
-<div class="line"><a id="l00123" name="l00123"></a><span class="lineno"><a class="line" href="classPonca_1_1OrientedSphereDerImpl.html#aad6f3ed1b76c5e114198c552425b7ff2">  123</a></span><a class="code hl_class" href="classPonca_1_1OrientedSphereDerImpl.html">OrientedSphereDerImpl&lt;DataPoint, _WFunctor, DiffType, T&gt;::finalize</a>()</div>
-<div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span>{</div>
-<div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span>    PONCA_MULTIARCH_STD_MATH(sqrt);</div>
-<div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span> </div>
-<div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span>    Base::finalize();</div>
-<div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span>    <span class="comment">// Test if base finalize end on a viable case (stable / unstable)</span></div>
-<div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span>    <span class="keywordflow">if</span> (this-&gt;isReady())</div>
-<div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span>    {</div>
-<div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span>        <a class="code hl_typedef" href="classPonca_1_1OrientedSphereDerImpl.html#a6418adff6cd9ef6d92b2222bc6d61a6c">Scalar</a> invSumW = <a class="code hl_typedef" href="classPonca_1_1OrientedSphereDerImpl.html#a6418adff6cd9ef6d92b2222bc6d61a6c">Scalar</a>(1.)/Base::getWeightSum();</div>
-<div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span> </div>
-<div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span>        <a class="code hl_typedef" href="classPonca_1_1OrientedSphereDerImpl.html#a6418adff6cd9ef6d92b2222bc6d61a6c">Scalar</a> nume  = Base::m_sumDotPN - invSumW*Base::m_sumP.dot(Base::m_sumN);</div>
-<div class="line"><a id="l00134" name="l00134"></a><span class="lineno">  134</span>        <a class="code hl_typedef" href="classPonca_1_1OrientedSphereDerImpl.html#a6418adff6cd9ef6d92b2222bc6d61a6c">Scalar</a> deno  = Base::m_sumDotPP - invSumW*Base::m_sumP.dot(Base::m_sumP);</div>
-<div class="line"><a id="l00135" name="l00135"></a><span class="lineno">  135</span> </div>
-<div class="line"><a id="l00136" name="l00136"></a><span class="lineno">  136</span>        <span class="comment">// FIXME, the following product &quot;Base::m_sumN.transpose() * m_dSumP&quot; is prone to numerical cancellation</span></div>
-<div class="line"><a id="l00137" name="l00137"></a><span class="lineno">  137</span>        <span class="comment">// issues for spacial derivatives because, (d sum w_i P_i)/(d x) is supposed to be tangent to the surface whereas</span></div>
-<div class="line"><a id="l00138" name="l00138"></a><span class="lineno">  138</span>        <span class="comment">// &quot;sum w_i N_i&quot; is normal to the surface...</span></div>
-<div class="line"><a id="l00139" name="l00139"></a><span class="lineno">  139</span>        m_dNume = m_dSumDotPN</div>
-<div class="line"><a id="l00140" name="l00140"></a><span class="lineno">  140</span>            - invSumW*invSumW * ( Base::getWeightSum() * ( Base::m_sumN.transpose() * Base::m_dSumP + Base::m_sumP.transpose() * m_dSumN )</div>
-<div class="line"><a id="l00141" name="l00141"></a><span class="lineno">  141</span>            - Base::m_dSumW*Base::m_sumP.dot(Base::m_sumN) );</div>
-<div class="line"><a id="l00142" name="l00142"></a><span class="lineno">  142</span> </div>
-<div class="line"><a id="l00143" name="l00143"></a><span class="lineno">  143</span>        m_dDeno = m_dSumDotPP</div>
-<div class="line"><a id="l00144" name="l00144"></a><span class="lineno">  144</span>            - invSumW*invSumW*(   <a class="code hl_typedef" href="classPonca_1_1OrientedSphereDerImpl.html#a6418adff6cd9ef6d92b2222bc6d61a6c">Scalar</a>(2.) * Base::getWeightSum() * Base::m_sumP.transpose() * Base::m_dSumP</div>
-<div class="line"><a id="l00145" name="l00145"></a><span class="lineno">  145</span>            - Base::m_dSumW*Base::m_sumP.dot(Base::m_sumP) );</div>
-<div class="line"><a id="l00146" name="l00146"></a><span class="lineno">  146</span> </div>
-<div class="line"><a id="l00147" name="l00147"></a><span class="lineno">  147</span>        m_dUq =  <a class="code hl_typedef" href="classPonca_1_1OrientedSphereDerImpl.html#a6418adff6cd9ef6d92b2222bc6d61a6c">Scalar</a>(.5) * (deno * m_dNume - m_dDeno * nume)/(deno*deno);</div>
+<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span> </div>
+<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span> </div>
+<div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span><span class="keyword">template</span> &lt; <span class="keyword">class</span> DataPo<span class="keywordtype">int</span>, <span class="keyword">class</span> _WFunctor, <span class="keywordtype">int</span> DiffType, <span class="keyword">typename</span> T&gt;</div>
+<div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span><a class="code hl_enumeration" href="namespacePonca.html#abfd697aebf07c1b5c8be5ee401e2dc84">FIT_RESULT</a></div>
+<div class="foldopen" id="foldopen00125" data-start="{" data-end="}">
+<div class="line"><a id="l00125" name="l00125"></a><span class="lineno"><a class="line" href="classPonca_1_1OrientedSphereDerImpl.html#aad6f3ed1b76c5e114198c552425b7ff2">  125</a></span><a class="code hl_class" href="classPonca_1_1OrientedSphereDerImpl.html">OrientedSphereDerImpl&lt;DataPoint, _WFunctor, DiffType, T&gt;::finalize</a>()</div>
+<div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span>{</div>
+<div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span>    PONCA_MULTIARCH_STD_MATH(sqrt);</div>
+<div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span> </div>
+<div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span>    Base::finalize();</div>
+<div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span>    <span class="comment">// Test if base finalize end on a viable case (stable / unstable)</span></div>
+<div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span>    <span class="keywordflow">if</span> (this-&gt;isReady())</div>
+<div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span>    {</div>
+<div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span>        <a class="code hl_typedef" href="classPonca_1_1OrientedSphereDerImpl.html#a6418adff6cd9ef6d92b2222bc6d61a6c">Scalar</a> invSumW = <a class="code hl_typedef" href="classPonca_1_1OrientedSphereDerImpl.html#a6418adff6cd9ef6d92b2222bc6d61a6c">Scalar</a>(1.)/Base::getWeightSum();</div>
+<div class="line"><a id="l00134" name="l00134"></a><span class="lineno">  134</span> </div>
+<div class="line"><a id="l00135" name="l00135"></a><span class="lineno">  135</span>        <a class="code hl_typedef" href="classPonca_1_1OrientedSphereDerImpl.html#a6418adff6cd9ef6d92b2222bc6d61a6c">Scalar</a> nume  = Base::m_sumDotPN - invSumW*Base::m_sumP.dot(Base::m_sumN);</div>
+<div class="line"><a id="l00136" name="l00136"></a><span class="lineno">  136</span>        <a class="code hl_typedef" href="classPonca_1_1OrientedSphereDerImpl.html#a6418adff6cd9ef6d92b2222bc6d61a6c">Scalar</a> deno  = Base::m_sumDotPP - invSumW*Base::m_sumP.dot(Base::m_sumP);</div>
+<div class="line"><a id="l00137" name="l00137"></a><span class="lineno">  137</span> </div>
+<div class="line"><a id="l00138" name="l00138"></a><span class="lineno">  138</span>        <span class="comment">// FIXME, the following product &quot;Base::m_sumN.transpose() * m_dSumP&quot; is prone to numerical cancellation</span></div>
+<div class="line"><a id="l00139" name="l00139"></a><span class="lineno">  139</span>        <span class="comment">// issues for spacial derivatives because, (d sum w_i P_i)/(d x) is supposed to be tangent to the surface whereas</span></div>
+<div class="line"><a id="l00140" name="l00140"></a><span class="lineno">  140</span>        <span class="comment">// &quot;sum w_i N_i&quot; is normal to the surface...</span></div>
+<div class="line"><a id="l00141" name="l00141"></a><span class="lineno">  141</span>        m_dNume = m_dSumDotPN</div>
+<div class="line"><a id="l00142" name="l00142"></a><span class="lineno">  142</span>            - invSumW*invSumW * ( Base::getWeightSum() * ( Base::m_sumN.transpose() * Base::m_dSumP + Base::m_sumP.transpose() * m_dSumN )</div>
+<div class="line"><a id="l00143" name="l00143"></a><span class="lineno">  143</span>            - Base::m_dSumW*Base::m_sumP.dot(Base::m_sumN) );</div>
+<div class="line"><a id="l00144" name="l00144"></a><span class="lineno">  144</span> </div>
+<div class="line"><a id="l00145" name="l00145"></a><span class="lineno">  145</span>        m_dDeno = m_dSumDotPP</div>
+<div class="line"><a id="l00146" name="l00146"></a><span class="lineno">  146</span>            - invSumW*invSumW*(   <a class="code hl_typedef" href="classPonca_1_1OrientedSphereDerImpl.html#a6418adff6cd9ef6d92b2222bc6d61a6c">Scalar</a>(2.) * Base::getWeightSum() * Base::m_sumP.transpose() * Base::m_dSumP</div>
+<div class="line"><a id="l00147" name="l00147"></a><span class="lineno">  147</span>            - Base::m_dSumW*Base::m_sumP.dot(Base::m_sumP) );</div>
 <div class="line"><a id="l00148" name="l00148"></a><span class="lineno">  148</span> </div>
-<div class="line"><a id="l00149" name="l00149"></a><span class="lineno">  149</span>        <span class="comment">// FIXME: this line is prone to numerical cancellation issues because dSumN and u_l*dSumW are close to each other.</span></div>
-<div class="line"><a id="l00150" name="l00150"></a><span class="lineno">  150</span>        <span class="comment">// If using two passes, one could directly compute sum( dw_i + (n_i - ul) ) to avoid this issue.</span></div>
-<div class="line"><a id="l00151" name="l00151"></a><span class="lineno">  151</span>        m_dUl =  invSumW * ( m_dSumN - Base::m_ul*Base::m_dSumW - <a class="code hl_typedef" href="classPonca_1_1OrientedSphereDerImpl.html#a6418adff6cd9ef6d92b2222bc6d61a6c">Scalar</a>(2.)*(Base::m_dSumP * Base::m_uq + Base::m_sumP * m_dUq) );</div>
-<div class="line"><a id="l00152" name="l00152"></a><span class="lineno">  152</span>        m_dUc = -invSumW*( Base::m_sumP.transpose() * m_dUl</div>
-<div class="line"><a id="l00153" name="l00153"></a><span class="lineno">  153</span>            + Base::m_sumDotPP * m_dUq</div>
-<div class="line"><a id="l00154" name="l00154"></a><span class="lineno">  154</span>            + Base::m_ul.transpose() * Base::m_dSumP</div>
-<div class="line"><a id="l00155" name="l00155"></a><span class="lineno">  155</span>            + Base::m_uq * m_dSumDotPP</div>
-<div class="line"><a id="l00156" name="l00156"></a><span class="lineno">  156</span>            + Base::m_dSumW * Base::m_uc);</div>
-<div class="line"><a id="l00157" name="l00157"></a><span class="lineno">  157</span>    }</div>
-<div class="line"><a id="l00158" name="l00158"></a><span class="lineno">  158</span> </div>
-<div class="line"><a id="l00159" name="l00159"></a><span class="lineno">  159</span>    <span class="keywordflow">return</span> Base::m_eCurrentState;</div>
-<div class="line"><a id="l00160" name="l00160"></a><span class="lineno">  160</span>}</div>
+<div class="line"><a id="l00149" name="l00149"></a><span class="lineno">  149</span>        m_dUq =  <a class="code hl_typedef" href="classPonca_1_1OrientedSphereDerImpl.html#a6418adff6cd9ef6d92b2222bc6d61a6c">Scalar</a>(.5) * (deno * m_dNume - m_dDeno * nume)/(deno*deno);</div>
+<div class="line"><a id="l00150" name="l00150"></a><span class="lineno">  150</span> </div>
+<div class="line"><a id="l00151" name="l00151"></a><span class="lineno">  151</span>        <span class="comment">// FIXME: this line is prone to numerical cancellation issues because dSumN and u_l*dSumW are close to each other.</span></div>
+<div class="line"><a id="l00152" name="l00152"></a><span class="lineno">  152</span>        <span class="comment">// If using two passes, one could directly compute sum( dw_i + (n_i - ul) ) to avoid this issue.</span></div>
+<div class="line"><a id="l00153" name="l00153"></a><span class="lineno">  153</span>        m_dUl =  invSumW * ( m_dSumN - Base::m_ul*Base::m_dSumW - <a class="code hl_typedef" href="classPonca_1_1OrientedSphereDerImpl.html#a6418adff6cd9ef6d92b2222bc6d61a6c">Scalar</a>(2.)*(Base::m_dSumP * Base::m_uq + Base::m_sumP * m_dUq) );</div>
+<div class="line"><a id="l00154" name="l00154"></a><span class="lineno">  154</span>        m_dUc = -invSumW*( Base::m_sumP.transpose() * m_dUl</div>
+<div class="line"><a id="l00155" name="l00155"></a><span class="lineno">  155</span>            + Base::m_sumDotPP * m_dUq</div>
+<div class="line"><a id="l00156" name="l00156"></a><span class="lineno">  156</span>            + Base::m_ul.transpose() * Base::m_dSumP</div>
+<div class="line"><a id="l00157" name="l00157"></a><span class="lineno">  157</span>            + Base::m_uq * m_dSumDotPP</div>
+<div class="line"><a id="l00158" name="l00158"></a><span class="lineno">  158</span>            + Base::m_dSumW * Base::m_uc);</div>
+<div class="line"><a id="l00159" name="l00159"></a><span class="lineno">  159</span>    }</div>
+<div class="line"><a id="l00160" name="l00160"></a><span class="lineno">  160</span> </div>
+<div class="line"><a id="l00161" name="l00161"></a><span class="lineno">  161</span>    <span class="keywordflow">return</span> Base::m_eCurrentState;</div>
+<div class="line"><a id="l00162" name="l00162"></a><span class="lineno">  162</span>}</div>
 </div>
-<div class="line"><a id="l00161" name="l00161"></a><span class="lineno">  161</span> </div>
-<div class="line"><a id="l00162" name="l00162"></a><span class="lineno">  162</span><span class="keyword">template</span> &lt; <span class="keyword">class</span> DataPo<span class="keywordtype">int</span>, <span class="keyword">class</span> _WFunctor, <span class="keywordtype">int</span> DiffType, <span class="keyword">typename</span> T&gt;</div>
-<div class="line"><a id="l00163" name="l00163"></a><span class="lineno">  163</span><span class="keyword">typename</span> OrientedSphereDerImpl &lt;DataPoint, _WFunctor, DiffType, T&gt;::VectorArray</div>
-<div class="foldopen" id="foldopen00164" data-start="{" data-end="}">
-<div class="line"><a id="l00164" name="l00164"></a><span class="lineno"><a class="line" href="classPonca_1_1OrientedSphereDerImpl.html#a9a502be4a4cf023c512bf716a4174bfa">  164</a></span><a class="code hl_class" href="classPonca_1_1OrientedSphereDerImpl.html">OrientedSphereDerImpl&lt;DataPoint, _WFunctor, DiffType, T&gt;::dNormal</a>()<span class="keyword"> const</span></div>
-<div class="line"><a id="l00165" name="l00165"></a><span class="lineno">  165</span><span class="keyword"></span>{</div>
-<div class="line"><a id="l00166" name="l00166"></a><span class="lineno">  166</span>  <span class="comment">// Computes the derivatives of the normal of the sphere at the evaluation point.</span></div>
-<div class="line"><a id="l00167" name="l00167"></a><span class="lineno">  167</span>  <span class="comment">// Therefore, we must take into account the variation of the evaluation point when differentiating wrt space</span></div>
-<div class="line"><a id="l00168" name="l00168"></a><span class="lineno">  168</span>  <span class="comment">// i.e., normal(x) = grad / |grad|, with grad(x) = ul + 2 uq * x, and diff_x(grad) = dul + 2 uq I</span></div>
-<div class="line"><a id="l00169" name="l00169"></a><span class="lineno">  169</span>  <a class="code hl_typedef" href="classPonca_1_1OrientedSphereDerImpl.html#ad04ac0a9999d5a0e54527cd0a7e455d1">VectorArray</a> dgrad = m_dUl;</div>
-<div class="line"><a id="l00170" name="l00170"></a><span class="lineno">  170</span>  <span class="keywordflow">if</span>(Base::isSpaceDer())</div>
-<div class="line"><a id="l00171" name="l00171"></a><span class="lineno">  171</span>    dgrad.template rightCols&lt;DataPoint::Dim&gt;().diagonal().array() += <a class="code hl_typedef" href="classPonca_1_1OrientedSphereDerImpl.html#a6418adff6cd9ef6d92b2222bc6d61a6c">Scalar</a>(2)*Base::m_uq;</div>
-<div class="line"><a id="l00172" name="l00172"></a><span class="lineno">  172</span>  <a class="code hl_typedef" href="classPonca_1_1OrientedSphereDerImpl.html#a6418adff6cd9ef6d92b2222bc6d61a6c">Scalar</a> norm  = Base::m_ul.norm();</div>
-<div class="line"><a id="l00173" name="l00173"></a><span class="lineno">  173</span>  <a class="code hl_typedef" href="classPonca_1_1OrientedSphereDerImpl.html#a6418adff6cd9ef6d92b2222bc6d61a6c">Scalar</a> norm3 = norm*norm*norm;</div>
-<div class="line"><a id="l00174" name="l00174"></a><span class="lineno">  174</span>  <span class="keywordflow">return</span> dgrad / norm - Base::m_ul * (Base::m_ul.transpose() * dgrad) / norm3;</div>
-<div class="line"><a id="l00175" name="l00175"></a><span class="lineno">  175</span>}</div>
+<div class="line"><a id="l00163" name="l00163"></a><span class="lineno">  163</span> </div>
+<div class="line"><a id="l00164" name="l00164"></a><span class="lineno">  164</span><span class="keyword">template</span> &lt; <span class="keyword">class</span> DataPo<span class="keywordtype">int</span>, <span class="keyword">class</span> _WFunctor, <span class="keywordtype">int</span> DiffType, <span class="keyword">typename</span> T&gt;</div>
+<div class="line"><a id="l00165" name="l00165"></a><span class="lineno">  165</span><span class="keyword">typename</span> OrientedSphereDerImpl &lt;DataPoint, _WFunctor, DiffType, T&gt;::VectorArray</div>
+<div class="foldopen" id="foldopen00166" data-start="{" data-end="}">
+<div class="line"><a id="l00166" name="l00166"></a><span class="lineno"><a class="line" href="classPonca_1_1OrientedSphereDerImpl.html#a9a502be4a4cf023c512bf716a4174bfa">  166</a></span><a class="code hl_class" href="classPonca_1_1OrientedSphereDerImpl.html">OrientedSphereDerImpl&lt;DataPoint, _WFunctor, DiffType, T&gt;::dNormal</a>()<span class="keyword"> const</span></div>
+<div class="line"><a id="l00167" name="l00167"></a><span class="lineno">  167</span><span class="keyword"></span>{</div>
+<div class="line"><a id="l00168" name="l00168"></a><span class="lineno">  168</span>  <span class="comment">// Computes the derivatives of the normal of the sphere at the evaluation point.</span></div>
+<div class="line"><a id="l00169" name="l00169"></a><span class="lineno">  169</span>  <span class="comment">// Therefore, we must take into account the variation of the evaluation point when differentiating wrt space</span></div>
+<div class="line"><a id="l00170" name="l00170"></a><span class="lineno">  170</span>  <span class="comment">// i.e., normal(x) = grad / |grad|, with grad(x) = ul + 2 uq * x, and diff_x(grad) = dul + 2 uq I</span></div>
+<div class="line"><a id="l00171" name="l00171"></a><span class="lineno">  171</span>  <a class="code hl_typedef" href="classPonca_1_1OrientedSphereDerImpl.html#ad04ac0a9999d5a0e54527cd0a7e455d1">VectorArray</a> dgrad = m_dUl;</div>
+<div class="line"><a id="l00172" name="l00172"></a><span class="lineno">  172</span>  <span class="keywordflow">if</span>(Base::isSpaceDer())</div>
+<div class="line"><a id="l00173" name="l00173"></a><span class="lineno">  173</span>    dgrad.template rightCols&lt;DataPoint::Dim&gt;().diagonal().array() += <a class="code hl_typedef" href="classPonca_1_1OrientedSphereDerImpl.html#a6418adff6cd9ef6d92b2222bc6d61a6c">Scalar</a>(2)*Base::m_uq;</div>
+<div class="line"><a id="l00174" name="l00174"></a><span class="lineno">  174</span>  <a class="code hl_typedef" href="classPonca_1_1OrientedSphereDerImpl.html#a6418adff6cd9ef6d92b2222bc6d61a6c">Scalar</a> norm  = Base::m_ul.norm();</div>
+<div class="line"><a id="l00175" name="l00175"></a><span class="lineno">  175</span>  <a class="code hl_typedef" href="classPonca_1_1OrientedSphereDerImpl.html#a6418adff6cd9ef6d92b2222bc6d61a6c">Scalar</a> norm3 = norm*norm*norm;</div>
+<div class="line"><a id="l00176" name="l00176"></a><span class="lineno">  176</span>  <span class="keywordflow">return</span> dgrad / norm - Base::m_ul * (Base::m_ul.transpose() * dgrad) / norm3;</div>
+<div class="line"><a id="l00177" name="l00177"></a><span class="lineno">  177</span>}</div>
 </div>
-<div class="line"><a id="l00176" name="l00176"></a><span class="lineno">  176</span> </div>
-<div class="line"><a id="l00177" name="l00177"></a><span class="lineno">  177</span><span class="keyword">template</span> &lt; <span class="keyword">class</span> DataPo<span class="keywordtype">int</span>, <span class="keyword">class</span> _WFunctor, <span class="keywordtype">int</span> DiffType, <span class="keyword">typename</span> T&gt;</div>
-<div class="line"><a id="l00178" name="l00178"></a><span class="lineno">  178</span><span class="keyword">typename</span> OrientedSphereDerImpl &lt;DataPoint, _WFunctor, DiffType, T&gt;::ScalarArray</div>
-<div class="foldopen" id="foldopen00179" data-start="{" data-end="}">
-<div class="line"><a id="l00179" name="l00179"></a><span class="lineno"><a class="line" href="classPonca_1_1OrientedSphereDerImpl.html#ac5ea10d6cf2bb4bb6dc1977e92b051e4">  179</a></span><a class="code hl_class" href="classPonca_1_1OrientedSphereDerImpl.html">OrientedSphereDerImpl&lt;DataPoint, _WFunctor, DiffType, T&gt;::dPotential</a>()<span class="keyword"> const</span></div>
-<div class="line"><a id="l00180" name="l00180"></a><span class="lineno">  180</span><span class="keyword"></span>{</div>
-<div class="line"><a id="l00181" name="l00181"></a><span class="lineno">  181</span>  <a class="code hl_typedef" href="classPonca_1_1OrientedSphereDerImpl.html#a6b0bc5a2bff7bc3d3d2d7726aa9f9ce7">ScalarArray</a> dfield = m_dUc;</div>
-<div class="line"><a id="l00182" name="l00182"></a><span class="lineno">  182</span>  <span class="keywordflow">if</span>(Base::isSpaceDer())</div>
-<div class="line"><a id="l00183" name="l00183"></a><span class="lineno">  183</span>    dfield.template tail&lt;DataPoint::Dim&gt;() += Base::m_ul;</div>
-<div class="line"><a id="l00184" name="l00184"></a><span class="lineno">  184</span>  <span class="keywordflow">return</span> dfield;</div>
-<div class="line"><a id="l00185" name="l00185"></a><span class="lineno">  185</span>}</div>
+<div class="line"><a id="l00178" name="l00178"></a><span class="lineno">  178</span> </div>
+<div class="line"><a id="l00179" name="l00179"></a><span class="lineno">  179</span><span class="keyword">template</span> &lt; <span class="keyword">class</span> DataPo<span class="keywordtype">int</span>, <span class="keyword">class</span> _WFunctor, <span class="keywordtype">int</span> DiffType, <span class="keyword">typename</span> T&gt;</div>
+<div class="line"><a id="l00180" name="l00180"></a><span class="lineno">  180</span><span class="keyword">typename</span> OrientedSphereDerImpl &lt;DataPoint, _WFunctor, DiffType, T&gt;::ScalarArray</div>
+<div class="foldopen" id="foldopen00181" data-start="{" data-end="}">
+<div class="line"><a id="l00181" name="l00181"></a><span class="lineno"><a class="line" href="classPonca_1_1OrientedSphereDerImpl.html#ac5ea10d6cf2bb4bb6dc1977e92b051e4">  181</a></span><a class="code hl_class" href="classPonca_1_1OrientedSphereDerImpl.html">OrientedSphereDerImpl&lt;DataPoint, _WFunctor, DiffType, T&gt;::dPotential</a>()<span class="keyword"> const</span></div>
+<div class="line"><a id="l00182" name="l00182"></a><span class="lineno">  182</span><span class="keyword"></span>{</div>
+<div class="line"><a id="l00183" name="l00183"></a><span class="lineno">  183</span>  <a class="code hl_typedef" href="classPonca_1_1OrientedSphereDerImpl.html#a6b0bc5a2bff7bc3d3d2d7726aa9f9ce7">ScalarArray</a> dfield = m_dUc;</div>
+<div class="line"><a id="l00184" name="l00184"></a><span class="lineno">  184</span>  <span class="keywordflow">if</span>(Base::isSpaceDer())</div>
+<div class="line"><a id="l00185" name="l00185"></a><span class="lineno">  185</span>    dfield.template tail&lt;DataPoint::Dim&gt;() += Base::m_ul;</div>
+<div class="line"><a id="l00186" name="l00186"></a><span class="lineno">  186</span>  <span class="keywordflow">return</span> dfield;</div>
+<div class="line"><a id="l00187" name="l00187"></a><span class="lineno">  187</span>}</div>
 </div>
-<div class="line"><a id="l00186" name="l00186"></a><span class="lineno">  186</span> </div>
-<div class="line"><a id="l00187" name="l00187"></a><span class="lineno">  187</span><span class="keyword">template</span> &lt; <span class="keyword">class</span> DataPo<span class="keywordtype">int</span>, <span class="keyword">class</span> _WFunctor, <span class="keywordtype">int</span> DiffType, <span class="keyword">typename</span> T&gt;</div>
-<div class="line"><a id="l00188" name="l00188"></a><span class="lineno">  188</span><span class="keywordtype">bool</span></div>
-<div class="foldopen" id="foldopen00189" data-start="{" data-end="}">
-<div class="line"><a id="l00189" name="l00189"></a><span class="lineno"><a class="line" href="classPonca_1_1OrientedSphereDerImpl.html#ad00b0c092ddce7f2659254a2691b27ed">  189</a></span><a class="code hl_class" href="classPonca_1_1OrientedSphereDerImpl.html">OrientedSphereDerImpl&lt;DataPoint, _WFunctor, DiffType, T&gt;::applyPrattNorm</a>()</div>
-<div class="line"><a id="l00190" name="l00190"></a><span class="lineno">  190</span>{</div>
-<div class="line"><a id="l00191" name="l00191"></a><span class="lineno">  191</span>    <span class="keywordflow">if</span>(Base::isNormalized())</div>
-<div class="line"><a id="l00192" name="l00192"></a><span class="lineno">  192</span>        <span class="keywordflow">return</span> <span class="keyword">false</span>; <span class="comment">//need original parameters without Pratt Normalization</span></div>
-<div class="line"><a id="l00193" name="l00193"></a><span class="lineno">  193</span> </div>
-<div class="line"><a id="l00194" name="l00194"></a><span class="lineno">  194</span>    PONCA_MULTIARCH_STD_MATH(sqrt);</div>
-<div class="line"><a id="l00195" name="l00195"></a><span class="lineno">  195</span>    <a class="code hl_typedef" href="classPonca_1_1OrientedSphereDerImpl.html#a6418adff6cd9ef6d92b2222bc6d61a6c">Scalar</a> pn2    = Base::prattNorm2();</div>
-<div class="line"><a id="l00196" name="l00196"></a><span class="lineno">  196</span>    <a class="code hl_typedef" href="classPonca_1_1OrientedSphereDerImpl.html#a6418adff6cd9ef6d92b2222bc6d61a6c">Scalar</a> pn     = sqrt(pn2);</div>
-<div class="line"><a id="l00197" name="l00197"></a><span class="lineno">  197</span> </div>
-<div class="line"><a id="l00198" name="l00198"></a><span class="lineno">  198</span>    <a class="code hl_typedef" href="classPonca_1_1OrientedSphereDerImpl.html#a6b0bc5a2bff7bc3d3d2d7726aa9f9ce7">ScalarArray</a> dpn2   = dprattNorm2();</div>
-<div class="line"><a id="l00199" name="l00199"></a><span class="lineno">  199</span>    <a class="code hl_typedef" href="classPonca_1_1OrientedSphereDerImpl.html#a6b0bc5a2bff7bc3d3d2d7726aa9f9ce7">ScalarArray</a> factor = <a class="code hl_typedef" href="classPonca_1_1OrientedSphereDerImpl.html#a6418adff6cd9ef6d92b2222bc6d61a6c">Scalar</a>(0.5) * dpn2 / pn;</div>
-<div class="line"><a id="l00200" name="l00200"></a><span class="lineno">  200</span> </div>
-<div class="line"><a id="l00201" name="l00201"></a><span class="lineno">  201</span>    m_dUc = ( m_dUc * pn - Base::m_uc * factor ) / pn2;</div>
-<div class="line"><a id="l00202" name="l00202"></a><span class="lineno">  202</span>    m_dUl = ( m_dUl * pn - Base::m_ul * factor ) / pn2;</div>
-<div class="line"><a id="l00203" name="l00203"></a><span class="lineno">  203</span>    m_dUq = ( m_dUq * pn - Base::m_uq * factor ) / pn2;</div>
-<div class="line"><a id="l00204" name="l00204"></a><span class="lineno">  204</span> </div>
-<div class="line"><a id="l00205" name="l00205"></a><span class="lineno">  205</span>    Base::applyPrattNorm();</div>
-<div class="line"><a id="l00206" name="l00206"></a><span class="lineno">  206</span>    <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
-<div class="line"><a id="l00207" name="l00207"></a><span class="lineno">  207</span>}</div>
+<div class="line"><a id="l00188" name="l00188"></a><span class="lineno">  188</span> </div>
+<div class="line"><a id="l00189" name="l00189"></a><span class="lineno">  189</span><span class="keyword">template</span> &lt; <span class="keyword">class</span> DataPo<span class="keywordtype">int</span>, <span class="keyword">class</span> _WFunctor, <span class="keywordtype">int</span> DiffType, <span class="keyword">typename</span> T&gt;</div>
+<div class="line"><a id="l00190" name="l00190"></a><span class="lineno">  190</span><span class="keywordtype">bool</span></div>
+<div class="foldopen" id="foldopen00191" data-start="{" data-end="}">
+<div class="line"><a id="l00191" name="l00191"></a><span class="lineno"><a class="line" href="classPonca_1_1OrientedSphereDerImpl.html#ad00b0c092ddce7f2659254a2691b27ed">  191</a></span><a class="code hl_class" href="classPonca_1_1OrientedSphereDerImpl.html">OrientedSphereDerImpl&lt;DataPoint, _WFunctor, DiffType, T&gt;::applyPrattNorm</a>()</div>
+<div class="line"><a id="l00192" name="l00192"></a><span class="lineno">  192</span>{</div>
+<div class="line"><a id="l00193" name="l00193"></a><span class="lineno">  193</span>    <span class="keywordflow">if</span>(Base::isNormalized())</div>
+<div class="line"><a id="l00194" name="l00194"></a><span class="lineno">  194</span>        <span class="keywordflow">return</span> <span class="keyword">false</span>; <span class="comment">//need original parameters without Pratt Normalization</span></div>
+<div class="line"><a id="l00195" name="l00195"></a><span class="lineno">  195</span> </div>
+<div class="line"><a id="l00196" name="l00196"></a><span class="lineno">  196</span>    PONCA_MULTIARCH_STD_MATH(sqrt);</div>
+<div class="line"><a id="l00197" name="l00197"></a><span class="lineno">  197</span>    <a class="code hl_typedef" href="classPonca_1_1OrientedSphereDerImpl.html#a6418adff6cd9ef6d92b2222bc6d61a6c">Scalar</a> pn2    = Base::prattNorm2();</div>
+<div class="line"><a id="l00198" name="l00198"></a><span class="lineno">  198</span>    <a class="code hl_typedef" href="classPonca_1_1OrientedSphereDerImpl.html#a6418adff6cd9ef6d92b2222bc6d61a6c">Scalar</a> pn     = sqrt(pn2);</div>
+<div class="line"><a id="l00199" name="l00199"></a><span class="lineno">  199</span> </div>
+<div class="line"><a id="l00200" name="l00200"></a><span class="lineno">  200</span>    <a class="code hl_typedef" href="classPonca_1_1OrientedSphereDerImpl.html#a6b0bc5a2bff7bc3d3d2d7726aa9f9ce7">ScalarArray</a> dpn2   = dprattNorm2();</div>
+<div class="line"><a id="l00201" name="l00201"></a><span class="lineno">  201</span>    <a class="code hl_typedef" href="classPonca_1_1OrientedSphereDerImpl.html#a6b0bc5a2bff7bc3d3d2d7726aa9f9ce7">ScalarArray</a> factor = <a class="code hl_typedef" href="classPonca_1_1OrientedSphereDerImpl.html#a6418adff6cd9ef6d92b2222bc6d61a6c">Scalar</a>(0.5) * dpn2 / pn;</div>
+<div class="line"><a id="l00202" name="l00202"></a><span class="lineno">  202</span> </div>
+<div class="line"><a id="l00203" name="l00203"></a><span class="lineno">  203</span>    m_dUc = ( m_dUc * pn - Base::m_uc * factor ) / pn2;</div>
+<div class="line"><a id="l00204" name="l00204"></a><span class="lineno">  204</span>    m_dUl = ( m_dUl * pn - Base::m_ul * factor ) / pn2;</div>
+<div class="line"><a id="l00205" name="l00205"></a><span class="lineno">  205</span>    m_dUq = ( m_dUq * pn - Base::m_uq * factor ) / pn2;</div>
+<div class="line"><a id="l00206" name="l00206"></a><span class="lineno">  206</span> </div>
+<div class="line"><a id="l00207" name="l00207"></a><span class="lineno">  207</span>    Base::applyPrattNorm();</div>
+<div class="line"><a id="l00208" name="l00208"></a><span class="lineno">  208</span>    <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><a id="l00209" name="l00209"></a><span class="lineno">  209</span>}</div>
 </div>
 <div class="ttc" id="aclassPonca_1_1OrientedSphereDerImpl_html"><div class="ttname"><a href="classPonca_1_1OrientedSphereDerImpl.html">Ponca::OrientedSphereDerImpl</a></div><div class="ttdoc">[OrientedSphereFit Definition]</div><div class="ttdef"><b>Definition</b> <a href="orientedSphereFit_8h_source.html#l00063">orientedSphereFit.h:64</a></div></div>
 <div class="ttc" id="aclassPonca_1_1OrientedSphereDerImpl_html_a6418adff6cd9ef6d92b2222bc6d61a6c"><div class="ttname"><a href="classPonca_1_1OrientedSphereDerImpl.html#a6418adff6cd9ef6d92b2222bc6d61a6c">Ponca::OrientedSphereDerImpl::Scalar</a></div><div class="ttdeci">typename DataPoint::Scalar Scalar</div><div class="ttdoc">Alias to scalar type.</div><div class="ttdef"><b>Definition</b> <a href="orientedSphereFit_8h_source.html#l00065">orientedSphereFit.h:65</a></div></div>
@@ -368,7 +370,7 @@ $(document).ready(function(){initNavTree('orientedSphereFit_8hpp_source.html',''
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_695d95a8d8fbec601a248c0414764298.html">Ponca</a></li><li class="navelem"><a class="el" href="dir_ce16314fc45f8638543c5146aff64d4a.html">src</a></li><li class="navelem"><a class="el" href="dir_221133f19e4af6803e4ee7d78db21786.html">Fitting</a></li><li class="navelem"><b>orientedSphereFit.hpp</b></li>
-    <li class="footer">Generated on Tue Sep 23 2025 20:29:51 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
+    <li class="footer">Generated on Mon Sep 29 2025 15:07:58 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
   </ul>
 </div>
 </body>
