@@ -120,17 +120,20 @@ struct  OUT_TYPE##PointQuery : Query<QueryInputIsPosition<DataPoint>, \
     struct QueryOutputIsRange : public QueryOutputBase {
         using OutputParameter = Scalar;
 
-        PONCA_MULTIARCH_STD_MATH(sqrt);
-        PONCA_MULTIARCH_STD_MATH(pow);
-
         inline QueryOutputIsRange(OutputParameter radius = OutputParameter(0))
-                : m_squared_radius(pow(radius, OutputParameter(2))) {}
+                : m_squared_radius(PONCA_MULTIARCH_CU_STD_NAMESPACE(pow)(radius, OutputParameter(2))) {}
 
-        inline Scalar radius() const { return sqrt(m_squared_radius); }
+        inline Scalar radius() const {
+            PONCA_MULTIARCH_STD_MATH(sqrt);
+            return sqrt(m_squared_radius);
+        }
 
         inline Scalar squared_radius() const { return m_squared_radius; }
 
-        inline void set_radius(Scalar radius) { m_squared_radius = pow(radius, 2); }
+        inline void set_radius(Scalar radius) {
+            PONCA_MULTIARCH_STD_MATH(pow);
+            m_squared_radius = pow(radius, 2);
+        }
 
         inline void set_squared_radius(Scalar radius) { m_squared_radius = radius; }
 
