@@ -177,8 +177,8 @@ void callDerivativeSubTests()
 {
     DECLARE_DEFAULT_TYPES
 
-    using FitSmoothOrientedSpatial   = BasketDiff<FitSmoothOriented, FitSpaceDer, OrientedSphereDer, CurvatureEstimatorBase, NormalDerivativesCurvatureEstimator>;
-    using FitConstantOrientedSpatial = BasketDiff<FitConstantOriented, FitSpaceDer, OrientedSphereDer, CurvatureEstimatorBase, NormalDerivativesCurvatureEstimator>;
+    using FitSmoothOrientedSpatial   = BasketDiff<FitSmoothOriented, FitSpaceDer, OrientedSphereDer, CurvatureEstimatorBaseDiff, NormalDerivativesCurvatureEstimator>;
+    using FitConstantOrientedSpatial = BasketDiff<FitConstantOriented, FitSpaceDer, OrientedSphereDer, CurvatureEstimatorBaseDiff, NormalDerivativesCurvatureEstimator>;
 
     cout << "Testing with perfect sphere (oriented / unoriented) with spatial derivatives..." << endl;
     for(int i = 0; i < g_repeat; ++i)
