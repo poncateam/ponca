@@ -91,33 +91,36 @@ public:
     // Functor
     /*! \brief Defines the smooth weighting function \f$  w(x)=(x^n-1)^m \f$ */
     PONCA_MULTIARCH inline Scalar f  (const Scalar& _x) const {
-        return std::pow(
-            std::pow(_x, Scalar(n)) - Scalar(1.),
+        PONCA_MULTIARCH_STD_MATH(pow);
+        return pow(
+            pow(_x, Scalar(n)) - Scalar(1.),
             Scalar(m)
         );
     }
     /*! \brief Defines the smooth first order weighting function \f$ \nabla w(x) = m n x^{n-1} \left(x^n-1\right)^{m-1} \f$ */
     PONCA_MULTIARCH inline Scalar df (const Scalar& _x) const {
-        return std::pow(
+        PONCA_MULTIARCH_STD_MATH(pow);
+        return pow(
             Scalar(m*n)*_x,
-            Scalar(n-1)) * std::pow(std::pow(_x, Scalar(n)) -1, Scalar(m-1)
+            Scalar(n-1)) * pow(pow(_x, Scalar(n)) -1, Scalar(m-1)
         );
     }
     /*! \brief Defines the smooth second order weighting function \f$ \nabla^2 w(x) = (m-1) m n^2 x^{2 n-2} \left(x^n-1\right)^{m-2}+m (n-1) n x^{n-2} \left(x^n-1\right)^{m-1} \f$ */
     PONCA_MULTIARCH inline Scalar ddf(const Scalar& _x) const {
+        PONCA_MULTIARCH_STD_MATH(pow);
         return Scalar((m-1)*m*n*n)
-            * std::pow( _x, Scalar(2*n-2))
-            * std::pow(
-                std::pow(_x, Scalar(n))-Scalar(1),
+            * pow( _x, Scalar(2*n-2))
+            * pow(
+                pow(_x, Scalar(n))-Scalar(1),
                 Scalar(m-2)
             )
             + Scalar(m*(n-1)*n)
-            * std::pow(
+            * pow(
                 _x,
                 Scalar(n-2)
             )
-            * std::pow(
-                std::pow(_x, Scalar(n))-Scalar(1),
+            * pow(
+                pow(_x, Scalar(n))-Scalar(1),
                 Scalar(m-1)
             );
     }
