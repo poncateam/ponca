@@ -46,7 +46,7 @@ public:
     }
 
     inline Iterator end(){
-        return Iterator(this, m_graph->size());
+        return Iterator(this, static_cast<int>(m_graph->size()));
     }
 
 protected:
