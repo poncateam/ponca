@@ -10,7 +10,7 @@
 #include "./indexSquaredDistance.h"
 #include "../Common/Containers/limitedPriorityQueue.h"
 
-#include <cmath>
+#include PONCA_MULTIARCH_INCLUDE_STD(cmath)
 
 namespace Ponca {
 
@@ -120,14 +120,17 @@ struct  OUT_TYPE##PointQuery : Query<QueryInputIsPosition<DataPoint>, \
     struct QueryOutputIsRange : public QueryOutputBase {
         using OutputParameter = Scalar;
 
-        inline QueryOutputIsRange(OutputParameter radius = OutputParameter(0))
-                : m_squared_radius(std::pow(radius, OutputParameter(2))) {}
+        PONCA_MULTIARCH_STD_MATH(sqrt);
+        PONCA_MULTIARCH_STD_MATH(pow);
 
-        inline Scalar radius() const { return std::sqrt(m_squared_radius); }
+        inline QueryOutputIsRange(OutputParameter radius = OutputParameter(0))
+                : m_squared_radius(pow(radius, OutputParameter(2))) {}
+
+        inline Scalar radius() const { return sqrt(m_squared_radius); }
 
         inline Scalar squared_radius() const { return m_squared_radius; }
 
-        inline void set_radius(Scalar radius) { m_squared_radius = std::pow(radius, 2); }
+        inline void set_radius(Scalar radius) { m_squared_radius = pow(radius, 2); }
 
         inline void set_squared_radius(Scalar radius) { m_squared_radius = radius; }
 
