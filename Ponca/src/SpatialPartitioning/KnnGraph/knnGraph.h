@@ -118,7 +118,7 @@ public:
     /// \brief Number of neighbor per vertex
     inline int k() const { return m_k; }
     /// \brief Number of vertices in the neighborhood graph
-    inline int size() const { return static_cast<int>(m_indices.size())/m_k; }
+    inline size_t size() const { return m_indices.size()/static_cast<size_t>(m_k); }
 
     // Data --------------------------------------------------------------------
 private:
