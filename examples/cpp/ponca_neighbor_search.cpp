@@ -20,7 +20,7 @@ struct DataPoint
 int main()
 {
     // generate N random points
-    constexpr int N = 1e5;
+    constexpr int N {100000};
     std::vector<DataPoint> points(N);
     std::generate(points.begin(), points.end(), [](){
         return DataPoint{100 * DataPoint::VectorType::Random()};});
