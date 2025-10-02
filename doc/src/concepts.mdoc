@@ -53,7 +53,7 @@ namespace Ponca
     - `ComputationalObjectConcept` and `ComputationalDerivativesConcept`: define API of the computational objects used
     in Basket and BasketDiff respectively.
 
-    \section concepts_computObject API of Computational Objects
+    \section concepts_computeObject API of Computational Objects
     Computations will always follow the same pattern:
     \code
     // Definition
@@ -80,11 +80,11 @@ namespace Ponca
     Note that in the above example, the type `Fit` can be either a Basket or a BasketDiff, without affecting the rest of
     the code.
 
-    \subsection concepts_computObjectBasket Objects used in Basket
+    \subsection concepts_computeObjectBasket Objects used in Basket
     Objects used in Basket should respect the following API:
     \snippet concepts.hpp ComputationalObjectConcept
 
-    \subsection concepts_computObjectBasketDiff Objects used in BasketDiff
+    \subsection concepts_computeObjectBasketDiff Objects used in BasketDiff
     Objects used in BasketDiff should respect the following API:
     \snippet concepts.hpp ComputationalDerivativesConcept
 
