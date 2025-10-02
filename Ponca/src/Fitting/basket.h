@@ -170,12 +170,12 @@ namespace internal
          > myFitDer;                       // Final structure to fit and derive a primitive over weighted samples
          \endcode
 
-         \see Basket for the aggregation of \ref concepts_computObjectBasket "ComputationalObjectConcept"
+         \see Basket for the aggregation of \ref concepts_computeObjectBasket "ComputationalObjectConcept"
 
          \tparam BasketType Existing Basket, to be differentiated
          \tparam Type Differentiation space: FitScaleDer, FitSpaceDer, or FitScaleDer|FitSpaceDer
-         \tparam Ext0 Implements \ref concepts_computObjectBasketDiff "ComputationalDerivativesConcept"
-         \tparam Exts Implements \ref concepts_computObjectBasketDiff "ComputationalDerivativesConcept" (optional)
+         \tparam Ext0 Implements \ref concepts_computeObjectBasketDiff "ComputationalDerivativesConcept"
+         \tparam Exts Implements \ref concepts_computeObjectBasketDiff "ComputationalDerivativesConcept" (optional)
      */
     template <typename BasketType, int Type,
         template <class, class, int, typename> class Ext0,
@@ -229,12 +229,12 @@ namespace internal
         > myFit;                     // Final structure to fit a primitive over weighted samples
     \endcode
 
-    \see BasketDiff for the aggregation of \ref concepts_computObjectBasketDiff "ComputationalDerivativesConcept"
+    \see BasketDiff for the aggregation of \ref concepts_computeObjectBasketDiff "ComputationalDerivativesConcept"
 
     \tparam P Implements \ref ponca_concepts "PointConcept"
     \tparam W Implements \ref concepts_weighting "WeightKernelConcept"
-    \tparam Ext0 Implements \ref concepts_computObjectBasket "ComputationalObjectConcept"
-    \tparam Exts Implements \ref concepts_computObjectBasket "ComputationalObjectConcept" (optional)
+    \tparam Ext0 Implements \ref concepts_computeObjectBasket "ComputationalObjectConcept"
+    \tparam Exts Implements \ref concepts_computeObjectBasket "ComputationalObjectConcept" (optional)
 */
     template <class P, class W,
         template <class, class, typename> class Ext0,
