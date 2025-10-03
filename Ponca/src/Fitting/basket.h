@@ -11,6 +11,7 @@
 #include "primitive.h"
 
 #include PONCA_MULTIARCH_INCLUDE_STD(iterator)
+#include <iostream>
 
 namespace Ponca
 {
@@ -249,6 +250,7 @@ namespace internal
         using Base = typename internal::BasketAggregate<P, W, Ext0, Exts...>::type;
         /// Scalar type used for computation, as defined from template parameter `P`
         using Scalar = typename P::Scalar;
+        using VectorType = typename P::VectorType;
         /// Point type used for computation
         using DataPoint = P;
         /// Weighting function
@@ -272,6 +274,70 @@ namespace internal
                 return true;
             }
             return false;
+        }
+
+        /*!
+         * \brief Computes the fit using the MLS iteration process.
+         * The position of the projected point is outputted through the lastPosition argument.
+         * @tparam PointContainer STL-like container storing the points
+         * @param points An STL-like container of points
+         * @param mlsIter The amount of MLS iteration that is being done for this fit
+         * @return The result of the fit
+         */
+        template<typename PointContainer>
+        FIT_RESULT computeMLS(const PointContainer& points, const int mlsIter=5) {
+            assert(mlsIter > 0);
+            FIT_RESULT res     = UNDEFINED;
+            const Scalar t     = Base::m_w.evalScale();
+            VectorType lastPos = Base::m_w.evalPos();
+
+            for( int mm = 0; mm < mlsIter; ++mm) {
+                Base::setWeightFunc({lastPos, t});
+                res = compute(points);
+
+                if (Base::isStable()) {
+                    lastPos = Base::project( lastPos );
+                } else {
+                    std::cerr << "Warning: fit at mls iteration " << mm << " is not stable" << std::endl;
+                    break;
+                }
+            }
+
+            return res;
+        }
+
+        /*!
+         * \brief Computes the fit using the MLS iteration process.
+         * The position of the projected point is outputted through the lastPosition argument.
+         * @tparam IndexRange STL-Like range storing indices
+         * @tparam PointContainer STL-like container storing the points
+         * @param ids An STL-like container of indeices of the neighbors
+         * @param points An STL-like container of points
+         * @param mlsIter The amount of MLS iteration that is being done for this fit
+         * @return The result of the fit
+         */
+        template<typename IndexRange, typename PointContainer>
+        FIT_RESULT computeWithIdsMLS(
+            const IndexRange& ids, const PointContainer& points, const int mlsIter=5
+        ) {
+            assert(mlsIter > 0);
+            FIT_RESULT res     = UNDEFINED;
+            const Scalar t     = Base::m_w.evalScale();
+            VectorType lastPos = Base::m_w.evalPos();
+
+            for( int mm = 0; mm < mlsIter; ++mm) {
+                Base::setWeightFunc({lastPos, t});
+                res = computeWithIds(ids, points);
+
+                if (Base::isStable()) {
+                    lastPos = Base::project( lastPos );
+                } else {
+                    std::cerr << "Warning: fit at mls iteration " << mm << " is not stable" << std::endl;
+                    break;
+                }
+            }
+
+            return res;
         }
     }; // class Basket
 
