@@ -23,6 +23,15 @@ namespace Ponca
 /*! \brief Namespace used for structure or classes used internally by the lib */
 namespace internal
 {
+    /*!
+     * \brief This class unrolls the extension (from left to right) from the CRTP variadic list
+     *
+     * \tparam P Implements \ref ponca_concepts "PointConcept"
+     * \tparam W Implements \ref concepts_weighting "WeightKernelConcept"
+     * \tparam Aggregate The base CRTP class
+     * \tparam Ext First (left-side) extension in the CTRP variadic list
+     * \tparam Exts Remaining elements (excluding Ext) of the CRTP variadic list
+     */
     template <class P, class W,
         typename Aggregate,
         template <class, class, typename> class Ext,
@@ -32,6 +41,14 @@ namespace internal
         using type = typename BasketAggregateImpl<P, W, Ext<P, W, Aggregate>, Exts...>::type;
     };
 
+    /*!
+     * \brief Specialized version of BasketAggregateImpl when the variadic list is empty
+     *
+     * \tparam P Implements \ref ponca_concepts "PointConcept"
+     * \tparam W Implements \ref concepts_weighting "WeightKernelConcept"
+     * \tparam Aggregate The base CRTP class
+     * \tparam Ext Unique (or last) extension of the CTRP variadic list
+     */
     template <class P, class W,
         typename Aggregate,
         template <class, class, typename> class Ext>
@@ -40,13 +57,29 @@ namespace internal
         using type = Ext<P, W, Aggregate>;
     };
 
-    /*! \brief Internal class used to build the Basket structure */
+    /*!
+     * \brief Internal class used to build the Basket structure
+     * Uses BasketAggregateImpl to unroll the CRTP variadic list
+     *
+     * \tparam P Implements \ref ponca_concepts "PointConcept"
+     * \tparam W Implements \ref concepts_weighting "WeightKernelConcept"
+     * \tparam Exts CRTP variadic list
+     */
     template <class P, class W,
         template <class, class, typename> class... Exts>
     struct BasketAggregate : BasketAggregateImpl<P, W, PrimitiveBase<P, W>, Exts...>
     {
     };
 
+    /*!
+     * \brief This class unrolls the extension (from left to right) from the CRTP variadic list
+     * \see BasketDiffAggregateImpl
+     *
+     * \tparam Type Differentiation type
+     * \tparam BasketType Input Basket Type
+     * \tparam Ext First (left-side) extension in the CTRP variadic list
+     * \tparam Exts Remaining elements (excluding Ext) of the CRTP variadic list
+     */
     template <int Type,
         typename BasketType,
         template <class, class, int, typename> class Ext,
@@ -56,6 +89,13 @@ namespace internal
         using type = typename BasketDiffAggregateImpl<Type, Ext<BSKP, BSKW, Type, BasketType>, Exts...>::type;
     };
 
+    /*!
+     * \brief Specialized version of BasketDiffAggregateImpl when the variadic list is empty
+     *
+     * \tparam Type Differentiation type
+     * \tparam BasketType Input Basket Type
+     * \tparam Ext Unique (or last) extension of the CTRP variadic list
+     */
     template <int Type,
         typename BasketType,
         template <class, class, int, typename> class Ext>
@@ -64,7 +104,14 @@ namespace internal
         using type = Ext<BSKP, BSKW, Type, BasketType>;
     };
 
-    /*! \brief Internal class used to build the BasketDiff structure */
+    /*!
+     * \brief Internal class used to build the BasketDiff structure
+     * Uses BasketDiffAggregateImpl to unroll the CRTP variadic list
+     *
+     * \tparam BasketType BasketType Input Basket Type
+     * \tparam Type Differentiation type
+     * \tparam Exts CRTP variadic list
+     */
     template <typename BasketType, int Type,
         template <class, class, int, typename> class... Exts>
     struct BasketDiffAggregate : BasketDiffAggregateImpl<Type, BasketType, PrimitiveDer, Exts...>
@@ -73,6 +120,14 @@ namespace internal
 }
 #endif
 
+    /*!
+     * Base ComputeObject for the Basket classes
+     *
+     * Implements the compute methods for fitting: #compute, #computeWithIds, ...
+     *
+     * @tparam Derived Derived class that provides the addNeighbor method (either Basket or BasketDiff)
+     * @tparam Base Base class that provides, through the CRTP the init, startNewPass, addNeighbor and finalize methods
+     */
     template<typename _Derived, typename _Base>
     struct BasketComputeObject : public ComputeObject<_Derived>, public virtual _Base {
         using Base    = _Base;    /// <\brief Alias to the Base type
