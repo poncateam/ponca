@@ -40,12 +40,12 @@ namespace Ponca
   The type of computation is controlled by a type (called `Fit` in the example below) defined by the user by combining computational components offered in this module.
   Given an object of type `Fit`, the client code will always looks as follows:
   \code
-  Fit fit;                             // Create the user-defined fitting procedure
-  fit.init();                          // Initialize internal state
-  fit.setWeightFunc(WeightFunc(p, t)); // Set a weighting function to weight neighbors from a reference point p
+  Fit fit;                                 // Create the user-defined fitting procedure
+  fit.init();                              // Initialize internal state
+  fit.setNeighborFilter({p, t}); // Set a functor of type NeighborFilter to filter neighbors from a reference position p and a radius t
   for(auto& it = vecs.begin(); it != vecs.end(); it++)
-    fit.addNeighbor(*it);              // Traverse neighborhood
-  fit.finalize();                      // Finalize computations
+    fit.addNeighbor(*it);                  // Traverse neighborhood
+  fit.finalize();                          // Finalize computations
   \endcode
 
   Once computations are done, the `Fit` object provides both getters to the neighborhood properties (e.g. estimated curvature), and procedures (e.g. projection operator onto the fitted primitive):
@@ -215,7 +215,7 @@ namespace Ponca
   descriptor \cite Mellado:2012:GLS (see GLSParam) from multiple sphere fitting techniques:
   \snippet gls_tau.cpp GLSFitTypes
   From a technical point of view, the Basket class combines its template parameters (here Ponca::OrientedSphereFit and GLSParam) following the CRTP rules, ie.
-  to form an object of the type `GLSParam<Ponca::OrientedSphereFit<DataPoint, _WFunctor,T>>`, that aggregates the computations provided in each class of the hierarchy.
+  to form an object of the type `GLSParam<Ponca::OrientedSphereFit<DataPoint, _NFilter, T>>`, that aggregates the computations provided in each class of the hierarchy.
 
   In practice, Ponca uses these mechanisms under the hood in order to combine atomic computations and minimize code duplication.
   For instance, Ponca::OrientedSphereFit is defined as an assembly of several computations classes:

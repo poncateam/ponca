@@ -7,9 +7,9 @@
 namespace Ponca
 {
 
-template < class DataPoint, class _WFunctor, typename T>
+template < class DataPoint, class _NFilter, typename T>
 void
-UnorientedSphereFitImpl<DataPoint, _WFunctor, T>::init()
+UnorientedSphereFitImpl<DataPoint, _NFilter, T>::init()
 {
     Base::init();
     m_matA.setZero();
@@ -17,9 +17,9 @@ UnorientedSphereFitImpl<DataPoint, _WFunctor, T>::init()
     m_sumDotPP = Scalar(0.0);
 }
 
-template<class DataPoint, class _WFunctor, typename T>
+template<class DataPoint, class _NFilter, typename T>
 bool
-UnorientedSphereFitImpl<DataPoint, _WFunctor, T>::addLocalNeighbor(Scalar w,
+UnorientedSphereFitImpl<DataPoint, _NFilter, T>::addLocalNeighbor(Scalar w,
                                                         const VectorType &localQ,
                                                         const DataPoint &attributes) {
     if( Base::addLocalNeighbor(w, localQ, attributes) )
@@ -36,9 +36,9 @@ UnorientedSphereFitImpl<DataPoint, _WFunctor, T>::addLocalNeighbor(Scalar w,
     return false;
 }
 
-template < class DataPoint, class _WFunctor, typename T>
+template < class DataPoint, class _NFilter, typename T>
 FIT_RESULT
-UnorientedSphereFitImpl<DataPoint, _WFunctor, T>::finalize ()
+UnorientedSphereFitImpl<DataPoint, _NFilter, T>::finalize ()
 {
     PONCA_MULTIARCH_STD_MATH(sqrt);
     constexpr int Dim = DataPoint::Dim;
@@ -81,9 +81,9 @@ UnorientedSphereFitImpl<DataPoint, _WFunctor, T>::finalize ()
 
 
 
-template < class DataPoint, class _WFunctor, int DiffType, typename T>
+template < class DataPoint, class _NFilter, int DiffType, typename T>
 void
-UnorientedSphereDerImpl<DataPoint, _WFunctor, DiffType, T>::init()
+UnorientedSphereDerImpl<DataPoint, _NFilter, DiffType, T>::init()
 {
     Base::init();
     for(int dim = 0; dim < Base::NbDerivatives; ++dim)
@@ -94,9 +94,9 @@ UnorientedSphereDerImpl<DataPoint, _WFunctor, DiffType, T>::init()
     m_dUq = ScalarArray::Zero();
 }
 
-template < class DataPoint, class _WFunctor, int DiffType, typename T>
+template < class DataPoint, class _NFilter, int DiffType, typename T>
 bool
-UnorientedSphereDerImpl<DataPoint, _WFunctor, DiffType, T>::addLocalNeighbor(
+UnorientedSphereDerImpl<DataPoint, _NFilter, DiffType, T>::addLocalNeighbor(
     Scalar w,
     const VectorType &localQ,
     const DataPoint &attributes,
@@ -120,9 +120,9 @@ UnorientedSphereDerImpl<DataPoint, _WFunctor, DiffType, T>::addLocalNeighbor(
     return false;
 }
 
-template < class DataPoint, class _WFunctor, int DiffType, typename T>
+template < class DataPoint, class _NFilter, int DiffType, typename T>
 FIT_RESULT
-UnorientedSphereDerImpl<DataPoint, _WFunctor, DiffType, T>::finalize()
+UnorientedSphereDerImpl<DataPoint, _NFilter, DiffType, T>::finalize()
 {
     constexpr int Dim = DataPoint::Dim;
     constexpr Scalar epsilon = Eigen::NumTraits<Scalar>::dummy_precision();
@@ -202,9 +202,9 @@ UnorientedSphereDerImpl<DataPoint, _WFunctor, DiffType, T>::finalize()
     return Base::m_eCurrentState;
 }
 
-template < class DataPoint, class _WFunctor, int DiffType, typename T>
-typename UnorientedSphereDerImpl<DataPoint, _WFunctor, DiffType, T>::ScalarArray
-UnorientedSphereDerImpl<DataPoint, _WFunctor, DiffType, T>::dPotential() const
+template < class DataPoint, class _NFilter, int DiffType, typename T>
+typename UnorientedSphereDerImpl<DataPoint, _NFilter, DiffType, T>::ScalarArray
+UnorientedSphereDerImpl<DataPoint, _NFilter, DiffType, T>::dPotential() const
 {
     // same as OrientedSphereDerImpl::dPotential()
     ScalarArray dfield = m_dUc;
@@ -213,9 +213,9 @@ UnorientedSphereDerImpl<DataPoint, _WFunctor, DiffType, T>::dPotential() const
     return dfield;
 }
 
-template < class DataPoint, class _WFunctor, int DiffType, typename T>
-typename UnorientedSphereDerImpl<DataPoint, _WFunctor, DiffType, T>::VectorArray
-UnorientedSphereDerImpl<DataPoint, _WFunctor, DiffType, T>::dNormal() const
+template < class DataPoint, class _NFilter, int DiffType, typename T>
+typename UnorientedSphereDerImpl<DataPoint, _NFilter, DiffType, T>::VectorArray
+UnorientedSphereDerImpl<DataPoint, _NFilter, DiffType, T>::dNormal() const
 {
     // same as OrientedSphereDerImpl::dNormal()
     VectorArray dgrad = m_dUl;

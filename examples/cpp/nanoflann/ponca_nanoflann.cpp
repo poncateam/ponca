@@ -45,8 +45,8 @@ typedef MyPoint::Scalar Scalar;
 typedef MyPoint::VectorType VectorType;
 
 //! [Define Fit Type]
-using WeightFunc =  DistWeightFunc<MyPoint,Ponca::SmoothWeightKernel<Scalar> > ;
-using FitType    = Basket<MyPoint,WeightFunc, Ponca::DryFit>; // build a fitting object that does nothing
+using NeighborFilter =  DistWeightFunc<MyPoint,Ponca::SmoothWeightKernel<Scalar> > ;
+using FitType    = Basket<MyPoint,NeighborFilter, Ponca::DryFit>; // build a fitting object that does nothing
 //! [Define Fit Type]
 
 
@@ -166,7 +166,7 @@ my_kd_tree_t mat_index(3, nfcloud);
     auto start = std::chrono::system_clock::now();
     for(int i = 0; i != nbrun; ++i)
     {
-        fit.setWeightFunc(WeightFunc(queries[i], tmax));
+        fit.setNeighborFilter({queries[i], tmax});
         neiRaw += test_raw(fit, vecs);
     }
     auto end = std::chrono::system_clock::now();
@@ -175,7 +175,7 @@ my_kd_tree_t mat_index(3, nfcloud);
     start = std::chrono::system_clock::now();
     for(int i = 0; i != nbrun; ++i)
     {
-        fit.setWeightFunc(WeightFunc(queries[i], tmax));
+        fit.setNeighborFilter({queries[i], tmax});
         neiPonca += test_ponca_kdtree(fit, vecs, queries[i], ponca_tree, tmax);
     }
     end = std::chrono::system_clock::now();
@@ -184,7 +184,7 @@ my_kd_tree_t mat_index(3, nfcloud);
     start = std::chrono::system_clock::now();
     for(int i = 0; i != nbrun; ++i)
     {
-        fit.setWeightFunc(WeightFunc(queries[i], tmax));
+        fit.setNeighborFilter({queries[i], tmax});
         neiFlann += test_nanflann_kdtree(fit, vecs, queries[i], mat_index, tmax);
     }
     end = std::chrono::system_clock::now();

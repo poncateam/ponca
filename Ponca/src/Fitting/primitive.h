@@ -24,7 +24,7 @@ namespace Ponca
     \note This class should not be inherited explicitly: this is done by the
     #Basket class.
 */
-template < class DataPoint, class _WFunctor, typename T = void  >
+template < class DataPoint, class _NFilter, typename T = void  >
 class PrimitiveBase
 {
 protected:
@@ -33,9 +33,9 @@ protected:
     };
 
 public:
-    using Scalar     = typename DataPoint::Scalar;     /*!< \brief Inherited scalar type*/
-    using VectorType = typename DataPoint::VectorType; /*!< \brief Inherited vector type*/
-    using WFunctor   = _WFunctor;                      /*!< \brief Weight Function*/
+    using Scalar         = typename DataPoint::Scalar;     /*!< \brief Inherited scalar type*/
+    using VectorType     = typename DataPoint::VectorType; /*!< \brief Inherited vector type*/
+    using NeighborFilter = _NFilter;                       /*!< \brief Filter applied on each neighbor*/
 
 private:
     //! \brief Number of neighbors
@@ -44,22 +44,22 @@ private:
     //! \brief Sum of the neighbors weights
     Scalar m_sumW {0};
 
+    //! \brief Neighborhood filter
+    NeighborFilter   m_nFilter;
+
 protected:
 
     //! \brief Represent the current state of the fit (finalize function
     //! update the state)
     FIT_RESULT m_eCurrentState {UNDEFINED};
 
-    //! \brief Weight function (must inherits BaseWeightFunc)
-    WFunctor   m_w;
-
 public:
     /**************************************************************************/
     /* Initialization                                                         */
     /**************************************************************************/
     PONCA_FITTING_APIDOC_SETWFUNC
-    PONCA_MULTIARCH inline void setWeightFunc (const WFunctor& _w) {
-        m_w  = _w;
+    PONCA_MULTIARCH inline void setNeighborFilter (const NeighborFilter& _nFilter) {
+        m_nFilter  = _nFilter;
     }
 
     PONCA_FITTING_APIDOC_INIT
@@ -96,10 +96,10 @@ public:
         m_sumW = Scalar(0);
     }
 
-    /*! \brief Read access to the WeightFunc \see setWeightFunc */
-    PONCA_MULTIARCH inline const WFunctor& getWeightFunc() const
+    /*! \brief Read access to the NeighborFilter \see setNeighborFilter */
+    PONCA_MULTIARCH inline const NeighborFilter& getNeighborFilter() const
     {
-        return m_w;
+        return m_nFilter;
     }
 
 
@@ -147,12 +147,11 @@ public:
     derDimension(), and the differentiation type by isScaleDer() and
     isSpaceDer().
  */
-template < class DataPoint, class _WFunctor, int Type, typename T>
+template < class DataPoint, class _NFilter, int Type, typename T>
 class PrimitiveDer : public T
 {
-private:
-    typedef T Base; /*!< \brief Generic base type */
-
+    PONCA_FITTING_DECLARE_DEFAULT_TYPES
+    PONCA_FITTING_DECLARE_MATRIX_TYPE
 protected:
     enum {
         Check = Base::PROVIDES_PRIMITIVE_BASE,    /*!< \brief Provides base API for primitives*/
@@ -164,10 +163,6 @@ protected:
     static constexpr  int DerStorageOrder = (Type & FitSpaceDer) ? Eigen::RowMajor : Eigen::ColMajor;
 
 public:
-    using Scalar     = typename Base::Scalar;          /*!< \brief Inherited scalar type*/
-    using VectorType = typename Base::VectorType;      /*!< \brief Inherited vector type*/
-    using MatrixType = typename DataPoint::MatrixType; /*!< \brief Inherited matrix type*/
-    using WFunctor   = typename Base::WFunctor;        /*!< \brief Weight Function*/
 
     /*! \brief Static array of scalars with a size adapted to the differentiation type */
     typedef Eigen::Matrix<Scalar, DataPoint::Dim, NbDerivatives, DerStorageOrder> VectorArray;
@@ -202,10 +197,10 @@ public:
             int spaceId = (Type & FitScaleDer) ? 1 : 0;
             // compute weight
             if (Type & FitScaleDer)
-                dw[0] = Base::m_w.scaledw(attributes.pos(), attributes);
+                dw[0] = Base::getNeighborFilter().scaledw(attributes.pos(), attributes);
 
             if (Type & FitSpaceDer)
-                dw.template segment<int(DataPoint::Dim)>(spaceId) = -Base::m_w.spacedw(attributes.pos(), attributes).transpose();
+                dw.template segment<int(DataPoint::Dim)>(spaceId) = -Base::getNeighborFilter().spacedw(attributes.pos(), attributes).transpose();
 
             m_dSumW += dw;
             return true;

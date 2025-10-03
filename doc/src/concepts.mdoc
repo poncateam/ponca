@@ -60,14 +60,14 @@ namespace Ponca
     typedef Basket<MyPointStructure,MyWeightingFunction,MyFittingProcedure...> Fit;
 
     // Initialization
-    MyWeightingFunction w ( some_parameters );  //< Init weight function
+    MyWeightingFunction w ( referencePosition, some_other_parameters... );  //< Init weight function with the reference position
     Fit fit;                                    //< Create a fit object
-    fit.init(  );                               //< Initialize the internal state
-    fit.setWeightFunc( {referencePosition, w} );  //< Set the weighting function (reference position and w can be shared accross multiple fits)
+    fit.init( );                                //< Initialize the internal state
+    fit.setNeighborFilter( w );                 //< Set the weighting function (w can be shared across multiple fits)
 
     // Computations
     foreach neighbors of referencePosition      //< Traverse neighborhood
-      fit.addNeighbor(neighbor);                //< Intermediate computation for each neighbor
+        fit.addNeighbor(neighbor);                //< Intermediate computation for each neighbor
     fit.finalize();                             //< Final computations
 
     // Usage

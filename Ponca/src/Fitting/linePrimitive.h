@@ -30,7 +30,7 @@ namespace Ponca
     \verbatim PROVIDES_LINE \endverbatim
 */
 
-template < class DataPoint, class _WFunctor, typename T >
+template < class DataPoint, class _NFilter, typename T >
 class Line : public T,
              public Eigen::ParametrizedLine<typename DataPoint::Scalar, DataPoint::Dim >
 {
@@ -70,12 +70,12 @@ public:
     }
 
     /*! \brief Comparison operator */
-    PONCA_MULTIARCH inline bool operator==(const Line<DataPoint, WFunctor, T>& other) const{
+    PONCA_MULTIARCH inline bool operator==(const Line<DataPoint, NeighborFilter, T>& other) const{
         return EigenBase::isApprox(other);
     }
 
     /*! \brief Comparison operator, convenience function */
-    PONCA_MULTIARCH inline bool operator!=(const Line<DataPoint, WFunctor, T>& other) const{
+    PONCA_MULTIARCH inline bool operator!=(const Line<DataPoint, NeighborFilter, T>& other) const{
         return ! ((*this) == other);
     }
 
@@ -102,17 +102,20 @@ public:
      * defined as the squared distance between \f$ \mathbf{q} \f$ and the line
      *  \see method `#isSigned` of the fit to check if the sign is reliable
      */
-    PONCA_MULTIARCH inline Scalar potential (const VectorType& _q) const
+    PONCA_MULTIARCH inline Scalar potential (const VectorType& _q, const bool convertToLocalBasis = true) const
     {
+        // turn to centered basis
+        const VectorType lq = convertToLocalBasis? Base::getNeighborFilter().convertToLocalBasis(_q) : _q;
         // The potential is the distance from a point to the line
-        return EigenBase::squaredDistance(Base::m_w.convertToLocalBasis(_q));
+        return EigenBase::squaredDistance(lq);
     }
 
     //! \brief Project a point on the line
+    template <typename NF = NeighborFilter, std::enable_if_t<NF::isLocal, int> = 0> // Enable project only if NF::isLocal
     PONCA_MULTIARCH inline VectorType project (const VectorType& _q) const
     {
         // Project on the normal vector and add the offset value
-        return Base::m_w.convertToGlobalBasis(EigenBase::projection(Base::m_w.convertToLocalBasis(_q)));
+        return Base::getNeighborFilter().convertToGlobalBasis(EigenBase::projection(Base::getNeighborFilter().convertToLocalBasis(_q)));
     }
 }; //class Line
 

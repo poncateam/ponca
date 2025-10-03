@@ -42,7 +42,7 @@ namespace Ponca
 */
 
 
-template < class DataPoint, class _WFunctor, typename T >
+template < class DataPoint, class _NFilter, typename T >
 class AlgebraicSphere : public T
 {
     PONCA_FITTING_DECLARE_DEFAULT_TYPES
@@ -90,7 +90,7 @@ public:
     }
 
     /// \brief Comparison operator \warning Assume that other shares the same basis \see changeBasis()
-    PONCA_MULTIARCH inline bool operator==(const AlgebraicSphere<DataPoint, WFunctor, T>& other) const{
+    PONCA_MULTIARCH inline bool operator==(const AlgebraicSphere<DataPoint, NeighborFilter, T>& other) const{
         PONCA_MULTIARCH_STD_MATH(pow);
         const Scalar epsilon        = Eigen::NumTraits<Scalar>::dummy_precision();
         const Scalar squaredEpsilon = epsilon*epsilon;
@@ -110,7 +110,7 @@ public:
 
 
     /*! \brief Comparison operator, convenience function */
-    PONCA_MULTIARCH inline bool operator!=(const AlgebraicSphere<DataPoint, WFunctor, T>& other) const{
+    PONCA_MULTIARCH inline bool operator!=(const AlgebraicSphere<DataPoint, NeighborFilter, T>& other) const{
         return ! ((*this) == other);
     }
 
@@ -145,8 +145,8 @@ public:
     */
     PONCA_MULTIARCH inline void changeBasis(const VectorType& newbasis)
     {
-        VectorType diff = Base::m_w.basisCenter() - newbasis;
-        Base::setWeightFunc({newbasis, Base::m_w.evalScale()});
+        VectorType diff = Base::getNeighborFilter().basisCenter() - newbasis;
+        Base::setNeighborFilter({newbasis, Base::getNeighborFilter().evalScale()});
         Base::init();
         m_uc = m_uc - m_ul.dot(diff) + m_uq * diff.dot(diff);
         m_ul = m_ul - Scalar(2.)*m_uq*diff;
@@ -225,7 +225,7 @@ public:
         }
 
         Scalar b = Scalar(1.)/m_uq;
-        return Base::m_w.convertToGlobalBasis((Scalar(-0.5)*b)*m_ul);
+        return Base::getNeighborFilter().convertToGlobalBasis((Scalar(-0.5)*b)*m_ul);
     }
 
     //! \brief State indicating when the sphere has been normalized
@@ -233,7 +233,7 @@ public:
 
     //! \brief Value of the scalar field at the location \f$ \mathbf{q}\f$.
     //! \see method `#isSigned` of the fit to check if the sign is reliable
-    PONCA_MULTIARCH inline Scalar potential (const VectorType& _q) const;
+    PONCA_MULTIARCH inline Scalar potential (const VectorType& _q, const bool convertToLocalBasis = true) const;
 
     //! \brief Value of the scalar field at the evaluation point
     //! \see method `#isSigned` of the fit to check if the sign is reliable
@@ -247,20 +247,12 @@ public:
         projected on the primtive.
         \note This function is in most cases more accurate and faster than #projectDescent
      */
+    template <typename NF = NeighborFilter, std::enable_if_t<NF::isLocal, int> = 0> // Enable project only if NF::isLocal
     PONCA_MULTIARCH inline VectorType project (const VectorType& _q) const;
-
-    /*!
-       \brief Project a point on the algebraic hypersphere using Gradient Descent
-       This projection is realized by following the gradient of the hypersphere scalar field
-       \warning This function is in most cases slower and less accurate than #project.
-       \param _q Starting point
-       \param nbIter Number of iterations (default = 16)
-     */
-    PONCA_MULTIARCH inline VectorType projectDescent (const VectorType& _q, int nbIter = 16) const;
 
     /*! \brief Approximation of the scalar field gradient at \f$ \mathbf{q}\f$
         \warning The gradient is not normalized by default */
-    PONCA_MULTIARCH inline VectorType primitiveGradient (const VectorType& _q) const;
+    PONCA_MULTIARCH inline VectorType primitiveGradient (const VectorType& _q, const bool convertToLocalBasis = true) const;
 
     /*! \brief Approximation of the scalar field gradient at the evaluation point
         \warning The gradient is not normalized by default */
