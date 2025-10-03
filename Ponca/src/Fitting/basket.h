@@ -11,6 +11,7 @@
 #include "primitive.h"
 
 #include PONCA_MULTIARCH_INCLUDE_STD(iterator)
+#include <iostream>
 
 namespace Ponca
 {
