@@ -184,16 +184,16 @@ void callDerivativeSubTests()
     for(int i = 0; i < g_repeat; ++i)
     {
         //Test with perfect sphere
-        CALL_SUBTEST(( testFunction<Point, FitSmoothOrientedSpatial, WeightSmoothFunc, true>() ));
-        CALL_SUBTEST(( testFunction<Point, FitConstantOrientedSpatial, WeightConstantFunc, true>() ));
+        CALL_SUBTEST(( testFunction<Point, FitSmoothOrientedSpatial, true>() ));
+        CALL_SUBTEST(( testFunction<Point, FitConstantOrientedSpatial, true>() ));
     }
     cout << "Ok!" << endl;
 
     cout << "Testing with noise on position and normals (oriented / unoriented) with spatial derivatives..." << endl;
     for(int i = 0; i < g_repeat; ++i)
     {
-        CALL_SUBTEST(( testFunction<Point, FitSmoothOrientedSpatial, WeightSmoothFunc, true>(false, true, true) ));
-        CALL_SUBTEST(( testFunction<Point, FitConstantOrientedSpatial, WeightConstantFunc, true>(false, true, true) ));
+        CALL_SUBTEST(( testFunction<Point, FitSmoothOrientedSpatial, true>(false, true, true) ));
+        CALL_SUBTEST(( testFunction<Point, FitConstantOrientedSpatial, true>(false, true, true) ));
     }
     cout << "Ok!" << endl;
 }
