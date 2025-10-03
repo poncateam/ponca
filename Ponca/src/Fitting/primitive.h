@@ -146,6 +146,10 @@ public:
     contains at least FitScaleDer. The size of these arrays can be known using
     derDimension(), and the differentiation type by isScaleDer() and
     isSpaceDer().
+
+    Thanks to the BasketDiff definition, we know that PrimitiveDer has Primitive
+    as base class (through the Basket). As a result, this class first asks to
+    compute the Fit, and if it works properly, compute the weight derivatives.
  */
 template < class DataPoint, class _WFunctor, int Type, typename T>
 class PrimitiveDer : public T
@@ -198,7 +202,7 @@ public:
                                                  const DataPoint &attributes,
                                                  ScalarArray &dw)
     {
-        if( Base::addLocalNeighbor(w, localQ, attributes) ) {
+        if( Base::addLocalNeighbor(w, localQ, attributes) ) { // call the Primitive Fit (without dw)
             int spaceId = (Type & FitScaleDer) ? 1 : 0;
             // compute weight
             if (Type & FitScaleDer)

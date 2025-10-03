@@ -124,6 +124,19 @@ namespace internal
      * Base ComputeObject for the Basket classes
      *
      * Implements the compute methods for fitting: #compute, #computeWithIds, ...
+     * Checkout \ref fitting for more details
+     *
+     * The various implementations of Ponca::Concept are mixed through specializations of the BasketDiff and Basket
+     *   classes:
+     *   \code
+     *   typedef
+     *   BasketDiff <BasketType,           // Existing Basket, to be differentiated
+     *   DiffType,                         // Differentiation space: FitScaleDer, FitSpaceDer, or FitScaleDer|FitSpaceDer
+     *   ComputationalDerivativesConcept1, // Implementation of ComputationalDerivativesConcept
+     *   ComputationalDerivativesConcept2, // Implementation of ComputationalDerivativesConcept
+     *   ... ,                             //
+     *   > myFitDer;                       // Final structure to fit and derive a primitive over weighted samples
+     *   \endcode
      *
      * @tparam Derived Derived class that provides the addNeighbor method (either Basket or BasketDiff)
      * @tparam Base Base class that provides, through the CRTP the init, startNewPass, addNeighbor and finalize methods
@@ -183,26 +196,14 @@ namespace internal
             return res;
         }
     };
+
+#define WRITE_COMPUTE_FUNCTIONS \
+    using BasketComputeObject<Self, Base>::compute; \
+    using BasketComputeObject<Self, Base>::computeWithIds;
+
     /*!
          \brief Aggregator class used to declare specialized structures with derivatives computations, using CRTP
-
-         This is one of the central classes of the library (even if it does not perform any computation on its own).
-         Checkout \ref fitting for more details, and Basket class.
-
-         The various implementations of Ponca::Concept are mixed through specializations of the BasketDiff and Basket
-         classes:
-         \code
-         typedef
-         BasketDiff <BasketType,           // Existing Basket, to be differentiated
-         DiffType,                         // Differentiation space: FitScaleDer, FitSpaceDer, or FitScaleDer|FitSpaceDer
-         ComputationalDerivativesConcept1, // Implementation of ComputationalDerivativesConcept
-         ComputationalDerivativesConcept2, // Implementation of ComputationalDerivativesConcept
-         ... ,                             //
-         > myFitDer;                       // Final structure to fit and derive a primitive over weighted samples
-         \endcode
-
-         \see Basket for the aggregation of \ref concepts_computObjectBasket "ComputationalObjectConcept"
-
+         \copydoc BasketComputeObject
          \tparam BasketType Existing Basket, to be differentiated
          \tparam Type Differentiation space: FitScaleDer, FitSpaceDer, or FitScaleDer|FitSpaceDer
          \tparam Ext0 Implements \ref concepts_computObjectBasketDiff "ComputationalDerivativesConcept"
@@ -215,19 +216,16 @@ namespace internal
                                                   typename internal::BasketDiffAggregate<BasketType, Type, Ext0, Exts...>::type>
     {
     private:
-        using Self   = BasketDiff;
+        using Self = BasketDiff;
     public:
-    /// Base type, which aggregates all the computational objects using the CRTP
-    using Base = typename internal::BasketDiffAggregate<BasketType, Type, Ext0, Exts...>::type;
-    /// Weighting function
-    using WeightFunction = BSKW;
-    /// Point type used for computation
-    using DataPoint = BSKP;
-    /// Scalar type used for computation, as defined from Basket
-    using Scalar = typename DataPoint::Scalar;
-
-    using BasketComputeObject<Self, Base>::compute;
-    using BasketComputeObject<Self, Base>::computeWithIds;
+        using Base = typename internal::BasketDiffAggregate<BasketType,Type,Ext0,Exts...>::type;
+        /// Weight function
+        using WeightFunction = typename BasketType::WeightFunction;
+        /// Point type used for computation
+        using DataPoint = typename BasketType::DataPoint;
+        /// Scalar type used for computation, as defined from Basket
+        using Scalar = typename BasketType::Scalar;
+    WRITE_COMPUTE_FUNCTIONS
 
     /// \copydoc Basket::addNeighbor
     PONCA_MULTIARCH inline bool addNeighbor(const DataPoint &_nei) {
@@ -245,24 +243,7 @@ namespace internal
 
 /*!
     \brief Aggregator class used to declare specialized structures using CRTP
-
-    This is one of the central classes of the library (even if it does not perform any computation on its own).
-    Checkout \ref fitting for more details.
-
-    The various implementations of Ponca::Concept are mixed through
-    specializations of the Basket class:
-    \code
-        typedef
-        Basket <PointImpl,           // Implementation of PointConcept
-        WeightFuncImpl,              // Implementation of WeightFuncConcept
-        ComputationalObjectConcept1, // Implementation of ComputationalObjectConcept
-        ComputationalObjectConcept2, // Implementation of ComputationalObjectConcept
-        ... ,                        //
-        > myFit;                     // Final structure to fit a primitive over weighted samples
-    \endcode
-
-    \see BasketDiff for the aggregation of \ref concepts_computObjectBasketDiff "ComputationalDerivativesConcept"
-
+    \copydoc BasketComputeObject
     \tparam P Implements \ref ponca_concepts "PointConcept"
     \tparam W Implements \ref concepts_weighting "WeightKernelConcept"
     \tparam Ext0 Implements \ref concepts_computObjectBasket "ComputationalObjectConcept"
@@ -275,19 +256,17 @@ namespace internal
                                               typename internal::BasketAggregate<P, W, Ext0, Exts...>::type>
     {
     private:
-        using Self   = Basket;
+        using Self = Basket;
     public:
-        /// Base type, which aggregates all the computational objects using the CRTP
-        using Base = typename internal::BasketAggregate<P, W, Ext0, Exts...>::type;
-        /// Scalar type used for computation, as defined from template parameter `P`
-        using Scalar = typename P::Scalar;
+        using Base = typename internal::BasketAggregate<P,W,Ext0,Exts...>::type;
+        /// Weight function
+        using WeightFunction = W;
         /// Point type used for computation
         using DataPoint = P;
-        /// Weighting function
-        using WeightFunction = W;
+        /// Scalar type used for computation, as defined from Basket
+        using Scalar = typename DataPoint::Scalar;
 
-        using BasketComputeObject<Self, Base>::compute;
-        using BasketComputeObject<Self, Base>::computeWithIds;
+        WRITE_COMPUTE_FUNCTIONS
 
         /// \brief Add a neighbor to perform the fit
         ///
@@ -307,5 +286,6 @@ namespace internal
         }
     }; // class Basket
 
+#undef WRITE_COMPUTE_FUNCTIONS
 } //namespace Ponca
 
