@@ -1,12 +1,21 @@
 var hierarchy =
 [
-    [ "Ponca::ComputeObject< Derived >", "structPonca_1_1ComputeObject.html", null ],
-    [ "Ponca::ComputeObject< Basket< P, W, Ext0, Exts... > >", "structPonca_1_1ComputeObject.html", [
-      [ "Ponca::Basket< P, W, Ext0, Exts >", "classPonca_1_1Basket.html", null ]
+    [ "_Base", null, [
+      [ "Ponca::BasketComputeObject< _Derived, _Base >", "structPonca_1_1BasketComputeObject.html", null ]
     ] ],
-    [ "Ponca::ComputeObject< BasketDiff< BasketType, Type, Ext0, Exts... > >", "structPonca_1_1ComputeObject.html", [
-      [ "Ponca::BasketDiff< BasketType, Type, Ext0, Exts >", "classPonca_1_1BasketDiff.html", null ]
+    [ "Ponca::ComputeObject< Derived >", "structPonca_1_1ComputeObject.html", [
+      [ "Ponca::BasketComputeObject< Basket< P, W, Ext0, Exts... >, internal::BasketAggregate< P, W, Ext0, Exts... >::type >", "structPonca_1_1BasketComputeObject.html", [
+        [ "Ponca::Basket< P, W, Ext0, Exts >", "classPonca_1_1Basket.html", null ]
+      ] ],
+      [ "Ponca::BasketComputeObject< BasketDiff< BasketType, Type, Ext0, Exts... >, internal::BasketDiffAggregate< BasketType, Type, Ext0, Exts... >::type >", "structPonca_1_1BasketComputeObject.html", [
+        [ "Ponca::BasketDiff< BasketType, Type, Ext0, Exts >", "classPonca_1_1BasketDiff.html", null ]
+      ] ]
     ] ],
+    [ "Ponca::ComputeObject< _Derived >", "structPonca_1_1ComputeObject.html", [
+      [ "Ponca::BasketComputeObject< _Derived, _Base >", "structPonca_1_1BasketComputeObject.html", null ]
+    ] ],
+    [ "Ponca::ComputeObject< Basket< P, W, Ext0, Exts... > >", "structPonca_1_1ComputeObject.html", null ],
+    [ "Ponca::ComputeObject< BasketDiff< BasketType, Type, Ext0, Exts... > >", "structPonca_1_1ComputeObject.html", null ],
     [ "Ponca::KdTreeBase< Traits >::DefaultConverter", "structPonca_1_1KdTreeBase_1_1DefaultConverter.html", null ],
     [ "Ponca::DistWeightFunc< DataPoint, WeightKernel >", "classPonca_1_1DistWeightFunc.html", null ],
     [ "Ponca::QueryOutputBase::DummyOutputParameter", "group__spatialpartitioning.html#structPonca_1_1QueryOutputBase_1_1DummyOutputParameter", null ],
@@ -190,10 +199,10 @@ var hierarchy =
       [ "Ponca::UnorientedSphereFitImpl< DataPoint, _WFunctor, T >", "classPonca_1_1UnorientedSphereFitImpl.html", null ]
     ] ],
     [ "internal::BasketAggregate::type", null, [
-      [ "Ponca::Basket< P, W, Ext0, Exts >", "classPonca_1_1Basket.html", null ]
+      [ "Ponca::BasketComputeObject< Basket< P, W, Ext0, Exts... >, internal::BasketAggregate< P, W, Ext0, Exts... >::type >", "structPonca_1_1BasketComputeObject.html", null ]
     ] ],
     [ "internal::BasketDiffAggregate::type", null, [
-      [ "Ponca::BasketDiff< BasketType, Type, Ext0, Exts >", "classPonca_1_1BasketDiff.html", null ]
+      [ "Ponca::BasketComputeObject< BasketDiff< BasketType, Type, Ext0, Exts... >, internal::BasketDiffAggregate< BasketType, Type, Ext0, Exts... >::type >", "structPonca_1_1BasketComputeObject.html", null ]
     ] ],
     [ "Concept::WeightKernelConcept", null, [
       [ "Ponca::CompactExpWeightKernel< _Scalar >", "classPonca_1_1CompactExpWeightKernel.html", null ],

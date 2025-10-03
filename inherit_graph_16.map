@@ -1,3 +1,5 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="Node000000" href="$structPonca_1_1KdTreeDefaultInnerNode.html" title=" " alt="" coords="5,5,244,45"/>
+<area shape="rect" id="Node000000" href="$classPonca_1_1KdTreeCustomizableNode.html" title="The node type used by default by the kd&#45;tree." alt="" coords="5,5,240,75"/>
+<area shape="rect" id="Node000001" href="$structPonca_1_1KdTreeDefaultNode.html" title=" " alt="" coords="288,13,515,67"/>
+<area shape="poly" id="edge74_Node000000_Node000001" title=" " alt="" coords="254,37,288,37,288,43,254,43"/>
 </map>

@@ -3,6 +3,7 @@ var annotated_dup =
     [ "Ponca", "namespacePonca.html", [
       [ "AlgebraicSphere", "classPonca_1_1AlgebraicSphere.html", "classPonca_1_1AlgebraicSphere" ],
       [ "Basket", "classPonca_1_1Basket.html", "classPonca_1_1Basket" ],
+      [ "BasketComputeObject", "structPonca_1_1BasketComputeObject.html", "structPonca_1_1BasketComputeObject" ],
       [ "BasketDiff", "classPonca_1_1BasketDiff.html", "classPonca_1_1BasketDiff" ],
       [ "CompactExpWeightKernel", "classPonca_1_1CompactExpWeightKernel.html", "classPonca_1_1CompactExpWeightKernel" ],
       [ "ComputeObject", "structPonca_1_1ComputeObject.html", "structPonca_1_1ComputeObject" ],

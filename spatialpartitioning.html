@@ -51,7 +51,7 @@ MathJax.Hub.Config({
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Ponca
-   &#160;<span id="projectnumber">bc9576194e71908447e45b4f1a763480bee3ceb9</span>
+   &#160;<span id="projectnumber">cae09e7d2989a7e36b5934e918de3f11b3010714</span>
    </div>
    <div id="projectbrief">Point Cloud Analysis library</div>
   </td>
@@ -170,7 +170,7 @@ Queries</h2>
 <div class="line">    <span class="comment">// process neighbor at index neiId</span></div>
 <div class="line">  }</div>
 </div><!-- fragment --><dl class="section note"><dt>Note</dt><dd>As queries are objets that are independent from the datastructure, they can be created and used in parallel from multiple threads. The queries are always constructed by the datastructure.</dd></dl>
-<p>Thanks to the iterator formalism, queries can be seamlessly combined with <a class="el" href="classPonca_1_1Basket.html#ab7c3940abd442946a83a3eca251cac3f" title="Convenience function to iterate over a subset of samples in a PointContainer">Basket::computeWithIds</a>: </p><div class="fragment"><div class="line">Fit fit;</div>
+<p>Thanks to the iterator formalism, queries can be seamlessly combined with <a class="el" href="structPonca_1_1ComputeObject.html#a19794c89d55fef61b6a712dd94d7452b" title="Convenience function to iterate over a subset of samples in a PointContainer.">Basket::computeWithIds</a>: </p><div class="fragment"><div class="line">Fit fit;</div>
 <div class="line">fit.setWeightFunc(MyWeightFunc(fitInitPos, scale));</div>
 <div class="line">fit.computeWithIds( myDataStructure.range_neighbors(fitInitPos, scale), vectorPoints );</div>
 </div><!-- fragment --><dl class="section warning"><dt>Warning</dt><dd>Queries from an index (<a class="el" href="group__spatialpartitioning.html#structPonca_1_1NearestIndexQuery" title="Base Query class combining QueryInputIsIndex and QueryOutputIsNearest.">NearestIndexQuery</a>, <a class="el" href="group__spatialpartitioning.html#structPonca_1_1KNearestIndexQuery" title="Base Query class combining QueryInputIsIndex and QueryOutputIsKNearest.">KNearestIndexQuery</a> and <a class="el" href="group__spatialpartitioning.html#structPonca_1_1RangeIndexQuery" title="Base Query class combining QueryInputIsIndex and QueryOutputIsRange.">RangeIndexQuery</a>) do not iterate on the queried index.</dd></dl>
@@ -299,7 +299,7 @@ Queries</h3>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="user_manual_page.html">User Manual</a></li>
-    <li class="footer">Generated on Mon Sep 29 2025 15:07:58 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
+    <li class="footer">Generated on Fri Oct 3 2025 21:26:33 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
   </ul>
 </div>
 </body>
