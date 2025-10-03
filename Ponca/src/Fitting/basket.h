@@ -9,6 +9,7 @@
 #include "defines.h"
 #include "enums.h"
 #include "primitive.h"
+#include "compute.h"
 
 #include PONCA_MULTIARCH_INCLUDE_STD(iterator)
 
@@ -22,6 +23,15 @@ namespace Ponca
 /*! \brief Namespace used for structure or classes used internally by the lib */
 namespace internal
 {
+    /*!
+     * \brief This class unrolls the extension (from left to right) from the CRTP variadic list
+     *
+     * \tparam P Implements \ref ponca_concepts "PointConcept"
+     * \tparam W Implements \ref concepts_weighting "WeightKernelConcept"
+     * \tparam Aggregate The base CRTP class
+     * \tparam Ext First (left-side) extension in the CTRP variadic list
+     * \tparam Exts Remaining elements (excluding Ext) of the CRTP variadic list
+     */
     template <class P, class W,
         typename Aggregate,
         template <class, class, typename> class Ext,
@@ -31,6 +41,14 @@ namespace internal
         using type = typename BasketAggregateImpl<P, W, Ext<P, W, Aggregate>, Exts...>::type;
     };
 
+    /*!
+     * \brief Specialized version of BasketAggregateImpl when the variadic list is empty
+     *
+     * \tparam P Implements \ref ponca_concepts "PointConcept"
+     * \tparam W Implements \ref concepts_weighting "WeightKernelConcept"
+     * \tparam Aggregate The base CRTP class
+     * \tparam Ext Unique (or last) extension of the CTRP variadic list
+     */
     template <class P, class W,
         typename Aggregate,
         template <class, class, typename> class Ext>
@@ -39,139 +57,153 @@ namespace internal
         using type = Ext<P, W, Aggregate>;
     };
 
-    /*! \brief Internal class used to build the Basket structure */
+    /*!
+     * \brief Internal class used to build the Basket structure
+     * Uses BasketAggregateImpl to unroll the CRTP variadic list
+     *
+     * \tparam P Implements \ref ponca_concepts "PointConcept"
+     * \tparam W Implements \ref concepts_weighting "WeightKernelConcept"
+     * \tparam Exts CRTP variadic list
+     */
     template <class P, class W,
         template <class, class, typename> class... Exts>
     struct BasketAggregate : BasketAggregateImpl<P, W, PrimitiveBase<P, W>, Exts...>
     {
     };
 
-    template <typename BasketType, int Type,
-        typename Aggregate,
+    /*!
+     * \brief This class unrolls the extension (from left to right) from the CRTP variadic list
+     * \see BasketDiffAggregateImpl
+     *
+     * \tparam Type Differentiation type
+     * \tparam BasketType Input Basket Type
+     * \tparam Ext First (left-side) extension in the CTRP variadic list
+     * \tparam Exts Remaining elements (excluding Ext) of the CRTP variadic list
+     */
+    template <int Type,
+        typename BasketType,
         template <class, class, int, typename> class Ext,
         template <class, class, int, typename> class... Exts>
     struct BasketDiffAggregateImpl
     {
-        using type = typename BasketDiffAggregateImpl<BasketType, Type, Ext<BSKP, BSKW, Type, Aggregate>, Exts...>::type;
+        using type = typename BasketDiffAggregateImpl<Type, Ext<BSKP, BSKW, Type, BasketType>, Exts...>::type;
     };
 
-    template <typename BasketType, int Type,
-        typename Aggregate,
+    /*!
+     * \brief Specialized version of BasketDiffAggregateImpl when the variadic list is empty
+     *
+     * \tparam Type Differentiation type
+     * \tparam BasketType Input Basket Type
+     * \tparam Ext Unique (or last) extension of the CTRP variadic list
+     */
+    template <int Type,
+        typename BasketType,
         template <class, class, int, typename> class Ext>
-    struct BasketDiffAggregateImpl<BasketType, Type, Aggregate, Ext>
+    struct BasketDiffAggregateImpl<Type, BasketType, Ext>
     {
-        using type = Ext<BSKP, BSKW, Type, Aggregate>;
+        using type = Ext<BSKP, BSKW, Type, BasketType>;
     };
 
-    /*! \brief Internal class used to build the BasketDiff structure */
+    /*!
+     * \brief Internal class used to build the BasketDiff structure
+     * Uses BasketDiffAggregateImpl to unroll the CRTP variadic list
+     *
+     * \tparam BasketType BasketType Input Basket Type
+     * \tparam Type Differentiation type
+     * \tparam Exts CRTP variadic list
+     */
     template <typename BasketType, int Type,
         template <class, class, int, typename> class... Exts>
-    struct BasketDiffAggregate : BasketDiffAggregateImpl<BasketType, Type, BasketType, PrimitiveDer, Exts...>
+    struct BasketDiffAggregate : BasketDiffAggregateImpl<Type, BasketType, PrimitiveDer, Exts...>
     {
     };
 }
 #endif
 
     /*!
-         \brief ComputeObject is a virtual object that represents an algorithm which can be used with the compute functions.
-         The compute(begin, end) and computeWithIds(ids, points) methods must be implemented by the inheriting class.
-         \note The compute(container) that is defined in this structure can be reused in the inheriting class by adding
-         "using ComputeObject<Self>::compute;" to make it accessible
-    */
-    template <typename Derived>
-    struct ComputeObject {
+     * Base ComputeObject for the Basket classes
+     *
+     * Implements the compute methods for fitting: #compute, #computeWithIds, ...
+     * Checkout \ref fitting for more details
+     *
+     * The various implementations of Ponca::Concept are mixed through specializations of the BasketDiff and Basket
+     *   classes:
+     *   \code
+     *   typedef
+     *   BasketDiff <BasketType,           // Existing Basket, to be differentiated
+     *   DiffType,                         // Differentiation space: FitScaleDer, FitSpaceDer, or FitScaleDer|FitSpaceDer
+     *   ComputationalDerivativesConcept1, // Implementation of ComputationalDerivativesConcept
+     *   ComputationalDerivativesConcept2, // Implementation of ComputationalDerivativesConcept
+     *   ... ,                             //
+     *   > myFitDer;                       // Final structure to fit and derive a primitive over weighted samples
+     *   \endcode
+     *
+     * @tparam Derived Derived class that provides the addNeighbor method (either Basket or BasketDiff)
+     * @tparam Base Base class that provides, through the CRTP the init, startNewPass, addNeighbor and finalize methods
+     */
+    template<typename _Derived, typename _Base>
+    struct BasketComputeObject : public ComputeObject<_Derived>, public virtual _Base {
+        using Base    = _Base;    /// <\brief Alias to the Base type
+        using Derived = _Derived; /// \brief Alias to the Derived type
     protected:
-        /// \brief Retrieve the top layer object
-        /// Returns a reference to the derived class so that we can use its overwritten methods
-        Derived& derived() { return static_cast<Derived&>(*this); }
+        using ComputeObject<Derived>::derived;
+        Base& base() { return static_cast<Base&>(static_cast<Derived&>(*this)); }
     public:
+        using ComputeObject<Derived>::compute; // Makes the default compute(container) accessible when using a CPU architecture
 
-#ifdef PONCA_CPU_ARCH
-        /*! \brief Convenience function for STL-like container                                                        */
-        /*! Uses the compute(IteratorBegin, IteratorEnd) function                                                     */
-        /*! \tparam Container And STL-Like container                                                                  */
-        /*! \see #compute(const IteratorBegin& begin, const IteratorEnd& end)                                         */
-        template <typename Container>
-        FIT_RESULT compute(const Container& c) {
-            return derived().compute(std::begin(c), std::end(c));
-        }
-#endif
-
-        /*! \brief Convenience function for STL-like iterators
-            \tparam IteratorBegin The beginning of the iterator (std::begin(iterator)
-            \tparam IteratorEnd   The end of the iterator (std::end(iterator)
-        */
+        /*!
+         * \brief Convenience function for STL-like iterators
+         * Add neighbors stored in a container using STL-like iterators, and call finalize at the end.
+         * The fit is evaluated multiple time if needed (see #NEED_OTHER_PASS)
+         * \see addNeighbor()
+         */
         template <typename IteratorBegin, typename IteratorEnd>
-        PONCA_MULTIARCH inline FIT_RESULT compute(const IteratorBegin& begin, const IteratorEnd& end) { return UNDEFINED; };
+        PONCA_MULTIARCH inline FIT_RESULT compute(const IteratorBegin& begin, const IteratorEnd& end){
+            base().init();
+            FIT_RESULT res = UNDEFINED;
 
-        /*! \brief Convenience function to iterate over a subset of samples in a PointContainer
-            \tparam IndexRange STL-Like range storing indices of the neighbors
-            \tparam PointContainer STL-like container storing the points
-            \see #compute(const IteratorBegin& begin, const IteratorEnd& end)
-        */
+            do {
+                derived().startNewPass();
+                for (auto it = begin; it != end; ++it){
+                    derived().addNeighbor(*it);
+                }
+                res = base().finalize();
+            } while ( res == NEED_OTHER_PASS );
+
+            return res;
+        }
+
+        /*!
+         * \brief Convenience function to iterate over a subset of samples in a PointContainer
+         * Add neighbors stored in a PointContainer and sampled using indices stored in ids.
+         * \tparam IndexRange STL-Like range storing indices of the neighbors
+         * \tparam PointContainer STL-like container storing the points
+         * \see #compute(const IteratorBegin& begin, const IteratorEnd& end)
+         */
         template <typename IndexRange, typename PointContainer>
-        PONCA_MULTIARCH inline FIT_RESULT computeWithIds(IndexRange /*ids*/, const PointContainer& /*points*/) { return UNDEFINED; };
-    }; // struct ComputeObject
+        PONCA_MULTIARCH inline FIT_RESULT computeWithIds(IndexRange ids, const PointContainer& points){
+            base().init();
+            FIT_RESULT res = UNDEFINED;
 
-#define WRITE_COMPUTE_FUNCTIONS                                                                       \
-    /*! \brief Convenience function for STL-like iterators                                         */ \
-    /*! Add neighbors stored in a container using STL-like iterators, and call finalize at the end.*/ \
-    /*! The fit is evaluated multiple time if needed (see #NEED_OTHER_PASS)*/                         \
-    /*! \see addNeighbor() */                                                                         \
-    template <typename IteratorBegin, typename IteratorEnd>                                           \
-    PONCA_MULTIARCH inline                                                                            \
-    FIT_RESULT compute(const IteratorBegin& begin, const IteratorEnd& end){                           \
-        Base::init();                                                                                 \
-        FIT_RESULT res = UNDEFINED;                                                                   \
-        do {                                                                                          \
-            Self::startNewPass();                                                                     \
-            for (auto it = begin; it != end; ++it){                                                   \
-                Self::addNeighbor(*it);                                                               \
-            }                                                                                         \
-            res = Base::finalize();                                                                   \
-        } while ( res == NEED_OTHER_PASS );                                                           \
-        return res;                                                                                   \
-    }                                                                                                 \
-    /*! \brief Convenience function to iterate over a subset of samples in a PointContainer  */       \
-    /*! Add neighbors stored in a PointContainer and sampled using indices stored in ids.*/           \
-    /*! \tparam IndexRange STL-Like range storing indices of the neighbors */                         \
-    /*! \tparam PointContainer STL-like container storing the points */                               \
-    /*! \see #compute(const IteratorBegin& begin, const IteratorEnd& end)    */                       \
-    template <typename IndexRange, typename PointContainer>                                           \
-    PONCA_MULTIARCH inline                                                                            \
-    FIT_RESULT computeWithIds(IndexRange ids, const PointContainer& points){                          \
-        this->init();                                                                                 \
-        FIT_RESULT res = UNDEFINED;                                                                   \
-        do {                                                                                          \
-            Self::startNewPass();                                                                     \
-            for (const auto& i : ids){                                                                \
-                this->addNeighbor(points[i]);                                                         \
-            }                                                                                         \
-            res = this->finalize();                                                                   \
-        } while ( res == NEED_OTHER_PASS );                                                           \
-        return res;                                                                                   \
-    }
+            do {
+                derived().startNewPass();
+                for (const auto& i : ids){
+                    derived().addNeighbor(points[i]);
+                }
+                res = base().finalize();
+            } while ( res == NEED_OTHER_PASS );
+
+            return res;
+        }
+    };
+
+#define WRITE_COMPUTE_FUNCTIONS \
+    using BasketComputeObject<Self, Base>::compute; \
+    using BasketComputeObject<Self, Base>::computeWithIds;
 
     /*!
          \brief Aggregator class used to declare specialized structures with derivatives computations, using CRTP
-
-         This is one of the central classes of the library (even if it does not perform any computation on its own).
-         Checkout \ref fitting for more details, and Basket class.
-
-         The various implementations of Ponca::Concept are mixed through specializations of the BasketDiff and Basket
-         classes:
-         \code
-         typedef
-         BasketDiff <BasketType,           // Existing Basket, to be differentiated
-         DiffType,                         // Differentiation space: FitScaleDer, FitSpaceDer, or FitScaleDer|FitSpaceDer
-         ComputationalDerivativesConcept1, // Implementation of ComputationalDerivativesConcept
-         ComputationalDerivativesConcept2, // Implementation of ComputationalDerivativesConcept
-         ... ,                             //
-         > myFitDer;                       // Final structure to fit and derive a primitive over weighted samples
-         \endcode
-
-         \see Basket for the aggregation of \ref concepts_computObjectBasket "ComputationalObjectConcept"
-
+         \copydoc BasketComputeObject
          \tparam BasketType Existing Basket, to be differentiated
          \tparam Type Differentiation space: FitScaleDer, FitSpaceDer, or FitScaleDer|FitSpaceDer
          \tparam Ext0 Implements \ref concepts_computObjectBasketDiff "ComputationalDerivativesConcept"
@@ -180,21 +212,19 @@ namespace internal
     template <typename BasketType, int Type,
         template <class, class, int, typename> class Ext0,
         template <class, class, int, typename> class... Exts>
-    class BasketDiff : public ComputeObject<BasketDiff<BasketType, Type, Ext0, Exts...>>,
-                       public internal::BasketDiffAggregate<BasketType, Type, Ext0, Exts...>::type {
+    class BasketDiff : public BasketComputeObject<BasketDiff<BasketType, Type, Ext0, Exts...>,
+                                                  typename internal::BasketDiffAggregate<BasketType, Type, Ext0, Exts...>::type>
+    {
     private:
-        using Self   = BasketDiff;
+        using Self = BasketDiff;
     public:
-    /// Base type, which aggregates all the computational objects using the CRTP
-    using Base = typename internal::BasketDiffAggregate<BasketType, Type, Ext0, Exts...>::type;
-    /// Weighting function
-    using WeightFunction = BSKW;
-    /// Point type used for computation
-    using DataPoint = BSKP;
-    /// Scalar type used for computation, as defined from Basket
-    using Scalar = typename DataPoint::Scalar;
-
-    using ComputeObject<Self>::compute; // Make the default compute accessible
+        using Base = typename internal::BasketDiffAggregate<BasketType,Type,Ext0,Exts...>::type;
+        /// Weight function
+        using WeightFunction = typename BasketType::WeightFunction;
+        /// Point type used for computation
+        using DataPoint = typename BasketType::DataPoint;
+        /// Scalar type used for computation, as defined from Basket
+        using Scalar = typename BasketType::Scalar;
     WRITE_COMPUTE_FUNCTIONS
 
     /// \copydoc Basket::addNeighbor
@@ -213,24 +243,7 @@ namespace internal
 
 /*!
     \brief Aggregator class used to declare specialized structures using CRTP
-
-    This is one of the central classes of the library (even if it does not perform any computation on its own).
-    Checkout \ref fitting for more details.
-
-    The various implementations of Ponca::Concept are mixed through
-    specializations of the Basket class:
-    \code
-        typedef
-        Basket <PointImpl,           // Implementation of PointConcept
-        WeightFuncImpl,              // Implementation of WeightFuncConcept
-        ComputationalObjectConcept1, // Implementation of ComputationalObjectConcept
-        ComputationalObjectConcept2, // Implementation of ComputationalObjectConcept
-        ... ,                        //
-        > myFit;                     // Final structure to fit a primitive over weighted samples
-    \endcode
-
-    \see BasketDiff for the aggregation of \ref concepts_computObjectBasketDiff "ComputationalDerivativesConcept"
-
+    \copydoc BasketComputeObject
     \tparam P Implements \ref ponca_concepts "PointConcept"
     \tparam W Implements \ref concepts_weighting "WeightKernelConcept"
     \tparam Ext0 Implements \ref concepts_computObjectBasket "ComputationalObjectConcept"
@@ -239,23 +252,21 @@ namespace internal
     template <class P, class W,
         template <class, class, typename> class Ext0,
         template <class, class, typename> class... Exts>
-    class Basket : public ComputeObject<Basket<P, W, Ext0, Exts...>>,
-                   public internal::BasketAggregate<P, W, Ext0, Exts...>::type
+    class Basket : public BasketComputeObject<Basket<P, W, Ext0, Exts...>,
+                                              typename internal::BasketAggregate<P, W, Ext0, Exts...>::type>
     {
     private:
-        using Self   = Basket;
+        using Self = Basket;
     public:
-        /// Base type, which aggregates all the computational objects using the CRTP
-        using Base = typename internal::BasketAggregate<P, W, Ext0, Exts...>::type;
-        /// Scalar type used for computation, as defined from template parameter `P`
-        using Scalar = typename P::Scalar;
+        using Base = typename internal::BasketAggregate<P,W,Ext0,Exts...>::type;
+        /// Weight function
+        using WeightFunction = W;
         /// Point type used for computation
         using DataPoint = P;
-        /// Weighting function
-        using WeightFunction = W;
+        /// Scalar type used for computation, as defined from Basket
+        using Scalar = typename DataPoint::Scalar;
 
-        using ComputeObject<Self>::compute; // Make the default compute accessible
-        WRITE_COMPUTE_FUNCTIONS;
+        WRITE_COMPUTE_FUNCTIONS
 
         /// \brief Add a neighbor to perform the fit
         ///
@@ -275,5 +286,6 @@ namespace internal
         }
     }; // class Basket
 
+#undef WRITE_COMPUTE_FUNCTIONS
 } //namespace Ponca
 
