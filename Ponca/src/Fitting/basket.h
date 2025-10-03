@@ -47,27 +47,27 @@ namespace internal
     {
     };
 
-    template <typename BasketType, int Type,
-        typename Aggregate,
+    template <int Type,
+        typename BasketType,
         template <class, class, int, typename> class Ext,
         template <class, class, int, typename> class... Exts>
     struct BasketDiffAggregateImpl
     {
-        using type = typename BasketDiffAggregateImpl<BasketType, Type, Ext<BSKP, BSKW, Type, Aggregate>, Exts...>::type;
+        using type = typename BasketDiffAggregateImpl<Type, Ext<BSKP, BSKW, Type, BasketType>, Exts...>::type;
     };
 
-    template <typename BasketType, int Type,
-        typename Aggregate,
+    template <int Type,
+        typename BasketType,
         template <class, class, int, typename> class Ext>
-    struct BasketDiffAggregateImpl<BasketType, Type, Aggregate, Ext>
+    struct BasketDiffAggregateImpl<Type, BasketType, Ext>
     {
-        using type = Ext<BSKP, BSKW, Type, Aggregate>;
+        using type = Ext<BSKP, BSKW, Type, BasketType>;
     };
 
     /*! \brief Internal class used to build the BasketDiff structure */
     template <typename BasketType, int Type,
         template <class, class, int, typename> class... Exts>
-    struct BasketDiffAggregate : BasketDiffAggregateImpl<BasketType, Type, BasketType, PrimitiveDer, Exts...>
+    struct BasketDiffAggregate : BasketDiffAggregateImpl<Type, BasketType, PrimitiveDer, Exts...>
     {
     };
 }
