@@ -84,19 +84,19 @@ void testBasicFunctionalities(const KdTree<typename Fit::DataPoint>& tree, typen
 
         // use addNeighbor
         //! [Fit Manual Traversal]
-        Fit fit1;
-        fit1.setWeightFunc(WeightFunc(fitInitPos, analysisScale));
-        fit1.init();
-        for(auto it = vectorPoints.begin(); it != vectorPoints.end(); ++it)
-           fit1.addNeighbor(*it);
-        fit1.finalize();
+Fit fit1;
+fit1.setWeightFunc({fitInitPos, analysisScale});
+fit1.init();
+for(auto it = vectorPoints.begin(); it != vectorPoints.end(); ++it)
+   fit1.addNeighbor(*it);
+fit1.finalize();
         //! [Fit Manual Traversal]
 
         // use compute function
         //! [Fit Compute]
-        Fit fit2;
-        fit2.setWeightFunc(WeightFunc(fitInitPos, analysisScale));
-        fit2.compute(vectorPoints);
+Fit fit2;
+fit2.setWeightFunc({fitInitPos, analysisScale});
+fit2.compute(vectorPoints);
         //! [Fit Compute]
 
         // also test comparison operators
@@ -110,7 +110,7 @@ void testBasicFunctionalities(const KdTree<typename Fit::DataPoint>& tree, typen
 
         //! [Fit computeWithIds]
         Fit fit3;
-        fit3.setWeightFunc(WeightFunc(fitInitPos, analysisScale));
+        fit3.setWeightFunc({fitInitPos, analysisScale});
         // Sort fit1
         std::list<int> neighbors3;
         for (int iNeighbor : tree.range_neighbors(fitInitPos, analysisScale))
@@ -119,6 +119,7 @@ void testBasicFunctionalities(const KdTree<typename Fit::DataPoint>& tree, typen
         // Compute the neighbors
         fit3.computeWithIds( neighbors3, vectorPoints );
         //! [Fit computeWithIds]
+
         VERIFY(fit3 == fit3);
         VERIFY(fit1 == fit3);
         VERIFY(! (fit1 != fit3));

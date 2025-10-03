@@ -33,19 +33,16 @@ namespace Ponca
   In contrast with polymorphism, this method allows to combine multiple short computations without adding runtime overhead (both in terms of memory footprint and execution time).
   Instead, the combination of the computational components is performed and optimized when compiling the program, and thus require more memory and time for this stage.
 
-  Because of some properties of the C++ language, our classes does not inherit from a `Base` interface defining the API, but rather follows concepts, as described in \subpage fitting_concepts.
+  Because of some properties of the C++ language, our classes does not inherit from a `Base` interface defining the API, but rather follows concepts, as described in \ref fitting_concepts.
 
   \subsection fitting_primitiveOverview Fitting primitives and compute neighborhood properties
   The fitting module provides a unified API to perform computations (e.g. fit a \ref PrimitiveBase "Primitive", compute geometrical properties such as \ref CurvatureEstimatorBase "Curvatures") over the neighborhood of a given point.
   The type of computation is controlled by a type (called `Fit` in the example below) defined by the user by combining computational components offered in this module.
-  Given an object of type `Fit`, the client code will always looks as follows:
+  Given an object of type `Fit`, the client code can look as follow (alternative way of doing the fit computation can be seen in \ref fitting_Fitting):
   \code
-  Fit fit;                             // Create the user-defined fitting procedure
-  fit.init();                          // Initialize internal state
-  fit.setWeightFunc(WeightFunc(p, t)); // Set a weighting function to weight neighbors from a reference point p
-  for(auto& it = vecs.begin(); it != vecs.end(); it++)
-    fit.addNeighbor(*it);              // Traverse neighborhood
-  fit.finalize();                      // Finalize computations
+  Fit fit;                   // Create the user-defined fitting procedure
+  fit.setWeightFunc({p, t}); // Set a weighting function to weight neighbors from a reference point p
+  fit.compute(vectorPoints); // Traverse neighborhood and does the fitting computation
   \endcode
 
   Once computations are done, the `Fit` object provides both getters to the neighborhood properties (e.g. estimated curvature), and procedures (e.g. projection operator onto the fitted primitive):
@@ -141,7 +138,14 @@ namespace Ponca
   \snippet basket.cpp Fit Compute
 
   Spatial structures can be used to accelerate spatial queries. Consider for instance using the KdTree class with range queries:
-  \snippet basket.cpp Fit computeWithIds
+  \code
+    Fit fit3;
+    fit3.setWeightFunc({fitInitPos, analysisScale});
+    // Compute the neighbors
+    fit3.computeWithIds( tree.range_neighbors(fitInitPos, analysisScale), vectorPoints );
+  \endcode
+
+
   \note Currently, users need to ensure consistency between the query and the fit location/scale. This is expected to be fixed in the upcoming releases.
 
   In these examples, `fit1`, `fit2` and `fit3` should perform exactly the same computations, as long a the neighborhood remains the same between the three calls.
