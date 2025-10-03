@@ -73,9 +73,10 @@ namespace internal
 }
 #endif
 
-
-    template<typename Derived, typename Base>
-    struct BasketComputeObject : public ComputeObject<Derived> {
+    template<typename _Derived, typename _Base>
+    struct BasketComputeObject : public ComputeObject<_Derived>, public virtual _Base {
+        using Base    = _Base;    /// <\brief Alias to the Base type
+        using Derived = _Derived; /// \brief Alias to the Derived type
     protected:
         using ComputeObject<Derived>::derived;
         Base& base() { return static_cast<Base&>(static_cast<Derived&>(*this)); }
@@ -155,8 +156,9 @@ namespace internal
     template <typename BasketType, int Type,
         template <class, class, int, typename> class Ext0,
         template <class, class, int, typename> class... Exts>
-    class BasketDiff : public BasketComputeObject<BasketDiff<BasketType, Type, Ext0, Exts...>, typename internal::BasketDiffAggregate<BasketType, Type, Ext0, Exts...>::type>,
-                       public virtual internal::BasketDiffAggregate<BasketType, Type, Ext0, Exts...>::type {
+    class BasketDiff : public BasketComputeObject<BasketDiff<BasketType, Type, Ext0, Exts...>,
+                                                  typename internal::BasketDiffAggregate<BasketType, Type, Ext0, Exts...>::type>
+    {
     private:
         using Self   = BasketDiff;
     public:
@@ -214,8 +216,8 @@ namespace internal
     template <class P, class W,
         template <class, class, typename> class Ext0,
         template <class, class, typename> class... Exts>
-    class Basket : public BasketComputeObject<Basket<P, W, Ext0, Exts...>, typename internal::BasketAggregate<P, W, Ext0, Exts...>::type>,
-                   public internal::BasketAggregate<P, W, Ext0, Exts...>::type
+    class Basket : public BasketComputeObject<Basket<P, W, Ext0, Exts...>,
+                                              typename internal::BasketAggregate<P, W, Ext0, Exts...>::type>
     {
     private:
         using Self   = Basket;
