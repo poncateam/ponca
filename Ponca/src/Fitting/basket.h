@@ -147,7 +147,6 @@ namespace internal
         using Derived = _Derived; /// \brief Alias to the Derived type
     protected:
         using ComputeObject<Derived>::derived;
-        Base& base() { return static_cast<Base&>(static_cast<Derived&>(*this)); }
     public:
         using ComputeObject<Derived>::compute; // Makes the default compute(container) accessible when using a CPU architecture
 
@@ -159,7 +158,7 @@ namespace internal
          */
         template <typename IteratorBegin, typename IteratorEnd>
         PONCA_MULTIARCH inline FIT_RESULT compute(const IteratorBegin& begin, const IteratorEnd& end){
-            base().init();
+            Base::init();
             FIT_RESULT res = UNDEFINED;
 
             do {
@@ -167,7 +166,7 @@ namespace internal
                 for (auto it = begin; it != end; ++it){
                     derived().addNeighbor(*it);
                 }
-                res = base().finalize();
+                res = Base::finalize();
             } while ( res == NEED_OTHER_PASS );
 
             return res;
@@ -182,7 +181,7 @@ namespace internal
          */
         template <typename IndexRange, typename PointContainer>
         PONCA_MULTIARCH inline FIT_RESULT computeWithIds(IndexRange ids, const PointContainer& points){
-            base().init();
+            Base::init();
             FIT_RESULT res = UNDEFINED;
 
             do {
@@ -190,7 +189,7 @@ namespace internal
                 for (const auto& i : ids){
                     derived().addNeighbor(points[i]);
                 }
-                res = base().finalize();
+                res = Base::finalize();
             } while ( res == NEED_OTHER_PASS );
 
             return res;
