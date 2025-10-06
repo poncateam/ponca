@@ -146,7 +146,6 @@ namespace internal
     struct BasketComputeObject : public ComputeObject<_Derived>, public virtual _Base {
         using Base    = _Base;    /// <\brief Alias to the Base type
         using Derived = _Derived; /// \brief Alias to the Derived type
-        using Scalar = typename Base::DataPoint::Scalar;
     protected:
         using ComputeObject<Derived>::derived;
     public:
@@ -208,8 +207,8 @@ namespace internal
         FIT_RESULT computeMLS(const PointContainer& points, const int mlsIter=5) {
             assert(mlsIter > 0);
             FIT_RESULT res     = UNDEFINED;
-            const Scalar t     = Base::m_w.evalScale();
-            VectorType lastPos = Base::m_w.evalPos();
+            const auto t     = Base::m_w.evalScale();
+            auto lastPos = Base::m_w.evalPos();
 
             for( int mm = 0; mm < mlsIter; ++mm) {
                 Base::setWeightFunc({lastPos, t});
@@ -243,8 +242,8 @@ namespace internal
         {
             assert(mlsIter > 0);
             FIT_RESULT res     = UNDEFINED;
-            const Scalar t     = Base::m_w.evalScale();
-            VectorType lastPos = Base::m_w.evalPos();
+            const auto t     = Base::m_w.evalScale();
+            auto lastPos = Base::m_w.evalPos();
 
             for( int mm = 0; mm < mlsIter; ++mm) {
                 Base::setWeightFunc({lastPos, t});
