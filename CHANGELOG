@@ -38,7 +38,7 @@ Current head (v.1.4 RC)
 - CI/Actions
     - Fix automatic doc deployment (#158,#176)
     - Print error log on tests failure (#162)
-		- save time by installing PCL and configurong examples only if tests are ok (#208)
+    - Save time by installing PCL and configuring examples only if tests are ok (#208)
 
 - Docs
     - [fitting] Updated the Fit user manual to account for the change of use of the curvature estimator (#172)
