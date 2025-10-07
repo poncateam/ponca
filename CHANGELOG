@@ -27,6 +27,9 @@ Current head (v.1.4 RC)
    - [spatialPartitioning] Adding missing PONCA_MULTIARCH_STD_MATH call (#205)
    - [all] Added static cast to remove warnings (#203)
 
+- Externals
+   - Update to Eigen 5.0 (#199)
+
 - Tests
    - [fitting] Split Basket test in subtests (#96)
    - [fitting] Fix random failure in Basket and Projection tests (#96,#162)
