@@ -23,7 +23,7 @@ Current head (v.1.4 RC)
    - [spatialPartitioning] Fix issues with KdTreeCustomizableNode copy and move constructors(#192)
    - [fitting] Fix typo in code (#182)
    - [fitting] Fix unsafe use of m_ul in OrientedSphereFit for degenerated cases (#202)
-   - [fitting] Streamlining compute functions declaration (#194)
+   - [fitting] Streamlining compute functions declaration (#194, #210)
    - [spatialPartitioning] Adding missing PONCA_MULTIARCH_STD_MATH call (#205)
 
 - Tests
@@ -39,7 +39,7 @@ Current head (v.1.4 RC)
 - CI/Actions
     - Fix automatic doc deployment (#158,#176)
     - Print error log on tests failure (#162)
-		- save time by installing PCL and configurong examples only if tests are ok (#208)
+    - save time by installing PCL and configuring examples only if tests are ok (#208)
 
 - Docs
     - [fitting] Updated the Fit user manual to account for the change of use of the curvature estimator (#172)
