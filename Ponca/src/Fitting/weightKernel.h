@@ -6,6 +6,7 @@
 #pragma once
 
 #include "./defines.h"
+#include PONCA_MULTIARCH_INCLUDE_CU_STD(cmath)
 
 /*!
     \file weightKernel.h Define 1D weight kernel functors
