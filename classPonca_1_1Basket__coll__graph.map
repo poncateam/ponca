@@ -1,17 +1,17 @@
 <map id="Ponca::Basket&lt; P, W, Ext0, Exts &gt;" name="Ponca::Basket&lt; P, W, Ext0, Exts &gt;">
-<area shape="rect" id="Node000001" title="Aggregator class used to declare specialized structures using CRTP." alt="" coords="213,843,366,923"/>
-<area shape="rect" id="Node000002" href="$structPonca_1_1BasketComputeObject.html" title=" " alt="" coords="184,644,395,793"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="292,807,292,842,287,842,287,807"/>
+<area shape="rect" id="Node000001" title="Aggregator class used to declare specialized structures using CRTP." alt="" coords="213,823,366,903"/>
+<area shape="rect" id="Node000002" href="$structPonca_1_1BasketComputeObject.html" title=" " alt="" coords="184,644,395,773"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="292,787,292,822,287,822,287,787"/>
 <area shape="rect" id="Node000003" href="$structPonca_1_1ComputeObject.html" title="ComputeObject is a virtual object that represents an algorithm which can be used with the compute fun..." alt="" coords="5,397,168,537"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="154,547,231,642,227,645,150,550"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="156,546,237,642,233,645,152,550"/>
 <area shape="rect" id="Node000004" title=" " alt="" coords="192,427,387,507"/>
 <area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="292,521,292,644,287,644,287,521"/>
-<area shape="rect" id="Node000005" href="$structPonca_1_1BasketComputeObject.html" title="Base ComputeObject for the Basket classes." alt="" coords="411,407,618,527"/>
-<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="454,539,358,645,354,642,450,536"/>
+<area shape="rect" id="Node000005" href="$structPonca_1_1BasketComputeObject.html" title="Base ComputeObject for the Basket classes." alt="" coords="411,417,618,517"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="461,529,351,645,348,642,457,526"/>
 <area shape="rect" id="Node000006" href="$structPonca_1_1ComputeObject.html" title=" " alt="" coords="343,208,505,348"/>
-<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="466,360,488,406,484,408,461,362"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="466,360,493,416,489,418,461,362"/>
 <area shape="rect" id="Node000007" href="$structPonca_1_1ComputeObject.html" title="ComputeObject is a virtual object that represents an algorithm which can be used with the compute fun..." alt="" coords="343,5,505,145"/>
 <area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="427,159,427,208,421,208,421,159"/>
 <area shape="rect" id="Node000008" title=" " alt="" coords="529,245,583,311"/>
-<area shape="poly" id="edge7_Node000005_Node000008" title=" " alt="" coords="549,325,530,408,525,406,543,324"/>
+<area shape="poly" id="edge7_Node000005_Node000008" title=" " alt="" coords="549,325,528,418,523,417,543,324"/>
 </map>
