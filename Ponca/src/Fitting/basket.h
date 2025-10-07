@@ -145,6 +145,7 @@ namespace internal
     struct BasketComputeObject : public ComputeObject<_Derived>, public virtual _Base {
         using Base    = _Base;    /// <\brief Alias to the Base type
         using Derived = _Derived; /// \brief Alias to the Derived type
+        using Scalar  = typename Base::Scalar;
     protected:
         using ComputeObject<Derived>::derived;
     public:
@@ -205,7 +206,8 @@ namespace internal
         template<typename PointContainer>
         FIT_RESULT computeMLS(
             const PointContainer& points,
-            const int mlsIter=5
+            const int mlsIter    = 5,
+            const Scalar epsilon = Eigen::NumTraits<Scalar>::dummy_precision()
         ) {
             FIT_RESULT res = UNDEFINED;
             const auto t   = Base::m_w.evalScale();
@@ -217,7 +219,7 @@ namespace internal
 
                 if (Base::isStable()) {
                     auto newPos = Base::project( lastPos );
-                    if (newPos.isApprox(lastPos))
+                    if (newPos.isApprox(lastPos, epsilon))
                         return res;
                     lastPos = newPos;
                 } else {
@@ -241,7 +243,8 @@ namespace internal
         FIT_RESULT computeWithIdsMLS(
             const IndexRange& ids,
             const PointContainer& points,
-            const int mlsIter=5
+            const int mlsIter    = 5,
+            const Scalar epsilon = Eigen::NumTraits<Scalar>::dummy_precision()
         ) {
             FIT_RESULT res = UNDEFINED;
             const auto t   = Base::m_w.evalScale();
@@ -253,7 +256,7 @@ namespace internal
 
                 if (Base::isStable()) {
                     auto newPos = Base::project( lastPos );
-                    if (newPos.isApprox(lastPos))
+                    if (newPos.isApprox(lastPos, epsilon))
                         return res;
                     lastPos = newPos;
                 } else {
