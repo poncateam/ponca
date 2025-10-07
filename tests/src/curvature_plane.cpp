@@ -73,7 +73,7 @@ void testFunction(bool _bAddPositionNoise = false, bool _bAddNormalNoise = false
         fit.compute(vectorPoints);
 
         if( fit.isStable() ){
-            VERIFY(Scalar(1.) - std::abs(fit.primitiveGradient(queryPos).dot(direction)) <= epsilon);
+            VERIFY(Scalar(1.) - std::abs(fit.primitiveGradient(queryPos).normalized().dot(direction)) <= epsilon);
             // Check if we have a plane
             VERIFY(std::abs(fit.kMean()) < epsilon);
             VERIFY(fit.GaussianCurvature() <= epsilon);
