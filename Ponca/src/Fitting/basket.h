@@ -12,7 +12,6 @@
 #include "compute.h"
 
 #include PONCA_MULTIARCH_INCLUDE_STD(iterator)
-#include <iostream>
 
 namespace Ponca
 {
