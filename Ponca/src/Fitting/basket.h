@@ -203,10 +203,13 @@ namespace internal
          * @return The result of the fit
          */
         template<typename PointContainer>
-        FIT_RESULT computeMLS(const PointContainer& points, const int mlsIter=5) {
-            FIT_RESULT res     = UNDEFINED;
-            const auto t     = Base::m_w.evalScale();
-            auto lastPos = Base::m_w.evalPos();
+        FIT_RESULT computeMLS(
+            const PointContainer& points,
+            const int mlsIter=5
+        ) {
+            FIT_RESULT res = UNDEFINED;
+            const auto t   = Base::m_w.evalScale();
+            auto lastPos   = Base::m_w.evalPos();
 
             for( int mm = 0; mm < mlsIter; ++mm) {
                 Base::setWeightFunc({lastPos, t});
@@ -216,10 +219,8 @@ namespace internal
                     lastPos = Base::project( lastPos );
                 } else {
                     return res;
-                    break;
                 }
             }
-
             return res;
         }
 
@@ -235,12 +236,13 @@ namespace internal
          */
         template<typename IndexRange, typename PointContainer>
         FIT_RESULT computeWithIdsMLS(
-            const IndexRange& ids, const PointContainer& points, const int mlsIter=5
-        )
-        {
-            FIT_RESULT res     = UNDEFINED;
-            const auto t     = Base::m_w.evalScale();
-            auto lastPos = Base::m_w.evalPos();
+            const IndexRange& ids,
+            const PointContainer& points,
+            const int mlsIter=5
+        ) {
+            FIT_RESULT res = UNDEFINED;
+            const auto t   = Base::m_w.evalScale();
+            auto lastPos   = Base::m_w.evalPos();
 
             for( int mm = 0; mm < mlsIter; ++mm) {
                 Base::setWeightFunc({lastPos, t});
@@ -250,10 +252,8 @@ namespace internal
                     lastPos = Base::project( lastPos );
                 } else {
                     return res;
-                    break;
                 }
             }
-
             return res;
         }
     };
