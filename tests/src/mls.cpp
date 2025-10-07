@@ -65,8 +65,8 @@ void testFunction() {
 
         if(fit.isStable()) {
             // Tests the primitiveGradient
-            const VectorType& estimated = fit.primitiveGradient(pos);
-            const VectorType& estimatedMLS = fitMLS.primitiveGradient(pos);
+            const VectorType& estimated = fit.primitiveGradient(pos).normalized();
+            const VectorType& estimatedMLS = fitMLS.primitiveGradient(pos).normalized();
             VectorType theoriticalNormal = (pos-center).normalized();
 
             Scalar absdot = std::abs(estimated.dot(theoriticalNormal));
@@ -74,8 +74,8 @@ void testFunction() {
 
             // Verify that mls gives better result than single projection when comparing with the theoretical values
             // By checking if absdotMLS is closer to 1 than asbdot (taking into account approximation error using the epsilon)
-            // In other words : absdot >= absdotMLS >= 1 OR absdot <= absdotMLS <= 1
-            VERIFY( (absdot + epsilon >= absdotMLS && absdotMLS >= 1 - epsilon) || (absdot - epsilon <= absdotMLS && absdotMLS <= 1 + epsilon));
+            // Dot product of normalized vector can't be greater than 1
+            VERIFY( (absdot + epsilon >= absdotMLS && absdotMLS >= 1 - epsilon) );
         }
     }
 }
