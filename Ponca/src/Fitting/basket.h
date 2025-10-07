@@ -252,7 +252,7 @@ namespace internal
                 if (Base::isStable()) {
                     lastPos = Base::project( lastPos );
                 } else {
-                    std::cerr << "Warning: fit at mls iteration " << mm << " is not stable" << std::endl;
+                    return res;
                     break;
                 }
             }
