@@ -90,6 +90,190 @@ namespace Ponca
 
     \note PrimitiveDer defines the default entry point to most classes used in BasketDiff.
 
+    \section concepts_provides Capabilities of the Fitting tools
+    As described in \ref fitting_extensions_deps, The tool classes provides different kinds of compute capabilities.
+    To describe what a class provides, we uses flags that allows us to check for compatibility at compile time.
+
+    Here is an in depth description of all the labels of the Fitting tools :
+    <table>
+      <tr>
+        <th>Label</th>
+        <th>Provided by</th>
+        <th>Required by</th>
+        <th>Outputs</th>
+      </tr>
+
+      <tr>
+        <td>
+            <b>PROVIDES_MEAN_POSITION</b><br>
+            Sum of the input points vectors
+        </td>
+        <td>MeanPosition</td>
+        <td>MeanPositionDer<br>MeanPlaneFitImpl<br>OrientedSphereFitImpl<br>CovarianceFitBase<br>UnorientedSphereFitImpl</td>
+        <td>barycenter()<br>barycenterDistance()<br>barycenterLocal()</td>
+      </tr>
+
+      <tr>
+        <td>
+            <b>PROVIDES_MEAN_POSITION_DERIVATIVE</b><br>
+            Provides derivative of the mean position
+        </td>
+        <td>MeanPositionDer</td>
+        <td>CovarianceFitDer<br>OrientedSphereDerImpl<br>UnorientedSphereDerImpl</td>
+        <td>barycenterDerivatives()</td>
+      </tr>
+
+      <tr>
+        <td>
+            <b>PROVIDES_MEAN_NORMAL</b><br>
+            Sum of the normal vectors
+        </td>
+        <td>MeanNormal</td>
+        <td>MeanPlaneFitImpl<br>OrientedSphereFitImpl</td>
+        <td>meanNormalVector()</td>
+      </tr>
+
+      <tr>
+        <td>
+            <b>PROVIDES_MEAN_NORMAL_DERIVATIVE</b><br>
+            Provides derivative of the mean normal
+        </td>
+        <td>MeanNormalDer</td>
+        <td>-</td>
+        <td>dMeanNormal()</td>
+      </tr>
+
+      <tr>
+        <td>
+            <b>PROVIDES_PRIMITIVE_BASE</b><br>
+            Provides base API for primitives
+        </td>
+        <td>PrimitiveBase</td>
+        <td>PrimitiveDer<br>AlgebraicSphere</td>
+        <td>getWeightSum()<br>setNeighborFilter()<br>getNeighborFilter()<br>getCurrentState()<br>getNumNeighbors()<br>isReady()<br>isStable()</td>
+      </tr>
+
+      <tr>
+        <td>
+            <b>PROVIDES_PRIMITIVE_DERIVATIVE</b><br>
+            Provides base API for primitives
+        </td>
+        <td>PrimitiveDer</td>
+        <td>GLSDer<br>CovarianceFitDer<br>MeanPositionDer<br>MeanNormalDer<br>MlsSphereFitDer<br>OrientedSphereDerImpl<br>UnorientedSphereDerImpl</td>
+        <td>isScaleDer()<br>isSpaceDer()<br>derDimension()</td>
+      </tr>
+
+      <tr>
+        <td>
+            <b>PROVIDES_GLS_PARAMETRIZATION</b><br>
+            Growing Least Squares reparemetrization of the OrientedSphereFit
+        </td>
+        <td>GLSParam</td>
+        <td>GLSDer</td>
+        <td>tau()<br>eta()<br>kappa()<br>tau_normalized()<br>eta_normalized()<br>kappa_normalized()<br>fitness()<br>compareTo()</td>
+      </tr>
+
+      <tr>
+        <td>
+            <b>PROVIDES_GLS_DERIVATIVE</b><br>
+            Differentiation of GLSParam
+        </td>
+        <td>GLSDer</td>
+        <td>-</td>
+        <td>dtau()<br>deta()<br>dkappa()<br>dtau_normalized()<br>deta_normalized()<br>dkappa_normalized()</td>
+      </tr>
+
+      <tr>
+        <td>
+            <b>PROVIDES_GLS_GEOM_VAR</b><br>
+            Provides Geometric Variation as a weighted sum of the GLS scale-invariant partial derivatives
+        </td>
+        <td>GLSDer</td>
+        <td>-</td>
+        <td>geomVar()</td>
+      </tr>
+
+      <tr>
+        <td>
+            <b>PROVIDES_ALGEBRAIC_SPHERE</b><br>
+
+        </td>
+        <td>AlgebraicSphere</td>
+        <td>OrientedSphereFitImpl<br>OrientedSphereDerImpl<br>SphereFitImpl<br>UnorientedSphereFitImpl<br>UnorientedSphereDerImpl</td>
+        <td>potential()<br>project()<br>primitiveGradient()<br>isPlane()<br>isValid()<br>isApprox()<br>changeBasis()<br>prattNorm()<br>prattNorm2()<br>applyPrattNorm()<br>radius()<br>center()<br>isNormalized()</td>
+      </tr>
+
+      <tr>
+        <td>
+            <b>PROVIDES_ALGEBRAIC_SPHERE_DERIVATIVE</b><br>
+            Provides derivatives for algebraic sphere
+        </td>
+        <td>OrientedSphereDerImpl<br>UnorientedSphereDerImpl</td>
+        <td>GLSDer<br>MlsSphereFitDer</td>
+        <td>dPotential()</td>
+      </tr>
+
+      <tr>
+        <td>
+            <b>PROVIDES_COVARIANCE_PLANE_DERIVATIVE</b><br>
+            Provides derivatives for hyper-planes
+        </td>
+        <td>CovariancePlaneDerImpl</td>
+        <td>-</td>
+        <td>dPotential()</td>
+      </tr>
+
+      <tr>
+        <td>
+            <b>PROVIDES_NORMAL_DERIVATIVE</b><br>
+            Provides the derivatives of the primitive normal
+        </td>
+        <td>CovariancePlaneDerImpl<br>MlsSphereFitDer<br>OrientedSphereDerImpl<br>UnorientedSphereDerImpl</td>
+        <td>NormalDerivativesCurvatureEstimator</td>
+        <td>dNormal()</td>
+      </tr>
+
+      <tr>
+        <td>
+            <b>PROVIDES_POSITION_COVARIANCE</b><br>
+            Provides the covariance matrix
+        </td>
+        <td>CovarianceFitBase</td>
+        <td>CovarianceFitDer<br>CovarianceLineFitImpl<br>CovariancePlaneFitImpl</td>
+        <td>solver()</td>
+      </tr>
+
+      <tr>
+        <td>
+            <b>PROVIDES_POSITION_COVARIANCE_DERIVATIVE</b><br>
+
+        </td>
+        <td>CovarianceFitDer</td>
+        <td>CovariancePlaneDerImpl</td>
+        <td>-</td>
+      </tr>
+
+      <tr>
+        <td>
+            <b>PROVIDES_PLANE</b><br>
+
+        </td>
+        <td>Plane</td>
+        <td>CovariancePlaneFitImpl<br>CovariancePlaneDerImpl<br>ProjectedNormalCovarianceCurvatureEstimator<br>MeanPlaneFitImpl<br>MongePatch</td>
+        <td>setPlane()<br>potential()<br>project()<br>primitiveGradient()</td>
+      </tr>
+
+      <tr>
+        <td>
+            <b>PROVIDES_TANGENT_PLANE_BASIS</b><br>
+            Turns a point in ambient 3D space to the tangent plane.
+        </td>
+        <td>CovariancePlaneFitImpl</td>
+        <td>MongePatch</td>
+        <td>worldToTangentPlane()<br>tangentPlaneToWorld()</td>
+      </tr>
+    </table>
+
     \section concepts_weighting Concepts related to weighting functions
     Weighting functions are critical components of the library.
     They are represented by DistWeightFunc, which is defined from the euclidean distance field centered at the
