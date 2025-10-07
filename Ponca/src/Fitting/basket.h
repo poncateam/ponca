@@ -216,7 +216,10 @@ namespace internal
                 res = compute(points);
 
                 if (Base::isStable()) {
-                    lastPos = Base::project( lastPos );
+                    auto newPos = Base::project( lastPos );
+                    if (newPos.isApprox(lastPos))
+                        return res;
+                    lastPos = newPos;
                 } else {
                     return res;
                 }
@@ -249,7 +252,10 @@ namespace internal
                 res = computeWithIds(ids, points);
 
                 if (Base::isStable()) {
-                    lastPos = Base::project( lastPos );
+                    auto newPos = Base::project( lastPos );
+                    if (newPos.isApprox(lastPos))
+                        return res;
+                    lastPos = newPos;
                 } else {
                     return res;
                 }
