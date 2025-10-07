@@ -205,7 +205,6 @@ namespace internal
          */
         template<typename PointContainer>
         FIT_RESULT computeMLS(const PointContainer& points, const int mlsIter=5) {
-            assert(mlsIter > 0);
             FIT_RESULT res     = UNDEFINED;
             const auto t     = Base::m_w.evalScale();
             auto lastPos = Base::m_w.evalPos();
@@ -240,7 +239,6 @@ namespace internal
             const IndexRange& ids, const PointContainer& points, const int mlsIter=5
         )
         {
-            assert(mlsIter > 0);
             FIT_RESULT res     = UNDEFINED;
             const auto t     = Base::m_w.evalScale();
             auto lastPos = Base::m_w.evalPos();
