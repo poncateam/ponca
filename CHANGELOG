@@ -25,6 +25,7 @@ Current head (v.1.4 RC)
    - [fitting] Fix unsafe use of m_ul in OrientedSphereFit for degenerated cases (#202)
    - [fitting] Streamlining compute functions declaration (#194, #210)
    - [spatialPartitioning] Adding missing PONCA_MULTIARCH_STD_MATH call (#205)
+   - [all] Added static cast to remove warnings (#203)
 
 - Tests
    - [fitting] Split Basket test in subtests (#96)

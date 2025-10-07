@@ -6,6 +6,7 @@
 #pragma once
 
 #include "./defines.h"
+#include PONCA_MULTIARCH_INCLUDE_CU_STD(cmath)
 
 /*!
     \file weightKernel.h Define 1D weight kernel functors
@@ -90,11 +91,40 @@ public:
     typedef _Scalar Scalar;
     // Functor
     /*! \brief Defines the smooth weighting function \f$  w(x)=(x^n-1)^m \f$ */
-    PONCA_MULTIARCH inline Scalar f  (const Scalar& _x) const { return pow(pow(_x, n) - Scalar(1.), m); }
+    PONCA_MULTIARCH inline Scalar f  (const Scalar& _x) const {
+        PONCA_MULTIARCH_STD_MATH(pow);
+        return pow(
+            pow(_x, Scalar(n)) - Scalar(1.),
+            Scalar(m)
+        );
+    }
     /*! \brief Defines the smooth first order weighting function \f$ \nabla w(x) = m n x^{n-1} \left(x^n-1\right)^{m-1} \f$ */
-    PONCA_MULTIARCH inline Scalar df (const Scalar& _x) const { return pow(m*n*_x, n-1) * pow(pow(_x, n) -1, m-1); }
+    PONCA_MULTIARCH inline Scalar df (const Scalar& _x) const {
+        PONCA_MULTIARCH_STD_MATH(pow);
+        return pow(
+            Scalar(m*n)*_x,
+            Scalar(n-1)) * pow(pow(_x, Scalar(n)) -1, Scalar(m-1)
+        );
+    }
     /*! \brief Defines the smooth second order weighting function \f$ \nabla^2 w(x) = (m-1) m n^2 x^{2 n-2} \left(x^n-1\right)^{m-2}+m (n-1) n x^{n-2} \left(x^n-1\right)^{m-1} \f$ */
-    PONCA_MULTIARCH inline Scalar ddf(const Scalar& _x) const { return (m-1)*m*n*n*pow(_x, 2*n-2)*pow(pow(_x, n)-1, m-2) + m*(n-1)*n*pow(_x, n-2) * pow(pow(_x, n)-1, m-1); }
+    PONCA_MULTIARCH inline Scalar ddf(const Scalar& _x) const {
+        PONCA_MULTIARCH_STD_MATH(pow);
+        return Scalar((m-1)*m*n*n)
+            * pow( _x, Scalar(2*n-2))
+            * pow(
+                pow(_x, Scalar(n))-Scalar(1),
+                Scalar(m-2)
+            )
+            + Scalar(m*(n-1)*n)
+            * pow(
+                _x,
+                Scalar(n-2)
+            )
+            * pow(
+                pow(_x, Scalar(n))-Scalar(1),
+                Scalar(m-1)
+            );
+    }
     //! \brief #df is defined and valid on the definition interval
     static constexpr bool isDValid = true;
     //! \brief #ddf is defined and valid on the definition interval
