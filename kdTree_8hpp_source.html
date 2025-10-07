@@ -51,7 +51,7 @@ MathJax.Hub.Config({
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Ponca
-   &#160;<span id="projectnumber">9d2d164aa016e4b7fdb6b5c3354d34168c4d53d7</span>
+   &#160;<span id="projectnumber">09e64ce33f6cac8c0c934a09085ad99e88b811bb</span>
    </div>
    <div id="projectbrief">Point Cloud Analysis library</div>
   </td>
@@ -137,7 +137,7 @@ $(document).ready(function(){initNavTree('kdTree_8hpp_source.html',''); initResi
 <div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="keyword">inline</span> <span class="keywordtype">void</span> KdTreeBase&lt;Traits&gt;::build(PointUserContainer&amp;&amp; points, Converter c)</div>
 <div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span>{</div>
 <div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span>    IndexContainer ids(points.size());</div>
-<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span>    std::iota(ids.begin(), ids.end(), 0);</div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span>    std::iota(ids.begin(), ids.end(), IndexType(0));</div>
 <div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span>    this-&gt;buildWithSampling(std::forward&lt;PointUserContainer&gt;(points), std::move(ids), std::move(c));</div>
 <div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span>}</div>
 <div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span> </div>
@@ -250,7 +250,7 @@ $(document).ready(function(){initNavTree('kdTree_8hpp_source.html',''); initResi
 <div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span>                                                  IndexUserContainer sampling,</div>
 <div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span>                                                  Converter c)</div>
 <div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span>{</div>
-<div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span>    PONCA_DEBUG_ASSERT(points.size() &lt;= MAX_POINT_COUNT);</div>
+<div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span>    PONCA_DEBUG_ASSERT(<span class="keyword">static_cast&lt;</span>IndexType<span class="keyword">&gt;</span>(points.size()) &lt;= MAX_POINT_COUNT);</div>
 <div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span>    this-&gt;clear();</div>
 <div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span> </div>
 <div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span>    <span class="comment">// Move, copy or convert input samples</span></div>
@@ -280,7 +280,7 @@ $(document).ready(function(){initNavTree('kdTree_8hpp_source.html',''); initResi
 <div class="line"><a id="l00152" name="l00152"></a><span class="lineno">  152</span>        level &gt;= Traits::MAX_DEPTH ||</div>
 <div class="line"><a id="l00153" name="l00153"></a><span class="lineno">  153</span>        <span class="comment">// Since we add 2 nodes per inner node we need to stop if we can&#39;t add</span></div>
 <div class="line"><a id="l00154" name="l00154"></a><span class="lineno">  154</span>        <span class="comment">// them both</span></div>
-<div class="line"><a id="l00155" name="l00155"></a><span class="lineno">  155</span>        (NodeIndexType)m_nodes.size() &gt; MAX_NODE_COUNT - 2);</div>
+<div class="line"><a id="l00155" name="l00155"></a><span class="lineno">  155</span>        <span class="keyword">static_cast&lt;</span>NodeIndexType<span class="keyword">&gt;</span>(m_nodes.size()) &gt; MAX_NODE_COUNT - 2);</div>
 <div class="line"><a id="l00156" name="l00156"></a><span class="lineno">  156</span> </div>
 <div class="line"><a id="l00157" name="l00157"></a><span class="lineno">  157</span>    node.configure_range(start, end-start, aabb);</div>
 <div class="line"><a id="l00158" name="l00158"></a><span class="lineno">  158</span>    <span class="keywordflow">if</span> (node.is_leaf())</div>
@@ -289,9 +289,9 @@ $(document).ready(function(){initNavTree('kdTree_8hpp_source.html',''); initResi
 <div class="line"><a id="l00161" name="l00161"></a><span class="lineno">  161</span>    }</div>
 <div class="line"><a id="l00162" name="l00162"></a><span class="lineno">  162</span>    <span class="keywordflow">else</span></div>
 <div class="line"><a id="l00163" name="l00163"></a><span class="lineno">  163</span>    {</div>
-<div class="line"><a id="l00164" name="l00164"></a><span class="lineno">  164</span>        <span class="keywordtype">int</span> split_dim = 0;</div>
+<div class="line"><a id="l00164" name="l00164"></a><span class="lineno">  164</span>        IndexType split_dim = 0;</div>
 <div class="line"><a id="l00165" name="l00165"></a><span class="lineno">  165</span>        (Scalar(0.5) * aabb.diagonal()).maxCoeff(&amp;split_dim);</div>
-<div class="line"><a id="l00166" name="l00166"></a><span class="lineno">  166</span>        node.configure_inner(aabb.center()[split_dim], m_nodes.size(), split_dim);</div>
+<div class="line"><a id="l00166" name="l00166"></a><span class="lineno">  166</span>        node.configure_inner(aabb.center()[split_dim], <span class="keyword">static_cast&lt;</span>IndexType<span class="keyword">&gt;</span>(m_nodes.size()), split_dim);</div>
 <div class="line"><a id="l00167" name="l00167"></a><span class="lineno">  167</span>        m_nodes.emplace_back();</div>
 <div class="line"><a id="l00168" name="l00168"></a><span class="lineno">  168</span>        m_nodes.emplace_back();</div>
 <div class="line"><a id="l00169" name="l00169"></a><span class="lineno">  169</span> </div>
@@ -329,7 +329,7 @@ $(document).ready(function(){initNavTree('kdTree_8hpp_source.html',''); initResi
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_695d95a8d8fbec601a248c0414764298.html">Ponca</a></li><li class="navelem"><a class="el" href="dir_ce16314fc45f8638543c5146aff64d4a.html">src</a></li><li class="navelem"><a class="el" href="dir_12c32e53c838db195d209d78f62f8479.html">SpatialPartitioning</a></li><li class="navelem"><a class="el" href="dir_1714f3cab0d35a638840fab853fb5d40.html">KdTree</a></li><li class="navelem"><b>kdTree.hpp</b></li>
-    <li class="footer">Generated on Tue Oct 7 2025 12:47:54 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
+    <li class="footer">Generated on Tue Oct 7 2025 13:12:58 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
   </ul>
 </div>
 </body>
