@@ -18,7 +18,7 @@ namespace Ponca
     It first assemble a 2x2 matrix representation of the shape operator, and then performs an eigenvalue decomposition
     using Eigen::SelfAdjointEigenSolver::computeDirect.
 */
-    template < class DataPoint, class _WFunctor, int DiffType, typename T>
+    template < class DataPoint, class _NFilter, int DiffType, typename T>
     class NormalDerivativesCurvatureEstimator : public T
     {
     PONCA_FITTING_DECLARE_DEFAULT_TYPES
@@ -71,7 +71,7 @@ namespace Ponca
  *
  * \warning This class is valid only in 3D.
  */
-template < class DataPoint, class _WFunctor, int DiffType, typename T>
+template < class DataPoint, class _NFilter, int DiffType, typename T>
 class NormalCovarianceCurvatureEstimator : public T
 {
 PONCA_FITTING_DECLARE_DEFAULT_TYPES
@@ -118,7 +118,7 @@ public:
  *
  * \warning Not it test suite, to be added !
  */
-template < class DataPoint, class _WFunctor, int DiffType, typename T>
+template < class DataPoint, class _NFilter, int DiffType, typename T>
 class ProjectedNormalCovarianceCurvatureEstimator : public T
 {
     //TODO(thib) check the curvature values that might be wrong

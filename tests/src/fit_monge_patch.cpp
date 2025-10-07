@@ -28,7 +28,7 @@ using namespace std;
 using namespace Ponca;
 
 
-template<typename DataPoint, typename Fit, typename WeightFunc> //, typename Fit, typename WeightFunction>
+template<typename DataPoint, typename Fit>
 void testFunction(bool _bUnoriented = false, bool _bAddPositionNoise = false, bool _bAddNormalNoise = false)
 {
     // Define related structure
@@ -73,7 +73,7 @@ void testFunction(bool _bUnoriented = false, bool _bAddPositionNoise = false, bo
         const auto& queryPos = vectorPoints[i].pos();
 
         Fit fit;
-        fit.setWeightFunc(WeightFunc(queryPos, analysisScale));
+        fit.setNeighborFilter({queryPos, analysisScale});
         fit.compute(vectorPoints);
 
         if( fit.isStable() ){
@@ -114,18 +114,18 @@ void callSubTests()
     for(int i = 0; i < g_repeat; ++i)
     {
         //Test with perfect plane
-        CALL_SUBTEST(( testFunction<Point, CovFitSmooth, WeightSmoothFunc>() ));
-        CALL_SUBTEST(( testFunction<Point, CovFitConstant, WeightConstantFunc>() ));
-//        CALL_SUBTEST(( testFunction<Point, MeanFitSmooth, WeightSmoothFunc>() ));
-//        CALL_SUBTEST(( testFunction<Point, MeanFitConstant, WeightConstantFunc>() ));
+        CALL_SUBTEST(( testFunction<Point, CovFitSmooth>() ));
+        CALL_SUBTEST(( testFunction<Point, CovFitConstant>() ));
+//        CALL_SUBTEST(( testFunction<Point, MeanFitSmooth>() ));
+//        CALL_SUBTEST(( testFunction<Point, MeanFitConstant>() ));
     }
     cout << "Ok!" << endl;
 
     cout << "Testing with plane noise on position" << endl;
     for(int i = 0; i < g_repeat; ++i)
     {
-        CALL_SUBTEST(( testFunction<Point, CovFitSmooth, WeightSmoothFunc>(false, true, true) ));
-        CALL_SUBTEST(( testFunction<Point, CovFitConstant, WeightConstantFunc>(false, true, true) ));
+        CALL_SUBTEST(( testFunction<Point, CovFitSmooth>(false, true, true) ));
+        CALL_SUBTEST(( testFunction<Point, CovFitConstant>(false, true, true) ));
     }
     cout << "Ok!" << endl;
 }
