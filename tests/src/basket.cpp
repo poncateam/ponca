@@ -161,38 +161,6 @@ void testIsSame(const KdTree<typename Fit1::DataPoint>& tree,
     }
 }
 
-
-template<typename Fit1, typename Fit2>
-void isSamePlane(const Fit1& fit1, const Fit2& fit2) {
-    const auto &plane1 = fit1.compactPlane();
-    const auto &plane2 = fit2.compactPlane();
-
-// Test we fit the same plane
-    VERIFY(plane1.isApprox(plane2));
-}
-
-template<typename Fit1, typename Fit2>
-void isSameSphere(const Fit1& fit1, const Fit2& fit2) {
-    const auto &sphere1 = fit1.algebraicSphere();
-    const auto &sphere2 = fit2.algebraicSphere();
-
-    // Test we fit the same plane
-    VERIFY(sphere1 == sphere2);
-}
-
-template<typename Fit1, typename Fit2>
-void hasSamePlaneDerivatives(const Fit1& fit1, const Fit2& fit2) {
-    // Get covariance
-    const auto& dpot1 = fit1.covariancePlaneDer().dPotential();
-    const auto& dpot2 = fit2.covariancePlaneDer().dPotential();
-    const auto& dnor1 = fit1.covariancePlaneDer().dNormal();
-    const auto& dnor2 = fit2.covariancePlaneDer().dNormal();
-
-    // Test we compute the same derivatives
-    VERIFY(dpot1.isApprox( dpot2 ));
-    VERIFY(dnor1.isApprox( dnor2 ));
-}
-
 template<typename Scalar, int Dim>
 void callSubTests()
 {
