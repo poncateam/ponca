@@ -145,16 +145,16 @@ void testIsSame(const KdTree<typename Fit1::DataPoint>& tree,
 #endif
     for(int i = 0; i < int(vectorPoints.size()); ++i)
     {
+        //! [Fit computeWithIds]
         Fit1 fit1;
         fit1.setWeightFunc({vectorPoints[i].pos(), analysisScale});
         auto neighborhoodRange = tree.range_neighbors(vectorPoints[i].pos(), analysisScale);
         fit1.computeWithIds( neighborhoodRange, vectorPoints );
-
         //! [Fit computeWithIds]
+
         Fit2 fit2;
         fit2.setWeightFunc({vectorPoints[i].pos(), analysisScale});
         fit2.computeWithIds( neighborhoodRange, vectorPoints );
-        //! [Fit computeWithIds]
 
         f(fit1, fit2);
     }
