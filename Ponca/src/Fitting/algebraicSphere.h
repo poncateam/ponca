@@ -194,15 +194,7 @@ public:
     {
         PONCA_MULTIARCH_STD_MATH(numeric_limits);
         if(isPlane())
-        {
-            //return infinity (non-sense value)
-#ifdef __CUDACC__
-            Scalar inf = 0.;
-            return Scalar(1.)/inf;
-#else
-            return numeric_limits<Scalar>::infinity();
-#endif
-        }
+            return numeric_limits<Scalar>::infinity(); // non-sense value
 
         PONCA_MULTIARCH_STD_MATH(sqrt);
         Scalar b = Scalar(1.)/m_uq;
@@ -217,14 +209,7 @@ public:
     {
         PONCA_MULTIARCH_STD_MATH(numeric_limits);
         if(isPlane())
-        {
-            //return infinity (non-sense value)
-#ifdef __CUDACC__
-            return VectorType::Constant(Scalar(1.)/Scalar(0));
-#else
-            return VectorType::Constant(numeric_limits<Scalar>::infinity());
-#endif
-        }
+            return VectorType::Constant(numeric_limits<Scalar>::infinity()); // non-sense value
 
         Scalar b = Scalar(1.)/m_uq;
         return Base::m_w.convertToGlobalBasis((Scalar(-0.5)*b)*m_ul);
