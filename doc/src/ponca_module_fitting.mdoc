@@ -138,12 +138,7 @@ namespace Ponca
   \snippet basket.cpp Fit Compute
 
   Spatial structures can be used to accelerate spatial queries. Consider for instance using the KdTree class with range queries:
-  \code
-    Fit fit3;
-    fit3.setWeightFunc({fitInitPos, analysisScale});
-    // Compute the neighbors
-    fit3.computeWithIds( tree.range_neighbors(fitInitPos, analysisScale), vectorPoints );
-  \endcode
+  \snippet basket.cpp Fit computeWithIds
 
 
   \note Currently, users need to ensure consistency between the query and the fit location/scale. This is expected to be fixed in the upcoming releases.

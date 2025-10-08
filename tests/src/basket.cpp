@@ -108,7 +108,6 @@ fit2.compute(vectorPoints);
         VERIFY(! (fit1 != fit2));
         VERIFY(! (fit2 != fit2));
 
-        //! [Fit computeWithIds]
         Fit fit3;
         fit3.setWeightFunc({fitInitPos, analysisScale});
         // Sort fit1
@@ -118,7 +117,6 @@ fit2.compute(vectorPoints);
         neighbors3.sort();
         // Compute the neighbors
         fit3.computeWithIds( neighbors3, vectorPoints );
-        //! [Fit computeWithIds]
 
         VERIFY(fit3 == fit3);
         VERIFY(fit1 == fit3);
@@ -148,16 +146,15 @@ void testIsSame(const KdTree<typename Fit1::DataPoint>& tree,
     for(int i = 0; i < int(vectorPoints.size()); ++i)
     {
         Fit1 fit1;
-        Fit2 fit2;
-
+        fit1.setWeightFunc({vectorPoints[i].pos(), analysisScale});
         auto neighborhoodRange = tree.range_neighbors(vectorPoints[i].pos(), analysisScale);
-
-        // use compute function
-        fit1.setWeightFunc(WeightFunc(vectorPoints[i].pos(), analysisScale));
         fit1.computeWithIds( neighborhoodRange, vectorPoints );
 
-        fit2.setWeightFunc(WeightFunc(vectorPoints[i].pos(), analysisScale));
+        //! [Fit computeWithIds]
+        Fit2 fit2;
+        fit2.setWeightFunc({vectorPoints[i].pos(), analysisScale});
         fit2.computeWithIds( neighborhoodRange, vectorPoints );
+        //! [Fit computeWithIds]
 
         f(fit1, fit2);
     }
