@@ -125,18 +125,18 @@ void testBasicFunctionalities(const KdTree<typename Fit::DataPoint>& tree, typen
     }
 }
 
-template<typename Fit1, typename Fit2, typename Functor>
-void testIsSame(const KdTree<typename Fit1::DataPoint>& tree,
-                typename Fit1::Scalar analysisScale,
+template<typename Fit, typename Fit2, typename Functor>
+void testIsSame(const KdTree<typename Fit::DataPoint>& tree,
+                typename Fit::Scalar analysisScale,
                 Functor f)
 {
-    static_assert(std::is_same<typename Fit1::DataPoint, typename Fit2::DataPoint>::value, "Both Fit should use the same point type");
-    static_assert(std::is_same<typename Fit1::WFunctor, typename Fit2::WFunctor>::value, "Both Fit should use the same WFunctor");
+    static_assert(std::is_same<typename Fit::DataPoint, typename Fit2::DataPoint>::value, "Both Fit should use the same point type");
+    static_assert(std::is_same<typename Fit::WFunctor, typename Fit2::WFunctor>::value, "Both Fit should use the same WFunctor");
 
     // Define related structure
-    typedef typename Fit1::Scalar     Scalar;
-    typedef typename Fit1::VectorType VectorType;
-    typedef typename Fit1::WFunctor   WeightFunc;
+    typedef typename Fit::Scalar     Scalar;
+    typedef typename Fit::VectorType VectorType;
+    typedef typename Fit::WFunctor   WeightFunc;
     const auto& vectorPoints = tree.points();
 
     // Test for each point if the fitted sphere correspond to the theoretical sphere
@@ -146,17 +146,17 @@ void testIsSame(const KdTree<typename Fit1::DataPoint>& tree,
     for(int i = 0; i < int(vectorPoints.size()); ++i)
     {
         //! [Fit computeWithIds]
-        Fit1 fit1;
-        fit1.setWeightFunc({vectorPoints[i].pos(), analysisScale});
+        Fit fit3;
+        fit3.setWeightFunc({vectorPoints[i].pos(), analysisScale});
         auto neighborhoodRange = tree.range_neighbors(vectorPoints[i].pos(), analysisScale);
-        fit1.computeWithIds( neighborhoodRange, vectorPoints );
+        fit3.computeWithIds( neighborhoodRange, vectorPoints );
         //! [Fit computeWithIds]
 
         Fit2 fit2;
         fit2.setWeightFunc({vectorPoints[i].pos(), analysisScale});
         fit2.computeWithIds( neighborhoodRange, vectorPoints );
 
-        f(fit1, fit2);
+        f(fit3, fit2);
     }
 }
 
