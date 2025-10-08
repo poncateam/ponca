@@ -192,6 +192,7 @@ public:
     */
     PONCA_MULTIARCH inline Scalar radius() const
     {
+        PONCA_MULTIARCH_STD_MATH(numeric_limits);
         if(isPlane())
         {
             //return infinity (non-sense value)
@@ -199,7 +200,7 @@ public:
             Scalar inf = 0.;
             return Scalar(1.)/inf;
 #else
-            return std::numeric_limits<Scalar>::infinity();
+            return numeric_limits<Scalar>::infinity();
 #endif
         }
 
@@ -214,13 +215,14 @@ public:
     */
     PONCA_MULTIARCH inline VectorType center() const
     {
+        PONCA_MULTIARCH_STD_MATH(numeric_limits);
         if(isPlane())
         {
             //return infinity (non-sense value)
 #ifdef __CUDACC__
             return VectorType::Constant(Scalar(1.)/Scalar(0));
 #else
-            return VectorType::Constant(std::numeric_limits<Scalar>::infinity());
+            return VectorType::Constant(numeric_limits<Scalar>::infinity());
 #endif
         }
 

@@ -7,6 +7,9 @@
  file, You can obtain one at http://mozilla.org/MPL/2.0/.
 */
 
+#include PONCA_MULTIARCH_INCLUDE_STD(cmath)
+#include PONCA_MULTIARCH_INCLUDE_STD(limits)
+
 template < class DataPoint, class _WFunctor, typename T>
 FIT_RESULT
 CovariancePlaneFitImpl<DataPoint, _WFunctor, T>::finalize ()
@@ -51,6 +54,7 @@ FIT_RESULT
 CovariancePlaneDerImpl<DataPoint, _WFunctor, DiffType, T>::finalize()
 {
     PONCA_MULTIARCH_STD_MATH(sqrt);
+    PONCA_MULTIARCH_STD_MATH(numeric_limits);
 
     Base::finalize();
     // Test if base finalize end on a viable case (stable / unstable)
@@ -61,7 +65,7 @@ CovariancePlaneDerImpl<DataPoint, _WFunctor, DiffType, T>::finalize()
 
       // pre-compute shifted eigenvalues to apply the pseudo inverse of C - lambda_0 I
       Scalar epsilon          = Scalar(2) * Eigen::NumTraits<Scalar>::epsilon();
-      Scalar consider_as_zero = Scalar(2) * std::numeric_limits<Scalar>::denorm_min();
+      Scalar consider_as_zero = Scalar(2) * numeric_limits<Scalar>::denorm_min();
 
       // This is where the limitation to 3d comes from.
       // \fixme Replace shift in 2d subspace by any subspace with co-dimension 1
