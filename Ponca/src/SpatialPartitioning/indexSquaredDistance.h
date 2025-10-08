@@ -20,7 +20,7 @@ struct IndexSquaredDistance
     Index index {-1};
 
     /// Distance to the closest point
-    Scalar squared_distance { std::numeric_limits<Scalar>::max() };
+    Scalar squared_distance { PONCA_MULTIARCH_CU_STD_NAMESPACE(numeric_limits)<Scalar>::max() };
 
     /// Comparison operator based on squared_distance
     inline bool operator < (const IndexSquaredDistance& other) const

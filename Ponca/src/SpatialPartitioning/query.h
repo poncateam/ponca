@@ -11,6 +11,7 @@
 #include "../Common/Containers/limitedPriorityQueue.h"
 
 #include PONCA_MULTIARCH_INCLUDE_STD(cmath)
+#include PONCA_MULTIARCH_INCLUDE_STD(limits)
 
 namespace Ponca {
 
@@ -157,14 +158,15 @@ struct  OUT_TYPE##PointQuery : Query<QueryInputIsPosition<DataPoint>, \
     protected:
         /// \brief Reset Query for a new search
         void reset() {
+            PONCA_MULTIARCH_STD_MATH(numeric_limits);
             m_nearest = -1;
-            m_squared_distance = std::numeric_limits<Scalar>::max();
+            m_squared_distance = numeric_limits<Scalar>::max();
         }
         /// \brief Distance threshold used during tree descent to select nodes to explore
         inline Scalar descentDistanceThreshold() const { return m_squared_distance; }
 
         Index m_nearest {-1};
-        Scalar m_squared_distance {std::numeric_limits<Scalar>::max()};
+        Scalar m_squared_distance {PONCA_MULTIARCH_CU_STD_NAMESPACE(numeric_limits)<Scalar>::max()};
     };
 
 /// \brief Base class for knearest queries
@@ -179,8 +181,9 @@ struct  OUT_TYPE##PointQuery : Query<QueryInputIsPosition<DataPoint>, \
     protected:
         /// \brief Reset Query for a new search
         void reset() {
+            PONCA_MULTIARCH_STD_MATH(numeric_limits);
             m_queue.clear();
-            m_queue.push({-1,std::numeric_limits<Scalar>::max()});
+            m_queue.push({-1, numeric_limits<Scalar>::max()});
         }
         /// \brief Distance threshold used during tree descent to select nodes to explore
         inline Scalar descentDistanceThreshold() const { return m_queue.bottom().squared_distance; }
