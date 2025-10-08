@@ -51,7 +51,7 @@ MathJax.Hub.Config({
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Ponca
-   &#160;<span id="projectnumber">09e64ce33f6cac8c0c934a09085ad99e88b811bb</span>
+   &#160;<span id="projectnumber">b2ba08d9c24a5f3ee8560e8bbdb98e648a69257d</span>
    </div>
    <div id="projectbrief">Point Cloud Analysis library</div>
   </td>
@@ -322,13 +322,13 @@ Computational objets, basket and CRTP</h2>
 <div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>            MeanNormal&lt;DataPoint, _WFunctor,</div>
 <div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>                AlgebraicSphere&lt;DataPoint, _WFunctor,T&gt;&gt;&gt;&gt;;</div>
 <div class="ttc" id="anamespacePonca_html_a2f53f5c61ca5df7c3e3f8cf2219a14d4"><div class="ttname"><a href="namespacePonca.html#a2f53f5c61ca5df7c3e3f8cf2219a14d4">Ponca::OrientedSphereFit</a></div><div class="ttdeci">OrientedSphereFitImpl&lt; DataPoint, _WFunctor, MeanPosition&lt; DataPoint, _WFunctor, MeanNormal&lt; DataPoint, _WFunctor, AlgebraicSphere&lt; DataPoint, _WFunctor, T &gt; &gt; &gt; &gt; OrientedSphereFit</div><div class="ttdoc">Helper alias for Oriented Sphere fitting on 3D points using OrientedSphereFitImpl [OrientedSphereFit ...</div><div class="ttdef"><b>Definition</b> <a href="orientedSphereFit_8h_source.html#l00052">orientedSphereFit.h:56</a></div></div>
-</div><!-- fragment --><p> Here, the class <a class="el" href="classPonca_1_1MeanPosition.html" title="Compute the barycenter of the input points.">MeanPosition</a> computes the mean position of the input points. It is also used in <a class="el" href="namespacePonca.html#aa4b1806ad54a3b70849bd5997002a8c7" title="Helper alias for Plane fitting on 3D points using CovariancePlaneFitImpl [CovariancePlaneFit Definiti...">Ponca::CovariancePlaneFit</a>: </p><div class="fragment"><div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>    <span class="keyword">template</span> &lt; <span class="keyword">class</span> DataPo<span class="keywordtype">int</span>, <span class="keyword">class</span> _WFunctor, <span class="keyword">typename</span> T&gt;</div>
-<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>    <span class="keyword">using </span><a class="code hl_typedef" href="namespacePonca.html#aa4b1806ad54a3b70849bd5997002a8c7">CovariancePlaneFit</a> =</div>
-<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>    CovariancePlaneFitImpl&lt;DataPoint, _WFunctor,</div>
-<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>            CovarianceFitBase&lt;DataPoint, _WFunctor,</div>
-<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>                    MeanPosition&lt;DataPoint, _WFunctor,</div>
-<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>                            Plane&lt;DataPoint, _WFunctor,T&gt;&gt;&gt;&gt;;</div>
-<div class="ttc" id="anamespacePonca_html_aa4b1806ad54a3b70849bd5997002a8c7"><div class="ttname"><a href="namespacePonca.html#aa4b1806ad54a3b70849bd5997002a8c7">Ponca::CovariancePlaneFit</a></div><div class="ttdeci">CovariancePlaneFitImpl&lt; DataPoint, _WFunctor, CovarianceFitBase&lt; DataPoint, _WFunctor, MeanPosition&lt; DataPoint, _WFunctor, Plane&lt; DataPoint, _WFunctor, T &gt; &gt; &gt; &gt; CovariancePlaneFit</div><div class="ttdoc">Helper alias for Plane fitting on 3D points using CovariancePlaneFitImpl [CovariancePlaneFit Definiti...</div><div class="ttdef"><b>Definition</b> <a href="covariancePlaneFit_8h_source.html#l00087">covariancePlaneFit.h:91</a></div></div>
+</div><!-- fragment --><p> Here, the class <a class="el" href="classPonca_1_1MeanPosition.html" title="Compute the barycenter of the input points.">MeanPosition</a> computes the mean position of the input points. It is also used in <a class="el" href="namespacePonca.html#aa4b1806ad54a3b70849bd5997002a8c7" title="Helper alias for Plane fitting on 3D points using CovariancePlaneFitImpl [CovariancePlaneFit Definiti...">Ponca::CovariancePlaneFit</a>: </p><div class="fragment"><div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>    <span class="keyword">template</span> &lt; <span class="keyword">class</span> DataPo<span class="keywordtype">int</span>, <span class="keyword">class</span> _WFunctor, <span class="keyword">typename</span> T&gt;</div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>    <span class="keyword">using </span><a class="code hl_typedef" href="namespacePonca.html#aa4b1806ad54a3b70849bd5997002a8c7">CovariancePlaneFit</a> =</div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>    CovariancePlaneFitImpl&lt;DataPoint, _WFunctor,</div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>            CovarianceFitBase&lt;DataPoint, _WFunctor,</div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>                    MeanPosition&lt;DataPoint, _WFunctor,</div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span>                            Plane&lt;DataPoint, _WFunctor,T&gt;&gt;&gt;&gt;;</div>
+<div class="ttc" id="anamespacePonca_html_aa4b1806ad54a3b70849bd5997002a8c7"><div class="ttname"><a href="namespacePonca.html#aa4b1806ad54a3b70849bd5997002a8c7">Ponca::CovariancePlaneFit</a></div><div class="ttdeci">CovariancePlaneFitImpl&lt; DataPoint, _WFunctor, CovarianceFitBase&lt; DataPoint, _WFunctor, MeanPosition&lt; DataPoint, _WFunctor, Plane&lt; DataPoint, _WFunctor, T &gt; &gt; &gt; &gt; CovariancePlaneFit</div><div class="ttdoc">Helper alias for Plane fitting on 3D points using CovariancePlaneFitImpl [CovariancePlaneFit Definiti...</div><div class="ttdef"><b>Definition</b> <a href="covariancePlaneFit_8h_source.html#l00088">covariancePlaneFit.h:92</a></div></div>
 </div><!-- fragment --><p> and <a class="el" href="namespacePonca.html#a13ebe442f2119e12b35714a12a15560b" title="Helper alias for Plane fitting on points using MeanPlaneFitImpl [MeanPlaneFit Definition].">Ponca::MeanPlaneFit</a>, among others. </p><div class="fragment"><div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>    <span class="keyword">template</span> &lt; <span class="keyword">class</span> DataPo<span class="keywordtype">int</span>, <span class="keyword">class</span> _WFunctor, <span class="keyword">typename</span> T&gt;</div>
 <div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>    <span class="keyword">using </span><a class="code hl_typedef" href="namespacePonca.html#a13ebe442f2119e12b35714a12a15560b">MeanPlaneFit</a> =</div>
 <div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>    MeanPlaneFitImpl&lt;DataPoint, _WFunctor,</div>
@@ -467,7 +467,7 @@ Cuda</h2>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="user_manual_page.html">User Manual</a></li>
-    <li class="footer">Generated on Tue Oct 7 2025 13:12:58 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
+    <li class="footer">Generated on Wed Oct 8 2025 19:11:28 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
   </ul>
 </div>
 </body>
