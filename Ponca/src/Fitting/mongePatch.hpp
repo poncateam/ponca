@@ -1,6 +1,7 @@
 ﻿
 #include <Eigen/SVD>
 #include <Eigen/Geometry>
+#include PONCA_MULTIARCH_INCLUDE_CU_STD(cmath)
 
 template < class DataPoint, class _WFunctor, typename T>
 void

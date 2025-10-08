@@ -9,6 +9,7 @@
 
 #pragma once
 
+#include "./defines.h"
 #include "./plane.h"
 #include "./primitive.h"
 #include "./mean.h"          // used to define CovarianceLineFit

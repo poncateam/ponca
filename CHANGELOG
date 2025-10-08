@@ -26,6 +26,7 @@ Current head (v.1.4 RC)
    - [fitting] Streamlining compute functions declaration (#194, #210)
    - [spatialPartitioning] Adding missing PONCA_MULTIARCH_STD_MATH call (#205)
    - [all] Added static cast to remove warnings (#203)
+   - [all] Fixing include directives for std lib (#214)
 
 - Tests
    - [fitting] Split Basket test in subtests (#96)

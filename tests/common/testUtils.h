@@ -14,6 +14,7 @@
 
 #include "Eigen/Eigen"
 #include "Ponca/src/Common/defines.h"
+#include PONCA_MULTIARCH_INCLUDE_CU_STD(cmath)
 
 #include <vector>
 
