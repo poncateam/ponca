@@ -6,10 +6,9 @@
 
 #pragma once
 
-#include <limits>
-#include <type_traits>
-
 #include "./defines.h"
+#include PONCA_MULTIARCH_INCLUDE_CU_STD(limits)
+#include <type_traits>
 
 namespace Ponca {
 
