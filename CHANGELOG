@@ -3,7 +3,10 @@ Ponca changelog
 
 
 --------------------------------------------------------------------------------
-Current head (v.1.4 RC)
+Current head (v.x.x RC)
+
+--------------------------------------------------------------------------------
+v.1.4
 
 - API
     - [fitting] Refactor the Weighting function initialization to avoid misuse (#167)
