@@ -1,5 +1,6 @@
 var NAVTREEINDEX3 =
 {
+"ponca_concepts.html":[6,0],
 "ponca_getting_started_page.html":[5],
 "ponca_getting_started_page.html#getting_started_download_sec":[5,1],
 "ponca_getting_started_page.html#getting_started_first_step_sec":[5,3],
@@ -25,9 +26,13 @@ var NAVTREEINDEX3 =
 "spatialpartitioning.html#spatialpartitioning_knngraph_usage_construction":[6,3,2,0,0],
 "spatialpartitioning.html#spatialpartitioning_knngraph_usage_queries":[6,3,2,0,1],
 "structPonca_1_1BasketComputeObject.html":[8,0,0,2],
-"structPonca_1_1BasketComputeObject.html#a5124e70f1b87118dea332a16228cbefa":[8,0,0,2,2],
+"structPonca_1_1BasketComputeObject.html#a5124e70f1b87118dea332a16228cbefa":[8,0,0,2,5],
+"structPonca_1_1BasketComputeObject.html#a6429a1d963ab299b90a8b5b8b5cb6291":[8,0,0,2,3],
+"structPonca_1_1BasketComputeObject.html#a75fbf6fd844257c87d331db354c25acf":[8,0,0,2,4],
 "structPonca_1_1BasketComputeObject.html#ab60092684ce53f1eca2ba7708ab05604":[8,0,0,2,0],
-"structPonca_1_1BasketComputeObject.html#ab740adc434a6d1ecb4cf4943c1ff2a84":[8,0,0,2,1],
+"structPonca_1_1BasketComputeObject.html#ab740adc434a6d1ecb4cf4943c1ff2a84":[8,0,0,2,2],
+"structPonca_1_1BasketComputeObject.html#ac6a17eaf4b01914e7ce5501bec384285":[8,0,0,2,6],
+"structPonca_1_1BasketComputeObject.html#ac8c87a03d8ba945879cd80bc4a8a841c":[8,0,0,2,1],
 "structPonca_1_1ComputeObject.html":[8,0,0,5],
 "structPonca_1_1ComputeObject.html#a19794c89d55fef61b6a712dd94d7452b":[8,0,0,5,2],
 "structPonca_1_1ComputeObject.html#a7bad382d90e0a8af867cd9ba5ccc37b9":[8,0,0,5,0],

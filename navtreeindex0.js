@@ -33,10 +33,11 @@ var NAVTREEINDEX0 =
 "classPonca_1_1AlgebraicSphere.html#af30386a4406c056b736100eaa950d3d0":[8,0,0,0,2],
 "classPonca_1_1AlgebraicSphere.html#affdaa1f41b84e67ad65d66166649d9e3":[8,0,0,0,4],
 "classPonca_1_1Basket.html":[8,0,0,1],
-"classPonca_1_1Basket.html#a0e271beada694952846c2885e3bda897":[8,0,0,1,2],
-"classPonca_1_1Basket.html#a4c962002c1d8204e09ece679f103fca7":[8,0,0,1,0],
-"classPonca_1_1Basket.html#aafcda79bf6fc10505ad93e9b84addca2":[8,0,0,1,1],
-"classPonca_1_1Basket.html#acde7a093c64aad976988dc8207930c74":[8,0,0,1,3],
+"classPonca_1_1Basket.html#a0e271beada694952846c2885e3bda897":[8,0,0,1,3],
+"classPonca_1_1Basket.html#a4c962002c1d8204e09ece679f103fca7":[8,0,0,1,1],
+"classPonca_1_1Basket.html#aa3057b699ee6345c523f436fa2c39c91":[8,0,0,1,2],
+"classPonca_1_1Basket.html#acde7a093c64aad976988dc8207930c74":[8,0,0,1,4],
+"classPonca_1_1Basket.html#ae98b6b8c88b049c7f3643e886b1acc3f":[8,0,0,1,0],
 "classPonca_1_1BasketDiff.html":[8,0,0,3],
 "classPonca_1_1BasketDiff.html#a24cafc02fc3353e9e0a165250de23609":[8,0,0,3,0],
 "classPonca_1_1BasketDiff.html#a5ea7daddae9d7bd58b3da8fc99ff31b4":[8,0,0,3,3],
@@ -248,6 +249,5 @@ var NAVTREEINDEX0 =
 "classPonca_1_1KdTreeDenseBase.html#a0755b6d9ec2855be13eaa5f173a894d2":[8,0,0,26,0],
 "classPonca_1_1KdTreeDenseBase.html#a44dbbb76e78121fa0c4832ba190a98d1":[8,0,0,26,1],
 "classPonca_1_1KdTreeKNearestIterator.html":[8,0,0,27],
-"classPonca_1_1KdTreeKNearestQueryBase.html":[8,0,0,28],
-"classPonca_1_1KdTreeNearestIterator.html":[8,0,0,29]
+"classPonca_1_1KdTreeKNearestQueryBase.html":[8,0,0,28]
 };

@@ -21,7 +21,7 @@ var searchData=
   ['derivation_20from_20the_20barycenter_20definition_18',['Step-by-step derivation from the barycenter definition',['../classPonca_1_1MeanPositionDer.html#autotoc_md1',1,'']]],
   ['derivation_20of_20the_20mean_20normal_20_3a_19',['Step-by-step derivation of the mean normal :',['../classPonca_1_1MeanNormalDer.html#autotoc_md2',1,'']]],
   ['derivatives_20',['Computing derivatives',['../fitting.html#fitting_derivatives',1,'']]],
-  ['derived_21',['derived',['../structPonca_1_1ComputeObject.html#a8c894f244ffc8bf7f1a807c52b85b03a',1,'Ponca::ComputeObject::derived()'],['../structPonca_1_1BasketComputeObject.html#ab60092684ce53f1eca2ba7708ab05604',1,'Ponca::BasketComputeObject::Derived']]],
+  ['derived_21',['derived',['../structPonca_1_1BasketComputeObject.html#ab60092684ce53f1eca2ba7708ab05604',1,'Ponca::BasketComputeObject::Derived'],['../structPonca_1_1ComputeObject.html#a8c894f244ffc8bf7f1a807c52b85b03a',1,'Ponca::ComputeObject::derived()']]],
   ['descentdistancethreshold_22',['descentdistancethreshold',['../group__spatialpartitioning.html#adadfb78e62512f4d5d714b3e59085cf7',1,'Ponca::QueryOutputIsKNearest::descentDistanceThreshold()'],['../group__spatialpartitioning.html#a153ff7330ab8fcf78413f387e054bb26',1,'Ponca::QueryOutputIsNearest::descentDistanceThreshold()'],['../group__spatialpartitioning.html#a37658d986660ed8b8c5801d754f36a12',1,'Ponca::QueryOutputIsRange::descentDistanceThreshold()']]],
   ['design_20choices_20and_20programing_20techniques_23',['Design choices and programing techniques',['../fitting.html#fitting_design',1,'']]],
   ['deta_24',['deta',['../classPonca_1_1GLSDer.html#a0065b0f2ce27da66bca5fbea19d02dc5',1,'Ponca::GLSDer']]],

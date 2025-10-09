@@ -1,5 +1,6 @@
 var NAVTREEINDEX2 =
 {
+"classPonca_1_1PolynomialSmoothWeightKernel.html#a4d05ca6e922eda8950c3ab0d9e4d1813":[8,0,0,60,0],
 "classPonca_1_1PolynomialSmoothWeightKernel.html#a57638efcd9b72fa08be0b3a9ff385e47":[8,0,0,60,2],
 "classPonca_1_1PolynomialSmoothWeightKernel.html#ad8adceb3c40734ed05d02ff4cf3b1ae3":[8,0,0,60,1],
 "classPonca_1_1PolynomialSmoothWeightKernel.html#af29dbc91ddfad21d22534873a25be0a4":[8,0,0,60,3],
@@ -201,8 +202,8 @@ var NAVTREEINDEX2 =
 "functions_enum.html":[8,3,4],
 "functions_eval.html":[8,3,5],
 "functions_f.html":[8,3,0,5],
-"functions_func.html":[8,3,1],
 "functions_func.html":[8,3,1,0],
+"functions_func.html":[8,3,1],
 "functions_func_b.html":[8,3,1,1],
 "functions_func_c.html":[8,3,1,2],
 "functions_func_d.html":[8,3,1,3],
@@ -248,6 +249,5 @@ var NAVTREEINDEX2 =
 "index.html#ponca_instructions_sec":[1],
 "pages.html":[],
 "ponca_changelog.html":[4],
-"ponca_changelog.html#ponca_changelog_sec":[4,0],
-"ponca_concepts.html":[6,0]
+"ponca_changelog.html#ponca_changelog_sec":[4,0]
 };

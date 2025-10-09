@@ -1,6 +1,10 @@
 var structPonca_1_1BasketComputeObject =
 [
     [ "Derived", "structPonca_1_1BasketComputeObject.html#ab60092684ce53f1eca2ba7708ab05604", null ],
+    [ "Scalar", "structPonca_1_1BasketComputeObject.html#ac8c87a03d8ba945879cd80bc4a8a841c", null ],
     [ "compute", "structPonca_1_1BasketComputeObject.html#ab740adc434a6d1ecb4cf4943c1ff2a84", null ],
-    [ "computeWithIds", "structPonca_1_1BasketComputeObject.html#a5124e70f1b87118dea332a16228cbefa", null ]
+    [ "computeMLS", "structPonca_1_1BasketComputeObject.html#a6429a1d963ab299b90a8b5b8b5cb6291", null ],
+    [ "computeMLSImpl", "structPonca_1_1BasketComputeObject.html#a75fbf6fd844257c87d331db354c25acf", null ],
+    [ "computeWithIds", "structPonca_1_1BasketComputeObject.html#a5124e70f1b87118dea332a16228cbefa", null ],
+    [ "computeWithIdsMLS", "structPonca_1_1BasketComputeObject.html#ac6a17eaf4b01914e7ce5501bec384285", null ]
 ];
