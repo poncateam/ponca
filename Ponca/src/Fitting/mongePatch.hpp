@@ -68,6 +68,10 @@ MongePatch<DataPoint, _NFilter, T>::finalize ()
 
         Scalar H  = GaussianCurvature();
         Scalar K  = kMean();
+        /* Knowing that             *
+         * H = (k1 + k2) / 2        *
+         * K = k1.k2                *
+         * We can deduce :          */
         Scalar k1 = -sqrt(-K+H*H)-H;
         Scalar k2 =  sqrt(-K+H*H)-H;
 
