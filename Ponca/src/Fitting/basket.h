@@ -196,7 +196,14 @@ namespace internal
             return res;
         }
 
-    private:
+    protected:
+        /*!
+         * \brief Computes the fit using the MLS iteration process.
+         * The position of the projected point is outputted through the lastPosition argument.
+         * \param points An STL-like container of points
+         * \param mlsIter The amount of MLS iteration that is being done for this fit
+         * \return The result of the fit
+         */
         template<typename Func>
         FIT_RESULT computeMLSImpl(Func&& computeFunc, int mlsIter, Scalar epsilon) {
             FIT_RESULT res = UNDEFINED;
@@ -221,12 +228,8 @@ namespace internal
 
     public:
         /*!
-         * \brief Computes the fit using the MLS iteration process.
-         * The position of the projected point is outputted through the lastPosition argument.
-         * @tparam PointContainer STL-like container storing the points
-         * @param points An STL-like container of points
-         * @param mlsIter The amount of MLS iteration that is being done for this fit
-         * @return The result of the fit
+         * \copydoc BasketComputeObject::computeMLSImpl
+         * \tparam PointContainer STL-like container storing the points
          */
         template<typename PointContainer>
         FIT_RESULT computeMLS(
@@ -241,14 +244,9 @@ namespace internal
         }
 
         /*!
-         * \brief Computes the fit using the MLS iteration process.
-         * The position of the projected point is outputted through the lastPosition argument.
-         * @tparam IndexRange STL-Like range storing indices
-         * @tparam PointContainer STL-like container storing the points
-         * @param ids An STL-like container of indeices of the neighbors
-         * @param points An STL-like container of points
-         * @param mlsIter The amount of MLS iteration that is being done for this fit
-         * @return The result of the fit
+         * \copydoc BasketComputeObject::computeMLSImpl
+         * \tparam IndexRange STL-Like range storing indices
+         * \tparam PointContainer STL-like container storing the points
          */
         template<typename IndexRange, typename PointContainer>
         FIT_RESULT computeWithIdsMLS(
