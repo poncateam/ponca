@@ -11,6 +11,7 @@ Current head (v.1.4 RC)
     - [fitting] Add ComputeObject and changed basket to inherit the compute methods from it (#188)
     - [fitting] Add features in CovarianceFitBase (#191)
     - [fitting] Generalised smooth weight kernel to any dimension (#159)
+    - [fitting] Adding the MLS computation (#187)
 
 - Cmake
     - [build] Enable exportation of projects linking to Ponca targets (#150)
@@ -32,6 +33,7 @@ Current head (v.1.4 RC)
    - [fitting] Split Basket test in subtests (#96)
    - [fitting] Fix random failure in Basket and Projection tests (#96,#162)
    - [fitting] Minor fix in the basket test (#186,#193)
+   - [fitting] Adding the MLS test (#187)
 
 - Examples
    - [ssgls] Fix compilation error with CUDA due to compiler mismatch (#96)
