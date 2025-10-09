@@ -85,6 +85,89 @@ namespace Ponca
 
     template < class DataPoint, class WFunctor, int /*DiffType*/, typename T>
     using CurvatureEstimatorBaseDiff = CurvatureEstimatorBase<DataPoint, WFunctor, T>;
+
+
+
+/*!
+    \brief Compute principal curvatures from a base class providing fundamental forms
+
+    \see MongePatchPrimitive
+
+    This primitive provides:
+    \verbatim PROVIDES_PRINCIPAL_CURVATURES \endverbatim
+
+    This primitive requires:
+    \verbatim PROVIDES_FIRST_FUNDAMENTAL_FORM_COMPONENTS, PROVIDES_SECOND_FUNDAMENTAL_FORM_COMPONENTS \endverbatim
+    */
+    template < class DataPoint, class _NFilter, typename T >
+    class FundamentalFormCurvatureEstimator : public T
+    {
+    PONCA_FITTING_DECLARE_DEFAULT_TYPES
+        using Matrix2 = Eigen::Matrix<Scalar, 2, 2>;
+        static_assert ( DataPoint::Dim == 3, "FundamentalFormCurvatureEstimator is only valid in 3D");
+
+    protected:
+        enum {
+            Check = Base::PROVIDES_FIRST_FUNDAMENTAL_FORM_COMPONENTS &&
+                    Base::PROVIDES_SECOND_FUNDAMENTAL_FORM_COMPONENTS,
+            PROVIDES_PRINCIPAL_CURVATURES  /*!< \brief Provides curvature API */
+        };
+
+    public:
+        PONCA_EXPLICIT_CAST_OPERATORS(FundamentalFormCurvatureEstimator, fundamentalFormCurvatureEstimator)
+
+        PONCA_MULTIARCH [[nodiscard]] inline Matrix2 firstFundamentalForm() const {
+            Matrix2 first;
+            Base::firstFundamentalFormComponents(*(first.data()), *(first.data()+1), *(first.data()+3));
+            *(first.data()+2) = *(first.data()+1);
+            return first;
+        }
+
+        PONCA_MULTIARCH [[nodiscard]] inline Matrix2 secondFundamentalForm() const {
+            Matrix2 second;
+            Base::secondFundamentalFormComponents(*(second.data()), *(second.data()+1), *(second.data()+3));
+            *(second.data()+2) = *(second.data()+1);
+            return second;
+        }
+
+        //! \brief Returns the WeingartenMap, defined as
+        PONCA_MULTIARCH [[nodiscard]] inline Matrix2 weingartenMap() const {
+            return firstFundamentalForm().inverse() *  secondFundamentalForm();
+        }
+
+//        //! \brief Returns an estimate of the minimal principal curvature value
+//        PONCA_MULTIARCH inline Scalar kmin() const { return m_kmin; }
+//
+//        //! \brief Returns an estimate of the maximal principal curvature value
+//        PONCA_MULTIARCH inline Scalar kmax() const { return m_kmax; }
+//
+//        //! \brief Returns an estimate of the minimal principal curvature direction
+//        PONCA_MULTIARCH inline VectorType kminDirection() const { return m_vmin; }
+//
+//        //! \brief Returns an estimate of the maximal principal curvature direction
+//        PONCA_MULTIARCH inline VectorType kmaxDirection() const { return m_vmax; }
+
+        //! \brief Returns an estimate of the mean curvature
+        PONCA_MULTIARCH inline Scalar kMean() const {
+            Scalar E, F, G, L, M, N;
+            Base::firstFundamentalFormComponents(E, F, G);
+            Base::secondFundamentalFormComponents(L, M, N);
+            return (G*L-Scalar(2)*F*M+E*N)/(Scalar(2)*(E*G-F*F));
+//            return Scalar(0.5)*weingartenMap().trace();
+        }
+
+        //! \brief Returns an estimate of the Gaussian curvature
+        PONCA_MULTIARCH inline Scalar GaussianCurvature() const {
+            Scalar E, F, G, L, M, N;
+            Base::firstFundamentalFormComponents(E, F, G);
+            Base::secondFundamentalFormComponents(L, M, N);
+            return (L*N-M*M)/(E*G-F*F);
+//            return weingartenMap().determinant();
+        }
+    };
+
+    template < class DataPoint, class _NFilter, int /*DiffType*/, typename T>
+    using FundamentalFormCurvatureEstimatorDiff = FundamentalFormCurvatureEstimator<DataPoint, _NFilter, T>;
 } //namespace Ponca
 
 #include "curvature.hpp"
