@@ -10,6 +10,8 @@
 
 #include <Eigen/Dense>
 
+#include "curvature.h"
+
 namespace Ponca
 {
 
@@ -24,7 +26,7 @@ namespace Ponca
  *       Could makes sense to split the two
  */
 template < class DataPoint, class _NFilter, typename T>
-class MongePatch : public T
+class MongePatch : public T, public CurvatureEstimatorBase<DataPoint, _NFilter, T>
 {
 PONCA_FITTING_DECLARE_DEFAULT_TYPES
 
