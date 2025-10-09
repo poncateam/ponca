@@ -145,6 +145,7 @@ namespace internal
     struct BasketComputeObject : public ComputeObject<_Derived>, public virtual _Base {
         using Base    = _Base;    /// <\brief Alias to the Base type
         using Derived = _Derived; /// \brief Alias to the Derived type
+        using Scalar  = typename Base::Scalar;
     protected:
         using ComputeObject<Derived>::derived;
     public:
@@ -194,11 +195,78 @@ namespace internal
 
             return res;
         }
+
+    protected:
+        /*!
+         * \brief Computes the fit using the MLS iteration process.
+         * The position of the projected point is outputted through the lastPosition argument.
+         * \param points An STL-like container of points
+         * \param mlsIter The amount of MLS iteration that is being done for this fit
+         * \return The result of the fit
+         */
+        template<typename Func>
+        FIT_RESULT computeMLSImpl(Func&& computeFunc, int mlsIter, Scalar epsilon) {
+            FIT_RESULT res = UNDEFINED;
+            const auto t = Base::m_w.evalScale();
+            auto lastPos = Base::m_w.evalPos();
+
+            for (int mm = 0; mm < mlsIter; ++mm) {
+                Base::setWeightFunc({lastPos, t});
+                res = computeFunc();
+
+                if (Base::isStable()) {
+                    auto newPos = Base::project(lastPos);
+                    if (newPos.isApprox(lastPos, epsilon))
+                        return res;
+                    lastPos = newPos;
+                } else {
+                    return res;
+                }
+            }
+            return res;
+        }
+
+    public:
+        /*!
+         * \copydoc BasketComputeObject::computeMLSImpl
+         * \tparam PointContainer STL-like container storing the points
+         */
+        template<typename PointContainer>
+        FIT_RESULT computeMLS(
+            const PointContainer& points,
+            const int mlsIter    = 5,
+            const Scalar epsilon = Eigen::NumTraits<Scalar>::dummy_precision()
+        ) {
+            return computeMLSImpl(
+                [&]() { return compute(points); },
+                mlsIter, epsilon
+            );
+        }
+
+        /*!
+         * \copydoc BasketComputeObject::computeMLSImpl
+         * \tparam IndexRange STL-Like range storing indices
+         * \tparam PointContainer STL-like container storing the points
+         */
+        template<typename IndexRange, typename PointContainer>
+        FIT_RESULT computeWithIdsMLS(
+            const IndexRange& ids,
+            const PointContainer& points,
+            const int mlsIter    = 5,
+            const Scalar epsilon = Eigen::NumTraits<Scalar>::dummy_precision()
+        ) {
+            return computeMLSImpl(
+                [&]() { return computeWithIds(ids, points); },
+                mlsIter, epsilon
+            );
+        }
     };
 
 #define WRITE_COMPUTE_FUNCTIONS \
     using BasketComputeObject<Self, Base>::compute; \
-    using BasketComputeObject<Self, Base>::computeWithIds;
+    using BasketComputeObject<Self, Base>::computeWithIds; \
+    using BasketComputeObject<Self, Base>::computeMLS; \
+    using BasketComputeObject<Self, Base>::computeWithIdsMLS;
 
     /*!
          \brief Aggregator class used to declare specialized structures with derivatives computations, using CRTP
@@ -257,13 +325,15 @@ namespace internal
     private:
         using Self = Basket;
     public:
-        using Base = typename internal::BasketAggregate<P,W,Ext0,Exts...>::type;
-        /// Weight function
-        using WeightFunction = W;
+        /// Base type, which aggregates all the computational objects using the CRTP
+        using Base = typename internal::BasketAggregate<P, W, Ext0, Exts...>::type;
+        /// Scalar type used for computation, as defined from template parameter `P`
+        using Scalar = typename P::Scalar;
+        using VectorType = typename P::VectorType;
         /// Point type used for computation
         using DataPoint = P;
-        /// Scalar type used for computation, as defined from Basket
-        using Scalar = typename DataPoint::Scalar;
+        /// Weighting function
+        using WeightFunction = W;
 
         WRITE_COMPUTE_FUNCTIONS
 
