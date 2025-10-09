@@ -120,22 +120,16 @@ var NAVTREE =
           [ "Computational objets, basket and CRTP", "fitting.html#fitting_extensions_deps", null ],
           [ "Computational objets capabilities and requirements", "fitting.html#fitting_capabilities", null ],
           [ "Sharing computations between fits", "fitting.html#fitting_multiprimitive", null ],
-          [ "Computing Curvatures", "fitting.html#fitting_cuvature", null ],
+          [ "Computing Curvatures", "fitting.html#fitting_curvature", null ],
           [ "Cuda", "fitting.html#fitting_cuda", null ]
-        ] ],
-        [ "Fitting module: Concepts", "fitting_concepts.html", [
-          [ "API of Computational Objects", "fitting_concepts.html#concepts_computObject", [
-            [ "Objects used in Basket", "fitting_concepts.html#concepts_computObjectBasket", null ],
-            [ "Objects used in BasketDiff", "fitting_concepts.html#concepts_computObjectBasketDiff", null ]
-          ] ],
-          [ "Concepts related to weighting functions", "fitting_concepts.html#concepts_weighting", null ]
         ] ]
       ] ],
       [ "Fitting module: Concepts", "fitting_concepts.html", [
-        [ "API of Computational Objects", "fitting_concepts.html#concepts_computObject", [
-          [ "Objects used in Basket", "fitting_concepts.html#concepts_computObjectBasket", null ],
-          [ "Objects used in BasketDiff", "fitting_concepts.html#concepts_computObjectBasketDiff", null ]
+        [ "API of Computational Objects", "fitting_concepts.html#concepts_computeObject", [
+          [ "Objects used in Basket", "fitting_concepts.html#concepts_computeObjectBasket", null ],
+          [ "Objects used in BasketDiff", "fitting_concepts.html#concepts_computeObjectBasketDiff", null ]
         ] ],
+        [ "Capabilities of the Fitting tools", "fitting_concepts.html#concepts_provides", null ],
         [ "Concepts related to weighting functions", "fitting_concepts.html#concepts_weighting", null ]
       ] ],
       [ "Spatial Partitioning: User Manual", "spatialpartitioning.html", [
@@ -186,7 +180,7 @@ var NAVTREEINDEX =
 "annotated.html",
 "classPonca_1_1KdTreeNearestQueryBase.html",
 "classPonca_1_1PolynomialSmoothWeightKernel.html#a57638efcd9b72fa08be0b3a9ff385e47",
-"pages.html"
+"ponca_getting_started_page.html"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

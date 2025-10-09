@@ -1,8 +1,8 @@
 var searchData=
 [
   ['implementation_0',['Datastructures implementation',['../example_cxx_pcl_page.html#pcl_wrapper_sec_pcl_wrapper_sec_hpp',1,'']]],
-  ['in_20basket_1',['Objects used in Basket',['../fitting_concepts.html#concepts_computObjectBasket',1,'']]],
-  ['in_20basketdiff_2',['Objects used in BasketDiff',['../fitting_concepts.html#concepts_computObjectBasketDiff',1,'']]],
+  ['in_20basket_1',['Objects used in Basket',['../fitting_concepts.html#concepts_computeObjectBasket',1,'']]],
+  ['in_20basketdiff_2',['Objects used in BasketDiff',['../fitting_concepts.html#concepts_computeObjectBasketDiff',1,'']]],
   ['in_20pcl_3',['Using Ponca to compute surface curvature in PCL',['../example_cxx_pcl_page.html',1,'example_page']]],
   ['include_20directives_4',['Include directives',['../fitting.html#fitting_codeStructure',1,'']]],
   ['index_5fbits_5',['INDEX_BITS',['../structPonca_1_1KdTreeDefaultInnerNode.html#ab5a89b3a74facd46d35ba61913455066ab63682ac1ec5e5f0446f6a6ecbd54ee7',1,'Ponca::KdTreeDefaultInnerNode']]],

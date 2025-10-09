@@ -51,7 +51,7 @@ MathJax.Hub.Config({
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Ponca
-   &#160;<span id="projectnumber">b2ba08d9c24a5f3ee8560e8bbdb98e648a69257d</span>
+   &#160;<span id="projectnumber">4c03348229b2a84d4ccd9315143acd0e3e2852f0</span>
    </div>
    <div id="projectbrief">Point Cloud Analysis library</div>
   </td>
@@ -124,7 +124,7 @@ $(document).ready(function(){initNavTree('fitting_concepts.html',''); initResiza
 <li><code>WeightKernelConcept</code>: defines how neighbor samples should be weighted</li>
 <li><code>ComputationalObjectConcept</code> and <code>ComputationalDerivativesConcept</code>: define API of the computational objects used in <a class="el" href="classPonca_1_1Basket.html" title="Aggregator class used to declare specialized structures using CRTP.">Basket</a> and <a class="el" href="classPonca_1_1BasketDiff.html" title="Aggregator class used to declare specialized structures with derivatives computations,...">BasketDiff</a> respectively.</li>
 </ul>
-<h1><a class="anchor" id="concepts_computObject"></a>
+<h1><a class="anchor" id="concepts_computeObject"></a>
 API of Computational Objects</h1>
 <p>Computations will always follow the same pattern: </p><div class="fragment"><div class="line"><span class="comment">// Definition</span></div>
 <div class="line"><span class="keyword">typedef</span> Basket&lt;MyPointStructure,MyWeightingFunction,MyFittingProcedure...&gt; Fit;</div>
@@ -146,7 +146,7 @@ API of Computational Objects</h1>
 <div class="line">    <span class="comment">// use the fit ...</span></div>
 <div class="line">}</div>
 </div><!-- fragment --><p>Note that in the above example, the type <code>Fit</code> can be either a <a class="el" href="classPonca_1_1Basket.html" title="Aggregator class used to declare specialized structures using CRTP.">Basket</a> or a <a class="el" href="classPonca_1_1BasketDiff.html" title="Aggregator class used to declare specialized structures with derivatives computations,...">BasketDiff</a>, without affecting the rest of the code.</p>
-<h2><a class="anchor" id="concepts_computObjectBasket"></a>
+<h2><a class="anchor" id="concepts_computeObjectBasket"></a>
 Objects used in Basket</h2>
 <p>Objects used in <a class="el" href="classPonca_1_1Basket.html" title="Aggregator class used to declare specialized structures using CRTP.">Basket</a> should respect the following API: </p><div class="fragment"><div class="line">        <span class="keyword">template</span> &lt; <span class="keyword">class</span> DataPo<span class="keywordtype">int</span>, <span class="keyword">class</span> _WFunctor, <span class="keyword">typename</span> T = <span class="keywordtype">void</span>  &gt;</div>
 <div class="line">        <span class="keyword">class </span>ComputationalObjectConcept</div>
@@ -185,7 +185,7 @@ Objects used in Basket</h2>
 <div class="line">            <span class="comment">// \warning Must be called be for any use of the fitting output</span></div>
 <div class="line">            PONCA_MULTIARCH <span class="keyword">inline</span> FIT_RESULT finalize();</div>
 <div class="line">        }; <span class="comment">//class ComputationalObjectConcept</span></div>
-</div><!-- fragment --><h2><a class="anchor" id="concepts_computObjectBasketDiff"></a>
+</div><!-- fragment --><h2><a class="anchor" id="concepts_computeObjectBasketDiff"></a>
 Objects used in BasketDiff</h2>
 <p>Objects used in <a class="el" href="classPonca_1_1BasketDiff.html" title="Aggregator class used to declare specialized structures with derivatives computations,...">BasketDiff</a> should respect the following API: </p><div class="fragment"><div class="line">        <span class="keyword">template</span> &lt; <span class="keyword">class</span> DataPo<span class="keywordtype">int</span>, <span class="keyword">class</span> _WFunctor, <span class="keywordtype">int</span> Type, <span class="keyword">typename</span> T&gt;</div>
 <div class="line">        <span class="keyword">class </span>ComputationalDerivativesConcept</div>
@@ -232,6 +232,171 @@ Objects used in BasketDiff</h2>
 <div class="line">            PONCA_MULTIARCH <span class="keyword">inline</span> FIT_RESULT finalize();</div>
 <div class="line">        }; <span class="comment">//class ComputationalDerivativesConcept</span></div>
 </div><!-- fragment --><dl class="section note"><dt>Note</dt><dd><a class="el" href="classPonca_1_1PrimitiveDer.html" title="Generic class performing the Fit derivation.">PrimitiveDer</a> defines the default entry point to most classes used in <a class="el" href="classPonca_1_1BasketDiff.html" title="Aggregator class used to declare specialized structures with derivatives computations,...">BasketDiff</a>.</dd></dl>
+<h1><a class="anchor" id="concepts_provides"></a>
+Capabilities of the Fitting tools</h1>
+<p>As described in <a class="el" href="fitting.html#fitting_extensions_deps">Computational objets, basket and CRTP</a>, The tool classes provides different kinds of compute capabilities. To describe what a class provides, we uses flags that allows us to check for compatibility at compile time.</p>
+<p>Here is an in depth description of all the labels of the Fitting tools : </p><table class="doxtable">
+<tr>
+<th>Label </th><th>Provided by </th><th>Required by </th><th><p class="starttd">Outputs </p>
+<p class="endtd"></p>
+</th></tr>
+<tr>
+<td><b>PROVIDES_MEAN_POSITION</b><br  />
+ Mean of the input points vectors  </td><td><a class="el" href="classPonca_1_1MeanPosition.html" title="Compute the barycenter of the input points.">MeanPosition</a> </td><td><a class="el" href="classPonca_1_1MeanPositionDer.html">MeanPositionDer</a><br  />
+<a class="el" href="classPonca_1_1MeanPlaneFitImpl.html" title="Plane fitting procedure computing the mean position and orientation from oriented points.">MeanPlaneFitImpl</a><br  />
+<a class="el" href="classPonca_1_1OrientedSphereFitImpl.html" title="Algebraic Sphere fitting procedure on oriented point sets.">OrientedSphereFitImpl</a><br  />
+<a class="el" href="classPonca_1_1CovarianceFitBase.html" title="Procedure that compute and decompose the covariance matrix of the neighbors positions in .">CovarianceFitBase</a><br  />
+<a class="el" href="classPonca_1_1UnorientedSphereFitImpl.html" title="Algebraic Sphere fitting procedure on point sets with non-oriented normals.">UnorientedSphereFitImpl</a> </td><td><p class="starttd">barycenter()<br  />
+barycenterDistance()<br  />
+barycenterLocal() </p>
+<p class="endtd"></p>
+</td></tr>
+<tr>
+<td><b>PROVIDES_MEAN_POSITION_DERIVATIVE</b><br  />
+ Provides derivative of the mean position  </td><td><a class="el" href="classPonca_1_1MeanPositionDer.html">MeanPositionDer</a> </td><td><a class="el" href="classPonca_1_1CovarianceFitDer.html" title="Internal generic class computing the derivatives of covariance matrix computed by CovarianceFitBase.">CovarianceFitDer</a><br  />
+<a class="el" href="classPonca_1_1OrientedSphereDerImpl.html" title="[OrientedSphereFit Definition]">OrientedSphereDerImpl</a><br  />
+<a class="el" href="classPonca_1_1UnorientedSphereDerImpl.html">UnorientedSphereDerImpl</a> </td><td><p class="starttd">barycenterDerivatives() </p>
+<p class="endtd"></p>
+</td></tr>
+<tr>
+<td><b>PROVIDES_MEAN_NORMAL</b><br  />
+ Mean of the normal vectors  </td><td><a class="el" href="classPonca_1_1MeanNormal.html" title="Compute the barycenter of the input points + their normals.">MeanNormal</a> </td><td><a class="el" href="classPonca_1_1MeanPlaneFitImpl.html" title="Plane fitting procedure computing the mean position and orientation from oriented points.">MeanPlaneFitImpl</a><br  />
+<a class="el" href="classPonca_1_1OrientedSphereFitImpl.html" title="Algebraic Sphere fitting procedure on oriented point sets.">OrientedSphereFitImpl</a> </td><td><p class="starttd">meanNormalVector() </p>
+<p class="endtd"></p>
+</td></tr>
+<tr>
+<td><b>PROVIDES_MEAN_NORMAL_DERIVATIVE</b><br  />
+ Provides derivative of the mean normal  </td><td><a class="el" href="classPonca_1_1MeanNormalDer.html">MeanNormalDer</a> </td><td>- </td><td><p class="starttd">dMeanNormal() </p>
+<p class="endtd"></p>
+</td></tr>
+<tr>
+<td><b>PROVIDES_PRIMITIVE_BASE</b><br  />
+ Provides base API for primitives  </td><td><a class="el" href="classPonca_1_1PrimitiveBase.html" title="Primitive base class.">PrimitiveBase</a> </td><td><a class="el" href="classPonca_1_1PrimitiveDer.html" title="Generic class performing the Fit derivation.">PrimitiveDer</a><br  />
+<a class="el" href="classPonca_1_1AlgebraicSphere.html" title="Algebraic Sphere primitive.">AlgebraicSphere</a> </td><td><p class="starttd">getWeightSum()<br  />
+setNeighborFilter()<br  />
+getNeighborFilter()<br  />
+getCurrentState()<br  />
+getNumNeighbors()<br  />
+isReady()<br  />
+isStable() </p>
+<p class="endtd"></p>
+</td></tr>
+<tr>
+<td><b>PROVIDES_PRIMITIVE_DERIVATIVE</b><br  />
+ Provides base API for primitive derivatives  </td><td><a class="el" href="classPonca_1_1PrimitiveDer.html" title="Generic class performing the Fit derivation.">PrimitiveDer</a> </td><td><a class="el" href="classPonca_1_1GLSDer.html" title="Differentiation of GLSParam.">GLSDer</a><br  />
+<a class="el" href="classPonca_1_1CovarianceFitDer.html" title="Internal generic class computing the derivatives of covariance matrix computed by CovarianceFitBase.">CovarianceFitDer</a><br  />
+<a class="el" href="classPonca_1_1MeanPositionDer.html">MeanPositionDer</a><br  />
+<a class="el" href="classPonca_1_1MeanNormalDer.html">MeanNormalDer</a><br  />
+<a class="el" href="classPonca_1_1MlsSphereFitDer.html" title="Extension performing derivation of the mls surface.">MlsSphereFitDer</a><br  />
+<a class="el" href="classPonca_1_1OrientedSphereDerImpl.html" title="[OrientedSphereFit Definition]">OrientedSphereDerImpl</a><br  />
+<a class="el" href="classPonca_1_1UnorientedSphereDerImpl.html">UnorientedSphereDerImpl</a> </td><td><p class="starttd">isScaleDer()<br  />
+isSpaceDer()<br  />
+derDimension() </p>
+<p class="endtd"></p>
+</td></tr>
+<tr>
+<td><b>PROVIDES_GLS_PARAMETRIZATION</b><br  />
+ Growing Least Squares reparametrization of the OrientedSphereFit  </td><td><a class="el" href="classPonca_1_1GLSParam.html" title="Growing Least Squares reparemetrization of the OrientedSphereFit.">GLSParam</a> </td><td><a class="el" href="classPonca_1_1GLSDer.html" title="Differentiation of GLSParam.">GLSDer</a> </td><td><p class="starttd">tau()<br  />
+eta()<br  />
+kappa()<br  />
+tau_normalized()<br  />
+eta_normalized()<br  />
+kappa_normalized()<br  />
+fitness()<br  />
+compareTo() </p>
+<p class="endtd"></p>
+</td></tr>
+<tr>
+<td><b>PROVIDES_GLS_DERIVATIVE</b><br  />
+ Differentiation of <a class="el" href="classPonca_1_1GLSParam.html" title="Growing Least Squares reparemetrization of the OrientedSphereFit.">GLSParam</a>  </td><td><a class="el" href="classPonca_1_1GLSDer.html" title="Differentiation of GLSParam.">GLSDer</a> </td><td>- </td><td><p class="starttd">dtau()<br  />
+deta()<br  />
+dkappa()<br  />
+dtau_normalized()<br  />
+deta_normalized()<br  />
+dkappa_normalized() </p>
+<p class="endtd"></p>
+</td></tr>
+<tr>
+<td><b>PROVIDES_GLS_GEOM_VAR</b><br  />
+ Provides Geometric Variation as a weighted sum of the GLS scale-invariant partial derivatives  </td><td><a class="el" href="classPonca_1_1GLSDer.html" title="Differentiation of GLSParam.">GLSDer</a> </td><td>- </td><td><p class="starttd">geomVar() </p>
+<p class="endtd"></p>
+</td></tr>
+<tr>
+<td><p class="starttd"><b>PROVIDES_ALGEBRAIC_SPHERE</b><br  />
+</p>
+<p class="endtd"></p>
+</td><td><a class="el" href="classPonca_1_1AlgebraicSphere.html" title="Algebraic Sphere primitive.">AlgebraicSphere</a> </td><td><a class="el" href="classPonca_1_1OrientedSphereFitImpl.html" title="Algebraic Sphere fitting procedure on oriented point sets.">OrientedSphereFitImpl</a><br  />
+<a class="el" href="classPonca_1_1OrientedSphereDerImpl.html" title="[OrientedSphereFit Definition]">OrientedSphereDerImpl</a><br  />
+<a class="el" href="classPonca_1_1SphereFitImpl.html" title="Algebraic Sphere fitting procedure on point set without normals.">SphereFitImpl</a><br  />
+<a class="el" href="classPonca_1_1UnorientedSphereFitImpl.html" title="Algebraic Sphere fitting procedure on point sets with non-oriented normals.">UnorientedSphereFitImpl</a><br  />
+<a class="el" href="classPonca_1_1UnorientedSphereDerImpl.html">UnorientedSphereDerImpl</a> </td><td><p class="starttd">potential()<br  />
+project()<br  />
+primitiveGradient()<br  />
+isPlane()<br  />
+isValid()<br  />
+isApprox()<br  />
+changeBasis()<br  />
+prattNorm()<br  />
+prattNorm2()<br  />
+applyPrattNorm()<br  />
+radius()<br  />
+center()<br  />
+isNormalized() </p>
+<p class="endtd"></p>
+</td></tr>
+<tr>
+<td><b>PROVIDES_ALGEBRAIC_SPHERE_DERIVATIVE</b><br  />
+ Provides derivatives for algebraic sphere  </td><td><a class="el" href="classPonca_1_1OrientedSphereDerImpl.html" title="[OrientedSphereFit Definition]">OrientedSphereDerImpl</a><br  />
+<a class="el" href="classPonca_1_1UnorientedSphereDerImpl.html">UnorientedSphereDerImpl</a> </td><td><a class="el" href="classPonca_1_1GLSDer.html" title="Differentiation of GLSParam.">GLSDer</a><br  />
+<a class="el" href="classPonca_1_1MlsSphereFitDer.html" title="Extension performing derivation of the mls surface.">MlsSphereFitDer</a> </td><td><p class="starttd">dPotential() </p>
+<p class="endtd"></p>
+</td></tr>
+<tr>
+<td><b>PROVIDES_COVARIANCE_PLANE_DERIVATIVE</b><br  />
+ Provides derivatives for hyper-planes  </td><td><a class="el" href="classPonca_1_1CovariancePlaneDerImpl.html" title="[CovariancePlaneFit Definition]">CovariancePlaneDerImpl</a> </td><td>- </td><td><p class="starttd">dPotential() </p>
+<p class="endtd"></p>
+</td></tr>
+<tr>
+<td><b>PROVIDES_NORMAL_DERIVATIVE</b><br  />
+ Provides the derivatives of the primitive normal  </td><td><a class="el" href="classPonca_1_1CovariancePlaneDerImpl.html" title="[CovariancePlaneFit Definition]">CovariancePlaneDerImpl</a><br  />
+<a class="el" href="classPonca_1_1MlsSphereFitDer.html" title="Extension performing derivation of the mls surface.">MlsSphereFitDer</a><br  />
+<a class="el" href="classPonca_1_1OrientedSphereDerImpl.html" title="[OrientedSphereFit Definition]">OrientedSphereDerImpl</a><br  />
+<a class="el" href="classPonca_1_1UnorientedSphereDerImpl.html">UnorientedSphereDerImpl</a> </td><td><a class="el" href="classPonca_1_1NormalDerivativesCurvatureEstimator.html" title="Extension to compute curvature values from the Weingarten map .">NormalDerivativesCurvatureEstimator</a> </td><td><p class="starttd">dNormal() </p>
+<p class="endtd"></p>
+</td></tr>
+<tr>
+<td><b>PROVIDES_POSITION_COVARIANCE</b><br  />
+ Provides the covariance matrix  </td><td><a class="el" href="classPonca_1_1CovarianceFitBase.html" title="Procedure that compute and decompose the covariance matrix of the neighbors positions in .">CovarianceFitBase</a> </td><td><a class="el" href="classPonca_1_1CovarianceFitDer.html" title="Internal generic class computing the derivatives of covariance matrix computed by CovarianceFitBase.">CovarianceFitDer</a><br  />
+<a class="el" href="classPonca_1_1CovarianceLineFitImpl.html" title="Line fitting procedure that minimize the orthogonal distance between the samples and the fitted primi...">CovarianceLineFitImpl</a><br  />
+<a class="el" href="classPonca_1_1CovariancePlaneFitImpl.html" title="Plane fitting procedure using only points position.">CovariancePlaneFitImpl</a> </td><td><p class="starttd">solver() </p>
+<p class="endtd"></p>
+</td></tr>
+<tr>
+<td><p class="starttd"><b>PROVIDES_POSITION_COVARIANCE_DERIVATIVE</b><br  />
+</p>
+<p class="endtd"></p>
+</td><td><a class="el" href="classPonca_1_1CovarianceFitDer.html" title="Internal generic class computing the derivatives of covariance matrix computed by CovarianceFitBase.">CovarianceFitDer</a> </td><td><a class="el" href="classPonca_1_1CovariancePlaneDerImpl.html" title="[CovariancePlaneFit Definition]">CovariancePlaneDerImpl</a> </td><td><p class="starttd">- </p>
+<p class="endtd"></p>
+</td></tr>
+<tr>
+<td><p class="starttd"><b>PROVIDES_PLANE</b><br  />
+</p>
+<p class="endtd"></p>
+</td><td><a class="el" href="classPonca_1_1Plane.html" title="Implicit hyperplane defined by an homogeneous vector .">Plane</a> </td><td style="word-break: break-word;"><a class="el" href="classPonca_1_1CovariancePlaneFitImpl.html" title="Plane fitting procedure using only points position.">CovariancePlaneFitImpl</a><br  />
+<a class="el" href="classPonca_1_1CovariancePlaneDerImpl.html" title="[CovariancePlaneFit Definition]">CovariancePlaneDerImpl</a><br  />
+<a class="el" href="classPonca_1_1ProjectedNormalCovarianceCurvatureEstimator.html" title="Extension to compute curvature values based on a covariance analysis of normal vectors of neighbors p...">ProjectedNormalCovarianceCurvatureEstimator</a><br  />
+<a class="el" href="classPonca_1_1MeanPlaneFitImpl.html" title="Plane fitting procedure computing the mean position and orientation from oriented points.">MeanPlaneFitImpl</a><br  />
+<a class="el" href="classPonca_1_1MongePatch.html" title="Extension to compute the best fit quadric on 3d points expressed as .">MongePatch</a> </td><td><p class="starttd">setPlane()<br  />
+potential()<br  />
+project()<br  />
+primitiveGradient() </p>
+<p class="endtd"></p>
+</td></tr>
+<tr>
+<td><b>PROVIDES_TANGENT_PLANE_BASIS</b><br  />
+ Turns a point in ambient 3D space to the tangent plane.  </td><td><a class="el" href="classPonca_1_1CovariancePlaneFitImpl.html" title="Plane fitting procedure using only points position.">CovariancePlaneFitImpl</a> </td><td><a class="el" href="classPonca_1_1MongePatch.html" title="Extension to compute the best fit quadric on 3d points expressed as .">MongePatch</a> </td><td>worldToTangentPlane()<br  />
+tangentPlaneToWorld()  </td></tr>
+</table>
 <h1><a class="anchor" id="concepts_weighting"></a>
 Concepts related to weighting functions</h1>
 <p>Weighting functions are critical components of the library. They are represented by <a class="el" href="classPonca_1_1DistWeightFunc.html" title="Weighting function based on the euclidean distance between a query and a reference position.">DistWeightFunc</a>, which is defined from the euclidean distance field centered at the evaluation position (see DistWeightFunc::init()). Given a distance to this evaluation position, the weight is computed (see <a class="el" href="classPonca_1_1DistWeightFunc.html#a470646999a2bcc787ed211de36d43e4e">DistWeightFunc::w()</a>) by applying a 1d weighting function defined as follows:</p>
@@ -256,8 +421,8 @@ Concepts related to weighting functions</h1>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="user_manual_page.html">User Manual</a></li><li class="navelem"><a class="el" href="fitting.html">Fitting Module: User Manual</a></li>
-    <li class="footer">Generated on Wed Oct 8 2025 19:11:28 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
+    <li class="navelem"><a class="el" href="user_manual_page.html">User Manual</a></li>
+    <li class="footer">Generated on Thu Oct 9 2025 13:30:38 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
   </ul>
 </div>
 </body>

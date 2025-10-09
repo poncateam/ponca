@@ -73,7 +73,7 @@ var searchData=
   ['min_5fcell_5fsize_70',['min_cell_size',['../classPonca_1_1KdTreeBase.html#a443f3258670a3fd7e0b7d6c6555506d7',1,'Ponca::KdTreeBase']]],
   ['mlsspherefitder_71',['mlsspherefitder',['../classPonca_1_1MlsSphereFitDer.html',1,'Ponca::MlsSphereFitDer&lt; DataPoint, _WFunctor, DiffType, T &gt;'],['../classPonca_1_1MlsSphereFitDer.html#a93b2694a93b48dc28d77d671688afb5b',1,'Ponca::MlsSphereFitDer::mlsSphereFitDer() const'],['../classPonca_1_1MlsSphereFitDer.html#a4e4a7501124fb6eda3c574f03d24f672',1,'Ponca::MlsSphereFitDer::mlsSphereFitDer()']]],
   ['module_72',['module',['../group__common.html',1,'Common module'],['../group__fitting.html',1,'Fitting module'],['../group__spatialpartitioning.html',1,'Spatial Partitioning module']]],
-  ['module_3a_20concepts_73',['Fitting module: Concepts',['../fitting_concepts.html',1,'fitting']]],
+  ['module_3a_20concepts_73',['Fitting module: Concepts',['../fitting_concepts.html',1,'user_manual_page']]],
   ['module_3a_20user_20manual_74',['module: user manual',['../common.html',1,'Common module: User Manual'],['../fitting.html',1,'Fitting Module: User Manual']]],
   ['mongepatch_75',['mongepatch',['../classPonca_1_1MongePatch.html',1,'Ponca::MongePatch&lt; DataPoint, _WFunctor, T &gt;'],['../classPonca_1_1MongePatch.html#ab69a336803c0200d21ee126ad18790e5',1,'Ponca::MongePatch::mongePatch() const'],['../classPonca_1_1MongePatch.html#a020fbb64c05383e635b8ab7fada98898',1,'Ponca::MongePatch::mongePatch()']]]
 ];
