@@ -85,7 +85,7 @@ void testBasicFunctionalities(const KdTree<typename Fit::DataPoint>& tree, typen
         // use addNeighbor
         //! [Fit Manual Traversal]
         Fit fit1;
-        fit1.setWeightFunc(WeightFunc(fitInitPos, analysisScale));
+        fit1.setWeightFunc({fitInitPos, analysisScale});
         fit1.init();
         for(auto it = vectorPoints.begin(); it != vectorPoints.end(); ++it)
            fit1.addNeighbor(*it);
@@ -95,7 +95,7 @@ void testBasicFunctionalities(const KdTree<typename Fit::DataPoint>& tree, typen
         // use compute function
         //! [Fit Compute]
         Fit fit2;
-        fit2.setWeightFunc(WeightFunc(fitInitPos, analysisScale));
+        fit2.setWeightFunc({fitInitPos, analysisScale});
         fit2.compute(vectorPoints);
         //! [Fit Compute]
 
@@ -108,9 +108,8 @@ void testBasicFunctionalities(const KdTree<typename Fit::DataPoint>& tree, typen
         VERIFY(! (fit1 != fit2));
         VERIFY(! (fit2 != fit2));
 
-        //! [Fit computeWithIds]
         Fit fit3;
-        fit3.setWeightFunc(WeightFunc(fitInitPos, analysisScale));
+        fit3.setWeightFunc({fitInitPos, analysisScale});
         // Sort fit1
         std::list<int> neighbors3;
         for (int iNeighbor : tree.range_neighbors(fitInitPos, analysisScale))
@@ -118,7 +117,7 @@ void testBasicFunctionalities(const KdTree<typename Fit::DataPoint>& tree, typen
         neighbors3.sort();
         // Compute the neighbors
         fit3.computeWithIds( neighbors3, vectorPoints );
-        //! [Fit computeWithIds]
+
         VERIFY(fit3 == fit3);
         VERIFY(fit1 == fit3);
         VERIFY(! (fit1 != fit3));
@@ -146,19 +145,19 @@ void testIsSame(const KdTree<typename Fit1::DataPoint>& tree,
 #endif
     for(int i = 0; i < int(vectorPoints.size()); ++i)
     {
-        Fit1 fit1;
-        Fit2 fit2;
-
+        using Fit = Fit1; // create an alias to ease doc snippet generation
+        //! [Fit computeWithIds]
+        Fit fit3;
+        fit3.setWeightFunc({vectorPoints[i].pos(), analysisScale});
         auto neighborhoodRange = tree.range_neighbors(vectorPoints[i].pos(), analysisScale);
+        fit3.computeWithIds( neighborhoodRange, vectorPoints );
+        //! [Fit computeWithIds]
 
-        // use compute function
-        fit1.setWeightFunc(WeightFunc(vectorPoints[i].pos(), analysisScale));
-        fit1.computeWithIds( neighborhoodRange, vectorPoints );
-
-        fit2.setWeightFunc(WeightFunc(vectorPoints[i].pos(), analysisScale));
+        Fit2 fit2;
+        fit2.setWeightFunc({vectorPoints[i].pos(), analysisScale});
         fit2.computeWithIds( neighborhoodRange, vectorPoints );
 
-        f(fit1, fit2);
+        f(fit3, fit2);
     }
 }
 

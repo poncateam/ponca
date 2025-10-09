@@ -45,6 +45,7 @@ Current head (v.1.4 RC)
 
 - Docs
     - [fitting] Updated the Fit user manual to account for the change of use of the curvature estimator (#172)
+    - [fitting] Improve concept and capabilities descriptions (#207)
     - [doc] Removed the release digest (#160)
 
 --------------------------------------------------------------------------------

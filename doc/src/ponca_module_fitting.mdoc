@@ -11,11 +11,12 @@ namespace Ponca
   \section fitting_intro Introduction
 
   The fitting module is dedicated to the smooth fitting of point clouds and extraction of useful geometric properties.
-  Figure 1(a) shows a typical example in 2D: we reconstruct a potential function (shown in fake colors) from a few 2D points equipped with normals;
+  \ref figure1 "Figure 1(a)" shows a typical example in 2D: we reconstruct a potential function (shown in fake colors) from a few 2D points equipped with normals;
   then the 0-isoline of this potential gives us an implicit curve (in orange) from which we can readily extract further properties like curvature.
   A great benefit of this implicit technique \cite Guennebaud:2007:APSS is that it works in arbitrary dimensions: Figures 1(b-c) show how we reconstruct an implicit 3D surface with the same approach, starting from a 3D point cloud.
   Working with meshes then simply consists of only considering their vertices.
 
+  \anchor figure1
   \image html interpolation.png "Figure 1: (a) An implicit 2D curve fit to a 2D point cloud. (b) A 3D point cloud shown with splats. (c) An implicit 3D surface reconstructed from (b)."
 
   This is just the tip of the iceberg though, as we also provide methods for dealing with points equipped with non-oriented normals \cite Chen:2013:NOMG, techniques to analyze
@@ -33,19 +34,20 @@ namespace Ponca
   In contrast with polymorphism, this method allows to combine multiple short computations without adding runtime overhead (both in terms of memory footprint and execution time).
   Instead, the combination of the computational components is performed and optimized when compiling the program, and thus require more memory and time for this stage.
 
-  Because of some properties of the C++ language, our classes does not inherit from a `Base` interface defining the API, but rather follows concepts, as described in \subpage fitting_concepts.
+  In addition, and in order to maxime compatibility with existing frameworks, Ponca does not provide a built-in type to represent 3d points.
+  Instead, we rely on user-defined wrappers that describe how to access points coordinates or attributes (see Section \ref fitting_datas).
+  From a technical point of view, we still rely on `Eigen`'s interface, but it allows to map to most usual memory layouts.
+
+  Because of some properties of the C++ language, our classes does not inherit from a `Base` interface defining the API, but rather follows concepts, as described in \ref fitting_concepts.
 
   \subsection fitting_primitiveOverview Fitting primitives and compute neighborhood properties
   The fitting module provides a unified API to perform computations (e.g. fit a \ref PrimitiveBase "Primitive", compute geometrical properties such as \ref CurvatureEstimatorBase "Curvatures") over the neighborhood of a given point.
   The type of computation is controlled by a type (called `Fit` in the example below) defined by the user by combining computational components offered in this module.
-  Given an object of type `Fit`, the client code will always looks as follows:
+  Given an object of type `Fit`, the client code can look as follow (alternative way of doing the fit computation can be seen in \ref fitting_Fitting):
   \code
-  Fit fit;                             // Create the user-defined fitting procedure
-  fit.init();                          // Initialize internal state
-  fit.setWeightFunc(WeightFunc(p, t)); // Set a weighting function to weight neighbors from a reference point p
-  for(auto& it = vecs.begin(); it != vecs.end(); it++)
-    fit.addNeighbor(*it);              // Traverse neighborhood
-  fit.finalize();                      // Finalize computations
+  Fit fit;                   // Create the user-defined fitting procedure
+  fit.setWeightFunc({p, t}); // Set a weighting function to weight neighbors from a reference point p
+  fit.compute(vectorPoints); // Optimize the object fit according to the points in vectorPoints
   \endcode
 
   Once computations are done, the `Fit` object provides both getters to the neighborhood properties (e.g. estimated curvature), and procedures (e.g. projection operator onto the fitted primitive):
@@ -62,7 +64,7 @@ namespace Ponca
   In most situations, all these tools are based on the estimation of a geometric \ref PrimitiveBase "Primitive" approximating the neighborhood, on top of which we provide more advanced computations.
   The table below summarizes the \ref PrimitiveBase "Primitives" available in the library, as well as the associated fitting techniques:
 
-  Primitive         | Required Input      | Fitting techniques                                    |
+  Computed object   | Required Input      | Fitting techniques                                    |
   ----------------- | ------------------- | ----------------------------------------------------- |
   Barycenter        | Points only         | MeanPosition (nD)                                     |
   Normal Vector     | Oriented points     | MeanNormal (nD, co-dimension 1)                       |
@@ -85,7 +87,7 @@ namespace Ponca
    - and finally collect outputs (see Section \ref fitting_outputs).
 
   We also show detail all the available tools for geometrical property estimation (see Section \ref fitting_extensions_deps),
-  with a specific focus on curvature (see Section \ref fitting_cuvature).
+  with a specific focus on curvature (see Section \ref fitting_curvature).
   The last section details how to use this module on CUDA kernels (see Section \ref fitting_cuda).
 
   \section fitting_firstSteps First Steps
@@ -102,25 +104,25 @@ namespace Ponca
   The first step needed to use Ponca is to define how samples are represented inside the module.
   A strength of Ponca is to define all these structures at compile time to generate optimized code for fast evaluation at runtime.
 
-  The class Ponca::Concept::PointConcept defines the interface that has to be implemented to represent a sample.
+  The class \ref ponca_concepts "PointConcept" defines the interface that has to be implemented to represent a sample.
   Observe that there is no need for data conversion: all you need to do is to indicate how to access existing data (see the example \ref example_cxx_binding_page).
 
   As an example, let's fit a AlgebraicSphere onto points equipped with normals using Ponca::OrientedSphereFit.
   To this end, we must define a structure (denoted `PointPositionNormal` in the example below) containing a normal vector and its associated accessors.
   Depending on the fitting procedure we will use, we may need to define a `MatrixType` type.
-  This is for instance required for \ref fitting_cuvature.
+  This is for instance required for \ref fitting_curvature.
   This leads to the following class:
   \snippet testUtils.h PointPositionNormal
   \note The macro `PONCA_MULTIARCH` is optional and required only for \ref fitting_cuda support.
 
-  `PointPositionNormal` needs to be specialized for any scalar type or dimension (you may also use a non-template class directly):
+  `PointPositionNormal` might be specialized with any scalar type or dimension (you may also use a non-template class directly):
   \snippet basket.cpp SpecializedPointType
 
   \subsection fitting_Define Definition of the Fitting object
 
   Two template classes must be specialized to configure computations.
 
-  1. The first step consists in specifying a weighting function: it defines how neighbor samples will contribute to the fit, as illustrated in Figure 2(a) in 2D.
+  1. The first step consists in specifying a weighting function: it defines how neighbor samples will contribute to the fit, as illustrated in \ref figure2 "Figure 2(a)" in 2D.
   In this example, we choose a weight based on the Euclidean distance using Ponca::DistWeightFunc, remapped through a bisquare kernel defined in Ponca::SmoothWeightKernel:
   \snippet basket.cpp WeightFunction
 
@@ -142,6 +144,8 @@ namespace Ponca
 
   Spatial structures can be used to accelerate spatial queries. Consider for instance using the KdTree class with range queries:
   \snippet basket.cpp Fit computeWithIds
+
+
   \note Currently, users need to ensure consistency between the query and the fit location/scale. This is expected to be fixed in the upcoming releases.
 
   In these examples, `fit1`, `fit2` and `fit3` should perform exactly the same computations, as long a the neighborhood remains the same between the three calls.
@@ -161,14 +165,15 @@ namespace Ponca
   If you don't use it, you need to check if `eResults == NEED_ANOTHER_PASS` and repeat the `addNeighbor()`/`finalize()` steps.
   Don't forget to call `startNewPass()` at each iteration.
 
-  \warning You should avoid data of low magnitude (i.e., 1 should be a significant value) to get good results; thus rescaling might be necessary.
+  \warning You should avoid data of very low (i.e., 1 should be a significant value) or very high (e.g., georeferenced coordinates) magnitude to get good results; thus global rescaling might be necessary.
 
   \subsection fitting_outputs  Basic Outputs
 
+  \anchor figure2
   \image html gls.png "Figure 2. (a) Fitting a 2D point cloud of positions and normals at a point p (in red) requires to define a weight function of size t (in green). (b) This results in an implicit scalar field (in fake colors), from which parameters of a local spherical surface can be extracted: an offset tau, a normal eta and a curvature kappa."
 
 
-  Now that you have performed fitting, you may use its outputs in a number of ways (see Figure 2(b) for an illustration in 2D).
+  Now that you have performed fitting, you may use its outputs in a number of ways (see \ref figure2 "Figure 2(b)" for an illustration in 2D).
 
 
   You may directly access generic properties of the fitted \ref PrimitiveBase "Primitive":
@@ -249,58 +254,24 @@ namespace Ponca
   \endcode
   The capability `PROVIDES_GLS_PARAMETRIZATION` tells that GLSParam provides the GLS parameterization \cite Mellado:2012:GLS, and other components can access the related information.
 
-  \note There is currently no formal description of the API provided by each capability. This will be fixed in upcoming releases.
-  These relations are currently implicitly defined (and used), but not documented.
-  For instance, a tool with the capability `PROVIDES_PRINCIPAL_CURVATURES` provides the following methods:
-  `kmin()`, `kmax()`, `kminDirection()`, `kmaxDirection()`, `kMean()`, `GaussianCurvature()`, see CurvatureEstimatorBase.
-
-  In order to ease tools combinations, each class declare a set of *required* and *provided* capabilities, as listed in the two following table:
-
-    Fit/Tool (used in Basket)                   | Requires                                                                                              | Provides                                                            |
-    ------------------------------------------- | ----------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------- |
-    MeanPosition                                |                                                                                                       | `PROVIDES_MEAN_POSITION`                                            |
-    MeanNormal                                  |                                                                                                       | `PROVIDES_MEAN_NORMAL`                                              |
-    PrimitiveBase                               |                                                                                                       | `PROVIDES_PRIMITIVE_BASE`                                           |
-    DryFit                                      | `PROVIDES_PRIMITIVE_BASE`                                                                             |                                                                     |
-    Plane                                       | `PROVIDES_PRIMITIVE_BASE`                                                                             | `PROVIDES_PLANE`                                                    |
-    Ponca::MeanPlaneFitImpl                     | `PROVIDES_MEAN_POSITION`,`PROVIDES_MEAN_NORMAL`,`PROVIDES_PLANE`                                      |                                                                     |
-    CovarianceFitBase                           | `PROVIDES_MEAN_POSITION`                                                                              | `PROVIDES_POSITION_COVARIANCE`                                      |
-    Ponca::CovarianceLineFitImpl                | `PROVIDES_LINE`,`PROVIDES_POSITION_COVARIANCE`                                                        |                                                                     |
-    Ponca::CovariancePlaneFitImpl               | `PROVIDES_PLANE`,`PROVIDES_POSITION_COVARIANCE`                                                       | `PROVIDES_TANGENT_PLANE_BASIS`                                      |
-    MongePatch                                  | `PROVIDES_TANGENT_PLANE_BASIS`,`PROVIDES_PLANE`                                                       |                                                                     |
-    AlgebraicSphere                             | `PROVIDES_PRIMITIVE_BASE`                                                                             | `PROVIDES_ALGEBRAIC_SPHERE`                                         |
-    Ponca::SphereFitImpl                        | `PROVIDES_ALGEBRAIC_SPHERE`                                                                           |                                                                     |
-    Ponca::OrientedSphereFitImpl                | `PROVIDES_ALGEBRAIC_SPHERE`,`PROVIDES_MEAN_NORMAL`,`PROVIDES_MEAN_POSITION`                           |                                                                     |
-    Ponca::UnorientedSphereFitImpl              | `PROVIDES_ALGEBRAIC_SPHERE`,`PROVIDES_MEAN_POSITION`                                                  |                                                                     |
-    GLSParam                                    | `PROVIDES_ALGEBRAIC_SPHERE`                                                                           | `PROVIDES_GLS_PARAMETRIZATION`                                      |
-
-    Fit/Tool (used in BasketDiff)               | Requires                                                                                              | Provides                                                            |
-    ------------------------------------------- | ----------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------- |
-    PrimitiveDer                                | `PROVIDES_PRIMITIVE_BASE`                                                                             | `PROVIDES_PRIMITIVE_DERIVATIVE`                                     |
-    CovarianceFitDer                            | `PROVIDES_PRIMITIVE_DERIVATIVE`,`PROVIDES_MEAN_POSITION_DERIVATIVE`,`PROVIDES_POSITION_COVARIANCE`    | `PROVIDES_POSITION_COVARIANCE_DERIVATIVE`                           |
-    Ponca::CovariancePlaneDerImpl               | `PROVIDES_PLANE`,`PROVIDES_POSITION_COVARIANCE_DERIVATIVE`                                            | `PROVIDES_COVARIANCE_PLANE_DERIVATIVE`,`PROVIDES_NORMAL_DERIVATIVE` |
-    Ponca::OrientedSphereDerImpl                | `PROVIDES_ALGEBRAIC_SPHERE`,`PROVIDES_MEAN_POSITION_DERIVATIVE`,`PROVIDES_PRIMITIVE_DERIVATIVE`       | `PROVIDES_ALGEBRAIC_SPHERE_DERIVATIVE`,`PROVIDES_NORMAL_DERIVATIVE` |
-    MlsSphereFitDer                             | `PROVIDES_PRIMITIVE_DERIVATIVE`,`PROVIDES_ALGEBRAIC_SPHERE_DERIVATIVE`                                | `PROVIDES_NORMAL_DERIVATIVE`                                        |
-    GLSDer                                      | `PROVIDES_GLS_PARAMETRIZATION`,`PROVIDES_PRIMITIVE_DERIVATIVE`,`PROVIDES_ALGEBRAIC_SPHERE_DERIVATIVE` | `PROVIDES_GLS_DERIVATIVE`,`PROVIDES_GLS_GEOM_VAR`                   |
-    CurvatureEstimatorBase                      |                                                                                                       | `PROVIDES_PRINCIPAL_CURVATURES`                                     |
-    NormalDerivativesCurvatureEstimator         | `PROVIDES_NORMAL_DERIVATIVE`,`PROVIDES_PRINCIPAL_CURVATURES`                                          |                                                                     |
-    NormalCovarianceCurvatureEstimator          | `PROVIDES_PRINCIPAL_CURVATURES`                                                                       |                                                                     |
-    ProjectedNormalCovarianceCurvatureEstimator | `PROVIDES_PLANE`                                                                                      |                                                                     |
+  In order to ease tools combinations, each class declare a set of *required* and *provided* capabilities, which are detailed in the Section \ref concepts_provides.
 
     \note In its current version, the requirement/capability system offer limited protection over the combination of tools providing the same capabilities.
     Indeed, it is possible to build ill-formed combinations where two computations attempt to save their results at the same place, e.g. when using two fitting technique for the same primitive:
     \snippet fit_plane.cpp Conflicting type
-    This case is not detected at compile time, but rather dynamically when calling finalize(), which can now return CONFLICT_ERROR_FOUND.
+    This case is not detected at compile time, but rather dynamically when calling finalize(), which returns `CONFLICT_ERROR_FOUND`.
     Internally, this is implemented by checking if the primitive is already valid (ie. it has been computed already) when finalizing the computation.
     This limitation is expected to be resolved in upcoming releases.
 
   \subsection fitting_multiprimitive Sharing computations between fits
-  In most cases, only one primitive is included in the Basket, and it is recommended to use the helper classes provided by Ponca for fitting, e.g. Ponca::CovariancePlaneFitImpl, Ponca::OrientedSphereFitImpl.
+  In most cases, only one primitive is included in the Basket, and it is recommended to use the helper classes provided by Ponca for fitting, e.g. #CovariancePlaneFitImpl, #OrientedSphereFitImpl.
   Starting from version 1.0.0, Ponca allows to combine multiple primitives.
   In order to share intermediate computation results, it is recommended to explicitly define the computational arrangement, e.g.:
   \snippet basket.cpp HybridType
 
-  \subsection fitting_cuvature Computing Curvatures
+  After fitting, this object provides access to both the plane and the sphere, through the respective cast operators #AlgebraicSphere::algebraicSphere() and #Plane::plane().
+
+  \subsection fitting_curvature Computing Curvatures
 
   Ponca offers several ways to compute curvatures, some of which are reviewed and compared by Lejemble et al. in \cite Lejemble:2021:stable and listed in the table below:
   Estimator Name                                                 |   Estimated quantities   | Usage                                                                                                     |  Speed | Robustness  |
