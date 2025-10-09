@@ -196,6 +196,7 @@ namespace internal
             return res;
         }
 
+    private:
         template<typename Func>
         FIT_RESULT computeMLSImpl(Func&& computeFunc, int mlsIter, Scalar epsilon) {
             FIT_RESULT res = UNDEFINED;
@@ -218,6 +219,7 @@ namespace internal
             return res;
         }
 
+    public:
         /*!
          * \brief Computes the fit using the MLS iteration process.
          * The position of the projected point is outputted through the lastPosition argument.
