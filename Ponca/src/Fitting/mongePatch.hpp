@@ -65,6 +65,18 @@ MongePatch<DataPoint, _NFilter, T>::finalize ()
         // we use BDCSVD as the matrix size is 36
         // http://eigen.tuxfamily.org/dox/classEigen_1_1BDCSVD.html
         m_x = m_A.bdcSvd(Eigen::ComputeThinU | Eigen::ComputeThinV).solve(m_b);
+
+        Scalar H  = GaussianCurvature();
+        Scalar K  = kMean();
+        Scalar k1 = -sqrt(-K+H*H)-H;
+        Scalar k2 =  sqrt(-K+H*H)-H;
+
+        if (k1 == k2) {
+            // Umbilical case
+        } else {
+            // TODO : Base::setCurvatureValues(k1, k2, t1, t2);
+        }
+
         return Base::m_eCurrentState = STABLE;
     }
 }
