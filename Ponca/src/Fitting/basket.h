@@ -195,6 +195,29 @@ namespace internal
 
             return res;
         }
+
+        template<typename Func>
+        FIT_RESULT computeMLSImpl(Func&& computeFunc, int mlsIter, Scalar epsilon) {
+            FIT_RESULT res = UNDEFINED;
+            const auto t = Base::m_w.evalScale();
+            auto lastPos = Base::m_w.evalPos();
+
+            for (int mm = 0; mm < mlsIter; ++mm) {
+                Base::setWeightFunc({lastPos, t});
+                res = computeFunc();
+
+                if (Base::isStable()) {
+                    auto newPos = Base::project(lastPos);
+                    if (newPos.isApprox(lastPos, epsilon))
+                        return res;
+                    lastPos = newPos;
+                } else {
+                    return res;
+                }
+            }
+            return res;
+        }
+
         /*!
          * \brief Computes the fit using the MLS iteration process.
          * The position of the projected point is outputted through the lastPosition argument.
@@ -209,24 +232,10 @@ namespace internal
             const int mlsIter    = 5,
             const Scalar epsilon = Eigen::NumTraits<Scalar>::dummy_precision()
         ) {
-            FIT_RESULT res = UNDEFINED;
-            const auto t   = Base::m_w.evalScale();
-            auto lastPos   = Base::m_w.evalPos();
-
-            for( int mm = 0; mm < mlsIter; ++mm) {
-                Base::setWeightFunc({lastPos, t});
-                res = compute(points);
-
-                if (Base::isStable()) {
-                    auto newPos = Base::project( lastPos );
-                    if (newPos.isApprox(lastPos, epsilon))
-                        return res;
-                    lastPos = newPos;
-                } else {
-                    return res;
-                }
-            }
-            return res;
+            return computeMLSImpl(
+                [&]() { return compute(points); },
+                mlsIter, epsilon
+            );
         }
 
         /*!
@@ -246,24 +255,10 @@ namespace internal
             const int mlsIter    = 5,
             const Scalar epsilon = Eigen::NumTraits<Scalar>::dummy_precision()
         ) {
-            FIT_RESULT res = UNDEFINED;
-            const auto t   = Base::m_w.evalScale();
-            auto lastPos   = Base::m_w.evalPos();
-
-            for( int mm = 0; mm < mlsIter; ++mm) {
-                Base::setWeightFunc({lastPos, t});
-                res = computeWithIds(ids, points);
-
-                if (Base::isStable()) {
-                    auto newPos = Base::project( lastPos );
-                    if (newPos.isApprox(lastPos, epsilon))
-                        return res;
-                    lastPos = newPos;
-                } else {
-                    return res;
-                }
-            }
-            return res;
+            return computeMLSImpl(
+                [&]() { return computeWithIds(ids, points); },
+                mlsIter, epsilon
+            );
         }
     };
 
