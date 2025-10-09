@@ -1,22 +1,22 @@
 ﻿
 #include <Eigen/SVD>
 #include <Eigen/Geometry>
-#include PONCA_MULTIARCH_INCLUDE_CU_STD(cmath)
+
+#include "mongePatch.h"
 
 template < class DataPoint, class _NFilter, typename T>
 void
-MongePatch<DataPoint, _NFilter, T>::init()
+MongePatchQuadraticFitImpl<DataPoint, _NFilter, T>::init()
 {
     Base::init();
 
     m_b.setZero();
-    m_x.setZero();
     m_planeIsReady = false;
 }
 
 template < class DataPoint, class _NFilter, typename T>
 bool
-MongePatch<DataPoint, _NFilter, T>::addLocalNeighbor(Scalar w,
+MongePatchQuadraticFitImpl<DataPoint, _NFilter, T>::addLocalNeighbor(Scalar w,
                                                       const VectorType &localQ,
                                                       const DataPoint &attributes)
 {
@@ -44,7 +44,7 @@ MongePatch<DataPoint, _NFilter, T>::addLocalNeighbor(Scalar w,
 
 template < class DataPoint, class _NFilter, typename T>
 FIT_RESULT
-MongePatch<DataPoint, _NFilter, T>::finalize ()
+MongePatchQuadraticFitImpl<DataPoint, _NFilter, T>::finalize ()
 {
     // end of the fitting process, check plane is ready
     if (! m_planeIsReady) {
@@ -64,44 +64,29 @@ MongePatch<DataPoint, _NFilter, T>::finalize ()
     else {
         // we use BDCSVD as the matrix size is 36
         // http://eigen.tuxfamily.org/dox/classEigen_1_1BDCSVD.html
-        m_x = m_A.bdcSvd(Eigen::ComputeThinU | Eigen::ComputeThinV).solve(m_b);
-
-        Scalar H  = GaussianCurvature();
-        Scalar K  = kMean();
-        /* Knowing that             *
-         * H = (k1 + k2) / 2        *
-         * K = k1.k2                *
-         * We can deduce :          */
-        Scalar k1 = -sqrt(-K+H*H)-H;
-        Scalar k2 =  sqrt(-K+H*H)-H;
-
-        if (k1 == k2) {
-            // Umbilical case
-        } else {
-            // TODO : Base::setCurvatureValues(k1, k2, t1, t2);
-        }
+        Base::quadraticHeightField().setQuadric( m_A.bdcSvd(Eigen::ComputeThinU | Eigen::ComputeThinV).solve(m_b) );
 
         return Base::m_eCurrentState = STABLE;
     }
 }
 
-template < class DataPoint, class _NFilter, typename T>
-typename MongePatch<DataPoint, _NFilter, T>::Scalar
-MongePatch<DataPoint, _NFilter, T>::kMean() const {
-  PONCA_MULTIARCH_STD_MATH(pow);
-  static const Scalar one (1);
-  static const Scalar two (2);
-  static const Scalar threeOverTwo (Scalar(3)/Scalar(2));
-  return ((one + pow(h_v(),two) ) * h_uu() * two*h_u()*h_v()*h_uv() + (one+pow(h_u(),two))*h_vv()) /
-      (two * pow(one +pow(h_u(),two) + pow(h_v(),two),threeOverTwo));
-}
-
-template < class DataPoint, class _NFilter, typename T>
-typename MongePatch<DataPoint, _NFilter, T>::Scalar
-MongePatch<DataPoint, _NFilter, T>::GaussianCurvature() const {
-    PONCA_MULTIARCH_STD_MATH(pow);
-    static const Scalar one (1);
-    static const Scalar two (2);
-    return (h_uu()*h_vv() - pow(h_uv(),two)) /
-        pow((one + pow(h_u(),two) + pow(h_v(),two) ), two);
-}
+//template < class DataPoint, class _NFilter, typename T>
+//typename MongePatch<DataPoint, _NFilter, T>::Scalar
+//MongePatch<DataPoint, _NFilter, T>::kMean() const {
+//  PONCA_MULTIARCH_STD_MATH(pow);
+//  static const Scalar one (1);
+//  static const Scalar two (2);
+//  static const Scalar threeOverTwo (Scalar(3)/Scalar(2));
+//  return ((one + pow(h_v(),two) ) * h_uu() * two*h_u()*h_v()*h_uv() + (one+pow(h_u(),two))*h_vv()) /
+//      (two * pow(one +pow(h_u(),two) + pow(h_v(),two),threeOverTwo));
+//}
+//
+//template < class DataPoint, class _NFilter, typename T>
+//typename MongePatch<DataPoint, _NFilter, T>::Scalar
+//MongePatch<DataPoint, _NFilter, T>::GaussianCurvature() const {
+//    PONCA_MULTIARCH_STD_MATH(pow);
+//    static const Scalar one (1);
+//    static const Scalar two (2);
+//    return (h_uu()*h_vv() - pow(h_uv(),two)) /
+//        pow((one + pow(h_u(),two) + pow(h_v(),two) ), two);
+//}

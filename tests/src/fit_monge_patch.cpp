@@ -42,59 +42,80 @@ void testFunction(bool _bUnoriented = false, bool _bAddPositionNoise = false, bo
     Scalar height = width;
 
     Scalar analysisScale = Scalar(15.) * std::sqrt( width * height / nbPoints);
-    Scalar centerScale   = Eigen::internal::random<Scalar>(1,10000);
-    VectorType center    = VectorType::Random() * centerScale;
-
-    VectorType direction = VectorType::Random().normalized();
 
     Scalar epsilon = testEpsilon<Scalar>();
 
     vector<DataPoint> vectorPoints(nbPoints);
 
+    // paraboloid parameters
+    Scalar a = Eigen::internal::random<Scalar>(-2,2);
+    Scalar b = Eigen::internal::random<Scalar>(-2,2);
+    VectorType direction (0,0,1);
+
+    std::cout << "plot(" << a << "x^2 + " << b << "y^2)" << std::endl;
+
     for(unsigned int i = 0; i < vectorPoints.size(); ++i)
     {
-        vectorPoints[i] = getPointOnPlane<DataPoint>(center,
-                                                     direction,
-                                                     width,
-                                                     _bAddPositionNoise,
-                                                     _bAddNormalNoise,
-                                                     _bUnoriented);
+//        vectorPoints[i] = getPointOnPlane<DataPoint>(center,
+//                                                     direction,
+//                                                     width,
+//                                                     _bAddPositionNoise,
+//                                                     _bAddNormalNoise,
+//                                                     _bUnoriented);
+
+        vectorPoints[i] = getPointOnParaboloid<DataPoint>(a, b, analysisScale, _bAddPositionNoise);
     }
 
     epsilon = testEpsilon<Scalar>();
     if ( _bAddPositionNoise) // relax a bit the testing threshold
       epsilon = Scalar(0.02*MAX_NOISE);
     // Test for each point if the fitted plane correspond to the theoretical plane
-
-    // Quick testing is requested for coverage
-    int size = QUICK_TESTS ? 1 : int(vectorPoints.size());
-
 #ifdef DEBUG
 #pragma omp parallel for
 #endif
-    for(int i = 0; i < size; ++i)
-    {
-        const auto& queryPos = vectorPoints[i].pos();
 
-        Fit fit;
-        fit.setNeighborFilter({queryPos, analysisScale});
-        fit.compute(vectorPoints);
+    // evaluate only for the point located at 0,0, which is convenient as:
+    //  - the normal vector is necessary 0,0,1
+    //  - the tangent vectors are supposed to be 1,0,0 and 0,1,0
+    //  - the fitted quadric should have the same parameters than the generate one
+    const auto queryPos = VectorType::Zero();
 
-        if( fit.isStable() ){
+    Fit fit;
+    fit.setNeighborFilter({queryPos, analysisScale});
+    fit.compute(vectorPoints);
 
-            // Check if the plane orientation is equal to the generation direction
-            VERIFY(Scalar(1.) - std::abs(fit.primitiveGradient(queryPos).dot(direction)) <= epsilon);
+    if( fit.isStable() ){
+        std::cout << "plot("
+                  << fit.h_uu() << "x^2 + "
+                  << fit.h_vv() << "y^2 + "
+                  << fit.h_uv() << "xy + "
+                  << fit.h_u() << "x + "
+                  << fit.h_v() << "y + "
+                  << fit.h_c() <<")" << std::endl;
 
-            // Projecting to tangent plane and going back to world should not change the position
-            VERIFY((fit.tangentPlaneToWorld(fit.worldToTangentPlane(queryPos)) - queryPos).norm() <= epsilon);
+        // Check if the plane orientation is equal to the generation direction
+        VERIFY(Scalar(1.) - std::abs(fit.plane().primitiveGradient(queryPos).dot(direction)) <= epsilon);
 
-            if(!_bAddPositionNoise) {
-              // Check if the query point is on the plane
-              VERIFY(std::abs(fit.potential(queryPos)) <= epsilon);
-              // check if we well have a plane
-              VERIFY(fit.kMean() <= epsilon);
-              VERIFY(fit.GaussianCurvature() <= epsilon);
-            }
+        // As the point cloud samples a plane, check if the quadric gradient is close to the plane's gradient
+        VERIFY(Scalar(1.) -
+               std::abs(fit.plane().primitiveGradient(queryPos).dot(fit.mongePatchPrimitive().primitiveGradient(queryPos))) <= epsilon);
+
+        // Projecting to tangent plane and going back to world should not change the position
+        VERIFY((fit.tangentPlaneToWorld(fit.worldToTangentPlane(queryPos)) - queryPos).norm() <= epsilon);
+
+        if(!_bAddPositionNoise) {
+          // Check if the query point is on the plane
+          VERIFY(std::abs(fit.potential(queryPos)) <= epsilon);
+          // check if we well have a plane
+            auto first = fit.firstFundamentalForm();
+            auto second = fit.secondFundamentalForm();
+            auto w = fit.weingartenMap();
+            auto kmean = fit.kMean();
+            auto kmean2 = Scalar(0.5)*w.trace();
+            auto gauss = fit.GaussianCurvature();
+            auto gauss2 = w.determinant(); //return h_uu()*u*u + h_vv()*v*v + h_uv()*u*v + h_u()*u + h_v()*v + h_c()
+          VERIFY(kmean <= epsilon);
+          VERIFY(gauss <= epsilon);
         }
     }
 }
@@ -107,12 +128,8 @@ void callSubTests()
     typedef DistWeightFunc<Point, SmoothWeightKernel<Scalar> > WeightSmoothFunc;
     typedef DistWeightFunc<Point, ConstantWeightKernel<Scalar> > WeightConstantFunc;
 
-    typedef Basket<Point, WeightSmoothFunc, CovariancePlaneFit, MongePatch> CovFitSmooth;
-    typedef Basket<Point, WeightConstantFunc, CovariancePlaneFit, MongePatch> CovFitConstant;
-
-    // \todo Add these tests when MeanPlaneFit PROVIDES_TANGENT_PLANE_BASIS
-//    typedef Basket<Point, WeightSmoothFunc, MeanPlaneFit, MongePatch> MeanFitSmooth;
-//    typedef Basket<Point, WeightConstantFunc, MeanPlaneFit, MongePatch> MeanFitConstant;
+    typedef Basket<Point, WeightSmoothFunc, MongePatchQuadraticFit> CovFitSmooth;
+    typedef Basket<Point, WeightConstantFunc, MongePatchQuadraticFit> CovFitConstant;
 
     cout << "Testing with perfect plane..." << endl;
     for(int i = 0; i < g_repeat; ++i)
