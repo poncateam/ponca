@@ -54,48 +54,4 @@ namespace Ponca::internal
         [[nodiscard]] Iterator begin() const { return Iterator(_nMin); }
         [[nodiscard]] Iterator end() const { return Iterator(_nMax); }
     };
-
-    /*!
-        \internal
-        \brief Class that provides usefull operators to iterate over an STL-like container of ints (to manage indices map for instance).
-        It will store a reference to the container, and can iterate over it or pick an element from it
-        \inherit BoundedIntRange
-    */
-    template<typename Container>
-    class IndexMap : public BoundedIntRange {
-    private:
-        Container& _elements;
-    public:
-        /// \internal
-        /// \brief The operations on the container can be restricted to the bounds : [ _nMin, _nMax [
-        /// \note nMin is optional and is equal to zero by default, but an nMax must be provided
-        IndexMap(Container& elements, const int nMax, const int nMin = 0) :
-            BoundedIntRange(nMax, nMin), _elements(elements) { }
-
-        /// \internal
-        /// \brief Returns an elements from the integer container after verifying that the index i is in bounds
-        constexpr int operator[](const int i) const {
-            verifyBounds(i);
-            return _elements[i];
-        }
-
-        /// \internal
-        /// \brief Makes the class iterable
-        class Iterator {
-            const IndexMap& _parent;
-            int _current;
-        public:
-            Iterator(const IndexMap& parent, const int start)
-                : _parent(parent), _current(start) {}
-
-            auto operator*() const { return _parent._elements[_current]; }
-            Iterator& operator++() { ++_current; return *this; }
-
-            bool operator!=(const Iterator& other) const {
-                return _current != other._current;
-            }
-        };
-        Iterator begin() const { return Iterator(*this, _nMin); }
-        Iterator end() const { return Iterator(*this, _nMax); }
-    };
 }
