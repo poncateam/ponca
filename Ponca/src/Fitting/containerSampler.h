@@ -38,15 +38,6 @@ namespace Ponca::internal
         }
 
         /// \internal
-        /// \brief Returns a random integer in bounds of : [ _nMin, _nMax [
-        [[nodiscard]] int random() const {
-            // random operator
-            const int r = Eigen::internal::random<int>(_nMin, _nMax-1);
-            verifyBounds(r);
-            return r;
-        }
-
-        /// \internal
         /// \brief Makes the class iterable
         class Iterator {
             int _current;
@@ -89,14 +80,6 @@ namespace Ponca::internal
             return _elements[i];
         }
 
-        /// \internal
-        /// \brief Returns a random element from the integer container
-        [[nodiscard]] int random() const {
-            // random operator
-            const int r = Eigen::internal::random<int>(_nMin, _nMax-1);
-            verifyBounds(r);
-            return _elements[r]; // Returns the element of the STL-like array
-        }
         /// \internal
         /// \brief Makes the class iterable
         class Iterator {
