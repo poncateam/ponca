@@ -24,7 +24,7 @@ namespace Ponca::internal
         }
 
         /// \internal
-        /// \brief Simply verify that n is in bounds and returns it. Can be overwritten to something else in children class
+        /// \brief Simply verify that n is in bounds and returns it.
         constexpr int operator[](const int i) const {
             verifyBounds(i);
             return i;
