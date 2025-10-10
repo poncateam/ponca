@@ -179,7 +179,6 @@ void callSubTests()
     //! [FitType]
     using Sphere = Basket<Point, NeighborFilter, OrientedSphereFit>;
     //! [FitType]
-
     //! [HybridType]
     // Create an hybrid structure fitting a plane and a sphere at the same time
     using Hybrid = Basket<Point, NeighborFilter,
