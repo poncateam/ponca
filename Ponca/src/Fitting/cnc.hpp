@@ -261,11 +261,13 @@ namespace Ponca::internal {
             std::vector<Triangle<P>>& triangles
         ) {
             int nb_vt = 0; // Number of valid generated triangles
+
+            // Makes a new array to shuffle
             std::vector<int> indices(indicesGetter.size());
-            // Shuffle the neighbors
-            for (int i = indicesGetter._nMin; i < indicesGetter._nMax ; ++i)
+            for (int i = 0; i < indicesGetter.size() ; ++i)
                 indices[i] = indicesGetter[i];
 
+            // Shuffles the neighbors
             std::random_device rd;
             std::mt19937 rg(rd());
             std::shuffle(indices.begin(), indices.end(), rg);
@@ -298,8 +300,7 @@ namespace Ponca {
     template <typename IndexContainer, typename PointContainer>
     FIT_RESULT CNC<P, M>::computeWithIds( const IndexContainer& ids, const PointContainer& points ) {
         init();
-        internal::IndexMap indicesSample( ids, ids.size() ); // Provides an index iterator and randomizer based on an index container
-        _nb_vt = internal::TriangleGenerator<M, P>::generate( points, indicesSample, _evalPointPos, _evalPointNormal, _triangles);
+        _nb_vt = internal::TriangleGenerator<M, P>::generate( points, ids, _evalPointPos, _evalPointNormal, _triangles);
         return finalize();
     }
 
