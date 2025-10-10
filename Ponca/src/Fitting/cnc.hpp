@@ -55,9 +55,9 @@ namespace Ponca::internal {
 
             for (int i = 0; i < maxTriangles; ++i) {
                 // Randomly select triangles
-                int i1 = indicesGetter.get(Eigen::internal::random<int>(0, indicesGetter.getLength()-1));
-                int i2 = indicesGetter.get(Eigen::internal::random<int>(0, indicesGetter.getLength()-1));
-                int i3 = indicesGetter.get(Eigen::internal::random<int>(0, indicesGetter.getLength()-1));
+                int i1 = indicesGetter[Eigen::internal::random<int>(0, indicesGetter.size()-1)];
+                int i2 = indicesGetter[Eigen::internal::random<int>(0, indicesGetter.size()-1)];
+                int i3 = indicesGetter[Eigen::internal::random<int>(0, indicesGetter.size()-1)];
                 if (i1 == i2 || i1 == i3 || i2 == i3) continue;
 
                 triangles.push_back(internal::Triangle<P>(points[i1], points[i2], points[i3]));
@@ -106,7 +106,7 @@ namespace Ponca::internal {
             a     /= a.norm();
             n      = ( Scalar(1) - avg_normal ) * n + avg_normal * a;
             n     /= n.norm();
-            avg_d /= indicesGetter.getLength();
+            avg_d /= indicesGetter.size();
 
             const int m = ( std::abs( n[0] ) > std::abs ( n[1] ))
                     ? ( ( std::abs( n[0] ) ) > std::abs( n[2] ) ? 0 : 2 )
@@ -182,7 +182,7 @@ namespace Ponca::internal {
             a     /= a.norm();
             n      = ( Scalar(1) - avg_normal ) * n + avg_normal * a;
             n     /= n.norm();
-            avg_d /= indicesGetter.getLength();
+            avg_d /= indicesGetter.size();
 
             const int m = ( std::abs( n[0] ) > std::abs ( n[1] ))
                     ? ( ( std::abs( n[0] ) ) > std::abs( n[2] ) ? 0 : 2 )
@@ -261,10 +261,10 @@ namespace Ponca::internal {
             std::vector<Triangle<P>>& triangles
         ) {
             int nb_vt = 0; // Number of valid generated triangles
-            std::vector<int> indices(indicesGetter.getLength());
+            std::vector<int> indices(indicesGetter.size());
             // Shuffle the neighbors
             for (int i = indicesGetter._nMin; i < indicesGetter._nMax ; ++i)
-                indices[i] = indicesGetter.get(i);
+                indices[i] = indicesGetter[i];
 
             std::random_device rd;
             std::mt19937 rg(rd());
@@ -272,7 +272,7 @@ namespace Ponca::internal {
 
             // Compute the triangles
             triangles.clear();
-            for (const int max_triangles = std::min(maxTriangles, static_cast<int>(indicesGetter.getLength()) / 3); nb_vt < max_triangles-2; nb_vt++) {
+            for (const int max_triangles = std::min(maxTriangles, static_cast<int>(indicesGetter.size()) / 3); nb_vt < max_triangles-2; nb_vt++) {
                 int i1 = indices[nb_vt];
                 int i2 = indices[nb_vt+1];
                 int i3 = indices[nb_vt+2];
@@ -298,7 +298,7 @@ namespace Ponca {
     template <typename IndexContainer, typename PointContainer>
     FIT_RESULT CNC<P, M>::computeWithIds( const IndexContainer& ids, const PointContainer& points ) {
         init();
-        internal::ElementSampler indicesSample( ids, ids.size() ); // Provides an index iterator and randomizer based on an index container
+        internal::IndexMap indicesSample( ids, ids.size() ); // Provides an index iterator and randomizer based on an index container
         _nb_vt = internal::TriangleGenerator<M, P>::generate( points, indicesSample, _evalPointPos, _evalPointNormal, _triangles);
         return finalize();
     }

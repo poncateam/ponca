@@ -16,7 +16,7 @@ namespace Ponca::internal
         /// \note nMin is optional and is equal to zero by default, but an nMax must be provided
         explicit BoundedIntRange( const int nMax, const int nMin = 0 ) : _nMin(nMin), _nMax(nMax) { }
 
-        void verifyBounds(const int n) const {
+        constexpr void verifyBounds(const int n) const {
             if (_nMin > n || n >= _nMax)
                 throw std::runtime_error(
                     "Index values must be in range :"
@@ -26,14 +26,14 @@ namespace Ponca::internal
 
         /// \internal
         /// \brief Simply verify that n is in bounds and returns it. Can be overwritten to something else in children class
-        [[nodiscard]] int get(const int n) const {
-            verifyBounds(n);
-            return n;
+        constexpr int operator[](const int i) const {
+            verifyBounds(i);
+            return i;
         }
 
         /// \internal
         /// \brief Get the size of the range
-        [[nodiscard]] int getLength() const {
+        [[nodiscard]] int size() const {
             return _nMax - _nMin;
         }
 
@@ -72,19 +72,19 @@ namespace Ponca::internal
         \inherit BoundedIntRange
     */
     template<typename Container>
-    class ElementSampler : public BoundedIntRange {
+    class IndexMap : public BoundedIntRange {
     private:
         Container& _elements;
     public:
         /// \internal
         /// \brief The operations on the container can be restricted to the bounds : [ _nMin, _nMax [
         /// \note nMin is optional and is equal to zero by default, but an nMax must be provided
-        ElementSampler(Container& elements, const int nMax, const int nMin = 0) :
+        IndexMap(Container& elements, const int nMax, const int nMin = 0) :
             BoundedIntRange(nMax, nMin), _elements(elements) { }
 
         /// \internal
         /// \brief Returns an elements from the integer container after verifying that the index i is in bounds
-        [[nodiscard]] int get(const int i) const {
+        constexpr int operator[](const int i) const {
             verifyBounds(i);
             return _elements[i];
         }
@@ -100,10 +100,10 @@ namespace Ponca::internal
         /// \internal
         /// \brief Makes the class iterable
         class Iterator {
-            const ElementSampler& _parent;
+            const IndexMap& _parent;
             int _current;
         public:
-            Iterator(const ElementSampler& parent, const int start)
+            Iterator(const IndexMap& parent, const int start)
                 : _parent(parent), _current(start) {}
 
             auto operator*() const { return _parent._elements[_current]; }
