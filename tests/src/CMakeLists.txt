@@ -24,3 +24,5 @@ add_multi_test(queries_range.cpp)
 add_multi_test(queries_nearest.cpp)
 add_multi_test(queries_knearest.cpp)
 add_multi_test(mls.cpp)
+add_multi_test(cnc.cpp)
+
