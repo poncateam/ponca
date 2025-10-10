@@ -171,9 +171,9 @@ namespace Ponca::internal {
 
             for (int i = 0; i < maxTriangles; ++i) {
                 // Randomly select triangles
-                int i1 = indicesGetter.random();
-                int i2 = indicesGetter.random();
-                int i3 = indicesGetter.random();
+                int i1 = indicesGetter.get(Eigen::internal::random<int>(0, indicesGetter.getLength()-1));
+                int i2 = indicesGetter.get(Eigen::internal::random<int>(0, indicesGetter.getLength()-1));
+                int i3 = indicesGetter.get(Eigen::internal::random<int>(0, indicesGetter.getLength()-1));
                 if (i1 == i2 || i1 == i3 || i2 == i3) continue;
 
                 triangles.push_back(internal::Triangle<P>(points[i1], points[i2], points[i3]));
