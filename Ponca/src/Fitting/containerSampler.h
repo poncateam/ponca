@@ -4,8 +4,7 @@ namespace Ponca::internal
 {
     /*!
         \internal
-        \brief Parent class to manage integers inside a boundary. Can be iterated over or used to generates a random integer inside the boundary
-        \note Calling the on this objet after the initialization of its boundary generates a random integer in between [_nMin, _nMax[
+        \brief Parent class to manage integers inside a boundary. Can be iterated over or it
     */
     class BoundedIntRange {
     public:
@@ -59,7 +58,7 @@ namespace Ponca::internal
     /*!
         \internal
         \brief Class that provides usefull operators to iterate over an STL-like container of ints (to manage indices map for instance).
-        It will store a reference to the container, and can iterate over it or pick an element from it (random or not)
+        It will store a reference to the container, and can iterate over it or pick an element from it
         \inherit BoundedIntRange
     */
     template<typename Container>
