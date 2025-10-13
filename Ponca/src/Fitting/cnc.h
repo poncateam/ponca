@@ -174,10 +174,11 @@ public:
         return !(this == &other);
     }
 
-    bool isApprox(const CNC& other, const Scalar& epsilon = Eigen::NumTraits<Scalar>::dummy_precision()) const {
+    template<typename Fit>
+    bool isApprox(const Fit& other, const Scalar& epsilon = Eigen::NumTraits<Scalar>::dummy_precision()) const {
         // Simply compare the kMean and kGauss results
         return std::abs(kMean()  - other.kMean())  < epsilon
-            && std::abs(kGauss() - other.kGauss()) < epsilon;
+            && std::abs(GaussianCurvature() - other.GaussianCurvature()) < epsilon;
     }
 
     PONCA_MULTIARCH inline Scalar kmin() const { return k1; }
@@ -190,7 +191,7 @@ public:
 
     PONCA_MULTIARCH inline Scalar kMean() const { return _H; }
 
-    PONCA_MULTIARCH inline Scalar kGauss() const { return _G; }
+    PONCA_MULTIARCH inline Scalar GaussianCurvature() const { return _G; }
 }; //class CNC
 
 } // namespace Ponca
