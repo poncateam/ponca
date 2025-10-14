@@ -48,6 +48,11 @@ public:
      */
     PONCA_MULTIARCH inline VectorType convertToLocalBasis(const VectorType& _q) const;
 
+    /*!
+     * \brief Get access to the stored points of evaluation
+     * @return Position of the local basis center
+     */
+    PONCA_MULTIARCH inline VectorType evalPos() const { return m_p; }
 protected:
     /*!
      * \brief Convert position from local to global coordinate system
