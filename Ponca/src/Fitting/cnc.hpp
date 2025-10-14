@@ -95,49 +95,56 @@ namespace Ponca::internal {
             Scalar avg_d = Scalar(0);
 
             for ( int index : indicesGetter ) {
-                avg_d += ( points[ index ].pos() - c ).norm();
-                a     += points[ index ].normal();
+                auto p = points[ index ];
+                avg_d += ( p.pos() - c ).norm();
+                a     += p.normal();
+
                 // if avg_d == 0 then it is the evalPoint
-                if ( iSource == -1 && points[ index ].pos() == c  ) {
+                if ( iSource == -1 && p.pos() == c  ) {
                     iSource = index;
                 }
             }
+
+            if ( iSource == -1 ) throw std::runtime_error("Eval point not found in the neighborhood during the HexagramGeneration.");
 
             a     /= a.norm();
             n      = ( Scalar(1) - avg_normal ) * n + avg_normal * a;
             n     /= n.norm();
             avg_d /= indicesGetter.size();
 
+            // Define basis for sector analysis.
             const int m = ( std::abs( n[0] ) > std::abs ( n[1] ))
                     ? ( ( std::abs( n[0] ) ) > std::abs( n[2] ) ? 0 : 2 )
                     : ( ( std::abs( n[1] ) ) > std::abs( n[2] ) ? 1 : 2 ) ;
 
             const VectorType e =
-                ( m == 0 ) ? VectorType( Scalar(0), Scalar(1), Scalar(0) ) :
-                ( m == 1 ) ? VectorType( Scalar(0), Scalar(0), Scalar(1) ) :
-                             VectorType( Scalar(1), Scalar(0), Scalar(0) ) ;
+                ( m == 0 ) ? VectorType( 0, 1, 0 ) :
+                ( m == 1 ) ? VectorType( 0, 0, 1 ) :
+                             VectorType( 1, 0, 0 ) ;
 
             VectorType u = n.cross( e );
             VectorType v = n.cross( u );
             u /= u.norm();
             v /= v.norm();
 
-            std::array<int, 6> indices = {iSource, iSource, iSource, iSource, iSource, iSource};
+            std::array<int, 6> indices;
 
             for ( int i = 0 ; i < 6 ; i++ ) {
+                indices    [ i ] = iSource;
                 _distance2 [ i ] = avg_d * avg_d;
                 _targets   [ i ] = avg_d * ( u * std::cos( i * M_PI / 3.0 ) + v * std::sin( i * M_PI / 3.0 ) );
             }
 
+            // Compute closest points.
             for ( int index : indicesGetter ) {
                 VectorType p = points[ index ].pos();
                 if ( p == c ) continue;
-
                 const VectorType d = p - c;
+
                 for ( int j = 0 ; j < 6 ; j++ ){
                     const Scalar d2 = ( d - _targets[ j ]).squaredNorm();
                     if ( d2 < _distance2[ j ] ){
-                        indices[ j ] = index;
+                        indices[ j ]    = index;
                         _distance2[ j ] = d2;
                     }
                 }
@@ -159,13 +166,13 @@ namespace Ponca::internal {
         static int generate(
             const PointContainer& points,
             const IndicesGetter& indicesGetter,
-            const VectorType& _evalPointPos, const VectorType& _evalPointNormal,
+            const VectorType& evalPointPos, const VectorType& evalPointNormal,
             std::vector<Triangle<P>>& triangles
         ) {
-            VectorType c = _evalPointPos;
-            VectorType n = _evalPointNormal;
-            Scalar avg_d = Scalar(0);
+            VectorType c = evalPointPos;
+            VectorType n = evalPointNormal;
             VectorType a = VectorType::Zero();
+            Scalar avg_d = Scalar(0);
 
             std::array< VectorType,6 > array_avg_normals{VectorType::Zero()};
             std::array< VectorType,6 > array_avg_points{VectorType::Zero()};
@@ -203,8 +210,8 @@ namespace Ponca::internal {
             }
 
             for (int index : indicesGetter) {
-                if ( points[ index ].pos() == c )
-                    continue;
+                // if ( points[ index ].pos() == c )
+                //     continue;
 
                 VectorType p = points[ index ].pos() - c;
                 int best_k = 0;
