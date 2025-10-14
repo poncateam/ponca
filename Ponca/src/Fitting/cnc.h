@@ -85,6 +85,11 @@ enum TriangleGenerationMethod {
 
 template < class P, TriangleGenerationMethod _method = UniformGeneration>
 class CNC : ComputeObject<CNC<P, _method>> {
+protected:
+    enum
+    {
+        PROVIDES_PRINCIPAL_CURVATURES
+    };
 public:
     using DataPoint = P;
     using MatrixType = typename DataPoint::MatrixType;
