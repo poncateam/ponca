@@ -56,11 +56,11 @@ void testFunction() {
     {
         VectorType pos = vectorPoints[i].pos();
         Fit fit;
-        fit.setWeightFunc({pos, analysisScale});
+        fit.setNeighborFilter({pos, analysisScale});
         fit.compute(vectorPoints);
 
         Fit fitMLS;
-        fitMLS.setWeightFunc({pos, analysisScale});
+        fitMLS.setNeighborFilter({pos, analysisScale});
         fitMLS.computeMLS(vectorPoints, 1000);
 
         if(fit.isStable()) {
