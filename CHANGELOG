@@ -3,7 +3,10 @@ Ponca changelog
 
 
 --------------------------------------------------------------------------------
-Current head (v.x.x RC)
+Current head (v.2.0 RC)
+
+- Docs
+    - [doc] Add missing provides principal curvatures (#217)
 
 --------------------------------------------------------------------------------
 v.1.4
