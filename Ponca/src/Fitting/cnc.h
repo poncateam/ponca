@@ -10,9 +10,7 @@ All rights reserved.
 #pragma once
 
 #include "defines.h"
-#include PONCA_MULTIARCH_INCLUDE_STD(cmath)
 #include "cncFormulaEigen.h"
-#include <Ponca/src/Fitting/weightFunc.h>
 
 
 namespace Ponca
@@ -65,7 +63,7 @@ struct Triangle {
             points[0] ,  points[2-differentOrder],  points[1+differentOrder], \
             normals[0], normals[2-differentOrder], normals[1+differentOrder]  \
         );                                                                    \
-}
+    }
 
 	DEFINE_CNC_FUNC(mu0InterpolatedU , Scalar)
 	DEFINE_CNC_FUNC(mu1InterpolatedU , Scalar)
@@ -99,29 +97,29 @@ public:
     typedef Eigen::MatrixXd  DenseMatrix;
 protected:
 	// Basis
-    VectorType _evalPointNormal = VectorType::Zero();
-    VectorType _evalPointPos = VectorType::Zero();
+    VectorType m_evalPointNormal = VectorType::Zero();
+    VectorType m_evalPointPos = VectorType::Zero();
 
     // Triangles used for the computation
-    int _nb_vt {0}; // Number of valid triangles
-    std::vector <internal::Triangle < DataPoint > > _triangles;
+    int m_nb_vt {0}; // Number of valid triangles
+    std::vector <internal::Triangle < DataPoint > > m_triangles;
 
     // Results of the fit
-    Scalar _A {0}; // Area
-    Scalar _H {0}; // Mean Curvatures
-    Scalar _G {0}; // Gaussian Curvatures
-    Scalar _T11 {0}; // T11
-    Scalar _T12 {0}; // T12
-    Scalar _T13 {0}; // T13
-    Scalar _T22 {0}; // T22
-    Scalar _T23 {0}; // T23
-    Scalar _T33 {0}; // T33
+    Scalar m_A {0}; // Area
+    Scalar m_H {0}; // Mean Curvatures
+    Scalar m_G {0}; // Gaussian Curvatures
+    Scalar m_T11 {0}; // T11
+    Scalar m_T12 {0}; // T12
+    Scalar m_T13 {0}; // T13
+    Scalar m_T22 {0}; // T22
+    Scalar m_T23 {0}; // T23
+    Scalar m_T33 {0}; // T33
 
-    Scalar k1 {0};
-    Scalar k2 {0};
+    Scalar m_k1 {0};
+    Scalar m_k2 {0};
 
-    VectorType v1;
-    VectorType v2;
+    VectorType m_v1;
+    VectorType m_v2;
 
 public:
     PONCA_FITTING_DECLARE_FINALIZE
@@ -129,8 +127,8 @@ public:
     /*! \brief Set the scalar field values to 0 and reset the isNormalized() status
     */
     PONCA_MULTIARCH inline void init() {
-        k1 = Scalar(0);
-        k2 = Scalar(0);
+        m_k1 = Scalar(0);
+        m_k2 = Scalar(0);
     }
 
     /*! \brief Compute function for STL-like containers */
@@ -140,39 +138,28 @@ public:
 
     /*! \brief Compute function to iterate over a subset of samples in a PointContainer  */
     /*! Add neighbors stored in a PointContainer and sampled using indices stored in ids.*/
-    /*! \tparam IndexContainer An STL-like container storing the indices of the neighbors */
+    /*! \tparam IndexRange An STL-like container storing the indices of the neighbors */
     /*! \tparam PointContainer An STL-like container storing the points */
-    template <typename IndexContainer, typename PointContainer>
-    PONCA_MULTIARCH inline FIT_RESULT computeWithIds( const IndexContainer& ids, const PointContainer& points );
+    template <typename IndexRange, typename PointContainer>
+    PONCA_MULTIARCH inline FIT_RESULT computeWithIds( const IndexRange& ids, const PointContainer& points );
 
+    /*! \brief Returns the number of fitted triangles  */
     PONCA_MULTIARCH inline int getNumTriangles() const {
-        return _nb_vt;
-    }
-
-    PONCA_MULTIARCH inline void getTriangles( std::vector<std::array<Scalar, 3>>& triangles ) {
-
-        for (int i = 0; i < _triangles.size(); i++) {
-            std::array <Scalar, 3> point0 = {_triangles[i].points[0][0], _triangles[i].points[0][1], _triangles[i].points[0][2]};
-            std::array <Scalar, 3> point1 = {_triangles[i].points[1][0], _triangles[i].points[1][1], _triangles[i].points[1][2]};
-            std::array <Scalar, 3> point2 = {_triangles[i].points[2][0], _triangles[i].points[2][1], _triangles[i].points[2][2]};
-            triangles.push_back(point0);
-            triangles.push_back(point1);
-            triangles.push_back(point2);
-        }
+        return m_nb_vt;
     }
 
 	void setEvalPoint(const DataPoint& evalPoint) {
-        _evalPointNormal = evalPoint.normal();
-        _evalPointPos    = evalPoint.pos();
+        m_evalPointNormal = evalPoint.normal();
+        m_evalPointPos    = evalPoint.pos();
     }
     void setEvalPoint(const VectorType& evalPointNormal, const VectorType& evalPointPos) {
-        _evalPointNormal = evalPointNormal;
-        _evalPointPos    = evalPointPos;
+        m_evalPointNormal = evalPointNormal;
+        m_evalPointPos    = evalPointPos;
     }
 
     bool operator==(const CNC& other) const {
         // We use the matrix to compare the fitting results
-        return (_T11 == other._T11) && (_T12 == other._T12) && (_T13 == other._T13) && (_T22 == other._T22) && (_T23 == other._T23) && (_T33 == other._T33);
+        return (m_T11 == other.m_T11) && (m_T12 == other.m_T12) && (m_T13 == other.m_T13) && (m_T22 == other.m_T22) && (m_T23 == other.m_T23) && (m_T33 == other.m_T33);
     }
     bool operator!=(const CNC& other) const {
         // We use the matrix to compare the fitting results
@@ -186,17 +173,17 @@ public:
             && std::abs(GaussianCurvature() - other.GaussianCurvature()) < epsilon;
     }
 
-    PONCA_MULTIARCH inline Scalar kmin() const { return k1; }
+    PONCA_MULTIARCH inline Scalar kmin() const { return m_k1; }
 
-    PONCA_MULTIARCH inline Scalar kmax() const { return k2; }
+    PONCA_MULTIARCH inline Scalar kmax() const { return m_k2; }
 
-    PONCA_MULTIARCH inline VectorType kminDirection() const { return v1; }
+    PONCA_MULTIARCH inline VectorType kminDirection() const { return m_v1; }
 
-    PONCA_MULTIARCH inline VectorType kmaxDirection() const { return v2; }
+    PONCA_MULTIARCH inline VectorType kmaxDirection() const { return m_v2; }
 
-    PONCA_MULTIARCH inline Scalar kMean() const { return _H; }
+    PONCA_MULTIARCH inline Scalar kMean() const { return m_H; }
 
-    PONCA_MULTIARCH inline Scalar GaussianCurvature() const { return _G; }
+    PONCA_MULTIARCH inline Scalar GaussianCurvature() const { return m_G; }
 }; //class CNC
 
 } // namespace Ponca
