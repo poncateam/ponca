@@ -9,9 +9,10 @@
 #pragma once
 
 #include "./defines.h"
-#include "./mean.h"       // used to define MeanPlaneFit
-#include "./plane.h"      // used to define MeanPlaneFit
-#include "./localFrame.h" // used to define MeanPlaneFit
+#include "./mean.h"                 // used to define MeanPlaneFit
+#include "./plane.h"                // used to define MeanPlaneFit
+#include "./localFrame.h"           // used to define MeanPlaneFit
+#include "./localFrameEstimation.h" // used to define MeanPlaneFit
 
 
 namespace Ponca
@@ -46,7 +47,7 @@ public:
      * \brief This function fits the plane using mean normal and position.
 
      * We use the localFrame class to store the frame informations.
-     * Given the mean normal, we can compute the frame plane.
+     * Given the mean normal, we compute the frame plane axes m_u and m_v.
      * m_u and m_v are computed using the cross product, to ensure orthogonality.
      * \see LocalFrame
      * \see computeFrameFromNormalVector
@@ -58,8 +59,8 @@ public:
         if(Base::finalize() == STABLE)
         {
             if (Base::plane().isValid()) Base::m_eCurrentState = CONFLICT_ERROR_FOUND;
-            VectorType norm = Base::m_sumN / Base::getWeightSum();
-            Base::setPlane(norm, Base::barycenter());
+            VectorType norm = Base::meanNormalVector();
+            Base::setPlane(norm, Base::barycenterLocal());
             Base::computeFrameFromNormalVector(norm);
         }
         return Base::m_eCurrentState;
@@ -74,8 +75,9 @@ public:
     MeanPlaneFitImpl<DataPoint, _NFilter,
         MeanNormal<DataPoint, _NFilter,
             MeanPosition<DataPoint, _NFilter,
-                LocalFrame<DataPoint, _NFilter,
-                    Plane<DataPoint, _NFilter, T>>>>>;
+                LocalFrameEstimator<DataPoint, _NFilter,
+                    LocalFrame<DataPoint, _NFilter,
+                        Plane<DataPoint, _NFilter, T>>>>>>;
 //! [MeanPlaneFit Definition]
 
 } //namespace Ponca
