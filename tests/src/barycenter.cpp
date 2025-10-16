@@ -29,9 +29,9 @@ void compareFit(const bool _bAddPositionNoise = false, const bool _bAddNormalNoi
     typedef typename DataPoint::VectorType VectorType;
 
     Scalar radius = Eigen::internal::random<int>(1, 10);
-    int nbPoints = Eigen::internal::random<int>(100, 1000);
-    Scalar centerScale = Eigen::internal::random<Scalar>(1,10000);
-    VectorType center = VectorType::Zero();
+    int nbPoints = Eigen::internal::random<int>(100000, 500000);
+    // Scalar centerScale = Eigen::internal::random<Scalar>(1, 10000);
+    VectorType center = VectorType::Zero(); // VectorType::Random() * centerScale
 
     std::vector<DataPoint> vectorPoints(nbPoints);
     for(unsigned int i = 0; i < vectorPoints.size(); ++i)
@@ -49,11 +49,10 @@ void compareFit(const bool _bAddPositionNoise = false, const bool _bAddNormalNoi
     // std::cout << fitB.barycenter().transpose() << std::endl;
     VERIFY(fitA.barycenter().isApprox(fitB.barycenter()));
 
-    // TODO : Fix this test
     // Barycenter should also be somewhat close to the center
-    // float eps =  0.1f; // Greater tolerance
-    // VERIFY(center.isApprox(fitA.barycenter(), eps));
-    // VERIFY(center.isApprox(fitB.barycenter(), eps));
+    Scalar eps =  Scalar(0.2); // Greater tolerance
+    VERIFY((center - fitA.barycenter()).norm() < eps);
+    VERIFY((center - fitB.barycenter()).norm() < eps);
 }
 
 template<typename Scalar, int Dim>
