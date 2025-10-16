@@ -205,7 +205,7 @@ namespace internal
          * \return The result of the fit
          */
         template<typename Func>
-        FIT_RESULT computeMLSImpl(Func&& computeFunc, int mlsIter, Scalar epsilon) {
+        FIT_RESULT computeMLSImpl(Func&& computeFunc, const int mlsIter, const Scalar epsilon) {
             FIT_RESULT res = UNDEFINED;
             const auto t = Base::getNeighborFilter().evalScale();
             auto lastPos = Base::getNeighborFilter().evalPos();
