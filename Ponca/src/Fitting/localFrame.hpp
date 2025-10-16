@@ -26,23 +26,3 @@ LocalFrame<DataPoint, _WFunctor, T>::localFrameToWorld (const VectorType& _lq) c
     return B * _lq + Base::m_w.basisCenter();
   }
 }
-
-template < class DataPoint, class _WFunctor, typename T>
-void
-LocalFrame<DataPoint, _WFunctor, T>::computeFrameFromNormalVector (const VectorType& _norm)
-{
-  // Creation of the vector 'a' non-collinear to the normal vector
-  VectorType a;
-  if (std::abs(_norm.x()) > std::abs(_norm.z())) {
-      a = VectorType(-_norm.y(), _norm.x(), 0);
-  } else {
-      a = VectorType(0, -_norm.z(), _norm.y());
-  }
-  a.normalize();
-  // Creation of the two vectors of the local frame (m_u and m_v) thanks to the cross product
-  VectorType m_u = _norm.cross(a);
-  VectorType m_v = _norm.cross(m_u);
-  m_u.normalize();
-  m_v.normalize();
-  setFrameUV (m_u, m_v);
-}
