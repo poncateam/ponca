@@ -112,11 +112,6 @@ void testFunction(bool _bUnoriented = false, bool _bAddPositionNoise = false, bo
                 // Check if the plane orientation is equal to the generation direction
                 auto primGrad = fit.primitiveGradient(vectorPoints[i].pos());
                 auto gen_dir = std::abs(primGrad.dot(direction));
-                std::cout << "vectorPoints[i].pos() : " << vectorPoints[i].pos().transpose() << std::endl;
-                std::cout << "direction : " << direction.transpose() << std::endl;
-                std::cout << "primGrad : " << primGrad.transpose() << std::endl;
-                std::cout << "gen_dir : " << gen_dir << std::endl;
-
 
                 VERIFY(Scalar(1.) - gen_dir <= epsilon);
 
