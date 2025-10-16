@@ -14,8 +14,8 @@ AlgebraicSphere<DataPoint, _NFilter, T>::project(const VectorType& _q) const
     // turn to centered basis
     const VectorType lq = Base::getNeighborFilter().convertToLocalBasis(_q);
 
-    Scalar potential = m_uc + lq.dot(m_ul) + m_uq * lq.squaredNorm();
-    VectorType grad = m_ul + Scalar(2) * m_uq * lq;
+    Scalar potential = potentialLocal(lq);
+    VectorType grad = primitiveGradientLocal(lq);
     Scalar norm = grad.norm();
 
     Scalar t;
@@ -32,20 +32,15 @@ AlgebraicSphere<DataPoint, _NFilter, T>::project(const VectorType& _q) const
 
 template < class DataPoint, class _NFilter, typename T>
 typename AlgebraicSphere<DataPoint, _NFilter, T>::Scalar
-AlgebraicSphere<DataPoint, _NFilter, T>::potential( const VectorType &_q, const bool convertToLocalBasis ) const
+AlgebraicSphere<DataPoint, _NFilter, T>::potentialLocal( const VectorType &_lq ) const
 {
-    // turn to centered basis
-    const VectorType lq = convertToLocalBasis? Base::getNeighborFilter().convertToLocalBasis(_q) : _q;
-    return m_uc + lq.dot(m_ul) + m_uq * lq.squaredNorm();
+    return m_uc + _lq.dot(m_ul) + m_uq * _lq.squaredNorm();
 }
-
 
 template < class DataPoint, class _NFilter, typename T>
 typename AlgebraicSphere<DataPoint, _NFilter, T>::VectorType
-AlgebraicSphere<DataPoint, _NFilter, T>::primitiveGradient( const VectorType &_q, const bool convertToLocalBasis ) const
+AlgebraicSphere<DataPoint, _NFilter, T>::primitiveGradientLocal( const VectorType &_lq ) const
 {
-        // turn to centered basis
-        const VectorType lq = convertToLocalBasis? Base::getNeighborFilter().convertToLocalBasis(_q) : _q;
-        return (m_ul + Scalar(2.) * m_uq * lq);
+        return (m_ul + Scalar(2.) * m_uq * _lq);
 }
 

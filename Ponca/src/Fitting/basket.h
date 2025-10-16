@@ -371,18 +371,18 @@ namespace internal
             const VectorType lq = Base::getNeighborFilter().convertToLocalBasis(_q);
 
             VectorType grad;
-            VectorType dir  = Base::primitiveGradient(lq, false);
+            VectorType dir  = Base::primitiveGradientLocal(lq);
             Scalar ilg      = Scalar(1.)/dir.norm();
             dir             = dir*ilg;
-            Scalar ad       = Base::potential(lq, false);
+            Scalar ad       = Base::potentialLocal(lq);
             Scalar delta    = -ad*min(ilg,Scalar(1.));
             VectorType proj = lq + dir*delta;
 
             for (int i=0; i<nbIter; ++i)
             {
-                grad  = Base::primitiveGradient(proj, false);
+                grad  = Base::primitiveGradientLocal(proj);
                 ilg   = Scalar(1.)/grad.norm();
-                delta = -Base::potential(proj, false)*min(ilg,Scalar(1.));
+                delta = -Base::potentialLocal(proj)*min(ilg,Scalar(1.));
                 proj += dir*delta;
             }
             return Base::getNeighborFilter().convertToGlobalBasis( proj );

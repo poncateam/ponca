@@ -220,7 +220,12 @@ public:
 
     //! \brief Value of the scalar field at the location \f$ \mathbf{q}\f$.
     //! \see method `#isSigned` of the fit to check if the sign is reliable
-    PONCA_MULTIARCH inline Scalar potential (const VectorType& _q, const bool convertToLocalBasis = true) const;
+    PONCA_MULTIARCH inline Scalar potential (const VectorType& _q) const
+    {
+        // Turn to centered basis
+        const VectorType lq = Base::getNeighborFilter().convertToLocalBasis(_q);
+        return potentialLocal(lq);
+    }
 
     //! \brief Value of the scalar field at the evaluation point
     //! \see method `#isSigned` of the fit to check if the sign is reliable
@@ -239,7 +244,12 @@ public:
 
     /*! \brief Approximation of the scalar field gradient at \f$ \mathbf{q}\f$
         \warning The gradient is not normalized by default */
-    PONCA_MULTIARCH inline VectorType primitiveGradient (const VectorType& _q, const bool convertToLocalBasis = true) const;
+    PONCA_MULTIARCH inline VectorType primitiveGradient (const VectorType& _q) const
+    {
+        // Turn to centered basis
+        const VectorType lq = Base::getNeighborFilter().convertToLocalBasis(_q);
+        return primitiveGradientLocal(lq);
+    }
 
     /*! \brief Approximation of the scalar field gradient at the evaluation point
         \warning The gradient is not normalized by default */
@@ -257,6 +267,12 @@ public:
         return bReady && bPlanar;
     }
 
+protected:
+    /// \copydoc AlgebraicSphere::potential
+    PONCA_MULTIARCH inline Scalar potentialLocal (const VectorType& _lq) const;
+
+    /// \copydoc AlgebraicSphere::primitiveGradient
+    PONCA_MULTIARCH inline VectorType primitiveGradientLocal (const VectorType& _lq) const;
 }; //class AlgebraicSphere
 
 #include "algebraicSphere.hpp"

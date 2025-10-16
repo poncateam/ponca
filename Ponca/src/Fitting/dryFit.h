@@ -41,7 +41,7 @@ namespace Ponca
         PONCA_MULTIARCH inline Scalar potential ( ) const { return Scalar(0); }
 
         //! \brief Simulate Scalar field computation
-        PONCA_MULTIARCH inline Scalar potential (const VectorType& /*_q*/, const bool /*convertToLocalBasis*/ = true) const { return Scalar(0); }
+        PONCA_MULTIARCH inline Scalar potential (const VectorType& /*_q*/) const { return Scalar(0); }
 
         //! \brief Simulate point projection
         PONCA_MULTIARCH inline VectorType project (const VectorType& _q) const { return _q; }
@@ -50,7 +50,12 @@ namespace Ponca
         PONCA_MULTIARCH inline VectorType primitiveGradient () const { return VectorType::Zero(); }
 
         //! \brief Simulate gradient direction computation
-        PONCA_MULTIARCH inline VectorType primitiveGradient (const VectorType&, const bool /*convertToLocalBasis*/ = true) const { return VectorType::Zero(); }
+        PONCA_MULTIARCH inline VectorType primitiveGradient (const VectorType&) const { return VectorType::Zero(); }
+    protected:
+        /// \copydoc DryFit::potential
+        PONCA_MULTIARCH inline Scalar potentialLocal (const VectorType& /*_lq*/) const { return Scalar(0); }
+        /// \copydoc DryFit::primitiveGradient
+        PONCA_MULTIARCH inline VectorType primitiveGradientLocal (const VectorType&  /*_lq*/) const { return VectorType::Zero(); }
     };
 
 } //namespace Ponca
