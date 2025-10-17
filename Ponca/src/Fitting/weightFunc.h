@@ -252,8 +252,8 @@ using DistWeightFuncGlobal = DistWeightFuncBase<DataPoint, WeightKernel, false>;
     In contrast to DistWeightFunc with ConstantWeight, it does not check for scale range.
     It still performs local basis conversion to maintain computation accuracy
 */
-template <class DataPoint>
-class NoWeightFunc : public NeighborhoodFrameBase<DataPoint, true>
+template <class DataPoint, bool _CenterCoordinates>
+class NoWeightFuncBase : public NeighborhoodFrameBase<DataPoint, _CenterCoordinates>
 {
 public:
     /*! \brief Scalar type from DataPoint */
@@ -270,7 +270,7 @@ public:
     /*!
         \brief Constructor that defines the current evaluation scale
     */
-    PONCA_MULTIARCH inline NoWeightFunc(const VectorType& v = VectorType::Zero(), Scalar = 0) : NeighborhoodFrame(v){ }
+    PONCA_MULTIARCH inline NoWeightFuncBase(const VectorType& v = VectorType::Zero(), Scalar = 0) : NeighborhoodFrame(v){ }
 
     /*!
         \brief Compute the weight of the given query, which is always $1$
@@ -328,6 +328,11 @@ private:
     VectorType   m_p;  /*!< \brief basis center */
 };// class DistWeightFuncBase
 
+template <class DataPoint>
+using NoWeightFunc = NoWeightFuncBase<DataPoint, true>;
+
+template <class DataPoint>
+using NoWeightFuncGlobal = NoWeightFuncBase<DataPoint, false>;
 #include "weightFunc.hpp"
 
 }// namespace Ponca
