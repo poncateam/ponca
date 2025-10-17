@@ -83,8 +83,8 @@ private:
 
     \warning it assumes that the evaluation scale t is strictly positive
 */
-template <class DataPoint, class WeightKernel, bool _CenterCoordinates>
-class DistWeightFuncBase : public NeighborhoodFrameBase<DataPoint, _CenterCoordinates>
+template <class DataPoint, class WeightKernel, bool _centerCoordinates>
+class DistWeightFuncBase : public NeighborhoodFrameBase<DataPoint, _centerCoordinates>
 {
 public:
     /*! \brief Scalar type from DataPoint */
@@ -96,7 +96,7 @@ public:
     /*! \brief Return type of the method #w() */
     using WeightReturnType = PONCA_MULTIARCH_CU_STD_NAMESPACE(pair)<Scalar, VectorType>;
 
-    using NeighborhoodFrame = NeighborhoodFrameBase<DataPoint, _CenterCoordinates>;
+    using NeighborhoodFrame = NeighborhoodFrameBase<DataPoint, _centerCoordinates>;
 
     /*!
         \brief Constructor that defines the current evaluation scale
@@ -252,8 +252,8 @@ using DistWeightFuncGlobal = DistWeightFuncBase<DataPoint, WeightKernel, false>;
     In contrast to DistWeightFunc with ConstantWeight, it does not check for scale range.
     It still performs local basis conversion to maintain computation accuracy
 */
-template <class DataPoint, bool _CenterCoordinates>
-class NoWeightFuncBase : public NeighborhoodFrameBase<DataPoint, _CenterCoordinates>
+template <class DataPoint, bool _centerCoordinates>
+class NoWeightFuncBase : public NeighborhoodFrameBase<DataPoint, _centerCoordinates>
 {
 public:
     /*! \brief Scalar type from DataPoint */
