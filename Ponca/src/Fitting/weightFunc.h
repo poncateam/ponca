@@ -265,7 +265,7 @@ public:
     /*! \brief Return type of the method #w() */
     using WeightReturnType = PONCA_MULTIARCH_CU_STD_NAMESPACE(pair)<Scalar, VectorType>;
 
-    using NeighborhoodFrame = NeighborhoodFrameBase<DataPoint, true>;
+    using NeighborhoodFrame = NeighborhoodFrameBase<DataPoint, _centerCoordinates>;
 
     /*!
         \brief Constructor that defines the current evaluation scale
