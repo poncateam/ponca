@@ -3,7 +3,11 @@ Ponca changelog
 
 
 --------------------------------------------------------------------------------
-Current head (v.x.x RC)
+Current head (v.2.0 RC)
+- API
+    - [fitting] Local basis refactor (#177)
+- Tests
+    - [ci] Add barycenter test (#177)
 
 --------------------------------------------------------------------------------
 v.1.4
