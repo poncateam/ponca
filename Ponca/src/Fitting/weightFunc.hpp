@@ -5,7 +5,6 @@
 */
 
 #pragma once
-#include "weightFunc.h"
 
 template<class DataPoint, bool _local>
 typename NeighborhoodFrameBase<DataPoint, _local>::VectorType
