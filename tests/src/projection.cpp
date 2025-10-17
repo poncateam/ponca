@@ -23,7 +23,6 @@
 
 #include <chrono>
 #include <math.h>
-#include <iomanip>
 
 using namespace std;
 using namespace Ponca;

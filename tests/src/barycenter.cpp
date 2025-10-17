@@ -12,8 +12,6 @@
 #include "../common/testing.h"
 #include "../common/testUtils.h"
 
-#include <vector>
-
 #include "Ponca/src/Fitting/basket.h"
 #include "Ponca/src/Fitting/mean.h"
 #include "Ponca/src/Fitting/weightFunc.h"
