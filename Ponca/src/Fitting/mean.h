@@ -8,8 +8,16 @@
 
 #include "./defines.h"
 #include "./primitive.h"
+#include <concepts>
 
 namespace Ponca {
+
+
+    template<typename T>
+    concept ProvidesMeanPosition = requires(T t) {
+        { t.barycenter() } -> std::same_as<typename T::VectorType>;
+        { t.barycenterDistance() } -> std::same_as<typename T::Scalar>;
+    };
 
 /*!
     \brief Compute the barycenter of the input points

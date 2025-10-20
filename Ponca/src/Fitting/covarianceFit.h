@@ -8,8 +8,9 @@
 */
 
 #pragma once
-#include "./defines.h"
 
+#include "./defines.h"
+#include "./mean.h"
 #include <Eigen/Dense>
 
 namespace Ponca
@@ -50,6 +51,7 @@ namespace Ponca
  */
 
     template < class DataPoint, class _WFunctor, typename T>
+    requires ProvidesMeanPosition<T>
     class CovarianceFitBase : public T
     {
     PONCA_FITTING_DECLARE_DEFAULT_TYPES
