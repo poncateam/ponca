@@ -12,7 +12,6 @@
 
 namespace Ponca {
 
-
     template<typename T>
     concept ProvidesMeanPosition = requires(T t) {
         { t.barycenter() } -> std::same_as<typename T::VectorType>;
@@ -69,7 +68,7 @@ namespace Ponca {
         PONCA_MULTIARCH inline VectorType barycenterLocal() const {
             return (m_sumP / Base::getWeightSum());
         }
-
+        PONCA_PROVIDES(ProvidesMeanPosition, MeanPosition<DataPoint, _WFunctor, T>);
     }; //class MeanPosition
 
 /*!
