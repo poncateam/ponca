@@ -17,6 +17,8 @@
   */
 #include "../Common/defines.h"
 
+#define PONCA_PROVIDES(CONCEPT_NAME, ...) static_assert(CONCEPT_NAME<__VA_ARGS__>);
+
 #define PONCA_EXPLICIT_CAST_OPERATORS(CLASSNAME,CONVERTER)                                                         \
 /*! \brief Explicit conversion to CLASSNAME, to access methods potentially hidden by heritage */                   \
 PONCA_MULTIARCH inline                                                                                             \

@@ -8,8 +8,15 @@
 
 #include "./defines.h"
 #include "./primitive.h"
+#include <concepts>
 
 namespace Ponca {
+
+    template<typename T>
+    concept ProvidesMeanPosition = requires(T t) {
+        { t.barycenter() } -> std::same_as<typename T::VectorType>;
+        { t.barycenterDistance() } -> std::same_as<typename T::Scalar>;
+    };
 
 /*!
     \brief Compute the barycenter of the input points
@@ -61,7 +68,7 @@ namespace Ponca {
         PONCA_MULTIARCH inline VectorType barycenterLocal() const {
             return (m_sumP / Base::getWeightSum());
         }
-
+        PONCA_PROVIDES(ProvidesMeanPosition, MeanPosition<DataPoint, _WFunctor, T>);
     }; //class MeanPosition
 
 /*!
