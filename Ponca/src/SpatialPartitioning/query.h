@@ -88,6 +88,10 @@ struct  OUT_TYPE##PointQuery : Query<QueryInputIsPosition<DataPoint>, \
 
         inline QueryInputIsIndex(const InputType &point = -1)
                 : Base(point) {}
+
+        inline void operator()(const InputType &point = InputType::Zero()){
+            Base::editInput(point);
+        }
     protected:
         /// Functor used to check if a given Idx must be skipped
         template <typename IndexType>
@@ -106,6 +110,10 @@ struct  OUT_TYPE##PointQuery : Query<QueryInputIsPosition<DataPoint>, \
 
         inline QueryInputIsPosition(const InputType &point = InputType::Zero())
                 : Base(point) {}
+
+        inline void operator()(const InputType &point = InputType::Zero()){
+            Base::editInput( point );
+        }
     protected:
         /// Functor used to check if a given Idx must be skipped
         template <typename IndexType>
