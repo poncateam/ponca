@@ -31,9 +31,6 @@ public:
 
     PONCA_MULTIARCH inline explicit NeighborhoodFrameBase(const VectorType & _evalPos = VectorType::Zero()) : m_p(_evalPos) {}
 
-    /// \brief Get access to basis center location in global coordinate system
-    PONCA_MULTIARCH inline VectorType basisCenter() const { return isLocal ? m_p : VectorType::Zero(); }
-
     /*!
      * \brief Convert position from local to global coordinate system if isLocal is `true`
      * @param _q Position in local coordinate
