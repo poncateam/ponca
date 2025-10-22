@@ -52,10 +52,13 @@ void testFunction(typename DataPoint::Scalar lowPrecisionEpsilon = typename Data
     coeff.y() = std::copysign(coeff.y(), coeff.x());
 
     Scalar width = Eigen::internal::random<Scalar>(1., 10.);
-    VectorType center = 1000 * VectorType::Random();
+    // maximum offset is <10 unit. it is plenty enough to test local/global basis robustness, without introducing
+    // rounding errors
+    Scalar offset = Eigen::internal::random<Scalar>(1., 10.);
+    VectorType center = offset*VectorType::Random();
 
     Scalar zmax = std::abs((coeff[0] + coeff[1]) * width*width);
-    Scalar analysisScale = std::sqrt(zmax*zmax + width*width);
+    Scalar analysisScale = std::sqrt(zmax*zmax + width*width + offset);
 
     Fit fit;
     fit.setNeighborFilter({center, analysisScale});
@@ -118,17 +121,17 @@ void callSubTests()
     typedef PointPositionNormal<Scalar, Dim> Point;
 
     typedef DistWeightFunc<Point, SmoothWeightKernel<Scalar> > WeightSmoothFunc;
-    typedef DistWeightFunc<Point, ConstantWeightKernel<Scalar> > WeightConstantFunc;
-    typedef DistWeightFuncGlobal<Point, ConstantWeightKernel<Scalar> > WeightConstantFuncGlobal;
-    typedef DistWeightFuncGlobal<Point, SmoothWeightKernel<Scalar> > WeightSmoothFuncGlobal;
+    typedef Ponca::DistWeightFunc<Point, Ponca::ConstantWeightKernel<Scalar> > WeightConstantFuncLocal;
+    typedef Ponca::NoWeightFuncGlobal<Point> NoWeightFuncGlobal;
+    typedef Ponca::NoWeightFunc<Point> NoWeightFunc;
 
     cout << "Testing with parabola..." << endl;
     for(int i = 0; i < g_repeat; ++i)
     {
         CALL_SUBTEST(( testFunction<Point, WeightSmoothFunc>() ));
-        CALL_SUBTEST(( testFunction<Point, WeightSmoothFuncGlobal>(0.1) ));
-        CALL_SUBTEST(( testFunction<Point, WeightConstantFunc>() ));
-        CALL_SUBTEST(( testFunction<Point, WeightConstantFuncGlobal>(0.1) ));
+        CALL_SUBTEST(( testFunction<Point, WeightConstantFuncLocal>() ));
+        CALL_SUBTEST(( testFunction<Point, NoWeightFuncGlobal>() ));
+        CALL_SUBTEST(( testFunction<Point, NoWeightFunc>() ));
     }
     cout << "Ok!" << endl;
 }

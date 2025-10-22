@@ -139,27 +139,27 @@ void callSubTests()
     typedef PointPositionNormal<Scalar, Dim> Point;
 
     typedef DistWeightFunc<Point, SmoothWeightKernel<Scalar> > WeightSmoothFunc;
-    typedef DistWeightFunc<Point, ConstantWeightKernel<Scalar> > WeightConstantFunc;
-    typedef DistWeightFuncGlobal<Point, ConstantWeightKernel<Scalar> > WeightConstantFuncGlobal;
-    typedef NoWeightFunc<Point> WeightConstantFunc2;
+    typedef Ponca::DistWeightFunc<Point, Ponca::ConstantWeightKernel<Scalar> > WeightConstantFuncLocal;
+    typedef Ponca::NoWeightFuncGlobal<Point> NoWeightFuncGlobal;
+    typedef Ponca::NoWeightFunc<Point> NoWeightFunc;
 
     typedef Basket<Point, WeightSmoothFunc, CovariancePlaneFit> CovFitSmooth;
-    typedef Basket<Point, WeightConstantFunc, CovariancePlaneFit> CovFitConstant;
-    typedef Basket<Point, WeightConstantFunc2, CovariancePlaneFit> CovFitConstant2;
-    typedef Basket<Point, WeightConstantFuncGlobal, CovariancePlaneFit> CovFitConstantGlobal;
+    typedef Basket<Point, WeightConstantFuncLocal, CovariancePlaneFit> CovFitConstant;
+    typedef Basket<Point, NoWeightFunc, CovariancePlaneFit> CovFitConstant2;
+    typedef Basket<Point, NoWeightFuncGlobal, CovariancePlaneFit> CovFitConstantGlobal;
 
     typedef Basket<Point, WeightSmoothFunc, MeanPlaneFit> MeanFitSmooth;
-    typedef Basket<Point, WeightConstantFunc, MeanPlaneFit> MeanFitConstant;
-    typedef Basket<Point, WeightConstantFunc2, MeanPlaneFit> MeanFitConstant2;
-    typedef Basket<Point, WeightConstantFuncGlobal, MeanPlaneFit> MeanFitConstantGlobal;
+    typedef Basket<Point, WeightConstantFuncLocal, MeanPlaneFit> MeanFitConstant;
+    typedef Basket<Point, NoWeightFunc, MeanPlaneFit> MeanFitConstant2;
+    typedef Basket<Point, NoWeightFuncGlobal, MeanPlaneFit> MeanFitConstantGlobal;
 
     // test if conflicts are detected
     //! [Conflicting type]
-    typedef Basket<Point, WeightConstantFunc, Plane,
+    typedef Basket<Point, NoWeightFuncGlobal, Plane,
             MeanNormal, MeanPosition, MeanPlaneFitImpl,
             CovarianceFitBase, CovariancePlaneFitImpl> Hybrid1; //test conflict detection in one direction
     //! [Conflicting type]
-    typedef Basket<Point, WeightConstantFunc, Plane,
+    typedef Basket<Point, NoWeightFuncGlobal, Plane,
             MeanPosition, CovarianceFitBase, CovariancePlaneFitImpl,
             MeanNormal, MeanPlaneFitImpl> Hybrid2;  //test conflict detection in the second direction
 
