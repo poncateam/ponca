@@ -6,27 +6,16 @@
 
 #pragma once
 
-template<class DataPoint, bool isLocal>
-typename NeighborhoodFrameBase<DataPoint, isLocal>::VectorType
-NeighborhoodFrameBase<DataPoint, isLocal>::convertToGlobalBasis(const VectorType& _q) const
-{
-    return _q + m_p;
-}
-
-template<class DataPoint, bool isLocal>
-typename NeighborhoodFrameBase<DataPoint, isLocal>::VectorType
-NeighborhoodFrameBase<DataPoint, isLocal>::convertToLocalBasis(const VectorType& _q) const
-{
-    return _q - m_p;
-}
-
 template <class DataPoint, class WeightKernel>
 typename DistWeightFunc<DataPoint, WeightKernel>::WeightReturnType
 DistWeightFunc<DataPoint, WeightKernel>::operator()( const DataPoint& _q) const
 {
     const auto lq = NeighborhoodFrame::convertToLocalBasis(_q.pos());
     Scalar d  = lq.norm();
-    return { (d <= m_t) ? m_wk.f(d/m_t) : Scalar(0.), lq };
+    if (isCompact) // compile-time branching
+        return { (d <= m_t) ? m_wk.f(d/m_t) : Scalar(0.), lq };
+    else
+        return {m_wk.f(d/m_t), lq};
 }
 
 template <class DataPoint, class WeightKernel>
@@ -38,7 +27,8 @@ DistWeightFunc<DataPoint, WeightKernel>::spacedw( const VectorType& _q,
     VectorType result = VectorType::Zero();
     const auto q = NeighborhoodFrame::convertToLocalBasis(_q);
     Scalar d = q.norm();
-    if (d <= m_t && d != Scalar(0.)) result = (q / (d * m_t)) * m_wk.df(d/m_t);
+    // isCompact is tested at compile-time
+    if ((!isCompact) || (d <= m_t && d != Scalar(0.))) result = (q / (d * m_t)) * m_wk.df(d / m_t);
     return result;
 }
 
@@ -51,7 +41,7 @@ DistWeightFunc<DataPoint, WeightKernel>::spaced2w( const VectorType& _q,
     MatrixType result = MatrixType::Zero();
     const auto q = NeighborhoodFrame::convertToLocalBasis(_q);
     Scalar d = q.norm();
-    if (d <= m_t && d != Scalar(0.))
+    if ((!isCompact) ||(d <= m_t && d != Scalar(0.)))
     {
         Scalar der = m_wk.df(d/m_t);
         result = q*q.transpose()/d*(m_wk.ddf(d/m_t)/m_t - der/d);
@@ -68,7 +58,7 @@ DistWeightFunc<DataPoint, WeightKernel>::scaledw( const VectorType& _q,
 {
     static_assert(WeightKernel::isDValid, "First order derivatives are required");
     Scalar d  = NeighborhoodFrame::convertToLocalBasis(_q).norm();
-    return (d <= m_t) ? Scalar( - d*m_wk.df(d/m_t)/(m_t*m_t) ) : Scalar(0.);
+    return ((!isCompact) ||(d <= m_t)) ? Scalar( - d*m_wk.df(d/m_t)/(m_t*m_t) ) : Scalar(0.);
 }
 
 template <class DataPoint, class WeightKernel>
@@ -78,7 +68,7 @@ DistWeightFunc<DataPoint, WeightKernel>::scaled2w( const VectorType& _q,
 {
     static_assert(WeightKernel::isDDValid, "Second order derivatives are required");
     Scalar d  = NeighborhoodFrame::convertToLocalBasis(_q).norm();
-    return (d <= m_t) ? Scalar(Scalar(2.)*d/(m_t*m_t*m_t)*m_wk.df(d/m_t) +
+    return ((!isCompact) ||(d <= m_t)) ? Scalar(Scalar(2.)*d/(m_t*m_t*m_t)*m_wk.df(d/m_t) +
                                d*d/(m_t*m_t*m_t*m_t)*m_wk.ddf(d/m_t)) :
                         Scalar(0.);
 }
@@ -92,7 +82,7 @@ DistWeightFunc<DataPoint, WeightKernel>::scaleSpaced2w( const VectorType& _q,
     VectorType result = VectorType::Zero();
     const auto q = NeighborhoodFrame::convertToLocalBasis(_q);
     Scalar d = q.norm();
-    if (d <= m_t && d != Scalar(0.))
+    if ((!isCompact) ||(d <= m_t && d != Scalar(0.)))
         result = -q/(m_t*m_t)*(m_wk.df(d/m_t)/d + m_wk.ddf(d/m_t)/m_t);
     return result;
 }

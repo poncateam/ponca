@@ -23,28 +23,17 @@ CovariancePlaneFitImpl<DataPoint, _NFilter, T>::finalize ()
 }
 
 template < class DataPoint, class _NFilter, typename T>
-template <bool ignoreTranslation>
 typename CovariancePlaneFitImpl<DataPoint, _NFilter, T>::VectorType
 CovariancePlaneFitImpl<DataPoint, _NFilter, T>::worldToTangentPlane (const VectorType& _q) const
 {
-  if (ignoreTranslation)
-    return Base::m_solver.eigenvectors().transpose() * _q;
-  else {
-    // apply rotation and translation to get uv coordinates
     return Base::m_solver.eigenvectors().transpose() * (Base::getNeighborFilter().convertToLocalBasis(_q));
-  }
 }
 
 template < class DataPoint, class _NFilter, typename T>
-template <bool ignoreTranslation>
 typename CovariancePlaneFitImpl<DataPoint, _NFilter, T>::VectorType
 CovariancePlaneFitImpl<DataPoint, _NFilter, T>::tangentPlaneToWorld (const VectorType& _lq) const
 {
-  if (ignoreTranslation)
-    return Base::m_solver.eigenvectors().transpose().inverse() * _lq;
-  else {
     return Base::getNeighborFilter().convertToGlobalBasis(Base::m_solver.eigenvectors().transpose().inverse() * _lq);
-  }
 }
 
 

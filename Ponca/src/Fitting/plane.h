@@ -103,7 +103,6 @@ public:
     }
 
     //! \brief Project a point on the plane
-    template <typename NF = NeighborFilter, std::enable_if_t<NF::isLocal, int> = 0> // Enable project only if NF::isLocal
     PONCA_MULTIARCH inline VectorType project (const VectorType& _q) const
     {
         // Project on the normal vector and add the offset value

@@ -5,7 +5,6 @@
 */
 
 template <class DataPoint, class _NFilter, typename T>       // Outer template for the class
-template <typename NF, std::enable_if_t<NF::isLocal, int>>   // Inner template of the method to enable project only if NF::isLocal
 typename AlgebraicSphere<DataPoint, _NFilter, T>::VectorType // Return type
 AlgebraicSphere<DataPoint, _NFilter, T>::project(const VectorType& _q) const
 {

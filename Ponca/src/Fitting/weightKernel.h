@@ -27,6 +27,10 @@ public:
     /*! \brief Scalar type defined outside the class */
     typedef _Scalar Scalar;
 
+    /// \brief The kernel is compact and shall not be evaluated outside of the scale bounds.
+    /// \see #NoWeightFunc and #NoWeightFuncGlobal for alternative way to use uniform weight.
+    static constexpr bool isCompact = true;
+
     // Init
     //! \brief Default constructor that could be used to set the returned value
     PONCA_MULTIARCH inline ConstantWeightKernel(const Scalar& _value = Scalar(1.)) : m_y(_value){}
@@ -52,7 +56,7 @@ private:
 
 
 /*!
-    \brief Smooth WeightKernel of 2nd degree, defined in \f$\left[0 : 1\right]\f$
+    \brief Compact smooth WeightKernel of 2nd degree, defined in \f$\left[0 : 1\right]\f$
     Special case of PolynomialSmoothWeightKernel<Scalar, 2, 2>
 
     \inherit Concept::WeightKernelConcept
@@ -63,6 +67,9 @@ class SmoothWeightKernel
 public:
     /*! \brief Scalar type defined outside the class*/
     typedef _Scalar Scalar;
+
+    /// \brief The kernel is compact and shall not be evaluated outside of the scale bounds.
+    static constexpr bool isCompact = true;
 
     // Functor
     /*! \brief Defines the smooth weighting function \f$ w(x) = (x^2-1)^2 \f$ */
@@ -78,7 +85,7 @@ public:
 };//class SmoothWeightKernel
 
 /*!
-    \brief Generalised version of SmoothWeightKernel with arbitrary degrees : \f$ w(x)=(x^n-1)^m \f$
+    \brief Compact generalised version of SmoothWeightKernel with arbitrary degrees : \f$ w(x)=(x^n-1)^m \f$
 
     \inherit Concept::WeightKernelConcept
 */
@@ -86,9 +93,12 @@ template <typename _Scalar, int m, int n>
 class PolynomialSmoothWeightKernel
 {
 public:
-
     /*! \brief Scalar type defined outside the class*/
     typedef _Scalar Scalar;
+
+    /// \brief The kernel is compact and shall not be evaluated outside of the scale bounds.
+    static constexpr bool isCompact = true;
+
     // Functor
     /*! \brief Defines the smooth weighting function \f$  w(x)=(x^n-1)^m \f$ */
     PONCA_MULTIARCH inline Scalar f  (const Scalar& _x) const {
@@ -132,19 +142,21 @@ public:
 };//class PolynomialSmoothWeightKernel
 
 /*!
-    \brief Wendland WeightKernel defined in \f$\left[0 : 1\right]\f$
+    \brief Compact Wendland WeightKernel defined in \f$\left[0 : 1\right]\f$
 
     \inherit Concept::WeightKernelConcept
 
     Weight function is an implementation of equation 2 in \cite Alexa:2009:Hermite
 */
-
 template <typename _Scalar>
 class WendlandWeightKernel
 {
 public:
     /*! \brief Scalar type defined outside the class*/
     typedef _Scalar Scalar;
+
+    /// \brief The kernel is compact and shall not be evaluated outside of the scale bounds.
+    static constexpr bool isCompact = true;
 
     // Functor
     /*! \brief Defines the Wendland weighting function \f$ w(x) = (1-x)^4(4x+1) \f$ */
@@ -170,7 +182,7 @@ public:
 
 
 /*!
-    \brief Singular WeightKernel defined in \f$\left]0 : 1\right]\f$
+    \brief Compact singular WeightKernel defined in \f$\left]0 : 1\right]\f$
 
     \inherit Concept::WeightKernelConcept
 
@@ -183,6 +195,9 @@ class SingularWeightKernel
 public:
     /*! \brief Scalar type defined outside the class*/
     typedef _Scalar Scalar;
+
+    /// \brief The kernel is compact and shall not be evaluated outside of the scale bounds.
+    static constexpr bool isCompact = true;
 
     // Functor
     /*! \brief Defines the Singular weighting function \f$ w(x) = 1 / (x^2) \f$ */
@@ -220,20 +235,32 @@ public:
     /*! \brief Scalar type defined outside the class*/
     typedef _Scalar Scalar;
 
+    /// \brief The kernel is compact and shall not be evaluated outside of the scale bounds.
+    static constexpr bool isCompact = true;
+
     // Functor
     /*! \brief Defines the smooth weighting function \f$ w(x) = e^{-\frac{x^2}{1 - x^2}} \f$
      *  \see https://www.wolframalpha.com/input?i=e%5E%28-x%5E2%2F%281+-+x%5E2%29%29&assumption=%22ClashPrefs%22+-%3E+%7B%22Math%22%7D
      */
-    PONCA_MULTIARCH inline Scalar f  (const Scalar& _x) const { Scalar v = _x*_x; return exp(-v/(Scalar(1)-v)); }
+    PONCA_MULTIARCH inline Scalar f  (const Scalar& _x) const {
+        PONCA_MULTIARCH_STD_MATH(exp);
+        Scalar v = _x*_x;
+        return exp(-v/(Scalar(1)-v));
+    }
     /*! \brief Defines the smooth first order weighting function \f$ \nabla w(x) = -\frac{2 x e^{\frac{x^2}{x^2 - 1}}}{(1 - x^2)^2} \f$
      * \see https://www.wolframalpha.com/input?i2d=true&i=+-Divide%5B%5C%2840%292+Power%5Be%2C%5C%2840%29Power%5Bx%2CDivide%5B2%2C%5C%2840%29Power%5Bx%2C2%5D+-+1%5C%2841%29%5D%5D%5C%2841%29%5D+x%5C%2841%29%2CPower%5B%5C%2840%291+-+Power%5Bx%2C2%5D%5C%2841%29%2C2%5D%5D
      */
-    PONCA_MULTIARCH inline Scalar df (const Scalar& _x) const { Scalar v = _x*_x; Scalar mv = v-Scalar(1); return -(Scalar(2) * exp(v/mv) * _x)/(mv*mv); }
+    PONCA_MULTIARCH inline Scalar df (const Scalar& _x) const {
+        PONCA_MULTIARCH_STD_MATH(exp);
+        Scalar v = _x*_x; Scalar mv = v-Scalar(1); return -(Scalar(2) * exp(v/mv) * _x)/(mv*mv);
+    }
     /*! \brief Defines the smooth second order weighting function
      * \f$ \nabla^2 w(x) = \frac{2 e^\frac{x^2}{x^2 - 1} \left(4 x^{\frac{2}{x^2 - 1} + 2} log(x) - (x^2 - 1) \left(-3 x^2 + 2 x^\frac{2}{x^2 - 1} - 1\right)\right)}{(x^2 - 1)^4} \f$
      * \see \see https://www.wolframalpha.com/input?i2d=true&i=+-Divide%5B%5C%2840%292+Power%5Be%2C%5C%2840%29Power%5Bx%2CDivide%5B2%2C%5C%2840%29Power%5Bx%2C2%5D+-+1%5C%2841%29%5D%5D%5C%2841%29%5D+x%5C%2841%29%2CPower%5B%5C%2840%291+-+Power%5Bx%2C2%5D%5C%2841%29%2C2%5D%5D
      */
     PONCA_MULTIARCH inline Scalar ddf(const Scalar& _x) const {
+        PONCA_MULTIARCH_STD_MATH(exp);
+        PONCA_MULTIARCH_STD_MATH(pow);
         Scalar v = _x*_x;            // x^2
         Scalar mv = v-Scalar(1);     // x^2-1
         Scalar mvpow = Scalar(2)/mv; // 2/(x^2-1)
