@@ -274,5 +274,52 @@ public:
     static constexpr bool isDDValid = false;
 };//class CompactExpWeightKernel
 
+/*!
+    \brief Non-compact Gaussian WeightKernel
+
+    \note This is not a distribution, thus the kernel is not normalized in order to have \f$f(0)=1\f$.
+
+    \inherit Concept::WeightKernelConcept
+
+    \warning Also, as \f$\sigma=t\f$, a GaussianWeightKernel generates a larger weighting function than a
+    compact kernel, as \f$f(1)\approx 0.6\f$. In order to obtain a comparable weight, it is recommended to scale down
+    \f$t\f$ by a factor of \f$0.16\f$.
+
+
+*/
+    template <typename _Scalar>
+    class GaussianWeightKernel
+    {
+    public:
+        /*! \brief Scalar type defined outside the class*/
+        typedef _Scalar Scalar;
+
+        /// \brief The kernel is not compact and can be evaluated outside of the scale bounds.
+        static constexpr bool isCompact = false;
+
+        /*!
+         * \brief Defines the Gaussian weighting function \f$e^{\frac{-x^2}{2\sigma^2}}\f$.
+         *
+         * As \f$x\f$ is normalized wrt scale such that \f$ x \in [0:1]\f$, \f$\sigma=0\f$ and the gaussian kernel boils
+         * down to \f$e^{\frac{-x^2}{2}}\f$.
+         */
+        PONCA_MULTIARCH inline Scalar f  (const Scalar& _x) const {
+            PONCA_MULTIARCH_STD_MATH(exp);
+            return exp((-_x*_x)/Scalar(2));
+        }
+
+        /// \brief Defines the Gaussian weighting function first order derivative \f$e^{\frac{-x^2}{2\sigma^2}}x\f$.
+        PONCA_MULTIARCH inline Scalar df (const Scalar& _x) const {
+            return f(_x)*_x;
+        }
+        /// \brief Defines the Gaussian weighting function second order derivative \f$e^{\frac{-x^2}{2\sigma^2}}(x^2-1)\f$.
+        PONCA_MULTIARCH inline Scalar ddf(const Scalar& _x) const {
+            return f(_x)*(_x*_x-Scalar(1));
+        }
+        //! \brief #df is defined and valid on the definition interval
+        static constexpr bool isDValid = true;
+        //! \brief #ddf is defined and valid on the definition interval
+        static constexpr bool isDDValid = true;
+    };//class GaussianWeightKernel
 
 }// namespace Ponca
