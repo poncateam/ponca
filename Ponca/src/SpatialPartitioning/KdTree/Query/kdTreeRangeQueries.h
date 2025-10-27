@@ -33,7 +33,6 @@ protected:
 public:
     KdTreeRangeQueryBase(const KdTreeBase<Traits>* kdtree, Scalar radius, typename QueryType::InputType input) :
             KdTreeQuery<Traits>(kdtree), QueryType(radius, input){}
-
 public:
     inline Self& operator()(typename QueryType::InputType input, Scalar radius)
     { QueryAccelType::reset(); return QueryType::template operator()<Self>(input, radius); }

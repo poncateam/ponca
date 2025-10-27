@@ -286,6 +286,16 @@ public :
     {
         return KdTreeRangeIndexQuery<Traits>(this, r, index);
     }
+
+    KdTreeRangePointQuery<Traits> range_neighbors_empty_position() const
+    {
+        return KdTreeRangePointQuery<Traits>(this, VectorType::Zero(), 0);
+    }
+
+    KdTreeRangeIndexQuery<Traits> range_neighbors_empty_index() const
+    {
+        return KdTreeRangeIndexQuery<Traits>(this, 0, 0);
+    }
     
     // Utilities ---------------------------------------------------------------
 public:
