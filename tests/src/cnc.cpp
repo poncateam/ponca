@@ -63,7 +63,7 @@ typename DataPoint::Scalar generateSpherePC(KdTree<DataPoint>& tree) {
 }
 
 template<typename Fit>
-void testBasicFunctionalities(const KdTree<typename Fit::DataPoint>& tree) {
+void testBasicFunctionalities(const KdTree<typename Fit::DataPoint>& tree, typename Fit::Scalar analysisScale) {
     const auto& vectorPoints = tree.points();
     auto rng = std::default_random_engine {};
     typename Fit::Scalar eps = testEpsilon<typename Fit::Scalar>()*2;
@@ -76,7 +76,7 @@ void testBasicFunctionalities(const KdTree<typename Fit::DataPoint>& tree) {
 
         //! [Fit compute]
         Fit fit1;
-        fit1.setEvalPoint(fitInitPoints);
+        fit1.setWeightFunc({vectorPoints[i], analysisScale});
         fit1.compute( tree.points() );
         //! [Fit compute]
         VERIFY(fit1 == fit1);
@@ -84,15 +84,14 @@ void testBasicFunctionalities(const KdTree<typename Fit::DataPoint>& tree) {
 
         // compute the indices list
         std::vector<int> pointsIndex;
-        for (int j = 0; j < tree.points().size(); j++) {
+        for (int j = 0; j < tree.points().size(); j++)
             pointsIndex.push_back(j);
-        }
         // Shuffling the indices shouldn't change the outcome of this test
         std::shuffle(std::begin(pointsIndex), std::end(pointsIndex), rng);
 
         //! [Fit computeWithIds]
         Fit fit2;
-        fit2.setEvalPoint(fitInitPoints);
+        fit2.setWeightFunc({vectorPoints[i], analysisScale});
         fit2.computeWithIds( pointsIndex, tree.points() );
         //! [Fit computeWithIds]
 
@@ -106,7 +105,7 @@ void testBasicFunctionalities(const KdTree<typename Fit::DataPoint>& tree) {
 }
 
 /// \breif Compare the GaussianCurvature and kMean between two fit
-template<typename Fit1, typename Fit2>
+template<typename Fit1, typename Fit2, bool use_k_nearest_neighbors = true>
 void testCompareFit(const KdTree<typename Fit1::DataPoint>& tree, typename Fit1::Scalar analysisScale) {
     typedef typename Fit1::DataPoint DataPoint;
     typedef typename DataPoint::Scalar Scalar;
@@ -117,16 +116,25 @@ void testCompareFit(const KdTree<typename Fit1::DataPoint>& tree, typename Fit1:
     for(int i = 0; i < int(vectorPoints.size()); ++i) {
         // compute the indices list
         std::vector<int> pointsIndex;
-        for (const int j : tree.range_neighbors(i, analysisScale)) {
-            pointsIndex.push_back(j);
-        }
 
+        if constexpr (use_k_nearest_neighbors) {
+            pointsIndex.push_back(i);
+            for (int j : tree.k_nearest_neighbors(i, vectorPoints.size())) {
+                // Stops when we go past the analysis scale
+                if ((vectorPoints[i].pos() - vectorPoints[j].pos()).norm() > vectorPoints.size()) break;
+                pointsIndex.push_back(j);
+            }
+        } else {
+            for (const int j : tree.range_neighbors(i, analysisScale)) {
+                pointsIndex.push_back(j);
+            }
+        }
         Fit1 fit1;
         fit1.setWeightFunc({vectorPoints[i].pos(), analysisScale});
         fit1.computeWithIds(pointsIndex, vectorPoints);
 
         Fit2 fit2;
-        fit2.setEvalPoint(vectorPoints[i]);
+        fit2.setWeightFunc({vectorPoints[i], analysisScale});
         fit2.computeWithIds(pointsIndex, vectorPoints);
 
         Scalar eps = testEpsilon<Scalar>();
@@ -143,25 +151,25 @@ void callSubTests() {
     typedef PointPositionNormal<Scalar, Dim> Point;
     typedef typename Point::VectorType VectorType;
     //! [SpecializedPointType]
-    using SmoothWeightFunc   = Ponca::DistWeightFunc<Point, SmoothWeightKernel<Scalar> >;
+    using SmoothWeightFunc   = DistWeightFunc<Point, SmoothWeightKernel<Scalar> >;
     using FitASODiff = BasketDiff<
-            Basket<Point, SmoothWeightFunc, Ponca::OrientedSphereFit>,
-            DiffType::FitSpaceDer,
-            OrientedSphereDer, Ponca::MlsSphereFitDer,
-            CurvatureEstimatorBase, Ponca::NormalDerivativesCurvatureEstimator>;
+            Basket<Point, SmoothWeightFunc, OrientedSphereFit>,
+            FitSpaceDer,
+            OrientedSphereDer, MlsSphereFitDer,
+            CurvatureEstimatorBase, NormalDerivativesCurvatureEstimator>;
 
     //! [CNCFitType]
-    using Fit_CNC_Independent = CNC<Point, TriangleGenerationMethod::IndependentGeneration>;
-    using Fit_CNC_Uniform = CNC<Point, TriangleGenerationMethod::UniformGeneration>;
-    using Fit_CNC_Hexagram = CNC<Point, TriangleGenerationMethod::HexagramGeneration>;
-    using Fit_CNC_AvgHexagram = CNC<Point, TriangleGenerationMethod::AvgHexagramGeneration>;
+    using Fit_CNC_Independent = CNC<Point, IndependentGeneration>;
+    using Fit_CNC_Uniform     = CNC<Point, UniformGeneration>;
+    using Fit_CNC_Hexagram    = CNC<Point, HexagramGeneration>;
+    using Fit_CNC_AvgHexagram = CNC<Point, AvgHexagramGeneration>;
     //! [CNCFitType]
 
     KdTreeDense<Point> tree;
     Scalar analysisScale = generateSpherePC(tree);
-    CALL_SUBTEST((testBasicFunctionalities<Fit_CNC_Independent>(tree) ));
-    CALL_SUBTEST((testBasicFunctionalities<Fit_CNC_Uniform>(tree) ));
-    CALL_SUBTEST((testBasicFunctionalities<Fit_CNC_Hexagram>(tree) ));
+    CALL_SUBTEST((testBasicFunctionalities<Fit_CNC_Independent>(tree, analysisScale) ));
+    CALL_SUBTEST((testBasicFunctionalities<Fit_CNC_Uniform>(tree, analysisScale) ));
+    CALL_SUBTEST((testBasicFunctionalities<Fit_CNC_Hexagram>(tree, analysisScale) ));
 
     // Compare with ASO
     CALL_SUBTEST((testCompareFit<FitASODiff, Fit_CNC_Independent>(tree, analysisScale) ));
@@ -176,11 +184,12 @@ int main(const int argc, char** argv) {
 
     cout << "Test for the CorrectedNormalCurrent fit method" << endl;
 
-    cout << "Tests CNC functions in 3 dimensions: float" << flush;
+    cout << "Tests CNC functions in 3 dimensions:";
+    cout << "float"              << flush;
     callSubTests<float, 3>();
-    cout << " (ok), double" << flush;
+    cout << " (ok), double"      << flush;
     callSubTests<double, 3>();
     cout << " (ok), long double" << flush;
     callSubTests<long double, 3>();
-    cout << " (ok)" << flush;
+    cout << " (ok)"              << flush;
 }
