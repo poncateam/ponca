@@ -11,6 +11,8 @@ All rights reserved.
 
 #include "defines.h"
 #include "cncFormulaEigen.h"
+#include "weightFunc.h"
+#include "weightKernel.h"
 
 
 namespace Ponca
@@ -71,6 +73,40 @@ struct Triangle {
 	DEFINE_CNC_FUNC(muXYInterpolatedU, MatrixType)
 };
 
+/// \copydoc Ponca::DistWeightFunc
+template <class DataPoint>
+class DistanceFilterWithNormal : public DistWeightFunc<DataPoint, ConstantWeightKernel<typename DataPoint::Scalar>> {
+public:
+    using Base       = DistWeightFunc<DataPoint, ConstantWeightKernel<typename DataPoint::Scalar>>;
+    /*! \brief Scalar type from DataPoint */
+    using Scalar     =  typename DataPoint::Scalar;
+    /*! \brief Vector type from DataPoint */
+    using VectorType =  typename DataPoint::VectorType;
+    /*! \brief Matrix type from DataPoint */
+    using MatrixType = typename DataPoint::MatrixType;
+    /*! \brief Return type of the method #w() */
+    using WeightReturnType = PONCA_MULTIARCH_CU_STD_NAMESPACE(pair)<Scalar, VectorType>;
+
+    /*!
+        \brief Constructor that defines the current evaluation scale
+        \warning t > 0
+    */
+    PONCA_MULTIARCH inline DistanceFilterWithNormal(
+        const VectorType & _evalPos = VectorType::Zero(),
+        const Scalar& _t = Scalar(1.),
+        const VectorType & _evalNormal = VectorType::Zero())
+    : Base::DistWeightFunc(_evalPos, _t), m_n(_evalNormal) {}
+
+    PONCA_MULTIARCH inline DistanceFilterWithNormal(
+        const DataPoint& _evalPoint,
+        const Scalar& _t = Scalar(1.))
+    : Base::DistWeightFunc(_evalPoint.pos(), _t), m_n(_evalPoint.normal()) {}
+
+    /*! \brief Access to the evaluation normal set during the initialization */
+    PONCA_MULTIARCH inline const VectorType & evalNormal() const { return m_n; }
+protected:
+    VectorType   m_n;  /*!< \brief Evaluation normal */
+};
 } // namespace internal
 
 /*!
@@ -95,10 +131,10 @@ public:
     using VectorType = typename DataPoint::VectorType;
     typedef Eigen::VectorXd  DenseVector;
     typedef Eigen::MatrixXd  DenseMatrix;
+    using WeightFunction = internal::DistanceFilterWithNormal<DataPoint>;
 protected:
 	// Basis
-    VectorType m_evalPointNormal = VectorType::Zero();
-    VectorType m_evalPointPos = VectorType::Zero();
+    WeightFunction m_w;
 
     // Triangles used for the computation
     int m_nb_vt {0}; // Number of valid triangles
@@ -143,18 +179,19 @@ public:
     template <typename IndexRange, typename PointContainer>
     PONCA_MULTIARCH inline FIT_RESULT computeWithIds( const IndexRange& ids, const PointContainer& points );
 
-    /*! \brief Returns the number of fitted triangles  */
+    /*! \brief Returns the number of fitted triangles */
     PONCA_MULTIARCH inline int getNumTriangles() const {
         return m_nb_vt;
     }
 
-	void setEvalPoint(const DataPoint& evalPoint) {
-        m_evalPointNormal = evalPoint.normal();
-        m_evalPointPos    = evalPoint.pos();
+    /*! \brief Returns the triangles */
+    PONCA_MULTIARCH inline int getTriangles() const {
+        return m_triangles;
     }
-    void setEvalPoint(const VectorType& evalPointNormal, const VectorType& evalPointPos) {
-        m_evalPointNormal = evalPointNormal;
-        m_evalPointPos    = evalPointPos;
+
+    PONCA_FITTING_APIDOC_SETWFUNC
+    PONCA_MULTIARCH inline void setWeightFunc (const WeightFunction& _w) {
+        m_w  = _w;
     }
 
     bool operator==(const CNC& other) const {

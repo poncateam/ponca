@@ -42,21 +42,30 @@ namespace Ponca::internal {
         static constexpr int maxTriangles {100};
     public:
         using VectorType = typename P::VectorType;
+        using Scalar     = typename P::Scalar;
 
-        template <typename IndexRange, typename PointContainer>
+        template <typename IndexRange, typename PointContainer, typename WeightFunc>
         static int generate(
             const IndexRange& ids,
             const PointContainer& points,
-            const VectorType& /*_evalPointPos*/, const VectorType& /*_evalPointNormal*/,
+            const WeightFunc& w,
             std::vector<Triangle<P>>& triangles
         ) {
             int nb_vt = 0; // Number of valid generated triangles
 
+            // Makes a new array
+            std::vector<int> indices(ids.size());
+            for (int i = 0; i < ids.size() ; ++i) {
+                if (w.w(points[ i ].pos(), points[ i ]).first != Scalar(0.))
+                    continue; // Skip the points that are outside the kernel radius
+                indices[i] = ids[i];
+            }
+
             for (int i = 0; i < maxTriangles; ++i) {
                 // Randomly select triangles
-                int i1 = ids[Eigen::internal::random<int>(0, ids.size()-1)];
-                int i2 = ids[Eigen::internal::random<int>(0, ids.size()-1)];
-                int i3 = ids[Eigen::internal::random<int>(0, ids.size()-1)];
+                int i1 = indices[Eigen::internal::random<int>(0, indices.size()-1)];
+                int i2 = indices[Eigen::internal::random<int>(0, indices.size()-1)];
+                int i3 = indices[Eigen::internal::random<int>(0, indices.size()-1)];
                 if (i1 == i2 || i1 == i3 || i2 == i3) continue;
 
                 triangles.push_back(internal::Triangle<P>(points[i1], points[i2], points[i3]));
@@ -73,21 +82,24 @@ namespace Ponca::internal {
         static constexpr int maxTriangles {100};
     public:
         using VectorType = typename P::VectorType;
-        using Scalar = typename P::Scalar;
+        using Scalar     = typename P::Scalar;
 
-        template <typename IndexRange, typename PointContainer>
+        template <typename IndexRange, typename PointContainer, typename WeightFunc>
         static int generate(
             const IndexRange& ids,
             const PointContainer& points,
-            const VectorType& /*_evalPointPos*/, const VectorType& /*_evalPointNormal*/,
+            const WeightFunc& w,
             std::vector<Triangle<P>>& triangles
         ) {
             int nb_vt = 0; // Number of valid generated triangles
 
             // Makes a new array to shuffle
             std::vector<int> indices(ids.size());
-            for (int i = 0; i < ids.size() ; ++i)
+            for (int i = 0; i < ids.size() ; ++i) {
+                if (w.w(points[ i ].pos(), points[ i ]).first != Scalar(0.))
+                    continue; // Skip the points that are outside the kernel radius
                 indices[i] = ids[i];
+            }
 
             // Shuffles the neighbors
             std::random_device rd;
@@ -116,22 +128,24 @@ namespace Ponca::internal {
     template <typename P>
     struct TriangleGenerator<HexagramGeneration, P> : protected HexagramBase<P> {
         using VectorType = typename P::VectorType;
-        using Scalar = typename P::Scalar;
+        using Scalar     = typename P::Scalar;
 
-        template <typename IndexRange, typename PointContainer>
+        template <typename IndexRange, typename PointContainer, typename WeightFunc>
         static int generate(
             const IndexRange& ids,
             const PointContainer& points,
-            const VectorType& _evalPointPos, const VectorType& _evalPointNormal,
+            const WeightFunc& w,
             std::vector<Triangle<P>>& triangles
         ) {
             // Compute normal and maximum distance.
-            VectorType c = _evalPointPos;
-            VectorType n = _evalPointNormal;
+            VectorType c = w.evalPos();
+            VectorType n = w.evalNormal();
             VectorType a {VectorType::Zero()};
             Scalar avg_d = Scalar(0);
 
             for ( int index : ids ) {
+                if (w.w(points[ index ].pos(), points[ index ]).first != Scalar(0.))
+                    continue; // Skip the points that are outside the kernel radius
                 auto p = points[ index ];
                 avg_d += ( p.pos() - c ).norm();
                 a     += p.normal();
@@ -165,8 +179,8 @@ namespace Ponca::internal {
             for ( int i = 0 ; i < 6 ; i++ ) {
                 distance2[ i ] = avg_d * avg_d;
                 targets  [ i ] = avg_d * ( u * cos(i * M_PI / 3.0) + v * sin(i * M_PI / 3.0) );
-                positions[ i ] = _evalPointPos;
-                normals  [ i ] = _evalPointNormal;
+                positions[ i ] = w.evalPos();
+                normals  [ i ] = w.evalNormal();
             }
 
             // Compute closest points.
@@ -195,25 +209,27 @@ namespace Ponca::internal {
     template <typename P>
     struct TriangleGenerator<AvgHexagramGeneration, P> : protected HexagramBase<P> {
         using VectorType = typename P::VectorType;
-        using Scalar = typename P::Scalar;
+        using Scalar     = typename P::Scalar;
 
-        template <typename IndexRange, typename PointContainer>
+        template <typename IndexRange, typename PointContainer, typename WeightFunc>
         static int generate(
             const IndexRange& ids,
             const PointContainer& points,
-            const VectorType& evalPointPos, const VectorType& evalPointNormal,
+            const WeightFunc& w,
             std::vector<Triangle<P>>& triangles
         ) {
             // Compute normal and maximum distance.
-            VectorType c = evalPointPos;
-            VectorType n = evalPointNormal;
-            VectorType a = evalPointNormal;
+            VectorType c = w.evalPos();
+            VectorType n = w.evalNormal();
+            VectorType a = w.evalNormal();
             Scalar avg_d = Scalar(0);
 
             std::array< VectorType,    6 > _targets;
             Scalar avg_normal  = Scalar(0.5);
 
             for ( int index : ids ) {
+                if (w.w(points[ index ].pos(), points[ index ]).first != Scalar(0.))
+                    continue; // Skip the points that are outside the kernel radius
                 a     += points[ index ].normal();
                 avg_d += ( points[ index ].pos() - c ).norm();
             }
@@ -265,8 +281,8 @@ namespace Ponca::internal {
 
             for (int i = 0 ; i < 6 ; i++) {
                 if ( array_nb[ i ] == 0 ) {
-                    array_avg_normals[ i ] = evalPointNormal;
-                    array_avg_pos    [ i ] = evalPointPos;
+                    array_avg_normals[ i ] = w.evalNormal();
+                    array_avg_pos    [ i ] = w.evalPos();
                 } else {
                     array_avg_normals[ i ] /= array_avg_normals[ i ].norm();
                     array_avg_pos    [ i ] /= array_nb[ i ];
@@ -292,7 +308,7 @@ namespace Ponca {
     FIT_RESULT CNC<P, M>::compute( const PointContainer& points ) {
         init();
         internal::BoundedIntRange indicesSample( points.size() );
-        m_nb_vt = internal::TriangleGenerator<M, P>::generate( indicesSample, points, m_evalPointPos, m_evalPointNormal, m_triangles);
+        m_nb_vt = internal::TriangleGenerator<M, P>::generate( indicesSample, points, m_w, m_triangles);
 
         return finalize();
     }
@@ -301,7 +317,7 @@ namespace Ponca {
     template <typename IndexRange, typename PointContainer>
     FIT_RESULT CNC<P, M>::computeWithIds( const IndexRange& ids, const PointContainer& points ) {
         init();
-        m_nb_vt = internal::TriangleGenerator<M, P>::generate( ids, points, m_evalPointPos, m_evalPointNormal, m_triangles);
+        m_nb_vt = internal::TriangleGenerator<M, P>::generate( ids, points, m_w, m_triangles);
         return finalize();
     }
 
@@ -349,7 +365,7 @@ namespace Ponca {
             m_G = Scalar(0);
         }
 
-        std::tie (m_k2, m_k1, m_v2, m_v1) = internal::CNCEigen<P>::curvaturesFromTensor(T, 1.0, m_evalPointNormal);
+        std::tie (m_k2, m_k1, m_v2, m_v1) = internal::CNCEigen<P>::curvaturesFromTensor(T, 1.0, m_w.evalNormal());
 
         return STABLE;
     }
