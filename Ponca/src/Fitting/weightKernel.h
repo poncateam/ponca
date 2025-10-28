@@ -308,9 +308,9 @@ public:
             return exp((-_x*_x)/Scalar(2));
         }
 
-        /// \brief Defines the Gaussian weighting function first order derivative \f$e^{\frac{-x^2}{2\sigma^2}}x\f$.
+        /// \brief Defines the Gaussian weighting function first order derivative \f$-e^{\frac{-x^2}{2\sigma^2}}x\f$.
         PONCA_MULTIARCH inline Scalar df (const Scalar& _x) const {
-            return f(_x)*_x;
+            return - f(_x)*_x;
         }
         /// \brief Defines the Gaussian weighting function second order derivative \f$e^{\frac{-x^2}{2\sigma^2}}(x^2-1)\f$.
         PONCA_MULTIARCH inline Scalar ddf(const Scalar& _x) const {
