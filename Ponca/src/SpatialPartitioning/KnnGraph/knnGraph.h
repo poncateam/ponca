@@ -113,6 +113,16 @@ public:
         return RangeIndexQuery(this, r, index);
     }
 
+    inline KNearestIndexQuery k_nearest_neighbors_empty_index() const
+    {
+        return KNearestIndexQuery(this, 0);
+    }
+
+    inline RangeIndexQuery range_neighbors_empty_index() const
+    {
+        return RangeIndexQuery(this, 0, 0);
+    }
+
     // Accessors ---------------------------------------------------------------
 public:
     /// \brief Number of neighbor per vertex

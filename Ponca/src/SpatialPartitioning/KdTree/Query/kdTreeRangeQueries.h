@@ -35,9 +35,15 @@ public:
             KdTreeQuery<Traits>(kdtree), QueryType(radius, input){}
 public:
     inline Self& operator()(typename QueryType::InputType input, Scalar radius)
-    { QueryAccelType::reset(); return QueryType::template operator()<Self>(input, radius); }
+    {
+        QueryAccelType::reset();
+        return QueryType::template operator()<Self>(input, radius);
+    }
     inline Self& operator()(typename QueryType::InputType input)
-    { QueryAccelType::reset(); return QueryType::template operator()<Self>(input); }
+    {
+        QueryAccelType::reset();
+        return QueryType::template operator()<Self>(input);
+    }
 
     inline Iterator begin(){
         QueryAccelType::reset();

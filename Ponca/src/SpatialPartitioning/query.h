@@ -236,7 +236,7 @@ struct  OUT_TYPE##PointQuery : Query<QueryInputIsPosition<DataPoint>, \
         template<typename Base>
         inline Base& operator()(const typename QueryInType::InputType &in){
             QueryInType:: operator()(in);
-            QueryOutType::reset();
+            // QueryOutType::reset();
             return *((Base*)(this));
         }
     };

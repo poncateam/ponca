@@ -35,6 +35,7 @@ public:
 #else
     using QueryType = Query<QueryInputIsIndex<typename Traits::IndexType>,KnnGraphQueryOutputType>;
 #endif
+    using Self      = KnnGraphKNearestQuery<Traits>;
 
 public:
     inline KnnGraphKNearestQuery(const KnnGraphBase<Traits>* graph, int index)
@@ -45,6 +46,12 @@ public:
     }
     inline Iterator end() const{
         return m_graph->index_data().begin() + (QueryType::input()+1) * m_graph->k();
+    }
+
+    inline Self& operator()(int index) {
+        QueryType::editInput(index);
+        // QueryType::reset();
+        return QueryType::template operator()<Self>(index);
     }
 
 protected:
