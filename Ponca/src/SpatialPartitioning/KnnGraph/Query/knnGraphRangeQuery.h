@@ -29,6 +29,7 @@ public:
     using Scalar     = typename DataPoint::Scalar;
     using VectorType = typename DataPoint::VectorType;
     using Iterator   = KnnGraphRangeIterator<Traits>;
+    using Self       = KnnGraphRangeQuery<Traits>;
 
 public:
     inline KnnGraphRangeQuery(const KnnGraphBase<Traits>* graph, Scalar radius, int index):
@@ -36,6 +37,13 @@ public:
             m_graph(graph),
             m_flag(),
             m_stack() {}
+
+    inline Self& operator()(int index, Scalar radius) {
+        QueryType::editInput(index);
+        QueryType::set_radius(radius);
+        QueryType::reset();
+        return QueryType::template operator()<Self>(index, radius);
+    }
 
 public:
     inline Iterator begin(){
