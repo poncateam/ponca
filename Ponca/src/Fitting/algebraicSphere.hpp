@@ -13,20 +13,22 @@ AlgebraicSphere<DataPoint, _NFilter, T>::project(const VectorType& _q) const
     // turn to centered basis
     const VectorType lq = Base::getNeighborFilter().convertToLocalBasis(_q);
 
-    Scalar potential = potentialLocal(lq);
-    VectorType grad = primitiveGradientLocal(lq);
-    Scalar norm = grad.norm();
 
-    Scalar t;
+
     if(isPlane())
     {
-        t = - potential / (norm*norm);
+        Scalar sqnorm = m_ul.squaredNorm();
+        return Base::getNeighborFilter().convertToGlobalBasis( lq - m_ul*(lq.dot(m_ul))/sqnorm );
     }
     else
     {
-        t = - (norm - sqrt(norm*norm - Scalar(4) * m_uq * potential)) / (Scalar(2) * m_uq * norm);
+        Scalar potential = potentialLocal(lq);
+        VectorType grad = primitiveGradientLocal(lq);
+        Scalar norm = grad.norm();
+        Scalar t = - (norm - sqrt(norm*norm - Scalar(4) * m_uq * potential)) / (Scalar(2) * m_uq * norm);
+        return Base::getNeighborFilter().convertToGlobalBasis( lq + t * grad );
     }
-    return Base::getNeighborFilter().convertToGlobalBasis( lq + t * grad );
+
 }
 
 template < class DataPoint, class _NFilter, typename T>
