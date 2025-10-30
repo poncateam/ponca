@@ -51,7 +51,7 @@ namespace Ponca
         //!
         //! The tangent plane can be calculated from the normal vector or from its
         //! derivatives, depending of the useNormal parameter
-        //! \todo Uniformize with tangentplane basis: these computations are not part of NormalDerivativesCurvature
+        //! \todo Uniformize with tangent plane basis: these computations are not part of NormalDerivativesCurvature
         PONCA_MULTIARCH [[nodiscard]] inline Mat32 tangentPlane(bool useNormal = false) const;
     };
 
@@ -93,8 +93,10 @@ public:
     typedef Eigen::SelfAdjointEigenSolver<MatrixType> Solver;
 
 protected:
-    MatrixType m_cov;   /*!< \brief Covariance matrix of the normal vectors \todo We have this somewhere else */
-    VectorType m_cog;   /*!< \brief Gravity center of the normal vectors \todo Use MeanNormal */
+    /*! \brief Covariance matrix of the normal vectors \todo We have this somewhere else */
+    MatrixType m_cov {MatrixType::Zero()};
+    /*! \brief Gravity center of the normal vectors \todo Use MeanNormal */
+    VectorType m_cog {VectorType::Zero()};
     Solver m_solver;    /*!< \brief Solver used to analyse the covariance matrix */
 
 public:
@@ -153,11 +155,11 @@ public:
     typedef Eigen::SelfAdjointEigenSolver<Mat22> Solver;
 
 protected:
-    Vector2 m_cog;      /*!< \brief Gravity center */
-    Mat22 m_cov;        /*!< \brief Covariance matrix */
-    Solver m_solver;    /*!< \brief Solver used to analyse the covariance matrix */
-    PASS m_pass;        /*!< \brief Current pass */
-    Mat32 m_tframe;     /*!< \brief Tangent frame */
+    Vector2 m_cog  {Vector2::Zero()}; /*!< \brief Gravity center */
+    Mat22 m_cov    {Mat22::Zero()};   /*!< \brief Covariance matrix */
+    PASS m_pass    {FIRST_PASS};      /*!< \brief Current pass */
+    Mat32 m_tframe {Mat32::Zero()};   /*!< \brief Tangent frame */
+    Solver m_solver;                  /*!< \brief Solver used to analyse the covariance matrix */
 
 public:
     PONCA_EXPLICIT_CAST_OPERATORS_DER(ProjectedNormalCovarianceCurvatureEstimator, projectedNormalCovarianceCurvature)

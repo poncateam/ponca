@@ -23,7 +23,7 @@ namespace Ponca
 
     This class inherits Eigen::ParametrizedLine.
 
-    This primitive requires the definition of n-dimensionnal vectors
+    This primitive requires the definition of n-d vectors
     (VectorType) in Concept::PointConcept.
 
     This primitive provides:

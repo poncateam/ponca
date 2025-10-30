@@ -285,8 +285,8 @@ namespace internal
         using Self = BasketDiff;
     public:
         using Base = typename internal::BasketDiffAggregate<BasketType,Type,Ext0,Exts...>::type;
-        /// Weight function
-        using WeightFunction = BSKNF;
+        /// Neighbor Filter
+        using NeighborFilter = BSKNF;
         /// Point type used for computation
         using DataPoint = BSKP;
         /// Scalar type used for computation, as defined from Basket
@@ -332,7 +332,7 @@ namespace internal
         /// Point type used for computation
         using DataPoint = P;
         /// Weighting function
-        using NeighborhoodFilter = NF;
+        using NeighborFilter = NF;
 
         WRITE_COMPUTE_FUNCTIONS
 
