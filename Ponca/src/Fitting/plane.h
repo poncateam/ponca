@@ -62,7 +62,7 @@ public:
     /// \brief Tell if the plane as been correctly set.
     /// Used to set CONFLICT_ERROR_FOUND during fitting
     /// \return false when called straight after #init. Should be true after fitting
-    PONCA_MULTIARCH inline bool isValid() const{
+    PONCA_MULTIARCH [[nodiscard]] inline bool isValid() const{
         return ! EigenBase::coeffs().isApprox(EigenBase::Coefficients::Zero());
     }
 
@@ -103,14 +103,14 @@ public:
 
     //! \brief Value of the scalar field at the evaluation point
     //! \see method `#isSigned` of the fit to check if the sign is reliable
-    PONCA_MULTIARCH inline Scalar potential ( ) const
+    PONCA_MULTIARCH [[nodiscard]] inline Scalar potential ( ) const
     {
         return EigenBase::signedDistance(VectorType::Zero());
     }
 
     //! \brief Value of the scalar field at the location \f$ \mathbf{q} \f$
     //! \see method `#isSigned` of the fit to check if the sign is reliable
-    PONCA_MULTIARCH inline Scalar potential (const VectorType& _q) const
+    PONCA_MULTIARCH [[nodiscard]] inline Scalar potential (const VectorType& _q) const
     {
         // turn to centered basis
         const VectorType lq = Base::getNeighborFilter().convertToLocalBasis(_q);
@@ -118,33 +118,33 @@ public:
     }
 
     //! \brief Project a point on the plane
-    PONCA_MULTIARCH inline VectorType project (const VectorType& _q) const
+    PONCA_MULTIARCH [[nodiscard]] inline VectorType project (const VectorType& _q) const
     {
         // Project on the normal vector and add the offset value
         return Base::getNeighborFilter().convertToGlobalBasis(EigenBase::projection(Base::getNeighborFilter().convertToLocalBasis(_q)));
     }
 
     //! \brief Scalar field gradient direction at the evaluation point
-    PONCA_MULTIARCH inline VectorType primitiveGradient () const
+    PONCA_MULTIARCH [[nodiscard]] inline VectorType primitiveGradient () const
     {
         // Uniform gradient defined only by the orientation of the plane
         return EigenBase::normal();
     }
 
     //! \brief Scalar field gradient direction at \f$ \mathbf{q}\f$
-    PONCA_MULTIARCH inline VectorType primitiveGradient (const VectorType& /*_q*/) const
+    PONCA_MULTIARCH [[nodiscard]] inline VectorType primitiveGradient (const VectorType& /*_q*/) const
     {
         // Uniform gradient defined only by the orientation of the plane
         return EigenBase::normal();
     }
 protected:
     /// \copydoc Plane::potential
-    PONCA_MULTIARCH inline Scalar potentialLocal (const VectorType& _lq) const {
+    PONCA_MULTIARCH [[nodiscard]] inline Scalar potentialLocal (const VectorType& _lq) const {
         // The potential is the distance from the point to the plane
         return EigenBase::signedDistance(_lq);
     }
     /// \copydoc Plane::primitiveGradient
-    PONCA_MULTIARCH inline VectorType primitiveGradientLocal (const VectorType&  /*_lq*/) const {
+    PONCA_MULTIARCH [[nodiscard]] inline VectorType primitiveGradientLocal (const VectorType&  /*_lq*/) const {
         return EigenBase::normal();
     }
 }; //class Plane

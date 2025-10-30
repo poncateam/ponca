@@ -44,7 +44,7 @@ namespace Ponca
         //! The finalize() method calls this function with useNormal=false by default.
         //! \todo Add a way to give user control to the tangent plane estimation
         //!
-        PONCA_MULTIARCH inline FIT_RESULT computeCurvature(bool useNormal = false);
+        PONCA_MULTIARCH [[nodiscard]] inline FIT_RESULT computeCurvature(bool useNormal = false);
 
     protected:
         //! \brief Compute a tangent plane basis
@@ -52,7 +52,7 @@ namespace Ponca
         //! The tangent plane can be calculated from the normal vector or from its
         //! derivatives, depending of the useNormal parameter
         //! \todo Uniformize with tangentplane basis: these computations are not part of NormalDerivativesCurvature
-        PONCA_MULTIARCH inline Mat32 tangentPlane(bool useNormal = false) const;
+        PONCA_MULTIARCH [[nodiscard]] inline Mat32 tangentPlane(bool useNormal = false) const;
     };
 
 

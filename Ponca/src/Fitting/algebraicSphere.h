@@ -57,7 +57,7 @@ protected:
 
 protected:
     //! \brief Is the implicit scalar field normalized using Pratt
-    bool m_isNormalized;
+    bool m_isNormalized {false};
 
 // results
 public:
@@ -86,7 +86,7 @@ public:
     /// \brief Tell if the sphere as been correctly set.
     /// Used to set CONFLICT_ERROR_FOUND during fitting
     /// \return false when called straight after #init. Should be true after fitting
-    PONCA_MULTIARCH inline bool isValid() const{
+    PONCA_MULTIARCH [[nodiscard]] inline bool isValid() const{
         return !( m_ul.isApprox(VectorType::Zero()) && m_uc == Scalar(0) && m_uq == Scalar(0) );
     }
 
@@ -101,7 +101,7 @@ public:
     }
     /// \brief Approximate operator \warning Assume that other shares the same basis \see changeBasis()
     template<typename Other>
-    PONCA_MULTIARCH inline bool isApprox(const Other& other, const Scalar& epsilon = Eigen::NumTraits<Scalar>::dummy_precision()) const{
+    PONCA_MULTIARCH [[nodiscard]] inline bool isApprox(const Other& other, const Scalar& epsilon = Eigen::NumTraits<Scalar>::dummy_precision()) const{
         PONCA_MULTIARCH_STD_MATH(pow);
         const Scalar squaredEpsilon = epsilon*epsilon;
         return  pow(m_uc - other.m_uc, Scalar(2)) < squaredEpsilon &&
@@ -157,14 +157,14 @@ public:
     }
 
     /*! \brief compute the Pratt norm of the implicit scalar field. */
-    PONCA_MULTIARCH inline Scalar prattNorm() const
+    PONCA_MULTIARCH [[nodiscard]] inline Scalar prattNorm() const
     {
         PONCA_MULTIARCH_STD_MATH(sqrt);
         return sqrt(prattNorm2());
     }
 
     /*! \brief compute the squared Pratt norm of the implicit scalar field. */
-    PONCA_MULTIARCH inline Scalar prattNorm2() const
+    PONCA_MULTIARCH [[nodiscard]] inline Scalar prattNorm2() const
     {
         return m_ul.squaredNorm() - Scalar(4.) * m_uc * m_uq;
     }
@@ -191,7 +191,7 @@ public:
         \brief return the estimated radius of the sphere
         \warning return inf if the fitted surface is planar
     */
-    PONCA_MULTIARCH inline Scalar radius() const
+    PONCA_MULTIARCH [[nodiscard]] inline Scalar radius() const
     {
         PONCA_MULTIARCH_STD_MATH(numeric_limits);
         if(isPlane())
@@ -206,7 +206,7 @@ public:
         \brief return the estimated center of the sphere
         \warning return Vector inf if the fitted surface is planar
     */
-    PONCA_MULTIARCH inline VectorType center() const
+    PONCA_MULTIARCH [[nodiscard]] inline VectorType center() const
     {
         PONCA_MULTIARCH_STD_MATH(numeric_limits);
         if(isPlane())
@@ -217,11 +217,11 @@ public:
     }
 
     //! \brief State indicating when the sphere has been normalized
-    PONCA_MULTIARCH inline bool isNormalized() const { return m_isNormalized; }
+    PONCA_MULTIARCH [[nodiscard]] inline bool isNormalized() const { return m_isNormalized; }
 
     //! \brief Value of the scalar field at the location \f$ \mathbf{q}\f$.
     //! \see method `#isSigned` of the fit to check if the sign is reliable
-    PONCA_MULTIARCH inline Scalar potential (const VectorType& _q) const
+    PONCA_MULTIARCH [[nodiscard]] inline Scalar potential (const VectorType& _q) const
     {
         // Turn to centered basis
         const VectorType lq = Base::getNeighborFilter().convertToLocalBasis(_q);
@@ -230,21 +230,21 @@ public:
 
     //! \brief Value of the scalar field at the evaluation point
     //! \see method `#isSigned` of the fit to check if the sign is reliable
-    PONCA_MULTIARCH inline Scalar potential() const { return m_uc; }
+    PONCA_MULTIARCH [[nodiscard]] inline Scalar potential() const { return m_uc; }
 
     /*!
        \brief Project a point on the algebraic hypersphere
 
         This projection is realized in closed-form: the algebraic hypersphere is converted
         to a geometrical representation (hyperplane or hypersphere), and _q is orthogonally
-        projected on the primtive.
+        projected on the primitive.
         \note This function is in most cases more accurate and faster than #projectDescent
      */
-    PONCA_MULTIARCH inline VectorType project (const VectorType& _q) const;
+    PONCA_MULTIARCH [[nodiscard]] inline VectorType project (const VectorType& _q) const;
 
     /*! \brief Approximation of the scalar field gradient at \f$ \mathbf{q}\f$
         \warning The gradient is not normalized by default */
-    PONCA_MULTIARCH inline VectorType primitiveGradient (const VectorType& _q) const
+    PONCA_MULTIARCH [[nodiscard]] inline VectorType primitiveGradient (const VectorType& _q) const
     {
         // Turn to centered basis
         const VectorType lq = Base::getNeighborFilter().convertToLocalBasis(_q);
@@ -253,13 +253,13 @@ public:
 
     /*! \brief Approximation of the scalar field gradient at the evaluation point
         \warning The gradient is not normalized by default */
-    PONCA_MULTIARCH inline const VectorType& primitiveGradient () const { return m_ul; }
+    PONCA_MULTIARCH [[nodiscard]] inline const VectorType& primitiveGradient () const { return m_ul; }
 
     /*!
         \brief Used to know if the fitting result to a plane
         \return true if finalize() have been called and the fitting result to a plane
     */
-    PONCA_MULTIARCH inline bool isPlane() const
+    PONCA_MULTIARCH [[nodiscard]] inline bool isPlane() const
     {
         PONCA_MULTIARCH_STD_MATH(abs);
         bool bPlanar   = Eigen::internal::isApprox(m_uq,Scalar(0)); 
@@ -269,10 +269,10 @@ public:
 
 protected:
     /// \copydoc AlgebraicSphere::potential
-    PONCA_MULTIARCH inline Scalar potentialLocal (const VectorType& _lq) const;
+    PONCA_MULTIARCH [[nodiscard]] inline Scalar potentialLocal (const VectorType& _lq) const;
 
     /// \copydoc AlgebraicSphere::primitiveGradient
-    PONCA_MULTIARCH inline VectorType primitiveGradientLocal (const VectorType& _lq) const;
+    PONCA_MULTIARCH [[nodiscard]] inline VectorType primitiveGradientLocal (const VectorType& _lq) const;
 }; //class AlgebraicSphere
 
 #include "algebraicSphere.hpp"

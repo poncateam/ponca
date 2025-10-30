@@ -35,27 +35,27 @@ namespace Ponca
         { return Base::addLocalNeighbor(w, localQ, attributes);}
 
         PONCA_FITTING_APIDOC_FINALIZE
-        PONCA_MULTIARCH inline FIT_RESULT finalize() { return Base::finalize(); }
+        PONCA_MULTIARCH [[nodiscard]] inline FIT_RESULT finalize() { return Base::finalize(); }
 
         //! \brief Simulate Scalar field computation
-        PONCA_MULTIARCH inline Scalar potential ( ) const { return Scalar(0); }
+        PONCA_MULTIARCH [[nodiscard]] inline Scalar potential ( ) const { return Scalar(0); }
 
         //! \brief Simulate Scalar field computation
-        PONCA_MULTIARCH inline Scalar potential (const VectorType& /*_q*/) const { return Scalar(0); }
+        PONCA_MULTIARCH [[nodiscard]] inline Scalar potential (const VectorType& /*_q*/) const { return Scalar(0); }
 
         //! \brief Simulate point projection
-        PONCA_MULTIARCH inline VectorType project (const VectorType& _q) const { return _q; }
+        PONCA_MULTIARCH [[nodiscard]] inline VectorType project (const VectorType& _q) const { return _q; }
 
         //! \brief Simulate gradient direction computation
-        PONCA_MULTIARCH inline VectorType primitiveGradient () const { return VectorType::Zero(); }
+        PONCA_MULTIARCH [[nodiscard]] inline VectorType primitiveGradient () const { return VectorType::Zero(); }
 
         //! \brief Simulate gradient direction computation
-        PONCA_MULTIARCH inline VectorType primitiveGradient (const VectorType&) const { return VectorType::Zero(); }
+        PONCA_MULTIARCH [[nodiscard]] inline VectorType primitiveGradient (const VectorType&) const { return VectorType::Zero(); }
     protected:
         /// \copydoc DryFit::potential
-        PONCA_MULTIARCH inline Scalar potentialLocal (const VectorType& /*_lq*/) const { return Scalar(0); }
+        PONCA_MULTIARCH [[nodiscard]] inline Scalar potentialLocal (const VectorType& /*_lq*/) const { return Scalar(0); }
         /// \copydoc DryFit::primitiveGradient
-        PONCA_MULTIARCH inline VectorType primitiveGradientLocal (const VectorType&  /*_lq*/) const { return VectorType::Zero(); }
+        PONCA_MULTIARCH [[nodiscard]] inline VectorType primitiveGradientLocal (const VectorType&  /*_lq*/) const { return VectorType::Zero(); }
     };
 
 } //namespace Ponca

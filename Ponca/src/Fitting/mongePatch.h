@@ -46,36 +46,36 @@ public:
     PONCA_FITTING_DECLARE_INIT_ADD_FINALIZE
 
     //! \brief Returns an estimate of the mean curvature
-    PONCA_MULTIARCH inline Scalar kMean() const;
+    PONCA_MULTIARCH [[nodiscard]] inline Scalar kMean() const;
 
     //! \brief Returns an estimate of the Gaussian curvature
-    PONCA_MULTIARCH inline Scalar GaussianCurvature() const;
+    PONCA_MULTIARCH [[nodiscard]] inline Scalar GaussianCurvature() const;
 
-    PONCA_MULTIARCH inline Scalar evalUV(Scalar u, Scalar v) const {
+    PONCA_MULTIARCH [[nodiscard]] inline Scalar evalUV(Scalar u, Scalar v) const {
       return h_uu()*u*u + h_vv()*v*v + h_uv()*u*v + h_u()*u + h_v()*v + h_c();
     }
 
     //! \brief Value of the scalar field at the evaluation point
     //! \see method `#isSigned` of the plane fit to check if the sign is reliable
-    PONCA_MULTIARCH inline Scalar potential(const VectorType& _q, const bool /*convertToLocalBasis*/ = true) const {
+    PONCA_MULTIARCH [[nodiscard]] inline Scalar potential(const VectorType& _q, const bool /*convertToLocalBasis*/ = true) const {
       VectorType x = Base::worldToTangentPlane(_q);
       return evalUV(*(x.data()+1),*(x.data()+2)) - *(x.data());
     }
 
     //! \brief Orthogonal projecting on the patch, such that h = f(u,v)
-    PONCA_MULTIARCH inline VectorType project (const VectorType& _q) const
+    PONCA_MULTIARCH [[nodiscard]] inline VectorType project (const VectorType& _q) const
     {
         VectorType x = Base::worldToTangentPlane(_q);
         *(x.data()) = evalUV(*(x.data()+1),*(x.data()+2));
         return Base::tangentPlaneToWorld(x);
     }
 
-    PONCA_MULTIARCH inline const Scalar & h_uu () const { return *(m_x.data()); }
-    PONCA_MULTIARCH inline const Scalar & h_vv () const { return *(m_x.data()+1); }
-    PONCA_MULTIARCH inline const Scalar & h_uv () const { return *(m_x.data()+2); }
-    PONCA_MULTIARCH inline const Scalar & h_u  () const { return *(m_x.data()+3); }
-    PONCA_MULTIARCH inline const Scalar & h_v  () const { return *(m_x.data()+4); }
-    PONCA_MULTIARCH inline const Scalar & h_c  () const { return *(m_x.data()+5); }
+    PONCA_MULTIARCH [[nodiscard]] inline const Scalar & h_uu () const { return *(m_x.data()); }
+    PONCA_MULTIARCH [[nodiscard]] inline const Scalar & h_vv () const { return *(m_x.data()+1); }
+    PONCA_MULTIARCH [[nodiscard]] inline const Scalar & h_uv () const { return *(m_x.data()+2); }
+    PONCA_MULTIARCH [[nodiscard]] inline const Scalar & h_u  () const { return *(m_x.data()+3); }
+    PONCA_MULTIARCH [[nodiscard]] inline const Scalar & h_v  () const { return *(m_x.data()+4); }
+    PONCA_MULTIARCH [[nodiscard]] inline const Scalar & h_c  () const { return *(m_x.data()+5); }
 
 };
 

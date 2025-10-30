@@ -50,28 +50,28 @@ namespace Ponca
         PONCA_FITTING_DECLARE_INIT
 
         /// \brief Returns true if contains valid curvature values (and not default ones)
-        PONCA_MULTIARCH inline bool isValid() const { return m_isValid; }
+        PONCA_MULTIARCH [[nodiscard]] inline bool isValid() const { return m_isValid; }
 
         /**************************************************************************/
         /* Use results                                                            */
         /**************************************************************************/
         //! \brief Returns an estimate of the minimal principal curvature value
-        PONCA_MULTIARCH inline Scalar kmin() const { return m_kmin; }
+        PONCA_MULTIARCH [[nodiscard]] inline Scalar kmin() const { return m_kmin; }
 
         //! \brief Returns an estimate of the maximal principal curvature value
-        PONCA_MULTIARCH inline Scalar kmax() const { return m_kmax; }
+        PONCA_MULTIARCH [[nodiscard]] inline Scalar kmax() const { return m_kmax; }
 
         //! \brief Returns an estimate of the minimal principal curvature direction
-        PONCA_MULTIARCH inline VectorType kminDirection() const { return m_vmin; }
+        PONCA_MULTIARCH [[nodiscard]] inline VectorType kminDirection() const { return m_vmin; }
 
         //! \brief Returns an estimate of the maximal principal curvature direction
-        PONCA_MULTIARCH inline VectorType kmaxDirection() const { return m_vmax; }
+        PONCA_MULTIARCH [[nodiscard]] inline VectorType kmaxDirection() const { return m_vmax; }
 
         //! \brief Returns an estimate of the mean curvature
-        PONCA_MULTIARCH inline Scalar kMean() const { return (m_kmin + m_kmax)/Scalar(2);}
+        PONCA_MULTIARCH [[nodiscard]] inline Scalar kMean() const { return (m_kmin + m_kmax)/Scalar(2);}
 
         //! \brief Returns an estimate of the Gaussian curvature
-        PONCA_MULTIARCH inline Scalar GaussianCurvature() const { return m_kmin * m_kmax;}
+        PONCA_MULTIARCH [[nodiscard]] inline Scalar GaussianCurvature() const { return m_kmin * m_kmax;}
 
     protected:
         /// \brief Set curvature values. To be called in finalize() by child classes

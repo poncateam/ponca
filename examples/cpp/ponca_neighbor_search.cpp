@@ -13,7 +13,7 @@ struct DataPoint
     enum {Dim = 3};
     using Scalar = float;
     using VectorType = Eigen::Vector<Scalar,Dim>;
-    inline const auto& pos() const {return m_pos;}
+    [[nodiscard]] inline const auto& pos() const {return m_pos;}
     VectorType m_pos;
 };
 

@@ -362,7 +362,7 @@ namespace internal
            \param _q Starting point
            \param nbIter Number of iterations (default = 16)
          */
-        PONCA_MULTIARCH inline VectorType projectDescent (const VectorType& _q, int nbIter = 16) const
+        PONCA_MULTIARCH [[nodiscard]] inline VectorType projectDescent (const VectorType& _q, int nbIter = 16) const
         {
             PONCA_MULTIARCH_STD_MATH(min)
 
