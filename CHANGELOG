@@ -6,6 +6,8 @@ Ponca changelog
 Current head (v.2.0 RC)
 - API
     - [fitting] Local basis refactor. Remove method localBasis() (#177)
+    - [fitting] Make projectDescent available for any `Basket` (#177)
+
 - Tests
     - [ci] Add barycenter test (#177)
 
