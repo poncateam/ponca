@@ -19,7 +19,7 @@ namespace Ponca
    \brief Empty fitting object doing no computation
  */
 
-    template < class DataPoint, class _WFunctor, typename T>
+    template < class DataPoint, class _NFilter, typename T>
     class DryFit :  public T
     {
     PONCA_FITTING_DECLARE_DEFAULT_TYPES

@@ -23,7 +23,7 @@ namespace Ponca
  * \note This class mixes the primitive (MongePatch) and its fitting procedure.
  *       Could makes sense to split the two
  */
-template < class DataPoint, class _WFunctor, typename T>
+template < class DataPoint, class _NFilter, typename T>
 class MongePatch : public T
 {
 PONCA_FITTING_DECLARE_DEFAULT_TYPES

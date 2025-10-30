@@ -62,13 +62,13 @@ struct WeightFuncAdapter<NoWeightFunc<PointT>>
     }
 };
 
-template<typename DataPoint, typename Fit, typename WeightFunc, bool _cSurfVar> //, typename Fit, typename WeightFunction>
+template<typename DataPoint, typename Fit, typename NeighborFilter, bool _cSurfVar> //, typename Fit, typename WeightFunction>
 void testFunction(bool _bUnoriented = false, bool _bAddPositionNoise = false, bool _bAddNormalNoise = false, bool conflictAnnounced = false)
 {
     // Define related structure
     typedef typename DataPoint::Scalar Scalar;
     typedef typename DataPoint::VectorType VectorType;
-    WeightFuncAdapter<WeightFunc> makeWeightFunc;
+    WeightFuncAdapter<NeighborFilter> makeWeightFunc;
     //generate sampled plane
     int nbPoints = Eigen::internal::random<int>(100, 1000);
 
@@ -123,7 +123,7 @@ void testFunction(bool _bUnoriented = false, bool _bAddPositionNoise = false, bo
     {
 
         Fit fit;
-        fit.setWeightFunc(makeWeightFunc(vectorPoints[i].pos(), analysisScale));
+        fit.setNeighborFilter(NeighborFilter(vectorPoints[i].pos(), analysisScale));
         fit.computeWithIds(tree.range_neighbors(vectorPoints[i].pos(),analysisScale),vectorPoints);
 
         auto ret = fit.getCurrentState();

@@ -31,7 +31,7 @@ namespace Ponca
     This primitive provides:
     \verbatim PROVIDES_PLANE \endverbatim
 */
-template < class DataPoint, class _WFunctor, typename T >
+template < class DataPoint, class _NFilter, typename T >
 class Plane : public T,
               public Eigen::Hyperplane<typename DataPoint::Scalar, DataPoint::Dim >
 {
@@ -66,12 +66,12 @@ public:
         return ! EigenBase::coeffs().isApprox(EigenBase::Coefficients::Zero());
     }
 
-    PONCA_MULTIARCH inline bool operator==(const Plane<DataPoint, WFunctor, T>& other) const{
+    PONCA_MULTIARCH inline bool operator==(const Plane<DataPoint, NeighborFilter, T>& other) const{
         return EigenBase::isApprox(other);
     }
 
     /*! \brief Comparison operator, convenience function */
-    PONCA_MULTIARCH inline bool operator!=(const Plane<DataPoint, WFunctor, T>& other) const{
+    PONCA_MULTIARCH inline bool operator!=(const Plane<DataPoint, NeighborFilter, T>& other) const{
         return ! ((*this) == other);
     }
 
@@ -98,14 +98,14 @@ public:
     PONCA_MULTIARCH inline Scalar potential (const VectorType& _q) const
     {
         // The potential is the distance from the point to the plane
-        return EigenBase::signedDistance(Base::m_w.convertToLocalBasis(_q) );
+        return EigenBase::signedDistance(Base::m_nFilter.convertToLocalBasis(_q) );
     }
 
     //! \brief Project a point on the plane
     PONCA_MULTIARCH inline VectorType project (const VectorType& _q) const
     {
         // Project on the normal vector and add the offset value
-        return Base::m_w.convertToGlobalBasis(EigenBase::projection(Base::m_w.convertToLocalBasis(_q)));
+        return Base::m_nFilter.convertToGlobalBasis(EigenBase::projection(Base::m_nFilter.convertToLocalBasis(_q)));
     }
 
     //! \brief Scalar field gradient direction at the evaluation point

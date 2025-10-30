@@ -24,7 +24,7 @@
 using namespace std;
 using namespace Ponca;
 
-template<typename Point, typename Fit, typename WeightFunc>
+template<typename Point, typename Fit, typename NeighborFilter>
 void testFunction()
 {
         // Define related structure
@@ -58,7 +58,7 @@ void testFunction()
         const auto &fitInitPos = vecs[k].pos();
 
         Fit fit;
-        fit.setWeightFunc(WeightFunc(fitInitPos, analysisScale));
+        fit.setNeighborFilter(NeighborFilter(fitInitPos, analysisScale));
         fit.compute(vecs);
 
         if(fit.isStable())
@@ -84,12 +84,12 @@ void callSubTests()
     using Point = PointPositionNormal<Scalar, Dim>;
 
     // We test only primitive functions and not the fitting procedure
-    using WeightFunc = DistWeightFunc<Point, SmoothWeightKernel<Scalar> >;
-    using Sphere     = Basket<Point, WeightFunc, OrientedSphereFit>;
+    using NeighborFilter = DistWeightFunc<Point, SmoothWeightKernel<Scalar> >;
+    using Sphere     = Basket<Point, NeighborFilter, OrientedSphereFit>;
 
     for(int i = 0; i < g_repeat; ++i)
     {
-        CALL_SUBTEST(( testFunction<Point, Sphere, WeightFunc>() ));
+        CALL_SUBTEST(( testFunction<Point, Sphere, NeighborFilter>() ));
     }
 }
 

@@ -4,9 +4,9 @@
  file, You can obtain one at http://mozilla.org/MPL/2.0/. 
 */
 
-template < class DataPoint, class _WFunctor, typename T>
+template < class DataPoint, class _NFilter, typename T>
 inline FIT_RESULT
-GLSParam<DataPoint, _WFunctor, T>::finalize()
+GLSParam<DataPoint, _NFilter, T>::finalize()
 {
     FIT_RESULT bResult = Base::finalize();
 
@@ -18,9 +18,9 @@ GLSParam<DataPoint, _WFunctor, T>::finalize()
     return bResult;
 }
 
-template < class DataPoint, class _WFunctor, int DiffType, typename T>
-typename GLSDer <DataPoint, _WFunctor, DiffType, T>::ScalarArray
-GLSDer <DataPoint, _WFunctor, DiffType, T>::dtau() const
+template < class DataPoint, class _NFilter, int DiffType, typename T>
+typename GLSDer <DataPoint, _NFilter, DiffType, T>::ScalarArray
+GLSDer <DataPoint, _NFilter, DiffType, T>::dtau() const
 {
     PONCA_MULTIARCH_STD_MATH(sqrt);
 
@@ -37,17 +37,17 @@ GLSDer <DataPoint, _WFunctor, DiffType, T>::dtau() const
 }
 
 
-template < class DataPoint, class _WFunctor, int DiffType, typename T>
-typename GLSDer <DataPoint, _WFunctor, DiffType, T>::VectorArray
-GLSDer <DataPoint, _WFunctor, DiffType, T>::deta() const
+template < class DataPoint, class _NFilter, int DiffType, typename T>
+typename GLSDer <DataPoint, _NFilter, DiffType, T>::VectorArray
+GLSDer <DataPoint, _NFilter, DiffType, T>::deta() const
 {
   return Base::dNormal();
 }
 
 
-template < class DataPoint, class _WFunctor, int DiffType, typename T>
-typename GLSDer <DataPoint, _WFunctor, DiffType, T>::ScalarArray
-GLSDer <DataPoint, _WFunctor, DiffType, T>::dkappa() const
+template < class DataPoint, class _NFilter, int DiffType, typename T>
+typename GLSDer <DataPoint, _NFilter, DiffType, T>::ScalarArray
+GLSDer <DataPoint, _NFilter, DiffType, T>::dkappa() const
 {
     PONCA_MULTIARCH_STD_MATH(sqrt);
 
@@ -59,35 +59,35 @@ GLSDer <DataPoint, _WFunctor, DiffType, T>::dkappa() const
 }
 
 
-template < class DataPoint, class _WFunctor, int DiffType, typename T>
-typename GLSDer <DataPoint, _WFunctor, DiffType, T>::ScalarArray
-GLSDer <DataPoint, _WFunctor, DiffType, T>::dtau_normalized() const
+template < class DataPoint, class _NFilter, int DiffType, typename T>
+typename GLSDer <DataPoint, _NFilter, DiffType, T>::ScalarArray
+GLSDer <DataPoint, _NFilter, DiffType, T>::dtau_normalized() const
 {
     return dtau();
 }
 
 
-template < class DataPoint, class _WFunctor, int DiffType, typename T>
-typename GLSDer <DataPoint, _WFunctor, DiffType, T>::VectorArray
-GLSDer <DataPoint, _WFunctor, DiffType, T>::deta_normalized() const
+template < class DataPoint, class _NFilter, int DiffType, typename T>
+typename GLSDer <DataPoint, _NFilter, DiffType, T>::VectorArray
+GLSDer <DataPoint, _NFilter, DiffType, T>::deta_normalized() const
 {
-    return Base::m_w.evalScale() * deta();
+    return Base::m_nFilter.evalScale() * deta();
 }
 
 
-template < class DataPoint, class _WFunctor, int DiffType, typename T>
-typename GLSDer <DataPoint, _WFunctor, DiffType, T>::ScalarArray
-GLSDer <DataPoint, _WFunctor, DiffType, T>::dkappa_normalized() const
+template < class DataPoint, class _NFilter, int DiffType, typename T>
+typename GLSDer <DataPoint, _NFilter, DiffType, T>::ScalarArray
+GLSDer <DataPoint, _NFilter, DiffType, T>::dkappa_normalized() const
 {
-    return dkappa() * Base::m_w.evalScale() * Base::m_w.evalScale();
+    return dkappa() * Base::m_nFilter.evalScale() * Base::m_nFilter.evalScale();
 }
 
 
 
 
-template < class DataPoint, class _WFunctor, int DiffType, typename T>
-typename GLSDer <DataPoint, _WFunctor, DiffType, T>::Scalar
-GLSDer <DataPoint, _WFunctor, DiffType, T>::geomVar(  Scalar wtau,
+template < class DataPoint, class _NFilter, int DiffType, typename T>
+typename GLSDer <DataPoint, _NFilter, DiffType, T>::Scalar
+GLSDer <DataPoint, _NFilter, DiffType, T>::geomVar(  Scalar wtau,
                                                       Scalar weta,
                                                       Scalar wkappa ) const
 {

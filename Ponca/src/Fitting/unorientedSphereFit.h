@@ -41,7 +41,7 @@ namespace Ponca
 
     \see class AlgebraicSphere, class OrientedSphereFit
 */
-template < class DataPoint, class _WFunctor, typename T >
+template < class DataPoint, class _NFilter, typename T >
 class UnorientedSphereFitImpl : public T
 {
 PONCA_FITTING_DECLARE_DEFAULT_TYPES
@@ -69,15 +69,15 @@ public:
 }; // class UnorientedSphereFitImpl
 
 /// \brief Helper alias for Oriented Sphere fitting on 3D points using UnorientedSphereFitImpl
-template < class DataPoint, class _WFunctor, typename T>
+template < class DataPoint, class _NFilter, typename T>
 using UnorientedSphereFit =
-UnorientedSphereFitImpl<DataPoint, _WFunctor,
-        MeanPosition<DataPoint, _WFunctor,
-                AlgebraicSphere<DataPoint, _WFunctor,T>>>;
+UnorientedSphereFitImpl<DataPoint, _NFilter,
+        MeanPosition<DataPoint, _NFilter,
+                AlgebraicSphere<DataPoint, _NFilter, T>>>;
 
 
 
-template < class DataPoint, class _WFunctor, int DiffType, typename T>
+template < class DataPoint, class _NFilter, int DiffType, typename T>
 class UnorientedSphereDerImpl : public T
 {
 protected:
@@ -118,10 +118,10 @@ public:
 }; //class UnorientedSphereDerImpl
 
 
-template < class DataPoint, class _WFunctor, int DiffType, typename T>
+template < class DataPoint, class _NFilter, int DiffType, typename T>
 using UnorientedSphereDer =
-    UnorientedSphereDerImpl<DataPoint, _WFunctor, DiffType,
-        MeanPositionDer<DataPoint, _WFunctor, DiffType, T>>;
+    UnorientedSphereDerImpl<DataPoint, _NFilter, DiffType,
+        MeanPositionDer<DataPoint, _NFilter, DiffType, T>>;
 
 
 } //namespace Ponca

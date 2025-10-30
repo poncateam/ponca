@@ -20,7 +20,7 @@ namespace Ponca {
     This primitive provides:
     \verbatim PROVIDES_MEAN_POSITION \endverbatim
 */
-    template<class DataPoint, class _WFunctor, typename T>
+    template<class DataPoint, class _NFilter, typename T>
     class MeanPosition : public T {
     PONCA_FITTING_DECLARE_DEFAULT_TYPES
 
@@ -38,7 +38,7 @@ namespace Ponca {
         /// Defined as \f$ b(\mathbf{x}) = \frac{\sum_i w_\mathbf{x}(\mathbf{p_i}) \mathbf{p_i}}{\sum_i w_\mathbf{x}(\mathbf{p_i})} \f$,
         ///  where \f$\left[\mathbf{p_i} \in \text{neighborhood}(\mathbf{x})\right]\f$ are all the point samples in \f$\mathbf{x}\f$'s neighborhood
         PONCA_MULTIARCH inline VectorType barycenter() const {
-            return Base::m_w.convertToGlobalBasis( barycenterLocal() );
+            return Base::m_nFilter.convertToGlobalBasis( barycenterLocal() );
         }
 
         /*! \brief The distance between the barycenter and the basis center.
@@ -82,7 +82,7 @@ namespace Ponca {
 
     \todo Add scale and space derivatives
 */
-    template<class DataPoint, class _WFunctor, typename T>
+    template<class DataPoint, class _NFilter, typename T>
     class MeanNormal : public T {
     PONCA_FITTING_DECLARE_DEFAULT_TYPES
 
@@ -105,7 +105,7 @@ namespace Ponca {
 
     }; //class MeanNormal
 
-    template<class DataPoint, class _WFunctor, int DiffType, typename T>
+    template<class DataPoint, class _NFilter, int DiffType, typename T>
     class MeanPositionDer : public T {
     PONCA_FITTING_DECLARE_DEFAULT_TYPES
     PONCA_FITTING_DECLARE_DEFAULT_DER_TYPES
@@ -152,7 +152,7 @@ namespace Ponca {
 
     }; //class MeanPositionDer
 
-    template<class DataPoint, class _WFunctor, int DiffType, typename T>
+    template<class DataPoint, class _NFilter, int DiffType, typename T>
     class MeanNormalDer : public T {
         PONCA_FITTING_DECLARE_DEFAULT_TYPES
         PONCA_FITTING_DECLARE_DEFAULT_DER_TYPES

@@ -31,7 +31,7 @@ using namespace Ponca;
 // if CheckCurvatures is true, then the test checks the coherence of kmin and kmax
 // it requires the use of BasketDiff in 3D, with the fitting extension CurvatureEstimatorBase
 //
-template<typename DataPoint, typename Fit, typename WeightFunc, bool CheckCurvatures = false> //, typename Fit, typename WeightFunction>
+template<typename DataPoint, typename Fit, typename NeighborFilter, bool CheckCurvatures = false>
 void testFunction(bool _bAddPositionNoise = false, bool _bAddNormalNoise = false)
 {
     // Define related structure
@@ -71,13 +71,13 @@ void testFunction(bool _bAddPositionNoise = false, bool _bAddNormalNoise = false
     {
         Fit fit, fitReverse100, fitReverseRandom;
 
-        fit.setWeightFunc(WeightFunc(vectorPoints[i].pos(), analysisScale));
+        fit.setNeighborFilter(NeighborFilter(vectorPoints[i].pos(), analysisScale));
         fit.compute(vectorPoints);
 
-        fitReverse100.setWeightFunc(WeightFunc(vectorReversedNormals100[i].pos(), analysisScale));
+        fitReverse100.setNeighborFilter(NeighborFilter(vectorReversedNormals100[i].pos(), analysisScale));
         fitReverse100.compute(vectorPoints);
 
-        fitReverseRandom.setWeightFunc(WeightFunc(vectorReversedNormalsRandom[i].pos(), analysisScale));
+        fitReverseRandom.setNeighborFilter(NeighborFilter(vectorReversedNormalsRandom[i].pos(), analysisScale));
         fitReverseRandom.compute(vectorPoints);
 
         if(fit.isStable() && fitReverse100.isStable() && fitReverseRandom.isStable())
