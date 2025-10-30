@@ -107,7 +107,7 @@ set(project_config "${generated_dir}/${PROJECT_NAME}Config.cmake")
 #set(targets_export_name "${PROJECT_NAME}Targets")
 #et(namespace "${PROJECT_NAME}::")
 
-## Include module with fuction 'write_basic_package_version_file'
+## Include module with function 'write_basic_package_version_file'
 include(CMakePackageConfigHelpers)
 
 # Configure '<PROJECT-NAME>ConfigVersion.cmake'
@@ -137,7 +137,7 @@ install(
 
 
 ################################################################################
-# Add code source, so it is visible in dev environements                       #
+# Add code source, so it is visible in dev environments                        #
 ################################################################################
 
 set(PONCA_src_ROOT "${CMAKE_CURRENT_SOURCE_DIR}/")
