@@ -1,8 +1,8 @@
 
 namespace Ponca {
-    template<class DataPoint, class _WFunctor, int DiffType, typename T>
+    template<class DataPoint, class _NFilter, int DiffType, typename T>
     void
-    CurvatureEstimatorBase<DataPoint, _WFunctor, DiffType, T>::init() {
+    CurvatureEstimatorBase<DataPoint, _NFilter, DiffType, T>::init() {
         Base::init();
         m_kmin = 0;
         m_kmax = 0;
@@ -12,9 +12,9 @@ namespace Ponca {
     }
 
 
-    template<class DataPoint, class _WFunctor, int DiffType, typename T>
+    template<class DataPoint, class _NFilter, int DiffType, typename T>
     void
-    CurvatureEstimatorBase<DataPoint, _WFunctor, DiffType, T>::setCurvatureValues(
+    CurvatureEstimatorBase<DataPoint, _NFilter, DiffType, T>::setCurvatureValues(
             Scalar kmin, Scalar kmax, const VectorType &vmin, const VectorType &vmax) {
         if(kmin <= kmax) {
             m_kmin = kmin;

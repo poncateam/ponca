@@ -24,7 +24,7 @@ namespace Ponca
 
     \todo Add local frame computation to enable PROVIDES_TANGENT_PLANE_BASIS
 */
-template < class DataPoint, class _WFunctor, typename T >
+template < class DataPoint, class _NFilter, typename T >
 class MeanPlaneFitImpl : public T
 {
 PONCA_FITTING_DECLARE_DEFAULT_TYPES
@@ -52,11 +52,11 @@ public:
 
 /// \brief Helper alias for Plane fitting on points using MeanPlaneFitImpl
 //! [MeanPlaneFit Definition]
-    template < class DataPoint, class _WFunctor, typename T>
+    template < class DataPoint, class _NFilter, typename T>
     using MeanPlaneFit =
-    MeanPlaneFitImpl<DataPoint, _WFunctor,
-        MeanNormal<DataPoint, _WFunctor,
-            MeanPosition<DataPoint, _WFunctor,
-                Plane<DataPoint, _WFunctor,T>>>>;
+    MeanPlaneFitImpl<DataPoint, _NFilter,
+        MeanNormal<DataPoint, _NFilter,
+            MeanPosition<DataPoint, _NFilter,
+                Plane<DataPoint, _NFilter, T>>>>;
 //! [MeanPlaneFit Definition]
 } //namespace Ponca

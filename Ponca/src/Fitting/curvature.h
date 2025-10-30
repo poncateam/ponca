@@ -13,7 +13,7 @@
 
 namespace Ponca
 {
-    template < class DataPoint, class _WFunctor, int DiffType, typename T>
+    template < class DataPoint, class _NFilter, int DiffType, typename T>
 /**
  *
  * \brief Base class for any 3d curvature estimator: holds \f$k_{\min}\f$, \f$k_{\max}\f$ and associated vectors,

@@ -49,7 +49,7 @@ namespace Ponca
    \warning This class is valid only in 3D.
  */
 
-    template < class DataPoint, class _WFunctor, typename T>
+    template < class DataPoint, class _NFilter, typename T>
     class CovarianceFitBase : public T
     {
     PONCA_FITTING_DECLARE_DEFAULT_TYPES
@@ -133,7 +133,7 @@ namespace Ponca
     computed by CovarianceFitBase
     \inherit Concept::FittingExtensionConcept
 */
-    template < class DataPoint, class _WFunctor, int DiffType, typename T>
+    template < class DataPoint, class _NFilter, int DiffType, typename T>
     class CovarianceFitDer : public T
     {
     PONCA_FITTING_DECLARE_DEFAULT_TYPES

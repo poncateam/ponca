@@ -69,8 +69,6 @@ void testBasicFunctionalities(const KdTree<typename Fit::DataPoint>& tree, typen
 
     // Define related structure
     typedef typename DataPoint::Scalar Scalar;
-    typedef typename DataPoint::VectorType VectorType;
-    typedef typename Fit::WFunctor WeightFunc;
 
     const auto& vectorPoints = tree.points();
 
@@ -85,7 +83,7 @@ void testBasicFunctionalities(const KdTree<typename Fit::DataPoint>& tree, typen
         // use addNeighbor
         //! [Fit Manual Traversal]
         Fit fit1;
-        fit1.setWeightFunc({fitInitPos, analysisScale});
+        fit1.setNeighborFilter({fitInitPos, analysisScale});
         fit1.init();
         for(auto it = vectorPoints.begin(); it != vectorPoints.end(); ++it)
            fit1.addNeighbor(*it);
@@ -95,7 +93,7 @@ void testBasicFunctionalities(const KdTree<typename Fit::DataPoint>& tree, typen
         // use compute function
         //! [Fit Compute]
         Fit fit2;
-        fit2.setWeightFunc({fitInitPos, analysisScale});
+        fit2.setNeighborFilter({fitInitPos, analysisScale});
         fit2.compute(vectorPoints);
         //! [Fit Compute]
 
@@ -109,7 +107,7 @@ void testBasicFunctionalities(const KdTree<typename Fit::DataPoint>& tree, typen
         VERIFY(! (fit2 != fit2));
 
         Fit fit3;
-        fit3.setWeightFunc({fitInitPos, analysisScale});
+        fit3.setNeighborFilter({fitInitPos, analysisScale});
         // Sort fit1
         std::list<int> neighbors3;
         for (int iNeighbor : tree.range_neighbors(fitInitPos, analysisScale))
@@ -131,12 +129,8 @@ void testIsSame(const KdTree<typename Fit1::DataPoint>& tree,
                 Functor f)
 {
     static_assert(std::is_same<typename Fit1::DataPoint, typename Fit2::DataPoint>::value, "Both Fit should use the same point type");
-    static_assert(std::is_same<typename Fit1::WFunctor, typename Fit2::WFunctor>::value, "Both Fit should use the same WFunctor");
+    static_assert(std::is_same<typename Fit1::NeighborFilter, typename Fit2::NeighborFilter>::value, "Both Fit should use the same NeighborFilter");
 
-    // Define related structure
-    typedef typename Fit1::Scalar     Scalar;
-    typedef typename Fit1::VectorType VectorType;
-    typedef typename Fit1::WFunctor   WeightFunc;
     const auto& vectorPoints = tree.points();
 
     // Test for each point if the fitted sphere correspond to the theoretical sphere
@@ -148,13 +142,13 @@ void testIsSame(const KdTree<typename Fit1::DataPoint>& tree,
         using Fit = Fit1; // create an alias to ease doc snippet generation
         //! [Fit computeWithIds]
         Fit fit3;
-        fit3.setWeightFunc({vectorPoints[i].pos(), analysisScale});
+        fit3.setNeighborFilter({vectorPoints[i].pos(), analysisScale});
         auto neighborhoodRange = tree.range_neighbors(vectorPoints[i].pos(), analysisScale);
         fit3.computeWithIds( neighborhoodRange, vectorPoints );
         //! [Fit computeWithIds]
 
         Fit2 fit2;
-        fit2.setWeightFunc({vectorPoints[i].pos(), analysisScale});
+        fit2.setNeighborFilter({vectorPoints[i].pos(), analysisScale});
         fit2.computeWithIds( neighborhoodRange, vectorPoints );
 
         f(fit3, fit2);
@@ -169,19 +163,19 @@ void callSubTests()
     //! [SpecializedPointType]
 
     // We test only primitive functions and not the fitting procedure
-    //! [WeightFunction]
-    using WeightFunc = DistWeightFunc<Point, SmoothWeightKernel<Scalar> >;
-    //! [WeightFunction]
-    using Sphere     = Basket<Point, WeightFunc, OrientedSphereFit>;
+    //! [NeighborFilter]
+    using NeighborFilter = DistWeightFunc<Point, SmoothWeightKernel<Scalar> >;
+    //! [NeighborFilter]
+    using Sphere     = Basket<Point, NeighborFilter, OrientedSphereFit>;
     //! [PlaneFitType]
-    using TestPlane = Basket<Point, WeightFunc, CovariancePlaneFit>;
+    using TestPlane = Basket<Point, NeighborFilter, CovariancePlaneFit>;
     //! [PlaneFitType]
     //! [FitType]
-    using Sphere = Basket<Point, WeightFunc, OrientedSphereFit>;
+    using Sphere = Basket<Point, NeighborFilter, OrientedSphereFit>;
     //! [FitType]
     //! [HybridType]
     // Create an hybrid structure fitting a plane and a sphere at the same time
-    using Hybrid = Basket<Point, WeightFunc,
+    using Hybrid = Basket<Point, NeighborFilter,
                           AlgebraicSphere, Plane,                     // primitives
                           MeanNormal, MeanPosition,                   // shared computation
                           OrientedSphereFitImpl,                      // sphere fitting

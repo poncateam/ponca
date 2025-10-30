@@ -31,7 +31,7 @@ using namespace Ponca;
 // if CheckCurvatures is true, then the test checks the coherence of kmin and kmax
 // it requires the use of BasketDiff in 3D, with the fitting extension CurvatureEstimatorBase
 //
-template<typename DataPoint, typename Fit, typename WeightFunc, bool CheckCurvatures = false> //, typename Fit, typename WeightFunction>
+template<typename DataPoint, typename Fit, bool CheckCurvatures = false>
 void testFunction(bool _bAddPositionNoise = false, bool _bAddNormalNoise = false)
 {
     // Define related structure
@@ -71,13 +71,13 @@ void testFunction(bool _bAddPositionNoise = false, bool _bAddNormalNoise = false
     {
         Fit fit, fitReverse100, fitReverseRandom;
 
-        fit.setWeightFunc(WeightFunc(vectorPoints[i].pos(), analysisScale));
+        fit.setNeighborFilter({vectorPoints[i].pos(), analysisScale});
         fit.compute(vectorPoints);
 
-        fitReverse100.setWeightFunc(WeightFunc(vectorReversedNormals100[i].pos(), analysisScale));
+        fitReverse100.setNeighborFilter({vectorReversedNormals100[i].pos(), analysisScale});
         fitReverse100.compute(vectorPoints);
 
-        fitReverseRandom.setWeightFunc(WeightFunc(vectorReversedNormalsRandom[i].pos(), analysisScale));
+        fitReverseRandom.setNeighborFilter({vectorReversedNormalsRandom[i].pos(), analysisScale});
         fitReverseRandom.compute(vectorPoints);
 
         if(fit.isStable() && fitReverse100.isStable() && fitReverseRandom.isStable())
@@ -142,20 +142,20 @@ void callSubTests()
     for(int i = 0; i < g_repeat; ++i)
     {
         //Test with perfect sphere
-        CALL_SUBTEST(( testFunction<Point, FitSmoothUnoriented, WeightSmoothFunc>() ));
-        CALL_SUBTEST(( testFunction<Point, FitConstantUnoriented, WeightConstantFunc>() ));
+        CALL_SUBTEST(( testFunction<Point, FitSmoothUnoriented>() ));
+        CALL_SUBTEST(( testFunction<Point, FitConstantUnoriented>() ));
         if constexpr(Dim == 3)
-            CALL_SUBTEST(( testFunction<Point, FitSmoothUnorientedDiff, WeightSmoothFunc, true>() ));
+            CALL_SUBTEST(( testFunction<Point, FitSmoothUnorientedDiff, true>() ));
     }
     cout << "Ok!" << endl;
 
     cout << "Testing with noise on position and normals (unoriented)..." << endl;
     for(int i = 0; i < g_repeat; ++i)
     {
-        CALL_SUBTEST(( testFunction<Point, FitSmoothUnoriented, WeightSmoothFunc>(true, true) ));
-        CALL_SUBTEST(( testFunction<Point, FitConstantUnoriented, WeightConstantFunc>(true, true) ));
+        CALL_SUBTEST(( testFunction<Point, FitSmoothUnoriented>(true, true) ));
+        CALL_SUBTEST(( testFunction<Point, FitConstantUnoriented>(true, true) ));
         if constexpr(Dim == 3)
-            CALL_SUBTEST(( testFunction<Point, FitSmoothUnorientedDiff, WeightSmoothFunc, true>(true, true) ));
+            CALL_SUBTEST(( testFunction<Point, FitSmoothUnorientedDiff, true>(true, true) ));
     }
     cout << "Ok!" << endl;
 }

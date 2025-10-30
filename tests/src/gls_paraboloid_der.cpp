@@ -33,9 +33,7 @@ template<typename Fit, typename RefFit, typename TestFit>
 void testFunction()
 {
     // Define related structure
-    //typedef typename Fit::WeightFunction WeightFunc;
     typedef typename Fit::DataPoint DataPoint;
-    typedef typename TestFit::WeightFunction TestWeightFunc;
     typedef typename TestFit::DataPoint TestDataPoint;
     typedef typename TestDataPoint::Scalar TestScalar;
     typedef typename DataPoint::Scalar Scalar;
@@ -76,7 +74,7 @@ void testFunction()
 
     TestFit fit;
     const VectorType vFittingPoint = VectorType::Zero();
-    fit.setWeightFunc(TestWeightFunc(vFittingPoint.template cast<TestScalar>(), analysisScale));
+    fit.setNeighborFilter({vFittingPoint.template cast<TestScalar>(), analysisScale});
     fit.init();
     for(typename vector<TestDataPoint>::iterator it = testVectorPoints.begin();
         it != testVectorPoints.end();
@@ -92,7 +90,6 @@ void testFunction()
       // Use long double for stable numerical differentiation
       typedef long double RefScalar;
       typedef PointPositionNormal<RefScalar, 3> RefPoint;
-      typedef DistWeightFunc<RefPoint, SmoothWeightKernel<RefScalar> > RefWeightFunc;
 
       vector<RefPoint> refVectorPoints(nbPoints);
       for(unsigned int i = 0; i < vectorPoints.size(); ++i)
@@ -103,7 +100,7 @@ void testFunction()
 
       // Centered fit:
       RefFit ref_fit;
-      ref_fit.setWeightFunc(RefWeightFunc(vFittingPoint.template cast<RefScalar>(), analysisScale));
+      ref_fit.setNeighborFilter({vFittingPoint.template cast<RefScalar>(), analysisScale});
       ref_fit.init();
       for(typename vector<RefPoint>::iterator it = refVectorPoints.begin();
           it != refVectorPoints.end();
@@ -133,7 +130,7 @@ void testFunction()
           scale += h;
         else
           p(k-1) += h;
-        f.setWeightFunc(RefWeightFunc(p, scale));
+        f.setNeighborFilter({p, scale});
         f.compute(refVectorPoints);
 
         RefScalar flip_f   = (f.isSigned() || (f.primitiveGradient().dot(theoricNormal.template cast<RefScalar>()) > 0 )) ? RefScalar(1) : RefScalar(-1);
@@ -243,7 +240,7 @@ void callSubTests()
 {
     typedef long double RefScalar;
     typedef PointPositionNormal<RefScalar, 3> RefPoint;
-    typedef DistWeightFunc<RefPoint, SmoothWeightKernel<RefScalar> > RefWeightFunc;
+    typedef DistWeightFunc<RefPoint, SmoothWeightKernel<RefScalar> > RefNeighborFilter;
 
     typedef ScalarPrecisionCheck<Scalar,RefScalar> TestScalar;
     TestScalar::check_enabled = false; // set it to true to track diverging computations
@@ -257,7 +254,7 @@ void callSubTests()
             Basket<Point, WeightSmoothFunc, OrientedSphereFit>,
             FitScaleSpaceDer, OrientedSphereDer, CurvatureEstimatorBase, NormalDerivativesCurvatureEstimator>;
     using RefFitSphereOriented = BasketDiff<
-            Basket<RefPoint, RefWeightFunc, OrientedSphereFit>,
+            Basket<RefPoint, RefNeighborFilter, OrientedSphereFit>,
             FitScaleSpaceDer, OrientedSphereDer, CurvatureEstimatorBase, NormalDerivativesCurvatureEstimator>;
 //    using TestFitSphereOriented = BasketDiff<Basket<TestPoint, TestWeightFunc, OrientedSphereFit>,
 //            internal::FitScaleDer | internal::FitScaleDer, OrientedSphereDer, NormalDerivativesCurvatureEstimator>;

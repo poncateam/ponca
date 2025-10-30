@@ -16,7 +16,7 @@
 namespace Ponca
 {
 
-#define BSKW typename BasketType::WeightFunction
+#define BSKNF typename BasketType::NeighborFilter
 #define BSKP typename BasketType::DataPoint
 
 #ifndef PARSED_WITH_DOXYGEN
@@ -32,13 +32,13 @@ namespace internal
      * \tparam Ext First (left-side) extension in the CTRP variadic list
      * \tparam Exts Remaining elements (excluding Ext) of the CRTP variadic list
      */
-    template <class P, class W,
+    template <class P, class NF,
         typename Aggregate,
         template <class, class, typename> class Ext,
         template <class, class, typename> class... Exts>
     struct BasketAggregateImpl
     {
-        using type = typename BasketAggregateImpl<P, W, Ext<P, W, Aggregate>, Exts...>::type;
+        using type = typename BasketAggregateImpl<P, NF, Ext<P, NF, Aggregate>, Exts...>::type;
     };
 
     /*!
@@ -49,12 +49,12 @@ namespace internal
      * \tparam Aggregate The base CRTP class
      * \tparam Ext Unique (or last) extension of the CTRP variadic list
      */
-    template <class P, class W,
+    template <class P, class NF,
         typename Aggregate,
         template <class, class, typename> class Ext>
-    struct BasketAggregateImpl<P, W, Aggregate, Ext>
+    struct BasketAggregateImpl<P, NF, Aggregate, Ext>
     {
-        using type = Ext<P, W, Aggregate>;
+        using type = Ext<P, NF, Aggregate>;
     };
 
     /*!
@@ -65,9 +65,9 @@ namespace internal
      * \tparam W Implements \ref concepts_weighting "WeightKernelConcept"
      * \tparam Exts CRTP variadic list
      */
-    template <class P, class W,
+    template <class P, class NF,
         template <class, class, typename> class... Exts>
-    struct BasketAggregate : BasketAggregateImpl<P, W, PrimitiveBase<P, W>, Exts...>
+    struct BasketAggregate : BasketAggregateImpl<P, NF, PrimitiveBase<P, NF>, Exts...>
     {
     };
 
@@ -86,7 +86,7 @@ namespace internal
         template <class, class, int, typename> class... Exts>
     struct BasketDiffAggregateImpl
     {
-        using type = typename BasketDiffAggregateImpl<Type, Ext<BSKP, BSKW, Type, BasketType>, Exts...>::type;
+        using type = typename BasketDiffAggregateImpl<Type, Ext<BSKP, BSKNF, Type, BasketType>, Exts...>::type;
     };
 
     /*!
@@ -101,7 +101,7 @@ namespace internal
         template <class, class, int, typename> class Ext>
     struct BasketDiffAggregateImpl<Type, BasketType, Ext>
     {
-        using type = Ext<BSKP, BSKW, Type, BasketType>;
+        using type = Ext<BSKP, BSKNF, Type, BasketType>;
     };
 
     /*!
@@ -205,13 +205,12 @@ namespace internal
          * \return The result of the fit
          */
         template<typename Func>
-        FIT_RESULT computeMLSImpl(Func&& computeFunc, int mlsIter, Scalar epsilon) {
+        FIT_RESULT computeMLSImpl(Func&& computeFunc, const int mlsIter, const Scalar epsilon) {
             FIT_RESULT res = UNDEFINED;
-            const auto t = Base::m_w.evalScale();
-            auto lastPos = Base::m_w.evalPos();
+            auto lastPos = Base::getNeighborFilter().evalPos();
 
             for (int mm = 0; mm < mlsIter; ++mm) {
-                Base::setWeightFunc({lastPos, t});
+                Base::getNeighborFilter().changeNeighborhoodFrame(lastPos);
                 res = computeFunc();
 
                 if (Base::isStable()) {
@@ -287,9 +286,9 @@ namespace internal
     public:
         using Base = typename internal::BasketDiffAggregate<BasketType,Type,Ext0,Exts...>::type;
         /// Weight function
-        using WeightFunction = typename BasketType::WeightFunction;
+        using WeightFunction = BSKNF;
         /// Point type used for computation
-        using DataPoint = typename BasketType::DataPoint;
+        using DataPoint = BSKP;
         /// Scalar type used for computation, as defined from Basket
         using Scalar = typename BasketType::Scalar;
     WRITE_COMPUTE_FUNCTIONS
@@ -297,11 +296,11 @@ namespace internal
     /// \copydoc Basket::addNeighbor
     PONCA_MULTIARCH inline bool addNeighbor(const DataPoint &_nei) {
         // compute weight
-        auto wres = Base::m_w.w(_nei.pos(), _nei);
+        auto neiFilterOutput = Base::getNeighborFilter()(_nei);
         typename Base::ScalarArray dw;
 
-        if (wres.first > Scalar(0.)) {
-            Base::addLocalNeighbor(wres.first, wres.second, _nei, dw);
+        if (neiFilterOutput.first > Scalar(0.)) {
+            Base::addLocalNeighbor(neiFilterOutput.first, neiFilterOutput.second, _nei, dw);
             return true;
         }
         return false;
@@ -316,24 +315,24 @@ namespace internal
     \tparam Ext0 Implements \ref concepts_computObjectBasket "ComputationalObjectConcept"
     \tparam Exts Implements \ref concepts_computObjectBasket "ComputationalObjectConcept" (optional)
 */
-    template <class P, class W,
+    template <class P, class NF,
         template <class, class, typename> class Ext0,
         template <class, class, typename> class... Exts>
-    class Basket : public BasketComputeObject<Basket<P, W, Ext0, Exts...>,
-                                              typename internal::BasketAggregate<P, W, Ext0, Exts...>::type>
+    class Basket : public BasketComputeObject<Basket<P, NF, Ext0, Exts...>,
+                                              typename internal::BasketAggregate<P, NF, Ext0, Exts...>::type>
     {
     private:
         using Self = Basket;
     public:
         /// Base type, which aggregates all the computational objects using the CRTP
-        using Base = typename internal::BasketAggregate<P, W, Ext0, Exts...>::type;
+        using Base = typename internal::BasketAggregate<P, NF, Ext0, Exts...>::type;
         /// Scalar type used for computation, as defined from template parameter `P`
         using Scalar = typename P::Scalar;
         using VectorType = typename P::VectorType;
         /// Point type used for computation
         using DataPoint = P;
         /// Weighting function
-        using WeightFunction = W;
+        using NeighborhoodFilter = NF;
 
         WRITE_COMPUTE_FUNCTIONS
 
@@ -345,13 +344,47 @@ namespace internal
         /// \return false if param nei is not a valid neighbor (weight = 0)
         PONCA_MULTIARCH inline bool addNeighbor(const DataPoint &_nei) {
             // compute weight
-            auto wres = Base::m_w.w(_nei.pos(), _nei);
+            auto neiFilterOutput = Base::getNeighborFilter()(_nei);
 
-            if (wres.first > Scalar(0.)) {
-                Base::addLocalNeighbor(wres.first, wres.second, _nei);
+            if (neiFilterOutput.first > Scalar(0.)) {
+                Base::addLocalNeighbor(neiFilterOutput.first, neiFilterOutput.second, _nei);
                 return true;
             }
             return false;
+        }
+
+
+
+        /*!
+           \brief Project a point on the primitive using Gradient Descent
+           This projection is realized by following the gradient of the primitive scalar field
+           \warning This function is in most cases slower than #project.
+           \param _q Starting point
+           \param nbIter Number of iterations (default = 16)
+         */
+        PONCA_MULTIARCH inline VectorType projectDescent (const VectorType& _q, int nbIter = 16) const
+        {
+            PONCA_MULTIARCH_STD_MATH(min)
+
+            // turn to centered basis
+            const VectorType lq = Base::getNeighborFilter().convertToLocalBasis(_q);
+
+            VectorType grad;
+            VectorType dir  = Base::primitiveGradientLocal(lq);
+            Scalar ilg      = Scalar(1.)/dir.norm();
+            dir             = dir*ilg;
+            Scalar ad       = Base::potentialLocal(lq);
+            Scalar delta    = -ad*min(ilg,Scalar(1.));
+            VectorType proj = lq + dir*delta;
+
+            for (int i=0; i<nbIter; ++i)
+            {
+                grad  = Base::primitiveGradientLocal(proj);
+                ilg   = Scalar(1.)/grad.norm();
+                delta = -Base::potentialLocal(proj)*min(ilg,Scalar(1.));
+                proj += dir*delta;
+            }
+            return Base::getNeighborFilter().convertToGlobalBasis( proj );
         }
     }; // class Basket
 

@@ -8,17 +8,17 @@
 */
 
 
-template < class DataPoint, class _WFunctor, typename T>
+template < class DataPoint, class _NFilter, typename T>
 void
-CovarianceFitBase<DataPoint, _WFunctor, T>::init()
+CovarianceFitBase<DataPoint, _NFilter, T>::init()
 {
     Base::init();
     m_cov.setZero();
 }
 
-template < class DataPoint, class _WFunctor, typename T>
+template < class DataPoint, class _NFilter, typename T>
 bool
-CovarianceFitBase<DataPoint, _WFunctor, T>::addLocalNeighbor(Scalar w,
+CovarianceFitBase<DataPoint, _NFilter, T>::addLocalNeighbor(Scalar w,
                                                               const VectorType &localQ,
                                                               const DataPoint &attributes)
 {
@@ -30,9 +30,9 @@ CovarianceFitBase<DataPoint, _WFunctor, T>::addLocalNeighbor(Scalar w,
 }
 
 
-template < class DataPoint, class _WFunctor, typename T>
+template < class DataPoint, class _NFilter, typename T>
 FIT_RESULT
-CovarianceFitBase<DataPoint, _WFunctor, T>::finalize ()
+CovarianceFitBase<DataPoint, _NFilter, T>::finalize ()
 {
     // handle specific configurations
     if(Base::finalize() != STABLE) 
@@ -55,9 +55,9 @@ CovarianceFitBase<DataPoint, _WFunctor, T>::finalize ()
     return Base::m_eCurrentState;
 }
 
-template < class DataPoint, class _WFunctor, typename T>
-typename CovarianceFitBase<DataPoint, _WFunctor, T>::Scalar
-CovarianceFitBase<DataPoint, _WFunctor, T>::surfaceVariation () const
+template < class DataPoint, class _NFilter, typename T>
+typename CovarianceFitBase<DataPoint, _NFilter, T>::Scalar
+CovarianceFitBase<DataPoint, _NFilter, T>::surfaceVariation () const
 {
     return m_solver.eigenvalues()(0) / m_solver.eigenvalues().mean();
 }
@@ -123,9 +123,9 @@ CovarianceFitBase<DataPoint, _WFunctor, T>::lambda_2() const
     return m_solver.eigenvalues()(2);
 }
 
-template < class DataPoint, class _WFunctor, int DiffType, typename T>
+template < class DataPoint, class _NFilter, int DiffType, typename T>
 void
-CovarianceFitDer<DataPoint, _WFunctor, DiffType, T>::init()
+CovarianceFitDer<DataPoint, _NFilter, DiffType, T>::init()
 {
     Base::init();
 
@@ -135,9 +135,9 @@ CovarianceFitDer<DataPoint, _WFunctor, DiffType, T>::init()
 
 
 
-template < class DataPoint, class _WFunctor, int DiffType, typename T>
+template < class DataPoint, class _NFilter, int DiffType, typename T>
 bool
-CovarianceFitDer<DataPoint, _WFunctor, DiffType, T>::addLocalNeighbor(Scalar w,
+CovarianceFitDer<DataPoint, _NFilter, DiffType, T>::addLocalNeighbor(Scalar w,
                                                                       const VectorType &localQ,
                                                                       const DataPoint &attributes,
                                                                       ScalarArray &dw)
@@ -153,9 +153,9 @@ CovarianceFitDer<DataPoint, _WFunctor, DiffType, T>::addLocalNeighbor(Scalar w,
 }
 
 
-template < class DataPoint, class _WFunctor, int DiffType, typename T>
+template < class DataPoint, class _NFilter, int DiffType, typename T>
 FIT_RESULT
-CovarianceFitDer<DataPoint, _WFunctor, DiffType, T>::finalize()
+CovarianceFitDer<DataPoint, _NFilter, DiffType, T>::finalize()
 {
     PONCA_MULTIARCH_STD_MATH(sqrt);
 

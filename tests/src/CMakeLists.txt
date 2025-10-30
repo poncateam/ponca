@@ -4,7 +4,7 @@ set(CMAKE_INCLUDE_CURRENT_DIR ON)
 # Grenaille                                                                    #
 ################################################################################
 
-add_multi_test(algebraicsphere_primitive.cpp)
+add_multi_test(change_basis.cpp)
 add_multi_test(dnormal_orthogonal_derivatives.cpp)
 add_multi_test(fit_radius_curvature_center.cpp)
 add_multi_test(gls_tau.cpp)
@@ -24,3 +24,4 @@ add_multi_test(queries_range.cpp)
 add_multi_test(queries_nearest.cpp)
 add_multi_test(queries_knearest.cpp)
 add_multi_test(mls.cpp)
+add_multi_test(barycenter.cpp)

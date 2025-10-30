@@ -12,20 +12,118 @@
 namespace Ponca
 {
 /*!
-    \brief Weighting function based on the euclidean distance between a query and a reference position
+ * \brief NeighborhoodFrame that express 3d points relatively to a prescribed center.
+ *
+ * This class is useful to get all coordinates centered around a point, which ease weights computation, and limits
+ * issues with big numbers and rounding errors.
+ *
+ * Express points \f$\mathbf{x}\f$ relatively to a center \f$\mathbf{p}\f$, ie.
+ * \f$\mathbf{x}'=\mathbf{x}-\mathbf{p}\f$.
+ * This frame does not apply rotation.
+ *
+ * @tparam DataPoint Point type used for computation
+ */
+template<class DataPoint>
+class CenteredNeighborhoodFrame {
+public:
+    /*! \brief Scalar type from DataPoint */
+    using Scalar =  typename DataPoint::Scalar;
+    /*! \brief Vector type from DataPoint */
+    using VectorType =  typename DataPoint::VectorType;
 
-    The evaluation position is set using the #init method. All the queries are expressed in global system, and the
-    weighting function convert them to local coordinates (ie. relatively to the evaluation position).
+    /// \brief Flag indicating that this class modifies the coordinates when passing from global to local
+    static constexpr bool hasLocalFrame = true;
 
-    It can be specialized for any DataPoint and uses a generic 1D BaseWeightKernel.
+    PONCA_MULTIARCH inline explicit CenteredNeighborhoodFrame(const VectorType & _evalPos = VectorType::Zero())
+    : m_p(_evalPos) {}
 
-    \warning it assumes that the evaluation scale t is strictly positive
+    /// \brief Change neighborhood frame (move basis center)
+    PONCA_MULTIARCH inline void changeNeighborhoodFrame(const VectorType& _newEvalPos) { m_p = _newEvalPos; };
 
-    \todo Add class to use DistWeightFunc with CenterBasis of GlobalBasis
-          (functions init, basisCenter and convertToLocalBasis)
+    /*!
+     * \brief Convert query from local to global coordinate system, such as \f$\mathbf{x}=\mathbf{x}'+\mathbf{p}\f$.
+     * @param _q Position expressed relatively to the basis center
+     * @return Position in the global coordinate system
+     */
+    PONCA_MULTIARCH inline VectorType convertToGlobalBasis(const VectorType& _q) const { return _q + m_p; }
+
+    /*!
+     * \brief Convert query from global to local coordinate system, such as \f$\mathbf{x}'=\mathbf{x}-\mathbf{p}\f$.
+     *
+     * @param _q Input point in global coordinate system
+     * @return Position expressed relatively to the basis center
+     */
+    PONCA_MULTIARCH inline VectorType convertToLocalBasis(const VectorType& _q) const { return _q - m_p; }
+
+    /*!
+     * \brief Get access to the stored points of evaluation
+     * @return Position of the local basis center
+     */
+    PONCA_MULTIARCH inline VectorType evalPos() const { return m_p; }
+
+private:
+    VectorType m_p;  /*!< \brief basis center */
+};
+/*!
+ * \brief NeighborhoodFrame that keep points in the global frame without applying any transformation
+ *
+ * This class is useful to compute
+ * Express points \f$\mathbf{x}\f$ relatively to a center \f$\mathbf{p}\f$, ie.
+ * \f$\mathbf{x}'=\mathbf{x}-\mathbf{p}\f$.
+ * This frame does not apply rotation.
+ *
+ * @tparam DataPoint Point type used for computation
+ */
+template<class DataPoint>
+class GlobalNeighborhoodFrame {
+public:
+    /*! \brief Scalar type from DataPoint */
+    using Scalar =  typename DataPoint::Scalar;
+    /*! \brief Vector type from DataPoint */
+    using VectorType =  typename DataPoint::VectorType;
+
+    /// \brief Flag indicating that this class does not modify the coordinates when passing from global to local
+    static constexpr bool hasLocalFrame = false;
+
+    PONCA_MULTIARCH inline explicit GlobalNeighborhoodFrame(const VectorType & /*_evalPos*/ = VectorType::Zero()) {}
+
+    /// \brief Change neighborhood frame (has no effect for global basis)
+    PONCA_MULTIARCH inline void changeNeighborhoodFrame(const VectorType& /*_newEvalPos*/) {};
+
+    /*!
+     * \brief Convert position from local to global coordinate system : does nothing as this is global frame
+     * @param _q Position in local coordinate
+     * @return _q
+     */
+    PONCA_MULTIARCH inline const VectorType& convertToGlobalBasis(const VectorType& _q) const { return _q; }
+
+    /*!
+     * \brief Convert query from global to local coordinate system : does nothing as this is global frame
+     * @param _q Query in global coordinate
+     * @return _q
+     */
+    PONCA_MULTIARCH inline const VectorType& convertToLocalBasis(const VectorType& _q) const { return _q; }
+};
+
+
+/*!
+    \brief Weight neighbors according to the euclidean distance between a query and a reference position
+
+    The evaluation position is set in the constructor. All the queries are expressed in global system, and converted
+    internally to relatively to the evaluation position using #CenteredNeighborhoodFrame.
+
+    \tparam DataPoint Type of input points.
+    \tparam WeightKernel 1d function used to compute the weight depending on the distance between query point and the
+    basis center. If `WeightKernel::isCompact == true`, the distance to the basis center is checked against the scale
+    parameter, and any point whose distance is larger than the scale will be assigned with a weight of \f$0\f$. For
+    non-compact (ie. global) kernels, the weights are computed for all points.
+
+    \see operator()
+
+    \warning DistWeightFunc assumes that the evaluation scale t is strictly positive, but the valus is not checked
 */
 template <class DataPoint, class WeightKernel>
-class DistWeightFunc
+class DistWeightFunc : public CenteredNeighborhoodFrame<DataPoint>
 {
 public:
     /*! \brief Scalar type from DataPoint */
@@ -36,40 +134,27 @@ public:
     using MatrixType = typename DataPoint::MatrixType;
     /*! \brief Return type of the method #w() */
     using WeightReturnType = PONCA_MULTIARCH_CU_STD_NAMESPACE(pair)<Scalar, VectorType>;
+    /// \brief Frame used to express the neighbors locally
+    using NeighborhoodFrame = CenteredNeighborhoodFrame<DataPoint>;
+    /// \brief Flag indicating if the weighting kernel is compact of not
+    static constexpr bool isCompact = WeightKernel::isCompact;
 
     /*!
         \brief Constructor that defines the current evaluation scale
         \warning t > 0
     */
     PONCA_MULTIARCH inline DistWeightFunc(const VectorType & _evalPos = VectorType::Zero(),
-                                          const Scalar& _t = Scalar(1.))
-    : m_t(_t), m_p(_evalPos)
+                                              const Scalar& _t = Scalar(1.))
+    : NeighborhoodFrame(_evalPos), m_t(_t)
     {
         //\todo manage that assert on __host__ and __device__
         //assert(_t > Scalar(0));
     }
 
-    /// \brief Get access to basis center location in global coordinate system
-    PONCA_MULTIARCH inline const VectorType& basisCenter() const { return m_p; }
-
-    /*!
-     * \brief Convert position from local to global coordinate system
-     * @param _q Position in local coordinate
-     * @return Position expressed independently of the local basis center
-     */
-    PONCA_MULTIARCH inline VectorType convertToGlobalBasis(const VectorType& _q) const;
-
-    /*!
-     * \brief Convert query from global to local coordinate system (used internally(
-     * @param _q Query in global coordinate
-     * @return Query expressed relatively to the basis center
-     */
-    PONCA_MULTIARCH inline VectorType convertToLocalBasis(const VectorType& _q) const;
-
     /*!
         \brief Compute the weight of the given query with respect to its coordinates.
 
-        \param _q Query in global coordinate
+        \param _q Query in global coordinate system
 
         As the query \f$\mathbf{q}\f$ is expressed in global coordinate, it is
         first converted to the centered basis. Then, the WeightKernel is directly
@@ -80,14 +165,13 @@ public:
         \see convertToLocalBasis
         \return The computed weight + the point expressed in local basis
     */
-    PONCA_MULTIARCH inline WeightReturnType w(const VectorType& _q,
-        const DataPoint&  /*attributes*/) const;
+    PONCA_MULTIARCH inline WeightReturnType operator()(const DataPoint& q) const;
 
 
     /*!
         \brief First order derivative in space (for each spatial dimension \f$\mathsf{x})\f$
 
-        \param _q Query in global coordinate
+        \param _q Query in global coordinate system
 
         \f$ \frac{\delta \frac{\left|\mathbf{q}_\mathsf{x}\right|}{t}}{\delta \mathsf{x}}
         \nabla w(\frac{\left|\mathbf{q}_\mathsf{x}\right|}{t})
@@ -106,7 +190,7 @@ public:
     /*!
         \brief Second order derivative in space (for each spatial dimension \f$\mathsf{x})\f$
 
-        \param _q Query in global coordinate
+        \param _q Query in global coordinate system
 
         \f$ \frac{\delta^2 \frac{\left|\mathbf{q}_\mathsf{x}\right|}{t}}{\delta \mathsf{x}^2}
         \nabla w(\frac{\left|\mathbf{q}_\mathsf{x}\right|}{t}) +
@@ -129,7 +213,7 @@ public:
     /*!
         \brief First order derivative in scale  \f$t\f$
 
-        \param _q Query in global coordinate
+        \param _q Query in global coordinate system
 
         \f$ \frac{\delta \frac{\left|\mathbf{q}\right|}{t}}{\delta t}
         \nabla w(\frac{\left|\mathbf{q}\right|}{t})
@@ -146,7 +230,7 @@ public:
     /*!
         \brief Second order derivative in scale  \f$t\f$
 
-        \param _q Query in global coordinate
+        \param _q Query in global coordinate system
 
         \f$ \frac{\delta^2 \frac{\left|\mathbf{q}\right|}{t}}{\delta t^2}
         \nabla w(\frac{\left|\mathbf{q}\right|}{t}) +
@@ -167,7 +251,7 @@ public:
     /*!
         \brief Cross derivative in scale \f$t\f$ and in space (for each spatial dimension \f$\mathsf{x})\f$
 
-        \param _q Query in global coordinate
+        \param _q Query in global coordinate system
 
         \f$ \frac{\delta^2 \frac{\left|\mathbf{q}_\mathsf{x}\right|}{t}}{\delta t\ \delta \mathsf{x}}
         \nabla w(\frac{\left|\mathbf{q}_\mathsf{x}\right|}{t}) +
@@ -189,25 +273,22 @@ public:
     /*! \brief Access to the evaluation scale set during the initialization */
     PONCA_MULTIARCH inline Scalar evalScale() const { return m_t; }
 
-    /*! \brief Access to the evaluation position set during the initialization */
-    PONCA_MULTIARCH inline const VectorType & evalPos() const { return m_p; }
-
 protected:
     Scalar       m_t;  /*!< \brief Evaluation scale */
     WeightKernel m_wk; /*!< \brief 1D function applied to weight queries */
-    VectorType   m_p;  /*!< \brief basis center */
 
 };// class DistWeightFunc
 
 
 /*!
-    \brief Weighting function that set uniform weight to all samples
+    \brief Base Weighting function that set uniform weight to all samples
 
     In contrast to DistWeightFunc with ConstantWeight, it does not check for scale range.
-    It still performs local basis conversion to maintain computation accuracy
+    \tparam _NeighborhoodFrame Base NeighborhoodFrame used to performs (or not) local basis conversion and maintain
+    computation accuracy
 */
-template <class DataPoint>
-class NoWeightFunc
+template <class DataPoint, template <typename>typename _NeighborhoodFrame>
+class NoWeightFuncBase : public _NeighborhoodFrame<DataPoint>
 {
 public:
     /*! \brief Scalar type from DataPoint */
@@ -219,39 +300,27 @@ public:
     /*! \brief Return type of the method #w() */
     using WeightReturnType = PONCA_MULTIARCH_CU_STD_NAMESPACE(pair)<Scalar, VectorType>;
 
+    using NeighborhoodFrame = _NeighborhoodFrame<DataPoint>;
+
     /*!
-        \brief Constructor that defines the current evaluation scale
+        \brief Default constructor. All parameters are ignored (kept for API compatibility with DistWeightFunc.
     */
-    PONCA_MULTIARCH inline NoWeightFunc(const VectorType & _evalPos = VectorType::Zero()) : m_p(_evalPos){ }
-
-    /*!
-     * \brief Initialization method, called by the fitting procedure
-     * @param _evalPos Basis center
-     */
-    PONCA_MULTIARCH inline void init( const VectorType& _evalPos = VectorType::Zero() ) { m_p = _evalPos; }
-
-    PONCA_MULTIARCH inline const VectorType& basisCenter() const
-    { return m_p; }
-
-    /// \brief Convert query from global to local coordinate system
-    PONCA_MULTIARCH inline VectorType convertToLocalBasis(const VectorType& _q) const
-    { return _q - m_p; }
+    PONCA_MULTIARCH inline NoWeightFuncBase(const VectorType& v = VectorType::Zero(), Scalar = 0)
+    : NeighborhoodFrame(v){ }
 
     /*!
         \brief Compute the weight of the given query, which is always $1$
-        \param _q Query in global coordinate
+        \param _q Query in global coordinate system
     */
-    PONCA_MULTIARCH inline WeightReturnType w(const VectorType& _q,
-                                              const DataPoint&  /*attributes*/) const
+    PONCA_MULTIARCH inline WeightReturnType operator()(const DataPoint& _q) const
     {
-        VectorType q = convertToLocalBasis(_q);
-        return {Scalar(1), q};
+        return {Scalar(1), NeighborhoodFrame::convertToLocalBasis(_q.pos())};
     }
 
 
     /*!
         \brief First order derivative in space (for each spatial dimension \f$\mathsf{x})\f$, which are always $0$
-        \param _q Query in global coordinate
+        \param _q Query in global coordinate system
     */
     PONCA_MULTIARCH inline VectorType spacedw(const VectorType& /*_q*/,
                                               const DataPoint&  /*attributes*/) const
@@ -290,11 +359,15 @@ public:
     PONCA_MULTIARCH inline VectorType scaleSpaced2w(const VectorType& /*_q*/,
                                                     const DataPoint&  /*attributes*/) const
     { return VectorType::Zeros(); }
+};// class DistWeightFuncBase
 
-private:
-    VectorType   m_p;  /*!< \brief basis center */
-};// class DistWeightFunc
+template <class DataPoint>
+/// \brief
+using NoWeightFunc = NoWeightFuncBase<DataPoint, CenteredNeighborhoodFrame>;
 
+template <class DataPoint>
+/// \brief
+using NoWeightFuncGlobal = NoWeightFuncBase<DataPoint, GlobalNeighborhoodFrame>;
 #include "weightFunc.hpp"
 
 }// namespace Ponca

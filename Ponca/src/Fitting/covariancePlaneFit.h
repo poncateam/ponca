@@ -30,7 +30,7 @@ namespace Ponca
 
     \see Plane
 */
-template < class DataPoint, class _WFunctor, typename T >
+template < class DataPoint, class _NFilter, typename T >
 class CovariancePlaneFitImpl : public T
 {
 PONCA_FITTING_DECLARE_DEFAULT_TYPES
@@ -64,32 +64,28 @@ public:
      *
      * Output vector is: [h, u, v]^T, where u, v are 2d coordinates on the plane,
      * and h the height of the sample.
-     * \tparam ignoreTranslation must be set to true when passing vectors instead of points
      * \param _q Point coordinates expressed in ambient space
      * \return Point coordinates expressed in local tangent frame
      */
-    template <bool ignoreTranslation = false>
     PONCA_MULTIARCH inline VectorType worldToTangentPlane(const VectorType &_q) const;
 
     /*!
      * \brief Transform a point from the tangent plane [h, u, v]^T to ambient space
      *
-     * \tparam ignoreTranslation must be set to true when passing vectors instead of points
      * \param _q Point coordinates expressed in local tangent frame
      * \return Point coordinates expressed in ambient space
      */
-    template <bool ignoreTranslation = false>
     PONCA_MULTIARCH inline VectorType tangentPlaneToWorld(const VectorType &_q) const;
 }; //class CovariancePlaneFitImpl
 
 /// \brief Helper alias for Plane fitting on 3D points using CovariancePlaneFitImpl
 //! [CovariancePlaneFit Definition]
-    template < class DataPoint, class _WFunctor, typename T>
+    template < class DataPoint, class _NFilter, typename T>
     using CovariancePlaneFit =
-    CovariancePlaneFitImpl<DataPoint, _WFunctor,
-            CovarianceFitBase<DataPoint, _WFunctor,
-                    MeanPosition<DataPoint, _WFunctor,
-                            Plane<DataPoint, _WFunctor,T>>>>;
+    CovariancePlaneFitImpl<DataPoint, _NFilter,
+            CovarianceFitBase<DataPoint, _NFilter,
+                    MeanPosition<DataPoint, _NFilter,
+                            Plane<DataPoint, _NFilter, T>>>>;
 //! [CovariancePlaneFit Definition]
 
 /*!
@@ -98,7 +94,7 @@ public:
 
     \warning Defined in 3D only
 */
-template < class DataPoint, class _WFunctor, int DiffType, typename T>
+template < class DataPoint, class _NFilter, int DiffType, typename T>
 class CovariancePlaneDerImpl : public T
 {
     PONCA_FITTING_DECLARE_DEFAULT_TYPES
@@ -140,11 +136,11 @@ public:
 
 
 /// \brief Helper alias for Plane fitting on 3D points using CovariancePlaneFitImpl
-template < class DataPoint, class _WFunctor, int DiffType, typename T>
+template < class DataPoint, class _NFilter, int DiffType, typename T>
 using CovariancePlaneDer =
-CovariancePlaneDerImpl<DataPoint, _WFunctor, DiffType,
-        CovarianceFitDer<DataPoint, _WFunctor, DiffType,
-                MeanPositionDer<DataPoint, _WFunctor, DiffType, T>>>;
+CovariancePlaneDerImpl<DataPoint, _NFilter, DiffType,
+        CovarianceFitDer<DataPoint, _NFilter, DiffType,
+                MeanPositionDer<DataPoint, _NFilter, DiffType, T>>>;
 
 #include "covariancePlaneFit.hpp"
 

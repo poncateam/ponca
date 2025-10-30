@@ -173,6 +173,10 @@ int main(int argc, char** argv)
     callSubTests<long double, WendlandWeightKernel>();
     callAutoDiffSubTests<long double, WendlandWeightKernel>();
 
+    cout << "Verify GaussianWeightKernel weight kernel derivatives" << endl;
+    callSubTests<long double, GaussianWeightKernel>();
+    callAutoDiffSubTests<long double, GaussianWeightKernel>();
+
     cout << "Verify singular weight kernel derivatives" << endl;
     // do not compute for x<0.4, as the derivatives are too big
     // (which leads to numerical errors with some compiler (confirmed with MSVC)

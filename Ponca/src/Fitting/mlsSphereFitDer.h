@@ -20,7 +20,7 @@ namespace Ponca
  *
  * \todo This class is not covered by tests. Add to testsuite !
  */
-template < class DataPoint, class _WFunctor, int DiffType, typename T>
+template < class DataPoint, class _NFilter, int DiffType, typename T>
 class MlsSphereFitDer : public T
 {
 PONCA_FITTING_DECLARE_DEFAULT_TYPES

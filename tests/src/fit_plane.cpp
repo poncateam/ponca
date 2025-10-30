@@ -39,36 +39,15 @@ struct CheckSurfaceVariation {
 
 template <>
 template <typename Fit, typename Scalar>
-void
-CheckSurfaceVariation<false>::run(const Fit& /*fit*/, Scalar /*epsilon*/){ }
+void CheckSurfaceVariation<false>::run(const Fit& /*fit*/, Scalar /*epsilon*/){ }
 
-// Argument adapter between WeightFunc and NoWeightFunc
-template<typename WeightFunc>
-struct WeightFuncAdapter
-{
-    template<typename VectorType, typename Scalar>
-    WeightFunc operator()(const VectorType& pos, Scalar analysisScale) const {
-        return WeightFunc(pos, analysisScale);
-    }
-};
 
-// Specialization for NoWeightFunc
-template<typename PointT>
-struct WeightFuncAdapter<NoWeightFunc<PointT>>
-{
-    template<typename VectorType, typename Scalar>
-    NoWeightFunc<PointT> operator()(const VectorType& pos, Scalar) const {
-        return NoWeightFunc<PointT>(pos);
-    }
-};
-
-template<typename DataPoint, typename Fit, typename WeightFunc, bool _cSurfVar> //, typename Fit, typename WeightFunction>
+template<typename DataPoint, typename Fit, bool _cSurfVar>
 void testFunction(bool _bUnoriented = false, bool _bAddPositionNoise = false, bool _bAddNormalNoise = false, bool conflictAnnounced = false)
 {
     // Define related structure
     typedef typename DataPoint::Scalar Scalar;
     typedef typename DataPoint::VectorType VectorType;
-    WeightFuncAdapter<WeightFunc> makeWeightFunc;
     //generate sampled plane
     int nbPoints = Eigen::internal::random<int>(100, 1000);
 
@@ -123,7 +102,7 @@ void testFunction(bool _bUnoriented = false, bool _bAddPositionNoise = false, bo
     {
 
         Fit fit;
-        fit.setWeightFunc(makeWeightFunc(vectorPoints[i].pos(), analysisScale));
+        fit.setNeighborFilter({vectorPoints[i].pos(), analysisScale});
         fit.computeWithIds(tree.range_neighbors(vectorPoints[i].pos(),analysisScale),vectorPoints);
 
         auto ret = fit.getCurrentState();
@@ -131,7 +110,10 @@ void testFunction(bool _bUnoriented = false, bool _bAddPositionNoise = false, bo
         switch (ret){
             case STABLE: {
                 // Check if the plane orientation is equal to the generation direction
-                VERIFY(Scalar(1.) - std::abs(fit.primitiveGradient(vectorPoints[i].pos()).dot(direction)) <= epsilon);
+                auto primGrad = fit.primitiveGradient(vectorPoints[i].pos());
+                auto gen_dir = std::abs(primGrad.dot(direction));
+
+                VERIFY(Scalar(1.) - gen_dir <= epsilon);
 
                 // Check if the surface variation is small
                 CheckSurfaceVariation<_cSurfVar>::run(fit, _bAddPositionNoise ? epsilon*Scalar(10.): epsilon);
@@ -157,24 +139,27 @@ void callSubTests()
     typedef PointPositionNormal<Scalar, Dim> Point;
 
     typedef DistWeightFunc<Point, SmoothWeightKernel<Scalar> > WeightSmoothFunc;
-    typedef DistWeightFunc<Point, ConstantWeightKernel<Scalar> > WeightConstantFunc;
-    typedef NoWeightFunc<Point> WeightConstantFunc2;
+    typedef Ponca::DistWeightFunc<Point, Ponca::ConstantWeightKernel<Scalar> > WeightConstantFuncLocal;
+    typedef Ponca::NoWeightFuncGlobal<Point> NoWeightFuncGlobal;
+    typedef Ponca::NoWeightFunc<Point> NoWeightFunc;
 
     typedef Basket<Point, WeightSmoothFunc, CovariancePlaneFit> CovFitSmooth;
-    typedef Basket<Point, WeightConstantFunc, CovariancePlaneFit> CovFitConstant;
-    typedef Basket<Point, WeightConstantFunc2, CovariancePlaneFit> CovFitConstant2;
+    typedef Basket<Point, WeightConstantFuncLocal, CovariancePlaneFit> CovFitConstant;
+    typedef Basket<Point, NoWeightFunc, CovariancePlaneFit> CovFitConstant2;
+    typedef Basket<Point, NoWeightFuncGlobal, CovariancePlaneFit> CovFitConstantGlobal;
 
     typedef Basket<Point, WeightSmoothFunc, MeanPlaneFit> MeanFitSmooth;
-    typedef Basket<Point, WeightConstantFunc, MeanPlaneFit> MeanFitConstant;
-    typedef Basket<Point, WeightConstantFunc2, MeanPlaneFit> MeanFitConstant2;
+    typedef Basket<Point, WeightConstantFuncLocal, MeanPlaneFit> MeanFitConstant;
+    typedef Basket<Point, NoWeightFunc, MeanPlaneFit> MeanFitConstant2;
+    typedef Basket<Point, NoWeightFuncGlobal, MeanPlaneFit> MeanFitConstantGlobal;
 
     // test if conflicts are detected
     //! [Conflicting type]
-    typedef Basket<Point, WeightConstantFunc, Plane,
+    typedef Basket<Point, NoWeightFuncGlobal, Plane,
             MeanNormal, MeanPosition, MeanPlaneFitImpl,
             CovarianceFitBase, CovariancePlaneFitImpl> Hybrid1; //test conflict detection in one direction
     //! [Conflicting type]
-    typedef Basket<Point, WeightConstantFunc, Plane,
+    typedef Basket<Point, NoWeightFuncGlobal, Plane,
             MeanPosition, CovarianceFitBase, CovariancePlaneFitImpl,
             MeanNormal, MeanPlaneFitImpl> Hybrid2;  //test conflict detection in the second direction
 
@@ -182,24 +167,27 @@ void callSubTests()
     for(int i = 0; i < g_repeat; ++i)
     {
         //Test with perfect plane
-        CALL_SUBTEST(( testFunction<Point, CovFitSmooth, WeightSmoothFunc, true>() ));
-        CALL_SUBTEST(( testFunction<Point, CovFitConstant, WeightConstantFunc, true>() ));
-        CALL_SUBTEST(( testFunction<Point, CovFitConstant2, WeightConstantFunc2, true>() ));
-        CALL_SUBTEST(( testFunction<Point, MeanFitSmooth, WeightSmoothFunc, false>() ));
-        CALL_SUBTEST(( testFunction<Point, MeanFitConstant, WeightConstantFunc, false>() ));
-        CALL_SUBTEST(( testFunction<Point, MeanFitConstant2, WeightConstantFunc2, false>() ));
+        CALL_SUBTEST(( testFunction<Point, CovFitSmooth, true>() ));
+        CALL_SUBTEST(( testFunction<Point, CovFitConstant, true>() ));
+        CALL_SUBTEST(( testFunction<Point, CovFitConstant2, true>() ));
+        CALL_SUBTEST(( testFunction<Point, MeanFitConstantGlobal, false>() ));
+        CALL_SUBTEST(( testFunction<Point, MeanFitSmooth, false>() ));
+        CALL_SUBTEST(( testFunction<Point, MeanFitConstant, false>() ));
+        CALL_SUBTEST(( testFunction<Point, MeanFitConstant2, false>() ));
+        CALL_SUBTEST(( testFunction<Point, MeanFitConstantGlobal, false>() ));
         // Check if fitting conflict is detected
-        CALL_SUBTEST(( testFunction<Point, Hybrid1, WeightConstantFunc, false>(false, false, false, true) ));
-        CALL_SUBTEST(( testFunction<Point, Hybrid2, WeightConstantFunc, false>(false, false, false, true) ));
+        CALL_SUBTEST(( testFunction<Point, Hybrid1, false>(false, false, false, true) ));
+        CALL_SUBTEST(( testFunction<Point, Hybrid2, false>(false, false, false, true) ));
     }
     cout << "Ok!" << endl;
 
     cout << "Testing with noise on position" << endl;
     for(int i = 0; i < g_repeat; ++i)
     {
-        CALL_SUBTEST(( testFunction<Point, CovFitSmooth, WeightSmoothFunc, true>(false, true, true) ));
-        CALL_SUBTEST(( testFunction<Point, CovFitConstant, WeightConstantFunc, true>(false, true, true) ));
-        CALL_SUBTEST(( testFunction<Point, CovFitConstant2, WeightConstantFunc2, true>(false, true, true) ));
+        CALL_SUBTEST(( testFunction<Point, CovFitSmooth, true>(false, true, true) ));
+        CALL_SUBTEST(( testFunction<Point, CovFitConstant, true>(false, true, true) ));
+        CALL_SUBTEST(( testFunction<Point, CovFitConstant2, true>(false, true, true) ));
+        // CALL_SUBTEST(( testFunction<Point, CovFitConstantGlobal, WeightConstantFuncGlobal, true>(false, true, true) ));
     }
     cout << "Ok!" << endl;
 }

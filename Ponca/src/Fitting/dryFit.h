@@ -19,7 +19,7 @@ namespace Ponca
    \brief Empty fitting object doing no computation
  */
 
-    template < class DataPoint, class _WFunctor, typename T>
+    template < class DataPoint, class _NFilter, typename T>
     class DryFit :  public T
     {
     PONCA_FITTING_DECLARE_DEFAULT_TYPES
@@ -51,6 +51,11 @@ namespace Ponca
 
         //! \brief Simulate gradient direction computation
         PONCA_MULTIARCH inline VectorType primitiveGradient (const VectorType&) const { return VectorType::Zero(); }
+    protected:
+        /// \copydoc DryFit::potential
+        PONCA_MULTIARCH inline Scalar potentialLocal (const VectorType& /*_lq*/) const { return Scalar(0); }
+        /// \copydoc DryFit::primitiveGradient
+        PONCA_MULTIARCH inline VectorType primitiveGradientLocal (const VectorType&  /*_lq*/) const { return VectorType::Zero(); }
     };
 
 } //namespace Ponca

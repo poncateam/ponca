@@ -5,17 +5,17 @@
 */
 
 
-template < class DataPoint, class _WFunctor, typename T>
+template < class DataPoint, class _NFilter, typename T>
 void
-SphereFitImpl<DataPoint, _WFunctor, T>::init()
+SphereFitImpl<DataPoint, _NFilter, T>::init()
 {
     Base::init();
     m_matA.setZero();
 }
 
-template < class DataPoint, class _WFunctor, typename T>
+template < class DataPoint, class _NFilter, typename T>
 bool
-SphereFitImpl<DataPoint, _WFunctor, T>::addLocalNeighbor(Scalar w,
+SphereFitImpl<DataPoint, _NFilter, T>::addLocalNeighbor(Scalar w,
                                                      const VectorType &localQ,
                                                      const DataPoint &attributes)
 {
@@ -36,9 +36,9 @@ SphereFitImpl<DataPoint, _WFunctor, T>::addLocalNeighbor(Scalar w,
 }
 
 
-template < class DataPoint, class _WFunctor, typename T>
+template < class DataPoint, class _NFilter, typename T>
 FIT_RESULT
-SphereFitImpl<DataPoint, _WFunctor, T>::finalize ()
+SphereFitImpl<DataPoint, _NFilter, T>::finalize ()
 {
     // Compute status
     if(Base::finalize() != STABLE)

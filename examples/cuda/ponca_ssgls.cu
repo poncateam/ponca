@@ -273,7 +273,7 @@ public:
     typedef ScreenSpacePoint::VectorType VectorType;
     using Base = Ponca::DistWeightFunc<ScreenSpacePoint,Ponca::SmoothWeightKernel<Scalar> >;
 
-    PONCA_MULTIARCH inline explicit ProjectedWeightFunc(const VectorType& _evalPos = VectorType::Zero(), const Scalar& _t = Scalar(1.), const Scalar _dz = 0.f)
+    PONCA_MULTIARCH inline ProjectedWeightFunc(const VectorType& _evalPos = VectorType::Zero(), const Scalar& _t = Scalar(1.), const Scalar _dz = 0.f)
         : Base(_evalPos, _t), m_dz(_dz) {}
 
     PONCA_MULTIARCH inline Base::WeightReturnType w(const VectorType& _relativePos, const ScreenSpacePoint&  _attributes) const
@@ -358,7 +358,11 @@ __global__ void doGLS_kernel( int _imgw, int _imgh, int _scale,
 
     ScreenSpaceFit fit;
     fit.init();
-    fit.setWeightFunc(ProjectedWeightFunc(getVector(x, y, _imgw, _imgh, _positions) * 2.f - one, _scale, _maxDepthDiff));
+    fit.setNeighborFilter({
+        getVector(x, y, _imgw, _imgh, _positions) * 2.f - one,
+        float(_scale),
+        _maxDepthDiff
+    });
 
     _result[idx] = 0.f;
 

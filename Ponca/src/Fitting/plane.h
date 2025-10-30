@@ -31,7 +31,7 @@ namespace Ponca
     This primitive provides:
     \verbatim PROVIDES_PLANE \endverbatim
 */
-template < class DataPoint, class _WFunctor, typename T >
+template < class DataPoint, class _NFilter, typename T >
 class Plane : public T,
               public Eigen::Hyperplane<typename DataPoint::Scalar, DataPoint::Dim >
 {
@@ -66,12 +66,12 @@ public:
         return ! EigenBase::coeffs().isApprox(EigenBase::Coefficients::Zero());
     }
 
-    PONCA_MULTIARCH inline bool operator==(const Plane<DataPoint, WFunctor, T>& other) const{
+    PONCA_MULTIARCH inline bool operator==(const Plane<DataPoint, NeighborFilter, T>& other) const{
         return EigenBase::isApprox(other);
     }
 
     /*! \brief Comparison operator, convenience function */
-    PONCA_MULTIARCH inline bool operator!=(const Plane<DataPoint, WFunctor, T>& other) const{
+    PONCA_MULTIARCH inline bool operator!=(const Plane<DataPoint, NeighborFilter, T>& other) const{
         return ! ((*this) == other);
     }
 
@@ -86,6 +86,21 @@ public:
         *cc = EigenBase(_dir.normalized(), _pos);
     }
 
+    /*!
+     \brief Express the scalar field relatively to a new basis
+
+     The plane in dimension \f$d\f$ is parametrized in the original basis.
+     Moving the basis only affects the constant term:
+    \f$c' = c - \mathbf{u}_l^T.\mathbf{\Delta}\f$ with \f$\Delta=old-new\f$.
+    */
+    PONCA_MULTIARCH inline void changeBasis(const VectorType& newbasis)
+    {
+        VectorType diff = Base::getNeighborFilter().evalPos() - newbasis;
+        Base::getNeighborFilter().changeNeighborhoodFrame(newbasis);
+        Base::init();
+        EigenBase::offset() -= EigenBase::normal().dot(diff);
+    }
+
     //! \brief Value of the scalar field at the evaluation point
     //! \see method `#isSigned` of the fit to check if the sign is reliable
     PONCA_MULTIARCH inline Scalar potential ( ) const
@@ -97,15 +112,16 @@ public:
     //! \see method `#isSigned` of the fit to check if the sign is reliable
     PONCA_MULTIARCH inline Scalar potential (const VectorType& _q) const
     {
-        // The potential is the distance from the point to the plane
-        return EigenBase::signedDistance(Base::m_w.convertToLocalBasis(_q) );
+        // turn to centered basis
+        const VectorType lq = Base::getNeighborFilter().convertToLocalBasis(_q);
+        return potentialLocal( lq );
     }
 
     //! \brief Project a point on the plane
     PONCA_MULTIARCH inline VectorType project (const VectorType& _q) const
     {
         // Project on the normal vector and add the offset value
-        return Base::m_w.convertToGlobalBasis(EigenBase::projection(Base::m_w.convertToLocalBasis(_q)));
+        return Base::getNeighborFilter().convertToGlobalBasis(EigenBase::projection(Base::getNeighborFilter().convertToLocalBasis(_q)));
     }
 
     //! \brief Scalar field gradient direction at the evaluation point
@@ -116,9 +132,19 @@ public:
     }
 
     //! \brief Scalar field gradient direction at \f$ \mathbf{q}\f$
-    PONCA_MULTIARCH inline VectorType primitiveGradient (const VectorType&) const
+    PONCA_MULTIARCH inline VectorType primitiveGradient (const VectorType& /*_q*/) const
     {
         // Uniform gradient defined only by the orientation of the plane
+        return EigenBase::normal();
+    }
+protected:
+    /// \copydoc Plane::potential
+    PONCA_MULTIARCH inline Scalar potentialLocal (const VectorType& _lq) const {
+        // The potential is the distance from the point to the plane
+        return EigenBase::signedDistance(_lq);
+    }
+    /// \copydoc Plane::primitiveGradient
+    PONCA_MULTIARCH inline VectorType primitiveGradientLocal (const VectorType&  /*_lq*/) const {
         return EigenBase::normal();
     }
 }; //class Plane

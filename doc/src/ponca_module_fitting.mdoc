@@ -46,7 +46,7 @@ namespace Ponca
   Given an object of type `Fit`, the client code can look as follow (alternative way of doing the fit computation can be seen in \ref fitting_Fitting):
   \code
   Fit fit;                   // Create the user-defined fitting procedure
-  fit.setWeightFunc({p, t}); // Set a weighting function to weight neighbors from a reference point p
+  fit.setNeighborFilter({p, t}); // Set a function to filter neighbors from a reference position p and a radius t
   fit.compute(vectorPoints); // Optimize the object fit according to the points in vectorPoints
   \endcode
 
@@ -220,7 +220,7 @@ namespace Ponca
   descriptor \cite Mellado:2012:GLS (see GLSParam) from multiple sphere fitting techniques:
   \snippet gls_tau.cpp GLSFitTypes
   From a technical point of view, the Basket class combines its template parameters (here Ponca::OrientedSphereFit and GLSParam) following the CRTP rules, ie.
-  to form an object of the type `GLSParam<Ponca::OrientedSphereFit<DataPoint, _WFunctor,T>>`, that aggregates the computations provided in each class of the hierarchy.
+  to form an object of the type `GLSParam<Ponca::OrientedSphereFit<DataPoint, _NFilter, T>>`, that aggregates the computations provided in each class of the hierarchy.
 
   In practice, Ponca uses these mechanisms under the hood in order to combine atomic computations and minimize code duplication.
   For instance, Ponca::OrientedSphereFit is defined as an assembly of several computations classes:
