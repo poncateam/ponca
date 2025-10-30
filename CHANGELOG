@@ -11,17 +11,21 @@ Current head (v.2.0 RC)
     - [fitting] Make projectDescent available for any `Basket` (#177)
 
 - Bug-fixes and code improvements
+    - [fitting] Add [[nodiscard]] qualifier when required (#221)
+    - [fitting] Fix uninitialized variables (#221)
     - [fitting] `AlgebraicSphere`: fix bug on projection for the planar case (#177)
 
 - Tests
     - [fitting] Add barycenter test (#177)
     - [fitting] Add change_basis test (#177)
+    - [fitting] Minor improvements (#221)
 
 - Examples
    - [all] Update examples according to API change (#177)
 
 - Docs
     - [fitting] Update doc according to API change (#177)
+    - [fitting] Minor improvements (#221)
 
 --------------------------------------------------------------------------------
 v.1.4
