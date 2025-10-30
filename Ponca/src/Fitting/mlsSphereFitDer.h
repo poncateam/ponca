@@ -76,12 +76,12 @@ public:
 
 protected:
     // computation data
-    Matrix m_d2SumDotPN,  /*!< \brief Sum of the dot product between relative positions and normals with twice differenciated weights */
-           m_d2SumDotPP,  /*!< \brief Sum of the squared relative positions with twice differenciated weights */
-           m_d2SumW;      /*!< \brief Sum of queries weight with twice differenciated weights */
+    Matrix m_d2SumDotPN,  /*!< \brief Sum of the dot product between relative positions and normals with second-order weight derivatives */
+           m_d2SumDotPP,  /*!< \brief Sum of the squared relative positions with second-order weight derivatives */
+           m_d2SumW;      /*!< \brief Sum of queries weight with second-order weight derivatives */
 
-    MatrixArray m_d2SumP, /*!< \brief Sum of relative positions with twice differenciated weights */
-                m_d2SumN; /*!< \brief Sum of normal vectors with twice differenciated weights */
+    MatrixArray m_d2SumP, /*!< \brief Sum of relative positions with second-order weight derivatives */
+                m_d2SumN; /*!< \brief Sum of normal vectors with second-order weight derivatives */
 
 public:
     // results

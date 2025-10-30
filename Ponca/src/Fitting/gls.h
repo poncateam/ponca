@@ -13,7 +13,7 @@ namespace Ponca
 {
 
 /*!
-    \brief Growing Least Squares reparemetrization of the OrientedSphereFit
+    \brief Growing Least Squares reparametrization of the OrientedSphereFit
     \inherit Concept::FittingExtensionConcept
 
     Method published in \cite Mellado:2012:GLS

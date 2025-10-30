@@ -222,9 +222,9 @@ public:
     /**************************************************************************/
     /* Use results                                                            */
     /**************************************************************************/
-    /*! \brief State specified at compilation time to differenciate the fit in scale */
-    /*! \brief State specified at compilation time to differenciate the fit in space */
+    /*! \brief State specified at compilation time to compute derivatives in scale */
     PONCA_MULTIARCH [[nodiscard]] inline constexpr bool isScaleDer() const {return bool(Type & FitScaleDer);}
+    /*! \brief State specified at compilation time to compute derivatives in space */
     PONCA_MULTIARCH [[nodiscard]] inline constexpr bool isSpaceDer() const {return bool(Type & FitSpaceDer);}
     /*! \brief Number of dimensions used for the differentiation */
     PONCA_MULTIARCH [[nodiscard]] inline constexpr unsigned int derDimension() const { return NbDerivatives;}

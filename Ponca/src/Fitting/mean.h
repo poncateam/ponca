@@ -88,7 +88,7 @@ namespace Ponca {
 
     protected:
         enum { PROVIDES_MEAN_NORMAL };
-        VectorType m_sumN;    /*!< \brief Sum of the normal vectors */
+        VectorType m_sumN {VectorType::Zero()};    /*!< \brief Sum of the normal vectors */
 
     public:
         PONCA_EXPLICIT_CAST_OPERATORS(MeanNormal,meanNormal)

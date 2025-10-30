@@ -100,13 +100,13 @@ protected:
 protected:
     // computation data
     MatrixBB m_dmatA[Base::NbDerivatives];
-    ScalarArray m_dSumDotPP;
+    ScalarArray m_dSumDotPP {ScalarArray::Zero()};
 
 public:
     // results
-    ScalarArray m_dUc;
-    VectorArray m_dUl;
-    ScalarArray m_dUq;
+    ScalarArray m_dUc {ScalarArray::Zero()};
+    VectorArray m_dUl {VectorArray::Zero()};
+    ScalarArray m_dUq {ScalarArray::Zero()};
 
 public:
     PONCA_EXPLICIT_CAST_OPERATORS_DER(UnorientedSphereDerImpl,unorientedSphereDer)

@@ -35,10 +35,10 @@ protected:
     };
 
     // computation data
-    Scalar  m_sumDotPN, /*!< \brief Sum of the dot product betwen relative positions and normals */
-            m_sumDotPP, /*!< \brief Sum of the squared relative positions */
-            m_nume,     /*!< \brief Numerator of the quadratic parameter (excluding the 0.5 coefficient)   */
-            m_deno;     /*!< \brief Denominator of the quadratic parameter (excluding the 0.5 coefficient) */
+    Scalar  m_sumDotPN {0}, /*!< \brief Sum of the dot product between relative positions and normals */
+            m_sumDotPP {0}, /*!< \brief Sum of the squared relative positions */
+            m_nume     {0}, /*!< \brief Numerator of the quadratic parameter (excluding the 0.5 coefficient)   */
+            m_deno     {0}; /*!< \brief Denominator of the quadratic parameter (excluding the 0.5 coefficient) */
 
 public:
     PONCA_EXPLICIT_CAST_OPERATORS(OrientedSphereFitImpl,orientedSphereFit)
@@ -76,17 +76,17 @@ protected:
     };
 
     // computation data
-    VectorArray m_dSumN;     /*!< \brief Sum of the normal vectors with differenciated weights */
-    ScalarArray m_dSumDotPN, /*!< \brief Sum of the dot product betwen relative positions and normals with differenciated weights */
-                m_dSumDotPP, /*!< \brief Sum of the squared relative positions with differenciated weights */
-                m_dNume,     /*!< \brief Differenciation of the numerator of the quadratic parameter   */
-                m_dDeno;     /*!< \brief Differenciation of the denominator of the quadratic parameter */
+    VectorArray m_dSumN {VectorArray::Zero()};     /*!< \brief Sum of the normal vectors with weight derivatives */
+    ScalarArray m_dSumDotPN {ScalarArray::Zero()}, /*!< \brief Sum of the dot product between relative positions and normals with weight derivatives */
+                m_dSumDotPP {ScalarArray::Zero()}, /*!< \brief Sum of the squared relative positions with weight derivatives */
+                m_dNume {ScalarArray::Zero()},     /*!< \brief Derivatives of the numerator of the quadratic parameter   */
+                m_dDeno {ScalarArray::Zero()};     /*!< \brief Derivatives of the denominator of the quadratic parameter */
 
 public:
     // results
-    ScalarArray m_dUc, /*!< \brief Derivative of the hyper-sphere constant term  */
-                m_dUq; /*!< \brief Derivative of the hyper-sphere quadratic term */
-    VectorArray m_dUl; /*!< \brief Derivative of the hyper-sphere linear term    */
+    ScalarArray m_dUc {ScalarArray::Zero()}, /*!< \brief Derivatives of the hyper-sphere constant term  */
+                m_dUq {ScalarArray::Zero()}; /*!< \brief Derivatives of the hyper-sphere quadratic term */
+    VectorArray m_dUl {VectorArray::Zero()}; /*!< \brief Derivatives of the hyper-sphere linear term    */
 
 public:
     PONCA_EXPLICIT_CAST_OPERATORS_DER(OrientedSphereDerImpl,orientedSphereDer)

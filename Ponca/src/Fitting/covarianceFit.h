@@ -38,7 +38,7 @@ namespace Ponca
             &= \frac{1}{n}\sum_i (\mathbf{p}_i\mathbf{p}_i^T) -  \frac{1}{n}\sum_i(\mathbf{b}\mathbf{p}_i^T)  -  \frac{1}{n}\sum_i(\mathbf{p}_i\mathbf{b}^T)  +  \frac{1}{n}\sum_i (\mathbf{b}\mathbf{b}^T) \\
             &= \frac{1}{n}\sum_i (\mathbf{p}_i\mathbf{p}_i^T) - \mathbf{b}\frac{1}{n}\sum_i(\mathbf{p}_i^T) - \frac{1}{n}\sum_i(\mathbf{p}_i)\mathbf{b}^T  + \frac{1}{n}\sum_i(1) \mathbf{b}\mathbf{b}^T \\
             &= \frac{1}{n}\sum_i (\mathbf{p}_i\mathbf{p}_i^T) - \mathbf{b}\mathbf{b}^T - \mathbf{b}\mathbf{b}^T + \mathbf{b}\mathbf{b}^T \f}
-   Leading to a single pass where \f$\text{C}\f$ is express by substracting two terms that can be computed independently
+   Leading to a single pass where \f$\text{C}\f$ is express by subtracting two terms that can be computed independently
    in one run:
    \f[ \text{C} = \frac{1}{n}\sum_i (\mathbf{p}_i\mathbf{p}_i^T) - \mathbf{b}\mathbf{b}^T \f]
 
