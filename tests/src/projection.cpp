@@ -18,6 +18,9 @@
 
 #include <Ponca/src/Fitting/basket.h>
 #include <Ponca/src/Fitting/orientedSphereFit.h>
+#include <Ponca/src/Fitting/covariancePlaneFit.h>
+#include <Ponca/src/Fitting/sphereFit.h>
+#include <Ponca/src/Fitting/unorientedSphereFit.h>
 #include <Ponca/src/Fitting/weightFunc.h>
 #include <Ponca/src/Fitting/weightKernel.h>
 
@@ -30,13 +33,13 @@ using namespace Ponca;
 /*
  * Test the OrientedSphereFit on a paraboloid using a given neighborhood filter
  */
-template<typename DataPoint, typename NF>
-void testFunction(typename DataPoint::Scalar lowPrecisionEpsilon = typename DataPoint::Scalar(0.001)) // Lesser precision for the paraboloid test
+template<typename Fit>
+void testFunction(typename Fit::Scalar lowPrecisionEpsilon = typename Fit::Scalar(0.001)) // Lesser precision for the paraboloid test
 {
     // Define related structure
-    typedef typename DataPoint::Scalar Scalar;
-    typedef typename DataPoint::VectorType VectorType;
-    typedef Basket<DataPoint, NF, OrientedSphereFit> Fit;
+    typedef typename Fit::Scalar Scalar;
+    typedef typename Fit::VectorType VectorType;
+    typedef typename Fit::DataPoint DataPoint;
 
     //generate samples
     int nbPoints = Eigen::internal::random<int>(100, 1000);
@@ -52,9 +55,9 @@ void testFunction(typename DataPoint::Scalar lowPrecisionEpsilon = typename Data
     coeff.y() = std::copysign(coeff.y(), coeff.x());
 
     Scalar width = Eigen::internal::random<Scalar>(1., 10.);
-    // maximum offset is <10 unit. it is plenty enough to test local/global basis robustness, without introducing
-    // rounding errors
-    Scalar offset = Eigen::internal::random<Scalar>(1., 10.);
+    // maximum offset is <5 unit, and always smaller than 2*width.
+    // It is plenty enough to test local/global basis robustness, without introducing rounding errors
+    Scalar offset = Eigen::internal::random<Scalar>(1., std::min(Scalar(5.), Scalar(.5)*width));
     VectorType center = offset*VectorType::Random();
 
     Scalar zmax = std::abs((coeff[0] + coeff[1]) * width*width);
@@ -86,13 +89,12 @@ void testFunction(typename DataPoint::Scalar lowPrecisionEpsilon = typename Data
             VectorType projD = fit.projectDescent( p, 1000 );
             VERIFY( std::abs(fit.potential(projD)) < lowPrecisionEpsilon );
 
-            if constexpr (NF::isLocal) {
-                VectorType proj = fit.project( p );
-                VERIFY( std::abs(fit.potential(proj)) < lowPrecisionEpsilon );
-
-                // check if direct projection gives same or better result than descent projection.
-                VERIFY( proj.isApprox( projD, lowPrecisionEpsilon ));
-            }
+            VectorType proj = fit.project( p );
+            Scalar p1 = std::abs(fit.potential(proj));
+            Scalar p2 = std::abs(fit.potential(p));
+            // check the direct projection did not move the point away from the surface (can be stationary if already
+            // on the surface)
+            VERIFY( p1 <= p2 );
         }
 
         // Disable this test: not true with apple-clang 12.
@@ -118,20 +120,29 @@ void testFunction(typename DataPoint::Scalar lowPrecisionEpsilon = typename Data
 template<typename Scalar, int Dim>
 void callSubTests()
 {
-    typedef PointPositionNormal<Scalar, Dim> Point;
+    using Point = PointPositionNormal<Scalar, Dim> ;
 
-    typedef DistWeightFunc<Point, SmoothWeightKernel<Scalar> > WeightSmoothFunc;
-    typedef Ponca::DistWeightFunc<Point, Ponca::ConstantWeightKernel<Scalar> > WeightConstantFuncLocal;
-    typedef Ponca::NoWeightFuncGlobal<Point> NoWeightFuncGlobal;
-    typedef Ponca::NoWeightFunc<Point> NoWeightFunc;
+    using WeightSmoothFunc        = DistWeightFunc<Point, SmoothWeightKernel<Scalar>>;
+    using WeightConstantFuncLocal = Ponca::DistWeightFunc<Point, Ponca::ConstantWeightKernel<Scalar>>;
+    using NoWeightFuncGlobal      = Ponca::NoWeightFuncGlobal<Point> ;
+    using NoWeightFunc            = Ponca::NoWeightFunc<Point> ;
 
-    cout << "Testing with parabola..." << endl;
+#define MAKE_FIT_TYPE(Fit,Weight) Basket<Point, Weight, Fit>
+
+#define TEST_FIT(Fit) \
+        CALL_SUBTEST(( testFunction<MAKE_FIT_TYPE(Fit,WeightSmoothFunc)>() )); \
+        CALL_SUBTEST(( testFunction<MAKE_FIT_TYPE(Fit,WeightConstantFuncLocal)>() )); \
+        CALL_SUBTEST(( testFunction<MAKE_FIT_TYPE(Fit,NoWeightFunc)>() ));
+
+    cout << "Testing with " << typeid(Scalar).name() << endl;
     for(int i = 0; i < g_repeat; ++i)
     {
-        CALL_SUBTEST(( testFunction<Point, WeightSmoothFunc>() ));
-        CALL_SUBTEST(( testFunction<Point, WeightConstantFuncLocal>() ));
-        CALL_SUBTEST(( testFunction<Point, NoWeightFuncGlobal>() ));
-        CALL_SUBTEST(( testFunction<Point, NoWeightFunc>() ));
+        TEST_FIT(OrientedSphereFit) // AlgebraicSphere requires local basis
+        TEST_FIT(CovariancePlaneFit)
+        CALL_SUBTEST(( testFunction<MAKE_FIT_TYPE(CovariancePlaneFit,NoWeightFuncGlobal)>() ));
+        TEST_FIT(UnorientedSphereFit)
+        TEST_FIT(SphereFit)
+
     }
     cout << "Ok!" << endl;
 }
