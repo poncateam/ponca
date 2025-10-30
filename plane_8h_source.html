@@ -51,7 +51,7 @@ MathJax.Hub.Config({
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Ponca
-   &#160;<span id="projectnumber">9e7681effe2c12b0af1c85fdb62680f52d835a30</span>
+   &#160;<span id="projectnumber">b63e69866b9b277a96802d3d06e6492d50ffc055</span>
    </div>
    <div id="projectbrief">Point Cloud Analysis library</div>
   </td>
@@ -169,7 +169,7 @@ $(document).ready(function(){initNavTree('plane_8h_source.html',''); initResizab
 </div>
 <div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span> </div>
 <div class="foldopen" id="foldopen00065" data-start="{" data-end="}">
-<div class="line"><a id="l00065" name="l00065"></a><span class="lineno"><a class="line" href="classPonca_1_1Plane.html#a38f025cd193aea2cc836cac838a3e750">   65</a></span>    PONCA_MULTIARCH <span class="keyword">inline</span> <span class="keywordtype">bool</span> <a class="code hl_function" href="classPonca_1_1Plane.html#a38f025cd193aea2cc836cac838a3e750">isValid</a>()<span class="keyword"> const</span>{</div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno"><a class="line" href="classPonca_1_1Plane.html#a38f025cd193aea2cc836cac838a3e750">   65</a></span>    PONCA_MULTIARCH [[nodiscard]] <span class="keyword">inline</span> <span class="keywordtype">bool</span> <a class="code hl_function" href="classPonca_1_1Plane.html#a38f025cd193aea2cc836cac838a3e750">isValid</a>()<span class="keyword"> const</span>{</div>
 <div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>        <span class="keywordflow">return</span> ! EigenBase::coeffs().isApprox(EigenBase::Coefficients::Zero());</div>
 <div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>    }</div>
 </div>
@@ -191,7 +191,7 @@ $(document).ready(function(){initNavTree('plane_8h_source.html',''); initResizab
 <div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>    PONCA_MULTIARCH <span class="keyword">inline</span> <span class="keywordtype">void</span> setPlane (<span class="keyword">const</span> <a class="code hl_typedef" href="classPonca_1_1Plane.html#a3d05e7a87b12da5c4e243ecb731a391e">VectorType</a>&amp; _dir,</div>
 <div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>                                    <span class="keyword">const</span> <a class="code hl_typedef" href="classPonca_1_1Plane.html#a3d05e7a87b12da5c4e243ecb731a391e">VectorType</a>&amp; _pos)</div>
 <div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>    {</div>
-<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>        <a class="code hl_typedef" href="classPonca_1_1Plane.html#a1781cabbc9b484fd7c0a8ff03a3d9668">EigenBase</a>* cc = <span class="keyword">static_cast&lt;</span><a class="code hl_typedef" href="classPonca_1_1Plane.html#a1781cabbc9b484fd7c0a8ff03a3d9668">EigenBase</a>*<span class="keyword">&gt;</span>(<span class="keyword">this</span>);</div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>        <span class="keyword">auto</span> cc = <span class="keyword">static_cast&lt;</span><a class="code hl_typedef" href="classPonca_1_1Plane.html#a1781cabbc9b484fd7c0a8ff03a3d9668">EigenBase</a>*<span class="keyword">&gt;</span>(<span class="keyword">this</span>);</div>
 <div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>        *cc = <a class="code hl_typedef" href="classPonca_1_1Plane.html#a1781cabbc9b484fd7c0a8ff03a3d9668">EigenBase</a>(_dir.normalized(), _pos);</div>
 <div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>    }</div>
 <div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span> </div>
@@ -206,14 +206,14 @@ $(document).ready(function(){initNavTree('plane_8h_source.html',''); initResizab
 </div>
 <div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span> </div>
 <div class="foldopen" id="foldopen00106" data-start="{" data-end="}">
-<div class="line"><a id="l00106" name="l00106"></a><span class="lineno"><a class="line" href="classPonca_1_1Plane.html#aa15c2d321a4f611f3a4634c01b9215af">  106</a></span>    PONCA_MULTIARCH <span class="keyword">inline</span> <a class="code hl_typedef" href="classPonca_1_1Plane.html#aabd5ab4bb1ac1f801b813deaa1e2ef2d">Scalar</a> <a class="code hl_function" href="classPonca_1_1Plane.html#aa15c2d321a4f611f3a4634c01b9215af">potential</a> ( )<span class="keyword"> const</span></div>
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno"><a class="line" href="classPonca_1_1Plane.html#aa15c2d321a4f611f3a4634c01b9215af">  106</a></span>    PONCA_MULTIARCH [[nodiscard]] <span class="keyword">inline</span> <a class="code hl_typedef" href="classPonca_1_1Plane.html#aabd5ab4bb1ac1f801b813deaa1e2ef2d">Scalar</a> <a class="code hl_function" href="classPonca_1_1Plane.html#aa15c2d321a4f611f3a4634c01b9215af">potential</a> ( )<span class="keyword"> const</span></div>
 <div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span><span class="keyword">    </span>{</div>
 <div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span>        <span class="keywordflow">return</span> EigenBase::signedDistance(VectorType::Zero());</div>
 <div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span>    }</div>
 </div>
 <div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span> </div>
 <div class="foldopen" id="foldopen00113" data-start="{" data-end="}">
-<div class="line"><a id="l00113" name="l00113"></a><span class="lineno"><a class="line" href="classPonca_1_1Plane.html#a66080ca92f112302007dc404e0de6fe5">  113</a></span>    PONCA_MULTIARCH <span class="keyword">inline</span> <a class="code hl_typedef" href="classPonca_1_1Plane.html#aabd5ab4bb1ac1f801b813deaa1e2ef2d">Scalar</a> <a class="code hl_function" href="classPonca_1_1Plane.html#a66080ca92f112302007dc404e0de6fe5">potential</a> (<span class="keyword">const</span> <a class="code hl_typedef" href="classPonca_1_1Plane.html#a3d05e7a87b12da5c4e243ecb731a391e">VectorType</a>&amp; _q)<span class="keyword"> const</span></div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno"><a class="line" href="classPonca_1_1Plane.html#a66080ca92f112302007dc404e0de6fe5">  113</a></span>    PONCA_MULTIARCH [[nodiscard]] <span class="keyword">inline</span> <a class="code hl_typedef" href="classPonca_1_1Plane.html#aabd5ab4bb1ac1f801b813deaa1e2ef2d">Scalar</a> <a class="code hl_function" href="classPonca_1_1Plane.html#a66080ca92f112302007dc404e0de6fe5">potential</a> (<span class="keyword">const</span> <a class="code hl_typedef" href="classPonca_1_1Plane.html#a3d05e7a87b12da5c4e243ecb731a391e">VectorType</a>&amp; _q)<span class="keyword"> const</span></div>
 <div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span><span class="keyword">    </span>{</div>
 <div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span>        <span class="comment">// turn to centered basis</span></div>
 <div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span>        <span class="keyword">const</span> <a class="code hl_typedef" href="classPonca_1_1Plane.html#a3d05e7a87b12da5c4e243ecb731a391e">VectorType</a> lq = Base::getNeighborFilter().convertToLocalBasis(_q);</div>
@@ -222,7 +222,7 @@ $(document).ready(function(){initNavTree('plane_8h_source.html',''); initResizab
 </div>
 <div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span> </div>
 <div class="foldopen" id="foldopen00121" data-start="{" data-end="}">
-<div class="line"><a id="l00121" name="l00121"></a><span class="lineno"><a class="line" href="classPonca_1_1Plane.html#a29b652b27321dd185acb93f53cc6c127">  121</a></span>    PONCA_MULTIARCH <span class="keyword">inline</span> <a class="code hl_typedef" href="classPonca_1_1Plane.html#a3d05e7a87b12da5c4e243ecb731a391e">VectorType</a> <a class="code hl_function" href="classPonca_1_1Plane.html#a29b652b27321dd185acb93f53cc6c127">project</a> (<span class="keyword">const</span> <a class="code hl_typedef" href="classPonca_1_1Plane.html#a3d05e7a87b12da5c4e243ecb731a391e">VectorType</a>&amp; _q)<span class="keyword"> const</span></div>
+<div class="line"><a id="l00121" name="l00121"></a><span class="lineno"><a class="line" href="classPonca_1_1Plane.html#a29b652b27321dd185acb93f53cc6c127">  121</a></span>    PONCA_MULTIARCH [[nodiscard]] <span class="keyword">inline</span> <a class="code hl_typedef" href="classPonca_1_1Plane.html#a3d05e7a87b12da5c4e243ecb731a391e">VectorType</a> <a class="code hl_function" href="classPonca_1_1Plane.html#a29b652b27321dd185acb93f53cc6c127">project</a> (<span class="keyword">const</span> <a class="code hl_typedef" href="classPonca_1_1Plane.html#a3d05e7a87b12da5c4e243ecb731a391e">VectorType</a>&amp; _q)<span class="keyword"> const</span></div>
 <div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span><span class="keyword">    </span>{</div>
 <div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span>        <span class="comment">// Project on the normal vector and add the offset value</span></div>
 <div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span>        <span class="keywordflow">return</span> Base::getNeighborFilter().convertToGlobalBasis(EigenBase::projection(Base::getNeighborFilter().convertToLocalBasis(_q)));</div>
@@ -230,7 +230,7 @@ $(document).ready(function(){initNavTree('plane_8h_source.html',''); initResizab
 </div>
 <div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span> </div>
 <div class="foldopen" id="foldopen00128" data-start="{" data-end="}">
-<div class="line"><a id="l00128" name="l00128"></a><span class="lineno"><a class="line" href="classPonca_1_1Plane.html#ad9392b14876d342f504a0d74ce057217">  128</a></span>    PONCA_MULTIARCH <span class="keyword">inline</span> <a class="code hl_typedef" href="classPonca_1_1Plane.html#a3d05e7a87b12da5c4e243ecb731a391e">VectorType</a> <a class="code hl_function" href="classPonca_1_1Plane.html#ad9392b14876d342f504a0d74ce057217">primitiveGradient</a> ()<span class="keyword"> const</span></div>
+<div class="line"><a id="l00128" name="l00128"></a><span class="lineno"><a class="line" href="classPonca_1_1Plane.html#ad9392b14876d342f504a0d74ce057217">  128</a></span>    PONCA_MULTIARCH [[nodiscard]] <span class="keyword">inline</span> <a class="code hl_typedef" href="classPonca_1_1Plane.html#a3d05e7a87b12da5c4e243ecb731a391e">VectorType</a> <a class="code hl_function" href="classPonca_1_1Plane.html#ad9392b14876d342f504a0d74ce057217">primitiveGradient</a> ()<span class="keyword"> const</span></div>
 <div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span><span class="keyword">    </span>{</div>
 <div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span>        <span class="comment">// Uniform gradient defined only by the orientation of the plane</span></div>
 <div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span>        <span class="keywordflow">return</span> EigenBase::normal();</div>
@@ -238,7 +238,7 @@ $(document).ready(function(){initNavTree('plane_8h_source.html',''); initResizab
 </div>
 <div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span> </div>
 <div class="foldopen" id="foldopen00135" data-start="{" data-end="}">
-<div class="line"><a id="l00135" name="l00135"></a><span class="lineno"><a class="line" href="classPonca_1_1Plane.html#a906579a839c036bed91336213dfae71d">  135</a></span>    PONCA_MULTIARCH <span class="keyword">inline</span> <a class="code hl_typedef" href="classPonca_1_1Plane.html#a3d05e7a87b12da5c4e243ecb731a391e">VectorType</a> <a class="code hl_function" href="classPonca_1_1Plane.html#a906579a839c036bed91336213dfae71d">primitiveGradient</a> (<span class="keyword">const</span> <a class="code hl_typedef" href="classPonca_1_1Plane.html#a3d05e7a87b12da5c4e243ecb731a391e">VectorType</a>&amp; <span class="comment">/*_q*/</span>)<span class="keyword"> const</span></div>
+<div class="line"><a id="l00135" name="l00135"></a><span class="lineno"><a class="line" href="classPonca_1_1Plane.html#a906579a839c036bed91336213dfae71d">  135</a></span>    PONCA_MULTIARCH [[nodiscard]] <span class="keyword">inline</span> <a class="code hl_typedef" href="classPonca_1_1Plane.html#a3d05e7a87b12da5c4e243ecb731a391e">VectorType</a> <a class="code hl_function" href="classPonca_1_1Plane.html#a906579a839c036bed91336213dfae71d">primitiveGradient</a> (<span class="keyword">const</span> <a class="code hl_typedef" href="classPonca_1_1Plane.html#a3d05e7a87b12da5c4e243ecb731a391e">VectorType</a>&amp; <span class="comment">/*_q*/</span>)<span class="keyword"> const</span></div>
 <div class="line"><a id="l00136" name="l00136"></a><span class="lineno">  136</span><span class="keyword">    </span>{</div>
 <div class="line"><a id="l00137" name="l00137"></a><span class="lineno">  137</span>        <span class="comment">// Uniform gradient defined only by the orientation of the plane</span></div>
 <div class="line"><a id="l00138" name="l00138"></a><span class="lineno">  138</span>        <span class="keywordflow">return</span> EigenBase::normal();</div>
@@ -246,13 +246,13 @@ $(document).ready(function(){initNavTree('plane_8h_source.html',''); initResizab
 </div>
 <div class="line"><a id="l00140" name="l00140"></a><span class="lineno">  140</span><span class="keyword">protected</span>:</div>
 <div class="foldopen" id="foldopen00142" data-start="{" data-end="}">
-<div class="line"><a id="l00142" name="l00142"></a><span class="lineno"><a class="line" href="classPonca_1_1Plane.html#aec8ee67158d5c3cd4bff676bd984e1fb">  142</a></span>    PONCA_MULTIARCH <span class="keyword">inline</span> <a class="code hl_typedef" href="classPonca_1_1Plane.html#aabd5ab4bb1ac1f801b813deaa1e2ef2d">Scalar</a> <a class="code hl_function" href="classPonca_1_1Plane.html#aec8ee67158d5c3cd4bff676bd984e1fb">potentialLocal</a> (<span class="keyword">const</span> <a class="code hl_typedef" href="classPonca_1_1Plane.html#a3d05e7a87b12da5c4e243ecb731a391e">VectorType</a>&amp; _lq)<span class="keyword"> const </span>{</div>
+<div class="line"><a id="l00142" name="l00142"></a><span class="lineno"><a class="line" href="classPonca_1_1Plane.html#aec8ee67158d5c3cd4bff676bd984e1fb">  142</a></span>    PONCA_MULTIARCH [[nodiscard]] <span class="keyword">inline</span> <a class="code hl_typedef" href="classPonca_1_1Plane.html#aabd5ab4bb1ac1f801b813deaa1e2ef2d">Scalar</a> <a class="code hl_function" href="classPonca_1_1Plane.html#aec8ee67158d5c3cd4bff676bd984e1fb">potentialLocal</a> (<span class="keyword">const</span> <a class="code hl_typedef" href="classPonca_1_1Plane.html#a3d05e7a87b12da5c4e243ecb731a391e">VectorType</a>&amp; _lq)<span class="keyword"> const </span>{</div>
 <div class="line"><a id="l00143" name="l00143"></a><span class="lineno">  143</span>        <span class="comment">// The potential is the distance from the point to the plane</span></div>
 <div class="line"><a id="l00144" name="l00144"></a><span class="lineno">  144</span>        <span class="keywordflow">return</span> EigenBase::signedDistance(_lq);</div>
 <div class="line"><a id="l00145" name="l00145"></a><span class="lineno">  145</span>    }</div>
 </div>
 <div class="foldopen" id="foldopen00147" data-start="{" data-end="}">
-<div class="line"><a id="l00147" name="l00147"></a><span class="lineno"><a class="line" href="classPonca_1_1Plane.html#a3e83a2e11b5fa0c55a4353396cb12c2d">  147</a></span>    PONCA_MULTIARCH <span class="keyword">inline</span> <a class="code hl_typedef" href="classPonca_1_1Plane.html#a3d05e7a87b12da5c4e243ecb731a391e">VectorType</a> <a class="code hl_function" href="classPonca_1_1Plane.html#a3e83a2e11b5fa0c55a4353396cb12c2d">primitiveGradientLocal</a> (<span class="keyword">const</span> <a class="code hl_typedef" href="classPonca_1_1Plane.html#a3d05e7a87b12da5c4e243ecb731a391e">VectorType</a>&amp;  <span class="comment">/*_lq*/</span>)<span class="keyword"> const </span>{</div>
+<div class="line"><a id="l00147" name="l00147"></a><span class="lineno"><a class="line" href="classPonca_1_1Plane.html#a3e83a2e11b5fa0c55a4353396cb12c2d">  147</a></span>    PONCA_MULTIARCH [[nodiscard]] <span class="keyword">inline</span> <a class="code hl_typedef" href="classPonca_1_1Plane.html#a3d05e7a87b12da5c4e243ecb731a391e">VectorType</a> <a class="code hl_function" href="classPonca_1_1Plane.html#a3e83a2e11b5fa0c55a4353396cb12c2d">primitiveGradientLocal</a> (<span class="keyword">const</span> <a class="code hl_typedef" href="classPonca_1_1Plane.html#a3d05e7a87b12da5c4e243ecb731a391e">VectorType</a>&amp;  <span class="comment">/*_lq*/</span>)<span class="keyword"> const </span>{</div>
 <div class="line"><a id="l00148" name="l00148"></a><span class="lineno">  148</span>        <span class="keywordflow">return</span> EigenBase::normal();</div>
 <div class="line"><a id="l00149" name="l00149"></a><span class="lineno">  149</span>    }</div>
 </div>
@@ -286,7 +286,7 @@ $(document).ready(function(){initNavTree('plane_8h_source.html',''); initResizab
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_695d95a8d8fbec601a248c0414764298.html">Ponca</a></li><li class="navelem"><a class="el" href="dir_ce16314fc45f8638543c5146aff64d4a.html">src</a></li><li class="navelem"><a class="el" href="dir_221133f19e4af6803e4ee7d78db21786.html">Fitting</a></li><li class="navelem"><b>plane.h</b></li>
-    <li class="footer">Generated on Thu Oct 30 2025 19:03:05 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
+    <li class="footer">Generated on Thu Oct 30 2025 20:42:59 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
   </ul>
 </div>
 </body>

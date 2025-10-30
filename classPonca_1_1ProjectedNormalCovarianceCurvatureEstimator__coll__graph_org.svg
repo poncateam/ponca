@@ -21,11 +21,11 @@
 <text text-anchor="start" x="10" y="-148.5" font-family="Helvetica,sans-Serif" font-size="10.00">#</text>
 <text text-anchor="start" x="29" y="-148.5" font-family="Helvetica,sans-Serif" font-size="10.00">m_cov</text>
 <text text-anchor="start" x="10" y="-133.5" font-family="Helvetica,sans-Serif" font-size="10.00">#</text>
-<text text-anchor="start" x="29" y="-133.5" font-family="Helvetica,sans-Serif" font-size="10.00">m_solver</text>
+<text text-anchor="start" x="29" y="-133.5" font-family="Helvetica,sans-Serif" font-size="10.00">m_pass</text>
 <text text-anchor="start" x="10" y="-118.5" font-family="Helvetica,sans-Serif" font-size="10.00">#</text>
-<text text-anchor="start" x="29" y="-118.5" font-family="Helvetica,sans-Serif" font-size="10.00">m_pass</text>
+<text text-anchor="start" x="29" y="-118.5" font-family="Helvetica,sans-Serif" font-size="10.00">m_tframe</text>
 <text text-anchor="start" x="10" y="-103.5" font-family="Helvetica,sans-Serif" font-size="10.00">#</text>
-<text text-anchor="start" x="29" y="-103.5" font-family="Helvetica,sans-Serif" font-size="10.00">m_tframe</text>
+<text text-anchor="start" x="29" y="-103.5" font-family="Helvetica,sans-Serif" font-size="10.00">m_solver</text>
 <text text-anchor="start" x="10" y="-88.5" font-family="Helvetica,sans-Serif" font-size="10.00">+</text>
 <text text-anchor="start" x="29" y="-88.5" font-family="Helvetica,sans-Serif" font-size="10.00">projectedNormalCovariance</text>
 <text text-anchor="start" x="29" y="-77.5" font-family="Helvetica,sans-Serif" font-size="10.00">Curvature()</text>

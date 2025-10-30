@@ -51,7 +51,7 @@ MathJax.Hub.Config({
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Ponca
-   &#160;<span id="projectnumber">9e7681effe2c12b0af1c85fdb62680f52d835a30</span>
+   &#160;<span id="projectnumber">b63e69866b9b277a96802d3d06e6492d50ffc055</span>
    </div>
    <div id="projectbrief">Point Cloud Analysis library</div>
   </td>
@@ -147,9 +147,9 @@ $(document).ready(function(){initNavTree('classPonca_1_1BasketDiff.html',''); in
 Public Types</h2></td></tr>
 <tr class="memitem:aebb0c90a177509cc3fa59eaa01b7a4d8" id="r_aebb0c90a177509cc3fa59eaa01b7a4d8"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1BasketDiff.html#aebb0c90a177509cc3fa59eaa01b7a4d8">Base</a> = typename internal::BasketDiffAggregate&lt; BasketType, Type, Ext0, Exts... &gt;::type</td></tr>
 <tr class="separator:aebb0c90a177509cc3fa59eaa01b7a4d8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4567bef02f3307172494467419d243ba" id="r_a4567bef02f3307172494467419d243ba"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1BasketDiff.html#a4567bef02f3307172494467419d243ba">WeightFunction</a> = typename BasketType::NeighborFilter</td></tr>
-<tr class="memdesc:a4567bef02f3307172494467419d243ba"><td class="mdescLeft">&#160;</td><td class="mdescRight">Weight function.  <br /></td></tr>
-<tr class="separator:a4567bef02f3307172494467419d243ba"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a76dbf7d6bb9b0948be0a3698a2a6e7a5" id="r_a76dbf7d6bb9b0948be0a3698a2a6e7a5"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1BasketDiff.html#a76dbf7d6bb9b0948be0a3698a2a6e7a5">NeighborFilter</a> = typename BasketType::NeighborFilter</td></tr>
+<tr class="memdesc:a76dbf7d6bb9b0948be0a3698a2a6e7a5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Neighbor Filter.  <br /></td></tr>
+<tr class="separator:a76dbf7d6bb9b0948be0a3698a2a6e7a5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a24cafc02fc3353e9e0a165250de23609" id="r_a24cafc02fc3353e9e0a165250de23609"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1BasketDiff.html#a24cafc02fc3353e9e0a165250de23609">DataPoint</a> = typename BasketType::DataPoint</td></tr>
 <tr class="memdesc:a24cafc02fc3353e9e0a165250de23609"><td class="mdescLeft">&#160;</td><td class="mdescRight">Point type used for computation.  <br /></td></tr>
 <tr class="separator:a24cafc02fc3353e9e0a165250de23609"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -273,6 +273,26 @@ template&lt;typename BasketType , int Type, template&lt; class, class, int, type
 
 </div>
 </div>
+<a id="a76dbf7d6bb9b0948be0a3698a2a6e7a5" name="a76dbf7d6bb9b0948be0a3698a2a6e7a5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a76dbf7d6bb9b0948be0a3698a2a6e7a5">&#9670;&#160;</a></span>NeighborFilter</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename BasketType , int Type, template&lt; class, class, int, typename &gt; class Ext0, template&lt; class, class, int, typename &gt; class... Exts&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="classPonca_1_1BasketDiff.html">Ponca::BasketDiff</a>&lt; BasketType, Type, Ext0, Exts &gt;::NeighborFilter =  typename BasketType::NeighborFilter</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Neighbor Filter. </p>
+
+<p class="definition">Definition at line <a class="el" href="basket_8h_source.html#l00289">289</a> of file <a class="el" href="basket_8h_source.html">basket.h</a>.</p>
+
+</div>
+</div>
 <a id="ad71dbb99d45a869c675cb487f7857a53" name="ad71dbb99d45a869c675cb487f7857a53"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ad71dbb99d45a869c675cb487f7857a53">&#9670;&#160;</a></span>Scalar</h2>
 
@@ -290,26 +310,6 @@ template&lt;typename BasketType , int Type, template&lt; class, class, int, type
 <p>Scalar type used for computation, as defined from <a class="el" href="classPonca_1_1Basket.html" title="Aggregator class used to declare specialized structures using CRTP.">Basket</a>. </p>
 
 <p class="definition">Definition at line <a class="el" href="basket_8h_source.html#l00293">293</a> of file <a class="el" href="basket_8h_source.html">basket.h</a>.</p>
-
-</div>
-</div>
-<a id="a4567bef02f3307172494467419d243ba" name="a4567bef02f3307172494467419d243ba"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a4567bef02f3307172494467419d243ba">&#9670;&#160;</a></span>WeightFunction</h2>
-
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;typename BasketType , int Type, template&lt; class, class, int, typename &gt; class Ext0, template&lt; class, class, int, typename &gt; class... Exts&gt; </div>
-      <table class="memname">
-        <tr>
-          <td class="memname">using <a class="el" href="classPonca_1_1BasketDiff.html">Ponca::BasketDiff</a>&lt; BasketType, Type, Ext0, Exts &gt;::WeightFunction =  typename BasketType::NeighborFilter</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Weight function. </p>
-
-<p class="definition">Definition at line <a class="el" href="basket_8h_source.html#l00289">289</a> of file <a class="el" href="basket_8h_source.html">basket.h</a>.</p>
 
 </div>
 </div>
@@ -356,7 +356,7 @@ template&lt;typename BasketType , int Type, template&lt; class, class, int, type
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="namespacePonca.html">Ponca</a></li><li class="navelem"><a class="el" href="classPonca_1_1BasketDiff.html">BasketDiff</a></li>
-    <li class="footer">Generated on Thu Oct 30 2025 19:03:05 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
+    <li class="footer">Generated on Thu Oct 30 2025 20:42:59 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
   </ul>
 </div>
 </body>

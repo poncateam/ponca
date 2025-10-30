@@ -51,7 +51,7 @@ MathJax.Hub.Config({
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Ponca
-   &#160;<span id="projectnumber">9e7681effe2c12b0af1c85fdb62680f52d835a30</span>
+   &#160;<span id="projectnumber">b63e69866b9b277a96802d3d06e6492d50ffc055</span>
    </div>
    <div id="projectbrief">Point Cloud Analysis library</div>
   </td>
@@ -199,13 +199,13 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:aba57b6a60e7597187a0ac13a54ec75f0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Implements the eigenentropy <a class="el" href="citelist.html#CITEREF_Guinard:2017">[7]</a> .  <br /></td></tr>
 <tr class="separator:aba57b6a60e7597187a0ac13a54ec75f0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad963bd816b41c6d42a9a4c1ff3fde647" id="r_ad963bd816b41c6d42a9a4c1ff3fde647"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classPonca_1_1CovarianceFitBase.html#a8456e12892afc37f5cc305b50c162deb">Scalar</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1CovarianceFitBase.html#ad963bd816b41c6d42a9a4c1ff3fde647">lambda_0</a> () const</td></tr>
-<tr class="memdesc:ad963bd816b41c6d42a9a4c1ff3fde647"><td class="mdescLeft">&#160;</td><td class="mdescRight">The minimun eigenvalue \( \lambda_0 \).  <br /></td></tr>
+<tr class="memdesc:ad963bd816b41c6d42a9a4c1ff3fde647"><td class="mdescLeft">&#160;</td><td class="mdescRight">The minimum eigenvalue \( \lambda_0 \).  <br /></td></tr>
 <tr class="separator:ad963bd816b41c6d42a9a4c1ff3fde647"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6aa5bcbc1bfbbce9f7e6ab5ded0cf82e" id="r_a6aa5bcbc1bfbbce9f7e6ab5ded0cf82e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classPonca_1_1CovarianceFitBase.html#a8456e12892afc37f5cc305b50c162deb">Scalar</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1CovarianceFitBase.html#a6aa5bcbc1bfbbce9f7e6ab5ded0cf82e">lambda_1</a> () const</td></tr>
 <tr class="memdesc:a6aa5bcbc1bfbbce9f7e6ab5ded0cf82e"><td class="mdescLeft">&#160;</td><td class="mdescRight">The second eigenvalue \( \lambda_1 \).  <br /></td></tr>
 <tr class="separator:a6aa5bcbc1bfbbce9f7e6ab5ded0cf82e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a52b2656bd023c2edc1e8b00bbfc70d8f" id="r_a52b2656bd023c2edc1e8b00bbfc70d8f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classPonca_1_1CovarianceFitBase.html#a8456e12892afc37f5cc305b50c162deb">Scalar</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1CovarianceFitBase.html#a52b2656bd023c2edc1e8b00bbfc70d8f">lambda_2</a> () const</td></tr>
-<tr class="memdesc:a52b2656bd023c2edc1e8b00bbfc70d8f"><td class="mdescLeft">&#160;</td><td class="mdescRight">The maximun eigenvalue \( \lambda_2 \).  <br /></td></tr>
+<tr class="memdesc:a52b2656bd023c2edc1e8b00bbfc70d8f"><td class="mdescLeft">&#160;</td><td class="mdescRight">The maximum eigenvalue \( \lambda_2 \).  <br /></td></tr>
 <tr class="separator:a52b2656bd023c2edc1e8b00bbfc70d8f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a20e4e162d9b2dcd2b28837e1a302d68d" id="r_a20e4e162d9b2dcd2b28837e1a302d68d"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="classPonca_1_1CovarianceFitBase.html#a18d259c240fb958ffcd9adf01d018072">Solver</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1CovarianceFitBase.html#a20e4e162d9b2dcd2b28837e1a302d68d">solver</a> () const</td></tr>
 <tr class="memdesc:a20e4e162d9b2dcd2b28837e1a302d68d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reading access to the Solver used to analyse the covariance matrix.  <br /></td></tr>
@@ -250,7 +250,7 @@ Computation details</h3>
          &amp;= \frac{1}{n}\sum_i (\mathbf{p}_i\mathbf{p}_i^T) - \mathbf{b}\frac{1}{n}\sum_i(\mathbf{p}_i^T) - \frac{1}{n}\sum_i(\mathbf{p}_i)\mathbf{b}^T  + \frac{1}{n}\sum_i(1) \mathbf{b}\mathbf{b}^T \\
          &amp;= \frac{1}{n}\sum_i (\mathbf{p}_i\mathbf{p}_i^T) - \mathbf{b}\mathbf{b}^T - \mathbf{b}\mathbf{b}^T + \mathbf{b}\mathbf{b}^T \end{align}
 </p>
-<p> Leading to a single pass where \(\text{C}\) is express by substracting two terms that can be computed independently in one run: </p><p class="formulaDsp">
+<p> Leading to a single pass where \(\text{C}\) is express by subtracting two terms that can be computed independently in one run: </p><p class="formulaDsp">
 \[ \text{C} = \frac{1}{n}\sum_i (\mathbf{p}_i\mathbf{p}_i^T) - \mathbf{b}\mathbf{b}^T \]
 </p>
 <p>All the computed features are defined for the 3 eigenvalues \( 0 &lt; \lambda_0
@@ -684,7 +684,7 @@ template&lt;class DataPoint , class _NFilter , typename T &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p>The minimun eigenvalue \( \lambda_0 \). </p>
+<p>The minimum eigenvalue \( \lambda_0 \). </p>
 
 <p class="definition">Definition at line <a class="el" href="covarianceFit_8hpp_source.html#l00107">107</a> of file <a class="el" href="covarianceFit_8hpp_source.html">covarianceFit.hpp</a>.</p>
 
@@ -746,7 +746,7 @@ template&lt;class DataPoint , class _NFilter , typename T &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p>The maximun eigenvalue \( \lambda_2 \). </p>
+<p>The maximum eigenvalue \( \lambda_2 \). </p>
 
 <p class="definition">Definition at line <a class="el" href="covarianceFit_8hpp_source.html#l00121">121</a> of file <a class="el" href="covarianceFit_8hpp_source.html">covarianceFit.hpp</a>.</p>
 
@@ -980,7 +980,7 @@ template&lt;class DataPoint , class _NFilter , typename T &gt; </div>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="namespacePonca.html">Ponca</a></li><li class="navelem"><a class="el" href="classPonca_1_1CovarianceFitBase.html">CovarianceFitBase</a></li>
-    <li class="footer">Generated on Thu Oct 30 2025 19:03:05 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
+    <li class="footer">Generated on Thu Oct 30 2025 20:43:00 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
   </ul>
 </div>
 </body>

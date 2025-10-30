@@ -51,7 +51,7 @@ MathJax.Hub.Config({
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Ponca
-   &#160;<span id="projectnumber">9e7681effe2c12b0af1c85fdb62680f52d835a30</span>
+   &#160;<span id="projectnumber">b63e69866b9b277a96802d3d06e6492d50ffc055</span>
    </div>
    <div id="projectbrief">Point Cloud Analysis library</div>
   </td>
@@ -174,10 +174,10 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a8cb27cfff32859fed2eb5532a587e69f" id="r_a8cb27cfff32859fed2eb5532a587e69f"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1PrimitiveDer.html#a8cb27cfff32859fed2eb5532a587e69f">addLocalNeighbor</a> (<a class="el" href="classPonca_1_1PrimitiveDer.html#a8ffe3f9db12201dfeea1d37a4facb166">Scalar</a> w, const <a class="el" href="classPonca_1_1PrimitiveDer.html#a9e338275826169e6942318e1bcb11fad">VectorType</a> &amp;localQ, const DataPoint &amp;attributes, <a class="el" href="classPonca_1_1PrimitiveDer.html#a55c06768e13458ec202676bfe3f01191">ScalarArray</a> &amp;dw)</td></tr>
 <tr class="separator:a8cb27cfff32859fed2eb5532a587e69f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a82c078f21a630341289197f7dd301a1d" id="r_a82c078f21a630341289197f7dd301a1d"><td class="memItemLeft" align="right" valign="top">constexpr bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1PrimitiveDer.html#a82c078f21a630341289197f7dd301a1d">isScaleDer</a> () const</td></tr>
-<tr class="memdesc:a82c078f21a630341289197f7dd301a1d"><td class="mdescLeft">&#160;</td><td class="mdescRight">State specified at compilation time to differenciate the fit in scale.  <br /></td></tr>
+<tr class="memdesc:a82c078f21a630341289197f7dd301a1d"><td class="mdescLeft">&#160;</td><td class="mdescRight">State specified at compilation time to compute derivatives in scale.  <br /></td></tr>
 <tr class="separator:a82c078f21a630341289197f7dd301a1d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3eab551212c95ea846b9b035c4cd483d" id="r_a3eab551212c95ea846b9b035c4cd483d"><td class="memItemLeft" align="right" valign="top">constexpr bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1PrimitiveDer.html#a3eab551212c95ea846b9b035c4cd483d">isSpaceDer</a> () const</td></tr>
-<tr class="memdesc:a3eab551212c95ea846b9b035c4cd483d"><td class="mdescLeft">&#160;</td><td class="mdescRight">State specified at compilation time to differenciate the fit in space.  <br /></td></tr>
+<tr class="memdesc:a3eab551212c95ea846b9b035c4cd483d"><td class="mdescLeft">&#160;</td><td class="mdescRight">State specified at compilation time to compute derivatives in space.  <br /></td></tr>
 <tr class="separator:a3eab551212c95ea846b9b035c4cd483d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:adab8f43e72ffe465c09e8d762a73e0b0" id="r_adab8f43e72ffe465c09e8d762a73e0b0"><td class="memItemLeft" align="right" valign="top">constexpr unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1PrimitiveDer.html#adab8f43e72ffe465c09e8d762a73e0b0">derDimension</a> () const</td></tr>
 <tr class="memdesc:adab8f43e72ffe465c09e8d762a73e0b0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Number of dimensions used for the differentiation.  <br /></td></tr>
@@ -210,7 +210,7 @@ Static Protected Attributes</h2></td></tr>
 <div class="textblock"><div class="compoundTemplParams">template&lt;class DataPoint, class _NFilter, int Type, typename T&gt;<br />
 class Ponca::PrimitiveDer&lt; DataPoint, _NFilter, Type, T &gt;</div><p>Generic class performing the Fit derivation. </p>
 <p>The differentiation can be done automatically in scale and/or space, by combining the enum values FitScaleDer and FitSpaceDer in the template parameter Type.</p>
-<p>The differentiated values are stored in static arrays. The size of the arrays is computed with respect to the derivation type (scale and/or space) and the number of the dimension of the ambiant space. By convention, the scale derivatives are stored at index 0 when Type contains at least FitScaleDer. The size of these arrays can be known using <a class="el" href="classPonca_1_1PrimitiveDer.html#adab8f43e72ffe465c09e8d762a73e0b0" title="Number of dimensions used for the differentiation.">derDimension()</a>, and the differentiation type by <a class="el" href="classPonca_1_1PrimitiveDer.html#a82c078f21a630341289197f7dd301a1d" title="State specified at compilation time to differenciate the fit in scale.">isScaleDer()</a> and <a class="el" href="classPonca_1_1PrimitiveDer.html#a3eab551212c95ea846b9b035c4cd483d" title="State specified at compilation time to differenciate the fit in space.">isSpaceDer()</a>.</p>
+<p>The differentiated values are stored in static arrays. The size of the arrays is computed with respect to the derivation type (scale and/or space) and the number of the dimension of the ambiant space. By convention, the scale derivatives are stored at index 0 when Type contains at least FitScaleDer. The size of these arrays can be known using <a class="el" href="classPonca_1_1PrimitiveDer.html#adab8f43e72ffe465c09e8d762a73e0b0" title="Number of dimensions used for the differentiation.">derDimension()</a>, and the differentiation type by <a class="el" href="classPonca_1_1PrimitiveDer.html#a82c078f21a630341289197f7dd301a1d" title="State specified at compilation time to compute derivatives in scale.">isScaleDer()</a> and <a class="el" href="classPonca_1_1PrimitiveDer.html#a3eab551212c95ea846b9b035c4cd483d" title="State specified at compilation time to compute derivatives in space.">isSpaceDer()</a>.</p>
 <p>Thanks to the <a class="el" href="classPonca_1_1BasketDiff.html" title="Aggregator class used to declare specialized structures with derivatives computations,...">BasketDiff</a> definition, we know that <a class="el" href="classPonca_1_1PrimitiveDer.html" title="Generic class performing the Fit derivation.">PrimitiveDer</a> has Primitive as base class (through the <a class="el" href="classPonca_1_1Basket.html" title="Aggregator class used to declare specialized structures using CRTP.">Basket</a>). As a result, this class first asks to compute the Fit, and if it works properly, compute the weight derivatives. </p>
 
 <p class="definition">Definition at line <a class="el" href="primitive_8h_source.html#l00162">162</a> of file <a class="el" href="primitive_8h_source.html">primitive.h</a>.</p>
@@ -534,7 +534,7 @@ template&lt;class DataPoint , class _NFilter , int Type, typename T &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p>State specified at compilation time to differenciate the fit in scale. </p>
+<p>State specified at compilation time to compute derivatives in scale. </p>
 
 <p class="definition">Definition at line <a class="el" href="primitive_8h_source.html#l00226">226</a> of file <a class="el" href="primitive_8h_source.html">primitive.h</a>.</p>
 
@@ -565,7 +565,7 @@ template&lt;class DataPoint , class _NFilter , int Type, typename T &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p>State specified at compilation time to differenciate the fit in space. </p>
+<p>State specified at compilation time to compute derivatives in space. </p>
 
 <p class="definition">Definition at line <a class="el" href="primitive_8h_source.html#l00228">228</a> of file <a class="el" href="primitive_8h_source.html">primitive.h</a>.</p>
 
@@ -658,7 +658,7 @@ template&lt;class DataPoint , class _NFilter , int Type, typename T &gt; </div>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="namespacePonca.html">Ponca</a></li><li class="navelem"><a class="el" href="classPonca_1_1PrimitiveDer.html">PrimitiveDer</a></li>
-    <li class="footer">Generated on Thu Oct 30 2025 19:03:05 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
+    <li class="footer">Generated on Thu Oct 30 2025 20:43:00 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
   </ul>
 </div>
 </body>

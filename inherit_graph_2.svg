@@ -80,7 +80,7 @@
 <!-- Node18 -->
 <g id="Node000018" class="node">
 <title>Node18</title>
-<g id="a_Node000018"><a xlink:href="classPonca_1_1GLSParam.html" target="_top" xlink:title="Growing Least Squares reparemetrization of the OrientedSphereFit.">
+<g id="a_Node000018"><a xlink:href="classPonca_1_1GLSParam.html" target="_top" xlink:title="Growing Least Squares reparametrization of the OrientedSphereFit.">
 <polygon fill="white" stroke="#666666" points="355.5,-1355 191.5,-1355 191.5,-1325 355.5,-1325 355.5,-1355"/>
 <text text-anchor="start" x="199.5" y="-1343" font-family="Helvetica,sans-Serif" font-size="10.00">Ponca::GLSParam&lt; DataPoint,</text>
 <text text-anchor="middle" x="273.5" y="-1332" font-family="Helvetica,sans-Serif" font-size="10.00"> _NFilter, T &gt;</text>

@@ -21,7 +21,7 @@
 <!-- Node1 -->
 <g id="Node000001" class="node">
 <title>Node1</title>
-<g id="a_Node000001"><a xlink:title="Growing Least Squares reparemetrization of the OrientedSphereFit.">
+<g id="a_Node000001"><a xlink:title="Growing Least Squares reparametrization of the OrientedSphereFit.">
 <polygon fill="#999999" stroke="transparent" points="193.5,-210 35.5,-210 35.5,0 193.5,0 193.5,-210"/>
 <text text-anchor="start" x="40.5" y="-198" font-family="Helvetica,sans-Serif" font-size="10.00">Ponca::GLSParam&lt; DataPoint,</text>
 <text text-anchor="start" x="82.5" y="-187" font-family="Helvetica,sans-Serif" font-size="10.00"> _NFilter, T &gt;</text>
