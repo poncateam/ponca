@@ -53,7 +53,7 @@ void verify_impl(bool condition, const char *testname, const char *file, int lin
 #define VERIFY(a) ::verify_impl(a, g_test_stack.back().c_str(), __FILE__, __LINE__, PONCA_PP_MAKE_STRING(a))
 
 #define CALL_SUBTEST(FUNC) do { \
-    g_test_stack.push_back(PONCA_PP_MAKE_STRING(FUNC)); \
+    g_test_stack.emplace_back(PONCA_PP_MAKE_STRING(FUNC)); \
     FUNC; \
     g_test_stack.pop_back(); \
   } while (0)
