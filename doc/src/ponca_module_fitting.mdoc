@@ -124,7 +124,7 @@ namespace Ponca
 
   1. The first step consists in specifying a weighting function: it defines how neighbor samples will contribute to the fit, as illustrated in \ref figure2 "Figure 2(a)" in 2D.
   In this example, we choose a weight based on the Euclidean distance using Ponca::DistWeightFunc, remapped through a bisquare kernel defined in Ponca::SmoothWeightKernel:
-  \snippet basket.cpp WeightFunction
+  \snippet basket.cpp NeighborFilter
 
   2. The second step identifies a complete fitting procedure through the specialization of a Ponca::Basket.
   In our example, we want to apply an Ponca::OrientedSphereFit to input data points, which outputs an Ponca::AlgebraicSphere by default.
