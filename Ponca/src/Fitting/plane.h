@@ -86,6 +86,21 @@ public:
         *cc = EigenBase(_dir.normalized(), _pos);
     }
 
+    /*!
+     \brief Express the scalar field relatively to a new basis
+
+     The plane in dimension \f$d\f$ is parametrized in the original basis.
+     Moving the basis only affects the constant term:
+    \f$c' = c - \mathbf{u}_l^T.\mathbf{\Delta}\f$ with \f$\Delta=old-new\f$.
+    */
+    PONCA_MULTIARCH inline void changeBasis(const VectorType& newbasis)
+    {
+        VectorType diff = Base::getNeighborFilter().evalPos() - newbasis;
+        Base::getNeighborFilter().changeNeighborhoodFrame(newbasis);
+        Base::init();
+        EigenBase::offset() -= EigenBase::normal().dot(diff);
+    }
+
     //! \brief Value of the scalar field at the evaluation point
     //! \see method `#isSigned` of the fit to check if the sign is reliable
     PONCA_MULTIARCH inline Scalar potential ( ) const

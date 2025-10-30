@@ -90,6 +90,17 @@ public:
         *cc = EigenBase(origin, direction);
     }
 
+    /*!
+     \brief Express the line relatively to a new basis
+    */
+    PONCA_MULTIARCH inline void changeBasis(const VectorType& newbasis)
+    {
+        VectorType diff = Base::getNeighborFilter().evalPos() - newbasis;
+        Base::getNeighborFilter().changeNeighborhoodFrame(newbasis);
+        Base::init();
+        EigenBase::origin() += diff;
+    }
+
     //! \brief Value of the scalar field at the evaluation point
     //! \see method `#isSigned` of the fit to check if the sign is reliable
     PONCA_MULTIARCH inline Scalar potential ( ) const

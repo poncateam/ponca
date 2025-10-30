@@ -15,6 +15,8 @@
 
 #include <Ponca/src/Fitting/basket.h>
 #include <Ponca/src/Fitting/orientedSphereFit.h>
+#include <Ponca/src/Fitting/covariancePlaneFit.h>
+#include <Ponca/src/Fitting/covarianceLineFit.h>
 #include <Ponca/src/Fitting/weightFunc.h>
 #include <Ponca/src/Fitting/weightKernel.h>
 
@@ -68,10 +70,8 @@ void testFunction()
             VectorType candidate = VectorType::Random();
             for (unsigned int j = 0; j != 2; ++j){
                 // move basis center to a portion of the radius of the sphere
-                f2.changeBasis(fitInitPos + Scalar(0.1)*fit.radius()*VectorType::Random());
+                f2.changeBasis(fitInitPos + Scalar(0.1)*radius*VectorType::Random());
 
-                VERIFY(  fit.radius() - f2.radius() < epsilon );
-                VERIFY( (fit.center() - f2.center() ).norm() < epsilon );
                 VERIFY( (fit.project(candidate) - f2.project(candidate)).norm() - Scalar(1.) < epsilon );
             }
         }
@@ -85,11 +85,15 @@ void callSubTests()
 
     // We test only primitive functions and not the fitting procedure
     using NeighborFilter = DistWeightFunc<Point, SmoothWeightKernel<Scalar> >;
-    using Sphere     = Basket<Point, NeighborFilter, OrientedSphereFit>;
+    using Sphere         = Basket<Point, NeighborFilter, OrientedSphereFit>;
+    using Plane          = Basket<Point, NeighborFilter, CovariancePlaneFit>;
+    using Line           = Basket<Point, NeighborFilter, CovarianceLineFit>;
 
     for(int i = 0; i < g_repeat; ++i)
     {
         CALL_SUBTEST(( testFunction<Point, Sphere>() ));
+        CALL_SUBTEST(( testFunction<Point, Plane>() ));
+        CALL_SUBTEST(( testFunction<Point, Line>() ));
     }
 }
 
@@ -100,12 +104,12 @@ int main(int argc, char** argv)
         return EXIT_FAILURE;
     }
 
-    cout << "Test Algebraic Sphere Primitive functions in 3 dimensions..." << endl;
+    cout << "Test change of basis functions in 3 dimensions..." << endl;
     callSubTests<float, 3>();
     callSubTests<double, 3>();
     callSubTests<long double, 3>();
 
-    cout << "Test Algebraic Sphere Primitive functions in 5 dimensions..." << endl;
+    cout << "Test change of basis functions in 5 dimensions..." << endl;
     callSubTests<float, 5>();
     callSubTests<double, 5>();
     callSubTests<long double, 5>();
