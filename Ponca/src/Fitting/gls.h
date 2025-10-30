@@ -62,38 +62,38 @@ public:
     /* Use results                                                            */
     /**************************************************************************/
     /*! \brief Compute and return \f$ \tau \f$ */
-    PONCA_MULTIARCH inline Scalar tau() const
+    PONCA_MULTIARCH [[nodiscard]] inline Scalar tau() const
     {
         return Base::isNormalized() ? Base::m_uc : Base::m_uc / Base::prattNorm();
     }
 
     /*! \brief Compute and return \f$ \eta \f$ */
-    PONCA_MULTIARCH inline VectorType eta() const { return Base::primitiveGradient(); }
+    PONCA_MULTIARCH [[nodiscard]] inline VectorType eta() const { return Base::primitiveGradient(); }
 
     /*! \brief Compute and return \f$ \kappa \f$ */
-    PONCA_MULTIARCH inline Scalar kappa() const
+    PONCA_MULTIARCH [[nodiscard]] inline Scalar kappa() const
     {
         return Scalar(2.) * (Base::isNormalized() ? Base::m_uq : Base::m_uq / Base::prattNorm());
     }
 
     /*! \brief Compute and return \f$ \frac{\tau}{t} \f$ */
-    PONCA_MULTIARCH inline Scalar tau_normalized() const { return tau() / Base::getNeighborFilter().evalScale(); }
+    PONCA_MULTIARCH [[nodiscard]] inline Scalar tau_normalized() const { return tau() / Base::getNeighborFilter().evalScale(); }
 
     /*! \brief Compute and return \f$ \eta \f$ */
-    PONCA_MULTIARCH inline VectorType eta_normalized() const { return eta(); }
+    PONCA_MULTIARCH [[nodiscard]] inline VectorType eta_normalized() const { return eta(); }
 
     /*! \brief Compute and return \f$ t \kappa \f$ */
-    PONCA_MULTIARCH inline Scalar kappa_normalized() const { return kappa() * Base::getNeighborFilter().evalScale(); }
+    PONCA_MULTIARCH [[nodiscard]] inline Scalar kappa_normalized() const { return kappa() * Base::getNeighborFilter().evalScale(); }
 
     /*! \brief Return the fitness, e.g. the pratt norm of the initial scalar field */
-    PONCA_MULTIARCH inline Scalar fitness() const { return m_fitness; }
+    PONCA_MULTIARCH [[nodiscard]] inline Scalar fitness() const { return m_fitness; }
 
     /*!
     \brief Compare current instance with other.
     \return a distance between two fits (0 correspond to two similar fits)
     \warning Use the same scale to have a useful comparison (normalized value are used)
     */
-    PONCA_MULTIARCH inline Scalar compareTo (const GLSParam<DataPoint, _NFilter, T>& _other,
+    PONCA_MULTIARCH [[nodiscard]] inline Scalar compareTo (const GLSParam<DataPoint, _NFilter, T>& _other,
                                         bool _useFitness = true) const
     {
         Scalar nTau     = this->tau_normalized()   - _other.tau_normalized();

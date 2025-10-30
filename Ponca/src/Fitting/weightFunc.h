@@ -45,7 +45,7 @@ public:
      * @param _q Position expressed relatively to the basis center
      * @return Position in the global coordinate system
      */
-    PONCA_MULTIARCH inline VectorType convertToGlobalBasis(const VectorType& _q) const { return _q + m_p; }
+    PONCA_MULTIARCH [[nodiscard]] inline VectorType convertToGlobalBasis(const VectorType& _q) const { return _q + m_p; }
 
     /*!
      * \brief Convert query from global to local coordinate system, such as \f$\mathbf{x}'=\mathbf{x}-\mathbf{p}\f$.
@@ -53,13 +53,13 @@ public:
      * @param _q Input point in global coordinate system
      * @return Position expressed relatively to the basis center
      */
-    PONCA_MULTIARCH inline VectorType convertToLocalBasis(const VectorType& _q) const { return _q - m_p; }
+    PONCA_MULTIARCH [[nodiscard]] inline VectorType convertToLocalBasis(const VectorType& _q) const { return _q - m_p; }
 
     /*!
      * \brief Get access to the stored points of evaluation
      * @return Position of the local basis center
      */
-    PONCA_MULTIARCH inline VectorType evalPos() const { return m_p; }
+    PONCA_MULTIARCH [[nodiscard]] inline VectorType evalPos() const { return m_p; }
 
 private:
     VectorType m_p;  /*!< \brief basis center */
@@ -95,14 +95,14 @@ public:
      * @param _q Position in local coordinate
      * @return _q
      */
-    PONCA_MULTIARCH inline const VectorType& convertToGlobalBasis(const VectorType& _q) const { return _q; }
+    PONCA_MULTIARCH [[nodiscard]] inline const VectorType& convertToGlobalBasis(const VectorType& _q) const { return _q; }
 
     /*!
      * \brief Convert query from global to local coordinate system : does nothing as this is global frame
      * @param _q Query in global coordinate
      * @return _q
      */
-    PONCA_MULTIARCH inline const VectorType& convertToLocalBasis(const VectorType& _q) const { return _q; }
+    PONCA_MULTIARCH [[nodiscard]] inline const VectorType& convertToLocalBasis(const VectorType& _q) const { return _q; }
 };
 
 
@@ -183,7 +183,7 @@ public:
 
         \warning Requires \f$\nabla w(x)\f$ to be valid
     */
-    PONCA_MULTIARCH inline VectorType spacedw(const VectorType& _q,
+    PONCA_MULTIARCH [[nodiscard]] inline VectorType spacedw(const VectorType& _q,
         const DataPoint&  /*attributes*/) const;
 
 
@@ -207,7 +207,7 @@ public:
 
         \warning Requires \f$\nabla^2 w(x)\f$ to be valid
     */
-    PONCA_MULTIARCH inline MatrixType spaced2w(const VectorType& _q,
+    PONCA_MULTIARCH [[nodiscard]] inline MatrixType spaced2w(const VectorType& _q,
         const DataPoint&  /*attributes*/) const;
 
     /*!
@@ -224,7 +224,7 @@ public:
 
         \warning Requires \f$\nabla w(x)\f$ to be valid
     */
-    PONCA_MULTIARCH inline Scalar scaledw(const VectorType& _q,
+    PONCA_MULTIARCH [[nodiscard]] inline Scalar scaledw(const VectorType& _q,
         const DataPoint&  /*attributes*/) const;
 
     /*!
@@ -245,7 +245,7 @@ public:
 
         \warning Requires \f$\nabla^2 w(x)\f$ to be valid
     */
-    PONCA_MULTIARCH inline Scalar scaled2w(const VectorType& _q,
+    PONCA_MULTIARCH [[nodiscard]] inline Scalar scaled2w(const VectorType& _q,
         const DataPoint&  /*attributes*/) const;
 
     /*!
@@ -267,11 +267,11 @@ public:
 
         \warning Requires \f$\nabla^2 w(x)\f$ to be valid
     */
-    PONCA_MULTIARCH inline VectorType scaleSpaced2w(const VectorType& _q,
+    PONCA_MULTIARCH [[nodiscard]] inline VectorType scaleSpaced2w(const VectorType& _q,
         const DataPoint&  /*attributes*/) const;
 
     /*! \brief Access to the evaluation scale set during the initialization */
-    PONCA_MULTIARCH inline Scalar evalScale() const { return m_t; }
+    PONCA_MULTIARCH [[nodiscard]] inline Scalar evalScale() const { return m_t; }
 
 protected:
     Scalar       m_t;  /*!< \brief Evaluation scale */
@@ -322,7 +322,7 @@ public:
         \brief First order derivative in space (for each spatial dimension \f$\mathsf{x})\f$, which are always $0$
         \param _q Query in global coordinate system
     */
-    PONCA_MULTIARCH inline VectorType spacedw(const VectorType& /*_q*/,
+    PONCA_MULTIARCH [[nodiscard]] inline VectorType spacedw(const VectorType& /*_q*/,
                                               const DataPoint&  /*attributes*/) const
     { return VectorType::Zeros(); }
 
@@ -331,7 +331,7 @@ public:
         \brief Second order derivative in space (for each spatial dimension \f$\mathsf{x})\f$, which are always $0$
         \param _q Query in global coordinate
     */
-    PONCA_MULTIARCH inline MatrixType spaced2w(const VectorType& /*_q*/,
+    PONCA_MULTIARCH [[nodiscard]] inline MatrixType spaced2w(const VectorType& /*_q*/,
                                                const DataPoint&  /*attributes*/) const
     { return MatrixType::Zeros(); }
 
@@ -339,7 +339,7 @@ public:
         \brief First order derivative in scale  \f$t\f$, which are always $0$
         \param _q Query in global coordinate
     */
-    PONCA_MULTIARCH inline Scalar scaledw(const VectorType& /*_q*/,
+    PONCA_MULTIARCH [[nodiscard]] inline Scalar scaledw(const VectorType& /*_q*/,
                                           const DataPoint&  /*attributes*/) const
     { return Scalar(0); }
 
@@ -347,7 +347,7 @@ public:
         \brief Second order derivative in scale  \f$t\f$, which are always $0$
         \param _q Query in global coordinate
     */
-    PONCA_MULTIARCH inline Scalar scaled2w(const VectorType& /*_q*/,
+    PONCA_MULTIARCH [[nodiscard]] inline Scalar scaled2w(const VectorType& /*_q*/,
                                            const DataPoint&  /*attributes*/) const
     { return Scalar(0); }
 
@@ -356,7 +356,7 @@ public:
         always $0$
         \param _q Query in global coordinate
     */
-    PONCA_MULTIARCH inline VectorType scaleSpaced2w(const VectorType& /*_q*/,
+    PONCA_MULTIARCH [[nodiscard]] inline VectorType scaleSpaced2w(const VectorType& /*_q*/,
                                                     const DataPoint&  /*attributes*/) const
     { return VectorType::Zeros(); }
 };// class DistWeightFuncBase

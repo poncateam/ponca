@@ -99,7 +99,7 @@ namespace Ponca {
         ///
         /// Defined as \f$ n(\mathbf{x}) = \frac{\sum_i w_\mathbf{x}(\mathbf{p_i}) \mathbf{n_i}}{\sum_i w_\mathbf{x}(\mathbf{p_i})} \f$,
         ///  where \f$\left[\mathbf{p_i}, \mathbf{n_i} \in \text{neighborhood}(\mathbf{x})\right]\f$ are all the point and normal samples in \f$\mathbf{x}\f$'s neighborhood
-        PONCA_MULTIARCH inline VectorType meanNormalVector() const {
+        PONCA_MULTIARCH [[nodiscard]] inline VectorType meanNormalVector() const {
             return (m_sumN / Base::getWeightSum());
         }
 
@@ -145,7 +145,7 @@ namespace Ponca {
         /// Which leads to \f$ b'(\mathbf{x}) = \frac{\sum_i w'_\mathbf{x}(\mathbf{p_i}) \mathbf{p_i} - b(\mathbf{x})\sum w'(\mathbf{x})}{\sum_i w_\mathbf{x}(\mathbf{p_i})} \f$
         ///
         /// \note This code is not directly tested, but rather indirectly by testing CovariancePlaneDer::dNormal()
-        PONCA_MULTIARCH VectorArray barycenterDerivatives() const
+        PONCA_MULTIARCH [[nodiscard]] VectorArray barycenterDerivatives() const
         {
             return ( m_dSumP - Base::barycenterLocal() * Base::m_dSumW ) / Base::getWeightSum();
         }
@@ -194,7 +194,7 @@ namespace Ponca {
     /// Which leads to \f$ n'(\mathbf{x}) = \frac{\sum_i w'_\mathbf{x}(\mathbf{p_i}) \mathbf{n_i} - n(\mathbf{x})\sum_i w'_\mathbf{x}(\mathbf{p_i})}{\sum_i w_\mathbf{x}(\mathbf{p_i})} \f$.
     /// \note This code is not directly tested. 
 
-    PONCA_MULTIARCH VectorArray dMeanNormal() const
+    PONCA_MULTIARCH [[nodiscard]] VectorArray dMeanNormal() const
     { 
         return ( m_dSumN - Base::meanNormalVector() * Base::m_dSumW ) / Base::getWeightSum(); 
     }

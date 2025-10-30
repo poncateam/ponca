@@ -72,23 +72,23 @@ public:
     /*! \brief Is the primitive well fitted and ready to use (finalize has been
     called) ?
     \warning The fit can be unstable (having neighbors between 3 and 6) */
-    PONCA_MULTIARCH inline bool isReady() const
+    PONCA_MULTIARCH [[nodiscard]] inline bool isReady() const
     {
         return (m_eCurrentState == STABLE) || (m_eCurrentState == UNSTABLE);
     }
 
     /*! \brief Is the fitted primitive ready to use (finalize has been called and the result is stable) */
-    PONCA_MULTIARCH inline bool isStable() const { return m_eCurrentState == STABLE; }
+    PONCA_MULTIARCH [[nodiscard]] inline bool isStable() const { return m_eCurrentState == STABLE; }
 
     /*! \brief Is another pass required for fitting (finalize has been called and the result is #NEED_OTHER_PASS)
      * \see startNewPass */
-    PONCA_MULTIARCH inline bool needAnotherPass() const { return m_eCurrentState == NEED_OTHER_PASS; }
+    PONCA_MULTIARCH [[nodiscard]] inline bool needAnotherPass() const { return m_eCurrentState == NEED_OTHER_PASS; }
 
     /*! \brief Get number of points added in the neighborhood (with non negative weight)  */
-    PONCA_MULTIARCH inline int getNumNeighbors() const { return m_nbNeighbors; }
+    PONCA_MULTIARCH [[nodiscard]] inline int getNumNeighbors() const { return m_nbNeighbors; }
 
     /*! \brief Get the sum of the weights */
-    PONCA_MULTIARCH inline Scalar getWeightSum() const { return m_sumW; }
+    PONCA_MULTIARCH [[nodiscard]] inline Scalar getWeightSum() const { return m_sumW; }
 
     /*! \brief To be called when starting a new processing pass, ie. when `getCurrentState()==#NEED_ANOTHER_PASS` */
     PONCA_MULTIARCH inline void startNewPass() {
@@ -97,27 +97,27 @@ public:
     }
 
     /*! \brief Read access to the NeighborFilter \see setNeighborFilter */
-    PONCA_MULTIARCH inline const NeighborFilter& getNeighborFilter() const
+    PONCA_MULTIARCH [[nodiscard]] inline const NeighborFilter& getNeighborFilter() const
     {
         return m_nFilter;
     }
 
 protected:
     /*! \brief Write access to the NeighborFilter \see setNeighborFilter */
-    PONCA_MULTIARCH inline NeighborFilter& getNeighborFilter()
+    PONCA_MULTIARCH [[nodiscard]] inline NeighborFilter& getNeighborFilter()
     {
         return m_nFilter;
     }
 
 public:
     /*! \return the current test of the fit */
-    PONCA_MULTIARCH inline FIT_RESULT getCurrentState() const
+    PONCA_MULTIARCH [[nodiscard]] inline FIT_RESULT getCurrentState() const
     {
         return m_eCurrentState;
     }
 
     PONCA_FITTING_APIDOC_ADDNEIGHBOR
-    PONCA_MULTIARCH inline bool addLocalNeighbor(Scalar w, const VectorType &, const DataPoint &) {
+    PONCA_MULTIARCH [[nodiscard]] inline bool addLocalNeighbor(Scalar w, const VectorType &, const DataPoint &) {
         m_sumW += w;
         ++(m_nbNeighbors);
         return true;
@@ -223,11 +223,11 @@ public:
     /* Use results                                                            */
     /**************************************************************************/
     /*! \brief State specified at compilation time to differenciate the fit in scale */
-    PONCA_MULTIARCH inline constexpr bool isScaleDer() const {return bool(Type & FitScaleDer);}
     /*! \brief State specified at compilation time to differenciate the fit in space */
-    PONCA_MULTIARCH inline constexpr bool isSpaceDer() const {return bool(Type & FitSpaceDer);}
+    PONCA_MULTIARCH [[nodiscard]] inline constexpr bool isScaleDer() const {return bool(Type & FitScaleDer);}
+    PONCA_MULTIARCH [[nodiscard]] inline constexpr bool isSpaceDer() const {return bool(Type & FitSpaceDer);}
     /*! \brief Number of dimensions used for the differentiation */
-    PONCA_MULTIARCH inline constexpr unsigned int derDimension() const { return NbDerivatives;}
+    PONCA_MULTIARCH [[nodiscard]] inline constexpr unsigned int derDimension() const { return NbDerivatives;}
 
 };
 

@@ -127,10 +127,10 @@ public:
 
     // \brief Returns the derivatives of the scalar field at the evaluation point
     //! \see method `#isSigned` of the fit to check if the sign is reliable
-    PONCA_MULTIARCH inline ScalarArray dPotential() const { return m_dDist; }
+    PONCA_MULTIARCH [[nodiscard]] inline ScalarArray dPotential() const { return m_dDist; }
 
     /*! \brief Returns the derivatives of the primitive normal */
-    PONCA_MULTIARCH inline VectorArray dNormal() const { return m_dNormal; }
+    PONCA_MULTIARCH [[nodiscard]] inline VectorArray dNormal() const { return m_dNormal; }
 
 }; //class CovariancePlaneDer
 

@@ -64,7 +64,7 @@ public:
     /// \brief Tell if the line as been correctly set.
     /// Used to set CONFLICT_ERROR_FOUND during fitting
     /// \return false when called straight after #init. Should be true after fitting
-    PONCA_MULTIARCH inline bool isValid() const{
+    PONCA_MULTIARCH [[nodiscard]] inline bool isValid() const{
         static const typename EigenBase::VectorType zeros = EigenBase::VectorType::Zero();
         return ! ( EigenBase::origin().isApprox(zeros) && EigenBase::direction().isApprox(zeros) ) ;
     }
@@ -103,7 +103,7 @@ public:
 
     //! \brief Value of the scalar field at the evaluation point
     //! \see method `#isSigned` of the fit to check if the sign is reliable
-    PONCA_MULTIARCH inline Scalar potential ( ) const
+    PONCA_MULTIARCH [[nodiscard]] inline Scalar potential ( ) const
     {
         // The potential is the distance from a point to the line
         return EigenBase::squaredDistance(VectorType::Zero());
@@ -113,7 +113,7 @@ public:
      * defined as the squared distance between \f$ \mathbf{q} \f$ and the line
      *  \see method `#isSigned` of the fit to check if the sign is reliable
      */
-    PONCA_MULTIARCH inline Scalar potential (const VectorType& _q) const
+    PONCA_MULTIARCH [[nodiscard]] inline Scalar potential (const VectorType& _q) const
     {
         // Turn to centered basis
         const VectorType lq = Base::getNeighborFilter().convertToLocalBasis(_q);
@@ -122,14 +122,14 @@ public:
     }
 
     //! \brief Project a point on the line
-    PONCA_MULTIARCH inline VectorType project (const VectorType& _q) const
+    PONCA_MULTIARCH [[nodiscard]] inline VectorType project (const VectorType& _q) const
     {
         // Project on the normal vector and add the offset value
         return Base::getNeighborFilter().convertToGlobalBasis(EigenBase::projection(Base::getNeighborFilter().convertToLocalBasis(_q)));
     }
 protected:
     /// \copydoc Line::potential
-    PONCA_MULTIARCH inline Scalar potentialLocal (const VectorType& _lq) const {
+    PONCA_MULTIARCH [[nodiscard]] inline Scalar potentialLocal (const VectorType& _lq) const {
         // The potential is the distance from a point to the line
         return EigenBase::squaredDistance(_lq);
     }

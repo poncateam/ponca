@@ -93,13 +93,13 @@ public:
     PONCA_FITTING_DECLARE_INIT_ADDDER_FINALIZE
 
     /*! \brief Returns the derivatives of the scalar field at the evaluation point */
-    PONCA_MULTIARCH inline ScalarArray dPotential() const;
+    PONCA_MULTIARCH [[nodiscard]] inline ScalarArray dPotential() const;
 
     /*! \brief Returns the derivatives of the primitive normal */
-    PONCA_MULTIARCH inline VectorArray dNormal() const;
+    PONCA_MULTIARCH [[nodiscard]] inline VectorArray dNormal() const;
 
     /*! \brief compute  the square of the Pratt norm derivative */
-    PONCA_MULTIARCH inline ScalarArray dprattNorm2() const
+    PONCA_MULTIARCH [[nodiscard]] inline ScalarArray dprattNorm2() const
     {
         return   Scalar(2.) * Base::m_ul.transpose() * m_dUl
             - Scalar(4.) * Base::m_uq * m_dUc
@@ -107,7 +107,7 @@ public:
     }
 
     /*! \brief compute the square of the Pratt norm derivative for dimension _d */
-    PONCA_MULTIARCH inline Scalar dprattNorm2(unsigned int _d) const
+    PONCA_MULTIARCH [[nodiscard]] inline Scalar dprattNorm2(unsigned int _d) const
     {
         return   Scalar(2.) * m_dUl.col(_d).dot(Base::m_ul)
             - Scalar(4.) * m_dUc.col(_d)[0]*Base::m_uq
@@ -115,24 +115,24 @@ public:
     }
 
     /*! \brief compute the Pratt norm derivative for the dimension _d */
-    PONCA_MULTIARCH inline Scalar dprattNorm(unsigned int _d) const
+    PONCA_MULTIARCH [[nodiscard]] inline Scalar dprattNorm(unsigned int _d) const
     {
         PONCA_MULTIARCH_STD_MATH(sqrt);
         return sqrt(dprattNorm2(_d));
     }
 
     /*! \brief compute the Pratt norm derivative */
-    PONCA_MULTIARCH inline Scalar dprattNorm() const
+    PONCA_MULTIARCH [[nodiscard]] inline Scalar dprattNorm() const
     {
         PONCA_MULTIARCH_STD_MATH(sqrt);
         return dprattNorm2().array().sqrt();
     }
     //! Normalize the scalar field by the Pratt norm
     /*!
-        \warning Requieres that isNormalized() return false
+        \warning Requires that isNormalized() return false
         \return false when the original sphere has already been normalized.
     */
-    PONCA_MULTIARCH inline bool applyPrattNorm();
+    PONCA_MULTIARCH [[nodiscard]] inline bool applyPrattNorm();
 
 }; //class OrientedSphereDerImpl
 

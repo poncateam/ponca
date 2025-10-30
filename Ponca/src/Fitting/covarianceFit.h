@@ -79,52 +79,52 @@ namespace Ponca
             It computes the ratio \f$ d \frac{\lambda_0}{\sum_i \lambda_i} \f$ with \c d the dimension of the ambient space.
             \return 0 for invalid fits
         */
-        PONCA_MULTIARCH inline Scalar surfaceVariation() const;
+        PONCA_MULTIARCH [[nodiscard]] inline Scalar surfaceVariation() const;
 
         /*! \brief Implements the planarity \cite Guinard:2017 .
             Planarity is defined as:
             \f[ \frac{\lambda_1 - \lambda_0}{\lambda_2} \f]
         */
-        PONCA_MULTIARCH inline Scalar planarity() const;
+        PONCA_MULTIARCH [[nodiscard]] inline Scalar planarity() const;
 
         /*! \brief Implements the linearity \cite Guinard:2017 .
             Linearity is defined as:
             \f[ \frac{\lambda_2 - \lambda_1}{\lambda_2} \f]
         */
-        PONCA_MULTIARCH inline Scalar linearity() const;
+        PONCA_MULTIARCH [[nodiscard]] inline Scalar linearity() const;
 
         /*! \brief Implements the sphericity \cite Guinard:2017 .
             Sphericity is defined as:
             \f[ \frac{\lambda_0}{\lambda_2} \f]
         */
-        PONCA_MULTIARCH inline Scalar sphericity() const;
+        PONCA_MULTIARCH [[nodiscard]] inline Scalar sphericity() const;
 
         /*! \brief Implements the anisotropy \cite Guinard:2017 .
             Anisotropy is defined as:
             \f[ \frac{\lambda_2 - \lambda_0}{\lambda_2} \f]
         */
-        PONCA_MULTIARCH inline Scalar anisotropy() const;
+        PONCA_MULTIARCH [[nodiscard]] inline Scalar anisotropy() const;
 
         /*! \brief Implements the eigenentropy \cite Guinard:2017 .
             Eigenentropy is defined as:
             \f[ - \lambda_0 * \ln{\lambda_0} - \lambda_1 * \ln{\lambda_1} - \lambda_2 * \ln{\lambda_2} \f]
         */
-        PONCA_MULTIARCH inline Scalar eigenentropy() const;
+        PONCA_MULTIARCH [[nodiscard]] inline Scalar eigenentropy() const;
 
-        /*! \brief The minimun eigenvalue \f$ \lambda_0 \f$.
+        /*! \brief The minimum eigenvalue \f$ \lambda_0 \f$.
         */
-        PONCA_MULTIARCH inline Scalar lambda_0() const;
+        PONCA_MULTIARCH [[nodiscard]] inline Scalar lambda_0() const;
 
         /*! \brief The second eigenvalue \f$ \lambda_1 \f$.
         */
-        PONCA_MULTIARCH inline Scalar lambda_1() const;
+        PONCA_MULTIARCH [[nodiscard]] inline Scalar lambda_1() const;
 
-        /*! \brief The maximun eigenvalue \f$ \lambda_2 \f$.
+        /*! \brief The maximum eigenvalue \f$ \lambda_2 \f$.
         */
-        PONCA_MULTIARCH inline Scalar lambda_2() const;
+        PONCA_MULTIARCH [[nodiscard]] inline Scalar lambda_2() const;
 
         /*! \brief Reading access to the Solver used to analyse the covariance matrix */
-        PONCA_MULTIARCH inline const Solver& solver() const { return m_solver; }
+        PONCA_MULTIARCH [[nodiscard]] inline const Solver& solver() const { return m_solver; }
     };
 
 
