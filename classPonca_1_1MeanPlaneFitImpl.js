@@ -1,12 +1,12 @@
 var classPonca_1_1MeanPlaneFitImpl =
 [
-    [ "Base", "classPonca_1_1MeanPlaneFitImpl.html#adc65917aa34b4c6b6ca9111a483b42bb", null ],
-    [ "MatrixType", "classPonca_1_1MeanPlaneFitImpl.html#a040ced24f2465b795c631dd6eaec1244", null ],
-    [ "Scalar", "classPonca_1_1MeanPlaneFitImpl.html#a3458c49ef33bca75fe5de260fc5bceaa", null ],
-    [ "VectorType", "classPonca_1_1MeanPlaneFitImpl.html#a93b63f734142423083d5a596df17938f", null ],
-    [ "WFunctor", "classPonca_1_1MeanPlaneFitImpl.html#ae99ba87572a539c9d8442b3baec4a61a", null ],
-    [ "finalize", "classPonca_1_1MeanPlaneFitImpl.html#a3c9791929ffcfe379dbaa950dc82f32c", null ],
-    [ "isSigned", "classPonca_1_1MeanPlaneFitImpl.html#a7bdd319d1a8ec0b4587f93beb47d16a2", null ],
-    [ "meanPlaneFit", "classPonca_1_1MeanPlaneFitImpl.html#a3bb0bc96c013136edd0a9a2448865510", null ],
-    [ "meanPlaneFit", "classPonca_1_1MeanPlaneFitImpl.html#adc1bf14c1f6dac56ceb607693acdec29", null ]
+    [ "Base", "classPonca_1_1MeanPlaneFitImpl.html#aef8da0eccf2bdda1434dc3599c81cea3", null ],
+    [ "MatrixType", "classPonca_1_1MeanPlaneFitImpl.html#a193b478b3a7e96e9f9ee1335c2813878", null ],
+    [ "NeighborFilter", "classPonca_1_1MeanPlaneFitImpl.html#af94a7bb2ce52d89a3dfada945bec7487", null ],
+    [ "Scalar", "classPonca_1_1MeanPlaneFitImpl.html#ac79362913414c389d2318a38f316c1b3", null ],
+    [ "VectorType", "classPonca_1_1MeanPlaneFitImpl.html#ab58add65da59ebf592c2d267ff46b097", null ],
+    [ "finalize", "classPonca_1_1MeanPlaneFitImpl.html#aca0b67091f0add95008f5072857d915e", null ],
+    [ "isSigned", "classPonca_1_1MeanPlaneFitImpl.html#a7d84efafc1edd6d882fc1f6baec1fd08", null ],
+    [ "meanPlaneFit", "classPonca_1_1MeanPlaneFitImpl.html#ae5a754ca08646e19445852a0621631b4", null ],
+    [ "meanPlaneFit", "classPonca_1_1MeanPlaneFitImpl.html#a34f2220988801d879ec511f1315cbdeb", null ]
 ];

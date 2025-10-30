@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['orientedsphereder_0',['OrientedSphereDer',['../namespacePonca.html#a06452e78533ff7c62bbbd01106dc0020',1,'Ponca']]],
-  ['orientedspherefit_1',['OrientedSphereFit',['../namespacePonca.html#a2f53f5c61ca5df7c3e3f8cf2219a14d4',1,'Ponca']]]
+  ['orientedsphereder_0',['OrientedSphereDer',['../namespacePonca.html#aacb141e87654384b457c2874ac11e19d',1,'Ponca']]],
+  ['orientedspherefit_1',['OrientedSphereFit',['../namespacePonca.html#a79a62a4fc4aa215b3cd5b5d623e25a92',1,'Ponca']]]
 ];

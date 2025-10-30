@@ -51,7 +51,7 @@ MathJax.Hub.Config({
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Ponca
-   &#160;<span id="projectnumber">40f245e28b920cbb763a1c6282156c87c626f24c</span>
+   &#160;<span id="projectnumber">9e7681effe2c12b0af1c85fdb62680f52d835a30</span>
    </div>
    <div id="projectbrief">Point Cloud Analysis library</div>
   </td>
@@ -125,7 +125,7 @@ $(document).ready(function(){initNavTree('classPonca_1_1PolynomialSmoothWeightKe
 </div><!--header-->
 <div class="contents">
 
-<p>Generalised version of <a class="el" href="classPonca_1_1SmoothWeightKernel.html" title="Smooth WeightKernel of 2nd degree, defined in  Special case of PolynomialSmoothWeightKernel&lt;Scalar,...">SmoothWeightKernel</a> with arbitrary degrees : \( w(x)=(x^n-1)^m \).  
+<p>Compact generalised version of <a class="el" href="classPonca_1_1SmoothWeightKernel.html" title="Compact smooth WeightKernel of 2nd degree, defined in  Special case of PolynomialSmoothWeightKernel&lt;S...">SmoothWeightKernel</a> with arbitrary degrees : \( w(x)=(x^n-1)^m \).  
  <a href="classPonca_1_1PolynomialSmoothWeightKernel.html#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="weightKernel_8h_source.html">weightKernel.h</a>&gt;</code></p>
@@ -134,14 +134,14 @@ $(document).ready(function(){initNavTree('classPonca_1_1PolynomialSmoothWeightKe
 <div id="dynsection-0-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-0-content" class="dyncontent" style="display:none;">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classPonca_1_1PolynomialSmoothWeightKernel__inherit__graph.svg" width="240" height="264"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classPonca_1_1PolynomialSmoothWeightKernel__inherit__graph.svg" width="240" height="284"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 <div id="dynsection-1" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-1-trigger" src="closed.png" alt="+"/> Collaboration diagram for Ponca::PolynomialSmoothWeightKernel&lt; _Scalar, m, n &gt;:</div>
 <div id="dynsection-1-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-1-content" class="dyncontent" style="display:none;">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classPonca_1_1PolynomialSmoothWeightKernel__coll__graph.svg" width="240" height="264"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classPonca_1_1PolynomialSmoothWeightKernel__coll__graph.svg" width="240" height="284"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-types" name="pub-types"></a>
@@ -164,6 +164,9 @@ Public Member Functions</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-static-attribs" name="pub-static-attribs"></a>
 Static Public Attributes</h2></td></tr>
+<tr class="memitem:a60d8dc40e672693d109b4bd5a99780fb" id="r_a60d8dc40e672693d109b4bd5a99780fb"><td class="memItemLeft" align="right" valign="top">static constexpr bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1PolynomialSmoothWeightKernel.html#a60d8dc40e672693d109b4bd5a99780fb">isCompact</a> = true</td></tr>
+<tr class="memdesc:a60d8dc40e672693d109b4bd5a99780fb"><td class="mdescLeft">&#160;</td><td class="mdescRight">The kernel is compact and shall not be evaluated outside of the scale bounds.  <br /></td></tr>
+<tr class="separator:a60d8dc40e672693d109b4bd5a99780fb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a40821848dc75f10ab79fd4c8ffa7bc27" id="r_a40821848dc75f10ab79fd4c8ffa7bc27"><td class="memItemLeft" align="right" valign="top">static constexpr bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1PolynomialSmoothWeightKernel.html#a40821848dc75f10ab79fd4c8ffa7bc27">isDValid</a> = true</td></tr>
 <tr class="memdesc:a40821848dc75f10ab79fd4c8ffa7bc27"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="classPonca_1_1PolynomialSmoothWeightKernel.html#a57638efcd9b72fa08be0b3a9ff385e47" title="Defines the smooth first order weighting function .">df</a> is defined and valid on the definition interval  <br /></td></tr>
 <tr class="separator:a40821848dc75f10ab79fd4c8ffa7bc27"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -173,9 +176,9 @@ Static Public Attributes</h2></td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><div class="compoundTemplParams">template&lt;typename _Scalar, int m, int n&gt;<br />
-class Ponca::PolynomialSmoothWeightKernel&lt; _Scalar, m, n &gt;</div><p>Generalised version of <a class="el" href="classPonca_1_1SmoothWeightKernel.html" title="Smooth WeightKernel of 2nd degree, defined in  Special case of PolynomialSmoothWeightKernel&lt;Scalar,...">SmoothWeightKernel</a> with arbitrary degrees : \( w(x)=(x^n-1)^m \). </p>
+class Ponca::PolynomialSmoothWeightKernel&lt; _Scalar, m, n &gt;</div><p>Compact generalised version of <a class="el" href="classPonca_1_1SmoothWeightKernel.html" title="Compact smooth WeightKernel of 2nd degree, defined in  Special case of PolynomialSmoothWeightKernel&lt;S...">SmoothWeightKernel</a> with arbitrary degrees : \( w(x)=(x^n-1)^m \). </p>
 
-<p class="definition">Definition at line <a class="el" href="weightKernel_8h_source.html#l00086">86</a> of file <a class="el" href="weightKernel_8h_source.html">weightKernel.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="weightKernel_8h_source.html#l00093">93</a> of file <a class="el" href="weightKernel_8h_source.html">weightKernel.h</a>.</p>
 </div><h2 class="groupheader">Member Typedef Documentation</h2>
 <a id="a4d05ca6e922eda8950c3ab0d9e4d1813" name="a4d05ca6e922eda8950c3ab0d9e4d1813"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a4d05ca6e922eda8950c3ab0d9e4d1813">&#9670;&#160;</a></span>Scalar</h2>
@@ -193,7 +196,7 @@ template&lt;typename _Scalar , int m, int n&gt; </div>
 
 <p>Scalar type defined outside the class. </p>
 
-<p class="definition">Definition at line <a class="el" href="weightKernel_8h_source.html#l00091">91</a> of file <a class="el" href="weightKernel_8h_source.html">weightKernel.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="weightKernel_8h_source.html#l00097">97</a> of file <a class="el" href="weightKernel_8h_source.html">weightKernel.h</a>.</p>
 
 </div>
 </div>
@@ -226,7 +229,7 @@ template&lt;typename _Scalar , int m, int n&gt; </div>
 
 <p>Defines the smooth second order weighting function \( \nabla^2 w(x) = (m-1) m n^2 x^{2 n-2} \left(x^n-1\right)^{m-2}+m (n-1) n x^{n-2} \left(x^n-1\right)^{m-1} \). </p>
 
-<p class="definition">Definition at line <a class="el" href="weightKernel_8h_source.html#l00110">110</a> of file <a class="el" href="weightKernel_8h_source.html">weightKernel.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="weightKernel_8h_source.html#l00120">120</a> of file <a class="el" href="weightKernel_8h_source.html">weightKernel.h</a>.</p>
 
 </div>
 </div>
@@ -258,7 +261,7 @@ template&lt;typename _Scalar , int m, int n&gt; </div>
 
 <p>Defines the smooth first order weighting function \( \nabla w(x) = m n x^{n-1} \left(x^n-1\right)^{m-1} \). </p>
 
-<p class="definition">Definition at line <a class="el" href="weightKernel_8h_source.html#l00102">102</a> of file <a class="el" href="weightKernel_8h_source.html">weightKernel.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="weightKernel_8h_source.html#l00112">112</a> of file <a class="el" href="weightKernel_8h_source.html">weightKernel.h</a>.</p>
 
 </div>
 </div>
@@ -290,11 +293,39 @@ template&lt;typename _Scalar , int m, int n&gt; </div>
 
 <p>Defines the smooth weighting function \(  w(x)=(x^n-1)^m \). </p>
 
-<p class="definition">Definition at line <a class="el" href="weightKernel_8h_source.html#l00094">94</a> of file <a class="el" href="weightKernel_8h_source.html">weightKernel.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="weightKernel_8h_source.html#l00104">104</a> of file <a class="el" href="weightKernel_8h_source.html">weightKernel.h</a>.</p>
 
 </div>
 </div>
 <h2 class="groupheader">Member Data Documentation</h2>
+<a id="a60d8dc40e672693d109b4bd5a99780fb" name="a60d8dc40e672693d109b4bd5a99780fb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a60d8dc40e672693d109b4bd5a99780fb">&#9670;&#160;</a></span>isCompact</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename _Scalar , int m, int n&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr bool <a class="el" href="classPonca_1_1PolynomialSmoothWeightKernel.html">Ponca::PolynomialSmoothWeightKernel</a>&lt; _Scalar, m, n &gt;::isCompact = true</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span><span class="mlabel">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>The kernel is compact and shall not be evaluated outside of the scale bounds. </p>
+
+<p class="definition">Definition at line <a class="el" href="weightKernel_8h_source.html#l00100">100</a> of file <a class="el" href="weightKernel_8h_source.html">weightKernel.h</a>.</p>
+
+</div>
+</div>
 <a id="ae01cd59b414a7c4d0f315e855a13f98f" name="ae01cd59b414a7c4d0f315e855a13f98f"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ae01cd59b414a7c4d0f315e855a13f98f">&#9670;&#160;</a></span>isDDValid</h2>
 
@@ -319,7 +350,7 @@ template&lt;typename _Scalar , int m, int n&gt; </div>
 
 <p><a class="el" href="classPonca_1_1PolynomialSmoothWeightKernel.html#ad8adceb3c40734ed05d02ff4cf3b1ae3" title="Defines the smooth second order weighting function .">ddf</a> is defined and valid on the definition interval </p>
 
-<p class="definition">Definition at line <a class="el" href="weightKernel_8h_source.html#l00131">131</a> of file <a class="el" href="weightKernel_8h_source.html">weightKernel.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="weightKernel_8h_source.html#l00141">141</a> of file <a class="el" href="weightKernel_8h_source.html">weightKernel.h</a>.</p>
 
 </div>
 </div>
@@ -347,7 +378,7 @@ template&lt;typename _Scalar , int m, int n&gt; </div>
 
 <p><a class="el" href="classPonca_1_1PolynomialSmoothWeightKernel.html#a57638efcd9b72fa08be0b3a9ff385e47" title="Defines the smooth first order weighting function .">df</a> is defined and valid on the definition interval </p>
 
-<p class="definition">Definition at line <a class="el" href="weightKernel_8h_source.html#l00129">129</a> of file <a class="el" href="weightKernel_8h_source.html">weightKernel.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="weightKernel_8h_source.html#l00139">139</a> of file <a class="el" href="weightKernel_8h_source.html">weightKernel.h</a>.</p>
 
 </div>
 </div>
@@ -357,7 +388,7 @@ template&lt;typename _Scalar , int m, int n&gt; </div>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="namespacePonca.html">Ponca</a></li><li class="navelem"><a class="el" href="classPonca_1_1PolynomialSmoothWeightKernel.html">PolynomialSmoothWeightKernel</a></li>
-    <li class="footer">Generated on Thu Oct 9 2025 22:33:53 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
+    <li class="footer">Generated on Thu Oct 30 2025 19:03:05 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
   </ul>
 </div>
 </body>

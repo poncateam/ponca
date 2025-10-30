@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.9.8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Ponca: Ponca::CovariancePlaneDerImpl&lt; DataPoint, _WFunctor, DiffType, T &gt; Class Template Reference</title>
+<title>Ponca: Ponca::CovariancePlaneDerImpl&lt; DataPoint, _NFilter, DiffType, T &gt; Class Template Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -51,7 +51,7 @@ MathJax.Hub.Config({
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Ponca
-   &#160;<span id="projectnumber">40f245e28b920cbb763a1c6282156c87c626f24c</span>
+   &#160;<span id="projectnumber">9e7681effe2c12b0af1c85fdb62680f52d835a30</span>
    </div>
    <div id="projectbrief">Point Cloud Analysis library</div>
   </td>
@@ -121,7 +121,7 @@ $(document).ready(function(){initNavTree('classPonca_1_1CovariancePlaneDerImpl.h
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="#pro-types">Protected Types</a> &#124;
 <a href="classPonca_1_1CovariancePlaneDerImpl-members.html">List of all members</a>  </div>
-  <div class="headertitle"><div class="title">Ponca::CovariancePlaneDerImpl&lt; DataPoint, _WFunctor, DiffType, T &gt; Class Template Reference</div></div>
+  <div class="headertitle"><div class="title">Ponca::CovariancePlaneDerImpl&lt; DataPoint, _NFilter, DiffType, T &gt; Class Template Reference</div></div>
 </div><!--header-->
 <div class="contents">
 
@@ -130,89 +130,89 @@ $(document).ready(function(){initNavTree('classPonca_1_1CovariancePlaneDerImpl.h
 
 <p><code>#include &lt;<a class="el" href="covariancePlaneFit_8h_source.html">covariancePlaneFit.h</a>&gt;</code></p>
 <div id="dynsection-0" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
-  <img id="dynsection-0-trigger" src="closed.png" alt="+"/> Inheritance diagram for Ponca::CovariancePlaneDerImpl&lt; DataPoint, _WFunctor, DiffType, T &gt;:</div>
+  <img id="dynsection-0-trigger" src="closed.png" alt="+"/> Inheritance diagram for Ponca::CovariancePlaneDerImpl&lt; DataPoint, _NFilter, DiffType, T &gt;:</div>
 <div id="dynsection-0-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-0-content" class="dyncontent" style="display:none;">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classPonca_1_1CovariancePlaneDerImpl__inherit__graph.svg" width="266" height="314"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classPonca_1_1CovariancePlaneDerImpl__inherit__graph.svg" width="260" height="314"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 <div id="dynsection-1" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
-  <img id="dynsection-1-trigger" src="closed.png" alt="+"/> Collaboration diagram for Ponca::CovariancePlaneDerImpl&lt; DataPoint, _WFunctor, DiffType, T &gt;:</div>
+  <img id="dynsection-1-trigger" src="closed.png" alt="+"/> Collaboration diagram for Ponca::CovariancePlaneDerImpl&lt; DataPoint, _NFilter, DiffType, T &gt;:</div>
 <div id="dynsection-1-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-1-content" class="dyncontent" style="display:none;">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classPonca_1_1CovariancePlaneDerImpl__coll__graph.svg" width="266" height="314"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classPonca_1_1CovariancePlaneDerImpl__coll__graph.svg" width="260" height="314"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-types" name="pub-types"></a>
 Public Types</h2></td></tr>
-<tr class="memitem:aa6ad3df0b4c704fc507add8bf249d777" id="r_aa6ad3df0b4c704fc507add8bf249d777"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1CovariancePlaneDerImpl.html#aa6ad3df0b4c704fc507add8bf249d777">Scalar</a> = typename DataPoint::Scalar</td></tr>
-<tr class="memdesc:aa6ad3df0b4c704fc507add8bf249d777"><td class="mdescLeft">&#160;</td><td class="mdescRight">Alias to scalar type.  <br /></td></tr>
-<tr class="separator:aa6ad3df0b4c704fc507add8bf249d777"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab20cd5c198ec858dbe2de91db8342fe6" id="r_ab20cd5c198ec858dbe2de91db8342fe6"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1CovariancePlaneDerImpl.html#ab20cd5c198ec858dbe2de91db8342fe6">VectorType</a> = typename Base::VectorType</td></tr>
-<tr class="memdesc:ab20cd5c198ec858dbe2de91db8342fe6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Alias to vector type.  <br /></td></tr>
-<tr class="separator:ab20cd5c198ec858dbe2de91db8342fe6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9a23e3faf43f1aafa9a3795a5ec10f65" id="r_a9a23e3faf43f1aafa9a3795a5ec10f65"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1CovariancePlaneDerImpl.html#a9a23e3faf43f1aafa9a3795a5ec10f65">WFunctor</a> = typename Base::WFunctor</td></tr>
-<tr class="memdesc:a9a23e3faf43f1aafa9a3795a5ec10f65"><td class="mdescLeft">&#160;</td><td class="mdescRight">Alias to weight function.  <br /></td></tr>
-<tr class="separator:a9a23e3faf43f1aafa9a3795a5ec10f65"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aefa4783faec464de63d2a2fb8021db95" id="r_aefa4783faec464de63d2a2fb8021db95"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1CovariancePlaneDerImpl.html#aefa4783faec464de63d2a2fb8021db95">MatrixType</a> = typename DataPoint::MatrixType</td></tr>
-<tr class="memdesc:aefa4783faec464de63d2a2fb8021db95"><td class="mdescLeft">&#160;</td><td class="mdescRight">Alias to matrix type.  <br /></td></tr>
-<tr class="separator:aefa4783faec464de63d2a2fb8021db95"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a34c1bd04080647e8086738682434ae97" id="r_a34c1bd04080647e8086738682434ae97"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1CovariancePlaneDerImpl.html#a34c1bd04080647e8086738682434ae97">ScalarArray</a> = typename Base::ScalarArray</td></tr>
-<tr class="memdesc:a34c1bd04080647e8086738682434ae97"><td class="mdescLeft">&#160;</td><td class="mdescRight">Alias to scalar derivatives array.  <br /></td></tr>
-<tr class="separator:a34c1bd04080647e8086738682434ae97"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abd2479f5f151d3155ea8b8640ab66843" id="r_abd2479f5f151d3155ea8b8640ab66843"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1CovariancePlaneDerImpl.html#abd2479f5f151d3155ea8b8640ab66843">VectorArray</a> = typename Base::VectorArray</td></tr>
-<tr class="memdesc:abd2479f5f151d3155ea8b8640ab66843"><td class="mdescLeft">&#160;</td><td class="mdescRight">Alias to vector derivatives array.  <br /></td></tr>
-<tr class="separator:abd2479f5f151d3155ea8b8640ab66843"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afce98013f3c594c36277d0e4ee5426a3" id="r_afce98013f3c594c36277d0e4ee5426a3"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1CovariancePlaneDerImpl.html#afce98013f3c594c36277d0e4ee5426a3">Scalar</a> = typename DataPoint::Scalar</td></tr>
+<tr class="memdesc:afce98013f3c594c36277d0e4ee5426a3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Alias to scalar type.  <br /></td></tr>
+<tr class="separator:afce98013f3c594c36277d0e4ee5426a3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad8ba3aa6cb0eceecd5224ace67d4849f" id="r_ad8ba3aa6cb0eceecd5224ace67d4849f"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1CovariancePlaneDerImpl.html#ad8ba3aa6cb0eceecd5224ace67d4849f">VectorType</a> = typename Base::VectorType</td></tr>
+<tr class="memdesc:ad8ba3aa6cb0eceecd5224ace67d4849f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Alias to vector type.  <br /></td></tr>
+<tr class="separator:ad8ba3aa6cb0eceecd5224ace67d4849f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad54c0b9712e0e02270b503eae53db28a" id="r_ad54c0b9712e0e02270b503eae53db28a"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1CovariancePlaneDerImpl.html#ad54c0b9712e0e02270b503eae53db28a">NeighborFilter</a> = typename Base::NeighborFilter</td></tr>
+<tr class="memdesc:ad54c0b9712e0e02270b503eae53db28a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Alias to the filter applied on the neighbors.  <br /></td></tr>
+<tr class="separator:ad54c0b9712e0e02270b503eae53db28a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa9d39208e75252209571292ea1609b6a" id="r_aa9d39208e75252209571292ea1609b6a"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1CovariancePlaneDerImpl.html#aa9d39208e75252209571292ea1609b6a">MatrixType</a> = typename DataPoint::MatrixType</td></tr>
+<tr class="memdesc:aa9d39208e75252209571292ea1609b6a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Alias to matrix type.  <br /></td></tr>
+<tr class="separator:aa9d39208e75252209571292ea1609b6a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5df12ff32f62391125d415e946cbc352" id="r_a5df12ff32f62391125d415e946cbc352"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1CovariancePlaneDerImpl.html#a5df12ff32f62391125d415e946cbc352">ScalarArray</a> = typename Base::ScalarArray</td></tr>
+<tr class="memdesc:a5df12ff32f62391125d415e946cbc352"><td class="mdescLeft">&#160;</td><td class="mdescRight">Alias to scalar derivatives array.  <br /></td></tr>
+<tr class="separator:a5df12ff32f62391125d415e946cbc352"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8268113c4cc92e7ad77103a57cdcf628" id="r_a8268113c4cc92e7ad77103a57cdcf628"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1CovariancePlaneDerImpl.html#a8268113c4cc92e7ad77103a57cdcf628">VectorArray</a> = typename Base::VectorArray</td></tr>
+<tr class="memdesc:a8268113c4cc92e7ad77103a57cdcf628"><td class="mdescLeft">&#160;</td><td class="mdescRight">Alias to vector derivatives array.  <br /></td></tr>
+<tr class="separator:a8268113c4cc92e7ad77103a57cdcf628"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:ad3945ac3e6cf36a72117a69adef774c6" id="r_ad3945ac3e6cf36a72117a69adef774c6"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classPonca_1_1CovariancePlaneDerImpl.html">CovariancePlaneDerImpl</a>&lt; DataPoint, _WFunctor, <a class="el" href="namespacePonca.html#a7beaddc698523e7f9c041ea8bc4c535a">DiffType</a>, T &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1CovariancePlaneDerImpl.html#ad3945ac3e6cf36a72117a69adef774c6">covariancePlaneDer</a> ()</td></tr>
-<tr class="memdesc:ad3945ac3e6cf36a72117a69adef774c6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Explicit conversion to <a class="el" href="classPonca_1_1CovariancePlaneDerImpl.html" title="[CovariancePlaneFit Definition]">CovariancePlaneDerImpl</a> , to access methods potentially hidden by heritage.  <br /></td></tr>
-<tr class="separator:ad3945ac3e6cf36a72117a69adef774c6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4f867366646eba525fcf8f95aced029c" id="r_a4f867366646eba525fcf8f95aced029c"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="classPonca_1_1CovariancePlaneDerImpl.html">CovariancePlaneDerImpl</a>&lt; DataPoint, _WFunctor, <a class="el" href="namespacePonca.html#a7beaddc698523e7f9c041ea8bc4c535a">DiffType</a>, T &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1CovariancePlaneDerImpl.html#a4f867366646eba525fcf8f95aced029c">covariancePlaneDer</a> () const</td></tr>
-<tr class="memdesc:a4f867366646eba525fcf8f95aced029c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Explicit conversion to <a class="el" href="classPonca_1_1CovariancePlaneDerImpl.html" title="[CovariancePlaneFit Definition]">CovariancePlaneDerImpl</a> , to access methods potentially hidden by heritage.  <br /></td></tr>
-<tr class="separator:a4f867366646eba525fcf8f95aced029c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1fdde7a4305d51bf03eb2411cfc8aa59" id="r_a1fdde7a4305d51bf03eb2411cfc8aa59"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classPonca_1_1CovariancePlaneDerImpl.html">CovariancePlaneDerImpl</a>&lt; DataPoint, _NFilter, <a class="el" href="namespacePonca.html#a7beaddc698523e7f9c041ea8bc4c535a">DiffType</a>, T &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1CovariancePlaneDerImpl.html#a1fdde7a4305d51bf03eb2411cfc8aa59">covariancePlaneDer</a> ()</td></tr>
+<tr class="memdesc:a1fdde7a4305d51bf03eb2411cfc8aa59"><td class="mdescLeft">&#160;</td><td class="mdescRight">Explicit conversion to <a class="el" href="classPonca_1_1CovariancePlaneDerImpl.html" title="[CovariancePlaneFit Definition]">CovariancePlaneDerImpl</a> , to access methods potentially hidden by heritage.  <br /></td></tr>
+<tr class="separator:a1fdde7a4305d51bf03eb2411cfc8aa59"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3c88c535318a240700d7366a2195b9c8" id="r_a3c88c535318a240700d7366a2195b9c8"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="classPonca_1_1CovariancePlaneDerImpl.html">CovariancePlaneDerImpl</a>&lt; DataPoint, _NFilter, <a class="el" href="namespacePonca.html#a7beaddc698523e7f9c041ea8bc4c535a">DiffType</a>, T &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1CovariancePlaneDerImpl.html#a3c88c535318a240700d7366a2195b9c8">covariancePlaneDer</a> () const</td></tr>
+<tr class="memdesc:a3c88c535318a240700d7366a2195b9c8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Explicit conversion to <a class="el" href="classPonca_1_1CovariancePlaneDerImpl.html" title="[CovariancePlaneFit Definition]">CovariancePlaneDerImpl</a> , to access methods potentially hidden by heritage.  <br /></td></tr>
+<tr class="separator:a3c88c535318a240700d7366a2195b9c8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1e38de1b017aa2834a6ffab388d27b5d" id="r_a1e38de1b017aa2834a6ffab388d27b5d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespacePonca.html#abfd697aebf07c1b5c8be5ee401e2dc84">FIT_RESULT</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1CovariancePlaneDerImpl.html#a1e38de1b017aa2834a6ffab388d27b5d">finalize</a> ()</td></tr>
 <tr class="separator:a1e38de1b017aa2834a6ffab388d27b5d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af7bfa8ef344c71340bef5356522d4675" id="r_af7bfa8ef344c71340bef5356522d4675"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classPonca_1_1CovariancePlaneDerImpl.html#a34c1bd04080647e8086738682434ae97">ScalarArray</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1CovariancePlaneDerImpl.html#af7bfa8ef344c71340bef5356522d4675">dPotential</a> () const</td></tr>
-<tr class="separator:af7bfa8ef344c71340bef5356522d4675"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7a3335f4f617154569cc0557254c7de7" id="r_a7a3335f4f617154569cc0557254c7de7"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classPonca_1_1CovariancePlaneDerImpl.html#abd2479f5f151d3155ea8b8640ab66843">VectorArray</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1CovariancePlaneDerImpl.html#a7a3335f4f617154569cc0557254c7de7">dNormal</a> () const</td></tr>
-<tr class="memdesc:a7a3335f4f617154569cc0557254c7de7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the derivatives of the primitive normal.  <br /></td></tr>
-<tr class="separator:a7a3335f4f617154569cc0557254c7de7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a766169def99d3378bed13abc4e4d4060" id="r_a766169def99d3378bed13abc4e4d4060"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classPonca_1_1CovariancePlaneDerImpl.html#a5df12ff32f62391125d415e946cbc352">ScalarArray</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1CovariancePlaneDerImpl.html#a766169def99d3378bed13abc4e4d4060">dPotential</a> () const</td></tr>
+<tr class="separator:a766169def99d3378bed13abc4e4d4060"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acc4d4a5c3a647a3e4bdb3374b2bd078b" id="r_acc4d4a5c3a647a3e4bdb3374b2bd078b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classPonca_1_1CovariancePlaneDerImpl.html#a8268113c4cc92e7ad77103a57cdcf628">VectorArray</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1CovariancePlaneDerImpl.html#acc4d4a5c3a647a3e4bdb3374b2bd078b">dNormal</a> () const</td></tr>
+<tr class="memdesc:acc4d4a5c3a647a3e4bdb3374b2bd078b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the derivatives of the primitive normal.  <br /></td></tr>
+<tr class="separator:acc4d4a5c3a647a3e4bdb3374b2bd078b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-types" name="pro-types"></a>
 Protected Types</h2></td></tr>
 <tr class="memitem:a6644a9c60cd125e9ae274a5682f0f069" id="r_a6644a9c60cd125e9ae274a5682f0f069"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom">{ <b>Check</b>
-, <a class="el" href="classPonca_1_1CovariancePlaneDerImpl.html#a6644a9c60cd125e9ae274a5682f0f069a72f9f1cd83eda03ac3ebf4a6782d1243">PROVIDES_COVARIANCE_PLANE_DERIVATIVE</a>
+, <a class="el" href="classPonca_1_1CovariancePlaneDerImpl.html#a6644a9c60cd125e9ae274a5682f0f069ac54f6889d6ed4eea40b3240a4c5e9d78">PROVIDES_COVARIANCE_PLANE_DERIVATIVE</a>
 , <b>PROVIDES_NORMAL_DERIVATIVE</b>
  }</td></tr>
 <tr class="separator:a6644a9c60cd125e9ae274a5682f0f069"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a76679674ae7aeed133bfa2e5850b35d1" id="r_a76679674ae7aeed133bfa2e5850b35d1"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1CovariancePlaneDerImpl.html#a76679674ae7aeed133bfa2e5850b35d1">Base</a> = T</td></tr>
-<tr class="memdesc:a76679674ae7aeed133bfa2e5850b35d1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Base class of the procedure.  <br /></td></tr>
-<tr class="separator:a76679674ae7aeed133bfa2e5850b35d1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2ba138ab9d64930889b65d844d58556f" id="r_a2ba138ab9d64930889b65d844d58556f"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1CovariancePlaneDerImpl.html#a2ba138ab9d64930889b65d844d58556f">Base</a> = T</td></tr>
+<tr class="memdesc:a2ba138ab9d64930889b65d844d58556f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Base class of the procedure.  <br /></td></tr>
+<tr class="separator:a2ba138ab9d64930889b65d844d58556f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><div class="compoundTemplParams">template&lt;class DataPoint, class _WFunctor, int DiffType, typename T&gt;<br />
-class Ponca::CovariancePlaneDerImpl&lt; DataPoint, _WFunctor, DiffType, T &gt;</div><p>[CovariancePlaneFit Definition] </p>
+<div class="textblock"><div class="compoundTemplParams">template&lt;class DataPoint, class _NFilter, int DiffType, typename T&gt;<br />
+class Ponca::CovariancePlaneDerImpl&lt; DataPoint, _NFilter, DiffType, T &gt;</div><p>[CovariancePlaneFit Definition] </p>
 <p>Internal generic class computing the derivatives of covariance plane fits</p>
 <dl class="section warning"><dt>Warning</dt><dd>Defined in 3D only </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="covariancePlaneFit_8h_source.html#l00102">102</a> of file <a class="el" href="covariancePlaneFit_8h_source.html">covariancePlaneFit.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="covariancePlaneFit_8h_source.html#l00098">98</a> of file <a class="el" href="covariancePlaneFit_8h_source.html">covariancePlaneFit.h</a>.</p>
 </div><h2 class="groupheader">Member Typedef Documentation</h2>
-<a id="a76679674ae7aeed133bfa2e5850b35d1" name="a76679674ae7aeed133bfa2e5850b35d1"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a76679674ae7aeed133bfa2e5850b35d1">&#9670;&#160;</a></span>Base</h2>
+<a id="a2ba138ab9d64930889b65d844d58556f" name="a2ba138ab9d64930889b65d844d58556f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2ba138ab9d64930889b65d844d58556f">&#9670;&#160;</a></span>Base</h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;class DataPoint , class _WFunctor , int DiffType, typename T &gt; </div>
+template&lt;class DataPoint , class _NFilter , int DiffType, typename T &gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">using <a class="el" href="classPonca_1_1CovariancePlaneDerImpl.html">Ponca::CovariancePlaneDerImpl</a>&lt; DataPoint, _WFunctor, <a class="el" href="namespacePonca.html#a7beaddc698523e7f9c041ea8bc4c535a">DiffType</a>, T &gt;::Base =  T</td>
+          <td class="memname">using <a class="el" href="classPonca_1_1CovariancePlaneDerImpl.html">Ponca::CovariancePlaneDerImpl</a>&lt; DataPoint, _NFilter, <a class="el" href="namespacePonca.html#a7beaddc698523e7f9c041ea8bc4c535a">DiffType</a>, T &gt;::Base =  T</td>
         </tr>
       </table>
   </td>
@@ -224,127 +224,127 @@ template&lt;class DataPoint , class _WFunctor , int DiffType, typename T &gt; </
 
 <p>Base class of the procedure. </p>
 
-<p class="definition">Definition at line <a class="el" href="covariancePlaneFit_8h_source.html#l00104">104</a> of file <a class="el" href="covariancePlaneFit_8h_source.html">covariancePlaneFit.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="covariancePlaneFit_8h_source.html#l00100">100</a> of file <a class="el" href="covariancePlaneFit_8h_source.html">covariancePlaneFit.h</a>.</p>
 
 </div>
 </div>
-<a id="aefa4783faec464de63d2a2fb8021db95" name="aefa4783faec464de63d2a2fb8021db95"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aefa4783faec464de63d2a2fb8021db95">&#9670;&#160;</a></span>MatrixType</h2>
+<a id="aa9d39208e75252209571292ea1609b6a" name="aa9d39208e75252209571292ea1609b6a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa9d39208e75252209571292ea1609b6a">&#9670;&#160;</a></span>MatrixType</h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;class DataPoint , class _WFunctor , int DiffType, typename T &gt; </div>
+template&lt;class DataPoint , class _NFilter , int DiffType, typename T &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">using <a class="el" href="classPonca_1_1CovariancePlaneDerImpl.html">Ponca::CovariancePlaneDerImpl</a>&lt; DataPoint, _WFunctor, <a class="el" href="namespacePonca.html#a7beaddc698523e7f9c041ea8bc4c535a">DiffType</a>, T &gt;::MatrixType =  typename DataPoint::MatrixType</td>
+          <td class="memname">using <a class="el" href="classPonca_1_1CovariancePlaneDerImpl.html">Ponca::CovariancePlaneDerImpl</a>&lt; DataPoint, _NFilter, <a class="el" href="namespacePonca.html#a7beaddc698523e7f9c041ea8bc4c535a">DiffType</a>, T &gt;::MatrixType =  typename DataPoint::MatrixType</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
 <p>Alias to matrix type. </p>
 
-<p class="definition">Definition at line <a class="el" href="covariancePlaneFit_8h_source.html#l00105">105</a> of file <a class="el" href="covariancePlaneFit_8h_source.html">covariancePlaneFit.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="covariancePlaneFit_8h_source.html#l00101">101</a> of file <a class="el" href="covariancePlaneFit_8h_source.html">covariancePlaneFit.h</a>.</p>
 
 </div>
 </div>
-<a id="aa6ad3df0b4c704fc507add8bf249d777" name="aa6ad3df0b4c704fc507add8bf249d777"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa6ad3df0b4c704fc507add8bf249d777">&#9670;&#160;</a></span>Scalar</h2>
+<a id="ad54c0b9712e0e02270b503eae53db28a" name="ad54c0b9712e0e02270b503eae53db28a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad54c0b9712e0e02270b503eae53db28a">&#9670;&#160;</a></span>NeighborFilter</h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;class DataPoint , class _WFunctor , int DiffType, typename T &gt; </div>
+template&lt;class DataPoint , class _NFilter , int DiffType, typename T &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">using <a class="el" href="classPonca_1_1CovariancePlaneDerImpl.html">Ponca::CovariancePlaneDerImpl</a>&lt; DataPoint, _WFunctor, <a class="el" href="namespacePonca.html#a7beaddc698523e7f9c041ea8bc4c535a">DiffType</a>, T &gt;::Scalar =  typename DataPoint::Scalar</td>
+          <td class="memname">using <a class="el" href="classPonca_1_1CovariancePlaneDerImpl.html">Ponca::CovariancePlaneDerImpl</a>&lt; DataPoint, _NFilter, <a class="el" href="namespacePonca.html#a7beaddc698523e7f9c041ea8bc4c535a">DiffType</a>, T &gt;::NeighborFilter =  typename Base::NeighborFilter</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Alias to the filter applied on the neighbors. </p>
+
+<p class="definition">Definition at line <a class="el" href="covariancePlaneFit_8h_source.html#l00100">100</a> of file <a class="el" href="covariancePlaneFit_8h_source.html">covariancePlaneFit.h</a>.</p>
+
+</div>
+</div>
+<a id="afce98013f3c594c36277d0e4ee5426a3" name="afce98013f3c594c36277d0e4ee5426a3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afce98013f3c594c36277d0e4ee5426a3">&#9670;&#160;</a></span>Scalar</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class DataPoint , class _NFilter , int DiffType, typename T &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="classPonca_1_1CovariancePlaneDerImpl.html">Ponca::CovariancePlaneDerImpl</a>&lt; DataPoint, _NFilter, <a class="el" href="namespacePonca.html#a7beaddc698523e7f9c041ea8bc4c535a">DiffType</a>, T &gt;::Scalar =  typename DataPoint::Scalar</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
 <p>Alias to scalar type. </p>
 
-<p class="definition">Definition at line <a class="el" href="covariancePlaneFit_8h_source.html#l00104">104</a> of file <a class="el" href="covariancePlaneFit_8h_source.html">covariancePlaneFit.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="covariancePlaneFit_8h_source.html#l00100">100</a> of file <a class="el" href="covariancePlaneFit_8h_source.html">covariancePlaneFit.h</a>.</p>
 
 </div>
 </div>
-<a id="a34c1bd04080647e8086738682434ae97" name="a34c1bd04080647e8086738682434ae97"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a34c1bd04080647e8086738682434ae97">&#9670;&#160;</a></span>ScalarArray</h2>
+<a id="a5df12ff32f62391125d415e946cbc352" name="a5df12ff32f62391125d415e946cbc352"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5df12ff32f62391125d415e946cbc352">&#9670;&#160;</a></span>ScalarArray</h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;class DataPoint , class _WFunctor , int DiffType, typename T &gt; </div>
+template&lt;class DataPoint , class _NFilter , int DiffType, typename T &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">using <a class="el" href="classPonca_1_1CovariancePlaneDerImpl.html">Ponca::CovariancePlaneDerImpl</a>&lt; DataPoint, _WFunctor, <a class="el" href="namespacePonca.html#a7beaddc698523e7f9c041ea8bc4c535a">DiffType</a>, T &gt;::ScalarArray =  typename Base::ScalarArray</td>
+          <td class="memname">using <a class="el" href="classPonca_1_1CovariancePlaneDerImpl.html">Ponca::CovariancePlaneDerImpl</a>&lt; DataPoint, _NFilter, <a class="el" href="namespacePonca.html#a7beaddc698523e7f9c041ea8bc4c535a">DiffType</a>, T &gt;::ScalarArray =  typename Base::ScalarArray</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
 <p>Alias to scalar derivatives array. </p>
 
-<p class="definition">Definition at line <a class="el" href="covariancePlaneFit_8h_source.html#l00106">106</a> of file <a class="el" href="covariancePlaneFit_8h_source.html">covariancePlaneFit.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="covariancePlaneFit_8h_source.html#l00102">102</a> of file <a class="el" href="covariancePlaneFit_8h_source.html">covariancePlaneFit.h</a>.</p>
 
 </div>
 </div>
-<a id="abd2479f5f151d3155ea8b8640ab66843" name="abd2479f5f151d3155ea8b8640ab66843"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#abd2479f5f151d3155ea8b8640ab66843">&#9670;&#160;</a></span>VectorArray</h2>
+<a id="a8268113c4cc92e7ad77103a57cdcf628" name="a8268113c4cc92e7ad77103a57cdcf628"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8268113c4cc92e7ad77103a57cdcf628">&#9670;&#160;</a></span>VectorArray</h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;class DataPoint , class _WFunctor , int DiffType, typename T &gt; </div>
+template&lt;class DataPoint , class _NFilter , int DiffType, typename T &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">using <a class="el" href="classPonca_1_1CovariancePlaneDerImpl.html">Ponca::CovariancePlaneDerImpl</a>&lt; DataPoint, _WFunctor, <a class="el" href="namespacePonca.html#a7beaddc698523e7f9c041ea8bc4c535a">DiffType</a>, T &gt;::VectorArray =  typename Base::VectorArray</td>
+          <td class="memname">using <a class="el" href="classPonca_1_1CovariancePlaneDerImpl.html">Ponca::CovariancePlaneDerImpl</a>&lt; DataPoint, _NFilter, <a class="el" href="namespacePonca.html#a7beaddc698523e7f9c041ea8bc4c535a">DiffType</a>, T &gt;::VectorArray =  typename Base::VectorArray</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
 <p>Alias to vector derivatives array. </p>
 
-<p class="definition">Definition at line <a class="el" href="covariancePlaneFit_8h_source.html#l00106">106</a> of file <a class="el" href="covariancePlaneFit_8h_source.html">covariancePlaneFit.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="covariancePlaneFit_8h_source.html#l00102">102</a> of file <a class="el" href="covariancePlaneFit_8h_source.html">covariancePlaneFit.h</a>.</p>
 
 </div>
 </div>
-<a id="ab20cd5c198ec858dbe2de91db8342fe6" name="ab20cd5c198ec858dbe2de91db8342fe6"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ab20cd5c198ec858dbe2de91db8342fe6">&#9670;&#160;</a></span>VectorType</h2>
+<a id="ad8ba3aa6cb0eceecd5224ace67d4849f" name="ad8ba3aa6cb0eceecd5224ace67d4849f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad8ba3aa6cb0eceecd5224ace67d4849f">&#9670;&#160;</a></span>VectorType</h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;class DataPoint , class _WFunctor , int DiffType, typename T &gt; </div>
+template&lt;class DataPoint , class _NFilter , int DiffType, typename T &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">using <a class="el" href="classPonca_1_1CovariancePlaneDerImpl.html">Ponca::CovariancePlaneDerImpl</a>&lt; DataPoint, _WFunctor, <a class="el" href="namespacePonca.html#a7beaddc698523e7f9c041ea8bc4c535a">DiffType</a>, T &gt;::VectorType =  typename Base::VectorType</td>
+          <td class="memname">using <a class="el" href="classPonca_1_1CovariancePlaneDerImpl.html">Ponca::CovariancePlaneDerImpl</a>&lt; DataPoint, _NFilter, <a class="el" href="namespacePonca.html#a7beaddc698523e7f9c041ea8bc4c535a">DiffType</a>, T &gt;::VectorType =  typename Base::VectorType</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
 <p>Alias to vector type. </p>
 
-<p class="definition">Definition at line <a class="el" href="covariancePlaneFit_8h_source.html#l00104">104</a> of file <a class="el" href="covariancePlaneFit_8h_source.html">covariancePlaneFit.h</a>.</p>
-
-</div>
-</div>
-<a id="a9a23e3faf43f1aafa9a3795a5ec10f65" name="a9a23e3faf43f1aafa9a3795a5ec10f65"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a9a23e3faf43f1aafa9a3795a5ec10f65">&#9670;&#160;</a></span>WFunctor</h2>
-
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;class DataPoint , class _WFunctor , int DiffType, typename T &gt; </div>
-      <table class="memname">
-        <tr>
-          <td class="memname">using <a class="el" href="classPonca_1_1CovariancePlaneDerImpl.html">Ponca::CovariancePlaneDerImpl</a>&lt; DataPoint, _WFunctor, <a class="el" href="namespacePonca.html#a7beaddc698523e7f9c041ea8bc4c535a">DiffType</a>, T &gt;::WFunctor =  typename Base::WFunctor</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Alias to weight function. </p>
-
-<p class="definition">Definition at line <a class="el" href="covariancePlaneFit_8h_source.html#l00104">104</a> of file <a class="el" href="covariancePlaneFit_8h_source.html">covariancePlaneFit.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="covariancePlaneFit_8h_source.html#l00100">100</a> of file <a class="el" href="covariancePlaneFit_8h_source.html">covariancePlaneFit.h</a>.</p>
 
 </div>
 </div>
@@ -355,7 +355,7 @@ template&lt;class DataPoint , class _WFunctor , int DiffType, typename T &gt; </
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;class DataPoint , class _WFunctor , int DiffType, typename T &gt; </div>
+template&lt;class DataPoint , class _NFilter , int DiffType, typename T &gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
@@ -371,28 +371,28 @@ template&lt;class DataPoint , class _WFunctor , int DiffType, typename T &gt; </
 </table>
 </div><div class="memdoc">
 <table class="fieldtable">
-<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="a6644a9c60cd125e9ae274a5682f0f069a72f9f1cd83eda03ac3ebf4a6782d1243" name="a6644a9c60cd125e9ae274a5682f0f069a72f9f1cd83eda03ac3ebf4a6782d1243"></a>PROVIDES_COVARIANCE_PLANE_DERIVATIVE&#160;</td><td class="fielddoc"><p>Provides derivatives for hyper-planes. </p>
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="a6644a9c60cd125e9ae274a5682f0f069ac54f6889d6ed4eea40b3240a4c5e9d78" name="a6644a9c60cd125e9ae274a5682f0f069ac54f6889d6ed4eea40b3240a4c5e9d78"></a>PROVIDES_COVARIANCE_PLANE_DERIVATIVE&#160;</td><td class="fielddoc"><p>Provides derivatives for hyper-planes. </p>
 </td></tr>
 </table>
 
-<p class="definition">Definition at line <a class="el" href="covariancePlaneFit_8h_source.html#l00110">110</a> of file <a class="el" href="covariancePlaneFit_8h_source.html">covariancePlaneFit.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="covariancePlaneFit_8h_source.html#l00106">106</a> of file <a class="el" href="covariancePlaneFit_8h_source.html">covariancePlaneFit.h</a>.</p>
 
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a id="ad3945ac3e6cf36a72117a69adef774c6" name="ad3945ac3e6cf36a72117a69adef774c6"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad3945ac3e6cf36a72117a69adef774c6">&#9670;&#160;</a></span>covariancePlaneDer() <span class="overload">[1/2]</span></h2>
+<a id="a1fdde7a4305d51bf03eb2411cfc8aa59" name="a1fdde7a4305d51bf03eb2411cfc8aa59"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1fdde7a4305d51bf03eb2411cfc8aa59">&#9670;&#160;</a></span>covariancePlaneDer() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;class DataPoint , class _WFunctor , int DiffType, typename T &gt; </div>
+template&lt;class DataPoint , class _NFilter , int DiffType, typename T &gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classPonca_1_1CovariancePlaneDerImpl.html">CovariancePlaneDerImpl</a>&lt; DataPoint, _WFunctor, <a class="el" href="namespacePonca.html#a7beaddc698523e7f9c041ea8bc4c535a">DiffType</a>, T &gt; &amp; <a class="el" href="classPonca_1_1CovariancePlaneDerImpl.html">Ponca::CovariancePlaneDerImpl</a>&lt; DataPoint, _WFunctor, <a class="el" href="namespacePonca.html#a7beaddc698523e7f9c041ea8bc4c535a">DiffType</a>, T &gt;::covariancePlaneDer </td>
+          <td class="memname"><a class="el" href="classPonca_1_1CovariancePlaneDerImpl.html">CovariancePlaneDerImpl</a>&lt; DataPoint, _NFilter, <a class="el" href="namespacePonca.html#a7beaddc698523e7f9c041ea8bc4c535a">DiffType</a>, T &gt; &amp; <a class="el" href="classPonca_1_1CovariancePlaneDerImpl.html">Ponca::CovariancePlaneDerImpl</a>&lt; DataPoint, _NFilter, <a class="el" href="namespacePonca.html#a7beaddc698523e7f9c041ea8bc4c535a">DiffType</a>, T &gt;::covariancePlaneDer </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -407,23 +407,23 @@ template&lt;class DataPoint , class _WFunctor , int DiffType, typename T &gt; </
 
 <p>Explicit conversion to <a class="el" href="classPonca_1_1CovariancePlaneDerImpl.html" title="[CovariancePlaneFit Definition]">CovariancePlaneDerImpl</a> , to access methods potentially hidden by heritage. </p>
 
-<p class="definition">Definition at line <a class="el" href="covariancePlaneFit_8h_source.html#l00123">123</a> of file <a class="el" href="covariancePlaneFit_8h_source.html">covariancePlaneFit.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="covariancePlaneFit_8h_source.html#l00119">119</a> of file <a class="el" href="covariancePlaneFit_8h_source.html">covariancePlaneFit.h</a>.</p>
 
 </div>
 </div>
-<a id="a4f867366646eba525fcf8f95aced029c" name="a4f867366646eba525fcf8f95aced029c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a4f867366646eba525fcf8f95aced029c">&#9670;&#160;</a></span>covariancePlaneDer() <span class="overload">[2/2]</span></h2>
+<a id="a3c88c535318a240700d7366a2195b9c8" name="a3c88c535318a240700d7366a2195b9c8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3c88c535318a240700d7366a2195b9c8">&#9670;&#160;</a></span>covariancePlaneDer() <span class="overload">[2/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;class DataPoint , class _WFunctor , int DiffType, typename T &gt; </div>
+template&lt;class DataPoint , class _NFilter , int DiffType, typename T &gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">const <a class="el" href="classPonca_1_1CovariancePlaneDerImpl.html">CovariancePlaneDerImpl</a>&lt; DataPoint, _WFunctor, <a class="el" href="namespacePonca.html#a7beaddc698523e7f9c041ea8bc4c535a">DiffType</a>, T &gt; &amp; <a class="el" href="classPonca_1_1CovariancePlaneDerImpl.html">Ponca::CovariancePlaneDerImpl</a>&lt; DataPoint, _WFunctor, <a class="el" href="namespacePonca.html#a7beaddc698523e7f9c041ea8bc4c535a">DiffType</a>, T &gt;::covariancePlaneDer </td>
+          <td class="memname">const <a class="el" href="classPonca_1_1CovariancePlaneDerImpl.html">CovariancePlaneDerImpl</a>&lt; DataPoint, _NFilter, <a class="el" href="namespacePonca.html#a7beaddc698523e7f9c041ea8bc4c535a">DiffType</a>, T &gt; &amp; <a class="el" href="classPonca_1_1CovariancePlaneDerImpl.html">Ponca::CovariancePlaneDerImpl</a>&lt; DataPoint, _NFilter, <a class="el" href="namespacePonca.html#a7beaddc698523e7f9c041ea8bc4c535a">DiffType</a>, T &gt;::covariancePlaneDer </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td> const</td>
@@ -438,23 +438,23 @@ template&lt;class DataPoint , class _WFunctor , int DiffType, typename T &gt; </
 
 <p>Explicit conversion to <a class="el" href="classPonca_1_1CovariancePlaneDerImpl.html" title="[CovariancePlaneFit Definition]">CovariancePlaneDerImpl</a> , to access methods potentially hidden by heritage. </p>
 
-<p class="definition">Definition at line <a class="el" href="covariancePlaneFit_8h_source.html#l00123">123</a> of file <a class="el" href="covariancePlaneFit_8h_source.html">covariancePlaneFit.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="covariancePlaneFit_8h_source.html#l00119">119</a> of file <a class="el" href="covariancePlaneFit_8h_source.html">covariancePlaneFit.h</a>.</p>
 
 </div>
 </div>
-<a id="a7a3335f4f617154569cc0557254c7de7" name="a7a3335f4f617154569cc0557254c7de7"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a7a3335f4f617154569cc0557254c7de7">&#9670;&#160;</a></span>dNormal()</h2>
+<a id="acc4d4a5c3a647a3e4bdb3374b2bd078b" name="acc4d4a5c3a647a3e4bdb3374b2bd078b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acc4d4a5c3a647a3e4bdb3374b2bd078b">&#9670;&#160;</a></span>dNormal()</h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;class DataPoint , class _WFunctor , int DiffType, typename T &gt; </div>
+template&lt;class DataPoint , class _NFilter , int DiffType, typename T &gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classPonca_1_1CovariancePlaneDerImpl.html#abd2479f5f151d3155ea8b8640ab66843">VectorArray</a> <a class="el" href="classPonca_1_1CovariancePlaneDerImpl.html">Ponca::CovariancePlaneDerImpl</a>&lt; DataPoint, _WFunctor, <a class="el" href="namespacePonca.html#a7beaddc698523e7f9c041ea8bc4c535a">DiffType</a>, T &gt;::dNormal </td>
+          <td class="memname"><a class="el" href="classPonca_1_1CovariancePlaneDerImpl.html#a8268113c4cc92e7ad77103a57cdcf628">VectorArray</a> <a class="el" href="classPonca_1_1CovariancePlaneDerImpl.html">Ponca::CovariancePlaneDerImpl</a>&lt; DataPoint, _NFilter, <a class="el" href="namespacePonca.html#a7beaddc698523e7f9c041ea8bc4c535a">DiffType</a>, T &gt;::dNormal </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td> const</td>
@@ -469,23 +469,23 @@ template&lt;class DataPoint , class _WFunctor , int DiffType, typename T &gt; </
 
 <p>Returns the derivatives of the primitive normal. </p>
 
-<p class="definition">Definition at line <a class="el" href="covariancePlaneFit_8h_source.html#l00137">137</a> of file <a class="el" href="covariancePlaneFit_8h_source.html">covariancePlaneFit.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="covariancePlaneFit_8h_source.html#l00133">133</a> of file <a class="el" href="covariancePlaneFit_8h_source.html">covariancePlaneFit.h</a>.</p>
 
 </div>
 </div>
-<a id="af7bfa8ef344c71340bef5356522d4675" name="af7bfa8ef344c71340bef5356522d4675"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af7bfa8ef344c71340bef5356522d4675">&#9670;&#160;</a></span>dPotential()</h2>
+<a id="a766169def99d3378bed13abc4e4d4060" name="a766169def99d3378bed13abc4e4d4060"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a766169def99d3378bed13abc4e4d4060">&#9670;&#160;</a></span>dPotential()</h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;class DataPoint , class _WFunctor , int DiffType, typename T &gt; </div>
+template&lt;class DataPoint , class _NFilter , int DiffType, typename T &gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classPonca_1_1CovariancePlaneDerImpl.html#a34c1bd04080647e8086738682434ae97">ScalarArray</a> <a class="el" href="classPonca_1_1CovariancePlaneDerImpl.html">Ponca::CovariancePlaneDerImpl</a>&lt; DataPoint, _WFunctor, <a class="el" href="namespacePonca.html#a7beaddc698523e7f9c041ea8bc4c535a">DiffType</a>, T &gt;::dPotential </td>
+          <td class="memname"><a class="el" href="classPonca_1_1CovariancePlaneDerImpl.html#a5df12ff32f62391125d415e946cbc352">ScalarArray</a> <a class="el" href="classPonca_1_1CovariancePlaneDerImpl.html">Ponca::CovariancePlaneDerImpl</a>&lt; DataPoint, _NFilter, <a class="el" href="namespacePonca.html#a7beaddc698523e7f9c041ea8bc4c535a">DiffType</a>, T &gt;::dPotential </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td> const</td>
@@ -499,7 +499,7 @@ template&lt;class DataPoint , class _WFunctor , int DiffType, typename T &gt; </
 </div><div class="memdoc">
 <dl class="section see"><dt>See also</dt><dd>method <code>#isSigned</code> of the fit to check if the sign is reliable </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="covariancePlaneFit_8h_source.html#l00134">134</a> of file <a class="el" href="covariancePlaneFit_8h_source.html">covariancePlaneFit.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="covariancePlaneFit_8h_source.html#l00130">130</a> of file <a class="el" href="covariancePlaneFit_8h_source.html">covariancePlaneFit.h</a>.</p>
 
 </div>
 </div>
@@ -509,7 +509,7 @@ template&lt;class DataPoint , class _WFunctor , int DiffType, typename T &gt; </
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;class DataPoint , class _WFunctor , int DiffType, typename T &gt; </div>
+template&lt;class DataPoint , class _NFilter , int DiffType, typename T &gt; </div>
       <table class="memname">
         <tr>
           <td class="memname"><a class="el" href="namespacePonca.html#abfd697aebf07c1b5c8be5ee401e2dc84">FIT_RESULT</a> CovariancePlaneDerImpl::finalize </td>
@@ -521,7 +521,7 @@ template&lt;class DataPoint , class _WFunctor , int DiffType, typename T &gt; </
 </div><div class="memdoc">
 <dl class="section see"><dt>See also</dt><dd>Concept::FittingProcedureConcept::finalize() </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="covariancePlaneFit_8hpp_source.html#l00054">54</a> of file <a class="el" href="covariancePlaneFit_8hpp_source.html">covariancePlaneFit.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="covariancePlaneFit_8hpp_source.html#l00043">43</a> of file <a class="el" href="covariancePlaneFit_8hpp_source.html">covariancePlaneFit.hpp</a>.</p>
 
 </div>
 </div>
@@ -531,7 +531,7 @@ template&lt;class DataPoint , class _WFunctor , int DiffType, typename T &gt; </
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="namespacePonca.html">Ponca</a></li><li class="navelem"><a class="el" href="classPonca_1_1CovariancePlaneDerImpl.html">CovariancePlaneDerImpl</a></li>
-    <li class="footer">Generated on Thu Oct 9 2025 22:33:52 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
+    <li class="footer">Generated on Thu Oct 30 2025 19:03:05 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
   </ul>
 </div>
 </body>

@@ -1,5 +1,5 @@
-<map id="Ponca::MeanPlaneFitImpl&lt; DataPoint, _WFunctor, T &gt;" name="Ponca::MeanPlaneFitImpl&lt; DataPoint, _WFunctor, T &gt;">
-<area shape="rect" id="Node000001" title="Plane fitting procedure computing the mean position and orientation from oriented points." alt="" coords="59,133,259,273"/>
+<map id="Ponca::MeanPlaneFitImpl&lt; DataPoint, _NFilter, T &gt;" name="Ponca::MeanPlaneFitImpl&lt; DataPoint, _NFilter, T &gt;">
+<area shape="rect" id="Node000001" title="Plane fitting procedure computing the mean position and orientation from oriented points." alt="" coords="67,133,250,273"/>
 <area shape="rect" id="Node000002" title=" " alt="" coords="5,5,187,85"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="119,97,133,132,128,134,114,99"/>
 <area shape="rect" id="Node000003" title=" " alt="" coords="211,13,234,78"/>

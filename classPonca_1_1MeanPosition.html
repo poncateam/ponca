@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.9.8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Ponca: Ponca::MeanPosition&lt; DataPoint, _WFunctor, T &gt; Class Template Reference</title>
+<title>Ponca: Ponca::MeanPosition&lt; DataPoint, _NFilter, T &gt; Class Template Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -51,7 +51,7 @@ MathJax.Hub.Config({
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Ponca
-   &#160;<span id="projectnumber">40f245e28b920cbb763a1c6282156c87c626f24c</span>
+   &#160;<span id="projectnumber">9e7681effe2c12b0af1c85fdb62680f52d835a30</span>
    </div>
    <div id="projectbrief">Point Cloud Analysis library</div>
   </td>
@@ -123,7 +123,7 @@ $(document).ready(function(){initNavTree('classPonca_1_1MeanPosition.html',''); 
 <a href="#pro-methods">Protected Member Functions</a> &#124;
 <a href="#pro-attribs">Protected Attributes</a> &#124;
 <a href="classPonca_1_1MeanPosition-members.html">List of all members</a>  </div>
-  <div class="headertitle"><div class="title">Ponca::MeanPosition&lt; DataPoint, _WFunctor, T &gt; Class Template Reference</div></div>
+  <div class="headertitle"><div class="title">Ponca::MeanPosition&lt; DataPoint, _NFilter, T &gt; Class Template Reference</div></div>
 </div><!--header-->
 <div class="contents">
 
@@ -132,94 +132,94 @@ $(document).ready(function(){initNavTree('classPonca_1_1MeanPosition.html',''); 
 
 <p><code>#include &lt;<a class="el" href="mean_8h_source.html">mean.h</a>&gt;</code></p>
 <div id="dynsection-0" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
-  <img id="dynsection-0-trigger" src="closed.png" alt="+"/> Inheritance diagram for Ponca::MeanPosition&lt; DataPoint, _WFunctor, T &gt;:</div>
+  <img id="dynsection-0-trigger" src="closed.png" alt="+"/> Inheritance diagram for Ponca::MeanPosition&lt; DataPoint, _NFilter, T &gt;:</div>
 <div id="dynsection-0-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-0-content" class="dyncontent" style="display:none;">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classPonca_1_1MeanPosition__inherit__graph.svg" width="264" height="339"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classPonca_1_1MeanPosition__inherit__graph.svg" width="256" height="339"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 <div id="dynsection-1" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
-  <img id="dynsection-1-trigger" src="closed.png" alt="+"/> Collaboration diagram for Ponca::MeanPosition&lt; DataPoint, _WFunctor, T &gt;:</div>
+  <img id="dynsection-1-trigger" src="closed.png" alt="+"/> Collaboration diagram for Ponca::MeanPosition&lt; DataPoint, _NFilter, T &gt;:</div>
 <div id="dynsection-1-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-1-content" class="dyncontent" style="display:none;">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classPonca_1_1MeanPosition__coll__graph.svg" width="264" height="339"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classPonca_1_1MeanPosition__coll__graph.svg" width="256" height="339"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-types" name="pub-types"></a>
 Public Types</h2></td></tr>
-<tr class="memitem:aa9c7077883604f0a39a4f59d7cfe30f5" id="r_aa9c7077883604f0a39a4f59d7cfe30f5"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1MeanPosition.html#aa9c7077883604f0a39a4f59d7cfe30f5">Scalar</a> = typename DataPoint::Scalar</td></tr>
-<tr class="memdesc:aa9c7077883604f0a39a4f59d7cfe30f5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Alias to scalar type.  <br /></td></tr>
-<tr class="separator:aa9c7077883604f0a39a4f59d7cfe30f5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aba53b8040332f3aff231803e9944e519" id="r_aba53b8040332f3aff231803e9944e519"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1MeanPosition.html#aba53b8040332f3aff231803e9944e519">VectorType</a> = typename Base::VectorType</td></tr>
-<tr class="memdesc:aba53b8040332f3aff231803e9944e519"><td class="mdescLeft">&#160;</td><td class="mdescRight">Alias to vector type.  <br /></td></tr>
-<tr class="separator:aba53b8040332f3aff231803e9944e519"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3e64b685604dcfb6aa0e69718c211dad" id="r_a3e64b685604dcfb6aa0e69718c211dad"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1MeanPosition.html#a3e64b685604dcfb6aa0e69718c211dad">WFunctor</a> = typename Base::WFunctor</td></tr>
-<tr class="memdesc:a3e64b685604dcfb6aa0e69718c211dad"><td class="mdescLeft">&#160;</td><td class="mdescRight">Alias to weight function.  <br /></td></tr>
-<tr class="separator:a3e64b685604dcfb6aa0e69718c211dad"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4e687e6fa28d995afe731429f861de50" id="r_a4e687e6fa28d995afe731429f861de50"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1MeanPosition.html#a4e687e6fa28d995afe731429f861de50">Scalar</a> = typename DataPoint::Scalar</td></tr>
+<tr class="memdesc:a4e687e6fa28d995afe731429f861de50"><td class="mdescLeft">&#160;</td><td class="mdescRight">Alias to scalar type.  <br /></td></tr>
+<tr class="separator:a4e687e6fa28d995afe731429f861de50"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adda9c61c02f1ca09eaaeaa0ffc96c0f8" id="r_adda9c61c02f1ca09eaaeaa0ffc96c0f8"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1MeanPosition.html#adda9c61c02f1ca09eaaeaa0ffc96c0f8">VectorType</a> = typename Base::VectorType</td></tr>
+<tr class="memdesc:adda9c61c02f1ca09eaaeaa0ffc96c0f8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Alias to vector type.  <br /></td></tr>
+<tr class="separator:adda9c61c02f1ca09eaaeaa0ffc96c0f8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a79c0f7053a12c4d480bb665c76af5e73" id="r_a79c0f7053a12c4d480bb665c76af5e73"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1MeanPosition.html#a79c0f7053a12c4d480bb665c76af5e73">NeighborFilter</a> = typename Base::NeighborFilter</td></tr>
+<tr class="memdesc:a79c0f7053a12c4d480bb665c76af5e73"><td class="mdescLeft">&#160;</td><td class="mdescRight">Alias to the filter applied on the neighbors.  <br /></td></tr>
+<tr class="separator:a79c0f7053a12c4d480bb665c76af5e73"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:aa451097cd1b5bb666ef0e1f9a0840669" id="r_aa451097cd1b5bb666ef0e1f9a0840669"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classPonca_1_1MeanPosition.html">MeanPosition</a>&lt; DataPoint, _WFunctor, T &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1MeanPosition.html#aa451097cd1b5bb666ef0e1f9a0840669">meanPosition</a> ()</td></tr>
-<tr class="memdesc:aa451097cd1b5bb666ef0e1f9a0840669"><td class="mdescLeft">&#160;</td><td class="mdescRight">Explicit conversion to <a class="el" href="classPonca_1_1MeanPosition.html" title="Compute the barycenter of the input points.">MeanPosition</a> , to access methods potentially hidden by heritage.  <br /></td></tr>
-<tr class="separator:aa451097cd1b5bb666ef0e1f9a0840669"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a873adc2e162aa2c0417ed610a618d7a6" id="r_a873adc2e162aa2c0417ed610a618d7a6"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="classPonca_1_1MeanPosition.html">MeanPosition</a>&lt; DataPoint, _WFunctor, T &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1MeanPosition.html#a873adc2e162aa2c0417ed610a618d7a6">meanPosition</a> () const</td></tr>
-<tr class="memdesc:a873adc2e162aa2c0417ed610a618d7a6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Explicit conversion to <a class="el" href="classPonca_1_1MeanPosition.html" title="Compute the barycenter of the input points.">MeanPosition</a> , to access methods potentially hidden by heritage.  <br /></td></tr>
-<tr class="separator:a873adc2e162aa2c0417ed610a618d7a6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a983cedf90008fc2a1ec301dc9a8becf2" id="r_a983cedf90008fc2a1ec301dc9a8becf2"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classPonca_1_1MeanPosition.html">MeanPosition</a>&lt; DataPoint, _NFilter, T &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1MeanPosition.html#a983cedf90008fc2a1ec301dc9a8becf2">meanPosition</a> ()</td></tr>
+<tr class="memdesc:a983cedf90008fc2a1ec301dc9a8becf2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Explicit conversion to <a class="el" href="classPonca_1_1MeanPosition.html" title="Compute the barycenter of the input points.">MeanPosition</a> , to access methods potentially hidden by heritage.  <br /></td></tr>
+<tr class="separator:a983cedf90008fc2a1ec301dc9a8becf2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a23457f0601cda9b05972d3ac64d9a38f" id="r_a23457f0601cda9b05972d3ac64d9a38f"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="classPonca_1_1MeanPosition.html">MeanPosition</a>&lt; DataPoint, _NFilter, T &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1MeanPosition.html#a23457f0601cda9b05972d3ac64d9a38f">meanPosition</a> () const</td></tr>
+<tr class="memdesc:a23457f0601cda9b05972d3ac64d9a38f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Explicit conversion to <a class="el" href="classPonca_1_1MeanPosition.html" title="Compute the barycenter of the input points.">MeanPosition</a> , to access methods potentially hidden by heritage.  <br /></td></tr>
+<tr class="separator:a23457f0601cda9b05972d3ac64d9a38f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af899fb0713e2630a11d7ef710a649754" id="r_af899fb0713e2630a11d7ef710a649754"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1MeanPosition.html#af899fb0713e2630a11d7ef710a649754">init</a> ()</td></tr>
 <tr class="memdesc:af899fb0713e2630a11d7ef710a649754"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the evaluation position and reset the internal states.  <br /></td></tr>
 <tr class="separator:af899fb0713e2630a11d7ef710a649754"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a408415520337d643d9403e3622b33f19" id="r_a408415520337d643d9403e3622b33f19"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1MeanPosition.html#a408415520337d643d9403e3622b33f19">addLocalNeighbor</a> (<a class="el" href="classPonca_1_1MeanPosition.html#aa9c7077883604f0a39a4f59d7cfe30f5">Scalar</a> w, const <a class="el" href="classPonca_1_1MeanPosition.html#aba53b8040332f3aff231803e9944e519">VectorType</a> &amp;localQ, const DataPoint &amp;attributes)</td></tr>
+<tr class="memitem:a408415520337d643d9403e3622b33f19" id="r_a408415520337d643d9403e3622b33f19"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1MeanPosition.html#a408415520337d643d9403e3622b33f19">addLocalNeighbor</a> (<a class="el" href="classPonca_1_1MeanPosition.html#a4e687e6fa28d995afe731429f861de50">Scalar</a> w, const <a class="el" href="classPonca_1_1MeanPosition.html#adda9c61c02f1ca09eaaeaa0ffc96c0f8">VectorType</a> &amp;localQ, const DataPoint &amp;attributes)</td></tr>
 <tr class="memdesc:a408415520337d643d9403e3622b33f19"><td class="mdescLeft">&#160;</td><td class="mdescRight">Add a neighbor to perform the fit.  <br /></td></tr>
 <tr class="separator:a408415520337d643d9403e3622b33f19"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a64e2769dc034fcedc6ded6db2e354795" id="r_a64e2769dc034fcedc6ded6db2e354795"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classPonca_1_1MeanPosition.html#aba53b8040332f3aff231803e9944e519">VectorType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1MeanPosition.html#a64e2769dc034fcedc6ded6db2e354795">barycenter</a> () const</td></tr>
-<tr class="memdesc:a64e2769dc034fcedc6ded6db2e354795"><td class="mdescLeft">&#160;</td><td class="mdescRight">Barycenter of the input points expressed in the global frame.  <br /></td></tr>
-<tr class="separator:a64e2769dc034fcedc6ded6db2e354795"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9b6c3f9e548f35937481359db1b16447" id="r_a9b6c3f9e548f35937481359db1b16447"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classPonca_1_1MeanPosition.html#aa9c7077883604f0a39a4f59d7cfe30f5">Scalar</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1MeanPosition.html#a9b6c3f9e548f35937481359db1b16447">barycenterDistance</a> () const</td></tr>
-<tr class="memdesc:a9b6c3f9e548f35937481359db1b16447"><td class="mdescLeft">&#160;</td><td class="mdescRight">The distance between the barycenter and the basis center.  <br /></td></tr>
-<tr class="separator:a9b6c3f9e548f35937481359db1b16447"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af90009673cac3854bbac71da93a231ef" id="r_af90009673cac3854bbac71da93a231ef"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classPonca_1_1MeanPosition.html#adda9c61c02f1ca09eaaeaa0ffc96c0f8">VectorType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1MeanPosition.html#af90009673cac3854bbac71da93a231ef">barycenter</a> () const</td></tr>
+<tr class="memdesc:af90009673cac3854bbac71da93a231ef"><td class="mdescLeft">&#160;</td><td class="mdescRight">Barycenter of the input points expressed in the global frame.  <br /></td></tr>
+<tr class="separator:af90009673cac3854bbac71da93a231ef"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a205ba9f04c9b97b333e944dd7ad58fe9" id="r_a205ba9f04c9b97b333e944dd7ad58fe9"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classPonca_1_1MeanPosition.html#a4e687e6fa28d995afe731429f861de50">Scalar</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1MeanPosition.html#a205ba9f04c9b97b333e944dd7ad58fe9">barycenterDistance</a> () const</td></tr>
+<tr class="memdesc:a205ba9f04c9b97b333e944dd7ad58fe9"><td class="mdescLeft">&#160;</td><td class="mdescRight">The distance between the barycenter and the basis center.  <br /></td></tr>
+<tr class="separator:a205ba9f04c9b97b333e944dd7ad58fe9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-types" name="pro-types"></a>
 Protected Types</h2></td></tr>
 <tr class="memitem:ad1144dae85e1090703db5d6b75fc48fa" id="r_ad1144dae85e1090703db5d6b75fc48fa"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom">{ <b>PROVIDES_MEAN_POSITION</b>
  }</td></tr>
 <tr class="separator:ad1144dae85e1090703db5d6b75fc48fa"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a424440d234954beed158dd9df8ff9276" id="r_a424440d234954beed158dd9df8ff9276"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1MeanPosition.html#a424440d234954beed158dd9df8ff9276">Base</a> = T</td></tr>
-<tr class="memdesc:a424440d234954beed158dd9df8ff9276"><td class="mdescLeft">&#160;</td><td class="mdescRight">Base class of the procedure.  <br /></td></tr>
-<tr class="separator:a424440d234954beed158dd9df8ff9276"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab440e89a616d350bde498733c509230c" id="r_ab440e89a616d350bde498733c509230c"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1MeanPosition.html#ab440e89a616d350bde498733c509230c">Base</a> = T</td></tr>
+<tr class="memdesc:ab440e89a616d350bde498733c509230c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Base class of the procedure.  <br /></td></tr>
+<tr class="separator:ab440e89a616d350bde498733c509230c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-methods" name="pro-methods"></a>
 Protected Member Functions</h2></td></tr>
-<tr class="memitem:a96adb850d544c7364316cc1efdc9fbc1" id="r_a96adb850d544c7364316cc1efdc9fbc1"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classPonca_1_1MeanPosition.html#aba53b8040332f3aff231803e9944e519">VectorType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1MeanPosition.html#a96adb850d544c7364316cc1efdc9fbc1">barycenterLocal</a> () const</td></tr>
-<tr class="memdesc:a96adb850d544c7364316cc1efdc9fbc1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Barycenter of the input points expressed in the local frame.  <br /></td></tr>
-<tr class="separator:a96adb850d544c7364316cc1efdc9fbc1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5e718c8f816ef10d563ec5aa169bef03" id="r_a5e718c8f816ef10d563ec5aa169bef03"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classPonca_1_1MeanPosition.html#adda9c61c02f1ca09eaaeaa0ffc96c0f8">VectorType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1MeanPosition.html#a5e718c8f816ef10d563ec5aa169bef03">barycenterLocal</a> () const</td></tr>
+<tr class="memdesc:a5e718c8f816ef10d563ec5aa169bef03"><td class="mdescLeft">&#160;</td><td class="mdescRight">Barycenter of the input points expressed in the local frame.  <br /></td></tr>
+<tr class="separator:a5e718c8f816ef10d563ec5aa169bef03"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-attribs" name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
-<tr class="memitem:a98f57e6b0ef2db19e6d507c2f8528813" id="r_a98f57e6b0ef2db19e6d507c2f8528813"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classPonca_1_1MeanPosition.html#aba53b8040332f3aff231803e9944e519">VectorType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1MeanPosition.html#a98f57e6b0ef2db19e6d507c2f8528813">m_sumP</a> {VectorType::Zero()}</td></tr>
-<tr class="memdesc:a98f57e6b0ef2db19e6d507c2f8528813"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sum of the input points vectors.  <br /></td></tr>
-<tr class="separator:a98f57e6b0ef2db19e6d507c2f8528813"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8becbfd31fc677e3768b007174fadc84" id="r_a8becbfd31fc677e3768b007174fadc84"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classPonca_1_1MeanPosition.html#adda9c61c02f1ca09eaaeaa0ffc96c0f8">VectorType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1MeanPosition.html#a8becbfd31fc677e3768b007174fadc84">m_sumP</a> {VectorType::Zero()}</td></tr>
+<tr class="memdesc:a8becbfd31fc677e3768b007174fadc84"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sum of the input points vectors.  <br /></td></tr>
+<tr class="separator:a8becbfd31fc677e3768b007174fadc84"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><div class="compoundTemplParams">template&lt;class DataPoint, class _WFunctor, typename T&gt;<br />
-class Ponca::MeanPosition&lt; DataPoint, _WFunctor, T &gt;</div><p>Compute the barycenter of the input points. </p>
+<div class="textblock"><div class="compoundTemplParams">template&lt;class DataPoint, class _NFilter, typename T&gt;<br />
+class Ponca::MeanPosition&lt; DataPoint, _NFilter, T &gt;</div><p>Compute the barycenter of the input points. </p>
 <dl class="section warning"><dt>Warning</dt><dd>The barycenter is not stored explicitly, but rather computed from the sum of the neighbors positions.</dd></dl>
 <p>This primitive provides: </p><pre class="fragment">PROVIDES_MEAN_POSITION </pre> 
 <p class="definition">Definition at line <a class="el" href="mean_8h_source.html#l00024">24</a> of file <a class="el" href="mean_8h_source.html">mean.h</a>.</p>
 </div><h2 class="groupheader">Member Typedef Documentation</h2>
-<a id="a424440d234954beed158dd9df8ff9276" name="a424440d234954beed158dd9df8ff9276"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a424440d234954beed158dd9df8ff9276">&#9670;&#160;</a></span>Base</h2>
+<a id="ab440e89a616d350bde498733c509230c" name="ab440e89a616d350bde498733c509230c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab440e89a616d350bde498733c509230c">&#9670;&#160;</a></span>Base</h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
+template&lt;class DataPoint , class _NFilter , typename T &gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">using <a class="el" href="classPonca_1_1MeanPosition.html">Ponca::MeanPosition</a>&lt; DataPoint, _WFunctor, T &gt;::Base =  T</td>
+          <td class="memname">using <a class="el" href="classPonca_1_1MeanPosition.html">Ponca::MeanPosition</a>&lt; DataPoint, _NFilter, T &gt;::Base =  T</td>
         </tr>
       </table>
   </td>
@@ -235,16 +235,36 @@ template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
 
 </div>
 </div>
-<a id="aa9c7077883604f0a39a4f59d7cfe30f5" name="aa9c7077883604f0a39a4f59d7cfe30f5"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa9c7077883604f0a39a4f59d7cfe30f5">&#9670;&#160;</a></span>Scalar</h2>
+<a id="a79c0f7053a12c4d480bb665c76af5e73" name="a79c0f7053a12c4d480bb665c76af5e73"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a79c0f7053a12c4d480bb665c76af5e73">&#9670;&#160;</a></span>NeighborFilter</h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
+template&lt;class DataPoint , class _NFilter , typename T &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">using <a class="el" href="classPonca_1_1MeanPosition.html">Ponca::MeanPosition</a>&lt; DataPoint, _WFunctor, T &gt;::Scalar =  typename DataPoint::Scalar</td>
+          <td class="memname">using <a class="el" href="classPonca_1_1MeanPosition.html">Ponca::MeanPosition</a>&lt; DataPoint, _NFilter, T &gt;::NeighborFilter =  typename Base::NeighborFilter</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Alias to the filter applied on the neighbors. </p>
+
+<p class="definition">Definition at line <a class="el" href="mean_8h_source.html#l00025">25</a> of file <a class="el" href="mean_8h_source.html">mean.h</a>.</p>
+
+</div>
+</div>
+<a id="a4e687e6fa28d995afe731429f861de50" name="a4e687e6fa28d995afe731429f861de50"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4e687e6fa28d995afe731429f861de50">&#9670;&#160;</a></span>Scalar</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class DataPoint , class _NFilter , typename T &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="classPonca_1_1MeanPosition.html">Ponca::MeanPosition</a>&lt; DataPoint, _NFilter, T &gt;::Scalar =  typename DataPoint::Scalar</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -255,41 +275,21 @@ template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
 
 </div>
 </div>
-<a id="aba53b8040332f3aff231803e9944e519" name="aba53b8040332f3aff231803e9944e519"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aba53b8040332f3aff231803e9944e519">&#9670;&#160;</a></span>VectorType</h2>
+<a id="adda9c61c02f1ca09eaaeaa0ffc96c0f8" name="adda9c61c02f1ca09eaaeaa0ffc96c0f8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adda9c61c02f1ca09eaaeaa0ffc96c0f8">&#9670;&#160;</a></span>VectorType</h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
+template&lt;class DataPoint , class _NFilter , typename T &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">using <a class="el" href="classPonca_1_1MeanPosition.html">Ponca::MeanPosition</a>&lt; DataPoint, _WFunctor, T &gt;::VectorType =  typename Base::VectorType</td>
+          <td class="memname">using <a class="el" href="classPonca_1_1MeanPosition.html">Ponca::MeanPosition</a>&lt; DataPoint, _NFilter, T &gt;::VectorType =  typename Base::VectorType</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
 <p>Alias to vector type. </p>
-
-<p class="definition">Definition at line <a class="el" href="mean_8h_source.html#l00025">25</a> of file <a class="el" href="mean_8h_source.html">mean.h</a>.</p>
-
-</div>
-</div>
-<a id="a3e64b685604dcfb6aa0e69718c211dad" name="a3e64b685604dcfb6aa0e69718c211dad"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a3e64b685604dcfb6aa0e69718c211dad">&#9670;&#160;</a></span>WFunctor</h2>
-
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
-      <table class="memname">
-        <tr>
-          <td class="memname">using <a class="el" href="classPonca_1_1MeanPosition.html">Ponca::MeanPosition</a>&lt; DataPoint, _WFunctor, T &gt;::WFunctor =  typename Base::WFunctor</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Alias to weight function. </p>
 
 <p class="definition">Definition at line <a class="el" href="mean_8h_source.html#l00025">25</a> of file <a class="el" href="mean_8h_source.html">mean.h</a>.</p>
 
@@ -302,7 +302,7 @@ template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
+template&lt;class DataPoint , class _NFilter , typename T &gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
@@ -329,7 +329,7 @@ template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
+template&lt;class DataPoint , class _NFilter , typename T &gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
@@ -337,13 +337,13 @@ template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
         <tr>
           <td class="memname">bool MeanPosition::addLocalNeighbor </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="classPonca_1_1MeanPosition.html#aa9c7077883604f0a39a4f59d7cfe30f5">Scalar</a>&#160;</td>
+          <td class="paramtype"><a class="el" href="classPonca_1_1MeanPosition.html#a4e687e6fa28d995afe731429f861de50">Scalar</a>&#160;</td>
           <td class="paramname"><em>w</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const <a class="el" href="classPonca_1_1MeanPosition.html#aba53b8040332f3aff231803e9944e519">VectorType</a> &amp;&#160;</td>
+          <td class="paramtype">const <a class="el" href="classPonca_1_1MeanPosition.html#adda9c61c02f1ca09eaaeaa0ffc96c0f8">VectorType</a> &amp;&#160;</td>
           <td class="paramname"><em>localQ</em>, </td>
         </tr>
         <tr>
@@ -372,19 +372,19 @@ template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
 
 </div>
 </div>
-<a id="a64e2769dc034fcedc6ded6db2e354795" name="a64e2769dc034fcedc6ded6db2e354795"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a64e2769dc034fcedc6ded6db2e354795">&#9670;&#160;</a></span>barycenter()</h2>
+<a id="af90009673cac3854bbac71da93a231ef" name="af90009673cac3854bbac71da93a231ef"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af90009673cac3854bbac71da93a231ef">&#9670;&#160;</a></span>barycenter()</h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
+template&lt;class DataPoint , class _NFilter , typename T &gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classPonca_1_1MeanPosition.html#aba53b8040332f3aff231803e9944e519">VectorType</a> <a class="el" href="classPonca_1_1MeanPosition.html">Ponca::MeanPosition</a>&lt; DataPoint, _WFunctor, T &gt;::barycenter </td>
+          <td class="memname"><a class="el" href="classPonca_1_1MeanPosition.html#adda9c61c02f1ca09eaaeaa0ffc96c0f8">VectorType</a> <a class="el" href="classPonca_1_1MeanPosition.html">Ponca::MeanPosition</a>&lt; DataPoint, _NFilter, T &gt;::barycenter </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td> const</td>
@@ -404,19 +404,19 @@ template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
 
 </div>
 </div>
-<a id="a9b6c3f9e548f35937481359db1b16447" name="a9b6c3f9e548f35937481359db1b16447"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a9b6c3f9e548f35937481359db1b16447">&#9670;&#160;</a></span>barycenterDistance()</h2>
+<a id="a205ba9f04c9b97b333e944dd7ad58fe9" name="a205ba9f04c9b97b333e944dd7ad58fe9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a205ba9f04c9b97b333e944dd7ad58fe9">&#9670;&#160;</a></span>barycenterDistance()</h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
+template&lt;class DataPoint , class _NFilter , typename T &gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classPonca_1_1MeanPosition.html#aa9c7077883604f0a39a4f59d7cfe30f5">Scalar</a> <a class="el" href="classPonca_1_1MeanPosition.html">Ponca::MeanPosition</a>&lt; DataPoint, _WFunctor, T &gt;::barycenterDistance </td>
+          <td class="memname"><a class="el" href="classPonca_1_1MeanPosition.html#a4e687e6fa28d995afe731429f861de50">Scalar</a> <a class="el" href="classPonca_1_1MeanPosition.html">Ponca::MeanPosition</a>&lt; DataPoint, _NFilter, T &gt;::barycenterDistance </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td> const</td>
@@ -436,19 +436,19 @@ template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
 
 </div>
 </div>
-<a id="a96adb850d544c7364316cc1efdc9fbc1" name="a96adb850d544c7364316cc1efdc9fbc1"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a96adb850d544c7364316cc1efdc9fbc1">&#9670;&#160;</a></span>barycenterLocal()</h2>
+<a id="a5e718c8f816ef10d563ec5aa169bef03" name="a5e718c8f816ef10d563ec5aa169bef03"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5e718c8f816ef10d563ec5aa169bef03">&#9670;&#160;</a></span>barycenterLocal()</h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
+template&lt;class DataPoint , class _NFilter , typename T &gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classPonca_1_1MeanPosition.html#aba53b8040332f3aff231803e9944e519">VectorType</a> <a class="el" href="classPonca_1_1MeanPosition.html">Ponca::MeanPosition</a>&lt; DataPoint, _WFunctor, T &gt;::barycenterLocal </td>
+          <td class="memname"><a class="el" href="classPonca_1_1MeanPosition.html#adda9c61c02f1ca09eaaeaa0ffc96c0f8">VectorType</a> <a class="el" href="classPonca_1_1MeanPosition.html">Ponca::MeanPosition</a>&lt; DataPoint, _NFilter, T &gt;::barycenterLocal </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td> const</td>
@@ -462,8 +462,8 @@ template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
 </div><div class="memdoc">
 
 <p>Barycenter of the input points expressed in the local frame. </p>
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="classPonca_1_1MeanPosition.html#a64e2769dc034fcedc6ded6db2e354795" title="Barycenter of the input points expressed in the global frame.">barycenter()</a></dd></dl>
-<dl class="section warning"><dt>Warning</dt><dd>Provided for internal use only: any access to the barycenter in other computing classes must be done using this function and not <a class="el" href="classPonca_1_1MeanPosition.html#a64e2769dc034fcedc6ded6db2e354795" title="Barycenter of the input points expressed in the global frame.">barycenter()</a></dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="classPonca_1_1MeanPosition.html#af90009673cac3854bbac71da93a231ef" title="Barycenter of the input points expressed in the global frame.">barycenter()</a></dd></dl>
+<dl class="section warning"><dt>Warning</dt><dd>Provided for internal use only: any access to the barycenter in other computing classes must be done using this function and not <a class="el" href="classPonca_1_1MeanPosition.html#af90009673cac3854bbac71da93a231ef" title="Barycenter of the input points expressed in the global frame.">barycenter()</a></dd></dl>
 <p>Defined as \( b(\mathbf{x}) = \frac{\sum_i w_\mathbf{x}(\mathbf{p_i}) \mathbf{p_i}}{\sum_i w_\mathbf{x}(\mathbf{p_i})} \), where \(\left[\mathbf{p_i} \in \text{neighborhood}(\mathbf{x})\right]\) are all the point samples in \(\mathbf{x}\)'s neighborhood </p>
 
 <p class="definition">Definition at line <a class="el" href="mean_8h_source.html#l00061">61</a> of file <a class="el" href="mean_8h_source.html">mean.h</a>.</p>
@@ -476,7 +476,7 @@ template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
+template&lt;class DataPoint , class _NFilter , typename T &gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
@@ -496,25 +496,25 @@ template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
 </div><div class="memdoc">
 
 <p>Set the evaluation position and reset the internal states. </p>
-<dl class="section warning"><dt>Warning</dt><dd>Must be called be for any computation (but after #setWeightFunc) </dd></dl>
+<dl class="section warning"><dt>Warning</dt><dd>Must be called be for any computation (but after #setNeighborFilter) </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="mean_8hpp_source.html#l00012">12</a> of file <a class="el" href="mean_8hpp_source.html">mean.hpp</a>.</p>
 
 </div>
 </div>
-<a id="aa451097cd1b5bb666ef0e1f9a0840669" name="aa451097cd1b5bb666ef0e1f9a0840669"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa451097cd1b5bb666ef0e1f9a0840669">&#9670;&#160;</a></span>meanPosition() <span class="overload">[1/2]</span></h2>
+<a id="a983cedf90008fc2a1ec301dc9a8becf2" name="a983cedf90008fc2a1ec301dc9a8becf2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a983cedf90008fc2a1ec301dc9a8becf2">&#9670;&#160;</a></span>meanPosition() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
+template&lt;class DataPoint , class _NFilter , typename T &gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classPonca_1_1MeanPosition.html">MeanPosition</a>&lt; DataPoint, _WFunctor, T &gt; &amp; <a class="el" href="classPonca_1_1MeanPosition.html">Ponca::MeanPosition</a>&lt; DataPoint, _WFunctor, T &gt;::meanPosition </td>
+          <td class="memname"><a class="el" href="classPonca_1_1MeanPosition.html">MeanPosition</a>&lt; DataPoint, _NFilter, T &gt; &amp; <a class="el" href="classPonca_1_1MeanPosition.html">Ponca::MeanPosition</a>&lt; DataPoint, _NFilter, T &gt;::meanPosition </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -533,19 +533,19 @@ template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
 
 </div>
 </div>
-<a id="a873adc2e162aa2c0417ed610a618d7a6" name="a873adc2e162aa2c0417ed610a618d7a6"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a873adc2e162aa2c0417ed610a618d7a6">&#9670;&#160;</a></span>meanPosition() <span class="overload">[2/2]</span></h2>
+<a id="a23457f0601cda9b05972d3ac64d9a38f" name="a23457f0601cda9b05972d3ac64d9a38f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a23457f0601cda9b05972d3ac64d9a38f">&#9670;&#160;</a></span>meanPosition() <span class="overload">[2/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
+template&lt;class DataPoint , class _NFilter , typename T &gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">const <a class="el" href="classPonca_1_1MeanPosition.html">MeanPosition</a>&lt; DataPoint, _WFunctor, T &gt; &amp; <a class="el" href="classPonca_1_1MeanPosition.html">Ponca::MeanPosition</a>&lt; DataPoint, _WFunctor, T &gt;::meanPosition </td>
+          <td class="memname">const <a class="el" href="classPonca_1_1MeanPosition.html">MeanPosition</a>&lt; DataPoint, _NFilter, T &gt; &amp; <a class="el" href="classPonca_1_1MeanPosition.html">Ponca::MeanPosition</a>&lt; DataPoint, _NFilter, T &gt;::meanPosition </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td> const</td>
@@ -565,19 +565,19 @@ template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
 </div>
 </div>
 <h2 class="groupheader">Member Data Documentation</h2>
-<a id="a98f57e6b0ef2db19e6d507c2f8528813" name="a98f57e6b0ef2db19e6d507c2f8528813"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a98f57e6b0ef2db19e6d507c2f8528813">&#9670;&#160;</a></span>m_sumP</h2>
+<a id="a8becbfd31fc677e3768b007174fadc84" name="a8becbfd31fc677e3768b007174fadc84"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8becbfd31fc677e3768b007174fadc84">&#9670;&#160;</a></span>m_sumP</h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
+template&lt;class DataPoint , class _NFilter , typename T &gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classPonca_1_1MeanPosition.html#aba53b8040332f3aff231803e9944e519">VectorType</a> <a class="el" href="classPonca_1_1MeanPosition.html">Ponca::MeanPosition</a>&lt; DataPoint, _WFunctor, T &gt;::m_sumP {VectorType::Zero()}</td>
+          <td class="memname"><a class="el" href="classPonca_1_1MeanPosition.html#adda9c61c02f1ca09eaaeaa0ffc96c0f8">VectorType</a> <a class="el" href="classPonca_1_1MeanPosition.html">Ponca::MeanPosition</a>&lt; DataPoint, _NFilter, T &gt;::m_sumP {VectorType::Zero()}</td>
         </tr>
       </table>
   </td>
@@ -599,7 +599,7 @@ template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="namespacePonca.html">Ponca</a></li><li class="navelem"><a class="el" href="classPonca_1_1MeanPosition.html">MeanPosition</a></li>
-    <li class="footer">Generated on Thu Oct 9 2025 22:33:52 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
+    <li class="footer">Generated on Thu Oct 30 2025 19:03:05 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
   </ul>
 </div>
 </body>

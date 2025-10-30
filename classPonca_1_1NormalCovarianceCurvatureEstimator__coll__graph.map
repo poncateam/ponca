@@ -1,4 +1,4 @@
-<map id="Ponca::NormalCovarianceCurvatureEstimator&lt; DataPoint, _WFunctor, DiffType, T &gt;" name="Ponca::NormalCovarianceCurvatureEstimator&lt; DataPoint, _WFunctor, DiffType, T &gt;">
+<map id="Ponca::NormalCovarianceCurvatureEstimator&lt; DataPoint, _NFilter, DiffType, T &gt;" name="Ponca::NormalCovarianceCurvatureEstimator&lt; DataPoint, _NFilter, DiffType, T &gt;">
 <area shape="rect" id="Node000001" title="Extension to compute curvature values based on a covariance analysis of normal vectors of neighbors." alt="" coords="5,119,252,363"/>
 <area shape="rect" id="Node000002" title=" " alt="" coords="117,5,140,71"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="131,84,131,119,126,119,126,84"/>

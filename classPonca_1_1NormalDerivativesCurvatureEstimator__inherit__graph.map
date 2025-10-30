@@ -1,4 +1,4 @@
-<map id="Ponca::NormalDerivativesCurvatureEstimator&lt; DataPoint, _WFunctor, DiffType, T &gt;" name="Ponca::NormalDerivativesCurvatureEstimator&lt; DataPoint, _WFunctor, DiffType, T &gt;">
+<map id="Ponca::NormalDerivativesCurvatureEstimator&lt; DataPoint, _NFilter, DiffType, T &gt;" name="Ponca::NormalDerivativesCurvatureEstimator&lt; DataPoint, _NFilter, DiffType, T &gt;">
 <area shape="rect" id="Node000001" title="Extension to compute curvature values from the Weingarten map ." alt="" coords="46,133,270,317"/>
 <area shape="rect" id="Node000002" title=" " alt="" coords="5,5,185,85"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="116,98,128,132,123,134,111,99"/>

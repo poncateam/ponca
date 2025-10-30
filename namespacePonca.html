@@ -51,7 +51,7 @@ MathJax.Hub.Config({
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Ponca
-   &#160;<span id="projectnumber">40f245e28b920cbb763a1c6282156c87c626f24c</span>
+   &#160;<span id="projectnumber">9e7681effe2c12b0af1c85fdb62680f52d835a30</span>
    </div>
    <div id="projectbrief">Point Cloud Analysis library</div>
   </td>
@@ -141,6 +141,9 @@ Classes</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1BasketDiff.html">BasketDiff</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Aggregator class used to declare specialized structures with derivatives computations, using CRTP.  <a href="classPonca_1_1BasketDiff.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1CenteredNeighborhoodFrame.html">CenteredNeighborhoodFrame</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">NeighborhoodFrame that express 3d points relatively to a prescribed center.  <a href="classPonca_1_1CenteredNeighborhoodFrame.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1CompactExpWeightKernel.html">CompactExpWeightKernel</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compact Exponential WeightKernel defined in \(\left[0 : 1\right]\).  <a href="classPonca_1_1CompactExpWeightKernel.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -169,10 +172,16 @@ Classes</h2></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Base class for any 3d curvature estimator: holds \(k_{\min}\), \(k_{\max}\) and associated vectors, such that \( k_{\min} &lt;= k_{\max} \).  <a href="classPonca_1_1CurvatureEstimatorBase.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1DistWeightFunc.html">DistWeightFunc</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Weighting function based on the euclidean distance between a query and a reference position.  <a href="classPonca_1_1DistWeightFunc.html#details">More...</a><br /></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Weight neighbors according to the euclidean distance between a query and a reference position.  <a href="classPonca_1_1DistWeightFunc.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1DryFit.html">DryFit</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Empty fitting object doing no computation.  <a href="classPonca_1_1DryFit.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1GaussianWeightKernel.html">GaussianWeightKernel</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Non-compact Gaussian WeightKernel.  <a href="classPonca_1_1GaussianWeightKernel.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1GlobalNeighborhoodFrame.html">GlobalNeighborhoodFrame</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">NeighborhoodFrame that keep points in the global frame without applying any transformation.  <a href="classPonca_1_1GlobalNeighborhoodFrame.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1GLSDer.html">GLSDer</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Differentiation of <a class="el" href="classPonca_1_1GLSParam.html" title="Growing Least Squares reparemetrization of the OrientedSphereFit.">GLSParam</a>.  <a href="classPonca_1_1GLSDer.html#details">More...</a><br /></td></tr>
@@ -282,8 +291,8 @@ Classes</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1NormalDerivativesCurvatureEstimator.html">NormalDerivativesCurvatureEstimator</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Extension to compute curvature values from the Weingarten map \( \frac{d N}{d \mathbf{x}} \).  <a href="classPonca_1_1NormalDerivativesCurvatureEstimator.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1NoWeightFunc.html">NoWeightFunc</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Weighting function that set uniform weight to all samples.  <a href="classPonca_1_1NoWeightFunc.html#details">More...</a><br /></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1NoWeightFuncBase.html">NoWeightFuncBase</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Base Weighting function that set uniform weight to all samples.  <a href="classPonca_1_1NoWeightFuncBase.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1OrientedSphereDerImpl.html">OrientedSphereDerImpl</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">[OrientedSphereFit Definition]  <a href="classPonca_1_1OrientedSphereDerImpl.html#details">More...</a><br /></td></tr>
@@ -295,7 +304,7 @@ Classes</h2></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Implicit hyperplane defined by an homogeneous vector \(\mathbf{p}\).  <a href="classPonca_1_1Plane.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1PolynomialSmoothWeightKernel.html">PolynomialSmoothWeightKernel</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Generalised version of <a class="el" href="classPonca_1_1SmoothWeightKernel.html" title="Smooth WeightKernel of 2nd degree, defined in  Special case of PolynomialSmoothWeightKernel&lt;Scalar,...">SmoothWeightKernel</a> with arbitrary degrees : \( w(x)=(x^n-1)^m \).  <a href="classPonca_1_1PolynomialSmoothWeightKernel.html#details">More...</a><br /></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compact generalised version of <a class="el" href="classPonca_1_1SmoothWeightKernel.html" title="Compact smooth WeightKernel of 2nd degree, defined in  Special case of PolynomialSmoothWeightKernel&lt;S...">SmoothWeightKernel</a> with arbitrary degrees : \( w(x)=(x^n-1)^m \).  <a href="classPonca_1_1PolynomialSmoothWeightKernel.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1PrimitiveBase.html">PrimitiveBase</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Primitive base class.  <a href="classPonca_1_1PrimitiveBase.html#details">More...</a><br /></td></tr>
@@ -339,10 +348,10 @@ Classes</h2></td></tr>
 <tr class="memdesc:structPonca_1_1RangePointQuery"><td class="mdescLeft">&#160;</td><td class="mdescRight">Base <a class="el" href="group__spatialpartitioning.html#structPonca_1_1Query">Query</a> class combining <a class="el" href="group__spatialpartitioning.html#structPonca_1_1QueryInputIsPosition" title="Base class for queries storing points.">QueryInputIsPosition</a> and <a class="el" href="group__spatialpartitioning.html#structPonca_1_1QueryOutputIsRange" title="Base class for range queries.">QueryOutputIsRange</a>.  <a href="group__spatialpartitioning.html#structPonca_1_1RangePointQuery">More...</a><br /></td></tr>
 <tr class="separator:structPonca_1_1RangePointQuery"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1SingularWeightKernel.html">SingularWeightKernel</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Singular WeightKernel defined in \(\left]0 : 1\right]\).  <a href="classPonca_1_1SingularWeightKernel.html#details">More...</a><br /></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compact singular WeightKernel defined in \(\left]0 : 1\right]\).  <a href="classPonca_1_1SingularWeightKernel.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1SmoothWeightKernel.html">SmoothWeightKernel</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Smooth WeightKernel of 2nd degree, defined in \(\left[0 : 1\right]\) Special case of PolynomialSmoothWeightKernel&lt;Scalar, 2, 2&gt;  <a href="classPonca_1_1SmoothWeightKernel.html#details">More...</a><br /></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compact smooth WeightKernel of 2nd degree, defined in \(\left[0 : 1\right]\) Special case of PolynomialSmoothWeightKernel&lt;Scalar, 2, 2&gt;  <a href="classPonca_1_1SmoothWeightKernel.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1SphereFitImpl.html">SphereFitImpl</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Algebraic Sphere fitting procedure on point set without normals.  <a href="classPonca_1_1SphereFitImpl.html#details">More...</a><br /></td></tr>
@@ -356,46 +365,52 @@ Classes</h2></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Algebraic Sphere fitting procedure on point sets with non-oriented normals.  <a href="classPonca_1_1UnorientedSphereFitImpl.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1WendlandWeightKernel.html">WendlandWeightKernel</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Wendland WeightKernel defined in \(\left[0 : 1\right]\).  <a href="classPonca_1_1WendlandWeightKernel.html#details">More...</a><br /></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compact Wendland WeightKernel defined in \(\left[0 : 1\right]\).  <a href="classPonca_1_1WendlandWeightKernel.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="typedef-members" name="typedef-members"></a>
 Typedefs</h2></td></tr>
-<tr class="memitem:a48607b788b902a2a488e4ffba6db3186" id="r_a48607b788b902a2a488e4ffba6db3186"><td class="memTemplParams" colspan="2">template&lt;class DataPoint , class _WFunctor , typename T &gt; </td></tr>
-<tr class="memitem:a48607b788b902a2a488e4ffba6db3186"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacePonca.html#a48607b788b902a2a488e4ffba6db3186">CovarianceLineFit</a> = <a class="el" href="classPonca_1_1CovarianceLineFitImpl.html">CovarianceLineFitImpl</a>&lt; DataPoint, _WFunctor, <a class="el" href="classPonca_1_1CovarianceFitBase.html">CovarianceFitBase</a>&lt; DataPoint, _WFunctor, <a class="el" href="classPonca_1_1MeanPosition.html">MeanPosition</a>&lt; DataPoint, _WFunctor, <a class="el" href="classPonca_1_1Line.html">Line</a>&lt; DataPoint, _WFunctor, T &gt; &gt; &gt; &gt;</td></tr>
-<tr class="memdesc:a48607b788b902a2a488e4ffba6db3186"><td class="mdescLeft">&#160;</td><td class="mdescRight">Helper alias for <a class="el" href="classPonca_1_1Line.html" title="A parametrized line is defined by an origin point  and a unit direction vector  such that the line co...">Line</a> fitting on 3D points using <a class="el" href="classPonca_1_1CovarianceLineFitImpl.html" title="Line fitting procedure that minimize the orthogonal distance between the samples and the fitted primi...">CovarianceLineFitImpl</a>.  <br /></td></tr>
-<tr class="separator:a48607b788b902a2a488e4ffba6db3186"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa4b1806ad54a3b70849bd5997002a8c7" id="r_aa4b1806ad54a3b70849bd5997002a8c7"><td class="memTemplParams" colspan="2">template&lt;class DataPoint , class _WFunctor , typename T &gt; </td></tr>
-<tr class="memitem:aa4b1806ad54a3b70849bd5997002a8c7"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacePonca.html#aa4b1806ad54a3b70849bd5997002a8c7">CovariancePlaneFit</a> = <a class="el" href="classPonca_1_1CovariancePlaneFitImpl.html">CovariancePlaneFitImpl</a>&lt; DataPoint, _WFunctor, <a class="el" href="classPonca_1_1CovarianceFitBase.html">CovarianceFitBase</a>&lt; DataPoint, _WFunctor, <a class="el" href="classPonca_1_1MeanPosition.html">MeanPosition</a>&lt; DataPoint, _WFunctor, <a class="el" href="classPonca_1_1Plane.html">Plane</a>&lt; DataPoint, _WFunctor, T &gt; &gt; &gt; &gt;</td></tr>
-<tr class="memdesc:aa4b1806ad54a3b70849bd5997002a8c7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Helper alias for <a class="el" href="classPonca_1_1Plane.html" title="Implicit hyperplane defined by an homogeneous vector .">Plane</a> fitting on 3D points using <a class="el" href="classPonca_1_1CovariancePlaneFitImpl.html" title="Plane fitting procedure using only points position.">CovariancePlaneFitImpl</a> [CovariancePlaneFit Definition].  <br /></td></tr>
-<tr class="separator:aa4b1806ad54a3b70849bd5997002a8c7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a693db62262bbd8eddf89839ca6ab9a32" id="r_a693db62262bbd8eddf89839ca6ab9a32"><td class="memTemplParams" colspan="2">template&lt;class DataPoint , class _WFunctor , int DiffType, typename T &gt; </td></tr>
-<tr class="memitem:a693db62262bbd8eddf89839ca6ab9a32"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacePonca.html#a693db62262bbd8eddf89839ca6ab9a32">CovariancePlaneDer</a> = <a class="el" href="classPonca_1_1CovariancePlaneDerImpl.html">CovariancePlaneDerImpl</a>&lt; DataPoint, _WFunctor, <a class="el" href="namespacePonca.html#a7beaddc698523e7f9c041ea8bc4c535a">DiffType</a>, <a class="el" href="classPonca_1_1CovarianceFitDer.html">CovarianceFitDer</a>&lt; DataPoint, _WFunctor, <a class="el" href="namespacePonca.html#a7beaddc698523e7f9c041ea8bc4c535a">DiffType</a>, <a class="el" href="classPonca_1_1MeanPositionDer.html">MeanPositionDer</a>&lt; DataPoint, _WFunctor, <a class="el" href="namespacePonca.html#a7beaddc698523e7f9c041ea8bc4c535a">DiffType</a>, T &gt; &gt; &gt;</td></tr>
-<tr class="memdesc:a693db62262bbd8eddf89839ca6ab9a32"><td class="mdescLeft">&#160;</td><td class="mdescRight">Helper alias for <a class="el" href="classPonca_1_1Plane.html" title="Implicit hyperplane defined by an homogeneous vector .">Plane</a> fitting on 3D points using <a class="el" href="classPonca_1_1CovariancePlaneFitImpl.html" title="Plane fitting procedure using only points position.">CovariancePlaneFitImpl</a>.  <br /></td></tr>
-<tr class="separator:a693db62262bbd8eddf89839ca6ab9a32"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a13ebe442f2119e12b35714a12a15560b" id="r_a13ebe442f2119e12b35714a12a15560b"><td class="memTemplParams" colspan="2">template&lt;class DataPoint , class _WFunctor , typename T &gt; </td></tr>
-<tr class="memitem:a13ebe442f2119e12b35714a12a15560b"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacePonca.html#a13ebe442f2119e12b35714a12a15560b">MeanPlaneFit</a> = <a class="el" href="classPonca_1_1MeanPlaneFitImpl.html">MeanPlaneFitImpl</a>&lt; DataPoint, _WFunctor, <a class="el" href="classPonca_1_1MeanNormal.html">MeanNormal</a>&lt; DataPoint, _WFunctor, <a class="el" href="classPonca_1_1MeanPosition.html">MeanPosition</a>&lt; DataPoint, _WFunctor, <a class="el" href="classPonca_1_1Plane.html">Plane</a>&lt; DataPoint, _WFunctor, T &gt; &gt; &gt; &gt;</td></tr>
-<tr class="memdesc:a13ebe442f2119e12b35714a12a15560b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Helper alias for <a class="el" href="classPonca_1_1Plane.html" title="Implicit hyperplane defined by an homogeneous vector .">Plane</a> fitting on points using <a class="el" href="classPonca_1_1MeanPlaneFitImpl.html" title="Plane fitting procedure computing the mean position and orientation from oriented points.">MeanPlaneFitImpl</a> [MeanPlaneFit Definition].  <br /></td></tr>
-<tr class="separator:a13ebe442f2119e12b35714a12a15560b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2f53f5c61ca5df7c3e3f8cf2219a14d4" id="r_a2f53f5c61ca5df7c3e3f8cf2219a14d4"><td class="memTemplParams" colspan="2">template&lt;class DataPoint , class _WFunctor , typename T &gt; </td></tr>
-<tr class="memitem:a2f53f5c61ca5df7c3e3f8cf2219a14d4"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacePonca.html#a2f53f5c61ca5df7c3e3f8cf2219a14d4">OrientedSphereFit</a> = <a class="el" href="classPonca_1_1OrientedSphereFitImpl.html">OrientedSphereFitImpl</a>&lt; DataPoint, _WFunctor, <a class="el" href="classPonca_1_1MeanPosition.html">MeanPosition</a>&lt; DataPoint, _WFunctor, <a class="el" href="classPonca_1_1MeanNormal.html">MeanNormal</a>&lt; DataPoint, _WFunctor, <a class="el" href="classPonca_1_1AlgebraicSphere.html">AlgebraicSphere</a>&lt; DataPoint, _WFunctor, T &gt; &gt; &gt; &gt;</td></tr>
-<tr class="memdesc:a2f53f5c61ca5df7c3e3f8cf2219a14d4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Helper alias for Oriented Sphere fitting on 3D points using <a class="el" href="classPonca_1_1OrientedSphereFitImpl.html" title="Algebraic Sphere fitting procedure on oriented point sets.">OrientedSphereFitImpl</a> [OrientedSphereFit Definition].  <br /></td></tr>
-<tr class="separator:a2f53f5c61ca5df7c3e3f8cf2219a14d4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a06452e78533ff7c62bbbd01106dc0020" id="r_a06452e78533ff7c62bbbd01106dc0020"><td class="memTemplParams" colspan="2">template&lt;class DataPoint , class _WFunctor , int DiffType, typename T &gt; </td></tr>
-<tr class="memitem:a06452e78533ff7c62bbbd01106dc0020"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacePonca.html#a06452e78533ff7c62bbbd01106dc0020">OrientedSphereDer</a> = <a class="el" href="classPonca_1_1OrientedSphereDerImpl.html">OrientedSphereDerImpl</a>&lt; DataPoint, _WFunctor, <a class="el" href="namespacePonca.html#a7beaddc698523e7f9c041ea8bc4c535a">DiffType</a>, <a class="el" href="classPonca_1_1MeanPositionDer.html">MeanPositionDer</a>&lt; DataPoint, _WFunctor, <a class="el" href="namespacePonca.html#a7beaddc698523e7f9c041ea8bc4c535a">DiffType</a>, T &gt; &gt;</td></tr>
-<tr class="memdesc:a06452e78533ff7c62bbbd01106dc0020"><td class="mdescLeft">&#160;</td><td class="mdescRight">Helper alias for Oriented Sphere fitting on 3D points using <a class="el" href="classPonca_1_1OrientedSphereDerImpl.html" title="[OrientedSphereFit Definition]">OrientedSphereDerImpl</a>.  <br /></td></tr>
-<tr class="separator:a06452e78533ff7c62bbbd01106dc0020"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a84d1648a0b69de78edbc72278d74bde2" id="r_a84d1648a0b69de78edbc72278d74bde2"><td class="memTemplParams" colspan="2">template&lt;class DataPoint , class _WFunctor , typename T &gt; </td></tr>
-<tr class="memitem:a84d1648a0b69de78edbc72278d74bde2"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacePonca.html#a84d1648a0b69de78edbc72278d74bde2">SphereFit</a> = <a class="el" href="classPonca_1_1SphereFitImpl.html">SphereFitImpl</a>&lt; DataPoint, _WFunctor, <a class="el" href="classPonca_1_1AlgebraicSphere.html">AlgebraicSphere</a>&lt; DataPoint, _WFunctor, T &gt; &gt;</td></tr>
-<tr class="memdesc:a84d1648a0b69de78edbc72278d74bde2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Helper alias for Sphere fitting on 3D points using <a class="el" href="classPonca_1_1SphereFitImpl.html" title="Algebraic Sphere fitting procedure on point set without normals.">SphereFitImpl</a>.  <br /></td></tr>
-<tr class="separator:a84d1648a0b69de78edbc72278d74bde2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac22c4266774d911c5c597d132477c264" id="r_ac22c4266774d911c5c597d132477c264"><td class="memTemplParams" colspan="2">template&lt;class DataPoint , class _WFunctor , typename T &gt; </td></tr>
-<tr class="memitem:ac22c4266774d911c5c597d132477c264"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacePonca.html#ac22c4266774d911c5c597d132477c264">UnorientedSphereFit</a> = <a class="el" href="classPonca_1_1UnorientedSphereFitImpl.html">UnorientedSphereFitImpl</a>&lt; DataPoint, _WFunctor, <a class="el" href="classPonca_1_1MeanPosition.html">MeanPosition</a>&lt; DataPoint, _WFunctor, <a class="el" href="classPonca_1_1AlgebraicSphere.html">AlgebraicSphere</a>&lt; DataPoint, _WFunctor, T &gt; &gt; &gt;</td></tr>
-<tr class="memdesc:ac22c4266774d911c5c597d132477c264"><td class="mdescLeft">&#160;</td><td class="mdescRight">Helper alias for Oriented Sphere fitting on 3D points using <a class="el" href="classPonca_1_1UnorientedSphereFitImpl.html" title="Algebraic Sphere fitting procedure on point sets with non-oriented normals.">UnorientedSphereFitImpl</a>.  <br /></td></tr>
-<tr class="separator:ac22c4266774d911c5c597d132477c264"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a576dbc5df69191755f10fbd939c5b90b" id="r_a576dbc5df69191755f10fbd939c5b90b"><td class="memTemplParams" colspan="2">template&lt;class DataPoint , class _WFunctor , int DiffType, typename T &gt; </td></tr>
-<tr class="memitem:a576dbc5df69191755f10fbd939c5b90b"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacePonca.html#a576dbc5df69191755f10fbd939c5b90b">UnorientedSphereDer</a> = <a class="el" href="classPonca_1_1UnorientedSphereDerImpl.html">UnorientedSphereDerImpl</a>&lt; DataPoint, _WFunctor, <a class="el" href="namespacePonca.html#a7beaddc698523e7f9c041ea8bc4c535a">DiffType</a>, <a class="el" href="classPonca_1_1MeanPositionDer.html">MeanPositionDer</a>&lt; DataPoint, _WFunctor, <a class="el" href="namespacePonca.html#a7beaddc698523e7f9c041ea8bc4c535a">DiffType</a>, T &gt; &gt;</td></tr>
-<tr class="separator:a576dbc5df69191755f10fbd939c5b90b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0c3b76f2b26ee5c60a37f6f90544b1f4" id="r_a0c3b76f2b26ee5c60a37f6f90544b1f4"><td class="memTemplParams" colspan="2">template&lt;class DataPoint , class _NFilter , typename T &gt; </td></tr>
+<tr class="memitem:a0c3b76f2b26ee5c60a37f6f90544b1f4"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacePonca.html#a0c3b76f2b26ee5c60a37f6f90544b1f4">CovarianceLineFit</a> = <a class="el" href="classPonca_1_1CovarianceLineFitImpl.html">CovarianceLineFitImpl</a>&lt; DataPoint, _NFilter, <a class="el" href="classPonca_1_1CovarianceFitBase.html">CovarianceFitBase</a>&lt; DataPoint, _NFilter, <a class="el" href="classPonca_1_1MeanPosition.html">MeanPosition</a>&lt; DataPoint, _NFilter, <a class="el" href="classPonca_1_1Line.html">Line</a>&lt; DataPoint, _NFilter, T &gt; &gt; &gt; &gt;</td></tr>
+<tr class="memdesc:a0c3b76f2b26ee5c60a37f6f90544b1f4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Helper alias for <a class="el" href="classPonca_1_1Line.html" title="A parametrized line is defined by an origin point  and a unit direction vector  such that the line co...">Line</a> fitting on 3D points using <a class="el" href="classPonca_1_1CovarianceLineFitImpl.html" title="Line fitting procedure that minimize the orthogonal distance between the samples and the fitted primi...">CovarianceLineFitImpl</a>.  <br /></td></tr>
+<tr class="separator:a0c3b76f2b26ee5c60a37f6f90544b1f4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4ff3ffd27d5eaf805221e4e2f39469dd" id="r_a4ff3ffd27d5eaf805221e4e2f39469dd"><td class="memTemplParams" colspan="2">template&lt;class DataPoint , class _NFilter , typename T &gt; </td></tr>
+<tr class="memitem:a4ff3ffd27d5eaf805221e4e2f39469dd"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacePonca.html#a4ff3ffd27d5eaf805221e4e2f39469dd">CovariancePlaneFit</a> = <a class="el" href="classPonca_1_1CovariancePlaneFitImpl.html">CovariancePlaneFitImpl</a>&lt; DataPoint, _NFilter, <a class="el" href="classPonca_1_1CovarianceFitBase.html">CovarianceFitBase</a>&lt; DataPoint, _NFilter, <a class="el" href="classPonca_1_1MeanPosition.html">MeanPosition</a>&lt; DataPoint, _NFilter, <a class="el" href="classPonca_1_1Plane.html">Plane</a>&lt; DataPoint, _NFilter, T &gt; &gt; &gt; &gt;</td></tr>
+<tr class="memdesc:a4ff3ffd27d5eaf805221e4e2f39469dd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Helper alias for <a class="el" href="classPonca_1_1Plane.html" title="Implicit hyperplane defined by an homogeneous vector .">Plane</a> fitting on 3D points using <a class="el" href="classPonca_1_1CovariancePlaneFitImpl.html" title="Plane fitting procedure using only points position.">CovariancePlaneFitImpl</a> [CovariancePlaneFit Definition].  <br /></td></tr>
+<tr class="separator:a4ff3ffd27d5eaf805221e4e2f39469dd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2d8fe2d6d7509de142132912a1998ddd" id="r_a2d8fe2d6d7509de142132912a1998ddd"><td class="memTemplParams" colspan="2">template&lt;class DataPoint , class _NFilter , int DiffType, typename T &gt; </td></tr>
+<tr class="memitem:a2d8fe2d6d7509de142132912a1998ddd"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacePonca.html#a2d8fe2d6d7509de142132912a1998ddd">CovariancePlaneDer</a> = <a class="el" href="classPonca_1_1CovariancePlaneDerImpl.html">CovariancePlaneDerImpl</a>&lt; DataPoint, _NFilter, <a class="el" href="namespacePonca.html#a7beaddc698523e7f9c041ea8bc4c535a">DiffType</a>, <a class="el" href="classPonca_1_1CovarianceFitDer.html">CovarianceFitDer</a>&lt; DataPoint, _NFilter, <a class="el" href="namespacePonca.html#a7beaddc698523e7f9c041ea8bc4c535a">DiffType</a>, <a class="el" href="classPonca_1_1MeanPositionDer.html">MeanPositionDer</a>&lt; DataPoint, _NFilter, <a class="el" href="namespacePonca.html#a7beaddc698523e7f9c041ea8bc4c535a">DiffType</a>, T &gt; &gt; &gt;</td></tr>
+<tr class="memdesc:a2d8fe2d6d7509de142132912a1998ddd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Helper alias for <a class="el" href="classPonca_1_1Plane.html" title="Implicit hyperplane defined by an homogeneous vector .">Plane</a> fitting on 3D points using <a class="el" href="classPonca_1_1CovariancePlaneFitImpl.html" title="Plane fitting procedure using only points position.">CovariancePlaneFitImpl</a>.  <br /></td></tr>
+<tr class="separator:a2d8fe2d6d7509de142132912a1998ddd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af61ec1fdf8e8d1b509ddd2d6417afec3" id="r_af61ec1fdf8e8d1b509ddd2d6417afec3"><td class="memTemplParams" colspan="2">template&lt;class DataPoint , class _NFilter , typename T &gt; </td></tr>
+<tr class="memitem:af61ec1fdf8e8d1b509ddd2d6417afec3"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacePonca.html#af61ec1fdf8e8d1b509ddd2d6417afec3">MeanPlaneFit</a> = <a class="el" href="classPonca_1_1MeanPlaneFitImpl.html">MeanPlaneFitImpl</a>&lt; DataPoint, _NFilter, <a class="el" href="classPonca_1_1MeanNormal.html">MeanNormal</a>&lt; DataPoint, _NFilter, <a class="el" href="classPonca_1_1MeanPosition.html">MeanPosition</a>&lt; DataPoint, _NFilter, <a class="el" href="classPonca_1_1Plane.html">Plane</a>&lt; DataPoint, _NFilter, T &gt; &gt; &gt; &gt;</td></tr>
+<tr class="memdesc:af61ec1fdf8e8d1b509ddd2d6417afec3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Helper alias for <a class="el" href="classPonca_1_1Plane.html" title="Implicit hyperplane defined by an homogeneous vector .">Plane</a> fitting on points using <a class="el" href="classPonca_1_1MeanPlaneFitImpl.html" title="Plane fitting procedure computing the mean position and orientation from oriented points.">MeanPlaneFitImpl</a> [MeanPlaneFit Definition].  <br /></td></tr>
+<tr class="separator:af61ec1fdf8e8d1b509ddd2d6417afec3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a79a62a4fc4aa215b3cd5b5d623e25a92" id="r_a79a62a4fc4aa215b3cd5b5d623e25a92"><td class="memTemplParams" colspan="2">template&lt;class DataPoint , class _NFilter , typename T &gt; </td></tr>
+<tr class="memitem:a79a62a4fc4aa215b3cd5b5d623e25a92"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacePonca.html#a79a62a4fc4aa215b3cd5b5d623e25a92">OrientedSphereFit</a> = <a class="el" href="classPonca_1_1OrientedSphereFitImpl.html">OrientedSphereFitImpl</a>&lt; DataPoint, _NFilter, <a class="el" href="classPonca_1_1MeanPosition.html">MeanPosition</a>&lt; DataPoint, _NFilter, <a class="el" href="classPonca_1_1MeanNormal.html">MeanNormal</a>&lt; DataPoint, _NFilter, <a class="el" href="classPonca_1_1AlgebraicSphere.html">AlgebraicSphere</a>&lt; DataPoint, _NFilter, T &gt; &gt; &gt; &gt;</td></tr>
+<tr class="memdesc:a79a62a4fc4aa215b3cd5b5d623e25a92"><td class="mdescLeft">&#160;</td><td class="mdescRight">Helper alias for Oriented Sphere fitting on 3D points using <a class="el" href="classPonca_1_1OrientedSphereFitImpl.html" title="Algebraic Sphere fitting procedure on oriented point sets.">OrientedSphereFitImpl</a> [OrientedSphereFit Definition].  <br /></td></tr>
+<tr class="separator:a79a62a4fc4aa215b3cd5b5d623e25a92"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aacb141e87654384b457c2874ac11e19d" id="r_aacb141e87654384b457c2874ac11e19d"><td class="memTemplParams" colspan="2">template&lt;class DataPoint , class _NFilter , int DiffType, typename T &gt; </td></tr>
+<tr class="memitem:aacb141e87654384b457c2874ac11e19d"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacePonca.html#aacb141e87654384b457c2874ac11e19d">OrientedSphereDer</a> = <a class="el" href="classPonca_1_1OrientedSphereDerImpl.html">OrientedSphereDerImpl</a>&lt; DataPoint, _NFilter, <a class="el" href="namespacePonca.html#a7beaddc698523e7f9c041ea8bc4c535a">DiffType</a>, <a class="el" href="classPonca_1_1MeanPositionDer.html">MeanPositionDer</a>&lt; DataPoint, _NFilter, <a class="el" href="namespacePonca.html#a7beaddc698523e7f9c041ea8bc4c535a">DiffType</a>, T &gt; &gt;</td></tr>
+<tr class="memdesc:aacb141e87654384b457c2874ac11e19d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Helper alias for Oriented Sphere fitting on 3D points using <a class="el" href="classPonca_1_1OrientedSphereDerImpl.html" title="[OrientedSphereFit Definition]">OrientedSphereDerImpl</a>.  <br /></td></tr>
+<tr class="separator:aacb141e87654384b457c2874ac11e19d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8463b4fcd33ebb8b98c0c50aed983b66" id="r_a8463b4fcd33ebb8b98c0c50aed983b66"><td class="memTemplParams" colspan="2">template&lt;class DataPoint , class _NFilter , typename T &gt; </td></tr>
+<tr class="memitem:a8463b4fcd33ebb8b98c0c50aed983b66"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacePonca.html#a8463b4fcd33ebb8b98c0c50aed983b66">SphereFit</a> = <a class="el" href="classPonca_1_1SphereFitImpl.html">SphereFitImpl</a>&lt; DataPoint, _NFilter, <a class="el" href="classPonca_1_1AlgebraicSphere.html">AlgebraicSphere</a>&lt; DataPoint, _NFilter, T &gt; &gt;</td></tr>
+<tr class="memdesc:a8463b4fcd33ebb8b98c0c50aed983b66"><td class="mdescLeft">&#160;</td><td class="mdescRight">Helper alias for Sphere fitting on 3D points using <a class="el" href="classPonca_1_1SphereFitImpl.html" title="Algebraic Sphere fitting procedure on point set without normals.">SphereFitImpl</a>.  <br /></td></tr>
+<tr class="separator:a8463b4fcd33ebb8b98c0c50aed983b66"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a73a5d6377d84512434b559591d49c262" id="r_a73a5d6377d84512434b559591d49c262"><td class="memTemplParams" colspan="2">template&lt;class DataPoint , class _NFilter , typename T &gt; </td></tr>
+<tr class="memitem:a73a5d6377d84512434b559591d49c262"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacePonca.html#a73a5d6377d84512434b559591d49c262">UnorientedSphereFit</a> = <a class="el" href="classPonca_1_1UnorientedSphereFitImpl.html">UnorientedSphereFitImpl</a>&lt; DataPoint, _NFilter, <a class="el" href="classPonca_1_1MeanPosition.html">MeanPosition</a>&lt; DataPoint, _NFilter, <a class="el" href="classPonca_1_1AlgebraicSphere.html">AlgebraicSphere</a>&lt; DataPoint, _NFilter, T &gt; &gt; &gt;</td></tr>
+<tr class="memdesc:a73a5d6377d84512434b559591d49c262"><td class="mdescLeft">&#160;</td><td class="mdescRight">Helper alias for Oriented Sphere fitting on 3D points using <a class="el" href="classPonca_1_1UnorientedSphereFitImpl.html" title="Algebraic Sphere fitting procedure on point sets with non-oriented normals.">UnorientedSphereFitImpl</a>.  <br /></td></tr>
+<tr class="separator:a73a5d6377d84512434b559591d49c262"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4965d27a6c1c62235e6e51b940e5fa74" id="r_a4965d27a6c1c62235e6e51b940e5fa74"><td class="memTemplParams" colspan="2">template&lt;class DataPoint , class _NFilter , int DiffType, typename T &gt; </td></tr>
+<tr class="memitem:a4965d27a6c1c62235e6e51b940e5fa74"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacePonca.html#a4965d27a6c1c62235e6e51b940e5fa74">UnorientedSphereDer</a> = <a class="el" href="classPonca_1_1UnorientedSphereDerImpl.html">UnorientedSphereDerImpl</a>&lt; DataPoint, _NFilter, <a class="el" href="namespacePonca.html#a7beaddc698523e7f9c041ea8bc4c535a">DiffType</a>, <a class="el" href="classPonca_1_1MeanPositionDer.html">MeanPositionDer</a>&lt; DataPoint, _NFilter, <a class="el" href="namespacePonca.html#a7beaddc698523e7f9c041ea8bc4c535a">DiffType</a>, T &gt; &gt;</td></tr>
+<tr class="separator:a4965d27a6c1c62235e6e51b940e5fa74"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9d97170010a55cb795c69085463a9f41" id="r_a9d97170010a55cb795c69085463a9f41"><td class="memTemplParams" colspan="2">template&lt;class DataPoint &gt; </td></tr>
+<tr class="memitem:a9d97170010a55cb795c69085463a9f41"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacePonca.html#a9d97170010a55cb795c69085463a9f41">NoWeightFunc</a> = <a class="el" href="classPonca_1_1NoWeightFuncBase.html">NoWeightFuncBase</a>&lt; DataPoint, <a class="el" href="classPonca_1_1CenteredNeighborhoodFrame.html">CenteredNeighborhoodFrame</a> &gt;</td></tr>
+<tr class="separator:a9d97170010a55cb795c69085463a9f41"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9bf1d5c2d03ab0d05f7b2ed88d3f89cd" id="r_a9bf1d5c2d03ab0d05f7b2ed88d3f89cd"><td class="memTemplParams" colspan="2">template&lt;class DataPoint &gt; </td></tr>
+<tr class="memitem:a9bf1d5c2d03ab0d05f7b2ed88d3f89cd"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacePonca.html#a9bf1d5c2d03ab0d05f7b2ed88d3f89cd">NoWeightFuncGlobal</a> = <a class="el" href="classPonca_1_1NoWeightFuncBase.html">NoWeightFuncBase</a>&lt; DataPoint, <a class="el" href="classPonca_1_1GlobalNeighborhoodFrame.html">GlobalNeighborhoodFrame</a> &gt;</td></tr>
+<tr class="separator:a9bf1d5c2d03ab0d05f7b2ed88d3f89cd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2d7ca28c8b7f474a5631a5fe5b255a65" id="r_a2d7ca28c8b7f474a5631a5fe5b255a65"><td class="memTemplParams" colspan="2">template&lt;typename Traits &gt; </td></tr>
 <tr class="memitem:a2d7ca28c8b7f474a5631a5fe5b255a65"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacePonca.html#a2d7ca28c8b7f474a5631a5fe5b255a65">KdTreeKNearestIndexQuery</a> = <a class="el" href="classPonca_1_1KdTreeKNearestQueryBase.html">KdTreeKNearestQueryBase</a>&lt; Traits, <a class="el" href="classPonca_1_1KdTreeKNearestIterator.html">KdTreeKNearestIterator</a>, <a class="el" href="group__spatialpartitioning.html#structPonca_1_1KNearestIndexQuery">KNearestIndexQuery</a>&lt; typename Traits::IndexType, typename Traits::DataPoint::Scalar &gt; &gt;</td></tr>
 <tr class="separator:a2d7ca28c8b7f474a5631a5fe5b255a65"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -447,16 +462,16 @@ Enumerations</h2></td></tr>
 <dd>
 Nicolas Mellado - Improved error handling and bound check </dd></dl>
 </div><h2 class="groupheader">Typedef Documentation</h2>
-<a id="a48607b788b902a2a488e4ffba6db3186" name="a48607b788b902a2a488e4ffba6db3186"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a48607b788b902a2a488e4ffba6db3186">&#9670;&#160;</a></span>CovarianceLineFit</h2>
+<a id="a0c3b76f2b26ee5c60a37f6f90544b1f4" name="a0c3b76f2b26ee5c60a37f6f90544b1f4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0c3b76f2b26ee5c60a37f6f90544b1f4">&#9670;&#160;</a></span>CovarianceLineFit</h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
+template&lt;class DataPoint , class _NFilter , typename T &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">using <a class="el" href="namespacePonca.html#a48607b788b902a2a488e4ffba6db3186">Ponca::CovarianceLineFit</a> = typedef <a class="el" href="classPonca_1_1CovarianceLineFitImpl.html">CovarianceLineFitImpl</a>&lt;DataPoint, _WFunctor, <a class="el" href="classPonca_1_1CovarianceFitBase.html">CovarianceFitBase</a>&lt;DataPoint, _WFunctor, <a class="el" href="classPonca_1_1MeanPosition.html">MeanPosition</a>&lt;DataPoint, _WFunctor, <a class="el" href="classPonca_1_1Line.html">Line</a>&lt;DataPoint, _WFunctor,T&gt; &gt;&gt; &gt;</td>
+          <td class="memname">using <a class="el" href="namespacePonca.html#a0c3b76f2b26ee5c60a37f6f90544b1f4">Ponca::CovarianceLineFit</a> = typedef <a class="el" href="classPonca_1_1CovarianceLineFitImpl.html">CovarianceLineFitImpl</a>&lt;DataPoint, _NFilter, <a class="el" href="classPonca_1_1CovarianceFitBase.html">CovarianceFitBase</a>&lt;DataPoint, _NFilter, <a class="el" href="classPonca_1_1MeanPosition.html">MeanPosition</a>&lt;DataPoint, _NFilter, <a class="el" href="classPonca_1_1Line.html">Line</a>&lt;DataPoint, _NFilter, T&gt; &gt;&gt; &gt;</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -467,43 +482,43 @@ template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
 
 </div>
 </div>
-<a id="a693db62262bbd8eddf89839ca6ab9a32" name="a693db62262bbd8eddf89839ca6ab9a32"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a693db62262bbd8eddf89839ca6ab9a32">&#9670;&#160;</a></span>CovariancePlaneDer</h2>
+<a id="a2d8fe2d6d7509de142132912a1998ddd" name="a2d8fe2d6d7509de142132912a1998ddd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2d8fe2d6d7509de142132912a1998ddd">&#9670;&#160;</a></span>CovariancePlaneDer</h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;class DataPoint , class _WFunctor , int DiffType, typename T &gt; </div>
+template&lt;class DataPoint , class _NFilter , int DiffType, typename T &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">using <a class="el" href="namespacePonca.html#a693db62262bbd8eddf89839ca6ab9a32">Ponca::CovariancePlaneDer</a> = typedef <a class="el" href="classPonca_1_1CovariancePlaneDerImpl.html">CovariancePlaneDerImpl</a>&lt;DataPoint, _WFunctor, <a class="el" href="namespacePonca.html#a7beaddc698523e7f9c041ea8bc4c535a">DiffType</a>, <a class="el" href="classPonca_1_1CovarianceFitDer.html">CovarianceFitDer</a>&lt;DataPoint, _WFunctor, <a class="el" href="namespacePonca.html#a7beaddc698523e7f9c041ea8bc4c535a">DiffType</a>, <a class="el" href="classPonca_1_1MeanPositionDer.html">MeanPositionDer</a>&lt;DataPoint, _WFunctor, <a class="el" href="namespacePonca.html#a7beaddc698523e7f9c041ea8bc4c535a">DiffType</a>, T&gt; &gt;&gt;</td>
+          <td class="memname">using <a class="el" href="namespacePonca.html#a2d8fe2d6d7509de142132912a1998ddd">Ponca::CovariancePlaneDer</a> = typedef <a class="el" href="classPonca_1_1CovariancePlaneDerImpl.html">CovariancePlaneDerImpl</a>&lt;DataPoint, _NFilter, <a class="el" href="namespacePonca.html#a7beaddc698523e7f9c041ea8bc4c535a">DiffType</a>, <a class="el" href="classPonca_1_1CovarianceFitDer.html">CovarianceFitDer</a>&lt;DataPoint, _NFilter, <a class="el" href="namespacePonca.html#a7beaddc698523e7f9c041ea8bc4c535a">DiffType</a>, <a class="el" href="classPonca_1_1MeanPositionDer.html">MeanPositionDer</a>&lt;DataPoint, _NFilter, <a class="el" href="namespacePonca.html#a7beaddc698523e7f9c041ea8bc4c535a">DiffType</a>, T&gt; &gt;&gt;</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
 <p>Helper alias for <a class="el" href="classPonca_1_1Plane.html" title="Implicit hyperplane defined by an homogeneous vector .">Plane</a> fitting on 3D points using <a class="el" href="classPonca_1_1CovariancePlaneFitImpl.html" title="Plane fitting procedure using only points position.">CovariancePlaneFitImpl</a>. </p>
 
-<p class="definition">Definition at line <a class="el" href="covariancePlaneFit_8h_source.html#l00144">144</a> of file <a class="el" href="covariancePlaneFit_8h_source.html">covariancePlaneFit.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="covariancePlaneFit_8h_source.html#l00140">140</a> of file <a class="el" href="covariancePlaneFit_8h_source.html">covariancePlaneFit.h</a>.</p>
 
 </div>
 </div>
-<a id="aa4b1806ad54a3b70849bd5997002a8c7" name="aa4b1806ad54a3b70849bd5997002a8c7"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa4b1806ad54a3b70849bd5997002a8c7">&#9670;&#160;</a></span>CovariancePlaneFit</h2>
+<a id="a4ff3ffd27d5eaf805221e4e2f39469dd" name="a4ff3ffd27d5eaf805221e4e2f39469dd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4ff3ffd27d5eaf805221e4e2f39469dd">&#9670;&#160;</a></span>CovariancePlaneFit</h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
+template&lt;class DataPoint , class _NFilter , typename T &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">using <a class="el" href="namespacePonca.html#aa4b1806ad54a3b70849bd5997002a8c7">Ponca::CovariancePlaneFit</a> = typedef <a class="el" href="classPonca_1_1CovariancePlaneFitImpl.html">CovariancePlaneFitImpl</a>&lt;DataPoint, _WFunctor, <a class="el" href="classPonca_1_1CovarianceFitBase.html">CovarianceFitBase</a>&lt;DataPoint, _WFunctor, <a class="el" href="classPonca_1_1MeanPosition.html">MeanPosition</a>&lt;DataPoint, _WFunctor, <a class="el" href="classPonca_1_1Plane.html">Plane</a>&lt;DataPoint, _WFunctor,T&gt; &gt;&gt; &gt;</td>
+          <td class="memname">using <a class="el" href="namespacePonca.html#a4ff3ffd27d5eaf805221e4e2f39469dd">Ponca::CovariancePlaneFit</a> = typedef <a class="el" href="classPonca_1_1CovariancePlaneFitImpl.html">CovariancePlaneFitImpl</a>&lt;DataPoint, _NFilter, <a class="el" href="classPonca_1_1CovarianceFitBase.html">CovarianceFitBase</a>&lt;DataPoint, _NFilter, <a class="el" href="classPonca_1_1MeanPosition.html">MeanPosition</a>&lt;DataPoint, _NFilter, <a class="el" href="classPonca_1_1Plane.html">Plane</a>&lt;DataPoint, _NFilter, T&gt; &gt;&gt; &gt;</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
 <p>Helper alias for <a class="el" href="classPonca_1_1Plane.html" title="Implicit hyperplane defined by an homogeneous vector .">Plane</a> fitting on 3D points using <a class="el" href="classPonca_1_1CovariancePlaneFitImpl.html" title="Plane fitting procedure using only points position.">CovariancePlaneFitImpl</a> [CovariancePlaneFit Definition]. </p>
 
-<p class="definition">Definition at line <a class="el" href="covariancePlaneFit_8h_source.html#l00088">88</a> of file <a class="el" href="covariancePlaneFit_8h_source.html">covariancePlaneFit.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="covariancePlaneFit_8h_source.html#l00084">84</a> of file <a class="el" href="covariancePlaneFit_8h_source.html">covariancePlaneFit.h</a>.</p>
 
 </div>
 </div>
@@ -639,16 +654,16 @@ template&lt;typename DataPoint &gt; </div>
 
 </div>
 </div>
-<a id="a13ebe442f2119e12b35714a12a15560b" name="a13ebe442f2119e12b35714a12a15560b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a13ebe442f2119e12b35714a12a15560b">&#9670;&#160;</a></span>MeanPlaneFit</h2>
+<a id="af61ec1fdf8e8d1b509ddd2d6417afec3" name="af61ec1fdf8e8d1b509ddd2d6417afec3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af61ec1fdf8e8d1b509ddd2d6417afec3">&#9670;&#160;</a></span>MeanPlaneFit</h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
+template&lt;class DataPoint , class _NFilter , typename T &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">using <a class="el" href="namespacePonca.html#a13ebe442f2119e12b35714a12a15560b">Ponca::MeanPlaneFit</a> = typedef <a class="el" href="classPonca_1_1MeanPlaneFitImpl.html">MeanPlaneFitImpl</a>&lt;DataPoint, _WFunctor, <a class="el" href="classPonca_1_1MeanNormal.html">MeanNormal</a>&lt;DataPoint, _WFunctor, <a class="el" href="classPonca_1_1MeanPosition.html">MeanPosition</a>&lt;DataPoint, _WFunctor, <a class="el" href="classPonca_1_1Plane.html">Plane</a>&lt;DataPoint, _WFunctor,T&gt; &gt;&gt; &gt;</td>
+          <td class="memname">using <a class="el" href="namespacePonca.html#af61ec1fdf8e8d1b509ddd2d6417afec3">Ponca::MeanPlaneFit</a> = typedef <a class="el" href="classPonca_1_1MeanPlaneFitImpl.html">MeanPlaneFitImpl</a>&lt;DataPoint, _NFilter, <a class="el" href="classPonca_1_1MeanNormal.html">MeanNormal</a>&lt;DataPoint, _NFilter, <a class="el" href="classPonca_1_1MeanPosition.html">MeanPosition</a>&lt;DataPoint, _NFilter, <a class="el" href="classPonca_1_1Plane.html">Plane</a>&lt;DataPoint, _NFilter, T&gt; &gt;&gt; &gt;</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -659,16 +674,52 @@ template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
 
 </div>
 </div>
-<a id="a06452e78533ff7c62bbbd01106dc0020" name="a06452e78533ff7c62bbbd01106dc0020"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a06452e78533ff7c62bbbd01106dc0020">&#9670;&#160;</a></span>OrientedSphereDer</h2>
+<a id="a9d97170010a55cb795c69085463a9f41" name="a9d97170010a55cb795c69085463a9f41"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9d97170010a55cb795c69085463a9f41">&#9670;&#160;</a></span>NoWeightFunc</h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;class DataPoint , class _WFunctor , int DiffType, typename T &gt; </div>
+template&lt;class DataPoint &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">using <a class="el" href="namespacePonca.html#a06452e78533ff7c62bbbd01106dc0020">Ponca::OrientedSphereDer</a> = typedef <a class="el" href="classPonca_1_1OrientedSphereDerImpl.html">OrientedSphereDerImpl</a>&lt;DataPoint, _WFunctor, <a class="el" href="namespacePonca.html#a7beaddc698523e7f9c041ea8bc4c535a">DiffType</a>, <a class="el" href="classPonca_1_1MeanPositionDer.html">MeanPositionDer</a>&lt;DataPoint, _WFunctor, <a class="el" href="namespacePonca.html#a7beaddc698523e7f9c041ea8bc4c535a">DiffType</a>, T&gt; &gt;</td>
+          <td class="memname">using <a class="el" href="classPonca_1_1NoWeightFuncBase.html">Ponca::NoWeightFunc</a> = typedef <a class="el" href="classPonca_1_1NoWeightFuncBase.html">NoWeightFuncBase</a>&lt;DataPoint, <a class="el" href="classPonca_1_1CenteredNeighborhoodFrame.html">CenteredNeighborhoodFrame</a>&gt;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="weightFunc_8h_source.html#l00366">366</a> of file <a class="el" href="weightFunc_8h_source.html">weightFunc.h</a>.</p>
+
+</div>
+</div>
+<a id="a9bf1d5c2d03ab0d05f7b2ed88d3f89cd" name="a9bf1d5c2d03ab0d05f7b2ed88d3f89cd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9bf1d5c2d03ab0d05f7b2ed88d3f89cd">&#9670;&#160;</a></span>NoWeightFuncGlobal</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class DataPoint &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="classPonca_1_1NoWeightFuncBase.html">Ponca::NoWeightFuncGlobal</a> = typedef <a class="el" href="classPonca_1_1NoWeightFuncBase.html">NoWeightFuncBase</a>&lt;DataPoint, <a class="el" href="classPonca_1_1GlobalNeighborhoodFrame.html">GlobalNeighborhoodFrame</a>&gt;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="weightFunc_8h_source.html#l00370">370</a> of file <a class="el" href="weightFunc_8h_source.html">weightFunc.h</a>.</p>
+
+</div>
+</div>
+<a id="aacb141e87654384b457c2874ac11e19d" name="aacb141e87654384b457c2874ac11e19d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aacb141e87654384b457c2874ac11e19d">&#9670;&#160;</a></span>OrientedSphereDer</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class DataPoint , class _NFilter , int DiffType, typename T &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="namespacePonca.html#aacb141e87654384b457c2874ac11e19d">Ponca::OrientedSphereDer</a> = typedef <a class="el" href="classPonca_1_1OrientedSphereDerImpl.html">OrientedSphereDerImpl</a>&lt;DataPoint, _NFilter, <a class="el" href="namespacePonca.html#a7beaddc698523e7f9c041ea8bc4c535a">DiffType</a>, <a class="el" href="classPonca_1_1MeanPositionDer.html">MeanPositionDer</a>&lt;DataPoint, _NFilter, <a class="el" href="namespacePonca.html#a7beaddc698523e7f9c041ea8bc4c535a">DiffType</a>, T&gt; &gt;</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -679,16 +730,16 @@ template&lt;class DataPoint , class _WFunctor , int DiffType, typename T &gt; </
 
 </div>
 </div>
-<a id="a2f53f5c61ca5df7c3e3f8cf2219a14d4" name="a2f53f5c61ca5df7c3e3f8cf2219a14d4"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a2f53f5c61ca5df7c3e3f8cf2219a14d4">&#9670;&#160;</a></span>OrientedSphereFit</h2>
+<a id="a79a62a4fc4aa215b3cd5b5d623e25a92" name="a79a62a4fc4aa215b3cd5b5d623e25a92"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a79a62a4fc4aa215b3cd5b5d623e25a92">&#9670;&#160;</a></span>OrientedSphereFit</h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
+template&lt;class DataPoint , class _NFilter , typename T &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">using <a class="el" href="namespacePonca.html#a2f53f5c61ca5df7c3e3f8cf2219a14d4">Ponca::OrientedSphereFit</a> = typedef <a class="el" href="classPonca_1_1OrientedSphereFitImpl.html">OrientedSphereFitImpl</a>&lt;DataPoint, _WFunctor, <a class="el" href="classPonca_1_1MeanPosition.html">MeanPosition</a>&lt;DataPoint, _WFunctor, <a class="el" href="classPonca_1_1MeanNormal.html">MeanNormal</a>&lt;DataPoint, _WFunctor, <a class="el" href="classPonca_1_1AlgebraicSphere.html">AlgebraicSphere</a>&lt;DataPoint, _WFunctor,T&gt; &gt;&gt; &gt;</td>
+          <td class="memname">using <a class="el" href="namespacePonca.html#a79a62a4fc4aa215b3cd5b5d623e25a92">Ponca::OrientedSphereFit</a> = typedef <a class="el" href="classPonca_1_1OrientedSphereFitImpl.html">OrientedSphereFitImpl</a>&lt;DataPoint, _NFilter, <a class="el" href="classPonca_1_1MeanPosition.html">MeanPosition</a>&lt;DataPoint, _NFilter, <a class="el" href="classPonca_1_1MeanNormal.html">MeanNormal</a>&lt;DataPoint, _NFilter, <a class="el" href="classPonca_1_1AlgebraicSphere.html">AlgebraicSphere</a>&lt;DataPoint, _NFilter, T&gt; &gt;&gt; &gt;</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -699,16 +750,16 @@ template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
 
 </div>
 </div>
-<a id="a84d1648a0b69de78edbc72278d74bde2" name="a84d1648a0b69de78edbc72278d74bde2"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a84d1648a0b69de78edbc72278d74bde2">&#9670;&#160;</a></span>SphereFit</h2>
+<a id="a8463b4fcd33ebb8b98c0c50aed983b66" name="a8463b4fcd33ebb8b98c0c50aed983b66"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8463b4fcd33ebb8b98c0c50aed983b66">&#9670;&#160;</a></span>SphereFit</h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
+template&lt;class DataPoint , class _NFilter , typename T &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">using <a class="el" href="namespacePonca.html#a84d1648a0b69de78edbc72278d74bde2">Ponca::SphereFit</a> = typedef <a class="el" href="classPonca_1_1SphereFitImpl.html">SphereFitImpl</a>&lt;DataPoint, _WFunctor, <a class="el" href="classPonca_1_1AlgebraicSphere.html">AlgebraicSphere</a>&lt;DataPoint, _WFunctor,T&gt; &gt;</td>
+          <td class="memname">using <a class="el" href="namespacePonca.html#a8463b4fcd33ebb8b98c0c50aed983b66">Ponca::SphereFit</a> = typedef <a class="el" href="classPonca_1_1SphereFitImpl.html">SphereFitImpl</a>&lt;DataPoint, _NFilter, <a class="el" href="classPonca_1_1AlgebraicSphere.html">AlgebraicSphere</a>&lt;DataPoint, _NFilter, T&gt; &gt;</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -719,16 +770,16 @@ template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
 
 </div>
 </div>
-<a id="a576dbc5df69191755f10fbd939c5b90b" name="a576dbc5df69191755f10fbd939c5b90b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a576dbc5df69191755f10fbd939c5b90b">&#9670;&#160;</a></span>UnorientedSphereDer</h2>
+<a id="a4965d27a6c1c62235e6e51b940e5fa74" name="a4965d27a6c1c62235e6e51b940e5fa74"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4965d27a6c1c62235e6e51b940e5fa74">&#9670;&#160;</a></span>UnorientedSphereDer</h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;class DataPoint , class _WFunctor , int DiffType, typename T &gt; </div>
+template&lt;class DataPoint , class _NFilter , int DiffType, typename T &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">using <a class="el" href="classPonca_1_1UnorientedSphereDerImpl.html">Ponca::UnorientedSphereDer</a> = typedef <a class="el" href="classPonca_1_1UnorientedSphereDerImpl.html">UnorientedSphereDerImpl</a>&lt;DataPoint, _WFunctor, <a class="el" href="namespacePonca.html#a7beaddc698523e7f9c041ea8bc4c535a">DiffType</a>, <a class="el" href="classPonca_1_1MeanPositionDer.html">MeanPositionDer</a>&lt;DataPoint, _WFunctor, <a class="el" href="namespacePonca.html#a7beaddc698523e7f9c041ea8bc4c535a">DiffType</a>, T&gt; &gt;</td>
+          <td class="memname">using <a class="el" href="classPonca_1_1UnorientedSphereDerImpl.html">Ponca::UnorientedSphereDer</a> = typedef <a class="el" href="classPonca_1_1UnorientedSphereDerImpl.html">UnorientedSphereDerImpl</a>&lt;DataPoint, _NFilter, <a class="el" href="namespacePonca.html#a7beaddc698523e7f9c041ea8bc4c535a">DiffType</a>, <a class="el" href="classPonca_1_1MeanPositionDer.html">MeanPositionDer</a>&lt;DataPoint, _NFilter, <a class="el" href="namespacePonca.html#a7beaddc698523e7f9c041ea8bc4c535a">DiffType</a>, T&gt; &gt;</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -737,16 +788,16 @@ template&lt;class DataPoint , class _WFunctor , int DiffType, typename T &gt; </
 
 </div>
 </div>
-<a id="ac22c4266774d911c5c597d132477c264" name="ac22c4266774d911c5c597d132477c264"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac22c4266774d911c5c597d132477c264">&#9670;&#160;</a></span>UnorientedSphereFit</h2>
+<a id="a73a5d6377d84512434b559591d49c262" name="a73a5d6377d84512434b559591d49c262"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a73a5d6377d84512434b559591d49c262">&#9670;&#160;</a></span>UnorientedSphereFit</h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
+template&lt;class DataPoint , class _NFilter , typename T &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">using <a class="el" href="namespacePonca.html#ac22c4266774d911c5c597d132477c264">Ponca::UnorientedSphereFit</a> = typedef <a class="el" href="classPonca_1_1UnorientedSphereFitImpl.html">UnorientedSphereFitImpl</a>&lt;DataPoint, _WFunctor, <a class="el" href="classPonca_1_1MeanPosition.html">MeanPosition</a>&lt;DataPoint, _WFunctor, <a class="el" href="classPonca_1_1AlgebraicSphere.html">AlgebraicSphere</a>&lt;DataPoint, _WFunctor,T&gt; &gt;&gt;</td>
+          <td class="memname">using <a class="el" href="namespacePonca.html#a73a5d6377d84512434b559591d49c262">Ponca::UnorientedSphereFit</a> = typedef <a class="el" href="classPonca_1_1UnorientedSphereFitImpl.html">UnorientedSphereFitImpl</a>&lt;DataPoint, _NFilter, <a class="el" href="classPonca_1_1MeanPosition.html">MeanPosition</a>&lt;DataPoint, _NFilter, <a class="el" href="classPonca_1_1AlgebraicSphere.html">AlgebraicSphere</a>&lt;DataPoint, _NFilter, T&gt; &gt;&gt;</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -824,7 +875,7 @@ template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="namespacePonca.html">Ponca</a></li>
-    <li class="footer">Generated on Thu Oct 9 2025 22:33:52 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
+    <li class="footer">Generated on Thu Oct 30 2025 19:03:05 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
   </ul>
 </div>
 </body>

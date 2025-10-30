@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.9.8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Ponca: Ponca::GLSParam&lt; DataPoint, _WFunctor, T &gt; Class Template Reference</title>
+<title>Ponca: Ponca::GLSParam&lt; DataPoint, _NFilter, T &gt; Class Template Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -51,7 +51,7 @@ MathJax.Hub.Config({
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Ponca
-   &#160;<span id="projectnumber">40f245e28b920cbb763a1c6282156c87c626f24c</span>
+   &#160;<span id="projectnumber">9e7681effe2c12b0af1c85fdb62680f52d835a30</span>
    </div>
    <div id="projectbrief">Point Cloud Analysis library</div>
   </td>
@@ -122,7 +122,7 @@ $(document).ready(function(){initNavTree('classPonca_1_1GLSParam.html',''); init
 <a href="#pro-types">Protected Types</a> &#124;
 <a href="#pro-attribs">Protected Attributes</a> &#124;
 <a href="classPonca_1_1GLSParam-members.html">List of all members</a>  </div>
-  <div class="headertitle"><div class="title">Ponca::GLSParam&lt; DataPoint, _WFunctor, T &gt; Class Template Reference</div></div>
+  <div class="headertitle"><div class="title">Ponca::GLSParam&lt; DataPoint, _NFilter, T &gt; Class Template Reference</div></div>
 </div><!--header-->
 <div class="contents">
 
@@ -131,14 +131,14 @@ $(document).ready(function(){initNavTree('classPonca_1_1GLSParam.html',''); init
 
 <p><code>#include &lt;<a class="el" href="gls_8h_source.html">gls.h</a>&gt;</code></p>
 <div id="dynsection-0" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
-  <img id="dynsection-0-trigger" src="closed.png" alt="+"/> Inheritance diagram for Ponca::GLSParam&lt; DataPoint, _WFunctor, T &gt;:</div>
+  <img id="dynsection-0-trigger" src="closed.png" alt="+"/> Inheritance diagram for Ponca::GLSParam&lt; DataPoint, _NFilter, T &gt;:</div>
 <div id="dynsection-0-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-0-content" class="dyncontent" style="display:none;">
 <div class="center"><iframe scrolling="no" frameborder="0" src="classPonca_1_1GLSParam__inherit__graph.svg" width="270" height="419"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 <div id="dynsection-1" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
-  <img id="dynsection-1-trigger" src="closed.png" alt="+"/> Collaboration diagram for Ponca::GLSParam&lt; DataPoint, _WFunctor, T &gt;:</div>
+  <img id="dynsection-1-trigger" src="closed.png" alt="+"/> Collaboration diagram for Ponca::GLSParam&lt; DataPoint, _NFilter, T &gt;:</div>
 <div id="dynsection-1-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-1-content" class="dyncontent" style="display:none;">
@@ -147,51 +147,51 @@ $(document).ready(function(){initNavTree('classPonca_1_1GLSParam.html',''); init
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-types" name="pub-types"></a>
 Public Types</h2></td></tr>
-<tr class="memitem:a4e0419931490aae532de4230b028eb1a" id="r_a4e0419931490aae532de4230b028eb1a"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1GLSParam.html#a4e0419931490aae532de4230b028eb1a">Scalar</a> = typename DataPoint::Scalar</td></tr>
-<tr class="memdesc:a4e0419931490aae532de4230b028eb1a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Alias to scalar type.  <br /></td></tr>
-<tr class="separator:a4e0419931490aae532de4230b028eb1a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af2a7a07c8fafb337a110fcdc3c72d067" id="r_af2a7a07c8fafb337a110fcdc3c72d067"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1GLSParam.html#af2a7a07c8fafb337a110fcdc3c72d067">VectorType</a> = typename Base::VectorType</td></tr>
-<tr class="memdesc:af2a7a07c8fafb337a110fcdc3c72d067"><td class="mdescLeft">&#160;</td><td class="mdescRight">Alias to vector type.  <br /></td></tr>
-<tr class="separator:af2a7a07c8fafb337a110fcdc3c72d067"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a76837e2a9254dbefaff256add3023e7f" id="r_a76837e2a9254dbefaff256add3023e7f"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1GLSParam.html#a76837e2a9254dbefaff256add3023e7f">WFunctor</a> = typename Base::WFunctor</td></tr>
-<tr class="memdesc:a76837e2a9254dbefaff256add3023e7f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Alias to weight function.  <br /></td></tr>
-<tr class="separator:a76837e2a9254dbefaff256add3023e7f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a21bc095f88101823c9b5f5576090ed0e" id="r_a21bc095f88101823c9b5f5576090ed0e"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1GLSParam.html#a21bc095f88101823c9b5f5576090ed0e">Scalar</a> = typename DataPoint::Scalar</td></tr>
+<tr class="memdesc:a21bc095f88101823c9b5f5576090ed0e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Alias to scalar type.  <br /></td></tr>
+<tr class="separator:a21bc095f88101823c9b5f5576090ed0e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad2355ae21f338ed951090ef8ca22b244" id="r_ad2355ae21f338ed951090ef8ca22b244"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1GLSParam.html#ad2355ae21f338ed951090ef8ca22b244">VectorType</a> = typename Base::VectorType</td></tr>
+<tr class="memdesc:ad2355ae21f338ed951090ef8ca22b244"><td class="mdescLeft">&#160;</td><td class="mdescRight">Alias to vector type.  <br /></td></tr>
+<tr class="separator:ad2355ae21f338ed951090ef8ca22b244"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a38509a2423061d2bd7d1869589aee096" id="r_a38509a2423061d2bd7d1869589aee096"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1GLSParam.html#a38509a2423061d2bd7d1869589aee096">NeighborFilter</a> = typename Base::NeighborFilter</td></tr>
+<tr class="memdesc:a38509a2423061d2bd7d1869589aee096"><td class="mdescLeft">&#160;</td><td class="mdescRight">Alias to the filter applied on the neighbors.  <br /></td></tr>
+<tr class="separator:a38509a2423061d2bd7d1869589aee096"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a2a0bd53aa6a7e4fd5b769192b4946f1c" id="r_a2a0bd53aa6a7e4fd5b769192b4946f1c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classPonca_1_1GLSParam.html">GLSParam</a>&lt; DataPoint, _WFunctor, T &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1GLSParam.html#a2a0bd53aa6a7e4fd5b769192b4946f1c">glsParam</a> ()</td></tr>
-<tr class="memdesc:a2a0bd53aa6a7e4fd5b769192b4946f1c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Explicit conversion to <a class="el" href="classPonca_1_1GLSParam.html" title="Growing Least Squares reparemetrization of the OrientedSphereFit.">GLSParam</a> , to access methods potentially hidden by heritage.  <br /></td></tr>
-<tr class="separator:a2a0bd53aa6a7e4fd5b769192b4946f1c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4bb5c32ad6359540b408f6b8f79bf343" id="r_a4bb5c32ad6359540b408f6b8f79bf343"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="classPonca_1_1GLSParam.html">GLSParam</a>&lt; DataPoint, _WFunctor, T &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1GLSParam.html#a4bb5c32ad6359540b408f6b8f79bf343">glsParam</a> () const</td></tr>
-<tr class="memdesc:a4bb5c32ad6359540b408f6b8f79bf343"><td class="mdescLeft">&#160;</td><td class="mdescRight">Explicit conversion to <a class="el" href="classPonca_1_1GLSParam.html" title="Growing Least Squares reparemetrization of the OrientedSphereFit.">GLSParam</a> , to access methods potentially hidden by heritage.  <br /></td></tr>
-<tr class="separator:a4bb5c32ad6359540b408f6b8f79bf343"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0ba0d1471c3c824ee9d07da56368ff87" id="r_a0ba0d1471c3c824ee9d07da56368ff87"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classPonca_1_1GLSParam.html">GLSParam</a>&lt; DataPoint, _NFilter, T &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1GLSParam.html#a0ba0d1471c3c824ee9d07da56368ff87">glsParam</a> ()</td></tr>
+<tr class="memdesc:a0ba0d1471c3c824ee9d07da56368ff87"><td class="mdescLeft">&#160;</td><td class="mdescRight">Explicit conversion to <a class="el" href="classPonca_1_1GLSParam.html" title="Growing Least Squares reparemetrization of the OrientedSphereFit.">GLSParam</a> , to access methods potentially hidden by heritage.  <br /></td></tr>
+<tr class="separator:a0ba0d1471c3c824ee9d07da56368ff87"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2e060936f008c88f912d7548353dd325" id="r_a2e060936f008c88f912d7548353dd325"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="classPonca_1_1GLSParam.html">GLSParam</a>&lt; DataPoint, _NFilter, T &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1GLSParam.html#a2e060936f008c88f912d7548353dd325">glsParam</a> () const</td></tr>
+<tr class="memdesc:a2e060936f008c88f912d7548353dd325"><td class="mdescLeft">&#160;</td><td class="mdescRight">Explicit conversion to <a class="el" href="classPonca_1_1GLSParam.html" title="Growing Least Squares reparemetrization of the OrientedSphereFit.">GLSParam</a> , to access methods potentially hidden by heritage.  <br /></td></tr>
+<tr class="separator:a2e060936f008c88f912d7548353dd325"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac66ebd8b0af2bbf23af6594b4792ecbd" id="r_ac66ebd8b0af2bbf23af6594b4792ecbd"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespacePonca.html#abfd697aebf07c1b5c8be5ee401e2dc84">FIT_RESULT</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1GLSParam.html#ac66ebd8b0af2bbf23af6594b4792ecbd">finalize</a> ()</td></tr>
 <tr class="memdesc:ac66ebd8b0af2bbf23af6594b4792ecbd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Finalize the procedure.  <br /></td></tr>
 <tr class="separator:ac66ebd8b0af2bbf23af6594b4792ecbd"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab44732a836ac2426812c1a28de87368b" id="r_ab44732a836ac2426812c1a28de87368b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classPonca_1_1GLSParam.html#a4e0419931490aae532de4230b028eb1a">Scalar</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1GLSParam.html#ab44732a836ac2426812c1a28de87368b">tau</a> () const</td></tr>
-<tr class="memdesc:ab44732a836ac2426812c1a28de87368b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compute and return \( \tau \).  <br /></td></tr>
-<tr class="separator:ab44732a836ac2426812c1a28de87368b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa07f37f4c54c4b16de9e3eb81682eebd" id="r_aa07f37f4c54c4b16de9e3eb81682eebd"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classPonca_1_1GLSParam.html#af2a7a07c8fafb337a110fcdc3c72d067">VectorType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1GLSParam.html#aa07f37f4c54c4b16de9e3eb81682eebd">eta</a> () const</td></tr>
-<tr class="memdesc:aa07f37f4c54c4b16de9e3eb81682eebd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compute and return \( \eta \).  <br /></td></tr>
-<tr class="separator:aa07f37f4c54c4b16de9e3eb81682eebd"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af50e8af7862b3dcb185ff21c573fa784" id="r_af50e8af7862b3dcb185ff21c573fa784"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classPonca_1_1GLSParam.html#a4e0419931490aae532de4230b028eb1a">Scalar</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1GLSParam.html#af50e8af7862b3dcb185ff21c573fa784">kappa</a> () const</td></tr>
-<tr class="memdesc:af50e8af7862b3dcb185ff21c573fa784"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compute and return \( \kappa \).  <br /></td></tr>
-<tr class="separator:af50e8af7862b3dcb185ff21c573fa784"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4640a61e78f4b56b6897ee24c406de08" id="r_a4640a61e78f4b56b6897ee24c406de08"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classPonca_1_1GLSParam.html#a4e0419931490aae532de4230b028eb1a">Scalar</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1GLSParam.html#a4640a61e78f4b56b6897ee24c406de08">tau_normalized</a> () const</td></tr>
-<tr class="memdesc:a4640a61e78f4b56b6897ee24c406de08"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compute and return \( \frac{\tau}{t} \).  <br /></td></tr>
-<tr class="separator:a4640a61e78f4b56b6897ee24c406de08"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa7c5b0f5db15161d8c11243f97172f63" id="r_aa7c5b0f5db15161d8c11243f97172f63"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classPonca_1_1GLSParam.html#af2a7a07c8fafb337a110fcdc3c72d067">VectorType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1GLSParam.html#aa7c5b0f5db15161d8c11243f97172f63">eta_normalized</a> () const</td></tr>
-<tr class="memdesc:aa7c5b0f5db15161d8c11243f97172f63"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compute and return \( \eta \).  <br /></td></tr>
-<tr class="separator:aa7c5b0f5db15161d8c11243f97172f63"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abec25f5fc1914516c36082df250ee50e" id="r_abec25f5fc1914516c36082df250ee50e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classPonca_1_1GLSParam.html#a4e0419931490aae532de4230b028eb1a">Scalar</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1GLSParam.html#abec25f5fc1914516c36082df250ee50e">kappa_normalized</a> () const</td></tr>
-<tr class="memdesc:abec25f5fc1914516c36082df250ee50e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compute and return \( t \kappa \).  <br /></td></tr>
-<tr class="separator:abec25f5fc1914516c36082df250ee50e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab2be9d68d199d09968a0c1ce3d3bd148" id="r_ab2be9d68d199d09968a0c1ce3d3bd148"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classPonca_1_1GLSParam.html#a4e0419931490aae532de4230b028eb1a">Scalar</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1GLSParam.html#ab2be9d68d199d09968a0c1ce3d3bd148">fitness</a> () const</td></tr>
-<tr class="memdesc:ab2be9d68d199d09968a0c1ce3d3bd148"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return the fitness, e.g.  <br /></td></tr>
-<tr class="separator:ab2be9d68d199d09968a0c1ce3d3bd148"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a420d2089a5420d60814b1e7a1fbd7e12" id="r_a420d2089a5420d60814b1e7a1fbd7e12"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classPonca_1_1GLSParam.html#a4e0419931490aae532de4230b028eb1a">Scalar</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1GLSParam.html#a420d2089a5420d60814b1e7a1fbd7e12">compareTo</a> (const <a class="el" href="classPonca_1_1GLSParam.html">GLSParam</a>&lt; DataPoint, _WFunctor, T &gt; &amp;_other, bool _useFitness=true) const</td></tr>
-<tr class="memdesc:a420d2089a5420d60814b1e7a1fbd7e12"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compare current instance with other.  <br /></td></tr>
-<tr class="separator:a420d2089a5420d60814b1e7a1fbd7e12"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a58bde96d8c934db95dc6fb3cc3ba0397" id="r_a58bde96d8c934db95dc6fb3cc3ba0397"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classPonca_1_1GLSParam.html#a21bc095f88101823c9b5f5576090ed0e">Scalar</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1GLSParam.html#a58bde96d8c934db95dc6fb3cc3ba0397">tau</a> () const</td></tr>
+<tr class="memdesc:a58bde96d8c934db95dc6fb3cc3ba0397"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compute and return \( \tau \).  <br /></td></tr>
+<tr class="separator:a58bde96d8c934db95dc6fb3cc3ba0397"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a010b4dc71b2ffa98db8832c14ff6f9bd" id="r_a010b4dc71b2ffa98db8832c14ff6f9bd"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classPonca_1_1GLSParam.html#ad2355ae21f338ed951090ef8ca22b244">VectorType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1GLSParam.html#a010b4dc71b2ffa98db8832c14ff6f9bd">eta</a> () const</td></tr>
+<tr class="memdesc:a010b4dc71b2ffa98db8832c14ff6f9bd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compute and return \( \eta \).  <br /></td></tr>
+<tr class="separator:a010b4dc71b2ffa98db8832c14ff6f9bd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3967bba6e1b7cab5a9c7f7f8c0232ec8" id="r_a3967bba6e1b7cab5a9c7f7f8c0232ec8"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classPonca_1_1GLSParam.html#a21bc095f88101823c9b5f5576090ed0e">Scalar</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1GLSParam.html#a3967bba6e1b7cab5a9c7f7f8c0232ec8">kappa</a> () const</td></tr>
+<tr class="memdesc:a3967bba6e1b7cab5a9c7f7f8c0232ec8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compute and return \( \kappa \).  <br /></td></tr>
+<tr class="separator:a3967bba6e1b7cab5a9c7f7f8c0232ec8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3fd57343f62b0f1689e7d77431184679" id="r_a3fd57343f62b0f1689e7d77431184679"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classPonca_1_1GLSParam.html#a21bc095f88101823c9b5f5576090ed0e">Scalar</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1GLSParam.html#a3fd57343f62b0f1689e7d77431184679">tau_normalized</a> () const</td></tr>
+<tr class="memdesc:a3fd57343f62b0f1689e7d77431184679"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compute and return \( \frac{\tau}{t} \).  <br /></td></tr>
+<tr class="separator:a3fd57343f62b0f1689e7d77431184679"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5196bfeed8dae0803113b5cfa62926b0" id="r_a5196bfeed8dae0803113b5cfa62926b0"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classPonca_1_1GLSParam.html#ad2355ae21f338ed951090ef8ca22b244">VectorType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1GLSParam.html#a5196bfeed8dae0803113b5cfa62926b0">eta_normalized</a> () const</td></tr>
+<tr class="memdesc:a5196bfeed8dae0803113b5cfa62926b0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compute and return \( \eta \).  <br /></td></tr>
+<tr class="separator:a5196bfeed8dae0803113b5cfa62926b0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5bb1c9ad3d34f76a2d634abd4da428df" id="r_a5bb1c9ad3d34f76a2d634abd4da428df"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classPonca_1_1GLSParam.html#a21bc095f88101823c9b5f5576090ed0e">Scalar</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1GLSParam.html#a5bb1c9ad3d34f76a2d634abd4da428df">kappa_normalized</a> () const</td></tr>
+<tr class="memdesc:a5bb1c9ad3d34f76a2d634abd4da428df"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compute and return \( t \kappa \).  <br /></td></tr>
+<tr class="separator:a5bb1c9ad3d34f76a2d634abd4da428df"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae4efb6d68be2ad8b53cadccf38934094" id="r_ae4efb6d68be2ad8b53cadccf38934094"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classPonca_1_1GLSParam.html#a21bc095f88101823c9b5f5576090ed0e">Scalar</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1GLSParam.html#ae4efb6d68be2ad8b53cadccf38934094">fitness</a> () const</td></tr>
+<tr class="memdesc:ae4efb6d68be2ad8b53cadccf38934094"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return the fitness, e.g.  <br /></td></tr>
+<tr class="separator:ae4efb6d68be2ad8b53cadccf38934094"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6cd559fb8ddb1ede6c71b6ce5554af49" id="r_a6cd559fb8ddb1ede6c71b6ce5554af49"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classPonca_1_1GLSParam.html#a21bc095f88101823c9b5f5576090ed0e">Scalar</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1GLSParam.html#a6cd559fb8ddb1ede6c71b6ce5554af49">compareTo</a> (const <a class="el" href="classPonca_1_1GLSParam.html">GLSParam</a>&lt; DataPoint, _NFilter, T &gt; &amp;_other, bool _useFitness=true) const</td></tr>
+<tr class="memdesc:a6cd559fb8ddb1ede6c71b6ce5554af49"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compare current instance with other.  <br /></td></tr>
+<tr class="separator:a6cd559fb8ddb1ede6c71b6ce5554af49"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-types" name="pro-types"></a>
 Protected Types</h2></td></tr>
@@ -200,42 +200,42 @@ Protected Types</h2></td></tr>
  }</td></tr>
 <tr class="memdesc:ad1af91ab47f8556369dab84b34562925"><td class="mdescLeft">&#160;</td><td class="mdescRight">[Requirements]  <a href="classPonca_1_1GLSParam.html#ad1af91ab47f8556369dab84b34562925">More...</a><br /></td></tr>
 <tr class="separator:ad1af91ab47f8556369dab84b34562925"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5df631e6dad04ab8be25b63501e282fc" id="r_a5df631e6dad04ab8be25b63501e282fc"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1GLSParam.html#a5df631e6dad04ab8be25b63501e282fc">Base</a> = T</td></tr>
-<tr class="memdesc:a5df631e6dad04ab8be25b63501e282fc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Base class of the procedure.  <br /></td></tr>
-<tr class="separator:a5df631e6dad04ab8be25b63501e282fc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ada5abf3fce882e3197759973042836c5" id="r_ada5abf3fce882e3197759973042836c5"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1GLSParam.html#ada5abf3fce882e3197759973042836c5">Base</a> = T</td></tr>
+<tr class="memdesc:ada5abf3fce882e3197759973042836c5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Base class of the procedure.  <br /></td></tr>
+<tr class="separator:ada5abf3fce882e3197759973042836c5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-attribs" name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
-<tr class="memitem:ade62f517fea12b7fdb0dd30ec8e9f3ea" id="r_ade62f517fea12b7fdb0dd30ec8e9f3ea"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classPonca_1_1GLSParam.html#a4e0419931490aae532de4230b028eb1a">Scalar</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1GLSParam.html#ade62f517fea12b7fdb0dd30ec8e9f3ea">m_fitness</a> {0}</td></tr>
-<tr class="memdesc:ade62f517fea12b7fdb0dd30ec8e9f3ea"><td class="mdescLeft">&#160;</td><td class="mdescRight">[Requirements]  <br /></td></tr>
-<tr class="separator:ade62f517fea12b7fdb0dd30ec8e9f3ea"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9d46a05b1042baa60551925b165dd33c" id="r_a9d46a05b1042baa60551925b165dd33c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classPonca_1_1GLSParam.html#a21bc095f88101823c9b5f5576090ed0e">Scalar</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1GLSParam.html#a9d46a05b1042baa60551925b165dd33c">m_fitness</a> {0}</td></tr>
+<tr class="memdesc:a9d46a05b1042baa60551925b165dd33c"><td class="mdescLeft">&#160;</td><td class="mdescRight">[Requirements]  <br /></td></tr>
+<tr class="separator:a9d46a05b1042baa60551925b165dd33c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><div class="compoundTemplParams">template&lt;class DataPoint, class _WFunctor, typename T&gt;<br />
-class Ponca::GLSParam&lt; DataPoint, _WFunctor, T &gt;</div><p>Growing Least Squares reparemetrization of the OrientedSphereFit. </p>
+<div class="textblock"><div class="compoundTemplParams">template&lt;class DataPoint, class _NFilter, typename T&gt;<br />
+class Ponca::GLSParam&lt; DataPoint, _NFilter, T &gt;</div><p>Growing Least Squares reparemetrization of the OrientedSphereFit. </p>
 <p>Method published in <a class="el" href="citelist.html#CITEREF_Mellado:2012:GLS">[11]</a></p>
 <p>This class assumes that the WeightFunc defines the accessor </p><div class="fragment"><div class="line">w.evalScale();</div>
 </div><!-- fragment --><p> in order to access to the evaluation scale, needed to compute the scale invariant GLS reparametrization (all *_normalized methods).</p>
 <p>Computed values:</p><ul>
-<li><a class="el" href="classPonca_1_1GLSParam.html#ab44732a836ac2426812c1a28de87368b" title="Compute and return .">tau()</a>, <a class="el" href="classPonca_1_1GLSParam.html#aa07f37f4c54c4b16de9e3eb81682eebd" title="Compute and return .">eta()</a> and <a class="el" href="classPonca_1_1GLSParam.html#af50e8af7862b3dcb185ff21c573fa784" title="Compute and return .">kappa()</a>: the GLS descriptor \( \left[ \tau \; \eta \; \kappa \right]\)</li>
-<li><a class="el" href="classPonca_1_1GLSParam.html#a4640a61e78f4b56b6897ee24c406de08" title="Compute and return .">tau_normalized()</a>, <a class="el" href="classPonca_1_1GLSParam.html#aa7c5b0f5db15161d8c11243f97172f63" title="Compute and return .">eta_normalized()</a> and <a class="el" href="classPonca_1_1GLSParam.html#abec25f5fc1914516c36082df250ee50e" title="Compute and return .">kappa_normalized()</a>: the scale invariant GLS descriptor \( \left[ \frac{\tau}{t} \; \eta \; t\kappa \right]\)</li>
+<li><a class="el" href="classPonca_1_1GLSParam.html#a58bde96d8c934db95dc6fb3cc3ba0397" title="Compute and return .">tau()</a>, <a class="el" href="classPonca_1_1GLSParam.html#a010b4dc71b2ffa98db8832c14ff6f9bd" title="Compute and return .">eta()</a> and <a class="el" href="classPonca_1_1GLSParam.html#a3967bba6e1b7cab5a9c7f7f8c0232ec8" title="Compute and return .">kappa()</a>: the GLS descriptor \( \left[ \tau \; \eta \; \kappa \right]\)</li>
+<li><a class="el" href="classPonca_1_1GLSParam.html#a3fd57343f62b0f1689e7d77431184679" title="Compute and return .">tau_normalized()</a>, <a class="el" href="classPonca_1_1GLSParam.html#a5196bfeed8dae0803113b5cfa62926b0" title="Compute and return .">eta_normalized()</a> and <a class="el" href="classPonca_1_1GLSParam.html#a5bb1c9ad3d34f76a2d634abd4da428df" title="Compute and return .">kappa_normalized()</a>: the scale invariant GLS descriptor \( \left[ \frac{\tau}{t} \; \eta \; t\kappa \right]\)</li>
 </ul>
 <p>Requirements: </p><pre class="fragment">PROVIDES_ALGEBRAIC_SPHERE </pre><p> Provides: </p><pre class="fragment">PROVIDES_GLS_PARAMETRIZATION </pre> 
 <p class="definition">Definition at line <a class="el" href="gls_8h_source.html#l00041">41</a> of file <a class="el" href="gls_8h_source.html">gls.h</a>.</p>
 </div><h2 class="groupheader">Member Typedef Documentation</h2>
-<a id="a5df631e6dad04ab8be25b63501e282fc" name="a5df631e6dad04ab8be25b63501e282fc"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a5df631e6dad04ab8be25b63501e282fc">&#9670;&#160;</a></span>Base</h2>
+<a id="ada5abf3fce882e3197759973042836c5" name="ada5abf3fce882e3197759973042836c5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ada5abf3fce882e3197759973042836c5">&#9670;&#160;</a></span>Base</h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
+template&lt;class DataPoint , class _NFilter , typename T &gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">using <a class="el" href="classPonca_1_1GLSParam.html">Ponca::GLSParam</a>&lt; DataPoint, _WFunctor, T &gt;::Base =  T</td>
+          <td class="memname">using <a class="el" href="classPonca_1_1GLSParam.html">Ponca::GLSParam</a>&lt; DataPoint, _NFilter, T &gt;::Base =  T</td>
         </tr>
       </table>
   </td>
@@ -251,16 +251,36 @@ template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
 
 </div>
 </div>
-<a id="a4e0419931490aae532de4230b028eb1a" name="a4e0419931490aae532de4230b028eb1a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a4e0419931490aae532de4230b028eb1a">&#9670;&#160;</a></span>Scalar</h2>
+<a id="a38509a2423061d2bd7d1869589aee096" name="a38509a2423061d2bd7d1869589aee096"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a38509a2423061d2bd7d1869589aee096">&#9670;&#160;</a></span>NeighborFilter</h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
+template&lt;class DataPoint , class _NFilter , typename T &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">using <a class="el" href="classPonca_1_1GLSParam.html">Ponca::GLSParam</a>&lt; DataPoint, _WFunctor, T &gt;::Scalar =  typename DataPoint::Scalar</td>
+          <td class="memname">using <a class="el" href="classPonca_1_1GLSParam.html">Ponca::GLSParam</a>&lt; DataPoint, _NFilter, T &gt;::NeighborFilter =  typename Base::NeighborFilter</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Alias to the filter applied on the neighbors. </p>
+
+<p class="definition">Definition at line <a class="el" href="gls_8h_source.html#l00043">43</a> of file <a class="el" href="gls_8h_source.html">gls.h</a>.</p>
+
+</div>
+</div>
+<a id="a21bc095f88101823c9b5f5576090ed0e" name="a21bc095f88101823c9b5f5576090ed0e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a21bc095f88101823c9b5f5576090ed0e">&#9670;&#160;</a></span>Scalar</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class DataPoint , class _NFilter , typename T &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="classPonca_1_1GLSParam.html">Ponca::GLSParam</a>&lt; DataPoint, _NFilter, T &gt;::Scalar =  typename DataPoint::Scalar</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -271,41 +291,21 @@ template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
 
 </div>
 </div>
-<a id="af2a7a07c8fafb337a110fcdc3c72d067" name="af2a7a07c8fafb337a110fcdc3c72d067"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af2a7a07c8fafb337a110fcdc3c72d067">&#9670;&#160;</a></span>VectorType</h2>
+<a id="ad2355ae21f338ed951090ef8ca22b244" name="ad2355ae21f338ed951090ef8ca22b244"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad2355ae21f338ed951090ef8ca22b244">&#9670;&#160;</a></span>VectorType</h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
+template&lt;class DataPoint , class _NFilter , typename T &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">using <a class="el" href="classPonca_1_1GLSParam.html">Ponca::GLSParam</a>&lt; DataPoint, _WFunctor, T &gt;::VectorType =  typename Base::VectorType</td>
+          <td class="memname">using <a class="el" href="classPonca_1_1GLSParam.html">Ponca::GLSParam</a>&lt; DataPoint, _NFilter, T &gt;::VectorType =  typename Base::VectorType</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
 <p>Alias to vector type. </p>
-
-<p class="definition">Definition at line <a class="el" href="gls_8h_source.html#l00043">43</a> of file <a class="el" href="gls_8h_source.html">gls.h</a>.</p>
-
-</div>
-</div>
-<a id="a76837e2a9254dbefaff256add3023e7f" name="a76837e2a9254dbefaff256add3023e7f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a76837e2a9254dbefaff256add3023e7f">&#9670;&#160;</a></span>WFunctor</h2>
-
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
-      <table class="memname">
-        <tr>
-          <td class="memname">using <a class="el" href="classPonca_1_1GLSParam.html">Ponca::GLSParam</a>&lt; DataPoint, _WFunctor, T &gt;::WFunctor =  typename Base::WFunctor</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Alias to weight function. </p>
 
 <p class="definition">Definition at line <a class="el" href="gls_8h_source.html#l00043">43</a> of file <a class="el" href="gls_8h_source.html">gls.h</a>.</p>
 
@@ -318,7 +318,7 @@ template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
+template&lt;class DataPoint , class _NFilter , typename T &gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
@@ -341,21 +341,21 @@ template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a id="a420d2089a5420d60814b1e7a1fbd7e12" name="a420d2089a5420d60814b1e7a1fbd7e12"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a420d2089a5420d60814b1e7a1fbd7e12">&#9670;&#160;</a></span>compareTo()</h2>
+<a id="a6cd559fb8ddb1ede6c71b6ce5554af49" name="a6cd559fb8ddb1ede6c71b6ce5554af49"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6cd559fb8ddb1ede6c71b6ce5554af49">&#9670;&#160;</a></span>compareTo()</h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
+template&lt;class DataPoint , class _NFilter , typename T &gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classPonca_1_1GLSParam.html#a4e0419931490aae532de4230b028eb1a">Scalar</a> <a class="el" href="classPonca_1_1GLSParam.html">Ponca::GLSParam</a>&lt; DataPoint, _WFunctor, T &gt;::compareTo </td>
+          <td class="memname"><a class="el" href="classPonca_1_1GLSParam.html#a21bc095f88101823c9b5f5576090ed0e">Scalar</a> <a class="el" href="classPonca_1_1GLSParam.html">Ponca::GLSParam</a>&lt; DataPoint, _NFilter, T &gt;::compareTo </td>
           <td>(</td>
-          <td class="paramtype">const <a class="el" href="classPonca_1_1GLSParam.html">GLSParam</a>&lt; DataPoint, _WFunctor, T &gt; &amp;&#160;</td>
+          <td class="paramtype">const <a class="el" href="classPonca_1_1GLSParam.html">GLSParam</a>&lt; DataPoint, _NFilter, T &gt; &amp;&#160;</td>
           <td class="paramname"><em>_other</em>, </td>
         </tr>
         <tr>
@@ -385,19 +385,19 @@ template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
 
 </div>
 </div>
-<a id="aa07f37f4c54c4b16de9e3eb81682eebd" name="aa07f37f4c54c4b16de9e3eb81682eebd"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa07f37f4c54c4b16de9e3eb81682eebd">&#9670;&#160;</a></span>eta()</h2>
+<a id="a010b4dc71b2ffa98db8832c14ff6f9bd" name="a010b4dc71b2ffa98db8832c14ff6f9bd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a010b4dc71b2ffa98db8832c14ff6f9bd">&#9670;&#160;</a></span>eta()</h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
+template&lt;class DataPoint , class _NFilter , typename T &gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classPonca_1_1GLSParam.html#af2a7a07c8fafb337a110fcdc3c72d067">VectorType</a> <a class="el" href="classPonca_1_1GLSParam.html">Ponca::GLSParam</a>&lt; DataPoint, _WFunctor, T &gt;::eta </td>
+          <td class="memname"><a class="el" href="classPonca_1_1GLSParam.html#ad2355ae21f338ed951090ef8ca22b244">VectorType</a> <a class="el" href="classPonca_1_1GLSParam.html">Ponca::GLSParam</a>&lt; DataPoint, _NFilter, T &gt;::eta </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td> const</td>
@@ -416,19 +416,19 @@ template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
 
 </div>
 </div>
-<a id="aa7c5b0f5db15161d8c11243f97172f63" name="aa7c5b0f5db15161d8c11243f97172f63"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa7c5b0f5db15161d8c11243f97172f63">&#9670;&#160;</a></span>eta_normalized()</h2>
+<a id="a5196bfeed8dae0803113b5cfa62926b0" name="a5196bfeed8dae0803113b5cfa62926b0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5196bfeed8dae0803113b5cfa62926b0">&#9670;&#160;</a></span>eta_normalized()</h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
+template&lt;class DataPoint , class _NFilter , typename T &gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classPonca_1_1GLSParam.html#af2a7a07c8fafb337a110fcdc3c72d067">VectorType</a> <a class="el" href="classPonca_1_1GLSParam.html">Ponca::GLSParam</a>&lt; DataPoint, _WFunctor, T &gt;::eta_normalized </td>
+          <td class="memname"><a class="el" href="classPonca_1_1GLSParam.html#ad2355ae21f338ed951090ef8ca22b244">VectorType</a> <a class="el" href="classPonca_1_1GLSParam.html">Ponca::GLSParam</a>&lt; DataPoint, _NFilter, T &gt;::eta_normalized </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td> const</td>
@@ -453,7 +453,7 @@ template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
+template&lt;class DataPoint , class _NFilter , typename T &gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
@@ -480,19 +480,19 @@ template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
 
 </div>
 </div>
-<a id="ab2be9d68d199d09968a0c1ce3d3bd148" name="ab2be9d68d199d09968a0c1ce3d3bd148"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ab2be9d68d199d09968a0c1ce3d3bd148">&#9670;&#160;</a></span>fitness()</h2>
+<a id="ae4efb6d68be2ad8b53cadccf38934094" name="ae4efb6d68be2ad8b53cadccf38934094"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae4efb6d68be2ad8b53cadccf38934094">&#9670;&#160;</a></span>fitness()</h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
+template&lt;class DataPoint , class _NFilter , typename T &gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classPonca_1_1GLSParam.html#a4e0419931490aae532de4230b028eb1a">Scalar</a> <a class="el" href="classPonca_1_1GLSParam.html">Ponca::GLSParam</a>&lt; DataPoint, _WFunctor, T &gt;::fitness </td>
+          <td class="memname"><a class="el" href="classPonca_1_1GLSParam.html#a21bc095f88101823c9b5f5576090ed0e">Scalar</a> <a class="el" href="classPonca_1_1GLSParam.html">Ponca::GLSParam</a>&lt; DataPoint, _NFilter, T &gt;::fitness </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td> const</td>
@@ -512,19 +512,19 @@ template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
 
 </div>
 </div>
-<a id="a2a0bd53aa6a7e4fd5b769192b4946f1c" name="a2a0bd53aa6a7e4fd5b769192b4946f1c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a2a0bd53aa6a7e4fd5b769192b4946f1c">&#9670;&#160;</a></span>glsParam() <span class="overload">[1/2]</span></h2>
+<a id="a0ba0d1471c3c824ee9d07da56368ff87" name="a0ba0d1471c3c824ee9d07da56368ff87"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0ba0d1471c3c824ee9d07da56368ff87">&#9670;&#160;</a></span>glsParam() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
+template&lt;class DataPoint , class _NFilter , typename T &gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classPonca_1_1GLSParam.html">GLSParam</a>&lt; DataPoint, _WFunctor, T &gt; &amp; <a class="el" href="classPonca_1_1GLSParam.html">Ponca::GLSParam</a>&lt; DataPoint, _WFunctor, T &gt;::glsParam </td>
+          <td class="memname"><a class="el" href="classPonca_1_1GLSParam.html">GLSParam</a>&lt; DataPoint, _NFilter, T &gt; &amp; <a class="el" href="classPonca_1_1GLSParam.html">Ponca::GLSParam</a>&lt; DataPoint, _NFilter, T &gt;::glsParam </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -543,19 +543,19 @@ template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
 
 </div>
 </div>
-<a id="a4bb5c32ad6359540b408f6b8f79bf343" name="a4bb5c32ad6359540b408f6b8f79bf343"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a4bb5c32ad6359540b408f6b8f79bf343">&#9670;&#160;</a></span>glsParam() <span class="overload">[2/2]</span></h2>
+<a id="a2e060936f008c88f912d7548353dd325" name="a2e060936f008c88f912d7548353dd325"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2e060936f008c88f912d7548353dd325">&#9670;&#160;</a></span>glsParam() <span class="overload">[2/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
+template&lt;class DataPoint , class _NFilter , typename T &gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">const <a class="el" href="classPonca_1_1GLSParam.html">GLSParam</a>&lt; DataPoint, _WFunctor, T &gt; &amp; <a class="el" href="classPonca_1_1GLSParam.html">Ponca::GLSParam</a>&lt; DataPoint, _WFunctor, T &gt;::glsParam </td>
+          <td class="memname">const <a class="el" href="classPonca_1_1GLSParam.html">GLSParam</a>&lt; DataPoint, _NFilter, T &gt; &amp; <a class="el" href="classPonca_1_1GLSParam.html">Ponca::GLSParam</a>&lt; DataPoint, _NFilter, T &gt;::glsParam </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td> const</td>
@@ -574,19 +574,19 @@ template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
 
 </div>
 </div>
-<a id="af50e8af7862b3dcb185ff21c573fa784" name="af50e8af7862b3dcb185ff21c573fa784"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af50e8af7862b3dcb185ff21c573fa784">&#9670;&#160;</a></span>kappa()</h2>
+<a id="a3967bba6e1b7cab5a9c7f7f8c0232ec8" name="a3967bba6e1b7cab5a9c7f7f8c0232ec8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3967bba6e1b7cab5a9c7f7f8c0232ec8">&#9670;&#160;</a></span>kappa()</h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
+template&lt;class DataPoint , class _NFilter , typename T &gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classPonca_1_1GLSParam.html#a4e0419931490aae532de4230b028eb1a">Scalar</a> <a class="el" href="classPonca_1_1GLSParam.html">Ponca::GLSParam</a>&lt; DataPoint, _WFunctor, T &gt;::kappa </td>
+          <td class="memname"><a class="el" href="classPonca_1_1GLSParam.html#a21bc095f88101823c9b5f5576090ed0e">Scalar</a> <a class="el" href="classPonca_1_1GLSParam.html">Ponca::GLSParam</a>&lt; DataPoint, _NFilter, T &gt;::kappa </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td> const</td>
@@ -605,19 +605,19 @@ template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
 
 </div>
 </div>
-<a id="abec25f5fc1914516c36082df250ee50e" name="abec25f5fc1914516c36082df250ee50e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#abec25f5fc1914516c36082df250ee50e">&#9670;&#160;</a></span>kappa_normalized()</h2>
+<a id="a5bb1c9ad3d34f76a2d634abd4da428df" name="a5bb1c9ad3d34f76a2d634abd4da428df"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5bb1c9ad3d34f76a2d634abd4da428df">&#9670;&#160;</a></span>kappa_normalized()</h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
+template&lt;class DataPoint , class _NFilter , typename T &gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classPonca_1_1GLSParam.html#a4e0419931490aae532de4230b028eb1a">Scalar</a> <a class="el" href="classPonca_1_1GLSParam.html">Ponca::GLSParam</a>&lt; DataPoint, _WFunctor, T &gt;::kappa_normalized </td>
+          <td class="memname"><a class="el" href="classPonca_1_1GLSParam.html#a21bc095f88101823c9b5f5576090ed0e">Scalar</a> <a class="el" href="classPonca_1_1GLSParam.html">Ponca::GLSParam</a>&lt; DataPoint, _NFilter, T &gt;::kappa_normalized </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td> const</td>
@@ -636,19 +636,19 @@ template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
 
 </div>
 </div>
-<a id="ab44732a836ac2426812c1a28de87368b" name="ab44732a836ac2426812c1a28de87368b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ab44732a836ac2426812c1a28de87368b">&#9670;&#160;</a></span>tau()</h2>
+<a id="a58bde96d8c934db95dc6fb3cc3ba0397" name="a58bde96d8c934db95dc6fb3cc3ba0397"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a58bde96d8c934db95dc6fb3cc3ba0397">&#9670;&#160;</a></span>tau()</h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
+template&lt;class DataPoint , class _NFilter , typename T &gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classPonca_1_1GLSParam.html#a4e0419931490aae532de4230b028eb1a">Scalar</a> <a class="el" href="classPonca_1_1GLSParam.html">Ponca::GLSParam</a>&lt; DataPoint, _WFunctor, T &gt;::tau </td>
+          <td class="memname"><a class="el" href="classPonca_1_1GLSParam.html#a21bc095f88101823c9b5f5576090ed0e">Scalar</a> <a class="el" href="classPonca_1_1GLSParam.html">Ponca::GLSParam</a>&lt; DataPoint, _NFilter, T &gt;::tau </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td> const</td>
@@ -667,19 +667,19 @@ template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
 
 </div>
 </div>
-<a id="a4640a61e78f4b56b6897ee24c406de08" name="a4640a61e78f4b56b6897ee24c406de08"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a4640a61e78f4b56b6897ee24c406de08">&#9670;&#160;</a></span>tau_normalized()</h2>
+<a id="a3fd57343f62b0f1689e7d77431184679" name="a3fd57343f62b0f1689e7d77431184679"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3fd57343f62b0f1689e7d77431184679">&#9670;&#160;</a></span>tau_normalized()</h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
+template&lt;class DataPoint , class _NFilter , typename T &gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classPonca_1_1GLSParam.html#a4e0419931490aae532de4230b028eb1a">Scalar</a> <a class="el" href="classPonca_1_1GLSParam.html">Ponca::GLSParam</a>&lt; DataPoint, _WFunctor, T &gt;::tau_normalized </td>
+          <td class="memname"><a class="el" href="classPonca_1_1GLSParam.html#a21bc095f88101823c9b5f5576090ed0e">Scalar</a> <a class="el" href="classPonca_1_1GLSParam.html">Ponca::GLSParam</a>&lt; DataPoint, _NFilter, T &gt;::tau_normalized </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td> const</td>
@@ -699,19 +699,19 @@ template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
 </div>
 </div>
 <h2 class="groupheader">Member Data Documentation</h2>
-<a id="ade62f517fea12b7fdb0dd30ec8e9f3ea" name="ade62f517fea12b7fdb0dd30ec8e9f3ea"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ade62f517fea12b7fdb0dd30ec8e9f3ea">&#9670;&#160;</a></span>m_fitness</h2>
+<a id="a9d46a05b1042baa60551925b165dd33c" name="a9d46a05b1042baa60551925b165dd33c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9d46a05b1042baa60551925b165dd33c">&#9670;&#160;</a></span>m_fitness</h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
+template&lt;class DataPoint , class _NFilter , typename T &gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classPonca_1_1GLSParam.html#a4e0419931490aae532de4230b028eb1a">Scalar</a> <a class="el" href="classPonca_1_1GLSParam.html">Ponca::GLSParam</a>&lt; DataPoint, _WFunctor, T &gt;::m_fitness {0}</td>
+          <td class="memname"><a class="el" href="classPonca_1_1GLSParam.html#a21bc095f88101823c9b5f5576090ed0e">Scalar</a> <a class="el" href="classPonca_1_1GLSParam.html">Ponca::GLSParam</a>&lt; DataPoint, _NFilter, T &gt;::m_fitness {0}</td>
         </tr>
       </table>
   </td>
@@ -734,7 +734,7 @@ template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="namespacePonca.html">Ponca</a></li><li class="navelem"><a class="el" href="classPonca_1_1GLSParam.html">GLSParam</a></li>
-    <li class="footer">Generated on Thu Oct 9 2025 22:33:52 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
+    <li class="footer">Generated on Thu Oct 30 2025 19:03:05 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
   </ul>
 </div>
 </body>

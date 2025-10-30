@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.9.8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Ponca: Ponca::SphereFitImpl&lt; DataPoint, _WFunctor, T &gt; Class Template Reference</title>
+<title>Ponca: Ponca::SphereFitImpl&lt; DataPoint, _NFilter, T &gt; Class Template Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -51,7 +51,7 @@ MathJax.Hub.Config({
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Ponca
-   &#160;<span id="projectnumber">40f245e28b920cbb763a1c6282156c87c626f24c</span>
+   &#160;<span id="projectnumber">9e7681effe2c12b0af1c85fdb62680f52d835a30</span>
    </div>
    <div id="projectbrief">Point Cloud Analysis library</div>
   </td>
@@ -122,7 +122,7 @@ $(document).ready(function(){initNavTree('classPonca_1_1SphereFitImpl.html','');
 <a href="#pro-types">Protected Types</a> &#124;
 <a href="#pro-attribs">Protected Attributes</a> &#124;
 <a href="classPonca_1_1SphereFitImpl-members.html">List of all members</a>  </div>
-  <div class="headertitle"><div class="title">Ponca::SphereFitImpl&lt; DataPoint, _WFunctor, T &gt; Class Template Reference</div></div>
+  <div class="headertitle"><div class="title">Ponca::SphereFitImpl&lt; DataPoint, _NFilter, T &gt; Class Template Reference</div></div>
 </div><!--header-->
 <div class="contents">
 
@@ -131,81 +131,81 @@ $(document).ready(function(){initNavTree('classPonca_1_1SphereFitImpl.html','');
 
 <p><code>#include &lt;<a class="el" href="sphereFit_8h_source.html">sphereFit.h</a>&gt;</code></p>
 <div id="dynsection-0" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
-  <img id="dynsection-0-trigger" src="closed.png" alt="+"/> Inheritance diagram for Ponca::SphereFitImpl&lt; DataPoint, _WFunctor, T &gt;:</div>
+  <img id="dynsection-0-trigger" src="closed.png" alt="+"/> Inheritance diagram for Ponca::SphereFitImpl&lt; DataPoint, _NFilter, T &gt;:</div>
 <div id="dynsection-0-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-0-content" class="dyncontent" style="display:none;">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classPonca_1_1SphereFitImpl__inherit__graph.svg" width="264" height="359"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classPonca_1_1SphereFitImpl__inherit__graph.svg" width="256" height="359"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 <div id="dynsection-1" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
-  <img id="dynsection-1-trigger" src="closed.png" alt="+"/> Collaboration diagram for Ponca::SphereFitImpl&lt; DataPoint, _WFunctor, T &gt;:</div>
+  <img id="dynsection-1-trigger" src="closed.png" alt="+"/> Collaboration diagram for Ponca::SphereFitImpl&lt; DataPoint, _NFilter, T &gt;:</div>
 <div id="dynsection-1-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-1-content" class="dyncontent" style="display:none;">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classPonca_1_1SphereFitImpl__coll__graph.svg" width="264" height="359"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classPonca_1_1SphereFitImpl__coll__graph.svg" width="256" height="359"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-types" name="pub-types"></a>
 Public Types</h2></td></tr>
-<tr class="memitem:a46860628ec6f220ee8577b4ce41f4031" id="r_a46860628ec6f220ee8577b4ce41f4031"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1SphereFitImpl.html#a46860628ec6f220ee8577b4ce41f4031">Scalar</a> = typename DataPoint::Scalar</td></tr>
-<tr class="memdesc:a46860628ec6f220ee8577b4ce41f4031"><td class="mdescLeft">&#160;</td><td class="mdescRight">Alias to scalar type.  <br /></td></tr>
-<tr class="separator:a46860628ec6f220ee8577b4ce41f4031"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a512c58df188356f2423e029eacba019b" id="r_a512c58df188356f2423e029eacba019b"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1SphereFitImpl.html#a512c58df188356f2423e029eacba019b">VectorType</a> = typename Base::VectorType</td></tr>
-<tr class="memdesc:a512c58df188356f2423e029eacba019b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Alias to vector type.  <br /></td></tr>
-<tr class="separator:a512c58df188356f2423e029eacba019b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6447636c219a23e78e36be388637ff22" id="r_a6447636c219a23e78e36be388637ff22"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1SphereFitImpl.html#a6447636c219a23e78e36be388637ff22">WFunctor</a> = typename Base::WFunctor</td></tr>
-<tr class="memdesc:a6447636c219a23e78e36be388637ff22"><td class="mdescLeft">&#160;</td><td class="mdescRight">Alias to weight function.  <br /></td></tr>
-<tr class="separator:a6447636c219a23e78e36be388637ff22"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab0cda002d74c5afe3a15a71cae7eebb0" id="r_ab0cda002d74c5afe3a15a71cae7eebb0"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1SphereFitImpl.html#ab0cda002d74c5afe3a15a71cae7eebb0">Solver</a> = Eigen::EigenSolver&lt; MatrixA &gt;</td></tr>
-<tr class="separator:ab0cda002d74c5afe3a15a71cae7eebb0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a08414e7b508872852438fcf7ae6057d9" id="r_a08414e7b508872852438fcf7ae6057d9"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1SphereFitImpl.html#a08414e7b508872852438fcf7ae6057d9">Scalar</a> = typename DataPoint::Scalar</td></tr>
+<tr class="memdesc:a08414e7b508872852438fcf7ae6057d9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Alias to scalar type.  <br /></td></tr>
+<tr class="separator:a08414e7b508872852438fcf7ae6057d9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a47623b43f9f24af6dd64ac8c7c98c316" id="r_a47623b43f9f24af6dd64ac8c7c98c316"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1SphereFitImpl.html#a47623b43f9f24af6dd64ac8c7c98c316">VectorType</a> = typename Base::VectorType</td></tr>
+<tr class="memdesc:a47623b43f9f24af6dd64ac8c7c98c316"><td class="mdescLeft">&#160;</td><td class="mdescRight">Alias to vector type.  <br /></td></tr>
+<tr class="separator:a47623b43f9f24af6dd64ac8c7c98c316"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab82b3d472017fa8f2e88ebc8280219ab" id="r_ab82b3d472017fa8f2e88ebc8280219ab"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1SphereFitImpl.html#ab82b3d472017fa8f2e88ebc8280219ab">NeighborFilter</a> = typename Base::NeighborFilter</td></tr>
+<tr class="memdesc:ab82b3d472017fa8f2e88ebc8280219ab"><td class="mdescLeft">&#160;</td><td class="mdescRight">Alias to the filter applied on the neighbors.  <br /></td></tr>
+<tr class="separator:ab82b3d472017fa8f2e88ebc8280219ab"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9d8da17236a062ef0cdb370993c66ebb" id="r_a9d8da17236a062ef0cdb370993c66ebb"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1SphereFitImpl.html#a9d8da17236a062ef0cdb370993c66ebb">Solver</a> = Eigen::EigenSolver&lt; MatrixA &gt;</td></tr>
+<tr class="separator:a9d8da17236a062ef0cdb370993c66ebb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a66722b8ae547b85191220bc33306d40b" id="r_a66722b8ae547b85191220bc33306d40b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classPonca_1_1SphereFitImpl.html">SphereFitImpl</a>&lt; DataPoint, _WFunctor, T &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1SphereFitImpl.html#a66722b8ae547b85191220bc33306d40b">sphereFit</a> ()</td></tr>
-<tr class="memdesc:a66722b8ae547b85191220bc33306d40b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Explicit conversion to <a class="el" href="classPonca_1_1SphereFitImpl.html" title="Algebraic Sphere fitting procedure on point set without normals.">SphereFitImpl</a> , to access methods potentially hidden by heritage.  <br /></td></tr>
-<tr class="separator:a66722b8ae547b85191220bc33306d40b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a84c4dbe77db905d3955e07bb9db66334" id="r_a84c4dbe77db905d3955e07bb9db66334"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="classPonca_1_1SphereFitImpl.html">SphereFitImpl</a>&lt; DataPoint, _WFunctor, T &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1SphereFitImpl.html#a84c4dbe77db905d3955e07bb9db66334">sphereFit</a> () const</td></tr>
-<tr class="memdesc:a84c4dbe77db905d3955e07bb9db66334"><td class="mdescLeft">&#160;</td><td class="mdescRight">Explicit conversion to <a class="el" href="classPonca_1_1SphereFitImpl.html" title="Algebraic Sphere fitting procedure on point set without normals.">SphereFitImpl</a> , to access methods potentially hidden by heritage.  <br /></td></tr>
-<tr class="separator:a84c4dbe77db905d3955e07bb9db66334"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaa6023c6d9395fbcbf35e263ff6eef14" id="r_aaa6023c6d9395fbcbf35e263ff6eef14"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classPonca_1_1SphereFitImpl.html">SphereFitImpl</a>&lt; DataPoint, _NFilter, T &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1SphereFitImpl.html#aaa6023c6d9395fbcbf35e263ff6eef14">sphereFit</a> ()</td></tr>
+<tr class="memdesc:aaa6023c6d9395fbcbf35e263ff6eef14"><td class="mdescLeft">&#160;</td><td class="mdescRight">Explicit conversion to <a class="el" href="classPonca_1_1SphereFitImpl.html" title="Algebraic Sphere fitting procedure on point set without normals.">SphereFitImpl</a> , to access methods potentially hidden by heritage.  <br /></td></tr>
+<tr class="separator:aaa6023c6d9395fbcbf35e263ff6eef14"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a29ad69cac4697d90fb5e52f3f97ece83" id="r_a29ad69cac4697d90fb5e52f3f97ece83"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="classPonca_1_1SphereFitImpl.html">SphereFitImpl</a>&lt; DataPoint, _NFilter, T &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1SphereFitImpl.html#a29ad69cac4697d90fb5e52f3f97ece83">sphereFit</a> () const</td></tr>
+<tr class="memdesc:a29ad69cac4697d90fb5e52f3f97ece83"><td class="mdescLeft">&#160;</td><td class="mdescRight">Explicit conversion to <a class="el" href="classPonca_1_1SphereFitImpl.html" title="Algebraic Sphere fitting procedure on point set without normals.">SphereFitImpl</a> , to access methods potentially hidden by heritage.  <br /></td></tr>
+<tr class="separator:a29ad69cac4697d90fb5e52f3f97ece83"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4ac74122615fe2fd1ebe0a3f0228b4bd" id="r_a4ac74122615fe2fd1ebe0a3f0228b4bd"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1SphereFitImpl.html#a4ac74122615fe2fd1ebe0a3f0228b4bd">init</a> ()</td></tr>
 <tr class="memdesc:a4ac74122615fe2fd1ebe0a3f0228b4bd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the evaluation position and reset the internal states.  <br /></td></tr>
 <tr class="separator:a4ac74122615fe2fd1ebe0a3f0228b4bd"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5a6da62efb2f00d74bd10543000c0f61" id="r_a5a6da62efb2f00d74bd10543000c0f61"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1SphereFitImpl.html#a5a6da62efb2f00d74bd10543000c0f61">addLocalNeighbor</a> (<a class="el" href="classPonca_1_1SphereFitImpl.html#a46860628ec6f220ee8577b4ce41f4031">Scalar</a> w, const <a class="el" href="classPonca_1_1SphereFitImpl.html#a512c58df188356f2423e029eacba019b">VectorType</a> &amp;localQ, const DataPoint &amp;attributes)</td></tr>
+<tr class="memitem:a5a6da62efb2f00d74bd10543000c0f61" id="r_a5a6da62efb2f00d74bd10543000c0f61"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1SphereFitImpl.html#a5a6da62efb2f00d74bd10543000c0f61">addLocalNeighbor</a> (<a class="el" href="classPonca_1_1SphereFitImpl.html#a08414e7b508872852438fcf7ae6057d9">Scalar</a> w, const <a class="el" href="classPonca_1_1SphereFitImpl.html#a47623b43f9f24af6dd64ac8c7c98c316">VectorType</a> &amp;localQ, const DataPoint &amp;attributes)</td></tr>
 <tr class="memdesc:a5a6da62efb2f00d74bd10543000c0f61"><td class="mdescLeft">&#160;</td><td class="mdescRight">Add a neighbor to perform the fit.  <br /></td></tr>
 <tr class="separator:a5a6da62efb2f00d74bd10543000c0f61"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afec608609ed7d45186a810d7379b0a90" id="r_afec608609ed7d45186a810d7379b0a90"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespacePonca.html#abfd697aebf07c1b5c8be5ee401e2dc84">FIT_RESULT</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1SphereFitImpl.html#afec608609ed7d45186a810d7379b0a90">finalize</a> ()</td></tr>
 <tr class="memdesc:afec608609ed7d45186a810d7379b0a90"><td class="mdescLeft">&#160;</td><td class="mdescRight">Finalize the procedure.  <br /></td></tr>
 <tr class="separator:afec608609ed7d45186a810d7379b0a90"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa924d045fde5f106a5b95cf26fd83590" id="r_aa924d045fde5f106a5b95cf26fd83590"><td class="memItemLeft" align="right" valign="top">constexpr bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1SphereFitImpl.html#aa924d045fde5f106a5b95cf26fd83590">isSigned</a> ()</td></tr>
-<tr class="memdesc:aa924d045fde5f106a5b95cf26fd83590"><td class="mdescLeft">&#160;</td><td class="mdescRight">Is scalar field signed.  <br /></td></tr>
-<tr class="separator:aa924d045fde5f106a5b95cf26fd83590"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7bb60aed630829c7e9c8204c2955008d" id="r_a7bb60aed630829c7e9c8204c2955008d"><td class="memItemLeft" align="right" valign="top">const Solver &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1SphereFitImpl.html#a7bb60aed630829c7e9c8204c2955008d">solver</a> () const</td></tr>
-<tr class="separator:a7bb60aed630829c7e9c8204c2955008d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af5a67820c2c173ac991e984ba6de034e" id="r_af5a67820c2c173ac991e984ba6de034e"><td class="memItemLeft" align="right" valign="top">constexpr bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1SphereFitImpl.html#af5a67820c2c173ac991e984ba6de034e">isSigned</a> ()</td></tr>
+<tr class="memdesc:af5a67820c2c173ac991e984ba6de034e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Is scalar field signed.  <br /></td></tr>
+<tr class="separator:af5a67820c2c173ac991e984ba6de034e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adc806b6eda43103a37c4184871600466" id="r_adc806b6eda43103a37c4184871600466"><td class="memItemLeft" align="right" valign="top">const Solver &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1SphereFitImpl.html#adc806b6eda43103a37c4184871600466">solver</a> () const</td></tr>
+<tr class="separator:adc806b6eda43103a37c4184871600466"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-types" name="pro-types"></a>
 Protected Types</h2></td></tr>
 <tr class="memitem:a17da0010e0df35274ad0a99ed72d9628" id="r_a17da0010e0df35274ad0a99ed72d9628"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom">{ <b>Check</b> = Base::PROVIDES_ALGEBRAIC_SPHERE
  }</td></tr>
 <tr class="separator:a17da0010e0df35274ad0a99ed72d9628"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a78348bd199cdeee9b5df5e9f8a9f6717" id="r_a78348bd199cdeee9b5df5e9f8a9f6717"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1SphereFitImpl.html#a78348bd199cdeee9b5df5e9f8a9f6717">Base</a> = T</td></tr>
-<tr class="memdesc:a78348bd199cdeee9b5df5e9f8a9f6717"><td class="mdescLeft">&#160;</td><td class="mdescRight">Base class of the procedure.  <br /></td></tr>
-<tr class="separator:a78348bd199cdeee9b5df5e9f8a9f6717"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a96af8b20983f7f6b8a5ab617f3999c86" id="r_a96af8b20983f7f6b8a5ab617f3999c86"><td class="memItemLeft" align="right" valign="top">typedef Eigen::Matrix&lt; <a class="el" href="classPonca_1_1SphereFitImpl.html#a46860628ec6f220ee8577b4ce41f4031">Scalar</a>, DataPoint::Dim+2, 1 &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1SphereFitImpl.html#a96af8b20983f7f6b8a5ab617f3999c86">VectorA</a></td></tr>
-<tr class="separator:a96af8b20983f7f6b8a5ab617f3999c86"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0c65eab33e04639fb42e771b58c79e7d" id="r_a0c65eab33e04639fb42e771b58c79e7d"><td class="memItemLeft" align="right" valign="top">typedef Eigen::Matrix&lt; <a class="el" href="classPonca_1_1SphereFitImpl.html#a46860628ec6f220ee8577b4ce41f4031">Scalar</a>, DataPoint::Dim+2, DataPoint::Dim+2 &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1SphereFitImpl.html#a0c65eab33e04639fb42e771b58c79e7d">MatrixA</a></td></tr>
-<tr class="separator:a0c65eab33e04639fb42e771b58c79e7d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2e63bb0b40044b20ce8c7034709989f4" id="r_a2e63bb0b40044b20ce8c7034709989f4"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1SphereFitImpl.html#a2e63bb0b40044b20ce8c7034709989f4">Base</a> = T</td></tr>
+<tr class="memdesc:a2e63bb0b40044b20ce8c7034709989f4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Base class of the procedure.  <br /></td></tr>
+<tr class="separator:a2e63bb0b40044b20ce8c7034709989f4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4284959c4e33aef22dfbfbd6c4ad0b42" id="r_a4284959c4e33aef22dfbfbd6c4ad0b42"><td class="memItemLeft" align="right" valign="top">typedef Eigen::Matrix&lt; <a class="el" href="classPonca_1_1SphereFitImpl.html#a08414e7b508872852438fcf7ae6057d9">Scalar</a>, DataPoint::Dim+2, 1 &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1SphereFitImpl.html#a4284959c4e33aef22dfbfbd6c4ad0b42">VectorA</a></td></tr>
+<tr class="separator:a4284959c4e33aef22dfbfbd6c4ad0b42"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae6afa1f358a96529010a912c48668bb3" id="r_ae6afa1f358a96529010a912c48668bb3"><td class="memItemLeft" align="right" valign="top">typedef Eigen::Matrix&lt; <a class="el" href="classPonca_1_1SphereFitImpl.html#a08414e7b508872852438fcf7ae6057d9">Scalar</a>, DataPoint::Dim+2, DataPoint::Dim+2 &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1SphereFitImpl.html#ae6afa1f358a96529010a912c48668bb3">MatrixA</a></td></tr>
+<tr class="separator:ae6afa1f358a96529010a912c48668bb3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-attribs" name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
-<tr class="memitem:a1eb6ac83b61f21504abb7652be9e1773" id="r_a1eb6ac83b61f21504abb7652be9e1773"><td class="memItemLeft" align="right" valign="top">MatrixA&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1SphereFitImpl.html#a1eb6ac83b61f21504abb7652be9e1773">m_matA</a> {MatrixA::Zero()}</td></tr>
-<tr class="memdesc:a1eb6ac83b61f21504abb7652be9e1773"><td class="mdescLeft">&#160;</td><td class="mdescRight">Covariance matrix of [1, p, p^2].  <br /></td></tr>
-<tr class="separator:a1eb6ac83b61f21504abb7652be9e1773"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4dfc8f5426d0cca6ea0ab21adc2732f6" id="r_a4dfc8f5426d0cca6ea0ab21adc2732f6"><td class="memItemLeft" align="right" valign="top">Solver&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1SphereFitImpl.html#a4dfc8f5426d0cca6ea0ab21adc2732f6">m_solver</a></td></tr>
-<tr class="separator:a4dfc8f5426d0cca6ea0ab21adc2732f6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a59b41feb3d323e7a9c30df0d5eeadc59" id="r_a59b41feb3d323e7a9c30df0d5eeadc59"><td class="memItemLeft" align="right" valign="top">MatrixA&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1SphereFitImpl.html#a59b41feb3d323e7a9c30df0d5eeadc59">m_matA</a> {MatrixA::Zero()}</td></tr>
+<tr class="memdesc:a59b41feb3d323e7a9c30df0d5eeadc59"><td class="mdescLeft">&#160;</td><td class="mdescRight">Covariance matrix of [1, p, p^2].  <br /></td></tr>
+<tr class="separator:a59b41feb3d323e7a9c30df0d5eeadc59"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4108776820c570a480174ffbc5a11554" id="r_a4108776820c570a480174ffbc5a11554"><td class="memItemLeft" align="right" valign="top">Solver&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1SphereFitImpl.html#a4108776820c570a480174ffbc5a11554">m_solver</a></td></tr>
+<tr class="separator:a4108776820c570a480174ffbc5a11554"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><div class="compoundTemplParams">template&lt;class DataPoint, class _WFunctor, typename T&gt;<br />
-class Ponca::SphereFitImpl&lt; DataPoint, _WFunctor, T &gt;</div><p>Algebraic Sphere fitting procedure on point set without normals. </p>
+<div class="textblock"><div class="compoundTemplParams">template&lt;class DataPoint, class _NFilter, typename T&gt;<br />
+class Ponca::SphereFitImpl&lt; DataPoint, _NFilter, T &gt;</div><p>Algebraic Sphere fitting procedure on point set without normals. </p>
 <p>This method published in <a class="el" href="citelist.html#CITEREF_Guennebaud:2007:APSS">[6]</a> minimizes  </p><p class="formulaDsp">
 \[
     \mathcal{L}(\mathbf{u}) = \frac{1}{2} \sum_i w_i f_{\mathbf{u}}(\mathbf{x}_i)^2 = \frac{1}{2} \mathbf{u}^T A \mathbf{u}
@@ -246,19 +246,19 @@ class Ponca::SphereFitImpl&lt; DataPoint, _WFunctor, T &gt;</div><p>Algebraic Sp
 
 <p class="definition">Definition at line <a class="el" href="sphereFit_8h_source.html#l00056">56</a> of file <a class="el" href="sphereFit_8h_source.html">sphereFit.h</a>.</p>
 </div><h2 class="groupheader">Member Typedef Documentation</h2>
-<a id="a78348bd199cdeee9b5df5e9f8a9f6717" name="a78348bd199cdeee9b5df5e9f8a9f6717"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a78348bd199cdeee9b5df5e9f8a9f6717">&#9670;&#160;</a></span>Base</h2>
+<a id="a2e63bb0b40044b20ce8c7034709989f4" name="a2e63bb0b40044b20ce8c7034709989f4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2e63bb0b40044b20ce8c7034709989f4">&#9670;&#160;</a></span>Base</h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
+template&lt;class DataPoint , class _NFilter , typename T &gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">using <a class="el" href="classPonca_1_1SphereFitImpl.html">Ponca::SphereFitImpl</a>&lt; DataPoint, _WFunctor, T &gt;::Base =  T</td>
+          <td class="memname">using <a class="el" href="classPonca_1_1SphereFitImpl.html">Ponca::SphereFitImpl</a>&lt; DataPoint, _NFilter, T &gt;::Base =  T</td>
         </tr>
       </table>
   </td>
@@ -274,19 +274,19 @@ template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
 
 </div>
 </div>
-<a id="a0c65eab33e04639fb42e771b58c79e7d" name="a0c65eab33e04639fb42e771b58c79e7d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a0c65eab33e04639fb42e771b58c79e7d">&#9670;&#160;</a></span>MatrixA</h2>
+<a id="ae6afa1f358a96529010a912c48668bb3" name="ae6afa1f358a96529010a912c48668bb3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae6afa1f358a96529010a912c48668bb3">&#9670;&#160;</a></span>MatrixA</h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
+template&lt;class DataPoint , class _NFilter , typename T &gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">typedef Eigen::Matrix&lt;<a class="el" href="classPonca_1_1SphereFitImpl.html#a46860628ec6f220ee8577b4ce41f4031">Scalar</a>, DataPoint::Dim+2, DataPoint::Dim+2&gt; <a class="el" href="classPonca_1_1SphereFitImpl.html">Ponca::SphereFitImpl</a>&lt; DataPoint, _WFunctor, T &gt;::MatrixA</td>
+          <td class="memname">typedef Eigen::Matrix&lt;<a class="el" href="classPonca_1_1SphereFitImpl.html#a08414e7b508872852438fcf7ae6057d9">Scalar</a>, DataPoint::Dim+2, DataPoint::Dim+2&gt; <a class="el" href="classPonca_1_1SphereFitImpl.html">Ponca::SphereFitImpl</a>&lt; DataPoint, _NFilter, T &gt;::MatrixA</td>
         </tr>
       </table>
   </td>
@@ -300,16 +300,36 @@ template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
 
 </div>
 </div>
-<a id="a46860628ec6f220ee8577b4ce41f4031" name="a46860628ec6f220ee8577b4ce41f4031"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a46860628ec6f220ee8577b4ce41f4031">&#9670;&#160;</a></span>Scalar</h2>
+<a id="ab82b3d472017fa8f2e88ebc8280219ab" name="ab82b3d472017fa8f2e88ebc8280219ab"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab82b3d472017fa8f2e88ebc8280219ab">&#9670;&#160;</a></span>NeighborFilter</h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
+template&lt;class DataPoint , class _NFilter , typename T &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">using <a class="el" href="classPonca_1_1SphereFitImpl.html">Ponca::SphereFitImpl</a>&lt; DataPoint, _WFunctor, T &gt;::Scalar =  typename DataPoint::Scalar</td>
+          <td class="memname">using <a class="el" href="classPonca_1_1SphereFitImpl.html">Ponca::SphereFitImpl</a>&lt; DataPoint, _NFilter, T &gt;::NeighborFilter =  typename Base::NeighborFilter</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Alias to the filter applied on the neighbors. </p>
+
+<p class="definition">Definition at line <a class="el" href="sphereFit_8h_source.html#l00058">58</a> of file <a class="el" href="sphereFit_8h_source.html">sphereFit.h</a>.</p>
+
+</div>
+</div>
+<a id="a08414e7b508872852438fcf7ae6057d9" name="a08414e7b508872852438fcf7ae6057d9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a08414e7b508872852438fcf7ae6057d9">&#9670;&#160;</a></span>Scalar</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class DataPoint , class _NFilter , typename T &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="classPonca_1_1SphereFitImpl.html">Ponca::SphereFitImpl</a>&lt; DataPoint, _NFilter, T &gt;::Scalar =  typename DataPoint::Scalar</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -320,16 +340,16 @@ template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
 
 </div>
 </div>
-<a id="ab0cda002d74c5afe3a15a71cae7eebb0" name="ab0cda002d74c5afe3a15a71cae7eebb0"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ab0cda002d74c5afe3a15a71cae7eebb0">&#9670;&#160;</a></span>Solver</h2>
+<a id="a9d8da17236a062ef0cdb370993c66ebb" name="a9d8da17236a062ef0cdb370993c66ebb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9d8da17236a062ef0cdb370993c66ebb">&#9670;&#160;</a></span>Solver</h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
+template&lt;class DataPoint , class _NFilter , typename T &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">using <a class="el" href="classPonca_1_1SphereFitImpl.html">Ponca::SphereFitImpl</a>&lt; DataPoint, _WFunctor, T &gt;::Solver =  Eigen::EigenSolver&lt;MatrixA&gt;</td>
+          <td class="memname">using <a class="el" href="classPonca_1_1SphereFitImpl.html">Ponca::SphereFitImpl</a>&lt; DataPoint, _NFilter, T &gt;::Solver =  Eigen::EigenSolver&lt;MatrixA&gt;</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -338,19 +358,19 @@ template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
 
 </div>
 </div>
-<a id="a96af8b20983f7f6b8a5ab617f3999c86" name="a96af8b20983f7f6b8a5ab617f3999c86"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a96af8b20983f7f6b8a5ab617f3999c86">&#9670;&#160;</a></span>VectorA</h2>
+<a id="a4284959c4e33aef22dfbfbd6c4ad0b42" name="a4284959c4e33aef22dfbfbd6c4ad0b42"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4284959c4e33aef22dfbfbd6c4ad0b42">&#9670;&#160;</a></span>VectorA</h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
+template&lt;class DataPoint , class _NFilter , typename T &gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">typedef Eigen::Matrix&lt;<a class="el" href="classPonca_1_1SphereFitImpl.html#a46860628ec6f220ee8577b4ce41f4031">Scalar</a>, DataPoint::Dim+2, 1&gt; <a class="el" href="classPonca_1_1SphereFitImpl.html">Ponca::SphereFitImpl</a>&lt; DataPoint, _WFunctor, T &gt;::VectorA</td>
+          <td class="memname">typedef Eigen::Matrix&lt;<a class="el" href="classPonca_1_1SphereFitImpl.html#a08414e7b508872852438fcf7ae6057d9">Scalar</a>, DataPoint::Dim+2, 1&gt; <a class="el" href="classPonca_1_1SphereFitImpl.html">Ponca::SphereFitImpl</a>&lt; DataPoint, _NFilter, T &gt;::VectorA</td>
         </tr>
       </table>
   </td>
@@ -364,41 +384,21 @@ template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
 
 </div>
 </div>
-<a id="a512c58df188356f2423e029eacba019b" name="a512c58df188356f2423e029eacba019b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a512c58df188356f2423e029eacba019b">&#9670;&#160;</a></span>VectorType</h2>
+<a id="a47623b43f9f24af6dd64ac8c7c98c316" name="a47623b43f9f24af6dd64ac8c7c98c316"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a47623b43f9f24af6dd64ac8c7c98c316">&#9670;&#160;</a></span>VectorType</h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
+template&lt;class DataPoint , class _NFilter , typename T &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">using <a class="el" href="classPonca_1_1SphereFitImpl.html">Ponca::SphereFitImpl</a>&lt; DataPoint, _WFunctor, T &gt;::VectorType =  typename Base::VectorType</td>
+          <td class="memname">using <a class="el" href="classPonca_1_1SphereFitImpl.html">Ponca::SphereFitImpl</a>&lt; DataPoint, _NFilter, T &gt;::VectorType =  typename Base::VectorType</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
 <p>Alias to vector type. </p>
-
-<p class="definition">Definition at line <a class="el" href="sphereFit_8h_source.html#l00058">58</a> of file <a class="el" href="sphereFit_8h_source.html">sphereFit.h</a>.</p>
-
-</div>
-</div>
-<a id="a6447636c219a23e78e36be388637ff22" name="a6447636c219a23e78e36be388637ff22"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a6447636c219a23e78e36be388637ff22">&#9670;&#160;</a></span>WFunctor</h2>
-
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
-      <table class="memname">
-        <tr>
-          <td class="memname">using <a class="el" href="classPonca_1_1SphereFitImpl.html">Ponca::SphereFitImpl</a>&lt; DataPoint, _WFunctor, T &gt;::WFunctor =  typename Base::WFunctor</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Alias to weight function. </p>
 
 <p class="definition">Definition at line <a class="el" href="sphereFit_8h_source.html#l00058">58</a> of file <a class="el" href="sphereFit_8h_source.html">sphereFit.h</a>.</p>
 
@@ -411,7 +411,7 @@ template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
+template&lt;class DataPoint , class _NFilter , typename T &gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
@@ -438,7 +438,7 @@ template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
+template&lt;class DataPoint , class _NFilter , typename T &gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
@@ -446,13 +446,13 @@ template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
         <tr>
           <td class="memname">bool SphereFitImpl::addLocalNeighbor </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="classPonca_1_1SphereFitImpl.html#a46860628ec6f220ee8577b4ce41f4031">Scalar</a>&#160;</td>
+          <td class="paramtype"><a class="el" href="classPonca_1_1SphereFitImpl.html#a08414e7b508872852438fcf7ae6057d9">Scalar</a>&#160;</td>
           <td class="paramname"><em>w</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const <a class="el" href="classPonca_1_1SphereFitImpl.html#a512c58df188356f2423e029eacba019b">VectorType</a> &amp;&#160;</td>
+          <td class="paramtype">const <a class="el" href="classPonca_1_1SphereFitImpl.html#a47623b43f9f24af6dd64ac8c7c98c316">VectorType</a> &amp;&#160;</td>
           <td class="paramname"><em>localQ</em>, </td>
         </tr>
         <tr>
@@ -487,7 +487,7 @@ template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
+template&lt;class DataPoint , class _NFilter , typename T &gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
@@ -520,7 +520,7 @@ template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
+template&lt;class DataPoint , class _NFilter , typename T &gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
@@ -540,25 +540,25 @@ template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
 </div><div class="memdoc">
 
 <p>Set the evaluation position and reset the internal states. </p>
-<dl class="section warning"><dt>Warning</dt><dd>Must be called be for any computation (but after #setWeightFunc) </dd></dl>
+<dl class="section warning"><dt>Warning</dt><dd>Must be called be for any computation (but after #setNeighborFilter) </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="sphereFit_8hpp_source.html#l00010">10</a> of file <a class="el" href="sphereFit_8hpp_source.html">sphereFit.hpp</a>.</p>
 
 </div>
 </div>
-<a id="aa924d045fde5f106a5b95cf26fd83590" name="aa924d045fde5f106a5b95cf26fd83590"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa924d045fde5f106a5b95cf26fd83590">&#9670;&#160;</a></span>isSigned()</h2>
+<a id="af5a67820c2c173ac991e984ba6de034e" name="af5a67820c2c173ac991e984ba6de034e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af5a67820c2c173ac991e984ba6de034e">&#9670;&#160;</a></span>isSigned()</h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
+template&lt;class DataPoint , class _NFilter , typename T &gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">constexpr bool <a class="el" href="classPonca_1_1SphereFitImpl.html">Ponca::SphereFitImpl</a>&lt; DataPoint, _WFunctor, T &gt;::isSigned </td>
+          <td class="memname">constexpr bool <a class="el" href="classPonca_1_1SphereFitImpl.html">Ponca::SphereFitImpl</a>&lt; DataPoint, _NFilter, T &gt;::isSigned </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -578,19 +578,19 @@ template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
 
 </div>
 </div>
-<a id="a7bb60aed630829c7e9c8204c2955008d" name="a7bb60aed630829c7e9c8204c2955008d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a7bb60aed630829c7e9c8204c2955008d">&#9670;&#160;</a></span>solver()</h2>
+<a id="adc806b6eda43103a37c4184871600466" name="adc806b6eda43103a37c4184871600466"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adc806b6eda43103a37c4184871600466">&#9670;&#160;</a></span>solver()</h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
+template&lt;class DataPoint , class _NFilter , typename T &gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">const Solver &amp; <a class="el" href="classPonca_1_1SphereFitImpl.html">Ponca::SphereFitImpl</a>&lt; DataPoint, _WFunctor, T &gt;::solver </td>
+          <td class="memname">const Solver &amp; <a class="el" href="classPonca_1_1SphereFitImpl.html">Ponca::SphereFitImpl</a>&lt; DataPoint, _NFilter, T &gt;::solver </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td> const</td>
@@ -607,19 +607,19 @@ template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
 
 </div>
 </div>
-<a id="a66722b8ae547b85191220bc33306d40b" name="a66722b8ae547b85191220bc33306d40b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a66722b8ae547b85191220bc33306d40b">&#9670;&#160;</a></span>sphereFit() <span class="overload">[1/2]</span></h2>
+<a id="aaa6023c6d9395fbcbf35e263ff6eef14" name="aaa6023c6d9395fbcbf35e263ff6eef14"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aaa6023c6d9395fbcbf35e263ff6eef14">&#9670;&#160;</a></span>sphereFit() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
+template&lt;class DataPoint , class _NFilter , typename T &gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classPonca_1_1SphereFitImpl.html">SphereFitImpl</a>&lt; DataPoint, _WFunctor, T &gt; &amp; <a class="el" href="classPonca_1_1SphereFitImpl.html">Ponca::SphereFitImpl</a>&lt; DataPoint, _WFunctor, T &gt;::sphereFit </td>
+          <td class="memname"><a class="el" href="classPonca_1_1SphereFitImpl.html">SphereFitImpl</a>&lt; DataPoint, _NFilter, T &gt; &amp; <a class="el" href="classPonca_1_1SphereFitImpl.html">Ponca::SphereFitImpl</a>&lt; DataPoint, _NFilter, T &gt;::sphereFit </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -638,19 +638,19 @@ template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
 
 </div>
 </div>
-<a id="a84c4dbe77db905d3955e07bb9db66334" name="a84c4dbe77db905d3955e07bb9db66334"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a84c4dbe77db905d3955e07bb9db66334">&#9670;&#160;</a></span>sphereFit() <span class="overload">[2/2]</span></h2>
+<a id="a29ad69cac4697d90fb5e52f3f97ece83" name="a29ad69cac4697d90fb5e52f3f97ece83"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a29ad69cac4697d90fb5e52f3f97ece83">&#9670;&#160;</a></span>sphereFit() <span class="overload">[2/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
+template&lt;class DataPoint , class _NFilter , typename T &gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">const <a class="el" href="classPonca_1_1SphereFitImpl.html">SphereFitImpl</a>&lt; DataPoint, _WFunctor, T &gt; &amp; <a class="el" href="classPonca_1_1SphereFitImpl.html">Ponca::SphereFitImpl</a>&lt; DataPoint, _WFunctor, T &gt;::sphereFit </td>
+          <td class="memname">const <a class="el" href="classPonca_1_1SphereFitImpl.html">SphereFitImpl</a>&lt; DataPoint, _NFilter, T &gt; &amp; <a class="el" href="classPonca_1_1SphereFitImpl.html">Ponca::SphereFitImpl</a>&lt; DataPoint, _NFilter, T &gt;::sphereFit </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td> const</td>
@@ -670,19 +670,19 @@ template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
 </div>
 </div>
 <h2 class="groupheader">Member Data Documentation</h2>
-<a id="a1eb6ac83b61f21504abb7652be9e1773" name="a1eb6ac83b61f21504abb7652be9e1773"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a1eb6ac83b61f21504abb7652be9e1773">&#9670;&#160;</a></span>m_matA</h2>
+<a id="a59b41feb3d323e7a9c30df0d5eeadc59" name="a59b41feb3d323e7a9c30df0d5eeadc59"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a59b41feb3d323e7a9c30df0d5eeadc59">&#9670;&#160;</a></span>m_matA</h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
+template&lt;class DataPoint , class _NFilter , typename T &gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">MatrixA <a class="el" href="classPonca_1_1SphereFitImpl.html">Ponca::SphereFitImpl</a>&lt; DataPoint, _WFunctor, T &gt;::m_matA {MatrixA::Zero()}</td>
+          <td class="memname">MatrixA <a class="el" href="classPonca_1_1SphereFitImpl.html">Ponca::SphereFitImpl</a>&lt; DataPoint, _NFilter, T &gt;::m_matA {MatrixA::Zero()}</td>
         </tr>
       </table>
   </td>
@@ -698,19 +698,19 @@ template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
 
 </div>
 </div>
-<a id="a4dfc8f5426d0cca6ea0ab21adc2732f6" name="a4dfc8f5426d0cca6ea0ab21adc2732f6"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a4dfc8f5426d0cca6ea0ab21adc2732f6">&#9670;&#160;</a></span>m_solver</h2>
+<a id="a4108776820c570a480174ffbc5a11554" name="a4108776820c570a480174ffbc5a11554"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4108776820c570a480174ffbc5a11554">&#9670;&#160;</a></span>m_solver</h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
+template&lt;class DataPoint , class _NFilter , typename T &gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">Solver <a class="el" href="classPonca_1_1SphereFitImpl.html">Ponca::SphereFitImpl</a>&lt; DataPoint, _WFunctor, T &gt;::m_solver</td>
+          <td class="memname">Solver <a class="el" href="classPonca_1_1SphereFitImpl.html">Ponca::SphereFitImpl</a>&lt; DataPoint, _NFilter, T &gt;::m_solver</td>
         </tr>
       </table>
   </td>
@@ -730,7 +730,7 @@ template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="namespacePonca.html">Ponca</a></li><li class="navelem"><a class="el" href="classPonca_1_1SphereFitImpl.html">SphereFitImpl</a></li>
-    <li class="footer">Generated on Thu Oct 9 2025 22:33:53 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
+    <li class="footer">Generated on Thu Oct 30 2025 19:03:05 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
   </ul>
 </div>
 </body>

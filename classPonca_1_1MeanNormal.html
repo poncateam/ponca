@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.9.8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Ponca: Ponca::MeanNormal&lt; DataPoint, _WFunctor, T &gt; Class Template Reference</title>
+<title>Ponca: Ponca::MeanNormal&lt; DataPoint, _NFilter, T &gt; Class Template Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -51,7 +51,7 @@ MathJax.Hub.Config({
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Ponca
-   &#160;<span id="projectnumber">40f245e28b920cbb763a1c6282156c87c626f24c</span>
+   &#160;<span id="projectnumber">9e7681effe2c12b0af1c85fdb62680f52d835a30</span>
    </div>
    <div id="projectbrief">Point Cloud Analysis library</div>
   </td>
@@ -122,7 +122,7 @@ $(document).ready(function(){initNavTree('classPonca_1_1MeanNormal.html',''); in
 <a href="#pro-types">Protected Types</a> &#124;
 <a href="#pro-attribs">Protected Attributes</a> &#124;
 <a href="classPonca_1_1MeanNormal-members.html">List of all members</a>  </div>
-  <div class="headertitle"><div class="title">Ponca::MeanNormal&lt; DataPoint, _WFunctor, T &gt; Class Template Reference</div></div>
+  <div class="headertitle"><div class="title">Ponca::MeanNormal&lt; DataPoint, _NFilter, T &gt; Class Template Reference</div></div>
 </div><!--header-->
 <div class="contents">
 
@@ -131,87 +131,87 @@ $(document).ready(function(){initNavTree('classPonca_1_1MeanNormal.html',''); in
 
 <p><code>#include &lt;<a class="el" href="mean_8h_source.html">mean.h</a>&gt;</code></p>
 <div id="dynsection-0" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
-  <img id="dynsection-0-trigger" src="closed.png" alt="+"/> Inheritance diagram for Ponca::MeanNormal&lt; DataPoint, _WFunctor, T &gt;:</div>
+  <img id="dynsection-0-trigger" src="closed.png" alt="+"/> Inheritance diagram for Ponca::MeanNormal&lt; DataPoint, _NFilter, T &gt;:</div>
 <div id="dynsection-0-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-0-content" class="dyncontent" style="display:none;">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classPonca_1_1MeanNormal__inherit__graph.svg" width="259" height="299"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classPonca_1_1MeanNormal__inherit__graph.svg" width="250" height="299"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 <div id="dynsection-1" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
-  <img id="dynsection-1-trigger" src="closed.png" alt="+"/> Collaboration diagram for Ponca::MeanNormal&lt; DataPoint, _WFunctor, T &gt;:</div>
+  <img id="dynsection-1-trigger" src="closed.png" alt="+"/> Collaboration diagram for Ponca::MeanNormal&lt; DataPoint, _NFilter, T &gt;:</div>
 <div id="dynsection-1-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-1-content" class="dyncontent" style="display:none;">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classPonca_1_1MeanNormal__coll__graph.svg" width="259" height="299"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classPonca_1_1MeanNormal__coll__graph.svg" width="250" height="299"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-types" name="pub-types"></a>
 Public Types</h2></td></tr>
-<tr class="memitem:aae52db0f459485c961e64f772c47ba84" id="r_aae52db0f459485c961e64f772c47ba84"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1MeanNormal.html#aae52db0f459485c961e64f772c47ba84">Scalar</a> = typename DataPoint::Scalar</td></tr>
-<tr class="memdesc:aae52db0f459485c961e64f772c47ba84"><td class="mdescLeft">&#160;</td><td class="mdescRight">Alias to scalar type.  <br /></td></tr>
-<tr class="separator:aae52db0f459485c961e64f772c47ba84"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a37f400c71ef088be6043ee89bfe96c26" id="r_a37f400c71ef088be6043ee89bfe96c26"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1MeanNormal.html#a37f400c71ef088be6043ee89bfe96c26">VectorType</a> = typename Base::VectorType</td></tr>
-<tr class="memdesc:a37f400c71ef088be6043ee89bfe96c26"><td class="mdescLeft">&#160;</td><td class="mdescRight">Alias to vector type.  <br /></td></tr>
-<tr class="separator:a37f400c71ef088be6043ee89bfe96c26"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7e5925d88878ba32024d97904bdb6e08" id="r_a7e5925d88878ba32024d97904bdb6e08"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1MeanNormal.html#a7e5925d88878ba32024d97904bdb6e08">WFunctor</a> = typename Base::WFunctor</td></tr>
-<tr class="memdesc:a7e5925d88878ba32024d97904bdb6e08"><td class="mdescLeft">&#160;</td><td class="mdescRight">Alias to weight function.  <br /></td></tr>
-<tr class="separator:a7e5925d88878ba32024d97904bdb6e08"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a11368d7ef54378bbb4a714fa9af0d261" id="r_a11368d7ef54378bbb4a714fa9af0d261"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1MeanNormal.html#a11368d7ef54378bbb4a714fa9af0d261">Scalar</a> = typename DataPoint::Scalar</td></tr>
+<tr class="memdesc:a11368d7ef54378bbb4a714fa9af0d261"><td class="mdescLeft">&#160;</td><td class="mdescRight">Alias to scalar type.  <br /></td></tr>
+<tr class="separator:a11368d7ef54378bbb4a714fa9af0d261"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8df1e5ec4dd225fdfea17577114862a9" id="r_a8df1e5ec4dd225fdfea17577114862a9"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1MeanNormal.html#a8df1e5ec4dd225fdfea17577114862a9">VectorType</a> = typename Base::VectorType</td></tr>
+<tr class="memdesc:a8df1e5ec4dd225fdfea17577114862a9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Alias to vector type.  <br /></td></tr>
+<tr class="separator:a8df1e5ec4dd225fdfea17577114862a9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0e0fc04e40520d9af7f9d2e7cde822a2" id="r_a0e0fc04e40520d9af7f9d2e7cde822a2"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1MeanNormal.html#a0e0fc04e40520d9af7f9d2e7cde822a2">NeighborFilter</a> = typename Base::NeighborFilter</td></tr>
+<tr class="memdesc:a0e0fc04e40520d9af7f9d2e7cde822a2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Alias to the filter applied on the neighbors.  <br /></td></tr>
+<tr class="separator:a0e0fc04e40520d9af7f9d2e7cde822a2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:af326b3daa4a7d00a0cbacc52598fe280" id="r_af326b3daa4a7d00a0cbacc52598fe280"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classPonca_1_1MeanNormal.html">MeanNormal</a>&lt; DataPoint, _WFunctor, T &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1MeanNormal.html#af326b3daa4a7d00a0cbacc52598fe280">meanNormal</a> ()</td></tr>
-<tr class="memdesc:af326b3daa4a7d00a0cbacc52598fe280"><td class="mdescLeft">&#160;</td><td class="mdescRight">Explicit conversion to <a class="el" href="classPonca_1_1MeanNormal.html" title="Compute the barycenter of the input points + their normals.">MeanNormal</a> , to access methods potentially hidden by heritage.  <br /></td></tr>
-<tr class="separator:af326b3daa4a7d00a0cbacc52598fe280"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9d61f6ab2597bcb856a642af44e83763" id="r_a9d61f6ab2597bcb856a642af44e83763"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="classPonca_1_1MeanNormal.html">MeanNormal</a>&lt; DataPoint, _WFunctor, T &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1MeanNormal.html#a9d61f6ab2597bcb856a642af44e83763">meanNormal</a> () const</td></tr>
-<tr class="memdesc:a9d61f6ab2597bcb856a642af44e83763"><td class="mdescLeft">&#160;</td><td class="mdescRight">Explicit conversion to <a class="el" href="classPonca_1_1MeanNormal.html" title="Compute the barycenter of the input points + their normals.">MeanNormal</a> , to access methods potentially hidden by heritage.  <br /></td></tr>
-<tr class="separator:a9d61f6ab2597bcb856a642af44e83763"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a249b2213254d2c29bb0865edf833aae6" id="r_a249b2213254d2c29bb0865edf833aae6"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classPonca_1_1MeanNormal.html">MeanNormal</a>&lt; DataPoint, _NFilter, T &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1MeanNormal.html#a249b2213254d2c29bb0865edf833aae6">meanNormal</a> ()</td></tr>
+<tr class="memdesc:a249b2213254d2c29bb0865edf833aae6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Explicit conversion to <a class="el" href="classPonca_1_1MeanNormal.html" title="Compute the barycenter of the input points + their normals.">MeanNormal</a> , to access methods potentially hidden by heritage.  <br /></td></tr>
+<tr class="separator:a249b2213254d2c29bb0865edf833aae6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab8d1ebf3fa3559d73229d847d9cacc02" id="r_ab8d1ebf3fa3559d73229d847d9cacc02"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="classPonca_1_1MeanNormal.html">MeanNormal</a>&lt; DataPoint, _NFilter, T &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1MeanNormal.html#ab8d1ebf3fa3559d73229d847d9cacc02">meanNormal</a> () const</td></tr>
+<tr class="memdesc:ab8d1ebf3fa3559d73229d847d9cacc02"><td class="mdescLeft">&#160;</td><td class="mdescRight">Explicit conversion to <a class="el" href="classPonca_1_1MeanNormal.html" title="Compute the barycenter of the input points + their normals.">MeanNormal</a> , to access methods potentially hidden by heritage.  <br /></td></tr>
+<tr class="separator:ab8d1ebf3fa3559d73229d847d9cacc02"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abbe2e0084fc3287ce9684a349baaf3d4" id="r_abbe2e0084fc3287ce9684a349baaf3d4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1MeanNormal.html#abbe2e0084fc3287ce9684a349baaf3d4">init</a> ()</td></tr>
 <tr class="memdesc:abbe2e0084fc3287ce9684a349baaf3d4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the evaluation position and reset the internal states.  <br /></td></tr>
 <tr class="separator:abbe2e0084fc3287ce9684a349baaf3d4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a51e0f1aabd11c128149323e45754faa2" id="r_a51e0f1aabd11c128149323e45754faa2"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1MeanNormal.html#a51e0f1aabd11c128149323e45754faa2">addLocalNeighbor</a> (<a class="el" href="classPonca_1_1MeanNormal.html#aae52db0f459485c961e64f772c47ba84">Scalar</a> w, const <a class="el" href="classPonca_1_1MeanNormal.html#a37f400c71ef088be6043ee89bfe96c26">VectorType</a> &amp;localQ, const DataPoint &amp;attributes)</td></tr>
+<tr class="memitem:a51e0f1aabd11c128149323e45754faa2" id="r_a51e0f1aabd11c128149323e45754faa2"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1MeanNormal.html#a51e0f1aabd11c128149323e45754faa2">addLocalNeighbor</a> (<a class="el" href="classPonca_1_1MeanNormal.html#a11368d7ef54378bbb4a714fa9af0d261">Scalar</a> w, const <a class="el" href="classPonca_1_1MeanNormal.html#a8df1e5ec4dd225fdfea17577114862a9">VectorType</a> &amp;localQ, const DataPoint &amp;attributes)</td></tr>
 <tr class="memdesc:a51e0f1aabd11c128149323e45754faa2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Add a neighbor to perform the fit.  <br /></td></tr>
 <tr class="separator:a51e0f1aabd11c128149323e45754faa2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab878115c7c4788b30e6e7b8606695a1d" id="r_ab878115c7c4788b30e6e7b8606695a1d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classPonca_1_1MeanNormal.html#a37f400c71ef088be6043ee89bfe96c26">VectorType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1MeanNormal.html#ab878115c7c4788b30e6e7b8606695a1d">meanNormalVector</a> () const</td></tr>
-<tr class="memdesc:ab878115c7c4788b30e6e7b8606695a1d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Mean of the normals of the input points.  <br /></td></tr>
-<tr class="separator:ab878115c7c4788b30e6e7b8606695a1d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab405afd1df6b86368a1b98e37f74c14d" id="r_ab405afd1df6b86368a1b98e37f74c14d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classPonca_1_1MeanNormal.html#a8df1e5ec4dd225fdfea17577114862a9">VectorType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1MeanNormal.html#ab405afd1df6b86368a1b98e37f74c14d">meanNormalVector</a> () const</td></tr>
+<tr class="memdesc:ab405afd1df6b86368a1b98e37f74c14d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Mean of the normals of the input points.  <br /></td></tr>
+<tr class="separator:ab405afd1df6b86368a1b98e37f74c14d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-types" name="pro-types"></a>
 Protected Types</h2></td></tr>
 <tr class="memitem:a5b85a65d208731eb534ac95800cdf68f" id="r_a5b85a65d208731eb534ac95800cdf68f"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom">{ <b>PROVIDES_MEAN_NORMAL</b>
  }</td></tr>
 <tr class="separator:a5b85a65d208731eb534ac95800cdf68f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a78203f71a77c9c54f63c6e7f954b4838" id="r_a78203f71a77c9c54f63c6e7f954b4838"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1MeanNormal.html#a78203f71a77c9c54f63c6e7f954b4838">Base</a> = T</td></tr>
-<tr class="memdesc:a78203f71a77c9c54f63c6e7f954b4838"><td class="mdescLeft">&#160;</td><td class="mdescRight">Base class of the procedure.  <br /></td></tr>
-<tr class="separator:a78203f71a77c9c54f63c6e7f954b4838"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a254e5413e61229c55bd7a64715573614" id="r_a254e5413e61229c55bd7a64715573614"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1MeanNormal.html#a254e5413e61229c55bd7a64715573614">Base</a> = T</td></tr>
+<tr class="memdesc:a254e5413e61229c55bd7a64715573614"><td class="mdescLeft">&#160;</td><td class="mdescRight">Base class of the procedure.  <br /></td></tr>
+<tr class="separator:a254e5413e61229c55bd7a64715573614"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-attribs" name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
-<tr class="memitem:a71f3f4f71ae9d363a34e7c60ea59f728" id="r_a71f3f4f71ae9d363a34e7c60ea59f728"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classPonca_1_1MeanNormal.html#a37f400c71ef088be6043ee89bfe96c26">VectorType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1MeanNormal.html#a71f3f4f71ae9d363a34e7c60ea59f728">m_sumN</a></td></tr>
-<tr class="memdesc:a71f3f4f71ae9d363a34e7c60ea59f728"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sum of the normal vectors.  <br /></td></tr>
-<tr class="separator:a71f3f4f71ae9d363a34e7c60ea59f728"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a54f232a26169a327e218432e682c7934" id="r_a54f232a26169a327e218432e682c7934"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classPonca_1_1MeanNormal.html#a8df1e5ec4dd225fdfea17577114862a9">VectorType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1MeanNormal.html#a54f232a26169a327e218432e682c7934">m_sumN</a></td></tr>
+<tr class="memdesc:a54f232a26169a327e218432e682c7934"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sum of the normal vectors.  <br /></td></tr>
+<tr class="separator:a54f232a26169a327e218432e682c7934"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><div class="compoundTemplParams">template&lt;class DataPoint, class _WFunctor, typename T&gt;<br />
-class Ponca::MeanNormal&lt; DataPoint, _WFunctor, T &gt;</div><p>Compute the barycenter of the input points + their normals. </p>
+<div class="textblock"><div class="compoundTemplParams">template&lt;class DataPoint, class _NFilter, typename T&gt;<br />
+class Ponca::MeanNormal&lt; DataPoint, _NFilter, T &gt;</div><p>Compute the barycenter of the input points + their normals. </p>
 <dl class="section warning"><dt>Warning</dt><dd>The barycenter is not stored explicitly, but rather computed from the sum of the neighbors positions and normals.</dd></dl>
 <p>This primitive provides: </p><pre class="fragment">PROVIDES_MEAN_NORMAL </pre><dl class="section see"><dt>See also</dt><dd><a class="el" href="classPonca_1_1MeanPosition.html" title="Compute the barycenter of the input points.">MeanPosition</a></dd></dl>
 <dl class="section note"><dt>Note</dt><dd>This class should not derive from <a class="el" href="classPonca_1_1MeanPosition.html" title="Compute the barycenter of the input points.">MeanPosition</a>, as we might want to compute mean normals but without mean positions. This is done this way currently, because we do not want to duplicate the weighting functor, which is currently stored in <a class="el" href="classPonca_1_1MeanPosition.html" title="Compute the barycenter of the input points.">MeanPosition</a>.</dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="mean_8h_source.html#l00086">86</a> of file <a class="el" href="mean_8h_source.html">mean.h</a>.</p>
 </div><h2 class="groupheader">Member Typedef Documentation</h2>
-<a id="a78203f71a77c9c54f63c6e7f954b4838" name="a78203f71a77c9c54f63c6e7f954b4838"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a78203f71a77c9c54f63c6e7f954b4838">&#9670;&#160;</a></span>Base</h2>
+<a id="a254e5413e61229c55bd7a64715573614" name="a254e5413e61229c55bd7a64715573614"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a254e5413e61229c55bd7a64715573614">&#9670;&#160;</a></span>Base</h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
+template&lt;class DataPoint , class _NFilter , typename T &gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">using <a class="el" href="classPonca_1_1MeanNormal.html">Ponca::MeanNormal</a>&lt; DataPoint, _WFunctor, T &gt;::Base =  T</td>
+          <td class="memname">using <a class="el" href="classPonca_1_1MeanNormal.html">Ponca::MeanNormal</a>&lt; DataPoint, _NFilter, T &gt;::Base =  T</td>
         </tr>
       </table>
   </td>
@@ -227,16 +227,36 @@ template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
 
 </div>
 </div>
-<a id="aae52db0f459485c961e64f772c47ba84" name="aae52db0f459485c961e64f772c47ba84"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aae52db0f459485c961e64f772c47ba84">&#9670;&#160;</a></span>Scalar</h2>
+<a id="a0e0fc04e40520d9af7f9d2e7cde822a2" name="a0e0fc04e40520d9af7f9d2e7cde822a2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0e0fc04e40520d9af7f9d2e7cde822a2">&#9670;&#160;</a></span>NeighborFilter</h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
+template&lt;class DataPoint , class _NFilter , typename T &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">using <a class="el" href="classPonca_1_1MeanNormal.html">Ponca::MeanNormal</a>&lt; DataPoint, _WFunctor, T &gt;::Scalar =  typename DataPoint::Scalar</td>
+          <td class="memname">using <a class="el" href="classPonca_1_1MeanNormal.html">Ponca::MeanNormal</a>&lt; DataPoint, _NFilter, T &gt;::NeighborFilter =  typename Base::NeighborFilter</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Alias to the filter applied on the neighbors. </p>
+
+<p class="definition">Definition at line <a class="el" href="mean_8h_source.html#l00087">87</a> of file <a class="el" href="mean_8h_source.html">mean.h</a>.</p>
+
+</div>
+</div>
+<a id="a11368d7ef54378bbb4a714fa9af0d261" name="a11368d7ef54378bbb4a714fa9af0d261"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a11368d7ef54378bbb4a714fa9af0d261">&#9670;&#160;</a></span>Scalar</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class DataPoint , class _NFilter , typename T &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="classPonca_1_1MeanNormal.html">Ponca::MeanNormal</a>&lt; DataPoint, _NFilter, T &gt;::Scalar =  typename DataPoint::Scalar</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -247,41 +267,21 @@ template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
 
 </div>
 </div>
-<a id="a37f400c71ef088be6043ee89bfe96c26" name="a37f400c71ef088be6043ee89bfe96c26"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a37f400c71ef088be6043ee89bfe96c26">&#9670;&#160;</a></span>VectorType</h2>
+<a id="a8df1e5ec4dd225fdfea17577114862a9" name="a8df1e5ec4dd225fdfea17577114862a9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8df1e5ec4dd225fdfea17577114862a9">&#9670;&#160;</a></span>VectorType</h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
+template&lt;class DataPoint , class _NFilter , typename T &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">using <a class="el" href="classPonca_1_1MeanNormal.html">Ponca::MeanNormal</a>&lt; DataPoint, _WFunctor, T &gt;::VectorType =  typename Base::VectorType</td>
+          <td class="memname">using <a class="el" href="classPonca_1_1MeanNormal.html">Ponca::MeanNormal</a>&lt; DataPoint, _NFilter, T &gt;::VectorType =  typename Base::VectorType</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
 <p>Alias to vector type. </p>
-
-<p class="definition">Definition at line <a class="el" href="mean_8h_source.html#l00087">87</a> of file <a class="el" href="mean_8h_source.html">mean.h</a>.</p>
-
-</div>
-</div>
-<a id="a7e5925d88878ba32024d97904bdb6e08" name="a7e5925d88878ba32024d97904bdb6e08"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a7e5925d88878ba32024d97904bdb6e08">&#9670;&#160;</a></span>WFunctor</h2>
-
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
-      <table class="memname">
-        <tr>
-          <td class="memname">using <a class="el" href="classPonca_1_1MeanNormal.html">Ponca::MeanNormal</a>&lt; DataPoint, _WFunctor, T &gt;::WFunctor =  typename Base::WFunctor</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Alias to weight function. </p>
 
 <p class="definition">Definition at line <a class="el" href="mean_8h_source.html#l00087">87</a> of file <a class="el" href="mean_8h_source.html">mean.h</a>.</p>
 
@@ -294,7 +294,7 @@ template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
+template&lt;class DataPoint , class _NFilter , typename T &gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
@@ -321,7 +321,7 @@ template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
+template&lt;class DataPoint , class _NFilter , typename T &gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
@@ -329,13 +329,13 @@ template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
         <tr>
           <td class="memname">bool MeanNormal::addLocalNeighbor </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="classPonca_1_1MeanNormal.html#aae52db0f459485c961e64f772c47ba84">Scalar</a>&#160;</td>
+          <td class="paramtype"><a class="el" href="classPonca_1_1MeanNormal.html#a11368d7ef54378bbb4a714fa9af0d261">Scalar</a>&#160;</td>
           <td class="paramname"><em>w</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const <a class="el" href="classPonca_1_1MeanNormal.html#a37f400c71ef088be6043ee89bfe96c26">VectorType</a> &amp;&#160;</td>
+          <td class="paramtype">const <a class="el" href="classPonca_1_1MeanNormal.html#a8df1e5ec4dd225fdfea17577114862a9">VectorType</a> &amp;&#160;</td>
           <td class="paramname"><em>localQ</em>, </td>
         </tr>
         <tr>
@@ -370,7 +370,7 @@ template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
+template&lt;class DataPoint , class _NFilter , typename T &gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
@@ -390,25 +390,25 @@ template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
 </div><div class="memdoc">
 
 <p>Set the evaluation position and reset the internal states. </p>
-<dl class="section warning"><dt>Warning</dt><dd>Must be called be for any computation (but after #setWeightFunc) </dd></dl>
+<dl class="section warning"><dt>Warning</dt><dd>Must be called be for any computation (but after #setNeighborFilter) </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="mean_8hpp_source.html#l00031">31</a> of file <a class="el" href="mean_8hpp_source.html">mean.hpp</a>.</p>
 
 </div>
 </div>
-<a id="af326b3daa4a7d00a0cbacc52598fe280" name="af326b3daa4a7d00a0cbacc52598fe280"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af326b3daa4a7d00a0cbacc52598fe280">&#9670;&#160;</a></span>meanNormal() <span class="overload">[1/2]</span></h2>
+<a id="a249b2213254d2c29bb0865edf833aae6" name="a249b2213254d2c29bb0865edf833aae6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a249b2213254d2c29bb0865edf833aae6">&#9670;&#160;</a></span>meanNormal() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
+template&lt;class DataPoint , class _NFilter , typename T &gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classPonca_1_1MeanNormal.html">MeanNormal</a>&lt; DataPoint, _WFunctor, T &gt; &amp; <a class="el" href="classPonca_1_1MeanNormal.html">Ponca::MeanNormal</a>&lt; DataPoint, _WFunctor, T &gt;::meanNormal </td>
+          <td class="memname"><a class="el" href="classPonca_1_1MeanNormal.html">MeanNormal</a>&lt; DataPoint, _NFilter, T &gt; &amp; <a class="el" href="classPonca_1_1MeanNormal.html">Ponca::MeanNormal</a>&lt; DataPoint, _NFilter, T &gt;::meanNormal </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -427,19 +427,19 @@ template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
 
 </div>
 </div>
-<a id="a9d61f6ab2597bcb856a642af44e83763" name="a9d61f6ab2597bcb856a642af44e83763"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a9d61f6ab2597bcb856a642af44e83763">&#9670;&#160;</a></span>meanNormal() <span class="overload">[2/2]</span></h2>
+<a id="ab8d1ebf3fa3559d73229d847d9cacc02" name="ab8d1ebf3fa3559d73229d847d9cacc02"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab8d1ebf3fa3559d73229d847d9cacc02">&#9670;&#160;</a></span>meanNormal() <span class="overload">[2/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
+template&lt;class DataPoint , class _NFilter , typename T &gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">const <a class="el" href="classPonca_1_1MeanNormal.html">MeanNormal</a>&lt; DataPoint, _WFunctor, T &gt; &amp; <a class="el" href="classPonca_1_1MeanNormal.html">Ponca::MeanNormal</a>&lt; DataPoint, _WFunctor, T &gt;::meanNormal </td>
+          <td class="memname">const <a class="el" href="classPonca_1_1MeanNormal.html">MeanNormal</a>&lt; DataPoint, _NFilter, T &gt; &amp; <a class="el" href="classPonca_1_1MeanNormal.html">Ponca::MeanNormal</a>&lt; DataPoint, _NFilter, T &gt;::meanNormal </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td> const</td>
@@ -458,19 +458,19 @@ template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
 
 </div>
 </div>
-<a id="ab878115c7c4788b30e6e7b8606695a1d" name="ab878115c7c4788b30e6e7b8606695a1d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ab878115c7c4788b30e6e7b8606695a1d">&#9670;&#160;</a></span>meanNormalVector()</h2>
+<a id="ab405afd1df6b86368a1b98e37f74c14d" name="ab405afd1df6b86368a1b98e37f74c14d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab405afd1df6b86368a1b98e37f74c14d">&#9670;&#160;</a></span>meanNormalVector()</h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
+template&lt;class DataPoint , class _NFilter , typename T &gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classPonca_1_1MeanNormal.html#a37f400c71ef088be6043ee89bfe96c26">VectorType</a> <a class="el" href="classPonca_1_1MeanNormal.html">Ponca::MeanNormal</a>&lt; DataPoint, _WFunctor, T &gt;::meanNormalVector </td>
+          <td class="memname"><a class="el" href="classPonca_1_1MeanNormal.html#a8df1e5ec4dd225fdfea17577114862a9">VectorType</a> <a class="el" href="classPonca_1_1MeanNormal.html">Ponca::MeanNormal</a>&lt; DataPoint, _NFilter, T &gt;::meanNormalVector </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td> const</td>
@@ -491,19 +491,19 @@ template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
 </div>
 </div>
 <h2 class="groupheader">Member Data Documentation</h2>
-<a id="a71f3f4f71ae9d363a34e7c60ea59f728" name="a71f3f4f71ae9d363a34e7c60ea59f728"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a71f3f4f71ae9d363a34e7c60ea59f728">&#9670;&#160;</a></span>m_sumN</h2>
+<a id="a54f232a26169a327e218432e682c7934" name="a54f232a26169a327e218432e682c7934"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a54f232a26169a327e218432e682c7934">&#9670;&#160;</a></span>m_sumN</h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
+template&lt;class DataPoint , class _NFilter , typename T &gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classPonca_1_1MeanNormal.html#a37f400c71ef088be6043ee89bfe96c26">VectorType</a> <a class="el" href="classPonca_1_1MeanNormal.html">Ponca::MeanNormal</a>&lt; DataPoint, _WFunctor, T &gt;::m_sumN</td>
+          <td class="memname"><a class="el" href="classPonca_1_1MeanNormal.html#a8df1e5ec4dd225fdfea17577114862a9">VectorType</a> <a class="el" href="classPonca_1_1MeanNormal.html">Ponca::MeanNormal</a>&lt; DataPoint, _NFilter, T &gt;::m_sumN</td>
         </tr>
       </table>
   </td>
@@ -525,7 +525,7 @@ template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="namespacePonca.html">Ponca</a></li><li class="navelem"><a class="el" href="classPonca_1_1MeanNormal.html">MeanNormal</a></li>
-    <li class="footer">Generated on Thu Oct 9 2025 22:33:52 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
+    <li class="footer">Generated on Thu Oct 30 2025 19:03:05 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
   </ul>
 </div>
 </body>

@@ -1,14 +1,14 @@
 var classPonca_1_1SphereFitImpl =
 [
-    [ "Base", "classPonca_1_1SphereFitImpl.html#a78348bd199cdeee9b5df5e9f8a9f6717", null ],
-    [ "Scalar", "classPonca_1_1SphereFitImpl.html#a46860628ec6f220ee8577b4ce41f4031", null ],
-    [ "VectorType", "classPonca_1_1SphereFitImpl.html#a512c58df188356f2423e029eacba019b", null ],
-    [ "WFunctor", "classPonca_1_1SphereFitImpl.html#a6447636c219a23e78e36be388637ff22", null ],
+    [ "Base", "classPonca_1_1SphereFitImpl.html#a2e63bb0b40044b20ce8c7034709989f4", null ],
+    [ "NeighborFilter", "classPonca_1_1SphereFitImpl.html#ab82b3d472017fa8f2e88ebc8280219ab", null ],
+    [ "Scalar", "classPonca_1_1SphereFitImpl.html#a08414e7b508872852438fcf7ae6057d9", null ],
+    [ "VectorType", "classPonca_1_1SphereFitImpl.html#a47623b43f9f24af6dd64ac8c7c98c316", null ],
     [ "addLocalNeighbor", "classPonca_1_1SphereFitImpl.html#a5a6da62efb2f00d74bd10543000c0f61", null ],
     [ "finalize", "classPonca_1_1SphereFitImpl.html#afec608609ed7d45186a810d7379b0a90", null ],
     [ "init", "classPonca_1_1SphereFitImpl.html#a4ac74122615fe2fd1ebe0a3f0228b4bd", null ],
-    [ "isSigned", "classPonca_1_1SphereFitImpl.html#aa924d045fde5f106a5b95cf26fd83590", null ],
-    [ "sphereFit", "classPonca_1_1SphereFitImpl.html#a66722b8ae547b85191220bc33306d40b", null ],
-    [ "sphereFit", "classPonca_1_1SphereFitImpl.html#a84c4dbe77db905d3955e07bb9db66334", null ],
-    [ "m_matA", "classPonca_1_1SphereFitImpl.html#a1eb6ac83b61f21504abb7652be9e1773", null ]
+    [ "isSigned", "classPonca_1_1SphereFitImpl.html#af5a67820c2c173ac991e984ba6de034e", null ],
+    [ "sphereFit", "classPonca_1_1SphereFitImpl.html#aaa6023c6d9395fbcbf35e263ff6eef14", null ],
+    [ "sphereFit", "classPonca_1_1SphereFitImpl.html#a29ad69cac4697d90fb5e52f3f97ece83", null ],
+    [ "m_matA", "classPonca_1_1SphereFitImpl.html#a59b41feb3d323e7a9c30df0d5eeadc59", null ]
 ];

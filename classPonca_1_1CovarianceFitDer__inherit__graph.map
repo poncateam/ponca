@@ -1,4 +1,4 @@
-<map id="Ponca::CovarianceFitDer&lt; DataPoint, _WFunctor, DiffType, T &gt;" name="Ponca::CovarianceFitDer&lt; DataPoint, _WFunctor, DiffType, T &gt;">
+<map id="Ponca::CovarianceFitDer&lt; DataPoint, _NFilter, DiffType, T &gt;" name="Ponca::CovarianceFitDer&lt; DataPoint, _NFilter, DiffType, T &gt;">
 <area shape="rect" id="Node000001" title="Internal generic class computing the derivatives of covariance matrix computed by CovarianceFitBase." alt="" coords="71,133,245,308"/>
 <area shape="rect" id="Node000002" title=" " alt="" coords="5,5,185,85"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="116,97,129,132,124,134,111,99"/>

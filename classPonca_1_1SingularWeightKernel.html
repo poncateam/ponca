@@ -51,7 +51,7 @@ MathJax.Hub.Config({
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Ponca
-   &#160;<span id="projectnumber">40f245e28b920cbb763a1c6282156c87c626f24c</span>
+   &#160;<span id="projectnumber">9e7681effe2c12b0af1c85fdb62680f52d835a30</span>
    </div>
    <div id="projectbrief">Point Cloud Analysis library</div>
   </td>
@@ -125,7 +125,7 @@ $(document).ready(function(){initNavTree('classPonca_1_1SingularWeightKernel.htm
 </div><!--header-->
 <div class="contents">
 
-<p>Singular WeightKernel defined in \(\left]0 : 1\right]\).  
+<p>Compact singular WeightKernel defined in \(\left]0 : 1\right]\).  
  <a href="classPonca_1_1SingularWeightKernel.html#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="weightKernel_8h_source.html">weightKernel.h</a>&gt;</code></p>
@@ -134,14 +134,14 @@ $(document).ready(function(){initNavTree('classPonca_1_1SingularWeightKernel.htm
 <div id="dynsection-0-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-0-content" class="dyncontent" style="display:none;">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classPonca_1_1SingularWeightKernel__inherit__graph.svg" width="226" height="264"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classPonca_1_1SingularWeightKernel__inherit__graph.svg" width="226" height="284"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 <div id="dynsection-1" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-1-trigger" src="closed.png" alt="+"/> Collaboration diagram for Ponca::SingularWeightKernel&lt; _Scalar &gt;:</div>
 <div id="dynsection-1-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-1-content" class="dyncontent" style="display:none;">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classPonca_1_1SingularWeightKernel__coll__graph.svg" width="226" height="264"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classPonca_1_1SingularWeightKernel__coll__graph.svg" width="226" height="284"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-types" name="pub-types"></a>
@@ -164,6 +164,9 @@ Public Member Functions</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-static-attribs" name="pub-static-attribs"></a>
 Static Public Attributes</h2></td></tr>
+<tr class="memitem:a9972b2ea3062c7a458f643d9d415d6a7" id="r_a9972b2ea3062c7a458f643d9d415d6a7"><td class="memItemLeft" align="right" valign="top">static constexpr bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1SingularWeightKernel.html#a9972b2ea3062c7a458f643d9d415d6a7">isCompact</a> = true</td></tr>
+<tr class="memdesc:a9972b2ea3062c7a458f643d9d415d6a7"><td class="mdescLeft">&#160;</td><td class="mdescRight">The kernel is compact and shall not be evaluated outside of the scale bounds.  <br /></td></tr>
+<tr class="separator:a9972b2ea3062c7a458f643d9d415d6a7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad995f036ece9fbf1bd387cc87da47e7b" id="r_ad995f036ece9fbf1bd387cc87da47e7b"><td class="memItemLeft" align="right" valign="top">static constexpr bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1SingularWeightKernel.html#ad995f036ece9fbf1bd387cc87da47e7b">isDValid</a> = true</td></tr>
 <tr class="memdesc:ad995f036ece9fbf1bd387cc87da47e7b"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="classPonca_1_1SingularWeightKernel.html#a2c94bf86ef5ba090000d51cd5c719cfb" title="Defines the Singular first order weighting function .">df</a> is defined and valid on the definition interval  <br /></td></tr>
 <tr class="separator:ad995f036ece9fbf1bd387cc87da47e7b"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -173,10 +176,10 @@ Static Public Attributes</h2></td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><div class="compoundTemplParams">template&lt;typename _Scalar&gt;<br />
-class Ponca::SingularWeightKernel&lt; _Scalar &gt;</div><p>Singular WeightKernel defined in \(\left]0 : 1\right]\). </p>
+class Ponca::SingularWeightKernel&lt; _Scalar &gt;</div><p>Compact singular WeightKernel defined in \(\left]0 : 1\right]\). </p>
 <p>Weight function is an implementation of an unnumbered equation but defined in the Appendices in <a class="el" href="citelist.html#CITEREF_Alexa:2009:Hermite">[1]</a> </p>
 
-<p class="definition">Definition at line <a class="el" href="weightKernel_8h_source.html#l00181">181</a> of file <a class="el" href="weightKernel_8h_source.html">weightKernel.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="weightKernel_8h_source.html#l00193">193</a> of file <a class="el" href="weightKernel_8h_source.html">weightKernel.h</a>.</p>
 </div><h2 class="groupheader">Member Typedef Documentation</h2>
 <a id="a5e329db2bc750f0155bb5801a26d316d" name="a5e329db2bc750f0155bb5801a26d316d"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a5e329db2bc750f0155bb5801a26d316d">&#9670;&#160;</a></span>Scalar</h2>
@@ -194,7 +197,7 @@ template&lt;typename _Scalar &gt; </div>
 
 <p>Scalar type defined outside the class. </p>
 
-<p class="definition">Definition at line <a class="el" href="weightKernel_8h_source.html#l00185">185</a> of file <a class="el" href="weightKernel_8h_source.html">weightKernel.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="weightKernel_8h_source.html#l00197">197</a> of file <a class="el" href="weightKernel_8h_source.html">weightKernel.h</a>.</p>
 
 </div>
 </div>
@@ -227,7 +230,7 @@ template&lt;typename _Scalar &gt; </div>
 
 <p>Defines the Singular second order weighting function \( \nabla^2 w(x) = 6 / (x^4) \). </p>
 
-<p class="definition">Definition at line <a class="el" href="weightKernel_8h_source.html#l00197">197</a> of file <a class="el" href="weightKernel_8h_source.html">weightKernel.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="weightKernel_8h_source.html#l00212">212</a> of file <a class="el" href="weightKernel_8h_source.html">weightKernel.h</a>.</p>
 
 </div>
 </div>
@@ -259,7 +262,7 @@ template&lt;typename _Scalar &gt; </div>
 
 <p>Defines the Singular first order weighting function \( \nabla w(x) = -2 / (x^3) \). </p>
 
-<p class="definition">Definition at line <a class="el" href="weightKernel_8h_source.html#l00193">193</a> of file <a class="el" href="weightKernel_8h_source.html">weightKernel.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="weightKernel_8h_source.html#l00208">208</a> of file <a class="el" href="weightKernel_8h_source.html">weightKernel.h</a>.</p>
 
 </div>
 </div>
@@ -291,11 +294,39 @@ template&lt;typename _Scalar &gt; </div>
 
 <p>Defines the Singular weighting function \( w(x) = 1 / (x^2) \). </p>
 
-<p class="definition">Definition at line <a class="el" href="weightKernel_8h_source.html#l00189">189</a> of file <a class="el" href="weightKernel_8h_source.html">weightKernel.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="weightKernel_8h_source.html#l00204">204</a> of file <a class="el" href="weightKernel_8h_source.html">weightKernel.h</a>.</p>
 
 </div>
 </div>
 <h2 class="groupheader">Member Data Documentation</h2>
+<a id="a9972b2ea3062c7a458f643d9d415d6a7" name="a9972b2ea3062c7a458f643d9d415d6a7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9972b2ea3062c7a458f643d9d415d6a7">&#9670;&#160;</a></span>isCompact</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename _Scalar &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr bool <a class="el" href="classPonca_1_1SingularWeightKernel.html">Ponca::SingularWeightKernel</a>&lt; _Scalar &gt;::isCompact = true</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span><span class="mlabel">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>The kernel is compact and shall not be evaluated outside of the scale bounds. </p>
+
+<p class="definition">Definition at line <a class="el" href="weightKernel_8h_source.html#l00200">200</a> of file <a class="el" href="weightKernel_8h_source.html">weightKernel.h</a>.</p>
+
+</div>
+</div>
 <a id="a28fdff168d198abb7476776355ec38a5" name="a28fdff168d198abb7476776355ec38a5"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a28fdff168d198abb7476776355ec38a5">&#9670;&#160;</a></span>isDDValid</h2>
 
@@ -320,7 +351,7 @@ template&lt;typename _Scalar &gt; </div>
 
 <p><a class="el" href="classPonca_1_1SingularWeightKernel.html#a04c7cd551c2cf50b736b4472e1e6e3dc" title="Defines the Singular second order weighting function .">ddf</a> is defined and valid on the definition interval </p>
 
-<p class="definition">Definition at line <a class="el" href="weightKernel_8h_source.html#l00203">203</a> of file <a class="el" href="weightKernel_8h_source.html">weightKernel.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="weightKernel_8h_source.html#l00218">218</a> of file <a class="el" href="weightKernel_8h_source.html">weightKernel.h</a>.</p>
 
 </div>
 </div>
@@ -348,7 +379,7 @@ template&lt;typename _Scalar &gt; </div>
 
 <p><a class="el" href="classPonca_1_1SingularWeightKernel.html#a2c94bf86ef5ba090000d51cd5c719cfb" title="Defines the Singular first order weighting function .">df</a> is defined and valid on the definition interval </p>
 
-<p class="definition">Definition at line <a class="el" href="weightKernel_8h_source.html#l00201">201</a> of file <a class="el" href="weightKernel_8h_source.html">weightKernel.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="weightKernel_8h_source.html#l00216">216</a> of file <a class="el" href="weightKernel_8h_source.html">weightKernel.h</a>.</p>
 
 </div>
 </div>
@@ -358,7 +389,7 @@ template&lt;typename _Scalar &gt; </div>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="namespacePonca.html">Ponca</a></li><li class="navelem"><a class="el" href="classPonca_1_1SingularWeightKernel.html">SingularWeightKernel</a></li>
-    <li class="footer">Generated on Thu Oct 9 2025 22:33:53 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
+    <li class="footer">Generated on Thu Oct 30 2025 19:03:05 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
   </ul>
 </div>
 </body>

@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.9.8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Ponca: Ponca::Basket&lt; P, W, Ext0, Exts &gt; Class Template Reference</title>
+<title>Ponca: Ponca::Basket&lt; P, NF, Ext0, Exts &gt; Class Template Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -51,7 +51,7 @@ MathJax.Hub.Config({
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Ponca
-   &#160;<span id="projectnumber">40f245e28b920cbb763a1c6282156c87c626f24c</span>
+   &#160;<span id="projectnumber">9e7681effe2c12b0af1c85fdb62680f52d835a30</span>
    </div>
    <div id="projectbrief">Point Cloud Analysis library</div>
   </td>
@@ -120,7 +120,7 @@ $(document).ready(function(){initNavTree('classPonca_1_1Basket.html',''); initRe
 <a href="#pub-types">Public Types</a> &#124;
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="classPonca_1_1Basket-members.html">List of all members</a>  </div>
-  <div class="headertitle"><div class="title">Ponca::Basket&lt; P, W, Ext0, Exts &gt; Class Template Reference</div></div>
+  <div class="headertitle"><div class="title">Ponca::Basket&lt; P, NF, Ext0, Exts &gt; Class Template Reference</div></div>
 </div><!--header-->
 <div class="contents">
 
@@ -129,14 +129,14 @@ $(document).ready(function(){initNavTree('classPonca_1_1Basket.html',''); initRe
 
 <p><code>#include &lt;<a class="el" href="basket_8h_source.html">basket.h</a>&gt;</code></p>
 <div id="dynsection-0" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
-  <img id="dynsection-0-trigger" src="closed.png" alt="+"/> Inheritance diagram for Ponca::Basket&lt; P, W, Ext0, Exts &gt;:</div>
+  <img id="dynsection-0-trigger" src="closed.png" alt="+"/> Inheritance diagram for Ponca::Basket&lt; P, NF, Ext0, Exts &gt;:</div>
 <div id="dynsection-0-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-0-content" class="dyncontent" style="display:none;">
 <div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="classPonca_1_1Basket__inherit__graph.svg" width="100%" height="600"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div></div>
 </div>
 <div id="dynsection-1" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
-  <img id="dynsection-1-trigger" src="closed.png" alt="+"/> Collaboration diagram for Ponca::Basket&lt; P, W, Ext0, Exts &gt;:</div>
+  <img id="dynsection-1-trigger" src="closed.png" alt="+"/> Collaboration diagram for Ponca::Basket&lt; P, NF, Ext0, Exts &gt;:</div>
 <div id="dynsection-1-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-1-content" class="dyncontent" style="display:none;">
@@ -145,24 +145,24 @@ $(document).ready(function(){initNavTree('classPonca_1_1Basket.html',''); initRe
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-types" name="pub-types"></a>
 Public Types</h2></td></tr>
-<tr class="memitem:ae98b6b8c88b049c7f3643e886b1acc3f" id="r_ae98b6b8c88b049c7f3643e886b1acc3f"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1Basket.html#ae98b6b8c88b049c7f3643e886b1acc3f">Base</a> = typename internal::BasketAggregate&lt; P, W, Ext0, Exts... &gt;::type</td></tr>
-<tr class="memdesc:ae98b6b8c88b049c7f3643e886b1acc3f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Base type, which aggregates all the computational objects using the CRTP.  <br /></td></tr>
-<tr class="separator:ae98b6b8c88b049c7f3643e886b1acc3f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa3057b699ee6345c523f436fa2c39c91" id="r_aa3057b699ee6345c523f436fa2c39c91"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1Basket.html#aa3057b699ee6345c523f436fa2c39c91">Scalar</a> = typename P::Scalar</td></tr>
-<tr class="memdesc:aa3057b699ee6345c523f436fa2c39c91"><td class="mdescLeft">&#160;</td><td class="mdescRight">Scalar type used for computation, as defined from template parameter <code>P</code>  <br /></td></tr>
-<tr class="separator:aa3057b699ee6345c523f436fa2c39c91"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a60ea1aaf83bece9f6c070afec5222a4f" id="r_a60ea1aaf83bece9f6c070afec5222a4f"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1Basket.html#a60ea1aaf83bece9f6c070afec5222a4f">VectorType</a> = typename P::VectorType</td></tr>
-<tr class="separator:a60ea1aaf83bece9f6c070afec5222a4f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4c962002c1d8204e09ece679f103fca7" id="r_a4c962002c1d8204e09ece679f103fca7"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1Basket.html#a4c962002c1d8204e09ece679f103fca7">DataPoint</a> = P</td></tr>
-<tr class="memdesc:a4c962002c1d8204e09ece679f103fca7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Point type used for computation.  <br /></td></tr>
-<tr class="separator:a4c962002c1d8204e09ece679f103fca7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0e271beada694952846c2885e3bda897" id="r_a0e271beada694952846c2885e3bda897"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1Basket.html#a0e271beada694952846c2885e3bda897">WeightFunction</a> = W</td></tr>
-<tr class="memdesc:a0e271beada694952846c2885e3bda897"><td class="mdescLeft">&#160;</td><td class="mdescRight">Weighting function.  <br /></td></tr>
-<tr class="separator:a0e271beada694952846c2885e3bda897"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="inherit_header pub_types_structPonca_1_1BasketComputeObject"><td colspan="2" onclick="javascript:toggleInherit('pub_types_structPonca_1_1BasketComputeObject')"><img src="closed.png" alt="-"/>&#160;Public Types inherited from <a class="el" href="structPonca_1_1BasketComputeObject.html">Ponca::BasketComputeObject&lt; Basket&lt; P, W, Ext0, Exts... &gt;, internal::BasketAggregate&lt; P, W, Ext0, Exts... &gt;::type &gt;</a></td></tr>
-<tr class="memitem:a0fe5976dc9e433855300b6f7e9d0ff72 inherit pub_types_structPonca_1_1BasketComputeObject" id="r_a0fe5976dc9e433855300b6f7e9d0ff72"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structPonca_1_1BasketComputeObject.html#a0fe5976dc9e433855300b6f7e9d0ff72">Base</a> = internal::BasketAggregate&lt; P, W, Ext0, Exts... &gt;::type</td></tr>
+<tr class="memitem:a00aba788f149092e3032e109d4ed0c52" id="r_a00aba788f149092e3032e109d4ed0c52"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1Basket.html#a00aba788f149092e3032e109d4ed0c52">Base</a> = typename internal::BasketAggregate&lt; P, NF, Ext0, Exts... &gt;::type</td></tr>
+<tr class="memdesc:a00aba788f149092e3032e109d4ed0c52"><td class="mdescLeft">&#160;</td><td class="mdescRight">Base type, which aggregates all the computational objects using the CRTP.  <br /></td></tr>
+<tr class="separator:a00aba788f149092e3032e109d4ed0c52"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab08e85c1c9d83a892d6dc3beeb593e2d" id="r_ab08e85c1c9d83a892d6dc3beeb593e2d"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1Basket.html#ab08e85c1c9d83a892d6dc3beeb593e2d">Scalar</a> = typename P::Scalar</td></tr>
+<tr class="memdesc:ab08e85c1c9d83a892d6dc3beeb593e2d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Scalar type used for computation, as defined from template parameter <code>P</code>  <br /></td></tr>
+<tr class="separator:ab08e85c1c9d83a892d6dc3beeb593e2d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7cc1f083f7700e4f5ed12b21d89e2e0b" id="r_a7cc1f083f7700e4f5ed12b21d89e2e0b"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1Basket.html#a7cc1f083f7700e4f5ed12b21d89e2e0b">VectorType</a> = typename P::VectorType</td></tr>
+<tr class="separator:a7cc1f083f7700e4f5ed12b21d89e2e0b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4e7ea1fd0f8d760217e60c1feaabf7b0" id="r_a4e7ea1fd0f8d760217e60c1feaabf7b0"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1Basket.html#a4e7ea1fd0f8d760217e60c1feaabf7b0">DataPoint</a> = P</td></tr>
+<tr class="memdesc:a4e7ea1fd0f8d760217e60c1feaabf7b0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Point type used for computation.  <br /></td></tr>
+<tr class="separator:a4e7ea1fd0f8d760217e60c1feaabf7b0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac2383b4705dfdfd08c08c0d0d7567bbd" id="r_ac2383b4705dfdfd08c08c0d0d7567bbd"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1Basket.html#ac2383b4705dfdfd08c08c0d0d7567bbd">NeighborhoodFilter</a> = NF</td></tr>
+<tr class="memdesc:ac2383b4705dfdfd08c08c0d0d7567bbd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Weighting function.  <br /></td></tr>
+<tr class="separator:ac2383b4705dfdfd08c08c0d0d7567bbd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pub_types_structPonca_1_1BasketComputeObject"><td colspan="2" onclick="javascript:toggleInherit('pub_types_structPonca_1_1BasketComputeObject')"><img src="closed.png" alt="-"/>&#160;Public Types inherited from <a class="el" href="structPonca_1_1BasketComputeObject.html">Ponca::BasketComputeObject&lt; Basket&lt; P, NF, Ext0, Exts... &gt;, internal::BasketAggregate&lt; P, NF, Ext0, Exts... &gt;::type &gt;</a></td></tr>
+<tr class="memitem:a0fe5976dc9e433855300b6f7e9d0ff72 inherit pub_types_structPonca_1_1BasketComputeObject" id="r_a0fe5976dc9e433855300b6f7e9d0ff72"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structPonca_1_1BasketComputeObject.html#a0fe5976dc9e433855300b6f7e9d0ff72">Base</a> = internal::BasketAggregate&lt; P, NF, Ext0, Exts... &gt;::type</td></tr>
 <tr class="separator:a0fe5976dc9e433855300b6f7e9d0ff72 inherit pub_types_structPonca_1_1BasketComputeObject"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab60092684ce53f1eca2ba7708ab05604 inherit pub_types_structPonca_1_1BasketComputeObject" id="r_ab60092684ce53f1eca2ba7708ab05604"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structPonca_1_1BasketComputeObject.html#ab60092684ce53f1eca2ba7708ab05604">Derived</a> = <a class="el" href="classPonca_1_1Basket.html">Basket</a>&lt; P, W, Ext0, Exts... &gt;</td></tr>
+<tr class="memitem:ab60092684ce53f1eca2ba7708ab05604 inherit pub_types_structPonca_1_1BasketComputeObject" id="r_ab60092684ce53f1eca2ba7708ab05604"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structPonca_1_1BasketComputeObject.html#ab60092684ce53f1eca2ba7708ab05604">Derived</a> = <a class="el" href="classPonca_1_1Basket.html">Basket</a>&lt; P, NF, Ext0, Exts... &gt;</td></tr>
 <tr class="memdesc:ab60092684ce53f1eca2ba7708ab05604 inherit pub_types_structPonca_1_1BasketComputeObject"><td class="mdescLeft">&#160;</td><td class="mdescRight">&lt;  <br /></td></tr>
 <tr class="separator:ab60092684ce53f1eca2ba7708ab05604 inherit pub_types_structPonca_1_1BasketComputeObject"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac8c87a03d8ba945879cd80bc4a8a841c inherit pub_types_structPonca_1_1BasketComputeObject" id="r_ac8c87a03d8ba945879cd80bc4a8a841c"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structPonca_1_1BasketComputeObject.html#ac8c87a03d8ba945879cd80bc4a8a841c">Scalar</a> = typename Base::Scalar</td></tr>
@@ -171,10 +171,13 @@ Public Types</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:acde7a093c64aad976988dc8207930c74" id="r_acde7a093c64aad976988dc8207930c74"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1Basket.html#acde7a093c64aad976988dc8207930c74">addNeighbor</a> (const <a class="el" href="classPonca_1_1Basket.html#a4c962002c1d8204e09ece679f103fca7">DataPoint</a> &amp;_nei)</td></tr>
-<tr class="memdesc:acde7a093c64aad976988dc8207930c74"><td class="mdescLeft">&#160;</td><td class="mdescRight">Add a neighbor to perform the fit.  <br /></td></tr>
-<tr class="separator:acde7a093c64aad976988dc8207930c74"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="inherit_header pub_methods_structPonca_1_1BasketComputeObject"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_structPonca_1_1BasketComputeObject')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="structPonca_1_1BasketComputeObject.html">Ponca::BasketComputeObject&lt; Basket&lt; P, W, Ext0, Exts... &gt;, internal::BasketAggregate&lt; P, W, Ext0, Exts... &gt;::type &gt;</a></td></tr>
+<tr class="memitem:ad5132ec839c56fdd21e875825d21465a" id="r_ad5132ec839c56fdd21e875825d21465a"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1Basket.html#ad5132ec839c56fdd21e875825d21465a">addNeighbor</a> (const <a class="el" href="classPonca_1_1Basket.html#a4e7ea1fd0f8d760217e60c1feaabf7b0">DataPoint</a> &amp;_nei)</td></tr>
+<tr class="memdesc:ad5132ec839c56fdd21e875825d21465a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Add a neighbor to perform the fit.  <br /></td></tr>
+<tr class="separator:ad5132ec839c56fdd21e875825d21465a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a983039cc23df1537214de05541697d33" id="r_a983039cc23df1537214de05541697d33"><td class="memItemLeft" align="right" valign="top">VectorType&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1Basket.html#a983039cc23df1537214de05541697d33">projectDescent</a> (const VectorType &amp;_q, int nbIter=16) const</td></tr>
+<tr class="memdesc:a983039cc23df1537214de05541697d33"><td class="mdescLeft">&#160;</td><td class="mdescRight">Project a point on the primitive using Gradient Descent This projection is realized by following the gradient of the primitive scalar field.  <br /></td></tr>
+<tr class="separator:a983039cc23df1537214de05541697d33"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pub_methods_structPonca_1_1BasketComputeObject"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_structPonca_1_1BasketComputeObject')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="structPonca_1_1BasketComputeObject.html">Ponca::BasketComputeObject&lt; Basket&lt; P, NF, Ext0, Exts... &gt;, internal::BasketAggregate&lt; P, NF, Ext0, Exts... &gt;::type &gt;</a></td></tr>
 <tr class="memitem:ab740adc434a6d1ecb4cf4943c1ff2a84 inherit pub_methods_structPonca_1_1BasketComputeObject" id="r_ab740adc434a6d1ecb4cf4943c1ff2a84"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespacePonca.html#abfd697aebf07c1b5c8be5ee401e2dc84">FIT_RESULT</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structPonca_1_1BasketComputeObject.html#ab740adc434a6d1ecb4cf4943c1ff2a84">compute</a> (const IteratorBegin &amp;begin, const IteratorEnd &amp;end)</td></tr>
 <tr class="memdesc:ab740adc434a6d1ecb4cf4943c1ff2a84 inherit pub_methods_structPonca_1_1BasketComputeObject"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convenience function for STL-like iterators Add neighbors stored in a container using STL-like iterators, and call finalize at the end.  <br /></td></tr>
 <tr class="separator:ab740adc434a6d1ecb4cf4943c1ff2a84 inherit pub_methods_structPonca_1_1BasketComputeObject"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -201,18 +204,18 @@ Public Member Functions</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="inherited" name="inherited"></a>
 Additional Inherited Members</h2></td></tr>
-<tr class="inherit_header pro_methods_structPonca_1_1BasketComputeObject"><td colspan="2" onclick="javascript:toggleInherit('pro_methods_structPonca_1_1BasketComputeObject')"><img src="closed.png" alt="-"/>&#160;Protected Member Functions inherited from <a class="el" href="structPonca_1_1BasketComputeObject.html">Ponca::BasketComputeObject&lt; Basket&lt; P, W, Ext0, Exts... &gt;, internal::BasketAggregate&lt; P, W, Ext0, Exts... &gt;::type &gt;</a></td></tr>
-<tr class="memitem:a75fbf6fd844257c87d331db354c25acf inherit pro_methods_structPonca_1_1BasketComputeObject" id="r_a75fbf6fd844257c87d331db354c25acf"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespacePonca.html#abfd697aebf07c1b5c8be5ee401e2dc84">FIT_RESULT</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structPonca_1_1BasketComputeObject.html#a75fbf6fd844257c87d331db354c25acf">computeMLSImpl</a> (Func &amp;&amp;computeFunc, int mlsIter, <a class="el" href="structPonca_1_1BasketComputeObject.html#ac8c87a03d8ba945879cd80bc4a8a841c">Scalar</a> epsilon)</td></tr>
-<tr class="memdesc:a75fbf6fd844257c87d331db354c25acf inherit pro_methods_structPonca_1_1BasketComputeObject"><td class="mdescLeft">&#160;</td><td class="mdescRight">Computes the fit using the MLS iteration process.  <br /></td></tr>
-<tr class="separator:a75fbf6fd844257c87d331db354c25acf inherit pro_methods_structPonca_1_1BasketComputeObject"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pro_methods_structPonca_1_1BasketComputeObject"><td colspan="2" onclick="javascript:toggleInherit('pro_methods_structPonca_1_1BasketComputeObject')"><img src="closed.png" alt="-"/>&#160;Protected Member Functions inherited from <a class="el" href="structPonca_1_1BasketComputeObject.html">Ponca::BasketComputeObject&lt; Basket&lt; P, NF, Ext0, Exts... &gt;, internal::BasketAggregate&lt; P, NF, Ext0, Exts... &gt;::type &gt;</a></td></tr>
+<tr class="memitem:a98982e3aceee9b77046af4591c1dea97 inherit pro_methods_structPonca_1_1BasketComputeObject" id="r_a98982e3aceee9b77046af4591c1dea97"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespacePonca.html#abfd697aebf07c1b5c8be5ee401e2dc84">FIT_RESULT</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structPonca_1_1BasketComputeObject.html#a98982e3aceee9b77046af4591c1dea97">computeMLSImpl</a> (Func &amp;&amp;computeFunc, const int mlsIter, const <a class="el" href="structPonca_1_1BasketComputeObject.html#ac8c87a03d8ba945879cd80bc4a8a841c">Scalar</a> epsilon)</td></tr>
+<tr class="memdesc:a98982e3aceee9b77046af4591c1dea97 inherit pro_methods_structPonca_1_1BasketComputeObject"><td class="mdescLeft">&#160;</td><td class="mdescRight">Computes the fit using the MLS iteration process.  <br /></td></tr>
+<tr class="separator:a98982e3aceee9b77046af4591c1dea97 inherit pro_methods_structPonca_1_1BasketComputeObject"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pro_methods_structPonca_1_1ComputeObject"><td colspan="2" onclick="javascript:toggleInherit('pro_methods_structPonca_1_1ComputeObject')"><img src="closed.png" alt="-"/>&#160;Protected Member Functions inherited from <a class="el" href="structPonca_1_1ComputeObject.html">Ponca::ComputeObject&lt; Derived &gt;</a></td></tr>
 <tr class="memitem:a8c894f244ffc8bf7f1a807c52b85b03a inherit pro_methods_structPonca_1_1ComputeObject" id="r_a8c894f244ffc8bf7f1a807c52b85b03a"><td class="memItemLeft" align="right" valign="top">Derived &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structPonca_1_1ComputeObject.html#a8c894f244ffc8bf7f1a807c52b85b03a">derived</a> ()</td></tr>
 <tr class="memdesc:a8c894f244ffc8bf7f1a807c52b85b03a inherit pro_methods_structPonca_1_1ComputeObject"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieve the top layer object Returns a reference to the derived class so that we can use its overwritten methods.  <br /></td></tr>
 <tr class="separator:a8c894f244ffc8bf7f1a807c52b85b03a inherit pro_methods_structPonca_1_1ComputeObject"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><div class="compoundTemplParams">template&lt;class P, class W, template&lt; class, class, typename &gt; class Ext0, template&lt; class, class, typename &gt; class... Exts&gt;<br />
-class Ponca::Basket&lt; P, W, Ext0, Exts &gt;</div><p>Aggregator class used to declare specialized structures using CRTP. </p>
+<div class="textblock"><div class="compoundTemplParams">template&lt;class P, class NF, template&lt; class, class, typename &gt; class Ext0, template&lt; class, class, typename &gt; class... Exts&gt;<br />
+class Ponca::Basket&lt; P, NF, Ext0, Exts &gt;</div><p>Aggregator class used to declare specialized structures using CRTP. </p>
 <p>Base <a class="el" href="structPonca_1_1ComputeObject.html" title="ComputeObject is a virtual object that represents an algorithm which can be used with the compute fun...">ComputeObject</a> for the <a class="el" href="classPonca_1_1Basket.html" title="Aggregator class used to declare specialized structures using CRTP.">Basket</a> classes.  </p>
 <p>Implements the compute methods for fitting: <a class="el" href="structPonca_1_1BasketComputeObject.html#ab740adc434a6d1ecb4cf4943c1ff2a84" title="Convenience function for STL-like iterators Add neighbors stored in a container using STL-like iterat...">compute</a>, <a class="el" href="structPonca_1_1BasketComputeObject.html#a5124e70f1b87118dea332a16228cbefa" title="Convenience function to iterate over a subset of samples in a PointContainer Add neighbors stored in ...">computeWithIds</a>, ... Checkout <a class="el" href="fitting.html">Fitting Module: User Manual</a> for more details</p>
 <p>The various implementations of Ponca::Concept are mixed through specializations of the <a class="el" href="classPonca_1_1BasketDiff.html" title="Aggregator class used to declare specialized structures with derivatives computations,...">BasketDiff</a> and <a class="el" href="classPonca_1_1Basket.html" title="Aggregator class used to declare specialized structures using CRTP.">Basket</a> classes: </p><div class="fragment"><div class="line"><span class="keyword">typedef</span></div>
@@ -222,7 +225,7 @@ class Ponca::Basket&lt; P, W, Ext0, Exts &gt;</div><p>Aggregator class used to d
 <div class="line">ComputationalDerivativesConcept2, <span class="comment">// Implementation of ComputationalDerivativesConcept</span></div>
 <div class="line">... ,                             <span class="comment">//</span></div>
 <div class="line">&gt; myFitDer;                       <span class="comment">// Final structure to fit and derive a primitive over weighted samples</span></div>
-<div class="ttc" id="aclassPonca_1_1BasketDiff_html"><div class="ttname"><a href="classPonca_1_1BasketDiff.html">Ponca::BasketDiff</a></div><div class="ttdoc">Aggregator class used to declare specialized structures with derivatives computations,...</div><div class="ttdef"><b>Definition</b> <a href="basket_8h_source.html#l00282">basket.h:284</a></div></div>
+<div class="ttc" id="aclassPonca_1_1BasketDiff_html"><div class="ttname"><a href="classPonca_1_1BasketDiff.html">Ponca::BasketDiff</a></div><div class="ttdoc">Aggregator class used to declare specialized structures with derivatives computations,...</div><div class="ttdef"><b>Definition</b> <a href="basket_8h_source.html#l00281">basket.h:283</a></div></div>
 <div class="ttc" id="anamespacePonca_html_a7beaddc698523e7f9c041ea8bc4c535a"><div class="ttname"><a href="namespacePonca.html#a7beaddc698523e7f9c041ea8bc4c535a">Ponca::DiffType</a></div><div class="ttdeci">DiffType</div><div class="ttdoc">Flags defining which derivatives need to be computed.</div><div class="ttdef"><b>Definition</b> <a href="enums_8h_source.html#l00033">enums.h:34</a></div></div>
 </div><!-- fragment --><dl class="tparams"><dt>Template Parameters</dt><dd>
   <table class="tparams">
@@ -236,122 +239,122 @@ class Ponca::Basket&lt; P, W, Ext0, Exts &gt;</div><p>Aggregator class used to d
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="basket_8h_source.html#l00322">322</a> of file <a class="el" href="basket_8h_source.html">basket.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="basket_8h_source.html#l00321">321</a> of file <a class="el" href="basket_8h_source.html">basket.h</a>.</p>
 </div><h2 class="groupheader">Member Typedef Documentation</h2>
-<a id="ae98b6b8c88b049c7f3643e886b1acc3f" name="ae98b6b8c88b049c7f3643e886b1acc3f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae98b6b8c88b049c7f3643e886b1acc3f">&#9670;&#160;</a></span>Base</h2>
+<a id="a00aba788f149092e3032e109d4ed0c52" name="a00aba788f149092e3032e109d4ed0c52"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a00aba788f149092e3032e109d4ed0c52">&#9670;&#160;</a></span>Base</h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;class P , class W , template&lt; class, class, typename &gt; class Ext0, template&lt; class, class, typename &gt; class... Exts&gt; </div>
+template&lt;class P , class NF , template&lt; class, class, typename &gt; class Ext0, template&lt; class, class, typename &gt; class... Exts&gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">using <a class="el" href="classPonca_1_1Basket.html">Ponca::Basket</a>&lt; P, W, Ext0, Exts &gt;::Base =  typename internal::BasketAggregate&lt;P, W, Ext0, Exts...&gt;::type</td>
+          <td class="memname">using <a class="el" href="classPonca_1_1Basket.html">Ponca::Basket</a>&lt; P, NF, Ext0, Exts &gt;::Base =  typename internal::BasketAggregate&lt;P, NF, Ext0, Exts...&gt;::type</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
 <p>Base type, which aggregates all the computational objects using the CRTP. </p>
 
-<p class="definition">Definition at line <a class="el" href="basket_8h_source.html#l00329">329</a> of file <a class="el" href="basket_8h_source.html">basket.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="basket_8h_source.html#l00328">328</a> of file <a class="el" href="basket_8h_source.html">basket.h</a>.</p>
 
 </div>
 </div>
-<a id="a4c962002c1d8204e09ece679f103fca7" name="a4c962002c1d8204e09ece679f103fca7"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a4c962002c1d8204e09ece679f103fca7">&#9670;&#160;</a></span>DataPoint</h2>
+<a id="a4e7ea1fd0f8d760217e60c1feaabf7b0" name="a4e7ea1fd0f8d760217e60c1feaabf7b0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4e7ea1fd0f8d760217e60c1feaabf7b0">&#9670;&#160;</a></span>DataPoint</h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;class P , class W , template&lt; class, class, typename &gt; class Ext0, template&lt; class, class, typename &gt; class... Exts&gt; </div>
+template&lt;class P , class NF , template&lt; class, class, typename &gt; class Ext0, template&lt; class, class, typename &gt; class... Exts&gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">using <a class="el" href="classPonca_1_1Basket.html">Ponca::Basket</a>&lt; P, W, Ext0, Exts &gt;::DataPoint =  P</td>
+          <td class="memname">using <a class="el" href="classPonca_1_1Basket.html">Ponca::Basket</a>&lt; P, NF, Ext0, Exts &gt;::DataPoint =  P</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
 <p>Point type used for computation. </p>
 
-<p class="definition">Definition at line <a class="el" href="basket_8h_source.html#l00334">334</a> of file <a class="el" href="basket_8h_source.html">basket.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="basket_8h_source.html#l00333">333</a> of file <a class="el" href="basket_8h_source.html">basket.h</a>.</p>
 
 </div>
 </div>
-<a id="aa3057b699ee6345c523f436fa2c39c91" name="aa3057b699ee6345c523f436fa2c39c91"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa3057b699ee6345c523f436fa2c39c91">&#9670;&#160;</a></span>Scalar</h2>
+<a id="ac2383b4705dfdfd08c08c0d0d7567bbd" name="ac2383b4705dfdfd08c08c0d0d7567bbd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac2383b4705dfdfd08c08c0d0d7567bbd">&#9670;&#160;</a></span>NeighborhoodFilter</h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;class P , class W , template&lt; class, class, typename &gt; class Ext0, template&lt; class, class, typename &gt; class... Exts&gt; </div>
+template&lt;class P , class NF , template&lt; class, class, typename &gt; class Ext0, template&lt; class, class, typename &gt; class... Exts&gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">using <a class="el" href="classPonca_1_1Basket.html">Ponca::Basket</a>&lt; P, W, Ext0, Exts &gt;::Scalar =  typename P::Scalar</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Scalar type used for computation, as defined from template parameter <code>P</code> </p>
-
-<p class="definition">Definition at line <a class="el" href="basket_8h_source.html#l00331">331</a> of file <a class="el" href="basket_8h_source.html">basket.h</a>.</p>
-
-</div>
-</div>
-<a id="a60ea1aaf83bece9f6c070afec5222a4f" name="a60ea1aaf83bece9f6c070afec5222a4f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a60ea1aaf83bece9f6c070afec5222a4f">&#9670;&#160;</a></span>VectorType</h2>
-
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;class P , class W , template&lt; class, class, typename &gt; class Ext0, template&lt; class, class, typename &gt; class... Exts&gt; </div>
-      <table class="memname">
-        <tr>
-          <td class="memname">using <a class="el" href="classPonca_1_1Basket.html">Ponca::Basket</a>&lt; P, W, Ext0, Exts &gt;::VectorType =  typename P::VectorType</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p class="definition">Definition at line <a class="el" href="basket_8h_source.html#l00332">332</a> of file <a class="el" href="basket_8h_source.html">basket.h</a>.</p>
-
-</div>
-</div>
-<a id="a0e271beada694952846c2885e3bda897" name="a0e271beada694952846c2885e3bda897"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a0e271beada694952846c2885e3bda897">&#9670;&#160;</a></span>WeightFunction</h2>
-
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;class P , class W , template&lt; class, class, typename &gt; class Ext0, template&lt; class, class, typename &gt; class... Exts&gt; </div>
-      <table class="memname">
-        <tr>
-          <td class="memname">using <a class="el" href="classPonca_1_1Basket.html">Ponca::Basket</a>&lt; P, W, Ext0, Exts &gt;::WeightFunction =  W</td>
+          <td class="memname">using <a class="el" href="classPonca_1_1Basket.html">Ponca::Basket</a>&lt; P, NF, Ext0, Exts &gt;::NeighborhoodFilter =  NF</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
 <p>Weighting function. </p>
 
-<p class="definition">Definition at line <a class="el" href="basket_8h_source.html#l00336">336</a> of file <a class="el" href="basket_8h_source.html">basket.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="basket_8h_source.html#l00335">335</a> of file <a class="el" href="basket_8h_source.html">basket.h</a>.</p>
 
 </div>
 </div>
-<h2 class="groupheader">Member Function Documentation</h2>
-<a id="acde7a093c64aad976988dc8207930c74" name="acde7a093c64aad976988dc8207930c74"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#acde7a093c64aad976988dc8207930c74">&#9670;&#160;</a></span>addNeighbor()</h2>
+<a id="ab08e85c1c9d83a892d6dc3beeb593e2d" name="ab08e85c1c9d83a892d6dc3beeb593e2d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab08e85c1c9d83a892d6dc3beeb593e2d">&#9670;&#160;</a></span>Scalar</h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;class P , class W , template&lt; class, class, typename &gt; class Ext0, template&lt; class, class, typename &gt; class... Exts&gt; </div>
+template&lt;class P , class NF , template&lt; class, class, typename &gt; class Ext0, template&lt; class, class, typename &gt; class... Exts&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="classPonca_1_1Basket.html">Ponca::Basket</a>&lt; P, NF, Ext0, Exts &gt;::Scalar =  typename P::Scalar</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Scalar type used for computation, as defined from template parameter <code>P</code> </p>
+
+<p class="definition">Definition at line <a class="el" href="basket_8h_source.html#l00330">330</a> of file <a class="el" href="basket_8h_source.html">basket.h</a>.</p>
+
+</div>
+</div>
+<a id="a7cc1f083f7700e4f5ed12b21d89e2e0b" name="a7cc1f083f7700e4f5ed12b21d89e2e0b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7cc1f083f7700e4f5ed12b21d89e2e0b">&#9670;&#160;</a></span>VectorType</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class P , class NF , template&lt; class, class, typename &gt; class Ext0, template&lt; class, class, typename &gt; class... Exts&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="classPonca_1_1Basket.html">Ponca::Basket</a>&lt; P, NF, Ext0, Exts &gt;::VectorType =  typename P::VectorType</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="basket_8h_source.html#l00331">331</a> of file <a class="el" href="basket_8h_source.html">basket.h</a>.</p>
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a id="ad5132ec839c56fdd21e875825d21465a" name="ad5132ec839c56fdd21e875825d21465a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad5132ec839c56fdd21e875825d21465a">&#9670;&#160;</a></span>addNeighbor()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class P , class NF , template&lt; class, class, typename &gt; class Ext0, template&lt; class, class, typename &gt; class... Exts&gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">bool <a class="el" href="classPonca_1_1Basket.html">Ponca::Basket</a>&lt; P, W, Ext0, Exts &gt;::addNeighbor </td>
+          <td class="memname">bool <a class="el" href="classPonca_1_1Basket.html">Ponca::Basket</a>&lt; P, NF, Ext0, Exts &gt;::addNeighbor </td>
           <td>(</td>
-          <td class="paramtype">const <a class="el" href="classPonca_1_1Basket.html#a4c962002c1d8204e09ece679f103fca7">DataPoint</a> &amp;&#160;</td>
+          <td class="paramtype">const <a class="el" href="classPonca_1_1Basket.html#a4e7ea1fd0f8d760217e60c1feaabf7b0">DataPoint</a> &amp;&#160;</td>
           <td class="paramname"><em>_nei</em></td><td>)</td>
           <td></td>
         </tr>
@@ -364,12 +367,62 @@ template&lt;class P , class W , template&lt; class, class, typename &gt; class E
 </div><div class="memdoc">
 
 <p>Add a neighbor to perform the fit. </p>
-<p>When called directly, don't forget to call <a class="el" href="classPonca_1_1PrimitiveBase.html#a1a81ae5c5555d8bd7d2367d9bad04340" title="To be called when starting a new processing pass, ie.">PrimitiveBase::startNewPass</a> when starting multiple passes </p><dl class="section see"><dt>See also</dt><dd><a class="el" href="structPonca_1_1BasketComputeObject.html#ab740adc434a6d1ecb4cf4943c1ff2a84" title="Convenience function for STL-like iterators Add neighbors stored in a container using STL-like iterat...">compute</a> Prefer when using a range of Points </dd>
+<p>When called directly, don't forget to call <a class="el" href="classPonca_1_1PrimitiveBase.html#a0f5e08aa7d8b194a70bfe6ad29faf183" title="To be called when starting a new processing pass, ie.">PrimitiveBase::startNewPass</a> when starting multiple passes </p><dl class="section see"><dt>See also</dt><dd><a class="el" href="structPonca_1_1BasketComputeObject.html#ab740adc434a6d1ecb4cf4943c1ff2a84" title="Convenience function for STL-like iterators Add neighbors stored in a container using STL-like iterat...">compute</a> Prefer when using a range of Points </dd>
 <dd>
 <a class="el" href="structPonca_1_1BasketComputeObject.html#a5124e70f1b87118dea332a16228cbefa" title="Convenience function to iterate over a subset of samples in a PointContainer Add neighbors stored in ...">computeWithIds</a> Prefer when using a range of ids </dd></dl>
 <dl class="section return"><dt>Returns</dt><dd>false if param nei is not a valid neighbor (weight = 0) </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="basket_8h_source.html#l00346">346</a> of file <a class="el" href="basket_8h_source.html">basket.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="basket_8h_source.html#l00345">345</a> of file <a class="el" href="basket_8h_source.html">basket.h</a>.</p>
+
+</div>
+</div>
+<a id="a983039cc23df1537214de05541697d33" name="a983039cc23df1537214de05541697d33"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a983039cc23df1537214de05541697d33">&#9670;&#160;</a></span>projectDescent()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class P , class NF , template&lt; class, class, typename &gt; class Ext0, template&lt; class, class, typename &gt; class... Exts&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">VectorType <a class="el" href="classPonca_1_1Basket.html">Ponca::Basket</a>&lt; P, NF, Ext0, Exts &gt;::projectDescent </td>
+          <td>(</td>
+          <td class="paramtype">const VectorType &amp;&#160;</td>
+          <td class="paramname"><em>_q</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>nbIter</em> = <code>16</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Project a point on the primitive using Gradient Descent This projection is realized by following the gradient of the primitive scalar field. </p>
+<dl class="section warning"><dt>Warning</dt><dd>This function is in most cases slower than #project. </dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">_q</td><td>Starting point </td></tr>
+    <tr><td class="paramname">nbIter</td><td>Number of iterations (default = 16) </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="basket_8h_source.html#l00365">365</a> of file <a class="el" href="basket_8h_source.html">basket.h</a>.</p>
 
 </div>
 </div>
@@ -379,7 +432,7 @@ template&lt;class P , class W , template&lt; class, class, typename &gt; class E
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="namespacePonca.html">Ponca</a></li><li class="navelem"><a class="el" href="classPonca_1_1Basket.html">Basket</a></li>
-    <li class="footer">Generated on Thu Oct 9 2025 22:33:52 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
+    <li class="footer">Generated on Thu Oct 30 2025 19:03:05 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
   </ul>
 </div>
 </body>

@@ -1,5 +1,5 @@
-<map id="Ponca::MeanNormalDer&lt; DataPoint, _WFunctor, DiffType, T &gt;" name="Ponca::MeanNormalDer&lt; DataPoint, _WFunctor, DiffType, T &gt;">
-<area shape="rect" id="Node000001" title=" " alt="" coords="5,119,179,293"/>
-<area shape="rect" id="Node000002" title=" " alt="" coords="81,5,103,71"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="95,84,95,119,89,119,89,84"/>
+<map id="Ponca::MeanNormalDer&lt; DataPoint, _NFilter, DiffType, T &gt;" name="Ponca::MeanNormalDer&lt; DataPoint, _NFilter, DiffType, T &gt;">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,119,173,293"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="78,5,101,71"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="92,84,92,119,87,119,87,84"/>
 </map>

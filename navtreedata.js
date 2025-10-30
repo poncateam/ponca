@@ -167,7 +167,7 @@ var NAVTREE =
         [ "All", "functions.html", "functions_dup" ],
         [ "Functions", "functions_func.html", "functions_func" ],
         [ "Variables", "functions_vars.html", null ],
-        [ "Typedefs", "functions_type.html", null ],
+        [ "Typedefs", "functions_type.html", "functions_type" ],
         [ "Enumerations", "functions_enum.html", null ],
         [ "Enumerator", "functions_eval.html", null ]
       ] ]
@@ -178,9 +178,9 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "annotated.html",
-"classPonca_1_1KdTreeNearestIterator.html",
-"classPonca_1_1PolynomialSmoothWeightKernel.html#a4d05ca6e922eda8950c3ab0d9e4d1813",
-"ponca_concepts.html"
+"classPonca_1_1KdTreeBase.html#ae5a3bb1b5aaab27bad9968f98afdc169",
+"classPonca_1_1Plane.html#a29b652b27321dd185acb93f53cc6c127",
+"functions_n.html"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

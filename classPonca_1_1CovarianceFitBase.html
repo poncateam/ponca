@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.9.8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Ponca: Ponca::CovarianceFitBase&lt; DataPoint, _WFunctor, T &gt; Class Template Reference</title>
+<title>Ponca: Ponca::CovarianceFitBase&lt; DataPoint, _NFilter, T &gt; Class Template Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -51,7 +51,7 @@ MathJax.Hub.Config({
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Ponca
-   &#160;<span id="projectnumber">40f245e28b920cbb763a1c6282156c87c626f24c</span>
+   &#160;<span id="projectnumber">9e7681effe2c12b0af1c85fdb62680f52d835a30</span>
    </div>
    <div id="projectbrief">Point Cloud Analysis library</div>
   </td>
@@ -122,7 +122,7 @@ $(document).ready(function(){initNavTree('classPonca_1_1CovarianceFitBase.html',
 <a href="#pro-types">Protected Types</a> &#124;
 <a href="#pro-attribs">Protected Attributes</a> &#124;
 <a href="classPonca_1_1CovarianceFitBase-members.html">List of all members</a>  </div>
-  <div class="headertitle"><div class="title">Ponca::CovarianceFitBase&lt; DataPoint, _WFunctor, T &gt; Class Template Reference</div></div>
+  <div class="headertitle"><div class="title">Ponca::CovarianceFitBase&lt; DataPoint, _NFilter, T &gt; Class Template Reference</div></div>
 </div><!--header-->
 <div class="contents">
 
@@ -131,85 +131,85 @@ $(document).ready(function(){initNavTree('classPonca_1_1CovarianceFitBase.html',
 
 <p><code>#include &lt;<a class="el" href="covarianceFit_8h_source.html">covarianceFit.h</a>&gt;</code></p>
 <div id="dynsection-0" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
-  <img id="dynsection-0-trigger" src="closed.png" alt="+"/> Inheritance diagram for Ponca::CovarianceFitBase&lt; DataPoint, _WFunctor, T &gt;:</div>
+  <img id="dynsection-0-trigger" src="closed.png" alt="+"/> Inheritance diagram for Ponca::CovarianceFitBase&lt; DataPoint, _NFilter, T &gt;:</div>
 <div id="dynsection-0-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-0-content" class="dyncontent" style="display:none;">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classPonca_1_1CovarianceFitBase__inherit__graph.svg" width="264" height="519"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classPonca_1_1CovarianceFitBase__inherit__graph.svg" width="256" height="519"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 <div id="dynsection-1" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
-  <img id="dynsection-1-trigger" src="closed.png" alt="+"/> Collaboration diagram for Ponca::CovarianceFitBase&lt; DataPoint, _WFunctor, T &gt;:</div>
+  <img id="dynsection-1-trigger" src="closed.png" alt="+"/> Collaboration diagram for Ponca::CovarianceFitBase&lt; DataPoint, _NFilter, T &gt;:</div>
 <div id="dynsection-1-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-1-content" class="dyncontent" style="display:none;">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classPonca_1_1CovarianceFitBase__coll__graph.svg" width="264" height="519"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classPonca_1_1CovarianceFitBase__coll__graph.svg" width="256" height="519"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-types" name="pub-types"></a>
 Public Types</h2></td></tr>
-<tr class="memitem:a867c54a0c017ea6e1676e3923809d2c9" id="r_a867c54a0c017ea6e1676e3923809d2c9"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1CovarianceFitBase.html#a867c54a0c017ea6e1676e3923809d2c9">Scalar</a> = typename DataPoint::Scalar</td></tr>
-<tr class="memdesc:a867c54a0c017ea6e1676e3923809d2c9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Alias to scalar type.  <br /></td></tr>
-<tr class="separator:a867c54a0c017ea6e1676e3923809d2c9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac86349b24e58b8770e684be787013a10" id="r_ac86349b24e58b8770e684be787013a10"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1CovarianceFitBase.html#ac86349b24e58b8770e684be787013a10">VectorType</a> = typename Base::VectorType</td></tr>
-<tr class="memdesc:ac86349b24e58b8770e684be787013a10"><td class="mdescLeft">&#160;</td><td class="mdescRight">Alias to vector type.  <br /></td></tr>
-<tr class="separator:ac86349b24e58b8770e684be787013a10"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4a6aff40a1d270fee1f0018d3f104b2e" id="r_a4a6aff40a1d270fee1f0018d3f104b2e"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1CovarianceFitBase.html#a4a6aff40a1d270fee1f0018d3f104b2e">WFunctor</a> = typename Base::WFunctor</td></tr>
-<tr class="memdesc:a4a6aff40a1d270fee1f0018d3f104b2e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Alias to weight function.  <br /></td></tr>
-<tr class="separator:a4a6aff40a1d270fee1f0018d3f104b2e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a27c664f6826a52b58103250ecd6d6686" id="r_a27c664f6826a52b58103250ecd6d6686"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1CovarianceFitBase.html#a27c664f6826a52b58103250ecd6d6686">MatrixType</a> = typename DataPoint::MatrixType</td></tr>
-<tr class="memdesc:a27c664f6826a52b58103250ecd6d6686"><td class="mdescLeft">&#160;</td><td class="mdescRight">Alias to matrix type.  <br /></td></tr>
-<tr class="separator:a27c664f6826a52b58103250ecd6d6686"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4213e183cb3fb89932e41e4ef30954ee" id="r_a4213e183cb3fb89932e41e4ef30954ee"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1CovarianceFitBase.html#a4213e183cb3fb89932e41e4ef30954ee">Solver</a> = Eigen::SelfAdjointEigenSolver&lt; <a class="el" href="classPonca_1_1CovarianceFitBase.html#a27c664f6826a52b58103250ecd6d6686">MatrixType</a> &gt;</td></tr>
-<tr class="memdesc:a4213e183cb3fb89932e41e4ef30954ee"><td class="mdescLeft">&#160;</td><td class="mdescRight">Solver used to analyse the covariance matrix.  <br /></td></tr>
-<tr class="separator:a4213e183cb3fb89932e41e4ef30954ee"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8456e12892afc37f5cc305b50c162deb" id="r_a8456e12892afc37f5cc305b50c162deb"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1CovarianceFitBase.html#a8456e12892afc37f5cc305b50c162deb">Scalar</a> = typename DataPoint::Scalar</td></tr>
+<tr class="memdesc:a8456e12892afc37f5cc305b50c162deb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Alias to scalar type.  <br /></td></tr>
+<tr class="separator:a8456e12892afc37f5cc305b50c162deb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad5f653fa3aa28f61b9867818e3c44f70" id="r_ad5f653fa3aa28f61b9867818e3c44f70"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1CovarianceFitBase.html#ad5f653fa3aa28f61b9867818e3c44f70">VectorType</a> = typename Base::VectorType</td></tr>
+<tr class="memdesc:ad5f653fa3aa28f61b9867818e3c44f70"><td class="mdescLeft">&#160;</td><td class="mdescRight">Alias to vector type.  <br /></td></tr>
+<tr class="separator:ad5f653fa3aa28f61b9867818e3c44f70"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae23dd92646173c1141e7bbd22fc63789" id="r_ae23dd92646173c1141e7bbd22fc63789"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1CovarianceFitBase.html#ae23dd92646173c1141e7bbd22fc63789">NeighborFilter</a> = typename Base::NeighborFilter</td></tr>
+<tr class="memdesc:ae23dd92646173c1141e7bbd22fc63789"><td class="mdescLeft">&#160;</td><td class="mdescRight">Alias to the filter applied on the neighbors.  <br /></td></tr>
+<tr class="separator:ae23dd92646173c1141e7bbd22fc63789"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8841343a28c57f964d9f6a38a65c9f9c" id="r_a8841343a28c57f964d9f6a38a65c9f9c"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1CovarianceFitBase.html#a8841343a28c57f964d9f6a38a65c9f9c">MatrixType</a> = typename DataPoint::MatrixType</td></tr>
+<tr class="memdesc:a8841343a28c57f964d9f6a38a65c9f9c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Alias to matrix type.  <br /></td></tr>
+<tr class="separator:a8841343a28c57f964d9f6a38a65c9f9c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a18d259c240fb958ffcd9adf01d018072" id="r_a18d259c240fb958ffcd9adf01d018072"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1CovarianceFitBase.html#a18d259c240fb958ffcd9adf01d018072">Solver</a> = Eigen::SelfAdjointEigenSolver&lt; <a class="el" href="classPonca_1_1CovarianceFitBase.html#a8841343a28c57f964d9f6a38a65c9f9c">MatrixType</a> &gt;</td></tr>
+<tr class="memdesc:a18d259c240fb958ffcd9adf01d018072"><td class="mdescLeft">&#160;</td><td class="mdescRight">Solver used to analyse the covariance matrix.  <br /></td></tr>
+<tr class="separator:a18d259c240fb958ffcd9adf01d018072"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:abe6d0402789126df9800bde5dd4c0959" id="r_abe6d0402789126df9800bde5dd4c0959"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classPonca_1_1CovarianceFitBase.html">CovarianceFitBase</a>&lt; DataPoint, _WFunctor, T &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1CovarianceFitBase.html#abe6d0402789126df9800bde5dd4c0959">covarianceFit</a> ()</td></tr>
-<tr class="memdesc:abe6d0402789126df9800bde5dd4c0959"><td class="mdescLeft">&#160;</td><td class="mdescRight">Explicit conversion to <a class="el" href="classPonca_1_1CovarianceFitBase.html" title="Procedure that compute and decompose the covariance matrix of the neighbors positions in .">CovarianceFitBase</a> , to access methods potentially hidden by heritage.  <br /></td></tr>
-<tr class="separator:abe6d0402789126df9800bde5dd4c0959"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a63a236306b65e42ccc17494d99799371" id="r_a63a236306b65e42ccc17494d99799371"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="classPonca_1_1CovarianceFitBase.html">CovarianceFitBase</a>&lt; DataPoint, _WFunctor, T &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1CovarianceFitBase.html#a63a236306b65e42ccc17494d99799371">covarianceFit</a> () const</td></tr>
-<tr class="memdesc:a63a236306b65e42ccc17494d99799371"><td class="mdescLeft">&#160;</td><td class="mdescRight">Explicit conversion to <a class="el" href="classPonca_1_1CovarianceFitBase.html" title="Procedure that compute and decompose the covariance matrix of the neighbors positions in .">CovarianceFitBase</a> , to access methods potentially hidden by heritage.  <br /></td></tr>
-<tr class="separator:a63a236306b65e42ccc17494d99799371"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac9ec77f96448eefa9033330c6ac057af" id="r_ac9ec77f96448eefa9033330c6ac057af"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classPonca_1_1CovarianceFitBase.html">CovarianceFitBase</a>&lt; DataPoint, _NFilter, T &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1CovarianceFitBase.html#ac9ec77f96448eefa9033330c6ac057af">covarianceFit</a> ()</td></tr>
+<tr class="memdesc:ac9ec77f96448eefa9033330c6ac057af"><td class="mdescLeft">&#160;</td><td class="mdescRight">Explicit conversion to <a class="el" href="classPonca_1_1CovarianceFitBase.html" title="Procedure that compute and decompose the covariance matrix of the neighbors positions in .">CovarianceFitBase</a> , to access methods potentially hidden by heritage.  <br /></td></tr>
+<tr class="separator:ac9ec77f96448eefa9033330c6ac057af"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a409e0f665f29d655fbd131f0bc9bb6ab" id="r_a409e0f665f29d655fbd131f0bc9bb6ab"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="classPonca_1_1CovarianceFitBase.html">CovarianceFitBase</a>&lt; DataPoint, _NFilter, T &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1CovarianceFitBase.html#a409e0f665f29d655fbd131f0bc9bb6ab">covarianceFit</a> () const</td></tr>
+<tr class="memdesc:a409e0f665f29d655fbd131f0bc9bb6ab"><td class="mdescLeft">&#160;</td><td class="mdescRight">Explicit conversion to <a class="el" href="classPonca_1_1CovarianceFitBase.html" title="Procedure that compute and decompose the covariance matrix of the neighbors positions in .">CovarianceFitBase</a> , to access methods potentially hidden by heritage.  <br /></td></tr>
+<tr class="separator:a409e0f665f29d655fbd131f0bc9bb6ab"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2ef9c22c029f90c56329507177f4a0b1" id="r_a2ef9c22c029f90c56329507177f4a0b1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1CovarianceFitBase.html#a2ef9c22c029f90c56329507177f4a0b1">init</a> ()</td></tr>
 <tr class="memdesc:a2ef9c22c029f90c56329507177f4a0b1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the evaluation position and reset the internal states.  <br /></td></tr>
 <tr class="separator:a2ef9c22c029f90c56329507177f4a0b1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae672a3a84fe589ba0da5c5395f3bec35" id="r_ae672a3a84fe589ba0da5c5395f3bec35"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1CovarianceFitBase.html#ae672a3a84fe589ba0da5c5395f3bec35">addLocalNeighbor</a> (<a class="el" href="classPonca_1_1CovarianceFitBase.html#a867c54a0c017ea6e1676e3923809d2c9">Scalar</a> w, const <a class="el" href="classPonca_1_1CovarianceFitBase.html#ac86349b24e58b8770e684be787013a10">VectorType</a> &amp;localQ, const DataPoint &amp;attributes)</td></tr>
+<tr class="memitem:ae672a3a84fe589ba0da5c5395f3bec35" id="r_ae672a3a84fe589ba0da5c5395f3bec35"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1CovarianceFitBase.html#ae672a3a84fe589ba0da5c5395f3bec35">addLocalNeighbor</a> (<a class="el" href="classPonca_1_1CovarianceFitBase.html#a8456e12892afc37f5cc305b50c162deb">Scalar</a> w, const <a class="el" href="classPonca_1_1CovarianceFitBase.html#ad5f653fa3aa28f61b9867818e3c44f70">VectorType</a> &amp;localQ, const DataPoint &amp;attributes)</td></tr>
 <tr class="memdesc:ae672a3a84fe589ba0da5c5395f3bec35"><td class="mdescLeft">&#160;</td><td class="mdescRight">Add a neighbor to perform the fit.  <br /></td></tr>
 <tr class="separator:ae672a3a84fe589ba0da5c5395f3bec35"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ade46d86526068a8f880a702d2489904f" id="r_ade46d86526068a8f880a702d2489904f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespacePonca.html#abfd697aebf07c1b5c8be5ee401e2dc84">FIT_RESULT</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1CovarianceFitBase.html#ade46d86526068a8f880a702d2489904f">finalize</a> ()</td></tr>
 <tr class="memdesc:ade46d86526068a8f880a702d2489904f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Finalize the procedure.  <br /></td></tr>
 <tr class="separator:ade46d86526068a8f880a702d2489904f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:adc7fcdb906bb6efbeb8f6fb447cff64f" id="r_adc7fcdb906bb6efbeb8f6fb447cff64f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classPonca_1_1CovarianceFitBase.html#a867c54a0c017ea6e1676e3923809d2c9">Scalar</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1CovarianceFitBase.html#adc7fcdb906bb6efbeb8f6fb447cff64f">surfaceVariation</a> () const</td></tr>
-<tr class="memdesc:adc7fcdb906bb6efbeb8f6fb447cff64f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Implements <a class="el" href="citelist.html#CITEREF_Pauly:2002:PSSimplification">[13]</a> surface variation.  <br /></td></tr>
-<tr class="separator:adc7fcdb906bb6efbeb8f6fb447cff64f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:adaff4ea8bec01041c83ff3f0abba67bb" id="r_adaff4ea8bec01041c83ff3f0abba67bb"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classPonca_1_1CovarianceFitBase.html#a867c54a0c017ea6e1676e3923809d2c9">Scalar</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1CovarianceFitBase.html#adaff4ea8bec01041c83ff3f0abba67bb">planarity</a> () const</td></tr>
+<tr class="memitem:a51531362ba02d442e2ca815e26436485" id="r_a51531362ba02d442e2ca815e26436485"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classPonca_1_1CovarianceFitBase.html#a8456e12892afc37f5cc305b50c162deb">Scalar</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1CovarianceFitBase.html#a51531362ba02d442e2ca815e26436485">surfaceVariation</a> () const</td></tr>
+<tr class="memdesc:a51531362ba02d442e2ca815e26436485"><td class="mdescLeft">&#160;</td><td class="mdescRight">Implements <a class="el" href="citelist.html#CITEREF_Pauly:2002:PSSimplification">[13]</a> surface variation.  <br /></td></tr>
+<tr class="separator:a51531362ba02d442e2ca815e26436485"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adaff4ea8bec01041c83ff3f0abba67bb" id="r_adaff4ea8bec01041c83ff3f0abba67bb"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classPonca_1_1CovarianceFitBase.html#a8456e12892afc37f5cc305b50c162deb">Scalar</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1CovarianceFitBase.html#adaff4ea8bec01041c83ff3f0abba67bb">planarity</a> () const</td></tr>
 <tr class="memdesc:adaff4ea8bec01041c83ff3f0abba67bb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Implements the planarity <a class="el" href="citelist.html#CITEREF_Guinard:2017">[7]</a> .  <br /></td></tr>
 <tr class="separator:adaff4ea8bec01041c83ff3f0abba67bb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac0a56812de37dc7650c9f5d718e88637" id="r_ac0a56812de37dc7650c9f5d718e88637"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classPonca_1_1CovarianceFitBase.html#a867c54a0c017ea6e1676e3923809d2c9">Scalar</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1CovarianceFitBase.html#ac0a56812de37dc7650c9f5d718e88637">linearity</a> () const</td></tr>
+<tr class="memitem:ac0a56812de37dc7650c9f5d718e88637" id="r_ac0a56812de37dc7650c9f5d718e88637"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classPonca_1_1CovarianceFitBase.html#a8456e12892afc37f5cc305b50c162deb">Scalar</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1CovarianceFitBase.html#ac0a56812de37dc7650c9f5d718e88637">linearity</a> () const</td></tr>
 <tr class="memdesc:ac0a56812de37dc7650c9f5d718e88637"><td class="mdescLeft">&#160;</td><td class="mdescRight">Implements the linearity <a class="el" href="citelist.html#CITEREF_Guinard:2017">[7]</a> .  <br /></td></tr>
 <tr class="separator:ac0a56812de37dc7650c9f5d718e88637"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a39d21a82282a185319520a36bd90150c" id="r_a39d21a82282a185319520a36bd90150c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classPonca_1_1CovarianceFitBase.html#a867c54a0c017ea6e1676e3923809d2c9">Scalar</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1CovarianceFitBase.html#a39d21a82282a185319520a36bd90150c">sphericity</a> () const</td></tr>
+<tr class="memitem:a39d21a82282a185319520a36bd90150c" id="r_a39d21a82282a185319520a36bd90150c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classPonca_1_1CovarianceFitBase.html#a8456e12892afc37f5cc305b50c162deb">Scalar</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1CovarianceFitBase.html#a39d21a82282a185319520a36bd90150c">sphericity</a> () const</td></tr>
 <tr class="memdesc:a39d21a82282a185319520a36bd90150c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Implements the sphericity <a class="el" href="citelist.html#CITEREF_Guinard:2017">[7]</a> .  <br /></td></tr>
 <tr class="separator:a39d21a82282a185319520a36bd90150c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:affc551a012a6044ae3c31c9b5235f9a4" id="r_affc551a012a6044ae3c31c9b5235f9a4"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classPonca_1_1CovarianceFitBase.html#a867c54a0c017ea6e1676e3923809d2c9">Scalar</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1CovarianceFitBase.html#affc551a012a6044ae3c31c9b5235f9a4">anisotropy</a> () const</td></tr>
+<tr class="memitem:affc551a012a6044ae3c31c9b5235f9a4" id="r_affc551a012a6044ae3c31c9b5235f9a4"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classPonca_1_1CovarianceFitBase.html#a8456e12892afc37f5cc305b50c162deb">Scalar</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1CovarianceFitBase.html#affc551a012a6044ae3c31c9b5235f9a4">anisotropy</a> () const</td></tr>
 <tr class="memdesc:affc551a012a6044ae3c31c9b5235f9a4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Implements the anisotropy <a class="el" href="citelist.html#CITEREF_Guinard:2017">[7]</a> .  <br /></td></tr>
 <tr class="separator:affc551a012a6044ae3c31c9b5235f9a4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aba57b6a60e7597187a0ac13a54ec75f0" id="r_aba57b6a60e7597187a0ac13a54ec75f0"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classPonca_1_1CovarianceFitBase.html#a867c54a0c017ea6e1676e3923809d2c9">Scalar</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1CovarianceFitBase.html#aba57b6a60e7597187a0ac13a54ec75f0">eigenentropy</a> () const</td></tr>
+<tr class="memitem:aba57b6a60e7597187a0ac13a54ec75f0" id="r_aba57b6a60e7597187a0ac13a54ec75f0"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classPonca_1_1CovarianceFitBase.html#a8456e12892afc37f5cc305b50c162deb">Scalar</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1CovarianceFitBase.html#aba57b6a60e7597187a0ac13a54ec75f0">eigenentropy</a> () const</td></tr>
 <tr class="memdesc:aba57b6a60e7597187a0ac13a54ec75f0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Implements the eigenentropy <a class="el" href="citelist.html#CITEREF_Guinard:2017">[7]</a> .  <br /></td></tr>
 <tr class="separator:aba57b6a60e7597187a0ac13a54ec75f0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad963bd816b41c6d42a9a4c1ff3fde647" id="r_ad963bd816b41c6d42a9a4c1ff3fde647"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classPonca_1_1CovarianceFitBase.html#a867c54a0c017ea6e1676e3923809d2c9">Scalar</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1CovarianceFitBase.html#ad963bd816b41c6d42a9a4c1ff3fde647">lambda_0</a> () const</td></tr>
+<tr class="memitem:ad963bd816b41c6d42a9a4c1ff3fde647" id="r_ad963bd816b41c6d42a9a4c1ff3fde647"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classPonca_1_1CovarianceFitBase.html#a8456e12892afc37f5cc305b50c162deb">Scalar</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1CovarianceFitBase.html#ad963bd816b41c6d42a9a4c1ff3fde647">lambda_0</a> () const</td></tr>
 <tr class="memdesc:ad963bd816b41c6d42a9a4c1ff3fde647"><td class="mdescLeft">&#160;</td><td class="mdescRight">The minimun eigenvalue \( \lambda_0 \).  <br /></td></tr>
 <tr class="separator:ad963bd816b41c6d42a9a4c1ff3fde647"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6aa5bcbc1bfbbce9f7e6ab5ded0cf82e" id="r_a6aa5bcbc1bfbbce9f7e6ab5ded0cf82e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classPonca_1_1CovarianceFitBase.html#a867c54a0c017ea6e1676e3923809d2c9">Scalar</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1CovarianceFitBase.html#a6aa5bcbc1bfbbce9f7e6ab5ded0cf82e">lambda_1</a> () const</td></tr>
+<tr class="memitem:a6aa5bcbc1bfbbce9f7e6ab5ded0cf82e" id="r_a6aa5bcbc1bfbbce9f7e6ab5ded0cf82e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classPonca_1_1CovarianceFitBase.html#a8456e12892afc37f5cc305b50c162deb">Scalar</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1CovarianceFitBase.html#a6aa5bcbc1bfbbce9f7e6ab5ded0cf82e">lambda_1</a> () const</td></tr>
 <tr class="memdesc:a6aa5bcbc1bfbbce9f7e6ab5ded0cf82e"><td class="mdescLeft">&#160;</td><td class="mdescRight">The second eigenvalue \( \lambda_1 \).  <br /></td></tr>
 <tr class="separator:a6aa5bcbc1bfbbce9f7e6ab5ded0cf82e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a52b2656bd023c2edc1e8b00bbfc70d8f" id="r_a52b2656bd023c2edc1e8b00bbfc70d8f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classPonca_1_1CovarianceFitBase.html#a867c54a0c017ea6e1676e3923809d2c9">Scalar</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1CovarianceFitBase.html#a52b2656bd023c2edc1e8b00bbfc70d8f">lambda_2</a> () const</td></tr>
+<tr class="memitem:a52b2656bd023c2edc1e8b00bbfc70d8f" id="r_a52b2656bd023c2edc1e8b00bbfc70d8f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classPonca_1_1CovarianceFitBase.html#a8456e12892afc37f5cc305b50c162deb">Scalar</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1CovarianceFitBase.html#a52b2656bd023c2edc1e8b00bbfc70d8f">lambda_2</a> () const</td></tr>
 <tr class="memdesc:a52b2656bd023c2edc1e8b00bbfc70d8f"><td class="mdescLeft">&#160;</td><td class="mdescRight">The maximun eigenvalue \( \lambda_2 \).  <br /></td></tr>
 <tr class="separator:a52b2656bd023c2edc1e8b00bbfc70d8f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab469c0f1be340100a266f419a8386468" id="r_ab469c0f1be340100a266f419a8386468"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="classPonca_1_1CovarianceFitBase.html#a4213e183cb3fb89932e41e4ef30954ee">Solver</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1CovarianceFitBase.html#ab469c0f1be340100a266f419a8386468">solver</a> () const</td></tr>
-<tr class="memdesc:ab469c0f1be340100a266f419a8386468"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reading access to the Solver used to analyse the covariance matrix.  <br /></td></tr>
-<tr class="separator:ab469c0f1be340100a266f419a8386468"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a20e4e162d9b2dcd2b28837e1a302d68d" id="r_a20e4e162d9b2dcd2b28837e1a302d68d"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="classPonca_1_1CovarianceFitBase.html#a18d259c240fb958ffcd9adf01d018072">Solver</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1CovarianceFitBase.html#a20e4e162d9b2dcd2b28837e1a302d68d">solver</a> () const</td></tr>
+<tr class="memdesc:a20e4e162d9b2dcd2b28837e1a302d68d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reading access to the Solver used to analyse the covariance matrix.  <br /></td></tr>
+<tr class="separator:a20e4e162d9b2dcd2b28837e1a302d68d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-types" name="pro-types"></a>
 Protected Types</h2></td></tr>
@@ -217,24 +217,24 @@ Protected Types</h2></td></tr>
 , <b>PROVIDES_POSITION_COVARIANCE</b>
  }</td></tr>
 <tr class="separator:a73eb86f844ae97aa5ddb5e2c86ff1c0d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5b142ef8e5479ba8bb1f3da97af53fe7" id="r_a5b142ef8e5479ba8bb1f3da97af53fe7"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1CovarianceFitBase.html#a5b142ef8e5479ba8bb1f3da97af53fe7">Base</a> = T</td></tr>
-<tr class="memdesc:a5b142ef8e5479ba8bb1f3da97af53fe7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Base class of the procedure.  <br /></td></tr>
-<tr class="separator:a5b142ef8e5479ba8bb1f3da97af53fe7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2219cefe4363d96009aa2cb2a9e6161e" id="r_a2219cefe4363d96009aa2cb2a9e6161e"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1CovarianceFitBase.html#a2219cefe4363d96009aa2cb2a9e6161e">Base</a> = T</td></tr>
+<tr class="memdesc:a2219cefe4363d96009aa2cb2a9e6161e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Base class of the procedure.  <br /></td></tr>
+<tr class="separator:a2219cefe4363d96009aa2cb2a9e6161e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-attribs" name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
-<tr class="memitem:a682053520ba5e1e755b1a0332d425631" id="r_a682053520ba5e1e755b1a0332d425631"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classPonca_1_1CovarianceFitBase.html#a27c664f6826a52b58103250ecd6d6686">MatrixType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1CovarianceFitBase.html#a682053520ba5e1e755b1a0332d425631">m_cov</a> {MatrixType::Zero()}</td></tr>
-<tr class="memdesc:a682053520ba5e1e755b1a0332d425631"><td class="mdescLeft">&#160;</td><td class="mdescRight">Covariance matrix.  <br /></td></tr>
-<tr class="separator:a682053520ba5e1e755b1a0332d425631"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa8b75c1179b020cb31466f3c7b79999f" id="r_aa8b75c1179b020cb31466f3c7b79999f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classPonca_1_1CovarianceFitBase.html#a4213e183cb3fb89932e41e4ef30954ee">Solver</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1CovarianceFitBase.html#aa8b75c1179b020cb31466f3c7b79999f">m_solver</a></td></tr>
-<tr class="memdesc:aa8b75c1179b020cb31466f3c7b79999f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Solver used to analyse the covariance matrix.  <br /></td></tr>
-<tr class="separator:aa8b75c1179b020cb31466f3c7b79999f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af849b7a13a0ad0f04ed4c2ad0cf9acad" id="r_af849b7a13a0ad0f04ed4c2ad0cf9acad"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classPonca_1_1CovarianceFitBase.html#a8841343a28c57f964d9f6a38a65c9f9c">MatrixType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1CovarianceFitBase.html#af849b7a13a0ad0f04ed4c2ad0cf9acad">m_cov</a> {MatrixType::Zero()}</td></tr>
+<tr class="memdesc:af849b7a13a0ad0f04ed4c2ad0cf9acad"><td class="mdescLeft">&#160;</td><td class="mdescRight">Covariance matrix.  <br /></td></tr>
+<tr class="separator:af849b7a13a0ad0f04ed4c2ad0cf9acad"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a26ec0b6f7eaef7d88adcb66c344bdcd1" id="r_a26ec0b6f7eaef7d88adcb66c344bdcd1"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classPonca_1_1CovarianceFitBase.html#a18d259c240fb958ffcd9adf01d018072">Solver</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1CovarianceFitBase.html#a26ec0b6f7eaef7d88adcb66c344bdcd1">m_solver</a></td></tr>
+<tr class="memdesc:a26ec0b6f7eaef7d88adcb66c344bdcd1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Solver used to analyse the covariance matrix.  <br /></td></tr>
+<tr class="separator:a26ec0b6f7eaef7d88adcb66c344bdcd1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><div class="compoundTemplParams">template&lt;class DataPoint, class _WFunctor, typename T&gt;<br />
-class Ponca::CovarianceFitBase&lt; DataPoint, _WFunctor, T &gt;</div><p>Procedure that compute and decompose the covariance matrix of the neighbors positions in \(3d\). </p>
+<div class="textblock"><div class="compoundTemplParams">template&lt;class DataPoint, class _NFilter, typename T&gt;<br />
+class Ponca::CovarianceFitBase&lt; DataPoint, _NFilter, T &gt;</div><p>Procedure that compute and decompose the covariance matrix of the neighbors positions in \(3d\). </p>
 <p>This process is commonly used for plane fitting and local variance analysis. It is often called Principal Component Analysis (PCA) of the neighborhood, and used in Geometry Processing and Computer Vision.</p>
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="namespacePonca.html#aa4b1806ad54a3b70849bd5997002a8c7" title="Helper alias for Plane fitting on 3D points using CovariancePlaneFitImpl [CovariancePlaneFit Definiti...">CovariancePlaneFit</a> which use a similar approach for <a class="el" href="classPonca_1_1Plane.html" title="Implicit hyperplane defined by an homogeneous vector .">Plane</a> estimation</dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="namespacePonca.html#a4ff3ffd27d5eaf805221e4e2f39469dd" title="Helper alias for Plane fitting on 3D points using CovariancePlaneFitImpl [CovariancePlaneFit Definiti...">CovariancePlaneFit</a> which use a similar approach for <a class="el" href="classPonca_1_1Plane.html" title="Implicit hyperplane defined by an homogeneous vector .">Plane</a> estimation</dd></dl>
 <h3><a class="anchor" id="autotoc_md0"></a>
 Computation details</h3>
 <p>Standard PCA algorithm involves a two-steps process where the barycenter \(\mathbf{b}\) is first computed, and then the covariance matrix \(\text{C}\) (in the following, the weights are ignored for clarity but without loss of generality):  </p><p class="formulaDsp">
@@ -259,19 +259,19 @@ Computation details</h3>
 
 <p class="definition">Definition at line <a class="el" href="covarianceFit_8h_source.html#l00053">53</a> of file <a class="el" href="covarianceFit_8h_source.html">covarianceFit.h</a>.</p>
 </div><h2 class="groupheader">Member Typedef Documentation</h2>
-<a id="a5b142ef8e5479ba8bb1f3da97af53fe7" name="a5b142ef8e5479ba8bb1f3da97af53fe7"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a5b142ef8e5479ba8bb1f3da97af53fe7">&#9670;&#160;</a></span>Base</h2>
+<a id="a2219cefe4363d96009aa2cb2a9e6161e" name="a2219cefe4363d96009aa2cb2a9e6161e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2219cefe4363d96009aa2cb2a9e6161e">&#9670;&#160;</a></span>Base</h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
+template&lt;class DataPoint , class _NFilter , typename T &gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">using <a class="el" href="classPonca_1_1CovarianceFitBase.html">Ponca::CovarianceFitBase</a>&lt; DataPoint, _WFunctor, T &gt;::Base =  T</td>
+          <td class="memname">using <a class="el" href="classPonca_1_1CovarianceFitBase.html">Ponca::CovarianceFitBase</a>&lt; DataPoint, _NFilter, T &gt;::Base =  T</td>
         </tr>
       </table>
   </td>
@@ -287,16 +287,16 @@ template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
 
 </div>
 </div>
-<a id="a27c664f6826a52b58103250ecd6d6686" name="a27c664f6826a52b58103250ecd6d6686"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a27c664f6826a52b58103250ecd6d6686">&#9670;&#160;</a></span>MatrixType</h2>
+<a id="a8841343a28c57f964d9f6a38a65c9f9c" name="a8841343a28c57f964d9f6a38a65c9f9c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8841343a28c57f964d9f6a38a65c9f9c">&#9670;&#160;</a></span>MatrixType</h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
+template&lt;class DataPoint , class _NFilter , typename T &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">using <a class="el" href="classPonca_1_1CovarianceFitBase.html">Ponca::CovarianceFitBase</a>&lt; DataPoint, _WFunctor, T &gt;::MatrixType =  typename DataPoint::MatrixType</td>
+          <td class="memname">using <a class="el" href="classPonca_1_1CovarianceFitBase.html">Ponca::CovarianceFitBase</a>&lt; DataPoint, _NFilter, T &gt;::MatrixType =  typename DataPoint::MatrixType</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -307,16 +307,36 @@ template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
 
 </div>
 </div>
-<a id="a867c54a0c017ea6e1676e3923809d2c9" name="a867c54a0c017ea6e1676e3923809d2c9"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a867c54a0c017ea6e1676e3923809d2c9">&#9670;&#160;</a></span>Scalar</h2>
+<a id="ae23dd92646173c1141e7bbd22fc63789" name="ae23dd92646173c1141e7bbd22fc63789"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae23dd92646173c1141e7bbd22fc63789">&#9670;&#160;</a></span>NeighborFilter</h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
+template&lt;class DataPoint , class _NFilter , typename T &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">using <a class="el" href="classPonca_1_1CovarianceFitBase.html">Ponca::CovarianceFitBase</a>&lt; DataPoint, _WFunctor, T &gt;::Scalar =  typename DataPoint::Scalar</td>
+          <td class="memname">using <a class="el" href="classPonca_1_1CovarianceFitBase.html">Ponca::CovarianceFitBase</a>&lt; DataPoint, _NFilter, T &gt;::NeighborFilter =  typename Base::NeighborFilter</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Alias to the filter applied on the neighbors. </p>
+
+<p class="definition">Definition at line <a class="el" href="covarianceFit_8h_source.html#l00055">55</a> of file <a class="el" href="covarianceFit_8h_source.html">covarianceFit.h</a>.</p>
+
+</div>
+</div>
+<a id="a8456e12892afc37f5cc305b50c162deb" name="a8456e12892afc37f5cc305b50c162deb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8456e12892afc37f5cc305b50c162deb">&#9670;&#160;</a></span>Scalar</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class DataPoint , class _NFilter , typename T &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="classPonca_1_1CovarianceFitBase.html">Ponca::CovarianceFitBase</a>&lt; DataPoint, _NFilter, T &gt;::Scalar =  typename DataPoint::Scalar</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -327,16 +347,16 @@ template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
 
 </div>
 </div>
-<a id="a4213e183cb3fb89932e41e4ef30954ee" name="a4213e183cb3fb89932e41e4ef30954ee"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a4213e183cb3fb89932e41e4ef30954ee">&#9670;&#160;</a></span>Solver</h2>
+<a id="a18d259c240fb958ffcd9adf01d018072" name="a18d259c240fb958ffcd9adf01d018072"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a18d259c240fb958ffcd9adf01d018072">&#9670;&#160;</a></span>Solver</h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
+template&lt;class DataPoint , class _NFilter , typename T &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">using <a class="el" href="classPonca_1_1CovarianceFitBase.html">Ponca::CovarianceFitBase</a>&lt; DataPoint, _WFunctor, T &gt;::Solver =  Eigen::SelfAdjointEigenSolver&lt;<a class="el" href="classPonca_1_1CovarianceFitBase.html#a27c664f6826a52b58103250ecd6d6686">MatrixType</a>&gt;</td>
+          <td class="memname">using <a class="el" href="classPonca_1_1CovarianceFitBase.html">Ponca::CovarianceFitBase</a>&lt; DataPoint, _NFilter, T &gt;::Solver =  Eigen::SelfAdjointEigenSolver&lt;<a class="el" href="classPonca_1_1CovarianceFitBase.html#a8841343a28c57f964d9f6a38a65c9f9c">MatrixType</a>&gt;</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -347,41 +367,21 @@ template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
 
 </div>
 </div>
-<a id="ac86349b24e58b8770e684be787013a10" name="ac86349b24e58b8770e684be787013a10"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac86349b24e58b8770e684be787013a10">&#9670;&#160;</a></span>VectorType</h2>
+<a id="ad5f653fa3aa28f61b9867818e3c44f70" name="ad5f653fa3aa28f61b9867818e3c44f70"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad5f653fa3aa28f61b9867818e3c44f70">&#9670;&#160;</a></span>VectorType</h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
+template&lt;class DataPoint , class _NFilter , typename T &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">using <a class="el" href="classPonca_1_1CovarianceFitBase.html">Ponca::CovarianceFitBase</a>&lt; DataPoint, _WFunctor, T &gt;::VectorType =  typename Base::VectorType</td>
+          <td class="memname">using <a class="el" href="classPonca_1_1CovarianceFitBase.html">Ponca::CovarianceFitBase</a>&lt; DataPoint, _NFilter, T &gt;::VectorType =  typename Base::VectorType</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
 <p>Alias to vector type. </p>
-
-<p class="definition">Definition at line <a class="el" href="covarianceFit_8h_source.html#l00055">55</a> of file <a class="el" href="covarianceFit_8h_source.html">covarianceFit.h</a>.</p>
-
-</div>
-</div>
-<a id="a4a6aff40a1d270fee1f0018d3f104b2e" name="a4a6aff40a1d270fee1f0018d3f104b2e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a4a6aff40a1d270fee1f0018d3f104b2e">&#9670;&#160;</a></span>WFunctor</h2>
-
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
-      <table class="memname">
-        <tr>
-          <td class="memname">using <a class="el" href="classPonca_1_1CovarianceFitBase.html">Ponca::CovarianceFitBase</a>&lt; DataPoint, _WFunctor, T &gt;::WFunctor =  typename Base::WFunctor</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Alias to weight function. </p>
 
 <p class="definition">Definition at line <a class="el" href="covarianceFit_8h_source.html#l00055">55</a> of file <a class="el" href="covarianceFit_8h_source.html">covarianceFit.h</a>.</p>
 
@@ -394,7 +394,7 @@ template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
+template&lt;class DataPoint , class _NFilter , typename T &gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
@@ -421,7 +421,7 @@ template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
+template&lt;class DataPoint , class _NFilter , typename T &gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
@@ -429,13 +429,13 @@ template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
         <tr>
           <td class="memname">bool CovarianceFitBase::addLocalNeighbor </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="classPonca_1_1CovarianceFitBase.html#a867c54a0c017ea6e1676e3923809d2c9">Scalar</a>&#160;</td>
+          <td class="paramtype"><a class="el" href="classPonca_1_1CovarianceFitBase.html#a8456e12892afc37f5cc305b50c162deb">Scalar</a>&#160;</td>
           <td class="paramname"><em>w</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const <a class="el" href="classPonca_1_1CovarianceFitBase.html#ac86349b24e58b8770e684be787013a10">VectorType</a> &amp;&#160;</td>
+          <td class="paramtype">const <a class="el" href="classPonca_1_1CovarianceFitBase.html#ad5f653fa3aa28f61b9867818e3c44f70">VectorType</a> &amp;&#160;</td>
           <td class="paramname"><em>localQ</em>, </td>
         </tr>
         <tr>
@@ -470,13 +470,13 @@ template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
+template&lt;class DataPoint , class _NFilter , typename T &gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classPonca_1_1CovarianceFitBase.html">CovarianceFitBase</a>&lt; DataPoint, _WFunctor, T &gt;<a class="el" href="classPonca_1_1CovarianceFitBase.html#a867c54a0c017ea6e1676e3923809d2c9">::Scalar</a> CovarianceFitBase::anisotropy </td>
+          <td class="memname"><a class="el" href="classPonca_1_1CovarianceFitBase.html">CovarianceFitBase</a>&lt; DataPoint, _WFunctor, T &gt;<a class="el" href="classPonca_1_1CovarianceFitBase.html#a8456e12892afc37f5cc305b50c162deb">::Scalar</a> CovarianceFitBase::anisotropy </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td> const</td>
@@ -498,19 +498,19 @@ template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
 
 </div>
 </div>
-<a id="abe6d0402789126df9800bde5dd4c0959" name="abe6d0402789126df9800bde5dd4c0959"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#abe6d0402789126df9800bde5dd4c0959">&#9670;&#160;</a></span>covarianceFit() <span class="overload">[1/2]</span></h2>
+<a id="ac9ec77f96448eefa9033330c6ac057af" name="ac9ec77f96448eefa9033330c6ac057af"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac9ec77f96448eefa9033330c6ac057af">&#9670;&#160;</a></span>covarianceFit() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
+template&lt;class DataPoint , class _NFilter , typename T &gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classPonca_1_1CovarianceFitBase.html">CovarianceFitBase</a>&lt; DataPoint, _WFunctor, T &gt; &amp; <a class="el" href="classPonca_1_1CovarianceFitBase.html">Ponca::CovarianceFitBase</a>&lt; DataPoint, _WFunctor, T &gt;::covarianceFit </td>
+          <td class="memname"><a class="el" href="classPonca_1_1CovarianceFitBase.html">CovarianceFitBase</a>&lt; DataPoint, _NFilter, T &gt; &amp; <a class="el" href="classPonca_1_1CovarianceFitBase.html">Ponca::CovarianceFitBase</a>&lt; DataPoint, _NFilter, T &gt;::covarianceFit </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -529,19 +529,19 @@ template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
 
 </div>
 </div>
-<a id="a63a236306b65e42ccc17494d99799371" name="a63a236306b65e42ccc17494d99799371"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a63a236306b65e42ccc17494d99799371">&#9670;&#160;</a></span>covarianceFit() <span class="overload">[2/2]</span></h2>
+<a id="a409e0f665f29d655fbd131f0bc9bb6ab" name="a409e0f665f29d655fbd131f0bc9bb6ab"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a409e0f665f29d655fbd131f0bc9bb6ab">&#9670;&#160;</a></span>covarianceFit() <span class="overload">[2/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
+template&lt;class DataPoint , class _NFilter , typename T &gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">const <a class="el" href="classPonca_1_1CovarianceFitBase.html">CovarianceFitBase</a>&lt; DataPoint, _WFunctor, T &gt; &amp; <a class="el" href="classPonca_1_1CovarianceFitBase.html">Ponca::CovarianceFitBase</a>&lt; DataPoint, _WFunctor, T &gt;::covarianceFit </td>
+          <td class="memname">const <a class="el" href="classPonca_1_1CovarianceFitBase.html">CovarianceFitBase</a>&lt; DataPoint, _NFilter, T &gt; &amp; <a class="el" href="classPonca_1_1CovarianceFitBase.html">Ponca::CovarianceFitBase</a>&lt; DataPoint, _NFilter, T &gt;::covarianceFit </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td> const</td>
@@ -566,13 +566,13 @@ template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
+template&lt;class DataPoint , class _NFilter , typename T &gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classPonca_1_1CovarianceFitBase.html">CovarianceFitBase</a>&lt; DataPoint, _WFunctor, T &gt;<a class="el" href="classPonca_1_1CovarianceFitBase.html#a867c54a0c017ea6e1676e3923809d2c9">::Scalar</a> CovarianceFitBase::eigenentropy </td>
+          <td class="memname"><a class="el" href="classPonca_1_1CovarianceFitBase.html">CovarianceFitBase</a>&lt; DataPoint, _WFunctor, T &gt;<a class="el" href="classPonca_1_1CovarianceFitBase.html#a8456e12892afc37f5cc305b50c162deb">::Scalar</a> CovarianceFitBase::eigenentropy </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td> const</td>
@@ -600,7 +600,7 @@ template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
+template&lt;class DataPoint , class _NFilter , typename T &gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
@@ -633,7 +633,7 @@ template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
+template&lt;class DataPoint , class _NFilter , typename T &gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
@@ -653,7 +653,7 @@ template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
 </div><div class="memdoc">
 
 <p>Set the evaluation position and reset the internal states. </p>
-<dl class="section warning"><dt>Warning</dt><dd>Must be called be for any computation (but after #setWeightFunc) </dd></dl>
+<dl class="section warning"><dt>Warning</dt><dd>Must be called be for any computation (but after #setNeighborFilter) </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="covarianceFit_8hpp_source.html#l00013">13</a> of file <a class="el" href="covarianceFit_8hpp_source.html">covarianceFit.hpp</a>.</p>
 
@@ -665,13 +665,13 @@ template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
+template&lt;class DataPoint , class _NFilter , typename T &gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classPonca_1_1CovarianceFitBase.html">CovarianceFitBase</a>&lt; DataPoint, _WFunctor, T &gt;<a class="el" href="classPonca_1_1CovarianceFitBase.html#a867c54a0c017ea6e1676e3923809d2c9">::Scalar</a> CovarianceFitBase::lambda_0 </td>
+          <td class="memname"><a class="el" href="classPonca_1_1CovarianceFitBase.html">CovarianceFitBase</a>&lt; DataPoint, _WFunctor, T &gt;<a class="el" href="classPonca_1_1CovarianceFitBase.html#a8456e12892afc37f5cc305b50c162deb">::Scalar</a> CovarianceFitBase::lambda_0 </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td> const</td>
@@ -696,13 +696,13 @@ template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
+template&lt;class DataPoint , class _NFilter , typename T &gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classPonca_1_1CovarianceFitBase.html">CovarianceFitBase</a>&lt; DataPoint, _WFunctor, T &gt;<a class="el" href="classPonca_1_1CovarianceFitBase.html#a867c54a0c017ea6e1676e3923809d2c9">::Scalar</a> CovarianceFitBase::lambda_1 </td>
+          <td class="memname"><a class="el" href="classPonca_1_1CovarianceFitBase.html">CovarianceFitBase</a>&lt; DataPoint, _WFunctor, T &gt;<a class="el" href="classPonca_1_1CovarianceFitBase.html#a8456e12892afc37f5cc305b50c162deb">::Scalar</a> CovarianceFitBase::lambda_1 </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td> const</td>
@@ -727,13 +727,13 @@ template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
+template&lt;class DataPoint , class _NFilter , typename T &gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classPonca_1_1CovarianceFitBase.html">CovarianceFitBase</a>&lt; DataPoint, _WFunctor, T &gt;<a class="el" href="classPonca_1_1CovarianceFitBase.html#a867c54a0c017ea6e1676e3923809d2c9">::Scalar</a> CovarianceFitBase::lambda_2 </td>
+          <td class="memname"><a class="el" href="classPonca_1_1CovarianceFitBase.html">CovarianceFitBase</a>&lt; DataPoint, _WFunctor, T &gt;<a class="el" href="classPonca_1_1CovarianceFitBase.html#a8456e12892afc37f5cc305b50c162deb">::Scalar</a> CovarianceFitBase::lambda_2 </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td> const</td>
@@ -758,13 +758,13 @@ template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
+template&lt;class DataPoint , class _NFilter , typename T &gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classPonca_1_1CovarianceFitBase.html">CovarianceFitBase</a>&lt; DataPoint, _WFunctor, T &gt;<a class="el" href="classPonca_1_1CovarianceFitBase.html#a867c54a0c017ea6e1676e3923809d2c9">::Scalar</a> CovarianceFitBase::linearity </td>
+          <td class="memname"><a class="el" href="classPonca_1_1CovarianceFitBase.html">CovarianceFitBase</a>&lt; DataPoint, _WFunctor, T &gt;<a class="el" href="classPonca_1_1CovarianceFitBase.html#a8456e12892afc37f5cc305b50c162deb">::Scalar</a> CovarianceFitBase::linearity </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td> const</td>
@@ -792,13 +792,13 @@ template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
+template&lt;class DataPoint , class _NFilter , typename T &gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classPonca_1_1CovarianceFitBase.html">CovarianceFitBase</a>&lt; DataPoint, _WFunctor, T &gt;<a class="el" href="classPonca_1_1CovarianceFitBase.html#a867c54a0c017ea6e1676e3923809d2c9">::Scalar</a> CovarianceFitBase::planarity </td>
+          <td class="memname"><a class="el" href="classPonca_1_1CovarianceFitBase.html">CovarianceFitBase</a>&lt; DataPoint, _WFunctor, T &gt;<a class="el" href="classPonca_1_1CovarianceFitBase.html#a8456e12892afc37f5cc305b50c162deb">::Scalar</a> CovarianceFitBase::planarity </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td> const</td>
@@ -820,19 +820,19 @@ template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
 
 </div>
 </div>
-<a id="ab469c0f1be340100a266f419a8386468" name="ab469c0f1be340100a266f419a8386468"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ab469c0f1be340100a266f419a8386468">&#9670;&#160;</a></span>solver()</h2>
+<a id="a20e4e162d9b2dcd2b28837e1a302d68d" name="a20e4e162d9b2dcd2b28837e1a302d68d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a20e4e162d9b2dcd2b28837e1a302d68d">&#9670;&#160;</a></span>solver()</h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
+template&lt;class DataPoint , class _NFilter , typename T &gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">const <a class="el" href="classPonca_1_1CovarianceFitBase.html#a4213e183cb3fb89932e41e4ef30954ee">Solver</a> &amp; <a class="el" href="classPonca_1_1CovarianceFitBase.html">Ponca::CovarianceFitBase</a>&lt; DataPoint, _WFunctor, T &gt;::solver </td>
+          <td class="memname">const <a class="el" href="classPonca_1_1CovarianceFitBase.html#a18d259c240fb958ffcd9adf01d018072">Solver</a> &amp; <a class="el" href="classPonca_1_1CovarianceFitBase.html">Ponca::CovarianceFitBase</a>&lt; DataPoint, _NFilter, T &gt;::solver </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td> const</td>
@@ -857,13 +857,13 @@ template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
+template&lt;class DataPoint , class _NFilter , typename T &gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classPonca_1_1CovarianceFitBase.html">CovarianceFitBase</a>&lt; DataPoint, _WFunctor, T &gt;<a class="el" href="classPonca_1_1CovarianceFitBase.html#a867c54a0c017ea6e1676e3923809d2c9">::Scalar</a> CovarianceFitBase::sphericity </td>
+          <td class="memname"><a class="el" href="classPonca_1_1CovarianceFitBase.html">CovarianceFitBase</a>&lt; DataPoint, _WFunctor, T &gt;<a class="el" href="classPonca_1_1CovarianceFitBase.html#a8456e12892afc37f5cc305b50c162deb">::Scalar</a> CovarianceFitBase::sphericity </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td> const</td>
@@ -885,19 +885,19 @@ template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
 
 </div>
 </div>
-<a id="adc7fcdb906bb6efbeb8f6fb447cff64f" name="adc7fcdb906bb6efbeb8f6fb447cff64f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#adc7fcdb906bb6efbeb8f6fb447cff64f">&#9670;&#160;</a></span>surfaceVariation()</h2>
+<a id="a51531362ba02d442e2ca815e26436485" name="a51531362ba02d442e2ca815e26436485"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a51531362ba02d442e2ca815e26436485">&#9670;&#160;</a></span>surfaceVariation()</h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
+template&lt;class DataPoint , class _NFilter , typename T &gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classPonca_1_1CovarianceFitBase.html">CovarianceFitBase</a>&lt; DataPoint, _WFunctor, T &gt;<a class="el" href="classPonca_1_1CovarianceFitBase.html#a867c54a0c017ea6e1676e3923809d2c9">::Scalar</a> CovarianceFitBase::surfaceVariation </td>
+          <td class="memname"><a class="el" href="classPonca_1_1CovarianceFitBase.html">CovarianceFitBase</a>&lt; DataPoint, _NFilter, T &gt;<a class="el" href="classPonca_1_1CovarianceFitBase.html#a8456e12892afc37f5cc305b50c162deb">::Scalar</a> CovarianceFitBase::surfaceVariation </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td> const</td>
@@ -918,19 +918,19 @@ template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
 </div>
 </div>
 <h2 class="groupheader">Member Data Documentation</h2>
-<a id="a682053520ba5e1e755b1a0332d425631" name="a682053520ba5e1e755b1a0332d425631"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a682053520ba5e1e755b1a0332d425631">&#9670;&#160;</a></span>m_cov</h2>
+<a id="af849b7a13a0ad0f04ed4c2ad0cf9acad" name="af849b7a13a0ad0f04ed4c2ad0cf9acad"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af849b7a13a0ad0f04ed4c2ad0cf9acad">&#9670;&#160;</a></span>m_cov</h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
+template&lt;class DataPoint , class _NFilter , typename T &gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classPonca_1_1CovarianceFitBase.html#a27c664f6826a52b58103250ecd6d6686">MatrixType</a> <a class="el" href="classPonca_1_1CovarianceFitBase.html">Ponca::CovarianceFitBase</a>&lt; DataPoint, _WFunctor, T &gt;::m_cov {MatrixType::Zero()}</td>
+          <td class="memname"><a class="el" href="classPonca_1_1CovarianceFitBase.html#a8841343a28c57f964d9f6a38a65c9f9c">MatrixType</a> <a class="el" href="classPonca_1_1CovarianceFitBase.html">Ponca::CovarianceFitBase</a>&lt; DataPoint, _NFilter, T &gt;::m_cov {MatrixType::Zero()}</td>
         </tr>
       </table>
   </td>
@@ -946,19 +946,19 @@ template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
 
 </div>
 </div>
-<a id="aa8b75c1179b020cb31466f3c7b79999f" name="aa8b75c1179b020cb31466f3c7b79999f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa8b75c1179b020cb31466f3c7b79999f">&#9670;&#160;</a></span>m_solver</h2>
+<a id="a26ec0b6f7eaef7d88adcb66c344bdcd1" name="a26ec0b6f7eaef7d88adcb66c344bdcd1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a26ec0b6f7eaef7d88adcb66c344bdcd1">&#9670;&#160;</a></span>m_solver</h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
+template&lt;class DataPoint , class _NFilter , typename T &gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classPonca_1_1CovarianceFitBase.html#a4213e183cb3fb89932e41e4ef30954ee">Solver</a> <a class="el" href="classPonca_1_1CovarianceFitBase.html">Ponca::CovarianceFitBase</a>&lt; DataPoint, _WFunctor, T &gt;::m_solver</td>
+          <td class="memname"><a class="el" href="classPonca_1_1CovarianceFitBase.html#a18d259c240fb958ffcd9adf01d018072">Solver</a> <a class="el" href="classPonca_1_1CovarianceFitBase.html">Ponca::CovarianceFitBase</a>&lt; DataPoint, _NFilter, T &gt;::m_solver</td>
         </tr>
       </table>
   </td>
@@ -980,7 +980,7 @@ template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="namespacePonca.html">Ponca</a></li><li class="navelem"><a class="el" href="classPonca_1_1CovarianceFitBase.html">CovarianceFitBase</a></li>
-    <li class="footer">Generated on Thu Oct 9 2025 22:33:52 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
+    <li class="footer">Generated on Thu Oct 30 2025 19:03:05 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
   </ul>
 </div>
 </body>

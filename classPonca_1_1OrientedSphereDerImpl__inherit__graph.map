@@ -1,5 +1,5 @@
-<map id="Ponca::OrientedSphereDerImpl&lt; DataPoint, _WFunctor, DiffType, T &gt;" name="Ponca::OrientedSphereDerImpl&lt; DataPoint, _WFunctor, DiffType, T &gt;">
-<area shape="rect" id="Node000001" title="[OrientedSphereFit Definition]" alt="" coords="5,119,208,573"/>
-<area shape="rect" id="Node000002" title=" " alt="" coords="95,5,118,71"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="109,84,109,119,104,119,104,84"/>
+<map id="Ponca::OrientedSphereDerImpl&lt; DataPoint, _NFilter, DiffType, T &gt;" name="Ponca::OrientedSphereDerImpl&lt; DataPoint, _NFilter, DiffType, T &gt;">
+<area shape="rect" id="Node000001" title="[OrientedSphereFit Definition]" alt="" coords="5,119,191,573"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="87,5,109,71"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="101,84,101,119,95,119,95,84"/>
 </map>

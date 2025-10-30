@@ -1,5 +1,5 @@
-<map id="Ponca::SphereFitImpl&lt; DataPoint, _WFunctor, T &gt;" name="Ponca::SphereFitImpl&lt; DataPoint, _WFunctor, T &gt;">
-<area shape="rect" id="Node000001" title="Algebraic Sphere fitting procedure on point set without normals." alt="" coords="59,133,259,353"/>
+<map id="Ponca::SphereFitImpl&lt; DataPoint, _NFilter, T &gt;" name="Ponca::SphereFitImpl&lt; DataPoint, _NFilter, T &gt;">
+<area shape="rect" id="Node000001" title="Algebraic Sphere fitting procedure on point set without normals." alt="" coords="67,133,250,353"/>
 <area shape="rect" id="Node000002" title=" " alt="" coords="5,5,187,85"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="115,98,126,132,121,134,110,100"/>
 <area shape="rect" id="Node000003" title=" " alt="" coords="211,13,234,78"/>

@@ -1,5 +1,5 @@
-<map id="Ponca::MeanNormal&lt; DataPoint, _WFunctor, T &gt;" name="Ponca::MeanNormal&lt; DataPoint, _WFunctor, T &gt;">
-<area shape="rect" id="Node000001" title="Compute the barycenter of the input points + their normals." alt="" coords="64,133,253,293"/>
+<map id="Ponca::MeanNormal&lt; DataPoint, _NFilter, T &gt;" name="Ponca::MeanNormal&lt; DataPoint, _NFilter, T &gt;">
+<area shape="rect" id="Node000001" title="Compute the barycenter of the input points + their normals." alt="" coords="73,133,244,293"/>
 <area shape="rect" id="Node000002" title=" " alt="" coords="5,5,187,85"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="118,97,131,132,126,134,113,99"/>
 <area shape="rect" id="Node000003" title=" " alt="" coords="211,13,234,78"/>

@@ -3,9 +3,15 @@ var hierarchy =
     [ "_Base", null, [
       [ "Ponca::BasketComputeObject< _Derived, _Base >", "structPonca_1_1BasketComputeObject.html", null ]
     ] ],
+    [ "_NeighborhoodFrame", null, [
+      [ "Ponca::NoWeightFuncBase< DataPoint, _NeighborhoodFrame >", "classPonca_1_1NoWeightFuncBase.html", null ]
+    ] ],
+    [ "Ponca::CenteredNeighborhoodFrame< DataPoint >", "classPonca_1_1CenteredNeighborhoodFrame.html", [
+      [ "Ponca::DistWeightFunc< DataPoint, WeightKernel >", "classPonca_1_1DistWeightFunc.html", null ]
+    ] ],
     [ "Ponca::ComputeObject< Derived >", "structPonca_1_1ComputeObject.html", [
-      [ "Ponca::BasketComputeObject< Basket< P, W, Ext0, Exts... >, internal::BasketAggregate< P, W, Ext0, Exts... >::type >", "structPonca_1_1BasketComputeObject.html", [
-        [ "Ponca::Basket< P, W, Ext0, Exts >", "classPonca_1_1Basket.html", null ]
+      [ "Ponca::BasketComputeObject< Basket< P, NF, Ext0, Exts... >, internal::BasketAggregate< P, NF, Ext0, Exts... >::type >", "structPonca_1_1BasketComputeObject.html", [
+        [ "Ponca::Basket< P, NF, Ext0, Exts >", "classPonca_1_1Basket.html", null ]
       ] ],
       [ "Ponca::BasketComputeObject< BasketDiff< BasketType, Type, Ext0, Exts... >, internal::BasketDiffAggregate< BasketType, Type, Ext0, Exts... >::type >", "structPonca_1_1BasketComputeObject.html", [
         [ "Ponca::BasketDiff< BasketType, Type, Ext0, Exts >", "classPonca_1_1BasketDiff.html", null ]
@@ -14,33 +20,33 @@ var hierarchy =
     [ "Ponca::ComputeObject< _Derived >", "structPonca_1_1ComputeObject.html", [
       [ "Ponca::BasketComputeObject< _Derived, _Base >", "structPonca_1_1BasketComputeObject.html", null ]
     ] ],
-    [ "Ponca::ComputeObject< Basket< P, W, Ext0, Exts... > >", "structPonca_1_1ComputeObject.html", null ],
+    [ "Ponca::ComputeObject< Basket< P, NF, Ext0, Exts... > >", "structPonca_1_1ComputeObject.html", null ],
     [ "Ponca::ComputeObject< BasketDiff< BasketType, Type, Ext0, Exts... > >", "structPonca_1_1ComputeObject.html", null ],
     [ "Ponca::KdTreeBase< Traits >::DefaultConverter", "structPonca_1_1KdTreeBase_1_1DefaultConverter.html", null ],
-    [ "Ponca::DistWeightFunc< DataPoint, WeightKernel >", "classPonca_1_1DistWeightFunc.html", null ],
     [ "Ponca::QueryOutputBase::DummyOutputParameter", "group__spatialpartitioning.html#structPonca_1_1QueryOutputBase_1_1DummyOutputParameter", null ],
     [ "Concept::FittingExtensionConcept", null, [
-      [ "Ponca::CovarianceFitDer< DataPoint, _WFunctor, DiffType, T >", "classPonca_1_1CovarianceFitDer.html", null ],
-      [ "Ponca::CovariancePlaneDerImpl< DataPoint, _WFunctor, DiffType, T >", "classPonca_1_1CovariancePlaneDerImpl.html", null ],
-      [ "Ponca::GLSDer< DataPoint, _WFunctor, DiffType, T >", "classPonca_1_1GLSDer.html", null ],
-      [ "Ponca::GLSParam< DataPoint, _WFunctor, T >", "classPonca_1_1GLSParam.html", null ],
-      [ "Ponca::MlsSphereFitDer< DataPoint, _WFunctor, DiffType, T >", "classPonca_1_1MlsSphereFitDer.html", null ],
-      [ "Ponca::NormalDerivativesCurvatureEstimator< DataPoint, _WFunctor, DiffType, T >", "classPonca_1_1NormalDerivativesCurvatureEstimator.html", null ],
-      [ "Ponca::PrimitiveDer< DataPoint, _WFunctor, Type, T >", "classPonca_1_1PrimitiveDer.html", null ]
+      [ "Ponca::CovarianceFitDer< DataPoint, _NFilter, DiffType, T >", "classPonca_1_1CovarianceFitDer.html", null ],
+      [ "Ponca::CovariancePlaneDerImpl< DataPoint, _NFilter, DiffType, T >", "classPonca_1_1CovariancePlaneDerImpl.html", null ],
+      [ "Ponca::GLSDer< DataPoint, _NFilter, DiffType, T >", "classPonca_1_1GLSDer.html", null ],
+      [ "Ponca::GLSParam< DataPoint, _NFilter, T >", "classPonca_1_1GLSParam.html", null ],
+      [ "Ponca::MlsSphereFitDer< DataPoint, _NFilter, DiffType, T >", "classPonca_1_1MlsSphereFitDer.html", null ],
+      [ "Ponca::NormalDerivativesCurvatureEstimator< DataPoint, _NFilter, DiffType, T >", "classPonca_1_1NormalDerivativesCurvatureEstimator.html", null ],
+      [ "Ponca::PrimitiveDer< DataPoint, _NFilter, Type, T >", "classPonca_1_1PrimitiveDer.html", null ]
     ] ],
     [ "Concept::FittingProcedureConcept", null, [
-      [ "Ponca::CovarianceFitBase< DataPoint, _WFunctor, T >", "classPonca_1_1CovarianceFitBase.html", null ],
-      [ "Ponca::CovarianceLineFitImpl< DataPoint, _WFunctor, T >", "classPonca_1_1CovarianceLineFitImpl.html", null ],
-      [ "Ponca::CovariancePlaneFitImpl< DataPoint, _WFunctor, T >", "classPonca_1_1CovariancePlaneFitImpl.html", null ],
-      [ "Ponca::MeanNormal< DataPoint, _WFunctor, T >", "classPonca_1_1MeanNormal.html", null ],
-      [ "Ponca::MeanPlaneFitImpl< DataPoint, _WFunctor, T >", "classPonca_1_1MeanPlaneFitImpl.html", null ],
-      [ "Ponca::MeanPosition< DataPoint, _WFunctor, T >", "classPonca_1_1MeanPosition.html", null ],
-      [ "Ponca::OrientedSphereFitImpl< DataPoint, _WFunctor, T >", "classPonca_1_1OrientedSphereFitImpl.html", null ],
-      [ "Ponca::SphereFitImpl< DataPoint, _WFunctor, T >", "classPonca_1_1SphereFitImpl.html", null ],
-      [ "Ponca::UnorientedSphereFitImpl< DataPoint, _WFunctor, T >", "classPonca_1_1UnorientedSphereFitImpl.html", null ]
+      [ "Ponca::CovarianceFitBase< DataPoint, _NFilter, T >", "classPonca_1_1CovarianceFitBase.html", null ],
+      [ "Ponca::CovarianceLineFitImpl< DataPoint, _NFilter, T >", "classPonca_1_1CovarianceLineFitImpl.html", null ],
+      [ "Ponca::CovariancePlaneFitImpl< DataPoint, _NFilter, T >", "classPonca_1_1CovariancePlaneFitImpl.html", null ],
+      [ "Ponca::MeanNormal< DataPoint, _NFilter, T >", "classPonca_1_1MeanNormal.html", null ],
+      [ "Ponca::MeanPlaneFitImpl< DataPoint, _NFilter, T >", "classPonca_1_1MeanPlaneFitImpl.html", null ],
+      [ "Ponca::MeanPosition< DataPoint, _NFilter, T >", "classPonca_1_1MeanPosition.html", null ],
+      [ "Ponca::OrientedSphereFitImpl< DataPoint, _NFilter, T >", "classPonca_1_1OrientedSphereFitImpl.html", null ],
+      [ "Ponca::SphereFitImpl< DataPoint, _NFilter, T >", "classPonca_1_1SphereFitImpl.html", null ],
+      [ "Ponca::UnorientedSphereFitImpl< DataPoint, _NFilter, T >", "classPonca_1_1UnorientedSphereFitImpl.html", null ]
     ] ],
+    [ "Ponca::GlobalNeighborhoodFrame< DataPoint >", "classPonca_1_1GlobalNeighborhoodFrame.html", null ],
     [ "Eigen::Hyperplane", null, [
-      [ "Ponca::Plane< DataPoint, _WFunctor, T >", "classPonca_1_1Plane.html", null ]
+      [ "Ponca::Plane< DataPoint, _NFilter, T >", "classPonca_1_1Plane.html", null ]
     ] ],
     [ "Ponca::IndexSquaredDistance< Index, Scalar >", "structPonca_1_1IndexSquaredDistance.html", null ],
     [ "Ponca::IndexSquaredDistance< Index, DataPoint::Scalar >", "structPonca_1_1IndexSquaredDistance.html", null ],
@@ -92,14 +98,13 @@ var hierarchy =
     [ "Ponca::limited_priority_queue< Ponca::IndexSquaredDistance< Index, DataPoint::Scalar > >", "classPonca_1_1limited__priority__queue.html", null ],
     [ "Ponca::limited_priority_queue< Ponca::IndexSquaredDistance< Index, Scalar > >", "classPonca_1_1limited__priority__queue.html", null ],
     [ "Ponca::limited_priority_queue< Ponca::IndexSquaredDistance< Traits::IndexType, Traits::DataPoint::Scalar > >", "classPonca_1_1limited__priority__queue.html", null ],
-    [ "Ponca::NoWeightFunc< DataPoint >", "classPonca_1_1NoWeightFunc.html", null ],
     [ "Output_", null, [
       [ "Ponca::Query< Input_, Output_ >", "group__spatialpartitioning.html#structPonca_1_1Query", null ]
     ] ],
     [ "Eigen::ParametrizedLine", null, [
-      [ "Ponca::Line< DataPoint, _WFunctor, T >", "classPonca_1_1Line.html", null ]
+      [ "Ponca::Line< DataPoint, _NFilter, T >", "classPonca_1_1Line.html", null ]
     ] ],
-    [ "Ponca::PrimitiveBase< DataPoint, _WFunctor, T >", "classPonca_1_1PrimitiveBase.html", null ],
+    [ "Ponca::PrimitiveBase< DataPoint, _NFilter, T >", "classPonca_1_1PrimitiveBase.html", null ],
     [ "Ponca::QueryInputBase", "group__spatialpartitioning.html#structPonca_1_1QueryInputBase", [
       [ "Ponca::QueryInput< Traits::IndexType >", "group__spatialpartitioning.html", null ],
       [ "Ponca::QueryInput< Index >", "group__spatialpartitioning.html", [
@@ -169,37 +174,37 @@ var hierarchy =
     [ "Ponca::Stack< T, N >", "classPonca_1_1Stack.html", null ],
     [ "Ponca::Stack< Ponca::IndexSquaredDistance< IndexType, Scalar >, 2 *Traits::MAX_DEPTH >", "classPonca_1_1Stack.html", null ],
     [ "T", null, [
-      [ "Ponca::AlgebraicSphere< DataPoint, _WFunctor, T >", "classPonca_1_1AlgebraicSphere.html", null ],
-      [ "Ponca::CovarianceFitBase< DataPoint, _WFunctor, T >", "classPonca_1_1CovarianceFitBase.html", null ],
-      [ "Ponca::CovarianceFitDer< DataPoint, _WFunctor, DiffType, T >", "classPonca_1_1CovarianceFitDer.html", null ],
-      [ "Ponca::CovarianceLineFitImpl< DataPoint, _WFunctor, T >", "classPonca_1_1CovarianceLineFitImpl.html", null ],
-      [ "Ponca::CovariancePlaneDerImpl< DataPoint, _WFunctor, DiffType, T >", "classPonca_1_1CovariancePlaneDerImpl.html", null ],
-      [ "Ponca::CovariancePlaneFitImpl< DataPoint, _WFunctor, T >", "classPonca_1_1CovariancePlaneFitImpl.html", null ],
-      [ "Ponca::CurvatureEstimatorBase< DataPoint, _WFunctor, DiffType, T >", "classPonca_1_1CurvatureEstimatorBase.html", null ],
-      [ "Ponca::DryFit< DataPoint, _WFunctor, T >", "classPonca_1_1DryFit.html", null ],
-      [ "Ponca::GLSDer< DataPoint, _WFunctor, DiffType, T >", "classPonca_1_1GLSDer.html", null ],
-      [ "Ponca::GLSParam< DataPoint, _WFunctor, T >", "classPonca_1_1GLSParam.html", null ],
-      [ "Ponca::Line< DataPoint, _WFunctor, T >", "classPonca_1_1Line.html", null ],
-      [ "Ponca::MeanNormal< DataPoint, _WFunctor, T >", "classPonca_1_1MeanNormal.html", null ],
-      [ "Ponca::MeanNormalDer< DataPoint, _WFunctor, DiffType, T >", "classPonca_1_1MeanNormalDer.html", null ],
-      [ "Ponca::MeanPlaneFitImpl< DataPoint, _WFunctor, T >", "classPonca_1_1MeanPlaneFitImpl.html", null ],
-      [ "Ponca::MeanPosition< DataPoint, _WFunctor, T >", "classPonca_1_1MeanPosition.html", null ],
-      [ "Ponca::MeanPositionDer< DataPoint, _WFunctor, DiffType, T >", "classPonca_1_1MeanPositionDer.html", null ],
-      [ "Ponca::MlsSphereFitDer< DataPoint, _WFunctor, DiffType, T >", "classPonca_1_1MlsSphereFitDer.html", null ],
-      [ "Ponca::MongePatch< DataPoint, _WFunctor, T >", "classPonca_1_1MongePatch.html", null ],
-      [ "Ponca::NormalCovarianceCurvatureEstimator< DataPoint, _WFunctor, DiffType, T >", "classPonca_1_1NormalCovarianceCurvatureEstimator.html", null ],
-      [ "Ponca::NormalDerivativesCurvatureEstimator< DataPoint, _WFunctor, DiffType, T >", "classPonca_1_1NormalDerivativesCurvatureEstimator.html", null ],
-      [ "Ponca::OrientedSphereDerImpl< DataPoint, _WFunctor, DiffType, T >", "classPonca_1_1OrientedSphereDerImpl.html", null ],
-      [ "Ponca::OrientedSphereFitImpl< DataPoint, _WFunctor, T >", "classPonca_1_1OrientedSphereFitImpl.html", null ],
-      [ "Ponca::Plane< DataPoint, _WFunctor, T >", "classPonca_1_1Plane.html", null ],
-      [ "Ponca::PrimitiveDer< DataPoint, _WFunctor, Type, T >", "classPonca_1_1PrimitiveDer.html", null ],
-      [ "Ponca::ProjectedNormalCovarianceCurvatureEstimator< DataPoint, _WFunctor, DiffType, T >", "classPonca_1_1ProjectedNormalCovarianceCurvatureEstimator.html", null ],
-      [ "Ponca::SphereFitImpl< DataPoint, _WFunctor, T >", "classPonca_1_1SphereFitImpl.html", null ],
-      [ "Ponca::UnorientedSphereDerImpl< DataPoint, _WFunctor, DiffType, T >", "classPonca_1_1UnorientedSphereDerImpl.html", null ],
-      [ "Ponca::UnorientedSphereFitImpl< DataPoint, _WFunctor, T >", "classPonca_1_1UnorientedSphereFitImpl.html", null ]
+      [ "Ponca::AlgebraicSphere< DataPoint, _NFilter, T >", "classPonca_1_1AlgebraicSphere.html", null ],
+      [ "Ponca::CovarianceFitBase< DataPoint, _NFilter, T >", "classPonca_1_1CovarianceFitBase.html", null ],
+      [ "Ponca::CovarianceFitDer< DataPoint, _NFilter, DiffType, T >", "classPonca_1_1CovarianceFitDer.html", null ],
+      [ "Ponca::CovarianceLineFitImpl< DataPoint, _NFilter, T >", "classPonca_1_1CovarianceLineFitImpl.html", null ],
+      [ "Ponca::CovariancePlaneDerImpl< DataPoint, _NFilter, DiffType, T >", "classPonca_1_1CovariancePlaneDerImpl.html", null ],
+      [ "Ponca::CovariancePlaneFitImpl< DataPoint, _NFilter, T >", "classPonca_1_1CovariancePlaneFitImpl.html", null ],
+      [ "Ponca::CurvatureEstimatorBase< DataPoint, _NFilter, DiffType, T >", "classPonca_1_1CurvatureEstimatorBase.html", null ],
+      [ "Ponca::DryFit< DataPoint, _NFilter, T >", "classPonca_1_1DryFit.html", null ],
+      [ "Ponca::GLSDer< DataPoint, _NFilter, DiffType, T >", "classPonca_1_1GLSDer.html", null ],
+      [ "Ponca::GLSParam< DataPoint, _NFilter, T >", "classPonca_1_1GLSParam.html", null ],
+      [ "Ponca::Line< DataPoint, _NFilter, T >", "classPonca_1_1Line.html", null ],
+      [ "Ponca::MeanNormal< DataPoint, _NFilter, T >", "classPonca_1_1MeanNormal.html", null ],
+      [ "Ponca::MeanNormalDer< DataPoint, _NFilter, DiffType, T >", "classPonca_1_1MeanNormalDer.html", null ],
+      [ "Ponca::MeanPlaneFitImpl< DataPoint, _NFilter, T >", "classPonca_1_1MeanPlaneFitImpl.html", null ],
+      [ "Ponca::MeanPosition< DataPoint, _NFilter, T >", "classPonca_1_1MeanPosition.html", null ],
+      [ "Ponca::MeanPositionDer< DataPoint, _NFilter, DiffType, T >", "classPonca_1_1MeanPositionDer.html", null ],
+      [ "Ponca::MlsSphereFitDer< DataPoint, _NFilter, DiffType, T >", "classPonca_1_1MlsSphereFitDer.html", null ],
+      [ "Ponca::MongePatch< DataPoint, _NFilter, T >", "classPonca_1_1MongePatch.html", null ],
+      [ "Ponca::NormalCovarianceCurvatureEstimator< DataPoint, _NFilter, DiffType, T >", "classPonca_1_1NormalCovarianceCurvatureEstimator.html", null ],
+      [ "Ponca::NormalDerivativesCurvatureEstimator< DataPoint, _NFilter, DiffType, T >", "classPonca_1_1NormalDerivativesCurvatureEstimator.html", null ],
+      [ "Ponca::OrientedSphereDerImpl< DataPoint, _NFilter, DiffType, T >", "classPonca_1_1OrientedSphereDerImpl.html", null ],
+      [ "Ponca::OrientedSphereFitImpl< DataPoint, _NFilter, T >", "classPonca_1_1OrientedSphereFitImpl.html", null ],
+      [ "Ponca::Plane< DataPoint, _NFilter, T >", "classPonca_1_1Plane.html", null ],
+      [ "Ponca::PrimitiveDer< DataPoint, _NFilter, Type, T >", "classPonca_1_1PrimitiveDer.html", null ],
+      [ "Ponca::ProjectedNormalCovarianceCurvatureEstimator< DataPoint, _NFilter, DiffType, T >", "classPonca_1_1ProjectedNormalCovarianceCurvatureEstimator.html", null ],
+      [ "Ponca::SphereFitImpl< DataPoint, _NFilter, T >", "classPonca_1_1SphereFitImpl.html", null ],
+      [ "Ponca::UnorientedSphereDerImpl< DataPoint, _NFilter, DiffType, T >", "classPonca_1_1UnorientedSphereDerImpl.html", null ],
+      [ "Ponca::UnorientedSphereFitImpl< DataPoint, _NFilter, T >", "classPonca_1_1UnorientedSphereFitImpl.html", null ]
     ] ],
     [ "internal::BasketAggregate::type", null, [
-      [ "Ponca::BasketComputeObject< Basket< P, W, Ext0, Exts... >, internal::BasketAggregate< P, W, Ext0, Exts... >::type >", "structPonca_1_1BasketComputeObject.html", null ]
+      [ "Ponca::BasketComputeObject< Basket< P, NF, Ext0, Exts... >, internal::BasketAggregate< P, NF, Ext0, Exts... >::type >", "structPonca_1_1BasketComputeObject.html", null ]
     ] ],
     [ "internal::BasketDiffAggregate::type", null, [
       [ "Ponca::BasketComputeObject< BasketDiff< BasketType, Type, Ext0, Exts... >, internal::BasketDiffAggregate< BasketType, Type, Ext0, Exts... >::type >", "structPonca_1_1BasketComputeObject.html", null ]
@@ -207,6 +212,7 @@ var hierarchy =
     [ "Concept::WeightKernelConcept", null, [
       [ "Ponca::CompactExpWeightKernel< _Scalar >", "classPonca_1_1CompactExpWeightKernel.html", null ],
       [ "Ponca::ConstantWeightKernel< _Scalar >", "classPonca_1_1ConstantWeightKernel.html", null ],
+      [ "Ponca::GaussianWeightKernel< _Scalar >", "classPonca_1_1GaussianWeightKernel.html", null ],
       [ "Ponca::PolynomialSmoothWeightKernel< _Scalar, m, n >", "classPonca_1_1PolynomialSmoothWeightKernel.html", null ],
       [ "Ponca::SingularWeightKernel< _Scalar >", "classPonca_1_1SingularWeightKernel.html", null ],
       [ "Ponca::SmoothWeightKernel< _Scalar >", "classPonca_1_1SmoothWeightKernel.html", null ],

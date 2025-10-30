@@ -1,8 +1,9 @@
 var classPonca_1_1Basket =
 [
-    [ "Base", "classPonca_1_1Basket.html#ae98b6b8c88b049c7f3643e886b1acc3f", null ],
-    [ "DataPoint", "classPonca_1_1Basket.html#a4c962002c1d8204e09ece679f103fca7", null ],
-    [ "Scalar", "classPonca_1_1Basket.html#aa3057b699ee6345c523f436fa2c39c91", null ],
-    [ "WeightFunction", "classPonca_1_1Basket.html#a0e271beada694952846c2885e3bda897", null ],
-    [ "addNeighbor", "classPonca_1_1Basket.html#acde7a093c64aad976988dc8207930c74", null ]
+    [ "Base", "classPonca_1_1Basket.html#a00aba788f149092e3032e109d4ed0c52", null ],
+    [ "DataPoint", "classPonca_1_1Basket.html#a4e7ea1fd0f8d760217e60c1feaabf7b0", null ],
+    [ "NeighborhoodFilter", "classPonca_1_1Basket.html#ac2383b4705dfdfd08c08c0d0d7567bbd", null ],
+    [ "Scalar", "classPonca_1_1Basket.html#ab08e85c1c9d83a892d6dc3beeb593e2d", null ],
+    [ "addNeighbor", "classPonca_1_1Basket.html#ad5132ec839c56fdd21e875825d21465a", null ],
+    [ "projectDescent", "classPonca_1_1Basket.html#a983039cc23df1537214de05541697d33", null ]
 ];

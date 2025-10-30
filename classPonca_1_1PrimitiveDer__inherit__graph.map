@@ -1,5 +1,5 @@
-<map id="Ponca::PrimitiveDer&lt; DataPoint, _WFunctor, Type, T &gt;" name="Ponca::PrimitiveDer&lt; DataPoint, _WFunctor, Type, T &gt;">
-<area shape="rect" id="Node000001" title="Generic class performing the Fit derivation." alt="" coords="71,133,245,348"/>
+<map id="Ponca::PrimitiveDer&lt; DataPoint, _NFilter, Type, T &gt;" name="Ponca::PrimitiveDer&lt; DataPoint, _NFilter, Type, T &gt;">
+<area shape="rect" id="Node000001" title="Generic class performing the Fit derivation." alt="" coords="80,133,236,348"/>
 <area shape="rect" id="Node000002" title=" " alt="" coords="5,5,185,85"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="115,98,126,132,121,134,110,99"/>
 <area shape="rect" id="Node000003" title=" " alt="" coords="209,13,232,78"/>

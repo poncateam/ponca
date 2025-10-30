@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.9.8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Ponca: Ponca::NormalDerivativesCurvatureEstimator&lt; DataPoint, _WFunctor, DiffType, T &gt; Class Template Reference</title>
+<title>Ponca: Ponca::NormalDerivativesCurvatureEstimator&lt; DataPoint, _NFilter, DiffType, T &gt; Class Template Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -51,7 +51,7 @@ MathJax.Hub.Config({
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Ponca
-   &#160;<span id="projectnumber">40f245e28b920cbb763a1c6282156c87c626f24c</span>
+   &#160;<span id="projectnumber">9e7681effe2c12b0af1c85fdb62680f52d835a30</span>
    </div>
    <div id="projectbrief">Point Cloud Analysis library</div>
   </td>
@@ -122,7 +122,7 @@ $(document).ready(function(){initNavTree('classPonca_1_1NormalDerivativesCurvatu
 <a href="#pro-types">Protected Types</a> &#124;
 <a href="#pro-methods">Protected Member Functions</a> &#124;
 <a href="classPonca_1_1NormalDerivativesCurvatureEstimator-members.html">List of all members</a>  </div>
-  <div class="headertitle"><div class="title">Ponca::NormalDerivativesCurvatureEstimator&lt; DataPoint, _WFunctor, DiffType, T &gt; Class Template Reference</div></div>
+  <div class="headertitle"><div class="title">Ponca::NormalDerivativesCurvatureEstimator&lt; DataPoint, _NFilter, DiffType, T &gt; Class Template Reference</div></div>
 </div><!--header-->
 <div class="contents">
 
@@ -131,14 +131,14 @@ $(document).ready(function(){initNavTree('classPonca_1_1NormalDerivativesCurvatu
 
 <p><code>#include &lt;<a class="el" href="curvatureEstimation_8h_source.html">curvatureEstimation.h</a>&gt;</code></p>
 <div id="dynsection-0" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
-  <img id="dynsection-0-trigger" src="closed.png" alt="+"/> Inheritance diagram for Ponca::NormalDerivativesCurvatureEstimator&lt; DataPoint, _WFunctor, DiffType, T &gt;:</div>
+  <img id="dynsection-0-trigger" src="closed.png" alt="+"/> Inheritance diagram for Ponca::NormalDerivativesCurvatureEstimator&lt; DataPoint, _NFilter, DiffType, T &gt;:</div>
 <div id="dynsection-0-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-0-content" class="dyncontent" style="display:none;">
 <div class="center"><iframe scrolling="no" frameborder="0" src="classPonca_1_1NormalDerivativesCurvatureEstimator__inherit__graph.svg" width="276" height="323"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 <div id="dynsection-1" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
-  <img id="dynsection-1-trigger" src="closed.png" alt="+"/> Collaboration diagram for Ponca::NormalDerivativesCurvatureEstimator&lt; DataPoint, _WFunctor, DiffType, T &gt;:</div>
+  <img id="dynsection-1-trigger" src="closed.png" alt="+"/> Collaboration diagram for Ponca::NormalDerivativesCurvatureEstimator&lt; DataPoint, _NFilter, DiffType, T &gt;:</div>
 <div id="dynsection-1-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-1-content" class="dyncontent" style="display:none;">
@@ -147,27 +147,27 @@ $(document).ready(function(){initNavTree('classPonca_1_1NormalDerivativesCurvatu
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-types" name="pub-types"></a>
 Public Types</h2></td></tr>
-<tr class="memitem:aef4892f0edaa7020d2cb487a2020f10a" id="r_aef4892f0edaa7020d2cb487a2020f10a"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1NormalDerivativesCurvatureEstimator.html#aef4892f0edaa7020d2cb487a2020f10a">Scalar</a> = typename DataPoint::Scalar</td></tr>
-<tr class="memdesc:aef4892f0edaa7020d2cb487a2020f10a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Alias to scalar type.  <br /></td></tr>
-<tr class="separator:aef4892f0edaa7020d2cb487a2020f10a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae022ffb42769f7bf4a95d13708bedf1f" id="r_ae022ffb42769f7bf4a95d13708bedf1f"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1NormalDerivativesCurvatureEstimator.html#ae022ffb42769f7bf4a95d13708bedf1f">VectorType</a> = typename Base::VectorType</td></tr>
-<tr class="memdesc:ae022ffb42769f7bf4a95d13708bedf1f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Alias to vector type.  <br /></td></tr>
-<tr class="separator:ae022ffb42769f7bf4a95d13708bedf1f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2957a2b267665f11b3160e47aebaa5fa" id="r_a2957a2b267665f11b3160e47aebaa5fa"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1NormalDerivativesCurvatureEstimator.html#a2957a2b267665f11b3160e47aebaa5fa">WFunctor</a> = typename Base::WFunctor</td></tr>
-<tr class="memdesc:a2957a2b267665f11b3160e47aebaa5fa"><td class="mdescLeft">&#160;</td><td class="mdescRight">Alias to weight function.  <br /></td></tr>
-<tr class="separator:a2957a2b267665f11b3160e47aebaa5fa"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a286e5354ba3dad3d33d52738fc71f63a" id="r_a286e5354ba3dad3d33d52738fc71f63a"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1NormalDerivativesCurvatureEstimator.html#a286e5354ba3dad3d33d52738fc71f63a">MatrixType</a> = typename DataPoint::MatrixType</td></tr>
-<tr class="memdesc:a286e5354ba3dad3d33d52738fc71f63a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Alias to matrix type.  <br /></td></tr>
-<tr class="separator:a286e5354ba3dad3d33d52738fc71f63a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac061519591a82200101370977d13db44" id="r_ac061519591a82200101370977d13db44"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1NormalDerivativesCurvatureEstimator.html#ac061519591a82200101370977d13db44">Scalar</a> = typename DataPoint::Scalar</td></tr>
+<tr class="memdesc:ac061519591a82200101370977d13db44"><td class="mdescLeft">&#160;</td><td class="mdescRight">Alias to scalar type.  <br /></td></tr>
+<tr class="separator:ac061519591a82200101370977d13db44"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aeaa65a4d4c775be10fc96053b00b5e68" id="r_aeaa65a4d4c775be10fc96053b00b5e68"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1NormalDerivativesCurvatureEstimator.html#aeaa65a4d4c775be10fc96053b00b5e68">VectorType</a> = typename Base::VectorType</td></tr>
+<tr class="memdesc:aeaa65a4d4c775be10fc96053b00b5e68"><td class="mdescLeft">&#160;</td><td class="mdescRight">Alias to vector type.  <br /></td></tr>
+<tr class="separator:aeaa65a4d4c775be10fc96053b00b5e68"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5ff0049ca7f39f1d39b1c32dd08b3080" id="r_a5ff0049ca7f39f1d39b1c32dd08b3080"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1NormalDerivativesCurvatureEstimator.html#a5ff0049ca7f39f1d39b1c32dd08b3080">NeighborFilter</a> = typename Base::NeighborFilter</td></tr>
+<tr class="memdesc:a5ff0049ca7f39f1d39b1c32dd08b3080"><td class="mdescLeft">&#160;</td><td class="mdescRight">Alias to the filter applied on the neighbors.  <br /></td></tr>
+<tr class="separator:a5ff0049ca7f39f1d39b1c32dd08b3080"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a88da2c8df8bfc1da64d485e869d1519e" id="r_a88da2c8df8bfc1da64d485e869d1519e"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1NormalDerivativesCurvatureEstimator.html#a88da2c8df8bfc1da64d485e869d1519e">MatrixType</a> = typename DataPoint::MatrixType</td></tr>
+<tr class="memdesc:a88da2c8df8bfc1da64d485e869d1519e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Alias to matrix type.  <br /></td></tr>
+<tr class="separator:a88da2c8df8bfc1da64d485e869d1519e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a8b1e7e7663c7ec33be9d872086475fa6" id="r_a8b1e7e7663c7ec33be9d872086475fa6"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classPonca_1_1NormalDerivativesCurvatureEstimator.html">NormalDerivativesCurvatureEstimator</a>&lt; DataPoint, _WFunctor, <a class="el" href="namespacePonca.html#a7beaddc698523e7f9c041ea8bc4c535a">DiffType</a>, T &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1NormalDerivativesCurvatureEstimator.html#a8b1e7e7663c7ec33be9d872086475fa6">normalDerivativesCurvatureEstimator</a> ()</td></tr>
-<tr class="memdesc:a8b1e7e7663c7ec33be9d872086475fa6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Explicit conversion to <a class="el" href="classPonca_1_1NormalDerivativesCurvatureEstimator.html" title="Extension to compute curvature values from the Weingarten map .">NormalDerivativesCurvatureEstimator</a> , to access methods potentially hidden by heritage.  <br /></td></tr>
-<tr class="separator:a8b1e7e7663c7ec33be9d872086475fa6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3d5772628f0c7eac453f4e6299d33b05" id="r_a3d5772628f0c7eac453f4e6299d33b05"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="classPonca_1_1NormalDerivativesCurvatureEstimator.html">NormalDerivativesCurvatureEstimator</a>&lt; DataPoint, _WFunctor, <a class="el" href="namespacePonca.html#a7beaddc698523e7f9c041ea8bc4c535a">DiffType</a>, T &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1NormalDerivativesCurvatureEstimator.html#a3d5772628f0c7eac453f4e6299d33b05">normalDerivativesCurvatureEstimator</a> () const</td></tr>
-<tr class="memdesc:a3d5772628f0c7eac453f4e6299d33b05"><td class="mdescLeft">&#160;</td><td class="mdescRight">Explicit conversion to <a class="el" href="classPonca_1_1NormalDerivativesCurvatureEstimator.html" title="Extension to compute curvature values from the Weingarten map .">NormalDerivativesCurvatureEstimator</a> , to access methods potentially hidden by heritage.  <br /></td></tr>
-<tr class="separator:a3d5772628f0c7eac453f4e6299d33b05"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9a9d47ca11d8e9f91e94adb86a490afd" id="r_a9a9d47ca11d8e9f91e94adb86a490afd"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classPonca_1_1NormalDerivativesCurvatureEstimator.html">NormalDerivativesCurvatureEstimator</a>&lt; DataPoint, _NFilter, <a class="el" href="namespacePonca.html#a7beaddc698523e7f9c041ea8bc4c535a">DiffType</a>, T &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1NormalDerivativesCurvatureEstimator.html#a9a9d47ca11d8e9f91e94adb86a490afd">normalDerivativesCurvatureEstimator</a> ()</td></tr>
+<tr class="memdesc:a9a9d47ca11d8e9f91e94adb86a490afd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Explicit conversion to <a class="el" href="classPonca_1_1NormalDerivativesCurvatureEstimator.html" title="Extension to compute curvature values from the Weingarten map .">NormalDerivativesCurvatureEstimator</a> , to access methods potentially hidden by heritage.  <br /></td></tr>
+<tr class="separator:a9a9d47ca11d8e9f91e94adb86a490afd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1acaa350c8b0adfaa557cab5321a6d89" id="r_a1acaa350c8b0adfaa557cab5321a6d89"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="classPonca_1_1NormalDerivativesCurvatureEstimator.html">NormalDerivativesCurvatureEstimator</a>&lt; DataPoint, _NFilter, <a class="el" href="namespacePonca.html#a7beaddc698523e7f9c041ea8bc4c535a">DiffType</a>, T &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1NormalDerivativesCurvatureEstimator.html#a1acaa350c8b0adfaa557cab5321a6d89">normalDerivativesCurvatureEstimator</a> () const</td></tr>
+<tr class="memdesc:a1acaa350c8b0adfaa557cab5321a6d89"><td class="mdescLeft">&#160;</td><td class="mdescRight">Explicit conversion to <a class="el" href="classPonca_1_1NormalDerivativesCurvatureEstimator.html" title="Extension to compute curvature values from the Weingarten map .">NormalDerivativesCurvatureEstimator</a> , to access methods potentially hidden by heritage.  <br /></td></tr>
+<tr class="separator:a1acaa350c8b0adfaa557cab5321a6d89"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3a6fb40a5ccca05435ffae82e1cb894a" id="r_a3a6fb40a5ccca05435ffae82e1cb894a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespacePonca.html#abfd697aebf07c1b5c8be5ee401e2dc84">FIT_RESULT</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1NormalDerivativesCurvatureEstimator.html#a3a6fb40a5ccca05435ffae82e1cb894a">finalize</a> ()</td></tr>
 <tr class="memdesc:a3a6fb40a5ccca05435ffae82e1cb894a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Finalize the procedure.  <br /></td></tr>
 <tr class="separator:a3a6fb40a5ccca05435ffae82e1cb894a"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -177,36 +177,36 @@ Protected Types</h2></td></tr>
 <tr class="memitem:aa59e99fd5018e20ed7d37f82eef5a796" id="r_aa59e99fd5018e20ed7d37f82eef5a796"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom">{ <b>Check</b> = Base::PROVIDES_NORMAL_DERIVATIVE &amp;&amp; Base::PROVIDES_PRINCIPAL_CURVATURES
  }</td></tr>
 <tr class="separator:aa59e99fd5018e20ed7d37f82eef5a796"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac7332806fbb4226a4beda4b4bc79c4c8" id="r_ac7332806fbb4226a4beda4b4bc79c4c8"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1NormalDerivativesCurvatureEstimator.html#ac7332806fbb4226a4beda4b4bc79c4c8">Base</a> = T</td></tr>
-<tr class="memdesc:ac7332806fbb4226a4beda4b4bc79c4c8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Base class of the procedure.  <br /></td></tr>
-<tr class="separator:ac7332806fbb4226a4beda4b4bc79c4c8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8d25881c2a562e140be882166655c097" id="r_a8d25881c2a562e140be882166655c097"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1NormalDerivativesCurvatureEstimator.html#a8d25881c2a562e140be882166655c097">Base</a> = T</td></tr>
+<tr class="memdesc:a8d25881c2a562e140be882166655c097"><td class="mdescLeft">&#160;</td><td class="mdescRight">Base class of the procedure.  <br /></td></tr>
+<tr class="separator:a8d25881c2a562e140be882166655c097"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-methods" name="pro-methods"></a>
 Protected Member Functions</h2></td></tr>
-<tr class="memitem:a518ef710dec77937088090c649df3d53" id="r_a518ef710dec77937088090c649df3d53"><td class="memItemLeft" align="right" valign="top">Mat32&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1NormalDerivativesCurvatureEstimator.html#a518ef710dec77937088090c649df3d53">tangentPlane</a> (bool useNormal=false) const</td></tr>
-<tr class="memdesc:a518ef710dec77937088090c649df3d53"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compute a tangent plane basis.  <br /></td></tr>
-<tr class="separator:a518ef710dec77937088090c649df3d53"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2f532d0dd76d39d7aeec432170b81862" id="r_a2f532d0dd76d39d7aeec432170b81862"><td class="memItemLeft" align="right" valign="top">Mat32&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1NormalDerivativesCurvatureEstimator.html#a2f532d0dd76d39d7aeec432170b81862">tangentPlane</a> (bool useNormal=false) const</td></tr>
+<tr class="memdesc:a2f532d0dd76d39d7aeec432170b81862"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compute a tangent plane basis.  <br /></td></tr>
+<tr class="separator:a2f532d0dd76d39d7aeec432170b81862"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><div class="compoundTemplParams">template&lt;class DataPoint, class _WFunctor, int DiffType, typename T&gt;<br />
-class Ponca::NormalDerivativesCurvatureEstimator&lt; DataPoint, _WFunctor, DiffType, T &gt;</div><p>Extension to compute curvature values from the Weingarten map \( \frac{d N}{d \mathbf{x}} \). </p>
+<div class="textblock"><div class="compoundTemplParams">template&lt;class DataPoint, class _NFilter, int DiffType, typename T&gt;<br />
+class Ponca::NormalDerivativesCurvatureEstimator&lt; DataPoint, _NFilter, DiffType, T &gt;</div><p>Extension to compute curvature values from the Weingarten map \( \frac{d N}{d \mathbf{x}} \). </p>
 <p>This class extracts curvature information from the spatial derivatives of the normal field \( N \). It first assemble a 2x2 matrix representation of the shape operator, and then performs an eigenvalue decomposition using Eigen::SelfAdjointEigenSolver::computeDirect. </p>
 
 <p class="definition">Definition at line <a class="el" href="curvatureEstimation_8h_source.html#l00022">22</a> of file <a class="el" href="curvatureEstimation_8h_source.html">curvatureEstimation.h</a>.</p>
 </div><h2 class="groupheader">Member Typedef Documentation</h2>
-<a id="ac7332806fbb4226a4beda4b4bc79c4c8" name="ac7332806fbb4226a4beda4b4bc79c4c8"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac7332806fbb4226a4beda4b4bc79c4c8">&#9670;&#160;</a></span>Base</h2>
+<a id="a8d25881c2a562e140be882166655c097" name="a8d25881c2a562e140be882166655c097"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8d25881c2a562e140be882166655c097">&#9670;&#160;</a></span>Base</h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;class DataPoint , class _WFunctor , int DiffType, typename T &gt; </div>
+template&lt;class DataPoint , class _NFilter , int DiffType, typename T &gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">using <a class="el" href="classPonca_1_1NormalDerivativesCurvatureEstimator.html">Ponca::NormalDerivativesCurvatureEstimator</a>&lt; DataPoint, _WFunctor, <a class="el" href="namespacePonca.html#a7beaddc698523e7f9c041ea8bc4c535a">DiffType</a>, T &gt;::Base =  T</td>
+          <td class="memname">using <a class="el" href="classPonca_1_1NormalDerivativesCurvatureEstimator.html">Ponca::NormalDerivativesCurvatureEstimator</a>&lt; DataPoint, _NFilter, <a class="el" href="namespacePonca.html#a7beaddc698523e7f9c041ea8bc4c535a">DiffType</a>, T &gt;::Base =  T</td>
         </tr>
       </table>
   </td>
@@ -222,16 +222,16 @@ template&lt;class DataPoint , class _WFunctor , int DiffType, typename T &gt; </
 
 </div>
 </div>
-<a id="a286e5354ba3dad3d33d52738fc71f63a" name="a286e5354ba3dad3d33d52738fc71f63a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a286e5354ba3dad3d33d52738fc71f63a">&#9670;&#160;</a></span>MatrixType</h2>
+<a id="a88da2c8df8bfc1da64d485e869d1519e" name="a88da2c8df8bfc1da64d485e869d1519e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a88da2c8df8bfc1da64d485e869d1519e">&#9670;&#160;</a></span>MatrixType</h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;class DataPoint , class _WFunctor , int DiffType, typename T &gt; </div>
+template&lt;class DataPoint , class _NFilter , int DiffType, typename T &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">using <a class="el" href="classPonca_1_1NormalDerivativesCurvatureEstimator.html">Ponca::NormalDerivativesCurvatureEstimator</a>&lt; DataPoint, _WFunctor, <a class="el" href="namespacePonca.html#a7beaddc698523e7f9c041ea8bc4c535a">DiffType</a>, T &gt;::MatrixType =  typename DataPoint::MatrixType</td>
+          <td class="memname">using <a class="el" href="classPonca_1_1NormalDerivativesCurvatureEstimator.html">Ponca::NormalDerivativesCurvatureEstimator</a>&lt; DataPoint, _NFilter, <a class="el" href="namespacePonca.html#a7beaddc698523e7f9c041ea8bc4c535a">DiffType</a>, T &gt;::MatrixType =  typename DataPoint::MatrixType</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -242,16 +242,36 @@ template&lt;class DataPoint , class _WFunctor , int DiffType, typename T &gt; </
 
 </div>
 </div>
-<a id="aef4892f0edaa7020d2cb487a2020f10a" name="aef4892f0edaa7020d2cb487a2020f10a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aef4892f0edaa7020d2cb487a2020f10a">&#9670;&#160;</a></span>Scalar</h2>
+<a id="a5ff0049ca7f39f1d39b1c32dd08b3080" name="a5ff0049ca7f39f1d39b1c32dd08b3080"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5ff0049ca7f39f1d39b1c32dd08b3080">&#9670;&#160;</a></span>NeighborFilter</h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;class DataPoint , class _WFunctor , int DiffType, typename T &gt; </div>
+template&lt;class DataPoint , class _NFilter , int DiffType, typename T &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">using <a class="el" href="classPonca_1_1NormalDerivativesCurvatureEstimator.html">Ponca::NormalDerivativesCurvatureEstimator</a>&lt; DataPoint, _WFunctor, <a class="el" href="namespacePonca.html#a7beaddc698523e7f9c041ea8bc4c535a">DiffType</a>, T &gt;::Scalar =  typename DataPoint::Scalar</td>
+          <td class="memname">using <a class="el" href="classPonca_1_1NormalDerivativesCurvatureEstimator.html">Ponca::NormalDerivativesCurvatureEstimator</a>&lt; DataPoint, _NFilter, <a class="el" href="namespacePonca.html#a7beaddc698523e7f9c041ea8bc4c535a">DiffType</a>, T &gt;::NeighborFilter =  typename Base::NeighborFilter</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Alias to the filter applied on the neighbors. </p>
+
+<p class="definition">Definition at line <a class="el" href="curvatureEstimation_8h_source.html#l00024">24</a> of file <a class="el" href="curvatureEstimation_8h_source.html">curvatureEstimation.h</a>.</p>
+
+</div>
+</div>
+<a id="ac061519591a82200101370977d13db44" name="ac061519591a82200101370977d13db44"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac061519591a82200101370977d13db44">&#9670;&#160;</a></span>Scalar</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class DataPoint , class _NFilter , int DiffType, typename T &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="classPonca_1_1NormalDerivativesCurvatureEstimator.html">Ponca::NormalDerivativesCurvatureEstimator</a>&lt; DataPoint, _NFilter, <a class="el" href="namespacePonca.html#a7beaddc698523e7f9c041ea8bc4c535a">DiffType</a>, T &gt;::Scalar =  typename DataPoint::Scalar</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -262,41 +282,21 @@ template&lt;class DataPoint , class _WFunctor , int DiffType, typename T &gt; </
 
 </div>
 </div>
-<a id="ae022ffb42769f7bf4a95d13708bedf1f" name="ae022ffb42769f7bf4a95d13708bedf1f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae022ffb42769f7bf4a95d13708bedf1f">&#9670;&#160;</a></span>VectorType</h2>
+<a id="aeaa65a4d4c775be10fc96053b00b5e68" name="aeaa65a4d4c775be10fc96053b00b5e68"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aeaa65a4d4c775be10fc96053b00b5e68">&#9670;&#160;</a></span>VectorType</h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;class DataPoint , class _WFunctor , int DiffType, typename T &gt; </div>
+template&lt;class DataPoint , class _NFilter , int DiffType, typename T &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">using <a class="el" href="classPonca_1_1NormalDerivativesCurvatureEstimator.html">Ponca::NormalDerivativesCurvatureEstimator</a>&lt; DataPoint, _WFunctor, <a class="el" href="namespacePonca.html#a7beaddc698523e7f9c041ea8bc4c535a">DiffType</a>, T &gt;::VectorType =  typename Base::VectorType</td>
+          <td class="memname">using <a class="el" href="classPonca_1_1NormalDerivativesCurvatureEstimator.html">Ponca::NormalDerivativesCurvatureEstimator</a>&lt; DataPoint, _NFilter, <a class="el" href="namespacePonca.html#a7beaddc698523e7f9c041ea8bc4c535a">DiffType</a>, T &gt;::VectorType =  typename Base::VectorType</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
 <p>Alias to vector type. </p>
-
-<p class="definition">Definition at line <a class="el" href="curvatureEstimation_8h_source.html#l00024">24</a> of file <a class="el" href="curvatureEstimation_8h_source.html">curvatureEstimation.h</a>.</p>
-
-</div>
-</div>
-<a id="a2957a2b267665f11b3160e47aebaa5fa" name="a2957a2b267665f11b3160e47aebaa5fa"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a2957a2b267665f11b3160e47aebaa5fa">&#9670;&#160;</a></span>WFunctor</h2>
-
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;class DataPoint , class _WFunctor , int DiffType, typename T &gt; </div>
-      <table class="memname">
-        <tr>
-          <td class="memname">using <a class="el" href="classPonca_1_1NormalDerivativesCurvatureEstimator.html">Ponca::NormalDerivativesCurvatureEstimator</a>&lt; DataPoint, _WFunctor, <a class="el" href="namespacePonca.html#a7beaddc698523e7f9c041ea8bc4c535a">DiffType</a>, T &gt;::WFunctor =  typename Base::WFunctor</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Alias to weight function. </p>
 
 <p class="definition">Definition at line <a class="el" href="curvatureEstimation_8h_source.html#l00024">24</a> of file <a class="el" href="curvatureEstimation_8h_source.html">curvatureEstimation.h</a>.</p>
 
@@ -309,7 +309,7 @@ template&lt;class DataPoint , class _WFunctor , int DiffType, typename T &gt; </
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;class DataPoint , class _WFunctor , int DiffType, typename T &gt; </div>
+template&lt;class DataPoint , class _NFilter , int DiffType, typename T &gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
@@ -336,7 +336,7 @@ template&lt;class DataPoint , class _WFunctor , int DiffType, typename T &gt; </
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;class DataPoint , class _WFunctor , int DiffType, typename T &gt; </div>
+template&lt;class DataPoint , class _NFilter , int DiffType, typename T &gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
@@ -363,19 +363,19 @@ template&lt;class DataPoint , class _WFunctor , int DiffType, typename T &gt; </
 
 </div>
 </div>
-<a id="a8b1e7e7663c7ec33be9d872086475fa6" name="a8b1e7e7663c7ec33be9d872086475fa6"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a8b1e7e7663c7ec33be9d872086475fa6">&#9670;&#160;</a></span>normalDerivativesCurvatureEstimator() <span class="overload">[1/2]</span></h2>
+<a id="a9a9d47ca11d8e9f91e94adb86a490afd" name="a9a9d47ca11d8e9f91e94adb86a490afd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9a9d47ca11d8e9f91e94adb86a490afd">&#9670;&#160;</a></span>normalDerivativesCurvatureEstimator() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;class DataPoint , class _WFunctor , int DiffType, typename T &gt; </div>
+template&lt;class DataPoint , class _NFilter , int DiffType, typename T &gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classPonca_1_1NormalDerivativesCurvatureEstimator.html">NormalDerivativesCurvatureEstimator</a>&lt; DataPoint, _WFunctor, <a class="el" href="namespacePonca.html#a7beaddc698523e7f9c041ea8bc4c535a">DiffType</a>, T &gt; &amp; <a class="el" href="classPonca_1_1NormalDerivativesCurvatureEstimator.html">Ponca::NormalDerivativesCurvatureEstimator</a>&lt; DataPoint, _WFunctor, <a class="el" href="namespacePonca.html#a7beaddc698523e7f9c041ea8bc4c535a">DiffType</a>, T &gt;::normalDerivativesCurvatureEstimator </td>
+          <td class="memname"><a class="el" href="classPonca_1_1NormalDerivativesCurvatureEstimator.html">NormalDerivativesCurvatureEstimator</a>&lt; DataPoint, _NFilter, <a class="el" href="namespacePonca.html#a7beaddc698523e7f9c041ea8bc4c535a">DiffType</a>, T &gt; &amp; <a class="el" href="classPonca_1_1NormalDerivativesCurvatureEstimator.html">Ponca::NormalDerivativesCurvatureEstimator</a>&lt; DataPoint, _NFilter, <a class="el" href="namespacePonca.html#a7beaddc698523e7f9c041ea8bc4c535a">DiffType</a>, T &gt;::normalDerivativesCurvatureEstimator </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -394,19 +394,19 @@ template&lt;class DataPoint , class _WFunctor , int DiffType, typename T &gt; </
 
 </div>
 </div>
-<a id="a3d5772628f0c7eac453f4e6299d33b05" name="a3d5772628f0c7eac453f4e6299d33b05"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a3d5772628f0c7eac453f4e6299d33b05">&#9670;&#160;</a></span>normalDerivativesCurvatureEstimator() <span class="overload">[2/2]</span></h2>
+<a id="a1acaa350c8b0adfaa557cab5321a6d89" name="a1acaa350c8b0adfaa557cab5321a6d89"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1acaa350c8b0adfaa557cab5321a6d89">&#9670;&#160;</a></span>normalDerivativesCurvatureEstimator() <span class="overload">[2/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;class DataPoint , class _WFunctor , int DiffType, typename T &gt; </div>
+template&lt;class DataPoint , class _NFilter , int DiffType, typename T &gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">const <a class="el" href="classPonca_1_1NormalDerivativesCurvatureEstimator.html">NormalDerivativesCurvatureEstimator</a>&lt; DataPoint, _WFunctor, <a class="el" href="namespacePonca.html#a7beaddc698523e7f9c041ea8bc4c535a">DiffType</a>, T &gt; &amp; <a class="el" href="classPonca_1_1NormalDerivativesCurvatureEstimator.html">Ponca::NormalDerivativesCurvatureEstimator</a>&lt; DataPoint, _WFunctor, <a class="el" href="namespacePonca.html#a7beaddc698523e7f9c041ea8bc4c535a">DiffType</a>, T &gt;::normalDerivativesCurvatureEstimator </td>
+          <td class="memname">const <a class="el" href="classPonca_1_1NormalDerivativesCurvatureEstimator.html">NormalDerivativesCurvatureEstimator</a>&lt; DataPoint, _NFilter, <a class="el" href="namespacePonca.html#a7beaddc698523e7f9c041ea8bc4c535a">DiffType</a>, T &gt; &amp; <a class="el" href="classPonca_1_1NormalDerivativesCurvatureEstimator.html">Ponca::NormalDerivativesCurvatureEstimator</a>&lt; DataPoint, _NFilter, <a class="el" href="namespacePonca.html#a7beaddc698523e7f9c041ea8bc4c535a">DiffType</a>, T &gt;::normalDerivativesCurvatureEstimator </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td> const</td>
@@ -425,19 +425,19 @@ template&lt;class DataPoint , class _WFunctor , int DiffType, typename T &gt; </
 
 </div>
 </div>
-<a id="a518ef710dec77937088090c649df3d53" name="a518ef710dec77937088090c649df3d53"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a518ef710dec77937088090c649df3d53">&#9670;&#160;</a></span>tangentPlane()</h2>
+<a id="a2f532d0dd76d39d7aeec432170b81862" name="a2f532d0dd76d39d7aeec432170b81862"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2f532d0dd76d39d7aeec432170b81862">&#9670;&#160;</a></span>tangentPlane()</h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;class DataPoint , class _WFunctor , int DiffType, typename T &gt; </div>
+template&lt;class DataPoint , class _NFilter , int DiffType, typename T &gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classPonca_1_1NormalDerivativesCurvatureEstimator.html">NormalDerivativesCurvatureEstimator</a>&lt; DataPoint, _WFunctor, <a class="el" href="namespacePonca.html#a7beaddc698523e7f9c041ea8bc4c535a">DiffType</a>, T &gt;::Mat32 NormalDerivativesCurvatureEstimator::tangentPlane </td>
+          <td class="memname"><a class="el" href="classPonca_1_1NormalDerivativesCurvatureEstimator.html">NormalDerivativesCurvatureEstimator</a>&lt; DataPoint, _NFilter, <a class="el" href="namespacePonca.html#a7beaddc698523e7f9c041ea8bc4c535a">DiffType</a>, T &gt;::Mat32 NormalDerivativesCurvatureEstimator::tangentPlane </td>
           <td>(</td>
           <td class="paramtype">bool&#160;</td>
           <td class="paramname"><em>useNormal</em> = <code>false</code></td><td>)</td>
@@ -464,7 +464,7 @@ template&lt;class DataPoint , class _WFunctor , int DiffType, typename T &gt; </
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="namespacePonca.html">Ponca</a></li><li class="navelem"><a class="el" href="classPonca_1_1NormalDerivativesCurvatureEstimator.html">NormalDerivativesCurvatureEstimator</a></li>
-    <li class="footer">Generated on Thu Oct 9 2025 22:33:53 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
+    <li class="footer">Generated on Thu Oct 30 2025 19:03:05 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
   </ul>
 </div>
 </body>

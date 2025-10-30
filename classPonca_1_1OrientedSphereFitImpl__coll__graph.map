@@ -1,5 +1,5 @@
-<map id="Ponca::OrientedSphereFitImpl&lt; DataPoint, _WFunctor, T &gt;" name="Ponca::OrientedSphereFitImpl&lt; DataPoint, _WFunctor, T &gt;">
-<area shape="rect" id="Node000001" title="Algebraic Sphere fitting procedure on oriented point sets." alt="" coords="44,133,273,373"/>
+<map id="Ponca::OrientedSphereFitImpl&lt; DataPoint, _NFilter, T &gt;" name="Ponca::OrientedSphereFitImpl&lt; DataPoint, _NFilter, T &gt;">
+<area shape="rect" id="Node000001" title="Algebraic Sphere fitting procedure on oriented point sets." alt="" coords="53,133,264,373"/>
 <area shape="rect" id="Node000002" title=" " alt="" coords="5,5,187,85"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="114,98,125,132,120,134,109,100"/>
 <area shape="rect" id="Node000003" title=" " alt="" coords="211,13,234,78"/>

@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.9.8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Ponca: Ponca::CovariancePlaneFitImpl&lt; DataPoint, _WFunctor, T &gt; Class Template Reference</title>
+<title>Ponca: Ponca::CovariancePlaneFitImpl&lt; DataPoint, _NFilter, T &gt; Class Template Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -51,7 +51,7 @@ MathJax.Hub.Config({
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Ponca
-   &#160;<span id="projectnumber">40f245e28b920cbb763a1c6282156c87c626f24c</span>
+   &#160;<span id="projectnumber">9e7681effe2c12b0af1c85fdb62680f52d835a30</span>
    </div>
    <div id="projectbrief">Point Cloud Analysis library</div>
   </td>
@@ -121,7 +121,7 @@ $(document).ready(function(){initNavTree('classPonca_1_1CovariancePlaneFitImpl.h
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="#pro-types">Protected Types</a> &#124;
 <a href="classPonca_1_1CovariancePlaneFitImpl-members.html">List of all members</a>  </div>
-  <div class="headertitle"><div class="title">Ponca::CovariancePlaneFitImpl&lt; DataPoint, _WFunctor, T &gt; Class Template Reference</div></div>
+  <div class="headertitle"><div class="title">Ponca::CovariancePlaneFitImpl&lt; DataPoint, _NFilter, T &gt; Class Template Reference</div></div>
 </div><!--header-->
 <div class="contents">
 
@@ -130,95 +130,87 @@ $(document).ready(function(){initNavTree('classPonca_1_1CovariancePlaneFitImpl.h
 
 <p><code>#include &lt;<a class="el" href="covariancePlaneFit_8h_source.html">covariancePlaneFit.h</a>&gt;</code></p>
 <div id="dynsection-0" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
-  <img id="dynsection-0-trigger" src="closed.png" alt="+"/> Inheritance diagram for Ponca::CovariancePlaneFitImpl&lt; DataPoint, _WFunctor, T &gt;:</div>
+  <img id="dynsection-0-trigger" src="closed.png" alt="+"/> Inheritance diagram for Ponca::CovariancePlaneFitImpl&lt; DataPoint, _NFilter, T &gt;:</div>
 <div id="dynsection-0-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-0-content" class="dyncontent" style="display:none;">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classPonca_1_1CovariancePlaneFitImpl__inherit__graph.svg" width="279" height="359"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classPonca_1_1CovariancePlaneFitImpl__inherit__graph.svg" width="270" height="319"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 <div id="dynsection-1" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
-  <img id="dynsection-1-trigger" src="closed.png" alt="+"/> Collaboration diagram for Ponca::CovariancePlaneFitImpl&lt; DataPoint, _WFunctor, T &gt;:</div>
+  <img id="dynsection-1-trigger" src="closed.png" alt="+"/> Collaboration diagram for Ponca::CovariancePlaneFitImpl&lt; DataPoint, _NFilter, T &gt;:</div>
 <div id="dynsection-1-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-1-content" class="dyncontent" style="display:none;">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classPonca_1_1CovariancePlaneFitImpl__coll__graph.svg" width="279" height="359"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classPonca_1_1CovariancePlaneFitImpl__coll__graph.svg" width="270" height="319"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-types" name="pub-types"></a>
 Public Types</h2></td></tr>
-<tr class="memitem:adb7f4a2880175224e619d80ab054e99c" id="r_adb7f4a2880175224e619d80ab054e99c"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1CovariancePlaneFitImpl.html#adb7f4a2880175224e619d80ab054e99c">Scalar</a> = typename DataPoint::Scalar</td></tr>
-<tr class="memdesc:adb7f4a2880175224e619d80ab054e99c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Alias to scalar type.  <br /></td></tr>
-<tr class="separator:adb7f4a2880175224e619d80ab054e99c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af50cd1635f70143fa770e2921a247f93" id="r_af50cd1635f70143fa770e2921a247f93"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1CovariancePlaneFitImpl.html#af50cd1635f70143fa770e2921a247f93">VectorType</a> = typename Base::VectorType</td></tr>
-<tr class="memdesc:af50cd1635f70143fa770e2921a247f93"><td class="mdescLeft">&#160;</td><td class="mdescRight">Alias to vector type.  <br /></td></tr>
-<tr class="separator:af50cd1635f70143fa770e2921a247f93"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac4a62f0b97e437ba626b6ca9b4880a7d" id="r_ac4a62f0b97e437ba626b6ca9b4880a7d"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1CovariancePlaneFitImpl.html#ac4a62f0b97e437ba626b6ca9b4880a7d">WFunctor</a> = typename Base::WFunctor</td></tr>
-<tr class="memdesc:ac4a62f0b97e437ba626b6ca9b4880a7d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Alias to weight function.  <br /></td></tr>
-<tr class="separator:ac4a62f0b97e437ba626b6ca9b4880a7d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a25e45331c266d0a51c87e8b5e77459d8" id="r_a25e45331c266d0a51c87e8b5e77459d8"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1CovariancePlaneFitImpl.html#a25e45331c266d0a51c87e8b5e77459d8">MatrixType</a> = typename DataPoint::MatrixType</td></tr>
-<tr class="memdesc:a25e45331c266d0a51c87e8b5e77459d8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Alias to matrix type.  <br /></td></tr>
-<tr class="separator:a25e45331c266d0a51c87e8b5e77459d8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a63c4124d2f9de4edd020184e2356abe0" id="r_a63c4124d2f9de4edd020184e2356abe0"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1CovariancePlaneFitImpl.html#a63c4124d2f9de4edd020184e2356abe0">Scalar</a> = typename DataPoint::Scalar</td></tr>
+<tr class="memdesc:a63c4124d2f9de4edd020184e2356abe0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Alias to scalar type.  <br /></td></tr>
+<tr class="separator:a63c4124d2f9de4edd020184e2356abe0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae611838d927d83a648a7fb23154bb427" id="r_ae611838d927d83a648a7fb23154bb427"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1CovariancePlaneFitImpl.html#ae611838d927d83a648a7fb23154bb427">VectorType</a> = typename Base::VectorType</td></tr>
+<tr class="memdesc:ae611838d927d83a648a7fb23154bb427"><td class="mdescLeft">&#160;</td><td class="mdescRight">Alias to vector type.  <br /></td></tr>
+<tr class="separator:ae611838d927d83a648a7fb23154bb427"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9b5f99b06d37c101ef0d376d346ca488" id="r_a9b5f99b06d37c101ef0d376d346ca488"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1CovariancePlaneFitImpl.html#a9b5f99b06d37c101ef0d376d346ca488">NeighborFilter</a> = typename Base::NeighborFilter</td></tr>
+<tr class="memdesc:a9b5f99b06d37c101ef0d376d346ca488"><td class="mdescLeft">&#160;</td><td class="mdescRight">Alias to the filter applied on the neighbors.  <br /></td></tr>
+<tr class="separator:a9b5f99b06d37c101ef0d376d346ca488"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ada7741884b53ab51789396bd44b6658e" id="r_ada7741884b53ab51789396bd44b6658e"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1CovariancePlaneFitImpl.html#ada7741884b53ab51789396bd44b6658e">MatrixType</a> = typename DataPoint::MatrixType</td></tr>
+<tr class="memdesc:ada7741884b53ab51789396bd44b6658e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Alias to matrix type.  <br /></td></tr>
+<tr class="separator:ada7741884b53ab51789396bd44b6658e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a1d0b630032c1d80ad0da315ef6d0cc72" id="r_a1d0b630032c1d80ad0da315ef6d0cc72"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classPonca_1_1CovariancePlaneFitImpl.html">CovariancePlaneFitImpl</a>&lt; DataPoint, _WFunctor, T &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1CovariancePlaneFitImpl.html#a1d0b630032c1d80ad0da315ef6d0cc72">covariancePlaneFit</a> ()</td></tr>
-<tr class="memdesc:a1d0b630032c1d80ad0da315ef6d0cc72"><td class="mdescLeft">&#160;</td><td class="mdescRight">Explicit conversion to <a class="el" href="classPonca_1_1CovariancePlaneFitImpl.html" title="Plane fitting procedure using only points position.">CovariancePlaneFitImpl</a> , to access methods potentially hidden by heritage.  <br /></td></tr>
-<tr class="separator:a1d0b630032c1d80ad0da315ef6d0cc72"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2dfdda0e709b04ee6fce889c293d51fe" id="r_a2dfdda0e709b04ee6fce889c293d51fe"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="classPonca_1_1CovariancePlaneFitImpl.html">CovariancePlaneFitImpl</a>&lt; DataPoint, _WFunctor, T &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1CovariancePlaneFitImpl.html#a2dfdda0e709b04ee6fce889c293d51fe">covariancePlaneFit</a> () const</td></tr>
-<tr class="memdesc:a2dfdda0e709b04ee6fce889c293d51fe"><td class="mdescLeft">&#160;</td><td class="mdescRight">Explicit conversion to <a class="el" href="classPonca_1_1CovariancePlaneFitImpl.html" title="Plane fitting procedure using only points position.">CovariancePlaneFitImpl</a> , to access methods potentially hidden by heritage.  <br /></td></tr>
-<tr class="separator:a2dfdda0e709b04ee6fce889c293d51fe"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a18635760d587df7b3958acc01a4abb15" id="r_a18635760d587df7b3958acc01a4abb15"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classPonca_1_1CovariancePlaneFitImpl.html">CovariancePlaneFitImpl</a>&lt; DataPoint, _NFilter, T &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1CovariancePlaneFitImpl.html#a18635760d587df7b3958acc01a4abb15">covariancePlaneFit</a> ()</td></tr>
+<tr class="memdesc:a18635760d587df7b3958acc01a4abb15"><td class="mdescLeft">&#160;</td><td class="mdescRight">Explicit conversion to <a class="el" href="classPonca_1_1CovariancePlaneFitImpl.html" title="Plane fitting procedure using only points position.">CovariancePlaneFitImpl</a> , to access methods potentially hidden by heritage.  <br /></td></tr>
+<tr class="separator:a18635760d587df7b3958acc01a4abb15"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a434acdeaed07c076df2cb36a4d04493e" id="r_a434acdeaed07c076df2cb36a4d04493e"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="classPonca_1_1CovariancePlaneFitImpl.html">CovariancePlaneFitImpl</a>&lt; DataPoint, _NFilter, T &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1CovariancePlaneFitImpl.html#a434acdeaed07c076df2cb36a4d04493e">covariancePlaneFit</a> () const</td></tr>
+<tr class="memdesc:a434acdeaed07c076df2cb36a4d04493e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Explicit conversion to <a class="el" href="classPonca_1_1CovariancePlaneFitImpl.html" title="Plane fitting procedure using only points position.">CovariancePlaneFitImpl</a> , to access methods potentially hidden by heritage.  <br /></td></tr>
+<tr class="separator:a434acdeaed07c076df2cb36a4d04493e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0925320772edfc9ad4765f5082604cc4" id="r_a0925320772edfc9ad4765f5082604cc4"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespacePonca.html#abfd697aebf07c1b5c8be5ee401e2dc84">FIT_RESULT</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1CovariancePlaneFitImpl.html#a0925320772edfc9ad4765f5082604cc4">finalize</a> ()</td></tr>
 <tr class="memdesc:a0925320772edfc9ad4765f5082604cc4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Finalize the procedure.  <br /></td></tr>
 <tr class="separator:a0925320772edfc9ad4765f5082604cc4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3b26f29204b3be1fb8813da4bc614000" id="r_a3b26f29204b3be1fb8813da4bc614000"><td class="memItemLeft" align="right" valign="top">constexpr bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1CovariancePlaneFitImpl.html#a3b26f29204b3be1fb8813da4bc614000">isSigned</a> ()</td></tr>
-<tr class="memdesc:a3b26f29204b3be1fb8813da4bc614000"><td class="mdescLeft">&#160;</td><td class="mdescRight">Is scalar field signed.  <br /></td></tr>
-<tr class="separator:a3b26f29204b3be1fb8813da4bc614000"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa44dec5b14d4f995235d533a93c53378" id="r_aa44dec5b14d4f995235d533a93c53378"><td class="memTemplParams" colspan="2">template&lt;bool ignoreTranslation = false&gt; </td></tr>
-<tr class="memitem:aa44dec5b14d4f995235d533a93c53378"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="classPonca_1_1CovariancePlaneFitImpl.html#af50cd1635f70143fa770e2921a247f93">VectorType</a>&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classPonca_1_1CovariancePlaneFitImpl.html#aa44dec5b14d4f995235d533a93c53378">worldToTangentPlane</a> (const <a class="el" href="classPonca_1_1CovariancePlaneFitImpl.html#af50cd1635f70143fa770e2921a247f93">VectorType</a> &amp;_q) const</td></tr>
-<tr class="memdesc:aa44dec5b14d4f995235d533a93c53378"><td class="mdescLeft">&#160;</td><td class="mdescRight">Express a point in ambient space relatively to the tangent plane.  <br /></td></tr>
-<tr class="separator:aa44dec5b14d4f995235d533a93c53378"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae023b7de8be8e2826810acd7fe9db910" id="r_ae023b7de8be8e2826810acd7fe9db910"><td class="memTemplParams" colspan="2">template&lt;bool ignoreTranslation = false&gt; </td></tr>
-<tr class="memitem:ae023b7de8be8e2826810acd7fe9db910"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="classPonca_1_1CovariancePlaneFitImpl.html#af50cd1635f70143fa770e2921a247f93">VectorType</a>&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classPonca_1_1CovariancePlaneFitImpl.html#ae023b7de8be8e2826810acd7fe9db910">tangentPlaneToWorld</a> (const <a class="el" href="classPonca_1_1CovariancePlaneFitImpl.html#af50cd1635f70143fa770e2921a247f93">VectorType</a> &amp;_q) const</td></tr>
-<tr class="memdesc:ae023b7de8be8e2826810acd7fe9db910"><td class="mdescLeft">&#160;</td><td class="mdescRight">Transform a point from the tangent plane [h, u, v]^T to ambient space.  <br /></td></tr>
-<tr class="separator:ae023b7de8be8e2826810acd7fe9db910"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac4399605eaa0d387b25cb936ac7b1b03" id="r_ac4399605eaa0d387b25cb936ac7b1b03"><td class="memTemplParams" colspan="2">template&lt;bool ignoreTranslation&gt; </td></tr>
-<tr class="memitem:ac4399605eaa0d387b25cb936ac7b1b03"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="classPonca_1_1CovariancePlaneFitImpl.html">CovariancePlaneFitImpl</a>&lt; DataPoint, _WFunctor, T &gt;<a class="el" href="classPonca_1_1CovariancePlaneFitImpl.html#af50cd1635f70143fa770e2921a247f93">::VectorType</a>&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classPonca_1_1CovariancePlaneFitImpl.html#ac4399605eaa0d387b25cb936ac7b1b03">worldToTangentPlane</a> (const <a class="el" href="classPonca_1_1CovariancePlaneFitImpl.html#af50cd1635f70143fa770e2921a247f93">VectorType</a> &amp;_q) const</td></tr>
-<tr class="separator:ac4399605eaa0d387b25cb936ac7b1b03"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abd1a5b46c004221cbdbf94ce113bfba6" id="r_abd1a5b46c004221cbdbf94ce113bfba6"><td class="memTemplParams" colspan="2">template&lt;bool ignoreTranslation&gt; </td></tr>
-<tr class="memitem:abd1a5b46c004221cbdbf94ce113bfba6"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="classPonca_1_1CovariancePlaneFitImpl.html">CovariancePlaneFitImpl</a>&lt; DataPoint, _WFunctor, T &gt;<a class="el" href="classPonca_1_1CovariancePlaneFitImpl.html#af50cd1635f70143fa770e2921a247f93">::VectorType</a>&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classPonca_1_1CovariancePlaneFitImpl.html#abd1a5b46c004221cbdbf94ce113bfba6">tangentPlaneToWorld</a> (const <a class="el" href="classPonca_1_1CovariancePlaneFitImpl.html#af50cd1635f70143fa770e2921a247f93">VectorType</a> &amp;_lq) const</td></tr>
-<tr class="separator:abd1a5b46c004221cbdbf94ce113bfba6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a61024b2cb210c0a2d076dfabb4d25349" id="r_a61024b2cb210c0a2d076dfabb4d25349"><td class="memItemLeft" align="right" valign="top">constexpr bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1CovariancePlaneFitImpl.html#a61024b2cb210c0a2d076dfabb4d25349">isSigned</a> ()</td></tr>
+<tr class="memdesc:a61024b2cb210c0a2d076dfabb4d25349"><td class="mdescLeft">&#160;</td><td class="mdescRight">Is scalar field signed.  <br /></td></tr>
+<tr class="separator:a61024b2cb210c0a2d076dfabb4d25349"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a460e0ffe0444f6bba5e119bd882e38db" id="r_a460e0ffe0444f6bba5e119bd882e38db"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classPonca_1_1CovariancePlaneFitImpl.html#ae611838d927d83a648a7fb23154bb427">VectorType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1CovariancePlaneFitImpl.html#a460e0ffe0444f6bba5e119bd882e38db">worldToTangentPlane</a> (const <a class="el" href="classPonca_1_1CovariancePlaneFitImpl.html#ae611838d927d83a648a7fb23154bb427">VectorType</a> &amp;_q) const</td></tr>
+<tr class="memdesc:a460e0ffe0444f6bba5e119bd882e38db"><td class="mdescLeft">&#160;</td><td class="mdescRight">Express a point in ambient space relatively to the tangent plane.  <br /></td></tr>
+<tr class="separator:a460e0ffe0444f6bba5e119bd882e38db"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4374c268c6876973366e11255728309a" id="r_a4374c268c6876973366e11255728309a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classPonca_1_1CovariancePlaneFitImpl.html#ae611838d927d83a648a7fb23154bb427">VectorType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1CovariancePlaneFitImpl.html#a4374c268c6876973366e11255728309a">tangentPlaneToWorld</a> (const <a class="el" href="classPonca_1_1CovariancePlaneFitImpl.html#ae611838d927d83a648a7fb23154bb427">VectorType</a> &amp;_q) const</td></tr>
+<tr class="memdesc:a4374c268c6876973366e11255728309a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Transform a point from the tangent plane [h, u, v]^T to ambient space.  <br /></td></tr>
+<tr class="separator:a4374c268c6876973366e11255728309a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-types" name="pro-types"></a>
 Protected Types</h2></td></tr>
 <tr class="memitem:a53ac1163f2f11d47bdeb45945defae63" id="r_a53ac1163f2f11d47bdeb45945defae63"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom">{ <b>Check</b>
-, <a class="el" href="classPonca_1_1CovariancePlaneFitImpl.html#a53ac1163f2f11d47bdeb45945defae63ac97bfa04c5647de94bf8318cf196bb07">PROVIDES_TANGENT_PLANE_BASIS</a>
+, <a class="el" href="classPonca_1_1CovariancePlaneFitImpl.html#a53ac1163f2f11d47bdeb45945defae63a7bc0edf789f003cc1d0f2a4eef0e718b">PROVIDES_TANGENT_PLANE_BASIS</a>
  }</td></tr>
 <tr class="separator:a53ac1163f2f11d47bdeb45945defae63"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afc314aab6e6c510a7b5c52212c0f766c" id="r_afc314aab6e6c510a7b5c52212c0f766c"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1CovariancePlaneFitImpl.html#afc314aab6e6c510a7b5c52212c0f766c">Base</a> = T</td></tr>
-<tr class="memdesc:afc314aab6e6c510a7b5c52212c0f766c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Base class of the procedure.  <br /></td></tr>
-<tr class="separator:afc314aab6e6c510a7b5c52212c0f766c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae4edaa010e615870b19775b8665ae281" id="r_ae4edaa010e615870b19775b8665ae281"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1CovariancePlaneFitImpl.html#ae4edaa010e615870b19775b8665ae281">Base</a> = T</td></tr>
+<tr class="memdesc:ae4edaa010e615870b19775b8665ae281"><td class="mdescLeft">&#160;</td><td class="mdescRight">Base class of the procedure.  <br /></td></tr>
+<tr class="separator:ae4edaa010e615870b19775b8665ae281"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><div class="compoundTemplParams">template&lt;class DataPoint, class _WFunctor, typename T&gt;<br />
-class Ponca::CovariancePlaneFitImpl&lt; DataPoint, _WFunctor, T &gt;</div><p><a class="el" href="classPonca_1_1Plane.html" title="Implicit hyperplane defined by an homogeneous vector .">Plane</a> fitting procedure using only points position. </p>
+<div class="textblock"><div class="compoundTemplParams">template&lt;class DataPoint, class _NFilter, typename T&gt;<br />
+class Ponca::CovariancePlaneFitImpl&lt; DataPoint, _NFilter, T &gt;</div><p><a class="el" href="classPonca_1_1Plane.html" title="Implicit hyperplane defined by an homogeneous vector .">Plane</a> fitting procedure using only points position. </p>
 <p>This class can also computes the surface variation measure introduced in <a class="el" href="citelist.html#CITEREF_Pauly:2002:PSSimplification">[13]</a>.</p>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="classPonca_1_1Plane.html" title="Implicit hyperplane defined by an homogeneous vector .">Plane</a> </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="covariancePlaneFit_8h_source.html#l00034">34</a> of file <a class="el" href="covariancePlaneFit_8h_source.html">covariancePlaneFit.h</a>.</p>
 </div><h2 class="groupheader">Member Typedef Documentation</h2>
-<a id="afc314aab6e6c510a7b5c52212c0f766c" name="afc314aab6e6c510a7b5c52212c0f766c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#afc314aab6e6c510a7b5c52212c0f766c">&#9670;&#160;</a></span>Base</h2>
+<a id="ae4edaa010e615870b19775b8665ae281" name="ae4edaa010e615870b19775b8665ae281"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae4edaa010e615870b19775b8665ae281">&#9670;&#160;</a></span>Base</h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
+template&lt;class DataPoint , class _NFilter , typename T &gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">using <a class="el" href="classPonca_1_1CovariancePlaneFitImpl.html">Ponca::CovariancePlaneFitImpl</a>&lt; DataPoint, _WFunctor, T &gt;::Base =  T</td>
+          <td class="memname">using <a class="el" href="classPonca_1_1CovariancePlaneFitImpl.html">Ponca::CovariancePlaneFitImpl</a>&lt; DataPoint, _NFilter, T &gt;::Base =  T</td>
         </tr>
       </table>
   </td>
@@ -234,16 +226,16 @@ template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
 
 </div>
 </div>
-<a id="a25e45331c266d0a51c87e8b5e77459d8" name="a25e45331c266d0a51c87e8b5e77459d8"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a25e45331c266d0a51c87e8b5e77459d8">&#9670;&#160;</a></span>MatrixType</h2>
+<a id="ada7741884b53ab51789396bd44b6658e" name="ada7741884b53ab51789396bd44b6658e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ada7741884b53ab51789396bd44b6658e">&#9670;&#160;</a></span>MatrixType</h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
+template&lt;class DataPoint , class _NFilter , typename T &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">using <a class="el" href="classPonca_1_1CovariancePlaneFitImpl.html">Ponca::CovariancePlaneFitImpl</a>&lt; DataPoint, _WFunctor, T &gt;::MatrixType =  typename DataPoint::MatrixType</td>
+          <td class="memname">using <a class="el" href="classPonca_1_1CovariancePlaneFitImpl.html">Ponca::CovariancePlaneFitImpl</a>&lt; DataPoint, _NFilter, T &gt;::MatrixType =  typename DataPoint::MatrixType</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -254,16 +246,36 @@ template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
 
 </div>
 </div>
-<a id="adb7f4a2880175224e619d80ab054e99c" name="adb7f4a2880175224e619d80ab054e99c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#adb7f4a2880175224e619d80ab054e99c">&#9670;&#160;</a></span>Scalar</h2>
+<a id="a9b5f99b06d37c101ef0d376d346ca488" name="a9b5f99b06d37c101ef0d376d346ca488"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9b5f99b06d37c101ef0d376d346ca488">&#9670;&#160;</a></span>NeighborFilter</h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
+template&lt;class DataPoint , class _NFilter , typename T &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">using <a class="el" href="classPonca_1_1CovariancePlaneFitImpl.html">Ponca::CovariancePlaneFitImpl</a>&lt; DataPoint, _WFunctor, T &gt;::Scalar =  typename DataPoint::Scalar</td>
+          <td class="memname">using <a class="el" href="classPonca_1_1CovariancePlaneFitImpl.html">Ponca::CovariancePlaneFitImpl</a>&lt; DataPoint, _NFilter, T &gt;::NeighborFilter =  typename Base::NeighborFilter</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Alias to the filter applied on the neighbors. </p>
+
+<p class="definition">Definition at line <a class="el" href="covariancePlaneFit_8h_source.html#l00036">36</a> of file <a class="el" href="covariancePlaneFit_8h_source.html">covariancePlaneFit.h</a>.</p>
+
+</div>
+</div>
+<a id="a63c4124d2f9de4edd020184e2356abe0" name="a63c4124d2f9de4edd020184e2356abe0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a63c4124d2f9de4edd020184e2356abe0">&#9670;&#160;</a></span>Scalar</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class DataPoint , class _NFilter , typename T &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="classPonca_1_1CovariancePlaneFitImpl.html">Ponca::CovariancePlaneFitImpl</a>&lt; DataPoint, _NFilter, T &gt;::Scalar =  typename DataPoint::Scalar</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -274,41 +286,21 @@ template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
 
 </div>
 </div>
-<a id="af50cd1635f70143fa770e2921a247f93" name="af50cd1635f70143fa770e2921a247f93"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af50cd1635f70143fa770e2921a247f93">&#9670;&#160;</a></span>VectorType</h2>
+<a id="ae611838d927d83a648a7fb23154bb427" name="ae611838d927d83a648a7fb23154bb427"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae611838d927d83a648a7fb23154bb427">&#9670;&#160;</a></span>VectorType</h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
+template&lt;class DataPoint , class _NFilter , typename T &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">using <a class="el" href="classPonca_1_1CovariancePlaneFitImpl.html">Ponca::CovariancePlaneFitImpl</a>&lt; DataPoint, _WFunctor, T &gt;::VectorType =  typename Base::VectorType</td>
+          <td class="memname">using <a class="el" href="classPonca_1_1CovariancePlaneFitImpl.html">Ponca::CovariancePlaneFitImpl</a>&lt; DataPoint, _NFilter, T &gt;::VectorType =  typename Base::VectorType</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
 <p>Alias to vector type. </p>
-
-<p class="definition">Definition at line <a class="el" href="covariancePlaneFit_8h_source.html#l00036">36</a> of file <a class="el" href="covariancePlaneFit_8h_source.html">covariancePlaneFit.h</a>.</p>
-
-</div>
-</div>
-<a id="ac4a62f0b97e437ba626b6ca9b4880a7d" name="ac4a62f0b97e437ba626b6ca9b4880a7d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac4a62f0b97e437ba626b6ca9b4880a7d">&#9670;&#160;</a></span>WFunctor</h2>
-
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
-      <table class="memname">
-        <tr>
-          <td class="memname">using <a class="el" href="classPonca_1_1CovariancePlaneFitImpl.html">Ponca::CovariancePlaneFitImpl</a>&lt; DataPoint, _WFunctor, T &gt;::WFunctor =  typename Base::WFunctor</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Alias to weight function. </p>
 
 <p class="definition">Definition at line <a class="el" href="covariancePlaneFit_8h_source.html#l00036">36</a> of file <a class="el" href="covariancePlaneFit_8h_source.html">covariancePlaneFit.h</a>.</p>
 
@@ -321,7 +313,7 @@ template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
+template&lt;class DataPoint , class _NFilter , typename T &gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
@@ -337,10 +329,10 @@ template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
 </table>
 </div><div class="memdoc">
 <table class="fieldtable">
-<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="a53ac1163f2f11d47bdeb45945defae63ac97bfa04c5647de94bf8318cf196bb07" name="a53ac1163f2f11d47bdeb45945defae63ac97bfa04c5647de94bf8318cf196bb07"></a>PROVIDES_TANGENT_PLANE_BASIS&#160;</td><td class="fielddoc"><p>Expose a method worldToTangentPlane(VectorType), which turns a point in ambient 3D space to the tangent plane. </p>
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="classPonca_1_1CovariancePlaneFitImpl.html#aa44dec5b14d4f995235d533a93c53378" title="Express a point in ambient space relatively to the tangent plane.">worldToTangentPlane</a> </dd>
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="a53ac1163f2f11d47bdeb45945defae63a7bc0edf789f003cc1d0f2a4eef0e718b" name="a53ac1163f2f11d47bdeb45945defae63a7bc0edf789f003cc1d0f2a4eef0e718b"></a>PROVIDES_TANGENT_PLANE_BASIS&#160;</td><td class="fielddoc"><p>Expose a method worldToTangentPlane(VectorType), which turns a point in ambient 3D space to the tangent plane. </p>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="classPonca_1_1CovariancePlaneFitImpl.html#a460e0ffe0444f6bba5e119bd882e38db" title="Express a point in ambient space relatively to the tangent plane.">worldToTangentPlane</a> </dd>
 <dd>
-<a class="el" href="classPonca_1_1CovariancePlaneFitImpl.html#ae023b7de8be8e2826810acd7fe9db910" title="Transform a point from the tangent plane [h, u, v]^T to ambient space.">tangentPlaneToWorld</a> </dd></dl>
+<a class="el" href="classPonca_1_1CovariancePlaneFitImpl.html#a4374c268c6876973366e11255728309a" title="Transform a point from the tangent plane [h, u, v]^T to ambient space.">tangentPlaneToWorld</a> </dd></dl>
 </td></tr>
 </table>
 
@@ -349,19 +341,19 @@ template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a id="a1d0b630032c1d80ad0da315ef6d0cc72" name="a1d0b630032c1d80ad0da315ef6d0cc72"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a1d0b630032c1d80ad0da315ef6d0cc72">&#9670;&#160;</a></span>covariancePlaneFit() <span class="overload">[1/2]</span></h2>
+<a id="a18635760d587df7b3958acc01a4abb15" name="a18635760d587df7b3958acc01a4abb15"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a18635760d587df7b3958acc01a4abb15">&#9670;&#160;</a></span>covariancePlaneFit() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
+template&lt;class DataPoint , class _NFilter , typename T &gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classPonca_1_1CovariancePlaneFitImpl.html">CovariancePlaneFitImpl</a>&lt; DataPoint, _WFunctor, T &gt; &amp; <a class="el" href="classPonca_1_1CovariancePlaneFitImpl.html">Ponca::CovariancePlaneFitImpl</a>&lt; DataPoint, _WFunctor, T &gt;::covariancePlaneFit </td>
+          <td class="memname"><a class="el" href="classPonca_1_1CovariancePlaneFitImpl.html">CovariancePlaneFitImpl</a>&lt; DataPoint, _NFilter, T &gt; &amp; <a class="el" href="classPonca_1_1CovariancePlaneFitImpl.html">Ponca::CovariancePlaneFitImpl</a>&lt; DataPoint, _NFilter, T &gt;::covariancePlaneFit </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -380,19 +372,19 @@ template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
 
 </div>
 </div>
-<a id="a2dfdda0e709b04ee6fce889c293d51fe" name="a2dfdda0e709b04ee6fce889c293d51fe"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a2dfdda0e709b04ee6fce889c293d51fe">&#9670;&#160;</a></span>covariancePlaneFit() <span class="overload">[2/2]</span></h2>
+<a id="a434acdeaed07c076df2cb36a4d04493e" name="a434acdeaed07c076df2cb36a4d04493e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a434acdeaed07c076df2cb36a4d04493e">&#9670;&#160;</a></span>covariancePlaneFit() <span class="overload">[2/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
+template&lt;class DataPoint , class _NFilter , typename T &gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">const <a class="el" href="classPonca_1_1CovariancePlaneFitImpl.html">CovariancePlaneFitImpl</a>&lt; DataPoint, _WFunctor, T &gt; &amp; <a class="el" href="classPonca_1_1CovariancePlaneFitImpl.html">Ponca::CovariancePlaneFitImpl</a>&lt; DataPoint, _WFunctor, T &gt;::covariancePlaneFit </td>
+          <td class="memname">const <a class="el" href="classPonca_1_1CovariancePlaneFitImpl.html">CovariancePlaneFitImpl</a>&lt; DataPoint, _NFilter, T &gt; &amp; <a class="el" href="classPonca_1_1CovariancePlaneFitImpl.html">Ponca::CovariancePlaneFitImpl</a>&lt; DataPoint, _NFilter, T &gt;::covariancePlaneFit </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td> const</td>
@@ -417,7 +409,7 @@ template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
+template&lt;class DataPoint , class _NFilter , typename T &gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
@@ -444,19 +436,19 @@ template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
 
 </div>
 </div>
-<a id="a3b26f29204b3be1fb8813da4bc614000" name="a3b26f29204b3be1fb8813da4bc614000"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a3b26f29204b3be1fb8813da4bc614000">&#9670;&#160;</a></span>isSigned()</h2>
+<a id="a61024b2cb210c0a2d076dfabb4d25349" name="a61024b2cb210c0a2d076dfabb4d25349"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a61024b2cb210c0a2d076dfabb4d25349">&#9670;&#160;</a></span>isSigned()</h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
+template&lt;class DataPoint , class _NFilter , typename T &gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">constexpr bool <a class="el" href="classPonca_1_1CovariancePlaneFitImpl.html">Ponca::CovariancePlaneFitImpl</a>&lt; DataPoint, _WFunctor, T &gt;::isSigned </td>
+          <td class="memname">constexpr bool <a class="el" href="classPonca_1_1CovariancePlaneFitImpl.html">Ponca::CovariancePlaneFitImpl</a>&lt; DataPoint, _NFilter, T &gt;::isSigned </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -476,47 +468,21 @@ template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
 
 </div>
 </div>
-<a id="abd1a5b46c004221cbdbf94ce113bfba6" name="abd1a5b46c004221cbdbf94ce113bfba6"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#abd1a5b46c004221cbdbf94ce113bfba6">&#9670;&#160;</a></span>tangentPlaneToWorld() <span class="overload">[1/2]</span></h2>
+<a id="a4374c268c6876973366e11255728309a" name="a4374c268c6876973366e11255728309a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4374c268c6876973366e11255728309a">&#9670;&#160;</a></span>tangentPlaneToWorld()</h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
-<div class="memtemplate">
-template&lt;bool ignoreTranslation&gt; </div>
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="classPonca_1_1CovariancePlaneFitImpl.html">CovariancePlaneFitImpl</a>&lt; DataPoint, _WFunctor, T &gt;<a class="el" href="classPonca_1_1CovariancePlaneFitImpl.html#af50cd1635f70143fa770e2921a247f93">::VectorType</a> <a class="el" href="classPonca_1_1CovariancePlaneFitImpl.html">Ponca::CovariancePlaneFitImpl</a>&lt; DataPoint, _WFunctor, T &gt;::tangentPlaneToWorld </td>
-          <td>(</td>
-          <td class="paramtype">const <a class="el" href="classPonca_1_1CovariancePlaneFitImpl.html#af50cd1635f70143fa770e2921a247f93">VectorType</a> &amp;&#160;</td>
-          <td class="paramname"><em>_lq</em></td><td>)</td>
-          <td> const</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p class="definition">Definition at line <a class="el" href="covariancePlaneFit_8hpp_source.html#l00041">41</a> of file <a class="el" href="covariancePlaneFit_8hpp_source.html">covariancePlaneFit.hpp</a>.</p>
-
-</div>
-</div>
-<a id="ae023b7de8be8e2826810acd7fe9db910" name="ae023b7de8be8e2826810acd7fe9db910"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae023b7de8be8e2826810acd7fe9db910">&#9670;&#160;</a></span>tangentPlaneToWorld() <span class="overload">[2/2]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
-<div class="memtemplate">
-template&lt;bool ignoreTranslation = false&gt; </div>
+template&lt;class DataPoint , class _NFilter , typename T &gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classPonca_1_1CovariancePlaneFitImpl.html#af50cd1635f70143fa770e2921a247f93">VectorType</a> <a class="el" href="classPonca_1_1CovariancePlaneFitImpl.html">Ponca::CovariancePlaneFitImpl</a>&lt; DataPoint, _WFunctor, T &gt;::tangentPlaneToWorld </td>
+          <td class="memname"><a class="el" href="classPonca_1_1CovariancePlaneFitImpl.html">CovariancePlaneFitImpl</a>&lt; DataPoint, _NFilter, T &gt;<a class="el" href="classPonca_1_1CovariancePlaneFitImpl.html#ae611838d927d83a648a7fb23154bb427">::VectorType</a> CovariancePlaneFitImpl::tangentPlaneToWorld </td>
           <td>(</td>
-          <td class="paramtype">const <a class="el" href="classPonca_1_1CovariancePlaneFitImpl.html#af50cd1635f70143fa770e2921a247f93">VectorType</a> &amp;&#160;</td>
+          <td class="paramtype">const <a class="el" href="classPonca_1_1CovariancePlaneFitImpl.html#ae611838d927d83a648a7fb23154bb427">VectorType</a> &amp;&#160;</td>
           <td class="paramname"><em>_q</em></td><td>)</td>
           <td> const</td>
         </tr>
@@ -529,12 +495,6 @@ template&lt;bool ignoreTranslation = false&gt; </div>
 </div><div class="memdoc">
 
 <p>Transform a point from the tangent plane [h, u, v]^T to ambient space. </p>
-<dl class="tparams"><dt>Template Parameters</dt><dd>
-  <table class="tparams">
-    <tr><td class="paramname">ignoreTranslation</td><td>must be set to true when passing vectors instead of points </td></tr>
-  </table>
-  </dd>
-</dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">_q</td><td>Point coordinates expressed in local tangent frame </td></tr>
@@ -543,25 +503,25 @@ template&lt;bool ignoreTranslation = false&gt; </div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Point coordinates expressed in ambient space </dd></dl>
 
+<p class="definition">Definition at line <a class="el" href="covariancePlaneFit_8hpp_source.html#l00034">34</a> of file <a class="el" href="covariancePlaneFit_8hpp_source.html">covariancePlaneFit.hpp</a>.</p>
+
 </div>
 </div>
-<a id="aa44dec5b14d4f995235d533a93c53378" name="aa44dec5b14d4f995235d533a93c53378"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa44dec5b14d4f995235d533a93c53378">&#9670;&#160;</a></span>worldToTangentPlane() <span class="overload">[1/2]</span></h2>
+<a id="a460e0ffe0444f6bba5e119bd882e38db" name="a460e0ffe0444f6bba5e119bd882e38db"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a460e0ffe0444f6bba5e119bd882e38db">&#9670;&#160;</a></span>worldToTangentPlane()</h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
-<div class="memtemplate">
-template&lt;bool ignoreTranslation = false&gt; </div>
+template&lt;class DataPoint , class _NFilter , typename T &gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classPonca_1_1CovariancePlaneFitImpl.html#af50cd1635f70143fa770e2921a247f93">VectorType</a> <a class="el" href="classPonca_1_1CovariancePlaneFitImpl.html">Ponca::CovariancePlaneFitImpl</a>&lt; DataPoint, _WFunctor, T &gt;::worldToTangentPlane </td>
+          <td class="memname"><a class="el" href="classPonca_1_1CovariancePlaneFitImpl.html">CovariancePlaneFitImpl</a>&lt; DataPoint, _NFilter, T &gt;<a class="el" href="classPonca_1_1CovariancePlaneFitImpl.html#ae611838d927d83a648a7fb23154bb427">::VectorType</a> CovariancePlaneFitImpl::worldToTangentPlane </td>
           <td>(</td>
-          <td class="paramtype">const <a class="el" href="classPonca_1_1CovariancePlaneFitImpl.html#af50cd1635f70143fa770e2921a247f93">VectorType</a> &amp;&#160;</td>
+          <td class="paramtype">const <a class="el" href="classPonca_1_1CovariancePlaneFitImpl.html#ae611838d927d83a648a7fb23154bb427">VectorType</a> &amp;&#160;</td>
           <td class="paramname"><em>_q</em></td><td>)</td>
           <td> const</td>
         </tr>
@@ -574,13 +534,7 @@ template&lt;bool ignoreTranslation = false&gt; </div>
 </div><div class="memdoc">
 
 <p>Express a point in ambient space relatively to the tangent plane. </p>
-<p>Output vector is: [h, u, v]^T, where u, v are 2d coordinates on the plane, and h the height of the sample. </p><dl class="tparams"><dt>Template Parameters</dt><dd>
-  <table class="tparams">
-    <tr><td class="paramname">ignoreTranslation</td><td>must be set to true when passing vectors instead of points </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="params"><dt>Parameters</dt><dd>
+<p>Output vector is: [h, u, v]^T, where u, v are 2d coordinates on the plane, and h the height of the sample. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">_q</td><td>Point coordinates expressed in ambient space </td></tr>
   </table>
@@ -588,29 +542,7 @@ template&lt;bool ignoreTranslation = false&gt; </div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Point coordinates expressed in local tangent frame </dd></dl>
 
-</div>
-</div>
-<a id="ac4399605eaa0d387b25cb936ac7b1b03" name="ac4399605eaa0d387b25cb936ac7b1b03"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac4399605eaa0d387b25cb936ac7b1b03">&#9670;&#160;</a></span>worldToTangentPlane() <span class="overload">[2/2]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
-<div class="memtemplate">
-template&lt;bool ignoreTranslation&gt; </div>
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="classPonca_1_1CovariancePlaneFitImpl.html">CovariancePlaneFitImpl</a>&lt; DataPoint, _WFunctor, T &gt;<a class="el" href="classPonca_1_1CovariancePlaneFitImpl.html#af50cd1635f70143fa770e2921a247f93">::VectorType</a> <a class="el" href="classPonca_1_1CovariancePlaneFitImpl.html">Ponca::CovariancePlaneFitImpl</a>&lt; DataPoint, _WFunctor, T &gt;::worldToTangentPlane </td>
-          <td>(</td>
-          <td class="paramtype">const <a class="el" href="classPonca_1_1CovariancePlaneFitImpl.html#af50cd1635f70143fa770e2921a247f93">VectorType</a> &amp;&#160;</td>
-          <td class="paramname"><em>_q</em></td><td>)</td>
-          <td> const</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p class="definition">Definition at line <a class="el" href="covariancePlaneFit_8hpp_source.html#l00028">28</a> of file <a class="el" href="covariancePlaneFit_8hpp_source.html">covariancePlaneFit.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="covariancePlaneFit_8hpp_source.html#l00027">27</a> of file <a class="el" href="covariancePlaneFit_8hpp_source.html">covariancePlaneFit.hpp</a>.</p>
 
 </div>
 </div>
@@ -620,7 +552,7 @@ template&lt;bool ignoreTranslation&gt; </div>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="namespacePonca.html">Ponca</a></li><li class="navelem"><a class="el" href="classPonca_1_1CovariancePlaneFitImpl.html">CovariancePlaneFitImpl</a></li>
-    <li class="footer">Generated on Thu Oct 9 2025 22:33:52 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
+    <li class="footer">Generated on Thu Oct 30 2025 19:03:05 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
   </ul>
 </div>
 </body>

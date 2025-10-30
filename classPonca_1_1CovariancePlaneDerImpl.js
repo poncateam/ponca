@@ -1,15 +1,15 @@
 var classPonca_1_1CovariancePlaneDerImpl =
 [
-    [ "Base", "classPonca_1_1CovariancePlaneDerImpl.html#a76679674ae7aeed133bfa2e5850b35d1", null ],
-    [ "MatrixType", "classPonca_1_1CovariancePlaneDerImpl.html#aefa4783faec464de63d2a2fb8021db95", null ],
-    [ "Scalar", "classPonca_1_1CovariancePlaneDerImpl.html#aa6ad3df0b4c704fc507add8bf249d777", null ],
-    [ "ScalarArray", "classPonca_1_1CovariancePlaneDerImpl.html#a34c1bd04080647e8086738682434ae97", null ],
-    [ "VectorArray", "classPonca_1_1CovariancePlaneDerImpl.html#abd2479f5f151d3155ea8b8640ab66843", null ],
-    [ "VectorType", "classPonca_1_1CovariancePlaneDerImpl.html#ab20cd5c198ec858dbe2de91db8342fe6", null ],
-    [ "WFunctor", "classPonca_1_1CovariancePlaneDerImpl.html#a9a23e3faf43f1aafa9a3795a5ec10f65", null ],
-    [ "covariancePlaneDer", "classPonca_1_1CovariancePlaneDerImpl.html#ad3945ac3e6cf36a72117a69adef774c6", null ],
-    [ "covariancePlaneDer", "classPonca_1_1CovariancePlaneDerImpl.html#a4f867366646eba525fcf8f95aced029c", null ],
-    [ "dNormal", "classPonca_1_1CovariancePlaneDerImpl.html#a7a3335f4f617154569cc0557254c7de7", null ],
-    [ "dPotential", "classPonca_1_1CovariancePlaneDerImpl.html#af7bfa8ef344c71340bef5356522d4675", null ],
+    [ "Base", "classPonca_1_1CovariancePlaneDerImpl.html#a2ba138ab9d64930889b65d844d58556f", null ],
+    [ "MatrixType", "classPonca_1_1CovariancePlaneDerImpl.html#aa9d39208e75252209571292ea1609b6a", null ],
+    [ "NeighborFilter", "classPonca_1_1CovariancePlaneDerImpl.html#ad54c0b9712e0e02270b503eae53db28a", null ],
+    [ "Scalar", "classPonca_1_1CovariancePlaneDerImpl.html#afce98013f3c594c36277d0e4ee5426a3", null ],
+    [ "ScalarArray", "classPonca_1_1CovariancePlaneDerImpl.html#a5df12ff32f62391125d415e946cbc352", null ],
+    [ "VectorArray", "classPonca_1_1CovariancePlaneDerImpl.html#a8268113c4cc92e7ad77103a57cdcf628", null ],
+    [ "VectorType", "classPonca_1_1CovariancePlaneDerImpl.html#ad8ba3aa6cb0eceecd5224ace67d4849f", null ],
+    [ "covariancePlaneDer", "classPonca_1_1CovariancePlaneDerImpl.html#a1fdde7a4305d51bf03eb2411cfc8aa59", null ],
+    [ "covariancePlaneDer", "classPonca_1_1CovariancePlaneDerImpl.html#a3c88c535318a240700d7366a2195b9c8", null ],
+    [ "dNormal", "classPonca_1_1CovariancePlaneDerImpl.html#acc4d4a5c3a647a3e4bdb3374b2bd078b", null ],
+    [ "dPotential", "classPonca_1_1CovariancePlaneDerImpl.html#a766169def99d3378bed13abc4e4d4060", null ],
     [ "finalize", "classPonca_1_1CovariancePlaneDerImpl.html#a1e38de1b017aa2834a6ffab388d27b5d", null ]
 ];

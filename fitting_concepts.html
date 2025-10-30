@@ -51,7 +51,7 @@ MathJax.Hub.Config({
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Ponca
-   &#160;<span id="projectnumber">40f245e28b920cbb763a1c6282156c87c626f24c</span>
+   &#160;<span id="projectnumber">9e7681effe2c12b0af1c85fdb62680f52d835a30</span>
    </div>
    <div id="projectbrief">Point Cloud Analysis library</div>
   </td>
@@ -130,14 +130,14 @@ API of Computational Objects</h1>
 <div class="line"><span class="keyword">typedef</span> Basket&lt;MyPointStructure,MyWeightingFunction,MyFittingProcedure...&gt; Fit;</div>
 <div class="line"> </div>
 <div class="line"><span class="comment">// Initialization</span></div>
-<div class="line">MyWeightingFunction w ( some_parameters );  <span class="comment">//&lt; Init weight function</span></div>
+<div class="line">MyWeightingFunction w ( referencePosition, some_other_parameters... );  <span class="comment">//&lt; Init weight function with the reference position</span></div>
 <div class="line">Fit fit;                                    <span class="comment">//&lt; Create a fit object</span></div>
-<div class="line">fit.init(  );                               <span class="comment">//&lt; Initialize the internal state</span></div>
-<div class="line">fit.setWeightFunc( {referencePosition, w} );  <span class="comment">//&lt; Set the weighting function (reference position and w can be shared accross multiple fits)</span></div>
+<div class="line">fit.init( );                                <span class="comment">//&lt; Initialize the internal state</span></div>
+<div class="line">fit.setNeighborFilter( w );                 <span class="comment">//&lt; Set the weighting function (w can be shared across multiple fits)</span></div>
 <div class="line"> </div>
 <div class="line"><span class="comment">// Computations</span></div>
 <div class="line"><span class="keywordflow">foreach</span> neighbors of referencePosition      <span class="comment">//&lt; Traverse neighborhood</span></div>
-<div class="line">  fit.addNeighbor(neighbor);                <span class="comment">//&lt; Intermediate computation for each neighbor</span></div>
+<div class="line">    fit.addNeighbor(neighbor);                <span class="comment">//&lt; Intermediate computation for each neighbor</span></div>
 <div class="line">fit.finalize();                             <span class="comment">//&lt; Final computations</span></div>
 <div class="line"> </div>
 <div class="line"><span class="comment">// Usage</span></div>
@@ -148,7 +148,7 @@ API of Computational Objects</h1>
 </div><!-- fragment --><p>Note that in the above example, the type <code>Fit</code> can be either a <a class="el" href="classPonca_1_1Basket.html" title="Aggregator class used to declare specialized structures using CRTP.">Basket</a> or a <a class="el" href="classPonca_1_1BasketDiff.html" title="Aggregator class used to declare specialized structures with derivatives computations,...">BasketDiff</a>, without affecting the rest of the code.</p>
 <h2><a class="anchor" id="concepts_computeObjectBasket"></a>
 Objects used in Basket</h2>
-<p>Objects used in <a class="el" href="classPonca_1_1Basket.html" title="Aggregator class used to declare specialized structures using CRTP.">Basket</a> should respect the following API: </p><div class="fragment"><div class="line">        <span class="keyword">template</span> &lt; <span class="keyword">class</span> DataPo<span class="keywordtype">int</span>, <span class="keyword">class</span> _WFunctor, <span class="keyword">typename</span> T = <span class="keywordtype">void</span>  &gt;</div>
+<p>Objects used in <a class="el" href="classPonca_1_1Basket.html" title="Aggregator class used to declare specialized structures using CRTP.">Basket</a> should respect the following API: </p><div class="fragment"><div class="line">        <span class="keyword">template</span> &lt; <span class="keyword">class</span> DataPo<span class="keywordtype">int</span>, <span class="keyword">class</span> _NFilter, <span class="keyword">typename</span> T = <span class="keywordtype">void</span>  &gt;</div>
 <div class="line">        <span class="keyword">class </span>ComputationalObjectConcept</div>
 <div class="line">        {</div>
 <div class="line">        <span class="keyword">protected</span>:</div>
@@ -158,9 +158,9 @@ Objects used in Basket</h2>
 <div class="line">            };</div>
 <div class="line"> </div>
 <div class="line">        <span class="keyword">public</span>:</div>
-<div class="line">            <span class="keyword">using </span>Scalar     = <span class="keyword">typename</span> DataPoint::Scalar;     <span class="comment">//&lt; Inherited scalar type</span></div>
-<div class="line">            <span class="keyword">using </span>VectorType = <span class="keyword">typename</span> DataPoint::VectorType; <span class="comment">//&lt; Inherited vector type</span></div>
-<div class="line">            <span class="keyword">using </span>WFunctor   = _WFunctor;                      <span class="comment">//&lt; Weight Function</span></div>
+<div class="line">            <span class="keyword">using </span>Scalar         = <span class="keyword">typename</span> DataPoint::Scalar;     <span class="comment">//&lt; Inherited scalar type</span></div>
+<div class="line">            <span class="keyword">using </span>VectorType     = <span class="keyword">typename</span> DataPoint::VectorType; <span class="comment">//&lt; Inherited vector type</span></div>
+<div class="line">            <span class="keyword">using </span>NeighborFilter = _NFilter;                      <span class="comment">//&lt; Filter applied on the neighbors</span></div>
 <div class="line"> </div>
 <div class="line">        <span class="keyword">public</span>:</div>
 <div class="line"><span class="comment">            /**************************************************************************/</span></div>
@@ -168,7 +168,7 @@ Objects used in Basket</h2>
 <div class="line"><span class="comment">            /**************************************************************************/</span></div>
 <div class="line">            <span class="comment">// Init the WeightFunc, without changing the other internal states.</span></div>
 <div class="line">            <span class="comment">// \warning Must be called be for any computation</span></div>
-<div class="line">            PONCA_MULTIARCH <span class="keyword">inline</span> <span class="keywordtype">void</span> setWeightFunc (<span class="keyword">const</span> WFunctor&amp; _w);</div>
+<div class="line">            PONCA_MULTIARCH <span class="keyword">inline</span> <span class="keywordtype">void</span> setNeighborFilter (<span class="keyword">const</span> NeighborFilter&amp; _w);</div>
 <div class="line"> </div>
 <div class="line">            <span class="comment">// Reset the internal states.</span></div>
 <div class="line">            <span class="comment">// \warning Must be called be for any computation</span></div>
@@ -187,7 +187,7 @@ Objects used in Basket</h2>
 <div class="line">        }; <span class="comment">//class ComputationalObjectConcept</span></div>
 </div><!-- fragment --><h2><a class="anchor" id="concepts_computeObjectBasketDiff"></a>
 Objects used in BasketDiff</h2>
-<p>Objects used in <a class="el" href="classPonca_1_1BasketDiff.html" title="Aggregator class used to declare specialized structures with derivatives computations,...">BasketDiff</a> should respect the following API: </p><div class="fragment"><div class="line">        <span class="keyword">template</span> &lt; <span class="keyword">class</span> DataPo<span class="keywordtype">int</span>, <span class="keyword">class</span> _WFunctor, <span class="keywordtype">int</span> Type, <span class="keyword">typename</span> T&gt;</div>
+<p>Objects used in <a class="el" href="classPonca_1_1BasketDiff.html" title="Aggregator class used to declare specialized structures with derivatives computations,...">BasketDiff</a> should respect the following API: </p><div class="fragment"><div class="line">        <span class="keyword">template</span> &lt; <span class="keyword">class</span> DataPo<span class="keywordtype">int</span>, <span class="keyword">class</span> _NFilter, <span class="keywordtype">int</span> Type, <span class="keyword">typename</span> T&gt;</div>
 <div class="line">        <span class="keyword">class </span>ComputationalDerivativesConcept</div>
 <div class="line">        {</div>
 <div class="line">        <span class="keyword">protected</span>:</div>
@@ -199,7 +199,7 @@ Objects used in BasketDiff</h2>
 <div class="line">        <span class="keyword">public</span>:</div>
 <div class="line">            <span class="keyword">using </span>Scalar     = <span class="keyword">typename</span> DataPoint::Scalar;     <span class="comment">//&lt; Inherited scalar type</span></div>
 <div class="line">            <span class="keyword">using </span>VectorType = <span class="keyword">typename</span> DataPoint::VectorType; <span class="comment">//&lt; Inherited vector type</span></div>
-<div class="line">            <span class="keyword">using </span>WFunctor   = _WFunctor;                      <span class="comment">//&lt; Weight Function</span></div>
+<div class="line">            <span class="keyword">using </span>NeighborFilter = _NFilter;                  <span class="comment">//&lt; Filter applied on the neighbors</span></div>
 <div class="line">            <span class="comment">// Static array of scalars with a size adapted to the differentiation type</span></div>
 <div class="line">            <span class="keyword">using </span>VectorArray = <span class="keyword">typename</span> Base::VectorArray;</div>
 <div class="line">            <span class="comment">// Static array of scalars with a size adapted to the differentiation type</span></div>
@@ -211,7 +211,7 @@ Objects used in BasketDiff</h2>
 <div class="line"><span class="comment">            /**************************************************************************/</span></div>
 <div class="line">            <span class="comment">// Init the WeightFunc, without changing the other internal states.</span></div>
 <div class="line">            <span class="comment">// \warning Must be called be for any computation</span></div>
-<div class="line">            PONCA_MULTIARCH <span class="keyword">inline</span> <span class="keywordtype">void</span> setWeightFunc (<span class="keyword">const</span> WFunctor&amp; _w);</div>
+<div class="line">            PONCA_MULTIARCH <span class="keyword">inline</span> <span class="keywordtype">void</span> setNeighborFilter (<span class="keyword">const</span> NeighborFilter&amp; _w);</div>
 <div class="line"> </div>
 <div class="line">            <span class="comment">// Set the evaluation position and reset the internal states.</span></div>
 <div class="line">            <span class="comment">// \warning Must be called be for any computation</span></div>
@@ -399,7 +399,7 @@ tangentPlaneToWorld()  </td></tr>
 </table>
 <h1><a class="anchor" id="concepts_weighting"></a>
 Concepts related to weighting functions</h1>
-<p>Weighting functions are critical components of the library. They are represented by <a class="el" href="classPonca_1_1DistWeightFunc.html" title="Weighting function based on the euclidean distance between a query and a reference position.">DistWeightFunc</a>, which is defined from the euclidean distance field centered at the evaluation position (see DistWeightFunc::init()). Given a distance to this evaluation position, the weight is computed (see <a class="el" href="classPonca_1_1DistWeightFunc.html#a470646999a2bcc787ed211de36d43e4e">DistWeightFunc::w()</a>) by applying a 1d weighting function defined as follows:</p>
+<p>Weighting functions are critical components of the library. They are represented by <a class="el" href="classPonca_1_1DistWeightFunc.html" title="Weight neighbors according to the euclidean distance between a query and a reference position.">DistWeightFunc</a>, which is defined from the euclidean distance field centered at the evaluation position (see DistWeightFunc::init()). Given a distance to this evaluation position, the weight is computed (see DistWeightFunc::w()) by applying a 1d weighting function defined as follows:</p>
 <div class="fragment"><div class="line">        <span class="comment">// \brief Concept of a 1D weighting function and its derivatives.</span></div>
 <div class="line">        <span class="keyword">template</span> &lt;<span class="keyword">typename</span> _Scalar&gt;</div>
 <div class="line">        <span class="keyword">class </span>WeightKernelConcept{</div>
@@ -413,7 +413,7 @@ Concepts related to weighting functions</h1>
 <div class="line">            <span class="comment">// \brief Apply the second derivative of the weighting kernel to the scalar value f&#39;&#39;(x)</span></div>
 <div class="line">            PONCA_MULTIARCH <span class="keyword">inline</span> Scalar ddf(<span class="keyword">const</span> Scalar&amp; x)<span class="keyword"> const </span>{}</div>
 <div class="line">        };<span class="comment">// class WeightKernelConcept</span></div>
-</div><!-- fragment --><p><a class="el" href="classPonca_1_1DistWeightFunc.html" title="Weighting function based on the euclidean distance between a query and a reference position.">DistWeightFunc</a> also provides computation of the first and second order derivatives of the weight, both in scale (<a class="el" href="classPonca_1_1DistWeightFunc.html#a182289b2f19a436381af1c94a7bfb0f5">DistWeightFunc::scaledw()</a>, <a class="el" href="classPonca_1_1DistWeightFunc.html#a1ccbacac342ed1e66ef0423fdaf9c00d">DistWeightFunc::scaled2w()</a>) and space (<a class="el" href="classPonca_1_1DistWeightFunc.html#a679c75736d7715aada70bbf2e221fb02">DistWeightFunc::spacedw()</a>, <a class="el" href="classPonca_1_1DistWeightFunc.html#a303ff5053abe6961771053c9647688c4">DistWeightFunc::spaced2w()</a>), and their cross derivatives (<a class="el" href="classPonca_1_1DistWeightFunc.html#a26332be7b205ec289253c4b366c46110">DistWeightFunc::scaleSpaced2w()</a>). Theses methods check if the weight kernels provides the appropriate derivatives</p>
+</div><!-- fragment --><p><a class="el" href="classPonca_1_1DistWeightFunc.html" title="Weight neighbors according to the euclidean distance between a query and a reference position.">DistWeightFunc</a> also provides computation of the first and second order derivatives of the weight, both in scale (<a class="el" href="classPonca_1_1DistWeightFunc.html#a182289b2f19a436381af1c94a7bfb0f5">DistWeightFunc::scaledw()</a>, <a class="el" href="classPonca_1_1DistWeightFunc.html#a1ccbacac342ed1e66ef0423fdaf9c00d">DistWeightFunc::scaled2w()</a>) and space (<a class="el" href="classPonca_1_1DistWeightFunc.html#a679c75736d7715aada70bbf2e221fb02">DistWeightFunc::spacedw()</a>, <a class="el" href="classPonca_1_1DistWeightFunc.html#a303ff5053abe6961771053c9647688c4">DistWeightFunc::spaced2w()</a>), and their cross derivatives (<a class="el" href="classPonca_1_1DistWeightFunc.html#a26332be7b205ec289253c4b366c46110">DistWeightFunc::scaleSpaced2w()</a>). Theses methods check if the weight kernels provides the appropriate derivatives</p>
 <hr  />
  <center>[<a class="el" href="fitting.html">Go back to Fitting user manual</a>]</center> <center>[<a class="el" href="ponca_concepts.html">Go back to concept manual</a>]</center> <center>[<a class="el" href="user_manual_page.html">Go back to user manual</a>]</center> </div></div><!-- contents -->
 </div><!-- PageDoc -->
@@ -422,7 +422,7 @@ Concepts related to weighting functions</h1>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="user_manual_page.html">User Manual</a></li>
-    <li class="footer">Generated on Thu Oct 9 2025 22:33:52 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
+    <li class="footer">Generated on Thu Oct 30 2025 19:03:05 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
   </ul>
 </div>
 </body>

@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.9.8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Ponca: Ponca::OrientedSphereDerImpl&lt; DataPoint, _WFunctor, DiffType, T &gt; Class Template Reference</title>
+<title>Ponca: Ponca::OrientedSphereDerImpl&lt; DataPoint, _NFilter, DiffType, T &gt; Class Template Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -51,7 +51,7 @@ MathJax.Hub.Config({
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Ponca
-   &#160;<span id="projectnumber">40f245e28b920cbb763a1c6282156c87c626f24c</span>
+   &#160;<span id="projectnumber">9e7681effe2c12b0af1c85fdb62680f52d835a30</span>
    </div>
    <div id="projectbrief">Point Cloud Analysis library</div>
   </td>
@@ -123,7 +123,7 @@ $(document).ready(function(){initNavTree('classPonca_1_1OrientedSphereDerImpl.ht
 <a href="#pro-types">Protected Types</a> &#124;
 <a href="#pro-attribs">Protected Attributes</a> &#124;
 <a href="classPonca_1_1OrientedSphereDerImpl-members.html">List of all members</a>  </div>
-  <div class="headertitle"><div class="title">Ponca::OrientedSphereDerImpl&lt; DataPoint, _WFunctor, DiffType, T &gt; Class Template Reference</div></div>
+  <div class="headertitle"><div class="title">Ponca::OrientedSphereDerImpl&lt; DataPoint, _NFilter, DiffType, T &gt; Class Template Reference</div></div>
 </div><!--header-->
 <div class="contents">
 
@@ -132,90 +132,90 @@ $(document).ready(function(){initNavTree('classPonca_1_1OrientedSphereDerImpl.ht
 
 <p><code>#include &lt;<a class="el" href="orientedSphereFit_8h_source.html">orientedSphereFit.h</a>&gt;</code></p>
 <div id="dynsection-0" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
-  <img id="dynsection-0-trigger" src="closed.png" alt="+"/> Inheritance diagram for Ponca::OrientedSphereDerImpl&lt; DataPoint, _WFunctor, DiffType, T &gt;:</div>
+  <img id="dynsection-0-trigger" src="closed.png" alt="+"/> Inheritance diagram for Ponca::OrientedSphereDerImpl&lt; DataPoint, _NFilter, DiffType, T &gt;:</div>
 <div id="dynsection-0-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-0-content" class="dyncontent" style="display:none;">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classPonca_1_1OrientedSphereDerImpl__inherit__graph.svg" width="214" height="579"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classPonca_1_1OrientedSphereDerImpl__inherit__graph.svg" width="196" height="579"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 <div id="dynsection-1" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
-  <img id="dynsection-1-trigger" src="closed.png" alt="+"/> Collaboration diagram for Ponca::OrientedSphereDerImpl&lt; DataPoint, _WFunctor, DiffType, T &gt;:</div>
+  <img id="dynsection-1-trigger" src="closed.png" alt="+"/> Collaboration diagram for Ponca::OrientedSphereDerImpl&lt; DataPoint, _NFilter, DiffType, T &gt;:</div>
 <div id="dynsection-1-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-1-content" class="dyncontent" style="display:none;">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classPonca_1_1OrientedSphereDerImpl__coll__graph.svg" width="214" height="579"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classPonca_1_1OrientedSphereDerImpl__coll__graph.svg" width="196" height="579"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-types" name="pub-types"></a>
 Public Types</h2></td></tr>
-<tr class="memitem:a6418adff6cd9ef6d92b2222bc6d61a6c" id="r_a6418adff6cd9ef6d92b2222bc6d61a6c"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1OrientedSphereDerImpl.html#a6418adff6cd9ef6d92b2222bc6d61a6c">Scalar</a> = typename DataPoint::Scalar</td></tr>
-<tr class="memdesc:a6418adff6cd9ef6d92b2222bc6d61a6c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Alias to scalar type.  <br /></td></tr>
-<tr class="separator:a6418adff6cd9ef6d92b2222bc6d61a6c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac37600997dc74bd474ef7848e7c81e5d" id="r_ac37600997dc74bd474ef7848e7c81e5d"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1OrientedSphereDerImpl.html#ac37600997dc74bd474ef7848e7c81e5d">VectorType</a> = typename Base::VectorType</td></tr>
-<tr class="memdesc:ac37600997dc74bd474ef7848e7c81e5d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Alias to vector type.  <br /></td></tr>
-<tr class="separator:ac37600997dc74bd474ef7848e7c81e5d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa24ded9868bdb7debbe28126eb899a6e" id="r_aa24ded9868bdb7debbe28126eb899a6e"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1OrientedSphereDerImpl.html#aa24ded9868bdb7debbe28126eb899a6e">WFunctor</a> = typename Base::WFunctor</td></tr>
-<tr class="memdesc:aa24ded9868bdb7debbe28126eb899a6e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Alias to weight function.  <br /></td></tr>
-<tr class="separator:aa24ded9868bdb7debbe28126eb899a6e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6b0bc5a2bff7bc3d3d2d7726aa9f9ce7" id="r_a6b0bc5a2bff7bc3d3d2d7726aa9f9ce7"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1OrientedSphereDerImpl.html#a6b0bc5a2bff7bc3d3d2d7726aa9f9ce7">ScalarArray</a> = typename Base::ScalarArray</td></tr>
-<tr class="memdesc:a6b0bc5a2bff7bc3d3d2d7726aa9f9ce7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Alias to scalar derivatives array.  <br /></td></tr>
-<tr class="separator:a6b0bc5a2bff7bc3d3d2d7726aa9f9ce7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad04ac0a9999d5a0e54527cd0a7e455d1" id="r_ad04ac0a9999d5a0e54527cd0a7e455d1"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1OrientedSphereDerImpl.html#ad04ac0a9999d5a0e54527cd0a7e455d1">VectorArray</a> = typename Base::VectorArray</td></tr>
-<tr class="memdesc:ad04ac0a9999d5a0e54527cd0a7e455d1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Alias to vector derivatives array.  <br /></td></tr>
-<tr class="separator:ad04ac0a9999d5a0e54527cd0a7e455d1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab2593a351cbbf029c5d7314bb08eb023" id="r_ab2593a351cbbf029c5d7314bb08eb023"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1OrientedSphereDerImpl.html#ab2593a351cbbf029c5d7314bb08eb023">Scalar</a> = typename DataPoint::Scalar</td></tr>
+<tr class="memdesc:ab2593a351cbbf029c5d7314bb08eb023"><td class="mdescLeft">&#160;</td><td class="mdescRight">Alias to scalar type.  <br /></td></tr>
+<tr class="separator:ab2593a351cbbf029c5d7314bb08eb023"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4c45061508946793533d8c891f6ad93a" id="r_a4c45061508946793533d8c891f6ad93a"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1OrientedSphereDerImpl.html#a4c45061508946793533d8c891f6ad93a">VectorType</a> = typename Base::VectorType</td></tr>
+<tr class="memdesc:a4c45061508946793533d8c891f6ad93a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Alias to vector type.  <br /></td></tr>
+<tr class="separator:a4c45061508946793533d8c891f6ad93a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8b749f656a053271a89315b5140864b9" id="r_a8b749f656a053271a89315b5140864b9"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1OrientedSphereDerImpl.html#a8b749f656a053271a89315b5140864b9">NeighborFilter</a> = typename Base::NeighborFilter</td></tr>
+<tr class="memdesc:a8b749f656a053271a89315b5140864b9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Alias to the filter applied on the neighbors.  <br /></td></tr>
+<tr class="separator:a8b749f656a053271a89315b5140864b9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7f0d8bafa2f2c48449808e6b7a335b04" id="r_a7f0d8bafa2f2c48449808e6b7a335b04"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1OrientedSphereDerImpl.html#a7f0d8bafa2f2c48449808e6b7a335b04">ScalarArray</a> = typename Base::ScalarArray</td></tr>
+<tr class="memdesc:a7f0d8bafa2f2c48449808e6b7a335b04"><td class="mdescLeft">&#160;</td><td class="mdescRight">Alias to scalar derivatives array.  <br /></td></tr>
+<tr class="separator:a7f0d8bafa2f2c48449808e6b7a335b04"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afe2abea27223b7b4ee9472980ab79d02" id="r_afe2abea27223b7b4ee9472980ab79d02"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1OrientedSphereDerImpl.html#afe2abea27223b7b4ee9472980ab79d02">VectorArray</a> = typename Base::VectorArray</td></tr>
+<tr class="memdesc:afe2abea27223b7b4ee9472980ab79d02"><td class="mdescLeft">&#160;</td><td class="mdescRight">Alias to vector derivatives array.  <br /></td></tr>
+<tr class="separator:afe2abea27223b7b4ee9472980ab79d02"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a0b161bb8ccb6d23a3cfefe2faecc15f1" id="r_a0b161bb8ccb6d23a3cfefe2faecc15f1"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classPonca_1_1OrientedSphereDerImpl.html">OrientedSphereDerImpl</a>&lt; DataPoint, _WFunctor, <a class="el" href="namespacePonca.html#a7beaddc698523e7f9c041ea8bc4c535a">DiffType</a>, T &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1OrientedSphereDerImpl.html#a0b161bb8ccb6d23a3cfefe2faecc15f1">orientedSphereDer</a> ()</td></tr>
-<tr class="memdesc:a0b161bb8ccb6d23a3cfefe2faecc15f1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Explicit conversion to <a class="el" href="classPonca_1_1OrientedSphereDerImpl.html" title="[OrientedSphereFit Definition]">OrientedSphereDerImpl</a> , to access methods potentially hidden by heritage.  <br /></td></tr>
-<tr class="separator:a0b161bb8ccb6d23a3cfefe2faecc15f1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1cd513c6b40bcd4bbdbdace798a92b1d" id="r_a1cd513c6b40bcd4bbdbdace798a92b1d"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="classPonca_1_1OrientedSphereDerImpl.html">OrientedSphereDerImpl</a>&lt; DataPoint, _WFunctor, <a class="el" href="namespacePonca.html#a7beaddc698523e7f9c041ea8bc4c535a">DiffType</a>, T &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1OrientedSphereDerImpl.html#a1cd513c6b40bcd4bbdbdace798a92b1d">orientedSphereDer</a> () const</td></tr>
-<tr class="memdesc:a1cd513c6b40bcd4bbdbdace798a92b1d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Explicit conversion to <a class="el" href="classPonca_1_1OrientedSphereDerImpl.html" title="[OrientedSphereFit Definition]">OrientedSphereDerImpl</a> , to access methods potentially hidden by heritage.  <br /></td></tr>
-<tr class="separator:a1cd513c6b40bcd4bbdbdace798a92b1d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aed039dff47a64bbd724bc034e67b5fdb" id="r_aed039dff47a64bbd724bc034e67b5fdb"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classPonca_1_1OrientedSphereDerImpl.html">OrientedSphereDerImpl</a>&lt; DataPoint, _NFilter, <a class="el" href="namespacePonca.html#a7beaddc698523e7f9c041ea8bc4c535a">DiffType</a>, T &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1OrientedSphereDerImpl.html#aed039dff47a64bbd724bc034e67b5fdb">orientedSphereDer</a> ()</td></tr>
+<tr class="memdesc:aed039dff47a64bbd724bc034e67b5fdb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Explicit conversion to <a class="el" href="classPonca_1_1OrientedSphereDerImpl.html" title="[OrientedSphereFit Definition]">OrientedSphereDerImpl</a> , to access methods potentially hidden by heritage.  <br /></td></tr>
+<tr class="separator:aed039dff47a64bbd724bc034e67b5fdb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6ab3cde82cf153db3ff70b97d5a39e97" id="r_a6ab3cde82cf153db3ff70b97d5a39e97"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="classPonca_1_1OrientedSphereDerImpl.html">OrientedSphereDerImpl</a>&lt; DataPoint, _NFilter, <a class="el" href="namespacePonca.html#a7beaddc698523e7f9c041ea8bc4c535a">DiffType</a>, T &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1OrientedSphereDerImpl.html#a6ab3cde82cf153db3ff70b97d5a39e97">orientedSphereDer</a> () const</td></tr>
+<tr class="memdesc:a6ab3cde82cf153db3ff70b97d5a39e97"><td class="mdescLeft">&#160;</td><td class="mdescRight">Explicit conversion to <a class="el" href="classPonca_1_1OrientedSphereDerImpl.html" title="[OrientedSphereFit Definition]">OrientedSphereDerImpl</a> , to access methods potentially hidden by heritage.  <br /></td></tr>
+<tr class="separator:a6ab3cde82cf153db3ff70b97d5a39e97"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a038b6dfba8bef934be31928fe1e68ff8" id="r_a038b6dfba8bef934be31928fe1e68ff8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1OrientedSphereDerImpl.html#a038b6dfba8bef934be31928fe1e68ff8">init</a> ()</td></tr>
 <tr class="memdesc:a038b6dfba8bef934be31928fe1e68ff8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the evaluation position and reset the internal states.  <br /></td></tr>
 <tr class="separator:a038b6dfba8bef934be31928fe1e68ff8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a125c24f93eaa6d1caa5d37db66b6bb87" id="r_a125c24f93eaa6d1caa5d37db66b6bb87"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1OrientedSphereDerImpl.html#a125c24f93eaa6d1caa5d37db66b6bb87">addLocalNeighbor</a> (<a class="el" href="classPonca_1_1OrientedSphereDerImpl.html#a6418adff6cd9ef6d92b2222bc6d61a6c">Scalar</a> w, const <a class="el" href="classPonca_1_1OrientedSphereDerImpl.html#ac37600997dc74bd474ef7848e7c81e5d">VectorType</a> &amp;localQ, const DataPoint &amp;attributes, <a class="el" href="classPonca_1_1OrientedSphereDerImpl.html#a6b0bc5a2bff7bc3d3d2d7726aa9f9ce7">ScalarArray</a> &amp;dw)</td></tr>
+<tr class="memitem:a125c24f93eaa6d1caa5d37db66b6bb87" id="r_a125c24f93eaa6d1caa5d37db66b6bb87"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1OrientedSphereDerImpl.html#a125c24f93eaa6d1caa5d37db66b6bb87">addLocalNeighbor</a> (<a class="el" href="classPonca_1_1OrientedSphereDerImpl.html#ab2593a351cbbf029c5d7314bb08eb023">Scalar</a> w, const <a class="el" href="classPonca_1_1OrientedSphereDerImpl.html#a4c45061508946793533d8c891f6ad93a">VectorType</a> &amp;localQ, const DataPoint &amp;attributes, <a class="el" href="classPonca_1_1OrientedSphereDerImpl.html#a7f0d8bafa2f2c48449808e6b7a335b04">ScalarArray</a> &amp;dw)</td></tr>
 <tr class="memdesc:a125c24f93eaa6d1caa5d37db66b6bb87"><td class="mdescLeft">&#160;</td><td class="mdescRight">Add a neighbor to perform the fit.  <br /></td></tr>
 <tr class="separator:a125c24f93eaa6d1caa5d37db66b6bb87"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aad6f3ed1b76c5e114198c552425b7ff2" id="r_aad6f3ed1b76c5e114198c552425b7ff2"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespacePonca.html#abfd697aebf07c1b5c8be5ee401e2dc84">FIT_RESULT</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1OrientedSphereDerImpl.html#aad6f3ed1b76c5e114198c552425b7ff2">finalize</a> ()</td></tr>
 <tr class="memdesc:aad6f3ed1b76c5e114198c552425b7ff2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Finalize the procedure.  <br /></td></tr>
 <tr class="separator:aad6f3ed1b76c5e114198c552425b7ff2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac5ea10d6cf2bb4bb6dc1977e92b051e4" id="r_ac5ea10d6cf2bb4bb6dc1977e92b051e4"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classPonca_1_1OrientedSphereDerImpl.html#a6b0bc5a2bff7bc3d3d2d7726aa9f9ce7">ScalarArray</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1OrientedSphereDerImpl.html#ac5ea10d6cf2bb4bb6dc1977e92b051e4">dPotential</a> () const</td></tr>
-<tr class="memdesc:ac5ea10d6cf2bb4bb6dc1977e92b051e4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the derivatives of the scalar field at the evaluation point.  <br /></td></tr>
-<tr class="separator:ac5ea10d6cf2bb4bb6dc1977e92b051e4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9a502be4a4cf023c512bf716a4174bfa" id="r_a9a502be4a4cf023c512bf716a4174bfa"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classPonca_1_1OrientedSphereDerImpl.html#ad04ac0a9999d5a0e54527cd0a7e455d1">VectorArray</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1OrientedSphereDerImpl.html#a9a502be4a4cf023c512bf716a4174bfa">dNormal</a> () const</td></tr>
-<tr class="memdesc:a9a502be4a4cf023c512bf716a4174bfa"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the derivatives of the primitive normal.  <br /></td></tr>
-<tr class="separator:a9a502be4a4cf023c512bf716a4174bfa"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a956872917f17a5e57998d11fd8a2d55d" id="r_a956872917f17a5e57998d11fd8a2d55d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classPonca_1_1OrientedSphereDerImpl.html#a6b0bc5a2bff7bc3d3d2d7726aa9f9ce7">ScalarArray</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1OrientedSphereDerImpl.html#a956872917f17a5e57998d11fd8a2d55d">dprattNorm2</a> () const</td></tr>
-<tr class="memdesc:a956872917f17a5e57998d11fd8a2d55d"><td class="mdescLeft">&#160;</td><td class="mdescRight">compute the square of the Pratt norm derivative  <br /></td></tr>
-<tr class="separator:a956872917f17a5e57998d11fd8a2d55d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a35fbb463e9f8bc9774efa1d6a1dd3a64" id="r_a35fbb463e9f8bc9774efa1d6a1dd3a64"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classPonca_1_1OrientedSphereDerImpl.html#a6418adff6cd9ef6d92b2222bc6d61a6c">Scalar</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1OrientedSphereDerImpl.html#a35fbb463e9f8bc9774efa1d6a1dd3a64">dprattNorm2</a> (unsigned int _d) const</td></tr>
-<tr class="memdesc:a35fbb463e9f8bc9774efa1d6a1dd3a64"><td class="mdescLeft">&#160;</td><td class="mdescRight">compute the square of the Pratt norm derivative for dimension _d  <br /></td></tr>
-<tr class="separator:a35fbb463e9f8bc9774efa1d6a1dd3a64"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a61f042d00f1bf297a595891ddd847a48" id="r_a61f042d00f1bf297a595891ddd847a48"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classPonca_1_1OrientedSphereDerImpl.html#a6418adff6cd9ef6d92b2222bc6d61a6c">Scalar</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1OrientedSphereDerImpl.html#a61f042d00f1bf297a595891ddd847a48">dprattNorm</a> (unsigned int _d) const</td></tr>
-<tr class="memdesc:a61f042d00f1bf297a595891ddd847a48"><td class="mdescLeft">&#160;</td><td class="mdescRight">compute the Pratt norm derivative for the dimension _d  <br /></td></tr>
-<tr class="separator:a61f042d00f1bf297a595891ddd847a48"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abce162a54298ae0b843e4e0185030322" id="r_abce162a54298ae0b843e4e0185030322"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classPonca_1_1OrientedSphereDerImpl.html#a6418adff6cd9ef6d92b2222bc6d61a6c">Scalar</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1OrientedSphereDerImpl.html#abce162a54298ae0b843e4e0185030322">dprattNorm</a> () const</td></tr>
-<tr class="memdesc:abce162a54298ae0b843e4e0185030322"><td class="mdescLeft">&#160;</td><td class="mdescRight">compute the Pratt norm derivative  <br /></td></tr>
-<tr class="separator:abce162a54298ae0b843e4e0185030322"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a918746aa984e03cd20aa8404352a4742" id="r_a918746aa984e03cd20aa8404352a4742"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classPonca_1_1OrientedSphereDerImpl.html#a7f0d8bafa2f2c48449808e6b7a335b04">ScalarArray</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1OrientedSphereDerImpl.html#a918746aa984e03cd20aa8404352a4742">dPotential</a> () const</td></tr>
+<tr class="memdesc:a918746aa984e03cd20aa8404352a4742"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the derivatives of the scalar field at the evaluation point.  <br /></td></tr>
+<tr class="separator:a918746aa984e03cd20aa8404352a4742"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6e0aebeb829879ccdca56a41abac8227" id="r_a6e0aebeb829879ccdca56a41abac8227"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classPonca_1_1OrientedSphereDerImpl.html#afe2abea27223b7b4ee9472980ab79d02">VectorArray</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1OrientedSphereDerImpl.html#a6e0aebeb829879ccdca56a41abac8227">dNormal</a> () const</td></tr>
+<tr class="memdesc:a6e0aebeb829879ccdca56a41abac8227"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the derivatives of the primitive normal.  <br /></td></tr>
+<tr class="separator:a6e0aebeb829879ccdca56a41abac8227"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a711c36440b601d4fbb539bcb5128727d" id="r_a711c36440b601d4fbb539bcb5128727d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classPonca_1_1OrientedSphereDerImpl.html#a7f0d8bafa2f2c48449808e6b7a335b04">ScalarArray</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1OrientedSphereDerImpl.html#a711c36440b601d4fbb539bcb5128727d">dprattNorm2</a> () const</td></tr>
+<tr class="memdesc:a711c36440b601d4fbb539bcb5128727d"><td class="mdescLeft">&#160;</td><td class="mdescRight">compute the square of the Pratt norm derivative  <br /></td></tr>
+<tr class="separator:a711c36440b601d4fbb539bcb5128727d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a46853fa6cdae56b9701dba1f60e1bc82" id="r_a46853fa6cdae56b9701dba1f60e1bc82"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classPonca_1_1OrientedSphereDerImpl.html#ab2593a351cbbf029c5d7314bb08eb023">Scalar</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1OrientedSphereDerImpl.html#a46853fa6cdae56b9701dba1f60e1bc82">dprattNorm2</a> (unsigned int _d) const</td></tr>
+<tr class="memdesc:a46853fa6cdae56b9701dba1f60e1bc82"><td class="mdescLeft">&#160;</td><td class="mdescRight">compute the square of the Pratt norm derivative for dimension _d  <br /></td></tr>
+<tr class="separator:a46853fa6cdae56b9701dba1f60e1bc82"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af5db87c9a12dd09a544e806e2d7446ab" id="r_af5db87c9a12dd09a544e806e2d7446ab"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classPonca_1_1OrientedSphereDerImpl.html#ab2593a351cbbf029c5d7314bb08eb023">Scalar</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1OrientedSphereDerImpl.html#af5db87c9a12dd09a544e806e2d7446ab">dprattNorm</a> (unsigned int _d) const</td></tr>
+<tr class="memdesc:af5db87c9a12dd09a544e806e2d7446ab"><td class="mdescLeft">&#160;</td><td class="mdescRight">compute the Pratt norm derivative for the dimension _d  <br /></td></tr>
+<tr class="separator:af5db87c9a12dd09a544e806e2d7446ab"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae85afe3a65d613dc56560ffa796284f7" id="r_ae85afe3a65d613dc56560ffa796284f7"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classPonca_1_1OrientedSphereDerImpl.html#ab2593a351cbbf029c5d7314bb08eb023">Scalar</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1OrientedSphereDerImpl.html#ae85afe3a65d613dc56560ffa796284f7">dprattNorm</a> () const</td></tr>
+<tr class="memdesc:ae85afe3a65d613dc56560ffa796284f7"><td class="mdescLeft">&#160;</td><td class="mdescRight">compute the Pratt norm derivative  <br /></td></tr>
+<tr class="separator:ae85afe3a65d613dc56560ffa796284f7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad00b0c092ddce7f2659254a2691b27ed" id="r_ad00b0c092ddce7f2659254a2691b27ed"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1OrientedSphereDerImpl.html#ad00b0c092ddce7f2659254a2691b27ed">applyPrattNorm</a> ()</td></tr>
 <tr class="memdesc:ad00b0c092ddce7f2659254a2691b27ed"><td class="mdescLeft">&#160;</td><td class="mdescRight">Normalize the scalar field by the Pratt norm.  <br /></td></tr>
 <tr class="separator:ad00b0c092ddce7f2659254a2691b27ed"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
-<tr class="memitem:a5f9d2dda2657d4827a78c368c2d3b3da" id="r_a5f9d2dda2657d4827a78c368c2d3b3da"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classPonca_1_1OrientedSphereDerImpl.html#a6b0bc5a2bff7bc3d3d2d7726aa9f9ce7">ScalarArray</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1OrientedSphereDerImpl.html#a5f9d2dda2657d4827a78c368c2d3b3da">m_dUc</a></td></tr>
-<tr class="memdesc:a5f9d2dda2657d4827a78c368c2d3b3da"><td class="mdescLeft">&#160;</td><td class="mdescRight">Derivative of the hyper-sphere constant term <br  />
+<tr class="memitem:a1a093a386eb5e094ec0f652cf4ccb342" id="r_a1a093a386eb5e094ec0f652cf4ccb342"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classPonca_1_1OrientedSphereDerImpl.html#a7f0d8bafa2f2c48449808e6b7a335b04">ScalarArray</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1OrientedSphereDerImpl.html#a1a093a386eb5e094ec0f652cf4ccb342">m_dUc</a></td></tr>
+<tr class="memdesc:a1a093a386eb5e094ec0f652cf4ccb342"><td class="mdescLeft">&#160;</td><td class="mdescRight">Derivative of the hyper-sphere constant term <br  />
   <br /></td></tr>
-<tr class="separator:a5f9d2dda2657d4827a78c368c2d3b3da"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae6b7afcc1259c40be14a0559f18eac6e" id="r_ae6b7afcc1259c40be14a0559f18eac6e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classPonca_1_1OrientedSphereDerImpl.html#a6b0bc5a2bff7bc3d3d2d7726aa9f9ce7">ScalarArray</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1OrientedSphereDerImpl.html#ae6b7afcc1259c40be14a0559f18eac6e">m_dUq</a></td></tr>
-<tr class="memdesc:ae6b7afcc1259c40be14a0559f18eac6e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Derivative of the hyper-sphere quadratic term.  <br /></td></tr>
-<tr class="separator:ae6b7afcc1259c40be14a0559f18eac6e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9c32fc3f9948337f3c981a43dc578569" id="r_a9c32fc3f9948337f3c981a43dc578569"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classPonca_1_1OrientedSphereDerImpl.html#ad04ac0a9999d5a0e54527cd0a7e455d1">VectorArray</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1OrientedSphereDerImpl.html#a9c32fc3f9948337f3c981a43dc578569">m_dUl</a></td></tr>
-<tr class="memdesc:a9c32fc3f9948337f3c981a43dc578569"><td class="mdescLeft">&#160;</td><td class="mdescRight">Derivative of the hyper-sphere linear term <br  />
+<tr class="separator:a1a093a386eb5e094ec0f652cf4ccb342"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4957c2d2e5e579cb3faa74b3d383f7f0" id="r_a4957c2d2e5e579cb3faa74b3d383f7f0"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classPonca_1_1OrientedSphereDerImpl.html#a7f0d8bafa2f2c48449808e6b7a335b04">ScalarArray</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1OrientedSphereDerImpl.html#a4957c2d2e5e579cb3faa74b3d383f7f0">m_dUq</a></td></tr>
+<tr class="memdesc:a4957c2d2e5e579cb3faa74b3d383f7f0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Derivative of the hyper-sphere quadratic term.  <br /></td></tr>
+<tr class="separator:a4957c2d2e5e579cb3faa74b3d383f7f0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3d7c7ee30b942aa524c0efe9f2bc0f5e" id="r_a3d7c7ee30b942aa524c0efe9f2bc0f5e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classPonca_1_1OrientedSphereDerImpl.html#afe2abea27223b7b4ee9472980ab79d02">VectorArray</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1OrientedSphereDerImpl.html#a3d7c7ee30b942aa524c0efe9f2bc0f5e">m_dUl</a></td></tr>
+<tr class="memdesc:a3d7c7ee30b942aa524c0efe9f2bc0f5e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Derivative of the hyper-sphere linear term <br  />
   <br /></td></tr>
-<tr class="separator:a9c32fc3f9948337f3c981a43dc578569"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="separator:a3d7c7ee30b942aa524c0efe9f2bc0f5e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-types" name="pro-types"></a>
 Protected Types</h2></td></tr>
@@ -224,49 +224,49 @@ Protected Types</h2></td></tr>
 , <b>PROVIDES_NORMAL_DERIVATIVE</b>
  }</td></tr>
 <tr class="separator:af4ec99f56545e737615c9fb1aa8329e7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a00ab86244aa0cb459705111ca4b788e1" id="r_a00ab86244aa0cb459705111ca4b788e1"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1OrientedSphereDerImpl.html#a00ab86244aa0cb459705111ca4b788e1">Base</a> = T</td></tr>
-<tr class="memdesc:a00ab86244aa0cb459705111ca4b788e1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Base class of the procedure.  <br /></td></tr>
-<tr class="separator:a00ab86244aa0cb459705111ca4b788e1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac8e1b3a7b5aeb443de128cafca0771cf" id="r_ac8e1b3a7b5aeb443de128cafca0771cf"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1OrientedSphereDerImpl.html#ac8e1b3a7b5aeb443de128cafca0771cf">Base</a> = T</td></tr>
+<tr class="memdesc:ac8e1b3a7b5aeb443de128cafca0771cf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Base class of the procedure.  <br /></td></tr>
+<tr class="separator:ac8e1b3a7b5aeb443de128cafca0771cf"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-attribs" name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
-<tr class="memitem:a1849cd77d16b689d78fdce5ea7106bb8" id="r_a1849cd77d16b689d78fdce5ea7106bb8"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classPonca_1_1OrientedSphereDerImpl.html#ad04ac0a9999d5a0e54527cd0a7e455d1">VectorArray</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1OrientedSphereDerImpl.html#a1849cd77d16b689d78fdce5ea7106bb8">m_dSumN</a></td></tr>
-<tr class="memdesc:a1849cd77d16b689d78fdce5ea7106bb8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sum of the normal vectors with differenciated weights.  <br /></td></tr>
-<tr class="separator:a1849cd77d16b689d78fdce5ea7106bb8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a94de4cd1e4a3e4f06b93923527e05d73" id="r_a94de4cd1e4a3e4f06b93923527e05d73"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classPonca_1_1OrientedSphereDerImpl.html#a6b0bc5a2bff7bc3d3d2d7726aa9f9ce7">ScalarArray</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1OrientedSphereDerImpl.html#a94de4cd1e4a3e4f06b93923527e05d73">m_dSumDotPN</a></td></tr>
-<tr class="memdesc:a94de4cd1e4a3e4f06b93923527e05d73"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sum of the dot product betwen relative positions and normals with differenciated weights.  <br /></td></tr>
-<tr class="separator:a94de4cd1e4a3e4f06b93923527e05d73"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae48310c81f3a77aa0f732cb549d03f2c" id="r_ae48310c81f3a77aa0f732cb549d03f2c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classPonca_1_1OrientedSphereDerImpl.html#a6b0bc5a2bff7bc3d3d2d7726aa9f9ce7">ScalarArray</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1OrientedSphereDerImpl.html#ae48310c81f3a77aa0f732cb549d03f2c">m_dSumDotPP</a></td></tr>
-<tr class="memdesc:ae48310c81f3a77aa0f732cb549d03f2c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sum of the squared relative positions with differenciated weights.  <br /></td></tr>
-<tr class="separator:ae48310c81f3a77aa0f732cb549d03f2c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac724b52eefa4de14f634bc883504f1cc" id="r_ac724b52eefa4de14f634bc883504f1cc"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classPonca_1_1OrientedSphereDerImpl.html#a6b0bc5a2bff7bc3d3d2d7726aa9f9ce7">ScalarArray</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1OrientedSphereDerImpl.html#ac724b52eefa4de14f634bc883504f1cc">m_dNume</a></td></tr>
-<tr class="memdesc:ac724b52eefa4de14f634bc883504f1cc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Differenciation of the numerator of the quadratic parameter <br  />
+<tr class="memitem:a38942645f40b1a5db9d267dd65e6859d" id="r_a38942645f40b1a5db9d267dd65e6859d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classPonca_1_1OrientedSphereDerImpl.html#afe2abea27223b7b4ee9472980ab79d02">VectorArray</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1OrientedSphereDerImpl.html#a38942645f40b1a5db9d267dd65e6859d">m_dSumN</a></td></tr>
+<tr class="memdesc:a38942645f40b1a5db9d267dd65e6859d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sum of the normal vectors with differenciated weights.  <br /></td></tr>
+<tr class="separator:a38942645f40b1a5db9d267dd65e6859d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1b6cf46766d58f199407475059bf8fe3" id="r_a1b6cf46766d58f199407475059bf8fe3"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classPonca_1_1OrientedSphereDerImpl.html#a7f0d8bafa2f2c48449808e6b7a335b04">ScalarArray</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1OrientedSphereDerImpl.html#a1b6cf46766d58f199407475059bf8fe3">m_dSumDotPN</a></td></tr>
+<tr class="memdesc:a1b6cf46766d58f199407475059bf8fe3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sum of the dot product betwen relative positions and normals with differenciated weights.  <br /></td></tr>
+<tr class="separator:a1b6cf46766d58f199407475059bf8fe3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a039f6b8dfe8a43f353907673a142f77e" id="r_a039f6b8dfe8a43f353907673a142f77e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classPonca_1_1OrientedSphereDerImpl.html#a7f0d8bafa2f2c48449808e6b7a335b04">ScalarArray</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1OrientedSphereDerImpl.html#a039f6b8dfe8a43f353907673a142f77e">m_dSumDotPP</a></td></tr>
+<tr class="memdesc:a039f6b8dfe8a43f353907673a142f77e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sum of the squared relative positions with differenciated weights.  <br /></td></tr>
+<tr class="separator:a039f6b8dfe8a43f353907673a142f77e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a38e8f638bbd295689ba9a16911d1af3a" id="r_a38e8f638bbd295689ba9a16911d1af3a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classPonca_1_1OrientedSphereDerImpl.html#a7f0d8bafa2f2c48449808e6b7a335b04">ScalarArray</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1OrientedSphereDerImpl.html#a38e8f638bbd295689ba9a16911d1af3a">m_dNume</a></td></tr>
+<tr class="memdesc:a38e8f638bbd295689ba9a16911d1af3a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Differenciation of the numerator of the quadratic parameter <br  />
   <br /></td></tr>
-<tr class="separator:ac724b52eefa4de14f634bc883504f1cc"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8c629f1fcb2ec2ce210adf3d4aefb91b" id="r_a8c629f1fcb2ec2ce210adf3d4aefb91b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classPonca_1_1OrientedSphereDerImpl.html#a6b0bc5a2bff7bc3d3d2d7726aa9f9ce7">ScalarArray</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1OrientedSphereDerImpl.html#a8c629f1fcb2ec2ce210adf3d4aefb91b">m_dDeno</a></td></tr>
-<tr class="memdesc:a8c629f1fcb2ec2ce210adf3d4aefb91b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Differenciation of the denominator of the quadratic parameter.  <br /></td></tr>
-<tr class="separator:a8c629f1fcb2ec2ce210adf3d4aefb91b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="separator:a38e8f638bbd295689ba9a16911d1af3a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af27c68091e0ce3c812ba5fc113de8b37" id="r_af27c68091e0ce3c812ba5fc113de8b37"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classPonca_1_1OrientedSphereDerImpl.html#a7f0d8bafa2f2c48449808e6b7a335b04">ScalarArray</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1OrientedSphereDerImpl.html#af27c68091e0ce3c812ba5fc113de8b37">m_dDeno</a></td></tr>
+<tr class="memdesc:af27c68091e0ce3c812ba5fc113de8b37"><td class="mdescLeft">&#160;</td><td class="mdescRight">Differenciation of the denominator of the quadratic parameter.  <br /></td></tr>
+<tr class="separator:af27c68091e0ce3c812ba5fc113de8b37"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><div class="compoundTemplParams">template&lt;class DataPoint, class _WFunctor, int DiffType, typename T&gt;<br />
-class Ponca::OrientedSphereDerImpl&lt; DataPoint, _WFunctor, DiffType, T &gt;</div><p>[OrientedSphereFit Definition] </p>
+<div class="textblock"><div class="compoundTemplParams">template&lt;class DataPoint, class _NFilter, int DiffType, typename T&gt;<br />
+class Ponca::OrientedSphereDerImpl&lt; DataPoint, _NFilter, DiffType, T &gt;</div><p>[OrientedSphereFit Definition] </p>
 <p>Internal generic class performing the Fit derivation </p>
 
 <p class="definition">Definition at line <a class="el" href="orientedSphereFit_8h_source.html#l00063">63</a> of file <a class="el" href="orientedSphereFit_8h_source.html">orientedSphereFit.h</a>.</p>
 </div><h2 class="groupheader">Member Typedef Documentation</h2>
-<a id="a00ab86244aa0cb459705111ca4b788e1" name="a00ab86244aa0cb459705111ca4b788e1"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a00ab86244aa0cb459705111ca4b788e1">&#9670;&#160;</a></span>Base</h2>
+<a id="ac8e1b3a7b5aeb443de128cafca0771cf" name="ac8e1b3a7b5aeb443de128cafca0771cf"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac8e1b3a7b5aeb443de128cafca0771cf">&#9670;&#160;</a></span>Base</h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;class DataPoint , class _WFunctor , int DiffType, typename T &gt; </div>
+template&lt;class DataPoint , class _NFilter , int DiffType, typename T &gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">using <a class="el" href="classPonca_1_1OrientedSphereDerImpl.html">Ponca::OrientedSphereDerImpl</a>&lt; DataPoint, _WFunctor, <a class="el" href="namespacePonca.html#a7beaddc698523e7f9c041ea8bc4c535a">DiffType</a>, T &gt;::Base =  T</td>
+          <td class="memname">using <a class="el" href="classPonca_1_1OrientedSphereDerImpl.html">Ponca::OrientedSphereDerImpl</a>&lt; DataPoint, _NFilter, <a class="el" href="namespacePonca.html#a7beaddc698523e7f9c041ea8bc4c535a">DiffType</a>, T &gt;::Base =  T</td>
         </tr>
       </table>
   </td>
@@ -282,16 +282,36 @@ template&lt;class DataPoint , class _WFunctor , int DiffType, typename T &gt; </
 
 </div>
 </div>
-<a id="a6418adff6cd9ef6d92b2222bc6d61a6c" name="a6418adff6cd9ef6d92b2222bc6d61a6c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a6418adff6cd9ef6d92b2222bc6d61a6c">&#9670;&#160;</a></span>Scalar</h2>
+<a id="a8b749f656a053271a89315b5140864b9" name="a8b749f656a053271a89315b5140864b9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8b749f656a053271a89315b5140864b9">&#9670;&#160;</a></span>NeighborFilter</h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;class DataPoint , class _WFunctor , int DiffType, typename T &gt; </div>
+template&lt;class DataPoint , class _NFilter , int DiffType, typename T &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">using <a class="el" href="classPonca_1_1OrientedSphereDerImpl.html">Ponca::OrientedSphereDerImpl</a>&lt; DataPoint, _WFunctor, <a class="el" href="namespacePonca.html#a7beaddc698523e7f9c041ea8bc4c535a">DiffType</a>, T &gt;::Scalar =  typename DataPoint::Scalar</td>
+          <td class="memname">using <a class="el" href="classPonca_1_1OrientedSphereDerImpl.html">Ponca::OrientedSphereDerImpl</a>&lt; DataPoint, _NFilter, <a class="el" href="namespacePonca.html#a7beaddc698523e7f9c041ea8bc4c535a">DiffType</a>, T &gt;::NeighborFilter =  typename Base::NeighborFilter</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Alias to the filter applied on the neighbors. </p>
+
+<p class="definition">Definition at line <a class="el" href="orientedSphereFit_8h_source.html#l00065">65</a> of file <a class="el" href="orientedSphereFit_8h_source.html">orientedSphereFit.h</a>.</p>
+
+</div>
+</div>
+<a id="ab2593a351cbbf029c5d7314bb08eb023" name="ab2593a351cbbf029c5d7314bb08eb023"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab2593a351cbbf029c5d7314bb08eb023">&#9670;&#160;</a></span>Scalar</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class DataPoint , class _NFilter , int DiffType, typename T &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="classPonca_1_1OrientedSphereDerImpl.html">Ponca::OrientedSphereDerImpl</a>&lt; DataPoint, _NFilter, <a class="el" href="namespacePonca.html#a7beaddc698523e7f9c041ea8bc4c535a">DiffType</a>, T &gt;::Scalar =  typename DataPoint::Scalar</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -302,16 +322,16 @@ template&lt;class DataPoint , class _WFunctor , int DiffType, typename T &gt; </
 
 </div>
 </div>
-<a id="a6b0bc5a2bff7bc3d3d2d7726aa9f9ce7" name="a6b0bc5a2bff7bc3d3d2d7726aa9f9ce7"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a6b0bc5a2bff7bc3d3d2d7726aa9f9ce7">&#9670;&#160;</a></span>ScalarArray</h2>
+<a id="a7f0d8bafa2f2c48449808e6b7a335b04" name="a7f0d8bafa2f2c48449808e6b7a335b04"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7f0d8bafa2f2c48449808e6b7a335b04">&#9670;&#160;</a></span>ScalarArray</h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;class DataPoint , class _WFunctor , int DiffType, typename T &gt; </div>
+template&lt;class DataPoint , class _NFilter , int DiffType, typename T &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">using <a class="el" href="classPonca_1_1OrientedSphereDerImpl.html">Ponca::OrientedSphereDerImpl</a>&lt; DataPoint, _WFunctor, <a class="el" href="namespacePonca.html#a7beaddc698523e7f9c041ea8bc4c535a">DiffType</a>, T &gt;::ScalarArray =  typename Base::ScalarArray</td>
+          <td class="memname">using <a class="el" href="classPonca_1_1OrientedSphereDerImpl.html">Ponca::OrientedSphereDerImpl</a>&lt; DataPoint, _NFilter, <a class="el" href="namespacePonca.html#a7beaddc698523e7f9c041ea8bc4c535a">DiffType</a>, T &gt;::ScalarArray =  typename Base::ScalarArray</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -322,16 +342,16 @@ template&lt;class DataPoint , class _WFunctor , int DiffType, typename T &gt; </
 
 </div>
 </div>
-<a id="ad04ac0a9999d5a0e54527cd0a7e455d1" name="ad04ac0a9999d5a0e54527cd0a7e455d1"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad04ac0a9999d5a0e54527cd0a7e455d1">&#9670;&#160;</a></span>VectorArray</h2>
+<a id="afe2abea27223b7b4ee9472980ab79d02" name="afe2abea27223b7b4ee9472980ab79d02"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afe2abea27223b7b4ee9472980ab79d02">&#9670;&#160;</a></span>VectorArray</h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;class DataPoint , class _WFunctor , int DiffType, typename T &gt; </div>
+template&lt;class DataPoint , class _NFilter , int DiffType, typename T &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">using <a class="el" href="classPonca_1_1OrientedSphereDerImpl.html">Ponca::OrientedSphereDerImpl</a>&lt; DataPoint, _WFunctor, <a class="el" href="namespacePonca.html#a7beaddc698523e7f9c041ea8bc4c535a">DiffType</a>, T &gt;::VectorArray =  typename Base::VectorArray</td>
+          <td class="memname">using <a class="el" href="classPonca_1_1OrientedSphereDerImpl.html">Ponca::OrientedSphereDerImpl</a>&lt; DataPoint, _NFilter, <a class="el" href="namespacePonca.html#a7beaddc698523e7f9c041ea8bc4c535a">DiffType</a>, T &gt;::VectorArray =  typename Base::VectorArray</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -342,41 +362,21 @@ template&lt;class DataPoint , class _WFunctor , int DiffType, typename T &gt; </
 
 </div>
 </div>
-<a id="ac37600997dc74bd474ef7848e7c81e5d" name="ac37600997dc74bd474ef7848e7c81e5d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac37600997dc74bd474ef7848e7c81e5d">&#9670;&#160;</a></span>VectorType</h2>
+<a id="a4c45061508946793533d8c891f6ad93a" name="a4c45061508946793533d8c891f6ad93a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4c45061508946793533d8c891f6ad93a">&#9670;&#160;</a></span>VectorType</h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;class DataPoint , class _WFunctor , int DiffType, typename T &gt; </div>
+template&lt;class DataPoint , class _NFilter , int DiffType, typename T &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">using <a class="el" href="classPonca_1_1OrientedSphereDerImpl.html">Ponca::OrientedSphereDerImpl</a>&lt; DataPoint, _WFunctor, <a class="el" href="namespacePonca.html#a7beaddc698523e7f9c041ea8bc4c535a">DiffType</a>, T &gt;::VectorType =  typename Base::VectorType</td>
+          <td class="memname">using <a class="el" href="classPonca_1_1OrientedSphereDerImpl.html">Ponca::OrientedSphereDerImpl</a>&lt; DataPoint, _NFilter, <a class="el" href="namespacePonca.html#a7beaddc698523e7f9c041ea8bc4c535a">DiffType</a>, T &gt;::VectorType =  typename Base::VectorType</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
 <p>Alias to vector type. </p>
-
-<p class="definition">Definition at line <a class="el" href="orientedSphereFit_8h_source.html#l00065">65</a> of file <a class="el" href="orientedSphereFit_8h_source.html">orientedSphereFit.h</a>.</p>
-
-</div>
-</div>
-<a id="aa24ded9868bdb7debbe28126eb899a6e" name="aa24ded9868bdb7debbe28126eb899a6e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa24ded9868bdb7debbe28126eb899a6e">&#9670;&#160;</a></span>WFunctor</h2>
-
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;class DataPoint , class _WFunctor , int DiffType, typename T &gt; </div>
-      <table class="memname">
-        <tr>
-          <td class="memname">using <a class="el" href="classPonca_1_1OrientedSphereDerImpl.html">Ponca::OrientedSphereDerImpl</a>&lt; DataPoint, _WFunctor, <a class="el" href="namespacePonca.html#a7beaddc698523e7f9c041ea8bc4c535a">DiffType</a>, T &gt;::WFunctor =  typename Base::WFunctor</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Alias to weight function. </p>
 
 <p class="definition">Definition at line <a class="el" href="orientedSphereFit_8h_source.html#l00065">65</a> of file <a class="el" href="orientedSphereFit_8h_source.html">orientedSphereFit.h</a>.</p>
 
@@ -389,7 +389,7 @@ template&lt;class DataPoint , class _WFunctor , int DiffType, typename T &gt; </
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;class DataPoint , class _WFunctor , int DiffType, typename T &gt; </div>
+template&lt;class DataPoint , class _NFilter , int DiffType, typename T &gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
@@ -416,7 +416,7 @@ template&lt;class DataPoint , class _WFunctor , int DiffType, typename T &gt; </
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;class DataPoint , class _WFunctor , int DiffType, typename T &gt; </div>
+template&lt;class DataPoint , class _NFilter , int DiffType, typename T &gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
@@ -424,13 +424,13 @@ template&lt;class DataPoint , class _WFunctor , int DiffType, typename T &gt; </
         <tr>
           <td class="memname">bool OrientedSphereDerImpl::addLocalNeighbor </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="classPonca_1_1OrientedSphereDerImpl.html#a6418adff6cd9ef6d92b2222bc6d61a6c">Scalar</a>&#160;</td>
+          <td class="paramtype"><a class="el" href="classPonca_1_1OrientedSphereDerImpl.html#ab2593a351cbbf029c5d7314bb08eb023">Scalar</a>&#160;</td>
           <td class="paramname"><em>w</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const <a class="el" href="classPonca_1_1OrientedSphereDerImpl.html#ac37600997dc74bd474ef7848e7c81e5d">VectorType</a> &amp;&#160;</td>
+          <td class="paramtype">const <a class="el" href="classPonca_1_1OrientedSphereDerImpl.html#a4c45061508946793533d8c891f6ad93a">VectorType</a> &amp;&#160;</td>
           <td class="paramname"><em>localQ</em>, </td>
         </tr>
         <tr>
@@ -442,7 +442,7 @@ template&lt;class DataPoint , class _WFunctor , int DiffType, typename T &gt; </
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="classPonca_1_1OrientedSphereDerImpl.html#a6b0bc5a2bff7bc3d3d2d7726aa9f9ce7">ScalarArray</a> &amp;&#160;</td>
+          <td class="paramtype"><a class="el" href="classPonca_1_1OrientedSphereDerImpl.html#a7f0d8bafa2f2c48449808e6b7a335b04">ScalarArray</a> &amp;&#160;</td>
           <td class="paramname"><em>dw</em>&#160;</td>
         </tr>
         <tr>
@@ -471,7 +471,7 @@ template&lt;class DataPoint , class _WFunctor , int DiffType, typename T &gt; </
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;class DataPoint , class _WFunctor , int DiffType, typename T &gt; </div>
+template&lt;class DataPoint , class _NFilter , int DiffType, typename T &gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
@@ -498,19 +498,19 @@ template&lt;class DataPoint , class _WFunctor , int DiffType, typename T &gt; </
 
 </div>
 </div>
-<a id="a9a502be4a4cf023c512bf716a4174bfa" name="a9a502be4a4cf023c512bf716a4174bfa"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a9a502be4a4cf023c512bf716a4174bfa">&#9670;&#160;</a></span>dNormal()</h2>
+<a id="a6e0aebeb829879ccdca56a41abac8227" name="a6e0aebeb829879ccdca56a41abac8227"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6e0aebeb829879ccdca56a41abac8227">&#9670;&#160;</a></span>dNormal()</h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;class DataPoint , class _WFunctor , int DiffType, typename T &gt; </div>
+template&lt;class DataPoint , class _NFilter , int DiffType, typename T &gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classPonca_1_1OrientedSphereDerImpl.html">OrientedSphereDerImpl</a>&lt; DataPoint, _WFunctor, <a class="el" href="namespacePonca.html#a7beaddc698523e7f9c041ea8bc4c535a">DiffType</a>, T &gt;<a class="el" href="classPonca_1_1OrientedSphereDerImpl.html#ad04ac0a9999d5a0e54527cd0a7e455d1">::VectorArray</a> OrientedSphereDerImpl::dNormal </td>
+          <td class="memname"><a class="el" href="classPonca_1_1OrientedSphereDerImpl.html">OrientedSphereDerImpl</a>&lt; DataPoint, _NFilter, <a class="el" href="namespacePonca.html#a7beaddc698523e7f9c041ea8bc4c535a">DiffType</a>, T &gt;<a class="el" href="classPonca_1_1OrientedSphereDerImpl.html#afe2abea27223b7b4ee9472980ab79d02">::VectorArray</a> OrientedSphereDerImpl::dNormal </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td> const</td>
@@ -529,19 +529,19 @@ template&lt;class DataPoint , class _WFunctor , int DiffType, typename T &gt; </
 
 </div>
 </div>
-<a id="ac5ea10d6cf2bb4bb6dc1977e92b051e4" name="ac5ea10d6cf2bb4bb6dc1977e92b051e4"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac5ea10d6cf2bb4bb6dc1977e92b051e4">&#9670;&#160;</a></span>dPotential()</h2>
+<a id="a918746aa984e03cd20aa8404352a4742" name="a918746aa984e03cd20aa8404352a4742"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a918746aa984e03cd20aa8404352a4742">&#9670;&#160;</a></span>dPotential()</h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;class DataPoint , class _WFunctor , int DiffType, typename T &gt; </div>
+template&lt;class DataPoint , class _NFilter , int DiffType, typename T &gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classPonca_1_1OrientedSphereDerImpl.html">OrientedSphereDerImpl</a>&lt; DataPoint, _WFunctor, <a class="el" href="namespacePonca.html#a7beaddc698523e7f9c041ea8bc4c535a">DiffType</a>, T &gt;<a class="el" href="classPonca_1_1OrientedSphereDerImpl.html#a6b0bc5a2bff7bc3d3d2d7726aa9f9ce7">::ScalarArray</a> OrientedSphereDerImpl::dPotential </td>
+          <td class="memname"><a class="el" href="classPonca_1_1OrientedSphereDerImpl.html">OrientedSphereDerImpl</a>&lt; DataPoint, _NFilter, <a class="el" href="namespacePonca.html#a7beaddc698523e7f9c041ea8bc4c535a">DiffType</a>, T &gt;<a class="el" href="classPonca_1_1OrientedSphereDerImpl.html#a7f0d8bafa2f2c48449808e6b7a335b04">::ScalarArray</a> OrientedSphereDerImpl::dPotential </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td> const</td>
@@ -560,19 +560,19 @@ template&lt;class DataPoint , class _WFunctor , int DiffType, typename T &gt; </
 
 </div>
 </div>
-<a id="abce162a54298ae0b843e4e0185030322" name="abce162a54298ae0b843e4e0185030322"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#abce162a54298ae0b843e4e0185030322">&#9670;&#160;</a></span>dprattNorm() <span class="overload">[1/2]</span></h2>
+<a id="ae85afe3a65d613dc56560ffa796284f7" name="ae85afe3a65d613dc56560ffa796284f7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae85afe3a65d613dc56560ffa796284f7">&#9670;&#160;</a></span>dprattNorm() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;class DataPoint , class _WFunctor , int DiffType, typename T &gt; </div>
+template&lt;class DataPoint , class _NFilter , int DiffType, typename T &gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classPonca_1_1OrientedSphereDerImpl.html#a6418adff6cd9ef6d92b2222bc6d61a6c">Scalar</a> <a class="el" href="classPonca_1_1OrientedSphereDerImpl.html">Ponca::OrientedSphereDerImpl</a>&lt; DataPoint, _WFunctor, <a class="el" href="namespacePonca.html#a7beaddc698523e7f9c041ea8bc4c535a">DiffType</a>, T &gt;::dprattNorm </td>
+          <td class="memname"><a class="el" href="classPonca_1_1OrientedSphereDerImpl.html#ab2593a351cbbf029c5d7314bb08eb023">Scalar</a> <a class="el" href="classPonca_1_1OrientedSphereDerImpl.html">Ponca::OrientedSphereDerImpl</a>&lt; DataPoint, _NFilter, <a class="el" href="namespacePonca.html#a7beaddc698523e7f9c041ea8bc4c535a">DiffType</a>, T &gt;::dprattNorm </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td> const</td>
@@ -591,19 +591,19 @@ template&lt;class DataPoint , class _WFunctor , int DiffType, typename T &gt; </
 
 </div>
 </div>
-<a id="a61f042d00f1bf297a595891ddd847a48" name="a61f042d00f1bf297a595891ddd847a48"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a61f042d00f1bf297a595891ddd847a48">&#9670;&#160;</a></span>dprattNorm() <span class="overload">[2/2]</span></h2>
+<a id="af5db87c9a12dd09a544e806e2d7446ab" name="af5db87c9a12dd09a544e806e2d7446ab"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af5db87c9a12dd09a544e806e2d7446ab">&#9670;&#160;</a></span>dprattNorm() <span class="overload">[2/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;class DataPoint , class _WFunctor , int DiffType, typename T &gt; </div>
+template&lt;class DataPoint , class _NFilter , int DiffType, typename T &gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classPonca_1_1OrientedSphereDerImpl.html#a6418adff6cd9ef6d92b2222bc6d61a6c">Scalar</a> <a class="el" href="classPonca_1_1OrientedSphereDerImpl.html">Ponca::OrientedSphereDerImpl</a>&lt; DataPoint, _WFunctor, <a class="el" href="namespacePonca.html#a7beaddc698523e7f9c041ea8bc4c535a">DiffType</a>, T &gt;::dprattNorm </td>
+          <td class="memname"><a class="el" href="classPonca_1_1OrientedSphereDerImpl.html#ab2593a351cbbf029c5d7314bb08eb023">Scalar</a> <a class="el" href="classPonca_1_1OrientedSphereDerImpl.html">Ponca::OrientedSphereDerImpl</a>&lt; DataPoint, _NFilter, <a class="el" href="namespacePonca.html#a7beaddc698523e7f9c041ea8bc4c535a">DiffType</a>, T &gt;::dprattNorm </td>
           <td>(</td>
           <td class="paramtype">unsigned int&#160;</td>
           <td class="paramname"><em>_d</em></td><td>)</td>
@@ -623,19 +623,19 @@ template&lt;class DataPoint , class _WFunctor , int DiffType, typename T &gt; </
 
 </div>
 </div>
-<a id="a956872917f17a5e57998d11fd8a2d55d" name="a956872917f17a5e57998d11fd8a2d55d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a956872917f17a5e57998d11fd8a2d55d">&#9670;&#160;</a></span>dprattNorm2() <span class="overload">[1/2]</span></h2>
+<a id="a711c36440b601d4fbb539bcb5128727d" name="a711c36440b601d4fbb539bcb5128727d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a711c36440b601d4fbb539bcb5128727d">&#9670;&#160;</a></span>dprattNorm2() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;class DataPoint , class _WFunctor , int DiffType, typename T &gt; </div>
+template&lt;class DataPoint , class _NFilter , int DiffType, typename T &gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classPonca_1_1OrientedSphereDerImpl.html#a6b0bc5a2bff7bc3d3d2d7726aa9f9ce7">ScalarArray</a> <a class="el" href="classPonca_1_1OrientedSphereDerImpl.html">Ponca::OrientedSphereDerImpl</a>&lt; DataPoint, _WFunctor, <a class="el" href="namespacePonca.html#a7beaddc698523e7f9c041ea8bc4c535a">DiffType</a>, T &gt;::dprattNorm2 </td>
+          <td class="memname"><a class="el" href="classPonca_1_1OrientedSphereDerImpl.html#a7f0d8bafa2f2c48449808e6b7a335b04">ScalarArray</a> <a class="el" href="classPonca_1_1OrientedSphereDerImpl.html">Ponca::OrientedSphereDerImpl</a>&lt; DataPoint, _NFilter, <a class="el" href="namespacePonca.html#a7beaddc698523e7f9c041ea8bc4c535a">DiffType</a>, T &gt;::dprattNorm2 </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td> const</td>
@@ -654,19 +654,19 @@ template&lt;class DataPoint , class _WFunctor , int DiffType, typename T &gt; </
 
 </div>
 </div>
-<a id="a35fbb463e9f8bc9774efa1d6a1dd3a64" name="a35fbb463e9f8bc9774efa1d6a1dd3a64"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a35fbb463e9f8bc9774efa1d6a1dd3a64">&#9670;&#160;</a></span>dprattNorm2() <span class="overload">[2/2]</span></h2>
+<a id="a46853fa6cdae56b9701dba1f60e1bc82" name="a46853fa6cdae56b9701dba1f60e1bc82"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a46853fa6cdae56b9701dba1f60e1bc82">&#9670;&#160;</a></span>dprattNorm2() <span class="overload">[2/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;class DataPoint , class _WFunctor , int DiffType, typename T &gt; </div>
+template&lt;class DataPoint , class _NFilter , int DiffType, typename T &gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classPonca_1_1OrientedSphereDerImpl.html#a6418adff6cd9ef6d92b2222bc6d61a6c">Scalar</a> <a class="el" href="classPonca_1_1OrientedSphereDerImpl.html">Ponca::OrientedSphereDerImpl</a>&lt; DataPoint, _WFunctor, <a class="el" href="namespacePonca.html#a7beaddc698523e7f9c041ea8bc4c535a">DiffType</a>, T &gt;::dprattNorm2 </td>
+          <td class="memname"><a class="el" href="classPonca_1_1OrientedSphereDerImpl.html#ab2593a351cbbf029c5d7314bb08eb023">Scalar</a> <a class="el" href="classPonca_1_1OrientedSphereDerImpl.html">Ponca::OrientedSphereDerImpl</a>&lt; DataPoint, _NFilter, <a class="el" href="namespacePonca.html#a7beaddc698523e7f9c041ea8bc4c535a">DiffType</a>, T &gt;::dprattNorm2 </td>
           <td>(</td>
           <td class="paramtype">unsigned int&#160;</td>
           <td class="paramname"><em>_d</em></td><td>)</td>
@@ -692,7 +692,7 @@ template&lt;class DataPoint , class _WFunctor , int DiffType, typename T &gt; </
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;class DataPoint , class _WFunctor , int DiffType, typename T &gt; </div>
+template&lt;class DataPoint , class _NFilter , int DiffType, typename T &gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
@@ -725,7 +725,7 @@ template&lt;class DataPoint , class _WFunctor , int DiffType, typename T &gt; </
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;class DataPoint , class _WFunctor , int DiffType, typename T &gt; </div>
+template&lt;class DataPoint , class _NFilter , int DiffType, typename T &gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
@@ -745,25 +745,25 @@ template&lt;class DataPoint , class _WFunctor , int DiffType, typename T &gt; </
 </div><div class="memdoc">
 
 <p>Set the evaluation position and reset the internal states. </p>
-<dl class="section warning"><dt>Warning</dt><dd>Must be called be for any computation (but after #setWeightFunc) </dd></dl>
+<dl class="section warning"><dt>Warning</dt><dd>Must be called be for any computation (but after #setNeighborFilter) </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="orientedSphereFit_8hpp_source.html#l00088">88</a> of file <a class="el" href="orientedSphereFit_8hpp_source.html">orientedSphereFit.hpp</a>.</p>
 
 </div>
 </div>
-<a id="a0b161bb8ccb6d23a3cfefe2faecc15f1" name="a0b161bb8ccb6d23a3cfefe2faecc15f1"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a0b161bb8ccb6d23a3cfefe2faecc15f1">&#9670;&#160;</a></span>orientedSphereDer() <span class="overload">[1/2]</span></h2>
+<a id="aed039dff47a64bbd724bc034e67b5fdb" name="aed039dff47a64bbd724bc034e67b5fdb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aed039dff47a64bbd724bc034e67b5fdb">&#9670;&#160;</a></span>orientedSphereDer() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;class DataPoint , class _WFunctor , int DiffType, typename T &gt; </div>
+template&lt;class DataPoint , class _NFilter , int DiffType, typename T &gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classPonca_1_1OrientedSphereDerImpl.html">OrientedSphereDerImpl</a>&lt; DataPoint, _WFunctor, <a class="el" href="namespacePonca.html#a7beaddc698523e7f9c041ea8bc4c535a">DiffType</a>, T &gt; &amp; <a class="el" href="classPonca_1_1OrientedSphereDerImpl.html">Ponca::OrientedSphereDerImpl</a>&lt; DataPoint, _WFunctor, <a class="el" href="namespacePonca.html#a7beaddc698523e7f9c041ea8bc4c535a">DiffType</a>, T &gt;::orientedSphereDer </td>
+          <td class="memname"><a class="el" href="classPonca_1_1OrientedSphereDerImpl.html">OrientedSphereDerImpl</a>&lt; DataPoint, _NFilter, <a class="el" href="namespacePonca.html#a7beaddc698523e7f9c041ea8bc4c535a">DiffType</a>, T &gt; &amp; <a class="el" href="classPonca_1_1OrientedSphereDerImpl.html">Ponca::OrientedSphereDerImpl</a>&lt; DataPoint, _NFilter, <a class="el" href="namespacePonca.html#a7beaddc698523e7f9c041ea8bc4c535a">DiffType</a>, T &gt;::orientedSphereDer </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -782,19 +782,19 @@ template&lt;class DataPoint , class _WFunctor , int DiffType, typename T &gt; </
 
 </div>
 </div>
-<a id="a1cd513c6b40bcd4bbdbdace798a92b1d" name="a1cd513c6b40bcd4bbdbdace798a92b1d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a1cd513c6b40bcd4bbdbdace798a92b1d">&#9670;&#160;</a></span>orientedSphereDer() <span class="overload">[2/2]</span></h2>
+<a id="a6ab3cde82cf153db3ff70b97d5a39e97" name="a6ab3cde82cf153db3ff70b97d5a39e97"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6ab3cde82cf153db3ff70b97d5a39e97">&#9670;&#160;</a></span>orientedSphereDer() <span class="overload">[2/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;class DataPoint , class _WFunctor , int DiffType, typename T &gt; </div>
+template&lt;class DataPoint , class _NFilter , int DiffType, typename T &gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">const <a class="el" href="classPonca_1_1OrientedSphereDerImpl.html">OrientedSphereDerImpl</a>&lt; DataPoint, _WFunctor, <a class="el" href="namespacePonca.html#a7beaddc698523e7f9c041ea8bc4c535a">DiffType</a>, T &gt; &amp; <a class="el" href="classPonca_1_1OrientedSphereDerImpl.html">Ponca::OrientedSphereDerImpl</a>&lt; DataPoint, _WFunctor, <a class="el" href="namespacePonca.html#a7beaddc698523e7f9c041ea8bc4c535a">DiffType</a>, T &gt;::orientedSphereDer </td>
+          <td class="memname">const <a class="el" href="classPonca_1_1OrientedSphereDerImpl.html">OrientedSphereDerImpl</a>&lt; DataPoint, _NFilter, <a class="el" href="namespacePonca.html#a7beaddc698523e7f9c041ea8bc4c535a">DiffType</a>, T &gt; &amp; <a class="el" href="classPonca_1_1OrientedSphereDerImpl.html">Ponca::OrientedSphereDerImpl</a>&lt; DataPoint, _NFilter, <a class="el" href="namespacePonca.html#a7beaddc698523e7f9c041ea8bc4c535a">DiffType</a>, T &gt;::orientedSphereDer </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td> const</td>
@@ -814,19 +814,19 @@ template&lt;class DataPoint , class _WFunctor , int DiffType, typename T &gt; </
 </div>
 </div>
 <h2 class="groupheader">Member Data Documentation</h2>
-<a id="a8c629f1fcb2ec2ce210adf3d4aefb91b" name="a8c629f1fcb2ec2ce210adf3d4aefb91b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a8c629f1fcb2ec2ce210adf3d4aefb91b">&#9670;&#160;</a></span>m_dDeno</h2>
+<a id="af27c68091e0ce3c812ba5fc113de8b37" name="af27c68091e0ce3c812ba5fc113de8b37"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af27c68091e0ce3c812ba5fc113de8b37">&#9670;&#160;</a></span>m_dDeno</h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;class DataPoint , class _WFunctor , int DiffType, typename T &gt; </div>
+template&lt;class DataPoint , class _NFilter , int DiffType, typename T &gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classPonca_1_1OrientedSphereDerImpl.html#a6b0bc5a2bff7bc3d3d2d7726aa9f9ce7">ScalarArray</a> <a class="el" href="classPonca_1_1OrientedSphereDerImpl.html">Ponca::OrientedSphereDerImpl</a>&lt; DataPoint, _WFunctor, <a class="el" href="namespacePonca.html#a7beaddc698523e7f9c041ea8bc4c535a">DiffType</a>, T &gt;::m_dDeno</td>
+          <td class="memname"><a class="el" href="classPonca_1_1OrientedSphereDerImpl.html#a7f0d8bafa2f2c48449808e6b7a335b04">ScalarArray</a> <a class="el" href="classPonca_1_1OrientedSphereDerImpl.html">Ponca::OrientedSphereDerImpl</a>&lt; DataPoint, _NFilter, <a class="el" href="namespacePonca.html#a7beaddc698523e7f9c041ea8bc4c535a">DiffType</a>, T &gt;::m_dDeno</td>
         </tr>
       </table>
   </td>
@@ -842,19 +842,19 @@ template&lt;class DataPoint , class _WFunctor , int DiffType, typename T &gt; </
 
 </div>
 </div>
-<a id="ac724b52eefa4de14f634bc883504f1cc" name="ac724b52eefa4de14f634bc883504f1cc"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac724b52eefa4de14f634bc883504f1cc">&#9670;&#160;</a></span>m_dNume</h2>
+<a id="a38e8f638bbd295689ba9a16911d1af3a" name="a38e8f638bbd295689ba9a16911d1af3a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a38e8f638bbd295689ba9a16911d1af3a">&#9670;&#160;</a></span>m_dNume</h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;class DataPoint , class _WFunctor , int DiffType, typename T &gt; </div>
+template&lt;class DataPoint , class _NFilter , int DiffType, typename T &gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classPonca_1_1OrientedSphereDerImpl.html#a6b0bc5a2bff7bc3d3d2d7726aa9f9ce7">ScalarArray</a> <a class="el" href="classPonca_1_1OrientedSphereDerImpl.html">Ponca::OrientedSphereDerImpl</a>&lt; DataPoint, _WFunctor, <a class="el" href="namespacePonca.html#a7beaddc698523e7f9c041ea8bc4c535a">DiffType</a>, T &gt;::m_dNume</td>
+          <td class="memname"><a class="el" href="classPonca_1_1OrientedSphereDerImpl.html#a7f0d8bafa2f2c48449808e6b7a335b04">ScalarArray</a> <a class="el" href="classPonca_1_1OrientedSphereDerImpl.html">Ponca::OrientedSphereDerImpl</a>&lt; DataPoint, _NFilter, <a class="el" href="namespacePonca.html#a7beaddc698523e7f9c041ea8bc4c535a">DiffType</a>, T &gt;::m_dNume</td>
         </tr>
       </table>
   </td>
@@ -871,19 +871,19 @@ template&lt;class DataPoint , class _WFunctor , int DiffType, typename T &gt; </
 
 </div>
 </div>
-<a id="a94de4cd1e4a3e4f06b93923527e05d73" name="a94de4cd1e4a3e4f06b93923527e05d73"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a94de4cd1e4a3e4f06b93923527e05d73">&#9670;&#160;</a></span>m_dSumDotPN</h2>
+<a id="a1b6cf46766d58f199407475059bf8fe3" name="a1b6cf46766d58f199407475059bf8fe3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1b6cf46766d58f199407475059bf8fe3">&#9670;&#160;</a></span>m_dSumDotPN</h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;class DataPoint , class _WFunctor , int DiffType, typename T &gt; </div>
+template&lt;class DataPoint , class _NFilter , int DiffType, typename T &gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classPonca_1_1OrientedSphereDerImpl.html#a6b0bc5a2bff7bc3d3d2d7726aa9f9ce7">ScalarArray</a> <a class="el" href="classPonca_1_1OrientedSphereDerImpl.html">Ponca::OrientedSphereDerImpl</a>&lt; DataPoint, _WFunctor, <a class="el" href="namespacePonca.html#a7beaddc698523e7f9c041ea8bc4c535a">DiffType</a>, T &gt;::m_dSumDotPN</td>
+          <td class="memname"><a class="el" href="classPonca_1_1OrientedSphereDerImpl.html#a7f0d8bafa2f2c48449808e6b7a335b04">ScalarArray</a> <a class="el" href="classPonca_1_1OrientedSphereDerImpl.html">Ponca::OrientedSphereDerImpl</a>&lt; DataPoint, _NFilter, <a class="el" href="namespacePonca.html#a7beaddc698523e7f9c041ea8bc4c535a">DiffType</a>, T &gt;::m_dSumDotPN</td>
         </tr>
       </table>
   </td>
@@ -899,19 +899,19 @@ template&lt;class DataPoint , class _WFunctor , int DiffType, typename T &gt; </
 
 </div>
 </div>
-<a id="ae48310c81f3a77aa0f732cb549d03f2c" name="ae48310c81f3a77aa0f732cb549d03f2c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae48310c81f3a77aa0f732cb549d03f2c">&#9670;&#160;</a></span>m_dSumDotPP</h2>
+<a id="a039f6b8dfe8a43f353907673a142f77e" name="a039f6b8dfe8a43f353907673a142f77e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a039f6b8dfe8a43f353907673a142f77e">&#9670;&#160;</a></span>m_dSumDotPP</h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;class DataPoint , class _WFunctor , int DiffType, typename T &gt; </div>
+template&lt;class DataPoint , class _NFilter , int DiffType, typename T &gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classPonca_1_1OrientedSphereDerImpl.html#a6b0bc5a2bff7bc3d3d2d7726aa9f9ce7">ScalarArray</a> <a class="el" href="classPonca_1_1OrientedSphereDerImpl.html">Ponca::OrientedSphereDerImpl</a>&lt; DataPoint, _WFunctor, <a class="el" href="namespacePonca.html#a7beaddc698523e7f9c041ea8bc4c535a">DiffType</a>, T &gt;::m_dSumDotPP</td>
+          <td class="memname"><a class="el" href="classPonca_1_1OrientedSphereDerImpl.html#a7f0d8bafa2f2c48449808e6b7a335b04">ScalarArray</a> <a class="el" href="classPonca_1_1OrientedSphereDerImpl.html">Ponca::OrientedSphereDerImpl</a>&lt; DataPoint, _NFilter, <a class="el" href="namespacePonca.html#a7beaddc698523e7f9c041ea8bc4c535a">DiffType</a>, T &gt;::m_dSumDotPP</td>
         </tr>
       </table>
   </td>
@@ -927,19 +927,19 @@ template&lt;class DataPoint , class _WFunctor , int DiffType, typename T &gt; </
 
 </div>
 </div>
-<a id="a1849cd77d16b689d78fdce5ea7106bb8" name="a1849cd77d16b689d78fdce5ea7106bb8"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a1849cd77d16b689d78fdce5ea7106bb8">&#9670;&#160;</a></span>m_dSumN</h2>
+<a id="a38942645f40b1a5db9d267dd65e6859d" name="a38942645f40b1a5db9d267dd65e6859d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a38942645f40b1a5db9d267dd65e6859d">&#9670;&#160;</a></span>m_dSumN</h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;class DataPoint , class _WFunctor , int DiffType, typename T &gt; </div>
+template&lt;class DataPoint , class _NFilter , int DiffType, typename T &gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classPonca_1_1OrientedSphereDerImpl.html#ad04ac0a9999d5a0e54527cd0a7e455d1">VectorArray</a> <a class="el" href="classPonca_1_1OrientedSphereDerImpl.html">Ponca::OrientedSphereDerImpl</a>&lt; DataPoint, _WFunctor, <a class="el" href="namespacePonca.html#a7beaddc698523e7f9c041ea8bc4c535a">DiffType</a>, T &gt;::m_dSumN</td>
+          <td class="memname"><a class="el" href="classPonca_1_1OrientedSphereDerImpl.html#afe2abea27223b7b4ee9472980ab79d02">VectorArray</a> <a class="el" href="classPonca_1_1OrientedSphereDerImpl.html">Ponca::OrientedSphereDerImpl</a>&lt; DataPoint, _NFilter, <a class="el" href="namespacePonca.html#a7beaddc698523e7f9c041ea8bc4c535a">DiffType</a>, T &gt;::m_dSumN</td>
         </tr>
       </table>
   </td>
@@ -955,16 +955,16 @@ template&lt;class DataPoint , class _WFunctor , int DiffType, typename T &gt; </
 
 </div>
 </div>
-<a id="a5f9d2dda2657d4827a78c368c2d3b3da" name="a5f9d2dda2657d4827a78c368c2d3b3da"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a5f9d2dda2657d4827a78c368c2d3b3da">&#9670;&#160;</a></span>m_dUc</h2>
+<a id="a1a093a386eb5e094ec0f652cf4ccb342" name="a1a093a386eb5e094ec0f652cf4ccb342"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1a093a386eb5e094ec0f652cf4ccb342">&#9670;&#160;</a></span>m_dUc</h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;class DataPoint , class _WFunctor , int DiffType, typename T &gt; </div>
+template&lt;class DataPoint , class _NFilter , int DiffType, typename T &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classPonca_1_1OrientedSphereDerImpl.html#a6b0bc5a2bff7bc3d3d2d7726aa9f9ce7">ScalarArray</a> <a class="el" href="classPonca_1_1OrientedSphereDerImpl.html">Ponca::OrientedSphereDerImpl</a>&lt; DataPoint, _WFunctor, <a class="el" href="namespacePonca.html#a7beaddc698523e7f9c041ea8bc4c535a">DiffType</a>, T &gt;::m_dUc</td>
+          <td class="memname"><a class="el" href="classPonca_1_1OrientedSphereDerImpl.html#a7f0d8bafa2f2c48449808e6b7a335b04">ScalarArray</a> <a class="el" href="classPonca_1_1OrientedSphereDerImpl.html">Ponca::OrientedSphereDerImpl</a>&lt; DataPoint, _NFilter, <a class="el" href="namespacePonca.html#a7beaddc698523e7f9c041ea8bc4c535a">DiffType</a>, T &gt;::m_dUc</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -976,16 +976,16 @@ template&lt;class DataPoint , class _WFunctor , int DiffType, typename T &gt; </
 
 </div>
 </div>
-<a id="a9c32fc3f9948337f3c981a43dc578569" name="a9c32fc3f9948337f3c981a43dc578569"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a9c32fc3f9948337f3c981a43dc578569">&#9670;&#160;</a></span>m_dUl</h2>
+<a id="a3d7c7ee30b942aa524c0efe9f2bc0f5e" name="a3d7c7ee30b942aa524c0efe9f2bc0f5e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3d7c7ee30b942aa524c0efe9f2bc0f5e">&#9670;&#160;</a></span>m_dUl</h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;class DataPoint , class _WFunctor , int DiffType, typename T &gt; </div>
+template&lt;class DataPoint , class _NFilter , int DiffType, typename T &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classPonca_1_1OrientedSphereDerImpl.html#ad04ac0a9999d5a0e54527cd0a7e455d1">VectorArray</a> <a class="el" href="classPonca_1_1OrientedSphereDerImpl.html">Ponca::OrientedSphereDerImpl</a>&lt; DataPoint, _WFunctor, <a class="el" href="namespacePonca.html#a7beaddc698523e7f9c041ea8bc4c535a">DiffType</a>, T &gt;::m_dUl</td>
+          <td class="memname"><a class="el" href="classPonca_1_1OrientedSphereDerImpl.html#afe2abea27223b7b4ee9472980ab79d02">VectorArray</a> <a class="el" href="classPonca_1_1OrientedSphereDerImpl.html">Ponca::OrientedSphereDerImpl</a>&lt; DataPoint, _NFilter, <a class="el" href="namespacePonca.html#a7beaddc698523e7f9c041ea8bc4c535a">DiffType</a>, T &gt;::m_dUl</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -997,16 +997,16 @@ template&lt;class DataPoint , class _WFunctor , int DiffType, typename T &gt; </
 
 </div>
 </div>
-<a id="ae6b7afcc1259c40be14a0559f18eac6e" name="ae6b7afcc1259c40be14a0559f18eac6e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae6b7afcc1259c40be14a0559f18eac6e">&#9670;&#160;</a></span>m_dUq</h2>
+<a id="a4957c2d2e5e579cb3faa74b3d383f7f0" name="a4957c2d2e5e579cb3faa74b3d383f7f0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4957c2d2e5e579cb3faa74b3d383f7f0">&#9670;&#160;</a></span>m_dUq</h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;class DataPoint , class _WFunctor , int DiffType, typename T &gt; </div>
+template&lt;class DataPoint , class _NFilter , int DiffType, typename T &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classPonca_1_1OrientedSphereDerImpl.html#a6b0bc5a2bff7bc3d3d2d7726aa9f9ce7">ScalarArray</a> <a class="el" href="classPonca_1_1OrientedSphereDerImpl.html">Ponca::OrientedSphereDerImpl</a>&lt; DataPoint, _WFunctor, <a class="el" href="namespacePonca.html#a7beaddc698523e7f9c041ea8bc4c535a">DiffType</a>, T &gt;::m_dUq</td>
+          <td class="memname"><a class="el" href="classPonca_1_1OrientedSphereDerImpl.html#a7f0d8bafa2f2c48449808e6b7a335b04">ScalarArray</a> <a class="el" href="classPonca_1_1OrientedSphereDerImpl.html">Ponca::OrientedSphereDerImpl</a>&lt; DataPoint, _NFilter, <a class="el" href="namespacePonca.html#a7beaddc698523e7f9c041ea8bc4c535a">DiffType</a>, T &gt;::m_dUq</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -1023,7 +1023,7 @@ template&lt;class DataPoint , class _WFunctor , int DiffType, typename T &gt; </
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="namespacePonca.html">Ponca</a></li><li class="navelem"><a class="el" href="classPonca_1_1OrientedSphereDerImpl.html">OrientedSphereDerImpl</a></li>
-    <li class="footer">Generated on Thu Oct 9 2025 22:33:53 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
+    <li class="footer">Generated on Thu Oct 30 2025 19:03:05 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
   </ul>
 </div>
 </body>

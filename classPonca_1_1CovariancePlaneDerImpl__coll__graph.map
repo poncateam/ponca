@@ -1,5 +1,5 @@
-<map id="Ponca::CovariancePlaneDerImpl&lt; DataPoint, _WFunctor, DiffType, T &gt;" name="Ponca::CovariancePlaneDerImpl&lt; DataPoint, _WFunctor, DiffType, T &gt;">
-<area shape="rect" id="Node000001" title="[CovariancePlaneFit Definition]" alt="" coords="57,133,259,308"/>
+<map id="Ponca::CovariancePlaneDerImpl&lt; DataPoint, _NFilter, DiffType, T &gt;" name="Ponca::CovariancePlaneDerImpl&lt; DataPoint, _NFilter, DiffType, T &gt;">
+<area shape="rect" id="Node000001" title="[CovariancePlaneFit Definition]" alt="" coords="61,133,255,308"/>
 <area shape="rect" id="Node000002" title=" " alt="" coords="5,5,185,85"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="116,97,129,132,124,134,111,99"/>
 <area shape="rect" id="Node000003" title=" " alt="" coords="209,13,232,78"/>

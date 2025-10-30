@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.9.8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Ponca: Ponca::Plane&lt; DataPoint, _WFunctor, T &gt; Class Template Reference</title>
+<title>Ponca: Ponca::Plane&lt; DataPoint, _NFilter, T &gt; Class Template Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -51,7 +51,7 @@ MathJax.Hub.Config({
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Ponca
-   &#160;<span id="projectnumber">40f245e28b920cbb763a1c6282156c87c626f24c</span>
+   &#160;<span id="projectnumber">9e7681effe2c12b0af1c85fdb62680f52d835a30</span>
    </div>
    <div id="projectbrief">Point Cloud Analysis library</div>
   </td>
@@ -120,8 +120,9 @@ $(document).ready(function(){initNavTree('classPonca_1_1Plane.html',''); initRes
 <a href="#pub-types">Public Types</a> &#124;
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="#pro-types">Protected Types</a> &#124;
+<a href="#pro-methods">Protected Member Functions</a> &#124;
 <a href="classPonca_1_1Plane-members.html">List of all members</a>  </div>
-  <div class="headertitle"><div class="title">Ponca::Plane&lt; DataPoint, _WFunctor, T &gt; Class Template Reference</div></div>
+  <div class="headertitle"><div class="title">Ponca::Plane&lt; DataPoint, _NFilter, T &gt; Class Template Reference</div></div>
 </div><!--header-->
 <div class="contents">
 
@@ -130,80 +131,83 @@ $(document).ready(function(){initNavTree('classPonca_1_1Plane.html',''); initRes
 
 <p><code>#include &lt;<a class="el" href="plane_8h_source.html">plane.h</a>&gt;</code></p>
 <div id="dynsection-0" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
-  <img id="dynsection-0-trigger" src="closed.png" alt="+"/> Inheritance diagram for Ponca::Plane&lt; DataPoint, _WFunctor, T &gt;:</div>
+  <img id="dynsection-0-trigger" src="closed.png" alt="+"/> Inheritance diagram for Ponca::Plane&lt; DataPoint, _NFilter, T &gt;:</div>
 <div id="dynsection-0-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-0-content" class="dyncontent" style="display:none;">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classPonca_1_1Plane__inherit__graph.svg" width="228" height="514"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classPonca_1_1Plane__inherit__graph.svg" width="232" height="474"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 <div id="dynsection-1" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
-  <img id="dynsection-1-trigger" src="closed.png" alt="+"/> Collaboration diagram for Ponca::Plane&lt; DataPoint, _WFunctor, T &gt;:</div>
+  <img id="dynsection-1-trigger" src="closed.png" alt="+"/> Collaboration diagram for Ponca::Plane&lt; DataPoint, _NFilter, T &gt;:</div>
 <div id="dynsection-1-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-1-content" class="dyncontent" style="display:none;">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classPonca_1_1Plane__coll__graph.svg" width="228" height="514"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classPonca_1_1Plane__coll__graph.svg" width="232" height="474"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-types" name="pub-types"></a>
 Public Types</h2></td></tr>
-<tr class="memitem:a882c308e20a7b2c161b8eb13e9a3df29" id="r_a882c308e20a7b2c161b8eb13e9a3df29"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1Plane.html#a882c308e20a7b2c161b8eb13e9a3df29">Scalar</a> = typename DataPoint::Scalar</td></tr>
-<tr class="memdesc:a882c308e20a7b2c161b8eb13e9a3df29"><td class="mdescLeft">&#160;</td><td class="mdescRight">Alias to scalar type.  <br /></td></tr>
-<tr class="separator:a882c308e20a7b2c161b8eb13e9a3df29"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac3962c2f2212db7441747f4174236eb2" id="r_ac3962c2f2212db7441747f4174236eb2"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1Plane.html#ac3962c2f2212db7441747f4174236eb2">VectorType</a> = typename Base::VectorType</td></tr>
-<tr class="memdesc:ac3962c2f2212db7441747f4174236eb2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Alias to vector type.  <br /></td></tr>
-<tr class="separator:ac3962c2f2212db7441747f4174236eb2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aab59c89c503d324f8bb4efa14e542915" id="r_aab59c89c503d324f8bb4efa14e542915"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1Plane.html#aab59c89c503d324f8bb4efa14e542915">WFunctor</a> = typename Base::WFunctor</td></tr>
-<tr class="memdesc:aab59c89c503d324f8bb4efa14e542915"><td class="mdescLeft">&#160;</td><td class="mdescRight">Alias to weight function.  <br /></td></tr>
-<tr class="separator:aab59c89c503d324f8bb4efa14e542915"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0b86da18f6a6d769e24b783d842b2bfe" id="r_a0b86da18f6a6d769e24b783d842b2bfe"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1Plane.html#a0b86da18f6a6d769e24b783d842b2bfe">EigenBase</a> = Eigen::Hyperplane&lt; typename DataPoint::Scalar, DataPoint::Dim &gt;</td></tr>
-<tr class="memdesc:a0b86da18f6a6d769e24b783d842b2bfe"><td class="mdescLeft">&#160;</td><td class="mdescRight">Specialization of Eigen::Hyperplane inherited by <a class="el" href="classPonca_1_1Plane.html" title="Implicit hyperplane defined by an homogeneous vector .">Ponca::Plane</a>.  <br /></td></tr>
-<tr class="separator:a0b86da18f6a6d769e24b783d842b2bfe"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aabd5ab4bb1ac1f801b813deaa1e2ef2d" id="r_aabd5ab4bb1ac1f801b813deaa1e2ef2d"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1Plane.html#aabd5ab4bb1ac1f801b813deaa1e2ef2d">Scalar</a> = typename DataPoint::Scalar</td></tr>
+<tr class="memdesc:aabd5ab4bb1ac1f801b813deaa1e2ef2d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Alias to scalar type.  <br /></td></tr>
+<tr class="separator:aabd5ab4bb1ac1f801b813deaa1e2ef2d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3d05e7a87b12da5c4e243ecb731a391e" id="r_a3d05e7a87b12da5c4e243ecb731a391e"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1Plane.html#a3d05e7a87b12da5c4e243ecb731a391e">VectorType</a> = typename Base::VectorType</td></tr>
+<tr class="memdesc:a3d05e7a87b12da5c4e243ecb731a391e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Alias to vector type.  <br /></td></tr>
+<tr class="separator:a3d05e7a87b12da5c4e243ecb731a391e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2cd6808f08a612791b1731bb41abd5a3" id="r_a2cd6808f08a612791b1731bb41abd5a3"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1Plane.html#a2cd6808f08a612791b1731bb41abd5a3">NeighborFilter</a> = typename Base::NeighborFilter</td></tr>
+<tr class="memdesc:a2cd6808f08a612791b1731bb41abd5a3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Alias to the filter applied on the neighbors.  <br /></td></tr>
+<tr class="separator:a2cd6808f08a612791b1731bb41abd5a3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1781cabbc9b484fd7c0a8ff03a3d9668" id="r_a1781cabbc9b484fd7c0a8ff03a3d9668"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1Plane.html#a1781cabbc9b484fd7c0a8ff03a3d9668">EigenBase</a> = Eigen::Hyperplane&lt; typename DataPoint::Scalar, DataPoint::Dim &gt;</td></tr>
+<tr class="memdesc:a1781cabbc9b484fd7c0a8ff03a3d9668"><td class="mdescLeft">&#160;</td><td class="mdescRight">Specialization of Eigen::Hyperplane inherited by <a class="el" href="classPonca_1_1Plane.html" title="Implicit hyperplane defined by an homogeneous vector .">Ponca::Plane</a>.  <br /></td></tr>
+<tr class="separator:a1781cabbc9b484fd7c0a8ff03a3d9668"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a588a8ed4bc3185aba32021d409ddd380" id="r_a588a8ed4bc3185aba32021d409ddd380"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1Plane.html#a588a8ed4bc3185aba32021d409ddd380">Plane</a> ()</td></tr>
-<tr class="memdesc:a588a8ed4bc3185aba32021d409ddd380"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default constructor.  <br /></td></tr>
-<tr class="separator:a588a8ed4bc3185aba32021d409ddd380"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6a57e3f4ec93d16f08fa60f6da0d38fe" id="r_a6a57e3f4ec93d16f08fa60f6da0d38fe"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classPonca_1_1Plane.html">Plane</a>&lt; DataPoint, _WFunctor, T &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1Plane.html#a6a57e3f4ec93d16f08fa60f6da0d38fe">compactPlane</a> ()</td></tr>
-<tr class="memdesc:a6a57e3f4ec93d16f08fa60f6da0d38fe"><td class="mdescLeft">&#160;</td><td class="mdescRight">Explicit conversion to <a class="el" href="classPonca_1_1Plane.html" title="Implicit hyperplane defined by an homogeneous vector .">Plane</a> , to access methods potentially hidden by heritage.  <br /></td></tr>
-<tr class="separator:a6a57e3f4ec93d16f08fa60f6da0d38fe"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a089d075e29588c195601dacad6e81d34" id="r_a089d075e29588c195601dacad6e81d34"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="classPonca_1_1Plane.html">Plane</a>&lt; DataPoint, _WFunctor, T &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1Plane.html#a089d075e29588c195601dacad6e81d34">compactPlane</a> () const</td></tr>
-<tr class="memdesc:a089d075e29588c195601dacad6e81d34"><td class="mdescLeft">&#160;</td><td class="mdescRight">Explicit conversion to <a class="el" href="classPonca_1_1Plane.html" title="Implicit hyperplane defined by an homogeneous vector .">Plane</a> , to access methods potentially hidden by heritage.  <br /></td></tr>
-<tr class="separator:a089d075e29588c195601dacad6e81d34"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a025279b05ed71d76eb59fe210b55c9fb" id="r_a025279b05ed71d76eb59fe210b55c9fb"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classPonca_1_1Plane.html">Plane</a>&lt; DataPoint, _WFunctor, T &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1Plane.html#a025279b05ed71d76eb59fe210b55c9fb">plane</a> ()</td></tr>
-<tr class="memdesc:a025279b05ed71d76eb59fe210b55c9fb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Explicit conversion to <a class="el" href="classPonca_1_1Plane.html" title="Implicit hyperplane defined by an homogeneous vector .">Plane</a> , to access methods potentially hidden by heritage.  <br /></td></tr>
-<tr class="separator:a025279b05ed71d76eb59fe210b55c9fb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a958fb6140a05bd8d5fbd8e0b60192507" id="r_a958fb6140a05bd8d5fbd8e0b60192507"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="classPonca_1_1Plane.html">Plane</a>&lt; DataPoint, _WFunctor, T &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1Plane.html#a958fb6140a05bd8d5fbd8e0b60192507">plane</a> () const</td></tr>
-<tr class="memdesc:a958fb6140a05bd8d5fbd8e0b60192507"><td class="mdescLeft">&#160;</td><td class="mdescRight">Explicit conversion to <a class="el" href="classPonca_1_1Plane.html" title="Implicit hyperplane defined by an homogeneous vector .">Plane</a> , to access methods potentially hidden by heritage.  <br /></td></tr>
-<tr class="separator:a958fb6140a05bd8d5fbd8e0b60192507"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6567c2da10ef8af9530134c18b5ec55b" id="r_a6567c2da10ef8af9530134c18b5ec55b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1Plane.html#a6567c2da10ef8af9530134c18b5ec55b">init</a> ()</td></tr>
-<tr class="memdesc:a6567c2da10ef8af9530134c18b5ec55b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the scalar field values to 0.  <br /></td></tr>
-<tr class="separator:a6567c2da10ef8af9530134c18b5ec55b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8c7b6fdadc393bebdc3c436794f0acb2" id="r_a8c7b6fdadc393bebdc3c436794f0acb2"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1Plane.html#a8c7b6fdadc393bebdc3c436794f0acb2">isValid</a> () const</td></tr>
-<tr class="memdesc:a8c7b6fdadc393bebdc3c436794f0acb2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Tell if the plane as been correctly set. Used to set CONFLICT_ERROR_FOUND during fitting.  <br /></td></tr>
-<tr class="separator:a8c7b6fdadc393bebdc3c436794f0acb2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aada32be32c8cec90c72a0b54d60fab44" id="r_aada32be32c8cec90c72a0b54d60fab44"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1Plane.html#aada32be32c8cec90c72a0b54d60fab44">operator==</a> (const <a class="el" href="classPonca_1_1Plane.html">Plane</a>&lt; DataPoint, <a class="el" href="classPonca_1_1Plane.html#aab59c89c503d324f8bb4efa14e542915">WFunctor</a>, T &gt; &amp;other) const</td></tr>
-<tr class="separator:aada32be32c8cec90c72a0b54d60fab44"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad1a40b2bd6aab48a8e0ca3e32d7d02ce" id="r_ad1a40b2bd6aab48a8e0ca3e32d7d02ce"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1Plane.html#ad1a40b2bd6aab48a8e0ca3e32d7d02ce">operator!=</a> (const <a class="el" href="classPonca_1_1Plane.html">Plane</a>&lt; DataPoint, <a class="el" href="classPonca_1_1Plane.html#aab59c89c503d324f8bb4efa14e542915">WFunctor</a>, T &gt; &amp;other) const</td></tr>
-<tr class="memdesc:ad1a40b2bd6aab48a8e0ca3e32d7d02ce"><td class="mdescLeft">&#160;</td><td class="mdescRight">Comparison operator, convenience function.  <br /></td></tr>
-<tr class="separator:ad1a40b2bd6aab48a8e0ca3e32d7d02ce"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a96d3ea4f9b961cbd2f38fdf71e04257c" id="r_a96d3ea4f9b961cbd2f38fdf71e04257c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1Plane.html#a96d3ea4f9b961cbd2f38fdf71e04257c">setPlane</a> (const <a class="el" href="classPonca_1_1Plane.html#ac3962c2f2212db7441747f4174236eb2">VectorType</a> &amp;_dir, const <a class="el" href="classPonca_1_1Plane.html#ac3962c2f2212db7441747f4174236eb2">VectorType</a> &amp;_pos)</td></tr>
-<tr class="separator:a96d3ea4f9b961cbd2f38fdf71e04257c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8cd4d0cad6e6c43d1217d01d3b9497ee" id="r_a8cd4d0cad6e6c43d1217d01d3b9497ee"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classPonca_1_1Plane.html#a882c308e20a7b2c161b8eb13e9a3df29">Scalar</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1Plane.html#a8cd4d0cad6e6c43d1217d01d3b9497ee">potential</a> () const</td></tr>
-<tr class="memdesc:a8cd4d0cad6e6c43d1217d01d3b9497ee"><td class="mdescLeft">&#160;</td><td class="mdescRight">Value of the scalar field at the evaluation point.  <br /></td></tr>
-<tr class="separator:a8cd4d0cad6e6c43d1217d01d3b9497ee"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7c05e3d35bd506b83f5a74ed234cd290" id="r_a7c05e3d35bd506b83f5a74ed234cd290"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classPonca_1_1Plane.html#a882c308e20a7b2c161b8eb13e9a3df29">Scalar</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1Plane.html#a7c05e3d35bd506b83f5a74ed234cd290">potential</a> (const <a class="el" href="classPonca_1_1Plane.html#ac3962c2f2212db7441747f4174236eb2">VectorType</a> &amp;_q) const</td></tr>
-<tr class="memdesc:a7c05e3d35bd506b83f5a74ed234cd290"><td class="mdescLeft">&#160;</td><td class="mdescRight">Value of the scalar field at the location \( \mathbf{q} \).  <br /></td></tr>
-<tr class="separator:a7c05e3d35bd506b83f5a74ed234cd290"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4c8dfa7374f71e788ebdfb8f91d80187" id="r_a4c8dfa7374f71e788ebdfb8f91d80187"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classPonca_1_1Plane.html#ac3962c2f2212db7441747f4174236eb2">VectorType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1Plane.html#a4c8dfa7374f71e788ebdfb8f91d80187">project</a> (const <a class="el" href="classPonca_1_1Plane.html#ac3962c2f2212db7441747f4174236eb2">VectorType</a> &amp;_q) const</td></tr>
-<tr class="memdesc:a4c8dfa7374f71e788ebdfb8f91d80187"><td class="mdescLeft">&#160;</td><td class="mdescRight">Project a point on the plane.  <br /></td></tr>
-<tr class="separator:a4c8dfa7374f71e788ebdfb8f91d80187"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3cabe0850b4d4cff4013a97a06ce1617" id="r_a3cabe0850b4d4cff4013a97a06ce1617"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classPonca_1_1Plane.html#ac3962c2f2212db7441747f4174236eb2">VectorType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1Plane.html#a3cabe0850b4d4cff4013a97a06ce1617">primitiveGradient</a> () const</td></tr>
-<tr class="memdesc:a3cabe0850b4d4cff4013a97a06ce1617"><td class="mdescLeft">&#160;</td><td class="mdescRight">Scalar field gradient direction at the evaluation point.  <br /></td></tr>
-<tr class="separator:a3cabe0850b4d4cff4013a97a06ce1617"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aaf943f5bcf752d7871c8475369022ef9" id="r_aaf943f5bcf752d7871c8475369022ef9"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classPonca_1_1Plane.html#ac3962c2f2212db7441747f4174236eb2">VectorType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1Plane.html#aaf943f5bcf752d7871c8475369022ef9">primitiveGradient</a> (const <a class="el" href="classPonca_1_1Plane.html#ac3962c2f2212db7441747f4174236eb2">VectorType</a> &amp;) const</td></tr>
-<tr class="memdesc:aaf943f5bcf752d7871c8475369022ef9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Scalar field gradient direction at \( \mathbf{q}\).  <br /></td></tr>
-<tr class="separator:aaf943f5bcf752d7871c8475369022ef9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ace6fa57a6da9aaa810e47e7aec6492b8" id="r_ace6fa57a6da9aaa810e47e7aec6492b8"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1Plane.html#ace6fa57a6da9aaa810e47e7aec6492b8">Plane</a> ()</td></tr>
+<tr class="memdesc:ace6fa57a6da9aaa810e47e7aec6492b8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default constructor.  <br /></td></tr>
+<tr class="separator:ace6fa57a6da9aaa810e47e7aec6492b8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abf583542c64a0c8701c3f100eacbf1e7" id="r_abf583542c64a0c8701c3f100eacbf1e7"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classPonca_1_1Plane.html">Plane</a>&lt; DataPoint, _NFilter, T &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1Plane.html#abf583542c64a0c8701c3f100eacbf1e7">compactPlane</a> ()</td></tr>
+<tr class="memdesc:abf583542c64a0c8701c3f100eacbf1e7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Explicit conversion to <a class="el" href="classPonca_1_1Plane.html" title="Implicit hyperplane defined by an homogeneous vector .">Plane</a> , to access methods potentially hidden by heritage.  <br /></td></tr>
+<tr class="separator:abf583542c64a0c8701c3f100eacbf1e7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8bfcfcb55540947d3c76558bd05f98be" id="r_a8bfcfcb55540947d3c76558bd05f98be"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="classPonca_1_1Plane.html">Plane</a>&lt; DataPoint, _NFilter, T &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1Plane.html#a8bfcfcb55540947d3c76558bd05f98be">compactPlane</a> () const</td></tr>
+<tr class="memdesc:a8bfcfcb55540947d3c76558bd05f98be"><td class="mdescLeft">&#160;</td><td class="mdescRight">Explicit conversion to <a class="el" href="classPonca_1_1Plane.html" title="Implicit hyperplane defined by an homogeneous vector .">Plane</a> , to access methods potentially hidden by heritage.  <br /></td></tr>
+<tr class="separator:a8bfcfcb55540947d3c76558bd05f98be"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aac17b82414f82077fc573daeee10effb" id="r_aac17b82414f82077fc573daeee10effb"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classPonca_1_1Plane.html">Plane</a>&lt; DataPoint, _NFilter, T &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1Plane.html#aac17b82414f82077fc573daeee10effb">plane</a> ()</td></tr>
+<tr class="memdesc:aac17b82414f82077fc573daeee10effb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Explicit conversion to <a class="el" href="classPonca_1_1Plane.html" title="Implicit hyperplane defined by an homogeneous vector .">Plane</a> , to access methods potentially hidden by heritage.  <br /></td></tr>
+<tr class="separator:aac17b82414f82077fc573daeee10effb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac9952a7f449d76c77af194abdb66a561" id="r_ac9952a7f449d76c77af194abdb66a561"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="classPonca_1_1Plane.html">Plane</a>&lt; DataPoint, _NFilter, T &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1Plane.html#ac9952a7f449d76c77af194abdb66a561">plane</a> () const</td></tr>
+<tr class="memdesc:ac9952a7f449d76c77af194abdb66a561"><td class="mdescLeft">&#160;</td><td class="mdescRight">Explicit conversion to <a class="el" href="classPonca_1_1Plane.html" title="Implicit hyperplane defined by an homogeneous vector .">Plane</a> , to access methods potentially hidden by heritage.  <br /></td></tr>
+<tr class="separator:ac9952a7f449d76c77af194abdb66a561"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af5880efdca15a073d6fa7869dfac15b2" id="r_af5880efdca15a073d6fa7869dfac15b2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1Plane.html#af5880efdca15a073d6fa7869dfac15b2">init</a> ()</td></tr>
+<tr class="memdesc:af5880efdca15a073d6fa7869dfac15b2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the scalar field values to 0.  <br /></td></tr>
+<tr class="separator:af5880efdca15a073d6fa7869dfac15b2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a38f025cd193aea2cc836cac838a3e750" id="r_a38f025cd193aea2cc836cac838a3e750"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1Plane.html#a38f025cd193aea2cc836cac838a3e750">isValid</a> () const</td></tr>
+<tr class="memdesc:a38f025cd193aea2cc836cac838a3e750"><td class="mdescLeft">&#160;</td><td class="mdescRight">Tell if the plane as been correctly set. Used to set CONFLICT_ERROR_FOUND during fitting.  <br /></td></tr>
+<tr class="separator:a38f025cd193aea2cc836cac838a3e750"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acd1d3cb8debc578ca33f0df11e1391a0" id="r_acd1d3cb8debc578ca33f0df11e1391a0"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1Plane.html#acd1d3cb8debc578ca33f0df11e1391a0">operator==</a> (const <a class="el" href="classPonca_1_1Plane.html">Plane</a>&lt; DataPoint, <a class="el" href="classPonca_1_1Plane.html#a2cd6808f08a612791b1731bb41abd5a3">NeighborFilter</a>, T &gt; &amp;other) const</td></tr>
+<tr class="separator:acd1d3cb8debc578ca33f0df11e1391a0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab80eae3b028a0735aeb7f63c78f2e9cd" id="r_ab80eae3b028a0735aeb7f63c78f2e9cd"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1Plane.html#ab80eae3b028a0735aeb7f63c78f2e9cd">operator!=</a> (const <a class="el" href="classPonca_1_1Plane.html">Plane</a>&lt; DataPoint, <a class="el" href="classPonca_1_1Plane.html#a2cd6808f08a612791b1731bb41abd5a3">NeighborFilter</a>, T &gt; &amp;other) const</td></tr>
+<tr class="memdesc:ab80eae3b028a0735aeb7f63c78f2e9cd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Comparison operator, convenience function.  <br /></td></tr>
+<tr class="separator:ab80eae3b028a0735aeb7f63c78f2e9cd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a72be0d9ff4c575d42fe4ccf46dde32cc" id="r_a72be0d9ff4c575d42fe4ccf46dde32cc"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1Plane.html#a72be0d9ff4c575d42fe4ccf46dde32cc">setPlane</a> (const <a class="el" href="classPonca_1_1Plane.html#a3d05e7a87b12da5c4e243ecb731a391e">VectorType</a> &amp;_dir, const <a class="el" href="classPonca_1_1Plane.html#a3d05e7a87b12da5c4e243ecb731a391e">VectorType</a> &amp;_pos)</td></tr>
+<tr class="separator:a72be0d9ff4c575d42fe4ccf46dde32cc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae9006b9d9d50874967926d2cb389b89b" id="r_ae9006b9d9d50874967926d2cb389b89b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1Plane.html#ae9006b9d9d50874967926d2cb389b89b">changeBasis</a> (const <a class="el" href="classPonca_1_1Plane.html#a3d05e7a87b12da5c4e243ecb731a391e">VectorType</a> &amp;newbasis)</td></tr>
+<tr class="memdesc:ae9006b9d9d50874967926d2cb389b89b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Express the scalar field relatively to a new basis.  <br /></td></tr>
+<tr class="separator:ae9006b9d9d50874967926d2cb389b89b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa15c2d321a4f611f3a4634c01b9215af" id="r_aa15c2d321a4f611f3a4634c01b9215af"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classPonca_1_1Plane.html#aabd5ab4bb1ac1f801b813deaa1e2ef2d">Scalar</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1Plane.html#aa15c2d321a4f611f3a4634c01b9215af">potential</a> () const</td></tr>
+<tr class="memdesc:aa15c2d321a4f611f3a4634c01b9215af"><td class="mdescLeft">&#160;</td><td class="mdescRight">Value of the scalar field at the evaluation point.  <br /></td></tr>
+<tr class="separator:aa15c2d321a4f611f3a4634c01b9215af"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a66080ca92f112302007dc404e0de6fe5" id="r_a66080ca92f112302007dc404e0de6fe5"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classPonca_1_1Plane.html#aabd5ab4bb1ac1f801b813deaa1e2ef2d">Scalar</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1Plane.html#a66080ca92f112302007dc404e0de6fe5">potential</a> (const <a class="el" href="classPonca_1_1Plane.html#a3d05e7a87b12da5c4e243ecb731a391e">VectorType</a> &amp;_q) const</td></tr>
+<tr class="memdesc:a66080ca92f112302007dc404e0de6fe5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Value of the scalar field at the location \( \mathbf{q} \).  <br /></td></tr>
+<tr class="separator:a66080ca92f112302007dc404e0de6fe5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a29b652b27321dd185acb93f53cc6c127" id="r_a29b652b27321dd185acb93f53cc6c127"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classPonca_1_1Plane.html#a3d05e7a87b12da5c4e243ecb731a391e">VectorType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1Plane.html#a29b652b27321dd185acb93f53cc6c127">project</a> (const <a class="el" href="classPonca_1_1Plane.html#a3d05e7a87b12da5c4e243ecb731a391e">VectorType</a> &amp;_q) const</td></tr>
+<tr class="memdesc:a29b652b27321dd185acb93f53cc6c127"><td class="mdescLeft">&#160;</td><td class="mdescRight">Project a point on the plane.  <br /></td></tr>
+<tr class="separator:a29b652b27321dd185acb93f53cc6c127"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad9392b14876d342f504a0d74ce057217" id="r_ad9392b14876d342f504a0d74ce057217"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classPonca_1_1Plane.html#a3d05e7a87b12da5c4e243ecb731a391e">VectorType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1Plane.html#ad9392b14876d342f504a0d74ce057217">primitiveGradient</a> () const</td></tr>
+<tr class="memdesc:ad9392b14876d342f504a0d74ce057217"><td class="mdescLeft">&#160;</td><td class="mdescRight">Scalar field gradient direction at the evaluation point.  <br /></td></tr>
+<tr class="separator:ad9392b14876d342f504a0d74ce057217"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a906579a839c036bed91336213dfae71d" id="r_a906579a839c036bed91336213dfae71d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classPonca_1_1Plane.html#a3d05e7a87b12da5c4e243ecb731a391e">VectorType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1Plane.html#a906579a839c036bed91336213dfae71d">primitiveGradient</a> (const <a class="el" href="classPonca_1_1Plane.html#a3d05e7a87b12da5c4e243ecb731a391e">VectorType</a> &amp;) const</td></tr>
+<tr class="memdesc:a906579a839c036bed91336213dfae71d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Scalar field gradient direction at \( \mathbf{q}\).  <br /></td></tr>
+<tr class="separator:a906579a839c036bed91336213dfae71d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-types" name="pro-types"></a>
 Protected Types</h2></td></tr>
@@ -211,13 +215,22 @@ Protected Types</h2></td></tr>
 , <b>PROVIDES_PLANE</b>
  }</td></tr>
 <tr class="separator:a4a79c2a88007bf0968f081de2e1b167e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3a4a8d5b225202173867e144968ac04f" id="r_a3a4a8d5b225202173867e144968ac04f"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1Plane.html#a3a4a8d5b225202173867e144968ac04f">Base</a> = T</td></tr>
-<tr class="memdesc:a3a4a8d5b225202173867e144968ac04f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Base class of the procedure.  <br /></td></tr>
-<tr class="separator:a3a4a8d5b225202173867e144968ac04f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a511de17d6619e1077f1e2225805803bb" id="r_a511de17d6619e1077f1e2225805803bb"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1Plane.html#a511de17d6619e1077f1e2225805803bb">Base</a> = T</td></tr>
+<tr class="memdesc:a511de17d6619e1077f1e2225805803bb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Base class of the procedure.  <br /></td></tr>
+<tr class="separator:a511de17d6619e1077f1e2225805803bb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-methods" name="pro-methods"></a>
+Protected Member Functions</h2></td></tr>
+<tr class="memitem:aec8ee67158d5c3cd4bff676bd984e1fb" id="r_aec8ee67158d5c3cd4bff676bd984e1fb"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classPonca_1_1Plane.html#aabd5ab4bb1ac1f801b813deaa1e2ef2d">Scalar</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1Plane.html#aec8ee67158d5c3cd4bff676bd984e1fb">potentialLocal</a> (const <a class="el" href="classPonca_1_1Plane.html#a3d05e7a87b12da5c4e243ecb731a391e">VectorType</a> &amp;_lq) const</td></tr>
+<tr class="memdesc:aec8ee67158d5c3cd4bff676bd984e1fb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Value of the scalar field at the evaluation point.    <br /></td></tr>
+<tr class="separator:aec8ee67158d5c3cd4bff676bd984e1fb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3e83a2e11b5fa0c55a4353396cb12c2d" id="r_a3e83a2e11b5fa0c55a4353396cb12c2d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classPonca_1_1Plane.html#a3d05e7a87b12da5c4e243ecb731a391e">VectorType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1Plane.html#a3e83a2e11b5fa0c55a4353396cb12c2d">primitiveGradientLocal</a> (const <a class="el" href="classPonca_1_1Plane.html#a3d05e7a87b12da5c4e243ecb731a391e">VectorType</a> &amp;) const</td></tr>
+<tr class="memdesc:a3e83a2e11b5fa0c55a4353396cb12c2d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Scalar field gradient direction at the evaluation point.    <br /></td></tr>
+<tr class="separator:a3e83a2e11b5fa0c55a4353396cb12c2d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><div class="compoundTemplParams">template&lt;class DataPoint, class _WFunctor, typename T&gt;<br />
-class Ponca::Plane&lt; DataPoint, _WFunctor, T &gt;</div><p>Implicit hyperplane defined by an homogeneous vector \(\mathbf{p}\). </p>
+<div class="textblock"><div class="compoundTemplParams">template&lt;class DataPoint, class _NFilter, typename T&gt;<br />
+class Ponca::Plane&lt; DataPoint, _NFilter, T &gt;</div><p>Implicit hyperplane defined by an homogeneous vector \(\mathbf{p}\). </p>
 <p>In n-dimensionnal space, the plane is defined as the \(0\)-isosurface of the scalar field</p>
 <p>\( s_\mathbf{u}(\mathbf{x}) =
 \left[ \mathbf{x}^T \; 1 \;\right]^T \cdot \mathbf{p} \).</p>
@@ -226,19 +239,19 @@ class Ponca::Plane&lt; DataPoint, _WFunctor, T &gt;</div><p>Implicit hyperplane 
 <p>This primitive provides: </p><pre class="fragment">PROVIDES_PLANE </pre> 
 <p class="definition">Definition at line <a class="el" href="plane_8h_source.html#l00035">35</a> of file <a class="el" href="plane_8h_source.html">plane.h</a>.</p>
 </div><h2 class="groupheader">Member Typedef Documentation</h2>
-<a id="a3a4a8d5b225202173867e144968ac04f" name="a3a4a8d5b225202173867e144968ac04f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a3a4a8d5b225202173867e144968ac04f">&#9670;&#160;</a></span>Base</h2>
+<a id="a511de17d6619e1077f1e2225805803bb" name="a511de17d6619e1077f1e2225805803bb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a511de17d6619e1077f1e2225805803bb">&#9670;&#160;</a></span>Base</h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
+template&lt;class DataPoint , class _NFilter , typename T &gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">using <a class="el" href="classPonca_1_1Plane.html">Ponca::Plane</a>&lt; DataPoint, _WFunctor, T &gt;::Base =  T</td>
+          <td class="memname">using <a class="el" href="classPonca_1_1Plane.html">Ponca::Plane</a>&lt; DataPoint, _NFilter, T &gt;::Base =  T</td>
         </tr>
       </table>
   </td>
@@ -254,16 +267,16 @@ template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
 
 </div>
 </div>
-<a id="a0b86da18f6a6d769e24b783d842b2bfe" name="a0b86da18f6a6d769e24b783d842b2bfe"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a0b86da18f6a6d769e24b783d842b2bfe">&#9670;&#160;</a></span>EigenBase</h2>
+<a id="a1781cabbc9b484fd7c0a8ff03a3d9668" name="a1781cabbc9b484fd7c0a8ff03a3d9668"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1781cabbc9b484fd7c0a8ff03a3d9668">&#9670;&#160;</a></span>EigenBase</h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
+template&lt;class DataPoint , class _NFilter , typename T &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">using <a class="el" href="classPonca_1_1Plane.html">Ponca::Plane</a>&lt; DataPoint, _WFunctor, T &gt;::EigenBase =  Eigen::Hyperplane&lt;typename DataPoint::Scalar, DataPoint::Dim &gt;</td>
+          <td class="memname">using <a class="el" href="classPonca_1_1Plane.html">Ponca::Plane</a>&lt; DataPoint, _NFilter, T &gt;::EigenBase =  Eigen::Hyperplane&lt;typename DataPoint::Scalar, DataPoint::Dim &gt;</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -274,16 +287,36 @@ template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
 
 </div>
 </div>
-<a id="a882c308e20a7b2c161b8eb13e9a3df29" name="a882c308e20a7b2c161b8eb13e9a3df29"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a882c308e20a7b2c161b8eb13e9a3df29">&#9670;&#160;</a></span>Scalar</h2>
+<a id="a2cd6808f08a612791b1731bb41abd5a3" name="a2cd6808f08a612791b1731bb41abd5a3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2cd6808f08a612791b1731bb41abd5a3">&#9670;&#160;</a></span>NeighborFilter</h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
+template&lt;class DataPoint , class _NFilter , typename T &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">using <a class="el" href="classPonca_1_1Plane.html">Ponca::Plane</a>&lt; DataPoint, _WFunctor, T &gt;::Scalar =  typename DataPoint::Scalar</td>
+          <td class="memname">using <a class="el" href="classPonca_1_1Plane.html">Ponca::Plane</a>&lt; DataPoint, _NFilter, T &gt;::NeighborFilter =  typename Base::NeighborFilter</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Alias to the filter applied on the neighbors. </p>
+
+<p class="definition">Definition at line <a class="el" href="plane_8h_source.html#l00038">38</a> of file <a class="el" href="plane_8h_source.html">plane.h</a>.</p>
+
+</div>
+</div>
+<a id="aabd5ab4bb1ac1f801b813deaa1e2ef2d" name="aabd5ab4bb1ac1f801b813deaa1e2ef2d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aabd5ab4bb1ac1f801b813deaa1e2ef2d">&#9670;&#160;</a></span>Scalar</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class DataPoint , class _NFilter , typename T &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="classPonca_1_1Plane.html">Ponca::Plane</a>&lt; DataPoint, _NFilter, T &gt;::Scalar =  typename DataPoint::Scalar</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -294,41 +327,21 @@ template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
 
 </div>
 </div>
-<a id="ac3962c2f2212db7441747f4174236eb2" name="ac3962c2f2212db7441747f4174236eb2"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac3962c2f2212db7441747f4174236eb2">&#9670;&#160;</a></span>VectorType</h2>
+<a id="a3d05e7a87b12da5c4e243ecb731a391e" name="a3d05e7a87b12da5c4e243ecb731a391e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3d05e7a87b12da5c4e243ecb731a391e">&#9670;&#160;</a></span>VectorType</h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
+template&lt;class DataPoint , class _NFilter , typename T &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">using <a class="el" href="classPonca_1_1Plane.html">Ponca::Plane</a>&lt; DataPoint, _WFunctor, T &gt;::VectorType =  typename Base::VectorType</td>
+          <td class="memname">using <a class="el" href="classPonca_1_1Plane.html">Ponca::Plane</a>&lt; DataPoint, _NFilter, T &gt;::VectorType =  typename Base::VectorType</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
 <p>Alias to vector type. </p>
-
-<p class="definition">Definition at line <a class="el" href="plane_8h_source.html#l00038">38</a> of file <a class="el" href="plane_8h_source.html">plane.h</a>.</p>
-
-</div>
-</div>
-<a id="aab59c89c503d324f8bb4efa14e542915" name="aab59c89c503d324f8bb4efa14e542915"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aab59c89c503d324f8bb4efa14e542915">&#9670;&#160;</a></span>WFunctor</h2>
-
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
-      <table class="memname">
-        <tr>
-          <td class="memname">using <a class="el" href="classPonca_1_1Plane.html">Ponca::Plane</a>&lt; DataPoint, _WFunctor, T &gt;::WFunctor =  typename Base::WFunctor</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Alias to weight function. </p>
 
 <p class="definition">Definition at line <a class="el" href="plane_8h_source.html#l00038">38</a> of file <a class="el" href="plane_8h_source.html">plane.h</a>.</p>
 
@@ -341,7 +354,7 @@ template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
+template&lt;class DataPoint , class _NFilter , typename T &gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
@@ -362,19 +375,19 @@ template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
 </div>
 </div>
 <h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a id="a588a8ed4bc3185aba32021d409ddd380" name="a588a8ed4bc3185aba32021d409ddd380"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a588a8ed4bc3185aba32021d409ddd380">&#9670;&#160;</a></span>Plane()</h2>
+<a id="ace6fa57a6da9aaa810e47e7aec6492b8" name="ace6fa57a6da9aaa810e47e7aec6492b8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ace6fa57a6da9aaa810e47e7aec6492b8">&#9670;&#160;</a></span>Plane()</h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
+template&lt;class DataPoint , class _NFilter , typename T &gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classPonca_1_1Plane.html">Ponca::Plane</a>&lt; DataPoint, _WFunctor, T &gt;::Plane </td>
+          <td class="memname"><a class="el" href="classPonca_1_1Plane.html">Ponca::Plane</a>&lt; DataPoint, _NFilter, T &gt;::Plane </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -394,19 +407,52 @@ template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a id="a6a57e3f4ec93d16f08fa60f6da0d38fe" name="a6a57e3f4ec93d16f08fa60f6da0d38fe"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a6a57e3f4ec93d16f08fa60f6da0d38fe">&#9670;&#160;</a></span>compactPlane() <span class="overload">[1/2]</span></h2>
+<a id="ae9006b9d9d50874967926d2cb389b89b" name="ae9006b9d9d50874967926d2cb389b89b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae9006b9d9d50874967926d2cb389b89b">&#9670;&#160;</a></span>changeBasis()</h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
+template&lt;class DataPoint , class _NFilter , typename T &gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classPonca_1_1Plane.html">Plane</a>&lt; DataPoint, _WFunctor, T &gt; &amp; <a class="el" href="classPonca_1_1Plane.html">Ponca::Plane</a>&lt; DataPoint, _WFunctor, T &gt;::compactPlane </td>
+          <td class="memname">void <a class="el" href="classPonca_1_1Plane.html">Ponca::Plane</a>&lt; DataPoint, _NFilter, T &gt;::changeBasis </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classPonca_1_1Plane.html#a3d05e7a87b12da5c4e243ecb731a391e">VectorType</a> &amp;&#160;</td>
+          <td class="paramname"><em>newbasis</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Express the scalar field relatively to a new basis. </p>
+<p>The plane in dimension \(d\) is parametrized in the original basis. Moving the basis only affects the constant term: \(c&#39; = c - \mathbf{u}_l^T.\mathbf{\Delta}\) with \(\Delta=old-new\). </p>
+
+<p class="definition">Definition at line <a class="el" href="plane_8h_source.html#l00096">96</a> of file <a class="el" href="plane_8h_source.html">plane.h</a>.</p>
+
+</div>
+</div>
+<a id="abf583542c64a0c8701c3f100eacbf1e7" name="abf583542c64a0c8701c3f100eacbf1e7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abf583542c64a0c8701c3f100eacbf1e7">&#9670;&#160;</a></span>compactPlane() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class DataPoint , class _NFilter , typename T &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classPonca_1_1Plane.html">Plane</a>&lt; DataPoint, _NFilter, T &gt; &amp; <a class="el" href="classPonca_1_1Plane.html">Ponca::Plane</a>&lt; DataPoint, _NFilter, T &gt;::compactPlane </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -425,19 +471,19 @@ template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
 
 </div>
 </div>
-<a id="a089d075e29588c195601dacad6e81d34" name="a089d075e29588c195601dacad6e81d34"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a089d075e29588c195601dacad6e81d34">&#9670;&#160;</a></span>compactPlane() <span class="overload">[2/2]</span></h2>
+<a id="a8bfcfcb55540947d3c76558bd05f98be" name="a8bfcfcb55540947d3c76558bd05f98be"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8bfcfcb55540947d3c76558bd05f98be">&#9670;&#160;</a></span>compactPlane() <span class="overload">[2/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
+template&lt;class DataPoint , class _NFilter , typename T &gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">const <a class="el" href="classPonca_1_1Plane.html">Plane</a>&lt; DataPoint, _WFunctor, T &gt; &amp; <a class="el" href="classPonca_1_1Plane.html">Ponca::Plane</a>&lt; DataPoint, _WFunctor, T &gt;::compactPlane </td>
+          <td class="memname">const <a class="el" href="classPonca_1_1Plane.html">Plane</a>&lt; DataPoint, _NFilter, T &gt; &amp; <a class="el" href="classPonca_1_1Plane.html">Ponca::Plane</a>&lt; DataPoint, _NFilter, T &gt;::compactPlane </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td> const</td>
@@ -456,19 +502,19 @@ template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
 
 </div>
 </div>
-<a id="a6567c2da10ef8af9530134c18b5ec55b" name="a6567c2da10ef8af9530134c18b5ec55b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a6567c2da10ef8af9530134c18b5ec55b">&#9670;&#160;</a></span>init()</h2>
+<a id="af5880efdca15a073d6fa7869dfac15b2" name="af5880efdca15a073d6fa7869dfac15b2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af5880efdca15a073d6fa7869dfac15b2">&#9670;&#160;</a></span>init()</h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
+template&lt;class DataPoint , class _NFilter , typename T &gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">void <a class="el" href="classPonca_1_1Plane.html">Ponca::Plane</a>&lt; DataPoint, _WFunctor, T &gt;::init </td>
+          <td class="memname">void <a class="el" href="classPonca_1_1Plane.html">Ponca::Plane</a>&lt; DataPoint, _NFilter, T &gt;::init </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -487,19 +533,19 @@ template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
 
 </div>
 </div>
-<a id="a8c7b6fdadc393bebdc3c436794f0acb2" name="a8c7b6fdadc393bebdc3c436794f0acb2"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a8c7b6fdadc393bebdc3c436794f0acb2">&#9670;&#160;</a></span>isValid()</h2>
+<a id="a38f025cd193aea2cc836cac838a3e750" name="a38f025cd193aea2cc836cac838a3e750"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a38f025cd193aea2cc836cac838a3e750">&#9670;&#160;</a></span>isValid()</h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
+template&lt;class DataPoint , class _NFilter , typename T &gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">bool <a class="el" href="classPonca_1_1Plane.html">Ponca::Plane</a>&lt; DataPoint, _WFunctor, T &gt;::isValid </td>
+          <td class="memname">bool <a class="el" href="classPonca_1_1Plane.html">Ponca::Plane</a>&lt; DataPoint, _NFilter, T &gt;::isValid </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td> const</td>
@@ -513,27 +559,27 @@ template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
 </div><div class="memdoc">
 
 <p>Tell if the plane as been correctly set. Used to set CONFLICT_ERROR_FOUND during fitting. </p>
-<dl class="section return"><dt>Returns</dt><dd>false when called straight after <a class="el" href="classPonca_1_1Plane.html#a6567c2da10ef8af9530134c18b5ec55b" title="Set the scalar field values to 0.">init</a>. Should be true after fitting </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>false when called straight after <a class="el" href="classPonca_1_1Plane.html#af5880efdca15a073d6fa7869dfac15b2" title="Set the scalar field values to 0.">init</a>. Should be true after fitting </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="plane_8h_source.html#l00065">65</a> of file <a class="el" href="plane_8h_source.html">plane.h</a>.</p>
 
 </div>
 </div>
-<a id="ad1a40b2bd6aab48a8e0ca3e32d7d02ce" name="ad1a40b2bd6aab48a8e0ca3e32d7d02ce"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad1a40b2bd6aab48a8e0ca3e32d7d02ce">&#9670;&#160;</a></span>operator!=()</h2>
+<a id="ab80eae3b028a0735aeb7f63c78f2e9cd" name="ab80eae3b028a0735aeb7f63c78f2e9cd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab80eae3b028a0735aeb7f63c78f2e9cd">&#9670;&#160;</a></span>operator!=()</h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
+template&lt;class DataPoint , class _NFilter , typename T &gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">bool <a class="el" href="classPonca_1_1Plane.html">Ponca::Plane</a>&lt; DataPoint, _WFunctor, T &gt;::operator!= </td>
+          <td class="memname">bool <a class="el" href="classPonca_1_1Plane.html">Ponca::Plane</a>&lt; DataPoint, _NFilter, T &gt;::operator!= </td>
           <td>(</td>
-          <td class="paramtype">const <a class="el" href="classPonca_1_1Plane.html">Plane</a>&lt; DataPoint, <a class="el" href="classPonca_1_1Plane.html#aab59c89c503d324f8bb4efa14e542915">WFunctor</a>, T &gt; &amp;&#160;</td>
+          <td class="paramtype">const <a class="el" href="classPonca_1_1Plane.html">Plane</a>&lt; DataPoint, <a class="el" href="classPonca_1_1Plane.html#a2cd6808f08a612791b1731bb41abd5a3">NeighborFilter</a>, T &gt; &amp;&#160;</td>
           <td class="paramname"><em>other</em></td><td>)</td>
           <td> const</td>
         </tr>
@@ -551,21 +597,21 @@ template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
 
 </div>
 </div>
-<a id="aada32be32c8cec90c72a0b54d60fab44" name="aada32be32c8cec90c72a0b54d60fab44"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aada32be32c8cec90c72a0b54d60fab44">&#9670;&#160;</a></span>operator==()</h2>
+<a id="acd1d3cb8debc578ca33f0df11e1391a0" name="acd1d3cb8debc578ca33f0df11e1391a0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acd1d3cb8debc578ca33f0df11e1391a0">&#9670;&#160;</a></span>operator==()</h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
+template&lt;class DataPoint , class _NFilter , typename T &gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">bool <a class="el" href="classPonca_1_1Plane.html">Ponca::Plane</a>&lt; DataPoint, _WFunctor, T &gt;::operator== </td>
+          <td class="memname">bool <a class="el" href="classPonca_1_1Plane.html">Ponca::Plane</a>&lt; DataPoint, _NFilter, T &gt;::operator== </td>
           <td>(</td>
-          <td class="paramtype">const <a class="el" href="classPonca_1_1Plane.html">Plane</a>&lt; DataPoint, <a class="el" href="classPonca_1_1Plane.html#aab59c89c503d324f8bb4efa14e542915">WFunctor</a>, T &gt; &amp;&#160;</td>
+          <td class="paramtype">const <a class="el" href="classPonca_1_1Plane.html">Plane</a>&lt; DataPoint, <a class="el" href="classPonca_1_1Plane.html#a2cd6808f08a612791b1731bb41abd5a3">NeighborFilter</a>, T &gt; &amp;&#160;</td>
           <td class="paramname"><em>other</em></td><td>)</td>
           <td> const</td>
         </tr>
@@ -581,19 +627,19 @@ template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
 
 </div>
 </div>
-<a id="a025279b05ed71d76eb59fe210b55c9fb" name="a025279b05ed71d76eb59fe210b55c9fb"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a025279b05ed71d76eb59fe210b55c9fb">&#9670;&#160;</a></span>plane() <span class="overload">[1/2]</span></h2>
+<a id="aac17b82414f82077fc573daeee10effb" name="aac17b82414f82077fc573daeee10effb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aac17b82414f82077fc573daeee10effb">&#9670;&#160;</a></span>plane() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
+template&lt;class DataPoint , class _NFilter , typename T &gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classPonca_1_1Plane.html">Plane</a>&lt; DataPoint, _WFunctor, T &gt; &amp; <a class="el" href="classPonca_1_1Plane.html">Ponca::Plane</a>&lt; DataPoint, _WFunctor, T &gt;::plane </td>
+          <td class="memname"><a class="el" href="classPonca_1_1Plane.html">Plane</a>&lt; DataPoint, _NFilter, T &gt; &amp; <a class="el" href="classPonca_1_1Plane.html">Ponca::Plane</a>&lt; DataPoint, _NFilter, T &gt;::plane </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -612,19 +658,19 @@ template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
 
 </div>
 </div>
-<a id="a958fb6140a05bd8d5fbd8e0b60192507" name="a958fb6140a05bd8d5fbd8e0b60192507"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a958fb6140a05bd8d5fbd8e0b60192507">&#9670;&#160;</a></span>plane() <span class="overload">[2/2]</span></h2>
+<a id="ac9952a7f449d76c77af194abdb66a561" name="ac9952a7f449d76c77af194abdb66a561"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac9952a7f449d76c77af194abdb66a561">&#9670;&#160;</a></span>plane() <span class="overload">[2/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
+template&lt;class DataPoint , class _NFilter , typename T &gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">const <a class="el" href="classPonca_1_1Plane.html">Plane</a>&lt; DataPoint, _WFunctor, T &gt; &amp; <a class="el" href="classPonca_1_1Plane.html">Ponca::Plane</a>&lt; DataPoint, _WFunctor, T &gt;::plane </td>
+          <td class="memname">const <a class="el" href="classPonca_1_1Plane.html">Plane</a>&lt; DataPoint, _NFilter, T &gt; &amp; <a class="el" href="classPonca_1_1Plane.html">Ponca::Plane</a>&lt; DataPoint, _NFilter, T &gt;::plane </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td> const</td>
@@ -643,19 +689,19 @@ template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
 
 </div>
 </div>
-<a id="a8cd4d0cad6e6c43d1217d01d3b9497ee" name="a8cd4d0cad6e6c43d1217d01d3b9497ee"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a8cd4d0cad6e6c43d1217d01d3b9497ee">&#9670;&#160;</a></span>potential() <span class="overload">[1/2]</span></h2>
+<a id="aa15c2d321a4f611f3a4634c01b9215af" name="aa15c2d321a4f611f3a4634c01b9215af"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa15c2d321a4f611f3a4634c01b9215af">&#9670;&#160;</a></span>potential() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
+template&lt;class DataPoint , class _NFilter , typename T &gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classPonca_1_1Plane.html#a882c308e20a7b2c161b8eb13e9a3df29">Scalar</a> <a class="el" href="classPonca_1_1Plane.html">Ponca::Plane</a>&lt; DataPoint, _WFunctor, T &gt;::potential </td>
+          <td class="memname"><a class="el" href="classPonca_1_1Plane.html#aabd5ab4bb1ac1f801b813deaa1e2ef2d">Scalar</a> <a class="el" href="classPonca_1_1Plane.html">Ponca::Plane</a>&lt; DataPoint, _NFilter, T &gt;::potential </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td> const</td>
@@ -671,25 +717,25 @@ template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
 <p>Value of the scalar field at the evaluation point. </p>
 <dl class="section see"><dt>See also</dt><dd>method <code>#isSigned</code> of the fit to check if the sign is reliable </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="plane_8h_source.html#l00091">91</a> of file <a class="el" href="plane_8h_source.html">plane.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="plane_8h_source.html#l00106">106</a> of file <a class="el" href="plane_8h_source.html">plane.h</a>.</p>
 
 </div>
 </div>
-<a id="a7c05e3d35bd506b83f5a74ed234cd290" name="a7c05e3d35bd506b83f5a74ed234cd290"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a7c05e3d35bd506b83f5a74ed234cd290">&#9670;&#160;</a></span>potential() <span class="overload">[2/2]</span></h2>
+<a id="a66080ca92f112302007dc404e0de6fe5" name="a66080ca92f112302007dc404e0de6fe5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a66080ca92f112302007dc404e0de6fe5">&#9670;&#160;</a></span>potential() <span class="overload">[2/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
+template&lt;class DataPoint , class _NFilter , typename T &gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classPonca_1_1Plane.html#a882c308e20a7b2c161b8eb13e9a3df29">Scalar</a> <a class="el" href="classPonca_1_1Plane.html">Ponca::Plane</a>&lt; DataPoint, _WFunctor, T &gt;::potential </td>
+          <td class="memname"><a class="el" href="classPonca_1_1Plane.html#aabd5ab4bb1ac1f801b813deaa1e2ef2d">Scalar</a> <a class="el" href="classPonca_1_1Plane.html">Ponca::Plane</a>&lt; DataPoint, _NFilter, T &gt;::potential </td>
           <td>(</td>
-          <td class="paramtype">const <a class="el" href="classPonca_1_1Plane.html#ac3962c2f2212db7441747f4174236eb2">VectorType</a> &amp;&#160;</td>
+          <td class="paramtype">const <a class="el" href="classPonca_1_1Plane.html#a3d05e7a87b12da5c4e243ecb731a391e">VectorType</a> &amp;&#160;</td>
           <td class="paramname"><em>_q</em></td><td>)</td>
           <td> const</td>
         </tr>
@@ -704,23 +750,56 @@ template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
 <p>Value of the scalar field at the location \( \mathbf{q} \). </p>
 <dl class="section see"><dt>See also</dt><dd>method <code>#isSigned</code> of the fit to check if the sign is reliable </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="plane_8h_source.html#l00098">98</a> of file <a class="el" href="plane_8h_source.html">plane.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="plane_8h_source.html#l00113">113</a> of file <a class="el" href="plane_8h_source.html">plane.h</a>.</p>
 
 </div>
 </div>
-<a id="a3cabe0850b4d4cff4013a97a06ce1617" name="a3cabe0850b4d4cff4013a97a06ce1617"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a3cabe0850b4d4cff4013a97a06ce1617">&#9670;&#160;</a></span>primitiveGradient() <span class="overload">[1/2]</span></h2>
+<a id="aec8ee67158d5c3cd4bff676bd984e1fb" name="aec8ee67158d5c3cd4bff676bd984e1fb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aec8ee67158d5c3cd4bff676bd984e1fb">&#9670;&#160;</a></span>potentialLocal()</h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
+template&lt;class DataPoint , class _NFilter , typename T &gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classPonca_1_1Plane.html#ac3962c2f2212db7441747f4174236eb2">VectorType</a> <a class="el" href="classPonca_1_1Plane.html">Ponca::Plane</a>&lt; DataPoint, _WFunctor, T &gt;::primitiveGradient </td>
+          <td class="memname"><a class="el" href="classPonca_1_1Plane.html#aabd5ab4bb1ac1f801b813deaa1e2ef2d">Scalar</a> <a class="el" href="classPonca_1_1Plane.html">Ponca::Plane</a>&lt; DataPoint, _NFilter, T &gt;::potentialLocal </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classPonca_1_1Plane.html#a3d05e7a87b12da5c4e243ecb731a391e">VectorType</a> &amp;&#160;</td>
+          <td class="paramname"><em>_lq</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Value of the scalar field at the evaluation point.   </p>
+<dl class="section see"><dt>See also</dt><dd>method <code>#isSigned</code> of the fit to check if the sign is reliable   </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="plane_8h_source.html#l00142">142</a> of file <a class="el" href="plane_8h_source.html">plane.h</a>.</p>
+
+</div>
+</div>
+<a id="ad9392b14876d342f504a0d74ce057217" name="ad9392b14876d342f504a0d74ce057217"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad9392b14876d342f504a0d74ce057217">&#9670;&#160;</a></span>primitiveGradient() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class DataPoint , class _NFilter , typename T &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classPonca_1_1Plane.html#a3d05e7a87b12da5c4e243ecb731a391e">VectorType</a> <a class="el" href="classPonca_1_1Plane.html">Ponca::Plane</a>&lt; DataPoint, _NFilter, T &gt;::primitiveGradient </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td> const</td>
@@ -735,25 +814,25 @@ template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
 
 <p>Scalar field gradient direction at the evaluation point. </p>
 
-<p class="definition">Definition at line <a class="el" href="plane_8h_source.html#l00112">112</a> of file <a class="el" href="plane_8h_source.html">plane.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="plane_8h_source.html#l00128">128</a> of file <a class="el" href="plane_8h_source.html">plane.h</a>.</p>
 
 </div>
 </div>
-<a id="aaf943f5bcf752d7871c8475369022ef9" name="aaf943f5bcf752d7871c8475369022ef9"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aaf943f5bcf752d7871c8475369022ef9">&#9670;&#160;</a></span>primitiveGradient() <span class="overload">[2/2]</span></h2>
+<a id="a906579a839c036bed91336213dfae71d" name="a906579a839c036bed91336213dfae71d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a906579a839c036bed91336213dfae71d">&#9670;&#160;</a></span>primitiveGradient() <span class="overload">[2/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
+template&lt;class DataPoint , class _NFilter , typename T &gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classPonca_1_1Plane.html#ac3962c2f2212db7441747f4174236eb2">VectorType</a> <a class="el" href="classPonca_1_1Plane.html">Ponca::Plane</a>&lt; DataPoint, _WFunctor, T &gt;::primitiveGradient </td>
+          <td class="memname"><a class="el" href="classPonca_1_1Plane.html#a3d05e7a87b12da5c4e243ecb731a391e">VectorType</a> <a class="el" href="classPonca_1_1Plane.html">Ponca::Plane</a>&lt; DataPoint, _NFilter, T &gt;::primitiveGradient </td>
           <td>(</td>
-          <td class="paramtype">const <a class="el" href="classPonca_1_1Plane.html#ac3962c2f2212db7441747f4174236eb2">VectorType</a> &amp;&#160;</td>
+          <td class="paramtype">const <a class="el" href="classPonca_1_1Plane.html#a3d05e7a87b12da5c4e243ecb731a391e">VectorType</a> &amp;&#160;</td>
           <td class="paramname"></td><td>)</td>
           <td> const</td>
         </tr>
@@ -767,25 +846,57 @@ template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
 
 <p>Scalar field gradient direction at \( \mathbf{q}\). </p>
 
-<p class="definition">Definition at line <a class="el" href="plane_8h_source.html#l00119">119</a> of file <a class="el" href="plane_8h_source.html">plane.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="plane_8h_source.html#l00135">135</a> of file <a class="el" href="plane_8h_source.html">plane.h</a>.</p>
 
 </div>
 </div>
-<a id="a4c8dfa7374f71e788ebdfb8f91d80187" name="a4c8dfa7374f71e788ebdfb8f91d80187"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a4c8dfa7374f71e788ebdfb8f91d80187">&#9670;&#160;</a></span>project()</h2>
+<a id="a3e83a2e11b5fa0c55a4353396cb12c2d" name="a3e83a2e11b5fa0c55a4353396cb12c2d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3e83a2e11b5fa0c55a4353396cb12c2d">&#9670;&#160;</a></span>primitiveGradientLocal()</h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
+template&lt;class DataPoint , class _NFilter , typename T &gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classPonca_1_1Plane.html#ac3962c2f2212db7441747f4174236eb2">VectorType</a> <a class="el" href="classPonca_1_1Plane.html">Ponca::Plane</a>&lt; DataPoint, _WFunctor, T &gt;::project </td>
+          <td class="memname"><a class="el" href="classPonca_1_1Plane.html#a3d05e7a87b12da5c4e243ecb731a391e">VectorType</a> <a class="el" href="classPonca_1_1Plane.html">Ponca::Plane</a>&lt; DataPoint, _NFilter, T &gt;::primitiveGradientLocal </td>
           <td>(</td>
-          <td class="paramtype">const <a class="el" href="classPonca_1_1Plane.html#ac3962c2f2212db7441747f4174236eb2">VectorType</a> &amp;&#160;</td>
+          <td class="paramtype">const <a class="el" href="classPonca_1_1Plane.html#a3d05e7a87b12da5c4e243ecb731a391e">VectorType</a> &amp;&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Scalar field gradient direction at the evaluation point.   </p>
+
+<p class="definition">Definition at line <a class="el" href="plane_8h_source.html#l00147">147</a> of file <a class="el" href="plane_8h_source.html">plane.h</a>.</p>
+
+</div>
+</div>
+<a id="a29b652b27321dd185acb93f53cc6c127" name="a29b652b27321dd185acb93f53cc6c127"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a29b652b27321dd185acb93f53cc6c127">&#9670;&#160;</a></span>project()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class DataPoint , class _NFilter , typename T &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classPonca_1_1Plane.html#a3d05e7a87b12da5c4e243ecb731a391e">VectorType</a> <a class="el" href="classPonca_1_1Plane.html">Ponca::Plane</a>&lt; DataPoint, _NFilter, T &gt;::project </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classPonca_1_1Plane.html#a3d05e7a87b12da5c4e243ecb731a391e">VectorType</a> &amp;&#160;</td>
           <td class="paramname"><em>_q</em></td><td>)</td>
           <td> const</td>
         </tr>
@@ -799,31 +910,31 @@ template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
 
 <p>Project a point on the plane. </p>
 
-<p class="definition">Definition at line <a class="el" href="plane_8h_source.html#l00105">105</a> of file <a class="el" href="plane_8h_source.html">plane.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="plane_8h_source.html#l00121">121</a> of file <a class="el" href="plane_8h_source.html">plane.h</a>.</p>
 
 </div>
 </div>
-<a id="a96d3ea4f9b961cbd2f38fdf71e04257c" name="a96d3ea4f9b961cbd2f38fdf71e04257c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a96d3ea4f9b961cbd2f38fdf71e04257c">&#9670;&#160;</a></span>setPlane()</h2>
+<a id="a72be0d9ff4c575d42fe4ccf46dde32cc" name="a72be0d9ff4c575d42fe4ccf46dde32cc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a72be0d9ff4c575d42fe4ccf46dde32cc">&#9670;&#160;</a></span>setPlane()</h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
+template&lt;class DataPoint , class _NFilter , typename T &gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">void <a class="el" href="classPonca_1_1Plane.html">Ponca::Plane</a>&lt; DataPoint, _WFunctor, T &gt;::setPlane </td>
+          <td class="memname">void <a class="el" href="classPonca_1_1Plane.html">Ponca::Plane</a>&lt; DataPoint, _NFilter, T &gt;::setPlane </td>
           <td>(</td>
-          <td class="paramtype">const <a class="el" href="classPonca_1_1Plane.html#ac3962c2f2212db7441747f4174236eb2">VectorType</a> &amp;&#160;</td>
+          <td class="paramtype">const <a class="el" href="classPonca_1_1Plane.html#a3d05e7a87b12da5c4e243ecb731a391e">VectorType</a> &amp;&#160;</td>
           <td class="paramname"><em>_dir</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const <a class="el" href="classPonca_1_1Plane.html#ac3962c2f2212db7441747f4174236eb2">VectorType</a> &amp;&#160;</td>
+          <td class="paramtype">const <a class="el" href="classPonca_1_1Plane.html#a3d05e7a87b12da5c4e243ecb731a391e">VectorType</a> &amp;&#160;</td>
           <td class="paramname"><em>_pos</em>&#160;</td>
         </tr>
         <tr>
@@ -849,7 +960,7 @@ template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="namespacePonca.html">Ponca</a></li><li class="navelem"><a class="el" href="classPonca_1_1Plane.html">Plane</a></li>
-    <li class="footer">Generated on Thu Oct 9 2025 22:33:53 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
+    <li class="footer">Generated on Thu Oct 30 2025 19:03:05 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
   </ul>
 </div>
 </body>

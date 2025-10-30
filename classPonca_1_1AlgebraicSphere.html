@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.9.8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Ponca: Ponca::AlgebraicSphere&lt; DataPoint, _WFunctor, T &gt; Class Template Reference</title>
+<title>Ponca: Ponca::AlgebraicSphere&lt; DataPoint, _NFilter, T &gt; Class Template Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -51,7 +51,7 @@ MathJax.Hub.Config({
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Ponca
-   &#160;<span id="projectnumber">40f245e28b920cbb763a1c6282156c87c626f24c</span>
+   &#160;<span id="projectnumber">9e7681effe2c12b0af1c85fdb62680f52d835a30</span>
    </div>
    <div id="projectbrief">Point Cloud Analysis library</div>
   </td>
@@ -121,9 +121,10 @@ $(document).ready(function(){initNavTree('classPonca_1_1AlgebraicSphere.html',''
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="#pub-attribs">Public Attributes</a> &#124;
 <a href="#pro-types">Protected Types</a> &#124;
+<a href="#pro-methods">Protected Member Functions</a> &#124;
 <a href="#pro-attribs">Protected Attributes</a> &#124;
 <a href="classPonca_1_1AlgebraicSphere-members.html">List of all members</a>  </div>
-  <div class="headertitle"><div class="title">Ponca::AlgebraicSphere&lt; DataPoint, _WFunctor, T &gt; Class Template Reference</div></div>
+  <div class="headertitle"><div class="title">Ponca::AlgebraicSphere&lt; DataPoint, _NFilter, T &gt; Class Template Reference</div></div>
 </div><!--header-->
 <div class="contents">
 
@@ -132,130 +133,136 @@ $(document).ready(function(){initNavTree('classPonca_1_1AlgebraicSphere.html',''
 
 <p><code>#include &lt;<a class="el" href="algebraicSphere_8h_source.html">algebraicSphere.h</a>&gt;</code></p>
 <div id="dynsection-0" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
-  <img id="dynsection-0-trigger" src="closed.png" alt="+"/> Inheritance diagram for Ponca::AlgebraicSphere&lt; DataPoint, _WFunctor, T &gt;:</div>
+  <img id="dynsection-0-trigger" src="closed.png" alt="+"/> Inheritance diagram for Ponca::AlgebraicSphere&lt; DataPoint, _NFilter, T &gt;:</div>
 <div id="dynsection-0-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-0-content" class="dyncontent" style="display:none;">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classPonca_1_1AlgebraicSphere__inherit__graph.svg" width="211" height="464"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classPonca_1_1AlgebraicSphere__inherit__graph.svg" width="199" height="504"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 <div id="dynsection-1" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
-  <img id="dynsection-1-trigger" src="closed.png" alt="+"/> Collaboration diagram for Ponca::AlgebraicSphere&lt; DataPoint, _WFunctor, T &gt;:</div>
+  <img id="dynsection-1-trigger" src="closed.png" alt="+"/> Collaboration diagram for Ponca::AlgebraicSphere&lt; DataPoint, _NFilter, T &gt;:</div>
 <div id="dynsection-1-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-1-content" class="dyncontent" style="display:none;">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classPonca_1_1AlgebraicSphere__coll__graph.svg" width="211" height="464"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classPonca_1_1AlgebraicSphere__coll__graph.svg" width="199" height="504"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-types" name="pub-types"></a>
 Public Types</h2></td></tr>
-<tr class="memitem:a90d67318da4e0597fad0d6b53cefe0d1" id="r_a90d67318da4e0597fad0d6b53cefe0d1"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1AlgebraicSphere.html#a90d67318da4e0597fad0d6b53cefe0d1">Scalar</a> = typename DataPoint::Scalar</td></tr>
-<tr class="memdesc:a90d67318da4e0597fad0d6b53cefe0d1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Alias to scalar type.  <br /></td></tr>
-<tr class="separator:a90d67318da4e0597fad0d6b53cefe0d1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af30386a4406c056b736100eaa950d3d0" id="r_af30386a4406c056b736100eaa950d3d0"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1AlgebraicSphere.html#af30386a4406c056b736100eaa950d3d0">VectorType</a> = typename Base::VectorType</td></tr>
-<tr class="memdesc:af30386a4406c056b736100eaa950d3d0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Alias to vector type.  <br /></td></tr>
-<tr class="separator:af30386a4406c056b736100eaa950d3d0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aaf462225e8ff42cbf327d04bccc14d1f" id="r_aaf462225e8ff42cbf327d04bccc14d1f"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1AlgebraicSphere.html#aaf462225e8ff42cbf327d04bccc14d1f">WFunctor</a> = typename Base::WFunctor</td></tr>
-<tr class="memdesc:aaf462225e8ff42cbf327d04bccc14d1f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Alias to weight function.  <br /></td></tr>
-<tr class="separator:aaf462225e8ff42cbf327d04bccc14d1f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a971e9bba0fe290ea36fb330e1a8998b1" id="r_a971e9bba0fe290ea36fb330e1a8998b1"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1AlgebraicSphere.html#a971e9bba0fe290ea36fb330e1a8998b1">Scalar</a> = typename DataPoint::Scalar</td></tr>
+<tr class="memdesc:a971e9bba0fe290ea36fb330e1a8998b1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Alias to scalar type.  <br /></td></tr>
+<tr class="separator:a971e9bba0fe290ea36fb330e1a8998b1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae4fcd85d46a2ed993ae785ac7b02e77d" id="r_ae4fcd85d46a2ed993ae785ac7b02e77d"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1AlgebraicSphere.html#ae4fcd85d46a2ed993ae785ac7b02e77d">VectorType</a> = typename Base::VectorType</td></tr>
+<tr class="memdesc:ae4fcd85d46a2ed993ae785ac7b02e77d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Alias to vector type.  <br /></td></tr>
+<tr class="separator:ae4fcd85d46a2ed993ae785ac7b02e77d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad54224eae7f7d4761ab08a8462e2bafa" id="r_ad54224eae7f7d4761ab08a8462e2bafa"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1AlgebraicSphere.html#ad54224eae7f7d4761ab08a8462e2bafa">NeighborFilter</a> = typename Base::NeighborFilter</td></tr>
+<tr class="memdesc:ad54224eae7f7d4761ab08a8462e2bafa"><td class="mdescLeft">&#160;</td><td class="mdescRight">Alias to the filter applied on the neighbors.  <br /></td></tr>
+<tr class="separator:ad54224eae7f7d4761ab08a8462e2bafa"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:affdaa1f41b84e67ad65d66166649d9e3" id="r_affdaa1f41b84e67ad65d66166649d9e3"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classPonca_1_1AlgebraicSphere.html">AlgebraicSphere</a>&lt; DataPoint, _WFunctor, T &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1AlgebraicSphere.html#affdaa1f41b84e67ad65d66166649d9e3">algebraicSphere</a> ()</td></tr>
-<tr class="memdesc:affdaa1f41b84e67ad65d66166649d9e3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Explicit conversion to <a class="el" href="classPonca_1_1AlgebraicSphere.html" title="Algebraic Sphere primitive.">AlgebraicSphere</a> , to access methods potentially hidden by heritage.  <br /></td></tr>
-<tr class="separator:affdaa1f41b84e67ad65d66166649d9e3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab291c64c03d4ba1e442b6406daaa67cb" id="r_ab291c64c03d4ba1e442b6406daaa67cb"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="classPonca_1_1AlgebraicSphere.html">AlgebraicSphere</a>&lt; DataPoint, _WFunctor, T &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1AlgebraicSphere.html#ab291c64c03d4ba1e442b6406daaa67cb">algebraicSphere</a> () const</td></tr>
-<tr class="memdesc:ab291c64c03d4ba1e442b6406daaa67cb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Explicit conversion to <a class="el" href="classPonca_1_1AlgebraicSphere.html" title="Algebraic Sphere primitive.">AlgebraicSphere</a> , to access methods potentially hidden by heritage.  <br /></td></tr>
-<tr class="separator:ab291c64c03d4ba1e442b6406daaa67cb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5a9e78d06c7c3e3f7a8efaad1ab00d6a" id="r_a5a9e78d06c7c3e3f7a8efaad1ab00d6a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1AlgebraicSphere.html#a5a9e78d06c7c3e3f7a8efaad1ab00d6a">init</a> ()</td></tr>
-<tr class="memdesc:a5a9e78d06c7c3e3f7a8efaad1ab00d6a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the scalar field values to 0 and reset the <a class="el" href="classPonca_1_1AlgebraicSphere.html#ab1367679cd2a38f9910e9329b65797a7" title="State indicating when the sphere has been normalized.">isNormalized()</a> status.  <br /></td></tr>
-<tr class="separator:a5a9e78d06c7c3e3f7a8efaad1ab00d6a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a065ea27863d0b88c900c24a5bb7f30c7" id="r_a065ea27863d0b88c900c24a5bb7f30c7"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1AlgebraicSphere.html#a065ea27863d0b88c900c24a5bb7f30c7">isValid</a> () const</td></tr>
-<tr class="memdesc:a065ea27863d0b88c900c24a5bb7f30c7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Tell if the sphere as been correctly set. Used to set CONFLICT_ERROR_FOUND during fitting.  <br /></td></tr>
-<tr class="separator:a065ea27863d0b88c900c24a5bb7f30c7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a73b2bb6a83bd2bb746ad27c3705da905" id="r_a73b2bb6a83bd2bb746ad27c3705da905"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1AlgebraicSphere.html#a73b2bb6a83bd2bb746ad27c3705da905">operator==</a> (const <a class="el" href="classPonca_1_1AlgebraicSphere.html">AlgebraicSphere</a>&lt; DataPoint, <a class="el" href="classPonca_1_1AlgebraicSphere.html#aaf462225e8ff42cbf327d04bccc14d1f">WFunctor</a>, T &gt; &amp;other) const</td></tr>
-<tr class="memdesc:a73b2bb6a83bd2bb746ad27c3705da905"><td class="mdescLeft">&#160;</td><td class="mdescRight">Comparison operator.  <br /></td></tr>
-<tr class="separator:a73b2bb6a83bd2bb746ad27c3705da905"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a54ec01c19a91e166c1ded642193e86ba" id="r_a54ec01c19a91e166c1ded642193e86ba"><td class="memTemplParams" colspan="2">template&lt;typename Other &gt; </td></tr>
-<tr class="memitem:a54ec01c19a91e166c1ded642193e86ba"><td class="memTemplItemLeft" align="right" valign="top">bool&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classPonca_1_1AlgebraicSphere.html#a54ec01c19a91e166c1ded642193e86ba">isApprox</a> (const Other &amp;other, const <a class="el" href="classPonca_1_1AlgebraicSphere.html#a90d67318da4e0597fad0d6b53cefe0d1">Scalar</a> &amp;epsilon=Eigen::NumTraits&lt; <a class="el" href="classPonca_1_1AlgebraicSphere.html#a90d67318da4e0597fad0d6b53cefe0d1">Scalar</a> &gt;::dummy_precision()) const</td></tr>
-<tr class="memdesc:a54ec01c19a91e166c1ded642193e86ba"><td class="mdescLeft">&#160;</td><td class="mdescRight">Approximate operator.  <br /></td></tr>
-<tr class="separator:a54ec01c19a91e166c1ded642193e86ba"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aaef184e3541aeedeed7951d76530b915" id="r_aaef184e3541aeedeed7951d76530b915"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1AlgebraicSphere.html#aaef184e3541aeedeed7951d76530b915">operator!=</a> (const <a class="el" href="classPonca_1_1AlgebraicSphere.html">AlgebraicSphere</a>&lt; DataPoint, <a class="el" href="classPonca_1_1AlgebraicSphere.html#aaf462225e8ff42cbf327d04bccc14d1f">WFunctor</a>, T &gt; &amp;other) const</td></tr>
-<tr class="memdesc:aaef184e3541aeedeed7951d76530b915"><td class="mdescLeft">&#160;</td><td class="mdescRight">Comparison operator, convenience function.  <br /></td></tr>
-<tr class="separator:aaef184e3541aeedeed7951d76530b915"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a054a41e20c9ca517af359aa591bca9e7" id="r_a054a41e20c9ca517af359aa591bca9e7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1AlgebraicSphere.html#a054a41e20c9ca517af359aa591bca9e7">changeBasis</a> (const <a class="el" href="classPonca_1_1AlgebraicSphere.html#af30386a4406c056b736100eaa950d3d0">VectorType</a> &amp;newbasis)</td></tr>
-<tr class="memdesc:a054a41e20c9ca517af359aa591bca9e7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Express the scalar field relatively to a new basis.  <br /></td></tr>
-<tr class="separator:a054a41e20c9ca517af359aa591bca9e7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9ec8a623959420c60d3a5ea0684a4aa5" id="r_a9ec8a623959420c60d3a5ea0684a4aa5"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classPonca_1_1AlgebraicSphere.html#a90d67318da4e0597fad0d6b53cefe0d1">Scalar</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1AlgebraicSphere.html#a9ec8a623959420c60d3a5ea0684a4aa5">prattNorm</a> () const</td></tr>
-<tr class="memdesc:a9ec8a623959420c60d3a5ea0684a4aa5"><td class="mdescLeft">&#160;</td><td class="mdescRight">compute the Pratt norm of the implicit scalar field.  <br /></td></tr>
-<tr class="separator:a9ec8a623959420c60d3a5ea0684a4aa5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa24fba085ff0e4cfe9f4ecdba055a283" id="r_aa24fba085ff0e4cfe9f4ecdba055a283"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classPonca_1_1AlgebraicSphere.html#a90d67318da4e0597fad0d6b53cefe0d1">Scalar</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1AlgebraicSphere.html#aa24fba085ff0e4cfe9f4ecdba055a283">prattNorm2</a> () const</td></tr>
-<tr class="memdesc:aa24fba085ff0e4cfe9f4ecdba055a283"><td class="mdescLeft">&#160;</td><td class="mdescRight">compute the squared Pratt norm of the implicit scalar field.  <br /></td></tr>
-<tr class="separator:aa24fba085ff0e4cfe9f4ecdba055a283"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad09e54e72635438337edab0bf9aa226b" id="r_ad09e54e72635438337edab0bf9aa226b"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1AlgebraicSphere.html#ad09e54e72635438337edab0bf9aa226b">applyPrattNorm</a> ()</td></tr>
-<tr class="memdesc:ad09e54e72635438337edab0bf9aa226b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Normalize the scalar field by the Pratt norm.  <br /></td></tr>
-<tr class="separator:ad09e54e72635438337edab0bf9aa226b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a51dbbb073bcef4ad2f021544dc104da4" id="r_a51dbbb073bcef4ad2f021544dc104da4"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classPonca_1_1AlgebraicSphere.html#a90d67318da4e0597fad0d6b53cefe0d1">Scalar</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1AlgebraicSphere.html#a51dbbb073bcef4ad2f021544dc104da4">radius</a> () const</td></tr>
-<tr class="memdesc:a51dbbb073bcef4ad2f021544dc104da4"><td class="mdescLeft">&#160;</td><td class="mdescRight">return the estimated radius of the sphere  <br /></td></tr>
-<tr class="separator:a51dbbb073bcef4ad2f021544dc104da4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abe53aba84bb693f553804c734d69da13" id="r_abe53aba84bb693f553804c734d69da13"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classPonca_1_1AlgebraicSphere.html#af30386a4406c056b736100eaa950d3d0">VectorType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1AlgebraicSphere.html#abe53aba84bb693f553804c734d69da13">center</a> () const</td></tr>
-<tr class="memdesc:abe53aba84bb693f553804c734d69da13"><td class="mdescLeft">&#160;</td><td class="mdescRight">return the estimated center of the sphere  <br /></td></tr>
-<tr class="separator:abe53aba84bb693f553804c734d69da13"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab1367679cd2a38f9910e9329b65797a7" id="r_ab1367679cd2a38f9910e9329b65797a7"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1AlgebraicSphere.html#ab1367679cd2a38f9910e9329b65797a7">isNormalized</a> () const</td></tr>
-<tr class="memdesc:ab1367679cd2a38f9910e9329b65797a7"><td class="mdescLeft">&#160;</td><td class="mdescRight">State indicating when the sphere has been normalized.  <br /></td></tr>
-<tr class="separator:ab1367679cd2a38f9910e9329b65797a7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a91db544faea8bbb923d42fbe182cb6f4" id="r_a91db544faea8bbb923d42fbe182cb6f4"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classPonca_1_1AlgebraicSphere.html#a90d67318da4e0597fad0d6b53cefe0d1">Scalar</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1AlgebraicSphere.html#a91db544faea8bbb923d42fbe182cb6f4">potential</a> (const <a class="el" href="classPonca_1_1AlgebraicSphere.html#af30386a4406c056b736100eaa950d3d0">VectorType</a> &amp;_q) const</td></tr>
-<tr class="memdesc:a91db544faea8bbb923d42fbe182cb6f4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Value of the scalar field at the location \( \mathbf{q}\).  <br /></td></tr>
-<tr class="separator:a91db544faea8bbb923d42fbe182cb6f4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a15aadd172909ae086b0068c235e39b05" id="r_a15aadd172909ae086b0068c235e39b05"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classPonca_1_1AlgebraicSphere.html#a90d67318da4e0597fad0d6b53cefe0d1">Scalar</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1AlgebraicSphere.html#a15aadd172909ae086b0068c235e39b05">potential</a> () const</td></tr>
-<tr class="memdesc:a15aadd172909ae086b0068c235e39b05"><td class="mdescLeft">&#160;</td><td class="mdescRight">Value of the scalar field at the evaluation point.  <br /></td></tr>
-<tr class="separator:a15aadd172909ae086b0068c235e39b05"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a71b4312849344f0c937e23c21cdea821" id="r_a71b4312849344f0c937e23c21cdea821"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classPonca_1_1AlgebraicSphere.html#af30386a4406c056b736100eaa950d3d0">VectorType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1AlgebraicSphere.html#a71b4312849344f0c937e23c21cdea821">project</a> (const <a class="el" href="classPonca_1_1AlgebraicSphere.html#af30386a4406c056b736100eaa950d3d0">VectorType</a> &amp;_q) const</td></tr>
-<tr class="memdesc:a71b4312849344f0c937e23c21cdea821"><td class="mdescLeft">&#160;</td><td class="mdescRight">Project a point on the algebraic hypersphere.  <br /></td></tr>
-<tr class="separator:a71b4312849344f0c937e23c21cdea821"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad93506e11c254b85343b6d7aac9426eb" id="r_ad93506e11c254b85343b6d7aac9426eb"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classPonca_1_1AlgebraicSphere.html#af30386a4406c056b736100eaa950d3d0">VectorType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1AlgebraicSphere.html#ad93506e11c254b85343b6d7aac9426eb">projectDescent</a> (const <a class="el" href="classPonca_1_1AlgebraicSphere.html#af30386a4406c056b736100eaa950d3d0">VectorType</a> &amp;_q, int nbIter=16) const</td></tr>
-<tr class="memdesc:ad93506e11c254b85343b6d7aac9426eb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Project a point on the algebraic hypersphere using Gradient Descent This projection is realized by following the gradient of the hypersphere scalar field.  <br /></td></tr>
-<tr class="separator:ad93506e11c254b85343b6d7aac9426eb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a925bb4f64c7ec303030e008ef3e2abab" id="r_a925bb4f64c7ec303030e008ef3e2abab"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classPonca_1_1AlgebraicSphere.html#af30386a4406c056b736100eaa950d3d0">VectorType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1AlgebraicSphere.html#a925bb4f64c7ec303030e008ef3e2abab">primitiveGradient</a> (const <a class="el" href="classPonca_1_1AlgebraicSphere.html#af30386a4406c056b736100eaa950d3d0">VectorType</a> &amp;_q) const</td></tr>
-<tr class="memdesc:a925bb4f64c7ec303030e008ef3e2abab"><td class="mdescLeft">&#160;</td><td class="mdescRight">Approximation of the scalar field gradient at \( \mathbf{q}\).  <br /></td></tr>
-<tr class="separator:a925bb4f64c7ec303030e008ef3e2abab"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a13a01f75ac7c621f162fa8470c245116" id="r_a13a01f75ac7c621f162fa8470c245116"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="classPonca_1_1AlgebraicSphere.html#af30386a4406c056b736100eaa950d3d0">VectorType</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1AlgebraicSphere.html#a13a01f75ac7c621f162fa8470c245116">primitiveGradient</a> () const</td></tr>
-<tr class="memdesc:a13a01f75ac7c621f162fa8470c245116"><td class="mdescLeft">&#160;</td><td class="mdescRight">Approximation of the scalar field gradient at the evaluation point.  <br /></td></tr>
-<tr class="separator:a13a01f75ac7c621f162fa8470c245116"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a681d3ba71d704798a48e2eb7ebb5826a" id="r_a681d3ba71d704798a48e2eb7ebb5826a"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1AlgebraicSphere.html#a681d3ba71d704798a48e2eb7ebb5826a">isPlane</a> () const</td></tr>
-<tr class="memdesc:a681d3ba71d704798a48e2eb7ebb5826a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Used to know if the fitting result to a plane.  <br /></td></tr>
-<tr class="separator:a681d3ba71d704798a48e2eb7ebb5826a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab3557e66217abd4f0a178341bc49f8ef" id="r_ab3557e66217abd4f0a178341bc49f8ef"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classPonca_1_1AlgebraicSphere.html">AlgebraicSphere</a>&lt; DataPoint, _NFilter, T &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1AlgebraicSphere.html#ab3557e66217abd4f0a178341bc49f8ef">algebraicSphere</a> ()</td></tr>
+<tr class="memdesc:ab3557e66217abd4f0a178341bc49f8ef"><td class="mdescLeft">&#160;</td><td class="mdescRight">Explicit conversion to <a class="el" href="classPonca_1_1AlgebraicSphere.html" title="Algebraic Sphere primitive.">AlgebraicSphere</a> , to access methods potentially hidden by heritage.  <br /></td></tr>
+<tr class="separator:ab3557e66217abd4f0a178341bc49f8ef"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5a470770fa7114ea4932d8a63990bf0f" id="r_a5a470770fa7114ea4932d8a63990bf0f"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="classPonca_1_1AlgebraicSphere.html">AlgebraicSphere</a>&lt; DataPoint, _NFilter, T &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1AlgebraicSphere.html#a5a470770fa7114ea4932d8a63990bf0f">algebraicSphere</a> () const</td></tr>
+<tr class="memdesc:a5a470770fa7114ea4932d8a63990bf0f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Explicit conversion to <a class="el" href="classPonca_1_1AlgebraicSphere.html" title="Algebraic Sphere primitive.">AlgebraicSphere</a> , to access methods potentially hidden by heritage.  <br /></td></tr>
+<tr class="separator:a5a470770fa7114ea4932d8a63990bf0f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a42063229e1494ed826896b80f6a0a97a" id="r_a42063229e1494ed826896b80f6a0a97a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1AlgebraicSphere.html#a42063229e1494ed826896b80f6a0a97a">init</a> ()</td></tr>
+<tr class="memdesc:a42063229e1494ed826896b80f6a0a97a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the scalar field values to 0 and reset the <a class="el" href="classPonca_1_1AlgebraicSphere.html#af191c353baa849f5e51a3b0ee6ba86cd" title="State indicating when the sphere has been normalized.">isNormalized()</a> status.  <br /></td></tr>
+<tr class="separator:a42063229e1494ed826896b80f6a0a97a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae7f47608549c4051d953420ef1698747" id="r_ae7f47608549c4051d953420ef1698747"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1AlgebraicSphere.html#ae7f47608549c4051d953420ef1698747">isValid</a> () const</td></tr>
+<tr class="memdesc:ae7f47608549c4051d953420ef1698747"><td class="mdescLeft">&#160;</td><td class="mdescRight">Tell if the sphere as been correctly set. Used to set CONFLICT_ERROR_FOUND during fitting.  <br /></td></tr>
+<tr class="separator:ae7f47608549c4051d953420ef1698747"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afe8370321e95cb89ae7677f5e29ceb1c" id="r_afe8370321e95cb89ae7677f5e29ceb1c"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1AlgebraicSphere.html#afe8370321e95cb89ae7677f5e29ceb1c">operator==</a> (const <a class="el" href="classPonca_1_1AlgebraicSphere.html">AlgebraicSphere</a>&lt; DataPoint, <a class="el" href="classPonca_1_1AlgebraicSphere.html#ad54224eae7f7d4761ab08a8462e2bafa">NeighborFilter</a>, T &gt; &amp;other) const</td></tr>
+<tr class="memdesc:afe8370321e95cb89ae7677f5e29ceb1c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Comparison operator.  <br /></td></tr>
+<tr class="separator:afe8370321e95cb89ae7677f5e29ceb1c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad13fd165f26211b37d98a1f60b5e755d" id="r_ad13fd165f26211b37d98a1f60b5e755d"><td class="memTemplParams" colspan="2">template&lt;typename Other &gt; </td></tr>
+<tr class="memitem:ad13fd165f26211b37d98a1f60b5e755d"><td class="memTemplItemLeft" align="right" valign="top">bool&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classPonca_1_1AlgebraicSphere.html#ad13fd165f26211b37d98a1f60b5e755d">isApprox</a> (const Other &amp;other, const <a class="el" href="classPonca_1_1AlgebraicSphere.html#a971e9bba0fe290ea36fb330e1a8998b1">Scalar</a> &amp;epsilon=Eigen::NumTraits&lt; <a class="el" href="classPonca_1_1AlgebraicSphere.html#a971e9bba0fe290ea36fb330e1a8998b1">Scalar</a> &gt;::dummy_precision()) const</td></tr>
+<tr class="memdesc:ad13fd165f26211b37d98a1f60b5e755d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Approximate operator.  <br /></td></tr>
+<tr class="separator:ad13fd165f26211b37d98a1f60b5e755d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abe50599f9750328e3a107ecb0a96c4f5" id="r_abe50599f9750328e3a107ecb0a96c4f5"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1AlgebraicSphere.html#abe50599f9750328e3a107ecb0a96c4f5">operator!=</a> (const <a class="el" href="classPonca_1_1AlgebraicSphere.html">AlgebraicSphere</a>&lt; DataPoint, <a class="el" href="classPonca_1_1AlgebraicSphere.html#ad54224eae7f7d4761ab08a8462e2bafa">NeighborFilter</a>, T &gt; &amp;other) const</td></tr>
+<tr class="memdesc:abe50599f9750328e3a107ecb0a96c4f5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Comparison operator, convenience function.  <br /></td></tr>
+<tr class="separator:abe50599f9750328e3a107ecb0a96c4f5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a36681585b0bb114925992f0937e6e8df" id="r_a36681585b0bb114925992f0937e6e8df"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1AlgebraicSphere.html#a36681585b0bb114925992f0937e6e8df">changeBasis</a> (const <a class="el" href="classPonca_1_1AlgebraicSphere.html#ae4fcd85d46a2ed993ae785ac7b02e77d">VectorType</a> &amp;newbasis)</td></tr>
+<tr class="memdesc:a36681585b0bb114925992f0937e6e8df"><td class="mdescLeft">&#160;</td><td class="mdescRight">Express the scalar field relatively to a new basis.  <br /></td></tr>
+<tr class="separator:a36681585b0bb114925992f0937e6e8df"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad186c79f8fc5adb5ea88f1b1e3fbbb37" id="r_ad186c79f8fc5adb5ea88f1b1e3fbbb37"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classPonca_1_1AlgebraicSphere.html#a971e9bba0fe290ea36fb330e1a8998b1">Scalar</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1AlgebraicSphere.html#ad186c79f8fc5adb5ea88f1b1e3fbbb37">prattNorm</a> () const</td></tr>
+<tr class="memdesc:ad186c79f8fc5adb5ea88f1b1e3fbbb37"><td class="mdescLeft">&#160;</td><td class="mdescRight">compute the Pratt norm of the implicit scalar field.  <br /></td></tr>
+<tr class="separator:ad186c79f8fc5adb5ea88f1b1e3fbbb37"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acfef76fdab70f0d4f24941310efd7114" id="r_acfef76fdab70f0d4f24941310efd7114"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classPonca_1_1AlgebraicSphere.html#a971e9bba0fe290ea36fb330e1a8998b1">Scalar</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1AlgebraicSphere.html#acfef76fdab70f0d4f24941310efd7114">prattNorm2</a> () const</td></tr>
+<tr class="memdesc:acfef76fdab70f0d4f24941310efd7114"><td class="mdescLeft">&#160;</td><td class="mdescRight">compute the squared Pratt norm of the implicit scalar field.  <br /></td></tr>
+<tr class="separator:acfef76fdab70f0d4f24941310efd7114"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a31f68e35d85bfa3fbde5f8f99d2eceb2" id="r_a31f68e35d85bfa3fbde5f8f99d2eceb2"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1AlgebraicSphere.html#a31f68e35d85bfa3fbde5f8f99d2eceb2">applyPrattNorm</a> ()</td></tr>
+<tr class="memdesc:a31f68e35d85bfa3fbde5f8f99d2eceb2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Normalize the scalar field by the Pratt norm.  <br /></td></tr>
+<tr class="separator:a31f68e35d85bfa3fbde5f8f99d2eceb2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad23e74a901eb228f37a39ad3dc743a21" id="r_ad23e74a901eb228f37a39ad3dc743a21"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classPonca_1_1AlgebraicSphere.html#a971e9bba0fe290ea36fb330e1a8998b1">Scalar</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1AlgebraicSphere.html#ad23e74a901eb228f37a39ad3dc743a21">radius</a> () const</td></tr>
+<tr class="memdesc:ad23e74a901eb228f37a39ad3dc743a21"><td class="mdescLeft">&#160;</td><td class="mdescRight">return the estimated radius of the sphere  <br /></td></tr>
+<tr class="separator:ad23e74a901eb228f37a39ad3dc743a21"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1cad47cd02d4c7839c2002c2d687d169" id="r_a1cad47cd02d4c7839c2002c2d687d169"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classPonca_1_1AlgebraicSphere.html#ae4fcd85d46a2ed993ae785ac7b02e77d">VectorType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1AlgebraicSphere.html#a1cad47cd02d4c7839c2002c2d687d169">center</a> () const</td></tr>
+<tr class="memdesc:a1cad47cd02d4c7839c2002c2d687d169"><td class="mdescLeft">&#160;</td><td class="mdescRight">return the estimated center of the sphere  <br /></td></tr>
+<tr class="separator:a1cad47cd02d4c7839c2002c2d687d169"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af191c353baa849f5e51a3b0ee6ba86cd" id="r_af191c353baa849f5e51a3b0ee6ba86cd"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1AlgebraicSphere.html#af191c353baa849f5e51a3b0ee6ba86cd">isNormalized</a> () const</td></tr>
+<tr class="memdesc:af191c353baa849f5e51a3b0ee6ba86cd"><td class="mdescLeft">&#160;</td><td class="mdescRight">State indicating when the sphere has been normalized.  <br /></td></tr>
+<tr class="separator:af191c353baa849f5e51a3b0ee6ba86cd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aebd5ed6b22e6bb4dc0d018c0dca859d2" id="r_aebd5ed6b22e6bb4dc0d018c0dca859d2"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classPonca_1_1AlgebraicSphere.html#a971e9bba0fe290ea36fb330e1a8998b1">Scalar</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1AlgebraicSphere.html#aebd5ed6b22e6bb4dc0d018c0dca859d2">potential</a> (const <a class="el" href="classPonca_1_1AlgebraicSphere.html#ae4fcd85d46a2ed993ae785ac7b02e77d">VectorType</a> &amp;_q) const</td></tr>
+<tr class="memdesc:aebd5ed6b22e6bb4dc0d018c0dca859d2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Value of the scalar field at the location \( \mathbf{q}\).  <br /></td></tr>
+<tr class="separator:aebd5ed6b22e6bb4dc0d018c0dca859d2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a076781b7d0bade521bbd241dc01ffed6" id="r_a076781b7d0bade521bbd241dc01ffed6"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classPonca_1_1AlgebraicSphere.html#a971e9bba0fe290ea36fb330e1a8998b1">Scalar</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1AlgebraicSphere.html#a076781b7d0bade521bbd241dc01ffed6">potential</a> () const</td></tr>
+<tr class="memdesc:a076781b7d0bade521bbd241dc01ffed6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Value of the scalar field at the evaluation point.  <br /></td></tr>
+<tr class="separator:a076781b7d0bade521bbd241dc01ffed6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7c3b961dd5d40d0d75d3deba27946497" id="r_a7c3b961dd5d40d0d75d3deba27946497"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classPonca_1_1AlgebraicSphere.html#ae4fcd85d46a2ed993ae785ac7b02e77d">VectorType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1AlgebraicSphere.html#a7c3b961dd5d40d0d75d3deba27946497">project</a> (const <a class="el" href="classPonca_1_1AlgebraicSphere.html#ae4fcd85d46a2ed993ae785ac7b02e77d">VectorType</a> &amp;_q) const</td></tr>
+<tr class="memdesc:a7c3b961dd5d40d0d75d3deba27946497"><td class="mdescLeft">&#160;</td><td class="mdescRight">Project a point on the algebraic hypersphere.  <br /></td></tr>
+<tr class="separator:a7c3b961dd5d40d0d75d3deba27946497"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aee570add837ce51ef4645857761b70d5" id="r_aee570add837ce51ef4645857761b70d5"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classPonca_1_1AlgebraicSphere.html#ae4fcd85d46a2ed993ae785ac7b02e77d">VectorType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1AlgebraicSphere.html#aee570add837ce51ef4645857761b70d5">primitiveGradient</a> (const <a class="el" href="classPonca_1_1AlgebraicSphere.html#ae4fcd85d46a2ed993ae785ac7b02e77d">VectorType</a> &amp;_q) const</td></tr>
+<tr class="memdesc:aee570add837ce51ef4645857761b70d5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Approximation of the scalar field gradient at \( \mathbf{q}\).  <br /></td></tr>
+<tr class="separator:aee570add837ce51ef4645857761b70d5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a41028d5d5f31bc312e22811110891a5d" id="r_a41028d5d5f31bc312e22811110891a5d"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="classPonca_1_1AlgebraicSphere.html#ae4fcd85d46a2ed993ae785ac7b02e77d">VectorType</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1AlgebraicSphere.html#a41028d5d5f31bc312e22811110891a5d">primitiveGradient</a> () const</td></tr>
+<tr class="memdesc:a41028d5d5f31bc312e22811110891a5d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Approximation of the scalar field gradient at the evaluation point.  <br /></td></tr>
+<tr class="separator:a41028d5d5f31bc312e22811110891a5d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae9ef923402e0a914972e459322e6cae1" id="r_ae9ef923402e0a914972e459322e6cae1"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1AlgebraicSphere.html#ae9ef923402e0a914972e459322e6cae1">isPlane</a> () const</td></tr>
+<tr class="memdesc:ae9ef923402e0a914972e459322e6cae1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Used to know if the fitting result to a plane.  <br /></td></tr>
+<tr class="separator:ae9ef923402e0a914972e459322e6cae1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
-<tr class="memitem:a62451d3d44ef95f811b2c2b4e3ed8e1d" id="r_a62451d3d44ef95f811b2c2b4e3ed8e1d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classPonca_1_1AlgebraicSphere.html#a90d67318da4e0597fad0d6b53cefe0d1">Scalar</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1AlgebraicSphere.html#a62451d3d44ef95f811b2c2b4e3ed8e1d">m_uc</a> {0}</td></tr>
-<tr class="memdesc:a62451d3d44ef95f811b2c2b4e3ed8e1d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constant parameter of the Algebraic hyper-sphere.  <br /></td></tr>
-<tr class="separator:a62451d3d44ef95f811b2c2b4e3ed8e1d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac8e238f868938851f8014ca4ee8647d1" id="r_ac8e238f868938851f8014ca4ee8647d1"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classPonca_1_1AlgebraicSphere.html#a90d67318da4e0597fad0d6b53cefe0d1">Scalar</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1AlgebraicSphere.html#ac8e238f868938851f8014ca4ee8647d1">m_uq</a> {0}</td></tr>
-<tr class="memdesc:ac8e238f868938851f8014ca4ee8647d1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Quadratic parameter of the Algebraic hyper-sphere.  <br /></td></tr>
-<tr class="separator:ac8e238f868938851f8014ca4ee8647d1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a80ad3796aa9ce64d4f183aa191309817" id="r_a80ad3796aa9ce64d4f183aa191309817"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classPonca_1_1AlgebraicSphere.html#af30386a4406c056b736100eaa950d3d0">VectorType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1AlgebraicSphere.html#a80ad3796aa9ce64d4f183aa191309817">m_ul</a> {VectorType::Zero()}</td></tr>
-<tr class="memdesc:a80ad3796aa9ce64d4f183aa191309817"><td class="mdescLeft">&#160;</td><td class="mdescRight">Linear parameter of the Algebraic hyper-sphere.  <br /></td></tr>
-<tr class="separator:a80ad3796aa9ce64d4f183aa191309817"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a854b648c939a82fea16fb20783f5172e" id="r_a854b648c939a82fea16fb20783f5172e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classPonca_1_1AlgebraicSphere.html#a971e9bba0fe290ea36fb330e1a8998b1">Scalar</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1AlgebraicSphere.html#a854b648c939a82fea16fb20783f5172e">m_uc</a> {0}</td></tr>
+<tr class="memdesc:a854b648c939a82fea16fb20783f5172e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constant parameter of the Algebraic hyper-sphere.  <br /></td></tr>
+<tr class="separator:a854b648c939a82fea16fb20783f5172e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a779df9953069f68b227a5dfca52bbf75" id="r_a779df9953069f68b227a5dfca52bbf75"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classPonca_1_1AlgebraicSphere.html#a971e9bba0fe290ea36fb330e1a8998b1">Scalar</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1AlgebraicSphere.html#a779df9953069f68b227a5dfca52bbf75">m_uq</a> {0}</td></tr>
+<tr class="memdesc:a779df9953069f68b227a5dfca52bbf75"><td class="mdescLeft">&#160;</td><td class="mdescRight">Quadratic parameter of the Algebraic hyper-sphere.  <br /></td></tr>
+<tr class="separator:a779df9953069f68b227a5dfca52bbf75"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad597a9d4cc9d664eac0f44709c3ef104" id="r_ad597a9d4cc9d664eac0f44709c3ef104"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classPonca_1_1AlgebraicSphere.html#ae4fcd85d46a2ed993ae785ac7b02e77d">VectorType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1AlgebraicSphere.html#ad597a9d4cc9d664eac0f44709c3ef104">m_ul</a> {VectorType::Zero()}</td></tr>
+<tr class="memdesc:ad597a9d4cc9d664eac0f44709c3ef104"><td class="mdescLeft">&#160;</td><td class="mdescRight">Linear parameter of the Algebraic hyper-sphere.  <br /></td></tr>
+<tr class="separator:ad597a9d4cc9d664eac0f44709c3ef104"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-types" name="pro-types"></a>
 Protected Types</h2></td></tr>
-<tr class="memitem:a39a8fedcfda62899968236d51d82063a" id="r_a39a8fedcfda62899968236d51d82063a"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom">{ <a class="el" href="classPonca_1_1AlgebraicSphere.html#a39a8fedcfda62899968236d51d82063aa652f7be31584b31da49fbda06a3fcf86">check</a> = Base::PROVIDES_PRIMITIVE_BASE
-, <a class="el" href="classPonca_1_1AlgebraicSphere.html#a39a8fedcfda62899968236d51d82063aa73848697183f357033ed80ade340cc3d">PROVIDES_ALGEBRAIC_SPHERE</a>
+<tr class="memitem:a39a8fedcfda62899968236d51d82063a" id="r_a39a8fedcfda62899968236d51d82063a"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom">{ <a class="el" href="classPonca_1_1AlgebraicSphere.html#a39a8fedcfda62899968236d51d82063aa61c792b551dddce4454eb25669d5672f">check</a> = Base::PROVIDES_PRIMITIVE_BASE
+, <a class="el" href="classPonca_1_1AlgebraicSphere.html#a39a8fedcfda62899968236d51d82063aad003056108ad096b22635da6536ae045">PROVIDES_ALGEBRAIC_SPHERE</a>
  }</td></tr>
 <tr class="separator:a39a8fedcfda62899968236d51d82063a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a277679eb295a15c5e074200b90811a8c" id="r_a277679eb295a15c5e074200b90811a8c"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1AlgebraicSphere.html#a277679eb295a15c5e074200b90811a8c">Base</a> = T</td></tr>
-<tr class="memdesc:a277679eb295a15c5e074200b90811a8c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Base class of the procedure.  <br /></td></tr>
-<tr class="separator:a277679eb295a15c5e074200b90811a8c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a628c9d2000c6d07fce5b25bbb97b0978" id="r_a628c9d2000c6d07fce5b25bbb97b0978"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1AlgebraicSphere.html#a628c9d2000c6d07fce5b25bbb97b0978">Base</a> = T</td></tr>
+<tr class="memdesc:a628c9d2000c6d07fce5b25bbb97b0978"><td class="mdescLeft">&#160;</td><td class="mdescRight">Base class of the procedure.  <br /></td></tr>
+<tr class="separator:a628c9d2000c6d07fce5b25bbb97b0978"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-methods" name="pro-methods"></a>
+Protected Member Functions</h2></td></tr>
+<tr class="memitem:a9fd436b282c7e350673718d065f8f0c1" id="r_a9fd436b282c7e350673718d065f8f0c1"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classPonca_1_1AlgebraicSphere.html#a971e9bba0fe290ea36fb330e1a8998b1">Scalar</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1AlgebraicSphere.html#a9fd436b282c7e350673718d065f8f0c1">potentialLocal</a> (const <a class="el" href="classPonca_1_1AlgebraicSphere.html#ae4fcd85d46a2ed993ae785ac7b02e77d">VectorType</a> &amp;_lq) const</td></tr>
+<tr class="memdesc:a9fd436b282c7e350673718d065f8f0c1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Value of the scalar field at the location \( \mathbf{q}\).    <br /></td></tr>
+<tr class="separator:a9fd436b282c7e350673718d065f8f0c1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aadee3e23463e3b730a226a1cc2f39bc5" id="r_aadee3e23463e3b730a226a1cc2f39bc5"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classPonca_1_1AlgebraicSphere.html#ae4fcd85d46a2ed993ae785ac7b02e77d">VectorType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1AlgebraicSphere.html#aadee3e23463e3b730a226a1cc2f39bc5">primitiveGradientLocal</a> (const <a class="el" href="classPonca_1_1AlgebraicSphere.html#ae4fcd85d46a2ed993ae785ac7b02e77d">VectorType</a> &amp;_lq) const</td></tr>
+<tr class="memdesc:aadee3e23463e3b730a226a1cc2f39bc5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Approximation of the scalar field gradient at \( \mathbf{q}\).    <br /></td></tr>
+<tr class="separator:aadee3e23463e3b730a226a1cc2f39bc5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-attribs" name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
-<tr class="memitem:a32776b0267366928921d6cd1aaad65a3" id="r_a32776b0267366928921d6cd1aaad65a3"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1AlgebraicSphere.html#a32776b0267366928921d6cd1aaad65a3">m_isNormalized</a></td></tr>
-<tr class="memdesc:a32776b0267366928921d6cd1aaad65a3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Is the implicit scalar field normalized using Pratt.  <br /></td></tr>
-<tr class="separator:a32776b0267366928921d6cd1aaad65a3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abefa842506e7057b4f6ac74a8575cf06" id="r_abefa842506e7057b4f6ac74a8575cf06"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1AlgebraicSphere.html#abefa842506e7057b4f6ac74a8575cf06">m_isNormalized</a></td></tr>
+<tr class="memdesc:abefa842506e7057b4f6ac74a8575cf06"><td class="mdescLeft">&#160;</td><td class="mdescRight">Is the implicit scalar field normalized using Pratt.  <br /></td></tr>
+<tr class="separator:abefa842506e7057b4f6ac74a8575cf06"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><div class="compoundTemplParams">template&lt;class DataPoint, class _WFunctor, typename T&gt;<br />
-class Ponca::AlgebraicSphere&lt; DataPoint, _WFunctor, T &gt;</div><p>Algebraic Sphere primitive. </p>
+<div class="textblock"><div class="compoundTemplParams">template&lt;class DataPoint, class _NFilter, typename T&gt;<br />
+class Ponca::AlgebraicSphere&lt; DataPoint, _NFilter, T &gt;</div><p>Algebraic Sphere primitive. </p>
 <p>Method published in <a class="el" href="citelist.html#CITEREF_Guennebaud:2007:APSS">[6]</a></p>
 <p>An algebraic hyper-sphere is defined as the \(0\)-isosurface of the scalar field</p>
 <p>\( s_\mathbf{u}(\mathbf{x}) = \left[ 1 \; \mathbf{x}^T \; \mathbf{x}^T\mathbf{x}\right]^T \cdot \mathbf{u} \)</p>
@@ -264,19 +271,19 @@ class Ponca::AlgebraicSphere&lt; DataPoint, _WFunctor, T &gt;</div><p>Algebraic 
 <p>This primitive provides: </p><pre class="fragment">PROVIDES_ALGEBRAIC_SPHERE </pre>
 <p class="definition">Definition at line <a class="el" href="algebraicSphere_8h_source.html#l00046">46</a> of file <a class="el" href="algebraicSphere_8h_source.html">algebraicSphere.h</a>.</p>
 </div><h2 class="groupheader">Member Typedef Documentation</h2>
-<a id="a277679eb295a15c5e074200b90811a8c" name="a277679eb295a15c5e074200b90811a8c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a277679eb295a15c5e074200b90811a8c">&#9670;&#160;</a></span>Base</h2>
+<a id="a628c9d2000c6d07fce5b25bbb97b0978" name="a628c9d2000c6d07fce5b25bbb97b0978"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a628c9d2000c6d07fce5b25bbb97b0978">&#9670;&#160;</a></span>Base</h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
+template&lt;class DataPoint , class _NFilter , typename T &gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">using <a class="el" href="classPonca_1_1AlgebraicSphere.html">Ponca::AlgebraicSphere</a>&lt; DataPoint, _WFunctor, T &gt;::Base =  T</td>
+          <td class="memname">using <a class="el" href="classPonca_1_1AlgebraicSphere.html">Ponca::AlgebraicSphere</a>&lt; DataPoint, _NFilter, T &gt;::Base =  T</td>
         </tr>
       </table>
   </td>
@@ -292,16 +299,36 @@ template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
 
 </div>
 </div>
-<a id="a90d67318da4e0597fad0d6b53cefe0d1" name="a90d67318da4e0597fad0d6b53cefe0d1"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a90d67318da4e0597fad0d6b53cefe0d1">&#9670;&#160;</a></span>Scalar</h2>
+<a id="ad54224eae7f7d4761ab08a8462e2bafa" name="ad54224eae7f7d4761ab08a8462e2bafa"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad54224eae7f7d4761ab08a8462e2bafa">&#9670;&#160;</a></span>NeighborFilter</h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
+template&lt;class DataPoint , class _NFilter , typename T &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">using <a class="el" href="classPonca_1_1AlgebraicSphere.html">Ponca::AlgebraicSphere</a>&lt; DataPoint, _WFunctor, T &gt;::Scalar =  typename DataPoint::Scalar</td>
+          <td class="memname">using <a class="el" href="classPonca_1_1AlgebraicSphere.html">Ponca::AlgebraicSphere</a>&lt; DataPoint, _NFilter, T &gt;::NeighborFilter =  typename Base::NeighborFilter</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Alias to the filter applied on the neighbors. </p>
+
+<p class="definition">Definition at line <a class="el" href="algebraicSphere_8h_source.html#l00048">48</a> of file <a class="el" href="algebraicSphere_8h_source.html">algebraicSphere.h</a>.</p>
+
+</div>
+</div>
+<a id="a971e9bba0fe290ea36fb330e1a8998b1" name="a971e9bba0fe290ea36fb330e1a8998b1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a971e9bba0fe290ea36fb330e1a8998b1">&#9670;&#160;</a></span>Scalar</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class DataPoint , class _NFilter , typename T &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="classPonca_1_1AlgebraicSphere.html">Ponca::AlgebraicSphere</a>&lt; DataPoint, _NFilter, T &gt;::Scalar =  typename DataPoint::Scalar</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -312,41 +339,21 @@ template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
 
 </div>
 </div>
-<a id="af30386a4406c056b736100eaa950d3d0" name="af30386a4406c056b736100eaa950d3d0"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af30386a4406c056b736100eaa950d3d0">&#9670;&#160;</a></span>VectorType</h2>
+<a id="ae4fcd85d46a2ed993ae785ac7b02e77d" name="ae4fcd85d46a2ed993ae785ac7b02e77d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae4fcd85d46a2ed993ae785ac7b02e77d">&#9670;&#160;</a></span>VectorType</h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
+template&lt;class DataPoint , class _NFilter , typename T &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">using <a class="el" href="classPonca_1_1AlgebraicSphere.html">Ponca::AlgebraicSphere</a>&lt; DataPoint, _WFunctor, T &gt;::VectorType =  typename Base::VectorType</td>
+          <td class="memname">using <a class="el" href="classPonca_1_1AlgebraicSphere.html">Ponca::AlgebraicSphere</a>&lt; DataPoint, _NFilter, T &gt;::VectorType =  typename Base::VectorType</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
 <p>Alias to vector type. </p>
-
-<p class="definition">Definition at line <a class="el" href="algebraicSphere_8h_source.html#l00048">48</a> of file <a class="el" href="algebraicSphere_8h_source.html">algebraicSphere.h</a>.</p>
-
-</div>
-</div>
-<a id="aaf462225e8ff42cbf327d04bccc14d1f" name="aaf462225e8ff42cbf327d04bccc14d1f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aaf462225e8ff42cbf327d04bccc14d1f">&#9670;&#160;</a></span>WFunctor</h2>
-
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
-      <table class="memname">
-        <tr>
-          <td class="memname">using <a class="el" href="classPonca_1_1AlgebraicSphere.html">Ponca::AlgebraicSphere</a>&lt; DataPoint, _WFunctor, T &gt;::WFunctor =  typename Base::WFunctor</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Alias to weight function. </p>
 
 <p class="definition">Definition at line <a class="el" href="algebraicSphere_8h_source.html#l00048">48</a> of file <a class="el" href="algebraicSphere_8h_source.html">algebraicSphere.h</a>.</p>
 
@@ -359,7 +366,7 @@ template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
+template&lt;class DataPoint , class _NFilter , typename T &gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
@@ -375,30 +382,30 @@ template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
 </table>
 </div><div class="memdoc">
 <table class="fieldtable">
-<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="a39a8fedcfda62899968236d51d82063aa652f7be31584b31da49fbda06a3fcf86" name="a39a8fedcfda62899968236d51d82063aa652f7be31584b31da49fbda06a3fcf86"></a>check&#160;</td><td class="fielddoc"><p>Requires <a class="el" href="classPonca_1_1PrimitiveBase.html" title="Primitive base class.">PrimitiveBase</a>. </p>
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="a39a8fedcfda62899968236d51d82063aa61c792b551dddce4454eb25669d5672f" name="a39a8fedcfda62899968236d51d82063aa61c792b551dddce4454eb25669d5672f"></a>check&#160;</td><td class="fielddoc"><p>Requires <a class="el" href="classPonca_1_1PrimitiveBase.html" title="Primitive base class.">PrimitiveBase</a>. </p>
 </td></tr>
-<tr><td class="fieldname"><a id="a39a8fedcfda62899968236d51d82063aa73848697183f357033ed80ade340cc3d" name="a39a8fedcfda62899968236d51d82063aa73848697183f357033ed80ade340cc3d"></a>PROVIDES_ALGEBRAIC_SPHERE&#160;</td><td class="fielddoc"><p>Provides Algebraic Sphere. </p>
+<tr><td class="fieldname"><a id="a39a8fedcfda62899968236d51d82063aad003056108ad096b22635da6536ae045" name="a39a8fedcfda62899968236d51d82063aad003056108ad096b22635da6536ae045"></a>PROVIDES_ALGEBRAIC_SPHERE&#160;</td><td class="fielddoc"><p>Provides Algebraic Sphere. </p>
 </td></tr>
 </table>
 
-<p class="definition">Definition at line <a class="el" href="algebraicSphere_8h_source.html#l00051">51</a> of file <a class="el" href="algebraicSphere_8h_source.html">algebraicSphere.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="algebraicSphere_8h_source.html#l00052">52</a> of file <a class="el" href="algebraicSphere_8h_source.html">algebraicSphere.h</a>.</p>
 
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a id="affdaa1f41b84e67ad65d66166649d9e3" name="affdaa1f41b84e67ad65d66166649d9e3"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#affdaa1f41b84e67ad65d66166649d9e3">&#9670;&#160;</a></span>algebraicSphere() <span class="overload">[1/2]</span></h2>
+<a id="ab3557e66217abd4f0a178341bc49f8ef" name="ab3557e66217abd4f0a178341bc49f8ef"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab3557e66217abd4f0a178341bc49f8ef">&#9670;&#160;</a></span>algebraicSphere() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
+template&lt;class DataPoint , class _NFilter , typename T &gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classPonca_1_1AlgebraicSphere.html">AlgebraicSphere</a>&lt; DataPoint, _WFunctor, T &gt; &amp; <a class="el" href="classPonca_1_1AlgebraicSphere.html">Ponca::AlgebraicSphere</a>&lt; DataPoint, _WFunctor, T &gt;::algebraicSphere </td>
+          <td class="memname"><a class="el" href="classPonca_1_1AlgebraicSphere.html">AlgebraicSphere</a>&lt; DataPoint, _NFilter, T &gt; &amp; <a class="el" href="classPonca_1_1AlgebraicSphere.html">Ponca::AlgebraicSphere</a>&lt; DataPoint, _NFilter, T &gt;::algebraicSphere </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -413,23 +420,23 @@ template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
 
 <p>Explicit conversion to <a class="el" href="classPonca_1_1AlgebraicSphere.html" title="Algebraic Sphere primitive.">AlgebraicSphere</a> , to access methods potentially hidden by heritage. </p>
 
-<p class="definition">Definition at line <a class="el" href="algebraicSphere_8h_source.html#l00068">68</a> of file <a class="el" href="algebraicSphere_8h_source.html">algebraicSphere.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="algebraicSphere_8h_source.html#l00069">69</a> of file <a class="el" href="algebraicSphere_8h_source.html">algebraicSphere.h</a>.</p>
 
 </div>
 </div>
-<a id="ab291c64c03d4ba1e442b6406daaa67cb" name="ab291c64c03d4ba1e442b6406daaa67cb"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ab291c64c03d4ba1e442b6406daaa67cb">&#9670;&#160;</a></span>algebraicSphere() <span class="overload">[2/2]</span></h2>
+<a id="a5a470770fa7114ea4932d8a63990bf0f" name="a5a470770fa7114ea4932d8a63990bf0f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5a470770fa7114ea4932d8a63990bf0f">&#9670;&#160;</a></span>algebraicSphere() <span class="overload">[2/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
+template&lt;class DataPoint , class _NFilter , typename T &gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">const <a class="el" href="classPonca_1_1AlgebraicSphere.html">AlgebraicSphere</a>&lt; DataPoint, _WFunctor, T &gt; &amp; <a class="el" href="classPonca_1_1AlgebraicSphere.html">Ponca::AlgebraicSphere</a>&lt; DataPoint, _WFunctor, T &gt;::algebraicSphere </td>
+          <td class="memname">const <a class="el" href="classPonca_1_1AlgebraicSphere.html">AlgebraicSphere</a>&lt; DataPoint, _NFilter, T &gt; &amp; <a class="el" href="classPonca_1_1AlgebraicSphere.html">Ponca::AlgebraicSphere</a>&lt; DataPoint, _NFilter, T &gt;::algebraicSphere </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td> const</td>
@@ -444,23 +451,23 @@ template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
 
 <p>Explicit conversion to <a class="el" href="classPonca_1_1AlgebraicSphere.html" title="Algebraic Sphere primitive.">AlgebraicSphere</a> , to access methods potentially hidden by heritage. </p>
 
-<p class="definition">Definition at line <a class="el" href="algebraicSphere_8h_source.html#l00068">68</a> of file <a class="el" href="algebraicSphere_8h_source.html">algebraicSphere.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="algebraicSphere_8h_source.html#l00069">69</a> of file <a class="el" href="algebraicSphere_8h_source.html">algebraicSphere.h</a>.</p>
 
 </div>
 </div>
-<a id="ad09e54e72635438337edab0bf9aa226b" name="ad09e54e72635438337edab0bf9aa226b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad09e54e72635438337edab0bf9aa226b">&#9670;&#160;</a></span>applyPrattNorm()</h2>
+<a id="a31f68e35d85bfa3fbde5f8f99d2eceb2" name="a31f68e35d85bfa3fbde5f8f99d2eceb2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a31f68e35d85bfa3fbde5f8f99d2eceb2">&#9670;&#160;</a></span>applyPrattNorm()</h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
+template&lt;class DataPoint , class _NFilter , typename T &gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">bool <a class="el" href="classPonca_1_1AlgebraicSphere.html">Ponca::AlgebraicSphere</a>&lt; DataPoint, _WFunctor, T &gt;::applyPrattNorm </td>
+          <td class="memname">bool <a class="el" href="classPonca_1_1AlgebraicSphere.html">Ponca::AlgebraicSphere</a>&lt; DataPoint, _NFilter, T &gt;::applyPrattNorm </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -476,23 +483,23 @@ template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
 <p>Normalize the scalar field by the Pratt norm. </p>
 <dl class="section return"><dt>Returns</dt><dd>false when the normalization fails (sphere is already normalized) </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="algebraicSphere_8h_source.html#l00175">175</a> of file <a class="el" href="algebraicSphere_8h_source.html">algebraicSphere.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="algebraicSphere_8h_source.html#l00176">176</a> of file <a class="el" href="algebraicSphere_8h_source.html">algebraicSphere.h</a>.</p>
 
 </div>
 </div>
-<a id="abe53aba84bb693f553804c734d69da13" name="abe53aba84bb693f553804c734d69da13"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#abe53aba84bb693f553804c734d69da13">&#9670;&#160;</a></span>center()</h2>
+<a id="a1cad47cd02d4c7839c2002c2d687d169" name="a1cad47cd02d4c7839c2002c2d687d169"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1cad47cd02d4c7839c2002c2d687d169">&#9670;&#160;</a></span>center()</h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
+template&lt;class DataPoint , class _NFilter , typename T &gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classPonca_1_1AlgebraicSphere.html#af30386a4406c056b736100eaa950d3d0">VectorType</a> <a class="el" href="classPonca_1_1AlgebraicSphere.html">Ponca::AlgebraicSphere</a>&lt; DataPoint, _WFunctor, T &gt;::center </td>
+          <td class="memname"><a class="el" href="classPonca_1_1AlgebraicSphere.html#ae4fcd85d46a2ed993ae785ac7b02e77d">VectorType</a> <a class="el" href="classPonca_1_1AlgebraicSphere.html">Ponca::AlgebraicSphere</a>&lt; DataPoint, _NFilter, T &gt;::center </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td> const</td>
@@ -508,25 +515,25 @@ template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
 <p>return the estimated center of the sphere </p>
 <dl class="section warning"><dt>Warning</dt><dd>return Vector inf if the fitted surface is planar </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="algebraicSphere_8h_source.html#l00208">208</a> of file <a class="el" href="algebraicSphere_8h_source.html">algebraicSphere.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="algebraicSphere_8h_source.html#l00209">209</a> of file <a class="el" href="algebraicSphere_8h_source.html">algebraicSphere.h</a>.</p>
 
 </div>
 </div>
-<a id="a054a41e20c9ca517af359aa591bca9e7" name="a054a41e20c9ca517af359aa591bca9e7"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a054a41e20c9ca517af359aa591bca9e7">&#9670;&#160;</a></span>changeBasis()</h2>
+<a id="a36681585b0bb114925992f0937e6e8df" name="a36681585b0bb114925992f0937e6e8df"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a36681585b0bb114925992f0937e6e8df">&#9670;&#160;</a></span>changeBasis()</h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
+template&lt;class DataPoint , class _NFilter , typename T &gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">void <a class="el" href="classPonca_1_1AlgebraicSphere.html">Ponca::AlgebraicSphere</a>&lt; DataPoint, _WFunctor, T &gt;::changeBasis </td>
+          <td class="memname">void <a class="el" href="classPonca_1_1AlgebraicSphere.html">Ponca::AlgebraicSphere</a>&lt; DataPoint, _NFilter, T &gt;::changeBasis </td>
           <td>(</td>
-          <td class="paramtype">const <a class="el" href="classPonca_1_1AlgebraicSphere.html#af30386a4406c056b736100eaa950d3d0">VectorType</a> &amp;&#160;</td>
+          <td class="paramtype">const <a class="el" href="classPonca_1_1AlgebraicSphere.html#ae4fcd85d46a2ed993ae785ac7b02e77d">VectorType</a> &amp;&#160;</td>
           <td class="paramname"><em>newbasis</em></td><td>)</td>
           <td></td>
         </tr>
@@ -547,23 +554,23 @@ template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
 <p>\(\mathbf{u}_l&#39; = \mathbf{u}_l - 2 u_q \mathbf{\Delta}\)</p>
 <p>\(u_q&#39;=u_q\) </p>
 
-<p class="definition">Definition at line <a class="el" href="algebraicSphere_8h_source.html#l00146">146</a> of file <a class="el" href="algebraicSphere_8h_source.html">algebraicSphere.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="algebraicSphere_8h_source.html#l00147">147</a> of file <a class="el" href="algebraicSphere_8h_source.html">algebraicSphere.h</a>.</p>
 
 </div>
 </div>
-<a id="a5a9e78d06c7c3e3f7a8efaad1ab00d6a" name="a5a9e78d06c7c3e3f7a8efaad1ab00d6a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a5a9e78d06c7c3e3f7a8efaad1ab00d6a">&#9670;&#160;</a></span>init()</h2>
+<a id="a42063229e1494ed826896b80f6a0a97a" name="a42063229e1494ed826896b80f6a0a97a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a42063229e1494ed826896b80f6a0a97a">&#9670;&#160;</a></span>init()</h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
+template&lt;class DataPoint , class _NFilter , typename T &gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">void <a class="el" href="classPonca_1_1AlgebraicSphere.html">Ponca::AlgebraicSphere</a>&lt; DataPoint, _WFunctor, T &gt;::init </td>
+          <td class="memname">void <a class="el" href="classPonca_1_1AlgebraicSphere.html">Ponca::AlgebraicSphere</a>&lt; DataPoint, _NFilter, T &gt;::init </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -576,20 +583,20 @@ template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p>Set the scalar field values to 0 and reset the <a class="el" href="classPonca_1_1AlgebraicSphere.html#ab1367679cd2a38f9910e9329b65797a7" title="State indicating when the sphere has been normalized.">isNormalized()</a> status. </p>
+<p>Set the scalar field values to 0 and reset the <a class="el" href="classPonca_1_1AlgebraicSphere.html#af191c353baa849f5e51a3b0ee6ba86cd" title="State indicating when the sphere has been normalized.">isNormalized()</a> status. </p>
 <dl class="section warning"><dt>Warning</dt><dd>Set m_ul to Zero(), which leads to nans in OrientedSphere::normal() </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="algebraicSphere_8h_source.html#l00074">74</a> of file <a class="el" href="algebraicSphere_8h_source.html">algebraicSphere.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="algebraicSphere_8h_source.html#l00075">75</a> of file <a class="el" href="algebraicSphere_8h_source.html">algebraicSphere.h</a>.</p>
 
 </div>
 </div>
-<a id="a54ec01c19a91e166c1ded642193e86ba" name="a54ec01c19a91e166c1ded642193e86ba"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a54ec01c19a91e166c1ded642193e86ba">&#9670;&#160;</a></span>isApprox()</h2>
+<a id="ad13fd165f26211b37d98a1f60b5e755d" name="ad13fd165f26211b37d98a1f60b5e755d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad13fd165f26211b37d98a1f60b5e755d">&#9670;&#160;</a></span>isApprox()</h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
+template&lt;class DataPoint , class _NFilter , typename T &gt; </div>
 <div class="memtemplate">
 template&lt;typename Other &gt; </div>
 <table class="mlabels">
@@ -597,7 +604,7 @@ template&lt;typename Other &gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">bool <a class="el" href="classPonca_1_1AlgebraicSphere.html">Ponca::AlgebraicSphere</a>&lt; DataPoint, _WFunctor, T &gt;::isApprox </td>
+          <td class="memname">bool <a class="el" href="classPonca_1_1AlgebraicSphere.html">Ponca::AlgebraicSphere</a>&lt; DataPoint, _NFilter, T &gt;::isApprox </td>
           <td>(</td>
           <td class="paramtype">const Other &amp;&#160;</td>
           <td class="paramname"><em>other</em>, </td>
@@ -605,8 +612,8 @@ template&lt;typename Other &gt; </div>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const <a class="el" href="classPonca_1_1AlgebraicSphere.html#a90d67318da4e0597fad0d6b53cefe0d1">Scalar</a> &amp;&#160;</td>
-          <td class="paramname"><em>epsilon</em> = <code>Eigen::NumTraits&lt;<a class="el" href="classPonca_1_1AlgebraicSphere.html#a90d67318da4e0597fad0d6b53cefe0d1">Scalar</a>&gt;::dummy_precision()</code>&#160;</td>
+          <td class="paramtype">const <a class="el" href="classPonca_1_1AlgebraicSphere.html#a971e9bba0fe290ea36fb330e1a8998b1">Scalar</a> &amp;&#160;</td>
+          <td class="paramname"><em>epsilon</em> = <code>Eigen::NumTraits&lt;<a class="el" href="classPonca_1_1AlgebraicSphere.html#a971e9bba0fe290ea36fb330e1a8998b1">Scalar</a>&gt;::dummy_precision()</code>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -623,25 +630,25 @@ template&lt;typename Other &gt; </div>
 
 <p>Approximate operator. </p>
 <dl class="section warning"><dt>Warning</dt><dd>Assume that other shares the same basis </dd></dl>
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="classPonca_1_1AlgebraicSphere.html#a054a41e20c9ca517af359aa591bca9e7" title="Express the scalar field relatively to a new basis.">changeBasis()</a> </dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="classPonca_1_1AlgebraicSphere.html#a36681585b0bb114925992f0937e6e8df" title="Express the scalar field relatively to a new basis.">changeBasis()</a> </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="algebraicSphere_8h_source.html#l00103">103</a> of file <a class="el" href="algebraicSphere_8h_source.html">algebraicSphere.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="algebraicSphere_8h_source.html#l00104">104</a> of file <a class="el" href="algebraicSphere_8h_source.html">algebraicSphere.h</a>.</p>
 
 </div>
 </div>
-<a id="ab1367679cd2a38f9910e9329b65797a7" name="ab1367679cd2a38f9910e9329b65797a7"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ab1367679cd2a38f9910e9329b65797a7">&#9670;&#160;</a></span>isNormalized()</h2>
+<a id="af191c353baa849f5e51a3b0ee6ba86cd" name="af191c353baa849f5e51a3b0ee6ba86cd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af191c353baa849f5e51a3b0ee6ba86cd">&#9670;&#160;</a></span>isNormalized()</h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
+template&lt;class DataPoint , class _NFilter , typename T &gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">bool <a class="el" href="classPonca_1_1AlgebraicSphere.html">Ponca::AlgebraicSphere</a>&lt; DataPoint, _WFunctor, T &gt;::isNormalized </td>
+          <td class="memname">bool <a class="el" href="classPonca_1_1AlgebraicSphere.html">Ponca::AlgebraicSphere</a>&lt; DataPoint, _NFilter, T &gt;::isNormalized </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td> const</td>
@@ -656,23 +663,23 @@ template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
 
 <p>State indicating when the sphere has been normalized. </p>
 
-<p class="definition">Definition at line <a class="el" href="algebraicSphere_8h_source.html#l00219">219</a> of file <a class="el" href="algebraicSphere_8h_source.html">algebraicSphere.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="algebraicSphere_8h_source.html#l00220">220</a> of file <a class="el" href="algebraicSphere_8h_source.html">algebraicSphere.h</a>.</p>
 
 </div>
 </div>
-<a id="a681d3ba71d704798a48e2eb7ebb5826a" name="a681d3ba71d704798a48e2eb7ebb5826a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a681d3ba71d704798a48e2eb7ebb5826a">&#9670;&#160;</a></span>isPlane()</h2>
+<a id="ae9ef923402e0a914972e459322e6cae1" name="ae9ef923402e0a914972e459322e6cae1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae9ef923402e0a914972e459322e6cae1">&#9670;&#160;</a></span>isPlane()</h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
+template&lt;class DataPoint , class _NFilter , typename T &gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">bool <a class="el" href="classPonca_1_1AlgebraicSphere.html">Ponca::AlgebraicSphere</a>&lt; DataPoint, _WFunctor, T &gt;::isPlane </td>
+          <td class="memname">bool <a class="el" href="classPonca_1_1AlgebraicSphere.html">Ponca::AlgebraicSphere</a>&lt; DataPoint, _NFilter, T &gt;::isPlane </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td> const</td>
@@ -688,23 +695,23 @@ template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
 <p>Used to know if the fitting result to a plane. </p>
 <dl class="section return"><dt>Returns</dt><dd>true if finalize() have been called and the fitting result to a plane </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="algebraicSphere_8h_source.html#l00260">260</a> of file <a class="el" href="algebraicSphere_8h_source.html">algebraicSphere.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="algebraicSphere_8h_source.html#l00262">262</a> of file <a class="el" href="algebraicSphere_8h_source.html">algebraicSphere.h</a>.</p>
 
 </div>
 </div>
-<a id="a065ea27863d0b88c900c24a5bb7f30c7" name="a065ea27863d0b88c900c24a5bb7f30c7"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a065ea27863d0b88c900c24a5bb7f30c7">&#9670;&#160;</a></span>isValid()</h2>
+<a id="ae7f47608549c4051d953420ef1698747" name="ae7f47608549c4051d953420ef1698747"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae7f47608549c4051d953420ef1698747">&#9670;&#160;</a></span>isValid()</h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
+template&lt;class DataPoint , class _NFilter , typename T &gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">bool <a class="el" href="classPonca_1_1AlgebraicSphere.html">Ponca::AlgebraicSphere</a>&lt; DataPoint, _WFunctor, T &gt;::isValid </td>
+          <td class="memname">bool <a class="el" href="classPonca_1_1AlgebraicSphere.html">Ponca::AlgebraicSphere</a>&lt; DataPoint, _NFilter, T &gt;::isValid </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td> const</td>
@@ -718,27 +725,27 @@ template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
 </div><div class="memdoc">
 
 <p>Tell if the sphere as been correctly set. Used to set CONFLICT_ERROR_FOUND during fitting. </p>
-<dl class="section return"><dt>Returns</dt><dd>false when called straight after <a class="el" href="classPonca_1_1AlgebraicSphere.html#a5a9e78d06c7c3e3f7a8efaad1ab00d6a" title="Set the scalar field values to 0 and reset the isNormalized() status.">init</a>. Should be true after fitting </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>false when called straight after <a class="el" href="classPonca_1_1AlgebraicSphere.html#a42063229e1494ed826896b80f6a0a97a" title="Set the scalar field values to 0 and reset the isNormalized() status.">init</a>. Should be true after fitting </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="algebraicSphere_8h_source.html#l00088">88</a> of file <a class="el" href="algebraicSphere_8h_source.html">algebraicSphere.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="algebraicSphere_8h_source.html#l00089">89</a> of file <a class="el" href="algebraicSphere_8h_source.html">algebraicSphere.h</a>.</p>
 
 </div>
 </div>
-<a id="aaef184e3541aeedeed7951d76530b915" name="aaef184e3541aeedeed7951d76530b915"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aaef184e3541aeedeed7951d76530b915">&#9670;&#160;</a></span>operator!=()</h2>
+<a id="abe50599f9750328e3a107ecb0a96c4f5" name="abe50599f9750328e3a107ecb0a96c4f5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abe50599f9750328e3a107ecb0a96c4f5">&#9670;&#160;</a></span>operator!=()</h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
+template&lt;class DataPoint , class _NFilter , typename T &gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">bool <a class="el" href="classPonca_1_1AlgebraicSphere.html">Ponca::AlgebraicSphere</a>&lt; DataPoint, _WFunctor, T &gt;::operator!= </td>
+          <td class="memname">bool <a class="el" href="classPonca_1_1AlgebraicSphere.html">Ponca::AlgebraicSphere</a>&lt; DataPoint, _NFilter, T &gt;::operator!= </td>
           <td>(</td>
-          <td class="paramtype">const <a class="el" href="classPonca_1_1AlgebraicSphere.html">AlgebraicSphere</a>&lt; DataPoint, <a class="el" href="classPonca_1_1AlgebraicSphere.html#aaf462225e8ff42cbf327d04bccc14d1f">WFunctor</a>, T &gt; &amp;&#160;</td>
+          <td class="paramtype">const <a class="el" href="classPonca_1_1AlgebraicSphere.html">AlgebraicSphere</a>&lt; DataPoint, <a class="el" href="classPonca_1_1AlgebraicSphere.html#ad54224eae7f7d4761ab08a8462e2bafa">NeighborFilter</a>, T &gt; &amp;&#160;</td>
           <td class="paramname"><em>other</em></td><td>)</td>
           <td> const</td>
         </tr>
@@ -752,25 +759,25 @@ template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
 
 <p>Comparison operator, convenience function. </p>
 
-<p class="definition">Definition at line <a class="el" href="algebraicSphere_8h_source.html#l00113">113</a> of file <a class="el" href="algebraicSphere_8h_source.html">algebraicSphere.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="algebraicSphere_8h_source.html#l00114">114</a> of file <a class="el" href="algebraicSphere_8h_source.html">algebraicSphere.h</a>.</p>
 
 </div>
 </div>
-<a id="a73b2bb6a83bd2bb746ad27c3705da905" name="a73b2bb6a83bd2bb746ad27c3705da905"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a73b2bb6a83bd2bb746ad27c3705da905">&#9670;&#160;</a></span>operator==()</h2>
+<a id="afe8370321e95cb89ae7677f5e29ceb1c" name="afe8370321e95cb89ae7677f5e29ceb1c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afe8370321e95cb89ae7677f5e29ceb1c">&#9670;&#160;</a></span>operator==()</h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
+template&lt;class DataPoint , class _NFilter , typename T &gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">bool <a class="el" href="classPonca_1_1AlgebraicSphere.html">Ponca::AlgebraicSphere</a>&lt; DataPoint, _WFunctor, T &gt;::operator== </td>
+          <td class="memname">bool <a class="el" href="classPonca_1_1AlgebraicSphere.html">Ponca::AlgebraicSphere</a>&lt; DataPoint, _NFilter, T &gt;::operator== </td>
           <td>(</td>
-          <td class="paramtype">const <a class="el" href="classPonca_1_1AlgebraicSphere.html">AlgebraicSphere</a>&lt; DataPoint, <a class="el" href="classPonca_1_1AlgebraicSphere.html#aaf462225e8ff42cbf327d04bccc14d1f">WFunctor</a>, T &gt; &amp;&#160;</td>
+          <td class="paramtype">const <a class="el" href="classPonca_1_1AlgebraicSphere.html">AlgebraicSphere</a>&lt; DataPoint, <a class="el" href="classPonca_1_1AlgebraicSphere.html#ad54224eae7f7d4761ab08a8462e2bafa">NeighborFilter</a>, T &gt; &amp;&#160;</td>
           <td class="paramname"><em>other</em></td><td>)</td>
           <td> const</td>
         </tr>
@@ -784,25 +791,25 @@ template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
 
 <p>Comparison operator. </p>
 <dl class="section warning"><dt>Warning</dt><dd>Assume that other shares the same basis </dd></dl>
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="classPonca_1_1AlgebraicSphere.html#a054a41e20c9ca517af359aa591bca9e7" title="Express the scalar field relatively to a new basis.">changeBasis()</a> </dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="classPonca_1_1AlgebraicSphere.html#a36681585b0bb114925992f0937e6e8df" title="Express the scalar field relatively to a new basis.">changeBasis()</a> </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="algebraicSphere_8h_source.html#l00093">93</a> of file <a class="el" href="algebraicSphere_8h_source.html">algebraicSphere.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="algebraicSphere_8h_source.html#l00094">94</a> of file <a class="el" href="algebraicSphere_8h_source.html">algebraicSphere.h</a>.</p>
 
 </div>
 </div>
-<a id="a15aadd172909ae086b0068c235e39b05" name="a15aadd172909ae086b0068c235e39b05"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a15aadd172909ae086b0068c235e39b05">&#9670;&#160;</a></span>potential() <span class="overload">[1/2]</span></h2>
+<a id="a076781b7d0bade521bbd241dc01ffed6" name="a076781b7d0bade521bbd241dc01ffed6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a076781b7d0bade521bbd241dc01ffed6">&#9670;&#160;</a></span>potential() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
+template&lt;class DataPoint , class _NFilter , typename T &gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classPonca_1_1AlgebraicSphere.html#a90d67318da4e0597fad0d6b53cefe0d1">Scalar</a> <a class="el" href="classPonca_1_1AlgebraicSphere.html">Ponca::AlgebraicSphere</a>&lt; DataPoint, _WFunctor, T &gt;::potential </td>
+          <td class="memname"><a class="el" href="classPonca_1_1AlgebraicSphere.html#a971e9bba0fe290ea36fb330e1a8998b1">Scalar</a> <a class="el" href="classPonca_1_1AlgebraicSphere.html">Ponca::AlgebraicSphere</a>&lt; DataPoint, _NFilter, T &gt;::potential </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td> const</td>
@@ -816,27 +823,27 @@ template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
 </div><div class="memdoc">
 
 <p>Value of the scalar field at the evaluation point. </p>
-<dl class="section see"><dt>See also</dt><dd>method <code>#isSigned</code> of the fit to <a class="el" href="classPonca_1_1AlgebraicSphere.html#a39a8fedcfda62899968236d51d82063aa652f7be31584b31da49fbda06a3fcf86" title="Requires PrimitiveBase.">check</a> if the sign is reliable </dd></dl>
+<dl class="section see"><dt>See also</dt><dd>method <code>#isSigned</code> of the fit to <a class="el" href="classPonca_1_1AlgebraicSphere.html#a39a8fedcfda62899968236d51d82063aa61c792b551dddce4454eb25669d5672f" title="Requires PrimitiveBase.">check</a> if the sign is reliable </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="algebraicSphere_8h_source.html#l00227">227</a> of file <a class="el" href="algebraicSphere_8h_source.html">algebraicSphere.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="algebraicSphere_8h_source.html#l00233">233</a> of file <a class="el" href="algebraicSphere_8h_source.html">algebraicSphere.h</a>.</p>
 
 </div>
 </div>
-<a id="a91db544faea8bbb923d42fbe182cb6f4" name="a91db544faea8bbb923d42fbe182cb6f4"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a91db544faea8bbb923d42fbe182cb6f4">&#9670;&#160;</a></span>potential() <span class="overload">[2/2]</span></h2>
+<a id="aebd5ed6b22e6bb4dc0d018c0dca859d2" name="aebd5ed6b22e6bb4dc0d018c0dca859d2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aebd5ed6b22e6bb4dc0d018c0dca859d2">&#9670;&#160;</a></span>potential() <span class="overload">[2/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
+template&lt;class DataPoint , class _NFilter , typename T &gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classPonca_1_1AlgebraicSphere.html">AlgebraicSphere</a>&lt; DataPoint, _WFunctor, T &gt;<a class="el" href="classPonca_1_1AlgebraicSphere.html#a90d67318da4e0597fad0d6b53cefe0d1">::Scalar</a> AlgebraicSphere::potential </td>
+          <td class="memname"><a class="el" href="classPonca_1_1AlgebraicSphere.html#a971e9bba0fe290ea36fb330e1a8998b1">Scalar</a> <a class="el" href="classPonca_1_1AlgebraicSphere.html">Ponca::AlgebraicSphere</a>&lt; DataPoint, _NFilter, T &gt;::potential </td>
           <td>(</td>
-          <td class="paramtype">const <a class="el" href="classPonca_1_1AlgebraicSphere.html#af30386a4406c056b736100eaa950d3d0">VectorType</a> &amp;&#160;</td>
+          <td class="paramtype">const <a class="el" href="classPonca_1_1AlgebraicSphere.html#ae4fcd85d46a2ed993ae785ac7b02e77d">VectorType</a> &amp;&#160;</td>
           <td class="paramname"><em>_q</em></td><td>)</td>
           <td> const</td>
         </tr>
@@ -849,25 +856,58 @@ template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
 </div><div class="memdoc">
 
 <p>Value of the scalar field at the location \( \mathbf{q}\). </p>
-<dl class="section see"><dt>See also</dt><dd>method <code>#isSigned</code> of the fit to <a class="el" href="classPonca_1_1AlgebraicSphere.html#a39a8fedcfda62899968236d51d82063aa652f7be31584b31da49fbda06a3fcf86" title="Requires PrimitiveBase.">check</a> if the sign is reliable </dd></dl>
+<dl class="section see"><dt>See also</dt><dd>method <code>#isSigned</code> of the fit to <a class="el" href="classPonca_1_1AlgebraicSphere.html#a39a8fedcfda62899968236d51d82063aa61c792b551dddce4454eb25669d5672f" title="Requires PrimitiveBase.">check</a> if the sign is reliable </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="algebraicSphere_8hpp_source.html#l00062">62</a> of file <a class="el" href="algebraicSphere_8hpp_source.html">algebraicSphere.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="algebraicSphere_8h_source.html#l00224">224</a> of file <a class="el" href="algebraicSphere_8h_source.html">algebraicSphere.h</a>.</p>
 
 </div>
 </div>
-<a id="a9ec8a623959420c60d3a5ea0684a4aa5" name="a9ec8a623959420c60d3a5ea0684a4aa5"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a9ec8a623959420c60d3a5ea0684a4aa5">&#9670;&#160;</a></span>prattNorm()</h2>
+<a id="a9fd436b282c7e350673718d065f8f0c1" name="a9fd436b282c7e350673718d065f8f0c1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9fd436b282c7e350673718d065f8f0c1">&#9670;&#160;</a></span>potentialLocal()</h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
+template&lt;class DataPoint , class _NFilter , typename T &gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classPonca_1_1AlgebraicSphere.html#a90d67318da4e0597fad0d6b53cefe0d1">Scalar</a> <a class="el" href="classPonca_1_1AlgebraicSphere.html">Ponca::AlgebraicSphere</a>&lt; DataPoint, _WFunctor, T &gt;::prattNorm </td>
+          <td class="memname"><a class="el" href="classPonca_1_1AlgebraicSphere.html">AlgebraicSphere</a>&lt; DataPoint, _NFilter, T &gt;<a class="el" href="classPonca_1_1AlgebraicSphere.html#a971e9bba0fe290ea36fb330e1a8998b1">::Scalar</a> AlgebraicSphere::potentialLocal </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classPonca_1_1AlgebraicSphere.html#ae4fcd85d46a2ed993ae785ac7b02e77d">VectorType</a> &amp;&#160;</td>
+          <td class="paramname"><em>_lq</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Value of the scalar field at the location \( \mathbf{q}\).   </p>
+<dl class="section see"><dt>See also</dt><dd>method <code>#isSigned</code> of the fit to <a class="el" href="classPonca_1_1AlgebraicSphere.html#a39a8fedcfda62899968236d51d82063aa61c792b551dddce4454eb25669d5672f" title="Requires PrimitiveBase.">check</a> if the sign is reliable   </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="algebraicSphere_8hpp_source.html#l00036">36</a> of file <a class="el" href="algebraicSphere_8hpp_source.html">algebraicSphere.hpp</a>.</p>
+
+</div>
+</div>
+<a id="ad186c79f8fc5adb5ea88f1b1e3fbbb37" name="ad186c79f8fc5adb5ea88f1b1e3fbbb37"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad186c79f8fc5adb5ea88f1b1e3fbbb37">&#9670;&#160;</a></span>prattNorm()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class DataPoint , class _NFilter , typename T &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classPonca_1_1AlgebraicSphere.html#a971e9bba0fe290ea36fb330e1a8998b1">Scalar</a> <a class="el" href="classPonca_1_1AlgebraicSphere.html">Ponca::AlgebraicSphere</a>&lt; DataPoint, _NFilter, T &gt;::prattNorm </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td> const</td>
@@ -882,23 +922,23 @@ template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
 
 <p>compute the Pratt norm of the implicit scalar field. </p>
 
-<p class="definition">Definition at line <a class="el" href="algebraicSphere_8h_source.html#l00159">159</a> of file <a class="el" href="algebraicSphere_8h_source.html">algebraicSphere.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="algebraicSphere_8h_source.html#l00160">160</a> of file <a class="el" href="algebraicSphere_8h_source.html">algebraicSphere.h</a>.</p>
 
 </div>
 </div>
-<a id="aa24fba085ff0e4cfe9f4ecdba055a283" name="aa24fba085ff0e4cfe9f4ecdba055a283"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa24fba085ff0e4cfe9f4ecdba055a283">&#9670;&#160;</a></span>prattNorm2()</h2>
+<a id="acfef76fdab70f0d4f24941310efd7114" name="acfef76fdab70f0d4f24941310efd7114"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acfef76fdab70f0d4f24941310efd7114">&#9670;&#160;</a></span>prattNorm2()</h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
+template&lt;class DataPoint , class _NFilter , typename T &gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classPonca_1_1AlgebraicSphere.html#a90d67318da4e0597fad0d6b53cefe0d1">Scalar</a> <a class="el" href="classPonca_1_1AlgebraicSphere.html">Ponca::AlgebraicSphere</a>&lt; DataPoint, _WFunctor, T &gt;::prattNorm2 </td>
+          <td class="memname"><a class="el" href="classPonca_1_1AlgebraicSphere.html#a971e9bba0fe290ea36fb330e1a8998b1">Scalar</a> <a class="el" href="classPonca_1_1AlgebraicSphere.html">Ponca::AlgebraicSphere</a>&lt; DataPoint, _NFilter, T &gt;::prattNorm2 </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td> const</td>
@@ -913,23 +953,23 @@ template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
 
 <p>compute the squared Pratt norm of the implicit scalar field. </p>
 
-<p class="definition">Definition at line <a class="el" href="algebraicSphere_8h_source.html#l00166">166</a> of file <a class="el" href="algebraicSphere_8h_source.html">algebraicSphere.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="algebraicSphere_8h_source.html#l00167">167</a> of file <a class="el" href="algebraicSphere_8h_source.html">algebraicSphere.h</a>.</p>
 
 </div>
 </div>
-<a id="a13a01f75ac7c621f162fa8470c245116" name="a13a01f75ac7c621f162fa8470c245116"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a13a01f75ac7c621f162fa8470c245116">&#9670;&#160;</a></span>primitiveGradient() <span class="overload">[1/2]</span></h2>
+<a id="a41028d5d5f31bc312e22811110891a5d" name="a41028d5d5f31bc312e22811110891a5d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a41028d5d5f31bc312e22811110891a5d">&#9670;&#160;</a></span>primitiveGradient() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
+template&lt;class DataPoint , class _NFilter , typename T &gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">const <a class="el" href="classPonca_1_1AlgebraicSphere.html#af30386a4406c056b736100eaa950d3d0">VectorType</a> &amp; <a class="el" href="classPonca_1_1AlgebraicSphere.html">Ponca::AlgebraicSphere</a>&lt; DataPoint, _WFunctor, T &gt;::primitiveGradient </td>
+          <td class="memname">const <a class="el" href="classPonca_1_1AlgebraicSphere.html#ae4fcd85d46a2ed993ae785ac7b02e77d">VectorType</a> &amp; <a class="el" href="classPonca_1_1AlgebraicSphere.html">Ponca::AlgebraicSphere</a>&lt; DataPoint, _NFilter, T &gt;::primitiveGradient </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td> const</td>
@@ -945,25 +985,25 @@ template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
 <p>Approximation of the scalar field gradient at the evaluation point. </p>
 <dl class="section warning"><dt>Warning</dt><dd>The gradient is not normalized by default </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="algebraicSphere_8h_source.html#l00254">254</a> of file <a class="el" href="algebraicSphere_8h_source.html">algebraicSphere.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="algebraicSphere_8h_source.html#l00256">256</a> of file <a class="el" href="algebraicSphere_8h_source.html">algebraicSphere.h</a>.</p>
 
 </div>
 </div>
-<a id="a925bb4f64c7ec303030e008ef3e2abab" name="a925bb4f64c7ec303030e008ef3e2abab"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a925bb4f64c7ec303030e008ef3e2abab">&#9670;&#160;</a></span>primitiveGradient() <span class="overload">[2/2]</span></h2>
+<a id="aee570add837ce51ef4645857761b70d5" name="aee570add837ce51ef4645857761b70d5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aee570add837ce51ef4645857761b70d5">&#9670;&#160;</a></span>primitiveGradient() <span class="overload">[2/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
+template&lt;class DataPoint , class _NFilter , typename T &gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classPonca_1_1AlgebraicSphere.html">AlgebraicSphere</a>&lt; DataPoint, _WFunctor, T &gt;<a class="el" href="classPonca_1_1AlgebraicSphere.html#af30386a4406c056b736100eaa950d3d0">::VectorType</a> AlgebraicSphere::primitiveGradient </td>
+          <td class="memname"><a class="el" href="classPonca_1_1AlgebraicSphere.html#ae4fcd85d46a2ed993ae785ac7b02e77d">VectorType</a> <a class="el" href="classPonca_1_1AlgebraicSphere.html">Ponca::AlgebraicSphere</a>&lt; DataPoint, _NFilter, T &gt;::primitiveGradient </td>
           <td>(</td>
-          <td class="paramtype">const <a class="el" href="classPonca_1_1AlgebraicSphere.html#af30386a4406c056b736100eaa950d3d0">VectorType</a> &amp;&#160;</td>
+          <td class="paramtype">const <a class="el" href="classPonca_1_1AlgebraicSphere.html#ae4fcd85d46a2ed993ae785ac7b02e77d">VectorType</a> &amp;&#160;</td>
           <td class="paramname"><em>_q</em></td><td>)</td>
           <td> const</td>
         </tr>
@@ -978,25 +1018,58 @@ template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
 <p>Approximation of the scalar field gradient at \( \mathbf{q}\). </p>
 <dl class="section warning"><dt>Warning</dt><dd>The gradient is not normalized by default </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="algebraicSphere_8hpp_source.html#l00073">73</a> of file <a class="el" href="algebraicSphere_8hpp_source.html">algebraicSphere.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="algebraicSphere_8h_source.html#l00247">247</a> of file <a class="el" href="algebraicSphere_8h_source.html">algebraicSphere.h</a>.</p>
 
 </div>
 </div>
-<a id="a71b4312849344f0c937e23c21cdea821" name="a71b4312849344f0c937e23c21cdea821"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a71b4312849344f0c937e23c21cdea821">&#9670;&#160;</a></span>project()</h2>
+<a id="aadee3e23463e3b730a226a1cc2f39bc5" name="aadee3e23463e3b730a226a1cc2f39bc5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aadee3e23463e3b730a226a1cc2f39bc5">&#9670;&#160;</a></span>primitiveGradientLocal()</h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
+template&lt;class DataPoint , class _NFilter , typename T &gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classPonca_1_1AlgebraicSphere.html">AlgebraicSphere</a>&lt; DataPoint, _WFunctor, T &gt;<a class="el" href="classPonca_1_1AlgebraicSphere.html#af30386a4406c056b736100eaa950d3d0">::VectorType</a> AlgebraicSphere::project </td>
+          <td class="memname"><a class="el" href="classPonca_1_1AlgebraicSphere.html">AlgebraicSphere</a>&lt; DataPoint, _NFilter, T &gt;<a class="el" href="classPonca_1_1AlgebraicSphere.html#ae4fcd85d46a2ed993ae785ac7b02e77d">::VectorType</a> AlgebraicSphere::primitiveGradientLocal </td>
           <td>(</td>
-          <td class="paramtype">const <a class="el" href="classPonca_1_1AlgebraicSphere.html#af30386a4406c056b736100eaa950d3d0">VectorType</a> &amp;&#160;</td>
+          <td class="paramtype">const <a class="el" href="classPonca_1_1AlgebraicSphere.html#ae4fcd85d46a2ed993ae785ac7b02e77d">VectorType</a> &amp;&#160;</td>
+          <td class="paramname"><em>_lq</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Approximation of the scalar field gradient at \( \mathbf{q}\).   </p>
+<dl class="section warning"><dt>Warning</dt><dd>The gradient is not normalized by default   </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="algebraicSphere_8hpp_source.html#l00043">43</a> of file <a class="el" href="algebraicSphere_8hpp_source.html">algebraicSphere.hpp</a>.</p>
+
+</div>
+</div>
+<a id="a7c3b961dd5d40d0d75d3deba27946497" name="a7c3b961dd5d40d0d75d3deba27946497"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7c3b961dd5d40d0d75d3deba27946497">&#9670;&#160;</a></span>project()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class DataPoint , class _NFilter , typename T &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classPonca_1_1AlgebraicSphere.html">AlgebraicSphere</a>&lt; DataPoint, _NFilter, T &gt;<a class="el" href="classPonca_1_1AlgebraicSphere.html#ae4fcd85d46a2ed993ae785ac7b02e77d">::VectorType</a> AlgebraicSphere::project </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classPonca_1_1AlgebraicSphere.html#ae4fcd85d46a2ed993ae785ac7b02e77d">VectorType</a> &amp;&#160;</td>
           <td class="paramname"><em>_q</em></td><td>)</td>
           <td> const</td>
         </tr>
@@ -1009,75 +1082,25 @@ template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
 </div><div class="memdoc">
 
 <p>Project a point on the algebraic hypersphere. </p>
-<p>This projection is realized in closed-form: the algebraic hypersphere is converted to a geometrical representation (hyperplane or hypersphere), and _q is orthogonally projected on the primtive. </p><dl class="section note"><dt>Note</dt><dd>This function is in most cases more accurate and faster than <a class="el" href="classPonca_1_1AlgebraicSphere.html#ad93506e11c254b85343b6d7aac9426eb" title="Project a point on the algebraic hypersphere using Gradient Descent This projection is realized by fo...">projectDescent</a> </dd></dl>
+<p>This projection is realized in closed-form: the algebraic hypersphere is converted to a geometrical representation (hyperplane or hypersphere), and _q is orthogonally projected on the primtive. </p><dl class="section note"><dt>Note</dt><dd>This function is in most cases more accurate and faster than #projectDescent </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="algebraicSphere_8hpp_source.html#l00009">9</a> of file <a class="el" href="algebraicSphere_8hpp_source.html">algebraicSphere.hpp</a>.</p>
 
 </div>
 </div>
-<a id="ad93506e11c254b85343b6d7aac9426eb" name="ad93506e11c254b85343b6d7aac9426eb"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad93506e11c254b85343b6d7aac9426eb">&#9670;&#160;</a></span>projectDescent()</h2>
+<a id="ad23e74a901eb228f37a39ad3dc743a21" name="ad23e74a901eb228f37a39ad3dc743a21"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad23e74a901eb228f37a39ad3dc743a21">&#9670;&#160;</a></span>radius()</h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
+template&lt;class DataPoint , class _NFilter , typename T &gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classPonca_1_1AlgebraicSphere.html">AlgebraicSphere</a>&lt; DataPoint, _WFunctor, T &gt;<a class="el" href="classPonca_1_1AlgebraicSphere.html#af30386a4406c056b736100eaa950d3d0">::VectorType</a> AlgebraicSphere::projectDescent </td>
-          <td>(</td>
-          <td class="paramtype">const <a class="el" href="classPonca_1_1AlgebraicSphere.html#af30386a4406c056b736100eaa950d3d0">VectorType</a> &amp;&#160;</td>
-          <td class="paramname"><em>_q</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>nbIter</em> = <code>16</code>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td> const</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Project a point on the algebraic hypersphere using Gradient Descent This projection is realized by following the gradient of the hypersphere scalar field. </p>
-<dl class="section warning"><dt>Warning</dt><dd>This function is in most cases slower and less accurate than <a class="el" href="classPonca_1_1AlgebraicSphere.html#a71b4312849344f0c937e23c21cdea821" title="Project a point on the algebraic hypersphere.">project</a>. </dd></dl>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">_q</td><td>Starting point </td></tr>
-    <tr><td class="paramname">nbIter</td><td>Number of iterations (default = 16) </td></tr>
-  </table>
-  </dd>
-</dl>
-
-<p class="definition">Definition at line <a class="el" href="algebraicSphere_8hpp_source.html#l00035">35</a> of file <a class="el" href="algebraicSphere_8hpp_source.html">algebraicSphere.hpp</a>.</p>
-
-</div>
-</div>
-<a id="a51dbbb073bcef4ad2f021544dc104da4" name="a51dbbb073bcef4ad2f021544dc104da4"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a51dbbb073bcef4ad2f021544dc104da4">&#9670;&#160;</a></span>radius()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="classPonca_1_1AlgebraicSphere.html#a90d67318da4e0597fad0d6b53cefe0d1">Scalar</a> <a class="el" href="classPonca_1_1AlgebraicSphere.html">Ponca::AlgebraicSphere</a>&lt; DataPoint, _WFunctor, T &gt;::radius </td>
+          <td class="memname"><a class="el" href="classPonca_1_1AlgebraicSphere.html#a971e9bba0fe290ea36fb330e1a8998b1">Scalar</a> <a class="el" href="classPonca_1_1AlgebraicSphere.html">Ponca::AlgebraicSphere</a>&lt; DataPoint, _NFilter, T &gt;::radius </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td> const</td>
@@ -1093,24 +1116,24 @@ template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
 <p>return the estimated radius of the sphere </p>
 <dl class="section warning"><dt>Warning</dt><dd>return inf if the fitted surface is planar </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="algebraicSphere_8h_source.html#l00193">193</a> of file <a class="el" href="algebraicSphere_8h_source.html">algebraicSphere.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="algebraicSphere_8h_source.html#l00194">194</a> of file <a class="el" href="algebraicSphere_8h_source.html">algebraicSphere.h</a>.</p>
 
 </div>
 </div>
 <h2 class="groupheader">Member Data Documentation</h2>
-<a id="a32776b0267366928921d6cd1aaad65a3" name="a32776b0267366928921d6cd1aaad65a3"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a32776b0267366928921d6cd1aaad65a3">&#9670;&#160;</a></span>m_isNormalized</h2>
+<a id="abefa842506e7057b4f6ac74a8575cf06" name="abefa842506e7057b4f6ac74a8575cf06"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abefa842506e7057b4f6ac74a8575cf06">&#9670;&#160;</a></span>m_isNormalized</h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
+template&lt;class DataPoint , class _NFilter , typename T &gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">bool <a class="el" href="classPonca_1_1AlgebraicSphere.html">Ponca::AlgebraicSphere</a>&lt; DataPoint, _WFunctor, T &gt;::m_isNormalized</td>
+          <td class="memname">bool <a class="el" href="classPonca_1_1AlgebraicSphere.html">Ponca::AlgebraicSphere</a>&lt; DataPoint, _NFilter, T &gt;::m_isNormalized</td>
         </tr>
       </table>
   </td>
@@ -1122,67 +1145,67 @@ template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
 
 <p>Is the implicit scalar field normalized using Pratt. </p>
 
-<p class="definition">Definition at line <a class="el" href="algebraicSphere_8h_source.html#l00059">59</a> of file <a class="el" href="algebraicSphere_8h_source.html">algebraicSphere.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="algebraicSphere_8h_source.html#l00060">60</a> of file <a class="el" href="algebraicSphere_8h_source.html">algebraicSphere.h</a>.</p>
 
 </div>
 </div>
-<a id="a62451d3d44ef95f811b2c2b4e3ed8e1d" name="a62451d3d44ef95f811b2c2b4e3ed8e1d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a62451d3d44ef95f811b2c2b4e3ed8e1d">&#9670;&#160;</a></span>m_uc</h2>
+<a id="a854b648c939a82fea16fb20783f5172e" name="a854b648c939a82fea16fb20783f5172e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a854b648c939a82fea16fb20783f5172e">&#9670;&#160;</a></span>m_uc</h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
+template&lt;class DataPoint , class _NFilter , typename T &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classPonca_1_1AlgebraicSphere.html#a90d67318da4e0597fad0d6b53cefe0d1">Scalar</a> <a class="el" href="classPonca_1_1AlgebraicSphere.html">Ponca::AlgebraicSphere</a>&lt; DataPoint, _WFunctor, T &gt;::m_uc {0}</td>
+          <td class="memname"><a class="el" href="classPonca_1_1AlgebraicSphere.html#a971e9bba0fe290ea36fb330e1a8998b1">Scalar</a> <a class="el" href="classPonca_1_1AlgebraicSphere.html">Ponca::AlgebraicSphere</a>&lt; DataPoint, _NFilter, T &gt;::m_uc {0}</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
 <p>Constant parameter of the Algebraic hyper-sphere. </p>
 
-<p class="definition">Definition at line <a class="el" href="algebraicSphere_8h_source.html#l00063">63</a> of file <a class="el" href="algebraicSphere_8h_source.html">algebraicSphere.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="algebraicSphere_8h_source.html#l00064">64</a> of file <a class="el" href="algebraicSphere_8h_source.html">algebraicSphere.h</a>.</p>
 
 </div>
 </div>
-<a id="a80ad3796aa9ce64d4f183aa191309817" name="a80ad3796aa9ce64d4f183aa191309817"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a80ad3796aa9ce64d4f183aa191309817">&#9670;&#160;</a></span>m_ul</h2>
+<a id="ad597a9d4cc9d664eac0f44709c3ef104" name="ad597a9d4cc9d664eac0f44709c3ef104"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad597a9d4cc9d664eac0f44709c3ef104">&#9670;&#160;</a></span>m_ul</h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
+template&lt;class DataPoint , class _NFilter , typename T &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classPonca_1_1AlgebraicSphere.html#af30386a4406c056b736100eaa950d3d0">VectorType</a> <a class="el" href="classPonca_1_1AlgebraicSphere.html">Ponca::AlgebraicSphere</a>&lt; DataPoint, _WFunctor, T &gt;::m_ul {VectorType::Zero()}</td>
+          <td class="memname"><a class="el" href="classPonca_1_1AlgebraicSphere.html#ae4fcd85d46a2ed993ae785ac7b02e77d">VectorType</a> <a class="el" href="classPonca_1_1AlgebraicSphere.html">Ponca::AlgebraicSphere</a>&lt; DataPoint, _NFilter, T &gt;::m_ul {VectorType::Zero()}</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
 <p>Linear parameter of the Algebraic hyper-sphere. </p>
 
-<p class="definition">Definition at line <a class="el" href="algebraicSphere_8h_source.html#l00065">65</a> of file <a class="el" href="algebraicSphere_8h_source.html">algebraicSphere.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="algebraicSphere_8h_source.html#l00066">66</a> of file <a class="el" href="algebraicSphere_8h_source.html">algebraicSphere.h</a>.</p>
 
 </div>
 </div>
-<a id="ac8e238f868938851f8014ca4ee8647d1" name="ac8e238f868938851f8014ca4ee8647d1"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac8e238f868938851f8014ca4ee8647d1">&#9670;&#160;</a></span>m_uq</h2>
+<a id="a779df9953069f68b227a5dfca52bbf75" name="a779df9953069f68b227a5dfca52bbf75"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a779df9953069f68b227a5dfca52bbf75">&#9670;&#160;</a></span>m_uq</h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
+template&lt;class DataPoint , class _NFilter , typename T &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classPonca_1_1AlgebraicSphere.html#a90d67318da4e0597fad0d6b53cefe0d1">Scalar</a> <a class="el" href="classPonca_1_1AlgebraicSphere.html">Ponca::AlgebraicSphere</a>&lt; DataPoint, _WFunctor, T &gt;::m_uq {0}</td>
+          <td class="memname"><a class="el" href="classPonca_1_1AlgebraicSphere.html#a971e9bba0fe290ea36fb330e1a8998b1">Scalar</a> <a class="el" href="classPonca_1_1AlgebraicSphere.html">Ponca::AlgebraicSphere</a>&lt; DataPoint, _NFilter, T &gt;::m_uq {0}</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
 <p>Quadratic parameter of the Algebraic hyper-sphere. </p>
 
-<p class="definition">Definition at line <a class="el" href="algebraicSphere_8h_source.html#l00064">64</a> of file <a class="el" href="algebraicSphere_8h_source.html">algebraicSphere.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="algebraicSphere_8h_source.html#l00065">65</a> of file <a class="el" href="algebraicSphere_8h_source.html">algebraicSphere.h</a>.</p>
 
 </div>
 </div>
@@ -1192,7 +1215,7 @@ template&lt;class DataPoint , class _WFunctor , typename T &gt; </div>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="namespacePonca.html">Ponca</a></li><li class="navelem"><a class="el" href="classPonca_1_1AlgebraicSphere.html">AlgebraicSphere</a></li>
-    <li class="footer">Generated on Thu Oct 9 2025 22:33:52 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
+    <li class="footer">Generated on Thu Oct 30 2025 19:03:05 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
   </ul>
 </div>
 </body>

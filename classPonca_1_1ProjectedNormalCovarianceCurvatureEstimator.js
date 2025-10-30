@@ -1,26 +1,26 @@
 var classPonca_1_1ProjectedNormalCovarianceCurvatureEstimator =
 [
-    [ "Base", "classPonca_1_1ProjectedNormalCovarianceCurvatureEstimator.html#aa8b0949ae032d568c203324454f67312", null ],
-    [ "MatrixType", "classPonca_1_1ProjectedNormalCovarianceCurvatureEstimator.html#a2deffdfe0673c8dd1f9b3d92b05a700b", null ],
-    [ "Scalar", "classPonca_1_1ProjectedNormalCovarianceCurvatureEstimator.html#a7d645e8b11e89aff2a25b6b6f91d4edc", null ],
-    [ "ScalarArray", "classPonca_1_1ProjectedNormalCovarianceCurvatureEstimator.html#aa899efe0c679620e2bdf722b1f213ba3", null ],
-    [ "Solver", "classPonca_1_1ProjectedNormalCovarianceCurvatureEstimator.html#a7b9616544d9c19cccd0d2de530950774", null ],
-    [ "VectorArray", "classPonca_1_1ProjectedNormalCovarianceCurvatureEstimator.html#a0d05e3fbd2f8c2652ab65ad0247f9351", null ],
-    [ "VectorType", "classPonca_1_1ProjectedNormalCovarianceCurvatureEstimator.html#a645e4fad5e3c4c22db03cb95727ce872", null ],
-    [ "WFunctor", "classPonca_1_1ProjectedNormalCovarianceCurvatureEstimator.html#a215ad82421e4513e6bf1af17e554d537", null ],
+    [ "Base", "classPonca_1_1ProjectedNormalCovarianceCurvatureEstimator.html#ac73eec3ebec1da8c3a18e7e6b6339626", null ],
+    [ "MatrixType", "classPonca_1_1ProjectedNormalCovarianceCurvatureEstimator.html#af30620fad7295917ea153c19daef7ad7", null ],
+    [ "NeighborFilter", "classPonca_1_1ProjectedNormalCovarianceCurvatureEstimator.html#a76bd8210f1e22cbae45079115eaf5e9a", null ],
+    [ "Scalar", "classPonca_1_1ProjectedNormalCovarianceCurvatureEstimator.html#a32e1dd9bfdcc7898b8fdc6af86516de1", null ],
+    [ "ScalarArray", "classPonca_1_1ProjectedNormalCovarianceCurvatureEstimator.html#a2a7b5752032e6b95fb91a9f9c784753e", null ],
+    [ "Solver", "classPonca_1_1ProjectedNormalCovarianceCurvatureEstimator.html#af73bf322bd9215dcf2c77fc393aa99df", null ],
+    [ "VectorArray", "classPonca_1_1ProjectedNormalCovarianceCurvatureEstimator.html#ad010ae32d45e71a9afe4f863659f87b3", null ],
+    [ "VectorType", "classPonca_1_1ProjectedNormalCovarianceCurvatureEstimator.html#a0dc2415907873f9e654394137f4071b7", null ],
     [ "PASS", "classPonca_1_1ProjectedNormalCovarianceCurvatureEstimator.html#afd72d7d15abe63854fdab05fa5f300cb", [
-      [ "FIRST_PASS", "classPonca_1_1ProjectedNormalCovarianceCurvatureEstimator.html#afd72d7d15abe63854fdab05fa5f300cbaee1208bd015120afe193edb8cb139fdf", null ],
-      [ "SECOND_PASS", "classPonca_1_1ProjectedNormalCovarianceCurvatureEstimator.html#afd72d7d15abe63854fdab05fa5f300cba4c78c29124832ed6762a37291e72705a", null ],
-      [ "PASS_COUNT", "classPonca_1_1ProjectedNormalCovarianceCurvatureEstimator.html#afd72d7d15abe63854fdab05fa5f300cba83ca5782555f4cfec1d5ed3737f07c86", null ]
+      [ "FIRST_PASS", "classPonca_1_1ProjectedNormalCovarianceCurvatureEstimator.html#afd72d7d15abe63854fdab05fa5f300cba3d5a14b65f83eae12a62ae2673de5117", null ],
+      [ "SECOND_PASS", "classPonca_1_1ProjectedNormalCovarianceCurvatureEstimator.html#afd72d7d15abe63854fdab05fa5f300cbac2d3e3f4b6395eb924478dccab292b23", null ],
+      [ "PASS_COUNT", "classPonca_1_1ProjectedNormalCovarianceCurvatureEstimator.html#afd72d7d15abe63854fdab05fa5f300cba08761c83200ab9db8eb66192de84ff9c", null ]
     ] ],
     [ "addLocalNeighbor", "classPonca_1_1ProjectedNormalCovarianceCurvatureEstimator.html#a64f7094e63575105ad0df959145c35d1", null ],
     [ "finalize", "classPonca_1_1ProjectedNormalCovarianceCurvatureEstimator.html#a08f4188e75e437d0a44dd4a1013d5ce5", null ],
     [ "init", "classPonca_1_1ProjectedNormalCovarianceCurvatureEstimator.html#ace3798318c6dfe544b294b5439b02099", null ],
-    [ "projectedNormalCovarianceCurvature", "classPonca_1_1ProjectedNormalCovarianceCurvatureEstimator.html#aebcbf0a12a3bfbce85aa6b92c15e58b4", null ],
-    [ "projectedNormalCovarianceCurvature", "classPonca_1_1ProjectedNormalCovarianceCurvatureEstimator.html#a2dc52674aedd5d008fb6a7268894baa1", null ],
-    [ "m_cog", "classPonca_1_1ProjectedNormalCovarianceCurvatureEstimator.html#a6daee7277c930ef63642d00494152263", null ],
-    [ "m_cov", "classPonca_1_1ProjectedNormalCovarianceCurvatureEstimator.html#a6271b426919096ca302ee42128a99248", null ],
-    [ "m_pass", "classPonca_1_1ProjectedNormalCovarianceCurvatureEstimator.html#a004cc3ac78d1807693fce44d9d4b85dc", null ],
-    [ "m_solver", "classPonca_1_1ProjectedNormalCovarianceCurvatureEstimator.html#a1800e689b32c7c455b266b6b5bfacdd5", null ],
-    [ "m_tframe", "classPonca_1_1ProjectedNormalCovarianceCurvatureEstimator.html#abebc11584368a6d9d11e2476d8a4baa6", null ]
+    [ "projectedNormalCovarianceCurvature", "classPonca_1_1ProjectedNormalCovarianceCurvatureEstimator.html#a4686266fe696f5544018937f054145e4", null ],
+    [ "projectedNormalCovarianceCurvature", "classPonca_1_1ProjectedNormalCovarianceCurvatureEstimator.html#ae8615e1ed159ce9cdcbc8002277db72b", null ],
+    [ "m_cog", "classPonca_1_1ProjectedNormalCovarianceCurvatureEstimator.html#a84f4c5b935f8b4e40043f3dcbc06e1e1", null ],
+    [ "m_cov", "classPonca_1_1ProjectedNormalCovarianceCurvatureEstimator.html#a0bb6955154dcfd9f033aaef958eb851e", null ],
+    [ "m_pass", "classPonca_1_1ProjectedNormalCovarianceCurvatureEstimator.html#ac5e27974b6450b6f67cb528b7cd501d6", null ],
+    [ "m_solver", "classPonca_1_1ProjectedNormalCovarianceCurvatureEstimator.html#ade0c730a931f4805f618fe2fc05e3afd", null ],
+    [ "m_tframe", "classPonca_1_1ProjectedNormalCovarianceCurvatureEstimator.html#a74dc271df08cda52f3c01ab3467a0e97", null ]
 ];

@@ -1,12 +1,12 @@
 var classPonca_1_1CovarianceLineFitImpl =
 [
-    [ "Base", "classPonca_1_1CovarianceLineFitImpl.html#a8e05e2c15411b950cef16a40fcb91a86", null ],
-    [ "MatrixType", "classPonca_1_1CovarianceLineFitImpl.html#a98c6cdd9f8fec93751dbf5760d1eb6f9", null ],
-    [ "Scalar", "classPonca_1_1CovarianceLineFitImpl.html#a76e5f9c84f7c8bd3b9dbf1553db033de", null ],
-    [ "VectorType", "classPonca_1_1CovarianceLineFitImpl.html#a2d56c1ae866fee4949d611e805235895", null ],
-    [ "WFunctor", "classPonca_1_1CovarianceLineFitImpl.html#a27ebd47142050c43e8132c1ede35505b", null ],
-    [ "covarianceLineFit", "classPonca_1_1CovarianceLineFitImpl.html#a4f7465cf2eacf6d9c8b4530f15d85777", null ],
-    [ "covarianceLineFit", "classPonca_1_1CovarianceLineFitImpl.html#afcd7794421df13053d0db30da60b0374", null ],
-    [ "finalize", "classPonca_1_1CovarianceLineFitImpl.html#afb607414039edcb1bebc0ab2a7a1d87b", null ],
-    [ "isSigned", "classPonca_1_1CovarianceLineFitImpl.html#a4af239b7c72c975df3ae2c0e3bc0cb45", null ]
+    [ "Base", "classPonca_1_1CovarianceLineFitImpl.html#ab3ee25d3a90caa4510e691d2d83bf943", null ],
+    [ "MatrixType", "classPonca_1_1CovarianceLineFitImpl.html#aae4996e452e44f2847e60c4002b40726", null ],
+    [ "NeighborFilter", "classPonca_1_1CovarianceLineFitImpl.html#a69ccdfdd2f8053aca930c398e8037466", null ],
+    [ "Scalar", "classPonca_1_1CovarianceLineFitImpl.html#ab6fe4f294898efe136ea97ab559d5d74", null ],
+    [ "VectorType", "classPonca_1_1CovarianceLineFitImpl.html#a1604534050d36fcd259b8934223b9dac", null ],
+    [ "covarianceLineFit", "classPonca_1_1CovarianceLineFitImpl.html#ad33f6e6ecdbb4e4d4e07744103862ce4", null ],
+    [ "covarianceLineFit", "classPonca_1_1CovarianceLineFitImpl.html#a287719357371e473cfb47cffe3cbb566", null ],
+    [ "finalize", "classPonca_1_1CovarianceLineFitImpl.html#a25839928fcdd2f9aefebee1cecd55954", null ],
+    [ "isSigned", "classPonca_1_1CovarianceLineFitImpl.html#a3bead161093e3395695df2e3172f1e80", null ]
 ];
