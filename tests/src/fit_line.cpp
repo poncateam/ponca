@@ -40,7 +40,7 @@ void testFunction(bool _bAddPositionNoise = false)
     VectorType _direction = VectorType::Random().normalized();
 
     Scalar epsilon = testEpsilon<Scalar>();
-    Scalar noiseMagnitude = static_cast<Scalar>(0.001);
+    auto noiseMagnitude = static_cast<Scalar>(0.001);
 
     vector<DataPoint> vectorPoints(nbPoints);
     std::generate(vectorPoints.begin(), vectorPoints.end(), [&_direction,_bAddPositionNoise,noiseMagnitude]() {

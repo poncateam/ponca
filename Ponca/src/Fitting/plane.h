@@ -82,7 +82,7 @@ public:
     PONCA_MULTIARCH inline void setPlane (const VectorType& _dir,
                                     const VectorType& _pos)
     {
-        EigenBase* cc = static_cast<EigenBase*>(this);
+        auto cc = static_cast<EigenBase*>(this);
         *cc = EigenBase(_dir.normalized(), _pos);
     }
 
