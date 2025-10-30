@@ -5,11 +5,23 @@ Ponca changelog
 --------------------------------------------------------------------------------
 Current head (v.2.0 RC)
 - API
-    - [fitting] Local basis refactor. Remove method localBasis() (#177)
+    - [fitting] Refactor weight functions. Now supports local/global fitting (#177)
+    - [fitting] Add compact and non-compact weight kernels (#177)
+    - [fitting] Add changeBasis method for `Plane` and `Line` primitives (#177)
     - [fitting] Make projectDescent available for any `Basket` (#177)
 
+- Bug-fixes and code improvements
+    - [fitting] `AlgebraicSphere`: fix bug on projection for the planar case (#177)
+
 - Tests
-    - [ci] Add barycenter test (#177)
+    - [fitting] Add barycenter test (#177)
+    - [fitting] Add change_basis test (#177)
+
+- Examples
+   - [all] Update examples according to API change (#177)
+
+- Docs
+    - [fitting] Update doc according to API change (#177)
 
 --------------------------------------------------------------------------------
 v.1.4
