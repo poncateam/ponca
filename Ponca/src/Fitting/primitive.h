@@ -102,7 +102,14 @@ public:
         return m_nFilter;
     }
 
+protected:
+    /*! \brief Write access to the NeighborFilter \see setNeighborFilter */
+    PONCA_MULTIARCH inline NeighborFilter& getNeighborFilter()
+    {
+        return m_nFilter;
+    }
 
+public:
     /*! \return the current test of the fit */
     PONCA_MULTIARCH inline FIT_RESULT getCurrentState() const
     {

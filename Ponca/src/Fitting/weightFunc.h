@@ -37,6 +37,9 @@ public:
     PONCA_MULTIARCH inline explicit CenteredNeighborhoodFrame(const VectorType & _evalPos = VectorType::Zero())
     : m_p(_evalPos) {}
 
+    /// \brief Change neighborhood frame (move basis center)
+    PONCA_MULTIARCH inline void changeNeighborhoodFrame(const VectorType& _newEvalPos) { m_p = _newEvalPos; };
+
     /*!
      * \brief Convert query from local to global coordinate system, such as \f$\mathbf{x}=\mathbf{x}'+\mathbf{p}\f$.
      * @param _q Position expressed relatively to the basis center
@@ -83,6 +86,9 @@ public:
     static constexpr bool hasLocalFrame = false;
 
     PONCA_MULTIARCH inline explicit GlobalNeighborhoodFrame(const VectorType & /*_evalPos*/ = VectorType::Zero()) {}
+
+    /// \brief Change neighborhood frame (has no effect for global basis)
+    PONCA_MULTIARCH inline void changeNeighborhoodFrame(const VectorType& /*_newEvalPos*/) {};
 
     /*!
      * \brief Convert position from local to global coordinate system : does nothing as this is global frame

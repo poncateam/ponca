@@ -207,11 +207,10 @@ namespace internal
         template<typename Func>
         FIT_RESULT computeMLSImpl(Func&& computeFunc, const int mlsIter, const Scalar epsilon) {
             FIT_RESULT res = UNDEFINED;
-            const auto t = Base::getNeighborFilter().evalScale();
             auto lastPos = Base::getNeighborFilter().evalPos();
 
             for (int mm = 0; mm < mlsIter; ++mm) {
-                Base::setNeighborFilter({lastPos, t});
+                Base::getNeighborFilter().changeNeighborhoodFrame(lastPos);
                 res = computeFunc();
 
                 if (Base::isStable()) {
