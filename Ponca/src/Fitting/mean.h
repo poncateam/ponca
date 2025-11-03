@@ -65,22 +65,15 @@ namespace Ponca {
     }; //class MeanPosition
 
 /*!
-    \brief Compute the barycenter of the input points + their normals
+    \brief Compute the mean normal of the input points
     \inherit Concept::FittingProcedureConcept
 
-    \warning The barycenter is not stored explicitly, but rather computed from the sum of the neighbors positions and
-    normals.
+    \warning The mean normal is not stored explicitly, but rather computed from the sum of the neighbors normals.
 
     This primitive provides:
     \verbatim PROVIDES_MEAN_NORMAL \endverbatim
 
-    \see MeanPosition
-
-    \note This class should not derive from MeanPosition, as we might want to compute mean normals but without mean
-    positions. This is done this way currently, because we do not want to duplicate the weighting functor, which is
-    currently stored in MeanPosition.
-
-    \todo Add scale and space derivatives
+    \see MeanNormalDer
 */
     template<class DataPoint, class _NFilter, typename T>
     class MeanNormal : public T {
