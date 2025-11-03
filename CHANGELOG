@@ -24,6 +24,8 @@ Current head (v.2.0 RC)
    - [all] Update examples according to API change (#177)
 
 - Docs
+    - [fitting] Add missing documentation (MeanPositionDer, MeanNormalDer) (#222)
+    - [fitting] Fix issues in documentation (MeanNormal) (#222)
     - [fitting] Update doc according to API change (#177)
     - [fitting] Minor improvements (#221)
 

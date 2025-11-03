@@ -65,22 +65,15 @@ namespace Ponca {
     }; //class MeanPosition
 
 /*!
-    \brief Compute the barycenter of the input points + their normals
+    \brief Compute the mean normal of the input points
     \inherit Concept::FittingProcedureConcept
 
-    \warning The barycenter is not stored explicitly, but rather computed from the sum of the neighbors positions and
-    normals.
+    \warning The mean normal is not stored explicitly, but rather computed from the sum of the neighbors normals.
 
     This primitive provides:
     \verbatim PROVIDES_MEAN_NORMAL \endverbatim
 
-    \see MeanPosition
-
-    \note This class should not derive from MeanPosition, as we might want to compute mean normals but without mean
-    positions. This is done this way currently, because we do not want to duplicate the weighting functor, which is
-    currently stored in MeanPosition.
-
-    \todo Add scale and space derivatives
+    \see MeanNormalDer
 */
     template<class DataPoint, class _NFilter, typename T>
     class MeanNormal : public T {
@@ -105,6 +98,18 @@ namespace Ponca {
 
     }; //class MeanNormal
 
+/*!
+    \brief Compute the derivatives of the input points barycenter
+    \inherit Concept::FittingProcedureConcept
+
+    This primitive requires:
+    \verbatim PROVIDES_PRIMITIVE_DERIVATIVE, PROVIDES_MEAN_POSITION\endverbatim
+
+    This primitive provides:
+    \verbatim PROVIDES_MEAN_POSITION_DERIVATIVE \endverbatim
+
+    \see MeanNormal
+*/
     template<class DataPoint, class _NFilter, int DiffType, typename T>
     class MeanPositionDer : public T {
     PONCA_FITTING_DECLARE_DEFAULT_TYPES
@@ -152,6 +157,18 @@ namespace Ponca {
 
     }; //class MeanPositionDer
 
+/*!
+    \brief Compute the derivatives of the input points mean normal
+    \inherit Concept::FittingProcedureConcept
+
+    This primitive requires:
+    \verbatim PROVIDES_PRIMITIVE_DERIVATIVE, PROVIDES_MEAN_NORMAL\endverbatim
+
+    This primitive provides:
+    \verbatim PROVIDES_MEAN_NORMAL_DERIVATIVE \endverbatim
+
+    \see MeanNormal
+*/
     template<class DataPoint, class _NFilter, int DiffType, typename T>
     class MeanNormalDer : public T {
         PONCA_FITTING_DECLARE_DEFAULT_TYPES
