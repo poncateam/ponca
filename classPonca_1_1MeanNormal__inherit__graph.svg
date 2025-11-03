@@ -21,7 +21,7 @@
 <!-- Node1 -->
 <g id="Node000001" class="node">
 <title>Node1</title>
-<g id="a_Node000001"><a xlink:title="Compute the barycenter of the input points + their normals.">
+<g id="a_Node000001"><a xlink:title="Compute the mean normal of the input points.">
 <polygon fill="#999999" stroke="transparent" points="179,-120 51,-120 51,0 179,0 179,-120"/>
 <text text-anchor="start" x="56" y="-108" font-family="Helvetica,sans-Serif" font-size="10.00">Ponca::MeanNormal&lt;</text>
 <text text-anchor="start" x="56" y="-97" font-family="Helvetica,sans-Serif" font-size="10.00"> DataPoint, _NFilter, T &gt;</text>

@@ -51,7 +51,7 @@ MathJax.Hub.Config({
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Ponca
-   &#160;<span id="projectnumber">b63e69866b9b277a96802d3d06e6492d50ffc055</span>
+   &#160;<span id="projectnumber">8e4373a7fc557bbfb1afb9210d70f03872388d04</span>
    </div>
    <div id="projectbrief">Point Cloud Analysis library</div>
   </td>
@@ -242,7 +242,7 @@ Capabilities of the Fitting tools</h1>
 </th></tr>
 <tr>
 <td><b>PROVIDES_MEAN_POSITION</b><br  />
- Mean of the input points vectors  </td><td><a class="el" href="classPonca_1_1MeanPosition.html" title="Compute the barycenter of the input points.">MeanPosition</a> </td><td><a class="el" href="classPonca_1_1MeanPositionDer.html">MeanPositionDer</a><br  />
+ Mean of the input points vectors  </td><td><a class="el" href="classPonca_1_1MeanPosition.html" title="Compute the barycenter of the input points.">MeanPosition</a> </td><td><a class="el" href="classPonca_1_1MeanPositionDer.html" title="Compute the derivatives of the input points barycenter.">MeanPositionDer</a><br  />
 <a class="el" href="classPonca_1_1MeanPlaneFitImpl.html" title="Plane fitting procedure computing the mean position and orientation from oriented points.">MeanPlaneFitImpl</a><br  />
 <a class="el" href="classPonca_1_1OrientedSphereFitImpl.html" title="Algebraic Sphere fitting procedure on oriented point sets.">OrientedSphereFitImpl</a><br  />
 <a class="el" href="classPonca_1_1CovarianceFitBase.html" title="Procedure that compute and decompose the covariance matrix of the neighbors positions in .">CovarianceFitBase</a><br  />
@@ -253,20 +253,20 @@ barycenterLocal() </p>
 </td></tr>
 <tr>
 <td><b>PROVIDES_MEAN_POSITION_DERIVATIVE</b><br  />
- Provides derivative of the mean position  </td><td><a class="el" href="classPonca_1_1MeanPositionDer.html">MeanPositionDer</a> </td><td><a class="el" href="classPonca_1_1CovarianceFitDer.html" title="Internal generic class computing the derivatives of covariance matrix computed by CovarianceFitBase.">CovarianceFitDer</a><br  />
+ Provides derivative of the mean position  </td><td><a class="el" href="classPonca_1_1MeanPositionDer.html" title="Compute the derivatives of the input points barycenter.">MeanPositionDer</a> </td><td><a class="el" href="classPonca_1_1CovarianceFitDer.html" title="Internal generic class computing the derivatives of covariance matrix computed by CovarianceFitBase.">CovarianceFitDer</a><br  />
 <a class="el" href="classPonca_1_1OrientedSphereDerImpl.html" title="[OrientedSphereFit Definition]">OrientedSphereDerImpl</a><br  />
 <a class="el" href="classPonca_1_1UnorientedSphereDerImpl.html">UnorientedSphereDerImpl</a> </td><td><p class="starttd">barycenterDerivatives() </p>
 <p class="endtd"></p>
 </td></tr>
 <tr>
 <td><b>PROVIDES_MEAN_NORMAL</b><br  />
- Mean of the normal vectors  </td><td><a class="el" href="classPonca_1_1MeanNormal.html" title="Compute the barycenter of the input points + their normals.">MeanNormal</a> </td><td><a class="el" href="classPonca_1_1MeanPlaneFitImpl.html" title="Plane fitting procedure computing the mean position and orientation from oriented points.">MeanPlaneFitImpl</a><br  />
+ Mean of the normal vectors  </td><td><a class="el" href="classPonca_1_1MeanNormal.html" title="Compute the mean normal of the input points.">MeanNormal</a> </td><td><a class="el" href="classPonca_1_1MeanPlaneFitImpl.html" title="Plane fitting procedure computing the mean position and orientation from oriented points.">MeanPlaneFitImpl</a><br  />
 <a class="el" href="classPonca_1_1OrientedSphereFitImpl.html" title="Algebraic Sphere fitting procedure on oriented point sets.">OrientedSphereFitImpl</a> </td><td><p class="starttd">meanNormalVector() </p>
 <p class="endtd"></p>
 </td></tr>
 <tr>
 <td><b>PROVIDES_MEAN_NORMAL_DERIVATIVE</b><br  />
- Provides derivative of the mean normal  </td><td><a class="el" href="classPonca_1_1MeanNormalDer.html">MeanNormalDer</a> </td><td>- </td><td><p class="starttd">dMeanNormal() </p>
+ Provides derivative of the mean normal  </td><td><a class="el" href="classPonca_1_1MeanNormalDer.html" title="Compute the derivatives of the input points mean normal.">MeanNormalDer</a> </td><td>- </td><td><p class="starttd">dMeanNormal() </p>
 <p class="endtd"></p>
 </td></tr>
 <tr>
@@ -285,8 +285,8 @@ isStable() </p>
 <td><b>PROVIDES_PRIMITIVE_DERIVATIVE</b><br  />
  Provides base API for primitive derivatives  </td><td><a class="el" href="classPonca_1_1PrimitiveDer.html" title="Generic class performing the Fit derivation.">PrimitiveDer</a> </td><td><a class="el" href="classPonca_1_1GLSDer.html" title="Differentiation of GLSParam.">GLSDer</a><br  />
 <a class="el" href="classPonca_1_1CovarianceFitDer.html" title="Internal generic class computing the derivatives of covariance matrix computed by CovarianceFitBase.">CovarianceFitDer</a><br  />
-<a class="el" href="classPonca_1_1MeanPositionDer.html">MeanPositionDer</a><br  />
-<a class="el" href="classPonca_1_1MeanNormalDer.html">MeanNormalDer</a><br  />
+<a class="el" href="classPonca_1_1MeanPositionDer.html" title="Compute the derivatives of the input points barycenter.">MeanPositionDer</a><br  />
+<a class="el" href="classPonca_1_1MeanNormalDer.html" title="Compute the derivatives of the input points mean normal.">MeanNormalDer</a><br  />
 <a class="el" href="classPonca_1_1MlsSphereFitDer.html" title="Extension performing derivation of the mls surface.">MlsSphereFitDer</a><br  />
 <a class="el" href="classPonca_1_1OrientedSphereDerImpl.html" title="[OrientedSphereFit Definition]">OrientedSphereDerImpl</a><br  />
 <a class="el" href="classPonca_1_1UnorientedSphereDerImpl.html">UnorientedSphereDerImpl</a> </td><td><p class="starttd">isScaleDer()<br  />
@@ -422,7 +422,7 @@ Concepts related to weighting functions</h1>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="user_manual_page.html">User Manual</a></li>
-    <li class="footer">Generated on Thu Oct 30 2025 20:42:59 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
+    <li class="footer">Generated on Mon Nov 3 2025 17:27:05 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
   </ul>
 </div>
 </body>

@@ -38,8 +38,10 @@ var hierarchy =
       [ "Ponca::CovarianceLineFitImpl< DataPoint, _NFilter, T >", "classPonca_1_1CovarianceLineFitImpl.html", null ],
       [ "Ponca::CovariancePlaneFitImpl< DataPoint, _NFilter, T >", "classPonca_1_1CovariancePlaneFitImpl.html", null ],
       [ "Ponca::MeanNormal< DataPoint, _NFilter, T >", "classPonca_1_1MeanNormal.html", null ],
+      [ "Ponca::MeanNormalDer< DataPoint, _NFilter, DiffType, T >", "classPonca_1_1MeanNormalDer.html", null ],
       [ "Ponca::MeanPlaneFitImpl< DataPoint, _NFilter, T >", "classPonca_1_1MeanPlaneFitImpl.html", null ],
       [ "Ponca::MeanPosition< DataPoint, _NFilter, T >", "classPonca_1_1MeanPosition.html", null ],
+      [ "Ponca::MeanPositionDer< DataPoint, _NFilter, DiffType, T >", "classPonca_1_1MeanPositionDer.html", null ],
       [ "Ponca::OrientedSphereFitImpl< DataPoint, _NFilter, T >", "classPonca_1_1OrientedSphereFitImpl.html", null ],
       [ "Ponca::SphereFitImpl< DataPoint, _NFilter, T >", "classPonca_1_1SphereFitImpl.html", null ],
       [ "Ponca::UnorientedSphereFitImpl< DataPoint, _NFilter, T >", "classPonca_1_1UnorientedSphereFitImpl.html", null ]

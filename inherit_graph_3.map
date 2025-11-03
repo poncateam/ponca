@@ -1,17 +1,17 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
 <area shape="rect" id="Node000000" title=" " alt="" coords="5,205,228,230"/>
 <area shape="rect" id="Node000001" href="$classPonca_1_1CompactExpWeightKernel.html" title="Compact Exponential WeightKernel defined in ." alt="" coords="276,5,513,45"/>
-<area shape="poly" id="edge50_Node000000_Node000001" title=" " alt="" coords="133,191,191,124,230,87,275,55,300,43,302,48,277,60,234,91,195,127,137,195"/>
+<area shape="poly" id="edge52_Node000000_Node000001" title=" " alt="" coords="133,191,191,124,230,87,275,55,300,43,302,48,277,60,234,91,195,127,137,195"/>
 <area shape="rect" id="Node000002" href="$classPonca_1_1ConstantWeightKernel.html" title="Concept::WeightKernelConcept returning a constant value." alt="" coords="288,69,501,109"/>
-<area shape="poly" id="edge51_Node000000_Node000002" title=" " alt="" coords="145,194,204,156,275,119,307,107,309,112,277,124,206,161,148,199"/>
+<area shape="poly" id="edge53_Node000000_Node000002" title=" " alt="" coords="145,194,204,156,275,119,307,107,309,112,277,124,206,161,148,199"/>
 <area shape="rect" id="Node000003" href="$classPonca_1_1GaussianWeightKernel.html" title="Non&#45;compact Gaussian WeightKernel." alt="" coords="287,133,502,173"/>
-<area shape="poly" id="edge52_Node000000_Node000003" title=" " alt="" coords="185,199,306,171,308,176,187,204"/>
+<area shape="poly" id="edge54_Node000000_Node000003" title=" " alt="" coords="185,199,306,171,308,176,187,204"/>
 <area shape="rect" id="Node000004" href="$classPonca_1_1PolynomialSmoothWeightKernel.html" title="Compact generalised version of SmoothWeightKernel with arbitrary degrees : ." alt="" coords="276,197,513,237"/>
-<area shape="poly" id="edge53_Node000000_Node000004" title=" " alt="" coords="241,215,276,215,276,220,241,220"/>
+<area shape="poly" id="edge55_Node000000_Node000004" title=" " alt="" coords="241,215,276,215,276,220,241,220"/>
 <area shape="rect" id="Node000005" href="$classPonca_1_1SingularWeightKernel.html" title="Compact singular WeightKernel defined in ." alt="" coords="291,261,499,301"/>
-<area shape="poly" id="edge54_Node000000_Node000005" title=" " alt="" coords="187,231,308,259,306,264,185,236"/>
+<area shape="poly" id="edge56_Node000000_Node000005" title=" " alt="" coords="187,231,308,259,306,264,185,236"/>
 <area shape="rect" id="Node000006" href="$classPonca_1_1SmoothWeightKernel.html" title="Compact smooth WeightKernel of 2nd degree, defined in &#160;Special case of PolynomialSmoothWeightKernel&lt;S..." alt="" coords="292,325,497,365"/>
-<area shape="poly" id="edge55_Node000000_Node000006" title=" " alt="" coords="148,236,206,274,277,311,309,323,307,328,275,316,204,278,145,240"/>
+<area shape="poly" id="edge57_Node000000_Node000006" title=" " alt="" coords="148,236,206,274,277,311,309,323,307,328,275,316,204,278,145,240"/>
 <area shape="rect" id="Node000007" href="$classPonca_1_1WendlandWeightKernel.html" title="Compact Wendland WeightKernel defined in ." alt="" coords="285,389,504,429"/>
-<area shape="poly" id="edge56_Node000000_Node000007" title=" " alt="" coords="137,240,195,307,234,344,277,375,302,387,300,392,275,380,230,348,191,311,133,243"/>
+<area shape="poly" id="edge58_Node000000_Node000007" title=" " alt="" coords="137,240,195,307,234,344,277,375,302,387,300,392,275,380,230,348,191,311,133,243"/>
 </map>

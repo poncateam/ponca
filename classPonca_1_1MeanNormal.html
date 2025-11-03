@@ -51,7 +51,7 @@ MathJax.Hub.Config({
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Ponca
-   &#160;<span id="projectnumber">b63e69866b9b277a96802d3d06e6492d50ffc055</span>
+   &#160;<span id="projectnumber">8e4373a7fc557bbfb1afb9210d70f03872388d04</span>
    </div>
    <div id="projectbrief">Point Cloud Analysis library</div>
   </td>
@@ -126,7 +126,7 @@ $(document).ready(function(){initNavTree('classPonca_1_1MeanNormal.html',''); in
 </div><!--header-->
 <div class="contents">
 
-<p>Compute the barycenter of the input points + their normals.  
+<p>Compute the mean normal of the input points.  
  <a href="classPonca_1_1MeanNormal.html#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="mean_8h_source.html">mean.h</a>&gt;</code></p>
@@ -160,10 +160,10 @@ Public Types</h2></td></tr>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a249b2213254d2c29bb0865edf833aae6" id="r_a249b2213254d2c29bb0865edf833aae6"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classPonca_1_1MeanNormal.html">MeanNormal</a>&lt; DataPoint, _NFilter, T &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1MeanNormal.html#a249b2213254d2c29bb0865edf833aae6">meanNormal</a> ()</td></tr>
-<tr class="memdesc:a249b2213254d2c29bb0865edf833aae6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Explicit conversion to <a class="el" href="classPonca_1_1MeanNormal.html" title="Compute the barycenter of the input points + their normals.">MeanNormal</a> , to access methods potentially hidden by heritage.  <br /></td></tr>
+<tr class="memdesc:a249b2213254d2c29bb0865edf833aae6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Explicit conversion to <a class="el" href="classPonca_1_1MeanNormal.html" title="Compute the mean normal of the input points.">MeanNormal</a> , to access methods potentially hidden by heritage.  <br /></td></tr>
 <tr class="separator:a249b2213254d2c29bb0865edf833aae6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab8d1ebf3fa3559d73229d847d9cacc02" id="r_ab8d1ebf3fa3559d73229d847d9cacc02"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="classPonca_1_1MeanNormal.html">MeanNormal</a>&lt; DataPoint, _NFilter, T &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1MeanNormal.html#ab8d1ebf3fa3559d73229d847d9cacc02">meanNormal</a> () const</td></tr>
-<tr class="memdesc:ab8d1ebf3fa3559d73229d847d9cacc02"><td class="mdescLeft">&#160;</td><td class="mdescRight">Explicit conversion to <a class="el" href="classPonca_1_1MeanNormal.html" title="Compute the barycenter of the input points + their normals.">MeanNormal</a> , to access methods potentially hidden by heritage.  <br /></td></tr>
+<tr class="memdesc:ab8d1ebf3fa3559d73229d847d9cacc02"><td class="mdescLeft">&#160;</td><td class="mdescRight">Explicit conversion to <a class="el" href="classPonca_1_1MeanNormal.html" title="Compute the mean normal of the input points.">MeanNormal</a> , to access methods potentially hidden by heritage.  <br /></td></tr>
 <tr class="separator:ab8d1ebf3fa3559d73229d847d9cacc02"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abbe2e0084fc3287ce9684a349baaf3d4" id="r_abbe2e0084fc3287ce9684a349baaf3d4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1MeanNormal.html#abbe2e0084fc3287ce9684a349baaf3d4">init</a> ()</td></tr>
 <tr class="memdesc:abbe2e0084fc3287ce9684a349baaf3d4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the evaluation position and reset the internal states.  <br /></td></tr>
@@ -192,12 +192,11 @@ Protected Attributes</h2></td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><div class="compoundTemplParams">template&lt;class DataPoint, class _NFilter, typename T&gt;<br />
-class Ponca::MeanNormal&lt; DataPoint, _NFilter, T &gt;</div><p>Compute the barycenter of the input points + their normals. </p>
-<dl class="section warning"><dt>Warning</dt><dd>The barycenter is not stored explicitly, but rather computed from the sum of the neighbors positions and normals.</dd></dl>
-<p>This primitive provides: </p><pre class="fragment">PROVIDES_MEAN_NORMAL </pre><dl class="section see"><dt>See also</dt><dd><a class="el" href="classPonca_1_1MeanPosition.html" title="Compute the barycenter of the input points.">MeanPosition</a></dd></dl>
-<dl class="section note"><dt>Note</dt><dd>This class should not derive from <a class="el" href="classPonca_1_1MeanPosition.html" title="Compute the barycenter of the input points.">MeanPosition</a>, as we might want to compute mean normals but without mean positions. This is done this way currently, because we do not want to duplicate the weighting functor, which is currently stored in <a class="el" href="classPonca_1_1MeanPosition.html" title="Compute the barycenter of the input points.">MeanPosition</a>.</dd></dl>
+class Ponca::MeanNormal&lt; DataPoint, _NFilter, T &gt;</div><p>Compute the mean normal of the input points. </p>
+<dl class="section warning"><dt>Warning</dt><dd>The mean normal is not stored explicitly, but rather computed from the sum of the neighbors normals.</dd></dl>
+<p>This primitive provides: </p><pre class="fragment">PROVIDES_MEAN_NORMAL </pre><dl class="section see"><dt>See also</dt><dd><a class="el" href="classPonca_1_1MeanNormalDer.html" title="Compute the derivatives of the input points mean normal.">MeanNormalDer</a> </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="mean_8h_source.html#l00086">86</a> of file <a class="el" href="mean_8h_source.html">mean.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="mean_8h_source.html#l00079">79</a> of file <a class="el" href="mean_8h_source.html">mean.h</a>.</p>
 </div><h2 class="groupheader">Member Typedef Documentation</h2>
 <a id="a254e5413e61229c55bd7a64715573614" name="a254e5413e61229c55bd7a64715573614"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a254e5413e61229c55bd7a64715573614">&#9670;&#160;</a></span>Base</h2>
@@ -223,7 +222,7 @@ template&lt;class DataPoint , class _NFilter , typename T &gt; </div>
 
 <p>Base class of the procedure. </p>
 
-<p class="definition">Definition at line <a class="el" href="mean_8h_source.html#l00087">87</a> of file <a class="el" href="mean_8h_source.html">mean.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="mean_8h_source.html#l00080">80</a> of file <a class="el" href="mean_8h_source.html">mean.h</a>.</p>
 
 </div>
 </div>
@@ -243,7 +242,7 @@ template&lt;class DataPoint , class _NFilter , typename T &gt; </div>
 
 <p>Alias to the filter applied on the neighbors. </p>
 
-<p class="definition">Definition at line <a class="el" href="mean_8h_source.html#l00087">87</a> of file <a class="el" href="mean_8h_source.html">mean.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="mean_8h_source.html#l00080">80</a> of file <a class="el" href="mean_8h_source.html">mean.h</a>.</p>
 
 </div>
 </div>
@@ -263,7 +262,7 @@ template&lt;class DataPoint , class _NFilter , typename T &gt; </div>
 
 <p>Alias to scalar type. </p>
 
-<p class="definition">Definition at line <a class="el" href="mean_8h_source.html#l00087">87</a> of file <a class="el" href="mean_8h_source.html">mean.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="mean_8h_source.html#l00080">80</a> of file <a class="el" href="mean_8h_source.html">mean.h</a>.</p>
 
 </div>
 </div>
@@ -283,7 +282,7 @@ template&lt;class DataPoint , class _NFilter , typename T &gt; </div>
 
 <p>Alias to vector type. </p>
 
-<p class="definition">Definition at line <a class="el" href="mean_8h_source.html#l00087">87</a> of file <a class="el" href="mean_8h_source.html">mean.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="mean_8h_source.html#l00080">80</a> of file <a class="el" href="mean_8h_source.html">mean.h</a>.</p>
 
 </div>
 </div>
@@ -310,7 +309,7 @@ template&lt;class DataPoint , class _NFilter , typename T &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="mean_8h_source.html#l00090">90</a> of file <a class="el" href="mean_8h_source.html">mean.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="mean_8h_source.html#l00083">83</a> of file <a class="el" href="mean_8h_source.html">mean.h</a>.</p>
 
 </div>
 </div>
@@ -421,9 +420,9 @@ template&lt;class DataPoint , class _NFilter , typename T &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p>Explicit conversion to <a class="el" href="classPonca_1_1MeanNormal.html" title="Compute the barycenter of the input points + their normals.">MeanNormal</a> , to access methods potentially hidden by heritage. </p>
+<p>Explicit conversion to <a class="el" href="classPonca_1_1MeanNormal.html" title="Compute the mean normal of the input points.">MeanNormal</a> , to access methods potentially hidden by heritage. </p>
 
-<p class="definition">Definition at line <a class="el" href="mean_8h_source.html#l00094">94</a> of file <a class="el" href="mean_8h_source.html">mean.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="mean_8h_source.html#l00087">87</a> of file <a class="el" href="mean_8h_source.html">mean.h</a>.</p>
 
 </div>
 </div>
@@ -452,9 +451,9 @@ template&lt;class DataPoint , class _NFilter , typename T &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p>Explicit conversion to <a class="el" href="classPonca_1_1MeanNormal.html" title="Compute the barycenter of the input points + their normals.">MeanNormal</a> , to access methods potentially hidden by heritage. </p>
+<p>Explicit conversion to <a class="el" href="classPonca_1_1MeanNormal.html" title="Compute the mean normal of the input points.">MeanNormal</a> , to access methods potentially hidden by heritage. </p>
 
-<p class="definition">Definition at line <a class="el" href="mean_8h_source.html#l00094">94</a> of file <a class="el" href="mean_8h_source.html">mean.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="mean_8h_source.html#l00087">87</a> of file <a class="el" href="mean_8h_source.html">mean.h</a>.</p>
 
 </div>
 </div>
@@ -486,7 +485,7 @@ template&lt;class DataPoint , class _NFilter , typename T &gt; </div>
 <p>Mean of the normals of the input points. </p>
 <p>Defined as \( n(\mathbf{x}) = \frac{\sum_i w_\mathbf{x}(\mathbf{p_i}) \mathbf{n_i}}{\sum_i w_\mathbf{x}(\mathbf{p_i})} \), where \(\left[\mathbf{p_i}, \mathbf{n_i} \in \text{neighborhood}(\mathbf{x})\right]\) are all the point and normal samples in \(\mathbf{x}\)'s neighborhood </p>
 
-<p class="definition">Definition at line <a class="el" href="mean_8h_source.html#l00102">102</a> of file <a class="el" href="mean_8h_source.html">mean.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="mean_8h_source.html#l00095">95</a> of file <a class="el" href="mean_8h_source.html">mean.h</a>.</p>
 
 </div>
 </div>
@@ -515,7 +514,7 @@ template&lt;class DataPoint , class _NFilter , typename T &gt; </div>
 
 <p>Sum of the normal vectors. </p>
 
-<p class="definition">Definition at line <a class="el" href="mean_8h_source.html#l00091">91</a> of file <a class="el" href="mean_8h_source.html">mean.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="mean_8h_source.html#l00084">84</a> of file <a class="el" href="mean_8h_source.html">mean.h</a>.</p>
 
 </div>
 </div>
@@ -525,7 +524,7 @@ template&lt;class DataPoint , class _NFilter , typename T &gt; </div>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="namespacePonca.html">Ponca</a></li><li class="navelem"><a class="el" href="classPonca_1_1MeanNormal.html">MeanNormal</a></li>
-    <li class="footer">Generated on Thu Oct 30 2025 20:43:00 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
+    <li class="footer">Generated on Mon Nov 3 2025 17:27:06 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
   </ul>
 </div>
 </body>
