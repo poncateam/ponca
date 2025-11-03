@@ -98,6 +98,18 @@ namespace Ponca {
 
     }; //class MeanNormal
 
+/*!
+    \brief Compute the derivatives of the input points barycenter
+    \inherit Concept::FittingProcedureConcept
+
+    This primitive requires:
+    \verbatim PROVIDES_PRIMITIVE_DERIVATIVE, PROVIDES_MEAN_POSITION\endverbatim
+
+    This primitive provides:
+    \verbatim PROVIDES_MEAN_POSITION_DERIVATIVE \endverbatim
+
+    \see MeanNormal
+*/
     template<class DataPoint, class _NFilter, int DiffType, typename T>
     class MeanPositionDer : public T {
     PONCA_FITTING_DECLARE_DEFAULT_TYPES
@@ -145,6 +157,18 @@ namespace Ponca {
 
     }; //class MeanPositionDer
 
+/*!
+    \brief Compute the derivatives of the input points mean normal
+    \inherit Concept::FittingProcedureConcept
+
+    This primitive requires:
+    \verbatim PROVIDES_PRIMITIVE_DERIVATIVE, PROVIDES_MEAN_NORMAL\endverbatim
+
+    This primitive provides:
+    \verbatim PROVIDES_MEAN_NORMAL_DERIVATIVE \endverbatim
+
+    \see MeanNormal
+*/
     template<class DataPoint, class _NFilter, int DiffType, typename T>
     class MeanNormalDer : public T {
         PONCA_FITTING_DECLARE_DEFAULT_TYPES
