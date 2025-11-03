@@ -96,8 +96,8 @@ void callSubTests()
     typedef Basket<Point, WeightSmoothFunc  , CovariancePlaneFit, CurvatureEstimatorBase> FitSmoothProjectedNormalCovariance;
     typedef Basket<Point, WeightConstantFunc, CovariancePlaneFit, CurvatureEstimatorBase> FitConstantProjectedNormalCovariance;
     typedef Basket<Point, WeightConstantFunc, CovariancePlaneFit, CurvatureEstimatorBase> FitConstantProjectedNormalCovariance;
-    typedef Basket<Point, WeightSmoothFunc  , CovariancePlaneFit, MongePatch> FitCovSmooth;
-    typedef Basket<Point, WeightConstantFunc, CovariancePlaneFit, MongePatch> FitCovConstant;
+    typedef Basket<Point, WeightSmoothFunc  , MongePatchQuadraticFit> FitCovSmooth;
+    typedef Basket<Point, WeightConstantFunc, MongePatchQuadraticFit> FitCovConstant;
 
     cout << "Testing with perfect plane..." << endl;
     for(int i = 0; i < g_repeat; ++i)
