@@ -140,7 +140,7 @@ namespace Ponca
         { return *(_lq.data()+2); }
 
         /// \brief get access to v from local coordinate vector
-        PONCA_MULTIARCH [[nodiscard]] inline Scalar& getVFromLocalCoordinates (const VectorType& _lq)
+        PONCA_MULTIARCH [[nodiscard]] inline Scalar& getVFromLocalCoordinates (VectorType& _lq)
         { return *(_lq.data()+2); }
 
 
