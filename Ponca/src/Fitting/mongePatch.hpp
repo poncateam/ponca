@@ -78,7 +78,7 @@ MongePatchRestrictedQuadraticFitImpl<DataPoint, _NFilter, T>::init()
 {
     Base::init();
 
-    m_A = SampleMatrix(3,3);
+    m_A = SampleMatrix(4,4);
     m_A.setZero();
     m_b.setZero();
     m_planeIsReady = false;
@@ -102,8 +102,8 @@ MongePatchRestrictedQuadraticFitImpl<DataPoint, _NFilter, T>::addLocalNeighbor(S
         const Scalar& u = Base::getUFromLocalCoordinates(local);
         const Scalar& v = Base::getVFromLocalCoordinates(local);
 
-        Eigen::Matrix<Scalar, 3, 1 > p;
-        p << u*u, v*v, u*v;
+        Eigen::Matrix<Scalar, 4, 1 > p;
+        p << u*u, v*v, u*v, 1;
         m_A    += w*p*p.transpose();
         m_b    += w*h*p;
 
@@ -129,7 +129,7 @@ MongePatchRestrictedQuadraticFitImpl<DataPoint, _NFilter, T>::finalize ()
     }
         // end of the monge patch fitting process
     else {
-        // we use SVD as the matrix size is 3x3
+        // we use SVD as the matrix size is 4x4, and skip preconditioner as it is squared
         Base::quadraticHeightField().setQuadric
         (m_A.jacobiSvd(Eigen::ComputeThinU | Eigen::ComputeThinV | Eigen::NoQRPreconditioner).solve(m_b));
 
