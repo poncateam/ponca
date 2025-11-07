@@ -30,7 +30,7 @@ using namespace Ponca;
 
 
 template<typename DataPoint, typename Fit>
-void testFunction(bool _bUnoriented = false, bool _bAddPositionNoise = false, bool _bAddNormalNoise = false)
+void testFunction(bool _bAddPositionNoise = false)
 {
     // Define related structure
     typedef typename DataPoint::Scalar Scalar;
@@ -58,33 +58,22 @@ void testFunction(bool _bUnoriented = false, bool _bAddPositionNoise = false, bo
             Eigen::internal::random<Scalar>(-smallMagnitude,smallMagnitude),
             Eigen::internal::random<Scalar>(-standardMagnitude,standardMagnitude),
             Eigen::internal::random<Scalar>(-standardMagnitude,standardMagnitude),
-            Eigen::internal::random<Scalar>(-standardMagnitude,standardMagnitude));//Eigen::Vector6<Scalar>::Random();
-
-//    std::cout << "plot("
-//              << quadParams(0) << "x^2 + "
-//              << quadParams(1) << "y^2 + "
-//              << quadParams(2) << "xy + "
-//              << quadParams(3) << "x + "
-//              << quadParams(4) << "y + "
-//              << quadParams(5) <<")" << std::endl;
+            Eigen::internal::random<Scalar>(-standardMagnitude,standardMagnitude));
 
     for(unsigned int i = 0; i < vectorPoints.size(); ++i)
     {
         vectorPoints[i] = getPointOnParaboloid<DataPoint>(quadParams, width, _bAddPositionNoise);
     }
 
-    epsilon = testEpsilon<Scalar>();
+    epsilon = 0.1*width;
     if ( _bAddPositionNoise) // relax a bit the testing threshold
-      epsilon = Scalar(0.02*MAX_NOISE);
+      epsilon = std::max(Scalar(0.5*MAX_NOISE), epsilon*2);
     // Test for each point if the fitted plane correspond to the theoretical plane
 #ifdef DEBUG
 #pragma omp parallel for
 #endif
 
-    // evaluate only for the point located at 0,0, which is convenient as:
-    //  - the normal vector is necessary 0,0,1
-    //  - the tangent vectors are supposed to be 1,0,0 and 0,1,0
-    //  - the fitted quadric should have the same parameters than the generate one
+    // evaluate only for the point located at 0,0
     const auto queryPos = VectorType::Zero();
 
     Fit fit;
@@ -93,17 +82,6 @@ void testFunction(bool _bUnoriented = false, bool _bAddPositionNoise = false, bo
 
     VERIFY( fit.isStable() );
     {
-//        std::cout << "plot("
-//                  << fit.quadraticHeightField().coeffs()(0) << "x^2 + "
-//                  << fit.quadraticHeightField().coeffs()(1) << "y^2 + "
-//                  << fit.quadraticHeightField().coeffs()(2) << "xy)" << std::endl;
-//
-//        std::cout << "m_a:\n "<< fit.m_A << "\nm_b:\n " << std::endl;
-//        std::cout << fit.m_b.transpose() << std::endl;
-//
-//        std::cout << queryPos.transpose() << std::endl;
-//        std::cout << fit.project(queryPos).transpose() << std::endl;
-//
         // compute RMSE
         Scalar error {0};
         int nbTestSamples = vectorPoints.size()/5; // test on fewer samples to speed things up
@@ -119,8 +97,8 @@ void testFunction(bool _bUnoriented = false, bool _bAddPositionNoise = false, bo
         }
         error /= nbTestSamples;
 
-        if(error > 0.2) {
-            std::cout << "Precision test failed (" << error << "). Dumping files\n";
+        if(error > epsilon) {
+            std::cerr << "Precision test failed (" << error << "). Dumping files\n";
             {
                 std::ofstream inFile, projFile;
                 inFile.open ("input.xyz");
@@ -133,7 +111,7 @@ void testFunction(bool _bUnoriented = false, bool _bAddPositionNoise = false, bo
                 inFile.close();
                 projFile.close();
             }
-            VERIFY(error <= 0.2);
+            VERIFY(error <= epsilon);
         }
     }
 }
@@ -160,8 +138,8 @@ void callSubTests()
     cout << "Testing with plane noise on position" << endl;
     for(int i = 0; i < g_repeat; ++i)
     {
-        CALL_SUBTEST(( testFunction<Point, CovFitSmooth>(false, true, true) ));
-        CALL_SUBTEST(( testFunction<Point, CovFitConstant>(false, true, true) ));
+        CALL_SUBTEST(( testFunction<Point, CovFitSmooth>(true) ));
+        CALL_SUBTEST(( testFunction<Point, CovFitConstant>(true) ));
     }
     cout << "Ok!" << endl;
 }
