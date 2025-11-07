@@ -30,9 +30,9 @@ MongePatchQuadraticFitImpl<DataPoint, _NFilter, T>::addLocalNeighbor(Scalar w,
     {
         // express neighbor in local coordinate frame
         const VectorType local = Base::worldToTangentPlane(attributes.pos());
-        const Scalar& h = *(local.data());
-        const Scalar& u = *(local.data()+1);
-        const Scalar& v = *(local.data()+2);
+        const Scalar& h = Base::getHFromLocalCoordinates(local);
+        const Scalar& u = Base::getUFromLocalCoordinates(local);
+        const Scalar& v = Base::getVFromLocalCoordinates(local);
 
         Eigen::Matrix<Scalar, 6, 1 > p;
         p << u*u, v*v, u*v, u, v, 1;
@@ -98,9 +98,9 @@ MongePatchRestrictedQuadraticFitImpl<DataPoint, _NFilter, T>::addLocalNeighbor(S
     {
         // express neighbor in local coordinate frame
         const VectorType local = Base::worldToTangentPlane(attributes.pos());
-        const Scalar& h = *(local.data());
-        const Scalar& u = *(local.data()+1);
-        const Scalar& v = *(local.data()+2);
+        const Scalar& h = Base::getHFromLocalCoordinates(local);
+        const Scalar& u = Base::getUFromLocalCoordinates(local);
+        const Scalar& v = Base::getVFromLocalCoordinates(local);
 
         Eigen::Matrix<Scalar, 3, 1 > p;
         p << u*u, v*v, u*v;
