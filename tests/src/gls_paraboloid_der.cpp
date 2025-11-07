@@ -59,7 +59,7 @@ void testFunction()
     vector<TestDataPoint> testVectorPoints(nbPoints);
     for(unsigned int i = 0; i < vectorPoints.size(); ++i)
     {
-      vectorPointsOrigin[i] = getPointOnParaboloid<DataPoint>(paraboloidA, paraboloidB, analysisScale*Scalar(1.2), false);
+      vectorPointsOrigin[i] = getPointOnParaboloid<DataPoint>(paraboloidA, paraboloidB, 0, 0, 0, 0,analysisScale*Scalar(1.2), false);
       // Add noise:
       // vectorPointsOrigin[i].pos() += VectorType::Random()*1e-6;
       //vectorPointsOrigin[i].normal() = (vectorPointsOrigin[i].normal() + VectorType::Random()*1e-6).normalized();

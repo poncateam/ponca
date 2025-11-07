@@ -71,6 +71,7 @@ void testFunction(typename Fit::Scalar lowPrecisionEpsilon = typename Fit::Scala
     {
         DataPoint p = getPointOnParaboloid<DataPoint>(coeff.x(),
                                                       coeff.y(),
+                                                      0,0,0,0,
                                                       width,
                                                       false);           // noise
         p.pos() += center;
