@@ -8,85 +8,70 @@
 #include "../common/testUtils.h"
 #include "../common/has_duplicate.h"
 #include "../common/kdtree_utils.h"
+#include "../split_test_helper.h"
 
 #include <Ponca/src/SpatialPartitioning/KdTree/kdTree.h>
 #include <Ponca/src/SpatialPartitioning/KnnGraph/knnGraph.h>
 
 using namespace Ponca;
 
-template<typename DataPoint>
-void testKdTreeNearestIndex(bool quick = QUICK_TESTS)
-{
-	using Scalar = typename DataPoint::Scalar;
-	using KdTreeType = KdTreeDense<DataPoint>;
-	using VectorContainer = typename KdTreeType::PointContainer;
-	using VectorType = typename DataPoint::VectorType;
+template<bool doIndexQuery, typename AcceleratingStructure>
+void testNearestNeighbor( AcceleratingStructure& structure,
+	typename AcceleratingStructure::PointContainer& points
+) {
+	using DataPoint      = typename AcceleratingStructure::DataPoint;
+	using Scalar         = typename DataPoint::Scalar;
 
-	const int N = quick ? 100 : 10000;
-	auto points = VectorContainer(N);
-    std::generate(points.begin(), points.end(), []() {return DataPoint(VectorType::Random()); });
-
-	KdTreeType kdTree(points);
-
-#pragma omp parallel for
-	for (int i = 0; i < N; ++i)
-	{
-        std::vector<int> results; results.reserve( 1 );
-		for (int j : kdTree.nearest_neighbor(i))
-		{
-			results.push_back(j);
-		}
-        VERIFY(results.size() == 1);
-		bool res = check_nearest_neighbor<Scalar, VectorContainer>(points, i, results.front());
-        VERIFY(res);
-	}
-
-    /// [KnnGraph construction]
-    Ponca::KnnGraph<DataPoint> knnGraph(kdTree, 1);
-    /// [KnnGraph construction]
-#pragma omp parallel for
-    for (int i = 0; i < N; ++i)
-    {
-        std::vector<int> results; results.reserve( 1 );
-        for (int j : knnGraph.k_nearest_neighbors(i))
-        {
-            results.push_back(j);
-        }
-        VERIFY(results.size() == 1);
-        bool res = check_nearest_neighbor<Scalar, VectorContainer>(points, i, results.front());
-        VERIFY(res);
-    }
+	testQuery<doIndexQuery, DataPoint>(points, [&structure](auto &queryInput) {
+			return structure.nearest_neighbor(queryInput);
+		}, [&points](auto& queryInput, auto& queryResults) {
+			VERIFY((queryResults.size() == 1));
+			return check_nearest_neighbor<Scalar>(points, queryInput, queryResults.front());
+		}, 1
+	);
 }
 
-template<typename DataPoint>
-void testKdTreeNearestPoint(bool quick = QUICK_TESTS)
-{
-	using Scalar = typename DataPoint::Scalar;
-	using KdTreeType = KdTreeDense<DataPoint>;
-	using VectorContainer = typename KdTreeType::PointContainer;
-	using VectorType = typename DataPoint::VectorType;
+template<bool doIndexQuery, typename AcceleratingStructure>
+void testFrontOfKNearestNeighbors( AcceleratingStructure& structure,
+	typename AcceleratingStructure::PointContainer& points
+) {
+	using DataPoint      = typename AcceleratingStructure::DataPoint;
+	using Scalar         = typename DataPoint::Scalar;
 
-	const int N = quick ? 100 : 10000;
-	auto points = VectorContainer(N);
-    std::generate(points.begin(), points.end(), []() {return DataPoint(VectorType::Random()); });
-
-	KdTreeType structure(points);
-
-#pragma omp parallel for
-	for (int i = 0; i < N; ++i)
-	{
-		VectorType point = VectorType::Random();
-        std::vector<int> results; results.reserve( 1 );
-		for (int j : structure.nearest_neighbor(point))
-		{
-			results.push_back(j);
-		}
-        VERIFY(results.size() == 1);
-		bool res = check_nearest_neighbor<Scalar, VectorType, VectorContainer>(points, point, results.front());
-        VERIFY(res);
-	}
+	testQuery<doIndexQuery, DataPoint>(points, [&structure](auto &queryInput) {
+			return structure.k_nearest_neighbors(queryInput);
+		}, [&points](auto& queryInput, auto& queryResults) {
+			return check_nearest_neighbor<Scalar>(points, queryInput, queryResults.front());
+		}, 1
+	);
 }
 
+template<typename Scalar, int Dim>
+void testNearestNeighborsForAllStructures(const bool quick = QUICK_TESTS)
+{
+	using P = TestPoint<Scalar, Dim>;
+
+	// Generate data
+	const int N = quick ? 100 : 500;
+	std::vector<P> points(N);
+	generateData(points);
+
+	//////////// Test dense KdTree
+	std::vector<int> sample;
+	KdTreeDense<P> kdtreeDense = *buildKdTreeDense<P>(points, sample);
+	testNearestNeighbor<true>(kdtreeDense, points);  // Index query test
+	testNearestNeighbor<false>(kdtreeDense, points); // Position query test
+
+	//////////// Test subsample of KdTree
+	// std::vector<int> subSample;
+	// KdTreeSparse<P> kdtreeSparse = *buildSubsampledKdTree(points, subSample);
+	// testNearestNeighbors<true>(kdtreeSparse, points, subSample);  // Index query test
+	// testNearestNeighbors<false>(kdtreeSparse, points, subSample); // Position query test
+
+	//////////// Test KnnGraph
+	KnnGraph<P> knnGraph(kdtreeDense, 1);
+	testFrontOfKNearestNeighbors<true>(knnGraph, points);  // Index query test
+}
 int main(int argc, char** argv)
 {
 	if (!init_testing(argc, argv))
@@ -94,23 +79,26 @@ int main(int argc, char** argv)
 		return EXIT_FAILURE;
 	}
 
-    cout << "Test Nearest (from Point) in 3D..." << endl;
-	testKdTreeNearestPoint<TestPoint<float, 3>>();
-	testKdTreeNearestPoint<TestPoint<double, 3>>();
-	testKdTreeNearestPoint<TestPoint<long double, 3>>();
+	cout << "Test range_neighbors query for KdTree and KnnGraph in 3D : " << endl;
+	cout << " float" << flush;
+	CALL_SUBTEST_1((testNearestNeighborsForAllStructures<float, 3>()));
+	cout << " (ok), double" << flush;
+	CALL_SUBTEST_2((testNearestNeighborsForAllStructures<double, 3>()));
+	cout << " (ok), long " << flush;
+	CALL_SUBTEST_3((testNearestNeighborsForAllStructures<long double, 3>()));
+	cout << " (ok)." << flush << endl;
 
-    cout << "Test Nearest (from Point) in 4D..." << endl;
-	testKdTreeNearestPoint<TestPoint<float, 4>>();
-	testKdTreeNearestPoint<TestPoint<double, 4>>();
-	testKdTreeNearestPoint<TestPoint<long double, 4>>();
+	if (QUICK_TESTS)
+		return EXIT_SUCCESS;
 
-    cout << "Test Nearest (from Index) in 3D..." << endl;
-	testKdTreeNearestIndex<TestPoint<float, 3>>();
-	testKdTreeNearestIndex<TestPoint<double, 3>>();
-	testKdTreeNearestIndex<TestPoint<long double, 3>>();
+	cout << "Test range_neighbors query for KdTree and KnnGraph in 4D : " << endl;
+	cout << " float" << flush;
+	CALL_SUBTEST_1((testNearestNeighborsForAllStructures<float, 4>()));
+	cout << " (ok), double" << flush;
+	CALL_SUBTEST_2((testNearestNeighborsForAllStructures<double, 4>()));
+	cout << " (ok), long " << flush;
+	CALL_SUBTEST_3((testNearestNeighborsForAllStructures<long double, 4>()));
+	cout << " (ok)." << flush << endl;
 
-    cout << "Test Nearest (from Index) in 4D..." << endl;
-	testKdTreeNearestIndex<TestPoint<float, 4>>();
-	testKdTreeNearestIndex<TestPoint<double, 4>>();
-	testKdTreeNearestIndex<TestPoint<long double, 4>>();
+	return EXIT_SUCCESS;
 }

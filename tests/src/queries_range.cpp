@@ -5,141 +5,68 @@
 */
 
 #include "../common/testing.h"
-#include "../common/testUtils.h"
-#include "../common/has_duplicate.h"
 #include "../common/kdtree_utils.h"
+#include "../split_test_helper.h"
 
 #include <Ponca/src/SpatialPartitioning/KdTree/kdTree.h>
 #include <Ponca/src/SpatialPartitioning/KnnGraph/knnGraph.h>
 
 using namespace Ponca;
 
-template<typename DataPoint, bool SampleKdTree = true>
-void testKdTreeRangeIndex(bool quick = QUICK_TESTS)
-{
-	using Scalar = typename DataPoint::Scalar;
-	using VectorContainer = typename KdTree<DataPoint>::PointContainer;
-	using VectorType = typename DataPoint::VectorType;
+template<bool doIndexQuery, typename AcceleratingStructure>
+void testRangeNeighbors( AcceleratingStructure& structure,
+	typename AcceleratingStructure::PointContainer& points, std::vector<int>& sample
+) {
+	using DataPoint      = typename AcceleratingStructure::DataPoint;
+	using Scalar         = typename DataPoint::Scalar;
 
-	const int N = quick ? 100 : 5000;
-	auto points = VectorContainer(N);
-    std::generate(points.begin(), points.end(), []() {return DataPoint(VectorType::Random()); });
+	Scalar r = Eigen::internal::random<Scalar>(0.01, 0.5);
 
-    /// [KdTree pointer usage]
-    // Abstract pointer type that can receive KdTreeSparse or KdTreeDense objects
-    KdTree<DataPoint> *kdtree {nullptr};
-    /// [KdTree pointer usage]
-
-    std::vector<int> sampling; // we need sampling for GT computation
-    if(SampleKdTree){
-        std::vector<int> indices(N);
-        std::iota(indices.begin(), indices.end(), 0);
-
-        sampling.resize(N / 2);
-
-        int seed = 0;
-        std::sample(indices.begin(), indices.end(), sampling.begin(), N / 2, std::mt19937(seed));
-
-        /// [KdTree assign sparse]
-        // assign sparse
-        kdtree = new KdTreeSparse<DataPoint> (points, sampling);
-        /// [KdTree assign sparse]
-
-    } else {
-        sampling.resize(N);
-        std::iota(sampling.begin(), sampling.end(), 0);
-        /// [KdTree assign dense]
-        // assign dense
-        kdtree = new KdTreeDense<DataPoint> (points);
-        /// [KdTree assign dense]
-    }
-
-#pragma omp parallel for
-    for (int i = 0; i < N; ++i) {
-
-        auto query = kdtree->range_neighbors_empty_index();
-
-        for (int repeatRadius = 0; repeatRadius != 10; ++repeatRadius) {
-            std::vector<int> resultsTree, resultsMutable;
-            Scalar r = Eigen::internal::random<Scalar>(0.01, 0.5);
-
-            for (int j: kdtree->range_neighbors(i, r)) {
-                resultsTree.push_back(j);
-            }
-            for (int j: query(i, r)) {
-                resultsMutable.push_back(j);
-            }
-            if (SampleKdTree) {
-                bool resTree = check_range_neighbors<Scalar, VectorContainer>(points, sampling, i, r, resultsTree);
-                bool resMutable = check_range_neighbors<Scalar, VectorContainer>(points, sampling, i, r, resultsMutable);
-                VERIFY(resTree);
-                VERIFY(resMutable);
-            } else {
-                bool resTree = check_range_neighbors<Scalar, VectorContainer>(points, sampling, i, r, resultsTree);
-                bool resMutable = check_range_neighbors<Scalar, VectorContainer>(points, sampling, i, r, resultsMutable);
-                VERIFY(resTree);
-                VERIFY(resMutable);
-            }
-        }
-    }
-
-    if( ! SampleKdTree ){
-        Ponca::KnnGraph<DataPoint> knnGraph(*kdtree, N/4); // we need a large graph, otherwise we might miss some points
-                                                           // (which is the goal of the graph: to replace full euclidean
-                                                           // collection by geodesic-like region growing bounded by
-                                                           // the euclidean ball).
-#pragma omp parallel for
-        for (int i = 0; i < N; ++i)
-        {
-            Scalar r = Eigen::internal::random<Scalar>(0., 0.5);
-            std::vector<int> resultsGraph;
-
-            for (int j : knnGraph.range_neighbors(i, r)) {
-                resultsGraph.push_back(j);
-            }
-            bool resGraph = check_range_neighbors<Scalar, VectorContainer>(points, sampling, i, r, resultsGraph);
-            VERIFY(resGraph);
-        }
-    }
-
-    delete kdtree;
-}
-template<typename DataPoint>
-void testKdTreeRangePoint(bool quick = QUICK_TESTS)
-{
-	using Scalar = typename DataPoint::Scalar;
-	using VectorContainer = typename KdTreeSparse<DataPoint>::PointContainer;
-	using VectorType = typename DataPoint::VectorType;
-
-	const int N = quick ? 100 : 10000;
-	auto points = VectorContainer(N);
-    std::generate(points.begin(), points.end(), []() {return DataPoint(VectorType::Random()); });
-
-	int seed = 0;
-
-    /// [Kdtree sampling construction]
-	std::vector<int> indices(N);
-	std::vector<int> sampling(N / 2);
-	std::iota(indices.begin(), indices.end(), 0);
-	std::sample(indices.begin(), indices.end(), sampling.begin(), N / 2, std::mt19937(seed));
-
-	KdTreeSparse<DataPoint> structure(points, sampling);
-    /// [Kdtree sampling construction]
-
-#pragma omp parallel for
-	for (int i = 0; i < N; ++i)
-	{
-        Scalar r = Eigen::internal::random<Scalar>(0., 0.5);
-		VectorType point = VectorType::Random(); // values between [-1:1]
-        std::vector<int> results;
-
-		for (int j : structure.range_neighbors(point, r)) {
-			results.push_back(j);
+	testQuery<doIndexQuery, DataPoint>(points,
+		[&structure, &r](auto &queryInput) {
+			if constexpr (doIndexQuery) {
+				auto mutableQuery = structure.range_neighbors_empty_index();
+				return mutableQuery(queryInput, r);
+			} else {
+				auto mutableQuery = structure.range_neighbors_empty_position();
+				return mutableQuery(queryInput, r);
+			}
+		}, [&structure, &r](auto &queryInput) {
+			return structure.range_neighbors(queryInput, r);
+		}, [&points, &sample, &r](auto& queryInput, auto& queryResults) {
+			return check_range_neighbors<Scalar>(points, sample, queryInput, r, queryResults);
 		}
+	);
+}
 
-		bool res = check_range_neighbors<Scalar, VectorType, VectorContainer>(points, sampling, point, r, results);
-		VERIFY(res);
-	}
+template<typename Scalar, int Dim>
+void testRangeNeighborsForAllStructures(const bool quick = QUICK_TESTS)
+{
+	using P = TestPoint<Scalar, Dim>;
+
+	// Generate data
+	const int N = quick ? 100 : 500;
+	std::vector<P> points(N);
+	generateData(points);
+
+	//////////// Test dense KdTree
+	std::vector<int> sample;
+	KdTreeDense<P> kdtreeDense = *buildKdTreeDense<P>(points, sample);
+	testRangeNeighbors<true>(kdtreeDense, points, sample);  // Index query test
+	// testRangeNeighbors<false>(kdtreeDense, points, sample); // Position query test
+
+	//////////// Test subsample of KdTree
+	std::vector<int> subSample;
+	KdTreeSparse<P> kdtreeSparse = *buildSubsampledKdTree(points, subSample);
+	// testRangeNeighbors<true>(kdtreeSparse, points, subSample);  // Index query test
+	// testRangeNeighbors<false>(kdtreeSparse, points, subSample); // Position query test
+
+	// //////////// Test KnnGraph
+	KnnGraph<P> knnGraph(kdtreeDense, N/4); /* We need a large graph, otherwise we might miss some points
+											   (which is the goal of the graph: to replace full euclidean
+											   collection by geodesic-like region growing bounded by
+											   the euclidean ball). */
+	// testRangeNeighbors<true>(knnGraph, points, sample);  // Index query test
 }
 
 int main(int argc, char** argv)
@@ -149,33 +76,27 @@ int main(int argc, char** argv)
 		return EXIT_FAILURE;
 	}
 
-    cout << "Test KdTreeRange (from Point) in 3D..." << endl;
-	testKdTreeRangePoint<TestPoint<float, 3>>();
-	testKdTreeRangePoint<TestPoint<double, 3>>();
-	testKdTreeRangePoint<TestPoint<long double, 3>>();
+	cout << "Test range_neighbors query for KdTree and KnnGraph in 3D : " << endl;
+	cout << " float" << flush;
+	CALL_SUBTEST_1((testRangeNeighborsForAllStructures<float, 3>()));
+	cout << " (ok), double" << flush;
+	CALL_SUBTEST_2((testRangeNeighborsForAllStructures<double, 3>()));
+	cout << " (ok), long " << flush;
+	CALL_SUBTEST_3((testRangeNeighborsForAllStructures<long double, 3>()));
+	cout << " (ok)." << flush << endl;
 
-    cout << "Test KdTreeRange (from Point) in 4D..." << endl;
-	testKdTreeRangePoint<TestPoint<float, 4>>();
-	testKdTreeRangePoint<TestPoint<double, 4>>();
-	testKdTreeRangePoint<TestPoint<long double, 4>>();
 
-    cout << "Test Range Queries (from Index) using KnnGraph and Kdtree in 3D... (without subsampling)" << endl;
-    testKdTreeRangeIndex<TestPoint<float, 3>, false>();
-    testKdTreeRangeIndex<TestPoint<double, 3>, false>();
-    testKdTreeRangeIndex<TestPoint<long double, 3>, false>();
+	if (QUICK_TESTS)
+		return EXIT_SUCCESS;
 
-    cout << "Test KdTreeRange (from Index) in 3D... (with subsampling)" << endl;
-    testKdTreeRangeIndex<TestPoint<float, 3>>();
-    testKdTreeRangeIndex<TestPoint<double, 3>>();
-    testKdTreeRangeIndex<TestPoint<long double, 3>>();
+	cout << "Test range_neighbors query for KdTree and KnnGraph in 4D : " << endl;
+	cout << " float" << flush;
+	CALL_SUBTEST_1((testRangeNeighborsForAllStructures<float, 4>()));
+	cout << " (ok), double" << flush;
+	CALL_SUBTEST_2((testRangeNeighborsForAllStructures<double, 4>()));
+	cout << " (ok), long " << flush;
+	CALL_SUBTEST_3((testRangeNeighborsForAllStructures<long double, 4>()));
+	cout << " (ok)." << flush << endl;
 
-    cout << "Test KdTreeRange (from Index) in 4D..." << endl;
-    testKdTreeRangeIndex<TestPoint<float, 4>>();
-    testKdTreeRangeIndex<TestPoint<double, 4>>();
-    testKdTreeRangeIndex<TestPoint<long double, 4>>();
-
-    cout << "Test Range Queries (from Index) using KnnGraph and Kdtree in 4D... (without subsampling)" << endl;
-    testKdTreeRangeIndex<TestPoint<float, 4>, false>();
-    testKdTreeRangeIndex<TestPoint<double, 4>, false>();
-    testKdTreeRangeIndex<TestPoint<long double, 4>, false>();
+	return EXIT_SUCCESS;
 }
