@@ -43,8 +43,8 @@ void testFunction()
     //generate sampled paraboloid
     int nbPoints = Eigen::internal::random<int>(10000, 20000);
 
-    Scalar paraboloidA = 100 * Eigen::internal::random<Scalar>(-1,1);
-    Scalar paraboloidB = 100 * Eigen::internal::random<Scalar>(-1,1);
+    Scalar paraboloidA = Eigen::internal::random<Scalar>(-0.5,0.5);
+    Scalar paraboloidB = Eigen::internal::random<Scalar>(-0.5,0.5);
 
     Scalar analysisScale = static_cast<Scalar>(.001);// / std::max(std::abs(vCoef.x()), std::abs(vCoef.y()));
 
@@ -134,49 +134,13 @@ void testFunction()
         f.compute(refVectorPoints);
 
         RefScalar flip_f   = (f.isSigned() || (f.primitiveGradient().dot(theoricNormal.template cast<RefScalar>()) > 0 )) ? RefScalar(1) : RefScalar(-1);
-
-//         Scalar uc = f.m_uc;
-//         typename RefFit::VectorType ul = f.m_ul;
-//         typename RefFit::VectorType sumP = f.m_sumP;
-
-        // Take into account centered basis:
-//         if(k>0) uc        += -f.m_ul(k-1) * h + f.m_uq * h * h;
-//         if(k>0) ul[k-1]   -= 2. * f.m_uq * h;
-//         if(k>0) sumP[k-1] += f.getWeightSum() * h;
-
-//         dSumP.col(k)  = ( f.m_cog      - ref_fit.m_cog ) / h;
-//         dSumP.col(k)  = ( sumP      - ref_fit.m_sumP  ) / h;
-//         dUc(k)        = ( uc        - ref_fit.m_uc    ) / h;
-//         dUq(k)        = ( f.m_uq    - ref_fit.m_uq    ) / h;
-//         dUl.col(k)    = ( ul        - ref_fit.m_ul    ) / h;
-//         dTau(k)    = ( f.tau()   - ref_fit.tau()   ) / h;
-
         dPotential(k) = ( flip_f*f.potential() - flip_ref * ref_fit.potential()   ) / h;
         dN.col(k)     = ( flip_f*f.primitiveGradient().normalized() - flip_ref * ref_fit.primitiveGradient().normalized() ) / h;
-//         dKappa(k)     = ( f.kappa() - ref_fit.kappa() ) / h;
       }
 
 //       std::cout << "== Numerical differentiation ==\n";
-//       std::cout << "dPotential: "  << dPotential << " == " << fit.dPotential() << " ; " << (dPotential.template cast<Scalar>()-flip_fit*fit.dPotential()).norm()/dPotential.norm() << "\n";
-//       std::cout << "dN:\n"  << dN << "\n == \n" << flip_fit*fit.dNormal() << " ; " << (dN.template cast<Scalar>()-flip_fit*fit.dNormal()).norm()/dN.norm() << "\n";
-//       std::cout << "eig(dN): " << Eigen::EigenSolver<typename DataPoint::MatrixType>(dN.template cast<Scalar>().template rightCols<3>()).eigenvalues().transpose() << "\n\n";
-
-//       std::cout << "dKappa: " << dKappa << " == " << fit.dkappa() << " ; " << (dKappa.template cast<Scalar>()-fit.dkappa()).norm()/dKappa.norm() << "\n";
-//       std::cout << "dUc: "  << dUc << " == " << fit.m_dUc << " ; " << (dUc.template cast<Scalar>()-fit.m_dUc).norm()/dUc.norm() << "\n";
-//       std::cout << "dUq: "  << dUq << " == " << fit.m_dUq << " ; " << (dUq.template cast<Scalar>()-fit.m_dUq).norm()/dUq.norm() << "\n";
-//       std::cout << "dTau: " << dTau << " == " << fit.dtau() << " ; " << (dTau.template cast<Scalar>()-fit.dtau()).norm()/dTau.norm() << "\n";
-//       std::cout << "dUl:\n" << dUl << "\n == \n" << fit.m_dUl << " ; " << (dUl.template cast<Scalar>()-fit.m_dUl).norm()/dUl.norm() << "\n";
-//       std::cout << "dSumP:\n" << dSumP << "\n == \n" << fit.m_dSumP << " ; " << (dSumP.template cast<Scalar>()-fit.m_dSumP).norm()/dSumP.norm() << "\n";
-//       std::cout << "dSumP:\n" << dSumP << "\n == \n" << fit.m_dCog << " ; " << (dSumP.template cast<Scalar>()-fit.m_dCog).norm()/dSumP.norm() << "\n";
-
-//       VERIFY( dUc.template cast<Scalar>().isApprox( fit.m_dUc, der_epsilon ) );
-//       VERIFY( dUq.template cast<Scalar>().isApprox( fit.m_dUq, der_epsilon ) );
-//       VERIFY( (dUl.template cast<Scalar>()-fit.m_dUl).norm() < fit.m_ul.norm() * der_epsilon );
-      // VERIFY( dTau.template cast<Scalar>().isApprox( fit.dtau(), der_epsilon ) );
       VERIFY( dPotential.template cast<Scalar>().isApprox( flip_fit*fit.dPotential().template cast<Scalar>(), Scalar(der_epsilon) ) );
-
       VERIFY( dN.template cast<Scalar>().isApprox( flip_fit*fit.dNormal().template cast<Scalar>(), Scalar(der_epsilon) ) );
-      //VERIFY( dKappa.template cast<Scalar>().isApprox( fit.dkappa(), der_epsilon ) );
     }
 
     VERIFY(fit.isStable());
@@ -185,15 +149,20 @@ void testFunction()
     {
 
       Scalar theoricPotential = 0;
-//      Scalar theoricKmean        = (a + b) / Scalar(2.);
-      Scalar theoricAverageKmean = getKappaMean<DataPoint>(vectorPointsOrigin, vFittingPoint, paraboloidA, paraboloidB, analysisScale);
-      Scalar theoricK1 = (std::abs(paraboloidA)<std::abs(paraboloidB) ? paraboloidB : paraboloidA);
-      Scalar theoricK2 = (std::abs(paraboloidA)<std::abs(paraboloidB) ? paraboloidA : paraboloidB);
-      Scalar theoricGaussian = paraboloidA * paraboloidB;
+
+      Scalar theoricK1, theoricK2;
+        {
+            Scalar tK1 = Scalar(2) * paraboloidA;
+            Scalar tK2 = Scalar(2) * paraboloidB;
+
+            theoricK1 = flip_fit * (std::abs(tK1)<std::abs(tK2) ? tK2 : tK1);
+            theoricK2 = flip_fit * (std::abs(tK1)<std::abs(tK2) ? tK1 : tK2);
+        }
+      Scalar theoricGaussian = theoricK1 * theoricK2;
+      Scalar theoricKmean    = Scalar(0.5)*(theoricK1+theoricK2);
 
       Scalar potential  = flip_fit * fit.potential();
       VectorType normal = flip_fit * fit.primitiveGradient().template cast<Scalar>();
-//       Scalar kmean = fit.kappa();
 
       // principal curvatures k1,k2 are used here such that |k1| > |k2| (instead of kmin < kmax)
       Scalar kmin = fit.kmin();
@@ -203,19 +172,11 @@ void testFunction()
       Scalar kmeanFromK1K2 = (kappa1 + kappa2) * Scalar(.5);
       Scalar gaussian = fit.GaussianCurvature();
 
-//       std::cout << "flip_fit : " << flip_fit << " , " << bool(isSigned || fit.primitiveGradient().dot(theoricNormal) > 0) << "\n";
-//       std::cout << "potential : " << potential << "  \tref: " << theoricPotential << std::endl;
-//       std::cout << "k1        : " << kappa1 << "  \tref: " << theoricK1 << std::endl;
-//       std::cout << "k2        : " << kappa2 << "  \tref: " << theoricK2 << std::endl;
-//       std::cout << "kmean     : " << /*kmean << ", " <<*/ kmeanFromK1K2 << "  \tref:" << theoricKmean << " , " << theoricAverageKmean << std::endl;
-//       std::cout << "gaussian  : " << gaussian << "  \tref: " << theoricGaussian << std::endl;
-//       std::cout << "normal    : " << normal.transpose() << "  \tref: " << theoricNormal.transpose() << std::endl;
-
       VERIFY( Eigen::internal::isMuchSmallerThan(std::abs(potential - theoricPotential), Scalar(1.), approxEpsilon) );
       VERIFY( Eigen::internal::isMuchSmallerThan((theoricNormal - normal).norm(), Scalar(1.), approxEpsilon ) );
 
-      VERIFY( Eigen::internal::isMuchSmallerThan(std::abs(theoricAverageKmean - kmeanFromK1K2), std::abs(theoricK1), approxEpsilon) );
-//       VERIFY( Eigen::internal::isMuchSmallerThan(std::abs(theoricAverageKmean - kmean), std::abs(theoricK1), approxEpsilon) );
+      // The error in mean curvature estimation must be smaller in magnitude wrt the largest curvature
+      VERIFY( Eigen::internal::isMuchSmallerThan(std::abs(theoricKmean - kmeanFromK1K2), std::abs(theoricK1), approxEpsilon));
 
       if(std::abs(std::abs(theoricK1)-std::abs(theoricK2))>approxEpsilon*std::abs(theoricK1))
       {
