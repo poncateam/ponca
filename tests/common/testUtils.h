@@ -13,6 +13,7 @@
 #pragma once
 
 #include "Eigen/Eigen"
+#include "Ponca/src/Fitting/defines.h"
 #include "Ponca/src/Common/defines.h"
 #include PONCA_MULTIARCH_INCLUDE_CU_STD(cmath)
 
@@ -287,15 +288,34 @@ getParaboloidZ(Scalar _x, Scalar _y, Scalar _a, Scalar _b, Scalar _c, Scalar _d,
 {
     return _a*_x*_x + _b*_y*_y + _c*_x*_y + _d*_x + _e*_y + _f;
 }
-/// Generate z value using the equation z = ax^2 + by^2
-template<typename VectorType>
-inline VectorType
-getParaboloidNormal(const VectorType& in,
-                    typename VectorType::Scalar _a,
-                    typename VectorType::Scalar _b)
+
+template<typename DataPoint>
+inline typename std::enable_if<Ponca::hasNormal<DataPoint>::value, void>::type
+getParaboloidNormal(DataPoint& in,
+                    typename DataPoint::Scalar _a,
+                    typename DataPoint::Scalar _b,
+                    typename DataPoint::Scalar _c,
+                    typename DataPoint::Scalar _d,
+                    typename DataPoint::Scalar _e,
+                    typename DataPoint::Scalar _f)
 {
-    return VectorType((_a * in.x()), (_b * in.y()), -1.).normalized();;
+    static constexpr typename DataPoint::Scalar two {2};
+    auto& pos = in.pos();
+    in.normal() = typename DataPoint::VectorType(two*_a * pos.x() + _c*pos.y() + _d,
+                                                 two*_b * pos.y() + _c*pos.x() + _d,
+                                                 -1.).normalized();
 }
+
+template<typename DataPoint>
+inline typename std::enable_if<! Ponca::hasNormal<DataPoint>::value, void>::type
+getParaboloidNormal(DataPoint& in,
+                    typename DataPoint::Scalar _a,
+                    typename DataPoint::Scalar _b,
+                    typename DataPoint::Scalar _c,
+                    typename DataPoint::Scalar _d,
+                    typename DataPoint::Scalar _e,
+                    typename DataPoint::Scalar _f)
+{ }
 
 /// Generate point samples on the primitive z = ax^2 + by^2
 /// Points (x,y) are generated in the interval [-_s, -s]^2
@@ -314,23 +334,21 @@ getPointOnParaboloid(typename DataPoint::Scalar _a,
     typedef typename DataPoint::Scalar Scalar;
     typedef typename DataPoint::VectorType VectorType;
 
-//    VectorType vNormal;
-    VectorType vPosition = getPointOnCircle(_s, VectorType({0,0,0}));
+    DataPoint out;
 
     // generate random position in polar coordinates to get points on the circle
+    out.pos() = getPointOnCircle(_s, VectorType({0,0,0}));
+    out.pos().z() = getParaboloidZ(out.pos().x(), out.pos().y(), _a, _b, _c, _d, _e, _f);
 
-
-    Scalar x = vPosition.x(),
-           y = vPosition.y();
-    vPosition.z() = getParaboloidZ(x, y, _a, _b, _c, _d, _e, _f);
-//    vNormal = getParaboloidNormal(vPosition, _a, _b);
+    // does nothing if the point type does not have a normal field.
+    getParaboloidNormal(out, _a, _b, _c, _d, _e, _f);
 
     if(_bAddNoise) //spherical noise
     {
-        vPosition += VectorType::Random().normalized() * Eigen::internal::random<Scalar>(Scalar(0), Scalar(1. - MIN_NOISE));
+        out.pos() += VectorType::Random().normalized() * Eigen::internal::random<Scalar>(Scalar(0), Scalar(1. - MIN_NOISE));
     }
 
-    return DataPoint(vPosition);
+    return out;
 }
 template<typename DataPoint, typename Params>
 [[nodiscard]] DataPoint
@@ -363,8 +381,11 @@ typename DataPoint::Scalar getPointKappaMean(typename DataPoint::VectorType _vPo
 }
 
 template<typename DataPoint>
-typename DataPoint::Scalar getKappaMean(const std::vector<DataPoint>& _vectorPoints, typename DataPoint::VectorType _vCenter,
-                                        typename DataPoint::Scalar _a, typename DataPoint::Scalar _b, typename DataPoint::Scalar _analysisScale)
+typename DataPoint::Scalar getKappaMean(const std::vector<DataPoint>& _vectorPoints,
+                                        typename DataPoint::VectorType _vCenter,
+                                        typename DataPoint::Scalar _a,
+                                        typename DataPoint::Scalar _b,
+                                        typename DataPoint::Scalar _analysisScale)
 {
     typedef typename DataPoint::Scalar Scalar;
     typedef typename DataPoint::VectorType VectorType;
