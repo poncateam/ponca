@@ -7,6 +7,8 @@
 
 #pragma once
 
+#include <type_traits> // std::true_type
+
 /**
   *
   * \defgroup fitting Fitting module
