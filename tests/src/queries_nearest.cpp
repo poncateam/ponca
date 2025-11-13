@@ -17,37 +17,37 @@ using namespace Ponca;
 
 template<bool doIndexQuery, typename AcceleratingStructure>
 void testNearestNeighbor( AcceleratingStructure& structure,
-	typename AcceleratingStructure::PointContainer& points
+	typename AcceleratingStructure::PointContainer& points,
+	std::vector<int>& sample
 ) {
 	using DataPoint      = typename AcceleratingStructure::DataPoint;
-	using Scalar         = typename DataPoint::Scalar;
 
 	testQuery<doIndexQuery, DataPoint>(points, [&structure](auto &queryInput) {
 			return structure.nearest_neighbor(queryInput);
-		}, [&points](auto& queryInput, auto& queryResults) {
+		}, [&points, &sample](auto& queryInput, auto& queryResults) {
 			VERIFY((queryResults.size() == 1));
-			return check_nearest_neighbor<Scalar>(points, queryInput, queryResults.front());
+			return check_nearest_neighbor<DataPoint>(points, sample, queryInput, queryResults.front());
 		}, 1
 	);
 }
 
 template<bool doIndexQuery, typename AcceleratingStructure>
 void testFrontOfKNearestNeighbors( AcceleratingStructure& structure,
-	typename AcceleratingStructure::PointContainer& points
+	typename AcceleratingStructure::PointContainer& points,
+	std::vector<int>& sample
 ) {
 	using DataPoint      = typename AcceleratingStructure::DataPoint;
-	using Scalar         = typename DataPoint::Scalar;
 
 	testQuery<doIndexQuery, DataPoint>(points, [&structure](auto &queryInput) {
 			return structure.k_nearest_neighbors(queryInput);
-		}, [&points](auto& queryInput, auto& queryResults) {
-			return check_nearest_neighbor<Scalar>(points, queryInput, queryResults.front());
+		}, [&points, &sample](auto& queryInput, auto& queryResults) {
+			return check_nearest_neighbor<DataPoint>(points, sample, queryInput, queryResults.front());
 		}, 1
 	);
 }
 
 template<typename Scalar, int Dim>
-void testNearestNeighborsForAllStructures(const bool quick = QUICK_TESTS)
+void testNearestNeighborForAllStructures(const bool quick)
 {
 	using P = TestPoint<Scalar, Dim>;
 
@@ -59,18 +59,20 @@ void testNearestNeighborsForAllStructures(const bool quick = QUICK_TESTS)
 	//////////// Test dense KdTree
 	std::vector<int> sample;
 	KdTreeDense<P> kdtreeDense = *buildKdTreeDense<P>(points, sample);
-	testNearestNeighbor<true>(kdtreeDense, points);  // Index query test
-	testNearestNeighbor<false>(kdtreeDense, points); // Position query test
+	testNearestNeighbor<true>(kdtreeDense, points, sample);  // Index query test
+	testNearestNeighbor<false>(kdtreeDense, points, sample); // Position query test
 
 	//////////// Test subsample of KdTree
-	// std::vector<int> subSample;
-	// KdTreeSparse<P> kdtreeSparse = *buildSubsampledKdTree(points, subSample);
-	// testNearestNeighbors<true>(kdtreeSparse, points, subSample);  // Index query test
-	// testNearestNeighbors<false>(kdtreeSparse, points, subSample); // Position query test
+	std::vector<int> subSample;
+	KdTreeSparse<P> kdtreeSparse = *buildSubsampledKdTree(points, subSample);
+	testNearestNeighbor<true>(kdtreeSparse, points, subSample);  // Index query test
+	testNearestNeighbor<false>(kdtreeSparse, points, subSample); // Position query test
 
 	//////////// Test KnnGraph
 	KnnGraph<P> knnGraph(kdtreeDense, 1);
-	testFrontOfKNearestNeighbors<true>(knnGraph, points);  // Index query test
+	testFrontOfKNearestNeighbors<true>(knnGraph, points, sample);  // Index query test
+
+	cout << "(ok)";
 }
 int main(int argc, char** argv)
 {
@@ -79,26 +81,25 @@ int main(int argc, char** argv)
 		return EXIT_FAILURE;
 	}
 
-	cout << "Test range_neighbors query for KdTree and KnnGraph in 3D : " << endl;
-	cout << " float" << flush;
-	CALL_SUBTEST_1((testNearestNeighborsForAllStructures<float, 3>()));
-	cout << " (ok), double" << flush;
-	CALL_SUBTEST_2((testNearestNeighborsForAllStructures<double, 3>()));
-	cout << " (ok), long " << flush;
-	CALL_SUBTEST_3((testNearestNeighborsForAllStructures<long double, 3>()));
-	cout << " (ok)." << flush << endl;
+#ifndef NDEBUG
+    bool quick = true;
+#else
+    bool quick = false;
+#endif
 
-	if (QUICK_TESTS)
-		return EXIT_SUCCESS;
+	cout << "Test nearest_neighbor query for KdTree and KnnGraph in 3D : " << flush;
+	cout << endl << " float : " << flush;
+	CALL_SUBTEST_1((testNearestNeighborForAllStructures<float, 3>(quick)));
+	cout << endl << " double : " << flush;
+	CALL_SUBTEST_2((testNearestNeighborForAllStructures<double, 3>(quick)));
+	cout << endl << " long : " << flush;
+	CALL_SUBTEST_3((testNearestNeighborForAllStructures<long double, 3>(quick)));
 
-	cout << "Test range_neighbors query for KdTree and KnnGraph in 4D : " << endl;
-	cout << " float" << flush;
-	CALL_SUBTEST_1((testNearestNeighborsForAllStructures<float, 4>()));
-	cout << " (ok), double" << flush;
-	CALL_SUBTEST_2((testNearestNeighborsForAllStructures<double, 4>()));
-	cout << " (ok), long " << flush;
-	CALL_SUBTEST_3((testNearestNeighborsForAllStructures<long double, 4>()));
-	cout << " (ok)." << flush << endl;
-
-	return EXIT_SUCCESS;
+	cout << "Test nearest_neighbor query for KdTree and KnnGraph in 4D : " << flush;
+	cout << endl << " float : " << flush;
+	CALL_SUBTEST_1((testNearestNeighborForAllStructures<float, 4>(quick)));
+	cout << endl << " double : " << flush;
+	CALL_SUBTEST_2((testNearestNeighborForAllStructures<double, 4>(quick)));
+	cout << endl << " long : " << flush;
+	CALL_SUBTEST_3((testNearestNeighborForAllStructures<long double, 4>(quick)));
 }
