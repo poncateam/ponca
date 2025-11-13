@@ -15,13 +15,14 @@ using namespace Ponca;
 
 template<bool doIndexQuery, typename AcceleratingStructure>
 void testRangeNeighbors( AcceleratingStructure& structure,
-	typename AcceleratingStructure::PointContainer& points, std::vector<int>& sample
+	typename AcceleratingStructure::PointContainer& points,
+	std::vector<int>& sample
 ) {
 	using DataPoint      = typename AcceleratingStructure::DataPoint;
 	using Scalar         = typename DataPoint::Scalar;
 
 	Scalar r = Eigen::internal::random<Scalar>(0.01, 0.5);
-
+	
 	testQuery<doIndexQuery, DataPoint>(points,
 		[&structure, &r](auto &queryInput) {
 			if constexpr (doIndexQuery) {
@@ -34,13 +35,13 @@ void testRangeNeighbors( AcceleratingStructure& structure,
 		}, [&structure, &r](auto &queryInput) {
 			return structure.range_neighbors(queryInput, r);
 		}, [&points, &sample, &r](auto& queryInput, auto& queryResults) {
-			return check_range_neighbors<Scalar>(points, sample, queryInput, r, queryResults);
+			return check_range_neighbors<DataPoint>(points, sample, queryInput, r, queryResults);
 		}
 	);
 }
 
 template<typename Scalar, int Dim>
-void testRangeNeighborsForAllStructures(const bool quick = QUICK_TESTS)
+void testRangeNeighborsForAllStructures(const bool quick)
 {
 	using P = TestPoint<Scalar, Dim>;
 
@@ -53,20 +54,21 @@ void testRangeNeighborsForAllStructures(const bool quick = QUICK_TESTS)
 	std::vector<int> sample;
 	KdTreeDense<P> kdtreeDense = *buildKdTreeDense<P>(points, sample);
 	testRangeNeighbors<true>(kdtreeDense, points, sample);  // Index query test
-	// testRangeNeighbors<false>(kdtreeDense, points, sample); // Position query test
+	testRangeNeighbors<false>(kdtreeDense, points, sample); // Position query test
 
 	//////////// Test subsample of KdTree
 	std::vector<int> subSample;
 	KdTreeSparse<P> kdtreeSparse = *buildSubsampledKdTree(points, subSample);
-	// testRangeNeighbors<true>(kdtreeSparse, points, subSample);  // Index query test
-	// testRangeNeighbors<false>(kdtreeSparse, points, subSample); // Position query test
+	testRangeNeighbors<true>(kdtreeSparse, points, subSample);  // Index query test
+	testRangeNeighbors<false>(kdtreeSparse, points, subSample); // Position query test
 
 	// //////////// Test KnnGraph
 	KnnGraph<P> knnGraph(kdtreeDense, N/4); /* We need a large graph, otherwise we might miss some points
 											   (which is the goal of the graph: to replace full euclidean
 											   collection by geodesic-like region growing bounded by
 											   the euclidean ball). */
-	// testRangeNeighbors<true>(knnGraph, points, sample);  // Index query test
+	testRangeNeighbors<true>(knnGraph, points, sample);  // Index query test
+	cout << "(ok)";
 }
 
 int main(int argc, char** argv)
@@ -76,27 +78,25 @@ int main(int argc, char** argv)
 		return EXIT_FAILURE;
 	}
 
-	cout << "Test range_neighbors query for KdTree and KnnGraph in 3D : " << endl;
-	cout << " float" << flush;
-	CALL_SUBTEST_1((testRangeNeighborsForAllStructures<float, 3>()));
-	cout << " (ok), double" << flush;
-	CALL_SUBTEST_2((testRangeNeighborsForAllStructures<double, 3>()));
-	cout << " (ok), long " << flush;
-	CALL_SUBTEST_3((testRangeNeighborsForAllStructures<long double, 3>()));
-	cout << " (ok)." << flush << endl;
+#ifndef NDEBUG
+    bool quick = true;
+#else
+    bool quick = false;
+#endif
 
+	cout << "Test range_neighbors query for KdTree and KnnGraph in 3D : " << flush;
+	cout << endl << " float : " << flush;
+	CALL_SUBTEST_1((testRangeNeighborsForAllStructures<float, 3>(quick)));
+	cout << endl << " double : " << flush;
+	CALL_SUBTEST_2((testRangeNeighborsForAllStructures<double, 3>(quick)));
+	cout << endl << " long : " << flush;
+	CALL_SUBTEST_3((testRangeNeighborsForAllStructures<long double, 3>(quick)));
 
-	if (QUICK_TESTS)
-		return EXIT_SUCCESS;
-
-	cout << "Test range_neighbors query for KdTree and KnnGraph in 4D : " << endl;
-	cout << " float" << flush;
-	CALL_SUBTEST_1((testRangeNeighborsForAllStructures<float, 4>()));
-	cout << " (ok), double" << flush;
-	CALL_SUBTEST_2((testRangeNeighborsForAllStructures<double, 4>()));
-	cout << " (ok), long " << flush;
-	CALL_SUBTEST_3((testRangeNeighborsForAllStructures<long double, 4>()));
-	cout << " (ok)." << flush << endl;
-
-	return EXIT_SUCCESS;
+	cout << "Test range_neighbors query for KdTree and KnnGraph in 4D : " << flush;
+	cout << endl << " float : " << flush;
+	CALL_SUBTEST_1((testRangeNeighborsForAllStructures<float, 4>(quick)));
+	cout << endl << " double : " << flush;
+	CALL_SUBTEST_2((testRangeNeighborsForAllStructures<double, 4>(quick)));
+	cout << endl << " long : " << flush;
+	CALL_SUBTEST_3((testRangeNeighborsForAllStructures<long double, 4>(quick)));
 }
