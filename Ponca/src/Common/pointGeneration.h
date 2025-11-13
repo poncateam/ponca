@@ -208,6 +208,17 @@ namespace Ponca {
         ) {
             return VectorType((_a * in.x()), (_b * in.y()), -1.).normalized();;
         }
+
+        template<typename DataPoint>
+        inline typename std::enable_if<! Ponca::hasNormal<DataPoint>::value, void>::type
+        getParaboloidNormal(DataPoint& in,
+                            typename DataPoint::Scalar _a,
+                            typename DataPoint::Scalar _b,
+                            typename DataPoint::Scalar _c,
+                            typename DataPoint::Scalar _d,
+                            typename DataPoint::Scalar _e,
+                            typename DataPoint::Scalar _f)
+        { }
     }
 
     /*! \brief Generate point samples on the primitive z = ax^2 + by^2
@@ -256,18 +267,21 @@ namespace Ponca {
         typedef typename DataPoint::Scalar Scalar;
         typedef typename DataPoint::VectorType VectorType;
 
-        VectorType vPosition = getPointOnCircle(_s, VectorType({0,0,0}));
+        DataPoint out;
 
-        Scalar x = vPosition.x(),
-               y = vPosition.y();
-        vPosition.z() = getParaboloidZ(x, y, _a, _b, _c, _d, _e, _f);
+        // generate random position in polar coordinates to get points on the circle
+        out.pos() = getPointOnCircle(_s, VectorType({0,0,0}));
+        out.pos().z() = getParaboloidZ(out.pos().x(), out.pos().y(), _a, _b, _c, _d, _e, _f);
+
+        // does nothing if the point type does not have a normal field.
+        getParaboloidNormal(out, _a, _b, _c, _d, _e, _f);
 
         if(_bAddNoise) //spherical noise
         {
-            vPosition += VectorType::Random().normalized() * Eigen::internal::random<Scalar>(Scalar(0), Scalar(1. - MIN_NOISE));
+            out.pos() += VectorType::Random().normalized() * Eigen::internal::random<Scalar>(Scalar(0), Scalar(1. - MIN_NOISE));
         }
 
-        return DataPoint(vPosition);
+        return out;
     }
 
 
