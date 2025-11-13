@@ -112,3 +112,25 @@ PONCA_FITTING_DECLARE_FINALIZE
 PONCA_FITTING_DECLARE_INIT                                                                                         \
 PONCA_FITTING_DECLARE_ADDNEIGHBOR_DER                                                                              \
 PONCA_FITTING_DECLARE_FINALIZE
+
+namespace Ponca
+{
+/*!
+ * \brief Utility structure used to detect if a Point has a normal field
+ *
+ * Example usage:
+ * \code
+ * hasNormal<MyPoint>::value will be true if MyPoint has a member function 'normal()'
+ * \endcode
+ *
+ * @tparam T The Point type
+ */
+template <typename T, typename = void>
+struct hasNormal : std::false_type {};
+
+/// \copydoc hasNormal<typename,typename>
+template <typename T>
+struct hasNormal<T, std::void_t<decltype(std::declval<T>().normal())>> : std::true_type {};
+
+} // namespace Ponca
+
