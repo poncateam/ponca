@@ -61,10 +61,10 @@ template<typename Scalar, int Dim>
 void testKNearestNeighborsForAllStructures(const bool quick)
 {
 	using P = TestPoint<Scalar, Dim>;
-	// Generate data
 	const int N = quick ? 100 : 5000;
 	const int k = quick ? 5 : 15;
 
+	//////////// Generate data
 	std::vector<P> points(N);
 	generateData(points);
 
@@ -92,9 +92,9 @@ int main(int argc, char** argv)
 		return EXIT_FAILURE;
 
 #ifndef NDEBUG
-	bool quick = true;
+	const bool quick = true;
 #else
-	bool quick = false;
+	const bool quick = false;
 #endif
 
 	cout << "Test k_nearest_neighbors query for KdTree and KnnGraph in 3D : " << flush;

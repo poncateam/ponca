@@ -44,9 +44,9 @@ template<typename Scalar, int Dim>
 void testRangeNeighborsForAllStructures(const bool quick)
 {
 	using P = TestPoint<Scalar, Dim>;
+	const int N = quick ? 100 : 5000;
 
-	// Generate data
-	const int N = quick ? 100 : 500;
+	//////////// Generate data
 	std::vector<P> points(N);
 	generateData(points);
 
@@ -79,9 +79,9 @@ int main(int argc, char** argv)
 	}
 
 #ifndef NDEBUG
-    bool quick = true;
+    const bool quick = true;
 #else
-    bool quick = false;
+    const bool quick = false;
 #endif
 
 	cout << "Test range_neighbors query for KdTree and KnnGraph in 3D : " << flush;

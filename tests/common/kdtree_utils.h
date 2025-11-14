@@ -54,8 +54,7 @@ private:
 };
 
 template<typename DataPoint, typename VectorContainer, typename QueryInput, typename NeighborsIndexRange>
-bool check_range_neighbors(const VectorContainer& points, const std::vector<int>& sampling, QueryInput& queryInput, typename DataPoint::Scalar r, NeighborsIndexRange& neighbors)
-{
+bool check_range_neighbors(const VectorContainer& points, const std::vector<int>& sampling, QueryInput& queryInput, typename DataPoint::Scalar r, NeighborsIndexRange& neighbors) {
 	using Scalar     = typename DataPoint::Scalar;
 	using VectorType = typename DataPoint::VectorType;
 
@@ -63,7 +62,8 @@ bool check_range_neighbors(const VectorContainer& points, const std::vector<int>
 		return false;
 
 	VectorType point;
-	if constexpr (std::is_same_v<QueryInput, int>) { // queryInput == index of the eval point
+	constexpr bool isIndexQuery {std::is_same_v<QueryInput, int>}; // Determines if the query input is the eval point or it's index
+	if constexpr (isIndexQuery) { // queryInput == index of the eval point
 		auto it = std::find(neighbors.begin(), neighbors.end(), queryInput);
 		if (it != neighbors.end()) return false;
 
@@ -81,7 +81,7 @@ bool check_range_neighbors(const VectorContainer& points, const std::vector<int>
 	}
 
 	for (int idx : sampling) {
-		if constexpr (std::is_same_v<QueryInput, int>)
+		if constexpr (isIndexQuery)
 			if (idx == queryInput) continue;
 
 		Scalar dist = (points[idx].pos() - point).norm();
@@ -103,7 +103,8 @@ bool check_k_nearest_neighbors(const VectorContainer& points, QueryInput& queryI
 	using VectorType = typename DataPoint::VectorType;
 
 	VectorType point;
-	if constexpr (std::is_same_v<QueryInput, int>) { // queryInput == index of the eval point
+	constexpr bool isIndexQuery {std::is_same_v<QueryInput, int>}; // Determines if the query input is the eval point or it's index
+	if constexpr (isIndexQuery) { // queryInput == index of the eval point
 		auto it = std::find(neighbors.begin(), neighbors.end(), queryInput);
 		if (it != neighbors.end()) return false;
 
@@ -124,7 +125,7 @@ bool check_k_nearest_neighbors(const VectorContainer& points, QueryInput& queryI
 
 	for (int idx = 0; idx<int(points.size()); ++idx)
 	{
-		if constexpr (std::is_same_v<QueryInput, int>)
+		if constexpr (isIndexQuery)
 			if (idx == queryInput) continue;
 
 		Scalar dist = (points[idx].pos() - point).norm();
@@ -149,7 +150,8 @@ bool check_k_nearest_neighbors(const VectorContainer& points, const std::vector<
 		return false;
 
 	VectorType point;
-	if constexpr (std::is_same_v<QueryInput, int>) { // queryInput == index of the eval point
+	constexpr bool isIndexQuery {std::is_same_v<QueryInput, int>}; // Determines if the query input is the eval point or it's index
+	if constexpr (isIndexQuery) { // queryInput == index of the eval point
 		auto it = std::find(neighbors.begin(), neighbors.end(), queryInput);
 		if (it != neighbors.end()) return false;
 
@@ -171,7 +173,7 @@ bool check_k_nearest_neighbors(const VectorContainer& points, const std::vector<
 		max_dist = std::max(max_dist, (points[idx].pos() - point).norm());
 
 	for (int idx : sampling) {
-		if constexpr (std::is_same_v<QueryInput, int>)
+		if constexpr (isIndexQuery)
 			if (idx == queryInput) continue;
 
 		Scalar dist = (points[idx].pos() - point).norm();
