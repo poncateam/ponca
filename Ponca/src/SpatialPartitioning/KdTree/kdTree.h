@@ -37,9 +37,9 @@ template <typename Traits> class KdTreeSparseBase;
  *
  * \warning It is not possible to create instances of type KdTree. This type must only be used to store pointers
  * to KdTreeDense or KdTreeSparse objects, e.g. the declaration
- *   \snippet queries_range.cpp KdTree pointer usage
- *   \snippet queries_range.cpp KdTree assign sparse
- *   \snippet queries_range.cpp KdTree assign dense
+ * \snippet examples/cpp/ponca_neighbor_search.cpp KdTree pointer usage
+ * \snippet examples/cpp/ponca_neighbor_search.cpp KdTree assign sparse
+ * \snippet examples/cpp/ponca_neighbor_search.cpp KdTree assign dense
  */
 #ifdef PARSED_WITH_DOXYGEN
 /// [KdTree type definition]
