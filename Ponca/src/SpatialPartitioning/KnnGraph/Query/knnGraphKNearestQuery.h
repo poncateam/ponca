@@ -49,7 +49,7 @@ public:
     }
 
     inline Self& operator()(int index) {
-        QueryType::editInput(index);
+        QueryType::setInput(index);
         return QueryType::template operator()<Self>(index);
     }
 

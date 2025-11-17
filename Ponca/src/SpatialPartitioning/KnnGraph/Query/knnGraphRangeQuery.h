@@ -39,8 +39,8 @@ public:
             m_stack() {}
 
     inline Self& operator()(int index, Scalar radius) {
-        QueryType::editInput(index);
-        QueryType::set_radius(radius);
+        QueryType::setInput(index);
+        QueryType::setRadius(radius);
         QueryType::reset();
         return QueryType::template operator()<Self>(index, radius);
     }
@@ -83,7 +83,7 @@ protected:
             int idx_current = m_stack.top();
             m_stack.pop();
 
-            PONCA_DEBUG_ASSERT((point - points[idx_current].pos()).squaredNorm() < QueryType::squared_radius());
+            PONCA_DEBUG_ASSERT((point - points[idx_current].pos()).squaredNorm() < QueryType::squaredRadius());
 
             iterator.m_index = idx_current;
 
