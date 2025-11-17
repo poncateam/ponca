@@ -26,10 +26,10 @@ void testRangeNeighbors( AcceleratingStructure& structure,
 	testQuery<doIndexQuery, DataPoint>(points,
 		[&structure, &r](auto &queryInput) {
 			if constexpr (doIndexQuery) {
-				auto mutableQuery = structure.range_neighbors_empty_index();
+				auto mutableQuery = structure.range_neighbors_index_query();
 				return mutableQuery(queryInput, r);
 			} else {
-				auto mutableQuery = structure.range_neighbors_empty_position();
+				auto mutableQuery = structure.range_neighbors_query();
 				return mutableQuery(queryInput, r);
 			}
 		}, [&structure, &r](auto &queryInput) {

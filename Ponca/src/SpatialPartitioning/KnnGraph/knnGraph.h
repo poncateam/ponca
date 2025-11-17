@@ -113,12 +113,12 @@ public:
         return RangeIndexQuery(this, r, index);
     }
 
-    inline KNearestIndexQuery k_nearest_neighbors_empty_index() const
+    inline KNearestIndexQuery k_nearest_neighbors_index_query() const
     {
         return KNearestIndexQuery(this, 0);
     }
 
-    inline RangeIndexQuery range_neighbors_empty_index() const
+    inline RangeIndexQuery range_neighbors_index_query() const
     {
         return RangeIndexQuery(this, 0, 0);
     }

@@ -50,7 +50,6 @@ public:
 
     inline Self& operator()(int index) {
         QueryType::editInput(index);
-        // QueryType::reset();
         return QueryType::template operator()<Self>(index);
     }
 

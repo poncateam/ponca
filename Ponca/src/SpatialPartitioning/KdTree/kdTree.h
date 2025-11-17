@@ -267,12 +267,12 @@ public :
         return KdTreeKNearestIndexQuery<Traits>(this, k, index);
     }
 
-    KdTreeKNearestPointQuery<Traits> k_nearest_neighbors_empty_position() const
+    KdTreeKNearestPointQuery<Traits> k_nearest_neighbors_query() const
     {
         return KdTreeKNearestPointQuery<Traits>(this, 0, VectorType::Zero());
     }
 
-    KdTreeKNearestIndexQuery<Traits> k_nearest_neighbors_empty_index() const
+    KdTreeKNearestIndexQuery<Traits> k_nearest_neighbors_index_query() const
     {
         return KdTreeKNearestIndexQuery<Traits>(this, 0, 0);
     }
@@ -297,12 +297,12 @@ public :
         return KdTreeRangeIndexQuery<Traits>(this, r, index);
     }
 
-    KdTreeRangePointQuery<Traits> range_neighbors_empty_position() const
+    KdTreeRangePointQuery<Traits> range_neighbors_query() const
     {
         return KdTreeRangePointQuery<Traits>(this, 0, VectorType::Zero());
     }
 
-    KdTreeRangeIndexQuery<Traits> range_neighbors_empty_index() const
+    KdTreeRangeIndexQuery<Traits> range_neighbors_index_query() const
     {
         return KdTreeRangeIndexQuery<Traits>(this, 0, 0);
     }

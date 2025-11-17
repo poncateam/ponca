@@ -24,10 +24,10 @@ void testKNearestNeighbors( AcceleratingStructure& structure,
 	testQuery<doIndexQuery, DataPoint>(points,
 	[&structure, &k](auto &queryInput) {
 			if constexpr (doIndexQuery) {
-				auto mutableQuery = structure.k_nearest_neighbors_empty_index();
+				auto mutableQuery = structure.k_nearest_neighbors_index_query();
 				return mutableQuery(queryInput, k);
 			} else {
-				auto mutableQuery = structure.k_nearest_neighbors_empty_position();
+				auto mutableQuery = structure.k_nearest_neighbors_query();
 				return mutableQuery(queryInput, k);
 			}
 		}, [&structure, &k](auto &queryInput) {
@@ -46,7 +46,7 @@ void testKNearestNeighborsEntirePointSet( AcceleratingStructure& structure,
 
 	testQuery<true, DataPoint>(points,
 	[&structure](auto &queryInput) {
-			auto mutableQuery = structure.k_nearest_neighbors_empty_index();
+			auto mutableQuery = structure.k_nearest_neighbors_index_query();
 			return mutableQuery(queryInput);
 		}, [&structure](auto &queryInput) {
 			return structure.k_nearest_neighbors(queryInput);
