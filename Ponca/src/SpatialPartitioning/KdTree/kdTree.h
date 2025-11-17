@@ -257,51 +257,82 @@ public:
 
     // Query -------------------------------------------------------------------
 public :
+    /// \brief Returns a query object to iterate over the k nearest neighbors of the point.
+    /// The returned object can call for a new query of the same type, using the () operator.
+    ///
+    /// \param point Point from where the query is evaluated
+    /// \param k Number of neighbors returned
     KdTreeKNearestPointQuery<Traits> k_nearest_neighbors(const VectorType& point, IndexType k) const
     {
         return KdTreeKNearestPointQuery<Traits>(this, k, point);
     }
 
+    /// \copybrief KdTreeBase::k_nearest_neighbors
+    /// \param index Index of the point from where the query is evaluated
+    /// \param k Number of neighbors returned
     KdTreeKNearestIndexQuery<Traits> k_nearest_neighbors(IndexType index, IndexType k) const
     {
         return KdTreeKNearestIndexQuery<Traits>(this, k, index);
     }
 
+    /// \copybrief KdTreeBase::k_nearest_neighbors
+    /// \note This function only returns an empty `PositionQuery`, which needs to be used by doing `query(point, k)` to get a result.
     KdTreeKNearestPointQuery<Traits> k_nearest_neighbors_query() const
     {
         return KdTreeKNearestPointQuery<Traits>(this, 0, VectorType::Zero());
     }
 
+    /// \copybrief KdTreeBase::k_nearest_neighbors
+    /// \note This function only returns an empty `IndexQuery`, which needs to be used by doing `query(index, k)` to get a result.
     KdTreeKNearestIndexQuery<Traits> k_nearest_neighbors_index_query() const
     {
         return KdTreeKNearestIndexQuery<Traits>(this, 0, 0);
     }
-    
+
+    /// \brief Returns a query object that contains the nearest point.
+    /// The returned object can call for a new query of the same type, using the () operator.
+    ///
+    /// \param point Point from where the query is evaluated
     KdTreeNearestPointQuery<Traits> nearest_neighbor(const VectorType& point) const
     {
         return KdTreeNearestPointQuery<Traits>(this, point);
     }
 
+    /// \copybrief KdTreeBase::nearest_neighbor
+    /// \param index Index of the point from where the query is evaluated
     KdTreeNearestIndexQuery<Traits> nearest_neighbor(IndexType index) const
     {
         return KdTreeNearestIndexQuery<Traits>(this, index);
     }
 
+
+    /// \brief Returns a query object to iterate over the neighbors that are in range `r` of the point.
+    /// The returned object can call for a new query of the same type, using the () operator.
+    ///
+    /// \param point Point from where the query is evaluated
+    /// \param r Radius around where to search the neighbors
     KdTreeRangePointQuery<Traits> range_neighbors(const VectorType& point, Scalar r) const
     {
         return KdTreeRangePointQuery<Traits>(this, r, point);
     }
 
+    /// \copybrief KdTreeBase::range_neighbors
+    /// \param index Index of the point from where the query is evaluated
+    /// \param r Radius around where to search the neighbors
     KdTreeRangeIndexQuery<Traits> range_neighbors(IndexType index, Scalar r) const
     {
         return KdTreeRangeIndexQuery<Traits>(this, r, index);
     }
 
+    /// \copybrief KdTreeBase::range_neighbors
+    /// \note This function only returns an empty `PositionQuery`, which needs to be used by doing `query(point, r)` to get a result.
     KdTreeRangePointQuery<Traits> range_neighbors_query() const
     {
         return KdTreeRangePointQuery<Traits>(this, 0, VectorType::Zero());
     }
 
+    /// \copybrief KdTreeBase::range_neighbors
+    /// \note This function only returns an empty `IndexQuery`, which needs to be used by doing `query(index, r)` to get a result.
     KdTreeRangeIndexQuery<Traits> range_neighbors_index_query() const
     {
         return KdTreeRangeIndexQuery<Traits>(this, 0, 0);

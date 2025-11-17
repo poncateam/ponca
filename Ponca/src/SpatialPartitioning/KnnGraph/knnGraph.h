@@ -105,19 +105,32 @@ public:
 
     // Query -------------------------------------------------------------------
 public:
+    /// \brief Returns a query object to iterate over the points ordered by nearest neighbors.
+    /// The returned object can call for a new query of the same type, using the () operator.
+    ///
+    /// \param index Index of the point from where the query is evaluated
     inline KNearestIndexQuery k_nearest_neighbors(int index) const{
         return KNearestIndexQuery(this, index);
     }
 
+    /// \brief Returns a query object to iterate over the neighbors that are in range `r` of the point.
+    /// The returned object can call for a new query of the same type, using the () operator.
+    ///
+    /// \param index Index of the point from where the query is evaluated
+    /// \param r Radius around where to search the neighbors
     inline RangeIndexQuery    range_neighbors(int index, Scalar r) const{
         return RangeIndexQuery(this, r, index);
     }
 
+    /// \copybrief KnnGraphBase::k_nearest_neighbors
+    /// \note This function only returns an empty `IndexQuery`, which needs to be used by doing `query(index)` to get a result.
     inline KNearestIndexQuery k_nearest_neighbors_index_query() const
     {
         return KNearestIndexQuery(this, 0);
     }
 
+    /// \copybrief KnnGraphBase::range_neighbors
+    /// \note This function only returns an empty `IndexQuery`, which needs to be used by doing `query(index, r)` to get a result.
     inline RangeIndexQuery range_neighbors_index_query() const
     {
         return RangeIndexQuery(this, 0, 0);
