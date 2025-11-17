@@ -72,7 +72,7 @@ struct  OUT_TYPE##PointQuery : Query<QueryInputIsPosition<DataPoint>, \
         /// Need to be used carefully. Modifying a query input while iterating on the query will result in undefined behavior.
         /// Simplest way to avoid this is to restart the iteration on the query. 
         /// Usefull to avoid query reallocation between different requests
-        inline void editInput(const InputType& input) { m_input = input; }
+        inline void setInput(const InputType& input) { m_input = input; }
     
     private:
         /// Index of the queried point
@@ -90,7 +90,7 @@ struct  OUT_TYPE##PointQuery : Query<QueryInputIsPosition<DataPoint>, \
                 : Base(point) {}
 
         inline void operator()(const InputType &point = InputType::Zero()){
-            Base::editInput(point);
+            Base::setInput(point);
         }
     protected:
         /// Functor used to check if a given Idx must be skipped
@@ -112,7 +112,7 @@ struct  OUT_TYPE##PointQuery : Query<QueryInputIsPosition<DataPoint>, \
                 : Base(point) {}
 
         inline void operator()(const InputType &point = InputType::Zero()){
-            Base::editInput( point );
+            Base::setInput( point );
         }
     protected:
         /// Functor used to check if a given Idx must be skipped
@@ -142,14 +142,14 @@ struct  OUT_TYPE##PointQuery : Query<QueryInputIsPosition<DataPoint>, \
             return sqrt(m_squared_radius);
         }
 
-        inline Scalar squared_radius() const { return m_squared_radius; }
+        inline Scalar squaredRadius() const { return m_squared_radius; }
 
-        inline void set_radius(Scalar radius) {
+        inline void setRadius(Scalar radius) {
             PONCA_MULTIARCH_STD_MATH(pow);
             m_squared_radius = pow(radius, 2);
         }
 
-        inline void set_squared_radius(Scalar radius) { m_squared_radius = radius; }
+        inline void setSquaredRadius(Scalar radius) { m_squared_radius = radius; }
 
     protected:
         /// \brief Reset Query for a new search
