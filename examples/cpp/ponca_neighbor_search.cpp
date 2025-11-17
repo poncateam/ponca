@@ -116,7 +116,7 @@ int main()
     /// [Kdtree range neighbors index mutable search]
     std::cout << std::endl;
     /// [Kdtree range neighbors position mutable search]
-    auto posRangeNeighbors = kdtreeDense.range_neighbors_empty_position(); // Empty query
+    auto posRangeNeighbors = kdtreeDense.range_neighbors_query(); // Empty query
 
     std::cout << "The neighbors of the point (" << query_pt.transpose() << ") at a distance " << radius << " are at indices: ";
     for(auto neighbor_idx : posRangeNeighbors(query_pt, radius)) {
@@ -126,7 +126,7 @@ int main()
     std::cout << std::endl;
 
     /// [KnnGraph range neighbors index mutable search]
-    auto knnRangeNeighbors = knnGraph.range_neighbors_empty_index(); // Empty query
+    auto knnRangeNeighbors = knnGraph.range_neighbors_index_query(); // Empty query
 
     std::cout << "The neighbors of the point (" << query_pt.transpose() << ") at a distance " << radius << " are at indices: ";
     for(auto neighbor_idx : knnRangeNeighbors(query_idx, radius)) { // Iterates over the neighbors of query_idx
