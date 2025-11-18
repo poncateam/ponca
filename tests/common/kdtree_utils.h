@@ -249,7 +249,7 @@ void testQuery(
 #pragma omp parallel for
 #endif
 	for (int i = 0; i < points.size(); ++i) {
-		auto queryInput = [&]{
+		auto queryInput = [i]{
 			// Do index query input
 			if constexpr (doIndexQuery)
 				return i;
@@ -288,7 +288,7 @@ void testQuery(
 #endif
 	for (int i = 0; i < points.size(); ++i) {
 
-		auto queryInput = [&]{
+		auto queryInput = [i]{
 			// Do index query input
 			if constexpr (doIndexQuery)
 				return i;
