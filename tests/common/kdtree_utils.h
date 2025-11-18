@@ -54,11 +54,11 @@ private:
 };
 
 template<typename DataPoint, typename VectorContainer, typename QueryInput, typename NeighborsIndexRange>
-bool check_rangeNeighbors(const VectorContainer& points, const std::vector<int>& sampling, QueryInput& queryInput, typename DataPoint::Scalar r, NeighborsIndexRange& neighbors) {
+bool checkRangeNeighbors(const VectorContainer& points, const std::vector<int>& sampling, QueryInput& queryInput, typename DataPoint::Scalar r, NeighborsIndexRange& neighbors) {
 	using Scalar     = typename DataPoint::Scalar;
 	using VectorType = typename DataPoint::VectorType;
 
-	if (has_duplicate(neighbors))
+	if (hasDuplicate(neighbors))
 		return false;
 
 	VectorType point;
@@ -97,7 +97,7 @@ bool check_rangeNeighbors(const VectorContainer& points, const std::vector<int>&
 }
 
 template<typename DataPoint, typename VectorContainer, typename QueryInput>
-bool check_kNearestNeighbors(const VectorContainer& points, QueryInput& queryInput, const int k, const std::vector<int>& neighbors)
+bool checkKNearestNeighbors(const VectorContainer& points, QueryInput& queryInput, const int k, const std::vector<int>& neighbors)
 {
 	using Scalar     = typename DataPoint::Scalar;
 	using VectorType = typename DataPoint::VectorType;
@@ -116,7 +116,7 @@ bool check_kNearestNeighbors(const VectorContainer& points, QueryInput& queryInp
 	if (int(points.size()) > k && int(neighbors.size()) != k)
 		return false;
 
-	if (has_duplicate(neighbors))
+	if (hasDuplicate(neighbors))
 		return false;
 
 	Scalar max_dist = 0;
@@ -141,7 +141,7 @@ bool check_kNearestNeighbors(const VectorContainer& points, QueryInput& queryInp
 }
 
 template<typename DataPoint, typename VectorContainer, typename QueryInput>
-bool check_kNearestNeighbors(const VectorContainer& points, const std::vector<int>& sampling, QueryInput& queryInput, const int k, const std::vector<int>& neighbors)
+bool checkKNearestNeighbors(const VectorContainer& points, const std::vector<int>& sampling, QueryInput& queryInput, const int k, const std::vector<int>& neighbors)
 {
 	using Scalar     = typename DataPoint::Scalar;
 	using VectorType = typename DataPoint::VectorType;
@@ -160,7 +160,7 @@ bool check_kNearestNeighbors(const VectorContainer& points, const std::vector<in
 		point = queryInput;
 	}
 
-	if (has_duplicate(neighbors))
+	if (hasDuplicate(neighbors))
 		return false;
 
 	for (int idx : neighbors) {
@@ -189,15 +189,15 @@ bool check_kNearestNeighbors(const VectorContainer& points, const std::vector<in
 }
 
 template<typename DataPoint, typename VectorContainer, typename QueryInput>
-bool check_nearestNeighbor(const VectorContainer& points, QueryInput& queryInput, int nearest)
+bool checkNearestNeighbor(const VectorContainer& points, QueryInput& queryInput, int nearest)
 {
-    return check_kNearestNeighbors<DataPoint>(points, queryInput, 1, { nearest });
+    return checkKNearestNeighbors<DataPoint>(points, queryInput, 1, { nearest });
 }
 
 template<typename DataPoint, typename VectorContainer, typename QueryInput>
-bool check_nearestNeighbor(const VectorContainer& points, const std::vector<int>& sampling, QueryInput& queryInput, int nearest)
+bool checkNearestNeighbor(const VectorContainer& points, const std::vector<int>& sampling, QueryInput& queryInput, int nearest)
 {
-    return check_kNearestNeighbors<DataPoint, VectorContainer>(points, sampling, queryInput, 1, { nearest });
+    return checkKNearestNeighbors<DataPoint, VectorContainer>(points, sampling, queryInput, 1, { nearest });
 }
 
 template<typename DataPoint>

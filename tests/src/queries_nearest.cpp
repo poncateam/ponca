@@ -26,7 +26,7 @@ void testNearestNeighbor( AcceleratingStructure& structure,
 			return structure.nearestNeighbor(queryInput);
 		}, [&points, &sample](auto& queryInput, auto& queryResults) {
 			VERIFY((queryResults.size() == 1));
-			return check_nearestNeighbor<DataPoint>(points, sample, queryInput, queryResults.front());
+			return checkNearestNeighbor<DataPoint>(points, sample, queryInput, queryResults.front());
 		}
 	);
 }
@@ -44,7 +44,7 @@ void testFrontOfKNearestNeighbors( AcceleratingStructure& structure,
 			return structure.kNearestNeighbors(queryInput);
 		}, [&points, &sample](auto& queryInput, auto& queryResults) {
 			VERIFY((queryResults.size() == 1));
-			return check_nearestNeighbor<DataPoint>(points, sample, queryInput, queryResults.front());
+			return checkNearestNeighbor<DataPoint>(points, sample, queryInput, queryResults.front());
 		}, retry_number
 	);
 }

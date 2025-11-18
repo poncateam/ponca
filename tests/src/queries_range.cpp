@@ -33,7 +33,7 @@ void testRangeNeighbors( AcceleratingStructure& structure,
 		}, [&structure](auto& queryInput, const Scalar _r) {
 			return structure.rangeNeighbors(queryInput, _r);
 		}, [&points, &sample, &r](auto& queryInput, auto& queryResults) {
-			return check_rangeNeighbors<DataPoint>(points, sample, queryInput, r, queryResults);
+			return checkRangeNeighbors<DataPoint>(points, sample, queryInput, r, queryResults);
 		}, retry_number, r
 	);
 }
