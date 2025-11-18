@@ -82,7 +82,7 @@ public:
         // We need to account for the entire point set, irrespectively of the sampling. This is because the kdtree
         // (kNearestNeighbors) return ids of the entire point set, not it sub-sampled list of ids.
         // \fixme Update API to properly handle kdtree subsampling
-        const int cloudSize   = kdtree.point_count();
+        const int cloudSize   = kdtree.pointCount();
         {
             const int samplesSize = kdtree.sample_count();
             eigen_assert(cloudSize == samplesSize);
