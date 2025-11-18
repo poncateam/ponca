@@ -26,14 +26,14 @@ void testRangeNeighbors( AcceleratingStructure& structure,
 	testQuery<doIndexQuery, DataPoint>(points,
 		[&structure]() {
 			if constexpr (doIndexQuery) {
-				return structure.range_neighbors_index_query();
+				return structure.rangeNeighborsIndexQuery();
 			} else {
-				return structure.range_neighbors_query();
+				return structure.rangeNeighborsQuery();
 			}
 		}, [&structure](auto& queryInput, const Scalar _r) {
-			return structure.range_neighbors(queryInput, _r);
+			return structure.rangeNeighbors(queryInput, _r);
 		}, [&points, &sample, &r](auto& queryInput, auto& queryResults) {
-			return check_range_neighbors<DataPoint>(points, sample, queryInput, r, queryResults);
+			return check_rangeNeighbors<DataPoint>(points, sample, queryInput, r, queryResults);
 		}, retry_number, r
 	);
 }
@@ -83,7 +83,7 @@ int main(int argc, char** argv)
     const bool quick = false;
 #endif
 
-	cout << "Test range_neighbors query for KdTree and KnnGraph in 3D : " << flush;
+	cout << "Test rangeNeighbors query for KdTree and KnnGraph in 3D : " << flush;
 	cout << endl << " float : " << flush;
 	CALL_SUBTEST_1((testRangeNeighborsForAllStructures<float, 3>(quick)));
 	cout << endl << " double : " << flush;
@@ -91,7 +91,7 @@ int main(int argc, char** argv)
 	cout << endl << " long : " << flush;
 	CALL_SUBTEST_3((testRangeNeighborsForAllStructures<long double, 3>(quick)));
 
-	cout << "Test range_neighbors query for KdTree and KnnGraph in 4D : " << flush;
+	cout << "Test rangeNeighbors query for KdTree and KnnGraph in 4D : " << flush;
 	cout << endl << " float : " << flush;
 	CALL_SUBTEST_1((testRangeNeighborsForAllStructures<float, 4>(quick)));
 	cout << endl << " double : " << flush;

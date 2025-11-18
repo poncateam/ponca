@@ -80,7 +80,7 @@ public:
                        "KdTreeTraits::IndexContainer is not equal to Traits::IndexContainer" );
 
         // We need to account for the entire point set, irrespectively of the sampling. This is because the kdtree
-        // (k_nearest_neighbors) return ids of the entire point set, not it sub-sampled list of ids.
+        // (kNearestNeighbors) return ids of the entire point set, not it sub-sampled list of ids.
         // \fixme Update API to properly handle kdtree subsampling
         const int cloudSize   = kdtree.point_count();
         {
@@ -94,7 +94,7 @@ public:
         for(int i=0; i<cloudSize; ++i)
         {
             int j = 0;
-            for(auto n : kdtree.k_nearest_neighbors(typename KdTreeTraits::IndexType(i),
+            for(auto n : kdtree.kNearestNeighbors(typename KdTreeTraits::IndexType(i),
                                                    typename KdTreeTraits::IndexType(m_k)))
             {
                 m_indices[i * m_k + j] = n;
@@ -109,7 +109,7 @@ public:
     /// The returned object can call for a new query of the same type, using the () operator.
     ///
     /// \param index Index of the point from where the query is evaluated
-    inline KNearestIndexQuery k_nearest_neighbors(int index) const{
+    inline KNearestIndexQuery kNearestNeighbors(int index) const{
         return KNearestIndexQuery(this, index);
     }
 
@@ -118,20 +118,20 @@ public:
     ///
     /// \param index Index of the point from where the query is evaluated
     /// \param r Radius around where to search the neighbors
-    inline RangeIndexQuery    range_neighbors(int index, Scalar r) const{
+    inline RangeIndexQuery    rangeNeighbors(int index, Scalar r) const{
         return RangeIndexQuery(this, r, index);
     }
 
-    /// \copybrief KnnGraphBase::k_nearest_neighbors
+    /// \copybrief KnnGraphBase::kNearestNeighbors
     /// \note This function only returns an empty `IndexQuery`, which needs to be used by doing `query(index)` to get a result.
-    inline KNearestIndexQuery k_nearest_neighbors_index_query() const
+    inline KNearestIndexQuery kNearestNeighborsIndexQuery() const
     {
         return KNearestIndexQuery(this, 0);
     }
 
-    /// \copybrief KnnGraphBase::range_neighbors
+    /// \copybrief KnnGraphBase::rangeNeighbors
     /// \note This function only returns an empty `IndexQuery`, which needs to be used by doing `query(index, r)` to get a result.
-    inline RangeIndexQuery range_neighbors_index_query() const
+    inline RangeIndexQuery rangeNeighborsIndexQuery() const
     {
         return RangeIndexQuery(this, 0, 0);
     }

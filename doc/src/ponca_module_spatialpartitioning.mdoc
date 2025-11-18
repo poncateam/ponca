@@ -14,7 +14,7 @@ namespace Ponca
 
    - Ponca::KdTreeDense and Ponca::KdTreeSparse: binary search trees (https://en.wikipedia.org/wiki/K-d_tree). Both
      classes inherit from Ponca::KdTree.
-   - Ponca::KnnGraph : a nearest neighbor graph (https://en.wikipedia.org/wiki/Nearest_neighbor_graph). Constructed from
+   - Ponca::KnnGraph : a nearest neighbor graph (https://en.wikipedia.org/wiki/nearestNeighbor_graph). Constructed from
    a Ponca::KdTree.
 
    All datastructures are available in arbitrary dimensions.
@@ -34,7 +34,7 @@ namespace Ponca
   \code
 #pragma omp parallel for
 for (int i = 0; i < nbVert; ++i) // for all the vertices of the point cloud
-  for (int neiId : myDataStructure.k_nearest_neighbors(i, k)) // collect k-nearest neighbors
+  for (int neiId : myDataStructure.kNearestNeighbors(i, k)) // collect k-nearest neighbors
   {
     // process neighbor at index neiId
   }
@@ -48,7 +48,7 @@ for (int i = 0; i < nbVert; ++i) // for all the vertices of the point cloud
   \code
 Fit fit;
 fit.setNeighborFilter({fitInitPos, scale});
-fit.computeWithIds( myDataStructure.range_neighbors(fitInitPos, scale), vectorPoints );
+fit.computeWithIds( myDataStructure.rangeNeighbors(fitInitPos, scale), vectorPoints );
   \endcode
 
   \warning Queries from an index (NearestIndexQuery, KNearestIndexQuery and RangeIndexQuery) do not iterate on the
@@ -169,7 +169,7 @@ fit.computeWithIds( myDataStructure.range_neighbors(fitInitPos, scale), vectorPo
 
   \note By construction, the KnnGraph can be queried only from an index.
 
-  Queries from KnnGraph are also mutable, and can be reused. Here is an example that creates an empty query, and then iterates over the range_neighbors index search.
+  Queries from KnnGraph are also mutable, and can be reused. Here is an example that creates an empty query, and then iterates over the rangeNeighbors index search.
   \snippet examples/cpp/ponca_neighbor_search.cpp KnnGraph range neighbors index mutable search
 
   Two types of queries are provided (see KnnGraphBase for related method list):
