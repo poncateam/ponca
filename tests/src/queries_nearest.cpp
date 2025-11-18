@@ -23,10 +23,10 @@ void testNearestNeighbor( AcceleratingStructure& structure,
 	using DataPoint      = typename AcceleratingStructure::DataPoint;
 
 	testQuery<doIndexQuery, DataPoint>(points, [&structure](auto &queryInput) {
-			return structure.nearest_neighbor(queryInput);
+			return structure.nearestNeighbor(queryInput);
 		}, [&points, &sample](auto& queryInput, auto& queryResults) {
 			VERIFY((queryResults.size() == 1));
-			return check_nearest_neighbor<DataPoint>(points, sample, queryInput, queryResults.front());
+			return check_nearestNeighbor<DataPoint>(points, sample, queryInput, queryResults.front());
 		}
 	);
 }
@@ -39,12 +39,12 @@ void testFrontOfKNearestNeighbors( AcceleratingStructure& structure,
 	using DataPoint      = typename AcceleratingStructure::DataPoint;
 
 	testQuery<doIndexQuery, DataPoint>(points, [&structure]() {
-			return structure.k_nearest_neighbors_index_query();
+			return structure.kNearestNeighborsIndexQuery();
 		}, [&structure](auto &queryInput) {
-			return structure.k_nearest_neighbors(queryInput);
+			return structure.kNearestNeighbors(queryInput);
 		}, [&points, &sample](auto& queryInput, auto& queryResults) {
 			VERIFY((queryResults.size() == 1));
-			return check_nearest_neighbor<DataPoint>(points, sample, queryInput, queryResults.front());
+			return check_nearestNeighbor<DataPoint>(points, sample, queryInput, queryResults.front());
 		}, retry_number
 	);
 }
@@ -90,7 +90,7 @@ int main(int argc, char** argv)
     const bool quick = false;
 #endif
 
-	cout << "Test nearest_neighbor query for KdTree and KnnGraph in 3D : " << flush;
+	cout << "Test nearestNeighbor query for KdTree and KnnGraph in 3D : " << flush;
 	cout << endl << " float : " << flush;
 	CALL_SUBTEST_1((testNearestNeighborForAllStructures<float, 3>(quick)));
 	cout << endl << " double : " << flush;
@@ -98,7 +98,7 @@ int main(int argc, char** argv)
 	cout << endl << " long : " << flush;
 	CALL_SUBTEST_3((testNearestNeighborForAllStructures<long double, 3>(quick)));
 
-	cout << "Test nearest_neighbor query for KdTree and KnnGraph in 4D : " << flush;
+	cout << "Test nearestNeighbor query for KdTree and KnnGraph in 4D : " << flush;
 	cout << endl << " float : " << flush;
 	CALL_SUBTEST_1((testNearestNeighborForAllStructures<float, 4>(quick)));
 	cout << endl << " double : " << flush;

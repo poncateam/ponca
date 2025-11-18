@@ -87,7 +87,7 @@ protected:
 
             iterator.m_index = idx_current;
 
-            for(int idx_nei : m_graph->k_nearest_neighbors(idx_current))
+            for(int idx_nei : m_graph->kNearestNeighbors(idx_current))
             {
                 PONCA_DEBUG_ASSERT(idx_nei>=0);
                 Scalar d  = (point - points[idx_nei].pos()).squaredNorm();

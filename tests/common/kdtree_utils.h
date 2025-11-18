@@ -54,7 +54,7 @@ private:
 };
 
 template<typename DataPoint, typename VectorContainer, typename QueryInput, typename NeighborsIndexRange>
-bool check_range_neighbors(const VectorContainer& points, const std::vector<int>& sampling, QueryInput& queryInput, typename DataPoint::Scalar r, NeighborsIndexRange& neighbors) {
+bool check_rangeNeighbors(const VectorContainer& points, const std::vector<int>& sampling, QueryInput& queryInput, typename DataPoint::Scalar r, NeighborsIndexRange& neighbors) {
 	using Scalar     = typename DataPoint::Scalar;
 	using VectorType = typename DataPoint::VectorType;
 
@@ -97,7 +97,7 @@ bool check_range_neighbors(const VectorContainer& points, const std::vector<int>
 }
 
 template<typename DataPoint, typename VectorContainer, typename QueryInput>
-bool check_k_nearest_neighbors(const VectorContainer& points, QueryInput& queryInput, const int k, const std::vector<int>& neighbors)
+bool check_kNearestNeighbors(const VectorContainer& points, QueryInput& queryInput, const int k, const std::vector<int>& neighbors)
 {
 	using Scalar     = typename DataPoint::Scalar;
 	using VectorType = typename DataPoint::VectorType;
@@ -141,7 +141,7 @@ bool check_k_nearest_neighbors(const VectorContainer& points, QueryInput& queryI
 }
 
 template<typename DataPoint, typename VectorContainer, typename QueryInput>
-bool check_k_nearest_neighbors(const VectorContainer& points, const std::vector<int>& sampling, QueryInput& queryInput, const int k, const std::vector<int>& neighbors)
+bool check_kNearestNeighbors(const VectorContainer& points, const std::vector<int>& sampling, QueryInput& queryInput, const int k, const std::vector<int>& neighbors)
 {
 	using Scalar     = typename DataPoint::Scalar;
 	using VectorType = typename DataPoint::VectorType;
@@ -189,15 +189,15 @@ bool check_k_nearest_neighbors(const VectorContainer& points, const std::vector<
 }
 
 template<typename DataPoint, typename VectorContainer, typename QueryInput>
-bool check_nearest_neighbor(const VectorContainer& points, QueryInput& queryInput, int nearest)
+bool check_nearestNeighbor(const VectorContainer& points, QueryInput& queryInput, int nearest)
 {
-    return check_k_nearest_neighbors<DataPoint>(points, queryInput, 1, { nearest });
+    return check_kNearestNeighbors<DataPoint>(points, queryInput, 1, { nearest });
 }
 
 template<typename DataPoint, typename VectorContainer, typename QueryInput>
-bool check_nearest_neighbor(const VectorContainer& points, const std::vector<int>& sampling, QueryInput& queryInput, int nearest)
+bool check_nearestNeighbor(const VectorContainer& points, const std::vector<int>& sampling, QueryInput& queryInput, int nearest)
 {
-    return check_k_nearest_neighbors<DataPoint, VectorContainer>(points, sampling, queryInput, 1, { nearest });
+    return check_kNearestNeighbors<DataPoint, VectorContainer>(points, sampling, queryInput, 1, { nearest });
 }
 
 template<typename DataPoint>
