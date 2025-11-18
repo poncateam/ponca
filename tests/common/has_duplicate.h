@@ -3,28 +3,28 @@
 #include <algorithm>
 
 //!
-//! \brief has_duplicate checks if the given container contains duplicated items
+//! \brief hasDuplicate checks if the given container contains duplicated items
 //!
 //! Complexity = O(n^2)
 //!
 template<class ContainerT>
-bool has_duplicate(ContainerT container);
+bool hasDuplicate(ContainerT container);
 
 template<class RandomIt>
-bool has_duplicate(RandomIt first, RandomIt last);
+bool hasDuplicate(RandomIt first, RandomIt last);
 
 ////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
 
 template<class ContainerT>
-bool has_duplicate(ContainerT container)
+bool hasDuplicate(ContainerT container)
 {
-    return has_duplicate(std::begin(container), std::end(container));
+    return hasDuplicate(std::begin(container), std::end(container));
 }
 
 template<class RandomIt>
-bool has_duplicate(RandomIt first, RandomIt last)
+bool hasDuplicate(RandomIt first, RandomIt last)
 {
     return std::any_of(first, last, [&](const auto& cur)->bool
     {

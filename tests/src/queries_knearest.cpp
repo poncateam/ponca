@@ -31,7 +31,7 @@ void testKNearestNeighbors( AcceleratingStructure& structure,
 		}, [&structure](auto &queryInput, const int _k) {
 			return structure.kNearestNeighbors(queryInput, _k);
 		}, [&points, &k](auto& queryInput, auto& queryResults) {
-			return check_kNearestNeighbors<DataPoint>(points, queryInput, k, queryResults);
+			return checkKNearestNeighbors<DataPoint>(points, queryInput, k, queryResults);
 		}, retry_number, k
 	);
 }
@@ -48,7 +48,7 @@ void testKNearestNeighborsEntirePointSet( AcceleratingStructure& structure,
 		}, [&structure](auto &queryInput) {
 			return structure.kNearestNeighbors(queryInput);
 		}, [&points, &k](auto& queryInput, auto& queryResults) {
-			return check_kNearestNeighbors<DataPoint>(points, queryInput, k, queryResults);
+			return checkKNearestNeighbors<DataPoint>(points, queryInput, k, queryResults);
 		}, retry_number
 	);
 }
