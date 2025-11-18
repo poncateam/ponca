@@ -17,42 +17,39 @@ using namespace Ponca;
 template<bool doIndexQuery, typename AcceleratingStructure>
 void testKNearestNeighbors( AcceleratingStructure& structure,
 	typename AcceleratingStructure::PointContainer& points,
-	const int k
+	const int retry_number, const int k
 ) {
 	using DataPoint      = typename AcceleratingStructure::DataPoint;
 
 	testQuery<doIndexQuery, DataPoint>(points,
-	[&structure, &k](auto &queryInput) {
+	[&structure]() {
 			if constexpr (doIndexQuery) {
-				auto mutableQuery = structure.k_nearest_neighbors_index_query();
-				return mutableQuery(queryInput, k);
+				return structure.k_nearest_neighbors_index_query();
 			} else {
-				auto mutableQuery = structure.k_nearest_neighbors_query();
-				return mutableQuery(queryInput, k);
+				return structure.k_nearest_neighbors_query();
 			}
-		}, [&structure, &k](auto &queryInput) {
-			return structure.k_nearest_neighbors(queryInput, k);
+		}, [&structure](auto &queryInput, const int _k) {
+			return structure.k_nearest_neighbors(queryInput, _k);
 		}, [&points, &k](auto& queryInput, auto& queryResults) {
 			return check_k_nearest_neighbors<DataPoint>(points, queryInput, k, queryResults);
-		}, k
+		}, retry_number, k
 	);
 }
 template<typename AcceleratingStructure>
 void testKNearestNeighborsEntirePointSet( AcceleratingStructure& structure,
 	typename AcceleratingStructure::PointContainer& points,
-	const int k
+	const int retry_number, const int k
 ) {
 	using DataPoint      = typename AcceleratingStructure::DataPoint;
 
 	testQuery<true, DataPoint>(points,
-	[&structure](auto &queryInput) {
-			auto mutableQuery = structure.k_nearest_neighbors_index_query();
-			return mutableQuery(queryInput);
+	[&structure]() {
+			return structure.k_nearest_neighbors_index_query();
 		}, [&structure](auto &queryInput) {
 			return structure.k_nearest_neighbors(queryInput);
 		}, [&points, &k](auto& queryInput, auto& queryResults) {
 			return check_k_nearest_neighbors<DataPoint>(points, queryInput, k, queryResults);
-		}, k
+		}, retry_number
 	);
 }
 
@@ -63,6 +60,7 @@ void testKNearestNeighborsForAllStructures(const bool quick)
 	using P = TestPoint<Scalar, Dim>;
 	const int N = quick ? 100 : 5000;
 	const int k = quick ? 5 : 15;
+	const int retry_number = quick? 2 : 10;
 
 	//////////// Generate data
 	std::vector<P> points(N);
@@ -73,16 +71,16 @@ void testKNearestNeighborsForAllStructures(const bool quick)
 	std::vector<int> sample;
 	KdTreeDense<P> kdtreeDense = *buildKdTreeDense<P>(points, sample);
 	auto timeStart = std::chrono::system_clock::now(); // Only record time for one query
-	testKNearestNeighbors<true>(kdtreeDense, points, k);  // Index query test
+	testKNearestNeighbors<true>(kdtreeDense, points, retry_number, k);  // Index query test
 	cout << "    Compute Time KdTree index query : " <<  (std::chrono::system_clock::now() - timeStart).count() << endl;
 	timeStart = std::chrono::system_clock::now();
-	testKNearestNeighbors<false>(kdtreeDense, points, k); // Position query test
+	testKNearestNeighbors<false>(kdtreeDense, points, retry_number, k); // Position query test
 	cout << "    Compute Time KdTree position query : " <<  (std::chrono::system_clock::now() - timeStart).count() << endl;
 
 	//////////// Test KnnGraph
 	KnnGraph<P> knnGraph(kdtreeDense, k);
 	timeStart = std::chrono::system_clock::now();
-	testKNearestNeighborsEntirePointSet(knnGraph, points, k);  // Index query test
+	testKNearestNeighborsEntirePointSet(knnGraph, points, retry_number, k);  // Index query test
 	cout << "    Compute Time KnnGraph index query : " <<  (std::chrono::system_clock::now() - timeStart).count();
 }
 

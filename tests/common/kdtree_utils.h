@@ -231,16 +231,23 @@ std::unique_ptr<Ponca::KdTreeDense<DataPoint>> buildKdTreeDense(std::vector<Data
 	/// [KdTree assign dense]
 }
 
-template<bool doIndexQuery, typename DataPoint, typename PointContainer, typename RegularQueryFunctor, typename CheckQueryFunctor>
+
+template< bool doIndexQuery,
+	typename DataPoint, typename PointContainer,
+	typename QueryFunctor, typename CheckQueryFunctor,
+	typename... QueryInputTypes>
 void testQuery(
 	PointContainer& points,
-	RegularQueryFunctor callRegularQuery,
+	QueryFunctor callQuery,
 	CheckQueryFunctor checkQuery,
-	const int reserve_number = -1
+	const int retry_number = 1,
+	QueryInputTypes&&... outs
 ) {
 	using VectorType      = typename DataPoint::VectorType;
 
+#ifdef NDEBUG
 #pragma omp parallel for
+#endif
 	for (int i = 0; i < points.size(); ++i) {
 		auto queryInput = [&]{
 			// Do index query input
@@ -250,29 +257,37 @@ void testQuery(
 			else
 				return VectorType(VectorType::Random()); // values between [-1:1]
 		}();
-		std::vector<int> resQuery;
-		if (reserve_number > 0) {
-			resQuery.reserve(reserve_number);
-		}
-		for (int j : callRegularQuery(queryInput))
-			resQuery.push_back(j);
 
-		VERIFY((checkQuery(queryInput, resQuery)));
+		for (int j = 0; j < retry_number; ++j) {
+			std::vector<int> resQuery;
+
+			for (int point_idx : callQuery(queryInput, std::forward<QueryInputTypes>(outs)...))
+				resQuery.push_back(point_idx);
+
+			VERIFY((checkQuery(queryInput, resQuery)));
+		}
 	}
 }
 
-template<bool doIndexQuery, typename DataPoint, typename PointContainer, typename MutableQueryFunctor, typename RegularQueryFunctor, typename CheckQueryFunctor>
+template<bool doIndexQuery,
+	typename DataPoint, typename PointContainer,
+	typename MutableQueryFunctor, typename RegularQueryFunctor, typename CheckQueryFunctor,
+	typename... QueryInputTypes>
 void testQuery(
 	PointContainer& points,
 	MutableQueryFunctor callMutableQuery,
 	RegularQueryFunctor callRegularQuery,
 	CheckQueryFunctor checkQuery,
-	const int reserve_number = -1
+	const int retry_number = 1,
+	QueryInputTypes&&... outs
 ) {
 	using VectorType      = typename DataPoint::VectorType;
 
+#ifdef NDEBUG
 #pragma omp parallel for
+#endif
 	for (int i = 0; i < points.size(); ++i) {
+
 		auto queryInput = [&]{
 			// Do index query input
 			if constexpr (doIndexQuery)
@@ -281,16 +296,18 @@ void testQuery(
 			else
 				return VectorType(VectorType::Random()); // values between [-1:1]
 		}();
-		std::vector<int> resRegularQuery, resMutableQuery;
-		if (reserve_number > 0) {
-			resRegularQuery.reserve(reserve_number);
-			resMutableQuery.reserve(reserve_number);
+		auto mutableQuery = callMutableQuery();
+
+		for (int j = 0; j < retry_number; ++j) {
+			std::vector<int> resRegularQuery, resMutableQuery;
+
+			for (int point_idx : callRegularQuery(queryInput, std::forward<QueryInputTypes>(outs)...))
+				resRegularQuery.push_back(point_idx);
+			for (int point_idx : mutableQuery(queryInput, std::forward<QueryInputTypes>(outs)...))
+				resMutableQuery.push_back(point_idx);
+
+			VERIFY((checkQuery(queryInput, resRegularQuery)));
+			VERIFY((checkQuery(queryInput, resMutableQuery)));
 		}
-		for (int j : callRegularQuery(queryInput))
-			resRegularQuery.push_back(j);
-		for (int j : callMutableQuery(queryInput))
-			resMutableQuery.push_back(j);
-		VERIFY((checkQuery(queryInput, resRegularQuery)));
-		VERIFY((checkQuery(queryInput, resMutableQuery)));
 	}
 }
