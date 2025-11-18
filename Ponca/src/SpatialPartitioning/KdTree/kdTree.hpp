@@ -35,10 +35,10 @@ bool KdTreeBase<Traits>::valid() const
         return false;
     }
 
-    std::vector<bool> b(point_count(), false);
+    std::vector<bool> b(pointCount(), false);
     for(IndexType idx : m_indices)
     {
-        if(idx < 0 || point_count() <= idx || b[idx])
+        if(idx < 0 || pointCount() <= idx || b[idx])
         {
             return false;
         }
@@ -78,7 +78,7 @@ void KdTreeBase<Traits>::print(std::ostream& os, bool verbose) const
     os << "\n  MaxNodes: " << MAX_NODE_COUNT;
     os << "\n  MaxPoints: " << MAX_POINT_COUNT;
     os << "\n  MaxDepth: " << MAX_DEPTH;
-    os << "\n  PointCount: " << point_count();
+    os << "\n  PointCount: " << pointCount();
     os << "\n  SampleCount: " << sample_count();
     os << "\n  NodeCount: " << node_count();
 
@@ -129,18 +129,18 @@ inline void KdTreeBase<Traits>::buildWithSampling(PointUserContainer&& points,
     c(std::forward<PointUserContainer>(points), m_points);
 
     m_nodes = NodeContainer();
-    m_nodes.reserve(4 * point_count() / m_min_cell_size);
+    m_nodes.reserve(4 * pointCount() / m_min_cell_size);
     m_nodes.emplace_back();
 
     m_indices = std::move(sampling);
 
-    this->build_rec(0, 0, sample_count(), 1);
+    this->buildRec(0, 0, sample_count(), 1);
 
     PONCA_DEBUG_ASSERT(this->valid());
 }
 
 template<typename Traits>
-void KdTreeBase<Traits>::build_rec(NodeIndexType node_id, IndexType start, IndexType end, int level)
+void KdTreeBase<Traits>::buildRec(NodeIndexType node_id, IndexType start, IndexType end, int level)
 {
     NodeType& node = m_nodes[node_id];
     AabbType aabb;
@@ -168,8 +168,8 @@ void KdTreeBase<Traits>::build_rec(NodeIndexType node_id, IndexType start, Index
         m_nodes.emplace_back();
 
         IndexType mid_id = this->partition(start, end, split_dim, node.inner_split_value());
-        build_rec(node.inner_first_child_id(), start, mid_id, level+1);
-        build_rec(node.inner_first_child_id()+1, mid_id, end, level+1);
+        buildRec(node.inner_first_child_id(), start, mid_id, level+1);
+        buildRec(node.inner_first_child_id()+1, mid_id, end, level+1);
     }
 }
 

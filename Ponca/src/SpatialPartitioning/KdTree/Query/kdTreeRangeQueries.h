@@ -53,7 +53,7 @@ public:
         return it;
     }
     inline Iterator end(){
-        return Iterator(this, QueryAccelType::m_kdtree->point_count());
+        return Iterator(this, QueryAccelType::m_kdtree->pointCount());
     }
 
 protected:

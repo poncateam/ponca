@@ -186,7 +186,7 @@ public:
         return (IndexType)m_indices.size();
     }
 
-    inline IndexType point_count() const
+    inline IndexType pointCount() const
     {
         return (IndexType)m_points.size();
     }
@@ -219,13 +219,13 @@ public:
     // Parameters --------------------------------------------------------------
 public:
     /// Read leaf min size
-    inline LeafSizeType min_cell_size() const
+    inline LeafSizeType minCellSize() const
     {
         return m_min_cell_size;
     }
 
     /// Write leaf min size
-    inline void set_min_cell_size(LeafSizeType min_cell_size)
+    inline void setMinCellSize(LeafSizeType min_cell_size)
     {
         PONCA_DEBUG_ASSERT(min_cell_size > 0);
         m_min_cell_size = min_cell_size;
@@ -381,7 +381,7 @@ protected:
     }
 
 private:
-    inline void build_rec(NodeIndexType node_id, IndexType start, IndexType end, int level);
+    inline void buildRec(NodeIndexType node_id, IndexType start, IndexType end, int level);
     inline IndexType partition(IndexType start, IndexType end, int dim, Scalar value);
 };
 
