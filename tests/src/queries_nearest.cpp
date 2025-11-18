@@ -34,15 +34,18 @@ void testNearestNeighbor( AcceleratingStructure& structure,
 template<bool doIndexQuery, typename AcceleratingStructure>
 void testFrontOfKNearestNeighbors( AcceleratingStructure& structure,
 	typename AcceleratingStructure::PointContainer& points,
-	std::vector<int>& sample
+	std::vector<int>& sample, const int retry_number
 ) {
 	using DataPoint      = typename AcceleratingStructure::DataPoint;
 
-	testQuery<doIndexQuery, DataPoint>(points, [&structure](auto &queryInput) {
+	testQuery<doIndexQuery, DataPoint>(points, [&structure]() {
+			return structure.k_nearest_neighbors_index_query();
+		}, [&structure](auto &queryInput) {
 			return structure.k_nearest_neighbors(queryInput);
 		}, [&points, &sample](auto& queryInput, auto& queryResults) {
+			VERIFY((queryResults.size() == 1));
 			return check_nearest_neighbor<DataPoint>(points, sample, queryInput, queryResults.front());
-		}
+		}, retry_number
 	);
 }
 
@@ -70,7 +73,7 @@ void testNearestNeighborForAllStructures(const bool quick)
 
 	//////////// Test KnnGraph
 	KnnGraph<P> knnGraph(kdtreeDense, 1);
-	testFrontOfKNearestNeighbors<true>(knnGraph, points, sample);  // Index query test
+	testFrontOfKNearestNeighbors<true>(knnGraph, points, sample, 2);  // Index query test
 
 	cout << "(ok)";
 }
