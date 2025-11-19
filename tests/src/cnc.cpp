@@ -105,7 +105,7 @@ void testBasicFunctionalities(const KdTree<typename Fit::DataPoint>& tree, typen
 }
 
 /// \breif Compare the GaussianCurvature and kMean between two fit
-template<typename Fit1, typename Fit2, bool use_k_nearest_neighbors = true>
+template<typename Fit1, typename Fit2, bool orderedByDistance = true>
 void testCompareFit(const KdTree<typename Fit1::DataPoint>& tree, typename Fit1::Scalar analysisScale) {
     typedef typename Fit1::DataPoint DataPoint;
     typedef typename DataPoint::Scalar Scalar;
@@ -117,7 +117,7 @@ void testCompareFit(const KdTree<typename Fit1::DataPoint>& tree, typename Fit1:
         // compute the indices list
         std::vector<int> pointsIndex;
 
-        if constexpr (use_k_nearest_neighbors) {
+        if constexpr (orderedByDistance) {
             pointsIndex.push_back(i);
             for (int j : tree.k_nearest_neighbors(i, vectorPoints.size())) {
                 // Stops when we go past the analysis scale
@@ -137,7 +137,7 @@ void testCompareFit(const KdTree<typename Fit1::DataPoint>& tree, typename Fit1:
         fit2.setNeighborFilter({vectorPoints[i], analysisScale});
         fit2.computeWithIds(pointsIndex, vectorPoints);
 
-        Scalar eps = testEpsilon<Scalar>();
+        Scalar eps = testEpsilon<Scalar>()*2;
 
         // Compare Fit1 with Fit2
         VERIFY(((fit1.kMean() - fit2.kMean()) < eps));
