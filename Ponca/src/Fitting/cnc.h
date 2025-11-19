@@ -190,7 +190,7 @@ public:
     }
 
     PONCA_FITTING_APIDOC_SETWFUNC
-    PONCA_MULTIARCH inline void setWeightFunc (const WeightFunction& _w) {
+    PONCA_MULTIARCH inline void setNeighborFilter (const WeightFunction& _w) {
         m_w  = _w;
     }
 

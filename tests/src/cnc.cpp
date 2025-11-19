@@ -76,7 +76,7 @@ void testBasicFunctionalities(const KdTree<typename Fit::DataPoint>& tree, typen
 
         //! [Fit compute]
         Fit fit1;
-        fit1.setWeightFunc({vectorPoints[i], analysisScale});
+        fit1.setNeighborFilter({vectorPoints[i], analysisScale});
         fit1.compute( tree.points() );
         //! [Fit compute]
         VERIFY(fit1 == fit1);
@@ -91,7 +91,7 @@ void testBasicFunctionalities(const KdTree<typename Fit::DataPoint>& tree, typen
 
         //! [Fit computeWithIds]
         Fit fit2;
-        fit2.setWeightFunc({vectorPoints[i], analysisScale});
+        fit2.setNeighborFilter({vectorPoints[i], analysisScale});
         fit2.computeWithIds( pointsIndex, tree.points() );
         //! [Fit computeWithIds]
 
@@ -130,11 +130,11 @@ void testCompareFit(const KdTree<typename Fit1::DataPoint>& tree, typename Fit1:
             }
         }
         Fit1 fit1;
-        fit1.setWeightFunc({vectorPoints[i].pos(), analysisScale});
+        fit1.setNeighborFilter({vectorPoints[i].pos(), analysisScale});
         fit1.computeWithIds(pointsIndex, vectorPoints);
 
         Fit2 fit2;
-        fit2.setWeightFunc({vectorPoints[i], analysisScale});
+        fit2.setNeighborFilter({vectorPoints[i], analysisScale});
         fit2.computeWithIds(pointsIndex, vectorPoints);
 
         Scalar eps = testEpsilon<Scalar>();
