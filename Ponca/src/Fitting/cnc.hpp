@@ -44,11 +44,11 @@ namespace Ponca::internal {
         using VectorType = typename P::VectorType;
         using Scalar     = typename P::Scalar;
 
-        template <typename IndexRange, typename PointContainer, typename WeightFunc>
+        template <typename IndexRange, typename PointContainer, typename NeighborFilter>
         static int generate(
             const IndexRange& ids,
             const PointContainer& points,
-            const WeightFunc& w,
+            const NeighborFilter& w,
             std::vector<Triangle<P>>& triangles
         ) {
             int nb_vt = 0; // Number of valid generated triangles
@@ -84,11 +84,11 @@ namespace Ponca::internal {
         using VectorType = typename P::VectorType;
         using Scalar     = typename P::Scalar;
 
-        template <typename IndexRange, typename PointContainer, typename WeightFunc>
+        template <typename IndexRange, typename PointContainer, typename NeighborFilter>
         static int generate(
             const IndexRange& ids,
             const PointContainer& points,
-            const WeightFunc& w,
+            const NeighborFilter& w,
             std::vector<Triangle<P>>& triangles
         ) {
             int nb_vt = 0; // Number of valid generated triangles
@@ -130,11 +130,11 @@ namespace Ponca::internal {
         using VectorType = typename P::VectorType;
         using Scalar     = typename P::Scalar;
 
-        template <typename IndexRange, typename PointContainer, typename WeightFunc>
+        template <typename IndexRange, typename PointContainer, typename NeighborFilter>
         static int generate(
             const IndexRange& ids,
             const PointContainer& points,
-            const WeightFunc& w,
+            const NeighborFilter& w,
             std::vector<Triangle<P>>& triangles
         ) {
             // Compute normal and maximum distance.
@@ -211,11 +211,11 @@ namespace Ponca::internal {
         using VectorType = typename P::VectorType;
         using Scalar     = typename P::Scalar;
 
-        template <typename IndexRange, typename PointContainer, typename WeightFunc>
+        template <typename IndexRange, typename PointContainer, typename NeighborFilter>
         static int generate(
             const IndexRange& ids,
             const PointContainer& points,
-            const WeightFunc& w,
+            const NeighborFilter& w,
             std::vector<Triangle<P>>& triangles
         ) {
             // Compute normal and maximum distance.
@@ -308,7 +308,7 @@ namespace Ponca {
     FIT_RESULT CNC<P, M>::compute( const PointContainer& points ) {
         init();
         internal::BoundedIntRange indicesSample( points.size() );
-        m_nb_vt = internal::TriangleGenerator<M, P>::generate( indicesSample, points, m_w, m_triangles);
+        m_nb_vt = internal::TriangleGenerator<M, P>::generate( indicesSample, points, m_nFilter, m_triangles);
         return finalize();
     }
 
@@ -316,7 +316,7 @@ namespace Ponca {
     template <typename IndexRange, typename PointContainer>
     FIT_RESULT CNC<P, M>::computeWithIds( const IndexRange& ids, const PointContainer& points ) {
         init();
-        m_nb_vt = internal::TriangleGenerator<M, P>::generate( ids, points, m_w, m_triangles);
+        m_nb_vt = internal::TriangleGenerator<M, P>::generate( ids, points, m_nFilter, m_triangles);
         return finalize();
     }
 
@@ -364,7 +364,7 @@ namespace Ponca {
             m_G = Scalar(0);
         }
 
-        std::tie (m_k2, m_k1, m_v2, m_v1) = internal::CNCEigen<P>::curvaturesFromTensor(T, 1.0, m_w.evalNormal());
+        std::tie (m_k2, m_k1, m_v2, m_v1) = internal::CNCEigen<P>::curvaturesFromTensor(T, 1.0, m_nFilter.evalNormal());
 
         return STABLE;
     }

@@ -131,19 +131,19 @@ public:
     using VectorType = typename DataPoint::VectorType;
     typedef Eigen::VectorXd  DenseVector;
     typedef Eigen::MatrixXd  DenseMatrix;
-    using WeightFunction = internal::DistanceFilterWithNormal<DataPoint>;
+    using NeighborFilter = internal::DistanceFilterWithNormal<DataPoint>;
 protected:
 	// Basis
-    WeightFunction m_w;
+    NeighborFilter m_nFilter;
 
     // Triangles used for the computation
     int m_nb_vt {0}; // Number of valid triangles
     std::vector <internal::Triangle < DataPoint > > m_triangles;
 
     // Results of the fit
-    Scalar m_A {0}; // Area
-    Scalar m_H {0}; // Mean Curvatures
-    Scalar m_G {0}; // Gaussian Curvatures
+    Scalar m_A   {0}; // Area
+    Scalar m_H   {0}; // Mean Curvatures
+    Scalar m_G   {0}; // Gaussian Curvatures
     Scalar m_T11 {0}; // T11
     Scalar m_T12 {0}; // T12
     Scalar m_T13 {0}; // T13
@@ -163,19 +163,26 @@ public:
     /*! \brief Set the scalar field values to 0 and reset the isNormalized() status
     */
     PONCA_MULTIARCH inline void init() {
+        m_A  = Scalar(0);
+        m_H  = Scalar(0);
+        m_G  = Scalar(0);
+
         m_k1 = Scalar(0);
         m_k2 = Scalar(0);
     }
 
-    /*! \brief Compute function for STL-like containers */
-    /*! Add neighbors stored in a PointContainer and call finalize at the end.*/
+    /*!
+     * \brief Compute function for STL-like containers.
+     * \tparam PointContainer An STL-like container storing the points
+     */
     template <typename PointContainer>
     PONCA_MULTIARCH inline FIT_RESULT compute( const PointContainer& points);
 
-    /*! \brief Compute function to iterate over a subset of samples in a PointContainer  */
-    /*! Add neighbors stored in a PointContainer and sampled using indices stored in ids.*/
-    /*! \tparam IndexRange An STL-like container storing the indices of the neighbors */
-    /*! \tparam PointContainer An STL-like container storing the points */
+    /*!
+     * \brief Compute function that iterates over a subset of sampled points from an STL-Like container.
+     * \tparam IndexRange An STL-like container storing the indices of the neighbors
+     * \tparam PointContainer An STL-like container storing the points
+     */
     template <typename IndexRange, typename PointContainer>
     PONCA_MULTIARCH inline FIT_RESULT computeWithIds( const IndexRange& ids, const PointContainer& points );
 
@@ -190,8 +197,8 @@ public:
     }
 
     PONCA_FITTING_APIDOC_SETWFUNC
-    PONCA_MULTIARCH inline void setNeighborFilter (const WeightFunction& _w) {
-        m_w  = _w;
+    PONCA_MULTIARCH inline void setNeighborFilter (const NeighborFilter& _nFilter) {
+        m_nFilter  = _nFilter;
     }
 
     bool operator==(const CNC& other) const {
