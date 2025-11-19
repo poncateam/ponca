@@ -55,8 +55,8 @@ namespace Ponca::internal {
 
             // Makes a new array
             std::vector<int> indices(ids.size());
-            for (int i = 0; i < ids.size() ; ++i) {
-                if (w.w(points[ i ].pos(), points[ i ]).first != Scalar(0.))
+            for ( int i : ids ) {
+                if (w(points[ i ]).first != Scalar(0.))
                     continue; // Skip the points that are outside the kernel radius
                 indices[i] = ids[i];
             }
@@ -95,8 +95,8 @@ namespace Ponca::internal {
 
             // Makes a new array to shuffle
             std::vector<int> indices(ids.size());
-            for (int i = 0; i < ids.size() ; ++i) {
-                if (w.w(points[ i ].pos(), points[ i ]).first != Scalar(0.))
+            for ( int i : ids ) {
+                if (w(points[ i ]).first != Scalar(0.))
                     continue; // Skip the points that are outside the kernel radius
                 indices[i] = ids[i];
             }
@@ -144,7 +144,7 @@ namespace Ponca::internal {
             Scalar avg_d = Scalar(0);
 
             for ( int index : ids ) {
-                if (w.w(points[ index ].pos(), points[ index ]).first != Scalar(0.))
+                if (w(points[ index ]).first != Scalar(0.))
                     continue; // Skip the points that are outside the kernel radius
                 auto p = points[ index ];
                 avg_d += ( p.pos() - c ).norm();
@@ -228,7 +228,7 @@ namespace Ponca::internal {
             Scalar avg_normal  = Scalar(0.5);
 
             for ( int index : ids ) {
-                if (w.w(points[ index ].pos(), points[ index ]).first != Scalar(0.))
+                if (w(points[ index ]).first != Scalar(0.))
                     continue; // Skip the points that are outside the kernel radius
                 a     += points[ index ].normal();
                 avg_d += ( points[ index ].pos() - c ).norm();
@@ -309,7 +309,6 @@ namespace Ponca {
         init();
         internal::BoundedIntRange indicesSample( points.size() );
         m_nb_vt = internal::TriangleGenerator<M, P>::generate( indicesSample, points, m_w, m_triangles);
-
         return finalize();
     }
 
