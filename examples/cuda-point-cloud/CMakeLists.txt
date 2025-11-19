@@ -18,12 +18,12 @@ check_language(CUDA)
     endif()
 
 
-    find_package(PNG QUIET)
+#    find_package(PNG QUIET)
 #    if ( PNG_FOUND )
 
     add_executable(ponca_cuda_pc "ponca_point_cloud.cu")
     target_include_directories(ponca_cuda_pc PRIVATE ${PONCA_src_ROOT})
-    target_link_libraries(ponca_cuda_pc PRIVATE PNG::PNG)
+#    target_link_libraries(ponca_cuda_pc PRIVATE PNG::PNG)
     add_dependencies(ponca-examples ponca_cuda_pc)
     set_property(TARGET ponca_cuda_pc PROPERTY CUDA_ARCHITECTURES OFF)
     ponca_handle_eigen_dependency(ponca_cuda_pc)
