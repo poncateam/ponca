@@ -15,8 +15,8 @@ namespace Ponca
 
     It could be used to do the translation/rotation of a point.
 
-    \see worldToLocalFrame
-    \see localFrameToWorld
+    \see worldToFrame
+    \see frameToWorld
 */
 template < class DataPoint, class _NFilter, typename T >
 class LocalFrame : public T
@@ -80,8 +80,11 @@ public:
      * \param _q Point coordinates expressed in ambient space
      * \return Point coordinates expressed in local frame
      */
-    template <bool ignoreTranslation = false>
-    PONCA_MULTIARCH inline VectorType worldToLocalFrame(const VectorType &_q) const;
+    PONCA_MULTIARCH inline VectorType worldToFrame(const VectorType &_q) const
+    {
+        VectorType lq = Base::getNeighborFilter().convertToLocalBasis(_q);
+        return worldToFrameLocal(lq);
+    }
 
     /*!
      * \brief Transform a point from the local frame [h, u, v]^T to ambient space
@@ -90,8 +93,20 @@ public:
      * \param _q Point coordinates expressed in local frame
      * \return Point coordinates expressed in ambient space
      */
-    template <bool ignoreTranslation = false>
-    PONCA_MULTIARCH inline VectorType localFrameToWorld(const VectorType &_q) const;
+    PONCA_MULTIARCH inline VectorType frameToWorld(const VectorType &_q) const
+    {
+        return Base::getNeighborFilter().convertToGlobalBasis(frameToWorldLocal(_q));
+    }
+
+protected :
+    /*!
+     * \copydoc LocalFrame::worldToFrame
+     */
+    PONCA_MULTIARCH inline VectorType worldToFrameLocal(const VectorType &_q) const;
+    /*!
+     * \copydoc LocalFrame::frameToWorld
+     */
+    PONCA_MULTIARCH inline VectorType frameToWorldLocal(const VectorType &_q) const;
 
 }; //class LocalFrame
 
