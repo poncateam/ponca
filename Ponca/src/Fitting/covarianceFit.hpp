@@ -62,63 +62,63 @@ CovarianceFitBase<DataPoint, _NFilter, T>::surfaceVariation () const
     return m_solver.eigenvalues()(0) / m_solver.eigenvalues().mean();
 }
 
-template <class DataPoint, class _WFunctor, typename T>
-typename CovarianceFitBase<DataPoint, _WFunctor, T>::Scalar
-CovarianceFitBase<DataPoint, _WFunctor, T>::planarity() const
+template <class DataPoint, class _NFilter, typename T>
+typename CovarianceFitBase<DataPoint, _NFilter, T>::Scalar
+CovarianceFitBase<DataPoint, _NFilter, T>::planarity() const
 {
     return (m_solver.eigenvalues()(1) - m_solver.eigenvalues()(0)) /
           m_solver.eigenvalues()(2);
 }
 
-template <class DataPoint, class _WFunctor, typename T>
-typename CovarianceFitBase<DataPoint, _WFunctor, T>::Scalar
-CovarianceFitBase<DataPoint, _WFunctor, T>::linearity() const
+template <class DataPoint, class _NFilter, typename T>
+typename CovarianceFitBase<DataPoint, _NFilter, T>::Scalar
+CovarianceFitBase<DataPoint, _NFilter, T>::linearity() const
 {
     return (m_solver.eigenvalues()(2) - m_solver.eigenvalues()(1)) /
           m_solver.eigenvalues()(2);
 }
 
-template <class DataPoint, class _WFunctor, typename T>
-typename CovarianceFitBase<DataPoint, _WFunctor, T>::Scalar
-CovarianceFitBase<DataPoint, _WFunctor, T>::sphericity() const
+template <class DataPoint, class _NFilter, typename T>
+typename CovarianceFitBase<DataPoint, _NFilter, T>::Scalar
+CovarianceFitBase<DataPoint, _NFilter, T>::sphericity() const
 {
     return (m_solver.eigenvalues()(0)) / m_solver.eigenvalues()(2);
 }
 
-template <class DataPoint, class _WFunctor, typename T>
-typename CovarianceFitBase<DataPoint, _WFunctor, T>::Scalar
-CovarianceFitBase<DataPoint, _WFunctor, T>::anisotropy() const
+template <class DataPoint, class _NFilter, typename T>
+typename CovarianceFitBase<DataPoint, _NFilter, T>::Scalar
+CovarianceFitBase<DataPoint, _NFilter, T>::anisotropy() const
 {
     return (m_solver.eigenvalues()(2) - m_solver.eigenvalues()(0)) /
           m_solver.eigenvalues()(2);
 }
 
-template <class DataPoint, class _WFunctor, typename T>
-typename CovarianceFitBase<DataPoint, _WFunctor, T>::Scalar
-CovarianceFitBase<DataPoint, _WFunctor, T>::eigenentropy() const
+template <class DataPoint, class _NFilter, typename T>
+typename CovarianceFitBase<DataPoint, _NFilter, T>::Scalar
+CovarianceFitBase<DataPoint, _NFilter, T>::eigenentropy() const
 {
     return -(m_solver.eigenvalues()(0) * log(m_solver.eigenvalues()(0)) +
             m_solver.eigenvalues()(1) * log(m_solver.eigenvalues()(1)) +
             m_solver.eigenvalues()(2) * log(m_solver.eigenvalues()(2)));
 }
 
-template <class DataPoint, class _WFunctor, typename T>
-typename CovarianceFitBase<DataPoint, _WFunctor, T>::Scalar
-CovarianceFitBase<DataPoint, _WFunctor, T>::lambda_0() const
+template <class DataPoint, class _NFilter, typename T>
+typename CovarianceFitBase<DataPoint, _NFilter, T>::Scalar
+CovarianceFitBase<DataPoint, _NFilter, T>::lambda_0() const
 {
     return m_solver.eigenvalues()(0);
 }
 
-template <class DataPoint, class _WFunctor, typename T>
-typename CovarianceFitBase<DataPoint, _WFunctor, T>::Scalar
-CovarianceFitBase<DataPoint, _WFunctor, T>::lambda_1() const
+template <class DataPoint, class _NFilter, typename T>
+typename CovarianceFitBase<DataPoint, _NFilter, T>::Scalar
+CovarianceFitBase<DataPoint, _NFilter, T>::lambda_1() const
 {
     return m_solver.eigenvalues()(1);
 }
 
-template <class DataPoint, class _WFunctor, typename T>
-typename CovarianceFitBase<DataPoint, _WFunctor, T>::Scalar
-CovarianceFitBase<DataPoint, _WFunctor, T>::lambda_2() const
+template <class DataPoint, class _NFilter, typename T>
+typename CovarianceFitBase<DataPoint, _NFilter, T>::Scalar
+CovarianceFitBase<DataPoint, _NFilter, T>::lambda_2() const
 {
     return m_solver.eigenvalues()(2);
 }

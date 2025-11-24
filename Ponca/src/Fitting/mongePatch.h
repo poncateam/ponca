@@ -81,13 +81,13 @@ public:
 
 /// \brief Helper alias for MongePatch fitting on 3D points using MongePatch
 //! [MongePatchFit Definition]
-template < class DataPoint, class _WFunctor, typename T>
-    using MongePatchFit = Ponca::MongePatch<DataPoint, _WFunctor,
-                            Ponca::CovariancePlaneFitImpl<DataPoint, _WFunctor,
-                                Ponca::CovarianceFitBase<DataPoint, _WFunctor,
-                                        Ponca::MeanPosition<DataPoint, _WFunctor,
-                                            Ponca::LocalFrame<DataPoint, _WFunctor,
-                                                Ponca::Plane<DataPoint, _WFunctor,T>>>>>>;
+template < class DataPoint, class _NFilter, typename T>
+    using MongePatchFit = Ponca::MongePatch<DataPoint, _NFilter,
+                            Ponca::CovariancePlaneFitImpl<DataPoint, _NFilter,
+                                Ponca::CovarianceFitBase<DataPoint, _NFilter,
+                                        Ponca::MeanPosition<DataPoint, _NFilter,
+                                            Ponca::LocalFrame<DataPoint, _NFilter,
+                                                Ponca::Plane<DataPoint, _NFilter,T>>>>>>;
 //! [MongePatchFit Definition]
 
 #include "mongePatch.hpp"

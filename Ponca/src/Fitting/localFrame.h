@@ -18,7 +18,7 @@ namespace Ponca
     \see worldToLocalFrame
     \see localFrameToWorld
 */
-template < class DataPoint, class _WFunctor, typename T >
+template < class DataPoint, class _NFilter, typename T >
 class LocalFrame : public T
 {
     PONCA_FITTING_DECLARE_DEFAULT_TYPES
