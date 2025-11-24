@@ -241,7 +241,7 @@ DataPoint getPointOnPlane(typename DataPoint::VectorType _vPosition,
     if(_bAddPositionNoise)
     {
         vRandomPoint = vRandomPoint + VectorType::Random().normalized() *
-                Eigen::internal::random<Scalar>(Scalar(0), Scalar(1. - MIN_NOISE));
+                Eigen::internal::random<Scalar>(Scalar(0), Scalar(1. - 0.5));
     }
 
     if(_bAddNormalNoise)
