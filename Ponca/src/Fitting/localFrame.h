@@ -2,8 +2,6 @@
 
 #include "./defines.h"
 
-#include PONCA_MULTIARCH_INCLUDE_STD(cmath)
-#include PONCA_MULTIARCH_INCLUDE_STD(limits)
 
 namespace Ponca
 {
