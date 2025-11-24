@@ -64,7 +64,7 @@ namespace Ponca
         //! \see method `#isSigned` of the plane fit to check if the sign is reliable
         PONCA_MULTIARCH [[nodiscard]] inline Scalar potential(const VectorType& _q) const {
             const VectorType x = Base::worldToTangentPlane(_q);
-            return Base::height(getUFromLocalCoordinates(x),getVFromLocalCoordinates(x)) - getHFromLocalCoordinates(x);
+            return Base::height(Base::getUFromLocalCoordinates(x),Base::getVFromLocalCoordinates(x)) - Base::getHFromLocalCoordinates(x);
         }
 
         //! \brief Orthogonal projection on the patch
@@ -73,7 +73,7 @@ namespace Ponca
         PONCA_MULTIARCH [[nodiscard]] inline VectorType project (const VectorType& _q) const
         {
             VectorType x = Base::worldToTangentPlane(_q);
-            getHFromLocalCoordinates(x) = Base::height(getUFromLocalCoordinates(x),getVFromLocalCoordinates(x));
+            Base::getHFromLocalCoordinates(x) = Base::height(Base::getUFromLocalCoordinates(x),Base::getVFromLocalCoordinates(x));
             return Base::tangentPlaneToWorld(x);
         }
 
@@ -86,12 +86,19 @@ namespace Ponca
         //! \brief Scalar field gradient direction at \f$ \mathbf{q}\f$
         PONCA_MULTIARCH [[nodiscard]] inline VectorType primitiveGradient (const VectorType& _q) const
         {
+            // there is a bug here: the gradient is a vector representing a direction. When calling tangentPlaneToWorld,
+            // it should only be rotated, not translated.
+            // FIXME
             return Base::tangentPlaneToWorld(primitiveGradientLocal(Base::worldToTangentPlane(_q)));
         }
 
         //! \brief Scalar field gradient direction, both input and output vectors are expressed in the local basis
         PONCA_MULTIARCH [[nodiscard]] inline VectorType primitiveGradientLocal (const VectorType& _localQ = VectorType::Zero()) const
         {
+            VectorType  uVect = Base::heightTangentULocal(_localQ);
+            VectorType  vVect = Base::heightTangentVLocal(_localQ);
+            VectorType  cross = uVect.cross(vVect);
+            VectorType  crossN = uVect.normalized().cross(vVect.normalized());
             return Base::heightTangentULocal(_localQ).cross(Base::heightTangentVLocal(_localQ));
         }
 
@@ -117,8 +124,28 @@ namespace Ponca
             M = fuv.dot(fn);;
             N = fvv.dot(fn);;
         }
+    }; //class MongePatchPrimitive
 
+
+
+    /*!
+    \brief Internal base classe for height fields.
+
+     Provides protected convenience methods for heightfields
+
+    This primitive provides:
+    \verbatim PROVIDES_HEIGHTFIELD \endverbatim
+    */
+    template < class DataPoint, class _NFilter, typename T >
+    class HeightField : public T
+    {
+        PONCA_FITTING_DECLARE_DEFAULT_TYPES
+        static_assert ( DataPoint::Dim == 3, "HeightField is only valid in 3D");
     protected:
+        enum {
+            PROVIDES_HEIGHTFIELD /*!< \brief Provides generic heightfield API */
+        };
+
         /// \brief get access to height from local coordinate vector
         PONCA_MULTIARCH [[nodiscard]] inline const Scalar& getHFromLocalCoordinates (const VectorType& _lq) const
         { return *(_lq.data()); }
@@ -142,9 +169,7 @@ namespace Ponca
         /// \brief get access to v from local coordinate vector
         PONCA_MULTIARCH [[nodiscard]] inline Scalar& getVFromLocalCoordinates (VectorType& _lq)
         { return *(_lq.data()+2); }
-
-
-    }; //class MongePatchPrimitive
+    };
 
     /*!
     \brief Quadratic height field defined as \f$h(u,v)=h_{uu}u^2 + h_{vv}v^2 + h_{uv}uv + h_u u + h_v v + h_c \f$
@@ -152,7 +177,7 @@ namespace Ponca
     \see MongePatchPrimitive
 
     This primitive provides:
-    \verbatim PROVIDES_HEIGHTFIELD, PROVIDES_QUADRIC_HEIGHTFIELD \endverbatim
+    \verbatim PROVIDES_QUADRIC_HEIGHTFIELD \endverbatim
     */
     template < class DataPoint, class _NFilter, typename T >
     class QuadraticHeightField : public T
@@ -163,7 +188,7 @@ namespace Ponca
 
     protected:
         enum {
-            PROVIDES_HEIGHTFIELD, /*!< \brief Provides generic heightfield API */
+            Check = Base::PROVIDES_HEIGHTFIELD,
             PROVIDES_QUADRIC_HEIGHTFIELD /*!< \brief Provides quadric heightfield API */
         };
         /// \brief Quadric parameters, stored as \f$[h_uu, h_vv, h_uv, h_u, h_v, h_c]\f$
@@ -238,26 +263,26 @@ namespace Ponca
 
         //! \brief Local tangent vector in the direction of \f$u\f$
         PONCA_MULTIARCH [[nodiscard]] inline VectorType heightTangentULocal (const VectorType& _localQ) const {
-            const Scalar tu = dh_du(*(_localQ.data()+1), *(_localQ.data()+2));
+            const Scalar tu = dh_du(Base::getUFromLocalCoordinates(_localQ), Base::getVFromLocalCoordinates(_localQ));
             return VectorType (tu, Scalar(1), Scalar(0)).normalized();
         }
 
         //! \brief Local tangent vector in the direction of \f$v\f$
         PONCA_MULTIARCH [[nodiscard]] inline VectorType heightTangentVLocal (const VectorType& _localQ) const {
-            const Scalar tv = dh_dv(*(_localQ.data()+1), *(_localQ.data()+2));
+            const Scalar tv = dh_dv(Base::getUFromLocalCoordinates(_localQ), Base::getVFromLocalCoordinates(_localQ));
             return VectorType (tv, Scalar(0), Scalar(1)).normalized();
         }
     }; //class QuadraticHeightField
     /*!
      \brief Quadratic height field defined as \f$h(u,v)=h_{uu}u^2 + h_{vv}v^2 + h_{uv}uv \f$
 
-     \see MongePatchPrimitive, QuadraticHeightField
+     \see MongePatchPrimitive, QuadraticHeightField, HeightField
 
      In contrast to QuadraticHeightField, this version does not hold the linear and constant terms are they are expected
      to be obtained from the support plane
 
      This primitive provides:
-     \verbatim PROVIDES_HEIGHTFIELD, PROVIDES_QUADRIC_HEIGHTFIELD \endverbatim
+     \verbatim PROVIDES_QUADRIC_HEIGHTFIELD \endverbatim
     */
     template < class DataPoint, class _NFilter, typename T >
     class RestrictedQuadraticHeightField : public T
@@ -268,7 +293,7 @@ namespace Ponca
 
     protected:
         enum {
-            PROVIDES_HEIGHTFIELD, /*!< \brief Provides generic heightfield API */
+            Check = Base::PROVIDES_HEIGHTFIELD,
             PROVIDES_RESTRICTED_QUADRIC_HEIGHTFIELD /*!< \brief Provides quadric heightfield API */
         };
         /// \brief Quadric parameters, stored as \f$[h_uu, h_vv, h_uv]\f$
@@ -340,13 +365,13 @@ namespace Ponca
 
         //! \brief Local tangent vector in the direction of \f$u\f$
         PONCA_MULTIARCH [[nodiscard]] inline VectorType heightTangentULocal (const VectorType& _localQ) const {
-            const Scalar tu = dh_du(*(_localQ.data()+1), *(_localQ.data()+2));
+            const Scalar tu = dh_du(Base::getUFromLocalCoordinates(_localQ), Base::getVFromLocalCoordinates(_localQ));
             return VectorType (tu, Scalar(1), Scalar(0)).normalized();
         }
 
         //! \brief Local tangent vector in the direction of \f$v\f$
         PONCA_MULTIARCH [[nodiscard]] inline VectorType heightTangentVLocal (const VectorType& _localQ) const {
-            const Scalar tv = dh_dv(*(_localQ.data()+1), *(_localQ.data()+2));
+            const Scalar tv = dh_dv(Base::getUFromLocalCoordinates(_localQ), Base::getVFromLocalCoordinates(_localQ));
             return VectorType (tv, Scalar(0), Scalar(1)).normalized();
         }
     }; //class RestrictedQuadraticHeightField
@@ -423,15 +448,17 @@ using MongePatchQuadraticFit =
             MongePatchQuadraticFitImpl<DataPoint, _NFilter,
                 MongePatchPrimitive<DataPoint, _NFilter,
                     QuadraticHeightField<DataPoint, _NFilter,
-                        CovariancePlaneFit<DataPoint, _NFilter,T>>>>>;
+                        HeightField<DataPoint, _NFilter,
+                            CovariancePlaneFit<DataPoint, _NFilter,T>>>>>>;
 
 template < class DataPoint, class _NFilter, typename T>
 using MongePatchRestrictedQuadraticFit =
         FundamentalFormCurvatureEstimator<DataPoint, _NFilter,
-                MongePatchRestrictedQuadraticFitImpl<DataPoint, _NFilter,
-                        MongePatchPrimitive<DataPoint, _NFilter,
-                                RestrictedQuadraticHeightField<DataPoint, _NFilter,
-                                        CovariancePlaneFit<DataPoint, _NFilter,T>>>>>;
+            MongePatchRestrictedQuadraticFitImpl<DataPoint, _NFilter,
+                MongePatchPrimitive<DataPoint, _NFilter,
+                    RestrictedQuadraticHeightField<DataPoint, _NFilter,
+                        HeightField<DataPoint, _NFilter,
+                            CovariancePlaneFit<DataPoint, _NFilter,T>>>>>>;
 
 #include "mongePatch.hpp"
 
