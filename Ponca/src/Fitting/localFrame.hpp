@@ -1,7 +1,7 @@
-template < class DataPoint, class _WFunctor, typename T>
+template < class DataPoint, class _NFilter, typename T>
 template <bool ignoreTranslation>
-typename LocalFrame<DataPoint, _WFunctor, T>::VectorType
-LocalFrame<DataPoint, _WFunctor, T>::worldToLocalFrame (const VectorType& _q) const
+typename LocalFrame<DataPoint, _NFilter, T>::VectorType
+LocalFrame<DataPoint, _NFilter, T>::worldToLocalFrame (const VectorType& _q) const
 {
   MatrixType B;
   B << Base::primitiveGradient(), m_u, m_v;
@@ -13,10 +13,10 @@ LocalFrame<DataPoint, _WFunctor, T>::worldToLocalFrame (const VectorType& _q) co
   }
 }
 
-template < class DataPoint, class _WFunctor, typename T>
+template < class DataPoint, class _NFilter, typename T>
 template <bool ignoreTranslation>
-typename LocalFrame<DataPoint, _WFunctor, T>::VectorType
-LocalFrame<DataPoint, _WFunctor, T>::localFrameToWorld (const VectorType& _lq) const
+typename LocalFrame<DataPoint, _NFilter, T>::VectorType
+LocalFrame<DataPoint, _NFilter, T>::localFrameToWorld (const VectorType& _lq) const
 {
   MatrixType B;
   B << Base::primitiveGradient(), m_u, m_v;
