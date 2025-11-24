@@ -90,7 +90,7 @@ void testFunction(bool _bUnoriented = false, bool _bAddPositionNoise = false, bo
             VERIFY(Scalar(1.) - std::abs(fit.primitiveGradient(queryPos).dot(direction)) <= epsilon);
 
             // Projecting to tangent plane and going back to world should not change the position
-            VERIFY((fit.localFrameToWorld(fit.worldToLocalFrame(queryPos)) - queryPos).norm() <= epsilon);
+            VERIFY((fit.frameToWorld(fit.worldToFrame(queryPos)) - queryPos).norm() <= epsilon);
 
             if(!_bAddPositionNoise) {
               // Check if the query point is on the plane

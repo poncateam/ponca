@@ -58,16 +58,16 @@ public:
     //! \brief Value of the scalar field at the evaluation point
     //! \see method `#isSigned` of the plane fit to check if the sign is reliable
     PONCA_MULTIARCH [[nodiscard]] inline Scalar potential(const VectorType& _q, const bool /*convertToLocalBasis*/ = true) const {
-      VectorType x = Base::worldToLocalFrame(_q);
+      VectorType x = Base::worldToFrame(_q);
       return evalUV(*(x.data()+1),*(x.data()+2)) - *(x.data());
     }
 
     //! \brief Orthogonal projecting on the patch, such that h = f(u,v)
     PONCA_MULTIARCH [[nodiscard]] inline VectorType project (const VectorType& _q) const
     {
-        VectorType x = Base::worldToLocalFrame(_q);
+        VectorType x = Base::worldToFrame(_q);
         *(x.data()) = evalUV(*(x.data()+1),*(x.data()+2));
-        return Base::localFrameToWorld(x);
+        return Base::frameToWorld(x);
     }
 
     PONCA_MULTIARCH [[nodiscard]] inline const Scalar & h_uu () const { return *(m_x.data());   }
