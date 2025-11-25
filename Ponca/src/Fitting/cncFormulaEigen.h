@@ -34,7 +34,13 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
 /**
- * @file CorrectedNormalCurrentEigen.h
+ * @file cncFormulaEigen.h
+ * @brief Adapted version of CorrectedNormalCurrentFormulaEigen.h for Ponca.
+ *
+ * @details
+ * ## Original file :
+ * https://github.com/JacquesOlivierLachaud/PointCloudCurvCNC/blob/main/CorrectedNormalCurrentFormulaEigen.h
+ *
  * @author Jacques-Olivier Lachaud (\c jacques-olivier.lachaud@univ-savoie.fr)
  * Laboratory of Mathematics (CNRS, UMR 5127), University of Savoie, France
  * @author David Coeurjolly (\c david.coeurjolly@liris.cnrs.fr)
@@ -42,6 +48,15 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  *
  * @date 2022/06/05
  *
+ * ## Modifications made :
+ *
+ * - Renamed file name to cncFormulaEigen.h
+ * - Moved CNCEigen struct to Ponca::internal namespace
+ * - Adapted CNCEigen to use the Ponca DataPoint Types
+ *
+ * @author Florian Auberval (\c florian.auberval@irit.fr)
+ *
+ * @date 2025/11/19
  */
 
 #pragma once
@@ -50,6 +65,10 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 namespace Ponca::internal {
 
+/**
+ * @brief This class contains some stand-alone CorrectedNormalCurrent formulas for triangles,
+ * using eigen as linear algebra backend.
+ */
 template<typename DataPoint>
 struct CNCEigen {
 	using MatrixType = typename DataPoint::MatrixType;
