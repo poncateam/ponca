@@ -191,5 +191,5 @@ int main(const int argc, char** argv) {
     callSubTests<double, 3>();
     cout << " (ok), long double" << flush;
     callSubTests<long double, 3>();
-    cout << " (ok)"              << flush;
+    cout << " (ok)"              << endl;
 }
