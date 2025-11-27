@@ -18,6 +18,12 @@ protected:
     friend class KnnGraphRangeQuery<Traits>;
 
 public:
+    using difference_type   = std::ptrdiff_t;
+    using iterator_category = std::input_iterator_tag;
+    using value_type = int;
+    using pointer    = int*;
+    using reference  = int&;
+
     inline KnnGraphRangeIterator(KnnGraphRangeQuery<Traits>* query, int index = -1) : m_query(query), m_index(index) {}
 
 public:
@@ -29,8 +35,8 @@ public:
         m_query->advance(*this);
     }
 
-    int  operator *  () const{
-        return m_index;
+    inline reference operator *() const {
+        return const_cast<reference>(m_index);
     }
 
 protected:

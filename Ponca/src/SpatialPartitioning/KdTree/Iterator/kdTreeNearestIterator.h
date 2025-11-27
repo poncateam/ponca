@@ -12,6 +12,12 @@ template<typename Index>
 class KdTreeNearestIterator
 {
 public:
+    using difference_type   = std::ptrdiff_t;
+    using iterator_category = std::input_iterator_tag;
+    using value_type = Index;
+    using pointer    = Index*;
+    using reference  = Index&;
+
     inline KdTreeNearestIterator() = default;
     inline KdTreeNearestIterator(Index index) : m_index(index) {}
     virtual inline ~KdTreeNearestIterator() = default;
@@ -21,7 +27,9 @@ public:
     {return m_index != other.m_index;}
     inline void operator ++(int) {++m_index;}
     inline KdTreeNearestIterator& operator ++() {++m_index; return *this;}
-    inline Index operator * () const {return m_index;}
+    inline reference operator *() const {
+        return const_cast<reference>(m_index);
+    }
 
 protected:
     Index m_index {-1};
