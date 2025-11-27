@@ -15,8 +15,14 @@ protected:
     friend QueryT_;
 
 public:
-    using Scalar    = typename DataPoint::Scalar;
-    using QueryType = QueryT_;
+    using difference_type   = std::ptrdiff_t;
+    using iterator_category = std::input_iterator_tag;
+    using value_type = Index;
+    using pointer    = Index*;
+    using reference  = Index&;
+
+    using Scalar     = typename DataPoint::Scalar;
+    using QueryType  = QueryT_;
 
     inline KdTreeRangeIterator() = default;
     inline KdTreeRangeIterator(QueryType* query, Index index = -1) :
@@ -26,7 +32,9 @@ public:
     {return m_index != other.m_index;}
     inline void operator ++(int) {m_query->advance(*this);}
     inline KdTreeRangeIterator& operator++() {m_query->advance(*this); return *this;}
-    inline Index operator *() const {return m_index;}
+    inline reference operator *() const {
+       return const_cast<reference>(m_index);
+    }
 
 protected:
     QueryType* m_query {nullptr};
