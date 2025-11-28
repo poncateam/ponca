@@ -23,9 +23,17 @@ public:
     virtual inline ~KdTreeNearestIterator() = default;
 
 public:
+    inline bool operator ==(const KdTreeNearestIterator& other) const
+    {return m_index == other.m_index;}
     inline bool operator !=(const KdTreeNearestIterator& other) const
     {return m_index != other.m_index;}
-    inline void operator ++(int) {++m_index;}
+    /// Postfix increment
+    inline KdTreeNearestIterator operator++(int) {
+        KdTreeNearestIterator tmp = *this;
+        ++m_index;
+        return tmp;
+    }
+    /// Prefix increment
     inline KdTreeNearestIterator& operator ++() {++m_index; return *this;}
     inline reference operator *() const {
         return const_cast<reference>(m_index);

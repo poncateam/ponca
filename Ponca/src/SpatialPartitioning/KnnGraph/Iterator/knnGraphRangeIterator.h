@@ -27,12 +27,24 @@ public:
     inline KnnGraphRangeIterator(KnnGraphRangeQuery<Traits>* query, int index = -1) : m_query(query), m_index(index) {}
 
 public:
+    bool operator == (const KnnGraphRangeIterator& other) const{
+        return m_index == other.m_index;
+    }
+
     bool operator != (const KnnGraphRangeIterator& other) const{
         return m_index != other.m_index;
     }
 
-    void operator ++ (){
+    /// Postfix increment
+    inline KnnGraphRangeIterator operator++(int) {
+        KnnGraphRangeIterator tmp = *this;
         m_query->advance(*this);
+        return tmp;
+    }
+    /// Prefix increment
+    inline KnnGraphRangeIterator& operator ++ (){
+        m_query->advance(*this);
+        return *this;
     }
 
     inline reference operator *() const {

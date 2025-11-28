@@ -28,9 +28,17 @@ public:
     inline KdTreeRangeIterator(QueryType* query, Index index = -1) :
         m_query(query), m_index(index), m_start(0), m_end(0) {}
 
+    inline bool operator ==(const KdTreeRangeIterator& other) const
+    {return m_index == other.m_index;}
     inline bool operator !=(const KdTreeRangeIterator& other) const
     {return m_index != other.m_index;}
-    inline void operator ++(int) {m_query->advance(*this);}
+    /// Postfix increment
+    inline KdTreeRangeIterator operator++(int) {
+        KdTreeRangeIterator tmp = *this;
+        m_query->advance(*this);
+        return tmp;
+    }
+    /// Prefix increment
     inline KdTreeRangeIterator& operator++() {m_query->advance(*this); return *this;}
     inline reference operator *() const {
        return const_cast<reference>(m_index);
