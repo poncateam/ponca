@@ -8,12 +8,17 @@
 
 namespace Ponca {
 
+/*!
+ *  \brief Forward iterator to read the KdTreeNearestQuery.
+ *
+ *  \see KdTreeNearestQueryBase
+ */
 template<typename Index>
 class KdTreeNearestIterator
 {
 public:
+    using iterator_category = std::forward_iterator_tag;
     using difference_type   = std::ptrdiff_t;
-    using iterator_category = std::input_iterator_tag;
     using value_type = Index;
     using pointer    = Index*;
     using reference  = Index&;
@@ -23,18 +28,33 @@ public:
     virtual inline ~KdTreeNearestIterator() = default;
 
 public:
-    inline bool operator ==(const KdTreeNearestIterator& other) const
-    {return m_index == other.m_index;}
-    inline bool operator !=(const KdTreeNearestIterator& other) const
-    {return m_index != other.m_index;}
-    /// Postfix increment
+    /// \brief Inequality operand
+    inline bool operator !=(const KdTreeNearestIterator& other) const {
+        return m_index != other.m_index;
+    }
+
+    /// \breif Equality operand
+    inline bool operator ==(const KdTreeNearestIterator& other) const {
+        return m_index == other.m_index;
+    }
+
+    /// Prefix increment
+    inline KdTreeNearestIterator& operator ++() {
+        ++m_index;
+        return *this;
+    }
+
+    /// \brief Postfix increment
     inline KdTreeNearestIterator operator++(int) {
         KdTreeNearestIterator tmp = *this;
         ++m_index;
         return tmp;
     }
-    /// Prefix increment
-    inline KdTreeNearestIterator& operator ++() {++m_index; return *this;}
+
+    /// \brief Value increment
+    inline void operator +=(int i) {m_index += i;}
+
+    /// \brief Dereference operator
     inline reference operator *() const {
         return const_cast<reference>(m_index);
     }

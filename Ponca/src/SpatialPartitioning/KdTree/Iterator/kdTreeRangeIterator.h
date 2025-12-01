@@ -8,6 +8,15 @@
 
 namespace Ponca {
 
+/*!
+ *  \brief Forward iterator to read the KdTreeRangeQuery.
+ *
+ *  \note The increment logic resides in `KdTreeRangeQueryBase::advance(Iterator& it)`
+ *  As long as this advance doesn't update the internal state of the KdTreeRangeQuery object,
+ *  this iterator can be considered a forward iterator.
+ *
+ *  \see KdTreeRangeQueryBase
+ */
 template<typename Index, typename DataPoint, typename QueryT_>
 class KdTreeRangeIterator
 {
@@ -15,8 +24,8 @@ protected:
     friend QueryT_;
 
 public:
+    using iterator_category = std::forward_iterator_tag;
     using difference_type   = std::ptrdiff_t;
-    using iterator_category = std::input_iterator_tag;
     using value_type = Index;
     using pointer    = Index*;
     using reference  = Index&;
@@ -28,18 +37,30 @@ public:
     inline KdTreeRangeIterator(QueryType* query, Index index = -1) :
         m_query(query), m_index(index), m_start(0), m_end(0) {}
 
-    inline bool operator ==(const KdTreeRangeIterator& other) const
-    {return m_index == other.m_index;}
-    inline bool operator !=(const KdTreeRangeIterator& other) const
-    {return m_index != other.m_index;}
-    /// Postfix increment
+    /// \brief Inequality operand
+    inline bool operator !=(const KdTreeRangeIterator& other) const {
+        return m_index != other.m_index;
+    }
+
+    /// \breif Equality operand
+    inline bool operator ==(const KdTreeRangeIterator& other) const {
+        return m_index == other.m_index;
+    }
+
+    /// Prefix increment
+    inline KdTreeRangeIterator& operator++() {
+        m_query->advance(*this);
+        return *this;
+    }
+
+    /// \brief Postfix increment
     inline KdTreeRangeIterator operator++(int) {
         KdTreeRangeIterator tmp = *this;
         m_query->advance(*this);
         return tmp;
     }
-    /// Prefix increment
-    inline KdTreeRangeIterator& operator++() {m_query->advance(*this); return *this;}
+
+    /// \brief Dereference operator
     inline reference operator *() const {
        return const_cast<reference>(m_index);
     }
