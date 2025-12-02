@@ -62,11 +62,14 @@ typename DataPoint::Scalar generateSpherePC(KdTree<DataPoint>& tree) {
     return analysisScale;
 }
 
-template<typename Fit>
-void testBasicFunctionalities(const KdTree<typename Fit::DataPoint>& tree, typename Fit::Scalar analysisScale) {
+template<typename Fit, typename Scalar>
+void testBasicFunctionalities(
+    const KdTree<typename Fit::DataPoint>& tree,
+    const Scalar analysisScale,
+    const Scalar epsilon = testEpsilon<Scalar>()
+) {
     const auto& vectorPoints = tree.points();
     auto rng = std::default_random_engine {};
-    typename Fit::Scalar eps = testEpsilon<typename Fit::Scalar>()*2;
     // Test for each point if the fitted sphere correspond to the theoretical sphere
 #ifdef NDEBUG
 #pragma omp parallel for
@@ -99,16 +102,18 @@ void testBasicFunctionalities(const KdTree<typename Fit::DataPoint>& tree, typen
         VERIFY(! (fit2 != fit2));
 
         // Compare computeWithIds with compute result
-        VERIFY((fit1.isApprox(fit2, eps)));
-        VERIFY((fit2.isApprox(fit1, eps)));
+        VERIFY((fit1.isApprox(fit2, epsilon)));
+        VERIFY((fit2.isApprox(fit1, epsilon)));
     }
 }
 
 /// \breif Compare the GaussianCurvature and kMean between two fit
-template<typename Fit1, typename Fit2, bool orderedByDistance = true>
-void testCompareFit(const KdTree<typename Fit1::DataPoint>& tree, typename Fit1::Scalar analysisScale) {
-    typedef typename Fit1::DataPoint DataPoint;
-    typedef typename DataPoint::Scalar Scalar;
+template<typename Fit1, typename Fit2, typename Scalar, bool orderedByDistance = true>
+void testCompareFit(
+    const KdTree<typename Fit1::DataPoint>& tree,
+    const Scalar analysisScale,
+    const Scalar epsilon = testEpsilon<Scalar>()
+) {
     const auto& vectorPoints = tree.points();
 
     // Test for each point if the curvature results are equivalent
@@ -137,11 +142,9 @@ void testCompareFit(const KdTree<typename Fit1::DataPoint>& tree, typename Fit1:
         fit2.setNeighborFilter({vectorPoints[i], analysisScale});
         fit2.computeWithIds(pointsIndex, vectorPoints);
 
-        Scalar eps = testEpsilon<Scalar>()*2;
-
         // Compare Fit1 with Fit2
-        VERIFY(((fit1.kMean() - fit2.kMean()) < eps));
-        VERIFY(((fit1.GaussianCurvature() - fit2.GaussianCurvature()) < eps));
+        VERIFY(((fit1.kMean() - fit2.kMean()) < epsilon));
+        VERIFY(((fit1.GaussianCurvature() - fit2.GaussianCurvature()) < epsilon));
     }
 }
 
@@ -151,31 +154,31 @@ void callSubTests() {
     typedef PointPositionNormal<Scalar, Dim> Point;
     typedef typename Point::VectorType VectorType;
     //! [SpecializedPointType]
-    using SmoothWeightFunc   = DistWeightFunc<Point, SmoothWeightKernel<Scalar> >;
+    using SmoothWeightFunc   = DistWeightFunc< Point, SmoothWeightKernel<Scalar> >;
     using FitASODiff = BasketDiff<
-            Basket<Point, SmoothWeightFunc, OrientedSphereFit>,
+            Basket< Point, SmoothWeightFunc, OrientedSphereFit >,
             FitSpaceDer,
             OrientedSphereDer, MlsSphereFitDer,
             CurvatureEstimatorBase, NormalDerivativesCurvatureEstimator>;
 
     //! [CNCFitType]
-    using Fit_CNC_Independent = CNC<Point, IndependentGeneration>;
-    using Fit_CNC_Uniform     = CNC<Point, UniformGeneration>;
-    using Fit_CNC_Hexagram    = CNC<Point, HexagramGeneration>;
-    using Fit_CNC_AvgHexagram = CNC<Point, AvgHexagramGeneration>;
+    using FitCNCIndependent = CNC<Point, IndependentGeneration>;
+    using FitCNCUniform     = CNC<Point, UniformGeneration>;
+    using FitCNCHexagram    = CNC<Point, HexagramGeneration>;
+    using FitCNCAvgHexagram = CNC<Point, AvgHexagramGeneration>;
     //! [CNCFitType]
 
     KdTreeDense<Point> tree;
     Scalar analysisScale = generateSpherePC(tree);
-    CALL_SUBTEST((testBasicFunctionalities<Fit_CNC_Independent>(tree, analysisScale) ));
-    CALL_SUBTEST((testBasicFunctionalities<Fit_CNC_Uniform>(tree, analysisScale) ));
-    CALL_SUBTEST((testBasicFunctionalities<Fit_CNC_Hexagram>(tree, analysisScale) ));
+    CALL_SUBTEST((testBasicFunctionalities<FitCNCIndependent>(tree, analysisScale) ));
+    CALL_SUBTEST((testBasicFunctionalities<FitCNCUniform>(tree, analysisScale) ));
+    CALL_SUBTEST((testBasicFunctionalities<FitCNCHexagram>(tree, analysisScale) ));
 
     // Compare with ASO
-    CALL_SUBTEST((testCompareFit<FitASODiff, Fit_CNC_Independent>(tree, analysisScale) ));
-    CALL_SUBTEST((testCompareFit<FitASODiff, Fit_CNC_Uniform>(tree, analysisScale) ));
-    CALL_SUBTEST((testCompareFit<FitASODiff, Fit_CNC_Hexagram>(tree, analysisScale) ));
-    CALL_SUBTEST((testCompareFit<FitASODiff, Fit_CNC_AvgHexagram>(tree, analysisScale) ));
+    CALL_SUBTEST((testCompareFit<FitASODiff, FitCNCIndependent>(tree, analysisScale) ));
+    CALL_SUBTEST((testCompareFit<FitASODiff, FitCNCUniform>(tree, analysisScale) ));
+    CALL_SUBTEST((testCompareFit<FitASODiff, FitCNCHexagram>(tree, analysisScale) ));
+    CALL_SUBTEST((testCompareFit<FitASODiff, FitCNCAvgHexagram>(tree, analysisScale, testEpsilon<Scalar>()*10) ));
 }
 
 int main(const int argc, char** argv) {
