@@ -14,12 +14,16 @@ All rights reserved.
 #include <Ponca/src/Fitting/weightFunc.h>
 
 namespace Ponca::internal {
-    /*!
-        \internal
-        \brief Generates the triangles used by the CNC Fit depending on the method.
-            As an output, pushes every generated triangle into the "triangles" vector and returns the number of triangle that was pushed into the List.
-        \note Needs to be implemented for each triangle generation method by specializing the template over the TriangleGenerationMethod
-    */
+    /*! \internal
+     *
+     * \brief Generates the triangles used by the CNC Fit depending on the method.
+     *
+     * As an output, pushes every generated triangle into the `triangles` vector and returns the number of triangle that was pushed to the List.
+     *
+     * \note Needs to be implemented for each triangle generation method by specializing the template over the `TriangleGenerationMethod`
+     *
+     * \see TriangleGenerationMethod
+     */
     template <TriangleGenerationMethod Method, typename P>
     struct TriangleGenerator {
         using VectorType = typename P::VectorType;
