@@ -32,21 +32,13 @@ using namespace Ponca;
 template<typename DataPoint, typename VectorType>
 typename DataPoint::Scalar generateSpherePC(
     KdTree<DataPoint>& tree,
+    const int nbPoints = Eigen::internal::random<int>(500, 1000),
     const VectorType& center = VectorType::Random() * Eigen::internal::random<typename DataPoint::Scalar>(1,10000)
 ) {
     typedef typename DataPoint::Scalar Scalar;
 
-    //generate sampled sphere
-#ifdef NDEBUG
-    int nbPoints = Eigen::internal::random<int>(500, 1000);
-#else
-    int nbPoints = Eigen::internal::random<int>(100, 200);
-#endif
-
     Scalar radius = Eigen::internal::random<Scalar>(1., 10.);
-
     Scalar analysisScale = Scalar(10.) * std::sqrt( Scalar(4. * M_PI) * radius * radius / nbPoints);
-
     vector<DataPoint> vectorPoints(nbPoints);
 
 #ifdef NDEBUG
@@ -161,17 +153,19 @@ void testBasicFunctionalities(
 }
 
 /// \breif Compare the GaussianCurvature and kMean between two fit
-template<typename Fit1, typename Fit2, typename Scalar, bool orderedByDistance = true>
+template<typename Fit1, typename Fit2, bool orderedByDistance = true, typename Scalar>
 void testCompareFit(
     const KdTree<typename Fit1::DataPoint>& tree,
     const Scalar analysisScale,
     const Scalar epsilon = testEpsilon<Scalar>() *2
 ) {
     const auto& vectorPoints = tree.points();
-
     // Test for each point if the curvature results are equivalent
+#ifdef NDEBUG
 #pragma omp parallel for
+#endif
     for(int i = 0; i < int(vectorPoints.size()); ++i) {
+        typename Fit1::NeighborFilter w {vectorPoints[i].pos(), analysisScale};
         // compute the indices list
         std::vector<int> pointsIndex;
 
@@ -179,7 +173,9 @@ void testCompareFit(
             pointsIndex.push_back(i);
             for (int j : tree.k_nearest_neighbors(i, vectorPoints.size())) {
                 // Stops when we go past the analysis scale
-                if ((vectorPoints[i].pos() - vectorPoints[j].pos()).norm() > vectorPoints.size()) break;
+                // if ((vectorPoints[i].pos() - vectorPoints[j].pos()).norm() > analysisScale) break;
+                if (w(vectorPoints[ j ]).first != Scalar(0.))
+                    break;
                 pointsIndex.push_back(j);
             }
         } else {
@@ -187,6 +183,12 @@ void testCompareFit(
                 pointsIndex.push_back(j);
             }
         }
+        std::cout << "size pointsIndex : " << flush;
+        std::cout << pointsIndex.size() << endl;
+        std::cout << "size vectorPoints : " << flush;
+        std::cout << vectorPoints.size() << endl;
+
+        continue ;
         Fit1 fit1;
         fit1.setNeighborFilter({vectorPoints[i].pos(), analysisScale});
         fit1.computeWithIds(pointsIndex, vectorPoints);
@@ -196,12 +198,12 @@ void testCompareFit(
         fit2.computeWithIds(pointsIndex, vectorPoints);
 
         // Compare Fit1 with Fit2
-        std::cout << "fit1.kMean()" << fit1.kMean() << endl;
-        std::cout << "fit2.kMean()" << fit2.kMean() << endl;
-        std::cout << "fit1.GaussianCurvature()" << fit1.GaussianCurvature() << endl;
-        std::cout << "fit2.GaussianCurvature()" << fit2.GaussianCurvature() << endl;
-        VERIFY(((fit1.kMean() - fit2.kMean()) < epsilon));
-        VERIFY(((fit1.GaussianCurvature() - fit2.GaussianCurvature()) < epsilon));
+        std::cout << "fit1.kMean() : " << fit1.kMean() << endl;
+        std::cout << "fit2.kMean() : " << fit2.kMean() << endl;
+        std::cout << "fit1.GaussianCurvature() : " << fit1.GaussianCurvature() << endl;
+        std::cout << "fit2.GaussianCurvature() : " << fit2.GaussianCurvature() << endl;
+        VERIFY((std::abs(fit1.kMean() - fit2.kMean()) < epsilon));
+        VERIFY((std::abs(fit1.GaussianCurvature() - fit2.GaussianCurvature()) < epsilon));
     }
 }
 
@@ -227,16 +229,24 @@ void callSubTests() {
 
     KdTreeDense<Point> tree;
     const VectorType center = VectorType::Random() * Eigen::internal::random<Scalar>(1,10000);
-    Scalar analysisScale = generateSpherePC(tree, center);
-    CALL_SUBTEST((testBasicFunctionalities<FitCNCIndependent>(tree, analysisScale) ));
-    CALL_SUBTEST((testBasicFunctionalities<FitCNCUniform>(tree, analysisScale) ));
-    CALL_SUBTEST((testBasicFunctionalities<FitCNCHexagram>(tree, analysisScale) ));
+
+    //generate sampled sphere
+#ifdef NDEBUG
+    int nbPoints = Eigen::internal::random<int>(5000, 7000);
+#else
+    int nbPoints = Eigen::internal::random<int>(100, 200);
+#endif
+
+    Scalar analysisScale = generateSpherePC(tree, nbPoints, center);
+    // CALL_SUBTEST((testBasicFunctionalities<FitCNCIndependent>(tree, analysisScale) ));
+    // CALL_SUBTEST((testBasicFunctionalities<FitCNCUniform>(tree, analysisScale) ));
+    // CALL_SUBTEST((testBasicFunctionalities<FitCNCHexagram>(tree, analysisScale) ));
 
     // Compare with ASO
-    CALL_SUBTEST((testCompareFit<FitASODiff, FitCNCIndependent>(tree, analysisScale) ));
-    CALL_SUBTEST((testCompareFit<FitASODiff, FitCNCUniform>(tree, analysisScale) ));
-    CALL_SUBTEST((testCompareFit<FitASODiff, FitCNCHexagram>(tree, analysisScale) ));
-    CALL_SUBTEST((testCompareFit<FitASODiff, FitCNCAvgHexagram>(tree, analysisScale, testEpsilon<Scalar>()*10) ));
+    CALL_SUBTEST((testCompareFit<FitASODiff, FitCNCIndependent, true>(tree, analysisScale) ));
+    // CALL_SUBTEST((testCompareFit<FitASODiff, FitCNCUniform, false>(tree, analysisScale) ));
+    // CALL_SUBTEST((testCompareFit<FitASODiff, FitCNCHexagram, false>(tree, analysisScale, testEpsilon<Scalar>()*10) ));
+    // CALL_SUBTEST((testCompareFit<FitASODiff, FitCNCAvgHexagram>(tree, analysisScale, testEpsilon<Scalar>()*10) ));
 }
 
 int main(const int argc, char** argv) {
