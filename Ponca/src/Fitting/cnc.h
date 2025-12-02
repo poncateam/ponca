@@ -176,18 +176,24 @@ protected:
     VectorType m_v1;
     VectorType m_v2;
 
+    //! \brief Represent the current state of the fit (finalize function
+    //! update the state)
+    FIT_RESULT m_eCurrentState {UNDEFINED};
 public:
     PONCA_FITTING_DECLARE_FINALIZE
 
     /*! \brief Set the scalar field values to 0 and reset the isNormalized() status
     */
     PONCA_MULTIARCH inline void init() {
+        m_eCurrentState = UNDEFINED;
         m_A  = Scalar(0);
         m_H  = Scalar(0);
         m_G  = Scalar(0);
 
         m_k1 = Scalar(0);
         m_k2 = Scalar(0);
+
+        m_triangles.clear();
     }
 
     /*!
@@ -195,7 +201,7 @@ public:
      * \tparam PointContainer An STL-like container storing the points
      */
     template <typename PointContainer>
-    PONCA_MULTIARCH inline FIT_RESULT compute( const PointContainer& points);
+    PONCA_MULTIARCH [[nodiscard]] inline FIT_RESULT compute( const PointContainer& points);
 
     /*!
      * \brief Compute function that iterates over a subset of sampled points from an STL-Like container.
@@ -203,16 +209,11 @@ public:
      * \tparam PointContainer An STL-like container storing the points
      */
     template <typename IndexRange, typename PointContainer>
-    PONCA_MULTIARCH inline FIT_RESULT computeWithIds( const IndexRange& ids, const PointContainer& points );
+    PONCA_MULTIARCH [[nodiscard]] inline FIT_RESULT computeWithIds( const IndexRange& ids, const PointContainer& points );
 
     /*! \brief Returns the number of fitted triangles */
-    PONCA_MULTIARCH inline int getNumTriangles() const {
-        return m_nb_vt;
-    }
-
-    /*! \brief Returns the triangles */
-    PONCA_MULTIARCH inline int getTriangles() const {
-        return m_triangles;
+    PONCA_MULTIARCH [[nodiscard]] inline size_t getNumTriangles() const {
+        return static_cast<size_t>(m_nb_vt);
     }
 
     PONCA_FITTING_APIDOC_SETWFUNC
@@ -220,33 +221,40 @@ public:
         m_nFilter  = _nFilter;
     }
 
-    bool operator==(const CNC& other) const {
+    PONCA_MULTIARCH [[nodiscard]] bool operator==(const CNC& other) const {
         // We use the matrix to compare the fitting results
-        return (m_T11 == other.m_T11) && (m_T12 == other.m_T12) && (m_T13 == other.m_T13) && (m_T22 == other.m_T22) && (m_T23 == other.m_T23) && (m_T33 == other.m_T33);
+        return (m_eCurrentState == other.m_eCurrentState) && (m_T11 == other.m_T11) && (m_T12 == other.m_T12) && (m_T13 == other.m_T13) && (m_T22 == other.m_T22) && (m_T23 == other.m_T23) && (m_T33 == other.m_T33);
     }
-    bool operator!=(const CNC& other) const {
+    PONCA_MULTIARCH [[nodiscard]] bool operator!=(const CNC& other) const {
         // We use the matrix to compare the fitting results
         return !(this == &other);
     }
 
     template<typename Fit>
-    bool isApprox(const Fit& other, const Scalar& epsilon = Eigen::NumTraits<Scalar>::dummy_precision()) const {
+    PONCA_MULTIARCH [[nodiscard]] bool isApprox(const Fit& other, const Scalar& epsilon = Eigen::NumTraits<Scalar>::dummy_precision()) const {
+        std::cout << "m_eCurrentState : " << (m_eCurrentState == other.m_eCurrentState) << std::endl;
+        std::cout << "kMean : " << kMean() << " other.kMean() : " << other.kMean() << std::endl;
+        std::cout << "GaussianCurvature() : " << GaussianCurvature() << " other.GaussianCurvature() : " << other.GaussianCurvature() << std::endl;
         // Simply compare the kMean and kGauss results
-        return std::abs(kMean()  - other.kMean())  < epsilon
-            && std::abs(GaussianCurvature() - other.GaussianCurvature()) < epsilon;
+        return (m_eCurrentState == other.m_eCurrentState)
+            && (std::abs(kMean()  - other.kMean())  < epsilon)
+            && (std::abs(GaussianCurvature() - other.GaussianCurvature()) < epsilon);
     }
 
-    PONCA_MULTIARCH inline Scalar kmin() const { return m_k1; }
+    /*! \brief Is the fitted primitive ready to use (finalize has been called and the result is stable) */
+    PONCA_MULTIARCH [[nodiscard]] inline bool isStable() const { return m_eCurrentState == STABLE; }
 
-    PONCA_MULTIARCH inline Scalar kmax() const { return m_k2; }
+    PONCA_MULTIARCH [[nodiscard]] inline Scalar kmin() const { return m_k1; }
 
-    PONCA_MULTIARCH inline VectorType kminDirection() const { return m_v1; }
+    PONCA_MULTIARCH [[nodiscard]] inline Scalar kmax() const { return m_k2; }
 
-    PONCA_MULTIARCH inline VectorType kmaxDirection() const { return m_v2; }
+    PONCA_MULTIARCH [[nodiscard]] inline VectorType kminDirection() const { return m_v1; }
 
-    PONCA_MULTIARCH inline Scalar kMean() const { return m_H; }
+    PONCA_MULTIARCH [[nodiscard]] inline VectorType kmaxDirection() const { return m_v2; }
 
-    PONCA_MULTIARCH inline Scalar GaussianCurvature() const { return m_G; }
+    PONCA_MULTIARCH [[nodiscard]] inline Scalar kMean() const { return m_H; }
+
+    PONCA_MULTIARCH [[nodiscard]] inline Scalar GaussianCurvature() const { return m_G; }
 }; //class CNC
 
 } // namespace Ponca
