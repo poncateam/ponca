@@ -19,8 +19,13 @@ namespace Ponca
 {
 
 namespace internal {
-
-// triangle storing indices of points
+/*!
+ * Stores the three points and normals of the triangles and provides access to Corrected Normal Current formula
+ *
+ * \tparam DataPoint Type of input points.
+ *
+ * \see CNCEigen
+ */
 template < class DataPoint >
 struct Triangle {
     typedef typename DataPoint::Scalar Scalar;
@@ -29,7 +34,6 @@ struct Triangle {
 
     std::array < VectorType, 3 > points;
     std::array < VectorType, 3 > normals;
-    // Maybe need to store the normal too
 
     Triangle(DataPoint pointA, DataPoint pointB, DataPoint pointC) {
         points = {
@@ -73,7 +77,13 @@ struct Triangle {
 	DEFINE_CNC_FUNC(muXYInterpolatedU, MatrixType)
 };
 
-/// \copydoc Ponca::DistWeightFunc
+/*!
+ * \copydoc Ponca::DistWeightFunc
+ *
+ * This variant of the DistWeightFunc class also stores the normal of the evaluation point.
+ *
+ * \see Ponca::DistWeightFunc
+ */
 template <class DataPoint>
 class DistanceFilterWithNormal : public DistWeightFunc<DataPoint, ConstantWeightKernel<typename DataPoint::Scalar>> {
 public:
@@ -109,14 +119,23 @@ protected:
 };
 } // namespace internal
 
-/*!
-    \brief CNC generation of triangles from a set of points
-*/
 
+/*!
+ * \breif Generation method of the triangles for the Corrected Normal Current formula
+ */
 enum TriangleGenerationMethod {
     UniformGeneration, HexagramGeneration, IndependentGeneration, AvgHexagramGeneration
 };
 
+/*!
+ * \brief Corrected Normal Current Fit type.
+ *
+ * This fitting method generates triangles from a set a points cloud and use a statistical formula to compute :
+ * - The principal curvatures values and directions
+ * - The mean and gaussian curvatures
+ *
+ * \see PROVIDES_PRINCIPAL_CURVATURES
+*/
 template < class P, TriangleGenerationMethod _method = UniformGeneration>
 class CNC : ComputeObject<CNC<P, _method>> {
 protected:
