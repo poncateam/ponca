@@ -20,26 +20,28 @@ namespace Ponca::internal {
      *
      * As an output, pushes every generated triangle into the `triangles` vector and returns the number of triangle that was pushed to the List.
      *
-     * \note Needs to be implemented for each triangle generation method by specializing the template over the `TriangleGenerationMethod`
+     * \note Needs to be implemented for each triangle generation method by specializing the template over the `TriangleGenerationMethod` enum.
      *
      * \see TriangleGenerationMethod
      */
     template <TriangleGenerationMethod Method, typename P>
     struct TriangleGenerator {
         using VectorType = typename P::VectorType;
-        template <typename IndexRange, typename PointContainer>
+        template <typename IndexRange, typename PointContainer, typename NeighborFilter>
         static int generate(
             const IndexRange& /*ids*/,
             const PointContainer& /*points*/,
-            const VectorType& /*_evalPointPos*/, const VectorType& /*_evalPointNormal*/,
+            const NeighborFilter& /*w*/,
             std::vector<Triangle<P>>& /*triangles*/
         ) {
-            static_assert(true, "Triangle generation method not implemented!");
-            return 0;
+            throw std::invalid_argument("Triangle generation method not implemented!");
         }
     };
 
-    /// Generates the triangles used by the CNC Fit using UniformGeneration
+    /*! \copydoc TriangleGenerator
+     *
+     * Generates the triangles using UniformGeneration
+     */
     template <typename P>
     struct TriangleGenerator<UniformGeneration, P> {
     private:
@@ -58,11 +60,12 @@ namespace Ponca::internal {
             int nb_vt = 0; // Number of valid generated triangles
 
             // Makes a new array
-            std::vector<int> indices(ids.size());
-            for ( int i : ids ) {
-                if (w(points[ i ]).first != Scalar(0.))
-                    continue; // Skip the points that are outside the kernel radius
-                indices[i] = ids[i];
+            std::vector<int> indices;
+            for ( int index : ids ) {
+                // Skip the points that are outside the kernel radius
+                if (w(points[ index ]).first != Scalar(0.))
+                    continue;
+                indices.push_back(index);
             }
 
             for (int i = 0; i < maxTriangles; ++i) {
@@ -79,7 +82,10 @@ namespace Ponca::internal {
         }
     };
 
-    /// Generates the triangles used by the CNC Fit using IndependentGeneration
+    /*! \copydoc TriangleGenerator
+     *
+     * Generates the triangles using IndependentGeneration
+     */
     template <typename P>
     struct TriangleGenerator<IndependentGeneration, P> {
     private:
@@ -98,11 +104,12 @@ namespace Ponca::internal {
             int nb_vt = 0; // Number of valid generated triangles
 
             // Makes a new array to shuffle
-            std::vector<int> indices(ids.size());
-            for ( int i : ids ) {
-                if (w(points[ i ]).first != Scalar(0.))
-                    continue; // Skip the points that are outside the kernel radius
-                indices[i] = ids[i];
+            std::vector<int> indices;
+            for ( int index : ids ) {
+                // Skip the points that are outside the kernel radius
+                if (w(points[ index ]).first != Scalar(0.))
+                    continue;
+                indices.push_back(index);
             }
 
             // Shuffles the neighbors
@@ -128,7 +135,11 @@ namespace Ponca::internal {
         static constexpr Scalar avg_normal_coef {Scalar(0.5)};
     };
 
-    /// Generates the triangles used by the CNC Fit using HexagramGeneration
+
+    /*! \copydoc TriangleGenerator
+     *
+     * Generates the triangles using HexagramGeneration
+     */
     template <typename P>
     struct TriangleGenerator<HexagramGeneration, P> : protected HexagramBase<P> {
         using VectorType = typename P::VectorType;
@@ -148,8 +159,9 @@ namespace Ponca::internal {
             Scalar avg_d = Scalar(0);
 
             for ( int index : ids ) {
+                // Skip the points that are outside the kernel radius
                 if (w(points[ index ]).first != Scalar(0.))
-                    continue; // Skip the points that are outside the kernel radius
+                    continue;
                 auto p = points[ index ];
                 avg_d += ( p.pos() - c ).norm();
                 a     += p.normal();
@@ -189,6 +201,10 @@ namespace Ponca::internal {
 
             // Compute closest points.
             for ( int index : ids ) {
+                // Skip the points that are outside the kernel radius
+                if (w(points[ index ]).first != Scalar(0.))
+                    continue;
+
                 VectorType p = points[ index ].pos();
                 if ( p == c ) continue;
                 const VectorType d = p - c;
@@ -209,7 +225,10 @@ namespace Ponca::internal {
         }
     };
 
-    /// Generates the triangles used by the CNC Fit using AvgHexagramGeneration
+    /*! \copydoc TriangleGenerator
+     *
+     * Generates the triangles using AvgHexagramGeneration
+     */
     template <typename P>
     struct TriangleGenerator<AvgHexagramGeneration, P> : protected HexagramBase<P> {
         using VectorType = typename P::VectorType;

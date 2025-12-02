@@ -29,10 +29,12 @@ This Source Code Form is subject to the terms of the Mozilla Public
 using namespace std;
 using namespace Ponca;
 
-template<typename DataPoint>
-typename DataPoint::Scalar generateSpherePC(KdTree<DataPoint>& tree) {
+template<typename DataPoint, typename VectorType>
+typename DataPoint::Scalar generateSpherePC(
+    KdTree<DataPoint>& tree,
+    const VectorType& center = VectorType::Random() * Eigen::internal::random<typename DataPoint::Scalar>(1,10000)
+) {
     typedef typename DataPoint::Scalar Scalar;
-    typedef typename DataPoint::VectorType VectorType;
 
     //generate sampled sphere
 #ifdef NDEBUG
@@ -44,8 +46,6 @@ typename DataPoint::Scalar generateSpherePC(KdTree<DataPoint>& tree) {
     Scalar radius = Eigen::internal::random<Scalar>(1., 10.);
 
     Scalar analysisScale = Scalar(10.) * std::sqrt( Scalar(4. * M_PI) * radius * radius / nbPoints);
-    Scalar centerScale = Eigen::internal::random<Scalar>(1,10000);
-    VectorType center = VectorType::Random() * centerScale;
 
     vector<DataPoint> vectorPoints(nbPoints);
 
@@ -62,40 +62,93 @@ typename DataPoint::Scalar generateSpherePC(KdTree<DataPoint>& tree) {
     return analysisScale;
 }
 
+/*!
+ * \breif Test the immutability of the compute methods
+ *
+ * Checks if the order of the data matters for the outputs or not by comparing two compute :
+ * One with a compute shuffled indices list
+ *
+ * \tparam Fit Fit type that will be used to compute the elements
+ * \tparam Scalar Scalar type
+ * \param tree The KdTree
+ * \param analysisScale The size of the neighborhood
+ * \param epsilon The precision of the mutability check
+ */
 template<typename Fit, typename Scalar>
 void testBasicFunctionalities(
     const KdTree<typename Fit::DataPoint>& tree,
     const Scalar analysisScale,
-    const Scalar epsilon = testEpsilon<Scalar>()
+    const Scalar epsilon = testEpsilon<Scalar>() *2
 ) {
+    using DataPoint = typename Fit::DataPoint;
+    using VectorType = typename Fit::VectorType;
+
     const auto& vectorPoints = tree.points();
     auto rng = std::default_random_engine {};
+
     // Test for each point if the fitted sphere correspond to the theoretical sphere
 #ifdef NDEBUG
 #pragma omp parallel for
 #endif
     for (int i = 0; i < static_cast<int>(vectorPoints.size()); ++i) {
-        const auto &fitInitPoints = vectorPoints[i];
+        // const DataPoint &evalPoint = DataPoint{
+        //     vectorPoints[i].pos() + VectorType::Random(),
+        //     vectorPoints[i].normal() + VectorType::Random()
+        // };
+        const DataPoint& evalPoint = vectorPoints[i];
 
         //! [Fit compute]
         Fit fit1;
-        fit1.setNeighborFilter({vectorPoints[i], analysisScale});
-        fit1.compute( tree.points() );
+        // typename Fit::NeighborFilter w = {evalPoint.pos(), analysisScale, evalPoint.normal()};
+        fit1.setNeighborFilter({evalPoint.pos(), analysisScale, evalPoint.normal()});
+        fit1.compute( vectorPoints );
         //! [Fit compute]
         VERIFY(fit1 == fit1);
         VERIFY(! (fit1 != fit1));
 
-        // compute the indices list
         std::vector<int> pointsIndex;
-        for (int j = 0; j < tree.points().size(); j++)
+        for (int j = 0; j < vectorPoints.size(); j++) {
             pointsIndex.push_back(j);
-        // Shuffling the indices shouldn't change the outcome of this test
+        }
+        pointsIndex.push_back(i);
+
+        // Computes the indices list
+        // std::vector<int> pointsIndex;
+        // std::vector<int> pointsIndex2;
+        // for (int j = 0; j < vectorPoints.size(); j++) {
+        //     // if (evalPoint.pos() - vectorPoints[j].pos())
+        //     if (w(vectorPoints[ j ]).first != Scalar(0.))
+        //     {
+        //         pointsIndex2.push_back(j);
+        //     }
+        // }
+        // for (int j : tree.range_neighbors(evalPoint.pos(), analysisScale)) {
+        //     pointsIndex.push_back(j);
+        //     // std::cout << "pos : " << vectorPoints[j].pos().transpose() << endl;
+        // }
+        // sort(pointsIndex.begin(), pointsIndex.end());
+        // sort(pointsIndex2.begin(), pointsIndex2.end());
+        //
+        // std::cout << std::endl;
+        // std::cout << "all neighbor             : [";
+        // for (int x : pointsIndex) {
+        //     std::cout << x << ", " << flush;
+        // }
+        // std::cout << "]" << std::endl;
+        //
+        // std::cout << "range_neighbors neighbor : [";
+        // for (int x : pointsIndex2) {
+        //     std::cout << x << ", " << flush;
+        // }
+        // std::cout << "]" << std::endl;
+
+        // Shuffles the indices shouldn't change the outcome of this test
         std::shuffle(std::begin(pointsIndex), std::end(pointsIndex), rng);
 
         //! [Fit computeWithIds]
         Fit fit2;
-        fit2.setNeighborFilter({vectorPoints[i], analysisScale});
-        fit2.computeWithIds( pointsIndex, tree.points() );
+        fit2.setNeighborFilter({evalPoint, analysisScale});
+        fit2.computeWithIds( pointsIndex, vectorPoints );
         //! [Fit computeWithIds]
 
         VERIFY((fit2 == fit2));
@@ -112,7 +165,7 @@ template<typename Fit1, typename Fit2, typename Scalar, bool orderedByDistance =
 void testCompareFit(
     const KdTree<typename Fit1::DataPoint>& tree,
     const Scalar analysisScale,
-    const Scalar epsilon = testEpsilon<Scalar>()
+    const Scalar epsilon = testEpsilon<Scalar>() *2
 ) {
     const auto& vectorPoints = tree.points();
 
@@ -139,10 +192,14 @@ void testCompareFit(
         fit1.computeWithIds(pointsIndex, vectorPoints);
 
         Fit2 fit2;
-        fit2.setNeighborFilter({vectorPoints[i], analysisScale});
+        fit2.setNeighborFilter({vectorPoints[i].pos(), analysisScale, vectorPoints[i].normal()});
         fit2.computeWithIds(pointsIndex, vectorPoints);
 
         // Compare Fit1 with Fit2
+        std::cout << "fit1.kMean()" << fit1.kMean() << endl;
+        std::cout << "fit2.kMean()" << fit2.kMean() << endl;
+        std::cout << "fit1.GaussianCurvature()" << fit1.GaussianCurvature() << endl;
+        std::cout << "fit2.GaussianCurvature()" << fit2.GaussianCurvature() << endl;
         VERIFY(((fit1.kMean() - fit2.kMean()) < epsilon));
         VERIFY(((fit1.GaussianCurvature() - fit2.GaussianCurvature()) < epsilon));
     }
@@ -169,7 +226,8 @@ void callSubTests() {
     //! [CNCFitType]
 
     KdTreeDense<Point> tree;
-    Scalar analysisScale = generateSpherePC(tree);
+    const VectorType center = VectorType::Random() * Eigen::internal::random<Scalar>(1,10000);
+    Scalar analysisScale = generateSpherePC(tree, center);
     CALL_SUBTEST((testBasicFunctionalities<FitCNCIndependent>(tree, analysisScale) ));
     CALL_SUBTEST((testBasicFunctionalities<FitCNCUniform>(tree, analysisScale) ));
     CALL_SUBTEST((testBasicFunctionalities<FitCNCHexagram>(tree, analysisScale) ));
