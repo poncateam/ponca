@@ -9,12 +9,14 @@
 // Include Ponca Fitting components
 #include "src/Fitting/defines.h"
 #include "src/Fitting/enums.h"
+#include "src/Fitting/compute.h"
 #include "src/Fitting/basket.h"
 
 #include "src/Fitting/weightKernel.h"
 #include "src/Fitting/weightFunc.h"
 
 // Primitives
+#include "src/Fitting/primitive.h"
 #include "src/Fitting/linePrimitive.h"
 #include "src/Fitting/plane.h"
 #include "src/Fitting/algebraicSphere.h"
