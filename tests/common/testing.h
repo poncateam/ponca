@@ -39,6 +39,12 @@ static bool QUICK_TESTS =
 false;
 #endif
 
+#ifdef PONCA_COVERAGE_ENABLED
+#include "Ponca/Common"
+#include "Ponca/Fitting"
+#include "Ponca/SpatialPartitioning"
+#endif
+
 #define PONCA_PP_MAKE_STRING2(S) #S
 #define PONCA_PP_MAKE_STRING(S) PONCA_PP_MAKE_STRING2(S)
 
