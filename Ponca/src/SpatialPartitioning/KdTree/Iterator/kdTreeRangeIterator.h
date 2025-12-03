@@ -9,11 +9,15 @@
 namespace Ponca {
 
 /*!
- *  \brief Forward iterator to read the KdTreeRangeQuery.
+ *  \brief Forward iterator to read the `KdTreeRangeQuery`.
+ *
+ *  As this is an input iterator, we don't guarantee anything else than reading and incrementing values with it.
+ *  If you need to analyse the values with algorithms that relies on forward or more complex iterators,
+ *  we suggest copying the values inside a std::vector<Index>.
  *
  *  \note The increment logic resides in `KdTreeRangeQueryBase::advance(Iterator& it)`
- *  As long as this advance doesn't update the internal state of the KdTreeRangeQuery object,
- *  this iterator can be considered a forward iterator.
+ *  As long as this advance method doesn't update the internal state of the `KdTreeRangeQuery` object,
+ *  this iterator can be duplicated without causing issues.
  *
  *  \see KdTreeRangeQueryBase
  */
@@ -24,11 +28,11 @@ protected:
     friend QueryT_;
 
 public:
-    using iterator_category = std::forward_iterator_tag;
+    using iterator_category = std::input_iterator_tag;
     using difference_type   = std::ptrdiff_t;
     using value_type = Index;
     using pointer    = Index*;
-    using reference  = Index&;
+    using reference  = const Index&;
 
     using Scalar     = typename DataPoint::Scalar;
     using QueryType  = QueryT_;
