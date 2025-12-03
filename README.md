@@ -1,6 +1,8 @@
 # Ponca
 Ponca is a header only C++/CUDA library for point cloud analysis and surface reconstruction.
 
+[![codecov](https://codecov.io/github/poncateam/ponca/branch/master/graph/badge.svg?token=NWSHQWK6NO)](https://codecov.io/github/poncateam/ponca)
+
 ## Development status
 Ponca is currently under refactoring as we are working on the next release v2.0, which introduces breaking changes in the API. We do not change everything, the most important concepts will remain, but the library will offer more versatile code, will be easier to understand, and its structure will be more consistent with the involved mathematical models.
 
