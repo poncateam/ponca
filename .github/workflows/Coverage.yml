@@ -28,4 +28,8 @@ jobs:
         run: cd build && cmake --build . --target buildtests
       - name: generate coverage report
         run: cd build &&  ctest -T Coverage
+      - name: Upload results to Codecov
+        uses: codecov/codecov-action@v5
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
   # push data in cmake-build-coverage/Testing/CoverageInfo to codecov
