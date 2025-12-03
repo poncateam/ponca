@@ -121,11 +121,14 @@ void test_orthoDerivatives(Functor f, bool skipCov = false)
 
     FitType fit;
 
-    int slice = 10;
+    // Quick testing is requested for coverage
+    int slice = QUICK_TESTS ? 1 : 10;
+    int size = QUICK_TESTS ? 1 : int(vecs.size())/slice;
+
 #ifdef NDEBUG
 #pragma omp parallel for private(fit)
 #endif
-    for(int k=0; k<int(vecs.size())/slice; ++k)
+    for(int k=0; k<size; ++k)
     {
         fit.setNeighborFilter({vecs[k*slice].pos(), analysisScale});
         fit.compute(vecs);

@@ -95,10 +95,13 @@ void testFunction(bool _bUnoriented = false, bool _bAddPositionNoise = false, bo
 
     KdTreeDense<DataPoint> tree(vectorPoints);
 
+    // Quick testing is requested for coverage
+    int size = QUICK_TESTS ? 1 : int(vectorPoints.size());
+
 #ifdef DEBUG
 #pragma omp parallel for
 #endif
-    for(int i = 0; i < int(vectorPoints.size()); ++i)
+    for(int i = 0; i < size; ++i)
     {
 
         Fit fit;

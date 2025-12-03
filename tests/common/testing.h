@@ -32,6 +32,13 @@
 #define DEFAULT_REPEAT 10
 #endif
 
+static bool QUICK_TESTS =
+#ifdef PONCA_COVERAGE_ENABLED
+        true;
+#else
+false;
+#endif
+
 #define PONCA_PP_MAKE_STRING2(S) #S
 #define PONCA_PP_MAKE_STRING(S) PONCA_PP_MAKE_STRING2(S)
 

@@ -48,9 +48,12 @@ void testFunction(bool _bAddPositionNoise = false, bool _bAddNormalNoise = false
                                                      _bAddNormalNoise);
     }
 
+    // Quick testing is requested for coverage
+    int size = QUICK_TESTS ? 1 : int(vectorPoints.size());
+
     // Test for each point if principal curvature values are null
 #pragma omp parallel for
-    for(int i = 0; i < int(vectorPoints.size()); ++i)
+    for(int i = 0; i < size; ++i)
     {
         epsilon = testEpsilon<Scalar>();
         if ( _bAddPositionNoise) // relax a bit the testing threshold

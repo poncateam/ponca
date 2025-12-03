@@ -15,7 +15,7 @@
 using namespace Ponca;
 
 template<typename DataPoint, bool SampleKdTree = true>
-void testKdTreeRangeIndex(bool quick = true)
+void testKdTreeRangeIndex(bool quick = QUICK_TESTS)
 {
 	using Scalar = typename DataPoint::Scalar;
 	using VectorContainer = typename KdTree<DataPoint>::PointContainer;
@@ -95,7 +95,7 @@ void testKdTreeRangeIndex(bool quick = true)
     delete kdtree;
 }
 template<typename DataPoint>
-void testKdTreeRangePoint(bool quick = true)
+void testKdTreeRangePoint(bool quick = QUICK_TESTS)
 {
 	using Scalar = typename DataPoint::Scalar;
 	using VectorContainer = typename KdTreeSparse<DataPoint>::PointContainer;
@@ -139,39 +139,33 @@ int main(int argc, char** argv)
 		return EXIT_FAILURE;
 	}
 
-#ifndef NDEBUG
-    bool quick = true;
-#else
-    bool quick = false;
-#endif
-
     cout << "Test KdTreeRange (from Point) in 3D..." << endl;
-	testKdTreeRangePoint<TestPoint<float, 3>>(quick);
-	testKdTreeRangePoint<TestPoint<double, 3>>(quick);
-	testKdTreeRangePoint<TestPoint<long double, 3>>(quick);
+	testKdTreeRangePoint<TestPoint<float, 3>>();
+	testKdTreeRangePoint<TestPoint<double, 3>>();
+	testKdTreeRangePoint<TestPoint<long double, 3>>();
 
     cout << "Test KdTreeRange (from Point) in 4D..." << endl;
-	testKdTreeRangePoint<TestPoint<float, 4>>(quick);
-	testKdTreeRangePoint<TestPoint<double, 4>>(quick);
-	testKdTreeRangePoint<TestPoint<long double, 4>>(quick);
+	testKdTreeRangePoint<TestPoint<float, 4>>();
+	testKdTreeRangePoint<TestPoint<double, 4>>();
+	testKdTreeRangePoint<TestPoint<long double, 4>>();
 
     cout << "Test Range Queries (from Index) using KnnGraph and Kdtree in 3D... (without subsampling)" << endl;
-    testKdTreeRangeIndex<TestPoint<float, 3>, false>(quick);
-    testKdTreeRangeIndex<TestPoint<double, 3>, false>(quick);
-    testKdTreeRangeIndex<TestPoint<long double, 3>, false>(quick);
+    testKdTreeRangeIndex<TestPoint<float, 3>, false>();
+    testKdTreeRangeIndex<TestPoint<double, 3>, false>();
+    testKdTreeRangeIndex<TestPoint<long double, 3>, false>();
 
     cout << "Test KdTreeRange (from Index) in 3D... (with subsampling)" << endl;
-    testKdTreeRangeIndex<TestPoint<float, 3>>(quick);
-    testKdTreeRangeIndex<TestPoint<double, 3>>(quick);
-    testKdTreeRangeIndex<TestPoint<long double, 3>>(quick);
+    testKdTreeRangeIndex<TestPoint<float, 3>>();
+    testKdTreeRangeIndex<TestPoint<double, 3>>();
+    testKdTreeRangeIndex<TestPoint<long double, 3>>();
 
     cout << "Test KdTreeRange (from Index) in 4D..." << endl;
-    testKdTreeRangeIndex<TestPoint<float, 4>>(quick);
-    testKdTreeRangeIndex<TestPoint<double, 4>>(quick);
-    testKdTreeRangeIndex<TestPoint<long double, 4>>(quick);
+    testKdTreeRangeIndex<TestPoint<float, 4>>();
+    testKdTreeRangeIndex<TestPoint<double, 4>>();
+    testKdTreeRangeIndex<TestPoint<long double, 4>>();
 
     cout << "Test Range Queries (from Index) using KnnGraph and Kdtree in 4D... (without subsampling)" << endl;
-    testKdTreeRangeIndex<TestPoint<float, 4>, false>(quick);
-    testKdTreeRangeIndex<TestPoint<double, 4>, false>(quick);
-    testKdTreeRangeIndex<TestPoint<long double, 4>, false>(quick);
+    testKdTreeRangeIndex<TestPoint<float, 4>, false>();
+    testKdTreeRangeIndex<TestPoint<double, 4>, false>();
+    testKdTreeRangeIndex<TestPoint<long double, 4>, false>();
 }

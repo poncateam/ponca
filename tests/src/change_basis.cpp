@@ -51,11 +51,13 @@ void testFunction()
         vecs[i] = getPointOnSphere<Point>(radius, center, true, false, false);
     }
 
+    // Quick testing is requested for coverage
+    int size = QUICK_TESTS ? 1 : int(vecs.size());
 
 #ifdef NDEBUG
 #pragma omp parallel for
 #endif
-    for(int k=0; k<int(vecs.size()); ++k)
+    for(int k=0; k<size; ++k)
     {
         const auto &fitInitPos = vecs[k].pos();
 

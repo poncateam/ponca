@@ -65,9 +65,12 @@ void testFunction(bool _bAddPositionNoise = false, bool _bAddNormalNoise = false
     reverseNormals<DataPoint>(vectorReversedNormals100, vectorPoints, false);
     reverseNormals<DataPoint>(vectorReversedNormalsRandom, vectorPoints);
 
+    // Quick testing is requested for coverage
+    int size = QUICK_TESTS ? 1 : int(vectorPoints.size());
+
     // Test sphere descriptors coherance for each points
 #pragma omp parallel for
-    for(int i = 0; i < int(vectorPoints.size()); ++i)
+    for(int i = 0; i < size; ++i)
     {
         Fit fit, fitReverse100, fitReverseRandom;
 

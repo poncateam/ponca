@@ -42,9 +42,12 @@ void testFunction(bool _bAddPositionNoise = false, bool _bAddNormalNoise = false
         vectorPoints[i] = getPointOnSphere<DataPoint>(radius, center, _bAddPositionNoise, _bAddNormalNoise);
     }
 
+    // Quick testing is requested for coverage
+    int size = QUICK_TESTS ? 1 : int(vectorPoints.size());
+
     // Test for each point if the normal is correct
 #pragma omp parallel for
-    for(int i = 0; i < int(vectorPoints.size()); ++i)
+    for(int i = 0; i < size; ++i)
     {
         Fit fit;
         fit.setNeighborFilter({vectorPoints[i].pos(), analysisScale});

@@ -42,7 +42,7 @@ void testFunction(typename Fit::Scalar lowPrecisionEpsilon = typename Fit::Scala
     typedef typename Fit::DataPoint DataPoint;
 
     //generate samples
-    int nbPoints = Eigen::internal::random<int>(100, 1000);
+    int nbPoints = QUICK_TESTS ? 1 : Eigen::internal::random<int>(100, 1000);
     int nbPointsFit = 50;
 
     // equal probability of having a plane or a random quadric

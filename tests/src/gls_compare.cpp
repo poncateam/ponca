@@ -53,9 +53,12 @@ void testFunction(bool _bUnoriented = false, bool _bAddPositionNoise = false, bo
         sphere2[i] = getPointOnSphere<DataPoint>(radius2, center, _bAddPositionNoise, _bAddNormalNoise, _bUnoriented);
     }
 
+    // Quick testing is requested for coverage
+    int size = QUICK_TESTS ? 1 : (nbPoints-1);
+
     // Test for each point if the fitted sphere correspond to the theorical sphere
 #pragma omp parallel for
-    for(int i = 0; i < nbPoints - 1; ++i)
+    for(int i = 0; i < size; ++i)
     {
         Fit fit1, fit2, fit3;
         fit1.setNeighborFilter({sphere1[i].pos(), analysisScale});

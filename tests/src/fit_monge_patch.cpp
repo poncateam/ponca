@@ -65,10 +65,14 @@ void testFunction(bool _bUnoriented = false, bool _bAddPositionNoise = false, bo
     if ( _bAddPositionNoise) // relax a bit the testing threshold
       epsilon = Scalar(0.02*MAX_NOISE);
     // Test for each point if the fitted plane correspond to the theoretical plane
+
+    // Quick testing is requested for coverage
+    int size = QUICK_TESTS ? 1 : int(vectorPoints.size());
+
 #ifdef DEBUG
 #pragma omp parallel for
 #endif
-    for(int i = 0; i < int(vectorPoints.size()); ++i)
+    for(int i = 0; i < size; ++i)
     {
         const auto& queryPos = vectorPoints[i].pos();
 

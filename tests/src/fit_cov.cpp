@@ -155,10 +155,13 @@ void testFunction(bool _bUnoriented = false, bool _bAddPositionNoise = false, bo
     epsilon = testEpsilon<Scalar>();
     if ( _bAddPositionNoise) // relax a bit the testing threshold
       epsilon = Scalar(0.01*MAX_NOISE);
-    // Test for each point if the fitted plane correspond to the theoretical plane
 
+    // Quick testing is requested for coverage
+    int size = QUICK_TESTS ? 1 : int(vectorPoints.size());
+
+    // Test for each point if the fitted plane correspond to the theoretical plane
 #pragma omp parallel for
-    for(int i = 0; i < int(vectorPoints.size()); ++i)
+    for(int i = 0; i < size; ++i)
     {
 
         Fit fit;
