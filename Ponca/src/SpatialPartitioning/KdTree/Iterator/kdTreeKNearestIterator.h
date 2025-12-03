@@ -9,7 +9,13 @@
 namespace Ponca {
 
 /*!
- *  \brief Forward iterator to read the KdTreeKNearestQuery.
+ *  \brief Input iterator to read the `KdTreeKNearestQuery`.
+ *
+ *  As this is an input iterator, we don't guarantee anything else than reading and incrementing values with it.
+ *  If you need to analyse the values with algorithms that relies on forward or more complex iterators,
+ *  we suggest copying the values inside a std::vector<Index>.
+ *
+ *  \note This iterator can be duplicated with no issues.
  *
  *  \see KdTreeKNearestQueryBase
  */
@@ -17,11 +23,11 @@ template <typename Index, typename DataPoint>
 class KdTreeKNearestIterator
 {
 public:
-    using iterator_category = std::forward_iterator_tag;
+    using iterator_category = std::input_iterator_tag;
     using difference_type   = std::ptrdiff_t;
     using value_type = Index;
     using pointer    = Index*;
-    using reference  = Index&;
+    using reference  = const Index&;
 
     using Scalar   = typename DataPoint::Scalar;
     using Iterator = typename limited_priority_queue<IndexSquaredDistance<Index, Scalar>>::iterator;
