@@ -113,7 +113,7 @@ void testBasicFunctionalities(const KdTree<typename Fit::DataPoint>& tree, typen
         fit3.setNeighborFilter({fitInitPos, analysisScale});
         // Sort fit1
         std::list<int> neighbors3;
-        for (int iNeighbor : tree.range_neighbors(fitInitPos, analysisScale))
+        for (int iNeighbor : tree.rangeNeighbors(fitInitPos, analysisScale))
             neighbors3.push_back(iNeighbor);
         neighbors3.sort();
         // Compute the neighbors
@@ -149,7 +149,7 @@ void testIsSame(const KdTree<typename Fit1::DataPoint>& tree,
         //! [Fit computeWithIds]
         Fit fit3;
         fit3.setNeighborFilter({vectorPoints[i].pos(), analysisScale});
-        auto neighborhoodRange = tree.range_neighbors(vectorPoints[i].pos(), analysisScale);
+        auto neighborhoodRange = tree.rangeNeighbors(vectorPoints[i].pos(), analysisScale);
         fit3.computeWithIds( neighborhoodRange, vectorPoints );
         //! [Fit computeWithIds]
 

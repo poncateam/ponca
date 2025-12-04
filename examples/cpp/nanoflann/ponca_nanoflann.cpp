@@ -104,7 +104,7 @@ int test_raw(FitType& f, const std::vector<MyPoint>& _vecs)
 int test_ponca_kdtree(FitType& f, const std::vector<MyPoint>& _vecs, VectorType _p, const KdTree<MyPoint>& tree, Scalar tmax){
     if(! (
             //! [Use Ponca KdTree]
-f.computeWithIds( tree.range_neighbors(_p, tmax), _vecs )
+f.computeWithIds( tree.rangeNeighbors(_p, tmax), _vecs )
             //! [Use Ponca KdTree]
             == STABLE) )
         std::cerr << "[ponca_kdtree] Something weird happened" << std::endl;

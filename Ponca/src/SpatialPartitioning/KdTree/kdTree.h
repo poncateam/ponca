@@ -37,9 +37,9 @@ template <typename Traits> class KdTreeSparseBase;
  *
  * \warning It is not possible to create instances of type KdTree. This type must only be used to store pointers
  * to KdTreeDense or KdTreeSparse objects, e.g. the declaration
- *   \snippet queries_range.cpp KdTree pointer usage
- *   \snippet queries_range.cpp KdTree assign sparse
- *   \snippet queries_range.cpp KdTree assign dense
+ * \snippet examples/cpp/ponca_neighbor_search.cpp KdTree pointer usage
+ * \snippet examples/cpp/ponca_neighbor_search.cpp KdTree assign sparse
+ * \snippet examples/cpp/ponca_neighbor_search.cpp KdTree assign dense
  */
 #ifdef PARSED_WITH_DOXYGEN
 /// [KdTree type definition]
@@ -186,7 +186,7 @@ public:
         return (IndexType)m_indices.size();
     }
 
-    inline IndexType point_count() const
+    inline IndexType pointCount() const
     {
         return (IndexType)m_points.size();
     }
@@ -219,13 +219,13 @@ public:
     // Parameters --------------------------------------------------------------
 public:
     /// Read leaf min size
-    inline LeafSizeType min_cell_size() const
+    inline LeafSizeType minCellSize() const
     {
         return m_min_cell_size;
     }
 
     /// Write leaf min size
-    inline void set_min_cell_size(LeafSizeType min_cell_size)
+    inline void setMinCellSize(LeafSizeType min_cell_size)
     {
         PONCA_DEBUG_ASSERT(min_cell_size > 0);
         m_min_cell_size = min_cell_size;
@@ -257,34 +257,85 @@ public:
 
     // Query -------------------------------------------------------------------
 public :
-    KdTreeKNearestPointQuery<Traits> k_nearest_neighbors(const VectorType& point, IndexType k) const
+    /// \brief Returns a query object to iterate over the k nearest neighbors of the point.
+    /// The returned object can call for a new query of the same type, using the () operator.
+    ///
+    /// \param point Point from where the query is evaluated
+    /// \param k Number of neighbors returned
+    KdTreeKNearestPointQuery<Traits> kNearestNeighbors(const VectorType& point, IndexType k) const
     {
         return KdTreeKNearestPointQuery<Traits>(this, k, point);
     }
 
-    KdTreeKNearestIndexQuery<Traits> k_nearest_neighbors(IndexType index, IndexType k) const
+    /// \copybrief KdTreeBase::kNearestNeighbors
+    /// \param index Index of the point from where the query is evaluated
+    /// \param k Number of neighbors returned
+    KdTreeKNearestIndexQuery<Traits> kNearestNeighbors(IndexType index, IndexType k) const
     {
         return KdTreeKNearestIndexQuery<Traits>(this, k, index);
     }
 
-    KdTreeNearestPointQuery<Traits> nearest_neighbor(const VectorType& point) const
+    /// \copybrief KdTreeBase::kNearestNeighbors
+    /// \note This function only returns an empty `PositionQuery`, which needs to be used by doing `query(point, k)` to get a result.
+    KdTreeKNearestPointQuery<Traits> kNearestNeighborsQuery() const
+    {
+        return KdTreeKNearestPointQuery<Traits>(this, 0, VectorType::Zero());
+    }
+
+    /// \copybrief KdTreeBase::kNearestNeighbors
+    /// \note This function only returns an empty `IndexQuery`, which needs to be used by doing `query(index, k)` to get a result.
+    KdTreeKNearestIndexQuery<Traits> kNearestNeighborsIndexQuery() const
+    {
+        return KdTreeKNearestIndexQuery<Traits>(this, 0, 0);
+    }
+
+    /// \brief Returns a query object that contains the nearest point.
+    /// The returned object can call for a new query of the same type, using the () operator.
+    ///
+    /// \param point Point from where the query is evaluated
+    KdTreeNearestPointQuery<Traits> nearestNeighbor(const VectorType& point) const
     {
         return KdTreeNearestPointQuery<Traits>(this, point);
     }
 
-    KdTreeNearestIndexQuery<Traits> nearest_neighbor(IndexType index) const
+    /// \copybrief KdTreeBase::nearestNeighbor
+    /// \param index Index of the point from where the query is evaluated
+    KdTreeNearestIndexQuery<Traits> nearestNeighbor(IndexType index) const
     {
         return KdTreeNearestIndexQuery<Traits>(this, index);
     }
 
-    KdTreeRangePointQuery<Traits> range_neighbors(const VectorType& point, Scalar r) const
+
+    /// \brief Returns a query object to iterate over the neighbors that are in range `r` of the point.
+    /// The returned object can call for a new query of the same type, using the () operator.
+    ///
+    /// \param point Point from where the query is evaluated
+    /// \param r Radius around where to search the neighbors
+    KdTreeRangePointQuery<Traits> rangeNeighbors(const VectorType& point, Scalar r) const
     {
         return KdTreeRangePointQuery<Traits>(this, r, point);
     }
 
-    KdTreeRangeIndexQuery<Traits> range_neighbors(IndexType index, Scalar r) const
+    /// \copybrief KdTreeBase::rangeNeighbors
+    /// \param index Index of the point from where the query is evaluated
+    /// \param r Radius around where to search the neighbors
+    KdTreeRangeIndexQuery<Traits> rangeNeighbors(IndexType index, Scalar r) const
     {
         return KdTreeRangeIndexQuery<Traits>(this, r, index);
+    }
+
+    /// \copybrief KdTreeBase::rangeNeighbors
+    /// \note This function only returns an empty `PositionQuery`, which needs to be used by doing `query(point, r)` to get a result.
+    KdTreeRangePointQuery<Traits> rangeNeighborsQuery() const
+    {
+        return KdTreeRangePointQuery<Traits>(this, 0, VectorType::Zero());
+    }
+
+    /// \copybrief KdTreeBase::rangeNeighbors
+    /// \note This function only returns an empty `IndexQuery`, which needs to be used by doing `query(index, r)` to get a result.
+    KdTreeRangeIndexQuery<Traits> rangeNeighborsIndexQuery() const
+    {
+        return KdTreeRangeIndexQuery<Traits>(this, 0, 0);
     }
     
     // Utilities ---------------------------------------------------------------
@@ -330,7 +381,7 @@ protected:
     }
 
 private:
-    inline void build_rec(NodeIndexType node_id, IndexType start, IndexType end, int level);
+    inline void buildRec(NodeIndexType node_id, IndexType start, IndexType end, int level);
     inline IndexType partition(IndexType start, IndexType end, int dim, Scalar value);
 };
 

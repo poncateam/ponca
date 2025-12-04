@@ -8,6 +8,19 @@
 
 namespace Ponca {
 
+/*!
+ *  \brief Forward iterator to read the `KdTreeRangeQuery`.
+ *
+ *  As this is an input iterator, we don't guarantee anything else than reading and incrementing values with it.
+ *  If you need to analyse the values with algorithms that relies on forward or more complex iterators,
+ *  we suggest copying the values inside a std::vector<Index>.
+ *
+ *  \note The increment logic resides in `KdTreeRangeQueryBase::advance(Iterator& it)`
+ *  As long as this advance method doesn't update the internal state of the `KdTreeRangeQuery` object,
+ *  this iterator can be duplicated without causing issues.
+ *
+ *  \see KdTreeRangeQueryBase
+ */
 template<typename Index, typename DataPoint, typename QueryT_>
 class KdTreeRangeIterator
 {
@@ -15,18 +28,46 @@ protected:
     friend QueryT_;
 
 public:
-    using Scalar    = typename DataPoint::Scalar;
-    using QueryType = QueryT_;
+    using iterator_category = std::input_iterator_tag;
+    using difference_type   = std::ptrdiff_t;
+    using value_type = Index;
+    using pointer    = Index*;
+    using reference  = const Index&;
+
+    using Scalar     = typename DataPoint::Scalar;
+    using QueryType  = QueryT_;
 
     inline KdTreeRangeIterator() = default;
     inline KdTreeRangeIterator(QueryType* query, Index index = -1) :
         m_query(query), m_index(index), m_start(0), m_end(0) {}
 
-    inline bool operator !=(const KdTreeRangeIterator& other) const
-    {return m_index != other.m_index;}
-    inline void operator ++(int) {m_query->advance(*this);}
-    inline KdTreeRangeIterator& operator++() {m_query->advance(*this); return *this;}
-    inline Index operator *() const {return m_index;}
+    /// \brief Inequality operand
+    inline bool operator !=(const KdTreeRangeIterator& other) const {
+        return m_index != other.m_index;
+    }
+
+    /// \breif Equality operand
+    inline bool operator ==(const KdTreeRangeIterator& other) const {
+        return m_index == other.m_index;
+    }
+
+    /// Prefix increment
+    inline KdTreeRangeIterator& operator++() {
+        m_query->advance(*this);
+        return *this;
+    }
+
+    /// \brief Postfix increment
+    inline KdTreeRangeIterator operator++(int) {
+        KdTreeRangeIterator tmp = *this;
+        m_query->advance(*this);
+        return tmp;
+    }
+
+    /// \brief Dereference operator
+    inline reference operator *() const {
+       return const_cast<reference>(m_index);
+    }
 
 protected:
     QueryType* m_query {nullptr};
