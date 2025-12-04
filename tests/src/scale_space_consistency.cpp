@@ -29,7 +29,8 @@ void checkConsistency(const vector<DataPoint> vectorPoints, typename DataPoint::
     VERIFY( !FitSpaceDer::isScaleDer()      &&  FitSpaceDer::isSpaceDer() );
     VERIFY(  FitScaleSpaceDer::isScaleDer() &&  FitScaleSpaceDer::isSpaceDer() );
 
-    const int nbPoints = vectorPoints.size();
+    // Quick testing is requested for coverage
+    int nbPoints = QUICK_TESTS ? 1 : int(vectorPoints.size());
 
     // test that dPotential and dNormal wrt scale, space and both are the same regardless of the derivation type
 #pragma omp parallel for

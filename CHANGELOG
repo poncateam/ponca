@@ -4,6 +4,18 @@ Ponca changelog
 --------------------------------------------------------------------------------
 Current head (v.2.0.alpha1 RC)
 
+- Bug-fixes and code improvements
+    - [fitting] Fix broken include directives in Basket/Compute (#236)
+
+- Tests
+    - [all] Speed up tests in coverage mode (#236)
+
+- Examples
+    - [nanoflann] Fix broken include directives (#236)
+
+- CI/Actions
+    - Add coverage report for Pull Requests (#236)
+
 --------------------------------------------------------------------------------
 v.2.0.alpha0
 This release introduce the first API changes toward v2.0 + bug fixes and doc improvements

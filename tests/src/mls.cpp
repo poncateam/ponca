@@ -50,9 +50,12 @@ void testFunction() {
         vectorPoints[i] = getPointOnSphere<DataPoint>(radius, center, true, true);
     }
 
+    // Quick testing is requested for coverage
+    int size = QUICK_TESTS ? 1 : int(vectorPoints.size());
+
     // Test for each point if the normal is correct
 #pragma omp parallel for
-    for (int i = 0; i < int(vectorPoints.size()); ++i)
+    for (int i = 0; i < size; ++i)
     {
         VectorType pos = vectorPoints[i].pos();
         Fit fit;

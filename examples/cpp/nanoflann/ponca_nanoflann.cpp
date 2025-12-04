@@ -8,12 +8,15 @@
 \author: Nicolas Mellado
 */
 
-#include <Ponca/Fitting>
-#include <Ponca/SpatialPartitioning>
-#include "./nanoflann.hpp"
-
 #include <iostream>
 #include <chrono>
+#include <vector>
+
+#include "./nanoflann.hpp"
+
+#include <Ponca/Fitting>
+#include <Ponca/SpatialPartitioning>
+
 
 using namespace Ponca;
 

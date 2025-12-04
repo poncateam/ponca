@@ -1,0 +1,35 @@
+name: Coverage
+
+defaults:
+  run:
+    shell: bash
+
+on:
+  pull_request:
+    branches:
+      - master
+  push:
+    branches:
+      - master
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: seanmiddleditch/gha-setup-ninja@master
+      - name: Checkout remote head
+        uses: actions/checkout@master
+        with:
+          path: src
+      - name: cmake
+        run: mkdir build && cd build && cmake ../src  -GNinja -DCMAKE_CXX_COMPILER=g++ -DCMAKE_C_COMPILER=gcc -DCMAKE_BUILD_TYPE=Debug -DCMAKE_INSTALL_PREFIX=../install -DPONCA_CONFIGURE_EXAMPLES=OFF -DPONCA_CONFIGURE_DOC=OFF -DPONCA_CONFIGURE_TESTS=ON -DPONCA_COVERAGE_TESTING=ON
+      - name: make buildtests
+        run: cd build && cmake --build . --target buildtests
+      - name: generate coverage report
+        run: cd build &&  ctest -T Test -T Coverage
+      - name: Upload results to Codecov
+        uses: codecov/codecov-action@v5
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+  # push data in cmake-build-coverage/Testing/CoverageInfo to codecov

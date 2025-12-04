@@ -72,11 +72,14 @@ void testBasicFunctionalities(const KdTree<typename Fit::DataPoint>& tree, typen
 
     const auto& vectorPoints = tree.points();
 
+    // Quick testing is requested for coverage
+    int size = QUICK_TESTS ? 1 : int(vectorPoints.size());
+
     // Test for each point if the fitted sphere correspond to the theoretical sphere
 #ifdef NDEBUG
 #pragma omp parallel for
 #endif
-    for(int i = 0; i < int(vectorPoints.size()); ++i)
+    for(int i = 0; i < size; ++i)
     {
         const auto &fitInitPos = vectorPoints[i].pos();
 
@@ -133,11 +136,14 @@ void testIsSame(const KdTree<typename Fit1::DataPoint>& tree,
 
     const auto& vectorPoints = tree.points();
 
+    // Quick testing is requested for coverage
+    int size = QUICK_TESTS ? 1 : int(vectorPoints.size());
+
     // Test for each point if the fitted sphere correspond to the theoretical sphere
 #ifdef NDEBUG
 #pragma omp parallel for
 #endif
-    for(int i = 0; i < int(vectorPoints.size()); ++i)
+    for(int i = 0; i < size; ++i)
     {
         using Fit = Fit1; // create an alias to ease doc snippet generation
         //! [Fit computeWithIds]

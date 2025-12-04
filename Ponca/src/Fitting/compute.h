@@ -7,6 +7,7 @@
 #pragma once
 
 #include "defines.h"
+#include PONCA_MULTIARCH_INCLUDE_STD(iterator)
 
 namespace Ponca{
     /*!
