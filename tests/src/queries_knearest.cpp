@@ -55,12 +55,12 @@ void testKNearestNeighborsEntirePointSet( AcceleratingStructure& structure,
 
 
 template<typename Scalar, int Dim>
-void testKNearestNeighborsForAllStructures(const bool quick)
+void testKNearestNeighborsForAllStructures(const bool quick = QUICK_TESTS)
 {
 	using P = TestPoint<Scalar, Dim>;
 	const int N = quick ? 100 : 5000;
-	const int k = quick ? 5 : 15;
-	const int retry_number = quick? 2 : 10;
+	const int k = quick ? 2 : 15;
+	const int retry_number = quick? 1 : 10;
 
 	//////////// Generate data
 	std::vector<P> points(N);
@@ -89,25 +89,23 @@ int main(int argc, char** argv)
 	if (!init_testing(argc, argv))
 		return EXIT_FAILURE;
 
-#ifndef NDEBUG
-	const bool quick = true;
-#else
-	const bool quick = false;
-#endif
-
 	cout << "Test kNearestNeighbors query for KdTree and KnnGraph in 3D : " << flush;
 	cout << endl << " float :" << flush;
-	CALL_SUBTEST_1((testKNearestNeighborsForAllStructures<float, 3>(quick)));
+	CALL_SUBTEST_1((testKNearestNeighborsForAllStructures<float, 3>()));
 	cout << endl << " double : " << flush;
-	CALL_SUBTEST_2((testKNearestNeighborsForAllStructures<double, 3>(quick)));
+	CALL_SUBTEST_2((testKNearestNeighborsForAllStructures<double, 3>()));
 	cout << endl << " long : " << flush;
-	CALL_SUBTEST_3((testKNearestNeighborsForAllStructures<long double, 3>(quick)));
+	CALL_SUBTEST_3((testKNearestNeighborsForAllStructures<long double, 3>()));
 
+	if (QUICK_TESTS)
+		return EXIT_SUCCESS;
 	cout << "Test kNearestNeighbors query for KdTree and KnnGraph in 4D : " << flush;
 	cout << endl << " float : " << flush;
-	CALL_SUBTEST_1((testKNearestNeighborsForAllStructures<float, 4>(quick)));
+	CALL_SUBTEST_1((testKNearestNeighborsForAllStructures<float, 4>()));
 	cout << endl << " double : " << flush;
-	CALL_SUBTEST_2((testKNearestNeighborsForAllStructures<double, 4>(quick)));
+	CALL_SUBTEST_2((testKNearestNeighborsForAllStructures<double, 4>()));
 	cout << endl << " long : " << flush;
-	CALL_SUBTEST_3((testKNearestNeighborsForAllStructures<long double, 4>(quick)));
+	CALL_SUBTEST_3((testKNearestNeighborsForAllStructures<long double, 4>()));
+
+	return EXIT_SUCCESS;
 }

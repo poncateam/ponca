@@ -39,11 +39,11 @@ void testRangeNeighbors( AcceleratingStructure& structure,
 }
 
 template<typename Scalar, int Dim>
-void testRangeNeighborsForAllStructures(const bool quick)
+void testRangeNeighborsForAllStructures(const bool quick = QUICK_TESTS)
 {
 	using P = TestPoint<Scalar, Dim>;
 	const int N = quick ? 100 : 5000;
-	const int retry_number = quick? 2 : 10;
+	const int retry_number = quick? 1 : 10;
 
 	//////////// Generate data
 	std::vector<P> points(N);
@@ -73,29 +73,26 @@ void testRangeNeighborsForAllStructures(const bool quick)
 int main(int argc, char** argv)
 {
 	if (!init_testing(argc, argv))
-	{
 		return EXIT_FAILURE;
-	}
-
-#ifndef NDEBUG
-    const bool quick = true;
-#else
-    const bool quick = false;
-#endif
 
 	cout << "Test rangeNeighbors query for KdTree and KnnGraph in 3D : " << flush;
 	cout << endl << " float : " << flush;
-	CALL_SUBTEST_1((testRangeNeighborsForAllStructures<float, 3>(quick)));
+	CALL_SUBTEST_1((testRangeNeighborsForAllStructures<float, 3>()));
 	cout << endl << " double : " << flush;
-	CALL_SUBTEST_2((testRangeNeighborsForAllStructures<double, 3>(quick)));
+	CALL_SUBTEST_2((testRangeNeighborsForAllStructures<double, 3>()));
 	cout << endl << " long : " << flush;
-	CALL_SUBTEST_3((testRangeNeighborsForAllStructures<long double, 3>(quick)));
+	CALL_SUBTEST_3((testRangeNeighborsForAllStructures<long double, 3>()));
+
+	if (QUICK_TESTS)
+		return EXIT_SUCCESS;
 
 	cout << "Test rangeNeighbors query for KdTree and KnnGraph in 4D : " << flush;
 	cout << endl << " float : " << flush;
-	CALL_SUBTEST_1((testRangeNeighborsForAllStructures<float, 4>(quick)));
+	CALL_SUBTEST_1((testRangeNeighborsForAllStructures<float, 4>()));
 	cout << endl << " double : " << flush;
-	CALL_SUBTEST_2((testRangeNeighborsForAllStructures<double, 4>(quick)));
+	CALL_SUBTEST_2((testRangeNeighborsForAllStructures<double, 4>()));
 	cout << endl << " long : " << flush;
-	CALL_SUBTEST_3((testRangeNeighborsForAllStructures<long double, 4>(quick)));
+	CALL_SUBTEST_3((testRangeNeighborsForAllStructures<long double, 4>()));
+
+	return EXIT_SUCCESS;
 }

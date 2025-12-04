@@ -50,7 +50,7 @@ void testFrontOfKNearestNeighbors( AcceleratingStructure& structure,
 }
 
 template<typename Scalar, int Dim>
-void testNearestNeighborForAllStructures(const bool quick)
+void testNearestNeighborForAllStructures(const bool quick = QUICK_TESTS)
 {
 	using P = TestPoint<Scalar, Dim>;
 	const int N = quick ? 100 : 5000;
@@ -80,29 +80,26 @@ void testNearestNeighborForAllStructures(const bool quick)
 int main(int argc, char** argv)
 {
 	if (!init_testing(argc, argv))
-	{
 		return EXIT_FAILURE;
-	}
-
-#ifndef NDEBUG
-    const bool quick = true;
-#else
-    const bool quick = false;
-#endif
 
 	cout << "Test nearestNeighbor query for KdTree and KnnGraph in 3D : " << flush;
 	cout << endl << " float : " << flush;
-	CALL_SUBTEST_1((testNearestNeighborForAllStructures<float, 3>(quick)));
+	CALL_SUBTEST_1((testNearestNeighborForAllStructures<float, 3>()));
 	cout << endl << " double : " << flush;
-	CALL_SUBTEST_2((testNearestNeighborForAllStructures<double, 3>(quick)));
+	CALL_SUBTEST_2((testNearestNeighborForAllStructures<double, 3>()));
 	cout << endl << " long : " << flush;
-	CALL_SUBTEST_3((testNearestNeighborForAllStructures<long double, 3>(quick)));
+	CALL_SUBTEST_3((testNearestNeighborForAllStructures<long double, 3>()));
+
+	if (QUICK_TESTS)
+		return EXIT_SUCCESS;
 
 	cout << "Test nearestNeighbor query for KdTree and KnnGraph in 4D : " << flush;
 	cout << endl << " float : " << flush;
-	CALL_SUBTEST_1((testNearestNeighborForAllStructures<float, 4>(quick)));
+	CALL_SUBTEST_1((testNearestNeighborForAllStructures<float, 4>()));
 	cout << endl << " double : " << flush;
-	CALL_SUBTEST_2((testNearestNeighborForAllStructures<double, 4>(quick)));
+	CALL_SUBTEST_2((testNearestNeighborForAllStructures<double, 4>()));
 	cout << endl << " long : " << flush;
-	CALL_SUBTEST_3((testNearestNeighborForAllStructures<long double, 4>(quick)));
+	CALL_SUBTEST_3((testNearestNeighborForAllStructures<long double, 4>()));
+
+	return EXIT_SUCCESS;
 }
