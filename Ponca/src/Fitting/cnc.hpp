@@ -63,16 +63,17 @@ namespace Ponca::internal {
             std::vector<int> indices;
             for ( int index : ids ) {
                 // Skip the points that are outside the kernel radius
-                if (w(points[ index ]).first != Scalar(0.))
+                if (w(points[ index ]).first == Scalar(0.))
                     continue;
                 indices.push_back(index);
             }
 
+            const int lastIndex = int(indices.size()) - 1;
             for (int i = 0; i < maxTriangles; ++i) {
                 // Randomly select triangles
-                int i1 = indices[Eigen::internal::random<int>(0, indices.size()-1)];
-                int i2 = indices[Eigen::internal::random<int>(0, indices.size()-1)];
-                int i3 = indices[Eigen::internal::random<int>(0, indices.size()-1)];
+                int i1 = indices[Eigen::internal::random<int>(0, lastIndex)];
+                int i2 = indices[Eigen::internal::random<int>(0, lastIndex)];
+                int i3 = indices[Eigen::internal::random<int>(0, lastIndex)];
                 if (i1 == i2 || i1 == i3 || i2 == i3) continue;
 
                 triangles.push_back(internal::Triangle<P>(points[i1], points[i2], points[i3]));
@@ -102,12 +103,11 @@ namespace Ponca::internal {
             std::vector<Triangle<P>>& triangles
         ) {
             int nb_vt = 0; // Number of valid generated triangles
-
             // Makes a new array to shuffle
             std::vector<int> indices;
             for ( int index : ids ) {
                 // Skip the points that are outside the kernel radius
-                if (w(points[ index ]).first != Scalar(0.))
+                if (w(points[ index ]).first == Scalar(0.))
                     continue;
                 indices.push_back(index);
             }
@@ -160,7 +160,7 @@ namespace Ponca::internal {
 
             for ( int index : ids ) {
                 // Skip the points that are outside the kernel radius
-                if (w(points[ index ]).first != Scalar(0.))
+                if (w(points[ index ]).first == Scalar(0.))
                     continue;
                 auto p = points[ index ];
                 avg_d += ( p.pos() - c ).norm();
@@ -202,7 +202,7 @@ namespace Ponca::internal {
             // Compute closest points.
             for ( int index : ids ) {
                 // Skip the points that are outside the kernel radius
-                if (w(points[ index ]).first != Scalar(0.))
+                if (w(points[ index ]).first == Scalar(0.))
                     continue;
 
                 VectorType p = points[ index ].pos();
@@ -251,7 +251,7 @@ namespace Ponca::internal {
             Scalar avg_normal  = Scalar(0.5);
 
             for ( int index : ids ) {
-                if (w(points[ index ]).first != Scalar(0.))
+                if (w(points[ index ]).first == Scalar(0.))
                     continue; // Skip the points that are outside the kernel radius
                 a     += points[ index ].normal();
                 avg_d += ( points[ index ].pos() - c ).norm();

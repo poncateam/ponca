@@ -98,48 +98,20 @@ void testBasicFunctionalities(
         VERIFY(fit1 == fit1);
         VERIFY(! (fit1 != fit1));
 
+        // Sample the neighbors
         std::vector<int> pointsIndex;
-        for (int j = 0; j < vectorPoints.size(); j++) {
+        pointsIndex.push_back(i);
+        for (int j : tree.range_neighbors(i, analysisScale)) {
+        // for (int j = 0; j < vectorPoints.size(); j++) {
             pointsIndex.push_back(j);
         }
-        pointsIndex.push_back(i);
-
-        // Computes the indices list
-        // std::vector<int> pointsIndex;
-        // std::vector<int> pointsIndex2;
-        // for (int j = 0; j < vectorPoints.size(); j++) {
-        //     // if (evalPoint.pos() - vectorPoints[j].pos())
-        //     if (w(vectorPoints[ j ]).first != Scalar(0.))
-        //     {
-        //         pointsIndex2.push_back(j);
-        //     }
-        // }
-        // for (int j : tree.range_neighbors(evalPoint.pos(), analysisScale)) {
-        //     pointsIndex.push_back(j);
-        //     // std::cout << "pos : " << vectorPoints[j].pos().transpose() << endl;
-        // }
-        // sort(pointsIndex.begin(), pointsIndex.end());
-        // sort(pointsIndex2.begin(), pointsIndex2.end());
-        //
-        // std::cout << std::endl;
-        // std::cout << "all neighbor             : [";
-        // for (int x : pointsIndex) {
-        //     std::cout << x << ", " << flush;
-        // }
-        // std::cout << "]" << std::endl;
-        //
-        // std::cout << "range_neighbors neighbor : [";
-        // for (int x : pointsIndex2) {
-        //     std::cout << x << ", " << flush;
-        // }
-        // std::cout << "]" << std::endl;
 
         // Shuffles the indices shouldn't change the outcome of this test
         std::shuffle(std::begin(pointsIndex), std::end(pointsIndex), rng);
 
         //! [Fit computeWithIds]
         Fit fit2;
-        fit2.setNeighborFilter({evalPoint, analysisScale});
+        fit2.setNeighborFilter({evalPoint.pos(), analysisScale});
         fit2.computeWithIds( pointsIndex, vectorPoints );
         //! [Fit computeWithIds]
 
@@ -153,18 +125,19 @@ void testBasicFunctionalities(
 }
 
 /// \breif Compare the GaussianCurvature and kMean between two fit
-template<typename Fit1, typename Fit2, bool orderedByDistance = true, typename Scalar>
+template<typename Fit1, typename Fit2, bool orderedByDistance = false, typename Scalar>
 void testCompareFit(
     const KdTree<typename Fit1::DataPoint>& tree,
     const Scalar analysisScale,
     const Scalar epsilon = testEpsilon<Scalar>() *2
 ) {
     const auto& vectorPoints = tree.points();
+    const int nPoints = int(vectorPoints.size());
     // Test for each point if the curvature results are equivalent
 #ifdef NDEBUG
 #pragma omp parallel for
 #endif
-    for(int i = 0; i < int(vectorPoints.size()); ++i) {
+    for(int i = 0; i < nPoints; ++i) {
         typename Fit1::NeighborFilter w {vectorPoints[i].pos(), analysisScale};
         // compute the indices list
         std::vector<int> pointsIndex;
@@ -174,7 +147,7 @@ void testCompareFit(
             for (int j : tree.k_nearest_neighbors(i, vectorPoints.size())) {
                 // Stops when we go past the analysis scale
                 // if ((vectorPoints[i].pos() - vectorPoints[j].pos()).norm() > analysisScale) break;
-                if (w(vectorPoints[ j ]).first != Scalar(0.))
+                if (w(vectorPoints[ j ]).first == Scalar(0.))
                     break;
                 pointsIndex.push_back(j);
             }
@@ -198,10 +171,6 @@ void testCompareFit(
         fit2.computeWithIds(pointsIndex, vectorPoints);
 
         // Compare Fit1 with Fit2
-        std::cout << "fit1.kMean() : " << fit1.kMean() << endl;
-        std::cout << "fit2.kMean() : " << fit2.kMean() << endl;
-        std::cout << "fit1.GaussianCurvature() : " << fit1.GaussianCurvature() << endl;
-        std::cout << "fit2.GaussianCurvature() : " << fit2.GaussianCurvature() << endl;
         VERIFY((std::abs(fit1.kMean() - fit2.kMean()) < epsilon));
         VERIFY((std::abs(fit1.GaussianCurvature() - fit2.GaussianCurvature()) < epsilon));
     }
@@ -240,12 +209,12 @@ void callSubTests() {
     Scalar analysisScale = generateSpherePC(tree, nbPoints, center);
     // CALL_SUBTEST((testBasicFunctionalities<FitCNCIndependent>(tree, analysisScale) ));
     // CALL_SUBTEST((testBasicFunctionalities<FitCNCUniform>(tree, analysisScale) ));
-    // CALL_SUBTEST((testBasicFunctionalities<FitCNCHexagram>(tree, analysisScale) ));
+    CALL_SUBTEST((testBasicFunctionalities<FitCNCHexagram>(tree, analysisScale) ));
 
     // Compare with ASO
-    CALL_SUBTEST((testCompareFit<FitASODiff, FitCNCIndependent, true>(tree, analysisScale) ));
-    // CALL_SUBTEST((testCompareFit<FitASODiff, FitCNCUniform, false>(tree, analysisScale) ));
-    // CALL_SUBTEST((testCompareFit<FitASODiff, FitCNCHexagram, false>(tree, analysisScale, testEpsilon<Scalar>()*10) ));
+    // CALL_SUBTEST((testCompareFit<FitASODiff, FitCNCIndependent>(tree, analysisScale) ));
+    // CALL_SUBTEST((testCompareFit<FitASODiff, FitCNCUniform>(tree, analysisScale) ));
+    // CALL_SUBTEST((testCompareFit<FitASODiff, FitCNCHexagram>(tree, analysisScale, testEpsilon<Scalar>()*10) ));
     // CALL_SUBTEST((testCompareFit<FitASODiff, FitCNCAvgHexagram>(tree, analysisScale, testEpsilon<Scalar>()*10) ));
 }
 
