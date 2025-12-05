@@ -115,6 +115,9 @@ void testBasicFunctionalities(
         fit2.computeWithIds( pointsIndex, vectorPoints );
         //! [Fit computeWithIds]
 
+        VERIFY((fit1.isStable()));
+        VERIFY((fit2.isStable()));
+
         VERIFY((fit2 == fit2));
         VERIFY(! (fit2 != fit2));
 
@@ -170,6 +173,8 @@ void testCompareFit(
         fit2.setNeighborFilter({vectorPoints[i].pos(), analysisScale, vectorPoints[i].normal()});
         fit2.computeWithIds(pointsIndex, vectorPoints);
 
+        VERIFY((fit1.isStable()));
+        VERIFY((fit2.isStable()));
         // Compare Fit1 with Fit2
         VERIFY((std::abs(fit1.kMean() - fit2.kMean()) < epsilon));
         VERIFY((std::abs(fit1.GaussianCurvature() - fit2.GaussianCurvature()) < epsilon));

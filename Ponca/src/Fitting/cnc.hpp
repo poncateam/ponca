@@ -28,7 +28,7 @@ namespace Ponca::internal {
     struct TriangleGenerator {
         using VectorType = typename P::VectorType;
         template <typename IndexRange, typename PointContainer, typename NeighborFilter>
-        static int generate(
+        static FIT_RESULT generate(
             const IndexRange& /*ids*/,
             const PointContainer& /*points*/,
             const NeighborFilter& /*w*/,
@@ -51,14 +51,12 @@ namespace Ponca::internal {
         using Scalar     = typename P::Scalar;
 
         template <typename IndexRange, typename PointContainer, typename NeighborFilter>
-        static int generate(
+        static FIT_RESULT generate(
             const IndexRange& ids,
             const PointContainer& points,
             const NeighborFilter& w,
             std::vector<Triangle<P>>& triangles
         ) {
-            int nb_vt = 0; // Number of valid generated triangles
-
             // Makes a new array
             std::vector<int> indices;
             for ( int index : ids ) {
@@ -67,6 +65,8 @@ namespace Ponca::internal {
                     continue;
                 indices.push_back(index);
             }
+            if (indices.empty())
+                return UNDEFINED;
 
             const int lastIndex = int(indices.size()) - 1;
             for (int i = 0; i < maxTriangles; ++i) {
@@ -77,9 +77,8 @@ namespace Ponca::internal {
                 if (i1 == i2 || i1 == i3 || i2 == i3) continue;
 
                 triangles.push_back(internal::Triangle<P>(points[i1], points[i2], points[i3]));
-                nb_vt++;
             }
-            return nb_vt;
+            return STABLE;
         }
     };
 
@@ -96,13 +95,12 @@ namespace Ponca::internal {
         using Scalar     = typename P::Scalar;
 
         template <typename IndexRange, typename PointContainer, typename NeighborFilter>
-        static int generate(
+        static FIT_RESULT generate(
             const IndexRange& ids,
             const PointContainer& points,
             const NeighborFilter& w,
             std::vector<Triangle<P>>& triangles
         ) {
-            int nb_vt = 0; // Number of valid generated triangles
             // Makes a new array to shuffle
             std::vector<int> indices;
             for ( int index : ids ) {
@@ -111,6 +109,8 @@ namespace Ponca::internal {
                     continue;
                 indices.push_back(index);
             }
+            if (indices.empty())
+                return UNDEFINED;
 
             // Shuffles the neighbors
             std::random_device rd;
@@ -119,13 +119,14 @@ namespace Ponca::internal {
 
             // Compute the triangles
             triangles.clear();
-            for (const int max_triangles = std::min(maxTriangles, static_cast<int>(ids.size()) / 3); nb_vt < max_triangles-2; nb_vt++) {
+            const int max_triangles = std::min(maxTriangles, int(ids.size() / 3));
+            for (int nb_vt = 0; nb_vt < max_triangles-2; nb_vt++) {
                 int i1 = indices[nb_vt];
                 int i2 = indices[nb_vt+1];
                 int i3 = indices[nb_vt+2];
                 triangles.push_back(internal::Triangle<P>(points[i1], points[i2], points[i3]));
             }
-            return nb_vt;
+            return STABLE;
         }
     };
 
@@ -146,7 +147,7 @@ namespace Ponca::internal {
         using Scalar     = typename P::Scalar;
 
         template <typename IndexRange, typename PointContainer, typename NeighborFilter>
-        static int generate(
+        static FIT_RESULT generate(
             const IndexRange& ids,
             const PointContainer& points,
             const NeighborFilter& w,
@@ -158,6 +159,7 @@ namespace Ponca::internal {
             VectorType a {VectorType::Zero()};
             Scalar avg_d = Scalar(0);
 
+            bool isUndefined = true;
             for ( int index : ids ) {
                 // Skip the points that are outside the kernel radius
                 if (w(points[ index ]).first == Scalar(0.))
@@ -165,7 +167,10 @@ namespace Ponca::internal {
                 auto p = points[ index ];
                 avg_d += ( p.pos() - c ).norm();
                 a     += p.normal();
+                isUndefined = false;
             }
+            if (isUndefined)
+                return UNDEFINED;
 
             a     /= a.norm();
             n      = ( Scalar(1) - HexagramBase<P>::avg_normal_coef ) * n + HexagramBase<P>::avg_normal_coef * a;
@@ -221,7 +226,7 @@ namespace Ponca::internal {
             triangles.push_back(internal::Triangle<P>({positions[0] , positions[2] , positions[4]}, {normals[0] , normals[2], normals[4]}));
             triangles.push_back(internal::Triangle<P>({positions[1] , positions[3] , positions[5]}, {normals[1] , normals[3], normals[5]}));
 
-            return 2;
+            return STABLE;
         }
     };
 
@@ -235,7 +240,7 @@ namespace Ponca::internal {
         using Scalar     = typename P::Scalar;
 
         template <typename IndexRange, typename PointContainer, typename NeighborFilter>
-        static int generate(
+        static FIT_RESULT generate(
             const IndexRange& ids,
             const PointContainer& points,
             const NeighborFilter& w,
@@ -247,15 +252,19 @@ namespace Ponca::internal {
             VectorType a = w.evalNormal();
             Scalar avg_d = Scalar(0);
 
-            std::array< VectorType,    6 > _targets;
+            std::array< VectorType, 6 > targets;
             Scalar avg_normal  = Scalar(0.5);
 
+            bool isUndefined = true;
             for ( int index : ids ) {
                 if (w(points[ index ]).first == Scalar(0.))
                     continue; // Skip the points that are outside the kernel radius
                 a     += points[ index ].normal();
                 avg_d += ( points[ index ].pos() - c ).norm();
+                isUndefined = false;
             }
+            if (isUndefined)
+                return UNDEFINED;
 
             a     /= a.norm();
             n      = ( Scalar(1) - HexagramBase<P>::avg_normal_coef ) * n + HexagramBase<P>::avg_normal_coef * a;
@@ -280,7 +289,7 @@ namespace Ponca::internal {
             std::array< VectorType, 6 > array_avg_pos;
             std::array< int, 6 >    array_nb {};
             for (int i = 0 ; i < 6 ; i++ ) {
-                _targets[ i ]          = avg_d * ( u * cos(i * M_PI / 3.0) + v * sin(i * M_PI / 3.0) );
+                targets[ i ]          = avg_d * ( u * cos(i * M_PI / 3.0) + v * sin(i * M_PI / 3.0) );
                 array_avg_normals[ i ] = VectorType::Zero();
                 array_avg_pos    [ i ] = VectorType::Zero();
             }
@@ -289,9 +298,9 @@ namespace Ponca::internal {
             for (int index : ids) {
                 VectorType p = points[ index ].pos() - c;
                 int best_k = 0;
-                Scalar best_d2 = ( p - _targets[ 0 ] ).squaredNorm();
+                Scalar best_d2 = ( p - targets[ 0 ] ).squaredNorm();
                 for (int k = 1 ; k < 6 ; k++) {
-                    const Scalar d2 = ( p - _targets[ k ] ).squaredNorm();
+                    const Scalar d2 = ( p - targets[ k ] ).squaredNorm();
                     if ( d2 < best_d2 ) {
                         best_k = k;
                         best_d2 = d2;
@@ -320,7 +329,7 @@ namespace Ponca::internal {
                 { array_avg_pos[1] , array_avg_pos[3] , array_avg_pos[5] },
                 { array_avg_normals[1], array_avg_normals[3], array_avg_normals[5] }
             ));
-            return 2;
+            return STABLE;
         }
     };
 } // namespace Ponca::internal
@@ -331,7 +340,9 @@ namespace Ponca {
     FIT_RESULT CNC<P, M>::compute( const PointContainer& points ) {
         init();
         internal::BoundedIntRange indicesSample( points.size() );
-        m_nb_vt = internal::TriangleGenerator<M, P>::generate( indicesSample, points, m_nFilter, m_triangles);
+        m_eCurrentState = internal::TriangleGenerator<M, P>::generate( indicesSample, points, m_nFilter, m_triangles);
+        if (m_eCurrentState != STABLE) return m_eCurrentState;
+        m_nb_vt = m_triangles.size();
         return finalize();
     }
 
@@ -339,7 +350,9 @@ namespace Ponca {
     template <typename IndexRange, typename PointContainer>
     FIT_RESULT CNC<P, M>::computeWithIds( const IndexRange& ids, const PointContainer& points ) {
         init();
-        m_nb_vt = internal::TriangleGenerator<M, P>::generate( ids, points, m_nFilter, m_triangles);
+        m_eCurrentState = internal::TriangleGenerator<M, P>::generate( ids, points, m_nFilter, m_triangles);
+        if (m_eCurrentState != STABLE) return m_eCurrentState;
+        m_nb_vt = m_triangles.size();
         return finalize();
     }
 
