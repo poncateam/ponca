@@ -28,47 +28,58 @@ namespace internal {
  */
 template < class DataPoint >
 struct Triangle {
+public:
     typedef typename DataPoint::Scalar Scalar;
     typedef typename DataPoint::VectorType VectorType;
     typedef typename DataPoint::MatrixType MatrixType;
-
-    std::array < VectorType, 3 > points;
-    std::array < VectorType, 3 > normals;
-
+protected:
+    std::array < VectorType, 3 > m_points;
+    std::array < VectorType, 3 > m_normals;
+public:
     Triangle(DataPoint pointA, DataPoint pointB, DataPoint pointC) {
-        points = {
+        m_points = {
             pointA.pos(),
             pointB.pos(),
             pointC.pos()
         };
-        normals = {
+        m_normals = {
             pointA.normal(),
             pointB.normal(),
             pointC.normal()
         };
     }
+
     Triangle(const std::array < VectorType, 3 >& points, const std::array < VectorType, 3 >& normals) {
-        this->points = points;
-        this->normals = normals;
+        m_points = points;
+        m_normals = normals;
     }
 
-    bool operator==(const Triangle& other) const {
-        return (points[0] == other.points[0])
-			&& (points[1] == other.points[1])
-			&& (points[2] == other.points[2]);
+    /*! \brief Get the position of the point at the given index.
+     *
+     * @param index Index of one of the three vertices of the triangle (between 0 and 2)
+     * @return The position of vertex
+     */
+    PONCA_MULTIARCH [[nodiscard]] VectorType& getPos(const int index) {
+        return m_points[index];
     }
 
-    bool operator!=(const Triangle& other) const {
+    PONCA_MULTIARCH [[nodiscard]] bool operator==(const Triangle& other) const {
+        return (m_points[0] == other.m_points[0])
+			&& (m_points[1] == other.m_points[1])
+			&& (m_points[2] == other.m_points[2]);
+    }
+
+    PONCA_MULTIARCH [[nodiscard]] bool operator!=(const Triangle& other) const {
         return !((*this) == other);
     }
 
-#define DEFINE_CNC_FUNC(CNC_FUNC, RETURN_TYPE)                                \
-    template<bool differentOrder = false>                                     \
-    inline RETURN_TYPE CNC_FUNC () {                                          \
-        return CNCEigen<DataPoint>::CNC_FUNC(                                 \
-            points[0] ,  points[2-differentOrder],  points[1+differentOrder], \
-            normals[0], normals[2-differentOrder], normals[1+differentOrder]  \
-        );                                                                    \
+#define DEFINE_CNC_FUNC(CNC_FUNC, RETURN_TYPE)                                      \
+    template<bool differentOrder = false>                                           \
+    inline RETURN_TYPE CNC_FUNC () {                                                \
+        return CNCEigen<DataPoint>::CNC_FUNC(                                       \
+            m_points[0] ,  m_points[2-differentOrder],  m_points[1+differentOrder], \
+            m_normals[0], m_normals[2-differentOrder], m_normals[1+differentOrder]  \
+        );                                                                          \
     }
 
 	DEFINE_CNC_FUNC(mu0InterpolatedU , Scalar)
@@ -219,6 +230,15 @@ public:
     PONCA_FITTING_APIDOC_SETWFUNC
     PONCA_MULTIARCH inline void setNeighborFilter (const NeighborFilter& _nFilter) {
         m_nFilter  = _nFilter;
+    }
+
+    /*!
+     * \brief Returns the triangles
+     *
+     * @return A pointer to the array of triangle that was generated during the CNC Fit
+     */
+    PONCA_MULTIARCH [[nodiscard]] std::vector< internal::Triangle<DataPoint> >& getTriangles() {
+        return m_triangles;
     }
 
     PONCA_MULTIARCH [[nodiscard]] bool operator==(const CNC& other) const {
