@@ -187,14 +187,14 @@ protected:
     VectorType m_v1;
     VectorType m_v2;
 
-    //! \brief Represent the current state of the fit (finalize function
-    //! update the state)
+    /*! \brief Represent the current state of the fit
+     * (finalize function update the state)
+     */
     FIT_RESULT m_eCurrentState {UNDEFINED};
 public:
     PONCA_FITTING_DECLARE_FINALIZE
 
-    /*! \brief Set the scalar field values to 0 and reset the isNormalized() status
-    */
+    //! \brief Set the scalar field values to 0 and reset the isNormalized() status
     PONCA_MULTIARCH inline void init() {
         m_eCurrentState = UNDEFINED;
         m_A  = Scalar(0);
@@ -222,7 +222,11 @@ public:
     template <typename IndexRange, typename PointContainer>
     PONCA_MULTIARCH inline FIT_RESULT computeWithIds( const IndexRange& ids, const PointContainer& points );
 
-    /*! \brief Returns the number of fitted triangles */
+    /*!
+     * \brief Get the number of triangles that were generated with the compute method.
+     * \return Returns the number of triangles
+     * \see CNC::compute
+     */
     PONCA_MULTIARCH [[nodiscard]] inline size_t getNumTriangles() const {
         return static_cast<size_t>(m_nb_vt);
     }
@@ -235,45 +239,75 @@ public:
     /*!
      * \brief Returns the triangles
      *
-     * @return A pointer to the array of triangle that was generated during the CNC Fit
+     * \return A pointer to the array of triangle that was generated during the CNC Fit
      */
     PONCA_MULTIARCH [[nodiscard]] std::vector< internal::Triangle<DataPoint> >& getTriangles() {
         return m_triangles;
     }
 
+    //! \brief Comparison operator
     PONCA_MULTIARCH [[nodiscard]] bool operator==(const CNC& other) const {
         // We use the matrix to compare the fitting results
-        return (m_eCurrentState == other.m_eCurrentState) && (m_T11 == other.m_T11) && (m_T12 == other.m_T12) && (m_T13 == other.m_T13) && (m_T22 == other.m_T22) && (m_T23 == other.m_T23) && (m_T33 == other.m_T33);
+        return (m_eCurrentState == other.m_eCurrentState)
+            && (kMean() == other.kMean())
+            && (kmin() == other.kmin())
+            && (kmax() == other.kmax())
+            && (kminDirection() == other.kminDirection())
+            && (kmaxDirection() == other.kmaxDirection())
+            && (GaussianCurvature() == other.GaussianCurvature())
+            && (m_T11 == other.m_T11) && (m_T12 == other.m_T12) && (m_T13 == other.m_T13)
+            && (m_T22 == other.m_T22) && (m_T23 == other.m_T23)
+            && (m_T33 == other.m_T33);
     }
+
+    //! \brief Comparison operator, convenience function
     PONCA_MULTIARCH [[nodiscard]] bool operator!=(const CNC& other) const {
         // We use the matrix to compare the fitting results
         return !(this == &other);
     }
 
-    template<typename Fit>
-    PONCA_MULTIARCH [[nodiscard]] bool isApprox(const Fit& other, const Scalar& epsilon = Eigen::NumTraits<Scalar>::dummy_precision()) const {
-        std::cout << "m_eCurrentState : " << (m_eCurrentState == other.m_eCurrentState) << std::endl;
-        std::cout << "kMean : " << kMean() << " other.kMean() : " << other.kMean() << std::endl;
-        std::cout << "GaussianCurvature() : " << GaussianCurvature() << " other.GaussianCurvature() : " << other.GaussianCurvature() << std::endl;
-        // Simply compare the kMean and kGauss results
+    //! \brief Approximate operator
+    PONCA_MULTIARCH [[nodiscard]] bool isApprox(const CNC& other, const Scalar& epsilon = Eigen::NumTraits<Scalar>::dummy_precision()) const {
+        PONCA_MULTIARCH_STD_MATH(abs);
+
+        // For debug (to be removed)
+        if (m_eCurrentState != other.m_eCurrentState)
+            std::cout << "(m_eCurrentState == other.m_eCurrentState) = FALSE";
+        if (std::abs(kMean()  - other.kMean()) > epsilon)
+            std::cout << "std::abs(kMean()  - other.kMean() :" << std::abs(kMean()  - other.kMean()) << std::endl;
+        if (std::abs(GaussianCurvature() - other.GaussianCurvature()) > epsilon)
+            std::cout << "std::abs(GaussianCurvature() - other.GaussianCurvature() :" << std::abs(GaussianCurvature() - other.GaussianCurvature()) << std::endl;
+        if (std::abs(kmin() - other.kmin()) > epsilon)
+            std::cout << "std::abs(kmin() - other.kmin()) :" << std::abs(kmin() - other.kmin()) << std::endl;
+        if (std::abs(kmax() - other.kmax()) > epsilon)
+            std::cout << "std::abs(kmax() - other.kmax() :" << std::abs(kmax() - other.kmax()) << std::endl;
+
         return (m_eCurrentState == other.m_eCurrentState)
             && (std::abs(kMean()  - other.kMean())  < epsilon)
-            && (std::abs(GaussianCurvature() - other.GaussianCurvature()) < epsilon);
+            && (std::abs(GaussianCurvature() - other.GaussianCurvature()) < epsilon)
+            && (std::abs(kmin() - other.kmin()) < epsilon)
+            && (std::abs(kmax() - other.kmax()) < epsilon);
     }
 
-    /*! \brief Is the fitted primitive ready to use (finalize has been called and the result is stable) */
+    //! \brief Is the fitted primitive ready to use (finalize has been called and the result is stable)
     PONCA_MULTIARCH [[nodiscard]] inline bool isStable() const { return m_eCurrentState == STABLE; }
 
+    //! \brief Returns an estimate of the minimal principal curvature value
     PONCA_MULTIARCH [[nodiscard]] inline Scalar kmin() const { return m_k1; }
 
+    //! \brief Returns an estimate of the maximal principal curvature value
     PONCA_MULTIARCH [[nodiscard]] inline Scalar kmax() const { return m_k2; }
 
+    //! \brief Returns an estimate of the minimal principal curvature direction
     PONCA_MULTIARCH [[nodiscard]] inline VectorType kminDirection() const { return m_v1; }
 
+    //! \brief Returns an estimate of the maximal principal curvature direction
     PONCA_MULTIARCH [[nodiscard]] inline VectorType kmaxDirection() const { return m_v2; }
 
+    //! \brief Returns an estimate of the mean curvature
     PONCA_MULTIARCH [[nodiscard]] inline Scalar kMean() const { return m_H; }
 
+    //! \brief Returns an estimate of the Gaussian curvature
     PONCA_MULTIARCH [[nodiscard]] inline Scalar GaussianCurvature() const { return m_G; }
 }; //class CNC
 

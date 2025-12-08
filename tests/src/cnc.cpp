@@ -83,10 +83,6 @@ void testBasicFunctionalities(
 // #pragma omp parallel for
 // #endif
     for (int i = 0; i < static_cast<int>(vectorPoints.size()); ++i) {
-        // const DataPoint &evalPoint = DataPoint{
-        //     vectorPoints[i].pos() + VectorType::Random(),
-        //     vectorPoints[i].normal() + VectorType::Random()
-        // };
         const DataPoint& evalPoint = vectorPoints[i];
 
         //! [Fit compute]
@@ -101,8 +97,8 @@ void testBasicFunctionalities(
         // Sample the neighbors
         std::vector<int> pointsIndex;
         pointsIndex.push_back(i);
-        for (int j : tree.range_neighbors(i, analysisScale)) {
-        // for (int j = 0; j < vectorPoints.size(); j++) {
+        // for (int j : tree.range_neighbors(i, analysisScale)) {
+        for (int j = 0; j < vectorPoints.size(); j++) {
             pointsIndex.push_back(j);
         }
 
@@ -115,13 +111,14 @@ void testBasicFunctionalities(
         fit2.computeWithIds( pointsIndex, vectorPoints );
         //! [Fit computeWithIds]
 
-        std::cout << "size pointsIndex : " << pointsIndex.size() << std::endl;
-
         VERIFY((fit1.isStable()));
         VERIFY((fit2.isStable()));
 
+        // Equal to self test
         VERIFY((fit2 == fit2));
         VERIFY(! (fit2 != fit2));
+        VERIFY((fit1 == fit1));
+        VERIFY(! (fit1 != fit1));
 
         // Compare computeWithIds with compute result
         VERIFY((fit1.isApprox(fit2, epsilon)));
@@ -161,12 +158,7 @@ void testCompareFit(
                 pointsIndex.push_back(j);
             }
         }
-        std::cout << "size pointsIndex : " << flush;
-        std::cout << pointsIndex.size() << endl;
-        std::cout << "size vectorPoints : " << flush;
-        std::cout << vectorPoints.size() << endl;
 
-        continue ;
         Fit1 fit1;
         fit1.setNeighborFilter({vectorPoints[i].pos(), analysisScale});
         fit1.computeWithIds(pointsIndex, vectorPoints);
@@ -214,13 +206,13 @@ void callSubTests() {
 #endif
 
     Scalar analysisScale = generateSpherePC(tree, nbPoints, center);
-    // CALL_SUBTEST((testBasicFunctionalities<FitCNCIndependent>(tree, analysisScale) ));
-    // CALL_SUBTEST((testBasicFunctionalities<FitCNCUniform>(tree, analysisScale) ));
-    CALL_SUBTEST((testBasicFunctionalities<FitCNCHexagram>(tree, analysisScale) ));
+    CALL_SUBTEST((testBasicFunctionalities<FitCNCIndependent>(tree, analysisScale) ));
+    CALL_SUBTEST((testBasicFunctionalities<FitCNCUniform>(tree, analysisScale) ));
+    // CALL_SUBTEST((testBasicFunctionalities<FitCNCHexagram>(tree, analysisScale) ));
 
     // Compare with ASO
-    // CALL_SUBTEST((testCompareFit<FitASODiff, FitCNCIndependent>(tree, analysisScale) ));
-    // CALL_SUBTEST((testCompareFit<FitASODiff, FitCNCUniform>(tree, analysisScale) ));
+    CALL_SUBTEST((testCompareFit<FitASODiff, FitCNCIndependent>(tree, analysisScale) ));
+    CALL_SUBTEST((testCompareFit<FitASODiff, FitCNCUniform>(tree, analysisScale) ));
     // CALL_SUBTEST((testCompareFit<FitASODiff, FitCNCHexagram>(tree, analysisScale, testEpsilon<Scalar>()*10) ));
     // CALL_SUBTEST((testCompareFit<FitASODiff, FitCNCAvgHexagram>(tree, analysisScale, testEpsilon<Scalar>()*10) ));
 }
