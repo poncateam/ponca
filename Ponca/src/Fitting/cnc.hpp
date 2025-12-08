@@ -153,6 +153,7 @@ namespace Ponca::internal {
             const NeighborFilter& w,
             std::vector<Triangle<P>>& triangles
         ) {
+            PONCA_MULTIARCH_STD_MATH(abs);
             // Compute normal and maximum distance.
             VectorType c = w.evalPos();
             VectorType n = w.evalNormal();
@@ -178,9 +179,9 @@ namespace Ponca::internal {
             avg_d /= ids.size();
 
             // Define basis for sector analysis.
-            const int m = ( std::abs( n[0] ) > std::abs ( n[1] ))
-                    ? ( ( std::abs( n[0] ) ) > std::abs( n[2] ) ? 0 : 2 )
-                    : ( ( std::abs( n[1] ) ) > std::abs( n[2] ) ? 1 : 2 ) ;
+            const int m = abs( n[0] ) > abs( n[1] )
+                      ? ( abs( n[0] ) > abs( n[2] ) ? 0 : 2 )
+                      : ( abs( n[1] ) > abs( n[2] ) ? 1 : 2 ) ;
 
             const VectorType e =
                 ( m == 0 ) ? VectorType( 0, 1, 0 ) :
@@ -211,13 +212,13 @@ namespace Ponca::internal {
                     continue;
 
                 VectorType p = points[ index ].pos();
-                if ( p == c ) continue;
+                if ( p == c ) continue; // Skip the eval point
                 const VectorType d = p - c;
 
-                for ( int j = 0 ; j < 6 ; j++ ){
+                for ( int j = 0 ; j < 6 ; j++ ) {
                     const Scalar d2 = ( d - targets[ j ]).squaredNorm();
-                    if ( d2 < distance2[ j ] ){
-                        distance2 [ j ] = d2;
+                    if ( d2 < distance2[ j ] ) {
+                        distance2[ j ] = d2;
                         positions[ j ] = p;
                         normals  [ j ] = points[ index ].normal();
                     }

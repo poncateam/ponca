@@ -201,7 +201,7 @@ public:
      * \tparam PointContainer An STL-like container storing the points
      */
     template <typename PointContainer>
-    PONCA_MULTIARCH [[nodiscard]] inline FIT_RESULT compute( const PointContainer& points);
+    PONCA_MULTIARCH inline FIT_RESULT compute( const PointContainer& points);
 
     /*!
      * \brief Compute function that iterates over a subset of sampled points from an STL-Like container.
@@ -209,7 +209,7 @@ public:
      * \tparam PointContainer An STL-like container storing the points
      */
     template <typename IndexRange, typename PointContainer>
-    PONCA_MULTIARCH [[nodiscard]] inline FIT_RESULT computeWithIds( const IndexRange& ids, const PointContainer& points );
+    PONCA_MULTIARCH inline FIT_RESULT computeWithIds( const IndexRange& ids, const PointContainer& points );
 
     /*! \brief Returns the number of fitted triangles */
     PONCA_MULTIARCH [[nodiscard]] inline size_t getNumTriangles() const {

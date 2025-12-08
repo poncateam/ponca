@@ -79,9 +79,9 @@ void testBasicFunctionalities(
     auto rng = std::default_random_engine {};
 
     // Test for each point if the fitted sphere correspond to the theoretical sphere
-#ifdef NDEBUG
-#pragma omp parallel for
-#endif
+// #ifdef NDEBUG
+// #pragma omp parallel for
+// #endif
     for (int i = 0; i < static_cast<int>(vectorPoints.size()); ++i) {
         // const DataPoint &evalPoint = DataPoint{
         //     vectorPoints[i].pos() + VectorType::Random(),
@@ -114,6 +114,8 @@ void testBasicFunctionalities(
         fit2.setNeighborFilter({evalPoint.pos(), analysisScale});
         fit2.computeWithIds( pointsIndex, vectorPoints );
         //! [Fit computeWithIds]
+
+        std::cout << "size pointsIndex : " << pointsIndex.size() << std::endl;
 
         VERIFY((fit1.isStable()));
         VERIFY((fit2.isStable()));
