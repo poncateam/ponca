@@ -15,10 +15,11 @@
 #include "Ponca/src/Fitting/basket.h"
 #include "Ponca/src/Fitting/covariancePlaneFit.h"
 #include "Ponca/src/Fitting/curvature.h"
-#include "Ponca/src/Fitting/curvatureEstimation.h"
 #include "Ponca/src/Fitting/mongePatch.h"
 #include "Ponca/src/Fitting/weightFunc.h"
 #include "Ponca/src/Fitting/weightKernel.h"
+
+#include <Ponca/SpatialPartitioning>
 
 using namespace std;
 using namespace Ponca;
@@ -34,7 +35,8 @@ void testFunction(bool _bAddPositionNoise = false, bool _bAddNormalNoise = false
     //generate sampled plane
     int nbPoints = Eigen::internal::random<int>(1000, 5000);
 
-    Scalar width  = Eigen::internal::random<Scalar>(1., 10.);
+    // use large width to reduce relative influence of the positional noise
+    Scalar width  = Eigen::internal::random<Scalar>(100., 200.);
     Scalar height = width;
 
     Scalar analysisScale = width; //use a large scale to avoir fitting errors
@@ -56,6 +58,8 @@ void testFunction(bool _bAddPositionNoise = false, bool _bAddNormalNoise = false
                                                      _bAddNormalNoise);
     }
 
+    KdTreeDense<DataPoint> tree(vectorPoints);
+
     // Test for several points if principal curvature values are null
     // The points are generated to not be on the border of the generated point cloud
     // to avoid instabilities issues
@@ -72,32 +76,42 @@ void testFunction(bool _bAddPositionNoise = false, bool _bAddNormalNoise = false
 
         epsilon = testEpsilon<Scalar>();
         if ( _bAddPositionNoise) // relax a bit the testing threshold
-          epsilon = Scalar(0.001*MAX_NOISE);
+          epsilon = Scalar(0.01*MAX_NOISE);
 
         typename Fit::NeighborFilter nf (queryPos, analysisScale);
 
         Fit fit;
         fit.setNeighborFilter(nf);
-        fit.compute(vectorPoints);
+        fit.computeWithIds(tree.range_neighbors(queryPos,analysisScale),vectorPoints);
 
         RefFit refFit;
         refFit.setNeighborFilter(nf);
-        refFit.compute(vectorPoints);
+        refFit.computeWithIds(tree.range_neighbors(queryPos,analysisScale),vectorPoints);
 
         // use temporaries to help debugging
-        VectorType res = fit.primitiveGradient(queryPos).normalized();
-        Scalar resDot = res.dot(direction);
+        VectorType res    = fit.primitiveGradient(queryPos).normalized();
+        Scalar resDot     = res.dot(direction);
+        VectorType resRef = refFit.primitiveGradient(queryPos).normalized();
+        Scalar resDotRef  = resRef.dot(direction);
 
         if(Scalar(1.) - std::abs( resDot ) > epsilon){
             VectorType res2 = fit.primitiveGradient(queryPos).normalized();
             std::cout << res2.transpose() << std::endl;
         }
 
-        if( fit.isStable() ){
+        if( refFit.isStable() ){
+            VERIFY(fit.isStable());
+
             VERIFY(Scalar(1.) - std::abs( resDot ) <= epsilon);
+            VERIFY(Scalar(1.) - std::abs( resDotRef ) <= epsilon);
+
+            // use temporaries to help debugging
+            Scalar meanCurvature     = fit.kMean();
+            Scalar gaussianCurvature = fit.GaussianCurvature();
+
             // Check if we have a plane
-            VERIFY(std::abs(fit.kMean()) < epsilon);
-            VERIFY(fit.GaussianCurvature() <= epsilon);
+            VERIFY(std::abs(meanCurvature) < epsilon);
+            VERIFY(std::abs(gaussianCurvature) <= epsilon);
         } else {
             VERIFY(FITTING_FAILED);
         }

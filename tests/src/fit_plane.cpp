@@ -51,7 +51,8 @@ void testFunction(bool _bUnoriented = false, bool _bAddPositionNoise = false, bo
     //generate sampled plane
     int nbPoints = Eigen::internal::random<int>(100, 1000);
 
-    Scalar width  = Eigen::internal::random<Scalar>(1., 10.);
+    // use large width to reduce relative influence of the positional noise
+    Scalar width  = Eigen::internal::random<Scalar>(100., 200.);
     Scalar height = width;
 
     Scalar analysisScale = Scalar(15.) * std::sqrt( width * height / nbPoints);
