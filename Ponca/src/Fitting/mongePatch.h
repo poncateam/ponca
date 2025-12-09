@@ -86,10 +86,7 @@ namespace Ponca
         //! \brief Scalar field gradient direction at \f$ \mathbf{q}\f$
         PONCA_MULTIARCH [[nodiscard]] inline VectorType primitiveGradient (const VectorType& _q) const
         {
-            // there is a bug here: the gradient is a vector representing a direction. When calling tangentPlaneToWorld,
-            // it should only be rotated, not translated.
-            // FIXME
-            return Base::tangentPlaneToWorld(primitiveGradientLocal(Base::worldToTangentPlane(_q)));
+            return Base::tangentPlaneToWorld(primitiveGradientLocal(Base::worldToTangentPlane(_q)), false);
         }
 
         //! \brief Scalar field gradient direction, both input and output vectors are expressed in the local basis
