@@ -134,5 +134,12 @@ struct hasNormal : std::false_type {};
 template <typename T>
 struct hasNormal<T, std::void_t<decltype(std::declval<T>().normal())>> : std::true_type {};
 
+/// \FIXME create a macro to automatically generate the testing functions
+    template <typename T, typename = void>
+    struct hasFirstFundamentalForm : std::false_type {};
+
+    template <typename T>
+    struct hasFirstFundamentalForm<T, std::void_t<decltype(std::declval<T>().firstFundamentalForm())>> : std::true_type {};
+
 } // namespace Ponca
 
