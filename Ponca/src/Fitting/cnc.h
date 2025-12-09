@@ -270,18 +270,6 @@ public:
     PONCA_MULTIARCH [[nodiscard]] bool isApprox(const CNC& other, const Scalar& epsilon = Eigen::NumTraits<Scalar>::dummy_precision()) const {
         PONCA_MULTIARCH_STD_MATH(abs);
 
-        // For debug (to be removed)
-        if (m_eCurrentState != other.m_eCurrentState)
-            std::cout << "(m_eCurrentState == other.m_eCurrentState) = FALSE";
-        if (std::abs(kMean()  - other.kMean()) > epsilon)
-            std::cout << "std::abs(kMean()  - other.kMean() :" << std::abs(kMean()  - other.kMean()) << std::endl;
-        if (std::abs(GaussianCurvature() - other.GaussianCurvature()) > epsilon)
-            std::cout << "std::abs(GaussianCurvature() - other.GaussianCurvature() :" << std::abs(GaussianCurvature() - other.GaussianCurvature()) << std::endl;
-        if (std::abs(kmin() - other.kmin()) > epsilon)
-            std::cout << "std::abs(kmin() - other.kmin()) :" << std::abs(kmin() - other.kmin()) << std::endl;
-        if (std::abs(kmax() - other.kmax()) > epsilon)
-            std::cout << "std::abs(kmax() - other.kmax() :" << std::abs(kmax() - other.kmax()) << std::endl;
-
         return (m_eCurrentState == other.m_eCurrentState)
             && (std::abs(kMean()  - other.kMean())  < epsilon)
             && (std::abs(GaussianCurvature() - other.GaussianCurvature()) < epsilon)
