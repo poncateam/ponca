@@ -116,18 +116,41 @@ namespace Ponca
     public:
         PONCA_EXPLICIT_CAST_OPERATORS(FundamentalFormCurvatureEstimator, fundamentalFormCurvatureEstimator)
 
+        /// \brief Construct and return the first fundamental form from the base class
+        ///
+        /// \return first fundamental form
+        /// \see firstFundamentalForm(Matrix2& first) for an in-place version
         PONCA_MULTIARCH [[nodiscard]] inline Matrix2 firstFundamentalForm() const {
             Matrix2 first;
-            Base::firstFundamentalFormComponents(*(first.data()), *(first.data()+1), *(first.data()+3));
-            *(first.data()+2) = *(first.data()+1);
+            firstFundamentalForm(first);
             return first;
         }
 
+        /// \copybrief firstFundamentalForm()
+        /// \tparam Input matrix type that must have same interface than Matrix2
+        template<typename Matrix2Derived>
+        PONCA_MULTIARCH inline void firstFundamentalForm(Matrix2Derived& first) const {
+            Base::firstFundamentalFormComponents(first(0,0), first(1,0), first(1,1));
+            first(0,1) = first(1,0); // diagonal
+        }
+
+
+        /// \brief Construct and return the second fundamental form from the base class
+        ///
+        /// \return second fundamental form
+        /// \see secondFundamentalForm(Matrix2& second) for an in-place version
         PONCA_MULTIARCH [[nodiscard]] inline Matrix2 secondFundamentalForm() const {
             Matrix2 second;
-            Base::secondFundamentalFormComponents(*(second.data()), *(second.data()+1), *(second.data()+3));
-            *(second.data()+2) = *(second.data()+1);
+            secondFundamentalForm(second);
             return second;
+        }
+
+        /// \copybrief secondtFundamentalForm()
+        /// \tparam Input matrix type that must have same interface than Matrix2
+        template<typename Matrix2Derived>
+        PONCA_MULTIARCH inline void secondFundamentalForm(Matrix2Derived &second) const {
+            Base::secondFundamentalFormComponents(second(0,0), second(1,0), second(1,1));
+            second(0,1) = second(1,0); // diagonal
         }
 
         //! \brief Returns the WeingartenMap, defined as
@@ -147,22 +170,38 @@ namespace Ponca
 //        //! \brief Returns an estimate of the maximal principal curvature direction
 //        PONCA_MULTIARCH inline VectorType kmaxDirection() const { return m_vmax; }
 
-        //! \brief Returns an estimate of the mean curvature
+        /// \brief Returns an estimate of the mean curvature
+        ///
+        /// \see kMeanFromWeingartenMap() for an alternative implementation
         PONCA_MULTIARCH inline Scalar kMean() const {
             Scalar E, F, G, L, M, N;
             Base::firstFundamentalFormComponents(E, F, G);
             Base::secondFundamentalFormComponents(L, M, N);
             return (G*L-Scalar(2)*F*M+E*N)/(Scalar(2)*(E*G-F*F));
-//            return Scalar(0.5)*weingartenMap().trace();
+        }
+
+        /// \copybrief kMean()
+        ///
+        /// \see kMean() for an alternative implementation
+        PONCA_MULTIARCH inline Scalar kMeanFromWeingartenMap() const {
+            return Scalar(0.5)*weingartenMap().trace();
         }
 
         //! \brief Returns an estimate of the Gaussian curvature
+        ///
+        /// \see GaussianCurvatureFromWeingartenMap() for an alternative implementation
         PONCA_MULTIARCH inline Scalar GaussianCurvature() const {
             Scalar E, F, G, L, M, N;
             Base::firstFundamentalFormComponents(E, F, G);
             Base::secondFundamentalFormComponents(L, M, N);
             return (L*N-M*M)/(E*G-F*F);
-//            return weingartenMap().determinant();
+        }
+
+        /// \copybrief GaussianCurvature()
+        ///
+        /// \see GaussianCurvature() for an alternative implementation
+        PONCA_MULTIARCH inline Scalar GaussianCurvatureFromWeingartenMap() const {
+            return weingartenMap().determinant();
         }
     };
 

@@ -12,6 +12,7 @@
 
 #include <vector>
 
+#include "Ponca/src/Fitting/defines.h"
 #include "Ponca/src/Fitting/basket.h"
 #include "Ponca/src/Fitting/covariancePlaneFit.h"
 #include "Ponca/src/Fitting/curvature.h"
@@ -25,9 +26,29 @@ using namespace std;
 using namespace Ponca;
 
 
+template<bool hasFundamentalForms>
+struct FundamentalFormTester {
+    template<typename Fit>
+    static inline void test(const Fit &, typename Fit::Scalar) {}
+};
+
+template<>
+template<typename Fit>
+void FundamentalFormTester<true>::test(const Fit &fit, typename Fit::Scalar epsilon) {
+    VERIFY(std::abs(fit.kMeanFromWeingartenMap()) < epsilon);
+    VERIFY(std::abs(fit.GaussianCurvatureFromWeingartenMap()) <= epsilon);
+}
+
+
+
+
+
+
 template<typename DataPoint, typename Fit, typename RefFit>
 void testFunction(bool _bAddPositionNoise = false, bool _bAddNormalNoise = false)
 {
+    constexpr bool hasFundamentalForms = hasFirstFundamentalForm<Fit>::value;
+
     // Define related structure
     typedef typename DataPoint::Scalar Scalar;
     typedef typename DataPoint::VectorType VectorType;
@@ -112,6 +133,8 @@ void testFunction(bool _bAddPositionNoise = false, bool _bAddNormalNoise = false
             // Check if we have a plane
             VERIFY(std::abs(meanCurvature) < epsilon);
             VERIFY(std::abs(gaussianCurvature) <= epsilon);
+
+            FundamentalFormTester<hasFundamentalForms>::test(fit, epsilon);
         } else {
             VERIFY(FITTING_FAILED);
         }
