@@ -106,21 +106,17 @@ namespace Ponca {
     }
 
     template<class DataPoint, class _NFilter, int DiffType, typename T>
-    template<typename Matrix2Derived>
-    void NormalDerivativeWeingartenEstimator<DataPoint, _NFilter, DiffType, T>::weingartenMap(Matrix2Derived &W) const {
+    FIT_RESULT
+    NormalDerivativeWeingartenEstimator<DataPoint, _NFilter, DiffType, T>::finalize() {
+
         PONCA_MULTIARCH_STD_MATH(abs);
         PONCA_MULTIARCH_STD_MATH(sqrt);
 
         using Index = typename VectorType::Index;
-        using Matrix32 = Eigen::Matrix<Scalar,3,2>;
 
-        // Get the object space Weingarten map dN
-        MatrixType dN = Base::dNormal().template middleCols<DataPoint::Dim>(Base::isScaleDer() ? 1: 0);
-
-        // Compute tangent-space basis
-        // \FIXME This code provides tangent plane estimation, but does not make it available to other classes
-        //        Could be interesting to make it available through PROVIDES_TANGENT_PLANE_BASIS
-        Matrix32 B;
+        Base::finalize();
+        // Test if base finalize end on a viable case (stable / unstable)
+        if (this->isReady())
         {
             Index i0=Index(-1), i1=Index(-1), i2=Index(-1);
             // Use the spatial derivative of the normal. This option leads to NaN
@@ -132,17 +128,44 @@ namespace Ponca {
             // Compute tangent-space basis from dN
             //   1 - pick the column with maximal norm as the first tangent vector,
             Scalar sqNorm = dN.colwise().squaredNorm().maxCoeff(&i0);
-            B.col(0) = dN.col(i0) / sqrt(sqNorm);
+            m_tangentBasis.col(1) = dN.col(i0) / sqrt(sqNorm);
             //   2 - orthogonalize the other column vectors, and pick the most reliable one
             i1 = (i0 + 1) % 3;
             i2 = (i0 + 2) % 3;
-            VectorType v1 = dN.col(i1) - B.col(0).dot(dN.col(i1)) * B.col(0);
-            VectorType v2 = dN.col(i2) - B.col(0).dot(dN.col(i2)) * B.col(0);
+            VectorType v1 = dN.col(i1) - m_tangentBasis.col(1).dot(dN.col(i1)) * m_tangentBasis.col(1);
+            VectorType v2 = dN.col(i2) - m_tangentBasis.col(1).dot(dN.col(i2)) * m_tangentBasis.col(1);
             Scalar v1norm2 = v1.squaredNorm();
             Scalar v2norm2 = v2.squaredNorm();
-            if (v1norm2 > v2norm2) B.col(1) = v1 / sqrt(v1norm2);
-            else B.col(1) = v2 / sqrt(v2norm2);
+
+            // col(2) is the second tangent direction, and col(0) is the normal direction
+            if (v1norm2 > v2norm2){
+                m_tangentBasis.col(2) = v1 / sqrt(v1norm2);
+                m_tangentBasis.col(0) = v2 / sqrt(v2norm2);
+            }
+            else {
+                m_tangentBasis.col(2) = v2 / sqrt(v2norm2);
+                m_tangentBasis.col(0) = v1 / sqrt(v1norm2);
+            }
+
+            /// \FIXME : do not forget to add a test to check if the heigh direction aligns with the normal
         }
+        return Base::m_eCurrentState;
+    }
+
+    template<class DataPoint, class _NFilter, int DiffType, typename T>
+    template<typename Matrix2Derived>
+    void NormalDerivativeWeingartenEstimator<DataPoint, _NFilter, DiffType, T>::weingartenMap(Matrix2Derived &W) const {
+        PONCA_MULTIARCH_STD_MATH(abs);
+        PONCA_MULTIARCH_STD_MATH(sqrt);
+
+        using Index = typename VectorType::Index;
+        using Matrix32 = Eigen::Matrix<Scalar,3,2>;
+
+        // Get the object space Weingarten map dN
+        MatrixType dN = Base::dNormal().template middleCols<DataPoint::Dim>(Base::isScaleDer() ? 1: 0);
+
+        // Compute tangent-space change of basis function
+        auto B = m_tangentBasis.template leftCols<2>();
 
         // Compute the 2x2 matrix representing the shape operator by transforming dN to the basis B.
         // Recall that dN is a bilinear form, it thus transforms as follows:
@@ -163,40 +186,51 @@ namespace Ponca {
         W(0,1) = W(1,0) = (W(0,1) + W(1,0))/Scalar(2);
     }
 
+    template<class DataPoint, class _NFilter, int DiffType, typename T>
+    typename NormalDerivativeWeingartenEstimator<DataPoint, _NFilter, DiffType, T>::VectorType
+    NormalDerivativeWeingartenEstimator<DataPoint, _NFilter, DiffType, T>::worldToTangentPlane(const VectorType &_q,
+                                                                                               bool _isPositionVector) const{
+        return m_tangentBasis.normalized().transpose() *
+               Base::getNeighborFilter().convertToLocalBasis(_q, _isPositionVector);
+    }
+
+    template<class DataPoint, class _NFilter, int DiffType, typename T>
+    typename NormalDerivativeWeingartenEstimator<DataPoint, _NFilter, DiffType, T>::VectorType
+    NormalDerivativeWeingartenEstimator<DataPoint, _NFilter, DiffType, T>::tangentPlaneToWorld(const VectorType &_lq,
+                                                                                               bool _isPositionVector) const{
+        return Base::getNeighborFilter().convertToGlobalBasis(m_tangentBasis.normalized().transpose().inverse() * _lq,
+                                                              _isPositionVector);
+    }
+
     ///////// WeingartenCurvatureEstimator
     template<class DataPoint, class _NFilter, typename T>
-    typename WeingartenCurvatureEstimatorBase<DataPoint, _NFilter, T>::Scalar
-    WeingartenCurvatureEstimatorBase<DataPoint, _NFilter, T>::kMean() const {
-        return Scalar(0.5)*Base::weingartenMap().trace();
-    }
+    FIT_RESULT
+    WeingartenCurvatureEstimatorBase<DataPoint, _NFilter, T>::finalize() {
 
-    template<class DataPoint, class _NFilter, typename T>
-    typename WeingartenCurvatureEstimatorBase<DataPoint, _NFilter, T>::Scalar
-    WeingartenCurvatureEstimatorBase<DataPoint, _NFilter, T>::GaussianCurvature() const {
-        return Base::weingartenMap().determinant();
-    }
+        if(Base::finalize() != STABLE)
+            return Base::m_eCurrentState;
 
-    template<class DataPoint, class _NFilter, typename T>
-    void
-    WeingartenCurvatureEstimatorBase<DataPoint, _NFilter, T>::computeCurvature() const {
-        if (! m_computedCurvature ){
-            m_computedCurvature = true;
+        Matrix2 w;
+        Base::weingartenMap(w);
 
-            Matrix2 w;
-            Base::weingartenMap(w);
+        // w is self adjoint by construction
+        Eigen::SelfAdjointEigenSolver<Matrix2> solver;
+        solver.computeDirect(w);
 
-            // w is self adjoint by construction
-            Eigen::SelfAdjointEigenSolver<Matrix2> solver(w);
+        Scalar kmin = solver.eigenvalues().x();
+        Scalar kmax = solver.eigenvalues().y();
+        VectorType vmin, vmax; // maxi directions
 
-            m_kmin = solver.eigenvalues().x();
-            m_kmax = solver.eigenvalues().y();
-            m_vmin(0) = Scalar(0); // set height
-            m_vmax(0) = Scalar(0); // set height
-            m_vmin.template bottomRows<2>() = solver.eigenvectors().col(0);
-            m_vmax.template bottomRows<2>() = solver.eigenvectors().col(1);
+        vmin(0) = Scalar(0); // set height
+        vmax(0) = Scalar(0); // set height
+        vmin.template bottomRows<2>() = solver.eigenvectors().col(0);
+        vmax.template bottomRows<2>() = solver.eigenvectors().col(1);
 
-            m_vmin = Base::tangentPlaneToWorld(m_vmin, false);
-            m_vmax = Base::tangentPlaneToWorld(m_vmax, false);
-        }
+        vmin = Base::tangentPlaneToWorld(vmin, false);
+        vmax = Base::tangentPlaneToWorld(vmax, false);
+
+        Base::setCurvatureValues(kmin, kmax, vmin, vmax);
+
+        return Base::m_eCurrentState;
     }
 }

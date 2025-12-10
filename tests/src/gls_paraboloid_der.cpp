@@ -19,7 +19,6 @@
 
 #include <Ponca/src/Fitting/basket.h>
 #include <Ponca/src/Fitting/curvature.h>
-#include <Ponca/src/Fitting/curvatureEstimation.h>
 #include <Ponca/src/Fitting/orientedSphereFit.h>
 #include <Ponca/src/Fitting/weightFunc.h>
 #include <Ponca/src/Fitting/weightKernel.h>
@@ -213,10 +212,10 @@ void callSubTests()
 
     using FitSphereOriented    = BasketDiff<
             Basket<Point, WeightSmoothFunc, OrientedSphereFit>,
-            FitScaleSpaceDer, OrientedSphereDer, CurvatureEstimatorBaseDiff, NormalDerivativesCurvatureEstimator>;
+            FitScaleSpaceDer, OrientedSphereDer, CurvatureEstimatorBaseDer, NormalDerivativeWeingartenEstimator, WeingartenCurvatureEstimatorDer>;
     using RefFitSphereOriented = BasketDiff<
             Basket<RefPoint, RefWeightFunc, OrientedSphereFit>,
-            FitScaleSpaceDer, OrientedSphereDer, CurvatureEstimatorBaseDiff, NormalDerivativesCurvatureEstimator>;
+            FitScaleSpaceDer, OrientedSphereDer, CurvatureEstimatorBaseDer, NormalDerivativeWeingartenEstimator, WeingartenCurvatureEstimatorDer>;
 //    using TestFitSphereOriented = BasketDiff<Basket<TestPoint, TestWeightFunc, OrientedSphereFit>,
 //            internal::FitScaleDer | internal::FitScaleDer, OrientedSphereDer, NormalDerivativesCurvatureEstimator>;
 

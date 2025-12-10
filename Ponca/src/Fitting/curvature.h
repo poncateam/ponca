@@ -84,7 +84,7 @@ namespace Ponca
     };
 
     template < class DataPoint, class WFunctor, int /*DiffType*/, typename T>
-    using CurvatureEstimatorBaseDiff = CurvatureEstimatorBase<DataPoint, WFunctor, T>;
+    using CurvatureEstimatorBaseDer = CurvatureEstimatorBase<DataPoint, WFunctor, T>;
 
 
 
@@ -109,8 +109,7 @@ namespace Ponca
 
     protected:
         enum {
-            Check = Base::PROVIDES_TANGENT_PLANE_BASIS && // required for tangentPlaneToWorld
-                    Base::PROVIDES_FIRST_FUNDAMENTAL_FORM_COMPONENTS &&
+            Check = Base::PROVIDES_FIRST_FUNDAMENTAL_FORM_COMPONENTS &&
                     Base::PROVIDES_SECOND_FUNDAMENTAL_FORM_COMPONENTS,
             PROVIDES_WEINGARTEN_MAP
         };
@@ -151,14 +150,10 @@ namespace Ponca
         template<typename Matrix2Derived>
         PONCA_MULTIARCH inline void weingartenMap(Matrix2Derived &w) const;
 
-        /// \brief Returns an estimate of the mean curvature
-        ///
-        /// \see kMeanFromWeingartenMap() for an alternative implementation
+        /// \brief Returns an estimate of the mean curvature directly from the fundamental forms
         PONCA_MULTIARCH inline Scalar kMean() const;
 
-        //! \brief Returns an estimate of the Gaussian curvature
-        ///
-        /// \see GaussianCurvatureFromWeingartenMap() for an alternative implementation
+        //! \brief Returns an estimate of the Gaussian curvature directly from the fundamental forms
         PONCA_MULTIARCH inline Scalar GaussianCurvature() const;
     };
 
@@ -166,7 +161,8 @@ namespace Ponca
 /*!
     \brief Compute principal curvatures from a base class providing fundamental forms
 
-    \see MongePatchPrimitive
+    This class extracts curvature information from the spatial derivatives of the normal field \f$ N \f$.
+    It first assemble a 2x2 matrix representation of the shape operator
 
 
     This primitive provides:
@@ -187,10 +183,16 @@ namespace Ponca
     protected:
         enum {
             Check = Base::PROVIDES_NORMAL_DERIVATIVE,
-            PROVIDES_WEINGARTEN_MAP
+            PROVIDES_WEINGARTEN_MAP,
+            PROVIDES_TANGENT_PLANE_BASIS
         };
+
+    private:
+        MatrixType m_tangentBasis {MatrixType::Zero()};
+
     public:
         PONCA_EXPLICIT_CAST_OPERATORS_DER(NormalDerivativeWeingartenEstimator, normalDerivativeWeingartenEstimator)
+        PONCA_FITTING_DECLARE_FINALIZE
 
         //! \brief Returns the Weingarten Map, defined as
         /// \FIXME fix documentation
@@ -203,13 +205,24 @@ namespace Ponca
         /// \tparam Matrix2Derived Input matrix type that must have same interface than Matrix2
         template<typename Matrix2Derived>
         PONCA_MULTIARCH inline void weingartenMap(Matrix2Derived &w) const;
+
+
+        /// \copydoc CovariancePlaneFitImpl::worldToTangentPlane
+        PONCA_MULTIARCH inline VectorType worldToTangentPlane(const VectorType &_q,
+                                                              bool _isPositionVector = true) const;
+
+        /// \copydoc CovariancePlaneFitImpl::tangentPlaneToWorld
+        PONCA_MULTIARCH inline VectorType tangentPlaneToWorld(const VectorType &_q,
+                                                              bool _isPositionVector = true) const;
     };
 
 /*!
     \brief Compute principal curvatures from a base class providing fundamental forms
 
-    \FIXME fix documentation
-    \see MongePatchPrimitive
+
+
+    \warning To map from the tangent plane to ambiant space, we assume that the patch is represented as
+    (h(u,v), u, v) because CovariancePlaneFitImpl::worldToTangentPlane() wraps up coordinates in this order (height, u and v).
 
     This primitive provides:
     \verbatim PROVIDES_PRINCIPAL_CURVATURES \endverbatim
@@ -226,47 +239,14 @@ namespace Ponca
 
     protected:
         enum {
-            Check = Base::PROVIDES_TANGENT_PLANE_BASIS && // required for tangentPlaneToWorld
+            Check = Base::PROVIDES_TANGENT_PLANE_BASIS &&  // required for tangentPlaneToWorld
+                    Base::PROVIDES_PRINCIPAL_CURVATURES && // required curvature storage
                     Base::PROVIDES_WEINGARTEN_MAP,
             PROVIDES_PRINCIPAL_CURVATURES  /*!< \brief Provides curvature API */
         };
 
-    private:
-        mutable Scalar m_kmin {0}, //! <\brief Computed min curvature
-        m_kmax {0}; //! <\brief Computed max curvature
-        mutable VectorType m_vmin {VectorType::Zero()},  //! <\brief Computed min curvature direction
-        m_vmax {VectorType::Zero()};  //! <\brief Computed max curvature direction
-        mutable bool m_computedCurvature {false}; //! <\brief Flag indicating if principal curvatures are computed
-
     public:
-        //! \brief Returns an estimate of the minimal principal curvature value
-        PONCA_MULTIARCH inline Scalar kmin() const { computeCurvature(); return m_kmin; }
-
-        //! \brief Returns an estimate of the maximal principal curvature value
-        PONCA_MULTIARCH inline Scalar kmax() const { computeCurvature(); return m_kmax; }
-
-        //! \brief Returns an estimate of the minimal principal curvature direction
-        PONCA_MULTIARCH inline VectorType kminDirection() const { computeCurvature(); return m_vmin; }
-
-        //! \brief Returns an estimate of the maximal principal curvature direction
-        PONCA_MULTIARCH inline VectorType kmaxDirection() const { computeCurvature(); return m_vmax; }
-
-        /// \brief Returns an estimate of the mean curvature
-        ///
-        /// \see kMean() for an alternative implementation
-        PONCA_MULTIARCH inline Scalar kMean() const;
-
-        //! \brief Returns an estimate of the Gaussian curvature
-        ///
-        /// \see GaussianCurvatureFromWeingartenMap() for an alternative implementation
-        PONCA_MULTIARCH inline Scalar GaussianCurvature() const;
-
-    private:
-        /// \brief Internal function used to compute principal curvatures
-        /// \warning To map from the tangent plane to ambiant space, we assume that the patch is represented as
-        /// (h(u,v), u, v) because CovariancePlaneFitImpl::worldToTangentPlane() wraps up coordinates in this
-        /// order (height, u and v).
-        void computeCurvature() const;
+        PONCA_FITTING_DECLARE_FINALIZE
     };
 
     template < class DataPoint, class _NFilter, typename T >
