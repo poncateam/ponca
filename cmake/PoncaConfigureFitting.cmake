@@ -10,8 +10,6 @@ set(ponca_Fitting_INCLUDE
     "${PONCA_src_ROOT}/Ponca/src/Fitting/covariancePlaneFit.h"
     "${PONCA_src_ROOT}/Ponca/src/Fitting/covariancePlaneFit.hpp"
     "${PONCA_src_ROOT}/Ponca/src/Fitting/compute.h"
-    "${PONCA_src_ROOT}/Ponca/src/Fitting/curvatureEstimation.h"
-    "${PONCA_src_ROOT}/Ponca/src/Fitting/curvatureEstimation.hpp"
     "${PONCA_src_ROOT}/Ponca/src/Fitting/curvature.h"
     "${PONCA_src_ROOT}/Ponca/src/Fitting/curvature.hpp"
     "${PONCA_src_ROOT}/Ponca/src/Fitting/dryFit.h"

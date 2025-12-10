@@ -20,7 +20,6 @@
 #include <Ponca/src/Fitting/weightFunc.h>
 #include <Ponca/src/Fitting/weightKernel.h>
 #include <Ponca/src/Fitting/curvature.h>
-#include <Ponca/src/Fitting/curvatureEstimation.h>
 
 #include <vector>
 
@@ -139,7 +138,7 @@ void callSubTests()
     typedef Basket<Point, WeightSmoothFunc, UnorientedSphereFit, GLSParam> FitSmoothUnoriented;
     typedef Basket<Point, WeightConstantFunc, UnorientedSphereFit, GLSParam> FitConstantUnoriented;
 
-    typedef BasketDiff<FitSmoothUnoriented, FitScaleSpaceDer, UnorientedSphereDer, CurvatureEstimatorBaseDiff, NormalDerivativesCurvatureEstimator> FitSmoothUnorientedDiff;
+    typedef BasketDiff<FitSmoothUnoriented, FitScaleSpaceDer, UnorientedSphereDer, CurvatureEstimatorBaseDer, NormalDerivativeWeingartenEstimator, WeingartenCurvatureEstimatorDer> FitSmoothUnorientedDiff;
 
     cout << "Testing with perfect sphere (unoriented)..." << endl;
     for(int i = 0; i < g_repeat; ++i)
