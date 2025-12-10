@@ -171,11 +171,6 @@ void testCompareFit(
         VERIFY((fit1.isStable()));
         VERIFY((fit2.isStable()));
 
-        // if (std::abs(fit1.kmin() - fit2.kmin()) > epsilon)
-        //     std::cout << "std::abs(kmin() - other.kmin()) :" << std::abs(fit1.kmin() - fit2.kmin()) << std::endl;
-        // if (std::abs(fit1.kmax() - fit2.kmax()) > epsilon)
-        //     std::cout << "std::abs(kmax() - other.kmax() :" << std::abs(fit1.kmax() - fit2.kmax()) << std::endl;
-
         // Compare Fit1 with Fit2
         VERIFY((std::abs(fit1.kMean() - fit2.kMean()) < epsilon));
         VERIFY((std::abs(fit1.GaussianCurvature() - fit2.GaussianCurvature()) < epsilon));
@@ -216,8 +211,6 @@ void callSubTests() {
     // Tests validity of compute despite index shuffle
     CALL_SUBTEST((testBasicFunctionalities<FitCNCIndependent>(tree, analysisScale, highEpsilon) ));
     CALL_SUBTEST((testBasicFunctionalities<FitCNCUniform>(tree, analysisScale, highEpsilon) ));
-    // CALL_SUBTEST((testBasicFunctionalities<FitCNCHexagram>(tree, analysisScale, highEpsilon) ));
-    // CALL_SUBTEST((testBasicFunctionalities<FitCNCAvgHexagram>(tree, analysisScale, highEpsilon) ));
 
     // Compare with ASO
     CALL_SUBTEST((testCompareFit<FitASODiff, FitCNCIndependent>(tree, analysisScale) ));
