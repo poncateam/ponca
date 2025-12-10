@@ -164,6 +164,9 @@ namespace Ponca
     This class extracts curvature information from the spatial derivatives of the normal field \f$ N \f$.
     It first assemble a 2x2 matrix representation of the shape operator
 
+    \note Computations are marked as `UNSTABLE` if the computed basis does not properly align with the gradient of the
+          fitted primitive.
+
 
     This primitive provides:
     \verbatim PROVIDES_WEINGARTEN_MAP \endverbatim
