@@ -86,7 +86,7 @@ void testBasicFunctionalities(
 
         //! [Fit compute]
         Fit fit1;
-        fit1.setNeighborFilter({evalPoint.pos(), analysisScale, evalPoint.normal()});
+        fit1.setNeighborFilter({evalPoint, analysisScale});
         fit1.compute( vectorPoints );
         //! [Fit compute]
         VERIFY(fit1 == fit1);
@@ -104,7 +104,7 @@ void testBasicFunctionalities(
 
         //! [Fit computeWithIds]
         Fit fit2;
-        fit2.setNeighborFilter({evalPoint.pos(), analysisScale});
+        fit2.setNeighborFilter({evalPoint, analysisScale});
         fit2.computeWithIds( pointsIndex, vectorPoints );
         //! [Fit computeWithIds]
 
@@ -161,11 +161,11 @@ void testCompareFit(
         }
 
         Fit1 fit1;
-        fit1.setNeighborFilter({vectorPoints[i].pos(), analysisScale});
+        fit1.setNeighborFilter({vectorPoints[i], analysisScale});
         fit1.compute(vectorPoints);
 
         Fit2 fit2;
-        fit2.setNeighborFilter({vectorPoints[i].pos(), analysisScale, vectorPoints[i].normal()});
+        fit2.setNeighborFilter({vectorPoints[i], analysisScale});
         fit2.computeWithIds(pointsIndex, vectorPoints);
 
         VERIFY((fit1.isStable()));

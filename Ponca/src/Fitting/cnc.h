@@ -87,47 +87,6 @@ public:
 	DEFINE_CNC_FUNC(mu2InterpolatedU , Scalar)
 	DEFINE_CNC_FUNC(muXYInterpolatedU, MatrixType)
 };
-
-/*!
- * \copydoc Ponca::DistWeightFunc
- *
- * This variant of the DistWeightFunc class also stores the normal of the evaluation point.
- *
- * \see Ponca::DistWeightFunc
- */
-template <class DataPoint>
-class DistanceFilterWithNormal : public DistWeightFunc<DataPoint, ConstantWeightKernel<typename DataPoint::Scalar>> {
-public:
-    using Base       = DistWeightFunc<DataPoint, ConstantWeightKernel<typename DataPoint::Scalar>>;
-    /*! \brief Scalar type from DataPoint */
-    using Scalar     =  typename DataPoint::Scalar;
-    /*! \brief Vector type from DataPoint */
-    using VectorType =  typename DataPoint::VectorType;
-    /*! \brief Matrix type from DataPoint */
-    using MatrixType = typename DataPoint::MatrixType;
-    /*! \brief Return type of the method #w() */
-    using WeightReturnType = PONCA_MULTIARCH_CU_STD_NAMESPACE(pair)<Scalar, VectorType>;
-
-    /*!
-        \brief Constructor that defines the current evaluation scale
-        \warning t > 0
-    */
-    PONCA_MULTIARCH inline DistanceFilterWithNormal(
-        const VectorType & _evalPos = VectorType::Zero(),
-        const Scalar& _t = Scalar(1.),
-        const VectorType & _evalNormal = VectorType::Zero())
-    : Base::DistWeightFunc(_evalPos, _t), m_n(_evalNormal) {}
-
-    PONCA_MULTIARCH inline DistanceFilterWithNormal(
-        const DataPoint& _evalPoint,
-        const Scalar& _t = Scalar(1.))
-    : Base::DistWeightFunc(_evalPoint.pos(), _t), m_n(_evalPoint.normal()) {}
-
-    /*! \brief Access to the evaluation normal set during the initialization */
-    PONCA_MULTIARCH inline const VectorType & evalNormal() const { return m_n; }
-protected:
-    VectorType   m_n;  /*!< \brief Evaluation normal */
-};
 } // namespace internal
 
 
@@ -161,7 +120,7 @@ public:
     using VectorType = typename DataPoint::VectorType;
     typedef Eigen::VectorXd  DenseVector;
     typedef Eigen::MatrixXd  DenseMatrix;
-    using NeighborFilter = internal::DistanceFilterWithNormal<DataPoint>;
+    using NeighborFilter = NeighborFilerStoreNormal<DataPoint, NoWeightFunc<DataPoint>>;
 protected:
 	// Basis
     NeighborFilter m_nFilter;
