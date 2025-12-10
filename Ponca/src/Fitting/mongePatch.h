@@ -441,21 +441,23 @@ protected:
 
 template < class DataPoint, class _NFilter, typename T>
 using MongePatchQuadraticFit =
-        FundamentalFormCurvatureEstimator<DataPoint, _NFilter,
-            MongePatchQuadraticFitImpl<DataPoint, _NFilter,
-                MongePatchPrimitive<DataPoint, _NFilter,
-                    QuadraticHeightField<DataPoint, _NFilter,
-                        HeightField<DataPoint, _NFilter,
-                            CovariancePlaneFit<DataPoint, _NFilter,T>>>>>>;
+        WeingartenCurvatureEstimator<DataPoint, _NFilter,
+            FundamentalFormWeingartenEstimator<DataPoint, _NFilter,
+                MongePatchQuadraticFitImpl<DataPoint, _NFilter,
+                    MongePatchPrimitive<DataPoint, _NFilter,
+                        QuadraticHeightField<DataPoint, _NFilter,
+                            HeightField<DataPoint, _NFilter,
+                                CovariancePlaneFit<DataPoint, _NFilter,T>>>>>>>;
 
 template < class DataPoint, class _NFilter, typename T>
 using MongePatchRestrictedQuadraticFit =
-        FundamentalFormCurvatureEstimator<DataPoint, _NFilter,
-            MongePatchRestrictedQuadraticFitImpl<DataPoint, _NFilter,
-                MongePatchPrimitive<DataPoint, _NFilter,
-                    RestrictedQuadraticHeightField<DataPoint, _NFilter,
-                        HeightField<DataPoint, _NFilter,
-                            CovariancePlaneFit<DataPoint, _NFilter,T>>>>>>;
+        WeingartenCurvatureEstimator<DataPoint, _NFilter,
+            FundamentalFormWeingartenEstimator<DataPoint, _NFilter,
+                MongePatchRestrictedQuadraticFitImpl<DataPoint, _NFilter,
+                    MongePatchPrimitive<DataPoint, _NFilter,
+                        RestrictedQuadraticHeightField<DataPoint, _NFilter,
+                            HeightField<DataPoint, _NFilter,
+                                CovariancePlaneFit<DataPoint, _NFilter,T>>>>>>>;
 
 #include "mongePatch.hpp"
 
