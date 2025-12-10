@@ -166,6 +166,48 @@ namespace Ponca
 /*!
     \brief Compute principal curvatures from a base class providing fundamental forms
 
+    \see MongePatchPrimitive
+
+
+    This primitive provides:
+    \verbatim PROVIDES_WEINGARTEN_MAP \endverbatim
+
+    This primitive requires:
+    \verbatim PROVIDES_TANGENT_PLANE_BASIS, PROVIDES_FIRST_FUNDAMENTAL_FORM_COMPONENTS, PROVIDES_SECOND_FUNDAMENTAL_FORM_COMPONENTS \endverbatim
+    */
+    template < class DataPoint, class _NFilter, int DiffType, typename T >
+    class NormalDerivativeWeingartenEstimator : public T
+    {
+        PONCA_FITTING_DECLARE_DEFAULT_TYPES
+        PONCA_FITTING_DECLARE_MATRIX_TYPE
+        PONCA_FITTING_DECLARE_DEFAULT_DER_TYPES
+        using Matrix2 = Eigen::Matrix<Scalar, 2, 2>;
+        static_assert ( DataPoint::Dim == 3, "FundamentalFormCurvatureEstimator is only valid in 3D");
+
+    protected:
+        enum {
+            Check = Base::PROVIDES_NORMAL_DERIVATIVE,
+            PROVIDES_WEINGARTEN_MAP
+        };
+    public:
+        PONCA_EXPLICIT_CAST_OPERATORS_DER(NormalDerivativeWeingartenEstimator, normalDerivativeWeingartenEstimator)
+
+        //! \brief Returns the Weingarten Map, defined as
+        /// \FIXME fix documentation
+        ///
+        /// \return Weingarten Map
+        /// \see weingartenMap(Matrix2& w) for an in-place version
+        PONCA_MULTIARCH [[nodiscard]] inline Matrix2 weingartenMap() const;
+
+        //! \copybrief weingartenMap()
+        /// \tparam Matrix2Derived Input matrix type that must have same interface than Matrix2
+        template<typename Matrix2Derived>
+        PONCA_MULTIARCH inline void weingartenMap(Matrix2Derived &w) const;
+    };
+
+/*!
+    \brief Compute principal curvatures from a base class providing fundamental forms
+
     \FIXME fix documentation
     \see MongePatchPrimitive
 
