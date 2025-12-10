@@ -35,8 +35,21 @@ struct FundamentalFormTester {
 template<>
 template<typename Fit>
 void FundamentalFormTester<true>::test(const Fit &fit, typename Fit::Scalar epsilon) {
+    using Scalar = typename Fit::Scalar;
+
     VERIFY(std::abs(fit.kMeanFromWeingartenMap()) < epsilon);
     VERIFY(std::abs(fit.GaussianCurvatureFromWeingartenMap()) <= epsilon);
+
+    // Check that principal curvature are well computed
+    VERIFY((Scalar(.5)*(fit.kmin()+fit.kmax()) - fit.kMean()) < epsilon);
+    VERIFY(((fit.kmin()*fit.kmax()) - fit.GaussianCurvature()) < epsilon);
+    VERIFY(fit.kmin()< epsilon); // we know that curvatures should be 0
+    VERIFY(fit.kmin()< epsilon); // we know that curvatures should be 0
+
+    // Check that principal curvature directions are well-formed
+    VERIFY(fit.kminDirection().norm()-Scalar(1) < epsilon);
+    VERIFY(fit.kmaxDirection().norm()-Scalar(1) < epsilon);
+    VERIFY(fit.kminDirection().dot(fit.kmaxDirection()) < epsilon);
 }
 
 
