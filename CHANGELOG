@@ -26,6 +26,7 @@ This release introduce the first API changes toward v2.0 + bug fixes and doc imp
     - [fitting] Add compact and non-compact weight kernels (#177)
     - [fitting] Add changeBasis method for `Plane` and `Line` primitives (#177)
     - [fitting] Make projectDescent available for any `Basket` (#177)
+    - [fitting] Extended CurvatureEstimator to work with Basket (#201)
 
 - Bug-fixes and code improvements
     - [fitting] Add [[nodiscard]] qualifier when required (#221)
@@ -36,6 +37,8 @@ This release introduce the first API changes toward v2.0 + bug fixes and doc imp
     - [fitting] Add barycenter test (#177)
     - [fitting] Add change_basis test (#177)
     - [fitting] Minor improvements (#221)
+    - [fitting] Added a plane test for Basket curvature estimators (#201)
+
 
 - Examples
    - [all] Update examples according to API change (#177)

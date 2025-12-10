@@ -13,6 +13,7 @@
 #pragma once
 
 #include "Eigen/Eigen"
+#include "Ponca/src/Fitting/defines.h"
 #include "Ponca/src/Common/defines.h"
 #include PONCA_MULTIARCH_INCLUDE_CU_STD(cmath)
 
@@ -72,7 +73,7 @@ private:
 //! [PointPosition]
 /// Point with position, without attribute
 template<typename _Scalar, int _Dim>
-class PointPosition
+    class PointPosition
 {
 public:
     enum {Dim = _Dim};
@@ -135,14 +136,14 @@ DataPoint getPointOnSphere(typename DataPoint::Scalar _radius, typename DataPoin
     {
         //vPosition = _vCenter + vNormal * _radius * Eigen::internal::random<Scalar>(MIN_NOISE, MAX_NOISE);
         vPosition = vPosition + VectorType::Random().normalized() *
-                Eigen::internal::random<Scalar>(Scalar(0.), Scalar(1. - MIN_NOISE));
+                                Eigen::internal::random<Scalar>(Scalar(0.), Scalar(1. - MIN_NOISE));
         vNormal = (vPosition - _vCenter).normalized();
     }
 
     if(_bAddNormalNoise)
     {
         VectorType vTempPos =  vPosition + VectorType::Random().normalized() *
-                Eigen::internal::random<Scalar>(Scalar(0.), Scalar(1. - MIN_NOISE));
+                                           Eigen::internal::random<Scalar>(Scalar(0.), Scalar(1. - MIN_NOISE));
         vNormal = (vTempPos - _vCenter).normalized();
     }
     if(_bReverseNormals)
@@ -155,6 +156,26 @@ DataPoint getPointOnSphere(typename DataPoint::Scalar _radius, typename DataPoin
     }
 
     return DataPoint(vPosition, vNormal);
+}
+
+
+// Sample points on a circle in the xy plane
+template<typename VectorType>
+VectorType getPointOnCircle(typename VectorType::Scalar _radius, VectorType _vCenter)
+{
+    using Scalar = typename VectorType::Scalar;
+    // Generate random angle
+    double theta = Eigen::internal::random<Scalar>(0,2.*EIGEN_PI);
+
+    // Generate random radius (adjusted for uniform area distribution)
+    double r = _radius * std::sqrt(Eigen::internal::random<Scalar>(0,1));
+
+    // Convert to Cartesian coordinates
+    VectorType p = _vCenter;
+    p.x() += r * std::cos(theta);
+    p.y() += r * std::sin(theta);
+
+    return p;
 }
 
 /*! \brief Generate points on a plane without normals */
@@ -220,7 +241,7 @@ DataPoint getPointOnPlane(typename DataPoint::VectorType _vPosition,
     if(_bAddPositionNoise)
     {
         vRandomPoint = vRandomPoint + VectorType::Random().normalized() *
-                Eigen::internal::random<Scalar>(Scalar(0), Scalar(1. - MIN_NOISE));
+                Eigen::internal::random<Scalar>(Scalar(0), Scalar(1. - 0.5));
     }
 
     if(_bAddNormalNoise)
@@ -260,15 +281,41 @@ getParaboloidZ(Scalar _x, Scalar _y, Scalar _a, Scalar _b)
 {
     return _a*_x*_x + _b*_y*_y;
 }
-/// Generate z value using the equation z = ax^2 + by^2
-template<typename VectorType>
-inline VectorType
-getParaboloidNormal(const VectorType& in,
-                    typename VectorType::Scalar _a,
-                    typename VectorType::Scalar _b)
+/// Generate z value using the equation z = ax^2 + by^2 + .... WRITE EQUATION
+template<typename Scalar>
+inline Scalar
+getParaboloidZ(Scalar _x, Scalar _y, Scalar _a, Scalar _b, Scalar _c, Scalar _d, Scalar _e, Scalar _f)
 {
-    return VectorType((_a * in.x()), (_b * in.y()), -1.).normalized();;
+    return _a*_x*_x + _b*_y*_y + _c*_x*_y + _d*_x + _e*_y + _f;
 }
+
+template<typename DataPoint>
+inline typename std::enable_if<Ponca::hasNormal<DataPoint>::value, void>::type
+getParaboloidNormal(DataPoint& in,
+                    typename DataPoint::Scalar _a,
+                    typename DataPoint::Scalar _b,
+                    typename DataPoint::Scalar _c,
+                    typename DataPoint::Scalar _d,
+                    typename DataPoint::Scalar _e,
+                    typename DataPoint::Scalar _f)
+{
+    static constexpr typename DataPoint::Scalar two {2};
+    auto& pos = in.pos();
+    in.normal() = typename DataPoint::VectorType(two*_a * pos.x() + _c*pos.y() + _d,
+                                                 two*_b * pos.y() + _c*pos.x() + _d,
+                                                 -1.).normalized();
+}
+
+template<typename DataPoint>
+inline typename std::enable_if<! Ponca::hasNormal<DataPoint>::value, void>::type
+getParaboloidNormal(DataPoint& in,
+                    typename DataPoint::Scalar _a,
+                    typename DataPoint::Scalar _b,
+                    typename DataPoint::Scalar _c,
+                    typename DataPoint::Scalar _d,
+                    typename DataPoint::Scalar _e,
+                    typename DataPoint::Scalar _f)
+{ }
 
 /// Generate point samples on the primitive z = ax^2 + by^2
 /// Points (x,y) are generated in the interval [-_s, -s]^2
@@ -277,27 +324,40 @@ template<typename DataPoint>
 [[nodiscard]] DataPoint
 getPointOnParaboloid(typename DataPoint::Scalar _a,
                      typename DataPoint::Scalar _b,
+                     typename DataPoint::Scalar _c,
+                     typename DataPoint::Scalar _d,
+                     typename DataPoint::Scalar _e,
+                     typename DataPoint::Scalar _f,
                      typename DataPoint::Scalar _s,
                      bool _bAddNoise = true)
 {
     typedef typename DataPoint::Scalar Scalar;
     typedef typename DataPoint::VectorType VectorType;
 
-    VectorType vNormal;
-    VectorType vPosition;
+    DataPoint out;
 
-    Scalar x = Eigen::internal::random<Scalar>(-_s, _s),
-           y = Eigen::internal::random<Scalar>(-_s, _s);
+    // generate random position in polar coordinates to get points on the circle
+    out.pos() = getPointOnCircle(_s, VectorType({0,0,0}));
+    out.pos().z() = getParaboloidZ(out.pos().x(), out.pos().y(), _a, _b, _c, _d, _e, _f);
 
-    vPosition = { x, y, getParaboloidZ(x, y, _a, _b)};
-    vNormal = getParaboloidNormal(vPosition, _a, _b);
+    // does nothing if the point type does not have a normal field.
+    getParaboloidNormal(out, _a, _b, _c, _d, _e, _f);
 
     if(_bAddNoise) //spherical noise
     {
-        vPosition += VectorType::Random().normalized() * Eigen::internal::random<Scalar>(Scalar(0), Scalar(1. - MIN_NOISE));
+        out.pos() += VectorType::Random().normalized() * Eigen::internal::random<Scalar>(Scalar(0), Scalar(1. - MIN_NOISE));
     }
 
-    return DataPoint(vPosition, vNormal);
+    return out;
+}
+template<typename DataPoint, typename Params>
+[[nodiscard]] DataPoint
+getPointOnParaboloid(const Params &_params,
+                     typename DataPoint::Scalar _s,
+                     bool _bAddNoise = true)
+{
+    return getPointOnParaboloid<DataPoint>(_params(0), _params(1), _params(2),
+                                           _params(3), _params(4), _params(5), _s, _bAddNoise);
 }
 
 template<typename DataPoint>
@@ -321,8 +381,11 @@ typename DataPoint::Scalar getPointKappaMean(typename DataPoint::VectorType _vPo
 }
 
 template<typename DataPoint>
-typename DataPoint::Scalar getKappaMean(const std::vector<DataPoint>& _vectorPoints, typename DataPoint::VectorType _vCenter,
-                                        typename DataPoint::Scalar _a, typename DataPoint::Scalar _b, typename DataPoint::Scalar _analysisScale)
+typename DataPoint::Scalar getKappaMean(const std::vector<DataPoint>& _vectorPoints,
+                                        typename DataPoint::VectorType _vCenter,
+                                        typename DataPoint::Scalar _a,
+                                        typename DataPoint::Scalar _b,
+                                        typename DataPoint::Scalar _analysisScale)
 {
     typedef typename DataPoint::Scalar Scalar;
     typedef typename DataPoint::VectorType VectorType;

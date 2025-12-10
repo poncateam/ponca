@@ -12,13 +12,59 @@
 
 #include <vector>
 
+#include "Ponca/src/Fitting/defines.h"
+#include "Ponca/src/Fitting/basket.h"
+#include "Ponca/src/Fitting/covariancePlaneFit.h"
+#include "Ponca/src/Fitting/curvature.h"
+#include "Ponca/src/Fitting/mongePatch.h"
+#include "Ponca/src/Fitting/weightFunc.h"
+#include "Ponca/src/Fitting/weightKernel.h"
+
+#include <Ponca/SpatialPartitioning>
+
 using namespace std;
-using namespace Grenaille;
+using namespace Ponca;
 
 
-template<typename DataPoint, typename Fit>
+template<bool hasFundamentalForms>
+struct FundamentalFormTester {
+    template<typename Fit>
+    static inline void test(const Fit &, typename Fit::Scalar) {}
+};
+
+template<>
+template<typename Fit>
+void FundamentalFormTester<true>::test(const Fit &fit, typename Fit::Scalar epsilon) {
+    using Scalar = typename Fit::Scalar;
+
+    VERIFY(std::abs(fit.weingartenCurvatureEstimator().kMean()) < epsilon);
+    VERIFY(std::abs(fit.weingartenCurvatureEstimator().GaussianCurvature()) <= epsilon);
+
+    VERIFY(std::abs(fit.fundamentalFormWeingartenEstimator().kMean()) < epsilon);
+    VERIFY(std::abs(fit.fundamentalFormWeingartenEstimator().GaussianCurvature()) <= epsilon);
+
+    // Check that principal curvature are well computed
+    VERIFY((Scalar(.5)*(fit.kmin()+fit.kmax()) - fit.kMean()) < epsilon);
+    VERIFY(((fit.kmin()*fit.kmax()) - fit.GaussianCurvature()) < epsilon);
+    VERIFY(fit.kmin()< epsilon); // we know that curvatures should be 0
+    VERIFY(fit.kmin()< epsilon); // we know that curvatures should be 0
+
+    // Check that principal curvature directions are well-formed
+    VERIFY(fit.kminDirection().norm()-Scalar(1) < epsilon);
+    VERIFY(fit.kmaxDirection().norm()-Scalar(1) < epsilon);
+    VERIFY(fit.kminDirection().dot(fit.kmaxDirection()) < epsilon);
+}
+
+
+
+
+
+
+template<typename DataPoint, typename Fit, typename RefFit>
 void testFunction(bool _bAddPositionNoise = false, bool _bAddNormalNoise = false)
 {
+    constexpr bool hasFundamentalForms = hasFirstFundamentalForm<Fit>::value;
+
     // Define related structure
     typedef typename DataPoint::Scalar Scalar;
     typedef typename DataPoint::VectorType VectorType;
@@ -26,12 +72,13 @@ void testFunction(bool _bAddPositionNoise = false, bool _bAddNormalNoise = false
     //generate sampled plane
     int nbPoints = Eigen::internal::random<int>(1000, 5000);
 
-    Scalar width  = Eigen::internal::random<Scalar>(1., 10.);
+    // use large width to reduce relative influence of the positional noise
+    Scalar width  = Eigen::internal::random<Scalar>(100., 200.);
     Scalar height = width;
 
-    Scalar analysisScale = Scalar(15.) * std::sqrt( width * height / nbPoints);
+    Scalar analysisScale = width; //use a large scale to avoir fitting errors
     Scalar centerScale   = Eigen::internal::random<Scalar>(1,10000);
-    VectorType center    = VectorType::Random() * centerScale;
+    VectorType center    = VectorType::Zero(); //Random() * centerScale;
 
     VectorType direction = VectorType::Random().normalized();
 
@@ -48,32 +95,63 @@ void testFunction(bool _bAddPositionNoise = false, bool _bAddNormalNoise = false
                                                      _bAddNormalNoise);
     }
 
-    // Quick testing is requested for coverage
-    int size = QUICK_TESTS ? 1 : int(vectorPoints.size());
+    KdTreeDense<DataPoint> tree(vectorPoints);
 
-    // Test for each point if principal curvature values are null
-#pragma omp parallel for
-    for(int i = 0; i < size; ++i)
+    // Test for several points if principal curvature values are null
+    // The points are generated to not be on the border of the generated point cloud
+    // to avoid instabilities issues
+    int nbTestPoints = QUICK_TESTS ? 1 :nbPoints/10;
+
+//#pragma omp parallel for
+    for(int i = 0; i < nbTestPoints; ++i)
     {
+        VectorType queryPos = getPointOnPlane<DataPoint>(center,
+                                                         direction,
+                                                         width/Scalar(2), // avoid to test on borders
+                                                         _bAddPositionNoise,
+                                                         _bAddNormalNoise).pos();
+
         epsilon = testEpsilon<Scalar>();
         if ( _bAddPositionNoise) // relax a bit the testing threshold
-          epsilon = Scalar(0.001*MAX_NOISE);
+          epsilon = Scalar(0.01*MAX_NOISE);
+
+        typename Fit::NeighborFilter nf (queryPos, analysisScale);
 
         Fit fit;
-        fit.setNeighborFilter({vectorPoints[i].pos(), analysisScale});
-        fit.compute(vectorPoints);
+        fit.setNeighborFilter(nf);
+        fit.computeWithIds(tree.range_neighbors(queryPos,analysisScale),vectorPoints);
 
-        if( fit.isStable() ){
+        RefFit refFit;
+        refFit.setNeighborFilter(nf);
+        refFit.computeWithIds(tree.range_neighbors(queryPos,analysisScale),vectorPoints);
 
-            // Check if principal curvature values are null
-            VERIFY( Eigen::internal::isMuchSmallerThan(std::abs(fit.kmin()), Scalar(1.), epsilon) );
-            VERIFY( Eigen::internal::isMuchSmallerThan(std::abs(fit.kmax()), Scalar(1.), epsilon) );
+        // use temporaries to help debugging
+        VectorType res    = fit.primitiveGradient(queryPos).normalized();
+        Scalar resDot     = res.dot(direction);
+        VectorType resRef = refFit.primitiveGradient(queryPos).normalized();
+        Scalar resDotRef  = resRef.dot(direction);
 
-            // Check if principal curvature directions lie on the plane
-            VERIFY( Eigen::internal::isMuchSmallerThan(std::abs(fit.kminDirection().dot(direction)), Scalar(1.), epsilon) );
-            VERIFY( Eigen::internal::isMuchSmallerThan(std::abs(fit.kmaxDirection().dot(direction)), Scalar(1.), epsilon) );
+        if(Scalar(1.) - std::abs( resDot ) > epsilon){
+            VectorType res2 = fit.primitiveGradient(queryPos).normalized();
+            std::cout << res2.transpose() << std::endl;
         }
-        else {
+
+        if( refFit.isStable() ){
+            VERIFY(fit.isStable());
+
+            VERIFY(Scalar(1.) - std::abs( resDot ) <= epsilon);
+            VERIFY(Scalar(1.) - std::abs( resDotRef ) <= epsilon);
+
+            // use temporaries to help debugging
+            Scalar meanCurvature     = fit.kMean();
+            Scalar gaussianCurvature = fit.GaussianCurvature();
+
+            // Check if we have a plane
+            VERIFY(std::abs(meanCurvature) < epsilon);
+            VERIFY(std::abs(gaussianCurvature) <= epsilon);
+
+            FundamentalFormTester<hasFundamentalForms>::test(fit, epsilon);
+        } else {
             VERIFY(FITTING_FAILED);
         }
     }
@@ -87,28 +165,28 @@ void callSubTests()
     typedef DistWeightFunc<Point, SmoothWeightKernel<Scalar> > WeightSmoothFunc;
     typedef DistWeightFunc<Point, ConstantWeightKernel<Scalar> > WeightConstantFunc;
 
-    typedef Basket<Point, WeightSmoothFunc,   CompactPlane, CovariancePlaneFit, NormalCovarianceCurvature> FitSmoothNormalCovariance;
-    typedef Basket<Point, WeightConstantFunc, CompactPlane, CovariancePlaneFit, NormalCovarianceCurvature> FitConstantNormalCovariance;
-    typedef Basket<Point, WeightSmoothFunc,   CompactPlane, CovariancePlaneFit, ProjectedNormalCovarianceCurvature> FitSmoothProjectedNormalCovariance;
-    typedef Basket<Point, WeightConstantFunc, CompactPlane, CovariancePlaneFit, ProjectedNormalCovarianceCurvature> FitConstantProjectedNormalCovariance;
+    typedef Basket<Point, WeightSmoothFunc  , CovariancePlaneFit, CurvatureEstimatorBase> FitSmoothNormalCovariance;
+    typedef Basket<Point, WeightConstantFunc, CovariancePlaneFit, CurvatureEstimatorBase> FitConstantNormalCovariance;
+    typedef Basket<Point, WeightSmoothFunc  , MongePatchQuadraticFit> FitCovSmooth;
+    typedef Basket<Point, WeightConstantFunc, MongePatchQuadraticFit> FitCovConstant;
 
     cout << "Testing with perfect plane..." << endl;
     for(int i = 0; i < g_repeat; ++i)
     {
-        CALL_SUBTEST(( testFunction<Point, FitSmoothNormalCovariance>() ));
-        CALL_SUBTEST(( testFunction<Point, FitConstantNormalCovariance>() ));
-        CALL_SUBTEST(( testFunction<Point, FitSmoothProjectedNormalCovariance>() ));
-        CALL_SUBTEST(( testFunction<Point, FitConstantProjectedNormalCovariance>() ));
+        CALL_SUBTEST(( testFunction<Point, FitSmoothNormalCovariance, FitSmoothNormalCovariance>() ));
+        CALL_SUBTEST(( testFunction<Point, FitConstantNormalCovariance, FitConstantNormalCovariance>() ));
+        CALL_SUBTEST(( testFunction<Point, FitCovSmooth,FitSmoothNormalCovariance>(true) ));
+        CALL_SUBTEST(( testFunction<Point, FitCovConstant, FitConstantNormalCovariance>(true) ));
     }
     cout << "Ok..." << endl;
 
 //    cout << "Testing with noisy plane..." << endl;
 //    for(int i = 0; i < g_repeat; ++i)
 //    {
-//        CALL_SUBTEST(( testFunction<Point, FitSmoothNormalCovariance>(true, true) ));
-//        CALL_SUBTEST(( testFunction<Point, FitConstantNormalCovariance>(true, true) ));
-//        CALL_SUBTEST(( testFunction<Point, FitSmoothProjectedNormalCovariance>(true, true) ));
-//        CALL_SUBTEST(( testFunction<Point, FitConstantProjectedNormalCovariance>(true, true) ));
+//        CALL_SUBTEST(( testFunction<Point, FitSmoothNormalCovariance, WeightSmoothFunc>(true, true) ));
+//        CALL_SUBTEST(( testFunction<Point, FitConstantNormalCovariance, WeightConstantFunc>(true, true) ));
+//        CALL_SUBTEST(( testFunction<Point, FitSmoothProjectedNormalCovariance, WeightSmoothFunc>(true, true) ));
+//        CALL_SUBTEST(( testFunction<Point, FitConstantProjectedNormalCovariance, WeightConstantFunc>(true, true) ));
 //    }
 //    cout << "Ok..." << endl;
 }

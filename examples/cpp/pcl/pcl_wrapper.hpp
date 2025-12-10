@@ -15,7 +15,7 @@ pcl::GlsCurvature<PointInT, PointOutT>::computeFeature(PointCloudOut &output)
 {
     // Allocate enough space to hold the results
     // \note This resize is irrelevant for a radiusSearch ().
-    std::vector<int> nn_indices (k_);
+    std::vector<int> nn_inÏdices (k_);
     std::vector<float> nn_dists (k_);
 
     output.is_dense = true;
@@ -62,7 +62,7 @@ pcl::GlsCurvature<PointInT, PointOutT>::computeCurvature(const pcl::PointCloud<P
     typedef GlsPoint::Scalar Scalar;
     typedef Ponca::DistWeightFunc<GlsPoint, Ponca::SmoothWeightKernel<Scalar> > WeightFunc;
     typedef Ponca::Basket<GlsPoint, WeightFunc, Ponca::CovariancePlaneFit> FitBasket;
-    typedef Ponca::BasketDiff<FitBasket, Ponca::FitScaleSpaceDer, Ponca::CovariancePlaneDer,  Ponca::CurvatureEstimatorBase, Ponca::NormalDerivativesCurvatureEstimator> Fit;
+    typedef Ponca::BasketDiff<FitBasket, Ponca::FitScaleSpaceDer, Ponca::CovariancePlaneDer, CurvatureEstimatorBaseDer, NormalDerivativeWeingartenEstimator, WeingartenCurvatureEstimatorDer> Fit;
 
     Fit fit;
     // Set a weighting function instance using the search radius of the tree as scale

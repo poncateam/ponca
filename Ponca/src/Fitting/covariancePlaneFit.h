@@ -64,18 +64,24 @@ public:
      *
      * Output vector is: [h, u, v]^T, where u, v are 2d coordinates on the plane,
      * and h the height of the sample.
-     * \param _q Point coordinates expressed in ambient space
-     * \return Point coordinates expressed in local tangent frame
+     * \param _q Vector expressed in ambient space
+     * @param _isPositionVector Indicate if the input vector `_q` is a position that is influenced by translations
+     *        (e.g., in contrast to displacement or normal vectors)
+     * \return Vector expressed in local tangent frame
      */
-    PONCA_MULTIARCH inline VectorType worldToTangentPlane(const VectorType &_q) const;
+    PONCA_MULTIARCH inline VectorType worldToTangentPlane(const VectorType &_q,
+                                                          bool _isPositionVector = true) const;
 
     /*!
      * \brief Transform a point from the tangent plane [h, u, v]^T to ambient space
      *
-     * \param _q Point coordinates expressed in local tangent frame
-     * \return Point coordinates expressed in ambient space
+     * \param _q Vector expressed in local tangent frame
+     * @param _isPositionVector Indicate if the input vector `_q` is a position that is influenced by translations
+     *        (e.g., in contrast to displacement or normal vectors)
+     * \return Vector expressed in ambient space
      */
-    PONCA_MULTIARCH inline VectorType tangentPlaneToWorld(const VectorType &_q) const;
+    PONCA_MULTIARCH inline VectorType tangentPlaneToWorld(const VectorType &_q,
+                                                          bool _isPositionVector = true) const;
 }; //class CovariancePlaneFitImpl
 
 /// \brief Helper alias for Plane fitting on 3D points using CovariancePlaneFitImpl
