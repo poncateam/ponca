@@ -16,6 +16,7 @@ Current head (v.2.0.alpha1 RC)
 - CI/Actions
     - Add coverage report for Pull Requests (#236)
     - [ci] Removal of submodule from code coverage test (#238)
+    - [ci] Increase epsilon to avoid failures on fit_plane test (#240)
 
 --------------------------------------------------------------------------------
 v.2.0.alpha0
