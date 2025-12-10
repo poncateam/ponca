@@ -147,7 +147,14 @@ namespace Ponca {
                 m_tangentBasis.col(0) = v1 / sqrt(v1norm2);
             }
 
-            /// \FIXME : do not forget to add a test to check if the heigh direction aligns with the normal
+            // check if the computed normal is more aligned with the primitive gradient than any other vector of the
+            // basis
+            int index; // stores the index of the largest (in absolute value) dot product between the gradient
+                       // and the basis vectors (perfectly aligned vectors have their dot product equal to 1).
+            // compute the dot product between the primitive gradient and the basis vectors (stored columnwise)
+            (m_tangentBasis.transpose()*Base::primitiveGradient()).array().abs().maxCoeff(&index);
+            if (index != 0) // we constructed the basis so the expected normal direction is stored in column 0
+                Base::m_eCurrentState = UNSTABLE;
         }
         return Base::m_eCurrentState;
     }
