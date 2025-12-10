@@ -29,7 +29,7 @@ class MongePatch : public T
 PONCA_FITTING_DECLARE_DEFAULT_TYPES
 
 protected:
-    enum { Check = Base::PROVIDES_PLANE && Base::PROVIDES_TANGENT_PLANE_BASIS };
+    enum { Check = Base::PROVIDES_LOCAL_FRAME };
 
 public:
     using SampleMatrix = Eigen::Matrix<Scalar,Eigen::Dynamic,Eigen::Dynamic>;
@@ -58,19 +58,19 @@ public:
     //! \brief Value of the scalar field at the evaluation point
     //! \see method `#isSigned` of the plane fit to check if the sign is reliable
     PONCA_MULTIARCH [[nodiscard]] inline Scalar potential(const VectorType& _q, const bool /*convertToLocalBasis*/ = true) const {
-      VectorType x = Base::worldToTangentPlane(_q);
+      VectorType x = Base::worldToFrame(_q);
       return evalUV(*(x.data()+1),*(x.data()+2)) - *(x.data());
     }
 
     //! \brief Orthogonal projecting on the patch, such that h = f(u,v)
     PONCA_MULTIARCH [[nodiscard]] inline VectorType project (const VectorType& _q) const
     {
-        VectorType x = Base::worldToTangentPlane(_q);
+        VectorType x = Base::worldToFrame(_q);
         *(x.data()) = evalUV(*(x.data()+1),*(x.data()+2));
-        return Base::tangentPlaneToWorld(x);
+        return Base::frameToWorld(x);
     }
 
-    PONCA_MULTIARCH [[nodiscard]] inline const Scalar & h_uu () const { return *(m_x.data()); }
+    PONCA_MULTIARCH [[nodiscard]] inline const Scalar & h_uu () const { return *(m_x.data());   }
     PONCA_MULTIARCH [[nodiscard]] inline const Scalar & h_vv () const { return *(m_x.data()+1); }
     PONCA_MULTIARCH [[nodiscard]] inline const Scalar & h_uv () const { return *(m_x.data()+2); }
     PONCA_MULTIARCH [[nodiscard]] inline const Scalar & h_u  () const { return *(m_x.data()+3); }
@@ -78,6 +78,17 @@ public:
     PONCA_MULTIARCH [[nodiscard]] inline const Scalar & h_c  () const { return *(m_x.data()+5); }
 
 };
+
+/// \brief Helper alias for MongePatch fitting on 3D points using MongePatch
+//! [MongePatchFit Definition]
+template < class DataPoint, class _NFilter, typename T>
+    using MongePatchFit = Ponca::MongePatch<DataPoint, _NFilter,
+                            Ponca::CovariancePlaneFitImpl<DataPoint, _NFilter,
+                                Ponca::CovarianceFitBase<DataPoint, _NFilter,
+                                        Ponca::MeanPosition<DataPoint, _NFilter,
+                                            Ponca::LocalFrame<DataPoint, _NFilter,
+                                                Ponca::Plane<DataPoint, _NFilter,T>>>>>>;
+//! [MongePatchFit Definition]
 
 #include "mongePatch.hpp"
 
