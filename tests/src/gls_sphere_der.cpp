@@ -19,6 +19,8 @@
 #include <Ponca/src/Fitting/weightFunc.h>
 #include <Ponca/src/Fitting/weightKernel.h>
 
+#include <Ponca/SpatialPartitioning>
+
 #include <vector>
 
 using namespace std;
@@ -51,16 +53,19 @@ void testFunction(bool _bAddPositionNoise = false, bool _bAddNormalNoise = false
         vectorPoints[i] = getPointOnSphere<DataPoint>(radius, center, _bAddPositionNoise, _bAddNormalNoise);
     }
 
+    KdTreeDense<DataPoint> tree(vectorPoints);
+
     // Quick testing is requested for coverage
     int size = QUICK_TESTS ? 1 : int(vectorPoints.size());
 
     // Test for each point if the Derivatives of kappa are equal to 0
+    int nbStable = 0;
 #pragma omp parallel for
     for(int i = 0; i < size; ++i)
     {
         Fit fit;
         fit.setNeighborFilter({vectorPoints[i].pos(), analysisScale});
-        fit.compute(vectorPoints);
+        fit.computeWithIds(tree.range_neighbors(vectorPoints[i].pos(),analysisScale),vectorPoints);
 
         if(fit.isStable())
         {
@@ -70,8 +75,11 @@ void testFunction(bool _bAddPositionNoise = false, bool _bAddNormalNoise = false
             {
                 VERIFY( Eigen::internal::isMuchSmallerThan(dkappa[i], Scalar(1.), epsilon) );
             }
+#pragma omp critical
+            nbStable++;
         }
     }
+    VERIFY (nbStable!= 0);
 }
 
 template<typename Scalar, int Dim>
