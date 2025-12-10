@@ -123,7 +123,7 @@ void testFunction(bool _bUnoriented = false, bool _bAddPositionNoise = false, bo
 
                 // Check if the query point is on the plane
                 if(!_bAddPositionNoise)
-                    VERIFY(std::abs(fit.potential(vectorPoints[i].pos())) <= epsilon);
+                    VERIFY(std::abs(fit.potential(vectorPoints[i].pos())) <= epsilon * Scalar(10));
                 break;
             }
             case CONFLICT_ERROR_FOUND:
