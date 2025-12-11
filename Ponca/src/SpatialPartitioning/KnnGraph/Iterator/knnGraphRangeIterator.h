@@ -6,6 +6,9 @@
 
 #pragma once
 
+#include <iterator>
+#include <cstddef>
+
 namespace Ponca {
 
 template <typename Traits>
