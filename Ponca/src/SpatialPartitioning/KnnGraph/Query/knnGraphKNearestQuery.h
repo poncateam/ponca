@@ -6,6 +6,7 @@
 
 #pragma once
 
+#include "../../query.h"
 #include "../Iterator/knnGraphRangeIterator.h"
 #include <vector>
 
