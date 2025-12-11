@@ -14,9 +14,11 @@
 
 using namespace Ponca;
 
+//! Test kNearestNeighbors query
 template<bool doIndexQuery, typename AcceleratingStructure>
 void testKNearestNeighbors( AcceleratingStructure& structure,
 	typename AcceleratingStructure::PointContainer& points,
+	std::vector<int>& sample,
 	const int retry_number, const int k
 ) {
 	using DataPoint      = typename AcceleratingStructure::DataPoint;
@@ -30,11 +32,13 @@ void testKNearestNeighbors( AcceleratingStructure& structure,
 			}
 		}, [&structure](auto &queryInput, const int _k) {
 			return structure.kNearestNeighbors(queryInput, _k);
-		}, [&points, &k](auto& queryInput, auto& queryResults) {
-			return checkKNearestNeighbors<DataPoint>(points, queryInput, k, queryResults);
+		}, [&points, &sample, &k](auto& queryInput, auto& queryResults) {
+			return checkKNearestNeighbors<DataPoint>(points, sample, queryInput, k, queryResults);
 		}, retry_number, k
 	);
 }
+
+//! Test kNearestNeighbors query without the k argument (the size of the iterator depends on the acceleration structure (e.g. when using the knnGraph(kdtreeDense, k))
 template<typename AcceleratingStructure>
 void testKNearestNeighborsEntirePointSet( AcceleratingStructure& structure,
 	typename AcceleratingStructure::PointContainer& points,
@@ -67,15 +71,21 @@ void testKNearestNeighborsForAllStructures(const bool quick = QUICK_TESTS)
 	generateData(points);
 
 	cout << endl;
-	//////////// Test dense KdTree
+	//////////// Test Dense KdTree
 	std::vector<int> sample;
 	KdTreeDense<P> kdtreeDense = *buildKdTreeDense<P>(points, sample);
 	auto timeStart = std::chrono::system_clock::now(); // Only record time for one query
-	testKNearestNeighbors<true>(kdtreeDense, points, retry_number, k);  // Index query test
+	testKNearestNeighbors<true>(kdtreeDense, points, sample, retry_number, k);  // Index query test
 	cout << "    Compute Time KdTree index query : " <<  (std::chrono::system_clock::now() - timeStart).count() << endl;
 	timeStart = std::chrono::system_clock::now();
-	testKNearestNeighbors<false>(kdtreeDense, points, retry_number, k); // Position query test
+	testKNearestNeighbors<false>(kdtreeDense, points, sample, retry_number, k); // Position query test
 	cout << "    Compute Time KdTree position query : " <<  (std::chrono::system_clock::now() - timeStart).count() << endl;
+
+	//////////// Test subsample of KdTree
+	std::vector<int> subSample;
+	KdTreeSparse<P> kdtreeSparse = *buildSubsampledKdTree(points, subSample);
+	testKNearestNeighbors<true>(kdtreeSparse, points, subSample, retry_number, k);  // Index query test
+	testKNearestNeighbors<false>(kdtreeSparse, points, subSample, retry_number, k); // Position query test
 
 	//////////// Test KnnGraph
 	KnnGraph<P> knnGraph(kdtreeDense, k);
