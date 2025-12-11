@@ -133,8 +133,7 @@ struct  OUT_TYPE##PointQuery : Query<QueryInputIsPosition<DataPoint>, \
                 : m_squared_radius(PONCA_MULTIARCH_CU_STD_NAMESPACE(pow)(radius, OutputParameter(2))) {}
 
         inline void operator() (OutputParameter radius){
-            PONCA_MULTIARCH_STD_MATH(pow);
-            m_squared_radius = pow(radius, OutputParameter(2));
+            setRadius( radius );
         }
 
         inline Scalar radius() const {
@@ -145,8 +144,7 @@ struct  OUT_TYPE##PointQuery : Query<QueryInputIsPosition<DataPoint>, \
         inline Scalar squaredRadius() const { return m_squared_radius; }
 
         inline void setRadius(Scalar radius) {
-            PONCA_MULTIARCH_STD_MATH(pow);
-            m_squared_radius = pow(radius, 2);
+            setSquaredRadius (radius*radius);
         }
 
         inline void setSquaredRadius(Scalar radius) { m_squared_radius = radius; }
