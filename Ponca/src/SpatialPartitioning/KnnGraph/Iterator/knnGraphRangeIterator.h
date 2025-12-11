@@ -64,8 +64,6 @@ public:
     }
 
     /// \brief Postfix increment
-    ///
-    /// \warning We can't guarantee the validity of iterator copy, because of the reference to the KnnGraph.
     inline void operator++(value_type) { ++*this; }
 
     /// \brief Dereference operator
