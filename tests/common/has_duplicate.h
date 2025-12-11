@@ -4,7 +4,7 @@
 
 
 /*!
- * \copybreif hasDuplicate(Iter first, Iter last)
+ * \copybrief hasDuplicate(Iter first, Iter last)
  *
  * This function is restricted to random access iterators
  * (iterators that can access the container non-sequentially, by jumping around).
@@ -31,7 +31,7 @@ bool randomAccessIteratorHasDuplicate(RandomIt first, RandomIt last)
 }
 
 /*!
- * \copybreif hasDuplicate(Iter first, Iter last)
+ * \copybrief hasDuplicate(Iter first, Iter last)
  *
  * Works on any forward iterators
  * (iterators that can scan sequentially the container multiple time and edit its values).
