@@ -18,9 +18,6 @@ class KnnGraphRangeQuery;
  *  If you need to analyse the values with algorithms that relies on forward or more complex iterators,
  *  we suggest copying the values inside a std::vector<Index>.
  *
- *  To restart the `KnnGraphRangeIterator`, for more than one iteration pass,
- *  the KnnGraph queue must be reset using `KnnGraphRangeQuery::initialize(Iterator& iterator)`.
- *
  *  \warning This iterator should never be duplicated, as it is a proxy that holds a reference to the actual data :
  *  The copy of this iterator would still point to the same KnnGraph reference.
  *  So, if the increment operator is used on the iterator, the duplicate will also have its state updated
