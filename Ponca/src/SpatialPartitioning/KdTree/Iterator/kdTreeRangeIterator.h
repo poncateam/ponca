@@ -15,7 +15,7 @@ namespace Ponca {
  *  If you need to analyse the values with algorithms that relies on forward or more complex iterators,
  *  we suggest copying the values inside a std::vector<Index>.
  *
- *  \note The increment logic resides in `KdTreeRangeQueryBase::advance(Iterator& it)`
+ *  \warning The increment logic resides in `KdTreeRangeQueryBase::advance(Iterator& it)`
  *  As long as this advance method doesn't update the internal state of the `KdTreeRangeQuery` object,
  *  this iterator can be duplicated without causing issues.
  *

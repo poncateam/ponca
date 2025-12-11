@@ -258,7 +258,7 @@ public:
     // Query -------------------------------------------------------------------
 public :
     /// \brief Returns a query object to iterate over the k nearest neighbors of the point.
-    /// The returned object can call for a new query of the same type, using the () operator.
+    /// The returned object can be reseted and reused using the () operator.
     ///
     /// \param point Point from where the query is evaluated
     /// \param k Number of neighbors returned
@@ -276,14 +276,14 @@ public :
     }
 
     /// \copybrief KdTreeBase::kNearestNeighbors
-    /// \note This function only returns an empty `PositionQuery`, which needs to be used by doing `query(point, k)` to get a result.
+    /// \note This function only returns an empty `PositionQuery`, which needs to be initialized by calling `query(point, k)` to get a result.
     KdTreeKNearestPointQuery<Traits> kNearestNeighborsQuery() const
     {
         return KdTreeKNearestPointQuery<Traits>(this, 0, VectorType::Zero());
     }
 
     /// \copybrief KdTreeBase::kNearestNeighbors
-    /// \note This function only returns an empty `IndexQuery`, which needs to be used by doing `query(index, k)` to get a result.
+    /// \note This function only returns an empty `IndexQuery`, which needs to be initialized by calling `query(index, k)` to get a result.
     KdTreeKNearestIndexQuery<Traits> kNearestNeighborsIndexQuery() const
     {
         return KdTreeKNearestIndexQuery<Traits>(this, 0, 0);
@@ -325,14 +325,14 @@ public :
     }
 
     /// \copybrief KdTreeBase::rangeNeighbors
-    /// \note This function only returns an empty `PositionQuery`, which needs to be used by doing `query(point, r)` to get a result.
+    /// \note This function only returns an empty `PositionQuery`, which needs to be initialized by calling `query(point, r)` to get a result.
     KdTreeRangePointQuery<Traits> rangeNeighborsQuery() const
     {
         return KdTreeRangePointQuery<Traits>(this, 0, VectorType::Zero());
     }
 
     /// \copybrief KdTreeBase::rangeNeighbors
-    /// \note This function only returns an empty `IndexQuery`, which needs to be used by doing `query(index, r)` to get a result.
+    /// \note This function only returns an empty `IndexQuery`, which needs to be initialized by calling `query(index, r)` to get a result.
     KdTreeRangeIndexQuery<Traits> rangeNeighborsIndexQuery() const
     {
         return KdTreeRangeIndexQuery<Traits>(this, 0, 0);
