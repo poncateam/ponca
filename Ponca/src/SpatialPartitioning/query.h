@@ -227,7 +227,6 @@ struct  OUT_TYPE##PointQuery : Query<QueryInputIsPosition<DataPoint>, \
         inline Base& operator()(const typename QueryInType::InputType &in, outputType&&... out){
             QueryInType:: operator()(in);
             QueryOutType::operator()(std::forward<outputType>(out)...);
-            QueryOutType::reset();
             return *((Base*)(this));
         }
 

@@ -41,12 +41,12 @@ public:
     inline Self& operator()(int index, Scalar radius) {
         QueryType::setInput(index);
         QueryType::setRadius(radius);
-        QueryType::reset();
         return QueryType::template operator()<Self>(index, radius);
     }
 
 public:
     inline Iterator begin(){
+        QueryType::reset();
         Iterator it(this);
         this->initialize(it);
         this->advance(it);

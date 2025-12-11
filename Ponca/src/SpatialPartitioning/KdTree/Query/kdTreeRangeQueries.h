@@ -36,12 +36,10 @@ public:
 public:
     inline Self& operator()(typename QueryType::InputType input, Scalar radius)
     {
-        QueryAccelType::reset();
         return QueryType::template operator()<Self>(input, radius);
     }
     inline Self& operator()(typename QueryType::InputType input)
     {
-        QueryAccelType::reset();
         return QueryType::template operator()<Self>(input);
     }
 
