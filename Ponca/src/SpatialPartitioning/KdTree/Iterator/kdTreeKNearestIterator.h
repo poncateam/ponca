@@ -14,9 +14,9 @@ namespace Ponca {
 /*!
  *  \brief Input iterator to read the `KdTreeKNearestQuery`.
  *
- *  As this is an input iterator, we don't guarantee anything else than reading and incrementing values with it.
- *  If you need to analyse the values with algorithms that relies on forward or more complex iterators,
- *  we suggest copying the values inside a std::vector<Index>.
+ *  As this is an input iterator, we don't guarantee anything other than reading the values with it.
+ *  If you need to operate on the values of this iterator with algorithms that relies on forward iterator functionalities,
+ *  you should copy the values inside a STL-like container.
  *
  *  \note This iterator can be duplicated with no issues.
  *
