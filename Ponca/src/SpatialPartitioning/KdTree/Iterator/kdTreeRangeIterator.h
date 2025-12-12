@@ -19,10 +19,12 @@ namespace Ponca {
  *  you should copy the values inside a STL-like container.
  *
  *  \warning The increment logic resides in `KdTreeRangeQueryBase::advance(Iterator& it)`
- *  As long as this advance method doesn't update the internal state of the `KdTreeRangeQuery` object,
- *  this iterator can be duplicated without causing issues.
+ *  Since the `KdTreeRangeQueryBase::advance` method doesn't update the internal state of the
+ *  `KdTreeRangeQuery` object, this iterator can be duplicated without causing issues.
+ *  If a copy of this iterator is made  (e.g., passed by copy to a function),
+ *  incrementing one iterator won't update the state of the other.
  *
- *  \see KdTreeRangeQueryBase
+ *  \see KdTreeRangeQueryBase::advance
  */
 template<typename Index, typename DataPoint, typename QueryT_>
 class KdTreeRangeIterator
