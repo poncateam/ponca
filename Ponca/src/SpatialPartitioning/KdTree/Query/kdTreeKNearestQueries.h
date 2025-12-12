@@ -24,11 +24,21 @@ public:
     using VectorType     = typename DataPoint::VectorType;
     using QueryAccelType = KdTreeQuery<Traits>;
     using Iterator       = IteratorType<typename Traits::IndexType, typename Traits::DataPoint>;
+    using Self           = KdTreeKNearestQueryBase<Traits, IteratorType, QueryType>;
 
     inline KdTreeKNearestQueryBase(const KdTreeBase<Traits>* kdtree, IndexType k, typename QueryType::InputType input) :
             KdTreeQuery<Traits>(kdtree), QueryType(k, input) { }
 
 public:
+    inline Self& operator()(typename QueryType::InputType input, Scalar radius)
+    {
+        return QueryType::template operator()<Self>(input, radius);
+    }
+    inline Self& operator()(typename QueryType::InputType input)
+    {
+        return QueryType::template operator()<Self>(input);
+    }
+
     inline Iterator begin(){
         QueryAccelType::reset();
         QueryType::reset();

@@ -29,6 +29,7 @@ public:
     using Scalar     = typename DataPoint::Scalar;
     using VectorType = typename DataPoint::VectorType;
     using Iterator   = KnnGraphRangeIterator<Traits>;
+    using Self       = KnnGraphRangeQuery<Traits>;
 
 public:
     inline KnnGraphRangeQuery(const KnnGraphBase<Traits>* graph, Scalar radius, int index):
@@ -37,8 +38,15 @@ public:
             m_flag(),
             m_stack() {}
 
+    inline Self& operator()(int index, Scalar radius) {
+        QueryType::setInput(index);
+        QueryType::setRadius(radius);
+        return QueryType::template operator()<Self>(index, radius);
+    }
+
 public:
     inline Iterator begin(){
+        QueryType::reset();
         Iterator it(this);
         this->initialize(it);
         this->advance(it);
@@ -75,11 +83,11 @@ protected:
             int idx_current = m_stack.top();
             m_stack.pop();
 
-            PONCA_DEBUG_ASSERT((point - points[idx_current].pos()).squaredNorm() < QueryType::squared_radius());
+            PONCA_DEBUG_ASSERT((point - points[idx_current].pos()).squaredNorm() < QueryType::squaredRadius());
 
             iterator.m_index = idx_current;
 
-            for(int idx_nei : m_graph->k_nearest_neighbors(idx_current))
+            for(int idx_nei : m_graph->kNearestNeighbors(idx_current))
             {
                 PONCA_DEBUG_ASSERT(idx_nei>=0);
                 Scalar d  = (point - points[idx_nei].pos()).squaredNorm();

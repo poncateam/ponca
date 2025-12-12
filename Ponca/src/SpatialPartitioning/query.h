@@ -72,11 +72,11 @@ struct  OUT_TYPE##PointQuery : Query<QueryInputIsPosition<DataPoint>, \
         /// Need to be used carefully. Modifying a query input while iterating on the query will result in undefined behavior.
         /// Simplest way to avoid this is to restart the iteration on the query. 
         /// Usefull to avoid query reallocation between different requests
-        inline void editInput(const InputType& input) { m_input = input; }
+        inline void setInput(const InputType& input) { m_input = input; }
     
     private:
         /// Index of the queried point
-        const InputType m_input;
+        InputType m_input;
     };
 
 
@@ -88,6 +88,10 @@ struct  OUT_TYPE##PointQuery : Query<QueryInputIsPosition<DataPoint>, \
 
         inline QueryInputIsIndex(const InputType &point = -1)
                 : Base(point) {}
+
+        inline void operator()(const InputType &point = InputType::Zero()){
+            Base::setInput(point);
+        }
     protected:
         /// Functor used to check if a given Idx must be skipped
         template <typename IndexType>
@@ -106,6 +110,10 @@ struct  OUT_TYPE##PointQuery : Query<QueryInputIsPosition<DataPoint>, \
 
         inline QueryInputIsPosition(const InputType &point = InputType::Zero())
                 : Base(point) {}
+
+        inline void operator()(const InputType &point = InputType::Zero()){
+            Base::setInput( point );
+        }
     protected:
         /// Functor used to check if a given Idx must be skipped
         template <typename IndexType>
@@ -124,19 +132,30 @@ struct  OUT_TYPE##PointQuery : Query<QueryInputIsPosition<DataPoint>, \
         inline QueryOutputIsRange(OutputParameter radius = OutputParameter(0))
                 : m_squared_radius(PONCA_MULTIARCH_CU_STD_NAMESPACE(pow)(radius, OutputParameter(2))) {}
 
+        inline void operator() (OutputParameter radius){
+            setRadius( radius );
+        }
+
+        /// \brief Generic method to access the radius.
+        ///
+        /// \note This getter method is a little more expensive than `squaredRadius`,
+        /// because we have to compute the square root of the squared radius.
+        ///
+        /// \see squaredRadius
         inline Scalar radius() const {
             PONCA_MULTIARCH_STD_MATH(sqrt);
             return sqrt(m_squared_radius);
         }
 
-        inline Scalar squared_radius() const { return m_squared_radius; }
+        /// \brief Generic method to access the radius squared.
+        inline Scalar squaredRadius() const { return m_squared_radius; }
 
-        inline void set_radius(Scalar radius) {
-            PONCA_MULTIARCH_STD_MATH(pow);
-            m_squared_radius = pow(radius, 2);
+        /// \brief Set the radius distance of the query
+        inline void setRadius(Scalar radius) {
+            setSquaredRadius (radius*radius);
         }
 
-        inline void set_squared_radius(Scalar radius) { m_squared_radius = radius; }
+        inline void setSquaredRadius(Scalar radius) { m_squared_radius = radius; }
 
     protected:
         /// \brief Reset Query for a new search
@@ -153,6 +172,9 @@ struct  OUT_TYPE##PointQuery : Query<QueryInputIsPosition<DataPoint>, \
 
         QueryOutputIsNearest() {}
 
+        inline void operator() (){ }
+
+        /// \brief Get the closest points
         Index get() const { return m_nearest; }
 
     protected:
@@ -175,6 +197,8 @@ struct  OUT_TYPE##PointQuery : Query<QueryInputIsPosition<DataPoint>, \
         using OutputParameter = Index;
 
         inline QueryOutputIsKNearest(OutputParameter k = 0) : m_queue(k) {}
+
+        inline void operator() (OutputParameter k) { m_queue = limited_priority_queue<IndexSquaredDistance<Index, Scalar>>(k); }
 
         inline limited_priority_queue<IndexSquaredDistance<Index, Scalar>> &queue() { return m_queue; }
 
@@ -206,7 +230,20 @@ struct  OUT_TYPE##PointQuery : Query<QueryInputIsPosition<DataPoint>, \
 
         inline Query(const typename QueryOutType::OutputParameter &outParam,
                      const typename QueryInType::InputType &in)
-                : QueryInType(in), QueryOutType(outParam) {}
+                : QueryOutType(outParam), QueryInType(in) {}
+
+        template<typename Base, typename... outputType>
+        inline Base& operator()(const typename QueryInType::InputType &in, outputType&&... out){
+            QueryInType:: operator()(in);
+            QueryOutType::operator()(std::forward<outputType>(out)...);
+            return *((Base*)(this));
+        }
+
+        template<typename Base>
+        inline Base& operator()(const typename QueryInType::InputType &in){
+            QueryInType:: operator()(in);
+            return *((Base*)(this));
+        }
     };
 
 DECLARE_INDEX_QUERY_CLASS(KNearest) //KNearestIndexQuery

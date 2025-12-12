@@ -25,6 +25,7 @@ public:
     using VectorType     = typename DataPoint::VectorType;
     using QueryAccelType = KdTreeQuery<Traits>;
     using Iterator       = IteratorType<IndexType, DataPoint, KdTreeRangeQueryBase>;
+    using Self           = KdTreeRangeQueryBase<Traits, IteratorType, QueryType>;
 
 protected:
     friend Iterator;
@@ -32,8 +33,16 @@ protected:
 public:
     KdTreeRangeQueryBase(const KdTreeBase<Traits>* kdtree, Scalar radius, typename QueryType::InputType input) :
             KdTreeQuery<Traits>(kdtree), QueryType(radius, input){}
-
 public:
+    inline Self& operator()(typename QueryType::InputType input, Scalar radius)
+    {
+        return QueryType::template operator()<Self>(input, radius);
+    }
+    inline Self& operator()(typename QueryType::InputType input)
+    {
+        return QueryType::template operator()<Self>(input);
+    }
+
     inline Iterator begin(){
         QueryAccelType::reset();
         QueryType::reset();
@@ -42,7 +51,7 @@ public:
         return it;
     }
     inline Iterator end(){
-        return Iterator(this, QueryAccelType::m_kdtree->point_count());
+        return Iterator(this, QueryAccelType::m_kdtree->pointCount());
     }
 
 protected:
