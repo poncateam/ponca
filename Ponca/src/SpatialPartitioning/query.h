@@ -136,13 +136,21 @@ struct  OUT_TYPE##PointQuery : Query<QueryInputIsPosition<DataPoint>, \
             setRadius( radius );
         }
 
+        /// \brief Generic method to access the radius.
+        ///
+        /// \note This getter method is a little more expensive than `squaredRadius`,
+        /// because we have to compute the square root of the squared radius.
+        ///
+        /// \see squaredRadius
         inline Scalar radius() const {
             PONCA_MULTIARCH_STD_MATH(sqrt);
             return sqrt(m_squared_radius);
         }
 
+        /// \brief Generic method to access the radius squared.
         inline Scalar squaredRadius() const { return m_squared_radius; }
 
+        /// \brief Set the radius distance of the query
         inline void setRadius(Scalar radius) {
             setSquaredRadius (radius*radius);
         }
@@ -166,6 +174,7 @@ struct  OUT_TYPE##PointQuery : Query<QueryInputIsPosition<DataPoint>, \
 
         inline void operator() (){ }
 
+        /// \brief Get the closest points
         Index get() const { return m_nearest; }
 
     protected:
