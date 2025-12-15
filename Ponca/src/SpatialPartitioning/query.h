@@ -130,7 +130,7 @@ struct  OUT_TYPE##PointQuery : Query<QueryInputIsPosition<DataPoint>, \
         using OutputParameter = Scalar;
 
         inline QueryOutputIsRange(OutputParameter radius = OutputParameter(0))
-                : m_squared_radius(PONCA_MULTIARCH_CU_STD_NAMESPACE(pow)(radius, OutputParameter(2))) {}
+                : m_squared_radius(PONCA_MULTIARCH_STD_MATH_NAMESPACE(pow)(radius, OutputParameter(2))) {}
 
         inline void operator() (OutputParameter radius){
             setRadius( radius );
