@@ -131,9 +131,9 @@ public:
      */
     using AabbType = Eigen::AlignedBox<Scalar, DataPoint::Dim>;
 
-    KdTreeCustomizableNode() = default;
+    PONCA_MULTIARCH KdTreeCustomizableNode() = default;
 
-    constexpr KdTreeCustomizableNode(KdTreeCustomizableNode&& n)
+    PONCA_MULTIARCH constexpr KdTreeCustomizableNode(KdTreeCustomizableNode&& n)
         : m_is_leaf(n.m_is_leaf)
     {
         if (m_is_leaf)
@@ -146,7 +146,7 @@ public:
         }
     }
 
-    constexpr KdTreeCustomizableNode& operator=(KdTreeCustomizableNode&& n)
+    PONCA_MULTIARCH constexpr KdTreeCustomizableNode& operator=(KdTreeCustomizableNode&& n)
     {
         if (&n != this)
         {
@@ -164,7 +164,7 @@ public:
         return *this;
     }
 
-    constexpr KdTreeCustomizableNode(const KdTreeCustomizableNode& n)
+    PONCA_MULTIARCH constexpr KdTreeCustomizableNode(const KdTreeCustomizableNode& n)
         : m_is_leaf(n.m_is_leaf)
     {
         if (n.m_is_leaf)
@@ -177,7 +177,7 @@ public:
         }
     }
 
-    constexpr KdTreeCustomizableNode& operator=(const KdTreeCustomizableNode& n)
+    PONCA_MULTIARCH constexpr KdTreeCustomizableNode& operator=(const KdTreeCustomizableNode& n)
     {
         if (&n != this)
         {
@@ -195,10 +195,10 @@ public:
         return *this;
     }
 
-    ~KdTreeCustomizableNode() {}
+    PONCA_MULTIARCH ~KdTreeCustomizableNode() {}
     
-    [[nodiscard]] bool is_leaf() const { return m_is_leaf; }
-    void set_is_leaf(bool is_leaf) { m_is_leaf = is_leaf; }
+    PONCA_MULTIARCH [[nodiscard]] bool is_leaf() const { return m_is_leaf; }
+    PONCA_MULTIARCH void set_is_leaf(bool is_leaf) { m_is_leaf = is_leaf; }
 
     /*!
      * \brief Configures the range of the node in the sample index array of the
@@ -212,7 +212,7 @@ public:
      *
      * Called after \ref set_is_leaf during kd-tree construction.
      */
-    void configure_range(Index start, Index size, const AabbType &aabb)
+    PONCA_MULTIARCH void configure_range(Index start, Index size, const AabbType &aabb)
     {
         if (m_is_leaf)
         {
@@ -230,7 +230,7 @@ public:
      * Called after \ref set_is_leaf and \ref configure_range during kd-tree
      * construction.
      */
-    void configure_inner(Scalar split_value, Index first_child_id, Index split_dim)
+    PONCA_MULTIARCH void configure_inner(Scalar split_value, Index first_child_id, Index split_dim)
     {
         if (!m_is_leaf)
         {
@@ -244,22 +244,22 @@ public:
      * \brief The start index of the range of the leaf node in the sample
      * index array.
      */
-    [[nodiscard]] Index leaf_start() const { return data.m_leaf.start; }
+    PONCA_MULTIARCH [[nodiscard]] Index leaf_start() const { return data.m_leaf.start; }
 
     /*!
      * \brief The size of the range of the leaf node in the sample index array.
      */
-    [[nodiscard]] LeafSize leaf_size() const { return data.m_leaf.size; }
+    PONCA_MULTIARCH [[nodiscard]] LeafSize leaf_size() const { return data.m_leaf.size; }
 
     /*!
      * \brief The position of the AABB split of the inner node.
      */
-    [[nodiscard]] Scalar inner_split_value() const { return data.m_inner.split_value; }
+    PONCA_MULTIARCH [[nodiscard]] Scalar inner_split_value() const { return data.m_inner.split_value; }
     
     /*!
      * \brief Which axis the split of the AABB of the inner node was done on.
      */
-    [[nodiscard]] int inner_split_dim() const { return (int)data.m_inner.split_dim; }
+    PONCA_MULTIARCH [[nodiscard]] int inner_split_dim() const { return (int)data.m_inner.split_dim; }
     
     /*!
      * \brief The index of the first child of the node in the node array of the
@@ -268,13 +268,13 @@ public:
      * \note The second child is stored directly after the first in the array
      * (i.e. `first_child_id + 1`).
      */
-    [[nodiscard]] Index inner_first_child_id() const { return (Index)data.m_inner.first_child_id; }
+    PONCA_MULTIARCH [[nodiscard]] Index inner_first_child_id() const { return (Index)data.m_inner.first_child_id; }
 
 protected:
-    [[nodiscard]] inline LeafType& getAsLeaf() { return data.m_leaf; }
-    [[nodiscard]] inline InnerType& getAsInner() { return data.m_inner; }
-    [[nodiscard]] inline const LeafType& getAsLeaf() const { return data.m_leaf; }
-    [[nodiscard]] inline const InnerType& getAsInner() const { return data.m_inner; }
+    PONCA_MULTIARCH [[nodiscard]] inline LeafType& getAsLeaf() { return data.m_leaf; }
+    PONCA_MULTIARCH [[nodiscard]] inline InnerType& getAsInner() { return data.m_inner; }
+    PONCA_MULTIARCH [[nodiscard]] inline const LeafType& getAsLeaf() const { return data.m_leaf; }
+    PONCA_MULTIARCH [[nodiscard]] inline const InnerType& getAsInner() const { return data.m_inner; }
 
 private:
     bool m_is_leaf{true};
