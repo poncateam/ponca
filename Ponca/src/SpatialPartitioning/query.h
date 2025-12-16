@@ -17,29 +17,39 @@ namespace Ponca {
 
 
 /// \internal
-/// \brief Macro generating code of the the Query base classes inhering QueryInputIsIndex
+/// \brief Macro generating code of the Query base classes inhering QueryInputIsIndex.
 /// \note For internal use only
-#define DECLARE_INDEX_QUERY_CLASS(OUT_TYPE) \
-/*! \brief Base Query class combining QueryInputIsIndex and QueryOutputIs##OUT_TYPE##. */    \
-template <typename Index, typename Scalar> \
-struct  OUT_TYPE##IndexQuery : Query<QueryInputIsIndex<Index>, QueryOutputIs##OUT_TYPE<Index, Scalar>> \
-{ \
-    using Base = Query<QueryInputIsIndex<Index>, QueryOutputIs##OUT_TYPE<Index, Scalar>>; \
-    using Base::Base; \
+#define DECLARE_INDEX_QUERY_CLASS(OUT_TYPE)                                                                            \
+/*! \brief Base Query class combining QueryInputIsIndex and QueryOutputIs##OUT_TYPE##.                              */ \
+/*! `IndexQuery` objects acts as a `Range` that can be iterated over.                                               */ \
+/*! They are used as the return type for the index searches                                                         */ \
+/*! and they allow easy access to the result outputs.                                                               */ \
+/*! This specialization of the `IndexQuery` concept is used to iterate over the neighbors of a given point index,   */ \
+/*! using a ##OUT_TYPE## Index Query request.                                                                       */ \
+template <typename Index, typename Scalar>                                                                             \
+struct  OUT_TYPE##IndexQuery : Query<QueryInputIsIndex<Index>, QueryOutputIs##OUT_TYPE<Index, Scalar>>                 \
+{                                                                                                                      \
+    using Base = Query<QueryInputIsIndex<Index>, QueryOutputIs##OUT_TYPE<Index, Scalar>>;                              \
+    using Base::Base;                                                                                                  \
 };
 
 
 /// \internal
-/// \brief Macro generating code of the the Query base classes inhering QueryInputIsPosition
+/// \brief Macro generating code of the Query base classes inhering QueryInputIsPosition.
 /// \note For internal use only
-#define DECLARE_POINT_QUERY_CLASS(OUT_TYPE) \
-/*! \brief Base Query class combining QueryInputIsPosition and QueryOutputIs##OUT_TYPE##. */    \
-template <typename Index, typename DataPoint> \
-struct  OUT_TYPE##PointQuery : Query<QueryInputIsPosition<DataPoint>, \
-                                     QueryOutputIs##OUT_TYPE<Index, typename DataPoint::Scalar>> \
-{ \
-    using Base = Query<QueryInputIsPosition<DataPoint>, QueryOutputIs##OUT_TYPE<Index, typename DataPoint::Scalar>>; \
-    using Base::Base; \
+#define DECLARE_POINT_QUERY_CLASS(OUT_TYPE)                                                                            \
+/*! \brief Base Query class combining QueryInputIsPosition and QueryOutputIs##OUT_TYPE##.                           */ \
+/*! `PointQuery` objects acts as a `Range` that can be iterated over.                                               */ \
+/*! They are used as the return type for the index searches                                                         */ \
+/*! and they allow easy access to the result outputs.                                                               */ \
+/*! This specialization of the `PointQuery` concept is used to iterate over the neighbors of a given point position,*/ \
+/*! using a ##OUT_TYPE## Point Query request.                                                                       */ \
+template <typename Index, typename DataPoint>                                                                          \
+struct  OUT_TYPE##PointQuery : Query<QueryInputIsPosition<DataPoint>,                                                  \
+                                     QueryOutputIs##OUT_TYPE<Index, typename DataPoint::Scalar>>                       \
+{                                                                                                                      \
+    using Base = Query<QueryInputIsPosition<DataPoint>, QueryOutputIs##OUT_TYPE<Index, typename DataPoint::Scalar>>;   \
+    using Base::Base;                                                                                                  \
 };
 
 /// \addtogroup spatialpartitioning
@@ -53,13 +63,29 @@ struct  OUT_TYPE##PointQuery : Query<QueryInputIsPosition<DataPoint>, \
     struct QueryInputBase {
     };
 
-/// \brief Base class for queries output type
+    /*!
+     * \brief Base class for queries output types.
+     *
+     * `QueryOutput` objects are the return types of the searches of the accelerating structures
+     *  defined in the SpatialPartitioning module.
+     *
+     * They are used for easy access to the result outputs.
+     * (e.g. to iterate over the neighbors of the evaluated point using a `rangeNeighborsQuery` request).
+     */
     struct QueryOutputBase {
         struct DummyOutputParameter {
         };
     };
 
-/// \brief Base class for typed queries input type
+    /*!
+     * \brief Base class for Query input type.
+     *
+     * Stores internally a value that is related to the point about to be evaluated
+     * (e.g. the position of the point, or its index)
+     *
+     * \warning This class has to be specialized for a specific input type, and can't be used as is.
+     * /see QueryInputIsIndex, QueryInputIsPosition
+     */
     template<typename InputType_>
     struct QueryInput : public QueryInputBase {
         using InputType = InputType_;
@@ -68,10 +94,14 @@ struct  OUT_TYPE##PointQuery : Query<QueryInputIsPosition<DataPoint>, \
 
         inline const InputType &input() const { return m_input; }
     protected:
-        /// \brief Edit the input 
-        /// Need to be used carefully. Modifying a query input while iterating on the query will result in undefined behavior.
-        /// Simplest way to avoid this is to restart the iteration on the query. 
-        /// Usefull to avoid query reallocation between different requests
+        /*!
+         * \brief Edit the input
+         *
+         * \warning Need to be used carefully.
+         * Modifying a query input while iterating on the query will result in undefined behavior.
+         * Simplest way to avoid this is to restart the iteration on the query.
+         * Usefull to avoid query reallocation between different requests.
+         */
         inline void setInput(const InputType& input) { m_input = input; }
     
     private:
@@ -80,7 +110,14 @@ struct  OUT_TYPE##PointQuery : Query<QueryInputIsPosition<DataPoint>, \
     };
 
 
-/// \brief Base class for queries storing points
+    /*!
+     * \brief Specialization of `QueryInput` that handles an Index based search query.
+     *
+     * Used as the `QueryInput` for any searches made with a point Index in an accelerating structures.
+     *
+     * Stores internally the index of the evaluated point.
+     * /see QueryInput
+     */
     template <typename Index>
     struct QueryInputIsIndex : public QueryInput<Index> {
         using Base = QueryInput<Index>;
@@ -102,7 +139,14 @@ struct  OUT_TYPE##PointQuery : Query<QueryInputIsPosition<DataPoint>, \
         { return c[Base::input()].pos(); }
     };
 
-/// \brief Base class for queries storing points
+    /*!
+     * \brief Specialization of `QueryInput` that handles a Position based search query.
+     *
+     * Used as the `QueryInput` for any searches made with a point Position in an accelerating structures.
+     *
+     * Stores internally the position of the evaluated point.
+     * /see QueryInput
+     */
     template<typename DataPoint>
     struct QueryInputIsPosition : public QueryInput<typename DataPoint::VectorType> {
         using Base = QueryInput<typename DataPoint::VectorType>;
@@ -124,7 +168,12 @@ struct  OUT_TYPE##PointQuery : Query<QueryInputIsPosition<DataPoint>, \
         { return Base::input(); }
     };
 
-/// \brief Base class for range queries
+    /*!
+     * \brief Class to construct the range query output.
+     *
+     * Stores internally the radius value of a range request.
+     * \see QueryOutputBase
+     */
     template<typename Index, typename Scalar>
     struct QueryOutputIsRange : public QueryOutputBase {
         using OutputParameter = Scalar;
@@ -136,12 +185,16 @@ struct  OUT_TYPE##PointQuery : Query<QueryInputIsPosition<DataPoint>, \
             setRadius( radius );
         }
 
-        /// \brief Generic method to access the radius.
-        ///
-        /// \note This getter method is a little more expensive than `squaredRadius`,
-        /// because we have to compute the square root of the squared radius.
-        ///
-        /// \see squaredRadius
+        /*!
+         * \brief Generic method to access the radius.
+         *
+         * \warning This getter method is more expensive to process than `squaredRadius`,
+         * because it computes the square root of the squared radius each time it is called.
+         * This is done this way to avoid having to store internally two values related to the radius.
+         *
+         * `squaredRadius` is overall better for distance comparison.
+         * \see squaredRadius
+         */
         inline Scalar radius() const {
             PONCA_MULTIARCH_STD_MATH(sqrt);
             return sqrt(m_squared_radius);
@@ -150,11 +203,16 @@ struct  OUT_TYPE##PointQuery : Query<QueryInputIsPosition<DataPoint>, \
         /// \brief Generic method to access the radius squared.
         inline Scalar squaredRadius() const { return m_squared_radius; }
 
-        /// \brief Set the radius distance of the query
+        /*!
+         * \brief Set the radius distance of the query
+         *
+         * \note Store internally the squared radius for faster distance comparison
+         */
         inline void setRadius(Scalar radius) {
             setSquaredRadius (radius*radius);
         }
 
+        /// \brief Set the squared radius distance of the query
         inline void setSquaredRadius(Scalar radius) { m_squared_radius = radius; }
 
     protected:
@@ -165,7 +223,12 @@ struct  OUT_TYPE##PointQuery : Query<QueryInputIsPosition<DataPoint>, \
         Scalar m_squared_radius{0};
     };
 
-/// \brief Base class for nearest queries
+    /*!
+     * \brief Class to construct the nearest query output.
+     *
+     * Stores internally the nearest neighbor and the Distance threshold (for tree descent).
+     * \see QueryOutputBase
+     */
     template<typename Index, typename Scalar>
     struct QueryOutputIsNearest : public QueryOutputBase {
         using OutputParameter = typename QueryOutputBase::DummyOutputParameter;
@@ -191,7 +254,11 @@ struct  OUT_TYPE##PointQuery : Query<QueryInputIsPosition<DataPoint>, \
         Scalar m_squared_distance {PONCA_MULTIARCH_CU_STD_NAMESPACE(numeric_limits)<Scalar>::max()};
     };
 
-/// \brief Base class for knearest queries
+    /*! \brief Class to construct the knearest queries
+     *
+     *  Stores internally the neighbors collection of the knn request and the Distance threshold (for tree descent).
+     *  \see QueryOutputBase
+     */
     template<typename Index, typename Scalar>
     struct QueryOutputIsKNearest : public QueryOutputBase {
         using OutputParameter = Index;
@@ -214,7 +281,12 @@ struct  OUT_TYPE##PointQuery : Query<QueryInputIsPosition<DataPoint>, \
         limited_priority_queue<IndexSquaredDistance<Index, Scalar>> m_queue;
     };
 
-
+    /*!
+     * \brief Composes the Query object depending on an input type and output type.
+     *
+     * \tparam Input_ The query input type corresponds to the value used for the search.
+     * \tparam Output_ The query output type corresponds to the results of the search (it can be iterated over).
+     */
     template<typename Input_, typename Output_>
     struct Query : public Input_, public Output_ {
         using QueryInType = Input_;
