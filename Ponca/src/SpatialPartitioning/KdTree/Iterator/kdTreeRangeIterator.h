@@ -33,7 +33,7 @@ protected:
     friend QueryT_;
 
 public:
-    using iterator_category = std::input_iterator_tag;
+    using iterator_category = PONCA_MULTIARCH_CU_STD_NAMESPACE(input_iterator_tag);
     using difference_type   = std::ptrdiff_t;
     using value_type = Index;
     using pointer    = Index*;
