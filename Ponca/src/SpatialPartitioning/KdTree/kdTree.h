@@ -425,6 +425,12 @@ protected:
 protected:
     PONCA_MULTIARCH inline KdTreeBase() = default;
 
+    PONCA_MULTIARCH inline void prebuild( PointContainer& points, NodeContainer& nodes, IndexContainer& indices ) {
+        m_points  = points;
+        m_nodes   = nodes;
+        m_indices = indices;
+    }
+
     /// Generate a tree sampled from a custom contained type converted using a `Converter`
     /// \tparam PointUserContainer Input point, transformed to PointContainer
     /// \tparam IndexUserContainer Input sampling, transformed to IndexContainer
