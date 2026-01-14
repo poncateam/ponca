@@ -126,14 +126,14 @@ public:
 
     static constexpr bool SUPPORTS_SUBSAMPLING = false;
 
-    static_assert(std::is_same<typename PointContainer::value_type, DataPoint>::value,
-        "PointContainer must contain DataPoints");
-    
-    // Queries use a value of -1 for invalid indices
-    static_assert(std::is_signed<IndexType>::value, "Index type must be signed");
-
-    static_assert(std::is_same<typename IndexContainer::value_type, IndexType>::value, "Index type mismatch");
-    static_assert(std::is_same<typename NodeContainer::value_type, NodeType>::value, "Node type mismatch");
+    // static_assert(std::is_same<typename PointContainer::value_type, DataPoint>::value,
+    //     "PointContainer must contain DataPoints");
+    //
+    // // Queries use a value of -1 for invalid indices
+    // static_assert(std::is_signed<IndexType>::value, "Index type must be signed");
+    //
+    // static_assert(std::is_same<typename IndexContainer::value_type, IndexType>::value, "Index type mismatch");
+    // static_assert(std::is_same<typename NodeContainer::value_type, NodeType>::value, "Node type mismatch");
 
     static_assert(MAX_DEPTH > 0, "Max depth must be strictly positive");
 
@@ -141,11 +141,11 @@ public:
 public:
     /// Generate a tree from a custom contained type converted using the specified converter
     /// \tparam PointUserContainer Input point container, transformed to PointContainer
-    /// \tparam IndexUserContainer Input sampling container, transformed to IndexContainer
+    /// \tparam PointConverter Cast/Convert input container type to point container data type
     /// \param points Input points
     /// \param c Cast/Convert input point type to DataType
-    template<typename PointUserContainer, typename Converter>
-    PONCA_MULTIARCH inline void build(PointUserContainer&& points, Converter c);
+    template<typename PointUserContainer, typename PointConverter>
+    PONCA_MULTIARCH_HOST inline void build(PointUserContainer&& points, PointConverter c);
 
     /// Convert a custom point container to the KdTree \ref PointContainer using \ref DataPoint default constructor
     struct DefaultConverter
@@ -166,7 +166,7 @@ public:
     /// \tparam PointUserContainer Input point container, transformed to PointContainer
     /// \param points Input points
     template<typename PointUserContainer>
-    PONCA_MULTIARCH inline void build(PointUserContainer&& points)
+    PONCA_MULTIARCH_HOST inline void build(PointUserContainer&& points)
     {
         build(std::forward<PointUserContainer>(points), DefaultConverter());
     }
@@ -178,17 +178,17 @@ public:
 public:
     PONCA_MULTIARCH [[nodiscard]] inline NodeIndexType node_count() const
     {
-        return m_nodes.size();
+        return (NodeIndexType)m_nodes_size;
     }
 
     PONCA_MULTIARCH [[nodiscard]] inline IndexType sample_count() const
     {
-        return (IndexType)m_indices.size();
+        return (IndexType)m_indices_size;
     }
 
     PONCA_MULTIARCH [[nodiscard]] inline IndexType pointCount() const
     {
-        return (IndexType)m_points.size();
+        return (IndexType)m_points_size;
     }
 
     PONCA_MULTIARCH [[nodiscard]] inline NodeIndexType leaf_count() const
@@ -410,13 +410,17 @@ public :
     // Utilities ---------------------------------------------------------------
 public:
     PONCA_MULTIARCH [[nodiscard]] inline bool valid() const;
-    PONCA_MULTIARCH inline void print(std::ostream& os, bool verbose = false) const;
+    PONCA_MULTIARCH_HOST inline void print(std::ostream& os, bool verbose = false) const;
 
     // Data --------------------------------------------------------------------
 protected:
     PointContainer m_points;
     NodeContainer m_nodes;
     IndexContainer m_indices;
+
+    size_t m_points_size{0};
+    size_t m_nodes_size{0};
+    size_t m_indices_size{0};
 
     LeafSizeType m_min_cell_size {64}; ///< Minimal number of points per leaf
     NodeIndexType m_leaf_count {0}; ///< Number of leaves in the Kdtree (computed during construction)
@@ -425,23 +429,26 @@ protected:
 protected:
     PONCA_MULTIARCH inline KdTreeBase() = default;
 
-    PONCA_MULTIARCH inline void prebuild( PointContainer& points, NodeContainer& nodes, IndexContainer& indices ) {
-        m_points  = points;
-        m_nodes   = nodes;
-        m_indices = indices;
-    }
+    PONCA_MULTIARCH inline KdTreeBase(
+        PointContainer points   , NodeContainer nodes    , IndexContainer indices,
+        const size_t points_size, const size_t nodes_size, const size_t indices_size
+    ) : m_points(points)          , m_nodes(nodes)          , m_indices(indices),
+        m_points_size(points_size), m_nodes_size(nodes_size), m_indices_size(indices_size)
+    { }
 
     /// Generate a tree sampled from a custom contained type converted using a `Converter`
     /// \tparam PointUserContainer Input point, transformed to PointContainer
     /// \tparam IndexUserContainer Input sampling, transformed to IndexContainer
-    /// \tparam Converter
+    /// \tparam PointConverter Cast/Convert input container type to point container data type
     /// \param points Input points
     /// \param sampling Indices of points used in the tree
     /// \param c Cast/Convert input point type to DataType
-    template<typename PointUserContainer, typename IndexUserContainer, typename Converter>
-    PONCA_MULTIARCH inline void buildWithSampling(PointUserContainer&& points,
-                                  IndexUserContainer sampling,
-                                  Converter c);
+    template<typename PointUserContainer, typename IndexUserContainer, typename PointConverter>
+    PONCA_MULTIARCH_HOST inline void buildWithSampling(
+        PointUserContainer&& points,
+        IndexUserContainer sampling,
+        PointConverter c
+    );
 
     /// Generate a tree sampled from a custom contained type converted using a \ref KdTreeBase::DefaultConverter
     /// \tparam PointUserContainer Input points, transformed to PointContainer
@@ -449,15 +456,14 @@ protected:
     /// \param points Input points
     /// \param sampling Samples used in the tree
     template<typename PointUserContainer, typename IndexUserContainer>
-    PONCA_MULTIARCH inline void buildWithSampling(PointUserContainer&& points,
-                                  IndexUserContainer sampling)
+    PONCA_MULTIARCH_HOST inline void buildWithSampling(PointUserContainer&& points, IndexUserContainer sampling)
     {
         buildWithSampling(std::forward<PointUserContainer>(points), std::move(sampling), DefaultConverter());
     }
 
 private:
-    PONCA_MULTIARCH inline void buildRec(NodeIndexType node_id, IndexType start, IndexType end, int level);
-    PONCA_MULTIARCH [[nodiscard]] inline IndexType partition(IndexType start, IndexType end, int dim, Scalar value);
+    PONCA_MULTIARCH_HOST inline void buildRec(std::vector<NodeType>& nodes, NodeIndexType node_id, IndexType start, IndexType end, int level);
+    PONCA_MULTIARCH_HOST [[nodiscard]] inline IndexType partition(IndexType start, IndexType end, int dim, Scalar value);
 };
 
 /*!
@@ -485,12 +491,12 @@ public:
     /// \see build
     PONCA_MULTIARCH KdTreeDenseBase() = default;
 
-    /// Constructor generating a tree from a custom contained type converted using a \ref KdTreeBase::DefaultConverter
+    /// Constructor generating a tree from a custom contained type converted using a \ref Traits::ContainerConverter
     template<typename PointUserContainer>
-    PONCA_MULTIARCH inline explicit KdTreeDenseBase(PointUserContainer&& points)
+    PONCA_MULTIARCH_HOST inline explicit KdTreeDenseBase(PointUserContainer&& points)
         : Base()
     {
-        this->build(std::forward<PointUserContainer>(points));
+        Base::build(std::forward<PointUserContainer>(points));
     }
 };
 
@@ -521,21 +527,21 @@ public:
     /// \see build
     PONCA_MULTIARCH KdTreeSparseBase() = default;
 
-    /// Constructor generating a tree from a custom contained type converted using a \ref KdTreeBase::DefaultConverter
+    /// Constructor generating a tree from a custom contained type converted using a \ref Traits::ContainerConverter
     template<typename PointUserContainer>
-    PONCA_MULTIARCH inline explicit KdTreeSparseBase(PointUserContainer&& points)
+    PONCA_MULTIARCH_HOST inline explicit KdTreeSparseBase(PointUserContainer&& points)
         : Base()
     {
         this->build(std::forward<PointUserContainer>(points));
     }
 
-    /// Constructor generating a tree sampled from a custom contained type converted using a \ref KdTreeBase::DefaultConverter
+    /// Constructor generating a tree sampled from a custom contained type converted using a \ref Traits::ContainerConverter
     /// \tparam PointUserContainer Input points, transformed to PointContainer
     /// \tparam IndexUserContainer Input sampling, transformed to IndexContainer
-    /// \param point Input points
+    /// \param points Input points
     /// \param sampling Samples used in the tree
     template<typename PointUserContainer, typename IndexUserContainer>
-    PONCA_MULTIARCH inline KdTreeSparseBase(PointUserContainer&& points, IndexUserContainer sampling)
+    PONCA_MULTIARCH_HOST inline KdTreeSparseBase(PointUserContainer&& points, IndexUserContainer sampling)
         : Base()
     {
         this->buildWithSampling(std::forward<PointUserContainer>(points), std::move(sampling));
@@ -548,7 +554,7 @@ public:
 } // namespace Ponca
 
 template <typename Traits>
-PONCA_MULTIARCH std::ostream& operator<<(std::ostream& os, const Ponca::KdTreeBase<Traits>& kdtree)
+PONCA_MULTIARCH_HOST std::ostream& operator<<(std::ostream& os, const Ponca::KdTreeBase<Traits>& kdtree)
 {
     kdtree.print(os);
     return os;

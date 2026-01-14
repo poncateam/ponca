@@ -7,6 +7,7 @@
 
 #pragma once
 
+#include "../defines.h"
 #include "../../Common/Macro.h"
 
 #include <cstddef>
@@ -195,7 +196,7 @@ public:
         return *this;
     }
 
-    PONCA_MULTIARCH ~KdTreeCustomizableNode() {}
+    PONCA_MULTIARCH_HOST ~KdTreeCustomizableNode() {}
     
     PONCA_MULTIARCH [[nodiscard]] bool is_leaf() const { return m_is_leaf; }
     PONCA_MULTIARCH void set_is_leaf(bool is_leaf) { m_is_leaf = is_leaf; }
@@ -343,5 +344,17 @@ struct KdTreeDefaultTraits
     using NodeIndexType = std::size_t;
     using NodeType      = _NodeType<IndexType, NodeIndexType, DataPoint, LeafSizeType>;
     using NodeContainer = std::vector<NodeType>;
+
+    /*!
+     * \brief Converts the STL-Like input container to the internal storage data type.
+     *
+     * \see KdTreeBase
+     */
+    template <typename InternalContainer, typename InputContainer>
+    static PONCA_MULTIARCH inline InternalContainer& toInternalContainer ( InputContainer & input)
+    {
+        static_assert(std::is_same_v<InputContainer, InternalContainer>);
+        return input;
+    }
 };
 } // namespace Ponca
