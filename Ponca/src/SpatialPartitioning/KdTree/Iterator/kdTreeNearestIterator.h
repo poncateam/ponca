@@ -6,7 +6,6 @@
 
 #pragma once
 
-#include <iterator>
 #include <cstddef>
 
 namespace Ponca {
@@ -26,7 +25,7 @@ template<typename Index>
 class KdTreeNearestIterator
 {
 public:
-    using iterator_category = PONCA_MULTIARCH_CU_STD_NAMESPACE(input_iterator_tag);
+    using iterator_category = std::input_iterator_tag;
     using difference_type   = std::ptrdiff_t;
     using value_type = Index;
     using pointer    = Index*;
