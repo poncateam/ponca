@@ -262,6 +262,8 @@ public :
     ///
     /// \param point Point from where the query is evaluated
     /// \param k Number of neighbors returned
+    /// \return The KdTreeKNearestPointQuery object to iterate over the search result.
+    /// \see KdTreeKNearestQueryBase
     KdTreeKNearestPointQuery<Traits> kNearestNeighbors(const VectorType& point, IndexType k) const
     {
         return KdTreeKNearestPointQuery<Traits>(this, k, point);
@@ -270,20 +272,26 @@ public :
     /// \copybrief KdTreeBase::kNearestNeighbors
     /// \param index Index of the point from where the query is evaluated
     /// \param k Number of neighbors returned
+    /// \return The KdTreeKNearestIndexQuery object to iterate over the search result.
+    /// \see KdTreeKNearestQueryBase
     KdTreeKNearestIndexQuery<Traits> kNearestNeighbors(IndexType index, IndexType k) const
     {
         return KdTreeKNearestIndexQuery<Traits>(this, k, index);
     }
 
-    /// \copybrief KdTreeBase::kNearestNeighbors
-    /// \note This function only returns an empty `PositionQuery`, which needs to be initialized by calling `query(point, k)` to get a result.
+    /// \brief Returns a mutable object that can be called through the operator ()
+    /// to compute a k-nearest neighbors query depending on the provided **position**.
+    /// \return An empty KdTreeKNearestPointQuery object.
+    /// \see KdTreeKNearestQueryBase
     KdTreeKNearestPointQuery<Traits> kNearestNeighborsQuery() const
     {
         return KdTreeKNearestPointQuery<Traits>(this, 0, VectorType::Zero());
     }
 
-    /// \copybrief KdTreeBase::kNearestNeighbors
-    /// \note This function only returns an empty `IndexQuery`, which needs to be initialized by calling `query(index, k)` to get a result.
+    /// \brief Returns a mutable object that can be called through the operator ()
+    /// to compute a k-nearest neighbors query depending on the provided **index**.
+    /// \return An empty KdTreeKNearestIndexQuery object.
+    /// \see KdTreeKNearestQueryBase
     KdTreeKNearestIndexQuery<Traits> kNearestNeighborsIndexQuery() const
     {
         return KdTreeKNearestIndexQuery<Traits>(this, 0, 0);
@@ -293,6 +301,8 @@ public :
     /// The returned object can call for a new query of the same type, using the () operator.
     ///
     /// \param point Point from where the query is evaluated
+    /// \return The KdTreeNearestPointQuery object to iterate over the search result.
+    /// \see KdTreeNearestQueryBase
     KdTreeNearestPointQuery<Traits> nearestNeighbor(const VectorType& point) const
     {
         return KdTreeNearestPointQuery<Traits>(this, point);
@@ -300,17 +310,38 @@ public :
 
     /// \copybrief KdTreeBase::nearestNeighbor
     /// \param index Index of the point from where the query is evaluated
+    /// \return The KdTreeKNearestIndexQuery object to iterate over the search result.
+    /// \see KdTreeNearestQueryBase
     KdTreeNearestIndexQuery<Traits> nearestNeighbor(IndexType index) const
     {
         return KdTreeNearestIndexQuery<Traits>(this, index);
     }
 
+    /// \brief Returns a mutable object that can be called through the operator ()
+    /// to compute a nearest neighbor query depending on the provided **position**.
+    /// \return An empty KdTreeNearestPointQuery object.
+    /// \see KdTreeNearestQueryBase
+    KdTreeNearestIndexQuery<Traits> nearestNeighborQuery() const
+    {
+        return KdTreeNearestIndexQuery<Traits>(this, VectorType::Zero());
+    }
+
+    /// \brief Returns a mutable object that can be called through the operator ()
+    /// to compute a nearest neighbor query depending on the provided **index**.
+    /// \return An empty KdTreeNearestIndexQuery object.
+    /// \see KdTreeNearestQueryBase
+    KdTreeNearestIndexQuery<Traits> nearestNeighborIndexQuery() const
+    {
+        return KdTreeNearestIndexQuery<Traits>(this, 0);
+    }
 
     /// \brief Returns a query object to iterate over the neighbors that are in range `r` of the point.
     /// The returned object can call for a new query of the same type, using the () operator.
     ///
     /// \param point Point from where the query is evaluated
     /// \param r Radius around where to search the neighbors
+    /// \return The KdTreeRangePointQuery object to iterate over the search result.
+    /// \see KdTreeRangeQueryBase
     KdTreeRangePointQuery<Traits> rangeNeighbors(const VectorType& point, Scalar r) const
     {
         return KdTreeRangePointQuery<Traits>(this, r, point);
@@ -319,20 +350,26 @@ public :
     /// \copybrief KdTreeBase::rangeNeighbors
     /// \param index Index of the point from where the query is evaluated
     /// \param r Radius around where to search the neighbors
+    /// \return The KdTreeIndexPointQuery object to iterate over the search result.
+    /// \see KdTreeRangeQueryBase
     KdTreeRangeIndexQuery<Traits> rangeNeighbors(IndexType index, Scalar r) const
     {
         return KdTreeRangeIndexQuery<Traits>(this, r, index);
     }
 
-    /// \copybrief KdTreeBase::rangeNeighbors
-    /// \note This function only returns an empty `PositionQuery`, which needs to be initialized by calling `query(point, r)` to get a result.
+    /// \brief Returns a mutable object that can be called through the operator ()
+    /// to compute a range query depending on the provided **position**.
+    /// \return An empty KdTreeRangePointQuery object.
+    /// \see KdTreeRangeQueryBase
     KdTreeRangePointQuery<Traits> rangeNeighborsQuery() const
     {
         return KdTreeRangePointQuery<Traits>(this, 0, VectorType::Zero());
     }
 
-    /// \copybrief KdTreeBase::rangeNeighbors
-    /// \note This function only returns an empty `IndexQuery`, which needs to be initialized by calling `query(index, r)` to get a result.
+    /// \brief Returns a mutable object that can be called through the operator ()
+    /// to compute a range query depending on the provided **index**.
+    /// \return An empty KdTreeRangeIndexQuery object.
+    /// \see KdTreeRangeQueryBase
     KdTreeRangeIndexQuery<Traits> rangeNeighborsIndexQuery() const
     {
         return KdTreeRangeIndexQuery<Traits>(this, 0, 0);

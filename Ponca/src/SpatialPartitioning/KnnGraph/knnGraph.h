@@ -109,6 +109,7 @@ public:
     /// The returned object can call for a new query of the same type, using the () operator.
     ///
     /// \param index Index of the point from where the query is evaluated
+    /// \return The KNearestIndexQuery object to iterate over the search result.
     inline KNearestIndexQuery kNearestNeighbors(int index) const{
         return KNearestIndexQuery(this, index);
     }
@@ -118,19 +119,20 @@ public:
     ///
     /// \param index Index of the point from where the query is evaluated
     /// \param r Radius around where to search the neighbors
+    /// \return The RangeIndexQuery object to iterate over the search result.
     inline RangeIndexQuery    rangeNeighbors(int index, Scalar r) const{
         return RangeIndexQuery(this, r, index);
     }
 
     /// \copybrief KnnGraphBase::kNearestNeighbors
-    /// \note This function only returns an empty `IndexQuery`, which needs to be used by doing `query(index)` to get a result.
+    /// \return An empty KNearestIndexQuery object.
     inline KNearestIndexQuery kNearestNeighborsIndexQuery() const
     {
         return KNearestIndexQuery(this, 0);
     }
 
     /// \copybrief KnnGraphBase::rangeNeighbors
-    /// \note This function only returns an empty `IndexQuery`, which needs to be used by doing `query(index, r)` to get a result.
+    /// \return An empty RangeIndexQuery object.
     inline RangeIndexQuery rangeNeighborsIndexQuery() const
     {
         return RangeIndexQuery(this, 0, 0);
