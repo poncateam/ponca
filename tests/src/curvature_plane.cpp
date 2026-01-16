@@ -165,8 +165,8 @@ void callSubTests()
     typedef DistWeightFunc<Point, SmoothWeightKernel<Scalar> > WeightSmoothFunc;
     typedef DistWeightFunc<Point, ConstantWeightKernel<Scalar> > WeightConstantFunc;
 
-    typedef Basket<Point, WeightSmoothFunc  , CovariancePlaneFit, CurvatureEstimatorBase> FitSmoothNormalCovariance;
-    typedef Basket<Point, WeightConstantFunc, CovariancePlaneFit, CurvatureEstimatorBase> FitConstantNormalCovariance;
+    typedef Basket<Point, WeightSmoothFunc  , CovariancePlaneFit, CurvatureEstimator> FitSmoothNormalCovariance;
+    typedef Basket<Point, WeightConstantFunc, CovariancePlaneFit, CurvatureEstimator> FitConstantNormalCovariance;
     typedef Basket<Point, WeightSmoothFunc  , MongePatchQuadraticFit> FitCovSmooth;
     typedef Basket<Point, WeightConstantFunc, MongePatchQuadraticFit> FitCovConstant;
 

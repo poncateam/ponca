@@ -442,7 +442,7 @@ protected:
 template < class DataPoint, class _NFilter, typename T>
 using MongePatchQuadraticFit =
         WeingartenCurvatureEstimator<DataPoint, _NFilter,
-            CurvatureEstimatorBase<DataPoint, _NFilter,
+            CurvatureEstimator<DataPoint, _NFilter,
                 FundamentalFormWeingartenEstimator<DataPoint, _NFilter,
                     MongePatchQuadraticFitImpl<DataPoint, _NFilter,
                         MongePatchPrimitive<DataPoint, _NFilter,
@@ -453,7 +453,7 @@ using MongePatchQuadraticFit =
 template < class DataPoint, class _NFilter, typename T>
 using MongePatchRestrictedQuadraticFit =
         WeingartenCurvatureEstimator<DataPoint, _NFilter,
-            CurvatureEstimatorBase<DataPoint, _NFilter,
+            CurvatureEstimator<DataPoint, _NFilter,
                 FundamentalFormWeingartenEstimator<DataPoint, _NFilter,
                     MongePatchRestrictedQuadraticFitImpl<DataPoint, _NFilter,
                         MongePatchPrimitive<DataPoint, _NFilter,
