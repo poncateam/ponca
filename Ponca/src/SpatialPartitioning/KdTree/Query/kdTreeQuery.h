@@ -12,6 +12,11 @@
 namespace Ponca {
 template <typename Traits> class KdTreeBase;
 
+/*!
+ * \brief Query object that provides a method to search neighbors on the KdTree depending on a distance threshold.
+ *
+ * Base class for KdTreeRangeQueryBase, KdTreeKNearestQueryBase and KdTreeNearestQueryBase.
+ */
 template <typename Traits>
 class KdTreeQuery
 {

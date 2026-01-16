@@ -12,6 +12,13 @@
 
 namespace Ponca {
 
+/*!
+ * \brief Extension of the Query class that allows to read the result of a range neighbors search on the KdTree.
+ *
+ *  Ouput result of a `KdTree::rangeNeighbors` query request.
+ *
+ *  \see KdTreeBase
+ */
 template <typename Traits,
         template <typename,typename,typename> typename IteratorType,
         typename QueryType>

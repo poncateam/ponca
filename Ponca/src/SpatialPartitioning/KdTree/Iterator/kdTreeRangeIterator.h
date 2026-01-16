@@ -12,17 +12,19 @@
 namespace Ponca {
 
 /*!
- *  \brief Input iterator to read the `KdTreeRangeQuery`.
+ *  \brief Input iterator to read the `KdTreeRangeQueryBase` object.
  *
  *  As this is an input iterator, we don't guarantee anything other than reading the values with it.
  *  If you need to operate on the values of this iterator with algorithms that relies on forward iterator functionalities,
  *  you should copy the values inside a STL-like container.
  *
- *  \warning The increment logic resides in `KdTreeRangeQueryBase::advance(Iterator& it)`
+ *  \note The increment logic resides in `KdTreeRangeQueryBase::advance(Iterator& it)`
  *  Since the `KdTreeRangeQueryBase::advance` method doesn't update the internal state of the
  *  `KdTreeRangeQuery` object, this iterator can be duplicated without causing issues.
  *  If a copy of this iterator is made  (e.g., passed by copy to a function),
  *  incrementing one iterator won't update the state of the other.
+ *
+ *  \see KdTreeRangeQueryBase
  */
 template<typename Index, typename DataPoint, typename QueryT_>
 class KdTreeRangeIterator

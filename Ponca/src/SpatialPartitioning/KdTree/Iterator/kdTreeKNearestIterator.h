@@ -12,7 +12,7 @@
 namespace Ponca {
 
 /*!
- *  \brief Input iterator to read the `KdTreeKNearestQuery`.
+ *  \brief Input iterator to read the `KdTreeKNearestQueryBase` object.
  *
  *  As this is an input iterator, we don't guarantee anything other than reading the values with it.
  *  If you need to operate on the values of this iterator with algorithms that relies on forward iterator functionalities,

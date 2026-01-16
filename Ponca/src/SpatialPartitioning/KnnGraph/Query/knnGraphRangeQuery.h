@@ -16,6 +16,13 @@
 namespace Ponca {
 template <typename Traits> class KnnGraphBase;
 
+/*!
+ * \brief Extension of the Query class that allows to read the result of a range neighbor search on the KnnGraph.
+ *
+ *  Ouput result of a `KnnGraph::rangeNeighbors` query request.
+ *
+ *  \see KnnGraphBase
+ */
 template <typename Traits>
 class KnnGraphRangeQuery : public RangeIndexQuery<typename Traits::IndexType, typename Traits::DataPoint::Scalar>
 {
