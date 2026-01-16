@@ -82,7 +82,7 @@ namespace Ponca
         };
     }
 
-    /// \specialize CurvatureEstimatorBase to standard Basket object
+    /// Make CurvatureEstimatorBase available to standard Basket object
     template < class DataPoint, class _NFilter, typename T>
     class CurvatureEstimator : public internal::CurvatureEstimatorBase<DataPoint, _NFilter, T>
     {
@@ -90,7 +90,7 @@ namespace Ponca
         PONCA_EXPLICIT_CAST_OPERATORS(CurvatureEstimator, curvatureEstimator)
     };
 
-    /// \specialize CurvatureEstimatorBase to BasketDiff object
+    /// Make CurvatureEstimatorBase available to BasketDiff object
     template < class DataPoint, class _NFilter, int DiffType, typename T>
     class CurvatureEstimatorDer : public internal::CurvatureEstimatorBase<DataPoint, _NFilter, T>
     {
