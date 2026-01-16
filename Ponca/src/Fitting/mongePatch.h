@@ -33,7 +33,7 @@ namespace Ponca
     \verbatim PROVIDES_PLANE, PROVIDES_TANGENT_PLANE_BASIS, PROVIDES_HEIGHTFIELD \endverbatim
     */
     template < class DataPoint, class _NFilter, typename T >
-    class MongePatchPrimitive : public T
+    class MongePatch : public T
     {
         PONCA_FITTING_DECLARE_DEFAULT_TYPES
         static_assert ( DataPoint::Dim == 3, "MongePatch is only valid in 3D");
@@ -51,9 +51,9 @@ namespace Ponca
     public:
 
         /*! \brief Default constructor */
-        PONCA_MULTIARCH inline MongePatchPrimitive() : Base() { Base::init(); }
+        PONCA_MULTIARCH inline MongePatch() : Base() { Base::init(); }
 
-        PONCA_EXPLICIT_CAST_OPERATORS(MongePatchPrimitive,mongePatchPrimitive)
+        PONCA_EXPLICIT_CAST_OPERATORS(MongePatch,mongePatchPrimitive)
 
         //! \brief Value of the scalar field at the evaluation point
         //! \see method `#isSigned` of the fit to check if the sign is reliable
@@ -199,7 +199,7 @@ using MongePatchQuadraticFit =
             CurvatureEstimator<DataPoint, _NFilter,
                 FundamentalFormWeingartenEstimator<DataPoint, _NFilter,
                     MongePatchQuadraticFitImpl<DataPoint, _NFilter,
-                        MongePatchPrimitive<DataPoint, _NFilter,
+                        MongePatch<DataPoint, _NFilter,
                             QuadraticHeightField<DataPoint, _NFilter,
                                 HeightField<DataPoint, _NFilter,
                                     CovariancePlaneFit<DataPoint, _NFilter,T>>>>>>>>;
@@ -210,7 +210,7 @@ using MongePatchRestrictedQuadraticFit =
             CurvatureEstimator<DataPoint, _NFilter,
                 FundamentalFormWeingartenEstimator<DataPoint, _NFilter,
                     MongePatchRestrictedQuadraticFitImpl<DataPoint, _NFilter,
-                        MongePatchPrimitive<DataPoint, _NFilter,
+                        MongePatch<DataPoint, _NFilter,
                             RestrictedQuadraticHeightField<DataPoint, _NFilter,
                                 HeightField<DataPoint, _NFilter,
                                     CovariancePlaneFit<DataPoint, _NFilter,T>>>>>>>>;
