@@ -64,18 +64,26 @@ namespace Ponca
   In most situations, all these tools are based on the estimation of a geometric \ref PrimitiveBase "Primitive" approximating the neighborhood, on top of which we provide more advanced computations.
   The table below summarizes the \ref PrimitiveBase "Primitives" available in the library, as well as the associated fitting techniques:
 
-  Computed object   | Required Input      | Fitting techniques                                    |
-  ----------------- | ------------------- | ----------------------------------------------------- |
-  Barycenter        | Points only         | MeanPosition (nD)                                     |
-  Normal Vector     | Oriented points     | MeanNormal (nD, co-dimension 1)                       |
-  Covariance Matrix | Points only         | CovarianceFitBase (nD)                                |
-  Line              | Points only         | CovarianceLineFitImpl (nD)                            |
-  Plane             | Points only         | CovariancePlaneFitImpl (nD)                           |
-  Plane             | Oriented points     | MeanPlaneFitImpl (nD, co-dimension 1)                 |
-  MongePatch        | Points only         | MongePatch (3D)                                       |
-  AlgebraicSphere   | Points only         | SphereFitImpl (nD) \cite Guennebaud:2007:APSS         |
-  AlgebraicSphere   | Oriented points     | OrientedSphereFitImpl (nD) \cite Guennebaud:2007:APSS |
-  AlgebraicSphere   | Non-oriented points | UnorientedSphereFitImpl (nD) \cite Chen:2013:NOMG     |
+  Computed object   | Required Input      | Fitting techniques                                                    |
+  ----------------- | ------------------- | --------------------------------------------------------------------- |
+  Line              | Points only         | CovarianceLineFitImpl (nD)                                            |
+  Plane             | Points only         | CovariancePlaneFitImpl (nD)                                           |
+  Plane             | Oriented points     | MeanPlaneFitImpl (nD, co-dimension 1)                                 |
+  MongePatch        | Points only         | MongePatchQuadraticFit and MongePatchRestrictedQuadraticFit (both 3D) |
+  AlgebraicSphere   | Points only         | SphereFitImpl (nD) \cite Guennebaud:2007:APSS                         |
+  AlgebraicSphere   | Oriented points     | OrientedSphereFitImpl (nD) \cite Guennebaud:2007:APSS                 |
+  AlgebraicSphere   | Non-oriented points | UnorientedSphereFitImpl (nD) \cite Chen:2013:NOMG                     |
+
+  Ponca also provide methods to compute objects that are not geometric primitives, but provide other informations such
+   as curvatures:
+
+  Computed object   | Required Input      | Fitting techniques                                                    |
+  ----------------- | ------------------- | --------------------------------------------------------------------- |
+  Barycenter        | Points only         | MeanPosition (nD)                                                     |
+  Normal Vector     | Oriented points     | MeanNormal (nD, co-dimension 1)                                       |
+  Covariance Matrix | Points only         | CovarianceFitBase (nD)                                                |
+  Weingarten Map    | Points only         | FundamentalFormWeingartenEstimator (3D) via MongePatch                |
+  Weingarten Map    | Oriented points     | NormalDerivativeWeingartenEstimator (3D)                              |
 
   See section \ref fitting_extensions_deps for more details on how these primitives can be extended for more advanced computation.
 
@@ -205,7 +213,7 @@ namespace Ponca
   \section fitting_advanced Advanced usage
 
   \subsection fitting_derivatives Computing derivatives
-  Starting from v1.0, Ponca provides BasketDiff, a class to extend an existing Basket with differentiation tools.
+  Ponca provides BasketDiff, a class to extend an existing Basket with differentiation tools.
   Given a specialized type `TestPlane` that performs covariance plane fitting (using Ponca::CovariancePlaneFit), and defined as follows:
   \snippet basket.cpp PlaneFitType
   BasketDiff allows to extend this type to compute its derivatives in space and/or scale:
@@ -234,7 +242,7 @@ namespace Ponca
   Aggregating small computational objects allows to minimize code duplication, but also to easily combine different techniques.
   For instance, GLSDer can be used independently of the fitting technique, e.g. Ponca::OrientedSphereFit or Ponca::UnorientedSphereFit, as long as the fitted \ref PrimitiveBase "Primitive" is an AlgebraicSphere.
 
-  In order to detect if the computational objects are correctly combined, Ponca provides a compile-time equirement/capability system:
+  In order to detect if the computational objects are correctly combined, Ponca provides a compile-time requirement/capability system:
   each computational objects check if the other classes of the CRTP provides the required computations.
   For instance, in the GLSParam class, we define the following enum:
   \snippet{lineno} gls.h Requirements
@@ -265,8 +273,9 @@ namespace Ponca
 
   \subsection fitting_multiprimitive Sharing computations between fits
   In most cases, only one primitive is included in the Basket, and it is recommended to use the helper classes provided by Ponca for fitting, e.g. #CovariancePlaneFitImpl, #OrientedSphereFitImpl.
-  Starting from version 1.0.0, Ponca allows to combine multiple primitives.
-  In order to share intermediate computation results, it is recommended to explicitly define the computational arrangement, e.g.:
+  However, Ponca also allows to combine multiple primitives, for instance to share intermediate computation results.
+  Using this functionality requires to really understand how the different primitives and fitting techniques are working.
+  In any case, it is recommended to explicitly define the computational arrangement, e.g.:
   \snippet basket.cpp HybridType
 
   After fitting, this object provides access to both the plane and the sphere, through the respective cast operators #AlgebraicSphere::algebraicSphere() and #Plane::plane().
