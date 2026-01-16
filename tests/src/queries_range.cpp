@@ -21,7 +21,7 @@ auto testRangeNeighbors( AcceleratingStructure& structure,
 	using DataPoint      = typename AcceleratingStructure::DataPoint;
 	using Scalar         = typename DataPoint::Scalar;
 
-	Scalar r = Eigen::internal::random<Scalar>(0.01, 0.5);
+	const Scalar r = Eigen::internal::random<Scalar>(0.01, 0.5);
 
 	return testQuery<doIndexQuery, DataPoint>(points,
 		[&structure]() {

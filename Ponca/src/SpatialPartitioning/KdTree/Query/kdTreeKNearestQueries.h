@@ -29,10 +29,10 @@ public:
     inline KdTreeKNearestQueryBase(const KdTreeBase<Traits>* kdtree, IndexType k, typename QueryType::InputType input) :
             KdTreeQuery<Traits>(kdtree), QueryType(k, input) { }
 
-    /// \brief Call the k-nearest neighbors query with new input and radius parameters.
-    inline Self& operator()(typename QueryType::InputType input, Scalar radius)
+    /// \brief Call the k-nearest neighbors query with new input and neighbor number parameters.
+    inline Self& operator()(typename QueryType::InputType input, IndexType k)
     {
-        return QueryType::template operator()<Self>(input, radius);
+        return QueryType::template operator()<Self>(input, k);
     }
     /// \brief Call the k-nearest neighbors query with new input parameter.
     inline Self& operator()(typename QueryType::InputType input)
