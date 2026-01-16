@@ -17,6 +17,8 @@
 #include "../common/scalar_precision_check.h"
 #include "../common/testUtils.h"
 
+#include <fstream>
+
 #include <Ponca/src/Fitting/basket.h>
 #include <Ponca/src/Fitting/curvature.h>
 #include <Ponca/src/Fitting/orientedSphereFit.h>
@@ -45,7 +47,7 @@ void testFunction()
     Scalar paraboloidA = Eigen::internal::random<Scalar>(-0.5,0.5);
     Scalar paraboloidB = Eigen::internal::random<Scalar>(-0.5,0.5);
 
-    Scalar analysisScale = static_cast<Scalar>(.001);// / std::max(std::abs(vCoef.x()), std::abs(vCoef.y()));
+    Scalar analysisScale = static_cast<Scalar>(.1);// / std::max(std::abs(vCoef.x()), std::abs(vCoef.y()));
 
     Scalar rotationAngle = Eigen::internal::random<Scalar>(Scalar(0.), Scalar(2 * M_PI));
     VectorType vRotationAxis = VectorType::Random().normalized();
@@ -69,7 +71,12 @@ void testFunction()
       testVectorPoints[i].normal() = vectorPoints[i].normal().template cast<TestScalar>();
     }
 
-    VectorType theoricNormal = VectorType(0, 0, -1);
+    VectorType theoricNormal;
+    {
+        DataPoint p; // Use default constructor : located at (0,0,0)
+        getParaboloidNormal(p, paraboloidA, paraboloidB, 0, 0, 0, 0);
+        theoricNormal = p.normal();
+    }
 
     TestFit fit;
     const VectorType vFittingPoint = VectorType::Zero();
@@ -144,55 +151,68 @@ void testFunction()
 
     VERIFY(fit.isStable());
 
-    if(fit.isStable())
+
+    Scalar theoricPotential = 0;
+
+    Scalar theoricK1, theoricK2;
     {
+        Scalar tK1 = Scalar(2) * paraboloidA;
+        Scalar tK2 = Scalar(2) * paraboloidB;
 
-      Scalar theoricPotential = 0;
+        theoricK1 = flip_fit * (std::abs(tK1)<std::abs(tK2) ? tK2 : tK1);
+        theoricK2 = flip_fit * (std::abs(tK1)<std::abs(tK2) ? tK1 : tK2);
+    }
+    Scalar theoricGaussian = theoricK1 * theoricK2;
+    Scalar theoricKmean    = Scalar(0.5)*(theoricK1+theoricK2);
 
-      Scalar theoricK1, theoricK2;
+    Scalar potential  = flip_fit * fit.potential();
+    VectorType normal = flip_fit * fit.primitiveGradient().template cast<Scalar>();
+
+    // principal curvatures k1,k2 are used here such that |k1| > |k2| (instead of kmin < kmax)
+    Scalar kmin = fit.kmin();
+    Scalar kmax = fit.kmax();
+    Scalar kappa1 = flip_fit * (std::abs(kmin)<std::abs(kmax) ? kmax : kmin);
+    Scalar kappa2 = flip_fit * (std::abs(kmin)<std::abs(kmax) ? kmin : kmax);
+    Scalar kmeanFromK1K2 = (kappa1 + kappa2) * Scalar(.5);
+    Scalar gaussian = fit.GaussianCurvature();
+
+    VERIFY( Eigen::internal::isMuchSmallerThan(std::abs(potential - theoricPotential), Scalar(1.), approxEpsilon) );
+    VERIFY( Eigen::internal::isMuchSmallerThan((theoricNormal - normal).norm(), Scalar(1.), approxEpsilon ) );
+
+    if(! Eigen::internal::isMuchSmallerThan(std::abs(theoricKmean - kmeanFromK1K2), std::abs(theoricK1), approxEpsilon)) {
+        std::cerr << "Precision test failed. Dumping files\n";
         {
-            Scalar tK1 = Scalar(2) * paraboloidA;
-            Scalar tK2 = Scalar(2) * paraboloidB;
-
-            theoricK1 = flip_fit * (std::abs(tK1)<std::abs(tK2) ? tK2 : tK1);
-            theoricK2 = flip_fit * (std::abs(tK1)<std::abs(tK2) ? tK1 : tK2);
+            std::ofstream inFile, projFile;
+            inFile.open ("input.xyz");
+            projFile.open ("projected.xyz");
+            for(unsigned int i = 0; i < testVectorPoints.size(); ++i)
+            {
+                inFile << testVectorPoints[i].pos().transpose() << endl;
+                projFile << fit.project(testVectorPoints[i].pos()).transpose() << std::endl;
+            }
+            inFile.close();
+            projFile.close();
         }
-      Scalar theoricGaussian = theoricK1 * theoricK2;
-      Scalar theoricKmean    = Scalar(0.5)*(theoricK1+theoricK2);
+    }
 
-      Scalar potential  = flip_fit * fit.potential();
-      VectorType normal = flip_fit * fit.primitiveGradient().template cast<Scalar>();
+    // The error in mean curvature estimation must be smaller in magnitude wrt the largest curvature
+    VERIFY( Eigen::internal::isMuchSmallerThan(std::abs(theoricKmean - kmeanFromK1K2), std::abs(theoricK1), approxEpsilon));
 
-      // principal curvatures k1,k2 are used here such that |k1| > |k2| (instead of kmin < kmax)
-      Scalar kmin = fit.kmin();
-      Scalar kmax = fit.kmax();
-      Scalar kappa1 = flip_fit * (std::abs(kmin)<std::abs(kmax) ? kmax : kmin);
-      Scalar kappa2 = flip_fit * (std::abs(kmin)<std::abs(kmax) ? kmin : kmax);
-      Scalar kmeanFromK1K2 = (kappa1 + kappa2) * Scalar(.5);
-      Scalar gaussian = fit.GaussianCurvature();
-
-      VERIFY( Eigen::internal::isMuchSmallerThan(std::abs(potential - theoricPotential), Scalar(1.), approxEpsilon) );
-      VERIFY( Eigen::internal::isMuchSmallerThan((theoricNormal - normal).norm(), Scalar(1.), approxEpsilon ) );
-
-      // The error in mean curvature estimation must be smaller in magnitude wrt the largest curvature
-      VERIFY( Eigen::internal::isMuchSmallerThan(std::abs(theoricKmean - kmeanFromK1K2), std::abs(theoricK1), approxEpsilon));
-
-      if(std::abs(std::abs(theoricK1)-std::abs(theoricK2))>approxEpsilon*std::abs(theoricK1))
-      {
+    if(std::abs(std::abs(theoricK1)-std::abs(theoricK2))>approxEpsilon*std::abs(theoricK1))
+    {
         // absolute curvatures are clearly different
         VERIFY( Eigen::internal::isApprox(kappa1, theoricK1, approxEpsilon) );
         VERIFY( std::abs(kappa2-theoricK2) < approxEpsilon*std::abs(kappa1) );
-      }
-      else
-      {
+    }
+    else
+    {
         // absolute curvatures are close to each other and therefore their order should be ignored
         VERIFY( Eigen::internal::isApprox(std::abs(kappa1), std::abs(theoricK1), approxEpsilon) );
         VERIFY( std::abs(std::abs(kappa2)-std::abs(theoricK2)) < approxEpsilon*std::abs(kappa1) );
-      }
-
-      // The errors on k1 and k2 are expected to be of the same order, we thus compare the accuracy of k_gauss to k1^2
-      VERIFY( Eigen::internal::isMuchSmallerThan(std::abs(gaussian-theoricGaussian), theoricK1*theoricK1, approxEpsilon) );
     }
+
+    // The errors on k1 and k2 are expected to be of the same order, we thus compare the accuracy of k_gauss to k1^2
+    VERIFY( Eigen::internal::isMuchSmallerThan(std::abs(gaussian-theoricGaussian), theoricK1*theoricK1, approxEpsilon) );
 }
 
 template<typename Scalar, int Dim>
