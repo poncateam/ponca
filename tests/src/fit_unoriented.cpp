@@ -20,6 +20,7 @@
 #include <Ponca/src/Fitting/weightFunc.h>
 #include <Ponca/src/Fitting/weightKernel.h>
 #include <Ponca/src/Fitting/curvature.h>
+#include <Ponca/src/Fitting/weingarten.h>
 
 #include <vector>
 

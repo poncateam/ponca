@@ -35,6 +35,8 @@ set(ponca_Fitting_INCLUDE
     "${PONCA_src_ROOT}/Ponca/src/Fitting/unorientedSphereFit.hpp"
     "${PONCA_src_ROOT}/Ponca/src/Fitting/weightFunc.h"
     "${PONCA_src_ROOT}/Ponca/src/Fitting/weightFunc.hpp"
+    "${PONCA_src_ROOT}/Ponca/src/Fitting/weingarten.h"
+    "${PONCA_src_ROOT}/Ponca/src/Fitting/weingarten.hpp"
     "${PONCA_src_ROOT}/Ponca/src/Fitting/weightKernel.h"
     "${PONCA_src_ROOT}/Ponca/src/Fitting/linePrimitive.h"
     )

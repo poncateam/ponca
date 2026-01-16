@@ -8,6 +8,7 @@
 
 #include "./defines.h"
 #include "./curvature.h"
+#include "./weingarten.h"
 #include "./heightField.h"
 
 #include PONCA_MULTIARCH_INCLUDE_STD(cmath)
