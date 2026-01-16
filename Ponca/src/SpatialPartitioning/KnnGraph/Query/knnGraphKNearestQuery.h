@@ -44,7 +44,6 @@ public:
 
     /// \brief Call the k-nearest neighbors query with new input parameter.
     inline Self& operator()(int index) {
-        QueryType::setInput(index);
         return QueryType::template operator()<Self>(index);
     }
 

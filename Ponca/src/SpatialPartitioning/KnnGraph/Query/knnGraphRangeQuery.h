@@ -40,14 +40,11 @@ public:
 
     /// \brief Call the range neighbors query with new input and radius parameters.
     inline Self& operator()(int index, Scalar radius) {
-        QueryType::setInput(index);
-        QueryType::setRadius(radius);
         return QueryType::template operator()<Self>(index, radius);
     }
 
     /// \brief Call the range neighbors query with new input parameter.
     inline Self& operator()(int index) {
-        QueryType::setInput(index);
         return QueryType::template operator()<Self>(index);
     }
 
