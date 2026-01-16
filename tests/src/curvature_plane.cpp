@@ -135,7 +135,7 @@ void testFunction(bool _bAddPositionNoise = false, bool _bAddNormalNoise = false
 
         if(Scalar(1.) - std::abs( resDot ) > epsilon){
             VectorType res2 = fit.primitiveGradient(queryPos).normalized();
-            std::cout << res2.transpose() << std::endl;
+            // std::cout << res2.transpose() << std::endl;
         }
 
         if( refFit.isStable() ){
@@ -167,34 +167,42 @@ void callSubTests()
     typedef DistWeightFunc<Point, SmoothWeightKernel<Scalar> > WeightSmoothFunc;
     typedef DistWeightFunc<Point, ConstantWeightKernel<Scalar> > WeightConstantFunc;
 
-    typedef Basket<Point, WeightSmoothFunc  , CovariancePlaneFit, CurvatureEstimator> FitSmoothNormalCovariance;
-    typedef Basket<Point, WeightConstantFunc, CovariancePlaneFit, CurvatureEstimator> FitConstantNormalCovariance;
+    // Covariance-based fits
+    typedef Basket<Point, WeightSmoothFunc  , CovariancePlaneFit> FitSmoothNormalCovariance;
+    typedef Basket<Point, WeightConstantFunc, CovariancePlaneFit> FitConstantNormalCovariance;
+    // Curvature estimators that runs on top of the covariance fit
+    typedef BasketDiff< FitSmoothNormalCovariance, FitSpaceDer, CovariancePlaneDer,
+                        CurvatureEstimatorDer, NormalDerivativeWeingartenEstimator> EstimatorSmoothNormalCovariance;
+    typedef BasketDiff< FitConstantNormalCovariance, FitSpaceDer, CovariancePlaneDer,
+                        CurvatureEstimatorDer, NormalDerivativeWeingartenEstimator> EstimatorConstantNormalCovariance;
+    // Curvature estimators based on MongePatch fitting using generalized quadric
     typedef Basket<Point, WeightSmoothFunc  , MongePatchQuadraticFit> FitMongeSmooth;
     typedef Basket<Point, WeightConstantFunc, MongePatchQuadraticFit> FitMongeConstant;
+    // Curvature estimators based on MongePatch fitting using restricted quadric
     typedef Basket<Point, WeightSmoothFunc  , MongePatchRestrictedQuadraticFit> FitMongeRestrictedSmooth;
     typedef Basket<Point, WeightConstantFunc, MongePatchRestrictedQuadraticFit> FitMongeRestrictedConstant;
 
-    cout << "Testing with perfect plane..." << endl;
+    cout << "Testing with perfect plane..." << flush;
     for(int i = 0; i < g_repeat; ++i)
     {
-        CALL_SUBTEST(( testFunction<Point, FitSmoothNormalCovariance, FitSmoothNormalCovariance>() ));
-        CALL_SUBTEST(( testFunction<Point, FitConstantNormalCovariance, FitConstantNormalCovariance>() ));
+        CALL_SUBTEST(( testFunction<Point, EstimatorSmoothNormalCovariance, EstimatorSmoothNormalCovariance>() ));
+        CALL_SUBTEST(( testFunction<Point, EstimatorConstantNormalCovariance, EstimatorConstantNormalCovariance>() ));
         CALL_SUBTEST(( testFunction<Point, FitMongeSmooth,FitSmoothNormalCovariance>() ));
-        CALL_SUBTEST(( testFunction<Point, FitMongeConstant, FitConstantNormalCovariance>() ));
+        CALL_SUBTEST(( testFunction<Point, FitMongeConstant, EstimatorConstantNormalCovariance>() ));
         CALL_SUBTEST(( testFunction<Point, FitMongeRestrictedSmooth,FitSmoothNormalCovariance>() ));
-        CALL_SUBTEST(( testFunction<Point, FitMongeRestrictedConstant, FitConstantNormalCovariance>() ));
+        CALL_SUBTEST(( testFunction<Point, FitMongeRestrictedConstant, EstimatorConstantNormalCovariance>() ));
     }
     cout << "Ok..." << endl;
 
-    cout << "Testing with noisy plane..." << endl;
+    cout << "Testing with noisy plane..." << flush;
     for(int i = 0; i < g_repeat; ++i)
     {
-        CALL_SUBTEST(( testFunction<Point, FitSmoothNormalCovariance, FitSmoothNormalCovariance>(true) ));
-        CALL_SUBTEST(( testFunction<Point, FitConstantNormalCovariance, FitConstantNormalCovariance>(true) ));
-        CALL_SUBTEST(( testFunction<Point, FitMongeSmooth,FitSmoothNormalCovariance>(true) ));
-        CALL_SUBTEST(( testFunction<Point, FitMongeConstant, FitConstantNormalCovariance>(true) ));
-        CALL_SUBTEST(( testFunction<Point, FitMongeRestrictedSmooth,FitSmoothNormalCovariance>(true) ));
-        CALL_SUBTEST(( testFunction<Point, FitMongeRestrictedConstant, FitConstantNormalCovariance>(true) ));
+        CALL_SUBTEST(( testFunction<Point, EstimatorSmoothNormalCovariance, EstimatorSmoothNormalCovariance>(true) ));
+        CALL_SUBTEST(( testFunction<Point, EstimatorConstantNormalCovariance, EstimatorConstantNormalCovariance>(true) ));
+        CALL_SUBTEST(( testFunction<Point, FitMongeSmooth,EstimatorSmoothNormalCovariance>(true) ));
+        CALL_SUBTEST(( testFunction<Point, FitMongeConstant, EstimatorConstantNormalCovariance>(true) ));
+        CALL_SUBTEST(( testFunction<Point, FitMongeRestrictedSmooth,EstimatorSmoothNormalCovariance>(true) ));
+        CALL_SUBTEST(( testFunction<Point, FitMongeRestrictedConstant, EstimatorConstantNormalCovariance>(true) ));
     }
     cout << "Ok..." << endl;
 }

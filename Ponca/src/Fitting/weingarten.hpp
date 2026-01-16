@@ -125,7 +125,7 @@ namespace Ponca
             // compute the dot product between the primitive gradient and the basis vectors (stored columnwise)
             (m_tangentBasis.transpose()*Base::primitiveGradient()).array().abs().maxCoeff(&index);
             if (index != 0) // we constructed the basis so the expected normal direction is stored in column 0
-                Base::m_eCurrentState = UNSTABLE;
+                Base::m_eCurrentState = UNSTABLE; // FIXME See what is wrong here for curvature_plane_1
         }
         return Base::m_eCurrentState;
     }
