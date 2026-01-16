@@ -16,14 +16,14 @@ using namespace Ponca;
 
 //! Test kNearestNeighbors query
 template<bool doIndexQuery, typename AcceleratingStructure>
-void testKNearestNeighbors( AcceleratingStructure& structure,
+auto testKNearestNeighbors( AcceleratingStructure& structure,
 	typename AcceleratingStructure::PointContainer& points,
 	std::vector<int>& sample,
 	const int retry_number, const int k
 ) {
 	using DataPoint      = typename AcceleratingStructure::DataPoint;
 
-	testQuery<doIndexQuery, DataPoint>(points,
+	return testQuery<doIndexQuery, DataPoint>(points,
 	[&structure]() {
 			if constexpr (doIndexQuery) {
 				return structure.kNearestNeighborsIndexQuery();
@@ -40,13 +40,13 @@ void testKNearestNeighbors( AcceleratingStructure& structure,
 
 //! Test kNearestNeighbors query without the k argument (the size of the iterator depends on the acceleration structure (e.g. when using the knnGraph(kdtreeDense, k))
 template<typename AcceleratingStructure>
-void testKNearestNeighborsEntirePointSet( AcceleratingStructure& structure,
+auto testKNearestNeighborsEntirePointSet( AcceleratingStructure& structure,
 	typename AcceleratingStructure::PointContainer& points,
 	const int retry_number, const int k
 ) {
 	using DataPoint      = typename AcceleratingStructure::DataPoint;
 
-	testQuery<true, DataPoint>(points,
+	return testQuery<true, DataPoint>(points,
 	[&structure]() {
 			return structure.kNearestNeighborsIndexQuery();
 		}, [&structure](auto &queryInput) {
@@ -65,6 +65,7 @@ void testKNearestNeighborsForAllStructures(const bool quick = QUICK_TESTS)
 	const int N = quick ? 100 : 5000;
 	const int k = quick ? 2 : 15;
 	const int retry_number = quick? 1 : 10;
+	std::chrono::milliseconds timing;
 
 	//////////// Generate data
 	std::vector<P> points(N);
@@ -74,24 +75,24 @@ void testKNearestNeighborsForAllStructures(const bool quick = QUICK_TESTS)
 	//////////// Test Dense KdTree
 	std::vector<int> sample;
 	KdTreeDense<P> kdtreeDense = *buildKdTreeDense<P>(points, sample);
-	auto timeStart = std::chrono::system_clock::now(); // Only record time for one query
-	testKNearestNeighbors<true>(kdtreeDense, points, sample, retry_number, k);  // Index query test
-	cout << "    Compute Time KdTree index query : " <<  (std::chrono::system_clock::now() - timeStart).count() << endl;
-	timeStart = std::chrono::system_clock::now();
-	testKNearestNeighbors<false>(kdtreeDense, points, sample, retry_number, k); // Position query test
-	cout << "    Compute Time KdTree position query : " <<  (std::chrono::system_clock::now() - timeStart).count() << endl;
+	timing = testKNearestNeighbors<true>(kdtreeDense, points, sample, retry_number, k);  // Index query test
+	cout << "    Compute Time KdTreeDense index query : " <<  timing.count() << "ms" << endl;
+	timing = testKNearestNeighbors<false>(kdtreeDense, points, sample, retry_number, k); // Position query test
+	cout << "    Compute Time KdTreeDense position query : " <<  timing.count() << "ms" << endl;
 
 	//////////// Test subsample of KdTree
 	std::vector<int> subSample;
 	KdTreeSparse<P> kdtreeSparse = *buildSubsampledKdTree(points, subSample);
-	testKNearestNeighbors<true>(kdtreeSparse, points, subSample, retry_number, k);  // Index query test
-	testKNearestNeighbors<false>(kdtreeSparse, points, subSample, retry_number, k); // Position query test
+	timing = testKNearestNeighbors<true>(kdtreeSparse, points, subSample, retry_number, k);  // Index query test
+	cout << "    Compute Time KdTreeSparse position query : " <<  timing.count() << "ms" << endl;
+	timing = testKNearestNeighbors<false>(kdtreeSparse, points, subSample, retry_number, k); // Position query test
+	cout << "    Compute Time KdTreeSparse index query : " <<  timing.count() << "ms" << endl;
 
 	//////////// Test KnnGraph
 	KnnGraph<P> knnGraph(kdtreeDense, k);
-	timeStart = std::chrono::system_clock::now();
-	testKNearestNeighborsEntirePointSet(knnGraph, points, retry_number, k);  // Index query test
-	cout << "    Compute Time KnnGraph index query : " <<  (std::chrono::system_clock::now() - timeStart).count();
+	timing = testKNearestNeighborsEntirePointSet(knnGraph, points, retry_number, k);  // Index query test
+	cout << "    Compute Time KnnGraph index query : " <<  timing.count() << "ms" << endl;
+	cout << "  (ok)" << endl;
 }
 
 int main(int argc, char** argv)
@@ -99,22 +100,22 @@ int main(int argc, char** argv)
 	if (!init_testing(argc, argv))
 		return EXIT_FAILURE;
 
-	cout << "Test kNearestNeighbors query for KdTree and KnnGraph in 3D : " << flush;
-	cout << endl << " float :" << flush;
+	cout << "Test kNearestNeighbors query for KdTree and KnnGraph in 3D : " << endl;
+	cout << "  float : " << endl;
 	CALL_SUBTEST_1((testKNearestNeighborsForAllStructures<float, 3>()));
-	cout << endl << " double : " << flush;
+	cout << "  double : " << endl;
 	CALL_SUBTEST_2((testKNearestNeighborsForAllStructures<double, 3>()));
-	cout << endl << " long : " << flush;
+	cout << "  long : " << endl;
 	CALL_SUBTEST_3((testKNearestNeighborsForAllStructures<long double, 3>()));
 
 	if (QUICK_TESTS)
 		return EXIT_SUCCESS;
-	cout << "Test kNearestNeighbors query for KdTree and KnnGraph in 4D : " << flush;
-	cout << endl << " float : " << flush;
+	cout << "Test kNearestNeighbors query for KdTree and KnnGraph in 4D : " << endl;
+	cout << "  float : " << endl;
 	CALL_SUBTEST_1((testKNearestNeighborsForAllStructures<float, 4>()));
-	cout << endl << " double : " << flush;
+	cout << "  double : " << endl;
 	CALL_SUBTEST_2((testKNearestNeighborsForAllStructures<double, 4>()));
-	cout << endl << " long : " << flush;
+	cout << "  long : " << endl;
 	CALL_SUBTEST_3((testKNearestNeighborsForAllStructures<long double, 4>()));
 
 	return EXIT_SUCCESS;

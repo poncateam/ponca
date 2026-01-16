@@ -236,27 +236,29 @@ template< bool doIndexQuery,
 	typename DataPoint, typename PointContainer,
 	typename QueryFunctor, typename CheckQueryFunctor,
 	typename... QueryInputTypes>
-void testQuery(
-	PointContainer& points,
+std::chrono::milliseconds
+testQuery(
+	PointContainer &points,
 	QueryFunctor callQuery,
 	CheckQueryFunctor checkQuery,
 	const int retry_number = 1,
-	QueryInputTypes&&... outs
+	QueryInputTypes &&... outs
 ) {
-	using VectorType      = typename DataPoint::VectorType;
+	using VectorType = typename DataPoint::VectorType;
+	const auto time = std::chrono::system_clock::now();
 
 #ifdef NDEBUG
 #pragma omp parallel for
 #endif
 	for (int i = 0; i < points.size(); ++i) {
 		auto queryInput = [i]{
-			// Do index query input
+			// Call query with index input
 			if constexpr (doIndexQuery)
 				return i;
-			// Do position query input
+			// Call query with position input
 			else
 				return VectorType(VectorType::Random()); // values between [-1:1]
-		}();
+		}(); // Either an index or a position
 
 		for (int j = 0; j < retry_number; ++j) {
 			std::vector<int> resQuery;
@@ -267,13 +269,15 @@ void testQuery(
 			VERIFY((checkQuery(queryInput, resQuery)));
 		}
 	}
+	return std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::system_clock::now() - time);
 }
 
 template<bool doIndexQuery,
 	typename DataPoint, typename PointContainer,
 	typename MutableQueryFunctor, typename RegularQueryFunctor, typename CheckQueryFunctor,
 	typename... QueryInputTypes>
-void testQuery(
+std::chrono::milliseconds
+testQuery(
 	PointContainer& points,
 	MutableQueryFunctor callMutableQuery,
 	RegularQueryFunctor callRegularQuery,
@@ -281,7 +285,8 @@ void testQuery(
 	const int retry_number = 1,
 	QueryInputTypes&&... outs
 ) {
-	using VectorType      = typename DataPoint::VectorType;
+	using VectorType = typename DataPoint::VectorType;
+	const auto time = std::chrono::system_clock::now();
 
 #ifdef NDEBUG
 #pragma omp parallel for
@@ -310,4 +315,5 @@ void testQuery(
 			VERIFY((checkQuery(queryInput, resMutableQuery)));
 		}
 	}
+	return std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::system_clock::now() - time);
 }

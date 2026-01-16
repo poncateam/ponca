@@ -6,7 +6,6 @@
 
 #include "../common/testing.h"
 #include "../common/testUtils.h"
-#include "../common/has_duplicate.h"
 #include "../common/kdtree_utils.h"
 #include "../split_test_helper.h"
 
@@ -16,7 +15,7 @@
 using namespace Ponca;
 
 template<bool doIndexQuery, typename AcceleratingStructure>
-void testNearestNeighbor( AcceleratingStructure& structure,
+auto testNearestNeighbor( AcceleratingStructure& structure,
 	typename AcceleratingStructure::PointContainer& points,
 	std::vector<int>& sample
 ) {
@@ -32,13 +31,13 @@ void testNearestNeighbor( AcceleratingStructure& structure,
 }
 
 template<bool doIndexQuery, typename AcceleratingStructure>
-void testFrontOfKNearestNeighbors( AcceleratingStructure& structure,
+auto testFrontOfKNearestNeighbors( AcceleratingStructure& structure,
 	typename AcceleratingStructure::PointContainer& points,
 	std::vector<int>& sample, const int retry_number
 ) {
 	using DataPoint      = typename AcceleratingStructure::DataPoint;
 
-	testQuery<doIndexQuery, DataPoint>(points, [&structure]() {
+	return testQuery<doIndexQuery, DataPoint>(points, [&structure]() {
 			return structure.kNearestNeighborsIndexQuery();
 		}, [&structure](auto &queryInput) {
 			return structure.kNearestNeighbors(queryInput);
