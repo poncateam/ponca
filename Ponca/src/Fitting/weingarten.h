@@ -111,6 +111,7 @@ namespace Ponca
         PONCA_FITTING_DECLARE_DEFAULT_DER_TYPES
         using Matrix2 = Eigen::Matrix<Scalar, 2, 2>;
         static_assert ( DataPoint::Dim == 3, "NormalDerivativeWeingartenEstimator is only valid in 3D");
+        static_assert ( Base::isSpaceDer(), "NormalDerivativeWeingartenEstimator requires spatial derivation");
 
     protected:
         enum {
