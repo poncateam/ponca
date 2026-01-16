@@ -29,22 +29,26 @@ public:
     inline KdTreeKNearestQueryBase(const KdTreeBase<Traits>* kdtree, IndexType k, typename QueryType::InputType input) :
             KdTreeQuery<Traits>(kdtree), QueryType(k, input) { }
 
-public:
+    /// \brief Call the k-nearest neighbors query with new input and radius parameters.
     inline Self& operator()(typename QueryType::InputType input, Scalar radius)
     {
         return QueryType::template operator()<Self>(input, radius);
     }
+    /// \brief Call the k-nearest neighbors query with new input parameter.
     inline Self& operator()(typename QueryType::InputType input)
     {
         return QueryType::template operator()<Self>(input);
     }
 
+    /// \brief Returns an iterator to the beginning of the k-nearest neighbors query.
     inline Iterator begin(){
         QueryAccelType::reset();
         QueryType::reset();
         this->search();
         return Iterator(QueryType::m_queue.begin());
     }
+
+    /// \brief Returns an iterator to the end of the k-nearest neighbors query.
     inline Iterator end(){
         return Iterator(QueryType::m_queue.end());
     }

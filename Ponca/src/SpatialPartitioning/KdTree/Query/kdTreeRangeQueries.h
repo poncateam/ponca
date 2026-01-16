@@ -33,16 +33,20 @@ protected:
 public:
     KdTreeRangeQueryBase(const KdTreeBase<Traits>* kdtree, Scalar radius, typename QueryType::InputType input) :
             KdTreeQuery<Traits>(kdtree), QueryType(radius, input){}
-public:
+
+    /// \brief Call the range neighbors query with new input and radius parameters.
     inline Self& operator()(typename QueryType::InputType input, Scalar radius)
     {
         return QueryType::template operator()<Self>(input, radius);
     }
+
+    /// \brief Call the range neighbors query with new input parameter.
     inline Self& operator()(typename QueryType::InputType input)
     {
         return QueryType::template operator()<Self>(input);
     }
 
+    /// \brief Returns an iterator to the beginning of the Range Query.
     inline Iterator begin(){
         QueryAccelType::reset();
         QueryType::reset();
@@ -50,6 +54,8 @@ public:
         this->advance(it);
         return it;
     }
+
+    /// \brief Returns an iterator to the end of the Range Query.
     inline Iterator end(){
         return Iterator(this, QueryAccelType::m_kdtree->pointCount());
     }

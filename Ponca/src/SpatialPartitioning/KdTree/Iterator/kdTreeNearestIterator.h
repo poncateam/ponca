@@ -42,7 +42,7 @@ public:
         return m_index != other.m_index;
     }
 
-    /// \breif Equality operand
+    /// \brief Equality operand
     inline bool operator ==(const KdTreeNearestIterator& other) const {
         return m_index == other.m_index;
     }

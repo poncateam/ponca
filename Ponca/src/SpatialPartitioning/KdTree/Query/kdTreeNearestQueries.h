@@ -28,13 +28,15 @@ public:
     KdTreeNearestQueryBase(const KdTreeBase<Traits>* kdtree, typename QueryType::InputType input) :
             KdTreeQuery<Traits>(kdtree), QueryType(input){}
 
-public:
+    /// \brief Returns an iterator to the beginning of the nearest neighbor query.
     inline Iterator begin(){
         QueryAccelType::reset();
         QueryType::reset();
         this->search();
         return Iterator(QueryType::m_nearest);
     }
+
+    /// \brief Returns an iterator to the end of the nearest neighbor query.
     inline Iterator end(){
         return Iterator(QueryType::m_nearest + 1);
     }

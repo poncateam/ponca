@@ -40,18 +40,22 @@ public:
 
 public:
     inline KnnGraphKNearestQuery(const KnnGraphBase<Traits>* graph, int index)
-        : m_graph(graph), QueryType(index){}
+        : QueryType(index), m_graph(graph){}
 
-    inline Iterator begin() const{
-        return m_graph->index_data().begin() + QueryType::input() * m_graph->k();
-    }
-    inline Iterator end() const{
-        return m_graph->index_data().begin() + (QueryType::input()+1) * m_graph->k();
-    }
-
+    /// \brief Call the k-nearest neighbors query with new input parameter.
     inline Self& operator()(int index) {
         QueryType::setInput(index);
         return QueryType::template operator()<Self>(index);
+    }
+
+    /// \brief Returns an iterator to the beginning of the k-nearest neighbors query.
+    inline Iterator begin() const{
+        return m_graph->index_data().begin() + QueryType::input() * m_graph->k();
+    }
+
+    /// \brief Returns an iterator to the end of the k-nearest neighbors query.
+    inline Iterator end() const{
+        return m_graph->index_data().begin() + (QueryType::input()+1) * m_graph->k();
     }
 
 protected:

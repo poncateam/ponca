@@ -23,8 +23,6 @@ namespace Ponca {
  *  `KdTreeRangeQuery` object, this iterator can be duplicated without causing issues.
  *  If a copy of this iterator is made  (e.g., passed by copy to a function),
  *  incrementing one iterator won't update the state of the other.
- *
- *  \see KdTreeRangeQueryBase::advance
  */
 template<typename Index, typename DataPoint, typename QueryT_>
 class KdTreeRangeIterator
@@ -51,18 +49,20 @@ public:
         return m_index != other.m_index;
     }
 
-    /// \breif Equality operand
+    /// \brief Equality operand
     inline bool operator ==(const KdTreeRangeIterator& other) const {
         return m_index == other.m_index;
     }
 
-    /// Prefix increment
+    /// \brief Prefix increment
+    /// \see KdTreeRangeQueryBase::advance(Iterator& it) for the iteration logic
     inline KdTreeRangeIterator& operator++() {
         m_query->advance(*this);
         return *this;
     }
 
     /// \brief Postfix increment
+    /// \see KdTreeRangeQueryBase::advance(Iterator& it) for the iteration logic
     inline KdTreeRangeIterator operator++(int) {
         KdTreeRangeIterator tmp = *this;
         m_query->advance(*this);

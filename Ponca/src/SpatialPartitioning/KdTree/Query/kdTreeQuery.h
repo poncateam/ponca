@@ -35,6 +35,7 @@ protected:
     /// [KdTreeQuery kdtree type]
     Stack<IndexSquaredDistance<IndexType, Scalar>, 2 * Traits::MAX_DEPTH> m_stack;
 
+    /// \brief Search internally the neighbors of a point using the kdtree.
     /// \return false if the kdtree is empty
     template<typename LeafPreparationFunctor,
             typename DescentDistanceThresholdFunctor,

@@ -38,13 +38,20 @@ public:
             m_flag(),
             m_stack() {}
 
+    /// \brief Call the range neighbors query with new input and radius parameters.
     inline Self& operator()(int index, Scalar radius) {
         QueryType::setInput(index);
         QueryType::setRadius(radius);
         return QueryType::template operator()<Self>(index, radius);
     }
 
-public:
+    /// \brief Call the range neighbors query with new input parameter.
+    inline Self& operator()(int index) {
+        QueryType::setInput(index);
+        return QueryType::template operator()<Self>(index);
+    }
+
+    /// \brief Returns an iterator to the beginning of the range neighbors query.
     inline Iterator begin(){
         QueryType::reset();
         Iterator it(this);
@@ -53,6 +60,7 @@ public:
         return it;
     }
 
+    /// \brief Returns an iterator to the end of the range neighbors query.
     inline Iterator end(){
         return Iterator(this, static_cast<int>(m_graph->size()));
     }
