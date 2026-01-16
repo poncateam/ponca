@@ -10,6 +10,8 @@
 #include "../common/testing.h"
 #include "../common/testUtils.h"
 
+#include "../split_test_helper.h"
+
 #include <vector>
 
 #include "Ponca/src/Fitting/defines.h"
@@ -167,28 +169,34 @@ void callSubTests()
 
     typedef Basket<Point, WeightSmoothFunc  , CovariancePlaneFit, CurvatureEstimator> FitSmoothNormalCovariance;
     typedef Basket<Point, WeightConstantFunc, CovariancePlaneFit, CurvatureEstimator> FitConstantNormalCovariance;
-    typedef Basket<Point, WeightSmoothFunc  , MongePatchQuadraticFit> FitCovSmooth;
-    typedef Basket<Point, WeightConstantFunc, MongePatchQuadraticFit> FitCovConstant;
+    typedef Basket<Point, WeightSmoothFunc  , MongePatchQuadraticFit> FitMongeSmooth;
+    typedef Basket<Point, WeightConstantFunc, MongePatchQuadraticFit> FitMongeConstant;
+    typedef Basket<Point, WeightSmoothFunc  , MongePatchRestrictedQuadraticFit> FitMongeRestrictedSmooth;
+    typedef Basket<Point, WeightConstantFunc, MongePatchRestrictedQuadraticFit> FitMongeRestrictedConstant;
 
     cout << "Testing with perfect plane..." << endl;
     for(int i = 0; i < g_repeat; ++i)
     {
         CALL_SUBTEST(( testFunction<Point, FitSmoothNormalCovariance, FitSmoothNormalCovariance>() ));
         CALL_SUBTEST(( testFunction<Point, FitConstantNormalCovariance, FitConstantNormalCovariance>() ));
-        CALL_SUBTEST(( testFunction<Point, FitCovSmooth,FitSmoothNormalCovariance>(true) ));
-        CALL_SUBTEST(( testFunction<Point, FitCovConstant, FitConstantNormalCovariance>(true) ));
+        CALL_SUBTEST(( testFunction<Point, FitMongeSmooth,FitSmoothNormalCovariance>() ));
+        CALL_SUBTEST(( testFunction<Point, FitMongeConstant, FitConstantNormalCovariance>() ));
+        CALL_SUBTEST(( testFunction<Point, FitMongeRestrictedSmooth,FitSmoothNormalCovariance>() ));
+        CALL_SUBTEST(( testFunction<Point, FitMongeRestrictedConstant, FitConstantNormalCovariance>() ));
     }
     cout << "Ok..." << endl;
 
-//    cout << "Testing with noisy plane..." << endl;
-//    for(int i = 0; i < g_repeat; ++i)
-//    {
-//        CALL_SUBTEST(( testFunction<Point, FitSmoothNormalCovariance, WeightSmoothFunc>(true, true) ));
-//        CALL_SUBTEST(( testFunction<Point, FitConstantNormalCovariance, WeightConstantFunc>(true, true) ));
-//        CALL_SUBTEST(( testFunction<Point, FitSmoothProjectedNormalCovariance, WeightSmoothFunc>(true, true) ));
-//        CALL_SUBTEST(( testFunction<Point, FitConstantProjectedNormalCovariance, WeightConstantFunc>(true, true) ));
-//    }
-//    cout << "Ok..." << endl;
+    cout << "Testing with noisy plane..." << endl;
+    for(int i = 0; i < g_repeat; ++i)
+    {
+        CALL_SUBTEST(( testFunction<Point, FitSmoothNormalCovariance, FitSmoothNormalCovariance>(true) ));
+        CALL_SUBTEST(( testFunction<Point, FitConstantNormalCovariance, FitConstantNormalCovariance>(true) ));
+        CALL_SUBTEST(( testFunction<Point, FitMongeSmooth,FitSmoothNormalCovariance>(true) ));
+        CALL_SUBTEST(( testFunction<Point, FitMongeConstant, FitConstantNormalCovariance>(true) ));
+        CALL_SUBTEST(( testFunction<Point, FitMongeRestrictedSmooth,FitSmoothNormalCovariance>(true) ));
+        CALL_SUBTEST(( testFunction<Point, FitMongeRestrictedConstant, FitConstantNormalCovariance>(true) ));
+    }
+    cout << "Ok..." << endl;
 }
 
 
@@ -199,9 +207,11 @@ int main(int argc, char** argv)
         return EXIT_FAILURE;
     }
 
-    cout << "Test curvature estimation..." << endl;
-
-    callSubTests<float, 3>();
-    callSubTests<double, 3>();
-    callSubTests<long double, 3>();
+    cout << "Test curvature estimation with float" << endl;
+    CALL_SUBTEST_1((callSubTests<float, 3>()));
+    cout << "Test curvature estimation with double" << endl;
+    CALL_SUBTEST_2((callSubTests<double, 3>()));
+    cout << "Test curvature estimation with long double" << endl;
+    CALL_SUBTEST_3((callSubTests<long double, 3>()));
 }
+
