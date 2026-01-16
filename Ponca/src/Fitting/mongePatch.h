@@ -21,7 +21,7 @@ namespace Ponca
     \brief Monge Patch primitive, defined as \f$ \mathbf{x}(u,v)= (u,v,h(u,v)) \f$,
      with \f$h(u,v)\f$ defined by a Base class.
 
-    \see MongePatchFit
+    \see MongePatchQuadraticFitImpl and MongePatchRestrictedQuadraticFitImpl
 
     \warning Internally, the patch is represented as (h(u,v), u, v) because
     CovariancePlaneFitImpl::worldToTangentPlane() wraps up coordinates in this order (height, u and v).
@@ -128,6 +128,7 @@ namespace Ponca
 /*!
  * \brief Extension to compute the best fit quadric on 3d points expressed as \f$f(u,v)=h\f$
  *
+ * \see MongePatchPrimitive
  * \note This procedure requires at least two passes, the first one for plane fitting,
  * the second one for quadric fitting.
  * \warning This class is valid only in 3D.
@@ -161,6 +162,7 @@ namespace Ponca
 /*!
  * \brief Extension to compute the best fit restricted quadric on 3d points expressed as \f$f(u,v)=h\f$
  *
+ * \see MongePatchPrimitive
  * \note This procedure requires at least two passes, the first one for plane fitting,
  * the second one for quadric fitting.
  * \warning This class is valid only in 3D.
