@@ -28,7 +28,7 @@ using namespace Ponca;
 
 //
 // if CheckCurvatures is true, then the test checks the coherence of kmin and kmax
-// it requires the use of BasketDiff in 3D, with the fitting extension CurvatureEstimatorBaseDiff
+// it requires the use of BasketDiff in 3D, with the fitting extension CurvatureEstimatorDer
 //
 template<typename DataPoint, typename Fit, bool CheckCurvatures = false>
 void testFunction(bool _bAddPositionNoise = false, bool _bAddNormalNoise = false)
@@ -138,7 +138,7 @@ void callSubTests()
     typedef Basket<Point, WeightSmoothFunc, UnorientedSphereFit, GLSParam> FitSmoothUnoriented;
     typedef Basket<Point, WeightConstantFunc, UnorientedSphereFit, GLSParam> FitConstantUnoriented;
 
-    typedef BasketDiff<FitSmoothUnoriented, FitScaleSpaceDer, UnorientedSphereDer, CurvatureEstimatorBaseDer, NormalDerivativeWeingartenEstimator, WeingartenCurvatureEstimatorDer> FitSmoothUnorientedDiff;
+    typedef BasketDiff<FitSmoothUnoriented, FitScaleSpaceDer, UnorientedSphereDer, CurvatureEstimatorDer, NormalDerivativeWeingartenEstimator, WeingartenCurvatureEstimatorDer> FitSmoothUnorientedDiff;
 
     cout << "Testing with perfect sphere (unoriented)..." << endl;
     for(int i = 0; i < g_repeat; ++i)
