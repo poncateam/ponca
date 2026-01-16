@@ -136,24 +136,3 @@ MongePatchRestrictedQuadraticFitImpl<DataPoint, _NFilter, T>::finalize ()
         return Base::m_eCurrentState = STABLE;
     }
 }
-
-//template < class DataPoint, class _NFilter, typename T>
-//typename MongePatch<DataPoint, _NFilter, T>::Scalar
-//MongePatch<DataPoint, _NFilter, T>::kMean() const {
-//  PONCA_MULTIARCH_STD_MATH(pow);
-//  static const Scalar one (1);
-//  static const Scalar two (2);
-//  static const Scalar threeOverTwo (Scalar(3)/Scalar(2));
-//  return ((one + pow(h_v(),two) ) * h_uu() * two*h_u()*h_v()*h_uv() + (one+pow(h_u(),two))*h_vv()) /
-//      (two * pow(one +pow(h_u(),two) + pow(h_v(),two),threeOverTwo));
-//}
-//
-//template < class DataPoint, class _NFilter, typename T>
-//typename MongePatch<DataPoint, _NFilter, T>::Scalar
-//MongePatch<DataPoint, _NFilter, T>::GaussianCurvature() const {
-//    PONCA_MULTIARCH_STD_MATH(pow);
-//    static const Scalar one (1);
-//    static const Scalar two (2);
-//    return (h_uu()*h_vv() - pow(h_uv(),two)) /
-//        pow((one + pow(h_u(),two) + pow(h_v(),two) ), two);
-//}
