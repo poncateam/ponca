@@ -8,7 +8,9 @@ var functions_type =
     [ "l", "functions_type_l.html", null ],
     [ "m", "functions_type_m.html", null ],
     [ "n", "functions_type_n.html", null ],
+    [ "o", "functions_type_o.html", null ],
     [ "p", "functions_type_p.html", null ],
+    [ "q", "functions_type_q.html", null ],
     [ "s", "functions_type_s.html", null ],
     [ "v", "functions_type_v.html", null ],
     [ "w", "functions_type_w.html", null ]

@@ -51,7 +51,7 @@ MathJax.Hub.Config({
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Ponca
-   &#160;<span id="projectnumber">80e34c4ed3322bafe25349c3ea7523ca4a3aa60d</span>
+   &#160;<span id="projectnumber">312bd1755a04ef27033a33388722a52cddb9ba4a</span>
    </div>
    <div id="projectbrief">Point Cloud Analysis library</div>
   </td>
@@ -153,10 +153,14 @@ $(document).ready(function(){initNavTree('functions_m.html',''); initResizable()
 <li>m_matA&#160;:&#160;<a class="el" href="classPonca_1_1SphereFitImpl.html#a59b41feb3d323e7a9c30df0d5eeadc59">Ponca::SphereFitImpl&lt; DataPoint, _NFilter, T &gt;</a>, <a class="el" href="classPonca_1_1UnorientedSphereFitImpl.html#adb9cf7cfa39162fc0d4523329223a2dc">Ponca::UnorientedSphereFitImpl&lt; DataPoint, _NFilter, T &gt;</a></li>
 <li>m_matQ&#160;:&#160;<a class="el" href="classPonca_1_1UnorientedSphereFitImpl.html#adffa6f9858840f38a4c98d32cc687683">Ponca::UnorientedSphereFitImpl&lt; DataPoint, _NFilter, T &gt;</a></li>
 <li>m_min_cell_size&#160;:&#160;<a class="el" href="classPonca_1_1KdTreeBase.html#ac738881c29dd526796a08f4b3947711b">Ponca::KdTreeBase&lt; Traits &gt;</a></li>
+<li>m_nearest&#160;:&#160;<a class="el" href="group__spatialpartitioning.html#a561ce273e8b3238e61d2c91733784520">Ponca::QueryOutputIsNearest&lt; Index, Scalar &gt;</a></li>
 <li>m_nume&#160;:&#160;<a class="el" href="classPonca_1_1OrientedSphereFitImpl.html#aabd09ec50ffbfeba63fe01a66961a51c">Ponca::OrientedSphereFitImpl&lt; DataPoint, _NFilter, T &gt;</a></li>
 <li>m_pass&#160;:&#160;<a class="el" href="classPonca_1_1ProjectedNormalCovarianceCurvatureEstimator.html#ac5e27974b6450b6f67cb528b7cd501d6">Ponca::ProjectedNormalCovarianceCurvatureEstimator&lt; DataPoint, _NFilter, DiffType, T &gt;</a></li>
+<li>m_queue&#160;:&#160;<a class="el" href="group__spatialpartitioning.html#a436a5ad248cbb5019d64864a31412444">Ponca::QueryOutputIsKNearest&lt; Index, Scalar &gt;</a></li>
 <li>m_size&#160;:&#160;<a class="el" href="classPonca_1_1Stack.html#a98fa887e804ab5e56f3d58dd6170515e">Ponca::Stack&lt; T, N &gt;</a></li>
 <li>m_solver&#160;:&#160;<a class="el" href="classPonca_1_1CovarianceFitBase.html#a26ec0b6f7eaef7d88adcb66c344bdcd1">Ponca::CovarianceFitBase&lt; DataPoint, _NFilter, T &gt;</a>, <a class="el" href="classPonca_1_1NormalCovarianceCurvatureEstimator.html#af48f2e98a00948a8396781c3e2c73206">Ponca::NormalCovarianceCurvatureEstimator&lt; DataPoint, _NFilter, DiffType, T &gt;</a>, <a class="el" href="classPonca_1_1ProjectedNormalCovarianceCurvatureEstimator.html#ade0c730a931f4805f618fe2fc05e3afd">Ponca::ProjectedNormalCovarianceCurvatureEstimator&lt; DataPoint, _NFilter, DiffType, T &gt;</a></li>
+<li>m_squared_distance&#160;:&#160;<a class="el" href="group__spatialpartitioning.html#abe71fa671d3d538b4410c81eefce1615">Ponca::QueryOutputIsNearest&lt; Index, Scalar &gt;</a></li>
+<li>m_squared_radius&#160;:&#160;<a class="el" href="group__spatialpartitioning.html#a700e5a832fa5c0ad10c5d0272194a181">Ponca::QueryOutputIsRange&lt; Index, Scalar &gt;</a></li>
 <li>m_stack&#160;:&#160;<a class="el" href="classPonca_1_1KdTreeQuery.html#a6d3590a201b336ce0858be23ef006001">Ponca::KdTreeQuery&lt; Traits &gt;</a>, <a class="el" href="classPonca_1_1KnnGraphRangeQuery.html#a96c2a4379e427a5954ba2aaf2b2fe36f">Ponca::KnnGraphRangeQuery&lt; Traits &gt;</a></li>
 <li>m_sumDotPN&#160;:&#160;<a class="el" href="classPonca_1_1OrientedSphereFitImpl.html#aaacc3eacb04b1342f7987f839494ae0b">Ponca::OrientedSphereFitImpl&lt; DataPoint, _NFilter, T &gt;</a></li>
 <li>m_sumDotPP&#160;:&#160;<a class="el" href="classPonca_1_1OrientedSphereFitImpl.html#a09e179733b06403475a3c544672a30ba">Ponca::OrientedSphereFitImpl&lt; DataPoint, _NFilter, T &gt;</a>, <a class="el" href="classPonca_1_1UnorientedSphereFitImpl.html#a2e399e1782b3de7d5b2c259b6b07a252">Ponca::UnorientedSphereFitImpl&lt; DataPoint, _NFilter, T &gt;</a></li>
@@ -177,12 +181,12 @@ $(document).ready(function(){initNavTree('functions_m.html',''); initResizable()
 <li>MAX_NODE_COUNT&#160;:&#160;<a class="el" href="classPonca_1_1KdTreeBase.html#a898a7f87068e5c6dfe9c468de5730cb9">Ponca::KdTreeBase&lt; Traits &gt;</a></li>
 <li>MAX_POINT_COUNT&#160;:&#160;<a class="el" href="classPonca_1_1KdTreeBase.html#a5e29ac46b8988090ff8d9df06c33e4f4">Ponca::KdTreeBase&lt; Traits &gt;</a></li>
 <li>meanNormal()&#160;:&#160;<a class="el" href="classPonca_1_1MeanNormal.html#a249b2213254d2c29bb0865edf833aae6">Ponca::MeanNormal&lt; DataPoint, _NFilter, T &gt;</a></li>
-<li>meanNormalDer()&#160;:&#160;<a class="el" href="classPonca_1_1MeanNormalDer.html#a1852a8efd9e1a814a5fec86eb77e67fa">Ponca::MeanNormalDer&lt; DataPoint, _NFilter, DiffType, T &gt;</a></li>
+<li>meanNormalDer()&#160;:&#160;<a class="el" href="classPonca_1_1MeanNormalDer.html#a7e62988035dec3bc95b79c0a50f45fbc">Ponca::MeanNormalDer&lt; DataPoint, _NFilter, DiffType, T &gt;</a></li>
 <li>meanNormalVector()&#160;:&#160;<a class="el" href="classPonca_1_1MeanNormal.html#ab405afd1df6b86368a1b98e37f74c14d">Ponca::MeanNormal&lt; DataPoint, _NFilter, T &gt;</a></li>
 <li>meanPlaneFit()&#160;:&#160;<a class="el" href="classPonca_1_1MeanPlaneFitImpl.html#ae5a754ca08646e19445852a0621631b4">Ponca::MeanPlaneFitImpl&lt; DataPoint, _NFilter, T &gt;</a></li>
 <li>meanPosition()&#160;:&#160;<a class="el" href="classPonca_1_1MeanPosition.html#a983cedf90008fc2a1ec301dc9a8becf2">Ponca::MeanPosition&lt; DataPoint, _NFilter, T &gt;</a></li>
 <li>meanPositionDer()&#160;:&#160;<a class="el" href="classPonca_1_1MeanPositionDer.html#af54d0d24a7f62f34d4db496cc15bb93c">Ponca::MeanPositionDer&lt; DataPoint, _NFilter, DiffType, T &gt;</a></li>
-<li>min_cell_size()&#160;:&#160;<a class="el" href="classPonca_1_1KdTreeBase.html#a443f3258670a3fd7e0b7d6c6555506d7">Ponca::KdTreeBase&lt; Traits &gt;</a></li>
+<li>minCellSize()&#160;:&#160;<a class="el" href="classPonca_1_1KdTreeBase.html#a22e3f8d5e9c14f59c4486b17d386676d">Ponca::KdTreeBase&lt; Traits &gt;</a></li>
 <li>mlsSphereFitDer()&#160;:&#160;<a class="el" href="classPonca_1_1MlsSphereFitDer.html#aee738b105ef0eec3166cc93ea13ff404">Ponca::MlsSphereFitDer&lt; DataPoint, _NFilter, DiffType, T &gt;</a></li>
 <li>mongePatch()&#160;:&#160;<a class="el" href="classPonca_1_1MongePatch.html#a120af583a8958d60bb2514e9214781b7">Ponca::MongePatch&lt; DataPoint, _NFilter, T &gt;</a></li>
 </ul>
@@ -191,7 +195,7 @@ $(document).ready(function(){initNavTree('functions_m.html',''); initResizable()
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generated on Tue Dec 9 2025 21:53:30 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
+    <li class="footer">Generated on Mon Jan 19 2026 18:33:15 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
   </ul>
 </div>
 </body>

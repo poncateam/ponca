@@ -10,5 +10,8 @@ var searchData=
   ['kmean_7',['kmean',['../classPonca_1_1CurvatureEstimatorBase.html#aeff60203146d08972a72c743dd036df4',1,'Ponca::CurvatureEstimatorBase::kMean()'],['../classPonca_1_1MongePatch.html#a1e9751313e09977e24df6ec35f40e394',1,'Ponca::MongePatch::kMean()']]],
   ['kmin_8',['kmin',['../classPonca_1_1CurvatureEstimatorBase.html#ad35407fad73f2a778a2058d689e079a4',1,'Ponca::CurvatureEstimatorBase']]],
   ['kmindirection_9',['kminDirection',['../classPonca_1_1CurvatureEstimatorBase.html#a0fa317770dd42fffaf2f5643ec03f527',1,'Ponca::CurvatureEstimatorBase']]],
-  ['knngraphbase_10',['KnnGraphBase',['../classPonca_1_1KnnGraphBase.html#a7294b2f4e8983db302e2fac4777364d2',1,'Ponca::KnnGraphBase']]]
+  ['knearestneighbors_10',['knearestneighbors',['../classPonca_1_1KdTreeBase.html#a5273184860c29ed69c27a800224056b8',1,'Ponca::KdTreeBase::kNearestNeighbors(const VectorType &amp;point, IndexType k) const'],['../classPonca_1_1KdTreeBase.html#aced45273cb6f3d90053190a6070b2149',1,'Ponca::KdTreeBase::kNearestNeighbors(IndexType index, IndexType k) const'],['../classPonca_1_1KnnGraphBase.html#afbdd48fb6c63ca118dc760f04002b5bc',1,'Ponca::KnnGraphBase::kNearestNeighbors()']]],
+  ['knearestneighborsindexquery_11',['knearestneighborsindexquery',['../classPonca_1_1KdTreeBase.html#a3f076fc0aea97ebb1758c7b65d3d060b',1,'Ponca::KdTreeBase::kNearestNeighborsIndexQuery()'],['../classPonca_1_1KnnGraphBase.html#a2278ba7066ed534bbdbc43896d8bdf9c',1,'Ponca::KnnGraphBase::kNearestNeighborsIndexQuery()']]],
+  ['knearestneighborsquery_12',['kNearestNeighborsQuery',['../classPonca_1_1KdTreeBase.html#a5bac80d5b2732a533440f6355816e7f8',1,'Ponca::KdTreeBase']]],
+  ['knngraphbase_13',['KnnGraphBase',['../classPonca_1_1KnnGraphBase.html#a7294b2f4e8983db302e2fac4777364d2',1,'Ponca::KnnGraphBase']]]
 ];

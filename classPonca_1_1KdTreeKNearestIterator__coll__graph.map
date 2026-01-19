@@ -1,5 +1,5 @@
 <map id="Ponca::KdTreeKNearestIterator&lt; Index, DataPoint &gt;" name="Ponca::KdTreeKNearestIterator&lt; Index, DataPoint &gt;">
-<area shape="rect" id="Node000001" title=" " alt="" coords="165,1051,379,1251"/>
+<area shape="rect" id="Node000001" title="Input iterator to read the KdTreeKNearestQueryBase object." alt="" coords="165,1051,379,1291"/>
 <area shape="rect" id="Node000002" href="$classPonca_1_1limited__priority__queue.html" title=" " alt="" coords="161,673,383,988"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="275,988,275,1034,269,1034,269,988"/>
 <area shape="rect" id="Node000003" title=" " alt="" coords="5,396,205,476"/>

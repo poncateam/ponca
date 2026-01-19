@@ -21,7 +21,7 @@
 <!-- Node1 -->
 <g id="Node000001" class="node">
 <title>Node1</title>
-<g id="a_Node000001"><a xlink:title="Base class for typed queries input type.">
+<g id="a_Node000001"><a xlink:title="Base class for Query input type.">
 <polygon fill="#999999" stroke="transparent" points="116,-90 8,-90 8,0 116,0 116,-90"/>
 <text text-anchor="start" x="13" y="-78" font-family="Helvetica,sans-Serif" font-size="10.00">Ponca::QueryInput&lt;</text>
 <text text-anchor="start" x="28.5" y="-67" font-family="Helvetica,sans-Serif" font-size="10.00"> InputType_ &gt;</text>
@@ -31,7 +31,7 @@
 <text text-anchor="start" x="18" y="-22" font-family="Helvetica,sans-Serif" font-size="10.00">+</text>
 <text text-anchor="start" x="37" y="-22" font-family="Helvetica,sans-Serif" font-size="10.00">input()</text>
 <text text-anchor="start" x="18" y="-7" font-family="Helvetica,sans-Serif" font-size="10.00">#</text>
-<text text-anchor="start" x="37" y="-7" font-family="Helvetica,sans-Serif" font-size="10.00">editInput()</text>
+<text text-anchor="start" x="37" y="-7" font-family="Helvetica,sans-Serif" font-size="10.00">setInput()</text>
 <polygon fill="#666666" stroke="#666666" points="8,-62 8,-62 116,-62 116,-62 8,-62"/>
 <polygon fill="#666666" stroke="#666666" points="8,-47 8,-47 116,-47 116,-47 8,-47"/>
 <polygon fill="none" stroke="#666666" points="8,0 8,-90 116,-90 116,0 8,0"/>

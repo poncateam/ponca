@@ -11,7 +11,7 @@
 <!-- Node0 -->
 <g id="Node000000" class="node">
 <title>Node0</title>
-<g id="a_Node000000"><a xlink:href="classPonca_1_1KdTreeQuery.html" target="_top" xlink:title=" ">
+<g id="a_Node000000"><a xlink:href="classPonca_1_1KdTreeQuery.html" target="_top" xlink:title="Query object that provides a method to search neighbors on the KdTree depending on a distance thresho...">
 <polygon fill="white" stroke="#666666" points="114,-115.5 0,-115.5 0,-85.5 114,-85.5 114,-115.5"/>
 <text text-anchor="start" x="8" y="-103.5" font-family="Helvetica,sans-Serif" font-size="10.00">Ponca::KdTreeQuery</text>
 <text text-anchor="middle" x="57" y="-92.5" font-family="Helvetica,sans-Serif" font-size="10.00">&lt; Traits &gt;</text>
@@ -21,7 +21,7 @@
 <!-- Node1 -->
 <g id="Node000001" class="node">
 <title>Node1</title>
-<g id="a_Node000001"><a xlink:href="classPonca_1_1KdTreeKNearestQueryBase.html" target="_top" xlink:title=" ">
+<g id="a_Node000001"><a xlink:href="classPonca_1_1KdTreeKNearestQueryBase.html" target="_top" xlink:title="Extension of the Query class that allows to read the result of a k&#45;nearest neighbors search on the Kd...">
 <polygon fill="white" stroke="#666666" points="314,-159 155,-159 155,-118 314,-118 314,-159"/>
 <text text-anchor="start" x="163" y="-147" font-family="Helvetica,sans-Serif" font-size="10.00">Ponca::KdTreeKNearestQuery</text>
 <text text-anchor="start" x="163" y="-136" font-family="Helvetica,sans-Serif" font-size="10.00">Base&lt; Traits, IteratorType,</text>
@@ -41,7 +41,7 @@
 <!-- Node3 -->
 <g id="Node000003" class="node">
 <title>Node3</title>
-<g id="a_Node000003"><a xlink:href="classPonca_1_1KdTreeNearestQueryBase.html" target="_top" xlink:title=" ">
+<g id="a_Node000003"><a xlink:href="classPonca_1_1KdTreeNearestQueryBase.html" target="_top" xlink:title="Extension of the Query class that allows to read the result of a nearest neighbor search on the KdTre...">
 <polygon fill="white" stroke="#666666" points="310.5,-100 158.5,-100 158.5,-59 310.5,-59 310.5,-100"/>
 <text text-anchor="start" x="166.5" y="-88" font-family="Helvetica,sans-Serif" font-size="10.00">Ponca::KdTreeNearestQuery</text>
 <text text-anchor="start" x="166.5" y="-77" font-family="Helvetica,sans-Serif" font-size="10.00">Base&lt; Traits, IteratorType,</text>
@@ -61,7 +61,7 @@
 <!-- Node4 -->
 <g id="Node000004" class="node">
 <title>Node4</title>
-<g id="a_Node000004"><a xlink:href="classPonca_1_1KdTreeRangeQueryBase.html" target="_top" xlink:title=" ">
+<g id="a_Node000004"><a xlink:href="classPonca_1_1KdTreeRangeQueryBase.html" target="_top" xlink:title="Extension of the Query class that allows to read the result of a range neighbors search on the KdTree...">
 <polygon fill="white" stroke="#666666" points="319,-41 150,-41 150,0 319,0 319,-41"/>
 <text text-anchor="start" x="158" y="-29" font-family="Helvetica,sans-Serif" font-size="10.00">Ponca::KdTreeRangeQueryBase</text>
 <text text-anchor="start" x="158" y="-18" font-family="Helvetica,sans-Serif" font-size="10.00">&lt; Traits, IteratorType,</text>

@@ -1,5 +1,5 @@
 <map id="Ponca::QueryOutputIsRange&lt; Index, Scalar &gt;" name="Ponca::QueryOutputIsRange&lt; Index, Scalar &gt;">
-<area shape="rect" id="Node000001" title="Base class for range queries." alt="" coords="5,119,216,319"/>
-<area shape="rect" id="Node000002" href="$group__spatialpartitioning.html#structPonca_1_1QueryOutputBase" title="Base class for queries output type." alt="" coords="23,5,199,71"/>
+<area shape="rect" id="Node000001" title="Class to construct the range query output." alt="" coords="5,119,216,339"/>
+<area shape="rect" id="Node000002" href="$group__spatialpartitioning.html#structPonca_1_1QueryOutputBase" title="Base class for queries output types." alt="" coords="23,5,199,71"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="113,84,113,119,108,119,108,84"/>
 </map>

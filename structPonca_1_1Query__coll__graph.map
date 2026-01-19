@@ -1,7 +1,7 @@
 <map id="Ponca::Query&lt; Input_, Output_ &gt;" name="Ponca::Query&lt; Input_, Output_ &gt;">
-<area shape="rect" id="Node000001" title=" " alt="" coords="5,119,153,219"/>
+<area shape="rect" id="Node000001" title="Composes the Query object depending on an input type and output type." alt="" coords="5,119,153,259"/>
 <area shape="rect" id="Node000002" title=" " alt="" coords="11,5,65,71"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="55,83,66,118,61,119,50,85"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="53,83,63,118,57,119,48,85"/>
 <area shape="rect" id="Node000003" title=" " alt="" coords="89,5,155,71"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="110,85,98,119,93,118,105,83"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="112,85,102,119,97,117,107,83"/>
 </map>

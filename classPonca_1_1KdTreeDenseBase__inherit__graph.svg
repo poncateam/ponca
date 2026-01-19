@@ -138,7 +138,7 @@ var sectionId = 'dynsection-0';
 <text text-anchor="start" x="4" y="-494.5" font-family="Helvetica,sans-Serif" font-size="10.00">+</text>
 <text text-anchor="start" x="17" y="-494.5" font-family="Helvetica,sans-Serif" font-size="10.00">sample_count()</text>
 <text text-anchor="start" x="4" y="-479.5" font-family="Helvetica,sans-Serif" font-size="10.00">+</text>
-<text text-anchor="start" x="17" y="-479.5" font-family="Helvetica,sans-Serif" font-size="10.00">point_count()</text>
+<text text-anchor="start" x="17" y="-479.5" font-family="Helvetica,sans-Serif" font-size="10.00">pointCount()</text>
 <text text-anchor="start" x="4" y="-464.5" font-family="Helvetica,sans-Serif" font-size="10.00">+</text>
 <text text-anchor="start" x="17" y="-464.5" font-family="Helvetica,sans-Serif" font-size="10.00">leaf_count()</text>
 <text text-anchor="start" x="4" y="-449.5" font-family="Helvetica,sans-Serif" font-size="10.00">+</text>
@@ -147,7 +147,7 @@ var sectionId = 'dynsection-0';
 <text text-anchor="start" x="17" y="-434.5" font-family="Helvetica,sans-Serif" font-size="10.00">points()</text>
 <text text-anchor="start" x="4" y="-419.5" font-family="Helvetica,sans-Serif" font-size="10.00">+</text>
 <text text-anchor="start" x="17" y="-419.5" font-family="Helvetica,sans-Serif" font-size="10.00">nodes()</text>
-<text text-anchor="start" x="17" y="-404.5" font-family="Helvetica,sans-Serif" font-size="10.00">and 16 more...</text>
+<text text-anchor="start" x="17" y="-404.5" font-family="Helvetica,sans-Serif" font-size="10.00">and 22 more...</text>
 <text text-anchor="start" x="4" y="-389.5" font-family="Helvetica,sans-Serif" font-size="10.00">#</text>
 <text text-anchor="start" x="17" y="-389.5" font-family="Helvetica,sans-Serif" font-size="10.00">KdTreeBase()</text>
 <text text-anchor="start" x="4" y="-374.5" font-family="Helvetica,sans-Serif" font-size="10.00">#</text>

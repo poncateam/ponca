@@ -11,7 +11,7 @@
 <!-- Node1 -->
 <g id="Node000001" class="node">
 <title>Node1</title>
-<g id="a_Node000001"><a xlink:title=" ">
+<g id="a_Node000001"><a xlink:title="Extension of the Query class that allows to read the result of a nearest neighbor search on the KdTre...">
 <polygon fill="#999999" stroke="transparent" points="182,-116 28,-116 28,0 182,0 182,-116"/>
 <text text-anchor="start" x="37" y="-104" font-family="Helvetica,sans-Serif" font-size="10.00">Ponca::KdTreeNearestQuery</text>
 <text text-anchor="start" x="37" y="-93" font-family="Helvetica,sans-Serif" font-size="10.00">Base&lt; Traits, IteratorType,</text>
@@ -34,24 +34,24 @@
 <!-- Node2 -->
 <g id="Node000002" class="node">
 <title>Node2</title>
-<g id="a_Node000002"><a xlink:href="classPonca_1_1KdTreeQuery.html" target="_top" xlink:title=" ">
+<g id="a_Node000002"><a xlink:href="classPonca_1_1KdTreeQuery.html" target="_top" xlink:title="Query object that provides a method to search neighbors on the KdTree depending on a distance thresho...">
 <polygon fill="white" stroke="transparent" points="108,-257 0,-257 0,-152 108,-152 108,-257"/>
 <text text-anchor="start" x="5" y="-244.5" font-family="Helvetica,sans-Serif" font-size="10.00">Ponca::KdTreeQuery</text>
 <text text-anchor="start" x="29.5" y="-233.5" font-family="Helvetica,sans-Serif" font-size="10.00">&lt; Traits &gt;</text>
-<text text-anchor="start" x="5" y="-218.5" font-family="Helvetica,sans-Serif" font-size="10.00">#</text>
-<text text-anchor="start" x="19" y="-218.5" font-family="Helvetica,sans-Serif" font-size="10.00">m_kdtree</text>
-<text text-anchor="start" x="5" y="-203.5" font-family="Helvetica,sans-Serif" font-size="10.00">#</text>
-<text text-anchor="start" x="19" y="-203.5" font-family="Helvetica,sans-Serif" font-size="10.00">m_stack</text>
-<text text-anchor="start" x="5" y="-188.5" font-family="Helvetica,sans-Serif" font-size="10.00">+</text>
-<text text-anchor="start" x="19" y="-188.5" font-family="Helvetica,sans-Serif" font-size="10.00">KdTreeQuery()</text>
-<text text-anchor="start" x="5" y="-173.5" font-family="Helvetica,sans-Serif" font-size="10.00">#</text>
-<text text-anchor="start" x="19" y="-173.5" font-family="Helvetica,sans-Serif" font-size="10.00">reset()</text>
-<text text-anchor="start" x="5" y="-158.5" font-family="Helvetica,sans-Serif" font-size="10.00">#</text>
-<text text-anchor="start" x="19" y="-158.5" font-family="Helvetica,sans-Serif" font-size="10.00">search_internal()</text>
-<polygon fill="#bfbfbf" stroke="#bfbfbf" points="0,-228.5 0,-228.5 108,-228.5 108,-228.5 0,-228.5"/>
-<polygon fill="#bfbfbf" stroke="#bfbfbf" points="0,-198.5 0,-198.5 17,-198.5 17,-198.5 0,-198.5"/>
-<polygon fill="#bfbfbf" stroke="#bfbfbf" points="17,-198.5 17,-198.5 108,-198.5 108,-198.5 17,-198.5"/>
-<polygon fill="none" stroke="#bfbfbf" points="0,-152 0,-257 108,-257 108,-152 0,-152"/>
+<text text-anchor="start" x="6" y="-218.5" font-family="Helvetica,sans-Serif" font-size="10.00">#</text>
+<text text-anchor="start" x="21" y="-218.5" font-family="Helvetica,sans-Serif" font-size="10.00">m_kdtree</text>
+<text text-anchor="start" x="6" y="-203.5" font-family="Helvetica,sans-Serif" font-size="10.00">#</text>
+<text text-anchor="start" x="21" y="-203.5" font-family="Helvetica,sans-Serif" font-size="10.00">m_stack</text>
+<text text-anchor="start" x="6" y="-188.5" font-family="Helvetica,sans-Serif" font-size="10.00">+</text>
+<text text-anchor="start" x="21" y="-188.5" font-family="Helvetica,sans-Serif" font-size="10.00">KdTreeQuery()</text>
+<text text-anchor="start" x="6" y="-173.5" font-family="Helvetica,sans-Serif" font-size="10.00">#</text>
+<text text-anchor="start" x="21" y="-173.5" font-family="Helvetica,sans-Serif" font-size="10.00">reset()</text>
+<text text-anchor="start" x="6" y="-158.5" font-family="Helvetica,sans-Serif" font-size="10.00">#</text>
+<text text-anchor="start" x="21" y="-158.5" font-family="Helvetica,sans-Serif" font-size="10.00">searchInternal()</text>
+<polygon fill="#666666" stroke="#666666" points="0,-228.5 0,-228.5 108,-228.5 108,-228.5 0,-228.5"/>
+<polygon fill="#666666" stroke="#666666" points="0,-198.5 0,-198.5 19,-198.5 19,-198.5 0,-198.5"/>
+<polygon fill="#666666" stroke="#666666" points="19,-198.5 19,-198.5 108,-198.5 108,-198.5 19,-198.5"/>
+<polygon fill="none" stroke="#666666" points="0,-152 0,-257 108,-257 108,-152 0,-152"/>
 </a>
 </g>
 </g>

@@ -1,35 +1,35 @@
 <map id="Ponca::KnnGraphKNearestQuery&lt; Traits &gt;" name="Ponca::KnnGraphKNearestQuery&lt; Traits &gt;">
-<area shape="rect" id="Node000001" title=" " alt="" coords="67,1763,291,1883"/>
-<area shape="rect" id="Node000002" href="$group__spatialpartitioning.html" title=" " alt="" coords="81,1619,277,1713"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="182,1727,182,1763,177,1763,177,1727"/>
-<area shape="rect" id="Node000003" href="$group__spatialpartitioning.html#structPonca_1_1Query" title=" " alt="" coords="5,1071,153,1171"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="93,1184,173,1618,168,1619,88,1185"/>
+<area shape="rect" id="Node000001" title="Extension of the Query class that allows to read the result of a k&#45;nearest neighbors search on the Kn..." alt="" coords="67,1823,291,1963"/>
+<area shape="rect" id="Node000002" href="$group__spatialpartitioning.html" title=" " alt="" coords="81,1679,277,1773"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="182,1787,182,1822,177,1822,177,1787"/>
+<area shape="rect" id="Node000003" href="$group__spatialpartitioning.html#structPonca_1_1Query" title="Composes the Query object depending on an input type and output type." alt="" coords="5,1061,153,1201"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="96,1214,174,1678,169,1679,91,1215"/>
 <area shape="rect" id="Node000004" title=" " alt="" coords="79,798,133,863"/>
-<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="104,878,87,1071,81,1070,99,877"/>
-<area shape="rect" id="Node000019" href="$group__spatialpartitioning.html#structPonca_1_1Query" title=" " alt="" coords="177,1071,325,1171"/>
-<area shape="poly" id="edge20_Node000019_Node000004" title=" " alt="" coords="118,876,132,930,155,987,181,1030,210,1069,206,1072,176,1033,150,989,127,932,112,878"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="105,878,88,1060,83,1060,99,877"/>
+<area shape="rect" id="Node000019" href="$group__spatialpartitioning.html#structPonca_1_1Query" title="Composes the Query object depending on an input type and output type." alt="" coords="177,1061,325,1201"/>
+<area shape="poly" id="edge20_Node000019_Node000004" title=" " alt="" coords="118,876,133,930,155,987,199,1059,194,1062,150,989,128,932,113,878"/>
 <area shape="rect" id="Node000005" title=" " alt="" coords="164,798,229,863"/>
-<area shape="poly" id="edge4_Node000003_Node000005" title=" " alt="" coords="186,878,147,989,108,1071,103,1069,142,987,181,876"/>
-<area shape="poly" id="edge21_Node000019_Node000005" title=" " alt="" coords="208,877,245,1070,239,1071,203,878"/>
-<area shape="rect" id="Node000006" href="$group__spatialpartitioning.html#structPonca_1_1KNearestIndexQuery" title="Base Query class combining QueryInputIsIndex and QueryOutputIsKNearest." alt="" coords="201,1447,397,1527"/>
-<area shape="poly" id="edge5_Node000002_Node000006" title=" " alt="" coords="268,1539,213,1620,209,1617,263,1536"/>
-<area shape="rect" id="Node000007" href="$group__spatialpartitioning.html" title=" " alt="" coords="269,1283,487,1397"/>
-<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="343,1411,323,1448,318,1445,338,1408"/>
-<area shape="rect" id="Node000008" href="$group__spatialpartitioning.html#structPonca_1_1QueryInputIsIndex" title="Base class for queries storing points." alt="" coords="380,1061,560,1181"/>
-<area shape="poly" id="edge7_Node000007_Node000008" title=" " alt="" coords="481,1195,478,1228,468,1260,453,1284,449,1281,464,1258,473,1227,476,1194"/>
+<area shape="poly" id="edge4_Node000003_Node000005" title=" " alt="" coords="186,877,147,989,115,1062,111,1060,142,987,181,876"/>
+<area shape="poly" id="edge21_Node000019_Node000005" title=" " alt="" coords="208,877,241,1060,236,1061,202,878"/>
+<area shape="rect" id="Node000006" href="$group__spatialpartitioning.html#structPonca_1_1KNearestIndexQuery" title="Base Query class combining QueryInputIsIndex and QueryOutputIsKNearest." alt="" coords="201,1507,397,1587"/>
+<area shape="poly" id="edge5_Node000002_Node000006" title=" " alt="" coords="268,1599,213,1680,209,1677,263,1596"/>
+<area shape="rect" id="Node000007" href="$group__spatialpartitioning.html" title=" " alt="" coords="269,1303,487,1457"/>
+<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="338,1471,320,1508,316,1505,333,1469"/>
+<area shape="rect" id="Node000008" href="$group__spatialpartitioning.html#structPonca_1_1QueryInputIsIndex" title="Extension of QueryInput that handles an index based search, in a partitioning structure." alt="" coords="380,1061,560,1201"/>
+<area shape="poly" id="edge7_Node000007_Node000008" title=" " alt="" coords="480,1215,477,1248,468,1280,456,1304,451,1301,464,1278,472,1247,475,1214"/>
 <area shape="rect" id="Node000009" href="$group__spatialpartitioning.html" title=" " alt="" coords="398,771,542,891"/>
-<area shape="poly" id="edge8_Node000008_Node000009" title=" " alt="" coords="473,905,473,1061,467,1061,467,905"/>
+<area shape="poly" id="edge8_Node000008_Node000009" title=" " alt="" coords="473,904,473,1060,467,1060,467,904"/>
 <area shape="rect" id="Node000010" href="$group__spatialpartitioning.html#structPonca_1_1QueryInputBase" title="Base class for queries input type." alt="" coords="433,133,598,199"/>
 <area shape="poly" id="edge9_Node000009_Node000010" title=" " alt="" coords="533,211,549,276,563,381,569,464,564,546,545,650,525,714,501,771,496,769,520,712,539,649,559,546,564,464,558,381,543,276,528,212"/>
-<area shape="rect" id="Node000011" href="$group__spatialpartitioning.html#structPonca_1_1QueryInput" title="Base class for typed queries input type." alt="" coords="390,376,534,496"/>
+<area shape="rect" id="Node000011" href="$group__spatialpartitioning.html#structPonca_1_1QueryInput" title="Base class for Query input type." alt="" coords="390,376,534,496"/>
 <area shape="poly" id="edge11_Node000011_Node000010" title=" " alt="" coords="509,213,476,376,471,375,504,212"/>
 <area shape="poly" id="edge10_Node000009_Node000011" title=" " alt="" coords="466,509,471,770,466,770,461,510"/>
-<area shape="rect" id="Node000012" href="$group__spatialpartitioning.html#structPonca_1_1QueryOutputIsKNearest" title="Base class for knearest queries." alt="" coords="584,1051,799,1191"/>
-<area shape="poly" id="edge12_Node000007_Node000012" title=" " alt="" coords="582,1201,461,1285,458,1280,579,1196"/>
-<area shape="rect" id="Node000013" href="$group__spatialpartitioning.html#structPonca_1_1QueryOutputBase" title="Base class for queries output type." alt="" coords="569,798,745,863"/>
-<area shape="poly" id="edge13_Node000012_Node000013" title=" " alt="" coords="665,877,686,1050,680,1051,659,878"/>
+<area shape="rect" id="Node000012" href="$group__spatialpartitioning.html#structPonca_1_1QueryOutputIsKNearest" title="Class to construct the knearest queries." alt="" coords="584,1051,799,1211"/>
+<area shape="poly" id="edge12_Node000007_Node000012" title=" " alt="" coords="582,1221,477,1304,473,1300,579,1217"/>
+<area shape="rect" id="Node000013" href="$group__spatialpartitioning.html#structPonca_1_1QueryOutputBase" title="Base class for queries output types." alt="" coords="569,798,745,863"/>
+<area shape="poly" id="edge13_Node000012_Node000013" title=" " alt="" coords="665,877,685,1050,679,1051,659,877"/>
 <area shape="rect" id="Node000014" href="$classPonca_1_1limited__priority__queue.html" title=" " alt="" coords="769,673,1038,988"/>
-<area shape="poly" id="edge14_Node000012_Node000014" title=" " alt="" coords="790,990,754,1039,750,1036,786,987"/>
+<area shape="poly" id="edge14_Node000012_Node000014" title=" " alt="" coords="794,990,759,1038,755,1035,790,987"/>
 <area shape="rect" id="Node000015" title=" " alt="" coords="615,389,783,483"/>
 <area shape="poly" id="edge15_Node000014_Node000015" title=" " alt="" coords="726,482,817,657,812,660,721,485"/>
 <area shape="rect" id="Node000016" title=" " alt="" coords="639,133,760,199"/>
@@ -38,5 +38,5 @@
 <area shape="poly" id="edge17_Node000016_Node000017" title=" " alt="" coords="702,71,702,117,697,117,697,71"/>
 <area shape="rect" id="Node000018" href="$classPonca_1_1limited__priority__queue.html" title="The limited_priority_queue class is similar to std::priority_queue but has a limited capacity and han..." alt="" coords="807,276,1005,596"/>
 <area shape="poly" id="edge18_Node000014_Node000018" title=" " alt="" coords="907,610,907,673,902,673,902,610"/>
-<area shape="poly" id="edge19_Node000007_Node000019" title=" " alt="" coords="228,1184,224,1222,227,1240,234,1257,250,1278,270,1295,267,1299,246,1282,229,1260,221,1242,219,1222,223,1184"/>
+<area shape="poly" id="edge19_Node000007_Node000019" title=" " alt="" coords="226,1214,225,1247,234,1278,250,1301,270,1321,266,1324,246,1304,229,1280,219,1248,220,1214"/>
 </map>

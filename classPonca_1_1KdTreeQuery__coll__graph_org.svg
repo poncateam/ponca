@@ -11,21 +11,21 @@
 <!-- Node1 -->
 <g id="Node000001" class="node">
 <title>Node1</title>
-<g id="a_Node000001"><a xlink:title=" ">
+<g id="a_Node000001"><a xlink:title="Query object that provides a method to search neighbors on the KdTree depending on a distance thresho...">
 <polygon fill="#999999" stroke="transparent" points="257.5,-90 149.5,-90 149.5,0 257.5,0 257.5,-90"/>
 <text text-anchor="start" x="154.5" y="-78" font-family="Helvetica,sans-Serif" font-size="10.00">Ponca::KdTreeQuery</text>
 <text text-anchor="start" x="179" y="-67" font-family="Helvetica,sans-Serif" font-size="10.00">&lt; Traits &gt;</text>
-<text text-anchor="start" x="154.5" y="-52" font-family="Helvetica,sans-Serif" font-size="10.00">#</text>
-<text text-anchor="start" x="168.5" y="-52" font-family="Helvetica,sans-Serif" font-size="10.00">m_kdtree</text>
-<text text-anchor="start" x="154.5" y="-37" font-family="Helvetica,sans-Serif" font-size="10.00">+</text>
-<text text-anchor="start" x="168.5" y="-37" font-family="Helvetica,sans-Serif" font-size="10.00">KdTreeQuery()</text>
-<text text-anchor="start" x="154.5" y="-22" font-family="Helvetica,sans-Serif" font-size="10.00">#</text>
-<text text-anchor="start" x="168.5" y="-22" font-family="Helvetica,sans-Serif" font-size="10.00">reset()</text>
-<text text-anchor="start" x="154.5" y="-7" font-family="Helvetica,sans-Serif" font-size="10.00">#</text>
-<text text-anchor="start" x="168.5" y="-7" font-family="Helvetica,sans-Serif" font-size="10.00">search_internal()</text>
+<text text-anchor="start" x="155.5" y="-52" font-family="Helvetica,sans-Serif" font-size="10.00">#</text>
+<text text-anchor="start" x="170.5" y="-52" font-family="Helvetica,sans-Serif" font-size="10.00">m_kdtree</text>
+<text text-anchor="start" x="155.5" y="-37" font-family="Helvetica,sans-Serif" font-size="10.00">+</text>
+<text text-anchor="start" x="170.5" y="-37" font-family="Helvetica,sans-Serif" font-size="10.00">KdTreeQuery()</text>
+<text text-anchor="start" x="155.5" y="-22" font-family="Helvetica,sans-Serif" font-size="10.00">#</text>
+<text text-anchor="start" x="170.5" y="-22" font-family="Helvetica,sans-Serif" font-size="10.00">reset()</text>
+<text text-anchor="start" x="155.5" y="-7" font-family="Helvetica,sans-Serif" font-size="10.00">#</text>
+<text text-anchor="start" x="170.5" y="-7" font-family="Helvetica,sans-Serif" font-size="10.00">searchInternal()</text>
 <polygon fill="#666666" stroke="#666666" points="149.5,-62 149.5,-62 257.5,-62 257.5,-62 149.5,-62"/>
-<polygon fill="#666666" stroke="#666666" points="149.5,-47 149.5,-47 166.5,-47 166.5,-47 149.5,-47"/>
-<polygon fill="#666666" stroke="#666666" points="166.5,-47 166.5,-47 257.5,-47 257.5,-47 166.5,-47"/>
+<polygon fill="#666666" stroke="#666666" points="149.5,-47 149.5,-47 168.5,-47 168.5,-47 149.5,-47"/>
+<polygon fill="#666666" stroke="#666666" points="168.5,-47 168.5,-47 257.5,-47 257.5,-47 168.5,-47"/>
 <polygon fill="none" stroke="#666666" points="149.5,0 149.5,-90 257.5,-90 257.5,0 149.5,0"/>
 </a>
 </g>

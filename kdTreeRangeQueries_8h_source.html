@@ -51,7 +51,7 @@ MathJax.Hub.Config({
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Ponca
-   &#160;<span id="projectnumber">80e34c4ed3322bafe25349c3ea7523ca4a3aa60d</span>
+   &#160;<span id="projectnumber">312bd1755a04ef27033a33388722a52cddb9ba4a</span>
    </div>
    <div id="projectbrief">Point Cloud Analysis library</div>
   </td>
@@ -138,102 +138,126 @@ $(document).ready(function(){initNavTree('kdTreeRangeQueries_8h_source.html','')
 <div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span> </div>
 <div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespacePonca.html">Ponca</a> {</div>
 <div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span> </div>
-<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="keyword">template</span> &lt;<span class="keyword">typename</span> Traits,</div>
-<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span>        <span class="keyword">template</span> &lt;<span class="keyword">typename</span>,<span class="keyword">typename</span>,<span class="keyword">typename</span>&gt; <span class="keyword">typename</span> IteratorType,</div>
-<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span>        <span class="keyword">typename</span> QueryType&gt;</div>
-<div class="foldopen" id="foldopen00018" data-start="{" data-end="};">
-<div class="line"><a id="l00018" name="l00018"></a><span class="lineno"><a class="line" href="classPonca_1_1KdTreeRangeQueryBase.html">   18</a></span><span class="keyword">class </span><a class="code hl_class" href="classPonca_1_1KdTreeRangeQueryBase.html">KdTreeRangeQueryBase</a> : <span class="keyword">public</span> <a class="code hl_class" href="classPonca_1_1KdTreeQuery.html">KdTreeQuery</a>&lt;Traits&gt;, <span class="keyword">public</span> QueryType</div>
-<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>                              <span class="comment">//public RangeIndexQuery&lt;typename Traits::IndexType, typename Traits::DataPoint::Scalar&gt;</span></div>
-<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>{</div>
-<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span><span class="keyword">public</span>:</div>
-<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>    <span class="keyword">using </span>DataPoint      = <span class="keyword">typename</span> Traits::DataPoint;</div>
-<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>    <span class="keyword">using </span>IndexType      = <span class="keyword">typename</span> Traits::IndexType;</div>
-<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>    <span class="keyword">using </span>Scalar         = <span class="keyword">typename</span> DataPoint::Scalar;</div>
-<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>    <span class="keyword">using </span>VectorType     = <span class="keyword">typename</span> DataPoint::VectorType;</div>
-<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>    <span class="keyword">using </span><a class="code hl_class" href="classPonca_1_1KdTreeQuery.html">QueryAccelType</a> = <a class="code hl_class" href="classPonca_1_1KdTreeQuery.html">KdTreeQuery&lt;Traits&gt;</a>;</div>
-<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>    <span class="keyword">using </span>Iterator       = IteratorType&lt;IndexType, DataPoint, KdTreeRangeQueryBase&gt;;</div>
-<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span> </div>
-<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span><span class="keyword">protected</span>:</div>
-<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>    <span class="keyword">friend</span> Iterator;</div>
-<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span> </div>
-<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span><span class="keyword">public</span>:</div>
-<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>    <a class="code hl_class" href="classPonca_1_1KdTreeRangeQueryBase.html">KdTreeRangeQueryBase</a>(<span class="keyword">const</span> <a class="code hl_class" href="classPonca_1_1KdTreeBase.html">KdTreeBase&lt;Traits&gt;</a>* kdtree, Scalar radius, <span class="keyword">typename</span> QueryType::InputType input) :</div>
-<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>            <a class="code hl_class" href="classPonca_1_1KdTreeQuery.html">KdTreeQuery&lt;Traits&gt;</a>(kdtree), QueryType(radius, input){}</div>
-<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span> </div>
-<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span><span class="keyword">public</span>:</div>
-<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>    <span class="keyword">inline</span> Iterator begin(){</div>
-<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>        <a class="code hl_function" href="classPonca_1_1KdTreeQuery.html#a2c02164e69a15dbf89c4b80b625cc0ac">QueryAccelType::reset</a>();</div>
-<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>        QueryType::reset();</div>
-<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>        Iterator it(<span class="keyword">this</span>);</div>
-<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>        this-&gt;advance(it);</div>
-<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>        <span class="keywordflow">return</span> it;</div>
-<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>    }</div>
-<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>    <span class="keyword">inline</span> Iterator end(){</div>
-<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>        <span class="keywordflow">return</span> Iterator(<span class="keyword">this</span>, <a class="code hl_variable" href="classPonca_1_1KdTreeQuery.html#ae44fd9c230d857ffdca7171ac6418ab0">QueryAccelType::m_kdtree</a>-&gt;point_count());</div>
-<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>    }</div>
-<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span> </div>
-<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span><span class="keyword">protected</span>:</div>
-<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>    <span class="keyword">inline</span> <span class="keywordtype">void</span> advance(Iterator&amp; it){</div>
-<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>        <span class="keyword">const</span> <span class="keyword">auto</span>&amp; points  = <a class="code hl_variable" href="classPonca_1_1KdTreeQuery.html#ae44fd9c230d857ffdca7171ac6418ab0">QueryAccelType::m_kdtree</a>-&gt;points();</div>
-<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>        <span class="keyword">const</span> <span class="keyword">auto</span>&amp; indices = <a class="code hl_variable" href="classPonca_1_1KdTreeQuery.html#ae44fd9c230d857ffdca7171ac6418ab0">QueryAccelType::m_kdtree</a>-&gt;samples();</div>
-<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>        <span class="keyword">const</span> <span class="keyword">auto</span>&amp; point   = QueryType::getInputPosition(points);</div>
-<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span> </div>
-<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>        <span class="keywordflow">if</span> (points.empty() || indices.empty())</div>
-<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>        {</div>
-<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>            it = end();</div>
-<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>            <span class="keywordflow">return</span>;</div>
-<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>        }</div>
-<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span> </div>
-<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>        <span class="keyword">auto</span> descentDistanceThreshold = [<span class="keyword">this</span>](){<span class="keywordflow">return</span> QueryType::descentDistanceThreshold();};</div>
-<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>        <span class="keyword">auto</span> skipFunctor              = [<span class="keyword">this</span>](IndexType idx){<span class="keywordflow">return</span> QueryType::skipIndexFunctor(idx);};</div>
-<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>        <span class="keyword">auto</span> processNeighborFunctor   = [&amp;it](IndexType idx, IndexType i, Scalar)</div>
-<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>        {</div>
-<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>            it.m_index = idx;</div>
-<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>            it.m_start = i+1;</div>
-<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>            <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
-<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>        };</div>
-<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span> </div>
-<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>        <span class="keywordflow">for</span>(IndexType i=it.m_start; i&lt;it.m_end; ++i)</div>
-<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>        {</div>
-<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>            IndexType idx = indices[i];</div>
-<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>            <span class="keywordflow">if</span>(skipFunctor(idx)) <span class="keywordflow">continue</span>;</div>
-<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span> </div>
-<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>            Scalar d = (point - points[idx].pos()).squaredNorm();</div>
-<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>            <span class="keywordflow">if</span>(d &lt; descentDistanceThreshold())</div>
-<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>            {</div>
-<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>                <span class="keywordflow">if</span>( processNeighborFunctor(idx, i, d) ) <span class="keywordflow">return</span>;</div>
-<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>            }</div>
-<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>        }</div>
-<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span> </div>
-<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>        <span class="keywordflow">if</span> (<a class="code hl_class" href="classPonca_1_1KdTreeQuery.html">KdTreeQuery&lt;Traits&gt;::search_internal</a>(point,</div>
-<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>                                                 [&amp;it](IndexType start, IndexType end)</div>
-<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>                                                 {</div>
-<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>                                                     it.m_start = start;</div>
-<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>                                                     it.m_end   = end;</div>
-<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>                                                 },</div>
-<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>                                                 descentDistanceThreshold,</div>
-<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>                                                 skipFunctor,</div>
-<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>                                                 processNeighborFunctor))</div>
-<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>            it.m_index = <span class="keyword">static_cast&lt;</span>IndexType<span class="keyword">&gt;</span>(points.size());</div>
-<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>    }</div>
-<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span>};</div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span><span class="keyword">template</span> &lt;<span class="keyword">typename</span> Traits,</div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>        <span class="keyword">template</span> &lt;<span class="keyword">typename</span>,<span class="keyword">typename</span>,<span class="keyword">typename</span>&gt; <span class="keyword">typename</span> IteratorType,</div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>        <span class="keyword">typename</span> QueryType&gt;</div>
+<div class="foldopen" id="foldopen00025" data-start="{" data-end="};">
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno"><a class="line" href="classPonca_1_1KdTreeRangeQueryBase.html">   25</a></span><span class="keyword">class </span><a class="code hl_class" href="classPonca_1_1KdTreeRangeQueryBase.html">KdTreeRangeQueryBase</a> : <span class="keyword">public</span> <a class="code hl_class" href="classPonca_1_1KdTreeQuery.html">KdTreeQuery</a>&lt;Traits&gt;, <span class="keyword">public</span> QueryType</div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>                              <span class="comment">//public RangeIndexQuery&lt;typename Traits::IndexType, typename Traits::DataPoint::Scalar&gt;</span></div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>{</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>    <span class="keyword">using </span>DataPoint      = <span class="keyword">typename</span> Traits::DataPoint;</div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>    <span class="keyword">using </span>IndexType      = <span class="keyword">typename</span> Traits::IndexType;</div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>    <span class="keyword">using </span>Scalar         = <span class="keyword">typename</span> DataPoint::Scalar;</div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>    <span class="keyword">using </span>VectorType     = <span class="keyword">typename</span> DataPoint::VectorType;</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>    <span class="keyword">using </span><a class="code hl_class" href="classPonca_1_1KdTreeQuery.html">QueryAccelType</a> = <a class="code hl_class" href="classPonca_1_1KdTreeQuery.html">KdTreeQuery&lt;Traits&gt;</a>;</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>    <span class="keyword">using </span>Iterator       = IteratorType&lt;IndexType, DataPoint, KdTreeRangeQueryBase&gt;;</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>    <span class="keyword">using </span><a class="code hl_class" href="classPonca_1_1KdTreeRangeQueryBase.html">Self</a>           = <a class="code hl_class" href="classPonca_1_1KdTreeRangeQueryBase.html">KdTreeRangeQueryBase&lt;Traits, IteratorType, QueryType&gt;</a>;</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span> </div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span><span class="keyword">protected</span>:</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>    <span class="keyword">friend</span> Iterator;</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span> </div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>    <a class="code hl_class" href="classPonca_1_1KdTreeRangeQueryBase.html">KdTreeRangeQueryBase</a>(<span class="keyword">const</span> <a class="code hl_class" href="classPonca_1_1KdTreeBase.html">KdTreeBase&lt;Traits&gt;</a>* kdtree, Scalar radius, <span class="keyword">typename</span> QueryType::InputType input) :</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>            <a class="code hl_class" href="classPonca_1_1KdTreeQuery.html">KdTreeQuery&lt;Traits&gt;</a>(kdtree), QueryType(radius, input){}</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span> </div>
+<div class="foldopen" id="foldopen00045" data-start="{" data-end="}">
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno"><a class="line" href="classPonca_1_1KdTreeRangeQueryBase.html#a916a4cfb1dae0b6b9ff81a2ff6080cef">   45</a></span>    <span class="keyword">inline</span> <a class="code hl_class" href="classPonca_1_1KdTreeRangeQueryBase.html">Self</a>&amp; <a class="code hl_function" href="classPonca_1_1KdTreeRangeQueryBase.html#a916a4cfb1dae0b6b9ff81a2ff6080cef">operator()</a>(<span class="keyword">typename</span> QueryType::InputType input, Scalar radius)</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>    {</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>        <span class="keywordflow">return</span> QueryType::template operator()&lt;<a class="code hl_class" href="classPonca_1_1KdTreeRangeQueryBase.html">Self</a>&gt;(input, radius);</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>    }</div>
 </div>
-<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span> </div>
-<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span><span class="keyword">template</span> &lt;<span class="keyword">typename</span> Traits&gt;</div>
-<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span><span class="keyword">using </span><a class="code hl_class" href="classPonca_1_1KdTreeRangeQueryBase.html">KdTreeRangeIndexQuery</a> = <a class="code hl_class" href="classPonca_1_1KdTreeRangeQueryBase.html">KdTreeRangeQueryBase</a>&lt; Traits, <a class="code hl_class" href="classPonca_1_1KdTreeRangeIterator.html">KdTreeRangeIterator</a>,</div>
-<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span>        <a class="code hl_struct" href="group__spatialpartitioning.html#structPonca_1_1RangeIndexQuery">RangeIndexQuery&lt;typename Traits::IndexType, typename Traits::DataPoint::Scalar&gt;</a>&gt;;</div>
-<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span><span class="keyword">template</span> &lt;<span class="keyword">typename</span> Traits&gt;</div>
-<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span><span class="keyword">using </span><a class="code hl_class" href="classPonca_1_1KdTreeRangeQueryBase.html">KdTreeRangePointQuery</a> = <a class="code hl_class" href="classPonca_1_1KdTreeRangeQueryBase.html">KdTreeRangeQueryBase</a>&lt; Traits, <a class="code hl_class" href="classPonca_1_1KdTreeRangeIterator.html">KdTreeRangeIterator</a>,</div>
-<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span>        <a class="code hl_struct" href="group__spatialpartitioning.html#structPonca_1_1RangePointQuery">RangePointQuery&lt;typename Traits::IndexType, typename Traits::DataPoint&gt;</a>&gt;;</div>
-<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span>} <span class="comment">// namespace ponca</span></div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span> </div>
+<div class="foldopen" id="foldopen00051" data-start="{" data-end="}">
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno"><a class="line" href="classPonca_1_1KdTreeRangeQueryBase.html#ab0673080c3ad0d7c7759487f35a4425c">   51</a></span>    <span class="keyword">inline</span> <a class="code hl_class" href="classPonca_1_1KdTreeRangeQueryBase.html">Self</a>&amp; <a class="code hl_function" href="classPonca_1_1KdTreeRangeQueryBase.html#ab0673080c3ad0d7c7759487f35a4425c">operator()</a>(<span class="keyword">typename</span> QueryType::InputType input)</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>    {</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>        <span class="keywordflow">return</span> QueryType::template operator()&lt;<a class="code hl_class" href="classPonca_1_1KdTreeRangeQueryBase.html">Self</a>&gt;(input);</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>    }</div>
+</div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span> </div>
+<div class="foldopen" id="foldopen00057" data-start="{" data-end="}">
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno"><a class="line" href="classPonca_1_1KdTreeRangeQueryBase.html#a05460c4f179f0459a223663f84002239">   57</a></span>    <span class="keyword">inline</span> Iterator <a class="code hl_function" href="classPonca_1_1KdTreeRangeQueryBase.html#a05460c4f179f0459a223663f84002239">begin</a>(){</div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>        <a class="code hl_function" href="classPonca_1_1KdTreeQuery.html#a2c02164e69a15dbf89c4b80b625cc0ac">QueryAccelType::reset</a>();</div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>        QueryType::reset();</div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>        Iterator it(<span class="keyword">this</span>);</div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>        this-&gt;advance(it);</div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>        <span class="keywordflow">return</span> it;</div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>    }</div>
+</div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span> </div>
+<div class="foldopen" id="foldopen00066" data-start="{" data-end="}">
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno"><a class="line" href="classPonca_1_1KdTreeRangeQueryBase.html#aeb6d60385bd3fb3fa0fdb52e7864df3f">   66</a></span>    <span class="keyword">inline</span> Iterator <a class="code hl_function" href="classPonca_1_1KdTreeRangeQueryBase.html#aeb6d60385bd3fb3fa0fdb52e7864df3f">end</a>(){</div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>        <span class="keywordflow">return</span> Iterator(<span class="keyword">this</span>, <a class="code hl_variable" href="classPonca_1_1KdTreeQuery.html#ae44fd9c230d857ffdca7171ac6418ab0">QueryAccelType::m_kdtree</a>-&gt;pointCount());</div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>    }</div>
+</div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span> </div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span><span class="keyword">protected</span>:</div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>    <span class="keyword">inline</span> <span class="keywordtype">void</span> advance(Iterator&amp; it){</div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>        <span class="keyword">const</span> <span class="keyword">auto</span>&amp; points  = <a class="code hl_variable" href="classPonca_1_1KdTreeQuery.html#ae44fd9c230d857ffdca7171ac6418ab0">QueryAccelType::m_kdtree</a>-&gt;points();</div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>        <span class="keyword">const</span> <span class="keyword">auto</span>&amp; indices = <a class="code hl_variable" href="classPonca_1_1KdTreeQuery.html#ae44fd9c230d857ffdca7171ac6418ab0">QueryAccelType::m_kdtree</a>-&gt;samples();</div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>        <span class="keyword">const</span> <span class="keyword">auto</span>&amp; point   = QueryType::getInputPosition(points);</div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span> </div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>        <span class="keywordflow">if</span> (points.empty() || indices.empty())</div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>        {</div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>            it = <a class="code hl_function" href="classPonca_1_1KdTreeRangeQueryBase.html#aeb6d60385bd3fb3fa0fdb52e7864df3f">end</a>();</div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>            <span class="keywordflow">return</span>;</div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>        }</div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span> </div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>        <span class="keyword">auto</span> descentDistanceThreshold = [<span class="keyword">this</span>](){<span class="keywordflow">return</span> QueryType::descentDistanceThreshold();};</div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>        <span class="keyword">auto</span> skipFunctor              = [<span class="keyword">this</span>](IndexType idx){<span class="keywordflow">return</span> QueryType::skipIndexFunctor(idx);};</div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>        <span class="keyword">auto</span> processNeighborFunctor   = [&amp;it](IndexType idx, IndexType i, Scalar)</div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>        {</div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>            it.m_index = idx;</div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>            it.m_start = i+1;</div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>            <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>        };</div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span> </div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>        <span class="keywordflow">for</span>(IndexType i=it.m_start; i&lt;it.m_end; ++i)</div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span>        {</div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>            IndexType idx = indices[i];</div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>            <span class="keywordflow">if</span>(skipFunctor(idx)) <span class="keywordflow">continue</span>;</div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span> </div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span>            Scalar d = (point - points[idx].pos()).squaredNorm();</div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>            <span class="keywordflow">if</span>(d &lt; descentDistanceThreshold())</div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span>            {</div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span>                <span class="keywordflow">if</span>( processNeighborFunctor(idx, i, d) ) <span class="keywordflow">return</span>;</div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span>            }</div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span>        }</div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span> </div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span>        <span class="keywordflow">if</span> (<a class="code hl_function" href="classPonca_1_1KdTreeQuery.html#a7921819468c7f2a16d5ac5ff85b1d93d">KdTreeQuery&lt;Traits&gt;::searchInternal</a>(point,</div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span>                                                 [&amp;it](IndexType start, IndexType <a class="code hl_function" href="classPonca_1_1KdTreeRangeQueryBase.html#aeb6d60385bd3fb3fa0fdb52e7864df3f">end</a>)</div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span>                                                 {</div>
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span>                                                     it.m_start = start;</div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span>                                                     it.m_end   = <a class="code hl_function" href="classPonca_1_1KdTreeRangeQueryBase.html#aeb6d60385bd3fb3fa0fdb52e7864df3f">end</a>;</div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span>                                                 },</div>
+<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span>                                                 descentDistanceThreshold,</div>
+<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span>                                                 skipFunctor,</div>
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span>                                                 processNeighborFunctor))</div>
+<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span>            it.m_index = <span class="keyword">static_cast&lt;</span>IndexType<span class="keyword">&gt;</span>(points.size());</div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span>    }</div>
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span>};</div>
+</div>
+<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span> </div>
+<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span><span class="keyword">template</span> &lt;<span class="keyword">typename</span> Traits&gt;</div>
+<div class="line"><a id="l00123" name="l00123"></a><span class="lineno"><a class="line" href="namespacePonca.html#a7815a4253ccae8a5c0e4fa2cbb206b17">  123</a></span><span class="keyword">using </span><a class="code hl_class" href="classPonca_1_1KdTreeRangeQueryBase.html">KdTreeRangeIndexQuery</a> = <a class="code hl_class" href="classPonca_1_1KdTreeRangeQueryBase.html">KdTreeRangeQueryBase</a>&lt; Traits, <a class="code hl_class" href="classPonca_1_1KdTreeRangeIterator.html">KdTreeRangeIterator</a>,</div>
+<div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span>        <a class="code hl_struct" href="group__spatialpartitioning.html#structPonca_1_1RangeIndexQuery">RangeIndexQuery&lt;typename Traits::IndexType, typename Traits::DataPoint::Scalar&gt;</a>&gt;;</div>
+<div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span><span class="keyword">template</span> &lt;<span class="keyword">typename</span> Traits&gt;</div>
+<div class="line"><a id="l00132" name="l00132"></a><span class="lineno"><a class="line" href="namespacePonca.html#ac3fc0a276495b2cb4a0a0b0e31556781">  132</a></span><span class="keyword">using </span><a class="code hl_class" href="classPonca_1_1KdTreeRangeQueryBase.html">KdTreeRangePointQuery</a> = <a class="code hl_class" href="classPonca_1_1KdTreeRangeQueryBase.html">KdTreeRangeQueryBase</a>&lt; Traits, <a class="code hl_class" href="classPonca_1_1KdTreeRangeIterator.html">KdTreeRangeIterator</a>,</div>
+<div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span>        <a class="code hl_struct" href="group__spatialpartitioning.html#structPonca_1_1RangePointQuery">RangePointQuery&lt;typename Traits::IndexType, typename Traits::DataPoint&gt;</a>&gt;;</div>
+<div class="line"><a id="l00134" name="l00134"></a><span class="lineno">  134</span>} <span class="comment">// namespace ponca</span></div>
 <div class="ttc" id="aclassPonca_1_1KdTreeBase_html"><div class="ttname"><a href="classPonca_1_1KdTreeBase.html">Ponca::KdTreeBase</a></div><div class="ttdoc">[KdTreeSparse type definition]</div><div class="ttdef"><b>Definition</b> <a href="kdTree_8h_source.html#l00103">kdTree.h:104</a></div></div>
-<div class="ttc" id="aclassPonca_1_1KdTreeQuery_html"><div class="ttname"><a href="classPonca_1_1KdTreeQuery.html">Ponca::KdTreeQuery</a></div><div class="ttdef"><b>Definition</b> <a href="kdTreeQuery_8h_source.html#l00016">kdTreeQuery.h:17</a></div></div>
-<div class="ttc" id="aclassPonca_1_1KdTreeQuery_html_a2c02164e69a15dbf89c4b80b625cc0ac"><div class="ttname"><a href="classPonca_1_1KdTreeQuery.html#a2c02164e69a15dbf89c4b80b625cc0ac">Ponca::KdTreeQuery::reset</a></div><div class="ttdeci">void reset()</div><div class="ttdoc">Init stack for a new search.</div><div class="ttdef"><b>Definition</b> <a href="kdTreeQuery_8h_source.html#l00028">kdTreeQuery.h:28</a></div></div>
-<div class="ttc" id="aclassPonca_1_1KdTreeQuery_html_ae44fd9c230d857ffdca7171ac6418ab0"><div class="ttname"><a href="classPonca_1_1KdTreeQuery.html#ae44fd9c230d857ffdca7171ac6418ab0">Ponca::KdTreeQuery::m_kdtree</a></div><div class="ttdeci">const KdTreeBase&lt; Traits &gt; * m_kdtree</div><div class="ttdoc">[KdTreeQuery kdtree type]</div><div class="ttdef"><b>Definition</b> <a href="kdTreeQuery_8h_source.html#l00034">kdTreeQuery.h:34</a></div></div>
-<div class="ttc" id="aclassPonca_1_1KdTreeRangeIterator_html"><div class="ttname"><a href="classPonca_1_1KdTreeRangeIterator.html">Ponca::KdTreeRangeIterator</a></div><div class="ttdef"><b>Definition</b> <a href="kdTreeRangeIterator_8h_source.html#l00012">kdTreeRangeIterator.h:13</a></div></div>
-<div class="ttc" id="aclassPonca_1_1KdTreeRangeQueryBase_html"><div class="ttname"><a href="classPonca_1_1KdTreeRangeQueryBase.html">Ponca::KdTreeRangeQueryBase</a></div><div class="ttdef"><b>Definition</b> <a href="kdTreeRangeQueries_8h_source.html#l00018">kdTreeRangeQueries.h:20</a></div></div>
-<div class="ttc" id="agroup__spatialpartitioning_html_structPonca_1_1RangeIndexQuery"><div class="ttname"><a href="group__spatialpartitioning.html#structPonca_1_1RangeIndexQuery">Ponca::RangeIndexQuery</a></div><div class="ttdoc">Base Query class combining QueryInputIsIndex and QueryOutputIsRange.</div><div class="ttdef"><b>Definition</b> <a href="query_8h_source.html#l00214">query.h:214</a></div></div>
-<div class="ttc" id="agroup__spatialpartitioning_html_structPonca_1_1RangePointQuery"><div class="ttname"><a href="group__spatialpartitioning.html#structPonca_1_1RangePointQuery">Ponca::RangePointQuery</a></div><div class="ttdoc">Base Query class combining QueryInputIsPosition and QueryOutputIsRange.</div><div class="ttdef"><b>Definition</b> <a href="query_8h_source.html#l00217">query.h:217</a></div></div>
+<div class="ttc" id="aclassPonca_1_1KdTreeQuery_html"><div class="ttname"><a href="classPonca_1_1KdTreeQuery.html">Ponca::KdTreeQuery</a></div><div class="ttdoc">Query object that provides a method to search neighbors on the KdTree depending on a distance thresho...</div><div class="ttdef"><b>Definition</b> <a href="kdTreeQuery_8h_source.html#l00021">kdTreeQuery.h:22</a></div></div>
+<div class="ttc" id="aclassPonca_1_1KdTreeQuery_html_a2c02164e69a15dbf89c4b80b625cc0ac"><div class="ttname"><a href="classPonca_1_1KdTreeQuery.html#a2c02164e69a15dbf89c4b80b625cc0ac">Ponca::KdTreeQuery::reset</a></div><div class="ttdeci">void reset()</div><div class="ttdoc">Init stack for a new search.</div><div class="ttdef"><b>Definition</b> <a href="kdTreeQuery_8h_source.html#l00033">kdTreeQuery.h:33</a></div></div>
+<div class="ttc" id="aclassPonca_1_1KdTreeQuery_html_a7921819468c7f2a16d5ac5ff85b1d93d"><div class="ttname"><a href="classPonca_1_1KdTreeQuery.html#a7921819468c7f2a16d5ac5ff85b1d93d">Ponca::KdTreeQuery::searchInternal</a></div><div class="ttdeci">bool searchInternal(const VectorType &amp;point, LeafPreparationFunctor prepareLeafTraversal, DescentDistanceThresholdFunctor descentDistanceThreshold, SkipIndexFunctor skipFunctor, ProcessNeighborFunctor processNeighborFunctor)</div><div class="ttdoc">Search internally the neighbors of a point using the kdtree.</div><div class="ttdef"><b>Definition</b> <a href="kdTreeQuery_8h_source.html#l00049">kdTreeQuery.h:49</a></div></div>
+<div class="ttc" id="aclassPonca_1_1KdTreeQuery_html_ae44fd9c230d857ffdca7171ac6418ab0"><div class="ttname"><a href="classPonca_1_1KdTreeQuery.html#ae44fd9c230d857ffdca7171ac6418ab0">Ponca::KdTreeQuery::m_kdtree</a></div><div class="ttdeci">const KdTreeBase&lt; Traits &gt; * m_kdtree</div><div class="ttdoc">[KdTreeQuery kdtree type]</div><div class="ttdef"><b>Definition</b> <a href="kdTreeQuery_8h_source.html#l00039">kdTreeQuery.h:39</a></div></div>
+<div class="ttc" id="aclassPonca_1_1KdTreeRangeIterator_html"><div class="ttname"><a href="classPonca_1_1KdTreeRangeIterator.html">Ponca::KdTreeRangeIterator</a></div><div class="ttdoc">Input iterator to read the KdTreeRangeQueryBase object.</div><div class="ttdef"><b>Definition</b> <a href="kdTreeRangeIterator_8h_source.html#l00030">kdTreeRangeIterator.h:31</a></div></div>
+<div class="ttc" id="aclassPonca_1_1KdTreeRangeQueryBase_html"><div class="ttname"><a href="classPonca_1_1KdTreeRangeQueryBase.html">Ponca::KdTreeRangeQueryBase</a></div><div class="ttdoc">Extension of the Query class that allows to read the result of a range neighbors search on the KdTree...</div><div class="ttdef"><b>Definition</b> <a href="kdTreeRangeQueries_8h_source.html#l00025">kdTreeRangeQueries.h:27</a></div></div>
+<div class="ttc" id="aclassPonca_1_1KdTreeRangeQueryBase_html_a05460c4f179f0459a223663f84002239"><div class="ttname"><a href="classPonca_1_1KdTreeRangeQueryBase.html#a05460c4f179f0459a223663f84002239">Ponca::KdTreeRangeQueryBase::begin</a></div><div class="ttdeci">Iterator begin()</div><div class="ttdoc">Returns an iterator to the beginning of the Range Query.</div><div class="ttdef"><b>Definition</b> <a href="kdTreeRangeQueries_8h_source.html#l00057">kdTreeRangeQueries.h:57</a></div></div>
+<div class="ttc" id="aclassPonca_1_1KdTreeRangeQueryBase_html_a916a4cfb1dae0b6b9ff81a2ff6080cef"><div class="ttname"><a href="classPonca_1_1KdTreeRangeQueryBase.html#a916a4cfb1dae0b6b9ff81a2ff6080cef">Ponca::KdTreeRangeQueryBase::operator()</a></div><div class="ttdeci">Self &amp; operator()(typename QueryType::InputType input, Scalar radius)</div><div class="ttdoc">Call the range neighbors query with new input and radius parameters.</div><div class="ttdef"><b>Definition</b> <a href="kdTreeRangeQueries_8h_source.html#l00045">kdTreeRangeQueries.h:45</a></div></div>
+<div class="ttc" id="aclassPonca_1_1KdTreeRangeQueryBase_html_ab0673080c3ad0d7c7759487f35a4425c"><div class="ttname"><a href="classPonca_1_1KdTreeRangeQueryBase.html#ab0673080c3ad0d7c7759487f35a4425c">Ponca::KdTreeRangeQueryBase::operator()</a></div><div class="ttdeci">Self &amp; operator()(typename QueryType::InputType input)</div><div class="ttdoc">Call the range neighbors query with new input parameter.</div><div class="ttdef"><b>Definition</b> <a href="kdTreeRangeQueries_8h_source.html#l00051">kdTreeRangeQueries.h:51</a></div></div>
+<div class="ttc" id="aclassPonca_1_1KdTreeRangeQueryBase_html_aeb6d60385bd3fb3fa0fdb52e7864df3f"><div class="ttname"><a href="classPonca_1_1KdTreeRangeQueryBase.html#aeb6d60385bd3fb3fa0fdb52e7864df3f">Ponca::KdTreeRangeQueryBase::end</a></div><div class="ttdeci">Iterator end()</div><div class="ttdoc">Returns an iterator to the end of the Range Query.</div><div class="ttdef"><b>Definition</b> <a href="kdTreeRangeQueries_8h_source.html#l00066">kdTreeRangeQueries.h:66</a></div></div>
+<div class="ttc" id="agroup__spatialpartitioning_html_structPonca_1_1RangeIndexQuery"><div class="ttname"><a href="group__spatialpartitioning.html#structPonca_1_1RangeIndexQuery">Ponca::RangeIndexQuery</a></div><div class="ttdoc">Base Query class combining QueryInputIsIndex and QueryOutputIsRange.</div><div class="ttdef"><b>Definition</b> <a href="query_8h_source.html#l00354">query.h:354</a></div></div>
+<div class="ttc" id="agroup__spatialpartitioning_html_structPonca_1_1RangePointQuery"><div class="ttname"><a href="group__spatialpartitioning.html#structPonca_1_1RangePointQuery">Ponca::RangePointQuery</a></div><div class="ttdoc">Base Query class combining QueryInputIsPosition and QueryOutputIsRange.</div><div class="ttdef"><b>Definition</b> <a href="query_8h_source.html#l00357">query.h:357</a></div></div>
 <div class="ttc" id="anamespacePonca_html"><div class="ttname"><a href="namespacePonca.html">Ponca</a></div><div class="ttdoc">This Source Code Form is subject to the terms of the Mozilla Public License, v.</div><div class="ttdef"><b>Definition</b> <a href="limitedPriorityQueue_8h_source.html#l00014">limitedPriorityQueue.h:14</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
@@ -241,7 +265,7 @@ $(document).ready(function(){initNavTree('kdTreeRangeQueries_8h_source.html','')
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_695d95a8d8fbec601a248c0414764298.html">Ponca</a></li><li class="navelem"><a class="el" href="dir_ce16314fc45f8638543c5146aff64d4a.html">src</a></li><li class="navelem"><a class="el" href="dir_12c32e53c838db195d209d78f62f8479.html">SpatialPartitioning</a></li><li class="navelem"><a class="el" href="dir_1714f3cab0d35a638840fab853fb5d40.html">KdTree</a></li><li class="navelem"><a class="el" href="dir_78945f6d57580a0e0a066fb3a369c0e6.html">Query</a></li><li class="navelem"><b>kdTreeRangeQueries.h</b></li>
-    <li class="footer">Generated on Tue Dec 9 2025 21:53:30 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
+    <li class="footer">Generated on Mon Jan 19 2026 18:33:14 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
   </ul>
 </div>
 </body>

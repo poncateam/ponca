@@ -1,6 +1,6 @@
 <map id="Ponca::KdTreeNearestQueryBase&lt; Traits, IteratorType, QueryType &gt;" name="Ponca::KdTreeNearestQueryBase&lt; Traits, IteratorType, QueryType &gt;">
-<area shape="rect" id="Node000001" title=" " alt="" coords="43,193,248,348"/>
-<area shape="rect" id="Node000002" href="$classPonca_1_1KdTreeQuery.html" title=" " alt="" coords="5,5,149,145"/>
+<area shape="rect" id="Node000001" title="Extension of the Query class that allows to read the result of a nearest neighbor search on the KdTre..." alt="" coords="43,193,248,348"/>
+<area shape="rect" id="Node000002" href="$classPonca_1_1KdTreeQuery.html" title="Query object that provides a method to search neighbors on the KdTree depending on a distance thresho..." alt="" coords="5,5,149,145"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="109,158,121,192,116,194,104,159"/>
 <area shape="rect" id="Node000003" title=" " alt="" coords="173,43,256,108"/>
 <area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="201,122,175,194,170,192,196,120"/>

@@ -20,7 +20,7 @@
 <!-- Node1 -->
 <g id="Node000001" class="node">
 <title>Node1</title>
-<g id="a_Node000001"><a xlink:href="group__spatialpartitioning.html#structPonca_1_1Query" target="_top" xlink:title=" ">
+<g id="a_Node000001"><a xlink:href="group__spatialpartitioning.html#structPonca_1_1Query" target="_top" xlink:title="Composes the Query object depending on an input type and output type.">
 <polygon fill="white" stroke="#666666" points="208,-64.5 91,-64.5 91,-34.5 208,-34.5 208,-64.5"/>
 <text text-anchor="start" x="99" y="-52.5" font-family="Helvetica,sans-Serif" font-size="10.00">Ponca::Query&lt; Input</text>
 <text text-anchor="middle" x="149.5" y="-41.5" font-family="Helvetica,sans-Serif" font-size="10.00">_, Output_ &gt;</text>
@@ -79,7 +79,7 @@
 <!-- Node3 -->
 <g id="Node000003" class="node">
 <title>Node3</title>
-<g id="a_Node000003"><a xlink:href="classPonca_1_1KnnGraphKNearestQuery.html" target="_top" xlink:title=" ">
+<g id="a_Node000003"><a xlink:href="classPonca_1_1KnnGraphKNearestQuery.html" target="_top" xlink:title="Extension of the Query class that allows to read the result of a k&#45;nearest neighbors search on the Kn...">
 <polygon fill="white" stroke="#666666" points="607,-94.5 433,-94.5 433,-64.5 607,-64.5 607,-94.5"/>
 <text text-anchor="start" x="441" y="-82.5" font-family="Helvetica,sans-Serif" font-size="10.00">Ponca::KnnGraphKNearestQuery</text>
 <text text-anchor="middle" x="520" y="-71.5" font-family="Helvetica,sans-Serif" font-size="10.00">&lt; Traits &gt;</text>
@@ -98,7 +98,7 @@
 <!-- Node5 -->
 <g id="Node000005" class="node">
 <title>Node5</title>
-<g id="a_Node000005"><a xlink:href="classPonca_1_1KnnGraphRangeQuery.html" target="_top" xlink:title=" ">
+<g id="a_Node000005"><a xlink:href="classPonca_1_1KnnGraphRangeQuery.html" target="_top" xlink:title="Extension of the Query class that allows to read the result of a range neighbor search on the KnnGrap...">
 <polygon fill="white" stroke="#666666" points="600,-35.5 440,-35.5 440,-5.5 600,-5.5 600,-35.5"/>
 <text text-anchor="start" x="448" y="-23.5" font-family="Helvetica,sans-Serif" font-size="10.00">Ponca::KnnGraphRangeQuery</text>
 <text text-anchor="middle" x="520" y="-12.5" font-family="Helvetica,sans-Serif" font-size="10.00">&lt; Traits &gt;</text>

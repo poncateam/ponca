@@ -51,7 +51,7 @@ MathJax.Hub.Config({
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Ponca
-   &#160;<span id="projectnumber">80e34c4ed3322bafe25349c3ea7523ca4a3aa60d</span>
+   &#160;<span id="projectnumber">312bd1755a04ef27033a33388722a52cddb9ba4a</span>
    </div>
    <div id="projectbrief">Point Cloud Analysis library</div>
   </td>
@@ -125,12 +125,17 @@ $(document).ready(function(){initNavTree('classPonca_1_1KdTreeQuery.html',''); i
   <div class="headertitle"><div class="title">Ponca::KdTreeQuery&lt; Traits &gt; Class Template Reference</div></div>
 </div><!--header-->
 <div class="contents">
+
+<p><a class="el" href="group__spatialpartitioning.html#structPonca_1_1Query" title="Composes the Query object depending on an input type and output type.">Query</a> object that provides a method to search neighbors on the <a class="el" href="structPonca_1_1KdTree.html" title="Abstract KdTree type with KdTreeDefaultTraits.">KdTree</a> depending on a distance threshold.  
+ <a href="classPonca_1_1KdTreeQuery.html#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="kdTreeQuery_8h_source.html">kdTreeQuery.h</a>&gt;</code></p>
 <div id="dynsection-0" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-0-trigger" src="closed.png" alt="+"/> Inheritance diagram for Ponca::KdTreeQuery&lt; Traits &gt;:</div>
 <div id="dynsection-0-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-0-content" class="dyncontent" style="display:none;">
-<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="classPonca_1_1KdTreeQuery__inherit__graph.svg" width="100%" height="565"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div></div>
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="classPonca_1_1KdTreeQuery__inherit__graph.svg" width="100%" height="595"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div></div>
 </div>
 <div id="dynsection-1" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-1-trigger" src="closed.png" alt="+"/> Collaboration diagram for Ponca::KdTreeQuery&lt; Traits &gt;:</div>
@@ -161,23 +166,26 @@ Protected Member Functions</h2></td></tr>
 <tr class="memitem:a2c02164e69a15dbf89c4b80b625cc0ac" id="r_a2c02164e69a15dbf89c4b80b625cc0ac"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1KdTreeQuery.html#a2c02164e69a15dbf89c4b80b625cc0ac">reset</a> ()</td></tr>
 <tr class="memdesc:a2c02164e69a15dbf89c4b80b625cc0ac"><td class="mdescLeft">&#160;</td><td class="mdescRight">Init stack for a new search.  <br /></td></tr>
 <tr class="separator:a2c02164e69a15dbf89c4b80b625cc0ac"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa2a201d3185968aa93f0a9856ac14fc8" id="r_aa2a201d3185968aa93f0a9856ac14fc8"><td class="memTemplParams" colspan="2">template&lt;typename LeafPreparationFunctor , typename DescentDistanceThresholdFunctor , typename SkipIndexFunctor , typename ProcessNeighborFunctor &gt; </td></tr>
-<tr class="memitem:aa2a201d3185968aa93f0a9856ac14fc8"><td class="memTemplItemLeft" align="right" valign="top">bool&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classPonca_1_1KdTreeQuery.html#aa2a201d3185968aa93f0a9856ac14fc8">search_internal</a> (const VectorType &amp;point, LeafPreparationFunctor prepareLeafTraversal, DescentDistanceThresholdFunctor descentDistanceThreshold, SkipIndexFunctor skipFunctor, ProcessNeighborFunctor processNeighborFunctor)</td></tr>
-<tr class="separator:aa2a201d3185968aa93f0a9856ac14fc8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7921819468c7f2a16d5ac5ff85b1d93d" id="r_a7921819468c7f2a16d5ac5ff85b1d93d"><td class="memTemplParams" colspan="2">template&lt;typename LeafPreparationFunctor , typename DescentDistanceThresholdFunctor , typename SkipIndexFunctor , typename ProcessNeighborFunctor &gt; </td></tr>
+<tr class="memitem:a7921819468c7f2a16d5ac5ff85b1d93d"><td class="memTemplItemLeft" align="right" valign="top">bool&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classPonca_1_1KdTreeQuery.html#a7921819468c7f2a16d5ac5ff85b1d93d">searchInternal</a> (const VectorType &amp;point, LeafPreparationFunctor prepareLeafTraversal, DescentDistanceThresholdFunctor descentDistanceThreshold, SkipIndexFunctor skipFunctor, ProcessNeighborFunctor processNeighborFunctor)</td></tr>
+<tr class="memdesc:a7921819468c7f2a16d5ac5ff85b1d93d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Search internally the neighbors of a point using the kdtree.  <br /></td></tr>
+<tr class="separator:a7921819468c7f2a16d5ac5ff85b1d93d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-attribs" name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
 <tr class="memitem:ae44fd9c230d857ffdca7171ac6418ab0" id="r_ae44fd9c230d857ffdca7171ac6418ab0"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="classPonca_1_1KdTreeBase.html">KdTreeBase</a>&lt; Traits &gt; *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1KdTreeQuery.html#ae44fd9c230d857ffdca7171ac6418ab0">m_kdtree</a> { nullptr }</td></tr>
-<tr class="memdesc:ae44fd9c230d857ffdca7171ac6418ab0"><td class="mdescLeft">&#160;</td><td class="mdescRight">[<a class="el" href="classPonca_1_1KdTreeQuery.html">KdTreeQuery</a> kdtree type]  <br /></td></tr>
+<tr class="memdesc:ae44fd9c230d857ffdca7171ac6418ab0"><td class="mdescLeft">&#160;</td><td class="mdescRight">[<a class="el" href="classPonca_1_1KdTreeQuery.html" title="Query object that provides a method to search neighbors on the KdTree depending on a distance thresho...">KdTreeQuery</a> kdtree type]  <br /></td></tr>
 <tr class="separator:ae44fd9c230d857ffdca7171ac6418ab0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6d3590a201b336ce0858be23ef006001" id="r_a6d3590a201b336ce0858be23ef006001"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classPonca_1_1Stack.html">Stack</a>&lt; <a class="el" href="structPonca_1_1IndexSquaredDistance.html">IndexSquaredDistance</a>&lt; IndexType, Scalar &gt;, 2 *Traits::MAX_DEPTH &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1KdTreeQuery.html#a6d3590a201b336ce0858be23ef006001">m_stack</a></td></tr>
-<tr class="memdesc:a6d3590a201b336ce0858be23ef006001"><td class="mdescLeft">&#160;</td><td class="mdescRight">[<a class="el" href="classPonca_1_1KdTreeQuery.html">KdTreeQuery</a> kdtree type]  <br /></td></tr>
+<tr class="memdesc:a6d3590a201b336ce0858be23ef006001"><td class="mdescLeft">&#160;</td><td class="mdescRight">[<a class="el" href="classPonca_1_1KdTreeQuery.html" title="Query object that provides a method to search neighbors on the KdTree depending on a distance thresho...">KdTreeQuery</a> kdtree type]  <br /></td></tr>
 <tr class="separator:a6d3590a201b336ce0858be23ef006001"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><div class="compoundTemplParams">template&lt;typename Traits&gt;<br />
-class Ponca::KdTreeQuery&lt; Traits &gt;</div>
-<p class="definition">Definition at line <a class="el" href="kdTreeQuery_8h_source.html#l00016">16</a> of file <a class="el" href="kdTreeQuery_8h_source.html">kdTreeQuery.h</a>.</p>
+class Ponca::KdTreeQuery&lt; Traits &gt;</div><p><a class="el" href="group__spatialpartitioning.html#structPonca_1_1Query" title="Composes the Query object depending on an input type and output type.">Query</a> object that provides a method to search neighbors on the <a class="el" href="structPonca_1_1KdTree.html" title="Abstract KdTree type with KdTreeDefaultTraits.">KdTree</a> depending on a distance threshold. </p>
+<p>Base class for <a class="el" href="classPonca_1_1KdTreeRangeQueryBase.html" title="Extension of the Query class that allows to read the result of a range neighbors search on the KdTree...">KdTreeRangeQueryBase</a>, <a class="el" href="classPonca_1_1KdTreeKNearestQueryBase.html" title="Extension of the Query class that allows to read the result of a k-nearest neighbors search on the Kd...">KdTreeKNearestQueryBase</a> and <a class="el" href="classPonca_1_1KdTreeNearestQueryBase.html" title="Extension of the Query class that allows to read the result of a nearest neighbor search on the KdTre...">KdTreeNearestQueryBase</a>. </p>
+
+<p class="definition">Definition at line <a class="el" href="kdTreeQuery_8h_source.html#l00021">21</a> of file <a class="el" href="kdTreeQuery_8h_source.html">kdTreeQuery.h</a>.</p>
 </div><h2 class="groupheader">Member Typedef Documentation</h2>
 <a id="ac585cd363341c2979d149341c2aaa12f" name="ac585cd363341c2979d149341c2aaa12f"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ac585cd363341c2979d149341c2aaa12f">&#9670;&#160;</a></span>DataPoint</h2>
@@ -193,7 +201,7 @@ template&lt;typename Traits &gt; </div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="kdTreeQuery_8h_source.html#l00019">19</a> of file <a class="el" href="kdTreeQuery_8h_source.html">kdTreeQuery.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="kdTreeQuery_8h_source.html#l00024">24</a> of file <a class="el" href="kdTreeQuery_8h_source.html">kdTreeQuery.h</a>.</p>
 
 </div>
 </div>
@@ -211,7 +219,7 @@ template&lt;typename Traits &gt; </div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="kdTreeQuery_8h_source.html#l00020">20</a> of file <a class="el" href="kdTreeQuery_8h_source.html">kdTreeQuery.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="kdTreeQuery_8h_source.html#l00025">25</a> of file <a class="el" href="kdTreeQuery_8h_source.html">kdTreeQuery.h</a>.</p>
 
 </div>
 </div>
@@ -229,7 +237,7 @@ template&lt;typename Traits &gt; </div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="kdTreeQuery_8h_source.html#l00021">21</a> of file <a class="el" href="kdTreeQuery_8h_source.html">kdTreeQuery.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="kdTreeQuery_8h_source.html#l00026">26</a> of file <a class="el" href="kdTreeQuery_8h_source.html">kdTreeQuery.h</a>.</p>
 
 </div>
 </div>
@@ -247,7 +255,7 @@ template&lt;typename Traits &gt; </div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="kdTreeQuery_8h_source.html#l00022">22</a> of file <a class="el" href="kdTreeQuery_8h_source.html">kdTreeQuery.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="kdTreeQuery_8h_source.html#l00027">27</a> of file <a class="el" href="kdTreeQuery_8h_source.html">kdTreeQuery.h</a>.</p>
 
 </div>
 </div>
@@ -278,7 +286,7 @@ template&lt;typename Traits &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="kdTreeQuery_8h_source.html#l00024">24</a> of file <a class="el" href="kdTreeQuery_8h_source.html">kdTreeQuery.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="kdTreeQuery_8h_source.html#l00029">29</a> of file <a class="el" href="kdTreeQuery_8h_source.html">kdTreeQuery.h</a>.</p>
 
 </div>
 </div>
@@ -310,12 +318,12 @@ template&lt;typename Traits &gt; </div>
 
 <p>Init stack for a new search. </p>
 
-<p class="definition">Definition at line <a class="el" href="kdTreeQuery_8h_source.html#l00028">28</a> of file <a class="el" href="kdTreeQuery_8h_source.html">kdTreeQuery.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="kdTreeQuery_8h_source.html#l00033">33</a> of file <a class="el" href="kdTreeQuery_8h_source.html">kdTreeQuery.h</a>.</p>
 
 </div>
 </div>
-<a id="aa2a201d3185968aa93f0a9856ac14fc8" name="aa2a201d3185968aa93f0a9856ac14fc8"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa2a201d3185968aa93f0a9856ac14fc8">&#9670;&#160;</a></span>search_internal()</h2>
+<a id="a7921819468c7f2a16d5ac5ff85b1d93d" name="a7921819468c7f2a16d5ac5ff85b1d93d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7921819468c7f2a16d5ac5ff85b1d93d">&#9670;&#160;</a></span>searchInternal()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -328,7 +336,7 @@ template&lt;typename LeafPreparationFunctor , typename DescentDistanceThresholdF
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">bool <a class="el" href="classPonca_1_1KdTreeQuery.html">Ponca::KdTreeQuery</a>&lt; Traits &gt;::search_internal </td>
+          <td class="memname">bool <a class="el" href="classPonca_1_1KdTreeQuery.html">Ponca::KdTreeQuery</a>&lt; Traits &gt;::searchInternal </td>
           <td>(</td>
           <td class="paramtype">const VectorType &amp;&#160;</td>
           <td class="paramname"><em>point</em>, </td>
@@ -369,9 +377,11 @@ template&lt;typename LeafPreparationFunctor , typename DescentDistanceThresholdF
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Search internally the neighbors of a point using the kdtree. </p>
 <dl class="section return"><dt>Returns</dt><dd>false if the kdtree is empty </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="kdTreeQuery_8h_source.html#l00043">43</a> of file <a class="el" href="kdTreeQuery_8h_source.html">kdTreeQuery.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="kdTreeQuery_8h_source.html#l00049">49</a> of file <a class="el" href="kdTreeQuery_8h_source.html">kdTreeQuery.h</a>.</p>
 
 </div>
 </div>
@@ -398,9 +408,9 @@ template&lt;typename Traits &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p>[<a class="el" href="classPonca_1_1KdTreeQuery.html">KdTreeQuery</a> kdtree type] </p>
+<p>[<a class="el" href="classPonca_1_1KdTreeQuery.html" title="Query object that provides a method to search neighbors on the KdTree depending on a distance thresho...">KdTreeQuery</a> kdtree type] </p>
 
-<p class="definition">Definition at line <a class="el" href="kdTreeQuery_8h_source.html#l00034">34</a> of file <a class="el" href="kdTreeQuery_8h_source.html">kdTreeQuery.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="kdTreeQuery_8h_source.html#l00039">39</a> of file <a class="el" href="kdTreeQuery_8h_source.html">kdTreeQuery.h</a>.</p>
 
 </div>
 </div>
@@ -426,9 +436,9 @@ template&lt;typename Traits &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p>[<a class="el" href="classPonca_1_1KdTreeQuery.html">KdTreeQuery</a> kdtree type] </p>
+<p>[<a class="el" href="classPonca_1_1KdTreeQuery.html" title="Query object that provides a method to search neighbors on the KdTree depending on a distance thresho...">KdTreeQuery</a> kdtree type] </p>
 
-<p class="definition">Definition at line <a class="el" href="kdTreeQuery_8h_source.html#l00036">36</a> of file <a class="el" href="kdTreeQuery_8h_source.html">kdTreeQuery.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="kdTreeQuery_8h_source.html#l00041">41</a> of file <a class="el" href="kdTreeQuery_8h_source.html">kdTreeQuery.h</a>.</p>
 
 </div>
 </div>
@@ -438,7 +448,7 @@ template&lt;typename Traits &gt; </div>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="namespacePonca.html">Ponca</a></li><li class="navelem"><a class="el" href="classPonca_1_1KdTreeQuery.html">KdTreeQuery</a></li>
-    <li class="footer">Generated on Tue Dec 9 2025 21:53:30 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
+    <li class="footer">Generated on Mon Jan 19 2026 18:33:14 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
   </ul>
 </div>
 </body>

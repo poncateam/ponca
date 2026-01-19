@@ -51,7 +51,7 @@ MathJax.Hub.Config({
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Ponca
-   &#160;<span id="projectnumber">80e34c4ed3322bafe25349c3ea7523ca4a3aa60d</span>
+   &#160;<span id="projectnumber">312bd1755a04ef27033a33388722a52cddb9ba4a</span>
    </div>
    <div id="projectbrief">Point Cloud Analysis library</div>
   </td>
@@ -132,31 +132,75 @@ $(document).ready(function(){initNavTree('kdTreeNearestIterator_8h_source.html',
 <div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span> </div>
 <div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="preprocessor">#pragma once</span></div>
 <div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span> </div>
-<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespacePonca.html">Ponca</a> {</div>
-<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span> </div>
-<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="keyword">template</span>&lt;<span class="keyword">typename</span> Index&gt;</div>
-<div class="foldopen" id="foldopen00012" data-start="{" data-end="};">
-<div class="line"><a id="l00012" name="l00012"></a><span class="lineno"><a class="line" href="classPonca_1_1KdTreeNearestIterator.html">   12</a></span><span class="keyword">class </span><a class="code hl_class" href="classPonca_1_1KdTreeNearestIterator.html">KdTreeNearestIterator</a></div>
-<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span>{</div>
-<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="keyword">public</span>:</div>
-<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span>    <span class="keyword">inline</span> <a class="code hl_class" href="classPonca_1_1KdTreeNearestIterator.html">KdTreeNearestIterator</a>() = <span class="keywordflow">default</span>;</div>
-<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span>    <span class="keyword">inline</span> <a class="code hl_class" href="classPonca_1_1KdTreeNearestIterator.html">KdTreeNearestIterator</a>(Index index) : m_index(index) {}</div>
-<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span>    <span class="keyword">virtual</span> <span class="keyword">inline</span> <a class="code hl_class" href="classPonca_1_1KdTreeNearestIterator.html">~KdTreeNearestIterator</a>() = <span class="keywordflow">default</span>;</div>
-<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span> </div>
-<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span><span class="keyword">public</span>:</div>
-<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>    <span class="keyword">inline</span> <span class="keywordtype">bool</span> operator !=(<span class="keyword">const</span> <a class="code hl_class" href="classPonca_1_1KdTreeNearestIterator.html">KdTreeNearestIterator</a>&amp; other)<span class="keyword"> const</span></div>
-<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span><span class="keyword">    </span>{<span class="keywordflow">return</span> m_index != other.m_index;}</div>
-<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>    <span class="keyword">inline</span> <span class="keywordtype">void</span> operator ++(<span class="keywordtype">int</span>) {++m_index;}</div>
-<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>    <span class="keyword">inline</span> <a class="code hl_class" href="classPonca_1_1KdTreeNearestIterator.html">KdTreeNearestIterator</a>&amp; operator ++() {++m_index; <span class="keywordflow">return</span> *<span class="keyword">this</span>;}</div>
-<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>    <span class="keyword">inline</span> Index operator * ()<span class="keyword"> const </span>{<span class="keywordflow">return</span> m_index;}</div>
-<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span> </div>
-<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span><span class="keyword">protected</span>:</div>
-<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>    Index m_index {-1};</div>
-<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>};</div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="preprocessor">#include &lt;iterator&gt;</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="preprocessor">#include &lt;cstddef&gt;</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span> </div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespacePonca.html">Ponca</a> {</div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span> </div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span><span class="keyword">template</span>&lt;<span class="keyword">typename</span> Index&gt;</div>
+<div class="foldopen" id="foldopen00026" data-start="{" data-end="};">
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno"><a class="line" href="classPonca_1_1KdTreeNearestIterator.html">   26</a></span><span class="keyword">class </span><a class="code hl_class" href="classPonca_1_1KdTreeNearestIterator.html">KdTreeNearestIterator</a></div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>{</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>    <span class="keyword">using </span>iterator_category = PONCA_MULTIARCH_CU_STD_NAMESPACE(input_iterator_tag);</div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>    <span class="keyword">using </span>difference_type   = std::ptrdiff_t;</div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>    <span class="keyword">using </span>value_type = Index;</div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>    <span class="keyword">using </span>pointer    = Index*;</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>    <span class="keyword">using </span>reference  = <span class="keyword">const</span> Index&amp;;</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span> </div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>    <span class="keyword">inline</span> <a class="code hl_class" href="classPonca_1_1KdTreeNearestIterator.html">KdTreeNearestIterator</a>() = <span class="keywordflow">default</span>;</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>    <span class="keyword">inline</span> <a class="code hl_class" href="classPonca_1_1KdTreeNearestIterator.html">KdTreeNearestIterator</a>(Index index) : m_index(index) {}</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>    <span class="keyword">virtual</span> <span class="keyword">inline</span> <a class="code hl_class" href="classPonca_1_1KdTreeNearestIterator.html">~KdTreeNearestIterator</a>() = <span class="keywordflow">default</span>;</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span> </div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span><span class="keyword">public</span>:</div>
+<div class="foldopen" id="foldopen00041" data-start="{" data-end="}">
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno"><a class="line" href="classPonca_1_1KdTreeNearestIterator.html#ab618f57a421fa45d7e4e0de6b69f6c7d">   41</a></span>    <span class="keyword">inline</span> <span class="keywordtype">bool</span> <a class="code hl_function" href="classPonca_1_1KdTreeNearestIterator.html#ab618f57a421fa45d7e4e0de6b69f6c7d">operator !=</a>(<span class="keyword">const</span> <a class="code hl_class" href="classPonca_1_1KdTreeNearestIterator.html">KdTreeNearestIterator</a>&amp; other)<span class="keyword"> const </span>{</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>        <span class="keywordflow">return</span> m_index != other.m_index;</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>    }</div>
 </div>
-<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span> </div>
-<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>} <span class="comment">// namespace ponca</span></div>
-<div class="ttc" id="aclassPonca_1_1KdTreeNearestIterator_html"><div class="ttname"><a href="classPonca_1_1KdTreeNearestIterator.html">Ponca::KdTreeNearestIterator</a></div><div class="ttdef"><b>Definition</b> <a href="kdTreeNearestIterator_8h_source.html#l00012">kdTreeNearestIterator.h:13</a></div></div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span> </div>
+<div class="foldopen" id="foldopen00046" data-start="{" data-end="}">
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno"><a class="line" href="classPonca_1_1KdTreeNearestIterator.html#a99bcee3ef7eabca3176ef84072b96766">   46</a></span>    <span class="keyword">inline</span> <span class="keywordtype">bool</span> <a class="code hl_function" href="classPonca_1_1KdTreeNearestIterator.html#a99bcee3ef7eabca3176ef84072b96766">operator ==</a>(<span class="keyword">const</span> <a class="code hl_class" href="classPonca_1_1KdTreeNearestIterator.html">KdTreeNearestIterator</a>&amp; other)<span class="keyword"> const </span>{</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>        <span class="keywordflow">return</span> m_index == other.m_index;</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>    }</div>
+</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span> </div>
+<div class="foldopen" id="foldopen00051" data-start="{" data-end="}">
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno"><a class="line" href="classPonca_1_1KdTreeNearestIterator.html#a5ab5d7984aaa7c6183435f3926035203">   51</a></span>    <span class="keyword">inline</span> <a class="code hl_class" href="classPonca_1_1KdTreeNearestIterator.html">KdTreeNearestIterator</a>&amp; <a class="code hl_function" href="classPonca_1_1KdTreeNearestIterator.html#a5ab5d7984aaa7c6183435f3926035203">operator ++</a>() {</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>        ++m_index;</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>        <span class="keywordflow">return</span> *<span class="keyword">this</span>;</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>    }</div>
+</div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span> </div>
+<div class="foldopen" id="foldopen00057" data-start="{" data-end="}">
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno"><a class="line" href="classPonca_1_1KdTreeNearestIterator.html#af24649b8da5e4e3aabb5ccd9a7ddb233">   57</a></span>    <span class="keyword">inline</span> <a class="code hl_class" href="classPonca_1_1KdTreeNearestIterator.html">KdTreeNearestIterator</a> <a class="code hl_function" href="classPonca_1_1KdTreeNearestIterator.html#af24649b8da5e4e3aabb5ccd9a7ddb233">operator++</a>(<span class="keywordtype">int</span>) {</div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>        <a class="code hl_class" href="classPonca_1_1KdTreeNearestIterator.html">KdTreeNearestIterator</a> tmp = *<span class="keyword">this</span>;</div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>        ++m_index;</div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>        <span class="keywordflow">return</span> tmp;</div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>    }</div>
+</div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span> </div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno"><a class="line" href="classPonca_1_1KdTreeNearestIterator.html#ac81fd35f0e57f63f8cf8dc640166c679">   64</a></span>    <span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code hl_function" href="classPonca_1_1KdTreeNearestIterator.html#ac81fd35f0e57f63f8cf8dc640166c679">operator +=</a>(<span class="keywordtype">int</span> i) {m_index += i;}</div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span> </div>
+<div class="foldopen" id="foldopen00067" data-start="{" data-end="}">
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno"><a class="line" href="classPonca_1_1KdTreeNearestIterator.html#a223df4d2aa3931e560c6df6d7ea1016f">   67</a></span>    <span class="keyword">inline</span> reference <a class="code hl_function" href="classPonca_1_1KdTreeNearestIterator.html#a223df4d2aa3931e560c6df6d7ea1016f">operator *</a>()<span class="keyword"> const </span>{</div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>        <span class="keywordflow">return</span> <span class="keyword">const_cast&lt;</span>reference<span class="keyword">&gt;</span>(m_index);</div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>    }</div>
+</div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span> </div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span><span class="keyword">protected</span>:</div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>    Index m_index {-1};</div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>};</div>
+</div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span> </div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>} <span class="comment">// namespace ponca</span></div>
+<div class="ttc" id="aclassPonca_1_1KdTreeNearestIterator_html"><div class="ttname"><a href="classPonca_1_1KdTreeNearestIterator.html">Ponca::KdTreeNearestIterator</a></div><div class="ttdoc">Input iterator to read the KdTreeKNearestQueryBase object.</div><div class="ttdef"><b>Definition</b> <a href="kdTreeNearestIterator_8h_source.html#l00026">kdTreeNearestIterator.h:27</a></div></div>
+<div class="ttc" id="aclassPonca_1_1KdTreeNearestIterator_html_a223df4d2aa3931e560c6df6d7ea1016f"><div class="ttname"><a href="classPonca_1_1KdTreeNearestIterator.html#a223df4d2aa3931e560c6df6d7ea1016f">Ponca::KdTreeNearestIterator::operator*</a></div><div class="ttdeci">reference operator*() const</div><div class="ttdoc">Dereference operator.</div><div class="ttdef"><b>Definition</b> <a href="kdTreeNearestIterator_8h_source.html#l00067">kdTreeNearestIterator.h:67</a></div></div>
+<div class="ttc" id="aclassPonca_1_1KdTreeNearestIterator_html_a5ab5d7984aaa7c6183435f3926035203"><div class="ttname"><a href="classPonca_1_1KdTreeNearestIterator.html#a5ab5d7984aaa7c6183435f3926035203">Ponca::KdTreeNearestIterator::operator++</a></div><div class="ttdeci">KdTreeNearestIterator &amp; operator++()</div><div class="ttdoc">Prefix increment.</div><div class="ttdef"><b>Definition</b> <a href="kdTreeNearestIterator_8h_source.html#l00051">kdTreeNearestIterator.h:51</a></div></div>
+<div class="ttc" id="aclassPonca_1_1KdTreeNearestIterator_html_a99bcee3ef7eabca3176ef84072b96766"><div class="ttname"><a href="classPonca_1_1KdTreeNearestIterator.html#a99bcee3ef7eabca3176ef84072b96766">Ponca::KdTreeNearestIterator::operator==</a></div><div class="ttdeci">bool operator==(const KdTreeNearestIterator &amp;other) const</div><div class="ttdoc">Equality operand.</div><div class="ttdef"><b>Definition</b> <a href="kdTreeNearestIterator_8h_source.html#l00046">kdTreeNearestIterator.h:46</a></div></div>
+<div class="ttc" id="aclassPonca_1_1KdTreeNearestIterator_html_ab618f57a421fa45d7e4e0de6b69f6c7d"><div class="ttname"><a href="classPonca_1_1KdTreeNearestIterator.html#ab618f57a421fa45d7e4e0de6b69f6c7d">Ponca::KdTreeNearestIterator::operator!=</a></div><div class="ttdeci">bool operator!=(const KdTreeNearestIterator &amp;other) const</div><div class="ttdoc">Inequality operand.</div><div class="ttdef"><b>Definition</b> <a href="kdTreeNearestIterator_8h_source.html#l00041">kdTreeNearestIterator.h:41</a></div></div>
+<div class="ttc" id="aclassPonca_1_1KdTreeNearestIterator_html_ac81fd35f0e57f63f8cf8dc640166c679"><div class="ttname"><a href="classPonca_1_1KdTreeNearestIterator.html#ac81fd35f0e57f63f8cf8dc640166c679">Ponca::KdTreeNearestIterator::operator+=</a></div><div class="ttdeci">void operator+=(int i)</div><div class="ttdoc">Value increment.</div><div class="ttdef"><b>Definition</b> <a href="kdTreeNearestIterator_8h_source.html#l00064">kdTreeNearestIterator.h:64</a></div></div>
+<div class="ttc" id="aclassPonca_1_1KdTreeNearestIterator_html_af24649b8da5e4e3aabb5ccd9a7ddb233"><div class="ttname"><a href="classPonca_1_1KdTreeNearestIterator.html#af24649b8da5e4e3aabb5ccd9a7ddb233">Ponca::KdTreeNearestIterator::operator++</a></div><div class="ttdeci">KdTreeNearestIterator operator++(int)</div><div class="ttdoc">Postfix increment.</div><div class="ttdef"><b>Definition</b> <a href="kdTreeNearestIterator_8h_source.html#l00057">kdTreeNearestIterator.h:57</a></div></div>
 <div class="ttc" id="anamespacePonca_html"><div class="ttname"><a href="namespacePonca.html">Ponca</a></div><div class="ttdoc">This Source Code Form is subject to the terms of the Mozilla Public License, v.</div><div class="ttdef"><b>Definition</b> <a href="limitedPriorityQueue_8h_source.html#l00014">limitedPriorityQueue.h:14</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
@@ -164,7 +208,7 @@ $(document).ready(function(){initNavTree('kdTreeNearestIterator_8h_source.html',
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_695d95a8d8fbec601a248c0414764298.html">Ponca</a></li><li class="navelem"><a class="el" href="dir_ce16314fc45f8638543c5146aff64d4a.html">src</a></li><li class="navelem"><a class="el" href="dir_12c32e53c838db195d209d78f62f8479.html">SpatialPartitioning</a></li><li class="navelem"><a class="el" href="dir_1714f3cab0d35a638840fab853fb5d40.html">KdTree</a></li><li class="navelem"><a class="el" href="dir_c0db904b16d6515468f52c3264198ba8.html">Iterator</a></li><li class="navelem"><b>kdTreeNearestIterator.h</b></li>
-    <li class="footer">Generated on Tue Dec 9 2025 21:53:30 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
+    <li class="footer">Generated on Mon Jan 19 2026 18:33:14 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
   </ul>
 </div>
 </body>

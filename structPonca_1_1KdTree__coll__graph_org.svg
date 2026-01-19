@@ -61,14 +61,14 @@
 <text text-anchor="start" x="4" y="-213" font-family="Helvetica,sans-Serif" font-size="10.00">+</text>
 <text text-anchor="start" x="17" y="-213" font-family="Helvetica,sans-Serif" font-size="10.00">sample_count()</text>
 <text text-anchor="start" x="4" y="-198" font-family="Helvetica,sans-Serif" font-size="10.00">+</text>
-<text text-anchor="start" x="17" y="-198" font-family="Helvetica,sans-Serif" font-size="10.00">point_count()</text>
+<text text-anchor="start" x="17" y="-198" font-family="Helvetica,sans-Serif" font-size="10.00">pointCount()</text>
 <text text-anchor="start" x="4" y="-183" font-family="Helvetica,sans-Serif" font-size="10.00">+</text>
 <text text-anchor="start" x="17" y="-183" font-family="Helvetica,sans-Serif" font-size="10.00">leaf_count()</text>
 <text text-anchor="start" x="4" y="-168" font-family="Helvetica,sans-Serif" font-size="10.00">+</text>
 <text text-anchor="start" x="17" y="-168" font-family="Helvetica,sans-Serif" font-size="10.00">points()</text>
 <text text-anchor="start" x="4" y="-153" font-family="Helvetica,sans-Serif" font-size="10.00">+</text>
 <text text-anchor="start" x="17" y="-153" font-family="Helvetica,sans-Serif" font-size="10.00">points()</text>
-<text text-anchor="start" x="17" y="-138" font-family="Helvetica,sans-Serif" font-size="10.00">and 16 more...</text>
+<text text-anchor="start" x="17" y="-138" font-family="Helvetica,sans-Serif" font-size="10.00">and 22 more...</text>
 <text text-anchor="start" x="4" y="-123" font-family="Helvetica,sans-Serif" font-size="10.00">#</text>
 <text text-anchor="start" x="17" y="-123" font-family="Helvetica,sans-Serif" font-size="10.00">KdTreeBase()</text>
 <text text-anchor="start" x="4" y="-108" font-family="Helvetica,sans-Serif" font-size="10.00">#</text>
@@ -127,7 +127,7 @@
 <text text-anchor="start" x="4" y="-671.5" font-family="Helvetica,sans-Serif" font-size="10.00">+</text>
 <text text-anchor="start" x="17" y="-671.5" font-family="Helvetica,sans-Serif" font-size="10.00">sample_count()</text>
 <text text-anchor="start" x="4" y="-656.5" font-family="Helvetica,sans-Serif" font-size="10.00">+</text>
-<text text-anchor="start" x="17" y="-656.5" font-family="Helvetica,sans-Serif" font-size="10.00">point_count()</text>
+<text text-anchor="start" x="17" y="-656.5" font-family="Helvetica,sans-Serif" font-size="10.00">pointCount()</text>
 <text text-anchor="start" x="4" y="-641.5" font-family="Helvetica,sans-Serif" font-size="10.00">+</text>
 <text text-anchor="start" x="17" y="-641.5" font-family="Helvetica,sans-Serif" font-size="10.00">leaf_count()</text>
 <text text-anchor="start" x="4" y="-626.5" font-family="Helvetica,sans-Serif" font-size="10.00">+</text>
@@ -136,7 +136,7 @@
 <text text-anchor="start" x="17" y="-611.5" font-family="Helvetica,sans-Serif" font-size="10.00">points()</text>
 <text text-anchor="start" x="4" y="-596.5" font-family="Helvetica,sans-Serif" font-size="10.00">+</text>
 <text text-anchor="start" x="17" y="-596.5" font-family="Helvetica,sans-Serif" font-size="10.00">nodes()</text>
-<text text-anchor="start" x="17" y="-581.5" font-family="Helvetica,sans-Serif" font-size="10.00">and 16 more...</text>
+<text text-anchor="start" x="17" y="-581.5" font-family="Helvetica,sans-Serif" font-size="10.00">and 22 more...</text>
 <text text-anchor="start" x="4" y="-566.5" font-family="Helvetica,sans-Serif" font-size="10.00">#</text>
 <text text-anchor="start" x="17" y="-566.5" font-family="Helvetica,sans-Serif" font-size="10.00">KdTreeBase()</text>
 <text text-anchor="start" x="4" y="-551.5" font-family="Helvetica,sans-Serif" font-size="10.00">#</text>

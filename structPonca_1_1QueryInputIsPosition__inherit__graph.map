@@ -1,22 +1,22 @@
 <map id="Ponca::QueryInputIsPosition&lt; DataPoint &gt;" name="Ponca::QueryInputIsPosition&lt; DataPoint &gt;">
-<area shape="rect" id="Node000001" title="Base class for queries storing points." alt="" coords="253,472,449,592"/>
-<area shape="rect" id="Node000005" href="$group__spatialpartitioning.html" title=" " alt="" coords="5,641,220,771"/>
-<area shape="poly" id="edge5_Node000001_Node000005" title=" " alt="" coords="260,602,203,643,200,639,257,598"/>
-<area shape="rect" id="Node000007" href="$group__spatialpartitioning.html" title=" " alt="" coords="244,641,459,771"/>
-<area shape="poly" id="edge7_Node000001_Node000007" title=" " alt="" coords="354,606,354,641,349,641,349,606"/>
-<area shape="rect" id="Node000009" href="$group__spatialpartitioning.html" title=" " alt="" coords="483,641,697,771"/>
-<area shape="poly" id="edge9_Node000001_Node000009" title=" " alt="" coords="446,598,503,639,500,643,443,602"/>
+<area shape="rect" id="Node000001" title="Extension of QueryInput that handles a position based search, in a partitioning structure." alt="" coords="253,472,449,612"/>
+<area shape="rect" id="Node000005" href="$group__spatialpartitioning.html" title=" " alt="" coords="5,661,220,831"/>
+<area shape="poly" id="edge5_Node000001_Node000005" title=" " alt="" coords="261,623,213,663,210,659,258,619"/>
+<area shape="rect" id="Node000007" href="$group__spatialpartitioning.html" title=" " alt="" coords="244,661,459,831"/>
+<area shape="poly" id="edge7_Node000001_Node000007" title=" " alt="" coords="354,626,354,661,349,661,349,626"/>
+<area shape="rect" id="Node000009" href="$group__spatialpartitioning.html" title=" " alt="" coords="483,661,697,831"/>
+<area shape="poly" id="edge9_Node000001_Node000009" title=" " alt="" coords="445,619,493,659,489,663,441,623"/>
 <area shape="rect" id="Node000002" href="$group__spatialpartitioning.html" title=" " alt="" coords="263,303,439,423"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="354,436,354,472,349,472,349,436"/>
 <area shape="rect" id="Node000003" href="$group__spatialpartitioning.html#structPonca_1_1QueryInputBase" title="Base class for queries input type." alt="" coords="263,5,429,71"/>
 <area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="349,84,353,303,348,303,344,84"/>
-<area shape="rect" id="Node000004" href="$group__spatialpartitioning.html#structPonca_1_1QueryInput" title="Base class for typed queries input type." alt="" coords="367,120,511,240"/>
+<area shape="rect" id="Node000004" href="$group__spatialpartitioning.html#structPonca_1_1QueryInput" title="Base class for Query input type." alt="" coords="367,120,511,240"/>
 <area shape="poly" id="edge4_Node000004_Node000003" title=" " alt="" coords="377,81,402,118,398,121,373,84"/>
 <area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="407,254,383,303,378,301,402,251"/>
-<area shape="rect" id="Node000006" href="$group__spatialpartitioning.html#structPonca_1_1KNearestPointQuery" title="Base Query class combining QueryInputIsPosition and QueryOutputIsKNearest." alt="" coords="16,820,209,900"/>
-<area shape="poly" id="edge6_Node000005_Node000006" title=" " alt="" coords="115,785,115,820,110,820,110,785"/>
-<area shape="rect" id="Node000008" href="$group__spatialpartitioning.html#structPonca_1_1NearestPointQuery" title="Base Query class combining QueryInputIsPosition and QueryOutputIsNearest." alt="" coords="259,820,443,900"/>
-<area shape="poly" id="edge8_Node000007_Node000008" title=" " alt="" coords="354,785,354,820,349,820,349,785"/>
-<area shape="rect" id="Node000010" href="$group__spatialpartitioning.html#structPonca_1_1RangePointQuery" title="Base Query class combining QueryInputIsPosition and QueryOutputIsRange." alt="" coords="503,820,677,900"/>
-<area shape="poly" id="edge10_Node000009_Node000010" title=" " alt="" coords="593,785,593,820,587,820,587,785"/>
+<area shape="rect" id="Node000006" href="$group__spatialpartitioning.html#structPonca_1_1KNearestPointQuery" title="Base Query class combining QueryInputIsPosition and QueryOutputIsKNearest." alt="" coords="16,880,209,960"/>
+<area shape="poly" id="edge6_Node000005_Node000006" title=" " alt="" coords="115,845,115,880,110,880,110,845"/>
+<area shape="rect" id="Node000008" href="$group__spatialpartitioning.html#structPonca_1_1NearestPointQuery" title="Base Query class combining QueryInputIsPosition and QueryOutputIsNearest." alt="" coords="259,880,443,960"/>
+<area shape="poly" id="edge8_Node000007_Node000008" title=" " alt="" coords="354,845,354,880,349,880,349,845"/>
+<area shape="rect" id="Node000010" href="$group__spatialpartitioning.html#structPonca_1_1RangePointQuery" title="Base Query class combining QueryInputIsPosition and QueryOutputIsRange." alt="" coords="503,880,677,960"/>
+<area shape="poly" id="edge10_Node000009_Node000010" title=" " alt="" coords="593,845,593,880,587,880,587,845"/>
 </map>

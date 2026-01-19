@@ -51,7 +51,7 @@ MathJax.Hub.Config({
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Ponca
-   &#160;<span id="projectnumber">80e34c4ed3322bafe25349c3ea7523ca4a3aa60d</span>
+   &#160;<span id="projectnumber">312bd1755a04ef27033a33388722a52cddb9ba4a</span>
    </div>
    <div id="projectbrief">Point Cloud Analysis library</div>
   </td>
@@ -117,38 +117,72 @@ $(document).ready(function(){initNavTree('classPonca_1_1KnnGraphRangeIterator.ht
 
 <div class="header">
   <div class="summary">
+<a href="#pub-types">Public Types</a> &#124;
 <a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pro-types">Protected Types</a> &#124;
 <a href="#pro-attribs">Protected Attributes</a> &#124;
 <a href="#friends">Friends</a> &#124;
 <a href="classPonca_1_1KnnGraphRangeIterator-members.html">List of all members</a>  </div>
   <div class="headertitle"><div class="title">Ponca::KnnGraphRangeIterator&lt; Traits &gt; Class Template Reference</div></div>
 </div><!--header-->
 <div class="contents">
+
+<p>Input iterator to read the <code><a class="el" href="classPonca_1_1KnnGraphRangeQuery.html" title="Extension of the Query class that allows to read the result of a range neighbor search on the KnnGrap...">KnnGraphRangeQuery</a></code> object.  
+ <a href="classPonca_1_1KnnGraphRangeIterator.html#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="knnGraphRangeIterator_8h_source.html">knnGraphRangeIterator.h</a>&gt;</code></p>
 <div id="dynsection-0" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-0-trigger" src="closed.png" alt="+"/> Collaboration diagram for Ponca::KnnGraphRangeIterator&lt; Traits &gt;:</div>
 <div id="dynsection-0-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-0-content" class="dyncontent" style="display:none;">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classPonca_1_1KnnGraphRangeIterator__coll__graph.svg" width="226" height="171"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classPonca_1_1KnnGraphRangeIterator__coll__graph.svg" width="226" height="211"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 <table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-types" name="pub-types"></a>
+Public Types</h2></td></tr>
+<tr class="memitem:aee36ac78a698dd3ecd5d40d6758f55fc" id="r_aee36ac78a698dd3ecd5d40d6758f55fc"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1KnnGraphRangeIterator.html#aee36ac78a698dd3ecd5d40d6758f55fc">iterator_category</a> = PONCA_MULTIARCH_CU_STD_NAMESPACE(input_iterator_tag)</td></tr>
+<tr class="separator:aee36ac78a698dd3ecd5d40d6758f55fc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3d58495256ae392133ca52b4608ef1d5" id="r_a3d58495256ae392133ca52b4608ef1d5"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1KnnGraphRangeIterator.html#a3d58495256ae392133ca52b4608ef1d5">difference_type</a> = std::ptrdiff_t</td></tr>
+<tr class="separator:a3d58495256ae392133ca52b4608ef1d5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a426bd969bd6cb0ed08a832276c4ea90b" id="r_a426bd969bd6cb0ed08a832276c4ea90b"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1KnnGraphRangeIterator.html#a426bd969bd6cb0ed08a832276c4ea90b">value_type</a> = Index</td></tr>
+<tr class="separator:a426bd969bd6cb0ed08a832276c4ea90b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3a88e199f48b9dbcf50e4c5cb0f6e890" id="r_a3a88e199f48b9dbcf50e4c5cb0f6e890"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1KnnGraphRangeIterator.html#a3a88e199f48b9dbcf50e4c5cb0f6e890">pointer</a> = Index *</td></tr>
+<tr class="separator:a3a88e199f48b9dbcf50e4c5cb0f6e890"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af04f8254cca8f86d08d881d6457d2f2b" id="r_af04f8254cca8f86d08d881d6457d2f2b"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1KnnGraphRangeIterator.html#af04f8254cca8f86d08d881d6457d2f2b">reference</a> = const Index &amp;</td></tr>
+<tr class="separator:af04f8254cca8f86d08d881d6457d2f2b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:aa2a4f454e72e9fab0159dae91afda436" id="r_aa2a4f454e72e9fab0159dae91afda436"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1KnnGraphRangeIterator.html#aa2a4f454e72e9fab0159dae91afda436">KnnGraphRangeIterator</a> (<a class="el" href="classPonca_1_1KnnGraphRangeQuery.html">KnnGraphRangeQuery</a>&lt; Traits &gt; *query, int index=-1)</td></tr>
-<tr class="separator:aa2a4f454e72e9fab0159dae91afda436"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6d81483befb90775cf692c2891c564d3" id="r_a6d81483befb90775cf692c2891c564d3"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1KnnGraphRangeIterator.html#a6d81483befb90775cf692c2891c564d3">KnnGraphRangeIterator</a> (<a class="el" href="classPonca_1_1KnnGraphRangeQuery.html">KnnGraphRangeQuery</a>&lt; Traits &gt; *query, Index index=Index(-1))</td></tr>
+<tr class="separator:a6d81483befb90775cf692c2891c564d3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a21b119a1df9a8739698108f1f54fabdd" id="r_a21b119a1df9a8739698108f1f54fabdd"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1KnnGraphRangeIterator.html#a21b119a1df9a8739698108f1f54fabdd">operator!=</a> (const <a class="el" href="classPonca_1_1KnnGraphRangeIterator.html">KnnGraphRangeIterator</a> &amp;other) const</td></tr>
+<tr class="memdesc:a21b119a1df9a8739698108f1f54fabdd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Inequality operand.  <br /></td></tr>
 <tr class="separator:a21b119a1df9a8739698108f1f54fabdd"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5fa1c642357bec923f0a11d677cbb3ca" id="r_a5fa1c642357bec923f0a11d677cbb3ca"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1KnnGraphRangeIterator.html#a5fa1c642357bec923f0a11d677cbb3ca">operator++</a> ()</td></tr>
-<tr class="separator:a5fa1c642357bec923f0a11d677cbb3ca"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a030cd3fac60ee6019ac47fb3fa171869" id="r_a030cd3fac60ee6019ac47fb3fa171869"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1KnnGraphRangeIterator.html#a030cd3fac60ee6019ac47fb3fa171869">operator*</a> () const</td></tr>
-<tr class="separator:a030cd3fac60ee6019ac47fb3fa171869"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adfe01a0897997d76b887f2ebb23f799f" id="r_adfe01a0897997d76b887f2ebb23f799f"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1KnnGraphRangeIterator.html#adfe01a0897997d76b887f2ebb23f799f">operator==</a> (const <a class="el" href="classPonca_1_1KnnGraphRangeIterator.html">KnnGraphRangeIterator</a> &amp;other) const</td></tr>
+<tr class="memdesc:adfe01a0897997d76b887f2ebb23f799f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Equality operand.  <br /></td></tr>
+<tr class="separator:adfe01a0897997d76b887f2ebb23f799f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3cd20045d1162fca332122f76618ac70" id="r_a3cd20045d1162fca332122f76618ac70"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classPonca_1_1KnnGraphRangeIterator.html">KnnGraphRangeIterator</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1KnnGraphRangeIterator.html#a3cd20045d1162fca332122f76618ac70">operator++</a> ()</td></tr>
+<tr class="memdesc:a3cd20045d1162fca332122f76618ac70"><td class="mdescLeft">&#160;</td><td class="mdescRight">Prefix increment.  <br /></td></tr>
+<tr class="separator:a3cd20045d1162fca332122f76618ac70"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaf82d29b406ecd8e41a14d75dea11977" id="r_aaf82d29b406ecd8e41a14d75dea11977"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1KnnGraphRangeIterator.html#aaf82d29b406ecd8e41a14d75dea11977">operator++</a> (value_type)</td></tr>
+<tr class="memdesc:aaf82d29b406ecd8e41a14d75dea11977"><td class="mdescLeft">&#160;</td><td class="mdescRight">Postfix increment.  <br /></td></tr>
+<tr class="separator:aaf82d29b406ecd8e41a14d75dea11977"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9d2e0e753bca250cb9b1f4a731e4302a" id="r_a9d2e0e753bca250cb9b1f4a731e4302a"><td class="memItemLeft" align="right" valign="top">reference&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1KnnGraphRangeIterator.html#a9d2e0e753bca250cb9b1f4a731e4302a">operator*</a> () const</td></tr>
+<tr class="memdesc:a9d2e0e753bca250cb9b1f4a731e4302a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Dereference operator.  <br /></td></tr>
+<tr class="separator:a9d2e0e753bca250cb9b1f4a731e4302a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-types" name="pro-types"></a>
+Protected Types</h2></td></tr>
+<tr class="memitem:a803391adec30e905b0d2ec4c0fb63a84" id="r_a803391adec30e905b0d2ec4c0fb63a84"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1KnnGraphRangeIterator.html#a803391adec30e905b0d2ec4c0fb63a84">Index</a> = typename Traits::IndexType</td></tr>
+<tr class="separator:a803391adec30e905b0d2ec4c0fb63a84"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-attribs" name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
 <tr class="memitem:ad47c986dd74020b72e738f66a2ebe18e" id="r_ad47c986dd74020b72e738f66a2ebe18e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classPonca_1_1KnnGraphRangeQuery.html">KnnGraphRangeQuery</a>&lt; Traits &gt; *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1KnnGraphRangeIterator.html#ad47c986dd74020b72e738f66a2ebe18e">m_query</a> {nullptr}</td></tr>
 <tr class="separator:ad47c986dd74020b72e738f66a2ebe18e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a54f8bc70628c612e5b5cea0b11c17413" id="r_a54f8bc70628c612e5b5cea0b11c17413"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1KnnGraphRangeIterator.html#a54f8bc70628c612e5b5cea0b11c17413">m_index</a> {-1}</td></tr>
-<tr class="separator:a54f8bc70628c612e5b5cea0b11c17413"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0e38c78a630b810b45271c90c3a03c9e" id="r_a0e38c78a630b810b45271c90c3a03c9e"><td class="memItemLeft" align="right" valign="top">value_type&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1KnnGraphRangeIterator.html#a0e38c78a630b810b45271c90c3a03c9e">m_index</a> {-1}</td></tr>
+<tr class="separator:a0e38c78a630b810b45271c90c3a03c9e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="friends" name="friends"></a>
 Friends</h2></td></tr>
@@ -157,11 +191,132 @@ Friends</h2></td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><div class="compoundTemplParams">template&lt;typename Traits&gt;<br />
-class Ponca::KnnGraphRangeIterator&lt; Traits &gt;</div>
-<p class="definition">Definition at line <a class="el" href="knnGraphRangeIterator_8h_source.html#l00015">15</a> of file <a class="el" href="knnGraphRangeIterator_8h_source.html">knnGraphRangeIterator.h</a>.</p>
-</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a id="aa2a4f454e72e9fab0159dae91afda436" name="aa2a4f454e72e9fab0159dae91afda436"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa2a4f454e72e9fab0159dae91afda436">&#9670;&#160;</a></span>KnnGraphRangeIterator()</h2>
+class Ponca::KnnGraphRangeIterator&lt; Traits &gt;</div><p>Input iterator to read the <code><a class="el" href="classPonca_1_1KnnGraphRangeQuery.html" title="Extension of the Query class that allows to read the result of a range neighbor search on the KnnGrap...">KnnGraphRangeQuery</a></code> object. </p>
+<p>As this is an input iterator, we don't guarantee anything other than reading the values with it. If you need to operate on the values of this iterator with algorithms that relies on forward iterator functionalities, you should copy the index values in an STL-like container.</p>
+<dl class="section warning"><dt>Warning</dt><dd>This iterator object should never be duplicated, as it is a proxy that holds a reference to the actual data : The copy of this iterator would still point to the same KnnGraph reference. So, if the increment operator is used on the iterator, the duplicate will also have its state updated. If we then call the increment operator on the duplicate, the result will be an incorrect value.</dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="classPonca_1_1KnnGraphRangeQuery.html" title="Extension of the Query class that allows to read the result of a range neighbor search on the KnnGrap...">KnnGraphRangeQuery</a> </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="knnGraphRangeIterator_8h_source.html#l00032">32</a> of file <a class="el" href="knnGraphRangeIterator_8h_source.html">knnGraphRangeIterator.h</a>.</p>
+</div><h2 class="groupheader">Member Typedef Documentation</h2>
+<a id="a3d58495256ae392133ca52b4608ef1d5" name="a3d58495256ae392133ca52b4608ef1d5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3d58495256ae392133ca52b4608ef1d5">&#9670;&#160;</a></span>difference_type</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Traits &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="classPonca_1_1KnnGraphRangeIterator.html">Ponca::KnnGraphRangeIterator</a>&lt; Traits &gt;::difference_type =  std::ptrdiff_t</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="knnGraphRangeIterator_8h_source.html#l00041">41</a> of file <a class="el" href="knnGraphRangeIterator_8h_source.html">knnGraphRangeIterator.h</a>.</p>
+
+</div>
+</div>
+<a id="a803391adec30e905b0d2ec4c0fb63a84" name="a803391adec30e905b0d2ec4c0fb63a84"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a803391adec30e905b0d2ec4c0fb63a84">&#9670;&#160;</a></span>Index</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Traits &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="classPonca_1_1KnnGraphRangeIterator.html">Ponca::KnnGraphRangeIterator</a>&lt; Traits &gt;::Index =  typename Traits::IndexType</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="knnGraphRangeIterator_8h_source.html#l00036">36</a> of file <a class="el" href="knnGraphRangeIterator_8h_source.html">knnGraphRangeIterator.h</a>.</p>
+
+</div>
+</div>
+<a id="aee36ac78a698dd3ecd5d40d6758f55fc" name="aee36ac78a698dd3ecd5d40d6758f55fc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aee36ac78a698dd3ecd5d40d6758f55fc">&#9670;&#160;</a></span>iterator_category</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Traits &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="classPonca_1_1KnnGraphRangeIterator.html">Ponca::KnnGraphRangeIterator</a>&lt; Traits &gt;::iterator_category =  PONCA_MULTIARCH_CU_STD_NAMESPACE(input_iterator_tag)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="knnGraphRangeIterator_8h_source.html#l00040">40</a> of file <a class="el" href="knnGraphRangeIterator_8h_source.html">knnGraphRangeIterator.h</a>.</p>
+
+</div>
+</div>
+<a id="a3a88e199f48b9dbcf50e4c5cb0f6e890" name="a3a88e199f48b9dbcf50e4c5cb0f6e890"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3a88e199f48b9dbcf50e4c5cb0f6e890">&#9670;&#160;</a></span>pointer</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Traits &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="classPonca_1_1KnnGraphRangeIterator.html">Ponca::KnnGraphRangeIterator</a>&lt; Traits &gt;::pointer =  Index*</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="knnGraphRangeIterator_8h_source.html#l00043">43</a> of file <a class="el" href="knnGraphRangeIterator_8h_source.html">knnGraphRangeIterator.h</a>.</p>
+
+</div>
+</div>
+<a id="af04f8254cca8f86d08d881d6457d2f2b" name="af04f8254cca8f86d08d881d6457d2f2b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af04f8254cca8f86d08d881d6457d2f2b">&#9670;&#160;</a></span>reference</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Traits &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="classPonca_1_1KnnGraphRangeIterator.html">Ponca::KnnGraphRangeIterator</a>&lt; Traits &gt;::reference =  const Index&amp;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="knnGraphRangeIterator_8h_source.html#l00044">44</a> of file <a class="el" href="knnGraphRangeIterator_8h_source.html">knnGraphRangeIterator.h</a>.</p>
+
+</div>
+</div>
+<a id="a426bd969bd6cb0ed08a832276c4ea90b" name="a426bd969bd6cb0ed08a832276c4ea90b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a426bd969bd6cb0ed08a832276c4ea90b">&#9670;&#160;</a></span>value_type</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Traits &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="classPonca_1_1KnnGraphRangeIterator.html">Ponca::KnnGraphRangeIterator</a>&lt; Traits &gt;::value_type =  Index</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="knnGraphRangeIterator_8h_source.html#l00042">42</a> of file <a class="el" href="knnGraphRangeIterator_8h_source.html">knnGraphRangeIterator.h</a>.</p>
+
+</div>
+</div>
+<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="a6d81483befb90775cf692c2891c564d3" name="a6d81483befb90775cf692c2891c564d3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6d81483befb90775cf692c2891c564d3">&#9670;&#160;</a></span>KnnGraphRangeIterator()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -180,8 +335,8 @@ template&lt;typename Traits &gt; </div>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>index</em> = <code>-1</code>&#160;</td>
+          <td class="paramtype">Index&#160;</td>
+          <td class="paramname"><em>index</em> = <code>Index(-1)</code>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -196,7 +351,7 @@ template&lt;typename Traits &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="knnGraphRangeIterator_8h_source.html#l00021">21</a> of file <a class="el" href="knnGraphRangeIterator_8h_source.html">knnGraphRangeIterator.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="knnGraphRangeIterator_8h_source.html#l00046">46</a> of file <a class="el" href="knnGraphRangeIterator_8h_source.html">knnGraphRangeIterator.h</a>.</p>
 
 </div>
 </div>
@@ -227,12 +382,14 @@ template&lt;typename Traits &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="knnGraphRangeIterator_8h_source.html#l00024">24</a> of file <a class="el" href="knnGraphRangeIterator_8h_source.html">knnGraphRangeIterator.h</a>.</p>
+<p>Inequality operand. </p>
+
+<p class="definition">Definition at line <a class="el" href="knnGraphRangeIterator_8h_source.html#l00050">50</a> of file <a class="el" href="knnGraphRangeIterator_8h_source.html">knnGraphRangeIterator.h</a>.</p>
 
 </div>
 </div>
-<a id="a030cd3fac60ee6019ac47fb3fa171869" name="a030cd3fac60ee6019ac47fb3fa171869"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a030cd3fac60ee6019ac47fb3fa171869">&#9670;&#160;</a></span>operator*()</h2>
+<a id="a9d2e0e753bca250cb9b1f4a731e4302a" name="a9d2e0e753bca250cb9b1f4a731e4302a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9d2e0e753bca250cb9b1f4a731e4302a">&#9670;&#160;</a></span>operator*()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -243,7 +400,7 @@ template&lt;typename Traits &gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">int <a class="el" href="classPonca_1_1KnnGraphRangeIterator.html">Ponca::KnnGraphRangeIterator</a>&lt; Traits &gt;::operator* </td>
+          <td class="memname">reference <a class="el" href="classPonca_1_1KnnGraphRangeIterator.html">Ponca::KnnGraphRangeIterator</a>&lt; Traits &gt;::operator* </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td> const</td>
@@ -256,12 +413,14 @@ template&lt;typename Traits &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="knnGraphRangeIterator_8h_source.html#l00032">32</a> of file <a class="el" href="knnGraphRangeIterator_8h_source.html">knnGraphRangeIterator.h</a>.</p>
+<p>Dereference operator. </p>
+
+<p class="definition">Definition at line <a class="el" href="knnGraphRangeIterator_8h_source.html#l00069">69</a> of file <a class="el" href="knnGraphRangeIterator_8h_source.html">knnGraphRangeIterator.h</a>.</p>
 
 </div>
 </div>
-<a id="a5fa1c642357bec923f0a11d677cbb3ca" name="a5fa1c642357bec923f0a11d677cbb3ca"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a5fa1c642357bec923f0a11d677cbb3ca">&#9670;&#160;</a></span>operator++()</h2>
+<a id="a3cd20045d1162fca332122f76618ac70" name="a3cd20045d1162fca332122f76618ac70"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3cd20045d1162fca332122f76618ac70">&#9670;&#160;</a></span>operator++() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -272,7 +431,7 @@ template&lt;typename Traits &gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">void <a class="el" href="classPonca_1_1KnnGraphRangeIterator.html">Ponca::KnnGraphRangeIterator</a>&lt; Traits &gt;::operator++ </td>
+          <td class="memname"><a class="el" href="classPonca_1_1KnnGraphRangeIterator.html">KnnGraphRangeIterator</a> &amp; <a class="el" href="classPonca_1_1KnnGraphRangeIterator.html">Ponca::KnnGraphRangeIterator</a>&lt; Traits &gt;::operator++ </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -285,7 +444,73 @@ template&lt;typename Traits &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="knnGraphRangeIterator_8h_source.html#l00028">28</a> of file <a class="el" href="knnGraphRangeIterator_8h_source.html">knnGraphRangeIterator.h</a>.</p>
+<p>Prefix increment. </p>
+
+<p class="definition">Definition at line <a class="el" href="knnGraphRangeIterator_8h_source.html#l00060">60</a> of file <a class="el" href="knnGraphRangeIterator_8h_source.html">knnGraphRangeIterator.h</a>.</p>
+
+</div>
+</div>
+<a id="aaf82d29b406ecd8e41a14d75dea11977" name="aaf82d29b406ecd8e41a14d75dea11977"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aaf82d29b406ecd8e41a14d75dea11977">&#9670;&#160;</a></span>operator++() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Traits &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="classPonca_1_1KnnGraphRangeIterator.html">Ponca::KnnGraphRangeIterator</a>&lt; Traits &gt;::operator++ </td>
+          <td>(</td>
+          <td class="paramtype">value_type&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Postfix increment. </p>
+
+<p class="definition">Definition at line <a class="el" href="knnGraphRangeIterator_8h_source.html#l00066">66</a> of file <a class="el" href="knnGraphRangeIterator_8h_source.html">knnGraphRangeIterator.h</a>.</p>
+
+</div>
+</div>
+<a id="adfe01a0897997d76b887f2ebb23f799f" name="adfe01a0897997d76b887f2ebb23f799f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adfe01a0897997d76b887f2ebb23f799f">&#9670;&#160;</a></span>operator==()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Traits &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool <a class="el" href="classPonca_1_1KnnGraphRangeIterator.html">Ponca::KnnGraphRangeIterator</a>&lt; Traits &gt;::operator== </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classPonca_1_1KnnGraphRangeIterator.html">KnnGraphRangeIterator</a>&lt; Traits &gt; &amp;&#160;</td>
+          <td class="paramname"><em>other</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Equality operand. </p>
+
+<p class="definition">Definition at line <a class="el" href="knnGraphRangeIterator_8h_source.html#l00055">55</a> of file <a class="el" href="knnGraphRangeIterator_8h_source.html">knnGraphRangeIterator.h</a>.</p>
 
 </div>
 </div>
@@ -317,8 +542,8 @@ template&lt;typename Traits &gt; </div>
 </div>
 </div>
 <h2 class="groupheader">Member Data Documentation</h2>
-<a id="a54f8bc70628c612e5b5cea0b11c17413" name="a54f8bc70628c612e5b5cea0b11c17413"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a54f8bc70628c612e5b5cea0b11c17413">&#9670;&#160;</a></span>m_index</h2>
+<a id="a0e38c78a630b810b45271c90c3a03c9e" name="a0e38c78a630b810b45271c90c3a03c9e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0e38c78a630b810b45271c90c3a03c9e">&#9670;&#160;</a></span>m_index</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -329,7 +554,7 @@ template&lt;typename Traits &gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">int <a class="el" href="classPonca_1_1KnnGraphRangeIterator.html">Ponca::KnnGraphRangeIterator</a>&lt; Traits &gt;::m_index {-1}</td>
+          <td class="memname">value_type <a class="el" href="classPonca_1_1KnnGraphRangeIterator.html">Ponca::KnnGraphRangeIterator</a>&lt; Traits &gt;::m_index {-1}</td>
         </tr>
       </table>
   </td>
@@ -339,7 +564,7 @@ template&lt;typename Traits &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="knnGraphRangeIterator_8h_source.html#l00038">38</a> of file <a class="el" href="knnGraphRangeIterator_8h_source.html">knnGraphRangeIterator.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="knnGraphRangeIterator_8h_source.html#l00075">75</a> of file <a class="el" href="knnGraphRangeIterator_8h_source.html">knnGraphRangeIterator.h</a>.</p>
 
 </div>
 </div>
@@ -365,7 +590,7 @@ template&lt;typename Traits &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="knnGraphRangeIterator_8h_source.html#l00037">37</a> of file <a class="el" href="knnGraphRangeIterator_8h_source.html">knnGraphRangeIterator.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="knnGraphRangeIterator_8h_source.html#l00074">74</a> of file <a class="el" href="knnGraphRangeIterator_8h_source.html">knnGraphRangeIterator.h</a>.</p>
 
 </div>
 </div>
@@ -375,7 +600,7 @@ template&lt;typename Traits &gt; </div>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="namespacePonca.html">Ponca</a></li><li class="navelem"><a class="el" href="classPonca_1_1KnnGraphRangeIterator.html">KnnGraphRangeIterator</a></li>
-    <li class="footer">Generated on Tue Dec 9 2025 21:53:30 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
+    <li class="footer">Generated on Mon Jan 19 2026 18:33:14 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
   </ul>
 </div>
 </body>

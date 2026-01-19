@@ -77,7 +77,7 @@
 <!-- Node24 -->
 <g id="Node000024" class="node">
 <title>Node24</title>
-<g id="a_Node000024"><a xlink:href="group__spatialpartitioning.html#structPonca_1_1QueryInput" target="_top" xlink:title="Base class for typed queries input type.">
+<g id="a_Node000024"><a xlink:href="group__spatialpartitioning.html#structPonca_1_1QueryInput" target="_top" xlink:title="Base class for Query input type.">
 <polygon fill="white" stroke="#666666" points="292,-482 178,-482 178,-452 292,-452 292,-482"/>
 <text text-anchor="start" x="186" y="-470" font-family="Helvetica,sans-Serif" font-size="10.00">Ponca::QueryInput&lt;</text>
 <text text-anchor="middle" x="235" y="-459" font-family="Helvetica,sans-Serif" font-size="10.00"> InputType_ &gt;</text>
@@ -96,7 +96,7 @@
 <!-- Node3 -->
 <g id="Node000003" class="node">
 <title>Node3</title>
-<g id="a_Node000003"><a xlink:href="group__spatialpartitioning.html#structPonca_1_1QueryInputIsIndex" target="_top" xlink:title="Base class for queries storing points.">
+<g id="a_Node000003"><a xlink:href="group__spatialpartitioning.html#structPonca_1_1QueryInputIsIndex" target="_top" xlink:title="Extension of QueryInput that handles an index based search, in a partitioning structure.">
 <polygon fill="white" stroke="#666666" points="494,-327 353,-327 353,-297 494,-297 494,-327"/>
 <text text-anchor="start" x="361" y="-315" font-family="Helvetica,sans-Serif" font-size="10.00">Ponca::QueryInputIsIndex</text>
 <text text-anchor="middle" x="423.5" y="-304" font-family="Helvetica,sans-Serif" font-size="10.00">&lt; Index &gt;</text>
@@ -232,7 +232,7 @@
 <!-- Node11 -->
 <g id="Node000011" class="node">
 <title>Node11</title>
-<g id="a_Node000011"><a xlink:href="group__spatialpartitioning.html#structPonca_1_1QueryInputIsPosition" target="_top" xlink:title="Base class for queries storing points.">
+<g id="a_Node000011"><a xlink:href="group__spatialpartitioning.html#structPonca_1_1QueryInputIsPosition" target="_top" xlink:title="Extension of QueryInput that handles a position based search, in a partitioning structure.">
 <polygon fill="white" stroke="#666666" points="500,-87 347,-87 347,-57 500,-57 500,-87"/>
 <text text-anchor="start" x="355" y="-75" font-family="Helvetica,sans-Serif" font-size="10.00">Ponca::QueryInputIsPosition</text>
 <text text-anchor="middle" x="423.5" y="-64" font-family="Helvetica,sans-Serif" font-size="10.00">&lt; DataPoint &gt;</text>
@@ -434,7 +434,7 @@
 <!-- Node7 -->
 <g id="Node000007" class="node">
 <title>Node7</title>
-<g id="a_Node000007"><a xlink:href="group__spatialpartitioning.html#structPonca_1_1QueryOutputBase" target="_top" xlink:title="Base class for queries output type.">
+<g id="a_Node000007"><a xlink:href="group__spatialpartitioning.html#structPonca_1_1QueryOutputBase" target="_top" xlink:title="Base class for queries output types.">
 <polygon fill="white" stroke="#666666" points="304,-249.5 166,-249.5 166,-230.5 304,-230.5 304,-249.5"/>
 <text text-anchor="middle" x="235" y="-237.5" font-family="Helvetica,sans-Serif" font-size="10.00">Ponca::QueryOutputBase</text>
 </a>
@@ -540,7 +540,7 @@
 <!-- Node6 -->
 <g id="Node000006" class="node">
 <title>Node6</title>
-<g id="a_Node000006"><a xlink:href="group__spatialpartitioning.html#structPonca_1_1QueryOutputIsKNearest" target="_top" xlink:title="Base class for knearest queries.">
+<g id="a_Node000006"><a xlink:href="group__spatialpartitioning.html#structPonca_1_1QueryOutputIsKNearest" target="_top" xlink:title="Class to construct the knearest queries.">
 <polygon fill="white" stroke="#666666" points="507,-375 340,-375 340,-345 507,-345 507,-375"/>
 <text text-anchor="start" x="348" y="-363" font-family="Helvetica,sans-Serif" font-size="10.00">Ponca::QueryOutputIsKNearest</text>
 <text text-anchor="middle" x="423.5" y="-352" font-family="Helvetica,sans-Serif" font-size="10.00">&lt; Index, Scalar &gt;</text>
@@ -559,7 +559,7 @@
 <!-- Node25 -->
 <g id="Node000025" class="node">
 <title>Node25</title>
-<g id="a_Node000025"><a xlink:href="group__spatialpartitioning.html#structPonca_1_1QueryOutputIsNearest" target="_top" xlink:title="Base class for nearest queries.">
+<g id="a_Node000025"><a xlink:href="group__spatialpartitioning.html#structPonca_1_1QueryOutputIsNearest" target="_top" xlink:title="Class to construct the nearest query output.">
 <polygon fill="white" stroke="#666666" points="504,-279 343,-279 343,-249 504,-249 504,-279"/>
 <text text-anchor="start" x="351" y="-267" font-family="Helvetica,sans-Serif" font-size="10.00">Ponca::QueryOutputIsNearest</text>
 <text text-anchor="middle" x="423.5" y="-256" font-family="Helvetica,sans-Serif" font-size="10.00">&lt; Index, Scalar &gt;</text>
@@ -578,7 +578,7 @@
 <!-- Node28 -->
 <g id="Node000028" class="node">
 <title>Node28</title>
-<g id="a_Node000028"><a xlink:href="group__spatialpartitioning.html#structPonca_1_1QueryOutputIsRange" target="_top" xlink:title="Base class for range queries.">
+<g id="a_Node000028"><a xlink:href="group__spatialpartitioning.html#structPonca_1_1QueryOutputIsRange" target="_top" xlink:title="Class to construct the range query output.">
 <polygon fill="white" stroke="#666666" points="500,-231 347,-231 347,-201 500,-201 500,-231"/>
 <text text-anchor="start" x="355" y="-219" font-family="Helvetica,sans-Serif" font-size="10.00">Ponca::QueryOutputIsRange</text>
 <text text-anchor="middle" x="423.5" y="-208" font-family="Helvetica,sans-Serif" font-size="10.00">&lt; Index, Scalar &gt;</text>

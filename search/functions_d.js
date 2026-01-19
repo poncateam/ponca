@@ -1,7 +1,7 @@
 var searchData=
 [
   ['planarity_0',['planarity',['../classPonca_1_1CovarianceFitBase.html#adaff4ea8bec01041c83ff3f0abba67bb',1,'Ponca::CovarianceFitBase']]],
-  ['plane_1',['plane',['../classPonca_1_1Plane.html#aac17b82414f82077fc573daeee10effb',1,'Ponca::Plane::plane()'],['../classPonca_1_1Plane.html#ace6fa57a6da9aaa810e47e7aec6492b8',1,'Ponca::Plane::Plane()'],['../classPonca_1_1Plane.html#ac9952a7f449d76c77af194abdb66a561',1,'Ponca::Plane::plane() const']]],
+  ['plane_1',['plane',['../classPonca_1_1Plane.html#ace6fa57a6da9aaa810e47e7aec6492b8',1,'Ponca::Plane::Plane()'],['../classPonca_1_1Plane.html#ac9952a7f449d76c77af194abdb66a561',1,'Ponca::Plane::plane() const'],['../classPonca_1_1Plane.html#aac17b82414f82077fc573daeee10effb',1,'Ponca::Plane::plane()']]],
   ['pointdatafromsample_2',['pointdatafromsample',['../classPonca_1_1KdTreeBase.html#ae96c91cd3fbf619a4204c92b9f8dc134',1,'Ponca::KdTreeBase::pointDataFromSample(IndexType sample_index)'],['../classPonca_1_1KdTreeBase.html#ac1244708c3a3047ca5237e0c1a4a4907',1,'Ponca::KdTreeBase::pointDataFromSample(IndexType sample_index) const']]],
   ['pointfromsample_3',['pointFromSample',['../classPonca_1_1KdTreeBase.html#acb6c91c423095828ecc962f100299fdd',1,'Ponca::KdTreeBase']]],
   ['pop_4',['pop',['../classPonca_1_1Stack.html#a2b188cfb0eb0406751cc3d38a7a367fb',1,'Ponca::Stack']]],

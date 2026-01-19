@@ -51,7 +51,7 @@ MathJax.Hub.Config({
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Ponca
-   &#160;<span id="projectnumber">80e34c4ed3322bafe25349c3ea7523ca4a3aa60d</span>
+   &#160;<span id="projectnumber">312bd1755a04ef27033a33388722a52cddb9ba4a</span>
    </div>
    <div id="projectbrief">Point Cloud Analysis library</div>
   </td>
@@ -136,7 +136,7 @@ $(document).ready(function(){initNavTree('classPonca_1_1KnnGraphBase.html',''); 
 <div id="dynsection-0-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-0-content" class="dyncontent" style="display:none;">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classPonca_1_1KnnGraphBase__coll__graph.svg" width="184" height="191"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classPonca_1_1KnnGraphBase__coll__graph.svg" width="250" height="231"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-types" name="pub-types"></a>
@@ -169,10 +169,18 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a7294b2f4e8983db302e2fac4777364d2"><td class="memTemplItemLeft" align="right" valign="top">&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classPonca_1_1KnnGraphBase.html#a7294b2f4e8983db302e2fac4777364d2">KnnGraphBase</a> (const <a class="el" href="classPonca_1_1KdTreeBase.html">KdTreeBase</a>&lt; KdTreeTraits &gt; &amp;kdtree, int <a class="el" href="classPonca_1_1KnnGraphBase.html#a88878dc3a1b39079a2d20c61c15fee6c">k</a>=6)</td></tr>
 <tr class="memdesc:a7294b2f4e8983db302e2fac4777364d2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Build a KnnGraph from a <a class="el" href="structPonca_1_1KdTreeDense.html" title="[KdTree type definition]">KdTreeDense</a>.  <br /></td></tr>
 <tr class="separator:a7294b2f4e8983db302e2fac4777364d2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4c03ceda6467940e8b73ebe2b28f7f3e" id="r_a4c03ceda6467940e8b73ebe2b28f7f3e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classPonca_1_1KnnGraphKNearestQuery.html">KNearestIndexQuery</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1KnnGraphBase.html#a4c03ceda6467940e8b73ebe2b28f7f3e">k_nearest_neighbors</a> (int index) const</td></tr>
-<tr class="separator:a4c03ceda6467940e8b73ebe2b28f7f3e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a997a5dfc6d3e761e18a544230f3115f6" id="r_a997a5dfc6d3e761e18a544230f3115f6"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classPonca_1_1KnnGraphRangeQuery.html">RangeIndexQuery</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1KnnGraphBase.html#a997a5dfc6d3e761e18a544230f3115f6">range_neighbors</a> (int index, <a class="el" href="classPonca_1_1KnnGraphBase.html#a875c06700bd61355caff251e61be62e0">Scalar</a> r) const</td></tr>
-<tr class="separator:a997a5dfc6d3e761e18a544230f3115f6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afbdd48fb6c63ca118dc760f04002b5bc" id="r_afbdd48fb6c63ca118dc760f04002b5bc"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classPonca_1_1KnnGraphKNearestQuery.html">KNearestIndexQuery</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1KnnGraphBase.html#afbdd48fb6c63ca118dc760f04002b5bc">kNearestNeighbors</a> (int index) const</td></tr>
+<tr class="memdesc:afbdd48fb6c63ca118dc760f04002b5bc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Computes a <a class="el" href="group__spatialpartitioning.html#structPonca_1_1Query" title="Composes the Query object depending on an input type and output type.">Query</a> object to iterate over the k-nearest neighbors of a point.  <br /></td></tr>
+<tr class="separator:afbdd48fb6c63ca118dc760f04002b5bc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a63397e8e541b7f4d6f81a200d1a2fd91" id="r_a63397e8e541b7f4d6f81a200d1a2fd91"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classPonca_1_1KnnGraphRangeQuery.html">RangeIndexQuery</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1KnnGraphBase.html#a63397e8e541b7f4d6f81a200d1a2fd91">rangeNeighbors</a> (int index, <a class="el" href="classPonca_1_1KnnGraphBase.html#a875c06700bd61355caff251e61be62e0">Scalar</a> r) const</td></tr>
+<tr class="memdesc:a63397e8e541b7f4d6f81a200d1a2fd91"><td class="mdescLeft">&#160;</td><td class="mdescRight">Computes a <a class="el" href="group__spatialpartitioning.html#structPonca_1_1Query" title="Composes the Query object depending on an input type and output type.">Query</a> object to iterate over the neighbors that are inside a given radius.  <br /></td></tr>
+<tr class="separator:a63397e8e541b7f4d6f81a200d1a2fd91"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2278ba7066ed534bbdbc43896d8bdf9c" id="r_a2278ba7066ed534bbdbc43896d8bdf9c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classPonca_1_1KnnGraphKNearestQuery.html">KNearestIndexQuery</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1KnnGraphBase.html#a2278ba7066ed534bbdbc43896d8bdf9c">kNearestNeighborsIndexQuery</a> () const</td></tr>
+<tr class="memdesc:a2278ba7066ed534bbdbc43896d8bdf9c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convenience function that provides a k-nearest neighbors <a class="el" href="group__spatialpartitioning.html#structPonca_1_1Query" title="Composes the Query object depending on an input type and output type.">Query</a> object.  <br /></td></tr>
+<tr class="separator:a2278ba7066ed534bbdbc43896d8bdf9c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a734a78d3a5e1207bba6e8e3bfb2bbf33" id="r_a734a78d3a5e1207bba6e8e3bfb2bbf33"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classPonca_1_1KnnGraphRangeQuery.html">RangeIndexQuery</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1KnnGraphBase.html#a734a78d3a5e1207bba6e8e3bfb2bbf33">rangeNeighborsIndexQuery</a> () const</td></tr>
+<tr class="memdesc:a734a78d3a5e1207bba6e8e3bfb2bbf33"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convenience function that provides an empty range neighbors <a class="el" href="group__spatialpartitioning.html#structPonca_1_1Query" title="Composes the Query object depending on an input type and output type.">Query</a> object.  <br /></td></tr>
+<tr class="separator:a734a78d3a5e1207bba6e8e3bfb2bbf33"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a88878dc3a1b39079a2d20c61c15fee6c" id="r_a88878dc3a1b39079a2d20c61c15fee6c"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1KnnGraphBase.html#a88878dc3a1b39079a2d20c61c15fee6c">k</a> () const</td></tr>
 <tr class="memdesc:a88878dc3a1b39079a2d20c61c15fee6c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Number of neighbor per vertex.  <br /></td></tr>
 <tr class="separator:a88878dc3a1b39079a2d20c61c15fee6c"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -445,7 +453,7 @@ template&lt;typename Traits &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="knnGraph_8h_source.html#l00130">130</a> of file <a class="el" href="knnGraph_8h_source.html">knnGraph.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="knnGraph_8h_source.html#l00178">178</a> of file <a class="el" href="knnGraph_8h_source.html">knnGraph.h</a>.</p>
 
 </div>
 </div>
@@ -476,12 +484,12 @@ template&lt;typename Traits &gt; </div>
 
 <p>Number of neighbor per vertex. </p>
 
-<p class="definition">Definition at line <a class="el" href="knnGraph_8h_source.html#l00119">119</a> of file <a class="el" href="knnGraph_8h_source.html">knnGraph.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="knnGraph_8h_source.html#l00167">167</a> of file <a class="el" href="knnGraph_8h_source.html">knnGraph.h</a>.</p>
 
 </div>
 </div>
-<a id="a4c03ceda6467940e8b73ebe2b28f7f3e" name="a4c03ceda6467940e8b73ebe2b28f7f3e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a4c03ceda6467940e8b73ebe2b28f7f3e">&#9670;&#160;</a></span>k_nearest_neighbors()</h2>
+<a id="afbdd48fb6c63ca118dc760f04002b5bc" name="afbdd48fb6c63ca118dc760f04002b5bc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afbdd48fb6c63ca118dc760f04002b5bc">&#9670;&#160;</a></span>kNearestNeighbors()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -492,7 +500,7 @@ template&lt;typename Traits &gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classPonca_1_1KnnGraphKNearestQuery.html">KNearestIndexQuery</a> <a class="el" href="classPonca_1_1KnnGraphBase.html">Ponca::KnnGraphBase</a>&lt; Traits &gt;::k_nearest_neighbors </td>
+          <td class="memname"><a class="el" href="classPonca_1_1KnnGraphKNearestQuery.html">KNearestIndexQuery</a> <a class="el" href="classPonca_1_1KnnGraphBase.html">Ponca::KnnGraphBase</a>&lt; Traits &gt;::kNearestNeighbors </td>
           <td>(</td>
           <td class="paramtype">int&#160;</td>
           <td class="paramname"><em>index</em></td><td>)</td>
@@ -506,12 +514,23 @@ template&lt;typename Traits &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="knnGraph_8h_source.html#l00108">108</a> of file <a class="el" href="knnGraph_8h_source.html">knnGraph.h</a>.</p>
+<p>Computes a <a class="el" href="group__spatialpartitioning.html#structPonca_1_1Query" title="Composes the Query object depending on an input type and output type.">Query</a> object to iterate over the k-nearest neighbors of a point. </p>
+<p>As k was set during the construction of the <a class="el" href="classPonca_1_1KnnGraphBase.html">KnnGraphBase</a>, it doesn't need to be provided.</p>
+<p>The returned object can be reset and reused with the () operator, to compute a new result (also takes an index as parameter).</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">index</td><td>Index of the point that the query evaluates </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The <a class="el" href="group__spatialpartitioning.html">KNearestIndexQuery</a> mutable object to iterate over the search results. </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="knnGraph_8h_source.html#l00117">117</a> of file <a class="el" href="knnGraph_8h_source.html">knnGraph.h</a>.</p>
 
 </div>
 </div>
-<a id="a997a5dfc6d3e761e18a544230f3115f6" name="a997a5dfc6d3e761e18a544230f3115f6"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a997a5dfc6d3e761e18a544230f3115f6">&#9670;&#160;</a></span>range_neighbors()</h2>
+<a id="a2278ba7066ed534bbdbc43896d8bdf9c" name="a2278ba7066ed534bbdbc43896d8bdf9c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2278ba7066ed534bbdbc43896d8bdf9c">&#9670;&#160;</a></span>kNearestNeighborsIndexQuery()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -522,7 +541,42 @@ template&lt;typename Traits &gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classPonca_1_1KnnGraphRangeQuery.html">RangeIndexQuery</a> <a class="el" href="classPonca_1_1KnnGraphBase.html">Ponca::KnnGraphBase</a>&lt; Traits &gt;::range_neighbors </td>
+          <td class="memname"><a class="el" href="classPonca_1_1KnnGraphKNearestQuery.html">KNearestIndexQuery</a> <a class="el" href="classPonca_1_1KnnGraphBase.html">Ponca::KnnGraphBase</a>&lt; Traits &gt;::kNearestNeighborsIndexQuery </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Convenience function that provides a k-nearest neighbors <a class="el" href="group__spatialpartitioning.html#structPonca_1_1Query" title="Composes the Query object depending on an input type and output type.">Query</a> object. </p>
+<p>Same as <code><a class="el" href="classPonca_1_1KnnGraphBase.html#afbdd48fb6c63ca118dc760f04002b5bc" title="Computes a Query object to iterate over the k-nearest neighbors of a point.">KnnGraphBase::kNearestNeighbors</a> (0)</code>.</p>
+<dl class="section warning"><dt>Warning</dt><dd>Unlike <code><a class="el" href="classPonca_1_1KdTreeBase.html#a3f076fc0aea97ebb1758c7b65d3d060b" title="Convenience function that provides an empty k-nearest neighbors Query object.">KdTreeBase::kNearestNeighborsIndexQuery</a></code>, this function doesn't really return an empty query. This is due to the fact that the <code><a class="el" href="classPonca_1_1KnnGraphBase.html#afbdd48fb6c63ca118dc760f04002b5bc" title="Computes a Query object to iterate over the k-nearest neighbors of a point.">KnnGraphBase::kNearestNeighbors</a></code> query can't set the <code>k</code> value to zero, as it is a value that is managed by the <a class="el" href="classPonca_1_1KnnGraphBase.html" title="Customizable base class for KnnGraph datastructure.">KnnGraphBase</a> structure. Therefore, this function returns the k-nearest neighbors query made with the evaluation point set to 0.</dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>The <a class="el" href="group__spatialpartitioning.html">KNearestIndexQuery</a> mutable object that can be called with the operator () with an index as argument, to fetch the k-nearest neighbors of a point. </dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="classPonca_1_1KnnGraphBase.html#afbdd48fb6c63ca118dc760f04002b5bc" title="Computes a Query object to iterate over the k-nearest neighbors of a point.">kNearestNeighbors</a> </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="knnGraph_8h_source.html#l00145">145</a> of file <a class="el" href="knnGraph_8h_source.html">knnGraph.h</a>.</p>
+
+</div>
+</div>
+<a id="a63397e8e541b7f4d6f81a200d1a2fd91" name="a63397e8e541b7f4d6f81a200d1a2fd91"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a63397e8e541b7f4d6f81a200d1a2fd91">&#9670;&#160;</a></span>rangeNeighbors()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Traits &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classPonca_1_1KnnGraphRangeQuery.html">RangeIndexQuery</a> <a class="el" href="classPonca_1_1KnnGraphBase.html">Ponca::KnnGraphBase</a>&lt; Traits &gt;::rangeNeighbors </td>
           <td>(</td>
           <td class="paramtype">int&#160;</td>
           <td class="paramname"><em>index</em>, </td>
@@ -546,7 +600,53 @@ template&lt;typename Traits &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="knnGraph_8h_source.html#l00112">112</a> of file <a class="el" href="knnGraph_8h_source.html">knnGraph.h</a>.</p>
+<p>Computes a <a class="el" href="group__spatialpartitioning.html#structPonca_1_1Query" title="Composes the Query object depending on an input type and output type.">Query</a> object to iterate over the neighbors that are inside a given radius. </p>
+<p>The returned object can be reset and reused with the () operator, to compute a new result (also takes an index and a radius as parameters).</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">index</td><td>Index of the point that the query evaluates </td></tr>
+    <tr><td class="paramname">r</td><td>Radius around where to search the neighbors </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The <a class="el" href="group__spatialpartitioning.html">RangeIndexQuery</a> mutable object to iterate over the search results. </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="knnGraph_8h_source.html#l00129">129</a> of file <a class="el" href="knnGraph_8h_source.html">knnGraph.h</a>.</p>
+
+</div>
+</div>
+<a id="a734a78d3a5e1207bba6e8e3bfb2bbf33" name="a734a78d3a5e1207bba6e8e3bfb2bbf33"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a734a78d3a5e1207bba6e8e3bfb2bbf33">&#9670;&#160;</a></span>rangeNeighborsIndexQuery()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Traits &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classPonca_1_1KnnGraphRangeQuery.html">RangeIndexQuery</a> <a class="el" href="classPonca_1_1KnnGraphBase.html">Ponca::KnnGraphBase</a>&lt; Traits &gt;::rangeNeighborsIndexQuery </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Convenience function that provides an empty range neighbors <a class="el" href="group__spatialpartitioning.html#structPonca_1_1Query" title="Composes the Query object depending on an input type and output type.">Query</a> object. </p>
+<p>The returned object can be called with the arguments <code>(i, r)</code> to fetch the neighbors that are in range <code>r</code> of the point of index <code>i</code>.</p>
+<p>Same as <code><a class="el" href="classPonca_1_1KnnGraphBase.html#a63397e8e541b7f4d6f81a200d1a2fd91" title="Computes a Query object to iterate over the neighbors that are inside a given radius.">KnnGraphBase::rangeNeighbors</a> (0, 0)</code>.</p>
+<dl class="section return"><dt>Returns</dt><dd>The empty <a class="el" href="group__spatialpartitioning.html">KNearestIndexQuery</a> mutable object to iterate over the search results. </dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="classPonca_1_1KnnGraphBase.html#a63397e8e541b7f4d6f81a200d1a2fd91" title="Computes a Query object to iterate over the neighbors that are inside a given radius.">rangeNeighbors</a> </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="knnGraph_8h_source.html#l00159">159</a> of file <a class="el" href="knnGraph_8h_source.html">knnGraph.h</a>.</p>
 
 </div>
 </div>
@@ -577,7 +677,7 @@ template&lt;typename Traits &gt; </div>
 
 <p>Number of vertices in the neighborhood graph. </p>
 
-<p class="definition">Definition at line <a class="el" href="knnGraph_8h_source.html#l00121">121</a> of file <a class="el" href="knnGraph_8h_source.html">knnGraph.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="knnGraph_8h_source.html#l00169">169</a> of file <a class="el" href="knnGraph_8h_source.html">knnGraph.h</a>.</p>
 
 </div>
 </div>
@@ -657,7 +757,7 @@ template&lt;typename Traits &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="knnGraph_8h_source.html#l00129">129</a> of file <a class="el" href="knnGraph_8h_source.html">knnGraph.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="knnGraph_8h_source.html#l00177">177</a> of file <a class="el" href="knnGraph_8h_source.html">knnGraph.h</a>.</p>
 
 </div>
 </div>
@@ -667,7 +767,7 @@ template&lt;typename Traits &gt; </div>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="namespacePonca.html">Ponca</a></li><li class="navelem"><a class="el" href="classPonca_1_1KnnGraphBase.html">KnnGraphBase</a></li>
-    <li class="footer">Generated on Tue Dec 9 2025 21:53:30 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
+    <li class="footer">Generated on Mon Jan 19 2026 18:33:14 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
   </ul>
 </div>
 </body>
