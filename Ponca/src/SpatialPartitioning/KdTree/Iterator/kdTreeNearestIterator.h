@@ -16,9 +16,9 @@ namespace Ponca {
  *
  *  As this is an input iterator, we don't guarantee anything other than reading the values with it.
  *  If you need to operate on the values of this iterator with algorithms that relies on forward iterator functionalities,
- *  you should copy the values inside a STL-like container.
+ *  you should copy the index values in an STL-like container.
  *
- *  \note This iterator can be duplicated with no issues.
+ *  \note This iterator object can be duplicated with no issues.
  *
  *  \see KdTreeNearestQueryBase
  */

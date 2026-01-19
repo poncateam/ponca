@@ -77,28 +77,28 @@ int main()
     std::cout << "The nearest neighbor of the point (" << query_pt.transpose() << ") is at index "
               << *kdtree->nearestNeighbor(query_pt).begin() << std::endl;
 
-    /// [Kdtree k-nearest neighbor index search]
+    /// [Kdtree k-nearest neighbors index search]
     std::cout << "The " << k << "-nearest neighbors of the point at index " << query_idx << " are at indices: ";
     for(int neighbor_idx : kdtreeDense.kNearestNeighbors(query_idx, k)) { // Iterates over the neighbors of query_idx
         std::cout << neighbor_idx << ", ";
     }
-    /// [Kdtree k-nearest neighbor index search]
+    /// [Kdtree k-nearest neighbors index search]
     std::cout << std::endl;
 
-    /// [Kdtree k-nearest neighbor position search]
+    /// [Kdtree k-nearest neighbors position search]
     std::cout << "The " << k << "-nearest neighbors of the point (" << query_pt.transpose() << ") are at indices: ";
     for(auto neighbor_idx : kdtreeDense.kNearestNeighbors(query_pt, k)) {
         std::cout << neighbor_idx << ", ";
     }
-    /// [Kdtree k-nearest neighbor position search]
+    /// [Kdtree k-nearest neighbors position search]
     std::cout << std::endl;
 
-    /// [KnnGraph k-nearest neighbor index search]
+    /// [KnnGraph k-nearest neighbors index search]
     std::cout << "The nearest neighbors of the point at index " << query_idx << " are at indices: ";
     for(int neighbor_idx : knnGraph.kNearestNeighbors(query_idx)) {
         std::cout << neighbor_idx << ", ";
     }
-    /// [KnnGraph k-nearest neighbor index search]
+    /// [KnnGraph k-nearest neighbors index search]
     std::cout << std::endl;
 
     //////////////////////////////////////////////////////////////

@@ -15,7 +15,7 @@ namespace Ponca {
 /*!
  * \brief Extension of the Query class that allows to read the result of a range neighbors search on the KdTree.
  *
- *  Ouput result of a `KdTreeBase::rangeNeighbors` query request.
+ *  Output result of a `KdTreeBase::rangeNeighbors` query request.
  *
  *  \see KdTreeBase
  */
@@ -116,7 +116,7 @@ protected:
 /*!
  * \copybrief KdTreeRangeQueryBase
  *
- * Ouput result of a `KdTreeBase::rangeNeighbors` query made with the **index** of the point to evaluate.
+ * Output result of a `KdTreeBase::rangeNeighbors` query made with the **index** of the point to evaluate.
  * \see RangeIndexQuery
  */
 template <typename Traits>
@@ -125,7 +125,7 @@ using KdTreeRangeIndexQuery = KdTreeRangeQueryBase< Traits, KdTreeRangeIterator,
 /*!
  * \copybrief KdTreeRangeQueryBase
  *
- * Ouput result of a `KdTreeBase::rangeNeighbors` query made with the **position** of the point to evaluate.
+ * Output result of a `KdTreeBase::rangeNeighbors` query made with the **position** of the point to evaluate.
  * \see RangePointQuery
  */
 template <typename Traits>

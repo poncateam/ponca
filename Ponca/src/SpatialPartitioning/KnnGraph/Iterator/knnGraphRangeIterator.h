@@ -19,9 +19,9 @@ class KnnGraphRangeQuery;
  *
  *  As this is an input iterator, we don't guarantee anything other than reading the values with it.
  *  If you need to operate on the values of this iterator with algorithms that relies on forward iterator functionalities,
- *  you should copy the values inside a STL-like container.
+ *  you should copy the index values in an STL-like container.
  *
- *  \warning This iterator should never be duplicated, as it is a proxy that holds a reference to the actual data :
+ *  \warning This iterator object should never be duplicated, as it is a proxy that holds a reference to the actual data :
  *  The copy of this iterator would still point to the same KnnGraph reference.
  *  So, if the increment operator is used on the iterator, the duplicate will also have its state updated.
  *  If we then call the increment operator on the duplicate, the result will be an incorrect value.

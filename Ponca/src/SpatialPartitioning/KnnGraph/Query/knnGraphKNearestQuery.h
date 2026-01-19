@@ -22,9 +22,9 @@ struct KnnGraphQueryOutputType : public QueryOutputBase{
 #endif
 
 /*!
- * \brief Extension of the Query class that allows to read the result of a k-nearest neighbor search on the KnnGraph.
+ * \brief Extension of the Query class that allows to read the result of a k-nearest neighbors search on the KnnGraph.
  *
- *  Ouput result of a `KnnGraph::kNearestNeighbors` query request.
+ *  Output result of a `KnnGraph::kNearestNeighbors` query request.
  *
  *  \see KnnGraphBase
  */

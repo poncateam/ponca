@@ -84,7 +84,7 @@ struct  OUT_TYPE##PointQuery : Query<QueryInputIsPosition<DataPoint>,           
      * (e.g. the position of the point, or its index)
      *
      * \warning This class has to be specialized for a specific input type, and can't be used as is.
-     * /see QueryInputIsIndex, QueryInputIsPosition
+     * \see QueryInputIsIndex, QueryInputIsPosition
      */
     template<typename InputType_>
     struct QueryInput : public QueryInputBase {
@@ -111,12 +111,10 @@ struct  OUT_TYPE##PointQuery : Query<QueryInputIsPosition<DataPoint>,           
 
 
     /*!
-     * \brief Specialization of `QueryInput` that handles an Index based search query.
-     *
-     * Used as the `QueryInput` for any searches made with a point Index in an accelerating structures.
+     * \brief Extension of `QueryInput` that handles an **index** based search, in a partitioning structure.
      *
      * Stores internally the index of the evaluated point.
-     * /see QueryInput
+     * \see QueryInput
      */
     template <typename Index>
     struct QueryInputIsIndex : public QueryInput<Index> {
@@ -140,12 +138,10 @@ struct  OUT_TYPE##PointQuery : Query<QueryInputIsPosition<DataPoint>,           
     };
 
     /*!
-     * \brief Specialization of `QueryInput` that handles a Position based search query.
-     *
-     * Used as the `QueryInput` for any searches made with a point Position in an accelerating structures.
+     * \brief Extension of `QueryInput` that handles a **position** based search, in a partitioning structure.
      *
      * Stores internally the position of the evaluated point.
-     * /see QueryInput
+     * \see QueryInput
      */
     template<typename DataPoint>
     struct QueryInputIsPosition : public QueryInput<typename DataPoint::VectorType> {

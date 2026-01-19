@@ -13,9 +13,9 @@
 namespace Ponca {
 
 /*!
- * \brief Extension of the Query class that allows to read the result of a k-nearest neighbor search on the KdTree.
+ * \brief Extension of the Query class that allows to read the result of a k-nearest neighbors search on the KdTree.
  *
- *  Ouput result of a `KdTreeBase::kNearestNeighbors` query request.
+ *  Output result of a `KdTreeBase::kNearestNeighbors` query request.
  *
  *  \see KdTreeBase
  */
@@ -73,7 +73,7 @@ protected:
 /*!
  * \copybrief KdTreeKNearestQueryBase
  *
- * Ouput result of a `KdTreeBase::kNearestNeighbors` query made with the **index** of the point to evaluate.
+ * Output result of a `KdTreeBase::kNearestNeighbors` query made with the **index** of the point to evaluate.
  * \see KNearestIndexQuery
  */
 template <typename Traits>
@@ -82,7 +82,7 @@ using KdTreeKNearestIndexQuery = KdTreeKNearestQueryBase< Traits, KdTreeKNearest
 /*!
  * \copybrief KdTreeKNearestQueryBase
  *
- * Ouput result of a `KdTreeBase::kNearestNeighbors` query made with the **position** of the point to evaluate.
+ * Output result of a `KdTreeBase::kNearestNeighbors` query made with the **position** of the point to evaluate.
  * \see KNearestPointQuery
  */
 template <typename Traits>
