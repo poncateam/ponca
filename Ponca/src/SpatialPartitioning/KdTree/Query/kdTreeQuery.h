@@ -46,7 +46,7 @@ protected:
             typename DescentDistanceThresholdFunctor,
             typename SkipIndexFunctor,
             typename ProcessNeighborFunctor>
-    bool search_internal(const VectorType& point,
+    bool searchInternal(const VectorType& point,
                          LeafPreparationFunctor prepareLeafTraversal,
                          DescentDistanceThresholdFunctor descentDistanceThreshold,
                          SkipIndexFunctor skipFunctor,

@@ -100,7 +100,7 @@ protected:
             }
         }
 
-        if (KdTreeQuery<Traits>::search_internal(point,
+        if (KdTreeQuery<Traits>::searchInternal(point,
                                                  [&it](IndexType start, IndexType end)
                                                  {
                                                      it.m_start = start;
