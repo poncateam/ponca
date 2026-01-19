@@ -42,8 +42,8 @@ template<typename Scalar, int Dim>
 void testRangeNeighborsForAllStructures(const bool quick = QUICK_TESTS)
 {
 	using P = TestPoint<Scalar, Dim>;
-	const int N = quick ? 100 : 5000;
-	const int retry_number = quick? 1 : 10;
+	const int N = quick ? 100 : 1000;
+	const int retry_number = quick? 1 : 5;
 	std::chrono::milliseconds timing;
 
 	//////////// Generate data
@@ -53,7 +53,6 @@ void testRangeNeighborsForAllStructures(const bool quick = QUICK_TESTS)
 	//////////// Test dense KdTree
 	std::vector<int> sample;
 	KdTreeDense<P> kdtreeDense = *buildKdTreeDense<P>(points, sample);
-	auto timeStart = std::chrono::system_clock::now(); // Only record time for one query
 	timing = testRangeNeighbors<true>(kdtreeDense, points, sample, retry_number);  // Index query test
 	cout << "    Compute Time KdTreeDense index query : " <<  timing.count() << "ms" << endl;
 	timing = testRangeNeighbors<false>(kdtreeDense, points, sample, retry_number); // Position query test

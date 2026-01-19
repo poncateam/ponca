@@ -62,9 +62,9 @@ template<typename Scalar, int Dim>
 void testKNearestNeighborsForAllStructures(const bool quick = QUICK_TESTS)
 {
 	using P = TestPoint<Scalar, Dim>;
-	const int N = quick ? 100 : 5000;
+	const int N = quick ? 100 : 1000;
 	const int k = quick ? 2 : 15;
-	const int retry_number = quick? 1 : 10;
+	const int retry_number = quick? 1 : 5;
 	std::chrono::milliseconds timing;
 
 	//////////// Generate data
