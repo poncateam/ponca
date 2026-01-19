@@ -6,36 +6,73 @@
 
 #pragma once
 
+#include <iterator>
+#include <cstddef>
+
 namespace Ponca {
 
 template <typename Traits>
 class KnnGraphRangeQuery;
 
+/*!
+ *  \brief Input iterator to read the `KnnGraphRangeQuery` object.
+ *
+ *  As this is an input iterator, we don't guarantee anything other than reading the values with it.
+ *  If you need to operate on the values of this iterator with algorithms that relies on forward iterator functionalities,
+ *  you should copy the index values in an STL-like container.
+ *
+ *  \warning This iterator object should never be duplicated, as it is a proxy that holds a reference to the actual data :
+ *  The copy of this iterator would still point to the same KnnGraph reference.
+ *  So, if the increment operator is used on the iterator, the duplicate will also have its state updated.
+ *  If we then call the increment operator on the duplicate, the result will be an incorrect value.
+ *
+ *  \see KnnGraphRangeQuery
+ */
 template <typename Traits>
 class KnnGraphRangeIterator
 {
 protected:
     friend class KnnGraphRangeQuery<Traits>;
+    using Index  = typename Traits::IndexType;
+public:
+    // Tagged as an input iterator, because the increment logic is shared between iterators of the same queries.
+    // Which makes the iterator not valid when duplicated (through postfix increment for example).
+    using iterator_category = PONCA_MULTIARCH_CU_STD_NAMESPACE(input_iterator_tag);
+    using difference_type   = std::ptrdiff_t;
+    using value_type = Index;
+    using pointer    = Index*;
+    using reference  = const Index&;
+
+    inline KnnGraphRangeIterator(KnnGraphRangeQuery<Traits>* query, Index index = Index(-1)) : m_query(query), m_index(index) {}
 
 public:
-    inline KnnGraphRangeIterator(KnnGraphRangeQuery<Traits>* query, int index = -1) : m_query(query), m_index(index) {}
-
-public:
+    /// \brief Inequality operand
     bool operator != (const KnnGraphRangeIterator& other) const{
         return m_index != other.m_index;
     }
 
-    void operator ++ (){
-        m_query->advance(*this);
+    /// \brief Equality operand
+    bool operator == (const KnnGraphRangeIterator& other) const {
+        return m_index == other.m_index;
     }
 
-    int  operator *  () const{
-        return m_index;
+    /// Prefix increment
+    inline KnnGraphRangeIterator& operator ++ (){
+        m_query->advance(*this);
+        return *this;
+    }
+
+    /// \brief Postfix increment
+    inline void operator++(value_type) { ++*this; }
+
+    /// \brief Dereference operator
+    inline reference operator *() const {
+        return const_cast<reference>(m_index);
     }
 
 protected:
     KnnGraphRangeQuery<Traits>* m_query {nullptr};
-    int m_index {-1};
+    value_type m_index {-1};
 };
 
 } // namespace Ponca

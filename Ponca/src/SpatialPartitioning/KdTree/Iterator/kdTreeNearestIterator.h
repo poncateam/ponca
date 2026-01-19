@@ -6,22 +6,67 @@
 
 #pragma once
 
+#include <iterator>
+#include <cstddef>
+
 namespace Ponca {
 
+/*!
+ *  \brief Input iterator to read the `KdTreeKNearestQueryBase` object.
+ *
+ *  As this is an input iterator, we don't guarantee anything other than reading the values with it.
+ *  If you need to operate on the values of this iterator with algorithms that relies on forward iterator functionalities,
+ *  you should copy the index values in an STL-like container.
+ *
+ *  \note This iterator object can be duplicated with no issues.
+ *
+ *  \see KdTreeNearestQueryBase
+ */
 template<typename Index>
 class KdTreeNearestIterator
 {
 public:
+    using iterator_category = PONCA_MULTIARCH_CU_STD_NAMESPACE(input_iterator_tag);
+    using difference_type   = std::ptrdiff_t;
+    using value_type = Index;
+    using pointer    = Index*;
+    using reference  = const Index&;
+
     inline KdTreeNearestIterator() = default;
     inline KdTreeNearestIterator(Index index) : m_index(index) {}
     virtual inline ~KdTreeNearestIterator() = default;
 
 public:
-    inline bool operator !=(const KdTreeNearestIterator& other) const
-    {return m_index != other.m_index;}
-    inline void operator ++(int) {++m_index;}
-    inline KdTreeNearestIterator& operator ++() {++m_index; return *this;}
-    inline Index operator * () const {return m_index;}
+    /// \brief Inequality operand
+    inline bool operator !=(const KdTreeNearestIterator& other) const {
+        return m_index != other.m_index;
+    }
+
+    /// \brief Equality operand
+    inline bool operator ==(const KdTreeNearestIterator& other) const {
+        return m_index == other.m_index;
+    }
+
+    /// Prefix increment
+    inline KdTreeNearestIterator& operator ++() {
+        ++m_index;
+        return *this;
+    }
+
+    /// \brief Postfix increment
+    inline KdTreeNearestIterator operator++(int) {
+        KdTreeNearestIterator tmp = *this;
+        ++m_index;
+        return tmp;
+    }
+
+    /// \brief Value increment
+    inline void operator +=(int i) {m_index += i;}
+
+    /// \brief Dereference operator
+    inline reference operator *() const {
+        return const_cast<reference>(m_index);
+    }
 
 protected:
     Index m_index {-1};

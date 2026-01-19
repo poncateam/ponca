@@ -6,6 +6,7 @@
 
 #pragma once
 
+#include "../../query.h"
 #include "../Iterator/knnGraphRangeIterator.h"
 #include <vector>
 
@@ -20,6 +21,13 @@ struct KnnGraphQueryOutputType : public QueryOutputBase{
 };
 #endif
 
+/*!
+ * \brief Extension of the Query class that allows to read the result of a k-nearest neighbors search on the KnnGraph.
+ *
+ *  Output result of a `KnnGraph::kNearestNeighbors` query request.
+ *
+ *  \see KnnGraphBase
+ */
 template <typename Traits>class KnnGraphKNearestQuery
 #ifdef PARSED_WITH_DOXYGEN
 : public KNearestIndexQuery<typename Traits::IndexType, typename Traits::DataPoint::Scalar>
@@ -35,14 +43,23 @@ public:
 #else
     using QueryType = Query<QueryInputIsIndex<typename Traits::IndexType>,KnnGraphQueryOutputType>;
 #endif
+    using Self      = KnnGraphKNearestQuery<Traits>;
 
 public:
     inline KnnGraphKNearestQuery(const KnnGraphBase<Traits>* graph, int index)
-        : m_graph(graph), QueryType(index){}
+        : QueryType(index), m_graph(graph){}
 
+    /// \brief Call the k-nearest neighbors query with new input parameter.
+    inline Self& operator()(int index) {
+        return QueryType::template operator()<Self>(index);
+    }
+
+    /// \brief Returns an iterator to the beginning of the k-nearest neighbors query.
     inline Iterator begin() const{
         return m_graph->index_data().begin() + QueryType::input() * m_graph->k();
     }
+
+    /// \brief Returns an iterator to the end of the k-nearest neighbors query.
     inline Iterator end() const{
         return m_graph->index_data().begin() + (QueryType::input()+1) * m_graph->k();
     }

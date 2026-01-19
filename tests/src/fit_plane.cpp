@@ -106,7 +106,7 @@ void testFunction(bool _bUnoriented = false, bool _bAddPositionNoise = false, bo
 
         Fit fit;
         fit.setNeighborFilter({vectorPoints[i].pos(), analysisScale});
-        fit.computeWithIds(tree.range_neighbors(vectorPoints[i].pos(),analysisScale),vectorPoints);
+        fit.computeWithIds(tree.rangeNeighbors(vectorPoints[i].pos(),analysisScale),vectorPoints);
 
         auto ret = fit.getCurrentState();
 

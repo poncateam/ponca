@@ -80,9 +80,9 @@ public:
                        "KdTreeTraits::IndexContainer is not equal to Traits::IndexContainer" );
 
         // We need to account for the entire point set, irrespectively of the sampling. This is because the kdtree
-        // (k_nearest_neighbors) return ids of the entire point set, not it sub-sampled list of ids.
+        // (kNearestNeighbors) return ids of the entire point set, not it sub-sampled list of ids.
         // \fixme Update API to properly handle kdtree subsampling
-        const int cloudSize   = kdtree.point_count();
+        const int cloudSize   = kdtree.pointCount();
         {
             const int samplesSize = kdtree.sample_count();
             eigen_assert(cloudSize == samplesSize);
@@ -94,7 +94,7 @@ public:
         for(int i=0; i<cloudSize; ++i)
         {
             int j = 0;
-            for(auto n : kdtree.k_nearest_neighbors(typename KdTreeTraits::IndexType(i),
+            for(auto n : kdtree.kNearestNeighbors(typename KdTreeTraits::IndexType(i),
                                                    typename KdTreeTraits::IndexType(m_k)))
             {
                 m_indices[i * m_k + j] = n;
@@ -105,20 +105,68 @@ public:
 
     // Query -------------------------------------------------------------------
 public:
-    inline KNearestIndexQuery k_nearest_neighbors(int index) const{
+    /// \brief Computes a Query object to iterate over the k-nearest neighbors of a point.
+    ///
+    /// As k was set during the construction of the \ref KnnGraphBase, it doesn't need to be provided.
+    ///
+    /// The returned object can be reset and reused with the () operator, to compute a new result
+    /// (also takes an index as parameter).
+    ///
+    /// \param index Index of the point that the query evaluates
+    /// \return The \ref KNearestIndexQuery mutable object to iterate over the search results.
+    inline KNearestIndexQuery kNearestNeighbors(int index) const{
         return KNearestIndexQuery(this, index);
     }
 
-    inline RangeIndexQuery    range_neighbors(int index, Scalar r) const{
+    /// \brief Computes a Query object to iterate over the neighbors that are inside a given radius.
+    ///
+    /// The returned object can be reset and reused with the () operator, to compute a new result
+    /// (also takes an index and a radius as parameters).
+    ///
+    /// \param index Index of the point that the query evaluates
+    /// \param r Radius around where to search the neighbors
+    /// \return The \ref RangeIndexQuery mutable object to iterate over the search results.
+    inline RangeIndexQuery    rangeNeighbors(int index, Scalar r) const{
         return RangeIndexQuery(this, r, index);
+    }
+
+    /// \brief Convenience function that provides a k-nearest neighbors Query object.
+    ///
+    /// Same as `KnnGraphBase::kNearestNeighbors (0)`.
+    ///
+    /// \warning Unlike `KdTreeBase::kNearestNeighborsIndexQuery`, this function doesn't really return an empty query.
+    /// This is due to the fact that the `KnnGraphBase::kNearestNeighbors` query can't set the `k` value to zero,
+    /// as it is a value that is managed by the KnnGraphBase structure.
+    /// Therefore, this function returns the k-nearest neighbors query made with the evaluation point set to 0.
+    ///
+    /// \return The \ref KNearestIndexQuery mutable object that can be called with the operator ()
+    /// with an index as argument, to fetch the k-nearest neighbors of a point.
+    /// \see #kNearestNeighbors
+    inline KNearestIndexQuery kNearestNeighborsIndexQuery() const
+    {
+        return KNearestIndexQuery(this, 0);
+    }
+
+    /// \brief Convenience function that provides an empty range neighbors Query object.
+    ///
+    /// The returned object can be called with the arguments `(i, r)` to fetch the neighbors
+    /// that are in range `r` of the point of index `i`.
+    ///
+    /// Same as `KnnGraphBase::rangeNeighbors (0, 0)`.
+    ///
+    /// \return The empty \ref KNearestIndexQuery mutable object to iterate over the search results.
+    /// \see #rangeNeighbors
+    inline RangeIndexQuery rangeNeighborsIndexQuery() const
+    {
+        return RangeIndexQuery(this, 0, 0);
     }
 
     // Accessors ---------------------------------------------------------------
 public:
     /// \brief Number of neighbor per vertex
-    inline int k() const { return m_k; }
+    [[nodiscard]] inline int k() const { return m_k; }
     /// \brief Number of vertices in the neighborhood graph
-    inline size_t size() const { return m_indices.size()/static_cast<size_t>(m_k); }
+    [[nodiscard]] inline size_t size() const { return m_indices.size()/static_cast<size_t>(m_k); }
 
     // Data --------------------------------------------------------------------
 private:

@@ -12,6 +12,13 @@
 
 namespace Ponca {
 
+/*!
+ * \brief Extension of the Query class that allows to read the result of a nearest neighbor search on the KdTree.
+ *
+ *  Output result of a `KdTreeBase::nearestNeighbor` query request.
+ *
+ *  \see KdTreeBase
+ */
 template <typename Traits,
           template <typename> typename IteratorType,
           typename QueryType>
@@ -28,20 +35,22 @@ public:
     KdTreeNearestQueryBase(const KdTreeBase<Traits>* kdtree, typename QueryType::InputType input) :
             KdTreeQuery<Traits>(kdtree), QueryType(input){}
 
-public:
+    /// \brief Returns an iterator to the beginning of the nearest neighbor query.
     inline Iterator begin(){
         QueryAccelType::reset();
         QueryType::reset();
         this->search();
         return Iterator(QueryType::m_nearest);
     }
+
+    /// \brief Returns an iterator to the end of the nearest neighbor query.
     inline Iterator end(){
         return Iterator(QueryType::m_nearest + 1);
     }
 
 protected:
     inline void search(){
-        KdTreeQuery<Traits>::search_internal(QueryType::getInputPosition(QueryAccelType::m_kdtree->points()),
+        KdTreeQuery<Traits>::searchInternal(QueryType::getInputPosition(QueryAccelType::m_kdtree->points()),
                                              [](IndexType, IndexType){},
                                              [this](){return QueryType::descentDistanceThreshold();},
                                              [this](IndexType idx){return QueryType::skipIndexFunctor(idx);},
@@ -54,10 +63,22 @@ protected:
         );
     }
 };
-
+/*!
+ * \copybrief KdTreeNearestQueryBase
+ *
+ * Output result of a `KdTreeBase::nearestNeighbor` query made with the **index** of the point to evaluate.
+ * \see NearestIndexQuery
+ */
 template <typename Traits>
 using KdTreeNearestIndexQuery = KdTreeNearestQueryBase< Traits, KdTreeNearestIterator,
                                 NearestIndexQuery<typename Traits::IndexType, typename Traits::DataPoint::Scalar>>;
+
+/*!
+ * \copybrief KdTreeNearestQueryBase
+ *
+ * Output result of a `KdTreeBase::nearestNeighbor` query made with the **position** of the point to evaluate.
+ * \see NearestPointQuery
+ */
 template <typename Traits>
 using KdTreeNearestPointQuery = KdTreeNearestQueryBase< Traits, KdTreeNearestIterator,
                                 NearestPointQuery<typename Traits::IndexType, typename Traits::DataPoint>>;

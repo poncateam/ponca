@@ -12,6 +12,13 @@
 
 namespace Ponca {
 
+/*!
+ * \brief Extension of the Query class that allows to read the result of a range neighbors search on the KdTree.
+ *
+ *  Output result of a `KdTreeBase::rangeNeighbors` query request.
+ *
+ *  \see KdTreeBase
+ */
 template <typename Traits,
         template <typename,typename,typename> typename IteratorType,
         typename QueryType>
@@ -25,6 +32,7 @@ public:
     using VectorType     = typename DataPoint::VectorType;
     using QueryAccelType = KdTreeQuery<Traits>;
     using Iterator       = IteratorType<IndexType, DataPoint, KdTreeRangeQueryBase>;
+    using Self           = KdTreeRangeQueryBase<Traits, IteratorType, QueryType>;
 
 protected:
     friend Iterator;
@@ -33,7 +41,19 @@ public:
     KdTreeRangeQueryBase(const KdTreeBase<Traits>* kdtree, Scalar radius, typename QueryType::InputType input) :
             KdTreeQuery<Traits>(kdtree), QueryType(radius, input){}
 
-public:
+    /// \brief Call the range neighbors query with new input and radius parameters.
+    inline Self& operator()(typename QueryType::InputType input, Scalar radius)
+    {
+        return QueryType::template operator()<Self>(input, radius);
+    }
+
+    /// \brief Call the range neighbors query with new input parameter.
+    inline Self& operator()(typename QueryType::InputType input)
+    {
+        return QueryType::template operator()<Self>(input);
+    }
+
+    /// \brief Returns an iterator to the beginning of the Range Query.
     inline Iterator begin(){
         QueryAccelType::reset();
         QueryType::reset();
@@ -41,8 +61,10 @@ public:
         this->advance(it);
         return it;
     }
+
+    /// \brief Returns an iterator to the end of the Range Query.
     inline Iterator end(){
-        return Iterator(this, QueryAccelType::m_kdtree->point_count());
+        return Iterator(this, QueryAccelType::m_kdtree->pointCount());
     }
 
 protected:
@@ -78,7 +100,7 @@ protected:
             }
         }
 
-        if (KdTreeQuery<Traits>::search_internal(point,
+        if (KdTreeQuery<Traits>::searchInternal(point,
                                                  [&it](IndexType start, IndexType end)
                                                  {
                                                      it.m_start = start;
@@ -91,9 +113,21 @@ protected:
     }
 };
 
+/*!
+ * \copybrief KdTreeRangeQueryBase
+ *
+ * Output result of a `KdTreeBase::rangeNeighbors` query made with the **index** of the point to evaluate.
+ * \see RangeIndexQuery
+ */
 template <typename Traits>
 using KdTreeRangeIndexQuery = KdTreeRangeQueryBase< Traits, KdTreeRangeIterator,
         RangeIndexQuery<typename Traits::IndexType, typename Traits::DataPoint::Scalar>>;
+/*!
+ * \copybrief KdTreeRangeQueryBase
+ *
+ * Output result of a `KdTreeBase::rangeNeighbors` query made with the **position** of the point to evaluate.
+ * \see RangePointQuery
+ */
 template <typename Traits>
 using KdTreeRangePointQuery = KdTreeRangeQueryBase< Traits, KdTreeRangeIterator,
         RangePointQuery<typename Traits::IndexType, typename Traits::DataPoint>>;

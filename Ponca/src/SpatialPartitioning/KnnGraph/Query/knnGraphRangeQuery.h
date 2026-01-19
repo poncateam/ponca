@@ -16,6 +16,13 @@
 namespace Ponca {
 template <typename Traits> class KnnGraphBase;
 
+/*!
+ * \brief Extension of the Query class that allows to read the result of a range neighbor search on the KnnGraph.
+ *
+ *  Output result of a `KnnGraph::rangeNeighbors` query request.
+ *
+ *  \see KnnGraphBase
+ */
 template <typename Traits>
 class KnnGraphRangeQuery : public RangeIndexQuery<typename Traits::IndexType, typename Traits::DataPoint::Scalar>
 {
@@ -29,6 +36,7 @@ public:
     using Scalar     = typename DataPoint::Scalar;
     using VectorType = typename DataPoint::VectorType;
     using Iterator   = KnnGraphRangeIterator<Traits>;
+    using Self       = KnnGraphRangeQuery<Traits>;
 
 public:
     inline KnnGraphRangeQuery(const KnnGraphBase<Traits>* graph, Scalar radius, int index):
@@ -37,14 +45,26 @@ public:
             m_flag(),
             m_stack() {}
 
-public:
+    /// \brief Call the range neighbors query with new input and radius parameters.
+    inline Self& operator()(int index, Scalar radius) {
+        return QueryType::template operator()<Self>(index, radius);
+    }
+
+    /// \brief Call the range neighbors query with new input parameter.
+    inline Self& operator()(int index) {
+        return QueryType::template operator()<Self>(index);
+    }
+
+    /// \brief Returns an iterator to the beginning of the range neighbors query.
     inline Iterator begin(){
+        QueryType::reset();
         Iterator it(this);
         this->initialize(it);
         this->advance(it);
         return it;
     }
 
+    /// \brief Returns an iterator to the end of the range neighbors query.
     inline Iterator end(){
         return Iterator(this, static_cast<int>(m_graph->size()));
     }
@@ -75,11 +95,11 @@ protected:
             int idx_current = m_stack.top();
             m_stack.pop();
 
-            PONCA_DEBUG_ASSERT((point - points[idx_current].pos()).squaredNorm() < QueryType::squared_radius());
+            PONCA_DEBUG_ASSERT((point - points[idx_current].pos()).squaredNorm() < QueryType::squaredRadius());
 
             iterator.m_index = idx_current;
 
-            for(int idx_nei : m_graph->k_nearest_neighbors(idx_current))
+            for(int idx_nei : m_graph->kNearestNeighbors(idx_current))
             {
                 PONCA_DEBUG_ASSERT(idx_nei>=0);
                 Scalar d  = (point - points[idx_nei].pos()).squaredNorm();

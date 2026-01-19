@@ -75,9 +75,9 @@ int main()
     // nearest neighbor search
     //
     std::cout << "the nearest neighbor of the point at index " << query_idx << " is at index "
-              << *kdtree.nearest_neighbor(query_idx).begin() << std::endl;
+              << *kdtree.nearestNeighbor(query_idx).begin() << std::endl;
     std::cout << "the nearest neighbor of the point (" << query_pt.transpose() << ") is at index "
-              << *kdtree.nearest_neighbor(query_pt).begin() << std::endl;
+              << *kdtree.nearestNeighbor(query_pt).begin() << std::endl;
 
     //! [ReadCustomProperties]
     auto bbox = kdtree.nodes()[0].getAabb();

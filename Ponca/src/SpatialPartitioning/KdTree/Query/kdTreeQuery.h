@@ -12,6 +12,11 @@
 namespace Ponca {
 template <typename Traits> class KdTreeBase;
 
+/*!
+ * \brief Query object that provides a method to search neighbors on the KdTree depending on a distance threshold.
+ *
+ * Base class for KdTreeRangeQueryBase, KdTreeKNearestQueryBase and KdTreeNearestQueryBase.
+ */
 template <typename Traits>
 class KdTreeQuery
 {
@@ -35,12 +40,13 @@ protected:
     /// [KdTreeQuery kdtree type]
     Stack<IndexSquaredDistance<IndexType, Scalar>, 2 * Traits::MAX_DEPTH> m_stack;
 
+    /// \brief Search internally the neighbors of a point using the kdtree.
     /// \return false if the kdtree is empty
     template<typename LeafPreparationFunctor,
             typename DescentDistanceThresholdFunctor,
             typename SkipIndexFunctor,
             typename ProcessNeighborFunctor>
-    bool search_internal(const VectorType& point,
+    bool searchInternal(const VectorType& point,
                          LeafPreparationFunctor prepareLeafTraversal,
                          DescentDistanceThresholdFunctor descentDistanceThreshold,
                          SkipIndexFunctor skipFunctor,

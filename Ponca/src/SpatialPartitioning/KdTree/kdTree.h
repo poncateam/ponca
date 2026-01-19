@@ -37,9 +37,9 @@ template <typename Traits> class KdTreeSparseBase;
  *
  * \warning It is not possible to create instances of type KdTree. This type must only be used to store pointers
  * to KdTreeDense or KdTreeSparse objects, e.g. the declaration
- *   \snippet queries_range.cpp KdTree pointer usage
- *   \snippet queries_range.cpp KdTree assign sparse
- *   \snippet queries_range.cpp KdTree assign dense
+ * \snippet examples/cpp/ponca_neighbor_search.cpp KdTree pointer usage
+ * \snippet examples/cpp/ponca_neighbor_search.cpp KdTree assign sparse
+ * \snippet examples/cpp/ponca_neighbor_search.cpp KdTree assign dense
  */
 #ifdef PARSED_WITH_DOXYGEN
 /// [KdTree type definition]
@@ -186,7 +186,7 @@ public:
         return (IndexType)m_indices.size();
     }
 
-    inline IndexType point_count() const
+    inline IndexType pointCount() const
     {
         return (IndexType)m_points.size();
     }
@@ -219,13 +219,13 @@ public:
     // Parameters --------------------------------------------------------------
 public:
     /// Read leaf min size
-    inline LeafSizeType min_cell_size() const
+    inline LeafSizeType minCellSize() const
     {
         return m_min_cell_size;
     }
 
     /// Write leaf min size
-    inline void set_min_cell_size(LeafSizeType min_cell_size)
+    inline void setMinCellSize(LeafSizeType min_cell_size)
     {
         PONCA_DEBUG_ASSERT(min_cell_size > 0);
         m_min_cell_size = min_cell_size;
@@ -257,39 +257,159 @@ public:
 
     // Query -------------------------------------------------------------------
 public :
-    KdTreeKNearestPointQuery<Traits> k_nearest_neighbors(const VectorType& point, IndexType k) const
+    /// \brief Computes a Query object to iterate over the k-nearest neighbors of a point.
+    /// The returned object can be reset and reused with the () operator
+    /// (using the same argument types as parameters).
+    ///
+    /// \param point Point from where the query is evaluated
+    /// \param k Number of neighbors returned
+    /// \return The \ref KdTreeKNearestIndexQuery mutable object to iterate over the search results.
+    /// \see KdTreeKNearestQueryBase
+    KdTreeKNearestPointQuery<Traits> kNearestNeighbors(const VectorType& point, IndexType k) const
     {
         return KdTreeKNearestPointQuery<Traits>(this, k, point);
     }
 
-    KdTreeKNearestIndexQuery<Traits> k_nearest_neighbors(IndexType index, IndexType k) const
+    /// \copybrief KdTreeBase::kNearestNeighbors
+    /// \param index Index of the point from where the query is evaluated
+    /// \param k Number of neighbors returned
+    /// \return The \ref KdTreeKNearestIndexQuery mutable object to iterate over the search results.
+    /// \see KdTreeKNearestQueryBase
+    KdTreeKNearestIndexQuery<Traits> kNearestNeighbors(IndexType index, IndexType k) const
     {
         return KdTreeKNearestIndexQuery<Traits>(this, k, index);
     }
 
-    KdTreeNearestPointQuery<Traits> nearest_neighbor(const VectorType& point) const
+    /// \brief Convenience function that provides an empty k-nearest neighbors Query object.
+    ///
+    /// The returned object can call for a k-nearest neighbors search using the operator (),
+    /// which takes a k and a **position** as parameters.
+    ///
+    /// Same as `KdTreeBase::kNearestNeighbors (0, VectorType::Zero())`
+    /// \return The empty \ref KdTreeKNearestPointQuery mutable object to iterate over the search results.
+    /// \see KdTreeKNearestQueryBase
+    KdTreeKNearestPointQuery<Traits> kNearestNeighborsQuery() const
+    {
+        return KdTreeKNearestPointQuery<Traits>(this, 0, VectorType::Zero());
+    }
+
+    /// \copybrief KdTreeBase::kNearestNeighborsQuery
+    ///
+    /// The returned object can call for a k-nearest neighbors search using the operator (),
+    /// which takes a k and an **index** as parameters.
+    ///
+    /// Same as `KdTreeBase::kNearestNeighbors (0, 0)`
+    /// \return The empty \ref KdTreeKNearestIndexQuery mutable object to iterate over the search results.
+    /// \see KdTreeKNearestQueryBase
+    KdTreeKNearestIndexQuery<Traits> kNearestNeighborsIndexQuery() const
+    {
+        return KdTreeKNearestIndexQuery<Traits>(this, 0, 0);
+    }
+
+    /// \brief Computes a Query object that contains the nearest point.
+    /// The returned object can be reset and reused with the () operator
+    /// (using the same argument types as parameters).
+    ///
+    /// \param point Point from where the query is evaluated
+    /// \return The \ref KdTreeNearestPointQuery mutable object that contains the search result.
+    /// \see KdTreeNearestQueryBase
+    KdTreeNearestPointQuery<Traits> nearestNeighbor(const VectorType& point) const
     {
         return KdTreeNearestPointQuery<Traits>(this, point);
     }
 
-    KdTreeNearestIndexQuery<Traits> nearest_neighbor(IndexType index) const
+
+    /// \copybrief KdTreeBase::nearestNeighbor
+    /// \param index Index of the point from where the query is evaluated
+    /// \return The \ref KdTreeKNearestIndexQuery mutable object that contains the search result.
+    /// \see KdTreeNearestQueryBase
+    KdTreeNearestIndexQuery<Traits> nearestNeighbor(IndexType index) const
     {
         return KdTreeNearestIndexQuery<Traits>(this, index);
     }
 
-    KdTreeRangePointQuery<Traits> range_neighbors(const VectorType& point, Scalar r) const
+    /// \brief Convenience function that provides an empty nearest neighbor Query object.
+    ///
+    /// The returned object can call for a nearest neighbor search using the operator (),
+    /// which takes a **position** as parameter.
+    ///
+    /// Same as `KdTreeBase::nearestNeighbor (VectorType::Zero())`
+    ///
+    /// \return The empty \ref KdTreeNearestPointQuery mutable object that contains the search result.
+    /// \see KdTreeNearestQueryBase
+    KdTreeNearestIndexQuery<Traits> nearestNeighborQuery() const
+    {
+        return KdTreeNearestIndexQuery<Traits>(this, VectorType::Zero());
+    }
+
+    /// \copybrief KdTreeBase::nearestNeighborQuery
+    ///
+    /// The returned object can call for a nearest neighbor search using the operator (),
+    /// which takes an **index** as parameter.
+    ///
+    /// Same as `KdTreeBase::nearestNeighbor (0)`
+    ///
+    /// \return The \ref KdTreeKNearestIndexQuery mutable object that contains the search result.
+    /// \see KdTreeNearestQueryBase
+    KdTreeNearestIndexQuery<Traits> nearestNeighborIndexQuery() const
+    {
+        return KdTreeNearestIndexQuery<Traits>(this, 0);
+    }
+
+    /// \brief Computes a Query object to iterate over the neighbors that are inside a given radius.
+    /// The returned object can be reset and reused with the () operator
+    /// (using the same argument types as parameters).
+    ///
+    /// \param point Point from where the query is evaluated
+    /// \param r Radius around where to search the neighbors
+    /// \return The \ref KdTreeRangePointQuery mutable object to iterate over the search results.
+    /// \see KdTreeRangeQueryBase
+    KdTreeRangePointQuery<Traits> rangeNeighbors(const VectorType& point, Scalar r) const
     {
         return KdTreeRangePointQuery<Traits>(this, r, point);
     }
 
-    KdTreeRangeIndexQuery<Traits> range_neighbors(IndexType index, Scalar r) const
+    /// \copybrief KdTreeBase::rangeNeighbors
+    /// \param index Index of the point from where the query is evaluated
+    /// \param r Radius around where to search the neighbors
+    /// \return The \ref KdTreeRangeIndexQuery mutable object to iterate over the search results.
+    /// \see KdTreeRangeQueryBase
+    KdTreeRangeIndexQuery<Traits> rangeNeighbors(IndexType index, Scalar r) const
     {
         return KdTreeRangeIndexQuery<Traits>(this, r, index);
+    }
+
+    /// \brief Convenience function that provides an empty range neighbor Query object.
+    ///
+    /// The returned object can call for a range neighbor search using the operator (),
+    /// which takes a **position** as parameter.
+    ///
+    /// Same as `KdTreeBase::rangeNeighborsQuery (0, VectorType::Zero())`
+    ///
+    /// \return The empty \ref KdTreeRangePointQuery mutable object to iterate over the search results.
+    /// \see KdTreeRangeQueryBase
+    KdTreeRangePointQuery<Traits> rangeNeighborsQuery() const
+    {
+        return KdTreeRangePointQuery<Traits>(this, 0, VectorType::Zero());
+    }
+
+    /// \brief KdTreeBase::rangeNeighborsQuery
+    ///
+    /// The returned object can call for a range neighbor search using the operator (),
+    /// which takes an **index** as parameter.
+    ///
+    /// Same as `KdTreeBase::rangeNeighborsQuery (0, 0)`
+    ///
+    /// \return The empty \ref KdTreeRangeIndexQuery mutable object to iterate over the search results.
+    /// \see KdTreeRangeQueryBase
+    KdTreeRangeIndexQuery<Traits> rangeNeighborsIndexQuery() const
+    {
+        return KdTreeRangeIndexQuery<Traits>(this, 0, 0);
     }
     
     // Utilities ---------------------------------------------------------------
 public:
-    inline bool valid() const;
+    [[nodiscard]] inline bool valid() const;
     inline void print(std::ostream& os, bool verbose = false) const;
 
     // Data --------------------------------------------------------------------
@@ -330,7 +450,7 @@ protected:
     }
 
 private:
-    inline void build_rec(NodeIndexType node_id, IndexType start, IndexType end, int level);
+    inline void buildRec(NodeIndexType node_id, IndexType start, IndexType end, int level);
     inline IndexType partition(IndexType start, IndexType end, int dim, Scalar value);
 };
 

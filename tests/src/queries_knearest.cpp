@@ -6,128 +6,117 @@
 
 #include "../common/testing.h"
 #include "../common/testUtils.h"
-#include "../common/has_duplicate.h"
 #include "../common/kdtree_utils.h"
+#include "../split_test_helper.h"
 
 #include <Ponca/src/SpatialPartitioning/KdTree/kdTree.h>
 #include <Ponca/src/SpatialPartitioning/KnnGraph/knnGraph.h>
 
 using namespace Ponca;
 
-template<typename DataPoint>
-void testKdTreeKNearestIndex(bool quick = QUICK_TESTS)
-{
-	using Scalar = typename DataPoint::Scalar;
-	using VectorContainer = typename KdTreeDense<DataPoint>::PointContainer;
-	using VectorType = typename DataPoint::VectorType;
+//! Test kNearestNeighbors query
+template<bool doIndexQuery, typename AcceleratingStructure>
+auto testKNearestNeighbors( AcceleratingStructure& structure,
+	typename AcceleratingStructure::PointContainer& points,
+	std::vector<int>& sample,
+	const int retry_number, const int k
+) {
+	using DataPoint      = typename AcceleratingStructure::DataPoint;
 
-	const int N = quick ? 100 : 10000;
-	const int k = quick ? 5 : 15;
-	auto points = VectorContainer(N);
-    std::generate(points.begin(), points.end(), []() {return DataPoint(VectorType::Random()); });
-
-    auto kdStart = std::chrono::system_clock::now();
-	/// [Kdtree construction and query]
-	Ponca::KdTreeDense<DataPoint> kdTree(points);
-
-#pragma omp parallel for
-	for (int i = 0; i < N; ++i)
-	{
-        std::vector<int> results; results.reserve( k );
-		for (int j : kdTree.k_nearest_neighbors(i, k))
-		{
-			results.push_back(j);
-		}
-
-		bool res = check_k_nearest_neighbors<Scalar, VectorContainer>(points, i, k, results);
-		VERIFY(res);
-	}
-    /// [Kdtree construction and query]
-    auto kdEnd = std::chrono::system_clock::now();
-
-
-    auto graphStart = std::chrono::system_clock::now();
-    /// [KnnGraph construction and query]
-    Ponca::KnnGraph<DataPoint> knnGraph(kdTree, k);
-#pragma omp parallel for
-    for (int i = 0; i < N; ++i)
-    {
-        std::vector<int> results; results.reserve( k );
-        for (int j : knnGraph.k_nearest_neighbors(i))
-        {
-            results.push_back(j);
-        }
-
-        bool res = check_k_nearest_neighbors<Scalar, VectorContainer>(points, i, k, results);
-        VERIFY(res);
-    }
-    /// [KnnGraph construction and query]
-    auto graphEnd = std::chrono::system_clock::now();
-
-
-    std::chrono::duration<double> kdDiff = (kdEnd-kdStart);
-    std::chrono::duration<double> graphDiff = (graphEnd-graphStart);
-
-    std::cout << "Timings: " << "\n"
-              << "KdTree   : " <<  kdDiff.count() << "\n"
-              << "KnnGraph : " <<  graphDiff.count() << "\n";
+	return testQuery<doIndexQuery, DataPoint>(points,
+	[&structure]() {
+			if constexpr (doIndexQuery) {
+				return structure.kNearestNeighborsIndexQuery();
+			} else {
+				return structure.kNearestNeighborsQuery();
+			}
+		}, [&structure](auto &queryInput, const int _k) {
+			return structure.kNearestNeighbors(queryInput, _k);
+		}, [&points, &sample, &k](auto& queryInput, auto& queryResults) {
+			return checkKNearestNeighbors<DataPoint>(points, sample, queryInput, k, queryResults);
+		}, retry_number, k
+	);
 }
 
-template<typename DataPoint>
-void testKdTreeKNearestPoint(bool quick = QUICK_TESTS)
+//! Test kNearestNeighbors query without the k argument (the size of the iterator depends on the acceleration structure (e.g. when using the knnGraph(kdtreeDense, k))
+template<typename AcceleratingStructure>
+auto testKNearestNeighborsEntirePointSet( AcceleratingStructure& structure,
+	typename AcceleratingStructure::PointContainer& points,
+	const int retry_number, const int k
+) {
+	using DataPoint      = typename AcceleratingStructure::DataPoint;
+
+	return testQuery<true, DataPoint>(points,
+	[&structure]() {
+			return structure.kNearestNeighborsIndexQuery();
+		}, [&structure](auto &queryInput) {
+			return structure.kNearestNeighbors(queryInput);
+		}, [&points, &k](auto& queryInput, auto& queryResults) {
+			return checkKNearestNeighbors<DataPoint>(points, queryInput, k, queryResults);
+		}, retry_number
+	);
+}
+
+
+template<typename Scalar, int Dim>
+void testKNearestNeighborsForAllStructures(const bool quick = QUICK_TESTS)
 {
-	using Scalar = typename DataPoint::Scalar;
-	using VectorContainer = typename KdTreeDense<DataPoint>::PointContainer;
-	using VectorType = typename DataPoint::VectorType;
+	using P = TestPoint<Scalar, Dim>;
+	const int N = quick ? 100 : 1000;
+	const int k = quick ? 2 : 15;
+	const int retry_number = quick? 1 : 5;
+	std::chrono::milliseconds timing;
 
-	const int N = quick ? 100 : 10000;
-	const int k = quick ? 5 : 15;
-    /// [Kdtree construction]
-	auto points = VectorContainer(N);
-    std::generate(points.begin(), points.end(), []() {return DataPoint(VectorType::Random()); });
+	//////////// Generate data
+	std::vector<P> points(N);
+	generateData(points);
 
-	KdTreeDense<DataPoint> structure(points);
-    /// [Kdtree construction]
+	cout << endl;
+	//////////// Test Dense KdTree
+	std::vector<int> sample;
+	KdTreeDense<P> kdtreeDense = *buildKdTreeDense<P>(points, sample);
+	timing = testKNearestNeighbors<true>(kdtreeDense, points, sample, retry_number, k);  // Index query test
+	cout << "    Compute Time KdTreeDense index query : " <<  timing.count() << "ms" << endl;
+	timing = testKNearestNeighbors<false>(kdtreeDense, points, sample, retry_number, k); // Position query test
+	cout << "    Compute Time KdTreeDense position query : " <<  timing.count() << "ms" << endl;
 
-#pragma omp parallel for
-	for (int i = 0; i < N; ++i)
-	{
-		VectorType point = VectorType::Random();
-        std::vector<int> results; results.reserve( k );
-		for (int j : structure.k_nearest_neighbors(point, k))
-		{
-			results.push_back(j);
-		}
+	//////////// Test subsample of KdTree
+	std::vector<int> subSample;
+	KdTreeSparse<P> kdtreeSparse = *buildSubsampledKdTree(points, subSample);
+	timing = testKNearestNeighbors<true>(kdtreeSparse, points, subSample, retry_number, k);  // Index query test
+	cout << "    Compute Time KdTreeSparse position query : " <<  timing.count() << "ms" << endl;
+	timing = testKNearestNeighbors<false>(kdtreeSparse, points, subSample, retry_number, k); // Position query test
+	cout << "    Compute Time KdTreeSparse index query : " <<  timing.count() << "ms" << endl;
 
-		bool res = check_k_nearest_neighbors<Scalar, VectorType, VectorContainer>(points, point, k, results);
-        VERIFY(res);
-	}
+	//////////// Test KnnGraph
+	KnnGraph<P> knnGraph(kdtreeDense, k);
+	timing = testKNearestNeighborsEntirePointSet(knnGraph, points, retry_number, k);  // Index query test
+	cout << "    Compute Time KnnGraph index query : " <<  timing.count() << "ms" << endl;
+	cout << "  (ok)" << endl;
 }
 
 int main(int argc, char** argv)
 {
 	if (!init_testing(argc, argv))
-	{
 		return EXIT_FAILURE;
-	}
 
-    cout << "Test KNearest (from Point) in 3D..." << endl;
-	testKdTreeKNearestPoint<TestPoint<float, 3>>();
-	testKdTreeKNearestPoint<TestPoint<double, 3>>();
-	testKdTreeKNearestPoint<TestPoint<long double, 3>>();
+	cout << "Test kNearestNeighbors query for KdTree and KnnGraph in 3D : " << endl;
+	cout << "  float : " << endl;
+	CALL_SUBTEST_1((testKNearestNeighborsForAllStructures<float, 3>()));
+	cout << "  double : " << endl;
+	CALL_SUBTEST_2((testKNearestNeighborsForAllStructures<double, 3>()));
+	cout << "  long : " << endl;
+	CALL_SUBTEST_3((testKNearestNeighborsForAllStructures<long double, 3>()));
 
-    cout << "Test KNearest (from Point) in 3D..." << endl;
-	testKdTreeKNearestPoint<TestPoint<float, 4>>();
-	testKdTreeKNearestPoint<TestPoint<double, 4>>();
-	testKdTreeKNearestPoint<TestPoint<long double, 4>>();
+	if (QUICK_TESTS)
+		return EXIT_SUCCESS;
+	cout << "Test kNearestNeighbors query for KdTree and KnnGraph in 4D : " << endl;
+	cout << "  float : " << endl;
+	CALL_SUBTEST_1((testKNearestNeighborsForAllStructures<float, 4>()));
+	cout << "  double : " << endl;
+	CALL_SUBTEST_2((testKNearestNeighborsForAllStructures<double, 4>()));
+	cout << "  long : " << endl;
+	CALL_SUBTEST_3((testKNearestNeighborsForAllStructures<long double, 4>()));
 
-    cout << "Test KNearest (from Index) in 3D..." << endl;
-	testKdTreeKNearestIndex<TestPoint<float, 3>>();
-	testKdTreeKNearestIndex<TestPoint<double, 3>>();
-	testKdTreeKNearestIndex<TestPoint<long double, 3>>();
-
-    cout << "Test KNearest (from Index) in 3D..." << endl;
-	testKdTreeKNearestIndex<TestPoint<float, 4>>();
-	testKdTreeKNearestIndex<TestPoint<double, 4>>();
-	testKdTreeKNearestIndex<TestPoint<long double, 4>>();
+	return EXIT_SUCCESS;
 }
