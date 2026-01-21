@@ -39,20 +39,6 @@ private:
 	VectorType _pos;
 };
 
-class MyPoint {
-public:
-	enum { Dim = 3 };
-	typedef float Scalar;
-	typedef Eigen::Matrix<Scalar, Dim, 1> VectorType;
-
-	PONCA_MULTIARCH inline MyPoint(const VectorType& pos = VectorType::Zero())
-		: _pos(pos) {}
-	PONCA_MULTIARCH inline const VectorType& pos() const { return _pos; }
-	PONCA_MULTIARCH inline       VectorType& pos() { return _pos; }
-private:
-	VectorType _pos;
-};
-
 template<typename DataPoint, typename VectorContainer, typename QueryInput, typename NeighborsIndexRange>
 bool checkRangeNeighbors(const VectorContainer& points, const std::vector<int>& sampling, QueryInput& queryInput, typename DataPoint::Scalar r, NeighborsIndexRange& neighbors) {
 	using Scalar     = typename DataPoint::Scalar;
