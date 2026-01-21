@@ -89,9 +89,6 @@ int main(int argc, char** argv)
 	cout << endl << " long : " << flush;
 	CALL_SUBTEST_3((testNearestNeighborForAllStructures<long double, 3>()));
 
-	if (QUICK_TESTS)
-		return EXIT_SUCCESS;
-
 	cout << "Test nearestNeighbor query for KdTree and KnnGraph in 4D : " << flush;
 	cout << endl << " float : " << flush;
 	CALL_SUBTEST_1((testNearestNeighborForAllStructures<float, 4>()));
