@@ -75,7 +75,7 @@ void compareFit(const bool _bAddPositionNoise = false, const bool _bAddNormalNoi
 template<typename Scalar, int Dim>
 void callSubTests()
 {
-    typedef PointPositionNormal<Scalar, Dim> Point;
+    typedef Ponca::PointPositionNormal<Scalar, Dim> Point;
 
     typedef Ponca::DistWeightFunc<Point, Ponca::ConstantWeightKernel<Scalar> > WeightConstantFuncLocal;
     typedef Ponca::NoWeightFuncGlobal<Point> NoWeightFuncGlobal;
