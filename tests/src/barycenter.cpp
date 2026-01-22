@@ -34,7 +34,7 @@ void compareFit(const bool _bAddPositionNoise = false, const bool _bAddNormalNoi
 
     std::vector<DataPoint> vectorPoints(nbPoints);
     for(unsigned int i = 0; i < vectorPoints.size(); ++i)
-        vectorPoints[i] = getPointOnSphere<DataPoint>(radius, center, _bAddPositionNoise, _bAddNormalNoise, false);
+        vectorPoints[i] = Ponca::getPointOnSphere<DataPoint>(radius, center, _bAddPositionNoise, _bAddNormalNoise, false);
 
     // the fittingScale must be large enough so that all the points included, otherwise it is not possible to compare
     // local and global fits, as local fits will discard all points whose distance is larger than radius.

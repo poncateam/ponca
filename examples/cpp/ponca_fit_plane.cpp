@@ -17,6 +17,7 @@ file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 #include <Ponca/Fitting>
 #include <Ponca/src/Common/pointTypes.h>
+#include <Ponca/src/Common/pointGeneration.h>
 
 #include "Eigen/Eigen"
 
@@ -28,12 +29,6 @@ using namespace Ponca;
 using MyPoint = PointPositionNormal<double, 3>;
 typedef MyPoint::Scalar Scalar;
 typedef MyPoint::VectorType VectorType;
-
-MyPoint randomPoint() {
-  const VectorType n = VectorType::Random().normalized();
-  const VectorType p = n * Eigen::internal::random<Scalar>(0.9,1.1);
-  return {p, (n + VectorType::Random()*0.1).normalized()};
-}
 
 // Define related structure
 typedef DistWeightFunc<MyPoint,SmoothWeightKernel<Scalar> > WeightFunc;
@@ -75,7 +70,7 @@ int main()
   // init random point cloud
   int n = 10000;
   vector<MyPoint> vecs (n);
-  std::generate(vecs.begin(), vecs.end(), randomPoint);
+  std::generate(vecs.begin(), vecs.end(), getRandomPoint<MyPoint>);
 
   std::cout << "====================\nCovariancePlaneFit:\n";
   CovPlaneFit fit;
