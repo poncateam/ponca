@@ -10,6 +10,7 @@
 #include <vector>
 
 #include <Ponca/Fitting>
+#include <Ponca/src/Common/pointTypes.h>
 
 using namespace Eigen;
 using namespace std;
@@ -17,26 +18,7 @@ using namespace Ponca;
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
- 
-// This class defines the input data format
-class MyPoint
-{
-public:
-  enum {Dim = 3};
-  typedef double Scalar;
-  typedef Eigen::Matrix<Scalar, Dim, 1>   VectorType;
-  typedef Eigen::Matrix<Scalar, Dim, Dim> MatrixType;
- 
-  PONCA_MULTIARCH inline MyPoint(const VectorType& _pos    = VectorType::Zero())
-    : m_pos(_pos) {}
- 
-  PONCA_MULTIARCH inline const VectorType& pos()    const { return m_pos; }
- 
-  PONCA_MULTIARCH inline VectorType& pos()    { return m_pos; }
- 
-private:
-  VectorType m_pos;
-};
+using MyPoint = PointPosition<double, 3>;
 typedef MyPoint::Scalar Scalar;
 typedef MyPoint::VectorType VectorType;
 
