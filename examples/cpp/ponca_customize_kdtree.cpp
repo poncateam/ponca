@@ -7,16 +7,11 @@ file, You can obtain one at http://mozilla.org/MPL/2.0/.
 #include <iostream>
 #include <optional>
 #include <Ponca/SpatialPartitioning>
+#include <Ponca/src/Common/pointTypes.h>
+
 #include <Eigen/Core>
 
-struct DataPoint
-{
-    enum {Dim = 3};
-    using Scalar = float;
-    using VectorType = Eigen::Vector<Scalar,Dim>;
-    inline const auto& pos() const {return m_pos;}
-    VectorType m_pos;
-};
+using DataPoint = Ponca::PointPosition<float, 3>;
 
 //! [CustomInnerNodeDefinition]
 template <typename NodeIndex, typename Scalar, int DIM, typename _AabbType = Eigen::AlignedBox<Scalar, DIM>>
