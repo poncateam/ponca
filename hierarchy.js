@@ -106,6 +106,9 @@ var hierarchy =
     [ "Eigen::ParametrizedLine", null, [
       [ "Ponca::Line< DataPoint, _NFilter, T >", "classPonca_1_1Line.html", null ]
     ] ],
+    [ "Ponca::PointPosition< _Scalar, _Dim >", "classPonca_1_1PointPosition.html", null ],
+    [ "Ponca::PointPositionNormal< _Scalar, _Dim >", "classPonca_1_1PointPositionNormal.html", null ],
+    [ "Ponca::PointPositionNormalBinding< _Scalar, _Dim >", "classPonca_1_1PointPositionNormalBinding.html", null ],
     [ "Ponca::PrimitiveBase< DataPoint, _NFilter, T >", "classPonca_1_1PrimitiveBase.html", null ],
     [ "Ponca::QueryInputBase", "group__spatialpartitioning.html#structPonca_1_1QueryInputBase", [
       [ "Ponca::QueryInput< Traits::IndexType >", "group__spatialpartitioning.html", null ],

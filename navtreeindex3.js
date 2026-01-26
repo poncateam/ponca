@@ -1,5 +1,8 @@
 var NAVTREEINDEX3 =
 {
+"fitting.html#fitting_Fitting":[6,1,1,3],
+"fitting.html#fitting_advanced":[6,1,2],
+"fitting.html#fitting_availableFunctionalities":[6,1,0,2],
 "fitting.html#fitting_capabilities":[6,1,2,2],
 "fitting.html#fitting_codeStructure":[6,1,1,0],
 "fitting.html#fitting_cuda":[6,1,2,5],

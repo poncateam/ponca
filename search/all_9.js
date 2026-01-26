@@ -5,7 +5,7 @@ var searchData=
   ['in_20basketdiff_2',['Objects used in BasketDiff',['../fitting_concepts.html#concepts_computeObjectBasketDiff',1,'']]],
   ['in_20pcl_3',['Using Ponca to compute surface curvature in PCL',['../example_cxx_pcl_page.html',1,'example_page']]],
   ['include_20directives_4',['Include directives',['../fitting.html#fitting_codeStructure',1,'']]],
-  ['index_5fbits_5',['INDEX_BITS',['../structPonca_1_1KdTreeDefaultInnerNode.html#ab5a89b3a74facd46d35ba61913455066ab63682ac1ec5e5f0446f6a6ecbd54ee7',1,'Ponca::KdTreeDefaultInnerNode']]],
+  ['index_5fbits_5',['INDEX_BITS',['../structPonca_1_1KdTreeDefaultInnerNode.html#aa114b6c2798c42445de6271e4017e205ab63682ac1ec5e5f0446f6a6ecbd54ee7',1,'Ponca::KdTreeDefaultInnerNode']]],
   ['indexcontainer_6',['indexcontainer',['../classPonca_1_1KdTreeBase.html#a46573f7eada88708072ebb5b5601c64c',1,'Ponca::KdTreeBase::IndexContainer'],['../classPonca_1_1KnnGraphBase.html#acfbc89127579d2db8e6b927738dc9562',1,'Ponca::KnnGraphBase::IndexContainer']]],
   ['indexing_7',['Samples and indexing',['../spatialpartitioning.html#spatialpartitioning_kdtree_usage_samples_and_indexing',1,'']]],
   ['indexsquareddistance_8',['IndexSquaredDistance',['../structPonca_1_1IndexSquaredDistance.html',1,'Ponca']]],

@@ -180,7 +180,7 @@ var NAVTREEINDEX =
 "annotated.html",
 "classPonca_1_1KdTreeBase.html#aa729820113ec273e46953241a9c9588d",
 "classPonca_1_1NormalCovarianceCurvatureEstimator.html#af48f2e98a00948a8396781c3e2c73206",
-"fitting.html#fitting_capabilities"
+"fitting.html#fitting_Fitting"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

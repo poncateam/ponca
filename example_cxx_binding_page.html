@@ -51,7 +51,7 @@ MathJax.Hub.Config({
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Ponca
-   &#160;<span id="projectnumber">3415d6bf4b5de0468067f7a5953b71ec2d1f6564</span>
+   &#160;<span id="projectnumber">84886bac0b52a686e88046a375da13f12f2b87d2</span>
    </div>
    <div id="projectbrief">Point Cloud Analysis library</div>
   </td>
@@ -137,6 +137,7 @@ $(document).ready(function(){initNavTree('example_cxx_binding_page.html',''); in
 <div class="line"><span class="preprocessor">#include &lt;Ponca/src/Fitting/orientedSphereFit.h&gt;</span></div>
 <div class="line"><span class="preprocessor">#include &lt;Ponca/src/Fitting/weightFunc.h&gt;</span></div>
 <div class="line"><span class="preprocessor">#include &lt;Ponca/src/Fitting/weightKernel.h&gt;</span></div>
+<div class="line"><span class="preprocessor">#include &lt;Ponca/src/Common/pointTypes.h&gt;</span></div>
 <div class="line"> </div>
 <div class="line"><span class="preprocessor">#include &quot;Eigen/Eigen&quot;</span></div>
 <div class="line"> </div>
@@ -147,35 +148,7 @@ $(document).ready(function(){initNavTree('example_cxx_binding_page.html',''); in
 <div class="line"> </div>
 <div class="line"><span class="preprocessor">#define DIMENSION 3</span></div>
 <div class="line"> </div>
-<div class="line"><span class="comment">/*</span></div>
-<div class="line"><span class="comment">   \brief Variant of the MyPoint class allowing to work with external raw data.</span></div>
-<div class="line"><span class="comment"></span> </div>
-<div class="line"><span class="comment">   Using this approach, ones can use the patate library with already existing</span></div>
-<div class="line"><span class="comment">   data-structures and without any data-duplication.</span></div>
-<div class="line"><span class="comment"></span> </div>
-<div class="line"><span class="comment">   In this example, we use this class to map an interlaced raw array containing</span></div>
-<div class="line"><span class="comment">   both point normals and coordinates.</span></div>
-<div class="line"><span class="comment"> */</span></div>
-<div class="line"><span class="keyword">class </span>MyPoint</div>
-<div class="line">{</div>
-<div class="line"><span class="keyword">public</span>:</div>
-<div class="line">    <span class="keyword">enum</span> {Dim = DIMENSION};</div>
-<div class="line">    <span class="keyword">typedef</span> <span class="keywordtype">double</span> Scalar;</div>
-<div class="line">    <span class="keyword">typedef</span> Eigen::Matrix&lt;Scalar, Dim, 1&gt;   VectorType;</div>
-<div class="line">    <span class="keyword">typedef</span> Eigen::Matrix&lt;Scalar, Dim, Dim&gt; MatrixType;</div>
-<div class="line"> </div>
-<div class="line">    PONCA_MULTIARCH <span class="keyword">inline</span> MyPoint(Scalar* _interlacedArray, <span class="keywordtype">int</span> _pId)</div>
-<div class="line">        : m_pos   (Eigen::Map&lt; const VectorType &gt;(_interlacedArray + Dim*2*_pId  )),</div>
-<div class="line">        m_normal(Eigen::Map&lt; const VectorType &gt;(_interlacedArray + Dim*2*_pId+Dim))</div>
-<div class="line">    {}</div>
-<div class="line"> </div>
-<div class="line">    PONCA_MULTIARCH <span class="keyword">inline</span> <span class="keyword">const</span> Eigen::Map&lt; const VectorType &gt;&amp; pos()<span class="keyword">    const </span>{ <span class="keywordflow">return</span> m_pos; }</div>
-<div class="line">    PONCA_MULTIARCH <span class="keyword">inline</span> <span class="keyword">const</span> Eigen::Map&lt; const VectorType &gt;&amp; normal()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> m_normal; }</div>
-<div class="line"> </div>
-<div class="line"><span class="keyword">private</span>:</div>
-<div class="line">    Eigen::Map&lt; const VectorType &gt; m_pos, m_normal;</div>
-<div class="line">};</div>
-<div class="line"> </div>
+<div class="line"><span class="keyword">using </span>MyPoint = <a class="code hl_class" href="classPonca_1_1PointPositionNormalBinding.html">PointPositionNormalBinding&lt;double, DIMENSION&gt;</a>;</div>
 <div class="line"><span class="keyword">typedef</span> MyPoint::Scalar Scalar;</div>
 <div class="line"><span class="keyword">typedef</span> MyPoint::VectorType VectorType;</div>
 <div class="line"> </div>
@@ -275,6 +248,7 @@ $(document).ready(function(){initNavTree('example_cxx_binding_page.html',''); in
 <div class="ttc" id="aclassPonca_1_1Basket_html"><div class="ttname"><a href="classPonca_1_1Basket.html">Ponca::Basket</a></div><div class="ttdoc">Aggregator class used to declare specialized structures using CRTP.</div><div class="ttdef"><b>Definition</b> <a href="basket_8h_source.html#l00319">basket.h:321</a></div></div>
 <div class="ttc" id="aclassPonca_1_1Basket_html_ad5132ec839c56fdd21e875825d21465a"><div class="ttname"><a href="classPonca_1_1Basket.html#ad5132ec839c56fdd21e875825d21465a">Ponca::Basket::addNeighbor</a></div><div class="ttdeci">bool addNeighbor(const DataPoint &amp;_nei)</div><div class="ttdoc">Add a neighbor to perform the fit.</div><div class="ttdef"><b>Definition</b> <a href="basket_8h_source.html#l00343">basket.h:343</a></div></div>
 <div class="ttc" id="aclassPonca_1_1DistWeightFunc_html"><div class="ttname"><a href="classPonca_1_1DistWeightFunc.html">Ponca::DistWeightFunc</a></div><div class="ttdoc">Weight neighbors according to the euclidean distance between a query and a reference position.</div><div class="ttdef"><b>Definition</b> <a href="weightFunc_8h_source.html#l00126">weightFunc.h:127</a></div></div>
+<div class="ttc" id="aclassPonca_1_1PointPositionNormalBinding_html"><div class="ttname"><a href="classPonca_1_1PointPositionNormalBinding.html">Ponca::PointPositionNormalBinding</a></div><div class="ttdoc">[PointPosition]</div><div class="ttdef"><b>Definition</b> <a href="pointTypes_8h_source.html#l00076">pointTypes.h:77</a></div></div>
 <div class="ttc" id="anamespacePonca_html"><div class="ttname"><a href="namespacePonca.html">Ponca</a></div><div class="ttdoc">This Source Code Form is subject to the terms of the Mozilla Public License, v.</div><div class="ttdef"><b>Definition</b> <a href="limitedPriorityQueue_8h_source.html#l00014">limitedPriorityQueue.h:14</a></div></div>
 </div><!-- fragment --> </div></div><!-- contents -->
 </div><!-- PageDoc -->
@@ -283,7 +257,7 @@ $(document).ready(function(){initNavTree('example_cxx_binding_page.html',''); in
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="example_page.html">Examples</a></li>
-    <li class="footer">Generated on Wed Jan 21 2026 13:25:57 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
+    <li class="footer">Generated on Mon Jan 26 2026 15:26:44 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
   </ul>
 </div>
 </body>

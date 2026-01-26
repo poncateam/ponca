@@ -51,7 +51,7 @@ MathJax.Hub.Config({
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Ponca
-   &#160;<span id="projectnumber">3415d6bf4b5de0468067f7a5953b71ec2d1f6564</span>
+   &#160;<span id="projectnumber">84886bac0b52a686e88046a375da13f12f2b87d2</span>
    </div>
    <div id="projectbrief">Point Cloud Analysis library</div>
   </td>
@@ -129,16 +129,11 @@ $(document).ready(function(){initNavTree('example_cxx_neighbor_search.html','');
 <div class="line"><span class="preprocessor">#include &lt;iostream&gt;</span></div>
 <div class="line"><span class="preprocessor">#include &lt;random&gt;</span></div>
 <div class="line"><span class="preprocessor">#include &lt;Ponca/SpatialPartitioning&gt;</span></div>
+<div class="line"><span class="preprocessor">#include &lt;Ponca/src/Common/pointTypes.h&gt;</span></div>
+<div class="line"> </div>
 <div class="line"><span class="preprocessor">#include &lt;Eigen/Core&gt;</span></div>
 <div class="line"> </div>
-<div class="line"><span class="keyword">struct </span>DataPoint</div>
-<div class="line">{</div>
-<div class="line">    <span class="keyword">enum</span> {Dim = 3};</div>
-<div class="line">    <span class="keyword">using </span>Scalar = float;</div>
-<div class="line">    <span class="keyword">using </span>VectorType = Eigen::Vector&lt;Scalar,Dim&gt;;</div>
-<div class="line">    [[nodiscard]] <span class="keyword">inline</span> <span class="keyword">const</span> <span class="keyword">auto</span>&amp; pos()<span class="keyword"> const </span>{<span class="keywordflow">return</span> m_pos;}</div>
-<div class="line">    VectorType m_pos;</div>
-<div class="line">};</div>
+<div class="line"><span class="keyword">using </span>DataPoint = <a class="code hl_class" href="classPonca_1_1PointPosition.html">Ponca::PointPosition&lt;float, 3&gt;</a>;</div>
 <div class="line"> </div>
 <div class="line"><span class="keywordtype">int</span> main()</div>
 <div class="line">{</div>
@@ -227,6 +222,7 @@ $(document).ready(function(){initNavTree('example_cxx_neighbor_search.html','');
 <div class="line">    <span class="keywordflow">return</span> 1;</div>
 <div class="line">}</div>
 <div class="ttc" id="aclassPonca_1_1KnnGraphBase_html"><div class="ttname"><a href="classPonca_1_1KnnGraphBase.html">Ponca::KnnGraphBase</a></div><div class="ttdoc">Customizable base class for KnnGraph datastructure.</div><div class="ttdef"><b>Definition</b> <a href="knnGraph_8h_source.html#l00044">knnGraph.h:45</a></div></div>
+<div class="ttc" id="aclassPonca_1_1PointPosition_html"><div class="ttname"><a href="classPonca_1_1PointPosition.html">Ponca::PointPosition</a></div><div class="ttdoc">[PointPositionNormal]</div><div class="ttdef"><b>Definition</b> <a href="pointTypes_8h_source.html#l00045">pointTypes.h:46</a></div></div>
 <div class="ttc" id="astructPonca_1_1KdTreeDense_html"><div class="ttname"><a href="structPonca_1_1KdTreeDense.html">Ponca::KdTreeDense</a></div><div class="ttdoc">[KdTree type definition]</div><div class="ttdef"><b>Definition</b> <a href="kdTree_8h_source.html#l00066">kdTree.h:66</a></div></div>
 <div class="ttc" id="astructPonca_1_1KdTreeSparse_html"><div class="ttname"><a href="structPonca_1_1KdTreeSparse.html">Ponca::KdTreeSparse</a></div><div class="ttdoc">[KdTreeDense type definition]</div><div class="ttdef"><b>Definition</b> <a href="kdTree_8h_source.html#l00084">kdTree.h:84</a></div></div>
 <div class="ttc" id="astructPonca_1_1KdTree_html"><div class="ttname"><a href="structPonca_1_1KdTree.html">Ponca::KdTree</a></div><div class="ttdoc">Abstract KdTree type with KdTreeDefaultTraits.</div><div class="ttdef"><b>Definition</b> <a href="kdTree_8h_source.html#l00047">kdTree.h:47</a></div></div>
@@ -237,7 +233,7 @@ $(document).ready(function(){initNavTree('example_cxx_neighbor_search.html','');
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="example_page.html">Examples</a></li>
-    <li class="footer">Generated on Wed Jan 21 2026 13:25:57 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
+    <li class="footer">Generated on Mon Jan 26 2026 15:26:44 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
   </ul>
 </div>
 </body>

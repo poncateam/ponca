@@ -51,7 +51,7 @@ MathJax.Hub.Config({
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Ponca
-   &#160;<span id="projectnumber">3415d6bf4b5de0468067f7a5953b71ec2d1f6564</span>
+   &#160;<span id="projectnumber">84886bac0b52a686e88046a375da13f12f2b87d2</span>
    </div>
    <div id="projectbrief">Point Cloud Analysis library</div>
   </td>
@@ -142,45 +142,15 @@ $(document).ready(function(){initNavTree('example_cxx_basic_page.html',''); init
 <div class="line"><span class="preprocessor">#include &lt;Ponca/src/Fitting/curvature.h&gt;</span></div>
 <div class="line"> </div>
 <div class="line"><span class="preprocessor">#include &lt;Ponca/SpatialPartitioning&gt;</span></div>
-<div class="line"> </div>
-<div class="line"><span class="preprocessor">#include &quot;Eigen/Eigen&quot;</span></div>
+<div class="line"><span class="preprocessor">#include &lt;Ponca/src/Common/pointTypes.h&gt;</span></div>
+<div class="line"><span class="preprocessor">#include &lt;Ponca/src/Common/pointGeneration.h&gt;</span></div>
 <div class="line"> </div>
 <div class="line"><span class="preprocessor">#include &lt;vector&gt;</span></div>
 <div class="line"> </div>
 <div class="line"><span class="keyword">using namespace </span>std;</div>
 <div class="line"><span class="keyword">using namespace </span><a class="code hl_namespace" href="namespacePonca.html">Ponca</a>;</div>
 <div class="line"> </div>
-<div class="line"> </div>
-<div class="line"><span class="comment">// This class defines the input data format</span></div>
-<div class="line"><span class="keyword">class </span>MyPoint</div>
-<div class="line">{</div>
-<div class="line"><span class="keyword">public</span>:</div>
-<div class="line">  <span class="keyword">enum</span> {Dim = 3};</div>
-<div class="line">  <span class="keyword">typedef</span> <span class="keywordtype">double</span> Scalar;</div>
-<div class="line">  <span class="keyword">typedef</span> Eigen::Matrix&lt;Scalar, Dim, 1&gt;   VectorType;</div>
-<div class="line">  <span class="keyword">typedef</span> Eigen::Matrix&lt;Scalar, Dim, Dim&gt; MatrixType;</div>
-<div class="line"> </div>
-<div class="line">  PONCA_MULTIARCH <span class="keyword">inline</span> MyPoint(<span class="keyword">const</span> VectorType&amp; _pos    = VectorType::Zero(),</div>
-<div class="line">                                 <span class="keyword">const</span> VectorType&amp; _normal = VectorType::Zero())</div>
-<div class="line">    : m_pos(_pos), m_normal(_normal) {}</div>
-<div class="line"> </div>
-<div class="line">  PONCA_MULTIARCH <span class="keyword">inline</span> <span class="keyword">const</span> VectorType&amp; pos()<span class="keyword">    const </span>{ <span class="keywordflow">return</span> m_pos; }</div>
-<div class="line">  PONCA_MULTIARCH <span class="keyword">inline</span> <span class="keyword">const</span> VectorType&amp; normal()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> m_normal; }</div>
-<div class="line"> </div>
-<div class="line">  PONCA_MULTIARCH <span class="keyword">inline</span> VectorType&amp; pos()    { <span class="keywordflow">return</span> m_pos; }</div>
-<div class="line">  PONCA_MULTIARCH <span class="keyword">inline</span> VectorType&amp; normal() { <span class="keywordflow">return</span> m_normal; }</div>
-<div class="line"> </div>
-<div class="line">  <span class="keyword">static</span> <span class="keyword">inline</span> MyPoint Random()</div>
-<div class="line">  {</div>
-<div class="line">    VectorType n = VectorType::Random().normalized();</div>
-<div class="line">    VectorType p = n * Eigen::internal::random&lt;Scalar&gt;(0.9,1.1);</div>
-<div class="line">    <span class="keywordflow">return</span> MyPoint (p, (n + VectorType::Random()*0.1).normalized());</div>
-<div class="line">  }</div>
-<div class="line"> </div>
-<div class="line"><span class="keyword">private</span>:</div>
-<div class="line">  VectorType m_pos, m_normal;</div>
-<div class="line">};</div>
-<div class="line"> </div>
+<div class="line"><span class="keyword">using </span>MyPoint = <a class="code hl_class" href="classPonca_1_1PointPositionNormal.html">PointPositionNormal&lt;double, 3&gt;</a>;</div>
 <div class="line"><span class="keyword">typedef</span> MyPoint::Scalar Scalar;</div>
 <div class="line"><span class="keyword">typedef</span> MyPoint::VectorType VectorType;</div>
 <div class="line"> </div>
@@ -247,7 +217,7 @@ $(document).ready(function(){initNavTree('example_cxx_basic_page.html',''); init
 <div class="line">  <span class="comment">// init input data</span></div>
 <div class="line">  <span class="keywordtype">int</span> n = 10000;</div>
 <div class="line">  vector&lt;MyPoint&gt; vecs (n);</div>
-<div class="line">  std::generate(vecs.begin(), vecs.end(), []() {return MyPoint::Random(); });</div>
+<div class="line">  std::generate(vecs.begin(), vecs.end(), getRandomPoint&lt;MyPoint&gt;);</div>
 <div class="line"> </div>
 <div class="line">  p = vecs.at(0).pos();</div>
 <div class="line"> </div>
@@ -285,6 +255,7 @@ $(document).ready(function(){initNavTree('example_cxx_basic_page.html',''); init
 <div class="ttc" id="aclassPonca_1_1Basket_html"><div class="ttname"><a href="classPonca_1_1Basket.html">Ponca::Basket</a></div><div class="ttdoc">Aggregator class used to declare specialized structures using CRTP.</div><div class="ttdef"><b>Definition</b> <a href="basket_8h_source.html#l00319">basket.h:321</a></div></div>
 <div class="ttc" id="aclassPonca_1_1Basket_html_ad5132ec839c56fdd21e875825d21465a"><div class="ttname"><a href="classPonca_1_1Basket.html#ad5132ec839c56fdd21e875825d21465a">Ponca::Basket::addNeighbor</a></div><div class="ttdeci">bool addNeighbor(const DataPoint &amp;_nei)</div><div class="ttdoc">Add a neighbor to perform the fit.</div><div class="ttdef"><b>Definition</b> <a href="basket_8h_source.html#l00343">basket.h:343</a></div></div>
 <div class="ttc" id="aclassPonca_1_1DistWeightFunc_html"><div class="ttname"><a href="classPonca_1_1DistWeightFunc.html">Ponca::DistWeightFunc</a></div><div class="ttdoc">Weight neighbors according to the euclidean distance between a query and a reference position.</div><div class="ttdef"><b>Definition</b> <a href="weightFunc_8h_source.html#l00126">weightFunc.h:127</a></div></div>
+<div class="ttc" id="aclassPonca_1_1PointPositionNormal_html"><div class="ttname"><a href="classPonca_1_1PointPositionNormal.html">Ponca::PointPositionNormal</a></div><div class="ttdoc">[PointPositionNormal]</div><div class="ttdef"><b>Definition</b> <a href="pointTypes_8h_source.html#l00019">pointTypes.h:20</a></div></div>
 <div class="ttc" id="anamespacePonca_html"><div class="ttname"><a href="namespacePonca.html">Ponca</a></div><div class="ttdoc">This Source Code Form is subject to the terms of the Mozilla Public License, v.</div><div class="ttdef"><b>Definition</b> <a href="limitedPriorityQueue_8h_source.html#l00014">limitedPriorityQueue.h:14</a></div></div>
 <div class="ttc" id="astructPonca_1_1KdTreeDense_html"><div class="ttname"><a href="structPonca_1_1KdTreeDense.html">Ponca::KdTreeDense</a></div><div class="ttdoc">[KdTree type definition]</div><div class="ttdef"><b>Definition</b> <a href="kdTree_8h_source.html#l00066">kdTree.h:66</a></div></div>
 <div class="ttc" id="astructPonca_1_1KdTree_html"><div class="ttname"><a href="structPonca_1_1KdTree.html">Ponca::KdTree</a></div><div class="ttdoc">Abstract KdTree type with KdTreeDefaultTraits.</div><div class="ttdef"><b>Definition</b> <a href="kdTree_8h_source.html#l00047">kdTree.h:47</a></div></div>
@@ -295,7 +266,7 @@ $(document).ready(function(){initNavTree('example_cxx_basic_page.html',''); init
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="example_page.html">Examples</a></li>
-    <li class="footer">Generated on Wed Jan 21 2026 13:25:57 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
+    <li class="footer">Generated on Mon Jan 26 2026 15:26:44 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
   </ul>
 </div>
 </body>

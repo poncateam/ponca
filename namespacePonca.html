@@ -51,7 +51,7 @@ MathJax.Hub.Config({
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Ponca
-   &#160;<span id="projectnumber">3415d6bf4b5de0468067f7a5953b71ec2d1f6564</span>
+   &#160;<span id="projectnumber">84886bac0b52a686e88046a375da13f12f2b87d2</span>
    </div>
    <div id="projectbrief">Point Cloud Analysis library</div>
   </td>
@@ -119,7 +119,8 @@ $(document).ready(function(){initNavTree('namespacePonca.html',''); initResizabl
   <div class="summary">
 <a href="#nested-classes">Classes</a> &#124;
 <a href="#typedef-members">Typedefs</a> &#124;
-<a href="#enum-members">Enumerations</a>  </div>
+<a href="#enum-members">Enumerations</a> &#124;
+<a href="#func-members">Functions</a>  </div>
   <div class="headertitle"><div class="title">Ponca Namespace Reference</div></div>
 </div><!--header-->
 <div class="contents">
@@ -315,6 +316,15 @@ Classes</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1Plane.html">Plane</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Implicit hyperplane defined by an homogeneous vector \(\mathbf{p}\).  <a href="classPonca_1_1Plane.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1PointPosition.html">PointPosition</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">[<a class="el" href="classPonca_1_1PointPositionNormal.html" title="[PointPositionNormal]">PointPositionNormal</a>]  <a href="classPonca_1_1PointPosition.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1PointPositionNormal.html">PointPositionNormal</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">[<a class="el" href="classPonca_1_1PointPositionNormal.html" title="[PointPositionNormal]">PointPositionNormal</a>]  <a href="classPonca_1_1PointPositionNormal.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1PointPositionNormalBinding.html">PointPositionNormalBinding</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">[<a class="el" href="classPonca_1_1PointPosition.html" title="[PointPositionNormal]">PointPosition</a>]  <a href="classPonca_1_1PointPositionNormalBinding.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1PolynomialSmoothWeightKernel.html">PolynomialSmoothWeightKernel</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compact generalised version of <a class="el" href="classPonca_1_1SmoothWeightKernel.html" title="Compact smooth WeightKernel of 2nd degree, defined in  Special case of PolynomialSmoothWeightKernel&lt;S...">SmoothWeightKernel</a> with arbitrary degrees : \( w(x)=(x^n-1)^m \).  <a href="classPonca_1_1PolynomialSmoothWeightKernel.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -473,6 +483,29 @@ Enumerations</h2></td></tr>
  }</td></tr>
 <tr class="memdesc:a7beaddc698523e7f9c041ea8bc4c535a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Flags defining which derivatives need to be computed.  <a href="namespacePonca.html#a7beaddc698523e7f9c041ea8bc4c535a">More...</a><br /></td></tr>
 <tr class="separator:a7beaddc698523e7f9c041ea8bc4c535a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
+Functions</h2></td></tr>
+<tr class="memitem:ac7e2bbf8eb1e014a189b59e8b13f52ae" id="r_ac7e2bbf8eb1e014a189b59e8b13f52ae"><td class="memTemplParams" colspan="2">template&lt;typename DataPoint &gt; </td></tr>
+<tr class="memitem:ac7e2bbf8eb1e014a189b59e8b13f52ae"><td class="memTemplItemLeft" align="right" valign="top">DataPoint&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacePonca.html#ac7e2bbf8eb1e014a189b59e8b13f52ae">getPointOnSphere</a> (const typename DataPoint::Scalar _radius, const typename DataPoint::VectorType _vCenter, const bool _bAddPositionNoise=true, const bool _bAddNormalNoise=true, const bool _bReverseNormals=false)</td></tr>
+<tr class="memdesc:ac7e2bbf8eb1e014a189b59e8b13f52ae"><td class="mdescLeft">&#160;</td><td class="mdescRight">Generate points on a sphere.  <br /></td></tr>
+<tr class="separator:ac7e2bbf8eb1e014a189b59e8b13f52ae"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac826aa3b9323d1fa0cfc4e399476218d" id="r_ac826aa3b9323d1fa0cfc4e399476218d"><td class="memTemplParams" colspan="2">template&lt;typename DataPoint &gt; </td></tr>
+<tr class="memitem:ac826aa3b9323d1fa0cfc4e399476218d"><td class="memTemplItemLeft" align="right" valign="top">DataPoint&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacePonca.html#ac826aa3b9323d1fa0cfc4e399476218d">getPointOnRectangularPlane</a> (const typename DataPoint::VectorType &amp;_vPosition, const typename DataPoint::VectorType &amp;, const typename DataPoint::Scalar &amp;_width, const typename DataPoint::Scalar &amp;_height, const typename DataPoint::VectorType &amp;_localxAxis, const typename DataPoint::VectorType &amp;_localyAxis, const bool _bAddPositionNoise=true)</td></tr>
+<tr class="memdesc:ac826aa3b9323d1fa0cfc4e399476218d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Generate points on a plane without normals.  <br /></td></tr>
+<tr class="separator:ac826aa3b9323d1fa0cfc4e399476218d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a23d99c2f69ed95982a3e2b74d3304160" id="r_a23d99c2f69ed95982a3e2b74d3304160"><td class="memTemplParams" colspan="2">template&lt;typename DataPoint &gt; </td></tr>
+<tr class="memitem:a23d99c2f69ed95982a3e2b74d3304160"><td class="memTemplItemLeft" align="right" valign="top">DataPoint&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacePonca.html#a23d99c2f69ed95982a3e2b74d3304160">getPointOnPlane</a> (const typename DataPoint::VectorType _vPosition, const typename DataPoint::VectorType _vNormal, const typename DataPoint::Scalar _radius, const bool _bAddPositionNoise=true, const bool _bAddNormalNoise=true, const bool _bReverseNormals=false)</td></tr>
+<tr class="memdesc:a23d99c2f69ed95982a3e2b74d3304160"><td class="mdescLeft">&#160;</td><td class="mdescRight">Generate points on a plane.  <br /></td></tr>
+<tr class="separator:a23d99c2f69ed95982a3e2b74d3304160"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a36f3b36075c8fdadc62bcdf7f4ac856e" id="r_a36f3b36075c8fdadc62bcdf7f4ac856e"><td class="memTemplParams" colspan="2">template&lt;typename DataPoint &gt; </td></tr>
+<tr class="memitem:a36f3b36075c8fdadc62bcdf7f4ac856e"><td class="memTemplItemLeft" align="right" valign="top">DataPoint&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacePonca.html#a36f3b36075c8fdadc62bcdf7f4ac856e">getPointOnParaboloid</a> (const typename DataPoint::Scalar _a, const typename DataPoint::Scalar _b, const typename DataPoint::Scalar _s, const bool _bAddNoise=true)</td></tr>
+<tr class="memdesc:a36f3b36075c8fdadc62bcdf7f4ac856e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Generate point samples on the primitive z = ax^2 + by^2.  <br /></td></tr>
+<tr class="separator:a36f3b36075c8fdadc62bcdf7f4ac856e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a38f8222beed8f0761b9902b74b997a06" id="r_a38f8222beed8f0761b9902b74b997a06"><td class="memTemplParams" colspan="2">template&lt;typename DataPoint &gt; </td></tr>
+<tr class="memitem:a38f8222beed8f0761b9902b74b997a06"><td class="memTemplItemLeft" align="right" valign="top">DataPoint&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacePonca.html#a38f8222beed8f0761b9902b74b997a06">getRandomPoint</a> ()</td></tr>
+<tr class="memdesc:a38f8222beed8f0761b9902b74b997a06"><td class="mdescLeft">&#160;</td><td class="mdescRight">Generate a random points.  <br /></td></tr>
+<tr class="separator:a38f8222beed8f0761b9902b74b997a06"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>This Source Code Form is subject to the terms of the Mozilla Public License, v. </p>
@@ -906,13 +939,258 @@ template&lt;class DataPoint , class _NFilter , typename T &gt; </div>
 
 </div>
 </div>
+<h2 class="groupheader">Function Documentation</h2>
+<a id="a36f3b36075c8fdadc62bcdf7f4ac856e" name="a36f3b36075c8fdadc62bcdf7f4ac856e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a36f3b36075c8fdadc62bcdf7f4ac856e">&#9670;&#160;</a></span>getPointOnParaboloid()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename DataPoint &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">DataPoint Ponca::getPointOnParaboloid </td>
+          <td>(</td>
+          <td class="paramtype">const typename DataPoint::Scalar&#160;</td>
+          <td class="paramname"><em>_a</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const typename DataPoint::Scalar&#160;</td>
+          <td class="paramname"><em>_b</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const typename DataPoint::Scalar&#160;</td>
+          <td class="paramname"><em>_s</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const bool&#160;</td>
+          <td class="paramname"><em>_bAddNoise</em> = <code>true</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Generate point samples on the primitive z = ax^2 + by^2. </p>
+<p>Points (x,y) are generated in the interval [-_s, -s]^2 </p>
+
+<p class="definition">Definition at line <a class="el" href="pointGeneration_8h_source.html#l00182">182</a> of file <a class="el" href="pointGeneration_8h_source.html">pointGeneration.h</a>.</p>
+
+</div>
+</div>
+<a id="a23d99c2f69ed95982a3e2b74d3304160" name="a23d99c2f69ed95982a3e2b74d3304160"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a23d99c2f69ed95982a3e2b74d3304160">&#9670;&#160;</a></span>getPointOnPlane()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename DataPoint &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">DataPoint Ponca::getPointOnPlane </td>
+          <td>(</td>
+          <td class="paramtype">const typename DataPoint::VectorType&#160;</td>
+          <td class="paramname"><em>_vPosition</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const typename DataPoint::VectorType&#160;</td>
+          <td class="paramname"><em>_vNormal</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const typename DataPoint::Scalar&#160;</td>
+          <td class="paramname"><em>_radius</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const bool&#160;</td>
+          <td class="paramname"><em>_bAddPositionNoise</em> = <code>true</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const bool&#160;</td>
+          <td class="paramname"><em>_bAddNormalNoise</em> = <code>true</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const bool&#160;</td>
+          <td class="paramname"><em>_bReverseNormals</em> = <code>false</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Generate points on a plane. </p>
+
+<p class="definition">Definition at line <a class="el" href="pointGeneration_8h_source.html#l00091">91</a> of file <a class="el" href="pointGeneration_8h_source.html">pointGeneration.h</a>.</p>
+
+</div>
+</div>
+<a id="ac826aa3b9323d1fa0cfc4e399476218d" name="ac826aa3b9323d1fa0cfc4e399476218d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac826aa3b9323d1fa0cfc4e399476218d">&#9670;&#160;</a></span>getPointOnRectangularPlane()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename DataPoint &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">DataPoint Ponca::getPointOnRectangularPlane </td>
+          <td>(</td>
+          <td class="paramtype">const typename DataPoint::VectorType &amp;&#160;</td>
+          <td class="paramname"><em>_vPosition</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const typename DataPoint::VectorType &amp;&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const typename DataPoint::Scalar &amp;&#160;</td>
+          <td class="paramname"><em>_width</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const typename DataPoint::Scalar &amp;&#160;</td>
+          <td class="paramname"><em>_height</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const typename DataPoint::VectorType &amp;&#160;</td>
+          <td class="paramname"><em>_localxAxis</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const typename DataPoint::VectorType &amp;&#160;</td>
+          <td class="paramname"><em>_localyAxis</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const bool&#160;</td>
+          <td class="paramname"><em>_bAddPositionNoise</em> = <code>true</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Generate points on a plane without normals. </p>
+
+<p class="definition">Definition at line <a class="el" href="pointGeneration_8h_source.html#l00060">60</a> of file <a class="el" href="pointGeneration_8h_source.html">pointGeneration.h</a>.</p>
+
+</div>
+</div>
+<a id="ac7e2bbf8eb1e014a189b59e8b13f52ae" name="ac7e2bbf8eb1e014a189b59e8b13f52ae"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac7e2bbf8eb1e014a189b59e8b13f52ae">&#9670;&#160;</a></span>getPointOnSphere()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename DataPoint &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">DataPoint Ponca::getPointOnSphere </td>
+          <td>(</td>
+          <td class="paramtype">const typename DataPoint::Scalar&#160;</td>
+          <td class="paramname"><em>_radius</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const typename DataPoint::VectorType&#160;</td>
+          <td class="paramname"><em>_vCenter</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const bool&#160;</td>
+          <td class="paramname"><em>_bAddPositionNoise</em> = <code>true</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const bool&#160;</td>
+          <td class="paramname"><em>_bAddNormalNoise</em> = <code>true</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const bool&#160;</td>
+          <td class="paramname"><em>_bReverseNormals</em> = <code>false</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Generate points on a sphere. </p>
+
+<p class="definition">Definition at line <a class="el" href="pointGeneration_8h_source.html#l00022">22</a> of file <a class="el" href="pointGeneration_8h_source.html">pointGeneration.h</a>.</p>
+
+</div>
+</div>
+<a id="a38f8222beed8f0761b9902b74b997a06" name="a38f8222beed8f0761b9902b74b997a06"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a38f8222beed8f0761b9902b74b997a06">&#9670;&#160;</a></span>getRandomPoint()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename DataPoint &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">DataPoint Ponca::getRandomPoint </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Generate a random points. </p>
+
+<p class="definition">Definition at line <a class="el" href="pointGeneration_8h_source.html#l00208">208</a> of file <a class="el" href="pointGeneration_8h_source.html">pointGeneration.h</a>.</p>
+
+</div>
+</div>
 </div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="namespacePonca.html">Ponca</a></li>
-    <li class="footer">Generated on Wed Jan 21 2026 13:25:57 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
+    <li class="footer">Generated on Mon Jan 26 2026 15:26:44 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
   </ul>
 </div>
 </body>
