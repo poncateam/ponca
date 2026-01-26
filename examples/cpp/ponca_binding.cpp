@@ -20,6 +20,7 @@ file, You can obtain one at http://mozilla.org/MPL/2.0/.
 #include <Ponca/src/Fitting/orientedSphereFit.h>
 #include <Ponca/src/Fitting/weightFunc.h>
 #include <Ponca/src/Fitting/weightKernel.h>
+#include <Ponca/src/Common/pointTypes.h>
 
 #include "Eigen/Eigen"
 
@@ -30,35 +31,7 @@ using namespace Ponca;
 
 #define DIMENSION 3
 
-/*
-   \brief Variant of the MyPoint class allowing to work with external raw data.
-
-   Using this approach, ones can use the patate library with already existing
-   data-structures and without any data-duplication.
-
-   In this example, we use this class to map an interlaced raw array containing
-   both point normals and coordinates.
- */
-class MyPoint
-{
-public:
-    enum {Dim = DIMENSION};
-    typedef double Scalar;
-    typedef Eigen::Matrix<Scalar, Dim, 1>   VectorType;
-    typedef Eigen::Matrix<Scalar, Dim, Dim> MatrixType;
-
-    PONCA_MULTIARCH inline MyPoint(Scalar* _interlacedArray, int _pId)
-        : m_pos   (Eigen::Map< const VectorType >(_interlacedArray + Dim*2*_pId  )),
-        m_normal(Eigen::Map< const VectorType >(_interlacedArray + Dim*2*_pId+Dim))
-    {}
-
-    PONCA_MULTIARCH inline const Eigen::Map< const VectorType >& pos()    const { return m_pos; }
-    PONCA_MULTIARCH inline const Eigen::Map< const VectorType >& normal() const { return m_normal; }
-
-private:
-    Eigen::Map< const VectorType > m_pos, m_normal;
-};
-
+using MyPoint = PointPositionNormalBinding<double, DIMENSION>;
 typedef MyPoint::Scalar Scalar;
 typedef MyPoint::VectorType VectorType;
 

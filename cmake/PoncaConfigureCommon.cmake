@@ -4,6 +4,8 @@ set(ponca_Common_INCLUDE
     "${PONCA_src_ROOT}/Ponca/src/Common/defines.h"
     "${PONCA_src_ROOT}/Ponca/src/Common/Containers/limitedPriorityQueue.h"
     "${PONCA_src_ROOT}/Ponca/src/Common/Containers/stack.h"
+    "${PONCA_src_ROOT}/Ponca/src/Common/pointTypes.h"
+    "${PONCA_src_ROOT}/Ponca/src/Common/pointGeneration.h"
     )
 
 add_library(Common INTERFACE)
