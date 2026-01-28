@@ -88,7 +88,7 @@ namespace Ponca {
         typedef Eigen::Matrix<Scalar, Dim, Dim> MatrixType;
 
         PONCA_MULTIARCH inline PointPositionNormalBinding(
-            const Scalar* _interlacedArray, int _pId
+            const Scalar* _interlacedArray, const int _pId
         ) : m_pos   (Eigen::Map< const VectorType >(_interlacedArray + Dim*2*_pId  )),
             m_normal(Eigen::Map< const VectorType >(_interlacedArray + Dim*2*_pId+Dim))
         {}
@@ -99,7 +99,7 @@ namespace Ponca {
         PONCA_MULTIARCH [[nodiscard]] inline const Eigen::Map< const VectorType >& normal() const { return m_normal; }
 
     private:
-        Eigen::Map< const VectorType > m_pos, m_normal;
+        const Eigen::Map< const VectorType > m_pos, m_normal;
     };
     // [PointPositionNormalBinding]
 }
