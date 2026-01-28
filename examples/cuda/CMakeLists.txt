@@ -17,6 +17,9 @@ check_language(CUDA)
         set(CMAKE_CUDA_STANDARD_REQUIRED ON)
     endif()
 
+    add_definitions(-DEIGEN_DEFAULT_DENSE_INDEX_TYPE=int)
+    add_definitions(--expt-relaxed-constexpr)
+
     add_executable(cuda_fit_plane "ponca_fit_plane.cu")
     target_include_directories(cuda_fit_plane PRIVATE ${PONCA_src_ROOT})
     add_dependencies(ponca-examples cuda_fit_plane)
