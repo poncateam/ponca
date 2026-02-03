@@ -10,6 +10,7 @@ Current head (v.2.0.alpha1 RC)
 
 - Bug-fixes and code improvements
     - [fitting] Fix broken include directives in Basket/Compute (#236)
+    - [fitting] Reduce code coverage misses (#246)
 
 - Tests
     - [all] Speed up tests in coverage mode (#236)
