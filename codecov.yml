@@ -8,3 +8,4 @@ comment:                  # this is a top-level key
 
 ignore:
   - "src/external/**"
+  - "src/tests/common/testing.h"

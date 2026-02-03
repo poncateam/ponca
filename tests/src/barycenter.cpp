@@ -48,10 +48,9 @@ void compareFit(const bool _bAddPositionNoise = false, const bool _bAddNormalNoi
     fitB.compute(vectorPoints);
 
     // Barycenter should also be somewhat close to the center
-    Scalar epsilon =  Scalar(0.01); // Greater tolerance
+    auto epsilon = Scalar(0.01); // Greater tolerance
 
     try {
-//        VERIFY((fitA.barycenter().isApprox(fitB.barycenter(), 0.001)));
         VERIFY(((fitA.barycenter() - fitB.barycenter()).norm() < epsilon));
         // here we have imprecision as the sphere is poorly sampled, so the barycenter can be quite far from sphere
         // center. To be conservative, we consider that it cannot be outside a sphere of radius 10% smaller than the
@@ -85,11 +84,7 @@ void callSubTests()
     typedef Ponca::Basket<Point, NoWeightFunc, Ponca::MeanPosition> FitNoWeightLocal;
     typedef Ponca::Basket<Point, NoWeightFuncGlobal, Ponca::MeanPosition> FitNoWeightGlobal;
 
-    typedef Ponca::DistWeightFunc<Point, Ponca::SmoothWeightKernel<Scalar> > WeightSmoothFuncLocal;
-    typedef Ponca::Basket<Point, WeightSmoothFuncLocal, Ponca::MeanPosition> FitSmoothLocal;
-
     for(int i = 0; i < g_repeat; ++i) {
-        // std::cout << "CONST" << flush;
         // check if, in local basis, no weight is equivalent to constant weight
         CALL_SUBTEST(( compareFit<Point, FitConstantLocal, FitNoWeightLocal>( )));
         // check that no weight is stable in both local and global frames
@@ -97,7 +92,7 @@ void callSubTests()
     }
 }
 
-int main(int argc, char** argv)
+int main(const int argc, char** argv)
 {
     if(!init_testing(argc, argv))
         return EXIT_FAILURE;
@@ -105,9 +100,6 @@ int main(int argc, char** argv)
     cout << "Test Global / Local Weight Func" << endl;
     cout << "Testing the barycenter : " << flush;
 
-    /* The global fit is less precise than the local fit when the center of the sphere is offsetted
-     * which lead to errors in the barycenter test when using floating point numbers.
-     * So we skip the float test to avoid this inaccuracy problem. */
     cout << "float" << flush;
     callSubTests<float, 3>();
     cout << " (ok), " << flush;
