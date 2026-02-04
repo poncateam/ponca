@@ -90,6 +90,8 @@ public:
 
 public:
     PONCA_EXPLICIT_CAST_OPERATORS_DER(OrientedSphereDerImpl,orientedSphereDer)
+    PONCA_EXPLICIT_CAST_OPERATORS_DER(OrientedSphereDerImpl,dNormalProvider) ///< get access to object providing dNormal
+
     PONCA_FITTING_DECLARE_INIT_ADDDER_FINALIZE
 
     /*! \brief Returns the derivatives of the scalar field at the evaluation point */
