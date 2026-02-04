@@ -65,7 +65,7 @@ void testFunction(bool _bAddPositionNoise = false, bool _bAddNormalNoise = false
     {
         Fit fit;
         fit.setNeighborFilter({vectorPoints[i].pos(), analysisScale});
-        fit.computeWithIds(tree.range_neighbors(vectorPoints[i].pos(),analysisScale),vectorPoints);
+        fit.computeWithIds(tree.rangeNeighbors(vectorPoints[i].pos(),analysisScale),vectorPoints);
 
         if(fit.isStable())
         {
