@@ -121,11 +121,11 @@ void testFunction(bool _bAddPositionNoise = false, bool _bAddNormalNoise = false
 
         Fit fit;
         fit.setNeighborFilter(nf);
-        fit.computeWithIds(tree.range_neighbors(queryPos,analysisScale),vectorPoints);
+        fit.computeWithIds(tree.rangeNeighbors(queryPos,analysisScale),vectorPoints);
 
         RefFit refFit;
         refFit.setNeighborFilter(nf);
-        refFit.computeWithIds(tree.range_neighbors(queryPos,analysisScale),vectorPoints);
+        refFit.computeWithIds(tree.rangeNeighbors(queryPos,analysisScale),vectorPoints);
 
         // use temporaries to help debugging
         VectorType res    = fit.primitiveGradient(queryPos).normalized();
