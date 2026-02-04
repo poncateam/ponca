@@ -94,38 +94,42 @@ namespace Ponca
             // values if dN is null (like in the case of a perfect plane)
 
             // Get the object space Weingarten map dN
-            MatrixType dN = Base::dNormal().template middleCols<DataPoint::Dim>(Base::isScaleDer() ? 1 : 0);
+            auto dNormalProvider = Base::dNormalProvider();
+
+            // MatrixType dN = Base::dNormal().template middleCols<DataPoint::Dim>(Base::isScaleDer() ? 1 : 0);
+            MatrixType dN = dNormalProvider.dNormal().template middleCols<DataPoint::Dim>(Base::isScaleDer() ? 1 : 0);
 
             // Compute tangent-space basis from dN
-            //   1 - pick the column with maximal norm as the first tangent vector,
-            Scalar sqNorm = dN.colwise().squaredNorm().maxCoeff(&i0);
-            m_tangentBasis.col(1) = dN.col(i0) / sqrt(sqNorm);
-            //   2 - orthogonalize the other column vectors, and pick the most reliable one
+            //   1 - set normal direction : take the one that is the most aligned with the primitive gradient
+            VectorType amplitudes = dN.colwise().squaredNorm();
+            // Compute the mean deviation around the mean amplitude
+            Scalar amplitudesVar = (dN.colwise().squaredNorm().mean() - amplitudes.array()).abs().mean();
+
+            // Normalize dN vectors
+            MatrixType dNNorm = dN.colwise().normalized();
+
+            // compute direction that is the most aligned with the primitive gradient
+            (dNNorm.transpose()*dNormalProvider.primitiveGradient()).array().abs().maxCoeff(&i0);
+
+            m_tangentBasis.col(0) = dNNorm.col(i0);
+
+            //   2 - orthogonalize the other column vectors
             i1 = (i0 + 1) % 3;
             i2 = (i0 + 2) % 3;
-            VectorType v1 = dN.col(i1) - m_tangentBasis.col(1).dot(dN.col(i1)) * m_tangentBasis.col(1);
-            VectorType v2 = dN.col(i2) - m_tangentBasis.col(1).dot(dN.col(i2)) * m_tangentBasis.col(1);
+            VectorType v1 = dN.col(i1) - m_tangentBasis.col(0).dot(dN.col(i1)) * m_tangentBasis.col(0);
+            VectorType v2 = dN.col(i2) - m_tangentBasis.col(0).dot(dN.col(i2)) * m_tangentBasis.col(0);
             Scalar v1norm2 = v1.squaredNorm();
             Scalar v2norm2 = v2.squaredNorm();
 
-            // col(2) is the second tangent direction, and col(0) is the normal direction
+            // col(1) is the first tangent direction, and col(2) is the second one
             if (v1norm2 > v2norm2){
-                m_tangentBasis.col(2) = v1 / sqrt(v1norm2);
-                m_tangentBasis.col(0) = v2 / sqrt(v2norm2);
+                m_tangentBasis.col(1) = v1/v1norm2;
+                m_tangentBasis.col(2) = v2/v2norm2;
             }
             else {
-                m_tangentBasis.col(2) = v2 / sqrt(v2norm2);
-                m_tangentBasis.col(0) = v1 / sqrt(v1norm2);
+                m_tangentBasis.col(1) = v2/v2norm2;
+                m_tangentBasis.col(2) = v1/v1norm2;
             }
-
-            // check if the computed normal is more aligned with the primitive gradient than any other vector of the
-            // basis
-            int index; // stores the index of the largest (in absolute value) dot product between the gradient
-                       // and the basis vectors (perfectly aligned vectors have their dot product equal to 1).
-            // compute the dot product between the primitive gradient and the basis vectors (stored columnwise)
-            (m_tangentBasis.transpose()*Base::primitiveGradient()).array().abs().maxCoeff(&index);
-            if (index != 0) // we constructed the basis so the expected normal direction is stored in column 0
-                Base::m_eCurrentState = UNSTABLE; // FIXME See what is wrong here for curvature_plane_1
         }
         return Base::m_eCurrentState;
     }
