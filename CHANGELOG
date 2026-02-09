@@ -21,7 +21,7 @@ Current head (v.2.0.alpha1 RC)
     - [common] Use common point type and point generation methods (#248)
 
 - CI/Actions
-    - Add coverage report for Pull Requests (#236, #245)
+    - Add coverage report for Pull Requests (#236, #245, #245)
     - [ci] Removal of submodule from code coverage test (#238)
     - [ci] Add mutable query tests with the KdTree and KnnGraph (#105)
 
