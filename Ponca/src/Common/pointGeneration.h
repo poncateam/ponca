@@ -11,6 +11,7 @@ This Source Code Form is subject to the terms of the Mozilla Public
   \brief Point generation methods
 */
 #include "Eigen/Eigen"
+#include "./defines.h"
 
 #define MIN_NOISE 0.99
 #define MAX_NOISE 1.01
@@ -208,6 +209,22 @@ namespace Ponca {
         ) {
             return VectorType((_a * in.x()), (_b * in.y()), -1.).normalized();;
         }
+        template<typename DataPoint>
+        inline typename std::enable_if<Ponca::hasNormal<DataPoint>::value, void>::type
+        getParaboloidNormal(DataPoint& in,
+                    typename DataPoint::Scalar _a,
+                    typename DataPoint::Scalar _b,
+                    typename DataPoint::Scalar _c,
+                    typename DataPoint::Scalar _d,
+                    typename DataPoint::Scalar _e,
+                    typename DataPoint::Scalar _f)
+        {
+            static constexpr typename DataPoint::Scalar two {2};
+            auto& pos = in.pos();
+            in.normal() = typename DataPoint::VectorType(two*_a * pos.x() + _c*pos.y() + _d,
+                                                         two*_b * pos.y() + _c*pos.x() + _d,
+                                                         -1.).normalized();
+        }
 
         template<typename DataPoint>
         inline typename std::enable_if<! Ponca::hasNormal<DataPoint>::value, void>::type
@@ -271,10 +288,10 @@ namespace Ponca {
 
         // generate random position in polar coordinates to get points on the circle
         out.pos() = getPointOnCircle(_s, VectorType({0,0,0}));
-        out.pos().z() = getParaboloidZ(out.pos().x(), out.pos().y(), _a, _b, _c, _d, _e, _f);
+        out.pos().z() = internal::getParaboloidZ(out.pos().x(), out.pos().y(), _a, _b, _c, _d, _e, _f);
 
         // does nothing if the point type does not have a normal field.
-        getParaboloidNormal(out, _a, _b, _c, _d, _e, _f);
+        internal::getParaboloidNormal(out, _a, _b, _c, _d, _e, _f);
 
         if(_bAddNoise) //spherical noise
         {
