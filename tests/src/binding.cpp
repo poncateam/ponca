@@ -132,11 +132,11 @@ void compareFitOverPointTypes( SpatialStruct1& spatialStruct1, SpatialStruct2& s
         const auto neighborhoodRange2 = spatialStruct2.rangeNeighbors(points2[i].pos(), analysisScale);
         f2.computeWithIds( neighborhoodRange2, points2 );
 
-        if (!f1.isStable() || !f2.isStable())
-            continue;
-
-        VERIFY(f1.isApprox(f2));
-        VERIFY(f2.isApprox(f1));
+        VERIFY((f1.isStable() == f2.isStable()));
+        if (f1.isStable() && f2.isStable()) {
+            VERIFY(f1.isApprox(f2));
+            VERIFY(f2.isApprox(f1));
+        }
     }
 }
 
