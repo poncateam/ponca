@@ -26,6 +26,8 @@
 #include <Ponca/src/Fitting/weightFunc.h>
 #include <Ponca/src/Fitting/weightKernel.h>
 
+#include <Ponca/Common>
+
 #include <vector>
 
 using namespace std;
@@ -75,7 +77,7 @@ void testFunction()
     VectorType theoricNormal;
     {
         DataPoint p; // Use default constructor : located at (0,0,0)
-        getParaboloidNormal(p, paraboloidA, paraboloidB, 0, 0, 0, 0);
+        internal::getParaboloidNormal(p, paraboloidA, paraboloidB, 0, 0, 0, 0);
         theoricNormal = p.normal();
     }
 
