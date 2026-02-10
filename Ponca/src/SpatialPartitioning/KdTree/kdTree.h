@@ -153,8 +153,8 @@ public:
         template <typename Input>
         inline void operator()(Input&& i, PointContainer& o)
         {
-            using InputContainer = typename std::remove_reference<Input>::type;
-            if constexpr (std::is_same<InputContainer, PointContainer>::value)
+            using InputContainer = std::remove_reference_t<Input>;
+            if constexpr (std::is_same_v<InputContainer, PointContainer> && std::is_copy_assignable_v<typename PointContainer::value_type>)
                 o = std::forward<Input>(i); // Either move or copy
             else
                 std::transform(i.cbegin(), i.cend(), std::back_inserter(o),
