@@ -6,7 +6,11 @@
 
 #pragma once
 
-// Include Ponca Common components
+// Include Ponca Common containers
 #include "src/Common/Containers/limitedPriorityQueue.h"
 #include "src/Common/Containers/stack.h"
+
+// Include Ponca Common algorithms and types
+#include "src/Common/pointGeneration.h"
+#include "src/Common/pointTypes.h"
 
