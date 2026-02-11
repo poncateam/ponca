@@ -23,6 +23,7 @@ file, You can obtain one at http://mozilla.org/MPL/2.0/.
 #include <Ponca/src/Fitting/weightFunc.h>
 #include <Ponca/src/Fitting/weightKernel.h>
 #include <Ponca/src/Fitting/curvature.h>
+#include <Ponca/src/Fitting/weingarten.h>
 
 #include <Ponca/SpatialPartitioning>
 #include <Ponca/src/Common/pointTypes.h>
