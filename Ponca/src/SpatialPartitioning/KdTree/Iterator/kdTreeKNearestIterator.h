@@ -34,36 +34,36 @@ public:
     using Scalar   = typename DataPoint::Scalar;
     using Iterator = typename limited_priority_queue<IndexSquaredDistance<Index, Scalar>>::iterator;
 
-    inline KdTreeKNearestIterator() = default;
-    inline KdTreeKNearestIterator(const Iterator& iterator) : m_iterator(iterator) {}
-    virtual inline ~KdTreeKNearestIterator() = default;
+    PONCA_MULTIARCH inline KdTreeKNearestIterator() = default;
+    PONCA_MULTIARCH inline KdTreeKNearestIterator(const Iterator& iterator) : m_iterator(iterator) {}
+    PONCA_MULTIARCH virtual inline ~KdTreeKNearestIterator() = default;
 
 public:
     /// \brief Inequality operand
-    inline bool operator !=(const KdTreeKNearestIterator& other) const {
+    PONCA_MULTIARCH inline bool operator !=(const KdTreeKNearestIterator& other) const {
         return m_iterator != other.m_iterator;
     }
 
     /// \brief Equality operand
-    inline bool operator ==(const KdTreeKNearestIterator& other) const {
+    PONCA_MULTIARCH inline bool operator ==(const KdTreeKNearestIterator& other) const {
         return m_iterator == other.m_iterator;
     }
 
     /// Prefix increment
-    inline KdTreeKNearestIterator& operator ++() {++m_iterator; return *this;}
+    PONCA_MULTIARCH inline KdTreeKNearestIterator& operator ++() {++m_iterator; return *this;}
 
     /// \brief Postfix increment
-    inline KdTreeKNearestIterator operator++(int) {
+    PONCA_MULTIARCH inline KdTreeKNearestIterator operator++(int) {
         KdTreeKNearestIterator tmp = *this;
         ++m_iterator;
         return tmp;
     }
 
     /// \brief Value increment
-    inline void operator +=(int i) {m_iterator += i;}
+    PONCA_MULTIARCH inline void operator +=(int i) {m_iterator += i;}
 
     /// \brief Dereference operator
-    inline reference operator *() const {
+    PONCA_MULTIARCH inline reference operator *() const {
         return const_cast<reference>(m_iterator->index);
     }
 

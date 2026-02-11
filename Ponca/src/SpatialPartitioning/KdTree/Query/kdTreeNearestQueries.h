@@ -32,11 +32,11 @@ public:
     using QueryAccelType = KdTreeQuery<Traits>;
     using Iterator       = IteratorType<typename Traits::IndexType>;
 
-    KdTreeNearestQueryBase(const KdTreeBase<Traits>* kdtree, typename QueryType::InputType input) :
+    PONCA_MULTIARCH KdTreeNearestQueryBase(const KdTreeBase<Traits>* kdtree, typename QueryType::InputType input) :
             KdTreeQuery<Traits>(kdtree), QueryType(input){}
 
     /// \brief Returns an iterator to the beginning of the nearest neighbor query.
-    inline Iterator begin(){
+    PONCA_MULTIARCH inline Iterator begin(){
         QueryAccelType::reset();
         QueryType::reset();
         this->search();
@@ -44,13 +44,13 @@ public:
     }
 
     /// \brief Returns an iterator to the end of the nearest neighbor query.
-    inline Iterator end(){
+    PONCA_MULTIARCH inline Iterator end(){
         return Iterator(QueryType::m_nearest + 1);
     }
 
 protected:
-    inline void search(){
-        KdTreeQuery<Traits>::searchInternal(QueryType::getInputPosition(QueryAccelType::m_kdtree->points()),
+    PONCA_MULTIARCH inline void search(){
+        KdTreeQuery<Traits>::searchInternal(QueryType::template getInputPosition<VectorType>(QueryAccelType::m_kdtree->points()),
                                              [](IndexType, IndexType){},
                                              [this](){return QueryType::descentDistanceThreshold();},
                                              [this](IndexType idx){return QueryType::skipIndexFunctor(idx);},

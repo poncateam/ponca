@@ -28,11 +28,11 @@
 template<typename DataPoint, typename Fit, typename Node, typename Scalar>
 __global__ void fitPotentialAndGradientKernel(
     DataPoint* points,
-    const int nbPoints,
+    const size_t nbPoints,
     int* indices,
-    const int nbIndices,
+    const size_t nbIndices,
     Node * nodes,
-    const int nbNodes,
+    const size_t nbNodes,
     const Scalar analysisScale,
     Scalar* const potentialResults,
     Scalar* const gradientResults
@@ -46,7 +46,7 @@ __global__ void fitPotentialAndGradientKernel(
     if (i >= nbPoints) return;
 
     VectorType pos = points[i].pos();
-    // KdTreeGPU<DataPoint> kdtree(points, nodes, indices, nbPoints, nbNodes, nbIndices);
+    KdTreeGPU<DataPoint> kdtree(points, nodes, indices, nbPoints, nbNodes, nbIndices);
 
     // Set up the fit
     Fit fit;
@@ -54,7 +54,7 @@ __global__ void fitPotentialAndGradientKernel(
 
     // Computes the fit
     fit.init();
-    for (int j = 0; j < nbPoints; ++j) {
+    for (int j : kdtree.rangeNeighbors(i, analysisScale)) {
         fit.addNeighbor( points[j] );
     }
     fit.finalize();
@@ -128,17 +128,18 @@ __host__ void testPlaneCuda(
 
     // Send the internal buffers of the KdTree to the GPU
     Ponca::KdTreeDense<DataPoint> kdtree(points);
+
     typedef typename Ponca::KdTreeDefaultTraits<DataPoint>::NodeType NodeType;
 
-    std::cout << "nodes size : " << kdtree.node_count() << std::endl;
+    std::cout << "nodes size : " << kdtree.nodeCount() << std::endl;
 
     // The size of the data we send between Host and Device
     const unsigned long pointBufferSize      = nbPoints * sizeof(DataPoint);
     const unsigned long scalarBufferSize     = nbPoints * sizeof(Scalar);
     const unsigned long vectorBufferSize     = scalarBufferSize * Dim;
     const unsigned long interlacedBufferSize = vectorBufferSize * 2;
-    const unsigned long nodeBufferSize       = kdtree.node_count() * sizeof(NodeType);
-    const unsigned long indexBufferSize      = kdtree.sample_count() * sizeof(int);
+    const unsigned long nodeBufferSize       = kdtree.nodeCount() * sizeof(NodeType);
+    const unsigned long indexBufferSize      = kdtree.sampleCount() * sizeof(int);
 
 
     // Send inputs to the GPU (Host to Device)
@@ -167,21 +168,21 @@ __host__ void testPlaneCuda(
 
     // Set block and grid size depending on number of points
     constexpr int blockSize = 128;
-    const int gridSize      = (nbPoints + blockSize - 1) / blockSize;
+    const     int gridSize  = (nbPoints + blockSize - 1) / blockSize;
 
     // Binds the points to their internal values on the device
     bindPointsKernel<DataPoint><<<gridSize, blockSize>>>(pointsDevice, interlacedArrayDevice, nbPoints);
-    cudaDeviceSynchronize();
+    CUDA_CHECK(cudaDeviceSynchronize());
 
     // Compute the fitting in the kernel
     fitPotentialAndGradientKernel<DataPoint, MeanFitSmooth><<<gridSize, blockSize>>>(
         pointsDevice , nbPoints,
-        indicesDevice, kdtree.sample_count(),
-        nodesDevice  , kdtree.node_count(),
+        indicesDevice, kdtree.sampleCount(),
+        nodesDevice  , kdtree.nodeCount(),
         analysisScale,
         potentialResultsDevice, gradientResultsDevice
     );
-    cudaDeviceSynchronize();
+    CUDA_CHECK(cudaDeviceSynchronize());
 
     // Fetch the results (Device to Host)
     CUDA_CHECK(cudaMemcpy(potentialResults, potentialResultsDevice, scalarBufferSize, cudaMemcpyDeviceToHost));

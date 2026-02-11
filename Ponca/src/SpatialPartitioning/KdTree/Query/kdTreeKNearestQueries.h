@@ -33,22 +33,22 @@ public:
     using Iterator       = IteratorType<typename Traits::IndexType, typename Traits::DataPoint>;
     using Self           = KdTreeKNearestQueryBase<Traits, IteratorType, QueryType>;
 
-    inline KdTreeKNearestQueryBase(const KdTreeBase<Traits>* kdtree, IndexType k, typename QueryType::InputType input) :
+    PONCA_MULTIARCH inline KdTreeKNearestQueryBase(const KdTreeBase<Traits>* kdtree, IndexType k, typename QueryType::InputType input) :
             KdTreeQuery<Traits>(kdtree), QueryType(k, input) { }
 
     /// \brief Call the k-nearest neighbors query with new input and neighbor number parameters.
-    inline Self& operator()(typename QueryType::InputType input, IndexType k)
+    PONCA_MULTIARCH inline Self& operator()(typename QueryType::InputType input, IndexType k)
     {
         return QueryType::template operator()<Self>(input, k);
     }
     /// \brief Call the k-nearest neighbors query with new input parameter.
-    inline Self& operator()(typename QueryType::InputType input)
+    PONCA_MULTIARCH inline Self& operator()(typename QueryType::InputType input)
     {
         return QueryType::template operator()<Self>(input);
     }
 
     /// \brief Returns an iterator to the beginning of the k-nearest neighbors query.
-    inline Iterator begin(){
+    PONCA_MULTIARCH inline Iterator begin(){
         QueryAccelType::reset();
         QueryType::reset();
         this->search();
@@ -56,13 +56,13 @@ public:
     }
 
     /// \brief Returns an iterator to the end of the k-nearest neighbors query.
-    inline Iterator end(){
+    PONCA_MULTIARCH inline Iterator end(){
         return Iterator(QueryType::m_queue.end());
     }
 
 protected:
-    inline void search(){
-        KdTreeQuery<Traits>::searchInternal(QueryType::getInputPosition(QueryAccelType::m_kdtree->points()),
+    PONCA_MULTIARCH inline void search(){
+        KdTreeQuery<Traits>::searchInternal(QueryType::template getInputPosition<VectorType>(QueryAccelType::m_kdtree->points()),
                                              [](IndexType, IndexType){},
                                              [this](){return QueryType::descentDistanceThreshold();},
                                              [this](IndexType idx){return QueryType::skipIndexFunctor(idx);},

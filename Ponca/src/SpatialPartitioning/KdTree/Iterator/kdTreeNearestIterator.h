@@ -31,39 +31,39 @@ public:
     using pointer    = Index*;
     using reference  = const Index&;
 
-    inline KdTreeNearestIterator() = default;
-    inline KdTreeNearestIterator(Index index) : m_index(index) {}
-    virtual inline ~KdTreeNearestIterator() = default;
+    PONCA_MULTIARCH inline KdTreeNearestIterator() = default;
+    PONCA_MULTIARCH inline KdTreeNearestIterator(Index index) : m_index(index) {}
+    PONCA_MULTIARCH virtual inline ~KdTreeNearestIterator() = default;
 
 public:
     /// \brief Inequality operand
-    inline bool operator !=(const KdTreeNearestIterator& other) const {
+    PONCA_MULTIARCH inline bool operator !=(const KdTreeNearestIterator& other) const {
         return m_index != other.m_index;
     }
 
     /// \brief Equality operand
-    inline bool operator ==(const KdTreeNearestIterator& other) const {
+    PONCA_MULTIARCH inline bool operator ==(const KdTreeNearestIterator& other) const {
         return m_index == other.m_index;
     }
 
     /// Prefix increment
-    inline KdTreeNearestIterator& operator ++() {
+    PONCA_MULTIARCH inline KdTreeNearestIterator& operator ++() {
         ++m_index;
         return *this;
     }
 
     /// \brief Postfix increment
-    inline KdTreeNearestIterator operator++(int) {
+    PONCA_MULTIARCH inline KdTreeNearestIterator operator++(int) {
         KdTreeNearestIterator tmp = *this;
         ++m_index;
         return tmp;
     }
 
     /// \brief Value increment
-    inline void operator +=(int i) {m_index += i;}
+    PONCA_MULTIARCH inline void operator +=(int i) {m_index += i;}
 
     /// \brief Dereference operator
-    inline reference operator *() const {
+    PONCA_MULTIARCH inline reference operator *() const {
         return const_cast<reference>(m_index);
     }
 

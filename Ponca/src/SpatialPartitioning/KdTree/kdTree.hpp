@@ -48,12 +48,12 @@ bool KdTreeBase<Traits>::valid() const
         b[idx] = true;
     }
 
-    for(NodeIndexType n=0;n<node_count();++n)
+    for(NodeIndexType n=0;n<nodeCount();++n)
     {
         const NodeType& node = m_nodes[n];
         if(node.is_leaf())
         {
-            if(sample_count() <= node.leaf_start() || node.leaf_start()+node.leaf_size() > sample_count())
+            if(sampleCount() <= node.leaf_start() || node.leaf_start()+node.leaf_size() > sampleCount())
             {
                 return false;
             }
@@ -64,7 +64,7 @@ bool KdTreeBase<Traits>::valid() const
             {
                 return false;
             }
-            if(node_count() <= node.inner_first_child_id() || node_count() <= node.inner_first_child_id()+1)
+            if(nodeCount() <= node.inner_first_child_id() || nodeCount() <= node.inner_first_child_id()+1)
             {
                 return false;
             }
@@ -82,8 +82,8 @@ void KdTreeBase<Traits>::print(std::ostream& os, bool verbose) const
     os << "\n  MaxPoints: " << MAX_POINT_COUNT;
     os << "\n  MaxDepth: " << MAX_DEPTH;
     os << "\n  PointCount: " << pointCount();
-    os << "\n  SampleCount: " << sample_count();
-    os << "\n  NodeCount: " << node_count();
+    os << "\n  SampleCount: " << sampleCount();
+    os << "\n  NodeCount: " << nodeCount();
 
     if (!verbose)
     {
@@ -92,7 +92,7 @@ void KdTreeBase<Traits>::print(std::ostream& os, bool verbose) const
 
     os << "\n  Samples: [";
     static constexpr IndexType SAMPLES_PER_LINE = 10;
-    for (IndexType i = 0; i < sample_count(); ++i)
+    for (IndexType i = 0; i < sampleCount(); ++i)
     {
         os << (i == 0 ? "" : ",");
         os << (i % SAMPLES_PER_LINE == 0 ? "\n    " : " ");
@@ -100,7 +100,7 @@ void KdTreeBase<Traits>::print(std::ostream& os, bool verbose) const
     }
 
     os << "]\n  Nodes:";
-    for (NodeIndexType n = 0; n < node_count(); ++n)
+    for (NodeIndexType n = 0; n < nodeCount(); ++n)
     {
         const NodeType& node = m_nodes[n];
         if (node.is_leaf())
@@ -140,7 +140,7 @@ PONCA_MULTIARCH_HOST inline void KdTreeBase<Traits>::buildWithSampling(
     m_indices = std::move(Traits::template toInternalContainer<IndexContainer>(sampling));
     // m_indices = std::move(sampling);
 
-    this->buildRec(nodes, 0, 0, sample_count(), 1);
+    this->buildRec(nodes, 0, 0, sampleCount(), 1);
     m_nodes_size = nodes.size();
     m_nodes = std::move(Traits::template toInternalContainer<NodeContainer>(nodes));
     // m_nodes = std::move(nodes);

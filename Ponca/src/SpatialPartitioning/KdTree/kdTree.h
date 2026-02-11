@@ -151,7 +151,7 @@ public:
     struct DefaultConverter
     {
         template <typename Input>
-        PONCA_MULTIARCH inline void operator()(Input&& i, PointContainer& o)
+        PONCA_MULTIARCH_HOST inline void operator()(Input&& i, PointContainer& o)
         {
             using InputContainer = std::remove_reference_t<Input>;
             if constexpr (std::is_same_v<InputContainer, PointContainer> && std::is_copy_assignable_v<typename PointContainer::value_type>)
@@ -176,12 +176,12 @@ public:
 
     // Accessors ---------------------------------------------------------------
 public:
-    PONCA_MULTIARCH [[nodiscard]] inline NodeIndexType node_count() const
+    PONCA_MULTIARCH [[nodiscard]] inline NodeIndexType nodeCount() const
     {
         return (NodeIndexType)m_nodes_size;
     }
 
-    PONCA_MULTIARCH [[nodiscard]] inline IndexType sample_count() const
+    PONCA_MULTIARCH [[nodiscard]] inline IndexType sampleCount() const
     {
         return (IndexType)m_indices_size;
     }
@@ -191,7 +191,7 @@ public:
         return (IndexType)m_points_size;
     }
 
-    PONCA_MULTIARCH [[nodiscard]] inline NodeIndexType leaf_count() const
+    PONCA_MULTIARCH [[nodiscard]] inline NodeIndexType leafCount() const
     {
         return m_leaf_count;
     }
@@ -288,7 +288,7 @@ public :
     /// Same as `KdTreeBase::kNearestNeighbors (0, VectorType::Zero())`
     /// \return The empty \ref KdTreeKNearestPointQuery mutable object to iterate over the search results.
     /// \see KdTreeKNearestQueryBase
-    KdTreeKNearestPointQuery<Traits> kNearestNeighborsQuery() const
+    PONCA_MULTIARCH [[nodiscard]] KdTreeKNearestPointQuery<Traits> kNearestNeighborsQuery() const
     {
         return KdTreeKNearestPointQuery<Traits>(this, 0, VectorType::Zero());
     }
@@ -301,7 +301,7 @@ public :
     /// Same as `KdTreeBase::kNearestNeighbors (0, 0)`
     /// \return The empty \ref KdTreeKNearestIndexQuery mutable object to iterate over the search results.
     /// \see KdTreeKNearestQueryBase
-    KdTreeKNearestIndexQuery<Traits> kNearestNeighborsIndexQuery() const
+    PONCA_MULTIARCH [[nodiscard]] KdTreeKNearestIndexQuery<Traits> kNearestNeighborsIndexQuery() const
     {
         return KdTreeKNearestIndexQuery<Traits>(this, 0, 0);
     }
@@ -337,7 +337,7 @@ public :
     ///
     /// \return The empty \ref KdTreeNearestPointQuery mutable object that contains the search result.
     /// \see KdTreeNearestQueryBase
-    KdTreeNearestIndexQuery<Traits> nearestNeighborQuery() const
+    PONCA_MULTIARCH [[nodiscard]] KdTreeNearestIndexQuery<Traits> nearestNeighborQuery() const
     {
         return KdTreeNearestIndexQuery<Traits>(this, VectorType::Zero());
     }
@@ -351,7 +351,7 @@ public :
     ///
     /// \return The \ref KdTreeKNearestIndexQuery mutable object that contains the search result.
     /// \see KdTreeNearestQueryBase
-    KdTreeNearestIndexQuery<Traits> nearestNeighborIndexQuery() const
+    PONCA_MULTIARCH [[nodiscard]] KdTreeNearestIndexQuery<Traits> nearestNeighborIndexQuery() const
     {
         return KdTreeNearestIndexQuery<Traits>(this, 0);
     }
@@ -388,7 +388,7 @@ public :
     ///
     /// \return The empty \ref KdTreeRangePointQuery mutable object to iterate over the search results.
     /// \see KdTreeRangeQueryBase
-    KdTreeRangePointQuery<Traits> rangeNeighborsQuery() const
+    PONCA_MULTIARCH [[nodiscard]] KdTreeRangePointQuery<Traits> rangeNeighborsQuery() const
     {
         return KdTreeRangePointQuery<Traits>(this, 0, VectorType::Zero());
     }
@@ -402,7 +402,7 @@ public :
     ///
     /// \return The empty \ref KdTreeRangeIndexQuery mutable object to iterate over the search results.
     /// \see KdTreeRangeQueryBase
-    KdTreeRangeIndexQuery<Traits> rangeNeighborsIndexQuery() const
+    PONCA_MULTIARCH [[nodiscard]] KdTreeRangeIndexQuery<Traits> rangeNeighborsIndexQuery() const
     {
         return KdTreeRangeIndexQuery<Traits>(this, 0, 0);
     }
@@ -426,7 +426,7 @@ protected:
     NodeIndexType m_leaf_count {0}; ///< Number of leaves in the Kdtree (computed during construction)
 
     // Internal ----------------------------------------------------------------
-protected:
+public:
     PONCA_MULTIARCH inline KdTreeBase() = default;
 
     PONCA_MULTIARCH inline KdTreeBase(
@@ -435,6 +435,7 @@ protected:
     ) : m_points(points)          , m_nodes(nodes)          , m_indices(indices),
         m_points_size(points_size), m_nodes_size(nodes_size), m_indices_size(indices_size)
     { }
+protected:
 
     /// Generate a tree sampled from a custom contained type converted using a `Converter`
     /// \tparam PointUserContainer Input point, transformed to PointContainer
