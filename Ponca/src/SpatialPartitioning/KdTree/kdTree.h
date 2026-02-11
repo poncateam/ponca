@@ -411,6 +411,7 @@ public :
 public:
     [[nodiscard]] inline bool valid() const;
     inline void print(std::ostream& os, bool verbose = false) const;
+    inline void remove(NodeIndexType node_id) const; /// < Deletes a node and rebuild a part of the tree
 
     // Data --------------------------------------------------------------------
 protected:

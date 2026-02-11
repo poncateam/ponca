@@ -174,6 +174,18 @@ void KdTreeBase<Traits>::buildRec(NodeIndexType node_id, IndexType start, IndexT
 }
 
 template<typename Traits>
+void KdTreeBase<Traits>::remove(NodeIndexType node_id) const
+{
+    // If node is leaf, simply remove the point
+    NodeType& node = m_nodes[node_id];
+    if (node.is_leaf())
+    {
+        // TODO
+    }
+    // If node is not leaf, reconstruct the subtree or find a replacement for the node
+}
+
+template<typename Traits>
 auto KdTreeBase<Traits>::partition(IndexType start, IndexType end, int dim, Scalar value)
     -> IndexType
 {
