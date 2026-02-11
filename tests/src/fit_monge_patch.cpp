@@ -69,9 +69,7 @@ void testFunction(bool _bAddPositionNoise = false)
     if ( _bAddPositionNoise) // relax a bit the testing threshold
       epsilon = std::max(Scalar(0.5*MAX_NOISE), epsilon*2);
     // Test for each point if the fitted plane correspond to the theoretical plane
-#ifdef DEBUG
-#pragma omp parallel for
-#endif
+
 
     // evaluate only for the point located at 0,0
     const auto queryPos = VectorType::Zero();
@@ -99,6 +97,7 @@ void testFunction(bool _bAddPositionNoise = false)
 
         if(error > epsilon) {
             std::cerr << "Precision test failed (" << error << "). Dumping files\n";
+#ifndef PONCA_COVERAGE_ENABLED
             {
                 std::ofstream inFile, projFile;
                 inFile.open ("input.xyz");
@@ -111,6 +110,7 @@ void testFunction(bool _bAddPositionNoise = false)
                 inFile.close();
                 projFile.close();
             }
+#endif
             VERIFY(error <= epsilon);
         }
     }

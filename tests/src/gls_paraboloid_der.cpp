@@ -182,6 +182,7 @@ void testFunction()
     VERIFY( Eigen::internal::isMuchSmallerThan(std::abs(potential - theoricPotential), Scalar(1.), approxEpsilon) );
     VERIFY( Eigen::internal::isMuchSmallerThan((theoricNormal - normal).norm(), Scalar(1.), approxEpsilon ) );
 
+#ifndef PONCA_COVERAGE_ENABLED
     if(! Eigen::internal::isMuchSmallerThan(std::abs(theoricKmean - kmeanFromK1K2), std::abs(theoricK1), approxEpsilon)) {
         std::cerr << "Precision test failed. Dumping files\n";
         {
@@ -197,6 +198,7 @@ void testFunction()
             projFile.close();
         }
     }
+#endif
 
     // The error in mean curvature estimation must be smaller in magnitude wrt the largest curvature
     VERIFY( Eigen::internal::isMuchSmallerThan(std::abs(theoricKmean - kmeanFromK1K2), std::abs(theoricK1), approxEpsilon));
