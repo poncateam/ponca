@@ -85,9 +85,6 @@ CovariancePlaneDerImpl<DataPoint, _NFilter, DiffType, T>::finalize()
         if(k>0 || !Base::isScaleDer())
           dDiff(Base::isScaleDer() ? k-1 : k) += 1;
         m_dDist(k) = m_dNormal.col(k).dot(barycenter) + normal.dot(dDiff);
-
-        // \fixme we shouldn't need this normalization, however currently the derivatives are overestimated by a factor 2
-        m_dNormal /= Scalar(2.);
       }
     }
 
