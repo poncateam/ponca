@@ -38,23 +38,23 @@ protected:
     friend Iterator;
 
 public:
-    KdTreeRangeQueryBase(const KdTreeBase<Traits>* kdtree, Scalar radius, typename QueryType::InputType input) :
+    PONCA_MULTIARCH KdTreeRangeQueryBase(const KdTreeBase<Traits>* kdtree, Scalar radius, typename QueryType::InputType input) :
             KdTreeQuery<Traits>(kdtree), QueryType(radius, input){}
 
     /// \brief Call the range neighbors query with new input and radius parameters.
-    inline Self& operator()(typename QueryType::InputType input, Scalar radius)
+    PONCA_MULTIARCH inline Self& operator()(typename QueryType::InputType input, Scalar radius)
     {
         return QueryType::template operator()<Self>(input, radius);
     }
 
     /// \brief Call the range neighbors query with new input parameter.
-    inline Self& operator()(typename QueryType::InputType input)
+    PONCA_MULTIARCH inline Self& operator()(typename QueryType::InputType input)
     {
         return QueryType::template operator()<Self>(input);
     }
 
     /// \brief Returns an iterator to the beginning of the Range Query.
-    inline Iterator begin(){
+    PONCA_MULTIARCH inline Iterator begin(){
         QueryAccelType::reset();
         QueryType::reset();
         Iterator it(this);
@@ -63,17 +63,17 @@ public:
     }
 
     /// \brief Returns an iterator to the end of the Range Query.
-    inline Iterator end(){
+    PONCA_MULTIARCH inline Iterator end(){
         return Iterator(this, QueryAccelType::m_kdtree->pointCount());
     }
 
 protected:
-    inline void advance(Iterator& it){
+    PONCA_MULTIARCH inline void advance(Iterator& it){
         const auto& points  = QueryAccelType::m_kdtree->points();
         const auto& indices = QueryAccelType::m_kdtree->samples();
-        const auto& point   = QueryType::getInputPosition(points);
+        const auto& point   = QueryType::template getInputPosition<VectorType>(points);
 
-        if (points.empty() || indices.empty())
+        if (QueryAccelType::m_kdtree->pointCount() == 0 || QueryAccelType::m_kdtree->sampleCount() == 0)
         {
             it = end();
             return;
@@ -109,7 +109,7 @@ protected:
                                                  descentDistanceThreshold,
                                                  skipFunctor,
                                                  processNeighborFunctor))
-            it.m_index = static_cast<IndexType>(points.size());
+            it.m_index = static_cast<IndexType>(QueryAccelType::m_kdtree->pointCount());
     }
 };
 
