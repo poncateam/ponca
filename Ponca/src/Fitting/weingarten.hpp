@@ -90,46 +90,22 @@ namespace Ponca
         if (this->isReady())
         {
             Index i0=Index(-1), i1=Index(-1), i2=Index(-1);
-            // Use the spatial derivative of the normal. This option leads to NaN
-            // values if dN is null (like in the case of a perfect plane)
 
-            // Get the object space Weingarten map dN
-            auto dNormalProvider = Base::dNormalProvider();
+            MatrixType dN = Base::dNormal().template middleCols<DataPoint::Dim>(Base::isScaleDer() ? 1 : 0);
 
-            // MatrixType dN = Base::dNormal().template middleCols<DataPoint::Dim>(Base::isScaleDer() ? 1 : 0);
-            MatrixType dN = dNormalProvider.dNormal().template middleCols<DataPoint::Dim>(Base::isScaleDer() ? 1 : 0);
+            VectorType n = Base::primitiveGradient();
+            n.array().abs().minCoeff(&i0); // i0: dimension where n extends the least
+            i1 = (i0+1)%3;
+            i2 = (i0+2)%3;
 
-            // Compute tangent-space basis from dN
-            //   1 - set normal direction : take the one that is the most aligned with the primitive gradient
-            VectorType amplitudes = dN.colwise().squaredNorm();
-            // Compute the mean deviation around the mean amplitude
-            Scalar amplitudesVar = (dN.colwise().squaredNorm().mean() - amplitudes.array()).abs().mean();
+            m_tangentBasis.col(0) = n;
 
-            // Normalize dN vectors
-            MatrixType dNNorm = dN.colwise().normalized();
+            m_tangentBasis.col(1)[i0] = 0;
+            m_tangentBasis.col(1)[i1] = n[i2];
+            m_tangentBasis.col(1)[i2] = -n[i1];
 
-            // compute direction that is the most aligned with the primitive gradient
-            (dNNorm.transpose()*dNormalProvider.primitiveGradient()).array().abs().maxCoeff(&i0);
-
-            m_tangentBasis.col(0) = dNNorm.col(i0);
-
-            //   2 - orthogonalize the other column vectors
-            i1 = (i0 + 1) % 3;
-            i2 = (i0 + 2) % 3;
-            VectorType v1 = dN.col(i1) - m_tangentBasis.col(0).dot(dN.col(i1)) * m_tangentBasis.col(0);
-            VectorType v2 = dN.col(i2) - m_tangentBasis.col(0).dot(dN.col(i2)) * m_tangentBasis.col(0);
-            Scalar v1norm2 = v1.squaredNorm();
-            Scalar v2norm2 = v2.squaredNorm();
-
-            // col(1) is the first tangent direction, and col(2) is the second one
-            if (v1norm2 > v2norm2){
-                m_tangentBasis.col(1) = v1/v1norm2;
-                m_tangentBasis.col(2) = v2/v2norm2;
-            }
-            else {
-                m_tangentBasis.col(1) = v2/v2norm2;
-                m_tangentBasis.col(2) = v1/v1norm2;
-            }
+            m_tangentBasis.col(1).normalize();
+            m_tangentBasis.col(2) = m_tangentBasis.col(1).cross(n);
         }
         return Base::m_eCurrentState;
     }
@@ -147,7 +123,7 @@ namespace Ponca
         MatrixType dN = Base::dNormal().template middleCols<DataPoint::Dim>(Base::isScaleDer() ? 1: 0);
 
         // Compute tangent-space change of basis function
-        auto B = m_tangentBasis.template leftCols<2>();
+        auto B = m_tangentBasis.template rightCols<2>();
 
         // Compute the 2x2 matrix representing the shape operator by transforming dN to the basis B.
         // Recall that dN is a bilinear form, it thus transforms as follows:
