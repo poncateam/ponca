@@ -85,55 +85,55 @@ public:
 
     // limited_priority_queue --------------------------------------------------
 public:
-    inline limited_priority_queue();
-    inline limited_priority_queue(const this_type& other);
-    inline explicit limited_priority_queue(int capacity);
+    PONCA_MULTIARCH inline limited_priority_queue();
+    PONCA_MULTIARCH inline limited_priority_queue(const this_type& other);
+    PONCA_MULTIARCH inline explicit limited_priority_queue(int capacity);
     template<class InputIt>
-    inline limited_priority_queue(int capacity, InputIt first, InputIt last);
+    PONCA_MULTIARCH inline limited_priority_queue(int capacity, InputIt first, InputIt last);
 
-    inline ~limited_priority_queue();
+    PONCA_MULTIARCH inline ~limited_priority_queue();
 
-    inline limited_priority_queue& operator=(const this_type& other);
+    PONCA_MULTIARCH inline limited_priority_queue& operator=(const this_type& other);
 
     // Iterator ----------------------------------------------------------------
 public:
-    inline iterator       begin();
-    inline const_iterator begin() const;
-    inline const_iterator cbegin() const;
+    PONCA_MULTIARCH inline iterator       begin();
+    PONCA_MULTIARCH inline const_iterator begin() const;
+    PONCA_MULTIARCH inline const_iterator cbegin() const;
 
-    inline iterator       end();
-    inline const_iterator end() const;
-    inline const_iterator cend() const;
+    PONCA_MULTIARCH inline iterator       end();
+    PONCA_MULTIARCH inline const_iterator end() const;
+    PONCA_MULTIARCH inline const_iterator cend() const;
 
     // Element access ----------------------------------------------------------
 public:
-    inline const T& top() const;
-    inline const T& bottom() const;
+    PONCA_MULTIARCH inline const T& top() const;
+    PONCA_MULTIARCH inline const T& bottom() const;
 
-    inline T& top();
-    inline T& bottom();
+    PONCA_MULTIARCH inline T& top();
+    PONCA_MULTIARCH inline T& bottom();
 
     // Capacity ----------------------------------------------------------------
 public:
-    inline bool empty() const;
-    inline bool full() const;
-    inline size_t  size() const;
-    inline size_t  capacity() const;
+    PONCA_MULTIARCH inline bool empty() const;
+    PONCA_MULTIARCH inline bool full() const;
+    PONCA_MULTIARCH inline size_t  size() const;
+    PONCA_MULTIARCH inline size_t  capacity() const;
 
     // Modifiers ---------------------------------------------------------------
 public:
-    inline bool push(const T& value);
-    inline bool push(T&& value);
+    PONCA_MULTIARCH inline bool push(const T& value);
+    PONCA_MULTIARCH inline bool push(T&& value);
 
-    inline void pop();
+    PONCA_MULTIARCH inline void pop();
 
-    inline void reserve(int capacity);
+    PONCA_MULTIARCH inline void reserve(int capacity);
 
-    inline void clear();
+    PONCA_MULTIARCH inline void clear();
 
     // Data --------------------------------------------------------------------
 public:
-    inline const container_type& container() const;
+    PONCA_MULTIARCH inline const container_type& container() const;
 
 protected:
     container_type  m_c;
