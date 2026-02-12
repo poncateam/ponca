@@ -3,8 +3,13 @@ namespace Ponca {
     namespace internal
     {
         ///////// CurvatureEstimatorBase
+
+        // attribute 'no-tree-vectorize' is required for the init function.
+        // It resolves a crash when compiling with GCC 11.4.0
+        // with the default optimization level (-O3) for release builds.
         template<class DataPoint, class _NFilter, typename T>
         void
+        __attribute__((optimize("no-tree-vectorize")))
         CurvatureEstimatorBase<DataPoint, _NFilter, T>::init() {
             Base::init();
             m_kmin = 0;
