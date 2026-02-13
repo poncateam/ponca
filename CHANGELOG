@@ -7,6 +7,7 @@ Current head (v.2.0.alpha1 RC)
 - API
     - [spatialPartitioning] Add mutable query and rename query functions (#105)
     - [common] Add point types and point generation methods (#248)
+    - [fitting] Fix degenerate case handling in `OrientedSphereFit` (#261)
 
 - Bug-fixes and code improvements
     - [fitting] Fix broken include directives in Basket/Compute (#236)
