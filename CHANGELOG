@@ -21,6 +21,7 @@ This release introduces a major rework of the curvature estimation framework, an
     - [fitting] fix failing test fit_plane (#201)
     - [fitting] update tests according to curvature API changes (#201)
     - [fitting] speed up gls_sphere_der using kdtree (#201)
+    - [fitting] add MlsSphereFitDer in test suite (#201)
 
 - Examples
     - [all] Update according to API changes (#201)
