@@ -168,18 +168,26 @@ void callSubTests()
     typedef DistWeightFunc<Point, ConstantWeightKernel<Scalar> > WeightConstantFunc;
 
     // Covariance-based fits
+    //! [Curvature Estimator PCA plane]
     typedef Basket<Point, WeightSmoothFunc  , CovariancePlaneFit> FitSmoothNormalCovariance;
+    //! [Curvature Estimator PCA plane]
     typedef Basket<Point, WeightConstantFunc, CovariancePlaneFit> FitConstantNormalCovariance;
     // Curvature estimators that runs on top of the covariance fit
+    //! [Curvature Tensor PCA normals]
     typedef BasketDiff< FitSmoothNormalCovariance, FitSpaceDer, CovariancePlaneDer,
                         CurvatureEstimatorDer, NormalDerivativeWeingartenEstimator> EstimatorSmoothNormalCovariance;
+    //! [Curvature Tensor PCA normals]
     typedef BasketDiff< FitConstantNormalCovariance, FitSpaceDer, CovariancePlaneDer,
                         CurvatureEstimatorDer, NormalDerivativeWeingartenEstimator> EstimatorConstantNormalCovariance;
     // Curvature estimators based on MongePatch fitting using generalized quadric
+    //! [Curvature Estimator Monge Quadric]
     typedef Basket<Point, WeightSmoothFunc  , MongePatchQuadraticFit> FitMongeSmooth;
+    //! [Curvature Estimator Monge Quadric]
     typedef Basket<Point, WeightConstantFunc, MongePatchQuadraticFit> FitMongeConstant;
     // Curvature estimators based on MongePatch fitting using restricted quadric
+    //! [Curvature Estimator Monge Quadric Restricted]
     typedef Basket<Point, WeightSmoothFunc  , MongePatchRestrictedQuadraticFit> FitMongeRestrictedSmooth;
+    //! [Curvature Estimator Monge Quadric Restricted]
     typedef Basket<Point, WeightConstantFunc, MongePatchRestrictedQuadraticFit> FitMongeRestrictedConstant;
 
     cout << "Testing with perfect plane..." << flush;

@@ -28,7 +28,7 @@ namespace Ponca
   The goal of this module is to provide lightweight, fast and generic algorithms for 3d point cloud processing.
   We mostly focus on local regression techniques, which are core components of surface reconstruction techniques \cite Alexa:2001:Pss \cite Guennebaud:2007:APSS, geometric descriptors \cite Mellado:2012:GLS \cite Lejemble:2021:stable or shape analysis techniques \cite lejemble:2020:persistence.
   Most of these techniques share similar computation, and can be combined in several ways.
-  For instance, \ref NormalDerivativesCurvatureEstimator estimates curvature values by analyzing the spatial derivatives of a normal field, and can be combined with any normal estimation technique.
+  For instance, \ref NormalDerivativeWeingartenEstimator estimates curvature values by analyzing the spatial derivatives of a normal field, and can be combined with any normal estimation technique providing spatial derivatives.
 
   In order to ease the association of multiple computational components, the library is based on the Curiously Recurring Template Pattern (CRTP).
   In contrast with polymorphism, this method allows to combine multiple short computations without adding runtime overhead (both in terms of memory footprint and execution time).
@@ -41,13 +41,16 @@ namespace Ponca
   Because of some properties of the C++ language, our classes does not inherit from a `Base` interface defining the API, but rather follows concepts, as described in \ref fitting_concepts.
 
   \subsection fitting_primitiveOverview Fitting primitives and compute neighborhood properties
-  The fitting module provides a unified API to perform computations (e.g. fit a \ref PrimitiveBase "Primitive", compute geometrical properties such as \ref CurvatureEstimatorBase "Curvatures") over the neighborhood of a given point.
+  The fitting module provides a unified API to perform computations (e.g. fit a \ref PrimitiveBase "Primitive", compute geometrical properties such as \ref internal::CurvatureEstimatorBase "Curvatures") over the neighborhood of a given point.
   The type of computation is controlled by a type (called `Fit` in the example below) defined by the user by combining computational components offered in this module.
   Given an object of type `Fit`, the client code can look as follow (alternative way of doing the fit computation can be seen in \ref fitting_Fitting):
   \code
-  Fit fit;                   // Create the user-defined fitting procedure
-  fit.setNeighborFilter({p, t}); // Set a function to filter neighbors from a reference position p and a radius t
-  fit.compute(vectorPoints); // Optimize the object fit according to the points in vectorPoints
+  // Create the user-defined fitting procedure
+  Fit fit;
+  // Set a function to filter neighbors from a reference position p and a radius t
+  fit.setNeighborFilter({p, t});
+  // Optimize according to the points in vectorPoints
+  fit.compute(vectorPoints);
   \endcode
 
   Once computations are done, the `Fit` object provides both getters to the neighborhood properties (e.g. estimated curvature), and procedures (e.g. projection operator onto the fitted primitive):
@@ -57,22 +60,22 @@ namespace Ponca
        << "Is projected at   " << fit.project(p).transpose() << endl;
   \endcode
 
-  The \ref spatialpartitioning "Spatial Partitioning" module provides data-structures to collect neighborhood in point clouds.
+  The \ref spatialpartitioning "Spatial Partitioning" module provides data-structures to speed-up neighborhood collection in point clouds.
 
   \subsection fitting_availableFunctionalities Fitting techniques overview
   We provide various approaches to approximate, analyze or characterize the geometric properties of local neighborhoods.
   In most situations, all these tools are based on the estimation of a geometric \ref PrimitiveBase "Primitive" approximating the neighborhood, on top of which we provide more advanced computations.
   The table below summarizes the \ref PrimitiveBase "Primitives" available in the library, as well as the associated fitting techniques:
 
-  Computed object   | Required Input      | Fitting techniques                                                    |
-  ----------------- | ------------------- | --------------------------------------------------------------------- |
-  Line              | Points only         | CovarianceLineFitImpl (nD)                                            |
-  Plane             | Points only         | CovariancePlaneFitImpl (nD)                                           |
-  Plane             | Oriented points     | MeanPlaneFitImpl (nD, co-dimension 1)                                 |
-  MongePatch        | Points only         | MongePatchQuadraticFit and MongePatchRestrictedQuadraticFit (both 3D) |
-  AlgebraicSphere   | Points only         | SphereFitImpl (nD) \cite Guennebaud:2007:APSS                         |
-  AlgebraicSphere   | Oriented points     | OrientedSphereFitImpl (nD) \cite Guennebaud:2007:APSS                 |
-  AlgebraicSphere   | Non-oriented points | UnorientedSphereFitImpl (nD) \cite Chen:2013:NOMG                     |
+  Computed primitive| Required Input      | Fitting techniques                                                            |
+  ----------------- | ------------------- | ----------------------------------------------------------------------------- |
+  Line              | Points only         | CovarianceLineFitImpl (nD)                                                    |
+  Plane             | Points only         | CovariancePlaneFitImpl (nD)                                                   |
+  Plane             | Oriented points     | MeanPlaneFitImpl (nD, co-dimension 1)                                         |
+  MongePatch        | Points only         | MongePatchQuadraticFitImpl and MongePatchRestrictedQuadraticFitImpl (both 3D) |
+  AlgebraicSphere   | Points only         | SphereFitImpl (nD) \cite Guennebaud:2007:APSS                                 |
+  AlgebraicSphere   | Oriented points     | OrientedSphereFitImpl (nD) \cite Guennebaud:2007:APSS                         |
+  AlgebraicSphere   | Non-oriented points | UnorientedSphereFitImpl (nD) \cite Chen:2013:NOMG                             |
 
   Ponca also provide methods to compute objects that are not geometric primitives, but provide other informations such
    as curvatures:
@@ -85,16 +88,14 @@ namespace Ponca
   Weingarten Map    | Points only         | FundamentalFormWeingartenEstimator (3D) via MongePatch                |
   Weingarten Map    | Oriented points     | NormalDerivativeWeingartenEstimator (3D)                              |
 
-  See section \ref fitting_extensions_deps for more details on how these primitives can be extended for more advanced computation.
-
-  \subsection fitting_dicStructure Structure of the documentation
+  \subsection fitting_doc_structure Structure of the documentation
   In the following, we focus on a basic use of the module, and detail how to:
    - set up data samples that interface with an external code (see Section \ref fitting_datas),
    - assemble the computational objects to define a fitting object (see Section \ref fitting_Define)
    - run the fitting process in itself (see Section \ref fitting_Fitting),
    - and finally collect outputs (see Section \ref fitting_outputs).
 
-  We also show detail all the available tools for geometrical property estimation (see Section \ref fitting_extensions_deps),
+  We also detail all the available tools for geometrical property estimation (see Section \ref fitting_extensions_deps),
   with a specific focus on curvature (see Section \ref fitting_curvature).
   The last section details how to use this module on CUDA kernels (see Section \ref fitting_cuda).
 
@@ -113,7 +114,7 @@ namespace Ponca
   A strength of Ponca is to define all these structures at compile time to generate optimized code for fast evaluation at runtime.
 
   The class \ref ponca_concepts "PointConcept" defines the interface that has to be implemented to represent a sample.
-  Observe that there is no need for data conversion: all you need to do is to indicate how to access existing data (see the example \ref example_cxx_binding_page).
+  To simplify use, we provide several implementation of this concept (see \ref common module).
 
   As an example, let's fit a AlgebraicSphere onto points equipped with normals using Ponca::OrientedSphereFit.
   To this end, we must define a structure (denoted `PointPositionNormal` in the example below) containing a normal vector and its associated accessors.
@@ -125,6 +126,8 @@ namespace Ponca
 
   `PointPositionNormal` might be specialized with any scalar type or dimension (you may also use a non-template class directly):
   \snippet basket.cpp SpecializedPointType
+
+  \note This interface allows to define wrappers that do not convert or duplicate the data: all you need to do is to indicate how to access existing data (see the classe PointPositionNormalBinding and the example \ref example_cxx_binding_page).
 
   \subsection fitting_Define Definition of the Fitting object
 
@@ -143,12 +146,12 @@ namespace Ponca
 
   At this point, most of the hard job has already been performed.
   All we have to do now is to provide an instance of the weight function, where \f$t\f$ refers to the neighborhood size, and initiate the fit at an arbitrary position \f$\mathbf{p}\f$.
-  \snippet basket.cpp Fit Manual Traversal
-
-  Then neighbors are added sequentially: in this example, we traverse a simple array, and samples outside of the neighborhood are automatically ignored by the weighting function.
+  In this example we traverse a simple array, and samples outside of the neighborhood are automatically ignored by the weighting function.
   Once all neighbors have been incorporated, the fit is performed and results stored in the specialized Basket object.
-  STL-like iterators can be used directly for the fit by calling
   \snippet basket.cpp Fit Compute
+
+  \note Internally, Ponca::Basket process the neighbors sequentially, and the `compute` function is overall equivalent to
+             \snippet basket.cpp Fit Manual Traversal
 
   Spatial structures can be used to accelerate spatial queries. Consider for instance using the KdTree class with range queries:
   \snippet basket.cpp Fit computeWithIds
@@ -156,7 +159,9 @@ namespace Ponca
 
   \note Currently, users need to ensure consistency between the query and the fit location/scale. This is expected to be fixed in the upcoming releases.
 
-  In these examples, `fit1`, `fit2` and `fit3` should perform exactly the same computations, as long a the neighborhood remains the same between the three calls.
+  In these examples, `fit1` and `fit2` should perform exactly the same computations, as long a the neighborhood remains the same between the calls.
+
+
 
 
   \subsection fitting_Checkstatus Check fitting status
@@ -225,7 +230,7 @@ namespace Ponca
   \subsection fitting_extensions_deps Computational objets, basket and CRTP
   In addition to Primitive fitting, Ponca allows to compute geometrical properties of the input samples.
   This is done by aggregating multiple tool classes in the Basket, for instance to compute the Growing Least Squares
-  descriptor \cite Mellado:2012:GLS (see GLSParam) from multiple sphere fitting techniques:
+  descriptor \cite Mellado:2012:GLS (see GLSParam) from different sphere fitting techniques:
   \snippet gls_tau.cpp GLSFitTypes
   From a technical point of view, the Basket class combines its template parameters (here Ponca::OrientedSphereFit and GLSParam) following the CRTP rules, ie.
   to form an object of the type `GLSParam<Ponca::OrientedSphereFit<DataPoint, _NFilter, T>>`, that aggregates the computations provided in each class of the hierarchy.
@@ -271,6 +276,25 @@ namespace Ponca
     Internally, this is implemented by checking if the primitive is already valid (ie. it has been computed already) when finalizing the computation.
     This limitation is expected to be resolved in upcoming releases.
 
+  \subsection fitting_curvature Computing Curvatures
+
+  Ponca offers several ways to compute curvatures, some of which are reviewed and compared by Lejemble et al. in \cite Lejemble:2021:stable and listed in the table below:
+  Estimator Name                                                 |   Estimated quantities   | Usage  |
+  -------------------------------------------------------------- | ------------------------ | -------------------------------------------------------------------------------------------- |
+  Distance to PCA plane \cite Digne:2011:scalespacemeshing       | Mean curvature           | Method \ref Plane::potential "potential()" \snippet curvature_plane.cpp Curvature Estimator PCA plane |
+  Surface Variation \cite Pauly:2002:PSSimplification            | Mean curvature           | Method \ref CovarianceFitBase::surfaceVariation "surfaceVariation()" \snippet curvature_plane.cpp Curvature Estimator PCA plane  |
+  Growing Least Squares \cite Mellado:2012:GLS                   | Mean curvature           | `Basket<P,W,OrientedSphereFit,GLSParam> // method kappa()`                                                |
+  Point Set Surfaces (PSS) \cite Alexa:2001:Pss                  | Curvature Tensor         | API of \ref internal::CurvatureEstimatorBase "CurvatureEstimatorBase" : \snippet curvature_plane.cpp Curvature Tensor PCA normals |
+  Monge Patch fitting (comparable to jets fitting\cite Cazals:2005:Jets ) | Curvature Tensor         | API of \ref internal::CurvatureEstimatorBase "CurvatureEstimatorBase" using a QuadraticHeightField: \snippet curvature_plane.cpp Curvature Estimator Monge Quadric |
+  Monge Patch fitting (comparable to jets fitting\cite Cazals:2005:Jets ) | Curvature Tensor         | API of \ref internal::CurvatureEstimatorBase "CurvatureEstimatorBase" using a RestrictedQuadraticHeightField: \snippet curvature_plane.cpp Curvature Estimator Monge Quadric Restricted |
+  Algebraic Point Set Surfaces (APSS) \cite Guennebaud:2007:APSS | Curvature Tensor         | API of \ref internal::CurvatureEstimatorBase "CurvatureEstimatorBase": \snippet fit_radius_curvature_center.cpp Curvature Estimator APSS |
+  Algebraic Shape Operator (ASO) \cite Lejemble:2021:stable      | Curvature Tensor         | API of \ref internal::CurvatureEstimatorBase "CurvatureEstimatorBase": \snippet fit_radius_curvature_center.cpp Curvature Estimator ASO|
+
+
+  \image html buste.png "Figure 3. Example of mean curvature (GLSParam::kappa) computed at a fine (left) and a coarse (right) scale, and rendered with a simple color map (orange for concavities, blue for convexities)."
+
+
+
   \subsection fitting_multiprimitive Sharing computations between fits
   In most cases, only one primitive is included in the Basket, and it is recommended to use the helper classes provided by Ponca for fitting, e.g. #CovariancePlaneFitImpl, #OrientedSphereFitImpl.
   However, Ponca also allows to combine multiple primitives, for instance to share intermediate computation results.
@@ -279,21 +303,6 @@ namespace Ponca
   \snippet basket.cpp HybridType
 
   After fitting, this object provides access to both the plane and the sphere, through the respective cast operators #AlgebraicSphere::algebraicSphere() and #Plane::plane().
-
-  \subsection fitting_curvature Computing Curvatures
-
-  Ponca offers several ways to compute curvatures, some of which are reviewed and compared by Lejemble et al. in \cite Lejemble:2021:stable and listed in the table below:
-  Estimator Name                                                 |   Estimated quantities   | Usage                                                                                                     |  Speed | Robustness  |
-  -------------------------------------------------------------- | ------------------------ | --------------------------------------------------------------------------------------------------------- | ------ | ----------- |
-  Distance to PCA plane \cite Digne:2011:scalespacemeshing       | Mean curvature           | `Basket<P,W,CovariancePlaneFit> // method potential()`                                                    |  +++   | -           |
-  Surface Variation \cite Pauly:2002:PSSimplification            | Mean curvature           | `Basket<P,W,CovariancePlaneFit> // method surfaceVariation()`                                             |  +++   | -           |
-  Growing Least Squares \cite Mellado:2012:GLS                   | Mean curvature           | `Basket<P,W,OrientedSphereFit,GLSParam> // method kappa()`                                                |  ++    | + +         |
-  Point Set Surfaces (PSS) \cite Alexa:2001:Pss                  | Curvature Tensor         | `Basket<P,W,CovariancePlaneFit,CovariancePlaneSpaceDer,CurvatureEstimatorBaseDiff,NormalDerivativesCurvatureEstimator>`              |  +++   | +           |
-  Algebraic Point Set Surfaces (APSS) \cite Guennebaud:2007:APSS | Curvature Tensor         | `Basket<P,W,OrientedSphereFit,OrientedSphereSpaceDer,CurvatureEstimatorBaseDiff,NormalDerivativesCurvatureEstimator>`                |  ++    | + +         |
-  Algebraic Shape Operator (ASO) \cite Lejemble:2021:stable      | Curvature Tensor         | `Basket<P,W,OrientedSphereFit,OrientedSphereSpaceDer,MlsSphereFitDer,CurvatureEstimatorBaseDiff,NormalDerivativesCurvatureEstimator>`|  +     | + + +       |
-
-
-  \image html buste.png "Figure 3. Example of mean curvature (GLSParam::kappa) computed at a fine (left) and a coarse (right) scale, and rendered with a simple color map (orange for concavities, blue for convexities)."
 
   \subsection fitting_cuda Cuda
   Ponca can be used directly on GPU, thanks to several mechanisms:

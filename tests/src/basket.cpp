@@ -85,44 +85,44 @@ void testBasicFunctionalities(const KdTree<typename Fit::DataPoint>& tree, typen
 
         // use addNeighbor
         //! [Fit Manual Traversal]
-        Fit fit1;
-        fit1.setNeighborFilter({fitInitPos, analysisScale});
-        fit1.init();
+        Fit fit;
+        fit.setNeighborFilter({fitInitPos, analysisScale});
+        fit.init();
         for(auto it = vectorPoints.begin(); it != vectorPoints.end(); ++it)
-           fit1.addNeighbor(*it);
-        fit1.finalize();
+           fit.addNeighbor(*it);
+        fit.finalize();
         //! [Fit Manual Traversal]
 
         // use compute function
         //! [Fit Compute]
-        Fit fit2;
-        fit2.setNeighborFilter({fitInitPos, analysisScale});
-        fit2.compute(vectorPoints);
+        Fit fit1;
+        fit1.setNeighborFilter({fitInitPos, analysisScale});
+        fit1.compute(vectorPoints);
         //! [Fit Compute]
 
         // also test comparison operators
+        VERIFY(fit == fit);
         VERIFY(fit1 == fit1);
-        VERIFY(fit2 == fit2);
-        VERIFY(fit1 == fit2);
-        VERIFY(fit2 == fit1);
+        VERIFY(fit == fit1);
+        VERIFY(fit1 == fit);
+        VERIFY(! (fit != fit));
+        VERIFY(! (fit != fit1));
         VERIFY(! (fit1 != fit1));
-        VERIFY(! (fit1 != fit2));
-        VERIFY(! (fit2 != fit2));
 
-        Fit fit3;
-        fit3.setNeighborFilter({fitInitPos, analysisScale});
+        Fit fit2;
+        fit2.setNeighborFilter({fitInitPos, analysisScale});
         // Sort fit1
-        std::list<int> neighbors3;
+        std::list<int> neighbors2;
         for (int iNeighbor : tree.rangeNeighbors(fitInitPos, analysisScale))
-            neighbors3.push_back(iNeighbor);
-        neighbors3.sort();
+            neighbors2.push_back(iNeighbor);
+        neighbors2.sort();
         // Compute the neighbors
-        fit3.computeWithIds( neighbors3, vectorPoints );
+        fit2.computeWithIds( neighbors2, vectorPoints );
 
-        VERIFY(fit3 == fit3);
-        VERIFY(fit1 == fit3);
-        VERIFY(! (fit1 != fit3));
-        VERIFY(fit3 == fit1);
+        VERIFY(fit2 == fit2);
+        VERIFY(fit == fit2);
+        VERIFY(! (fit != fit2));
+        VERIFY(fit2 == fit);
     }
 }
 
