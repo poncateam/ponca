@@ -126,15 +126,8 @@ public:
 
     static constexpr bool SUPPORTS_SUBSAMPLING = false;
 
-    // static_assert(std::is_same<typename PointContainer::value_type, DataPoint>::value,
-    //     "PointContainer must contain DataPoints");
-    //
-    // // Queries use a value of -1 for invalid indices
-    // static_assert(std::is_signed<IndexType>::value, "Index type must be signed");
-    //
-    // static_assert(std::is_same<typename IndexContainer::value_type, IndexType>::value, "Index type mismatch");
-    // static_assert(std::is_same<typename NodeContainer::value_type, NodeType>::value, "Node type mismatch");
-
+    // Queries use a value of -1 for invalid indices
+    static_assert(std::is_signed_v<IndexType>, "Index type must be signed");
     static_assert(MAX_DEPTH > 0, "Max depth must be strictly positive");
 
     // Construction ------------------------------------------------------------
@@ -172,7 +165,7 @@ public:
     }
 
     /// Clear tree data
-    PONCA_MULTIARCH inline void clear();
+    PONCA_MULTIARCH_HOST inline void clear();
 
     // Accessors ---------------------------------------------------------------
 public:
@@ -409,7 +402,7 @@ public :
 
     // Utilities ---------------------------------------------------------------
 public:
-    PONCA_MULTIARCH [[nodiscard]] inline bool valid() const;
+    PONCA_MULTIARCH_HOST [[nodiscard]] inline bool valid() const;
     PONCA_MULTIARCH_HOST inline void print(std::ostream& os, bool verbose = false) const;
 
     // Data --------------------------------------------------------------------

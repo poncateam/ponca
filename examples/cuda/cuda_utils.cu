@@ -80,10 +80,20 @@ struct KdTreeGPUTraits
      * \see KdTreeBase
      */
     template <typename InternalContainer, typename InputContainer>
-    static PONCA_MULTIARCH inline InternalContainer& toInternalContainer ( InputContainer & input)
+    [[nodiscard]] static PONCA_MULTIARCH_HOST inline InternalContainer& toInternalContainer ( InputContainer & input)
     {
         return input.data();
     }
+
+    /*!
+     * \brief Clear the content of the internal storage.
+     *
+     * \see KdTreeBase
+     */
+    template <typename InternalContainer>
+    static PONCA_MULTIARCH_HOST inline void clearContainer (
+        InternalContainer & /*input*/
+    ) { }
 };
 
 template <typename DataPoint>

@@ -8,7 +8,7 @@
 
 template<typename Traits>
 template<typename PointUserContainer, typename PointConverter>
-PONCA_MULTIARCH_HOST inline void KdTreeBase<Traits>::build(PointUserContainer&& points, PointConverter c)
+void KdTreeBase<Traits>::build(PointUserContainer&& points, PointConverter c)
 {
     IndexContainer ids(points.size());
     std::iota(ids.begin(), ids.end(), IndexType(0));
@@ -18,9 +18,9 @@ PONCA_MULTIARCH_HOST inline void KdTreeBase<Traits>::build(PointUserContainer&& 
 template<typename Traits>
 void KdTreeBase<Traits>::clear()
 {
-    // m_points.clear();
-    // m_nodes.clear();
-    // m_indices.clear();
+    Traits::clearContainer(m_points);
+    Traits::clearContainer(m_nodes);
+    Traits::clearContainer(m_indices);
     m_points_size  = 0;
     m_indices_size = 0;
     m_nodes_size   = 0;
@@ -121,16 +121,15 @@ void KdTreeBase<Traits>::print(std::ostream& os, bool verbose) const
 
 template<typename Traits>
 template<typename PointUserContainer, typename IndexUserContainer, typename PointConverter>
-PONCA_MULTIARCH_HOST inline void KdTreeBase<Traits>::buildWithSampling(
+void KdTreeBase<Traits>::buildWithSampling(
     PointUserContainer&& points, IndexUserContainer sampling, PointConverter c
 ) {
-    // static_assert(static_cast<IndexType>(pointCount()) <= MAX_POINT_COUNT);
+    PONCA_DEBUG_ASSERT(static_cast<IndexType>(pointCount()) <= MAX_POINT_COUNT);
     this->clear();
 
     // Move, copy or convert input samples
     m_points_size = points.size();
     c(Traits::template toInternalContainer<PointContainer>(points), m_points);
-    // c(std::forward<PointUserContainer>(points), m_points);
 
     std::vector<NodeType> nodes = std::vector<NodeType>();
     nodes.reserve(4 * pointCount() / m_min_cell_size);
@@ -138,14 +137,12 @@ PONCA_MULTIARCH_HOST inline void KdTreeBase<Traits>::buildWithSampling(
 
     m_indices_size = sampling.size();
     m_indices = std::move(Traits::template toInternalContainer<IndexContainer>(sampling));
-    // m_indices = std::move(sampling);
 
     this->buildRec(nodes, 0, 0, sampleCount(), 1);
     m_nodes_size = nodes.size();
     m_nodes = std::move(Traits::template toInternalContainer<NodeContainer>(nodes));
-    // m_nodes = std::move(nodes);
 
-    // static_assert(valid());
+    PONCA_DEBUG_ASSERT(valid());
 }
 
 template<typename Traits>

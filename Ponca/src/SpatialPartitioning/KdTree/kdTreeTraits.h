@@ -351,10 +351,27 @@ struct KdTreeDefaultTraits
      * \see KdTreeBase
      */
     template <typename InternalContainer, typename InputContainer>
-    static PONCA_MULTIARCH inline InternalContainer& toInternalContainer ( InputContainer & input)
-    {
+    [[nodiscard]] static PONCA_MULTIARCH_HOST inline InternalContainer& toInternalContainer (
+        InputContainer & input
+    ) {
         static_assert(std::is_same_v<InputContainer, InternalContainer>);
         return input;
     }
+
+    /*!
+     * \brief Clear the content of the internal storage.
+     *
+     * \see KdTreeBase
+     */
+    template <typename InternalContainer>
+    static PONCA_MULTIARCH_HOST inline void clearContainer (
+        InternalContainer & input
+    ) {
+        input.clear();
+    }
+
+    static_assert(std::is_same_v<typename PointContainer::value_type, DataPoint>, "PointContainer must contain DataPoints");
+    static_assert(std::is_same_v<typename IndexContainer::value_type, IndexType>, "Index type mismatch");
+    static_assert(std::is_same_v<typename NodeContainer::value_type, NodeType>, "Node type mismatch");
 };
 } // namespace Ponca
