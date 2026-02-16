@@ -11,6 +11,7 @@
 
 #include <Ponca/src/SpatialPartitioning/KdTree/kdTree.h>
 #include <Ponca/src/SpatialPartitioning/KnnGraph/knnGraph.h>
+#include <Ponca/src/Common/pointTypes.h>
 
 using namespace Ponca;
 
@@ -51,7 +52,7 @@ auto testFrontOfKNearestNeighbors( AcceleratingStructure& structure,
 template<typename Scalar, int Dim>
 void testNearestNeighborForAllStructures(const bool quick = QUICK_TESTS)
 {
-	using P = TestPoint<Scalar, Dim>;
+	using P = PointPositionNormal<Scalar, Dim>;
 	const int N = quick ? 100 : 5000;
 
 	//////////// Generate data
