@@ -14,7 +14,7 @@ Current head (v.2.0.alpha1 RC)
 
 - Tests
     - [all] Speed up tests in coverage mode (#236)
-    - [common] Use common point type and point generation methods (#248)
+    - [common] Use common point type and point generation methods (#248, #220)
 
 - Examples
     - [nanoflann] Fix broken include directives (#236)
@@ -27,6 +27,7 @@ Current head (v.2.0.alpha1 RC)
 
 - Docs
     - [doc] Add doc for Query and Iterator objects and fix syntax (#105)
+    - [doc] Update doc with common Point types (#220)
 
 --------------------------------------------------------------------------------
 v.2.0.alpha0
