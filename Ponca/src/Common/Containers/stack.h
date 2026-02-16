@@ -27,31 +27,31 @@ public:
     /// Type of value stored in the Stack
     using ValueType = T;
 
-    inline Stack();
+    PONCA_MULTIARCH inline Stack();
 
     /// Read access to the top element of the Stack
-    inline const T& top() const;
+    PONCA_MULTIARCH inline const T& top() const;
     /// Write access to the top element of the Stack
-    inline       T& top();
+    PONCA_MULTIARCH inline       T& top();
 
     /// Is the stack empty
-    inline bool empty() const;
+    PONCA_MULTIARCH inline bool empty() const;
     /// Get the number of elements in the Stack
-    inline int  size() const;
+    PONCA_MULTIARCH inline int  size() const;
 
     /// Add an element on top of the stack.
     /// \throw std::out_of_range when the Stack is full, only if compiled with PONCA_DEBUG
-    inline void push(const T& value);
+    PONCA_MULTIARCH inline void push(const T& value);
 
     /// Add an element with default initialization
-    inline void push();
+    PONCA_MULTIARCH inline void push();
     /// Pop the last element of the Stack
     /// \note In practice the element is not destroyed, only the size of the Stack is reduced. This
     /// makes the Stack not appropriate to store `shared_ptr`: counters will not be decremented.
-    inline void pop();
+    PONCA_MULTIARCH inline void pop();
     /// Clear the stack content.
     /// \note Shares the same limitation than Stack::pop()
-    inline void clear();
+    PONCA_MULTIARCH inline void clear();
 
 protected:
     /// Number of elements in the Stack
