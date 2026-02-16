@@ -159,6 +159,7 @@ namespace Ponca::internal {
             Scalar avg_d = Scalar(0);
 
             bool isUndefined = true;
+            int valid_points_count = 0;
             for ( int index : ids ) {
                 // Skip the points that are outside the kernel radius
                 if (w(points[ index ]).first == Scalar(0.))
@@ -167,6 +168,7 @@ namespace Ponca::internal {
                 avg_d += ( p.pos() - c ).norm();
                 a     += p.normal();
                 isUndefined = false;
+                valid_points_count ++;
             }
             if (isUndefined)
                 return UNDEFINED;
@@ -174,7 +176,7 @@ namespace Ponca::internal {
             a     /= a.norm();
             n      = ( Scalar(1) - HexagramBase<P>::avg_normal_coef ) * n + HexagramBase<P>::avg_normal_coef * a;
             n     /= n.norm();
-            avg_d /= ids.size();
+            avg_d /= valid_points_count;
 
             // Define basis for sector analysis.
             const int m = abs( n[0] ) > abs( n[1] )
@@ -248,19 +250,21 @@ namespace Ponca::internal {
             // Compute normal and maximum distance.
             VectorType c = w.evalPos();
             VectorType n = w.evalNormal();
-            VectorType a = w.evalNormal();
+            VectorType a = VectorType::Zero();
             Scalar avg_d = Scalar(0);
 
             std::array< VectorType, 6 > targets;
             Scalar avg_normal  = Scalar(0.5);
 
             bool isUndefined = true;
+            int valid_points_count = 0;
             for ( int index : ids ) {
                 if (w(points[ index ]).first == Scalar(0.))
                     continue; // Skip the points that are outside the kernel radius
                 a     += points[ index ].normal();
                 avg_d += ( points[ index ].pos() - c ).norm();
                 isUndefined = false;
+                valid_points_count ++;
             }
             if (isUndefined)
                 return UNDEFINED;
@@ -268,7 +272,7 @@ namespace Ponca::internal {
             a     /= a.norm();
             n      = ( Scalar(1) - HexagramBase<P>::avg_normal_coef ) * n + HexagramBase<P>::avg_normal_coef * a;
             n     /= n.norm();
-            avg_d /= ids.size();
+            avg_d /= valid_points_count;
 
             // Define basis for sector analysis.
             const int m = ( std::abs( n[0] ) > std::abs ( n[1] ))
@@ -295,6 +299,8 @@ namespace Ponca::internal {
 
             // Compute closest points.
             for (int index : ids) {
+                if (w(points[ index ]).first == Scalar(0.))
+                    continue; // Skip the points that are outside the kernel radius
                 VectorType p = points[ index ].pos() - c;
                 int best_k = 0;
                 Scalar best_d2 = ( p - targets[ 0 ] ).squaredNorm();
