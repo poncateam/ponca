@@ -51,7 +51,7 @@ MathJax.Hub.Config({
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Ponca
-   &#160;<span id="projectnumber">f5b8b13495108d95baa74f687c24d962f21272fc</span>
+   &#160;<span id="projectnumber">57ef5904d0089f9f653299747bb63b45db672e0c</span>
    </div>
    <div id="projectbrief">Point Cloud Analysis library</div>
   </td>
@@ -124,7 +124,7 @@ $(document).ready(function(){initNavTree('classPonca_1_1PointPositionNormalBindi
 </div><!--header-->
 <div class="contents">
 
-<p>[<a class="el" href="classPonca_1_1PointPosition.html" title="[PointPositionNormal]">PointPosition</a>]  
+<p>Variant of the <a class="el" href="classPonca_1_1PointPositionNormal.html">PointPositionNormal</a> data type that uses external raw data.  
  <a href="classPonca_1_1PointPositionNormalBinding.html#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="pointTypes_8h_source.html">pointTypes.h</a>&gt;</code></p>
@@ -153,18 +153,20 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:adec80834f6ea21d25ed205865d180d7d" id="r_adec80834f6ea21d25ed205865d180d7d"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1PointPositionNormalBinding.html#adec80834f6ea21d25ed205865d180d7d">PointPositionNormalBinding</a> (const Scalar *_interlacedArray, int _pId)</td></tr>
 <tr class="separator:adec80834f6ea21d25ed205865d180d7d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac4322e09882401183622d4fa522f7d40" id="r_ac4322e09882401183622d4fa522f7d40"><td class="memItemLeft" align="right" valign="top">const Eigen::Map&lt; const VectorType &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1PointPositionNormalBinding.html#ac4322e09882401183622d4fa522f7d40">pos</a> () const</td></tr>
+<tr class="memdesc:ac4322e09882401183622d4fa522f7d40"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the point position.    <br /></td></tr>
 <tr class="separator:ac4322e09882401183622d4fa522f7d40"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2673248a8401fa7e362e684f27d54310" id="r_a2673248a8401fa7e362e684f27d54310"><td class="memItemLeft" align="right" valign="top">const Eigen::Map&lt; const VectorType &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1PointPositionNormalBinding.html#a2673248a8401fa7e362e684f27d54310">normal</a> () const</td></tr>
+<tr class="memdesc:a2673248a8401fa7e362e684f27d54310"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the point normal.    <br /></td></tr>
 <tr class="separator:a2673248a8401fa7e362e684f27d54310"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><div class="compoundTemplParams">template&lt;typename _Scalar, int _Dim&gt;<br />
-class Ponca::PointPositionNormalBinding&lt; _Scalar, _Dim &gt;</div><p>[<a class="el" href="classPonca_1_1PointPosition.html" title="[PointPositionNormal]">PointPosition</a>] </p>
-<p>Variant of the <a class="el" href="classPonca_1_1PointPositionNormal.html">PointPositionNormal</a> data type that uses external raw data. Using this approach, ones can use the ponca library with already existing data-structures and without any data-duplication.</p>
-<p>In this example, we use this class to map an interlaced raw array containing both point normals and coordinates.</p>
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="classPonca_1_1PointPositionNormal.html" title="[PointPositionNormal]">PointPositionNormal</a> </dd></dl>
+class Ponca::PointPositionNormalBinding&lt; _Scalar, _Dim &gt;</div><p>Variant of the <a class="el" href="classPonca_1_1PointPositionNormal.html">PointPositionNormal</a> data type that uses external raw data. </p>
+<p>Using this approach, one can use the ponca library with already existing data-structures and without any data-duplication.</p>
+<p>We use this class to map an interlaced raw array containing both point normals and coordinates, during the instantiation of the class.</p>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="classPonca_1_1PointPositionNormal.html" title="Point data type containing the position and normal vectors.">PointPositionNormal</a> </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="pointTypes_8h_source.html#l00076">76</a> of file <a class="el" href="pointTypes_8h_source.html">pointTypes.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="pointTypes_8h_source.html#l00082">82</a> of file <a class="el" href="pointTypes_8h_source.html">pointTypes.h</a>.</p>
 </div><h2 class="groupheader">Member Typedef Documentation</h2>
 <a id="a0a20981bb832289ee34c62d4013d89ed" name="a0a20981bb832289ee34c62d4013d89ed"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a0a20981bb832289ee34c62d4013d89ed">&#9670;&#160;</a></span>MatrixType</h2>
@@ -180,7 +182,7 @@ template&lt;typename _Scalar , int _Dim&gt; </div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="pointTypes_8h_source.html#l00082">82</a> of file <a class="el" href="pointTypes_8h_source.html">pointTypes.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="pointTypes_8h_source.html#l00088">88</a> of file <a class="el" href="pointTypes_8h_source.html">pointTypes.h</a>.</p>
 
 </div>
 </div>
@@ -198,7 +200,7 @@ template&lt;typename _Scalar , int _Dim&gt; </div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="pointTypes_8h_source.html#l00080">80</a> of file <a class="el" href="pointTypes_8h_source.html">pointTypes.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="pointTypes_8h_source.html#l00086">86</a> of file <a class="el" href="pointTypes_8h_source.html">pointTypes.h</a>.</p>
 
 </div>
 </div>
@@ -216,7 +218,7 @@ template&lt;typename _Scalar , int _Dim&gt; </div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="pointTypes_8h_source.html#l00081">81</a> of file <a class="el" href="pointTypes_8h_source.html">pointTypes.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="pointTypes_8h_source.html#l00087">87</a> of file <a class="el" href="pointTypes_8h_source.html">pointTypes.h</a>.</p>
 
 </div>
 </div>
@@ -235,7 +237,7 @@ template&lt;typename _Scalar , int _Dim&gt; </div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="pointTypes_8h_source.html#l00079">79</a> of file <a class="el" href="pointTypes_8h_source.html">pointTypes.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="pointTypes_8h_source.html#l00085">85</a> of file <a class="el" href="pointTypes_8h_source.html">pointTypes.h</a>.</p>
 
 </div>
 </div>
@@ -276,7 +278,7 @@ template&lt;typename _Scalar , int _Dim&gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="pointTypes_8h_source.html#l00084">84</a> of file <a class="el" href="pointTypes_8h_source.html">pointTypes.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="pointTypes_8h_source.html#l00090">90</a> of file <a class="el" href="pointTypes_8h_source.html">pointTypes.h</a>.</p>
 
 </div>
 </div>
@@ -306,7 +308,9 @@ template&lt;typename _Scalar , int _Dim&gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="pointTypes_8h_source.html#l00091">91</a> of file <a class="el" href="pointTypes_8h_source.html">pointTypes.h</a>.</p>
+<p>Get the point normal.   </p>
+
+<p class="definition">Definition at line <a class="el" href="pointTypes_8h_source.html#l00099">99</a> of file <a class="el" href="pointTypes_8h_source.html">pointTypes.h</a>.</p>
 
 </div>
 </div>
@@ -335,7 +339,9 @@ template&lt;typename _Scalar , int _Dim&gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="pointTypes_8h_source.html#l00090">90</a> of file <a class="el" href="pointTypes_8h_source.html">pointTypes.h</a>.</p>
+<p>Get the point position.   </p>
+
+<p class="definition">Definition at line <a class="el" href="pointTypes_8h_source.html#l00097">97</a> of file <a class="el" href="pointTypes_8h_source.html">pointTypes.h</a>.</p>
 
 </div>
 </div>
@@ -345,7 +351,7 @@ template&lt;typename _Scalar , int _Dim&gt; </div>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="namespacePonca.html">Ponca</a></li><li class="navelem"><a class="el" href="classPonca_1_1PointPositionNormalBinding.html">PointPositionNormalBinding</a></li>
-    <li class="footer">Generated on Mon Feb 9 2026 15:07:06 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
+    <li class="footer">Generated on Mon Feb 16 2026 14:00:21 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
   </ul>
 </div>
 </body>

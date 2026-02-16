@@ -51,7 +51,7 @@ MathJax.Hub.Config({
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Ponca
-   &#160;<span id="projectnumber">f5b8b13495108d95baa74f687c24d962f21272fc</span>
+   &#160;<span id="projectnumber">57ef5904d0089f9f653299747bb63b45db672e0c</span>
    </div>
    <div id="projectbrief">Point Cloud Analysis library</div>
   </td>
@@ -213,7 +213,7 @@ Include directives</h2>
 Data Samples</h2>
 <p>The first step needed to use <a class="el" href="namespacePonca.html" title="This Source Code Form is subject to the terms of the Mozilla Public License, v.">Ponca</a> is to define how samples are represented inside the module. A strength of <a class="el" href="namespacePonca.html" title="This Source Code Form is subject to the terms of the Mozilla Public License, v.">Ponca</a> is to define all these structures at compile time to generate optimized code for fast evaluation at runtime.</p>
 <p>The class <a class="el" href="ponca_concepts.html">PointConcept</a> defines the interface that has to be implemented to represent a sample. Observe that there is no need for data conversion: all you need to do is to indicate how to access existing data (see the example <a class="el" href="example_cxx_binding_page.html">Ponca data-structure binding</a>).</p>
-<p>As an example, let's fit a <a class="el" href="classPonca_1_1AlgebraicSphere.html" title="Algebraic Sphere primitive.">AlgebraicSphere</a> onto points equipped with normals using <a class="el" href="namespacePonca.html#a79a62a4fc4aa215b3cd5b5d623e25a92" title="Helper alias for Oriented Sphere fitting on 3D points using OrientedSphereFitImpl [OrientedSphereFit ...">Ponca::OrientedSphereFit</a>. To this end, we must define a structure (denoted <code><a class="el" href="classPonca_1_1PointPositionNormal.html" title="[PointPositionNormal]">PointPositionNormal</a></code> in the example below) containing a normal vector and its associated accessors. Depending on the fitting procedure we will use, we may need to define a <code>MatrixType</code> type. This is for instance required for <a class="el" href="fitting.html#fitting_curvature">Computing Curvatures</a>. This leads to the following class: </p><div class="fragment"><div class="line"> </div>
+<p>As an example, let's fit a <a class="el" href="classPonca_1_1AlgebraicSphere.html" title="Algebraic Sphere primitive.">AlgebraicSphere</a> onto points equipped with normals using <a class="el" href="namespacePonca.html#a79a62a4fc4aa215b3cd5b5d623e25a92" title="Helper alias for Oriented Sphere fitting on 3D points using OrientedSphereFitImpl [OrientedSphereFit ...">Ponca::OrientedSphereFit</a>. To this end, we must define a structure (denoted <code><a class="el" href="classPonca_1_1PointPositionNormal.html" title="Point data type containing the position and normal vectors.">PointPositionNormal</a></code> in the example below) containing a normal vector and its associated accessors. Depending on the fitting procedure we will use, we may need to define a <code>MatrixType</code> type. This is for instance required for <a class="el" href="fitting.html#fitting_curvature">Computing Curvatures</a>. This leads to the following class: </p><div class="fragment"><div class="line"> </div>
 <div class="line">    <span class="keyword">template</span>&lt;<span class="keyword">typename</span> _Scalar, <span class="keywordtype">int</span> _Dim&gt;</div>
 <div class="line">    <span class="keyword">class </span>PointPositionNormal</div>
 <div class="line">    {</div>
@@ -224,20 +224,22 @@ Data Samples</h2>
 <div class="line">        <span class="keyword">typedef</span> Eigen::Matrix&lt;Scalar, Dim, Dim&gt; MatrixType;</div>
 <div class="line"> </div>
 <div class="line">        PONCA_MULTIARCH <span class="keyword">inline</span> PointPositionNormal(</div>
-<div class="line">                <span class="keyword">const</span> VectorType &amp;pos    = VectorType::Zero(),</div>
-<div class="line">                <span class="keyword">const</span> VectorType&amp; normal = VectorType::Zero()</div>
-<div class="line">        ) : m_pos(pos), m_normal(normal) {}</div>
+<div class="line">                <span class="keyword">const</span> VectorType &amp;<a class="code hl_function" href="classPonca_1_1PointPositionNormal.html#a8e81f7ffa931efcc480c9f5e8cd27cc6">pos</a>    = VectorType::Zero(),</div>
+<div class="line">                <span class="keyword">const</span> VectorType&amp; <a class="code hl_function" href="classPonca_1_1PointPositionNormal.html#ac08ababe88dce063932069921b63f0db">normal</a> = VectorType::Zero()</div>
+<div class="line">        ) : m_pos(<a class="code hl_function" href="classPonca_1_1PointPositionNormal.html#a8e81f7ffa931efcc480c9f5e8cd27cc6">pos</a>), m_normal(<a class="code hl_function" href="classPonca_1_1PointPositionNormal.html#ac08ababe88dce063932069921b63f0db">normal</a>) {}</div>
 <div class="line"> </div>
-<div class="line">        PONCA_MULTIARCH [[nodiscard]] <span class="keyword">inline</span> <span class="keyword">const</span> VectorType&amp; pos()<span class="keyword">    const </span>{ <span class="keywordflow">return</span> m_pos; }</div>
-<div class="line">        PONCA_MULTIARCH [[nodiscard]] <span class="keyword">inline</span> <span class="keyword">const</span> VectorType&amp; normal()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> m_normal; }</div>
-<div class="line">        PONCA_MULTIARCH [[nodiscard]] <span class="keyword">inline</span> VectorType&amp; pos()    { <span class="keywordflow">return</span> m_pos; }</div>
-<div class="line">        PONCA_MULTIARCH [[nodiscard]] <span class="keyword">inline</span> VectorType&amp; normal() { <span class="keywordflow">return</span> m_normal; }</div>
+<div class="line">        PONCA_MULTIARCH [[nodiscard]] <span class="keyword">inline</span> <span class="keyword">const</span> VectorType&amp; <a class="code hl_function" href="classPonca_1_1PointPositionNormal.html#a8e81f7ffa931efcc480c9f5e8cd27cc6">pos</a>()<span class="keyword">    const </span>{ <span class="keywordflow">return</span> m_pos; }</div>
+<div class="line">        PONCA_MULTIARCH [[nodiscard]] <span class="keyword">inline</span> <span class="keyword">const</span> VectorType&amp; <a class="code hl_function" href="classPonca_1_1PointPositionNormal.html#ac08ababe88dce063932069921b63f0db">normal</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> m_normal; }</div>
+<div class="line">        PONCA_MULTIARCH [[nodiscard]] <span class="keyword">inline</span> VectorType&amp; <a class="code hl_function" href="classPonca_1_1PointPositionNormal.html#a8e81f7ffa931efcc480c9f5e8cd27cc6">pos</a>()    { <span class="keywordflow">return</span> m_pos; }</div>
+<div class="line">        PONCA_MULTIARCH [[nodiscard]] <span class="keyword">inline</span> VectorType&amp; <a class="code hl_function" href="classPonca_1_1PointPositionNormal.html#ac08ababe88dce063932069921b63f0db">normal</a>() { <span class="keywordflow">return</span> m_normal; }</div>
 <div class="line"> </div>
 <div class="line">    <span class="keyword">private</span>:</div>
 <div class="line">        VectorType m_pos, m_normal;</div>
 <div class="line">    };</div>
+<div class="ttc" id="aclassPonca_1_1PointPositionNormal_html_a8e81f7ffa931efcc480c9f5e8cd27cc6"><div class="ttname"><a href="classPonca_1_1PointPositionNormal.html#a8e81f7ffa931efcc480c9f5e8cd27cc6">Ponca::PointPositionNormal::pos</a></div><div class="ttdeci">const VectorType &amp; pos() const</div><div class="ttdoc">Get the point position.</div><div class="ttdef"><b>Definition</b> <a href="pointTypes_8h_source.html#l00032">pointTypes.h:32</a></div></div>
+<div class="ttc" id="aclassPonca_1_1PointPositionNormal_html_ac08ababe88dce063932069921b63f0db"><div class="ttname"><a href="classPonca_1_1PointPositionNormal.html#ac08ababe88dce063932069921b63f0db">Ponca::PointPositionNormal::normal</a></div><div class="ttdeci">const VectorType &amp; normal() const</div><div class="ttdoc">Get the point normal.</div><div class="ttdef"><b>Definition</b> <a href="pointTypes_8h_source.html#l00034">pointTypes.h:34</a></div></div>
 </div><!-- fragment --> <dl class="section note"><dt>Note</dt><dd>The macro <code>PONCA_MULTIARCH</code> is optional and required only for <a class="el" href="fitting.html#fitting_cuda">Cuda</a> support.</dd></dl>
-<p><code><a class="el" href="classPonca_1_1PointPositionNormal.html" title="[PointPositionNormal]">PointPositionNormal</a></code> might be specialized with any scalar type or dimension (you may also use a non-template class directly): </p><div class="fragment"><div class="line">    <span class="keyword">typedef</span> PointPositionNormal&lt;Scalar, Dim&gt; Point;</div>
+<p><code><a class="el" href="classPonca_1_1PointPositionNormal.html" title="Point data type containing the position and normal vectors.">PointPositionNormal</a></code> might be specialized with any scalar type or dimension (you may also use a non-template class directly): </p><div class="fragment"><div class="line">    <span class="keyword">typedef</span> PointPositionNormal&lt;Scalar, Dim&gt; Point;</div>
 </div><!-- fragment --><h2><a class="anchor" id="fitting_Define"></a>
 Definition of the Fitting object</h2>
 <p>Two template classes must be specialized to configure computations.</p>
@@ -401,7 +403,7 @@ Cuda</h2>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="user_manual_page.html">User Manual</a></li>
-    <li class="footer">Generated on Mon Feb 9 2026 15:07:06 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
+    <li class="footer">Generated on Mon Feb 16 2026 14:00:21 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
   </ul>
 </div>
 </body>

@@ -51,7 +51,7 @@ MathJax.Hub.Config({
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Ponca
-   &#160;<span id="projectnumber">f5b8b13495108d95baa74f687c24d962f21272fc</span>
+   &#160;<span id="projectnumber">57ef5904d0089f9f653299747bb63b45db672e0c</span>
    </div>
    <div id="projectbrief">Point Cloud Analysis library</div>
   </td>
@@ -133,82 +133,95 @@ $(document).ready(function(){initNavTree('pointTypes_8h_source.html',''); initRe
 <div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="preprocessor">#pragma once</span></div>
 <div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span> </div>
 <div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespacePonca.html">Ponca</a> {</div>
-<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span> </div>
-<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>    <span class="keyword">template</span>&lt;<span class="keyword">typename</span> _Scalar, <span class="keywordtype">int</span> _Dim&gt;</div>
-<div class="foldopen" id="foldopen00019" data-start="{" data-end="};">
-<div class="line"><a id="l00019" name="l00019"></a><span class="lineno"><a class="line" href="classPonca_1_1PointPositionNormal.html">   19</a></span>    <span class="keyword">class </span><a class="code hl_class" href="classPonca_1_1PointPositionNormal.html">PointPositionNormal</a></div>
-<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>    {</div>
-<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>    <span class="keyword">public</span>:</div>
-<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>        <span class="keyword">enum</span> {Dim = _Dim};</div>
-<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>        <span class="keyword">typedef</span> _Scalar Scalar;</div>
-<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>        <span class="keyword">typedef</span> Eigen::Matrix&lt;Scalar, Dim,   1&gt; VectorType;</div>
-<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>        <span class="keyword">typedef</span> Eigen::Matrix&lt;Scalar, Dim, Dim&gt; MatrixType;</div>
-<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span> </div>
-<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>        PONCA_MULTIARCH <span class="keyword">inline</span> <a class="code hl_class" href="classPonca_1_1PointPositionNormal.html">PointPositionNormal</a>(</div>
-<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>                <span class="keyword">const</span> VectorType &amp;pos    = VectorType::Zero(),</div>
-<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>                <span class="keyword">const</span> VectorType&amp; normal = VectorType::Zero()</div>
-<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>        ) : m_pos(pos), m_normal(normal) {}</div>
-<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span> </div>
-<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>        PONCA_MULTIARCH [[nodiscard]] <span class="keyword">inline</span> <span class="keyword">const</span> VectorType&amp; pos()<span class="keyword">    const </span>{ <span class="keywordflow">return</span> m_pos; }</div>
-<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>        PONCA_MULTIARCH [[nodiscard]] <span class="keyword">inline</span> <span class="keyword">const</span> VectorType&amp; normal()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> m_normal; }</div>
-<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>        PONCA_MULTIARCH [[nodiscard]] <span class="keyword">inline</span> VectorType&amp; pos()    { <span class="keywordflow">return</span> m_pos; }</div>
-<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>        PONCA_MULTIARCH [[nodiscard]] <span class="keyword">inline</span> VectorType&amp; normal() { <span class="keywordflow">return</span> m_normal; }</div>
-<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span> </div>
-<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>    <span class="keyword">private</span>:</div>
-<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>        VectorType m_pos, m_normal;</div>
-<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>    };</div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span>    <span class="comment">// [PointPositionNormal]</span></div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span>    <span class="keyword">template</span>&lt;<span class="keyword">typename</span> _Scalar, <span class="keywordtype">int</span> _Dim&gt;</div>
+<div class="foldopen" id="foldopen00018" data-start="{" data-end="};">
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno"><a class="line" href="classPonca_1_1PointPositionNormal.html">   18</a></span>    <span class="keyword">class </span><a class="code hl_class" href="classPonca_1_1PointPositionNormal.html">PointPositionNormal</a></div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>    {</div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>    <span class="keyword">public</span>:</div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>        <span class="keyword">enum</span> {Dim = _Dim};</div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>        <span class="keyword">typedef</span> _Scalar Scalar;</div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>        <span class="keyword">typedef</span> Eigen::Matrix&lt;Scalar, Dim,   1&gt; VectorType;</div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>        <span class="keyword">typedef</span> Eigen::Matrix&lt;Scalar, Dim, Dim&gt; MatrixType;</div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span> </div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>        PONCA_MULTIARCH <span class="keyword">inline</span> <a class="code hl_class" href="classPonca_1_1PointPositionNormal.html">PointPositionNormal</a>(</div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>                <span class="keyword">const</span> VectorType &amp;<a class="code hl_function" href="classPonca_1_1PointPositionNormal.html#a8e81f7ffa931efcc480c9f5e8cd27cc6">pos</a>    = VectorType::Zero(),</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>                <span class="keyword">const</span> VectorType&amp; <a class="code hl_function" href="classPonca_1_1PointPositionNormal.html#ac08ababe88dce063932069921b63f0db">normal</a> = VectorType::Zero()</div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>        ) : m_pos(<a class="code hl_function" href="classPonca_1_1PointPositionNormal.html#a8e81f7ffa931efcc480c9f5e8cd27cc6">pos</a>), m_normal(<a class="code hl_function" href="classPonca_1_1PointPositionNormal.html#ac08ababe88dce063932069921b63f0db">normal</a>) {}</div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span> </div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno"><a class="line" href="classPonca_1_1PointPositionNormal.html#a8e81f7ffa931efcc480c9f5e8cd27cc6">   32</a></span>        PONCA_MULTIARCH [[nodiscard]] <span class="keyword">inline</span> <span class="keyword">const</span> VectorType&amp; <a class="code hl_function" href="classPonca_1_1PointPositionNormal.html#a8e81f7ffa931efcc480c9f5e8cd27cc6">pos</a>()<span class="keyword">    const </span>{ <span class="keywordflow">return</span> m_pos; }</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno"><a class="line" href="classPonca_1_1PointPositionNormal.html#ac08ababe88dce063932069921b63f0db">   34</a></span>        PONCA_MULTIARCH [[nodiscard]] <span class="keyword">inline</span> <span class="keyword">const</span> VectorType&amp; <a class="code hl_function" href="classPonca_1_1PointPositionNormal.html#ac08ababe88dce063932069921b63f0db">normal</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> m_normal; }</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno"><a class="line" href="classPonca_1_1PointPositionNormal.html#ac09a60062a68a6d61faadf1cbdb92c7c">   36</a></span>        PONCA_MULTIARCH [[nodiscard]] <span class="keyword">inline</span> VectorType&amp; <a class="code hl_function" href="classPonca_1_1PointPositionNormal.html#ac09a60062a68a6d61faadf1cbdb92c7c">pos</a>()    { <span class="keywordflow">return</span> m_pos; }</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno"><a class="line" href="classPonca_1_1PointPositionNormal.html#a2a3a783a717adc9b8af5adf90ea9d481">   38</a></span>        PONCA_MULTIARCH [[nodiscard]] <span class="keyword">inline</span> VectorType&amp; <a class="code hl_function" href="classPonca_1_1PointPositionNormal.html#a2a3a783a717adc9b8af5adf90ea9d481">normal</a>() { <span class="keywordflow">return</span> m_normal; }</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span> </div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>    <span class="keyword">private</span>:</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>        VectorType m_pos, m_normal;</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>    };</div>
 </div>
-<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span> </div>
-<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>    <span class="keyword">template</span>&lt;<span class="keyword">typename</span> _Scalar, <span class="keywordtype">int</span> _Dim&gt;</div>
-<div class="foldopen" id="foldopen00045" data-start="{" data-end="};">
-<div class="line"><a id="l00045" name="l00045"></a><span class="lineno"><a class="line" href="classPonca_1_1PointPosition.html">   45</a></span>    <span class="keyword">class </span><a class="code hl_class" href="classPonca_1_1PointPosition.html">PointPosition</a></div>
-<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>    {</div>
-<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>    <span class="keyword">public</span>:</div>
-<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>        <span class="keyword">enum</span> {Dim = _Dim};</div>
-<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>        <span class="keyword">typedef</span> _Scalar Scalar;</div>
-<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>        <span class="keyword">typedef</span> Eigen::Matrix&lt;Scalar, Dim,   1&gt; VectorType;</div>
-<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>        <span class="keyword">typedef</span> Eigen::Matrix&lt;Scalar, Dim, Dim&gt; MatrixType;</div>
-<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span> </div>
-<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>        PONCA_MULTIARCH <span class="keyword">inline</span> <a class="code hl_class" href="classPonca_1_1PointPosition.html">PointPosition</a>(</div>
-<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>            <span class="keyword">const</span> VectorType &amp;pos = VectorType::Zero()</div>
-<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>        ) : m_pos(pos) {}</div>
-<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span> </div>
-<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>        PONCA_MULTIARCH [[nodiscard]] <span class="keyword">inline</span> <span class="keyword">const</span> VectorType&amp; pos()<span class="keyword">    const </span>{ <span class="keywordflow">return</span> m_pos; }</div>
-<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>        PONCA_MULTIARCH [[nodiscard]] <span class="keyword">inline</span> VectorType&amp; pos()    { <span class="keywordflow">return</span> m_pos; }</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>    <span class="comment">// [PointPositionNormal]</span></div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span> </div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>    <span class="comment">// [PointPosition]</span></div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>    <span class="keyword">template</span>&lt;<span class="keyword">typename</span> _Scalar, <span class="keywordtype">int</span> _Dim&gt;</div>
+<div class="foldopen" id="foldopen00048" data-start="{" data-end="};">
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno"><a class="line" href="classPonca_1_1PointPosition.html">   48</a></span>    <span class="keyword">class </span><a class="code hl_class" href="classPonca_1_1PointPosition.html">PointPosition</a></div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>    {</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>    <span class="keyword">public</span>:</div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>        <span class="keyword">enum</span> {Dim = _Dim};</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>        <span class="keyword">typedef</span> _Scalar Scalar;</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>        <span class="keyword">typedef</span> Eigen::Matrix&lt;Scalar, Dim,   1&gt; VectorType;</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>        <span class="keyword">typedef</span> Eigen::Matrix&lt;Scalar, Dim, Dim&gt; MatrixType;</div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span> </div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>        PONCA_MULTIARCH <span class="keyword">inline</span> <a class="code hl_class" href="classPonca_1_1PointPosition.html">PointPosition</a>(</div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>            <span class="keyword">const</span> VectorType &amp;<a class="code hl_function" href="classPonca_1_1PointPosition.html#a4b30c0d72ae170fd7d6d4fca3e7437c3">pos</a> = VectorType::Zero()</div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>        ) : m_pos(<a class="code hl_function" href="classPonca_1_1PointPosition.html#a4b30c0d72ae170fd7d6d4fca3e7437c3">pos</a>) {}</div>
 <div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span> </div>
-<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>    <span class="keyword">private</span>:</div>
-<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>        VectorType m_pos;</div>
-<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>    };</div>
-</div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno"><a class="line" href="classPonca_1_1PointPosition.html#a4b30c0d72ae170fd7d6d4fca3e7437c3">   61</a></span>        PONCA_MULTIARCH [[nodiscard]] <span class="keyword">inline</span> <span class="keyword">const</span> VectorType&amp; <a class="code hl_function" href="classPonca_1_1PointPosition.html#a4b30c0d72ae170fd7d6d4fca3e7437c3">pos</a>()<span class="keyword">    const </span>{ <span class="keywordflow">return</span> m_pos; }</div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno"><a class="line" href="classPonca_1_1PointPosition.html#a91ddc19b2626e5ec32c96b81e0f2dcec">   63</a></span>        PONCA_MULTIARCH [[nodiscard]] <span class="keyword">inline</span> VectorType&amp; <a class="code hl_function" href="classPonca_1_1PointPosition.html#a91ddc19b2626e5ec32c96b81e0f2dcec">pos</a>()    { <span class="keywordflow">return</span> m_pos; }</div>
 <div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span> </div>
-<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span> </div>
-<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>    <span class="keyword">template</span>&lt;<span class="keyword">typename</span> _Scalar, <span class="keywordtype">int</span> _Dim&gt;</div>
-<div class="foldopen" id="foldopen00076" data-start="{" data-end="};">
-<div class="line"><a id="l00076" name="l00076"></a><span class="lineno"><a class="line" href="classPonca_1_1PointPositionNormalBinding.html">   76</a></span>    <span class="keyword">class </span><a class="code hl_class" href="classPonca_1_1PointPositionNormalBinding.html">PointPositionNormalBinding</a></div>
-<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>    {</div>
-<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>    <span class="keyword">public</span>:</div>
-<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>        <span class="keyword">enum</span> {Dim = _Dim};</div>
-<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>        <span class="keyword">typedef</span> _Scalar Scalar;</div>
-<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>        <span class="keyword">typedef</span> Eigen::Matrix&lt;Scalar, Dim, 1&gt;   VectorType;</div>
-<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>        <span class="keyword">typedef</span> Eigen::Matrix&lt;Scalar, Dim, Dim&gt; MatrixType;</div>
-<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span> </div>
-<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>        PONCA_MULTIARCH <span class="keyword">inline</span> <a class="code hl_class" href="classPonca_1_1PointPositionNormalBinding.html">PointPositionNormalBinding</a>(</div>
-<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>            <span class="keyword">const</span> Scalar* _interlacedArray, <span class="keywordtype">int</span> _pId</div>
-<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>        ) : m_pos   (Eigen::Map&lt; const VectorType &gt;(_interlacedArray + Dim*2*_pId  )),</div>
-<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>            m_normal(Eigen::Map&lt; const VectorType &gt;(_interlacedArray + Dim*2*_pId+Dim))</div>
-<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>        {}</div>
-<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span> </div>
-<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>        PONCA_MULTIARCH [[nodiscard]] <span class="keyword">inline</span> <span class="keyword">const</span> Eigen::Map&lt; const VectorType &gt;&amp; pos()<span class="keyword">    const </span>{ <span class="keywordflow">return</span> m_pos; }</div>
-<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>        PONCA_MULTIARCH [[nodiscard]] <span class="keyword">inline</span> <span class="keyword">const</span> Eigen::Map&lt; const VectorType &gt;&amp; normal()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> m_normal; }</div>
-<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span> </div>
-<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>    <span class="keyword">private</span>:</div>
-<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>        Eigen::Map&lt; const VectorType &gt; m_pos, m_normal;</div>
-<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>    };</div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>    <span class="keyword">private</span>:</div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>        VectorType m_pos;</div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>    };</div>
 </div>
-<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span>}</div>
-<div class="ttc" id="aclassPonca_1_1PointPositionNormalBinding_html"><div class="ttname"><a href="classPonca_1_1PointPositionNormalBinding.html">Ponca::PointPositionNormalBinding</a></div><div class="ttdoc">[PointPosition]</div><div class="ttdef"><b>Definition</b> <a href="pointTypes_8h_source.html#l00076">pointTypes.h:77</a></div></div>
-<div class="ttc" id="aclassPonca_1_1PointPositionNormal_html"><div class="ttname"><a href="classPonca_1_1PointPositionNormal.html">Ponca::PointPositionNormal</a></div><div class="ttdoc">[PointPositionNormal]</div><div class="ttdef"><b>Definition</b> <a href="pointTypes_8h_source.html#l00019">pointTypes.h:20</a></div></div>
-<div class="ttc" id="aclassPonca_1_1PointPosition_html"><div class="ttname"><a href="classPonca_1_1PointPosition.html">Ponca::PointPosition</a></div><div class="ttdoc">[PointPositionNormal]</div><div class="ttdef"><b>Definition</b> <a href="pointTypes_8h_source.html#l00045">pointTypes.h:46</a></div></div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>    <span class="comment">// [PointPosition]</span></div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span> </div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span> </div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>    <span class="comment">// [PointPositionNormalBinding]</span></div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>    <span class="keyword">template</span>&lt;<span class="keyword">typename</span> _Scalar, <span class="keywordtype">int</span> _Dim&gt;</div>
+<div class="foldopen" id="foldopen00082" data-start="{" data-end="};">
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno"><a class="line" href="classPonca_1_1PointPositionNormalBinding.html">   82</a></span>    <span class="keyword">class </span><a class="code hl_class" href="classPonca_1_1PointPositionNormalBinding.html">PointPositionNormalBinding</a></div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>    {</div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>    <span class="keyword">public</span>:</div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>        <span class="keyword">enum</span> {Dim = _Dim};</div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>        <span class="keyword">typedef</span> _Scalar Scalar;</div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>        <span class="keyword">typedef</span> Eigen::Matrix&lt;Scalar, Dim, 1&gt;   VectorType;</div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>        <span class="keyword">typedef</span> Eigen::Matrix&lt;Scalar, Dim, Dim&gt; MatrixType;</div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span> </div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>        PONCA_MULTIARCH <span class="keyword">inline</span> <a class="code hl_class" href="classPonca_1_1PointPositionNormalBinding.html">PointPositionNormalBinding</a>(</div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>            <span class="keyword">const</span> Scalar* _interlacedArray, <span class="keywordtype">int</span> _pId</div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span>        ) : m_pos   (Eigen::Map&lt; const VectorType &gt;(_interlacedArray + Dim*2*_pId  )),</div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>            m_normal(Eigen::Map&lt; const VectorType &gt;(_interlacedArray + Dim*2*_pId+Dim))</div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>        {}</div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span> </div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno"><a class="line" href="classPonca_1_1PointPositionNormalBinding.html#ac4322e09882401183622d4fa522f7d40">   97</a></span>        PONCA_MULTIARCH [[nodiscard]] <span class="keyword">inline</span> <span class="keyword">const</span> Eigen::Map&lt; const VectorType &gt;&amp; <a class="code hl_function" href="classPonca_1_1PointPositionNormalBinding.html#ac4322e09882401183622d4fa522f7d40">pos</a>()<span class="keyword">    const </span>{ <span class="keywordflow">return</span> m_pos; }</div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno"><a class="line" href="classPonca_1_1PointPositionNormalBinding.html#a2673248a8401fa7e362e684f27d54310">   99</a></span>        PONCA_MULTIARCH [[nodiscard]] <span class="keyword">inline</span> <span class="keyword">const</span> Eigen::Map&lt; const VectorType &gt;&amp; <a class="code hl_function" href="classPonca_1_1PointPositionNormalBinding.html#a2673248a8401fa7e362e684f27d54310">normal</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> m_normal; }</div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span> </div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span>    <span class="keyword">private</span>:</div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span>        Eigen::Map&lt; const VectorType &gt; m_pos, m_normal;</div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span>    };</div>
+</div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span>    <span class="comment">// [PointPositionNormalBinding]</span></div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span>}</div>
+<div class="ttc" id="aclassPonca_1_1PointPositionNormalBinding_html"><div class="ttname"><a href="classPonca_1_1PointPositionNormalBinding.html">Ponca::PointPositionNormalBinding</a></div><div class="ttdoc">Variant of the PointPositionNormal data type that uses external raw data.</div><div class="ttdef"><b>Definition</b> <a href="pointTypes_8h_source.html#l00082">pointTypes.h:83</a></div></div>
+<div class="ttc" id="aclassPonca_1_1PointPositionNormalBinding_html_a2673248a8401fa7e362e684f27d54310"><div class="ttname"><a href="classPonca_1_1PointPositionNormalBinding.html#a2673248a8401fa7e362e684f27d54310">Ponca::PointPositionNormalBinding::normal</a></div><div class="ttdeci">const Eigen::Map&lt; const VectorType &gt; &amp; normal() const</div><div class="ttdoc">Get the point normal.</div><div class="ttdef"><b>Definition</b> <a href="pointTypes_8h_source.html#l00099">pointTypes.h:99</a></div></div>
+<div class="ttc" id="aclassPonca_1_1PointPositionNormalBinding_html_ac4322e09882401183622d4fa522f7d40"><div class="ttname"><a href="classPonca_1_1PointPositionNormalBinding.html#ac4322e09882401183622d4fa522f7d40">Ponca::PointPositionNormalBinding::pos</a></div><div class="ttdeci">const Eigen::Map&lt; const VectorType &gt; &amp; pos() const</div><div class="ttdoc">Get the point position.</div><div class="ttdef"><b>Definition</b> <a href="pointTypes_8h_source.html#l00097">pointTypes.h:97</a></div></div>
+<div class="ttc" id="aclassPonca_1_1PointPositionNormal_html"><div class="ttname"><a href="classPonca_1_1PointPositionNormal.html">Ponca::PointPositionNormal</a></div><div class="ttdoc">Point data type containing the position and normal vectors.</div><div class="ttdef"><b>Definition</b> <a href="pointTypes_8h_source.html#l00018">pointTypes.h:19</a></div></div>
+<div class="ttc" id="aclassPonca_1_1PointPositionNormal_html_a2a3a783a717adc9b8af5adf90ea9d481"><div class="ttname"><a href="classPonca_1_1PointPositionNormal.html#a2a3a783a717adc9b8af5adf90ea9d481">Ponca::PointPositionNormal::normal</a></div><div class="ttdeci">VectorType &amp; normal()</div><div class="ttdoc">Get the point normal.</div><div class="ttdef"><b>Definition</b> <a href="pointTypes_8h_source.html#l00038">pointTypes.h:38</a></div></div>
+<div class="ttc" id="aclassPonca_1_1PointPositionNormal_html_a8e81f7ffa931efcc480c9f5e8cd27cc6"><div class="ttname"><a href="classPonca_1_1PointPositionNormal.html#a8e81f7ffa931efcc480c9f5e8cd27cc6">Ponca::PointPositionNormal::pos</a></div><div class="ttdeci">const VectorType &amp; pos() const</div><div class="ttdoc">Get the point position.</div><div class="ttdef"><b>Definition</b> <a href="pointTypes_8h_source.html#l00032">pointTypes.h:32</a></div></div>
+<div class="ttc" id="aclassPonca_1_1PointPositionNormal_html_ac08ababe88dce063932069921b63f0db"><div class="ttname"><a href="classPonca_1_1PointPositionNormal.html#ac08ababe88dce063932069921b63f0db">Ponca::PointPositionNormal::normal</a></div><div class="ttdeci">const VectorType &amp; normal() const</div><div class="ttdoc">Get the point normal.</div><div class="ttdef"><b>Definition</b> <a href="pointTypes_8h_source.html#l00034">pointTypes.h:34</a></div></div>
+<div class="ttc" id="aclassPonca_1_1PointPositionNormal_html_ac09a60062a68a6d61faadf1cbdb92c7c"><div class="ttname"><a href="classPonca_1_1PointPositionNormal.html#ac09a60062a68a6d61faadf1cbdb92c7c">Ponca::PointPositionNormal::pos</a></div><div class="ttdeci">VectorType &amp; pos()</div><div class="ttdoc">Get the point position.</div><div class="ttdef"><b>Definition</b> <a href="pointTypes_8h_source.html#l00036">pointTypes.h:36</a></div></div>
+<div class="ttc" id="aclassPonca_1_1PointPosition_html"><div class="ttname"><a href="classPonca_1_1PointPosition.html">Ponca::PointPosition</a></div><div class="ttdoc">Point data type containing only containing the position vector.</div><div class="ttdef"><b>Definition</b> <a href="pointTypes_8h_source.html#l00048">pointTypes.h:49</a></div></div>
+<div class="ttc" id="aclassPonca_1_1PointPosition_html_a4b30c0d72ae170fd7d6d4fca3e7437c3"><div class="ttname"><a href="classPonca_1_1PointPosition.html#a4b30c0d72ae170fd7d6d4fca3e7437c3">Ponca::PointPosition::pos</a></div><div class="ttdeci">const VectorType &amp; pos() const</div><div class="ttdoc">Get the point position.</div><div class="ttdef"><b>Definition</b> <a href="pointTypes_8h_source.html#l00061">pointTypes.h:61</a></div></div>
+<div class="ttc" id="aclassPonca_1_1PointPosition_html_a91ddc19b2626e5ec32c96b81e0f2dcec"><div class="ttname"><a href="classPonca_1_1PointPosition.html#a91ddc19b2626e5ec32c96b81e0f2dcec">Ponca::PointPosition::pos</a></div><div class="ttdeci">VectorType &amp; pos()</div><div class="ttdoc">Get the point position.</div><div class="ttdef"><b>Definition</b> <a href="pointTypes_8h_source.html#l00063">pointTypes.h:63</a></div></div>
 <div class="ttc" id="anamespacePonca_html"><div class="ttname"><a href="namespacePonca.html">Ponca</a></div><div class="ttdoc">This Source Code Form is subject to the terms of the Mozilla Public License, v.</div><div class="ttdef"><b>Definition</b> <a href="limitedPriorityQueue_8h_source.html#l00014">limitedPriorityQueue.h:14</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
@@ -216,7 +229,7 @@ $(document).ready(function(){initNavTree('pointTypes_8h_source.html',''); initRe
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_695d95a8d8fbec601a248c0414764298.html">Ponca</a></li><li class="navelem"><a class="el" href="dir_ce16314fc45f8638543c5146aff64d4a.html">src</a></li><li class="navelem"><a class="el" href="dir_c4018c4157a9bf1e0ca20e9cb22f3b7c.html">Common</a></li><li class="navelem"><b>pointTypes.h</b></li>
-    <li class="footer">Generated on Mon Feb 9 2026 15:07:06 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
+    <li class="footer">Generated on Mon Feb 16 2026 14:00:20 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
   </ul>
 </div>
 </body>

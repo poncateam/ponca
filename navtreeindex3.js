@@ -1,5 +1,13 @@
 var NAVTREEINDEX3 =
 {
+"example_python_ssc_page.html#pyssgl_cuda_sec":[3,6,1],
+"example_python_ssc_page.html#pyssgl_cuda_weight_sec":[3,6,1,1],
+"example_python_ssc_page.html#pyssgl_intro_sec":[3,6,0],
+"example_python_ssc_page.html#pyssgl_intro_sec_dep_subsec":[3,6,0,0],
+"example_python_ssc_page.html#pyssgl_python_sec":[3,6,2],
+"fitting.html":[6,1],
+"fitting.html#fitting_Checkstatus":[6,1,1,4],
+"fitting.html#fitting_Define":[6,1,1,2],
 "fitting.html#fitting_Fitting":[6,1,1,3],
 "fitting.html#fitting_advanced":[6,1,2],
 "fitting.html#fitting_availableFunctionalities":[6,1,0,2],

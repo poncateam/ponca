@@ -11,7 +11,7 @@
 <!-- Node0 -->
 <g id="Node000000" class="node">
 <title>Node0</title>
-<g id="a_Node000000"><a xlink:href="classPonca_1_1PointPosition.html" target="_top" xlink:title="[PointPositionNormal]">
+<g id="a_Node000000"><a xlink:href="classPonca_1_1PointPosition.html" target="_top" xlink:title="Point data type containing only containing the position vector.">
 <polygon fill="white" stroke="#666666" points="116,-30 0,-30 0,0 116,0 116,-30"/>
 <text text-anchor="start" x="8" y="-18" font-family="Helvetica,sans-Serif" font-size="10.00">Ponca::PointPosition</text>
 <text text-anchor="middle" x="58" y="-7" font-family="Helvetica,sans-Serif" font-size="10.00">&lt; _Scalar, _Dim &gt;</text>
