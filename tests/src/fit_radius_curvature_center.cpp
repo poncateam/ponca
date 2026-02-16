@@ -181,9 +181,13 @@ void callDerivativeSubTests()
 {
     DECLARE_DEFAULT_TYPES
 
+    //! [Curvature Estimator APSS]
     using FitSmoothOrientedSpatial   = BasketDiff<FitSmoothOriented, FitSpaceDer, OrientedSphereDer, CurvatureEstimatorDer, NormalDerivativeWeingartenEstimator, WeingartenCurvatureEstimatorDer>;
+    //! [Curvature Estimator APSS]
     using FitConstantOrientedSpatial = BasketDiff<FitConstantOriented, FitSpaceDer, OrientedSphereDer, CurvatureEstimatorDer, NormalDerivativeWeingartenEstimator, WeingartenCurvatureEstimatorDer>;
+    //! [Curvature Estimator ASO]
     using ASOSmooth                  = BasketDiff<FitSmoothOriented, FitSpaceDer, OrientedSphereDer, MlsSphereFitDer, CurvatureEstimatorDer, NormalDerivativeWeingartenEstimator, WeingartenCurvatureEstimatorDer>;
+    //! [Curvature Estimator ASO]
 
     cout << "Testing with perfect sphere (oriented / unoriented) with spatial derivatives..." << endl;
     for(int i = 0; i < g_repeat; ++i)
