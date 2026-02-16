@@ -10,6 +10,7 @@
 #include <vector>
 #include <algorithm>
 #include <functional>
+#include "../defines.h"
 
 namespace Ponca {
 
