@@ -5,7 +5,7 @@ namespace Ponca {
         ///////// CurvatureEstimatorBase
         template<class DataPoint, class _NFilter, typename T>
         void
-#ifdef __GNUC__
+#if defined(__GNUC__) and not defined(__clang__)
         // attribute 'no-tree-vectorize' is required for the init function.
         // It resolves a crash when compiling with GCC 11.4.0
         // with the default optimization level (-O3) for release builds.
