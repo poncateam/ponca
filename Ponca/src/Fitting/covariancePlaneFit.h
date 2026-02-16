@@ -123,7 +123,6 @@ private:
 
 public:
     PONCA_EXPLICIT_CAST_OPERATORS_DER(CovariancePlaneDerImpl,covariancePlaneDer)
-    PONCA_EXPLICIT_CAST_OPERATORS_DER(CovariancePlaneDerImpl,dNormalProvider) ///< get access to object providing dNormal
 
     /*! \see Concept::FittingProcedureConcept::finalize() */
     PONCA_MULTIARCH FIT_RESULT finalize();

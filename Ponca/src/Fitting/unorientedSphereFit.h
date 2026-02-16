@@ -110,7 +110,6 @@ public:
 
 public:
     PONCA_EXPLICIT_CAST_OPERATORS_DER(UnorientedSphereDerImpl,unorientedSphereDer)
-    PONCA_EXPLICIT_CAST_OPERATORS_DER(UnorientedSphereDerImpl,dNormalProvider) ///< get access to object providing dNormal
 
     PONCA_FITTING_DECLARE_INIT_ADDDER_FINALIZE
 
