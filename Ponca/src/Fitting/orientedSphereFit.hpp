@@ -60,7 +60,7 @@ OrientedSphereFitImpl<DataPoint, _NFilter, T>::finalize ()
     m_deno = m_sumDotPP - den1;
 
     // Deal with degenerate cases
-    if(abs(m_deno) < epsilon * max(m_sumDotPP, den1))
+    if(abs(m_deno) <= epsilon * max(m_sumDotPP, den1))
     {
         if (Base::m_ul.isZero(0))
             return Base::m_eCurrentState = UNDEFINED;
