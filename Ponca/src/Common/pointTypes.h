@@ -12,9 +12,8 @@ This Source Code Form is subject to the terms of the Mozilla Public
 */
 
 namespace Ponca {
-    //! [PointPositionNormal]
-    /*! \brief Point with position and normal vector
-     */
+    // [PointPositionNormal]
+    //! \brief Point data type containing the position and normal vectors.
     template<typename _Scalar, int _Dim>
     class PointPositionNormal
     {
@@ -29,18 +28,22 @@ namespace Ponca {
                 const VectorType& normal = VectorType::Zero()
         ) : m_pos(pos), m_normal(normal) {}
 
+        //! \brief Get the point position.
         PONCA_MULTIARCH [[nodiscard]] inline const VectorType& pos()    const { return m_pos; }
+        //! \brief Get the point normal.
         PONCA_MULTIARCH [[nodiscard]] inline const VectorType& normal() const { return m_normal; }
+        //! \copybrief pos
         PONCA_MULTIARCH [[nodiscard]] inline VectorType& pos()    { return m_pos; }
+        //! \copybrief normal
         PONCA_MULTIARCH [[nodiscard]] inline VectorType& normal() { return m_normal; }
 
     private:
         VectorType m_pos, m_normal;
     };
-    //! [PointPositionNormal]
+    // [PointPositionNormal]
 
-    //! [PointPosition]
-    /// Point with position, without attribute
+    // [PointPosition]
+    //! \brief Point data type containing only containing the position vector.
     template<typename _Scalar, int _Dim>
     class PointPosition
     {
@@ -54,21 +57,24 @@ namespace Ponca {
             const VectorType &pos = VectorType::Zero()
         ) : m_pos(pos) {}
 
+        //! \copybrief PointPositionNormal::pos
         PONCA_MULTIARCH [[nodiscard]] inline const VectorType& pos()    const { return m_pos; }
+        //! \copybrief PointPositionNormal::pos
         PONCA_MULTIARCH [[nodiscard]] inline VectorType& pos()    { return m_pos; }
 
     private:
         VectorType m_pos;
     };
-    //! [PointPosition]
+    // [PointPosition]
 
 
+    // [PointPositionNormalBinding]
     /*! \brief Variant of the \ref PointPositionNormal data type that uses external raw data.
-     * Using this approach, ones can use the ponca library with already existing
+     * Using this approach, one can use the ponca library with already existing
      * data-structures and without any data-duplication.
      *
-     * In this example, we use this class to map an interlaced raw array containing
-     * both point normals and coordinates.
+     * We use this class to map an interlaced raw array containing
+     * both point normals and coordinates, during the instantiation of the class.
      *
      * \see PointPositionNormal
      */
@@ -87,10 +93,13 @@ namespace Ponca {
             m_normal(Eigen::Map< const VectorType >(_interlacedArray + Dim*2*_pId+Dim))
         {}
 
+        //! \copybrief PointPositionNormal::pos
         PONCA_MULTIARCH [[nodiscard]] inline const Eigen::Map< const VectorType >& pos()    const { return m_pos; }
+        //! \copybrief PointPositionNormal::normal
         PONCA_MULTIARCH [[nodiscard]] inline const Eigen::Map< const VectorType >& normal() const { return m_normal; }
 
     private:
         Eigen::Map< const VectorType > m_pos, m_normal;
     };
+    // [PointPositionNormalBinding]
 }
