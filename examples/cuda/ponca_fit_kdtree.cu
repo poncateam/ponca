@@ -90,7 +90,7 @@ __host__ void testPlaneCuda(
     const bool _bAddPositionNoise = false,
     const bool _bAddNormalNoise   = false
 ) {
-    typedef Ponca::PointPositionNormalLateBinding<Scalar, Dim> DataPoint;
+    typedef Ponca::PointPositionNormal<Scalar, Dim> DataPoint;
     typedef Ponca::DistWeightFunc<DataPoint, Ponca::SmoothWeightKernel<Scalar> > WeightSmoothFunc;
     typedef Ponca::Basket<DataPoint, WeightSmoothFunc, Ponca::MeanPlaneFit> MeanFitSmooth;
     typedef typename DataPoint::VectorType VectorType;
@@ -104,26 +104,13 @@ __host__ void testPlaneCuda(
     const VectorType center    = VectorType::Random() * centerScale;
     const VectorType direction = VectorType::Random().normalized();
 
-    // Interlaced array of position and normal values
-    auto* const interlacedArray = new Scalar[nbPoints * Dim * 2];
-
+    // Generate the point cloud
+    std::vector<DataPoint> points(nbPoints);
     for(unsigned int i = 0; i < nbPoints; ++i) {
-        auto point = Ponca::getPointOnPlane<Ponca::PointPositionNormal<Scalar, Dim>>(
+        points[i] = Ponca::getPointOnPlane<DataPoint>(
             center, direction, width,
             _bAddPositionNoise, _bAddNormalNoise, _bUnoriented
         );
-        // Fill the interlaced array with the positions and normals.
-        for (int d = 0; d<Dim; ++d) {
-            interlacedArray[i * Dim * 2 + d]       = point.pos()(d);
-            interlacedArray[i * Dim * 2 + d + Dim] = point.normal()(d);
-        }
-    }
-
-    // Make a point buffer linking to the interlaced array
-    std::vector<DataPoint> points;
-    points.reserve(nbPoints);
-    for (int i = 0; i < nbPoints; ++i) {
-        points.emplace_back(interlacedArray, i);
     }
 
     // Send the internal buffers of the KdTree to the GPU
@@ -137,23 +124,19 @@ __host__ void testPlaneCuda(
     const unsigned long pointBufferSize      = nbPoints * sizeof(DataPoint);
     const unsigned long scalarBufferSize     = nbPoints * sizeof(Scalar);
     const unsigned long vectorBufferSize     = scalarBufferSize * Dim;
-    const unsigned long interlacedBufferSize = vectorBufferSize * 2;
     const unsigned long nodeBufferSize       = kdtree.nodeCount() * sizeof(NodeType);
     const unsigned long indexBufferSize      = kdtree.sampleCount() * sizeof(int);
 
 
     // Send inputs to the GPU (Host to Device)
-    Scalar* interlacedArrayDevice;
     DataPoint* pointsDevice;
     int* indicesDevice;
     NodeType* nodesDevice;
 
-    CUDA_CHECK(cudaMalloc(&interlacedArrayDevice, interlacedBufferSize ));
     CUDA_CHECK(cudaMalloc(&pointsDevice         , pointBufferSize ));
     CUDA_CHECK(cudaMalloc(&indicesDevice        , indexBufferSize));
     CUDA_CHECK(cudaMalloc(&nodesDevice          , nodeBufferSize));
 
-    CUDA_CHECK(cudaMemcpy(interlacedArrayDevice , interlacedArray            , interlacedBufferSize, cudaMemcpyHostToDevice));
     CUDA_CHECK(cudaMemcpy(pointsDevice          , points.data()          , pointBufferSize     , cudaMemcpyHostToDevice));
     CUDA_CHECK(cudaMemcpy(indicesDevice         , kdtree.samples().data(), indexBufferSize     , cudaMemcpyHostToDevice));
     CUDA_CHECK(cudaMemcpy(nodesDevice           , kdtree.nodes().data()  , nodeBufferSize      , cudaMemcpyHostToDevice));
@@ -169,10 +152,6 @@ __host__ void testPlaneCuda(
     // Set block and grid size depending on number of points
     constexpr int blockSize = 128;
     const     int gridSize  = (nbPoints + blockSize - 1) / blockSize;
-
-    // Binds the points to their internal values on the device
-    bindPointsKernel<DataPoint><<<gridSize, blockSize>>>(pointsDevice, interlacedArrayDevice, nbPoints);
-    CUDA_CHECK(cudaDeviceSynchronize());
 
     // Compute the fitting in the kernel
     fitPotentialAndGradientKernel<DataPoint, MeanFitSmooth><<<gridSize, blockSize>>>(
@@ -190,7 +169,6 @@ __host__ void testPlaneCuda(
 
     // Free CUDA memory
     CUDA_CHECK(cudaFree(pointsDevice));
-    CUDA_CHECK(cudaFree(interlacedArrayDevice));
     CUDA_CHECK(cudaFree(potentialResultsDevice));
     CUDA_CHECK(cudaFree(gradientResultsDevice));
 
@@ -209,7 +187,6 @@ __host__ void testPlaneCuda(
         }
     }
 
-    delete[] interlacedArray;
     delete[] potentialResults;
     delete[] gradientResults;
 }
