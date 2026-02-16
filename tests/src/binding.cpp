@@ -58,7 +58,7 @@ typename DataPoint::Scalar generateData(vector<DataPoint>& points)
 /*! \brief Variadic function to copy a vector of points to one or multiple vectors of points that are bound to a single interlaced array of positions and normals.
  *
  * \tparam DataPoint Regular point data type (e.g. \ref PointPositionNormal)
- * \tparam DataPointRef Point data types referencing the interlaced array (e.g. \ref PointPositionNormalBinding, \ref PointPositionNormalLateBinding)
+ * \tparam DataPointRef Point data types referencing the interlaced array (e.g. \ref PointPositionNormalBinding, \ref PointPositionNormalLazyBinding)
  * \param points As an input, a vector of DataPoint.
  * \param pointsBinding As an output, empty vectors of DataPointRef types.
  * \return An interlaced array containing the position and normal values. The `pointsBinding` vectors are linked to this array.
@@ -152,7 +152,7 @@ void callSubTests()
 {
     typedef PointPositionNormal<Scalar, Dim> Point;
     typedef PointPositionNormalBinding<Scalar, Dim> PointRef;
-    typedef PointPositionNormalLateBinding<Scalar, Dim> PointLateRef;
+    typedef PointPositionNormalLazyBinding<Scalar, Dim> PointLateRef;
 
     for(int i = 0; i < g_repeat; ++i)
     {
