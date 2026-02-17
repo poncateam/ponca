@@ -16,18 +16,6 @@ void KdTreeBase<Traits>::build(PointUserContainer&& points, PointConverter c)
 }
 
 template<typename Traits>
-void KdTreeBase<Traits>::clear()
-{
-    Traits::clearContainer(m_points);
-    Traits::clearContainer(m_nodes);
-    Traits::clearContainer(m_indices);
-    m_points_size  = 0;
-    m_indices_size = 0;
-    m_nodes_size   = 0;
-    m_leaf_count = 0;
-}
-
-template<typename Traits>
 bool KdTreeBase<Traits>::valid() const
 {
     if (m_points_size == 0)
@@ -125,7 +113,10 @@ void KdTreeBase<Traits>::buildWithSampling(
     PointUserContainer&& points, IndexUserContainer sampling, PointConverter c
 ) {
     PONCA_DEBUG_ASSERT(static_cast<IndexType>(pointCount()) <= MAX_POINT_COUNT);
-    this->clear();
+    m_points_size  = 0;
+    m_indices_size = 0;
+    m_nodes_size   = 0;
+    m_leaf_count = 0;
 
     // Move, copy or convert input samples
     m_points_size = points.size();

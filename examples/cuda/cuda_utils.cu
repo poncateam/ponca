@@ -84,16 +84,6 @@ struct KdTreeGPUTraits
     {
         return input.data();
     }
-
-    /*!
-     * \brief Clear the content of the internal storage.
-     *
-     * \see KdTreeBase
-     */
-    template <typename InternalContainer>
-    static PONCA_MULTIARCH_HOST inline void clearContainer (
-        InternalContainer & /*input*/
-    ) { }
 };
 
 template <typename DataPoint>

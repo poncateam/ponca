@@ -164,8 +164,6 @@ public:
         build(std::forward<PointUserContainer>(points), DefaultConverter());
     }
 
-    /// Clear tree data
-    PONCA_MULTIARCH_HOST inline void clear();
 
     // Accessors ---------------------------------------------------------------
 public:
