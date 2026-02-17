@@ -27,7 +27,7 @@ MongePatch<DataPoint, _NFilter, T>::addLocalNeighbor(Scalar w,
     else // base plane is ready, we can now fit the patch
     {
         // express neighbor in local coordinate frame
-        const VectorType local = Base::worldToTangentPlane(attributes.pos());
+        const VectorType local = Base::worldToFrame(attributes.pos());
         const Scalar& h = *(local.data());
         const Scalar& u = *(local.data()+1);
         const Scalar& v = *(local.data()+2);

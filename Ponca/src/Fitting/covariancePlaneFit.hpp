@@ -18,25 +18,11 @@ CovariancePlaneFitImpl<DataPoint, _NFilter, T>::finalize ()
         if (Base::plane().isValid()) Base::m_eCurrentState = CONFLICT_ERROR_FOUND;
         Base::setPlane(Base::m_solver.eigenvectors().col(0), Base::barycenterLocal());
     }
-
+    VectorType m_u = Base::m_solver.eigenvectors().col(1);
+    VectorType m_v = Base::m_solver.eigenvectors().col(2);
+    Base::setFrameUV (m_u, m_v);
     return Base::m_eCurrentState;
 }
-
-template < class DataPoint, class _NFilter, typename T>
-typename CovariancePlaneFitImpl<DataPoint, _NFilter, T>::VectorType
-CovariancePlaneFitImpl<DataPoint, _NFilter, T>::worldToTangentPlane (const VectorType& _q) const
-{
-    return Base::m_solver.eigenvectors().transpose() * (Base::getNeighborFilter().convertToLocalBasis(_q));
-}
-
-template < class DataPoint, class _NFilter, typename T>
-typename CovariancePlaneFitImpl<DataPoint, _NFilter, T>::VectorType
-CovariancePlaneFitImpl<DataPoint, _NFilter, T>::tangentPlaneToWorld (const VectorType& _lq) const
-{
-    return Base::getNeighborFilter().convertToGlobalBasis(Base::m_solver.eigenvectors().transpose().inverse() * _lq);
-}
-
-
 
 template < class DataPoint, class _NFilter, int DiffType, typename T>
 FIT_RESULT

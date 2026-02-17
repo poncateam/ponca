@@ -10,10 +10,10 @@
 #pragma once
 
 #include "./defines.h"
-#include "./plane.h"
-#include "./primitive.h"
-#include "./mean.h"          // used to define CovarianceLineFit
-#include "./covarianceFit.h" // use to define CovariancePlaneFit
+#include "./mean.h"          // used to define CovariancePlaneFit
+#include "./plane.h"         // used to define CovariancePlaneFit
+#include "./localFrame.h"    // used to define CovariancePlaneFit
+#include "./covarianceFit.h" // used to define CovariancePlaneFit
 
 #include <Eigen/Eigenvalues>
 
@@ -39,43 +39,20 @@ PONCA_FITTING_DECLARE_MATRIX_TYPE
 protected:
     enum
     {
-        Check = Base::PROVIDES_PLANE &&
-                Base::PROVIDES_POSITION_COVARIANCE,
         /*!
-         * \brief Expose a method worldToTangentPlane(VectorType), which turns a point
+         * \brief Fit the tangent plane and store it into Plane and LocalFrame which turn a point
          * in ambient 3D space to the tangent plane.
-         * \see worldToTangentPlane
-         * \see tangentPlaneToWorld
+         * \see LocalFrame
          */
-        PROVIDES_TANGENT_PLANE_BASIS
-    };
+        Check = Base::PROVIDES_POSITION_COVARIANCE &&
+                Base::PROVIDES_LOCAL_FRAME
+        };
 
 public:
     PONCA_EXPLICIT_CAST_OPERATORS(CovariancePlaneFitImpl,covariancePlaneFit)
     PONCA_FITTING_DECLARE_FINALIZE
     PONCA_FITTING_IS_SIGNED(false)
 
-    /**************************************************************************/
-    /* Results                                                                */
-    /**************************************************************************/
-
-    /*!
-     * \brief Express a point in ambient space relatively to the tangent plane.
-     *
-     * Output vector is: [h, u, v]^T, where u, v are 2d coordinates on the plane,
-     * and h the height of the sample.
-     * \param _q Point coordinates expressed in ambient space
-     * \return Point coordinates expressed in local tangent frame
-     */
-    PONCA_MULTIARCH inline VectorType worldToTangentPlane(const VectorType &_q) const;
-
-    /*!
-     * \brief Transform a point from the tangent plane [h, u, v]^T to ambient space
-     *
-     * \param _q Point coordinates expressed in local tangent frame
-     * \return Point coordinates expressed in ambient space
-     */
-    PONCA_MULTIARCH inline VectorType tangentPlaneToWorld(const VectorType &_q) const;
 }; //class CovariancePlaneFitImpl
 
 /// \brief Helper alias for Plane fitting on 3D points using CovariancePlaneFitImpl
@@ -85,7 +62,8 @@ public:
     CovariancePlaneFitImpl<DataPoint, _NFilter,
             CovarianceFitBase<DataPoint, _NFilter,
                     MeanPosition<DataPoint, _NFilter,
-                            Plane<DataPoint, _NFilter, T>>>>;
+                        LocalFrame<DataPoint, _NFilter,
+                            Plane<DataPoint, _NFilter,T>>>>>;
 //! [CovariancePlaneFit Definition]
 
 /*!

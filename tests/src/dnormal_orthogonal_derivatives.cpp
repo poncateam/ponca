@@ -15,6 +15,9 @@
 #include "../common/testUtils.h"
 
 #include <Ponca/src/Fitting/basket.h>
+#include <Ponca/src/Fitting/plane.h>
+#include <Ponca/src/Fitting/localFrame.h>
+#include <Ponca/src/Fitting/covarianceFit.h>
 #include <Ponca/src/Fitting/orientedSphereFit.h>
 #include <Ponca/src/Fitting/covariancePlaneFit.h>
 #include <Ponca/src/Fitting/mlsSphereFitDer.h>
