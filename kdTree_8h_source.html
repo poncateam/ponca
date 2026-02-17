@@ -51,7 +51,7 @@ MathJax.Hub.Config({
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Ponca
-   &#160;<span id="projectnumber">5710680b4782d14adce2a12cb4c5b9e546b7a66b</span>
+   &#160;<span id="projectnumber">c0a114617613abff9e8eeecc94cc02203357f540</span>
    </div>
    <div id="projectbrief">Point Cloud Analysis library</div>
   </td>
@@ -227,8 +227,8 @@ $(document).ready(function(){initNavTree('kdTree_8h_source.html',''); initResiza
 <div class="line"><a id="l00153" name="l00153"></a><span class="lineno">  153</span>        <span class="keyword">template</span> &lt;<span class="keyword">typename</span> Input&gt;</div>
 <div class="line"><a id="l00154" name="l00154"></a><span class="lineno">  154</span>        <span class="keyword">inline</span> <span class="keywordtype">void</span> operator()(Input&amp;&amp; i, <a class="code hl_typedef" href="classPonca_1_1KdTreeBase.html#aa729820113ec273e46953241a9c9588d">PointContainer</a>&amp; o)</div>
 <div class="line"><a id="l00155" name="l00155"></a><span class="lineno">  155</span>        {</div>
-<div class="line"><a id="l00156" name="l00156"></a><span class="lineno">  156</span>            <span class="keyword">using </span>InputContainer = <span class="keyword">typename</span> std::remove_reference&lt;Input&gt;::type;</div>
-<div class="line"><a id="l00157" name="l00157"></a><span class="lineno">  157</span>            <span class="keywordflow">if</span> <span class="keyword">constexpr</span> (std::is_same&lt;InputContainer, PointContainer&gt;::value)</div>
+<div class="line"><a id="l00156" name="l00156"></a><span class="lineno">  156</span>            <span class="keyword">using </span>InputContainer = std::remove_reference_t&lt;Input&gt;;</div>
+<div class="line"><a id="l00157" name="l00157"></a><span class="lineno">  157</span>            <span class="keywordflow">if</span> <span class="keyword">constexpr</span> (std::is_same_v&lt;InputContainer, PointContainer&gt; &amp;&amp; std::is_copy_assignable_v&lt;typename PointContainer::value_type&gt;)</div>
 <div class="line"><a id="l00158" name="l00158"></a><span class="lineno">  158</span>                o = std::forward&lt;Input&gt;(i); <span class="comment">// Either move or copy</span></div>
 <div class="line"><a id="l00159" name="l00159"></a><span class="lineno">  159</span>            <span class="keywordflow">else</span></div>
 <div class="line"><a id="l00160" name="l00160"></a><span class="lineno">  160</span>                std::transform(i.cbegin(), i.cend(), std::back_inserter(o),</div>
@@ -579,7 +579,7 @@ $(document).ready(function(){initNavTree('kdTree_8h_source.html',''); initResiza
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_695d95a8d8fbec601a248c0414764298.html">Ponca</a></li><li class="navelem"><a class="el" href="dir_ce16314fc45f8638543c5146aff64d4a.html">src</a></li><li class="navelem"><a class="el" href="dir_12c32e53c838db195d209d78f62f8479.html">SpatialPartitioning</a></li><li class="navelem"><a class="el" href="dir_1714f3cab0d35a638840fab853fb5d40.html">KdTree</a></li><li class="navelem"><b>kdTree.h</b></li>
-    <li class="footer">Generated on Mon Feb 16 2026 14:15:20 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
+    <li class="footer">Generated on Tue Feb 17 2026 13:05:57 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
   </ul>
 </div>
 </body>

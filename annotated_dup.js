@@ -67,6 +67,7 @@ var annotated_dup =
       [ "PointPosition", "classPonca_1_1PointPosition.html", "classPonca_1_1PointPosition" ],
       [ "PointPositionNormal", "classPonca_1_1PointPositionNormal.html", "classPonca_1_1PointPositionNormal" ],
       [ "PointPositionNormalBinding", "classPonca_1_1PointPositionNormalBinding.html", "classPonca_1_1PointPositionNormalBinding" ],
+      [ "PointPositionNormalLazyBinding", "classPonca_1_1PointPositionNormalLazyBinding.html", "classPonca_1_1PointPositionNormalLazyBinding" ],
       [ "PolynomialSmoothWeightKernel", "classPonca_1_1PolynomialSmoothWeightKernel.html", "classPonca_1_1PolynomialSmoothWeightKernel" ],
       [ "PrimitiveBase", "classPonca_1_1PrimitiveBase.html", "classPonca_1_1PrimitiveBase" ],
       [ "PrimitiveDer", "classPonca_1_1PrimitiveDer.html", "classPonca_1_1PrimitiveDer" ],

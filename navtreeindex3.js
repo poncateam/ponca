@@ -1,5 +1,9 @@
 var NAVTREEINDEX3 =
 {
+"example_python_ssc_page.html#pyssgl_cuda_access_sec":[3,6,1,4],
+"example_python_ssc_page.html#pyssgl_cuda_fit_sec":[3,6,1,2],
+"example_python_ssc_page.html#pyssgl_cuda_kernel_sec":[3,6,1,3],
+"example_python_ssc_page.html#pyssgl_cuda_mypoint_sec":[3,6,1,0],
 "example_python_ssc_page.html#pyssgl_cuda_sec":[3,6,1],
 "example_python_ssc_page.html#pyssgl_cuda_weight_sec":[3,6,1,1],
 "example_python_ssc_page.html#pyssgl_intro_sec":[3,6,0],
@@ -31,8 +35,8 @@ var NAVTREEINDEX3 =
 "fitting_concepts.html#concepts_computeObjectBasketDiff":[6,2,0,1],
 "fitting_concepts.html#concepts_provides":[6,2,1],
 "fitting_concepts.html#concepts_weighting":[6,2,2],
-"functions.html":[8,3,0,0],
 "functions.html":[8,3,0],
+"functions.html":[8,3,0,0],
 "functions_b.html":[8,3,0,1],
 "functions_c.html":[8,3,0,2],
 "functions_d.html":[8,3,0,3],
