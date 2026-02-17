@@ -16,10 +16,12 @@ Current head (v.2.0.alpha1 RC)
 - Tests
     - [all] Speed up tests in coverage mode (#236)
     - [common] Use common point type and point generation methods (#248, #220)
+    - [ci] Add binding datatype test to prevent regression (#250)
 
 - Examples
     - [nanoflann] Fix broken include directives (#236)
     - [common] Use common point type and point generation methods (#248)
+    - [examples] Fix `ponca_binding` buffer overflow error (#250)
 
 - CI/Actions
     - Add coverage report for Pull Requests (#236, #245, #245)
