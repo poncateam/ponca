@@ -12,6 +12,10 @@ Current head (v.2.0.alpha1 RC)
 - Bug-fixes and code improvements
     - [fitting] Fix broken include directives in Basket/Compute (#236)
     - [fitting] Reduce code coverage misses (#246)
+    - [fitting] Add missing PONCA_MULTIARCH keyword to compute functions (#220)
+
+- Cmake
+    - [examples] Change folder layout of CUDA examples (#220)
 
 - Tests
     - [all] Speed up tests in coverage mode (#236)
@@ -22,6 +26,7 @@ Current head (v.2.0.alpha1 RC)
     - [nanoflann] Fix broken include directives (#236)
     - [common] Use common point type and point generation methods (#248)
     - [examples] Fix `ponca_binding` buffer overflow error (#250)
+    - [examples] Add a CUDA example for 3D point clouds (#220)
 
 - CI/Actions
     - Add coverage report for Pull Requests (#236, #245, #245)
