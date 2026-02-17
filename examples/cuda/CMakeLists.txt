@@ -17,29 +17,16 @@ check_language(CUDA)
         set(CMAKE_CUDA_STANDARD_REQUIRED ON)
     endif()
 
+    add_definitions(-DEIGEN_DEFAULT_DENSE_INDEX_TYPE=int)
+    add_definitions(--expt-relaxed-constexpr)
 
-    find_package(PNG QUIET)
-    if ( PNG_FOUND )
+    add_executable(cuda_fit_plane "ponca_fit_plane.cu")
+    target_include_directories(cuda_fit_plane PRIVATE ${PONCA_src_ROOT})
+    add_dependencies(ponca-examples cuda_fit_plane)
+    set_property(TARGET cuda_fit_plane PROPERTY CUDA_ARCHITECTURES OFF)
+    ponca_handle_eigen_dependency(cuda_fit_plane)
 
-        add_executable(ponca_ssgls "ponca_ssgls.cu")
-        target_include_directories(ponca_ssgls PRIVATE ${PONCA_src_ROOT})
-        target_link_libraries(ponca_ssgls PRIVATE PNG::PNG)
-        add_dependencies(ponca-examples ponca_ssgls)
-        set_property(TARGET ponca_ssgls PROPERTY CUDA_ARCHITECTURES OFF)
-        ponca_handle_eigen_dependency(ponca_ssgls)
-
-        # Copy assets
-        add_custom_command(TARGET ponca_ssgls POST_BUILD
-                           COMMAND ${CMAKE_COMMAND} -E copy_directory
-                               ${CMAKE_CURRENT_SOURCE_DIR}/data
-                               $<TARGET_FILE_DIR:ponca_ssgls>/data
-                           COMMENT "Copying ssgls data to build tree"
-                           VERBATIM
-                           )
-    else()
-        message("LibPNG not found, skipping Ponca_ssgls")
-    endif ( PNG_FOUND )
-
+    add_subdirectory(ssgls)
 else()
     message(INFO "Cuda not found, skipping Ponca_Examples_cuda")
 endif( CMAKE_CUDA_COMPILER )

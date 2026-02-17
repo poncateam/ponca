@@ -22,7 +22,7 @@ namespace Ponca{
     protected:
         /// \brief Retrieve the top layer object
         /// Returns a reference to the derived class so that we can use its overwritten methods
-        Derived& derived() { return static_cast<Derived&>(*this); }
+        PONCA_MULTIARCH Derived& derived() { return static_cast<Derived&>(*this); }
     public:
 
 #ifdef PONCA_CPU_ARCH

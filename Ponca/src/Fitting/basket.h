@@ -203,7 +203,7 @@ namespace internal
          * \return The result of the fit
          */
         template<typename Func>
-        FIT_RESULT computeMLSImpl(Func&& computeFunc, const int mlsIter, const Scalar epsilon) {
+        PONCA_MULTIARCH FIT_RESULT computeMLSImpl(Func&& computeFunc, const int mlsIter, const Scalar epsilon) {
             FIT_RESULT res = UNDEFINED;
             auto lastPos = Base::getNeighborFilter().evalPos();
 
@@ -229,7 +229,7 @@ namespace internal
          * \tparam PointContainer STL-like container storing the points
          */
         template<typename PointContainer>
-        FIT_RESULT computeMLS(
+        PONCA_MULTIARCH FIT_RESULT computeMLS(
             const PointContainer& points,
             const int mlsIter    = 5,
             const Scalar epsilon = Eigen::NumTraits<Scalar>::dummy_precision()
@@ -246,7 +246,7 @@ namespace internal
          * \tparam PointContainer STL-like container storing the points
          */
         template<typename IndexRange, typename PointContainer>
-        FIT_RESULT computeWithIdsMLS(
+        PONCA_MULTIARCH FIT_RESULT computeWithIdsMLS(
             const IndexRange& ids,
             const PointContainer& points,
             const int mlsIter    = 5,
