@@ -132,6 +132,37 @@ public:
 
     // Construction ------------------------------------------------------------
 public:
+    /*! \brief Constructor of the KdTree that uses prebuilt containers directly.
+     *
+     * Each internal values of a KdTree can be extracted and used to build copy of the KdTree
+     * using the following getter functions :
+     * - `KdTreeBase::pointCount`
+     * - `KdTreeBase::nodeCount`
+     * - `KdTreeBase::sampleCount`
+     * - `KdTreeBase::points`
+     * - `KdTreeBase::nodes`
+     * - `KdTreeBase::samples`
+     *
+     * \note The internal containers of the KdTree are passed directly as arguments,
+     * which avoids the convertion process and the building process.
+     * This method is usefull to instantiate a copy of the KdTree on the GPU.
+     *
+     * \see DefaultConverter, build
+     *
+     * \param points The internal point container
+     * \param nodes The internal node container
+     * \param indices The internal index container
+     * \param points_size The number of points in the container
+     * \param nodes_size The number of nodes in the container
+     * \param indices_size The number of indices in the container
+     */
+    PONCA_MULTIARCH inline KdTreeBase(
+        PointContainer points   , NodeContainer nodes    , IndexContainer indices,
+        const size_t points_size, const size_t nodes_size, const size_t indices_size
+    ) : m_points(points)          , m_nodes(nodes)          , m_indices(indices),
+        m_points_size(points_size), m_nodes_size(nodes_size), m_indices_size(indices_size)
+    { }
+
     /// Generate a tree from a custom contained type converted using the specified converter
     /// \tparam PointUserContainer Input point container, transformed to PointContainer
     /// \tparam PointConverter Cast/Convert input container type to point container data type
@@ -167,41 +198,49 @@ public:
 
     // Accessors ---------------------------------------------------------------
 public:
+    //! \brief Get the number of nodes in the KdTree
     PONCA_MULTIARCH [[nodiscard]] inline NodeIndexType nodeCount() const
     {
         return (NodeIndexType)m_nodes_size;
     }
 
+    //! \brief Get the number of indices
     PONCA_MULTIARCH [[nodiscard]] inline IndexType sampleCount() const
     {
         return (IndexType)m_indices_size;
     }
 
+    //! \brief Get the number of points
     PONCA_MULTIARCH [[nodiscard]] inline IndexType pointCount() const
     {
         return (IndexType)m_points_size;
     }
 
+    //! \brief Get the number of leafs in the KdTree
     PONCA_MULTIARCH [[nodiscard]] inline NodeIndexType leafCount() const
     {
         return m_leaf_count;
     }
 
+    //! \brief Get the internal point container
     PONCA_MULTIARCH [[nodiscard]] inline PointContainer& points()
     {
         return m_points;
     };
 
+    //! \copybrief KdTreeBase::points
     PONCA_MULTIARCH [[nodiscard]] inline const PointContainer& points() const
     {
         return m_points;
     };
 
+    //! \brief Get the internal node container
     PONCA_MULTIARCH [[nodiscard]] inline const NodeContainer& nodes() const
     {
         return m_nodes;
     }
 
+    //! \brief Get the internal indice container
     PONCA_MULTIARCH [[nodiscard]] inline const IndexContainer& samples() const
     {
         return m_indices;
@@ -417,16 +456,8 @@ protected:
     NodeIndexType m_leaf_count {0}; ///< Number of leaves in the Kdtree (computed during construction)
 
     // Internal ----------------------------------------------------------------
-public:
-    PONCA_MULTIARCH inline KdTreeBase() = default;
-
-    PONCA_MULTIARCH inline KdTreeBase(
-        PointContainer points   , NodeContainer nodes    , IndexContainer indices,
-        const size_t points_size, const size_t nodes_size, const size_t indices_size
-    ) : m_points(points)          , m_nodes(nodes)          , m_indices(indices),
-        m_points_size(points_size), m_nodes_size(nodes_size), m_indices_size(indices_size)
-    { }
 protected:
+    PONCA_MULTIARCH inline KdTreeBase() = default;
 
     /// Generate a tree sampled from a custom contained type converted using a `Converter`
     /// \tparam PointUserContainer Input point, transformed to PointContainer
