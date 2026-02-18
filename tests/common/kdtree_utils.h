@@ -41,10 +41,16 @@ bool checkRangeNeighbors(const VectorContainer& points, const std::vector<int>& 
 
 	for (int idx : neighbors) {
 		if (std::find(sampling.begin(), sampling.end(), idx) == sampling.end())
+		{
+			std::cerr << "Test failed in : checkRangeNeighbors " << __FILE__ << " (" << __LINE__ << ")" << std::endl;
 			return false;
+		}
 		Scalar dist = (points[idx].pos() - point).norm();
 		if (r < dist)
+		{
+            std::cerr << "Test failed in : checkRangeNeighbors " << __FILE__ << " (" << __LINE__ << ")" << std::endl;
 			return false;
+		}
 	}
 
 	for (int idx : sampling) {
@@ -56,9 +62,15 @@ bool checkRangeNeighbors(const VectorContainer& points, const std::vector<int>& 
 		bool is_neighbor = it != neighbors.end();
 
 		if (is_neighbor && r < dist)
+		{
+            std::cerr << "Test failed in : checkRangeNeighbors " << __FILE__ << " (" << __LINE__ << ")" << std::endl;
 			return false;
+		}
 		if (!is_neighbor && dist < r)
+		{
+            std::cerr << "Test failed in : checkRangeNeighbors " << __FILE__ << " (" << __LINE__ << ")" << std::endl;
 			return false;
+		}
 	}
 	return true;
 }
@@ -148,9 +160,14 @@ bool checkKNearestNeighbors(const VectorContainer& points, const std::vector<int
 		bool is_neighbor = it != neighbors.end();
 
 		if (is_neighbor && max_dist < dist)
+		{
 			return false;
+		}
 		if (!is_neighbor && dist < max_dist)
+		{
+            std::cerr << "Test failed in : checkRangeNeighbors " << __FILE__ << " (" << __LINE__ << ")" << std::endl;
 			return false;
+		}
 	}
 	return true;
 }
@@ -173,31 +190,40 @@ void generateData(std::vector<DataPoint>& points) {
 	std::generate(points.begin(), points.end(), []() { return DataPoint(VectorType::Random()); });
 }
 
-// For subsampling
-template<typename DataPoint>
-std::unique_ptr<Ponca::KdTreeSparse<DataPoint>> buildSubsampledKdTree(std::vector<DataPoint>& points, std::vector<int>& sampling) {
-	std::vector<int> indices(points.size());
-	std::iota(indices.begin(), indices.end(), 0);
-	sampling.resize(points.size() / 2);
+/*! \brief Builds the KdTree with the points values for testing
+ *
+ * If the KdTree supports subsampling, it will build a kdtree for half the points
+ * to test the subsampling.
+ *
+ * \tparam DataPoint The Point data type
+ * \tparam KdTree The KdTree type templated over the DataPoint (e.g. \ref KdTreeDense or \ref KdTreeSparse)
+ * \param points The vector of points
+ * \param sampling An empty integer vector, to output the sampled points
+ * \return A unique pointer to the KdTree instance
+ */
+template<typename DataPoint, template <typename> class KdTree = Ponca::KdTreeDense>
+std::unique_ptr<KdTree<DataPoint>> testBuildKdTree(std::vector<DataPoint>& points, std::vector<int>& sampling) {
+	if constexpr (KdTree<DataPoint>::SUPPORTS_SUBSAMPLING)
+	{
+		// Build to test subsampling
+		std::vector<int> indices(points.size());
+		std::iota(indices.begin(), indices.end(), 0);
+		sampling.resize(points.size() / 2);
 
-	int seed = 0;
-	std::sample(indices.begin(), indices.end(), sampling.begin(), points.size() / 2, std::mt19937(seed));
+		int seed = 0;
+		std::sample(indices.begin(), indices.end(), sampling.begin(), points.size() / 2, std::mt19937(seed));
 
-	/// [KdTree assign sparse]
-	return std::make_unique<Ponca::KdTreeSparse<DataPoint>>(points, sampling);
-	/// [KdTree assign sparse]
+		return std::make_unique<KdTree<DataPoint>>(points, sampling);
+	}
+	else
+	{
+		// Build to test without subsampling
+		sampling.resize(points.size());
+		std::iota(sampling.begin(), sampling.end(), 0);
+
+		return std::make_unique<KdTree<DataPoint>>(points);
+	}
 }
-
-template<typename DataPoint>
-std::unique_ptr<Ponca::KdTreeDense<DataPoint>> buildKdTreeDense(std::vector<DataPoint>& points, std::vector<int>& sampling) {
-	sampling.resize(points.size());
-	std::iota(sampling.begin(), sampling.end(), 0);
-
-	/// [KdTree assign dense]
-	return std::make_unique<Ponca::KdTreeDense<DataPoint>>(points);
-	/// [KdTree assign dense]
-}
-
 
 template< bool doIndexQuery,
 	typename DataPoint, typename PointContainer,
@@ -284,3 +310,9 @@ testQuery(
 	}
 	return std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::system_clock::now() - time);
 }
+
+// Extended KdTree types
+template <typename DataPoint>
+using KdTreeDensePointers = Ponca::KdTreeDenseBase<Ponca::KdTreePointerTraits<DataPoint>>;
+template <typename DataPoint>
+using KdTreeSparsePointers = Ponca::KdTreeSparseBase<Ponca::KdTreePointerTraits<DataPoint>>;

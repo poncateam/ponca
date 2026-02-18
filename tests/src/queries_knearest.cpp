@@ -75,7 +75,7 @@ void testKNearestNeighborsForAllStructures(const bool quick = QUICK_TESTS)
 	cout << endl;
 	//////////// Test Dense KdTree
 	std::vector<int> sample;
-	KdTreeDense<P> kdtreeDense = *buildKdTreeDense<P>(points, sample);
+	KdTreeDense<P> kdtreeDense = *testBuildKdTree<P, KdTreeDense>(points, sample);
 	timing = testKNearestNeighbors<true>(kdtreeDense, points, sample, retry_number, k);  // Index query test
 	cout << "    Compute Time KdTreeDense index query : " <<  timing.count() << "ms" << endl;
 	timing = testKNearestNeighbors<false>(kdtreeDense, points, sample, retry_number, k); // Position query test
@@ -83,7 +83,7 @@ void testKNearestNeighborsForAllStructures(const bool quick = QUICK_TESTS)
 
 	//////////// Test subsample of KdTree
 	std::vector<int> subSample;
-	KdTreeSparse<P> kdtreeSparse = *buildSubsampledKdTree(points, subSample);
+	KdTreeSparse<P> kdtreeSparse = *testBuildKdTree<P, KdTreeSparse>(points, subSample);
 	timing = testKNearestNeighbors<true>(kdtreeSparse, points, subSample, retry_number, k);  // Index query test
 	cout << "    Compute Time KdTreeSparse position query : " <<  timing.count() << "ms" << endl;
 	timing = testKNearestNeighbors<false>(kdtreeSparse, points, subSample, retry_number, k); // Position query test

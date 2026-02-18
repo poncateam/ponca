@@ -61,13 +61,13 @@ void testNearestNeighborForAllStructures(const bool quick = QUICK_TESTS)
 
 	//////////// Test dense KdTree
 	std::vector<int> sample;
-	KdTreeDense<P> kdtreeDense = *buildKdTreeDense<P>(points, sample);
+	KdTreeDense<P> kdtreeDense = *testBuildKdTree<P, KdTreeDense>(points, sample);
 	testNearestNeighbor<true>(kdtreeDense, points, sample);  // Index query test
 	testNearestNeighbor<false>(kdtreeDense, points, sample); // Position query test
 
 	//////////// Test subsample of KdTree
 	std::vector<int> subSample;
-	KdTreeSparse<P> kdtreeSparse = *buildSubsampledKdTree(points, subSample);
+	KdTreeSparse<P> kdtreeSparse = *testBuildKdTree<P, KdTreeSparse>(points, subSample);
 	testNearestNeighbor<true>(kdtreeSparse, points, subSample);  // Index query test
 	testNearestNeighbor<false>(kdtreeSparse, points, subSample); // Position query test
 

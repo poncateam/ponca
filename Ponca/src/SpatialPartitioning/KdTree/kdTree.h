@@ -178,7 +178,7 @@ public:
         PONCA_MULTIARCH_HOST inline void operator()(Input&& i, PointContainer& o)
         {
             using InputContainer = std::remove_reference_t<Input>;
-            if constexpr (std::is_same_v<InputContainer, PointContainer> && std::is_copy_assignable_v<typename PointContainer::value_type>)
+            if constexpr (std::is_same_v<InputContainer, PointContainer> && std::is_copy_assignable_v<DataPoint>)
                 o = std::forward<Input>(i); // Either move or copy
             else
                 std::transform(i.cbegin(), i.cend(), std::back_inserter(o),
@@ -485,8 +485,10 @@ protected:
     }
 
 private:
-    PONCA_MULTIARCH_HOST inline void buildRec(std::vector<NodeType>& nodes, NodeIndexType node_id, IndexType start, IndexType end, int level);
-    PONCA_MULTIARCH_HOST [[nodiscard]] inline IndexType partition(IndexType start, IndexType end, int dim, Scalar value);
+    template<typename IndexUserContainer>
+    PONCA_MULTIARCH_HOST inline void buildRec(IndexUserContainer ids, std::vector<NodeType>& nodes, NodeIndexType node_id, IndexType start, IndexType end, int level);
+    template<typename IndexUserContainer>
+    PONCA_MULTIARCH_HOST [[nodiscard]] inline IndexType partition(IndexUserContainer ids, IndexType start, IndexType end, int dim, Scalar value);
 };
 
 /*!
@@ -544,7 +546,7 @@ private:
     using Base = KdTreeBase<Traits>;
 
 public:
-    static constexpr bool SUPPORTS_SUBSAMPLING = false;
+    static constexpr bool SUPPORTS_SUBSAMPLING = true;
 
     /// Default constructor creating an empty tree
     /// \see build

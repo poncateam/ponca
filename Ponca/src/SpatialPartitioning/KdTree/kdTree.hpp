@@ -10,7 +10,7 @@ template<typename Traits>
 template<typename PointUserContainer, typename PointConverter>
 void KdTreeBase<Traits>::build(PointUserContainer&& points, PointConverter c)
 {
-    IndexContainer ids(points.size());
+    std::vector<IndexType> ids (points.size());
     std::iota(ids.begin(), ids.end(), IndexType(0));
     this->buildWithSampling(std::forward<PointUserContainer>(points), std::move(ids), std::move(c));
 }
@@ -127,22 +127,23 @@ void KdTreeBase<Traits>::buildWithSampling(
     nodes.emplace_back();
 
     m_indices_size = sampling.size();
-    m_indices = std::move(Traits::template toInternalContainer<IndexContainer>(sampling));
-
-    this->buildRec(nodes, 0, 0, sampleCount(), 1);
+    // TODO Fix uses of sampling in buildRec
+    this->buildRec(sampling, nodes, 0, 0, sampleCount(), 1);
     m_nodes_size = nodes.size();
-    m_nodes = std::move(Traits::template toInternalContainer<NodeContainer>(nodes));
+
+    m_indices = std::move(Traits::template toInternalContainer<IndexContainer>(sampling));
 
     PONCA_DEBUG_ASSERT(valid());
 }
 
 template<typename Traits>
-void KdTreeBase<Traits>::buildRec(std::vector<NodeType>& nodes, NodeIndexType node_id, IndexType start, IndexType end, int level)
+template<typename IndexUserContainer>
+void KdTreeBase<Traits>::buildRec(IndexUserContainer ids, std::vector<NodeType>& nodes, NodeIndexType node_id, IndexType start, IndexType end, int level)
 {
     NodeType& node = nodes[node_id];
     AabbType aabb;
     for(IndexType i=start; i<end; ++i)
-        aabb.extend(m_points[m_indices[i]].pos());
+        aabb.extend(m_points[ids[i]].pos());
 
     node.set_is_leaf(
         end-start <= m_min_cell_size ||
@@ -164,24 +165,25 @@ void KdTreeBase<Traits>::buildRec(std::vector<NodeType>& nodes, NodeIndexType no
         nodes.emplace_back();
         nodes.emplace_back();
 
-        IndexType mid_id = this->partition(start, end, split_dim, node.inner_split_value());
-        buildRec(nodes, node.inner_first_child_id(), start, mid_id, level+1);
-        buildRec(nodes, node.inner_first_child_id()+1, mid_id, end, level+1);
+        IndexType mid_id = this->partition(ids, start, end, split_dim, node.inner_split_value());
+        buildRec(ids, nodes, node.inner_first_child_id(), start, mid_id, level+1);
+        buildRec(ids, nodes, node.inner_first_child_id()+1, mid_id, end, level+1);
     }
 }
 
 template<typename Traits>
-auto KdTreeBase<Traits>::partition(IndexType start, IndexType end, int dim, Scalar value)
+template<typename IndexUserContainer>
+auto KdTreeBase<Traits>::partition(IndexUserContainer ids, IndexType start, IndexType end, int dim, Scalar value)
     -> IndexType
 {
     const auto& points = m_points;
     
-    auto it = std::partition(std::begin(m_indices)+start, std::begin(m_indices)+end, [&](IndexType i)
+    auto it = std::partition(std::begin(ids)+start, std::begin(ids)+end, [&](IndexType i)
     {
         return points[i].pos()[dim] < value;
     });
 
-    auto distance = std::distance(std::begin(m_indices), it);
+    auto distance = std::distance(std::begin(ids), it);
     
     return static_cast<IndexType>(distance);
 }
