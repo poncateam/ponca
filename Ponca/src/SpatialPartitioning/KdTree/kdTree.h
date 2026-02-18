@@ -116,6 +116,24 @@ public:
     using VectorType = typename DataPoint::VectorType; ///< VectorType given by user via DataPoint
     using AabbType   = typename NodeType::AabbType; ///< Bounding box type given by user via NodeType
 
+    /// \brief Internal structure storing all the buffers used by the KdTree
+    struct Buffers
+    {
+        PointContainer points; ///< Buffer storing the input points (read only)
+        NodeContainer nodes;   ///< Buffer storing the nodes of the KdTree
+        IndexContainer indices;///< Buffer storing the indices associating the input points to the nodes
+
+        size_t points_size{0};
+        size_t nodes_size{0};
+        size_t indices_size{0};
+
+        inline Buffers() = default;
+        inline Buffers(PointContainer _points, NodeContainer _nodes, IndexContainer _indices,
+                       const size_t _points_size, const size_t _nodes_size, const size_t _indices_size)
+            : points(_points), nodes(_nodes), indices(_indices),
+              points_size(_points_size), nodes_size(_nodes_size), indices_size(_indices_size){}
+    };
+
     /// \brief The maximum number of nodes that the kd-tree can have.
     static constexpr std::size_t MAX_NODE_COUNT = NodeType::MAX_COUNT;
     /// \brief The maximum number of points that can be stored in the kd-tree.
@@ -135,33 +153,17 @@ public:
     /*! \brief Constructor of the KdTree that uses prebuilt containers directly.
      *
      * Each internal values of a KdTree can be extracted and used to build copy of the KdTree
-     * using the following getter functions :
-     * - `KdTreeBase::pointCount`
-     * - `KdTreeBase::nodeCount`
-     * - `KdTreeBase::sampleCount`
-     * - `KdTreeBase::points`
-     * - `KdTreeBase::nodes`
-     * - `KdTreeBase::samples`
+     * using \ref `KdTreeBase::buffers()`
      *
      * \note The internal containers of the KdTree are passed directly as arguments,
      * which avoids the convertion process and the building process.
-     * This method is usefull to instantiate a copy of the KdTree on the GPU.
+     * This method is useful to instantiate a copy of the KdTree on the GPU.
      *
-     * \see DefaultConverter, build
+     * \see DefaultConverter, build, buffers
      *
-     * \param points The internal point container
-     * \param nodes The internal node container
-     * \param indices The internal index container
-     * \param points_size The number of points in the container
-     * \param nodes_size The number of nodes in the container
-     * \param indices_size The number of indices in the container
+     * \param buf Internal buffers of the KdTree
      */
-    PONCA_MULTIARCH inline KdTreeBase(
-        PointContainer points   , NodeContainer nodes    , IndexContainer indices,
-        const size_t points_size, const size_t nodes_size, const size_t indices_size
-    ) : m_points(points)          , m_nodes(nodes)          , m_indices(indices),
-        m_points_size(points_size), m_nodes_size(nodes_size), m_indices_size(indices_size)
-    { }
+    PONCA_MULTIARCH inline KdTreeBase(const Buffers& buf) : m_bufs(buf) { }
 
     /// Generate a tree from a custom contained type converted using the specified converter
     /// \tparam PointUserContainer Input point container, transformed to PointContainer
@@ -201,19 +203,19 @@ public:
     //! \brief Get the number of nodes in the KdTree
     PONCA_MULTIARCH [[nodiscard]] inline NodeIndexType nodeCount() const
     {
-        return (NodeIndexType)m_nodes_size;
+        return (NodeIndexType)m_bufs.nodes_size;
     }
 
     //! \brief Get the number of indices
     PONCA_MULTIARCH [[nodiscard]] inline IndexType sampleCount() const
     {
-        return (IndexType)m_indices_size;
+        return (IndexType)m_bufs.indices_size;
     }
 
     //! \brief Get the number of points
     PONCA_MULTIARCH [[nodiscard]] inline IndexType pointCount() const
     {
-        return (IndexType)m_points_size;
+        return (IndexType)m_bufs.points_size;
     }
 
     //! \brief Get the number of leafs in the KdTree
@@ -225,25 +227,31 @@ public:
     //! \brief Get the internal point container
     PONCA_MULTIARCH [[nodiscard]] inline PointContainer& points()
     {
-        return m_points;
+        return m_bufs.points;
     };
 
     //! \copybrief KdTreeBase::points
     PONCA_MULTIARCH [[nodiscard]] inline const PointContainer& points() const
     {
-        return m_points;
+        return m_bufs.points;
     };
 
     //! \brief Get the internal node container
     PONCA_MULTIARCH [[nodiscard]] inline const NodeContainer& nodes() const
     {
-        return m_nodes;
+        return m_bufs.nodes;
     }
 
     //! \brief Get the internal indice container
     PONCA_MULTIARCH [[nodiscard]] inline const IndexContainer& samples() const
     {
-        return m_indices;
+        return m_bufs.indices;
+    }
+
+    //! \brief Get access to the internal buffer, for instance to prepare GPU binding
+    PONCA_MULTIARCH [[nodiscard]] inline const Buffers& buffers() const
+    {
+        return m_bufs;
     }
 
     // Parameters --------------------------------------------------------------
@@ -266,7 +274,7 @@ public:
     /// Return the point index associated with the specified sample index
     PONCA_MULTIARCH [[nodiscard]] inline IndexType pointFromSample(IndexType sample_index) const
     {
-        return m_indices[sample_index];
+        return m_bufs.indices[sample_index];
     }
 
     /// Return the \ref DataPoint associated with the specified sample index
@@ -274,7 +282,7 @@ public:
     /// `point_data()[pointFromSample(sample_index)]`
     PONCA_MULTIARCH [[nodiscard]] inline DataPoint& pointDataFromSample(IndexType sample_index)
     {
-        return m_points[pointFromSample(sample_index)];
+        return m_bufs.points[pointFromSample(sample_index)];
     }
     
     /// Return the \ref DataPoint associated with the specified sample index
@@ -282,7 +290,7 @@ public:
     /// `point_data()[pointFromSample(sample_index)]`
     PONCA_MULTIARCH [[nodiscard]] inline const DataPoint& pointDataFromSample(IndexType sample_index) const
     {
-        return m_points[pointFromSample(sample_index)];
+        return m_bufs.points[pointFromSample(sample_index)];
     }
 
     // Query -------------------------------------------------------------------
@@ -444,14 +452,7 @@ public:
 
     // Data --------------------------------------------------------------------
 protected:
-    PointContainer m_points;
-    NodeContainer m_nodes;
-    IndexContainer m_indices;
-
-    size_t m_points_size{0};
-    size_t m_nodes_size{0};
-    size_t m_indices_size{0};
-
+    Buffers m_bufs; ///< Buffers used to store the KdTree
     LeafSizeType m_min_cell_size {64}; ///< Minimal number of points per leaf
     NodeIndexType m_leaf_count {0}; ///< Number of leaves in the Kdtree (computed during construction)
 
