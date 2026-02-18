@@ -15,6 +15,7 @@
  *
  * \tparam DataPoint The DataPoint type.
  * \tparam Fit The Fit that will be computed by the Kernel.
+ * \tparam Node The node type of the KdTree.
  * \param points As an Input, the point cloud.
  * \param nbPoints The number of points in the point cloud
  * \param indices The indices buffer
@@ -25,17 +26,17 @@
  * \param potentialResults As an Output, the potential results of the fit for each point of the Point Cloud.
  * \param gradientResults As an Output, the primitiveGradient results of the fit for each point of the Point Cloud.
  */
-template<typename DataPoint, typename Fit, typename Node, typename Scalar>
+template<typename DataPoint, typename Fit, typename Node>
 __global__ void fitPotentialAndGradientKernel(
-    DataPoint* points,
-    const size_t nbPoints,
-    int* indices,
-    const size_t nbIndices,
+    DataPoint* const points,
+    const unsigned int nbPoints,
+    int* const indices,
+    const unsigned int nbIndices,
     Node * nodes,
-    const size_t nbNodes,
-    const Scalar analysisScale,
-    Scalar* const potentialResults,
-    Scalar* const gradientResults
+    const unsigned int nbNodes,
+    const typename DataPoint::Scalar analysisScale,
+    typename DataPoint::Scalar* const potentialResults,
+    typename DataPoint::Scalar* const gradientResults
 ) {
     using VectorType = typename DataPoint::VectorType;
 
@@ -53,11 +54,7 @@ __global__ void fitPotentialAndGradientKernel(
     fit.setNeighborFilter({ pos, analysisScale });
 
     // Computes the fit
-    fit.init();
-    for (int j : kdtree.rangeNeighbors(i, analysisScale)) {
-        fit.addNeighbor( points[j] );
-    }
-    fit.finalize();
+    fit.computeWithIds(kdtree.rangeNeighbors(i, analysisScale), points);
 
     // Returns NaN if not stable
     if (! fit.isStable()) {
@@ -96,13 +93,13 @@ __host__ void testPlaneCuda(
     typedef typename DataPoint::VectorType VectorType;
 
     // Point cloud parameters for the plane
-    const int nbPoints  = Eigen::internal::random<int>(100, 1000);
-    const Scalar width  = Eigen::internal::random<Scalar>(1., 10.);
-    const Scalar height = width;
-    const Scalar analysisScale = Scalar(15.) * std::sqrt( width * height / nbPoints);
-    const Scalar centerScale   = Eigen::internal::random<Scalar>(1, 10000);
-    const VectorType center    = VectorType::Random() * centerScale;
-    const VectorType direction = VectorType::Random().normalized();
+    const unsigned int nbPoints = Eigen::internal::random<int>(100, 1000);
+    const Scalar width          = Eigen::internal::random<Scalar>(1., 10.);
+    const Scalar height         = width;
+    const Scalar analysisScale  = Scalar(15.) * std::sqrt( width * height / nbPoints);
+    const Scalar centerScale    = Eigen::internal::random<Scalar>(1, 10000);
+    const VectorType center     = VectorType::Random() * centerScale;
+    const VectorType direction  = VectorType::Random().normalized();
 
     // Generate the point cloud
     std::vector<DataPoint> points(nbPoints);
@@ -118,7 +115,7 @@ __host__ void testPlaneCuda(
 
     typedef typename Ponca::KdTreeDefaultTraits<DataPoint>::NodeType NodeType;
 
-    std::cout << "nodes size : " << kdtree.nodeCount() << std::endl;
+    std::cout << "Number of nodes in the KdTree : " << kdtree.nodeCount() << std::endl;
 
     // The size of the data we send between Host and Device
     const unsigned long pointBufferSize      = nbPoints * sizeof(DataPoint);
@@ -127,11 +124,10 @@ __host__ void testPlaneCuda(
     const unsigned long nodeBufferSize       = kdtree.nodeCount() * sizeof(NodeType);
     const unsigned long indexBufferSize      = kdtree.sampleCount() * sizeof(int);
 
-
     // Send inputs to the GPU (Host to Device)
     DataPoint* pointsDevice;
-    int* indicesDevice;
-    NodeType* nodesDevice;
+    int*       indicesDevice;
+    NodeType*  nodesDevice;
 
     CUDA_CHECK(cudaMalloc(&pointsDevice         , pointBufferSize ));
     CUDA_CHECK(cudaMalloc(&indicesDevice        , indexBufferSize));
@@ -150,8 +146,8 @@ __host__ void testPlaneCuda(
     CUDA_CHECK(cudaMalloc(&gradientResultsDevice , vectorBufferSize));
 
     // Set block and grid size depending on number of points
-    constexpr int blockSize = 128;
-    const     int gridSize  = (nbPoints + blockSize - 1) / blockSize;
+    constexpr unsigned int blockSize = 128;
+    const     unsigned int gridSize  = (nbPoints + blockSize - 1) / blockSize;
 
     // Compute the fitting in the kernel
     fitPotentialAndGradientKernel<DataPoint, MeanFitSmooth><<<gridSize, blockSize>>>(
@@ -159,7 +155,7 @@ __host__ void testPlaneCuda(
         indicesDevice, kdtree.sampleCount(),
         nodesDevice  , kdtree.nodeCount(),
         analysisScale,
-        potentialResultsDevice, gradientResultsDevice
+        potentialResultsDevice, gradientResultsDevice // Outputs
     );
     CUDA_CHECK(cudaDeviceSynchronize());
 
