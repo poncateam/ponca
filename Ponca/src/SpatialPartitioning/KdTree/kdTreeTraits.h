@@ -416,7 +416,7 @@ struct KdTreePointerTraits
      * \see KdTreeBase
      */
     template <typename InternalContainer, typename InputContainer>
-    [[nodiscard]] static PONCA_MULTIARCH_HOST inline InternalContainer& toInternalContainer ( InputContainer & input)
+    [[nodiscard]] static PONCA_MULTIARCH_HOST inline InternalContainer toInternalContainer ( InputContainer & input)
     {
         return input.data();
     }

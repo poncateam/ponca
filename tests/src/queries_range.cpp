@@ -53,15 +53,23 @@ void testRangeNeighborsForAllStructures(const bool quick = QUICK_TESTS)
 
 	//////////// Test dense KdTree
 	std::vector<int> sample;
-	KdTreeDense<P> kdtreeDense = *buildKdTreeDense<P>(points, sample);
+	KdTreeDense<P> kdtreeDense = *testBuildKdTree<P, KdTreeDense>(points, sample);
 	timing = testRangeNeighbors<true>(kdtreeDense, points, sample, retry_number);  // Index query test
 	cout << "    Compute Time KdTreeDense index query : " <<  timing.count() << "ms" << endl;
 	timing = testRangeNeighbors<false>(kdtreeDense, points, sample, retry_number); // Position query test
 	cout << "    Compute Time KdTreeDense position query : " <<  timing.count() << "ms" << endl;
 
+	// TODO : Add the KdTreeDensePointers and KdTreeSparsePointers test
+	// std::vector<int> sample2;
+	// KdTreeDensePointers<P> kdtreeDenseP = *testBuildKdTree<P, KdTreeDensePointers>(points, sample2);
+	// timing = testRangeNeighbors<true>(kdtreeDenseP, points, sample2, retry_number);  // Index query test
+	// cout << "    Compute Time KdTreeDense index query : " <<  timing.count() << "ms" << endl;
+	// timing = testRangeNeighbors<false>(kdtreeDenseP, points, sample2, retry_number); // Position query test
+	// cout << "    Compute Time KdTreeDense position query : " <<  timing.count() << "ms" << endl;
+
 	//////////// Test subsample of KdTree
 	std::vector<int> subSample;
-	KdTreeSparse<P> kdtreeSparse = *buildSubsampledKdTree(points, subSample);
+	KdTreeSparse<P> kdtreeSparse = *testBuildKdTree<P, KdTreeSparse>(points, subSample);
 	timing = testRangeNeighbors<true>(kdtreeSparse, points, subSample, retry_number);  // Index query test
 	cout << "    Compute Time KdTreeSparse index query : " <<  timing.count() << "ms" << endl;
 	timing = testRangeNeighbors<false>(kdtreeSparse, points, subSample, retry_number); // Position query test
@@ -77,7 +85,7 @@ void testRangeNeighborsForAllStructures(const bool quick = QUICK_TESTS)
 	cout << "  (ok)" << endl;
 }
 
-int main(int argc, char** argv)
+int main(const int argc, char** argv)
 {
 	if (!init_testing(argc, argv))
 		return EXIT_FAILURE;
