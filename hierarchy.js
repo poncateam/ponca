@@ -4,24 +4,29 @@ var hierarchy =
       [ "Ponca::BasketComputeObject< _Derived, _Base >", "structPonca_1_1BasketComputeObject.html", null ]
     ] ],
     [ "_NeighborhoodFrame", null, [
-      [ "Ponca::NoWeightFuncBase< DataPoint, _NeighborhoodFrame >", "classPonca_1_1NoWeightFuncBase.html", null ]
+      [ "Ponca::NoWeightFuncBase< DataPoint, _NeighborhoodFrame >", "classPonca_1_1NoWeightFuncBase.html", [
+        [ "Ponca::NeighborFilterStoreNormal< DataPoint, NoWeightFunc< DataPoint > >", "classPonca_1_1NeighborFilterStoreNormal.html", null ]
+      ] ]
     ] ],
     [ "Ponca::CenteredNeighborhoodFrame< DataPoint >", "classPonca_1_1CenteredNeighborhoodFrame.html", [
       [ "Ponca::DistWeightFunc< DataPoint, WeightKernel >", "classPonca_1_1DistWeightFunc.html", null ]
     ] ],
+    [ "Ponca::internal::CNCEigen< DataPoint >", "structPonca_1_1internal_1_1CNCEigen.html", null ],
     [ "Ponca::ComputeObject< Derived >", "structPonca_1_1ComputeObject.html", [
       [ "Ponca::BasketComputeObject< Basket< P, NF, Ext0, Exts... >, internal::BasketAggregate< P, NF, Ext0, Exts... >::type >", "structPonca_1_1BasketComputeObject.html", [
         [ "Ponca::Basket< P, NF, Ext0, Exts >", "classPonca_1_1Basket.html", null ]
       ] ],
       [ "Ponca::BasketComputeObject< BasketDiff< BasketType, Type, Ext0, Exts... >, internal::BasketDiffAggregate< BasketType, Type, Ext0, Exts... >::type >", "structPonca_1_1BasketComputeObject.html", [
         [ "Ponca::BasketDiff< BasketType, Type, Ext0, Exts >", "classPonca_1_1BasketDiff.html", null ]
-      ] ]
+      ] ],
+      [ "Ponca::CNC< P, _method >", "classPonca_1_1CNC.html", null ]
     ] ],
     [ "Ponca::ComputeObject< _Derived >", "structPonca_1_1ComputeObject.html", [
       [ "Ponca::BasketComputeObject< _Derived, _Base >", "structPonca_1_1BasketComputeObject.html", null ]
     ] ],
     [ "Ponca::ComputeObject< Basket< P, NF, Ext0, Exts... > >", "structPonca_1_1ComputeObject.html", null ],
     [ "Ponca::ComputeObject< BasketDiff< BasketType, Type, Ext0, Exts... > >", "structPonca_1_1ComputeObject.html", null ],
+    [ "Ponca::ComputeObject< CNC< P, UniformGeneration > >", "structPonca_1_1ComputeObject.html", null ],
     [ "Ponca::KdTreeBase< Traits >::DefaultConverter", "structPonca_1_1KdTreeBase_1_1DefaultConverter.html", null ],
     [ "Ponca::QueryOutputBase::DummyOutputParameter", "group__spatialpartitioning.html#structPonca_1_1QueryOutputBase_1_1DummyOutputParameter", null ],
     [ "Concept::FittingExtensionConcept", null, [
@@ -47,6 +52,10 @@ var hierarchy =
       [ "Ponca::UnorientedSphereFitImpl< DataPoint, _NFilter, T >", "classPonca_1_1UnorientedSphereFitImpl.html", null ]
     ] ],
     [ "Ponca::GlobalNeighborhoodFrame< DataPoint >", "classPonca_1_1GlobalNeighborhoodFrame.html", null ],
+    [ "Ponca::internal::HexagramBase< P >", "structPonca_1_1internal_1_1HexagramBase.html", [
+      [ "Ponca::internal::TriangleGenerator< AvgHexagramGeneration, P >", "structPonca_1_1internal_1_1TriangleGenerator_3_01AvgHexagramGeneration_00_01P_01_4.html", null ],
+      [ "Ponca::internal::TriangleGenerator< HexagramGeneration, P >", "structPonca_1_1internal_1_1TriangleGenerator_3_01HexagramGeneration_00_01P_01_4.html", null ]
+    ] ],
     [ "Eigen::Hyperplane", null, [
       [ "Ponca::Plane< DataPoint, _NFilter, T >", "classPonca_1_1Plane.html", null ]
     ] ],
@@ -100,6 +109,9 @@ var hierarchy =
     [ "Ponca::limited_priority_queue< Ponca::IndexSquaredDistance< Index, DataPoint::Scalar > >", "classPonca_1_1limited__priority__queue.html", null ],
     [ "Ponca::limited_priority_queue< Ponca::IndexSquaredDistance< Index, Scalar > >", "classPonca_1_1limited__priority__queue.html", null ],
     [ "Ponca::limited_priority_queue< Ponca::IndexSquaredDistance< Traits::IndexType, Traits::DataPoint::Scalar > >", "classPonca_1_1limited__priority__queue.html", null ],
+    [ "NeighborFilter", null, [
+      [ "Ponca::NeighborFilterStoreNormal< DataPoint, NeighborFilter >", "classPonca_1_1NeighborFilterStoreNormal.html", null ]
+    ] ],
     [ "Output_", null, [
       [ "Ponca::Query< Input_, Output_ >", "group__spatialpartitioning.html#structPonca_1_1Query", null ]
     ] ],
@@ -177,6 +189,7 @@ var hierarchy =
       [ "Ponca::KdTreeNearestQueryBase< Traits, IteratorType, QueryType >", "classPonca_1_1KdTreeNearestQueryBase.html", null ],
       [ "Ponca::KdTreeRangeQueryBase< Traits, IteratorType, QueryType >", "classPonca_1_1KdTreeRangeQueryBase.html", null ]
     ] ],
+    [ "Ponca::internal::CNCEigen< DataPoint >::SphericalTriangle", "structPonca_1_1internal_1_1CNCEigen_1_1SphericalTriangle.html", null ],
     [ "Ponca::Stack< T, N >", "classPonca_1_1Stack.html", null ],
     [ "Ponca::Stack< Ponca::IndexSquaredDistance< IndexType, Scalar >, 2 *Traits::MAX_DEPTH >", "classPonca_1_1Stack.html", null ],
     [ "T", null, [
@@ -209,6 +222,10 @@ var hierarchy =
       [ "Ponca::UnorientedSphereDerImpl< DataPoint, _NFilter, DiffType, T >", "classPonca_1_1UnorientedSphereDerImpl.html", null ],
       [ "Ponca::UnorientedSphereFitImpl< DataPoint, _NFilter, T >", "classPonca_1_1UnorientedSphereFitImpl.html", null ]
     ] ],
+    [ "Ponca::internal::Triangle< DataPoint >", "structPonca_1_1internal_1_1Triangle.html", null ],
+    [ "Ponca::internal::TriangleGenerator< Method, P >", "structPonca_1_1internal_1_1TriangleGenerator.html", null ],
+    [ "Ponca::internal::TriangleGenerator< IndependentGeneration, P >", "structPonca_1_1internal_1_1TriangleGenerator_3_01IndependentGeneration_00_01P_01_4.html", null ],
+    [ "Ponca::internal::TriangleGenerator< UniformGeneration, P >", "structPonca_1_1internal_1_1TriangleGenerator_3_01UniformGeneration_00_01P_01_4.html", null ],
     [ "internal::BasketAggregate::type", null, [
       [ "Ponca::BasketComputeObject< Basket< P, NF, Ext0, Exts... >, internal::BasketAggregate< P, NF, Ext0, Exts... >::type >", "structPonca_1_1BasketComputeObject.html", null ]
     ] ],

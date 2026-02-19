@@ -51,7 +51,7 @@ MathJax.Hub.Config({
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Ponca
-   &#160;<span id="projectnumber">b656c2152366385dc728b5efd8e74bd08671684f</span>
+   &#160;<span id="projectnumber">3796622fcbcb95404bf3618c84fb026eb5fdd4e9</span>
    </div>
    <div id="projectbrief">Point Cloud Analysis library</div>
   </td>
@@ -183,10 +183,10 @@ Public Member Functions</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-types" name="pro-types"></a>
 Protected Types</h2></td></tr>
-<tr class="memitem:ab73bd4925d2af2728cd0caed0c2b741f" id="r_ab73bd4925d2af2728cd0caed0c2b741f"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom">{ <b>Check</b>
-, <a class="el" href="classPonca_1_1MeanNormalDer.html#ab73bd4925d2af2728cd0caed0c2b741faa6264c4d86db96632635b0d6e683a9bc">PROVIDES_MEAN_NORMAL_DERIVATIVE</a>
+<tr class="memitem:ae700871f10e19d4d70a131383d488810" id="r_ae700871f10e19d4d70a131383d488810"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom">{ <b>Check</b>
+, <a class="el" href="classPonca_1_1MeanNormalDer.html#ae700871f10e19d4d70a131383d488810aa6264c4d86db96632635b0d6e683a9bc">PROVIDES_MEAN_NORMAL_DERIVATIVE</a>
  }</td></tr>
-<tr class="separator:ab73bd4925d2af2728cd0caed0c2b741f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="separator:ae700871f10e19d4d70a131383d488810"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8534f58195fa7199ad1aa8b45458c725" id="r_a8534f58195fa7199ad1aa8b45458c725"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1MeanNormalDer.html#a8534f58195fa7199ad1aa8b45458c725">Base</a> = T</td></tr>
 <tr class="memdesc:a8534f58195fa7199ad1aa8b45458c725"><td class="mdescLeft">&#160;</td><td class="mdescRight">Base class of the procedure.  <br /></td></tr>
 <tr class="separator:a8534f58195fa7199ad1aa8b45458c725"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -333,8 +333,8 @@ template&lt;class DataPoint , class _NFilter , int DiffType, typename T &gt; </d
 </div>
 </div>
 <h2 class="groupheader">Member Enumeration Documentation</h2>
-<a id="ab73bd4925d2af2728cd0caed0c2b741f" name="ab73bd4925d2af2728cd0caed0c2b741f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ab73bd4925d2af2728cd0caed0c2b741f">&#9670;&#160;</a></span>anonymous enum</h2>
+<a id="ae700871f10e19d4d70a131383d488810" name="ae700871f10e19d4d70a131383d488810"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae700871f10e19d4d70a131383d488810">&#9670;&#160;</a></span>anonymous enum</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -355,7 +355,7 @@ template&lt;class DataPoint , class _NFilter , int DiffType, typename T &gt; </d
 </table>
 </div><div class="memdoc">
 <table class="fieldtable">
-<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="ab73bd4925d2af2728cd0caed0c2b741faa6264c4d86db96632635b0d6e683a9bc" name="ab73bd4925d2af2728cd0caed0c2b741faa6264c4d86db96632635b0d6e683a9bc"></a>PROVIDES_MEAN_NORMAL_DERIVATIVE&#160;</td><td class="fielddoc"><p>Provides derivative of the mean normal. </p>
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="ae700871f10e19d4d70a131383d488810aa6264c4d86db96632635b0d6e683a9bc" name="ae700871f10e19d4d70a131383d488810aa6264c4d86db96632635b0d6e683a9bc"></a>PROVIDES_MEAN_NORMAL_DERIVATIVE&#160;</td><td class="fielddoc"><p>Provides derivative of the mean normal. </p>
 </td></tr>
 </table>
 
@@ -445,7 +445,7 @@ template&lt;class DataPoint , class _NFilter , int DiffType, typename T &gt; </d
 </div><div class="memdoc">
 
 <p>Compute the derivative of the mean normal vector of the input points. </p>
-<h3><a class="anchor" id="autotoc_md2"></a>
+<h3><a class="anchor" id="autotoc_md4"></a>
 Step-by-step derivation of the mean normal :</h3>
 <p>Given the definition of the mean normal \( n(\mathbf{x}) = \frac{\sum_i w_\mathbf{x}(\mathbf{p_i}) \mathbf{n_i}}{\sum_i w_\mathbf{x}(\mathbf{p_i})} \), where \(\left[\mathbf{p_i}, \mathbf{n_i} \in \text{neighborhood}(\mathbf{x})\right]\) are all the point and normal samples in \(\mathbf{x}\)'s neighborhood.</p>
 <p>We denote \( t(\mathbf{x}) = \sum_i w_\mathbf{x}(\mathbf{p_i}) \mathbf{n_i} \) and \( s(\mathbf{x}) = \sum_i w_\mathbf{x}(\mathbf{p_i})\), such that \( n(\mathbf{x}) = \frac{t(\mathbf{x})}{s(\mathbf{x})}\).</p>
@@ -588,7 +588,7 @@ template&lt;class DataPoint , class _NFilter , int DiffType, typename T &gt; </d
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="namespacePonca.html">Ponca</a></li><li class="navelem"><a class="el" href="classPonca_1_1MeanNormalDer.html">MeanNormalDer</a></li>
-    <li class="footer">Generated on Tue Feb 17 2026 16:17:45 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
+    <li class="footer">Generated on Thu Feb 19 2026 16:13:04 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
   </ul>
 </div>
 </body>

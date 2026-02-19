@@ -178,9 +178,9 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "annotated.html",
-"classPonca_1_1KdTreeBase.html#aa729820113ec273e46953241a9c9588d",
-"classPonca_1_1NormalCovarianceCurvatureEstimator.html#af48f2e98a00948a8396781c3e2c73206",
-"example_python_ssc_page.html#pyssgl_cuda_access_sec"
+"classPonca_1_1KdTreeBase.html",
+"classPonca_1_1NoWeightFuncBase.html",
+"example_cu_ssc_page.html#cu_ssgl_cuda_fit_sec"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

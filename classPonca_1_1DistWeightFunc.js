@@ -6,6 +6,7 @@ var classPonca_1_1DistWeightFunc =
     [ "VectorType", "classPonca_1_1DistWeightFunc.html#ae7a2237f5c6983f49cfe6b73146666f2", null ],
     [ "WeightReturnType", "classPonca_1_1DistWeightFunc.html#a9f637587b83b4a0e7db3a5499f939010", null ],
     [ "DistWeightFunc", "classPonca_1_1DistWeightFunc.html#a3c1c1d4bab9cb7d98ccbdc9317f172a8", null ],
+    [ "DistWeightFunc", "classPonca_1_1DistWeightFunc.html#adabc0d391303db64a5fe6fbe27500ea9", null ],
     [ "evalScale", "classPonca_1_1DistWeightFunc.html#a3e6e344a75df11f64952f7b099355a36", null ],
     [ "operator()", "classPonca_1_1DistWeightFunc.html#ab613686349f50418a37367b8fd027a2e", null ],
     [ "scaled2w", "classPonca_1_1DistWeightFunc.html#a1ccbacac342ed1e66ef0423fdaf9c00d", null ],

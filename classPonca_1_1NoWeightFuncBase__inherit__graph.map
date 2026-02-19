@@ -1,5 +1,7 @@
 <map id="Ponca::NoWeightFuncBase&lt; DataPoint, _NeighborhoodFrame &gt;" name="Ponca::NoWeightFuncBase&lt; DataPoint, _NeighborhoodFrame &gt;">
-<area shape="rect" id="Node000001" title="Base Weighting function that set uniform weight to all samples." alt="" coords="5,133,260,333"/>
+<area shape="rect" id="Node000001" title="Base Weighting function that set uniform weight to all samples." alt="" coords="5,133,260,353"/>
+<area shape="rect" id="Node000003" href="$classPonca_1_1NeighborFilterStoreNormal.html" title=" " alt="" coords="11,401,254,536"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="135,367,135,401,130,401,130,367"/>
 <area shape="rect" id="Node000002" title=" " alt="" coords="56,5,209,85"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="135,99,135,133,130,133,130,99"/>
 </map>

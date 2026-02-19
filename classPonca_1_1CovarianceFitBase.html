@@ -51,7 +51,7 @@ MathJax.Hub.Config({
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Ponca
-   &#160;<span id="projectnumber">b656c2152366385dc728b5efd8e74bd08671684f</span>
+   &#160;<span id="projectnumber">3796622fcbcb95404bf3618c84fb026eb5fdd4e9</span>
    </div>
    <div id="projectbrief">Point Cloud Analysis library</div>
   </td>
@@ -213,10 +213,10 @@ Public Member Functions</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-types" name="pro-types"></a>
 Protected Types</h2></td></tr>
-<tr class="memitem:aa7ab7f37787125a32538c3419f42787c" id="r_aa7ab7f37787125a32538c3419f42787c"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom">{ <b>Check</b> = Base::PROVIDES_MEAN_POSITION
+<tr class="memitem:ac7a870b0ec111fe2ae4a58010f3b9e04" id="r_ac7a870b0ec111fe2ae4a58010f3b9e04"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom">{ <b>Check</b> = Base::PROVIDES_MEAN_POSITION
 , <b>PROVIDES_POSITION_COVARIANCE</b>
  }</td></tr>
-<tr class="separator:aa7ab7f37787125a32538c3419f42787c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="separator:ac7a870b0ec111fe2ae4a58010f3b9e04"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2219cefe4363d96009aa2cb2a9e6161e" id="r_a2219cefe4363d96009aa2cb2a9e6161e"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1CovarianceFitBase.html#a2219cefe4363d96009aa2cb2a9e6161e">Base</a> = T</td></tr>
 <tr class="memdesc:a2219cefe4363d96009aa2cb2a9e6161e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Base class of the procedure.  <br /></td></tr>
 <tr class="separator:a2219cefe4363d96009aa2cb2a9e6161e"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -235,7 +235,7 @@ Protected Attributes</h2></td></tr>
 class Ponca::CovarianceFitBase&lt; DataPoint, _NFilter, T &gt;</div><p>Procedure that compute and decompose the covariance matrix of the neighbors positions in \(3d\). </p>
 <p>This process is commonly used for plane fitting and local variance analysis. It is often called Principal Component Analysis (PCA) of the neighborhood, and used in Geometry Processing and Computer Vision.</p>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="namespacePonca.html#a4ff3ffd27d5eaf805221e4e2f39469dd" title="Helper alias for Plane fitting on 3D points using CovariancePlaneFitImpl [CovariancePlaneFit Definiti...">CovariancePlaneFit</a> which use a similar approach for <a class="el" href="classPonca_1_1Plane.html" title="Implicit hyperplane defined by an homogeneous vector .">Plane</a> estimation</dd></dl>
-<h3><a class="anchor" id="autotoc_md0"></a>
+<h3><a class="anchor" id="autotoc_md2"></a>
 Computation details</h3>
 <p>Standard PCA algorithm involves a two-steps process where the barycenter \(\mathbf{b}\) is first computed, and then the covariance matrix \(\text{C}\) (in the following, the weights are ignored for clarity but without loss of generality):  </p><p class="formulaDsp">
 \begin{align}
@@ -388,8 +388,8 @@ template&lt;class DataPoint , class _NFilter , typename T &gt; </div>
 </div>
 </div>
 <h2 class="groupheader">Member Enumeration Documentation</h2>
-<a id="aa7ab7f37787125a32538c3419f42787c" name="aa7ab7f37787125a32538c3419f42787c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa7ab7f37787125a32538c3419f42787c">&#9670;&#160;</a></span>anonymous enum</h2>
+<a id="ac7a870b0ec111fe2ae4a58010f3b9e04" name="ac7a870b0ec111fe2ae4a58010f3b9e04"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac7a870b0ec111fe2ae4a58010f3b9e04">&#9670;&#160;</a></span>anonymous enum</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -980,7 +980,7 @@ template&lt;class DataPoint , class _NFilter , typename T &gt; </div>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="namespacePonca.html">Ponca</a></li><li class="navelem"><a class="el" href="classPonca_1_1CovarianceFitBase.html">CovarianceFitBase</a></li>
-    <li class="footer">Generated on Tue Feb 17 2026 16:17:45 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
+    <li class="footer">Generated on Thu Feb 19 2026 16:13:03 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
   </ul>
 </div>
 </body>

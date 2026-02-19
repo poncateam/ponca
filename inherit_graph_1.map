@@ -1,5 +1,7 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="Node000000" title=" " alt="" coords="5,13,167,38"/>
-<area shape="rect" id="Node000001" href="$classPonca_1_1NoWeightFuncBase.html" title="Base Weighting function that set uniform weight to all samples." alt="" coords="215,5,477,45"/>
-<area shape="poly" id="edge3_Node000000_Node000001" title=" " alt="" coords="181,23,214,23,214,28,181,28"/>
+<area shape="rect" id="Node000000" title=" " alt="" coords="5,20,167,45"/>
+<area shape="rect" id="Node000001" href="$classPonca_1_1NoWeightFuncBase.html" title="Base Weighting function that set uniform weight to all samples." alt="" coords="215,13,477,53"/>
+<area shape="poly" id="edge3_Node000000_Node000001" title=" " alt="" coords="181,30,214,30,214,35,181,35"/>
+<area shape="rect" id="Node000002" href="$classPonca_1_1NeighborFilterStoreNormal.html" title=" " alt="" coords="525,5,776,60"/>
+<area shape="poly" id="edge4_Node000001_Node000002" title=" " alt="" coords="491,30,525,30,525,35,491,35"/>
 </map>

@@ -1,3 +1,17 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="Node000000" href="$structPonca_1_1IndexSquaredDistance.html" title=" " alt="" coords="5,5,220,45"/>
+<area shape="rect" id="Node000000" href="$structPonca_1_1ComputeObject.html" title="ComputeObject is a virtual object that represents an algorithm which can be used with the compute fun..." alt="" coords="27,92,198,132"/>
+<area shape="rect" id="Node000001" href="$structPonca_1_1BasketComputeObject.html" title=" " alt="" coords="285,5,508,75"/>
+<area shape="poly" id="edge68_Node000000_Node000001" title=" " alt="" coords="205,86,285,66,286,71,206,91"/>
+<area shape="rect" id="Node000004" href="$structPonca_1_1BasketComputeObject.html" title=" " alt="" coords="268,149,525,233"/>
+<area shape="poly" id="edge70_Node000000_Node000004" title=" " alt="" coords="200,133,269,152,267,158,198,138"/>
+<area shape="rect" id="Node000007" href="$classPonca_1_1CNC.html" title="Corrected Normal Current Fit type." alt="" coords="297,99,497,125"/>
+<area shape="poly" id="edge72_Node000000_Node000007" title=" " alt="" coords="212,109,296,109,296,115,212,115"/>
+<area shape="rect" id="Node000002" href="$classPonca_1_1Basket.html" title="Aggregator class used to declare specialized structures using CRTP." alt="" coords="579,20,746,60"/>
+<area shape="poly" id="edge69_Node000001_Node000002" title=" " alt="" coords="522,37,579,37,579,43,522,43"/>
+<area shape="rect" id="Node000005" href="$classPonca_1_1BasketDiff.html" title="Aggregator class used to declare specialized structures with derivatives computations,..." alt="" coords="573,163,752,218"/>
+<area shape="poly" id="edge71_Node000004_Node000005" title=" " alt="" coords="539,188,573,188,573,193,539,193"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="17,20,208,60"/>
+<area shape="poly" id="edge73_Node000003_Node000001" title=" " alt="" coords="222,37,285,37,285,43,222,43"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="5,171,220,211"/>
+<area shape="poly" id="edge74_Node000006_Node000004" title=" " alt="" coords="234,188,268,188,268,193,234,193"/>
 </map>

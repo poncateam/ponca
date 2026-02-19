@@ -1,13 +1,15 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="Node000000" href="$classPonca_1_1KdTreeQuery.html" title="Query object that provides a method to search neighbors on the KdTree depending on a distance thresho..." alt="" coords="5,63,157,103"/>
-<area shape="rect" id="Node000001" href="$classPonca_1_1KdTreeKNearestQueryBase.html" title="Extension of the Query class that allows to read the result of a k&#45;nearest neighbors search on the Kd..." alt="" coords="212,5,424,60"/>
-<area shape="poly" id="edge80_Node000000_Node000001" title=" " alt="" coords="170,62,211,53,213,58,171,67"/>
-<area shape="rect" id="Node000003" href="$classPonca_1_1KdTreeNearestQueryBase.html" title="Extension of the Query class that allows to read the result of a nearest neighbor search on the KdTre..." alt="" coords="217,84,419,139"/>
-<area shape="poly" id="edge81_Node000000_Node000003" title=" " alt="" coords="171,91,217,97,216,102,171,97"/>
-<area shape="rect" id="Node000004" href="$classPonca_1_1KdTreeRangeQueryBase.html" title="Extension of the Query class that allows to read the result of a range neighbors search on the KdTree..." alt="" coords="205,163,431,217"/>
-<area shape="poly" id="edge82_Node000000_Node000004" title=" " alt="" coords="148,107,159,113,183,132,207,149,230,160,228,165,204,154,180,136,156,118,145,112"/>
-<area shape="rect" id="Node000002" title=" " alt="" coords="36,128,127,153"/>
-<area shape="poly" id="edge83_Node000002_Node000001" title=" " alt="" coords="138,122,156,113,170,102,179,92,189,80,204,69,226,58,228,62,207,74,193,84,183,95,174,106,159,118,141,127"/>
-<area shape="poly" id="edge84_Node000002_Node000003" title=" " alt="" coords="140,131,216,121,217,127,141,136"/>
-<area shape="poly" id="edge85_Node000002_Node000004" title=" " alt="" coords="140,150,206,164,205,169,139,155"/>
+<area shape="rect" id="Node000000" href="$classPonca_1_1KdTreeBase.html" title="[KdTreeSparse type definition]" alt="" coords="5,127,161,167"/>
+<area shape="rect" id="Node000001" href="$classPonca_1_1KdTreeDenseBase.html" title=" " alt="" coords="211,5,397,60"/>
+<area shape="poly" id="edge78_Node000000_Node000001" title=" " alt="" coords="126,117,208,70,234,58,237,63,211,75,129,122"/>
+<area shape="rect" id="Node000003" href="$classPonca_1_1KdTreeSparseBase.html" title=" " alt="" coords="209,84,399,139"/>
+<area shape="poly" id="edge80_Node000000_Node000003" title=" " alt="" coords="174,130,209,124,210,129,175,135"/>
+<area shape="rect" id="Node000005" href="$classPonca_1_1KdTreeDenseBase.html" title="Customizable base class for dense KdTree datastructure." alt="" coords="211,163,397,203"/>
+<area shape="poly" id="edge82_Node000000_Node000005" title=" " alt="" coords="175,160,211,165,210,171,174,165"/>
+<area shape="rect" id="Node000006" href="$classPonca_1_1KdTreeSparseBase.html" title="Customizable base class for KdTreeSparse datastructure." alt="" coords="209,227,399,267"/>
+<area shape="poly" id="edge83_Node000000_Node000006" title=" " alt="" coords="131,172,210,213,240,225,238,230,208,218,128,176"/>
+<area shape="rect" id="Node000002" href="$structPonca_1_1KdTreeDense.html" title="[KdTree type definition]" alt="" coords="448,13,603,53"/>
+<area shape="poly" id="edge79_Node000001_Node000002" title=" " alt="" coords="411,30,448,30,448,35,411,35"/>
+<area shape="rect" id="Node000004" href="$structPonca_1_1KdTreeSparse.html" title="[KdTreeDense type definition]" alt="" coords="447,91,604,131"/>
+<area shape="poly" id="edge81_Node000003_Node000004" title=" " alt="" coords="412,109,446,109,446,114,412,114"/>
 </map>

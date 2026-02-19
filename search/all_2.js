@@ -1,7 +1,7 @@
 var searchData=
 [
   ['barycenter_0',['barycenter',['../classPonca_1_1MeanPosition.html#af90009673cac3854bbac71da93a231ef',1,'Ponca::MeanPosition']]],
-  ['barycenter_20definition_1',['Step-by-step derivation from the barycenter definition',['../classPonca_1_1MeanPositionDer.html#autotoc_md1',1,'']]],
+  ['barycenter_20definition_1',['Step-by-step derivation from the barycenter definition',['../classPonca_1_1MeanPositionDer.html#autotoc_md3',1,'']]],
   ['barycenterderivatives_2',['barycenterDerivatives',['../classPonca_1_1MeanPositionDer.html#af974ebf95f5506b7ce5bad39c47dac8d',1,'Ponca::MeanPositionDer']]],
   ['barycenterdistance_3',['barycenterDistance',['../classPonca_1_1MeanPosition.html#a205ba9f04c9b97b333e944dd7ad58fe9',1,'Ponca::MeanPosition']]],
   ['barycenterlocal_4',['barycenterLocal',['../classPonca_1_1MeanPosition.html#a5e718c8f816ef10d563ec5aa169bef03',1,'Ponca::MeanPosition']]],
@@ -26,6 +26,6 @@ var searchData=
   ['binding_23',['Ponca data-structure binding',['../example_cxx_binding_page.html',1,'example_page']]],
   ['build_24',['build',['../classPonca_1_1KdTreeBase.html#a99006c2a38313a2a472d92f68ff2d38d',1,'Ponca::KdTreeBase::build(PointUserContainer &amp;&amp;points)'],['../classPonca_1_1KdTreeBase.html#a4571ce576ef11454f524a102f7644d01',1,'Ponca::KdTreeBase::build(PointUserContainer &amp;&amp;points, Converter c)']]],
   ['buildwithsampling_25',['buildwithsampling',['../classPonca_1_1KdTreeSparseBase.html#aaa423035de54c90cdcf787de39cbfcc8',1,'Ponca::KdTreeSparseBase::buildWithSampling(PointUserContainer &amp;&amp;points, IndexUserContainer sampling)'],['../classPonca_1_1KdTreeSparseBase.html#afeff799fa0a293195e04735a21852ae0',1,'Ponca::KdTreeSparseBase::buildWithSampling(PointUserContainer &amp;&amp;points, IndexUserContainer sampling, Converter c)'],['../classPonca_1_1KdTreeBase.html#aaa423035de54c90cdcf787de39cbfcc8',1,'Ponca::KdTreeBase::buildWithSampling(PointUserContainer &amp;&amp;points, IndexUserContainer sampling)'],['../classPonca_1_1KdTreeBase.html#afeff799fa0a293195e04735a21852ae0',1,'Ponca::KdTreeBase::buildWithSampling(PointUserContainer &amp;&amp;points, IndexUserContainer sampling, Converter c)']]],
-  ['by_20step_20derivation_20from_20the_20barycenter_20definition_26',['Step-by-step derivation from the barycenter definition',['../classPonca_1_1MeanPositionDer.html#autotoc_md1',1,'']]],
-  ['by_20step_20derivation_20of_20the_20mean_20normal_20_3a_27',['Step-by-step derivation of the mean normal :',['../classPonca_1_1MeanNormalDer.html#autotoc_md2',1,'']]]
+  ['by_20step_20derivation_20from_20the_20barycenter_20definition_26',['Step-by-step derivation from the barycenter definition',['../classPonca_1_1MeanPositionDer.html#autotoc_md3',1,'']]],
+  ['by_20step_20derivation_20of_20the_20mean_20normal_20_3a_27',['Step-by-step derivation of the mean normal :',['../classPonca_1_1MeanNormalDer.html#autotoc_md4',1,'']]]
 ];

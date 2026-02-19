@@ -1,15 +1,15 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
 <area shape="rect" id="Node000000" title=" " alt="" coords="11,35,73,60"/>
 <area shape="rect" id="Node000001" href="$group__spatialpartitioning.html#structPonca_1_1Query" title="Composes the Query object depending on an input type and output type." alt="" coords="127,53,283,93"/>
-<area shape="poly" id="edge59_Node000000_Node000001" title=" " alt="" coords="87,52,127,58,126,63,86,57"/>
+<area shape="poly" id="edge60_Node000000_Node000001" title=" " alt="" coords="87,52,127,58,126,63,86,57"/>
 <area shape="rect" id="Node000002" href="$group__spatialpartitioning.html" title=" " alt="" coords="331,5,535,60"/>
-<area shape="poly" id="edge60_Node000001_Node000002" title=" " alt="" coords="296,54,330,48,331,53,297,59"/>
+<area shape="poly" id="edge61_Node000001_Node000002" title=" " alt="" coords="296,54,330,48,331,53,297,59"/>
 <area shape="rect" id="Node000004" href="$group__spatialpartitioning.html" title=" " alt="" coords="338,84,527,139"/>
-<area shape="poly" id="edge62_Node000001_Node000004" title=" " alt="" coords="297,86,338,93,337,98,296,91"/>
+<area shape="poly" id="edge63_Node000001_Node000004" title=" " alt="" coords="297,86,338,93,337,98,296,91"/>
 <area shape="rect" id="Node000003" href="$classPonca_1_1KnnGraphKNearestQuery.html" title="Extension of the Query class that allows to read the result of a k&#45;nearest neighbors search on the Kn..." alt="" coords="583,13,815,53"/>
-<area shape="poly" id="edge61_Node000002_Node000003" title=" " alt="" coords="548,30,583,30,583,35,548,35"/>
+<area shape="poly" id="edge62_Node000002_Node000003" title=" " alt="" coords="548,30,583,30,583,35,548,35"/>
 <area shape="rect" id="Node000005" href="$classPonca_1_1KnnGraphRangeQuery.html" title="Extension of the Query class that allows to read the result of a range neighbor search on the KnnGrap..." alt="" coords="592,91,805,131"/>
-<area shape="poly" id="edge63_Node000004_Node000005" title=" " alt="" coords="541,109,592,109,592,114,541,114"/>
+<area shape="poly" id="edge64_Node000004_Node000005" title=" " alt="" coords="541,109,592,109,592,114,541,114"/>
 <area shape="rect" id="Node000006" title=" " alt="" coords="5,84,79,109"/>
-<area shape="poly" id="edge64_Node000006_Node000001" title=" " alt="" coords="92,87,126,82,127,87,93,92"/>
+<area shape="poly" id="edge65_Node000006_Node000001" title=" " alt="" coords="92,87,126,82,127,87,93,92"/>
 </map>

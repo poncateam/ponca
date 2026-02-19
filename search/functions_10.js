@@ -8,7 +8,7 @@ var searchData=
   ['setinput_5',['setInput',['../group__spatialpartitioning.html#af4bdaa38719ee26bb98b8484bc04ada8',1,'Ponca::QueryInput']]],
   ['setline_6',['setLine',['../classPonca_1_1Line.html#ac9ae7707a0909cc91b000c7f078810fe',1,'Ponca::Line']]],
   ['setmincellsize_7',['setMinCellSize',['../classPonca_1_1KdTreeBase.html#a1930f6472cd825420153ccf65bef73f0',1,'Ponca::KdTreeBase']]],
-  ['setneighborfilter_8',['setNeighborFilter',['../classPonca_1_1PrimitiveBase.html#a1994d3443a2f5c77b2c89ada956795f2',1,'Ponca::PrimitiveBase']]],
+  ['setneighborfilter_8',['setneighborfilter',['../classPonca_1_1CNC.html#a10f3cafec7811461546574a880484be7',1,'Ponca::CNC::setNeighborFilter()'],['../classPonca_1_1PrimitiveBase.html#a1994d3443a2f5c77b2c89ada956795f2',1,'Ponca::PrimitiveBase::setNeighborFilter()']]],
   ['setradius_9',['setRadius',['../group__spatialpartitioning.html#a8b97f565c582a6f3f5face546adc6792',1,'Ponca::QueryOutputIsRange']]],
   ['setsquaredradius_10',['setSquaredRadius',['../group__spatialpartitioning.html#a7748dee4889e5d725f4aa94c38b238ca',1,'Ponca::QueryOutputIsRange']]],
   ['setvalue_11',['setValue',['../classPonca_1_1ConstantWeightKernel.html#abfdd7c48d31e98cb1f566724dccf06c0',1,'Ponca::ConstantWeightKernel']]],

@@ -1,11 +1,22 @@
 var annotated_dup =
 [
     [ "Ponca", "namespacePonca.html", [
+      [ "internal", "namespacePonca_1_1internal.html", [
+        [ "CNCEigen", "structPonca_1_1internal_1_1CNCEigen.html", "structPonca_1_1internal_1_1CNCEigen" ],
+        [ "HexagramBase", "structPonca_1_1internal_1_1HexagramBase.html", null ],
+        [ "Triangle", "structPonca_1_1internal_1_1Triangle.html", "structPonca_1_1internal_1_1Triangle" ],
+        [ "TriangleGenerator", "structPonca_1_1internal_1_1TriangleGenerator.html", null ],
+        [ "TriangleGenerator< AvgHexagramGeneration, P >", "structPonca_1_1internal_1_1TriangleGenerator_3_01AvgHexagramGeneration_00_01P_01_4.html", null ],
+        [ "TriangleGenerator< HexagramGeneration, P >", "structPonca_1_1internal_1_1TriangleGenerator_3_01HexagramGeneration_00_01P_01_4.html", null ],
+        [ "TriangleGenerator< IndependentGeneration, P >", "structPonca_1_1internal_1_1TriangleGenerator_3_01IndependentGeneration_00_01P_01_4.html", null ],
+        [ "TriangleGenerator< UniformGeneration, P >", "structPonca_1_1internal_1_1TriangleGenerator_3_01UniformGeneration_00_01P_01_4.html", null ]
+      ] ],
       [ "AlgebraicSphere", "classPonca_1_1AlgebraicSphere.html", "classPonca_1_1AlgebraicSphere" ],
       [ "Basket", "classPonca_1_1Basket.html", "classPonca_1_1Basket" ],
       [ "BasketComputeObject", "structPonca_1_1BasketComputeObject.html", "structPonca_1_1BasketComputeObject" ],
       [ "BasketDiff", "classPonca_1_1BasketDiff.html", "classPonca_1_1BasketDiff" ],
       [ "CenteredNeighborhoodFrame", "classPonca_1_1CenteredNeighborhoodFrame.html", "classPonca_1_1CenteredNeighborhoodFrame" ],
+      [ "CNC", "classPonca_1_1CNC.html", "classPonca_1_1CNC" ],
       [ "CompactExpWeightKernel", "classPonca_1_1CompactExpWeightKernel.html", "classPonca_1_1CompactExpWeightKernel" ],
       [ "ComputeObject", "structPonca_1_1ComputeObject.html", "structPonca_1_1ComputeObject" ],
       [ "ConstantWeightKernel", "classPonca_1_1ConstantWeightKernel.html", "classPonca_1_1ConstantWeightKernel" ],
@@ -58,6 +69,7 @@ var annotated_dup =
       [ "MongePatch", "classPonca_1_1MongePatch.html", "classPonca_1_1MongePatch" ],
       [ "NearestIndexQuery", "group__spatialpartitioning.html#structPonca_1_1NearestIndexQuery", "group__spatialpartitioning_structPonca_1_1NearestIndexQuery" ],
       [ "NearestPointQuery", "group__spatialpartitioning.html#structPonca_1_1NearestPointQuery", "group__spatialpartitioning_structPonca_1_1NearestPointQuery" ],
+      [ "NeighborFilterStoreNormal", "classPonca_1_1NeighborFilterStoreNormal.html", "classPonca_1_1NeighborFilterStoreNormal" ],
       [ "NormalCovarianceCurvatureEstimator", "classPonca_1_1NormalCovarianceCurvatureEstimator.html", "classPonca_1_1NormalCovarianceCurvatureEstimator" ],
       [ "NormalDerivativesCurvatureEstimator", "classPonca_1_1NormalDerivativesCurvatureEstimator.html", "classPonca_1_1NormalDerivativesCurvatureEstimator" ],
       [ "NoWeightFuncBase", "classPonca_1_1NoWeightFuncBase.html", "classPonca_1_1NoWeightFuncBase" ],

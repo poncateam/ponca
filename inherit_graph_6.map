@@ -1,3 +1,5 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="Node000000" href="$structPonca_1_1ComputeObject.html" title=" " alt="" coords="5,5,176,60"/>
+<area shape="rect" id="Node000000" href="$classPonca_1_1CenteredNeighborhoodFrame.html" title="NeighborhoodFrame that express 3d points relatively to a prescribed center." alt="" coords="5,5,224,45"/>
+<area shape="rect" id="Node000001" href="$classPonca_1_1DistWeightFunc.html" title="Weight neighbors according to the euclidean distance between a query and a reference position." alt="" coords="272,5,483,45"/>
+<area shape="poly" id="edge67_Node000000_Node000001" title=" " alt="" coords="237,23,272,23,272,28,237,28"/>
 </map>

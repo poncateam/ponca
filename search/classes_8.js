@@ -1,10 +1,9 @@
 var searchData=
 [
-  ['meannormal_0',['MeanNormal',['../classPonca_1_1MeanNormal.html',1,'Ponca']]],
-  ['meannormalder_1',['MeanNormalDer',['../classPonca_1_1MeanNormalDer.html',1,'Ponca']]],
-  ['meanplanefitimpl_2',['MeanPlaneFitImpl',['../classPonca_1_1MeanPlaneFitImpl.html',1,'Ponca']]],
-  ['meanposition_3',['MeanPosition',['../classPonca_1_1MeanPosition.html',1,'Ponca']]],
-  ['meanpositionder_4',['MeanPositionDer',['../classPonca_1_1MeanPositionDer.html',1,'Ponca']]],
-  ['mlsspherefitder_5',['MlsSphereFitDer',['../classPonca_1_1MlsSphereFitDer.html',1,'Ponca']]],
-  ['mongepatch_6',['MongePatch',['../classPonca_1_1MongePatch.html',1,'Ponca']]]
+  ['limited_5fpriority_5fqueue_0',['limited_priority_queue',['../classPonca_1_1limited__priority__queue.html',1,'Ponca']]],
+  ['limited_5fpriority_5fqueue_3c_20indexsquareddistance_3c_20index_2c_20scalar_20_3e_20_3e_1',['limited_priority_queue&lt; IndexSquaredDistance&lt; Index, Scalar &gt; &gt;',['../classPonca_1_1limited__priority__queue.html',1,'Ponca']]],
+  ['limited_5fpriority_5fqueue_3c_20ponca_3a_3aindexsquareddistance_3c_20index_2c_20datapoint_3a_3ascalar_20_3e_20_3e_2',['limited_priority_queue&lt; Ponca::IndexSquaredDistance&lt; Index, DataPoint::Scalar &gt; &gt;',['../classPonca_1_1limited__priority__queue.html',1,'Ponca']]],
+  ['limited_5fpriority_5fqueue_3c_20ponca_3a_3aindexsquareddistance_3c_20index_2c_20scalar_20_3e_20_3e_3',['limited_priority_queue&lt; Ponca::IndexSquaredDistance&lt; Index, Scalar &gt; &gt;',['../classPonca_1_1limited__priority__queue.html',1,'Ponca']]],
+  ['limited_5fpriority_5fqueue_3c_20ponca_3a_3aindexsquareddistance_3c_20traits_3a_3aindextype_2c_20traits_3a_3adatapoint_3a_3ascalar_20_3e_20_3e_4',['limited_priority_queue&lt; Ponca::IndexSquaredDistance&lt; Traits::IndexType, Traits::DataPoint::Scalar &gt; &gt;',['../classPonca_1_1limited__priority__queue.html',1,'Ponca']]],
+  ['line_5',['Line',['../classPonca_1_1Line.html',1,'Ponca']]]
 ];

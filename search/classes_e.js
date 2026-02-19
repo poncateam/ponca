@@ -1,8 +1,6 @@
 var searchData=
 [
-  ['singularweightkernel_0',['SingularWeightKernel',['../classPonca_1_1SingularWeightKernel.html',1,'Ponca']]],
-  ['smoothweightkernel_1',['SmoothWeightKernel',['../classPonca_1_1SmoothWeightKernel.html',1,'Ponca']]],
-  ['spherefitimpl_2',['SphereFitImpl',['../classPonca_1_1SphereFitImpl.html',1,'Ponca']]],
-  ['stack_3',['Stack',['../classPonca_1_1Stack.html',1,'Ponca']]],
-  ['stack_3c_20ponca_3a_3aindexsquareddistance_3c_20indextype_2c_20scalar_20_3e_2c_202_20_2atraits_3a_3amax_5fdepth_20_3e_4',['Stack&lt; Ponca::IndexSquaredDistance&lt; IndexType, Scalar &gt;, 2 *Traits::MAX_DEPTH &gt;',['../classPonca_1_1Stack.html',1,'Ponca']]]
+  ['rangeindexquery_0',['RangeIndexQuery',['../group__spatialpartitioning.html#structPonca_1_1RangeIndexQuery',1,'Ponca']]],
+  ['rangeindexquery_3c_20traits_3a_3aindextype_2c_20traits_3a_3adatapoint_3a_3ascalar_20_3e_1',['RangeIndexQuery&lt; Traits::IndexType, Traits::DataPoint::Scalar &gt;',['../group__spatialpartitioning.html',1,'Ponca']]],
+  ['rangepointquery_2',['RangePointQuery',['../group__spatialpartitioning.html#structPonca_1_1RangePointQuery',1,'Ponca']]]
 ];
