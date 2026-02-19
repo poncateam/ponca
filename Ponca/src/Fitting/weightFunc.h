@@ -37,6 +37,9 @@ public:
     PONCA_MULTIARCH inline explicit CenteredNeighborhoodFrame(const VectorType & _evalPos = VectorType::Zero())
     : m_p(_evalPos) {}
 
+    PONCA_MULTIARCH inline explicit CenteredNeighborhoodFrame(const DataPoint & _evalPoint)
+    : m_p(_evalPoint.pos()) {}
+
     /// \brief Change neighborhood frame (move basis center)
     PONCA_MULTIARCH inline void changeNeighborhoodFrame(const VectorType& _newEvalPos) { m_p = _newEvalPos; };
 
@@ -146,6 +149,15 @@ public:
     PONCA_MULTIARCH inline DistWeightFunc(const VectorType & _evalPos = VectorType::Zero(),
                                               const Scalar& _t = Scalar(1.))
     : NeighborhoodFrame(_evalPos), m_t(_t)
+    {
+        //\todo manage that assert on __host__ and __device__
+        //assert(_t > Scalar(0));
+    }
+
+    ///! \copydoc DistWeightFunc
+    PONCA_MULTIARCH inline DistWeightFunc(const DataPoint & _evalPoint,
+                                              const Scalar& _t = Scalar(1.))
+    : NeighborhoodFrame(_evalPoint.pos()), m_t(_t)
     {
         //\todo manage that assert on __host__ and __device__
         //assert(_t > Scalar(0));
@@ -279,7 +291,6 @@ protected:
 
 };// class DistWeightFunc
 
-
 /*!
     \brief Base Weighting function that set uniform weight to all samples
 
@@ -307,6 +318,10 @@ public:
     */
     PONCA_MULTIARCH inline NoWeightFuncBase(const VectorType& v = VectorType::Zero(), Scalar = 0)
     : NeighborhoodFrame(v){ }
+
+    ///! \copydoc NoWeightFuncBase
+    PONCA_MULTIARCH inline NoWeightFuncBase(const DataPoint& v, Scalar = 0)
+    : NeighborhoodFrame(v.pos()){ }
 
     /*!
         \brief Compute the weight of the given query, which is always $1$
@@ -359,7 +374,46 @@ public:
     PONCA_MULTIARCH [[nodiscard]] inline VectorType scaleSpaced2w(const VectorType& /*_q*/,
                                                     const DataPoint&  /*attributes*/) const
     { return VectorType::Zeros(); }
-};// class DistWeightFuncBase
+};// class NoWeightFuncBase
+
+/*!
+ * This class extends a NeighborFilter class to also store the normal of the evaluation point, for use outside the scope of this class.
+ *
+ * \tparam Any NeighborFilter type (NoWeightFunc or DistWeightFunc<ConstantWeightKernel> for example)
+ */
+template <class DataPoint, typename NeighborFilter>
+class NeighborFilterStoreNormal : public NeighborFilter {
+public:
+    using Base       = NeighborFilter;
+    /*! \brief Scalar type from DataPoint */
+    using Scalar     =  typename DataPoint::Scalar;
+    /*! \brief Vector type from DataPoint */
+    using VectorType =  typename DataPoint::VectorType;
+    /*! \brief Matrix type from DataPoint */
+    using MatrixType = typename DataPoint::MatrixType;
+    /*! \brief Return type of the method #w() */
+    using WeightReturnType = PONCA_MULTIARCH_CU_STD_NAMESPACE(pair)<Scalar, VectorType>;
+
+    /*!
+        \brief Constructor that defines the current evaluation scale
+        \warning t > 0
+    */
+    PONCA_MULTIARCH inline NeighborFilterStoreNormal(
+        const VectorType & _evalPos = VectorType::Zero(),
+        const Scalar& _t = Scalar(0),
+        const VectorType & _evalNormal = VectorType::Zero())
+    : Base(_evalPos, _t), m_n(_evalNormal) {}
+
+    PONCA_MULTIARCH inline NeighborFilterStoreNormal(
+        const DataPoint& _evalPoint,
+        const Scalar& _t = Scalar(0))
+    : Base(_evalPoint.pos(), _t), m_n(_evalPoint.normal()) {}
+
+    /*! \brief Access to the evaluation normal set during the initialization */
+    PONCA_MULTIARCH inline const VectorType & evalNormal() const { return m_n; }
+protected:
+    VectorType   m_n;  /*!< \brief Evaluation normal */
+}; // class NeighborFilterStoreNormal
 
 template <class DataPoint>
 /// \brief
