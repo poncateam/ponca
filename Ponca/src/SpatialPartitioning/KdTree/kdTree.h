@@ -8,6 +8,7 @@
 
 #include "./kdTreeTraits.h"
 
+#include <algorithm>
 #include <iostream>
 #include <memory>
 #include <numeric>
@@ -119,18 +120,18 @@ public:
     /// \brief Internal structure storing all the buffers used by the KdTree
     struct Buffers
     {
-        PointContainer points; ///< Buffer storing the input points (read only)
-        NodeContainer nodes;   ///< Buffer storing the nodes of the KdTree
-        IndexContainer indices;///< Buffer storing the indices associating the input points to the nodes
+        PointContainer points;  ///< Buffer storing the input points (read only)
+        NodeContainer  nodes;   ///< Buffer storing the nodes of the KdTree
+        IndexContainer indices; ///< Buffer storing the indices associating the input points to the nodes
 
         size_t points_size{0};
         size_t nodes_size{0};
         size_t indices_size{0};
 
         inline Buffers() = default;
-        inline Buffers(PointContainer _points, NodeContainer _nodes, IndexContainer _indices,
+        inline Buffers(PointContainer _points   , NodeContainer _nodes    , IndexContainer _indices,
                        const size_t _points_size, const size_t _nodes_size, const size_t _indices_size)
-            : points(_points), nodes(_nodes), indices(_indices),
+            : points(_points)          , nodes(_nodes)          , indices(_indices),
               points_size(_points_size), nodes_size(_nodes_size), indices_size(_indices_size){}
     };
 
@@ -487,9 +488,9 @@ protected:
 
 private:
     template<typename IndexUserContainer>
-    PONCA_MULTIARCH_HOST inline void buildRec(IndexUserContainer ids, std::vector<NodeType>& nodes, NodeIndexType node_id, IndexType start, IndexType end, int level);
+    PONCA_MULTIARCH_HOST inline void buildRec(IndexUserContainer& ids, std::vector<NodeType>& nodes, NodeIndexType node_id, IndexType start, IndexType end, int level);
     template<typename IndexUserContainer>
-    PONCA_MULTIARCH_HOST [[nodiscard]] inline IndexType partition(IndexUserContainer ids, IndexType start, IndexType end, int dim, Scalar value);
+    PONCA_MULTIARCH_HOST [[nodiscard]] inline IndexType partition(IndexUserContainer& ids, IndexType start, IndexType end, int dim, Scalar value);
 };
 
 /*!
