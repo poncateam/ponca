@@ -6,8 +6,11 @@ Current head (v.2.0.alpha2 RC)
 
 --------------------------------------------------------------------------------
 v.2.0.alpha1
-This release improves SpatialPartitioning in several ways (CUDA support, mutable queries, ...) and add utility
-classes/functions in the package Common. Also, it adds coverage tracking and several minor fixes.
+This release improves SpatialPartitioning in several ways (CUDA support, mutable 
+queries, ...) and add utility classes/functions in the package Common. The Fitting
+package is also extended with CNC, the first differential estimators that is not
+based on a Basktet. Finally, this PR also adds coverage tracking and several minor 
+fixes.
 
 - API
     - [spatialPartitioning] Add mutable query and rename query functions (#105)
