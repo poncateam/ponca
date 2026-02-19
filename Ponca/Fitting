@@ -10,10 +10,14 @@
 #include "src/Fitting/defines.h"
 #include "src/Fitting/enums.h"
 #include "src/Fitting/compute.h"
-#include "src/Fitting/basket.h"
 
+// Weighting
 #include "src/Fitting/weightKernel.h"
 #include "src/Fitting/weightFunc.h"
+
+// Compute objects
+#include "src/Fitting/cnc.h"
+#include "src/Fitting/basket.h"
 
 // Primitives
 #include "src/Fitting/primitive.h"
