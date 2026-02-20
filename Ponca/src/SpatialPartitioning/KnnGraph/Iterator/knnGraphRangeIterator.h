@@ -6,7 +6,6 @@
 
 #pragma once
 
-#include <iterator>
 #include <cstddef>
 
 namespace Ponca {
@@ -37,7 +36,7 @@ protected:
 public:
     // Tagged as an input iterator, because the increment logic is shared between iterators of the same queries.
     // Which makes the iterator not valid when duplicated (through postfix increment for example).
-    using iterator_category = PONCA_MULTIARCH_CU_STD_NAMESPACE(input_iterator_tag);
+    using iterator_category = std::input_iterator_tag;
     using difference_type   = std::ptrdiff_t;
     using value_type = Index;
     using pointer    = Index*;

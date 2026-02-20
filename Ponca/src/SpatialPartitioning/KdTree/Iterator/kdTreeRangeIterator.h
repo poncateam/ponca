@@ -6,7 +6,6 @@
 
 #pragma once
 
-#include <iterator>
 #include <cstddef>
 
 namespace Ponca {
@@ -33,7 +32,7 @@ protected:
     friend QueryT_;
 
 public:
-    using iterator_category = PONCA_MULTIARCH_CU_STD_NAMESPACE(input_iterator_tag);
+    using iterator_category = std::input_iterator_tag;
     using difference_type   = std::ptrdiff_t;
     using value_type = Index;
     using pointer    = Index*;
@@ -42,37 +41,37 @@ public:
     using Scalar     = typename DataPoint::Scalar;
     using QueryType  = QueryT_;
 
-    inline KdTreeRangeIterator() = default;
-    inline KdTreeRangeIterator(QueryType* query, Index index = -1) :
+    PONCA_MULTIARCH inline KdTreeRangeIterator() = default;
+    PONCA_MULTIARCH inline KdTreeRangeIterator(QueryType* query, Index index = -1) :
         m_query(query), m_index(index), m_start(0), m_end(0) {}
 
     /// \brief Inequality operand
-    inline bool operator !=(const KdTreeRangeIterator& other) const {
+    PONCA_MULTIARCH inline bool operator !=(const KdTreeRangeIterator& other) const {
         return m_index != other.m_index;
     }
 
     /// \brief Equality operand
-    inline bool operator ==(const KdTreeRangeIterator& other) const {
+    PONCA_MULTIARCH inline bool operator ==(const KdTreeRangeIterator& other) const {
         return m_index == other.m_index;
     }
 
     /// \brief Prefix increment
     /// \see KdTreeRangeQueryBase::advance(Iterator& it) for the iteration logic
-    inline KdTreeRangeIterator& operator++() {
+    PONCA_MULTIARCH inline KdTreeRangeIterator& operator++() {
         m_query->advance(*this);
         return *this;
     }
 
     /// \brief Postfix increment
     /// \see KdTreeRangeQueryBase::advance(Iterator& it) for the iteration logic
-    inline KdTreeRangeIterator operator++(int) {
+    PONCA_MULTIARCH inline KdTreeRangeIterator operator++(int) {
         KdTreeRangeIterator tmp = *this;
         m_query->advance(*this);
         return tmp;
     }
 
     /// \brief Dereference operator
-    inline reference operator *() const {
+    PONCA_MULTIARCH inline reference operator *() const {
        return const_cast<reference>(m_index);
     }
 

@@ -7,6 +7,7 @@
 
 #pragma once
 
+#include "../defines.h"
 #include "../../Common/Macro.h"
 
 #include <cstddef>
@@ -131,9 +132,9 @@ public:
      */
     using AabbType = Eigen::AlignedBox<Scalar, DataPoint::Dim>;
 
-    KdTreeCustomizableNode() = default;
+    PONCA_MULTIARCH KdTreeCustomizableNode() = default;
 
-    constexpr KdTreeCustomizableNode(KdTreeCustomizableNode&& n)
+    PONCA_MULTIARCH constexpr KdTreeCustomizableNode(KdTreeCustomizableNode&& n)
         : m_is_leaf(n.m_is_leaf)
     {
         if (m_is_leaf)
@@ -146,7 +147,7 @@ public:
         }
     }
 
-    constexpr KdTreeCustomizableNode& operator=(KdTreeCustomizableNode&& n)
+    PONCA_MULTIARCH constexpr KdTreeCustomizableNode& operator=(KdTreeCustomizableNode&& n)
     {
         if (&n != this)
         {
@@ -164,7 +165,7 @@ public:
         return *this;
     }
 
-    constexpr KdTreeCustomizableNode(const KdTreeCustomizableNode& n)
+    PONCA_MULTIARCH constexpr KdTreeCustomizableNode(const KdTreeCustomizableNode& n)
         : m_is_leaf(n.m_is_leaf)
     {
         if (n.m_is_leaf)
@@ -177,7 +178,7 @@ public:
         }
     }
 
-    constexpr KdTreeCustomizableNode& operator=(const KdTreeCustomizableNode& n)
+    PONCA_MULTIARCH constexpr KdTreeCustomizableNode& operator=(const KdTreeCustomizableNode& n)
     {
         if (&n != this)
         {
@@ -195,10 +196,10 @@ public:
         return *this;
     }
 
-    ~KdTreeCustomizableNode() {}
+    PONCA_MULTIARCH_HOST ~KdTreeCustomizableNode() {}
     
-    [[nodiscard]] bool is_leaf() const { return m_is_leaf; }
-    void set_is_leaf(bool is_leaf) { m_is_leaf = is_leaf; }
+    PONCA_MULTIARCH [[nodiscard]] bool is_leaf() const { return m_is_leaf; }
+    PONCA_MULTIARCH void set_is_leaf(bool is_leaf) { m_is_leaf = is_leaf; }
 
     /*!
      * \brief Configures the range of the node in the sample index array of the
@@ -212,7 +213,7 @@ public:
      *
      * Called after \ref set_is_leaf during kd-tree construction.
      */
-    void configure_range(Index start, Index size, const AabbType &aabb)
+    PONCA_MULTIARCH void configure_range(Index start, Index size, const AabbType &aabb)
     {
         if (m_is_leaf)
         {
@@ -230,7 +231,7 @@ public:
      * Called after \ref set_is_leaf and \ref configure_range during kd-tree
      * construction.
      */
-    void configure_inner(Scalar split_value, Index first_child_id, Index split_dim)
+    PONCA_MULTIARCH void configure_inner(Scalar split_value, Index first_child_id, Index split_dim)
     {
         if (!m_is_leaf)
         {
@@ -244,22 +245,22 @@ public:
      * \brief The start index of the range of the leaf node in the sample
      * index array.
      */
-    [[nodiscard]] Index leaf_start() const { return data.m_leaf.start; }
+    PONCA_MULTIARCH [[nodiscard]] Index leaf_start() const { return data.m_leaf.start; }
 
     /*!
      * \brief The size of the range of the leaf node in the sample index array.
      */
-    [[nodiscard]] LeafSize leaf_size() const { return data.m_leaf.size; }
+    PONCA_MULTIARCH [[nodiscard]] LeafSize leaf_size() const { return data.m_leaf.size; }
 
     /*!
      * \brief The position of the AABB split of the inner node.
      */
-    [[nodiscard]] Scalar inner_split_value() const { return data.m_inner.split_value; }
+    PONCA_MULTIARCH [[nodiscard]] Scalar inner_split_value() const { return data.m_inner.split_value; }
     
     /*!
      * \brief Which axis the split of the AABB of the inner node was done on.
      */
-    [[nodiscard]] int inner_split_dim() const { return (int)data.m_inner.split_dim; }
+    PONCA_MULTIARCH [[nodiscard]] int inner_split_dim() const { return (int)data.m_inner.split_dim; }
     
     /*!
      * \brief The index of the first child of the node in the node array of the
@@ -268,13 +269,13 @@ public:
      * \note The second child is stored directly after the first in the array
      * (i.e. `first_child_id + 1`).
      */
-    [[nodiscard]] Index inner_first_child_id() const { return (Index)data.m_inner.first_child_id; }
+    PONCA_MULTIARCH [[nodiscard]] Index inner_first_child_id() const { return (Index)data.m_inner.first_child_id; }
 
 protected:
-    [[nodiscard]] inline LeafType& getAsLeaf() { return data.m_leaf; }
-    [[nodiscard]] inline InnerType& getAsInner() { return data.m_inner; }
-    [[nodiscard]] inline const LeafType& getAsLeaf() const { return data.m_leaf; }
-    [[nodiscard]] inline const InnerType& getAsInner() const { return data.m_inner; }
+    PONCA_MULTIARCH [[nodiscard]] inline LeafType& getAsLeaf() { return data.m_leaf; }
+    PONCA_MULTIARCH [[nodiscard]] inline InnerType& getAsInner() { return data.m_inner; }
+    PONCA_MULTIARCH [[nodiscard]] inline const LeafType& getAsLeaf() const { return data.m_leaf; }
+    PONCA_MULTIARCH [[nodiscard]] inline const InnerType& getAsInner() const { return data.m_inner; }
 
 private:
     bool m_is_leaf{true};
@@ -343,5 +344,81 @@ struct KdTreeDefaultTraits
     using NodeIndexType = std::size_t;
     using NodeType      = _NodeType<IndexType, NodeIndexType, DataPoint, LeafSizeType>;
     using NodeContainer = std::vector<NodeType>;
+
+    /*! \brief Adapter function that converts the STL-Like input container
+     * to the internal storage data type
+     *
+     * \tparam InputContainer An STL-like container type
+     * \param input The container to convert
+     * \return Simply return the container value
+     *
+     * \see KdTreeBase
+     */
+    template <typename InternalContainer, typename InputContainer>
+    [[nodiscard]] static PONCA_MULTIARCH_HOST inline InternalContainer& toInternalContainer (
+        InputContainer & input
+    ) {
+        return input;
+    }
+};
+
+/*! \brief Variant to the KdTree Traits type that uses pointers as internal storage instead of an STL-like container.
+ *
+ * \see KdTreeCustomizableNode Helper class to modify Inner/Leaf nodes without redefining a Trait class
+ *
+ * \tparam _NodeType Type used to store nodes, set by default to #KdTreeDefaultNode
+ */
+template <typename _DataPoint,
+        template <typename /*Index*/,
+                  typename /*NodeIndex*/,
+                  typename /*DataPoint*/,
+                  typename /*LeafSize*/> typename _NodeType = Ponca::KdTreeDefaultNode>
+struct KdTreePointerTraits
+{
+    enum
+    {
+        /*!
+         * \brief A compile-time constant specifying the maximum depth of the kd-tree.
+         */
+        MAX_DEPTH = 32,
+    };
+
+    /*!
+     * \brief The type used to store point data.
+     *
+     * Must provide `Scalar` and `VectorType` typedefs.
+     *
+     * `VectorType` must provide a `squaredNorm()` function returning a `Scalar`, as well as a
+     * `maxCoeff(int*)` function returning the dimension index of its largest scalar in its output
+     * parameter (e.g. 0 for *x*, 1 for *y*, etc.).
+     */
+    using DataPoint    = _DataPoint;
+    using IndexType    = int;
+    using LeafSizeType = unsigned short;
+
+    // Containers
+    using PointContainer = DataPoint*;
+    using IndexContainer = IndexType*;
+
+    // Nodes
+    using NodeIndexType = std::size_t;
+    using NodeType      = _NodeType<IndexType, NodeIndexType, DataPoint, LeafSizeType>;
+    using NodeContainer = NodeType*;
+
+    /*! \copybrief KdTreeDefaultTraits::toInternalContainer
+     *
+     * Call the data function to retrieve and use the raw memory array.
+     *
+     * \tparam InputContainer An STL-like container type
+     * \param input The container to convert
+     * \return The pointer corresponding to the memory array.
+     *
+     * \see KdTreeBase
+     */
+    template <typename InternalContainer, typename InputContainer>
+    [[nodiscard]] static PONCA_MULTIARCH_HOST inline InternalContainer toInternalContainer ( InputContainer & input)
+    {
+        return input.data();
+    }
 };
 } // namespace Ponca

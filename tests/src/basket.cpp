@@ -56,7 +56,6 @@ typename DataPoint::Scalar generateData(KdTree<DataPoint>& tree)
         vectorPoints[i] = getPointOnSphere<DataPoint>(radius, center, false, false, false);
     }
 
-    tree.clear();
     tree.build(vectorPoints);
 
     return analysisScale;

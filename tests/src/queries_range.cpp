@@ -12,12 +12,14 @@
 #include <Ponca/src/SpatialPartitioning/KnnGraph/knnGraph.h>
 #include <Ponca/src/Common/pointTypes.h>
 
+#define PRINT_TIMING
+
 using namespace Ponca;
 
-template<bool doIndexQuery, typename AcceleratingStructure>
+template<bool doIndexQuery, typename AcceleratingStructure, typename PointContainer>
 auto testRangeNeighbors( AcceleratingStructure& structure,
-	typename AcceleratingStructure::PointContainer& points,
-	std::vector<int>& sample, const int retry_number
+	PointContainer& points,
+	std::vector<int>& sample
 ) {
 	using DataPoint      = typename AcceleratingStructure::DataPoint;
 	using Scalar         = typename DataPoint::Scalar;
@@ -35,8 +37,23 @@ auto testRangeNeighbors( AcceleratingStructure& structure,
 			return structure.rangeNeighbors(queryInput, _r);
 		}, [&points, &sample, &r](auto& queryInput, auto& queryResults) {
 			return checkRangeNeighbors<DataPoint>(points, sample, queryInput, r, queryResults);
-		}, retry_number, r
+		}, g_repeat, r
 	);
+}
+
+template<template <typename> class KdTreeType, typename P>
+inline KdTreeType<P> testKdTree(std::vector<P> & points, std::vector<int> & sample) {
+	KdTreeType<P> kdtree = *testBuildKdTree<P, KdTreeType>(points, sample);
+
+	std::chrono::milliseconds timing = testRangeNeighbors<true>(kdtree, points, sample);  // Index query test
+#ifdef PRINT_TIMING
+	cout << "    Compute Time KdTree index query : " <<  timing.count() << "ms" << endl;
+#endif
+	timing = testRangeNeighbors<false>(kdtree, points, sample); // Position query test
+#ifdef PRINT_TIMING
+	cout << "    Compute Time KdTree position query : " <<  timing.count() << "ms" << endl;
+#endif
+	return kdtree;
 }
 
 template<typename Scalar, int Dim>
@@ -44,40 +61,36 @@ void testRangeNeighborsForAllStructures(const bool quick = QUICK_TESTS)
 {
 	using P = PointPositionNormal<Scalar, Dim>;
 	const int N = quick ? 100 : 1000;
-	const int retry_number = quick? 1 : 5;
-	std::chrono::milliseconds timing;
 
 	//////////// Generate data
 	std::vector<P> points(N);
 	generateData(points);
 
-	//////////// Test dense KdTree
-	std::vector<int> sample;
-	KdTreeDense<P> kdtreeDense = *buildKdTreeDense<P>(points, sample);
-	timing = testRangeNeighbors<true>(kdtreeDense, points, sample, retry_number);  // Index query test
-	cout << "    Compute Time KdTreeDense index query : " <<  timing.count() << "ms" << endl;
-	timing = testRangeNeighbors<false>(kdtreeDense, points, sample, retry_number); // Position query test
-	cout << "    Compute Time KdTreeDense position query : " <<  timing.count() << "ms" << endl;
+	//////////// Test KdTree STL-like containers
+	std::vector<int> sampleDense;
+	KdTreeDense<P> kdtreeDense = testKdTree<KdTreeDense>(points, sampleDense);
+	std::vector<int> sampleSparse;
+	testKdTree<KdTreeSparse>(points, sampleSparse);
 
-	//////////// Test subsample of KdTree
-	std::vector<int> subSample;
-	KdTreeSparse<P> kdtreeSparse = *buildSubsampledKdTree(points, subSample);
-	timing = testRangeNeighbors<true>(kdtreeSparse, points, subSample, retry_number);  // Index query test
-	cout << "    Compute Time KdTreeSparse index query : " <<  timing.count() << "ms" << endl;
-	timing = testRangeNeighbors<false>(kdtreeSparse, points, subSample, retry_number); // Position query test
-	cout << "    Compute Time KdTreeSparse position query : " <<  timing.count() << "ms" << endl;
+	//////////// Test KdTree memory array
+	std::vector<int> sampleDenseP;
+	testKdTree<KdTreeDensePointers>(points, sampleDenseP);
+	std::vector<int> sampleSparseP;
+	testKdTree<KdTreeSparsePointers>(points, sampleSparseP);
 
-	// //////////// Test KnnGraph
-	KnnGraph<P> knnGraph(kdtreeDense, N/4); /* We need a large graph, otherwise we might miss some points
-											   (which is the goal of the graph: to replace full Euclidean
-											   collection by geodesic-like region growing bounded by
-											   the Euclidean ball). */
-	timing = testRangeNeighbors<true>(knnGraph, points, sample, retry_number);  // Index query test
-	cout << "    Compute Time KnnGraph index query : " <<  timing.count() << "ms" << endl;
+	////////// Test KnnGraph
+	 KnnGraph<P> knnGraph(kdtreeDense, N/4); /* We need a large graph, otherwise we might miss some points
+	 										   (which is the goal of the graph: to replace full Euclidean
+	 										   collection by geodesic-like region growing bounded by
+	 										   the Euclidean ball). */
+	 std::chrono::milliseconds timing = testRangeNeighbors<true>(knnGraph, points, sampleDense);  // Index query test
+ #ifdef PRINT_TIMING
+ 	cout << "    Compute Time KnnGraph index query : " <<  timing.count() << "ms" << endl;
+ #endif
 	cout << "  (ok)" << endl;
 }
 
-int main(int argc, char** argv)
+int main(const int argc, char** argv)
 {
 	if (!init_testing(argc, argv))
 		return EXIT_FAILURE;

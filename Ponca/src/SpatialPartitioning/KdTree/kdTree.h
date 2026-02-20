@@ -8,6 +8,7 @@
 
 #include "./kdTreeTraits.h"
 
+#include <algorithm>
 #include <iostream>
 #include <memory>
 #include <numeric>
@@ -116,6 +117,84 @@ public:
     using VectorType = typename DataPoint::VectorType; ///< VectorType given by user via DataPoint
     using AabbType   = typename NodeType::AabbType; ///< Bounding box type given by user via NodeType
 
+    /// \brief Internal structure storing all the buffers used by the KdTree
+    struct Buffers
+    {
+        PointContainer points;  ///< Buffer storing the input points (read only)
+        NodeContainer  nodes;   ///< Buffer storing the nodes of the KdTree
+        IndexContainer indices; ///< Buffer storing the indices associating the input points to the nodes
+
+        size_t points_size{0};
+        size_t nodes_size{0};
+        size_t indices_size{0};
+
+        PONCA_MULTIARCH inline Buffers() = default;
+        PONCA_MULTIARCH inline Buffers(PointContainer _points   , NodeContainer _nodes    , IndexContainer _indices,
+                       const size_t _points_size, const size_t _nodes_size, const size_t _indices_size)
+            : points(_points)          , nodes(_nodes)          , indices(_indices),
+              points_size(_points_size), nodes_size(_nodes_size), indices_size(_indices_size){}
+
+        PONCA_MULTIARCH inline ~Buffers()
+        {
+            if constexpr (std::is_pointer_v<PointContainer>)
+                delete[] points;
+
+            if constexpr (std::is_pointer_v<IndexContainer>)
+                delete[] indices;
+
+            if constexpr (std::is_pointer_v<NodeContainer>)
+                delete[] nodes;
+        }
+
+        template<typename InputContainerRef>
+        PONCA_MULTIARCH inline void setNodes(InputContainerRef && input_node) {
+            nodes_size = input_node.size();
+            if constexpr (std::is_pointer_v<NodeContainer>)
+            {
+                nodes = new NodeType[nodes_size];
+                std::copy(input_node.cbegin(), input_node.cend(), nodes);
+            }
+            else
+            {
+                using InputContainer = std::remove_reference_t<InputContainerRef>;
+                static_assert(std::is_same_v<InputContainer, NodeContainer> && std::is_copy_assignable_v<NodeType>);
+                nodes = std::forward<InputContainerRef>(input_node); // Either move or copy
+            }
+        }
+
+        template<typename InputContainerRef>
+        PONCA_MULTIARCH inline void setPoints(InputContainerRef && input_point) {
+            points_size = input_point.size();
+            if constexpr (std::is_pointer_v<PointContainer>)
+            {
+                points = new DataPoint[points_size];
+                std::copy(input_point.cbegin(), input_point.cend(), points);
+            }
+            else
+            {
+                using InputContainer = std::remove_reference_t<InputContainerRef>;
+                static_assert(std::is_same_v<InputContainer, PointContainer> && std::is_copy_assignable_v<DataPoint>);
+                points = std::forward<InputContainerRef>(input_point); // Either move or copy
+            }
+        }
+
+        template<typename InputContainerRef>
+        PONCA_MULTIARCH inline void setIndices(InputContainerRef && input_indices) {
+            indices_size = input_indices.size();
+            if constexpr (std::is_pointer_v<IndexContainer>)
+            {
+                indices = new IndexType[indices_size];
+                std::copy(input_indices.cbegin(), input_indices.cend(), indices);
+            }
+            else
+            {
+                using InputContainer = std::remove_reference_t<InputContainerRef>;
+                static_assert(std::is_same_v<InputContainer, IndexContainer> && std::is_copy_assignable_v<IndexType>);
+                indices = std::forward<InputContainerRef>(input_indices); // Either move or copy
+            }
+        }
+    };
+
     /// \brief The maximum number of nodes that the kd-tree can have.
     static constexpr std::size_t MAX_NODE_COUNT = NodeType::MAX_COUNT;
     /// \brief The maximum number of points that can be stored in the kd-tree.
@@ -126,35 +205,43 @@ public:
 
     static constexpr bool SUPPORTS_SUBSAMPLING = false;
 
-    static_assert(std::is_same<typename PointContainer::value_type, DataPoint>::value,
-        "PointContainer must contain DataPoints");
-    
     // Queries use a value of -1 for invalid indices
-    static_assert(std::is_signed<IndexType>::value, "Index type must be signed");
-
-    static_assert(std::is_same<typename IndexContainer::value_type, IndexType>::value, "Index type mismatch");
-    static_assert(std::is_same<typename NodeContainer::value_type, NodeType>::value, "Node type mismatch");
-
+    static_assert(std::is_signed_v<IndexType>, "Index type must be signed");
     static_assert(MAX_DEPTH > 0, "Max depth must be strictly positive");
 
     // Construction ------------------------------------------------------------
 public:
+    /*! \brief Constructor of the KdTree that uses prebuilt containers directly.
+     *
+     * Each internal values of a KdTree can be extracted and used to build copy of the KdTree
+     * using \ref `KdTreeBase::buffers()`
+     *
+     * \note The internal containers of the KdTree are passed directly as arguments,
+     * which avoids the convertion process and the building process.
+     * This method is useful to instantiate a copy of the KdTree on the GPU.
+     *
+     * \see DefaultConverter, build, buffers
+     *
+     * \param buf Internal buffers of the KdTree
+     */
+    PONCA_MULTIARCH inline KdTreeBase(const Buffers& buf) : m_bufs(buf) { }
+
     /// Generate a tree from a custom contained type converted using the specified converter
     /// \tparam PointUserContainer Input point container, transformed to PointContainer
-    /// \tparam IndexUserContainer Input sampling container, transformed to IndexContainer
+    /// \tparam PointConverter Cast/Convert input container type to point container data type
     /// \param points Input points
     /// \param c Cast/Convert input point type to DataType
-    template<typename PointUserContainer, typename Converter>
-    inline void build(PointUserContainer&& points, Converter c);
+    template<typename PointUserContainer, typename PointConverter>
+    PONCA_MULTIARCH_HOST inline void build(PointUserContainer&& points, PointConverter c);
 
     /// Convert a custom point container to the KdTree \ref PointContainer using \ref DataPoint default constructor
     struct DefaultConverter
     {
         template <typename Input>
-        inline void operator()(Input&& i, PointContainer& o)
+        PONCA_MULTIARCH_HOST inline void operator()(Input&& i, PointContainer& o)
         {
             using InputContainer = std::remove_reference_t<Input>;
-            if constexpr (std::is_same_v<InputContainer, PointContainer> && std::is_copy_assignable_v<typename PointContainer::value_type>)
+            if constexpr (std::is_same_v<InputContainer, PointContainer> && std::is_copy_assignable_v<DataPoint>)
                 o = std::forward<Input>(i); // Either move or copy
             else
                 std::transform(i.cbegin(), i.cend(), std::back_inserter(o),
@@ -166,66 +253,78 @@ public:
     /// \tparam PointUserContainer Input point container, transformed to PointContainer
     /// \param points Input points
     template<typename PointUserContainer>
-    inline void build(PointUserContainer&& points)
+    PONCA_MULTIARCH_HOST inline void build(PointUserContainer&& points)
     {
         build(std::forward<PointUserContainer>(points), DefaultConverter());
     }
 
-    /// Clear tree data
-    inline void clear();
 
     // Accessors ---------------------------------------------------------------
 public:
-    inline NodeIndexType node_count() const
+    //! \brief Get the number of nodes in the KdTree
+    PONCA_MULTIARCH [[nodiscard]] inline NodeIndexType nodeCount() const
     {
-        return m_nodes.size();
+        return (NodeIndexType)m_bufs.nodes_size;
     }
 
-    inline IndexType sample_count() const
+    //! \brief Get the number of indices
+    PONCA_MULTIARCH [[nodiscard]] inline IndexType sampleCount() const
     {
-        return (IndexType)m_indices.size();
+        return (IndexType)m_bufs.indices_size;
     }
 
-    inline IndexType pointCount() const
+    //! \brief Get the number of points
+    PONCA_MULTIARCH [[nodiscard]] inline IndexType pointCount() const
     {
-        return (IndexType)m_points.size();
+        return (IndexType)m_bufs.points_size;
     }
 
-    inline NodeIndexType leaf_count() const
+    //! \brief Get the number of leafs in the KdTree
+    PONCA_MULTIARCH [[nodiscard]] inline NodeIndexType leafCount() const
     {
         return m_leaf_count;
     }
 
-    inline PointContainer& points()
+    //! \brief Get the internal point container
+    PONCA_MULTIARCH [[nodiscard]] inline PointContainer& points()
     {
-        return m_points;
+        return m_bufs.points;
     };
 
-    inline const PointContainer& points() const
+    //! \copybrief KdTreeBase::points
+    PONCA_MULTIARCH [[nodiscard]] inline const PointContainer& points() const
     {
-        return m_points;
+        return m_bufs.points;
     };
 
-    inline const NodeContainer& nodes() const
+    //! \brief Get the internal node container
+    PONCA_MULTIARCH [[nodiscard]] inline const NodeContainer& nodes() const
     {
-        return m_nodes;
+        return m_bufs.nodes;
     }
 
-    inline const IndexContainer& samples() const
+    //! \brief Get the internal indice container
+    PONCA_MULTIARCH [[nodiscard]] inline const IndexContainer& samples() const
     {
-        return m_indices;
+        return m_bufs.indices;
+    }
+
+    //! \brief Get access to the internal buffer, for instance to prepare GPU binding
+    PONCA_MULTIARCH [[nodiscard]] inline const Buffers& buffers() const
+    {
+        return m_bufs;
     }
 
     // Parameters --------------------------------------------------------------
 public:
     /// Read leaf min size
-    inline LeafSizeType minCellSize() const
+    PONCA_MULTIARCH [[nodiscard]] inline LeafSizeType minCellSize() const
     {
         return m_min_cell_size;
     }
 
     /// Write leaf min size
-    inline void setMinCellSize(LeafSizeType min_cell_size)
+    PONCA_MULTIARCH inline void setMinCellSize(LeafSizeType min_cell_size)
     {
         PONCA_DEBUG_ASSERT(min_cell_size > 0);
         m_min_cell_size = min_cell_size;
@@ -234,25 +333,25 @@ public:
     // Index mapping -----------------------------------------------------------
 public:
     /// Return the point index associated with the specified sample index
-    inline IndexType pointFromSample(IndexType sample_index) const
+    PONCA_MULTIARCH [[nodiscard]] inline IndexType pointFromSample(IndexType sample_index) const
     {
-        return m_indices[sample_index];
+        return m_bufs.indices[sample_index];
     }
 
     /// Return the \ref DataPoint associated with the specified sample index
     /// \note Convenience function, equivalent to
     /// `point_data()[pointFromSample(sample_index)]`
-    inline DataPoint& pointDataFromSample(IndexType sample_index)
+    PONCA_MULTIARCH [[nodiscard]] inline DataPoint& pointDataFromSample(IndexType sample_index)
     {
-        return m_points[pointFromSample(sample_index)];
+        return m_bufs.points[pointFromSample(sample_index)];
     }
     
     /// Return the \ref DataPoint associated with the specified sample index
     /// \note Convenience function, equivalent to
     /// `point_data()[pointFromSample(sample_index)]`
-    inline const DataPoint& pointDataFromSample(IndexType sample_index) const
+    PONCA_MULTIARCH [[nodiscard]] inline const DataPoint& pointDataFromSample(IndexType sample_index) const
     {
-        return m_points[pointFromSample(sample_index)];
+        return m_bufs.points[pointFromSample(sample_index)];
     }
 
     // Query -------------------------------------------------------------------
@@ -265,7 +364,7 @@ public :
     /// \param k Number of neighbors returned
     /// \return The \ref KdTreeKNearestIndexQuery mutable object to iterate over the search results.
     /// \see KdTreeKNearestQueryBase
-    KdTreeKNearestPointQuery<Traits> kNearestNeighbors(const VectorType& point, IndexType k) const
+    PONCA_MULTIARCH [[nodiscard]] KdTreeKNearestPointQuery<Traits> kNearestNeighbors(const VectorType& point, IndexType k) const
     {
         return KdTreeKNearestPointQuery<Traits>(this, k, point);
     }
@@ -275,7 +374,7 @@ public :
     /// \param k Number of neighbors returned
     /// \return The \ref KdTreeKNearestIndexQuery mutable object to iterate over the search results.
     /// \see KdTreeKNearestQueryBase
-    KdTreeKNearestIndexQuery<Traits> kNearestNeighbors(IndexType index, IndexType k) const
+    PONCA_MULTIARCH [[nodiscard]] KdTreeKNearestIndexQuery<Traits> kNearestNeighbors(IndexType index, IndexType k) const
     {
         return KdTreeKNearestIndexQuery<Traits>(this, k, index);
     }
@@ -288,7 +387,7 @@ public :
     /// Same as `KdTreeBase::kNearestNeighbors (0, VectorType::Zero())`
     /// \return The empty \ref KdTreeKNearestPointQuery mutable object to iterate over the search results.
     /// \see KdTreeKNearestQueryBase
-    KdTreeKNearestPointQuery<Traits> kNearestNeighborsQuery() const
+    PONCA_MULTIARCH [[nodiscard]] KdTreeKNearestPointQuery<Traits> kNearestNeighborsQuery() const
     {
         return KdTreeKNearestPointQuery<Traits>(this, 0, VectorType::Zero());
     }
@@ -301,7 +400,7 @@ public :
     /// Same as `KdTreeBase::kNearestNeighbors (0, 0)`
     /// \return The empty \ref KdTreeKNearestIndexQuery mutable object to iterate over the search results.
     /// \see KdTreeKNearestQueryBase
-    KdTreeKNearestIndexQuery<Traits> kNearestNeighborsIndexQuery() const
+    PONCA_MULTIARCH [[nodiscard]] KdTreeKNearestIndexQuery<Traits> kNearestNeighborsIndexQuery() const
     {
         return KdTreeKNearestIndexQuery<Traits>(this, 0, 0);
     }
@@ -313,7 +412,7 @@ public :
     /// \param point Point from where the query is evaluated
     /// \return The \ref KdTreeNearestPointQuery mutable object that contains the search result.
     /// \see KdTreeNearestQueryBase
-    KdTreeNearestPointQuery<Traits> nearestNeighbor(const VectorType& point) const
+    PONCA_MULTIARCH [[nodiscard]] KdTreeNearestPointQuery<Traits> nearestNeighbor(const VectorType& point) const
     {
         return KdTreeNearestPointQuery<Traits>(this, point);
     }
@@ -323,7 +422,7 @@ public :
     /// \param index Index of the point from where the query is evaluated
     /// \return The \ref KdTreeKNearestIndexQuery mutable object that contains the search result.
     /// \see KdTreeNearestQueryBase
-    KdTreeNearestIndexQuery<Traits> nearestNeighbor(IndexType index) const
+    PONCA_MULTIARCH [[nodiscard]] KdTreeNearestIndexQuery<Traits> nearestNeighbor(IndexType index) const
     {
         return KdTreeNearestIndexQuery<Traits>(this, index);
     }
@@ -337,7 +436,7 @@ public :
     ///
     /// \return The empty \ref KdTreeNearestPointQuery mutable object that contains the search result.
     /// \see KdTreeNearestQueryBase
-    KdTreeNearestIndexQuery<Traits> nearestNeighborQuery() const
+    PONCA_MULTIARCH [[nodiscard]] KdTreeNearestIndexQuery<Traits> nearestNeighborQuery() const
     {
         return KdTreeNearestIndexQuery<Traits>(this, VectorType::Zero());
     }
@@ -351,7 +450,7 @@ public :
     ///
     /// \return The \ref KdTreeKNearestIndexQuery mutable object that contains the search result.
     /// \see KdTreeNearestQueryBase
-    KdTreeNearestIndexQuery<Traits> nearestNeighborIndexQuery() const
+    PONCA_MULTIARCH [[nodiscard]] KdTreeNearestIndexQuery<Traits> nearestNeighborIndexQuery() const
     {
         return KdTreeNearestIndexQuery<Traits>(this, 0);
     }
@@ -364,7 +463,7 @@ public :
     /// \param r Radius around where to search the neighbors
     /// \return The \ref KdTreeRangePointQuery mutable object to iterate over the search results.
     /// \see KdTreeRangeQueryBase
-    KdTreeRangePointQuery<Traits> rangeNeighbors(const VectorType& point, Scalar r) const
+    PONCA_MULTIARCH [[nodiscard]] KdTreeRangePointQuery<Traits> rangeNeighbors(const VectorType& point, Scalar r) const
     {
         return KdTreeRangePointQuery<Traits>(this, r, point);
     }
@@ -374,7 +473,7 @@ public :
     /// \param r Radius around where to search the neighbors
     /// \return The \ref KdTreeRangeIndexQuery mutable object to iterate over the search results.
     /// \see KdTreeRangeQueryBase
-    KdTreeRangeIndexQuery<Traits> rangeNeighbors(IndexType index, Scalar r) const
+    PONCA_MULTIARCH [[nodiscard]] KdTreeRangeIndexQuery<Traits> rangeNeighbors(IndexType index, Scalar r) const
     {
         return KdTreeRangeIndexQuery<Traits>(this, r, index);
     }
@@ -388,7 +487,7 @@ public :
     ///
     /// \return The empty \ref KdTreeRangePointQuery mutable object to iterate over the search results.
     /// \see KdTreeRangeQueryBase
-    KdTreeRangePointQuery<Traits> rangeNeighborsQuery() const
+    PONCA_MULTIARCH [[nodiscard]] KdTreeRangePointQuery<Traits> rangeNeighborsQuery() const
     {
         return KdTreeRangePointQuery<Traits>(this, 0, VectorType::Zero());
     }
@@ -402,40 +501,39 @@ public :
     ///
     /// \return The empty \ref KdTreeRangeIndexQuery mutable object to iterate over the search results.
     /// \see KdTreeRangeQueryBase
-    KdTreeRangeIndexQuery<Traits> rangeNeighborsIndexQuery() const
+    PONCA_MULTIARCH [[nodiscard]] KdTreeRangeIndexQuery<Traits> rangeNeighborsIndexQuery() const
     {
         return KdTreeRangeIndexQuery<Traits>(this, 0, 0);
     }
-    
+
     // Utilities ---------------------------------------------------------------
 public:
-    [[nodiscard]] inline bool valid() const;
-    inline void print(std::ostream& os, bool verbose = false) const;
+    PONCA_MULTIARCH_HOST [[nodiscard]] inline bool valid() const;
+    PONCA_MULTIARCH_HOST inline void print(std::ostream& os, bool verbose = false) const;
 
     // Data --------------------------------------------------------------------
 protected:
-    PointContainer m_points;
-    NodeContainer m_nodes;
-    IndexContainer m_indices;
-
+    Buffers m_bufs; ///< Buffers used to store the KdTree
     LeafSizeType m_min_cell_size {64}; ///< Minimal number of points per leaf
     NodeIndexType m_leaf_count {0}; ///< Number of leaves in the Kdtree (computed during construction)
 
     // Internal ----------------------------------------------------------------
 protected:
-    inline KdTreeBase() = default;
+    PONCA_MULTIARCH inline KdTreeBase() = default;
 
     /// Generate a tree sampled from a custom contained type converted using a `Converter`
     /// \tparam PointUserContainer Input point, transformed to PointContainer
     /// \tparam IndexUserContainer Input sampling, transformed to IndexContainer
-    /// \tparam Converter
+    /// \tparam PointConverter Cast/Convert input container type to point container data type
     /// \param points Input points
     /// \param sampling Indices of points used in the tree
     /// \param c Cast/Convert input point type to DataType
-    template<typename PointUserContainer, typename IndexUserContainer, typename Converter>
-    inline void buildWithSampling(PointUserContainer&& points,
-                                  IndexUserContainer sampling,
-                                  Converter c);
+    template<typename PointUserContainer, typename IndexUserContainer, typename PointConverter>
+    PONCA_MULTIARCH_HOST inline void buildWithSampling(
+        PointUserContainer&& points,
+        IndexUserContainer sampling,
+        PointConverter c
+    );
 
     /// Generate a tree sampled from a custom contained type converted using a \ref KdTreeBase::DefaultConverter
     /// \tparam PointUserContainer Input points, transformed to PointContainer
@@ -443,15 +541,16 @@ protected:
     /// \param points Input points
     /// \param sampling Samples used in the tree
     template<typename PointUserContainer, typename IndexUserContainer>
-    inline void buildWithSampling(PointUserContainer&& points,
-                                  IndexUserContainer sampling)
+    PONCA_MULTIARCH_HOST inline void buildWithSampling(PointUserContainer&& points, IndexUserContainer sampling)
     {
         buildWithSampling(std::forward<PointUserContainer>(points), std::move(sampling), DefaultConverter());
     }
 
 private:
-    inline void buildRec(NodeIndexType node_id, IndexType start, IndexType end, int level);
-    inline IndexType partition(IndexType start, IndexType end, int dim, Scalar value);
+    template<typename IndexUserContainer>
+    PONCA_MULTIARCH_HOST inline void buildRec(IndexUserContainer& ids, std::vector<NodeType>& nodes, NodeIndexType node_id, IndexType start, IndexType end, int level);
+    template<typename IndexUserContainer>
+    PONCA_MULTIARCH_HOST [[nodiscard]] inline IndexType partition(IndexUserContainer& ids, IndexType start, IndexType end, int dim, Scalar value);
 };
 
 /*!
@@ -477,14 +576,14 @@ private:
 public:
     /// Default constructor creating an empty tree
     /// \see build
-    KdTreeDenseBase() = default;
+    PONCA_MULTIARCH KdTreeDenseBase() = default;
 
-    /// Constructor generating a tree from a custom contained type converted using a \ref KdTreeBase::DefaultConverter
+    /// Constructor generating a tree from a custom contained type converted using a \ref Traits::ContainerConverter
     template<typename PointUserContainer>
-    inline explicit KdTreeDenseBase(PointUserContainer&& points)
+    PONCA_MULTIARCH_HOST inline explicit KdTreeDenseBase(PointUserContainer&& points)
         : Base()
     {
-        this->build(std::forward<PointUserContainer>(points));
+        Base::build(std::forward<PointUserContainer>(points));
     }
 };
 
@@ -509,27 +608,27 @@ private:
     using Base = KdTreeBase<Traits>;
 
 public:
-    static constexpr bool SUPPORTS_SUBSAMPLING = false;
+    static constexpr bool SUPPORTS_SUBSAMPLING = true;
 
     /// Default constructor creating an empty tree
     /// \see build
-    KdTreeSparseBase() = default;
+    PONCA_MULTIARCH KdTreeSparseBase() = default;
 
-    /// Constructor generating a tree from a custom contained type converted using a \ref KdTreeBase::DefaultConverter
+    /// Constructor generating a tree from a custom contained type converted using a \ref Traits::ContainerConverter
     template<typename PointUserContainer>
-    inline explicit KdTreeSparseBase(PointUserContainer&& points)
+    PONCA_MULTIARCH_HOST inline explicit KdTreeSparseBase(PointUserContainer&& points)
         : Base()
     {
         this->build(std::forward<PointUserContainer>(points));
     }
 
-    /// Constructor generating a tree sampled from a custom contained type converted using a \ref KdTreeBase::DefaultConverter
+    /// Constructor generating a tree sampled from a custom contained type converted using a \ref Traits::ContainerConverter
     /// \tparam PointUserContainer Input points, transformed to PointContainer
     /// \tparam IndexUserContainer Input sampling, transformed to IndexContainer
-    /// \param point Input points
+    /// \param points Input points
     /// \param sampling Samples used in the tree
     template<typename PointUserContainer, typename IndexUserContainer>
-    inline KdTreeSparseBase(PointUserContainer&& points, IndexUserContainer sampling)
+    PONCA_MULTIARCH_HOST inline KdTreeSparseBase(PointUserContainer&& points, IndexUserContainer sampling)
         : Base()
     {
         this->buildWithSampling(std::forward<PointUserContainer>(points), std::move(sampling));
@@ -542,7 +641,7 @@ public:
 } // namespace Ponca
 
 template <typename Traits>
-std::ostream& operator<<(std::ostream& os, const Ponca::KdTreeBase<Traits>& kdtree)
+PONCA_MULTIARCH_HOST std::ostream& operator<<(std::ostream& os, const Ponca::KdTreeBase<Traits>& kdtree)
 {
     kdtree.print(os);
     return os;

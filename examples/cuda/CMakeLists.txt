@@ -26,6 +26,12 @@ check_language(CUDA)
     set_property(TARGET cuda_fit_plane PROPERTY CUDA_ARCHITECTURES OFF)
     ponca_handle_eigen_dependency(cuda_fit_plane)
 
+    add_executable(cuda_fit_plane_kdtree "ponca_fit_kdtree.cu")
+    target_include_directories(cuda_fit_plane_kdtree PRIVATE ${PONCA_src_ROOT})
+    add_dependencies(ponca-examples cuda_fit_plane_kdtree)
+    set_property(TARGET cuda_fit_plane_kdtree PROPERTY CUDA_ARCHITECTURES OFF)
+    ponca_handle_eigen_dependency(cuda_fit_plane_kdtree)
+
     add_subdirectory(ssgls)
 else()
     message(INFO "Cuda not found, skipping Ponca_Examples_cuda")

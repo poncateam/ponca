@@ -7,51 +7,46 @@
 // KdTree ----------------------------------------------------------------------
 
 template<typename Traits>
-template<typename PointUserContainer, typename Converter>
-inline void KdTreeBase<Traits>::build(PointUserContainer&& points, Converter c)
+template<typename PointUserContainer, typename PointConverter>
+void KdTreeBase<Traits>::build(PointUserContainer&& points, PointConverter c)
 {
-    IndexContainer ids(points.size());
+    std::vector<IndexType> ids (points.size());
     std::iota(ids.begin(), ids.end(), IndexType(0));
     this->buildWithSampling(std::forward<PointUserContainer>(points), std::move(ids), std::move(c));
 }
 
 template<typename Traits>
-void KdTreeBase<Traits>::clear()
-{
-    m_points.clear();
-    m_nodes.clear();
-    m_indices.clear();
-    m_leaf_count = 0;
-}
-
-template<typename Traits>
 bool KdTreeBase<Traits>::valid() const
 {
-    if (m_points.empty())
-        return m_nodes.empty() && m_indices.empty();
+    if (m_bufs.points_size == 0)
+        return m_bufs.nodes_size == 0 && m_bufs.indices_size == 0;
 
-    if(m_nodes.empty() || m_indices.empty())
+    if(m_bufs.nodes_size == 0 || m_bufs.indices_size == 0)
     {
+        std::cerr << "KdTree validation check failed in " << __FILE__ << " (" << __LINE__ << ")" << std::endl;
         return false;
     }
 
     std::vector<bool> b(pointCount(), false);
-    for(IndexType idx : m_indices)
+    for(unsigned int i = 0; i < sampleCount(); ++i)
     {
+        const int idx = m_bufs.indices[i];
         if(idx < 0 || pointCount() <= idx || b[idx])
         {
+            std::cerr << "KdTree validation check failed in " << __FILE__ << " (" << __LINE__ << ")" << std::endl;
             return false;
         }
         b[idx] = true;
     }
 
-    for(NodeIndexType n=0;n<node_count();++n)
+    for(NodeIndexType n=0;n<nodeCount();++n)
     {
-        const NodeType& node = m_nodes[n];
+        const NodeType& node = m_bufs.nodes[n];
         if(node.is_leaf())
         {
-            if(sample_count() <= node.leaf_start() || node.leaf_start()+node.leaf_size() > sample_count())
+            if(sampleCount() <= node.leaf_start() || node.leaf_start()+node.leaf_size() > sampleCount())
             {
+                std::cerr << "KdTree validation check failed in " << __FILE__ << " (" << __LINE__ << ")" << std::endl;
                 return false;
             }
         }
@@ -59,10 +54,12 @@ bool KdTreeBase<Traits>::valid() const
         {
             if(node.inner_split_dim() < 0 || DataPoint::Dim-1 < node.inner_split_dim())
             {
+                std::cerr << "KdTree validation check failed in " << __FILE__ << " (" << __LINE__ << ")" << std::endl;
                 return false;
             }
-            if(node_count() <= node.inner_first_child_id() || node_count() <= node.inner_first_child_id()+1)
+            if(nodeCount() <= node.inner_first_child_id() || nodeCount() <= node.inner_first_child_id()+1)
             {
+                std::cerr << "KdTree validation check failed in " << __FILE__ << " (" << __LINE__ << ")" << std::endl;
                 return false;
             }
         }
@@ -79,8 +76,8 @@ void KdTreeBase<Traits>::print(std::ostream& os, bool verbose) const
     os << "\n  MaxPoints: " << MAX_POINT_COUNT;
     os << "\n  MaxDepth: " << MAX_DEPTH;
     os << "\n  PointCount: " << pointCount();
-    os << "\n  SampleCount: " << sample_count();
-    os << "\n  NodeCount: " << node_count();
+    os << "\n  SampleCount: " << sampleCount();
+    os << "\n  NodeCount: " << nodeCount();
 
     if (!verbose)
     {
@@ -89,17 +86,17 @@ void KdTreeBase<Traits>::print(std::ostream& os, bool verbose) const
 
     os << "\n  Samples: [";
     static constexpr IndexType SAMPLES_PER_LINE = 10;
-    for (IndexType i = 0; i < sample_count(); ++i)
+    for (IndexType i = 0; i < sampleCount(); ++i)
     {
         os << (i == 0 ? "" : ",");
         os << (i % SAMPLES_PER_LINE == 0 ? "\n    " : " ");
-        os << m_indices[i];
+        os << m_bufs.indices[i];
     }
 
     os << "]\n  Nodes:";
-    for (NodeIndexType n = 0; n < node_count(); ++n)
+    for (NodeIndexType n = 0; n < nodeCount(); ++n)
     {
-        const NodeType& node = m_nodes[n];
+        const NodeType& node = m_bufs.nodes[n];
         if (node.is_leaf())
         {
             os << "\n    - Type: Leaf";
@@ -117,42 +114,54 @@ void KdTreeBase<Traits>::print(std::ostream& os, bool verbose) const
 }
 
 template<typename Traits>
-template<typename PointUserContainer, typename IndexUserContainer, typename Converter>
-inline void KdTreeBase<Traits>::buildWithSampling(PointUserContainer&& points,
-                                                  IndexUserContainer sampling,
-                                                  Converter c)
-{
-    PONCA_DEBUG_ASSERT(static_cast<IndexType>(points.size()) <= MAX_POINT_COUNT);
-    this->clear();
+template<typename PointUserContainer, typename IndexUserContainer, typename PointConverter>
+void KdTreeBase<Traits>::buildWithSampling(
+    PointUserContainer&& points, IndexUserContainer sampling, PointConverter c
+) {
+    PONCA_DEBUG_ASSERT(static_cast<IndexType>(pointCount()) <= MAX_POINT_COUNT);
+    m_bufs.points_size  = 0;
+    m_bufs.indices_size = 0;
+    m_bufs.nodes_size   = 0;
+    m_leaf_count = 0;
 
     // Move, copy or convert input samples
-    c(std::forward<PointUserContainer>(points), m_points);
+    m_bufs.points_size = points.size();
+    // c(std::forward<PointUserContainer>(Traits::template toInternalContainer<PointContainer>(points)), m_bufs.points); // TODO : Fix this for the memory array Traits type
+    m_bufs.setPoints(std::forward<PointUserContainer>(points));
 
-    m_nodes = NodeContainer();
-    m_nodes.reserve(4 * pointCount() / m_min_cell_size);
-    m_nodes.emplace_back();
+    std::vector<NodeType> nodes = std::vector<NodeType>();
+    nodes.reserve(4 * pointCount() / m_min_cell_size);
+    nodes.emplace_back();
 
-    m_indices = std::move(sampling);
+    m_bufs.indices_size = sampling.size();
+    this->buildRec(sampling, nodes, 0, 0, sampleCount(), 1);
+    // m_bufs.indices = std::move(Traits::template toInternalContainer<IndexContainer>(sampling)); // TODO : Fix this for the memory array Traits type
+    m_bufs.setIndices(std::move(sampling));
 
-    this->buildRec(0, 0, sample_count(), 1);
+    m_bufs.nodes_size = nodes.size();
+    // m_bufs.nodes = std::move(Traits::template toInternalContainer<NodeContainer>(nodes)); // TODO : Fix this for the memory array Traits type
+    m_bufs.setNodes(std::move(nodes));
 
+    std::cout <<"valid" << valid() << std::endl;
+    std::cout << "points_size" << m_bufs.points_size << std::endl;
     PONCA_DEBUG_ASSERT(this->valid());
 }
 
 template<typename Traits>
-void KdTreeBase<Traits>::buildRec(NodeIndexType node_id, IndexType start, IndexType end, int level)
+template<typename IndexUserContainer>
+void KdTreeBase<Traits>::buildRec(IndexUserContainer& ids, std::vector<NodeType>& nodes, NodeIndexType node_id, IndexType start, IndexType end, int level)
 {
-    NodeType& node = m_nodes[node_id];
+    NodeType& node = nodes[node_id];
     AabbType aabb;
     for(IndexType i=start; i<end; ++i)
-        aabb.extend(m_points[m_indices[i]].pos());
+        aabb.extend(m_bufs.points[ids[i]].pos());
 
     node.set_is_leaf(
         end-start <= m_min_cell_size ||
         level >= Traits::MAX_DEPTH ||
         // Since we add 2 nodes per inner node we need to stop if we can't add
         // them both
-        static_cast<NodeIndexType>(m_nodes.size()) > MAX_NODE_COUNT - 2);
+        static_cast<NodeIndexType>(nodes.size()) > MAX_NODE_COUNT - 2);
 
     node.configure_range(start, end-start, aabb);
     if (node.is_leaf())
@@ -163,29 +172,29 @@ void KdTreeBase<Traits>::buildRec(NodeIndexType node_id, IndexType start, IndexT
     {
         IndexType split_dim = 0;
         (Scalar(0.5) * aabb.diagonal()).maxCoeff(&split_dim);
-        node.configure_inner(aabb.center()[split_dim], static_cast<IndexType>(m_nodes.size()), split_dim);
-        m_nodes.emplace_back();
-        m_nodes.emplace_back();
+        node.configure_inner(aabb.center()[split_dim], static_cast<IndexType>(nodes.size()), split_dim);
+        nodes.emplace_back();
+        nodes.emplace_back();
 
-        IndexType mid_id = this->partition(start, end, split_dim, node.inner_split_value());
-        buildRec(node.inner_first_child_id(), start, mid_id, level+1);
-        buildRec(node.inner_first_child_id()+1, mid_id, end, level+1);
+        IndexType mid_id = this->partition(ids, start, end, split_dim, node.inner_split_value());
+        buildRec(ids, nodes, node.inner_first_child_id(), start, mid_id, level+1);
+        buildRec(ids, nodes, node.inner_first_child_id()+1, mid_id, end, level+1);
     }
 }
 
 template<typename Traits>
-auto KdTreeBase<Traits>::partition(IndexType start, IndexType end, int dim, Scalar value)
+template<typename IndexUserContainer>
+auto KdTreeBase<Traits>::partition(IndexUserContainer& ids, IndexType start, IndexType end, int dim, Scalar value)
     -> IndexType
 {
-    const auto& points = m_points;
-    auto& indices  = m_indices;
+    const auto& points = m_bufs.points;
     
-    auto it = std::partition(indices.begin()+start, indices.begin()+end, [&](IndexType i)
+    auto it = std::partition(std::begin(ids)+start, std::begin(ids)+end, [&](IndexType i)
     {
         return points[i].pos()[dim] < value;
     });
 
-    auto distance = std::distance(m_indices.begin(), it);
+    auto distance = std::distance(std::begin(ids), it);
     
     return static_cast<IndexType>(distance);
 }
