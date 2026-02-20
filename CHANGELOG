@@ -95,6 +95,9 @@ v.1.4
    - [all] Added static cast to remove warnings (#203)
    - [all] Fixing include directives for std lib (#214)
 
+- Externals
+   - Update to Eigen 5.0 (#199)
+
 - Tests
    - [fitting] Split Basket test in subtests (#96)
    - [fitting] Fix random failure in Basket and Projection tests (#96,#162)
