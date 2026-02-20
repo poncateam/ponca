@@ -45,18 +45,32 @@ public:
 
     /*!
      * \brief Convert query from local to global coordinate system, such as \f$\mathbf{x}=\mathbf{x}'+\mathbf{p}\f$.
-     * @param _q Position expressed relatively to the basis center
-     * @return Position in the global coordinate system
+     * @param _q Vector expressed relatively to the basis center
+     * @param _isPositionVector Indicate if the input vector `_q` is a position that is influenced by translations
+     *        (e.g., in contrast to displacement or normal vectors)
+     * @return Vector expressed in the global coordinate system
+     *
+     * @see convertToLocalBasis
      */
-    PONCA_MULTIARCH [[nodiscard]] inline VectorType convertToGlobalBasis(const VectorType& _q) const { return _q + m_p; }
+    PONCA_MULTIARCH [[nodiscard]] inline VectorType convertToGlobalBasis(const VectorType& _q,
+                                                                         bool _isPositionVector = true) const {
+        return ( _isPositionVector ? (_q + m_p) : _q );
+    }
 
     /*!
      * \brief Convert query from global to local coordinate system, such as \f$\mathbf{x}'=\mathbf{x}-\mathbf{p}\f$.
      *
-     * @param _q Input point in global coordinate system
-     * @return Position expressed relatively to the basis center
+     * @param _q Input Vector in global coordinate system
+     * @param _isPositionVector Indicate if the input vector `_q` is a position that is influenced by translations
+     *        (e.g., in contrast to displacement or normal vectors)
+     * @return Vector expressed relatively to the basis center
+     *
+     * @see convertToGlobalBasis
      */
-    PONCA_MULTIARCH [[nodiscard]] inline VectorType convertToLocalBasis(const VectorType& _q) const { return _q - m_p; }
+    PONCA_MULTIARCH [[nodiscard]] inline VectorType convertToLocalBasis(const VectorType& _q,
+                                                                        bool _isPositionVector = true) const {
+        return ( _isPositionVector ? (_q - m_p) : _q );
+    }
 
     /*!
      * \brief Get access to the stored points of evaluation
@@ -96,16 +110,26 @@ public:
     /*!
      * \brief Convert position from local to global coordinate system : does nothing as this is global frame
      * @param _q Position in local coordinate
+     * @param _isPositionVector Indicate if the input vector `_q` is a position that is influenced by translations
+     *        (e.g., in contrast to displacement or normal vectors)
      * @return _q
      */
-    PONCA_MULTIARCH [[nodiscard]] inline const VectorType& convertToGlobalBasis(const VectorType& _q) const { return _q; }
+    PONCA_MULTIARCH [[nodiscard]] inline const VectorType& convertToGlobalBasis(const VectorType& _q,
+                                                                                bool /*_isPositionVector*/ = true) const {
+        return _q;
+    }
 
     /*!
      * \brief Convert query from global to local coordinate system : does nothing as this is global frame
      * @param _q Query in global coordinate
+     * @param _isPositionVector Indicate if the input vector `_q` is a position that is influenced by translations
+     *        (e.g., in contrast to displacement or normal vectors)
      * @return _q
      */
-    PONCA_MULTIARCH [[nodiscard]] inline const VectorType& convertToLocalBasis(const VectorType& _q) const { return _q; }
+    PONCA_MULTIARCH [[nodiscard]] inline const VectorType& convertToLocalBasis(const VectorType& _q,
+                                                                               bool /*_isPositionVector*/ = true) const {
+        return _q;
+    }
 };
 
 

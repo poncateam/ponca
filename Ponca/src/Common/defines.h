@@ -56,3 +56,24 @@
 #else
 #define STD_SAFE_AT(C,i) C.at(i)
 #endif
+
+namespace Ponca
+{
+    /*!
+     * \brief Utility structure used to detect if a Point has a normal field
+     *
+     * Example usage:
+     * \code
+     * hasNormal<MyPoint>::value will be true if MyPoint has a member function 'normal()'
+     * \endcode
+     *
+     * @tparam T The Point type
+     */
+    template <typename T, typename = void>
+    struct hasNormal : std::false_type {};
+
+    /// \copydoc hasNormal<typename,typename>
+    template <typename T>
+    struct hasNormal<T, std::void_t<decltype(std::declval<T>().normal())>> : std::true_type {};
+} // namespace Ponca
+

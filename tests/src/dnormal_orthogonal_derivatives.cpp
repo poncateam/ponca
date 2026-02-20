@@ -137,7 +137,7 @@ void test_orthoDerivatives(Functor f, bool skipCov = false)
         {
             auto res = f(fit);
             typename Point::VectorType normal  = res.first;  //fit.primitiveGradient();
-            typename Point::MatrixType dN = res.second.template middleCols<Point::Dim>(fit.isScaleDer() ? 1: 0);
+            typename Point::MatrixType dN = res.second.template middleCols<Point::Dim>(FitType::isScaleDer() ? 1: 0);
 
             // check that we have unitary normal vector
             VERIFY( normal.norm() - Scalar(1) < epsilon );

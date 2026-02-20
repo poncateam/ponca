@@ -223,11 +223,11 @@ public:
     /* Use results                                                            */
     /**************************************************************************/
     /*! \brief State specified at compilation time to compute derivatives in scale */
-    PONCA_MULTIARCH [[nodiscard]] inline constexpr bool isScaleDer() const {return bool(Type & FitScaleDer);}
+    PONCA_MULTIARCH [[nodiscard]] static inline constexpr bool isScaleDer() {return bool(Type & FitScaleDer);}
     /*! \brief State specified at compilation time to compute derivatives in space */
-    PONCA_MULTIARCH [[nodiscard]] inline constexpr bool isSpaceDer() const {return bool(Type & FitSpaceDer);}
+    PONCA_MULTIARCH [[nodiscard]] static inline constexpr bool isSpaceDer() {return bool(Type & FitSpaceDer);}
     /*! \brief Number of dimensions used for the differentiation */
-    PONCA_MULTIARCH [[nodiscard]] inline constexpr unsigned int derDimension() const { return NbDerivatives;}
+    PONCA_MULTIARCH [[nodiscard]] static inline constexpr unsigned int derDimension() { return NbDerivatives;}
 
 };
 

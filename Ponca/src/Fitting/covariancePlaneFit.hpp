@@ -24,16 +24,18 @@ CovariancePlaneFitImpl<DataPoint, _NFilter, T>::finalize ()
 
 template < class DataPoint, class _NFilter, typename T>
 typename CovariancePlaneFitImpl<DataPoint, _NFilter, T>::VectorType
-CovariancePlaneFitImpl<DataPoint, _NFilter, T>::worldToTangentPlane (const VectorType& _q) const
+CovariancePlaneFitImpl<DataPoint, _NFilter, T>::worldToTangentPlane (const VectorType& _q, bool _isPositionVector) const
 {
-    return Base::m_solver.eigenvectors().transpose() * (Base::getNeighborFilter().convertToLocalBasis(_q));
+    return Base::m_solver.eigenvectors().transpose() * Base::getNeighborFilter().convertToLocalBasis(_q,
+                                                                                                     _isPositionVector);
 }
 
 template < class DataPoint, class _NFilter, typename T>
 typename CovariancePlaneFitImpl<DataPoint, _NFilter, T>::VectorType
-CovariancePlaneFitImpl<DataPoint, _NFilter, T>::tangentPlaneToWorld (const VectorType& _lq) const
+CovariancePlaneFitImpl<DataPoint, _NFilter, T>::tangentPlaneToWorld (const VectorType& _lq, bool _isPositionVector) const
 {
-    return Base::getNeighborFilter().convertToGlobalBasis(Base::m_solver.eigenvectors().transpose().inverse() * _lq);
+    return Base::getNeighborFilter().convertToGlobalBasis(Base::m_solver.eigenvectors().transpose().inverse() * _lq,
+                                                          _isPositionVector);
 }
 
 
@@ -83,9 +85,6 @@ CovariancePlaneDerImpl<DataPoint, _NFilter, DiffType, T>::finalize()
         if(k>0 || !Base::isScaleDer())
           dDiff(Base::isScaleDer() ? k-1 : k) += 1;
         m_dDist(k) = m_dNormal.col(k).dot(barycenter) + normal.dot(dDiff);
-
-        // \fixme we shouldn't need this normalization, however currently the derivatives are overestimated by a factor 2
-        m_dNormal /= Scalar(2.);
       }
     }
 

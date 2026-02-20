@@ -17,19 +17,20 @@
 
 #include <Ponca/src/Fitting/basket.h>
 #include <Ponca/src/Fitting/covariancePlaneFit.h>
-#include <Ponca/src/Fitting/meanPlaneFit.h>
+//#include <Ponca/src/Fitting/meanPlaneFit.h>
 #include <Ponca/src/Fitting/mongePatch.h>
 #include <Ponca/src/Fitting/weightFunc.h>
 #include <Ponca/src/Fitting/weightKernel.h>
 
 #include <vector>
+#include <fstream>
 
 using namespace std;
 using namespace Ponca;
 
 
 template<typename DataPoint, typename Fit>
-void testFunction(bool _bUnoriented = false, bool _bAddPositionNoise = false, bool _bAddNormalNoise = false)
+void testFunction(bool _bAddPositionNoise = false)
 {
     // Define related structure
     typedef typename DataPoint::Scalar Scalar;
@@ -39,62 +40,78 @@ void testFunction(bool _bUnoriented = false, bool _bAddPositionNoise = false, bo
     int nbPoints = Eigen::internal::random<int>(100, 1000);
 
     Scalar width  = Eigen::internal::random<Scalar>(1., 10.);
-    Scalar height = width;
 
-    Scalar analysisScale = Scalar(15.) * std::sqrt( width * height / nbPoints);
-    Scalar centerScale   = Eigen::internal::random<Scalar>(1,10000);
-    VectorType center    = VectorType::Random() * centerScale;
-
-    VectorType direction = VectorType::Random().normalized();
+    // we want a large scale to avoid fitting errors
+    Scalar analysisScale = Scalar(4.) * width;//std::sqrt( width * height / nbPoints);
 
     Scalar epsilon = testEpsilon<Scalar>();
 
     vector<DataPoint> vectorPoints(nbPoints);
 
+    // paraboloid parameters
+    // we need to use small magnitude for quadratic terms, otherwise the plane fitting is going to be wrong
+    const Scalar standardMagnitude = 1;
+    const Scalar smallMagnitude = 0.1;
+    auto quadParams = Eigen::Matrix<Scalar, 6, 1>(
+            Eigen::internal::random<Scalar>(-smallMagnitude,smallMagnitude),
+            Eigen::internal::random<Scalar>(-smallMagnitude,smallMagnitude),
+            Eigen::internal::random<Scalar>(-smallMagnitude,smallMagnitude),
+            Eigen::internal::random<Scalar>(-standardMagnitude,standardMagnitude),
+            Eigen::internal::random<Scalar>(-standardMagnitude,standardMagnitude),
+            Eigen::internal::random<Scalar>(-standardMagnitude,standardMagnitude));
+
     for(unsigned int i = 0; i < vectorPoints.size(); ++i)
     {
-        vectorPoints[i] = getPointOnPlane<DataPoint>(center,
-                                                     direction,
-                                                     width,
-                                                     _bAddPositionNoise,
-                                                     _bAddNormalNoise,
-                                                     _bUnoriented);
+        vectorPoints[i] = getPointOnParaboloid<DataPoint>(quadParams, width, _bAddPositionNoise);
     }
 
-    epsilon = testEpsilon<Scalar>();
+    epsilon = 0.1*width;
     if ( _bAddPositionNoise) // relax a bit the testing threshold
-      epsilon = Scalar(0.02*MAX_NOISE);
+      epsilon = std::max(Scalar(0.5*MAX_NOISE), epsilon*2);
     // Test for each point if the fitted plane correspond to the theoretical plane
 
-    // Quick testing is requested for coverage
-    int size = QUICK_TESTS ? 1 : int(vectorPoints.size());
 
-#ifdef DEBUG
-#pragma omp parallel for
-#endif
-    for(int i = 0; i < size; ++i)
+    // evaluate only for the point located at 0,0
+    const auto queryPos = VectorType::Zero();
+
+    Fit fit;
+    fit.setNeighborFilter({queryPos, analysisScale});
+    fit.compute(vectorPoints);
+
+    VERIFY( fit.isStable() );
     {
-        const auto& queryPos = vectorPoints[i].pos();
+        // compute RMSE
+        Scalar error {0};
+        int nbTestSamples = vectorPoints.size()/5; // test on fewer samples to speed things up
 
-        Fit fit;
-        fit.setNeighborFilter({queryPos, analysisScale});
-        fit.compute(vectorPoints);
+        std::vector<VectorType> testPoints(nbTestSamples);
 
-        if( fit.isStable() ){
+        for(unsigned int i = 0; i < nbTestSamples; ++i)
+        {
+            // get samples on points closer to the center, to avoid over-estimated error near the border
+            const auto point = getPointOnParaboloid<DataPoint>(quadParams, width/2, false).pos();
+            error += (point - fit.project(point)).norm();
+            testPoints[i]=point;
+        }
+        error /= nbTestSamples;
 
-            // Check if the plane orientation is equal to the generation direction
-            VERIFY(Scalar(1.) - std::abs(fit.primitiveGradient(queryPos).dot(direction)) <= epsilon);
-
-            // Projecting to tangent plane and going back to world should not change the position
-            VERIFY((fit.tangentPlaneToWorld(fit.worldToTangentPlane(queryPos)) - queryPos).norm() <= epsilon);
-
-            if(!_bAddPositionNoise) {
-              // Check if the query point is on the plane
-              VERIFY(std::abs(fit.potential(queryPos)) <= epsilon);
-              // check if we well have a plane
-              VERIFY(fit.kMean() <= epsilon);
-              VERIFY(fit.GaussianCurvature() <= epsilon);
+        if(error > epsilon) {
+            std::cerr << "Precision test failed (" << error << "). Dumping files\n";
+#ifndef PONCA_COVERAGE_ENABLED
+            {
+                std::ofstream inFile, projFile;
+                inFile.open ("input.xyz");
+                projFile.open ("projected.xyz");
+                for(unsigned int i = 0; i < testPoints.size(); ++i)
+                {
+                    inFile << testPoints[i].transpose() << endl;
+                    projFile << fit.project(testPoints[i]).transpose() << std::endl;
+                }
+                inFile.close();
+                projFile.close();
             }
+#endif
+            VERIFY(error <= epsilon);
         }
     }
 }
@@ -102,34 +119,27 @@ void testFunction(bool _bUnoriented = false, bool _bAddPositionNoise = false, bo
 template<typename Scalar, int Dim>
 void callSubTests()
 {
-    typedef PointPositionNormal<Scalar, Dim> Point;
+    typedef PointPosition<Scalar, Dim> Point;
 
     typedef DistWeightFunc<Point, SmoothWeightKernel<Scalar> > WeightSmoothFunc;
     typedef DistWeightFunc<Point, ConstantWeightKernel<Scalar> > WeightConstantFunc;
 
-    typedef Basket<Point, WeightSmoothFunc, CovariancePlaneFit, MongePatch> CovFitSmooth;
-    typedef Basket<Point, WeightConstantFunc, CovariancePlaneFit, MongePatch> CovFitConstant;
-
-    // \todo Add these tests when MeanPlaneFit PROVIDES_TANGENT_PLANE_BASIS
-//    typedef Basket<Point, WeightSmoothFunc, MeanPlaneFit, MongePatch> MeanFitSmooth;
-//    typedef Basket<Point, WeightConstantFunc, MeanPlaneFit, MongePatch> MeanFitConstant;
+    typedef Basket<Point, WeightSmoothFunc, MongePatchQuadraticFit> CovFitSmooth;
+    typedef Basket<Point, WeightConstantFunc, MongePatchQuadraticFit> CovFitConstant;
 
     cout << "Testing with perfect plane..." << endl;
     for(int i = 0; i < g_repeat; ++i)
     {
-        //Test with perfect plane
         CALL_SUBTEST(( testFunction<Point, CovFitSmooth>() ));
         CALL_SUBTEST(( testFunction<Point, CovFitConstant>() ));
-//        CALL_SUBTEST(( testFunction<Point, MeanFitSmooth>() ));
-//        CALL_SUBTEST(( testFunction<Point, MeanFitConstant>() ));
     }
     cout << "Ok!" << endl;
 
     cout << "Testing with plane noise on position" << endl;
     for(int i = 0; i < g_repeat; ++i)
     {
-        CALL_SUBTEST(( testFunction<Point, CovFitSmooth>(false, true, true) ));
-        CALL_SUBTEST(( testFunction<Point, CovFitConstant>(false, true, true) ));
+        CALL_SUBTEST(( testFunction<Point, CovFitSmooth>(true) ));
+        CALL_SUBTEST(( testFunction<Point, CovFitConstant>(true) ));
     }
     cout << "Ok!" << endl;
 }
