@@ -128,11 +128,71 @@ public:
         size_t nodes_size{0};
         size_t indices_size{0};
 
-        inline Buffers() = default;
-        inline Buffers(PointContainer _points   , NodeContainer _nodes    , IndexContainer _indices,
+        PONCA_MULTIARCH inline Buffers() = default;
+        PONCA_MULTIARCH inline Buffers(PointContainer _points   , NodeContainer _nodes    , IndexContainer _indices,
                        const size_t _points_size, const size_t _nodes_size, const size_t _indices_size)
             : points(_points)          , nodes(_nodes)          , indices(_indices),
               points_size(_points_size), nodes_size(_nodes_size), indices_size(_indices_size){}
+
+        PONCA_MULTIARCH inline ~Buffers()
+        {
+            if constexpr (std::is_pointer_v<PointContainer>)
+                delete[] points;
+
+            if constexpr (std::is_pointer_v<IndexContainer>)
+                delete[] indices;
+
+            if constexpr (std::is_pointer_v<NodeContainer>)
+                delete[] nodes;
+        }
+
+        template<typename InputContainerRef>
+        PONCA_MULTIARCH inline void setNodes(InputContainerRef && input_node) {
+            nodes_size = input_node.size();
+            if constexpr (std::is_pointer_v<NodeContainer>)
+            {
+                nodes = new NodeType[nodes_size];
+                std::copy(input_node.cbegin(), input_node.cend(), nodes);
+            }
+            else
+            {
+                using InputContainer = std::remove_reference_t<InputContainerRef>;
+                static_assert(std::is_same_v<InputContainer, NodeContainer> && std::is_copy_assignable_v<NodeType>);
+                nodes = std::forward<InputContainerRef>(input_node); // Either move or copy
+            }
+        }
+
+        template<typename InputContainerRef>
+        PONCA_MULTIARCH inline void setPoints(InputContainerRef && input_point) {
+            points_size = input_point.size();
+            if constexpr (std::is_pointer_v<PointContainer>)
+            {
+                points = new DataPoint[points_size];
+                std::copy(input_point.cbegin(), input_point.cend(), points);
+            }
+            else
+            {
+                using InputContainer = std::remove_reference_t<InputContainerRef>;
+                static_assert(std::is_same_v<InputContainer, PointContainer> && std::is_copy_assignable_v<DataPoint>);
+                points = std::forward<InputContainerRef>(input_point); // Either move or copy
+            }
+        }
+
+        template<typename InputContainerRef>
+        PONCA_MULTIARCH inline void setIndices(InputContainerRef && input_indices) {
+            indices_size = input_indices.size();
+            if constexpr (std::is_pointer_v<IndexContainer>)
+            {
+                indices = new IndexType[indices_size];
+                std::copy(input_indices.cbegin(), input_indices.cend(), indices);
+            }
+            else
+            {
+                using InputContainer = std::remove_reference_t<InputContainerRef>;
+                static_assert(std::is_same_v<InputContainer, IndexContainer> && std::is_copy_assignable_v<IndexType>);
+                indices = std::forward<InputContainerRef>(input_indices); // Either move or copy
+            }
+        }
     };
 
     /// \brief The maximum number of nodes that the kd-tree can have.
