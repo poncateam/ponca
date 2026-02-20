@@ -27,8 +27,9 @@ bool KdTreeBase<Traits>::valid() const
     }
 
     std::vector<bool> b(pointCount(), false);
-    for(IndexType idx : m_bufs.indices)
+    for(unsigned int i = 0; i < sampleCount(); ++i)
     {
+        const unsigned int idx = m_bufs.indices[i];
         if(idx < 0 || pointCount() <= idx || b[idx])
         {
             return false;
@@ -120,7 +121,7 @@ void KdTreeBase<Traits>::buildWithSampling(
 
     // Move, copy or convert input samples
     m_bufs.points_size = points.size();
-    c(Traits::template toInternalContainer<PointContainer>(points), m_bufs.points);
+    c(Traits::template toInternalContainer<PointContainer>(points), m_bufs.points); // TODO : Fix this for the memory array Traits type
 
     std::vector<NodeType> nodes = std::vector<NodeType>();
     nodes.reserve(4 * pointCount() / m_min_cell_size);
@@ -128,10 +129,10 @@ void KdTreeBase<Traits>::buildWithSampling(
 
     m_bufs.indices_size = sampling.size();
     this->buildRec(sampling, nodes, 0, 0, sampleCount(), 1);
-    m_bufs.indices = std::move(Traits::template toInternalContainer<IndexContainer>(sampling));
+    m_bufs.indices = std::move(Traits::template toInternalContainer<IndexContainer>(sampling)); // TODO : Fix this for the memory array Traits type
 
     m_bufs.nodes_size = nodes.size();
-    m_bufs.nodes = std::move(Traits::template toInternalContainer<NodeContainer>(nodes));
+    m_bufs.nodes = std::move(Traits::template toInternalContainer<NodeContainer>(nodes)); // TODO : Fix this for the memory array Traits type
 
     PONCA_DEBUG_ASSERT(valid());
 }
