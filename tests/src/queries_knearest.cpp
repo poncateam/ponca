@@ -13,14 +13,16 @@
 #include <Ponca/src/SpatialPartitioning/KnnGraph/knnGraph.h>
 #include <Ponca/src/Common/pointTypes.h>
 
+#define PRINT_TIMING
+
 using namespace Ponca;
 
 //! Test kNearestNeighbors query
-template<bool doIndexQuery, typename AcceleratingStructure>
+template<bool doIndexQuery, typename AcceleratingStructure, typename PointContainer>
 auto testKNearestNeighbors( AcceleratingStructure& structure,
-	typename AcceleratingStructure::PointContainer& points,
+	PointContainer& points,
 	std::vector<int>& sample,
-	const int retry_number, const int k
+	const int k
 ) {
 	using DataPoint      = typename AcceleratingStructure::DataPoint;
 
@@ -35,15 +37,15 @@ auto testKNearestNeighbors( AcceleratingStructure& structure,
 			return structure.kNearestNeighbors(queryInput, _k);
 		}, [&points, &sample, &k](auto& queryInput, auto& queryResults) {
 			return checkKNearestNeighbors<DataPoint>(points, sample, queryInput, k, queryResults);
-		}, retry_number, k
+		}, g_repeat, k
 	);
 }
 
 //! Test kNearestNeighbors query without the k argument (the size of the iterator depends on the acceleration structure (e.g. when using the knnGraph(kdtreeDense, k))
-template<typename AcceleratingStructure>
+template<typename AcceleratingStructure, typename PointContainer>
 auto testKNearestNeighborsEntirePointSet( AcceleratingStructure& structure,
-	typename AcceleratingStructure::PointContainer& points,
-	const int retry_number, const int k
+	PointContainer& points,
+	const int k
 ) {
 	using DataPoint      = typename AcceleratingStructure::DataPoint;
 
@@ -54,10 +56,24 @@ auto testKNearestNeighborsEntirePointSet( AcceleratingStructure& structure,
 			return structure.kNearestNeighbors(queryInput);
 		}, [&points, &k](auto& queryInput, auto& queryResults) {
 			return checkKNearestNeighbors<DataPoint>(points, queryInput, k, queryResults);
-		}, retry_number
+		}, g_repeat
 	);
 }
 
+template<template <typename> class KdTreeType, typename P>
+inline KdTreeType<P> testKdTree(std::vector<P> & points, std::vector<int> & sample, const int k) {
+	KdTreeType<P> kdtree = *testBuildKdTree<P, KdTreeType>(points, sample);
+
+	std::chrono::milliseconds timing = testKNearestNeighbors<true>(kdtree, points, sample, k);  // Index query test
+#ifdef PRINT_TIMING
+	cout << "    Compute Time KdTree index query : " <<  timing.count() << "ms" << endl;
+#endif
+	timing = testKNearestNeighbors<false>(kdtree, points, sample, k); // Position query test
+#ifdef PRINT_TIMING
+	cout << "    Compute Time KdTree position query : " <<  timing.count() << "ms" << endl;
+#endif
+	return kdtree;
+}
 
 template<typename Scalar, int Dim>
 void testKNearestNeighborsForAllStructures(const bool quick = QUICK_TESTS)
@@ -65,34 +81,31 @@ void testKNearestNeighborsForAllStructures(const bool quick = QUICK_TESTS)
 	using P = PointPositionNormal<Scalar, Dim>;
 	const int N = quick ? 100 : 1000;
 	const int k = quick ? 2 : 15;
-	const int retry_number = quick? 1 : 5;
-	std::chrono::milliseconds timing;
 
 	//////////// Generate data
 	std::vector<P> points(N);
 	generateData(points);
 
 	cout << endl;
-	//////////// Test Dense KdTree
-	std::vector<int> sample;
-	KdTreeDense<P> kdtreeDense = *testBuildKdTree<P, KdTreeDense>(points, sample);
-	timing = testKNearestNeighbors<true>(kdtreeDense, points, sample, retry_number, k);  // Index query test
-	cout << "    Compute Time KdTreeDense index query : " <<  timing.count() << "ms" << endl;
-	timing = testKNearestNeighbors<false>(kdtreeDense, points, sample, retry_number, k); // Position query test
-	cout << "    Compute Time KdTreeDense position query : " <<  timing.count() << "ms" << endl;
+	//////////// Test KdTree STL-like containers
+	std::vector<int> sampleDense;
+	KdTreeDense<P> kdtreeDense = testKdTree<KdTreeDense>(points, sampleDense, k);
+	std::vector<int> sampleSparse;
+	testKdTree<KdTreeSparse>(points, sampleSparse, k);
 
-	//////////// Test subsample of KdTree
-	std::vector<int> subSample;
-	KdTreeSparse<P> kdtreeSparse = *testBuildKdTree<P, KdTreeSparse>(points, subSample);
-	timing = testKNearestNeighbors<true>(kdtreeSparse, points, subSample, retry_number, k);  // Index query test
-	cout << "    Compute Time KdTreeSparse position query : " <<  timing.count() << "ms" << endl;
-	timing = testKNearestNeighbors<false>(kdtreeSparse, points, subSample, retry_number, k); // Position query test
-	cout << "    Compute Time KdTreeSparse index query : " <<  timing.count() << "ms" << endl;
+	//////////// Test KdTree memory array
+	std::vector<int> sampleDenseP;
+	testKdTree<KdTreeDensePointers>(points, sampleDenseP, k);
+	std::vector<int> sampleSparseP;
+	testKdTree<KdTreeSparsePointers>(points, sampleSparseP, k);
 
 	//////////// Test KnnGraph
 	KnnGraph<P> knnGraph(kdtreeDense, k);
-	timing = testKNearestNeighborsEntirePointSet(knnGraph, points, retry_number, k);  // Index query test
+
+	std::chrono::milliseconds timing = testKNearestNeighborsEntirePointSet(knnGraph, points, k);  // Index query test
+#ifdef PRINT_TIMING
 	cout << "    Compute Time KnnGraph index query : " <<  timing.count() << "ms" << endl;
+#endif
 	cout << "  (ok)" << endl;
 }
 
