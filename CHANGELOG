@@ -2,7 +2,15 @@ Ponca changelog
 
 
 --------------------------------------------------------------------------------
-Current head (v.2.0.alpha1 RC)
+Current head (v.2.0.alpha2 RC)
+
+--------------------------------------------------------------------------------
+v.2.0.alpha1
+This release improves SpatialPartitioning in several ways (CUDA support, mutable 
+queries, ...) and add utility classes/functions in the package Common. The Fitting
+package is also extended with CNC, the first differential estimators that is not
+based on a Basktet. Finally, this PR also adds coverage tracking and several minor 
+fixes.
 
 - API
     - [spatialPartitioning] Add mutable query and rename query functions (#105)
@@ -41,7 +49,7 @@ Current head (v.2.0.alpha1 RC)
 
 --------------------------------------------------------------------------------
 v.2.0.alpha0
-This release introduce the first API changes toward v2.0 + bug fixes and doc improvements
+This release introduces the first API changes toward v2.0 + bug fixes and doc improvements
 
 - API
     - [fitting] Refactor weight functions. Now supports local/global fitting (#177)
