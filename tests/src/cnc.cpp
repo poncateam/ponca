@@ -21,9 +21,9 @@ This Source Code Form is subject to the terms of the Mozilla Public
 #include <vector>
 
 #include "Ponca/src/Fitting/curvature.h"
-#include "Ponca/src/Fitting/curvatureEstimation.h"
 #include "Ponca/src/Fitting/mlsSphereFitDer.h"
 #include "Ponca/src/Fitting/weightKernel.h"
+#include "Ponca/src/Fitting/weingarten.h"
 
 
 using namespace std;
@@ -189,7 +189,7 @@ void callSubTests() {
             Basket< Point, SmoothWeightFunc, OrientedSphereFit >,
             FitSpaceDer,
             OrientedSphereDer, MlsSphereFitDer,
-            CurvatureEstimatorBase, NormalDerivativesCurvatureEstimator>;
+            CurvatureEstimatorDer, NormalDerivativeWeingartenEstimator, WeingartenCurvatureEstimatorDer>;
 
     //! [CNCFitType]
     using FitCNCIndependent = CNC<Point, IndependentGeneration>;
