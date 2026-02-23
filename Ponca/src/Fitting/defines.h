@@ -7,6 +7,8 @@
 
 #pragma once
 
+#include <type_traits> // std::true_type
+
 /**
   *
   * \defgroup fitting Fitting module
@@ -112,3 +114,15 @@ PONCA_FITTING_DECLARE_FINALIZE
 PONCA_FITTING_DECLARE_INIT                                                                                         \
 PONCA_FITTING_DECLARE_ADDNEIGHBOR_DER                                                                              \
 PONCA_FITTING_DECLARE_FINALIZE
+
+namespace Ponca
+{
+/// \FIXME create a macro to automatically generate the testing functions
+    template <typename T, typename = void>
+    struct hasFirstFundamentalForm : std::false_type {};
+
+    template <typename T>
+    struct hasFirstFundamentalForm<T, std::void_t<decltype(std::declval<T>().firstFundamentalForm())>> : std::true_type {};
+
+} // namespace Ponca
+

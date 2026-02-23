@@ -44,7 +44,8 @@
 // Extensions
 #include "src/Fitting/mlsSphereFitDer.h"
 #include "src/Fitting/curvature.h"
-#include "src/Fitting/curvatureEstimation.h"
+#include "src/Fitting/heightField.h"
+#include "src/Fitting/weingarten.h"
 #include "src/Fitting/gls.h"
 
 

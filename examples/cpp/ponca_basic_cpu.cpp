@@ -22,8 +22,8 @@ file, You can obtain one at http://mozilla.org/MPL/2.0/.
 #include <Ponca/src/Fitting/sphereFit.h>
 #include <Ponca/src/Fitting/weightFunc.h>
 #include <Ponca/src/Fitting/weightKernel.h>
-#include <Ponca/src/Fitting/curvatureEstimation.h>
 #include <Ponca/src/Fitting/curvature.h>
+#include <Ponca/src/Fitting/weingarten.h>
 
 #include <Ponca/SpatialPartitioning>
 #include <Ponca/src/Common/pointTypes.h>
@@ -42,7 +42,7 @@ typedef MyPoint::VectorType VectorType;
 typedef DistWeightFunc<MyPoint,SmoothWeightKernel<Scalar> > WeightFunc;
 using Fit1 = Basket<MyPoint,WeightFunc,OrientedSphereFit,   GLSParam>;
 using Fit2 = Basket<MyPoint,WeightFunc,UnorientedSphereFit, GLSParam>;
-using Fit3 = BasketDiff< Fit1, FitSpaceDer, OrientedSphereDer, GLSDer, CurvatureEstimatorBase, NormalDerivativesCurvatureEstimator>;
+using Fit3 = BasketDiff< Fit1, FitSpaceDer, OrientedSphereDer, GLSDer, CurvatureEstimatorDer, NormalDerivativeWeingartenEstimator, WeingartenCurvatureEstimatorDer>;
 using Fit4 = Basket<MyPoint,WeightFunc,SphereFit, GLSParam>;
 
 template<typename Fit>

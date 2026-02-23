@@ -17,8 +17,6 @@ namespace Ponca
  *
  * The differentiation is determined by a previous basket elements that must
  * provides first order derivatives of the algebraic sphere parameters.
- *
- * \todo This class is not covered by tests. Add to testsuite !
  */
 template < class DataPoint, class _NFilter, int DiffType, typename T>
 class MlsSphereFitDer : public T
@@ -91,6 +89,7 @@ public:
 
 public:
     PONCA_EXPLICIT_CAST_OPERATORS_DER(MlsSphereFitDer,mlsSphereFitDer)
+
     PONCA_FITTING_DECLARE_INIT_ADDDER_FINALIZE
 
     //! \brief Returns the derivatives of the scalar field at the evaluation point

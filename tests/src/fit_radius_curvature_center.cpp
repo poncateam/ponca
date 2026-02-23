@@ -19,8 +19,9 @@
 #include <Ponca/src/Fitting/gls.h>
 #include <Ponca/src/Fitting/orientedSphereFit.h>
 #include <Ponca/src/Fitting/unorientedSphereFit.h>
+#include <Ponca/src/Fitting/mlsSphereFitDer.h>
 #include <Ponca/src/Fitting/curvature.h>
-#include <Ponca/src/Fitting/curvatureEstimation.h>
+#include <Ponca/src/Fitting/weingarten.h>
 #include <Ponca/src/Fitting/weightFunc.h>
 #include <Ponca/src/Fitting/weightKernel.h>
 
@@ -180,8 +181,13 @@ void callDerivativeSubTests()
 {
     DECLARE_DEFAULT_TYPES
 
-    using FitSmoothOrientedSpatial   = BasketDiff<FitSmoothOriented, FitSpaceDer, OrientedSphereDer, CurvatureEstimatorBase, NormalDerivativesCurvatureEstimator>;
-    using FitConstantOrientedSpatial = BasketDiff<FitConstantOriented, FitSpaceDer, OrientedSphereDer, CurvatureEstimatorBase, NormalDerivativesCurvatureEstimator>;
+    //! [Curvature Estimator APSS]
+    using FitSmoothOrientedSpatial   = BasketDiff<FitSmoothOriented, FitSpaceDer, OrientedSphereDer, CurvatureEstimatorDer, NormalDerivativeWeingartenEstimator, WeingartenCurvatureEstimatorDer>;
+    //! [Curvature Estimator APSS]
+    using FitConstantOrientedSpatial = BasketDiff<FitConstantOriented, FitSpaceDer, OrientedSphereDer, CurvatureEstimatorDer, NormalDerivativeWeingartenEstimator, WeingartenCurvatureEstimatorDer>;
+    //! [Curvature Estimator ASO]
+    using ASOSmooth                  = BasketDiff<FitSmoothOriented, FitSpaceDer, OrientedSphereDer, MlsSphereFitDer, CurvatureEstimatorDer, NormalDerivativeWeingartenEstimator, WeingartenCurvatureEstimatorDer>;
+    //! [Curvature Estimator ASO]
 
     cout << "Testing with perfect sphere (oriented / unoriented) with spatial derivatives..." << endl;
     for(int i = 0; i < g_repeat; ++i)
@@ -189,6 +195,7 @@ void callDerivativeSubTests()
         //Test with perfect sphere
         CALL_SUBTEST(( testFunction<Point, FitSmoothOrientedSpatial, true>() ));
         CALL_SUBTEST(( testFunction<Point, FitConstantOrientedSpatial, true>() ));
+        CALL_SUBTEST(( testFunction<Point, ASOSmooth, true>() ));
     }
     cout << "Ok!" << endl;
 
@@ -197,6 +204,7 @@ void callDerivativeSubTests()
     {
         CALL_SUBTEST(( testFunction<Point, FitSmoothOrientedSpatial, true>(false, true, true) ));
         CALL_SUBTEST(( testFunction<Point, FitConstantOrientedSpatial, true>(false, true, true) ));
+        CALL_SUBTEST(( testFunction<Point, ASOSmooth, true>(false, true, true) ));
     }
     cout << "Ok!" << endl;
 }

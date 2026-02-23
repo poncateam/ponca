@@ -6,6 +6,8 @@ This Source Code Form is subject to the terms of the Mozilla Public
 
 #pragma once
 
+#include "./defines.h"
+
 /*!
   \file pointTypes.h
   \brief Useful user-end DataPoint types

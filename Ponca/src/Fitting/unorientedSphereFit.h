@@ -110,6 +110,7 @@ public:
 
 public:
     PONCA_EXPLICIT_CAST_OPERATORS_DER(UnorientedSphereDerImpl,unorientedSphereDer)
+
     PONCA_FITTING_DECLARE_INIT_ADDDER_FINALIZE
 
     PONCA_MULTIARCH inline ScalarArray dPotential() const;
