@@ -98,7 +98,7 @@ void testNearestNeighborForAllStructures(const bool quick = QUICK_TESTS)
 	cout << "(ok)";
 }
 
-int main(int argc, char** argv)
+int main(const int argc, char** argv)
 {
 	if (!init_testing(argc, argv))
 		return EXIT_FAILURE;

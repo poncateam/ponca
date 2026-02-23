@@ -15,25 +15,18 @@
  *
  * \tparam DataPoint The DataPoint type.
  * \tparam Fit The Fit that will be computed by the Kernel.
- * \tparam Node The node type of the KdTree.
  * \param points As an Input, the point cloud.
  * \param nbPoints The number of points in the point cloud
- * \param indices The indices buffer
- * \param nbIndices The number of indices
- * \param nodes The KdTree nodes (internal to the kdtree)
- * \param nbNodes The number of nodes
+ * \param buffers The buffers structure that holds the internal containers of the KdTree.
  * \param analysisScale The radius of the neighborhood.
  * \param potentialResults As an Output, the potential results of the fit for each point of the Point Cloud.
  * \param gradientResults As an Output, the primitiveGradient results of the fit for each point of the Point Cloud.
  */
-template<typename DataPoint, typename Fit, typename Node>
+template<typename DataPoint, typename Fit>
 __global__ void fitPotentialAndGradientKernel(
     DataPoint* const points,
     const unsigned int nbPoints,
-    int* const indices,
-    const unsigned int nbIndices,
-    Node * nodes,
-    const unsigned int nbNodes,
+    typename KdTreeGPU<DataPoint>::Buffers* const buffers,
     const typename DataPoint::Scalar analysisScale,
     typename DataPoint::Scalar* const potentialResults,
     typename DataPoint::Scalar* const gradientResults
@@ -47,7 +40,8 @@ __global__ void fitPotentialAndGradientKernel(
     if (i >= nbPoints) return;
 
     VectorType pos = points[i].pos();
-    KdTreeGPU<DataPoint> kdtree({points, nodes, indices, nbPoints, nbNodes, nbIndices});
+    KdTreeGPU<DataPoint> kdtree;
+    kdtree.useBuffers(buffers);
 
     // Set up the fit
     Fit fit;
@@ -111,9 +105,9 @@ __host__ void testPlaneCuda(
     }
 
     // Send the internal buffers of the KdTree to the GPU
-    Ponca::KdTreeDense<DataPoint> kdtree(points);
+    KdTreeGPU<DataPoint> kdtree(points);
 
-    typedef typename Ponca::KdTreeDefaultTraits<DataPoint>::NodeType NodeType;
+    typedef typename KdTreeGPU<DataPoint>::Buffers Buffers;
 
     std::cout << "Number of nodes in the KdTree : " << kdtree.nodeCount() << std::endl;
 
@@ -121,21 +115,17 @@ __host__ void testPlaneCuda(
     const unsigned long pointBufferSize      = nbPoints * sizeof(DataPoint);
     const unsigned long scalarBufferSize     = nbPoints * sizeof(Scalar);
     const unsigned long vectorBufferSize     = scalarBufferSize * Dim;
-    const unsigned long nodeBufferSize       = kdtree.nodeCount() * sizeof(NodeType);
-    const unsigned long indexBufferSize      = kdtree.sampleCount() * sizeof(int);
+    const unsigned long kdtreeBuffersSize    = sizeof(Buffers);
 
     // Send inputs to the GPU (Host to Device)
     DataPoint* pointsDevice;
-    int*       indicesDevice;
-    NodeType*  nodesDevice;
+    Buffers* kdtreeBuffersDevice;
 
     CUDA_CHECK(cudaMalloc(&pointsDevice         , pointBufferSize ));
-    CUDA_CHECK(cudaMalloc(&indicesDevice        , indexBufferSize));
-    CUDA_CHECK(cudaMalloc(&nodesDevice          , nodeBufferSize));
+    CUDA_CHECK(cudaMalloc(&kdtreeBuffersDevice  , kdtreeBuffersSize));
 
-    CUDA_CHECK(cudaMemcpy(pointsDevice          , points.data()          , pointBufferSize     , cudaMemcpyHostToDevice));
-    CUDA_CHECK(cudaMemcpy(indicesDevice         , kdtree.samples().data(), indexBufferSize     , cudaMemcpyHostToDevice));
-    CUDA_CHECK(cudaMemcpy(nodesDevice           , kdtree.nodes().data()  , nodeBufferSize      , cudaMemcpyHostToDevice));
+    CUDA_CHECK(cudaMemcpy(pointsDevice          , points.data()   , pointBufferSize  , cudaMemcpyHostToDevice));
+    CUDA_CHECK(cudaMemcpy(kdtreeBuffersDevice   , &kdtree.buffers(), kdtreeBuffersSize, cudaMemcpyHostToDevice));
 
     // Prepare output buffers
     auto* const potentialResults = new Scalar[nbPoints];
@@ -152,8 +142,7 @@ __host__ void testPlaneCuda(
     // Compute the fitting in the kernel
     fitPotentialAndGradientKernel<DataPoint, MeanFitSmooth><<<gridSize, blockSize>>>(
         pointsDevice , nbPoints,
-        indicesDevice, kdtree.sampleCount(),
-        nodesDevice  , kdtree.nodeCount(),
+        kdtreeBuffersDevice,
         analysisScale,
         potentialResultsDevice, gradientResultsDevice // Outputs
     );

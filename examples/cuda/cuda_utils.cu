@@ -14,4 +14,4 @@
  * This KdTree must be instanciated with the `KdTreeBase::KdTreeBase` constructor on the GPU.
  */
 template <typename DataPoint>
-using KdTreeGPU = Ponca::KdTreeBase<Ponca::KdTreePointerTraits<DataPoint>>;
+using KdTreeGPU = Ponca::KdTreeDenseBase<Ponca::KdTreePointerTraits<DataPoint>>;

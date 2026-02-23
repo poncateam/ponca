@@ -197,6 +197,8 @@ public:
 
     // Construction ------------------------------------------------------------
 public:
+    PONCA_MULTIARCH inline KdTreeBase() = default;
+
     /*! \brief Constructor of the KdTree that uses prebuilt containers directly.
      *
      * Each internal values of a KdTree can be extracted and used to build copy of the KdTree
@@ -210,9 +212,12 @@ public:
      *
      * \param buf Internal buffers of the KdTree
      */
-    PONCA_MULTIARCH inline KdTreeBase(const Buffers&& buf) : m_bufs(std::move(buf)) { }
-    ///! \copydoc KdTreeBase::KdTreeBase
-    PONCA_MULTIARCH inline KdTreeBase(Buffers&& buf) : m_bufs(std::move(buf)) {}
+    // PONCA_MULTIARCH inline KdTreeBase(Buffers&& buf) : m_bufs(std::move(buf)) { }
+
+    PONCA_MULTIARCH inline void useBuffers(Buffers* buf)
+    {
+        m_bufs = std::move(*buf);
+    }
 
     /// Generate a tree from a custom contained type converted using the specified converter
     /// \tparam PointUserContainer Input point container, transformed to PointContainer
@@ -507,8 +512,6 @@ protected:
 
     // Internal ----------------------------------------------------------------
 protected:
-    PONCA_MULTIARCH inline KdTreeBase() = default;
-
     /// Generate a tree sampled from a custom contained type converted using a `Converter`
     /// \tparam PointUserContainer Input point, transformed to PointContainer
     /// \tparam IndexUserContainer Input sampling, transformed to IndexContainer
