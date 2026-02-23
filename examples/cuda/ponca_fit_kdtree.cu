@@ -47,7 +47,7 @@ __global__ void fitPotentialAndGradientKernel(
     if (i >= nbPoints) return;
 
     VectorType pos = points[i].pos();
-    KdTreeGPU<DataPoint> kdtree(points, nodes, indices, nbPoints, nbNodes, nbIndices);
+    KdTreeGPU<DataPoint> kdtree({points, nodes, indices, nbPoints, nbNodes, nbIndices});
 
     // Set up the fit
     Fit fit;
