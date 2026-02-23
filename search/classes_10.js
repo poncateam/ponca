@@ -1,9 +1,9 @@
 var searchData=
 [
-  ['triangle_0',['Triangle',['../structPonca_1_1internal_1_1Triangle.html',1,'Ponca::internal']]],
-  ['trianglegenerator_1',['TriangleGenerator',['../structPonca_1_1internal_1_1TriangleGenerator.html',1,'Ponca::internal']]],
-  ['trianglegenerator_3c_20avghexagramgeneration_2c_20p_20_3e_2',['TriangleGenerator&lt; AvgHexagramGeneration, P &gt;',['../structPonca_1_1internal_1_1TriangleGenerator_3_01AvgHexagramGeneration_00_01P_01_4.html',1,'Ponca::internal']]],
-  ['trianglegenerator_3c_20hexagramgeneration_2c_20p_20_3e_3',['TriangleGenerator&lt; HexagramGeneration, P &gt;',['../structPonca_1_1internal_1_1TriangleGenerator_3_01HexagramGeneration_00_01P_01_4.html',1,'Ponca::internal']]],
-  ['trianglegenerator_3c_20independentgeneration_2c_20p_20_3e_4',['TriangleGenerator&lt; IndependentGeneration, P &gt;',['../structPonca_1_1internal_1_1TriangleGenerator_3_01IndependentGeneration_00_01P_01_4.html',1,'Ponca::internal']]],
-  ['trianglegenerator_3c_20uniformgeneration_2c_20p_20_3e_5',['TriangleGenerator&lt; UniformGeneration, P &gt;',['../structPonca_1_1internal_1_1TriangleGenerator_3_01UniformGeneration_00_01P_01_4.html',1,'Ponca::internal']]]
+  ['singularweightkernel_0',['SingularWeightKernel',['../classPonca_1_1SingularWeightKernel.html',1,'Ponca']]],
+  ['smoothweightkernel_1',['SmoothWeightKernel',['../classPonca_1_1SmoothWeightKernel.html',1,'Ponca']]],
+  ['spherefitimpl_2',['SphereFitImpl',['../classPonca_1_1SphereFitImpl.html',1,'Ponca']]],
+  ['sphericaltriangle_3',['SphericalTriangle',['../structPonca_1_1internal_1_1CNCEigen_1_1SphericalTriangle.html',1,'Ponca::internal::CNCEigen']]],
+  ['stack_4',['Stack',['../classPonca_1_1Stack.html',1,'Ponca']]],
+  ['stack_3c_20ponca_3a_3aindexsquareddistance_3c_20indextype_2c_20scalar_20_3e_2c_202_20_2atraits_3a_3amax_5fdepth_20_3e_5',['Stack&lt; Ponca::IndexSquaredDistance&lt; IndexType, Scalar &gt;, 2 *Traits::MAX_DEPTH &gt;',['../classPonca_1_1Stack.html',1,'Ponca']]]
 ];

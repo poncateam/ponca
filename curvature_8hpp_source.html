@@ -51,7 +51,7 @@ MathJax.Hub.Config({
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Ponca
-   &#160;<span id="projectnumber">4786c3d694d08115981d86fa3be9f72d0a7d0d67</span>
+   &#160;<span id="projectnumber">94e4a36411c3364f6192f97adfa8ceee67834d6e</span>
    </div>
    <div id="projectbrief">Point Cloud Analysis library</div>
   </td>
@@ -126,44 +126,53 @@ $(document).ready(function(){initNavTree('curvature_8hpp_source.html',''); initR
 <div class="contents">
 <div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span> </div>
 <div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespacePonca.html">Ponca</a> {</div>
-<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span>    <span class="keyword">template</span>&lt;<span class="keyword">class</span> DataPo<span class="keywordtype">int</span>, <span class="keyword">class</span> _NFilter, <span class="keywordtype">int</span> DiffType, <span class="keyword">typename</span> T&gt;</div>
-<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span>    <span class="keywordtype">void</span></div>
-<div class="foldopen" id="foldopen00005" data-start="{" data-end="}">
-<div class="line"><a id="l00005" name="l00005"></a><span class="lineno"><a class="line" href="classPonca_1_1CurvatureEstimatorBase.html#a00294ef0a5c15a4dbe8d5eca58683c45">    5</a></span>    <a class="code hl_function" href="classPonca_1_1CurvatureEstimatorBase.html#a00294ef0a5c15a4dbe8d5eca58683c45">CurvatureEstimatorBase&lt;DataPoint, _NFilter, DiffType, T&gt;::init</a>() {</div>
-<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span>        Base::init();</div>
-<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span>        m_kmin = 0;</div>
-<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span>        m_kmax = 0;</div>
-<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span>        m_vmin = VectorType::Zero();</div>
-<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span>        m_vmax = VectorType::Zero();</div>
-<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span>        m_isValid = <span class="keyword">false</span>;</div>
-<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span>    }</div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span>    <span class="keyword">namespace </span>internal</div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span>    {</div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span>        <span class="keyword">template</span>&lt;<span class="keyword">class</span> DataPo<span class="keywordtype">int</span>, <span class="keyword">class</span> _NFilter, <span class="keyword">typename</span> T&gt;</div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span>        <span class="keywordtype">void</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="preprocessor">#if defined(__GNUC__) and not defined(__clang__)</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span>        <span class="comment">// attribute &#39;no-tree-vectorize&#39; is required for the init function.</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span>        <span class="comment">// It resolves a crash when compiling with GCC 11.4.0</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span>        <span class="comment">// with the default optimization level (-O3) for release builds.</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span>        __attribute__((optimize(<span class="stringliteral">&quot;no-tree-vectorize&quot;</span>)))</div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="preprocessor">#endif</span></div>
+<div class="foldopen" id="foldopen00014" data-start="{" data-end="}">
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno"><a class="line" href="classPonca_1_1internal_1_1CurvatureEstimatorBase.html#a12dbe1f6ae225d9101b84d995f599703">   14</a></span>        <a class="code hl_function" href="classPonca_1_1internal_1_1CurvatureEstimatorBase.html#a12dbe1f6ae225d9101b84d995f599703">CurvatureEstimatorBase&lt;DataPoint, _NFilter, T&gt;::init</a>() {</div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span>            Base::init();</div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span>            m_kmin = 0;</div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span>            m_kmax = 0;</div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>            m_vmin = VectorType::Zero();</div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>            m_vmax = VectorType::Zero();</div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>            m_isValid = <span class="keyword">false</span>;</div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>        }</div>
 </div>
-<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span> </div>
-<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span> </div>
-<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span>    <span class="keyword">template</span>&lt;<span class="keyword">class</span> DataPo<span class="keywordtype">int</span>, <span class="keyword">class</span> _NFilter, <span class="keywordtype">int</span> DiffType, <span class="keyword">typename</span> T&gt;</div>
-<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span>    <span class="keywordtype">void</span></div>
-<div class="foldopen" id="foldopen00017" data-start="{" data-end="}">
-<div class="line"><a id="l00017" name="l00017"></a><span class="lineno"><a class="line" href="classPonca_1_1CurvatureEstimatorBase.html#a38c6ba14b504b06bed092faaab98e83c">   17</a></span>    <a class="code hl_function" href="classPonca_1_1CurvatureEstimatorBase.html#a38c6ba14b504b06bed092faaab98e83c">CurvatureEstimatorBase&lt;DataPoint, _NFilter, DiffType, T&gt;::setCurvatureValues</a>(</div>
-<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>            <a class="code hl_typedef" href="classPonca_1_1CurvatureEstimatorBase.html#abc2c59dc8e69638e03316cd280e6460f">Scalar</a> kmin, <a class="code hl_typedef" href="classPonca_1_1CurvatureEstimatorBase.html#abc2c59dc8e69638e03316cd280e6460f">Scalar</a> kmax, <span class="keyword">const</span> <a class="code hl_typedef" href="classPonca_1_1CurvatureEstimatorBase.html#a057a2fd09f9b364ecf2077ee891c4aff">VectorType</a> &amp;vmin, <span class="keyword">const</span> <a class="code hl_typedef" href="classPonca_1_1CurvatureEstimatorBase.html#a057a2fd09f9b364ecf2077ee891c4aff">VectorType</a> &amp;vmax) {</div>
-<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>        <span class="keywordflow">if</span>(kmin &lt;= kmax) {</div>
-<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>            m_kmin = kmin;</div>
-<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>            m_kmax = kmax;</div>
-<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>            m_vmin = vmin;</div>
-<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>            m_vmax = vmax;</div>
-<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>        } <span class="keywordflow">else</span> {</div>
-<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>            m_kmin = kmax;</div>
-<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>            m_kmax = kmin;</div>
-<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>            m_vmin = vmax;</div>
-<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>            m_vmax = vmin;</div>
-<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>        }</div>
-<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>        m_isValid = <span class="keyword">true</span>;</div>
-<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>    }</div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span> </div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span> </div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>        <span class="keyword">template</span>&lt;<span class="keyword">class</span> DataPo<span class="keywordtype">int</span>, <span class="keyword">class</span> _NFilter, <span class="keyword">typename</span> T&gt;</div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>        <span class="keywordtype">void</span></div>
+<div class="foldopen" id="foldopen00026" data-start="{" data-end="}">
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno"><a class="line" href="classPonca_1_1internal_1_1CurvatureEstimatorBase.html#a39ce0fe4a9e0d6136cd9152240bf0e46">   26</a></span>        <a class="code hl_function" href="classPonca_1_1internal_1_1CurvatureEstimatorBase.html#a39ce0fe4a9e0d6136cd9152240bf0e46">CurvatureEstimatorBase&lt;DataPoint, _NFilter, T&gt;::setCurvatureValues</a>(</div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>                <a class="code hl_typedef" href="classPonca_1_1internal_1_1CurvatureEstimatorBase.html#ae77e44acf795da4ce690989a0f73684a">Scalar</a> kmin, <a class="code hl_typedef" href="classPonca_1_1internal_1_1CurvatureEstimatorBase.html#ae77e44acf795da4ce690989a0f73684a">Scalar</a> kmax, <span class="keyword">const</span> <a class="code hl_typedef" href="classPonca_1_1internal_1_1CurvatureEstimatorBase.html#a504260b15f3bf92b307e84f71fca7296">VectorType</a> &amp;vmin, <span class="keyword">const</span> <a class="code hl_typedef" href="classPonca_1_1internal_1_1CurvatureEstimatorBase.html#a504260b15f3bf92b307e84f71fca7296">VectorType</a> &amp;vmax) {</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>            <span class="keywordflow">if</span>(kmin &lt;= kmax) {</div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>                m_kmin = kmin;</div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>                m_kmax = kmax;</div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>                m_vmin = vmin;</div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>                m_vmax = vmax;</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>            } <span class="keywordflow">else</span> {</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>                m_kmin = kmax;</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>                m_kmax = kmin;</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>                m_vmin = vmax;</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>                m_vmax = vmin;</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>            }</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>            m_isValid = <span class="keyword">true</span>;</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>        }</div>
 </div>
-<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>}</div>
-<div class="ttc" id="aclassPonca_1_1CurvatureEstimatorBase_html_a00294ef0a5c15a4dbe8d5eca58683c45"><div class="ttname"><a href="classPonca_1_1CurvatureEstimatorBase.html#a00294ef0a5c15a4dbe8d5eca58683c45">Ponca::CurvatureEstimatorBase::init</a></div><div class="ttdeci">void init()</div><div class="ttdoc">Set the evaluation position and reset the internal states.</div><div class="ttdef"><b>Definition</b> <a href="curvature_8hpp_source.html#l00005">curvature.hpp:5</a></div></div>
-<div class="ttc" id="aclassPonca_1_1CurvatureEstimatorBase_html_a057a2fd09f9b364ecf2077ee891c4aff"><div class="ttname"><a href="classPonca_1_1CurvatureEstimatorBase.html#a057a2fd09f9b364ecf2077ee891c4aff">Ponca::CurvatureEstimatorBase::VectorType</a></div><div class="ttdeci">typename Base::VectorType VectorType</div><div class="ttdoc">Alias to vector type.</div><div class="ttdef"><b>Definition</b> <a href="curvature_8h_source.html#l00024">curvature.h:24</a></div></div>
-<div class="ttc" id="aclassPonca_1_1CurvatureEstimatorBase_html_a38c6ba14b504b06bed092faaab98e83c"><div class="ttname"><a href="classPonca_1_1CurvatureEstimatorBase.html#a38c6ba14b504b06bed092faaab98e83c">Ponca::CurvatureEstimatorBase::setCurvatureValues</a></div><div class="ttdeci">void setCurvatureValues(Scalar kmin, Scalar kmax, const VectorType &amp;vmin, const VectorType &amp;vmax)</div><div class="ttdoc">Set curvature values. To be called in finalize() by child classes.</div><div class="ttdef"><b>Definition</b> <a href="curvature_8hpp_source.html#l00017">curvature.hpp:17</a></div></div>
-<div class="ttc" id="aclassPonca_1_1CurvatureEstimatorBase_html_abc2c59dc8e69638e03316cd280e6460f"><div class="ttname"><a href="classPonca_1_1CurvatureEstimatorBase.html#abc2c59dc8e69638e03316cd280e6460f">Ponca::CurvatureEstimatorBase::Scalar</a></div><div class="ttdeci">typename DataPoint::Scalar Scalar</div><div class="ttdoc">Alias to scalar type.</div><div class="ttdef"><b>Definition</b> <a href="curvature_8h_source.html#l00024">curvature.h:24</a></div></div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>    }</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>}</div>
+<div class="ttc" id="aclassPonca_1_1internal_1_1CurvatureEstimatorBase_html_a12dbe1f6ae225d9101b84d995f599703"><div class="ttname"><a href="classPonca_1_1internal_1_1CurvatureEstimatorBase.html#a12dbe1f6ae225d9101b84d995f599703">Ponca::internal::CurvatureEstimatorBase::init</a></div><div class="ttdeci">void init()</div><div class="ttdoc">Set the evaluation position and reset the internal states.</div><div class="ttdef"><b>Definition</b> <a href="curvature_8hpp_source.html#l00014">curvature.hpp:14</a></div></div>
+<div class="ttc" id="aclassPonca_1_1internal_1_1CurvatureEstimatorBase_html_a39ce0fe4a9e0d6136cd9152240bf0e46"><div class="ttname"><a href="classPonca_1_1internal_1_1CurvatureEstimatorBase.html#a39ce0fe4a9e0d6136cd9152240bf0e46">Ponca::internal::CurvatureEstimatorBase::setCurvatureValues</a></div><div class="ttdeci">void setCurvatureValues(Scalar kmin, Scalar kmax, const VectorType &amp;vmin, const VectorType &amp;vmax)</div><div class="ttdoc">Set curvature values. To be called in finalize() by child classes.</div><div class="ttdef"><b>Definition</b> <a href="curvature_8hpp_source.html#l00026">curvature.hpp:26</a></div></div>
+<div class="ttc" id="aclassPonca_1_1internal_1_1CurvatureEstimatorBase_html_a504260b15f3bf92b307e84f71fca7296"><div class="ttname"><a href="classPonca_1_1internal_1_1CurvatureEstimatorBase.html#a504260b15f3bf92b307e84f71fca7296">Ponca::internal::CurvatureEstimatorBase::VectorType</a></div><div class="ttdeci">typename Base::VectorType VectorType</div><div class="ttdoc">Alias to vector type.</div><div class="ttdef"><b>Definition</b> <a href="curvature_8h_source.html#l00023">curvature.h:23</a></div></div>
+<div class="ttc" id="aclassPonca_1_1internal_1_1CurvatureEstimatorBase_html_ae77e44acf795da4ce690989a0f73684a"><div class="ttname"><a href="classPonca_1_1internal_1_1CurvatureEstimatorBase.html#ae77e44acf795da4ce690989a0f73684a">Ponca::internal::CurvatureEstimatorBase::Scalar</a></div><div class="ttdeci">typename DataPoint::Scalar Scalar</div><div class="ttdoc">Alias to scalar type.</div><div class="ttdef"><b>Definition</b> <a href="curvature_8h_source.html#l00023">curvature.h:23</a></div></div>
 <div class="ttc" id="anamespacePonca_html"><div class="ttname"><a href="namespacePonca.html">Ponca</a></div><div class="ttdoc">This Source Code Form is subject to the terms of the Mozilla Public License, v.</div><div class="ttdef"><b>Definition</b> <a href="limitedPriorityQueue_8h_source.html#l00014">limitedPriorityQueue.h:14</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
@@ -171,7 +180,7 @@ $(document).ready(function(){initNavTree('curvature_8hpp_source.html',''); initR
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_695d95a8d8fbec601a248c0414764298.html">Ponca</a></li><li class="navelem"><a class="el" href="dir_ce16314fc45f8638543c5146aff64d4a.html">src</a></li><li class="navelem"><a class="el" href="dir_221133f19e4af6803e4ee7d78db21786.html">Fitting</a></li><li class="navelem"><b>curvature.hpp</b></li>
-    <li class="footer">Generated on Mon Feb 23 2026 16:20:57 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
+    <li class="footer">Generated on Mon Feb 23 2026 18:00:01 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
   </ul>
 </div>
 </body>

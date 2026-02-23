@@ -51,7 +51,7 @@ MathJax.Hub.Config({
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Ponca
-   &#160;<span id="projectnumber">4786c3d694d08115981d86fa3be9f72d0a7d0d67</span>
+   &#160;<span id="projectnumber">94e4a36411c3364f6192f97adfa8ceee67834d6e</span>
    </div>
    <div id="projectbrief">Point Cloud Analysis library</div>
   </td>
@@ -127,107 +127,159 @@ $(document).ready(function(){initNavTree('mongePatch_8hpp_source.html',''); init
 <div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span> </div>
 <div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">#include &lt;Eigen/SVD&gt;</span></div>
 <div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="preprocessor">#include &lt;Eigen/Geometry&gt;</span></div>
-<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include PONCA_MULTIARCH_INCLUDE_CU_STD(cmath)</span></div>
-<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span> </div>
-<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="keyword">template</span> &lt; <span class="keyword">class</span> DataPo<span class="keywordtype">int</span>, <span class="keyword">class</span> _NFilter, <span class="keyword">typename</span> T&gt;</div>
-<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="keywordtype">void</span></div>
-<div class="foldopen" id="foldopen00008" data-start="{" data-end="}">
-<div class="line"><a id="l00008" name="l00008"></a><span class="lineno"><a class="line" href="classPonca_1_1MongePatch.html#adaf0f74d1b8946c309339372f9be09cb">    8</a></span><a class="code hl_class" href="classPonca_1_1MongePatch.html">MongePatch&lt;DataPoint, _NFilter, T&gt;::init</a>()</div>
-<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span>{</div>
-<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span>    Base::init();</div>
-<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span> </div>
-<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span>    m_b.setZero();</div>
-<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span>    m_x.setZero();</div>
-<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span>    m_planeIsReady = <span class="keyword">false</span>;</div>
-<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span>}</div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span> </div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#include &quot;mongePatch.h&quot;</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span> </div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="keyword">template</span> &lt; <span class="keyword">class</span> DataPo<span class="keywordtype">int</span>, <span class="keyword">class</span> _NFilter, <span class="keyword">typename</span> T&gt;</div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="keywordtype">void</span></div>
+<div class="foldopen" id="foldopen00009" data-start="{" data-end="}">
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno"><a class="line" href="classPonca_1_1MongePatchQuadraticFitImpl.html#a51278ceb2118406653a930362bb9588b">    9</a></span><a class="code hl_class" href="classPonca_1_1MongePatchQuadraticFitImpl.html">MongePatchQuadraticFitImpl&lt;DataPoint, _NFilter, T&gt;::init</a>()</div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span>{</div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span>    Base::init();</div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span> </div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span>    m_A = SampleMatrix(6,6);</div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span>    m_A.setZero();</div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span>    m_b.setZero();</div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span>    m_planeIsReady = <span class="keyword">false</span>;</div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span>}</div>
 </div>
-<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span> </div>
-<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="keyword">template</span> &lt; <span class="keyword">class</span> DataPo<span class="keywordtype">int</span>, <span class="keyword">class</span> _NFilter, <span class="keyword">typename</span> T&gt;</div>
-<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span><span class="keywordtype">bool</span></div>
-<div class="foldopen" id="foldopen00019" data-start="{" data-end="}">
-<div class="line"><a id="l00019" name="l00019"></a><span class="lineno"><a class="line" href="classPonca_1_1MongePatch.html#a2eb2b79fc90ed59b2f6c3cb07d21249a">   19</a></span><a class="code hl_class" href="classPonca_1_1MongePatch.html">MongePatch&lt;DataPoint, _NFilter, T&gt;::addLocalNeighbor</a>(<a class="code hl_typedef" href="classPonca_1_1MongePatch.html#a129e4d4b92d31b7c001c48062259dea2">Scalar</a> w,</div>
-<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>                                                      <span class="keyword">const</span> <a class="code hl_typedef" href="classPonca_1_1MongePatch.html#a0fe10f0fe65ef166d77fa081b9e4785e">VectorType</a> &amp;localQ,</div>
-<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>                                                      <span class="keyword">const</span> DataPoint &amp;attributes)</div>
-<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>{</div>
-<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>    <span class="keywordflow">if</span>(! m_planeIsReady)</div>
-<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>    {</div>
-<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>        <span class="keywordflow">return</span> Base::addLocalNeighbor(w, localQ, attributes);</div>
-<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>    }</div>
-<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>    <span class="keywordflow">else</span> <span class="comment">// base plane is ready, we can now fit the patch</span></div>
-<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>    {</div>
-<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>        <span class="comment">// express neighbor in local coordinate frame</span></div>
-<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>        <span class="keyword">const</span> <a class="code hl_typedef" href="classPonca_1_1MongePatch.html#a0fe10f0fe65ef166d77fa081b9e4785e">VectorType</a> local = Base::worldToTangentPlane(attributes.pos());</div>
-<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>        <span class="keyword">const</span> <a class="code hl_typedef" href="classPonca_1_1MongePatch.html#a129e4d4b92d31b7c001c48062259dea2">Scalar</a>&amp; h = *(local.data());</div>
-<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>        <span class="keyword">const</span> <a class="code hl_typedef" href="classPonca_1_1MongePatch.html#a129e4d4b92d31b7c001c48062259dea2">Scalar</a>&amp; u = *(local.data()+1);</div>
-<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>        <span class="keyword">const</span> <a class="code hl_typedef" href="classPonca_1_1MongePatch.html#a129e4d4b92d31b7c001c48062259dea2">Scalar</a>&amp; v = *(local.data()+2);</div>
-<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span> </div>
-<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>        Eigen::Matrix&lt;Scalar, 6, 1 &gt; p;</div>
-<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>        p &lt;&lt; u*u, v*v, u*v, u, v, 1;</div>
-<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>        m_A    += w*p*p.transpose();</div>
-<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>        m_b    += w*h*p;</div>
-<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span> </div>
-<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>        <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
-<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>    }</div>
-<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>    <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
-<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>}</div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span> </div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span><span class="keyword">template</span> &lt; <span class="keyword">class</span> DataPo<span class="keywordtype">int</span>, <span class="keyword">class</span> _NFilter, <span class="keyword">typename</span> T&gt;</div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span><span class="keywordtype">bool</span></div>
+<div class="foldopen" id="foldopen00021" data-start="{" data-end="}">
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno"><a class="line" href="classPonca_1_1MongePatchQuadraticFitImpl.html#a5e83e44f080aaafaf5159e3dd8176389">   21</a></span><a class="code hl_class" href="classPonca_1_1MongePatchQuadraticFitImpl.html">MongePatchQuadraticFitImpl&lt;DataPoint, _NFilter, T&gt;::addLocalNeighbor</a>(<a class="code hl_typedef" href="classPonca_1_1MongePatchQuadraticFitImpl.html#a97b79bb8968b9a97afc1052a715060df">Scalar</a> w,</div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>                                                      <span class="keyword">const</span> <a class="code hl_typedef" href="classPonca_1_1MongePatchQuadraticFitImpl.html#aa021548b23df7b4c07b68747e93ede61">VectorType</a> &amp;localQ,</div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>                                                      <span class="keyword">const</span> DataPoint &amp;attributes)</div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>{</div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>    <span class="keywordflow">if</span>(! m_planeIsReady)</div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>    {</div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>        <span class="keywordflow">return</span> Base::addLocalNeighbor(w, localQ, attributes);</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>    }</div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>    <span class="keywordflow">else</span> <span class="comment">// base plane is ready, we can now fit the patch</span></div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>    {</div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>        <span class="comment">// express neighbor in local coordinate frame</span></div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>        <span class="keyword">const</span> <a class="code hl_typedef" href="classPonca_1_1MongePatchQuadraticFitImpl.html#aa021548b23df7b4c07b68747e93ede61">VectorType</a> local = Base::worldToTangentPlane(attributes.pos());</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>        <span class="keyword">const</span> <a class="code hl_typedef" href="classPonca_1_1MongePatchQuadraticFitImpl.html#a97b79bb8968b9a97afc1052a715060df">Scalar</a>&amp; h = Base::getHFromLocalCoordinates(local);</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>        <span class="keyword">const</span> <a class="code hl_typedef" href="classPonca_1_1MongePatchQuadraticFitImpl.html#a97b79bb8968b9a97afc1052a715060df">Scalar</a>&amp; u = Base::getUFromLocalCoordinates(local);</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>        <span class="keyword">const</span> <a class="code hl_typedef" href="classPonca_1_1MongePatchQuadraticFitImpl.html#a97b79bb8968b9a97afc1052a715060df">Scalar</a>&amp; v = Base::getVFromLocalCoordinates(local);</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span> </div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>        Eigen::Matrix&lt;Scalar, 6, 1 &gt; p;</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>        p &lt;&lt; u*u, v*v, u*v, u, v, 1;</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>        m_A    += w*p*p.transpose();</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>        m_b    += w*h*p;</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span> </div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>        <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>    }</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>    <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>}</div>
 </div>
-<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span> </div>
-<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span><span class="keyword">template</span> &lt; <span class="keyword">class</span> DataPo<span class="keywordtype">int</span>, <span class="keyword">class</span> _NFilter, <span class="keyword">typename</span> T&gt;</div>
-<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span><a class="code hl_enumeration" href="namespacePonca.html#abfd697aebf07c1b5c8be5ee401e2dc84">FIT_RESULT</a></div>
-<div class="foldopen" id="foldopen00047" data-start="{" data-end="}">
-<div class="line"><a id="l00047" name="l00047"></a><span class="lineno"><a class="line" href="classPonca_1_1MongePatch.html#a772867de5a6a396bb51ee6add816cdae">   47</a></span><a class="code hl_class" href="classPonca_1_1MongePatch.html">MongePatch&lt;DataPoint, _NFilter, T&gt;::finalize</a> ()</div>
-<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>{</div>
-<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>    <span class="comment">// end of the fitting process, check plane is ready</span></div>
-<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>    <span class="keywordflow">if</span> (! m_planeIsReady) {</div>
-<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>        <a class="code hl_enumeration" href="namespacePonca.html#abfd697aebf07c1b5c8be5ee401e2dc84">FIT_RESULT</a> res = Base::finalize();</div>
-<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span> </div>
-<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>        <span class="keywordflow">if</span>(res == <a class="code hl_enumvalue" href="namespacePonca.html#abfd697aebf07c1b5c8be5ee401e2dc84a86d1e5381a39092fbe5560583c23d64c">STABLE</a>) {  <span class="comment">// plane is ready</span></div>
-<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>            m_planeIsReady = <span class="keyword">true</span>;</div>
-<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>            m_A = SampleMatrix(6,6);</div>
-<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>            m_A.setZero();</div>
-<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>            m_b.setZero();</div>
-<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span> </div>
-<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>            <span class="keywordflow">return</span> Base::m_eCurrentState = <a class="code hl_enumvalue" href="namespacePonca.html#abfd697aebf07c1b5c8be5ee401e2dc84a0d50cd1855fec459b2c5756ec38d4a17">NEED_OTHER_PASS</a>;</div>
-<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>        }</div>
-<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>        <span class="keywordflow">return</span> res;</div>
-<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>    }</div>
-<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>    <span class="comment">// end of the monge patch fitting process</span></div>
-<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>    <span class="keywordflow">else</span> {</div>
-<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>        <span class="comment">// we use BDCSVD as the matrix size is 36</span></div>
-<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>        <span class="comment">// http://eigen.tuxfamily.org/dox/classEigen_1_1BDCSVD.html</span></div>
-<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>        m_x = m_A.bdcSvd(Eigen::ComputeThinU | Eigen::ComputeThinV).solve(m_b);</div>
-<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>        <span class="keywordflow">return</span> Base::m_eCurrentState = <a class="code hl_enumvalue" href="namespacePonca.html#abfd697aebf07c1b5c8be5ee401e2dc84a86d1e5381a39092fbe5560583c23d64c">STABLE</a>;</div>
-<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>    }</div>
-<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>}</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span> </div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span><span class="keyword">template</span> &lt; <span class="keyword">class</span> DataPo<span class="keywordtype">int</span>, <span class="keyword">class</span> _NFilter, <span class="keyword">typename</span> T&gt;</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span><a class="code hl_enumeration" href="namespacePonca.html#abfd697aebf07c1b5c8be5ee401e2dc84">FIT_RESULT</a></div>
+<div class="foldopen" id="foldopen00049" data-start="{" data-end="}">
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno"><a class="line" href="classPonca_1_1MongePatchQuadraticFitImpl.html#a2217efd7c86facd724cc5977816d3070">   49</a></span><a class="code hl_class" href="classPonca_1_1MongePatchQuadraticFitImpl.html">MongePatchQuadraticFitImpl&lt;DataPoint, _NFilter, T&gt;::finalize</a> ()</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>{</div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>    <span class="comment">// end of the fitting process, check plane is ready</span></div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>    <span class="keywordflow">if</span> (! m_planeIsReady) {</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>        <a class="code hl_enumeration" href="namespacePonca.html#abfd697aebf07c1b5c8be5ee401e2dc84">FIT_RESULT</a> res = Base::finalize();</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span> </div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>        <span class="keywordflow">if</span>(res == <a class="code hl_enumvalue" href="namespacePonca.html#abfd697aebf07c1b5c8be5ee401e2dc84a86d1e5381a39092fbe5560583c23d64c">STABLE</a>) {  <span class="comment">// plane is ready</span></div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>            m_planeIsReady = <span class="keyword">true</span>;</div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span> </div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>            <span class="keywordflow">return</span> Base::m_eCurrentState = <a class="code hl_enumvalue" href="namespacePonca.html#abfd697aebf07c1b5c8be5ee401e2dc84a0d50cd1855fec459b2c5756ec38d4a17">NEED_OTHER_PASS</a>;</div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>        }</div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>        <span class="keywordflow">return</span> res;</div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>    }</div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>    <span class="comment">// end of the monge patch fitting process</span></div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>    <span class="keywordflow">else</span> {</div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>        <span class="comment">// we use BDCSVD as the matrix size is 36</span></div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>        <span class="comment">// http://eigen.tuxfamily.org/dox/classEigen_1_1BDCSVD.html</span></div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>        Base::quadraticHeightField().setQuadric</div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>        (m_A.bdcSvd(Eigen::ComputeThinU | Eigen::ComputeThinV | Eigen::NoQRPreconditioner).solve(m_b) );</div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span> </div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>        <span class="keywordflow">return</span> Base::m_eCurrentState = <a class="code hl_enumvalue" href="namespacePonca.html#abfd697aebf07c1b5c8be5ee401e2dc84a86d1e5381a39092fbe5560583c23d64c">STABLE</a>;</div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>    }</div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>}</div>
 </div>
-<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span> </div>
-<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span><span class="keyword">template</span> &lt; <span class="keyword">class</span> DataPo<span class="keywordtype">int</span>, <span class="keyword">class</span> _NFilter, <span class="keyword">typename</span> T&gt;</div>
-<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span><span class="keyword">typename</span> <a class="code hl_typedef" href="classPonca_1_1MongePatch.html#a129e4d4b92d31b7c001c48062259dea2">MongePatch&lt;DataPoint, _NFilter, T&gt;::Scalar</a></div>
-<div class="foldopen" id="foldopen00074" data-start="{" data-end="}">
-<div class="line"><a id="l00074" name="l00074"></a><span class="lineno"><a class="line" href="classPonca_1_1MongePatch.html#a1e9751313e09977e24df6ec35f40e394">   74</a></span><a class="code hl_class" href="classPonca_1_1MongePatch.html">MongePatch&lt;DataPoint, _NFilter, T&gt;::kMean</a>()<span class="keyword"> const </span>{</div>
-<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>  PONCA_MULTIARCH_STD_MATH(pow);</div>
-<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>  <span class="keyword">static</span> <span class="keyword">const</span> <a class="code hl_typedef" href="classPonca_1_1MongePatch.html#a129e4d4b92d31b7c001c48062259dea2">Scalar</a> one (1);</div>
-<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>  <span class="keyword">static</span> <span class="keyword">const</span> <a class="code hl_typedef" href="classPonca_1_1MongePatch.html#a129e4d4b92d31b7c001c48062259dea2">Scalar</a> two (2);</div>
-<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>  <span class="keyword">static</span> <span class="keyword">const</span> <a class="code hl_typedef" href="classPonca_1_1MongePatch.html#a129e4d4b92d31b7c001c48062259dea2">Scalar</a> threeOverTwo (<a class="code hl_typedef" href="classPonca_1_1MongePatch.html#a129e4d4b92d31b7c001c48062259dea2">Scalar</a>(3)/<a class="code hl_typedef" href="classPonca_1_1MongePatch.html#a129e4d4b92d31b7c001c48062259dea2">Scalar</a>(2));</div>
-<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>  <span class="keywordflow">return</span> ((one + pow(h_v(),two) ) * h_uu() * two*h_u()*h_v()*h_uv() + (one+pow(h_u(),two))*h_vv()) /</div>
-<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>      (two * pow(one +pow(h_u(),two) + pow(h_v(),two),threeOverTwo));</div>
-<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>}</div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span> </div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span> </div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span> </div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span><span class="keyword">template</span> &lt; <span class="keyword">class</span> DataPo<span class="keywordtype">int</span>, <span class="keyword">class</span> _NFilter, <span class="keyword">typename</span> T&gt;</div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span><span class="keywordtype">void</span></div>
+<div class="foldopen" id="foldopen00077" data-start="{" data-end="}">
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno"><a class="line" href="classPonca_1_1MongePatchRestrictedQuadraticFitImpl.html#a8a7a0cc9b5f8259f235ad27986b2f9f7">   77</a></span><a class="code hl_class" href="classPonca_1_1MongePatchRestrictedQuadraticFitImpl.html">MongePatchRestrictedQuadraticFitImpl&lt;DataPoint, _NFilter, T&gt;::init</a>()</div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>{</div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>    Base::init();</div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span> </div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>    m_A = SampleMatrix(4,4);</div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>    m_A.setZero();</div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>    m_b.setZero();</div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>    m_planeIsReady = <span class="keyword">false</span>;</div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>}</div>
 </div>
-<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span> </div>
-<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span><span class="keyword">template</span> &lt; <span class="keyword">class</span> DataPo<span class="keywordtype">int</span>, <span class="keyword">class</span> _NFilter, <span class="keyword">typename</span> T&gt;</div>
-<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span><span class="keyword">typename</span> <a class="code hl_typedef" href="classPonca_1_1MongePatch.html#a129e4d4b92d31b7c001c48062259dea2">MongePatch&lt;DataPoint, _NFilter, T&gt;::Scalar</a></div>
-<div class="foldopen" id="foldopen00085" data-start="{" data-end="}">
-<div class="line"><a id="l00085" name="l00085"></a><span class="lineno"><a class="line" href="classPonca_1_1MongePatch.html#a6531644710c1cb90ec4ec66070f00be2">   85</a></span><a class="code hl_class" href="classPonca_1_1MongePatch.html">MongePatch&lt;DataPoint, _NFilter, T&gt;::GaussianCurvature</a>()<span class="keyword"> const </span>{</div>
-<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>    PONCA_MULTIARCH_STD_MATH(pow);</div>
-<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>    <span class="keyword">static</span> <span class="keyword">const</span> <a class="code hl_typedef" href="classPonca_1_1MongePatch.html#a129e4d4b92d31b7c001c48062259dea2">Scalar</a> one (1);</div>
-<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>    <span class="keyword">static</span> <span class="keyword">const</span> <a class="code hl_typedef" href="classPonca_1_1MongePatch.html#a129e4d4b92d31b7c001c48062259dea2">Scalar</a> two (2);</div>
-<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>    <span class="keywordflow">return</span> (h_uu()*h_vv() - pow(h_uv(),two)) /</div>
-<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>        pow((one + pow(h_u(),two) + pow(h_v(),two) ), two);</div>
-<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>}</div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span> </div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span><span class="keyword">template</span> &lt; <span class="keyword">class</span> DataPo<span class="keywordtype">int</span>, <span class="keyword">class</span> _NFilter, <span class="keyword">typename</span> T&gt;</div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span><span class="keywordtype">bool</span></div>
+<div class="foldopen" id="foldopen00089" data-start="{" data-end="}">
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno"><a class="line" href="classPonca_1_1MongePatchRestrictedQuadraticFitImpl.html#a2dba954b7b09a55baa8fbc08d1975e6f">   89</a></span><a class="code hl_class" href="classPonca_1_1MongePatchRestrictedQuadraticFitImpl.html">MongePatchRestrictedQuadraticFitImpl&lt;DataPoint, _NFilter, T&gt;::addLocalNeighbor</a>(<a class="code hl_typedef" href="classPonca_1_1MongePatchRestrictedQuadraticFitImpl.html#a7ef9eba74e3b08ee17ab48474eb44bc6">Scalar</a> w,</div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>                                                                     <span class="keyword">const</span> <a class="code hl_typedef" href="classPonca_1_1MongePatchRestrictedQuadraticFitImpl.html#a8524b0806a31eaeca9caf1e1c8c25ef5">VectorType</a> &amp;localQ,</div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>                                                                     <span class="keyword">const</span> DataPoint &amp;attributes)</div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span>{</div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>    <span class="keywordflow">if</span>(! m_planeIsReady)</div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>    {</div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>        <span class="keywordflow">return</span> Base::addLocalNeighbor(w, localQ, attributes);</div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span>    }</div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>    <span class="keywordflow">else</span> <span class="comment">// base plane is ready, we can now fit the patch</span></div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span>    {</div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span>        <span class="comment">// express neighbor in local coordinate frame</span></div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span>        <span class="keyword">const</span> <a class="code hl_typedef" href="classPonca_1_1MongePatchRestrictedQuadraticFitImpl.html#a8524b0806a31eaeca9caf1e1c8c25ef5">VectorType</a> local = Base::worldToTangentPlane(attributes.pos());</div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span>        <span class="keyword">const</span> <a class="code hl_typedef" href="classPonca_1_1MongePatchRestrictedQuadraticFitImpl.html#a7ef9eba74e3b08ee17ab48474eb44bc6">Scalar</a>&amp; h = Base::getHFromLocalCoordinates(local);</div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span>        <span class="keyword">const</span> <a class="code hl_typedef" href="classPonca_1_1MongePatchRestrictedQuadraticFitImpl.html#a7ef9eba74e3b08ee17ab48474eb44bc6">Scalar</a>&amp; u = Base::getUFromLocalCoordinates(local);</div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span>        <span class="keyword">const</span> <a class="code hl_typedef" href="classPonca_1_1MongePatchRestrictedQuadraticFitImpl.html#a7ef9eba74e3b08ee17ab48474eb44bc6">Scalar</a>&amp; v = Base::getVFromLocalCoordinates(local);</div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span> </div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span>        Eigen::Matrix&lt;Scalar, 4, 1 &gt; p;</div>
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span>        p &lt;&lt; u*u, v*v, u*v, 1;</div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span>        m_A    += w*p*p.transpose();</div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span>        m_b    += w*h*p;</div>
+<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span> </div>
+<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span>        <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span>    }</div>
+<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span>    <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span>}</div>
 </div>
-<div class="ttc" id="aclassPonca_1_1MongePatch_html"><div class="ttname"><a href="classPonca_1_1MongePatch.html">Ponca::MongePatch</a></div><div class="ttdoc">Extension to compute the best fit quadric on 3d points expressed as .</div><div class="ttdef"><b>Definition</b> <a href="mongePatch_8h_source.html#l00027">mongePatch.h:28</a></div></div>
-<div class="ttc" id="aclassPonca_1_1MongePatch_html_a0fe10f0fe65ef166d77fa081b9e4785e"><div class="ttname"><a href="classPonca_1_1MongePatch.html#a0fe10f0fe65ef166d77fa081b9e4785e">Ponca::MongePatch::VectorType</a></div><div class="ttdeci">typename Base::VectorType VectorType</div><div class="ttdoc">Alias to vector type.</div><div class="ttdef"><b>Definition</b> <a href="mongePatch_8h_source.html#l00029">mongePatch.h:29</a></div></div>
-<div class="ttc" id="aclassPonca_1_1MongePatch_html_a129e4d4b92d31b7c001c48062259dea2"><div class="ttname"><a href="classPonca_1_1MongePatch.html#a129e4d4b92d31b7c001c48062259dea2">Ponca::MongePatch::Scalar</a></div><div class="ttdeci">typename DataPoint::Scalar Scalar</div><div class="ttdoc">Alias to scalar type.</div><div class="ttdef"><b>Definition</b> <a href="mongePatch_8h_source.html#l00029">mongePatch.h:29</a></div></div>
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span> </div>
+<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span><span class="keyword">template</span> &lt; <span class="keyword">class</span> DataPo<span class="keywordtype">int</span>, <span class="keyword">class</span> _NFilter, <span class="keyword">typename</span> T&gt;</div>
+<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span><a class="code hl_enumeration" href="namespacePonca.html#abfd697aebf07c1b5c8be5ee401e2dc84">FIT_RESULT</a></div>
+<div class="foldopen" id="foldopen00117" data-start="{" data-end="}">
+<div class="line"><a id="l00117" name="l00117"></a><span class="lineno"><a class="line" href="classPonca_1_1MongePatchRestrictedQuadraticFitImpl.html#a5e676f5d7395a1c496a903d0d1da0208">  117</a></span><a class="code hl_class" href="classPonca_1_1MongePatchRestrictedQuadraticFitImpl.html">MongePatchRestrictedQuadraticFitImpl&lt;DataPoint, _NFilter, T&gt;::finalize</a> ()</div>
+<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span>{</div>
+<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span>    <span class="comment">// end of the fitting process, check plane is ready</span></div>
+<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span>    <span class="keywordflow">if</span> (! m_planeIsReady) {</div>
+<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span>        <a class="code hl_enumeration" href="namespacePonca.html#abfd697aebf07c1b5c8be5ee401e2dc84">FIT_RESULT</a> res = Base::finalize();</div>
+<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span> </div>
+<div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span>        <span class="keywordflow">if</span>(res == <a class="code hl_enumvalue" href="namespacePonca.html#abfd697aebf07c1b5c8be5ee401e2dc84a86d1e5381a39092fbe5560583c23d64c">STABLE</a>) {  <span class="comment">// plane is ready</span></div>
+<div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span>            m_planeIsReady = <span class="keyword">true</span>;</div>
+<div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span> </div>
+<div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span>            <span class="keywordflow">return</span> Base::m_eCurrentState = <a class="code hl_enumvalue" href="namespacePonca.html#abfd697aebf07c1b5c8be5ee401e2dc84a0d50cd1855fec459b2c5756ec38d4a17">NEED_OTHER_PASS</a>;</div>
+<div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span>        }</div>
+<div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span>        <span class="keywordflow">return</span> res;</div>
+<div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span>    }</div>
+<div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span>        <span class="comment">// end of the monge patch fitting process</span></div>
+<div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span>    <span class="keywordflow">else</span> {</div>
+<div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span>        <span class="comment">// we use SVD as the matrix size is 4x4, and skip preconditioner as it is squared</span></div>
+<div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span>        Base::quadraticHeightField().setQuadric</div>
+<div class="line"><a id="l00134" name="l00134"></a><span class="lineno">  134</span>        (m_A.jacobiSvd(Eigen::ComputeThinU | Eigen::ComputeThinV | Eigen::NoQRPreconditioner).solve(m_b));</div>
+<div class="line"><a id="l00135" name="l00135"></a><span class="lineno">  135</span> </div>
+<div class="line"><a id="l00136" name="l00136"></a><span class="lineno">  136</span>        <span class="keywordflow">return</span> Base::m_eCurrentState = <a class="code hl_enumvalue" href="namespacePonca.html#abfd697aebf07c1b5c8be5ee401e2dc84a86d1e5381a39092fbe5560583c23d64c">STABLE</a>;</div>
+<div class="line"><a id="l00137" name="l00137"></a><span class="lineno">  137</span>    }</div>
+<div class="line"><a id="l00138" name="l00138"></a><span class="lineno">  138</span>}</div>
+</div>
+<div class="ttc" id="aclassPonca_1_1MongePatchQuadraticFitImpl_html"><div class="ttname"><a href="classPonca_1_1MongePatchQuadraticFitImpl.html">Ponca::MongePatchQuadraticFitImpl</a></div><div class="ttdoc">Extension to compute the best fit quadric on 3d points expressed as .</div><div class="ttdef"><b>Definition</b> <a href="mongePatch_8h_source.html#l00137">mongePatch.h:138</a></div></div>
+<div class="ttc" id="aclassPonca_1_1MongePatchQuadraticFitImpl_html_a97b79bb8968b9a97afc1052a715060df"><div class="ttname"><a href="classPonca_1_1MongePatchQuadraticFitImpl.html#a97b79bb8968b9a97afc1052a715060df">Ponca::MongePatchQuadraticFitImpl::Scalar</a></div><div class="ttdeci">typename DataPoint::Scalar Scalar</div><div class="ttdoc">Alias to scalar type.</div><div class="ttdef"><b>Definition</b> <a href="mongePatch_8h_source.html#l00139">mongePatch.h:139</a></div></div>
+<div class="ttc" id="aclassPonca_1_1MongePatchQuadraticFitImpl_html_aa021548b23df7b4c07b68747e93ede61"><div class="ttname"><a href="classPonca_1_1MongePatchQuadraticFitImpl.html#aa021548b23df7b4c07b68747e93ede61">Ponca::MongePatchQuadraticFitImpl::VectorType</a></div><div class="ttdeci">typename Base::VectorType VectorType</div><div class="ttdoc">Alias to vector type.</div><div class="ttdef"><b>Definition</b> <a href="mongePatch_8h_source.html#l00139">mongePatch.h:139</a></div></div>
+<div class="ttc" id="aclassPonca_1_1MongePatchRestrictedQuadraticFitImpl_html"><div class="ttname"><a href="classPonca_1_1MongePatchRestrictedQuadraticFitImpl.html">Ponca::MongePatchRestrictedQuadraticFitImpl</a></div><div class="ttdoc">Extension to compute the best fit restricted quadric on 3d points expressed as .</div><div class="ttdef"><b>Definition</b> <a href="mongePatch_8h_source.html#l00171">mongePatch.h:172</a></div></div>
+<div class="ttc" id="aclassPonca_1_1MongePatchRestrictedQuadraticFitImpl_html_a7ef9eba74e3b08ee17ab48474eb44bc6"><div class="ttname"><a href="classPonca_1_1MongePatchRestrictedQuadraticFitImpl.html#a7ef9eba74e3b08ee17ab48474eb44bc6">Ponca::MongePatchRestrictedQuadraticFitImpl::Scalar</a></div><div class="ttdeci">typename DataPoint::Scalar Scalar</div><div class="ttdoc">Alias to scalar type.</div><div class="ttdef"><b>Definition</b> <a href="mongePatch_8h_source.html#l00173">mongePatch.h:173</a></div></div>
+<div class="ttc" id="aclassPonca_1_1MongePatchRestrictedQuadraticFitImpl_html_a8524b0806a31eaeca9caf1e1c8c25ef5"><div class="ttname"><a href="classPonca_1_1MongePatchRestrictedQuadraticFitImpl.html#a8524b0806a31eaeca9caf1e1c8c25ef5">Ponca::MongePatchRestrictedQuadraticFitImpl::VectorType</a></div><div class="ttdeci">typename Base::VectorType VectorType</div><div class="ttdoc">Alias to vector type.</div><div class="ttdef"><b>Definition</b> <a href="mongePatch_8h_source.html#l00173">mongePatch.h:173</a></div></div>
 <div class="ttc" id="anamespacePonca_html_abfd697aebf07c1b5c8be5ee401e2dc84"><div class="ttname"><a href="namespacePonca.html#abfd697aebf07c1b5c8be5ee401e2dc84">Ponca::FIT_RESULT</a></div><div class="ttdeci">FIT_RESULT</div><div class="ttdoc">Enum corresponding to the state of a fitting method (and what the finalize function returns)</div><div class="ttdef"><b>Definition</b> <a href="enums_8h_source.html#l00014">enums.h:15</a></div></div>
 <div class="ttc" id="anamespacePonca_html_abfd697aebf07c1b5c8be5ee401e2dc84a0d50cd1855fec459b2c5756ec38d4a17"><div class="ttname"><a href="namespacePonca.html#abfd697aebf07c1b5c8be5ee401e2dc84a0d50cd1855fec459b2c5756ec38d4a17">Ponca::NEED_OTHER_PASS</a></div><div class="ttdeci">@ NEED_OTHER_PASS</div><div class="ttdoc">The fitting procedure needs to analyse the neighborhood another time.</div><div class="ttdef"><b>Definition</b> <a href="enums_8h_source.html#l00025">enums.h:25</a></div></div>
 <div class="ttc" id="anamespacePonca_html_abfd697aebf07c1b5c8be5ee401e2dc84a86d1e5381a39092fbe5560583c23d64c"><div class="ttname"><a href="namespacePonca.html#abfd697aebf07c1b5c8be5ee401e2dc84a86d1e5381a39092fbe5560583c23d64c">Ponca::STABLE</a></div><div class="ttdeci">@ STABLE</div><div class="ttdoc">The fitting is stable and ready to use.</div><div class="ttdef"><b>Definition</b> <a href="enums_8h_source.html#l00017">enums.h:17</a></div></div>
@@ -237,7 +289,7 @@ $(document).ready(function(){initNavTree('mongePatch_8hpp_source.html',''); init
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_695d95a8d8fbec601a248c0414764298.html">Ponca</a></li><li class="navelem"><a class="el" href="dir_ce16314fc45f8638543c5146aff64d4a.html">src</a></li><li class="navelem"><a class="el" href="dir_221133f19e4af6803e4ee7d78db21786.html">Fitting</a></li><li class="navelem"><b>mongePatch.hpp</b></li>
-    <li class="footer">Generated on Mon Feb 23 2026 16:20:57 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
+    <li class="footer">Generated on Mon Feb 23 2026 18:00:01 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
   </ul>
 </div>
 </body>

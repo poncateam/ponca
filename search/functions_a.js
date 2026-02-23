@@ -1,16 +1,10 @@
 var searchData=
 [
-  ['meannormal_0',['meannormal',['../classPonca_1_1MeanNormal.html#ab8d1ebf3fa3559d73229d847d9cacc02',1,'Ponca::MeanNormal::meanNormal() const'],['../classPonca_1_1MeanNormal.html#a249b2213254d2c29bb0865edf833aae6',1,'Ponca::MeanNormal::meanNormal()']]],
-  ['meannormalder_1',['meannormalder',['../classPonca_1_1MeanNormalDer.html#a1852a8efd9e1a814a5fec86eb77e67fa',1,'Ponca::MeanNormalDer::meanNormalDer()'],['../classPonca_1_1MeanNormalDer.html#a7e62988035dec3bc95b79c0a50f45fbc',1,'Ponca::MeanNormalDer::meanNormalDer() const']]],
-  ['meannormalvector_2',['meanNormalVector',['../classPonca_1_1MeanNormal.html#ab405afd1df6b86368a1b98e37f74c14d',1,'Ponca::MeanNormal']]],
-  ['meanplanefit_3',['meanplanefit',['../classPonca_1_1MeanPlaneFitImpl.html#ae5a754ca08646e19445852a0621631b4',1,'Ponca::MeanPlaneFitImpl::meanPlaneFit()'],['../classPonca_1_1MeanPlaneFitImpl.html#a34f2220988801d879ec511f1315cbdeb',1,'Ponca::MeanPlaneFitImpl::meanPlaneFit() const']]],
-  ['meanposition_4',['meanposition',['../classPonca_1_1MeanPosition.html#a983cedf90008fc2a1ec301dc9a8becf2',1,'Ponca::MeanPosition::meanPosition()'],['../classPonca_1_1MeanPosition.html#a23457f0601cda9b05972d3ac64d9a38f',1,'Ponca::MeanPosition::meanPosition() const']]],
-  ['meanpositionder_5',['meanpositionder',['../classPonca_1_1MeanPositionDer.html#a38bbab2a0f21db8f7a29fff02d98a671',1,'Ponca::MeanPositionDer::meanPositionDer() const'],['../classPonca_1_1MeanPositionDer.html#af54d0d24a7f62f34d4db496cc15bb93c',1,'Ponca::MeanPositionDer::meanPositionDer()']]],
-  ['mincellsize_6',['minCellSize',['../classPonca_1_1KdTreeBase.html#a22e3f8d5e9c14f59c4486b17d386676d',1,'Ponca::KdTreeBase']]],
-  ['mlsspherefitder_7',['mlsspherefitder',['../classPonca_1_1MlsSphereFitDer.html#aee738b105ef0eec3166cc93ea13ff404',1,'Ponca::MlsSphereFitDer::mlsSphereFitDer()'],['../classPonca_1_1MlsSphereFitDer.html#a9466f12ac76809b2cc9cc6922fe7d2a2',1,'Ponca::MlsSphereFitDer::mlsSphereFitDer() const']]],
-  ['mongepatch_8',['mongepatch',['../classPonca_1_1MongePatch.html#a120af583a8958d60bb2514e9214781b7',1,'Ponca::MongePatch::mongePatch()'],['../classPonca_1_1MongePatch.html#a58e7ac02e363300ca122cf7cf1e9fdfb',1,'Ponca::MongePatch::mongePatch() const']]],
-  ['mu0interpolatedu_9',['mu0InterpolatedU',['../structPonca_1_1internal_1_1CNCEigen.html#a13c869973ff6de0de8e0b8bed48a6711',1,'Ponca::internal::CNCEigen']]],
-  ['mu1interpolatedu_10',['mu1InterpolatedU',['../structPonca_1_1internal_1_1CNCEigen.html#aa2a4c6abc2e09fdda14c76ab5db25592',1,'Ponca::internal::CNCEigen']]],
-  ['mu2interpolatedu_11',['mu2InterpolatedU',['../structPonca_1_1internal_1_1CNCEigen.html#a112522bd24fd69cda507af84ec06063e',1,'Ponca::internal::CNCEigen']]],
-  ['muxyinterpolatedu_12',['muXYInterpolatedU',['../structPonca_1_1internal_1_1CNCEigen.html#a8409c7ed4f1ce742b0f56795e7f5d153',1,'Ponca::internal::CNCEigen']]]
+  ['lambda_5f0_0',['lambda_0',['../classPonca_1_1CovarianceFitBase.html#ad963bd816b41c6d42a9a4c1ff3fde647',1,'Ponca::CovarianceFitBase']]],
+  ['lambda_5f1_1',['lambda_1',['../classPonca_1_1CovarianceFitBase.html#a6aa5bcbc1bfbbce9f7e6ab5ded0cf82e',1,'Ponca::CovarianceFitBase']]],
+  ['lambda_5f2_2',['lambda_2',['../classPonca_1_1CovarianceFitBase.html#a52b2656bd023c2edc1e8b00bbfc70d8f',1,'Ponca::CovarianceFitBase']]],
+  ['leaf_5fsize_3',['leaf_size',['../classPonca_1_1KdTreeCustomizableNode.html#aed2b7475792a6fdd255b59abe9690a01',1,'Ponca::KdTreeCustomizableNode']]],
+  ['leaf_5fstart_4',['leaf_start',['../classPonca_1_1KdTreeCustomizableNode.html#a270e4c17ea11abd8fbd62400f45db5ab',1,'Ponca::KdTreeCustomizableNode']]],
+  ['line_5',['line',['../classPonca_1_1Line.html#a0a34f30faff441111fb2f9815f86b1d4',1,'Ponca::Line::line()'],['../classPonca_1_1Line.html#a8fad38789601274ff966d60b6777e8eb',1,'Ponca::Line::line() const']]],
+  ['linearity_6',['linearity',['../classPonca_1_1CovarianceFitBase.html#ac0a56812de37dc7650c9f5d718e88637',1,'Ponca::CovarianceFitBase']]]
 ];

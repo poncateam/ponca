@@ -1,8 +1,27 @@
 var searchData=
 [
-  ['tangentplane_0',['tangentPlane',['../classPonca_1_1NormalDerivativesCurvatureEstimator.html#a2f532d0dd76d39d7aeec432170b81862',1,'Ponca::NormalDerivativesCurvatureEstimator']]],
-  ['tangentplanetoworld_1',['tangentPlaneToWorld',['../classPonca_1_1CovariancePlaneFitImpl.html#a4374c268c6876973366e11255728309a',1,'Ponca::CovariancePlaneFitImpl']]],
-  ['tau_2',['tau',['../classPonca_1_1GLSParam.html#a58bde96d8c934db95dc6fb3cc3ba0397',1,'Ponca::GLSParam']]],
-  ['tau_5fnormalized_3',['tau_normalized',['../classPonca_1_1GLSParam.html#a3fd57343f62b0f1689e7d77431184679',1,'Ponca::GLSParam']]],
-  ['top_4',['top',['../classPonca_1_1Stack.html#af7a9b21992c2a9fc54f57169717184db',1,'Ponca::Stack::top() const'],['../classPonca_1_1Stack.html#aa591b6a41039b60ee5a6ae3412c48841',1,'Ponca::Stack::top()']]]
+  ['scaled2w_0',['scaled2w',['../classPonca_1_1NoWeightFuncBase.html#a7a525af3d5f94c767f00c2756af293e0',1,'Ponca::NoWeightFuncBase::scaled2w()'],['../classPonca_1_1DistWeightFunc.html#a1ccbacac342ed1e66ef0423fdaf9c00d',1,'Ponca::DistWeightFunc::scaled2w(const VectorType &amp;_q, const DataPoint &amp;) const']]],
+  ['scaledw_1',['scaledw',['../classPonca_1_1DistWeightFunc.html#a182289b2f19a436381af1c94a7bfb0f5',1,'Ponca::DistWeightFunc::scaledw()'],['../classPonca_1_1NoWeightFuncBase.html#a73d52a789ae852de9008b723c5af6921',1,'Ponca::NoWeightFuncBase::scaledw()']]],
+  ['scalespaced2w_2',['scalespaced2w',['../classPonca_1_1DistWeightFunc.html#a26332be7b205ec289253c4b366c46110',1,'Ponca::DistWeightFunc::scaleSpaced2w()'],['../classPonca_1_1NoWeightFuncBase.html#aafefbf4b23424cdc6204a9187b59f65d',1,'Ponca::NoWeightFuncBase::scaleSpaced2w()']]],
+  ['searchinternal_3',['searchInternal',['../classPonca_1_1KdTreeQuery.html#a7921819468c7f2a16d5ac5ff85b1d93d',1,'Ponca::KdTreeQuery']]],
+  ['secondfundamentalform_4',['secondfundamentalform',['../classPonca_1_1FundamentalFormWeingartenEstimator.html#a5f2e39fff4dcb81528d9abb44b896f84',1,'Ponca::FundamentalFormWeingartenEstimator::secondFundamentalForm() const'],['../classPonca_1_1FundamentalFormWeingartenEstimator.html#a6f7e0fe081183b5385bb43231fe971e1',1,'Ponca::FundamentalFormWeingartenEstimator::secondFundamentalForm(Matrix2Derived &amp;second) const']]],
+  ['setcurvaturevalues_5',['setCurvatureValues',['../classPonca_1_1internal_1_1CurvatureEstimatorBase.html#a39ce0fe4a9e0d6136cd9152240bf0e46',1,'Ponca::internal::CurvatureEstimatorBase']]],
+  ['setinput_6',['setInput',['../group__spatialpartitioning.html#af4bdaa38719ee26bb98b8484bc04ada8',1,'Ponca::QueryInput']]],
+  ['setline_7',['setLine',['../classPonca_1_1Line.html#ac9ae7707a0909cc91b000c7f078810fe',1,'Ponca::Line']]],
+  ['setmincellsize_8',['setMinCellSize',['../classPonca_1_1KdTreeBase.html#a1930f6472cd825420153ccf65bef73f0',1,'Ponca::KdTreeBase']]],
+  ['setneighborfilter_9',['setneighborfilter',['../classPonca_1_1CNC.html#a10f3cafec7811461546574a880484be7',1,'Ponca::CNC::setNeighborFilter()'],['../classPonca_1_1PrimitiveBase.html#a1994d3443a2f5c77b2c89ada956795f2',1,'Ponca::PrimitiveBase::setNeighborFilter()']]],
+  ['setquadric_10',['setquadric',['../classPonca_1_1QuadraticHeightField.html#a0c5082fd5e3c31991adeb6f9cfd88978',1,'Ponca::QuadraticHeightField::setQuadric()'],['../classPonca_1_1RestrictedQuadraticHeightField.html#a2a72a83af71920854db66e2c230f2bab',1,'Ponca::RestrictedQuadraticHeightField::setQuadric()']]],
+  ['setradius_11',['setRadius',['../group__spatialpartitioning.html#a8b97f565c582a6f3f5face546adc6792',1,'Ponca::QueryOutputIsRange']]],
+  ['setsquaredradius_12',['setSquaredRadius',['../group__spatialpartitioning.html#a7748dee4889e5d725f4aa94c38b238ca',1,'Ponca::QueryOutputIsRange']]],
+  ['setvalue_13',['setValue',['../classPonca_1_1ConstantWeightKernel.html#abfdd7c48d31e98cb1f566724dccf06c0',1,'Ponca::ConstantWeightKernel']]],
+  ['size_14',['size',['../classPonca_1_1Stack.html#a394fe3f9b308bde808322121799db11d',1,'Ponca::Stack::size()'],['../classPonca_1_1KnnGraphBase.html#ac73ddcdd495d0ae9cab254e035d58422',1,'Ponca::KnnGraphBase::size()']]],
+  ['skipindexfunctor_15',['skipindexfunctor',['../group__spatialpartitioning.html#a448d0bd3791241c94c41a9b20879164f',1,'Ponca::QueryInputIsIndex::skipIndexFunctor()'],['../group__spatialpartitioning.html#aea244b4f6838bbb9218d098c321b77f9',1,'Ponca::QueryInputIsPosition::skipIndexFunctor()']]],
+  ['solver_16',['solver',['../classPonca_1_1CovarianceFitBase.html#a20e4e162d9b2dcd2b28837e1a302d68d',1,'Ponca::CovarianceFitBase']]],
+  ['spaced2w_17',['spaced2w',['../classPonca_1_1NoWeightFuncBase.html#aeb66bab2430ca8ae66b1b9cac9ebdb71',1,'Ponca::NoWeightFuncBase::spaced2w()'],['../classPonca_1_1DistWeightFunc.html#a303ff5053abe6961771053c9647688c4',1,'Ponca::DistWeightFunc::spaced2w(const VectorType &amp;_q, const DataPoint &amp;) const']]],
+  ['spacedw_18',['spacedw',['../classPonca_1_1DistWeightFunc.html#a679c75736d7715aada70bbf2e221fb02',1,'Ponca::DistWeightFunc::spacedw()'],['../classPonca_1_1NoWeightFuncBase.html#a6dce6f820931ff42539cc2261e645860',1,'Ponca::NoWeightFuncBase::spacedw()']]],
+  ['spherefit_19',['spherefit',['../classPonca_1_1SphereFitImpl.html#aaa6023c6d9395fbcbf35e263ff6eef14',1,'Ponca::SphereFitImpl::sphereFit()'],['../classPonca_1_1SphereFitImpl.html#a29ad69cac4697d90fb5e52f3f97ece83',1,'Ponca::SphereFitImpl::sphereFit() const']]],
+  ['sphericity_20',['sphericity',['../classPonca_1_1CovarianceFitBase.html#a39d21a82282a185319520a36bd90150c',1,'Ponca::CovarianceFitBase']]],
+  ['squaredradius_21',['squaredRadius',['../group__spatialpartitioning.html#a0c3968bb6e2a53fc07fac1054183ba8d',1,'Ponca::QueryOutputIsRange']]],
+  ['startnewpass_22',['startNewPass',['../classPonca_1_1PrimitiveBase.html#a0f5e08aa7d8b194a70bfe6ad29faf183',1,'Ponca::PrimitiveBase']]],
+  ['surfacevariation_23',['surfaceVariation',['../classPonca_1_1CovarianceFitBase.html#a51531362ba02d442e2ca815e26436485',1,'Ponca::CovarianceFitBase']]]
 ];

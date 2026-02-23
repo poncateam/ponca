@@ -1,0 +1,9 @@
+<map id="Ponca::internal::CurvatureEstimatorBase&lt; DataPoint, _NFilter, T &gt;" name="Ponca::internal::CurvatureEstimatorBase&lt; DataPoint, _NFilter, T &gt;">
+<area shape="rect" id="Node000001" title="Base class for any 3d curvature estimator: holds , &#160;and associated vectors, such that ." alt="" coords="109,119,301,373"/>
+<area shape="rect" id="Node000003" href="$classPonca_1_1CurvatureEstimator.html" title="Make CurvatureEstimatorBase available to standard Basket object." alt="" coords="5,429,193,529"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="144,387,124,429,119,427,139,385"/>
+<area shape="rect" id="Node000004" href="$classPonca_1_1CurvatureEstimatorDer.html" title="Make CurvatureEstimatorBase available to BasketDiff object." alt="" coords="217,421,405,536"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="271,385,288,420,283,422,267,387"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="193,5,216,71"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="207,84,207,118,202,118,202,84"/>
+</map>

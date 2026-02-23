@@ -15,5 +15,7 @@ var searchData=
   ['covariancelinefitimpl_12',['CovarianceLineFitImpl',['../classPonca_1_1CovarianceLineFitImpl.html',1,'Ponca']]],
   ['covarianceplanederimpl_13',['CovariancePlaneDerImpl',['../classPonca_1_1CovariancePlaneDerImpl.html',1,'Ponca']]],
   ['covarianceplanefitimpl_14',['CovariancePlaneFitImpl',['../classPonca_1_1CovariancePlaneFitImpl.html',1,'Ponca']]],
-  ['curvatureestimatorbase_15',['CurvatureEstimatorBase',['../classPonca_1_1CurvatureEstimatorBase.html',1,'Ponca']]]
+  ['curvatureestimator_15',['CurvatureEstimator',['../classPonca_1_1CurvatureEstimator.html',1,'Ponca']]],
+  ['curvatureestimatorbase_16',['CurvatureEstimatorBase',['../classPonca_1_1internal_1_1CurvatureEstimatorBase.html',1,'Ponca::internal']]],
+  ['curvatureestimatorder_17',['CurvatureEstimatorDer',['../classPonca_1_1CurvatureEstimatorDer.html',1,'Ponca']]]
 ];

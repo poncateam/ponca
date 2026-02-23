@@ -1,10 +1,17 @@
 var searchData=
 [
-  ['lambda_5f0_0',['lambda_0',['../classPonca_1_1CovarianceFitBase.html#ad963bd816b41c6d42a9a4c1ff3fde647',1,'Ponca::CovarianceFitBase']]],
-  ['lambda_5f1_1',['lambda_1',['../classPonca_1_1CovarianceFitBase.html#a6aa5bcbc1bfbbce9f7e6ab5ded0cf82e',1,'Ponca::CovarianceFitBase']]],
-  ['lambda_5f2_2',['lambda_2',['../classPonca_1_1CovarianceFitBase.html#a52b2656bd023c2edc1e8b00bbfc70d8f',1,'Ponca::CovarianceFitBase']]],
-  ['leaf_5fsize_3',['leaf_size',['../classPonca_1_1KdTreeCustomizableNode.html#aed2b7475792a6fdd255b59abe9690a01',1,'Ponca::KdTreeCustomizableNode']]],
-  ['leaf_5fstart_4',['leaf_start',['../classPonca_1_1KdTreeCustomizableNode.html#a270e4c17ea11abd8fbd62400f45db5ab',1,'Ponca::KdTreeCustomizableNode']]],
-  ['line_5',['line',['../classPonca_1_1Line.html#a0a34f30faff441111fb2f9815f86b1d4',1,'Ponca::Line::line()'],['../classPonca_1_1Line.html#a8fad38789601274ff966d60b6777e8eb',1,'Ponca::Line::line() const']]],
-  ['linearity_6',['linearity',['../classPonca_1_1CovarianceFitBase.html#ac0a56812de37dc7650c9f5d718e88637',1,'Ponca::CovarianceFitBase']]]
+  ['k_0',['k',['../classPonca_1_1KnnGraphBase.html#a88878dc3a1b39079a2d20c61c15fee6c',1,'Ponca::KnnGraphBase']]],
+  ['kappa_1',['kappa',['../classPonca_1_1GLSParam.html#a3967bba6e1b7cab5a9c7f7f8c0232ec8',1,'Ponca::GLSParam']]],
+  ['kappa_5fnormalized_2',['kappa_normalized',['../classPonca_1_1GLSParam.html#a5bb1c9ad3d34f76a2d634abd4da428df',1,'Ponca::GLSParam']]],
+  ['kdtreedensebase_3',['kdtreedensebase',['../classPonca_1_1KdTreeDenseBase.html#a0755b6d9ec2855be13eaa5f173a894d2',1,'Ponca::KdTreeDenseBase::KdTreeDenseBase()=default'],['../classPonca_1_1KdTreeDenseBase.html#a44dbbb76e78121fa0c4832ba190a98d1',1,'Ponca::KdTreeDenseBase::KdTreeDenseBase(PointUserContainer &amp;&amp;points)']]],
+  ['kdtreesparsebase_4',['kdtreesparsebase',['../classPonca_1_1KdTreeSparseBase.html#aca68b92e675a64d6fd185073db504d73',1,'Ponca::KdTreeSparseBase::KdTreeSparseBase()=default'],['../classPonca_1_1KdTreeSparseBase.html#a88bbd0abcddfeca97665028236fb9691',1,'Ponca::KdTreeSparseBase::KdTreeSparseBase(PointUserContainer &amp;&amp;points)'],['../classPonca_1_1KdTreeSparseBase.html#a4a0c08913d66dfcb56f1d904a298a21a',1,'Ponca::KdTreeSparseBase::KdTreeSparseBase(PointUserContainer &amp;&amp;points, IndexUserContainer sampling)']]],
+  ['kmax_5',['kmax',['../classPonca_1_1CNC.html#a5472f2e6d163e36223d595c37742b86b',1,'Ponca::CNC::kmax()'],['../classPonca_1_1internal_1_1CurvatureEstimatorBase.html#af7418d1f62bf468506088cc29d985ba9',1,'Ponca::internal::CurvatureEstimatorBase::kmax()']]],
+  ['kmaxdirection_6',['kmaxdirection',['../classPonca_1_1CNC.html#a44b3d038531fb7c93d4094ee9d0a3c11',1,'Ponca::CNC::kmaxDirection()'],['../classPonca_1_1internal_1_1CurvatureEstimatorBase.html#afc6539aa08916b751f88ecb462d88479',1,'Ponca::internal::CurvatureEstimatorBase::kmaxDirection() const']]],
+  ['kmean_7',['kmean',['../classPonca_1_1internal_1_1CurvatureEstimatorBase.html#aaded3425bf0eec15708145fb46324b33',1,'Ponca::internal::CurvatureEstimatorBase::kMean()'],['../classPonca_1_1FundamentalFormWeingartenEstimator.html#a944d673760d483447f8bfa27d75d131f',1,'Ponca::FundamentalFormWeingartenEstimator::kMean()'],['../classPonca_1_1CNC.html#ad8ca3e29a2e0768c9cc8e543e75cd634',1,'Ponca::CNC::kMean() const']]],
+  ['kmin_8',['kmin',['../classPonca_1_1CNC.html#afb76fb15f21be4188d05e1a387a2c7ae',1,'Ponca::CNC::kmin()'],['../classPonca_1_1internal_1_1CurvatureEstimatorBase.html#abf0586b091f29eb3bc8d5d4b05c5030b',1,'Ponca::internal::CurvatureEstimatorBase::kmin()']]],
+  ['kmindirection_9',['kmindirection',['../classPonca_1_1CNC.html#af88271671d05fc23471c302ebeec41cc',1,'Ponca::CNC::kminDirection()'],['../classPonca_1_1internal_1_1CurvatureEstimatorBase.html#a3c0d4ccae13db34c2fc470e9748f13d6',1,'Ponca::internal::CurvatureEstimatorBase::kminDirection()']]],
+  ['knearestneighbors_10',['knearestneighbors',['../classPonca_1_1KdTreeBase.html#a5273184860c29ed69c27a800224056b8',1,'Ponca::KdTreeBase::kNearestNeighbors(const VectorType &amp;point, IndexType k) const'],['../classPonca_1_1KdTreeBase.html#aced45273cb6f3d90053190a6070b2149',1,'Ponca::KdTreeBase::kNearestNeighbors(IndexType index, IndexType k) const'],['../classPonca_1_1KnnGraphBase.html#afbdd48fb6c63ca118dc760f04002b5bc',1,'Ponca::KnnGraphBase::kNearestNeighbors()']]],
+  ['knearestneighborsindexquery_11',['knearestneighborsindexquery',['../classPonca_1_1KdTreeBase.html#a3f076fc0aea97ebb1758c7b65d3d060b',1,'Ponca::KdTreeBase::kNearestNeighborsIndexQuery()'],['../classPonca_1_1KnnGraphBase.html#a2278ba7066ed534bbdbc43896d8bdf9c',1,'Ponca::KnnGraphBase::kNearestNeighborsIndexQuery()']]],
+  ['knearestneighborsquery_12',['kNearestNeighborsQuery',['../classPonca_1_1KdTreeBase.html#a5bac80d5b2732a533440f6355816e7f8',1,'Ponca::KdTreeBase']]],
+  ['knngraphbase_13',['KnnGraphBase',['../classPonca_1_1KnnGraphBase.html#a7294b2f4e8983db302e2fac4777364d2',1,'Ponca::KnnGraphBase']]]
 ];

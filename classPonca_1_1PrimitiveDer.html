@@ -51,7 +51,7 @@ MathJax.Hub.Config({
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Ponca
-   &#160;<span id="projectnumber">4786c3d694d08115981d86fa3be9f72d0a7d0d67</span>
+   &#160;<span id="projectnumber">94e4a36411c3364f6192f97adfa8ceee67834d6e</span>
    </div>
    <div id="projectbrief">Point Cloud Analysis library</div>
   </td>
@@ -119,6 +119,7 @@ $(document).ready(function(){initNavTree('classPonca_1_1PrimitiveDer.html',''); 
   <div class="summary">
 <a href="#pub-types">Public Types</a> &#124;
 <a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pub-static-methods">Static Public Member Functions</a> &#124;
 <a href="#pro-types">Protected Types</a> &#124;
 <a href="#pro-attribs">Protected Attributes</a> &#124;
 <a href="#pro-static-attribs">Static Protected Attributes</a> &#124;
@@ -173,22 +174,25 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a24eab0c20628f3f3a2a94e99deea5e33"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8cb27cfff32859fed2eb5532a587e69f" id="r_a8cb27cfff32859fed2eb5532a587e69f"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1PrimitiveDer.html#a8cb27cfff32859fed2eb5532a587e69f">addLocalNeighbor</a> (<a class="el" href="classPonca_1_1PrimitiveDer.html#a8ffe3f9db12201dfeea1d37a4facb166">Scalar</a> w, const <a class="el" href="classPonca_1_1PrimitiveDer.html#a9e338275826169e6942318e1bcb11fad">VectorType</a> &amp;localQ, const DataPoint &amp;attributes, <a class="el" href="classPonca_1_1PrimitiveDer.html#a55c06768e13458ec202676bfe3f01191">ScalarArray</a> &amp;dw)</td></tr>
 <tr class="separator:a8cb27cfff32859fed2eb5532a587e69f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a82c078f21a630341289197f7dd301a1d" id="r_a82c078f21a630341289197f7dd301a1d"><td class="memItemLeft" align="right" valign="top">constexpr bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1PrimitiveDer.html#a82c078f21a630341289197f7dd301a1d">isScaleDer</a> () const</td></tr>
-<tr class="memdesc:a82c078f21a630341289197f7dd301a1d"><td class="mdescLeft">&#160;</td><td class="mdescRight">State specified at compilation time to compute derivatives in scale.  <br /></td></tr>
-<tr class="separator:a82c078f21a630341289197f7dd301a1d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3eab551212c95ea846b9b035c4cd483d" id="r_a3eab551212c95ea846b9b035c4cd483d"><td class="memItemLeft" align="right" valign="top">constexpr bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1PrimitiveDer.html#a3eab551212c95ea846b9b035c4cd483d">isSpaceDer</a> () const</td></tr>
-<tr class="memdesc:a3eab551212c95ea846b9b035c4cd483d"><td class="mdescLeft">&#160;</td><td class="mdescRight">State specified at compilation time to compute derivatives in space.  <br /></td></tr>
-<tr class="separator:a3eab551212c95ea846b9b035c4cd483d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:adab8f43e72ffe465c09e8d762a73e0b0" id="r_adab8f43e72ffe465c09e8d762a73e0b0"><td class="memItemLeft" align="right" valign="top">constexpr unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1PrimitiveDer.html#adab8f43e72ffe465c09e8d762a73e0b0">derDimension</a> () const</td></tr>
-<tr class="memdesc:adab8f43e72ffe465c09e8d762a73e0b0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Number of dimensions used for the differentiation.  <br /></td></tr>
-<tr class="separator:adab8f43e72ffe465c09e8d762a73e0b0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
+Static Public Member Functions</h2></td></tr>
+<tr class="memitem:a0f7c460c8dbbf216abdc48593c01822a" id="r_a0f7c460c8dbbf216abdc48593c01822a"><td class="memItemLeft" align="right" valign="top">static constexpr bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1PrimitiveDer.html#a0f7c460c8dbbf216abdc48593c01822a">isScaleDer</a> ()</td></tr>
+<tr class="memdesc:a0f7c460c8dbbf216abdc48593c01822a"><td class="mdescLeft">&#160;</td><td class="mdescRight">State specified at compilation time to compute derivatives in scale.  <br /></td></tr>
+<tr class="separator:a0f7c460c8dbbf216abdc48593c01822a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5ff2f5acdb8e8a993743897a42bdf2e3" id="r_a5ff2f5acdb8e8a993743897a42bdf2e3"><td class="memItemLeft" align="right" valign="top">static constexpr bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1PrimitiveDer.html#a5ff2f5acdb8e8a993743897a42bdf2e3">isSpaceDer</a> ()</td></tr>
+<tr class="memdesc:a5ff2f5acdb8e8a993743897a42bdf2e3"><td class="mdescLeft">&#160;</td><td class="mdescRight">State specified at compilation time to compute derivatives in space.  <br /></td></tr>
+<tr class="separator:a5ff2f5acdb8e8a993743897a42bdf2e3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa9a3f3d4d4202ca57ab633344ce21f6b" id="r_aa9a3f3d4d4202ca57ab633344ce21f6b"><td class="memItemLeft" align="right" valign="top">static constexpr unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1PrimitiveDer.html#aa9a3f3d4d4202ca57ab633344ce21f6b">derDimension</a> ()</td></tr>
+<tr class="memdesc:aa9a3f3d4d4202ca57ab633344ce21f6b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Number of dimensions used for the differentiation.  <br /></td></tr>
+<tr class="separator:aa9a3f3d4d4202ca57ab633344ce21f6b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-types" name="pro-types"></a>
 Protected Types</h2></td></tr>
-<tr class="memitem:ad359cdb50e06d9fb00c7ad687b910547" id="r_ad359cdb50e06d9fb00c7ad687b910547"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom">{ <a class="el" href="classPonca_1_1PrimitiveDer.html#ad359cdb50e06d9fb00c7ad687b910547ad676eae5a3eed77668d631fc322faa07">Check</a> = Base::PROVIDES_PRIMITIVE_BASE
+<tr class="memitem:a8effa71267106ed72f15bd5f2995a786" id="r_a8effa71267106ed72f15bd5f2995a786"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom">{ <a class="el" href="classPonca_1_1PrimitiveDer.html#a8effa71267106ed72f15bd5f2995a786ad676eae5a3eed77668d631fc322faa07">Check</a> = Base::PROVIDES_PRIMITIVE_BASE
 , <b>PROVIDES_PRIMITIVE_DERIVATIVE</b>
  }</td></tr>
-<tr class="separator:ad359cdb50e06d9fb00c7ad687b910547"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="separator:a8effa71267106ed72f15bd5f2995a786"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa535b02e28e7cc88d44295cd13cb7425" id="r_aa535b02e28e7cc88d44295cd13cb7425"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1PrimitiveDer.html#aa535b02e28e7cc88d44295cd13cb7425">Base</a> = T</td></tr>
 <tr class="memdesc:aa535b02e28e7cc88d44295cd13cb7425"><td class="mdescLeft">&#160;</td><td class="mdescRight">Base class of the procedure.  <br /></td></tr>
 <tr class="separator:aa535b02e28e7cc88d44295cd13cb7425"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -210,7 +214,7 @@ Static Protected Attributes</h2></td></tr>
 <div class="textblock"><div class="compoundTemplParams">template&lt;class DataPoint, class _NFilter, int Type, typename T&gt;<br />
 class Ponca::PrimitiveDer&lt; DataPoint, _NFilter, Type, T &gt;</div><p>Generic class performing the Fit derivation. </p>
 <p>The differentiation can be done automatically in scale and/or space, by combining the enum values FitScaleDer and FitSpaceDer in the template parameter Type.</p>
-<p>The differentiated values are stored in static arrays. The size of the arrays is computed with respect to the derivation type (scale and/or space) and the number of the dimension of the ambiant space. By convention, the scale derivatives are stored at index 0 when Type contains at least FitScaleDer. The size of these arrays can be known using <a class="el" href="classPonca_1_1PrimitiveDer.html#adab8f43e72ffe465c09e8d762a73e0b0" title="Number of dimensions used for the differentiation.">derDimension()</a>, and the differentiation type by <a class="el" href="classPonca_1_1PrimitiveDer.html#a82c078f21a630341289197f7dd301a1d" title="State specified at compilation time to compute derivatives in scale.">isScaleDer()</a> and <a class="el" href="classPonca_1_1PrimitiveDer.html#a3eab551212c95ea846b9b035c4cd483d" title="State specified at compilation time to compute derivatives in space.">isSpaceDer()</a>.</p>
+<p>The differentiated values are stored in static arrays. The size of the arrays is computed with respect to the derivation type (scale and/or space) and the number of the dimension of the ambiant space. By convention, the scale derivatives are stored at index 0 when Type contains at least FitScaleDer. The size of these arrays can be known using <a class="el" href="classPonca_1_1PrimitiveDer.html#aa9a3f3d4d4202ca57ab633344ce21f6b" title="Number of dimensions used for the differentiation.">derDimension()</a>, and the differentiation type by <a class="el" href="classPonca_1_1PrimitiveDer.html#a0f7c460c8dbbf216abdc48593c01822a" title="State specified at compilation time to compute derivatives in scale.">isScaleDer()</a> and <a class="el" href="classPonca_1_1PrimitiveDer.html#a5ff2f5acdb8e8a993743897a42bdf2e3" title="State specified at compilation time to compute derivatives in space.">isSpaceDer()</a>.</p>
 <p>Thanks to the <a class="el" href="classPonca_1_1BasketDiff.html" title="Aggregator class used to declare specialized structures with derivatives computations,...">BasketDiff</a> definition, we know that <a class="el" href="classPonca_1_1PrimitiveDer.html" title="Generic class performing the Fit derivation.">PrimitiveDer</a> has Primitive as base class (through the <a class="el" href="classPonca_1_1Basket.html" title="Aggregator class used to declare specialized structures using CRTP.">Basket</a>). As a result, this class first asks to compute the Fit, and if it works properly, compute the weight derivatives. </p>
 
 <p class="definition">Definition at line <a class="el" href="primitive_8h_source.html#l00162">162</a> of file <a class="el" href="primitive_8h_source.html">primitive.h</a>.</p>
@@ -364,8 +368,8 @@ template&lt;class DataPoint , class _NFilter , int Type, typename T &gt; </div>
 </div>
 </div>
 <h2 class="groupheader">Member Enumeration Documentation</h2>
-<a id="ad359cdb50e06d9fb00c7ad687b910547" name="ad359cdb50e06d9fb00c7ad687b910547"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad359cdb50e06d9fb00c7ad687b910547">&#9670;&#160;</a></span>anonymous enum</h2>
+<a id="a8effa71267106ed72f15bd5f2995a786" name="a8effa71267106ed72f15bd5f2995a786"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8effa71267106ed72f15bd5f2995a786">&#9670;&#160;</a></span>anonymous enum</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -386,7 +390,7 @@ template&lt;class DataPoint , class _NFilter , int Type, typename T &gt; </div>
 </table>
 </div><div class="memdoc">
 <table class="fieldtable">
-<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="ad359cdb50e06d9fb00c7ad687b910547ad676eae5a3eed77668d631fc322faa07" name="ad359cdb50e06d9fb00c7ad687b910547ad676eae5a3eed77668d631fc322faa07"></a>Check&#160;</td><td class="fielddoc"><p>Provides base API for primitives. </p>
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="a8effa71267106ed72f15bd5f2995a786ad676eae5a3eed77668d631fc322faa07" name="a8effa71267106ed72f15bd5f2995a786ad676eae5a3eed77668d631fc322faa07"></a>Check&#160;</td><td class="fielddoc"><p>Provides base API for primitives. </p>
 </td></tr>
 </table>
 
@@ -448,8 +452,8 @@ template&lt;class DataPoint , class _NFilter , int Type, typename T &gt; </div>
 
 </div>
 </div>
-<a id="adab8f43e72ffe465c09e8d762a73e0b0" name="adab8f43e72ffe465c09e8d762a73e0b0"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#adab8f43e72ffe465c09e8d762a73e0b0">&#9670;&#160;</a></span>derDimension()</h2>
+<a id="aa9a3f3d4d4202ca57ab633344ce21f6b" name="aa9a3f3d4d4202ca57ab633344ce21f6b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa9a3f3d4d4202ca57ab633344ce21f6b">&#9670;&#160;</a></span>derDimension()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -460,15 +464,15 @@ template&lt;class DataPoint , class _NFilter , int Type, typename T &gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">constexpr unsigned int <a class="el" href="classPonca_1_1PrimitiveDer.html">Ponca::PrimitiveDer</a>&lt; DataPoint, _NFilter, Type, T &gt;::derDimension </td>
+          <td class="memname">static constexpr unsigned int <a class="el" href="classPonca_1_1PrimitiveDer.html">Ponca::PrimitiveDer</a>&lt; DataPoint, _NFilter, Type, T &gt;::derDimension </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
-          <td> const</td>
+          <td></td>
         </tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">constexpr</span></span>  </td>
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span><span class="mlabel">constexpr</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
@@ -509,8 +513,8 @@ template&lt;class DataPoint , class _NFilter , int Type, typename T &gt; </div>
 
 </div>
 </div>
-<a id="a82c078f21a630341289197f7dd301a1d" name="a82c078f21a630341289197f7dd301a1d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a82c078f21a630341289197f7dd301a1d">&#9670;&#160;</a></span>isScaleDer()</h2>
+<a id="a0f7c460c8dbbf216abdc48593c01822a" name="a0f7c460c8dbbf216abdc48593c01822a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0f7c460c8dbbf216abdc48593c01822a">&#9670;&#160;</a></span>isScaleDer()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -521,15 +525,15 @@ template&lt;class DataPoint , class _NFilter , int Type, typename T &gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">constexpr bool <a class="el" href="classPonca_1_1PrimitiveDer.html">Ponca::PrimitiveDer</a>&lt; DataPoint, _NFilter, Type, T &gt;::isScaleDer </td>
+          <td class="memname">static constexpr bool <a class="el" href="classPonca_1_1PrimitiveDer.html">Ponca::PrimitiveDer</a>&lt; DataPoint, _NFilter, Type, T &gt;::isScaleDer </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
-          <td> const</td>
+          <td></td>
         </tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">constexpr</span></span>  </td>
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span><span class="mlabel">constexpr</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
@@ -540,8 +544,8 @@ template&lt;class DataPoint , class _NFilter , int Type, typename T &gt; </div>
 
 </div>
 </div>
-<a id="a3eab551212c95ea846b9b035c4cd483d" name="a3eab551212c95ea846b9b035c4cd483d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a3eab551212c95ea846b9b035c4cd483d">&#9670;&#160;</a></span>isSpaceDer()</h2>
+<a id="a5ff2f5acdb8e8a993743897a42bdf2e3" name="a5ff2f5acdb8e8a993743897a42bdf2e3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5ff2f5acdb8e8a993743897a42bdf2e3">&#9670;&#160;</a></span>isSpaceDer()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -552,15 +556,15 @@ template&lt;class DataPoint , class _NFilter , int Type, typename T &gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">constexpr bool <a class="el" href="classPonca_1_1PrimitiveDer.html">Ponca::PrimitiveDer</a>&lt; DataPoint, _NFilter, Type, T &gt;::isSpaceDer </td>
+          <td class="memname">static constexpr bool <a class="el" href="classPonca_1_1PrimitiveDer.html">Ponca::PrimitiveDer</a>&lt; DataPoint, _NFilter, Type, T &gt;::isSpaceDer </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
-          <td> const</td>
+          <td></td>
         </tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">constexpr</span></span>  </td>
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span><span class="mlabel">constexpr</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
@@ -658,7 +662,7 @@ template&lt;class DataPoint , class _NFilter , int Type, typename T &gt; </div>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="namespacePonca.html">Ponca</a></li><li class="navelem"><a class="el" href="classPonca_1_1PrimitiveDer.html">PrimitiveDer</a></li>
-    <li class="footer">Generated on Mon Feb 23 2026 16:20:58 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
+    <li class="footer">Generated on Mon Feb 23 2026 18:00:01 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
   </ul>
 </div>
 </body>

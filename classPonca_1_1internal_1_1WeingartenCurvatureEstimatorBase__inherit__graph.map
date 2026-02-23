@@ -1,0 +1,9 @@
+<map id="Ponca::internal::WeingartenCurvatureEstimatorBase&lt; DataPoint, _NFilter, T &gt;" name="Ponca::internal::WeingartenCurvatureEstimatorBase&lt; DataPoint, _NFilter, T &gt;">
+<area shape="rect" id="Node000001" title="Compute principal curvatures from a base class providing fundamental forms." alt="" coords="159,119,352,213"/>
+<area shape="rect" id="Node000003" href="$structPonca_1_1WeingartenCurvatureEstimator.html" title="Compute principal curvatures from a base class providing fundamental forms." alt="" coords="5,261,244,376"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="208,225,176,263,172,259,204,222"/>
+<area shape="rect" id="Node000004" href="$structPonca_1_1WeingartenCurvatureEstimatorDer.html" title="Compute principal curvatures from a base class providing fundamental forms." alt="" coords="268,261,507,376"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="307,222,340,259,336,263,303,225"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="244,5,267,71"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="258,84,258,118,253,118,253,84"/>
+</map>

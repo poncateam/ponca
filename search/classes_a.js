@@ -1,10 +1,12 @@
 var searchData=
 [
-  ['nearestindexquery_0',['NearestIndexQuery',['../group__spatialpartitioning.html#structPonca_1_1NearestIndexQuery',1,'Ponca']]],
-  ['nearestpointquery_1',['NearestPointQuery',['../group__spatialpartitioning.html#structPonca_1_1NearestPointQuery',1,'Ponca']]],
-  ['neighborfilterstorenormal_2',['NeighborFilterStoreNormal',['../classPonca_1_1NeighborFilterStoreNormal.html',1,'Ponca']]],
-  ['neighborfilterstorenormal_3c_20datapoint_2c_20noweightfunc_3c_20datapoint_20_3e_20_3e_3',['NeighborFilterStoreNormal&lt; DataPoint, NoWeightFunc&lt; DataPoint &gt; &gt;',['../classPonca_1_1NeighborFilterStoreNormal.html',1,'Ponca']]],
-  ['normalcovariancecurvatureestimator_4',['NormalCovarianceCurvatureEstimator',['../classPonca_1_1NormalCovarianceCurvatureEstimator.html',1,'Ponca']]],
-  ['normalderivativescurvatureestimator_5',['NormalDerivativesCurvatureEstimator',['../classPonca_1_1NormalDerivativesCurvatureEstimator.html',1,'Ponca']]],
-  ['noweightfuncbase_6',['NoWeightFuncBase',['../classPonca_1_1NoWeightFuncBase.html',1,'Ponca']]]
+  ['meannormal_0',['MeanNormal',['../classPonca_1_1MeanNormal.html',1,'Ponca']]],
+  ['meannormalder_1',['MeanNormalDer',['../classPonca_1_1MeanNormalDer.html',1,'Ponca']]],
+  ['meanplanefitimpl_2',['MeanPlaneFitImpl',['../classPonca_1_1MeanPlaneFitImpl.html',1,'Ponca']]],
+  ['meanposition_3',['MeanPosition',['../classPonca_1_1MeanPosition.html',1,'Ponca']]],
+  ['meanpositionder_4',['MeanPositionDer',['../classPonca_1_1MeanPositionDer.html',1,'Ponca']]],
+  ['mlsspherefitder_5',['MlsSphereFitDer',['../classPonca_1_1MlsSphereFitDer.html',1,'Ponca']]],
+  ['mongepatch_6',['MongePatch',['../classPonca_1_1MongePatch.html',1,'Ponca']]],
+  ['mongepatchquadraticfitimpl_7',['MongePatchQuadraticFitImpl',['../classPonca_1_1MongePatchQuadraticFitImpl.html',1,'Ponca']]],
+  ['mongepatchrestrictedquadraticfitimpl_8',['MongePatchRestrictedQuadraticFitImpl',['../classPonca_1_1MongePatchRestrictedQuadraticFitImpl.html',1,'Ponca']]]
 ];

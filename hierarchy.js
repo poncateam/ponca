@@ -29,13 +29,16 @@ var hierarchy =
     [ "Ponca::ComputeObject< CNC< P, UniformGeneration > >", "structPonca_1_1ComputeObject.html", null ],
     [ "Ponca::KdTreeBase< Traits >::DefaultConverter", "structPonca_1_1KdTreeBase_1_1DefaultConverter.html", null ],
     [ "Ponca::QueryOutputBase::DummyOutputParameter", "group__spatialpartitioning.html#structPonca_1_1QueryOutputBase_1_1DummyOutputParameter", null ],
+    [ "std::false_type", null, [
+      [ "Ponca::hasFirstFundamentalForm< T, typename >", "structPonca_1_1hasFirstFundamentalForm.html", null ],
+      [ "Ponca::hasNormal< T, typename >", "structPonca_1_1hasNormal.html", null ]
+    ] ],
     [ "Concept::FittingExtensionConcept", null, [
       [ "Ponca::CovarianceFitDer< DataPoint, _NFilter, DiffType, T >", "classPonca_1_1CovarianceFitDer.html", null ],
       [ "Ponca::CovariancePlaneDerImpl< DataPoint, _NFilter, DiffType, T >", "classPonca_1_1CovariancePlaneDerImpl.html", null ],
       [ "Ponca::GLSDer< DataPoint, _NFilter, DiffType, T >", "classPonca_1_1GLSDer.html", null ],
       [ "Ponca::GLSParam< DataPoint, _NFilter, T >", "classPonca_1_1GLSParam.html", null ],
       [ "Ponca::MlsSphereFitDer< DataPoint, _NFilter, DiffType, T >", "classPonca_1_1MlsSphereFitDer.html", null ],
-      [ "Ponca::NormalDerivativesCurvatureEstimator< DataPoint, _NFilter, DiffType, T >", "classPonca_1_1NormalDerivativesCurvatureEstimator.html", null ],
       [ "Ponca::PrimitiveDer< DataPoint, _NFilter, Type, T >", "classPonca_1_1PrimitiveDer.html", null ]
     ] ],
     [ "Concept::FittingProcedureConcept", null, [
@@ -199,10 +202,11 @@ var hierarchy =
       [ "Ponca::CovarianceLineFitImpl< DataPoint, _NFilter, T >", "classPonca_1_1CovarianceLineFitImpl.html", null ],
       [ "Ponca::CovariancePlaneDerImpl< DataPoint, _NFilter, DiffType, T >", "classPonca_1_1CovariancePlaneDerImpl.html", null ],
       [ "Ponca::CovariancePlaneFitImpl< DataPoint, _NFilter, T >", "classPonca_1_1CovariancePlaneFitImpl.html", null ],
-      [ "Ponca::CurvatureEstimatorBase< DataPoint, _NFilter, DiffType, T >", "classPonca_1_1CurvatureEstimatorBase.html", null ],
       [ "Ponca::DryFit< DataPoint, _NFilter, T >", "classPonca_1_1DryFit.html", null ],
+      [ "Ponca::FundamentalFormWeingartenEstimator< DataPoint, _NFilter, T >", "classPonca_1_1FundamentalFormWeingartenEstimator.html", null ],
       [ "Ponca::GLSDer< DataPoint, _NFilter, DiffType, T >", "classPonca_1_1GLSDer.html", null ],
       [ "Ponca::GLSParam< DataPoint, _NFilter, T >", "classPonca_1_1GLSParam.html", null ],
+      [ "Ponca::HeightField< DataPoint, _NFilter, T >", "classPonca_1_1HeightField.html", null ],
       [ "Ponca::Line< DataPoint, _NFilter, T >", "classPonca_1_1Line.html", null ],
       [ "Ponca::MeanNormal< DataPoint, _NFilter, T >", "classPonca_1_1MeanNormal.html", null ],
       [ "Ponca::MeanNormalDer< DataPoint, _NFilter, DiffType, T >", "classPonca_1_1MeanNormalDer.html", null ],
@@ -211,21 +215,35 @@ var hierarchy =
       [ "Ponca::MeanPositionDer< DataPoint, _NFilter, DiffType, T >", "classPonca_1_1MeanPositionDer.html", null ],
       [ "Ponca::MlsSphereFitDer< DataPoint, _NFilter, DiffType, T >", "classPonca_1_1MlsSphereFitDer.html", null ],
       [ "Ponca::MongePatch< DataPoint, _NFilter, T >", "classPonca_1_1MongePatch.html", null ],
-      [ "Ponca::NormalCovarianceCurvatureEstimator< DataPoint, _NFilter, DiffType, T >", "classPonca_1_1NormalCovarianceCurvatureEstimator.html", null ],
-      [ "Ponca::NormalDerivativesCurvatureEstimator< DataPoint, _NFilter, DiffType, T >", "classPonca_1_1NormalDerivativesCurvatureEstimator.html", null ],
+      [ "Ponca::MongePatchQuadraticFitImpl< DataPoint, _NFilter, T >", "classPonca_1_1MongePatchQuadraticFitImpl.html", null ],
+      [ "Ponca::MongePatchRestrictedQuadraticFitImpl< DataPoint, _NFilter, T >", "classPonca_1_1MongePatchRestrictedQuadraticFitImpl.html", null ],
+      [ "Ponca::NormalDerivativeWeingartenEstimator< DataPoint, _NFilter, DiffType, T >", "classPonca_1_1NormalDerivativeWeingartenEstimator.html", null ],
       [ "Ponca::OrientedSphereDerImpl< DataPoint, _NFilter, DiffType, T >", "classPonca_1_1OrientedSphereDerImpl.html", null ],
       [ "Ponca::OrientedSphereFitImpl< DataPoint, _NFilter, T >", "classPonca_1_1OrientedSphereFitImpl.html", null ],
       [ "Ponca::Plane< DataPoint, _NFilter, T >", "classPonca_1_1Plane.html", null ],
       [ "Ponca::PrimitiveDer< DataPoint, _NFilter, Type, T >", "classPonca_1_1PrimitiveDer.html", null ],
-      [ "Ponca::ProjectedNormalCovarianceCurvatureEstimator< DataPoint, _NFilter, DiffType, T >", "classPonca_1_1ProjectedNormalCovarianceCurvatureEstimator.html", null ],
+      [ "Ponca::QuadraticHeightField< DataPoint, _NFilter, T >", "classPonca_1_1QuadraticHeightField.html", null ],
+      [ "Ponca::RestrictedQuadraticHeightField< DataPoint, _NFilter, T >", "classPonca_1_1RestrictedQuadraticHeightField.html", null ],
       [ "Ponca::SphereFitImpl< DataPoint, _NFilter, T >", "classPonca_1_1SphereFitImpl.html", null ],
       [ "Ponca::UnorientedSphereDerImpl< DataPoint, _NFilter, DiffType, T >", "classPonca_1_1UnorientedSphereDerImpl.html", null ],
-      [ "Ponca::UnorientedSphereFitImpl< DataPoint, _NFilter, T >", "classPonca_1_1UnorientedSphereFitImpl.html", null ]
+      [ "Ponca::UnorientedSphereFitImpl< DataPoint, _NFilter, T >", "classPonca_1_1UnorientedSphereFitImpl.html", null ],
+      [ "Ponca::internal::CurvatureEstimatorBase< DataPoint, _NFilter, T >", "classPonca_1_1internal_1_1CurvatureEstimatorBase.html", [
+        [ "Ponca::CurvatureEstimator< DataPoint, _NFilter, T >", "classPonca_1_1CurvatureEstimator.html", null ],
+        [ "Ponca::CurvatureEstimatorDer< DataPoint, _NFilter, DiffType, T >", "classPonca_1_1CurvatureEstimatorDer.html", null ]
+      ] ],
+      [ "Ponca::internal::WeingartenCurvatureEstimatorBase< DataPoint, _NFilter, T >", "classPonca_1_1internal_1_1WeingartenCurvatureEstimatorBase.html", [
+        [ "Ponca::WeingartenCurvatureEstimator< DataPoint, _NFilter, T >", "structPonca_1_1WeingartenCurvatureEstimator.html", null ],
+        [ "Ponca::WeingartenCurvatureEstimatorDer< DataPoint, _NFilter, DiffType, T >", "structPonca_1_1WeingartenCurvatureEstimatorDer.html", null ]
+      ] ]
     ] ],
     [ "Ponca::internal::Triangle< DataPoint >", "structPonca_1_1internal_1_1Triangle.html", null ],
     [ "Ponca::internal::TriangleGenerator< Method, P >", "structPonca_1_1internal_1_1TriangleGenerator.html", null ],
     [ "Ponca::internal::TriangleGenerator< IndependentGeneration, P >", "structPonca_1_1internal_1_1TriangleGenerator_3_01IndependentGeneration_00_01P_01_4.html", null ],
     [ "Ponca::internal::TriangleGenerator< UniformGeneration, P >", "structPonca_1_1internal_1_1TriangleGenerator_3_01UniformGeneration_00_01P_01_4.html", null ],
+    [ "std::true_type", null, [
+      [ "Ponca::hasFirstFundamentalForm< T, std::void_t< decltype(std::declval< T >().firstFundamentalForm())> >", "structPonca_1_1hasFirstFundamentalForm_3_01T_00_01std_1_1void__t_3_01decltype_07std_1_1declval_3c934b077c941f2ac88d2ec4e8e15ad41.html", null ],
+      [ "Ponca::hasNormal< T, std::void_t< decltype(std::declval< T >().normal())> >", "structPonca_1_1hasNormal_3_01T_00_01std_1_1void__t_3_01decltype_07std_1_1declval_3_01T_01_4_07_08_8normal_07_08_08_4_01_4.html", null ]
+    ] ],
     [ "internal::BasketAggregate::type", null, [
       [ "Ponca::BasketComputeObject< Basket< P, NF, Ext0, Exts... >, internal::BasketAggregate< P, NF, Ext0, Exts... >::type >", "structPonca_1_1BasketComputeObject.html", null ]
     ] ],

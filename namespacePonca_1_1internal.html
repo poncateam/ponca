@@ -51,7 +51,7 @@ MathJax.Hub.Config({
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Ponca
-   &#160;<span id="projectnumber">4786c3d694d08115981d86fa3be9f72d0a7d0d67</span>
+   &#160;<span id="projectnumber">94e4a36411c3364f6192f97adfa8ceee67834d6e</span>
    </div>
    <div id="projectbrief">Point Cloud Analysis library</div>
   </td>
@@ -131,6 +131,9 @@ Classes</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structPonca_1_1internal_1_1CNCEigen.html">CNCEigen</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">This class contains some stand-alone CorrectedNormalCurrent formulas for triangles, using eigen as linear algebra backend.  <a href="structPonca_1_1internal_1_1CNCEigen.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1internal_1_1CurvatureEstimatorBase.html">CurvatureEstimatorBase</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Base class for any 3d curvature estimator: holds \(k_{\min}\), \(k_{\max}\) and associated vectors, such that \( k_{\min} &lt;= k_{\max} \).  <a href="classPonca_1_1internal_1_1CurvatureEstimatorBase.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structPonca_1_1internal_1_1HexagramBase.html">HexagramBase</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structPonca_1_1internal_1_1Triangle.html">Triangle</a></td></tr>
@@ -146,6 +149,9 @@ Classes</h2></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structPonca_1_1internal_1_1TriangleGenerator_3_01UniformGeneration_00_01P_01_4.html">TriangleGenerator&lt; UniformGeneration, P &gt;</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1internal_1_1WeingartenCurvatureEstimatorBase.html">WeingartenCurvatureEstimatorBase</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compute principal curvatures from a base class providing fundamental forms.  <a href="classPonca_1_1internal_1_1WeingartenCurvatureEstimatorBase.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
@@ -153,17 +159,27 @@ Functions</h2></td></tr>
 <tr class="memitem:a9c727a12b8b2ee91d4506c6a66165490"><td class="memTemplItemLeft" align="right" valign="top">Scalar&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacePonca_1_1internal.html#a9c727a12b8b2ee91d4506c6a66165490">getParaboloidZ</a> (const Scalar _x, const Scalar _y, const Scalar _a, const Scalar _b)</td></tr>
 <tr class="memdesc:a9c727a12b8b2ee91d4506c6a66165490"><td class="mdescLeft">&#160;</td><td class="mdescRight">Generate z value using the equation z = ax^2 + by^2.  <br /></td></tr>
 <tr class="separator:a9c727a12b8b2ee91d4506c6a66165490"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0734d92c119ee9ee66ec43f59f3e0ae4" id="r_a0734d92c119ee9ee66ec43f59f3e0ae4"><td class="memTemplParams" colspan="2">template&lt;typename Scalar &gt; </td></tr>
+<tr class="memitem:a0734d92c119ee9ee66ec43f59f3e0ae4"><td class="memTemplItemLeft" align="right" valign="top">Scalar&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacePonca_1_1internal.html#a0734d92c119ee9ee66ec43f59f3e0ae4">getParaboloidZ</a> (Scalar _x, Scalar _y, Scalar _a, Scalar _b, Scalar _c, Scalar _d, Scalar _e, Scalar _f)</td></tr>
+<tr class="memdesc:a0734d92c119ee9ee66ec43f59f3e0ae4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Generate z value using the equation z = ax^2 + by^2 + cxy + dx + ey + f.  <br /></td></tr>
+<tr class="separator:a0734d92c119ee9ee66ec43f59f3e0ae4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1a4eb90ed7b9be1c6d97a51afc2c7552" id="r_a1a4eb90ed7b9be1c6d97a51afc2c7552"><td class="memTemplParams" colspan="2">template&lt;typename VectorType &gt; </td></tr>
 <tr class="memitem:a1a4eb90ed7b9be1c6d97a51afc2c7552"><td class="memTemplItemLeft" align="right" valign="top">VectorType&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacePonca_1_1internal.html#a1a4eb90ed7b9be1c6d97a51afc2c7552">getParaboloidNormal</a> (const VectorType &amp;in, const typename VectorType::Scalar _a, const typename VectorType::Scalar _b)</td></tr>
 <tr class="memdesc:a1a4eb90ed7b9be1c6d97a51afc2c7552"><td class="mdescLeft">&#160;</td><td class="mdescRight">Generate z value using the equation z = ax^2 + by^2.  <br /></td></tr>
 <tr class="separator:a1a4eb90ed7b9be1c6d97a51afc2c7552"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adf83851db4531c564d9dc305dd4818e1" id="r_adf83851db4531c564d9dc305dd4818e1"><td class="memTemplParams" colspan="2">template&lt;typename DataPoint &gt; </td></tr>
+<tr class="memitem:adf83851db4531c564d9dc305dd4818e1"><td class="memTemplItemLeft" align="right" valign="top">std::enable_if&lt; <a class="el" href="structPonca_1_1hasNormal.html">Ponca::hasNormal</a>&lt; DataPoint &gt;::value, void &gt;::type&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacePonca_1_1internal.html#adf83851db4531c564d9dc305dd4818e1">getParaboloidNormal</a> (DataPoint &amp;in, typename DataPoint::Scalar _a, typename DataPoint::Scalar _b, typename DataPoint::Scalar _c, typename DataPoint::Scalar _d, typename DataPoint::Scalar _e, typename DataPoint::Scalar _f)</td></tr>
+<tr class="separator:adf83851db4531c564d9dc305dd4818e1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa300959ee3fce898d4bac03a27b3bb88" id="r_aa300959ee3fce898d4bac03a27b3bb88"><td class="memTemplParams" colspan="2">template&lt;typename DataPoint &gt; </td></tr>
+<tr class="memitem:aa300959ee3fce898d4bac03a27b3bb88"><td class="memTemplItemLeft" align="right" valign="top">std::enable_if&lt;!<a class="el" href="structPonca_1_1hasNormal.html">Ponca::hasNormal</a>&lt; DataPoint &gt;::value, void &gt;::type&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacePonca_1_1internal.html#aa300959ee3fce898d4bac03a27b3bb88">getParaboloidNormal</a> (DataPoint &amp;in, typename DataPoint::Scalar _a, typename DataPoint::Scalar _b, typename DataPoint::Scalar _c, typename DataPoint::Scalar _d, typename DataPoint::Scalar _e, typename DataPoint::Scalar _f)</td></tr>
+<tr class="separator:aa300959ee3fce898d4bac03a27b3bb88"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Copyright (c) 2022 Jacques-Olivier Lachaud (<code><a href="#" onclick="location.href='mai'+'lto:'+'jac'+'qu'+'es-'+'ol'+'ivi'+'er'+'.la'+'ch'+'aud'+'@u'+'niv'+'-s'+'avo'+'ie'+'.fr'; return false;">jacqu<span class="obfuscator">.nosp@m.</span>es-o<span class="obfuscator">.nosp@m.</span>livie<span class="obfuscator">.nosp@m.</span>r.la<span class="obfuscator">.nosp@m.</span>chaud<span class="obfuscator">.nosp@m.</span>@uni<span class="obfuscator">.nosp@m.</span>v-sav<span class="obfuscator">.nosp@m.</span>oie.<span class="obfuscator">.nosp@m.</span>fr</a></code>) Laboratory of Mathematics (CNRS, UMR 5807), University of Savoie, France,. </p>
 <p>All rights reserved. </p>
 </div><h2 class="groupheader">Function Documentation</h2>
 <a id="a1a4eb90ed7b9be1c6d97a51afc2c7552" name="a1a4eb90ed7b9be1c6d97a51afc2c7552"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a1a4eb90ed7b9be1c6d97a51afc2c7552">&#9670;&#160;</a></span>getParaboloidNormal()</h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a1a4eb90ed7b9be1c6d97a51afc2c7552">&#9670;&#160;</a></span>getParaboloidNormal() <span class="overload">[1/3]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -206,12 +222,152 @@ template&lt;typename VectorType &gt; </div>
 
 <p>Generate z value using the equation z = ax^2 + by^2. </p>
 
-<p class="definition">Definition at line <a class="el" href="pointGeneration_8h_source.html#l00168">168</a> of file <a class="el" href="pointGeneration_8h_source.html">pointGeneration.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="pointGeneration_8h_source.html#l00205">205</a> of file <a class="el" href="pointGeneration_8h_source.html">pointGeneration.h</a>.</p>
+
+</div>
+</div>
+<a id="adf83851db4531c564d9dc305dd4818e1" name="adf83851db4531c564d9dc305dd4818e1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adf83851db4531c564d9dc305dd4818e1">&#9670;&#160;</a></span>getParaboloidNormal() <span class="overload">[2/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename DataPoint &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::enable_if&lt; <a class="el" href="structPonca_1_1hasNormal.html">Ponca::hasNormal</a>&lt; DataPoint &gt;::value, void &gt;::type Ponca::internal::getParaboloidNormal </td>
+          <td>(</td>
+          <td class="paramtype">DataPoint &amp;&#160;</td>
+          <td class="paramname"><em>in</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">typename DataPoint::Scalar&#160;</td>
+          <td class="paramname"><em>_a</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">typename DataPoint::Scalar&#160;</td>
+          <td class="paramname"><em>_b</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">typename DataPoint::Scalar&#160;</td>
+          <td class="paramname"><em>_c</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">typename DataPoint::Scalar&#160;</td>
+          <td class="paramname"><em>_d</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">typename DataPoint::Scalar&#160;</td>
+          <td class="paramname"><em>_e</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">typename DataPoint::Scalar&#160;</td>
+          <td class="paramname"><em>_f</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="pointGeneration_8h_source.html#l00214">214</a> of file <a class="el" href="pointGeneration_8h_source.html">pointGeneration.h</a>.</p>
+
+</div>
+</div>
+<a id="aa300959ee3fce898d4bac03a27b3bb88" name="aa300959ee3fce898d4bac03a27b3bb88"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa300959ee3fce898d4bac03a27b3bb88">&#9670;&#160;</a></span>getParaboloidNormal() <span class="overload">[3/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename DataPoint &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::enable_if&lt;!<a class="el" href="structPonca_1_1hasNormal.html">Ponca::hasNormal</a>&lt; DataPoint &gt;::value, void &gt;::type Ponca::internal::getParaboloidNormal </td>
+          <td>(</td>
+          <td class="paramtype">DataPoint &amp;&#160;</td>
+          <td class="paramname"><em>in</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">typename DataPoint::Scalar&#160;</td>
+          <td class="paramname"><em>_a</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">typename DataPoint::Scalar&#160;</td>
+          <td class="paramname"><em>_b</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">typename DataPoint::Scalar&#160;</td>
+          <td class="paramname"><em>_c</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">typename DataPoint::Scalar&#160;</td>
+          <td class="paramname"><em>_d</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">typename DataPoint::Scalar&#160;</td>
+          <td class="paramname"><em>_e</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">typename DataPoint::Scalar&#160;</td>
+          <td class="paramname"><em>_f</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="pointGeneration_8h_source.html#l00231">231</a> of file <a class="el" href="pointGeneration_8h_source.html">pointGeneration.h</a>.</p>
 
 </div>
 </div>
 <a id="a9c727a12b8b2ee91d4506c6a66165490" name="a9c727a12b8b2ee91d4506c6a66165490"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a9c727a12b8b2ee91d4506c6a66165490">&#9670;&#160;</a></span>getParaboloidZ()</h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a9c727a12b8b2ee91d4506c6a66165490">&#9670;&#160;</a></span>getParaboloidZ() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -260,7 +416,85 @@ template&lt;typename Scalar &gt; </div>
 
 <p>Generate z value using the equation z = ax^2 + by^2. </p>
 
-<p class="definition">Definition at line <a class="el" href="pointGeneration_8h_source.html#l00157">157</a> of file <a class="el" href="pointGeneration_8h_source.html">pointGeneration.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="pointGeneration_8h_source.html#l00179">179</a> of file <a class="el" href="pointGeneration_8h_source.html">pointGeneration.h</a>.</p>
+
+</div>
+</div>
+<a id="a0734d92c119ee9ee66ec43f59f3e0ae4" name="a0734d92c119ee9ee66ec43f59f3e0ae4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0734d92c119ee9ee66ec43f59f3e0ae4">&#9670;&#160;</a></span>getParaboloidZ() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Scalar &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">Scalar Ponca::internal::getParaboloidZ </td>
+          <td>(</td>
+          <td class="paramtype">Scalar&#160;</td>
+          <td class="paramname"><em>_x</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Scalar&#160;</td>
+          <td class="paramname"><em>_y</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Scalar&#160;</td>
+          <td class="paramname"><em>_a</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Scalar&#160;</td>
+          <td class="paramname"><em>_b</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Scalar&#160;</td>
+          <td class="paramname"><em>_c</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Scalar&#160;</td>
+          <td class="paramname"><em>_d</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Scalar&#160;</td>
+          <td class="paramname"><em>_e</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Scalar&#160;</td>
+          <td class="paramname"><em>_f</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Generate z value using the equation z = ax^2 + by^2 + cxy + dx + ey + f. </p>
+
+<p class="definition">Definition at line <a class="el" href="pointGeneration_8h_source.html#l00191">191</a> of file <a class="el" href="pointGeneration_8h_source.html">pointGeneration.h</a>.</p>
 
 </div>
 </div>
@@ -270,7 +504,7 @@ template&lt;typename Scalar &gt; </div>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="namespacePonca.html">Ponca</a></li><li class="navelem"><a class="el" href="namespacePonca_1_1internal.html">internal</a></li>
-    <li class="footer">Generated on Mon Feb 23 2026 16:20:58 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
+    <li class="footer">Generated on Mon Feb 23 2026 18:00:01 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
   </ul>
 </div>
 </body>

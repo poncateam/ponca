@@ -105,7 +105,7 @@ var NAVTREE =
           [ "Design choices and programing techniques", "fitting.html#fitting_design", null ],
           [ "Fitting primitives and compute neighborhood properties", "fitting.html#fitting_primitiveOverview", null ],
           [ "Fitting techniques overview", "fitting.html#fitting_availableFunctionalities", null ],
-          [ "Structure of the documentation", "fitting.html#fitting_dicStructure", null ]
+          [ "Structure of the documentation", "fitting.html#fitting_doc_structure", null ]
         ] ],
         [ "First Steps", "fitting.html#fitting_firstSteps", [
           [ "Include directives", "fitting.html#fitting_codeStructure", null ],
@@ -119,8 +119,8 @@ var NAVTREE =
           [ "Computing derivatives", "fitting.html#fitting_derivatives", null ],
           [ "Computational objets, basket and CRTP", "fitting.html#fitting_extensions_deps", null ],
           [ "Computational objets capabilities and requirements", "fitting.html#fitting_capabilities", null ],
-          [ "Sharing computations between fits", "fitting.html#fitting_multiprimitive", null ],
           [ "Computing Curvatures", "fitting.html#fitting_curvature", null ],
+          [ "Sharing computations between fits", "fitting.html#fitting_multiprimitive", null ],
           [ "Cuda", "fitting.html#fitting_cuda", null ]
         ] ]
       ] ],
@@ -168,7 +168,6 @@ var NAVTREE =
         [ "Functions", "functions_func.html", "functions_func" ],
         [ "Variables", "functions_vars.html", null ],
         [ "Typedefs", "functions_type.html", "functions_type" ],
-        [ "Enumerations", "functions_enum.html", null ],
         [ "Enumerator", "functions_eval.html", null ]
       ] ]
     ] ]
@@ -178,9 +177,10 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "annotated.html",
-"classPonca_1_1KdTreeBase.html",
-"classPonca_1_1NoWeightFuncBase.html",
-"example_cu_ssc_page.html#cu_ssgl_cuda_fit_sec"
+"classPonca_1_1GlobalNeighborhoodFrame.html#a4c921773f495f585fe7e0b85c339d039",
+"classPonca_1_1MongePatch.html#a8b9a1a90a42b17bf2588989ac5bcc17c",
+"classPonca_1_1Stack.html#aa591b6a41039b60ee5a6ae3412c48841",
+"structPonca_1_1KnnGraphDefaultTraits.html#accc525a889c5c101a2fdb695cb285ace"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';
