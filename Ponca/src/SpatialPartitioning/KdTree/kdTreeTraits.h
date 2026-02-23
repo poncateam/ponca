@@ -344,22 +344,6 @@ struct KdTreeDefaultTraits
     using NodeIndexType = std::size_t;
     using NodeType      = _NodeType<IndexType, NodeIndexType, DataPoint, LeafSizeType>;
     using NodeContainer = std::vector<NodeType>;
-
-    /*! \brief Adapter function that converts the STL-Like input container
-     * to the internal storage data type
-     *
-     * \tparam InputContainer An STL-like container type
-     * \param input The container to convert
-     * \return Simply return the container value
-     *
-     * \see KdTreeBase
-     */
-    template <typename InternalContainer, typename InputContainer>
-    [[nodiscard]] static PONCA_MULTIARCH_HOST inline InternalContainer& toInternalContainer (
-        InputContainer & input
-    ) {
-        return input;
-    }
 };
 
 /*! \brief Variant to the KdTree Traits type that uses pointers as internal storage instead of an STL-like container.
@@ -404,21 +388,5 @@ struct KdTreePointerTraits
     using NodeIndexType = std::size_t;
     using NodeType      = _NodeType<IndexType, NodeIndexType, DataPoint, LeafSizeType>;
     using NodeContainer = NodeType*;
-
-    /*! \copybrief KdTreeDefaultTraits::toInternalContainer
-     *
-     * Call the data function to retrieve and use the raw memory array.
-     *
-     * \tparam InputContainer An STL-like container type
-     * \param input The container to convert
-     * \return The pointer corresponding to the memory array.
-     *
-     * \see KdTreeBase
-     */
-    template <typename InternalContainer, typename InputContainer>
-    [[nodiscard]] static PONCA_MULTIARCH_HOST inline InternalContainer toInternalContainer ( InputContainer & input)
-    {
-        return input.data();
-    }
 };
 } // namespace Ponca

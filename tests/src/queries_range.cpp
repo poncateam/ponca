@@ -43,7 +43,7 @@ auto testRangeNeighbors( AcceleratingStructure& structure,
 
 template<template <typename> class KdTreeType, typename P>
 inline KdTreeType<P> testKdTree(std::vector<P> & points, std::vector<int> & sample) {
-	KdTreeType<P> kdtree = *testBuildKdTree<P, KdTreeType>(points, sample);
+	KdTreeType<P> kdtree = std::move(*testBuildKdTree<P, KdTreeType>(points, sample));
 
 	std::chrono::milliseconds timing = testRangeNeighbors<true>(kdtree, points, sample);  // Index query test
 #ifdef PRINT_TIMING

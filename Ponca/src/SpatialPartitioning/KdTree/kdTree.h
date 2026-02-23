@@ -124,73 +124,59 @@ public:
         NodeContainer  nodes;   ///< Buffer storing the nodes of the KdTree
         IndexContainer indices; ///< Buffer storing the indices associating the input points to the nodes
 
-        size_t points_size{0};
-        size_t nodes_size{0};
+        size_t points_size {0};
+        size_t nodes_size  {0};
         size_t indices_size{0};
 
         PONCA_MULTIARCH inline Buffers() = default;
-        PONCA_MULTIARCH inline Buffers(PointContainer _points   , NodeContainer _nodes    , IndexContainer _indices,
-                       const size_t _points_size, const size_t _nodes_size, const size_t _indices_size)
-            : points(_points)          , nodes(_nodes)          , indices(_indices),
-              points_size(_points_size), nodes_size(_nodes_size), indices_size(_indices_size){}
 
-        PONCA_MULTIARCH inline ~Buffers()
-        {
-            if constexpr (std::is_pointer_v<PointContainer>)
-                delete[] points;
+        PONCA_MULTIARCH inline Buffers(
+            PointContainer _points   , NodeContainer _nodes    , IndexContainer _indices,
+            const size_t _points_size, const size_t _nodes_size, const size_t _indices_size
+        ) : points(_points)          , nodes(_nodes)          , indices(_indices),
+            points_size(_points_size), nodes_size(_nodes_size), indices_size(_indices_size)
+        {}
 
-            if constexpr (std::is_pointer_v<IndexContainer>)
-                delete[] indices;
-
-            if constexpr (std::is_pointer_v<NodeContainer>)
-                delete[] nodes;
-        }
-
-        template<typename InputContainerRef>
-        PONCA_MULTIARCH inline void setNodes(InputContainerRef && input_node) {
-            nodes_size = input_node.size();
-            if constexpr (std::is_pointer_v<NodeContainer>)
+    private:
+        template<typename ValueType, typename InputContainerRef, typename InternalContainer>
+        static PONCA_MULTIARCH_HOST inline void setter(InputContainerRef && input_container, InternalContainer & o, const size_t size) {
+            if constexpr (std::is_pointer_v<InternalContainer>)
             {
-                nodes = new NodeType[nodes_size];
-                std::copy(input_node.cbegin(), input_node.cend(), nodes);
+                o = new ValueType[size];
+                std::copy(input_container.cbegin(), input_container.cend(), o);
             }
             else
             {
                 using InputContainer = std::remove_reference_t<InputContainerRef>;
-                static_assert(std::is_same_v<InputContainer, NodeContainer> && std::is_copy_assignable_v<NodeType>);
-                nodes = std::forward<InputContainerRef>(input_node); // Either move or copy
+                static_assert(std::is_same_v<InputContainer, InternalContainer> && std::is_copy_assignable_v<ValueType>);
+                o = std::forward<InputContainerRef>(input_container); // Either move or copy
             }
         }
 
+    public:
         template<typename InputContainerRef>
-        PONCA_MULTIARCH inline void setPoints(InputContainerRef && input_point) {
-            points_size = input_point.size();
+        PONCA_MULTIARCH_HOST inline void setNodes(InputContainerRef && input_nodes) {
+            nodes_size = input_nodes.size();
+            setter<NodeType>(std::forward<InputContainerRef>(input_nodes), nodes, nodes_size);
+        }
+
+        template<typename InputContainerRef>
+        PONCA_MULTIARCH_HOST inline void setIndices(InputContainerRef && input_indices) {
+            indices_size = input_indices.size();
+            setter<IndexType>(std::forward<InputContainerRef>(input_indices), indices, indices_size);
+        }
+
+        template<typename InputContainerRef, typename Converter>
+        PONCA_MULTIARCH_HOST inline void setPoints(InputContainerRef && input_points, Converter c) {
+            points_size = input_points.size();
             if constexpr (std::is_pointer_v<PointContainer>)
             {
                 points = new DataPoint[points_size];
-                std::copy(input_point.cbegin(), input_point.cend(), points);
+                std::copy(input_points.cbegin(), input_points.cend(), points);
             }
             else
             {
-                using InputContainer = std::remove_reference_t<InputContainerRef>;
-                static_assert(std::is_same_v<InputContainer, PointContainer> && std::is_copy_assignable_v<DataPoint>);
-                points = std::forward<InputContainerRef>(input_point); // Either move or copy
-            }
-        }
-
-        template<typename InputContainerRef>
-        PONCA_MULTIARCH inline void setIndices(InputContainerRef && input_indices) {
-            indices_size = input_indices.size();
-            if constexpr (std::is_pointer_v<IndexContainer>)
-            {
-                indices = new IndexType[indices_size];
-                std::copy(input_indices.cbegin(), input_indices.cend(), indices);
-            }
-            else
-            {
-                using InputContainer = std::remove_reference_t<InputContainerRef>;
-                static_assert(std::is_same_v<InputContainer, IndexContainer> && std::is_copy_assignable_v<IndexType>);
-                indices = std::forward<InputContainerRef>(input_indices); // Either move or copy
+                c(std::forward<InputContainerRef>(input_points), points);
             }
         }
     };
@@ -224,7 +210,9 @@ public:
      *
      * \param buf Internal buffers of the KdTree
      */
-    PONCA_MULTIARCH inline KdTreeBase(const Buffers& buf) : m_bufs(buf) { }
+    PONCA_MULTIARCH inline KdTreeBase(const Buffers&& buf) : m_bufs(std::move(buf)) { }
+    ///! \copydoc KdTreeBase::KdTreeBase
+    PONCA_MULTIARCH inline KdTreeBase(Buffers&& buf) : m_bufs(std::move(buf)) {}
 
     /// Generate a tree from a custom contained type converted using the specified converter
     /// \tparam PointUserContainer Input point container, transformed to PointContainer
