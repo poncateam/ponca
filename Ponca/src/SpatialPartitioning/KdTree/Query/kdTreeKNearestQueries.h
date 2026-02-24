@@ -33,7 +33,7 @@ public:
     using Iterator       = IteratorType<typename Traits::IndexType, typename Traits::DataPoint>;
     using Self           = KdTreeKNearestQueryBase<Traits, IteratorType, QueryType>;
 
-    PONCA_MULTIARCH inline KdTreeKNearestQueryBase(const KdTreeBase<Traits>* kdtree, IndexType k, typename QueryType::InputType input) :
+    PONCA_MULTIARCH inline KdTreeKNearestQueryBase(const StaticKdTreeBase<Traits>* kdtree, IndexType k, typename QueryType::InputType input) :
             KdTreeQuery<Traits>(kdtree), QueryType(k, input) { }
 
     /// \brief Call the k-nearest neighbors query with new input and neighbor number parameters.

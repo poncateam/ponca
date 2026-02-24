@@ -101,21 +101,22 @@ using KdTreeSparse = KdTreeSparseBase<KdTreeDefaultTraits<DataPoint>>;
  * \see KdTreeDefaultTraits for the trait interface documentation.
  */
 template <typename Traits>
-class KdTreeBase
+class StaticKdTreeBase
 {
 public:
-    using DataPoint      = typename Traits::DataPoint; ///< DataPoint given by user via Traits
-    using IndexType      = typename Traits::IndexType; ///< Type used to index points into the PointContainer
-    using LeafSizeType   = typename Traits::LeafSizeType; ///< Type used to store the size of leaf nodes
-    using PointContainer = typename Traits::PointContainer; ///< Container for DataPoint used inside the KdTree
-    using IndexContainer = typename Traits::IndexContainer; ///< Container for indices used inside the KdTree
-    using NodeIndexType  = typename Traits::NodeIndexType; ///< Type used to index nodes into the NodeContainer
-    using NodeType       = typename Traits::NodeType; ///< Type of nodes used inside the KdTree
-    using NodeContainer  = typename Traits::NodeContainer; ///< Container for nodes used inside the KdTree
-
-    using Scalar     = typename DataPoint::Scalar; ///< Scalar given by user via DataPoint
-    using VectorType = typename DataPoint::VectorType; ///< VectorType given by user via DataPoint
-    using AabbType   = typename NodeType::AabbType; ///< Bounding box type given by user via NodeType
+#define WRITE_TRAITS \
+    using DataPoint      = typename Traits::DataPoint;      /*!< DataPoint given by user via Traits                  */\
+    using IndexType      = typename Traits::IndexType;      /*!< Type used to index points into the PointContainer   */\
+    using LeafSizeType   = typename Traits::LeafSizeType;   /*!< Type used to store the size of leaf nodes           */\
+    using PointContainer = typename Traits::PointContainer; /*!< Container for DataPoint used inside the KdTree      */\
+    using IndexContainer = typename Traits::IndexContainer; /*!< Container for indices used inside the KdTree        */\
+    using NodeIndexType  = typename Traits::NodeIndexType;  /*!< Type used to index nodes into the NodeContainer     */\
+    using NodeType       = typename Traits::NodeType;       /*!< Type of nodes used inside the KdTree                */\
+    using NodeContainer  = typename Traits::NodeContainer;  /*!< Container for nodes used inside the KdTree          */\
+    using Scalar         = typename DataPoint::Scalar;      /*!< Scalar given by user via DataPoint                  */\
+    using VectorType     = typename DataPoint::VectorType;  /*!< VectorType given by user via DataPoint              */\
+    using AabbType       = typename NodeType::AabbType;     /*!< Bounding box type given by user via NodeType        */
+    WRITE_TRAITS
 
     /// \brief Internal structure storing all the buffers used by the KdTree
     struct Buffers
@@ -136,49 +137,6 @@ public:
         ) : points(_points)          , nodes(_nodes)          , indices(_indices),
             points_size(_points_size), nodes_size(_nodes_size), indices_size(_indices_size)
         {}
-
-    private:
-        template<typename ValueType, typename InputContainerRef, typename InternalContainer>
-        static PONCA_MULTIARCH_HOST inline void setter(InputContainerRef && input_container, InternalContainer & o, const size_t size) {
-            if constexpr (std::is_pointer_v<InternalContainer>)
-            {
-                o = new ValueType[size];
-                std::copy(input_container.cbegin(), input_container.cend(), o);
-            }
-            else
-            {
-                using InputContainer = std::remove_reference_t<InputContainerRef>;
-                static_assert(std::is_same_v<InputContainer, InternalContainer> && std::is_copy_assignable_v<ValueType>);
-                o = std::forward<InputContainerRef>(input_container); // Either move or copy
-            }
-        }
-
-    public:
-        template<typename InputContainerRef>
-        PONCA_MULTIARCH_HOST inline void setNodes(InputContainerRef && input_nodes) {
-            nodes_size = input_nodes.size();
-            setter<NodeType>(std::forward<InputContainerRef>(input_nodes), nodes, nodes_size);
-        }
-
-        template<typename InputContainerRef>
-        PONCA_MULTIARCH_HOST inline void setIndices(InputContainerRef && input_indices) {
-            indices_size = input_indices.size();
-            setter<IndexType>(std::forward<InputContainerRef>(input_indices), indices, indices_size);
-        }
-
-        template<typename InputContainerRef, typename Converter>
-        PONCA_MULTIARCH_HOST inline void setPoints(InputContainerRef && input_points, Converter c) {
-            points_size = input_points.size();
-            if constexpr (std::is_pointer_v<PointContainer>)
-            {
-                points = new DataPoint[points_size];
-                std::copy(input_points.cbegin(), input_points.cend(), points);
-            }
-            else
-            {
-                c(std::forward<InputContainerRef>(input_points), points);
-            }
-        }
     };
 
     /// \brief The maximum number of nodes that the kd-tree can have.
@@ -197,56 +155,18 @@ public:
 
     // Construction ------------------------------------------------------------
 public:
-    PONCA_MULTIARCH inline KdTreeBase() = default;
+    PONCA_MULTIARCH inline StaticKdTreeBase() = default;
 
-    /*! \brief Setter function that allows the use of prebuilt KdTree containers.
+    /*! \brief Constructor that allows the use of prebuilt KdTree containers.
      *
      * Each internal values of a KdTree can be extracted using \ref `KdTreeBase::buffers()`
      *
-     * \note This method can be used to avoid the convertion and building process,
+     * \note This constructor can be used to avoid the convertion and building process,
      * which is useful to transfer directly the KdTree to the device in CUDA.
-     *
-     * \see DefaultConverter, build, buffers
      *
      * \param buf Internal buffers of the KdTree
      */
-    PONCA_MULTIARCH inline void useBuffers(Buffers* buf)
-    {
-        m_bufs = std::move(*buf);
-    }
-
-    /// Generate a tree from a custom contained type converted using the specified converter
-    /// \tparam PointUserContainer Input point container, transformed to PointContainer
-    /// \tparam PointConverter Cast/Convert input container type to point container data type
-    /// \param points Input points
-    /// \param c Cast/Convert input point type to DataType
-    template<typename PointUserContainer, typename PointConverter>
-    PONCA_MULTIARCH_HOST inline void build(PointUserContainer&& points, PointConverter c);
-
-    /// Convert a custom point container to the KdTree \ref PointContainer using \ref DataPoint default constructor
-    struct DefaultConverter
-    {
-        template <typename Input>
-        PONCA_MULTIARCH_HOST inline void operator()(Input&& i, PointContainer& o)
-        {
-            using InputContainer = std::remove_reference_t<Input>;
-            if constexpr (std::is_same_v<InputContainer, PointContainer> && std::is_copy_assignable_v<DataPoint>)
-                o = std::forward<Input>(i); // Either move or copy
-            else
-                std::transform(i.cbegin(), i.cend(), std::back_inserter(o),
-                               [](const typename InputContainer::value_type &p) -> DataPoint { return DataPoint(p); });
-        }
-    };
-
-    /// Generate a tree from a custom contained type converted using DefaultConverter
-    /// \tparam PointUserContainer Input point container, transformed to PointContainer
-    /// \param points Input points
-    template<typename PointUserContainer>
-    PONCA_MULTIARCH_HOST inline void build(PointUserContainer&& points)
-    {
-        build(std::forward<PointUserContainer>(points), DefaultConverter());
-    }
-
+    PONCA_MULTIARCH inline StaticKdTreeBase(Buffers& buf) : m_bufs(buf) {}
 
     // Accessors ---------------------------------------------------------------
 public:
@@ -505,6 +425,54 @@ protected:
     Buffers m_bufs; ///< Buffers used to store the KdTree
     LeafSizeType m_min_cell_size {64}; ///< Minimal number of points per leaf
     NodeIndexType m_leaf_count {0}; ///< Number of leaves in the Kdtree (computed during construction)
+};
+
+/*! \copydoc StaticKdTreeBase
+ *
+ *  Implements the build function of the KdTree
+ *
+ *  \warning Variants of this class are not usable on a CUDA device,
+ *  because it relies on STL-like internal containers to build the kdtree
+ *
+ *  \see KdTreeBase::build
+ */
+template <typename Traits>
+class KdTreeBase : public StaticKdTreeBase<Traits>
+{
+public:
+    using Base = StaticKdTreeBase<Traits>;
+    WRITE_TRAITS
+    /// Generate a tree from a custom contained type converted using the specified converter
+    /// \tparam PointUserContainer Input point container, transformed to PointContainer
+    /// \tparam PointConverter Cast/Convert input container type to point container data type
+    /// \param points Input points
+    /// \param c Cast/Convert input point type to DataType
+    template<typename PointUserContainer, typename PointConverter>
+    PONCA_MULTIARCH_HOST inline void build(PointUserContainer&& points, PointConverter c);
+
+    /// Convert a custom point container to the KdTree \ref PointContainer using \ref DataPoint default constructor
+    struct DefaultConverter
+    {
+        template <typename Input>
+        PONCA_MULTIARCH_HOST inline void operator()(Input&& i, PointContainer& o)
+        {
+            using InputContainer = std::remove_reference_t<Input>;
+            if constexpr (std::is_same_v<InputContainer, PointContainer> && std::is_copy_assignable_v<DataPoint>)
+                o = std::forward<Input>(i); // Either move or copy
+            else
+                std::transform(i.cbegin(), i.cend(), std::back_inserter(o),
+                               [](const typename InputContainer::value_type &p) -> DataPoint { return DataPoint(p); });
+        }
+    };
+
+    /// Generate a tree from a custom contained type converted using DefaultConverter
+    /// \tparam PointUserContainer Input point container, transformed to PointContainer
+    /// \param points Input points
+    template<typename PointUserContainer>
+    PONCA_MULTIARCH_HOST inline void build(PointUserContainer&& points)
+    {
+        build(std::forward<PointUserContainer>(points), DefaultConverter());
+    }
 
     // Internal ----------------------------------------------------------------
 protected:
@@ -518,7 +486,7 @@ protected:
     template<typename PointUserContainer, typename IndexUserContainer, typename PointConverter>
     PONCA_MULTIARCH_HOST inline void buildWithSampling(
         PointUserContainer&& points,
-        IndexUserContainer sampling,
+        IndexUserContainer&& sampling,
         PointConverter c
     );
 
@@ -528,16 +496,15 @@ protected:
     /// \param points Input points
     /// \param sampling Samples used in the tree
     template<typename PointUserContainer, typename IndexUserContainer>
-    PONCA_MULTIARCH_HOST inline void buildWithSampling(PointUserContainer&& points, IndexUserContainer sampling)
+    PONCA_MULTIARCH_HOST inline void buildWithSampling(PointUserContainer&& points, IndexUserContainer&& sampling)
     {
-        buildWithSampling(std::forward<PointUserContainer>(points), std::move(sampling), DefaultConverter());
+        buildWithSampling(std::forward<PointUserContainer>(points), std::forward<IndexUserContainer>(sampling), DefaultConverter());
     }
 
 private:
-    template<typename IndexUserContainer>
-    PONCA_MULTIARCH_HOST inline void buildRec(IndexUserContainer& ids, std::vector<NodeType>& nodes, NodeIndexType node_id, IndexType start, IndexType end, int level);
-    template<typename IndexUserContainer>
-    PONCA_MULTIARCH_HOST [[nodiscard]] inline IndexType partition(IndexUserContainer& ids, IndexType start, IndexType end, int dim, Scalar value);
+    PONCA_MULTIARCH_HOST inline void buildRec(NodeIndexType node_id, IndexType start, IndexType end, int level);
+    PONCA_MULTIARCH_HOST [[nodiscard]] inline IndexType partition(IndexType start, IndexType end, int dim, Scalar value);
+
 };
 
 /*!

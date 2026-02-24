@@ -38,7 +38,7 @@ protected:
     friend Iterator;
 
 public:
-    PONCA_MULTIARCH KdTreeRangeQueryBase(const KdTreeBase<Traits>* kdtree, Scalar radius, typename QueryType::InputType input) :
+    PONCA_MULTIARCH KdTreeRangeQueryBase(const StaticKdTreeBase<Traits>* kdtree, Scalar radius, typename QueryType::InputType input) :
             KdTreeQuery<Traits>(kdtree), QueryType(radius, input){}
 
     /// \brief Call the range neighbors query with new input and radius parameters.

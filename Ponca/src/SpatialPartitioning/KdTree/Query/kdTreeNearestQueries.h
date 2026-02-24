@@ -32,7 +32,7 @@ public:
     using QueryAccelType = KdTreeQuery<Traits>;
     using Iterator       = IteratorType<typename Traits::IndexType>;
 
-    PONCA_MULTIARCH KdTreeNearestQueryBase(const KdTreeBase<Traits>* kdtree, typename QueryType::InputType input) :
+    PONCA_MULTIARCH KdTreeNearestQueryBase(const StaticKdTreeBase<Traits>* kdtree, typename QueryType::InputType input) :
             KdTreeQuery<Traits>(kdtree), QueryType(input){}
 
     /// \brief Returns an iterator to the beginning of the nearest neighbor query.

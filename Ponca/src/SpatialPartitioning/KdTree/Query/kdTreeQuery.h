@@ -10,7 +10,7 @@
 #include "../../../Common/Containers/stack.h"
 
 namespace Ponca {
-template <typename Traits> class KdTreeBase;
+template <typename Traits> class StaticKdTreeBase;
 
 /*!
  * \brief Query object that provides a method to search neighbors on the KdTree depending on a distance threshold.
@@ -26,7 +26,7 @@ public:
     using Scalar     = typename DataPoint::Scalar;
     using VectorType = typename DataPoint::VectorType;
 
-    PONCA_MULTIARCH explicit inline KdTreeQuery(const KdTreeBase<Traits>* kdtree) : m_kdtree( kdtree ), m_stack() {}
+    PONCA_MULTIARCH explicit inline KdTreeQuery(const StaticKdTreeBase<Traits>* kdtree) : m_kdtree( kdtree ), m_stack() {}
 
 protected:
     /// \brief Init stack for a new search
@@ -36,7 +36,7 @@ protected:
     }
 
     /// [KdTreeQuery kdtree type]
-    const KdTreeBase<Traits>* m_kdtree { nullptr };
+    const StaticKdTreeBase<Traits>* m_kdtree { nullptr };
     /// [KdTreeQuery kdtree type]
     Stack<IndexSquaredDistance<IndexType, Scalar>, 2 * Traits::MAX_DEPTH> m_stack;
 
