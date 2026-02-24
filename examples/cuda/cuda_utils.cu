@@ -13,42 +13,38 @@
  *
  * \tparam KdTree The KdTree type
  * \param hostBuffers The Buffers structure holding the internal storage of the KdTree that we want to upload to the device
+ * \param deviceBuffers The Buffers structure on the device
  * \return The pointer to the Buffers structure on the host that references memory on the device
  * \see freeBuffersOnDevice
  */
-template <typename KdTree>
-typename KdTree::Buffers deepCopyBuffersToDevice(const typename KdTree::Buffers& hostBuffers)
+template <typename Traits, typename KdTreeDenseBuffers, typename StaticKdTreeBuffers>
+void deepCopyBuffersToDevice(const KdTreeDenseBuffers& hostBuffers, StaticKdTreeBuffers* deviceBuffers)
 {
-    using DataPoint      = typename KdTree::DataPoint; ///< DataPoint given by user via Traits
-    using IndexType      = typename KdTree::IndexType; ///< Type used to index points into the PointContainer
-    using NodeType       = typename KdTree::NodeType;  ///< Type of nodes used inside the KdTree
-    using Buffers        = typename KdTree::Buffers;   ///< The Buffers structure containing the buffers stored inside the kdtree
+    using DataPoint      = typename Traits::DataPoint; ///< DataPoint given by user via Traits
+    using IndexType      = typename Traits::IndexType; ///< Type used to index points into the PointContainer
+    using NodeType       = typename Traits::NodeType;  ///< Type of nodes used inside the KdTree
 
-    // The host to device copyable buffers, referencing memory on the GPU
-    Buffers devBuffers{};
+    // Allocate memory for Buffers on the device
+    CUDA_CHECK(cudaMalloc(&deviceBuffers->points,  hostBuffers.points_size  * sizeof(DataPoint)));
+    CUDA_CHECK(cudaMalloc(&deviceBuffers->nodes,   hostBuffers.nodes_size   * sizeof(NodeType)));
+    CUDA_CHECK(cudaMalloc(&deviceBuffers->indices, hostBuffers.indices_size * sizeof(IndexType)));
 
-    // Deep copy of the internal containers
-    CUDA_CHECK(cudaMalloc(&devBuffers.points,  hostBuffers.points_size  * sizeof(DataPoint)));
-    CUDA_CHECK(cudaMalloc(&devBuffers.nodes,   hostBuffers.nodes_size   * sizeof(NodeType)));
-    CUDA_CHECK(cudaMalloc(&devBuffers.indices, hostBuffers.indices_size * sizeof(IndexType)));
-
-    CUDA_CHECK(cudaMemcpy(devBuffers.points,  hostBuffers.points,
+    // Deep copy of the internal containers from host to device
+    CUDA_CHECK(cudaMemcpy(deviceBuffers->points,  hostBuffers.points.data(),
                hostBuffers.points_size * sizeof(DataPoint),
                cudaMemcpyHostToDevice));
 
-    CUDA_CHECK(cudaMemcpy(devBuffers.nodes,   hostBuffers.nodes,
+    CUDA_CHECK(cudaMemcpy(deviceBuffers->nodes,   hostBuffers.nodes.data(),
                hostBuffers.nodes_size * sizeof(NodeType),
                cudaMemcpyHostToDevice));
 
-    CUDA_CHECK(cudaMemcpy(devBuffers.indices, hostBuffers.indices,
+    CUDA_CHECK(cudaMemcpy(deviceBuffers->indices, hostBuffers.indices.data(),
                hostBuffers.indices_size * sizeof(IndexType),
                cudaMemcpyHostToDevice));
 
-    devBuffers.points_size  = hostBuffers.points_size;
-    devBuffers.nodes_size   = hostBuffers.nodes_size;
-    devBuffers.indices_size = hostBuffers.indices_size;
-
-    return devBuffers;
+    deviceBuffers->points_size  = hostBuffers.points_size;
+    deviceBuffers->nodes_size   = hostBuffers.nodes_size;
+    deviceBuffers->indices_size = hostBuffers.indices_size;
 }
 
 /*! \brief Free the memory array internal to the KdTree Buffers on the device
@@ -59,16 +55,16 @@ typename KdTree::Buffers deepCopyBuffersToDevice(const typename KdTree::Buffers&
 template <typename Buffers>
 void freeBuffersOnDevice(const Buffers& hostBuffers)
 {
-    CUDA_CHECK(cudaFree(hostBuffers.points));
-    CUDA_CHECK(cudaFree(hostBuffers.nodes));
-    CUDA_CHECK(cudaFree(hostBuffers.indices));
+    CUDA_CHECK(cudaFree(hostBuffers->points));
+    CUDA_CHECK(cudaFree(hostBuffers->nodes));
+    CUDA_CHECK(cudaFree(hostBuffers->indices));
 }
 
 /*! \brief A KdTree Type that can be run on the GPU
  *
- * \warning The build function cannot be used in the CUDA kernel,
+ * \warning The KdTreeBase::build function cannot be used in the CUDA kernel,
  * because it still expects an STL-like container as an input.
- * This KdTree must be instanciated with the `KdTreeBase::KdTreeBase` constructor on the GPU.
+ * This KdTree type is used to avoid the building process.
  */
 template <typename DataPoint>
-using KdTreeGPU = Ponca::KdTreeDenseBase<Ponca::KdTreePointerTraits<DataPoint>>;
+using KdTreeGPU = Ponca::StaticKdTreeBase<Ponca::KdTreePointerTraits<DataPoint>>;

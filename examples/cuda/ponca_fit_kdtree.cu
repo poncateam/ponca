@@ -34,8 +34,7 @@ __global__ void fitPotentialAndGradientKernel(
     // Skip when not in the point cloud
     if (i >= buffers->points_size) return;
 
-    KdTreeGPU<DataPoint> kdtree;
-    kdtree.useBuffers(buffers);
+    KdTreeGPU<DataPoint> kdtree(*buffers);
 
     // Set up the fit
     Fit fit;
@@ -100,9 +99,8 @@ __host__ void testPlaneCuda(
     }
 
     // Send the internal buffers of the KdTree to the GPU
-    KdTreeGPU<DataPoint> kdtree(points);
-
-    typedef typename KdTreeGPU<DataPoint>::Buffers Buffers;
+    Ponca::KdTreeDense<DataPoint> kdtree(points);
+    typedef typename KdTreeGPU<DataPoint>::Buffers BuffersGPU;
 
     std::cout << "Number of nodes in the KdTree : " << kdtree.nodeCount() << std::endl;
 
@@ -111,10 +109,9 @@ __host__ void testPlaneCuda(
     const unsigned long vectorBufferSize     = scalarBufferSize * Dim;
 
     // Send inputs to the GPU (Host to Device)
-    Buffers buffers = deepCopyBuffersToDevice<KdTreeGPU<DataPoint>>(kdtree.buffers()); // Returns the host to device copyable buffers, referencing memory on the GPU
-    Buffers* kdtreeBuffersDevice; // The kdtree internal Buffers on the device
-    CUDA_CHECK(cudaMalloc(&kdtreeBuffersDevice, sizeof(Buffers)));
-    CUDA_CHECK(cudaMemcpy(kdtreeBuffersDevice, &buffers, sizeof(Buffers), cudaMemcpyHostToDevice));
+    BuffersGPU* kdtreeBuffersDevice;
+    CUDA_CHECK(cudaMalloc(&kdtreeBuffersDevice, sizeof(BuffersGPU)));
+    deepCopyBuffersToDevice<Ponca::KdTreePointerTraits<DataPoint>>(kdtree.buffers(), kdtreeBuffersDevice);
 
     // Prepare output buffers
     auto* const potentialResults = new Scalar[nbPoints];
@@ -142,7 +139,7 @@ __host__ void testPlaneCuda(
     // Free CUDA memory
     CUDA_CHECK(cudaFree(potentialResultsDevice));
     CUDA_CHECK(cudaFree(gradientResultsDevice));
-    freeBuffersOnDevice(buffers);
+    freeBuffersOnDevice(kdtreeBuffersDevice);
     CUDA_CHECK(cudaFree(kdtreeBuffersDevice));
 
     // Validate results
