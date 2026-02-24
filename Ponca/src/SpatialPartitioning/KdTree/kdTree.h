@@ -52,6 +52,25 @@ template <typename DataPoint>
 using KdTree = KdTreeBase<KdTreeDefaultTraits<DataPoint>>; // prefer alias to avoid redefining methods
 #endif
 
+/*!
+ * \brief A KdTree type with KdTreeDefaultTraits that doesn't define the build function
+ *
+ * \note This KdTree type is used to avoid the building process of the KdTree.
+ * It exposes a constructor that expect prebuilt kdtree containers using the \ref StaticKdTreeBase::Buffers structure
+ * \see \ref StaticKdTreeBase::StaticKdTreeBase and \ref StaticKdTreeBase::Buffers for the construction documentation
+ * \see \ref KdTreeDefaultTraits for the default trait interface documentation.
+ *
+ */
+#ifdef PARSED_WITH_DOXYGEN
+    /// [StaticKdTree type definition]
+    template <typename DataPoint>
+    struct StaticKdTree : public Ponca::StaticKdTreeBase<KdTreeDefaultTraits<DataPoint>>{};
+    /// [StaticKdTree type definition]
+#else
+    template <typename DataPoint>
+    using StaticKdTree = StaticKdTreeBase<KdTreeDefaultTraits<DataPoint>>; // prefer alias to avoid redefining methods
+#endif
+
 
 /*!
  * \brief Public interface for dense KdTree datastructure.
