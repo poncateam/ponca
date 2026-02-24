@@ -93,12 +93,6 @@ void testKNearestNeighborsForAllStructures(const bool quick = QUICK_TESTS)
 	std::vector<int> sampleSparse;
 	testKdTree<KdTreeSparse>(points, sampleSparse, k);
 
-	//////////// Test KdTree memory array
-	std::vector<int> sampleDenseP;
-	testKdTree<KdTreeDensePointers>(points, sampleDenseP, k);
-	std::vector<int> sampleSparseP;
-	testKdTree<KdTreeSparsePointers>(points, sampleSparseP, k);
-
 	//////////// Test KnnGraph
 	KnnGraph<P> knnGraph(kdtreeDense, k);
 

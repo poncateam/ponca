@@ -311,8 +311,3 @@ testQuery(
 	return std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::system_clock::now() - time);
 }
 
-// Extended KdTree types
-template <typename DataPoint>
-using KdTreeDensePointers = Ponca::KdTreeDenseBase<Ponca::KdTreePointerTraits<DataPoint>>;
-template <typename DataPoint>
-using KdTreeSparsePointers = Ponca::KdTreeSparseBase<Ponca::KdTreePointerTraits<DataPoint>>;

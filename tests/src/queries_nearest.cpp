@@ -82,12 +82,6 @@ void testNearestNeighborForAllStructures(const bool quick = QUICK_TESTS)
 	std::vector<int> sampleSparse;
 	testKdTree<KdTreeSparse>(points, sampleSparse);
 
-	//////////// Test KdTree memory array
-	std::vector<int> sampleDenseP;
-	testKdTree<KdTreeDensePointers>(points, sampleDenseP);
-	std::vector<int> sampleSparseP;
-	testKdTree<KdTreeSparsePointers>(points, sampleSparseP);
-
 	//////////// Test KnnGraph
 	KnnGraph<P> knnGraph(kdtreeDense, 1);
 	std::chrono::milliseconds timing = testFrontOfKNearestNeighbors<true>(knnGraph, points, sampleDense);  // Index query test

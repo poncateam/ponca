@@ -72,12 +72,6 @@ void testRangeNeighborsForAllStructures(const bool quick = QUICK_TESTS)
 	std::vector<int> sampleSparse;
 	testKdTree<KdTreeSparse>(points, sampleSparse);
 
-	//////////// Test KdTree memory array
-	std::vector<int> sampleDenseP;
-	testKdTree<KdTreeDensePointers>(points, sampleDenseP);
-	std::vector<int> sampleSparseP;
-	testKdTree<KdTreeSparsePointers>(points, sampleSparseP);
-
 	////////// Test KnnGraph
 	 KnnGraph<P> knnGraph(kdtreeDense, N/4); /* We need a large graph, otherwise we might miss some points
 	 										   (which is the goal of the graph: to replace full Euclidean
