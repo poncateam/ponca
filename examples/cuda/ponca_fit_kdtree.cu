@@ -15,8 +15,6 @@
  *
  * \tparam DataPoint The DataPoint type.
  * \tparam Fit The Fit that will be computed by the Kernel.
- * \param points As an Input, the point cloud.
- * \param nbPoints The number of points in the point cloud
  * \param buffers The buffers structure that holds the internal containers of the KdTree.
  * \param analysisScale The radius of the neighborhood.
  * \param potentialResults As an Output, the potential results of the fit for each point of the Point Cloud.
@@ -24,8 +22,6 @@
  */
 template<typename DataPoint, typename Fit>
 __global__ void fitPotentialAndGradientKernel(
-    DataPoint* const points,
-    const unsigned int nbPoints,
     typename KdTreeGPU<DataPoint>::Buffers* const buffers,
     const typename DataPoint::Scalar analysisScale,
     typename DataPoint::Scalar* const potentialResults,
@@ -35,20 +31,19 @@ __global__ void fitPotentialAndGradientKernel(
 
     // Get global index
     const unsigned int i = threadIdx.x + blockIdx.x * blockDim.x;
-
     // Skip when not in the point cloud
-    if (i >= nbPoints) return;
+    if (i >= buffers->points_size) return;
 
-    VectorType pos = points[i].pos();
     KdTreeGPU<DataPoint> kdtree;
     kdtree.useBuffers(buffers);
 
     // Set up the fit
     Fit fit;
+    VectorType pos = kdtree.points()[i].pos();
     fit.setNeighborFilter({ pos, analysisScale });
 
     // Computes the fit
-    fit.computeWithIds(kdtree.rangeNeighbors(i, analysisScale), points);
+    fit.computeWithIds(kdtree.rangeNeighbors(i, analysisScale), kdtree.points());
 
     // Returns NaN if not stable
     if (! fit.isStable()) {
@@ -112,20 +107,14 @@ __host__ void testPlaneCuda(
     std::cout << "Number of nodes in the KdTree : " << kdtree.nodeCount() << std::endl;
 
     // The size of the data we send between Host and Device
-    const unsigned long pointBufferSize      = nbPoints * sizeof(DataPoint);
     const unsigned long scalarBufferSize     = nbPoints * sizeof(Scalar);
     const unsigned long vectorBufferSize     = scalarBufferSize * Dim;
-    const unsigned long kdtreeBuffersSize    = sizeof(Buffers);
 
     // Send inputs to the GPU (Host to Device)
-    DataPoint* pointsDevice;
-    Buffers* kdtreeBuffersDevice;
-
-    CUDA_CHECK(cudaMalloc(&pointsDevice         , pointBufferSize ));
-    CUDA_CHECK(cudaMalloc(&kdtreeBuffersDevice  , kdtreeBuffersSize));
-
-    CUDA_CHECK(cudaMemcpy(pointsDevice          , points.data()   , pointBufferSize  , cudaMemcpyHostToDevice));
-    CUDA_CHECK(cudaMemcpy(kdtreeBuffersDevice   , &kdtree.buffers(), kdtreeBuffersSize, cudaMemcpyHostToDevice));
+    Buffers buffers = deepCopyBuffersToDevice<KdTreeGPU<DataPoint>>(kdtree.buffers()); // Returns the host to device copyable buffers, referencing memory on the GPU
+    Buffers* kdtreeBuffersDevice; // The kdtree internal Buffers on the device
+    CUDA_CHECK(cudaMalloc(&kdtreeBuffersDevice, sizeof(Buffers)));
+    CUDA_CHECK(cudaMemcpy(kdtreeBuffersDevice, &buffers, sizeof(Buffers), cudaMemcpyHostToDevice));
 
     // Prepare output buffers
     auto* const potentialResults = new Scalar[nbPoints];
@@ -141,9 +130,7 @@ __host__ void testPlaneCuda(
 
     // Compute the fitting in the kernel
     fitPotentialAndGradientKernel<DataPoint, MeanFitSmooth><<<gridSize, blockSize>>>(
-        pointsDevice , nbPoints,
-        kdtreeBuffersDevice,
-        analysisScale,
+        kdtreeBuffersDevice, analysisScale,           // Inputs
         potentialResultsDevice, gradientResultsDevice // Outputs
     );
     CUDA_CHECK(cudaDeviceSynchronize());
@@ -153,9 +140,10 @@ __host__ void testPlaneCuda(
     CUDA_CHECK(cudaMemcpy(gradientResults , gradientResultsDevice , vectorBufferSize, cudaMemcpyDeviceToHost));
 
     // Free CUDA memory
-    CUDA_CHECK(cudaFree(pointsDevice));
     CUDA_CHECK(cudaFree(potentialResultsDevice));
     CUDA_CHECK(cudaFree(gradientResultsDevice));
+    freeBuffersOnDevice(buffers);
+    CUDA_CHECK(cudaFree(kdtreeBuffersDevice));
 
     // Validate results
     const auto epsilon = Scalar(0.001);

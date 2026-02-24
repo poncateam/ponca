@@ -199,21 +199,17 @@ public:
 public:
     PONCA_MULTIARCH inline KdTreeBase() = default;
 
-    /*! \brief Constructor of the KdTree that uses prebuilt containers directly.
+    /*! \brief Setter function that allows the use of prebuilt KdTree containers.
      *
-     * Each internal values of a KdTree can be extracted and used to build copy of the KdTree
-     * using \ref `KdTreeBase::buffers()`
+     * Each internal values of a KdTree can be extracted using \ref `KdTreeBase::buffers()`
      *
-     * \note The internal containers of the KdTree are passed directly as arguments,
-     * which avoids the convertion process and the building process.
-     * This method is useful to instantiate a copy of the KdTree on the GPU.
+     * \note This method can be used to avoid the convertion and building process,
+     * which is useful to transfer directly the KdTree to the device in CUDA.
      *
      * \see DefaultConverter, build, buffers
      *
      * \param buf Internal buffers of the KdTree
      */
-    // PONCA_MULTIARCH inline KdTreeBase(Buffers&& buf) : m_bufs(std::move(buf)) { }
-
     PONCA_MULTIARCH inline void useBuffers(Buffers* buf)
     {
         m_bufs = std::move(*buf);
