@@ -82,7 +82,7 @@ namespace Ponca
         //! \brief Scalar field gradient direction at the basis center
         PONCA_MULTIARCH [[nodiscard]] inline VectorType primitiveGradient () const
         {
-            return Base::tangentPlaneToWorld(primitiveGradientLocal());
+            return Base::tangentPlaneToWorld(primitiveGradientLocal(), false);
         }
 
         //! \brief Scalar field gradient direction at \f$ \mathbf{q}\f$
