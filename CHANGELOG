@@ -12,6 +12,7 @@ This release introduces a major rework of the curvature estimation framework, an
 
 - Bug-fixes and code improvements
     - [fitting] Fix issues when converting vectors between local and global frames (#201)
+    - [fitting] Fix bug in MongePatch::primitiveGradient (#269)
 
 - Tests
     - [utils] Improve point cloud generation functions (#201)
