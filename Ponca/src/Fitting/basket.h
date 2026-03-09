@@ -287,7 +287,7 @@ namespace internal
                 while (fIteration < _maxIterF || fResidual < _epsF)
                 {
                     Scalar sumF = 0;
-                    VectorType sumW  = VectorType::Zero();
+                    Scalar sumW = 0;
                     VectorType sumGW = VectorType::Zero();
                     VectorType sumGF = VectorType::Zero();
                     VectorType sumN  = VectorType::Zero();
@@ -301,9 +301,8 @@ namespace internal
                         if (xIteration > 0)
                             alpha = drho(fx - f) * drho((pt.normal() - gradF).norm());
 
-                        const auto npx = px.squaredNorm();
-                        const Scalar w = alpha * filter(npx).first;
-                        const VectorType gw = 2 * alpha * px * filter.scaledw(npx);
+                        const Scalar w = alpha * filter(px).first;
+                        const VectorType gw = 2 * alpha * px * filter.scaledw(x, pt.pos());
 
                         sumW  += w;
                         sumGW += gw;
