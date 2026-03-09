@@ -144,6 +144,7 @@ namespace internal
         using Base    = _Base;    /// <\brief Alias to the Base type
         using Derived = _Derived; /// \brief Alias to the Derived type
         using Scalar  = typename Base::Scalar;
+        using VectorType = typename Base::VectorType;
     protected:
         using ComputeObject<Derived>::derived;
     public:
@@ -195,6 +196,7 @@ namespace internal
         }
 
     protected:
+
         /*!
          * \brief Computes the fit using the MLS iteration process.
          * The position of the projected point is outputted through the lastPosition argument.
@@ -223,6 +225,116 @@ namespace internal
             return res;
         }
 
+        /*!
+         * \brief Computes the fit using the RIMLS scheme
+         *
+         * The method was published in \cite Oztireli:2009
+         *
+         * The maximum total number of iteration is _maxIterF * _maxIterX. It is advised to keep
+         * both values as low as possible in order to avoid high computationnal times.
+         *
+         * \tparam IteratorBegin Begin iterator of point range
+         * \tparam IteratorEnd Begin iterator of point range
+         * \tparam Func A function mapping an iterator to the corresponding point
+         * \param _beg Begining of point range
+         * \param _end Begining of point range
+         * \param _extractPoint Extract the point from the range
+         * \param _sigmaN Reweighting factor. Recommanded values are 0.5, or 0.5 times the weight radius
+         * \param _epsX Absolute tolerance for (re)projection
+         * \param _epsF Absolute tolerance for scalar field approximation
+         * \param _maxIterX Max number of iteration of (re)projection
+         * \param _maxIterF Max number of iteration for scalar field approximation
+         * \see #compute(const IteratorBegin& begin, const IteratorEnd& end)
+         */
+        template <typename IteratorBegin, typename IteratorEnd, typename Func>
+        PONCA_MULTIARCH FIT_RESULT computeRIMLSImpl(IteratorBegin _beg, IteratorEnd _end,
+                Func&& _extractPoint,
+                Scalar _sigmaN = 0.5,
+                Scalar _epsX = 1e-3, Scalar _epsF = 1e-3,
+                unsigned int _maxIterX = 5, unsigned int _maxIterF = 5)
+        {
+            FIT_RESULT res = compute(_beg, _end);
+            if (res != STABLE)
+                return res;
+
+            PONCA_MULTIARCH_STD_MATH(exp);
+            PONCA_MULTIARCH_STD_MATH(abs);
+
+            // Only X is squared, this is intended to save some square roots
+            _epsX = _epsX * _epsX;
+            _sigmaN = _sigmaN * _sigmaN;
+
+            // This function is the derivative of $\rho$, also named w in the article
+            // Gaussian function, assumes xs is already squared
+            const auto drho = [=](Scalar _xs)
+            {
+                return exp(- _xs / _sigmaN);
+            };
+
+            const auto& filter = Base::getNeighborFilter();
+
+            Scalar f = Base::potential();
+            VectorType x = filter.evalPos();
+            VectorType gradF = Base::project(x) - x;
+
+            unsigned int xIteration = 0;
+            unsigned int fIteration = 0;
+            Scalar xResidual = 1.;
+            Scalar fResidual = 1.;
+
+            while (xIteration < _maxIterX || xResidual < _epsX)
+            {
+                while (fIteration < _maxIterF || fResidual < _epsF)
+                {
+                    Scalar sumF = 0;
+                    VectorType sumW  = VectorType::Zero();
+                    VectorType sumGW = VectorType::Zero();
+                    VectorType sumGF = VectorType::Zero();
+                    VectorType sumN  = VectorType::Zero();
+                    for (auto it = _beg; it != _end; ++it)
+                    {
+                        const auto pt = _extractPoint(it);
+                        const VectorType px = x - pt.pos();
+                        const Scalar fx = px.dot(pt.normal());
+
+                        Scalar alpha = 1;
+                        if (xIteration > 0)
+                            alpha = drho(fx - f) * drho((pt.normal() - gradF).norm());
+
+                        const auto npx = px.squaredNorm();
+                        const Scalar w = alpha * filter(npx).first;
+                        const VectorType gw = 2 * alpha * px * filter.scaledw(npx);
+
+                        sumW  += w;
+                        sumGW += gw;
+                        sumF  += w * fx;
+                        sumGF += gw * fx;
+                        sumN += w * pt.normal();
+                    }
+
+                    // [Oztirezli 2009] defines another residual formula which depends
+                    // on all neighborhood and requires a storage of this size.
+                    // Here, we replaced this with an absolute convergence criterion on
+                    // the scalar field values for faster and easier computation.
+                    const Scalar newF = sumF / sumW;
+                    fResidual = abs(newF - f);
+
+                    f     = newF;
+                    gradF = (sumGF - f * sumGW + sumN) / sumW;
+
+                    ++fIteration;
+                }
+
+                const VectorType step = f * gradF;
+                xResidual = step.squaredNorm();
+
+                x = x - step;
+                ++xIteration;
+            }
+            // TODO: Where to store x ???
+
+            return STABLE;
+        }
     public:
         /*!
          * \copydoc BasketComputeObject::computeMLSImpl
@@ -255,6 +367,41 @@ namespace internal
             return computeMLSImpl(
                 [&]() { return computeWithIds(ids, points); },
                 mlsIter, epsilon
+            );
+        }
+
+        /*!
+         * \copydoc BasketComputeObject::computeRIMLSImpl
+         * \tparam PointContainer STL-like container storing the points
+         */
+        template<typename PointContainer>
+        PONCA_MULTIARCH FIT_RESULT computeRIMLS(
+            const PointContainer& points,
+            Scalar _sigmaN = 0.5,
+            Scalar _epsX = 1e-3, Scalar _epsF = 1e-3,
+            unsigned int _maxIterX = 5, unsigned int _maxIterF = 5)
+        {
+            return computeRIMLSImpl(
+                points.begin(), points.end(), [&](auto it) { return *it; },
+                _sigmaN, _epsX, _epsF, _maxIterX, _maxIterF
+            );
+        }
+
+        /*!
+         * \copydoc BasketComputeObject::computeRIMLSImpl
+         * \tparam IndexRange STL-Like range storing indices
+         * \tparam PointContainer STL-like container storing the points
+         */
+        template<typename IndexRange, typename PointContainer>
+        PONCA_MULTIARCH FIT_RESULT computeRIMLSWithIds(
+            const IndexRange& ids, const PointContainer& points,
+            Scalar _sigmaN = 0.5,
+            Scalar _epsX = 1e-3, Scalar _epsF = 1e-3,
+            unsigned int _maxIterX = 5, unsigned int _maxIterF = 5)
+        {
+            return computeRIMLSImpl(
+                ids.begin(), ids.end(), [&](auto it) { return points[*it]; },
+                _sigmaN, _epsX, _epsF, _maxIterX, _maxIterF
             );
         }
     };
