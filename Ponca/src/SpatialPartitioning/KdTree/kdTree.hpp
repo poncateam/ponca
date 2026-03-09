@@ -8,7 +8,7 @@
 
 template<typename Traits>
 template<typename PointUserContainer, typename PointConverter>
-void KdTreeBase<Traits>::build(PointUserContainer&& points, PointConverter c)
+PONCA_MULTIARCH_HOST inline void KdTreeBase<Traits>::build(PointUserContainer&& points, PointConverter c)
 {
     IndexContainer ids (points.size());
     std::iota(ids.begin(), ids.end(), IndexType(0));
@@ -16,7 +16,7 @@ void KdTreeBase<Traits>::build(PointUserContainer&& points, PointConverter c)
 }
 
 template<typename Traits>
-bool StaticKdTreeBase<Traits>::valid() const
+PONCA_MULTIARCH_HOST [[nodiscard]] inline bool StaticKdTreeBase<Traits>::valid() const
 {
     if (m_bufs.points_size == 0)
         return m_bufs.nodes_size == 0 && m_bufs.indices_size == 0;
@@ -69,7 +69,7 @@ bool StaticKdTreeBase<Traits>::valid() const
 }
 
 template<typename Traits>
-void StaticKdTreeBase<Traits>::print(std::ostream& os, bool verbose) const
+PONCA_MULTIARCH_HOST inline void StaticKdTreeBase<Traits>::print(std::ostream& os, bool verbose) const
 {
     os << "KdTree:";
     os << "\n  MaxNodes: " << MAX_NODE_COUNT;
@@ -115,7 +115,7 @@ void StaticKdTreeBase<Traits>::print(std::ostream& os, bool verbose) const
 
 template<typename Traits>
 template<typename PointUserContainer, typename IndexUserContainer, typename PointConverter>
-void KdTreeBase<Traits>::buildWithSampling(
+PONCA_MULTIARCH_HOST inline void KdTreeBase<Traits>::buildWithSampling(
     PointUserContainer&& points, IndexUserContainer&& sampling, PointConverter c
 ) {
     PONCA_DEBUG_ASSERT(static_cast<IndexType>(Base::pointCount()) <= Base::MAX_POINT_COUNT);
@@ -138,7 +138,7 @@ void KdTreeBase<Traits>::buildWithSampling(
 }
 
 template<typename Traits>
-void KdTreeBase<Traits>::buildRec(NodeIndexType node_id, IndexType start, IndexType end, int level)
+PONCA_MULTIARCH_HOST inline void KdTreeBase<Traits>::buildRec(NodeIndexType node_id, IndexType start, IndexType end, int level)
 {
     NodeType& node = Base::m_bufs.nodes[node_id];
     AabbType aabb;
@@ -172,7 +172,7 @@ void KdTreeBase<Traits>::buildRec(NodeIndexType node_id, IndexType start, IndexT
 }
 
 template<typename Traits>
-auto KdTreeBase<Traits>::partition(IndexType start, IndexType end, int dim, Scalar value)
+PONCA_MULTIARCH_HOST [[nodiscard]] inline auto KdTreeBase<Traits>::partition(IndexType start, IndexType end, int dim, Scalar value)
     -> IndexType
 {
     const auto& points = Base::m_bufs.points;
