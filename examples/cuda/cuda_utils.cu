@@ -7,18 +7,19 @@
     abort(); \
 }
 
-/*! \brief Uploads the internal containers of the Buffers structure to the device
+/*! \brief Uploads the internal data of the Buffers structure to the device,
+ * using an intermediary binding host-device structure.
  *
  * \warning The buffers needs to be freed after use, with the \ref freeBuffersOnDevice function
  *
  * \tparam Traits The KdTree traits structure type
  * \param hostBuffers The Buffers structure holding the internal storage of the KdTree that we want to upload to the device
- * \param hostBuffersHoldingDevicePointers The pointer to the Buffers structure on the host that references memory on the device
- * \param deviceBuffers The Buffers structure on the device
- * \see freeBuffersOnDevice
+ * \param hostBuffersHoldingDevicePointers The Buffers structure on the host that references memory on the device
+ * \param deviceBuffers The pointer to the Buffers structure on the device
+ * \see freeBuffersOnDevice to free memory on the device with hostBuffersHoldingDevicePointers as an argument
  */
 template <typename Traits, typename KdTreeDenseBuffers, typename StaticKdTreeBuffers>
-void deepCopyBuffersToDevice(const KdTreeDenseBuffers& hostBuffers, StaticKdTreeBuffers& hostBuffersHoldingDevicePointers, StaticKdTreeBuffers* deviceBuffers)
+void deepCopyBuffersToDevice(const KdTreeDenseBuffers& hostBuffers, StaticKdTreeBuffers& hostBuffersHoldingDevicePointers, StaticKdTreeBuffers* const deviceBuffers)
 {
     using DataPoint      = typename Traits::DataPoint; ///< DataPoint given by user via Traits
     using IndexType      = typename Traits::IndexType; ///< Type used to index points into the PointContainer
@@ -48,17 +49,17 @@ void deepCopyBuffersToDevice(const KdTreeDenseBuffers& hostBuffers, StaticKdTree
     );
 }
 
-/*! \brief Free the memory array internal to the KdTree Buffers on the device
+/*! \brief Free the memory array internal to the KdTree Buffers on the device.
  *
  * \tparam Buffers The Buffers structure type containing the internal containers of the KdTree
- * \param hostBuffers The Buffers structure that references memory on the GPU
+ * \param hostBuffersHoldingDevicePointers The Buffers structure that references memory on the GPU
  */
 template <typename Buffers>
-void freeBuffersOnDevice(const Buffers& hostBuffers)
+void freeBuffersOnDevice(const Buffers& hostBuffersHoldingDevicePointers)
 {
-    CUDA_CHECK(cudaFree(hostBuffers.points));
-    CUDA_CHECK(cudaFree(hostBuffers.nodes));
-    CUDA_CHECK(cudaFree(hostBuffers.indices));
+    CUDA_CHECK(cudaFree(hostBuffersHoldingDevicePointers.points));
+    CUDA_CHECK(cudaFree(hostBuffersHoldingDevicePointers.nodes));
+    CUDA_CHECK(cudaFree(hostBuffersHoldingDevicePointers.indices));
 }
 
 /*! \brief A KdTree Type that can be run on the GPU

@@ -111,12 +111,10 @@ __host__ void testPlaneCuda(
     // Send inputs to the GPU (Host to Device)
     BuffersGPU* kdtreeBuffersDevice;
     CUDA_CHECK(cudaMalloc(&kdtreeBuffersDevice, sizeof(BuffersGPU)));
-
-
-    /* /!\ We cannot directly modify device objects from host,
-     * so we use a host structure that keep tracks of the device pointers /!\
+    /* /!\ We cannot directly modify device objects from host /!\
+     * so we use a host structure that keep tracks of the device pointers
      */
-    BuffersGPU hostBuffersHoldingDevicePointers; // host-side version of the device struct
+    BuffersGPU hostBuffersHoldingDevicePointers; // Host Buffers referencing data on the device
     deepCopyBuffersToDevice<Ponca::KdTreePointerTraits<DataPoint>>(kdtree.buffers(), hostBuffersHoldingDevicePointers, kdtreeBuffersDevice);
 
     // Prepare output buffers
