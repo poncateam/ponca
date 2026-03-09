@@ -11,40 +11,41 @@
  *
  * \warning The buffers needs to be freed after use, with the \ref freeBuffersOnDevice function
  *
- * \tparam KdTree The KdTree type
+ * \tparam Traits The KdTree traits structure type
  * \param hostBuffers The Buffers structure holding the internal storage of the KdTree that we want to upload to the device
+ * \param hostBuffersHoldingDevicePointers The pointer to the Buffers structure on the host that references memory on the device
  * \param deviceBuffers The Buffers structure on the device
- * \return The pointer to the Buffers structure on the host that references memory on the device
  * \see freeBuffersOnDevice
  */
 template <typename Traits, typename KdTreeDenseBuffers, typename StaticKdTreeBuffers>
-void deepCopyBuffersToDevice(const KdTreeDenseBuffers& hostBuffers, StaticKdTreeBuffers* deviceBuffers)
+void deepCopyBuffersToDevice(const KdTreeDenseBuffers& hostBuffers, StaticKdTreeBuffers& hostBuffersHoldingDevicePointers, StaticKdTreeBuffers* deviceBuffers)
 {
     using DataPoint      = typename Traits::DataPoint; ///< DataPoint given by user via Traits
     using IndexType      = typename Traits::IndexType; ///< Type used to index points into the PointContainer
     using NodeType       = typename Traits::NodeType;  ///< Type of nodes used inside the KdTree
 
-    // Allocate memory for Buffers on the device
-    CUDA_CHECK(cudaMalloc(&deviceBuffers->points,  hostBuffers.points_size  * sizeof(DataPoint)));
-    CUDA_CHECK(cudaMalloc(&deviceBuffers->nodes,   hostBuffers.nodes_size   * sizeof(NodeType)));
-    CUDA_CHECK(cudaMalloc(&deviceBuffers->indices, hostBuffers.indices_size * sizeof(IndexType)));
+    // Assign buffer sizes
+    hostBuffersHoldingDevicePointers.points_size  = hostBuffers.points_size;
+    hostBuffersHoldingDevicePointers.nodes_size   = hostBuffers.nodes_size;
+    hostBuffersHoldingDevicePointers.indices_size = hostBuffers.indices_size;
 
-    // Deep copy of the internal containers from host to device
-    CUDA_CHECK(cudaMemcpy(deviceBuffers->points,  hostBuffers.points.data(),
-               hostBuffers.points_size * sizeof(DataPoint),
-               cudaMemcpyHostToDevice));
+    // Allocate memory for the data on the device
+    CUDA_CHECK(cudaMalloc(&hostBuffersHoldingDevicePointers.points,  hostBuffers.points_size  * sizeof(DataPoint)));
+    CUDA_CHECK(cudaMalloc(&hostBuffersHoldingDevicePointers.nodes,   hostBuffers.nodes_size   * sizeof(NodeType)));
+    CUDA_CHECK(cudaMalloc(&hostBuffersHoldingDevicePointers.indices, hostBuffers.indices_size * sizeof(IndexType)));
 
-    CUDA_CHECK(cudaMemcpy(deviceBuffers->nodes,   hostBuffers.nodes.data(),
-               hostBuffers.nodes_size * sizeof(NodeType),
-               cudaMemcpyHostToDevice));
+    // Copy the data to the device
+    CUDA_CHECK(cudaMemcpy(hostBuffersHoldingDevicePointers.points, hostBuffers.points.data(),
+        hostBuffers.points_size * sizeof(DataPoint), cudaMemcpyHostToDevice));
+    CUDA_CHECK(cudaMemcpy(hostBuffersHoldingDevicePointers.nodes, hostBuffers.nodes.data(),
+        hostBuffers.nodes_size * sizeof(NodeType), cudaMemcpyHostToDevice));
+    CUDA_CHECK(cudaMemcpy(hostBuffersHoldingDevicePointers.indices, hostBuffers.indices.data(),
+        hostBuffers.indices_size * sizeof(IndexType), cudaMemcpyHostToDevice));
 
-    CUDA_CHECK(cudaMemcpy(deviceBuffers->indices, hostBuffers.indices.data(),
-               hostBuffers.indices_size * sizeof(IndexType),
-               cudaMemcpyHostToDevice));
-
-    deviceBuffers->points_size  = hostBuffers.points_size;
-    deviceBuffers->nodes_size   = hostBuffers.nodes_size;
-    deviceBuffers->indices_size = hostBuffers.indices_size;
+    // Copy host structure itself to device
+    CUDA_CHECK(cudaMemcpy(deviceBuffers, &hostBuffersHoldingDevicePointers,
+        sizeof(StaticKdTreeBuffers), cudaMemcpyHostToDevice)
+    );
 }
 
 /*! \brief Free the memory array internal to the KdTree Buffers on the device
@@ -55,9 +56,9 @@ void deepCopyBuffersToDevice(const KdTreeDenseBuffers& hostBuffers, StaticKdTree
 template <typename Buffers>
 void freeBuffersOnDevice(const Buffers& hostBuffers)
 {
-    CUDA_CHECK(cudaFree(hostBuffers->points));
-    CUDA_CHECK(cudaFree(hostBuffers->nodes));
-    CUDA_CHECK(cudaFree(hostBuffers->indices));
+    CUDA_CHECK(cudaFree(hostBuffers.points));
+    CUDA_CHECK(cudaFree(hostBuffers.nodes));
+    CUDA_CHECK(cudaFree(hostBuffers.indices));
 }
 
 /*! \brief A KdTree Type that can be run on the GPU

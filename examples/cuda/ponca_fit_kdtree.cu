@@ -111,7 +111,13 @@ __host__ void testPlaneCuda(
     // Send inputs to the GPU (Host to Device)
     BuffersGPU* kdtreeBuffersDevice;
     CUDA_CHECK(cudaMalloc(&kdtreeBuffersDevice, sizeof(BuffersGPU)));
-    deepCopyBuffersToDevice<Ponca::KdTreePointerTraits<DataPoint>>(kdtree.buffers(), kdtreeBuffersDevice);
+
+
+    /* /!\ We cannot directly modify device objects from host,
+     * so we use a host structure that keep tracks of the device pointers /!\
+     */
+    BuffersGPU hostBuffersHoldingDevicePointers; // host-side version of the device struct
+    deepCopyBuffersToDevice<Ponca::KdTreePointerTraits<DataPoint>>(kdtree.buffers(), hostBuffersHoldingDevicePointers, kdtreeBuffersDevice);
 
     // Prepare output buffers
     auto* const potentialResults = new Scalar[nbPoints];
@@ -130,6 +136,7 @@ __host__ void testPlaneCuda(
         kdtreeBuffersDevice, analysisScale,           // Inputs
         potentialResultsDevice, gradientResultsDevice // Outputs
     );
+    CUDA_CHECK(cudaGetLastError()); // Catch kernel launch errors
     CUDA_CHECK(cudaDeviceSynchronize());
 
     // Fetch the results (Device to Host)
@@ -139,7 +146,7 @@ __host__ void testPlaneCuda(
     // Free CUDA memory
     CUDA_CHECK(cudaFree(potentialResultsDevice));
     CUDA_CHECK(cudaFree(gradientResultsDevice));
-    freeBuffersOnDevice(kdtreeBuffersDevice);
+    freeBuffersOnDevice(hostBuffersHoldingDevicePointers);
     CUDA_CHECK(cudaFree(kdtreeBuffersDevice));
 
     // Validate results
