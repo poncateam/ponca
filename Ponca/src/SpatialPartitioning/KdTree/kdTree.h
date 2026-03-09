@@ -43,10 +43,10 @@ template <typename Traits> class KdTreeSparseBase;
  * \snippet examples/cpp/ponca_neighbor_search.cpp KdTree assign dense
  */
 #ifdef PARSED_WITH_DOXYGEN
-/// [KdTree type definition]
+// [KdTree type definition]
 template <typename DataPoint>
 struct KdTree : public Ponca::KdTreeBase<KdTreeDefaultTraits<DataPoint>>{};
-/// [KdTree type definition]
+// [KdTree type definition]
 #else
 template <typename DataPoint>
 using KdTree = KdTreeBase<KdTreeDefaultTraits<DataPoint>>; // prefer alias to avoid redefining methods
@@ -62,13 +62,13 @@ using KdTree = KdTreeBase<KdTreeDefaultTraits<DataPoint>>; // prefer alias to av
  *
  */
 #ifdef PARSED_WITH_DOXYGEN
-    /// [StaticKdTree type definition]
-    template <typename DataPoint>
-    struct StaticKdTree : public Ponca::StaticKdTreeBase<KdTreeDefaultTraits<DataPoint>>{};
-    /// [StaticKdTree type definition]
+// [StaticKdTree type definition]
+template <typename DataPoint>
+struct StaticKdTree : public Ponca::StaticKdTreeBase<KdTreeDefaultTraits<DataPoint>>{};
+// [StaticKdTree type definition]
 #else
-    template <typename DataPoint>
-    using StaticKdTree = StaticKdTreeBase<KdTreeDefaultTraits<DataPoint>>; // prefer alias to avoid redefining methods
+template <typename DataPoint>
+using StaticKdTree = StaticKdTreeBase<KdTreeDefaultTraits<DataPoint>>; // prefer alias to avoid redefining methods
 #endif
 
 
@@ -81,10 +81,10 @@ using KdTree = KdTreeBase<KdTreeDefaultTraits<DataPoint>>; // prefer alias to av
  * \see KdTreeDenseBase for complete API
  */
 #ifdef PARSED_WITH_DOXYGEN
-/// [KdTreeDense type definition]
+// [KdTreeDense type definition]
 template <typename DataPoint>
 struct KdTreeDense : public Ponca::KdTreeDenseBase<KdTreeDefaultTraits<DataPoint>>{};
-/// [KdTreeDense type definition]
+// [KdTreeDense type definition]
 #else
 template <typename DataPoint>
 using KdTreeDense = KdTreeDenseBase<KdTreeDefaultTraits<DataPoint>>; // prefer alias to avoid redefining methods
@@ -99,24 +99,27 @@ using KdTreeDense = KdTreeDenseBase<KdTreeDefaultTraits<DataPoint>>; // prefer a
  * \see KdTreeSparseBase for complete API
  */
 #ifdef PARSED_WITH_DOXYGEN
-/// [KdTreeSparse type definition]
+// [KdTreeSparse type definition]
 template <typename DataPoint>
 struct KdTreeSparse : Ponca::KdTreeSparseBase<KdTreeDefaultTraits<DataPoint>>{};
-/// [KdTreeSparse type definition]
+// [KdTreeSparse type definition]
 #else
 template <typename DataPoint>
 using KdTreeSparse = KdTreeSparseBase<KdTreeDefaultTraits<DataPoint>>;
 #endif
 
 /*!
- * \brief Customizable base class for KdTree datastructure implementations
+ * \brief Customizable static base class for KdTree datastructure implementations
  *
- * \see Ponca::KdTreeDense
- * \see Ponca::KdTreeSparse
+ * \note This "Static" kdtree can be constructed using the Buffers structure,
+ * it only makes the Query functions available and doesn't define any build functionalities,
+ * (hence why it is static).
+ * This basic class can be used to make kdtree calls from inside a CUDA kernel.
+ * \see KdTreeBase to build a kdtree
+ * \see rangeNeighbors, kNearestNeighbors, nearestNeighbor for the query calls
  *
  * \tparam Traits Traits type providing the types and constants used by the kd-tree. Must have the
  * same interface as the default traits type.
- *
  * \see KdTreeDefaultTraits for the trait interface documentation.
  */
 template <typename Traits>
@@ -446,14 +449,21 @@ protected:
     NodeIndexType m_leaf_count {0}; ///< Number of leaves in the Kdtree (computed during construction)
 };
 
-/*! \copydoc StaticKdTreeBase
+/*! \copybrief StaticKdTreeBase
  *
- *  Implements the build function of the KdTree
+ * Base kdtree class that implements the basic build functionalities of the KdTree.
+ * \see KdTreeBase::build
  *
- *  \warning Variants of this class are not usable on a CUDA device,
- *  because it relies on STL-like internal containers to build the kdtree
+ * This class is the basis for the KdTree Dense and Sparse type
+ * \see Ponca::KdTreeDense
+ * \see Ponca::KdTreeSparse
  *
- *  \see KdTreeBase::build
+ * \warning Variants of this class are not usable on a CUDA device,
+ * because it relies on STL-like internal containers to build the kdtree.
+ *
+ * \tparam Traits Traits type providing the types and constants used by the kd-tree. Must have the
+ * same interface as the default traits type.
+ * \see KdTreeDefaultTraits for the trait interface documentation.
  */
 template <typename Traits>
 class KdTreeBase : public StaticKdTreeBase<Traits>
@@ -529,15 +539,14 @@ private:
 /*!
  * \brief Customizable base class for dense KdTree datastructure
  *
- * This version of the KdTree does not support subsampling. For an
- * implementation that supports subsampling, see \ref KdTreeSparseBase.
+ * \note This version of the KdTree does not support subsampling.
+ * For an implementation that supports subsampling, see \ref KdTreeSparseBase.
  *
  * \see Ponca::KdTreeDense
  * \see Ponca::KdTreeSparse
  *
  * \tparam Traits Traits type providing the types and constants used by the kd-tree. Must have the
  * same interface as the default traits type.
- *
  * \see KdTreeDefaultTraits for the trait interface documentation.
  */
 template <typename Traits>
@@ -563,7 +572,7 @@ public:
 /*!
  * \brief Customizable base class for KdTreeSparse datastructure
  *
- * This version of the KdTree supports construction using a subset of samples.
+ * \note This version of the KdTree supports construction using a subset of samples.
  *
  * \see buildWithSampling
  * \see Ponca::KdTreeDense
@@ -571,7 +580,6 @@ public:
  *
  * \tparam Traits Traits type providing the types and constants used by the kd-tree. Must have the
  * same interface as the default traits type.
- *
  * \see KdTreeDefaultTraits for the trait interface documentation.
  */
 template <typename Traits>

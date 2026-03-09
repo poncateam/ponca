@@ -138,6 +138,12 @@ fit.computeWithIds( myDataStructure.rangeNeighbors(fitInitPos, scale), vectorPoi
   To use your own type of `Traits`, see KdTreeDefaultTraits and KdTreeCustomizableNode APIs. See also:
    - `examples/cpp/ponca_customize_kdtree.cpp`
 
+  A StaticKdTreeBase class is also made available, which doesn't define any building functionalities,
+  so that it may be used within a CUDA kernel. For this use case the `Traits` should use raw memory pointers,
+  which can be achieved using the KdTreePointerTraits.
+  For a detailed example of use within a CUDA kernel, see also :
+  - `examples/cuda/ponca_fit_kdtree.cu`
+
   \subsection spatialpartitioning_kdtree_usage_which_class Usage of the convenience classes KdTree and KdTreeBase
   KdTree provides the common interface of KdTreeDense and KdTreeSparse. This class can be used to store
   or pass references/pointers that can be of either child type, see for instance:
