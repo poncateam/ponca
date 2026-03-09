@@ -37,27 +37,27 @@
   screen-space curvature estimation.
 
   \subsection cu_ssgl_cuda_mypoint_sec Define fitting data structure
-  \snippet cuda/ponca_ssgls.cu mypoint
+  \snippet cuda/ssgls/ponca_ssgls.cu mypoint
 
 
   \subsection cu_ssgl_cuda_weight_sec Define weighting functions
-  \snippet cuda/ponca_ssgls.cu w_def
+  \snippet cuda/ssgls/ponca_ssgls.cu w_def
 
   \subsection cu_ssgl_cuda_fit_sec Define fitting primitive
-  \snippet cuda/ponca_ssgls.cu fit_def
+  \snippet cuda/ssgls/ponca_ssgls.cu fit_def
 
 
   \subsection cu_ssgl_cuda_kernel_sec Kernel
-  \snippet cuda/ponca_ssgls.cu kernel
+  \snippet cuda/ssgls/ponca_ssgls.cu kernel
 
   \subsection cu_ssgl_cuda_access_sec Memory access
   We format the input data, filled by dimension (in object space)
   and then by the screen-space coordinates:
-  \snippet cuda/ponca_ssgls.cu data_acces
+  \snippet cuda/ssgls/ponca_ssgls.cu data_acces
 
 
   \section cu_ssgl_sec The whole code
   We use freeimageplus to format input data.
 
-  \include cuda/ponca_ssgls.cu
+  \include cuda/ssgls/ponca_ssgls.cu
  */

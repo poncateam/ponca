@@ -34,6 +34,7 @@ if(DOXYGEN_FOUND)
       ${CMAKE_CURRENT_SOURCE_DIR}/src/example_cxx_fit_plane.mdoc
       ${CMAKE_CURRENT_SOURCE_DIR}/src/example_cxx_pcl.mdoc
       ${CMAKE_CURRENT_SOURCE_DIR}/src/example_cu_ssc.mdoc
+      ${CMAKE_CURRENT_SOURCE_DIR}/src/example_cu_kdtree.mdoc
       ${CMAKE_CURRENT_SOURCE_DIR}/src/example_python_ssc.mdoc
       )
   add_custom_target(ponca-doc-doxygen

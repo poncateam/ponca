@@ -1,0 +1,25 @@
+/*
+ This Source Code Form is subject to the terms of the Mozilla Public
+ License, v. 2.0. If a copy of the MPL was not distributed with this
+ file, You can obtain one at http://mozilla.org/MPL/2.0/.
+*/
+
+
+/*!
+  \page example_cu_kdtree_page Object-space Curvature using Cuda/C++ and KdTree queries
+
+  \section cu_kdtree_intro_sec Introduction
+
+  This is an example that use Ponca to compute curvatures in C++ using Cuda, and querying neighbors on the GPU
+  using a KdTree.
+
+  To compile and run the example, call
+  \code
+  cd build && make cuda_fit_plane_kdtree
+  cd examples/cuda && ./cuda_fit_plane_kdtree
+  \endcode
+
+  \section cu_kdtree_code Source code
+
+  \include cuda/ponca_fit_kdtree.cu
+ */
