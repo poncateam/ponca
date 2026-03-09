@@ -62,6 +62,7 @@ void freeBuffersOnDevice(const Buffers& hostBuffersHoldingDevicePointers)
     CUDA_CHECK(cudaFree(hostBuffersHoldingDevicePointers.indices));
 }
 
+//! [Definition KdTreeGPU]
 /*! \brief A KdTree Type that can be run on the GPU
  *
  * \warning The KdTreeBase::build function cannot be used in the CUDA kernel,
@@ -70,3 +71,4 @@ void freeBuffersOnDevice(const Buffers& hostBuffersHoldingDevicePointers)
  */
 template <typename DataPoint>
 using KdTreeGPU = Ponca::StaticKdTreeBase<Ponca::KdTreePointerTraits<DataPoint>>;
+//! [Definition KdTreeGPU]

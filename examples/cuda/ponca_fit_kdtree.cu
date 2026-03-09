@@ -34,15 +34,18 @@ __global__ void fitPotentialAndGradientKernel(
     // Skip when not in the point cloud
     if (i >= buffers->points_size) return;
 
+    //! [Create KdTree on the GPU]
     KdTreeGPU<DataPoint> kdtree(*buffers);
+    //! [Create KdTree on the GPU]
 
     // Set up the fit
     Fit fit;
     VectorType pos = kdtree.points()[i].pos();
     fit.setNeighborFilter({ pos, analysisScale });
 
-    // Computes the fit
+    //! [Use KdTree on the GPU]
     fit.computeWithIds(kdtree.rangeNeighbors(i, analysisScale), kdtree.points());
+    //! [Use KdTree on the GPU]
 
     // Returns NaN if not stable
     if (! fit.isStable()) {
@@ -98,9 +101,9 @@ __host__ void testPlaneCuda(
         );
     }
 
-    // Send the internal buffers of the KdTree to the GPU
+    //! [Build KdTree on CPU]
     Ponca::KdTreeDense<DataPoint> kdtree(points);
-    typedef typename KdTreeGPU<DataPoint>::Buffers BuffersGPU;
+    //! [Build KdTree on CPU]
 
     std::cout << "Number of nodes in the KdTree : " << kdtree.nodeCount() << std::endl;
 
@@ -108,14 +111,13 @@ __host__ void testPlaneCuda(
     const unsigned long scalarBufferSize     = nbPoints * sizeof(Scalar);
     const unsigned long vectorBufferSize     = scalarBufferSize * Dim;
 
-    // Send inputs to the GPU (Host to Device)
+    //! [Copy KdTree on GPU]
+    using BuffersGPU = typename KdTreeGPU<DataPoint>::Buffers;
     BuffersGPU* kdtreeBuffersDevice;
     CUDA_CHECK(cudaMalloc(&kdtreeBuffersDevice, sizeof(BuffersGPU)));
-    /* /!\ We cannot directly modify device objects from host /!\
-     * so we use a host structure that keep tracks of the device pointers
-     */
-    BuffersGPU hostBuffersHoldingDevicePointers; // Host Buffers referencing data on the device
+    BuffersGPU hostBuffersHoldingDevicePointers; // Host Buffers referencing data on the device, used to free memory
     deepCopyBuffersToDevice<Ponca::KdTreePointerTraits<DataPoint>>(kdtree.buffers(), hostBuffersHoldingDevicePointers, kdtreeBuffersDevice);
+    //! [Copy KdTree on GPU]
 
     // Prepare output buffers
     auto* const potentialResults = new Scalar[nbPoints];
