@@ -96,10 +96,10 @@ struct  OUT_TYPE##PointQuery : Query<QueryInputIsPosition<DataPoint>,           
         using InputType = InputType_;
 
         /// \brief Default constructor that initialize the input field
-        inline QueryInput(InputType input) : m_input(input) {}
+        PONCA_MULTIARCH inline QueryInput(InputType input) : m_input(input) {}
 
         /// \brief Read access to the input
-        inline const InputType &input() const { return m_input; }
+        PONCA_MULTIARCH inline const InputType &input() const { return m_input; }
     protected:
         /*!
          * \brief Edit the input
@@ -109,7 +109,7 @@ struct  OUT_TYPE##PointQuery : Query<QueryInputIsPosition<DataPoint>,           
          * Simplest way to avoid this is to restart the iteration on the query.
          * Usefull to avoid query reallocation between different requests.
          */
-        inline void setInput(const InputType& input) { m_input = input; }
+        PONCA_MULTIARCH inline void setInput(const InputType& input) { m_input = input; }
     
     private:
         /// Index of the queried point
@@ -131,20 +131,20 @@ struct  OUT_TYPE##PointQuery : Query<QueryInputIsPosition<DataPoint>,           
         using InputType = typename Base::InputType;
 
         /// \brief Default constructor that initialize the input index
-        inline QueryInputIsIndex(const InputType &point = -1)
+        PONCA_MULTIARCH inline QueryInputIsIndex(const InputType &point = -1)
                 : Base(point) {}
 
         /// \brief Access operator that resets the input index
-        inline void operator()(const InputType &point = InputType::Zero()){
+        PONCA_MULTIARCH inline void operator()(const InputType &point = InputType::Zero()){
             Base::setInput(point);
         }
     protected:
         /// Functor used to check if a given Idx must be skipped
         template <typename IndexType>
-        inline bool skipIndexFunctor(IndexType idx) const {return Base::input() == idx;};
-        /// Generic method to access input position. Container is expected to hold kdtree positions
-        template <typename Container>
-        inline auto getInputPosition(const Container &c) -> const typename Container::value_type::VectorType
+        PONCA_MULTIARCH inline bool skipIndexFunctor(IndexType idx) const {return Base::input() == idx;};
+        /// Generic method to access input position. The VectorType needs to be passed as a template argument.
+        template <typename VectorType, typename Container>
+        PONCA_MULTIARCH inline const VectorType getInputPosition(const Container &c)
         { return c[Base::input()].pos(); }
     };
 
@@ -162,20 +162,20 @@ struct  OUT_TYPE##PointQuery : Query<QueryInputIsPosition<DataPoint>,           
         using InputType = typename Base::InputType;
 
         /// \brief Default constructor that initialize the input position
-        inline QueryInputIsPosition(const InputType &point = InputType::Zero())
+        PONCA_MULTIARCH inline QueryInputIsPosition(const InputType &point = InputType::Zero())
                 : Base(point) {}
 
         /// \brief Access operator that resets the input point
-        inline void operator()(const InputType &point = InputType::Zero()){
+        PONCA_MULTIARCH inline void operator()(const InputType &point = InputType::Zero()){
             Base::setInput( point );
         }
     protected:
         /// Functor used to check if a given Idx must be skipped
         template <typename IndexType>
-        inline bool skipIndexFunctor(IndexType idx) const {return false;};
-        /// Generic method to access input position. Container is expected to hold kdtree positions
-        template <typename Container>
-        inline auto getInputPosition(const Container &) -> const typename Container::value_type::VectorType
+        PONCA_MULTIARCH inline bool skipIndexFunctor(IndexType idx) const {return false;};
+        /// Generic method to access input position. The VectorType needs to be passed as a template argument.
+        template <typename VectorType=typename DataPoint::VectorType, typename Container>
+        PONCA_MULTIARCH inline const VectorType getInputPosition(const Container &)
         { return Base::input(); }
     };
 
@@ -191,11 +191,11 @@ struct  OUT_TYPE##PointQuery : Query<QueryInputIsPosition<DataPoint>,           
         using OutputParameter = Scalar;
 
         /// \brief Default constructor that initialize the output parameter value
-        inline QueryOutputIsRange(OutputParameter radius = OutputParameter(0))
+        PONCA_MULTIARCH inline QueryOutputIsRange(OutputParameter radius = OutputParameter(0))
                 : m_squared_radius(PONCA_MULTIARCH_STD_MATH_NAMESPACE(pow)(radius, OutputParameter(2))) {}
 
         /// \brief Access operator that resets the output parameter
-        inline void operator() (OutputParameter radius){
+        PONCA_MULTIARCH inline void operator() (OutputParameter radius){
             setRadius( radius );
         }
 
@@ -209,31 +209,31 @@ struct  OUT_TYPE##PointQuery : Query<QueryInputIsPosition<DataPoint>,           
          * `squaredRadius` is overall better for distance comparison.
          * \see squaredRadius
          */
-        inline Scalar radius() const {
+        PONCA_MULTIARCH inline Scalar radius() const {
             PONCA_MULTIARCH_STD_MATH(sqrt);
             return sqrt(m_squared_radius);
         }
 
         /// \brief Generic method to access the radius squared.
-        inline Scalar squaredRadius() const { return m_squared_radius; }
+        PONCA_MULTIARCH inline Scalar squaredRadius() const { return m_squared_radius; }
 
         /*!
          * \brief Set the radius distance of the query
          *
          * \note Store internally the squared radius for faster distance comparison
          */
-        inline void setRadius(Scalar radius) {
+        PONCA_MULTIARCH inline void setRadius(Scalar radius) {
             setSquaredRadius (radius*radius);
         }
 
         /// \brief Set the squared radius distance of the query
-        inline void setSquaredRadius(Scalar radius) { m_squared_radius = radius; }
+        PONCA_MULTIARCH inline void setSquaredRadius(Scalar radius) { m_squared_radius = radius; }
 
     protected:
         /// \brief Reset Query for a new search
-        inline void reset() { }
+        PONCA_MULTIARCH inline void reset() { }
         /// \brief Distance threshold used during tree descent to select nodes to explore
-        inline Scalar descentDistanceThreshold() const { return m_squared_radius; }
+        PONCA_MULTIARCH inline Scalar descentDistanceThreshold() const { return m_squared_radius; }
         /// \brief Radius used for the search
         Scalar m_squared_radius{0};
     };
@@ -250,23 +250,22 @@ struct  OUT_TYPE##PointQuery : Query<QueryInputIsPosition<DataPoint>,           
         using OutputParameter = typename QueryOutputBase::DummyOutputParameter;
 
         /// \brief Default constructor
-        QueryOutputIsNearest() {}
+        PONCA_MULTIARCH QueryOutputIsNearest() {}
 
         /// \brief Access operator
-        inline void operator() (){ }
+        PONCA_MULTIARCH inline void operator() (){ }
 
         /// \brief Get the closest points
-        Index get() const { return m_nearest; }
+        PONCA_MULTIARCH Index get() const { return m_nearest; }
 
     protected:
         /// \brief Reset Query for a new search
-        void reset() {
-            PONCA_MULTIARCH_STD_MATH(numeric_limits);
+        PONCA_MULTIARCH void reset() {
             m_nearest = -1;
-            m_squared_distance = numeric_limits<Scalar>::max();
+            m_squared_distance = PONCA_MULTIARCH_CU_STD_NAMESPACE(numeric_limits)<Scalar>::max();
         }
         /// \brief Distance threshold used during tree descent to select nodes to explore
-        inline Scalar descentDistanceThreshold() const { return m_squared_distance; }
+        PONCA_MULTIARCH inline Scalar descentDistanceThreshold() const { return m_squared_distance; }
 
         /// \brief Index of the nearest neighbor
         Index m_nearest {-1};
@@ -285,23 +284,22 @@ struct  OUT_TYPE##PointQuery : Query<QueryInputIsPosition<DataPoint>,           
         using OutputParameter = Index;
 
         /// \brief Default constructor that initialize the output parameter value
-        inline QueryOutputIsKNearest(OutputParameter k = 0) : m_queue(k) {}
+        PONCA_MULTIARCH inline QueryOutputIsKNearest(OutputParameter k = 0) : m_queue(k) {}
 
         /// \brief Access operator that resets the output parameter
-        inline void operator() (OutputParameter k) { m_queue = limited_priority_queue<IndexSquaredDistance<Index, Scalar>>(k); }
+        PONCA_MULTIARCH inline void operator() (OutputParameter k) { m_queue = limited_priority_queue<IndexSquaredDistance<Index, Scalar>>(k); }
 
         /// \brief Access to the priority queue storing the neighbors
-        inline limited_priority_queue<IndexSquaredDistance<Index, Scalar>> &queue() { return m_queue; }
+        PONCA_MULTIARCH inline limited_priority_queue<IndexSquaredDistance<Index, Scalar>> &queue() { return m_queue; }
 
     protected:
         /// \brief Reset Query for a new search
-        void reset() {
-            PONCA_MULTIARCH_STD_MATH(numeric_limits);
+        PONCA_MULTIARCH void reset() {
             m_queue.clear();
-            m_queue.push({-1, numeric_limits<Scalar>::max()});
+            m_queue.push({-1, PONCA_MULTIARCH_CU_STD_NAMESPACE(numeric_limits)<Scalar>::max()});
         }
         /// \brief Distance threshold used during tree descent to select nodes to explore
-        inline Scalar descentDistanceThreshold() const { return m_queue.bottom().squared_distance; }
+        PONCA_MULTIARCH inline Scalar descentDistanceThreshold() const { return m_queue.bottom().squared_distance; }
         /// \brief Queue storing the neighbors
         limited_priority_queue<IndexSquaredDistance<Index, Scalar>> m_queue;
     };
@@ -325,17 +323,17 @@ struct  OUT_TYPE##PointQuery : Query<QueryInputIsPosition<DataPoint>,           
                       "QueryInType must inherit Ponca::QueryInputBase");
 
         /// \brief Default constructor that initialize the input parameter only
-        inline Query(const typename QueryInType::InputType &in)
+        PONCA_MULTIARCH inline Query(const typename QueryInType::InputType &in)
                 : QueryInType(in), QueryOutType() {}
 
         /// \brief Default constructor that initialize the input and output parameters
-        inline Query(const typename QueryOutType::OutputParameter &outParam,
+        PONCA_MULTIARCH inline Query(const typename QueryOutType::OutputParameter &outParam,
                      const typename QueryInType::InputType &in)
                 : QueryOutType(outParam), QueryInType(in) {}
 
         /// \brief Access operator that resets the input and output parameters
         template<typename Base, typename... outputType>
-        inline Base& operator()(const typename QueryInType::InputType &in, outputType&&... out){
+        PONCA_MULTIARCH inline Base& operator()(const typename QueryInType::InputType &in, outputType&&... out){
             QueryInType:: operator()(in);
             QueryOutType::operator()(std::forward<outputType>(out)...);
             return *((Base*)(this));
@@ -343,7 +341,7 @@ struct  OUT_TYPE##PointQuery : Query<QueryInputIsPosition<DataPoint>,           
 
         /// \brief Access operator that resets the input parameter only
         template<typename Base>
-        inline Base& operator()(const typename QueryInType::InputType &in){
+        PONCA_MULTIARCH inline Base& operator()(const typename QueryInType::InputType &in){
             QueryInType:: operator()(in);
             return *((Base*)(this));
         }

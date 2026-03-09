@@ -10,7 +10,7 @@
 #include "../../../Common/Containers/stack.h"
 
 namespace Ponca {
-template <typename Traits> class KdTreeBase;
+template <typename Traits> class StaticKdTreeBase;
 
 /*!
  * \brief Query object that provides a method to search neighbors on the KdTree depending on a distance threshold.
@@ -26,17 +26,17 @@ public:
     using Scalar     = typename DataPoint::Scalar;
     using VectorType = typename DataPoint::VectorType;
 
-    explicit inline KdTreeQuery(const KdTreeBase<Traits>* kdtree) : m_kdtree( kdtree ), m_stack() {}
+    PONCA_MULTIARCH explicit inline KdTreeQuery(const StaticKdTreeBase<Traits>* kdtree) : m_kdtree( kdtree ), m_stack() {}
 
 protected:
     /// \brief Init stack for a new search
-    inline void reset() {
+    PONCA_MULTIARCH inline void reset() {
         m_stack.clear();
         m_stack.push({0,0});
     }
 
     /// [KdTreeQuery kdtree type]
-    const KdTreeBase<Traits>* m_kdtree { nullptr };
+    const StaticKdTreeBase<Traits>* m_kdtree { nullptr };
     /// [KdTreeQuery kdtree type]
     Stack<IndexSquaredDistance<IndexType, Scalar>, 2 * Traits::MAX_DEPTH> m_stack;
 
@@ -46,7 +46,7 @@ protected:
             typename DescentDistanceThresholdFunctor,
             typename SkipIndexFunctor,
             typename ProcessNeighborFunctor>
-    bool searchInternal(const VectorType& point,
+    PONCA_MULTIARCH bool searchInternal(const VectorType& point,
                          LeafPreparationFunctor prepareLeafTraversal,
                          DescentDistanceThresholdFunctor descentDistanceThreshold,
                          SkipIndexFunctor skipFunctor,
@@ -56,7 +56,7 @@ protected:
         const auto& nodes  = m_kdtree->nodes();
         const auto& points = m_kdtree->points();
 
-        if (nodes.empty() || points.empty() || m_kdtree->sample_count() == 0)
+        if (m_kdtree->nodeCount() == 0 || m_kdtree->pointCount() == 0 || m_kdtree->sampleCount() == 0)
             return false;
 
         while(!m_stack.empty())

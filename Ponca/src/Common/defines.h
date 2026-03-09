@@ -20,8 +20,10 @@
 #ifdef __CUDACC__
 # include <cuda.h>
 # define PONCA_MULTIARCH __host__ __device__
+# define PONCA_MULTIARCH_HOST __host__
 #else
 # define PONCA_MULTIARCH
+# define PONCA_MULTIARCH_HOST
 
 // GCC: compile with -std=c++0x
 # if defined(__GNUC__) && ((__GNUC__ == 4 && __GNUC_MINOR__ >= 6) || (__GNUC__ >= 5))

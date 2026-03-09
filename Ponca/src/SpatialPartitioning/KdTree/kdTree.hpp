@@ -7,51 +7,46 @@
 // KdTree ----------------------------------------------------------------------
 
 template<typename Traits>
-template<typename PointUserContainer, typename Converter>
-inline void KdTreeBase<Traits>::build(PointUserContainer&& points, Converter c)
+template<typename PointUserContainer, typename PointConverter>
+PONCA_MULTIARCH_HOST inline void KdTreeBase<Traits>::build(PointUserContainer&& points, PointConverter c)
 {
-    IndexContainer ids(points.size());
+    IndexContainer ids (points.size());
     std::iota(ids.begin(), ids.end(), IndexType(0));
     this->buildWithSampling(std::forward<PointUserContainer>(points), std::move(ids), std::move(c));
 }
 
 template<typename Traits>
-void KdTreeBase<Traits>::clear()
+PONCA_MULTIARCH_HOST [[nodiscard]] inline bool StaticKdTreeBase<Traits>::valid() const
 {
-    m_points.clear();
-    m_nodes.clear();
-    m_indices.clear();
-    m_leaf_count = 0;
-}
+    if (m_bufs.points_size == 0)
+        return m_bufs.nodes_size == 0 && m_bufs.indices_size == 0;
 
-template<typename Traits>
-bool KdTreeBase<Traits>::valid() const
-{
-    if (m_points.empty())
-        return m_nodes.empty() && m_indices.empty();
-
-    if(m_nodes.empty() || m_indices.empty())
+    if(m_bufs.nodes_size == 0 || m_bufs.indices_size == 0)
     {
+        std::cerr << "KdTree validation check failed in " << __FILE__ << " (" << __LINE__ << ")" << std::endl;
         return false;
     }
 
     std::vector<bool> b(pointCount(), false);
-    for(IndexType idx : m_indices)
+    for(unsigned int i = 0; i < sampleCount(); ++i)
     {
+        const int idx = m_bufs.indices[i];
         if(idx < 0 || pointCount() <= idx || b[idx])
         {
+            std::cerr << "KdTree validation check failed in " << __FILE__ << " (" << __LINE__ << ")" << std::endl;
             return false;
         }
         b[idx] = true;
     }
 
-    for(NodeIndexType n=0;n<node_count();++n)
+    for(NodeIndexType n=0;n<nodeCount();++n)
     {
-        const NodeType& node = m_nodes[n];
+        const NodeType& node = m_bufs.nodes[n];
         if(node.is_leaf())
         {
-            if(sample_count() <= node.leaf_start() || node.leaf_start()+node.leaf_size() > sample_count())
+            if(sampleCount() <= node.leaf_start() || node.leaf_start()+node.leaf_size() > sampleCount())
             {
+                std::cerr << "KdTree validation check failed in " << __FILE__ << " (" << __LINE__ << ")" << std::endl;
                 return false;
             }
         }
@@ -59,10 +54,12 @@ bool KdTreeBase<Traits>::valid() const
         {
             if(node.inner_split_dim() < 0 || DataPoint::Dim-1 < node.inner_split_dim())
             {
+                std::cerr << "KdTree validation check failed in " << __FILE__ << " (" << __LINE__ << ")" << std::endl;
                 return false;
             }
-            if(node_count() <= node.inner_first_child_id() || node_count() <= node.inner_first_child_id()+1)
+            if(nodeCount() <= node.inner_first_child_id() || nodeCount() <= node.inner_first_child_id()+1)
             {
+                std::cerr << "KdTree validation check failed in " << __FILE__ << " (" << __LINE__ << ")" << std::endl;
                 return false;
             }
         }
@@ -72,15 +69,15 @@ bool KdTreeBase<Traits>::valid() const
 }
 
 template<typename Traits>
-void KdTreeBase<Traits>::print(std::ostream& os, bool verbose) const
+PONCA_MULTIARCH_HOST inline void StaticKdTreeBase<Traits>::print(std::ostream& os, bool verbose) const
 {
     os << "KdTree:";
     os << "\n  MaxNodes: " << MAX_NODE_COUNT;
     os << "\n  MaxPoints: " << MAX_POINT_COUNT;
     os << "\n  MaxDepth: " << MAX_DEPTH;
     os << "\n  PointCount: " << pointCount();
-    os << "\n  SampleCount: " << sample_count();
-    os << "\n  NodeCount: " << node_count();
+    os << "\n  SampleCount: " << sampleCount();
+    os << "\n  NodeCount: " << nodeCount();
 
     if (!verbose)
     {
@@ -89,17 +86,17 @@ void KdTreeBase<Traits>::print(std::ostream& os, bool verbose) const
 
     os << "\n  Samples: [";
     static constexpr IndexType SAMPLES_PER_LINE = 10;
-    for (IndexType i = 0; i < sample_count(); ++i)
+    for (IndexType i = 0; i < sampleCount(); ++i)
     {
         os << (i == 0 ? "" : ",");
         os << (i % SAMPLES_PER_LINE == 0 ? "\n    " : " ");
-        os << m_indices[i];
+        os << m_bufs.indices[i];
     }
 
     os << "]\n  Nodes:";
-    for (NodeIndexType n = 0; n < node_count(); ++n)
+    for (NodeIndexType n = 0; n < nodeCount(); ++n)
     {
-        const NodeType& node = m_nodes[n];
+        const NodeType& node = m_bufs.nodes[n];
         if (node.is_leaf())
         {
             os << "\n    - Type: Leaf";
@@ -117,55 +114,56 @@ void KdTreeBase<Traits>::print(std::ostream& os, bool verbose) const
 }
 
 template<typename Traits>
-template<typename PointUserContainer, typename IndexUserContainer, typename Converter>
-inline void KdTreeBase<Traits>::buildWithSampling(PointUserContainer&& points,
-                                                  IndexUserContainer sampling,
-                                                  Converter c)
-{
-    PONCA_DEBUG_ASSERT(static_cast<IndexType>(points.size()) <= MAX_POINT_COUNT);
-    this->clear();
+template<typename PointUserContainer, typename IndexUserContainer, typename PointConverter>
+PONCA_MULTIARCH_HOST inline void KdTreeBase<Traits>::buildWithSampling(
+    PointUserContainer&& points, IndexUserContainer&& sampling, PointConverter c
+) {
+    PONCA_DEBUG_ASSERT(static_cast<IndexType>(Base::pointCount()) <= Base::MAX_POINT_COUNT);
+    Base::m_leaf_count = 0;
 
     // Move, copy or convert input samples
-    c(std::forward<PointUserContainer>(points), m_points);
+    c(std::forward<PointUserContainer>(points), Base::m_bufs.points);
+    Base::m_bufs.points_size = points.size();
 
-    m_nodes = NodeContainer();
-    m_nodes.reserve(4 * pointCount() / m_min_cell_size);
-    m_nodes.emplace_back();
+    Base::m_bufs.indices_size = sampling.size();
+    Base::m_bufs.indices      = std::move(sampling);
 
-    m_indices = std::move(sampling);
+    Base::m_bufs.nodes.reserve(4 * Base::pointCount() / Base::m_min_cell_size);
+    Base::m_bufs.nodes.emplace_back();
 
-    this->buildRec(0, 0, sample_count(), 1);
+    this->buildRec(0, 0, Base::sampleCount(), 1);
+    Base::m_bufs.nodes_size   = Base::m_bufs.nodes.size();
 
     PONCA_DEBUG_ASSERT(this->valid());
 }
 
 template<typename Traits>
-void KdTreeBase<Traits>::buildRec(NodeIndexType node_id, IndexType start, IndexType end, int level)
+PONCA_MULTIARCH_HOST inline void KdTreeBase<Traits>::buildRec(NodeIndexType node_id, IndexType start, IndexType end, int level)
 {
-    NodeType& node = m_nodes[node_id];
+    NodeType& node = Base::m_bufs.nodes[node_id];
     AabbType aabb;
     for(IndexType i=start; i<end; ++i)
-        aabb.extend(m_points[m_indices[i]].pos());
+        aabb.extend(Base::m_bufs.points[Base::m_bufs.indices[i]].pos());
 
     node.set_is_leaf(
-        end-start <= m_min_cell_size ||
+        end-start <= Base::m_min_cell_size ||
         level >= Traits::MAX_DEPTH ||
         // Since we add 2 nodes per inner node we need to stop if we can't add
         // them both
-        static_cast<NodeIndexType>(m_nodes.size()) > MAX_NODE_COUNT - 2);
+        static_cast<NodeIndexType>(Base::m_bufs.nodes.size()) > Base::MAX_NODE_COUNT - 2);
 
     node.configure_range(start, end-start, aabb);
     if (node.is_leaf())
     {
-        ++m_leaf_count;
+        ++Base::m_leaf_count;
     }
     else
     {
         IndexType split_dim = 0;
         (Scalar(0.5) * aabb.diagonal()).maxCoeff(&split_dim);
-        node.configure_inner(aabb.center()[split_dim], static_cast<IndexType>(m_nodes.size()), split_dim);
-        m_nodes.emplace_back();
-        m_nodes.emplace_back();
+        node.configure_inner(aabb.center()[split_dim], static_cast<IndexType>(Base::m_bufs.nodes.size()), split_dim);
+        Base::m_bufs.nodes.emplace_back();
+        Base::m_bufs.nodes.emplace_back();
 
         IndexType mid_id = this->partition(start, end, split_dim, node.inner_split_value());
         buildRec(node.inner_first_child_id(), start, mid_id, level+1);
@@ -174,18 +172,17 @@ void KdTreeBase<Traits>::buildRec(NodeIndexType node_id, IndexType start, IndexT
 }
 
 template<typename Traits>
-auto KdTreeBase<Traits>::partition(IndexType start, IndexType end, int dim, Scalar value)
+PONCA_MULTIARCH_HOST [[nodiscard]] inline auto KdTreeBase<Traits>::partition(IndexType start, IndexType end, int dim, Scalar value)
     -> IndexType
 {
-    const auto& points = m_points;
-    auto& indices  = m_indices;
+    const auto& points = Base::m_bufs.points;
     
-    auto it = std::partition(indices.begin()+start, indices.begin()+end, [&](IndexType i)
+    auto it = std::partition(std::begin(Base::m_bufs.indices)+start, std::begin(Base::m_bufs.indices)+end, [&](IndexType i)
     {
         return points[i].pos()[dim] < value;
     });
 
-    auto distance = std::distance(m_indices.begin(), it);
+    auto distance = std::distance(std::begin(Base::m_bufs.indices), it);
     
     return static_cast<IndexType>(distance);
 }

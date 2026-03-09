@@ -23,7 +23,7 @@ struct IndexSquaredDistance
     Scalar squared_distance { PONCA_MULTIARCH_CU_STD_NAMESPACE(numeric_limits)<Scalar>::max() };
 
     /// Comparison operator based on squared_distance
-    inline bool operator < (const IndexSquaredDistance& other) const
+    PONCA_MULTIARCH inline bool operator < (const IndexSquaredDistance& other) const
     { return squared_distance < other.squared_distance; }
 };
 

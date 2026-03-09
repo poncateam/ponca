@@ -3,12 +3,14 @@ Ponca changelog
 
 --------------------------------------------------------------------------------
 Current head (v.2.0.alpha2 RC)
-This release introduces a major rework of the curvature estimation framework, and several minors improvements and fixes.
+This release introduces a major rework of the curvature estimation framework, improve Cuda support for KdTrees, and
+introduces several bug fixes and minors improvements.
 
 - API
     - [fitting] Refactor curvature estimation API (#201) : remove deadcode, add weingarten map and fundamental forms.
     - [fitting] Refactor MongePatch-related classes (#201) : add Heightfields, separate patch definition and fitting
     - [fitting] Introduce limited reflection methods (#201)
+    - [spatialPartitioning] Refactor KdTree classes to make it usable in cuda kernels (#242)
 
 - Bug-fixes and code improvements
     - [fitting] Fix issues when converting vectors between local and global frames (#201)
@@ -26,9 +28,11 @@ This release introduces a major rework of the curvature estimation framework, an
 
 - Examples
     - [all] Update according to API changes (#201)
+    - [spatialPartitioning] Add cuda examples + cuda utils (#242)
 
 - Docs
     - [doc] Update doc according to recent API changes and new curvature estimators (#201)
+    - [doc] Add cuda examples and extend Spatial Partitioning package description (#242)
 
 --------------------------------------------------------------------------------
 v.2.0.alpha1
