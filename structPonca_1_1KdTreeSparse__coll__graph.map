@@ -1,11 +1,16 @@
 <map id="Ponca::KdTreeSparse&lt; DataPoint &gt;" name="Ponca::KdTreeSparse&lt; DataPoint &gt;">
-<area shape="rect" id="Node000001" title="[KdTreeDense type definition]" alt="" coords="52,1376,201,1456"/>
-<area shape="rect" id="Node000002" href="$classPonca_1_1KdTreeSparseBase.html" title=" " alt="" coords="27,1132,227,1327"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="129,1341,129,1376,124,1376,124,1341"/>
-<area shape="rect" id="Node000003" href="$classPonca_1_1KdTreeBase.html" title="[KdTreeSparse type definition]" alt="" coords="5,555,205,1055"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="121,1069,124,1131,119,1132,116,1069"/>
-<area shape="rect" id="Node000004" href="$classPonca_1_1KdTreeSparseBase.html" title="Customizable base class for KdTreeSparse datastructure." alt="" coords="229,715,429,895"/>
-<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="288,909,220,1056,181,1133,176,1131,215,1054,283,907"/>
-<area shape="rect" id="Node000005" href="$classPonca_1_1KdTreeBase.html" title="[KdTreeSparse type definition]" alt="" coords="229,5,429,505"/>
-<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="332,519,332,714,327,714,327,519"/>
+<area shape="rect" id="Node000001" title="Public interface for sparse KdTree datastructure." alt="" coords="31,1627,180,1707"/>
+<area shape="rect" id="Node000002" href="$classPonca_1_1KdTreeSparseBase.html" title=" " alt="" coords="5,1383,205,1577"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="108,1591,108,1626,103,1626,103,1591"/>
+<area shape="rect" id="Node000003" href="$classPonca_1_1KdTreeBase.html" title=" " alt="" coords="7,921,169,1101"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="94,1115,104,1383,99,1383,89,1115"/>
+<area shape="rect" id="Node000004" href="$classPonca_1_1StaticKdTreeBase.html" title="Customizable static base class for KdTree datastructure implementations." alt="" coords="13,268,213,668"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="106,682,95,921,89,921,101,682"/>
+<area shape="rect" id="Node000007" href="$classPonca_1_1KdTreeBase.html" title=" " alt="" coords="138,717,299,897"/>
+<area shape="poly" id="edge7_Node000007_Node000004" title=" " alt="" coords="182,680,193,717,188,718,177,682"/>
+<area shape="rect" id="Node000005" href="$structPonca_1_1StaticKdTreeBase_1_1Buffers.html" title="Internal structure storing all the buffers used by the KdTree." alt="" coords="26,5,201,205"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="116,206,116,252,111,252,111,206"/>
+<area shape="rect" id="Node000006" href="$classPonca_1_1KdTreeSparseBase.html" title="Customizable base class for KdTreeSparse datastructure." alt="" coords="121,1125,321,1305"/>
+<area shape="poly" id="edge5_Node000002_Node000006" title=" " alt="" coords="179,1319,150,1384,146,1381,174,1317"/>
+<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="222,911,223,1125,218,1125,217,911"/>
 </map>

@@ -1,9 +1,11 @@
 <map id="Ponca::KdTreeDenseBase&lt; Traits &gt;" name="Ponca::KdTreeDenseBase&lt; Traits &gt;">
-<area shape="rect" id="Node000001" title="Customizable base class for dense KdTree datastructure." alt="" coords="16,555,195,655"/>
-<area shape="rect" id="Node000003" href="$classPonca_1_1KdTreeDenseBase.html" title=" " alt="" coords="16,732,195,847"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="108,668,108,731,103,731,103,668"/>
-<area shape="rect" id="Node000002" href="$classPonca_1_1KdTreeBase.html" title="[KdTreeSparse type definition]" alt="" coords="5,5,205,505"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="108,519,108,554,103,554,103,519"/>
-<area shape="rect" id="Node000004" href="$structPonca_1_1KdTreeDense.html" title="[KdTree type definition]" alt="" coords="32,896,179,976"/>
-<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="108,860,108,896,103,896,103,860"/>
+<area shape="rect" id="Node000001" title="Customizable base class for dense KdTree datastructure." alt="" coords="16,704,195,804"/>
+<area shape="rect" id="Node000004" href="$classPonca_1_1KdTreeDenseBase.html" title=" " alt="" coords="16,881,195,996"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="108,818,108,881,103,881,103,818"/>
+<area shape="rect" id="Node000002" href="$classPonca_1_1KdTreeBase.html" title=" " alt="" coords="25,475,186,655"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="108,669,108,704,103,704,103,669"/>
+<area shape="rect" id="Node000003" href="$classPonca_1_1StaticKdTreeBase.html" title="Customizable static base class for KdTree datastructure implementations." alt="" coords="5,5,205,425"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="108,440,108,474,103,474,103,440"/>
+<area shape="rect" id="Node000005" href="$structPonca_1_1KdTreeDense.html" title="Public interface for dense KdTree datastructure." alt="" coords="32,1045,179,1125"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="108,1010,108,1045,103,1045,103,1010"/>
 </map>

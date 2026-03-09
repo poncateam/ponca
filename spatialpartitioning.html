@@ -51,7 +51,7 @@ MathJax.Hub.Config({
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Ponca
-   &#160;<span id="projectnumber">295107709cdbc413c5361806cfd32c92df42155a</span>
+   &#160;<span id="projectnumber">eff04be8be0ed1ccd36b694a34ae55d988e046fb</span>
    </div>
    <div id="projectbrief">Point Cloud Analysis library</div>
   </td>
@@ -130,7 +130,8 @@ $(document).ready(function(){initNavTree('spatialpartitioning.html',''); initRes
 <li class="level3"><a href="#spatialpartitioning_kdtree_usage_samples_and_indexing">Samples and indexing</a></li>
 </ul>
 </li>
-<li class="level2"><a href="#spatialpartitioning_kdtree_extending">Extending KdTree</a></li>
+<li class="level2"><a href="#spatialpartitioning_kdtree_cuda">Usage in Cuda kernels</a></li>
+<li class="level2"><a href="#spatialpartitioning_kdtree_extending">Customizing the KdTree using &lt;tt&gt;Traits&lt;/tt&gt;</a></li>
 <li class="level2"><a href="#spatialpartitioning_kdtree_usage_which_class">Usage of the convenience classes KdTree and KdTreeBase</a></li>
 </ul>
 </li>
@@ -148,7 +149,7 @@ Introduction</h1>
 <h2><a class="anchor" id="spatialpartitioning_intro_structures"></a>
 Datastructures</h2>
 <ul>
-<li><a class="el" href="structPonca_1_1KdTreeDense.html" title="[KdTree type definition]">Ponca::KdTreeDense</a> and <a class="el" href="structPonca_1_1KdTreeSparse.html" title="[KdTreeDense type definition]">Ponca::KdTreeSparse</a>: binary search trees (<a href="https://en.wikipedia.org/wiki/K-d_tree">https://en.wikipedia.org/wiki/K-d_tree</a>). Both classes inherit from <a class="el" href="structPonca_1_1KdTree.html" title="Abstract KdTree type with KdTreeDefaultTraits.">Ponca::KdTree</a>.</li>
+<li><a class="el" href="structPonca_1_1KdTreeDense.html" title="Public interface for dense KdTree datastructure.">Ponca::KdTreeDense</a> and <a class="el" href="structPonca_1_1KdTreeSparse.html" title="Public interface for sparse KdTree datastructure.">Ponca::KdTreeSparse</a>: binary search trees (<a href="https://en.wikipedia.org/wiki/K-d_tree">https://en.wikipedia.org/wiki/K-d_tree</a>). Both classes inherit from <a class="el" href="structPonca_1_1KdTree.html" title="Abstract KdTree type with KdTreeDefaultTraits.">Ponca::KdTree</a>. KdTrees can be also used in <a class="el" href="spatialpartitioning.html#spatialpartitioning_kdtree_cuda">cuda kernels</a>.</li>
 <li><a class="el" href="namespacePonca.html#ab7bf93ae8146ea5f4471c1d06fa8895e" title="Public interface for KnnGraph datastructure.">Ponca::KnnGraph</a> : a nearest neighbor graph (<a href="https://en.wikipedia.org/wiki/nearestNeighbor_graph">https://en.wikipedia.org/wiki/nearestNeighbor_graph</a>). Constructed from a <a class="el" href="structPonca_1_1KdTree.html" title="Abstract KdTree type with KdTreeDefaultTraits.">Ponca::KdTree</a>.</li>
 </ul>
 <p>All datastructures are available in arbitrary dimensions.</p>
@@ -181,15 +182,15 @@ Specifications</h2>
 <p>In <a class="el" href="namespacePonca.html" title="This Source Code Form is subject to the terms of the Mozilla Public License, v.">Ponca</a>, the kd-tree is a binary search tree that</p><ul>
 <li>is balanced (cuts at the median at each node),</li>
 <li>cuts along the dimension that extends the most at each node,</li>
-<li>has a maximal depth (<a class="el" href="classPonca_1_1KdTreeBase.html#ab88293dfcf4e526d27ddd5e9ce70b4f1" title="The maximum depth of the kd-tree.">KdTreeBase::MAX_DEPTH</a>),</li>
-<li>has a minimal number of points per leaf (<a class="el" href="classPonca_1_1KdTreeBase.html#ac738881c29dd526796a08f4b3947711b" title="Minimal number of points per leaf.">KdTreeBase::m_min_cell_size</a>),</li>
+<li>has a maximal depth (<a class="el" href="classPonca_1_1StaticKdTreeBase.html#acd00329593ce36be7289c6a5d10c67f6" title="The maximum depth of the kd-tree.">KdTreeBase::MAX_DEPTH</a>),</li>
+<li>has a minimal number of points per leaf (<a class="el" href="classPonca_1_1StaticKdTreeBase.html#a37a9610c9b2aa61cf0b4f9d88e53c999" title="Minimal number of points per leaf.">KdTreeBase::m_min_cell_size</a>),</li>
 <li>only stores points in the leafs,</li>
 <li>uses depth-first search with a static stack for queries,</li>
 <li>keeps the initial order of points.</li>
 </ul>
 <h2><a class="anchor" id="spatialpartitioning_kdtree_usage"></a>
 Basic usage</h2>
-<p>The class <a class="el" href="structPonca_1_1KdTreeDense.html" title="[KdTree type definition]">Ponca::KdTreeDense</a> provides methods to construct a tree and query points neighborhoods. The class <a class="el" href="structPonca_1_1KdTreeSparse.html" title="[KdTreeDense type definition]">Ponca::KdTreeSparse</a> provides the same functionalities as its dense counterpart, but allows construction from a subset of points. They both share the same API with their abstract base class <a class="el" href="structPonca_1_1KdTree.html" title="Abstract KdTree type with KdTreeDefaultTraits.">KdTree</a>.</p>
+<p>The class <a class="el" href="structPonca_1_1KdTreeDense.html" title="Public interface for dense KdTree datastructure.">Ponca::KdTreeDense</a> provides methods to construct a tree and query points neighborhoods. The class <a class="el" href="structPonca_1_1KdTreeSparse.html" title="Public interface for sparse KdTree datastructure.">Ponca::KdTreeSparse</a> provides the same functionalities as its dense counterpart, but allows construction from a subset of points. They both share the same API with their abstract base class <a class="el" href="structPonca_1_1KdTree.html" title="Abstract KdTree type with KdTreeDefaultTraits.">KdTree</a>.</p>
 <h3><a class="anchor" id="spatialpartitioning_kdtree_usage_construction"></a>
 Construction</h3>
 <p>As for the other modules, the point type is defined by a template parameter <code>DataPoint</code>. At construction time, the coordinates are copied in the tree from a container provided by the caller. For instance, to generate a tree from a random point cloud: </p><div class="fragment"><div class="line">    std::vector&lt;DataPoint&gt; points(N);</div>
@@ -198,14 +199,14 @@ Construction</h3>
 <div class="line">    });</div>
 <div class="line">    <span class="comment">// build the k-d tree</span></div>
 <div class="line">    <a class="code hl_struct" href="structPonca_1_1KdTreeDense.html">Ponca::KdTreeDense&lt;DataPoint&gt;</a> kdtreeDense(points);</div>
-<div class="ttc" id="astructPonca_1_1KdTreeDense_html"><div class="ttname"><a href="structPonca_1_1KdTreeDense.html">Ponca::KdTreeDense</a></div><div class="ttdoc">[KdTree type definition]</div><div class="ttdef"><b>Definition</b> <a href="kdTree_8h_source.html#l00066">kdTree.h:66</a></div></div>
+<div class="ttc" id="astructPonca_1_1KdTreeDense_html"><div class="ttname"><a href="structPonca_1_1KdTreeDense.html">Ponca::KdTreeDense</a></div><div class="ttdoc">Public interface for dense KdTree datastructure.</div><div class="ttdef"><b>Definition</b> <a href="kdTree_8h_source.html#l00086">kdTree.h:86</a></div></div>
 </div><!-- fragment --><p>For convenience, it is possible to convert the custom input points to <code>DataPoint</code> using a converter.</p>
-<p>When using a <a class="el" href="structPonca_1_1KdTreeSparse.html" title="[KdTreeDense type definition]">Ponca::KdTreeSparse</a>, it is possible to provide a set of indices to sample a subset of the input point during the construction. Here, to randomly select half of the points: </p><div class="fragment"><div class="line">    std::vector&lt;int&gt; indices(N);</div>
+<p>When using a <a class="el" href="structPonca_1_1KdTreeSparse.html" title="Public interface for sparse KdTree datastructure.">Ponca::KdTreeSparse</a>, it is possible to provide a set of indices to sample a subset of the input point during the construction. Here, to randomly select half of the points: </p><div class="fragment"><div class="line">    std::vector&lt;int&gt; indices(N);</div>
 <div class="line">    std::vector&lt;int&gt; sampling(N / 2);</div>
 <div class="line">    std::iota(indices.begin(), indices.end(), 0);</div>
 <div class="line">    std::sample(indices.begin(), indices.end(), sampling.begin(), N / 2, std::mt19937(seed));</div>
 <div class="line">    <a class="code hl_struct" href="structPonca_1_1KdTreeSparse.html">Ponca::KdTreeSparse&lt;DataPoint&gt;</a> kdtreeSparse(points, sampling);</div>
-<div class="ttc" id="astructPonca_1_1KdTreeSparse_html"><div class="ttname"><a href="structPonca_1_1KdTreeSparse.html">Ponca::KdTreeSparse</a></div><div class="ttdoc">[KdTreeDense type definition]</div><div class="ttdef"><b>Definition</b> <a href="kdTree_8h_source.html#l00084">kdTree.h:84</a></div></div>
+<div class="ttc" id="astructPonca_1_1KdTreeSparse_html"><div class="ttname"><a href="structPonca_1_1KdTreeSparse.html">Ponca::KdTreeSparse</a></div><div class="ttdoc">Public interface for sparse KdTree datastructure.</div><div class="ttdef"><b>Definition</b> <a href="kdTree_8h_source.html#l00104">kdTree.h:104</a></div></div>
 </div><!-- fragment --><h3><a class="anchor" id="spatialpartitioning_kdtree_usage_queries"></a>
 Queries</h3>
 <p>As for other datastructures, queries are objects generated by the <a class="el" href="structPonca_1_1KdTree.html" title="Abstract KdTree type with KdTreeDefaultTraits.">KdTree</a>, and are designed as <code>Range</code>: accessing the neighbors requires to iterate over the query. Here an example of the k nearest neighbors search of the point of index <code>query_idx</code> using the kd tree </p><div class="fragment"><div class="line">    std::cout &lt;&lt; <span class="stringliteral">&quot;The &quot;</span> &lt;&lt; k &lt;&lt; <span class="stringliteral">&quot;-nearest neighbors of the point at index &quot;</span> &lt;&lt; query_idx &lt;&lt; <span class="stringliteral">&quot; are at indices: &quot;</span>;</div>
@@ -226,7 +227,7 @@ Queries</h3>
 <div class="line">        std::cout &lt;&lt; neighbor_idx &lt;&lt; <span class="stringliteral">&quot;, &quot;</span>;</div>
 <div class="line">    }</div>
 </div><!-- fragment --><p> The previous query is restricted to position based range query. To perform an index based research, a new query needs to be created. This is due to the fact that query returns object of it's own type, e.g., PointQuery or IndexQuery.</p>
-<p>Several query types are provided (see <a class="el" href="classPonca_1_1KdTreeBase.html" title="[KdTreeSparse type definition]">KdTreeBase</a> for related method list):</p><ul>
+<p>Several query types are provided (see <a class="el" href="classPonca_1_1KdTreeBase.html">KdTreeBase</a> for related method list):</p><ul>
 <li><a class="el" href="classPonca_1_1KdTreeKNearestQueryBase.html" title="Extension of the Query class that allows to read the result of a k-nearest neighbors search on the Kd...">KdTreeKNearestQueryBase</a>, specialized by KdTreeKNearestIndexQuery and KdTreeKNearestPointQuery</li>
 <li><a class="el" href="classPonca_1_1KdTreeNearestQueryBase.html" title="Extension of the Query class that allows to read the result of a nearest neighbor search on the KdTre...">KdTreeNearestQueryBase</a>, specialized by KdTreeNearestIndexQuery and KdTreeNearestPointQuery</li>
 <li><a class="el" href="classPonca_1_1KdTreeRangeQueryBase.html" title="Extension of the Query class that allows to read the result of a range neighbors search on the KdTree...">KdTreeRangeQueryBase</a>, specialized by KdTreeRangeIndexQuery and KdTreeRangePointQuery</li>
@@ -241,33 +242,60 @@ Queries</h3>
 <h3><a class="anchor" id="spatialpartitioning_kdtree_usage_samples_and_indexing"></a>
 Samples and indexing</h3>
 <p>There are two main ways of iterating over a <a class="el" href="structPonca_1_1KdTree.html" title="Abstract KdTree type with KdTreeDefaultTraits.">KdTree</a>: over points or over samples. Points are the underlying data storage, which the <a class="el" href="structPonca_1_1KdTree.html" title="Abstract KdTree type with KdTreeDefaultTraits.">KdTree</a> does not modify, while samples are a set of indices into the point storage that the <a class="el" href="structPonca_1_1KdTree.html" title="Abstract KdTree type with KdTreeDefaultTraits.">KdTree</a> reorders internally when it is constructed to keep track of spatial partitions.</p>
-<p>We call indices into the underlying point storage <em>point indices</em> and indices into the sample storage <em>sample indices</em>. Note that the sample storage stores point indices: sample number 0 may, for example, refer to point number 25. The point storage can be accessed with KdTreeBase::points, while the array of samples can be accessed with KdTreeBase::samples.</p>
-<p>While most of the <a class="el" href="structPonca_1_1KdTree.html" title="Abstract KdTree type with KdTreeDefaultTraits.">KdTree</a> API is built on using point indices, it can still be useful to iterate over samples instead (e.g. when using a <a class="el" href="structPonca_1_1KdTreeSparse.html" title="[KdTreeDense type definition]">Ponca::KdTreeSparse</a>). If you ever need to convert sample indices to point indices, see <a class="el" href="classPonca_1_1KdTreeBase.html#acb6c91c423095828ecc962f100299fdd" title="Return the point index associated with the specified sample index.">KdTreeBase::pointFromSample</a> (see also <a class="el" href="classPonca_1_1KdTreeBase.html#ae96c91cd3fbf619a4204c92b9f8dc134" title="Return the DataPoint associated with the specified sample index.">KdTreeBase::pointDataFromSample</a>).</p>
+<p>We call indices into the underlying point storage <em>point indices</em> and indices into the sample storage <em>sample indices</em>. Note that the sample storage stores point indices: sample number 0 may, for example, refer to point number 25. The point storage can be accessed with <a class="el" href="classPonca_1_1StaticKdTreeBase.html#a81edf7916e1829032bd72e447aa9b90c" title="Get the internal point container.">KdTreeBase::points</a>, while the array of samples can be accessed with <a class="el" href="classPonca_1_1StaticKdTreeBase.html#a2ac29b44c8dbcb174a9d70f7b7a9b74a" title="Get the internal indice container.">KdTreeBase::samples</a>.</p>
+<p>While most of the <a class="el" href="structPonca_1_1KdTree.html" title="Abstract KdTree type with KdTreeDefaultTraits.">KdTree</a> API is built on using point indices, it can still be useful to iterate over samples instead (e.g. when using a <a class="el" href="structPonca_1_1KdTreeSparse.html" title="Public interface for sparse KdTree datastructure.">Ponca::KdTreeSparse</a>). If you ever need to convert sample indices to point indices, see <a class="el" href="classPonca_1_1StaticKdTreeBase.html#a07c35bf639d6347a73026342a629a563" title="Return the point index associated with the specified sample index.">KdTreeBase::pointFromSample</a> (see also <a class="el" href="classPonca_1_1StaticKdTreeBase.html#a79b1db73160730593df4116b6e05e801" title="Return the DataPoint associated with the specified sample index.">KdTreeBase::pointDataFromSample</a>).</p>
+<h2><a class="anchor" id="spatialpartitioning_kdtree_cuda"></a>
+Usage in Cuda kernels</h2>
+<p><a class="el" href="namespacePonca.html" title="This Source Code Form is subject to the terms of the Mozilla Public License, v.">Ponca</a> allows to build a <a class="el" href="structPonca_1_1KdTree.html" title="Abstract KdTree type with KdTreeDefaultTraits.">KdTree</a> on the CPU, bind its buffers to the GPU, and build objects of that bind the <a class="el" href="structPonca_1_1KdTree.html" title="Abstract KdTree type with KdTreeDefaultTraits.">KdTree</a> API in top of the mapped buffers.</p>
+<p>This is illustrated in the example <code>examples/cuda/ponca_fit_kdtree.cu</code>:</p>
+<ul>
+<li>[host] Generate <a class="el" href="structPonca_1_1KdTree.html" title="Abstract KdTree type with KdTreeDefaultTraits.">KdTree</a> on the CPU: <div class="fragment"><div class="line">    Ponca::KdTreeDense&lt;DataPoint&gt; kdtree(points);</div>
+</div><!-- fragment --></li>
+<li>[host] Copy the <a class="el" href="structPonca_1_1KdTree.html" title="Abstract KdTree type with KdTreeDefaultTraits.">KdTree</a> buffers to the GPU: <div class="fragment"><div class="line">    using BuffersGPU = typename KdTreeGPU&lt;DataPoint&gt;::Buffers;</div>
+<div class="line">    BuffersGPU* kdtreeBuffersDevice;</div>
+<div class="line">    CUDA_CHECK(cudaMalloc(&amp;kdtreeBuffersDevice, sizeof(BuffersGPU)));</div>
+<div class="line">    BuffersGPU hostBuffersHoldingDevicePointers; // Host Buffers referencing data on the device, used to free memory</div>
+<div class="line">    deepCopyBuffersToDevice&lt;Ponca::KdTreePointerTraits&lt;DataPoint&gt;&gt;(kdtree.buffers(), hostBuffersHoldingDevicePointers, kdtreeBuffersDevice);</div>
+</div><!-- fragment --></li>
+<li>[device] In the kernel, create and query the <a class="el" href="structPonca_1_1KdTree.html" title="Abstract KdTree type with KdTreeDefaultTraits.">KdTree</a>: <div class="fragment"><div class="line">    KdTreeGPU&lt;DataPoint&gt; kdtree(*buffers);</div>
+</div><!-- fragment --> <div class="fragment"><div class="line">    fit.computeWithIds(kdtree.rangeNeighbors(i, analysisScale), kdtree.points());</div>
+</div><!-- fragment --></li>
+<li>[host] Free GPU memory.</li>
+</ul>
+<p>The type <code>KdTreeGPU</code> is defined as </p><div class="fragment"><div class="line">/*! \brief A KdTree Type that can be run on the GPU</div>
+<div class="line"> *</div>
+<div class="line"> * \warning The KdTreeBase::build function cannot be used in the CUDA kernel,</div>
+<div class="line"> * because it still expects an STL-like container as an input.</div>
+<div class="line"> * This KdTree type is used to avoid the building process.</div>
+<div class="line"> */</div>
+<div class="line">template &lt;typename DataPoint&gt;</div>
+<div class="line">using KdTreeGPU = Ponca::StaticKdTreeBase&lt;Ponca::KdTreePointerTraits&lt;DataPoint&gt;&gt;;</div>
+</div><!-- fragment --><p>Internally, the class <a class="el" href="classPonca_1_1StaticKdTreeBase.html" title="Customizable static base class for KdTree datastructure implementations.">StaticKdTreeBase</a> is the base class of <a class="el" href="classPonca_1_1KdTreeBase.html">KdTreeBase</a>, and provide all the querying API without the building functionalities (except from an already existing set of <a class="el" href="structPonca_1_1StaticKdTreeBase_1_1Buffers.html" title="Internal structure storing all the buffers used by the KdTree.">StaticKdTreeBase::Buffers</a>). In order to be able to handle raw pointers in the Cuda kernels, the <code>KdTreeGPU</code> uses <a class="el" href="structPonca_1_1KdTreePointerTraits.html" title="Variant to the KdTree Traits type that uses pointers as internal storage instead of an STL-like conta...">KdTreePointerTraits</a>, which defines all the internal containers as raw pointers. In the above example, these pointers are generated by copying the content of a <code>std::vector</code> using <code>CudaMalloc</code> and <code>CudaMemcpy</code> (see method <code>deepCopyBuffersToDevice</code> in <code>examples/cuda/cuda_utils.cu</code>).</p>
 <h2><a class="anchor" id="spatialpartitioning_kdtree_extending"></a>
-Extending KdTree</h2>
-<p>The trees can be customized using <code>Traits</code>, to change containers and nodes types. <a class="el" href="structPonca_1_1KdTreeDefaultTraits.html" title="The default traits type used by the kd-tree.">KdTreeDefaultTraits</a> provides general-purpose <code>Traits</code> that fit most usages, and is directly used by <a class="el" href="structPonca_1_1KdTree.html" title="Abstract KdTree type with KdTreeDefaultTraits.">Ponca::KdTree</a>, <a class="el" href="structPonca_1_1KdTreeDense.html" title="[KdTree type definition]">Ponca::KdTreeDense</a> and <a class="el" href="structPonca_1_1KdTreeSparse.html" title="[KdTreeDense type definition]">Ponca::KdTreeSparse</a>: </p><div class="fragment"><div class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> DataPo<span class="keywordtype">int</span>&gt;</div>
+Customizing the KdTree using &lt;tt&gt;Traits&lt;/tt&gt;</h2>
+<p>The trees can be customized using <code>Traits</code>, to change containers and nodes types. <a class="el" href="structPonca_1_1KdTreeDefaultTraits.html" title="The default traits type used by the kd-tree.">KdTreeDefaultTraits</a> provides general-purpose <code>Traits</code> that fit most usages, and is directly used by <a class="el" href="structPonca_1_1KdTree.html" title="Abstract KdTree type with KdTreeDefaultTraits.">Ponca::KdTree</a>, <a class="el" href="structPonca_1_1KdTreeDense.html" title="Public interface for dense KdTree datastructure.">Ponca::KdTreeDense</a> and <a class="el" href="structPonca_1_1KdTreeSparse.html" title="Public interface for sparse KdTree datastructure.">Ponca::KdTreeSparse</a>: </p><div class="fragment"><div class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> DataPo<span class="keywordtype">int</span>&gt;</div>
 <div class="line"><span class="keyword">struct </span>KdTree : <span class="keyword">public</span> <a class="code hl_class" href="classPonca_1_1KdTreeBase.html">Ponca::KdTreeBase</a>&lt;KdTreeDefaultTraits&lt;DataPoint&gt;&gt;{};</div>
-<div class="ttc" id="aclassPonca_1_1KdTreeBase_html"><div class="ttname"><a href="classPonca_1_1KdTreeBase.html">Ponca::KdTreeBase</a></div><div class="ttdoc">[KdTreeSparse type definition]</div><div class="ttdef"><b>Definition</b> <a href="kdTree_8h_source.html#l00103">kdTree.h:104</a></div></div>
+<div class="ttc" id="aclassPonca_1_1KdTreeBase_html"><div class="ttname"><a href="classPonca_1_1KdTreeBase.html">Ponca::KdTreeBase</a></div><div class="ttdef"><b>Definition</b> <a href="kdTree_8h_source.html#l00469">kdTree.h:470</a></div></div>
 </div><!-- fragment --> <div class="fragment"><div class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> DataPo<span class="keywordtype">int</span>&gt;</div>
 <div class="line"><span class="keyword">struct </span>KdTreeDense : <span class="keyword">public</span> <a class="code hl_class" href="classPonca_1_1KdTreeDenseBase.html">Ponca::KdTreeDenseBase</a>&lt;KdTreeDefaultTraits&lt;DataPoint&gt;&gt;{};</div>
-<div class="ttc" id="aclassPonca_1_1KdTreeDenseBase_html"><div class="ttname"><a href="classPonca_1_1KdTreeDenseBase.html">Ponca::KdTreeDenseBase</a></div><div class="ttdoc">Customizable base class for dense KdTree datastructure.</div><div class="ttdef"><b>Definition</b> <a href="kdTree_8h_source.html#l00472">kdTree.h:473</a></div></div>
+<div class="ttc" id="aclassPonca_1_1KdTreeDenseBase_html"><div class="ttname"><a href="classPonca_1_1KdTreeDenseBase.html">Ponca::KdTreeDenseBase</a></div><div class="ttdoc">Customizable base class for dense KdTree datastructure.</div><div class="ttdef"><b>Definition</b> <a href="kdTree_8h_source.html#l00553">kdTree.h:554</a></div></div>
 </div><!-- fragment --> <div class="fragment"><div class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> DataPo<span class="keywordtype">int</span>&gt;</div>
 <div class="line"><span class="keyword">struct </span>KdTreeSparse : <a class="code hl_class" href="classPonca_1_1KdTreeSparseBase.html">Ponca::KdTreeSparseBase</a>&lt;KdTreeDefaultTraits&lt;DataPoint&gt;&gt;{};</div>
-<div class="ttc" id="aclassPonca_1_1KdTreeSparseBase_html"><div class="ttname"><a href="classPonca_1_1KdTreeSparseBase.html">Ponca::KdTreeSparseBase</a></div><div class="ttdoc">Customizable base class for KdTreeSparse datastructure.</div><div class="ttdef"><b>Definition</b> <a href="kdTree_8h_source.html#l00506">kdTree.h:507</a></div></div>
+<div class="ttc" id="aclassPonca_1_1KdTreeSparseBase_html"><div class="ttname"><a href="classPonca_1_1KdTreeSparseBase.html">Ponca::KdTreeSparseBase</a></div><div class="ttdoc">Customizable base class for KdTreeSparse datastructure.</div><div class="ttdef"><b>Definition</b> <a href="kdTree_8h_source.html#l00586">kdTree.h:587</a></div></div>
 </div><!-- fragment --><p>To use your own type of <code>Traits</code>, see <a class="el" href="structPonca_1_1KdTreeDefaultTraits.html" title="The default traits type used by the kd-tree.">KdTreeDefaultTraits</a> and <a class="el" href="classPonca_1_1KdTreeCustomizableNode.html" title="The node type used by default by the kd-tree.">KdTreeCustomizableNode</a> APIs. See also:</p><ul>
 <li><code>examples/cpp/ponca_customize_kdtree.cpp</code></li>
 </ul>
 <h2><a class="anchor" id="spatialpartitioning_kdtree_usage_which_class"></a>
 Usage of the convenience classes KdTree and KdTreeBase</h2>
-<p><a class="el" href="structPonca_1_1KdTree.html" title="Abstract KdTree type with KdTreeDefaultTraits.">KdTree</a> provides the common interface of <a class="el" href="structPonca_1_1KdTreeDense.html" title="[KdTree type definition]">KdTreeDense</a> and <a class="el" href="structPonca_1_1KdTreeSparse.html" title="[KdTreeDense type definition]">KdTreeSparse</a>. This class can be used to store or pass references/pointers that can be of either child type, see for instance: </p><div class="fragment"><div class="line">    <span class="comment">// Abstract pointer type that can receive KdTreeSparse or KdTreeDense objects</span></div>
+<p><a class="el" href="structPonca_1_1KdTree.html" title="Abstract KdTree type with KdTreeDefaultTraits.">KdTree</a> provides the common interface of <a class="el" href="structPonca_1_1KdTreeDense.html" title="Public interface for dense KdTree datastructure.">KdTreeDense</a> and <a class="el" href="structPonca_1_1KdTreeSparse.html" title="Public interface for sparse KdTree datastructure.">KdTreeSparse</a>. This class can be used to store or pass references/pointers that can be of either child type, see for instance: </p><div class="fragment"><div class="line">    <span class="comment">// Abstract pointer type that can receive KdTreeSparse or KdTreeDense objects</span></div>
 <div class="line">    <a class="code hl_struct" href="structPonca_1_1KdTree.html">Ponca::KdTree&lt;DataPoint&gt;</a> *kdtree {<span class="keyword">nullptr</span>};</div>
-<div class="ttc" id="astructPonca_1_1KdTree_html"><div class="ttname"><a href="structPonca_1_1KdTree.html">Ponca::KdTree</a></div><div class="ttdoc">Abstract KdTree type with KdTreeDefaultTraits.</div><div class="ttdef"><b>Definition</b> <a href="kdTree_8h_source.html#l00047">kdTree.h:47</a></div></div>
+<div class="ttc" id="astructPonca_1_1KdTree_html"><div class="ttname"><a href="structPonca_1_1KdTree.html">Ponca::KdTree</a></div><div class="ttdoc">Abstract KdTree type with KdTreeDefaultTraits.</div><div class="ttdef"><b>Definition</b> <a href="kdTree_8h_source.html#l00048">kdTree.h:48</a></div></div>
 </div><!-- fragment --> <div class="fragment"><div class="line">    <span class="comment">// Assign sparse</span></div>
 <div class="line">    kdtree = &amp;kdtreeSparse; <span class="comment">// Or kdtree = new Ponca::KdTreeSparse&lt;DataPoint&gt; (points, sampling);</span></div>
 </div><!-- fragment --> <div class="fragment"><div class="line">    <span class="comment">// Assign dense</span></div>
 <div class="line">    kdtree = &amp;kdtreeDense; <span class="comment">// Or kdtree = new Ponca::KdTreeDense&lt;DataPoint&gt; (points, sampling);</span></div>
-</div><!-- fragment --><p><a class="el" href="classPonca_1_1KdTreeBase.html" title="[KdTreeSparse type definition]">KdTreeBase</a> provides the same abstraction for arbitrary types of traits. When the type of <code>Traits</code> is not restricted, it is recommended to use <a class="el" href="classPonca_1_1KdTreeBase.html" title="[KdTreeSparse type definition]">KdTreeBase</a> to declare functions parameters or variables. In this example: </p><div class="fragment"><div class="line">    <span class="keyword">const</span> KdTreeBase&lt;Traits&gt;* m_kdtree { <span class="keyword">nullptr</span> };</div>
-</div><!-- fragment --><p> the variable <code>m_kdtree</code> can be either dense or sparse, and have any type of <code>Traits</code>.</p>
+</div><!-- fragment --><p><a class="el" href="classPonca_1_1KdTreeBase.html">KdTreeBase</a> and its base class <a class="el" href="classPonca_1_1StaticKdTreeBase.html" title="Customizable static base class for KdTree datastructure implementations.">StaticKdTreeBase</a> provide abstractions for arbitrary types of traits (constructible or read-only, respectively). When the type of <code>Traits</code> is arbitrary (but known at compile time), it is recommended to use one of these classes to declare functions parameters or variables. In the class KdTreeQuery&lt;Traits&gt; for instance, the link to the <a class="el" href="structPonca_1_1KdTree.html" title="Abstract KdTree type with KdTreeDefaultTraits.">KdTree</a> is stored as follows: </p><div class="fragment"><div class="line">    <span class="keyword">const</span> StaticKdTreeBase&lt;Traits&gt;* m_kdtree { <span class="keyword">nullptr</span> };</div>
+</div><!-- fragment --><p> Here, the variable <code>m_kdtree</code> can be either dense or sparse, and have any type of <code>Traits</code>.</p>
 <h1><a class="anchor" id="spatialpartitioning_knngraph"></a>
 KnnGraph</h1>
 <h2><a class="anchor" id="spatialpartitioning_knngraph_usage"></a>
@@ -277,7 +305,7 @@ Basic usage</h2>
 Construction</h3>
 <p>The graph is constructed from an existing <a class="el" href="structPonca_1_1KdTree.html" title="Abstract KdTree type with KdTreeDefaultTraits.">KdTree</a>, and the point collection is accessed through it (with no copy). Here an example from the test-suite where a graph is constructed, where only closest neighbors are connected: </p><div class="fragment"><div class="line">    <a class="code hl_class" href="classPonca_1_1KnnGraphBase.html">Ponca::KnnGraph&lt;DataPoint&gt;</a> knnGraph(kdtreeDense, k);</div>
 <div class="ttc" id="aclassPonca_1_1KnnGraphBase_html"><div class="ttname"><a href="classPonca_1_1KnnGraphBase.html">Ponca::KnnGraphBase</a></div><div class="ttdoc">Customizable base class for KnnGraph datastructure.</div><div class="ttdef"><b>Definition</b> <a href="knnGraph_8h_source.html#l00044">knnGraph.h:45</a></div></div>
-</div><!-- fragment --><dl class="section warning"><dt>Warning</dt><dd>At the moment, a KnnGraph can only be constructed from a <a class="el" href="structPonca_1_1KdTreeDense.html" title="[KdTree type definition]">Ponca::KdTreeDense</a>. This will change in a future release.</dd></dl>
+</div><!-- fragment --><dl class="section warning"><dt>Warning</dt><dd>At the moment, a KnnGraph can only be constructed from a <a class="el" href="structPonca_1_1KdTreeDense.html" title="Public interface for dense KdTree datastructure.">Ponca::KdTreeDense</a>. This will change in a future release.</dd></dl>
 <h3><a class="anchor" id="spatialpartitioning_knngraph_usage_queries"></a>
 Queries</h3>
 <p>As for other datastructures, queries are objects generated by KdTrees, and are designed as <code>Range</code>: accessing the neighbors requires to iterate over the query. </p><div class="fragment"><div class="line">    std::cout &lt;&lt; <span class="stringliteral">&quot;The nearest neighbors of the point at index &quot;</span> &lt;&lt; query_idx &lt;&lt; <span class="stringliteral">&quot; are at indices: &quot;</span>;</div>
@@ -303,7 +331,7 @@ Queries</h3>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="user_manual_page.html">User Manual</a></li>
-    <li class="footer">Generated on Sun Mar 8 2026 04:27:44 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
+    <li class="footer">Generated on Mon Mar 9 2026 19:31:22 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
   </ul>
 </div>
 </body>

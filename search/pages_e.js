@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['releases_20overview_0',['Releases overview',['../ponca_changelog.html',1,'']]]
+  ['queries_0',['Object-space Curvature using Cuda/C++ and KdTree queries',['../example_cu_kdtree_page.html',1,'example_page']]]
 ];

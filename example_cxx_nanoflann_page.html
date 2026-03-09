@@ -51,7 +51,7 @@ MathJax.Hub.Config({
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Ponca
-   &#160;<span id="projectnumber">295107709cdbc413c5361806cfd32c92df42155a</span>
+   &#160;<span id="projectnumber">eff04be8be0ed1ccd36b694a34ae55d988e046fb</span>
    </div>
    <div id="projectbrief">Point Cloud Analysis library</div>
   </td>
@@ -164,7 +164,7 @@ Timings</h1>
 <div class="line">Raw :       950618</div>
 <div class="line"><a class="code hl_namespace" href="namespacePonca.html">Ponca</a> :     950618</div>
 <div class="line">Nanoflann : 950618</div>
-<div class="ttc" id="anamespacePonca_html"><div class="ttname"><a href="namespacePonca.html">Ponca</a></div><div class="ttdoc">This Source Code Form is subject to the terms of the Mozilla Public License, v.</div><div class="ttdef"><b>Definition</b> <a href="limitedPriorityQueue_8h_source.html#l00014">limitedPriorityQueue.h:14</a></div></div>
+<div class="ttc" id="anamespacePonca_html"><div class="ttname"><a href="namespacePonca.html">Ponca</a></div><div class="ttdoc">This Source Code Form is subject to the terms of the Mozilla Public License, v.</div><div class="ttdef"><b>Definition</b> <a href="limitedPriorityQueue_8h_source.html#l00015">limitedPriorityQueue.h:15</a></div></div>
 </div><!-- fragment --><h1><a class="anchor" id="nanoflann_sourcecode_sec"></a>
 Example source code</h1>
 <p>Source file: <code>ponca_nanoflann.cpp</code> </p><div class="fragment"><div class="line"> </div>
@@ -260,7 +260,7 @@ Example source code</h1>
 <div class="line"> </div>
 <div class="line"><span class="keywordtype">int</span> test_ponca_kdtree(FitType&amp; f, <span class="keyword">const</span> std::vector&lt;MyPoint&gt;&amp; _vecs, VectorType _p, <span class="keyword">const</span> <a class="code hl_struct" href="structPonca_1_1KdTree.html">KdTree&lt;MyPoint&gt;</a>&amp; tree, Scalar tmax){</div>
 <div class="line">    <span class="keywordflow">if</span>(! (</div>
-<div class="line">f.computeWithIds( tree.<a class="code hl_function" href="classPonca_1_1KdTreeBase.html#a859baa56b36a5a9666fd58226306255d">rangeNeighbors</a>(_p, tmax), _vecs )</div>
+<div class="line">f.computeWithIds( tree.<a class="code hl_function" href="classPonca_1_1StaticKdTreeBase.html#a7806ac439e7c61ff21d51111dbd81610">rangeNeighbors</a>(_p, tmax), _vecs )</div>
 <div class="line">            == STABLE) )</div>
 <div class="line">        std::cerr &lt;&lt; <span class="stringliteral">&quot;[ponca_kdtree] Something weird happened&quot;</span> &lt;&lt; std::endl;</div>
 <div class="line">    <span class="keywordflow">return</span> f.getNumNeighbors();</div>
@@ -353,9 +353,9 @@ Example source code</h1>
 <div class="line">}</div>
 <div class="ttc" id="aclassPonca_1_1Basket_html"><div class="ttname"><a href="classPonca_1_1Basket.html">Ponca::Basket</a></div><div class="ttdoc">Aggregator class used to declare specialized structures using CRTP.</div><div class="ttdef"><b>Definition</b> <a href="basket_8h_source.html#l00319">basket.h:321</a></div></div>
 <div class="ttc" id="aclassPonca_1_1DistWeightFunc_html"><div class="ttname"><a href="classPonca_1_1DistWeightFunc.html">Ponca::DistWeightFunc</a></div><div class="ttdoc">Weight neighbors according to the euclidean distance between a query and a reference position.</div><div class="ttdef"><b>Definition</b> <a href="weightFunc_8h_source.html#l00153">weightFunc.h:154</a></div></div>
-<div class="ttc" id="aclassPonca_1_1KdTreeBase_html_a859baa56b36a5a9666fd58226306255d"><div class="ttname"><a href="classPonca_1_1KdTreeBase.html#a859baa56b36a5a9666fd58226306255d">Ponca::KdTreeBase::rangeNeighbors</a></div><div class="ttdeci">KdTreeRangePointQuery&lt; Traits &gt; rangeNeighbors(const VectorType &amp;point, Scalar r) const</div><div class="ttdoc">Computes a Query object to iterate over the neighbors that are inside a given radius....</div><div class="ttdef"><b>Definition</b> <a href="kdTree_8h_source.html#l00367">kdTree.h:367</a></div></div>
-<div class="ttc" id="astructPonca_1_1KdTreeDense_html"><div class="ttname"><a href="structPonca_1_1KdTreeDense.html">Ponca::KdTreeDense</a></div><div class="ttdoc">[KdTree type definition]</div><div class="ttdef"><b>Definition</b> <a href="kdTree_8h_source.html#l00066">kdTree.h:66</a></div></div>
-<div class="ttc" id="astructPonca_1_1KdTree_html"><div class="ttname"><a href="structPonca_1_1KdTree.html">Ponca::KdTree</a></div><div class="ttdoc">Abstract KdTree type with KdTreeDefaultTraits.</div><div class="ttdef"><b>Definition</b> <a href="kdTree_8h_source.html#l00047">kdTree.h:47</a></div></div>
+<div class="ttc" id="aclassPonca_1_1StaticKdTreeBase_html_a7806ac439e7c61ff21d51111dbd81610"><div class="ttname"><a href="classPonca_1_1StaticKdTreeBase.html#a7806ac439e7c61ff21d51111dbd81610">Ponca::StaticKdTreeBase::rangeNeighbors</a></div><div class="ttdeci">KdTreeRangePointQuery&lt; Traits &gt; rangeNeighbors(const VectorType &amp;point, Scalar r) const</div><div class="ttdoc">Computes a Query object to iterate over the neighbors that are inside a given radius....</div><div class="ttdef"><b>Definition</b> <a href="kdTree_8h_source.html#l00397">kdTree.h:397</a></div></div>
+<div class="ttc" id="astructPonca_1_1KdTreeDense_html"><div class="ttname"><a href="structPonca_1_1KdTreeDense.html">Ponca::KdTreeDense</a></div><div class="ttdoc">Public interface for dense KdTree datastructure.</div><div class="ttdef"><b>Definition</b> <a href="kdTree_8h_source.html#l00086">kdTree.h:86</a></div></div>
+<div class="ttc" id="astructPonca_1_1KdTree_html"><div class="ttname"><a href="structPonca_1_1KdTree.html">Ponca::KdTree</a></div><div class="ttdoc">Abstract KdTree type with KdTreeDefaultTraits.</div><div class="ttdef"><b>Definition</b> <a href="kdTree_8h_source.html#l00048">kdTree.h:48</a></div></div>
 </div><!-- fragment --> </div></div><!-- contents -->
 </div><!-- PageDoc -->
 </div><!-- doc-content -->
@@ -363,7 +363,7 @@ Example source code</h1>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="example_page.html">Examples</a></li>
-    <li class="footer">Generated on Sun Mar 8 2026 04:27:44 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
+    <li class="footer">Generated on Mon Mar 9 2026 19:31:22 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
   </ul>
 </div>
 </body>

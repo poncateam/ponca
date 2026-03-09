@@ -51,7 +51,7 @@ MathJax.Hub.Config({
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Ponca
-   &#160;<span id="projectnumber">295107709cdbc413c5361806cfd32c92df42155a</span>
+   &#160;<span id="projectnumber">eff04be8be0ed1ccd36b694a34ae55d988e046fb</span>
    </div>
    <div id="projectbrief">Point Cloud Analysis library</div>
   </td>
@@ -127,12 +127,14 @@ Complete Changelog</h1>
 
 --------------------------------------------------------------------------------
 Current head (v.2.0.alpha2 RC)
-This release introduces a major rework of the curvature estimation framework, and several minors improvements and fixes.
+This release introduces a major rework of the curvature estimation framework, improve Cuda support for KdTrees, and
+introduces several bug fixes and minors improvements.
 
 - API
     - [fitting] Refactor curvature estimation API (#201) : remove deadcode, add weingarten map and fundamental forms.
     - [fitting] Refactor MongePatch-related classes (#201) : add Heightfields, separate patch definition and fitting
     - [fitting] Introduce limited reflection methods (#201)
+    - [spatialPartitioning] Refactor KdTree classes to make it usable in cuda kernels (#242)
 
 - Bug-fixes and code improvements
     - [fitting] Fix issues when converting vectors between local and global frames (#201)
@@ -150,9 +152,11 @@ This release introduces a major rework of the curvature estimation framework, an
 
 - Examples
     - [all] Update according to API changes (#201)
+    - [spatialPartitioning] Add cuda examples + cuda utils (#242)
 
 - Docs
     - [doc] Update doc according to recent API changes and new curvature estimators (#201)
+    - [doc] Add cuda examples and extend Spatial Partitioning package description (#242)
 
 --------------------------------------------------------------------------------
 v.2.0.alpha1
@@ -639,7 +643,7 @@ V0.1.2
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generated on Sun Mar 8 2026 04:27:44 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
+    <li class="footer">Generated on Mon Mar 9 2026 19:31:22 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
   </ul>
 </div>
 </body>

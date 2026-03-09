@@ -62,6 +62,10 @@ var NAVTREE =
         ] ],
         [ "The whole code", "example_cu_ssc_page.html#cu_ssgl_sec", null ]
       ] ],
+      [ "Object-space Curvature using Cuda/C++ and KdTree queries", "example_cu_kdtree_page.html", [
+        [ "Introduction", "example_cu_kdtree_page.html#cu_kdtree_intro_sec", null ],
+        [ "Source code", "example_cu_kdtree_page.html#cu_kdtree_code", null ]
+      ] ],
       [ "Screen Space Curvature using Cuda and Python", "example_python_ssc_page.html", [
         [ "Introduction", "example_python_ssc_page.html#pyssgl_intro_sec", [
           [ "Installation and usage", "example_python_ssc_page.html#pyssgl_intro_sec_dep_subsec", null ]
@@ -144,7 +148,8 @@ var NAVTREE =
             [ "Queries", "spatialpartitioning.html#spatialpartitioning_kdtree_usage_queries", null ],
             [ "Samples and indexing", "spatialpartitioning.html#spatialpartitioning_kdtree_usage_samples_and_indexing", null ]
           ] ],
-          [ "Extending KdTree", "spatialpartitioning.html#spatialpartitioning_kdtree_extending", null ],
+          [ "Usage in Cuda kernels", "spatialpartitioning.html#spatialpartitioning_kdtree_cuda", null ],
+          [ "Customizing the KdTree using <tt>Traits</tt>", "spatialpartitioning.html#spatialpartitioning_kdtree_extending", null ],
           [ "Usage of the convenience classes KdTree and KdTreeBase", "spatialpartitioning.html#spatialpartitioning_kdtree_usage_which_class", null ]
         ] ],
         [ "KnnGraph", "spatialpartitioning.html#spatialpartitioning_knngraph", [
@@ -178,9 +183,9 @@ var NAVTREEINDEX =
 [
 "annotated.html",
 "classPonca_1_1GlobalNeighborhoodFrame.html#a4c921773f495f585fe7e0b85c339d039",
-"classPonca_1_1MongePatch.html#a8b9a1a90a42b17bf2588989ac5bcc17c",
-"classPonca_1_1Stack.html#aa591b6a41039b60ee5a6ae3412c48841",
-"structPonca_1_1KnnGraphDefaultTraits.html#accc525a889c5c101a2fdb695cb285ace"
+"classPonca_1_1MongePatchRestrictedQuadraticFitImpl.html#a313b41060f885066c43a513176f10b23",
+"classPonca_1_1StaticKdTreeBase.html#a64a5c2dc4a4b5eb4e544426c82e6e365",
+"structPonca_1_1BasketComputeObject.html"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

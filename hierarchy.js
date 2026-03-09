@@ -8,6 +8,7 @@ var hierarchy =
         [ "Ponca::NeighborFilterStoreNormal< DataPoint, NoWeightFunc< DataPoint > >", "classPonca_1_1NeighborFilterStoreNormal.html", null ]
       ] ]
     ] ],
+    [ "Ponca::StaticKdTreeBase< Traits >::Buffers", "structPonca_1_1StaticKdTreeBase_1_1Buffers.html", null ],
     [ "Ponca::CenteredNeighborhoodFrame< DataPoint >", "classPonca_1_1CenteredNeighborhoodFrame.html", [
       [ "Ponca::DistWeightFunc< DataPoint, WeightKernel >", "classPonca_1_1DistWeightFunc.html", null ]
     ] ],
@@ -76,19 +77,6 @@ var hierarchy =
         ] ]
       ] ]
     ] ],
-    [ "Ponca::KdTreeBase< Traits >", "classPonca_1_1KdTreeBase.html", [
-      [ "Ponca::KdTreeDenseBase< KdTreeDefaultTraits< DataPoint > >", "classPonca_1_1KdTreeDenseBase.html", [
-        [ "Ponca::KdTreeDense< DataPoint >", "structPonca_1_1KdTreeDense.html", null ]
-      ] ],
-      [ "Ponca::KdTreeSparseBase< KdTreeDefaultTraits< DataPoint > >", "classPonca_1_1KdTreeSparseBase.html", [
-        [ "Ponca::KdTreeSparse< DataPoint >", "structPonca_1_1KdTreeSparse.html", null ]
-      ] ],
-      [ "Ponca::KdTreeDenseBase< Traits >", "classPonca_1_1KdTreeDenseBase.html", null ],
-      [ "Ponca::KdTreeSparseBase< Traits >", "classPonca_1_1KdTreeSparseBase.html", null ]
-    ] ],
-    [ "Ponca::KdTreeBase< KdTreeDefaultTraits< DataPoint > >", "classPonca_1_1KdTreeBase.html", [
-      [ "Ponca::KdTree< DataPoint >", "structPonca_1_1KdTree.html", null ]
-    ] ],
     [ "Ponca::KdTreeCustomizableNode< Index, NodeIndex, DataPoint, LeafSize, _InnerNodeType, _LeafNodeType >", "classPonca_1_1KdTreeCustomizableNode.html", [
       [ "Ponca::KdTreeDefaultNode< Index, NodeIndex, DataPoint, LeafSize >", "structPonca_1_1KdTreeDefaultNode.html", null ]
     ] ],
@@ -98,6 +86,7 @@ var hierarchy =
     [ "Ponca::KdTreeDefaultTraits< _DataPoint, _NodeType >", "structPonca_1_1KdTreeDefaultTraits.html", null ],
     [ "Ponca::KdTreeKNearestIterator< Index, DataPoint >", "classPonca_1_1KdTreeKNearestIterator.html", null ],
     [ "Ponca::KdTreeNearestIterator< Index >", "classPonca_1_1KdTreeNearestIterator.html", null ],
+    [ "Ponca::KdTreePointerTraits< _DataPoint, _NodeType >", "structPonca_1_1KdTreePointerTraits.html", null ],
     [ "Ponca::KdTreeQuery< Traits >", "classPonca_1_1KdTreeQuery.html", [
       [ "Ponca::KdTreeKNearestQueryBase< Traits, IteratorType, QueryType >", "classPonca_1_1KdTreeKNearestQueryBase.html", null ],
       [ "Ponca::KdTreeNearestQueryBase< Traits, IteratorType, QueryType >", "classPonca_1_1KdTreeNearestQueryBase.html", null ],
@@ -195,6 +184,24 @@ var hierarchy =
     [ "Ponca::internal::CNCEigen< DataPoint >::SphericalTriangle", "structPonca_1_1internal_1_1CNCEigen_1_1SphericalTriangle.html", null ],
     [ "Ponca::Stack< T, N >", "classPonca_1_1Stack.html", null ],
     [ "Ponca::Stack< Ponca::IndexSquaredDistance< IndexType, Scalar >, 2 *Traits::MAX_DEPTH >", "classPonca_1_1Stack.html", null ],
+    [ "Ponca::StaticKdTreeBase< Traits >", "classPonca_1_1StaticKdTreeBase.html", [
+      [ "Ponca::KdTreeBase< KdTreeDefaultTraits< DataPoint > >", "classPonca_1_1KdTreeBase.html", [
+        [ "Ponca::KdTree< DataPoint >", "structPonca_1_1KdTree.html", null ]
+      ] ],
+      [ "Ponca::KdTreeBase< Traits >", "classPonca_1_1KdTreeBase.html", [
+        [ "Ponca::KdTreeDenseBase< KdTreeDefaultTraits< DataPoint > >", "classPonca_1_1KdTreeDenseBase.html", [
+          [ "Ponca::KdTreeDense< DataPoint >", "structPonca_1_1KdTreeDense.html", null ]
+        ] ],
+        [ "Ponca::KdTreeSparseBase< KdTreeDefaultTraits< DataPoint > >", "classPonca_1_1KdTreeSparseBase.html", [
+          [ "Ponca::KdTreeSparse< DataPoint >", "structPonca_1_1KdTreeSparse.html", null ]
+        ] ],
+        [ "Ponca::KdTreeDenseBase< Traits >", "classPonca_1_1KdTreeDenseBase.html", null ],
+        [ "Ponca::KdTreeSparseBase< Traits >", "classPonca_1_1KdTreeSparseBase.html", null ]
+      ] ]
+    ] ],
+    [ "Ponca::StaticKdTreeBase< KdTreeDefaultTraits< DataPoint > >", "classPonca_1_1StaticKdTreeBase.html", [
+      [ "Ponca::StaticKdTree< DataPoint >", "structPonca_1_1StaticKdTree.html", null ]
+    ] ],
     [ "T", null, [
       [ "Ponca::AlgebraicSphere< DataPoint, _NFilter, T >", "classPonca_1_1AlgebraicSphere.html", null ],
       [ "Ponca::CovarianceFitBase< DataPoint, _NFilter, T >", "classPonca_1_1CovarianceFitBase.html", null ],

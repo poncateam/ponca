@@ -1,0 +1,7 @@
+<map id="Ponca::StaticKdTree&lt; DataPoint &gt;" name="Ponca::StaticKdTree&lt; DataPoint &gt;">
+<area shape="rect" id="Node000001" title="A KdTree type with KdTreeDefaultTraits that doesn&#39;t define the build function." alt="" coords="34,987,177,1067"/>
+<area shape="rect" id="Node000002" href="$classPonca_1_1StaticKdTreeBase.html" title=" " alt="" coords="5,503,205,937"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="108,951,108,987,103,987,103,951"/>
+<area shape="rect" id="Node000003" href="$classPonca_1_1StaticKdTreeBase.html" title="Customizable static base class for KdTree datastructure implementations." alt="" coords="5,5,205,425"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="108,439,108,503,103,503,103,439"/>
+</map>
