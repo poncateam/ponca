@@ -173,9 +173,9 @@ public:
     static_assert(MAX_DEPTH > 0, "Max depth must be strictly positive");
 
     // Construction ------------------------------------------------------------
-public:
+protected:
     PONCA_MULTIARCH inline StaticKdTreeBase() = default;
-
+public:
     /*! \brief Constructor that allows the use of prebuilt KdTree containers.
      *
      * Each internal values of a KdTree can be extracted using \ref `KdTreeBase::buffers()`
