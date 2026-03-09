@@ -118,7 +118,7 @@ template<typename PointUserContainer, typename IndexUserContainer, typename Poin
 void KdTreeBase<Traits>::buildWithSampling(
     PointUserContainer&& points, IndexUserContainer&& sampling, PointConverter c
 ) {
-    PONCA_DEBUG_ASSERT(static_cast<IndexType>(pointCount()) <= MAX_POINT_COUNT);
+    PONCA_DEBUG_ASSERT(static_cast<IndexType>(Base::pointCount()) <= Base::MAX_POINT_COUNT);
     Base::m_leaf_count = 0;
 
     // Move, copy or convert input samples
