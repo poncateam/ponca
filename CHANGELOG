@@ -26,6 +26,9 @@ introduces several bug fixes and minors improvements.
     - [fitting] speed up gls_sphere_der using kdtree (#201)
     - [fitting] add MlsSphereFitDer in test suite (#201)
 
+- CI/Actions
+    - [ci] Fix CNC coverage test (crash + slow execution) (#272)
+
 - Examples
     - [all] Update according to API changes (#201)
     - [spatialPartitioning] Add cuda examples + cuda utils (#242)
