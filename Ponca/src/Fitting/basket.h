@@ -275,7 +275,12 @@ namespace internal
 
             Scalar f = Base::potential();
             VectorType x = filter.evalPos();
-            VectorType gradF = Base::project(x) - x;
+            
+            // TODO: Proper finite difference instead ? This requires calling compute once more per dim.
+            // In Basket, we have no information about the gradient of the projection
+            // The vector (p(x) - x) / f(x) is a finite difference approximation of a directionnal 
+            // derivative which should be a low-cost, yet reasonable approx of the gradient in this case.
+            VectorType gradF = (Base::project(x) - x) / f;
 
             unsigned int xIteration = 0;
             unsigned int fIteration = 0;
@@ -308,11 +313,11 @@ namespace internal
                         sumGW += gw;
                         sumF  += w * fx;
                         sumGF += gw * fx;
-                        sumN += w * pt.normal();
+                        sumN  += w * pt.normal();
                     }
 
                     // [Oztirezli 2009] defines another residual formula which depends
-                    // on all neighborhood and requires a storage of this size.
+                    // on all neighbors and requires a storage of twice this size.
                     // Here, we replaced this with an absolute convergence criterion on
                     // the scalar field values for faster and easier computation.
                     const Scalar newF = sumF / sumW;
