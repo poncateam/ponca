@@ -76,11 +76,14 @@ void testBasicFunctionalities(
     const auto& vectorPoints = tree.points();
     auto rng = std::default_random_engine {};
 
+    // Quick testing is requested for coverage
+    const int size = QUICK_TESTS ? 1 : int(vectorPoints.size());
+
     // Test for each point if the fitted sphere correspond to the theoretical sphere
 #ifdef NDEBUG
 #pragma omp parallel for
 #endif
-    for (int i = 0; i < static_cast<int>(vectorPoints.size()); ++i) {
+    for (int i = 0; i < size; ++i) {
         const DataPoint& evalPoint = vectorPoints[i];
 
         //! [Fit compute]
@@ -135,12 +138,14 @@ void testCompareFit(
     const Scalar epsilon = testEpsilon<Scalar>() *2
 ) {
     const auto& vectorPoints = tree.points();
-    const int nPoints = int(vectorPoints.size());
+    // Quick testing is requested for coverage
+    const int size = QUICK_TESTS ? 1 : int(vectorPoints.size());
+
     // Test for each point if the curvature results are equivalent
 #ifdef NDEBUG
 #pragma omp parallel for
 #endif
-    for(int i = 0; i < nPoints; ++i) {
+    for(int i = 0; i < size; ++i) {
         typename Fit1::NeighborFilter w {vectorPoints[i].pos(), analysisScale};
         // compute the indices list
         std::vector<int> pointsIndex;
@@ -199,7 +204,7 @@ void callSubTests() {
 
     // Generate sphere point cloud
     KdTreeDense<Point> tree;
-    const int nbPoints = QUICK_TESTS ? 1 : Eigen::internal::random<int>(5000, 7000) ; // Quick testing is requested for coverage
+    const int nbPoints = Eigen::internal::random<int>(5000, 7000) ; // Quick testing is requested for coverage
     const VectorType center = VectorType::Random() * Eigen::internal::random<Scalar>(1, 10000);
     const Scalar analysisScale = generateSpherePC(tree, nbPoints, center);
     const Scalar highEpsilon {Scalar(0.1)};
