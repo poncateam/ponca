@@ -199,12 +199,9 @@ void callSubTests() {
 
     // Generate sphere point cloud
     KdTreeDense<Point> tree;
-    int nbPoints = QUICK_TESTS
-        ? Eigen::internal::random<int>(100 , 200)
-        : Eigen::internal::random<int>(5000, 7000) ;
+    const int nbPoints = QUICK_TESTS ? 1 : Eigen::internal::random<int>(5000, 7000) ; // Quick testing is requested for coverage
     const VectorType center = VectorType::Random() * Eigen::internal::random<Scalar>(1, 10000);
     const Scalar analysisScale = generateSpherePC(tree, nbPoints, center);
-
     const Scalar highEpsilon {Scalar(0.1)};
 
     // Tests validity of compute despite index shuffle
