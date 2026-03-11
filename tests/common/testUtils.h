@@ -13,6 +13,7 @@
 #pragma once
 
 #include "Eigen/Eigen"
+#include "testing.h"
 #include "Ponca/src/Common/defines.h"
 #include "Ponca/src/Common/pointTypes.h"
 #include "Ponca/src/Common/pointGeneration.h"
