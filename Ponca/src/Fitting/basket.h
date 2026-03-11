@@ -275,12 +275,7 @@ namespace internal
 
             Scalar f = Base::potential();
             VectorType x = filter.evalPos();
-            
-            // TODO: Proper finite difference instead ? This requires calling compute once more per dim.
-            // In Basket, we have no information about the gradient of the projection
-            // The vector (p(x) - x) / f(x) is a finite difference approximation of a directionnal 
-            // derivative which should be a low-cost, yet reasonable approx of the gradient in this case.
-            VectorType gradF = (Base::project(x) - x) / f;
+            VectorType gradF = Base::primitiveGradient();
 
             unsigned int xIteration = 0;
             unsigned int fIteration = 0;
@@ -332,7 +327,7 @@ namespace internal
                 const VectorType step = f * gradF;
                 xResidual = step.squaredNorm();
 
-                x = x - step;
+                x -= step;
                 ++xIteration;
             }
             // TODO: Where to store x ???
