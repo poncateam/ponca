@@ -167,6 +167,7 @@ endif()
 # Tests                                                                        #
 ################################################################################
 if(PONCA_CONFIGURE_TESTS)
+    include(${CMAKE_CURRENT_SOURCE_DIR}/Ponca/precompiled/Fitting/CMakeLists.txt)
     include(CTest)
     set (BUILD_TESTING ON)
     option(PONCA_COVERAGE_TESTING "Enable coverage reporting" OFF)
