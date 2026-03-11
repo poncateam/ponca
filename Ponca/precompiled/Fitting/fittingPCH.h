@@ -1,39 +1,22 @@
 #pragma once
 
-#define PONCA_PCH
-
 #include <Ponca/Fitting>
-#include "tests/common/testUtils.h"
+#include <Ponca/src/Fitting/gls.h>
+#include "Ponca/src/Common/pointTypes.h"
 
-using namespace Ponca;
+/*!
+  \file fittingPCH.h
+  \brief Define the commonly used Fitting types for 3D.
+*/
 
-typedef PointPositionNormal<float, 3> Point;
+template <typename Scalar>
+using Point = Ponca::PointPositionNormal<Scalar, 3>;
 
-typedef DistWeightFunc<Point, SmoothWeightKernel<float>> WeightSmoothFunc;
-typedef DistWeightFunc<Point, ConstantWeightKernel<float>> WeightConstantFuncLocal;
-typedef NoWeightFuncGlobal<Point> NoWeightFuncGlobalP;
-typedef NoWeightFunc<Point> NoWeightFuncP;
-
-typedef Basket<Point, WeightConstantFuncLocal, MeanPosition> FitConstantLocal;
-typedef Basket<Point, NoWeightFuncP, MeanPosition> FitNoWeightLocal;
-typedef Basket<Point, NoWeightFuncGlobalP, MeanPosition> FitNoWeightGlobal;
-
-typedef Basket<Point, WeightSmoothFunc, CovariancePlaneFit> CovFitSmooth;
-typedef Basket<Point, WeightConstantFuncLocal, CovariancePlaneFit> CovFitConstant;
-typedef Basket<Point, NoWeightFuncP, CovariancePlaneFit> CovFitConstantNoWeight;
-typedef Basket<Point, NoWeightFuncGlobalP, CovariancePlaneFit> CovFitConstantGlobal;
-
-typedef Basket<Point, WeightSmoothFunc, MeanPlaneFit> MeanFitSmooth;
-typedef Basket<Point, WeightConstantFuncLocal, MeanPlaneFit> MeanFitConstant;
-typedef Basket<Point, NoWeightFuncP, MeanPlaneFit> MeanFitConstant2;
-typedef Basket<Point, NoWeightFuncGlobalP, MeanPlaneFit> MeanFitConstantGlobal;
-
-typedef Basket<Point, WeightSmoothFunc, CovariancePlaneFit, MongePatch> CovFitSmoothMongePatch;
-typedef Basket<Point, WeightConstantFuncLocal, CovariancePlaneFit, MongePatch> CovFitConstantMongePatch;
-
-//! [PlaneFitDerTypes]
-using TestPlane = Basket<Point, WeightSmoothFunc, CovariancePlaneFit>;
-using PlaneScaleDiff = BasketDiff<TestPlane, FitScaleDer, CovariancePlaneDer>;
-using PlaneSpaceDiff = BasketDiff<TestPlane, FitSpaceDer, CovariancePlaneDer>;
-using PlaneScaleSpaceDiff = BasketDiff<TestPlane, FitScaleSpaceDer, CovariancePlaneDer>;
-//! [PlaneFitDerTypes]
+template <typename Scalar>
+using WeightSmoothFuncL = Ponca::DistWeightFunc<Point<Scalar>, Ponca::SmoothWeightKernel<Scalar>>;
+template <typename Scalar>
+using WeightConstantFuncL = Ponca::DistWeightFunc<Point<Scalar>, Ponca::ConstantWeightKernel<Scalar>>;
+template <typename Scalar>
+using NoWeightFuncG = Ponca::NoWeightFuncGlobal<Point<Scalar>>;
+template <typename Scalar>
+using NoWeightFuncL = Ponca::NoWeightFunc<Point<Scalar>>;
