@@ -364,7 +364,7 @@ public:
 			                       -eigensolver.eigenvalues()(1),
 			                       v1, v2);
 		} else {
-			std::cerr << "Incorrect diagonalization for tensor " << M << std::endl;
+			// std::cerr << "Incorrect diagonalization for tensor " << M << std::endl;
 			VectorType v1, v2;
 			return std::make_tuple(Scalar(0.0), Scalar(0.0), v1, v2);
 		}
