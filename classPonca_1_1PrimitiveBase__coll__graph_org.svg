@@ -16,36 +16,36 @@
 <text text-anchor="start" x="5.5" y="-228" font-family="Helvetica,sans-Serif" font-size="10.00">Ponca::PrimitiveBase</text>
 <text text-anchor="start" x="5.5" y="-217" font-family="Helvetica,sans-Serif" font-size="10.00">&lt; DataPoint, _NFilter, T &gt;</text>
 <text text-anchor="start" x="9" y="-202" font-family="Helvetica,sans-Serif" font-size="10.00">#</text>
-<text text-anchor="start" x="26.5" y="-202" font-family="Helvetica,sans-Serif" font-size="10.00">m_eCurrentState</text>
-<text text-anchor="start" x="9" y="-187" font-family="Helvetica,sans-Serif" font-size="10.00">+</text>
-<text text-anchor="start" x="26.5" y="-187" font-family="Helvetica,sans-Serif" font-size="10.00">setNeighborFilter()</text>
+<text text-anchor="start" x="26.5" y="-202" font-family="Helvetica,sans-Serif" font-size="10.00">m_nFilter</text>
+<text text-anchor="start" x="9" y="-187" font-family="Helvetica,sans-Serif" font-size="10.00">#</text>
+<text text-anchor="start" x="26.5" y="-187" font-family="Helvetica,sans-Serif" font-size="10.00">m_eCurrentState</text>
 <text text-anchor="start" x="9" y="-172" font-family="Helvetica,sans-Serif" font-size="10.00">+</text>
-<text text-anchor="start" x="26.5" y="-172" font-family="Helvetica,sans-Serif" font-size="10.00">init()</text>
+<text text-anchor="start" x="26.5" y="-172" font-family="Helvetica,sans-Serif" font-size="10.00">setNeighborFilter()</text>
 <text text-anchor="start" x="9" y="-157" font-family="Helvetica,sans-Serif" font-size="10.00">+</text>
-<text text-anchor="start" x="26.5" y="-157" font-family="Helvetica,sans-Serif" font-size="10.00">isReady()</text>
+<text text-anchor="start" x="26.5" y="-157" font-family="Helvetica,sans-Serif" font-size="10.00">init()</text>
 <text text-anchor="start" x="9" y="-142" font-family="Helvetica,sans-Serif" font-size="10.00">+</text>
-<text text-anchor="start" x="26.5" y="-142" font-family="Helvetica,sans-Serif" font-size="10.00">isStable()</text>
+<text text-anchor="start" x="26.5" y="-142" font-family="Helvetica,sans-Serif" font-size="10.00">isReady()</text>
 <text text-anchor="start" x="9" y="-127" font-family="Helvetica,sans-Serif" font-size="10.00">+</text>
-<text text-anchor="start" x="26.5" y="-127" font-family="Helvetica,sans-Serif" font-size="10.00">needAnotherPass()</text>
+<text text-anchor="start" x="26.5" y="-127" font-family="Helvetica,sans-Serif" font-size="10.00">isStable()</text>
 <text text-anchor="start" x="9" y="-112" font-family="Helvetica,sans-Serif" font-size="10.00">+</text>
-<text text-anchor="start" x="26.5" y="-112" font-family="Helvetica,sans-Serif" font-size="10.00">getNumNeighbors()</text>
+<text text-anchor="start" x="26.5" y="-112" font-family="Helvetica,sans-Serif" font-size="10.00">needAnotherPass()</text>
 <text text-anchor="start" x="9" y="-97" font-family="Helvetica,sans-Serif" font-size="10.00">+</text>
-<text text-anchor="start" x="26.5" y="-97" font-family="Helvetica,sans-Serif" font-size="10.00">getWeightSum()</text>
+<text text-anchor="start" x="26.5" y="-97" font-family="Helvetica,sans-Serif" font-size="10.00">getNumNeighbors()</text>
 <text text-anchor="start" x="9" y="-82" font-family="Helvetica,sans-Serif" font-size="10.00">+</text>
-<text text-anchor="start" x="26.5" y="-82" font-family="Helvetica,sans-Serif" font-size="10.00">startNewPass()</text>
+<text text-anchor="start" x="26.5" y="-82" font-family="Helvetica,sans-Serif" font-size="10.00">getWeightSum()</text>
 <text text-anchor="start" x="9" y="-67" font-family="Helvetica,sans-Serif" font-size="10.00">+</text>
-<text text-anchor="start" x="26.5" y="-67" font-family="Helvetica,sans-Serif" font-size="10.00">getNeighborFilter()</text>
+<text text-anchor="start" x="26.5" y="-67" font-family="Helvetica,sans-Serif" font-size="10.00">startNewPass()</text>
 <text text-anchor="start" x="9" y="-52" font-family="Helvetica,sans-Serif" font-size="10.00">+</text>
-<text text-anchor="start" x="26.5" y="-52" font-family="Helvetica,sans-Serif" font-size="10.00">getCurrentState()</text>
+<text text-anchor="start" x="26.5" y="-52" font-family="Helvetica,sans-Serif" font-size="10.00">getNeighborFilter()</text>
 <text text-anchor="start" x="9" y="-37" font-family="Helvetica,sans-Serif" font-size="10.00">+</text>
-<text text-anchor="start" x="26.5" y="-37" font-family="Helvetica,sans-Serif" font-size="10.00">addLocalNeighbor()</text>
+<text text-anchor="start" x="26.5" y="-37" font-family="Helvetica,sans-Serif" font-size="10.00">getCurrentState()</text>
 <text text-anchor="start" x="9" y="-22" font-family="Helvetica,sans-Serif" font-size="10.00">+</text>
-<text text-anchor="start" x="26.5" y="-22" font-family="Helvetica,sans-Serif" font-size="10.00">finalize()</text>
-<text text-anchor="start" x="9" y="-7" font-family="Helvetica,sans-Serif" font-size="10.00">#</text>
-<text text-anchor="start" x="26.5" y="-7" font-family="Helvetica,sans-Serif" font-size="10.00">getNeighborFilter()</text>
+<text text-anchor="start" x="26.5" y="-22" font-family="Helvetica,sans-Serif" font-size="10.00">addLocalNeighbor()</text>
+<text text-anchor="start" x="9" y="-7" font-family="Helvetica,sans-Serif" font-size="10.00">+</text>
+<text text-anchor="start" x="26.5" y="-7" font-family="Helvetica,sans-Serif" font-size="10.00">finalize()</text>
 <polygon fill="#666666" stroke="#666666" points="0.5,-212 0.5,-212 137.5,-212 137.5,-212 0.5,-212"/>
-<polygon fill="#666666" stroke="#666666" points="0.5,-197 0.5,-197 24.5,-197 24.5,-197 0.5,-197"/>
-<polygon fill="#666666" stroke="#666666" points="24.5,-197 24.5,-197 137.5,-197 137.5,-197 24.5,-197"/>
+<polygon fill="#666666" stroke="#666666" points="0.5,-182 0.5,-182 24.5,-182 24.5,-182 0.5,-182"/>
+<polygon fill="#666666" stroke="#666666" points="24.5,-182 24.5,-182 137.5,-182 137.5,-182 24.5,-182"/>
 <polygon fill="none" stroke="#666666" points="0,0 0,-240 137,-240 137,0 0,0"/>
 </a>
 </g>

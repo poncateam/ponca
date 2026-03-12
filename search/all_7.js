@@ -7,7 +7,7 @@ var searchData=
   ['getcurrentstate_4',['getCurrentState',['../classPonca_1_1PrimitiveBase.html#af0e6053988ef7d7ec4a9b56a70d607ce',1,'Ponca::PrimitiveBase']]],
   ['gethfromlocalcoordinates_5',['gethfromlocalcoordinates',['../classPonca_1_1HeightField.html#acb4aee1a32ba3d85a7538b7c158aeb6e',1,'Ponca::HeightField::getHFromLocalCoordinates(const VectorType &amp;_lq) const'],['../classPonca_1_1HeightField.html#adde188dc44fc4ff6f563e493b91687db',1,'Ponca::HeightField::getHFromLocalCoordinates(VectorType &amp;_lq) const']]],
   ['getinputposition_6',['getinputposition',['../group__spatialpartitioning.html#a4844c662bcda36c14389b793bedf53d9',1,'Ponca::QueryInputIsIndex::getInputPosition()'],['../group__spatialpartitioning.html#a307b614f02e7a79548476cd2f3b8cc32',1,'Ponca::QueryInputIsPosition::getInputPosition()']]],
-  ['getneighborfilter_7',['getneighborfilter',['../classPonca_1_1PrimitiveBase.html#aa6011e38824713eb329d10ba624f6eb9',1,'Ponca::PrimitiveBase::getNeighborFilter()'],['../classPonca_1_1PrimitiveBase.html#acf1a246696337165d89b6109f01b7b2d',1,'Ponca::PrimitiveBase::getNeighborFilter() const']]],
+  ['getneighborfilter_7',['getNeighborFilter',['../classPonca_1_1PrimitiveBase.html#acf1a246696337165d89b6109f01b7b2d',1,'Ponca::PrimitiveBase']]],
   ['getnumneighbors_8',['getNumNeighbors',['../classPonca_1_1PrimitiveBase.html#a8e5aec632b519d3860e8cb2962e82646',1,'Ponca::PrimitiveBase']]],
   ['getnumtriangles_9',['getNumTriangles',['../classPonca_1_1CNC.html#a247d665ba7bc25d4bbfa6dda04745eab',1,'Ponca::CNC']]],
   ['getparaboloidnormal_10',['getParaboloidNormal',['../namespacePonca_1_1internal.html#a1a4eb90ed7b9be1c6d97a51afc2c7552',1,'Ponca::internal']]],

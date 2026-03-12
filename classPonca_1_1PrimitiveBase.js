@@ -6,7 +6,6 @@ var classPonca_1_1PrimitiveBase =
     [ "addLocalNeighbor", "classPonca_1_1PrimitiveBase.html#a155f747b954cf73b6d0198277baf6780", null ],
     [ "finalize", "classPonca_1_1PrimitiveBase.html#aaafa65d190f2777afbba6f456fa22b36", null ],
     [ "getCurrentState", "classPonca_1_1PrimitiveBase.html#af0e6053988ef7d7ec4a9b56a70d607ce", null ],
-    [ "getNeighborFilter", "classPonca_1_1PrimitiveBase.html#aa6011e38824713eb329d10ba624f6eb9", null ],
     [ "getNeighborFilter", "classPonca_1_1PrimitiveBase.html#acf1a246696337165d89b6109f01b7b2d", null ],
     [ "getNumNeighbors", "classPonca_1_1PrimitiveBase.html#a8e5aec632b519d3860e8cb2962e82646", null ],
     [ "getWeightSum", "classPonca_1_1PrimitiveBase.html#a5e6817f54ea3f7df913a04720cb703b1", null ],
@@ -16,5 +15,6 @@ var classPonca_1_1PrimitiveBase =
     [ "needAnotherPass", "classPonca_1_1PrimitiveBase.html#afbd24bb6c8775af7b84d59e2fbb550be", null ],
     [ "setNeighborFilter", "classPonca_1_1PrimitiveBase.html#a1994d3443a2f5c77b2c89ada956795f2", null ],
     [ "startNewPass", "classPonca_1_1PrimitiveBase.html#a0f5e08aa7d8b194a70bfe6ad29faf183", null ],
-    [ "m_eCurrentState", "classPonca_1_1PrimitiveBase.html#aef45cba56db9793dbb2694164cb9db88", null ]
+    [ "m_eCurrentState", "classPonca_1_1PrimitiveBase.html#aef45cba56db9793dbb2694164cb9db88", null ],
+    [ "m_nFilter", "classPonca_1_1PrimitiveBase.html#ae52281d8e772038e6a132355ca0956b9", null ]
 ];

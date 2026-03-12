@@ -51,7 +51,7 @@ MathJax.Hub.Config({
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Ponca
-   &#160;<span id="projectnumber">fe631eb2fecf809f6df7c7452076e79f66c8f0c4</span>
+   &#160;<span id="projectnumber">93eea5457c48839cb5d16642765afa89fc7cfe66</span>
    </div>
    <div id="projectbrief">Point Cloud Analysis library</div>
   </td>
@@ -220,7 +220,7 @@ $(document).ready(function(){initNavTree('algebraicSphere_8h_source.html',''); i
 <div class="line"><a id="l00147" name="l00147"></a><span class="lineno"><a class="line" href="classPonca_1_1AlgebraicSphere.html#a36681585b0bb114925992f0937e6e8df">  147</a></span>    PONCA_MULTIARCH <span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code hl_function" href="classPonca_1_1AlgebraicSphere.html#a36681585b0bb114925992f0937e6e8df">changeBasis</a>(<span class="keyword">const</span> <a class="code hl_typedef" href="classPonca_1_1AlgebraicSphere.html#ae4fcd85d46a2ed993ae785ac7b02e77d">VectorType</a>&amp; newbasis)</div>
 <div class="line"><a id="l00148" name="l00148"></a><span class="lineno">  148</span>    {</div>
 <div class="line"><a id="l00149" name="l00149"></a><span class="lineno">  149</span>        <a class="code hl_typedef" href="classPonca_1_1AlgebraicSphere.html#ae4fcd85d46a2ed993ae785ac7b02e77d">VectorType</a> diff = Base::getNeighborFilter().evalPos() - newbasis;</div>
-<div class="line"><a id="l00150" name="l00150"></a><span class="lineno">  150</span>        Base::getNeighborFilter().changeNeighborhoodFrame(newbasis);</div>
+<div class="line"><a id="l00150" name="l00150"></a><span class="lineno">  150</span>        Base::m_nFilter.changeNeighborhoodFrame(newbasis);</div>
 <div class="line"><a id="l00151" name="l00151"></a><span class="lineno">  151</span>        Base::init();</div>
 <div class="line"><a id="l00152" name="l00152"></a><span class="lineno">  152</span>        <a class="code hl_variable" href="classPonca_1_1AlgebraicSphere.html#a854b648c939a82fea16fb20783f5172e">m_uc</a> = <a class="code hl_variable" href="classPonca_1_1AlgebraicSphere.html#a854b648c939a82fea16fb20783f5172e">m_uc</a> - <a class="code hl_variable" href="classPonca_1_1AlgebraicSphere.html#ad597a9d4cc9d664eac0f44709c3ef104">m_ul</a>.dot(diff) + <a class="code hl_variable" href="classPonca_1_1AlgebraicSphere.html#a779df9953069f68b227a5dfca52bbf75">m_uq</a> * diff.dot(diff);</div>
 <div class="line"><a id="l00153" name="l00153"></a><span class="lineno">  153</span>        <a class="code hl_variable" href="classPonca_1_1AlgebraicSphere.html#ad597a9d4cc9d664eac0f44709c3ef104">m_ul</a> = <a class="code hl_variable" href="classPonca_1_1AlgebraicSphere.html#ad597a9d4cc9d664eac0f44709c3ef104">m_ul</a> - <a class="code hl_typedef" href="classPonca_1_1AlgebraicSphere.html#a971e9bba0fe290ea36fb330e1a8998b1">Scalar</a>(2.)*<a class="code hl_variable" href="classPonca_1_1AlgebraicSphere.html#a779df9953069f68b227a5dfca52bbf75">m_uq</a>*diff;</div>
@@ -368,7 +368,7 @@ $(document).ready(function(){initNavTree('algebraicSphere_8h_source.html',''); i
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_695d95a8d8fbec601a248c0414764298.html">Ponca</a></li><li class="navelem"><a class="el" href="dir_ce16314fc45f8638543c5146aff64d4a.html">src</a></li><li class="navelem"><a class="el" href="dir_221133f19e4af6803e4ee7d78db21786.html">Fitting</a></li><li class="navelem"><b>algebraicSphere.h</b></li>
-    <li class="footer">Generated on Tue Mar 10 2026 14:30:02 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
+    <li class="footer">Generated on Thu Mar 12 2026 16:19:15 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
   </ul>
 </div>
 </body>

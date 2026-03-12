@@ -51,7 +51,7 @@ MathJax.Hub.Config({
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Ponca
-   &#160;<span id="projectnumber">fe631eb2fecf809f6df7c7452076e79f66c8f0c4</span>
+   &#160;<span id="projectnumber">93eea5457c48839cb5d16642765afa89fc7cfe66</span>
    </div>
    <div id="projectbrief">Point Cloud Analysis library</div>
   </td>
@@ -205,7 +205,7 @@ $(document).ready(function(){initNavTree('linePrimitive_8h_source.html',''); ini
 <div class="line"><a id="l00096" name="l00096"></a><span class="lineno"><a class="line" href="classPonca_1_1Line.html#a4017ff9b7457b13dfa0db5b5711de006">   96</a></span>    PONCA_MULTIARCH <span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code hl_function" href="classPonca_1_1Line.html#a4017ff9b7457b13dfa0db5b5711de006">changeBasis</a>(<span class="keyword">const</span> <a class="code hl_typedef" href="classPonca_1_1Line.html#aec54c6433366eff8756c27b77ecf84b5">VectorType</a>&amp; newbasis)</div>
 <div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>    {</div>
 <div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span>        <a class="code hl_typedef" href="classPonca_1_1Line.html#aec54c6433366eff8756c27b77ecf84b5">VectorType</a> diff = Base::getNeighborFilter().evalPos() - newbasis;</div>
-<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span>        Base::getNeighborFilter().changeNeighborhoodFrame(newbasis);</div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span>        Base::m_nFilter.changeNeighborhoodFrame(newbasis);</div>
 <div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span>        Base::init();</div>
 <div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span>        EigenBase::origin() += diff;</div>
 <div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span>    }</div>
@@ -272,7 +272,7 @@ $(document).ready(function(){initNavTree('linePrimitive_8h_source.html',''); ini
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_695d95a8d8fbec601a248c0414764298.html">Ponca</a></li><li class="navelem"><a class="el" href="dir_ce16314fc45f8638543c5146aff64d4a.html">src</a></li><li class="navelem"><a class="el" href="dir_221133f19e4af6803e4ee7d78db21786.html">Fitting</a></li><li class="navelem"><b>linePrimitive.h</b></li>
-    <li class="footer">Generated on Tue Mar 10 2026 14:30:02 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
+    <li class="footer">Generated on Thu Mar 12 2026 16:19:16 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
   </ul>
 </div>
 </body>

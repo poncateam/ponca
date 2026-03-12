@@ -51,7 +51,7 @@ MathJax.Hub.Config({
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Ponca
-   &#160;<span id="projectnumber">fe631eb2fecf809f6df7c7452076e79f66c8f0c4</span>
+   &#160;<span id="projectnumber">93eea5457c48839cb5d16642765afa89fc7cfe66</span>
    </div>
    <div id="projectbrief">Point Cloud Analysis library</div>
   </td>
@@ -120,7 +120,6 @@ $(document).ready(function(){initNavTree('classPonca_1_1PrimitiveBase.html','');
 <a href="#pub-types">Public Types</a> &#124;
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="#pro-types">Protected Types</a> &#124;
-<a href="#pro-methods">Protected Member Functions</a> &#124;
 <a href="#pro-attribs">Protected Attributes</a> &#124;
 <a href="classPonca_1_1PrimitiveBase-members.html">List of all members</a>  </div>
   <div class="headertitle"><div class="title">Ponca::PrimitiveBase&lt; DataPoint, _NFilter, T &gt; Class Template Reference</div></div>
@@ -196,14 +195,11 @@ Protected Types</h2></td></tr>
  }</td></tr>
 <tr class="separator:afe02193cf1537a5df79b2b955c15f7a6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-methods" name="pro-methods"></a>
-Protected Member Functions</h2></td></tr>
-<tr class="memitem:aa6011e38824713eb329d10ba624f6eb9" id="r_aa6011e38824713eb329d10ba624f6eb9"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classPonca_1_1PrimitiveBase.html#a4408e5c69fb23710c50f044342d963cb">NeighborFilter</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1PrimitiveBase.html#aa6011e38824713eb329d10ba624f6eb9">getNeighborFilter</a> ()</td></tr>
-<tr class="memdesc:aa6011e38824713eb329d10ba624f6eb9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Write access to the NeighborFilter.  <br /></td></tr>
-<tr class="separator:aa6011e38824713eb329d10ba624f6eb9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-attribs" name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
+<tr class="memitem:ae52281d8e772038e6a132355ca0956b9" id="r_ae52281d8e772038e6a132355ca0956b9"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classPonca_1_1PrimitiveBase.html#a4408e5c69fb23710c50f044342d963cb">NeighborFilter</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1PrimitiveBase.html#ae52281d8e772038e6a132355ca0956b9">m_nFilter</a></td></tr>
+<tr class="memdesc:ae52281d8e772038e6a132355ca0956b9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Neighborhood filter.  <br /></td></tr>
+<tr class="separator:ae52281d8e772038e6a132355ca0956b9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aef45cba56db9793dbb2694164cb9db88" id="r_aef45cba56db9793dbb2694164cb9db88"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespacePonca.html#abfd697aebf07c1b5c8be5ee401e2dc84">FIT_RESULT</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1PrimitiveBase.html#aef45cba56db9793dbb2694164cb9db88">m_eCurrentState</a> {<a class="el" href="namespacePonca.html#abfd697aebf07c1b5c8be5ee401e2dc84a08d57dd200082f67128b5274049dda41">UNDEFINED</a>}</td></tr>
 <tr class="memdesc:aef45cba56db9793dbb2694164cb9db88"><td class="mdescLeft">&#160;</td><td class="mdescRight">Represent the current state of the fit (finalize function update the state)  <br /></td></tr>
 <tr class="separator:aef45cba56db9793dbb2694164cb9db88"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -353,7 +349,7 @@ template&lt;class DataPoint , class _NFilter , typename T  = void&gt; </div>
 <p>Add a neighbor to perform the fit. </p>
 <dl class="section return"><dt>Returns</dt><dd>false if param nei is not a valid neighbour (weight = 0) </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="primitive_8h_source.html#l00120">120</a> of file <a class="el" href="primitive_8h_source.html">primitive.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="primitive_8h_source.html#l00112">112</a> of file <a class="el" href="primitive_8h_source.html">primitive.h</a>.</p>
 
 </div>
 </div>
@@ -386,7 +382,7 @@ template&lt;class DataPoint , class _NFilter , typename T  = void&gt; </div>
 <dl class="section return"><dt>Returns</dt><dd>Fitting Status </dd></dl>
 <dl class="section warning"><dt>Warning</dt><dd>Must be called be for any use of the fitting output </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="primitive_8h_source.html#l00127">127</a> of file <a class="el" href="primitive_8h_source.html">primitive.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="primitive_8h_source.html#l00119">119</a> of file <a class="el" href="primitive_8h_source.html">primitive.h</a>.</p>
 
 </div>
 </div>
@@ -416,44 +412,12 @@ template&lt;class DataPoint , class _NFilter , typename T  = void&gt; </div>
 </div><div class="memdoc">
 <dl class="section return"><dt>Returns</dt><dd>the current test of the fit </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="primitive_8h_source.html#l00114">114</a> of file <a class="el" href="primitive_8h_source.html">primitive.h</a>.</p>
-
-</div>
-</div>
-<a id="aa6011e38824713eb329d10ba624f6eb9" name="aa6011e38824713eb329d10ba624f6eb9"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa6011e38824713eb329d10ba624f6eb9">&#9670;&#160;</a></span>getNeighborFilter() <span class="overload">[1/2]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;class DataPoint , class _NFilter , typename T  = void&gt; </div>
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="classPonca_1_1PrimitiveBase.html#a4408e5c69fb23710c50f044342d963cb">NeighborFilter</a> &amp; <a class="el" href="classPonca_1_1PrimitiveBase.html">Ponca::PrimitiveBase</a>&lt; DataPoint, _NFilter, T &gt;::getNeighborFilter </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">protected</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Write access to the NeighborFilter. </p>
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="classPonca_1_1PrimitiveBase.html#a1994d3443a2f5c77b2c89ada956795f2" title="Init the WeightFunc, without changing the other internal states.">setNeighborFilter</a> </dd></dl>
-
-<p class="definition">Definition at line <a class="el" href="primitive_8h_source.html#l00107">107</a> of file <a class="el" href="primitive_8h_source.html">primitive.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="primitive_8h_source.html#l00106">106</a> of file <a class="el" href="primitive_8h_source.html">primitive.h</a>.</p>
 
 </div>
 </div>
 <a id="acf1a246696337165d89b6109f01b7b2d" name="acf1a246696337165d89b6109f01b7b2d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#acf1a246696337165d89b6109f01b7b2d">&#9670;&#160;</a></span>getNeighborFilter() <span class="overload">[2/2]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#acf1a246696337165d89b6109f01b7b2d">&#9670;&#160;</a></span>getNeighborFilter()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -480,7 +444,7 @@ template&lt;class DataPoint , class _NFilter , typename T  = void&gt; </div>
 <p>Read access to the NeighborFilter. </p>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="classPonca_1_1PrimitiveBase.html#a1994d3443a2f5c77b2c89ada956795f2" title="Init the WeightFunc, without changing the other internal states.">setNeighborFilter</a> </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="primitive_8h_source.html#l00100">100</a> of file <a class="el" href="primitive_8h_source.html">primitive.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="primitive_8h_source.html#l00099">99</a> of file <a class="el" href="primitive_8h_source.html">primitive.h</a>.</p>
 
 </div>
 </div>
@@ -512,7 +476,7 @@ template&lt;class DataPoint , class _NFilter , typename T  = void&gt; </div>
 <p>Get number of points added in the neighborhood (with non negative weight) <br  />
  </p>
 
-<p class="definition">Definition at line <a class="el" href="primitive_8h_source.html#l00088">88</a> of file <a class="el" href="primitive_8h_source.html">primitive.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="primitive_8h_source.html#l00087">87</a> of file <a class="el" href="primitive_8h_source.html">primitive.h</a>.</p>
 
 </div>
 </div>
@@ -543,7 +507,7 @@ template&lt;class DataPoint , class _NFilter , typename T  = void&gt; </div>
 
 <p>Get the sum of the weights. </p>
 
-<p class="definition">Definition at line <a class="el" href="primitive_8h_source.html#l00091">91</a> of file <a class="el" href="primitive_8h_source.html">primitive.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="primitive_8h_source.html#l00090">90</a> of file <a class="el" href="primitive_8h_source.html">primitive.h</a>.</p>
 
 </div>
 </div>
@@ -575,7 +539,7 @@ template&lt;class DataPoint , class _NFilter , typename T  = void&gt; </div>
 <p>Set the evaluation position and reset the internal states. </p>
 <dl class="section warning"><dt>Warning</dt><dd>Must be called be for any computation (but after <a class="el" href="classPonca_1_1PrimitiveBase.html#a1994d3443a2f5c77b2c89ada956795f2" title="Init the WeightFunc, without changing the other internal states.">setNeighborFilter</a>) </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="primitive_8h_source.html#l00066">66</a> of file <a class="el" href="primitive_8h_source.html">primitive.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="primitive_8h_source.html#l00065">65</a> of file <a class="el" href="primitive_8h_source.html">primitive.h</a>.</p>
 
 </div>
 </div>
@@ -607,7 +571,7 @@ template&lt;class DataPoint , class _NFilter , typename T  = void&gt; </div>
 <p>Is the primitive well fitted and ready to use (finalize has been called) ? </p>
 <dl class="section warning"><dt>Warning</dt><dd>The fit can be unstable (having neighbors between 3 and 6) </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="primitive_8h_source.html#l00075">75</a> of file <a class="el" href="primitive_8h_source.html">primitive.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="primitive_8h_source.html#l00074">74</a> of file <a class="el" href="primitive_8h_source.html">primitive.h</a>.</p>
 
 </div>
 </div>
@@ -638,7 +602,7 @@ template&lt;class DataPoint , class _NFilter , typename T  = void&gt; </div>
 
 <p>Is the fitted primitive ready to use (finalize has been called and the result is stable) </p>
 
-<p class="definition">Definition at line <a class="el" href="primitive_8h_source.html#l00081">81</a> of file <a class="el" href="primitive_8h_source.html">primitive.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="primitive_8h_source.html#l00080">80</a> of file <a class="el" href="primitive_8h_source.html">primitive.h</a>.</p>
 
 </div>
 </div>
@@ -670,7 +634,7 @@ template&lt;class DataPoint , class _NFilter , typename T  = void&gt; </div>
 <p>Is another pass required for fitting (finalize has been called and the result is <a class="el" href="namespacePonca.html#abfd697aebf07c1b5c8be5ee401e2dc84a0d50cd1855fec459b2c5756ec38d4a17" title="The fitting procedure needs to analyse the neighborhood another time.">NEED_OTHER_PASS</a>) </p>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="classPonca_1_1PrimitiveBase.html#a0f5e08aa7d8b194a70bfe6ad29faf183" title="To be called when starting a new processing pass, ie.">startNewPass</a> </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="primitive_8h_source.html#l00085">85</a> of file <a class="el" href="primitive_8h_source.html">primitive.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="primitive_8h_source.html#l00084">84</a> of file <a class="el" href="primitive_8h_source.html">primitive.h</a>.</p>
 
 </div>
 </div>
@@ -704,7 +668,7 @@ template&lt;class DataPoint , class _NFilter , typename T  = void&gt; </div>
 <p>Calls <a class="el" href="classPonca_1_1PrimitiveBase.html#a0f5e08aa7d8b194a70bfe6ad29faf183" title="To be called when starting a new processing pass, ie.">startNewPass</a> internally. </p><dl class="section warning"><dt>Warning</dt><dd>Must be called be for any computation (and before <a class="el" href="classPonca_1_1PrimitiveBase.html#a83975666fab55ddc909d735fce33154b" title="Set the evaluation position and reset the internal states.">init</a>). </dd></dl>
 <dl class="section see"><dt>See also</dt><dd>getWeightFunc </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="primitive_8h_source.html#l00061">61</a> of file <a class="el" href="primitive_8h_source.html">primitive.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="primitive_8h_source.html#l00060">60</a> of file <a class="el" href="primitive_8h_source.html">primitive.h</a>.</p>
 
 </div>
 </div>
@@ -736,7 +700,7 @@ template&lt;class DataPoint , class _NFilter , typename T  = void&gt; </div>
 <p>To be called when starting a new processing pass, ie. </p>
 <p>when <code><a class="el" href="classPonca_1_1PrimitiveBase.html#af0e6053988ef7d7ec4a9b56a70d607ce">getCurrentState()</a>==#NEED_ANOTHER_PASS</code> </p>
 
-<p class="definition">Definition at line <a class="el" href="primitive_8h_source.html#l00094">94</a> of file <a class="el" href="primitive_8h_source.html">primitive.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="primitive_8h_source.html#l00093">93</a> of file <a class="el" href="primitive_8h_source.html">primitive.h</a>.</p>
 
 </div>
 </div>
@@ -765,7 +729,35 @@ template&lt;class DataPoint , class _NFilter , typename T  = void&gt; </div>
 
 <p>Represent the current state of the fit (finalize function update the state) </p>
 
-<p class="definition">Definition at line <a class="el" href="primitive_8h_source.html#l00054">54</a> of file <a class="el" href="primitive_8h_source.html">primitive.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="primitive_8h_source.html#l00053">53</a> of file <a class="el" href="primitive_8h_source.html">primitive.h</a>.</p>
+
+</div>
+</div>
+<a id="ae52281d8e772038e6a132355ca0956b9" name="ae52281d8e772038e6a132355ca0956b9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae52281d8e772038e6a132355ca0956b9">&#9670;&#160;</a></span>m_nFilter</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class DataPoint , class _NFilter , typename T  = void&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classPonca_1_1PrimitiveBase.html#a4408e5c69fb23710c50f044342d963cb">NeighborFilter</a> <a class="el" href="classPonca_1_1PrimitiveBase.html">Ponca::PrimitiveBase</a>&lt; DataPoint, _NFilter, T &gt;::m_nFilter</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Neighborhood filter. </p>
+
+<p class="definition">Definition at line <a class="el" href="primitive_8h_source.html#l00049">49</a> of file <a class="el" href="primitive_8h_source.html">primitive.h</a>.</p>
 
 </div>
 </div>
@@ -775,7 +767,7 @@ template&lt;class DataPoint , class _NFilter , typename T  = void&gt; </div>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="namespacePonca.html">Ponca</a></li><li class="navelem"><a class="el" href="classPonca_1_1PrimitiveBase.html">PrimitiveBase</a></li>
-    <li class="footer">Generated on Tue Mar 10 2026 14:30:03 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
+    <li class="footer">Generated on Thu Mar 12 2026 16:19:16 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
   </ul>
 </div>
 </body>
