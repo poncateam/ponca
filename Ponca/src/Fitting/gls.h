@@ -149,10 +149,10 @@ public:
        \f]
 
        Method published in \cite Mellado:2012:GLS
-       @param wtau Weight applied to \f$ \tau \f$
-       @param weta Weight applied to \f$ \eta \f$
-       @param wkappa Weight applied to \f$ \kappa \f$
-       @return
+       \param wtau Weight applied to \f$ \tau \f$
+       \param weta Weight applied to \f$ \eta \f$
+       \param wkappa Weight applied to \f$ \kappa \f$
+       \return
      */
     PONCA_MULTIARCH inline Scalar geomVar(Scalar wtau   = Scalar(1),
                                           Scalar weta   = Scalar(1),

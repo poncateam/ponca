@@ -65,7 +65,7 @@ public:
      * Output vector is: [h, u, v]^T, where u, v are 2d coordinates on the plane,
      * and h the height of the sample.
      * \param _q Vector expressed in ambient space
-     * @param _isPositionVector Indicate if the input vector `_q` is a position that is influenced by translations
+     * \param _isPositionVector Indicate if the input vector `_q` is a position that is influenced by translations
      *        (e.g., in contrast to displacement or normal vectors)
      * \return Vector expressed in local tangent frame
      */
@@ -76,7 +76,7 @@ public:
      * \brief Transform a point from the tangent plane [h, u, v]^T to ambient space
      *
      * \param _q Vector expressed in local tangent frame
-     * @param _isPositionVector Indicate if the input vector `_q` is a position that is influenced by translations
+     * \param _isPositionVector Indicate if the input vector `_q` is a position that is influenced by translations
      *        (e.g., in contrast to displacement or normal vectors)
      * \return Vector expressed in ambient space
      */

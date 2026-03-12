@@ -21,7 +21,7 @@ namespace Ponca
  * \f$\mathbf{x}'=\mathbf{x}-\mathbf{p}\f$.
  * This frame does not apply rotation.
  *
- * @tparam DataPoint Point type used for computation
+ * \tparam DataPoint Point type used for computation
  */
 template<class DataPoint>
 class CenteredNeighborhoodFrame {
@@ -45,12 +45,12 @@ public:
 
     /*!
      * \brief Convert query from local to global coordinate system, such as \f$\mathbf{x}=\mathbf{x}'+\mathbf{p}\f$.
-     * @param _q Vector expressed relatively to the basis center
-     * @param _isPositionVector Indicate if the input vector `_q` is a position that is influenced by translations
+     * \param _q Vector expressed relatively to the basis center
+     * \param _isPositionVector Indicate if the input vector `_q` is a position that is influenced by translations
      *        (e.g., in contrast to displacement or normal vectors)
-     * @return Vector expressed in the global coordinate system
+     * \return Vector expressed in the global coordinate system
      *
-     * @see convertToLocalBasis
+     * \see convertToLocalBasis
      */
     PONCA_MULTIARCH [[nodiscard]] inline VectorType convertToGlobalBasis(const VectorType& _q,
                                                                          bool _isPositionVector = true) const {
@@ -60,12 +60,12 @@ public:
     /*!
      * \brief Convert query from global to local coordinate system, such as \f$\mathbf{x}'=\mathbf{x}-\mathbf{p}\f$.
      *
-     * @param _q Input Vector in global coordinate system
-     * @param _isPositionVector Indicate if the input vector `_q` is a position that is influenced by translations
+     * \param _q Input Vector in global coordinate system
+     * \param _isPositionVector Indicate if the input vector `_q` is a position that is influenced by translations
      *        (e.g., in contrast to displacement or normal vectors)
-     * @return Vector expressed relatively to the basis center
+     * \return Vector expressed relatively to the basis center
      *
-     * @see convertToGlobalBasis
+     * \see convertToGlobalBasis
      */
     PONCA_MULTIARCH [[nodiscard]] inline VectorType convertToLocalBasis(const VectorType& _q,
                                                                         bool _isPositionVector = true) const {
@@ -74,7 +74,7 @@ public:
 
     /*!
      * \brief Get access to the stored points of evaluation
-     * @return Position of the local basis center
+     * \return Position of the local basis center
      */
     PONCA_MULTIARCH [[nodiscard]] inline const VectorType& evalPos() const { return m_p; }
 
@@ -89,7 +89,7 @@ private:
  * \f$\mathbf{x}'=\mathbf{x}-\mathbf{p}\f$.
  * This frame does not apply rotation.
  *
- * @tparam DataPoint Point type used for computation
+ * \tparam DataPoint Point type used for computation
  */
 template<class DataPoint>
 class GlobalNeighborhoodFrame {
@@ -109,10 +109,10 @@ public:
 
     /*!
      * \brief Convert position from local to global coordinate system : does nothing as this is global frame
-     * @param _q Position in local coordinate
-     * @param _isPositionVector Indicate if the input vector `_q` is a position that is influenced by translations
+     * \param _q Position in local coordinate
+     * \param _isPositionVector Indicate if the input vector `_q` is a position that is influenced by translations
      *        (e.g., in contrast to displacement or normal vectors)
-     * @return _q
+     * \return _q
      */
     PONCA_MULTIARCH [[nodiscard]] inline const VectorType& convertToGlobalBasis(const VectorType& _q,
                                                                                 bool /*_isPositionVector*/ = true) const {
@@ -121,10 +121,10 @@ public:
 
     /*!
      * \brief Convert query from global to local coordinate system : does nothing as this is global frame
-     * @param _q Query in global coordinate
-     * @param _isPositionVector Indicate if the input vector `_q` is a position that is influenced by translations
+     * \param _q Query in global coordinate
+     * \param _isPositionVector Indicate if the input vector `_q` is a position that is influenced by translations
      *        (e.g., in contrast to displacement or normal vectors)
-     * @return _q
+     * \return _q
      */
     PONCA_MULTIARCH [[nodiscard]] inline const VectorType& convertToLocalBasis(const VectorType& _q,
                                                                                bool /*_isPositionVector*/ = true) const {

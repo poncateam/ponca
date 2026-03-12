@@ -195,7 +195,7 @@ class KNNResultSet
 
     /**
      * Called during search to add an element matching the criteria.
-     * @return true if the search should be continued, false if the results are
+     * \return true if the search should be continued, false if the results are
      * sufficient
      */
     bool addPoint(DistanceType dist, IndexType index)
@@ -301,7 +301,7 @@ class RadiusResultSet
 
     /**
      * Called during search to add an element matching the criteria.
-     * @return true if the search should be continued, false if the results are
+     * \return true if the search should be continued, false if the results are
      * sufficient
      */
     bool addPoint(DistanceType dist, IndexType index)
@@ -1031,8 +1031,8 @@ class KDTreeBaseClass
      * Create a tree node that subdivides the list of vecs from vind[first]
      * to vind[last].  The routine is called recursively on each sublist.
      *
-     * @param left index of the first vector
-     * @param right index of the last vector
+     * \param left index of the first vector
+     * \param right index of the last vector
      */
     NodePtr divideTree(
         Derived& obj, const Offset left, const Offset right, BoundingBox& bbox)
@@ -1098,10 +1098,10 @@ class KDTreeBaseClass
      * vind[last] concurrently.  The routine is called recursively on each
      * sublist.
      *
-     * @param left index of the first vector
-     * @param right index of the last vector
-     * @param thread_count count of std::async threads
-     * @param mutex mutex for mempool allocation
+     * \param left index of the first vector
+     * \param right index of the last vector
+     * \param thread_count count of std::async threads
+     * \param mutex mutex for mempool allocation
      */
     NodePtr divideTreeConcurrent(
         Derived& obj, const Offset left, const Offset right, BoundingBox& bbox,
@@ -1479,9 +1479,9 @@ class KDTreeSingleIndexAdaptor
      *  - The \a DIM template parameter if >0 (highest priority)
      *  - Otherwise, the \a dimensionality parameter of this constructor.
      *
-     * @param inputData Dataset with the input features. Its lifetime must be
+     * \param inputData Dataset with the input features. Its lifetime must be
      *  equal or longer than that of the instance of this class.
-     * @param params Basically, the maximum leaf node size
+     * \param params Basically, the maximum leaf node size
      *
      * Note that there is a variable number of optional additional parameters
      * which will be forwarded to the metric class constructor. Refer to example
@@ -1923,9 +1923,9 @@ class KDTreeSingleIndexDynamicAdaptor_
      *  - The \a DIM template parameter if >0 (highest priority)
      *  - Otherwise, the \a dimensionality parameter of this constructor.
      *
-     * @param inputData Dataset with the input features. Its lifetime must be
+     * \param inputData Dataset with the input features. Its lifetime must be
      *  equal or longer than that of the instance of this class.
-     * @param params Basically, the maximum leaf node size
+     * \param params Basically, the maximum leaf node size
      */
     KDTreeSingleIndexDynamicAdaptor_(
         const Dimension dimensionality, const DatasetAdaptor& inputData,
@@ -2343,9 +2343,9 @@ class KDTreeSingleIndexDynamicAdaptor
      *  - The \a DIM template parameter if >0 (highest priority)
      *  - Otherwise, the \a dimensionality parameter of this constructor.
      *
-     * @param inputData Dataset with the input features. Its lifetime must be
+     * \param inputData Dataset with the input features. Its lifetime must be
      *  equal or longer than that of the instance of this class.
-     * @param params Basically, the maximum leaf node size
+     * \param params Basically, the maximum leaf node size
      */
     explicit KDTreeSingleIndexDynamicAdaptor(
         const int dimensionality, const DatasetAdaptor& inputData,

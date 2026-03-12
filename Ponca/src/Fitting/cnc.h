@@ -56,8 +56,8 @@ public:
 
     /*! \brief Get the position of the point at the given index.
      *
-     * @param index Index of one of the three vertices of the triangle (between 0 and 2)
-     * @return The position of vertex
+     * \param index Index of one of the three vertices of the triangle (between 0 and 2)
+     * \return The position of vertex
      */
     PONCA_MULTIARCH [[nodiscard]] VectorType& getPos(const int index) {
         return m_points[index];
