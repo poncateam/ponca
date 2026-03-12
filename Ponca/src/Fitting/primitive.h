@@ -44,10 +44,9 @@ private:
     //! \brief Sum of the neighbors weights
     Scalar m_sumW {0};
 
+protected:
     //! \brief Neighborhood filter
     NeighborFilter   m_nFilter;
-
-protected:
 
     //! \brief Represent the current state of the fit (finalize function
     //! update the state)
@@ -97,14 +96,7 @@ public:
     }
 
     /*! \brief Read access to the NeighborFilter \see setNeighborFilter */
-    PONCA_MULTIARCH [[nodiscard]] inline const NeighborFilter& getNeighborFilter() const
-    {
-        return m_nFilter;
-    }
-
-protected:
-    /*! \brief Write access to the NeighborFilter \see setNeighborFilter */
-    PONCA_MULTIARCH [[nodiscard]] inline NeighborFilter& getNeighborFilter()
+    PONCA_MULTIARCH inline const NeighborFilter& getNeighborFilter() const
     {
         return m_nFilter;
     }

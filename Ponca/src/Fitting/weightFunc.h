@@ -76,7 +76,7 @@ public:
      * \brief Get access to the stored points of evaluation
      * @return Position of the local basis center
      */
-    PONCA_MULTIARCH [[nodiscard]] inline VectorType evalPos() const { return m_p; }
+    PONCA_MULTIARCH [[nodiscard]] inline const VectorType& evalPos() const { return m_p; }
 
 private:
     VectorType m_p;  /*!< \brief basis center */

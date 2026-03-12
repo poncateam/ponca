@@ -208,7 +208,7 @@ namespace internal
             auto lastPos = Base::getNeighborFilter().evalPos();
 
             for (int mm = 0; mm < mlsIter; ++mm) {
-                Base::getNeighborFilter().changeNeighborhoodFrame(lastPos);
+                Base::m_nFilter.changeNeighborhoodFrame(lastPos);
                 res = computeFunc();
 
                 if (Base::isStable()) {

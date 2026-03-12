@@ -96,7 +96,7 @@ public:
     PONCA_MULTIARCH inline void changeBasis(const VectorType& newbasis)
     {
         VectorType diff = Base::getNeighborFilter().evalPos() - newbasis;
-        Base::getNeighborFilter().changeNeighborhoodFrame(newbasis);
+        Base::m_nFilter.changeNeighborhoodFrame(newbasis);
         Base::init();
         EigenBase::origin() += diff;
     }
