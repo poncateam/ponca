@@ -1,30 +1,35 @@
 // This file is expected to be compiled by doxygen only, for documentation purpose
 
-namespace Ponca {
-    namespace Concept {
+namespace Ponca 
+{
+    namespace Concept 
+    {
 //! [PointConcept]
-        class PointConcept {
+        class PointConcept 
+        {
         public:
             /* \brief Defines the ambient space dimension, 3 in this example */
-            enum {
-                Dim = 3
-            };
+            enum { Dim = 3 };
             // \brief Defines the type used ton encode scalar values
             typedef float Scalar;
             // \brief Defines type used ton encode vector values
+            // 
+            // \note VectorType should have the same API than Eigen::Matrix API, 
+            // and be implicitly convertible to Eigen::Matrix
             typedef Eigen::Matrix<Scalar, Dim, 1> VectorType;
 
             // \brief Default constructor
-            PONCA_MULTIARCH inline PointConcept();
+            PONCA_MULTIARCH inline PointConcept(const VectorType& pos = VectorType::Zero());
 
             // \brief Read access to the position property
-            // \note The return type should have the same API than VectorType (e.g. const Eigen::Map< const VectorType >&),
-            // or be implicitly convertible to VectorType
+            // \note The return type should have the same API than VectorType (e.g. const Eigen::Map< const VectorType >&)
+            // and be implicitly convertible to Eigen::Matrix
             PONCA_MULTIARCH inline const VectorType& pos() const;
 
             // \brief Write access to the position property
             // \note Same constraints on return type
             PONCA_MULTIARCH inline VectorType& pos();
+
         }; //class PointConcept
 //! [PointConcept]
 
