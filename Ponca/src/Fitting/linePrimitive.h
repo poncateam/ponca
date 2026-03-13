@@ -1,7 +1,7 @@
 
 /*
  Copyright (C) 2021 aniket agarwalla <aniketagarwalla37@gmail.com>
- 
+
  This Source Code Form is subject to the terms of the Mozilla Public
  License, v. 2.0. If a copy of the MPL was not distributed with this
  file, You can obtain one at http://mozilla.org/MPL/2.0/.
@@ -30,30 +30,28 @@ namespace Ponca
     \verbatim PROVIDES_LINE \endverbatim
 */
 
-template < class DataPoint, class _NFilter, typename T >
-class Line : public T,
-             public Eigen::ParametrizedLine<typename DataPoint::Scalar, DataPoint::Dim >
+template <class DataPoint, class _NFilter, typename T>
+class Line : public T, public Eigen::ParametrizedLine<typename DataPoint::Scalar, DataPoint::Dim>
 {
-PONCA_FITTING_DECLARE_DEFAULT_TYPES
+    PONCA_FITTING_DECLARE_DEFAULT_TYPES
 
 public:
     /// \brief Specialization of Eigen::ParametrizedLine inherited by Ponca::Line
-    using EigenBase = Eigen::ParametrizedLine<typename DataPoint::Scalar, DataPoint::Dim >;
+    using EigenBase = Eigen::ParametrizedLine<typename DataPoint::Scalar, DataPoint::Dim>;
 
 protected:
-
     enum
     {
-        check = Base::PROVIDES_PRIMITIVE_BASE,  /*!< \brief Requires PrimitiveBase */
-        PROVIDES_LINE                           /*!< \brief Provides  Line */
+        check = Base::PROVIDES_PRIMITIVE_BASE, /*!< \brief Requires PrimitiveBase */
+        PROVIDES_LINE                          /*!< \brief Provides  Line */
     };
 
 public:
-    PONCA_EXPLICIT_CAST_OPERATORS(Line,line)
+    PONCA_EXPLICIT_CAST_OPERATORS(Line, line)
 
     /*!
      * \brief Set the scalar field values to 0 and reset the distance() and origin() status
-    */
+     */
     PONCA_MULTIARCH inline void init()
     {
         Base::init();
@@ -64,30 +62,32 @@ public:
     /// \brief Tell if the line as been correctly set.
     /// Used to set CONFLICT_ERROR_FOUND during fitting
     /// \return false when called straight after #init. Should be true after fitting
-    PONCA_MULTIARCH [[nodiscard]] inline bool isValid() const{
+    PONCA_MULTIARCH [[nodiscard]] inline bool isValid() const
+    {
         static const typename EigenBase::VectorType zeros = EigenBase::VectorType::Zero();
-        return ! ( EigenBase::origin().isApprox(zeros) && EigenBase::direction().isApprox(zeros) ) ;
+        return !(EigenBase::origin().isApprox(zeros) && EigenBase::direction().isApprox(zeros));
     }
 
     /*! \brief Comparison operator */
-    PONCA_MULTIARCH inline bool operator==(const Line<DataPoint, NeighborFilter, T>& other) const{
+    PONCA_MULTIARCH inline bool operator==(const Line<DataPoint, NeighborFilter, T>& other) const
+    {
         return EigenBase::isApprox(other);
     }
 
     /*! \brief Comparison operator, convenience function */
-    PONCA_MULTIARCH inline bool operator!=(const Line<DataPoint, NeighborFilter, T>& other) const{
-        return ! ((*this) == other);
+    PONCA_MULTIARCH inline bool operator!=(const Line<DataPoint, NeighborFilter, T>& other) const
+    {
+        return !((*this) == other);
     }
 
     /*! \brief Init the line from a direction and a position
        \param direction Orientation of the line, does not need to be normalized
        \param origin Position of the line
     */
-    PONCA_MULTIARCH inline void setLine (const VectorType& origin,
-                                         const VectorType& direction)
+    PONCA_MULTIARCH inline void setLine(const VectorType& origin, const VectorType& direction)
     {
         EigenBase* cc = static_cast<EigenBase*>(this);
-        *cc = EigenBase(origin, direction);
+        *cc           = EigenBase(origin, direction);
     }
 
     /*!
@@ -103,7 +103,7 @@ public:
 
     //! \brief Value of the scalar field at the evaluation point
     //! \see method `#isSigned` of the fit to check if the sign is reliable
-    PONCA_MULTIARCH [[nodiscard]] inline Scalar potential ( ) const
+    PONCA_MULTIARCH [[nodiscard]] inline Scalar potential() const
     {
         // The potential is the distance from a point to the line
         return EigenBase::squaredDistance(VectorType::Zero());
@@ -113,7 +113,7 @@ public:
      * defined as the squared distance between \f$ \mathbf{q} \f$ and the line
      *  \see method `#isSigned` of the fit to check if the sign is reliable
      */
-    PONCA_MULTIARCH [[nodiscard]] inline Scalar potential (const VectorType& _q) const
+    PONCA_MULTIARCH [[nodiscard]] inline Scalar potential(const VectorType& _q) const
     {
         // Turn to centered basis
         const VectorType lq = Base::getNeighborFilter().convertToLocalBasis(_q);
@@ -122,18 +122,20 @@ public:
     }
 
     //! \brief Project a point on the line
-    PONCA_MULTIARCH [[nodiscard]] inline VectorType project (const VectorType& _q) const
+    PONCA_MULTIARCH [[nodiscard]] inline VectorType project(const VectorType& _q) const
     {
         // Project on the normal vector and add the offset value
-        return Base::getNeighborFilter().convertToGlobalBasis(EigenBase::projection(Base::getNeighborFilter().convertToLocalBasis(_q)));
+        return Base::getNeighborFilter().convertToGlobalBasis(
+            EigenBase::projection(Base::getNeighborFilter().convertToLocalBasis(_q)));
     }
+
 protected:
     /// \copydoc Line::potential
-    PONCA_MULTIARCH [[nodiscard]] inline Scalar potentialLocal (const VectorType& _lq) const {
+    PONCA_MULTIARCH [[nodiscard]] inline Scalar potentialLocal(const VectorType& _lq) const
+    {
         // The potential is the distance from a point to the line
         return EigenBase::squaredDistance(_lq);
     }
-}; //class Line
+}; // class Line
 
-
-}
+} // namespace Ponca

@@ -15,9 +15,11 @@
 
 #include <memory>
 
-namespace Ponca {
+namespace Ponca
+{
 
-template <typename Traits> class KnnGraphBase;
+template <typename Traits>
+class KnnGraphBase;
 
 /*!
  * \brief Public interface for KnnGraph datastructure.
@@ -41,11 +43,12 @@ using KnnGraph = KnnGraphBase<KnnGraphDefaultTraits<DataPoint>>;
  * \see KnnGraphDefaultTraits for the trait interface documentation.
  *
  */
-template <typename Traits> class KnnGraphBase
+template <typename Traits>
+class KnnGraphBase
 {
 public:
-    using DataPoint  = typename Traits::DataPoint; ///< DataPoint given by user via Traits
-    using Scalar     = typename DataPoint::Scalar; ///< Scalar given by user via DataPoint
+    using DataPoint  = typename Traits::DataPoint;     ///< DataPoint given by user via Traits
+    using Scalar     = typename DataPoint::Scalar;     ///< Scalar given by user via DataPoint
     using VectorType = typename DataPoint::VectorType; ///< VectorType given by user via DataPoint
 
     using IndexType      = typename Traits::IndexType;
@@ -67,22 +70,21 @@ public:
     ///
     /// \warning Stores a const reference to kdtree.point_data()
     /// \warning KdTreeTraits compatibility is checked with static assertion
-    template<typename KdTreeTraits>
+    template <typename KdTreeTraits>
     inline KnnGraphBase(const KdTreeBase<KdTreeTraits>& kdtree, int k = 6)
-            : m_k(std::min(k,kdtree.sampleCount()-1)),
-              m_kdTreePoints(kdtree.points())
+        : m_k(std::min(k, kdtree.sampleCount() - 1)), m_kdTreePoints(kdtree.points())
     {
-        static_assert( std::is_same<typename Traits::DataPoint, typename KdTreeTraits::DataPoint>::value,
-                       "KdTreeTraits::DataPoint is not equal to Traits::DataPoint" );
-        static_assert( std::is_same<typename Traits::PointContainer, typename KdTreeTraits::PointContainer>::value,
-                       "KdTreeTraits::PointContainer is not equal to Traits::PointContainer" );
-        static_assert( std::is_same<typename Traits::IndexContainer, typename KdTreeTraits::IndexContainer>::value,
-                       "KdTreeTraits::IndexContainer is not equal to Traits::IndexContainer" );
+        static_assert(std::is_same<typename Traits::DataPoint, typename KdTreeTraits::DataPoint>::value,
+                      "KdTreeTraits::DataPoint is not equal to Traits::DataPoint");
+        static_assert(std::is_same<typename Traits::PointContainer, typename KdTreeTraits::PointContainer>::value,
+                      "KdTreeTraits::PointContainer is not equal to Traits::PointContainer");
+        static_assert(std::is_same<typename Traits::IndexContainer, typename KdTreeTraits::IndexContainer>::value,
+                      "KdTreeTraits::IndexContainer is not equal to Traits::IndexContainer");
 
         // We need to account for the entire point set, irrespectively of the sampling. This is because the kdtree
         // (kNearestNeighbors) return ids of the entire point set, not it sub-sampled list of ids.
         // \fixme Update API to properly handle kdtree subsampling
-        const int cloudSize   = kdtree.pointCount();
+        const int cloudSize = kdtree.pointCount();
         {
             const int samplesSize = kdtree.sampleCount();
             eigen_assert(cloudSize == samplesSize);
@@ -91,11 +93,11 @@ public:
         m_indices.resize(cloudSize * m_k, -1);
 
 #pragma omp parallel for shared(kdtree, cloudSize) default(none)
-        for(int i=0; i<cloudSize; ++i)
+        for (int i = 0; i < cloudSize; ++i)
         {
             int j = 0;
-            for(auto n : kdtree.kNearestNeighbors(typename KdTreeTraits::IndexType(i),
-                                                   typename KdTreeTraits::IndexType(m_k)))
+            for (auto n :
+                 kdtree.kNearestNeighbors(typename KdTreeTraits::IndexType(i), typename KdTreeTraits::IndexType(m_k)))
             {
                 m_indices[i * m_k + j] = n;
                 ++j;
@@ -114,9 +116,7 @@ public:
     ///
     /// \param index Index of the point that the query evaluates
     /// \return The \ref KNearestIndexQuery mutable object to iterate over the search results.
-    inline KNearestIndexQuery kNearestNeighbors(int index) const{
-        return KNearestIndexQuery(this, index);
-    }
+    inline KNearestIndexQuery kNearestNeighbors(int index) const { return KNearestIndexQuery(this, index); }
 
     /// \brief Computes a Query object to iterate over the neighbors that are inside a given radius.
     ///
@@ -126,9 +126,7 @@ public:
     /// \param index Index of the point that the query evaluates
     /// \param r Radius around where to search the neighbors
     /// \return The \ref RangeIndexQuery mutable object to iterate over the search results.
-    inline RangeIndexQuery    rangeNeighbors(int index, Scalar r) const{
-        return RangeIndexQuery(this, r, index);
-    }
+    inline RangeIndexQuery rangeNeighbors(int index, Scalar r) const { return RangeIndexQuery(this, r, index); }
 
     /// \brief Convenience function that provides a k-nearest neighbors Query object.
     ///
@@ -142,10 +140,7 @@ public:
     /// \return The \ref KNearestIndexQuery mutable object that can be called with the operator ()
     /// with an index as argument, to fetch the k-nearest neighbors of a point.
     /// \see #kNearestNeighbors
-    inline KNearestIndexQuery kNearestNeighborsIndexQuery() const
-    {
-        return KNearestIndexQuery(this, 0);
-    }
+    inline KNearestIndexQuery kNearestNeighborsIndexQuery() const { return KNearestIndexQuery(this, 0); }
 
     /// \brief Convenience function that provides an empty range neighbors Query object.
     ///
@@ -156,17 +151,14 @@ public:
     ///
     /// \return The empty \ref KNearestIndexQuery mutable object to iterate over the search results.
     /// \see #rangeNeighbors
-    inline RangeIndexQuery rangeNeighborsIndexQuery() const
-    {
-        return RangeIndexQuery(this, 0, 0);
-    }
+    inline RangeIndexQuery rangeNeighborsIndexQuery() const { return RangeIndexQuery(this, 0, 0); }
 
     // Accessors ---------------------------------------------------------------
 public:
     /// \brief Number of neighbor per vertex
     [[nodiscard]] inline int k() const { return m_k; }
     /// \brief Number of vertices in the neighborhood graph
-    [[nodiscard]] inline size_t size() const { return m_indices.size()/static_cast<size_t>(m_k); }
+    [[nodiscard]] inline size_t size() const { return m_indices.size() / static_cast<size_t>(m_k); }
 
     // Data --------------------------------------------------------------------
 private:

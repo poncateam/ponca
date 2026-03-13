@@ -4,7 +4,6 @@
  file, You can obtain one at http://mozilla.org/MPL/2.0/.
 */
 
-
 #pragma once
 
 #include "../defines.h"
@@ -14,29 +13,30 @@
 
 #include <Eigen/Geometry>
 
-namespace Ponca {
+namespace Ponca
+{
 #ifndef PARSED_WITH_DOXYGEN
 namespace internal
 {
-    constexpr int clz(unsigned int value)
+constexpr int clz(unsigned int value)
+{
+#    if PONCA_HAS_BUILTIN_CLZ
+    return __builtin_clz(value);
+#    else
+    if (value == 0)
     {
-#if PONCA_HAS_BUILTIN_CLZ
-        return __builtin_clz(value);
-#else
-        if (value == 0)
-        {
-            return 0;
-        }
-
-        unsigned int msb_mask = 1 << (sizeof(unsigned int)*8 - 1);
-        int count = 0;
-        for (; (value & msb_mask) == 0; value <<= 1, ++count)
-        {
-        }
-        return count;
-#endif
+        return 0;
     }
+
+    unsigned int msb_mask = 1 << (sizeof(unsigned int) * 8 - 1);
+    int count             = 0;
+    for (; (value & msb_mask) == 0; value <<= 1, ++count)
+    {
+    }
+    return count;
+#    endif
 }
+} // namespace internal
 #endif
 
 template <typename NodeIndex, typename Scalar, int DIM>
@@ -46,16 +46,16 @@ private:
     enum
     {
         // The minimum bit width required to store the split dimension.
-        // 
+        //
         // Equal to the index of DIM's most significant bit (starting at 1), e.g.:
         // With DIM = 4,
         //             -------------
         // DIM =    0b | 1 | 0 | 0 |
         //             -------------
         // Bit index =  #3  #2  #1
-        // 
+        //
         // The MSB has an index of 3, so we store the dimension on 3 bits.
-        DIM_BITS = sizeof(unsigned int)*8 - internal::clz((unsigned int)DIM),
+        DIM_BITS = sizeof(unsigned int) * 8 - internal::clz((unsigned int)DIM),
     };
 
     // The node stores bitfields as unsigned indices.
@@ -67,7 +67,7 @@ public:
         /*!
          * \brief The bit width used to store the first child index.
          */
-        INDEX_BITS = sizeof(UIndex)*8 - DIM_BITS,
+        INDEX_BITS = sizeof(UIndex) * 8 - DIM_BITS,
     };
 
     Scalar split_value{0};
@@ -103,10 +103,9 @@ struct KdTreeDefaultLeafNode
  * \snippet ponca_customize_kdtree.cpp ReadCustomProperties
  *
  */
-template <typename Index, typename NodeIndex, typename DataPoint,
-          typename LeafSize = Index,
+template <typename Index, typename NodeIndex, typename DataPoint, typename LeafSize = Index,
           typename _InnerNodeType = KdTreeDefaultInnerNode<NodeIndex, typename DataPoint::Scalar, DataPoint::Dim>,
-          typename _LeafNodeType = KdTreeDefaultLeafNode<Index, LeafSize>>
+          typename _LeafNodeType  = KdTreeDefaultLeafNode<Index, LeafSize>>
 class KdTreeCustomizableNode
 {
 private:
@@ -134,8 +133,7 @@ public:
 
     PONCA_MULTIARCH KdTreeCustomizableNode() = default;
 
-    PONCA_MULTIARCH constexpr KdTreeCustomizableNode(KdTreeCustomizableNode&& n)
-        : m_is_leaf(n.m_is_leaf)
+    PONCA_MULTIARCH constexpr KdTreeCustomizableNode(KdTreeCustomizableNode&& n) : m_is_leaf(n.m_is_leaf)
     {
         if (m_is_leaf)
         {
@@ -165,8 +163,7 @@ public:
         return *this;
     }
 
-    PONCA_MULTIARCH constexpr KdTreeCustomizableNode(const KdTreeCustomizableNode& n)
-        : m_is_leaf(n.m_is_leaf)
+    PONCA_MULTIARCH constexpr KdTreeCustomizableNode(const KdTreeCustomizableNode& n) : m_is_leaf(n.m_is_leaf)
     {
         if (n.m_is_leaf)
         {
@@ -197,7 +194,7 @@ public:
     }
 
     PONCA_MULTIARCH_HOST ~KdTreeCustomizableNode() {}
-    
+
     PONCA_MULTIARCH [[nodiscard]] bool is_leaf() const { return m_is_leaf; }
     PONCA_MULTIARCH void set_is_leaf(bool is_leaf) { m_is_leaf = is_leaf; }
 
@@ -213,12 +210,12 @@ public:
      *
      * Called after \ref set_is_leaf during kd-tree construction.
      */
-    PONCA_MULTIARCH void configure_range(Index start, Index size, const AabbType &aabb)
+    PONCA_MULTIARCH void configure_range(Index start, Index size, const AabbType& aabb)
     {
         if (m_is_leaf)
         {
             data.m_leaf.start = start;
-            data.m_leaf.size = (LeafSize)size;
+            data.m_leaf.size  = (LeafSize)size;
         }
     }
 
@@ -235,9 +232,9 @@ public:
     {
         if (!m_is_leaf)
         {
-            data.m_inner.split_value = split_value;
+            data.m_inner.split_value    = split_value;
             data.m_inner.first_child_id = first_child_id;
-            data.m_inner.split_dim = split_dim;
+            data.m_inner.split_dim      = split_dim;
         }
     }
 
@@ -256,12 +253,12 @@ public:
      * \brief The position of the AABB split of the inner node.
      */
     PONCA_MULTIARCH [[nodiscard]] Scalar inner_split_value() const { return data.m_inner.split_value; }
-    
+
     /*!
      * \brief Which axis the split of the AABB of the inner node was done on.
      */
     PONCA_MULTIARCH [[nodiscard]] int inner_split_dim() const { return (int)data.m_inner.split_dim; }
-    
+
     /*!
      * \brief The index of the first child of the node in the node array of the
      * kd-tree.
@@ -279,8 +276,7 @@ protected:
 
 private:
     bool m_is_leaf{true};
-    union Data
-    {
+    union Data {
         // We need an explicit constructor here, see https://stackoverflow.com/a/70428826
         constexpr Data() : m_leaf() {}
 
@@ -291,14 +287,15 @@ private:
     Data data;
 };
 
-template <typename Index, typename NodeIndex, typename DataPoint,
-        typename LeafSize = Index>
-struct KdTreeDefaultNode : public KdTreeCustomizableNode<Index, NodeIndex, DataPoint, LeafSize,
-        KdTreeDefaultInnerNode<NodeIndex, typename DataPoint::Scalar, DataPoint::Dim>,
-        KdTreeDefaultLeafNode<Index, LeafSize>> {
-    using Base =  KdTreeCustomizableNode<Index, NodeIndex, DataPoint, LeafSize,
-            KdTreeDefaultInnerNode<NodeIndex, typename DataPoint::Scalar, DataPoint::Dim>,
-            KdTreeDefaultLeafNode<Index, LeafSize>>;
+template <typename Index, typename NodeIndex, typename DataPoint, typename LeafSize = Index>
+struct KdTreeDefaultNode
+    : public KdTreeCustomizableNode<Index, NodeIndex, DataPoint, LeafSize,
+                                    KdTreeDefaultInnerNode<NodeIndex, typename DataPoint::Scalar, DataPoint::Dim>,
+                                    KdTreeDefaultLeafNode<Index, LeafSize>>
+{
+    using Base = KdTreeCustomizableNode<Index, NodeIndex, DataPoint, LeafSize,
+                                        KdTreeDefaultInnerNode<NodeIndex, typename DataPoint::Scalar, DataPoint::Dim>,
+                                        KdTreeDefaultLeafNode<Index, LeafSize>>;
 };
 
 /*!
@@ -309,10 +306,8 @@ struct KdTreeDefaultNode : public KdTreeCustomizableNode<Index, NodeIndex, DataP
  * \tparam _NodeType Type used to store nodes, set by default to #KdTreeDefaultNode
  */
 template <typename _DataPoint,
-        template <typename /*Index*/,
-                  typename /*NodeIndex*/,
-                  typename /*DataPoint*/,
-                  typename /*LeafSize*/> typename _NodeType = KdTreeDefaultNode>
+          template <typename /*Index*/, typename /*NodeIndex*/, typename /*DataPoint*/, typename /*LeafSize*/>
+          typename _NodeType = KdTreeDefaultNode>
 struct KdTreeDefaultTraits
 {
     enum
@@ -353,10 +348,8 @@ struct KdTreeDefaultTraits
  * \tparam _NodeType Type used to store nodes, set by default to #KdTreeDefaultNode
  */
 template <typename _DataPoint,
-        template <typename /*Index*/,
-                  typename /*NodeIndex*/,
-                  typename /*DataPoint*/,
-                  typename /*LeafSize*/> typename _NodeType = Ponca::KdTreeDefaultNode>
+          template <typename /*Index*/, typename /*NodeIndex*/, typename /*DataPoint*/, typename /*LeafSize*/>
+          typename _NodeType = Ponca::KdTreeDefaultNode>
 struct KdTreePointerTraits
 {
     enum

@@ -37,25 +37,25 @@ namespace Ponca
     Provides:
     \verbatim PROVIDES_GLS_PARAMETRIZATION \endverbatim
 */
-template < class DataPoint, class _NFilter, typename T>
+template <class DataPoint, class _NFilter, typename T>
 class GLSParam : public T
 {
     PONCA_FITTING_DECLARE_DEFAULT_TYPES
 
-//! [Requirements]
+    //! [Requirements]
 protected:
     enum
     {
         Check = Base::PROVIDES_ALGEBRAIC_SPHERE,
         PROVIDES_GLS_PARAMETRIZATION
     };
-//! [Requirements]
+    //! [Requirements]
 
 protected:
-    Scalar m_fitness {0};   /*!< \brief Save the fitness value to avoid side effect with Pratt normalization*/
+    Scalar m_fitness{0}; /*!< \brief Save the fitness value to avoid side effect with Pratt normalization*/
 
 public:
-    PONCA_EXPLICIT_CAST_OPERATORS(GLSParam,glsParam)
+    PONCA_EXPLICIT_CAST_OPERATORS(GLSParam, glsParam)
     PONCA_FITTING_DECLARE_FINALIZE
 
     /**************************************************************************/
@@ -77,13 +77,19 @@ public:
     }
 
     /*! \brief Compute and return \f$ \frac{\tau}{t} \f$ */
-    PONCA_MULTIARCH [[nodiscard]] inline Scalar tau_normalized() const { return tau() / Base::getNeighborFilter().evalScale(); }
+    PONCA_MULTIARCH [[nodiscard]] inline Scalar tau_normalized() const
+    {
+        return tau() / Base::getNeighborFilter().evalScale();
+    }
 
     /*! \brief Compute and return \f$ \eta \f$ */
     PONCA_MULTIARCH [[nodiscard]] inline VectorType eta_normalized() const { return eta(); }
 
     /*! \brief Compute and return \f$ t \kappa \f$ */
-    PONCA_MULTIARCH [[nodiscard]] inline Scalar kappa_normalized() const { return kappa() * Base::getNeighborFilter().evalScale(); }
+    PONCA_MULTIARCH [[nodiscard]] inline Scalar kappa_normalized() const
+    {
+        return kappa() * Base::getNeighborFilter().evalScale();
+    }
 
     /*! \brief Return the fitness, e.g. the pratt norm of the initial scalar field */
     PONCA_MULTIARCH [[nodiscard]] inline Scalar fitness() const { return m_fitness; }
@@ -93,18 +99,17 @@ public:
     \return a distance between two fits (0 correspond to two similar fits)
     \warning Use the same scale to have a useful comparison (normalized value are used)
     */
-    PONCA_MULTIARCH [[nodiscard]] inline Scalar compareTo (const GLSParam<DataPoint, _NFilter, T>& _other,
-                                        bool _useFitness = true) const
+    PONCA_MULTIARCH [[nodiscard]] inline Scalar compareTo(const GLSParam<DataPoint, _NFilter, T>& _other,
+                                                          bool _useFitness = true) const
     {
-        Scalar nTau     = this->tau_normalized()   - _other.tau_normalized();
+        Scalar nTau     = this->tau_normalized() - _other.tau_normalized();
         Scalar nKappa   = this->kappa_normalized() - _other.kappa_normalized();
         Scalar nFitness = _useFitness ? this->fitness() - _other.fitness() : Scalar(0.);
 
         return nTau * nTau + nKappa * nKappa + nFitness * nFitness;
     }
 
-}; //class GLSParam
-
+}; // class GLSParam
 
 /*!
     \brief Differentiation of GLSParam
@@ -112,32 +117,33 @@ public:
 
     Method published in \cite Mellado:2012:GLS
 */
-template < class DataPoint, class _NFilter, int DiffType, typename T>
+template <class DataPoint, class _NFilter, int DiffType, typename T>
 class GLSDer : public T
 {
-PONCA_FITTING_DECLARE_DEFAULT_TYPES
-PONCA_FITTING_DECLARE_DEFAULT_DER_TYPES
+    PONCA_FITTING_DECLARE_DEFAULT_TYPES
+    PONCA_FITTING_DECLARE_DEFAULT_DER_TYPES
 
 protected:
     enum
     {
-        Check = Base::PROVIDES_GLS_PARAMETRIZATION &
-                Base::PROVIDES_PRIMITIVE_DERIVATIVE &
+        Check = Base::PROVIDES_GLS_PARAMETRIZATION & Base::PROVIDES_PRIMITIVE_DERIVATIVE &
                 Base::PROVIDES_ALGEBRAIC_SPHERE_DERIVATIVE,
         PROVIDES_GLS_DERIVATIVE,
         PROVIDES_GLS_GEOM_VAR
     };
 
 public:
-    PONCA_EXPLICIT_CAST_OPERATORS_DER(GLSDer,glsDer)
+    PONCA_EXPLICIT_CAST_OPERATORS_DER(GLSDer, glsDer)
 
-    PONCA_MULTIARCH inline ScalarArray dtau()   const; /*!< \brief Compute and return \f$ \tau \f$ derivatives */
-    PONCA_MULTIARCH inline VectorArray deta()   const; /*!< \brief Compute and return \f$ \eta \f$ derivatives */
+    PONCA_MULTIARCH inline ScalarArray dtau() const;   /*!< \brief Compute and return \f$ \tau \f$ derivatives */
+    PONCA_MULTIARCH inline VectorArray deta() const;   /*!< \brief Compute and return \f$ \eta \f$ derivatives */
     PONCA_MULTIARCH inline ScalarArray dkappa() const; /*!< \brief Compute and return \f$ \kappa \f$ derivatives */
 
-    PONCA_MULTIARCH inline ScalarArray dtau_normalized()   const; /*!< \brief Compute and return \f$ \tau \f$ derivatives */
-    PONCA_MULTIARCH inline VectorArray deta_normalized()   const; /*!< \brief Compute and return \f$ t * d\eta \f$ */
-    PONCA_MULTIARCH inline ScalarArray dkappa_normalized() const; /*!< \brief Compute and return \f$ d\kappa * t^{2} \f$ */
+    PONCA_MULTIARCH inline ScalarArray dtau_normalized()
+        const; /*!< \brief Compute and return \f$ \tau \f$ derivatives */
+    PONCA_MULTIARCH inline VectorArray deta_normalized() const; /*!< \brief Compute and return \f$ t * d\eta \f$ */
+    PONCA_MULTIARCH inline ScalarArray dkappa_normalized()
+        const; /*!< \brief Compute and return \f$ d\kappa * t^{2} \f$ */
 
     /*!
        \brief The Geometric Variation is computed as the weighted sum of the GLS scale-invariant partial derivatives
@@ -149,17 +155,15 @@ public:
        \f]
 
        Method published in \cite Mellado:2012:GLS
-       @param wtau Weight applied to \f$ \tau \f$
-       @param weta Weight applied to \f$ \eta \f$
-       @param wkappa Weight applied to \f$ \kappa \f$
-       @return
+       \param wtau Weight applied to \f$ \tau \f$
+       \param weta Weight applied to \f$ \eta \f$
+       \param wkappa Weight applied to \f$ \kappa \f$
+       \return
      */
-    PONCA_MULTIARCH inline Scalar geomVar(Scalar wtau   = Scalar(1),
-                                          Scalar weta   = Scalar(1),
+    PONCA_MULTIARCH inline Scalar geomVar(Scalar wtau = Scalar(1), Scalar weta = Scalar(1),
                                           Scalar wkappa = Scalar(1)) const;
-}; //class GLSScaleDer
-
+}; // class GLSScaleDer
 
 #include "gls.hpp"
 
-} //namespace Ponca
+} // namespace Ponca

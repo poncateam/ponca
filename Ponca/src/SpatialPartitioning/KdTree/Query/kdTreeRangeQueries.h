@@ -10,7 +10,8 @@
 #include "../../query.h"
 #include "../Iterator/kdTreeRangeIterator.h"
 
-namespace Ponca {
+namespace Ponca
+{
 
 /*!
  * \brief Extension of the Query class that allows to read the result of a range neighbors search on the KdTree.
@@ -19,11 +20,9 @@ namespace Ponca {
  *
  *  \see KdTreeBase
  */
-template <typename Traits,
-        template <typename,typename,typename> typename IteratorType,
-        typename QueryType>
+template <typename Traits, template <typename, typename, typename> typename IteratorType, typename QueryType>
 class KdTreeRangeQueryBase : public KdTreeQuery<Traits>, public QueryType
-                              //public RangeIndexQuery<typename Traits::IndexType, typename Traits::DataPoint::Scalar>
+// public RangeIndexQuery<typename Traits::IndexType, typename Traits::DataPoint::Scalar>
 {
 public:
     using DataPoint      = typename Traits::DataPoint;
@@ -38,8 +37,11 @@ protected:
     friend Iterator;
 
 public:
-    PONCA_MULTIARCH KdTreeRangeQueryBase(const StaticKdTreeBase<Traits>* kdtree, Scalar radius, typename QueryType::InputType input) :
-            KdTreeQuery<Traits>(kdtree), QueryType(radius, input){}
+    PONCA_MULTIARCH KdTreeRangeQueryBase(const StaticKdTreeBase<Traits>* kdtree, Scalar radius,
+                                         typename QueryType::InputType input)
+        : KdTreeQuery<Traits>(kdtree), QueryType(radius, input)
+    {
+    }
 
     /// \brief Call the range neighbors query with new input and radius parameters.
     PONCA_MULTIARCH inline Self& operator()(typename QueryType::InputType input, Scalar radius)
@@ -54,7 +56,8 @@ public:
     }
 
     /// \brief Returns an iterator to the beginning of the Range Query.
-    PONCA_MULTIARCH inline Iterator begin(){
+    PONCA_MULTIARCH inline Iterator begin()
+    {
         QueryAccelType::reset();
         QueryType::reset();
         Iterator it(this);
@@ -63,12 +66,11 @@ public:
     }
 
     /// \brief Returns an iterator to the end of the Range Query.
-    PONCA_MULTIARCH inline Iterator end(){
-        return Iterator(this, QueryAccelType::m_kdtree->pointCount());
-    }
+    PONCA_MULTIARCH inline Iterator end() { return Iterator(this, QueryAccelType::m_kdtree->pointCount()); }
 
 protected:
-    PONCA_MULTIARCH inline void advance(Iterator& it){
+    PONCA_MULTIARCH inline void advance(Iterator& it)
+    {
         const auto& points  = QueryAccelType::m_kdtree->points();
         const auto& indices = QueryAccelType::m_kdtree->samples();
         const auto& point   = QueryType::template getInputPosition<VectorType>(points);
@@ -79,36 +81,35 @@ protected:
             return;
         }
 
-        auto descentDistanceThreshold = [this](){return QueryType::descentDistanceThreshold();};
-        auto skipFunctor              = [this](IndexType idx){return QueryType::skipIndexFunctor(idx);};
-        auto processNeighborFunctor   = [&it](IndexType idx, IndexType i, Scalar)
-        {
+        auto descentDistanceThreshold = [this]() { return QueryType::descentDistanceThreshold(); };
+        auto skipFunctor              = [this](IndexType idx) { return QueryType::skipIndexFunctor(idx); };
+        auto processNeighborFunctor   = [&it](IndexType idx, IndexType i, Scalar) {
             it.m_index = idx;
-            it.m_start = i+1;
+            it.m_start = i + 1;
             return true;
         };
 
-        for(IndexType i=it.m_start; i<it.m_end; ++i)
+        for (IndexType i = it.m_start; i < it.m_end; ++i)
         {
             IndexType idx = indices[i];
-            if(skipFunctor(idx)) continue;
+            if (skipFunctor(idx))
+                continue;
 
             Scalar d = (point - points[idx].pos()).squaredNorm();
-            if(d < descentDistanceThreshold())
+            if (d < descentDistanceThreshold())
             {
-                if( processNeighborFunctor(idx, i, d) ) return;
+                if (processNeighborFunctor(idx, i, d))
+                    return;
             }
         }
 
-        if (KdTreeQuery<Traits>::searchInternal(point,
-                                                 [&it](IndexType start, IndexType end)
-                                                 {
-                                                     it.m_start = start;
-                                                     it.m_end   = end;
-                                                 },
-                                                 descentDistanceThreshold,
-                                                 skipFunctor,
-                                                 processNeighborFunctor))
+        if (KdTreeQuery<Traits>::searchInternal(
+                point,
+                [&it](IndexType start, IndexType end) {
+                    it.m_start = start;
+                    it.m_end   = end;
+                },
+                descentDistanceThreshold, skipFunctor, processNeighborFunctor))
             it.m_index = static_cast<IndexType>(QueryAccelType::m_kdtree->pointCount());
     }
 };
@@ -120,8 +121,9 @@ protected:
  * \see RangeIndexQuery
  */
 template <typename Traits>
-using KdTreeRangeIndexQuery = KdTreeRangeQueryBase< Traits, KdTreeRangeIterator,
-        RangeIndexQuery<typename Traits::IndexType, typename Traits::DataPoint::Scalar>>;
+using KdTreeRangeIndexQuery =
+    KdTreeRangeQueryBase<Traits, KdTreeRangeIterator,
+                         RangeIndexQuery<typename Traits::IndexType, typename Traits::DataPoint::Scalar>>;
 /*!
  * \copybrief KdTreeRangeQueryBase
  *
@@ -129,6 +131,7 @@ using KdTreeRangeIndexQuery = KdTreeRangeQueryBase< Traits, KdTreeRangeIterator,
  * \see RangePointQuery
  */
 template <typename Traits>
-using KdTreeRangePointQuery = KdTreeRangeQueryBase< Traits, KdTreeRangeIterator,
-        RangePointQuery<typename Traits::IndexType, typename Traits::DataPoint>>;
-} // namespace ponca
+using KdTreeRangePointQuery =
+    KdTreeRangeQueryBase<Traits, KdTreeRangeIterator,
+                         RangePointQuery<typename Traits::IndexType, typename Traits::DataPoint>>;
+} // namespace Ponca

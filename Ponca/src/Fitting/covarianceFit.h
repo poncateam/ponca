@@ -34,13 +34,16 @@ namespace Ponca
    \f}
    This class implements a single-pass version, where the first formulation is re-expressed as follows:
    \f{align}
-   \text{C} &= \frac{1}{n}\sum_i (\mathbf{p}_i\mathbf{p}_i^T - \mathbf{b}\mathbf{p}_i^T - \mathbf{p}_i\mathbf{b}^T + \mathbf{b}\mathbf{b}^T) \\
-            &= \frac{1}{n}\sum_i (\mathbf{p}_i\mathbf{p}_i^T) -  \frac{1}{n}\sum_i(\mathbf{b}\mathbf{p}_i^T)  -  \frac{1}{n}\sum_i(\mathbf{p}_i\mathbf{b}^T)  +  \frac{1}{n}\sum_i (\mathbf{b}\mathbf{b}^T) \\
-            &= \frac{1}{n}\sum_i (\mathbf{p}_i\mathbf{p}_i^T) - \mathbf{b}\frac{1}{n}\sum_i(\mathbf{p}_i^T) - \frac{1}{n}\sum_i(\mathbf{p}_i)\mathbf{b}^T  + \frac{1}{n}\sum_i(1) \mathbf{b}\mathbf{b}^T \\
-            &= \frac{1}{n}\sum_i (\mathbf{p}_i\mathbf{p}_i^T) - \mathbf{b}\mathbf{b}^T - \mathbf{b}\mathbf{b}^T + \mathbf{b}\mathbf{b}^T \f}
-   Leading to a single pass where \f$\text{C}\f$ is express by subtracting two terms that can be computed independently
-   in one run:
-   \f[ \text{C} = \frac{1}{n}\sum_i (\mathbf{p}_i\mathbf{p}_i^T) - \mathbf{b}\mathbf{b}^T \f]
+   \text{C} &= \frac{1}{n}\sum_i (\mathbf{p}_i\mathbf{p}_i^T - \mathbf{b}\mathbf{p}_i^T - \mathbf{p}_i\mathbf{b}^T +
+   \mathbf{b}\mathbf{b}^T) \\
+            &= \frac{1}{n}\sum_i (\mathbf{p}_i\mathbf{p}_i^T) -  \frac{1}{n}\sum_i(\mathbf{b}\mathbf{p}_i^T)  -
+   \frac{1}{n}\sum_i(\mathbf{p}_i\mathbf{b}^T)  +  \frac{1}{n}\sum_i (\mathbf{b}\mathbf{b}^T) \\
+            &= \frac{1}{n}\sum_i (\mathbf{p}_i\mathbf{p}_i^T) - \mathbf{b}\frac{1}{n}\sum_i(\mathbf{p}_i^T) -
+   \frac{1}{n}\sum_i(\mathbf{p}_i)\mathbf{b}^T  + \frac{1}{n}\sum_i(1) \mathbf{b}\mathbf{b}^T \\
+            &= \frac{1}{n}\sum_i (\mathbf{p}_i\mathbf{p}_i^T) - \mathbf{b}\mathbf{b}^T - \mathbf{b}\mathbf{b}^T +
+   \mathbf{b}\mathbf{b}^T \f} Leading to a single pass where \f$\text{C}\f$ is express by subtracting two terms that can
+   be computed independently in one run: \f[ \text{C} = \frac{1}{n}\sum_i (\mathbf{p}_i\mathbf{p}_i^T) -
+   \mathbf{b}\mathbf{b}^T \f]
 
    All the computed features are defined for the 3 eigenvalues \f$ 0 < \lambda_0
    \leq \lambda_1 \leq \lambda_2 \f$.
@@ -49,115 +52,113 @@ namespace Ponca
    \warning This class is valid only in 3D.
  */
 
-    template < class DataPoint, class _NFilter, typename T>
-    class CovarianceFitBase : public T
-    {
+template <class DataPoint, class _NFilter, typename T>
+class CovarianceFitBase : public T
+{
     PONCA_FITTING_DECLARE_DEFAULT_TYPES
 
-    protected:
-        enum
-        {
-            Check = Base::PROVIDES_MEAN_POSITION,
-            PROVIDES_POSITION_COVARIANCE
-        };
-
-    public:
-        using MatrixType = typename DataPoint::MatrixType; /*!< \brief Alias to matrix type*/
-        /*! \brief Solver used to analyse the covariance matrix*/
-        using Solver = Eigen::SelfAdjointEigenSolver<MatrixType>;
-
-    protected:
-        // computation data
-        MatrixType m_cov {MatrixType::Zero()};     /*!< \brief Covariance matrix */
-        Solver m_solver;  /*!<\brief Solver used to analyse the covariance matrix */
-
-    public:
-        PONCA_EXPLICIT_CAST_OPERATORS(CovarianceFitBase,covarianceFit)
-        PONCA_FITTING_DECLARE_INIT_ADD_FINALIZE
-
-        /*! \brief Implements \cite Pauly:2002:PSSimplification surface variation.
-            It computes the ratio \f$ d \frac{\lambda_0}{\sum_i \lambda_i} \f$ with \c d the dimension of the ambient space.
-            \return 0 for invalid fits
-        */
-        PONCA_MULTIARCH [[nodiscard]] inline Scalar surfaceVariation() const;
-
-        /*! \brief Implements the planarity \cite Guinard:2017 .
-            Planarity is defined as:
-            \f[ \frac{\lambda_1 - \lambda_0}{\lambda_2} \f]
-        */
-        PONCA_MULTIARCH [[nodiscard]] inline Scalar planarity() const;
-
-        /*! \brief Implements the linearity \cite Guinard:2017 .
-            Linearity is defined as:
-            \f[ \frac{\lambda_2 - \lambda_1}{\lambda_2} \f]
-        */
-        PONCA_MULTIARCH [[nodiscard]] inline Scalar linearity() const;
-
-        /*! \brief Implements the sphericity \cite Guinard:2017 .
-            Sphericity is defined as:
-            \f[ \frac{\lambda_0}{\lambda_2} \f]
-        */
-        PONCA_MULTIARCH [[nodiscard]] inline Scalar sphericity() const;
-
-        /*! \brief Implements the anisotropy \cite Guinard:2017 .
-            Anisotropy is defined as:
-            \f[ \frac{\lambda_2 - \lambda_0}{\lambda_2} \f]
-        */
-        PONCA_MULTIARCH [[nodiscard]] inline Scalar anisotropy() const;
-
-        /*! \brief Implements the eigenentropy \cite Guinard:2017 .
-            Eigenentropy is defined as:
-            \f[ - \lambda_0 * \ln{\lambda_0} - \lambda_1 * \ln{\lambda_1} - \lambda_2 * \ln{\lambda_2} \f]
-        */
-        PONCA_MULTIARCH [[nodiscard]] inline Scalar eigenentropy() const;
-
-        /*! \brief The minimum eigenvalue \f$ \lambda_0 \f$.
-        */
-        PONCA_MULTIARCH [[nodiscard]] inline Scalar lambda_0() const;
-
-        /*! \brief The second eigenvalue \f$ \lambda_1 \f$.
-        */
-        PONCA_MULTIARCH [[nodiscard]] inline Scalar lambda_1() const;
-
-        /*! \brief The maximum eigenvalue \f$ \lambda_2 \f$.
-        */
-        PONCA_MULTIARCH [[nodiscard]] inline Scalar lambda_2() const;
-
-        /*! \brief Reading access to the Solver used to analyse the covariance matrix */
-        PONCA_MULTIARCH [[nodiscard]] inline const Solver& solver() const { return m_solver; }
+protected:
+    enum
+    {
+        Check = Base::PROVIDES_MEAN_POSITION,
+        PROVIDES_POSITION_COVARIANCE
     };
 
+public:
+    using MatrixType = typename DataPoint::MatrixType; /*!< \brief Alias to matrix type*/
+    /*! \brief Solver used to analyse the covariance matrix*/
+    using Solver = Eigen::SelfAdjointEigenSolver<MatrixType>;
+
+protected:
+    // computation data
+    MatrixType m_cov{MatrixType::Zero()}; /*!< \brief Covariance matrix */
+    Solver m_solver;                      /*!<\brief Solver used to analyse the covariance matrix */
+
+public:
+    PONCA_EXPLICIT_CAST_OPERATORS(CovarianceFitBase, covarianceFit)
+    PONCA_FITTING_DECLARE_INIT_ADD_FINALIZE
+
+    /*! \brief Implements \cite Pauly:2002:PSSimplification surface variation.
+        It computes the ratio \f$ d \frac{\lambda_0}{\sum_i \lambda_i} \f$ with \c d the dimension of the ambient space.
+        \return 0 for invalid fits
+    */
+    PONCA_MULTIARCH [[nodiscard]] inline Scalar surfaceVariation() const;
+
+    /*! \brief Implements the planarity \cite Guinard:2017 .
+        Planarity is defined as:
+        \f[ \frac{\lambda_1 - \lambda_0}{\lambda_2} \f]
+    */
+    PONCA_MULTIARCH [[nodiscard]] inline Scalar planarity() const;
+
+    /*! \brief Implements the linearity \cite Guinard:2017 .
+        Linearity is defined as:
+        \f[ \frac{\lambda_2 - \lambda_1}{\lambda_2} \f]
+    */
+    PONCA_MULTIARCH [[nodiscard]] inline Scalar linearity() const;
+
+    /*! \brief Implements the sphericity \cite Guinard:2017 .
+        Sphericity is defined as:
+        \f[ \frac{\lambda_0}{\lambda_2} \f]
+    */
+    PONCA_MULTIARCH [[nodiscard]] inline Scalar sphericity() const;
+
+    /*! \brief Implements the anisotropy \cite Guinard:2017 .
+        Anisotropy is defined as:
+        \f[ \frac{\lambda_2 - \lambda_0}{\lambda_2} \f]
+    */
+    PONCA_MULTIARCH [[nodiscard]] inline Scalar anisotropy() const;
+
+    /*! \brief Implements the eigenentropy \cite Guinard:2017 .
+        Eigenentropy is defined as:
+        \f[ - \lambda_0 * \ln{\lambda_0} - \lambda_1 * \ln{\lambda_1} - \lambda_2 * \ln{\lambda_2} \f]
+    */
+    PONCA_MULTIARCH [[nodiscard]] inline Scalar eigenentropy() const;
+
+    /*! \brief The minimum eigenvalue \f$ \lambda_0 \f$.
+     */
+    PONCA_MULTIARCH [[nodiscard]] inline Scalar lambda_0() const;
+
+    /*! \brief The second eigenvalue \f$ \lambda_1 \f$.
+     */
+    PONCA_MULTIARCH [[nodiscard]] inline Scalar lambda_1() const;
+
+    /*! \brief The maximum eigenvalue \f$ \lambda_2 \f$.
+     */
+    PONCA_MULTIARCH [[nodiscard]] inline Scalar lambda_2() const;
+
+    /*! \brief Reading access to the Solver used to analyse the covariance matrix */
+    PONCA_MULTIARCH [[nodiscard]] inline const Solver& solver() const { return m_solver; }
+};
 
 /*!
     \brief Internal generic class computing the derivatives of covariance matrix
     computed by CovarianceFitBase
     \inherit Concept::FittingExtensionConcept
 */
-    template < class DataPoint, class _NFilter, int DiffType, typename T>
-    class CovarianceFitDer : public T
-    {
+template <class DataPoint, class _NFilter, int DiffType, typename T>
+class CovarianceFitDer : public T
+{
     PONCA_FITTING_DECLARE_DEFAULT_TYPES
     PONCA_FITTING_DECLARE_MATRIX_TYPE
     PONCA_FITTING_DECLARE_DEFAULT_DER_TYPES
 
-    protected:
-        enum
-        {
-            Check = Base::PROVIDES_PRIMITIVE_DERIVATIVE &&
-                    Base::PROVIDES_MEAN_POSITION_DERIVATIVE &&
-                    Base::PROVIDES_POSITION_COVARIANCE,
-            PROVIDES_POSITION_COVARIANCE_DERIVATIVE
-        };
+protected:
+    enum
+    {
+        Check = Base::PROVIDES_PRIMITIVE_DERIVATIVE && Base::PROVIDES_MEAN_POSITION_DERIVATIVE &&
+                Base::PROVIDES_POSITION_COVARIANCE,
+        PROVIDES_POSITION_COVARIANCE_DERIVATIVE
+    };
 
-    protected:
-        /// Computation data: derivatives of the covariance matrix
-        MatrixType  m_dCov[Base::NbDerivatives];
+protected:
+    /// Computation data: derivatives of the covariance matrix
+    MatrixType m_dCov[Base::NbDerivatives];
 
-    public:
-        PONCA_EXPLICIT_CAST_OPERATORS_DER(CovarianceFitDer,covarianceFitDer)
-        PONCA_FITTING_DECLARE_INIT_ADDDER_FINALIZE
-    }; //class CovarianceFitDer
+public:
+    PONCA_EXPLICIT_CAST_OPERATORS_DER(CovarianceFitDer, covarianceFitDer)
+    PONCA_FITTING_DECLARE_INIT_ADDDER_FINALIZE
+}; // class CovarianceFitDer
 
 #include "covarianceFit.hpp"
 
-} //namespace Ponca
+} // namespace Ponca

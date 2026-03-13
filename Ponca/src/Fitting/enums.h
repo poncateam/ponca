@@ -8,33 +8,33 @@
 
 namespace Ponca
 {
-   /*!
-      Enum corresponding to the state of a fitting method (and what the finalize function returns)
-    */
-    enum FIT_RESULT : unsigned char
-    {
-        /*! \brief The fitting is stable and ready to use*/
-        STABLE    = 0,
-        /*! \brief The fitting is ready to use but it is considered 
-        as unstable (if the number of neighbors is low for example)*/
-        UNSTABLE  = 1,
-        /*! \brief The fitting is undefined, you can't use it for valid results*/
-        UNDEFINED = 2,
-        /*! \brief The fitting procedure needs to analyse the neighborhood
-          another time*/
-        NEED_OTHER_PASS = 3,
-        /*! \brief Multiple classes of the fitting procedure initialize the primitive. Should be treated as error. */
-        CONFLICT_ERROR_FOUND = 4,
-        NBMAX /*!< \brief Nb enums */
-    };
+/*!
+   Enum corresponding to the state of a fitting method (and what the finalize function returns)
+ */
+enum FIT_RESULT : unsigned char
+{
+    /*! \brief The fitting is stable and ready to use*/
+    STABLE = 0,
+    /*! \brief The fitting is ready to use but it is considered
+    as unstable (if the number of neighbors is low for example)*/
+    UNSTABLE = 1,
+    /*! \brief The fitting is undefined, you can't use it for valid results*/
+    UNDEFINED = 2,
+    /*! \brief The fitting procedure needs to analyse the neighborhood
+      another time*/
+    NEED_OTHER_PASS = 3,
+    /*! \brief Multiple classes of the fitting procedure initialize the primitive. Should be treated as error. */
+    CONFLICT_ERROR_FOUND = 4,
+    NBMAX /*!< \brief Nb enums */
+};
 
 /// Flags defining which derivatives need to be computed.
 /// \warning Flags have to be combined using `|`
-enum DiffType: unsigned int
+enum DiffType : unsigned int
 {
-FitScaleDer = 0x01,                          /*!< \brief Flag indicating a scale differentiation. */
-FitSpaceDer = 0x02,                          /*!< \brief Flag indicating a space differentiation. */
-FitScaleSpaceDer = FitScaleDer | FitSpaceDer /*!< \brief Flag indicating a scale-space differentiation. */
+    FitScaleDer      = 0x01,                     /*!< \brief Flag indicating a scale differentiation. */
+    FitSpaceDer      = 0x02,                     /*!< \brief Flag indicating a space differentiation. */
+    FitScaleSpaceDer = FitScaleDer | FitSpaceDer /*!< \brief Flag indicating a scale-space differentiation. */
 };
 
-} //namespace Ponca
+} // namespace Ponca

@@ -13,4 +13,3 @@
 // Include Ponca Common algorithms and types
 #include "src/Common/pointGeneration.h"
 #include "src/Common/pointTypes.h"
-

@@ -12,7 +12,8 @@
 
 #include "../defines.h" //STD_SAFE_AT
 
-namespace Ponca {
+namespace Ponca
+{
 
 /// Stack with fixed-size storage
 ///
@@ -20,7 +21,7 @@ namespace Ponca {
 /// they are overriden by another element (e.g. when running pop() and then push(). This makes it
 /// not appropriate to store smart pointers.
 ///
-template<class T, int N>
+template <class T, int N>
 class Stack
 {
 public:
@@ -32,12 +33,12 @@ public:
     /// Read access to the top element of the Stack
     PONCA_MULTIARCH inline const T& top() const;
     /// Write access to the top element of the Stack
-    PONCA_MULTIARCH inline       T& top();
+    PONCA_MULTIARCH inline T& top();
 
     /// Is the stack empty
     PONCA_MULTIARCH inline bool empty() const;
     /// Get the number of elements in the Stack
-    PONCA_MULTIARCH inline int  size() const;
+    PONCA_MULTIARCH inline int size() const;
 
     /// Add an element on top of the stack.
     /// \throw std::out_of_range when the Stack is full, only if compiled with PONCA_DEBUG
@@ -57,68 +58,65 @@ protected:
     /// Number of elements in the Stack
     int m_size;
     /// Fixed-size data buffer
-    std::array<T,N> m_data;
+    std::array<T, N> m_data;
 };
 
 ////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
 
-template<class T, int N>
-Stack<T,N>::Stack() :
-    m_size(0),
-    m_data()
+template <class T, int N>
+Stack<T, N>::Stack() : m_size(0), m_data()
 {
 }
 
-template<class T, int N>
-const T& Stack<T,N>::top() const
+template <class T, int N>
+const T& Stack<T, N>::top() const
 {
-    return STD_SAFE_AT(m_data,m_size-1);
+    return STD_SAFE_AT(m_data, m_size - 1);
 }
 
-template<class T, int N>
-T& Stack<T,N>::top()
+template <class T, int N>
+T& Stack<T, N>::top()
 {
-    return STD_SAFE_AT(m_data,m_size-1);
+    return STD_SAFE_AT(m_data, m_size - 1);
 }
 
-template<class T, int N>
-bool Stack<T,N>::empty() const
+template <class T, int N>
+bool Stack<T, N>::empty() const
 {
-    return m_size==0;
+    return m_size == 0;
 }
 
-template<class T, int N>
-int Stack<T,N>::size() const
+template <class T, int N>
+int Stack<T, N>::size() const
 {
     return m_size;
 }
 
-template<class T, int N>
-void Stack<T,N>::push(const T& value)
+template <class T, int N>
+void Stack<T, N>::push(const T& value)
 {
-    STD_SAFE_AT(m_data,m_size) = value;
+    STD_SAFE_AT(m_data, m_size) = value;
     ++m_size;
 }
 
-template<class T, int N>
-void Stack<T,N>::push()
+template <class T, int N>
+void Stack<T, N>::push()
 {
     ++m_size;
 }
 
-template<class T, int N>
-void Stack<T,N>::pop()
+template <class T, int N>
+void Stack<T, N>::pop()
 {
     --m_size;
 }
 
-template<class T, int N>
-void Stack<T,N>::clear()
+template <class T, int N>
+void Stack<T, N>::clear()
 {
     m_size = 0;
 }
 
 } // namespace Ponca
-

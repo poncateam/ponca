@@ -10,7 +10,8 @@
 #include "../../query.h"
 #include "../Iterator/kdTreeKNearestIterator.h"
 
-namespace Ponca {
+namespace Ponca
+{
 
 /*!
  * \brief Extension of the Query class that allows to read the result of a k-nearest neighbors search on the KdTree.
@@ -19,9 +20,7 @@ namespace Ponca {
  *
  *  \see KdTreeBase
  */
-template <typename Traits,
-          template <typename, typename> typename IteratorType,
-          typename QueryType>
+template <typename Traits, template <typename, typename> typename IteratorType, typename QueryType>
 class KdTreeKNearestQueryBase : public KdTreeQuery<Traits>, public QueryType
 {
 public:
@@ -33,8 +32,11 @@ public:
     using Iterator       = IteratorType<typename Traits::IndexType, typename Traits::DataPoint>;
     using Self           = KdTreeKNearestQueryBase<Traits, IteratorType, QueryType>;
 
-    PONCA_MULTIARCH inline KdTreeKNearestQueryBase(const StaticKdTreeBase<Traits>* kdtree, IndexType k, typename QueryType::InputType input) :
-            KdTreeQuery<Traits>(kdtree), QueryType(k, input) { }
+    PONCA_MULTIARCH inline KdTreeKNearestQueryBase(const StaticKdTreeBase<Traits>* kdtree, IndexType k,
+                                                   typename QueryType::InputType input)
+        : KdTreeQuery<Traits>(kdtree), QueryType(k, input)
+    {
+    }
 
     /// \brief Call the k-nearest neighbors query with new input and neighbor number parameters.
     PONCA_MULTIARCH inline Self& operator()(typename QueryType::InputType input, IndexType k)
@@ -48,7 +50,8 @@ public:
     }
 
     /// \brief Returns an iterator to the beginning of the k-nearest neighbors query.
-    PONCA_MULTIARCH inline Iterator begin(){
+    PONCA_MULTIARCH inline Iterator begin()
+    {
         QueryAccelType::reset();
         QueryType::reset();
         this->search();
@@ -56,18 +59,19 @@ public:
     }
 
     /// \brief Returns an iterator to the end of the k-nearest neighbors query.
-    PONCA_MULTIARCH inline Iterator end(){
-        return Iterator(QueryType::m_queue.end());
-    }
+    PONCA_MULTIARCH inline Iterator end() { return Iterator(QueryType::m_queue.end()); }
 
 protected:
-    PONCA_MULTIARCH inline void search(){
-        KdTreeQuery<Traits>::searchInternal(QueryType::template getInputPosition<VectorType>(QueryAccelType::m_kdtree->points()),
-                                             [](IndexType, IndexType){},
-                                             [this](){return QueryType::descentDistanceThreshold();},
-                                             [this](IndexType idx){return QueryType::skipIndexFunctor(idx);},
-                                             [this](IndexType idx, IndexType, Scalar d){QueryType::m_queue.push({idx, d}); return false;}
-        );
+    PONCA_MULTIARCH inline void search()
+    {
+        KdTreeQuery<Traits>::searchInternal(
+            QueryType::template getInputPosition<VectorType>(QueryAccelType::m_kdtree->points()),
+            [](IndexType, IndexType) {}, [this]() { return QueryType::descentDistanceThreshold(); },
+            [this](IndexType idx) { return QueryType::skipIndexFunctor(idx); },
+            [this](IndexType idx, IndexType, Scalar d) {
+                QueryType::m_queue.push({idx, d});
+                return false;
+            });
     }
 };
 /*!
@@ -77,8 +81,9 @@ protected:
  * \see KNearestIndexQuery
  */
 template <typename Traits>
-using KdTreeKNearestIndexQuery = KdTreeKNearestQueryBase< Traits, KdTreeKNearestIterator,
-                                 KNearestIndexQuery<typename Traits::IndexType, typename Traits::DataPoint::Scalar>>;
+using KdTreeKNearestIndexQuery =
+    KdTreeKNearestQueryBase<Traits, KdTreeKNearestIterator,
+                            KNearestIndexQuery<typename Traits::IndexType, typename Traits::DataPoint::Scalar>>;
 /*!
  * \copybrief KdTreeKNearestQueryBase
  *
@@ -86,6 +91,7 @@ using KdTreeKNearestIndexQuery = KdTreeKNearestQueryBase< Traits, KdTreeKNearest
  * \see KNearestPointQuery
  */
 template <typename Traits>
-using KdTreeKNearestPointQuery = KdTreeKNearestQueryBase< Traits, KdTreeKNearestIterator,
-                                 KNearestPointQuery<typename Traits::IndexType, typename Traits::DataPoint>>;
-} // namespace ponca
+using KdTreeKNearestPointQuery =
+    KdTreeKNearestQueryBase<Traits, KdTreeKNearestIterator,
+                            KNearestPointQuery<typename Traits::IndexType, typename Traits::DataPoint>>;
+} // namespace Ponca
