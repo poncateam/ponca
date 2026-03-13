@@ -68,7 +68,7 @@ namespace Ponca {
         PONCA_MULTIARCH inline VectorType barycenterLocal() const {
             return (m_sumP / Base::getWeightSum());
         }
-        PONCA_PROVIDES(ProvidesMeanPosition, MeanPosition<DataPoint, _WFunctor, T>);
+        PONCA_PROVIDES(ProvidesMeanPosition, MeanPosition<DataPoint, _NFilter, T>);
     }; //class MeanPosition
 
 /*!
