@@ -16,7 +16,7 @@ file, You can obtain one at http://mozilla.org/MPL/2.0/.
 #include <algorithm>
 #include <vector>
 #include <chrono>
-
+#include <concepts>
 #include <png.h>
 
 #define EIGEN_DEFAULT_DENSE_INDEX_TYPE int
@@ -264,6 +264,11 @@ private:
 typedef ScreenSpacePoint::Scalar Scalar;
 typedef ScreenSpacePoint::VectorType VectorType;
 typedef ScreenSpacePoint::ScreenVectorType ScreenVectorType;
+
+template<typename T>
+concept ConceptTest = requires(T t) {
+    t.pos();
+};
 
 //! [w_def]
 class ProjectedWeightFunc: public Ponca::DistWeightFunc<ScreenSpacePoint,Ponca::SmoothWeightKernel<Scalar> >
