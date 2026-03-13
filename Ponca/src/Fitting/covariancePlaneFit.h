@@ -30,17 +30,16 @@ namespace Ponca
 
     \see Plane
 */
-template < class DataPoint, class _NFilter, typename T >
+template <class DataPoint, class _NFilter, typename T>
 class CovariancePlaneFitImpl : public T
 {
-PONCA_FITTING_DECLARE_DEFAULT_TYPES
-PONCA_FITTING_DECLARE_MATRIX_TYPE
+    PONCA_FITTING_DECLARE_DEFAULT_TYPES
+    PONCA_FITTING_DECLARE_MATRIX_TYPE
 
 protected:
     enum
     {
-        Check = Base::PROVIDES_PLANE &&
-                Base::PROVIDES_POSITION_COVARIANCE,
+        Check = Base::PROVIDES_PLANE && Base::PROVIDES_POSITION_COVARIANCE,
         /*!
          * \brief Expose a method worldToTangentPlane(VectorType), which turns a point
          * in ambient 3D space to the tangent plane.
@@ -51,7 +50,7 @@ protected:
     };
 
 public:
-    PONCA_EXPLICIT_CAST_OPERATORS(CovariancePlaneFitImpl,covariancePlaneFit)
+    PONCA_EXPLICIT_CAST_OPERATORS(CovariancePlaneFitImpl, covariancePlaneFit)
     PONCA_FITTING_DECLARE_FINALIZE
     PONCA_FITTING_IS_SIGNED(false)
 
@@ -69,8 +68,7 @@ public:
      *        (e.g., in contrast to displacement or normal vectors)
      * \return Vector expressed in local tangent frame
      */
-    PONCA_MULTIARCH inline VectorType worldToTangentPlane(const VectorType &_q,
-                                                          bool _isPositionVector = true) const;
+    PONCA_MULTIARCH inline VectorType worldToTangentPlane(const VectorType& _q, bool _isPositionVector = true) const;
 
     /*!
      * \brief Transform a point from the tangent plane [h, u, v]^T to ambient space
@@ -80,18 +78,15 @@ public:
      *        (e.g., in contrast to displacement or normal vectors)
      * \return Vector expressed in ambient space
      */
-    PONCA_MULTIARCH inline VectorType tangentPlaneToWorld(const VectorType &_q,
-                                                          bool _isPositionVector = true) const;
-}; //class CovariancePlaneFitImpl
+    PONCA_MULTIARCH inline VectorType tangentPlaneToWorld(const VectorType& _q, bool _isPositionVector = true) const;
+}; // class CovariancePlaneFitImpl
 
 /// \brief Helper alias for Plane fitting on 3D points using CovariancePlaneFitImpl
 //! [CovariancePlaneFit Definition]
-    template < class DataPoint, class _NFilter, typename T>
-    using CovariancePlaneFit =
-    CovariancePlaneFitImpl<DataPoint, _NFilter,
-            CovarianceFitBase<DataPoint, _NFilter,
-                    MeanPosition<DataPoint, _NFilter,
-                            Plane<DataPoint, _NFilter, T>>>>;
+template <class DataPoint, class _NFilter, typename T>
+using CovariancePlaneFit = CovariancePlaneFitImpl<
+    DataPoint, _NFilter,
+    CovarianceFitBase<DataPoint, _NFilter, MeanPosition<DataPoint, _NFilter, Plane<DataPoint, _NFilter, T>>>>;
 //! [CovariancePlaneFit Definition]
 
 /*!
@@ -100,29 +95,28 @@ public:
 
     \warning Defined in 3D only
 */
-template < class DataPoint, class _NFilter, int DiffType, typename T>
+template <class DataPoint, class _NFilter, int DiffType, typename T>
 class CovariancePlaneDerImpl : public T
 {
     PONCA_FITTING_DECLARE_DEFAULT_TYPES
     PONCA_FITTING_DECLARE_MATRIX_TYPE
     PONCA_FITTING_DECLARE_DEFAULT_DER_TYPES
-    static_assert ( DataPoint::Dim == 3, "CovariancePlaneDer is only valid in 3D");
+    static_assert(DataPoint::Dim == 3, "CovariancePlaneDer is only valid in 3D");
 
 protected:
     enum
     {
-        Check = Base::PROVIDES_PLANE &
-                Base::PROVIDES_POSITION_COVARIANCE_DERIVATIVE,
-        PROVIDES_COVARIANCE_PLANE_DERIVATIVE,                    /*!< \brief Provides derivatives for hyper-planes */
+        Check = Base::PROVIDES_PLANE & Base::PROVIDES_POSITION_COVARIANCE_DERIVATIVE,
+        PROVIDES_COVARIANCE_PLANE_DERIVATIVE, /*!< \brief Provides derivatives for hyper-planes */
         PROVIDES_NORMAL_DERIVATIVE
     };
 
 private:
-    VectorArray m_dNormal {VectorArray::Zero()};    /*!< \brief Derivatives of the hyper-plane normal */
-    ScalarArray m_dDist {ScalarArray::Zero()};      /*!< \brief Derivatives of the MLS scalar field */
+    VectorArray m_dNormal{VectorArray::Zero()}; /*!< \brief Derivatives of the hyper-plane normal */
+    ScalarArray m_dDist{ScalarArray::Zero()};   /*!< \brief Derivatives of the MLS scalar field */
 
 public:
-    PONCA_EXPLICIT_CAST_OPERATORS_DER(CovariancePlaneDerImpl,covariancePlaneDer)
+    PONCA_EXPLICIT_CAST_OPERATORS_DER(CovariancePlaneDerImpl, covariancePlaneDer)
 
     /*! \see Concept::FittingProcedureConcept::finalize() */
     PONCA_MULTIARCH FIT_RESULT finalize();
@@ -138,16 +132,14 @@ public:
     /*! \brief Returns the derivatives of the primitive normal */
     PONCA_MULTIARCH [[nodiscard]] inline VectorArray dNormal() const { return m_dNormal; }
 
-}; //class CovariancePlaneDer
-
+}; // class CovariancePlaneDer
 
 /// \brief Helper alias for Plane fitting on 3D points using CovariancePlaneFitImpl
-template < class DataPoint, class _NFilter, int DiffType, typename T>
-using CovariancePlaneDer =
-CovariancePlaneDerImpl<DataPoint, _NFilter, DiffType,
-        CovarianceFitDer<DataPoint, _NFilter, DiffType,
-                MeanPositionDer<DataPoint, _NFilter, DiffType, T>>>;
+template <class DataPoint, class _NFilter, int DiffType, typename T>
+using CovariancePlaneDer = CovariancePlaneDerImpl<
+    DataPoint, _NFilter, DiffType,
+    CovarianceFitDer<DataPoint, _NFilter, DiffType, MeanPositionDer<DataPoint, _NFilter, DiffType, T>>>;
 
 #include "covariancePlaneFit.hpp"
 
-} //namespace Ponca
+} // namespace Ponca

@@ -19,43 +19,55 @@ namespace Ponca
    \brief Empty fitting object doing no computation
  */
 
-    template < class DataPoint, class _NFilter, typename T>
-    class DryFit :  public T
-    {
+template <class DataPoint, class _NFilter, typename T>
+class DryFit : public T
+{
     PONCA_FITTING_DECLARE_DEFAULT_TYPES
 
-    protected:
-        enum { check = Base::PROVIDES_PRIMITIVE_BASE };
-
-    public:
-        PONCA_EXPLICIT_CAST_OPERATORS(DryFit,dryfit)
-
-        PONCA_FITTING_APIDOC_ADDNEIGHBOR
-        PONCA_MULTIARCH inline bool addLocalNeighbor(Scalar w, const VectorType &localQ, const DataPoint &attributes)
-        { return Base::addLocalNeighbor(w, localQ, attributes);}
-
-        PONCA_FITTING_APIDOC_FINALIZE
-        PONCA_MULTIARCH [[nodiscard]] inline FIT_RESULT finalize() { return Base::finalize(); }
-
-        //! \brief Simulate Scalar field computation
-        PONCA_MULTIARCH [[nodiscard]] inline Scalar potential ( ) const { return Scalar(0); }
-
-        //! \brief Simulate Scalar field computation
-        PONCA_MULTIARCH [[nodiscard]] inline Scalar potential (const VectorType& /*_q*/) const { return Scalar(0); }
-
-        //! \brief Simulate point projection
-        PONCA_MULTIARCH [[nodiscard]] inline VectorType project (const VectorType& _q) const { return _q; }
-
-        //! \brief Simulate gradient direction computation
-        PONCA_MULTIARCH [[nodiscard]] inline VectorType primitiveGradient () const { return VectorType::Zero(); }
-
-        //! \brief Simulate gradient direction computation
-        PONCA_MULTIARCH [[nodiscard]] inline VectorType primitiveGradient (const VectorType&) const { return VectorType::Zero(); }
-    protected:
-        /// \copydoc DryFit::potential
-        PONCA_MULTIARCH [[nodiscard]] inline Scalar potentialLocal (const VectorType& /*_lq*/) const { return Scalar(0); }
-        /// \copydoc DryFit::primitiveGradient
-        PONCA_MULTIARCH [[nodiscard]] inline VectorType primitiveGradientLocal (const VectorType&  /*_lq*/) const { return VectorType::Zero(); }
+protected:
+    enum
+    {
+        check = Base::PROVIDES_PRIMITIVE_BASE
     };
 
-} //namespace Ponca
+public:
+    PONCA_EXPLICIT_CAST_OPERATORS(DryFit, dryfit)
+
+    PONCA_FITTING_APIDOC_ADDNEIGHBOR
+    PONCA_MULTIARCH inline bool addLocalNeighbor(Scalar w, const VectorType& localQ, const DataPoint& attributes)
+    {
+        return Base::addLocalNeighbor(w, localQ, attributes);
+    }
+
+    PONCA_FITTING_APIDOC_FINALIZE
+    PONCA_MULTIARCH [[nodiscard]] inline FIT_RESULT finalize() { return Base::finalize(); }
+
+    //! \brief Simulate Scalar field computation
+    PONCA_MULTIARCH [[nodiscard]] inline Scalar potential() const { return Scalar(0); }
+
+    //! \brief Simulate Scalar field computation
+    PONCA_MULTIARCH [[nodiscard]] inline Scalar potential(const VectorType& /*_q*/) const { return Scalar(0); }
+
+    //! \brief Simulate point projection
+    PONCA_MULTIARCH [[nodiscard]] inline VectorType project(const VectorType& _q) const { return _q; }
+
+    //! \brief Simulate gradient direction computation
+    PONCA_MULTIARCH [[nodiscard]] inline VectorType primitiveGradient() const { return VectorType::Zero(); }
+
+    //! \brief Simulate gradient direction computation
+    PONCA_MULTIARCH [[nodiscard]] inline VectorType primitiveGradient(const VectorType&) const
+    {
+        return VectorType::Zero();
+    }
+
+protected:
+    /// \copydoc DryFit::potential
+    PONCA_MULTIARCH [[nodiscard]] inline Scalar potentialLocal(const VectorType& /*_lq*/) const { return Scalar(0); }
+    /// \copydoc DryFit::primitiveGradient
+    PONCA_MULTIARCH [[nodiscard]] inline VectorType primitiveGradientLocal(const VectorType& /*_lq*/) const
+    {
+        return VectorType::Zero();
+    }
+};
+
+} // namespace Ponca

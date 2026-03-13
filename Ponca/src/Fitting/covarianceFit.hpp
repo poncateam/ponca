@@ -7,144 +7,128 @@
  file, You can obtain one at http://mozilla.org/MPL/2.0/.
 */
 
-
-template < class DataPoint, class _NFilter, typename T>
-void
-CovarianceFitBase<DataPoint, _NFilter, T>::init()
+template <class DataPoint, class _NFilter, typename T>
+void CovarianceFitBase<DataPoint, _NFilter, T>::init()
 {
     Base::init();
     m_cov.setZero();
 }
 
-template < class DataPoint, class _NFilter, typename T>
-bool
-CovarianceFitBase<DataPoint, _NFilter, T>::addLocalNeighbor(Scalar w,
-                                                              const VectorType &localQ,
-                                                              const DataPoint &attributes)
+template <class DataPoint, class _NFilter, typename T>
+bool CovarianceFitBase<DataPoint, _NFilter, T>::addLocalNeighbor(Scalar w, const VectorType& localQ,
+                                                                 const DataPoint& attributes)
 {
-    if( Base::addLocalNeighbor(w, localQ, attributes) ) {
-        m_cov  += w * localQ * localQ.transpose();
+    if (Base::addLocalNeighbor(w, localQ, attributes))
+    {
+        m_cov += w * localQ * localQ.transpose();
         return true;
     }
     return false;
 }
 
-
-template < class DataPoint, class _NFilter, typename T>
-FIT_RESULT
-CovarianceFitBase<DataPoint, _NFilter, T>::finalize ()
+template <class DataPoint, class _NFilter, typename T>
+FIT_RESULT CovarianceFitBase<DataPoint, _NFilter, T>::finalize()
 {
     // handle specific configurations
-    if(Base::finalize() != STABLE) 
+    if (Base::finalize() != STABLE)
         return Base::m_eCurrentState;
     // With less than Dim neighbors the fitting is undefined
-    if(Base::getNumNeighbors() < DataPoint::Dim)
+    if (Base::getNumNeighbors() < DataPoint::Dim)
         return Base::m_eCurrentState = UNDEFINED;
 
     // Center the covariance on the centroid
     auto centroid = Base::barycenterLocal();
-    m_cov = m_cov/Base::getWeightSum() - centroid * centroid.transpose();
+    m_cov         = m_cov / Base::getWeightSum() - centroid * centroid.transpose();
 
 #ifdef __CUDACC__
     m_solver.computeDirect(m_cov);
 #else
     m_solver.compute(m_cov);
 #endif
-    Base::m_eCurrentState = ( m_solver.info() == Eigen::Success ? STABLE : UNDEFINED );
+    Base::m_eCurrentState = (m_solver.info() == Eigen::Success ? STABLE : UNDEFINED);
 
     return Base::m_eCurrentState;
 }
 
-template < class DataPoint, class _NFilter, typename T>
-typename CovarianceFitBase<DataPoint, _NFilter, T>::Scalar
-CovarianceFitBase<DataPoint, _NFilter, T>::surfaceVariation () const
+template <class DataPoint, class _NFilter, typename T>
+typename CovarianceFitBase<DataPoint, _NFilter, T>::Scalar CovarianceFitBase<DataPoint, _NFilter, T>::surfaceVariation()
+    const
 {
     return m_solver.eigenvalues()(0) / m_solver.eigenvalues().mean();
 }
 
 template <class DataPoint, class _WFunctor, typename T>
-typename CovarianceFitBase<DataPoint, _WFunctor, T>::Scalar
-CovarianceFitBase<DataPoint, _WFunctor, T>::planarity() const
+typename CovarianceFitBase<DataPoint, _WFunctor, T>::Scalar CovarianceFitBase<DataPoint, _WFunctor, T>::planarity()
+    const
 {
-    return (m_solver.eigenvalues()(1) - m_solver.eigenvalues()(0)) /
-          m_solver.eigenvalues()(2);
+    return (m_solver.eigenvalues()(1) - m_solver.eigenvalues()(0)) / m_solver.eigenvalues()(2);
 }
 
 template <class DataPoint, class _WFunctor, typename T>
-typename CovarianceFitBase<DataPoint, _WFunctor, T>::Scalar
-CovarianceFitBase<DataPoint, _WFunctor, T>::linearity() const
+typename CovarianceFitBase<DataPoint, _WFunctor, T>::Scalar CovarianceFitBase<DataPoint, _WFunctor, T>::linearity()
+    const
 {
-    return (m_solver.eigenvalues()(2) - m_solver.eigenvalues()(1)) /
-          m_solver.eigenvalues()(2);
+    return (m_solver.eigenvalues()(2) - m_solver.eigenvalues()(1)) / m_solver.eigenvalues()(2);
 }
 
 template <class DataPoint, class _WFunctor, typename T>
-typename CovarianceFitBase<DataPoint, _WFunctor, T>::Scalar
-CovarianceFitBase<DataPoint, _WFunctor, T>::sphericity() const
+typename CovarianceFitBase<DataPoint, _WFunctor, T>::Scalar CovarianceFitBase<DataPoint, _WFunctor, T>::sphericity()
+    const
 {
     return (m_solver.eigenvalues()(0)) / m_solver.eigenvalues()(2);
 }
 
 template <class DataPoint, class _WFunctor, typename T>
-typename CovarianceFitBase<DataPoint, _WFunctor, T>::Scalar
-CovarianceFitBase<DataPoint, _WFunctor, T>::anisotropy() const
+typename CovarianceFitBase<DataPoint, _WFunctor, T>::Scalar CovarianceFitBase<DataPoint, _WFunctor, T>::anisotropy()
+    const
 {
-    return (m_solver.eigenvalues()(2) - m_solver.eigenvalues()(0)) /
-          m_solver.eigenvalues()(2);
+    return (m_solver.eigenvalues()(2) - m_solver.eigenvalues()(0)) / m_solver.eigenvalues()(2);
 }
 
 template <class DataPoint, class _WFunctor, typename T>
-typename CovarianceFitBase<DataPoint, _WFunctor, T>::Scalar
-CovarianceFitBase<DataPoint, _WFunctor, T>::eigenentropy() const
+typename CovarianceFitBase<DataPoint, _WFunctor, T>::Scalar CovarianceFitBase<DataPoint, _WFunctor, T>::eigenentropy()
+    const
 {
     return -(m_solver.eigenvalues()(0) * log(m_solver.eigenvalues()(0)) +
-            m_solver.eigenvalues()(1) * log(m_solver.eigenvalues()(1)) +
-            m_solver.eigenvalues()(2) * log(m_solver.eigenvalues()(2)));
+             m_solver.eigenvalues()(1) * log(m_solver.eigenvalues()(1)) +
+             m_solver.eigenvalues()(2) * log(m_solver.eigenvalues()(2)));
 }
 
 template <class DataPoint, class _WFunctor, typename T>
-typename CovarianceFitBase<DataPoint, _WFunctor, T>::Scalar
-CovarianceFitBase<DataPoint, _WFunctor, T>::lambda_0() const
+typename CovarianceFitBase<DataPoint, _WFunctor, T>::Scalar CovarianceFitBase<DataPoint, _WFunctor, T>::lambda_0() const
 {
     return m_solver.eigenvalues()(0);
 }
 
 template <class DataPoint, class _WFunctor, typename T>
-typename CovarianceFitBase<DataPoint, _WFunctor, T>::Scalar
-CovarianceFitBase<DataPoint, _WFunctor, T>::lambda_1() const
+typename CovarianceFitBase<DataPoint, _WFunctor, T>::Scalar CovarianceFitBase<DataPoint, _WFunctor, T>::lambda_1() const
 {
     return m_solver.eigenvalues()(1);
 }
 
 template <class DataPoint, class _WFunctor, typename T>
-typename CovarianceFitBase<DataPoint, _WFunctor, T>::Scalar
-CovarianceFitBase<DataPoint, _WFunctor, T>::lambda_2() const
+typename CovarianceFitBase<DataPoint, _WFunctor, T>::Scalar CovarianceFitBase<DataPoint, _WFunctor, T>::lambda_2() const
 {
     return m_solver.eigenvalues()(2);
 }
 
-template < class DataPoint, class _NFilter, int DiffType, typename T>
-void
-CovarianceFitDer<DataPoint, _NFilter, DiffType, T>::init()
+template <class DataPoint, class _NFilter, int DiffType, typename T>
+void CovarianceFitDer<DataPoint, _NFilter, DiffType, T>::init()
 {
     Base::init();
 
-    for(int k=0; k<Base::NbDerivatives; ++k)
+    for (int k = 0; k < Base::NbDerivatives; ++k)
         m_dCov[k].setZero();
 }
 
-
-
-template < class DataPoint, class _NFilter, int DiffType, typename T>
-bool
-CovarianceFitDer<DataPoint, _NFilter, DiffType, T>::addLocalNeighbor(Scalar w,
-                                                                      const VectorType &localQ,
-                                                                      const DataPoint &attributes,
-                                                                      ScalarArray &dw)
+template <class DataPoint, class _NFilter, int DiffType, typename T>
+bool CovarianceFitDer<DataPoint, _NFilter, DiffType, T>::addLocalNeighbor(Scalar w, const VectorType& localQ,
+                                                                          const DataPoint& attributes, ScalarArray& dw)
 {
-    if( Base::addLocalNeighbor(w, localQ, attributes, dw) ) {
-        for(int k=0; k<Base::NbDerivatives; ++k)
-            m_dCov[k]  += dw[k] * localQ * localQ.transpose();
+    if (Base::addLocalNeighbor(w, localQ, attributes, dw))
+    {
+        for (int k = 0; k < Base::NbDerivatives; ++k)
+            m_dCov[k] += dw[k] * localQ * localQ.transpose();
 
         return true;
     }
@@ -152,10 +136,8 @@ CovarianceFitDer<DataPoint, _NFilter, DiffType, T>::addLocalNeighbor(Scalar w,
     return false;
 }
 
-
-template < class DataPoint, class _NFilter, int DiffType, typename T>
-FIT_RESULT
-CovarianceFitDer<DataPoint, _NFilter, DiffType, T>::finalize()
+template <class DataPoint, class _NFilter, int DiffType, typename T>
+FIT_RESULT CovarianceFitDer<DataPoint, _NFilter, DiffType, T>::finalize()
 {
     PONCA_MULTIARCH_STD_MATH(sqrt);
 
@@ -163,19 +145,16 @@ CovarianceFitDer<DataPoint, _NFilter, DiffType, T>::finalize()
     // Test if base finalize end on a viable case (stable / unstable)
     if (this->isReady())
     {
-        VectorType cog = Base::barycenterLocal();
+        VectorType cog   = Base::barycenterLocal();
         MatrixType cogSq = cog * cog.transpose();
         // \fixme Better use eigen here
-        for(int k=0; k<Base::NbDerivatives; ++k)
+        for (int k = 0; k < Base::NbDerivatives; ++k)
         {
             // Finalize the computation of dCov.
-            m_dCov[k] = m_dCov[k]
-                        - cog * Base::m_dSumP.col(k).transpose()
-                        - Base::m_dSumP.col(k) * cog.transpose()
-                        + Base::m_dSumW[k] * cogSq;
+            m_dCov[k] = m_dCov[k] - cog * Base::m_dSumP.col(k).transpose() - Base::m_dSumP.col(k) * cog.transpose() +
+                        Base::m_dSumW[k] * cogSq;
         }
     }
 
     return Base::m_eCurrentState;
 }
-

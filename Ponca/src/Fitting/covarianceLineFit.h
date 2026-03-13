@@ -30,7 +30,7 @@ namespace Ponca
    \warning This class is valid only in 3D.
  */
 
-template < class DataPoint, class _NFilter, typename T>
+template <class DataPoint, class _NFilter, typename T>
 class CovarianceLineFitImpl : public T
 {
     PONCA_FITTING_DECLARE_DEFAULT_TYPES
@@ -39,19 +39,20 @@ class CovarianceLineFitImpl : public T
 protected:
     enum
     {
-        check = Base::PROVIDES_LINE &&
-                Base::PROVIDES_POSITION_COVARIANCE,
+        check = Base::PROVIDES_LINE && Base::PROVIDES_POSITION_COVARIANCE,
     };
 
 public:
-    PONCA_EXPLICIT_CAST_OPERATORS(CovarianceLineFitImpl,covarianceLineFit)
+    PONCA_EXPLICIT_CAST_OPERATORS(CovarianceLineFitImpl, covarianceLineFit)
 
     PONCA_FITTING_APIDOC_FINALIZE
     PONCA_MULTIARCH inline FIT_RESULT finalize()
     {
         static const int smallestEigenValue = DataPoint::Dim - 1;
-        if (Base::finalize() == STABLE) {
-            if (Base::line().isValid()) Base::m_eCurrentState = CONFLICT_ERROR_FOUND;
+        if (Base::finalize() == STABLE)
+        {
+            if (Base::line().isValid())
+                Base::m_eCurrentState = CONFLICT_ERROR_FOUND;
             Base::setLine(Base::barycenterLocal(), Base::m_solver.eigenvectors().col(smallestEigenValue).normalized());
         }
         return Base::m_eCurrentState;
@@ -60,11 +61,9 @@ public:
 };
 
 /// \brief Helper alias for Line fitting on 3D points using CovarianceLineFitImpl
-template < class DataPoint, class _NFilter, typename T>
-using CovarianceLineFit =
-                CovarianceLineFitImpl<DataPoint, _NFilter,
-                CovarianceFitBase<DataPoint, _NFilter,
-                MeanPosition<DataPoint, _NFilter,
-                Line<DataPoint, _NFilter, T>>>>;
+template <class DataPoint, class _NFilter, typename T>
+using CovarianceLineFit = CovarianceLineFitImpl<
+    DataPoint, _NFilter,
+    CovarianceFitBase<DataPoint, _NFilter, MeanPosition<DataPoint, _NFilter, Line<DataPoint, _NFilter, T>>>>;
 
-} //namespace Ponca
+} // namespace Ponca

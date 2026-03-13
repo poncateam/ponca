@@ -8,7 +8,6 @@ file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 #include "./algebraicSphere.h"
 
-
 namespace Ponca
 {
 
@@ -17,22 +16,12 @@ namespace Ponca
 
     This method published in \cite Guennebaud:2007:APSS minimizes
     \f[
-        \mathcal{L}(\mathbf{u}) = \frac{1}{2} \sum_i w_i f_{\mathbf{u}}(\mathbf{x}_i)^2 = \frac{1}{2} \mathbf{u}^T A \mathbf{u}
-    \f]
-    with \f$ A = \sum_i w_i \tilde{\mathbf{x}_i}  \tilde{\mathbf{x}_i}^T\f$ and \f$ f_{\mathbf{u}} \f$ the algebraic sphere defined by
-    \f[
-        f_{\mathbf{u}}(\mathbf{x}) =
-        u_c + \mathbf{u}_l.\mathbf{x} + u_q \mathbf{x}.\mathbf{x} =
-        \begin{bmatrix}
-        1 & \mathbf{x}^T & \mathbf{x}.\mathbf{x}
-        \end{bmatrix}
-        \begin{bmatrix}
-        u_c \\ u_l \\ u_q
-        \end{bmatrix}
-        = \tilde{\mathbf{x}}^T \mathbf{u},
-    \f]
-    under the constraint (unitary gradient onto the surface)
-    \f[
+        \mathcal{L}(\mathbf{u}) = \frac{1}{2} \sum_i w_i f_{\mathbf{u}}(\mathbf{x}_i)^2 = \frac{1}{2} \mathbf{u}^T A
+   \mathbf{u} \f] with \f$ A = \sum_i w_i \tilde{\mathbf{x}_i}  \tilde{\mathbf{x}_i}^T\f$ and \f$ f_{\mathbf{u}} \f$ the
+   algebraic sphere defined by \f[ f_{\mathbf{u}}(\mathbf{x}) = u_c + \mathbf{u}_l.\mathbf{x} + u_q
+   \mathbf{x}.\mathbf{x} = \begin{bmatrix} 1 & \mathbf{x}^T & \mathbf{x}.\mathbf{x} \end{bmatrix} \begin{bmatrix} u_c
+   \\ u_l \\ u_q \end{bmatrix} = \tilde{\mathbf{x}}^T \mathbf{u}, \f] under the constraint (unitary gradient onto the
+   surface) \f[
         \|\mathbf{u}_l\|^2 - 4 u_c u_q = \mathbf{u}^T C \mathbf{u} = 1
     \f]
     where
@@ -52,46 +41,43 @@ namespace Ponca
 
     \see AlgebraicSphere
 */
-template < class DataPoint, class _NFilter, typename T >
+template <class DataPoint, class _NFilter, typename T>
 class SphereFitImpl : public T
 {
-PONCA_FITTING_DECLARE_DEFAULT_TYPES
+    PONCA_FITTING_DECLARE_DEFAULT_TYPES
 
 protected:
     enum
     {
         Check = Base::PROVIDES_ALGEBRAIC_SPHERE
     };
+
 protected:
-    typedef Eigen::Matrix<Scalar, DataPoint::Dim+2, 1>      VectorA;
-    typedef Eigen::Matrix<Scalar, DataPoint::Dim+2, DataPoint::Dim+2>  MatrixA;
+    typedef Eigen::Matrix<Scalar, DataPoint::Dim + 2, 1> VectorA;
+    typedef Eigen::Matrix<Scalar, DataPoint::Dim + 2, DataPoint::Dim + 2> MatrixA;
 
 public:
     using Solver = Eigen::EigenSolver<MatrixA>;
 
 protected:
     // computation data
-    MatrixA  m_matA {MatrixA::Zero()};  /*!< \brief Covariance matrix of [1, p, p^2] */
+    MatrixA m_matA{MatrixA::Zero()}; /*!< \brief Covariance matrix of [1, p, p^2] */
 
     Solver m_solver;
 
 public:
-    PONCA_EXPLICIT_CAST_OPERATORS(SphereFitImpl,sphereFit)
+    PONCA_EXPLICIT_CAST_OPERATORS(SphereFitImpl, sphereFit)
     PONCA_FITTING_DECLARE_INIT_ADD_FINALIZE
     PONCA_FITTING_IS_SIGNED(false)
 
     PONCA_MULTIARCH inline const Solver& solver() const { return m_solver; }
 
-}; //class SphereFit
+}; // class SphereFit
 
 /// \brief Helper alias for Sphere fitting on 3D points using SphereFitImpl
-template < class DataPoint, class _NFilter, typename T>
-using SphereFit =
-    SphereFitImpl<DataPoint, _NFilter,
-        AlgebraicSphere<DataPoint, _NFilter, T>>;
-
-
+template <class DataPoint, class _NFilter, typename T>
+using SphereFit = SphereFitImpl<DataPoint, _NFilter, AlgebraicSphere<DataPoint, _NFilter, T>>;
 
 #include "sphereFit.hpp"
 
-} //namespace Ponca
+} // namespace Ponca

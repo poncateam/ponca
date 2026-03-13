@@ -24,39 +24,41 @@ namespace Ponca
 
     \todo Add local frame computation to enable PROVIDES_TANGENT_PLANE_BASIS
 */
-template < class DataPoint, class _NFilter, typename T >
+template <class DataPoint, class _NFilter, typename T>
 class MeanPlaneFitImpl : public T
 {
-PONCA_FITTING_DECLARE_DEFAULT_TYPES
-PONCA_FITTING_DECLARE_MATRIX_TYPE
+    PONCA_FITTING_DECLARE_DEFAULT_TYPES
+    PONCA_FITTING_DECLARE_MATRIX_TYPE
 
 protected:
-    enum { Check = Base::PROVIDES_MEAN_POSITION && Base::PROVIDES_MEAN_NORMAL && Base::PROVIDES_PLANE };
+    enum
+    {
+        Check = Base::PROVIDES_MEAN_POSITION && Base::PROVIDES_MEAN_NORMAL && Base::PROVIDES_PLANE
+    };
 
 public:
-    PONCA_EXPLICIT_CAST_OPERATORS(MeanPlaneFitImpl,meanPlaneFit)
+    PONCA_EXPLICIT_CAST_OPERATORS(MeanPlaneFitImpl, meanPlaneFit)
 
     PONCA_FITTING_APIDOC_FINALIZE
     PONCA_MULTIARCH inline FIT_RESULT finalize()
     {
         // handle specific configurations
-        if(Base::finalize() == STABLE)
+        if (Base::finalize() == STABLE)
         {
-            if (Base::plane().isValid()) Base::m_eCurrentState = CONFLICT_ERROR_FOUND;
+            if (Base::plane().isValid())
+                Base::m_eCurrentState = CONFLICT_ERROR_FOUND;
             Base::setPlane(Base::m_sumN / Base::getWeightSum(), Base::barycenterLocal());
         }
         return Base::m_eCurrentState;
     }
     PONCA_FITTING_IS_SIGNED(true)
-}; //class MeanPlaneFitImpl
+}; // class MeanPlaneFitImpl
 
 /// \brief Helper alias for Plane fitting on points using MeanPlaneFitImpl
 //! [MeanPlaneFit Definition]
-    template < class DataPoint, class _NFilter, typename T>
-    using MeanPlaneFit =
+template <class DataPoint, class _NFilter, typename T>
+using MeanPlaneFit =
     MeanPlaneFitImpl<DataPoint, _NFilter,
-        MeanNormal<DataPoint, _NFilter,
-            MeanPosition<DataPoint, _NFilter,
-                Plane<DataPoint, _NFilter, T>>>>;
+                     MeanNormal<DataPoint, _NFilter, MeanPosition<DataPoint, _NFilter, Plane<DataPoint, _NFilter, T>>>>;
 //! [MeanPlaneFit Definition]
-} //namespace Ponca
+} // namespace Ponca

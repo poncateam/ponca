@@ -4,12 +4,12 @@
  file, You can obtain one at http://mozilla.org/MPL/2.0/.
 */
 
-
 #pragma once
 
 #include <Eigen/Geometry>
 
-namespace Ponca {
+namespace Ponca
+{
 
 /*!
  * \brief The default traits type used by the kd-tree.

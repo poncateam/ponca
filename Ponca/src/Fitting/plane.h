@@ -31,26 +31,28 @@ namespace Ponca
     This primitive provides:
     \verbatim PROVIDES_PLANE \endverbatim
 */
-template < class DataPoint, class _NFilter, typename T >
-class Plane : public T,
-              public Eigen::Hyperplane<typename DataPoint::Scalar, DataPoint::Dim >
+template <class DataPoint, class _NFilter, typename T>
+class Plane : public T, public Eigen::Hyperplane<typename DataPoint::Scalar, DataPoint::Dim>
 {
     PONCA_FITTING_DECLARE_DEFAULT_TYPES
 
 public:
     /// \brief Specialization of Eigen::Hyperplane inherited by Ponca::Plane
-    using EigenBase = Eigen::Hyperplane<typename DataPoint::Scalar, DataPoint::Dim >;
+    using EigenBase = Eigen::Hyperplane<typename DataPoint::Scalar, DataPoint::Dim>;
 
 protected:
-    enum { check = Base::PROVIDES_PRIMITIVE_BASE, PROVIDES_PLANE };
+    enum
+    {
+        check = Base::PROVIDES_PRIMITIVE_BASE,
+        PROVIDES_PLANE
+    };
 
 public:
-
     /*! \brief Default constructor */
     PONCA_MULTIARCH inline Plane() : Base(), EigenBase() { init(); }
 
-    PONCA_EXPLICIT_CAST_OPERATORS(Plane,compactPlane) //< \fixme To be removed, kept for compatibility only
-    PONCA_EXPLICIT_CAST_OPERATORS(Plane,plane)
+    PONCA_EXPLICIT_CAST_OPERATORS(Plane, compactPlane) //< \fixme To be removed, kept for compatibility only
+    PONCA_EXPLICIT_CAST_OPERATORS(Plane, plane)
 
     /// \brief Set the scalar field values to 0
     PONCA_MULTIARCH inline void init()
@@ -62,28 +64,30 @@ public:
     /// \brief Tell if the plane as been correctly set.
     /// Used to set CONFLICT_ERROR_FOUND during fitting
     /// \return false when called straight after #init. Should be true after fitting
-    PONCA_MULTIARCH [[nodiscard]] inline bool isValid() const{
-        return ! EigenBase::coeffs().isApprox(EigenBase::Coefficients::Zero());
+    PONCA_MULTIARCH [[nodiscard]] inline bool isValid() const
+    {
+        return !EigenBase::coeffs().isApprox(EigenBase::Coefficients::Zero());
     }
 
-    PONCA_MULTIARCH inline bool operator==(const Plane<DataPoint, NeighborFilter, T>& other) const{
+    PONCA_MULTIARCH inline bool operator==(const Plane<DataPoint, NeighborFilter, T>& other) const
+    {
         return EigenBase::isApprox(other);
     }
 
     /*! \brief Comparison operator, convenience function */
-    PONCA_MULTIARCH inline bool operator!=(const Plane<DataPoint, NeighborFilter, T>& other) const{
-        return ! ((*this) == other);
+    PONCA_MULTIARCH inline bool operator!=(const Plane<DataPoint, NeighborFilter, T>& other) const
+    {
+        return !((*this) == other);
     }
 
     /* \brief Init the plane from a direction and a position
        \param _dir Orientation of the plane, does not need to be normalized
        \param _pos Position of the plane
     */
-    PONCA_MULTIARCH inline void setPlane (const VectorType& _dir,
-                                    const VectorType& _pos)
+    PONCA_MULTIARCH inline void setPlane(const VectorType& _dir, const VectorType& _pos)
     {
         auto cc = static_cast<EigenBase*>(this);
-        *cc = EigenBase(_dir.normalized(), _pos);
+        *cc     = EigenBase(_dir.normalized(), _pos);
     }
 
     /*!
@@ -103,50 +107,54 @@ public:
 
     //! \brief Value of the scalar field at the evaluation point
     //! \see method `#isSigned` of the fit to check if the sign is reliable
-    PONCA_MULTIARCH [[nodiscard]] inline Scalar potential ( ) const
+    PONCA_MULTIARCH [[nodiscard]] inline Scalar potential() const
     {
         return EigenBase::signedDistance(VectorType::Zero());
     }
 
     //! \brief Value of the scalar field at the location \f$ \mathbf{q} \f$
     //! \see method `#isSigned` of the fit to check if the sign is reliable
-    PONCA_MULTIARCH [[nodiscard]] inline Scalar potential (const VectorType& _q) const
+    PONCA_MULTIARCH [[nodiscard]] inline Scalar potential(const VectorType& _q) const
     {
         // turn to centered basis
         const VectorType lq = Base::getNeighborFilter().convertToLocalBasis(_q);
-        return potentialLocal( lq );
+        return potentialLocal(lq);
     }
 
     //! \brief Project a point on the plane
-    PONCA_MULTIARCH [[nodiscard]] inline VectorType project (const VectorType& _q) const
+    PONCA_MULTIARCH [[nodiscard]] inline VectorType project(const VectorType& _q) const
     {
         // Project on the normal vector and add the offset value
-        return Base::getNeighborFilter().convertToGlobalBasis(EigenBase::projection(Base::getNeighborFilter().convertToLocalBasis(_q)));
+        return Base::getNeighborFilter().convertToGlobalBasis(
+            EigenBase::projection(Base::getNeighborFilter().convertToLocalBasis(_q)));
     }
 
     //! \brief Scalar field gradient direction at the evaluation point
-    PONCA_MULTIARCH [[nodiscard]] inline VectorType primitiveGradient () const
+    PONCA_MULTIARCH [[nodiscard]] inline VectorType primitiveGradient() const
     {
         // Uniform gradient defined only by the orientation of the plane
         return EigenBase::normal();
     }
 
     //! \brief Scalar field gradient direction at \f$ \mathbf{q}\f$
-    PONCA_MULTIARCH [[nodiscard]] inline VectorType primitiveGradient (const VectorType& /*_q*/) const
+    PONCA_MULTIARCH [[nodiscard]] inline VectorType primitiveGradient(const VectorType& /*_q*/) const
     {
         // Uniform gradient defined only by the orientation of the plane
         return EigenBase::normal();
     }
+
 protected:
     /// \copydoc Plane::potential
-    PONCA_MULTIARCH [[nodiscard]] inline Scalar potentialLocal (const VectorType& _lq) const {
+    PONCA_MULTIARCH [[nodiscard]] inline Scalar potentialLocal(const VectorType& _lq) const
+    {
         // The potential is the distance from the point to the plane
         return EigenBase::signedDistance(_lq);
     }
     /// \copydoc Plane::primitiveGradient
-    PONCA_MULTIARCH [[nodiscard]] inline VectorType primitiveGradientLocal (const VectorType&  /*_lq*/) const {
+    PONCA_MULTIARCH [[nodiscard]] inline VectorType primitiveGradientLocal(const VectorType& /*_lq*/) const
+    {
         return EigenBase::normal();
     }
-}; //class Plane
+}; // class Plane
 
-}
+} // namespace Ponca
