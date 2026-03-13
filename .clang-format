@@ -1,0 +1,19 @@
+﻿---
+BasedOnStyle: Microsoft
+AccessModifierOffset: -4
+AlignConsecutiveAssignments: 'true'
+AlignEscapedNewlines: Left
+AllowShortFunctionsOnASingleLine: All
+AlwaysBreakTemplateDeclarations: 'Yes'
+ColumnLimit: '120'
+IncludeBlocks: Preserve
+IndentPPDirectives: AfterHash
+IndentWidth: '4'
+Language: Cpp
+PointerAlignment: Left
+SortIncludes: 'false'
+SpaceAfterTemplateKeyword: 'true'
+SpaceBeforeAssignmentOperators: 'true'
+TabWidth: '4'
+
+...
