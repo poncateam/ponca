@@ -50,8 +50,8 @@ void testFunction(bool _bAddPositionNoise = false)
 
     // paraboloid parameters
     // we need to use small magnitude for quadratic terms, otherwise the plane fitting is going to be wrong
-    const Scalar standardMagnitude = 1;
-    const Scalar smallMagnitude = 0.1;
+    const Scalar standardMagnitude = Scalar(1);
+    const Scalar smallMagnitude    = Scalar(0.1);
     auto quadParams = Eigen::Matrix<Scalar, 6, 1>(
             Eigen::internal::random<Scalar>(-smallMagnitude,smallMagnitude),
             Eigen::internal::random<Scalar>(-smallMagnitude,smallMagnitude),
@@ -65,7 +65,7 @@ void testFunction(bool _bAddPositionNoise = false)
         vectorPoints[i] = getPointOnParaboloid<DataPoint>(quadParams, width, _bAddPositionNoise);
     }
 
-    epsilon = 0.1*width;
+    epsilon = Scalar(0.1)*width;
     if ( _bAddPositionNoise) // relax a bit the testing threshold
       epsilon = std::max(Scalar(0.5*MAX_NOISE), epsilon*2);
     // Test for each point if the fitted plane correspond to the theoretical plane
@@ -82,7 +82,7 @@ void testFunction(bool _bAddPositionNoise = false)
     {
         // compute RMSE
         Scalar error {0};
-        int nbTestSamples = vectorPoints.size()/5; // test on fewer samples to speed things up
+        unsigned int nbTestSamples = (unsigned int)(vectorPoints.size())/5; // test on fewer samples to speed things up
 
         std::vector<VectorType> testPoints(nbTestSamples);
 

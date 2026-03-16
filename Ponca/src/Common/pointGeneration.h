@@ -64,10 +64,10 @@ namespace Ponca {
     ) {
         using Scalar = typename VectorType::Scalar;
         // Generate random angle
-        double theta = Eigen::internal::random<Scalar>(0,2.*EIGEN_PI);
+        const Scalar theta = Eigen::internal::random<Scalar>(0, Scalar(2.*EIGEN_PI));
 
         // Generate random radius (adjusted for uniform area distribution)
-        double r = _radius * std::sqrt(Eigen::internal::random<Scalar>(0,1));
+        const Scalar r = _radius * std::sqrt(Eigen::internal::random<Scalar>(0,1));
 
         // Convert to Cartesian coordinates
         VectorType p = _vCenter;
