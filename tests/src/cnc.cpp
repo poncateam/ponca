@@ -152,7 +152,7 @@ void testCompareFit(
         pointsIndex.push_back(i);
 
         if constexpr (orderedByDistance) {
-            for (int j : tree.kNearestNeighbors(i, vectorPoints.size())) {
+            for (int j : tree.kNearestNeighbors(i, int(vectorPoints.size()))) {
                 // Stops when we go past the analysis scale
                 if (w(vectorPoints[ j ]).first == Scalar(0.))
                     break;
