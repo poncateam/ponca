@@ -1,4 +1,4 @@
-add_library(FittingPCH OBJECT
+add_library(FittingPCH STATIC
         ${PONCA_src_ROOT}/Ponca/precompiled/Fitting/fittingPCH.cpp
 )
 
@@ -8,9 +8,5 @@ target_include_directories(FittingPCH PUBLIC
 )
 
 target_link_libraries(FittingPCH PUBLIC Fitting)
-
-target_precompile_headers(FittingPCH PUBLIC
-        ${PONCA_src_ROOT}/Ponca/precompiled/Fitting/fittingPCH.h
-)
 
 add_library(Ponca::FittingPCH ALIAS FittingPCH)
