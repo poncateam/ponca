@@ -40,18 +40,18 @@ namespace Ponca
         template <class DataPoint, class _NFilter, typename T = void>
         class ComputationalObjectConcept
         {
+            // Defines common types (Base, Scalar, VectorType, NeighborFilter)
+            PONCA_FITTING_DECLARE_DEFAULT_TYPES
         protected:
             enum
             {
                 Check = PROVIDES_CAPABILITY_1 && PROVIDES_CAPABILITY_2    //< List of required capabilities
                                                      PROVIDES_CAPABILITY, //< List of provided capabilities
             };
-
         public:
             using Scalar         = typename DataPoint::Scalar;     //< Inherited scalar type
             using VectorType     = typename DataPoint::VectorType; //< Inherited vector type
             using NeighborFilter = _NFilter;                       //< Filter applied on the neighbors
-
         public:
             /**************************************************************************/
             /* Initialization                                                         */
@@ -61,15 +61,18 @@ namespace Ponca
             PONCA_MULTIARCH inline void setNeighborFilter(const NeighborFilter& _w);
 
             // Reset the internal states.
-            // \warning Must be called be for any computation
+            // \warning Must be called before any computation
             PONCA_MULTIARCH inline void init();
 
             /**************************************************************************/
             /* Computations                                                           */
             /**************************************************************************/
             // Add a neighbor to perform the fit
-            PONCA_MULTIARCH inline void addLocalNeighbor(Scalar, const VectorType&, const DataPoint&);
-            // Finalize the fitting procedure.
+            // \param w The weight of the point
+            // \param lQ Local coordinates of the point (e.g.: the difference between the point and the eval position)
+            // \param pt The point as defined by the user
+            // \return false if param nei is not a valid neighbour (weight = 0)
+            PONCA_MULTIARCH inline bool addLocalNeighbor(Scalar w, const VectorType &lQ, const DataPoint & pt);
             // \return State of fitting
             // \warning Must be called be for any use of the fitting output
             PONCA_MULTIARCH inline FIT_RESULT finalize();
@@ -80,6 +83,9 @@ namespace Ponca
         template <class DataPoint, class _NFilter, int Type, typename T>
         class ComputationalDerivativesConcept
         {
+            // Defines common types (Base, Scalar, VectorType, NeighborFilter)
+            PONCA_FITTING_DECLARE_DEFAULT_TYPES
+            PONCA_FITTING_DECLARE_DEFAULT_DER_TYPES
         protected:
             enum
             {
@@ -112,9 +118,16 @@ namespace Ponca
             /* Computations                                                           */
             /**************************************************************************/
             // Add a neighbor to perform the fit
-            PONCA_MULTIARCH inline void addLocalNeighbor(Scalar w, const VectorType& localQ,
-                                                         const DataPoint& attributes, ScalarArray& dw);
-            // Finalize the fitting procedure.
+            // \param w The weight of the point
+            // \param localQ Local coordinates of the point (e.g.: the difference between the point and the eval position)
+            // \param attributes The point as defined by the user
+            // \param dw The derivatives of the weight function w.r.t prescirbed parameter
+            // \return false if param nei is not a valid neighbour (weight = 0)
+            PONCA_MULTIARCH inline bool addLocalNeighbor(Scalar w,
+                                                         const VectorType &localQ,
+                                                         const DataPoint &attributes,
+                                                         ScalarArray &dw);
+            // Finalize the fitting procedure. This function is called after all neighbors have been processed.
             // \return State of fitting
             // \warning Must be called be for any use of the fitting output
             PONCA_MULTIARCH inline FIT_RESULT finalize();
