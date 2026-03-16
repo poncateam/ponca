@@ -31,7 +31,7 @@ introduces several bug fixes and minors improvements.
 
 - Examples
     - [all] Update according to API changes (#201)
-    - [spatialPartitioning] Add cuda examples + cuda utils (#242)
+    - [spatialPartitioning] Add cuda examples + cuda utils (#242, #279)
 
 - Docs
     - [doc] Update doc according to recent API changes and new curvature estimators (#201)
