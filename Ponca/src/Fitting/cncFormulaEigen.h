@@ -141,7 +141,7 @@ struct CNCEigen {
 				       || (fabs(beta) < epsilon)
 				       || (fabs(gamma) < epsilon))
 				       ? Scalar(0.0)
-				       : Scalar(2.0) * M_PI - alpha - beta - gamma;
+				       : Scalar(2.0 * M_PI) - alpha - beta - gamma;
 		}
 
 		/// @return the (signed) area of the spherical triangle (below 2pi).
