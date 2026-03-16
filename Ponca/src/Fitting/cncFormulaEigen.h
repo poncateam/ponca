@@ -135,13 +135,13 @@ struct CNCEigen {
 		/// @return the (unsigned) area of the spherical triangle (below 2pi).
 		static Scalar area(const VectorType& a, const VectorType& b, const VectorType& c) {
 			Scalar alpha, beta, gamma;
-			if (isDegenerate(a, b, c)) return 0.0;
+			if (isDegenerate(a, b, c)) return Scalar(0.0);
 			interiorAngles(a, b, c, alpha, beta, gamma);
 			return ((fabs(alpha) < epsilon)
 				       || (fabs(beta) < epsilon)
 				       || (fabs(gamma) < epsilon))
 				       ? Scalar(0.0)
-				       : 2.0 * M_PI - alpha - beta - gamma;
+				       : Scalar(2.0) * M_PI - alpha - beta - gamma;
 		}
 
 		/// @return the (signed) area of the spherical triangle (below 2pi).
@@ -186,9 +186,9 @@ public:
 		VectorType uM = (ua + ub + uc) / 3.0;
 		if (unit_u) {
 			auto uM_norm = uM.norm();
-			uM = uM_norm == 0.0 ? uM : uM / uM_norm;
+			uM = uM_norm == Scalar(0.0) ? uM : uM / uM_norm;
 		}
-		return 0.5 * ((b - a).cross(c - a)).dot(uM);
+		return Scalar(0.5) * ((b - a).cross(c - a)).dot(uM);
 	}
 
 
@@ -214,9 +214,9 @@ public:
 		bool unit_u = false
     ) {
 		// MU1=1/2( | uM u_C-u_B A | + | uM u_A-u_C B | + | uM u_B-u_A C |
-		VectorType uM = (ua + ub + uc) / 3.0;
+		VectorType uM = (ua + ub + uc) / Scalar(3.0);
 		if (unit_u) uM /= uM.norm();
-		return 0.25 * (uM.cross(uc - ub).dot(a)
+		return Scalar(0.25) * (uM.cross(uc - ub).dot(a)
 			+ uM.cross(ua - uc).dot(b)
 			+ uM.cross(ub - ua).dot(c));
 	}
@@ -249,7 +249,7 @@ public:
 		if (unit_u)
 			return SphericalTriangle::algebraicArea(ua, ub, uc);
 		else
-			return 0.5 * (ua.cross(ub).dot(uc));
+			return Scalar(0.5) * (ua.cross(ub).dot(uc));
 	}
 
 
@@ -280,12 +280,12 @@ public:
 		const VectorType ac = c - a;
 		for (size_t i = 0; i < 3; ++i) {
 			VectorType X = VectorType::Zero();
-			X(i) = 1.0;
+			X(i) = Scalar(1.0);
 			for (size_t j = 0; j < 3; ++j) {
 				// Since RealVector Y = RealVector::base( j, 1.0 );
 				// < Y | uac > = uac[ j ]
 				const Scalar tij =
-					0.5 * uM.dot(uac[j] * X.cross(ab)
+					Scalar(0.5) * uM.dot(uac[j] * X.cross(ab)
 						- uab[j] * X.cross(ac));
 				T(i, j) = tij;
 			}
@@ -314,7 +314,7 @@ public:
 		auto M = tensor;
 		M += Mt;
 		M *= 0.5;
-		const Scalar coef_N = 1000.0 * area;
+		const Scalar coef_N = Scalar(1000.0) * area;
 		// Adding 1000 area n x n to anisotropic measure
 		for (int j = 0; j < 3; j++)
 			for (int k = 0; k < 3; k++)
@@ -346,7 +346,7 @@ public:
 		auto M = tensor;
 		M += Mt;
 		M *= 0.5;
-		const Scalar coef_N = 1000.0 * area;
+		const Scalar coef_N = Scalar(1000.0) * area;
 		// Adding 1000 area n x n to anisotropic measure
 		for (int j = 0; j < 3; j++)
 			for (int k = 0; k < 3; k++)

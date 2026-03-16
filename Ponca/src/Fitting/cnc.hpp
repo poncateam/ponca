@@ -322,7 +322,7 @@ namespace Ponca::internal {
                     array_avg_pos    [ i ] = w.evalPos();
                 } else {
                     array_avg_normals[ i ] /= array_avg_normals[ i ].norm();
-                    array_avg_pos    [ i ] /= array_nb[ i ];
+                    array_avg_pos    [ i ] /= Scalar(array_nb[ i ]);
                 }
             }
 
@@ -349,7 +349,7 @@ namespace Ponca {
 
         m_eCurrentState = internal::TriangleGenerator<M, P>::generate( indicesSample, points, m_nFilter, m_triangles);
         if (m_eCurrentState != STABLE) return m_eCurrentState;
-        m_nb_vt = m_triangles.size();
+        m_nb_vt = int(m_triangles.size());
         return finalize();
     }
 
@@ -359,7 +359,7 @@ namespace Ponca {
         init();
         m_eCurrentState = internal::TriangleGenerator<M, P>::generate( ids, points, m_nFilter, m_triangles);
         if (m_eCurrentState != STABLE) return m_eCurrentState;
-        m_nb_vt = m_triangles.size();
+        m_nb_vt = int(m_triangles.size());
         return finalize();
     }
 
@@ -388,10 +388,10 @@ namespace Ponca {
         } // end for t
 
         m_T11 = localT(0,0);
-        m_T12 = 0.5 * (localT(0,1) + localT(1,0));
-        m_T13 = 0.5 * (localT(0,2) + localT(2,0));
+        m_T12 = Scalar(0.5) * (localT(0,1) + localT(1,0));
+        m_T13 = Scalar(0.5) * (localT(0,2) + localT(2,0));
         m_T22 = localT(1,1);
-        m_T23 = 0.5 * (localT(1,2) + localT(2,1));
+        m_T23 = Scalar(0.5) * (localT(1,2) + localT(2,1));
         m_T33 = localT(2,2);
 
         MatrixType T;
