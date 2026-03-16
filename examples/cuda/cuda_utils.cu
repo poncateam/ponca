@@ -1,5 +1,7 @@
 #pragma once
 
+#include <Ponca/src/SpatialPartitioning/KdTree/kdTree.h>
+
 #define CUDA_CHECK(err) \
     if (err != cudaSuccess) { \
     std::cerr << "CUDA error: " << cudaGetErrorString(err) \
