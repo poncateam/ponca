@@ -1,50 +1,51 @@
 #include "fittingPCH.h"
 
-#define FIT(SCALAR) \
+/* Fits that can't be precompiled because they lack some methods but are still used in testing. */
+#define INCOMPLETE_FITTING_DEF(SCALAR) \
+    typedef Ponca::Basket<Point, WeightConstantFuncLocal, Ponca::MeanPosition> FitConstantLocal; \
+    typedef Ponca::Basket<Point<SCALAR>, NoWeightFuncL<SCALAR>, Ponca::MeanPosition> FitNoWeightLocal; \
+    typedef Ponca::Basket<Point<SCALAR>, NoWeightFuncG<SCALAR>, Ponca::MeanPosition> FitNoWeightGlobal;
+
+/* Common fit types to precompile */
+#define FITTING_DEF(SCALAR) \
     /* Mean */                                                                                     \
-    extern template class Ponca::Basket<Point<SCALAR>, WeightSmoothFuncL<SCALAR>  , Ponca::MeanPosition>; \
-    extern template class Ponca::Basket<Point<SCALAR>, WeightConstantFuncL<SCALAR>, Ponca::MeanPosition>; \
-    extern template class Ponca::Basket<Point<SCALAR>, NoWeightFuncL<SCALAR>      , Ponca::MeanPosition>; \
-    extern template class Ponca::Basket<Point<SCALAR>, NoWeightFuncG<SCALAR>      , Ponca::MeanPosition>; \
-                                                                                                   \
-    extern template class Ponca::Basket<Point<SCALAR>, WeightSmoothFuncL<SCALAR>  , Ponca::MeanPlaneFit>; \
-    extern template class Ponca::Basket<Point<SCALAR>, WeightConstantFuncL<SCALAR>, Ponca::MeanPlaneFit>; \
-    extern template class Ponca::Basket<Point<SCALAR>, NoWeightFuncL<SCALAR>      , Ponca::MeanPlaneFit>; \
-    extern template class Ponca::Basket<Point<SCALAR>, NoWeightFuncG<SCALAR>      , Ponca::MeanPlaneFit>; \
+    template class Ponca::Basket<Point<SCALAR>, WeightSmoothFuncL<SCALAR>  , Ponca::MeanPlaneFit>; \
+    template class Ponca::Basket<Point<SCALAR>, WeightConstantFuncL<SCALAR>, Ponca::MeanPlaneFit>; \
+    template class Ponca::Basket<Point<SCALAR>, NoWeightFuncL<SCALAR>      , Ponca::MeanPlaneFit>; \
+    template class Ponca::Basket<Point<SCALAR>, NoWeightFuncG<SCALAR>      , Ponca::MeanPlaneFit>; \
     /* Covariance-based fits */                                                                          \
-    extern template class Ponca::Basket<Point<SCALAR>, WeightSmoothFuncL<SCALAR>  , Ponca::CovariancePlaneFit>; \
-    extern template class Ponca::Basket<Point<SCALAR>, WeightConstantFuncL<SCALAR>, Ponca::CovariancePlaneFit>; \
-    extern template class Ponca::Basket<Point<SCALAR>, NoWeightFuncL<SCALAR>      , Ponca::CovariancePlaneFit>; \
-    extern template class Ponca::Basket<Point<SCALAR>, NoWeightFuncG<SCALAR>      , Ponca::CovariancePlaneFit>; \
-    // extern template class BasketDiff<                                                                                           \
-    //     Ponca::Basket<Point<SCALAR>, WeightSmoothFuncL<SCALAR>, Ponca::CovariancePlaneFit>,                                     \
-    //     Ponca::FitSpaceDer, Ponca::CovariancePlaneDer, Ponca::CurvatureEstimatorDer, Ponca::NormalDerivativeWeingartenEstimator \
-    // >;                                                                                                                          \
-    // extern template class Ponca::Basket<Point<SCALAR>, WeightSmoothFuncL<SCALAR>  , Ponca::MongePatchQuadraticFit>;             \
-    // extern template class Ponca::Basket<Point<SCALAR>, WeightConstantFuncL<SCALAR>, Ponca::MongePatchQuadraticFit>;             \
-    // extern template class Ponca::Basket<Point<SCALAR>, WeightSmoothFuncL<SCALAR>  , Ponca::MongePatchRestrictedQuadraticFit>;   \
-    // extern template class Ponca::Basket<Point<SCALAR>, WeightConstantFuncL<SCALAR>, Ponca::MongePatchRestrictedQuadraticFit>;   \
-    // /* OrientedSphereFit */                                                                                                                 \
-    // extern template class Basket<Point<SCALAR>, WeightSmoothFuncl<SCALAR>, Ponca::OrientedSphereFit, Ponca::OrientedSphereSpaceDer>;        \
-    // extern template class Basket<Point<SCALAR>, WeightConstantFuncL<SCALAR>, Ponca::OrientedSphereFit, Ponca::OrientedSphereSpaceDer>;      \
-    // extern template class Basket<Point<SCALAR>, WeightSmoothFuncL<SCALAR>, Ponca::OrientedSphereFit, Ponca::OrientedSphereScaleSpaceDer>;   \
-    // extern template class Basket<Point<SCALAR>, WeightConstantFuncL<SCALAR>, Ponca::OrientedSphereFit, Ponca::OrientedSphereScaleSpaceDer>; \
-    //                                                                                                                                         \
-    // extern template class Ponca::Basket<Point<SCALAR>, WeightSmoothFuncL<SCALAR>  , Ponca::OrientedSphereFit, Ponca::OrientedSphereSpaceDer, Ponca::MlsSphereFitDer>;      \
-    // extern template class Ponca::Basket<Point<SCALAR>, WeightConstantFuncL<SCALAR>, Ponca::OrientedSphereFit, OrientedSphereSpaceDer, Ponca::MlsSphereFitDer>;             \
-    // extern template class Ponca::Basket<Point<SCALAR>, WeightSmoothFuncL<SCALAR>  , Ponca::OrientedSphereFit, Ponca::OrientedSphereScaleSpaceDer, Ponca::MlsSphereFitDer>; \
-    // extern template class Ponca::Basket<Point<SCALAR>, WeightConstantFuncL<SCALAR>, Ponca::OrientedSphereFit, Ponca::OrientedSphereScaleSpaceDer, Ponca::MlsSphereFitDer>; \
-    // /* UnorientedSphereFit*/                                                                                                       \
-    // extern template class Ponca::Basket<Point<SCALAR>, WeightSmoothFuncL<SCALAR>, Ponca::UnorientedSphereFit, Ponca::GLSParam>;    \
-    // extern template class Ponca::Basket<Point<SCALAR>, WeightConstantFuncL<SCALAR>, Ponca::UnorientedSphereFit, Ponca::GLSParam>;  \
-    // extern template class Ponca::BasketDiff<                                                                                       \
-    //     Ponca::Basket<MyPoint<SCALAR>, WeightSmoothFuncL<SCALAR>, Ponca::UnorientedSphereFit, Ponca::GLSParam>,                    \
-    //     Ponca::FitSpaceDer, Ponca::OrientedSphereDer, Ponca::GLSDer,                                                               \
-    //     Ponca::CurvatureEstimatorDer, Ponca::NormalDerivativeWeingartenEstimator, Ponca::WeingartenCurvatureEstimatorDer           \
-    // >;
+    template class Ponca::Basket<Point<SCALAR>, WeightSmoothFuncL<SCALAR>  , Ponca::CovariancePlaneFit>; \
+    template class Ponca::Basket<Point<SCALAR>, WeightConstantFuncL<SCALAR>, Ponca::CovariancePlaneFit>; \
+    template class Ponca::Basket<Point<SCALAR>, NoWeightFuncL<SCALAR>      , Ponca::CovariancePlaneFit>; \
+    template class Ponca::Basket<Point<SCALAR>, NoWeightFuncG<SCALAR>      , Ponca::CovariancePlaneFit>; \
+    template class Ponca::BasketDiff<                                                        \
+        Ponca::Basket<Point<SCALAR>, WeightSmoothFuncL<SCALAR>, Ponca::CovariancePlaneFit>,  \
+        Ponca::FitSpaceDer, Ponca::CovariancePlaneDer,                                       \
+        Ponca::CurvatureEstimatorDer, Ponca::NormalDerivativeWeingartenEstimator             \
+    >;                                                                                       \
+    /* MongePatch fits */                                                                                                \
+    template class Ponca::Basket<Point<SCALAR>, WeightSmoothFuncL<SCALAR>  , Ponca::MongePatchQuadraticFit>;             \
+    template class Ponca::Basket<Point<SCALAR>, WeightConstantFuncL<SCALAR>, Ponca::MongePatchQuadraticFit>;             \
+    template class Ponca::Basket<Point<SCALAR>, WeightSmoothFuncL<SCALAR>  , Ponca::MongePatchRestrictedQuadraticFit>;   \
+    template class Ponca::Basket<Point<SCALAR>, WeightConstantFuncL<SCALAR>, Ponca::MongePatchRestrictedQuadraticFit>;   \
+    /* OrientedSphereFit */                                                                                              \
+    template class Ponca::Basket<Point<SCALAR>, WeightSmoothFuncL<SCALAR>, Ponca::OrientedSphereFit>;                    \
+    template class Ponca::Basket<Point<SCALAR>, WeightConstantFuncL<SCALAR>, Ponca::OrientedSphereFit>;                  \
+    template class Ponca::Basket<Point<SCALAR>, WeightSmoothFuncL<SCALAR>, Ponca::OrientedSphereFit, Ponca::GLSParam>;   \
+    template class Ponca::Basket<Point<SCALAR>, WeightConstantFuncL<SCALAR>, Ponca::OrientedSphereFit, Ponca::GLSParam>; \
+    /* UnorientedSphereFit */                                                                                              \
+    template class Ponca::Basket<Point<SCALAR>, WeightSmoothFuncL<SCALAR>, Ponca::UnorientedSphereFit>;                    \
+    template class Ponca::Basket<Point<SCALAR>, WeightConstantFuncL<SCALAR>, Ponca::UnorientedSphereFit>;                  \
+    template class Ponca::Basket<Point<SCALAR>, WeightSmoothFuncL<SCALAR>, Ponca::UnorientedSphereFit, Ponca::GLSParam>;   \
+    template class Ponca::Basket<Point<SCALAR>, WeightConstantFuncL<SCALAR>, Ponca::UnorientedSphereFit, Ponca::GLSParam>; \
+    template class Ponca::BasketDiff<                                                                                      \
+        Ponca::Basket< Point<SCALAR>, WeightSmoothFuncL<SCALAR>, Ponca::UnorientedSphereFit, Ponca::GLSParam >,            \
+        Ponca::FitSpaceDer, Ponca::OrientedSphereDer, Ponca::GLSDer,                                                       \
+        Ponca::CurvatureEstimatorDer, Ponca::NormalDerivativeWeingartenEstimator, Ponca::WeingartenCurvatureEstimatorDer   \
+    >;
 
-FIT(float)
-FIT(double)
-FIT(long double)
+FITTING_DEF(float)
+FITTING_DEF(double)
+FITTING_DEF(long double)
 
-#undef FIT
+#undef FITTING_DEF
