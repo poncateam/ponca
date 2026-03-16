@@ -51,7 +51,7 @@ MathJax.Hub.Config({
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Ponca
-   &#160;<span id="projectnumber">f9987454d6707693ac3a2fa5354a076aea4e1690</span>
+   &#160;<span id="projectnumber">9fe4c65d0dc7402638f66dce89bf587c24766e20</span>
    </div>
    <div id="projectbrief">Point Cloud Analysis library</div>
   </td>
@@ -425,7 +425,7 @@ $(document).ready(function(){initNavTree('cnc_8hpp_source.html',''); initResizab
 <div class="line"><a id="l00322" name="l00322"></a><span class="lineno">  322</span>                    array_avg_pos    [ i ] = w.evalPos();</div>
 <div class="line"><a id="l00323" name="l00323"></a><span class="lineno">  323</span>                } <span class="keywordflow">else</span> {</div>
 <div class="line"><a id="l00324" name="l00324"></a><span class="lineno">  324</span>                    array_avg_normals[ i ] /= array_avg_normals[ i ].norm();</div>
-<div class="line"><a id="l00325" name="l00325"></a><span class="lineno">  325</span>                    array_avg_pos    [ i ] /= array_nb[ i ];</div>
+<div class="line"><a id="l00325" name="l00325"></a><span class="lineno">  325</span>                    array_avg_pos    [ i ] /= Scalar(array_nb[ i ]);</div>
 <div class="line"><a id="l00326" name="l00326"></a><span class="lineno">  326</span>                }</div>
 <div class="line"><a id="l00327" name="l00327"></a><span class="lineno">  327</span>            }</div>
 <div class="line"><a id="l00328" name="l00328"></a><span class="lineno">  328</span> </div>
@@ -454,7 +454,7 @@ $(document).ready(function(){initNavTree('cnc_8hpp_source.html',''); initResizab
 <div class="line"><a id="l00349" name="l00349"></a><span class="lineno">  349</span> </div>
 <div class="line"><a id="l00350" name="l00350"></a><span class="lineno">  350</span>        m_eCurrentState = <a class="code hl_struct" href="structPonca_1_1internal_1_1TriangleGenerator.html">internal::TriangleGenerator&lt;M, P&gt;::generate</a>( indicesSample, points, m_nFilter, m_triangles);</div>
 <div class="line"><a id="l00351" name="l00351"></a><span class="lineno">  351</span>        <span class="keywordflow">if</span> (m_eCurrentState != <a class="code hl_enumvalue" href="namespacePonca.html#abfd697aebf07c1b5c8be5ee401e2dc84a86d1e5381a39092fbe5560583c23d64c">STABLE</a>) <span class="keywordflow">return</span> m_eCurrentState;</div>
-<div class="line"><a id="l00352" name="l00352"></a><span class="lineno">  352</span>        m_nb_vt = m_triangles.size();</div>
+<div class="line"><a id="l00352" name="l00352"></a><span class="lineno">  352</span>        m_nb_vt = int(m_triangles.size());</div>
 <div class="line"><a id="l00353" name="l00353"></a><span class="lineno">  353</span>        <span class="keywordflow">return</span> finalize();</div>
 <div class="line"><a id="l00354" name="l00354"></a><span class="lineno">  354</span>    }</div>
 </div>
@@ -466,7 +466,7 @@ $(document).ready(function(){initNavTree('cnc_8hpp_source.html',''); initResizab
 <div class="line"><a id="l00359" name="l00359"></a><span class="lineno">  359</span>        init();</div>
 <div class="line"><a id="l00360" name="l00360"></a><span class="lineno">  360</span>        m_eCurrentState = <a class="code hl_struct" href="structPonca_1_1internal_1_1TriangleGenerator.html">internal::TriangleGenerator&lt;M, P&gt;::generate</a>( ids, points, m_nFilter, m_triangles);</div>
 <div class="line"><a id="l00361" name="l00361"></a><span class="lineno">  361</span>        <span class="keywordflow">if</span> (m_eCurrentState != <a class="code hl_enumvalue" href="namespacePonca.html#abfd697aebf07c1b5c8be5ee401e2dc84a86d1e5381a39092fbe5560583c23d64c">STABLE</a>) <span class="keywordflow">return</span> m_eCurrentState;</div>
-<div class="line"><a id="l00362" name="l00362"></a><span class="lineno">  362</span>        m_nb_vt = m_triangles.size();</div>
+<div class="line"><a id="l00362" name="l00362"></a><span class="lineno">  362</span>        m_nb_vt = int(m_triangles.size());</div>
 <div class="line"><a id="l00363" name="l00363"></a><span class="lineno">  363</span>        <span class="keywordflow">return</span> finalize();</div>
 <div class="line"><a id="l00364" name="l00364"></a><span class="lineno">  364</span>    }</div>
 </div>
@@ -497,10 +497,10 @@ $(document).ready(function(){initNavTree('cnc_8hpp_source.html',''); initResizab
 <div class="line"><a id="l00388" name="l00388"></a><span class="lineno">  388</span>        } <span class="comment">// end for t</span></div>
 <div class="line"><a id="l00389" name="l00389"></a><span class="lineno">  389</span> </div>
 <div class="line"><a id="l00390" name="l00390"></a><span class="lineno">  390</span>        m_T11 = localT(0,0);</div>
-<div class="line"><a id="l00391" name="l00391"></a><span class="lineno">  391</span>        m_T12 = 0.5 * (localT(0,1) + localT(1,0));</div>
-<div class="line"><a id="l00392" name="l00392"></a><span class="lineno">  392</span>        m_T13 = 0.5 * (localT(0,2) + localT(2,0));</div>
+<div class="line"><a id="l00391" name="l00391"></a><span class="lineno">  391</span>        m_T12 = Scalar(0.5) * (localT(0,1) + localT(1,0));</div>
+<div class="line"><a id="l00392" name="l00392"></a><span class="lineno">  392</span>        m_T13 = Scalar(0.5) * (localT(0,2) + localT(2,0));</div>
 <div class="line"><a id="l00393" name="l00393"></a><span class="lineno">  393</span>        m_T22 = localT(1,1);</div>
-<div class="line"><a id="l00394" name="l00394"></a><span class="lineno">  394</span>        m_T23 = 0.5 * (localT(1,2) + localT(2,1));</div>
+<div class="line"><a id="l00394" name="l00394"></a><span class="lineno">  394</span>        m_T23 = Scalar(0.5) * (localT(1,2) + localT(2,1));</div>
 <div class="line"><a id="l00395" name="l00395"></a><span class="lineno">  395</span>        m_T33 = localT(2,2);</div>
 <div class="line"><a id="l00396" name="l00396"></a><span class="lineno">  396</span> </div>
 <div class="line"><a id="l00397" name="l00397"></a><span class="lineno">  397</span>        MatrixType T;</div>
@@ -541,7 +541,7 @@ $(document).ready(function(){initNavTree('cnc_8hpp_source.html',''); initResizab
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_695d95a8d8fbec601a248c0414764298.html">Ponca</a></li><li class="navelem"><a class="el" href="dir_ce16314fc45f8638543c5146aff64d4a.html">src</a></li><li class="navelem"><a class="el" href="dir_221133f19e4af6803e4ee7d78db21786.html">Fitting</a></li><li class="navelem"><b>cnc.hpp</b></li>
-    <li class="footer">Generated on Mon Mar 16 2026 15:31:27 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
+    <li class="footer">Generated on Mon Mar 16 2026 18:41:01 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
   </ul>
 </div>
 </body>
