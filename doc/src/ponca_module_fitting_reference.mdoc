@@ -1,0 +1,281 @@
+namespace Ponca
+{
+/*!
+ \page fittingreference Fitting Module: Reference Manual
+ \tableofcontents
+
+ This page provides a detailed list of what the Fitting module has to offers. 
+
+ \section fittingreference_primitiveoverview Fitting techniques Overview
+  
+  We provide various approaches to approximate, analyze or characterize the geometric properties of local neighborhoods.
+  In most situations, all these tools are based on the estimation of a geometric \ref PrimitiveBase "Primitive" approximating the neighborhood, on top of which we provide more advanced computations.
+  The table below summarizes the \ref PrimitiveBase "Primitives" available in the library, as well as the associated fitting techniques:
+
+  Computed primitive| Required Input      | Fitting techniques                                                            |
+  ----------------- | ------------------- | ----------------------------------------------------------------------------- |
+  Line              | Points only         | CovarianceLineFitImpl (nD)                                                    |
+  Plane             | Points only         | CovariancePlaneFitImpl (nD)                                                   |
+  Plane             | Oriented points     | MeanPlaneFitImpl (nD, co-dimension 1)                                         |
+  MongePatch        | Points only         | MongePatchQuadraticFitImpl and MongePatchRestrictedQuadraticFitImpl (both 3D) |
+  AlgebraicSphere   | Points only         | SphereFitImpl (nD) \cite Guennebaud:2007:APSS                                 |
+  AlgebraicSphere   | Oriented points     | OrientedSphereFitImpl (nD) \cite Guennebaud:2007:APSS                         |
+  AlgebraicSphere   | Non-oriented points | UnorientedSphereFitImpl (nD) \cite Chen:2013:NOMG                             |
+
+  Ponca also provide methods to compute objects that are not geometric primitives, but provide other informations such
+   as curvatures:
+
+  Computed object   | Required Input      | Fitting techniques                                                    |
+  ----------------- | ------------------- | --------------------------------------------------------------------- |
+  Barycenter        | Points only         | MeanPosition (nD)                                                     |
+  Normal Vector     | Oriented points     | MeanNormal (nD, co-dimension 1)                                       |
+  Covariance Matrix | Points only         | CovarianceFitBase (nD)                                                |
+  Weingarten Map    | Points only         | FundamentalFormWeingartenEstimator (3D) via MongePatch                |
+  Weingarten Map    | Oriented points     | NormalDerivativeWeingartenEstimator (3D)                              |
+
+ \section fittingreference_outputandcapabilities Capabilities of Fitting tools
+ 
+  As described in \ref fitting_extensions_deps, The tool classes provides different kinds of compute capabilities.
+  To describe what a class provides, we uses flags that allows us to check for compatibility at compile time.
+
+  Here is an in depth description of all the labels of the Fitting tools :
+    <table>
+      <tr>
+        <th>Label</th>
+        <th>Provided by</th>
+        <th>Required by</th>
+        <th>Outputs</th>
+      </tr>
+
+      <tr>
+        <td>
+            <b>PROVIDES_MEAN_POSITION</b><br>
+            Mean of the input points vectors
+        </td>
+        <td>MeanPosition</td>
+        <td>MeanPositionDer<br>MeanPlaneFitImpl<br>OrientedSphereFitImpl<br>CovarianceFitBase<br>UnorientedSphereFitImpl</td>
+        <td>barycenter()<br>barycenterDistance()<br>barycenterLocal()</td>
+      </tr>
+
+      <tr>
+        <td>
+            <b>PROVIDES_MEAN_POSITION_DERIVATIVE</b><br>
+            Provides derivative of the mean position
+        </td>
+        <td>MeanPositionDer</td>
+        <td>CovarianceFitDer<br>OrientedSphereDerImpl<br>UnorientedSphereDerImpl</td>
+        <td>barycenterDerivatives()</td>
+      </tr>
+
+      <tr>
+        <td>
+            <b>PROVIDES_MEAN_NORMAL</b><br>
+            Mean of the normal vectors
+        </td>
+        <td>MeanNormal</td>
+        <td>MeanPlaneFitImpl<br>OrientedSphereFitImpl</td>
+        <td>meanNormalVector()</td>
+      </tr>
+
+      <tr>
+        <td>
+            <b>PROVIDES_MEAN_NORMAL_DERIVATIVE</b><br>
+            Provides derivative of the mean normal
+        </td>
+        <td>MeanNormalDer</td>
+        <td>-</td>
+        <td>dMeanNormal()</td>
+      </tr>
+
+      <tr>
+        <td>
+            <b>PROVIDES_PRIMITIVE_BASE</b><br>
+            Provides base API for primitives
+        </td>
+        <td>PrimitiveBase</td>
+        <td>PrimitiveDer<br>AlgebraicSphere</td>
+        <td>getWeightSum()<br>setNeighborFilter()<br>getNeighborFilter()<br>getCurrentState()<br>getNumNeighbors()<br>isReady()<br>isStable()</td>
+      </tr>
+
+      <tr>
+        <td>
+            <b>PROVIDES_PRIMITIVE_DERIVATIVE</b><br>
+            Provides base API for primitive derivatives
+        </td>
+        <td>PrimitiveDer</td>
+        <td>GLSDer<br>CovarianceFitDer<br>MeanPositionDer<br>MeanNormalDer<br>MlsSphereFitDer<br>OrientedSphereDerImpl<br>UnorientedSphereDerImpl</td>
+        <td>isScaleDer()<br>isSpaceDer()<br>derDimension()</td>
+      </tr>
+
+      <tr>
+        <td>
+            <b>PROVIDES_GLS_PARAMETRIZATION</b><br>
+            Growing Least Squares reparametrization of the OrientedSphereFit
+        </td>
+        <td>GLSParam</td>
+        <td>GLSDer</td>
+        <td>tau()<br>eta()<br>kappa()<br>tau_normalized()<br>eta_normalized()<br>kappa_normalized()<br>fitness()<br>compareTo()</td>
+      </tr>
+
+      <tr>
+        <td>
+            <b>PROVIDES_GLS_DERIVATIVE</b><br>
+            Differentiation of GLSParam
+        </td>
+        <td>GLSDer</td>
+        <td>-</td>
+        <td>dtau()<br>deta()<br>dkappa()<br>dtau_normalized()<br>deta_normalized()<br>dkappa_normalized()</td>
+      </tr>
+
+      <tr>
+        <td>
+            <b>PROVIDES_GLS_GEOM_VAR</b><br>
+            Provides Geometric Variation as a weighted sum of the GLS scale-invariant partial derivatives
+        </td>
+        <td>GLSDer</td>
+        <td>-</td>
+        <td>geomVar()</td>
+      </tr>
+
+      <tr>
+        <td>
+            <b>PROVIDES_ALGEBRAIC_SPHERE</b><br>
+
+        </td>
+        <td>AlgebraicSphere</td>
+        <td>OrientedSphereFitImpl<br>OrientedSphereDerImpl<br>SphereFitImpl<br>UnorientedSphereFitImpl<br>UnorientedSphereDerImpl</td>
+        <td>potential()<br>project()<br>primitiveGradient()<br>isPlane()<br>isValid()<br>isApprox()<br>changeBasis()<br>prattNorm()<br>prattNorm2()<br>applyPrattNorm()<br>radius()<br>center()<br>isNormalized()</td>
+      </tr>
+
+      <tr>
+        <td>
+            <b>PROVIDES_ALGEBRAIC_SPHERE_DERIVATIVE</b><br>
+            Provides derivatives for algebraic sphere
+        </td>
+        <td>OrientedSphereDerImpl<br>UnorientedSphereDerImpl</td>
+        <td>GLSDer<br>MlsSphereFitDer</td>
+        <td>dPotential()</td>
+      </tr>
+
+      <tr>
+        <td>
+            <b>PROVIDES_COVARIANCE_PLANE_DERIVATIVE</b><br>
+            Provides derivatives for hyper-planes
+        </td>
+        <td>CovariancePlaneDerImpl</td>
+        <td>-</td>
+        <td>dPotential()</td>
+      </tr>
+
+      <tr>
+        <td>
+            <b>PROVIDES_NORMAL_DERIVATIVE</b><br>
+            Provides the derivatives of the primitive normal
+        </td>
+        <td>CovariancePlaneDerImpl<br>MlsSphereFitDer<br>OrientedSphereDerImpl<br>UnorientedSphereDerImpl</td>
+        <td>NormalDerivativesCurvatureEstimator</td>
+        <td>dNormal()</td>
+      </tr>
+
+      <tr>
+        <td>
+            <b>PROVIDES_POSITION_COVARIANCE</b><br>
+            Provides the covariance matrix
+        </td>
+        <td>CovarianceFitBase</td>
+        <td>CovarianceFitDer<br>CovarianceLineFitImpl<br>CovariancePlaneFitImpl</td>
+        <td>solver()</td>
+      </tr>
+
+      <tr>
+        <td>
+            <b>PROVIDES_POSITION_COVARIANCE_DERIVATIVE</b><br>
+
+        </td>
+        <td>CovarianceFitDer</td>
+        <td>CovariancePlaneDerImpl</td>
+        <td>-</td>
+      </tr>
+
+      <tr>
+        <td>
+            <b>PROVIDES_PLANE</b><br>
+
+        </td>
+        <td>Plane</td>
+        <td style="word-break: break-word;">CovariancePlaneFitImpl<br>CovariancePlaneDerImpl<br>ProjectedNormalCovarianceCurvatureEstimator<br>MeanPlaneFitImpl<br>MongePatch</td>
+        <td>setPlane()<br>potential()<br>project()<br>primitiveGradient()</td>
+      </tr>
+
+      <tr>
+        <td>
+            <b>PROVIDES_TANGENT_PLANE_BASIS</b><br>
+            Turns a point in ambient 3D space to the tangent plane.
+        </td>
+        <td>CovariancePlaneFitImpl</td>
+        <td>MongePatch</td>
+        <td>worldToTangentPlane()<br>tangentPlaneToWorld()</td>
+      </tr>
+    </table>
+
+    \section fitting_curvature Computing Curvatures
+
+    Ponca offers several ways to compute curvatures, some of which are reviewed and compared by Lejemble et al. in \cite Lejemble:2021:stable and listed in the table below:
+    Estimator Name                                                 |   Estimated quantities   | Usage  |
+    -------------------------------------------------------------- | ------------------------ | -------------------------------------------------------------------------------------------- |
+    Distance to PCA plane \cite Digne:2011:scalespacemeshing       | Mean curvature           | Method \ref Plane::potential "potential()" \snippet curvature_plane.cpp Curvature Estimator PCA plane |
+    Surface Variation \cite Pauly:2002:PSSimplification            | Mean curvature           | Method \ref CovarianceFitBase::surfaceVariation "surfaceVariation()" \snippet curvature_plane.cpp Curvature Estimator PCA plane  |
+    Growing Least Squares \cite Mellado:2012:GLS                   | Mean curvature           | `Basket<P,W,OrientedSphereFit,GLSParam> // method kappa()`                                                |
+    Point Set Surfaces (PSS) \cite Alexa:2001:Pss                  | Curvature Tensor         | API of \ref internal::CurvatureEstimatorBase "CurvatureEstimatorBase" : \snippet curvature_plane.cpp Curvature Tensor PCA normals |
+    Monge Patch fitting (comparable to jets fitting\cite Cazals:2005:Jets ) | Curvature Tensor         | API of \ref internal::CurvatureEstimatorBase "CurvatureEstimatorBase" using a QuadraticHeightField: \snippet curvature_plane.cpp Curvature Estimator Monge Quadric |
+    Monge Patch fitting (comparable to jets fitting\cite Cazals:2005:Jets ) | Curvature Tensor         | API of \ref internal::CurvatureEstimatorBase "CurvatureEstimatorBase" using a RestrictedQuadraticHeightField: \snippet curvature_plane.cpp Curvature Estimator Monge Quadric Restricted |
+    Algebraic Point Set Surfaces (APSS) \cite Guennebaud:2007:APSS | Curvature Tensor         | API of \ref internal::CurvatureEstimatorBase "CurvatureEstimatorBase": \snippet fit_radius_curvature_center.cpp Curvature Estimator APSS |
+    Algebraic Shape Operator (ASO) \cite Lejemble:2021:stable      | Curvature Tensor         | API of \ref internal::CurvatureEstimatorBase "CurvatureEstimatorBase": \snippet fit_radius_curvature_center.cpp Curvature Estimator ASO|
+
+
+    \image html buste.png "Figure 3. Example of mean curvature (GLSParam::kappa) computed at a fine (left) and a coarse (right) scale, and rendered with a simple color map (orange for concavities, blue for convexities)."
+
+  \section fitting_kernel Available Weighting kernel
+
+  During any computation, each neighbor is weighted by an amount defined by \f$w(x) = \phi\left(\frac{||x - p||}{r}\right)\f$, where \f$p\f$ is the evaluation location and \f$r\f$ is the radius. 
+  This sections list the different function \f$\phi\f$ available in Ponca.
+
+  <table>
+      <tr>
+        <th>Class</th>
+        <th>Expression</th>
+      </tr>
+
+      <tr>
+        <td>ConstantWeightKernel&lt;_Scalar&gt;</td>
+        <td>\f$\phi(x) = 1\f$</td>
+      </tr>
+      <tr>
+        <td>SmoothWeightKernel&lt;_Scalar&gt;</td>
+        <td>\f$\phi(x) = (x^2 - 1)^2\f$</td>
+      </tr>
+      <tr>
+        <td>PolynomialSmoothWeightKernel&lt;_Scalar, m, n&gt;</td>
+        <td>\f$\phi(x) = (x^n - 1)^m\f$</td>
+      </tr>
+      <tr>
+        <td>WendlandWeightKernel&lt;_Scalar&gt;</td>
+        <td>\f$\phi(x) = (1 - x)^4(4x + 1)\f$</td>
+      </tr>
+      <tr>
+        <td>SingularWeightKernel&lt;_Scalar&gt;</td>
+        <td>\f$\phi(x) = \frac{1}{x^2}\f$</td>
+      </tr>
+      <tr>
+        <td>CompactExpWeightKernel&lt;_Scalar&gt;</td>
+        <td>\f$\phi(x) = \exp\left(\frac{-x^2}{1 - x^2}\right)\f$</td>
+      </tr>
+      <tr>
+        <td>GaussianWeightKernel&lt;_Scalar&gt;</td>
+        <td>\f$\phi(x) = \exp\left(-\frac{1}{2}x^2\right)\f$</td>
+      </tr>
+  </table>
+
+
+ */
+} // namespace Ponca
