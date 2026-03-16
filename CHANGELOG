@@ -15,6 +15,7 @@ introduces several bug fixes and minors improvements.
 - Bug-fixes and code improvements
     - [fitting] Fix issues when converting vectors between local and global frames (#201)
     - [fitting] Fix bug in MongePatch::primitiveGradient (#269)
+    - [fitting] Fix warnings on windows (#278)
 
 - Tests
     - [utils] Improve point cloud generation functions (#201)
