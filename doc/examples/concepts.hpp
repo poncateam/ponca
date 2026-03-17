@@ -117,7 +117,69 @@ namespace Ponca
             PONCA_MULTIARCH inline FIT_RESULT finalize();
         }; //class ComputationalDerivativesConcept
 //! [ComputationalDerivativesConcept]
+//! [FilterConcept]
+        // \brief Concept for neighborhood filters
+        //
+        // \see \ref CenteredNeighborhoodFrame
+        // \see \ref GlobalNeighborhoodFrame
+        template <class DataPoint>
+        class NeighborFilterConcept : public CenteredNeighborhoodFrame<DataPoint> { // Or GlobalNeighborhoodFrame
+            /*! \brief Scalar type from DataPoint */
+            using Scalar =  typename DataPoint::Scalar;
+            /*! \brief Vector type from DataPoint */
+            using VectorType =  typename DataPoint::VectorType;
+            /*! \brief Matrix type from DataPoint */
+            using MatrixType = typename DataPoint::MatrixType;
+            
+            // \brief Constructor
+            // A default constructor and a constructor from a vector and a scalar must be 
+            // available. Even if parameter are unused or other are necessary.
+            // \param v The evaluation location
+            // \param t The radius
+            NeighborFilterConcept(const VectorType& v = VectorType::Zero(), Scalar_ t = 0);
+            /*!
+                \brief Compute the weight of the given query, which is always $1$
+                \param _q Query in global coordinate system
+            */
+            PONCA_MULTIARCH inline WeightReturnType operator()(const DataPoint& _q) const;
 
+            /*!
+                \brief First order derivative in space (for each spatial dimension \f$\mathsf{x})\f$, which are always $0$
+                \param _q Query location in global coordinate system
+                \param _attributes Query in global coordinate system
+            */
+            PONCA_MULTIARCH inline VectorType spacedw(const VectorType& _q, const DataPoint& _attributes);
+
+            /*!
+                \brief Second order derivative in space (for each spatial dimension \f$\mathsf{x})\f$, which are always $0$
+                \param _q Query in global coordinate
+                \param _attributes Query in global coordinate system
+            */
+            PONCA_MULTIARCH inline MatrixType spaced2w(const VectorType& _q, const DataPoint& _attributes) const;
+
+            /*!
+                \brief First order derivative in scale  \f$t\f$, which are always $0$
+                \param _q Query in global coordinate
+                \param _attributes Query in global coordinate system
+            */
+            PONCA_MULTIARCH inline Scalar scaledw(const VectorType& _q, const DataPoint& _attributes) const;
+
+            /*!
+                \brief Second order derivative in scale  \f$t\f$, which are always $0$
+                \param _q Query in global coordinate
+                \param _attributes Query in global coordinate system
+            */
+            PONCA_MULTIARCH inline Scalar scaled2w(const VectorType& _q, const DataPoint& _attributes) const;
+
+            /*!
+                \brief Cross derivative in scale \f$t\f$ and in space (for each spatial dimension \f$\mathsf{x})\f$, which are
+                always $0$
+                \param _q Query in global coordinate
+                \param _attributes Query in global coordinate system
+            */
+            PONCA_MULTIARCH inline VectorType scaleSpaced2w(const VectorType& _q, const DataPoint& _attributes) const;
+        };
+//! [FilterConcept]
 //! [WeightKernelConcept]
         // \brief Concept of a 1D weighting function and its derivatives.
         template <typename _Scalar>

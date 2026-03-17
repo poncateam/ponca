@@ -145,10 +145,18 @@ namespace Ponca
   \note Currently, users need to ensure consistency between the query and the fit location/scale. This is expected to be fixed in the upcoming releases.
   \see spatialpartitioning
   
-  \section fitting_newkernel Defining a new kernel function
+  \section fitting_newfilter Defining a new filter
+  
+  Neighborhood filters are critical components of the library. They provide computation information on how much a point 
+  is considered to be a neighbor. This information is given through weights defined by the Filter and the Kernel. Perhaps
+  the most common filter is DistWeightFunc, which filters out points that are too far and weight the other according to
+  their distance from the evaluation position. 
 
-  Weighting functions are critical components of the library.
-  They are represented by DistWeightFunc, which is defined from the euclidean distance field centered at the
+  \see \ref fitting_filters
+  
+  \subsection fitting_newkernel Defining a new distance kernel
+
+  DistWeightFunc is defined from the euclidean distance field centered at the
   evaluation position (see \ref DistWeightFunc::init()). Given a distance to this evaluation position, the weight
   is computed (see \ref DistWeightFunc::w()) by applying a 1d weighting function defined as follows:
 
@@ -158,7 +166,18 @@ namespace Ponca
   scale (\ref DistWeightFunc::scaledw(), \ref DistWeightFunc::scaled2w()) and space (\ref DistWeightFunc::spacedw(),
   \ref DistWeightFunc::spaced2w()), and their cross derivatives (\ref DistWeightFunc::scaleSpaced2w()).
   Theses methods check if the weight kernels provides the appropriate derivatives.
+    
+  \subsection fitting_newfilterapi Filter API
 
+  It is also possible to define new filter that could take into account any other desired parameter. The general API is:
+
+  \snippet concepts.hpp FilterConcept
+
+  The filter should extend either CenteredNeighborhoodFrame or GlobalNeighborhoodFrame. They help to express points in 
+  local coordinates, often relative to the evaluation location. CenteredNeighborhoodFrame helps with translation invariant filters.
+  Its conversion function is simply \f$x - p\f$, where \f$X\f$ is the query point and \f$p\f$ the evaluation location.  
+  GlobalNeighborhoodFrame does not affect coordinates and points remains in the global domain.  
+  
   \section fitting_newestimator Defining a new Estimator
 
   The goal of the %Fitting module is to provide lightweight, fast and generic algorithms for 3d point cloud processing.
@@ -211,6 +230,14 @@ namespace Ponca
   Hence, in this example, refering to `Base::m_uc` within GLSParam will reference the current value of `AlgebraicSphere::m_uc`. However, refering
   to `Base::addLocalNeighbor` in GLSParam will reference the function `OrientedSphereFitImpl::addLocalNeighbor` as this is overriden by the class. 
 
+  In order to target more directly a Fitting method, Ponca provides cast operation. For example, the MeanNormal class provide the
+  `MeanNormal::meanNormal` function that returns a pointer to the implicit instance. 
+
+  \code 
+    /* const */ MeanNormal* meanNormal = fit.meanNormal();
+    // Do whatever you want with a 'MeanNormal' instance
+  \endcode
+
   \subsection fitting_newestim Estimator API
 
   \subsubsection fitting_newestimbase Minimal requirements
@@ -261,9 +288,22 @@ namespace Ponca
   Internally, this is implemented by checking if the primitive is already valid (ie. it has been computed already) when finalizing the computation.
   This limitation is expected to be resolved in upcoming releases.
 
-  \subsubsection fitting_newdiff Making a differential estimator
+  \subsubsection fitting_cast Providing cast operations
+
+  As explained earlier, the class hierarchy can not reach every function of every through the provided `Base` type due to overloading. 
+  The mecanism Ponca implements is a cast operator. Fortunately, this is quite common and a macro helps to define them. Add the following 
+  within a public section of your class:
+
+  \code
+    PONCA_EXPLICIT_CAST_OPERATORS(ClassName, className);
+  \encode
+
+  Where the first parameter is the class name and the second is the name of the cast function which is, most of the time, the same as the 
+  class name excpet a first lower case letter. Note that this macro requires the template parameter to be named following ponca conventions. 
+
+  \subsubsection fitting_newdiff New primitive differentiation (BasketDiff API)
     
-  The API for defining new differential estimator follows the same principle from classical estimator. The base class is BasketDiff which follows the 
+  The API for defining new estimator that differentiate the primitive follows the same principle from classical estimator. The base class is BasketDiff which follows the 
   same CRTP / inheritance principle except that a Basket is required as a first parameter. 
 
   \snippet concepts.hpp ComputationalDerivativesConcept

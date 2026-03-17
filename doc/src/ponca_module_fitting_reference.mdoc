@@ -235,9 +235,34 @@ namespace Ponca
 
     \image html buste.png "Figure 3. Example of mean curvature (GLSParam::kappa) computed at a fine (left) and a coarse (right) scale, and rendered with a simple color map (orange for concavities, blue for convexities)."
 
+  \section fitting_filters Available filters
+
+  <table>
+    <tr>
+      <th>Class name</th>
+      <th>Parameters</th>
+      <th>Documentation</th>
+    </tr>
+    <tr> 
+      <td>DistWeightFunc</td>
+      <td>Eval location: p, Radius: t</td>
+      <td>Filter points further than t, and weigh them according to kernel (\ref fitting_kernel) </td>
+    </tr>
+    <tr> 
+      <td>NoWeigthFunc / NoWeightFuncGlobal</td>
+      <td>Eval location: p</td>
+      <td>Constant kernel for every point. Does not check for radius unlike DistWeightFunc with contant kernel.</td>
+    </tr>
+    <tr> 
+      <td>NeighborFilterStoreNormal</td>
+      <td>Eval location: p, Radius: t, Normal: n</td>
+      <td>Stores normal. It extends another filter as template param</td>
+    </tr>
+  </table>
+
   \section fitting_kernel Available Weighting kernel
 
-  During any computation, each neighbor is weighted by an amount defined by \f$w(x) = \phi\left(\frac{||x - p||}{r}\right)\f$, where \f$p\f$ is the evaluation location and \f$r\f$ is the radius. 
+  During any computation, each neighbor can be weighted by an amount defined by \f$w(x) = \phi\left(\frac{||x - p||}{r}\right)\f$, where \f$p\f$ is the evaluation location and \f$r\f$ is the radius. 
   This sections list the different function \f$\phi\f$ available in Ponca.
 
   <table>
