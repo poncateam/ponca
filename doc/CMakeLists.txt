@@ -22,6 +22,7 @@ if(DOXYGEN_FOUND)
       ${CMAKE_CURRENT_SOURCE_DIR}/src/ponca.bib
       ${CMAKE_CURRENT_SOURCE_DIR}/src/ponca.mdoc
       ${CMAKE_CURRENT_SOURCE_DIR}/src/ponca_changelog.mdoc
+      ${CMAKE_CURRENT_SOURCE_DIR}/src/ponca_ecosystem.mdoc
       ${CMAKE_CURRENT_SOURCE_DIR}/src/ponca_user_manual.mdoc
       ${CMAKE_CURRENT_SOURCE_DIR}/src/ponca_module_fitting.mdoc
       ${CMAKE_CURRENT_SOURCE_DIR}/src/ponca_module_fitting_reference.mdoc
