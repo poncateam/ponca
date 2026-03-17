@@ -454,12 +454,18 @@ protected:
 template <class DataPoint>
 /// \brief Weighting function that set uniform weight to all samples, but transform neighbors coordinates to local frame
 /// \see internal::NoWeightFuncBase
-struct NoWeightFunc :public internal::NoWeightFuncBase<DataPoint, internal::CenteredNeighborhoodFrame>{};
+struct NoWeightFunc : public internal::NoWeightFuncBase<DataPoint, internal::CenteredNeighborhoodFrame>
+{
+    using internal::NoWeightFuncBase<DataPoint, internal::CenteredNeighborhoodFrame>::NoWeightFuncBase;
+};
 
 template <class DataPoint>
 /// \brief Weighting function that set uniform weight to all samples and keep neighbors coordinates in global frame
 /// \see internal::NoWeightFuncBase
-struct NoWeightFuncGlobal : public internal::NoWeightFuncBase<DataPoint, internal::GlobalNeighborhoodFrame>{};
+struct NoWeightFuncGlobal : public internal::NoWeightFuncBase<DataPoint, internal::GlobalNeighborhoodFrame>
+{
+    using internal::NoWeightFuncBase<DataPoint, internal::GlobalNeighborhoodFrame>::NoWeightFuncBase;
+};
 #include "weightFunc.hpp"
 
 }// namespace Ponca
