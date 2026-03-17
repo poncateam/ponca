@@ -40,6 +40,10 @@ using NoWeightFuncL = Ponca::NoWeightFunc<Point<Scalar>>;
     EXTERN template class Ponca::Basket<Point<SCALAR>, WeightConstantFuncL<SCALAR>, Ponca::CovariancePlaneFit>; \
     EXTERN template class Ponca::Basket<Point<SCALAR>, NoWeightFuncL<SCALAR>      , Ponca::CovariancePlaneFit>; \
     EXTERN template class Ponca::Basket<Point<SCALAR>, NoWeightFuncG<SCALAR>      , Ponca::CovariancePlaneFit>; \
+    EXTERN template class Ponca::Basket<Point<SCALAR>, WeightSmoothFuncL<SCALAR>  , Ponca::MeanPosition, Ponca::CovariancePlaneFit>; \
+    EXTERN template class Ponca::Basket<Point<SCALAR>, WeightConstantFuncL<SCALAR>, Ponca::MeanPosition, Ponca::CovariancePlaneFit>; \
+    EXTERN template class Ponca::Basket<Point<SCALAR>, NoWeightFuncL<SCALAR>      , Ponca::MeanPosition, Ponca::CovariancePlaneFit>; \
+    EXTERN template class Ponca::Basket<Point<SCALAR>, NoWeightFuncG<SCALAR>      , Ponca::MeanPosition, Ponca::CovariancePlaneFit>; \
     EXTERN template class Ponca::BasketDiff<                                                 \
         Ponca::Basket<Point<SCALAR>, WeightSmoothFuncL<SCALAR>, Ponca::CovariancePlaneFit>,  \
         Ponca::FitSpaceDer, Ponca::CovariancePlaneDer,                                       \
