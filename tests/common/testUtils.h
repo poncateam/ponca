@@ -12,7 +12,6 @@
 #pragma once
 
 #include "Eigen/Eigen"
-#include <Ponca/precompiled/Fitting/fittingETI.h>
 #include "testing.h"
 #include "Ponca/src/Common/defines.h"
 #include "Ponca/src/Common/pointTypes.h"
