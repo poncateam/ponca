@@ -103,7 +103,7 @@ macro(add_multi_test filename)
       target_link_libraries(${testname}_${suffix} PRIVATE Ponca::FittingPCH)
 
       target_precompile_headers(${testname}_${suffix} PUBLIC
-              ${PONCA_src_ROOT}/Ponca/precompiled/Fitting/fittingPCH.h
+              ${PONCA_src_ROOT}/Ponca/precompiled/Fitting/fittingETI.h
       )
 
       ponca_add_target_property(${testname}_${suffix} COMPILE_FLAGS "-DTEST_PART_${suffix}=1")
@@ -125,7 +125,7 @@ macro(add_multi_test filename)
     target_link_libraries(${testname} PRIVATE Ponca::FittingPCH)
 
     target_precompile_headers(${testname} PUBLIC
-            ${PONCA_src_ROOT}/Ponca/precompiled/Fitting/fittingPCH.h
+            ${PONCA_src_ROOT}/Ponca/precompiled/Fitting/fittingETI.h
     )
 
     if(OpenMP_CXX_FOUND)
