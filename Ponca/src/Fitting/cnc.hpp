@@ -9,11 +9,7 @@ All rights reserved.
 
 #pragma once
 
-#include PONCA_MULTIARCH_INCLUDE_STD(cmath)
-#include <random>
-
-namespace Ponca::internal
-{
+namespace Ponca::internal {
     /*! \internal
      *
      * \brief Generates the triangles used by the CNC Fit depending on the method.
