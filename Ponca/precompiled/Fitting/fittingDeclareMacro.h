@@ -9,10 +9,6 @@
   \brief Make macros to declare the commonly used Fitting types for 3D point clouds
 */
 
-#ifndef EXTERN
-#    define EXTERN
-#endif
-
 template <typename Scalar>
 using Point = Ponca::PointPositionNormal<Scalar, 3>;
 
