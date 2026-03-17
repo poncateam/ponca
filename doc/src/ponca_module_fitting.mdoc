@@ -145,12 +145,15 @@ namespace Ponca
   \note Currently, users need to ensure consistency between the query and the fit location/scale. This is expected to be fixed in the upcoming releases.
   \see spatialpartitioning
   
-  \section fitting_newfilter Defining a new filter
+  \section fitting_newfilter Defining a new neighbor filter
   
-  Neighborhood filters are critical components of the library. They provide computation information on how much a point 
-  is considered to be a neighbor. This information is given through weights defined by the Filter and the Kernel. Perhaps
-  the most common filter is DistWeightFunc, which filters out points that are too far and weight the other according to
-  their distance from the evaluation position. 
+  Neighbor filters are critical components of the library. Their main goal is to provide computation information on how
+  much a point is considered to be a neighbor. This information is given through weights defined by the Filter and the
+  Kernel. In additions, some filters may transform the neighbors, for instance to express relatively to the evaluation
+  point. Perhaps the most common filter is DistWeightFunc, which filters out points that are too far and weight the
+  other according to their distance from the evaluation position, and also translate neighbors in the local frame.
+  Another alternative are the classes NoWeightFunc and NoWeightFuncGlobal, which do not filter any neighbor and offer
+  control over the transformation of the neighbors.
 
   \see \ref fitting_filters
   

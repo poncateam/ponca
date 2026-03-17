@@ -11,6 +11,9 @@
 
 namespace Ponca
 {
+
+namespace internal
+{
 /*!
  * \brief NeighborhoodFrame that express 3d points relatively to a prescribed center.
  *
@@ -20,6 +23,9 @@ namespace Ponca
  * Express points \f$\mathbf{x}\f$ relatively to a center \f$\mathbf{p}\f$, ie.
  * \f$\mathbf{x}'=\mathbf{x}-\mathbf{p}\f$.
  * This frame does not apply rotation.
+ *
+ * \note This class is designed to serve as a Base class for the definition of NeighborFilters, and cannot be used
+ *       directly
  *
  * @tparam DataPoint Point type used for computation
  */
@@ -84,10 +90,14 @@ private:
 /*!
  * \brief NeighborhoodFrame that keep points in the global frame without applying any transformation
  *
- * This class is useful to compute
- * Express points \f$\mathbf{x}\f$ relatively to a center \f$\mathbf{p}\f$, ie.
- * \f$\mathbf{x}'=\mathbf{x}-\mathbf{p}\f$.
- * This frame does not apply rotation.
+ * This class is useful to compute direct fits in the embedding space, without paying the cost to express neighbors
+ * relatively to an evaluation point.
+ *
+ * \warning In case the data have strong magnitude (e.g., georeferenced point clouds), it is recommended to use
+ * CenteredNeighborhoodFrame instead.
+ *
+ * \note This class is designed to serve as a Base class for the definition of NeighborFilters, and cannot be used
+ *       directly
  *
  * @tparam DataPoint Point type used for computation
  */
@@ -131,10 +141,10 @@ public:
         return _q;
     }
 };
-
+}
 
 /*!
-    \brief Weight neighbors according to the euclidean distance between a query and a reference position
+    \brief Weight neighbors according to the Euclidean distance between a query and a reference position
 
     The evaluation position is set in the constructor. All the queries are expressed in global system, and converted
     internally to relatively to the evaluation position using #CenteredNeighborhoodFrame.
@@ -150,7 +160,7 @@ public:
     \warning DistWeightFunc assumes that the evaluation scale t is strictly positive, but the valus is not checked
 */
 template <class DataPoint, class WeightKernel>
-class DistWeightFunc : public CenteredNeighborhoodFrame<DataPoint>
+class DistWeightFunc : public internal::CenteredNeighborhoodFrame<DataPoint>
 {
 public:
     /*! \brief Scalar type from DataPoint */
@@ -162,7 +172,7 @@ public:
     /*! \brief Return type of the method #w() */
     using WeightReturnType = PONCA_MULTIARCH_CU_STD_NAMESPACE(pair)<Scalar, VectorType>;
     /// \brief Frame used to express the neighbors locally
-    using NeighborhoodFrame = CenteredNeighborhoodFrame<DataPoint>;
+    using NeighborhoodFrame = internal::CenteredNeighborhoodFrame<DataPoint>;
     /// \brief Flag indicating if the weighting kernel is compact of not
     static constexpr bool isCompact = WeightKernel::isCompact;
 
@@ -315,8 +325,10 @@ protected:
 
 };// class DistWeightFunc
 
+namespace internal
+{
 /*!
-    \brief Base Weighting function that set uniform weight to all samples
+    \brief Weighting function that set uniform weight to all samples
 
     In contrast to DistWeightFunc with ConstantWeight, it does not check for scale range.
     \tparam _NeighborhoodFrame Base NeighborhoodFrame used to performs (or not) local basis conversion and maintain
@@ -399,7 +411,7 @@ public:
                                                     const DataPoint&  /*attributes*/) const
     { return VectorType::Zeros(); }
 };// class NoWeightFuncBase
-
+}
 /*!
  * This class extends a NeighborFilter class to also store the normal of the evaluation point, for use outside the scope of this class.
  *
@@ -440,12 +452,14 @@ protected:
 }; // class NeighborFilterStoreNormal
 
 template <class DataPoint>
-/// \brief
-using NoWeightFunc = NoWeightFuncBase<DataPoint, CenteredNeighborhoodFrame>;
+/// \brief Weighting function that set uniform weight to all samples, but transform neighbors coordinates to local frame
+/// \see internal::NoWeightFuncBase
+struct NoWeightFunc :public internal::NoWeightFuncBase<DataPoint, internal::CenteredNeighborhoodFrame>{};
 
 template <class DataPoint>
-/// \brief
-using NoWeightFuncGlobal = NoWeightFuncBase<DataPoint, GlobalNeighborhoodFrame>;
+/// \brief Weighting function that set uniform weight to all samples and keep neighbors coordinates in global frame
+/// \see internal::NoWeightFuncBase
+struct NoWeightFuncGlobal : public internal::NoWeightFuncBase<DataPoint, internal::GlobalNeighborhoodFrame>{};
 #include "weightFunc.hpp"
 
 }// namespace Ponca
