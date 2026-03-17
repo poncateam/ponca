@@ -8,6 +8,7 @@
 
 #pragma once
 
+#include <Ponca/precompiled/Fitting/fittingETI.h>
 #include <iostream>
 #include <vector>
 #include <cerrno>
