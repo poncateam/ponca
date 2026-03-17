@@ -9,6 +9,7 @@ All rights reserved.
 
 #pragma once
 
+#include PONCA_MULTIARCH_INCLUDE_STD(cmath)
 #include <random>
 
 namespace Ponca::internal
