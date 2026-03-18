@@ -1,7 +1,6 @@
 #pragma once
 
 #include <Ponca/Fitting>
-#include <Ponca/src/Fitting/gls.h>
 #include <Ponca/src/Common/pointTypes.h>
 
 /*!
