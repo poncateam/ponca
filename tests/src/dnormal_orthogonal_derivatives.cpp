@@ -28,45 +28,6 @@
 using namespace std;
 using namespace Ponca;
 
-// This class defines the input data format
-template<typename _Scalar, int _Dim>
-class MyPoint
-{
-public:
-    enum {Dim = _Dim};
-    typedef _Scalar Scalar;
-    typedef Eigen::Matrix<Scalar, Dim, 1, Eigen::DontAlign>   VectorType;
-    typedef Eigen::Matrix<Scalar, Dim, Dim, Eigen::DontAlign> MatrixType;
-
-    PONCA_MULTIARCH inline MyPoint(   const VectorType &pos    = VectorType::Zero(),
-                                const VectorType& normal = VectorType::Zero())
-        : m_pos(pos), m_normal(normal) {}
-
-    PONCA_MULTIARCH inline const VectorType& pos()    const { return m_pos; }
-    PONCA_MULTIARCH inline const VectorType& normal() const { return m_normal; }
-
-    PONCA_MULTIARCH inline VectorType& pos()    { return m_pos; }
-    PONCA_MULTIARCH inline VectorType& normal() { return m_normal; }
-
-    static inline MyPoint Random(Scalar radius)
-    {
-        VectorType scale;
-        scale.setRandom();
-        VectorType n = VectorType::Random().normalized();
-        VectorType p =   scale.asDiagonal() * n * radius   // create an ellipse
-                         * Eigen::internal::random<Scalar>(Scalar(0.99),Scalar(1.01)); // add high frequency noise
-
-        n = (scale.asDiagonal().inverse() * n).normalized();
-
-        return MyPoint (p, n);
-    };
-
-
-private:
-    VectorType m_pos, m_normal;
-};
-
-
 int kmax =
 #ifdef NDEBUG
         g_repeat;
@@ -155,7 +116,7 @@ void test_orthoDerivatives(Functor f, bool skipCov = false)
 template<>
 template<typename Scalar>
 void Helper<3>::testRestrictedFits() {
-    typedef MyPoint<Scalar,3> Point;
+    typedef PointPositionNormal<Scalar, 3> Point;
     typedef DistWeightFunc<Point,SmoothWeightKernel<Scalar> > WeightFunc;
     using PlaneFit    = BasketDiff<
             Basket<Point, WeightFunc, CovariancePlaneFit>,
@@ -172,7 +133,7 @@ template<typename Scalar, int Dim>
 void _testAdimensionalFits(){
     cout << "Test in dimension " << Dim << std::endl;
 
-    typedef MyPoint<Scalar,Dim> Point;
+    typedef PointPositionNormal<Scalar, Dim> Point;
     typedef DistWeightFunc<Point,SmoothWeightKernel<Scalar> > WeightFunc;
     using SphereFit    = BasketDiff<
             Basket<Point, WeightFunc, OrientedSphereFit>,
