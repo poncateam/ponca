@@ -1,22 +1,29 @@
-# Defines one Fitting PCH configuration and attaches it to the Fitting library
-add_library(PoncaFittingPCH INTERFACE)
+## Defines one Fitting PCH configuration and attaches it to the Fitting library
+#add_library(PoncaFittingPCH INTERFACE)
+#
+#target_precompile_headers(PoncaFittingPCH INTERFACE
+#        ${PONCA_src_ROOT}/Ponca/precompiled/Fitting/fittingPCH.h
+#)
+#
+#target_include_directories(PoncaFittingPCH INTERFACE
+#        ${PONCA_src_ROOT}
+#)
+#
+#target_link_libraries(PoncaFittingPCH INTERFACE Ponca::Fitting)
+#
+#add_library(Ponca::FittingPCH ALIAS PoncaFittingPCH)
 
-target_precompile_headers(PoncaFittingPCH INTERFACE
-        ${PONCA_src_ROOT}/Ponca/precompiled/Fitting/fittingPCH.h
+# Explicit instantiation for the templated class
+add_library(PoncaFittingETI STATIC
+        ${PONCA_src_ROOT}/Ponca/precompiled/Fitting/fittingPCH.cpp
 )
 
-#target_include_directories(PoncaFittingPCH PUBLIC
-#        "$<BUILD_INTERFACE:${PONCA_src_ROOT}>"
-#        "$<INSTALL_INTERFACE:include/>"
-#)
-target_include_directories(PoncaFittingPCH INTERFACE
+target_include_directories(PoncaFittingETI PUBLIC
         ${PONCA_src_ROOT}
 )
 
-#target_compile_options(PoncaFittingPCH INTERFACE
-#        $<$<CXX_COMPILER_ID:GNU,Clang>:-include ${PONCA_src_ROOT}/Ponca/precompiled/Fitting/fittingPCH.h>
-#)
+target_link_libraries(PoncaFittingETI PUBLIC
+        Ponca::Fitting
+)
 
-target_link_libraries(PoncaFittingPCH INTERFACE Ponca::Fitting)
-
-add_library(Ponca::FittingPCH ALIAS PoncaFittingPCH)
+add_library(Ponca::FittingETI ALIAS PoncaFittingETI)
