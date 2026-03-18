@@ -9,6 +9,7 @@
 #pragma once
 
 // #include <Ponca/precompiled/Fitting/fittingETI.h>
+#include <Ponca/precompiled/Fitting/fittingPCH.h>
 #include <iostream>
 #include <vector>
 #include <cerrno>
