@@ -171,7 +171,6 @@ void callSubTests()
     //! [NeighborFilter]
     using NeighborFilter = DistWeightFunc<Point, SmoothWeightKernel<Scalar> >;
     //! [NeighborFilter]
-    using Sphere     = Basket<Point, NeighborFilter, OrientedSphereFit>;
     //! [PlaneFitType]
     using TestPlane = Basket<Point, NeighborFilter, CovariancePlaneFit>;
     //! [PlaneFitType]
