@@ -27,6 +27,7 @@ introduces several bug fixes and minors improvements.
     - [fitting] update tests according to curvature API changes (#201)
     - [fitting] speed up gls_sphere_der using kdtree (#201)
     - [fitting] add MlsSphereFitDer in test suite (#201)
+    - [ci] Remove dead code in tests (#286)
 
 - CI/Actions
     - [ci] Fix CNC coverage test (crash + slow execution) (#272)
