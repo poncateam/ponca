@@ -38,8 +38,19 @@ using NoWeightFuncL = Ponca::NoWeightFunc<Point<Scalar>>;
 //     DEF_FIT_FOR_ALL_FUNCS(SCALAR, Ponca::MeanPosition) \
 //     DEF_FIT_FOR_ALL_FUNCS(SCALAR, Ponca::SphereFit)    \
 //     DEF_FIT_FOR_ALL_FUNCS(SCALAR, Ponca::Plane)        \
-//     DEF_FIT_FOR_ALL_WEIGHTED_FUNCS(SCALAR, Ponca::MeanPosition, Ponca::CovarianceFitBase)
+//     DEF_FIT_FOR_ALL_WEIGHTED_FUNCS(SCALAR, Ponca::MeanPosition, Ponca::CovarianceFitBase) \
 //     DEF_FIT_FOR_ALL_WEIGHTED_FUNCS(SCALAR, Ponca::CovarianceLineFit)
+
+// #define FITTING_DIFF_DEF(SCALAR) \
+//     EXTERN template class Ponca::BasketDiff< \
+//         Ponca::Basket<Point<SCALAR>, WeightSmoothFuncL<SCALAR>, Ponca::OrientedSphereFit, Ponca::GLSParam>, \
+//         Ponca::FitScaleSpaceDer, Ponca::OrientedSphereDer, Ponca::GLSDer \
+//     >; \
+//     EXTERN template class Ponca::BasketDiff< \
+//         Ponca::Basket<Point, WeightSmoothFuncL<SCALAR>, Ponca::UnorientedSphereFit, Ponca::GLSParam>, \
+//         Ponca::FitScaleSpaceDer, Ponca::UnorientedSphereDer, Ponca::CurvatureEstimatorDer,  \
+//         Ponca::NormalDerivativeWeingartenEstimator, Ponca::WeingartenCurvatureEstimatorDer \
+//     >;
 
 /* Common fit types to precompile */
 #define FITTING_DEF(SCALAR) \
@@ -55,24 +66,3 @@ using NoWeightFuncL = Ponca::NoWeightFunc<Point<Scalar>>;
     /* UnorientedSphere fits */                                                           \
     DEF_FIT_FOR_ALL_WEIGHTED_FUNCS(SCALAR, Ponca::UnorientedSphereFit)                    \
     DEF_FIT_FOR_ALL_WEIGHTED_FUNCS(SCALAR, Ponca::UnorientedSphereFit, Ponca::GLSParam)
-
-// TODO : Add BasketDiff fittting declaration
-// EXTERN template class Ponca::BasketDiff<                                                 \
-//     Ponca::Basket<Point<SCALAR>, WeightSmoothFuncL<SCALAR>, Ponca::CovariancePlaneFit>,  \
-//     Ponca::FitSpaceDer, Ponca::CovariancePlaneDer,                                       \
-//     Ponca::CurvatureEstimatorDer, Ponca::NormalDerivativeWeingartenEstimator             \
-// >;                                                                                       \
-// EXTERN template class Ponca::BasketDiff<                                                                               \
-//     Ponca::Basket< Point<SCALAR>, WeightSmoothFuncL<SCALAR>, Ponca::UnorientedSphereFit, Ponca::GLSParam >,            \
-//     Ponca::FitSpaceDer, Ponca::OrientedSphereDer, Ponca::GLSDer,                                                       \
-//     Ponca::CurvatureEstimatorDer, Ponca::NormalDerivativeWeingartenEstimator, Ponca::WeingartenCurvatureEstimatorDer   \
-// >;
-// using FitSphereOriented    = BasketDiff<
-//         Basket<Point, WeightSmoothFunc, OrientedSphereFit>,
-//         FitScaleSpaceDer, OrientedSphereDer, CurvatureEstimatorDer, NormalDerivativeWeingartenEstimator, WeingartenCurvatureEstimatorDer>;
-// using RefFitSphereOriented = BasketDiff<
-//         Basket<RefPoint, RefWeightFunc, OrientedSphereFit>,
-//         FitScaleSpaceDer, OrientedSphereDer, CurvatureEstimatorDer, NormalDerivativeWeingartenEstimator, WeingartenCurvatureEstimatorDer>;
-// using FitSmoothOriented = BasketDiff<
-//         Basket<Point, WeightSmoothFunc, OrientedSphereFit, GLSParam>,
-//         FitScaleSpaceDer, OrientedSphereDer, GLSDer>;
