@@ -13,6 +13,10 @@ target_include_directories(PoncaFittingPCH INTERFACE
         ${PONCA_src_ROOT}
 )
 
+#target_compile_options(PoncaFittingPCH INTERFACE
+#        $<$<CXX_COMPILER_ID:GNU,Clang>:-include ${PONCA_src_ROOT}/Ponca/precompiled/Fitting/fittingPCH.h>
+#)
+
 target_link_libraries(PoncaFittingPCH INTERFACE Ponca::Fitting)
 
 add_library(Ponca::FittingPCH ALIAS PoncaFittingPCH)
