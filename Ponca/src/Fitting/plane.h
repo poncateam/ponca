@@ -14,139 +14,147 @@
 namespace Ponca
 {
 
-/*!
-    \brief Implicit hyperplane defined by an homogeneous vector \f$\mathbf{p}\f$.
-
-    In n-dimensionnal space, the plane is defined as
-    the \f$0\f$-isosurface of the scalar field
-
-    \f$ s_\mathbf{u}(\mathbf{x}) =
-    \left[ \mathbf{x}^T \; 1 \;\right]^T \cdot \mathbf{p} \f$.
-
-    This class inherits Eigen::Hyperplane.
-
-    This primitive requires the definition of n-dimensionnal vectors
-    (VectorType) in Concept::PointConcept.
-
-    This primitive provides:
-    \verbatim PROVIDES_PLANE \endverbatim
-*/
-template < class DataPoint, class _NFilter, typename T >
-class Plane : public T,
-              public Eigen::Hyperplane<typename DataPoint::Scalar, DataPoint::Dim >
-{
-    PONCA_FITTING_DECLARE_DEFAULT_TYPES
-
-public:
-    /// \brief Specialization of Eigen::Hyperplane inherited by Ponca::Plane
-    using EigenBase = Eigen::Hyperplane<typename DataPoint::Scalar, DataPoint::Dim >;
-
-protected:
-    enum { check = Base::PROVIDES_PRIMITIVE_BASE, PROVIDES_PLANE };
-
-public:
-
-    /*! \brief Default constructor */
-    PONCA_MULTIARCH inline Plane() : Base(), EigenBase() { init(); }
-
-    PONCA_EXPLICIT_CAST_OPERATORS(Plane,compactPlane) //< \fixme To be removed, kept for compatibility only
-    PONCA_EXPLICIT_CAST_OPERATORS(Plane,plane)
-
-    /// \brief Set the scalar field values to 0
-    PONCA_MULTIARCH inline void init()
-    {
-        Base::init();
-        EigenBase::coeffs().setZero();
-    }
-
-    /// \brief Tell if the plane as been correctly set.
-    /// Used to set CONFLICT_ERROR_FOUND during fitting
-    /// \return false when called straight after #init. Should be true after fitting
-    PONCA_MULTIARCH [[nodiscard]] inline bool isValid() const{
-        return ! EigenBase::coeffs().isApprox(EigenBase::Coefficients::Zero());
-    }
-
-    PONCA_MULTIARCH inline bool operator==(const Plane<DataPoint, NeighborFilter, T>& other) const{
-        return EigenBase::isApprox(other);
-    }
-
-    /*! \brief Comparison operator, convenience function */
-    PONCA_MULTIARCH inline bool operator!=(const Plane<DataPoint, NeighborFilter, T>& other) const{
-        return ! ((*this) == other);
-    }
-
-    /* \brief Init the plane from a direction and a position
-       \param _dir Orientation of the plane, does not need to be normalized
-       \param _pos Position of the plane
-    */
-    PONCA_MULTIARCH inline void setPlane (const VectorType& _dir,
-                                    const VectorType& _pos)
-    {
-        auto cc = static_cast<EigenBase*>(this);
-        *cc = EigenBase(_dir.normalized(), _pos);
-    }
-
     /*!
-     \brief Express the scalar field relatively to a new basis
+        \brief Implicit hyperplane defined by an homogeneous vector \f$\mathbf{p}\f$.
 
-     The plane in dimension \f$d\f$ is parametrized in the original basis.
-     Moving the basis only affects the constant term:
-    \f$c' = c - \mathbf{u}_l^T.\mathbf{\Delta}\f$ with \f$\Delta=old-new\f$.
+        In n-dimensionnal space, the plane is defined as
+        the \f$0\f$-isosurface of the scalar field
+
+        \f$ s_\mathbf{u}(\mathbf{x}) =
+        \left[ \mathbf{x}^T \; 1 \;\right]^T \cdot \mathbf{p} \f$.
+
+        This class inherits Eigen::Hyperplane.
+
+        This primitive requires the definition of n-dimensionnal vectors
+        (VectorType) in Concept::PointConcept.
+
+        This primitive provides:
+        \verbatim PROVIDES_PLANE \endverbatim
     */
-    PONCA_MULTIARCH inline void changeBasis(const VectorType& newbasis)
+    template <class DataPoint, class _NFilter, typename T>
+    class Plane : public T, public Eigen::Hyperplane<typename DataPoint::Scalar, DataPoint::Dim>
     {
-        VectorType diff = Base::getNeighborFilter().evalPos() - newbasis;
-        Base::m_nFilter.changeNeighborhoodFrame(newbasis);
-        Base::init();
-        EigenBase::offset() -= EigenBase::normal().dot(diff);
-    }
+        PONCA_FITTING_DECLARE_DEFAULT_TYPES
 
-    //! \brief Value of the scalar field at the evaluation point
-    //! \see method `#isSigned` of the fit to check if the sign is reliable
-    PONCA_MULTIARCH [[nodiscard]] inline Scalar potential ( ) const
-    {
-        return EigenBase::signedDistance(VectorType::Zero());
-    }
+    public:
+        /// \brief Specialization of Eigen::Hyperplane inherited by Ponca::Plane
+        using EigenBase = Eigen::Hyperplane<typename DataPoint::Scalar, DataPoint::Dim>;
 
-    //! \brief Value of the scalar field at the location \f$ \mathbf{q} \f$
-    //! \see method `#isSigned` of the fit to check if the sign is reliable
-    PONCA_MULTIARCH [[nodiscard]] inline Scalar potential (const VectorType& _q) const
-    {
-        // turn to centered basis
-        const VectorType lq = Base::getNeighborFilter().convertToLocalBasis(_q);
-        return potentialLocal( lq );
-    }
+    protected:
+        enum
+        {
+            check = Base::PROVIDES_PRIMITIVE_BASE,
+            PROVIDES_PLANE
+        };
 
-    //! \brief Project a point on the plane
-    PONCA_MULTIARCH [[nodiscard]] inline VectorType project (const VectorType& _q) const
-    {
-        // Project on the normal vector and add the offset value
-        return Base::getNeighborFilter().convertToGlobalBasis(EigenBase::projection(Base::getNeighborFilter().convertToLocalBasis(_q)));
-    }
+    public:
+        /*! \brief Default constructor */
+        PONCA_MULTIARCH inline Plane() : Base(), EigenBase() { init(); }
 
-    //! \brief Scalar field gradient direction at the evaluation point
-    PONCA_MULTIARCH [[nodiscard]] inline VectorType primitiveGradient () const
-    {
-        // Uniform gradient defined only by the orientation of the plane
-        return EigenBase::normal();
-    }
+        PONCA_EXPLICIT_CAST_OPERATORS(Plane, compactPlane) //< \fixme To be removed, kept for compatibility only
+        PONCA_EXPLICIT_CAST_OPERATORS(Plane, plane)
 
-    //! \brief Scalar field gradient direction at \f$ \mathbf{q}\f$
-    PONCA_MULTIARCH [[nodiscard]] inline VectorType primitiveGradient (const VectorType& /*_q*/) const
-    {
-        // Uniform gradient defined only by the orientation of the plane
-        return EigenBase::normal();
-    }
-protected:
-    /// \copydoc Plane::potential
-    PONCA_MULTIARCH [[nodiscard]] inline Scalar potentialLocal (const VectorType& _lq) const {
-        // The potential is the distance from the point to the plane
-        return EigenBase::signedDistance(_lq);
-    }
-    /// \copydoc Plane::primitiveGradient
-    PONCA_MULTIARCH [[nodiscard]] inline VectorType primitiveGradientLocal (const VectorType&  /*_lq*/) const {
-        return EigenBase::normal();
-    }
-}; //class Plane
+        /// \brief Set the scalar field values to 0
+        PONCA_MULTIARCH inline void init()
+        {
+            Base::init();
+            EigenBase::coeffs().setZero();
+        }
 
-}
+        /// \brief Tell if the plane as been correctly set.
+        /// Used to set CONFLICT_ERROR_FOUND during fitting
+        /// \return false when called straight after #init. Should be true after fitting
+        PONCA_MULTIARCH [[nodiscard]] inline bool isValid() const
+        {
+            return !EigenBase::coeffs().isApprox(EigenBase::Coefficients::Zero());
+        }
+
+        PONCA_MULTIARCH inline bool operator==(const Plane<DataPoint, NeighborFilter, T>& other) const
+        {
+            return EigenBase::isApprox(other);
+        }
+
+        /*! \brief Comparison operator, convenience function */
+        PONCA_MULTIARCH inline bool operator!=(const Plane<DataPoint, NeighborFilter, T>& other) const
+        {
+            return !((*this) == other);
+        }
+
+        /* \brief Init the plane from a direction and a position
+           \param _dir Orientation of the plane, does not need to be normalized
+           \param _pos Position of the plane
+        */
+        PONCA_MULTIARCH inline void setPlane(const VectorType& _dir, const VectorType& _pos)
+        {
+            auto cc = static_cast<EigenBase*>(this);
+            *cc     = EigenBase(_dir.normalized(), _pos);
+        }
+
+        /*!
+         \brief Express the scalar field relatively to a new basis
+
+         The plane in dimension \f$d\f$ is parametrized in the original basis.
+         Moving the basis only affects the constant term:
+        \f$c' = c - \mathbf{u}_l^T.\mathbf{\Delta}\f$ with \f$\Delta=old-new\f$.
+        */
+        PONCA_MULTIARCH inline void changeBasis(const VectorType& newbasis)
+        {
+            VectorType diff = Base::getNeighborFilter().evalPos() - newbasis;
+            Base::m_nFilter.changeNeighborhoodFrame(newbasis);
+            Base::init();
+            EigenBase::offset() -= EigenBase::normal().dot(diff);
+        }
+
+        //! \brief Value of the scalar field at the evaluation point
+        //! \see method `#isSigned` of the fit to check if the sign is reliable
+        PONCA_MULTIARCH [[nodiscard]] inline Scalar potential() const
+        {
+            return EigenBase::signedDistance(VectorType::Zero());
+        }
+
+        //! \brief Value of the scalar field at the location \f$ \mathbf{q} \f$
+        //! \see method `#isSigned` of the fit to check if the sign is reliable
+        PONCA_MULTIARCH [[nodiscard]] inline Scalar potential(const VectorType& _q) const
+        {
+            // turn to centered basis
+            const VectorType lq = Base::getNeighborFilter().convertToLocalBasis(_q);
+            return potentialLocal(lq);
+        }
+
+        //! \brief Project a point on the plane
+        PONCA_MULTIARCH [[nodiscard]] inline VectorType project(const VectorType& _q) const
+        {
+            // Project on the normal vector and add the offset value
+            return Base::getNeighborFilter().convertToGlobalBasis(
+                EigenBase::projection(Base::getNeighborFilter().convertToLocalBasis(_q)));
+        }
+
+        //! \brief Scalar field gradient direction at the evaluation point
+        PONCA_MULTIARCH [[nodiscard]] inline VectorType primitiveGradient() const
+        {
+            // Uniform gradient defined only by the orientation of the plane
+            return EigenBase::normal();
+        }
+
+        //! \brief Scalar field gradient direction at \f$ \mathbf{q}\f$
+        PONCA_MULTIARCH [[nodiscard]] inline VectorType primitiveGradient(const VectorType& /*_q*/) const
+        {
+            // Uniform gradient defined only by the orientation of the plane
+            return EigenBase::normal();
+        }
+
+    protected:
+        /// \copydoc Plane::potential
+        PONCA_MULTIARCH [[nodiscard]] inline Scalar potentialLocal(const VectorType& _lq) const
+        {
+            // The potential is the distance from the point to the plane
+            return EigenBase::signedDistance(_lq);
+        }
+        /// \copydoc Plane::primitiveGradient
+        PONCA_MULTIARCH [[nodiscard]] inline VectorType primitiveGradientLocal(const VectorType& /*_lq*/) const
+        {
+            return EigenBase::normal();
+        }
+    }; // class Plane
+
+} // namespace Ponca

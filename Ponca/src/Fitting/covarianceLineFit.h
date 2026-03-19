@@ -17,54 +17,54 @@
 namespace Ponca
 {
 
-/*!
-   \brief Line fitting procedure that minimize the orthogonal distance
-   between the samples and the fitted primitive.
+    /*!
+       \brief Line fitting procedure that minimize the orthogonal distance
+       between the samples and the fitted primitive.
 
-   \inherit Concept::FittingProcedureConcept
-   \see Line
-   \see CovariancePlaneFit which use a similar approach for Plane estimation
+       \inherit Concept::FittingProcedureConcept
+       \see Line
+       \see CovariancePlaneFit which use a similar approach for Plane estimation
 
-   \todo Add equations
+       \todo Add equations
 
-   \warning This class is valid only in 3D.
- */
+       \warning This class is valid only in 3D.
+     */
 
-template < class DataPoint, class _NFilter, typename T>
-class CovarianceLineFitImpl : public T
-{
-    PONCA_FITTING_DECLARE_DEFAULT_TYPES
-    PONCA_FITTING_DECLARE_MATRIX_TYPE
-
-protected:
-    enum
+    template <class DataPoint, class _NFilter, typename T>
+    class CovarianceLineFitImpl : public T
     {
-        check = Base::PROVIDES_LINE &&
-                Base::PROVIDES_POSITION_COVARIANCE,
+        PONCA_FITTING_DECLARE_DEFAULT_TYPES
+        PONCA_FITTING_DECLARE_MATRIX_TYPE
+
+    protected:
+        enum
+        {
+            check = Base::PROVIDES_LINE && Base::PROVIDES_POSITION_COVARIANCE,
+        };
+
+    public:
+        PONCA_EXPLICIT_CAST_OPERATORS(CovarianceLineFitImpl, covarianceLineFit)
+
+        PONCA_FITTING_APIDOC_FINALIZE
+        PONCA_MULTIARCH inline FIT_RESULT finalize()
+        {
+            static const int smallestEigenValue = DataPoint::Dim - 1;
+            if (Base::finalize() == STABLE)
+            {
+                if (Base::line().isValid())
+                    Base::m_eCurrentState = CONFLICT_ERROR_FOUND;
+                Base::setLine(Base::barycenterLocal(),
+                              Base::m_solver.eigenvectors().col(smallestEigenValue).normalized());
+            }
+            return Base::m_eCurrentState;
+        }
+        PONCA_FITTING_IS_SIGNED(false)
     };
 
-public:
-    PONCA_EXPLICIT_CAST_OPERATORS(CovarianceLineFitImpl,covarianceLineFit)
+    /// \brief Helper alias for Line fitting on 3D points using CovarianceLineFitImpl
+    template <class DataPoint, class _NFilter, typename T>
+    using CovarianceLineFit = CovarianceLineFitImpl<
+        DataPoint, _NFilter,
+        CovarianceFitBase<DataPoint, _NFilter, MeanPosition<DataPoint, _NFilter, Line<DataPoint, _NFilter, T>>>>;
 
-    PONCA_FITTING_APIDOC_FINALIZE
-    PONCA_MULTIARCH inline FIT_RESULT finalize()
-    {
-        static const int smallestEigenValue = DataPoint::Dim - 1;
-        if (Base::finalize() == STABLE) {
-            if (Base::line().isValid()) Base::m_eCurrentState = CONFLICT_ERROR_FOUND;
-            Base::setLine(Base::barycenterLocal(), Base::m_solver.eigenvectors().col(smallestEigenValue).normalized());
-        }
-        return Base::m_eCurrentState;
-    }
-    PONCA_FITTING_IS_SIGNED(false)
-};
-
-/// \brief Helper alias for Line fitting on 3D points using CovarianceLineFitImpl
-template < class DataPoint, class _NFilter, typename T>
-using CovarianceLineFit =
-                CovarianceLineFitImpl<DataPoint, _NFilter,
-                CovarianceFitBase<DataPoint, _NFilter,
-                MeanPosition<DataPoint, _NFilter,
-                Line<DataPoint, _NFilter, T>>>>;
-
-} //namespace Ponca
+} // namespace Ponca

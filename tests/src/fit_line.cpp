@@ -1,7 +1,7 @@
 
 /*
  Copyright (C) 2021 aniket agarwalla <aniketagarwalla37@gmail.com>
- 
+
  This Source Code Form is subject to the terms of the Mozilla Public
  License, v. 2.0. If a copy of the MPL was not distributed with this
  file, You can obtain one at http://mozilla.org/MPL/2.0/.
@@ -26,26 +26,25 @@
 using namespace std;
 using namespace Ponca;
 
-
-template<typename DataPoint, typename Fit>
+template <typename DataPoint, typename Fit>
 void testFunction(bool _bAddPositionNoise = false)
 {
     // Define related structure
     typedef typename DataPoint::Scalar Scalar;
     typedef typename DataPoint::VectorType VectorType;
 
-    //generate sampled line
+    // generate sampled line
     int nbPoints = Eigen::internal::random<int>(100, 1000);
 
     VectorType _direction = VectorType::Random().normalized();
 
-    Scalar epsilon = testEpsilon<Scalar>();
+    Scalar epsilon      = testEpsilon<Scalar>();
     auto noiseMagnitude = static_cast<Scalar>(0.001);
 
     vector<DataPoint> vectorPoints(nbPoints);
-    std::generate(vectorPoints.begin(), vectorPoints.end(), [&_direction,_bAddPositionNoise,noiseMagnitude]() {
-        return DataPoint(_direction * Eigen::internal::random<Scalar>(Scalar(0.1),Scalar(2))
-                + ( _bAddPositionNoise ? (VectorType::Random() * noiseMagnitude).eval() : VectorType::Zero() ));
+    std::generate(vectorPoints.begin(), vectorPoints.end(), [&_direction, _bAddPositionNoise, noiseMagnitude]() {
+        return DataPoint(_direction * Eigen::internal::random<Scalar>(Scalar(0.1), Scalar(2)) +
+                         (_bAddPositionNoise ? (VectorType::Random() * noiseMagnitude).eval() : VectorType::Zero()));
     });
 
     epsilon = testEpsilon<Scalar>();
@@ -54,57 +53,55 @@ void testFunction(bool _bAddPositionNoise = false)
     int size = QUICK_TESTS ? 1 : int(vectorPoints.size());
 
 #pragma omp parallel for
-    for(int i = 0; i < size; ++i)
+    for (int i = 0; i < size; ++i)
     {
         Fit fit;
-        fit.setNeighborFilter({vectorPoints[i].pos(),10});
+        fit.setNeighborFilter({vectorPoints[i].pos(), 10});
         fit.compute(vectorPoints);
 
-        VERIFY( fit.isStable() );
+        VERIFY(fit.isStable());
 
-        if(_bAddPositionNoise)
-            VERIFY((fit.distance(vectorPoints[i].pos())) <= Scalar(4)*noiseMagnitude );
+        if (_bAddPositionNoise)
+            VERIFY((fit.distance(vectorPoints[i].pos())) <= Scalar(4) * noiseMagnitude);
         else
             VERIFY((fit.distance(vectorPoints[i].pos())) <= epsilon);
 
-        VERIFY( Scalar(1) - std::abs( fit.direction().dot(_direction) ) <= epsilon );
+        VERIFY(Scalar(1) - std::abs(fit.direction().dot(_direction)) <= epsilon);
     }
 }
 
-template<typename Scalar, int Dim>
+template <typename Scalar, int Dim>
 void callSubTests()
 {
     typedef PointPosition<Scalar, Dim> Point;
 
-    typedef DistWeightFunc<Point, SmoothWeightKernel<Scalar> > WeightSmoothFunc;
-    typedef DistWeightFunc<Point, ConstantWeightKernel<Scalar> > WeightConstantFunc;
+    typedef DistWeightFunc<Point, SmoothWeightKernel<Scalar>> WeightSmoothFunc;
+    typedef DistWeightFunc<Point, ConstantWeightKernel<Scalar>> WeightConstantFunc;
 
     typedef Basket<Point, WeightSmoothFunc, CovarianceLineFit> LeastSquareFitSmooth;
     typedef Basket<Point, WeightConstantFunc, CovarianceLineFit> LeastSquareFitConstant;
 
-
     cout << "Testing with perfect line..." << endl;
-    for(int i = 0; i < g_repeat; ++i)
+    for (int i = 0; i < g_repeat; ++i)
     {
-        //Test with perfect line
-        CALL_SUBTEST(( testFunction<Point, LeastSquareFitSmooth>() ));
-        CALL_SUBTEST(( testFunction<Point, LeastSquareFitConstant>() ));
-
+        // Test with perfect line
+        CALL_SUBTEST((testFunction<Point, LeastSquareFitSmooth>()));
+        CALL_SUBTEST((testFunction<Point, LeastSquareFitConstant>()));
     }
     cout << "Ok!" << endl;
 
-     cout << "Testing with noise on position" << endl;
-     for(int i = 0; i < g_repeat; ++i)
-     {
-         CALL_SUBTEST(( testFunction<Point, LeastSquareFitSmooth>(true) ));
-         CALL_SUBTEST(( testFunction<Point, LeastSquareFitConstant>(true) ));
-     }
-     cout << "Ok!" << endl;
+    cout << "Testing with noise on position" << endl;
+    for (int i = 0; i < g_repeat; ++i)
+    {
+        CALL_SUBTEST((testFunction<Point, LeastSquareFitSmooth>(true)));
+        CALL_SUBTEST((testFunction<Point, LeastSquareFitConstant>(true)));
+    }
+    cout << "Ok!" << endl;
 }
 
 int main(int argc, char** argv)
 {
-    if(!init_testing(argc, argv))
+    if (!init_testing(argc, argv))
     {
         return EXIT_FAILURE;
     }

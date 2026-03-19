@@ -21,28 +21,28 @@
 using namespace std;
 using namespace Ponca;
 
-template<class Kernel>
+template <class Kernel>
 void testFunctionAutoDiff()
 {
     typedef typename Kernel::Scalar ScalarDiff;
     typedef typename ScalarDiff::Scalar Scalar;
 
     Scalar step = Scalar(0.05);
-    int n = int(Scalar(1)/Scalar(step));
+    int n       = int(Scalar(1) / Scalar(step));
 
     Kernel k;
     Scalar epsilon = testEpsilon<Scalar>();
 
     // compare to automatic differentiation
-    for(int i=1; i<=n; ++i)
+    for (int i = 1; i <= n; ++i)
     {
-        ScalarDiff a(i*step, 1, 0);
+        ScalarDiff a(i * step, 1, 0);
 
         ScalarDiff f   = k.f(a);
         ScalarDiff df  = k.df(a);
         ScalarDiff ddf = k.ddf(a);
 
-        Scalar diff1 = std::abs( f.derivatives()[0] - df.value());
+        Scalar diff1 = std::abs(f.derivatives()[0] - df.value());
         Scalar diff2 = std::abs(df.derivatives()[0] - ddf.value());
 
         VERIFY(diff1 < epsilon);
@@ -50,44 +50,46 @@ void testFunctionAutoDiff()
     }
 }
 
-template<class Kernel>
+template <class Kernel>
 void testFunction(typename Kernel::Scalar mmin = 0, typename Kernel::Scalar mmax = 1)
 {
     typedef typename Kernel::Scalar Scalar;
 
     Scalar step = Scalar(0.05);
-    int n = int((mmax - mmin)/Scalar(step));
+    int n       = int((mmax - mmin) / Scalar(step));
 
     Kernel k;
-    Scalar h = Scalar(1e-6);
-    Scalar epsilon = Scalar(100)*testEpsilon<Scalar>();
+    Scalar h       = Scalar(1e-6);
+    Scalar epsilon = Scalar(100) * testEpsilon<Scalar>();
 
     // compare to finite difference approximations
-    for(int i=1; i<n; ++i)
+    for (int i = 1; i < n; ++i)
     {
-        Scalar a = mmin + i*step;
+        Scalar a = mmin + i * step;
 
-        Scalar f    = k.f(a);
-        Scalar fr   = k.f(a+h);
-        Scalar fl   = k.f(a-h);
+        Scalar f  = k.f(a);
+        Scalar fr = k.f(a + h);
+        Scalar fl = k.f(a - h);
 
-        if (k.isDValid){ // test first order derivative
-            Scalar df   = k.df(a);
-            Scalar df_  = (fr - fl)/(Scalar(2.)*h);
-            Scalar diff1 = std::abs(df-df_);
+        if (k.isDValid)
+        { // test first order derivative
+            Scalar df    = k.df(a);
+            Scalar df_   = (fr - fl) / (Scalar(2.) * h);
+            Scalar diff1 = std::abs(df - df_);
             VERIFY(diff1 < epsilon);
         }
 
-        if (k.isDDValid){
-            Scalar ddf  = k.ddf(a);
-            Scalar ddf_ = (fr - Scalar(2.)*f + fl)/(h*h);
-            Scalar diff2 = std::abs(ddf-ddf_);
+        if (k.isDDValid)
+        {
+            Scalar ddf   = k.ddf(a);
+            Scalar ddf_  = (fr - Scalar(2.) * f + fl) / (h * h);
+            Scalar diff2 = std::abs(ddf - ddf_);
             VERIFY(diff2 < epsilon);
         }
     }
 }
 
-template<typename W1, typename W2>
+template <typename W1, typename W2>
 void testKernelDiff(int nbSteps = 1000)
 {
     W1 kernel1;
@@ -96,7 +98,7 @@ void testKernelDiff(int nbSteps = 1000)
     typedef typename W1::Scalar Scalar;
     Scalar epsilon = Scalar(0.0001); // Current tolerance
 
-    for(int i=1; i<=nbSteps; ++i)
+    for (int i = 1; i <= nbSteps; ++i)
     {
         Scalar x = Scalar(i) / Scalar(nbSteps);
         // Compare both kernel (should be equal)
@@ -110,9 +112,9 @@ void testKernelDiff(int nbSteps = 1000)
     // do more tests to highlight timings differences
     nbSteps *= nbSteps;
 
-    auto runComputation = [nbSteps](auto kernel ){
+    auto runComputation = [nbSteps](auto kernel) {
         Scalar sum = 0;
-        for(int i=1; i<=nbSteps; ++i)
+        for (int i = 1; i <= nbSteps; ++i)
         {
             Scalar x = Scalar(i) / Scalar(nbSteps);
             sum += kernel.f(x) + kernel.df(x) + kernel.ddf(x);
@@ -121,46 +123,45 @@ void testKernelDiff(int nbSteps = 1000)
     };
 
     // test timings
-    auto start = std::chrono::system_clock::now();
-    auto res1 = runComputation( kernel1 );
-    auto end = std::chrono::system_clock::now();
-    std::chrono::duration<double> w1Time = (end-start);
+    auto start                           = std::chrono::system_clock::now();
+    auto res1                            = runComputation(kernel1);
+    auto end                             = std::chrono::system_clock::now();
+    std::chrono::duration<double> w1Time = (end - start);
 
-    start = std::chrono::system_clock::now();
-    auto res2 = runComputation( kernel2 );
-    end = std::chrono::system_clock::now();
-    std::chrono::duration<double> w2Time = (end-start);
+    start                                = std::chrono::system_clock::now();
+    auto res2                            = runComputation(kernel2);
+    end                                  = std::chrono::system_clock::now();
+    std::chrono::duration<double> w2Time = (end - start);
 
     // print output values to avoid that the compiler optimizes by deleting the functions
     std::cout << "res: " << res1 << " " << res2 << std::endl;
     std::cout << "time:" << w1Time.count() << " " << w2Time.count() << std::endl;
 
     // we do not verify anything here, as the timings my evolve very differently depending on the compilation
-
 }
 
-template<typename Scalar, template <typename > class KernelT>
+template <typename Scalar, template <typename> class KernelT>
 void callSubTests(Scalar mmin = 0, Scalar mmax = 1)
 {
-    typedef Eigen::AutoDiffScalar<Eigen::Matrix<Scalar,1,1>> ScalarDiff;
+    typedef Eigen::AutoDiffScalar<Eigen::Matrix<Scalar, 1, 1>> ScalarDiff;
     typedef KernelT<Scalar> Kernel;
-    CALL_SUBTEST(( testFunction<Kernel>(mmin, mmax) ));
+    CALL_SUBTEST((testFunction<Kernel>(mmin, mmax)));
 
     cout << "ok" << endl;
 }
-template<typename Scalar, template <typename > class KernelT>
+template <typename Scalar, template <typename> class KernelT>
 void callAutoDiffSubTests()
 {
-    typedef Eigen::AutoDiffScalar<Eigen::Matrix<Scalar,1,1>> ScalarDiff;
+    typedef Eigen::AutoDiffScalar<Eigen::Matrix<Scalar, 1, 1>> ScalarDiff;
     typedef KernelT<ScalarDiff> KernelAutoDiff;
-    CALL_SUBTEST(( testFunctionAutoDiff<KernelAutoDiff>() ));
+    CALL_SUBTEST((testFunctionAutoDiff<KernelAutoDiff>()));
 
     cout << "ok" << endl;
 }
 
 int main(int argc, char** argv)
 {
-    if(!init_testing(argc, argv))
+    if (!init_testing(argc, argv))
     {
         return EXIT_FAILURE;
     }
@@ -193,5 +194,4 @@ int main(int argc, char** argv)
     testKernelDiff<PolynomialSmoothWeightKernel<double, 2, 2>, SmoothWeightKernel<double>>();
     testKernelDiff<PolynomialSmoothWeightKernel<float, 2, 2>, SmoothWeightKernel<float>>();
     testKernelDiff<PolynomialSmoothWeightKernel<long double, 2, 2>, SmoothWeightKernel<long double>>();
-
 }

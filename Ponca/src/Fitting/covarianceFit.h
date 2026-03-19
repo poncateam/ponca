@@ -15,44 +15,47 @@
 namespace Ponca
 {
 
-/*!
-   \brief Procedure that compute and decompose the covariance matrix of the neighbors positions in \f$3d\f$.
+    /*!
+       \brief Procedure that compute and decompose the covariance matrix of the neighbors positions in \f$3d\f$.
 
-   This process is commonly used for plane fitting and local variance analysis. It is often called Principal
-   Component Analysis (PCA) of the neighborhood, and used in Geometry Processing and Computer Vision.
+       This process is commonly used for plane fitting and local variance analysis. It is often called Principal
+       Component Analysis (PCA) of the neighborhood, and used in Geometry Processing and Computer Vision.
 
-   \inherit Concept::FittingProcedureConcept
-   \see CovariancePlaneFit which use a similar approach for Plane estimation
+       \inherit Concept::FittingProcedureConcept
+       \see CovariancePlaneFit which use a similar approach for Plane estimation
 
-   ### Computation details
-   Standard PCA algorithm involves a two-steps process where the barycenter \f$\mathbf{b}\f$ is first computed,
-   and then the covariance matrix \f$\text{C}\f$ (in the following, the weights are ignored for clarity but without
-   loss of generality):
-   \f{align}
-   \mathbf{b} &= \frac{1}{n}\sum_i\mathbf{p}_i \\
-   \text{C}   &= \frac{1}{n}\sum_i(\mathbf{p}_i-\mathbf{b})(\mathbf{p}_i-\mathbf{b})^T
-   \f}
-   This class implements a single-pass version, where the first formulation is re-expressed as follows:
-   \f{align}
-   \text{C} &= \frac{1}{n}\sum_i (\mathbf{p}_i\mathbf{p}_i^T - \mathbf{b}\mathbf{p}_i^T - \mathbf{p}_i\mathbf{b}^T + \mathbf{b}\mathbf{b}^T) \\
-            &= \frac{1}{n}\sum_i (\mathbf{p}_i\mathbf{p}_i^T) -  \frac{1}{n}\sum_i(\mathbf{b}\mathbf{p}_i^T)  -  \frac{1}{n}\sum_i(\mathbf{p}_i\mathbf{b}^T)  +  \frac{1}{n}\sum_i (\mathbf{b}\mathbf{b}^T) \\
-            &= \frac{1}{n}\sum_i (\mathbf{p}_i\mathbf{p}_i^T) - \mathbf{b}\frac{1}{n}\sum_i(\mathbf{p}_i^T) - \frac{1}{n}\sum_i(\mathbf{p}_i)\mathbf{b}^T  + \frac{1}{n}\sum_i(1) \mathbf{b}\mathbf{b}^T \\
-            &= \frac{1}{n}\sum_i (\mathbf{p}_i\mathbf{p}_i^T) - \mathbf{b}\mathbf{b}^T - \mathbf{b}\mathbf{b}^T + \mathbf{b}\mathbf{b}^T \f}
-   Leading to a single pass where \f$\text{C}\f$ is express by subtracting two terms that can be computed independently
-   in one run:
-   \f[ \text{C} = \frac{1}{n}\sum_i (\mathbf{p}_i\mathbf{p}_i^T) - \mathbf{b}\mathbf{b}^T \f]
+       ### Computation details
+       Standard PCA algorithm involves a two-steps process where the barycenter \f$\mathbf{b}\f$ is first computed,
+       and then the covariance matrix \f$\text{C}\f$ (in the following, the weights are ignored for clarity but without
+       loss of generality):
+       \f{align}
+       \mathbf{b} &= \frac{1}{n}\sum_i\mathbf{p}_i \\
+       \text{C}   &= \frac{1}{n}\sum_i(\mathbf{p}_i-\mathbf{b})(\mathbf{p}_i-\mathbf{b})^T
+       \f}
+       This class implements a single-pass version, where the first formulation is re-expressed as follows:
+       \f{align}
+       \text{C} &= \frac{1}{n}\sum_i (\mathbf{p}_i\mathbf{p}_i^T - \mathbf{b}\mathbf{p}_i^T - \mathbf{p}_i\mathbf{b}^T +
+       \mathbf{b}\mathbf{b}^T) \\
+                &= \frac{1}{n}\sum_i (\mathbf{p}_i\mathbf{p}_i^T) -  \frac{1}{n}\sum_i(\mathbf{b}\mathbf{p}_i^T)  -
+       \frac{1}{n}\sum_i(\mathbf{p}_i\mathbf{b}^T)  +  \frac{1}{n}\sum_i (\mathbf{b}\mathbf{b}^T) \\
+                &= \frac{1}{n}\sum_i (\mathbf{p}_i\mathbf{p}_i^T) - \mathbf{b}\frac{1}{n}\sum_i(\mathbf{p}_i^T) -
+       \frac{1}{n}\sum_i(\mathbf{p}_i)\mathbf{b}^T  + \frac{1}{n}\sum_i(1) \mathbf{b}\mathbf{b}^T \\
+                &= \frac{1}{n}\sum_i (\mathbf{p}_i\mathbf{p}_i^T) - \mathbf{b}\mathbf{b}^T - \mathbf{b}\mathbf{b}^T +
+       \mathbf{b}\mathbf{b}^T \f} Leading to a single pass where \f$\text{C}\f$ is express by subtracting two terms that
+       can be computed independently in one run:
+       \f[ \text{C} = \frac{1}{n}\sum_i (\mathbf{p}_i\mathbf{p}_i^T) - \mathbf{b}\mathbf{b}^T \f]
 
-   All the computed features are defined for the 3 eigenvalues \f$ 0 < \lambda_0
-   \leq \lambda_1 \leq \lambda_2 \f$.
+       All the computed features are defined for the 3 eigenvalues \f$ 0 < \lambda_0
+       \leq \lambda_1 \leq \lambda_2 \f$.
 
 
-   \warning This class is valid only in 3D.
- */
+       \warning This class is valid only in 3D.
+     */
 
-    template < class DataPoint, class _NFilter, typename T>
+    template <class DataPoint, class _NFilter, typename T>
     class CovarianceFitBase : public T
     {
-    PONCA_FITTING_DECLARE_DEFAULT_TYPES
+        PONCA_FITTING_DECLARE_DEFAULT_TYPES
 
     protected:
         enum
@@ -68,15 +71,16 @@ namespace Ponca
 
     protected:
         // computation data
-        MatrixType m_cov {MatrixType::Zero()};     /*!< \brief Covariance matrix */
-        Solver m_solver;  /*!<\brief Solver used to analyse the covariance matrix */
+        MatrixType m_cov{MatrixType::Zero()}; /*!< \brief Covariance matrix */
+        Solver m_solver;                      /*!<\brief Solver used to analyse the covariance matrix */
 
     public:
-        PONCA_EXPLICIT_CAST_OPERATORS(CovarianceFitBase,covarianceFit)
+        PONCA_EXPLICIT_CAST_OPERATORS(CovarianceFitBase, covarianceFit)
         PONCA_FITTING_DECLARE_INIT_ADD_FINALIZE
 
         /*! \brief Implements \cite Pauly:2002:PSSimplification surface variation.
-            It computes the ratio \f$ d \frac{\lambda_0}{\sum_i \lambda_i} \f$ with \c d the dimension of the ambient space.
+            It computes the ratio \f$ d \frac{\lambda_0}{\sum_i \lambda_i} \f$ with \c d the dimension of the ambient
+           space.
             \return 0 for invalid fits
         */
         PONCA_MULTIARCH [[nodiscard]] inline Scalar surfaceVariation() const;
@@ -112,52 +116,50 @@ namespace Ponca
         PONCA_MULTIARCH [[nodiscard]] inline Scalar eigenentropy() const;
 
         /*! \brief The minimum eigenvalue \f$ \lambda_0 \f$.
-        */
+         */
         PONCA_MULTIARCH [[nodiscard]] inline Scalar lambda_0() const;
 
         /*! \brief The second eigenvalue \f$ \lambda_1 \f$.
-        */
+         */
         PONCA_MULTIARCH [[nodiscard]] inline Scalar lambda_1() const;
 
         /*! \brief The maximum eigenvalue \f$ \lambda_2 \f$.
-        */
+         */
         PONCA_MULTIARCH [[nodiscard]] inline Scalar lambda_2() const;
 
         /*! \brief Reading access to the Solver used to analyse the covariance matrix */
         PONCA_MULTIARCH [[nodiscard]] inline const Solver& solver() const { return m_solver; }
     };
 
-
-/*!
-    \brief Internal generic class computing the derivatives of covariance matrix
-    computed by CovarianceFitBase
-    \inherit Concept::FittingExtensionConcept
-*/
-    template < class DataPoint, class _NFilter, int DiffType, typename T>
+    /*!
+        \brief Internal generic class computing the derivatives of covariance matrix
+        computed by CovarianceFitBase
+        \inherit Concept::FittingExtensionConcept
+    */
+    template <class DataPoint, class _NFilter, int DiffType, typename T>
     class CovarianceFitDer : public T
     {
-    PONCA_FITTING_DECLARE_DEFAULT_TYPES
-    PONCA_FITTING_DECLARE_MATRIX_TYPE
-    PONCA_FITTING_DECLARE_DEFAULT_DER_TYPES
+        PONCA_FITTING_DECLARE_DEFAULT_TYPES
+        PONCA_FITTING_DECLARE_MATRIX_TYPE
+        PONCA_FITTING_DECLARE_DEFAULT_DER_TYPES
 
     protected:
         enum
         {
-            Check = Base::PROVIDES_PRIMITIVE_DERIVATIVE &&
-                    Base::PROVIDES_MEAN_POSITION_DERIVATIVE &&
+            Check = Base::PROVIDES_PRIMITIVE_DERIVATIVE && Base::PROVIDES_MEAN_POSITION_DERIVATIVE &&
                     Base::PROVIDES_POSITION_COVARIANCE,
             PROVIDES_POSITION_COVARIANCE_DERIVATIVE
         };
 
     protected:
         /// Computation data: derivatives of the covariance matrix
-        MatrixType  m_dCov[Base::NbDerivatives];
+        MatrixType m_dCov[Base::NbDerivatives];
 
     public:
-        PONCA_EXPLICIT_CAST_OPERATORS_DER(CovarianceFitDer,covarianceFitDer)
+        PONCA_EXPLICIT_CAST_OPERATORS_DER(CovarianceFitDer, covarianceFitDer)
         PONCA_FITTING_DECLARE_INIT_ADDDER_FINALIZE
-    }; //class CovarianceFitDer
+    }; // class CovarianceFitDer
 
 #include "covarianceFit.hpp"
 
-} //namespace Ponca
+} // namespace Ponca

@@ -12,18 +12,18 @@ namespace Ponca
 {
     namespace internal
     {
-        template < class DataPoint, class _NFilter, typename T>
-    /**
-     *
-     * \brief Base class for any 3d curvature estimator: holds \f$k_{\min}\f$, \f$k_{\max}\f$ and associated vectors,
-     * such that \f$ k_{\min} <= k_{\max} \f$
-     */
+        template <class DataPoint, class _NFilter, typename T>
+        /**
+         *
+         * \brief Base class for any 3d curvature estimator: holds \f$k_{\min}\f$, \f$k_{\max}\f$ and associated
+         * vectors, such that \f$ k_{\min} <= k_{\max} \f$
+         */
         class CurvatureEstimatorBase : public T
         {
             PONCA_FITTING_DECLARE_DEFAULT_TYPES
             PONCA_FITTING_DECLARE_MATRIX_TYPE
 
-            protected:
+        protected:
             enum
             {
                 PROVIDES_PRINCIPAL_CURVATURES
@@ -31,18 +31,19 @@ namespace Ponca
 
         private:
             /// \brief Minimal principal curvature
-            Scalar m_kmin {0},
-            /// \brief Maximal principal curvature
-            m_kmax {0};
+            Scalar m_kmin{0},
+                /// \brief Maximal principal curvature
+                m_kmax{0};
             /// \brief Direction associated to the minimal principal curvature
-            VectorType m_vmin {VectorType::Zero()},
-            /// \brief Direction associated to the maximal principal curvature
-            m_vmax {VectorType::Zero()};
+            VectorType m_vmin{VectorType::Zero()},
+                /// \brief Direction associated to the maximal principal curvature
+                m_vmax{VectorType::Zero()};
 
-            /// \brief Internal state indicating if the curvature are set to default (false), or have been computed (true)
-            bool m_isValid {false};
+            /// \brief Internal state indicating if the curvature are set to default (false), or have been computed
+            /// (true)
+            bool m_isValid{false};
 
-            static_assert ( DataPoint::Dim == 3, "CurvatureEstimatorBase is only valid in 3D");
+            static_assert(DataPoint::Dim == 3, "CurvatureEstimatorBase is only valid in 3D");
 
         public:
             PONCA_FITTING_DECLARE_INIT
@@ -66,10 +67,10 @@ namespace Ponca
             PONCA_MULTIARCH [[nodiscard]] inline VectorType kmaxDirection() const { return m_vmax; }
 
             //! \brief Returns an estimate of the mean curvature
-            PONCA_MULTIARCH [[nodiscard]] inline Scalar kMean() const { return (m_kmin + m_kmax)/Scalar(2);}
+            PONCA_MULTIARCH [[nodiscard]] inline Scalar kMean() const { return (m_kmin + m_kmax) / Scalar(2); }
 
             //! \brief Returns an estimate of the Gaussian curvature
-            PONCA_MULTIARCH [[nodiscard]] inline Scalar GaussianCurvature() const { return m_kmin * m_kmax;}
+            PONCA_MULTIARCH [[nodiscard]] inline Scalar GaussianCurvature() const { return m_kmin * m_kmax; }
 
         protected:
             /// \brief Set curvature values. To be called in finalize() by child classes
@@ -78,12 +79,13 @@ namespace Ponca
             /// method swap the two curvature values and directions and store them such that
             /// \f$ k_{\min} <= k_{\max} \f$.
             ///
-            PONCA_MULTIARCH inline void setCurvatureValues(Scalar kmin, Scalar kmax, const VectorType& vmin, const VectorType& vmax);
+            PONCA_MULTIARCH inline void setCurvatureValues(Scalar kmin, Scalar kmax, const VectorType& vmin,
+                                                           const VectorType& vmax);
         };
-    }
+    } // namespace internal
 
     /// Make CurvatureEstimatorBase available to standard Basket object
-    template < class DataPoint, class _NFilter, typename T>
+    template <class DataPoint, class _NFilter, typename T>
     class CurvatureEstimator : public internal::CurvatureEstimatorBase<DataPoint, _NFilter, T>
     {
     public:
@@ -91,13 +93,13 @@ namespace Ponca
     };
 
     /// Make CurvatureEstimatorBase available to BasketDiff object
-    template < class DataPoint, class _NFilter, int DiffType, typename T>
+    template <class DataPoint, class _NFilter, int DiffType, typename T>
     class CurvatureEstimatorDer : public internal::CurvatureEstimatorBase<DataPoint, _NFilter, T>
     {
     public:
         PONCA_EXPLICIT_CAST_OPERATORS_DER(CurvatureEstimatorDer, curvatureEstimator)
     };
 
-} //namespace Ponca
+} // namespace Ponca
 
 #include "curvature.hpp"

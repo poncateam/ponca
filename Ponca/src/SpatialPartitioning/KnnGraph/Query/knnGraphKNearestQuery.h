@@ -10,62 +10,59 @@
 #include "../Iterator/knnGraphRangeIterator.h"
 #include <vector>
 
-namespace Ponca {
+namespace Ponca
+{
 
-template <typename Traits>class KnnGraphBase; // Need forward declaration to avoid mutual inclusion
-
+    template <typename Traits>
+    class KnnGraphBase; // Need forward declaration to avoid mutual inclusion
 
 #ifndef PARSED_WITH_DOXYGEN
-struct KnnGraphQueryOutputType : public QueryOutputBase{
-    using OutputParameter = typename QueryOutputBase::DummyOutputParameter;
-};
+    struct KnnGraphQueryOutputType : public QueryOutputBase
+    {
+        using OutputParameter = typename QueryOutputBase::DummyOutputParameter;
+    };
 #endif
 
-/*!
- * \brief Extension of the Query class that allows to read the result of a k-nearest neighbors search on the KnnGraph.
- *
- *  Output result of a `KnnGraph::kNearestNeighbors` query request.
- *
- *  \see KnnGraphBase
- */
-template <typename Traits>class KnnGraphKNearestQuery
+    /*!
+     * \brief Extension of the Query class that allows to read the result of a k-nearest neighbors search on the
+     * KnnGraph.
+     *
+     *  Output result of a `KnnGraph::kNearestNeighbors` query request.
+     *
+     *  \see KnnGraphBase
+     */
+    template <typename Traits>
+    class KnnGraphKNearestQuery
 #ifdef PARSED_WITH_DOXYGEN
-: public KNearestIndexQuery<typename Traits::IndexType, typename Traits::DataPoint::Scalar>
+        : public KNearestIndexQuery<typename Traits::IndexType, typename Traits::DataPoint::Scalar>
 #else
-    // we skip output because we don't need it: k is static, and already stored in the index array
-: public Query<QueryInputIsIndex<typename Traits::IndexType>,KnnGraphQueryOutputType>
+        // we skip output because we don't need it: k is static, and already stored in the index array
+        : public Query<QueryInputIsIndex<typename Traits::IndexType>, KnnGraphQueryOutputType>
 #endif
-{
-public:
-    using Iterator = typename Traits::IndexContainer::const_iterator;
+    {
+    public:
+        using Iterator = typename Traits::IndexContainer::const_iterator;
 #ifdef PARSED_WITH_DOXYGEN
-    using QueryType = KNearestIndexQuery<typename Traits::IndexType, typename Traits::DataPoint::Scalar>;
+        using QueryType = KNearestIndexQuery<typename Traits::IndexType, typename Traits::DataPoint::Scalar>;
 #else
-    using QueryType = Query<QueryInputIsIndex<typename Traits::IndexType>,KnnGraphQueryOutputType>;
+        using QueryType = Query<QueryInputIsIndex<typename Traits::IndexType>, KnnGraphQueryOutputType>;
 #endif
-    using Self      = KnnGraphKNearestQuery<Traits>;
+        using Self = KnnGraphKNearestQuery<Traits>;
 
-public:
-    inline KnnGraphKNearestQuery(const KnnGraphBase<Traits>* graph, int index)
-        : QueryType(index), m_graph(graph){}
+    public:
+        inline KnnGraphKNearestQuery(const KnnGraphBase<Traits>* graph, int index) : QueryType(index), m_graph(graph) {}
 
-    /// \brief Call the k-nearest neighbors query with new input parameter.
-    inline Self& operator()(int index) {
-        return QueryType::template operator()<Self>(index);
-    }
+        /// \brief Call the k-nearest neighbors query with new input parameter.
+        inline Self& operator()(int index) { return QueryType::template operator()<Self>(index); }
 
-    /// \brief Returns an iterator to the beginning of the k-nearest neighbors query.
-    inline Iterator begin() const{
-        return m_graph->index_data().begin() + QueryType::input() * m_graph->k();
-    }
+        /// \brief Returns an iterator to the beginning of the k-nearest neighbors query.
+        inline Iterator begin() const { return m_graph->index_data().begin() + QueryType::input() * m_graph->k(); }
 
-    /// \brief Returns an iterator to the end of the k-nearest neighbors query.
-    inline Iterator end() const{
-        return m_graph->index_data().begin() + (QueryType::input()+1) * m_graph->k();
-    }
+        /// \brief Returns an iterator to the end of the k-nearest neighbors query.
+        inline Iterator end() const { return m_graph->index_data().begin() + (QueryType::input() + 1) * m_graph->k(); }
 
-protected:
-    const KnnGraphBase<Traits>* m_graph {nullptr};
-};
+    protected:
+        const KnnGraphBase<Traits>* m_graph{nullptr};
+    };
 
 } // namespace Ponca

@@ -4,7 +4,6 @@
  file, You can obtain one at http://mozilla.org/MPL/2.0/.
 */
 
-
 /*!
     \file test/Grenaille/gls_sphere_der.cpp
     \brief Test validity of GLS derivatives for a sphere
@@ -26,7 +25,7 @@
 using namespace std;
 using namespace Ponca;
 
-template<typename DataPoint, typename Fit>
+template <typename DataPoint, typename Fit>
 void testFunction(bool _bAddPositionNoise = false, bool _bAddNormalNoise = false)
 {
     // Define related structure
@@ -35,20 +34,20 @@ void testFunction(bool _bAddPositionNoise = false, bool _bAddNormalNoise = false
 
     typedef typename Fit::ScalarArray ScalarArray;
 
-    //generate sampled sphere
+    // generate sampled sphere
     int nbPoints = Eigen::internal::random<int>(100, 1000);
 
-    Scalar radius = Eigen::internal::random<Scalar>(1,10);
+    Scalar radius     = Eigen::internal::random<Scalar>(1, 10);
     VectorType center = VectorType::Random() * Eigen::internal::random<Scalar>(1, 10000);
 
     Scalar analysisScale = Scalar(10.) * std::sqrt(Scalar(4. * M_PI) * radius * radius / nbPoints);
 
     Scalar epsilon = testEpsilon<Scalar>();
-    //Scalar radisuEpsilon = epsilon * radius;
+    // Scalar radisuEpsilon = epsilon * radius;
 
     vector<DataPoint> vectorPoints(nbPoints);
 
-    for(unsigned int i = 0; i < vectorPoints.size(); ++i)
+    for (unsigned int i = 0; i < vectorPoints.size(); ++i)
     {
         vectorPoints[i] = getPointOnSphere<DataPoint>(radius, center, _bAddPositionNoise, _bAddNormalNoise);
     }
@@ -61,41 +60,39 @@ void testFunction(bool _bAddPositionNoise = false, bool _bAddNormalNoise = false
     // Test for each point if the Derivatives of kappa are equal to 0
     int nbStable = 0;
 #pragma omp parallel for
-    for(int i = 0; i < size; ++i)
+    for (int i = 0; i < size; ++i)
     {
         Fit fit;
         fit.setNeighborFilter({vectorPoints[i].pos(), analysisScale});
-        fit.computeWithIds(tree.rangeNeighbors(vectorPoints[i].pos(),analysisScale),vectorPoints);
+        fit.computeWithIds(tree.rangeNeighbors(vectorPoints[i].pos(), analysisScale), vectorPoints);
 
-        if(fit.isStable())
+        if (fit.isStable())
         {
             ScalarArray dkappa = fit.dkappa();
 
-            for(int i = 0; i < dkappa.size(); ++i)
+            for (int i = 0; i < dkappa.size(); ++i)
             {
-                VERIFY( Eigen::internal::isMuchSmallerThan(dkappa[i], Scalar(1.), epsilon) );
+                VERIFY(Eigen::internal::isMuchSmallerThan(dkappa[i], Scalar(1.), epsilon));
             }
 #pragma omp critical
             nbStable++;
         }
     }
-    VERIFY (nbStable!= 0);
+    VERIFY(nbStable != 0);
 }
 
-template<typename Scalar, int Dim>
+template <typename Scalar, int Dim>
 void callSubTests()
 {
     typedef PointPositionNormal<Scalar, Dim> Point;
-    typedef DistWeightFunc<Point, SmoothWeightKernel<Scalar> > WeightSmoothFunc;
-    using FitSmoothOriented = BasketDiff<
-            Basket<Point, WeightSmoothFunc, OrientedSphereFit, GLSParam>,
-            FitScaleSpaceDer, OrientedSphereDer, GLSDer>;
-
+    typedef DistWeightFunc<Point, SmoothWeightKernel<Scalar>> WeightSmoothFunc;
+    using FitSmoothOriented = BasketDiff<Basket<Point, WeightSmoothFunc, OrientedSphereFit, GLSParam>, FitScaleSpaceDer,
+                                         OrientedSphereDer, GLSDer>;
 
     cout << "Testing with perfect sphere (oriented / unoriented)..." << endl;
-    for(int i = 0; i < g_repeat; ++i)
+    for (int i = 0; i < g_repeat; ++i)
     {
-        CALL_SUBTEST(( testFunction<Point, FitSmoothOriented>() ));
+        CALL_SUBTEST((testFunction<Point, FitSmoothOriented>()));
     }
     cout << "Ok!" << endl;
 
@@ -109,7 +106,7 @@ void callSubTests()
 
 int main(int argc, char** argv)
 {
-    if(!init_testing(argc, argv))
+    if (!init_testing(argc, argv))
     {
         return EXIT_FAILURE;
     }

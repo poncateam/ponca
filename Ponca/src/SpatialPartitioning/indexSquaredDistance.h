@@ -10,21 +10,24 @@
 #include PONCA_MULTIARCH_INCLUDE_CU_STD(limits)
 #include <type_traits>
 
-namespace Ponca {
-
-/// \brief Associates an index with a distance
-template<typename Index, typename Scalar>
-struct IndexSquaredDistance
+namespace Ponca
 {
-    //// Index of the closest point
-    Index index {-1};
 
-    /// Distance to the closest point
-    Scalar squared_distance { PONCA_MULTIARCH_CU_STD_NAMESPACE(numeric_limits)<Scalar>::max() };
+    /// \brief Associates an index with a distance
+    template <typename Index, typename Scalar>
+    struct IndexSquaredDistance
+    {
+        //// Index of the closest point
+        Index index{-1};
 
-    /// Comparison operator based on squared_distance
-    PONCA_MULTIARCH inline bool operator < (const IndexSquaredDistance& other) const
-    { return squared_distance < other.squared_distance; }
-};
+        /// Distance to the closest point
+        Scalar squared_distance{PONCA_MULTIARCH_CU_STD_NAMESPACE(numeric_limits) < Scalar > ::max()};
 
-}   
+        /// Comparison operator based on squared_distance
+        PONCA_MULTIARCH inline bool operator<(const IndexSquaredDistance& other) const
+        {
+            return squared_distance < other.squared_distance;
+        }
+    };
+
+} // namespace Ponca

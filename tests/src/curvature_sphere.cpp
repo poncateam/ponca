@@ -15,19 +15,18 @@
 using namespace std;
 using namespace Grenaille;
 
-
-template<typename DataPoint, typename Fit>
+template <typename DataPoint, typename Fit>
 void testFunction(bool _bAddPositionNoise = false, bool _bAddNormalNoise = false)
 {
     // Define related structure
     typedef typename DataPoint::Scalar Scalar;
     typedef typename DataPoint::VectorType VectorType;
 
-    //generate sampled plane
+    // generate sampled plane
     int nbPoints = Eigen::internal::random<int>(10000, 50000);
 
-    Scalar radius = Eigen::internal::random<Scalar>(1,10);
-//    Scalar curvature = Scalar(1.)/radius;
+    Scalar radius = Eigen::internal::random<Scalar>(1, 10);
+    //    Scalar curvature = Scalar(1.)/radius;
 
     VectorType center = VectorType::Random() * Eigen::internal::random<Scalar>(1, 10000);
 
@@ -37,7 +36,7 @@ void testFunction(bool _bAddPositionNoise = false, bool _bAddNormalNoise = false
 
     vector<DataPoint> vectorPoints(nbPoints);
 
-    for(unsigned int i = 0; i < vectorPoints.size(); ++i)
+    for (unsigned int i = 0; i < vectorPoints.size(); ++i)
     {
         vectorPoints[i] = getPointOnSphere<DataPoint>(radius, center, _bAddPositionNoise, _bAddNormalNoise);
     }
@@ -47,11 +46,11 @@ void testFunction(bool _bAddPositionNoise = false, bool _bAddNormalNoise = false
 
     // Test for each point if principal curvature values are equal to the radius
 #pragma omp parallel for
-    for(int i = 0; i < size; i+=10)
+    for (int i = 0; i < size; i += 10)
     {
         epsilon = testEpsilon<Scalar>();
-        if ( _bAddPositionNoise) // relax a bit the testing threshold
-          epsilon = Scalar(0.001*MAX_NOISE);
+        if (_bAddPositionNoise) // relax a bit the testing threshold
+            epsilon = Scalar(0.001 * MAX_NOISE);
 
         epsilon = 0.25; // large threshold
 
@@ -59,17 +58,18 @@ void testFunction(bool _bAddPositionNoise = false, bool _bAddNormalNoise = false
         fit.setNeighborFilter({vectorPoints[i].pos(), analysisScale});
         fit.compute(vectorPoints);
 
-        if( fit.isStable() )
+        if (fit.isStable())
         {
             // Check if principal curvature values are equal to the inverse radius
-//            VERIFY( Eigen::internal::isMuchSmallerThan(std::abs(fit.kmin()-curvature), Scalar(1.), epsilon) );
-//            VERIFY( Eigen::internal::isMuchSmallerThan(std::abs(fit.kmax()-curvature), Scalar(1.), epsilon) );
+            //            VERIFY( Eigen::internal::isMuchSmallerThan(std::abs(fit.kmin()-curvature), Scalar(1.),
+            //            epsilon) ); VERIFY( Eigen::internal::isMuchSmallerThan(std::abs(fit.kmax()-curvature),
+            //            Scalar(1.), epsilon) );
 
             // Check if principal curvature directions are tangent to the sphere
-            VectorType normal = (vectorPoints[i].pos()-center).normalized();
+            VectorType normal = (vectorPoints[i].pos() - center).normalized();
 
-            if(!Eigen::internal::isMuchSmallerThan(std::abs(fit.kminDirection().dot(normal)), Scalar(1.), epsilon) ||
-               !Eigen::internal::isMuchSmallerThan(std::abs(fit.kmaxDirection().dot(normal)), Scalar(1.), epsilon))
+            if (!Eigen::internal::isMuchSmallerThan(std::abs(fit.kminDirection().dot(normal)), Scalar(1.), epsilon) ||
+                !Eigen::internal::isMuchSmallerThan(std::abs(fit.kmaxDirection().dot(normal)), Scalar(1.), epsilon))
             {
                 Scalar dot1 = std::abs(fit.kminDirection().dot(normal));
                 Scalar dot2 = std::abs(fit.kmaxDirection().dot(normal));
@@ -77,53 +77,57 @@ void testFunction(bool _bAddPositionNoise = false, bool _bAddNormalNoise = false
                 cout << "dot2 = " << dot2 << endl;
             }
 
-            VERIFY( Eigen::internal::isMuchSmallerThan(std::abs(fit.kminDirection().dot(normal)), Scalar(1.), epsilon) );
-            VERIFY( Eigen::internal::isMuchSmallerThan(std::abs(fit.kmaxDirection().dot(normal)), Scalar(1.), epsilon) );
+            VERIFY(Eigen::internal::isMuchSmallerThan(std::abs(fit.kminDirection().dot(normal)), Scalar(1.), epsilon));
+            VERIFY(Eigen::internal::isMuchSmallerThan(std::abs(fit.kmaxDirection().dot(normal)), Scalar(1.), epsilon));
         }
-        else {
+        else
+        {
             VERIFY(FITTING_FAILED);
         }
     }
 }
 
-template<typename Scalar, int Dim>
+template <typename Scalar, int Dim>
 void callSubTests()
 {
     typedef PointPositionNormal<Scalar, Dim> Point;
 
-    typedef DistWeightFunc<Point, SmoothWeightKernel<Scalar> > WeightSmoothFunc;
-    typedef DistWeightFunc<Point, ConstantWeightKernel<Scalar> > WeightConstantFunc;
+    typedef DistWeightFunc<Point, SmoothWeightKernel<Scalar>> WeightSmoothFunc;
+    typedef DistWeightFunc<Point, ConstantWeightKernel<Scalar>> WeightConstantFunc;
 
-    typedef Basket<Point, WeightSmoothFunc,   CompactPlane, CovariancePlaneFit, NormalCovarianceCurvature> FitSmoothNormalCovariance;
-    typedef Basket<Point, WeightConstantFunc, CompactPlane, CovariancePlaneFit, NormalCovarianceCurvature> FitConstantNormalCovariance;
-    typedef Basket<Point, WeightSmoothFunc,   CompactPlane, CovariancePlaneFit, ProjectedNormalCovarianceCurvature> FitSmoothProjectedNormalCovariance;
-    typedef Basket<Point, WeightConstantFunc, CompactPlane, CovariancePlaneFit, ProjectedNormalCovarianceCurvature> FitConstantProjectedNormalCovariance;
+    typedef Basket<Point, WeightSmoothFunc, CompactPlane, CovariancePlaneFit, NormalCovarianceCurvature>
+        FitSmoothNormalCovariance;
+    typedef Basket<Point, WeightConstantFunc, CompactPlane, CovariancePlaneFit, NormalCovarianceCurvature>
+        FitConstantNormalCovariance;
+    typedef Basket<Point, WeightSmoothFunc, CompactPlane, CovariancePlaneFit, ProjectedNormalCovarianceCurvature>
+        FitSmoothProjectedNormalCovariance;
+    typedef Basket<Point, WeightConstantFunc, CompactPlane, CovariancePlaneFit, ProjectedNormalCovarianceCurvature>
+        FitConstantProjectedNormalCovariance;
 
     cout << "Testing with perfect sphere..." << endl;
-    for(int i = 0; i < g_repeat; ++i)
+    for (int i = 0; i < g_repeat; ++i)
     {
-        CALL_SUBTEST(( testFunction<Point, FitSmoothNormalCovariance>() ));
-        CALL_SUBTEST(( testFunction<Point, FitConstantNormalCovariance>() ));
-        CALL_SUBTEST(( testFunction<Point, FitSmoothProjectedNormalCovariance>() ));
-        CALL_SUBTEST(( testFunction<Point, FitConstantProjectedNormalCovariance>() ));
+        CALL_SUBTEST((testFunction<Point, FitSmoothNormalCovariance>()));
+        CALL_SUBTEST((testFunction<Point, FitConstantNormalCovariance>()));
+        CALL_SUBTEST((testFunction<Point, FitSmoothProjectedNormalCovariance>()));
+        CALL_SUBTEST((testFunction<Point, FitConstantProjectedNormalCovariance>()));
     }
     cout << "Ok..." << endl;
 
-//    cout << "Testing with noisy sphere..." << endl;
-//    for(int i = 0; i < g_repeat; ++i)
-//    {
-//        CALL_SUBTEST(( testFunction<Point, FitSmoothNormalCovariance>(true, true) ));
-//        CALL_SUBTEST(( testFunction<Point, FitConstantNormalCovariance>(true, true) ));
-//        CALL_SUBTEST(( testFunction<Point, FitSmoothProjectedNormalCovariance>(true, true) ));
-//        CALL_SUBTEST(( testFunction<Point, FitConstantProjectedNormalCovariance>(true, true) ));
-//    }
-//    cout << "Ok..." << endl;
+    //    cout << "Testing with noisy sphere..." << endl;
+    //    for(int i = 0; i < g_repeat; ++i)
+    //    {
+    //        CALL_SUBTEST(( testFunction<Point, FitSmoothNormalCovariance>(true, true) ));
+    //        CALL_SUBTEST(( testFunction<Point, FitConstantNormalCovariance>(true, true) ));
+    //        CALL_SUBTEST(( testFunction<Point, FitSmoothProjectedNormalCovariance>(true, true) ));
+    //        CALL_SUBTEST(( testFunction<Point, FitConstantProjectedNormalCovariance>(true, true) ));
+    //    }
+    //    cout << "Ok..." << endl;
 }
-
 
 int main(int argc, char** argv)
 {
-    if(!init_testing(argc, argv))
+    if (!init_testing(argc, argv))
     {
         return EXIT_FAILURE;
     }
