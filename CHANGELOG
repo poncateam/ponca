@@ -17,6 +17,7 @@ introduces several bug fixes and minors improvements.
     - [fitting] Fix issues when converting vectors between local and global frames (#201)
     - [fitting] Fix bug in MongePatch::primitiveGradient (#269)
     - [fitting] Fix warnings on windows (#278)
+    - [commin] Applied clang-formatting (#274)
 
 - Tests
     - [utils] Improve point cloud generation functions (#201)
@@ -31,6 +32,7 @@ introduces several bug fixes and minors improvements.
 
 - CI/Actions
     - [ci] Fix CNC coverage test (crash + slow execution) (#272)
+    - [ci] New github action for checking formatting (#274)
 
 - Examples
     - [all] Update according to API changes (#201)
