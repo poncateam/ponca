@@ -4,7 +4,6 @@
  file, You can obtain one at http://mozilla.org/MPL/2.0/.
 */
 
-
 /*!
     \file test/Grenaille/gls_tau.cpp
     \brief Test validity GLS tau param
@@ -25,34 +24,34 @@
 using namespace std;
 using namespace Ponca;
 
-template<typename DataPoint, typename Fit>
+template <typename DataPoint, typename Fit>
 void testFunction(bool _bUnoriented = false, bool _bAddPositionNoise = false, bool _bAddNormalNoise = false)
 {
     // Define related structure
     typedef typename DataPoint::Scalar Scalar;
     typedef typename DataPoint::VectorType VectorType;
 
-    //generate sampled plane
+    // generate sampled plane
     int nbPoints = Eigen::internal::random<int>(100, 1000);
     vector<DataPoint> vectorPoints(nbPoints);
 
-    //Random plane parameters
-    Scalar centerScale =  Eigen::internal::random<Scalar>(0, 10000);
-    VectorType vCenter = VectorType::Random() * centerScale;
+    // Random plane parameters
+    Scalar centerScale      = Eigen::internal::random<Scalar>(0, 10000);
+    VectorType vCenter      = VectorType::Random() * centerScale;
     VectorType vPlaneNormal = VectorType::Random().normalized();
 
-
-    Scalar range = Eigen::internal::random<Scalar>(1, 10);
+    Scalar range   = Eigen::internal::random<Scalar>(1, 10);
     Scalar epsilon = testEpsilon<Scalar>();
-    if(_bAddPositionNoise || _bAddNormalNoise)
+    if (_bAddPositionNoise || _bAddNormalNoise)
         epsilon *= 10;
 
     Scalar analysisScale = Scalar(100.) * std::sqrt(Scalar(4. * M_PI) * range * range / nbPoints);
 
-    for(unsigned int i = 0; i < vectorPoints.size(); ++i)
+    for (unsigned int i = 0; i < vectorPoints.size(); ++i)
     {
-        Scalar radius = Eigen::internal::random<Scalar>(-range, range);
-        vectorPoints[i] = getPointOnPlane<DataPoint>(vCenter, vPlaneNormal, radius, _bAddPositionNoise, _bAddNormalNoise, _bUnoriented);
+        Scalar radius   = Eigen::internal::random<Scalar>(-range, range);
+        vectorPoints[i] = getPointOnPlane<DataPoint>(vCenter, vPlaneNormal, radius, _bAddPositionNoise,
+                                                     _bAddNormalNoise, _bUnoriented);
     }
 
     // Quick testing is requested for coverage
@@ -60,35 +59,35 @@ void testFunction(bool _bUnoriented = false, bool _bAddPositionNoise = false, bo
 
     // Test for each point if the point moved from distance d correspond to tau
 #pragma omp parallel for
-    for(int i = 0; i < size; ++i)
+    for (int i = 0; i < size; ++i)
     {
         // Take a random distance to the plane, not too large to have few points in weighting analysis
-        Scalar distanceToPlane = Eigen::internal::random<Scalar>(-range, range);
+        Scalar distanceToPlane      = Eigen::internal::random<Scalar>(-range, range);
         VectorType vEvaluationPoint = vectorPoints[i].pos() + distanceToPlane * vPlaneNormal;
 
         Fit fit;
         fit.setNeighborFilter({vEvaluationPoint, analysisScale});
         fit.compute(vectorPoints);
 
-        if(fit.isStable())
+        if (fit.isStable())
         {
-            Scalar fitTau = fit.tau();
-            fitTau = std::abs(fitTau);
+            Scalar fitTau   = fit.tau();
+            fitTau          = std::abs(fitTau);
             distanceToPlane = std::abs(distanceToPlane);
 
             // Test Tau
-            VERIFY( Eigen::internal::isMuchSmallerThan(std::abs(distanceToPlane - fitTau), Scalar(1.), epsilon) );
+            VERIFY(Eigen::internal::isMuchSmallerThan(std::abs(distanceToPlane - fitTau), Scalar(1.), epsilon));
         }
     }
 }
 
-template<typename Scalar, int Dim>
+template <typename Scalar, int Dim>
 void callSubTests()
 {
     typedef PointPositionNormal<Scalar, Dim> Point;
 
-    typedef DistWeightFunc<Point, SmoothWeightKernel<Scalar> > WeightSmoothFunc;
-    typedef DistWeightFunc<Point, ConstantWeightKernel<Scalar> > WeightConstantFunc;
+    typedef DistWeightFunc<Point, SmoothWeightKernel<Scalar>> WeightSmoothFunc;
+    typedef DistWeightFunc<Point, ConstantWeightKernel<Scalar>> WeightConstantFunc;
 
     //! [GLSFitTypes]
     typedef Basket<Point, WeightSmoothFunc, OrientedSphereFit, GLSParam> FitSmoothOriented;
@@ -98,12 +97,12 @@ void callSubTests()
     //! [GLSFitTypes]
 
     cout << "Testing with perfect plane (oriented / unoriented)..." << endl;
-    for(int i = 0; i < g_repeat; ++i)
+    for (int i = 0; i < g_repeat; ++i)
     {
-        CALL_SUBTEST(( testFunction<Point, FitSmoothOriented>() ));
-        CALL_SUBTEST(( testFunction<Point, FitConstantOriented>() ));
-        CALL_SUBTEST(( testFunction<Point, FitSmoothUnoriented>() ));
-        CALL_SUBTEST(( testFunction<Point, FitConstantUnoriented>() ));
+        CALL_SUBTEST((testFunction<Point, FitSmoothOriented>()));
+        CALL_SUBTEST((testFunction<Point, FitConstantOriented>()));
+        CALL_SUBTEST((testFunction<Point, FitSmoothUnoriented>()));
+        CALL_SUBTEST((testFunction<Point, FitConstantUnoriented>()));
     }
     cout << "Ok..." << endl;
 
@@ -120,7 +119,7 @@ void callSubTests()
 
 int main(int argc, char** argv)
 {
-    if(!init_testing(argc, argv))
+    if (!init_testing(argc, argv))
     {
         return EXIT_FAILURE;
     }

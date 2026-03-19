@@ -1,16 +1,15 @@
 /*
  This Source Code Form is subject to the terms of the Mozilla Public
  License, v. 2.0. If a copy of the MPL was not distributed with this
- file, You can obtain one at http://mozilla.org/MPL/2.0/. 
+ file, You can obtain one at http://mozilla.org/MPL/2.0/.
 */
 
-template < class DataPoint, class _NFilter, typename T>
-inline FIT_RESULT
-GLSParam<DataPoint, _NFilter, T>::finalize()
+template <class DataPoint, class _NFilter, typename T>
+inline FIT_RESULT GLSParam<DataPoint, _NFilter, T>::finalize()
 {
     FIT_RESULT bResult = Base::finalize();
 
-    if(bResult != UNDEFINED)
+    if (bResult != UNDEFINED)
     {
         m_fitness = Scalar(1.) - Base::prattNorm2();
     }
@@ -18,36 +17,31 @@ GLSParam<DataPoint, _NFilter, T>::finalize()
     return bResult;
 }
 
-template < class DataPoint, class _NFilter, int DiffType, typename T>
-typename GLSDer <DataPoint, _NFilter, DiffType, T>::ScalarArray
-GLSDer <DataPoint, _NFilter, DiffType, T>::dtau() const
+template <class DataPoint, class _NFilter, int DiffType, typename T>
+typename GLSDer<DataPoint, _NFilter, DiffType, T>::ScalarArray GLSDer<DataPoint, _NFilter, DiffType, T>::dtau() const
 {
     PONCA_MULTIARCH_STD_MATH(sqrt);
 
-    Scalar prattNorm2 = Base::prattNorm2();
-    Scalar prattNorm  = sqrt(prattNorm2);
-    Scalar cfactor    = Scalar(.5) / prattNorm;
+    Scalar prattNorm2  = Base::prattNorm2();
+    Scalar prattNorm   = sqrt(prattNorm2);
+    Scalar cfactor     = Scalar(.5) / prattNorm;
     ScalarArray dfield = Base::m_dUc;
     // Recall that tau is the field function at the evaluation point, we thus must take care about
     // its variation when differentiating in space:
-    if(Base::isSpaceDer())
-      dfield.template tail<DataPoint::Dim>() += Base::m_ul;
+    if (Base::isSpaceDer())
+        dfield.template tail<DataPoint::Dim>() += Base::m_ul;
 
     return (dfield * prattNorm - Base::m_uc * cfactor * Base::dprattNorm2()) / prattNorm2;
 }
 
-
-template < class DataPoint, class _NFilter, int DiffType, typename T>
-typename GLSDer <DataPoint, _NFilter, DiffType, T>::VectorArray
-GLSDer <DataPoint, _NFilter, DiffType, T>::deta() const
+template <class DataPoint, class _NFilter, int DiffType, typename T>
+typename GLSDer<DataPoint, _NFilter, DiffType, T>::VectorArray GLSDer<DataPoint, _NFilter, DiffType, T>::deta() const
 {
-  return Base::dNormal();
+    return Base::dNormal();
 }
 
-
-template < class DataPoint, class _NFilter, int DiffType, typename T>
-typename GLSDer <DataPoint, _NFilter, DiffType, T>::ScalarArray
-GLSDer <DataPoint, _NFilter, DiffType, T>::dkappa() const
+template <class DataPoint, class _NFilter, int DiffType, typename T>
+typename GLSDer<DataPoint, _NFilter, DiffType, T>::ScalarArray GLSDer<DataPoint, _NFilter, DiffType, T>::dkappa() const
 {
     PONCA_MULTIARCH_STD_MATH(sqrt);
 
@@ -58,43 +52,35 @@ GLSDer <DataPoint, _NFilter, DiffType, T>::dkappa() const
     return Scalar(2.) * (Base::m_dUq * prattNorm - Base::m_uq * cfactor * Base::dprattNorm2()) / prattNorm2;
 }
 
-
-template < class DataPoint, class _NFilter, int DiffType, typename T>
-typename GLSDer <DataPoint, _NFilter, DiffType, T>::ScalarArray
-GLSDer <DataPoint, _NFilter, DiffType, T>::dtau_normalized() const
+template <class DataPoint, class _NFilter, int DiffType, typename T>
+typename GLSDer<DataPoint, _NFilter, DiffType, T>::ScalarArray GLSDer<DataPoint, _NFilter, DiffType,
+                                                                      T>::dtau_normalized() const
 {
     return dtau();
 }
 
-
-template < class DataPoint, class _NFilter, int DiffType, typename T>
-typename GLSDer <DataPoint, _NFilter, DiffType, T>::VectorArray
-GLSDer <DataPoint, _NFilter, DiffType, T>::deta_normalized() const
+template <class DataPoint, class _NFilter, int DiffType, typename T>
+typename GLSDer<DataPoint, _NFilter, DiffType, T>::VectorArray GLSDer<DataPoint, _NFilter, DiffType,
+                                                                      T>::deta_normalized() const
 {
     return Base::getNeighborFilter().evalScale() * deta();
 }
 
-
-template < class DataPoint, class _NFilter, int DiffType, typename T>
-typename GLSDer <DataPoint, _NFilter, DiffType, T>::ScalarArray
-GLSDer <DataPoint, _NFilter, DiffType, T>::dkappa_normalized() const
+template <class DataPoint, class _NFilter, int DiffType, typename T>
+typename GLSDer<DataPoint, _NFilter, DiffType, T>::ScalarArray GLSDer<DataPoint, _NFilter, DiffType,
+                                                                      T>::dkappa_normalized() const
 {
     return dkappa() * Base::getNeighborFilter().evalScale() * Base::getNeighborFilter().evalScale();
 }
 
-
-
-
-template < class DataPoint, class _NFilter, int DiffType, typename T>
-typename GLSDer <DataPoint, _NFilter, DiffType, T>::Scalar
-GLSDer <DataPoint, _NFilter, DiffType, T>::geomVar(  Scalar wtau,
-                                                      Scalar weta,
-                                                      Scalar wkappa ) const
+template <class DataPoint, class _NFilter, int DiffType, typename T>
+typename GLSDer<DataPoint, _NFilter, DiffType, T>::Scalar GLSDer<DataPoint, _NFilter, DiffType, T>::geomVar(
+    Scalar wtau, Scalar weta, Scalar wkappa) const
 {
-    static_assert( bool(DiffType & FitScaleDer), "Scale derivatives are required to compute Geometric Variation" );
+    static_assert(bool(DiffType & FitScaleDer), "Scale derivatives are required to compute Geometric Variation");
     Scalar dtau   = dtau_normalized().col(0)(0);
     Scalar deta   = deta_normalized().col(0).norm();
     Scalar dkappa = dkappa_normalized().col(0)(0);
 
-    return wtau*dtau*dtau + weta*deta*deta + wkappa*dkappa*dkappa;
+    return wtau * dtau * dtau + weta * deta * deta + wkappa * dkappa * dkappa;
 }

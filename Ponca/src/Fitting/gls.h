@@ -12,154 +12,158 @@
 namespace Ponca
 {
 
-/*!
-    \brief Growing Least Squares reparametrization of the OrientedSphereFit
-    \inherit Concept::FittingExtensionConcept
-
-    Method published in \cite Mellado:2012:GLS
-
-    This class assumes that the WeightFunc defines the accessor
-    \code
-        w.evalScale();
-    \endcode
-    in order to access to the evaluation scale, needed to compute the
-    scale invariant GLS reparametrization (all *_normalized methods).
-
-    Computed values:
-    - tau(), eta() and kappa(): the GLS descriptor
-    \f$ \left[ \tau \; \eta \; \kappa \right]\f$
-    - tau_normalized(), eta_normalized() and kappa_normalized():
-    the scale invariant GLS descriptor
-    \f$ \left[ \frac{\tau}{t} \; \eta \; t\kappa \right]\f$
-
-    Requirements:
-    \verbatim PROVIDES_ALGEBRAIC_SPHERE \endverbatim
-    Provides:
-    \verbatim PROVIDES_GLS_PARAMETRIZATION \endverbatim
-*/
-template < class DataPoint, class _NFilter, typename T>
-class GLSParam : public T
-{
-    PONCA_FITTING_DECLARE_DEFAULT_TYPES
-
-//! [Requirements]
-protected:
-    enum
-    {
-        Check = Base::PROVIDES_ALGEBRAIC_SPHERE,
-        PROVIDES_GLS_PARAMETRIZATION
-    };
-//! [Requirements]
-
-protected:
-    Scalar m_fitness {0};   /*!< \brief Save the fitness value to avoid side effect with Pratt normalization*/
-
-public:
-    PONCA_EXPLICIT_CAST_OPERATORS(GLSParam,glsParam)
-    PONCA_FITTING_DECLARE_FINALIZE
-
-    /**************************************************************************/
-    /* Use results                                                            */
-    /**************************************************************************/
-    /*! \brief Compute and return \f$ \tau \f$ */
-    PONCA_MULTIARCH [[nodiscard]] inline Scalar tau() const
-    {
-        return Base::isNormalized() ? Base::m_uc : Base::m_uc / Base::prattNorm();
-    }
-
-    /*! \brief Compute and return \f$ \eta \f$ */
-    PONCA_MULTIARCH [[nodiscard]] inline VectorType eta() const { return Base::primitiveGradient(); }
-
-    /*! \brief Compute and return \f$ \kappa \f$ */
-    PONCA_MULTIARCH [[nodiscard]] inline Scalar kappa() const
-    {
-        return Scalar(2.) * (Base::isNormalized() ? Base::m_uq : Base::m_uq / Base::prattNorm());
-    }
-
-    /*! \brief Compute and return \f$ \frac{\tau}{t} \f$ */
-    PONCA_MULTIARCH [[nodiscard]] inline Scalar tau_normalized() const { return tau() / Base::getNeighborFilter().evalScale(); }
-
-    /*! \brief Compute and return \f$ \eta \f$ */
-    PONCA_MULTIARCH [[nodiscard]] inline VectorType eta_normalized() const { return eta(); }
-
-    /*! \brief Compute and return \f$ t \kappa \f$ */
-    PONCA_MULTIARCH [[nodiscard]] inline Scalar kappa_normalized() const { return kappa() * Base::getNeighborFilter().evalScale(); }
-
-    /*! \brief Return the fitness, e.g. the pratt norm of the initial scalar field */
-    PONCA_MULTIARCH [[nodiscard]] inline Scalar fitness() const { return m_fitness; }
-
     /*!
-    \brief Compare current instance with other.
-    \return a distance between two fits (0 correspond to two similar fits)
-    \warning Use the same scale to have a useful comparison (normalized value are used)
+        \brief Growing Least Squares reparametrization of the OrientedSphereFit
+        \inherit Concept::FittingExtensionConcept
+
+        Method published in \cite Mellado:2012:GLS
+
+        This class assumes that the WeightFunc defines the accessor
+        \code
+            w.evalScale();
+        \endcode
+        in order to access to the evaluation scale, needed to compute the
+        scale invariant GLS reparametrization (all *_normalized methods).
+
+        Computed values:
+        - tau(), eta() and kappa(): the GLS descriptor
+        \f$ \left[ \tau \; \eta \; \kappa \right]\f$
+        - tau_normalized(), eta_normalized() and kappa_normalized():
+        the scale invariant GLS descriptor
+        \f$ \left[ \frac{\tau}{t} \; \eta \; t\kappa \right]\f$
+
+        Requirements:
+        \verbatim PROVIDES_ALGEBRAIC_SPHERE \endverbatim
+        Provides:
+        \verbatim PROVIDES_GLS_PARAMETRIZATION \endverbatim
     */
-    PONCA_MULTIARCH [[nodiscard]] inline Scalar compareTo (const GLSParam<DataPoint, _NFilter, T>& _other,
-                                        bool _useFitness = true) const
+    template <class DataPoint, class _NFilter, typename T>
+    class GLSParam : public T
     {
-        Scalar nTau     = this->tau_normalized()   - _other.tau_normalized();
-        Scalar nKappa   = this->kappa_normalized() - _other.kappa_normalized();
-        Scalar nFitness = _useFitness ? this->fitness() - _other.fitness() : Scalar(0.);
+        PONCA_FITTING_DECLARE_DEFAULT_TYPES
 
-        return nTau * nTau + nKappa * nKappa + nFitness * nFitness;
-    }
+        //! [Requirements]
+    protected:
+        enum
+        {
+            Check = Base::PROVIDES_ALGEBRAIC_SPHERE,
+            PROVIDES_GLS_PARAMETRIZATION
+        };
+        //! [Requirements]
 
-}; //class GLSParam
+    protected:
+        Scalar m_fitness{0}; /*!< \brief Save the fitness value to avoid side effect with Pratt normalization*/
 
+    public:
+        PONCA_EXPLICIT_CAST_OPERATORS(GLSParam, glsParam)
+        PONCA_FITTING_DECLARE_FINALIZE
 
-/*!
-    \brief Differentiation of GLSParam
-    \inherit Concept::FittingExtensionConcept
+        /**************************************************************************/
+        /* Use results                                                            */
+        /**************************************************************************/
+        /*! \brief Compute and return \f$ \tau \f$ */
+        PONCA_MULTIARCH [[nodiscard]] inline Scalar tau() const
+        {
+            return Base::isNormalized() ? Base::m_uc : Base::m_uc / Base::prattNorm();
+        }
 
-    Method published in \cite Mellado:2012:GLS
-*/
-template < class DataPoint, class _NFilter, int DiffType, typename T>
-class GLSDer : public T
-{
-PONCA_FITTING_DECLARE_DEFAULT_TYPES
-PONCA_FITTING_DECLARE_DEFAULT_DER_TYPES
+        /*! \brief Compute and return \f$ \eta \f$ */
+        PONCA_MULTIARCH [[nodiscard]] inline VectorType eta() const { return Base::primitiveGradient(); }
 
-protected:
-    enum
-    {
-        Check = Base::PROVIDES_GLS_PARAMETRIZATION &
-                Base::PROVIDES_PRIMITIVE_DERIVATIVE &
-                Base::PROVIDES_ALGEBRAIC_SPHERE_DERIVATIVE,
-        PROVIDES_GLS_DERIVATIVE,
-        PROVIDES_GLS_GEOM_VAR
-    };
+        /*! \brief Compute and return \f$ \kappa \f$ */
+        PONCA_MULTIARCH [[nodiscard]] inline Scalar kappa() const
+        {
+            return Scalar(2.) * (Base::isNormalized() ? Base::m_uq : Base::m_uq / Base::prattNorm());
+        }
 
-public:
-    PONCA_EXPLICIT_CAST_OPERATORS_DER(GLSDer,glsDer)
+        /*! \brief Compute and return \f$ \frac{\tau}{t} \f$ */
+        PONCA_MULTIARCH [[nodiscard]] inline Scalar tau_normalized() const
+        {
+            return tau() / Base::getNeighborFilter().evalScale();
+        }
 
-    PONCA_MULTIARCH inline ScalarArray dtau()   const; /*!< \brief Compute and return \f$ \tau \f$ derivatives */
-    PONCA_MULTIARCH inline VectorArray deta()   const; /*!< \brief Compute and return \f$ \eta \f$ derivatives */
-    PONCA_MULTIARCH inline ScalarArray dkappa() const; /*!< \brief Compute and return \f$ \kappa \f$ derivatives */
+        /*! \brief Compute and return \f$ \eta \f$ */
+        PONCA_MULTIARCH [[nodiscard]] inline VectorType eta_normalized() const { return eta(); }
 
-    PONCA_MULTIARCH inline ScalarArray dtau_normalized()   const; /*!< \brief Compute and return \f$ \tau \f$ derivatives */
-    PONCA_MULTIARCH inline VectorArray deta_normalized()   const; /*!< \brief Compute and return \f$ t * d\eta \f$ */
-    PONCA_MULTIARCH inline ScalarArray dkappa_normalized() const; /*!< \brief Compute and return \f$ d\kappa * t^{2} \f$ */
+        /*! \brief Compute and return \f$ t \kappa \f$ */
+        PONCA_MULTIARCH [[nodiscard]] inline Scalar kappa_normalized() const
+        {
+            return kappa() * Base::getNeighborFilter().evalScale();
+        }
+
+        /*! \brief Return the fitness, e.g. the pratt norm of the initial scalar field */
+        PONCA_MULTIARCH [[nodiscard]] inline Scalar fitness() const { return m_fitness; }
+
+        /*!
+        \brief Compare current instance with other.
+        \return a distance between two fits (0 correspond to two similar fits)
+        \warning Use the same scale to have a useful comparison (normalized value are used)
+        */
+        PONCA_MULTIARCH [[nodiscard]] inline Scalar compareTo(const GLSParam<DataPoint, _NFilter, T>& _other,
+                                                              bool _useFitness = true) const
+        {
+            Scalar nTau     = this->tau_normalized() - _other.tau_normalized();
+            Scalar nKappa   = this->kappa_normalized() - _other.kappa_normalized();
+            Scalar nFitness = _useFitness ? this->fitness() - _other.fitness() : Scalar(0.);
+
+            return nTau * nTau + nKappa * nKappa + nFitness * nFitness;
+        }
+
+    }; // class GLSParam
 
     /*!
-       \brief The Geometric Variation is computed as the weighted sum of the GLS scale-invariant partial derivatives
-       \f[
-        \nu(\mathbf{p},t) =
-        w_\tau   \left(\frac{\delta\tau}{\delta t}\right)^2 +
-        w_\eta   \left( t   \frac{\delta\eta}{\delta t}\right)^2 +
-        w_\kappa \left( t^2 \frac{\delta\kappa}{\delta t}\right)^2
-       \f]
+        \brief Differentiation of GLSParam
+        \inherit Concept::FittingExtensionConcept
 
-       Method published in \cite Mellado:2012:GLS
-       \param wtau Weight applied to \f$ \tau \f$
-       \param weta Weight applied to \f$ \eta \f$
-       \param wkappa Weight applied to \f$ \kappa \f$
-       \return
-     */
-    PONCA_MULTIARCH inline Scalar geomVar(Scalar wtau   = Scalar(1),
-                                          Scalar weta   = Scalar(1),
-                                          Scalar wkappa = Scalar(1)) const;
-}; //class GLSScaleDer
+        Method published in \cite Mellado:2012:GLS
+    */
+    template <class DataPoint, class _NFilter, int DiffType, typename T>
+    class GLSDer : public T
+    {
+        PONCA_FITTING_DECLARE_DEFAULT_TYPES
+        PONCA_FITTING_DECLARE_DEFAULT_DER_TYPES
 
+    protected:
+        enum
+        {
+            Check = Base::PROVIDES_GLS_PARAMETRIZATION & Base::PROVIDES_PRIMITIVE_DERIVATIVE &
+                    Base::PROVIDES_ALGEBRAIC_SPHERE_DERIVATIVE,
+            PROVIDES_GLS_DERIVATIVE,
+            PROVIDES_GLS_GEOM_VAR
+        };
+
+    public:
+        PONCA_EXPLICIT_CAST_OPERATORS_DER(GLSDer, glsDer)
+
+        PONCA_MULTIARCH inline ScalarArray dtau() const;   /*!< \brief Compute and return \f$ \tau \f$ derivatives */
+        PONCA_MULTIARCH inline VectorArray deta() const;   /*!< \brief Compute and return \f$ \eta \f$ derivatives */
+        PONCA_MULTIARCH inline ScalarArray dkappa() const; /*!< \brief Compute and return \f$ \kappa \f$ derivatives */
+
+        PONCA_MULTIARCH inline ScalarArray dtau_normalized()
+            const; /*!< \brief Compute and return \f$ \tau \f$ derivatives */
+        PONCA_MULTIARCH inline VectorArray deta_normalized() const; /*!< \brief Compute and return \f$ t * d\eta \f$ */
+        PONCA_MULTIARCH inline ScalarArray dkappa_normalized()
+            const; /*!< \brief Compute and return \f$ d\kappa * t^{2} \f$ */
+
+        /*!
+           \brief The Geometric Variation is computed as the weighted sum of the GLS scale-invariant partial derivatives
+           \f[
+            \nu(\mathbf{p},t) =
+            w_\tau   \left(\frac{\delta\tau}{\delta t}\right)^2 +
+            w_\eta   \left( t   \frac{\delta\eta}{\delta t}\right)^2 +
+            w_\kappa \left( t^2 \frac{\delta\kappa}{\delta t}\right)^2
+           \f]
+
+           Method published in \cite Mellado:2012:GLS
+           \param wtau Weight applied to \f$ \tau \f$
+           \param weta Weight applied to \f$ \eta \f$
+           \param wkappa Weight applied to \f$ \kappa \f$
+           \return
+         */
+        PONCA_MULTIARCH inline Scalar geomVar(Scalar wtau = Scalar(1), Scalar weta = Scalar(1),
+                                              Scalar wkappa = Scalar(1)) const;
+    }; // class GLSScaleDer
 
 #include "gls.hpp"
 
-} //namespace Ponca
+} // namespace Ponca

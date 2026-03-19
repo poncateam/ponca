@@ -4,7 +4,6 @@
  file, You can obtain one at http://mozilla.org/MPL/2.0/.
 */
 
-
 /*!
     \file test/Grenaille/okabe_primitive.cpp
     \brief Test validity Plane Primitive
@@ -23,57 +22,57 @@
 using namespace std;
 using namespace Ponca;
 
-template<typename DataPoint, typename Fit>
+template <typename DataPoint, typename Fit>
 void testFunction()
 {
     // Define related structure
     typedef typename DataPoint::Scalar Scalar;
     typedef typename DataPoint::VectorType VectorType;
 
-    Scalar epsilon = testEpsilon<Scalar>();
+    Scalar epsilon   = testEpsilon<Scalar>();
     VectorType query = VectorType::Random();
 
     Fit f;
     f.setPlane(VectorType::Random(), query);
 
     // Test that the point on the plane returns a potential of 0
-    VERIFY( std::abs(f.potential(query)) <= epsilon);
+    VERIFY(std::abs(f.potential(query)) <= epsilon);
 
     // Use a random position in space
     query = VectorType::Random();
 
     // Check if we get the same point when projecting points x and x+gradient.
-    VectorType proj1 = f.project( query );
-    VectorType proj2 = f.project( query + f.primitiveGradient( query ) );
+    VectorType proj1 = f.project(query);
+    VectorType proj2 = f.project(query + f.primitiveGradient(query));
 
-    VERIFY( ( proj1 - proj2 ).norm() <= epsilon);
+    VERIFY((proj1 - proj2).norm() <= epsilon);
 
     // Check that the potential value is equal to the distance between the query
     // and its projection
-    VERIFY( std::abs( std::abs(f.potential(query)) - (query - proj1).norm()) <= epsilon);
+    VERIFY(std::abs(std::abs(f.potential(query)) - (query - proj1).norm()) <= epsilon);
 
     // Check that the potential value of a projected point is equal to 0
-    VERIFY( std::abs( f.potential(proj1) ) <= epsilon);
+    VERIFY(std::abs(f.potential(proj1)) <= epsilon);
 }
 
-template<typename Scalar, int Dim>
+template <typename Scalar, int Dim>
 void callSubTests()
 {
     typedef PointPosition<Scalar, Dim> Point;
 
     // We test only primitive functions and not the fitting procedure
-    typedef DistWeightFunc<Point, SmoothWeightKernel<Scalar> > NeighborFilter;
+    typedef DistWeightFunc<Point, SmoothWeightKernel<Scalar>> NeighborFilter;
     typedef Basket<Point, NeighborFilter, Plane> Plane;
 
-    for(int i = 0; i < g_repeat; ++i)
+    for (int i = 0; i < g_repeat; ++i)
     {
-        CALL_SUBTEST(( testFunction<Point, Plane>() ));
+        CALL_SUBTEST((testFunction<Point, Plane>()));
     }
 }
 
 int main(int argc, char** argv)
 {
-    if(!init_testing(argc, argv))
+    if (!init_testing(argc, argv))
     {
         return EXIT_FAILURE;
     }

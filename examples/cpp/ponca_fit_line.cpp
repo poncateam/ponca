@@ -22,20 +22,19 @@ using MyPoint = PointPosition<double, 3>;
 typedef MyPoint::Scalar Scalar;
 typedef MyPoint::VectorType VectorType;
 
-typedef DistWeightFunc<MyPoint,ConstantWeightKernel<Scalar> > WeightFunc;
-typedef Basket<MyPoint,WeightFunc, CovarianceLineFit> Fit;
+typedef DistWeightFunc<MyPoint, ConstantWeightKernel<Scalar>> WeightFunc;
+typedef Basket<MyPoint, WeightFunc, CovarianceLineFit> Fit;
 
-
-int main(int argc, char **argv) {
+int main(int argc, char** argv)
+{
 
     int n = 10000;
 
     // Generate a random set of n points along a line
     vector<MyPoint> points(n);
     VectorType dir = VectorType::Random().normalized();
-    std::generate(points.begin(), points.end(), [&dir]() {
-        return (dir * Eigen::internal::random<Scalar>(0.1,2)).eval();
-    });
+    std::generate(points.begin(), points.end(),
+                  [&dir]() { return (dir * Eigen::internal::random<Scalar>(0.1, 2)).eval(); });
     const VectorType& p = points.at(0).pos();
 
     std::cout << "====================\nLeastSquareLineFit:\n";
@@ -47,18 +46,16 @@ int main(int argc, char **argv) {
     _fit.compute(points.cbegin(), points.cend());
 
     // Check Fit output
-    if( _fit.isStable() ) {
+    if (_fit.isStable())
+    {
         cout << "Direction of the fitted 3D line: " << _fit.direction().transpose() << endl;
         cout << "Origin of the fitted line: " << _fit.origin().transpose() << endl;
         cout << "Projection of the basis center on the fitted line: " << _fit.project(p).transpose() << endl;
 
         /// Compute sum of the distances between samples and line: should be 0
-        Scalar dist = std::transform_reduce(points.cbegin(), points.cend(),
-                                                   Scalar(0),
-                                                   std::plus<>(),
-                                                   [&_fit](const MyPoint &q) {
-                                                       return (q.pos() - _fit.project(q.pos())).norm();
-                                                   });
+        Scalar dist =
+            std::transform_reduce(points.cbegin(), points.cend(), Scalar(0), std::plus<>(),
+                                  [&_fit](const MyPoint& q) { return (q.pos() - _fit.project(q.pos())).norm(); });
         cout << "Mean error between samples and fitted line: " << dist / Scalar(n) << endl;
         return EXIT_SUCCESS;
     }

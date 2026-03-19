@@ -9,22 +9,25 @@
 #include "defines.h"
 #include PONCA_MULTIARCH_INCLUDE_STD(iterator)
 
-namespace Ponca{
+namespace Ponca
+{
     /*!
-      \brief ComputeObject is a virtual object that represents an algorithm which can be used with the compute functions.
+      \brief ComputeObject is a virtual object that represents an algorithm which can be used with the compute
+      functions.
 
       The compute(begin, end) and computeWithIds(ids, points) methods must be implemented by the inheriting class.
       \note The compute(container) that is defined in this structure can be reused in the inheriting class by adding
       "using ComputeObject<Self>::compute;" to make it accessible
  */
     template <typename Derived>
-    struct ComputeObject {
+    struct ComputeObject
+    {
     protected:
         /// \brief Retrieve the top layer object
         /// Returns a reference to the derived class so that we can use its overwritten methods
         PONCA_MULTIARCH Derived& derived() { return static_cast<Derived&>(*this); }
-    public:
 
+    public:
 #ifdef PONCA_CPU_ARCH
         /*! \brief Convenience function for STL-like container
          *
@@ -33,7 +36,8 @@ namespace Ponca{
          * \see #compute(const IteratorBegin& begin, const IteratorEnd& end)
          */
         template <typename Container>
-        FIT_RESULT compute(const Container& c) {
+        FIT_RESULT compute(const Container& c)
+        {
             return derived().compute(std::begin(c), std::end(c));
         }
 #endif
@@ -43,7 +47,8 @@ namespace Ponca{
             \tparam IteratorEnd   The end of the iterator (std::end(iterator)
         */
         template <typename IteratorBegin, typename IteratorEnd>
-        PONCA_MULTIARCH inline FIT_RESULT compute(const IteratorBegin& /*begin*/, const IteratorEnd& /*end*/) {
+        PONCA_MULTIARCH inline FIT_RESULT compute(const IteratorBegin& /*begin*/, const IteratorEnd& /*end*/)
+        {
             return UNDEFINED;
         };
 
@@ -53,10 +58,11 @@ namespace Ponca{
             \see #compute(const IteratorBegin& begin, const IteratorEnd& end)
         */
         template <typename IndexRange, typename PointContainer>
-        PONCA_MULTIARCH inline FIT_RESULT computeWithIds(IndexRange /*ids*/, const PointContainer& /*points*/) {
+        PONCA_MULTIARCH inline FIT_RESULT computeWithIds(IndexRange /*ids*/, const PointContainer& /*points*/)
+        {
             return UNDEFINED;
         };
     }; // struct ComputeObject
 
-}
+} // namespace Ponca
 

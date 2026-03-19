@@ -17,7 +17,7 @@
 using namespace std;
 using namespace Grenaille;
 
-template<typename DataPoint, typename Fit>
+template <typename DataPoint, typename Fit>
 void testFunction(bool _bAddPositionNoise = false, bool _bAddNormalNoise = false)
 {
     // Define related structure
@@ -25,23 +25,23 @@ void testFunction(bool _bAddPositionNoise = false, bool _bAddNormalNoise = false
     typedef typename DataPoint::VectorType VectorType;
     typedef typename DataPoint::MatrixType MatrixType;
 
-    //generate sampled sphere
+    // generate sampled sphere
     int nbPoints = Eigen::internal::random<int>(100, 1000);
 
-    Scalar radius = Eigen::internal::random<Scalar>(1,10);
-    Scalar curvature = Scalar(1.)/radius;
+    Scalar radius    = Eigen::internal::random<Scalar>(1, 10);
+    Scalar curvature = Scalar(1.) / radius;
 
     VectorType center = VectorType::Random() * Eigen::internal::random<Scalar>(1, 10000);
 
     Scalar analysisScale = Eigen::internal::random<Scalar>(0.3, std::sqrt(2.f)) * radius;
 
     Scalar epsilon = testEpsilon<Scalar>();
-    if( _bAddPositionNoise ) // relax a bit the testing threshold
+    if (_bAddPositionNoise) // relax a bit the testing threshold
         epsilon = Scalar(0.1);
 
     vector<DataPoint> vectorPoints(nbPoints);
 
-    for(unsigned int i = 0; i < vectorPoints.size(); ++i)
+    for (unsigned int i = 0; i < vectorPoints.size(); ++i)
     {
         vectorPoints[i] = getPointOnSphere<DataPoint>(radius, center, _bAddPositionNoise, _bAddNormalNoise);
     }
@@ -51,65 +51,71 @@ void testFunction(bool _bAddPositionNoise = false, bool _bAddNormalNoise = false
 
     // Test for each point if dNormal is correct
 #pragma omp parallel for
-    for(int i = 0; i < size; ++i)
+    for (int i = 0; i < size; ++i)
     {
         Fit fit;
         fit.setNeighborFilter({vectorPoints[i].pos(), analysisScale});
         fit.compute(vectorPoints);
 
-        if(fit.isStable())
+        if (fit.isStable())
         {
-            VectorType normal = (vectorPoints[i].pos()-center).normalized();
+            VectorType normal = (vectorPoints[i].pos() - center).normalized();
 
             MatrixType dN = fit.dNormal().template rightCols<DataPoint::Dim>();
 
             Eigen::SelfAdjointEigenSolver<MatrixType> solver(dN);
 
-            VERIFY( std::abs(solver.eigenvalues()[0]) < epsilon );
-            VERIFY( std::abs(solver.eigenvalues()[1]-curvature) < epsilon);
-            VERIFY( std::abs(solver.eigenvalues()[2]-curvature) < epsilon);
+            VERIFY(std::abs(solver.eigenvalues()[0]) < epsilon);
+            VERIFY(std::abs(solver.eigenvalues()[1] - curvature) < epsilon);
+            VERIFY(std::abs(solver.eigenvalues()[2] - curvature) < epsilon);
 
-            VERIFY( std::abs(1-std::abs(normal.dot(solver.eigenvectors().col(0)))) < epsilon );
-            VERIFY( std::abs(normal.dot(solver.eigenvectors().col(1))) < epsilon );
-            VERIFY( std::abs(normal.dot(solver.eigenvectors().col(2))) < epsilon );
+            VERIFY(std::abs(1 - std::abs(normal.dot(solver.eigenvectors().col(0)))) < epsilon);
+            VERIFY(std::abs(normal.dot(solver.eigenvectors().col(1))) < epsilon);
+            VERIFY(std::abs(normal.dot(solver.eigenvectors().col(2))) < epsilon);
         }
     }
 }
 
-template<typename Scalar, int Dim>
+template <typename Scalar, int Dim>
 void callSubTests()
 {
     typedef PointPositionNormal<Scalar, Dim> Point;
-    typedef DistWeightFunc<Point, SmoothWeightKernel<Scalar> > WeightSmoothFunc;
-    typedef DistWeightFunc<Point, ConstantWeightKernel<Scalar> > WeightConstantFunc;
+    typedef DistWeightFunc<Point, SmoothWeightKernel<Scalar>> WeightSmoothFunc;
+    typedef DistWeightFunc<Point, ConstantWeightKernel<Scalar>> WeightConstantFunc;
 
-    typedef Basket<Point,WeightSmoothFunc,OrientedSphereFit, OrientedSphereSpaceDer> FitSmoothOrientedSpaceDer;
-    typedef Basket<Point,WeightConstantFunc,OrientedSphereFit, OrientedSphereSpaceDer> FitConstantOrientedSpaceDer;
-    typedef Basket<Point,WeightSmoothFunc,OrientedSphereFit, OrientedSphereScaleSpaceDer> FitSmoothOrientedScaleSpaceDer;
-    typedef Basket<Point,WeightConstantFunc,OrientedSphereFit, OrientedSphereScaleSpaceDer> FitConstantOrientedScaleSpaceDer;
-    typedef Basket<Point,WeightSmoothFunc,OrientedSphereFit, OrientedSphereSpaceDer, MlsSphereFitDer> FitSmoothOrientedSpaceMlsDer;
-    typedef Basket<Point,WeightConstantFunc,OrientedSphereFit, OrientedSphereSpaceDer, MlsSphereFitDer> FitConstantOrientedSpaceMlsDer;
-    typedef Basket<Point,WeightSmoothFunc,OrientedSphereFit, OrientedSphereScaleSpaceDer, MlsSphereFitDer> FitSmoothOrientedScaleSpaceMlsDer;
-    typedef Basket<Point,WeightConstantFunc,OrientedSphereFit, OrientedSphereScaleSpaceDer, MlsSphereFitDer> FitConstantOrientedScaleSpaceMlsDer;
+    typedef Basket<Point, WeightSmoothFunc, OrientedSphereFit, OrientedSphereSpaceDer> FitSmoothOrientedSpaceDer;
+    typedef Basket<Point, WeightConstantFunc, OrientedSphereFit, OrientedSphereSpaceDer> FitConstantOrientedSpaceDer;
+    typedef Basket<Point, WeightSmoothFunc, OrientedSphereFit, OrientedSphereScaleSpaceDer>
+        FitSmoothOrientedScaleSpaceDer;
+    typedef Basket<Point, WeightConstantFunc, OrientedSphereFit, OrientedSphereScaleSpaceDer>
+        FitConstantOrientedScaleSpaceDer;
+    typedef Basket<Point, WeightSmoothFunc, OrientedSphereFit, OrientedSphereSpaceDer, MlsSphereFitDer>
+        FitSmoothOrientedSpaceMlsDer;
+    typedef Basket<Point, WeightConstantFunc, OrientedSphereFit, OrientedSphereSpaceDer, MlsSphereFitDer>
+        FitConstantOrientedSpaceMlsDer;
+    typedef Basket<Point, WeightSmoothFunc, OrientedSphereFit, OrientedSphereScaleSpaceDer, MlsSphereFitDer>
+        FitSmoothOrientedScaleSpaceMlsDer;
+    typedef Basket<Point, WeightConstantFunc, OrientedSphereFit, OrientedSphereScaleSpaceDer, MlsSphereFitDer>
+        FitConstantOrientedScaleSpaceMlsDer;
 
     cout << "Testing with perfect plane (oriented / unoriented)..." << endl;
-    for(int i = 0; i < g_repeat; ++i)
+    for (int i = 0; i < g_repeat; ++i)
     {
-        CALL_SUBTEST(( testFunction<Point, FitSmoothOrientedSpaceDer>() ));
-        CALL_SUBTEST(( testFunction<Point, FitConstantOrientedSpaceDer>() ));
-        CALL_SUBTEST(( testFunction<Point, FitSmoothOrientedScaleSpaceDer>() ));
-        CALL_SUBTEST(( testFunction<Point, FitConstantOrientedScaleSpaceDer>() ));
-        CALL_SUBTEST(( testFunction<Point, FitSmoothOrientedSpaceMlsDer>() ));
-        CALL_SUBTEST(( testFunction<Point, FitConstantOrientedSpaceMlsDer>() ));
-        CALL_SUBTEST(( testFunction<Point, FitSmoothOrientedScaleSpaceMlsDer>() ));
-        CALL_SUBTEST(( testFunction<Point, FitConstantOrientedScaleSpaceMlsDer>() ));
+        CALL_SUBTEST((testFunction<Point, FitSmoothOrientedSpaceDer>()));
+        CALL_SUBTEST((testFunction<Point, FitConstantOrientedSpaceDer>()));
+        CALL_SUBTEST((testFunction<Point, FitSmoothOrientedScaleSpaceDer>()));
+        CALL_SUBTEST((testFunction<Point, FitConstantOrientedScaleSpaceDer>()));
+        CALL_SUBTEST((testFunction<Point, FitSmoothOrientedSpaceMlsDer>()));
+        CALL_SUBTEST((testFunction<Point, FitConstantOrientedSpaceMlsDer>()));
+        CALL_SUBTEST((testFunction<Point, FitSmoothOrientedScaleSpaceMlsDer>()));
+        CALL_SUBTEST((testFunction<Point, FitConstantOrientedScaleSpaceMlsDer>()));
     }
     cout << "Ok!" << endl;
 }
 
 int main(int argc, char** argv)
 {
-    if(!init_testing(argc, argv))
+    if (!init_testing(argc, argv))
     {
         return EXIT_FAILURE;
     }

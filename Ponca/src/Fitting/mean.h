@@ -9,44 +9,50 @@
 #include "./defines.h"
 #include "./primitive.h"
 
-namespace Ponca {
+namespace Ponca
+{
 
-/*!
-    \brief Compute the barycenter of the input points
-    \inherit Concept::FittingProcedureConcept
+    /*!
+        \brief Compute the barycenter of the input points
+        \inherit Concept::FittingProcedureConcept
 
-    \warning The barycenter is not stored explicitly, but rather computed from the sum of the neighbors positions.
+        \warning The barycenter is not stored explicitly, but rather computed from the sum of the neighbors positions.
 
-    This primitive provides:
-    \verbatim PROVIDES_MEAN_POSITION \endverbatim
-*/
-    template<class DataPoint, class _NFilter, typename T>
-    class MeanPosition : public T {
-    PONCA_FITTING_DECLARE_DEFAULT_TYPES
+        This primitive provides:
+        \verbatim PROVIDES_MEAN_POSITION \endverbatim
+    */
+    template <class DataPoint, class _NFilter, typename T>
+    class MeanPosition : public T
+    {
+        PONCA_FITTING_DECLARE_DEFAULT_TYPES
 
     protected:
-        enum { PROVIDES_MEAN_POSITION };
-        VectorType m_sumP {VectorType::Zero()}; /*!< \brief Sum of the input points vectors */
+        enum
+        {
+            PROVIDES_MEAN_POSITION
+        };
+        VectorType m_sumP{VectorType::Zero()}; /*!< \brief Sum of the input points vectors */
 
     public:
-        PONCA_EXPLICIT_CAST_OPERATORS(MeanPosition,meanPosition)
+        PONCA_EXPLICIT_CAST_OPERATORS(MeanPosition, meanPosition)
         PONCA_FITTING_DECLARE_INIT
         PONCA_FITTING_DECLARE_ADDNEIGHBOR
 
         /// \brief Barycenter of the input points expressed in the global frame
         ///
-        /// Defined as \f$ b(\mathbf{x}) = \frac{\sum_i w_\mathbf{x}(\mathbf{p_i}) \mathbf{p_i}}{\sum_i w_\mathbf{x}(\mathbf{p_i})} \f$,
-        ///  where \f$\left[\mathbf{p_i} \in \text{neighborhood}(\mathbf{x})\right]\f$ are all the point samples in \f$\mathbf{x}\f$'s neighborhood
-        PONCA_MULTIARCH inline VectorType barycenter() const {
-            return Base::getNeighborFilter().convertToGlobalBasis( barycenterLocal() );
+        /// Defined as \f$ b(\mathbf{x}) = \frac{\sum_i w_\mathbf{x}(\mathbf{p_i}) \mathbf{p_i}}{\sum_i
+        /// w_\mathbf{x}(\mathbf{p_i})} \f$,
+        ///  where \f$\left[\mathbf{p_i} \in \text{neighborhood}(\mathbf{x})\right]\f$ are all the point samples in
+        ///  \f$\mathbf{x}\f$'s neighborhood
+        PONCA_MULTIARCH inline VectorType barycenter() const
+        {
+            return Base::getNeighborFilter().convertToGlobalBasis(barycenterLocal());
         }
 
         /*! \brief The distance between the barycenter and the basis center.
             \return 0 for invalid fits
         */
-        PONCA_MULTIARCH inline Scalar barycenterDistance() const {
-            return barycenterLocal().norm();
-        }
+        PONCA_MULTIARCH inline Scalar barycenterDistance() const { return barycenterLocal().norm(); }
 
     protected:
         /// \brief Barycenter of the input points expressed in the local frame
@@ -55,78 +61,85 @@ namespace Ponca {
         /// \warning Provided for internal use only: any access to the barycenter in other computing classes must be
         /// done using this function and not #barycenter()
         ///
-        /// Defined as \f$ b(\mathbf{x}) = \frac{\sum_i w_\mathbf{x}(\mathbf{p_i}) \mathbf{p_i}}{\sum_i w_\mathbf{x}(\mathbf{p_i})} \f$,
+        /// Defined as \f$ b(\mathbf{x}) = \frac{\sum_i w_\mathbf{x}(\mathbf{p_i}) \mathbf{p_i}}{\sum_i
+        /// w_\mathbf{x}(\mathbf{p_i})} \f$,
         ///  where \f$\left[\mathbf{p_i} \in \text{neighborhood}(\mathbf{x})\right]\f$ are all the point samples in
         /// \f$\mathbf{x}\f$'s neighborhood
-        PONCA_MULTIARCH inline VectorType barycenterLocal() const {
-            return (m_sumP / Base::getWeightSum());
-        }
+        PONCA_MULTIARCH inline VectorType barycenterLocal() const { return (m_sumP / Base::getWeightSum()); }
 
-    }; //class MeanPosition
+    }; // class MeanPosition
 
-/*!
-    \brief Compute the mean normal of the input points
-    \inherit Concept::FittingProcedureConcept
+    /*!
+        \brief Compute the mean normal of the input points
+        \inherit Concept::FittingProcedureConcept
 
-    \warning The mean normal is not stored explicitly, but rather computed from the sum of the neighbors normals.
+        \warning The mean normal is not stored explicitly, but rather computed from the sum of the neighbors normals.
 
-    This primitive provides:
-    \verbatim PROVIDES_MEAN_NORMAL \endverbatim
+        This primitive provides:
+        \verbatim PROVIDES_MEAN_NORMAL \endverbatim
 
-    \see MeanNormalDer
-*/
-    template<class DataPoint, class _NFilter, typename T>
-    class MeanNormal : public T {
-    PONCA_FITTING_DECLARE_DEFAULT_TYPES
+        \see MeanNormalDer
+    */
+    template <class DataPoint, class _NFilter, typename T>
+    class MeanNormal : public T
+    {
+        PONCA_FITTING_DECLARE_DEFAULT_TYPES
 
     protected:
-        enum { PROVIDES_MEAN_NORMAL };
-        VectorType m_sumN {VectorType::Zero()};    /*!< \brief Sum of the normal vectors */
+        enum
+        {
+            PROVIDES_MEAN_NORMAL
+        };
+        VectorType m_sumN{VectorType::Zero()}; /*!< \brief Sum of the normal vectors */
 
     public:
-        PONCA_EXPLICIT_CAST_OPERATORS(MeanNormal,meanNormal)
+        PONCA_EXPLICIT_CAST_OPERATORS(MeanNormal, meanNormal)
         PONCA_FITTING_DECLARE_INIT
         PONCA_FITTING_DECLARE_ADDNEIGHBOR
 
         /// \brief Mean of the normals of the input points
         ///
-        /// Defined as \f$ n(\mathbf{x}) = \frac{\sum_i w_\mathbf{x}(\mathbf{p_i}) \mathbf{n_i}}{\sum_i w_\mathbf{x}(\mathbf{p_i})} \f$,
-        ///  where \f$\left[\mathbf{p_i}, \mathbf{n_i} \in \text{neighborhood}(\mathbf{x})\right]\f$ are all the point and normal samples in \f$\mathbf{x}\f$'s neighborhood
-        PONCA_MULTIARCH [[nodiscard]] inline VectorType meanNormalVector() const {
+        /// Defined as \f$ n(\mathbf{x}) = \frac{\sum_i w_\mathbf{x}(\mathbf{p_i}) \mathbf{n_i}}{\sum_i
+        /// w_\mathbf{x}(\mathbf{p_i})} \f$,
+        ///  where \f$\left[\mathbf{p_i}, \mathbf{n_i} \in \text{neighborhood}(\mathbf{x})\right]\f$ are all the point
+        ///  and normal samples in \f$\mathbf{x}\f$'s neighborhood
+        PONCA_MULTIARCH [[nodiscard]] inline VectorType meanNormalVector() const
+        {
             return (m_sumN / Base::getWeightSum());
         }
 
-    }; //class MeanNormal
+    }; // class MeanNormal
 
-/*!
-    \brief Compute the derivatives of the input points barycenter
-    \inherit Concept::FittingProcedureConcept
+    /*!
+        \brief Compute the derivatives of the input points barycenter
+        \inherit Concept::FittingProcedureConcept
 
-    This primitive requires:
-    \verbatim PROVIDES_PRIMITIVE_DERIVATIVE, PROVIDES_MEAN_POSITION\endverbatim
+        This primitive requires:
+        \verbatim PROVIDES_PRIMITIVE_DERIVATIVE, PROVIDES_MEAN_POSITION\endverbatim
 
-    This primitive provides:
-    \verbatim PROVIDES_MEAN_POSITION_DERIVATIVE \endverbatim
+        This primitive provides:
+        \verbatim PROVIDES_MEAN_POSITION_DERIVATIVE \endverbatim
 
-    \see MeanNormal
-*/
-    template<class DataPoint, class _NFilter, int DiffType, typename T>
-    class MeanPositionDer : public T {
-    PONCA_FITTING_DECLARE_DEFAULT_TYPES
-    PONCA_FITTING_DECLARE_DEFAULT_DER_TYPES
+        \see MeanNormal
+    */
+    template <class DataPoint, class _NFilter, int DiffType, typename T>
+    class MeanPositionDer : public T
+    {
+        PONCA_FITTING_DECLARE_DEFAULT_TYPES
+        PONCA_FITTING_DECLARE_DEFAULT_DER_TYPES
 
     protected:
-        enum {
-            Check = Base::PROVIDES_PRIMITIVE_DERIVATIVE &&
-                    Base::PROVIDES_MEAN_POSITION,
-            PROVIDES_MEAN_POSITION_DERIVATIVE,    /*!< \brief Provides derivative of the mean position*/
+        enum
+        {
+            Check = Base::PROVIDES_PRIMITIVE_DERIVATIVE && Base::PROVIDES_MEAN_POSITION,
+            PROVIDES_MEAN_POSITION_DERIVATIVE, /*!< \brief Provides derivative of the mean position*/
         };
 
         /*! \brief Derivatives of the input points vectors */
-        VectorArray m_dSumP {VectorArray::Zero()};
+        VectorArray m_dSumP{VectorArray::Zero()};
 
     public:
-        PONCA_EXPLICIT_CAST_OPERATORS_DER(MeanPositionDer,meanPositionDer)
+        PONCA_EXPLICIT_CAST_OPERATORS_DER(MeanPositionDer, meanPositionDer)
         PONCA_FITTING_DECLARE_INIT
         PONCA_FITTING_DECLARE_ADDNEIGHBOR_DER
 
@@ -134,90 +147,103 @@ namespace Ponca {
         /// \see MeanPosition::barycenterLocal()
         ///
         /// ### Step-by-step derivation from the barycenter definition
-        /// Given the definition of the barycenter \f$ b(\mathbf{x}) = \frac{\sum_i w_\mathbf{x}(\mathbf{p_i}) \mathbf{p_i}}{\sum_i w_\mathbf{x}(\mathbf{p_i})} \f$,
-        /// where \f$\left[\mathbf{p_i} \in \text{neighborhood}(\mathbf{x})\right]\f$ are all the point samples in \f$\mathbf{x}\f$'s neighborhood.
+        /// Given the definition of the barycenter \f$ b(\mathbf{x}) = \frac{\sum_i w_\mathbf{x}(\mathbf{p_i})
+        /// \mathbf{p_i}}{\sum_i w_\mathbf{x}(\mathbf{p_i})} \f$, where \f$\left[\mathbf{p_i} \in
+        /// \text{neighborhood}(\mathbf{x})\right]\f$ are all the point samples in \f$\mathbf{x}\f$'s neighborhood.
         ///
-        /// We denote \f$ t(\mathbf{x}) = \sum_i w_\mathbf{x}(\mathbf{p_i}) \mathbf{p_i} \f$ and \f$ s(\mathbf{x}) = \sum_i w_\mathbf{x}(\mathbf{p_i})\f$,
-        /// such that \f$ b(\mathbf{x}) = \frac{t(\mathbf{x})}{s(\mathbf{x})}\f$.
+        /// We denote \f$ t(\mathbf{x}) = \sum_i w_\mathbf{x}(\mathbf{p_i}) \mathbf{p_i} \f$ and \f$ s(\mathbf{x}) =
+        /// \sum_i w_\mathbf{x}(\mathbf{p_i})\f$, such that \f$ b(\mathbf{x}) = \frac{t(\mathbf{x})}{s(\mathbf{x})}\f$.
         ///
-        /// By definition, \f$ b'(\mathbf{x}) = \frac{s(\mathbf{x})t'(\mathbf{x}) - t(\mathbf{x})s'(\mathbf{x})}{s(\mathbf{x})^2}\f$.
-        /// We have \f$ s'(\mathbf{x}) = \sum_i w'_\mathbf{x}(\mathbf{p_i}) \f$.
+        /// By definition, \f$ b'(\mathbf{x}) = \frac{s(\mathbf{x})t'(\mathbf{x}) -
+        /// t(\mathbf{x})s'(\mathbf{x})}{s(\mathbf{x})^2}\f$. We have \f$ s'(\mathbf{x}) = \sum_i
+        /// w'_\mathbf{x}(\mathbf{p_i}) \f$.
         ///
-        /// We rewrite \f$ t(\mathbf{x}) = \sum u(\mathbf{x})v(\mathbf{x}) \f$, with \f$ u(\mathbf{x}) = w_\mathbf{x}(\mathbf{p_i}) \f$ and \f$ v(\mathbf{x}) = \mathbf{p_i} \f$.
+        /// We rewrite \f$ t(\mathbf{x}) = \sum u(\mathbf{x})v(\mathbf{x}) \f$, with \f$ u(\mathbf{x}) =
+        /// w_\mathbf{x}(\mathbf{p_i}) \f$ and \f$ v(\mathbf{x}) = \mathbf{p_i} \f$.
         ///
-        /// As the point cloud coordinates are constants, \f$v(\mathbf{x})\f$ is constant, its derivative is null, and so \f$  t'(\mathbf{x}) = \sum_i u'(\mathbf{x}) v(\mathbf{x}) = \sum_i w'_\mathbf{x}(\mathbf{p_i}) \mathbf{p_i} \f$.
+        /// As the point cloud coordinates are constants, \f$v(\mathbf{x})\f$ is constant, its derivative is null, and
+        /// so \f$  t'(\mathbf{x}) = \sum_i u'(\mathbf{x}) v(\mathbf{x}) = \sum_i w'_\mathbf{x}(\mathbf{p_i})
+        /// \mathbf{p_i} \f$.
         ///
-        /// Which leads to \f$ b'(\mathbf{x}) = \frac{\sum_i w'_\mathbf{x}(\mathbf{p_i}) \mathbf{p_i} - b(\mathbf{x})\sum w'(\mathbf{x})}{\sum_i w_\mathbf{x}(\mathbf{p_i})} \f$
+        /// Which leads to \f$ b'(\mathbf{x}) = \frac{\sum_i w'_\mathbf{x}(\mathbf{p_i}) \mathbf{p_i} -
+        /// b(\mathbf{x})\sum w'(\mathbf{x})}{\sum_i w_\mathbf{x}(\mathbf{p_i})} \f$
         ///
         /// \note This code is not directly tested, but rather indirectly by testing CovariancePlaneDer::dNormal()
         PONCA_MULTIARCH [[nodiscard]] VectorArray barycenterDerivatives() const
         {
-            return ( m_dSumP - Base::barycenterLocal() * Base::m_dSumW ) / Base::getWeightSum();
+            return (m_dSumP - Base::barycenterLocal() * Base::m_dSumW) / Base::getWeightSum();
         }
 
-    }; //class MeanPositionDer
+    }; // class MeanPositionDer
 
-/*!
-    \brief Compute the derivatives of the input points mean normal
-    \inherit Concept::FittingProcedureConcept
+    /*!
+        \brief Compute the derivatives of the input points mean normal
+        \inherit Concept::FittingProcedureConcept
 
-    This primitive requires:
-    \verbatim PROVIDES_PRIMITIVE_DERIVATIVE, PROVIDES_MEAN_NORMAL\endverbatim
+        This primitive requires:
+        \verbatim PROVIDES_PRIMITIVE_DERIVATIVE, PROVIDES_MEAN_NORMAL\endverbatim
 
-    This primitive provides:
-    \verbatim PROVIDES_MEAN_NORMAL_DERIVATIVE \endverbatim
+        This primitive provides:
+        \verbatim PROVIDES_MEAN_NORMAL_DERIVATIVE \endverbatim
 
-    \see MeanNormal
-*/
-    template<class DataPoint, class _NFilter, int DiffType, typename T>
-    class MeanNormalDer : public T {
+        \see MeanNormal
+    */
+    template <class DataPoint, class _NFilter, int DiffType, typename T>
+    class MeanNormalDer : public T
+    {
         PONCA_FITTING_DECLARE_DEFAULT_TYPES
         PONCA_FITTING_DECLARE_DEFAULT_DER_TYPES
 
     protected:
-        enum {
-            Check = Base::PROVIDES_PRIMITIVE_DERIVATIVE && 
-                    Base::PROVIDES_MEAN_NORMAL,
-            PROVIDES_MEAN_NORMAL_DERIVATIVE,  /*!< \brief Provides derivative of the mean normal*/
+        enum
+        {
+            Check = Base::PROVIDES_PRIMITIVE_DERIVATIVE && Base::PROVIDES_MEAN_NORMAL,
+            PROVIDES_MEAN_NORMAL_DERIVATIVE, /*!< \brief Provides derivative of the mean normal*/
         };
 
         /*! \brief Derivatives of the input normals of the input points vectors*/
-        VectorArray m_dSumN {VectorArray::Zero()};
+        VectorArray m_dSumN{VectorArray::Zero()};
 
     public:
-
-        PONCA_EXPLICIT_CAST_OPERATORS_DER(MeanNormalDer,meanNormalDer)
+        PONCA_EXPLICIT_CAST_OPERATORS_DER(MeanNormalDer, meanNormalDer)
         PONCA_FITTING_DECLARE_INIT
         PONCA_FITTING_DECLARE_ADDNEIGHBOR_DER
 
-    /// \brief Compute the derivative of the mean normal vector of the input points. 
-    /// 
-    /// ### Step-by-step derivation of the mean normal : 
-    ///  Given the definition of the mean normal \f$ n(\mathbf{x}) = \frac{\sum_i w_\mathbf{x}(\mathbf{p_i}) \mathbf{n_i}}{\sum_i w_\mathbf{x}(\mathbf{p_i})} \f$, 
-    /// where \f$\left[\mathbf{p_i}, \mathbf{n_i} \in \text{neighborhood}(\mathbf{x})\right]\f$ are all the point and normal samples in \f$\mathbf{x}\f$'s neighborhood.
-    ///
-    /// We denote \f$ t(\mathbf{x}) = \sum_i w_\mathbf{x}(\mathbf{p_i}) \mathbf{n_i} \f$ and \f$ s(\mathbf{x}) = \sum_i w_\mathbf{x}(\mathbf{p_i})\f$, 
-    /// such that \f$ n(\mathbf{x}) = \frac{t(\mathbf{x})}{s(\mathbf{x})}\f$.
-    ///
-    /// By definition, \f$ n'(\mathbf{x}) = \frac{s(\mathbf{x})t'(\mathbf{x}) - t(\mathbf{x})s'(\mathbf{x})}{s(\mathbf{x})^2}\f$.
-    ///
-    /// Assuming the weight of each normal is dependent on the position, we have \f$ s'(\mathbf{x}) = \sum_i w'_\mathbf{x}(\mathbf{p_i}) \f$.
-    ///
-    /// We rewrite \f$ t(\mathbf{x}) = \sum u(\mathbf{x})v(\mathbf{x}) \f$, with \f$ u(\mathbf{x}) = w_\mathbf{x}(\mathbf{p_i}) \f$ and \f$ v(\mathbf{x}) = \mathbf{n_i} \f$.
-    ///
-    /// Assuming the normal vectors themselves do not change with position, \f$v(\mathbf{x})\f$ is constant, its derivative is null, 
-    /// and so \f$ t'(\mathbf{x}) = \sum_i u'(\mathbf{x}) v(\mathbf{x}) = \sum_i w'_\mathbf{x}(\mathbf{n_i}) \mathbf{n_i} \f$.
-    ///
-    /// Which leads to \f$ n'(\mathbf{x}) = \frac{\sum_i w'_\mathbf{x}(\mathbf{p_i}) \mathbf{n_i} - n(\mathbf{x})\sum_i w'_\mathbf{x}(\mathbf{p_i})}{\sum_i w_\mathbf{x}(\mathbf{p_i})} \f$.
-    /// \note This code is not directly tested. 
+        /// \brief Compute the derivative of the mean normal vector of the input points.
+        ///
+        /// ### Step-by-step derivation of the mean normal :
+        ///  Given the definition of the mean normal \f$ n(\mathbf{x}) = \frac{\sum_i w_\mathbf{x}(\mathbf{p_i})
+        ///  \mathbf{n_i}}{\sum_i w_\mathbf{x}(\mathbf{p_i})} \f$,
+        /// where \f$\left[\mathbf{p_i}, \mathbf{n_i} \in \text{neighborhood}(\mathbf{x})\right]\f$ are all the point
+        /// and normal samples in \f$\mathbf{x}\f$'s neighborhood.
+        ///
+        /// We denote \f$ t(\mathbf{x}) = \sum_i w_\mathbf{x}(\mathbf{p_i}) \mathbf{n_i} \f$ and \f$ s(\mathbf{x}) =
+        /// \sum_i w_\mathbf{x}(\mathbf{p_i})\f$, such that \f$ n(\mathbf{x}) = \frac{t(\mathbf{x})}{s(\mathbf{x})}\f$.
+        ///
+        /// By definition, \f$ n'(\mathbf{x}) = \frac{s(\mathbf{x})t'(\mathbf{x}) -
+        /// t(\mathbf{x})s'(\mathbf{x})}{s(\mathbf{x})^2}\f$.
+        ///
+        /// Assuming the weight of each normal is dependent on the position, we have \f$ s'(\mathbf{x}) = \sum_i
+        /// w'_\mathbf{x}(\mathbf{p_i}) \f$.
+        ///
+        /// We rewrite \f$ t(\mathbf{x}) = \sum u(\mathbf{x})v(\mathbf{x}) \f$, with \f$ u(\mathbf{x}) =
+        /// w_\mathbf{x}(\mathbf{p_i}) \f$ and \f$ v(\mathbf{x}) = \mathbf{n_i} \f$.
+        ///
+        /// Assuming the normal vectors themselves do not change with position, \f$v(\mathbf{x})\f$ is constant, its
+        /// derivative is null, and so \f$ t'(\mathbf{x}) = \sum_i u'(\mathbf{x}) v(\mathbf{x}) = \sum_i
+        /// w'_\mathbf{x}(\mathbf{n_i}) \mathbf{n_i} \f$.
+        ///
+        /// Which leads to \f$ n'(\mathbf{x}) = \frac{\sum_i w'_\mathbf{x}(\mathbf{p_i}) \mathbf{n_i} -
+        /// n(\mathbf{x})\sum_i w'_\mathbf{x}(\mathbf{p_i})}{\sum_i w_\mathbf{x}(\mathbf{p_i})} \f$.
+        /// \note This code is not directly tested.
 
-    PONCA_MULTIARCH [[nodiscard]] VectorArray dMeanNormal() const
-    { 
-        return ( m_dSumN - Base::meanNormalVector() * Base::m_dSumW ) / Base::getWeightSum(); 
-    }
+        PONCA_MULTIARCH [[nodiscard]] VectorArray dMeanNormal() const
+        {
+            return (m_dSumN - Base::meanNormalVector() * Base::m_dSumW) / Base::getWeightSum();
+        }
 
-    }; //class MeanNormalDer
+    }; // class MeanNormalDer
 
 #include "mean.hpp"
 
-} //namespace Ponca
+} // namespace Ponca

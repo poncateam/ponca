@@ -13,58 +13,61 @@
 #include PONCA_MULTIARCH_INCLUDE_STD(cmath)
 #include PONCA_MULTIARCH_INCLUDE_STD(limits)
 
-namespace Ponca {
-
+namespace Ponca
+{
 
 /// \internal
 /// \brief Macro generating code of the Query base classes inhering QueryInputIsIndex.
 /// \note For internal use only
-#define DECLARE_INDEX_QUERY_CLASS(OUT_TYPE)                                                                            \
-/*! \brief Base Query class combining QueryInputIsIndex and QueryOutputIs##OUT_TYPE##.                              */ \
-/*! `IndexQuery` objects acts as a `Range` that can be iterated over.                                               */ \
-/*! They are used as the return type for the index searches                                                         */ \
-/*! and they allow easy access to the result outputs.                                                               */ \
-/*! This specialization of the `IndexQuery` concept is used to iterate over the neighbors of a given point index,   */ \
-/*! using a ##OUT_TYPE## Index Query request.                                                                       */ \
-template <typename Index, typename Scalar>                                                                             \
-struct  OUT_TYPE##IndexQuery : Query<QueryInputIsIndex<Index>, QueryOutputIs##OUT_TYPE<Index, Scalar>>                 \
-{                                                                                                                      \
-    /*! \brief Alias to the inherited base Query  */                                                                   \
-    using Base = Query<QueryInputIsIndex<Index>, QueryOutputIs##OUT_TYPE<Index, Scalar>>;                              \
-    /*! \brief Inherited default constructor  */                                                                       \
-    using Base::Base;                                                                                                  \
-};
-
+#define DECLARE_INDEX_QUERY_CLASS(OUT_TYPE)                                                                           \
+    /*! \brief Base Query class combining QueryInputIsIndex and QueryOutputIs##OUT_TYPE##. */                                                                                                                   \
+    /*! `IndexQuery` objects acts as a `Range` that can be iterated over. */                                                                                                                   \
+    /*! They are used as the return type for the index searches */                                                                                                                   \
+    /*! and they allow easy access to the result outputs. */                                                                                                                   \
+    /*! This specialization of the `IndexQuery` concept is used to iterate over the neighbors of a given point index, \
+     */                                                                                                               \
+    /*! using a ##OUT_TYPE## Index Query request. */                                                                                                                   \
+    template <typename Index, typename Scalar>                                                                        \
+    struct OUT_TYPE##IndexQuery : Query<QueryInputIsIndex<Index>, QueryOutputIs##OUT_TYPE<Index, Scalar>>             \
+    {                                                                                                                 \
+        /*! \brief Alias to the inherited base Query  */                                                              \
+        using Base = Query<QueryInputIsIndex<Index>, QueryOutputIs##OUT_TYPE<Index, Scalar>>;                         \
+        /*! \brief Inherited default constructor  */                                                                  \
+        using Base::Base;                                                                                             \
+    };
 
 /// \internal
 /// \brief Macro generating code of the Query base classes inhering QueryInputIsPosition.
 /// \note For internal use only
-#define DECLARE_POINT_QUERY_CLASS(OUT_TYPE)                                                                            \
-/*! \brief Base Query class combining QueryInputIsPosition and QueryOutputIs##OUT_TYPE##.                           */ \
-/*! `PointQuery` objects acts as a `Range` that can be iterated over.                                               */ \
-/*! They are used as the return type for the index searches                                                         */ \
-/*! and they allow easy access to the result outputs.                                                               */ \
-/*! This specialization of the `PointQuery` concept is used to iterate over the neighbors of a given point position,*/ \
-/*! using a ##OUT_TYPE## Point Query request.                                                                       */ \
-template <typename Index, typename DataPoint>                                                                          \
-struct  OUT_TYPE##PointQuery : Query<QueryInputIsPosition<DataPoint>,                                                  \
-                                     QueryOutputIs##OUT_TYPE<Index, typename DataPoint::Scalar>>                       \
-{                                                                                                                      \
-    /*! \brief Alias to the inherited base Query  */                                                                   \
-    using Base = Query<QueryInputIsPosition<DataPoint>, QueryOutputIs##OUT_TYPE<Index, typename DataPoint::Scalar>>;   \
-    /*! \brief Inherited default constructor  */                                                                       \
-    using Base::Base;                                                                                                  \
-};
+#define DECLARE_POINT_QUERY_CLASS(OUT_TYPE)                                                                     \
+    /*! \brief Base Query class combining QueryInputIsPosition and QueryOutputIs##OUT_TYPE##. */                                                                                                             \
+    /*! `PointQuery` objects acts as a `Range` that can be iterated over. */                                                                                                             \
+    /*! They are used as the return type for the index searches */                                                                                                             \
+    /*! and they allow easy access to the result outputs. */                                                                                                             \
+    /*! This specialization of the `PointQuery` concept is used to iterate over the neighbors of a given point  \
+     * position,*/                                                                                              \
+    /*! using a ##OUT_TYPE## Point Query request. */                                                                                                             \
+    template <typename Index, typename DataPoint>                                                               \
+    struct OUT_TYPE##PointQuery                                                                                 \
+        : Query<QueryInputIsPosition<DataPoint>, QueryOutputIs##OUT_TYPE<Index, typename DataPoint::Scalar>>    \
+    {                                                                                                           \
+        /*! \brief Alias to the inherited base Query  */                                                        \
+        using Base =                                                                                            \
+            Query<QueryInputIsPosition<DataPoint>, QueryOutputIs##OUT_TYPE<Index, typename DataPoint::Scalar>>; \
+        /*! \brief Inherited default constructor  */                                                            \
+        using Base::Base;                                                                                       \
+    };
 
-/// \addtogroup spatialpartitioning
-/// \{
+    /// \addtogroup spatialpartitioning
+    /// \{
 
-////////////////////////////////////////////////////////////////
-// Base classes
-////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////
+    // Base classes
+    ////////////////////////////////////////////////////////////////
 
-/// \brief Base class for queries input type
-    struct QueryInputBase {
+    /// \brief Base class for queries input type
+    struct QueryInputBase
+    {
     };
 
     /*!
@@ -76,8 +79,10 @@ struct  OUT_TYPE##PointQuery : Query<QueryInputIsPosition<DataPoint>,           
      * They are used for easy access to the result outputs.
      * (e.g. to iterate over the neighbors of the evaluated point using a `rangeNeighborsQuery` request).
      */
-    struct QueryOutputBase {
-        struct DummyOutputParameter {
+    struct QueryOutputBase
+    {
+        struct DummyOutputParameter
+        {
         };
     };
 
@@ -90,8 +95,9 @@ struct  OUT_TYPE##PointQuery : Query<QueryInputIsPosition<DataPoint>,           
      * \warning This class has to be specialized for a specific input type, and can't be used as is.
      * \see QueryInputIsIndex, QueryInputIsPosition
      */
-    template<typename InputType_>
-    struct QueryInput : public QueryInputBase {
+    template <typename InputType_>
+    struct QueryInput : public QueryInputBase
+    {
         /// \brief Alias to the templated input type
         using InputType = InputType_;
 
@@ -99,7 +105,8 @@ struct  OUT_TYPE##PointQuery : Query<QueryInputIsPosition<DataPoint>,           
         PONCA_MULTIARCH inline QueryInput(InputType input) : m_input(input) {}
 
         /// \brief Read access to the input
-        PONCA_MULTIARCH inline const InputType &input() const { return m_input; }
+        PONCA_MULTIARCH inline const InputType& input() const { return m_input; }
+
     protected:
         /*!
          * \brief Edit the input
@@ -110,12 +117,11 @@ struct  OUT_TYPE##PointQuery : Query<QueryInputIsPosition<DataPoint>,           
          * Usefull to avoid query reallocation between different requests.
          */
         PONCA_MULTIARCH inline void setInput(const InputType& input) { m_input = input; }
-    
+
     private:
         /// Index of the queried point
         InputType m_input;
     };
-
 
     /*!
      * \brief Extension of `QueryInput` that handles an **index** based search, in a partitioning structure.
@@ -124,28 +130,32 @@ struct  OUT_TYPE##PointQuery : Query<QueryInputIsPosition<DataPoint>,           
      * \see QueryInput
      */
     template <typename Index>
-    struct QueryInputIsIndex : public QueryInput<Index> {
+    struct QueryInputIsIndex : public QueryInput<Index>
+    {
         /// \brief Alias to the inherited type
         using Base = QueryInput<Index>;
         /// \brief Alias to the templated input type (Index)
         using InputType = typename Base::InputType;
 
         /// \brief Default constructor that initialize the input index
-        PONCA_MULTIARCH inline QueryInputIsIndex(const InputType &point = -1)
-                : Base(point) {}
+        PONCA_MULTIARCH inline QueryInputIsIndex(const InputType& point = -1) : Base(point) {}
 
         /// \brief Access operator that resets the input index
-        PONCA_MULTIARCH inline void operator()(const InputType &point = InputType::Zero()){
-            Base::setInput(point);
-        }
+        PONCA_MULTIARCH inline void operator()(const InputType& point = InputType::Zero()) { Base::setInput(point); }
+
     protected:
         /// Functor used to check if a given Idx must be skipped
         template <typename IndexType>
-        PONCA_MULTIARCH inline bool skipIndexFunctor(IndexType idx) const {return Base::input() == idx;};
+        PONCA_MULTIARCH inline bool skipIndexFunctor(IndexType idx) const
+        {
+            return Base::input() == idx;
+        };
         /// Generic method to access input position. The VectorType needs to be passed as a template argument.
         template <typename VectorType, typename Container>
-        PONCA_MULTIARCH inline const VectorType getInputPosition(const Container &c)
-        { return c[Base::input()].pos(); }
+        PONCA_MULTIARCH inline const VectorType getInputPosition(const Container& c)
+        {
+            return c[Base::input()].pos();
+        }
     };
 
     /*!
@@ -154,29 +164,33 @@ struct  OUT_TYPE##PointQuery : Query<QueryInputIsPosition<DataPoint>,           
      * Stores internally the position of the evaluated point.
      * \see QueryInput
      */
-    template<typename DataPoint>
-    struct QueryInputIsPosition : public QueryInput<typename DataPoint::VectorType> {
+    template <typename DataPoint>
+    struct QueryInputIsPosition : public QueryInput<typename DataPoint::VectorType>
+    {
         /// \brief Alias to the inherited type
         using Base = QueryInput<typename DataPoint::VectorType>;
         /// \brief Alias to the templated input type (Index)
         using InputType = typename Base::InputType;
 
         /// \brief Default constructor that initialize the input position
-        PONCA_MULTIARCH inline QueryInputIsPosition(const InputType &point = InputType::Zero())
-                : Base(point) {}
+        PONCA_MULTIARCH inline QueryInputIsPosition(const InputType& point = InputType::Zero()) : Base(point) {}
 
         /// \brief Access operator that resets the input point
-        PONCA_MULTIARCH inline void operator()(const InputType &point = InputType::Zero()){
-            Base::setInput( point );
-        }
+        PONCA_MULTIARCH inline void operator()(const InputType& point = InputType::Zero()) { Base::setInput(point); }
+
     protected:
         /// Functor used to check if a given Idx must be skipped
         template <typename IndexType>
-        PONCA_MULTIARCH inline bool skipIndexFunctor(IndexType idx) const {return false;};
+        PONCA_MULTIARCH inline bool skipIndexFunctor(IndexType idx) const
+        {
+            return false;
+        };
         /// Generic method to access input position. The VectorType needs to be passed as a template argument.
-        template <typename VectorType=typename DataPoint::VectorType, typename Container>
-        PONCA_MULTIARCH inline const VectorType getInputPosition(const Container &)
-        { return Base::input(); }
+        template <typename VectorType = typename DataPoint::VectorType, typename Container>
+        PONCA_MULTIARCH inline const VectorType getInputPosition(const Container&)
+        {
+            return Base::input();
+        }
     };
 
     /*!
@@ -185,19 +199,20 @@ struct  OUT_TYPE##PointQuery : Query<QueryInputIsPosition<DataPoint>,           
      * Stores internally the radius value of a range request.
      * \see QueryOutputBase
      */
-    template<typename Index, typename Scalar>
-    struct QueryOutputIsRange : public QueryOutputBase {
+    template <typename Index, typename Scalar>
+    struct QueryOutputIsRange : public QueryOutputBase
+    {
         /// \brief Alias to Output type
         using OutputParameter = Scalar;
 
         /// \brief Default constructor that initialize the output parameter value
         PONCA_MULTIARCH inline QueryOutputIsRange(OutputParameter radius = OutputParameter(0))
-                : m_squared_radius(PONCA_MULTIARCH_STD_MATH_NAMESPACE(pow)(radius, OutputParameter(2))) {}
+            : m_squared_radius(PONCA_MULTIARCH_STD_MATH_NAMESPACE(pow)(radius, OutputParameter(2)))
+        {
+        }
 
         /// \brief Access operator that resets the output parameter
-        PONCA_MULTIARCH inline void operator() (OutputParameter radius){
-            setRadius( radius );
-        }
+        PONCA_MULTIARCH inline void operator()(OutputParameter radius) { setRadius(radius); }
 
         /*!
          * \brief Generic method to access the radius.
@@ -209,7 +224,8 @@ struct  OUT_TYPE##PointQuery : Query<QueryInputIsPosition<DataPoint>,           
          * `squaredRadius` is overall better for distance comparison.
          * \see squaredRadius
          */
-        PONCA_MULTIARCH inline Scalar radius() const {
+        PONCA_MULTIARCH inline Scalar radius() const
+        {
             PONCA_MULTIARCH_STD_MATH(sqrt);
             return sqrt(m_squared_radius);
         }
@@ -222,16 +238,14 @@ struct  OUT_TYPE##PointQuery : Query<QueryInputIsPosition<DataPoint>,           
          *
          * \note Store internally the squared radius for faster distance comparison
          */
-        PONCA_MULTIARCH inline void setRadius(Scalar radius) {
-            setSquaredRadius (radius*radius);
-        }
+        PONCA_MULTIARCH inline void setRadius(Scalar radius) { setSquaredRadius(radius * radius); }
 
         /// \brief Set the squared radius distance of the query
         PONCA_MULTIARCH inline void setSquaredRadius(Scalar radius) { m_squared_radius = radius; }
 
     protected:
         /// \brief Reset Query for a new search
-        PONCA_MULTIARCH inline void reset() { }
+        PONCA_MULTIARCH inline void reset() {}
         /// \brief Distance threshold used during tree descent to select nodes to explore
         PONCA_MULTIARCH inline Scalar descentDistanceThreshold() const { return m_squared_radius; }
         /// \brief Radius used for the search
@@ -244,8 +258,9 @@ struct  OUT_TYPE##PointQuery : Query<QueryInputIsPosition<DataPoint>,           
      * Stores internally the nearest neighbor and the Distance threshold (for tree descent).
      * \see QueryOutputBase
      */
-    template<typename Index, typename Scalar>
-    struct QueryOutputIsNearest : public QueryOutputBase {
+    template <typename Index, typename Scalar>
+    struct QueryOutputIsNearest : public QueryOutputBase
+    {
         /// \brief Alias to Output type
         using OutputParameter = typename QueryOutputBase::DummyOutputParameter;
 
@@ -253,24 +268,25 @@ struct  OUT_TYPE##PointQuery : Query<QueryInputIsPosition<DataPoint>,           
         PONCA_MULTIARCH QueryOutputIsNearest() {}
 
         /// \brief Access operator
-        PONCA_MULTIARCH inline void operator() (){ }
+        PONCA_MULTIARCH inline void operator()() {}
 
         /// \brief Get the closest points
         PONCA_MULTIARCH Index get() const { return m_nearest; }
 
     protected:
         /// \brief Reset Query for a new search
-        PONCA_MULTIARCH void reset() {
-            m_nearest = -1;
+        PONCA_MULTIARCH void reset()
+        {
+            m_nearest          = -1;
             m_squared_distance = PONCA_MULTIARCH_CU_STD_NAMESPACE(numeric_limits)<Scalar>::max();
         }
         /// \brief Distance threshold used during tree descent to select nodes to explore
         PONCA_MULTIARCH inline Scalar descentDistanceThreshold() const { return m_squared_distance; }
 
         /// \brief Index of the nearest neighbor
-        Index m_nearest {-1};
+        Index m_nearest{-1};
         /// \brief Distance to the nearest neighbor
-        Scalar m_squared_distance {PONCA_MULTIARCH_CU_STD_NAMESPACE(numeric_limits)<Scalar>::max()};
+        Scalar m_squared_distance{PONCA_MULTIARCH_CU_STD_NAMESPACE(numeric_limits) < Scalar > ::max()};
     };
 
     /*! \brief Class to construct the knearest queries
@@ -278,8 +294,9 @@ struct  OUT_TYPE##PointQuery : Query<QueryInputIsPosition<DataPoint>,           
      *  Stores internally the neighbors collection of the knn request and the Distance threshold (for tree descent).
      *  \see QueryOutputBase
      */
-    template<typename Index, typename Scalar>
-    struct QueryOutputIsKNearest : public QueryOutputBase {
+    template <typename Index, typename Scalar>
+    struct QueryOutputIsKNearest : public QueryOutputBase
+    {
         /// \brief Alias to Output type
         using OutputParameter = Index;
 
@@ -287,16 +304,20 @@ struct  OUT_TYPE##PointQuery : Query<QueryInputIsPosition<DataPoint>,           
         PONCA_MULTIARCH inline QueryOutputIsKNearest(OutputParameter k = 0) : m_queue(k) {}
 
         /// \brief Access operator that resets the output parameter
-        PONCA_MULTIARCH inline void operator() (OutputParameter k) { m_queue = limited_priority_queue<IndexSquaredDistance<Index, Scalar>>(k); }
+        PONCA_MULTIARCH inline void operator()(OutputParameter k)
+        {
+            m_queue = limited_priority_queue<IndexSquaredDistance<Index, Scalar>>(k);
+        }
 
         /// \brief Access to the priority queue storing the neighbors
-        PONCA_MULTIARCH inline limited_priority_queue<IndexSquaredDistance<Index, Scalar>> &queue() { return m_queue; }
+        PONCA_MULTIARCH inline limited_priority_queue<IndexSquaredDistance<Index, Scalar>>& queue() { return m_queue; }
 
     protected:
         /// \brief Reset Query for a new search
-        PONCA_MULTIARCH void reset() {
+        PONCA_MULTIARCH void reset()
+        {
             m_queue.clear();
-            m_queue.push({-1, PONCA_MULTIARCH_CU_STD_NAMESPACE(numeric_limits)<Scalar>::max()});
+            m_queue.push({-1, PONCA_MULTIARCH_CU_STD_NAMESPACE(numeric_limits) < Scalar > ::max()});
         }
         /// \brief Distance threshold used during tree descent to select nodes to explore
         PONCA_MULTIARCH inline Scalar descentDistanceThreshold() const { return m_queue.bottom().squared_distance; }
@@ -310,8 +331,9 @@ struct  OUT_TYPE##PointQuery : Query<QueryInputIsPosition<DataPoint>,           
      * \tparam Input_ The query input type corresponds to the value used for the search.
      * \tparam Output_ The query output type corresponds to the results of the search (it can be iterated over).
      */
-    template<typename Input_, typename Output_>
-    struct Query : public Input_, public Output_ {
+    template <typename Input_, typename Output_>
+    struct Query : public Input_, public Output_
+    {
         /// \brief Alias to the input type
         using QueryInType = Input_;
         /// \brief Alias to the output type
@@ -323,39 +345,42 @@ struct  OUT_TYPE##PointQuery : Query<QueryInputIsPosition<DataPoint>,           
                       "QueryInType must inherit Ponca::QueryInputBase");
 
         /// \brief Default constructor that initialize the input parameter only
-        PONCA_MULTIARCH inline Query(const typename QueryInType::InputType &in)
-                : QueryInType(in), QueryOutType() {}
+        PONCA_MULTIARCH inline Query(const typename QueryInType::InputType& in) : QueryInType(in), QueryOutType() {}
 
         /// \brief Default constructor that initialize the input and output parameters
-        PONCA_MULTIARCH inline Query(const typename QueryOutType::OutputParameter &outParam,
-                     const typename QueryInType::InputType &in)
-                : QueryOutType(outParam), QueryInType(in) {}
+        PONCA_MULTIARCH inline Query(const typename QueryOutType::OutputParameter& outParam,
+                                     const typename QueryInType::InputType& in)
+            : QueryOutType(outParam), QueryInType(in)
+        {
+        }
 
         /// \brief Access operator that resets the input and output parameters
-        template<typename Base, typename... outputType>
-        PONCA_MULTIARCH inline Base& operator()(const typename QueryInType::InputType &in, outputType&&... out){
-            QueryInType:: operator()(in);
+        template <typename Base, typename... outputType>
+        PONCA_MULTIARCH inline Base& operator()(const typename QueryInType::InputType& in, outputType&&... out)
+        {
+            QueryInType::operator()(in);
             QueryOutType::operator()(std::forward<outputType>(out)...);
             return *((Base*)(this));
         }
 
         /// \brief Access operator that resets the input parameter only
-        template<typename Base>
-        PONCA_MULTIARCH inline Base& operator()(const typename QueryInType::InputType &in){
-            QueryInType:: operator()(in);
+        template <typename Base>
+        PONCA_MULTIARCH inline Base& operator()(const typename QueryInType::InputType& in)
+        {
+            QueryInType::operator()(in);
             return *((Base*)(this));
         }
     };
 
-DECLARE_INDEX_QUERY_CLASS(KNearest) //KNearestIndexQuery
-DECLARE_INDEX_QUERY_CLASS(Nearest)  //NearestIndexQuery
-DECLARE_INDEX_QUERY_CLASS(Range)    //RangeIndexQuery
-DECLARE_POINT_QUERY_CLASS(KNearest) //KNearestPointQuery
-DECLARE_POINT_QUERY_CLASS(Nearest)  //NearestPointQuery
-DECLARE_POINT_QUERY_CLASS(Range)    //RangePointQuery
+    DECLARE_INDEX_QUERY_CLASS(KNearest) // KNearestIndexQuery
+    DECLARE_INDEX_QUERY_CLASS(Nearest)  // NearestIndexQuery
+    DECLARE_INDEX_QUERY_CLASS(Range)    // RangeIndexQuery
+    DECLARE_POINT_QUERY_CLASS(KNearest) // KNearestPointQuery
+    DECLARE_POINT_QUERY_CLASS(Nearest)  // NearestPointQuery
+    DECLARE_POINT_QUERY_CLASS(Range)    // RangePointQuery
 
-/// \}
+    /// \}
 
 #undef DECLARE_INDEX_QUERY_CLASS
 #undef DECLARE_POINT_QUERY_CLASS
-}
+} // namespace Ponca

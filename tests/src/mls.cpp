@@ -4,7 +4,6 @@
  file, You can obtain one at http://mozilla.org/MPL/2.0/.
 */
 
-
 /*!
     \file test/mls.cpp
     \brief Test basket utility functions
@@ -27,8 +26,9 @@
 using namespace std;
 using namespace Ponca;
 
-template<typename DataPoint, typename Fit>
-void testFunction() {
+template <typename DataPoint, typename Fit>
+void testFunction()
+{
     // Define related structure
     typedef typename DataPoint::Scalar Scalar;
     typedef typename DataPoint::VectorType VectorType;
@@ -36,7 +36,7 @@ void testFunction() {
     // Generate sampled sphere
     int nbPoints = Eigen::internal::random<int>(100, 1000);
 
-    Scalar radius = Eigen::internal::random<Scalar>(1,10);
+    Scalar radius     = Eigen::internal::random<Scalar>(1, 10);
     VectorType center = VectorType::Random() * Eigen::internal::random<Scalar>(1, 10000);
 
     Scalar analysisScale = Scalar(10.) * std::sqrt(Scalar(4. * M_PI) * radius * radius / nbPoints);
@@ -45,7 +45,8 @@ void testFunction() {
 
     vector<DataPoint> vectorPoints(nbPoints);
 
-    for(unsigned int i = 0; i < vectorPoints.size(); ++i) {
+    for (unsigned int i = 0; i < vectorPoints.size(); ++i)
+    {
         // Add noise to the point cloud
         vectorPoints[i] = getPointOnSphere<DataPoint>(radius, center, true, true);
     }
@@ -66,24 +67,25 @@ void testFunction() {
         fitMLS.setNeighborFilter({pos, analysisScale});
         fitMLS.computeMLS(vectorPoints, 1000);
 
-        if(fit.isStable()) {
+        if (fit.isStable())
+        {
             // Tests the primitiveGradient
-            const VectorType& estimated = fit.primitiveGradient(pos).normalized();
+            const VectorType& estimated    = fit.primitiveGradient(pos).normalized();
             const VectorType& estimatedMLS = fitMLS.primitiveGradient(pos).normalized();
-            VectorType theoriticalNormal = (pos-center).normalized();
+            VectorType theoriticalNormal   = (pos - center).normalized();
 
-            Scalar absdot = std::abs(estimated.dot(theoriticalNormal));
+            Scalar absdot    = std::abs(estimated.dot(theoriticalNormal));
             Scalar absdotMLS = std::abs(estimatedMLS.dot(theoriticalNormal));
 
             // Verify that mls gives better result than single projection when comparing with the theoretical values
-            // By checking if absdotMLS is closer to 1 than asbdot (taking into account approximation error using the epsilon)
-            // Dot product of normalized vector can't be greater than 1
-            VERIFY( (absdot + epsilon >= absdotMLS && absdotMLS >= 1 - epsilon) );
+            // By checking if absdotMLS is closer to 1 than asbdot (taking into account approximation error using the
+            // epsilon) Dot product of normalized vector can't be greater than 1
+            VERIFY((absdot + epsilon >= absdotMLS && absdotMLS >= 1 - epsilon));
         }
     }
 }
 
-template<typename Scalar, int Dim>
+template <typename Scalar, int Dim>
 void callSubTests()
 {
     //! [SpecializedPointType]
@@ -94,13 +96,13 @@ void callSubTests()
     //! [WeightFunction]
     typedef DistWeightFunc<Point, SmoothWeightKernel<Scalar>> WeightFunc;
     //! [WeightFunction]
-    typedef Basket<Point, WeightFunc, OrientedSphereFit>      Sphere;
+    typedef Basket<Point, WeightFunc, OrientedSphereFit> Sphere;
     //! [PlaneFitType]
-    typedef Basket<Point, WeightFunc, CovariancePlaneFit>      Plane;
+    typedef Basket<Point, WeightFunc, CovariancePlaneFit> Plane;
     //! [PlaneFitType]
 
-    typedef DistWeightFunc<Point, SmoothWeightKernel<Scalar> > WeightSmoothFunc;
-    typedef Basket<Point,WeightSmoothFunc,OrientedSphereFit> FitSmoothOriented;
+    typedef DistWeightFunc<Point, SmoothWeightKernel<Scalar>> WeightSmoothFunc;
+    typedef Basket<Point, WeightSmoothFunc, OrientedSphereFit> FitSmoothOriented;
 
     // //! [PlaneFitDerTypes]
     // using PlaneScaleDiff = BasketDiff<Plane, FitScaleDer, CovariancePlaneDer>;
@@ -108,15 +110,15 @@ void callSubTests()
     // using PlaneScaleSpaceDiff = BasketDiff<Plane, FitScaleSpaceDer, CovariancePlaneDer>;
     // //! [PlaneFitDerTypes]
 
-    for(int i = 0; i < g_repeat; ++i)
+    for (int i = 0; i < g_repeat; ++i)
     {
-        CALL_SUBTEST(( testFunction<Point, Sphere>() ));
+        CALL_SUBTEST((testFunction<Point, Sphere>()));
     }
 }
 
 int main(int argc, char** argv)
 {
-    if(!init_testing(argc, argv))
+    if (!init_testing(argc, argv))
     {
         return EXIT_FAILURE;
     }

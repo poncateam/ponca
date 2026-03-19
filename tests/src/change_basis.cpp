@@ -4,7 +4,6 @@
  file, You can obtain one at http://mozilla.org/MPL/2.0/.
 */
 
-
 /*!
     \file test/Grenaille/okabe_primitive.cpp
     \brief Test validity Algebraic Sphere Primitive
@@ -22,31 +21,30 @@
 
 #include <vector>
 
-
 using namespace std;
 using namespace Ponca;
 
-template<typename Point, typename Fit>
+template <typename Point, typename Fit>
 void testFunction()
 {
-        // Define related structure
+    // Define related structure
     typedef typename Point::Scalar Scalar;
     typedef typename Point::VectorType VectorType;
 
-    //generate sampled sphere
+    // generate sampled sphere
     int nbPoints = Eigen::internal::random<int>(100, 1000);
 
     Scalar radius = Eigen::internal::random<Scalar>(1., 10.);
 
-    Scalar analysisScale = Scalar(10.) * std::sqrt( Scalar(4. * M_PI) * radius * radius / nbPoints);
-    Scalar centerScale = Eigen::internal::random<Scalar>(1,1000);
-    VectorType center = VectorType::Random() * centerScale;
+    Scalar analysisScale = Scalar(10.) * std::sqrt(Scalar(4. * M_PI) * radius * radius / nbPoints);
+    Scalar centerScale   = Eigen::internal::random<Scalar>(1, 1000);
+    VectorType center    = VectorType::Random() * centerScale;
 
     Scalar epsilon = testEpsilon<Scalar>();
 
-    vector<Point> vecs ( nbPoints );
+    vector<Point> vecs(nbPoints);
 
-    for(unsigned int i = 0; i < vecs.size(); ++i)
+    for (unsigned int i = 0; i < vecs.size(); ++i)
     {
         vecs[i] = getPointOnSphere<Point>(radius, center, true, false, false);
     }
@@ -55,53 +53,54 @@ void testFunction()
     int size = QUICK_TESTS ? 1 : int(vecs.size());
 
 #ifdef NDEBUG
-#pragma omp parallel for
+#    pragma omp parallel for
 #endif
-    for(int k=0; k<size; ++k)
+    for (int k = 0; k < size; ++k)
     {
-        const auto &fitInitPos = vecs[k].pos();
+        const auto& fitInitPos = vecs[k].pos();
 
         Fit fit;
         fit.setNeighborFilter({fitInitPos, analysisScale});
         fit.compute(vecs);
 
-        if(fit.isStable())
+        if (fit.isStable())
         {
             Fit f2 = fit;
             // do two iterations to test successive calls
             VectorType candidate = VectorType::Random();
-            for (unsigned int j = 0; j != 2; ++j){
+            for (unsigned int j = 0; j != 2; ++j)
+            {
                 // move basis center to a portion of the radius of the sphere
-                f2.changeBasis(fitInitPos + Scalar(0.1)*radius*VectorType::Random());
+                f2.changeBasis(fitInitPos + Scalar(0.1) * radius * VectorType::Random());
 
-                VERIFY( (fit.project(candidate) - f2.project(candidate)).norm() - Scalar(1.) < epsilon );
+                VERIFY((fit.project(candidate) - f2.project(candidate)).norm() - Scalar(1.) < epsilon);
             }
         }
     }
 }
 
-template<typename Scalar, int Dim>
+template <typename Scalar, int Dim>
 void callSubTests()
 {
     using Point = PointPositionNormal<Scalar, Dim>;
 
     // We test only primitive functions and not the fitting procedure
-    using NeighborFilter = DistWeightFunc<Point, SmoothWeightKernel<Scalar> >;
+    using NeighborFilter = DistWeightFunc<Point, SmoothWeightKernel<Scalar>>;
     using Sphere         = Basket<Point, NeighborFilter, OrientedSphereFit>;
     using Plane          = Basket<Point, NeighborFilter, CovariancePlaneFit>;
     using Line           = Basket<Point, NeighborFilter, CovarianceLineFit>;
 
-    for(int i = 0; i < g_repeat; ++i)
+    for (int i = 0; i < g_repeat; ++i)
     {
-        CALL_SUBTEST(( testFunction<Point, Sphere>() ));
-        CALL_SUBTEST(( testFunction<Point, Plane>() ));
-        CALL_SUBTEST(( testFunction<Point, Line>() ));
+        CALL_SUBTEST((testFunction<Point, Sphere>()));
+        CALL_SUBTEST((testFunction<Point, Plane>()));
+        CALL_SUBTEST((testFunction<Point, Line>()));
     }
 }
 
 int main(int argc, char** argv)
 {
-    if(!init_testing(argc, argv))
+    if (!init_testing(argc, argv))
     {
         return EXIT_FAILURE;
     }

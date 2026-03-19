@@ -2,7 +2,6 @@
 
 #include <algorithm>
 
-
 /*!
  * \copybrief hasDuplicate(Iter first, Iter last)
  *
@@ -14,16 +13,13 @@
  * \param last The end iterator (obtained using `std::end(container)` on an STL-like container).
  * \return True if the container has a duplicate element inside it.
  */
-template<class RandomIt>
+template <class RandomIt>
 bool randomAccessIteratorHasDuplicate(RandomIt first, RandomIt last)
 {
-    static_assert(std::is_base_of_v<
-        std::random_access_iterator_tag,
-        typename std::iterator_traits<RandomIt>::iterator_category
-    >);
+    static_assert(
+        std::is_base_of_v<std::random_access_iterator_tag, typename std::iterator_traits<RandomIt>::iterator_category>);
 
-    return std::any_of(first, last, [&](const auto& cur)->bool
-    {
+    return std::any_of(first, last, [&](const auto& cur) -> bool {
         // next is the iterator pointing after the current value cur
         RandomIt next = first + (&cur - &(*first)) + 1;
         return std::find(next, last, cur) != last;
@@ -41,13 +37,11 @@ bool randomAccessIteratorHasDuplicate(RandomIt first, RandomIt last)
  * \param last The end iterator (obtained using `std::end(container)` on an STL-like container).
  * \return True if the container has a duplicate element inside it.
  */
-template<class ForwardIt>
+template <class ForwardIt>
 bool forwardIteratorHasDuplicate(ForwardIt first, ForwardIt last)
 {
-    static_assert(std::is_base_of_v<
-        std::forward_iterator_tag,
-        typename std::iterator_traits<ForwardIt>::iterator_category
-    >);
+    static_assert(
+        std::is_base_of_v<std::forward_iterator_tag, typename std::iterator_traits<ForwardIt>::iterator_category>);
 
     for (ForwardIt it = first; it != last; ++it)
     {
@@ -68,13 +62,12 @@ bool forwardIteratorHasDuplicate(ForwardIt first, ForwardIt last)
  * \param last The end iterator (obtained using `std::end(container)` on an STL-like container).
  * \return True if the container has a duplicate element inside it.
  */
-template<typename IteratorT>
+template <typename IteratorT>
 bool hasDuplicate(IteratorT first, IteratorT last)
 {
-    if constexpr (std::is_base_of_v<
-        std::random_access_iterator_tag,
-        typename std::iterator_traits<IteratorT>::iterator_category()
-    >) return randomAccessIteratorHasDuplicate(first, last);
+    if constexpr (std::is_base_of_v<std::random_access_iterator_tag,
+                                    typename std::iterator_traits<IteratorT>::iterator_category()>)
+        return randomAccessIteratorHasDuplicate(first, last);
 
     return forwardIteratorHasDuplicate(first, last);
 }
@@ -88,7 +81,7 @@ bool hasDuplicate(IteratorT first, IteratorT last)
  * \param container The container to check.
  * \return True if the container has a duplicate element inside it.
  */
-template<class ContainerT>
+template <class ContainerT>
 bool hasDuplicate(ContainerT container)
 {
     return hasDuplicate(std::begin(container), std::end(container));

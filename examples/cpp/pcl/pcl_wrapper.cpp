@@ -11,4 +11,5 @@
 #include "pcl_wrapper.hpp"
 
 // Instantiations of specific point types
-PCL_INSTANTIATE_PRODUCT(GlsCurvature, ((pcl::PointNormal)(pcl::PointXYZRGBNormal)(pcl::PointXYZINormal))((pcl::PointNormal)(pcl::PointXYZRGBNormal)(pcl::PointXYZINormal)));
+PCL_INSTANTIATE_PRODUCT(GlsCurvature, ((pcl::PointNormal)(pcl::PointXYZRGBNormal)(pcl::PointXYZINormal))(
+                                          (pcl::PointNormal)(pcl::PointXYZRGBNormal)(pcl::PointXYZINormal)));
