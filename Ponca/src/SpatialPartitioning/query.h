@@ -20,13 +20,13 @@ namespace Ponca
 /// \brief Macro generating code of the Query base classes inhering QueryInputIsIndex.
 /// \note For internal use only
 #define DECLARE_INDEX_QUERY_CLASS(OUT_TYPE)                                                                           \
-    /*! \brief Base Query class combining QueryInputIsIndex and QueryOutputIs##OUT_TYPE##. */                                                                                                                   \
-    /*! `IndexQuery` objects acts as a `Range` that can be iterated over. */                                                                                                                   \
-    /*! They are used as the return type for the index searches */                                                                                                                   \
-    /*! and they allow easy access to the result outputs. */                                                                                                                   \
+    /*! \brief Base Query class combining QueryInputIsIndex and QueryOutputIs##OUT_TYPE##. */                         \
+    /*! `IndexQuery` objects acts as a `Range` that can be iterated over. */                                          \
+    /*! They are used as the return type for the index searches */                                                    \
+    /*! and they allow easy access to the result outputs. */                                                          \
     /*! This specialization of the `IndexQuery` concept is used to iterate over the neighbors of a given point index, \
      */                                                                                                               \
-    /*! using a ##OUT_TYPE## Index Query request. */                                                                                                                   \
+    /*! using a ##OUT_TYPE## Index Query request. */                                                                  \
     template <typename Index, typename Scalar>                                                                        \
     struct OUT_TYPE##IndexQuery : Query<QueryInputIsIndex<Index>, QueryOutputIs##OUT_TYPE<Index, Scalar>>             \
     {                                                                                                                 \
@@ -40,13 +40,13 @@ namespace Ponca
 /// \brief Macro generating code of the Query base classes inhering QueryInputIsPosition.
 /// \note For internal use only
 #define DECLARE_POINT_QUERY_CLASS(OUT_TYPE)                                                                     \
-    /*! \brief Base Query class combining QueryInputIsPosition and QueryOutputIs##OUT_TYPE##. */                                                                                                             \
-    /*! `PointQuery` objects acts as a `Range` that can be iterated over. */                                                                                                             \
-    /*! They are used as the return type for the index searches */                                                                                                             \
-    /*! and they allow easy access to the result outputs. */                                                                                                             \
+    /*! \brief Base Query class combining QueryInputIsPosition and QueryOutputIs##OUT_TYPE##. */                \
+    /*! `PointQuery` objects acts as a `Range` that can be iterated over. */                                    \
+    /*! They are used as the return type for the index searches */                                              \
+    /*! and they allow easy access to the result outputs. */                                                    \
     /*! This specialization of the `PointQuery` concept is used to iterate over the neighbors of a given point  \
      * position,*/                                                                                              \
-    /*! using a ##OUT_TYPE## Point Query request. */                                                                                                             \
+    /*! using a ##OUT_TYPE## Point Query request. */                                                            \
     template <typename Index, typename DataPoint>                                                               \
     struct OUT_TYPE##PointQuery                                                                                 \
         : Query<QueryInputIsPosition<DataPoint>, QueryOutputIs##OUT_TYPE<Index, typename DataPoint::Scalar>>    \

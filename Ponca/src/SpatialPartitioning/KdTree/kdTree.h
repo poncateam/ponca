@@ -141,8 +141,8 @@ namespace Ponca
     using DataPoint      = typename Traits::DataPoint;    /*!< DataPoint given by user via Traits                  */  \
     using IndexType      = typename Traits::IndexType;    /*!< Type used to index points into the PointContainer   */  \
     using LeafSizeType   = typename Traits::LeafSizeType; /*!< Type used to store the size of leaf nodes           */  \
-    using PointContainer = typename Traits::PointContainer; /*!< Container for DataPoint used inside the KdTree */                                                                                                                    \
-    using IndexContainer = typename Traits::IndexContainer; /*!< Container for indices used inside the KdTree */                                                                                                                    \
+    using PointContainer = typename Traits::PointContainer; /*!< Container for DataPoint used inside the KdTree */     \
+    using IndexContainer = typename Traits::IndexContainer; /*!< Container for indices used inside the KdTree */       \
     using NodeIndexType  = typename Traits::NodeIndexType; /*!< Type used to index nodes into the NodeContainer     */ \
     using NodeType       = typename Traits::NodeType;      /*!< Type of nodes used inside the KdTree                */ \
     using NodeContainer  = typename Traits::NodeContainer; /*!< Container for nodes used inside the KdTree          */ \
