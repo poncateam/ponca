@@ -1,7 +1,7 @@
 var classPonca_1_1Plane =
 [
     [ "Base", "classPonca_1_1Plane.html#a511de17d6619e1077f1e2225805803bb", null ],
-    [ "EigenBase", "classPonca_1_1Plane.html#a1781cabbc9b484fd7c0a8ff03a3d9668", null ],
+    [ "EigenBase", "classPonca_1_1Plane.html#a018b8526e9fa74d2dae86765dad4b9b9", null ],
     [ "NeighborFilter", "classPonca_1_1Plane.html#a2cd6808f08a612791b1731bb41abd5a3", null ],
     [ "Scalar", "classPonca_1_1Plane.html#aabd5ab4bb1ac1f801b813deaa1e2ef2d", null ],
     [ "VectorType", "classPonca_1_1Plane.html#a3d05e7a87b12da5c4e243ecb731a391e", null ],

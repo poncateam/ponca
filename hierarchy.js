@@ -43,14 +43,14 @@ var hierarchy =
       [ "Ponca::PrimitiveDer< DataPoint, _NFilter, Type, T >", "classPonca_1_1PrimitiveDer.html", null ]
     ] ],
     [ "Concept::FittingProcedureConcept", null, [
+      [ "MeanNormal< DataPoint, _NFilter, T >", "classMeanNormal.html", null ],
+      [ "MeanNormalDer< DataPoint, _NFilter, DiffType, T >", "classMeanNormalDer.html", null ],
+      [ "MeanPositionDer< DataPoint, _NFilter, DiffType, T >", "classMeanPositionDer.html", null ],
       [ "Ponca::CovarianceFitBase< DataPoint, _NFilter, T >", "classPonca_1_1CovarianceFitBase.html", null ],
       [ "Ponca::CovarianceLineFitImpl< DataPoint, _NFilter, T >", "classPonca_1_1CovarianceLineFitImpl.html", null ],
       [ "Ponca::CovariancePlaneFitImpl< DataPoint, _NFilter, T >", "classPonca_1_1CovariancePlaneFitImpl.html", null ],
-      [ "Ponca::MeanNormal< DataPoint, _NFilter, T >", "classPonca_1_1MeanNormal.html", null ],
-      [ "Ponca::MeanNormalDer< DataPoint, _NFilter, DiffType, T >", "classPonca_1_1MeanNormalDer.html", null ],
       [ "Ponca::MeanPlaneFitImpl< DataPoint, _NFilter, T >", "classPonca_1_1MeanPlaneFitImpl.html", null ],
       [ "Ponca::MeanPosition< DataPoint, _NFilter, T >", "classPonca_1_1MeanPosition.html", null ],
-      [ "Ponca::MeanPositionDer< DataPoint, _NFilter, DiffType, T >", "classPonca_1_1MeanPositionDer.html", null ],
       [ "Ponca::OrientedSphereFitImpl< DataPoint, _NFilter, T >", "classPonca_1_1OrientedSphereFitImpl.html", null ],
       [ "Ponca::SphereFitImpl< DataPoint, _NFilter, T >", "classPonca_1_1SphereFitImpl.html", null ],
       [ "Ponca::UnorientedSphereFitImpl< DataPoint, _NFilter, T >", "classPonca_1_1UnorientedSphereFitImpl.html", null ]
@@ -203,6 +203,9 @@ var hierarchy =
       [ "Ponca::StaticKdTree< DataPoint >", "structPonca_1_1StaticKdTree.html", null ]
     ] ],
     [ "T", null, [
+      [ "MeanNormal< DataPoint, _NFilter, T >", "classMeanNormal.html", null ],
+      [ "MeanNormalDer< DataPoint, _NFilter, DiffType, T >", "classMeanNormalDer.html", null ],
+      [ "MeanPositionDer< DataPoint, _NFilter, DiffType, T >", "classMeanPositionDer.html", null ],
       [ "Ponca::AlgebraicSphere< DataPoint, _NFilter, T >", "classPonca_1_1AlgebraicSphere.html", null ],
       [ "Ponca::CovarianceFitBase< DataPoint, _NFilter, T >", "classPonca_1_1CovarianceFitBase.html", null ],
       [ "Ponca::CovarianceFitDer< DataPoint, _NFilter, DiffType, T >", "classPonca_1_1CovarianceFitDer.html", null ],
@@ -215,11 +218,8 @@ var hierarchy =
       [ "Ponca::GLSParam< DataPoint, _NFilter, T >", "classPonca_1_1GLSParam.html", null ],
       [ "Ponca::HeightField< DataPoint, _NFilter, T >", "classPonca_1_1HeightField.html", null ],
       [ "Ponca::Line< DataPoint, _NFilter, T >", "classPonca_1_1Line.html", null ],
-      [ "Ponca::MeanNormal< DataPoint, _NFilter, T >", "classPonca_1_1MeanNormal.html", null ],
-      [ "Ponca::MeanNormalDer< DataPoint, _NFilter, DiffType, T >", "classPonca_1_1MeanNormalDer.html", null ],
       [ "Ponca::MeanPlaneFitImpl< DataPoint, _NFilter, T >", "classPonca_1_1MeanPlaneFitImpl.html", null ],
       [ "Ponca::MeanPosition< DataPoint, _NFilter, T >", "classPonca_1_1MeanPosition.html", null ],
-      [ "Ponca::MeanPositionDer< DataPoint, _NFilter, DiffType, T >", "classPonca_1_1MeanPositionDer.html", null ],
       [ "Ponca::MlsSphereFitDer< DataPoint, _NFilter, DiffType, T >", "classPonca_1_1MlsSphereFitDer.html", null ],
       [ "Ponca::MongePatch< DataPoint, _NFilter, T >", "classPonca_1_1MongePatch.html", null ],
       [ "Ponca::MongePatchQuadraticFitImpl< DataPoint, _NFilter, T >", "classPonca_1_1MongePatchQuadraticFitImpl.html", null ],

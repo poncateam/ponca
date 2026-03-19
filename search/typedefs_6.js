@@ -1,10 +1,10 @@
 var searchData=
 [
-  ['kdtreeknearestindexquery_0',['KdTreeKNearestIndexQuery',['../namespacePonca.html#a2d7ca28c8b7f474a5631a5fe5b255a65',1,'Ponca']]],
-  ['kdtreeknearestpointquery_1',['KdTreeKNearestPointQuery',['../namespacePonca.html#adf9919566115c78b89deee24b12d0afe',1,'Ponca']]],
-  ['kdtreenearestindexquery_2',['KdTreeNearestIndexQuery',['../namespacePonca.html#adee57f01481a113fd4e85884db2dc824',1,'Ponca']]],
-  ['kdtreenearestpointquery_3',['KdTreeNearestPointQuery',['../namespacePonca.html#aa504ed3d8c41574a71b479a88076dbbf',1,'Ponca']]],
-  ['kdtreerangeindexquery_4',['KdTreeRangeIndexQuery',['../namespacePonca.html#a7815a4253ccae8a5c0e4fa2cbb206b17',1,'Ponca']]],
-  ['kdtreerangepointquery_5',['KdTreeRangePointQuery',['../namespacePonca.html#ac3fc0a276495b2cb4a0a0b0e31556781',1,'Ponca']]],
+  ['kdtreeknearestindexquery_0',['KdTreeKNearestIndexQuery',['../namespacePonca.html#a33b8cc759fbd256e887cc5efafa32935',1,'Ponca']]],
+  ['kdtreeknearestpointquery_1',['KdTreeKNearestPointQuery',['../namespacePonca.html#a0ebbdc9304b6d3c57f33459bb94303fc',1,'Ponca']]],
+  ['kdtreenearestindexquery_2',['KdTreeNearestIndexQuery',['../namespacePonca.html#aa2008cddd81b18e9118eae8b4ea9c9a2',1,'Ponca']]],
+  ['kdtreenearestpointquery_3',['KdTreeNearestPointQuery',['../namespacePonca.html#af453fde256975c5edf070f9775ae7443',1,'Ponca']]],
+  ['kdtreerangeindexquery_4',['KdTreeRangeIndexQuery',['../namespacePonca.html#a6ce83058be238352c310c7eb68f4e9cb',1,'Ponca']]],
+  ['kdtreerangepointquery_5',['KdTreeRangePointQuery',['../namespacePonca.html#aa7967971616ab3249a526300a06113f5',1,'Ponca']]],
   ['knngraph_6',['KnnGraph',['../namespacePonca.html#ab7bf93ae8146ea5f4471c1d06fa8895e',1,'Ponca']]]
 ];

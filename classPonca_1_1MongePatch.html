@@ -51,7 +51,7 @@ MathJax.Hub.Config({
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Ponca
-   &#160;<span id="projectnumber">ff18772cb1e492269a8bd2895da1f5d816a1ae25</span>
+   &#160;<span id="projectnumber">19ef58fd3760f23a8af99a5eeac4f934757e30d9</span>
    </div>
    <div id="projectbrief">Point Cloud Analysis library</div>
   </td>
@@ -192,12 +192,12 @@ Public Member Functions</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-types" name="pro-types"></a>
 Protected Types</h2></td></tr>
-<tr class="memitem:aa59c9c12d3db9678bbd60fcfd9334d32" id="r_aa59c9c12d3db9678bbd60fcfd9334d32"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom">{ <a class="el" href="classPonca_1_1MongePatch.html#aa59c9c12d3db9678bbd60fcfd9334d32a09b0b3c6090066b1cdb3da40b3f958ba">Check</a>
-, <a class="el" href="classPonca_1_1MongePatch.html#aa59c9c12d3db9678bbd60fcfd9334d32a3e64945766cc0ee76e85dfb32ea8e2b7">PROVIDES_MONGE_PATCH</a>
-, <a class="el" href="classPonca_1_1MongePatch.html#aa59c9c12d3db9678bbd60fcfd9334d32af1068f9f36d4a36e5b59580d47a0caa8">PROVIDES_FIRST_FUNDAMENTAL_FORM_COMPONENTS</a>
-, <a class="el" href="classPonca_1_1MongePatch.html#aa59c9c12d3db9678bbd60fcfd9334d32a8caa5d9b1acd083aabb98a002b1b7ffe">PROVIDES_SECOND_FUNDAMENTAL_FORM_COMPONENTS</a>
+<tr class="memitem:a4675871a8e84d71e31434cf42adbab4d" id="r_a4675871a8e84d71e31434cf42adbab4d"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom">{ <a class="el" href="classPonca_1_1MongePatch.html#a4675871a8e84d71e31434cf42adbab4da09b0b3c6090066b1cdb3da40b3f958ba">Check</a>
+, <a class="el" href="classPonca_1_1MongePatch.html#a4675871a8e84d71e31434cf42adbab4da3e64945766cc0ee76e85dfb32ea8e2b7">PROVIDES_MONGE_PATCH</a>
+, <a class="el" href="classPonca_1_1MongePatch.html#a4675871a8e84d71e31434cf42adbab4daf1068f9f36d4a36e5b59580d47a0caa8">PROVIDES_FIRST_FUNDAMENTAL_FORM_COMPONENTS</a>
+, <a class="el" href="classPonca_1_1MongePatch.html#a4675871a8e84d71e31434cf42adbab4da8caa5d9b1acd083aabb98a002b1b7ffe">PROVIDES_SECOND_FUNDAMENTAL_FORM_COMPONENTS</a>
  }</td></tr>
-<tr class="separator:aa59c9c12d3db9678bbd60fcfd9334d32"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="separator:a4675871a8e84d71e31434cf42adbab4d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aeff18c01f716d232b01c6e25f3b49f7a" id="r_aeff18c01f716d232b01c6e25f3b49f7a"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1MongePatch.html#aeff18c01f716d232b01c6e25f3b49f7a">Base</a> = T</td></tr>
 <tr class="memdesc:aeff18c01f716d232b01c6e25f3b49f7a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Base class of the procedure.  <br /></td></tr>
 <tr class="separator:aeff18c01f716d232b01c6e25f3b49f7a"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -207,8 +207,9 @@ Protected Types</h2></td></tr>
 class Ponca::MongePatch&lt; DataPoint, _NFilter, T &gt;</div><p>Monge Patch primitive, defined as \( \mathbf{x}(u,v)= (u,v,h(u,v)) \), with \(h(u,v)\) defined by a Base class. </p>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="classPonca_1_1MongePatchQuadraticFitImpl.html" title="Extension to compute the best fit quadric on 3d points expressed as .">MongePatchQuadraticFitImpl</a> and <a class="el" href="classPonca_1_1MongePatchRestrictedQuadraticFitImpl.html" title="Extension to compute the best fit restricted quadric on 3d points expressed as .">MongePatchRestrictedQuadraticFitImpl</a></dd></dl>
 <dl class="section warning"><dt>Warning</dt><dd>Internally, the patch is represented as (h(u,v), u, v) because <a class="el" href="classPonca_1_1CovariancePlaneFitImpl.html#a429f5387d3e7ba2fa8f1fd729d3175b4" title="Express a point in ambient space relatively to the tangent plane.">CovariancePlaneFitImpl::worldToTangentPlane()</a> wraps up coordinates in this order (height, u and v).</dd></dl>
-<p>This primitive provides: </p><pre class="fragment">PROVIDES_MONGE_PATCH, PROVIDES_FIRST_FUNDAMENTAL_FORM_COMPONENTS, PROVIDES_SECOND_FUNDAMENTAL_FORM_COMPONENTS </pre><p>This primitive requires: </p><pre class="fragment">PROVIDES_PLANE, PROVIDES_TANGENT_PLANE_BASIS, PROVIDES_HEIGHTFIELD </pre> 
-<p class="definition">Definition at line <a class="el" href="mongePatch_8h_source.html#l00036">36</a> of file <a class="el" href="mongePatch_8h_source.html">mongePatch.h</a>.</p>
+<p>This primitive provides: </p><pre class="fragment">PROVIDES_MONGE_PATCH, PROVIDES_FIRST_FUNDAMENTAL_FORM_COMPONENTS,
+PROVIDES_SECOND_FUNDAMENTAL_FORM_COMPONENTS </pre><p>This primitive requires: </p><pre class="fragment">PROVIDES_PLANE, PROVIDES_TANGENT_PLANE_BASIS, PROVIDES_HEIGHTFIELD </pre> 
+<p class="definition">Definition at line <a class="el" href="mongePatch_8h_source.html#l00037">37</a> of file <a class="el" href="mongePatch_8h_source.html">mongePatch.h</a>.</p>
 </div><h2 class="groupheader">Member Typedef Documentation</h2>
 <a id="aeff18c01f716d232b01c6e25f3b49f7a" name="aeff18c01f716d232b01c6e25f3b49f7a"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#aeff18c01f716d232b01c6e25f3b49f7a">&#9670;&#160;</a></span>Base</h2>
@@ -234,7 +235,7 @@ template&lt;class DataPoint , class _NFilter , typename T &gt; </div>
 
 <p>Base class of the procedure. </p>
 
-<p class="definition">Definition at line <a class="el" href="mongePatch_8h_source.html#l00038">38</a> of file <a class="el" href="mongePatch_8h_source.html">mongePatch.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="mongePatch_8h_source.html#l00039">39</a> of file <a class="el" href="mongePatch_8h_source.html">mongePatch.h</a>.</p>
 
 </div>
 </div>
@@ -254,7 +255,7 @@ template&lt;class DataPoint , class _NFilter , typename T &gt; </div>
 
 <p>Alias to the filter applied on the neighbors. </p>
 
-<p class="definition">Definition at line <a class="el" href="mongePatch_8h_source.html#l00038">38</a> of file <a class="el" href="mongePatch_8h_source.html">mongePatch.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="mongePatch_8h_source.html#l00039">39</a> of file <a class="el" href="mongePatch_8h_source.html">mongePatch.h</a>.</p>
 
 </div>
 </div>
@@ -274,7 +275,7 @@ template&lt;class DataPoint , class _NFilter , typename T &gt; </div>
 
 <p>Alias to scalar type. </p>
 
-<p class="definition">Definition at line <a class="el" href="mongePatch_8h_source.html#l00038">38</a> of file <a class="el" href="mongePatch_8h_source.html">mongePatch.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="mongePatch_8h_source.html#l00039">39</a> of file <a class="el" href="mongePatch_8h_source.html">mongePatch.h</a>.</p>
 
 </div>
 </div>
@@ -294,13 +295,13 @@ template&lt;class DataPoint , class _NFilter , typename T &gt; </div>
 
 <p>Alias to vector type. </p>
 
-<p class="definition">Definition at line <a class="el" href="mongePatch_8h_source.html#l00038">38</a> of file <a class="el" href="mongePatch_8h_source.html">mongePatch.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="mongePatch_8h_source.html#l00039">39</a> of file <a class="el" href="mongePatch_8h_source.html">mongePatch.h</a>.</p>
 
 </div>
 </div>
 <h2 class="groupheader">Member Enumeration Documentation</h2>
-<a id="aa59c9c12d3db9678bbd60fcfd9334d32" name="aa59c9c12d3db9678bbd60fcfd9334d32"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa59c9c12d3db9678bbd60fcfd9334d32">&#9670;&#160;</a></span>anonymous enum</h2>
+<a id="a4675871a8e84d71e31434cf42adbab4d" name="a4675871a8e84d71e31434cf42adbab4d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4675871a8e84d71e31434cf42adbab4d">&#9670;&#160;</a></span>anonymous enum</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -321,17 +322,17 @@ template&lt;class DataPoint , class _NFilter , typename T &gt; </div>
 </table>
 </div><div class="memdoc">
 <table class="fieldtable">
-<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="aa59c9c12d3db9678bbd60fcfd9334d32a09b0b3c6090066b1cdb3da40b3f958ba" name="aa59c9c12d3db9678bbd60fcfd9334d32a09b0b3c6090066b1cdb3da40b3f958ba"></a>Check&#160;</td><td class="fielddoc"><p>Requires a heightfield function. </p>
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="a4675871a8e84d71e31434cf42adbab4da09b0b3c6090066b1cdb3da40b3f958ba" name="a4675871a8e84d71e31434cf42adbab4da09b0b3c6090066b1cdb3da40b3f958ba"></a>Check&#160;</td><td class="fielddoc"><p>Requires a heightfield function. </p>
 </td></tr>
-<tr><td class="fieldname"><a id="aa59c9c12d3db9678bbd60fcfd9334d32a3e64945766cc0ee76e85dfb32ea8e2b7" name="aa59c9c12d3db9678bbd60fcfd9334d32a3e64945766cc0ee76e85dfb32ea8e2b7"></a>PROVIDES_MONGE_PATCH&#160;</td><td class="fielddoc"><p>Provides <a class="el" href="classPonca_1_1MongePatch.html" title="Monge Patch primitive, defined as , with  defined by a Base class.">MongePatch</a> API. </p>
+<tr><td class="fieldname"><a id="a4675871a8e84d71e31434cf42adbab4da3e64945766cc0ee76e85dfb32ea8e2b7" name="a4675871a8e84d71e31434cf42adbab4da3e64945766cc0ee76e85dfb32ea8e2b7"></a>PROVIDES_MONGE_PATCH&#160;</td><td class="fielddoc"><p>Provides <a class="el" href="classPonca_1_1MongePatch.html" title="Monge Patch primitive, defined as , with  defined by a Base class.">MongePatch</a> API. </p>
 </td></tr>
-<tr><td class="fieldname"><a id="aa59c9c12d3db9678bbd60fcfd9334d32af1068f9f36d4a36e5b59580d47a0caa8" name="aa59c9c12d3db9678bbd60fcfd9334d32af1068f9f36d4a36e5b59580d47a0caa8"></a>PROVIDES_FIRST_FUNDAMENTAL_FORM_COMPONENTS&#160;</td><td class="fielddoc"><p>Provides first fundamental form. </p>
+<tr><td class="fieldname"><a id="a4675871a8e84d71e31434cf42adbab4daf1068f9f36d4a36e5b59580d47a0caa8" name="a4675871a8e84d71e31434cf42adbab4daf1068f9f36d4a36e5b59580d47a0caa8"></a>PROVIDES_FIRST_FUNDAMENTAL_FORM_COMPONENTS&#160;</td><td class="fielddoc"><p>Provides first fundamental form. </p>
 </td></tr>
-<tr><td class="fieldname"><a id="aa59c9c12d3db9678bbd60fcfd9334d32a8caa5d9b1acd083aabb98a002b1b7ffe" name="aa59c9c12d3db9678bbd60fcfd9334d32a8caa5d9b1acd083aabb98a002b1b7ffe"></a>PROVIDES_SECOND_FUNDAMENTAL_FORM_COMPONENTS&#160;</td><td class="fielddoc"><p>Provides second fundamental form. </p>
+<tr><td class="fieldname"><a id="a4675871a8e84d71e31434cf42adbab4da8caa5d9b1acd083aabb98a002b1b7ffe" name="a4675871a8e84d71e31434cf42adbab4da8caa5d9b1acd083aabb98a002b1b7ffe"></a>PROVIDES_SECOND_FUNDAMENTAL_FORM_COMPONENTS&#160;</td><td class="fielddoc"><p>Provides second fundamental form. </p>
 </td></tr>
 </table>
 
-<p class="definition">Definition at line <a class="el" href="mongePatch_8h_source.html#l00042">42</a> of file <a class="el" href="mongePatch_8h_source.html">mongePatch.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="mongePatch_8h_source.html#l00043">43</a> of file <a class="el" href="mongePatch_8h_source.html">mongePatch.h</a>.</p>
 
 </div>
 </div>
@@ -410,7 +411,7 @@ template&lt;class DataPoint , class _NFilter , typename T &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="mongePatch_8h_source.html#l00104">104</a> of file <a class="el" href="mongePatch_8h_source.html">mongePatch.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="mongePatch_8h_source.html#l00105">105</a> of file <a class="el" href="mongePatch_8h_source.html">mongePatch.h</a>.</p>
 
 </div>
 </div>
@@ -537,7 +538,7 @@ template&lt;class DataPoint , class _NFilter , typename T &gt; </div>
 <p>Value of the scalar field at a given point. </p>
 <dl class="section see"><dt>See also</dt><dd>method <code>#isSigned</code> of the plane fit to check if the sign is reliable </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="mongePatch_8h_source.html#l00067">67</a> of file <a class="el" href="mongePatch_8h_source.html">mongePatch.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="mongePatch_8h_source.html#l00064">64</a> of file <a class="el" href="mongePatch_8h_source.html">mongePatch.h</a>.</p>
 
 </div>
 </div>
@@ -665,7 +666,7 @@ template&lt;class DataPoint , class _NFilter , typename T &gt; </div>
 <p>Orthogonal projection on the patch. </p>
 <p>Given a point p and its local representation q, project the point such that \(h(q.x(),q.y())-q.z()=0\) </p>
 
-<p class="definition">Definition at line <a class="el" href="mongePatch_8h_source.html#l00075">75</a> of file <a class="el" href="mongePatch_8h_source.html">mongePatch.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="mongePatch_8h_source.html#l00074">74</a> of file <a class="el" href="mongePatch_8h_source.html">mongePatch.h</a>.</p>
 
 </div>
 </div>
@@ -711,7 +712,7 @@ template&lt;class DataPoint , class _NFilter , typename T &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="mongePatch_8h_source.html#l00114">114</a> of file <a class="el" href="mongePatch_8h_source.html">mongePatch.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="mongePatch_8h_source.html#l00115">115</a> of file <a class="el" href="mongePatch_8h_source.html">mongePatch.h</a>.</p>
 
 </div>
 </div>
@@ -721,7 +722,7 @@ template&lt;class DataPoint , class _NFilter , typename T &gt; </div>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="namespacePonca.html">Ponca</a></li><li class="navelem"><a class="el" href="classPonca_1_1MongePatch.html">MongePatch</a></li>
-    <li class="footer">Generated on Wed Mar 18 2026 16:17:06 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
+    <li class="footer">Generated on Thu Mar 19 2026 17:42:38 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
   </ul>
 </div>
 </body>

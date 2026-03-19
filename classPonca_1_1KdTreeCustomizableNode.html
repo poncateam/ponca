@@ -51,7 +51,7 @@ MathJax.Hub.Config({
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Ponca
-   &#160;<span id="projectnumber">ff18772cb1e492269a8bd2895da1f5d816a1ae25</span>
+   &#160;<span id="projectnumber">19ef58fd3760f23a8af99a5eeac4f934757e30d9</span>
    </div>
    <div id="projectbrief">Point Cloud Analysis library</div>
   </td>
@@ -147,9 +147,9 @@ $(document).ready(function(){initNavTree('classPonca_1_1KdTreeCustomizableNode.h
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-types" name="pub-types"></a>
 Public Types</h2></td></tr>
-<tr class="memitem:a3ff33d29b528151383a3f6f2ef8c77dd" id="r_a3ff33d29b528151383a3f6f2ef8c77dd"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom">: std::size_t { <a class="el" href="classPonca_1_1KdTreeCustomizableNode.html#a3ff33d29b528151383a3f6f2ef8c77dda994e038a05f71b6c9085de8fc9141314">MAX_COUNT</a> = std::size_t(2) &lt;&lt; InnerType::INDEX_BITS
+<tr class="memitem:a0fbe242e339ac603aae08692f5aea1ce" id="r_a0fbe242e339ac603aae08692f5aea1ce"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom">: std::size_t { <a class="el" href="classPonca_1_1KdTreeCustomizableNode.html#a0fbe242e339ac603aae08692f5aea1cea994e038a05f71b6c9085de8fc9141314">MAX_COUNT</a> = std::size_t(2) &lt;&lt; InnerType::INDEX_BITS
  }</td></tr>
-<tr class="separator:a3ff33d29b528151383a3f6f2ef8c77dd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="separator:a0fbe242e339ac603aae08692f5aea1ce"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a29a80e5e7a5067d14ade8ab15b4cea5a" id="r_a29a80e5e7a5067d14ade8ab15b4cea5a"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1KdTreeCustomizableNode.html#a29a80e5e7a5067d14ade8ab15b4cea5a">AabbType</a> = Eigen::AlignedBox&lt; Scalar, DataPoint::Dim &gt;</td></tr>
 <tr class="memdesc:a29a80e5e7a5067d14ade8ab15b4cea5a"><td class="mdescLeft">&#160;</td><td class="mdescRight">The type used to store node bounding boxes.  <br /></td></tr>
 <tr class="separator:a29a80e5e7a5067d14ade8ab15b4cea5a"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -206,50 +206,54 @@ Protected Member Functions</h2></td></tr>
 class Ponca::KdTreeCustomizableNode&lt; Index, NodeIndex, DataPoint, LeafSize, _InnerNodeType, _LeafNodeType &gt;</div><p>The node type used by default by the kd-tree. </p>
 <p>It is possible to modify the Inner and Leaf node types by inheritance. For instance, to add a Bounding box to inner nodes, define a custom inner node type:</p>
 <div class="fragment"><div class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> NodeIndex, <span class="keyword">typename</span> Scalar, <span class="keywordtype">int</span> DIM, <span class="keyword">typename</span> _AabbType = Eigen::AlignedBox&lt;Scalar, DIM&gt;&gt;</div>
-<div class="line"><span class="keyword">struct </span>MyKdTreeInnerNode : <span class="keyword">public</span> <a class="code hl_struct" href="structPonca_1_1KdTreeDefaultInnerNode.html">Ponca::KdTreeDefaultInnerNode</a>&lt;NodeIndex, Scalar, DIM&gt; {</div>
+<div class="line"><span class="keyword">struct </span>MyKdTreeInnerNode : <span class="keyword">public</span> <a class="code hl_struct" href="structPonca_1_1KdTreeDefaultInnerNode.html">Ponca::KdTreeDefaultInnerNode</a>&lt;NodeIndex, Scalar, DIM&gt;</div>
+<div class="line">{</div>
 <div class="line">    <span class="keyword">using </span><a class="code hl_typedef" href="classPonca_1_1KdTreeCustomizableNode.html#a29a80e5e7a5067d14ade8ab15b4cea5a">AabbType</a> = _AabbType;</div>
 <div class="line">    <a class="code hl_typedef" href="classPonca_1_1KdTreeCustomizableNode.html#a29a80e5e7a5067d14ade8ab15b4cea5a">AabbType</a> m_aabb{};</div>
 <div class="line">};</div>
-<div class="ttc" id="aclassPonca_1_1KdTreeCustomizableNode_html_a29a80e5e7a5067d14ade8ab15b4cea5a"><div class="ttname"><a href="classPonca_1_1KdTreeCustomizableNode.html#a29a80e5e7a5067d14ade8ab15b4cea5a">Ponca::KdTreeCustomizableNode::AabbType</a></div><div class="ttdeci">Eigen::AlignedBox&lt; Scalar, DataPoint::Dim &gt; AabbType</div><div class="ttdoc">The type used to store node bounding boxes.</div><div class="ttdef"><b>Definition</b> <a href="kdTreeTraits_8h_source.html#l00133">kdTreeTraits.h:133</a></div></div>
+<div class="ttc" id="aclassPonca_1_1KdTreeCustomizableNode_html_a29a80e5e7a5067d14ade8ab15b4cea5a"><div class="ttname"><a href="classPonca_1_1KdTreeCustomizableNode.html#a29a80e5e7a5067d14ade8ab15b4cea5a">Ponca::KdTreeCustomizableNode::AabbType</a></div><div class="ttdeci">Eigen::AlignedBox&lt; Scalar, DataPoint::Dim &gt; AabbType</div><div class="ttdoc">The type used to store node bounding boxes.</div><div class="ttdef"><b>Definition</b> <a href="kdTreeTraits_8h_source.html#l00132">kdTreeTraits.h:132</a></div></div>
 <div class="ttc" id="astructPonca_1_1KdTreeDefaultInnerNode_html"><div class="ttname"><a href="structPonca_1_1KdTreeDefaultInnerNode.html">Ponca::KdTreeDefaultInnerNode</a></div><div class="ttdef"><b>Definition</b> <a href="kdTreeTraits_8h_source.html#l00043">kdTreeTraits.h:44</a></div></div>
 </div><!-- fragment --><p>Define a custom node type to use it, and expose custom data (inner/leaf node are not exposed directly):</p>
 <div class="fragment"><div class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> Index, <span class="keyword">typename</span> NodeIndex, <span class="keyword">typename</span> DataPo<span class="keywordtype">int</span>, <span class="keyword">typename</span> LeafSize = Index&gt;</div>
-<div class="line"><span class="keyword">struct </span>MyKdTreeNode : <a class="code hl_class" href="classPonca_1_1KdTreeCustomizableNode.html">Ponca::KdTreeCustomizableNode</a>&lt;Index, NodeIndex, DataPoint, LeafSize,</div>
-<div class="line">        MyKdTreeInnerNode&lt;NodeIndex, typename DataPoint::Scalar, DataPoint::Dim&gt;&gt; {</div>
+<div class="line"><span class="keyword">struct </span>MyKdTreeNode</div>
+<div class="line">    : <a class="code hl_class" href="classPonca_1_1KdTreeCustomizableNode.html">Ponca::KdTreeCustomizableNode</a>&lt;Index, NodeIndex, DataPoint, LeafSize,</div>
+<div class="line">                                    MyKdTreeInnerNode&lt;NodeIndex, typename DataPoint::Scalar, DataPoint::Dim&gt;&gt;</div>
+<div class="line">{</div>
 <div class="line"> </div>
-<div class="line">    <span class="keyword">using </span>Base = <a class="code hl_class" href="classPonca_1_1KdTreeCustomizableNode.html">Ponca::KdTreeCustomizableNode</a>&lt;Index, NodeIndex, DataPoint, LeafSize,</div>
-<div class="line">            MyKdTreeInnerNode&lt;NodeIndex, typename DataPoint::Scalar, DataPoint::Dim&gt;&gt;;</div>
-<div class="line">    <span class="keyword">using </span><a class="code hl_typedef" href="classPonca_1_1KdTreeCustomizableNode.html#a29a80e5e7a5067d14ade8ab15b4cea5a">AabbType</a>  = <span class="keyword">typename</span> Base::AabbType;</div>
+<div class="line">    <span class="keyword">using </span>Base =</div>
+<div class="line">        <a class="code hl_class" href="classPonca_1_1KdTreeCustomizableNode.html">Ponca::KdTreeCustomizableNode</a>&lt;Index, NodeIndex, DataPoint, LeafSize,</div>
+<div class="line">                                      MyKdTreeInnerNode&lt;NodeIndex, typename DataPoint::Scalar, DataPoint::Dim&gt;&gt;;</div>
+<div class="line">    <span class="keyword">using </span><a class="code hl_typedef" href="classPonca_1_1KdTreeCustomizableNode.html#a29a80e5e7a5067d14ade8ab15b4cea5a">AabbType</a> = <span class="keyword">typename</span> Base::AabbType;</div>
 <div class="line"> </div>
-<div class="line">    <span class="keywordtype">void</span> configure_range(Index start, Index size, <span class="keyword">const</span> <a class="code hl_typedef" href="classPonca_1_1KdTreeCustomizableNode.html#a29a80e5e7a5067d14ade8ab15b4cea5a">AabbType</a> &amp;aabb)</div>
+<div class="line">    <span class="keywordtype">void</span> configure_range(Index start, Index size, <span class="keyword">const</span> <a class="code hl_typedef" href="classPonca_1_1KdTreeCustomizableNode.html#a29a80e5e7a5067d14ade8ab15b4cea5a">AabbType</a>&amp; aabb)</div>
 <div class="line">    {</div>
 <div class="line">        Base::configure_range(start, size, aabb);</div>
-<div class="line">        <span class="keywordflow">if</span> (! Base::is_leaf() )</div>
+<div class="line">        <span class="keywordflow">if</span> (!Base::is_leaf())</div>
 <div class="line">        {</div>
 <div class="line">            Base::getAsInner().m_aabb = aabb;</div>
 <div class="line">        }</div>
 <div class="line">    }</div>
-<div class="line">    [[nodiscard]] <span class="keyword">inline</span> std::optional&lt;AabbType&gt; getAabb()<span class="keyword"> const </span>{</div>
-<div class="line">        <span class="keywordflow">if</span> (! Base::is_leaf())</div>
+<div class="line">    [[nodiscard]] <span class="keyword">inline</span> std::optional&lt;AabbType&gt; getAabb()<span class="keyword"> const</span></div>
+<div class="line"><span class="keyword">    </span>{</div>
+<div class="line">        <span class="keywordflow">if</span> (!Base::is_leaf())</div>
 <div class="line">            <span class="keywordflow">return</span> Base::getAsInner().m_aabb;</div>
 <div class="line">        <span class="keywordflow">else</span></div>
 <div class="line">            <span class="keywordflow">return</span> std::optional&lt;AabbType&gt;();</div>
 <div class="line">    }</div>
 <div class="line">};</div>
-<div class="ttc" id="aclassPonca_1_1KdTreeCustomizableNode_html"><div class="ttname"><a href="classPonca_1_1KdTreeCustomizableNode.html">Ponca::KdTreeCustomizableNode</a></div><div class="ttdoc">The node type used by default by the kd-tree.</div><div class="ttdef"><b>Definition</b> <a href="kdTreeTraits_8h_source.html#l00110">kdTreeTraits.h:111</a></div></div>
+<div class="ttc" id="aclassPonca_1_1KdTreeCustomizableNode_html"><div class="ttname"><a href="classPonca_1_1KdTreeCustomizableNode.html">Ponca::KdTreeCustomizableNode</a></div><div class="ttdoc">The node type used by default by the kd-tree.</div><div class="ttdef"><b>Definition</b> <a href="kdTreeTraits_8h_source.html#l00109">kdTreeTraits.h:110</a></div></div>
 </div><!-- fragment --><p>To use in the <a class="el" href="structPonca_1_1KdTree.html" title="Abstract KdTree type with KdTreeDefaultTraits.">KdTree</a>, define a type using the custom node:</p>
-<div class="fragment"><div class="line">    <span class="keyword">using </span>CustomKdTree = <a class="code hl_class" href="classPonca_1_1KdTreeDenseBase.html">Ponca::KdTreeDenseBase&lt;Ponca::KdTreeDefaultTraits&lt;DataPoint,MyKdTreeNode&gt;</a>&gt;;</div>
-<div class="ttc" id="aclassPonca_1_1KdTreeDenseBase_html"><div class="ttname"><a href="classPonca_1_1KdTreeDenseBase.html">Ponca::KdTreeDenseBase</a></div><div class="ttdoc">Customizable base class for dense KdTree datastructure.</div><div class="ttdef"><b>Definition</b> <a href="kdTree_8h_source.html#l00553">kdTree.h:554</a></div></div>
+<div class="fragment"><div class="line">    <span class="keyword">using </span>CustomKdTree = <a class="code hl_class" href="classPonca_1_1KdTreeDenseBase.html">Ponca::KdTreeDenseBase&lt;Ponca::KdTreeDefaultTraits&lt;DataPoint, MyKdTreeNode&gt;</a>&gt;;</div>
+<div class="ttc" id="aclassPonca_1_1KdTreeDenseBase_html"><div class="ttname"><a href="classPonca_1_1KdTreeDenseBase.html">Ponca::KdTreeDenseBase</a></div><div class="ttdoc">Customizable base class for dense KdTree datastructure.</div><div class="ttdef"><b>Definition</b> <a href="kdTree_8h_source.html#l00540">kdTree.h:541</a></div></div>
 </div><!-- fragment --><p>The added attribute can be accessed</p>
 <div class="fragment"><div class="line">    <span class="keyword">auto</span> bbox = kdtree.nodes()[0].getAabb();</div>
-<div class="line">    <span class="keywordflow">if</span> (bbox) {</div>
+<div class="line">    <span class="keywordflow">if</span> (bbox)</div>
+<div class="line">    {</div>
 <div class="line">        std::cout &lt;&lt; <span class="stringliteral">&quot;Root bounding box is as follows: \n&quot;</span></div>
-<div class="line">                  &lt;&lt; <span class="stringliteral">&quot;  Center:   &quot;</span> &lt;&lt; bbox-&gt;center()</div>
-<div class="line">                  &lt;&lt; <span class="stringliteral">&quot;  Diagonal: &quot;</span> &lt;&lt; bbox-&gt;diagonal()</div>
-<div class="line">                  &lt;&lt; std::endl;</div>
+<div class="line">                  &lt;&lt; <span class="stringliteral">&quot;  Center:   &quot;</span> &lt;&lt; bbox-&gt;center() &lt;&lt; <span class="stringliteral">&quot;  Diagonal: &quot;</span> &lt;&lt; bbox-&gt;diagonal() &lt;&lt; std::endl;</div>
 <div class="line">    }</div>
 </div><!-- fragment --> 
-<p class="definition">Definition at line <a class="el" href="kdTreeTraits_8h_source.html#l00110">110</a> of file <a class="el" href="kdTreeTraits_8h_source.html">kdTreeTraits.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="kdTreeTraits_8h_source.html#l00109">109</a> of file <a class="el" href="kdTreeTraits_8h_source.html">kdTreeTraits.h</a>.</p>
 </div><h2 class="groupheader">Member Typedef Documentation</h2>
 <a id="a29a80e5e7a5067d14ade8ab15b4cea5a" name="a29a80e5e7a5067d14ade8ab15b4cea5a"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a29a80e5e7a5067d14ade8ab15b4cea5a">&#9670;&#160;</a></span>AabbType</h2>
@@ -268,13 +272,13 @@ template&lt;typename Index , typename NodeIndex , typename DataPoint , typename 
 <p>The type used to store node bounding boxes. </p>
 <p>Must provide <code>diagonal()</code>, and <code>center()</code> functions, all returning a <code>DataPoint::VectorType</code>. </p>
 
-<p class="definition">Definition at line <a class="el" href="kdTreeTraits_8h_source.html#l00133">133</a> of file <a class="el" href="kdTreeTraits_8h_source.html">kdTreeTraits.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="kdTreeTraits_8h_source.html#l00132">132</a> of file <a class="el" href="kdTreeTraits_8h_source.html">kdTreeTraits.h</a>.</p>
 
 </div>
 </div>
 <h2 class="groupheader">Member Enumeration Documentation</h2>
-<a id="a3ff33d29b528151383a3f6f2ef8c77dd" name="a3ff33d29b528151383a3f6f2ef8c77dd"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a3ff33d29b528151383a3f6f2ef8c77dd">&#9670;&#160;</a></span>anonymous enum</h2>
+<a id="a0fbe242e339ac603aae08692f5aea1ce" name="a0fbe242e339ac603aae08692f5aea1ce"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0fbe242e339ac603aae08692f5aea1ce">&#9670;&#160;</a></span>anonymous enum</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -287,11 +291,11 @@ template&lt;typename Index , typename NodeIndex , typename DataPoint , typename 
       </table>
 </div><div class="memdoc">
 <table class="fieldtable">
-<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="a3ff33d29b528151383a3f6f2ef8c77dda994e038a05f71b6c9085de8fc9141314" name="a3ff33d29b528151383a3f6f2ef8c77dda994e038a05f71b6c9085de8fc9141314"></a>MAX_COUNT&#160;</td><td class="fielddoc"><p>The maximum number of nodes that a kd-tree can have when using this node type. </p>
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="a0fbe242e339ac603aae08692f5aea1cea994e038a05f71b6c9085de8fc9141314" name="a0fbe242e339ac603aae08692f5aea1cea994e038a05f71b6c9085de8fc9141314"></a>MAX_COUNT&#160;</td><td class="fielddoc"><p>The maximum number of nodes that a kd-tree can have when using this node type. </p>
 </td></tr>
 </table>
 
-<p class="definition">Definition at line <a class="el" href="kdTreeTraits_8h_source.html#l00118">118</a> of file <a class="el" href="kdTreeTraits_8h_source.html">kdTreeTraits.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="kdTreeTraits_8h_source.html#l00117">117</a> of file <a class="el" href="kdTreeTraits_8h_source.html">kdTreeTraits.h</a>.</p>
 
 </div>
 </div>
@@ -322,7 +326,7 @@ template&lt;typename Index , typename NodeIndex , typename DataPoint , typename 
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="kdTreeTraits_8h_source.html#l00137">137</a> of file <a class="el" href="kdTreeTraits_8h_source.html">kdTreeTraits.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="kdTreeTraits_8h_source.html#l00136">136</a> of file <a class="el" href="kdTreeTraits_8h_source.html">kdTreeTraits.h</a>.</p>
 
 </div>
 </div>
@@ -352,7 +356,7 @@ template&lt;typename Index , typename NodeIndex , typename DataPoint , typename 
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="kdTreeTraits_8h_source.html#l00168">168</a> of file <a class="el" href="kdTreeTraits_8h_source.html">kdTreeTraits.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="kdTreeTraits_8h_source.html#l00166">166</a> of file <a class="el" href="kdTreeTraits_8h_source.html">kdTreeTraits.h</a>.</p>
 
 </div>
 </div>
@@ -381,7 +385,7 @@ template&lt;typename Index , typename NodeIndex , typename DataPoint , typename 
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="kdTreeTraits_8h_source.html#l00199">199</a> of file <a class="el" href="kdTreeTraits_8h_source.html">kdTreeTraits.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="kdTreeTraits_8h_source.html#l00196">196</a> of file <a class="el" href="kdTreeTraits_8h_source.html">kdTreeTraits.h</a>.</p>
 
 </div>
 </div>
@@ -432,7 +436,7 @@ template&lt;typename Index , typename NodeIndex , typename DataPoint , typename 
 <dl class="section see"><dt>See also</dt><dd>the inner node accessors for a more detailed explanation of each argument.</dd></dl>
 <p>Called after set_is_leaf and <a class="el" href="classPonca_1_1KdTreeCustomizableNode.html#a2a7cb7b277c99be5d17fbe54326f2cd1">configure_range</a> during kd-tree construction. </p>
 
-<p class="definition">Definition at line <a class="el" href="kdTreeTraits_8h_source.html#l00234">234</a> of file <a class="el" href="kdTreeTraits_8h_source.html">kdTreeTraits.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="kdTreeTraits_8h_source.html#l00231">231</a> of file <a class="el" href="kdTreeTraits_8h_source.html">kdTreeTraits.h</a>.</p>
 
 </div>
 </div>
@@ -483,7 +487,7 @@ template&lt;typename Index , typename NodeIndex , typename DataPoint , typename 
 <dl class="section note"><dt>Note</dt><dd>The AABB is not required by the implementation, so nodes don't have to make it available.</dd></dl>
 <p>Called after set_is_leaf during kd-tree construction. </p>
 
-<p class="definition">Definition at line <a class="el" href="kdTreeTraits_8h_source.html#l00216">216</a> of file <a class="el" href="kdTreeTraits_8h_source.html">kdTreeTraits.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="kdTreeTraits_8h_source.html#l00213">213</a> of file <a class="el" href="kdTreeTraits_8h_source.html">kdTreeTraits.h</a>.</p>
 
 </div>
 </div>
@@ -512,7 +516,7 @@ template&lt;typename Index , typename NodeIndex , typename DataPoint , typename 
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="kdTreeTraits_8h_source.html#l00276">276</a> of file <a class="el" href="kdTreeTraits_8h_source.html">kdTreeTraits.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="kdTreeTraits_8h_source.html#l00273">273</a> of file <a class="el" href="kdTreeTraits_8h_source.html">kdTreeTraits.h</a>.</p>
 
 </div>
 </div>
@@ -541,7 +545,7 @@ template&lt;typename Index , typename NodeIndex , typename DataPoint , typename 
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="kdTreeTraits_8h_source.html#l00278">278</a> of file <a class="el" href="kdTreeTraits_8h_source.html">kdTreeTraits.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="kdTreeTraits_8h_source.html#l00275">275</a> of file <a class="el" href="kdTreeTraits_8h_source.html">kdTreeTraits.h</a>.</p>
 
 </div>
 </div>
@@ -570,7 +574,7 @@ template&lt;typename Index , typename NodeIndex , typename DataPoint , typename 
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="kdTreeTraits_8h_source.html#l00275">275</a> of file <a class="el" href="kdTreeTraits_8h_source.html">kdTreeTraits.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="kdTreeTraits_8h_source.html#l00272">272</a> of file <a class="el" href="kdTreeTraits_8h_source.html">kdTreeTraits.h</a>.</p>
 
 </div>
 </div>
@@ -599,7 +603,7 @@ template&lt;typename Index , typename NodeIndex , typename DataPoint , typename 
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="kdTreeTraits_8h_source.html#l00277">277</a> of file <a class="el" href="kdTreeTraits_8h_source.html">kdTreeTraits.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="kdTreeTraits_8h_source.html#l00274">274</a> of file <a class="el" href="kdTreeTraits_8h_source.html">kdTreeTraits.h</a>.</p>
 
 </div>
 </div>
@@ -631,7 +635,7 @@ template&lt;typename Index , typename NodeIndex , typename DataPoint , typename 
 <p>The index of the first child of the node in the node array of the kd-tree. </p>
 <dl class="section note"><dt>Note</dt><dd>The second child is stored directly after the first in the array (i.e. <code>first_child_id + 1</code>). </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="kdTreeTraits_8h_source.html#l00272">272</a> of file <a class="el" href="kdTreeTraits_8h_source.html">kdTreeTraits.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="kdTreeTraits_8h_source.html#l00269">269</a> of file <a class="el" href="kdTreeTraits_8h_source.html">kdTreeTraits.h</a>.</p>
 
 </div>
 </div>
@@ -662,7 +666,7 @@ template&lt;typename Index , typename NodeIndex , typename DataPoint , typename 
 
 <p>Which axis the split of the AABB of the inner node was done on. </p>
 
-<p class="definition">Definition at line <a class="el" href="kdTreeTraits_8h_source.html#l00263">263</a> of file <a class="el" href="kdTreeTraits_8h_source.html">kdTreeTraits.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="kdTreeTraits_8h_source.html#l00260">260</a> of file <a class="el" href="kdTreeTraits_8h_source.html">kdTreeTraits.h</a>.</p>
 
 </div>
 </div>
@@ -693,7 +697,7 @@ template&lt;typename Index , typename NodeIndex , typename DataPoint , typename 
 
 <p>The position of the AABB split of the inner node. </p>
 
-<p class="definition">Definition at line <a class="el" href="kdTreeTraits_8h_source.html#l00258">258</a> of file <a class="el" href="kdTreeTraits_8h_source.html">kdTreeTraits.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="kdTreeTraits_8h_source.html#l00255">255</a> of file <a class="el" href="kdTreeTraits_8h_source.html">kdTreeTraits.h</a>.</p>
 
 </div>
 </div>
@@ -722,7 +726,7 @@ template&lt;typename Index , typename NodeIndex , typename DataPoint , typename 
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="kdTreeTraits_8h_source.html#l00201">201</a> of file <a class="el" href="kdTreeTraits_8h_source.html">kdTreeTraits.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="kdTreeTraits_8h_source.html#l00198">198</a> of file <a class="el" href="kdTreeTraits_8h_source.html">kdTreeTraits.h</a>.</p>
 
 </div>
 </div>
@@ -753,7 +757,7 @@ template&lt;typename Index , typename NodeIndex , typename DataPoint , typename 
 
 <p>The size of the range of the leaf node in the sample index array. </p>
 
-<p class="definition">Definition at line <a class="el" href="kdTreeTraits_8h_source.html#l00253">253</a> of file <a class="el" href="kdTreeTraits_8h_source.html">kdTreeTraits.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="kdTreeTraits_8h_source.html#l00250">250</a> of file <a class="el" href="kdTreeTraits_8h_source.html">kdTreeTraits.h</a>.</p>
 
 </div>
 </div>
@@ -784,7 +788,7 @@ template&lt;typename Index , typename NodeIndex , typename DataPoint , typename 
 
 <p>The start index of the range of the leaf node in the sample index array. </p>
 
-<p class="definition">Definition at line <a class="el" href="kdTreeTraits_8h_source.html#l00248">248</a> of file <a class="el" href="kdTreeTraits_8h_source.html">kdTreeTraits.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="kdTreeTraits_8h_source.html#l00245">245</a> of file <a class="el" href="kdTreeTraits_8h_source.html">kdTreeTraits.h</a>.</p>
 
 </div>
 </div>
@@ -814,7 +818,7 @@ template&lt;typename Index , typename NodeIndex , typename DataPoint , typename 
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="kdTreeTraits_8h_source.html#l00181">181</a> of file <a class="el" href="kdTreeTraits_8h_source.html">kdTreeTraits.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="kdTreeTraits_8h_source.html#l00178">178</a> of file <a class="el" href="kdTreeTraits_8h_source.html">kdTreeTraits.h</a>.</p>
 
 </div>
 </div>
@@ -844,7 +848,7 @@ template&lt;typename Index , typename NodeIndex , typename DataPoint , typename 
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="kdTreeTraits_8h_source.html#l00150">150</a> of file <a class="el" href="kdTreeTraits_8h_source.html">kdTreeTraits.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="kdTreeTraits_8h_source.html#l00148">148</a> of file <a class="el" href="kdTreeTraits_8h_source.html">kdTreeTraits.h</a>.</p>
 
 </div>
 </div>
@@ -874,7 +878,7 @@ template&lt;typename Index , typename NodeIndex , typename DataPoint , typename 
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="kdTreeTraits_8h_source.html#l00202">202</a> of file <a class="el" href="kdTreeTraits_8h_source.html">kdTreeTraits.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="kdTreeTraits_8h_source.html#l00199">199</a> of file <a class="el" href="kdTreeTraits_8h_source.html">kdTreeTraits.h</a>.</p>
 
 </div>
 </div>
@@ -884,7 +888,7 @@ template&lt;typename Index , typename NodeIndex , typename DataPoint , typename 
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="namespacePonca.html">Ponca</a></li><li class="navelem"><a class="el" href="classPonca_1_1KdTreeCustomizableNode.html">KdTreeCustomizableNode</a></li>
-    <li class="footer">Generated on Wed Mar 18 2026 16:17:06 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
+    <li class="footer">Generated on Thu Mar 19 2026 17:42:38 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
   </ul>
 </div>
 </body>

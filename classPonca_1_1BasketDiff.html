@@ -51,7 +51,7 @@ MathJax.Hub.Config({
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Ponca
-   &#160;<span id="projectnumber">ff18772cb1e492269a8bd2895da1f5d816a1ae25</span>
+   &#160;<span id="projectnumber">19ef58fd3760f23a8af99a5eeac4f934757e30d9</span>
    </div>
    <div id="projectbrief">Point Cloud Analysis library</div>
   </td>
@@ -145,8 +145,8 @@ $(document).ready(function(){initNavTree('classPonca_1_1BasketDiff.html',''); in
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-types" name="pub-types"></a>
 Public Types</h2></td></tr>
-<tr class="memitem:aebb0c90a177509cc3fa59eaa01b7a4d8" id="r_aebb0c90a177509cc3fa59eaa01b7a4d8"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1BasketDiff.html#aebb0c90a177509cc3fa59eaa01b7a4d8">Base</a> = typename internal::BasketDiffAggregate&lt; BasketType, Type, Ext0, Exts... &gt;::type</td></tr>
-<tr class="separator:aebb0c90a177509cc3fa59eaa01b7a4d8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4069710e568b7ca56652ef232c452932" id="r_a4069710e568b7ca56652ef232c452932"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1BasketDiff.html#a4069710e568b7ca56652ef232c452932">Base</a> = typename internal::BasketDiffAggregate&lt; BasketType, Type, Ext0, Exts... &gt;::type</td></tr>
+<tr class="separator:a4069710e568b7ca56652ef232c452932"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a76dbf7d6bb9b0948be0a3698a2a6e7a5" id="r_a76dbf7d6bb9b0948be0a3698a2a6e7a5"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1BasketDiff.html#a76dbf7d6bb9b0948be0a3698a2a6e7a5">NeighborFilter</a> = typename BasketType::NeighborFilter</td></tr>
 <tr class="memdesc:a76dbf7d6bb9b0948be0a3698a2a6e7a5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Neighbor Filter.  <br /></td></tr>
 <tr class="separator:a76dbf7d6bb9b0948be0a3698a2a6e7a5"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -212,15 +212,17 @@ Additional Inherited Members</h2></td></tr>
 class Ponca::BasketDiff&lt; BasketType, Type, Ext0, Exts &gt;</div><p>Aggregator class used to declare specialized structures with derivatives computations, using CRTP. </p>
 <p>Base <a class="el" href="structPonca_1_1ComputeObject.html" title="ComputeObject is a virtual object that represents an algorithm which can be used with the compute fun...">ComputeObject</a> for the <a class="el" href="classPonca_1_1Basket.html" title="Aggregator class used to declare specialized structures using CRTP.">Basket</a> classes.  </p>
 <p>Implements the compute methods for fitting: <a class="el" href="structPonca_1_1BasketComputeObject.html#ab740adc434a6d1ecb4cf4943c1ff2a84" title="Convenience function for STL-like iterators Add neighbors stored in a container using STL-like iterat...">compute</a>, <a class="el" href="structPonca_1_1BasketComputeObject.html#a5124e70f1b87118dea332a16228cbefa" title="Convenience function to iterate over a subset of samples in a PointContainer Add neighbors stored in ...">computeWithIds</a>, ... Checkout <a class="el" href="fitting.html">Fitting Module: User Manual</a> for more details</p>
-<p>The various implementations of Ponca::Concept are mixed through specializations of the <a class="el" href="classPonca_1_1BasketDiff.html" title="Aggregator class used to declare specialized structures with derivatives computations,...">BasketDiff</a> and <a class="el" href="classPonca_1_1Basket.html" title="Aggregator class used to declare specialized structures using CRTP.">Basket</a> classes: </p><div class="fragment"><div class="line"><span class="keyword">typedef</span></div>
-<div class="line"><a class="code hl_class" href="classPonca_1_1BasketDiff.html">BasketDiff</a> &lt;BasketType,           <span class="comment">// Existing Basket, to be differentiated</span></div>
-<div class="line"><a class="code hl_enumeration" href="namespacePonca.html#a7beaddc698523e7f9c041ea8bc4c535a">DiffType</a>,                         <span class="comment">// Differentiation space: FitScaleDer, FitSpaceDer, or FitScaleDer|FitSpaceDer</span></div>
-<div class="line">ComputationalDerivativesConcept1, <span class="comment">// Implementation of ComputationalDerivativesConcept</span></div>
-<div class="line">ComputationalDerivativesConcept2, <span class="comment">// Implementation of ComputationalDerivativesConcept</span></div>
-<div class="line">... ,                             <span class="comment">//</span></div>
-<div class="line">&gt; myFitDer;                       <span class="comment">// Final structure to fit and derive a primitive over weighted samples</span></div>
-<div class="ttc" id="aclassPonca_1_1BasketDiff_html"><div class="ttname"><a href="classPonca_1_1BasketDiff.html">Ponca::BasketDiff</a></div><div class="ttdoc">Aggregator class used to declare specialized structures with derivatives computations,...</div><div class="ttdef"><b>Definition</b> <a href="basket_8h_source.html#l00279">basket.h:281</a></div></div>
+<p>The various implementations of Ponca::Concept are mixed through specializations of the <a class="el" href="classPonca_1_1BasketDiff.html" title="Aggregator class used to declare specialized structures with derivatives computations,...">BasketDiff</a> and <a class="el" href="classPonca_1_1Basket.html" title="Aggregator class used to declare specialized structures using CRTP.">Basket</a> classes: </p><div class="fragment"><div class="line">  <span class="keyword">typedef</span></div>
+<div class="line">  <a class="code hl_class" href="classPonca_1_1BasketDiff.html">BasketDiff</a> &lt;BasketType,           <span class="comment">// Existing Basket, to be differentiated</span></div>
+<div class="line">  <a class="code hl_enumeration" href="namespacePonca.html#a7beaddc698523e7f9c041ea8bc4c535a">DiffType</a>,                         <span class="comment">// Differentiation space: FitScaleDer, FitSpaceDer, or</span></div>
+<div class="line"><a class="code hl_enumvalue" href="namespacePonca.html#a7beaddc698523e7f9c041ea8bc4c535aad5783c67f35bea36742f02b599df3190">FitScaleDer</a>|<a class="code hl_enumvalue" href="namespacePonca.html#a7beaddc698523e7f9c041ea8bc4c535aa531be147d843adfef25ce7fd7d5032ff">FitSpaceDer</a> ComputationalDerivativesConcept1, <span class="comment">// Implementation of ComputationalDerivativesConcept</span></div>
+<div class="line">  ComputationalDerivativesConcept2, <span class="comment">// Implementation of ComputationalDerivativesConcept</span></div>
+<div class="line">  ... ,                             <span class="comment">//</span></div>
+<div class="line">  &gt; myFitDer;                       <span class="comment">// Final structure to fit and derive a primitive over weighted samples</span></div>
+<div class="ttc" id="aclassPonca_1_1BasketDiff_html"><div class="ttname"><a href="classPonca_1_1BasketDiff.html">Ponca::BasketDiff</a></div><div class="ttdoc">Aggregator class used to declare specialized structures with derivatives computations,...</div><div class="ttdef"><b>Definition</b> <a href="basket_8h_source.html#l00273">basket.h:276</a></div></div>
 <div class="ttc" id="anamespacePonca_html_a7beaddc698523e7f9c041ea8bc4c535a"><div class="ttname"><a href="namespacePonca.html#a7beaddc698523e7f9c041ea8bc4c535a">Ponca::DiffType</a></div><div class="ttdeci">DiffType</div><div class="ttdoc">Flags defining which derivatives need to be computed.</div><div class="ttdef"><b>Definition</b> <a href="enums_8h_source.html#l00033">enums.h:34</a></div></div>
+<div class="ttc" id="anamespacePonca_html_a7beaddc698523e7f9c041ea8bc4c535aa531be147d843adfef25ce7fd7d5032ff"><div class="ttname"><a href="namespacePonca.html#a7beaddc698523e7f9c041ea8bc4c535aa531be147d843adfef25ce7fd7d5032ff">Ponca::FitSpaceDer</a></div><div class="ttdeci">@ FitSpaceDer</div><div class="ttdoc">Flag indicating a space differentiation.</div><div class="ttdef"><b>Definition</b> <a href="enums_8h_source.html#l00036">enums.h:36</a></div></div>
+<div class="ttc" id="anamespacePonca_html_a7beaddc698523e7f9c041ea8bc4c535aad5783c67f35bea36742f02b599df3190"><div class="ttname"><a href="namespacePonca.html#a7beaddc698523e7f9c041ea8bc4c535aad5783c67f35bea36742f02b599df3190">Ponca::FitScaleDer</a></div><div class="ttdeci">@ FitScaleDer</div><div class="ttdoc">Flag indicating a scale differentiation.</div><div class="ttdef"><b>Definition</b> <a href="enums_8h_source.html#l00035">enums.h:35</a></div></div>
 </div><!-- fragment --><dl class="tparams"><dt>Template Parameters</dt><dd>
   <table class="tparams">
     <tr><td class="paramname">Derived</td><td>Derived class that provides the addNeighbor method (either <a class="el" href="classPonca_1_1Basket.html" title="Aggregator class used to declare specialized structures using CRTP.">Basket</a> or <a class="el" href="classPonca_1_1BasketDiff.html" title="Aggregator class used to declare specialized structures with derivatives computations,...">BasketDiff</a>) </td></tr>
@@ -233,10 +235,10 @@ class Ponca::BasketDiff&lt; BasketType, Type, Ext0, Exts &gt;</div><p>Aggregator
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="basket_8h_source.html#l00279">279</a> of file <a class="el" href="basket_8h_source.html">basket.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="basket_8h_source.html#l00273">273</a> of file <a class="el" href="basket_8h_source.html">basket.h</a>.</p>
 </div><h2 class="groupheader">Member Typedef Documentation</h2>
-<a id="aebb0c90a177509cc3fa59eaa01b7a4d8" name="aebb0c90a177509cc3fa59eaa01b7a4d8"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aebb0c90a177509cc3fa59eaa01b7a4d8">&#9670;&#160;</a></span>Base</h2>
+<a id="a4069710e568b7ca56652ef232c452932" name="a4069710e568b7ca56652ef232c452932"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4069710e568b7ca56652ef232c452932">&#9670;&#160;</a></span>Base</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -244,12 +246,12 @@ class Ponca::BasketDiff&lt; BasketType, Type, Ext0, Exts &gt;</div><p>Aggregator
 template&lt;typename BasketType , int Type, template&lt; class, class, int, typename &gt; class Ext0, template&lt; class, class, int, typename &gt; class... Exts&gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">using <a class="el" href="classPonca_1_1BasketDiff.html">Ponca::BasketDiff</a>&lt; BasketType, Type, Ext0, Exts &gt;::Base =  typename internal::BasketDiffAggregate&lt;BasketType,Type,Ext0,Exts...&gt;::type</td>
+          <td class="memname">using <a class="el" href="classPonca_1_1BasketDiff.html">Ponca::BasketDiff</a>&lt; BasketType, Type, Ext0, Exts &gt;::Base =  typename internal::BasketDiffAggregate&lt;BasketType, Type, Ext0, Exts...&gt;::type</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="basket_8h_source.html#l00285">285</a> of file <a class="el" href="basket_8h_source.html">basket.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="basket_8h_source.html#l00281">281</a> of file <a class="el" href="basket_8h_source.html">basket.h</a>.</p>
 
 </div>
 </div>
@@ -269,7 +271,7 @@ template&lt;typename BasketType , int Type, template&lt; class, class, int, type
 
 <p>Point type used for computation. </p>
 
-<p class="definition">Definition at line <a class="el" href="basket_8h_source.html#l00289">289</a> of file <a class="el" href="basket_8h_source.html">basket.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="basket_8h_source.html#l00285">285</a> of file <a class="el" href="basket_8h_source.html">basket.h</a>.</p>
 
 </div>
 </div>
@@ -289,7 +291,7 @@ template&lt;typename BasketType , int Type, template&lt; class, class, int, type
 
 <p>Neighbor Filter. </p>
 
-<p class="definition">Definition at line <a class="el" href="basket_8h_source.html#l00287">287</a> of file <a class="el" href="basket_8h_source.html">basket.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="basket_8h_source.html#l00283">283</a> of file <a class="el" href="basket_8h_source.html">basket.h</a>.</p>
 
 </div>
 </div>
@@ -309,7 +311,7 @@ template&lt;typename BasketType , int Type, template&lt; class, class, int, type
 
 <p>Scalar type used for computation, as defined from <a class="el" href="classPonca_1_1Basket.html" title="Aggregator class used to declare specialized structures using CRTP.">Basket</a>. </p>
 
-<p class="definition">Definition at line <a class="el" href="basket_8h_source.html#l00291">291</a> of file <a class="el" href="basket_8h_source.html">basket.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="basket_8h_source.html#l00287">287</a> of file <a class="el" href="basket_8h_source.html">basket.h</a>.</p>
 
 </div>
 </div>
@@ -346,7 +348,7 @@ template&lt;typename BasketType , int Type, template&lt; class, class, int, type
 <a class="el" href="structPonca_1_1BasketComputeObject.html#a5124e70f1b87118dea332a16228cbefa" title="Convenience function to iterate over a subset of samples in a PointContainer Add neighbors stored in ...">computeWithIds</a> Prefer when using a range of ids </dd></dl>
 <dl class="section return"><dt>Returns</dt><dd>false if param nei is not a valid neighbor (weight = 0)   </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="basket_8h_source.html#l00295">295</a> of file <a class="el" href="basket_8h_source.html">basket.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="basket_8h_source.html#l00291">291</a> of file <a class="el" href="basket_8h_source.html">basket.h</a>.</p>
 
 </div>
 </div>
@@ -356,7 +358,7 @@ template&lt;typename BasketType , int Type, template&lt; class, class, int, type
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="namespacePonca.html">Ponca</a></li><li class="navelem"><a class="el" href="classPonca_1_1BasketDiff.html">BasketDiff</a></li>
-    <li class="footer">Generated on Wed Mar 18 2026 16:17:05 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
+    <li class="footer">Generated on Thu Mar 19 2026 17:42:38 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
   </ul>
 </div>
 </body>

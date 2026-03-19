@@ -51,7 +51,7 @@ MathJax.Hub.Config({
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Ponca
-   &#160;<span id="projectnumber">ff18772cb1e492269a8bd2895da1f5d816a1ae25</span>
+   &#160;<span id="projectnumber">19ef58fd3760f23a8af99a5eeac4f934757e30d9</span>
    </div>
    <div id="projectbrief">Point Cloud Analysis library</div>
   </td>
@@ -219,11 +219,11 @@ Public Attributes</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-types" name="pro-types"></a>
 Protected Types</h2></td></tr>
-<tr class="memitem:aca126de3e1ae475fd81bac69c37ba95d" id="r_aca126de3e1ae475fd81bac69c37ba95d"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom">{ <b>Check</b>
+<tr class="memitem:af82dd7d72c47cfe311ad3ef893f7cafd" id="r_af82dd7d72c47cfe311ad3ef893f7cafd"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom">{ <b>Check</b>
 , <b>PROVIDES_ALGEBRAIC_SPHERE_DERIVATIVE</b>
 , <b>PROVIDES_NORMAL_DERIVATIVE</b>
  }</td></tr>
-<tr class="separator:aca126de3e1ae475fd81bac69c37ba95d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="separator:af82dd7d72c47cfe311ad3ef893f7cafd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac8e1b3a7b5aeb443de128cafca0771cf" id="r_ac8e1b3a7b5aeb443de128cafca0771cf"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1OrientedSphereDerImpl.html#ac8e1b3a7b5aeb443de128cafca0771cf">Base</a> = T</td></tr>
 <tr class="memdesc:ac8e1b3a7b5aeb443de128cafca0771cf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Base class of the procedure.  <br /></td></tr>
 <tr class="separator:ac8e1b3a7b5aeb443de128cafca0771cf"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -236,7 +236,7 @@ Protected Attributes</h2></td></tr>
 <tr class="memitem:a1b6cf46766d58f199407475059bf8fe3" id="r_a1b6cf46766d58f199407475059bf8fe3"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classPonca_1_1OrientedSphereDerImpl.html#a7f0d8bafa2f2c48449808e6b7a335b04">ScalarArray</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1OrientedSphereDerImpl.html#a1b6cf46766d58f199407475059bf8fe3">m_dSumDotPN</a> {ScalarArray::Zero()}</td></tr>
 <tr class="memdesc:a1b6cf46766d58f199407475059bf8fe3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sum of the dot product between relative positions and normals with weight derivatives.  <br /></td></tr>
 <tr class="separator:a1b6cf46766d58f199407475059bf8fe3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a039f6b8dfe8a43f353907673a142f77e" id="r_a039f6b8dfe8a43f353907673a142f77e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classPonca_1_1OrientedSphereDerImpl.html#a7f0d8bafa2f2c48449808e6b7a335b04">ScalarArray</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1OrientedSphereDerImpl.html#a039f6b8dfe8a43f353907673a142f77e">m_dSumDotPP</a> {ScalarArray::Zero()}</td></tr>
+<tr class="memitem:a039f6b8dfe8a43f353907673a142f77e" id="r_a039f6b8dfe8a43f353907673a142f77e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classPonca_1_1OrientedSphereDerImpl.html#a7f0d8bafa2f2c48449808e6b7a335b04">ScalarArray</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1OrientedSphereDerImpl.html#a039f6b8dfe8a43f353907673a142f77e">m_dSumDotPP</a></td></tr>
 <tr class="memdesc:a039f6b8dfe8a43f353907673a142f77e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sum of the squared relative positions with weight derivatives.  <br /></td></tr>
 <tr class="separator:a039f6b8dfe8a43f353907673a142f77e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a38e8f638bbd295689ba9a16911d1af3a" id="r_a38e8f638bbd295689ba9a16911d1af3a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classPonca_1_1OrientedSphereDerImpl.html#a7f0d8bafa2f2c48449808e6b7a335b04">ScalarArray</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1OrientedSphereDerImpl.html#a38e8f638bbd295689ba9a16911d1af3a">m_dNume</a> {ScalarArray::Zero()}</td></tr>
@@ -252,7 +252,7 @@ Protected Attributes</h2></td></tr>
 class Ponca::OrientedSphereDerImpl&lt; DataPoint, _NFilter, DiffType, T &gt;</div><p>[OrientedSphereFit Definition] </p>
 <p>Internal generic class performing the Fit derivation </p>
 
-<p class="definition">Definition at line <a class="el" href="orientedSphereFit_8h_source.html#l00063">63</a> of file <a class="el" href="orientedSphereFit_8h_source.html">orientedSphereFit.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="orientedSphereFit_8h_source.html#l00059">59</a> of file <a class="el" href="orientedSphereFit_8h_source.html">orientedSphereFit.h</a>.</p>
 </div><h2 class="groupheader">Member Typedef Documentation</h2>
 <a id="ac8e1b3a7b5aeb443de128cafca0771cf" name="ac8e1b3a7b5aeb443de128cafca0771cf"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ac8e1b3a7b5aeb443de128cafca0771cf">&#9670;&#160;</a></span>Base</h2>
@@ -278,7 +278,7 @@ template&lt;class DataPoint , class _NFilter , int DiffType, typename T &gt; </d
 
 <p>Base class of the procedure. </p>
 
-<p class="definition">Definition at line <a class="el" href="orientedSphereFit_8h_source.html#l00065">65</a> of file <a class="el" href="orientedSphereFit_8h_source.html">orientedSphereFit.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="orientedSphereFit_8h_source.html#l00061">61</a> of file <a class="el" href="orientedSphereFit_8h_source.html">orientedSphereFit.h</a>.</p>
 
 </div>
 </div>
@@ -298,7 +298,7 @@ template&lt;class DataPoint , class _NFilter , int DiffType, typename T &gt; </d
 
 <p>Alias to the filter applied on the neighbors. </p>
 
-<p class="definition">Definition at line <a class="el" href="orientedSphereFit_8h_source.html#l00065">65</a> of file <a class="el" href="orientedSphereFit_8h_source.html">orientedSphereFit.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="orientedSphereFit_8h_source.html#l00061">61</a> of file <a class="el" href="orientedSphereFit_8h_source.html">orientedSphereFit.h</a>.</p>
 
 </div>
 </div>
@@ -318,7 +318,7 @@ template&lt;class DataPoint , class _NFilter , int DiffType, typename T &gt; </d
 
 <p>Alias to scalar type. </p>
 
-<p class="definition">Definition at line <a class="el" href="orientedSphereFit_8h_source.html#l00065">65</a> of file <a class="el" href="orientedSphereFit_8h_source.html">orientedSphereFit.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="orientedSphereFit_8h_source.html#l00061">61</a> of file <a class="el" href="orientedSphereFit_8h_source.html">orientedSphereFit.h</a>.</p>
 
 </div>
 </div>
@@ -338,7 +338,7 @@ template&lt;class DataPoint , class _NFilter , int DiffType, typename T &gt; </d
 
 <p>Alias to scalar derivatives array. </p>
 
-<p class="definition">Definition at line <a class="el" href="orientedSphereFit_8h_source.html#l00066">66</a> of file <a class="el" href="orientedSphereFit_8h_source.html">orientedSphereFit.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="orientedSphereFit_8h_source.html#l00062">62</a> of file <a class="el" href="orientedSphereFit_8h_source.html">orientedSphereFit.h</a>.</p>
 
 </div>
 </div>
@@ -358,7 +358,7 @@ template&lt;class DataPoint , class _NFilter , int DiffType, typename T &gt; </d
 
 <p>Alias to vector derivatives array. </p>
 
-<p class="definition">Definition at line <a class="el" href="orientedSphereFit_8h_source.html#l00066">66</a> of file <a class="el" href="orientedSphereFit_8h_source.html">orientedSphereFit.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="orientedSphereFit_8h_source.html#l00062">62</a> of file <a class="el" href="orientedSphereFit_8h_source.html">orientedSphereFit.h</a>.</p>
 
 </div>
 </div>
@@ -378,13 +378,13 @@ template&lt;class DataPoint , class _NFilter , int DiffType, typename T &gt; </d
 
 <p>Alias to vector type. </p>
 
-<p class="definition">Definition at line <a class="el" href="orientedSphereFit_8h_source.html#l00065">65</a> of file <a class="el" href="orientedSphereFit_8h_source.html">orientedSphereFit.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="orientedSphereFit_8h_source.html#l00061">61</a> of file <a class="el" href="orientedSphereFit_8h_source.html">orientedSphereFit.h</a>.</p>
 
 </div>
 </div>
 <h2 class="groupheader">Member Enumeration Documentation</h2>
-<a id="aca126de3e1ae475fd81bac69c37ba95d" name="aca126de3e1ae475fd81bac69c37ba95d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aca126de3e1ae475fd81bac69c37ba95d">&#9670;&#160;</a></span>anonymous enum</h2>
+<a id="af82dd7d72c47cfe311ad3ef893f7cafd" name="af82dd7d72c47cfe311ad3ef893f7cafd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af82dd7d72c47cfe311ad3ef893f7cafd">&#9670;&#160;</a></span>anonymous enum</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -405,7 +405,7 @@ template&lt;class DataPoint , class _NFilter , int DiffType, typename T &gt; </d
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="orientedSphereFit_8h_source.html#l00069">69</a> of file <a class="el" href="orientedSphereFit_8h_source.html">orientedSphereFit.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="orientedSphereFit_8h_source.html#l00065">65</a> of file <a class="el" href="orientedSphereFit_8h_source.html">orientedSphereFit.h</a>.</p>
 
 </div>
 </div>
@@ -461,7 +461,7 @@ template&lt;class DataPoint , class _NFilter , int DiffType, typename T &gt; </d
 <p>Add a neighbor to perform the fit. </p>
 <dl class="section return"><dt>Returns</dt><dd>false if param nei is not a valid neighbour (weight = 0) </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="orientedSphereFit_8hpp_source.html#l00107">107</a> of file <a class="el" href="orientedSphereFit_8hpp_source.html">orientedSphereFit.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="orientedSphereFit_8hpp_source.html#l00100">100</a> of file <a class="el" href="orientedSphereFit_8hpp_source.html">orientedSphereFit.hpp</a>.</p>
 
 </div>
 </div>
@@ -494,7 +494,7 @@ template&lt;class DataPoint , class _NFilter , int DiffType, typename T &gt; </d
 <dl class="section warning"><dt>Warning</dt><dd>Requires that isNormalized() return false </dd></dl>
 <dl class="section return"><dt>Returns</dt><dd>false when the original sphere has already been normalized. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="orientedSphereFit_8hpp_source.html#l00191">191</a> of file <a class="el" href="orientedSphereFit_8hpp_source.html">orientedSphereFit.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="orientedSphereFit_8hpp_source.html#l00182">182</a> of file <a class="el" href="orientedSphereFit_8hpp_source.html">orientedSphereFit.hpp</a>.</p>
 
 </div>
 </div>
@@ -525,7 +525,7 @@ template&lt;class DataPoint , class _NFilter , int DiffType, typename T &gt; </d
 
 <p>Returns the derivatives of the primitive normal. </p>
 
-<p class="definition">Definition at line <a class="el" href="orientedSphereFit_8hpp_source.html#l00166">166</a> of file <a class="el" href="orientedSphereFit_8hpp_source.html">orientedSphereFit.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="orientedSphereFit_8hpp_source.html#l00158">158</a> of file <a class="el" href="orientedSphereFit_8hpp_source.html">orientedSphereFit.hpp</a>.</p>
 
 </div>
 </div>
@@ -556,7 +556,7 @@ template&lt;class DataPoint , class _NFilter , int DiffType, typename T &gt; </d
 
 <p>Returns the derivatives of the scalar field at the evaluation point. </p>
 
-<p class="definition">Definition at line <a class="el" href="orientedSphereFit_8hpp_source.html#l00181">181</a> of file <a class="el" href="orientedSphereFit_8hpp_source.html">orientedSphereFit.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="orientedSphereFit_8hpp_source.html#l00173">173</a> of file <a class="el" href="orientedSphereFit_8hpp_source.html">orientedSphereFit.hpp</a>.</p>
 
 </div>
 </div>
@@ -587,7 +587,7 @@ template&lt;class DataPoint , class _NFilter , int DiffType, typename T &gt; </d
 
 <p>compute the Pratt norm derivative </p>
 
-<p class="definition">Definition at line <a class="el" href="orientedSphereFit_8h_source.html#l00126">126</a> of file <a class="el" href="orientedSphereFit_8h_source.html">orientedSphereFit.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="orientedSphereFit_8h_source.html#l00121">121</a> of file <a class="el" href="orientedSphereFit_8h_source.html">orientedSphereFit.h</a>.</p>
 
 </div>
 </div>
@@ -619,7 +619,7 @@ template&lt;class DataPoint , class _NFilter , int DiffType, typename T &gt; </d
 
 <p>compute the Pratt norm derivative for the dimension _d </p>
 
-<p class="definition">Definition at line <a class="el" href="orientedSphereFit_8h_source.html#l00119">119</a> of file <a class="el" href="orientedSphereFit_8h_source.html">orientedSphereFit.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="orientedSphereFit_8h_source.html#l00114">114</a> of file <a class="el" href="orientedSphereFit_8h_source.html">orientedSphereFit.h</a>.</p>
 
 </div>
 </div>
@@ -650,7 +650,7 @@ template&lt;class DataPoint , class _NFilter , int DiffType, typename T &gt; </d
 
 <p>compute the square of the Pratt norm derivative </p>
 
-<p class="definition">Definition at line <a class="el" href="orientedSphereFit_8h_source.html#l00103">103</a> of file <a class="el" href="orientedSphereFit_8h_source.html">orientedSphereFit.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="orientedSphereFit_8h_source.html#l00100">100</a> of file <a class="el" href="orientedSphereFit_8h_source.html">orientedSphereFit.h</a>.</p>
 
 </div>
 </div>
@@ -682,7 +682,7 @@ template&lt;class DataPoint , class _NFilter , int DiffType, typename T &gt; </d
 
 <p>compute the square of the Pratt norm derivative for dimension _d </p>
 
-<p class="definition">Definition at line <a class="el" href="orientedSphereFit_8h_source.html#l00111">111</a> of file <a class="el" href="orientedSphereFit_8h_source.html">orientedSphereFit.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="orientedSphereFit_8h_source.html#l00107">107</a> of file <a class="el" href="orientedSphereFit_8h_source.html">orientedSphereFit.h</a>.</p>
 
 </div>
 </div>
@@ -715,7 +715,7 @@ template&lt;class DataPoint , class _NFilter , int DiffType, typename T &gt; </d
 <dl class="section return"><dt>Returns</dt><dd>Fitting Status </dd></dl>
 <dl class="section warning"><dt>Warning</dt><dd>Must be called be for any use of the fitting output </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="orientedSphereFit_8hpp_source.html#l00125">125</a> of file <a class="el" href="orientedSphereFit_8hpp_source.html">orientedSphereFit.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="orientedSphereFit_8hpp_source.html#l00117">117</a> of file <a class="el" href="orientedSphereFit_8hpp_source.html">orientedSphereFit.hpp</a>.</p>
 
 </div>
 </div>
@@ -745,9 +745,9 @@ template&lt;class DataPoint , class _NFilter , int DiffType, typename T &gt; </d
 </div><div class="memdoc">
 
 <p>Set the evaluation position and reset the internal states. </p>
-<dl class="section warning"><dt>Warning</dt><dd>Must be called be for any computation (but after #setNeighborFilter) </dd></dl>
+<dl class="section warning"><dt>Warning</dt><dd>Must be called be for any computation (but * after #setNeighborFilter) </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="orientedSphereFit_8hpp_source.html#l00088">88</a> of file <a class="el" href="orientedSphereFit_8hpp_source.html">orientedSphereFit.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="orientedSphereFit_8hpp_source.html#l00083">83</a> of file <a class="el" href="orientedSphereFit_8hpp_source.html">orientedSphereFit.hpp</a>.</p>
 
 </div>
 </div>
@@ -778,7 +778,7 @@ template&lt;class DataPoint , class _NFilter , int DiffType, typename T &gt; </d
 
 <p>Explicit conversion to <a class="el" href="classPonca_1_1OrientedSphereDerImpl.html" title="[OrientedSphereFit Definition]">OrientedSphereDerImpl</a> , to access methods potentially hidden by heritage. </p>
 
-<p class="definition">Definition at line <a class="el" href="orientedSphereFit_8h_source.html#l00092">92</a> of file <a class="el" href="orientedSphereFit_8h_source.html">orientedSphereFit.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="orientedSphereFit_8h_source.html#l00089">89</a> of file <a class="el" href="orientedSphereFit_8h_source.html">orientedSphereFit.h</a>.</p>
 
 </div>
 </div>
@@ -809,7 +809,7 @@ template&lt;class DataPoint , class _NFilter , int DiffType, typename T &gt; </d
 
 <p>Explicit conversion to <a class="el" href="classPonca_1_1OrientedSphereDerImpl.html" title="[OrientedSphereFit Definition]">OrientedSphereDerImpl</a> , to access methods potentially hidden by heritage. </p>
 
-<p class="definition">Definition at line <a class="el" href="orientedSphereFit_8h_source.html#l00092">92</a> of file <a class="el" href="orientedSphereFit_8h_source.html">orientedSphereFit.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="orientedSphereFit_8h_source.html#l00089">89</a> of file <a class="el" href="orientedSphereFit_8h_source.html">orientedSphereFit.h</a>.</p>
 
 </div>
 </div>
@@ -838,7 +838,7 @@ template&lt;class DataPoint , class _NFilter , int DiffType, typename T &gt; </d
 
 <p>Derivatives of the denominator of the quadratic parameter. </p>
 
-<p class="definition">Definition at line <a class="el" href="orientedSphereFit_8h_source.html#l00083">83</a> of file <a class="el" href="orientedSphereFit_8h_source.html">orientedSphereFit.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="orientedSphereFit_8h_source.html#l00080">80</a> of file <a class="el" href="orientedSphereFit_8h_source.html">orientedSphereFit.h</a>.</p>
 
 </div>
 </div>
@@ -867,7 +867,7 @@ template&lt;class DataPoint , class _NFilter , int DiffType, typename T &gt; </d
 <p>Derivatives of the numerator of the quadratic parameter <br  />
  </p>
 
-<p class="definition">Definition at line <a class="el" href="orientedSphereFit_8h_source.html#l00082">82</a> of file <a class="el" href="orientedSphereFit_8h_source.html">orientedSphereFit.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="orientedSphereFit_8h_source.html#l00079">79</a> of file <a class="el" href="orientedSphereFit_8h_source.html">orientedSphereFit.h</a>.</p>
 
 </div>
 </div>
@@ -895,7 +895,7 @@ template&lt;class DataPoint , class _NFilter , int DiffType, typename T &gt; </d
 
 <p>Sum of the dot product between relative positions and normals with weight derivatives. </p>
 
-<p class="definition">Definition at line <a class="el" href="orientedSphereFit_8h_source.html#l00080">80</a> of file <a class="el" href="orientedSphereFit_8h_source.html">orientedSphereFit.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="orientedSphereFit_8h_source.html#l00075">75</a> of file <a class="el" href="orientedSphereFit_8h_source.html">orientedSphereFit.h</a>.</p>
 
 </div>
 </div>
@@ -911,7 +911,7 @@ template&lt;class DataPoint , class _NFilter , int DiffType, typename T &gt; </d
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classPonca_1_1OrientedSphereDerImpl.html#a7f0d8bafa2f2c48449808e6b7a335b04">ScalarArray</a> <a class="el" href="classPonca_1_1OrientedSphereDerImpl.html">Ponca::OrientedSphereDerImpl</a>&lt; DataPoint, _NFilter, <a class="el" href="namespacePonca.html#a7beaddc698523e7f9c041ea8bc4c535a">DiffType</a>, T &gt;::m_dSumDotPP {ScalarArray::Zero()}</td>
+          <td class="memname"><a class="el" href="classPonca_1_1OrientedSphereDerImpl.html#a7f0d8bafa2f2c48449808e6b7a335b04">ScalarArray</a> <a class="el" href="classPonca_1_1OrientedSphereDerImpl.html">Ponca::OrientedSphereDerImpl</a>&lt; DataPoint, _NFilter, <a class="el" href="namespacePonca.html#a7beaddc698523e7f9c041ea8bc4c535a">DiffType</a>, T &gt;::m_dSumDotPP</td>
         </tr>
       </table>
   </td>
@@ -920,10 +920,12 @@ template&lt;class DataPoint , class _NFilter , int DiffType, typename T &gt; </d
   </tr>
 </table>
 </div><div class="memdoc">
-
+<b>Initial value:</b><div class="fragment"><div class="line">{</div>
+<div class="line">                ScalarArray::Zero()}</div>
+</div><!-- fragment -->
 <p>Sum of the squared relative positions with weight derivatives. </p>
 
-<p class="definition">Definition at line <a class="el" href="orientedSphereFit_8h_source.html#l00081">81</a> of file <a class="el" href="orientedSphereFit_8h_source.html">orientedSphereFit.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="orientedSphereFit_8h_source.html#l00077">77</a> of file <a class="el" href="orientedSphereFit_8h_source.html">orientedSphereFit.h</a>.</p>
 
 </div>
 </div>
@@ -951,7 +953,7 @@ template&lt;class DataPoint , class _NFilter , int DiffType, typename T &gt; </d
 
 <p>Sum of the normal vectors with weight derivatives. </p>
 
-<p class="definition">Definition at line <a class="el" href="orientedSphereFit_8h_source.html#l00079">79</a> of file <a class="el" href="orientedSphereFit_8h_source.html">orientedSphereFit.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="orientedSphereFit_8h_source.html#l00074">74</a> of file <a class="el" href="orientedSphereFit_8h_source.html">orientedSphereFit.h</a>.</p>
 
 </div>
 </div>
@@ -972,7 +974,7 @@ template&lt;class DataPoint , class _NFilter , int DiffType, typename T &gt; </d
 <p>Derivatives of the hyper-sphere constant term <br  />
  </p>
 
-<p class="definition">Definition at line <a class="el" href="orientedSphereFit_8h_source.html#l00087">87</a> of file <a class="el" href="orientedSphereFit_8h_source.html">orientedSphereFit.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="orientedSphereFit_8h_source.html#l00084">84</a> of file <a class="el" href="orientedSphereFit_8h_source.html">orientedSphereFit.h</a>.</p>
 
 </div>
 </div>
@@ -993,7 +995,7 @@ template&lt;class DataPoint , class _NFilter , int DiffType, typename T &gt; </d
 <p>Derivatives of the hyper-sphere linear term <br  />
  </p>
 
-<p class="definition">Definition at line <a class="el" href="orientedSphereFit_8h_source.html#l00089">89</a> of file <a class="el" href="orientedSphereFit_8h_source.html">orientedSphereFit.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="orientedSphereFit_8h_source.html#l00086">86</a> of file <a class="el" href="orientedSphereFit_8h_source.html">orientedSphereFit.h</a>.</p>
 
 </div>
 </div>
@@ -1013,7 +1015,7 @@ template&lt;class DataPoint , class _NFilter , int DiffType, typename T &gt; </d
 
 <p>Derivatives of the hyper-sphere quadratic term. </p>
 
-<p class="definition">Definition at line <a class="el" href="orientedSphereFit_8h_source.html#l00088">88</a> of file <a class="el" href="orientedSphereFit_8h_source.html">orientedSphereFit.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="orientedSphereFit_8h_source.html#l00085">85</a> of file <a class="el" href="orientedSphereFit_8h_source.html">orientedSphereFit.h</a>.</p>
 
 </div>
 </div>
@@ -1023,7 +1025,7 @@ template&lt;class DataPoint , class _NFilter , int DiffType, typename T &gt; </d
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="namespacePonca.html">Ponca</a></li><li class="navelem"><a class="el" href="classPonca_1_1OrientedSphereDerImpl.html">OrientedSphereDerImpl</a></li>
-    <li class="footer">Generated on Wed Mar 18 2026 16:17:06 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
+    <li class="footer">Generated on Thu Mar 19 2026 17:42:38 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
   </ul>
 </div>
 </body>

@@ -51,7 +51,7 @@ MathJax.Hub.Config({
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Ponca
-   &#160;<span id="projectnumber">ff18772cb1e492269a8bd2895da1f5d816a1ae25</span>
+   &#160;<span id="projectnumber">19ef58fd3760f23a8af99a5eeac4f934757e30d9</span>
    </div>
    <div id="projectbrief">Point Cloud Analysis library</div>
   </td>
@@ -167,12 +167,10 @@ Public Types</h2></td></tr>
   <br /></td></tr>
 <tr class="separator:a891f884a68f34b8702a5ab08c5fece7a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aecc733ef1bcf090a1b38960c2f3f625a" id="r_aecc733ef1bcf090a1b38960c2f3f625a"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1StaticKdTreeBase.html#aecc733ef1bcf090a1b38960c2f3f625a">PointContainer</a> = typename Traits::PointContainer</td></tr>
-<tr class="memdesc:aecc733ef1bcf090a1b38960c2f3f625a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Container for DataPoint used inside the <a class="el" href="structPonca_1_1KdTree.html" title="Abstract KdTree type with KdTreeDefaultTraits.">KdTree</a> <br  />
-  <br /></td></tr>
+<tr class="memdesc:aecc733ef1bcf090a1b38960c2f3f625a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Container for DataPoint used inside the <a class="el" href="structPonca_1_1KdTree.html" title="Abstract KdTree type with KdTreeDefaultTraits.">KdTree</a>.  <br /></td></tr>
 <tr class="separator:aecc733ef1bcf090a1b38960c2f3f625a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4fb082d654ef27ec82a4d4a160e9d51e" id="r_a4fb082d654ef27ec82a4d4a160e9d51e"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1StaticKdTreeBase.html#a4fb082d654ef27ec82a4d4a160e9d51e">IndexContainer</a> = typename Traits::IndexContainer</td></tr>
-<tr class="memdesc:a4fb082d654ef27ec82a4d4a160e9d51e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Container for indices used inside the <a class="el" href="structPonca_1_1KdTree.html" title="Abstract KdTree type with KdTreeDefaultTraits.">KdTree</a> <br  />
-  <br /></td></tr>
+<tr class="memdesc:a4fb082d654ef27ec82a4d4a160e9d51e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Container for indices used inside the <a class="el" href="structPonca_1_1KdTree.html" title="Abstract KdTree type with KdTreeDefaultTraits.">KdTree</a>.  <br /></td></tr>
 <tr class="separator:a4fb082d654ef27ec82a4d4a160e9d51e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0e2a8c9e415bdd411ed0ef2356b71503" id="r_a0e2a8c9e415bdd411ed0ef2356b71503"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1StaticKdTreeBase.html#a0e2a8c9e415bdd411ed0ef2356b71503">NodeIndexType</a> = typename Traits::NodeIndexType</td></tr>
 <tr class="memdesc:a0e2a8c9e415bdd411ed0ef2356b71503"><td class="mdescLeft">&#160;</td><td class="mdescRight">Type used to index nodes into the NodeContainer <br  />
@@ -246,40 +244,40 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:acc1722eb4750a519edfbd787d8f13f0e" id="r_acc1722eb4750a519edfbd787d8f13f0e"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="classPonca_1_1StaticKdTreeBase.html#abcc85cc97d1bf9dcc775cb0e6cc2c13d">DataPoint</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1StaticKdTreeBase.html#acc1722eb4750a519edfbd787d8f13f0e">pointDataFromSample</a> (<a class="el" href="classPonca_1_1StaticKdTreeBase.html#a5e7fdc200c463c1adf7b7dcda4c6035d">IndexType</a> sample_index) const</td></tr>
 <tr class="memdesc:acc1722eb4750a519edfbd787d8f13f0e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return the <a class="el" href="classPonca_1_1StaticKdTreeBase.html#abcc85cc97d1bf9dcc775cb0e6cc2c13d">DataPoint</a> associated with the specified sample index.  <br /></td></tr>
 <tr class="separator:acc1722eb4750a519edfbd787d8f13f0e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aba4b86a4f6b1094f1eb7543d9bd5ef56" id="r_aba4b86a4f6b1094f1eb7543d9bd5ef56"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespacePonca.html#adf9919566115c78b89deee24b12d0afe">KdTreeKNearestPointQuery</a>&lt; Traits &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1StaticKdTreeBase.html#aba4b86a4f6b1094f1eb7543d9bd5ef56">kNearestNeighbors</a> (const <a class="el" href="classPonca_1_1StaticKdTreeBase.html#a2511ee22d67c088c5e6ea5ac7dbe2374">VectorType</a> &amp;point, <a class="el" href="classPonca_1_1StaticKdTreeBase.html#a5e7fdc200c463c1adf7b7dcda4c6035d">IndexType</a> k) const</td></tr>
+<tr class="memitem:aba4b86a4f6b1094f1eb7543d9bd5ef56" id="r_aba4b86a4f6b1094f1eb7543d9bd5ef56"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespacePonca.html#a0ebbdc9304b6d3c57f33459bb94303fc">KdTreeKNearestPointQuery</a>&lt; Traits &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1StaticKdTreeBase.html#aba4b86a4f6b1094f1eb7543d9bd5ef56">kNearestNeighbors</a> (const <a class="el" href="classPonca_1_1StaticKdTreeBase.html#a2511ee22d67c088c5e6ea5ac7dbe2374">VectorType</a> &amp;point, <a class="el" href="classPonca_1_1StaticKdTreeBase.html#a5e7fdc200c463c1adf7b7dcda4c6035d">IndexType</a> k) const</td></tr>
 <tr class="memdesc:aba4b86a4f6b1094f1eb7543d9bd5ef56"><td class="mdescLeft">&#160;</td><td class="mdescRight">Computes a <a class="el" href="group__spatialpartitioning.html#structPonca_1_1Query" title="Composes the Query object depending on an input type and output type.">Query</a> object to iterate over the k-nearest neighbors of a point. The returned object can be reset and reused with the () operator (using the same argument types as parameters).  <br /></td></tr>
 <tr class="separator:aba4b86a4f6b1094f1eb7543d9bd5ef56"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3e2903bb47370da04e00f52a8cc27d00" id="r_a3e2903bb47370da04e00f52a8cc27d00"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespacePonca.html#a2d7ca28c8b7f474a5631a5fe5b255a65">KdTreeKNearestIndexQuery</a>&lt; Traits &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1StaticKdTreeBase.html#a3e2903bb47370da04e00f52a8cc27d00">kNearestNeighbors</a> (<a class="el" href="classPonca_1_1StaticKdTreeBase.html#a5e7fdc200c463c1adf7b7dcda4c6035d">IndexType</a> index, <a class="el" href="classPonca_1_1StaticKdTreeBase.html#a5e7fdc200c463c1adf7b7dcda4c6035d">IndexType</a> k) const</td></tr>
+<tr class="memitem:a3e2903bb47370da04e00f52a8cc27d00" id="r_a3e2903bb47370da04e00f52a8cc27d00"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespacePonca.html#a33b8cc759fbd256e887cc5efafa32935">KdTreeKNearestIndexQuery</a>&lt; Traits &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1StaticKdTreeBase.html#a3e2903bb47370da04e00f52a8cc27d00">kNearestNeighbors</a> (<a class="el" href="classPonca_1_1StaticKdTreeBase.html#a5e7fdc200c463c1adf7b7dcda4c6035d">IndexType</a> index, <a class="el" href="classPonca_1_1StaticKdTreeBase.html#a5e7fdc200c463c1adf7b7dcda4c6035d">IndexType</a> k) const</td></tr>
 <tr class="memdesc:a3e2903bb47370da04e00f52a8cc27d00"><td class="mdescLeft">&#160;</td><td class="mdescRight">Computes a <a class="el" href="group__spatialpartitioning.html#structPonca_1_1Query" title="Composes the Query object depending on an input type and output type.">Query</a> object to iterate over the k-nearest neighbors of a point. The returned object can be reset and reused with the () operator (using the same argument types as parameters).    <br /></td></tr>
 <tr class="separator:a3e2903bb47370da04e00f52a8cc27d00"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa3a069bf1a409c65a33c22d2770b6e7b" id="r_aa3a069bf1a409c65a33c22d2770b6e7b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespacePonca.html#adf9919566115c78b89deee24b12d0afe">KdTreeKNearestPointQuery</a>&lt; Traits &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1StaticKdTreeBase.html#aa3a069bf1a409c65a33c22d2770b6e7b">kNearestNeighborsQuery</a> () const</td></tr>
+<tr class="memitem:aa3a069bf1a409c65a33c22d2770b6e7b" id="r_aa3a069bf1a409c65a33c22d2770b6e7b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespacePonca.html#a0ebbdc9304b6d3c57f33459bb94303fc">KdTreeKNearestPointQuery</a>&lt; Traits &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1StaticKdTreeBase.html#aa3a069bf1a409c65a33c22d2770b6e7b">kNearestNeighborsQuery</a> () const</td></tr>
 <tr class="memdesc:aa3a069bf1a409c65a33c22d2770b6e7b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convenience function that provides an empty k-nearest neighbors <a class="el" href="group__spatialpartitioning.html#structPonca_1_1Query" title="Composes the Query object depending on an input type and output type.">Query</a> object.  <br /></td></tr>
 <tr class="separator:aa3a069bf1a409c65a33c22d2770b6e7b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a574b233116bf52d9511cbc80a64ce3ce" id="r_a574b233116bf52d9511cbc80a64ce3ce"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespacePonca.html#a2d7ca28c8b7f474a5631a5fe5b255a65">KdTreeKNearestIndexQuery</a>&lt; Traits &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1StaticKdTreeBase.html#a574b233116bf52d9511cbc80a64ce3ce">kNearestNeighborsIndexQuery</a> () const</td></tr>
+<tr class="memitem:a574b233116bf52d9511cbc80a64ce3ce" id="r_a574b233116bf52d9511cbc80a64ce3ce"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespacePonca.html#a33b8cc759fbd256e887cc5efafa32935">KdTreeKNearestIndexQuery</a>&lt; Traits &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1StaticKdTreeBase.html#a574b233116bf52d9511cbc80a64ce3ce">kNearestNeighborsIndexQuery</a> () const</td></tr>
 <tr class="memdesc:a574b233116bf52d9511cbc80a64ce3ce"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convenience function that provides an empty k-nearest neighbors <a class="el" href="group__spatialpartitioning.html#structPonca_1_1Query" title="Composes the Query object depending on an input type and output type.">Query</a> object.    <br /></td></tr>
 <tr class="separator:a574b233116bf52d9511cbc80a64ce3ce"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6d404f205bfb8401fe55515326dec183" id="r_a6d404f205bfb8401fe55515326dec183"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespacePonca.html#aa504ed3d8c41574a71b479a88076dbbf">KdTreeNearestPointQuery</a>&lt; Traits &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1StaticKdTreeBase.html#a6d404f205bfb8401fe55515326dec183">nearestNeighbor</a> (const <a class="el" href="classPonca_1_1StaticKdTreeBase.html#a2511ee22d67c088c5e6ea5ac7dbe2374">VectorType</a> &amp;point) const</td></tr>
+<tr class="memitem:a6d404f205bfb8401fe55515326dec183" id="r_a6d404f205bfb8401fe55515326dec183"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespacePonca.html#af453fde256975c5edf070f9775ae7443">KdTreeNearestPointQuery</a>&lt; Traits &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1StaticKdTreeBase.html#a6d404f205bfb8401fe55515326dec183">nearestNeighbor</a> (const <a class="el" href="classPonca_1_1StaticKdTreeBase.html#a2511ee22d67c088c5e6ea5ac7dbe2374">VectorType</a> &amp;point) const</td></tr>
 <tr class="memdesc:a6d404f205bfb8401fe55515326dec183"><td class="mdescLeft">&#160;</td><td class="mdescRight">Computes a <a class="el" href="group__spatialpartitioning.html#structPonca_1_1Query" title="Composes the Query object depending on an input type and output type.">Query</a> object that contains the nearest point. The returned object can be reset and reused with the () operator (using the same argument types as parameters).  <br /></td></tr>
 <tr class="separator:a6d404f205bfb8401fe55515326dec183"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a47ca3adbc405aa1b2f482ae95099f35c" id="r_a47ca3adbc405aa1b2f482ae95099f35c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespacePonca.html#adee57f01481a113fd4e85884db2dc824">KdTreeNearestIndexQuery</a>&lt; Traits &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1StaticKdTreeBase.html#a47ca3adbc405aa1b2f482ae95099f35c">nearestNeighbor</a> (<a class="el" href="classPonca_1_1StaticKdTreeBase.html#a5e7fdc200c463c1adf7b7dcda4c6035d">IndexType</a> index) const</td></tr>
+<tr class="memitem:a47ca3adbc405aa1b2f482ae95099f35c" id="r_a47ca3adbc405aa1b2f482ae95099f35c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespacePonca.html#aa2008cddd81b18e9118eae8b4ea9c9a2">KdTreeNearestIndexQuery</a>&lt; Traits &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1StaticKdTreeBase.html#a47ca3adbc405aa1b2f482ae95099f35c">nearestNeighbor</a> (<a class="el" href="classPonca_1_1StaticKdTreeBase.html#a5e7fdc200c463c1adf7b7dcda4c6035d">IndexType</a> index) const</td></tr>
 <tr class="memdesc:a47ca3adbc405aa1b2f482ae95099f35c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Computes a <a class="el" href="group__spatialpartitioning.html#structPonca_1_1Query" title="Composes the Query object depending on an input type and output type.">Query</a> object that contains the nearest point. The returned object can be reset and reused with the () operator (using the same argument types as parameters).    <br /></td></tr>
 <tr class="separator:a47ca3adbc405aa1b2f482ae95099f35c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afe7464d1a84882c13af85311adc002a4" id="r_afe7464d1a84882c13af85311adc002a4"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespacePonca.html#adee57f01481a113fd4e85884db2dc824">KdTreeNearestIndexQuery</a>&lt; Traits &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1StaticKdTreeBase.html#afe7464d1a84882c13af85311adc002a4">nearestNeighborQuery</a> () const</td></tr>
+<tr class="memitem:afe7464d1a84882c13af85311adc002a4" id="r_afe7464d1a84882c13af85311adc002a4"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespacePonca.html#aa2008cddd81b18e9118eae8b4ea9c9a2">KdTreeNearestIndexQuery</a>&lt; Traits &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1StaticKdTreeBase.html#afe7464d1a84882c13af85311adc002a4">nearestNeighborQuery</a> () const</td></tr>
 <tr class="memdesc:afe7464d1a84882c13af85311adc002a4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convenience function that provides an empty nearest neighbor <a class="el" href="group__spatialpartitioning.html#structPonca_1_1Query" title="Composes the Query object depending on an input type and output type.">Query</a> object.  <br /></td></tr>
 <tr class="separator:afe7464d1a84882c13af85311adc002a4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af31160bafac28e57d970fcba57a79692" id="r_af31160bafac28e57d970fcba57a79692"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespacePonca.html#adee57f01481a113fd4e85884db2dc824">KdTreeNearestIndexQuery</a>&lt; Traits &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1StaticKdTreeBase.html#af31160bafac28e57d970fcba57a79692">nearestNeighborIndexQuery</a> () const</td></tr>
+<tr class="memitem:af31160bafac28e57d970fcba57a79692" id="r_af31160bafac28e57d970fcba57a79692"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespacePonca.html#aa2008cddd81b18e9118eae8b4ea9c9a2">KdTreeNearestIndexQuery</a>&lt; Traits &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1StaticKdTreeBase.html#af31160bafac28e57d970fcba57a79692">nearestNeighborIndexQuery</a> () const</td></tr>
 <tr class="memdesc:af31160bafac28e57d970fcba57a79692"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convenience function that provides an empty nearest neighbor <a class="el" href="group__spatialpartitioning.html#structPonca_1_1Query" title="Composes the Query object depending on an input type and output type.">Query</a> object.    <br /></td></tr>
 <tr class="separator:af31160bafac28e57d970fcba57a79692"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7806ac439e7c61ff21d51111dbd81610" id="r_a7806ac439e7c61ff21d51111dbd81610"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespacePonca.html#ac3fc0a276495b2cb4a0a0b0e31556781">KdTreeRangePointQuery</a>&lt; Traits &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1StaticKdTreeBase.html#a7806ac439e7c61ff21d51111dbd81610">rangeNeighbors</a> (const <a class="el" href="classPonca_1_1StaticKdTreeBase.html#a2511ee22d67c088c5e6ea5ac7dbe2374">VectorType</a> &amp;point, <a class="el" href="classPonca_1_1StaticKdTreeBase.html#ab2acfec19002e6f12c7659e6f0a0354e">Scalar</a> r) const</td></tr>
+<tr class="memitem:a7806ac439e7c61ff21d51111dbd81610" id="r_a7806ac439e7c61ff21d51111dbd81610"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespacePonca.html#aa7967971616ab3249a526300a06113f5">KdTreeRangePointQuery</a>&lt; Traits &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1StaticKdTreeBase.html#a7806ac439e7c61ff21d51111dbd81610">rangeNeighbors</a> (const <a class="el" href="classPonca_1_1StaticKdTreeBase.html#a2511ee22d67c088c5e6ea5ac7dbe2374">VectorType</a> &amp;point, <a class="el" href="classPonca_1_1StaticKdTreeBase.html#ab2acfec19002e6f12c7659e6f0a0354e">Scalar</a> r) const</td></tr>
 <tr class="memdesc:a7806ac439e7c61ff21d51111dbd81610"><td class="mdescLeft">&#160;</td><td class="mdescRight">Computes a <a class="el" href="group__spatialpartitioning.html#structPonca_1_1Query" title="Composes the Query object depending on an input type and output type.">Query</a> object to iterate over the neighbors that are inside a given radius. The returned object can be reset and reused with the () operator (using the same argument types as parameters).  <br /></td></tr>
 <tr class="separator:a7806ac439e7c61ff21d51111dbd81610"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a64a5c2dc4a4b5eb4e544426c82e6e365" id="r_a64a5c2dc4a4b5eb4e544426c82e6e365"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespacePonca.html#a7815a4253ccae8a5c0e4fa2cbb206b17">KdTreeRangeIndexQuery</a>&lt; Traits &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1StaticKdTreeBase.html#a64a5c2dc4a4b5eb4e544426c82e6e365">rangeNeighbors</a> (<a class="el" href="classPonca_1_1StaticKdTreeBase.html#a5e7fdc200c463c1adf7b7dcda4c6035d">IndexType</a> index, <a class="el" href="classPonca_1_1StaticKdTreeBase.html#ab2acfec19002e6f12c7659e6f0a0354e">Scalar</a> r) const</td></tr>
+<tr class="memitem:a64a5c2dc4a4b5eb4e544426c82e6e365" id="r_a64a5c2dc4a4b5eb4e544426c82e6e365"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespacePonca.html#a6ce83058be238352c310c7eb68f4e9cb">KdTreeRangeIndexQuery</a>&lt; Traits &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1StaticKdTreeBase.html#a64a5c2dc4a4b5eb4e544426c82e6e365">rangeNeighbors</a> (<a class="el" href="classPonca_1_1StaticKdTreeBase.html#a5e7fdc200c463c1adf7b7dcda4c6035d">IndexType</a> index, <a class="el" href="classPonca_1_1StaticKdTreeBase.html#ab2acfec19002e6f12c7659e6f0a0354e">Scalar</a> r) const</td></tr>
 <tr class="memdesc:a64a5c2dc4a4b5eb4e544426c82e6e365"><td class="mdescLeft">&#160;</td><td class="mdescRight">Computes a <a class="el" href="group__spatialpartitioning.html#structPonca_1_1Query" title="Composes the Query object depending on an input type and output type.">Query</a> object to iterate over the neighbors that are inside a given radius. The returned object can be reset and reused with the () operator (using the same argument types as parameters).    <br /></td></tr>
 <tr class="separator:a64a5c2dc4a4b5eb4e544426c82e6e365"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4fbff75af25d52849091343be8addf52" id="r_a4fbff75af25d52849091343be8addf52"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespacePonca.html#ac3fc0a276495b2cb4a0a0b0e31556781">KdTreeRangePointQuery</a>&lt; Traits &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1StaticKdTreeBase.html#a4fbff75af25d52849091343be8addf52">rangeNeighborsQuery</a> () const</td></tr>
+<tr class="memitem:a4fbff75af25d52849091343be8addf52" id="r_a4fbff75af25d52849091343be8addf52"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespacePonca.html#aa7967971616ab3249a526300a06113f5">KdTreeRangePointQuery</a>&lt; Traits &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1StaticKdTreeBase.html#a4fbff75af25d52849091343be8addf52">rangeNeighborsQuery</a> () const</td></tr>
 <tr class="memdesc:a4fbff75af25d52849091343be8addf52"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convenience function that provides an empty range neighbor <a class="el" href="group__spatialpartitioning.html#structPonca_1_1Query" title="Composes the Query object depending on an input type and output type.">Query</a> object.  <br /></td></tr>
 <tr class="separator:a4fbff75af25d52849091343be8addf52"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5a7daf3762055ecff9d2b7df66476167" id="r_a5a7daf3762055ecff9d2b7df66476167"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespacePonca.html#a7815a4253ccae8a5c0e4fa2cbb206b17">KdTreeRangeIndexQuery</a>&lt; Traits &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1StaticKdTreeBase.html#a5a7daf3762055ecff9d2b7df66476167">rangeNeighborsIndexQuery</a> () const</td></tr>
+<tr class="memitem:a5a7daf3762055ecff9d2b7df66476167" id="r_a5a7daf3762055ecff9d2b7df66476167"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespacePonca.html#a6ce83058be238352c310c7eb68f4e9cb">KdTreeRangeIndexQuery</a>&lt; Traits &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1StaticKdTreeBase.html#a5a7daf3762055ecff9d2b7df66476167">rangeNeighborsIndexQuery</a> () const</td></tr>
 <tr class="memdesc:a5a7daf3762055ecff9d2b7df66476167"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="classPonca_1_1StaticKdTreeBase.html#a4fbff75af25d52849091343be8addf52" title="Convenience function that provides an empty range neighbor Query object.">KdTreeBase::rangeNeighborsQuery</a>.  <br /></td></tr>
 <tr class="separator:a5a7daf3762055ecff9d2b7df66476167"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af3eb9170fbd9afb08383f188888fff1b" id="r_af3eb9170fbd9afb08383f188888fff1b"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1StaticKdTreeBase.html#af3eb9170fbd9afb08383f188888fff1b">valid</a> () const</td></tr>
@@ -292,7 +290,7 @@ Static Public Attributes</h2></td></tr>
 <tr class="memitem:a5855bad7be3af721fbebc9a92caf9d69" id="r_a5855bad7be3af721fbebc9a92caf9d69"><td class="memItemLeft" align="right" valign="top">static constexpr std::size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1StaticKdTreeBase.html#a5855bad7be3af721fbebc9a92caf9d69">MAX_NODE_COUNT</a> = NodeType::MAX_COUNT</td></tr>
 <tr class="memdesc:a5855bad7be3af721fbebc9a92caf9d69"><td class="mdescLeft">&#160;</td><td class="mdescRight">The maximum number of nodes that the kd-tree can have.  <br /></td></tr>
 <tr class="separator:a5855bad7be3af721fbebc9a92caf9d69"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a51aba10720a65889436f2292b75f15ee" id="r_a51aba10720a65889436f2292b75f15ee"><td class="memItemLeft" align="right" valign="top">static constexpr std::size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1StaticKdTreeBase.html#a51aba10720a65889436f2292b75f15ee">MAX_POINT_COUNT</a> = std::size_t(2) &lt;&lt; sizeof(<a class="el" href="classPonca_1_1StaticKdTreeBase.html#a5e7fdc200c463c1adf7b7dcda4c6035d">IndexType</a>)*8</td></tr>
+<tr class="memitem:a51aba10720a65889436f2292b75f15ee" id="r_a51aba10720a65889436f2292b75f15ee"><td class="memItemLeft" align="right" valign="top">static constexpr std::size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1StaticKdTreeBase.html#a51aba10720a65889436f2292b75f15ee">MAX_POINT_COUNT</a> = std::size_t(2) &lt;&lt; sizeof(<a class="el" href="classPonca_1_1StaticKdTreeBase.html#a5e7fdc200c463c1adf7b7dcda4c6035d">IndexType</a>) * 8</td></tr>
 <tr class="memdesc:a51aba10720a65889436f2292b75f15ee"><td class="mdescLeft">&#160;</td><td class="mdescRight">The maximum number of points that can be stored in the kd-tree.  <br /></td></tr>
 <tr class="separator:a51aba10720a65889436f2292b75f15ee"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:acd00329593ce36be7289c6a5d10c67f6" id="r_acd00329593ce36be7289c6a5d10c67f6"><td class="memItemLeft" align="right" valign="top">static constexpr int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1StaticKdTreeBase.html#acd00329593ce36be7289c6a5d10c67f6">MAX_DEPTH</a> = Traits::MAX_DEPTH</td></tr>
@@ -328,7 +326,7 @@ class Ponca::StaticKdTreeBase&lt; Traits &gt;</div><p>Customizable static base c
 </dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="structPonca_1_1KdTreeDefaultTraits.html" title="The default traits type used by the kd-tree.">KdTreeDefaultTraits</a> for the trait interface documentation. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="kdTree_8h_source.html#l00126">126</a> of file <a class="el" href="kdTree_8h_source.html">kdTree.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="kdTree_8h_source.html#l00137">137</a> of file <a class="el" href="kdTree_8h_source.html">kdTree.h</a>.</p>
 </div><h2 class="groupheader">Member Typedef Documentation</h2>
 <a id="a77af1f2fbdcd8d6021e277ca23e024d3" name="a77af1f2fbdcd8d6021e277ca23e024d3"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a77af1f2fbdcd8d6021e277ca23e024d3">&#9670;&#160;</a></span>AabbType</h2>
@@ -347,7 +345,7 @@ template&lt;typename Traits &gt; </div>
 <p>Bounding box type given by user via NodeType <br  />
  </p>
 
-<p class="definition">Definition at line <a class="el" href="kdTree_8h_source.html#l00141">141</a> of file <a class="el" href="kdTree_8h_source.html">kdTree.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="kdTree_8h_source.html#l00152">152</a> of file <a class="el" href="kdTree_8h_source.html">kdTree.h</a>.</p>
 
 </div>
 </div>
@@ -368,7 +366,7 @@ template&lt;typename Traits &gt; </div>
 <p>DataPoint given by user via Traits <br  />
  </p>
 
-<p class="definition">Definition at line <a class="el" href="kdTree_8h_source.html#l00141">141</a> of file <a class="el" href="kdTree_8h_source.html">kdTree.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="kdTree_8h_source.html#l00152">152</a> of file <a class="el" href="kdTree_8h_source.html">kdTree.h</a>.</p>
 
 </div>
 </div>
@@ -386,10 +384,9 @@ template&lt;typename Traits &gt; </div>
       </table>
 </div><div class="memdoc">
 
-<p>Container for indices used inside the <a class="el" href="structPonca_1_1KdTree.html" title="Abstract KdTree type with KdTreeDefaultTraits.">KdTree</a> <br  />
- </p>
+<p>Container for indices used inside the <a class="el" href="structPonca_1_1KdTree.html" title="Abstract KdTree type with KdTreeDefaultTraits.">KdTree</a>. </p>
 
-<p class="definition">Definition at line <a class="el" href="kdTree_8h_source.html#l00141">141</a> of file <a class="el" href="kdTree_8h_source.html">kdTree.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="kdTree_8h_source.html#l00152">152</a> of file <a class="el" href="kdTree_8h_source.html">kdTree.h</a>.</p>
 
 </div>
 </div>
@@ -410,7 +407,7 @@ template&lt;typename Traits &gt; </div>
 <p>Type used to index points into the PointContainer <br  />
  </p>
 
-<p class="definition">Definition at line <a class="el" href="kdTree_8h_source.html#l00141">141</a> of file <a class="el" href="kdTree_8h_source.html">kdTree.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="kdTree_8h_source.html#l00152">152</a> of file <a class="el" href="kdTree_8h_source.html">kdTree.h</a>.</p>
 
 </div>
 </div>
@@ -431,7 +428,7 @@ template&lt;typename Traits &gt; </div>
 <p>Type used to store the size of leaf nodes <br  />
  </p>
 
-<p class="definition">Definition at line <a class="el" href="kdTree_8h_source.html#l00141">141</a> of file <a class="el" href="kdTree_8h_source.html">kdTree.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="kdTree_8h_source.html#l00152">152</a> of file <a class="el" href="kdTree_8h_source.html">kdTree.h</a>.</p>
 
 </div>
 </div>
@@ -452,7 +449,7 @@ template&lt;typename Traits &gt; </div>
 <p>Container for nodes used inside the <a class="el" href="structPonca_1_1KdTree.html" title="Abstract KdTree type with KdTreeDefaultTraits.">KdTree</a> <br  />
  </p>
 
-<p class="definition">Definition at line <a class="el" href="kdTree_8h_source.html#l00141">141</a> of file <a class="el" href="kdTree_8h_source.html">kdTree.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="kdTree_8h_source.html#l00152">152</a> of file <a class="el" href="kdTree_8h_source.html">kdTree.h</a>.</p>
 
 </div>
 </div>
@@ -473,7 +470,7 @@ template&lt;typename Traits &gt; </div>
 <p>Type used to index nodes into the NodeContainer <br  />
  </p>
 
-<p class="definition">Definition at line <a class="el" href="kdTree_8h_source.html#l00141">141</a> of file <a class="el" href="kdTree_8h_source.html">kdTree.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="kdTree_8h_source.html#l00152">152</a> of file <a class="el" href="kdTree_8h_source.html">kdTree.h</a>.</p>
 
 </div>
 </div>
@@ -494,7 +491,7 @@ template&lt;typename Traits &gt; </div>
 <p>Type of nodes used inside the <a class="el" href="structPonca_1_1KdTree.html" title="Abstract KdTree type with KdTreeDefaultTraits.">KdTree</a> <br  />
  </p>
 
-<p class="definition">Definition at line <a class="el" href="kdTree_8h_source.html#l00141">141</a> of file <a class="el" href="kdTree_8h_source.html">kdTree.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="kdTree_8h_source.html#l00152">152</a> of file <a class="el" href="kdTree_8h_source.html">kdTree.h</a>.</p>
 
 </div>
 </div>
@@ -512,10 +509,9 @@ template&lt;typename Traits &gt; </div>
       </table>
 </div><div class="memdoc">
 
-<p>Container for DataPoint used inside the <a class="el" href="structPonca_1_1KdTree.html" title="Abstract KdTree type with KdTreeDefaultTraits.">KdTree</a> <br  />
- </p>
+<p>Container for DataPoint used inside the <a class="el" href="structPonca_1_1KdTree.html" title="Abstract KdTree type with KdTreeDefaultTraits.">KdTree</a>. </p>
 
-<p class="definition">Definition at line <a class="el" href="kdTree_8h_source.html#l00141">141</a> of file <a class="el" href="kdTree_8h_source.html">kdTree.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="kdTree_8h_source.html#l00152">152</a> of file <a class="el" href="kdTree_8h_source.html">kdTree.h</a>.</p>
 
 </div>
 </div>
@@ -536,7 +532,7 @@ template&lt;typename Traits &gt; </div>
 <p>Scalar given by user via DataPoint <br  />
  </p>
 
-<p class="definition">Definition at line <a class="el" href="kdTree_8h_source.html#l00141">141</a> of file <a class="el" href="kdTree_8h_source.html">kdTree.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="kdTree_8h_source.html#l00152">152</a> of file <a class="el" href="kdTree_8h_source.html">kdTree.h</a>.</p>
 
 </div>
 </div>
@@ -557,7 +553,7 @@ template&lt;typename Traits &gt; </div>
 <p>VectorType given by user via DataPoint <br  />
  </p>
 
-<p class="definition">Definition at line <a class="el" href="kdTree_8h_source.html#l00141">141</a> of file <a class="el" href="kdTree_8h_source.html">kdTree.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="kdTree_8h_source.html#l00152">152</a> of file <a class="el" href="kdTree_8h_source.html">kdTree.h</a>.</p>
 
 </div>
 </div>
@@ -598,7 +594,7 @@ template&lt;typename Traits &gt; </div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="kdTree_8h_source.html#l00191">191</a> of file <a class="el" href="kdTree_8h_source.html">kdTree.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="kdTree_8h_source.html#l00204">204</a> of file <a class="el" href="kdTree_8h_source.html">kdTree.h</a>.</p>
 
 </div>
 </div>
@@ -630,7 +626,7 @@ template&lt;typename Traits &gt; </div>
 
 <p>Get access to the internal buffer, for instance to prepare GPU binding. </p>
 
-<p class="definition">Definition at line <a class="el" href="kdTree_8h_source.html#l00244">244</a> of file <a class="el" href="kdTree_8h_source.html">kdTree.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="kdTree_8h_source.html#l00236">236</a> of file <a class="el" href="kdTree_8h_source.html">kdTree.h</a>.</p>
 
 </div>
 </div>
@@ -646,7 +642,7 @@ template&lt;typename Traits &gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="namespacePonca.html#adf9919566115c78b89deee24b12d0afe">KdTreeKNearestPointQuery</a>&lt; Traits &gt; <a class="el" href="classPonca_1_1StaticKdTreeBase.html">Ponca::StaticKdTreeBase</a>&lt; Traits &gt;::kNearestNeighbors </td>
+          <td class="memname"><a class="el" href="namespacePonca.html#a0ebbdc9304b6d3c57f33459bb94303fc">KdTreeKNearestPointQuery</a>&lt; Traits &gt; <a class="el" href="classPonca_1_1StaticKdTreeBase.html">Ponca::StaticKdTreeBase</a>&lt; Traits &gt;::kNearestNeighbors </td>
           <td>(</td>
           <td class="paramtype">const <a class="el" href="classPonca_1_1StaticKdTreeBase.html#a2511ee22d67c088c5e6ea5ac7dbe2374">VectorType</a> &amp;&#160;</td>
           <td class="paramname"><em>point</em>, </td>
@@ -678,10 +674,10 @@ template&lt;typename Traits &gt; </div>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>The <a class="el" href="namespacePonca.html#a2d7ca28c8b7f474a5631a5fe5b255a65">KdTreeKNearestIndexQuery</a> mutable object to iterate over the search results. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>The <a class="el" href="namespacePonca.html#a33b8cc759fbd256e887cc5efafa32935">KdTreeKNearestIndexQuery</a> mutable object to iterate over the search results. </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="classPonca_1_1KdTreeKNearestQueryBase.html" title="Extension of the Query class that allows to read the result of a k-nearest neighbors search on the Kd...">KdTreeKNearestQueryBase</a> </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="kdTree_8h_source.html#l00298">298</a> of file <a class="el" href="kdTree_8h_source.html">kdTree.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="kdTree_8h_source.html#l00284">284</a> of file <a class="el" href="kdTree_8h_source.html">kdTree.h</a>.</p>
 
 </div>
 </div>
@@ -697,7 +693,7 @@ template&lt;typename Traits &gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="namespacePonca.html#a2d7ca28c8b7f474a5631a5fe5b255a65">KdTreeKNearestIndexQuery</a>&lt; Traits &gt; <a class="el" href="classPonca_1_1StaticKdTreeBase.html">Ponca::StaticKdTreeBase</a>&lt; Traits &gt;::kNearestNeighbors </td>
+          <td class="memname"><a class="el" href="namespacePonca.html#a33b8cc759fbd256e887cc5efafa32935">KdTreeKNearestIndexQuery</a>&lt; Traits &gt; <a class="el" href="classPonca_1_1StaticKdTreeBase.html">Ponca::StaticKdTreeBase</a>&lt; Traits &gt;::kNearestNeighbors </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="classPonca_1_1StaticKdTreeBase.html#a5e7fdc200c463c1adf7b7dcda4c6035d">IndexType</a>&#160;</td>
           <td class="paramname"><em>index</em>, </td>
@@ -729,10 +725,10 @@ template&lt;typename Traits &gt; </div>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>The <a class="el" href="namespacePonca.html#a2d7ca28c8b7f474a5631a5fe5b255a65">KdTreeKNearestIndexQuery</a> mutable object to iterate over the search results. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>The <a class="el" href="namespacePonca.html#a33b8cc759fbd256e887cc5efafa32935">KdTreeKNearestIndexQuery</a> mutable object to iterate over the search results. </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="classPonca_1_1KdTreeKNearestQueryBase.html" title="Extension of the Query class that allows to read the result of a k-nearest neighbors search on the Kd...">KdTreeKNearestQueryBase</a> </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="kdTree_8h_source.html#l00308">308</a> of file <a class="el" href="kdTree_8h_source.html">kdTree.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="kdTree_8h_source.html#l00295">295</a> of file <a class="el" href="kdTree_8h_source.html">kdTree.h</a>.</p>
 
 </div>
 </div>
@@ -748,7 +744,7 @@ template&lt;typename Traits &gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="namespacePonca.html#a2d7ca28c8b7f474a5631a5fe5b255a65">KdTreeKNearestIndexQuery</a>&lt; Traits &gt; <a class="el" href="classPonca_1_1StaticKdTreeBase.html">Ponca::StaticKdTreeBase</a>&lt; Traits &gt;::kNearestNeighborsIndexQuery </td>
+          <td class="memname"><a class="el" href="namespacePonca.html#a33b8cc759fbd256e887cc5efafa32935">KdTreeKNearestIndexQuery</a>&lt; Traits &gt; <a class="el" href="classPonca_1_1StaticKdTreeBase.html">Ponca::StaticKdTreeBase</a>&lt; Traits &gt;::kNearestNeighborsIndexQuery </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td> const</td>
@@ -763,10 +759,10 @@ template&lt;typename Traits &gt; </div>
 
 <p>Convenience function that provides an empty k-nearest neighbors <a class="el" href="group__spatialpartitioning.html#structPonca_1_1Query" title="Composes the Query object depending on an input type and output type.">Query</a> object.   </p>
 <p>The returned object can call for a k-nearest neighbors search using the operator (), which takes a k and an <b>index</b> as parameters.</p>
-<p>Same as <code><a class="el" href="classPonca_1_1StaticKdTreeBase.html#aba4b86a4f6b1094f1eb7543d9bd5ef56" title="Computes a Query object to iterate over the k-nearest neighbors of a point. The returned object can b...">KdTreeBase::kNearestNeighbors</a> (0, 0)</code> </p><dl class="section return"><dt>Returns</dt><dd>The empty <a class="el" href="namespacePonca.html#a2d7ca28c8b7f474a5631a5fe5b255a65">KdTreeKNearestIndexQuery</a> mutable object to iterate over the search results. </dd></dl>
+<p>Same as <code><a class="el" href="classPonca_1_1StaticKdTreeBase.html#aba4b86a4f6b1094f1eb7543d9bd5ef56" title="Computes a Query object to iterate over the k-nearest neighbors of a point. The returned object can b...">KdTreeBase::kNearestNeighbors</a> (0, 0)</code> </p><dl class="section return"><dt>Returns</dt><dd>The empty <a class="el" href="namespacePonca.html#a33b8cc759fbd256e887cc5efafa32935">KdTreeKNearestIndexQuery</a> mutable object to iterate over the search results. </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="classPonca_1_1KdTreeKNearestQueryBase.html" title="Extension of the Query class that allows to read the result of a k-nearest neighbors search on the Kd...">KdTreeKNearestQueryBase</a> </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="kdTree_8h_source.html#l00334">334</a> of file <a class="el" href="kdTree_8h_source.html">kdTree.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="kdTree_8h_source.html#l00322">322</a> of file <a class="el" href="kdTree_8h_source.html">kdTree.h</a>.</p>
 
 </div>
 </div>
@@ -782,7 +778,7 @@ template&lt;typename Traits &gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="namespacePonca.html#adf9919566115c78b89deee24b12d0afe">KdTreeKNearestPointQuery</a>&lt; Traits &gt; <a class="el" href="classPonca_1_1StaticKdTreeBase.html">Ponca::StaticKdTreeBase</a>&lt; Traits &gt;::kNearestNeighborsQuery </td>
+          <td class="memname"><a class="el" href="namespacePonca.html#a0ebbdc9304b6d3c57f33459bb94303fc">KdTreeKNearestPointQuery</a>&lt; Traits &gt; <a class="el" href="classPonca_1_1StaticKdTreeBase.html">Ponca::StaticKdTreeBase</a>&lt; Traits &gt;::kNearestNeighborsQuery </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td> const</td>
@@ -797,10 +793,10 @@ template&lt;typename Traits &gt; </div>
 
 <p>Convenience function that provides an empty k-nearest neighbors <a class="el" href="group__spatialpartitioning.html#structPonca_1_1Query" title="Composes the Query object depending on an input type and output type.">Query</a> object. </p>
 <p>The returned object can call for a k-nearest neighbors search using the operator (), which takes a k and a <b>position</b> as parameters.</p>
-<p>Same as <code><a class="el" href="classPonca_1_1StaticKdTreeBase.html#aba4b86a4f6b1094f1eb7543d9bd5ef56" title="Computes a Query object to iterate over the k-nearest neighbors of a point. The returned object can b...">KdTreeBase::kNearestNeighbors</a> (0, VectorType::Zero())</code> </p><dl class="section return"><dt>Returns</dt><dd>The empty <a class="el" href="namespacePonca.html#adf9919566115c78b89deee24b12d0afe">KdTreeKNearestPointQuery</a> mutable object to iterate over the search results. </dd></dl>
+<p>Same as <code><a class="el" href="classPonca_1_1StaticKdTreeBase.html#aba4b86a4f6b1094f1eb7543d9bd5ef56" title="Computes a Query object to iterate over the k-nearest neighbors of a point. The returned object can b...">KdTreeBase::kNearestNeighbors</a> (0, VectorType::Zero())</code> </p><dl class="section return"><dt>Returns</dt><dd>The empty <a class="el" href="namespacePonca.html#a0ebbdc9304b6d3c57f33459bb94303fc">KdTreeKNearestPointQuery</a> mutable object to iterate over the search results. </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="classPonca_1_1KdTreeKNearestQueryBase.html" title="Extension of the Query class that allows to read the result of a k-nearest neighbors search on the Kd...">KdTreeKNearestQueryBase</a> </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="kdTree_8h_source.html#l00321">321</a> of file <a class="el" href="kdTree_8h_source.html">kdTree.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="kdTree_8h_source.html#l00309">309</a> of file <a class="el" href="kdTree_8h_source.html">kdTree.h</a>.</p>
 
 </div>
 </div>
@@ -831,7 +827,7 @@ template&lt;typename Traits &gt; </div>
 
 <p>Get the number of leafs in the <a class="el" href="structPonca_1_1KdTree.html" title="Abstract KdTree type with KdTreeDefaultTraits.">KdTree</a>. </p>
 
-<p class="definition">Definition at line <a class="el" href="kdTree_8h_source.html#l00214">214</a> of file <a class="el" href="kdTree_8h_source.html">kdTree.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="kdTree_8h_source.html#l00221">221</a> of file <a class="el" href="kdTree_8h_source.html">kdTree.h</a>.</p>
 
 </div>
 </div>
@@ -862,7 +858,7 @@ template&lt;typename Traits &gt; </div>
 
 <p>Read leaf min size. </p>
 
-<p class="definition">Definition at line <a class="el" href="kdTree_8h_source.html#l00252">252</a> of file <a class="el" href="kdTree_8h_source.html">kdTree.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="kdTree_8h_source.html#l00241">241</a> of file <a class="el" href="kdTree_8h_source.html">kdTree.h</a>.</p>
 
 </div>
 </div>
@@ -878,7 +874,7 @@ template&lt;typename Traits &gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="namespacePonca.html#aa504ed3d8c41574a71b479a88076dbbf">KdTreeNearestPointQuery</a>&lt; Traits &gt; <a class="el" href="classPonca_1_1StaticKdTreeBase.html">Ponca::StaticKdTreeBase</a>&lt; Traits &gt;::nearestNeighbor </td>
+          <td class="memname"><a class="el" href="namespacePonca.html#af453fde256975c5edf070f9775ae7443">KdTreeNearestPointQuery</a>&lt; Traits &gt; <a class="el" href="classPonca_1_1StaticKdTreeBase.html">Ponca::StaticKdTreeBase</a>&lt; Traits &gt;::nearestNeighbor </td>
           <td>(</td>
           <td class="paramtype">const <a class="el" href="classPonca_1_1StaticKdTreeBase.html#a2511ee22d67c088c5e6ea5ac7dbe2374">VectorType</a> &amp;&#160;</td>
           <td class="paramname"><em>point</em></td><td>)</td>
@@ -899,10 +895,10 @@ template&lt;typename Traits &gt; </div>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>The <a class="el" href="namespacePonca.html#aa504ed3d8c41574a71b479a88076dbbf">KdTreeNearestPointQuery</a> mutable object that contains the search result. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>The <a class="el" href="namespacePonca.html#af453fde256975c5edf070f9775ae7443">KdTreeNearestPointQuery</a> mutable object that contains the search result. </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="classPonca_1_1KdTreeNearestQueryBase.html" title="Extension of the Query class that allows to read the result of a nearest neighbor search on the KdTre...">KdTreeNearestQueryBase</a> </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="kdTree_8h_source.html#l00346">346</a> of file <a class="el" href="kdTree_8h_source.html">kdTree.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="kdTree_8h_source.html#l00334">334</a> of file <a class="el" href="kdTree_8h_source.html">kdTree.h</a>.</p>
 
 </div>
 </div>
@@ -918,7 +914,7 @@ template&lt;typename Traits &gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="namespacePonca.html#adee57f01481a113fd4e85884db2dc824">KdTreeNearestIndexQuery</a>&lt; Traits &gt; <a class="el" href="classPonca_1_1StaticKdTreeBase.html">Ponca::StaticKdTreeBase</a>&lt; Traits &gt;::nearestNeighbor </td>
+          <td class="memname"><a class="el" href="namespacePonca.html#aa2008cddd81b18e9118eae8b4ea9c9a2">KdTreeNearestIndexQuery</a>&lt; Traits &gt; <a class="el" href="classPonca_1_1StaticKdTreeBase.html">Ponca::StaticKdTreeBase</a>&lt; Traits &gt;::nearestNeighbor </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="classPonca_1_1StaticKdTreeBase.html#a5e7fdc200c463c1adf7b7dcda4c6035d">IndexType</a>&#160;</td>
           <td class="paramname"><em>index</em></td><td>)</td>
@@ -939,10 +935,10 @@ template&lt;typename Traits &gt; </div>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>The <a class="el" href="namespacePonca.html#a2d7ca28c8b7f474a5631a5fe5b255a65">KdTreeKNearestIndexQuery</a> mutable object that contains the search result. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>The <a class="el" href="namespacePonca.html#a33b8cc759fbd256e887cc5efafa32935">KdTreeKNearestIndexQuery</a> mutable object that contains the search result. </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="classPonca_1_1KdTreeNearestQueryBase.html" title="Extension of the Query class that allows to read the result of a nearest neighbor search on the KdTre...">KdTreeNearestQueryBase</a> </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="kdTree_8h_source.html#l00356">356</a> of file <a class="el" href="kdTree_8h_source.html">kdTree.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="kdTree_8h_source.html#l00343">343</a> of file <a class="el" href="kdTree_8h_source.html">kdTree.h</a>.</p>
 
 </div>
 </div>
@@ -958,7 +954,7 @@ template&lt;typename Traits &gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="namespacePonca.html#adee57f01481a113fd4e85884db2dc824">KdTreeNearestIndexQuery</a>&lt; Traits &gt; <a class="el" href="classPonca_1_1StaticKdTreeBase.html">Ponca::StaticKdTreeBase</a>&lt; Traits &gt;::nearestNeighborIndexQuery </td>
+          <td class="memname"><a class="el" href="namespacePonca.html#aa2008cddd81b18e9118eae8b4ea9c9a2">KdTreeNearestIndexQuery</a>&lt; Traits &gt; <a class="el" href="classPonca_1_1StaticKdTreeBase.html">Ponca::StaticKdTreeBase</a>&lt; Traits &gt;::nearestNeighborIndexQuery </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td> const</td>
@@ -974,10 +970,10 @@ template&lt;typename Traits &gt; </div>
 <p>Convenience function that provides an empty nearest neighbor <a class="el" href="group__spatialpartitioning.html#structPonca_1_1Query" title="Composes the Query object depending on an input type and output type.">Query</a> object.   </p>
 <p>The returned object can call for a nearest neighbor search using the operator (), which takes an <b>index</b> as parameter.</p>
 <p>Same as <code><a class="el" href="classPonca_1_1StaticKdTreeBase.html#a6d404f205bfb8401fe55515326dec183" title="Computes a Query object that contains the nearest point. The returned object can be reset and reused ...">KdTreeBase::nearestNeighbor</a> (0)</code></p>
-<dl class="section return"><dt>Returns</dt><dd>The <a class="el" href="namespacePonca.html#a2d7ca28c8b7f474a5631a5fe5b255a65">KdTreeKNearestIndexQuery</a> mutable object that contains the search result. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>The <a class="el" href="namespacePonca.html#a33b8cc759fbd256e887cc5efafa32935">KdTreeKNearestIndexQuery</a> mutable object that contains the search result. </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="classPonca_1_1KdTreeNearestQueryBase.html" title="Extension of the Query class that allows to read the result of a nearest neighbor search on the KdTre...">KdTreeNearestQueryBase</a> </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="kdTree_8h_source.html#l00384">384</a> of file <a class="el" href="kdTree_8h_source.html">kdTree.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="kdTree_8h_source.html#l00371">371</a> of file <a class="el" href="kdTree_8h_source.html">kdTree.h</a>.</p>
 
 </div>
 </div>
@@ -993,7 +989,7 @@ template&lt;typename Traits &gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="namespacePonca.html#adee57f01481a113fd4e85884db2dc824">KdTreeNearestIndexQuery</a>&lt; Traits &gt; <a class="el" href="classPonca_1_1StaticKdTreeBase.html">Ponca::StaticKdTreeBase</a>&lt; Traits &gt;::nearestNeighborQuery </td>
+          <td class="memname"><a class="el" href="namespacePonca.html#aa2008cddd81b18e9118eae8b4ea9c9a2">KdTreeNearestIndexQuery</a>&lt; Traits &gt; <a class="el" href="classPonca_1_1StaticKdTreeBase.html">Ponca::StaticKdTreeBase</a>&lt; Traits &gt;::nearestNeighborQuery </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td> const</td>
@@ -1009,10 +1005,10 @@ template&lt;typename Traits &gt; </div>
 <p>Convenience function that provides an empty nearest neighbor <a class="el" href="group__spatialpartitioning.html#structPonca_1_1Query" title="Composes the Query object depending on an input type and output type.">Query</a> object. </p>
 <p>The returned object can call for a nearest neighbor search using the operator (), which takes a <b>position</b> as parameter.</p>
 <p>Same as <code><a class="el" href="classPonca_1_1StaticKdTreeBase.html#a6d404f205bfb8401fe55515326dec183" title="Computes a Query object that contains the nearest point. The returned object can be reset and reused ...">KdTreeBase::nearestNeighbor</a> (VectorType::Zero())</code></p>
-<dl class="section return"><dt>Returns</dt><dd>The empty <a class="el" href="namespacePonca.html#aa504ed3d8c41574a71b479a88076dbbf">KdTreeNearestPointQuery</a> mutable object that contains the search result. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>The empty <a class="el" href="namespacePonca.html#af453fde256975c5edf070f9775ae7443">KdTreeNearestPointQuery</a> mutable object that contains the search result. </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="classPonca_1_1KdTreeNearestQueryBase.html" title="Extension of the Query class that allows to read the result of a nearest neighbor search on the KdTre...">KdTreeNearestQueryBase</a> </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="kdTree_8h_source.html#l00370">370</a> of file <a class="el" href="kdTree_8h_source.html">kdTree.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="kdTree_8h_source.html#l00357">357</a> of file <a class="el" href="kdTree_8h_source.html">kdTree.h</a>.</p>
 
 </div>
 </div>
@@ -1043,7 +1039,7 @@ template&lt;typename Traits &gt; </div>
 
 <p>Get the number of nodes in the <a class="el" href="structPonca_1_1KdTree.html" title="Abstract KdTree type with KdTreeDefaultTraits.">KdTree</a>. </p>
 
-<p class="definition">Definition at line <a class="el" href="kdTree_8h_source.html#l00196">196</a> of file <a class="el" href="kdTree_8h_source.html">kdTree.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="kdTree_8h_source.html#l00209">209</a> of file <a class="el" href="kdTree_8h_source.html">kdTree.h</a>.</p>
 
 </div>
 </div>
@@ -1074,7 +1070,7 @@ template&lt;typename Traits &gt; </div>
 
 <p>Get the internal node container. </p>
 
-<p class="definition">Definition at line <a class="el" href="kdTree_8h_source.html#l00232">232</a> of file <a class="el" href="kdTree_8h_source.html">kdTree.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="kdTree_8h_source.html#l00230">230</a> of file <a class="el" href="kdTree_8h_source.html">kdTree.h</a>.</p>
 
 </div>
 </div>
@@ -1105,7 +1101,7 @@ template&lt;typename Traits &gt; </div>
 
 <p>Get the number of points. </p>
 
-<p class="definition">Definition at line <a class="el" href="kdTree_8h_source.html#l00208">208</a> of file <a class="el" href="kdTree_8h_source.html">kdTree.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="kdTree_8h_source.html#l00218">218</a> of file <a class="el" href="kdTree_8h_source.html">kdTree.h</a>.</p>
 
 </div>
 </div>
@@ -1138,7 +1134,7 @@ template&lt;typename Traits &gt; </div>
 <p>Return the <a class="el" href="classPonca_1_1StaticKdTreeBase.html#abcc85cc97d1bf9dcc775cb0e6cc2c13d">DataPoint</a> associated with the specified sample index. </p>
 <dl class="section note"><dt>Note</dt><dd>Convenience function, equivalent to <code>point_data()[pointFromSample(sample_index)]</code> </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="kdTree_8h_source.html#l00275">275</a> of file <a class="el" href="kdTree_8h_source.html">kdTree.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="kdTree_8h_source.html#l00261">261</a> of file <a class="el" href="kdTree_8h_source.html">kdTree.h</a>.</p>
 
 </div>
 </div>
@@ -1171,7 +1167,7 @@ template&lt;typename Traits &gt; </div>
 <p>Return the <a class="el" href="classPonca_1_1StaticKdTreeBase.html#abcc85cc97d1bf9dcc775cb0e6cc2c13d">DataPoint</a> associated with the specified sample index. </p>
 <dl class="section note"><dt>Note</dt><dd>Convenience function, equivalent to <code>point_data()[pointFromSample(sample_index)]</code> </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="kdTree_8h_source.html#l00283">283</a> of file <a class="el" href="kdTree_8h_source.html">kdTree.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="kdTree_8h_source.html#l00269">269</a> of file <a class="el" href="kdTree_8h_source.html">kdTree.h</a>.</p>
 
 </div>
 </div>
@@ -1203,7 +1199,7 @@ template&lt;typename Traits &gt; </div>
 
 <p>Return the point index associated with the specified sample index. </p>
 
-<p class="definition">Definition at line <a class="el" href="kdTree_8h_source.html#l00267">267</a> of file <a class="el" href="kdTree_8h_source.html">kdTree.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="kdTree_8h_source.html#l00253">253</a> of file <a class="el" href="kdTree_8h_source.html">kdTree.h</a>.</p>
 
 </div>
 </div>
@@ -1234,7 +1230,7 @@ template&lt;typename Traits &gt; </div>
 
 <p>Get the internal point container. </p>
 
-<p class="definition">Definition at line <a class="el" href="kdTree_8h_source.html#l00220">220</a> of file <a class="el" href="kdTree_8h_source.html">kdTree.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="kdTree_8h_source.html#l00224">224</a> of file <a class="el" href="kdTree_8h_source.html">kdTree.h</a>.</p>
 
 </div>
 </div>
@@ -1265,7 +1261,7 @@ template&lt;typename Traits &gt; </div>
 
 <p>Get the internal point container.   </p>
 
-<p class="definition">Definition at line <a class="el" href="kdTree_8h_source.html#l00226">226</a> of file <a class="el" href="kdTree_8h_source.html">kdTree.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="kdTree_8h_source.html#l00227">227</a> of file <a class="el" href="kdTree_8h_source.html">kdTree.h</a>.</p>
 
 </div>
 </div>
@@ -1321,7 +1317,7 @@ template&lt;typename Traits &gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="namespacePonca.html#ac3fc0a276495b2cb4a0a0b0e31556781">KdTreeRangePointQuery</a>&lt; Traits &gt; <a class="el" href="classPonca_1_1StaticKdTreeBase.html">Ponca::StaticKdTreeBase</a>&lt; Traits &gt;::rangeNeighbors </td>
+          <td class="memname"><a class="el" href="namespacePonca.html#aa7967971616ab3249a526300a06113f5">KdTreeRangePointQuery</a>&lt; Traits &gt; <a class="el" href="classPonca_1_1StaticKdTreeBase.html">Ponca::StaticKdTreeBase</a>&lt; Traits &gt;::rangeNeighbors </td>
           <td>(</td>
           <td class="paramtype">const <a class="el" href="classPonca_1_1StaticKdTreeBase.html#a2511ee22d67c088c5e6ea5ac7dbe2374">VectorType</a> &amp;&#160;</td>
           <td class="paramname"><em>point</em>, </td>
@@ -1353,10 +1349,10 @@ template&lt;typename Traits &gt; </div>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>The <a class="el" href="namespacePonca.html#ac3fc0a276495b2cb4a0a0b0e31556781">KdTreeRangePointQuery</a> mutable object to iterate over the search results. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>The <a class="el" href="namespacePonca.html#aa7967971616ab3249a526300a06113f5">KdTreeRangePointQuery</a> mutable object to iterate over the search results. </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="classPonca_1_1KdTreeRangeQueryBase.html" title="Extension of the Query class that allows to read the result of a range neighbors search on the KdTree...">KdTreeRangeQueryBase</a> </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="kdTree_8h_source.html#l00397">397</a> of file <a class="el" href="kdTree_8h_source.html">kdTree.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="kdTree_8h_source.html#l00384">384</a> of file <a class="el" href="kdTree_8h_source.html">kdTree.h</a>.</p>
 
 </div>
 </div>
@@ -1372,7 +1368,7 @@ template&lt;typename Traits &gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="namespacePonca.html#a7815a4253ccae8a5c0e4fa2cbb206b17">KdTreeRangeIndexQuery</a>&lt; Traits &gt; <a class="el" href="classPonca_1_1StaticKdTreeBase.html">Ponca::StaticKdTreeBase</a>&lt; Traits &gt;::rangeNeighbors </td>
+          <td class="memname"><a class="el" href="namespacePonca.html#a6ce83058be238352c310c7eb68f4e9cb">KdTreeRangeIndexQuery</a>&lt; Traits &gt; <a class="el" href="classPonca_1_1StaticKdTreeBase.html">Ponca::StaticKdTreeBase</a>&lt; Traits &gt;::rangeNeighbors </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="classPonca_1_1StaticKdTreeBase.html#a5e7fdc200c463c1adf7b7dcda4c6035d">IndexType</a>&#160;</td>
           <td class="paramname"><em>index</em>, </td>
@@ -1404,10 +1400,10 @@ template&lt;typename Traits &gt; </div>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>The <a class="el" href="namespacePonca.html#a7815a4253ccae8a5c0e4fa2cbb206b17">KdTreeRangeIndexQuery</a> mutable object to iterate over the search results. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>The <a class="el" href="namespacePonca.html#a6ce83058be238352c310c7eb68f4e9cb">KdTreeRangeIndexQuery</a> mutable object to iterate over the search results. </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="classPonca_1_1KdTreeRangeQueryBase.html" title="Extension of the Query class that allows to read the result of a range neighbors search on the KdTree...">KdTreeRangeQueryBase</a> </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="kdTree_8h_source.html#l00407">407</a> of file <a class="el" href="kdTree_8h_source.html">kdTree.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="kdTree_8h_source.html#l00395">395</a> of file <a class="el" href="kdTree_8h_source.html">kdTree.h</a>.</p>
 
 </div>
 </div>
@@ -1423,7 +1419,7 @@ template&lt;typename Traits &gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="namespacePonca.html#a7815a4253ccae8a5c0e4fa2cbb206b17">KdTreeRangeIndexQuery</a>&lt; Traits &gt; <a class="el" href="classPonca_1_1StaticKdTreeBase.html">Ponca::StaticKdTreeBase</a>&lt; Traits &gt;::rangeNeighborsIndexQuery </td>
+          <td class="memname"><a class="el" href="namespacePonca.html#a6ce83058be238352c310c7eb68f4e9cb">KdTreeRangeIndexQuery</a>&lt; Traits &gt; <a class="el" href="classPonca_1_1StaticKdTreeBase.html">Ponca::StaticKdTreeBase</a>&lt; Traits &gt;::rangeNeighborsIndexQuery </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td> const</td>
@@ -1439,10 +1435,10 @@ template&lt;typename Traits &gt; </div>
 <p><a class="el" href="classPonca_1_1StaticKdTreeBase.html#a4fbff75af25d52849091343be8addf52" title="Convenience function that provides an empty range neighbor Query object.">KdTreeBase::rangeNeighborsQuery</a>. </p>
 <p>The returned object can call for a range neighbor search using the operator (), which takes an <b>index</b> as parameter.</p>
 <p>Same as <code><a class="el" href="classPonca_1_1StaticKdTreeBase.html#a4fbff75af25d52849091343be8addf52" title="Convenience function that provides an empty range neighbor Query object.">KdTreeBase::rangeNeighborsQuery</a> (0, 0)</code></p>
-<dl class="section return"><dt>Returns</dt><dd>The empty <a class="el" href="namespacePonca.html#a7815a4253ccae8a5c0e4fa2cbb206b17">KdTreeRangeIndexQuery</a> mutable object to iterate over the search results. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>The empty <a class="el" href="namespacePonca.html#a6ce83058be238352c310c7eb68f4e9cb">KdTreeRangeIndexQuery</a> mutable object to iterate over the search results. </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="classPonca_1_1KdTreeRangeQueryBase.html" title="Extension of the Query class that allows to read the result of a range neighbors search on the KdTree...">KdTreeRangeQueryBase</a> </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="kdTree_8h_source.html#l00435">435</a> of file <a class="el" href="kdTree_8h_source.html">kdTree.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="kdTree_8h_source.html#l00423">423</a> of file <a class="el" href="kdTree_8h_source.html">kdTree.h</a>.</p>
 
 </div>
 </div>
@@ -1458,7 +1454,7 @@ template&lt;typename Traits &gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="namespacePonca.html#ac3fc0a276495b2cb4a0a0b0e31556781">KdTreeRangePointQuery</a>&lt; Traits &gt; <a class="el" href="classPonca_1_1StaticKdTreeBase.html">Ponca::StaticKdTreeBase</a>&lt; Traits &gt;::rangeNeighborsQuery </td>
+          <td class="memname"><a class="el" href="namespacePonca.html#aa7967971616ab3249a526300a06113f5">KdTreeRangePointQuery</a>&lt; Traits &gt; <a class="el" href="classPonca_1_1StaticKdTreeBase.html">Ponca::StaticKdTreeBase</a>&lt; Traits &gt;::rangeNeighborsQuery </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td> const</td>
@@ -1474,10 +1470,10 @@ template&lt;typename Traits &gt; </div>
 <p>Convenience function that provides an empty range neighbor <a class="el" href="group__spatialpartitioning.html#structPonca_1_1Query" title="Composes the Query object depending on an input type and output type.">Query</a> object. </p>
 <p>The returned object can call for a range neighbor search using the operator (), which takes a <b>position</b> as parameter.</p>
 <p>Same as <code><a class="el" href="classPonca_1_1StaticKdTreeBase.html#a4fbff75af25d52849091343be8addf52" title="Convenience function that provides an empty range neighbor Query object.">KdTreeBase::rangeNeighborsQuery</a> (0, VectorType::Zero())</code></p>
-<dl class="section return"><dt>Returns</dt><dd>The empty <a class="el" href="namespacePonca.html#ac3fc0a276495b2cb4a0a0b0e31556781">KdTreeRangePointQuery</a> mutable object to iterate over the search results. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>The empty <a class="el" href="namespacePonca.html#aa7967971616ab3249a526300a06113f5">KdTreeRangePointQuery</a> mutable object to iterate over the search results. </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="classPonca_1_1KdTreeRangeQueryBase.html" title="Extension of the Query class that allows to read the result of a range neighbors search on the KdTree...">KdTreeRangeQueryBase</a> </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="kdTree_8h_source.html#l00421">421</a> of file <a class="el" href="kdTree_8h_source.html">kdTree.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="kdTree_8h_source.html#l00409">409</a> of file <a class="el" href="kdTree_8h_source.html">kdTree.h</a>.</p>
 
 </div>
 </div>
@@ -1508,7 +1504,7 @@ template&lt;typename Traits &gt; </div>
 
 <p>Get the number of indices. </p>
 
-<p class="definition">Definition at line <a class="el" href="kdTree_8h_source.html#l00202">202</a> of file <a class="el" href="kdTree_8h_source.html">kdTree.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="kdTree_8h_source.html#l00215">215</a> of file <a class="el" href="kdTree_8h_source.html">kdTree.h</a>.</p>
 
 </div>
 </div>
@@ -1539,7 +1535,7 @@ template&lt;typename Traits &gt; </div>
 
 <p>Get the internal indice container. </p>
 
-<p class="definition">Definition at line <a class="el" href="kdTree_8h_source.html#l00238">238</a> of file <a class="el" href="kdTree_8h_source.html">kdTree.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="kdTree_8h_source.html#l00233">233</a> of file <a class="el" href="kdTree_8h_source.html">kdTree.h</a>.</p>
 
 </div>
 </div>
@@ -1571,7 +1567,7 @@ template&lt;typename Traits &gt; </div>
 
 <p>Write leaf min size. </p>
 
-<p class="definition">Definition at line <a class="el" href="kdTree_8h_source.html#l00258">258</a> of file <a class="el" href="kdTree_8h_source.html">kdTree.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="kdTree_8h_source.html#l00244">244</a> of file <a class="el" href="kdTree_8h_source.html">kdTree.h</a>.</p>
 
 </div>
 </div>
@@ -1629,7 +1625,7 @@ template&lt;typename Traits &gt; </div>
 
 <p><a class="el" href="structPonca_1_1StaticKdTreeBase_1_1Buffers.html" title="Internal structure storing all the buffers used by the KdTree.">Buffers</a> used to store the <a class="el" href="structPonca_1_1KdTree.html" title="Abstract KdTree type with KdTreeDefaultTraits.">KdTree</a>. </p>
 
-<p class="definition">Definition at line <a class="el" href="kdTree_8h_source.html#l00447">447</a> of file <a class="el" href="kdTree_8h_source.html">kdTree.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="kdTree_8h_source.html#l00435">435</a> of file <a class="el" href="kdTree_8h_source.html">kdTree.h</a>.</p>
 
 </div>
 </div>
@@ -1657,7 +1653,7 @@ template&lt;typename Traits &gt; </div>
 
 <p>Number of leaves in the Kdtree (computed during construction) </p>
 
-<p class="definition">Definition at line <a class="el" href="kdTree_8h_source.html#l00449">449</a> of file <a class="el" href="kdTree_8h_source.html">kdTree.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="kdTree_8h_source.html#l00437">437</a> of file <a class="el" href="kdTree_8h_source.html">kdTree.h</a>.</p>
 
 </div>
 </div>
@@ -1685,7 +1681,7 @@ template&lt;typename Traits &gt; </div>
 
 <p>Minimal number of points per leaf. </p>
 
-<p class="definition">Definition at line <a class="el" href="kdTree_8h_source.html#l00448">448</a> of file <a class="el" href="kdTree_8h_source.html">kdTree.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="kdTree_8h_source.html#l00436">436</a> of file <a class="el" href="kdTree_8h_source.html">kdTree.h</a>.</p>
 
 </div>
 </div>
@@ -1713,7 +1709,7 @@ template&lt;typename Traits &gt; </div>
 
 <p>The maximum depth of the kd-tree. </p>
 
-<p class="definition">Definition at line <a class="el" href="kdTree_8h_source.html#l00170">170</a> of file <a class="el" href="kdTree_8h_source.html">kdTree.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="kdTree_8h_source.html#l00182">182</a> of file <a class="el" href="kdTree_8h_source.html">kdTree.h</a>.</p>
 
 </div>
 </div>
@@ -1741,7 +1737,7 @@ template&lt;typename Traits &gt; </div>
 
 <p>The maximum number of nodes that the kd-tree can have. </p>
 
-<p class="definition">Definition at line <a class="el" href="kdTree_8h_source.html#l00165">165</a> of file <a class="el" href="kdTree_8h_source.html">kdTree.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="kdTree_8h_source.html#l00177">177</a> of file <a class="el" href="kdTree_8h_source.html">kdTree.h</a>.</p>
 
 </div>
 </div>
@@ -1757,7 +1753,7 @@ template&lt;typename Traits &gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">constexpr std::size_t <a class="el" href="classPonca_1_1StaticKdTreeBase.html">Ponca::StaticKdTreeBase</a>&lt; Traits &gt;::MAX_POINT_COUNT = std::size_t(2) &lt;&lt; sizeof(<a class="el" href="classPonca_1_1StaticKdTreeBase.html#a5e7fdc200c463c1adf7b7dcda4c6035d">IndexType</a>)*8</td>
+          <td class="memname">constexpr std::size_t <a class="el" href="classPonca_1_1StaticKdTreeBase.html">Ponca::StaticKdTreeBase</a>&lt; Traits &gt;::MAX_POINT_COUNT = std::size_t(2) &lt;&lt; sizeof(<a class="el" href="classPonca_1_1StaticKdTreeBase.html#a5e7fdc200c463c1adf7b7dcda4c6035d">IndexType</a>) * 8</td>
         </tr>
       </table>
   </td>
@@ -1769,7 +1765,7 @@ template&lt;typename Traits &gt; </div>
 
 <p>The maximum number of points that can be stored in the kd-tree. </p>
 
-<p class="definition">Definition at line <a class="el" href="kdTree_8h_source.html#l00167">167</a> of file <a class="el" href="kdTree_8h_source.html">kdTree.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="kdTree_8h_source.html#l00179">179</a> of file <a class="el" href="kdTree_8h_source.html">kdTree.h</a>.</p>
 
 </div>
 </div>
@@ -1795,7 +1791,7 @@ template&lt;typename Traits &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="kdTree_8h_source.html#l00172">172</a> of file <a class="el" href="kdTree_8h_source.html">kdTree.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="kdTree_8h_source.html#l00184">184</a> of file <a class="el" href="kdTree_8h_source.html">kdTree.h</a>.</p>
 
 </div>
 </div>
@@ -1805,7 +1801,7 @@ template&lt;typename Traits &gt; </div>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="namespacePonca.html">Ponca</a></li><li class="navelem"><a class="el" href="classPonca_1_1StaticKdTreeBase.html">StaticKdTreeBase</a></li>
-    <li class="footer">Generated on Wed Mar 18 2026 16:17:06 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
+    <li class="footer">Generated on Thu Mar 19 2026 17:42:38 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
   </ul>
 </div>
 </body>

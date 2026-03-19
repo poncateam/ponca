@@ -1,7 +1,7 @@
 var classPonca_1_1Line =
 [
     [ "Base", "classPonca_1_1Line.html#ae1b49c4778d74c964e70b5a8dd24102e", null ],
-    [ "EigenBase", "classPonca_1_1Line.html#aaffc4db3dbaf0af9e95d58908f892e35", null ],
+    [ "EigenBase", "classPonca_1_1Line.html#ad74fc56588b54b5546e09a8f4e9deeea", null ],
     [ "NeighborFilter", "classPonca_1_1Line.html#a8e59a08dc16696d5c27dcd5aeac640db", null ],
     [ "Scalar", "classPonca_1_1Line.html#ae00f6f75436df9d0da2c36d8ce447208", null ],
     [ "VectorType", "classPonca_1_1Line.html#aec54c6433366eff8756c27b77ecf84b5", null ],

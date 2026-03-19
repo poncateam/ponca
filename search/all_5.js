@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['eigenbase_0',['eigenbase',['../classPonca_1_1Plane.html#a1781cabbc9b484fd7c0a8ff03a3d9668',1,'Ponca::Plane::EigenBase'],['../classPonca_1_1Line.html#aaffc4db3dbaf0af9e95d58908f892e35',1,'Ponca::Line::EigenBase']]],
+  ['eigenbase_0',['eigenbase',['../classPonca_1_1Plane.html#a018b8526e9fa74d2dae86765dad4b9b9',1,'Ponca::Plane::EigenBase'],['../classPonca_1_1Line.html#ad74fc56588b54b5546e09a8f4e9deeea',1,'Ponca::Line::EigenBase']]],
   ['eigenentropy_1',['eigenentropy',['../classPonca_1_1CovarianceFitBase.html#aba57b6a60e7597187a0ac13a54ec75f0',1,'Ponca::CovarianceFitBase']]],
   ['empty_2',['empty',['../classPonca_1_1Stack.html#acd2f90bb550b5048db6b1c20780b1777',1,'Ponca::Stack']]],
   ['end_3',['end',['../classPonca_1_1KnnGraphRangeQuery.html#ae9fa8f2ea3fc5e0ec7cb0e8f9e49e573',1,'Ponca::KnnGraphRangeQuery::end()'],['../classPonca_1_1KnnGraphKNearestQuery.html#a41bed4b8ee1f0ba787a8e79b7e44306a',1,'Ponca::KnnGraphKNearestQuery::end()'],['../classPonca_1_1KdTreeRangeQueryBase.html#aeb6d60385bd3fb3fa0fdb52e7864df3f',1,'Ponca::KdTreeRangeQueryBase::end()'],['../classPonca_1_1KdTreeNearestQueryBase.html#aa84c455f11fd1a116afdc184d0ef41af',1,'Ponca::KdTreeNearestQueryBase::end()'],['../classPonca_1_1KdTreeKNearestQueryBase.html#aa7f10d898489662a3d63981ccc8d47db',1,'Ponca::KdTreeKNearestQueryBase::end()']]],

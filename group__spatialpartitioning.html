@@ -51,7 +51,7 @@ MathJax.Hub.Config({
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Ponca
-   &#160;<span id="projectnumber">ff18772cb1e492269a8bd2895da1f5d816a1ae25</span>
+   &#160;<span id="projectnumber">19ef58fd3760f23a8af99a5eeac4f934757e30d9</span>
    </div>
    <div id="projectbrief">Point Cloud Analysis library</div>
   </td>
@@ -224,7 +224,7 @@ Classes</h2></td></tr>
 <p><code>QueryOutput</code> objects are the return types of the searches of the accelerating structures defined in the SpatialPartitioning module.</p>
 <p>They are used for easy access to the result outputs. (e.g. to iterate over the neighbors of the evaluated point using a <code>rangeNeighborsQuery</code> request). </p>
 
-<p class="definition">Definition at line <a class="el" href="query_8h_source.html#l00079">79</a> of file <a class="el" href="query_8h_source.html">query.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="query_8h_source.html#l00080">80</a> of file <a class="el" href="query_8h_source.html">query.h</a>.</p>
 </div><div id="dynsection-2" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-2-trigger" src="closed.png" alt="+"/> Inheritance diagram for Ponca::QueryOutputBase:</div>
 <div id="dynsection-2-summary" class="dynsummary" style="display:block;">
@@ -254,7 +254,7 @@ Classes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 <div class="textblock">
-<p class="definition">Definition at line <a class="el" href="query_8h_source.html#l00080">80</a> of file <a class="el" href="query_8h_source.html">query.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="query_8h_source.html#l00082">82</a> of file <a class="el" href="query_8h_source.html">query.h</a>.</p>
 </div><div id="dynsection-4" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-4-trigger" src="closed.png" alt="+"/> Collaboration diagram for Ponca::QueryOutputBase::DummyOutputParameter:</div>
 <div id="dynsection-4-summary" class="dynsummary" style="display:block;">
@@ -282,7 +282,7 @@ struct Ponca::QueryInput&lt; InputType_ &gt;</div><p>Base class for <a class="el
 <dl class="section warning"><dt>Warning</dt><dd>This class has to be specialized for a specific input type, and can't be used as is. </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="group__spatialpartitioning.html#structPonca_1_1QueryInputIsIndex" title="Extension of QueryInput that handles an index based search, in a partitioning structure.">QueryInputIsIndex</a>, <a class="el" href="group__spatialpartitioning.html#structPonca_1_1QueryInputIsPosition" title="Extension of QueryInput that handles a position based search, in a partitioning structure.">QueryInputIsPosition</a> </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="query_8h_source.html#l00094">94</a> of file <a class="el" href="query_8h_source.html">query.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="query_8h_source.html#l00097">97</a> of file <a class="el" href="query_8h_source.html">query.h</a>.</p>
 </div><div id="dynsection-5" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-5-trigger" src="closed.png" alt="+"/> Inheritance diagram for Ponca::QueryInput&lt; InputType_ &gt;:</div>
 <div id="dynsection-5-summary" class="dynsummary" style="display:block;">
@@ -331,7 +331,7 @@ template&lt;typename InputType_ &gt; </div>
 
 <p>Alias to the templated input type. </p>
 
-<p class="definition">Definition at line <a class="el" href="query_8h_source.html#l00096">96</a> of file <a class="el" href="query_8h_source.html">query.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="query_8h_source.html#l00100">100</a> of file <a class="el" href="query_8h_source.html">query.h</a>.</p>
 
 </div>
 </div>
@@ -364,7 +364,7 @@ template&lt;typename InputType_ &gt; </div>
 
 <p>Default constructor that initialize the input field. </p>
 
-<p class="definition">Definition at line <a class="el" href="query_8h_source.html#l00099">99</a> of file <a class="el" href="query_8h_source.html">query.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="query_8h_source.html#l00103">103</a> of file <a class="el" href="query_8h_source.html">query.h</a>.</p>
 
 </div>
 </div>
@@ -396,7 +396,7 @@ template&lt;typename InputType_ &gt; </div>
 
 <p>Read access to the input. </p>
 
-<p class="definition">Definition at line <a class="el" href="query_8h_source.html#l00102">102</a> of file <a class="el" href="query_8h_source.html">query.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="query_8h_source.html#l00106">106</a> of file <a class="el" href="query_8h_source.html">query.h</a>.</p>
 
 </div>
 </div>
@@ -429,7 +429,7 @@ template&lt;typename InputType_ &gt; </div>
 <p>Edit the input. </p>
 <dl class="section warning"><dt>Warning</dt><dd>Need to be used carefully. Modifying a query input while iterating on the query will result in undefined behavior. Simplest way to avoid this is to restart the iteration on the query. Usefull to avoid query reallocation between different requests. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="query_8h_source.html#l00112">112</a> of file <a class="el" href="query_8h_source.html">query.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="query_8h_source.html#l00117">117</a> of file <a class="el" href="query_8h_source.html">query.h</a>.</p>
 
 </div>
 </div>
@@ -451,7 +451,7 @@ template&lt;typename InputType_ &gt; </div>
 struct Ponca::QueryInputIsIndex&lt; Index &gt;</div><p>Extension of <code><a class="el" href="group__spatialpartitioning.html#structPonca_1_1QueryInput" title="Base class for Query input type.">QueryInput</a></code> that handles an <b>index</b> based search, in a partitioning structure. </p>
 <p>Stores internally the index of the evaluated point. </p><dl class="section see"><dt>See also</dt><dd><a class="el" href="group__spatialpartitioning.html#structPonca_1_1QueryInput" title="Base class for Query input type.">QueryInput</a> </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="query_8h_source.html#l00127">127</a> of file <a class="el" href="query_8h_source.html">query.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="query_8h_source.html#l00131">131</a> of file <a class="el" href="query_8h_source.html">query.h</a>.</p>
 </div><div id="dynsection-7" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-7-trigger" src="closed.png" alt="+"/> Inheritance diagram for Ponca::QueryInputIsIndex&lt; Index &gt;:</div>
 <div id="dynsection-7-summary" class="dynsummary" style="display:block;">
@@ -523,7 +523,7 @@ template&lt;typename Index &gt; </div>
 
 <p>Alias to the inherited type. </p>
 
-<p class="definition">Definition at line <a class="el" href="query_8h_source.html#l00129">129</a> of file <a class="el" href="query_8h_source.html">query.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="query_8h_source.html#l00134">134</a> of file <a class="el" href="query_8h_source.html">query.h</a>.</p>
 
 </div>
 </div>
@@ -543,7 +543,7 @@ template&lt;typename Index &gt; </div>
 
 <p>Alias to the templated input type (Index) </p>
 
-<p class="definition">Definition at line <a class="el" href="query_8h_source.html#l00131">131</a> of file <a class="el" href="query_8h_source.html">query.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="query_8h_source.html#l00136">136</a> of file <a class="el" href="query_8h_source.html">query.h</a>.</p>
 
 </div>
 </div>
@@ -576,7 +576,7 @@ template&lt;typename Index &gt; </div>
 
 <p>Default constructor that initialize the input index. </p>
 
-<p class="definition">Definition at line <a class="el" href="query_8h_source.html#l00134">134</a> of file <a class="el" href="query_8h_source.html">query.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="query_8h_source.html#l00139">139</a> of file <a class="el" href="query_8h_source.html">query.h</a>.</p>
 
 </div>
 </div>
@@ -611,7 +611,7 @@ template&lt;typename VectorType , typename Container &gt; </div>
 
 <p>Generic method to access input position. The VectorType needs to be passed as a template argument. </p>
 
-<p class="definition">Definition at line <a class="el" href="query_8h_source.html#l00147">147</a> of file <a class="el" href="query_8h_source.html">query.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="query_8h_source.html#l00153">153</a> of file <a class="el" href="query_8h_source.html">query.h</a>.</p>
 
 </div>
 </div>
@@ -643,7 +643,7 @@ template&lt;typename Index &gt; </div>
 
 <p>Access operator that resets the input index. </p>
 
-<p class="definition">Definition at line <a class="el" href="query_8h_source.html#l00138">138</a> of file <a class="el" href="query_8h_source.html">query.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="query_8h_source.html#l00142">142</a> of file <a class="el" href="query_8h_source.html">query.h</a>.</p>
 
 </div>
 </div>
@@ -677,7 +677,7 @@ template&lt;typename IndexType &gt; </div>
 
 <p>Functor used to check if a given Idx must be skipped. </p>
 
-<p class="definition">Definition at line <a class="el" href="query_8h_source.html#l00144">144</a> of file <a class="el" href="query_8h_source.html">query.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="query_8h_source.html#l00147">147</a> of file <a class="el" href="query_8h_source.html">query.h</a>.</p>
 
 </div>
 </div>
@@ -699,7 +699,7 @@ template&lt;typename IndexType &gt; </div>
 struct Ponca::QueryInputIsPosition&lt; DataPoint &gt;</div><p>Extension of <code><a class="el" href="group__spatialpartitioning.html#structPonca_1_1QueryInput" title="Base class for Query input type.">QueryInput</a></code> that handles a <b>position</b> based search, in a partitioning structure. </p>
 <p>Stores internally the position of the evaluated point. </p><dl class="section see"><dt>See also</dt><dd><a class="el" href="group__spatialpartitioning.html#structPonca_1_1QueryInput" title="Base class for Query input type.">QueryInput</a> </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="query_8h_source.html#l00158">158</a> of file <a class="el" href="query_8h_source.html">query.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="query_8h_source.html#l00166">166</a> of file <a class="el" href="query_8h_source.html">query.h</a>.</p>
 </div><div id="dynsection-9" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-9-trigger" src="closed.png" alt="+"/> Inheritance diagram for Ponca::QueryInputIsPosition&lt; DataPoint &gt;:</div>
 <div id="dynsection-9-summary" class="dynsummary" style="display:block;">
@@ -771,7 +771,7 @@ template&lt;typename DataPoint &gt; </div>
 
 <p>Alias to the inherited type. </p>
 
-<p class="definition">Definition at line <a class="el" href="query_8h_source.html#l00160">160</a> of file <a class="el" href="query_8h_source.html">query.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="query_8h_source.html#l00169">169</a> of file <a class="el" href="query_8h_source.html">query.h</a>.</p>
 
 </div>
 </div>
@@ -791,7 +791,7 @@ template&lt;typename DataPoint &gt; </div>
 
 <p>Alias to the templated input type (Index) </p>
 
-<p class="definition">Definition at line <a class="el" href="query_8h_source.html#l00162">162</a> of file <a class="el" href="query_8h_source.html">query.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="query_8h_source.html#l00171">171</a> of file <a class="el" href="query_8h_source.html">query.h</a>.</p>
 
 </div>
 </div>
@@ -824,7 +824,7 @@ template&lt;typename DataPoint &gt; </div>
 
 <p>Default constructor that initialize the input position. </p>
 
-<p class="definition">Definition at line <a class="el" href="query_8h_source.html#l00165">165</a> of file <a class="el" href="query_8h_source.html">query.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="query_8h_source.html#l00174">174</a> of file <a class="el" href="query_8h_source.html">query.h</a>.</p>
 
 </div>
 </div>
@@ -859,7 +859,7 @@ template&lt;typename VectorType  = typename DataPoint::VectorType, typename Cont
 
 <p>Generic method to access input position. The VectorType needs to be passed as a template argument. </p>
 
-<p class="definition">Definition at line <a class="el" href="query_8h_source.html#l00178">178</a> of file <a class="el" href="query_8h_source.html">query.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="query_8h_source.html#l00188">188</a> of file <a class="el" href="query_8h_source.html">query.h</a>.</p>
 
 </div>
 </div>
@@ -891,7 +891,7 @@ template&lt;typename DataPoint &gt; </div>
 
 <p>Access operator that resets the input point. </p>
 
-<p class="definition">Definition at line <a class="el" href="query_8h_source.html#l00169">169</a> of file <a class="el" href="query_8h_source.html">query.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="query_8h_source.html#l00177">177</a> of file <a class="el" href="query_8h_source.html">query.h</a>.</p>
 
 </div>
 </div>
@@ -925,7 +925,7 @@ template&lt;typename IndexType &gt; </div>
 
 <p>Functor used to check if a given Idx must be skipped. </p>
 
-<p class="definition">Definition at line <a class="el" href="query_8h_source.html#l00175">175</a> of file <a class="el" href="query_8h_source.html">query.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="query_8h_source.html#l00182">182</a> of file <a class="el" href="query_8h_source.html">query.h</a>.</p>
 
 </div>
 </div>
@@ -947,7 +947,7 @@ template&lt;typename IndexType &gt; </div>
 struct Ponca::QueryOutputIsRange&lt; Index, Scalar &gt;</div><p>Class to construct the range query output. </p>
 <p>Stores internally the radius value of a range request. </p><dl class="section see"><dt>See also</dt><dd><a class="el" href="group__spatialpartitioning.html#structPonca_1_1QueryOutputBase" title="Base class for queries output types.">QueryOutputBase</a> </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="query_8h_source.html#l00189">189</a> of file <a class="el" href="query_8h_source.html">query.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="query_8h_source.html#l00201">201</a> of file <a class="el" href="query_8h_source.html">query.h</a>.</p>
 </div><div id="dynsection-11" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-11-trigger" src="closed.png" alt="+"/> Inheritance diagram for Ponca::QueryOutputIsRange&lt; Index, Scalar &gt;:</div>
 <div id="dynsection-11-summary" class="dynsummary" style="display:block;">
@@ -1015,7 +1015,7 @@ template&lt;typename Index , typename Scalar &gt; </div>
 
 <p>Alias to Output type. </p>
 
-<p class="definition">Definition at line <a class="el" href="query_8h_source.html#l00191">191</a> of file <a class="el" href="query_8h_source.html">query.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="query_8h_source.html#l00204">204</a> of file <a class="el" href="query_8h_source.html">query.h</a>.</p>
 
 </div>
 </div>
@@ -1048,7 +1048,7 @@ template&lt;typename Index , typename Scalar &gt; </div>
 
 <p>Default constructor that initialize the output parameter value. </p>
 
-<p class="definition">Definition at line <a class="el" href="query_8h_source.html#l00194">194</a> of file <a class="el" href="query_8h_source.html">query.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="query_8h_source.html#l00207">207</a> of file <a class="el" href="query_8h_source.html">query.h</a>.</p>
 
 </div>
 </div>
@@ -1080,7 +1080,7 @@ template&lt;typename Index , typename Scalar &gt; </div>
 
 <p>Distance threshold used during tree descent to select nodes to explore. </p>
 
-<p class="definition">Definition at line <a class="el" href="query_8h_source.html#l00236">236</a> of file <a class="el" href="query_8h_source.html">query.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="query_8h_source.html#l00248">248</a> of file <a class="el" href="query_8h_source.html">query.h</a>.</p>
 
 </div>
 </div>
@@ -1112,7 +1112,7 @@ template&lt;typename Index , typename Scalar &gt; </div>
 
 <p>Access operator that resets the output parameter. </p>
 
-<p class="definition">Definition at line <a class="el" href="query_8h_source.html#l00198">198</a> of file <a class="el" href="query_8h_source.html">query.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="query_8h_source.html#l00213">213</a> of file <a class="el" href="query_8h_source.html">query.h</a>.</p>
 
 </div>
 </div>
@@ -1145,7 +1145,7 @@ template&lt;typename Index , typename Scalar &gt; </div>
 <dl class="section warning"><dt>Warning</dt><dd>This getter method is more expensive to process than <code>squaredRadius</code>, because it computes the square root of the squared radius each time it is called. This is done this way to avoid having to store internally two values related to the radius.</dd></dl>
 <p><code>squaredRadius</code> is overall better for distance comparison. </p><dl class="section see"><dt>See also</dt><dd><a class="el" href="group__spatialpartitioning.html#a0c3968bb6e2a53fc07fac1054183ba8d" title="Generic method to access the radius squared.">squaredRadius</a> </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="query_8h_source.html#l00212">212</a> of file <a class="el" href="query_8h_source.html">query.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="query_8h_source.html#l00225">225</a> of file <a class="el" href="query_8h_source.html">query.h</a>.</p>
 
 </div>
 </div>
@@ -1176,7 +1176,7 @@ template&lt;typename Index , typename Scalar &gt; </div>
 
 <p>Reset <a class="el" href="group__spatialpartitioning.html#structPonca_1_1Query" title="Composes the Query object depending on an input type and output type.">Query</a> for a new search. </p>
 
-<p class="definition">Definition at line <a class="el" href="query_8h_source.html#l00234">234</a> of file <a class="el" href="query_8h_source.html">query.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="query_8h_source.html#l00246">246</a> of file <a class="el" href="query_8h_source.html">query.h</a>.</p>
 
 </div>
 </div>
@@ -1209,7 +1209,7 @@ template&lt;typename Index , typename Scalar &gt; </div>
 <p>Set the radius distance of the query. </p>
 <dl class="section note"><dt>Note</dt><dd>Store internally the squared radius for faster distance comparison </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="query_8h_source.html#l00225">225</a> of file <a class="el" href="query_8h_source.html">query.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="query_8h_source.html#l00239">239</a> of file <a class="el" href="query_8h_source.html">query.h</a>.</p>
 
 </div>
 </div>
@@ -1241,7 +1241,7 @@ template&lt;typename Index , typename Scalar &gt; </div>
 
 <p>Set the squared radius distance of the query. </p>
 
-<p class="definition">Definition at line <a class="el" href="query_8h_source.html#l00230">230</a> of file <a class="el" href="query_8h_source.html">query.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="query_8h_source.html#l00242">242</a> of file <a class="el" href="query_8h_source.html">query.h</a>.</p>
 
 </div>
 </div>
@@ -1272,7 +1272,7 @@ template&lt;typename Index , typename Scalar &gt; </div>
 
 <p>Generic method to access the radius squared. </p>
 
-<p class="definition">Definition at line <a class="el" href="query_8h_source.html#l00218">218</a> of file <a class="el" href="query_8h_source.html">query.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="query_8h_source.html#l00232">232</a> of file <a class="el" href="query_8h_source.html">query.h</a>.</p>
 
 </div>
 </div>
@@ -1301,7 +1301,7 @@ template&lt;typename Index , typename Scalar &gt; </div>
 
 <p>Radius used for the search. </p>
 
-<p class="definition">Definition at line <a class="el" href="query_8h_source.html#l00238">238</a> of file <a class="el" href="query_8h_source.html">query.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="query_8h_source.html#l00250">250</a> of file <a class="el" href="query_8h_source.html">query.h</a>.</p>
 
 </div>
 </div>
@@ -1323,7 +1323,7 @@ template&lt;typename Index , typename Scalar &gt; </div>
 struct Ponca::QueryOutputIsNearest&lt; Index, Scalar &gt;</div><p>Class to construct the nearest query output. </p>
 <p>Stores internally the nearest neighbor and the Distance threshold (for tree descent). </p><dl class="section see"><dt>See also</dt><dd><a class="el" href="group__spatialpartitioning.html#structPonca_1_1QueryOutputBase" title="Base class for queries output types.">QueryOutputBase</a> </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="query_8h_source.html#l00248">248</a> of file <a class="el" href="query_8h_source.html">query.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="query_8h_source.html#l00260">260</a> of file <a class="el" href="query_8h_source.html">query.h</a>.</p>
 </div><div id="dynsection-13" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-13-trigger" src="closed.png" alt="+"/> Inheritance diagram for Ponca::QueryOutputIsNearest&lt; Index, Scalar &gt;:</div>
 <div id="dynsection-13-summary" class="dynsummary" style="display:block;">
@@ -1364,7 +1364,7 @@ struct Ponca::QueryOutputIsNearest&lt; Index, Scalar &gt;</div><p>Class to const
 <tr class="memitem:a561ce273e8b3238e61d2c91733784520" id="r_a561ce273e8b3238e61d2c91733784520"><td class="memItemLeft" align="right" valign="top">Index&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__spatialpartitioning.html#a561ce273e8b3238e61d2c91733784520">m_nearest</a> {-1}</td></tr>
 <tr class="memdesc:a561ce273e8b3238e61d2c91733784520"><td class="mdescLeft">&#160;</td><td class="mdescRight">Index of the nearest neighbor.  <br /></td></tr>
 <tr class="separator:a561ce273e8b3238e61d2c91733784520"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abe71fa671d3d538b4410c81eefce1615" id="r_abe71fa671d3d538b4410c81eefce1615"><td class="memItemLeft" align="right" valign="top">Scalar&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__spatialpartitioning.html#abe71fa671d3d538b4410c81eefce1615">m_squared_distance</a> {std:: numeric_limits &lt;Scalar&gt;::max()}</td></tr>
+<tr class="memitem:abe71fa671d3d538b4410c81eefce1615" id="r_abe71fa671d3d538b4410c81eefce1615"><td class="memItemLeft" align="right" valign="top">Scalar&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__spatialpartitioning.html#abe71fa671d3d538b4410c81eefce1615">m_squared_distance</a> {std:: numeric_limits &lt; Scalar &gt; ::max()}</td></tr>
 <tr class="memdesc:abe71fa671d3d538b4410c81eefce1615"><td class="mdescLeft">&#160;</td><td class="mdescRight">Distance to the nearest neighbor.  <br /></td></tr>
 <tr class="separator:abe71fa671d3d538b4410c81eefce1615"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
@@ -1385,7 +1385,7 @@ template&lt;typename Index , typename Scalar &gt; </div>
 
 <p>Alias to Output type. </p>
 
-<p class="definition">Definition at line <a class="el" href="query_8h_source.html#l00250">250</a> of file <a class="el" href="query_8h_source.html">query.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="query_8h_source.html#l00263">263</a> of file <a class="el" href="query_8h_source.html">query.h</a>.</p>
 
 </div>
 </div>
@@ -1417,7 +1417,7 @@ template&lt;typename Index , typename Scalar &gt; </div>
 
 <p>Default constructor. </p>
 
-<p class="definition">Definition at line <a class="el" href="query_8h_source.html#l00253">253</a> of file <a class="el" href="query_8h_source.html">query.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="query_8h_source.html#l00266">266</a> of file <a class="el" href="query_8h_source.html">query.h</a>.</p>
 
 </div>
 </div>
@@ -1449,7 +1449,7 @@ template&lt;typename Index , typename Scalar &gt; </div>
 
 <p>Distance threshold used during tree descent to select nodes to explore. </p>
 
-<p class="definition">Definition at line <a class="el" href="query_8h_source.html#l00268">268</a> of file <a class="el" href="query_8h_source.html">query.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="query_8h_source.html#l00282">282</a> of file <a class="el" href="query_8h_source.html">query.h</a>.</p>
 
 </div>
 </div>
@@ -1480,7 +1480,7 @@ template&lt;typename Index , typename Scalar &gt; </div>
 
 <p>Get the closest points. </p>
 
-<p class="definition">Definition at line <a class="el" href="query_8h_source.html#l00259">259</a> of file <a class="el" href="query_8h_source.html">query.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="query_8h_source.html#l00272">272</a> of file <a class="el" href="query_8h_source.html">query.h</a>.</p>
 
 </div>
 </div>
@@ -1511,7 +1511,7 @@ template&lt;typename Index , typename Scalar &gt; </div>
 
 <p>Access operator. </p>
 
-<p class="definition">Definition at line <a class="el" href="query_8h_source.html#l00256">256</a> of file <a class="el" href="query_8h_source.html">query.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="query_8h_source.html#l00269">269</a> of file <a class="el" href="query_8h_source.html">query.h</a>.</p>
 
 </div>
 </div>
@@ -1542,7 +1542,7 @@ template&lt;typename Index , typename Scalar &gt; </div>
 
 <p>Reset <a class="el" href="group__spatialpartitioning.html#structPonca_1_1Query" title="Composes the Query object depending on an input type and output type.">Query</a> for a new search. </p>
 
-<p class="definition">Definition at line <a class="el" href="query_8h_source.html#l00263">263</a> of file <a class="el" href="query_8h_source.html">query.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="query_8h_source.html#l00276">276</a> of file <a class="el" href="query_8h_source.html">query.h</a>.</p>
 
 </div>
 </div>
@@ -1571,7 +1571,7 @@ template&lt;typename Index , typename Scalar &gt; </div>
 
 <p>Index of the nearest neighbor. </p>
 
-<p class="definition">Definition at line <a class="el" href="query_8h_source.html#l00271">271</a> of file <a class="el" href="query_8h_source.html">query.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="query_8h_source.html#l00285">285</a> of file <a class="el" href="query_8h_source.html">query.h</a>.</p>
 
 </div>
 </div>
@@ -1587,7 +1587,7 @@ template&lt;typename Index , typename Scalar &gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">Scalar <a class="el" href="group__spatialpartitioning.html#structPonca_1_1QueryOutputIsNearest">Ponca::QueryOutputIsNearest</a>&lt; Index, Scalar &gt;::m_squared_distance {std:: numeric_limits &lt;Scalar&gt;::max()}</td>
+          <td class="memname">Scalar <a class="el" href="group__spatialpartitioning.html#structPonca_1_1QueryOutputIsNearest">Ponca::QueryOutputIsNearest</a>&lt; Index, Scalar &gt;::m_squared_distance {std:: numeric_limits &lt; Scalar &gt; ::max()}</td>
         </tr>
       </table>
   </td>
@@ -1599,7 +1599,7 @@ template&lt;typename Index , typename Scalar &gt; </div>
 
 <p>Distance to the nearest neighbor. </p>
 
-<p class="definition">Definition at line <a class="el" href="query_8h_source.html#l00273">273</a> of file <a class="el" href="query_8h_source.html">query.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="query_8h_source.html#l00287">287</a> of file <a class="el" href="query_8h_source.html">query.h</a>.</p>
 
 </div>
 </div>
@@ -1621,7 +1621,7 @@ template&lt;typename Index , typename Scalar &gt; </div>
 struct Ponca::QueryOutputIsKNearest&lt; Index, Scalar &gt;</div><p>Class to construct the knearest queries. </p>
 <p>Stores internally the neighbors collection of the knn request and the Distance threshold (for tree descent). </p><dl class="section see"><dt>See also</dt><dd><a class="el" href="group__spatialpartitioning.html#structPonca_1_1QueryOutputBase" title="Base class for queries output types.">QueryOutputBase</a> </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="query_8h_source.html#l00282">282</a> of file <a class="el" href="query_8h_source.html">query.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="query_8h_source.html#l00296">296</a> of file <a class="el" href="query_8h_source.html">query.h</a>.</p>
 </div><div id="dynsection-15" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-15-trigger" src="closed.png" alt="+"/> Inheritance diagram for Ponca::QueryOutputIsKNearest&lt; Index, Scalar &gt;:</div>
 <div id="dynsection-15-summary" class="dynsummary" style="display:block;">
@@ -1680,7 +1680,7 @@ template&lt;typename Index , typename Scalar &gt; </div>
 
 <p>Alias to Output type. </p>
 
-<p class="definition">Definition at line <a class="el" href="query_8h_source.html#l00284">284</a> of file <a class="el" href="query_8h_source.html">query.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="query_8h_source.html#l00299">299</a> of file <a class="el" href="query_8h_source.html">query.h</a>.</p>
 
 </div>
 </div>
@@ -1713,7 +1713,7 @@ template&lt;typename Index , typename Scalar &gt; </div>
 
 <p>Default constructor that initialize the output parameter value. </p>
 
-<p class="definition">Definition at line <a class="el" href="query_8h_source.html#l00287">287</a> of file <a class="el" href="query_8h_source.html">query.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="query_8h_source.html#l00302">302</a> of file <a class="el" href="query_8h_source.html">query.h</a>.</p>
 
 </div>
 </div>
@@ -1745,7 +1745,7 @@ template&lt;typename Index , typename Scalar &gt; </div>
 
 <p>Distance threshold used during tree descent to select nodes to explore. </p>
 
-<p class="definition">Definition at line <a class="el" href="query_8h_source.html#l00302">302</a> of file <a class="el" href="query_8h_source.html">query.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="query_8h_source.html#l00321">321</a> of file <a class="el" href="query_8h_source.html">query.h</a>.</p>
 
 </div>
 </div>
@@ -1777,7 +1777,7 @@ template&lt;typename Index , typename Scalar &gt; </div>
 
 <p>Access operator that resets the output parameter. </p>
 
-<p class="definition">Definition at line <a class="el" href="query_8h_source.html#l00290">290</a> of file <a class="el" href="query_8h_source.html">query.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="query_8h_source.html#l00305">305</a> of file <a class="el" href="query_8h_source.html">query.h</a>.</p>
 
 </div>
 </div>
@@ -1808,7 +1808,7 @@ template&lt;typename Index , typename Scalar &gt; </div>
 
 <p>Access to the priority queue storing the neighbors. </p>
 
-<p class="definition">Definition at line <a class="el" href="query_8h_source.html#l00293">293</a> of file <a class="el" href="query_8h_source.html">query.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="query_8h_source.html#l00311">311</a> of file <a class="el" href="query_8h_source.html">query.h</a>.</p>
 
 </div>
 </div>
@@ -1839,7 +1839,7 @@ template&lt;typename Index , typename Scalar &gt; </div>
 
 <p>Reset <a class="el" href="group__spatialpartitioning.html#structPonca_1_1Query" title="Composes the Query object depending on an input type and output type.">Query</a> for a new search. </p>
 
-<p class="definition">Definition at line <a class="el" href="query_8h_source.html#l00297">297</a> of file <a class="el" href="query_8h_source.html">query.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="query_8h_source.html#l00315">315</a> of file <a class="el" href="query_8h_source.html">query.h</a>.</p>
 
 </div>
 </div>
@@ -1868,7 +1868,7 @@ template&lt;typename Index , typename Scalar &gt; </div>
 
 <p>Queue storing the neighbors. </p>
 
-<p class="definition">Definition at line <a class="el" href="query_8h_source.html#l00304">304</a> of file <a class="el" href="query_8h_source.html">query.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="query_8h_source.html#l00323">323</a> of file <a class="el" href="query_8h_source.html">query.h</a>.</p>
 
 </div>
 </div>
@@ -1896,7 +1896,7 @@ struct Ponca::Query&lt; Input_, Output_ &gt;</div><p>Composes the <a class="el" 
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="query_8h_source.html#l00314">314</a> of file <a class="el" href="query_8h_source.html">query.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="query_8h_source.html#l00333">333</a> of file <a class="el" href="query_8h_source.html">query.h</a>.</p>
 </div><div id="dynsection-17" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-17-trigger" src="closed.png" alt="+"/> Inheritance diagram for Ponca::Query&lt; Input_, Output_ &gt;:</div>
 <div id="dynsection-17-summary" class="dynsummary" style="display:block;">
@@ -1952,7 +1952,7 @@ template&lt;typename Input_ , typename Output_ &gt; </div>
 
 <p>Alias to the input type. </p>
 
-<p class="definition">Definition at line <a class="el" href="query_8h_source.html#l00316">316</a> of file <a class="el" href="query_8h_source.html">query.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="query_8h_source.html#l00336">336</a> of file <a class="el" href="query_8h_source.html">query.h</a>.</p>
 
 </div>
 </div>
@@ -1972,7 +1972,7 @@ template&lt;typename Input_ , typename Output_ &gt; </div>
 
 <p>Alias to the output type. </p>
 
-<p class="definition">Definition at line <a class="el" href="query_8h_source.html#l00318">318</a> of file <a class="el" href="query_8h_source.html">query.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="query_8h_source.html#l00338">338</a> of file <a class="el" href="query_8h_source.html">query.h</a>.</p>
 
 </div>
 </div>
@@ -2005,7 +2005,7 @@ template&lt;typename Input_ , typename Output_ &gt; </div>
 
 <p>Default constructor that initialize the input parameter only. </p>
 
-<p class="definition">Definition at line <a class="el" href="query_8h_source.html#l00326">326</a> of file <a class="el" href="query_8h_source.html">query.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="query_8h_source.html#l00346">346</a> of file <a class="el" href="query_8h_source.html">query.h</a>.</p>
 
 </div>
 </div>
@@ -2047,7 +2047,7 @@ template&lt;typename Input_ , typename Output_ &gt; </div>
 
 <p>Default constructor that initialize the input and output parameters. </p>
 
-<p class="definition">Definition at line <a class="el" href="query_8h_source.html#l00330">330</a> of file <a class="el" href="query_8h_source.html">query.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="query_8h_source.html#l00349">349</a> of file <a class="el" href="query_8h_source.html">query.h</a>.</p>
 
 </div>
 </div>
@@ -2082,7 +2082,7 @@ template&lt;typename Base &gt; </div>
 
 <p>Access operator that resets the input parameter only. </p>
 
-<p class="definition">Definition at line <a class="el" href="query_8h_source.html#l00344">344</a> of file <a class="el" href="query_8h_source.html">query.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="query_8h_source.html#l00366">366</a> of file <a class="el" href="query_8h_source.html">query.h</a>.</p>
 
 </div>
 </div>
@@ -2126,7 +2126,7 @@ template&lt;typename Base , typename... outputType&gt; </div>
 
 <p>Access operator that resets the input and output parameters. </p>
 
-<p class="definition">Definition at line <a class="el" href="query_8h_source.html#l00336">336</a> of file <a class="el" href="query_8h_source.html">query.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="query_8h_source.html#l00357">357</a> of file <a class="el" href="query_8h_source.html">query.h</a>.</p>
 
 </div>
 </div>
@@ -2146,20 +2146,14 @@ template&lt;typename Base , typename... outputType&gt; </div>
 </div><div class="memdoc">
 <div class="textblock"><div class="compoundTemplParams">template&lt;typename Index, typename Scalar&gt;<br />
 struct Ponca::KNearestIndexQuery&lt; Index, Scalar &gt;</div><p>Base <a class="el" href="group__spatialpartitioning.html#structPonca_1_1Query" title="Composes the Query object depending on an input type and output type.">Query</a> class combining <a class="el" href="group__spatialpartitioning.html#structPonca_1_1QueryInputIsIndex" title="Extension of QueryInput that handles an index based search, in a partitioning structure.">QueryInputIsIndex</a> and <a class="el" href="group__spatialpartitioning.html#structPonca_1_1QueryOutputIsKNearest" title="Class to construct the knearest queries.">QueryOutputIsKNearest</a>. </p>
-<p><br  />
-</p>
-<p><code>IndexQuery</code> objects acts as a <code>Range</code> that can be iterated over. <br  />
-</p>
-<p>They are used as the return type for the index searches <br  />
-</p>
-<p>and they allow easy access to the result outputs. <br  />
-</p>
+<p><code>IndexQuery</code> objects acts as a <code>Range</code> that can be iterated over.</p>
+<p>They are used as the return type for the index searches</p>
+<p>and they allow easy access to the result outputs.</p>
 <p>This specialization of the <code>IndexQuery</code> concept is used to iterate over the neighbors of a given point index, <br  />
 </p>
-<p>using aKNearestIndex <a class="el" href="group__spatialpartitioning.html#structPonca_1_1Query" title="Composes the Query object depending on an input type and output type.">Query</a> request. <br  />
- </p>
+<p>using aKNearestIndex <a class="el" href="group__spatialpartitioning.html#structPonca_1_1Query" title="Composes the Query object depending on an input type and output type.">Query</a> request. </p>
 
-<p class="definition">Definition at line <a class="el" href="query_8h_source.html#l00350">350</a> of file <a class="el" href="query_8h_source.html">query.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="query_8h_source.html#l00373">373</a> of file <a class="el" href="query_8h_source.html">query.h</a>.</p>
 </div><div id="dynsection-19" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-19-trigger" src="closed.png" alt="+"/> Inheritance diagram for Ponca::KNearestIndexQuery&lt; Index, Scalar &gt;:</div>
 <div id="dynsection-19-summary" class="dynsummary" style="display:block;">
@@ -2285,7 +2279,7 @@ template&lt;typename Index , typename Scalar &gt; </div>
 <p>Alias to the inherited base <a class="el" href="group__spatialpartitioning.html#structPonca_1_1Query" title="Composes the Query object depending on an input type and output type.">Query</a> <br  />
  </p>
 
-<p class="definition">Definition at line <a class="el" href="query_8h_source.html#l00350">350</a> of file <a class="el" href="query_8h_source.html">query.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="query_8h_source.html#l00373">373</a> of file <a class="el" href="query_8h_source.html">query.h</a>.</p>
 
 </div>
 </div>
@@ -2305,20 +2299,14 @@ template&lt;typename Index , typename Scalar &gt; </div>
 </div><div class="memdoc">
 <div class="textblock"><div class="compoundTemplParams">template&lt;typename Index, typename Scalar&gt;<br />
 struct Ponca::NearestIndexQuery&lt; Index, Scalar &gt;</div><p>Base <a class="el" href="group__spatialpartitioning.html#structPonca_1_1Query" title="Composes the Query object depending on an input type and output type.">Query</a> class combining <a class="el" href="group__spatialpartitioning.html#structPonca_1_1QueryInputIsIndex" title="Extension of QueryInput that handles an index based search, in a partitioning structure.">QueryInputIsIndex</a> and <a class="el" href="group__spatialpartitioning.html#structPonca_1_1QueryOutputIsNearest" title="Class to construct the nearest query output.">QueryOutputIsNearest</a>. </p>
-<p><br  />
-</p>
-<p><code>IndexQuery</code> objects acts as a <code>Range</code> that can be iterated over. <br  />
-</p>
-<p>They are used as the return type for the index searches <br  />
-</p>
-<p>and they allow easy access to the result outputs. <br  />
-</p>
+<p><code>IndexQuery</code> objects acts as a <code>Range</code> that can be iterated over.</p>
+<p>They are used as the return type for the index searches</p>
+<p>and they allow easy access to the result outputs.</p>
 <p>This specialization of the <code>IndexQuery</code> concept is used to iterate over the neighbors of a given point index, <br  />
 </p>
-<p>using aNearestIndex <a class="el" href="group__spatialpartitioning.html#structPonca_1_1Query" title="Composes the Query object depending on an input type and output type.">Query</a> request. <br  />
- </p>
+<p>using aNearestIndex <a class="el" href="group__spatialpartitioning.html#structPonca_1_1Query" title="Composes the Query object depending on an input type and output type.">Query</a> request. </p>
 
-<p class="definition">Definition at line <a class="el" href="query_8h_source.html#l00351">351</a> of file <a class="el" href="query_8h_source.html">query.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="query_8h_source.html#l00374">374</a> of file <a class="el" href="query_8h_source.html">query.h</a>.</p>
 </div><div id="dynsection-21" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-21-trigger" src="closed.png" alt="+"/> Inheritance diagram for Ponca::NearestIndexQuery&lt; Index, Scalar &gt;:</div>
 <div id="dynsection-21-summary" class="dynsummary" style="display:block;">
@@ -2425,7 +2413,7 @@ Additional Inherited Members</h2></td></tr>
 <tr class="memitem:a561ce273e8b3238e61d2c91733784520 inherit pro_attribs_group__spatialpartitioning" id="r_a561ce273e8b3238e61d2c91733784520"><td class="memItemLeft" align="right" valign="top">Index&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__spatialpartitioning.html#a561ce273e8b3238e61d2c91733784520">m_nearest</a> {-1}</td></tr>
 <tr class="memdesc:a561ce273e8b3238e61d2c91733784520 inherit pro_attribs_group__spatialpartitioning"><td class="mdescLeft">&#160;</td><td class="mdescRight">Index of the nearest neighbor.  <br /></td></tr>
 <tr class="separator:a561ce273e8b3238e61d2c91733784520 inherit pro_attribs_group__spatialpartitioning"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abe71fa671d3d538b4410c81eefce1615 inherit pro_attribs_group__spatialpartitioning" id="r_abe71fa671d3d538b4410c81eefce1615"><td class="memItemLeft" align="right" valign="top">Scalar&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__spatialpartitioning.html#abe71fa671d3d538b4410c81eefce1615">m_squared_distance</a> {std:: numeric_limits &lt;Scalar&gt;::max()}</td></tr>
+<tr class="memitem:abe71fa671d3d538b4410c81eefce1615 inherit pro_attribs_group__spatialpartitioning" id="r_abe71fa671d3d538b4410c81eefce1615"><td class="memItemLeft" align="right" valign="top">Scalar&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__spatialpartitioning.html#abe71fa671d3d538b4410c81eefce1615">m_squared_distance</a> {std:: numeric_limits &lt; Scalar &gt; ::max()}</td></tr>
 <tr class="memdesc:abe71fa671d3d538b4410c81eefce1615 inherit pro_attribs_group__spatialpartitioning"><td class="mdescLeft">&#160;</td><td class="mdescRight">Distance to the nearest neighbor.  <br /></td></tr>
 <tr class="separator:abe71fa671d3d538b4410c81eefce1615 inherit pro_attribs_group__spatialpartitioning"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
@@ -2447,7 +2435,7 @@ template&lt;typename Index , typename Scalar &gt; </div>
 <p>Alias to the inherited base <a class="el" href="group__spatialpartitioning.html#structPonca_1_1Query" title="Composes the Query object depending on an input type and output type.">Query</a> <br  />
  </p>
 
-<p class="definition">Definition at line <a class="el" href="query_8h_source.html#l00351">351</a> of file <a class="el" href="query_8h_source.html">query.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="query_8h_source.html#l00374">374</a> of file <a class="el" href="query_8h_source.html">query.h</a>.</p>
 
 </div>
 </div>
@@ -2467,20 +2455,14 @@ template&lt;typename Index , typename Scalar &gt; </div>
 </div><div class="memdoc">
 <div class="textblock"><div class="compoundTemplParams">template&lt;typename Index, typename Scalar&gt;<br />
 struct Ponca::RangeIndexQuery&lt; Index, Scalar &gt;</div><p>Base <a class="el" href="group__spatialpartitioning.html#structPonca_1_1Query" title="Composes the Query object depending on an input type and output type.">Query</a> class combining <a class="el" href="group__spatialpartitioning.html#structPonca_1_1QueryInputIsIndex" title="Extension of QueryInput that handles an index based search, in a partitioning structure.">QueryInputIsIndex</a> and <a class="el" href="group__spatialpartitioning.html#structPonca_1_1QueryOutputIsRange" title="Class to construct the range query output.">QueryOutputIsRange</a>. </p>
-<p><br  />
-</p>
-<p><code>IndexQuery</code> objects acts as a <code>Range</code> that can be iterated over. <br  />
-</p>
-<p>They are used as the return type for the index searches <br  />
-</p>
-<p>and they allow easy access to the result outputs. <br  />
-</p>
+<p><code>IndexQuery</code> objects acts as a <code>Range</code> that can be iterated over.</p>
+<p>They are used as the return type for the index searches</p>
+<p>and they allow easy access to the result outputs.</p>
 <p>This specialization of the <code>IndexQuery</code> concept is used to iterate over the neighbors of a given point index, <br  />
 </p>
-<p>using aRangeIndex <a class="el" href="group__spatialpartitioning.html#structPonca_1_1Query" title="Composes the Query object depending on an input type and output type.">Query</a> request. <br  />
- </p>
+<p>using aRangeIndex <a class="el" href="group__spatialpartitioning.html#structPonca_1_1Query" title="Composes the Query object depending on an input type and output type.">Query</a> request. </p>
 
-<p class="definition">Definition at line <a class="el" href="query_8h_source.html#l00352">352</a> of file <a class="el" href="query_8h_source.html">query.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="query_8h_source.html#l00375">375</a> of file <a class="el" href="query_8h_source.html">query.h</a>.</p>
 </div><div id="dynsection-23" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-23-trigger" src="closed.png" alt="+"/> Inheritance diagram for Ponca::RangeIndexQuery&lt; Index, Scalar &gt;:</div>
 <div id="dynsection-23-summary" class="dynsummary" style="display:block;">
@@ -2615,7 +2597,7 @@ template&lt;typename Index , typename Scalar &gt; </div>
 <p>Alias to the inherited base <a class="el" href="group__spatialpartitioning.html#structPonca_1_1Query" title="Composes the Query object depending on an input type and output type.">Query</a> <br  />
  </p>
 
-<p class="definition">Definition at line <a class="el" href="query_8h_source.html#l00352">352</a> of file <a class="el" href="query_8h_source.html">query.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="query_8h_source.html#l00375">375</a> of file <a class="el" href="query_8h_source.html">query.h</a>.</p>
 
 </div>
 </div>
@@ -2635,19 +2617,13 @@ template&lt;typename Index , typename Scalar &gt; </div>
 </div><div class="memdoc">
 <div class="textblock"><div class="compoundTemplParams">template&lt;typename Index, typename DataPoint&gt;<br />
 struct Ponca::KNearestPointQuery&lt; Index, DataPoint &gt;</div><p>Base <a class="el" href="group__spatialpartitioning.html#structPonca_1_1Query" title="Composes the Query object depending on an input type and output type.">Query</a> class combining <a class="el" href="group__spatialpartitioning.html#structPonca_1_1QueryInputIsPosition" title="Extension of QueryInput that handles a position based search, in a partitioning structure.">QueryInputIsPosition</a> and <a class="el" href="group__spatialpartitioning.html#structPonca_1_1QueryOutputIsKNearest" title="Class to construct the knearest queries.">QueryOutputIsKNearest</a>. </p>
-<p><br  />
-</p>
-<p><code>PointQuery</code> objects acts as a <code>Range</code> that can be iterated over. <br  />
-</p>
-<p>They are used as the return type for the index searches <br  />
-</p>
-<p>and they allow easy access to the result outputs. <br  />
-</p>
-<p>This specialization of the <code>PointQuery</code> concept is used to iterate over the neighbors of a given point position,</p>
-<p>using aKNearestPoint <a class="el" href="group__spatialpartitioning.html#structPonca_1_1Query" title="Composes the Query object depending on an input type and output type.">Query</a> request. <br  />
- </p>
+<p><code>PointQuery</code> objects acts as a <code>Range</code> that can be iterated over.</p>
+<p>They are used as the return type for the index searches</p>
+<p>and they allow easy access to the result outputs.</p>
+<p>This specialization of the <code>PointQuery</code> concept is used to iterate over the neighbors of a given point * position,</p>
+<p>using aKNearestPoint <a class="el" href="group__spatialpartitioning.html#structPonca_1_1Query" title="Composes the Query object depending on an input type and output type.">Query</a> request. </p>
 
-<p class="definition">Definition at line <a class="el" href="query_8h_source.html#l00353">353</a> of file <a class="el" href="query_8h_source.html">query.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="query_8h_source.html#l00376">376</a> of file <a class="el" href="query_8h_source.html">query.h</a>.</p>
 </div><div id="dynsection-25" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-25-trigger" src="closed.png" alt="+"/> Inheritance diagram for Ponca::KNearestPointQuery&lt; Index, DataPoint &gt;:</div>
 <div id="dynsection-25-summary" class="dynsummary" style="display:block;">
@@ -2773,7 +2749,7 @@ template&lt;typename Index , typename DataPoint &gt; </div>
 <p>Alias to the inherited base <a class="el" href="group__spatialpartitioning.html#structPonca_1_1Query" title="Composes the Query object depending on an input type and output type.">Query</a> <br  />
  </p>
 
-<p class="definition">Definition at line <a class="el" href="query_8h_source.html#l00353">353</a> of file <a class="el" href="query_8h_source.html">query.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="query_8h_source.html#l00376">376</a> of file <a class="el" href="query_8h_source.html">query.h</a>.</p>
 
 </div>
 </div>
@@ -2793,19 +2769,13 @@ template&lt;typename Index , typename DataPoint &gt; </div>
 </div><div class="memdoc">
 <div class="textblock"><div class="compoundTemplParams">template&lt;typename Index, typename DataPoint&gt;<br />
 struct Ponca::NearestPointQuery&lt; Index, DataPoint &gt;</div><p>Base <a class="el" href="group__spatialpartitioning.html#structPonca_1_1Query" title="Composes the Query object depending on an input type and output type.">Query</a> class combining <a class="el" href="group__spatialpartitioning.html#structPonca_1_1QueryInputIsPosition" title="Extension of QueryInput that handles a position based search, in a partitioning structure.">QueryInputIsPosition</a> and <a class="el" href="group__spatialpartitioning.html#structPonca_1_1QueryOutputIsNearest" title="Class to construct the nearest query output.">QueryOutputIsNearest</a>. </p>
-<p><br  />
-</p>
-<p><code>PointQuery</code> objects acts as a <code>Range</code> that can be iterated over. <br  />
-</p>
-<p>They are used as the return type for the index searches <br  />
-</p>
-<p>and they allow easy access to the result outputs. <br  />
-</p>
-<p>This specialization of the <code>PointQuery</code> concept is used to iterate over the neighbors of a given point position,</p>
-<p>using aNearestPoint <a class="el" href="group__spatialpartitioning.html#structPonca_1_1Query" title="Composes the Query object depending on an input type and output type.">Query</a> request. <br  />
- </p>
+<p><code>PointQuery</code> objects acts as a <code>Range</code> that can be iterated over.</p>
+<p>They are used as the return type for the index searches</p>
+<p>and they allow easy access to the result outputs.</p>
+<p>This specialization of the <code>PointQuery</code> concept is used to iterate over the neighbors of a given point * position,</p>
+<p>using aNearestPoint <a class="el" href="group__spatialpartitioning.html#structPonca_1_1Query" title="Composes the Query object depending on an input type and output type.">Query</a> request. </p>
 
-<p class="definition">Definition at line <a class="el" href="query_8h_source.html#l00354">354</a> of file <a class="el" href="query_8h_source.html">query.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="query_8h_source.html#l00377">377</a> of file <a class="el" href="query_8h_source.html">query.h</a>.</p>
 </div><div id="dynsection-27" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-27-trigger" src="closed.png" alt="+"/> Inheritance diagram for Ponca::NearestPointQuery&lt; Index, DataPoint &gt;:</div>
 <div id="dynsection-27-summary" class="dynsummary" style="display:block;">
@@ -2934,7 +2904,7 @@ template&lt;typename Index , typename DataPoint &gt; </div>
 <p>Alias to the inherited base <a class="el" href="group__spatialpartitioning.html#structPonca_1_1Query" title="Composes the Query object depending on an input type and output type.">Query</a> <br  />
  </p>
 
-<p class="definition">Definition at line <a class="el" href="query_8h_source.html#l00354">354</a> of file <a class="el" href="query_8h_source.html">query.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="query_8h_source.html#l00377">377</a> of file <a class="el" href="query_8h_source.html">query.h</a>.</p>
 
 </div>
 </div>
@@ -2954,19 +2924,13 @@ template&lt;typename Index , typename DataPoint &gt; </div>
 </div><div class="memdoc">
 <div class="textblock"><div class="compoundTemplParams">template&lt;typename Index, typename DataPoint&gt;<br />
 struct Ponca::RangePointQuery&lt; Index, DataPoint &gt;</div><p>Base <a class="el" href="group__spatialpartitioning.html#structPonca_1_1Query" title="Composes the Query object depending on an input type and output type.">Query</a> class combining <a class="el" href="group__spatialpartitioning.html#structPonca_1_1QueryInputIsPosition" title="Extension of QueryInput that handles a position based search, in a partitioning structure.">QueryInputIsPosition</a> and <a class="el" href="group__spatialpartitioning.html#structPonca_1_1QueryOutputIsRange" title="Class to construct the range query output.">QueryOutputIsRange</a>. </p>
-<p><br  />
-</p>
-<p><code>PointQuery</code> objects acts as a <code>Range</code> that can be iterated over. <br  />
-</p>
-<p>They are used as the return type for the index searches <br  />
-</p>
-<p>and they allow easy access to the result outputs. <br  />
-</p>
-<p>This specialization of the <code>PointQuery</code> concept is used to iterate over the neighbors of a given point position,</p>
-<p>using aRangePoint <a class="el" href="group__spatialpartitioning.html#structPonca_1_1Query" title="Composes the Query object depending on an input type and output type.">Query</a> request. <br  />
- </p>
+<p><code>PointQuery</code> objects acts as a <code>Range</code> that can be iterated over.</p>
+<p>They are used as the return type for the index searches</p>
+<p>and they allow easy access to the result outputs.</p>
+<p>This specialization of the <code>PointQuery</code> concept is used to iterate over the neighbors of a given point * position,</p>
+<p>using aRangePoint <a class="el" href="group__spatialpartitioning.html#structPonca_1_1Query" title="Composes the Query object depending on an input type and output type.">Query</a> request. </p>
 
-<p class="definition">Definition at line <a class="el" href="query_8h_source.html#l00355">355</a> of file <a class="el" href="query_8h_source.html">query.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="query_8h_source.html#l00378">378</a> of file <a class="el" href="query_8h_source.html">query.h</a>.</p>
 </div><div id="dynsection-29" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-29-trigger" src="closed.png" alt="+"/> Inheritance diagram for Ponca::RangePointQuery&lt; Index, DataPoint &gt;:</div>
 <div id="dynsection-29-summary" class="dynsummary" style="display:block;">
@@ -3101,7 +3065,7 @@ template&lt;typename Index , typename DataPoint &gt; </div>
 <p>Alias to the inherited base <a class="el" href="group__spatialpartitioning.html#structPonca_1_1Query" title="Composes the Query object depending on an input type and output type.">Query</a> <br  />
  </p>
 
-<p class="definition">Definition at line <a class="el" href="query_8h_source.html#l00355">355</a> of file <a class="el" href="query_8h_source.html">query.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="query_8h_source.html#l00378">378</a> of file <a class="el" href="query_8h_source.html">query.h</a>.</p>
 
 </div>
 </div>
@@ -3113,7 +3077,7 @@ template&lt;typename Index , typename DataPoint &gt; </div>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generated on Wed Mar 18 2026 16:17:05 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
+    <li class="footer">Generated on Thu Mar 19 2026 17:42:38 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
   </ul>
 </div>
 </body>

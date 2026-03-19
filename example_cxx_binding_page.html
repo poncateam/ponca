@@ -51,7 +51,7 @@ MathJax.Hub.Config({
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Ponca
-   &#160;<span id="projectnumber">ff18772cb1e492269a8bd2895da1f5d816a1ae25</span>
+   &#160;<span id="projectnumber">19ef58fd3760f23a8af99a5eeac4f934757e30d9</span>
    </div>
    <div id="projectbrief">Point Cloud Analysis library</div>
   </td>
@@ -127,7 +127,6 @@ $(document).ready(function(){initNavTree('example_cxx_binding_page.html',''); in
 <div class="line"><span class="comment">file, You can obtain one at http://mozilla.org/MPL/2.0/.</span></div>
 <div class="line"><span class="comment">*/</span></div>
 <div class="line"> </div>
-<div class="line"> </div>
 <div class="line"><span class="preprocessor">#include &lt;iostream&gt;</span></div>
 <div class="line"> </div>
 <div class="line"><span class="preprocessor">#include &lt;Ponca/src/Fitting/basket.h&gt;</span></div>
@@ -150,14 +149,10 @@ $(document).ready(function(){initNavTree('example_cxx_binding_page.html',''); in
 <div class="line"> </div>
 <div class="line"><span class="comment">// Define related structure</span></div>
 <div class="line"><span class="keyword">typedef</span> <a class="code hl_class" href="classPonca_1_1DistWeightFunc.html">DistWeightFunc&lt;MyPoint, SmoothWeightKernel&lt;Scalar&gt;</a>&gt; WeightFunc;</div>
-<div class="line"><span class="keyword">typedef</span> <a class="code hl_class" href="classPonca_1_1Basket.html">Basket&lt;MyPoint, WeightFunc,OrientedSphereFit, GLSParam&gt;</a> Fit;</div>
+<div class="line"><span class="keyword">typedef</span> <a class="code hl_class" href="classPonca_1_1Basket.html">Basket&lt;MyPoint, WeightFunc, OrientedSphereFit, GLSParam&gt;</a> Fit;</div>
 <div class="line"> </div>
-<div class="line"> </div>
-<div class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> Fit&gt;</div>
-<div class="line"><span class="keywordtype">void</span> test_fit(Fit&amp; _fit,</div>
-<div class="line">              Scalar* <span class="keyword">const</span> _interlacedArray,</div>
-<div class="line">              <span class="keyword">const</span> <span class="keywordtype">int</span> _n,</div>
-<div class="line">              <span class="keyword">const</span> VectorType&amp; _p)</div>
+<div class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> Fit&gt;</div>
+<div class="line"><span class="keywordtype">void</span> test_fit(Fit&amp; _fit, Scalar* <span class="keyword">const</span> _interlacedArray, <span class="keyword">const</span> <span class="keywordtype">int</span> _n, <span class="keyword">const</span> VectorType&amp; _p)</div>
 <div class="line">{</div>
 <div class="line">    Scalar tmax = 100.0;</div>
 <div class="line"> </div>
@@ -168,7 +163,7 @@ $(document).ready(function(){initNavTree('example_cxx_binding_page.html',''); in
 <div class="line">    <span class="comment">// Iterate over samples and _fit the primitive</span></div>
 <div class="line">    <span class="comment">// A MyPoint instance is generated on the fly to bind the raw arrays to the</span></div>
 <div class="line">    <span class="comment">// library representation. No copy is done at this step.</span></div>
-<div class="line">    <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i = 0; i!= _n; i++)</div>
+<div class="line">    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i != _n; i++)</div>
 <div class="line">    {</div>
 <div class="line">        _fit.<a class="code hl_function" href="classPonca_1_1Basket.html#ad5132ec839c56fdd21e875825d21465a">addNeighbor</a>(MyPoint(_interlacedArray, i));</div>
 <div class="line">    }</div>
@@ -177,49 +172,45 @@ $(document).ready(function(){initNavTree('example_cxx_binding_page.html',''); in
 <div class="line">    _fit.finalize();</div>
 <div class="line"> </div>
 <div class="line">    <span class="comment">// Test if the fitting ended without errors</span></div>
-<div class="line">    <span class="keywordflow">if</span>(_fit.isStable())</div>
+<div class="line">    <span class="keywordflow">if</span> (_fit.isStable())</div>
 <div class="line">    {</div>
 <div class="line">        cout &lt;&lt; <span class="stringliteral">&quot;Center: [&quot;</span> &lt;&lt; _fit.center().transpose() &lt;&lt; <span class="stringliteral">&quot;] ;  radius: &quot;</span> &lt;&lt; _fit.radius() &lt;&lt; endl;</div>
 <div class="line"> </div>
-<div class="line">        cout &lt;&lt; <span class="stringliteral">&quot;Pratt normalization&quot;</span></div>
-<div class="line">            &lt;&lt; (_fit.applyPrattNorm() ? <span class="stringliteral">&quot; is now done.&quot;</span> : <span class="stringliteral">&quot; has already been applied.&quot;</span>) &lt;&lt; endl;</div>
+<div class="line">        cout &lt;&lt; <span class="stringliteral">&quot;Pratt normalization&quot;</span> &lt;&lt; (_fit.applyPrattNorm() ? <span class="stringliteral">&quot; is now done.&quot;</span> : <span class="stringliteral">&quot; has already been applied.&quot;</span>)</div>
+<div class="line">             &lt;&lt; endl;</div>
 <div class="line"> </div>
 <div class="line">        <span class="comment">// Play with fitting output</span></div>
-<div class="line">        cout &lt;&lt; <span class="stringliteral">&quot;Value of the scalar field at the initial point: &quot;</span></div>
-<div class="line">            &lt;&lt; _p.transpose()</div>
-<div class="line">            &lt;&lt; <span class="stringliteral">&quot; is equal to &quot;</span> &lt;&lt; _fit.potential(_p)</div>
-<div class="line">            &lt;&lt; endl;</div>
+<div class="line">        cout &lt;&lt; <span class="stringliteral">&quot;Value of the scalar field at the initial point: &quot;</span> &lt;&lt; _p.transpose() &lt;&lt; <span class="stringliteral">&quot; is equal to &quot;</span></div>
+<div class="line">             &lt;&lt; _fit.potential(_p) &lt;&lt; endl;</div>
 <div class="line"> </div>
-<div class="line">        cout &lt;&lt; <span class="stringliteral">&quot;It&#39;s gradient at this place is equal to: &quot;</span></div>
-<div class="line">            &lt;&lt; _fit.primitiveGradient(_p).transpose()</div>
-<div class="line">            &lt;&lt; endl;</div>
+<div class="line">        cout &lt;&lt; <span class="stringliteral">&quot;It&#39;s gradient at this place is equal to: &quot;</span> &lt;&lt; _fit.primitiveGradient(_p).transpose() &lt;&lt; endl;</div>
 <div class="line"> </div>
 <div class="line">        cout &lt;&lt; <span class="stringliteral">&quot;Fitted Sphere: &quot;</span> &lt;&lt; endl</div>
-<div class="line">            &lt;&lt; <span class="stringliteral">&quot;\t Tau  : &quot;</span>      &lt;&lt; _fit.tau()             &lt;&lt; endl</div>
-<div class="line">            &lt;&lt; <span class="stringliteral">&quot;\t Eta  : &quot;</span>      &lt;&lt; _fit.eta().transpose() &lt;&lt; endl</div>
-<div class="line">            &lt;&lt; <span class="stringliteral">&quot;\t Kappa: &quot;</span>      &lt;&lt; _fit.kappa()           &lt;&lt; endl;</div>
+<div class="line">             &lt;&lt; <span class="stringliteral">&quot;\t Tau  : &quot;</span> &lt;&lt; _fit.tau() &lt;&lt; endl</div>
+<div class="line">             &lt;&lt; <span class="stringliteral">&quot;\t Eta  : &quot;</span> &lt;&lt; _fit.eta().transpose() &lt;&lt; endl</div>
+<div class="line">             &lt;&lt; <span class="stringliteral">&quot;\t Kappa: &quot;</span> &lt;&lt; _fit.kappa() &lt;&lt; endl;</div>
 <div class="line"> </div>
-<div class="line">        cout &lt;&lt; <span class="stringliteral">&quot;The initial point &quot;</span> &lt;&lt; _p.transpose()              &lt;&lt; endl</div>
-<div class="line">            &lt;&lt; <span class="stringliteral">&quot;Is projected at   &quot;</span> &lt;&lt; _fit.project(_p).transpose() &lt;&lt; endl;</div>
+<div class="line">        cout &lt;&lt; <span class="stringliteral">&quot;The initial point &quot;</span> &lt;&lt; _p.transpose() &lt;&lt; endl</div>
+<div class="line">             &lt;&lt; <span class="stringliteral">&quot;Is projected at   &quot;</span> &lt;&lt; _fit.project(_p).transpose() &lt;&lt; endl;</div>
 <div class="line">    }</div>
 <div class="line">}</div>
 <div class="line"> </div>
 <div class="line"><span class="comment">// Build an interlaced array containing _n position and normal vectors</span></div>
 <div class="line">Scalar* buildInterlacedArray(<span class="keyword">const</span> <span class="keywordtype">int</span> _n)</div>
 <div class="line">{</div>
-<div class="line">    <span class="keyword">auto</span>* <span class="keyword">const</span> interlacedArray = <span class="keyword">new</span> Scalar[2*DIMENSION*_n];</div>
+<div class="line">    <span class="keyword">auto</span>* <span class="keyword">const</span> interlacedArray = <span class="keyword">new</span> Scalar[2 * DIMENSION * _n];</div>
 <div class="line"> </div>
-<div class="line">    <span class="keywordflow">for</span>(<span class="keywordtype">int</span> k=0; k&lt;_n; ++k)</div>
+<div class="line">    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> k = 0; k &lt; _n; ++k)</div>
 <div class="line">    {</div>
 <div class="line">        <span class="comment">// For the simplicity of this example, we use Eigen Vectors to compute</span></div>
 <div class="line">        <span class="comment">// both coordinates and normals, and then copy the raw values to an</span></div>
 <div class="line">        <span class="comment">// interlaced array, discarding the Eigen representation.</span></div>
 <div class="line">        <span class="keyword">const</span> Eigen::Matrix&lt;Scalar, DIMENSION, 1&gt; nvec = Eigen::Matrix&lt;Scalar, DIMENSION, 1&gt;::Random().normalized();</div>
-<div class="line">        <span class="keyword">const</span> Eigen::Matrix&lt;Scalar, DIMENSION, 1&gt; pvec = nvec * Eigen::internal::random&lt;Scalar&gt;(0.9,1.1);</div>
+<div class="line">        <span class="keyword">const</span> Eigen::Matrix&lt;Scalar, DIMENSION, 1&gt; pvec = nvec * Eigen::internal::random&lt;Scalar&gt;(0.9, 1.1);</div>
 <div class="line"> </div>
 <div class="line">        <span class="comment">// Grab coordinates and store them as raw buffer</span></div>
-<div class="line">        memcpy(interlacedArray+2*DIMENSION*k,           pvec.data(), DIMENSION*<span class="keyword">sizeof</span>(Scalar));</div>
-<div class="line">        memcpy(interlacedArray+2*DIMENSION*k+DIMENSION, nvec.data(), DIMENSION*<span class="keyword">sizeof</span>(Scalar));</div>
+<div class="line">        memcpy(interlacedArray + 2 * DIMENSION * k, pvec.data(), DIMENSION * <span class="keyword">sizeof</span>(Scalar));</div>
+<div class="line">        memcpy(interlacedArray + 2 * DIMENSION * k + DIMENSION, nvec.data(), DIMENSION * <span class="keyword">sizeof</span>(Scalar));</div>
 <div class="line">    }</div>
 <div class="line"> </div>
 <div class="line">    <span class="keywordflow">return</span> interlacedArray;</div>
@@ -229,11 +220,11 @@ $(document).ready(function(){initNavTree('example_cxx_binding_page.html',''); in
 <div class="line">{</div>
 <div class="line">    <span class="comment">// Build arrays containing normals and positions,</span></div>
 <div class="line">    <span class="comment">// simulating data coming from outside the library.</span></div>
-<div class="line">    <span class="keyword">constexpr</span> <span class="keywordtype">int</span> n = 1000;</div>
+<div class="line">    <span class="keyword">constexpr</span> <span class="keywordtype">int</span> n               = 1000;</div>
 <div class="line">    Scalar* <span class="keyword">const</span> interlacedArray = buildInterlacedArray(n);</div>
 <div class="line"> </div>
 <div class="line">    <span class="comment">// Set evaluation point and scale at the first coordinate</span></div>
-<div class="line">    <span class="keyword">const</span> VectorType p (interlacedArray);</div>
+<div class="line">    <span class="keyword">const</span> VectorType p(interlacedArray);</div>
 <div class="line"> </div>
 <div class="line">    <span class="comment">// Here we now perform the fit, starting from a raw interlaced buffer,</span></div>
 <div class="line">    <span class="comment">// without any data duplication</span></div>
@@ -242,11 +233,11 @@ $(document).ready(function(){initNavTree('example_cxx_binding_page.html',''); in
 <div class="line"> </div>
 <div class="line">    <span class="keyword">delete</span>[] interlacedArray;</div>
 <div class="line">}</div>
-<div class="ttc" id="aclassPonca_1_1Basket_html"><div class="ttname"><a href="classPonca_1_1Basket.html">Ponca::Basket</a></div><div class="ttdoc">Aggregator class used to declare specialized structures using CRTP.</div><div class="ttdef"><b>Definition</b> <a href="basket_8h_source.html#l00319">basket.h:321</a></div></div>
-<div class="ttc" id="aclassPonca_1_1Basket_html_ad5132ec839c56fdd21e875825d21465a"><div class="ttname"><a href="classPonca_1_1Basket.html#ad5132ec839c56fdd21e875825d21465a">Ponca::Basket::addNeighbor</a></div><div class="ttdeci">bool addNeighbor(const DataPoint &amp;_nei)</div><div class="ttdoc">Add a neighbor to perform the fit.</div><div class="ttdef"><b>Definition</b> <a href="basket_8h_source.html#l00343">basket.h:343</a></div></div>
-<div class="ttc" id="aclassPonca_1_1DistWeightFunc_html"><div class="ttname"><a href="classPonca_1_1DistWeightFunc.html">Ponca::DistWeightFunc</a></div><div class="ttdoc">Weight neighbors according to the euclidean distance between a query and a reference position.</div><div class="ttdef"><b>Definition</b> <a href="weightFunc_8h_source.html#l00153">weightFunc.h:154</a></div></div>
-<div class="ttc" id="aclassPonca_1_1PointPositionNormalBinding_html"><div class="ttname"><a href="classPonca_1_1PointPositionNormalBinding.html">Ponca::PointPositionNormalBinding</a></div><div class="ttdoc">Variant of the PointPositionNormal data type that uses external raw data.</div><div class="ttdef"><b>Definition</b> <a href="pointTypes_8h_source.html#l00084">pointTypes.h:85</a></div></div>
-<div class="ttc" id="anamespacePonca_html"><div class="ttname"><a href="namespacePonca.html">Ponca</a></div><div class="ttdoc">This Source Code Form is subject to the terms of the Mozilla Public License, v.</div><div class="ttdef"><b>Definition</b> <a href="limitedPriorityQueue_8h_source.html#l00015">limitedPriorityQueue.h:15</a></div></div>
+<div class="ttc" id="aclassPonca_1_1Basket_html"><div class="ttname"><a href="classPonca_1_1Basket.html">Ponca::Basket</a></div><div class="ttdoc">Aggregator class used to declare specialized structures using CRTP.</div><div class="ttdef"><b>Definition</b> <a href="basket_8h_source.html#l00316">basket.h:318</a></div></div>
+<div class="ttc" id="aclassPonca_1_1Basket_html_ad5132ec839c56fdd21e875825d21465a"><div class="ttname"><a href="classPonca_1_1Basket.html#ad5132ec839c56fdd21e875825d21465a">Ponca::Basket::addNeighbor</a></div><div class="ttdeci">bool addNeighbor(const DataPoint &amp;_nei)</div><div class="ttdoc">Add a neighbor to perform the fit.</div><div class="ttdef"><b>Definition</b> <a href="basket_8h_source.html#l00341">basket.h:341</a></div></div>
+<div class="ttc" id="aclassPonca_1_1DistWeightFunc_html"><div class="ttname"><a href="classPonca_1_1DistWeightFunc.html">Ponca::DistWeightFunc</a></div><div class="ttdoc">Weight neighbors according to the euclidean distance between a query and a reference position.</div><div class="ttdef"><b>Definition</b> <a href="weightFunc_8h_source.html#l00161">weightFunc.h:162</a></div></div>
+<div class="ttc" id="aclassPonca_1_1PointPositionNormalBinding_html"><div class="ttname"><a href="classPonca_1_1PointPositionNormalBinding.html">Ponca::PointPositionNormalBinding</a></div><div class="ttdoc">Variant of the PointPositionNormal data type that uses external raw data.</div><div class="ttdef"><b>Definition</b> <a href="pointTypes_8h_source.html#l00089">pointTypes.h:90</a></div></div>
+<div class="ttc" id="anamespacePonca_html"><div class="ttname"><a href="namespacePonca.html">Ponca</a></div><div class="ttdoc">This Source Code Form is subject to the terms of the Mozilla Public License, v.</div><div class="ttdef"><b>Definition</b> <a href="limitedPriorityQueue_8h_source.html#l00015">limitedPriorityQueue.h:16</a></div></div>
 </div><!-- fragment --> </div></div><!-- contents -->
 </div><!-- PageDoc -->
 </div><!-- doc-content -->
@@ -254,7 +245,7 @@ $(document).ready(function(){initNavTree('example_cxx_binding_page.html',''); in
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="example_page.html">Examples</a></li>
-    <li class="footer">Generated on Wed Mar 18 2026 16:17:05 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
+    <li class="footer">Generated on Thu Mar 19 2026 17:42:38 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
   </ul>
 </div>
 </body>

@@ -51,7 +51,7 @@ MathJax.Hub.Config({
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Ponca
-   &#160;<span id="projectnumber">ff18772cb1e492269a8bd2895da1f5d816a1ae25</span>
+   &#160;<span id="projectnumber">19ef58fd3760f23a8af99a5eeac4f934757e30d9</span>
    </div>
    <div id="projectbrief">Point Cloud Analysis library</div>
   </td>
@@ -125,10 +125,12 @@ $(document).ready(function(){initNavTree('ponca_concepts.html',''); initResizabl
 <li>Ponca cannot rely on C++ polymorphism to define its API: most computational objects used through the library involve very small computation. Combining these computation using polymorphism requires to use virtual functions, which introduce a very high overhead (considering the small computation of each class).</li>
 <li>Instead, Ponca is based on 'Concepts' that need to be followed to use/extend the library.</li>
 </ul>
-<p>Hence, we expect client code to define how point data can be accessed, by respecting the following interface: </p><div class="fragment"><div class="line">        <span class="keyword">class </span>PointConcept {</div>
+<p>Hence, we expect client code to define how point data can be accessed, by respecting the following interface: </p><div class="fragment"><div class="line">        <span class="keyword">class </span>PointConcept</div>
+<div class="line">        {</div>
 <div class="line">        <span class="keyword">public</span>:</div>
 <div class="line">            <span class="comment">/* \brief Defines the ambient space dimension, 3 in this example */</span></div>
-<div class="line">            <span class="keyword">enum</span> {</div>
+<div class="line">            <span class="keyword">enum</span></div>
+<div class="line">            {</div>
 <div class="line">                Dim = 3</div>
 <div class="line">            };</div>
 <div class="line">            <span class="comment">// \brief Defines the type used ton encode scalar values</span></div>
@@ -140,14 +142,14 @@ $(document).ready(function(){initNavTree('ponca_concepts.html',''); initResizabl
 <div class="line">            PONCA_MULTIARCH <span class="keyword">inline</span> PointConcept();</div>
 <div class="line"> </div>
 <div class="line">            <span class="comment">// \brief Read access to the position property</span></div>
-<div class="line">            <span class="comment">// \note The return type should have the same API than VectorType (e.g. const Eigen::Map&lt; const VectorType &gt;&amp;),</span></div>
-<div class="line">            <span class="comment">// or be implicitly convertible to VectorType</span></div>
+<div class="line">            <span class="comment">// \note The return type should have the same API than VectorType (e.g. const Eigen::Map&lt; const VectorType</span></div>
+<div class="line">            <span class="comment">// &gt;&amp;), or be implicitly convertible to VectorType</span></div>
 <div class="line">            PONCA_MULTIARCH <span class="keyword">inline</span> <span class="keyword">const</span> VectorType&amp; pos() <span class="keyword">const</span>;</div>
 <div class="line"> </div>
 <div class="line">            <span class="comment">// \brief Write access to the position property</span></div>
 <div class="line">            <span class="comment">// \note Same constraints on return type</span></div>
 <div class="line">            PONCA_MULTIARCH <span class="keyword">inline</span> VectorType&amp; pos();</div>
-<div class="line">        }; <span class="comment">//class PointConcept</span></div>
+<div class="line">        }; <span class="comment">// class PointConcept</span></div>
 </div><!-- fragment --><p> This represents the minimal API required to use Ponca:</p><ul>
 <li>an integer <code>Dim</code> defining the number of dimensions of the ambient space (3 for 3d point clouds)</li>
 <li>types <code>Scalar</code> and <code>VectorType</code> that will be used by the library to represent scalars and vectors</li>
@@ -168,7 +170,7 @@ $(document).ready(function(){initNavTree('ponca_concepts.html',''); initResizabl
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="user_manual_page.html">User Manual</a></li>
-    <li class="footer">Generated on Wed Mar 18 2026 16:17:05 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
+    <li class="footer">Generated on Thu Mar 19 2026 17:42:38 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
   </ul>
 </div>
 </body>

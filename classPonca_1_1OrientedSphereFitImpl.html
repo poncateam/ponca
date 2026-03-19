@@ -51,7 +51,7 @@ MathJax.Hub.Config({
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Ponca
-   &#160;<span id="projectnumber">ff18772cb1e492269a8bd2895da1f5d816a1ae25</span>
+   &#160;<span id="projectnumber">19ef58fd3760f23a8af99a5eeac4f934757e30d9</span>
    </div>
    <div id="projectbrief">Point Cloud Analysis library</div>
   </td>
@@ -180,9 +180,9 @@ Public Member Functions</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-types" name="pro-types"></a>
 Protected Types</h2></td></tr>
-<tr class="memitem:a088d07e3276c4f253495314848cf0b1a" id="r_a088d07e3276c4f253495314848cf0b1a"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom">{ <b>Check</b>
+<tr class="memitem:ac137e68b2eabb720f51469c5d3a5e903" id="r_ac137e68b2eabb720f51469c5d3a5e903"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom">{ <b>Check</b> = Base::PROVIDES_ALGEBRAIC_SPHERE &amp;&amp; Base::PROVIDES_MEAN_NORMAL &amp;&amp; Base::PROVIDES_MEAN_POSITION
  }</td></tr>
-<tr class="separator:a088d07e3276c4f253495314848cf0b1a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="separator:ac137e68b2eabb720f51469c5d3a5e903"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afa07b73f9e88ea5c23f3f8542a24f3e8" id="r_afa07b73f9e88ea5c23f3f8542a24f3e8"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1OrientedSphereFitImpl.html#afa07b73f9e88ea5c23f3f8542a24f3e8">Base</a> = T</td></tr>
 <tr class="memdesc:afa07b73f9e88ea5c23f3f8542a24f3e8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Base class of the procedure.  <br /></td></tr>
 <tr class="separator:afa07b73f9e88ea5c23f3f8542a24f3e8"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -300,8 +300,8 @@ template&lt;class DataPoint , class _NFilter , typename T &gt; </div>
 </div>
 </div>
 <h2 class="groupheader">Member Enumeration Documentation</h2>
-<a id="a088d07e3276c4f253495314848cf0b1a" name="a088d07e3276c4f253495314848cf0b1a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a088d07e3276c4f253495314848cf0b1a">&#9670;&#160;</a></span>anonymous enum</h2>
+<a id="ac137e68b2eabb720f51469c5d3a5e903" name="ac137e68b2eabb720f51469c5d3a5e903"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac137e68b2eabb720f51469c5d3a5e903">&#9670;&#160;</a></span>anonymous enum</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -372,7 +372,7 @@ template&lt;class DataPoint , class _NFilter , typename T &gt; </div>
 <p>Add a neighbor to perform the fit. </p>
 <dl class="section return"><dt>Returns</dt><dd>false if param nei is not a valid neighbour (weight = 0) </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="orientedSphereFit_8hpp_source.html#l00023">23</a> of file <a class="el" href="orientedSphereFit_8hpp_source.html">orientedSphereFit.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="orientedSphereFit_8hpp_source.html#l00020">20</a> of file <a class="el" href="orientedSphereFit_8hpp_source.html">orientedSphereFit.hpp</a>.</p>
 
 </div>
 </div>
@@ -405,7 +405,7 @@ template&lt;class DataPoint , class _NFilter , typename T &gt; </div>
 <dl class="section return"><dt>Returns</dt><dd>Fitting Status </dd></dl>
 <dl class="section warning"><dt>Warning</dt><dd>Must be called be for any use of the fitting output </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="orientedSphereFit_8hpp_source.html#l00037">37</a> of file <a class="el" href="orientedSphereFit_8hpp_source.html">orientedSphereFit.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="orientedSphereFit_8hpp_source.html#l00033">33</a> of file <a class="el" href="orientedSphereFit_8hpp_source.html">orientedSphereFit.hpp</a>.</p>
 
 </div>
 </div>
@@ -435,9 +435,9 @@ template&lt;class DataPoint , class _NFilter , typename T &gt; </div>
 </div><div class="memdoc">
 
 <p>Set the evaluation position and reset the internal states. </p>
-<dl class="section warning"><dt>Warning</dt><dd>Must be called be for any computation (but after #setNeighborFilter) </dd></dl>
+<dl class="section warning"><dt>Warning</dt><dd>Must be called be for any computation (but * after #setNeighborFilter) </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="orientedSphereFit_8hpp_source.html#l00010">10</a> of file <a class="el" href="orientedSphereFit_8hpp_source.html">orientedSphereFit.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="orientedSphereFit_8hpp_source.html#l00008">8</a> of file <a class="el" href="orientedSphereFit_8hpp_source.html">orientedSphereFit.hpp</a>.</p>
 
 </div>
 </div>
@@ -469,7 +469,7 @@ template&lt;class DataPoint , class _NFilter , typename T &gt; </div>
 <p>Is scalar field signed. </p>
 <p>If not, the method the sign of <code>potential()</code> must be ignored </p>
 
-<p class="definition">Definition at line <a class="el" href="orientedSphereFit_8h_source.html#l00046">46</a> of file <a class="el" href="orientedSphereFit_8h_source.html">orientedSphereFit.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="orientedSphereFit_8h_source.html#l00044">44</a> of file <a class="el" href="orientedSphereFit_8h_source.html">orientedSphereFit.h</a>.</p>
 
 </div>
 </div>
@@ -500,7 +500,7 @@ template&lt;class DataPoint , class _NFilter , typename T &gt; </div>
 
 <p>Explicit conversion to <a class="el" href="classPonca_1_1OrientedSphereFitImpl.html" title="Algebraic Sphere fitting procedure on oriented point sets.">OrientedSphereFitImpl</a> , to access methods potentially hidden by heritage. </p>
 
-<p class="definition">Definition at line <a class="el" href="orientedSphereFit_8h_source.html#l00044">44</a> of file <a class="el" href="orientedSphereFit_8h_source.html">orientedSphereFit.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="orientedSphereFit_8h_source.html#l00042">42</a> of file <a class="el" href="orientedSphereFit_8h_source.html">orientedSphereFit.h</a>.</p>
 
 </div>
 </div>
@@ -531,7 +531,7 @@ template&lt;class DataPoint , class _NFilter , typename T &gt; </div>
 
 <p>Explicit conversion to <a class="el" href="classPonca_1_1OrientedSphereFitImpl.html" title="Algebraic Sphere fitting procedure on oriented point sets.">OrientedSphereFitImpl</a> , to access methods potentially hidden by heritage. </p>
 
-<p class="definition">Definition at line <a class="el" href="orientedSphereFit_8h_source.html#l00044">44</a> of file <a class="el" href="orientedSphereFit_8h_source.html">orientedSphereFit.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="orientedSphereFit_8h_source.html#l00042">42</a> of file <a class="el" href="orientedSphereFit_8h_source.html">orientedSphereFit.h</a>.</p>
 
 </div>
 </div>
@@ -560,7 +560,7 @@ template&lt;class DataPoint , class _NFilter , typename T &gt; </div>
 
 <p>Denominator of the quadratic parameter (excluding the 0.5 coefficient) </p>
 
-<p class="definition">Definition at line <a class="el" href="orientedSphereFit_8h_source.html#l00041">41</a> of file <a class="el" href="orientedSphereFit_8h_source.html">orientedSphereFit.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="orientedSphereFit_8h_source.html#l00039">39</a> of file <a class="el" href="orientedSphereFit_8h_source.html">orientedSphereFit.h</a>.</p>
 
 </div>
 </div>
@@ -589,7 +589,7 @@ template&lt;class DataPoint , class _NFilter , typename T &gt; </div>
 <p>Numerator of the quadratic parameter (excluding the 0.5 coefficient) <br  />
  </p>
 
-<p class="definition">Definition at line <a class="el" href="orientedSphereFit_8h_source.html#l00040">40</a> of file <a class="el" href="orientedSphereFit_8h_source.html">orientedSphereFit.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="orientedSphereFit_8h_source.html#l00038">38</a> of file <a class="el" href="orientedSphereFit_8h_source.html">orientedSphereFit.h</a>.</p>
 
 </div>
 </div>
@@ -617,7 +617,7 @@ template&lt;class DataPoint , class _NFilter , typename T &gt; </div>
 
 <p>Sum of the dot product between relative positions and normals. </p>
 
-<p class="definition">Definition at line <a class="el" href="orientedSphereFit_8h_source.html#l00038">38</a> of file <a class="el" href="orientedSphereFit_8h_source.html">orientedSphereFit.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="orientedSphereFit_8h_source.html#l00036">36</a> of file <a class="el" href="orientedSphereFit_8h_source.html">orientedSphereFit.h</a>.</p>
 
 </div>
 </div>
@@ -645,7 +645,7 @@ template&lt;class DataPoint , class _NFilter , typename T &gt; </div>
 
 <p>Sum of the squared relative positions. </p>
 
-<p class="definition">Definition at line <a class="el" href="orientedSphereFit_8h_source.html#l00039">39</a> of file <a class="el" href="orientedSphereFit_8h_source.html">orientedSphereFit.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="orientedSphereFit_8h_source.html#l00037">37</a> of file <a class="el" href="orientedSphereFit_8h_source.html">orientedSphereFit.h</a>.</p>
 
 </div>
 </div>
@@ -655,7 +655,7 @@ template&lt;class DataPoint , class _NFilter , typename T &gt; </div>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="namespacePonca.html">Ponca</a></li><li class="navelem"><a class="el" href="classPonca_1_1OrientedSphereFitImpl.html">OrientedSphereFitImpl</a></li>
-    <li class="footer">Generated on Wed Mar 18 2026 16:17:06 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
+    <li class="footer">Generated on Thu Mar 19 2026 17:42:38 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
   </ul>
 </div>
 </body>

@@ -51,7 +51,7 @@ MathJax.Hub.Config({
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Ponca
-   &#160;<span id="projectnumber">ff18772cb1e492269a8bd2895da1f5d816a1ae25</span>
+   &#160;<span id="projectnumber">19ef58fd3760f23a8af99a5eeac4f934757e30d9</span>
    </div>
    <div id="projectbrief">Point Cloud Analysis library</div>
   </td>
@@ -180,7 +180,7 @@ class Ponca::GaussianWeightKernel&lt; _Scalar &gt;</div><p>Non-compact Gaussian 
 <dl class="section note"><dt>Note</dt><dd>This is not a distribution, thus the kernel is not normalized in order to have \(f(0)=1\).</dd></dl>
 <dl class="section warning"><dt>Warning</dt><dd>Also, as \(\sigma=t\), a <a class="el" href="classPonca_1_1GaussianWeightKernel.html" title="Non-compact Gaussian WeightKernel.">GaussianWeightKernel</a> generates a larger weighting function than a compact kernel, as \(f(1)\approx 0.6\). In order to obtain a comparable weight, it is recommended to scale down \(t\) by a factor of \(0.16\). </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="weightKernel_8h_source.html#l00291">291</a> of file <a class="el" href="weightKernel_8h_source.html">weightKernel.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="weightKernel_8h_source.html#l00301">301</a> of file <a class="el" href="weightKernel_8h_source.html">weightKernel.h</a>.</p>
 </div><h2 class="groupheader">Member Typedef Documentation</h2>
 <a id="ad65fa4d3d48051b5b5039212179fd9b2" name="ad65fa4d3d48051b5b5039212179fd9b2"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ad65fa4d3d48051b5b5039212179fd9b2">&#9670;&#160;</a></span>Scalar</h2>
@@ -198,7 +198,7 @@ template&lt;typename _Scalar &gt; </div>
 
 <p>Scalar type defined outside the class. </p>
 
-<p class="definition">Definition at line <a class="el" href="weightKernel_8h_source.html#l00295">295</a> of file <a class="el" href="weightKernel_8h_source.html">weightKernel.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="weightKernel_8h_source.html#l00305">305</a> of file <a class="el" href="weightKernel_8h_source.html">weightKernel.h</a>.</p>
 
 </div>
 </div>
@@ -231,7 +231,7 @@ template&lt;typename _Scalar &gt; </div>
 
 <p>Defines the Gaussian weighting function second order derivative \(e^{\frac{-x^2}{2\sigma^2}}(x^2-1)\). </p>
 
-<p class="definition">Definition at line <a class="el" href="weightKernel_8h_source.html#l00316">316</a> of file <a class="el" href="weightKernel_8h_source.html">weightKernel.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="weightKernel_8h_source.html#l00326">326</a> of file <a class="el" href="weightKernel_8h_source.html">weightKernel.h</a>.</p>
 
 </div>
 </div>
@@ -263,7 +263,7 @@ template&lt;typename _Scalar &gt; </div>
 
 <p>Defines the Gaussian weighting function first order derivative \(-e^{\frac{-x^2}{2\sigma^2}}x\). </p>
 
-<p class="definition">Definition at line <a class="el" href="weightKernel_8h_source.html#l00312">312</a> of file <a class="el" href="weightKernel_8h_source.html">weightKernel.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="weightKernel_8h_source.html#l00323">323</a> of file <a class="el" href="weightKernel_8h_source.html">weightKernel.h</a>.</p>
 
 </div>
 </div>
@@ -296,7 +296,7 @@ template&lt;typename _Scalar &gt; </div>
 <p>Defines the Gaussian weighting function \(e^{\frac{-x^2}{2\sigma^2}}\). </p>
 <p>As \(x\) is normalized wrt scale such that \( x \in [0:1]\), \(\sigma=0\) and the gaussian kernel boils down to \(e^{\frac{-x^2}{2}}\). </p>
 
-<p class="definition">Definition at line <a class="el" href="weightKernel_8h_source.html#l00306">306</a> of file <a class="el" href="weightKernel_8h_source.html">weightKernel.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="weightKernel_8h_source.html#l00316">316</a> of file <a class="el" href="weightKernel_8h_source.html">weightKernel.h</a>.</p>
 
 </div>
 </div>
@@ -325,7 +325,7 @@ template&lt;typename _Scalar &gt; </div>
 
 <p>The kernel is not compact and can be evaluated outside of the scale bounds. </p>
 
-<p class="definition">Definition at line <a class="el" href="weightKernel_8h_source.html#l00298">298</a> of file <a class="el" href="weightKernel_8h_source.html">weightKernel.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="weightKernel_8h_source.html#l00308">308</a> of file <a class="el" href="weightKernel_8h_source.html">weightKernel.h</a>.</p>
 
 </div>
 </div>
@@ -353,7 +353,7 @@ template&lt;typename _Scalar &gt; </div>
 
 <p><a class="el" href="classPonca_1_1GaussianWeightKernel.html#a83dd517cb0f5d8c6604b0a78fa3865ea" title="Defines the Gaussian weighting function second order derivative .">ddf</a> is defined and valid on the definition interval </p>
 
-<p class="definition">Definition at line <a class="el" href="weightKernel_8h_source.html#l00322">322</a> of file <a class="el" href="weightKernel_8h_source.html">weightKernel.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="weightKernel_8h_source.html#l00333">333</a> of file <a class="el" href="weightKernel_8h_source.html">weightKernel.h</a>.</p>
 
 </div>
 </div>
@@ -381,7 +381,7 @@ template&lt;typename _Scalar &gt; </div>
 
 <p><a class="el" href="classPonca_1_1GaussianWeightKernel.html#acdb267ce83430b0c2547d8a419ce566d" title="Defines the Gaussian weighting function first order derivative .">df</a> is defined and valid on the definition interval </p>
 
-<p class="definition">Definition at line <a class="el" href="weightKernel_8h_source.html#l00320">320</a> of file <a class="el" href="weightKernel_8h_source.html">weightKernel.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="weightKernel_8h_source.html#l00331">331</a> of file <a class="el" href="weightKernel_8h_source.html">weightKernel.h</a>.</p>
 
 </div>
 </div>
@@ -391,7 +391,7 @@ template&lt;typename _Scalar &gt; </div>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="namespacePonca.html">Ponca</a></li><li class="navelem"><a class="el" href="classPonca_1_1GaussianWeightKernel.html">GaussianWeightKernel</a></li>
-    <li class="footer">Generated on Wed Mar 18 2026 16:17:05 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
+    <li class="footer">Generated on Thu Mar 19 2026 17:42:38 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
   </ul>
 </div>
 </body>

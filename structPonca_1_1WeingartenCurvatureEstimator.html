@@ -51,7 +51,7 @@ MathJax.Hub.Config({
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Ponca
-   &#160;<span id="projectnumber">ff18772cb1e492269a8bd2895da1f5d816a1ae25</span>
+   &#160;<span id="projectnumber">19ef58fd3760f23a8af99a5eeac4f934757e30d9</span>
    </div>
    <div id="projectbrief">Point Cloud Analysis library</div>
   </td>
@@ -187,9 +187,9 @@ Protected Types</h2></td></tr>
 <tr class="memdesc:a3bad468d5a46196630506dd90370f98e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Base class of the procedure.  <br /></td></tr>
 <tr class="separator:a3bad468d5a46196630506dd90370f98e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pro_types_classPonca_1_1internal_1_1WeingartenCurvatureEstimatorBase"><td colspan="2" onclick="javascript:toggleInherit('pro_types_classPonca_1_1internal_1_1WeingartenCurvatureEstimatorBase')"><img src="closed.png" alt="-"/>&#160;Protected Types inherited from <a class="el" href="classPonca_1_1internal_1_1WeingartenCurvatureEstimatorBase.html">Ponca::internal::WeingartenCurvatureEstimatorBase&lt; DataPoint, _NFilter, T &gt;</a></td></tr>
-<tr class="memitem:aa4a2d4c3de6dd6ed9ee21d348ec112af inherit pro_types_classPonca_1_1internal_1_1WeingartenCurvatureEstimatorBase" id="r_aa4a2d4c3de6dd6ed9ee21d348ec112af"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom">{ <b>Check</b>
+<tr class="memitem:a37cafbc72667b133d81f196fe714a062 inherit pro_types_classPonca_1_1internal_1_1WeingartenCurvatureEstimatorBase" id="r_a37cafbc72667b133d81f196fe714a062"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom">{ <b>Check</b>
  }</td></tr>
-<tr class="separator:aa4a2d4c3de6dd6ed9ee21d348ec112af inherit pro_types_classPonca_1_1internal_1_1WeingartenCurvatureEstimatorBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="separator:a37cafbc72667b133d81f196fe714a062 inherit pro_types_classPonca_1_1internal_1_1WeingartenCurvatureEstimatorBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa70bc5b4ea6315c88412554cef17b062 inherit pro_types_classPonca_1_1internal_1_1WeingartenCurvatureEstimatorBase" id="r_aa70bc5b4ea6315c88412554cef17b062"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1internal_1_1WeingartenCurvatureEstimatorBase.html#aa70bc5b4ea6315c88412554cef17b062">Base</a> = T</td></tr>
 <tr class="memdesc:aa70bc5b4ea6315c88412554cef17b062 inherit pro_types_classPonca_1_1internal_1_1WeingartenCurvatureEstimatorBase"><td class="mdescLeft">&#160;</td><td class="mdescRight">Base class of the procedure.  <br /></td></tr>
 <tr class="separator:aa70bc5b4ea6315c88412554cef17b062 inherit pro_types_classPonca_1_1internal_1_1WeingartenCurvatureEstimatorBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -200,7 +200,7 @@ struct Ponca::WeingartenCurvatureEstimator&lt; DataPoint, _NFilter, T &gt;</div>
 <p>Since the weingarten map is self-adjoint, a basis exists consisting of the eigenvectors of W. The eigenvectors, combined with their eigenvalues, define the principal curvature directions and values. The Gaussian and mean curvatures can be retrieved as \(\text{K} = \text{det}(\text{W})\) and \(\text{H} = \frac{1}{2}\text{trace}(\text{W})\), respectively.</p>
 <dl class="section warning"><dt>Warning</dt><dd>To map from the tangent plane to ambiant space, we assume that the patch is represented as (h(u,v), u, v) because <a class="el" href="classPonca_1_1CovariancePlaneFitImpl.html#a429f5387d3e7ba2fa8f1fd729d3175b4" title="Express a point in ambient space relatively to the tangent plane.">CovariancePlaneFitImpl::worldToTangentPlane()</a> wraps up coordinates in this order (height, u and v).</dd></dl>
 <p>This primitive requires: </p><pre class="fragment">PROVIDES_TANGENT_PLANE_BASIS, PROVIDES_WEINGARTEN_MAP, PROVIDES_PRINCIPAL_CURVATURES </pre>   
-<p class="definition">Definition at line <a class="el" href="weingarten_8h_source.html#l00191">191</a> of file <a class="el" href="weingarten_8h_source.html">weingarten.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="weingarten_8h_source.html#l00193">193</a> of file <a class="el" href="weingarten_8h_source.html">weingarten.h</a>.</p>
 </div><h2 class="groupheader">Member Typedef Documentation</h2>
 <a id="a3bad468d5a46196630506dd90370f98e" name="a3bad468d5a46196630506dd90370f98e"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a3bad468d5a46196630506dd90370f98e">&#9670;&#160;</a></span>Base</h2>
@@ -226,7 +226,7 @@ template&lt;class DataPoint , class _NFilter , typename T &gt; </div>
 
 <p>Base class of the procedure. </p>
 
-<p class="definition">Definition at line <a class="el" href="weingarten_8h_source.html#l00192">192</a> of file <a class="el" href="weingarten_8h_source.html">weingarten.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="weingarten_8h_source.html#l00195">195</a> of file <a class="el" href="weingarten_8h_source.html">weingarten.h</a>.</p>
 
 </div>
 </div>
@@ -246,7 +246,7 @@ template&lt;class DataPoint , class _NFilter , typename T &gt; </div>
 
 <p>Alias to the filter applied on the neighbors. </p>
 
-<p class="definition">Definition at line <a class="el" href="weingarten_8h_source.html#l00192">192</a> of file <a class="el" href="weingarten_8h_source.html">weingarten.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="weingarten_8h_source.html#l00195">195</a> of file <a class="el" href="weingarten_8h_source.html">weingarten.h</a>.</p>
 
 </div>
 </div>
@@ -266,7 +266,7 @@ template&lt;class DataPoint , class _NFilter , typename T &gt; </div>
 
 <p>Alias to scalar type. </p>
 
-<p class="definition">Definition at line <a class="el" href="weingarten_8h_source.html#l00192">192</a> of file <a class="el" href="weingarten_8h_source.html">weingarten.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="weingarten_8h_source.html#l00195">195</a> of file <a class="el" href="weingarten_8h_source.html">weingarten.h</a>.</p>
 
 </div>
 </div>
@@ -286,7 +286,7 @@ template&lt;class DataPoint , class _NFilter , typename T &gt; </div>
 
 <p>Alias to vector type. </p>
 
-<p class="definition">Definition at line <a class="el" href="weingarten_8h_source.html#l00192">192</a> of file <a class="el" href="weingarten_8h_source.html">weingarten.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="weingarten_8h_source.html#l00195">195</a> of file <a class="el" href="weingarten_8h_source.html">weingarten.h</a>.</p>
 
 </div>
 </div>
@@ -318,7 +318,7 @@ template&lt;class DataPoint , class _NFilter , typename T &gt; </div>
 
 <p>Explicit conversion to <a class="el" href="structPonca_1_1WeingartenCurvatureEstimator.html" title="Compute principal curvatures from a base class providing fundamental forms.">WeingartenCurvatureEstimator</a> , to access methods potentially hidden by heritage. </p>
 
-<p class="definition">Definition at line <a class="el" href="weingarten_8h_source.html#l00193">193</a> of file <a class="el" href="weingarten_8h_source.html">weingarten.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="weingarten_8h_source.html#l00196">196</a> of file <a class="el" href="weingarten_8h_source.html">weingarten.h</a>.</p>
 
 </div>
 </div>
@@ -349,7 +349,7 @@ template&lt;class DataPoint , class _NFilter , typename T &gt; </div>
 
 <p>Explicit conversion to <a class="el" href="structPonca_1_1WeingartenCurvatureEstimator.html" title="Compute principal curvatures from a base class providing fundamental forms.">WeingartenCurvatureEstimator</a> , to access methods potentially hidden by heritage. </p>
 
-<p class="definition">Definition at line <a class="el" href="weingarten_8h_source.html#l00193">193</a> of file <a class="el" href="weingarten_8h_source.html">weingarten.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="weingarten_8h_source.html#l00196">196</a> of file <a class="el" href="weingarten_8h_source.html">weingarten.h</a>.</p>
 
 </div>
 </div>
@@ -359,7 +359,7 @@ template&lt;class DataPoint , class _NFilter , typename T &gt; </div>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="namespacePonca.html">Ponca</a></li><li class="navelem"><a class="el" href="structPonca_1_1WeingartenCurvatureEstimator.html">WeingartenCurvatureEstimator</a></li>
-    <li class="footer">Generated on Wed Mar 18 2026 16:17:06 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
+    <li class="footer">Generated on Thu Mar 19 2026 17:42:38 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
   </ul>
 </div>
 </body>

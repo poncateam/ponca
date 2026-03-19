@@ -51,7 +51,7 @@ MathJax.Hub.Config({
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Ponca
-   &#160;<span id="projectnumber">ff18772cb1e492269a8bd2895da1f5d816a1ae25</span>
+   &#160;<span id="projectnumber">19ef58fd3760f23a8af99a5eeac4f934757e30d9</span>
    </div>
    <div id="projectbrief">Point Cloud Analysis library</div>
   </td>
@@ -156,8 +156,8 @@ Public Types</h2></td></tr>
 <tr class="memitem:ab947668e707f3428361b35efa80f28f8" id="r_ab947668e707f3428361b35efa80f28f8"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1MongePatchQuadraticFitImpl.html#ab947668e707f3428361b35efa80f28f8">NeighborFilter</a> = typename Base::NeighborFilter</td></tr>
 <tr class="memdesc:ab947668e707f3428361b35efa80f28f8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Alias to the filter applied on the neighbors.  <br /></td></tr>
 <tr class="separator:ab947668e707f3428361b35efa80f28f8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa25a14991c55e7924e59d89c07d87a46" id="r_aa25a14991c55e7924e59d89c07d87a46"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1MongePatchQuadraticFitImpl.html#aa25a14991c55e7924e59d89c07d87a46">SampleMatrix</a> = Eigen::Matrix&lt; <a class="el" href="classPonca_1_1MongePatchQuadraticFitImpl.html#a97b79bb8968b9a97afc1052a715060df">Scalar</a>, Eigen::Dynamic, Eigen::Dynamic &gt;</td></tr>
-<tr class="separator:aa25a14991c55e7924e59d89c07d87a46"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a56c6fd5e036872d0dad26deeee1b37e8" id="r_a56c6fd5e036872d0dad26deeee1b37e8"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1MongePatchQuadraticFitImpl.html#a56c6fd5e036872d0dad26deeee1b37e8">SampleMatrix</a> = Eigen::Matrix&lt; <a class="el" href="classPonca_1_1MongePatchQuadraticFitImpl.html#a97b79bb8968b9a97afc1052a715060df">Scalar</a>, Eigen::Dynamic, Eigen::Dynamic &gt;</td></tr>
+<tr class="separator:a56c6fd5e036872d0dad26deeee1b37e8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a40ef3f388725960f585166a50924f44b" id="r_a40ef3f388725960f585166a50924f44b"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1MongePatchQuadraticFitImpl.html#a40ef3f388725960f585166a50924f44b">QuadraticHeightFieldCoefficients</a> = typename Base::HeightFieldCoefficients</td></tr>
 <tr class="separator:a40ef3f388725960f585166a50924f44b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
@@ -192,9 +192,9 @@ Public Attributes</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-types" name="pro-types"></a>
 Protected Types</h2></td></tr>
-<tr class="memitem:a20280ad52477d4949b91fb77cd4597da" id="r_a20280ad52477d4949b91fb77cd4597da"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom">{ <b>Check</b>
+<tr class="memitem:acadeca3184be631e98d609ec499bc30f" id="r_acadeca3184be631e98d609ec499bc30f"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom">{ <b>Check</b> = Base::PROVIDES_QUADRIC_HEIGHTFIELD &amp;&amp; Base::PROVIDES_MONGE_PATCH
  }</td></tr>
-<tr class="separator:a20280ad52477d4949b91fb77cd4597da"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="separator:acadeca3184be631e98d609ec499bc30f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a70745e7e524acf1dd14f456e0945f01c" id="r_a70745e7e524acf1dd14f456e0945f01c"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1MongePatchQuadraticFitImpl.html#a70745e7e524acf1dd14f456e0945f01c">Base</a> = T</td></tr>
 <tr class="memdesc:a70745e7e524acf1dd14f456e0945f01c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Base class of the procedure.  <br /></td></tr>
 <tr class="separator:a70745e7e524acf1dd14f456e0945f01c"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -206,7 +206,7 @@ class Ponca::MongePatchQuadraticFitImpl&lt; DataPoint, _NFilter, T &gt;</div><p>
 <dl class="section note"><dt>Note</dt><dd>This procedure requires at least two passes, the first one for plane fitting, the second one for quadric fitting. </dd></dl>
 <dl class="section warning"><dt>Warning</dt><dd>This class is valid only in 3D. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="mongePatch_8h_source.html#l00137">137</a> of file <a class="el" href="mongePatch_8h_source.html">mongePatch.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="mongePatch_8h_source.html#l00140">140</a> of file <a class="el" href="mongePatch_8h_source.html">mongePatch.h</a>.</p>
 </div><h2 class="groupheader">Member Typedef Documentation</h2>
 <a id="a70745e7e524acf1dd14f456e0945f01c" name="a70745e7e524acf1dd14f456e0945f01c"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a70745e7e524acf1dd14f456e0945f01c">&#9670;&#160;</a></span>Base</h2>
@@ -232,7 +232,7 @@ template&lt;class DataPoint , class _NFilter , typename T &gt; </div>
 
 <p>Base class of the procedure. </p>
 
-<p class="definition">Definition at line <a class="el" href="mongePatch_8h_source.html#l00139">139</a> of file <a class="el" href="mongePatch_8h_source.html">mongePatch.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="mongePatch_8h_source.html#l00142">142</a> of file <a class="el" href="mongePatch_8h_source.html">mongePatch.h</a>.</p>
 
 </div>
 </div>
@@ -252,7 +252,7 @@ template&lt;class DataPoint , class _NFilter , typename T &gt; </div>
 
 <p>Alias to the filter applied on the neighbors. </p>
 
-<p class="definition">Definition at line <a class="el" href="mongePatch_8h_source.html#l00139">139</a> of file <a class="el" href="mongePatch_8h_source.html">mongePatch.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="mongePatch_8h_source.html#l00142">142</a> of file <a class="el" href="mongePatch_8h_source.html">mongePatch.h</a>.</p>
 
 </div>
 </div>
@@ -270,12 +270,12 @@ template&lt;class DataPoint , class _NFilter , typename T &gt; </div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="mongePatch_8h_source.html#l00150">150</a> of file <a class="el" href="mongePatch_8h_source.html">mongePatch.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="mongePatch_8h_source.html#l00153">153</a> of file <a class="el" href="mongePatch_8h_source.html">mongePatch.h</a>.</p>
 
 </div>
 </div>
-<a id="aa25a14991c55e7924e59d89c07d87a46" name="aa25a14991c55e7924e59d89c07d87a46"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa25a14991c55e7924e59d89c07d87a46">&#9670;&#160;</a></span>SampleMatrix</h2>
+<a id="a56c6fd5e036872d0dad26deeee1b37e8" name="a56c6fd5e036872d0dad26deeee1b37e8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a56c6fd5e036872d0dad26deeee1b37e8">&#9670;&#160;</a></span>SampleMatrix</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -283,12 +283,12 @@ template&lt;class DataPoint , class _NFilter , typename T &gt; </div>
 template&lt;class DataPoint , class _NFilter , typename T &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">using <a class="el" href="classPonca_1_1MongePatchQuadraticFitImpl.html">Ponca::MongePatchQuadraticFitImpl</a>&lt; DataPoint, _NFilter, T &gt;::SampleMatrix =  Eigen::Matrix&lt;<a class="el" href="classPonca_1_1MongePatchQuadraticFitImpl.html#a97b79bb8968b9a97afc1052a715060df">Scalar</a>,Eigen::Dynamic,Eigen::Dynamic&gt;</td>
+          <td class="memname">using <a class="el" href="classPonca_1_1MongePatchQuadraticFitImpl.html">Ponca::MongePatchQuadraticFitImpl</a>&lt; DataPoint, _NFilter, T &gt;::SampleMatrix =  Eigen::Matrix&lt;<a class="el" href="classPonca_1_1MongePatchQuadraticFitImpl.html#a97b79bb8968b9a97afc1052a715060df">Scalar</a>, Eigen::Dynamic, Eigen::Dynamic&gt;</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="mongePatch_8h_source.html#l00149">149</a> of file <a class="el" href="mongePatch_8h_source.html">mongePatch.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="mongePatch_8h_source.html#l00152">152</a> of file <a class="el" href="mongePatch_8h_source.html">mongePatch.h</a>.</p>
 
 </div>
 </div>
@@ -308,7 +308,7 @@ template&lt;class DataPoint , class _NFilter , typename T &gt; </div>
 
 <p>Alias to scalar type. </p>
 
-<p class="definition">Definition at line <a class="el" href="mongePatch_8h_source.html#l00139">139</a> of file <a class="el" href="mongePatch_8h_source.html">mongePatch.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="mongePatch_8h_source.html#l00142">142</a> of file <a class="el" href="mongePatch_8h_source.html">mongePatch.h</a>.</p>
 
 </div>
 </div>
@@ -328,13 +328,13 @@ template&lt;class DataPoint , class _NFilter , typename T &gt; </div>
 
 <p>Alias to vector type. </p>
 
-<p class="definition">Definition at line <a class="el" href="mongePatch_8h_source.html#l00139">139</a> of file <a class="el" href="mongePatch_8h_source.html">mongePatch.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="mongePatch_8h_source.html#l00142">142</a> of file <a class="el" href="mongePatch_8h_source.html">mongePatch.h</a>.</p>
 
 </div>
 </div>
 <h2 class="groupheader">Member Enumeration Documentation</h2>
-<a id="a20280ad52477d4949b91fb77cd4597da" name="a20280ad52477d4949b91fb77cd4597da"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a20280ad52477d4949b91fb77cd4597da">&#9670;&#160;</a></span>anonymous enum</h2>
+<a id="acadeca3184be631e98d609ec499bc30f" name="acadeca3184be631e98d609ec499bc30f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acadeca3184be631e98d609ec499bc30f">&#9670;&#160;</a></span>anonymous enum</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -355,7 +355,7 @@ template&lt;class DataPoint , class _NFilter , typename T &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="mongePatch_8h_source.html#l00142">142</a> of file <a class="el" href="mongePatch_8h_source.html">mongePatch.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="mongePatch_8h_source.html#l00145">145</a> of file <a class="el" href="mongePatch_8h_source.html">mongePatch.h</a>.</p>
 
 </div>
 </div>
@@ -405,7 +405,7 @@ template&lt;class DataPoint , class _NFilter , typename T &gt; </div>
 <p>Add a neighbor to perform the fit. </p>
 <dl class="section return"><dt>Returns</dt><dd>false if param nei is not a valid neighbour (weight = 0) </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="mongePatch_8hpp_source.html#l00021">21</a> of file <a class="el" href="mongePatch_8hpp_source.html">mongePatch.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="mongePatch_8hpp_source.html#l00019">19</a> of file <a class="el" href="mongePatch_8hpp_source.html">mongePatch.hpp</a>.</p>
 
 </div>
 </div>
@@ -438,7 +438,7 @@ template&lt;class DataPoint , class _NFilter , typename T &gt; </div>
 <dl class="section return"><dt>Returns</dt><dd>Fitting Status </dd></dl>
 <dl class="section warning"><dt>Warning</dt><dd>Must be called be for any use of the fitting output </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="mongePatch_8hpp_source.html#l00049">49</a> of file <a class="el" href="mongePatch_8hpp_source.html">mongePatch.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="mongePatch_8hpp_source.html#l00045">45</a> of file <a class="el" href="mongePatch_8hpp_source.html">mongePatch.hpp</a>.</p>
 
 </div>
 </div>
@@ -468,9 +468,9 @@ template&lt;class DataPoint , class _NFilter , typename T &gt; </div>
 </div><div class="memdoc">
 
 <p>Set the evaluation position and reset the internal states. </p>
-<dl class="section warning"><dt>Warning</dt><dd>Must be called be for any computation (but after #setNeighborFilter) </dd></dl>
+<dl class="section warning"><dt>Warning</dt><dd>Must be called be for any computation (but * after #setNeighborFilter) </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="mongePatch_8hpp_source.html#l00009">9</a> of file <a class="el" href="mongePatch_8hpp_source.html">mongePatch.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="mongePatch_8hpp_source.html#l00008">8</a> of file <a class="el" href="mongePatch_8hpp_source.html">mongePatch.hpp</a>.</p>
 
 </div>
 </div>
@@ -501,7 +501,7 @@ template&lt;class DataPoint , class _NFilter , typename T &gt; </div>
 
 <p>Explicit conversion to <a class="el" href="classPonca_1_1MongePatchQuadraticFitImpl.html" title="Extension to compute the best fit quadric on 3d points expressed as .">MongePatchQuadraticFitImpl</a> , to access methods potentially hidden by heritage. </p>
 
-<p class="definition">Definition at line <a class="el" href="mongePatch_8h_source.html#l00159">159</a> of file <a class="el" href="mongePatch_8h_source.html">mongePatch.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="mongePatch_8h_source.html#l00163">163</a> of file <a class="el" href="mongePatch_8h_source.html">mongePatch.h</a>.</p>
 
 </div>
 </div>
@@ -532,7 +532,7 @@ template&lt;class DataPoint , class _NFilter , typename T &gt; </div>
 
 <p>Explicit conversion to <a class="el" href="classPonca_1_1MongePatchQuadraticFitImpl.html" title="Extension to compute the best fit quadric on 3d points expressed as .">MongePatchQuadraticFitImpl</a> , to access methods potentially hidden by heritage. </p>
 
-<p class="definition">Definition at line <a class="el" href="mongePatch_8h_source.html#l00159">159</a> of file <a class="el" href="mongePatch_8h_source.html">mongePatch.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="mongePatch_8h_source.html#l00163">163</a> of file <a class="el" href="mongePatch_8h_source.html">mongePatch.h</a>.</p>
 
 </div>
 </div>
@@ -553,7 +553,7 @@ template&lt;class DataPoint , class _NFilter , typename T &gt; </div>
 
 <p>Quadric input samples. </p>
 
-<p class="definition">Definition at line <a class="el" href="mongePatch_8h_source.html#l00154">154</a> of file <a class="el" href="mongePatch_8h_source.html">mongePatch.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="mongePatch_8h_source.html#l00157">157</a> of file <a class="el" href="mongePatch_8h_source.html">mongePatch.h</a>.</p>
 
 </div>
 </div>
@@ -573,7 +573,7 @@ template&lt;class DataPoint , class _NFilter , typename T &gt; </div>
 
 <p>Observations. </p>
 
-<p class="definition">Definition at line <a class="el" href="mongePatch_8h_source.html#l00155">155</a> of file <a class="el" href="mongePatch_8h_source.html">mongePatch.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="mongePatch_8h_source.html#l00158">158</a> of file <a class="el" href="mongePatch_8h_source.html">mongePatch.h</a>.</p>
 
 </div>
 </div>
@@ -591,7 +591,7 @@ template&lt;class DataPoint , class _NFilter , typename T &gt; </div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="mongePatch_8h_source.html#l00157">157</a> of file <a class="el" href="mongePatch_8h_source.html">mongePatch.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="mongePatch_8h_source.html#l00160">160</a> of file <a class="el" href="mongePatch_8h_source.html">mongePatch.h</a>.</p>
 
 </div>
 </div>
@@ -601,7 +601,7 @@ template&lt;class DataPoint , class _NFilter , typename T &gt; </div>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="namespacePonca.html">Ponca</a></li><li class="navelem"><a class="el" href="classPonca_1_1MongePatchQuadraticFitImpl.html">MongePatchQuadraticFitImpl</a></li>
-    <li class="footer">Generated on Wed Mar 18 2026 16:17:06 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
+    <li class="footer">Generated on Thu Mar 19 2026 17:42:38 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
   </ul>
 </div>
 </body>

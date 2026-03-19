@@ -51,7 +51,7 @@ MathJax.Hub.Config({
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Ponca
-   &#160;<span id="projectnumber">ff18772cb1e492269a8bd2895da1f5d816a1ae25</span>
+   &#160;<span id="projectnumber">19ef58fd3760f23a8af99a5eeac4f934757e30d9</span>
    </div>
    <div id="projectbrief">Point Cloud Analysis library</div>
   </td>
@@ -234,7 +234,7 @@ Protected Attributes</h2></td></tr>
 <div class="textblock"><div class="compoundTemplParams">template&lt;class DataPoint, class _NFilter, typename T&gt;<br />
 class Ponca::CovarianceFitBase&lt; DataPoint, _NFilter, T &gt;</div><p>Procedure that compute and decompose the covariance matrix of the neighbors positions in \(3d\). </p>
 <p>This process is commonly used for plane fitting and local variance analysis. It is often called Principal Component Analysis (PCA) of the neighborhood, and used in Geometry Processing and Computer Vision.</p>
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="namespacePonca.html#a4ff3ffd27d5eaf805221e4e2f39469dd" title="Helper alias for Plane fitting on 3D points using CovariancePlaneFitImpl [CovariancePlaneFit Definiti...">CovariancePlaneFit</a> which use a similar approach for <a class="el" href="classPonca_1_1Plane.html" title="Implicit hyperplane defined by an homogeneous vector .">Plane</a> estimation</dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="namespacePonca.html#a15eab752943e89b21e9451c1310b009f" title="Helper alias for Plane fitting on 3D points using CovariancePlaneFitImpl [CovariancePlaneFit Definiti...">CovariancePlaneFit</a> which use a similar approach for <a class="el" href="classPonca_1_1Plane.html" title="Implicit hyperplane defined by an homogeneous vector .">Plane</a> estimation</dd></dl>
 <h3><a class="anchor" id="autotoc_md2"></a>
 Computation details</h3>
 <p>Standard PCA algorithm involves a two-steps process where the barycenter \(\mathbf{b}\) is first computed, and then the covariance matrix \(\text{C}\) (in the following, the weights are ignored for clarity but without loss of generality):  </p><p class="formulaDsp">
@@ -245,10 +245,14 @@ Computation details</h3>
 </p>
 <p> This class implements a single-pass version, where the first formulation is re-expressed as follows:  </p><p class="formulaDsp">
 \begin{align}
-\text{C} &amp;= \frac{1}{n}\sum_i (\mathbf{p}_i\mathbf{p}_i^T - \mathbf{b}\mathbf{p}_i^T - \mathbf{p}_i\mathbf{b}^T + \mathbf{b}\mathbf{b}^T) \\
-         &amp;= \frac{1}{n}\sum_i (\mathbf{p}_i\mathbf{p}_i^T) -  \frac{1}{n}\sum_i(\mathbf{b}\mathbf{p}_i^T)  -  \frac{1}{n}\sum_i(\mathbf{p}_i\mathbf{b}^T)  +  \frac{1}{n}\sum_i (\mathbf{b}\mathbf{b}^T) \\
-         &amp;= \frac{1}{n}\sum_i (\mathbf{p}_i\mathbf{p}_i^T) - \mathbf{b}\frac{1}{n}\sum_i(\mathbf{p}_i^T) - \frac{1}{n}\sum_i(\mathbf{p}_i)\mathbf{b}^T  + \frac{1}{n}\sum_i(1) \mathbf{b}\mathbf{b}^T \\
-         &amp;= \frac{1}{n}\sum_i (\mathbf{p}_i\mathbf{p}_i^T) - \mathbf{b}\mathbf{b}^T - \mathbf{b}\mathbf{b}^T + \mathbf{b}\mathbf{b}^T \end{align}
+\text{C} &amp;= \frac{1}{n}\sum_i (\mathbf{p}_i\mathbf{p}_i^T - \mathbf{b}\mathbf{p}_i^T - \mathbf{p}_i\mathbf{b}^T +
+\mathbf{b}\mathbf{b}^T) \\
+         &amp;= \frac{1}{n}\sum_i (\mathbf{p}_i\mathbf{p}_i^T) -  \frac{1}{n}\sum_i(\mathbf{b}\mathbf{p}_i^T)  -
+\frac{1}{n}\sum_i(\mathbf{p}_i\mathbf{b}^T)  +  \frac{1}{n}\sum_i (\mathbf{b}\mathbf{b}^T) \\
+         &amp;= \frac{1}{n}\sum_i (\mathbf{p}_i\mathbf{p}_i^T) - \mathbf{b}\frac{1}{n}\sum_i(\mathbf{p}_i^T) -
+\frac{1}{n}\sum_i(\mathbf{p}_i)\mathbf{b}^T  + \frac{1}{n}\sum_i(1) \mathbf{b}\mathbf{b}^T \\
+         &amp;= \frac{1}{n}\sum_i (\mathbf{p}_i\mathbf{p}_i^T) - \mathbf{b}\mathbf{b}^T - \mathbf{b}\mathbf{b}^T +
+\mathbf{b}\mathbf{b}^T \end{align}
 </p>
 <p> Leading to a single pass where \(\text{C}\) is express by subtracting two terms that can be computed independently in one run: </p><p class="formulaDsp">
 \[ \text{C} = \frac{1}{n}\sum_i (\mathbf{p}_i\mathbf{p}_i^T) - \mathbf{b}\mathbf{b}^T \]
@@ -257,7 +261,7 @@ Computation details</h3>
 \leq \lambda_1 \leq \lambda_2 \).</p>
 <dl class="section warning"><dt>Warning</dt><dd>This class is valid only in 3D. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="covarianceFit_8h_source.html#l00053">53</a> of file <a class="el" href="covarianceFit_8h_source.html">covarianceFit.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="covarianceFit_8h_source.html#l00056">56</a> of file <a class="el" href="covarianceFit_8h_source.html">covarianceFit.h</a>.</p>
 </div><h2 class="groupheader">Member Typedef Documentation</h2>
 <a id="a2219cefe4363d96009aa2cb2a9e6161e" name="a2219cefe4363d96009aa2cb2a9e6161e"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a2219cefe4363d96009aa2cb2a9e6161e">&#9670;&#160;</a></span>Base</h2>
@@ -283,7 +287,7 @@ template&lt;class DataPoint , class _NFilter , typename T &gt; </div>
 
 <p>Base class of the procedure. </p>
 
-<p class="definition">Definition at line <a class="el" href="covarianceFit_8h_source.html#l00055">55</a> of file <a class="el" href="covarianceFit_8h_source.html">covarianceFit.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="covarianceFit_8h_source.html#l00058">58</a> of file <a class="el" href="covarianceFit_8h_source.html">covarianceFit.h</a>.</p>
 
 </div>
 </div>
@@ -303,7 +307,7 @@ template&lt;class DataPoint , class _NFilter , typename T &gt; </div>
 
 <p>Alias to matrix type. </p>
 
-<p class="definition">Definition at line <a class="el" href="covarianceFit_8h_source.html#l00065">65</a> of file <a class="el" href="covarianceFit_8h_source.html">covarianceFit.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="covarianceFit_8h_source.html#l00068">68</a> of file <a class="el" href="covarianceFit_8h_source.html">covarianceFit.h</a>.</p>
 
 </div>
 </div>
@@ -323,7 +327,7 @@ template&lt;class DataPoint , class _NFilter , typename T &gt; </div>
 
 <p>Alias to the filter applied on the neighbors. </p>
 
-<p class="definition">Definition at line <a class="el" href="covarianceFit_8h_source.html#l00055">55</a> of file <a class="el" href="covarianceFit_8h_source.html">covarianceFit.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="covarianceFit_8h_source.html#l00058">58</a> of file <a class="el" href="covarianceFit_8h_source.html">covarianceFit.h</a>.</p>
 
 </div>
 </div>
@@ -343,7 +347,7 @@ template&lt;class DataPoint , class _NFilter , typename T &gt; </div>
 
 <p>Alias to scalar type. </p>
 
-<p class="definition">Definition at line <a class="el" href="covarianceFit_8h_source.html#l00055">55</a> of file <a class="el" href="covarianceFit_8h_source.html">covarianceFit.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="covarianceFit_8h_source.html#l00058">58</a> of file <a class="el" href="covarianceFit_8h_source.html">covarianceFit.h</a>.</p>
 
 </div>
 </div>
@@ -363,7 +367,7 @@ template&lt;class DataPoint , class _NFilter , typename T &gt; </div>
 
 <p>Solver used to analyse the covariance matrix. </p>
 
-<p class="definition">Definition at line <a class="el" href="covarianceFit_8h_source.html#l00067">67</a> of file <a class="el" href="covarianceFit_8h_source.html">covarianceFit.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="covarianceFit_8h_source.html#l00070">70</a> of file <a class="el" href="covarianceFit_8h_source.html">covarianceFit.h</a>.</p>
 
 </div>
 </div>
@@ -383,7 +387,7 @@ template&lt;class DataPoint , class _NFilter , typename T &gt; </div>
 
 <p>Alias to vector type. </p>
 
-<p class="definition">Definition at line <a class="el" href="covarianceFit_8h_source.html#l00055">55</a> of file <a class="el" href="covarianceFit_8h_source.html">covarianceFit.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="covarianceFit_8h_source.html#l00058">58</a> of file <a class="el" href="covarianceFit_8h_source.html">covarianceFit.h</a>.</p>
 
 </div>
 </div>
@@ -410,7 +414,7 @@ template&lt;class DataPoint , class _NFilter , typename T &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="covarianceFit_8h_source.html#l00058">58</a> of file <a class="el" href="covarianceFit_8h_source.html">covarianceFit.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="covarianceFit_8h_source.html#l00061">61</a> of file <a class="el" href="covarianceFit_8h_source.html">covarianceFit.h</a>.</p>
 
 </div>
 </div>
@@ -460,7 +464,7 @@ template&lt;class DataPoint , class _NFilter , typename T &gt; </div>
 <p>Add a neighbor to perform the fit. </p>
 <dl class="section return"><dt>Returns</dt><dd>false if param nei is not a valid neighbour (weight = 0) </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="covarianceFit_8hpp_source.html#l00021">21</a> of file <a class="el" href="covarianceFit_8hpp_source.html">covarianceFit.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="covarianceFit_8hpp_source.html#l00018">18</a> of file <a class="el" href="covarianceFit_8hpp_source.html">covarianceFit.hpp</a>.</p>
 
 </div>
 </div>
@@ -494,7 +498,7 @@ template&lt;class DataPoint , class _NFilter , typename T &gt; </div>
 \[ \frac{\lambda_2 - \lambda_0}{\lambda_2} \]
 </p>
  
-<p class="definition">Definition at line <a class="el" href="covarianceFit_8hpp_source.html#l00090">90</a> of file <a class="el" href="covarianceFit_8hpp_source.html">covarianceFit.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="covarianceFit_8hpp_source.html#l00082">82</a> of file <a class="el" href="covarianceFit_8hpp_source.html">covarianceFit.hpp</a>.</p>
 
 </div>
 </div>
@@ -525,7 +529,7 @@ template&lt;class DataPoint , class _NFilter , typename T &gt; </div>
 
 <p>Explicit conversion to <a class="el" href="classPonca_1_1CovarianceFitBase.html" title="Procedure that compute and decompose the covariance matrix of the neighbors positions in .">CovarianceFitBase</a> , to access methods potentially hidden by heritage. </p>
 
-<p class="definition">Definition at line <a class="el" href="covarianceFit_8h_source.html#l00075">75</a> of file <a class="el" href="covarianceFit_8h_source.html">covarianceFit.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="covarianceFit_8h_source.html#l00078">78</a> of file <a class="el" href="covarianceFit_8h_source.html">covarianceFit.h</a>.</p>
 
 </div>
 </div>
@@ -556,7 +560,7 @@ template&lt;class DataPoint , class _NFilter , typename T &gt; </div>
 
 <p>Explicit conversion to <a class="el" href="classPonca_1_1CovarianceFitBase.html" title="Procedure that compute and decompose the covariance matrix of the neighbors positions in .">CovarianceFitBase</a> , to access methods potentially hidden by heritage. </p>
 
-<p class="definition">Definition at line <a class="el" href="covarianceFit_8h_source.html#l00075">75</a> of file <a class="el" href="covarianceFit_8h_source.html">covarianceFit.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="covarianceFit_8h_source.html#l00078">78</a> of file <a class="el" href="covarianceFit_8h_source.html">covarianceFit.h</a>.</p>
 
 </div>
 </div>
@@ -590,7 +594,7 @@ template&lt;class DataPoint , class _NFilter , typename T &gt; </div>
 \[ - \lambda_0 * \ln{\lambda_0} - \lambda_1 * \ln{\lambda_1} - \lambda_2 * \ln{\lambda_2} \]
 </p>
  
-<p class="definition">Definition at line <a class="el" href="covarianceFit_8hpp_source.html#l00098">98</a> of file <a class="el" href="covarianceFit_8hpp_source.html">covarianceFit.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="covarianceFit_8hpp_source.html#l00089">89</a> of file <a class="el" href="covarianceFit_8hpp_source.html">covarianceFit.hpp</a>.</p>
 
 </div>
 </div>
@@ -623,7 +627,7 @@ template&lt;class DataPoint , class _NFilter , typename T &gt; </div>
 <dl class="section return"><dt>Returns</dt><dd>Fitting Status </dd></dl>
 <dl class="section warning"><dt>Warning</dt><dd>Must be called be for any use of the fitting output </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="covarianceFit_8hpp_source.html#l00035">35</a> of file <a class="el" href="covarianceFit_8hpp_source.html">covarianceFit.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="covarianceFit_8hpp_source.html#l00030">30</a> of file <a class="el" href="covarianceFit_8hpp_source.html">covarianceFit.hpp</a>.</p>
 
 </div>
 </div>
@@ -653,9 +657,9 @@ template&lt;class DataPoint , class _NFilter , typename T &gt; </div>
 </div><div class="memdoc">
 
 <p>Set the evaluation position and reset the internal states. </p>
-<dl class="section warning"><dt>Warning</dt><dd>Must be called be for any computation (but after #setNeighborFilter) </dd></dl>
+<dl class="section warning"><dt>Warning</dt><dd>Must be called be for any computation (but * after #setNeighborFilter) </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="covarianceFit_8hpp_source.html#l00013">13</a> of file <a class="el" href="covarianceFit_8hpp_source.html">covarianceFit.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="covarianceFit_8hpp_source.html#l00011">11</a> of file <a class="el" href="covarianceFit_8hpp_source.html">covarianceFit.hpp</a>.</p>
 
 </div>
 </div>
@@ -686,7 +690,7 @@ template&lt;class DataPoint , class _NFilter , typename T &gt; </div>
 
 <p>The minimum eigenvalue \( \lambda_0 \). </p>
 
-<p class="definition">Definition at line <a class="el" href="covarianceFit_8hpp_source.html#l00107">107</a> of file <a class="el" href="covarianceFit_8hpp_source.html">covarianceFit.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="covarianceFit_8hpp_source.html#l00098">98</a> of file <a class="el" href="covarianceFit_8hpp_source.html">covarianceFit.hpp</a>.</p>
 
 </div>
 </div>
@@ -717,7 +721,7 @@ template&lt;class DataPoint , class _NFilter , typename T &gt; </div>
 
 <p>The second eigenvalue \( \lambda_1 \). </p>
 
-<p class="definition">Definition at line <a class="el" href="covarianceFit_8hpp_source.html#l00114">114</a> of file <a class="el" href="covarianceFit_8hpp_source.html">covarianceFit.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="covarianceFit_8hpp_source.html#l00104">104</a> of file <a class="el" href="covarianceFit_8hpp_source.html">covarianceFit.hpp</a>.</p>
 
 </div>
 </div>
@@ -748,7 +752,7 @@ template&lt;class DataPoint , class _NFilter , typename T &gt; </div>
 
 <p>The maximum eigenvalue \( \lambda_2 \). </p>
 
-<p class="definition">Definition at line <a class="el" href="covarianceFit_8hpp_source.html#l00121">121</a> of file <a class="el" href="covarianceFit_8hpp_source.html">covarianceFit.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="covarianceFit_8hpp_source.html#l00110">110</a> of file <a class="el" href="covarianceFit_8hpp_source.html">covarianceFit.hpp</a>.</p>
 
 </div>
 </div>
@@ -782,7 +786,7 @@ template&lt;class DataPoint , class _NFilter , typename T &gt; </div>
 \[ \frac{\lambda_2 - \lambda_1}{\lambda_2} \]
 </p>
  
-<p class="definition">Definition at line <a class="el" href="covarianceFit_8hpp_source.html#l00075">75</a> of file <a class="el" href="covarianceFit_8hpp_source.html">covarianceFit.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="covarianceFit_8hpp_source.html#l00068">68</a> of file <a class="el" href="covarianceFit_8hpp_source.html">covarianceFit.hpp</a>.</p>
 
 </div>
 </div>
@@ -816,7 +820,7 @@ template&lt;class DataPoint , class _NFilter , typename T &gt; </div>
 \[ \frac{\lambda_1 - \lambda_0}{\lambda_2} \]
 </p>
  
-<p class="definition">Definition at line <a class="el" href="covarianceFit_8hpp_source.html#l00067">67</a> of file <a class="el" href="covarianceFit_8hpp_source.html">covarianceFit.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="covarianceFit_8hpp_source.html#l00061">61</a> of file <a class="el" href="covarianceFit_8hpp_source.html">covarianceFit.hpp</a>.</p>
 
 </div>
 </div>
@@ -847,7 +851,7 @@ template&lt;class DataPoint , class _NFilter , typename T &gt; </div>
 
 <p>Reading access to the Solver used to analyse the covariance matrix. </p>
 
-<p class="definition">Definition at line <a class="el" href="covarianceFit_8h_source.html#l00127">127</a> of file <a class="el" href="covarianceFit_8h_source.html">covarianceFit.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="covarianceFit_8h_source.html#l00131">131</a> of file <a class="el" href="covarianceFit_8h_source.html">covarianceFit.h</a>.</p>
 
 </div>
 </div>
@@ -881,7 +885,7 @@ template&lt;class DataPoint , class _NFilter , typename T &gt; </div>
 \[ \frac{\lambda_0}{\lambda_2} \]
 </p>
  
-<p class="definition">Definition at line <a class="el" href="covarianceFit_8hpp_source.html#l00083">83</a> of file <a class="el" href="covarianceFit_8hpp_source.html">covarianceFit.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="covarianceFit_8hpp_source.html#l00075">75</a> of file <a class="el" href="covarianceFit_8hpp_source.html">covarianceFit.hpp</a>.</p>
 
 </div>
 </div>
@@ -913,7 +917,7 @@ template&lt;class DataPoint , class _NFilter , typename T &gt; </div>
 <p>Implements <a class="el" href="citelist.html#CITEREF_Pauly:2002:PSSimplification">[12]</a> surface variation. </p>
 <p>It computes the ratio \( d \frac{\lambda_0}{\sum_i \lambda_i} \) with <code>d</code> the dimension of the ambient space. </p><dl class="section return"><dt>Returns</dt><dd>0 for invalid fits </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="covarianceFit_8hpp_source.html#l00060">60</a> of file <a class="el" href="covarianceFit_8hpp_source.html">covarianceFit.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="covarianceFit_8hpp_source.html#l00054">54</a> of file <a class="el" href="covarianceFit_8hpp_source.html">covarianceFit.hpp</a>.</p>
 
 </div>
 </div>
@@ -942,7 +946,7 @@ template&lt;class DataPoint , class _NFilter , typename T &gt; </div>
 
 <p>Covariance matrix. </p>
 
-<p class="definition">Definition at line <a class="el" href="covarianceFit_8h_source.html#l00071">71</a> of file <a class="el" href="covarianceFit_8h_source.html">covarianceFit.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="covarianceFit_8h_source.html#l00074">74</a> of file <a class="el" href="covarianceFit_8h_source.html">covarianceFit.h</a>.</p>
 
 </div>
 </div>
@@ -970,7 +974,7 @@ template&lt;class DataPoint , class _NFilter , typename T &gt; </div>
 
 <p>Solver used to analyse the covariance matrix. </p>
 
-<p class="definition">Definition at line <a class="el" href="covarianceFit_8h_source.html#l00072">72</a> of file <a class="el" href="covarianceFit_8h_source.html">covarianceFit.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="covarianceFit_8h_source.html#l00075">75</a> of file <a class="el" href="covarianceFit_8h_source.html">covarianceFit.h</a>.</p>
 
 </div>
 </div>
@@ -980,7 +984,7 @@ template&lt;class DataPoint , class _NFilter , typename T &gt; </div>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="namespacePonca.html">Ponca</a></li><li class="navelem"><a class="el" href="classPonca_1_1CovarianceFitBase.html">CovarianceFitBase</a></li>
-    <li class="footer">Generated on Wed Mar 18 2026 16:17:05 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
+    <li class="footer">Generated on Thu Mar 19 2026 17:42:38 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
   </ul>
 </div>
 </body>

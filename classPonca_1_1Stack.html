@@ -51,7 +51,7 @@ MathJax.Hub.Config({
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Ponca
-   &#160;<span id="projectnumber">ff18772cb1e492269a8bd2895da1f5d816a1ae25</span>
+   &#160;<span id="projectnumber">19ef58fd3760f23a8af99a5eeac4f934757e30d9</span>
    </div>
    <div id="projectbrief">Point Cloud Analysis library</div>
   </td>
@@ -182,16 +182,16 @@ Protected Attributes</h2></td></tr>
 <tr class="memitem:a98fa887e804ab5e56f3d58dd6170515e" id="r_a98fa887e804ab5e56f3d58dd6170515e"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1Stack.html#a98fa887e804ab5e56f3d58dd6170515e">m_size</a></td></tr>
 <tr class="memdesc:a98fa887e804ab5e56f3d58dd6170515e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Number of elements in the <a class="el" href="classPonca_1_1Stack.html" title="Stack with fixed-size storage.">Stack</a>.  <br /></td></tr>
 <tr class="separator:a98fa887e804ab5e56f3d58dd6170515e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a411840ebe5631efd0ddfd3b1a4a17f16" id="r_a411840ebe5631efd0ddfd3b1a4a17f16"><td class="memItemLeft" align="right" valign="top">std::array&lt; T, N &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1Stack.html#a411840ebe5631efd0ddfd3b1a4a17f16">m_data</a></td></tr>
-<tr class="memdesc:a411840ebe5631efd0ddfd3b1a4a17f16"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fixed-size data buffer.  <br /></td></tr>
-<tr class="separator:a411840ebe5631efd0ddfd3b1a4a17f16"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0ee872a3583d109776080cfcae645ad0" id="r_a0ee872a3583d109776080cfcae645ad0"><td class="memItemLeft" align="right" valign="top">std::array&lt; T, N &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1Stack.html#a0ee872a3583d109776080cfcae645ad0">m_data</a></td></tr>
+<tr class="memdesc:a0ee872a3583d109776080cfcae645ad0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fixed-size data buffer.  <br /></td></tr>
+<tr class="separator:a0ee872a3583d109776080cfcae645ad0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><div class="compoundTemplParams">template&lt;class T, int N&gt;<br />
 class Ponca::Stack&lt; T, N &gt;</div><p><a class="el" href="classPonca_1_1Stack.html" title="Stack with fixed-size storage.">Stack</a> with fixed-size storage. </p>
 <dl class="section warning"><dt>Warning</dt><dd>This class does not destroy elements that are removed from the stack, but rather when they are overriden by another element (e.g. when running <a class="el" href="classPonca_1_1Stack.html#a2b188cfb0eb0406751cc3d38a7a367fb" title="Pop the last element of the Stack.">pop()</a> and then <a class="el" href="classPonca_1_1Stack.html#a6166b198d8c0ad83b5c4606e85474e29" title="Add an element with default initialization.">push()</a>. This makes it not appropriate to store smart pointers. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="stack_8h_source.html#l00024">24</a> of file <a class="el" href="stack_8h_source.html">stack.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="stack_8h_source.html#l00025">25</a> of file <a class="el" href="stack_8h_source.html">stack.h</a>.</p>
 </div><h2 class="groupheader">Member Typedef Documentation</h2>
 <a id="a46bb5c7fe879cd6218ed23b166f2875f" name="a46bb5c7fe879cd6218ed23b166f2875f"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a46bb5c7fe879cd6218ed23b166f2875f">&#9670;&#160;</a></span>ValueType</h2>
@@ -209,7 +209,7 @@ template&lt;class T , int N&gt; </div>
 
 <p>Type of value stored in the <a class="el" href="classPonca_1_1Stack.html" title="Stack with fixed-size storage.">Stack</a>. </p>
 
-<p class="definition">Definition at line <a class="el" href="stack_8h_source.html#l00028">28</a> of file <a class="el" href="stack_8h_source.html">stack.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="stack_8h_source.html#l00029">29</a> of file <a class="el" href="stack_8h_source.html">stack.h</a>.</p>
 
 </div>
 </div>
@@ -239,7 +239,7 @@ template&lt;class T , int N&gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="stack_8h_source.html#l00068">68</a> of file <a class="el" href="stack_8h_source.html">stack.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="stack_8h_source.html#l00069">69</a> of file <a class="el" href="stack_8h_source.html">stack.h</a>.</p>
 
 </div>
 </div>
@@ -272,7 +272,7 @@ template&lt;class T , int N&gt; </div>
 <p>Clear the stack content. </p>
 <dl class="section note"><dt>Note</dt><dd>Shares the same limitation than <a class="el" href="classPonca_1_1Stack.html#a2b188cfb0eb0406751cc3d38a7a367fb" title="Pop the last element of the Stack.">Stack::pop()</a> </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="stack_8h_source.html#l00118">118</a> of file <a class="el" href="stack_8h_source.html">stack.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="stack_8h_source.html#l00117">117</a> of file <a class="el" href="stack_8h_source.html">stack.h</a>.</p>
 
 </div>
 </div>
@@ -303,7 +303,7 @@ template&lt;class T , int N&gt; </div>
 
 <p>Is the stack empty. </p>
 
-<p class="definition">Definition at line <a class="el" href="stack_8h_source.html#l00087">87</a> of file <a class="el" href="stack_8h_source.html">stack.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="stack_8h_source.html#l00086">86</a> of file <a class="el" href="stack_8h_source.html">stack.h</a>.</p>
 
 </div>
 </div>
@@ -335,7 +335,7 @@ template&lt;class T , int N&gt; </div>
 <p>Pop the last element of the <a class="el" href="classPonca_1_1Stack.html" title="Stack with fixed-size storage.">Stack</a>. </p>
 <dl class="section note"><dt>Note</dt><dd>In practice the element is not destroyed, only the size of the <a class="el" href="classPonca_1_1Stack.html" title="Stack with fixed-size storage.">Stack</a> is reduced. This makes the <a class="el" href="classPonca_1_1Stack.html" title="Stack with fixed-size storage.">Stack</a> not appropriate to store <code>shared_ptr</code>: counters will not be decremented. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="stack_8h_source.html#l00112">112</a> of file <a class="el" href="stack_8h_source.html">stack.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="stack_8h_source.html#l00111">111</a> of file <a class="el" href="stack_8h_source.html">stack.h</a>.</p>
 
 </div>
 </div>
@@ -366,7 +366,7 @@ template&lt;class T , int N&gt; </div>
 
 <p>Add an element with default initialization. </p>
 
-<p class="definition">Definition at line <a class="el" href="stack_8h_source.html#l00106">106</a> of file <a class="el" href="stack_8h_source.html">stack.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="stack_8h_source.html#l00105">105</a> of file <a class="el" href="stack_8h_source.html">stack.h</a>.</p>
 
 </div>
 </div>
@@ -404,7 +404,7 @@ template&lt;class T , int N&gt; </div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="stack_8h_source.html#l00099">99</a> of file <a class="el" href="stack_8h_source.html">stack.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="stack_8h_source.html#l00098">98</a> of file <a class="el" href="stack_8h_source.html">stack.h</a>.</p>
 
 </div>
 </div>
@@ -435,7 +435,7 @@ template&lt;class T , int N&gt; </div>
 
 <p>Get the number of elements in the <a class="el" href="classPonca_1_1Stack.html" title="Stack with fixed-size storage.">Stack</a>. </p>
 
-<p class="definition">Definition at line <a class="el" href="stack_8h_source.html#l00093">93</a> of file <a class="el" href="stack_8h_source.html">stack.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="stack_8h_source.html#l00092">92</a> of file <a class="el" href="stack_8h_source.html">stack.h</a>.</p>
 
 </div>
 </div>
@@ -466,7 +466,7 @@ template&lt;class T , int N&gt; </div>
 
 <p>Write access to the top element of the <a class="el" href="classPonca_1_1Stack.html" title="Stack with fixed-size storage.">Stack</a>. </p>
 
-<p class="definition">Definition at line <a class="el" href="stack_8h_source.html#l00081">81</a> of file <a class="el" href="stack_8h_source.html">stack.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="stack_8h_source.html#l00080">80</a> of file <a class="el" href="stack_8h_source.html">stack.h</a>.</p>
 
 </div>
 </div>
@@ -497,13 +497,13 @@ template&lt;class T , int N&gt; </div>
 
 <p>Read access to the top element of the <a class="el" href="classPonca_1_1Stack.html" title="Stack with fixed-size storage.">Stack</a>. </p>
 
-<p class="definition">Definition at line <a class="el" href="stack_8h_source.html#l00075">75</a> of file <a class="el" href="stack_8h_source.html">stack.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="stack_8h_source.html#l00074">74</a> of file <a class="el" href="stack_8h_source.html">stack.h</a>.</p>
 
 </div>
 </div>
 <h2 class="groupheader">Member Data Documentation</h2>
-<a id="a411840ebe5631efd0ddfd3b1a4a17f16" name="a411840ebe5631efd0ddfd3b1a4a17f16"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a411840ebe5631efd0ddfd3b1a4a17f16">&#9670;&#160;</a></span>m_data</h2>
+<a id="a0ee872a3583d109776080cfcae645ad0" name="a0ee872a3583d109776080cfcae645ad0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0ee872a3583d109776080cfcae645ad0">&#9670;&#160;</a></span>m_data</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -514,7 +514,7 @@ template&lt;class T , int N&gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">std::array&lt;T,N&gt; <a class="el" href="classPonca_1_1Stack.html">Ponca::Stack</a>&lt; T, N &gt;::m_data</td>
+          <td class="memname">std::array&lt;T, N&gt; <a class="el" href="classPonca_1_1Stack.html">Ponca::Stack</a>&lt; T, N &gt;::m_data</td>
         </tr>
       </table>
   </td>
@@ -526,7 +526,7 @@ template&lt;class T , int N&gt; </div>
 
 <p>Fixed-size data buffer. </p>
 
-<p class="definition">Definition at line <a class="el" href="stack_8h_source.html#l00060">60</a> of file <a class="el" href="stack_8h_source.html">stack.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="stack_8h_source.html#l00061">61</a> of file <a class="el" href="stack_8h_source.html">stack.h</a>.</p>
 
 </div>
 </div>
@@ -554,7 +554,7 @@ template&lt;class T , int N&gt; </div>
 
 <p>Number of elements in the <a class="el" href="classPonca_1_1Stack.html" title="Stack with fixed-size storage.">Stack</a>. </p>
 
-<p class="definition">Definition at line <a class="el" href="stack_8h_source.html#l00058">58</a> of file <a class="el" href="stack_8h_source.html">stack.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="stack_8h_source.html#l00059">59</a> of file <a class="el" href="stack_8h_source.html">stack.h</a>.</p>
 
 </div>
 </div>
@@ -564,7 +564,7 @@ template&lt;class T , int N&gt; </div>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="namespacePonca.html">Ponca</a></li><li class="navelem"><a class="el" href="classPonca_1_1Stack.html">Stack</a></li>
-    <li class="footer">Generated on Wed Mar 18 2026 16:17:06 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
+    <li class="footer">Generated on Thu Mar 19 2026 17:42:38 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
   </ul>
 </div>
 </body>

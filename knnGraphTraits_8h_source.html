@@ -51,7 +51,7 @@ MathJax.Hub.Config({
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Ponca
-   &#160;<span id="projectnumber">ff18772cb1e492269a8bd2895da1f5d816a1ae25</span>
+   &#160;<span id="projectnumber">19ef58fd3760f23a8af99a5eeac4f934757e30d9</span>
    </div>
    <div id="projectbrief">Point Cloud Analysis library</div>
   </td>
@@ -130,34 +130,34 @@ $(document).ready(function(){initNavTree('knnGraphTraits_8h_source.html',''); in
 <div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="comment"> file, You can obtain one at http://mozilla.org/MPL/2.0/.</span></div>
 <div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="comment">*/</span></div>
 <div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span> </div>
-<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span> </div>
-<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="preprocessor">#pragma once</span></div>
-<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span> </div>
-<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="preprocessor">#include &lt;Eigen/Geometry&gt;</span></div>
-<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span> </div>
-<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespacePonca.html">Ponca</a> {</div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="preprocessor">#pragma once</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span> </div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="preprocessor">#include &lt;Eigen/Geometry&gt;</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span> </div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespacePonca.html">Ponca</a></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span>{</div>
 <div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span> </div>
-<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="keyword">template</span> &lt;<span class="keyword">typename</span> _DataPo<span class="keywordtype">int</span>&gt;</div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span>    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> _DataPo<span class="keywordtype">int</span>&gt;</div>
 <div class="foldopen" id="foldopen00018" data-start="{" data-end="};">
-<div class="line"><a id="l00018" name="l00018"></a><span class="lineno"><a class="line" href="structPonca_1_1KnnGraphDefaultTraits.html">   18</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structPonca_1_1KnnGraphDefaultTraits.html">KnnGraphDefaultTraits</a></div>
-<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>{</div>
-<div class="line"><a id="l00029" name="l00029"></a><span class="lineno"><a class="line" href="structPonca_1_1KnnGraphDefaultTraits.html#accc525a889c5c101a2fdb695cb285ace">   29</a></span>    <span class="keyword">using </span><a class="code hl_typedef" href="structPonca_1_1KnnGraphDefaultTraits.html#accc525a889c5c101a2fdb695cb285ace">DataPoint</a> = _DataPoint;</div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno"><a class="line" href="structPonca_1_1KnnGraphDefaultTraits.html">   18</a></span>    <span class="keyword">struct </span><a class="code hl_struct" href="structPonca_1_1KnnGraphDefaultTraits.html">KnnGraphDefaultTraits</a></div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>    {</div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno"><a class="line" href="structPonca_1_1KnnGraphDefaultTraits.html#accc525a889c5c101a2fdb695cb285ace">   29</a></span>        <span class="keyword">using </span><a class="code hl_typedef" href="structPonca_1_1KnnGraphDefaultTraits.html#accc525a889c5c101a2fdb695cb285ace">DataPoint</a> = _DataPoint;</div>
 <div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span> </div>
-<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span><span class="keyword">private</span>:</div>
-<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>    <span class="keyword">using </span>Scalar     = <span class="keyword">typename</span> DataPoint::Scalar;</div>
-<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>    <span class="keyword">using </span>VectorType = <span class="keyword">typename</span> DataPoint::VectorType;</div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>    <span class="keyword">private</span>:</div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>        <span class="keyword">using </span>Scalar     = <span class="keyword">typename</span> DataPoint::Scalar;</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>        <span class="keyword">using </span>VectorType = <span class="keyword">typename</span> DataPoint::VectorType;</div>
 <div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span> </div>
-<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span><span class="keyword">public</span>:</div>
-<div class="line"><a id="l00041" name="l00041"></a><span class="lineno"><a class="line" href="structPonca_1_1KnnGraphDefaultTraits.html#afbd815b8b1de95ffedf2e89a53766dfa">   41</a></span>    <span class="keyword">using </span><a class="code hl_typedef" href="structPonca_1_1KnnGraphDefaultTraits.html#afbd815b8b1de95ffedf2e89a53766dfa">AabbType</a> = Eigen::AlignedBox&lt;Scalar, DataPoint::Dim&gt;;</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>    <span class="keyword">public</span>:</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno"><a class="line" href="structPonca_1_1KnnGraphDefaultTraits.html#afbd815b8b1de95ffedf2e89a53766dfa">   41</a></span>        <span class="keyword">using </span><a class="code hl_typedef" href="structPonca_1_1KnnGraphDefaultTraits.html#afbd815b8b1de95ffedf2e89a53766dfa">AabbType</a> = Eigen::AlignedBox&lt;Scalar, DataPoint::Dim&gt;;</div>
 <div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span> </div>
-<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>    <span class="comment">// Containers</span></div>
-<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>    <span class="keyword">using </span>IndexType      = int;</div>
-<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>    <span class="keyword">using </span>PointContainer = std::vector&lt;DataPoint&gt;;</div>
-<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>    <span class="keyword">using </span>IndexContainer = std::vector&lt;IndexType&gt;;</div>
-<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>};</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>        <span class="comment">// Containers</span></div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>        <span class="keyword">using </span>IndexType      = int;</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>        <span class="keyword">using </span>PointContainer = std::vector&lt;DataPoint&gt;;</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>        <span class="keyword">using </span>IndexContainer = std::vector&lt;IndexType&gt;;</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>    };</div>
 </div>
 <div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>} <span class="comment">// namespace Ponca</span></div>
-<div class="ttc" id="anamespacePonca_html"><div class="ttname"><a href="namespacePonca.html">Ponca</a></div><div class="ttdoc">This Source Code Form is subject to the terms of the Mozilla Public License, v.</div><div class="ttdef"><b>Definition</b> <a href="limitedPriorityQueue_8h_source.html#l00015">limitedPriorityQueue.h:15</a></div></div>
+<div class="ttc" id="anamespacePonca_html"><div class="ttname"><a href="namespacePonca.html">Ponca</a></div><div class="ttdoc">This Source Code Form is subject to the terms of the Mozilla Public License, v.</div><div class="ttdef"><b>Definition</b> <a href="limitedPriorityQueue_8h_source.html#l00015">limitedPriorityQueue.h:16</a></div></div>
 <div class="ttc" id="astructPonca_1_1KnnGraphDefaultTraits_html"><div class="ttname"><a href="structPonca_1_1KnnGraphDefaultTraits.html">Ponca::KnnGraphDefaultTraits</a></div><div class="ttdoc">The default traits type used by the kd-tree.</div><div class="ttdef"><b>Definition</b> <a href="knnGraphTraits_8h_source.html#l00018">knnGraphTraits.h:19</a></div></div>
 <div class="ttc" id="astructPonca_1_1KnnGraphDefaultTraits_html_accc525a889c5c101a2fdb695cb285ace"><div class="ttname"><a href="structPonca_1_1KnnGraphDefaultTraits.html#accc525a889c5c101a2fdb695cb285ace">Ponca::KnnGraphDefaultTraits::DataPoint</a></div><div class="ttdeci">_DataPoint DataPoint</div><div class="ttdoc">The type used to store point data.</div><div class="ttdef"><b>Definition</b> <a href="knnGraphTraits_8h_source.html#l00029">knnGraphTraits.h:29</a></div></div>
 <div class="ttc" id="astructPonca_1_1KnnGraphDefaultTraits_html_afbd815b8b1de95ffedf2e89a53766dfa"><div class="ttname"><a href="structPonca_1_1KnnGraphDefaultTraits.html#afbd815b8b1de95ffedf2e89a53766dfa">Ponca::KnnGraphDefaultTraits::AabbType</a></div><div class="ttdeci">Eigen::AlignedBox&lt; Scalar, DataPoint::Dim &gt; AabbType</div><div class="ttdoc">The type used to calculate node bounding boxes.</div><div class="ttdef"><b>Definition</b> <a href="knnGraphTraits_8h_source.html#l00041">knnGraphTraits.h:41</a></div></div>
@@ -167,7 +167,7 @@ $(document).ready(function(){initNavTree('knnGraphTraits_8h_source.html',''); in
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_695d95a8d8fbec601a248c0414764298.html">Ponca</a></li><li class="navelem"><a class="el" href="dir_ce16314fc45f8638543c5146aff64d4a.html">src</a></li><li class="navelem"><a class="el" href="dir_12c32e53c838db195d209d78f62f8479.html">SpatialPartitioning</a></li><li class="navelem"><a class="el" href="dir_83069b4d65bb98935cd28c435d204b1a.html">KnnGraph</a></li><li class="navelem"><b>knnGraphTraits.h</b></li>
-    <li class="footer">Generated on Wed Mar 18 2026 16:17:05 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
+    <li class="footer">Generated on Thu Mar 19 2026 17:42:38 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
   </ul>
 </div>
 </body>

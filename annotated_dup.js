@@ -70,11 +70,8 @@ var annotated_dup =
       [ "KnnGraphRangeQuery", "classPonca_1_1KnnGraphRangeQuery.html", "classPonca_1_1KnnGraphRangeQuery" ],
       [ "limited_priority_queue", "classPonca_1_1limited__priority__queue.html", null ],
       [ "Line", "classPonca_1_1Line.html", "classPonca_1_1Line" ],
-      [ "MeanNormal", "classPonca_1_1MeanNormal.html", "classPonca_1_1MeanNormal" ],
-      [ "MeanNormalDer", "classPonca_1_1MeanNormalDer.html", "classPonca_1_1MeanNormalDer" ],
       [ "MeanPlaneFitImpl", "classPonca_1_1MeanPlaneFitImpl.html", "classPonca_1_1MeanPlaneFitImpl" ],
       [ "MeanPosition", "classPonca_1_1MeanPosition.html", "classPonca_1_1MeanPosition" ],
-      [ "MeanPositionDer", "classPonca_1_1MeanPositionDer.html", "classPonca_1_1MeanPositionDer" ],
       [ "MlsSphereFitDer", "classPonca_1_1MlsSphereFitDer.html", "classPonca_1_1MlsSphereFitDer" ],
       [ "MongePatch", "classPonca_1_1MongePatch.html", "classPonca_1_1MongePatch" ],
       [ "MongePatchQuadraticFitImpl", "classPonca_1_1MongePatchQuadraticFitImpl.html", "classPonca_1_1MongePatchQuadraticFitImpl" ],
@@ -118,5 +115,8 @@ var annotated_dup =
       [ "WeingartenCurvatureEstimator", "structPonca_1_1WeingartenCurvatureEstimator.html", "structPonca_1_1WeingartenCurvatureEstimator" ],
       [ "WeingartenCurvatureEstimatorDer", "structPonca_1_1WeingartenCurvatureEstimatorDer.html", "structPonca_1_1WeingartenCurvatureEstimatorDer" ],
       [ "WendlandWeightKernel", "classPonca_1_1WendlandWeightKernel.html", "classPonca_1_1WendlandWeightKernel" ]
-    ] ]
+    ] ],
+    [ "MeanNormal", "classMeanNormal.html", "classMeanNormal" ],
+    [ "MeanNormalDer", "classMeanNormalDer.html", "classMeanNormalDer" ],
+    [ "MeanPositionDer", "classMeanPositionDer.html", "classMeanPositionDer" ]
 ];

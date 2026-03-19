@@ -9,6 +9,6 @@ var classPonca_1_1Stack =
     [ "size", "classPonca_1_1Stack.html#a394fe3f9b308bde808322121799db11d", null ],
     [ "top", "classPonca_1_1Stack.html#aa591b6a41039b60ee5a6ae3412c48841", null ],
     [ "top", "classPonca_1_1Stack.html#af7a9b21992c2a9fc54f57169717184db", null ],
-    [ "m_data", "classPonca_1_1Stack.html#a411840ebe5631efd0ddfd3b1a4a17f16", null ],
+    [ "m_data", "classPonca_1_1Stack.html#a0ee872a3583d109776080cfcae645ad0", null ],
     [ "m_size", "classPonca_1_1Stack.html#a98fa887e804ab5e56f3d58dd6170515e", null ]
 ];

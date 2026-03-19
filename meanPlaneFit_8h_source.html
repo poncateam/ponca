@@ -51,7 +51,7 @@ MathJax.Hub.Config({
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Ponca
-   &#160;<span id="projectnumber">ff18772cb1e492269a8bd2895da1f5d816a1ae25</span>
+   &#160;<span id="projectnumber">19ef58fd3760f23a8af99a5eeac4f934757e30d9</span>
    </div>
    <div id="projectbrief">Point Cloud Analysis library</div>
   </td>
@@ -140,50 +140,50 @@ $(document).ready(function(){initNavTree('meanPlaneFit_8h_source.html',''); init
 <div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespacePonca.html">Ponca</a></div>
 <div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span>{</div>
 <div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span> </div>
-<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span><span class="keyword">template</span> &lt; <span class="keyword">class</span> DataPo<span class="keywordtype">int</span>, <span class="keyword">class</span> _NFilter, <span class="keyword">typename</span> T &gt;</div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>    <span class="keyword">template</span> &lt;<span class="keyword">class</span> DataPo<span class="keywordtype">int</span>, <span class="keyword">class</span> _NFilter, <span class="keyword">typename</span> T&gt;</div>
 <div class="foldopen" id="foldopen00028" data-start="{" data-end="};">
-<div class="line"><a id="l00028" name="l00028"></a><span class="lineno"><a class="line" href="classPonca_1_1MeanPlaneFitImpl.html">   28</a></span><span class="keyword">class </span><a class="code hl_class" href="classPonca_1_1MeanPlaneFitImpl.html">MeanPlaneFitImpl</a> : <span class="keyword">public</span> T</div>
-<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>{</div>
-<div class="line"><a id="l00030" name="l00030"></a><span class="lineno"><a class="line" href="classPonca_1_1MeanPlaneFitImpl.html#aef8da0eccf2bdda1434dc3599c81cea3">   30</a></span>PONCA_FITTING_DECLARE_DEFAULT_TYPES</div>
-<div class="line"><a id="l00031" name="l00031"></a><span class="lineno"><a class="line" href="classPonca_1_1MeanPlaneFitImpl.html#a193b478b3a7e96e9f9ee1335c2813878">   31</a></span>PONCA_FITTING_DECLARE_MATRIX_TYPE</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno"><a class="line" href="classPonca_1_1MeanPlaneFitImpl.html">   28</a></span>    <span class="keyword">class </span><a class="code hl_class" href="classPonca_1_1MeanPlaneFitImpl.html">MeanPlaneFitImpl</a> : <span class="keyword">public</span> T</div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>    {</div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno"><a class="line" href="classPonca_1_1MeanPlaneFitImpl.html#aef8da0eccf2bdda1434dc3599c81cea3">   30</a></span>        PONCA_FITTING_DECLARE_DEFAULT_TYPES</div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno"><a class="line" href="classPonca_1_1MeanPlaneFitImpl.html#a193b478b3a7e96e9f9ee1335c2813878">   31</a></span>        PONCA_FITTING_DECLARE_MATRIX_TYPE</div>
 <div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span> </div>
-<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span><span class="keyword">protected</span>:</div>
-<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>    <span class="keyword">enum</span> { Check = Base::PROVIDES_MEAN_POSITION &amp;&amp; Base::PROVIDES_MEAN_NORMAL &amp;&amp; Base::PROVIDES_PLANE };</div>
-<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span> </div>
-<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span><span class="keyword">public</span>:</div>
-<div class="line"><a id="l00037" name="l00037"></a><span class="lineno"><a class="line" href="classPonca_1_1MeanPlaneFitImpl.html#ae5a754ca08646e19445852a0621631b4">   37</a></span>    PONCA_EXPLICIT_CAST_OPERATORS(<a class="code hl_class" href="classPonca_1_1MeanPlaneFitImpl.html">MeanPlaneFitImpl</a>,<a class="code hl_function" href="classPonca_1_1MeanPlaneFitImpl.html#ae5a754ca08646e19445852a0621631b4">meanPlaneFit</a>)</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>    <span class="keyword">protected</span>:</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>        <span class="keyword">enum</span></div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>        {</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>            Check = Base::PROVIDES_MEAN_POSITION &amp;&amp; Base::PROVIDES_MEAN_NORMAL &amp;&amp; Base::PROVIDES_PLANE</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>        };</div>
 <div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span> </div>
-<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>    PONCA_FITTING_APIDOC_FINALIZE</div>
-<div class="foldopen" id="foldopen00040" data-start="{" data-end="}">
-<div class="line"><a id="l00040" name="l00040"></a><span class="lineno"><a class="line" href="classPonca_1_1MeanPlaneFitImpl.html#aca0b67091f0add95008f5072857d915e">   40</a></span>    PONCA_MULTIARCH <span class="keyword">inline</span> <a class="code hl_enumeration" href="namespacePonca.html#abfd697aebf07c1b5c8be5ee401e2dc84">FIT_RESULT</a> <a class="code hl_function" href="classPonca_1_1MeanPlaneFitImpl.html#aca0b67091f0add95008f5072857d915e">finalize</a>()</div>
-<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>    {</div>
-<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>        <span class="comment">// handle specific configurations</span></div>
-<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>        <span class="keywordflow">if</span>(Base::finalize() == <a class="code hl_enumvalue" href="namespacePonca.html#abfd697aebf07c1b5c8be5ee401e2dc84a86d1e5381a39092fbe5560583c23d64c">STABLE</a>)</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>    <span class="keyword">public</span>:</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno"><a class="line" href="classPonca_1_1MeanPlaneFitImpl.html#ae5a754ca08646e19445852a0621631b4">   40</a></span>        PONCA_EXPLICIT_CAST_OPERATORS(<a class="code hl_class" href="classPonca_1_1MeanPlaneFitImpl.html">MeanPlaneFitImpl</a>, <a class="code hl_function" href="classPonca_1_1MeanPlaneFitImpl.html#ae5a754ca08646e19445852a0621631b4">meanPlaneFit</a>)</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span> </div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>        PONCA_FITTING_APIDOC_FINALIZE</div>
+<div class="foldopen" id="foldopen00043" data-start="{" data-end="}">
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno"><a class="line" href="classPonca_1_1MeanPlaneFitImpl.html#aca0b67091f0add95008f5072857d915e">   43</a></span>        PONCA_MULTIARCH <span class="keyword">inline</span> <a class="code hl_enumeration" href="namespacePonca.html#abfd697aebf07c1b5c8be5ee401e2dc84">FIT_RESULT</a> <a class="code hl_function" href="classPonca_1_1MeanPlaneFitImpl.html#aca0b67091f0add95008f5072857d915e">finalize</a>()</div>
 <div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>        {</div>
-<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>            <span class="keywordflow">if</span> (Base::plane().isValid()) Base::m_eCurrentState = <a class="code hl_enumvalue" href="namespacePonca.html#abfd697aebf07c1b5c8be5ee401e2dc84a23aa2882b31e320fa4130218dd98c1a6">CONFLICT_ERROR_FOUND</a>;</div>
-<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>            Base::setPlane(Base::m_sumN / Base::getWeightSum(), Base::barycenterLocal());</div>
-<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>        }</div>
-<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>        <span class="keywordflow">return</span> Base::m_eCurrentState;</div>
-<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>    }</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>            <span class="comment">// handle specific configurations</span></div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>            <span class="keywordflow">if</span> (Base::finalize() == <a class="code hl_enumvalue" href="namespacePonca.html#abfd697aebf07c1b5c8be5ee401e2dc84a86d1e5381a39092fbe5560583c23d64c">STABLE</a>)</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>            {</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>                <span class="keywordflow">if</span> (Base::plane().isValid())</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>                    Base::m_eCurrentState = <a class="code hl_enumvalue" href="namespacePonca.html#abfd697aebf07c1b5c8be5ee401e2dc84a23aa2882b31e320fa4130218dd98c1a6">CONFLICT_ERROR_FOUND</a>;</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>                Base::setPlane(Base::m_sumN / Base::getWeightSum(), Base::barycenterLocal());</div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>            }</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>            <span class="keywordflow">return</span> Base::m_eCurrentState;</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>        }</div>
 </div>
-<div class="line"><a id="l00050" name="l00050"></a><span class="lineno"><a class="line" href="classPonca_1_1MeanPlaneFitImpl.html#a7d84efafc1edd6d882fc1f6baec1fd08">   50</a></span>    PONCA_FITTING_IS_SIGNED(<span class="keyword">true</span>)</div>
-<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>}; <span class="comment">//class MeanPlaneFitImpl</span></div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno"><a class="line" href="classPonca_1_1MeanPlaneFitImpl.html#a7d84efafc1edd6d882fc1f6baec1fd08">   54</a></span>        PONCA_FITTING_IS_SIGNED(<span class="keyword">true</span>)</div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>    }; <span class="comment">// class MeanPlaneFitImpl</span></div>
 </div>
-<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span> </div>
-<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>    <span class="keyword">template</span> &lt; <span class="keyword">class</span> DataPo<span class="keywordtype">int</span>, <span class="keyword">class</span> _NFilter, <span class="keyword">typename</span> T&gt;</div>
-<div class="line"><a id="l00056" name="l00056"></a><span class="lineno"><a class="line" href="namespacePonca.html#af61ec1fdf8e8d1b509ddd2d6417afec3">   56</a></span>    <span class="keyword">using </span><a class="code hl_class" href="classPonca_1_1MeanPlaneFitImpl.html">MeanPlaneFit</a> =</div>
-<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>    <a class="code hl_class" href="classPonca_1_1MeanPlaneFitImpl.html">MeanPlaneFitImpl</a>&lt;DataPoint, _NFilter,</div>
-<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>        <a class="code hl_class" href="classPonca_1_1MeanNormal.html">MeanNormal</a>&lt;DataPoint, _NFilter,</div>
-<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>            <a class="code hl_class" href="classPonca_1_1MeanPosition.html">MeanPosition</a>&lt;DataPoint, _NFilter,</div>
-<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>                <a class="code hl_class" href="classPonca_1_1Plane.html">Plane&lt;DataPoint, _NFilter, T&gt;</a>&gt;&gt;&gt;;</div>
-<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>} <span class="comment">//namespace Ponca</span></div>
-<div class="ttc" id="aclassPonca_1_1MeanNormal_html"><div class="ttname"><a href="classPonca_1_1MeanNormal.html">Ponca::MeanNormal</a></div><div class="ttdoc">Compute the mean normal of the input points.</div><div class="ttdef"><b>Definition</b> <a href="mean_8h_source.html#l00079">mean.h:79</a></div></div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span> </div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>    <span class="keyword">template</span> &lt;<span class="keyword">class</span> DataPo<span class="keywordtype">int</span>, <span class="keyword">class</span> _NFilter, <span class="keyword">typename</span> T&gt;</div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno"><a class="line" href="namespacePonca.html#a43623c4c9a6c1284b310d2e4832a40a0">   60</a></span>    <span class="keyword">using </span><a class="code hl_class" href="classPonca_1_1MeanPlaneFitImpl.html">MeanPlaneFit</a> = <a class="code hl_class" href="classPonca_1_1MeanPlaneFitImpl.html">MeanPlaneFitImpl</a>&lt;</div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>        DataPoint, _NFilter,</div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>        <a class="code hl_class" href="classMeanNormal.html">MeanNormal&lt;DataPoint, _NFilter, MeanPosition&lt;DataPoint, _NFilter, Plane&lt;DataPoint, _NFilter, T&gt;</a>&gt;&gt;&gt;;</div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>} <span class="comment">// namespace Ponca</span></div>
+<div class="ttc" id="aclassMeanNormal_html"><div class="ttname"><a href="classMeanNormal.html">MeanNormal</a></div><div class="ttdoc">Compute the mean normal of the input points.</div><div class="ttdef"><b>Definition</b> <a href="mean_8h_source.html#l00084">mean.h:85</a></div></div>
 <div class="ttc" id="aclassPonca_1_1MeanPlaneFitImpl_html"><div class="ttname"><a href="classPonca_1_1MeanPlaneFitImpl.html">Ponca::MeanPlaneFitImpl</a></div><div class="ttdoc">Plane fitting procedure computing the mean position and orientation from oriented points.</div><div class="ttdef"><b>Definition</b> <a href="meanPlaneFit_8h_source.html#l00028">meanPlaneFit.h:29</a></div></div>
-<div class="ttc" id="aclassPonca_1_1MeanPlaneFitImpl_html_aca0b67091f0add95008f5072857d915e"><div class="ttname"><a href="classPonca_1_1MeanPlaneFitImpl.html#aca0b67091f0add95008f5072857d915e">Ponca::MeanPlaneFitImpl::finalize</a></div><div class="ttdeci">FIT_RESULT finalize()</div><div class="ttdoc">Finalize the procedure.</div><div class="ttdef"><b>Definition</b> <a href="meanPlaneFit_8h_source.html#l00040">meanPlaneFit.h:40</a></div></div>
-<div class="ttc" id="aclassPonca_1_1MeanPlaneFitImpl_html_ae5a754ca08646e19445852a0621631b4"><div class="ttname"><a href="classPonca_1_1MeanPlaneFitImpl.html#ae5a754ca08646e19445852a0621631b4">Ponca::MeanPlaneFitImpl::meanPlaneFit</a></div><div class="ttdeci">MeanPlaneFitImpl&lt; DataPoint, _NFilter, T &gt; &amp; meanPlaneFit()</div><div class="ttdoc">Explicit conversion to MeanPlaneFitImpl , to access methods potentially hidden by heritage.</div><div class="ttdef"><b>Definition</b> <a href="meanPlaneFit_8h_source.html#l00037">meanPlaneFit.h:37</a></div></div>
-<div class="ttc" id="aclassPonca_1_1MeanPosition_html"><div class="ttname"><a href="classPonca_1_1MeanPosition.html">Ponca::MeanPosition</a></div><div class="ttdoc">Compute the barycenter of the input points.</div><div class="ttdef"><b>Definition</b> <a href="mean_8h_source.html#l00024">mean.h:24</a></div></div>
-<div class="ttc" id="aclassPonca_1_1Plane_html"><div class="ttname"><a href="classPonca_1_1Plane.html">Ponca::Plane</a></div><div class="ttdoc">Implicit hyperplane defined by an homogeneous vector .</div><div class="ttdef"><b>Definition</b> <a href="plane_8h_source.html#l00035">plane.h:37</a></div></div>
-<div class="ttc" id="anamespacePonca_html"><div class="ttname"><a href="namespacePonca.html">Ponca</a></div><div class="ttdoc">This Source Code Form is subject to the terms of the Mozilla Public License, v.</div><div class="ttdef"><b>Definition</b> <a href="limitedPriorityQueue_8h_source.html#l00015">limitedPriorityQueue.h:15</a></div></div>
+<div class="ttc" id="aclassPonca_1_1MeanPlaneFitImpl_html_aca0b67091f0add95008f5072857d915e"><div class="ttname"><a href="classPonca_1_1MeanPlaneFitImpl.html#aca0b67091f0add95008f5072857d915e">Ponca::MeanPlaneFitImpl::finalize</a></div><div class="ttdeci">FIT_RESULT finalize()</div><div class="ttdoc">Finalize the procedure.</div><div class="ttdef"><b>Definition</b> <a href="meanPlaneFit_8h_source.html#l00043">meanPlaneFit.h:43</a></div></div>
+<div class="ttc" id="aclassPonca_1_1MeanPlaneFitImpl_html_ae5a754ca08646e19445852a0621631b4"><div class="ttname"><a href="classPonca_1_1MeanPlaneFitImpl.html#ae5a754ca08646e19445852a0621631b4">Ponca::MeanPlaneFitImpl::meanPlaneFit</a></div><div class="ttdeci">MeanPlaneFitImpl&lt; DataPoint, _NFilter, T &gt; &amp; meanPlaneFit()</div><div class="ttdoc">Explicit conversion to MeanPlaneFitImpl , to access methods potentially hidden by heritage.</div><div class="ttdef"><b>Definition</b> <a href="meanPlaneFit_8h_source.html#l00040">meanPlaneFit.h:40</a></div></div>
+<div class="ttc" id="anamespacePonca_html"><div class="ttname"><a href="namespacePonca.html">Ponca</a></div><div class="ttdoc">This Source Code Form is subject to the terms of the Mozilla Public License, v.</div><div class="ttdef"><b>Definition</b> <a href="limitedPriorityQueue_8h_source.html#l00015">limitedPriorityQueue.h:16</a></div></div>
 <div class="ttc" id="anamespacePonca_html_abfd697aebf07c1b5c8be5ee401e2dc84"><div class="ttname"><a href="namespacePonca.html#abfd697aebf07c1b5c8be5ee401e2dc84">Ponca::FIT_RESULT</a></div><div class="ttdeci">FIT_RESULT</div><div class="ttdoc">Enum corresponding to the state of a fitting method (and what the finalize function returns)</div><div class="ttdef"><b>Definition</b> <a href="enums_8h_source.html#l00014">enums.h:15</a></div></div>
 <div class="ttc" id="anamespacePonca_html_abfd697aebf07c1b5c8be5ee401e2dc84a23aa2882b31e320fa4130218dd98c1a6"><div class="ttname"><a href="namespacePonca.html#abfd697aebf07c1b5c8be5ee401e2dc84a23aa2882b31e320fa4130218dd98c1a6">Ponca::CONFLICT_ERROR_FOUND</a></div><div class="ttdeci">@ CONFLICT_ERROR_FOUND</div><div class="ttdoc">Multiple classes of the fitting procedure initialize the primitive.</div><div class="ttdef"><b>Definition</b> <a href="enums_8h_source.html#l00027">enums.h:27</a></div></div>
 <div class="ttc" id="anamespacePonca_html_abfd697aebf07c1b5c8be5ee401e2dc84a86d1e5381a39092fbe5560583c23d64c"><div class="ttname"><a href="namespacePonca.html#abfd697aebf07c1b5c8be5ee401e2dc84a86d1e5381a39092fbe5560583c23d64c">Ponca::STABLE</a></div><div class="ttdeci">@ STABLE</div><div class="ttdoc">The fitting is stable and ready to use.</div><div class="ttdef"><b>Definition</b> <a href="enums_8h_source.html#l00017">enums.h:17</a></div></div>
@@ -193,7 +193,7 @@ $(document).ready(function(){initNavTree('meanPlaneFit_8h_source.html',''); init
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_695d95a8d8fbec601a248c0414764298.html">Ponca</a></li><li class="navelem"><a class="el" href="dir_ce16314fc45f8638543c5146aff64d4a.html">src</a></li><li class="navelem"><a class="el" href="dir_221133f19e4af6803e4ee7d78db21786.html">Fitting</a></li><li class="navelem"><b>meanPlaneFit.h</b></li>
-    <li class="footer">Generated on Wed Mar 18 2026 16:17:05 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
+    <li class="footer">Generated on Thu Mar 19 2026 17:42:38 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
   </ul>
 </div>
 </body>

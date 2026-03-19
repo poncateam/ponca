@@ -51,7 +51,7 @@ MathJax.Hub.Config({
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Ponca
-   &#160;<span id="projectnumber">ff18772cb1e492269a8bd2895da1f5d816a1ae25</span>
+   &#160;<span id="projectnumber">19ef58fd3760f23a8af99a5eeac4f934757e30d9</span>
    </div>
    <div id="projectbrief">Point Cloud Analysis library</div>
   </td>
@@ -148,19 +148,20 @@ API of Computational Objects</h1>
 </div><!-- fragment --><p>Note that in the above example, the type <code>Fit</code> can be either a <a class="el" href="classPonca_1_1Basket.html" title="Aggregator class used to declare specialized structures using CRTP.">Basket</a> or a <a class="el" href="classPonca_1_1BasketDiff.html" title="Aggregator class used to declare specialized structures with derivatives computations,...">BasketDiff</a>, without affecting the rest of the code.</p>
 <h2><a class="anchor" id="concepts_computeObjectBasket"></a>
 Objects used in Basket</h2>
-<p>Objects used in <a class="el" href="classPonca_1_1Basket.html" title="Aggregator class used to declare specialized structures using CRTP.">Basket</a> should respect the following API: </p><div class="fragment"><div class="line">        <span class="keyword">template</span> &lt; <span class="keyword">class</span> DataPo<span class="keywordtype">int</span>, <span class="keyword">class</span> _NFilter, <span class="keyword">typename</span> T = <span class="keywordtype">void</span>  &gt;</div>
+<p>Objects used in <a class="el" href="classPonca_1_1Basket.html" title="Aggregator class used to declare specialized structures using CRTP.">Basket</a> should respect the following API: </p><div class="fragment"><div class="line">        <span class="keyword">template</span> &lt;<span class="keyword">class</span> DataPo<span class="keywordtype">int</span>, <span class="keyword">class</span> _NFilter, <span class="keyword">typename</span> T = <span class="keywordtype">void</span>&gt;</div>
 <div class="line">        <span class="keyword">class </span>ComputationalObjectConcept</div>
 <div class="line">        {</div>
 <div class="line">        <span class="keyword">protected</span>:</div>
-<div class="line">            <span class="keyword">enum</span> {</div>
-<div class="line">                Check = PROVIDES_CAPABILITY_1 &amp;&amp; PROVIDES_CAPABILITY_2 <span class="comment">//&lt; List of required capabilities</span></div>
-<div class="line">                PROVIDES_CAPABILITY,                                   <span class="comment">//&lt; List of provided capabilities</span></div>
+<div class="line">            <span class="keyword">enum</span></div>
+<div class="line">            {</div>
+<div class="line">                Check = PROVIDES_CAPABILITY_1 &amp;&amp; PROVIDES_CAPABILITY_2    <span class="comment">//&lt; List of required capabilities</span></div>
+<div class="line">                                                     PROVIDES_CAPABILITY, <span class="comment">//&lt; List of provided capabilities</span></div>
 <div class="line">            };</div>
 <div class="line"> </div>
 <div class="line">        <span class="keyword">public</span>:</div>
 <div class="line">            <span class="keyword">using </span>Scalar         = <span class="keyword">typename</span> DataPoint::Scalar;     <span class="comment">//&lt; Inherited scalar type</span></div>
 <div class="line">            <span class="keyword">using </span>VectorType     = <span class="keyword">typename</span> DataPoint::VectorType; <span class="comment">//&lt; Inherited vector type</span></div>
-<div class="line">            <span class="keyword">using </span>NeighborFilter = _NFilter;                      <span class="comment">//&lt; Filter applied on the neighbors</span></div>
+<div class="line">            <span class="keyword">using </span>NeighborFilter = _NFilter;                       <span class="comment">//&lt; Filter applied on the neighbors</span></div>
 <div class="line"> </div>
 <div class="line">        <span class="keyword">public</span>:</div>
 <div class="line"><span class="comment">            /**************************************************************************/</span></div>
@@ -168,7 +169,7 @@ Objects used in Basket</h2>
 <div class="line"><span class="comment">            /**************************************************************************/</span></div>
 <div class="line">            <span class="comment">// Init the WeightFunc, without changing the other internal states.</span></div>
 <div class="line">            <span class="comment">// \warning Must be called be for any computation</span></div>
-<div class="line">            PONCA_MULTIARCH <span class="keyword">inline</span> <span class="keywordtype">void</span> setNeighborFilter (<span class="keyword">const</span> NeighborFilter&amp; _w);</div>
+<div class="line">            PONCA_MULTIARCH <span class="keyword">inline</span> <span class="keywordtype">void</span> setNeighborFilter(<span class="keyword">const</span> NeighborFilter&amp; _w);</div>
 <div class="line"> </div>
 <div class="line">            <span class="comment">// Reset the internal states.</span></div>
 <div class="line">            <span class="comment">// \warning Must be called be for any computation</span></div>
@@ -179,27 +180,28 @@ Objects used in Basket</h2>
 <div class="line"><span class="comment">            /**************************************************************************/</span></div>
 <div class="line">            <span class="comment">// Add a neighbor to perform the fit</span></div>
 <div class="line">            <span class="comment">// \return false if param nei is not a valid neighbour (weight = 0)</span></div>
-<div class="line">            PONCA_MULTIARCH <span class="keyword">inline</span> <span class="keywordtype">bool</span> addLocalNeighbor(Scalar, <span class="keyword">const</span> VectorType &amp;, <span class="keyword">const</span> DataPoint &amp;);</div>
+<div class="line">            PONCA_MULTIARCH <span class="keyword">inline</span> <span class="keywordtype">bool</span> addLocalNeighbor(Scalar, <span class="keyword">const</span> VectorType&amp;, <span class="keyword">const</span> DataPoint&amp;);</div>
 <div class="line">            <span class="comment">// Finalize the fitting procedure.</span></div>
 <div class="line">            <span class="comment">// \return State of fitting</span></div>
 <div class="line">            <span class="comment">// \warning Must be called be for any use of the fitting output</span></div>
 <div class="line">            PONCA_MULTIARCH <span class="keyword">inline</span> FIT_RESULT finalize();</div>
-<div class="line">        }; <span class="comment">//class ComputationalObjectConcept</span></div>
+<div class="line">        }; <span class="comment">// class ComputationalObjectConcept</span></div>
 </div><!-- fragment --><h2><a class="anchor" id="concepts_computeObjectBasketDiff"></a>
 Objects used in BasketDiff</h2>
-<p>Objects used in <a class="el" href="classPonca_1_1BasketDiff.html" title="Aggregator class used to declare specialized structures with derivatives computations,...">BasketDiff</a> should respect the following API: </p><div class="fragment"><div class="line">        <span class="keyword">template</span> &lt; <span class="keyword">class</span> DataPo<span class="keywordtype">int</span>, <span class="keyword">class</span> _NFilter, <span class="keywordtype">int</span> Type, <span class="keyword">typename</span> T&gt;</div>
+<p>Objects used in <a class="el" href="classPonca_1_1BasketDiff.html" title="Aggregator class used to declare specialized structures with derivatives computations,...">BasketDiff</a> should respect the following API: </p><div class="fragment"><div class="line">        <span class="keyword">template</span> &lt;<span class="keyword">class</span> DataPo<span class="keywordtype">int</span>, <span class="keyword">class</span> _NFilter, <span class="keywordtype">int</span> Type, <span class="keyword">typename</span> T&gt;</div>
 <div class="line">        <span class="keyword">class </span>ComputationalDerivativesConcept</div>
 <div class="line">        {</div>
 <div class="line">        <span class="keyword">protected</span>:</div>
-<div class="line">            <span class="keyword">enum</span> {</div>
-<div class="line">                Check = PROVIDES_CAPABILITY_1 &amp;&amp; PROVIDES_CAPABILITY_2 <span class="comment">//&lt; List of required capabilities</span></div>
-<div class="line">                PROVIDES_CAPABILITY,                                   <span class="comment">//&lt; List of provided capabilities</span></div>
+<div class="line">            <span class="keyword">enum</span></div>
+<div class="line">            {</div>
+<div class="line">                Check = PROVIDES_CAPABILITY_1 &amp;&amp; PROVIDES_CAPABILITY_2    <span class="comment">//&lt; List of required capabilities</span></div>
+<div class="line">                                                     PROVIDES_CAPABILITY, <span class="comment">//&lt; List of provided capabilities</span></div>
 <div class="line">            };</div>
 <div class="line"> </div>
 <div class="line">        <span class="keyword">public</span>:</div>
-<div class="line">            <span class="keyword">using </span>Scalar     = <span class="keyword">typename</span> DataPoint::Scalar;     <span class="comment">//&lt; Inherited scalar type</span></div>
-<div class="line">            <span class="keyword">using </span>VectorType = <span class="keyword">typename</span> DataPoint::VectorType; <span class="comment">//&lt; Inherited vector type</span></div>
-<div class="line">            <span class="keyword">using </span>NeighborFilter = _NFilter;                  <span class="comment">//&lt; Filter applied on the neighbors</span></div>
+<div class="line">            <span class="keyword">using </span>Scalar         = <span class="keyword">typename</span> DataPoint::Scalar;     <span class="comment">//&lt; Inherited scalar type</span></div>
+<div class="line">            <span class="keyword">using </span>VectorType     = <span class="keyword">typename</span> DataPoint::VectorType; <span class="comment">//&lt; Inherited vector type</span></div>
+<div class="line">            <span class="keyword">using </span>NeighborFilter = _NFilter;                       <span class="comment">//&lt; Filter applied on the neighbors</span></div>
 <div class="line">            <span class="comment">// Static array of scalars with a size adapted to the differentiation type</span></div>
 <div class="line">            <span class="keyword">using </span>VectorArray = <span class="keyword">typename</span> Base::VectorArray;</div>
 <div class="line">            <span class="comment">// Static array of scalars with a size adapted to the differentiation type</span></div>
@@ -211,7 +213,7 @@ Objects used in BasketDiff</h2>
 <div class="line"><span class="comment">            /**************************************************************************/</span></div>
 <div class="line">            <span class="comment">// Init the WeightFunc, without changing the other internal states.</span></div>
 <div class="line">            <span class="comment">// \warning Must be called be for any computation</span></div>
-<div class="line">            PONCA_MULTIARCH <span class="keyword">inline</span> <span class="keywordtype">void</span> setNeighborFilter (<span class="keyword">const</span> NeighborFilter&amp; _w);</div>
+<div class="line">            PONCA_MULTIARCH <span class="keyword">inline</span> <span class="keywordtype">void</span> setNeighborFilter(<span class="keyword">const</span> NeighborFilter&amp; _w);</div>
 <div class="line"> </div>
 <div class="line">            <span class="comment">// Set the evaluation position and reset the internal states.</span></div>
 <div class="line">            <span class="comment">// \warning Must be called be for any computation</span></div>
@@ -222,15 +224,13 @@ Objects used in BasketDiff</h2>
 <div class="line"><span class="comment">            /**************************************************************************/</span></div>
 <div class="line">            <span class="comment">// Add a neighbor to perform the fit</span></div>
 <div class="line">            <span class="comment">// \return false if param nei is not a valid neighbour (weight = 0)</span></div>
-<div class="line">            PONCA_MULTIARCH <span class="keyword">inline</span> <span class="keywordtype">bool</span> addLocalNeighbor(Scalar w,</div>
-<div class="line">                                                         <span class="keyword">const</span> VectorType &amp;localQ,</div>
-<div class="line">                                                         <span class="keyword">const</span> DataPoint &amp;attributes,</div>
-<div class="line">                                                         ScalarArray &amp;dw);</div>
+<div class="line">            PONCA_MULTIARCH <span class="keyword">inline</span> <span class="keywordtype">bool</span> addLocalNeighbor(Scalar w, <span class="keyword">const</span> VectorType&amp; localQ,</div>
+<div class="line">                                                         <span class="keyword">const</span> DataPoint&amp; attributes, ScalarArray&amp; dw);</div>
 <div class="line">            <span class="comment">// Finalize the fitting procedure.</span></div>
 <div class="line">            <span class="comment">// \return State of fitting</span></div>
 <div class="line">            <span class="comment">// \warning Must be called be for any use of the fitting output</span></div>
 <div class="line">            PONCA_MULTIARCH <span class="keyword">inline</span> FIT_RESULT finalize();</div>
-<div class="line">        }; <span class="comment">//class ComputationalDerivativesConcept</span></div>
+<div class="line">        }; <span class="comment">// class ComputationalDerivativesConcept</span></div>
 </div><!-- fragment --><dl class="section note"><dt>Note</dt><dd><a class="el" href="classPonca_1_1PrimitiveDer.html" title="Generic class performing the Fit derivation.">PrimitiveDer</a> defines the default entry point to most classes used in <a class="el" href="classPonca_1_1BasketDiff.html" title="Aggregator class used to declare specialized structures with derivatives computations,...">BasketDiff</a>.</dd></dl>
 <h1><a class="anchor" id="concepts_provides"></a>
 Capabilities of the Fitting tools</h1>
@@ -242,31 +242,31 @@ Capabilities of the Fitting tools</h1>
 </th></tr>
 <tr>
 <td><b>PROVIDES_MEAN_POSITION</b><br  />
- Mean of the input points vectors  </td><td><a class="el" href="classPonca_1_1MeanPosition.html" title="Compute the barycenter of the input points.">MeanPosition</a> </td><td><a class="el" href="classPonca_1_1MeanPositionDer.html" title="Compute the derivatives of the input points barycenter.">MeanPositionDer</a><br  />
+ Mean of the input points vectors  </td><td><a class="el" href="classPonca_1_1MeanPosition.html" title="Compute the barycenter of the input points.">MeanPosition</a> </td><td><a class="el" href="classMeanPositionDer.html" title="Compute the derivatives of the input points barycenter.">MeanPositionDer</a><br  />
 <a class="el" href="classPonca_1_1MeanPlaneFitImpl.html" title="Plane fitting procedure computing the mean position and orientation from oriented points.">MeanPlaneFitImpl</a><br  />
 <a class="el" href="classPonca_1_1OrientedSphereFitImpl.html" title="Algebraic Sphere fitting procedure on oriented point sets.">OrientedSphereFitImpl</a><br  />
 <a class="el" href="classPonca_1_1CovarianceFitBase.html" title="Procedure that compute and decompose the covariance matrix of the neighbors positions in .">CovarianceFitBase</a><br  />
-<a class="el" href="classPonca_1_1UnorientedSphereFitImpl.html" title="Algebraic Sphere fitting procedure on point sets with non-oriented normals.">UnorientedSphereFitImpl</a> </td><td><p class="starttd">barycenter()<br  />
-barycenterDistance()<br  />
+<a class="el" href="classPonca_1_1UnorientedSphereFitImpl.html" title="Algebraic Sphere fitting procedure on point sets with non-oriented normals.">UnorientedSphereFitImpl</a> </td><td><p class="starttd"><a class="el" href="namespacePonca.html#a1202518f3aeb69a7152076faf6215fee" title="where  are all the point samples in &#39;s neighborhood">barycenter()</a><br  />
+<a class="el" href="namespacePonca.html#aba001afd38a86be95320b216a5d25964" title="The distance between the barycenter and the basis center.">barycenterDistance()</a><br  />
 barycenterLocal() </p>
 <p class="endtd"></p>
 </td></tr>
 <tr>
 <td><b>PROVIDES_MEAN_POSITION_DERIVATIVE</b><br  />
- Provides derivative of the mean position  </td><td><a class="el" href="classPonca_1_1MeanPositionDer.html" title="Compute the derivatives of the input points barycenter.">MeanPositionDer</a> </td><td><a class="el" href="classPonca_1_1CovarianceFitDer.html" title="Internal generic class computing the derivatives of covariance matrix computed by CovarianceFitBase.">CovarianceFitDer</a><br  />
+ Provides derivative of the mean position  </td><td><a class="el" href="classMeanPositionDer.html" title="Compute the derivatives of the input points barycenter.">MeanPositionDer</a> </td><td><a class="el" href="classPonca_1_1CovarianceFitDer.html" title="Internal generic class computing the derivatives of covariance matrix computed by CovarianceFitBase.">CovarianceFitDer</a><br  />
 <a class="el" href="classPonca_1_1OrientedSphereDerImpl.html" title="[OrientedSphereFit Definition]">OrientedSphereDerImpl</a><br  />
 <a class="el" href="classPonca_1_1UnorientedSphereDerImpl.html">UnorientedSphereDerImpl</a> </td><td><p class="starttd">barycenterDerivatives() </p>
 <p class="endtd"></p>
 </td></tr>
 <tr>
 <td><b>PROVIDES_MEAN_NORMAL</b><br  />
- Mean of the normal vectors  </td><td><a class="el" href="classPonca_1_1MeanNormal.html" title="Compute the mean normal of the input points.">MeanNormal</a> </td><td><a class="el" href="classPonca_1_1MeanPlaneFitImpl.html" title="Plane fitting procedure computing the mean position and orientation from oriented points.">MeanPlaneFitImpl</a><br  />
+ Mean of the normal vectors  </td><td><a class="el" href="classMeanNormal.html" title="Compute the mean normal of the input points.">MeanNormal</a> </td><td><a class="el" href="classPonca_1_1MeanPlaneFitImpl.html" title="Plane fitting procedure computing the mean position and orientation from oriented points.">MeanPlaneFitImpl</a><br  />
 <a class="el" href="classPonca_1_1OrientedSphereFitImpl.html" title="Algebraic Sphere fitting procedure on oriented point sets.">OrientedSphereFitImpl</a> </td><td><p class="starttd">meanNormalVector() </p>
 <p class="endtd"></p>
 </td></tr>
 <tr>
 <td><b>PROVIDES_MEAN_NORMAL_DERIVATIVE</b><br  />
- Provides derivative of the mean normal  </td><td><a class="el" href="classPonca_1_1MeanNormalDer.html" title="Compute the derivatives of the input points mean normal.">MeanNormalDer</a> </td><td>- </td><td><p class="starttd">dMeanNormal() </p>
+ Provides derivative of the mean normal  </td><td><a class="el" href="classMeanNormalDer.html" title="Compute the derivatives of the input points mean normal.">MeanNormalDer</a> </td><td>- </td><td><p class="starttd">dMeanNormal() </p>
 <p class="endtd"></p>
 </td></tr>
 <tr>
@@ -285,8 +285,8 @@ isStable() </p>
 <td><b>PROVIDES_PRIMITIVE_DERIVATIVE</b><br  />
  Provides base API for primitive derivatives  </td><td><a class="el" href="classPonca_1_1PrimitiveDer.html" title="Generic class performing the Fit derivation.">PrimitiveDer</a> </td><td><a class="el" href="classPonca_1_1GLSDer.html" title="Differentiation of GLSParam.">GLSDer</a><br  />
 <a class="el" href="classPonca_1_1CovarianceFitDer.html" title="Internal generic class computing the derivatives of covariance matrix computed by CovarianceFitBase.">CovarianceFitDer</a><br  />
-<a class="el" href="classPonca_1_1MeanPositionDer.html" title="Compute the derivatives of the input points barycenter.">MeanPositionDer</a><br  />
-<a class="el" href="classPonca_1_1MeanNormalDer.html" title="Compute the derivatives of the input points mean normal.">MeanNormalDer</a><br  />
+<a class="el" href="classMeanPositionDer.html" title="Compute the derivatives of the input points barycenter.">MeanPositionDer</a><br  />
+<a class="el" href="classMeanNormalDer.html" title="Compute the derivatives of the input points mean normal.">MeanNormalDer</a><br  />
 <a class="el" href="classPonca_1_1MlsSphereFitDer.html" title="Extension performing derivation of the mls surface.">MlsSphereFitDer</a><br  />
 <a class="el" href="classPonca_1_1OrientedSphereDerImpl.html" title="[OrientedSphereFit Definition]">OrientedSphereDerImpl</a><br  />
 <a class="el" href="classPonca_1_1UnorientedSphereDerImpl.html">UnorientedSphereDerImpl</a> </td><td><p class="starttd">isScaleDer()<br  />
@@ -402,17 +402,18 @@ Concepts related to weighting functions</h1>
 <p>Weighting functions are critical components of the library. They are represented by <a class="el" href="classPonca_1_1DistWeightFunc.html" title="Weight neighbors according to the euclidean distance between a query and a reference position.">DistWeightFunc</a>, which is defined from the euclidean distance field centered at the evaluation position (see DistWeightFunc::init()). Given a distance to this evaluation position, the weight is computed (see DistWeightFunc::w()) by applying a 1d weighting function defined as follows:</p>
 <div class="fragment"><div class="line">        <span class="comment">// \brief Concept of a 1D weighting function and its derivatives.</span></div>
 <div class="line">        <span class="keyword">template</span> &lt;<span class="keyword">typename</span> _Scalar&gt;</div>
-<div class="line">        <span class="keyword">class </span>WeightKernelConcept{</div>
+<div class="line">        <span class="keyword">class </span>WeightKernelConcept</div>
+<div class="line">        {</div>
 <div class="line">        <span class="keyword">public</span>:</div>
 <div class="line">            <span class="keyword">typedef</span> _Scalar Scalar;</div>
 <div class="line"> </div>
 <div class="line">            <span class="comment">// \brief Apply the weighting kernel to the scalar value f(x)</span></div>
-<div class="line">            PONCA_MULTIARCH <span class="keyword">inline</span> Scalar f  (<span class="keyword">const</span> Scalar&amp; x)<span class="keyword"> const </span>{}</div>
+<div class="line">            PONCA_MULTIARCH <span class="keyword">inline</span> Scalar f(<span class="keyword">const</span> Scalar&amp; x)<span class="keyword"> const </span>{}</div>
 <div class="line">            <span class="comment">// \brief Apply the first derivative of the weighting kernel to the scalar value f&#39;(x)</span></div>
-<div class="line">            PONCA_MULTIARCH <span class="keyword">inline</span> Scalar df (<span class="keyword">const</span> Scalar&amp; x)<span class="keyword"> const </span>{}</div>
+<div class="line">            PONCA_MULTIARCH <span class="keyword">inline</span> Scalar df(<span class="keyword">const</span> Scalar&amp; x)<span class="keyword"> const </span>{}</div>
 <div class="line">            <span class="comment">// \brief Apply the second derivative of the weighting kernel to the scalar value f&#39;&#39;(x)</span></div>
 <div class="line">            PONCA_MULTIARCH <span class="keyword">inline</span> Scalar ddf(<span class="keyword">const</span> Scalar&amp; x)<span class="keyword"> const </span>{}</div>
-<div class="line">        };<span class="comment">// class WeightKernelConcept</span></div>
+<div class="line">        }; <span class="comment">// class WeightKernelConcept</span></div>
 </div><!-- fragment --><p><a class="el" href="classPonca_1_1DistWeightFunc.html" title="Weight neighbors according to the euclidean distance between a query and a reference position.">DistWeightFunc</a> also provides computation of the first and second order derivatives of the weight, both in scale (<a class="el" href="classPonca_1_1DistWeightFunc.html#a182289b2f19a436381af1c94a7bfb0f5">DistWeightFunc::scaledw()</a>, <a class="el" href="classPonca_1_1DistWeightFunc.html#a1ccbacac342ed1e66ef0423fdaf9c00d">DistWeightFunc::scaled2w()</a>) and space (<a class="el" href="classPonca_1_1DistWeightFunc.html#a679c75736d7715aada70bbf2e221fb02">DistWeightFunc::spacedw()</a>, <a class="el" href="classPonca_1_1DistWeightFunc.html#a303ff5053abe6961771053c9647688c4">DistWeightFunc::spaced2w()</a>), and their cross derivatives (<a class="el" href="classPonca_1_1DistWeightFunc.html#a26332be7b205ec289253c4b366c46110">DistWeightFunc::scaleSpaced2w()</a>). Theses methods check if the weight kernels provides the appropriate derivatives</p>
 <hr  />
  <center>[<a class="el" href="fitting.html">Go back to Fitting user manual</a>]</center> <center>[<a class="el" href="ponca_concepts.html">Go back to concept manual</a>]</center> <center>[<a class="el" href="user_manual_page.html">Go back to user manual</a>]</center> </div></div><!-- contents -->
@@ -422,7 +423,7 @@ Concepts related to weighting functions</h1>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="user_manual_page.html">User Manual</a></li>
-    <li class="footer">Generated on Wed Mar 18 2026 16:17:05 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
+    <li class="footer">Generated on Thu Mar 19 2026 17:42:38 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
   </ul>
 </div>
 </body>
