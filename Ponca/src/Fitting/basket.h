@@ -136,8 +136,8 @@ namespace internal
      *   > myFitDer;                       // Final structure to fit and derive a primitive over weighted samples
      *   \endcode
      *
-     * @tparam Derived Derived class that provides the addNeighbor method (either Basket or BasketDiff)
-     * @tparam Base Base class that provides, through the CRTP the init, startNewPass, addNeighbor and finalize methods
+     * \tparam Derived Derived class that provides the addNeighbor method (either Basket or BasketDiff)
+     * \tparam Base Base class that provides, through the CRTP the init, startNewPass, addNeighbor and finalize methods
      */
     template<typename _Derived, typename _Base>
     struct BasketComputeObject : public ComputeObject<_Derived>, public virtual _Base {

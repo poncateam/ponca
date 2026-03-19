@@ -57,7 +57,7 @@ struct  OUT_TYPE##PointQuery : Query<QueryInputIsPosition<DataPoint>,           
 };
 
 /// \addtogroup spatialpartitioning
-/// @{
+/// \{
 
 ////////////////////////////////////////////////////////////////
 // Base classes
@@ -354,7 +354,7 @@ DECLARE_POINT_QUERY_CLASS(KNearest) //KNearestPointQuery
 DECLARE_POINT_QUERY_CLASS(Nearest)  //NearestPointQuery
 DECLARE_POINT_QUERY_CLASS(Range)    //RangePointQuery
 
-/// @}
+/// \}
 
 #undef DECLARE_INDEX_QUERY_CLASS
 #undef DECLARE_POINT_QUERY_CLASS

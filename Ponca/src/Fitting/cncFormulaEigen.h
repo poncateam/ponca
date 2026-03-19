@@ -34,19 +34,19 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
 /**
- * @file cncFormulaEigen.h
- * @brief Adapted version of CorrectedNormalCurrentFormulaEigen.h for Ponca.
+ * \file cncFormulaEigen.h
+ * \brief Adapted version of CorrectedNormalCurrentFormulaEigen.h for Ponca.
  *
- * @details
+ * \details
  * ## Original file :
  * https://github.com/JacquesOlivierLachaud/PointCloudCurvCNC/blob/main/CorrectedNormalCurrentFormulaEigen.h
  *
- * @author Jacques-Olivier Lachaud (\c jacques-olivier.lachaud@univ-savoie.fr)
+ * \author Jacques-Olivier Lachaud (\c jacques-olivier.lachaud@univ-savoie.fr)
  * Laboratory of Mathematics (CNRS, UMR 5127), University of Savoie, France
- * @author David Coeurjolly (\c david.coeurjolly@liris.cnrs.fr)
+ * \author David Coeurjolly (\c david.coeurjolly@liris.cnrs.fr)
  * LIRIS (CNRS, UMR 5205), CNRS, France
  *
- * @date 2022/06/05
+ * \date 2022/06/05
  *
  * ## Modifications made :
  *
@@ -54,9 +54,9 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  * - Moved CNCEigen struct to Ponca::internal namespace
  * - Adapted CNCEigen to use the Ponca DataPoint Types
  *
- * @author Florian Auberval (\c florian.auberval@irit.fr)
+ * \author Florian Auberval (\c florian.auberval@irit.fr)
  *
- * @date 2025/11/19
+ * \date 2025/11/19
  */
 
 #pragma once
@@ -66,7 +66,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 namespace Ponca::internal {
 
 /**
- * @brief This class contains some stand-alone CorrectedNormalCurrent formulas for triangles,
+ * \brief This class contains some stand-alone CorrectedNormalCurrent formulas for triangles,
  * using eigen as linear algebra backend.
  */
 template<typename DataPoint>
@@ -92,7 +92,7 @@ struct CNCEigen {
 			return (fabs(d[m] - d[(m + 1) % 3] - d[(m + 2) % 3]) < epsilon);
 		}
 
-		/// @return the polar triangle associated with this triangle.
+		/// \return the polar triangle associated with this triangle.
 		static void polarTriangle(
 			const VectorType& a, const VectorType& b, const VectorType& c,
 			VectorType& Ap     , VectorType& Bp     , VectorType& Cp
@@ -107,9 +107,9 @@ struct CNCEigen {
 		}
 
 		/// Returns the interior angles of the spherical triangle ABC.
-		/// @param[out] alpha the interior angle at vertex A.
-		/// @param[out] beta  the interior angle at vertex B.
-		/// @param[out] gamma the interior angle at vertex C.
+		/// \param[out] alpha the interior angle at vertex A.
+		/// \param[out] beta  the interior angle at vertex B.
+		/// \param[out] gamma the interior angle at vertex C.
 		static void interiorAngles(
 			const VectorType& a, const VectorType& b, const VectorType& c,
 		    Scalar& alpha      , Scalar& beta       , Scalar& gamma
@@ -132,7 +132,7 @@ struct CNCEigen {
 			}
 		}
 
-		/// @return the (unsigned) area of the spherical triangle (below 2pi).
+		/// \return the (unsigned) area of the spherical triangle (below 2pi).
 		static Scalar area(const VectorType& a, const VectorType& b, const VectorType& c) {
 			Scalar alpha, beta, gamma;
 			if (isDegenerate(a, b, c)) return Scalar(0.0);
@@ -144,7 +144,7 @@ struct CNCEigen {
 				       : Scalar(2.0 * M_PI) - alpha - beta - gamma;
 		}
 
-		/// @return the (signed) area of the spherical triangle (below 2pi).
+		/// \return the (signed) area of the spherical triangle (below 2pi).
 		static Scalar algebraicArea(const VectorType& a, const VectorType& b, const VectorType& c) {
 			Scalar S = area(a, b, c);
 			VectorType M = a + b + c;
@@ -157,21 +157,21 @@ struct CNCEigen {
 
 	// ---------------------- Main functions ----------------
 public:
-	/// @name Functions for computing measures
-	/// @{
+	/// \name Functions for computing measures
+	/// \{
 
 	/// Computes mu0 measure (area) of triangle abc given an interpolated
 	/// corrected normal vector \a ua, \a \ub, \a uc.
-	/// @param a any point
-	/// @param b any point
-	/// @param c any point
-	/// @param ua the corrected normal vector at point a
-	/// @param ub the corrected normal vector at point b
-	/// @param uc the corrected normal vector at point c
-	/// @param unit_u when 'true' considers that interpolated
+	/// \param a any point
+	/// \param b any point
+	/// \param c any point
+	/// \param ua the corrected normal vector at point a
+	/// \param ub the corrected normal vector at point b
+	/// \param uc the corrected normal vector at point c
+	/// \param unit_u when 'true' considers that interpolated
 	/// corrected normals should be made unitary, otherwise
 	/// interpolated corrected normals may have smaller norms.
-	/// @return the mu0-measure of triangle abc, i.e. its area.
+	/// \return the mu0-measure of triangle abc, i.e. its area.
 	static Scalar mu0InterpolatedU(
 		const VectorType& a,
 	    const VectorType& b,
@@ -194,16 +194,16 @@ public:
 
 	/// Computes mu1 measure (mean curvature) of triangle abc given an interpolated
 	/// corrected normal vector \a ua, \a \ub, \a uc.
-	/// @param a any point
-	/// @param b any point
-	/// @param c any point
-	/// @param ua the corrected normal vector at point a
-	/// @param ub the corrected normal vector at point b
-	/// @param uc the corrected normal vector at point c
-	/// @param unit_u when 'true' considers that interpolated
+	/// \param a any point
+	/// \param b any point
+	/// \param c any point
+	/// \param ua the corrected normal vector at point a
+	/// \param ub the corrected normal vector at point b
+	/// \param uc the corrected normal vector at point c
+	/// \param unit_u when 'true' considers that interpolated
 	/// corrected normals should be made unitary, otherwise
 	/// interpolated corrected normals may have smaller norms.
-	/// @return the mu1-measure of triangle abc, i.e. its mean curvature.
+	/// \return the mu1-measure of triangle abc, i.e. its mean curvature.
 	static Scalar mu1InterpolatedU(
 		const VectorType& a,
 		const VectorType& b,
@@ -224,16 +224,16 @@ public:
 
 	/// Computes mu2 measure (Gaussian curvature) of triangle abc given an interpolated
 	/// corrected normal vector \a ua, \a \ub, \a uc.
-	/// @param a any point
-	/// @param b any point
-	/// @param c any point
-	/// @param ua the corrected normal vector at point a
-	/// @param ub the corrected normal vector at point b
-	/// @param uc the corrected normal vector at point c
-	/// @param unit_u when 'true' considers that interpolated
+	/// \param a any point
+	/// \param b any point
+	/// \param c any point
+	/// \param ua the corrected normal vector at point a
+	/// \param ub the corrected normal vector at point b
+	/// \param uc the corrected normal vector at point c
+	/// \param unit_u when 'true' considers that interpolated
 	/// corrected normals should be made unitary, otherwise
 	/// interpolated corrected normals may have smaller norms.
-	/// @return the mu2-measure of triangle abc, i.e. its Gaussian curvature.
+	/// \return the mu2-measure of triangle abc, i.e. its Gaussian curvature.
 	static Scalar mu2InterpolatedU(
 		const VectorType& a,
 		const VectorType& b,
@@ -255,13 +255,13 @@ public:
 
 	/// Computes muXY measure (anisotropic curvature) of triangle abc given an interpolated
 	/// corrected normal vector \a ua, \a \ub, \a uc.
-	/// @param a any point
-	/// @param b any point
-	/// @param c any point
-	/// @param ua the corrected normal vector at point a
-	/// @param ub the corrected normal vector at point b
-	/// @param uc the corrected normal vector at point c
-	/// @return the muXY-measure of triangle abc, i.e. its anisotropic curvature.
+	/// \param a any point
+	/// \param b any point
+	/// \param c any point
+	/// \param ua the corrected normal vector at point a
+	/// \param ub the corrected normal vector at point b
+	/// \param uc the corrected normal vector at point c
+	/// \return the muXY-measure of triangle abc, i.e. its anisotropic curvature.
 	static MatrixType muXYInterpolatedU(
 		const VectorType& a,
 		const VectorType& b,
@@ -293,18 +293,18 @@ public:
 		return T;
 	}
 
-	/// @}
+	/// \}
 
 	// ---------------------- Helper functions ----------------
 public:
-	/// @name Helper functions
-	/// @{
+	/// \name Helper functions
+	/// \{
 
 	/// Computing principal curvatures k1 and k2 from tensor
-	/// @param tensor The muXY integrated tensor
-	/// @param area Area of the face
-	/// @param N the normal vector
-	/// @return a pair of principal directions.
+	/// \param tensor The muXY integrated tensor
+	/// \param area Area of the face
+	/// \param N the normal vector
+	/// \return a pair of principal directions.
 	static std::pair<VectorType, VectorType> curvDirFromTensor(
 		const MatrixType& tensor,
 		const Scalar area,
@@ -333,10 +333,10 @@ public:
 	}
 
 	/// Computing principal curvatures k1 and k2 from tensor
-	/// @param tensor The muXY integrated tensor
-	/// @param area Area of the face
-	/// @param N the normal vector
-	/// @return a pair of principal directions.
+	/// \param tensor The muXY integrated tensor
+	/// \param area Area of the face
+	/// \param N the normal vector
+	/// \return a pair of principal directions.
 	static std::tuple<Scalar, Scalar, VectorType, VectorType> curvaturesFromTensor(
 		const MatrixType& tensor,
 		const Scalar area,
@@ -370,7 +370,7 @@ public:
 		}
 	}
 
-	/// @}
+	/// \}
 }; // struct CNCEigen
 
 }

@@ -12,8 +12,8 @@ namespace Ponca {
   *
   * \defgroup spatialpartitioning Spatial Partitioning module
   * \brief This modules includes classes and methods for Spatial Partitioning and queries.
-  * @{
-  * @}
+  * \{
+  * \}
   *
   */
 }   

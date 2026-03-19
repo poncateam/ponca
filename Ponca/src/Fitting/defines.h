@@ -13,8 +13,8 @@
   *
   * \defgroup fitting Fitting module
   * \brief This modules includes classes and methods for primitive fitting
-  * @{
-  * @}
+  * \{
+  * \}
   *
   */
 #include "../Common/defines.h"

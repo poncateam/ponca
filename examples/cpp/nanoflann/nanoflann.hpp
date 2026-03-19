@@ -79,7 +79,7 @@
 namespace nanoflann
 {
 /** @addtogroup nanoflann_grp nanoflann C++ library for KD-trees
- *  @{ */
+ *  \{ */
 
 /** the PI constant (required to avoid MSVC missing symbols) */
 template <typename T>
@@ -157,7 +157,7 @@ inline typename std::enable_if<!has_assign<Container>::value, void>::type
 }
 
 /** @addtogroup result_sets_grp Result set classes
- *  @{ */
+ *  \{ */
 template <
     typename _DistanceType, typename _IndexType = size_t,
     typename _CountType = size_t>
@@ -195,7 +195,7 @@ class KNNResultSet
 
     /**
      * Called during search to add an element matching the criteria.
-     * @return true if the search should be continued, false if the results are
+     * \return true if the search should be continued, false if the results are
      * sufficient
      */
     bool addPoint(DistanceType dist, IndexType index)
@@ -301,7 +301,7 @@ class RadiusResultSet
 
     /**
      * Called during search to add an element matching the criteria.
-     * @return true if the search should be continued, false if the results are
+     * \return true if the search should be continued, false if the results are
      * sufficient
      */
     bool addPoint(DistanceType dist, IndexType index)
@@ -328,10 +328,10 @@ class RadiusResultSet
     }
 };
 
-/** @} */
+/** \} */
 
 /** @addtogroup loadsave_grp Load/save auxiliary functions
- * @{ */
+ * \{ */
 template <typename T>
 void save_value(std::ostream& stream, const T& value)
 {
@@ -360,10 +360,10 @@ void load_value(std::istream& stream, std::vector<T>& value)
     value.resize(size);
     stream.read(reinterpret_cast<char*>(value.data()), sizeof(T) * size);
 }
-/** @} */
+/** \} */
 
 /** @addtogroup metric_grp Metric (distance) classes
- * @{ */
+ * \{ */
 
 struct Metric
 {
@@ -671,10 +671,10 @@ struct metric_SO3 : public Metric
     };
 };
 
-/** @} */
+/** \} */
 
 /** @addtogroup param_grp Parameter structs
- * @{ */
+ * \{ */
 
 enum class KDTreeSingleIndexAdaptorFlags
 {
@@ -721,10 +721,10 @@ struct SearchParameters
     bool  sorted;  //!< only for radius search, require neighbours sorted by
                   //!< distance (default: true)
 };
-/** @} */
+/** \} */
 
 /** @addtogroup memalloc_grp Memory allocation
- * @{ */
+ * \{ */
 
 /**
  * Pooled storage allocator
@@ -861,10 +861,10 @@ class PooledAllocator
         return mem;
     }
 };
-/** @} */
+/** \} */
 
 /** @addtogroup nanoflann_metaprog_grp Auxiliary metaprogramming stuff
- * @{ */
+ * \{ */
 
 /** Used to declare fixed-size arrays when DIM>0, dynamically-allocated vectors
  * when DIM=-1. Fixed size version for a generic DIM:
@@ -881,7 +881,7 @@ struct array_or_vector<-1, T>
     using type = std::vector<T>;
 };
 
-/** @} */
+/** \} */
 
 /** kd-tree base-class
  *
@@ -1031,8 +1031,8 @@ class KDTreeBaseClass
      * Create a tree node that subdivides the list of vecs from vind[first]
      * to vind[last].  The routine is called recursively on each sublist.
      *
-     * @param left index of the first vector
-     * @param right index of the last vector
+     * \param left index of the first vector
+     * \param right index of the last vector
      */
     NodePtr divideTree(
         Derived& obj, const Offset left, const Offset right, BoundingBox& bbox)
@@ -1098,10 +1098,10 @@ class KDTreeBaseClass
      * vind[last] concurrently.  The routine is called recursively on each
      * sublist.
      *
-     * @param left index of the first vector
-     * @param right index of the last vector
-     * @param thread_count count of std::async threads
-     * @param mutex mutex for mempool allocation
+     * \param left index of the first vector
+     * \param right index of the last vector
+     * \param thread_count count of std::async threads
+     * \param mutex mutex for mempool allocation
      */
     NodePtr divideTreeConcurrent(
         Derived& obj, const Offset left, const Offset right, BoundingBox& bbox,
@@ -1382,7 +1382,7 @@ class KDTreeBaseClass
 };
 
 /** @addtogroup kdtrees_grp KD-tree classes and adaptors
- * @{ */
+ * \{ */
 
 /** kd-tree static index
  *
@@ -1479,9 +1479,9 @@ class KDTreeSingleIndexAdaptor
      *  - The \a DIM template parameter if >0 (highest priority)
      *  - Otherwise, the \a dimensionality parameter of this constructor.
      *
-     * @param inputData Dataset with the input features. Its lifetime must be
+     * \param inputData Dataset with the input features. Its lifetime must be
      *  equal or longer than that of the instance of this class.
-     * @param params Basically, the maximum leaf node size
+     * \param params Basically, the maximum leaf node size
      *
      * Note that there is a variable number of optional additional parameters
      * which will be forwarded to the metric class constructor. Refer to example
@@ -1564,7 +1564,7 @@ class KDTreeSingleIndexAdaptor
     }
 
     /** \name Query methods
-     * @{ */
+     * \{ */
 
     /**
      * Find set of nearest neighbors to vec[0:dim-1]. Their indices are stored
@@ -1678,7 +1678,7 @@ class KDTreeSingleIndexAdaptor
         return resultSet.size();
     }
 
-    /** @} */
+    /** \} */
 
    public:
     /** Make sure the auxiliary list \a vind has the same size than the current
@@ -1923,9 +1923,9 @@ class KDTreeSingleIndexDynamicAdaptor_
      *  - The \a DIM template parameter if >0 (highest priority)
      *  - Otherwise, the \a dimensionality parameter of this constructor.
      *
-     * @param inputData Dataset with the input features. Its lifetime must be
+     * \param inputData Dataset with the input features. Its lifetime must be
      *  equal or longer than that of the instance of this class.
-     * @param params Basically, the maximum leaf node size
+     * \param params Basically, the maximum leaf node size
      */
     KDTreeSingleIndexDynamicAdaptor_(
         const Dimension dimensionality, const DatasetAdaptor& inputData,
@@ -2001,7 +2001,7 @@ class KDTreeSingleIndexDynamicAdaptor_
     }
 
     /** \name Query methods
-     * @{ */
+     * \{ */
 
     /**
      * Find set of nearest neighbors to vec[0:dim-1]. Their indices are stored
@@ -2116,7 +2116,7 @@ class KDTreeSingleIndexDynamicAdaptor_
         return resultSet.size();
     }
 
-    /** @} */
+    /** \} */
 
    public:
     void computeBoundingBox(BoundingBox& bbox)
@@ -2343,9 +2343,9 @@ class KDTreeSingleIndexDynamicAdaptor
      *  - The \a DIM template parameter if >0 (highest priority)
      *  - Otherwise, the \a dimensionality parameter of this constructor.
      *
-     * @param inputData Dataset with the input features. Its lifetime must be
+     * \param inputData Dataset with the input features. Its lifetime must be
      *  equal or longer than that of the instance of this class.
-     * @param params Basically, the maximum leaf node size
+     * \param params Basically, the maximum leaf node size
      */
     explicit KDTreeSingleIndexDynamicAdaptor(
         const int dimensionality, const DatasetAdaptor& inputData,
@@ -2542,8 +2542,8 @@ struct KDTreeEigenMatrixAdaptor
         index_->findNeighbors(resultSet, query_point);
     }
 
-    /** @name Interface expected by KDTreeSingleIndexAdaptor
-     * @{ */
+    /** \name Interface expected by KDTreeSingleIndexAdaptor
+     * \{ */
 
     const self_t& derived() const { return *this; }
     self_t&       derived() { return *this; }
@@ -2577,10 +2577,10 @@ struct KDTreeEigenMatrixAdaptor
         return false;
     }
 
-    /** @} */
+    /** \} */
 
 };  // end of KDTreeEigenMatrixAdaptor
-/** @} */
+/** \} */
 
-/** @} */  // end of grouping
+/** \} */  // end of grouping
 }  // namespace nanoflann

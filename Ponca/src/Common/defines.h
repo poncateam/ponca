@@ -74,7 +74,7 @@ namespace Ponca
      * hasNormal<MyPoint>::value will be true if MyPoint has a member function 'normal()'
      * \endcode
      *
-     * @tparam T The Point type
+     * \tparam T The Point type
      */
     template <typename T, typename = void>
     struct hasNormal : std::false_type {};
