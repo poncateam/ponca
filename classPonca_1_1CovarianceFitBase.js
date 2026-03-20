@@ -6,7 +6,7 @@ var classPonca_1_1CovarianceFitBase =
     [ "Scalar", "classPonca_1_1CovarianceFitBase.html#a8456e12892afc37f5cc305b50c162deb", null ],
     [ "Solver", "classPonca_1_1CovarianceFitBase.html#a18d259c240fb958ffcd9adf01d018072", null ],
     [ "VectorType", "classPonca_1_1CovarianceFitBase.html#ad5f653fa3aa28f61b9867818e3c44f70", null ],
-    [ "addLocalNeighbor", "classPonca_1_1CovarianceFitBase.html#ae672a3a84fe589ba0da5c5395f3bec35", null ],
+    [ "addLocalNeighbor", "classPonca_1_1CovarianceFitBase.html#a06c61ee8dd97bc5c4eece61edb99c33f", null ],
     [ "anisotropy", "classPonca_1_1CovarianceFitBase.html#affc551a012a6044ae3c31c9b5235f9a4", null ],
     [ "covarianceFit", "classPonca_1_1CovarianceFitBase.html#ac9ec77f96448eefa9033330c6ac057af", null ],
     [ "covarianceFit", "classPonca_1_1CovarianceFitBase.html#a409e0f665f29d655fbd131f0bc9bb6ab", null ],

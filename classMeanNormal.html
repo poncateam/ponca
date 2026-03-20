@@ -51,7 +51,7 @@ MathJax.Hub.Config({
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Ponca
-   &#160;<span id="projectnumber">19ef58fd3760f23a8af99a5eeac4f934757e30d9</span>
+   &#160;<span id="projectnumber">bab7704293a2c36e5bed9dea40def7ba839bfe08</span>
    </div>
    <div id="projectbrief">Point Cloud Analysis library</div>
   </td>
@@ -168,9 +168,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a2f614a85577b19b6f7096fe841aa3baa" id="r_a2f614a85577b19b6f7096fe841aa3baa"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeanNormal.html#a2f614a85577b19b6f7096fe841aa3baa">init</a> ()</td></tr>
 <tr class="memdesc:a2f614a85577b19b6f7096fe841aa3baa"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the evaluation position and reset the internal states.  <br /></td></tr>
 <tr class="separator:a2f614a85577b19b6f7096fe841aa3baa"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a45d3f6f14d57ed2fedd2a9bf4f01f4a6" id="r_a45d3f6f14d57ed2fedd2a9bf4f01f4a6"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeanNormal.html#a45d3f6f14d57ed2fedd2a9bf4f01f4a6">addLocalNeighbor</a> (<a class="el" href="classMeanNormal.html#ab123d87e6c0b4e8b8e257dbf036f9ba1">Scalar</a> w, const <a class="el" href="classMeanNormal.html#a7f5590f6eb97ee5f03d4b4fd7607f2b3">VectorType</a> &amp;localQ, const DataPoint &amp;attributes)</td></tr>
-<tr class="memdesc:a45d3f6f14d57ed2fedd2a9bf4f01f4a6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Add a neighbor to perform the fit.  <br /></td></tr>
-<tr class="separator:a45d3f6f14d57ed2fedd2a9bf4f01f4a6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a89edc6578b09a67645714ed92ab7aef4" id="r_a89edc6578b09a67645714ed92ab7aef4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeanNormal.html#a89edc6578b09a67645714ed92ab7aef4">addLocalNeighbor</a> (<a class="el" href="classMeanNormal.html#ab123d87e6c0b4e8b8e257dbf036f9ba1">Scalar</a> w, const <a class="el" href="classMeanNormal.html#a7f5590f6eb97ee5f03d4b4fd7607f2b3">VectorType</a> &amp;localQ, const DataPoint &amp;attributes)</td></tr>
+<tr class="memdesc:a89edc6578b09a67645714ed92ab7aef4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Add a neighbor to perform the fit.  <br /></td></tr>
+<tr class="separator:a89edc6578b09a67645714ed92ab7aef4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-types" name="pro-types"></a>
 Protected Types</h2></td></tr>
@@ -311,8 +311,8 @@ template&lt;class DataPoint , class _NFilter , typename T &gt; </div>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a id="a45d3f6f14d57ed2fedd2a9bf4f01f4a6" name="a45d3f6f14d57ed2fedd2a9bf4f01f4a6"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a45d3f6f14d57ed2fedd2a9bf4f01f4a6">&#9670;&#160;</a></span>addLocalNeighbor()</h2>
+<a id="a89edc6578b09a67645714ed92ab7aef4" name="a89edc6578b09a67645714ed92ab7aef4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a89edc6578b09a67645714ed92ab7aef4">&#9670;&#160;</a></span>addLocalNeighbor()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -323,7 +323,7 @@ template&lt;class DataPoint , class _NFilter , typename T &gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">bool <a class="el" href="classMeanNormal.html">MeanNormal</a>&lt; DataPoint, _NFilter, T &gt;::addLocalNeighbor </td>
+          <td class="memname">void <a class="el" href="classMeanNormal.html">MeanNormal</a>&lt; DataPoint, _NFilter, T &gt;::addLocalNeighbor </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="classMeanNormal.html#ab123d87e6c0b4e8b8e257dbf036f9ba1">Scalar</a>&#160;</td>
           <td class="paramname"><em>w</em>, </td>
@@ -354,9 +354,8 @@ template&lt;class DataPoint , class _NFilter , typename T &gt; </div>
 </div><div class="memdoc">
 
 <p>Add a neighbor to perform the fit. </p>
-<dl class="section return"><dt>Returns</dt><dd>false if param nei is not a valid neighbour (weight = 0) </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="mean_8hpp_source.html#l00037">37</a> of file <a class="el" href="mean_8hpp_source.html">mean.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="mean_8hpp_source.html#l00033">33</a> of file <a class="el" href="mean_8hpp_source.html">mean.hpp</a>.</p>
 
 </div>
 </div>
@@ -388,7 +387,7 @@ template&lt;class DataPoint , class _NFilter , typename T &gt; </div>
 <p>Set the evaluation position and reset the internal states. </p>
 <dl class="section warning"><dt>Warning</dt><dd>Must be called be for any computation (but * after #setNeighborFilter) </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="mean_8hpp_source.html#l00030">30</a> of file <a class="el" href="mean_8hpp_source.html">mean.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="mean_8hpp_source.html#l00026">26</a> of file <a class="el" href="mean_8hpp_source.html">mean.hpp</a>.</p>
 
 </div>
 </div>
@@ -489,7 +488,7 @@ template&lt;class DataPoint , class _NFilter , typename T &gt; </div>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="classMeanNormal.html">MeanNormal</a></li>
-    <li class="footer">Generated on Thu Mar 19 2026 17:42:38 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
+    <li class="footer">Generated on Fri Mar 20 2026 20:24:56 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
   </ul>
 </div>
 </body>

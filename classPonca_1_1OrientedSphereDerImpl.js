@@ -6,7 +6,7 @@ var classPonca_1_1OrientedSphereDerImpl =
     [ "ScalarArray", "classPonca_1_1OrientedSphereDerImpl.html#a7f0d8bafa2f2c48449808e6b7a335b04", null ],
     [ "VectorArray", "classPonca_1_1OrientedSphereDerImpl.html#afe2abea27223b7b4ee9472980ab79d02", null ],
     [ "VectorType", "classPonca_1_1OrientedSphereDerImpl.html#a4c45061508946793533d8c891f6ad93a", null ],
-    [ "addLocalNeighbor", "classPonca_1_1OrientedSphereDerImpl.html#a125c24f93eaa6d1caa5d37db66b6bb87", null ],
+    [ "addLocalNeighbor", "classPonca_1_1OrientedSphereDerImpl.html#af8a6026e4dafec046974787f5b0913d2", null ],
     [ "applyPrattNorm", "classPonca_1_1OrientedSphereDerImpl.html#ad00b0c092ddce7f2659254a2691b27ed", null ],
     [ "dNormal", "classPonca_1_1OrientedSphereDerImpl.html#a6e0aebeb829879ccdca56a41abac8227", null ],
     [ "dPotential", "classPonca_1_1OrientedSphereDerImpl.html#a918746aa984e03cd20aa8404352a4742", null ],

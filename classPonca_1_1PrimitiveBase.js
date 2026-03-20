@@ -3,7 +3,7 @@ var classPonca_1_1PrimitiveBase =
     [ "NeighborFilter", "classPonca_1_1PrimitiveBase.html#a4408e5c69fb23710c50f044342d963cb", null ],
     [ "Scalar", "classPonca_1_1PrimitiveBase.html#a09eafe984caf73686856e6df02efc7fe", null ],
     [ "VectorType", "classPonca_1_1PrimitiveBase.html#acf77501cde7696f165b94eb181f3d83e", null ],
-    [ "addLocalNeighbor", "classPonca_1_1PrimitiveBase.html#a155f747b954cf73b6d0198277baf6780", null ],
+    [ "addLocalNeighbor", "classPonca_1_1PrimitiveBase.html#ae724780cd32fc4e96bd209eab4db5b53", null ],
     [ "finalize", "classPonca_1_1PrimitiveBase.html#aaafa65d190f2777afbba6f456fa22b36", null ],
     [ "getCurrentState", "classPonca_1_1PrimitiveBase.html#af0e6053988ef7d7ec4a9b56a70d607ce", null ],
     [ "getNeighborFilter", "classPonca_1_1PrimitiveBase.html#acf1a246696337165d89b6109f01b7b2d", null ],

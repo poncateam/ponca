@@ -6,7 +6,7 @@ var classMeanNormalDer =
     [ "ScalarArray", "classMeanNormalDer.html#a0ab34e1c32ca05b0ad83e9b37860e99c", null ],
     [ "VectorArray", "classMeanNormalDer.html#a96443f369fcc606fe5f96a310ef40bb4", null ],
     [ "VectorType", "classMeanNormalDer.html#a992b7837236b3d1a04e4b7c0274f99e5", null ],
-    [ "addLocalNeighbor", "classMeanNormalDer.html#a68dede15d4483678ff68ba477a2bd7b0", null ],
+    [ "addLocalNeighbor", "classMeanNormalDer.html#a8ebb71bdef517b3c0f755ffa2d014683", null ],
     [ "init", "classMeanNormalDer.html#ad0d6abba75ce8bb587f282f855314a33", null ],
     [ "meanNormalDer", "classMeanNormalDer.html#a21faf9be1a4ea7914db23d79451d941d", null ],
     [ "meanNormalDer", "classMeanNormalDer.html#a9378451f9495a60275f00626459f075e", null ],

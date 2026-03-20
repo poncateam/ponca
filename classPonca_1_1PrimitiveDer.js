@@ -7,7 +7,7 @@ var classPonca_1_1PrimitiveDer =
     [ "ScalarArray", "classPonca_1_1PrimitiveDer.html#a55c06768e13458ec202676bfe3f01191", null ],
     [ "VectorArray", "classPonca_1_1PrimitiveDer.html#ad8fb2b8f3607d82573dc0d6bed8706d1", null ],
     [ "VectorType", "classPonca_1_1PrimitiveDer.html#a9e338275826169e6942318e1bcb11fad", null ],
-    [ "addLocalNeighbor", "classPonca_1_1PrimitiveDer.html#a8cb27cfff32859fed2eb5532a587e69f", null ],
+    [ "addLocalNeighbor", "classPonca_1_1PrimitiveDer.html#ad6983a57032ada9cd77d29c7e5677f60", null ],
     [ "init", "classPonca_1_1PrimitiveDer.html#a24eab0c20628f3f3a2a94e99deea5e33", null ],
     [ "m_dSumW", "classPonca_1_1PrimitiveDer.html#a5931e98c930b6e416e266ec4f3e2b03f", null ]
 ];

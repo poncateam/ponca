@@ -4,7 +4,7 @@ var classPonca_1_1UnorientedSphereFitImpl =
     [ "NeighborFilter", "classPonca_1_1UnorientedSphereFitImpl.html#a36ee49b0dc6a829720f57c2d7962b3d2", null ],
     [ "Scalar", "classPonca_1_1UnorientedSphereFitImpl.html#af3e489fac1d117bd67c2cd35eb91c8e7", null ],
     [ "VectorType", "classPonca_1_1UnorientedSphereFitImpl.html#ab05722ec5161bf92b7383fdd547961f3", null ],
-    [ "addLocalNeighbor", "classPonca_1_1UnorientedSphereFitImpl.html#a66ec94b445cfa8639c427b6098365752", null ],
+    [ "addLocalNeighbor", "classPonca_1_1UnorientedSphereFitImpl.html#af93a1ea519fdeaa5213456da8f9133f4", null ],
     [ "finalize", "classPonca_1_1UnorientedSphereFitImpl.html#a6a34bc2a9cf1b9011943a6e5e2c9ee35", null ],
     [ "init", "classPonca_1_1UnorientedSphereFitImpl.html#a52f80d2cf364529b221efcc2c3586576", null ],
     [ "isSigned", "classPonca_1_1UnorientedSphereFitImpl.html#af387d3d4e1a4de3767bb5d4775a513c8", null ],

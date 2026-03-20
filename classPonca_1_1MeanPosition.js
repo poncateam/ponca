@@ -4,7 +4,7 @@ var classPonca_1_1MeanPosition =
     [ "NeighborFilter", "classPonca_1_1MeanPosition.html#a79c0f7053a12c4d480bb665c76af5e73", null ],
     [ "Scalar", "classPonca_1_1MeanPosition.html#a4e687e6fa28d995afe731429f861de50", null ],
     [ "VectorType", "classPonca_1_1MeanPosition.html#adda9c61c02f1ca09eaaeaa0ffc96c0f8", null ],
-    [ "addLocalNeighbor", "classPonca_1_1MeanPosition.html#a408415520337d643d9403e3622b33f19", null ],
+    [ "addLocalNeighbor", "classPonca_1_1MeanPosition.html#a29cb7679cbbec41adf075c9cd34a6f9d", null ],
     [ "init", "classPonca_1_1MeanPosition.html#af899fb0713e2630a11d7ef710a649754", null ],
     [ "meanPosition", "classPonca_1_1MeanPosition.html#a983cedf90008fc2a1ec301dc9a8becf2", null ],
     [ "meanPosition", "classPonca_1_1MeanPosition.html#a23457f0601cda9b05972d3ac64d9a38f", null ],

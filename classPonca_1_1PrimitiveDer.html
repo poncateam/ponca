@@ -51,7 +51,7 @@ MathJax.Hub.Config({
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Ponca
-   &#160;<span id="projectnumber">19ef58fd3760f23a8af99a5eeac4f934757e30d9</span>
+   &#160;<span id="projectnumber">bab7704293a2c36e5bed9dea40def7ba839bfe08</span>
    </div>
    <div id="projectbrief">Point Cloud Analysis library</div>
   </td>
@@ -172,8 +172,8 @@ Public Types</h2></td></tr>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a24eab0c20628f3f3a2a94e99deea5e33" id="r_a24eab0c20628f3f3a2a94e99deea5e33"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1PrimitiveDer.html#a24eab0c20628f3f3a2a94e99deea5e33">init</a> ()</td></tr>
 <tr class="separator:a24eab0c20628f3f3a2a94e99deea5e33"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8cb27cfff32859fed2eb5532a587e69f" id="r_a8cb27cfff32859fed2eb5532a587e69f"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1PrimitiveDer.html#a8cb27cfff32859fed2eb5532a587e69f">addLocalNeighbor</a> (<a class="el" href="classPonca_1_1PrimitiveDer.html#a8ffe3f9db12201dfeea1d37a4facb166">Scalar</a> w, const <a class="el" href="classPonca_1_1PrimitiveDer.html#a9e338275826169e6942318e1bcb11fad">VectorType</a> &amp;localQ, const DataPoint &amp;attributes, <a class="el" href="classPonca_1_1PrimitiveDer.html#a55c06768e13458ec202676bfe3f01191">ScalarArray</a> &amp;dw)</td></tr>
-<tr class="separator:a8cb27cfff32859fed2eb5532a587e69f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad6983a57032ada9cd77d29c7e5677f60" id="r_ad6983a57032ada9cd77d29c7e5677f60"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1PrimitiveDer.html#ad6983a57032ada9cd77d29c7e5677f60">addLocalNeighbor</a> (<a class="el" href="classPonca_1_1PrimitiveDer.html#a8ffe3f9db12201dfeea1d37a4facb166">Scalar</a> w, const <a class="el" href="classPonca_1_1PrimitiveDer.html#a9e338275826169e6942318e1bcb11fad">VectorType</a> &amp;localQ, const DataPoint &amp;attributes, <a class="el" href="classPonca_1_1PrimitiveDer.html#a55c06768e13458ec202676bfe3f01191">ScalarArray</a> &amp;dw)</td></tr>
+<tr class="separator:ad6983a57032ada9cd77d29c7e5677f60"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
@@ -217,7 +217,7 @@ class Ponca::PrimitiveDer&lt; DataPoint, _NFilter, Type, T &gt;</div><p>Generic 
 <p>The differentiated values are stored in static arrays. The size of the arrays is computed with respect to the derivation type (scale and/or space) and the number of the dimension of the ambiant space. By convention, the scale derivatives are stored at index 0 when Type contains at least FitScaleDer. The size of these arrays can be known using <a class="el" href="classPonca_1_1PrimitiveDer.html#aa9a3f3d4d4202ca57ab633344ce21f6b" title="Number of dimensions used for the differentiation.">derDimension()</a>, and the differentiation type by <a class="el" href="classPonca_1_1PrimitiveDer.html#a0f7c460c8dbbf216abdc48593c01822a" title="State specified at compilation time to compute derivatives in scale.">isScaleDer()</a> and <a class="el" href="classPonca_1_1PrimitiveDer.html#a5ff2f5acdb8e8a993743897a42bdf2e3" title="State specified at compilation time to compute derivatives in space.">isSpaceDer()</a>.</p>
 <p>Thanks to the <a class="el" href="classPonca_1_1BasketDiff.html" title="Aggregator class used to declare specialized structures with derivatives computations,...">BasketDiff</a> definition, we know that <a class="el" href="classPonca_1_1PrimitiveDer.html" title="Generic class performing the Fit derivation.">PrimitiveDer</a> has Primitive as base class (through the <a class="el" href="classPonca_1_1Basket.html" title="Aggregator class used to declare specialized structures using CRTP.">Basket</a>). As a result, this class first asks to compute the Fit, and if it works properly, compute the weight derivatives. </p>
 
-<p class="definition">Definition at line <a class="el" href="primitive_8h_source.html#l00147">147</a> of file <a class="el" href="primitive_8h_source.html">primitive.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="primitive_8h_source.html#l00146">146</a> of file <a class="el" href="primitive_8h_source.html">primitive.h</a>.</p>
 </div><h2 class="groupheader">Member Typedef Documentation</h2>
 <a id="aa535b02e28e7cc88d44295cd13cb7425" name="aa535b02e28e7cc88d44295cd13cb7425"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#aa535b02e28e7cc88d44295cd13cb7425">&#9670;&#160;</a></span>Base</h2>
@@ -243,7 +243,7 @@ template&lt;class DataPoint , class _NFilter , int Type, typename T &gt; </div>
 
 <p>Base class of the procedure. </p>
 
-<p class="definition">Definition at line <a class="el" href="primitive_8h_source.html#l00149">149</a> of file <a class="el" href="primitive_8h_source.html">primitive.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="primitive_8h_source.html#l00148">148</a> of file <a class="el" href="primitive_8h_source.html">primitive.h</a>.</p>
 
 </div>
 </div>
@@ -263,7 +263,7 @@ template&lt;class DataPoint , class _NFilter , int Type, typename T &gt; </div>
 
 <p>Alias to matrix type. </p>
 
-<p class="definition">Definition at line <a class="el" href="primitive_8h_source.html#l00150">150</a> of file <a class="el" href="primitive_8h_source.html">primitive.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="primitive_8h_source.html#l00149">149</a> of file <a class="el" href="primitive_8h_source.html">primitive.h</a>.</p>
 
 </div>
 </div>
@@ -283,7 +283,7 @@ template&lt;class DataPoint , class _NFilter , int Type, typename T &gt; </div>
 
 <p>Alias to the filter applied on the neighbors. </p>
 
-<p class="definition">Definition at line <a class="el" href="primitive_8h_source.html#l00149">149</a> of file <a class="el" href="primitive_8h_source.html">primitive.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="primitive_8h_source.html#l00148">148</a> of file <a class="el" href="primitive_8h_source.html">primitive.h</a>.</p>
 
 </div>
 </div>
@@ -303,7 +303,7 @@ template&lt;class DataPoint , class _NFilter , int Type, typename T &gt; </div>
 
 <p>Alias to scalar type. </p>
 
-<p class="definition">Definition at line <a class="el" href="primitive_8h_source.html#l00149">149</a> of file <a class="el" href="primitive_8h_source.html">primitive.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="primitive_8h_source.html#l00148">148</a> of file <a class="el" href="primitive_8h_source.html">primitive.h</a>.</p>
 
 </div>
 </div>
@@ -323,7 +323,7 @@ template&lt;class DataPoint , class _NFilter , int Type, typename T &gt; </div>
 
 <p>Static array of scalars with a size adapted to the differentiation type. </p>
 
-<p class="definition">Definition at line <a class="el" href="primitive_8h_source.html#l00168">168</a> of file <a class="el" href="primitive_8h_source.html">primitive.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="primitive_8h_source.html#l00167">167</a> of file <a class="el" href="primitive_8h_source.html">primitive.h</a>.</p>
 
 </div>
 </div>
@@ -343,7 +343,7 @@ template&lt;class DataPoint , class _NFilter , int Type, typename T &gt; </div>
 
 <p>Static array of scalars with a size adapted to the differentiation type. </p>
 
-<p class="definition">Definition at line <a class="el" href="primitive_8h_source.html#l00165">165</a> of file <a class="el" href="primitive_8h_source.html">primitive.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="primitive_8h_source.html#l00164">164</a> of file <a class="el" href="primitive_8h_source.html">primitive.h</a>.</p>
 
 </div>
 </div>
@@ -363,7 +363,7 @@ template&lt;class DataPoint , class _NFilter , int Type, typename T &gt; </div>
 
 <p>Alias to vector type. </p>
 
-<p class="definition">Definition at line <a class="el" href="primitive_8h_source.html#l00149">149</a> of file <a class="el" href="primitive_8h_source.html">primitive.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="primitive_8h_source.html#l00148">148</a> of file <a class="el" href="primitive_8h_source.html">primitive.h</a>.</p>
 
 </div>
 </div>
@@ -394,13 +394,13 @@ template&lt;class DataPoint , class _NFilter , int Type, typename T &gt; </div>
 </td></tr>
 </table>
 
-<p class="definition">Definition at line <a class="el" href="primitive_8h_source.html#l00152">152</a> of file <a class="el" href="primitive_8h_source.html">primitive.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="primitive_8h_source.html#l00151">151</a> of file <a class="el" href="primitive_8h_source.html">primitive.h</a>.</p>
 
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a id="a8cb27cfff32859fed2eb5532a587e69f" name="a8cb27cfff32859fed2eb5532a587e69f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a8cb27cfff32859fed2eb5532a587e69f">&#9670;&#160;</a></span>addLocalNeighbor()</h2>
+<a id="ad6983a57032ada9cd77d29c7e5677f60" name="ad6983a57032ada9cd77d29c7e5677f60"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad6983a57032ada9cd77d29c7e5677f60">&#9670;&#160;</a></span>addLocalNeighbor()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -411,7 +411,7 @@ template&lt;class DataPoint , class _NFilter , int Type, typename T &gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">bool <a class="el" href="classPonca_1_1PrimitiveDer.html">Ponca::PrimitiveDer</a>&lt; DataPoint, _NFilter, Type, T &gt;::addLocalNeighbor </td>
+          <td class="memname">void <a class="el" href="classPonca_1_1PrimitiveDer.html">Ponca::PrimitiveDer</a>&lt; DataPoint, _NFilter, Type, T &gt;::addLocalNeighbor </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="classPonca_1_1PrimitiveDer.html#a8ffe3f9db12201dfeea1d37a4facb166">Scalar</a>&#160;</td>
           <td class="paramname"><em>w</em>, </td>
@@ -448,7 +448,7 @@ template&lt;class DataPoint , class _NFilter , int Type, typename T &gt; </div>
 </div><div class="memdoc">
 <dl class="section see"><dt>See also</dt><dd>Concept::FittingProcedureConcept::addLocalNeighbor() </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="primitive_8h_source.html#l00190">190</a> of file <a class="el" href="primitive_8h_source.html">primitive.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="primitive_8h_source.html#l00189">189</a> of file <a class="el" href="primitive_8h_source.html">primitive.h</a>.</p>
 
 </div>
 </div>
@@ -479,7 +479,7 @@ template&lt;class DataPoint , class _NFilter , int Type, typename T &gt; </div>
 
 <p>Number of dimensions used for the differentiation. </p>
 
-<p class="definition">Definition at line <a class="el" href="primitive_8h_source.html#l00218">218</a> of file <a class="el" href="primitive_8h_source.html">primitive.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="primitive_8h_source.html#l00214">214</a> of file <a class="el" href="primitive_8h_source.html">primitive.h</a>.</p>
 
 </div>
 </div>
@@ -509,7 +509,7 @@ template&lt;class DataPoint , class _NFilter , int Type, typename T &gt; </div>
 </div><div class="memdoc">
 <dl class="section see"><dt>See also</dt><dd>Concept::FittingProcedureConcept::init() </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="primitive_8h_source.html#l00179">179</a> of file <a class="el" href="primitive_8h_source.html">primitive.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="primitive_8h_source.html#l00178">178</a> of file <a class="el" href="primitive_8h_source.html">primitive.h</a>.</p>
 
 </div>
 </div>
@@ -540,7 +540,7 @@ template&lt;class DataPoint , class _NFilter , int Type, typename T &gt; </div>
 
 <p>State specified at compilation time to compute derivatives in scale. </p>
 
-<p class="definition">Definition at line <a class="el" href="primitive_8h_source.html#l00214">214</a> of file <a class="el" href="primitive_8h_source.html">primitive.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="primitive_8h_source.html#l00210">210</a> of file <a class="el" href="primitive_8h_source.html">primitive.h</a>.</p>
 
 </div>
 </div>
@@ -571,7 +571,7 @@ template&lt;class DataPoint , class _NFilter , int Type, typename T &gt; </div>
 
 <p>State specified at compilation time to compute derivatives in space. </p>
 
-<p class="definition">Definition at line <a class="el" href="primitive_8h_source.html#l00216">216</a> of file <a class="el" href="primitive_8h_source.html">primitive.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="primitive_8h_source.html#l00212">212</a> of file <a class="el" href="primitive_8h_source.html">primitive.h</a>.</p>
 
 </div>
 </div>
@@ -598,7 +598,7 @@ template&lt;class DataPoint , class _NFilter , int Type, typename T &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="primitive_8h_source.html#l00161">161</a> of file <a class="el" href="primitive_8h_source.html">primitive.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="primitive_8h_source.html#l00160">160</a> of file <a class="el" href="primitive_8h_source.html">primitive.h</a>.</p>
 
 </div>
 </div>
@@ -626,7 +626,7 @@ template&lt;class DataPoint , class _NFilter , int Type, typename T &gt; </div>
 
 <p>Sum of weight derivatives. </p>
 
-<p class="definition">Definition at line <a class="el" href="primitive_8h_source.html#l00172">172</a> of file <a class="el" href="primitive_8h_source.html">primitive.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="primitive_8h_source.html#l00171">171</a> of file <a class="el" href="primitive_8h_source.html">primitive.h</a>.</p>
 
 </div>
 </div>
@@ -656,7 +656,7 @@ template&lt;class DataPoint , class _NFilter , int Type, typename T &gt; </div>
 <div class="ttc" id="anamespacePonca_html_a7beaddc698523e7f9c041ea8bc4c535aa531be147d843adfef25ce7fd7d5032ff"><div class="ttname"><a href="namespacePonca.html#a7beaddc698523e7f9c041ea8bc4c535aa531be147d843adfef25ce7fd7d5032ff">Ponca::FitSpaceDer</a></div><div class="ttdeci">@ FitSpaceDer</div><div class="ttdoc">Flag indicating a space differentiation.</div><div class="ttdef"><b>Definition</b> <a href="enums_8h_source.html#l00036">enums.h:36</a></div></div>
 <div class="ttc" id="anamespacePonca_html_a7beaddc698523e7f9c041ea8bc4c535aad5783c67f35bea36742f02b599df3190"><div class="ttname"><a href="namespacePonca.html#a7beaddc698523e7f9c041ea8bc4c535aad5783c67f35bea36742f02b599df3190">Ponca::FitScaleDer</a></div><div class="ttdeci">@ FitScaleDer</div><div class="ttdoc">Flag indicating a scale differentiation.</div><div class="ttdef"><b>Definition</b> <a href="enums_8h_source.html#l00035">enums.h:35</a></div></div>
 </div><!-- fragment -->
-<p class="definition">Definition at line <a class="el" href="primitive_8h_source.html#l00159">159</a> of file <a class="el" href="primitive_8h_source.html">primitive.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="primitive_8h_source.html#l00158">158</a> of file <a class="el" href="primitive_8h_source.html">primitive.h</a>.</p>
 
 </div>
 </div>
@@ -666,7 +666,7 @@ template&lt;class DataPoint , class _NFilter , int Type, typename T &gt; </div>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="namespacePonca.html">Ponca</a></li><li class="navelem"><a class="el" href="classPonca_1_1PrimitiveDer.html">PrimitiveDer</a></li>
-    <li class="footer">Generated on Thu Mar 19 2026 17:42:38 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
+    <li class="footer">Generated on Fri Mar 20 2026 20:24:57 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
   </ul>
 </div>
 </body>

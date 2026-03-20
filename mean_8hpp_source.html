@@ -51,7 +51,7 @@ MathJax.Hub.Config({
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Ponca
-   &#160;<span id="projectnumber">19ef58fd3760f23a8af99a5eeac4f934757e30d9</span>
+   &#160;<span id="projectnumber">bab7704293a2c36e5bed9dea40def7ba839bfe08</span>
    </div>
    <div id="projectbrief">Point Cloud Analysis library</div>
   </td>
@@ -144,101 +144,83 @@ $(document).ready(function(){initNavTree('mean_8hpp_source.html',''); initResiza
 <div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span> </div>
 <div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="keyword">template</span> &lt;<span class="keyword">class</span> DataPo<span class="keywordtype">int</span>, <span class="keyword">class</span> _NFilter, <span class="keyword">typename</span> T&gt;</div>
 <div class="foldopen" id="foldopen00018" data-start="{" data-end="}">
-<div class="line"><a id="l00018" name="l00018"></a><span class="lineno"><a class="line" href="classPonca_1_1MeanPosition.html#a408415520337d643d9403e3622b33f19">   18</a></span><span class="keywordtype">bool</span> <a class="code hl_class" href="classPonca_1_1MeanPosition.html">MeanPosition&lt;DataPoint, _NFilter, T&gt;::addLocalNeighbor</a>(<a class="code hl_typedef" href="classPonca_1_1MeanPosition.html#a4e687e6fa28d995afe731429f861de50">Scalar</a> w, <span class="keyword">const</span> <a class="code hl_typedef" href="classPonca_1_1MeanPosition.html#adda9c61c02f1ca09eaaeaa0ffc96c0f8">VectorType</a>&amp; localQ,</div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno"><a class="line" href="classPonca_1_1MeanPosition.html#a29cb7679cbbec41adf075c9cd34a6f9d">   18</a></span><span class="keywordtype">void</span> <a class="code hl_class" href="classPonca_1_1MeanPosition.html">MeanPosition&lt;DataPoint, _NFilter, T&gt;::addLocalNeighbor</a>(<a class="code hl_typedef" href="classPonca_1_1MeanPosition.html#a4e687e6fa28d995afe731429f861de50">Scalar</a> w, <span class="keyword">const</span> <a class="code hl_typedef" href="classPonca_1_1MeanPosition.html#adda9c61c02f1ca09eaaeaa0ffc96c0f8">VectorType</a>&amp; localQ,</div>
 <div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>                                                            <span class="keyword">const</span> DataPoint&amp; attributes)</div>
 <div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>{</div>
-<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>    <span class="keywordflow">if</span> (Base::addLocalNeighbor(w, localQ, attributes))</div>
-<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>    {</div>
-<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>        m_sumP += w * localQ;</div>
-<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>        <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
-<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>    }</div>
-<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>    <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
-<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>}</div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>    Base::addLocalNeighbor(w, localQ, attributes);</div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>    m_sumP += w * localQ;</div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>}</div>
 </div>
-<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span> </div>
-<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span><span class="keyword">template</span> &lt;<span class="keyword">class</span> DataPo<span class="keywordtype">int</span>, <span class="keyword">class</span> _NFilter, <span class="keyword">typename</span> T&gt;</div>
-<div class="foldopen" id="foldopen00030" data-start="{" data-end="}">
-<div class="line"><a id="l00030" name="l00030"></a><span class="lineno"><a class="line" href="classMeanNormal.html#a2f614a85577b19b6f7096fe841aa3baa">   30</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="classMeanNormal.html#a2f614a85577b19b6f7096fe841aa3baa">MeanNormal&lt;DataPoint, _NFilter, T&gt;::init</a>()</div>
-<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>{</div>
-<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>    Base::init();</div>
-<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>    m_sumN = VectorType::Zero();</div>
-<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>}</div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span> </div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span><span class="keyword">template</span> &lt;<span class="keyword">class</span> DataPo<span class="keywordtype">int</span>, <span class="keyword">class</span> _NFilter, <span class="keyword">typename</span> T&gt;</div>
+<div class="foldopen" id="foldopen00026" data-start="{" data-end="}">
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno"><a class="line" href="classMeanNormal.html#a2f614a85577b19b6f7096fe841aa3baa">   26</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="classMeanNormal.html#a2f614a85577b19b6f7096fe841aa3baa">MeanNormal&lt;DataPoint, _NFilter, T&gt;::init</a>()</div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>{</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>    Base::init();</div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>    m_sumN = VectorType::Zero();</div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>}</div>
 </div>
-<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span> </div>
-<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span><span class="keyword">template</span> &lt;<span class="keyword">class</span> DataPo<span class="keywordtype">int</span>, <span class="keyword">class</span> _NFilter, <span class="keyword">typename</span> T&gt;</div>
-<div class="foldopen" id="foldopen00037" data-start="{" data-end="}">
-<div class="line"><a id="l00037" name="l00037"></a><span class="lineno"><a class="line" href="classMeanNormal.html#a45d3f6f14d57ed2fedd2a9bf4f01f4a6">   37</a></span><span class="keywordtype">bool</span> <a class="code hl_function" href="classMeanNormal.html#a45d3f6f14d57ed2fedd2a9bf4f01f4a6">MeanNormal&lt;DataPoint, _NFilter, T&gt;::addLocalNeighbor</a>(<a class="code hl_typedef" href="classMeanNormal.html#ab123d87e6c0b4e8b8e257dbf036f9ba1">Scalar</a> w, <span class="keyword">const</span> <a class="code hl_typedef" href="classMeanNormal.html#a7f5590f6eb97ee5f03d4b4fd7607f2b3">VectorType</a>&amp; localQ,</div>
-<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>                                                          <span class="keyword">const</span> DataPoint&amp; attributes)</div>
-<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>{</div>
-<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>    <span class="keywordflow">if</span> (Base::addLocalNeighbor(w, localQ, attributes))</div>
-<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>    {</div>
-<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>        m_sumN += w * attributes.normal();</div>
-<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>        <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
-<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>    }</div>
-<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>    <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
-<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>}</div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span> </div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span><span class="keyword">template</span> &lt;<span class="keyword">class</span> DataPo<span class="keywordtype">int</span>, <span class="keyword">class</span> _NFilter, <span class="keyword">typename</span> T&gt;</div>
+<div class="foldopen" id="foldopen00033" data-start="{" data-end="}">
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno"><a class="line" href="classMeanNormal.html#a89edc6578b09a67645714ed92ab7aef4">   33</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="classMeanNormal.html#a89edc6578b09a67645714ed92ab7aef4">MeanNormal&lt;DataPoint, _NFilter, T&gt;::addLocalNeighbor</a>(<a class="code hl_typedef" href="classMeanNormal.html#ab123d87e6c0b4e8b8e257dbf036f9ba1">Scalar</a> w, <span class="keyword">const</span> <a class="code hl_typedef" href="classMeanNormal.html#a7f5590f6eb97ee5f03d4b4fd7607f2b3">VectorType</a>&amp; localQ,</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>                                                          <span class="keyword">const</span> DataPoint&amp; attributes)</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>{</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>    Base::addLocalNeighbor(w, localQ, attributes);</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>    m_sumN += w * attributes.normal();</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>}</div>
 </div>
-<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span> </div>
-<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span><span class="keyword">template</span> &lt;<span class="keyword">class</span> DataPo<span class="keywordtype">int</span>, <span class="keyword">class</span> _NFilter, <span class="keywordtype">int</span> DiffType, <span class="keyword">typename</span> T&gt;</div>
-<div class="foldopen" id="foldopen00049" data-start="{" data-end="}">
-<div class="line"><a id="l00049" name="l00049"></a><span class="lineno"><a class="line" href="classMeanPositionDer.html#a262224eee16296556f43a192381c3ee8">   49</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="classMeanPositionDer.html#a262224eee16296556f43a192381c3ee8">MeanPositionDer&lt;DataPoint, _NFilter, DiffType, T&gt;::init</a>()</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span> </div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span><span class="keyword">template</span> &lt;<span class="keyword">class</span> DataPo<span class="keywordtype">int</span>, <span class="keyword">class</span> _NFilter, <span class="keywordtype">int</span> DiffType, <span class="keyword">typename</span> T&gt;</div>
+<div class="foldopen" id="foldopen00041" data-start="{" data-end="}">
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno"><a class="line" href="classMeanPositionDer.html#a262224eee16296556f43a192381c3ee8">   41</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="classMeanPositionDer.html#a262224eee16296556f43a192381c3ee8">MeanPositionDer&lt;DataPoint, _NFilter, DiffType, T&gt;::init</a>()</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>{</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>    Base::init();</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>    m_dSumP.setZero();</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>}</div>
+</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span> </div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span><span class="keyword">template</span> &lt;<span class="keyword">class</span> DataPo<span class="keywordtype">int</span>, <span class="keyword">class</span> _NFilter, <span class="keywordtype">int</span> DiffType, <span class="keyword">typename</span> T&gt;</div>
+<div class="foldopen" id="foldopen00048" data-start="{" data-end="}">
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno"><a class="line" href="classMeanPositionDer.html#a2a6558018f0cc38baba3f8ca7959d006">   48</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="classMeanPositionDer.html#a2a6558018f0cc38baba3f8ca7959d006">MeanPositionDer&lt;DataPoint, _NFilter, DiffType, T&gt;::addLocalNeighbor</a>(<a class="code hl_typedef" href="classMeanPositionDer.html#a771acee7765ddabc9be70ee6df3e61ce">Scalar</a> w, <span class="keyword">const</span> <a class="code hl_typedef" href="classMeanPositionDer.html#a18e7c3a2f86ed87807401aa31eaf8795">VectorType</a>&amp; localQ,</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>                                                                         <span class="keyword">const</span> DataPoint&amp; attributes, <a class="code hl_typedef" href="classMeanPositionDer.html#aec06423fb08bcd03aadea3cc19fadf5f">ScalarArray</a>&amp; dw)</div>
 <div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>{</div>
-<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>    Base::init();</div>
-<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>    m_dSumP.setZero();</div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>    Base::addLocalNeighbor(w, localQ, attributes, dw);</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>    m_dSumP += localQ * dw;</div>
 <div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>}</div>
 </div>
 <div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span> </div>
 <div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span><span class="keyword">template</span> &lt;<span class="keyword">class</span> DataPo<span class="keywordtype">int</span>, <span class="keyword">class</span> _NFilter, <span class="keywordtype">int</span> DiffType, <span class="keyword">typename</span> T&gt;</div>
 <div class="foldopen" id="foldopen00056" data-start="{" data-end="}">
-<div class="line"><a id="l00056" name="l00056"></a><span class="lineno"><a class="line" href="classMeanPositionDer.html#aafa552dd4544a2f7a4d9af99e3d875b3">   56</a></span><span class="keywordtype">bool</span> <a class="code hl_function" href="classMeanPositionDer.html#aafa552dd4544a2f7a4d9af99e3d875b3">MeanPositionDer&lt;DataPoint, _NFilter, DiffType, T&gt;::addLocalNeighbor</a>(<a class="code hl_typedef" href="classMeanPositionDer.html#a771acee7765ddabc9be70ee6df3e61ce">Scalar</a> w, <span class="keyword">const</span> <a class="code hl_typedef" href="classMeanPositionDer.html#a18e7c3a2f86ed87807401aa31eaf8795">VectorType</a>&amp; localQ,</div>
-<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>                                                                         <span class="keyword">const</span> DataPoint&amp; attributes, <a class="code hl_typedef" href="classMeanPositionDer.html#aec06423fb08bcd03aadea3cc19fadf5f">ScalarArray</a>&amp; dw)</div>
-<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>{</div>
-<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>    <span class="keywordflow">if</span> (Base::addLocalNeighbor(w, localQ, attributes, dw))</div>
-<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>    {</div>
-<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>        m_dSumP += localQ * dw;</div>
-<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>        <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
-<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>    }</div>
-<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span> </div>
-<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>    <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
-<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>}</div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno"><a class="line" href="classMeanNormalDer.html#ad0d6abba75ce8bb587f282f855314a33">   56</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="classMeanNormalDer.html#ad0d6abba75ce8bb587f282f855314a33">MeanNormalDer&lt;DataPoint, _NFilter, DiffType, T&gt;::init</a>()</div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>{</div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>    Base::init();</div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>    m_dSumN.setZero();</div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>}</div>
 </div>
-<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span> </div>
-<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span><span class="keyword">template</span> &lt;<span class="keyword">class</span> DataPo<span class="keywordtype">int</span>, <span class="keyword">class</span> _NFilter, <span class="keywordtype">int</span> DiffType, <span class="keyword">typename</span> T&gt;</div>
-<div class="foldopen" id="foldopen00069" data-start="{" data-end="}">
-<div class="line"><a id="l00069" name="l00069"></a><span class="lineno"><a class="line" href="classMeanNormalDer.html#ad0d6abba75ce8bb587f282f855314a33">   69</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="classMeanNormalDer.html#ad0d6abba75ce8bb587f282f855314a33">MeanNormalDer&lt;DataPoint, _NFilter, DiffType, T&gt;::init</a>()</div>
-<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>{</div>
-<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>    Base::init();</div>
-<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>    m_dSumN.setZero();</div>
-<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>}</div>
-</div>
-<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span> </div>
-<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span><span class="keyword">template</span> &lt;<span class="keyword">class</span> DataPo<span class="keywordtype">int</span>, <span class="keyword">class</span> _NFilter, <span class="keywordtype">int</span> DiffType, <span class="keyword">typename</span> T&gt;</div>
-<div class="foldopen" id="foldopen00076" data-start="{" data-end="}">
-<div class="line"><a id="l00076" name="l00076"></a><span class="lineno"><a class="line" href="classMeanNormalDer.html#a68dede15d4483678ff68ba477a2bd7b0">   76</a></span><span class="keywordtype">bool</span> <a class="code hl_function" href="classMeanNormalDer.html#a68dede15d4483678ff68ba477a2bd7b0">MeanNormalDer&lt;DataPoint, _NFilter, DiffType, T&gt;::addLocalNeighbor</a>(<a class="code hl_typedef" href="classMeanNormalDer.html#ab3f6efa769cec3d53d0372685556ac33">Scalar</a> w, <span class="keyword">const</span> <a class="code hl_typedef" href="classMeanNormalDer.html#a992b7837236b3d1a04e4b7c0274f99e5">VectorType</a>&amp; localQ,</div>
-<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>                                                                       <span class="keyword">const</span> DataPoint&amp; attributes, <a class="code hl_typedef" href="classMeanNormalDer.html#a0ab34e1c32ca05b0ad83e9b37860e99c">ScalarArray</a>&amp; dw)</div>
-<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>{</div>
-<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>    <span class="keywordflow">if</span> (Base::addLocalNeighbor(w, localQ, attributes, dw))</div>
-<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>    {</div>
-<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>        m_dSumN += attributes.normal() * dw;</div>
-<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>        <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
-<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>    }</div>
-<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span> </div>
-<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>    <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
-<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>}</div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span> </div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span><span class="keyword">template</span> &lt;<span class="keyword">class</span> DataPo<span class="keywordtype">int</span>, <span class="keyword">class</span> _NFilter, <span class="keywordtype">int</span> DiffType, <span class="keyword">typename</span> T&gt;</div>
+<div class="foldopen" id="foldopen00063" data-start="{" data-end="}">
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno"><a class="line" href="classMeanNormalDer.html#a8ebb71bdef517b3c0f755ffa2d014683">   63</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="classMeanNormalDer.html#a8ebb71bdef517b3c0f755ffa2d014683">MeanNormalDer&lt;DataPoint, _NFilter, DiffType, T&gt;::addLocalNeighbor</a>(<a class="code hl_typedef" href="classMeanNormalDer.html#ab3f6efa769cec3d53d0372685556ac33">Scalar</a> w, <span class="keyword">const</span> <a class="code hl_typedef" href="classMeanNormalDer.html#a992b7837236b3d1a04e4b7c0274f99e5">VectorType</a>&amp; localQ,</div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>                                                                       <span class="keyword">const</span> DataPoint&amp; attributes, <a class="code hl_typedef" href="classMeanNormalDer.html#a0ab34e1c32ca05b0ad83e9b37860e99c">ScalarArray</a>&amp; dw)</div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>{</div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>    Base::addLocalNeighbor(w, localQ, attributes, dw);</div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>    m_dSumN += attributes.normal() * dw;</div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>}</div>
 </div>
 <div class="ttc" id="aclassMeanNormalDer_html_a0ab34e1c32ca05b0ad83e9b37860e99c"><div class="ttname"><a href="classMeanNormalDer.html#a0ab34e1c32ca05b0ad83e9b37860e99c">MeanNormalDer::ScalarArray</a></div><div class="ttdeci">typename Base::ScalarArray ScalarArray</div><div class="ttdoc">Alias to scalar derivatives array.</div><div class="ttdef"><b>Definition</b> <a href="mean_8h_source.html#l00195">mean.h:195</a></div></div>
-<div class="ttc" id="aclassMeanNormalDer_html_a68dede15d4483678ff68ba477a2bd7b0"><div class="ttname"><a href="classMeanNormalDer.html#a68dede15d4483678ff68ba477a2bd7b0">MeanNormalDer::addLocalNeighbor</a></div><div class="ttdeci">bool addLocalNeighbor(Scalar w, const VectorType &amp;localQ, const DataPoint &amp;attributes, ScalarArray &amp;dw)</div><div class="ttdoc">Add a neighbor to perform the fit.</div><div class="ttdef"><b>Definition</b> <a href="mean_8hpp_source.html#l00076">mean.hpp:76</a></div></div>
+<div class="ttc" id="aclassMeanNormalDer_html_a8ebb71bdef517b3c0f755ffa2d014683"><div class="ttname"><a href="classMeanNormalDer.html#a8ebb71bdef517b3c0f755ffa2d014683">MeanNormalDer::addLocalNeighbor</a></div><div class="ttdeci">void addLocalNeighbor(Scalar w, const VectorType &amp;localQ, const DataPoint &amp;attributes, ScalarArray &amp;dw)</div><div class="ttdoc">Add a neighbor to perform the fit.</div><div class="ttdef"><b>Definition</b> <a href="mean_8hpp_source.html#l00063">mean.hpp:63</a></div></div>
 <div class="ttc" id="aclassMeanNormalDer_html_a992b7837236b3d1a04e4b7c0274f99e5"><div class="ttname"><a href="classMeanNormalDer.html#a992b7837236b3d1a04e4b7c0274f99e5">MeanNormalDer::VectorType</a></div><div class="ttdeci">typename Base::VectorType VectorType</div><div class="ttdoc">Alias to vector type.</div><div class="ttdef"><b>Definition</b> <a href="mean_8h_source.html#l00194">mean.h:194</a></div></div>
 <div class="ttc" id="aclassMeanNormalDer_html_ab3f6efa769cec3d53d0372685556ac33"><div class="ttname"><a href="classMeanNormalDer.html#ab3f6efa769cec3d53d0372685556ac33">MeanNormalDer::Scalar</a></div><div class="ttdeci">typename DataPoint::Scalar Scalar</div><div class="ttdoc">Alias to scalar type.</div><div class="ttdef"><b>Definition</b> <a href="mean_8h_source.html#l00194">mean.h:194</a></div></div>
-<div class="ttc" id="aclassMeanNormalDer_html_ad0d6abba75ce8bb587f282f855314a33"><div class="ttname"><a href="classMeanNormalDer.html#ad0d6abba75ce8bb587f282f855314a33">MeanNormalDer::init</a></div><div class="ttdeci">void init()</div><div class="ttdoc">Set the evaluation position and reset the internal states.</div><div class="ttdef"><b>Definition</b> <a href="mean_8hpp_source.html#l00069">mean.hpp:69</a></div></div>
-<div class="ttc" id="aclassMeanNormal_html_a2f614a85577b19b6f7096fe841aa3baa"><div class="ttname"><a href="classMeanNormal.html#a2f614a85577b19b6f7096fe841aa3baa">MeanNormal::init</a></div><div class="ttdeci">void init()</div><div class="ttdoc">Set the evaluation position and reset the internal states.</div><div class="ttdef"><b>Definition</b> <a href="mean_8hpp_source.html#l00030">mean.hpp:30</a></div></div>
-<div class="ttc" id="aclassMeanNormal_html_a45d3f6f14d57ed2fedd2a9bf4f01f4a6"><div class="ttname"><a href="classMeanNormal.html#a45d3f6f14d57ed2fedd2a9bf4f01f4a6">MeanNormal::addLocalNeighbor</a></div><div class="ttdeci">bool addLocalNeighbor(Scalar w, const VectorType &amp;localQ, const DataPoint &amp;attributes)</div><div class="ttdoc">Add a neighbor to perform the fit.</div><div class="ttdef"><b>Definition</b> <a href="mean_8hpp_source.html#l00037">mean.hpp:37</a></div></div>
+<div class="ttc" id="aclassMeanNormalDer_html_ad0d6abba75ce8bb587f282f855314a33"><div class="ttname"><a href="classMeanNormalDer.html#ad0d6abba75ce8bb587f282f855314a33">MeanNormalDer::init</a></div><div class="ttdeci">void init()</div><div class="ttdoc">Set the evaluation position and reset the internal states.</div><div class="ttdef"><b>Definition</b> <a href="mean_8hpp_source.html#l00056">mean.hpp:56</a></div></div>
+<div class="ttc" id="aclassMeanNormal_html_a2f614a85577b19b6f7096fe841aa3baa"><div class="ttname"><a href="classMeanNormal.html#a2f614a85577b19b6f7096fe841aa3baa">MeanNormal::init</a></div><div class="ttdeci">void init()</div><div class="ttdoc">Set the evaluation position and reset the internal states.</div><div class="ttdef"><b>Definition</b> <a href="mean_8hpp_source.html#l00026">mean.hpp:26</a></div></div>
 <div class="ttc" id="aclassMeanNormal_html_a7f5590f6eb97ee5f03d4b4fd7607f2b3"><div class="ttname"><a href="classMeanNormal.html#a7f5590f6eb97ee5f03d4b4fd7607f2b3">MeanNormal::VectorType</a></div><div class="ttdeci">typename Base::VectorType VectorType</div><div class="ttdoc">Alias to vector type.</div><div class="ttdef"><b>Definition</b> <a href="mean_8h_source.html#l00086">mean.h:86</a></div></div>
+<div class="ttc" id="aclassMeanNormal_html_a89edc6578b09a67645714ed92ab7aef4"><div class="ttname"><a href="classMeanNormal.html#a89edc6578b09a67645714ed92ab7aef4">MeanNormal::addLocalNeighbor</a></div><div class="ttdeci">void addLocalNeighbor(Scalar w, const VectorType &amp;localQ, const DataPoint &amp;attributes)</div><div class="ttdoc">Add a neighbor to perform the fit.</div><div class="ttdef"><b>Definition</b> <a href="mean_8hpp_source.html#l00033">mean.hpp:33</a></div></div>
 <div class="ttc" id="aclassMeanNormal_html_ab123d87e6c0b4e8b8e257dbf036f9ba1"><div class="ttname"><a href="classMeanNormal.html#ab123d87e6c0b4e8b8e257dbf036f9ba1">MeanNormal::Scalar</a></div><div class="ttdeci">typename DataPoint::Scalar Scalar</div><div class="ttdoc">Alias to scalar type.</div><div class="ttdef"><b>Definition</b> <a href="mean_8h_source.html#l00086">mean.h:86</a></div></div>
 <div class="ttc" id="aclassMeanPositionDer_html_a18e7c3a2f86ed87807401aa31eaf8795"><div class="ttname"><a href="classMeanPositionDer.html#a18e7c3a2f86ed87807401aa31eaf8795">MeanPositionDer::VectorType</a></div><div class="ttdeci">typename Base::VectorType VectorType</div><div class="ttdoc">Alias to vector type.</div><div class="ttdef"><b>Definition</b> <a href="mean_8h_source.html#l00128">mean.h:128</a></div></div>
-<div class="ttc" id="aclassMeanPositionDer_html_a262224eee16296556f43a192381c3ee8"><div class="ttname"><a href="classMeanPositionDer.html#a262224eee16296556f43a192381c3ee8">MeanPositionDer::init</a></div><div class="ttdeci">void init()</div><div class="ttdoc">Set the evaluation position and reset the internal states.</div><div class="ttdef"><b>Definition</b> <a href="mean_8hpp_source.html#l00049">mean.hpp:49</a></div></div>
+<div class="ttc" id="aclassMeanPositionDer_html_a262224eee16296556f43a192381c3ee8"><div class="ttname"><a href="classMeanPositionDer.html#a262224eee16296556f43a192381c3ee8">MeanPositionDer::init</a></div><div class="ttdeci">void init()</div><div class="ttdoc">Set the evaluation position and reset the internal states.</div><div class="ttdef"><b>Definition</b> <a href="mean_8hpp_source.html#l00041">mean.hpp:41</a></div></div>
+<div class="ttc" id="aclassMeanPositionDer_html_a2a6558018f0cc38baba3f8ca7959d006"><div class="ttname"><a href="classMeanPositionDer.html#a2a6558018f0cc38baba3f8ca7959d006">MeanPositionDer::addLocalNeighbor</a></div><div class="ttdeci">void addLocalNeighbor(Scalar w, const VectorType &amp;localQ, const DataPoint &amp;attributes, ScalarArray &amp;dw)</div><div class="ttdoc">Add a neighbor to perform the fit.</div><div class="ttdef"><b>Definition</b> <a href="mean_8hpp_source.html#l00048">mean.hpp:48</a></div></div>
 <div class="ttc" id="aclassMeanPositionDer_html_a771acee7765ddabc9be70ee6df3e61ce"><div class="ttname"><a href="classMeanPositionDer.html#a771acee7765ddabc9be70ee6df3e61ce">MeanPositionDer::Scalar</a></div><div class="ttdeci">typename DataPoint::Scalar Scalar</div><div class="ttdoc">Alias to scalar type.</div><div class="ttdef"><b>Definition</b> <a href="mean_8h_source.html#l00128">mean.h:128</a></div></div>
-<div class="ttc" id="aclassMeanPositionDer_html_aafa552dd4544a2f7a4d9af99e3d875b3"><div class="ttname"><a href="classMeanPositionDer.html#aafa552dd4544a2f7a4d9af99e3d875b3">MeanPositionDer::addLocalNeighbor</a></div><div class="ttdeci">bool addLocalNeighbor(Scalar w, const VectorType &amp;localQ, const DataPoint &amp;attributes, ScalarArray &amp;dw)</div><div class="ttdoc">Add a neighbor to perform the fit.</div><div class="ttdef"><b>Definition</b> <a href="mean_8hpp_source.html#l00056">mean.hpp:56</a></div></div>
 <div class="ttc" id="aclassMeanPositionDer_html_aec06423fb08bcd03aadea3cc19fadf5f"><div class="ttname"><a href="classMeanPositionDer.html#aec06423fb08bcd03aadea3cc19fadf5f">MeanPositionDer::ScalarArray</a></div><div class="ttdeci">typename Base::ScalarArray ScalarArray</div><div class="ttdoc">Alias to scalar derivatives array.</div><div class="ttdef"><b>Definition</b> <a href="mean_8h_source.html#l00129">mean.h:129</a></div></div>
 <div class="ttc" id="aclassPonca_1_1MeanPosition_html"><div class="ttname"><a href="classPonca_1_1MeanPosition.html">Ponca::MeanPosition</a></div><div class="ttdoc">Compute the barycenter of the input points.</div><div class="ttdef"><b>Definition</b> <a href="mean_8h_source.html#l00025">mean.h:26</a></div></div>
 <div class="ttc" id="aclassPonca_1_1MeanPosition_html_a4e687e6fa28d995afe731429f861de50"><div class="ttname"><a href="classPonca_1_1MeanPosition.html#a4e687e6fa28d995afe731429f861de50">Ponca::MeanPosition::Scalar</a></div><div class="ttdeci">typename DataPoint::Scalar Scalar</div><div class="ttdoc">Alias to scalar type.</div><div class="ttdef"><b>Definition</b> <a href="mean_8h_source.html#l00027">mean.h:27</a></div></div>
@@ -249,7 +231,7 @@ $(document).ready(function(){initNavTree('mean_8hpp_source.html',''); initResiza
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_695d95a8d8fbec601a248c0414764298.html">Ponca</a></li><li class="navelem"><a class="el" href="dir_ce16314fc45f8638543c5146aff64d4a.html">src</a></li><li class="navelem"><a class="el" href="dir_221133f19e4af6803e4ee7d78db21786.html">Fitting</a></li><li class="navelem"><b>mean.hpp</b></li>
-    <li class="footer">Generated on Thu Mar 19 2026 17:42:38 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
+    <li class="footer">Generated on Fri Mar 20 2026 20:24:56 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
   </ul>
 </div>
 </body>

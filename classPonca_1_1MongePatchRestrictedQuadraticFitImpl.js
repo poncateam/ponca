@@ -4,7 +4,7 @@ var classPonca_1_1MongePatchRestrictedQuadraticFitImpl =
     [ "NeighborFilter", "classPonca_1_1MongePatchRestrictedQuadraticFitImpl.html#a55b36145441bcc7c16033052130eda9b", null ],
     [ "Scalar", "classPonca_1_1MongePatchRestrictedQuadraticFitImpl.html#a7ef9eba74e3b08ee17ab48474eb44bc6", null ],
     [ "VectorType", "classPonca_1_1MongePatchRestrictedQuadraticFitImpl.html#a8524b0806a31eaeca9caf1e1c8c25ef5", null ],
-    [ "addLocalNeighbor", "classPonca_1_1MongePatchRestrictedQuadraticFitImpl.html#a2dba954b7b09a55baa8fbc08d1975e6f", null ],
+    [ "addLocalNeighbor", "classPonca_1_1MongePatchRestrictedQuadraticFitImpl.html#a57880cb21e8827c6987b51639abd5abb", null ],
     [ "finalize", "classPonca_1_1MongePatchRestrictedQuadraticFitImpl.html#a5e676f5d7395a1c496a903d0d1da0208", null ],
     [ "init", "classPonca_1_1MongePatchRestrictedQuadraticFitImpl.html#a8a7a0cc9b5f8259f235ad27986b2f9f7", null ],
     [ "mongePatchQuadraticFit", "classPonca_1_1MongePatchRestrictedQuadraticFitImpl.html#a07860bb980bc95706f31fe15a25f42a0", null ],

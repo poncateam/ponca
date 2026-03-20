@@ -8,7 +8,7 @@ var classPonca_1_1MlsSphereFitDer =
     [ "ScalarArray", "classPonca_1_1MlsSphereFitDer.html#a0b08154a82683272274fbf0c2d438f29", null ],
     [ "VectorArray", "classPonca_1_1MlsSphereFitDer.html#a0f5df155d1bb3ab05e966d9cebcc4324", null ],
     [ "VectorType", "classPonca_1_1MlsSphereFitDer.html#ae97f47e67bb3650bce00170926066670", null ],
-    [ "addLocalNeighbor", "classPonca_1_1MlsSphereFitDer.html#a2f20f8092b21bb028a5832dc22c019b9", null ],
+    [ "addLocalNeighbor", "classPonca_1_1MlsSphereFitDer.html#a89d926a2576716799bff62a92b5f7da2", null ],
     [ "dNormal", "classPonca_1_1MlsSphereFitDer.html#a416547e9a2dc929cf6e7f70675b0dbc0", null ],
     [ "dPotential", "classPonca_1_1MlsSphereFitDer.html#aab8f0a9ac51a85ba8d665b0b18efad77", null ],
     [ "finalize", "classPonca_1_1MlsSphereFitDer.html#a32ebaaf56aa7808cd3c4812dc60b91f1", null ],

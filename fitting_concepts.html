@@ -51,7 +51,7 @@ MathJax.Hub.Config({
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Ponca
-   &#160;<span id="projectnumber">19ef58fd3760f23a8af99a5eeac4f934757e30d9</span>
+   &#160;<span id="projectnumber">bab7704293a2c36e5bed9dea40def7ba839bfe08</span>
    </div>
    <div id="projectbrief">Point Cloud Analysis library</div>
   </td>
@@ -179,8 +179,7 @@ Objects used in Basket</h2>
 <div class="line">            <span class="comment">/* Computations                                                           */</span></div>
 <div class="line"><span class="comment">            /**************************************************************************/</span></div>
 <div class="line">            <span class="comment">// Add a neighbor to perform the fit</span></div>
-<div class="line">            <span class="comment">// \return false if param nei is not a valid neighbour (weight = 0)</span></div>
-<div class="line">            PONCA_MULTIARCH <span class="keyword">inline</span> <span class="keywordtype">bool</span> addLocalNeighbor(Scalar, <span class="keyword">const</span> VectorType&amp;, <span class="keyword">const</span> DataPoint&amp;);</div>
+<div class="line">            PONCA_MULTIARCH <span class="keyword">inline</span> <span class="keywordtype">void</span> addLocalNeighbor(Scalar, <span class="keyword">const</span> VectorType&amp;, <span class="keyword">const</span> DataPoint&amp;);</div>
 <div class="line">            <span class="comment">// Finalize the fitting procedure.</span></div>
 <div class="line">            <span class="comment">// \return State of fitting</span></div>
 <div class="line">            <span class="comment">// \warning Must be called be for any use of the fitting output</span></div>
@@ -223,8 +222,7 @@ Objects used in BasketDiff</h2>
 <div class="line">            <span class="comment">/* Computations                                                           */</span></div>
 <div class="line"><span class="comment">            /**************************************************************************/</span></div>
 <div class="line">            <span class="comment">// Add a neighbor to perform the fit</span></div>
-<div class="line">            <span class="comment">// \return false if param nei is not a valid neighbour (weight = 0)</span></div>
-<div class="line">            PONCA_MULTIARCH <span class="keyword">inline</span> <span class="keywordtype">bool</span> addLocalNeighbor(Scalar w, <span class="keyword">const</span> VectorType&amp; localQ,</div>
+<div class="line">            PONCA_MULTIARCH <span class="keyword">inline</span> <span class="keywordtype">void</span> addLocalNeighbor(Scalar w, <span class="keyword">const</span> VectorType&amp; localQ,</div>
 <div class="line">                                                         <span class="keyword">const</span> DataPoint&amp; attributes, ScalarArray&amp; dw);</div>
 <div class="line">            <span class="comment">// Finalize the fitting procedure.</span></div>
 <div class="line">            <span class="comment">// \return State of fitting</span></div>
@@ -423,7 +421,7 @@ Concepts related to weighting functions</h1>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="user_manual_page.html">User Manual</a></li>
-    <li class="footer">Generated on Thu Mar 19 2026 17:42:38 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
+    <li class="footer">Generated on Fri Mar 20 2026 20:24:56 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
   </ul>
 </div>
 </body>
