@@ -12,6 +12,7 @@ introduces several bug fixes and minors improvements.
     - [fitting] Introduce limited reflection methods (#201)
     - [spatialPartitioning] Refactor KdTree classes to make it usable in cuda kernels (#242)
     - [common] Define M_PI in the common module (#283)
+    - [fitting] Change addLocalNeighbor return type to void (#288)
 
 - Bug-fixes and code improvements
     - [fitting] Fix issues when converting vectors between local and global frames (#201)

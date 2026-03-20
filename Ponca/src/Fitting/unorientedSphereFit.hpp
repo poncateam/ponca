@@ -17,21 +17,15 @@ namespace Ponca
     }
 
     template <class DataPoint, class _NFilter, typename T>
-    bool UnorientedSphereFitImpl<DataPoint, _NFilter, T>::addLocalNeighbor(Scalar w, const VectorType& localQ,
+    void UnorientedSphereFitImpl<DataPoint, _NFilter, T>::addLocalNeighbor(Scalar w, const VectorType& localQ,
                                                                            const DataPoint& attributes)
     {
-        if (Base::addLocalNeighbor(w, localQ, attributes))
-        {
-            VectorB basis;
-            basis << attributes.normal(), attributes.normal().dot(localQ);
+        Base::addLocalNeighbor(w, localQ, attributes);
+        VectorB basis;
+        basis << attributes.normal(), attributes.normal().dot(localQ);
 
-            m_matA += w * basis * basis.transpose();
-            m_sumDotPP += w * localQ.squaredNorm();
-
-            return true;
-        }
-
-        return false;
+        m_matA += w * basis * basis.transpose();
+        m_sumDotPP += w * localQ.squaredNorm();
     }
 
     template <class DataPoint, class _NFilter, typename T>
@@ -89,26 +83,21 @@ namespace Ponca
     }
 
     template <class DataPoint, class _NFilter, int DiffType, typename T>
-    bool UnorientedSphereDerImpl<DataPoint, _NFilter, DiffType, T>::addLocalNeighbor(Scalar w, const VectorType& localQ,
+    void UnorientedSphereDerImpl<DataPoint, _NFilter, DiffType, T>::addLocalNeighbor(Scalar w, const VectorType& localQ,
                                                                                      const DataPoint& attributes,
                                                                                      ScalarArray& dw)
     {
-        if (Base::addLocalNeighbor(w, localQ, attributes, dw))
+        Base::addLocalNeighbor(w, localQ, attributes, dw);
+        VectorB basis;
+        basis << attributes.normal(), attributes.normal().dot(localQ);
+        const MatrixBB prod = basis * basis.transpose();
+
+        m_dSumDotPP += dw * localQ.squaredNorm();
+
+        for (int dim = 0; dim < Base::NbDerivatives; ++dim)
         {
-            VectorB basis;
-            basis << attributes.normal(), attributes.normal().dot(localQ);
-            const MatrixBB prod = basis * basis.transpose();
-
-            m_dSumDotPP += dw * localQ.squaredNorm();
-
-            for (int dim = 0; dim < Base::NbDerivatives; ++dim)
-            {
-                m_dmatA[dim] += dw[dim] * prod;
-            }
-
-            return true;
+            m_dmatA[dim] += dw[dim] * prod;
         }
-        return false;
     }
 
     template <class DataPoint, class _NFilter, int DiffType, typename T>

@@ -17,16 +17,12 @@ void OrientedSphereFitImpl<DataPoint, _NFilter, T>::init()
 }
 
 template <class DataPoint, class _NFilter, typename T>
-bool OrientedSphereFitImpl<DataPoint, _NFilter, T>::addLocalNeighbor(Scalar w, const VectorType& localQ,
+void OrientedSphereFitImpl<DataPoint, _NFilter, T>::addLocalNeighbor(Scalar w, const VectorType& localQ,
                                                                      const DataPoint& attributes)
 {
-    if (Base::addLocalNeighbor(w, localQ, attributes))
-    {
-        m_sumDotPN += w * attributes.normal().dot(localQ);
-        m_sumDotPP += w * localQ.squaredNorm();
-        return true;
-    }
-    return false;
+    Base::addLocalNeighbor(w, localQ, attributes);
+    m_sumDotPN += w * attributes.normal().dot(localQ);
+    m_sumDotPP += w * localQ.squaredNorm();
 }
 
 template <class DataPoint, class _NFilter, typename T>
@@ -97,20 +93,14 @@ void OrientedSphereDerImpl<DataPoint, _NFilter, DiffType, T>::init()
 }
 
 template <class DataPoint, class _NFilter, int DiffType, typename T>
-bool OrientedSphereDerImpl<DataPoint, _NFilter, DiffType, T>::addLocalNeighbor(Scalar w, const VectorType& localQ,
+void OrientedSphereDerImpl<DataPoint, _NFilter, DiffType, T>::addLocalNeighbor(Scalar w, const VectorType& localQ,
                                                                                const DataPoint& attributes,
                                                                                ScalarArray& dw)
 {
-    if (Base::addLocalNeighbor(w, localQ, attributes, dw))
-    {
-
-        m_dSumN += attributes.normal() * dw;
-        m_dSumDotPN += dw * attributes.normal().dot(localQ);
-        m_dSumDotPP += dw * localQ.squaredNorm();
-
-        return true;
-    }
-    return false;
+    Base::addLocalNeighbor(w, localQ, attributes, dw);
+    m_dSumN += attributes.normal() * dw;
+    m_dSumDotPN += dw * attributes.normal().dot(localQ);
+    m_dSumDotPP += dw * localQ.squaredNorm();
 }
 
 template <class DataPoint, class _NFilter, int DiffType, typename T>

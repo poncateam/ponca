@@ -16,12 +16,12 @@ void MongePatchQuadraticFitImpl<DataPoint, _NFilter, T>::init()
 }
 
 template <class DataPoint, class _NFilter, typename T>
-bool MongePatchQuadraticFitImpl<DataPoint, _NFilter, T>::addLocalNeighbor(Scalar w, const VectorType& localQ,
+void MongePatchQuadraticFitImpl<DataPoint, _NFilter, T>::addLocalNeighbor(Scalar w, const VectorType& localQ,
                                                                           const DataPoint& attributes)
 {
     if (!m_planeIsReady)
     {
-        return Base::addLocalNeighbor(w, localQ, attributes);
+        Base::addLocalNeighbor(w, localQ, attributes);
     }
     else // base plane is ready, we can now fit the patch
     {
@@ -35,10 +35,7 @@ bool MongePatchQuadraticFitImpl<DataPoint, _NFilter, T>::addLocalNeighbor(Scalar
         p << u * u, v * v, u * v, u, v, 1;
         m_A += w * p * p.transpose();
         m_b += w * h * p;
-
-        return true;
     }
-    return false;
 }
 
 template <class DataPoint, class _NFilter, typename T>
@@ -81,12 +78,12 @@ void MongePatchRestrictedQuadraticFitImpl<DataPoint, _NFilter, T>::init()
 }
 
 template <class DataPoint, class _NFilter, typename T>
-bool MongePatchRestrictedQuadraticFitImpl<DataPoint, _NFilter, T>::addLocalNeighbor(Scalar w, const VectorType& localQ,
+void MongePatchRestrictedQuadraticFitImpl<DataPoint, _NFilter, T>::addLocalNeighbor(Scalar w, const VectorType& localQ,
                                                                                     const DataPoint& attributes)
 {
     if (!m_planeIsReady)
     {
-        return Base::addLocalNeighbor(w, localQ, attributes);
+        Base::addLocalNeighbor(w, localQ, attributes);
     }
     else // base plane is ready, we can now fit the patch
     {
@@ -100,10 +97,7 @@ bool MongePatchRestrictedQuadraticFitImpl<DataPoint, _NFilter, T>::addLocalNeigh
         p << u * u, v * v, u * v, 1;
         m_A += w * p * p.transpose();
         m_b += w * h * p;
-
-        return true;
     }
-    return false;
 }
 
 template <class DataPoint, class _NFilter, typename T>

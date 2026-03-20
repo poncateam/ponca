@@ -21,41 +21,34 @@ void MlsSphereFitDer<DataPoint, _NFilter, DiffType, T>::init()
 }
 
 template <class DataPoint, class _NFilter, int DiffType, typename T>
-bool MlsSphereFitDer<DataPoint, _NFilter, DiffType, T>::addLocalNeighbor(Scalar w, const VectorType& localQ,
+void MlsSphereFitDer<DataPoint, _NFilter, DiffType, T>::addLocalNeighbor(Scalar w, const VectorType& localQ,
                                                                          const DataPoint& attributes, ScalarArray& dw)
 {
-    if (Base::addLocalNeighbor(w, localQ, attributes, dw))
+    Base::addLocalNeighbor(w, localQ, attributes, dw);
+    // compute weight derivatives
+    Matrix d2w = Matrix::Zero();
+
+    if (Base::isScaleDer())
+        d2w(0, 0) = Base::getNeighborFilter().scaled2w(attributes.pos(), attributes);
+
+    if (Base::isSpaceDer())
+        d2w.template bottomRightCorner<Dim, Dim>() = Base::getNeighborFilter().spaced2w(attributes.pos(), attributes);
+
+    if (Base::isScaleDer() && Base::isSpaceDer())
     {
-        // compute weight derivatives
-        Matrix d2w = Matrix::Zero();
-
-        if (Base::isScaleDer())
-            d2w(0, 0) = Base::getNeighborFilter().scaled2w(attributes.pos(), attributes);
-
-        if (Base::isSpaceDer())
-            d2w.template bottomRightCorner<Dim, Dim>() =
-                Base::getNeighborFilter().spaced2w(attributes.pos(), attributes);
-
-        if (Base::isScaleDer() && Base::isSpaceDer())
-        {
-            d2w.template bottomLeftCorner<Dim, 1>() =
-                Base::getNeighborFilter().scaleSpaced2w(attributes.pos(), attributes);
-            d2w.template topRightCorner<1, Dim>() = d2w.template bottomLeftCorner<Dim, 1>().transpose();
-        }
-
-        m_d2SumDotPN += d2w * attributes.normal().dot(localQ);
-        m_d2SumDotPP += d2w * localQ.squaredNorm();
-        m_d2SumW += d2w;
-
-        for (int i = 0; i < Dim; ++i)
-        {
-            m_d2SumP.template block<DerDim, DerDim>(0, i * DerDim) += d2w * localQ[i];
-            m_d2SumN.template block<DerDim, DerDim>(0, i * DerDim) += d2w * attributes.normal()[i];
-        }
-
-        return true;
+        d2w.template bottomLeftCorner<Dim, 1>() = Base::getNeighborFilter().scaleSpaced2w(attributes.pos(), attributes);
+        d2w.template topRightCorner<1, Dim>()   = d2w.template bottomLeftCorner<Dim, 1>().transpose();
     }
-    return false;
+
+    m_d2SumDotPN += d2w * attributes.normal().dot(localQ);
+    m_d2SumDotPP += d2w * localQ.squaredNorm();
+    m_d2SumW += d2w;
+
+    for (int i = 0; i < Dim; ++i)
+    {
+        m_d2SumP.template block<DerDim, DerDim>(0, i * DerDim) += d2w * localQ[i];
+        m_d2SumN.template block<DerDim, DerDim>(0, i * DerDim) += d2w * attributes.normal()[i];
+    }
 }
 
 template <class DataPoint, class _NFilter, int DiffType, typename T>

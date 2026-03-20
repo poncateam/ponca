@@ -103,11 +103,10 @@ namespace Ponca
         PONCA_MULTIARCH [[nodiscard]] inline FIT_RESULT getCurrentState() const { return m_eCurrentState; }
 
         PONCA_FITTING_APIDOC_ADDNEIGHBOR
-        PONCA_MULTIARCH [[nodiscard]] inline bool addLocalNeighbor(Scalar w, const VectorType&, const DataPoint&)
+        PONCA_MULTIARCH inline void addLocalNeighbor(Scalar w, const VectorType&, const DataPoint&)
         {
             m_sumW += w;
             ++(m_nbNeighbors);
-            return true;
         }
 
         PONCA_FITTING_APIDOC_FINALIZE
@@ -187,24 +186,21 @@ namespace Ponca
         /************************************************************************/
         /*! \see Concept::FittingProcedureConcept::addLocalNeighbor()
          * \todo update doc (takes derivatives) */
-        PONCA_MULTIARCH inline bool addLocalNeighbor(Scalar w, const VectorType& localQ, const DataPoint& attributes,
+        PONCA_MULTIARCH inline void addLocalNeighbor(Scalar w, const VectorType& localQ, const DataPoint& attributes,
                                                      ScalarArray& dw)
         {
-            if (Base::addLocalNeighbor(w, localQ, attributes))
-            { // call the Primitive Fit (without dw)
-                int spaceId = (Type & FitScaleDer) ? 1 : 0;
-                // compute weight
-                if (Type & FitScaleDer)
-                    dw[0] = Base::getNeighborFilter().scaledw(attributes.pos(), attributes);
+            Base::addLocalNeighbor(w, localQ, attributes);
+            // call the Primitive Fit (without dw)
+            int spaceId = (Type & FitScaleDer) ? 1 : 0;
+            // compute weight
+            if (Type & FitScaleDer)
+                dw[0] = Base::getNeighborFilter().scaledw(attributes.pos(), attributes);
 
-                if (Type & FitSpaceDer)
-                    dw.template segment<int(DataPoint::Dim)>(spaceId) =
-                        -Base::getNeighborFilter().spacedw(attributes.pos(), attributes).transpose();
+            if (Type & FitSpaceDer)
+                dw.template segment<int(DataPoint::Dim)>(spaceId) =
+                    -Base::getNeighborFilter().spacedw(attributes.pos(), attributes).transpose();
 
-                m_dSumW += dw;
-                return true;
-            }
-            return false;
+            m_dSumW += dw;
         }
 
         /**************************************************************************/

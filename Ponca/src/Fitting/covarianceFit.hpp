@@ -15,15 +15,11 @@ void CovarianceFitBase<DataPoint, _NFilter, T>::init()
 }
 
 template <class DataPoint, class _NFilter, typename T>
-bool CovarianceFitBase<DataPoint, _NFilter, T>::addLocalNeighbor(Scalar w, const VectorType& localQ,
+void CovarianceFitBase<DataPoint, _NFilter, T>::addLocalNeighbor(Scalar w, const VectorType& localQ,
                                                                  const DataPoint& attributes)
 {
-    if (Base::addLocalNeighbor(w, localQ, attributes))
-    {
-        m_cov += w * localQ * localQ.transpose();
-        return true;
-    }
-    return false;
+    Base::addLocalNeighbor(w, localQ, attributes);
+    m_cov += w * localQ * localQ.transpose();
 }
 
 template <class DataPoint, class _NFilter, typename T>
@@ -122,18 +118,12 @@ void CovarianceFitDer<DataPoint, _NFilter, DiffType, T>::init()
 }
 
 template <class DataPoint, class _NFilter, int DiffType, typename T>
-bool CovarianceFitDer<DataPoint, _NFilter, DiffType, T>::addLocalNeighbor(Scalar w, const VectorType& localQ,
+void CovarianceFitDer<DataPoint, _NFilter, DiffType, T>::addLocalNeighbor(Scalar w, const VectorType& localQ,
                                                                           const DataPoint& attributes, ScalarArray& dw)
 {
-    if (Base::addLocalNeighbor(w, localQ, attributes, dw))
-    {
-        for (int k = 0; k < Base::NbDerivatives; ++k)
-            m_dCov[k] += dw[k] * localQ * localQ.transpose();
-
-        return true;
-    }
-
-    return false;
+    Base::addLocalNeighbor(w, localQ, attributes, dw);
+    for (int k = 0; k < Base::NbDerivatives; ++k)
+        m_dCov[k] += dw[k] * localQ * localQ.transpose();
 }
 
 template <class DataPoint, class _NFilter, int DiffType, typename T>

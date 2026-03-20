@@ -71,21 +71,19 @@ void CovarianceFitTwoPassesBase<DataPoint, _NFilter, T>::init()
 }
 
 template <class DataPoint, class _NFilter, typename T>
-bool CovarianceFitTwoPassesBase<DataPoint, _NFilter, T>::addLocalNeighbor(Scalar w, const VectorType& localQ,
+void CovarianceFitTwoPassesBase<DataPoint, _NFilter, T>::addLocalNeighbor(Scalar w, const VectorType& localQ,
                                                                           const DataPoint& attributes)
 {
     if (!m_barycenterReady) /// first pass
     {
-        return Base::addLocalNeighbor(w, localQ, attributes);
+        Base::addLocalNeighbor(w, localQ, attributes);
     }
     else
     {                                         /// second pass
         VectorType q = localQ - m_barycenter; // saved from previous run
         m_cov += w * q * q.transpose();
         sumW += w;
-        return true;
     }
-    return false;
 }
 
 template <class DataPoint, class _NFilter, typename T>
