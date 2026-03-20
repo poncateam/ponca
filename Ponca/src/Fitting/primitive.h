@@ -103,7 +103,7 @@ namespace Ponca
         PONCA_MULTIARCH [[nodiscard]] inline FIT_RESULT getCurrentState() const { return m_eCurrentState; }
 
         PONCA_FITTING_APIDOC_ADDNEIGHBOR
-        PONCA_MULTIARCH [[nodiscard]] inline void addLocalNeighbor(Scalar w, const VectorType&, const DataPoint&)
+        PONCA_MULTIARCH inline void addLocalNeighbor(Scalar w, const VectorType&, const DataPoint&)
         {
             m_sumW += w;
             ++(m_nbNeighbors);

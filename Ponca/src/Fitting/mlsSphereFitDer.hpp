@@ -24,7 +24,7 @@ template <class DataPoint, class _NFilter, int DiffType, typename T>
 void MlsSphereFitDer<DataPoint, _NFilter, DiffType, T>::addLocalNeighbor(Scalar w, const VectorType& localQ,
                                                                          const DataPoint& attributes, ScalarArray& dw)
 {
-    Base::addLocalNeighbor(w, localQ, attributes, dw)
+    Base::addLocalNeighbor(w, localQ, attributes, dw);
     // compute weight derivatives
     Matrix d2w = Matrix::Zero();
 
