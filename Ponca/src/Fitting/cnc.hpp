@@ -9,10 +9,7 @@ All rights reserved.
 
 #pragma once
 
-#include <random>
-
-namespace Ponca::internal
-{
+namespace Ponca::internal {
     /*! \internal
      *
      * \brief Generates the triangles used by the CNC Fit depending on the method.

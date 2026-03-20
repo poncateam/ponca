@@ -14,6 +14,8 @@ All rights reserved.
 #include "weightFunc.h"
 #include "weightKernel.h"
 
+#include <random>
+
 namespace Ponca
 {
 
