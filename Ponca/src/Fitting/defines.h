@@ -95,12 +95,12 @@ public:                                                                         
 /// Declare Concept::ComputationalObjectConcept::addLocalNeighbor
 #define PONCA_FITTING_DECLARE_ADDNEIGHBOR \
     PONCA_FITTING_APIDOC_ADDNEIGHBOR      \
-    PONCA_MULTIARCH inline bool addLocalNeighbor(Scalar w, const VectorType& localQ, const DataPoint& attributes);
+    PONCA_MULTIARCH inline void addLocalNeighbor(Scalar w, const VectorType& localQ, const DataPoint& attributes);
 
 /// Declare Concept::ComputationalDerivativesConcept::addLocalNeighbor
 #define PONCA_FITTING_DECLARE_ADDNEIGHBOR_DER                                                                     \
     PONCA_FITTING_APIDOC_ADDNEIGHBOR_DER                                                                          \
-    PONCA_MULTIARCH inline bool addLocalNeighbor(Scalar w, const VectorType& localQ, const DataPoint& attributes, \
+    PONCA_MULTIARCH inline void addLocalNeighbor(Scalar w, const VectorType& localQ, const DataPoint& attributes, \
                                                  ScalarArray& dw);
 
 /// Declare Concept::ComputationalObjectConcept::finalize

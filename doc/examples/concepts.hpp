@@ -65,7 +65,7 @@ namespace Ponca
             /**************************************************************************/
             // Add a neighbor to perform the fit
             // \return false if param nei is not a valid neighbour (weight = 0)
-            PONCA_MULTIARCH inline bool addLocalNeighbor(Scalar, const VectorType&, const DataPoint&);
+            PONCA_MULTIARCH inline void addLocalNeighbor(Scalar, const VectorType&, const DataPoint&);
             // Finalize the fitting procedure.
             // \return State of fitting
             // \warning Must be called be for any use of the fitting output
@@ -110,7 +110,7 @@ namespace Ponca
             /**************************************************************************/
             // Add a neighbor to perform the fit
             // \return false if param nei is not a valid neighbour (weight = 0)
-            PONCA_MULTIARCH inline bool addLocalNeighbor(Scalar w, const VectorType& localQ,
+            PONCA_MULTIARCH inline void addLocalNeighbor(Scalar w, const VectorType& localQ,
                                                          const DataPoint& attributes, ScalarArray& dw);
             // Finalize the fitting procedure.
             // \return State of fitting

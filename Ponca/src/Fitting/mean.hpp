@@ -15,15 +15,11 @@ void MeanPosition<DataPoint, _NFilter, T>::init()
 }
 
 template <class DataPoint, class _NFilter, typename T>
-bool MeanPosition<DataPoint, _NFilter, T>::addLocalNeighbor(Scalar w, const VectorType& localQ,
+void MeanPosition<DataPoint, _NFilter, T>::addLocalNeighbor(Scalar w, const VectorType& localQ,
                                                             const DataPoint& attributes)
 {
-    if (Base::addLocalNeighbor(w, localQ, attributes))
-    {
-        m_sumP += w * localQ;
-        return true;
-    }
-    return false;
+    Base::addLocalNeighbor(w, localQ, attributes);
+    m_sumP += w * localQ;
 }
 
 template <class DataPoint, class _NFilter, typename T>
@@ -34,15 +30,11 @@ void MeanNormal<DataPoint, _NFilter, T>::init()
 }
 
 template <class DataPoint, class _NFilter, typename T>
-bool MeanNormal<DataPoint, _NFilter, T>::addLocalNeighbor(Scalar w, const VectorType& localQ,
+void MeanNormal<DataPoint, _NFilter, T>::addLocalNeighbor(Scalar w, const VectorType& localQ,
                                                           const DataPoint& attributes)
 {
-    if (Base::addLocalNeighbor(w, localQ, attributes))
-    {
-        m_sumN += w * attributes.normal();
-        return true;
-    }
-    return false;
+    Base::addLocalNeighbor(w, localQ, attributes);
+    m_sumN += w * attributes.normal();
 }
 
 template <class DataPoint, class _NFilter, int DiffType, typename T>
@@ -53,16 +45,11 @@ void MeanPositionDer<DataPoint, _NFilter, DiffType, T>::init()
 }
 
 template <class DataPoint, class _NFilter, int DiffType, typename T>
-bool MeanPositionDer<DataPoint, _NFilter, DiffType, T>::addLocalNeighbor(Scalar w, const VectorType& localQ,
+void MeanPositionDer<DataPoint, _NFilter, DiffType, T>::addLocalNeighbor(Scalar w, const VectorType& localQ,
                                                                          const DataPoint& attributes, ScalarArray& dw)
 {
-    if (Base::addLocalNeighbor(w, localQ, attributes, dw))
-    {
-        m_dSumP += localQ * dw;
-        return true;
-    }
-
-    return false;
+    Base::addLocalNeighbor(w, localQ, attributes, dw);
+    m_dSumP += localQ * dw;
 }
 
 template <class DataPoint, class _NFilter, int DiffType, typename T>
@@ -73,14 +60,9 @@ void MeanNormalDer<DataPoint, _NFilter, DiffType, T>::init()
 }
 
 template <class DataPoint, class _NFilter, int DiffType, typename T>
-bool MeanNormalDer<DataPoint, _NFilter, DiffType, T>::addLocalNeighbor(Scalar w, const VectorType& localQ,
+void MeanNormalDer<DataPoint, _NFilter, DiffType, T>::addLocalNeighbor(Scalar w, const VectorType& localQ,
                                                                        const DataPoint& attributes, ScalarArray& dw)
 {
-    if (Base::addLocalNeighbor(w, localQ, attributes, dw))
-    {
-        m_dSumN += attributes.normal() * dw;
-        return true;
-    }
-
-    return false;
+    Base::addLocalNeighbor(w, localQ, attributes, dw);
+    m_dSumN += attributes.normal() * dw;
 }

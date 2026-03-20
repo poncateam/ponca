@@ -12,24 +12,19 @@ void SphereFitImpl<DataPoint, _NFilter, T>::init()
 }
 
 template <class DataPoint, class _NFilter, typename T>
-bool SphereFitImpl<DataPoint, _NFilter, T>::addLocalNeighbor(Scalar w, const VectorType& localQ,
+void SphereFitImpl<DataPoint, _NFilter, T>::addLocalNeighbor(Scalar w, const VectorType& localQ,
                                                              const DataPoint& attributes)
 {
-    if (Base::addLocalNeighbor(w, localQ, attributes))
-    {
-        VectorA a;
+    Base::addLocalNeighbor(w, localQ, attributes);
+    VectorA a;
 #ifdef __CUDACC__
-        a(0)                                  = 1;
-        a.template segment<DataPoint::Dim>(1) = localQ;
-        a(DataPoint::Dim + 1)                 = localQ.squaredNorm();
+    a(0)                                  = 1;
+    a.template segment<DataPoint::Dim>(1) = localQ;
+    a(DataPoint::Dim + 1)                 = localQ.squaredNorm();
 #else
-        a << 1, localQ, localQ.squaredNorm();
+    a << 1, localQ, localQ.squaredNorm();
 #endif
-        m_matA += w * a * a.transpose();
-        return true;
-    }
-
-    return false;
+    m_matA += w * a * a.transpose();
 }
 
 template <class DataPoint, class _NFilter, typename T>

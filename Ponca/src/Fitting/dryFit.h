@@ -34,9 +34,9 @@ namespace Ponca
         PONCA_EXPLICIT_CAST_OPERATORS(DryFit, dryfit)
 
         PONCA_FITTING_APIDOC_ADDNEIGHBOR
-        PONCA_MULTIARCH inline bool addLocalNeighbor(Scalar w, const VectorType& localQ, const DataPoint& attributes)
+        PONCA_MULTIARCH inline void addLocalNeighbor(Scalar w, const VectorType& localQ, const DataPoint& attributes)
         {
-            return Base::addLocalNeighbor(w, localQ, attributes);
+            Base::addLocalNeighbor(w, localQ, attributes);
         }
 
         PONCA_FITTING_APIDOC_FINALIZE
