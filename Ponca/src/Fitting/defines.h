@@ -73,10 +73,8 @@ public:                                                                         
 #define PONCA_FITTING_APIDOC_INIT                                                                                  \
 /*! Set the evaluation position and reset the internal states. \warning Must be called be for any computation (but \
  * after #setNeighborFilter) */
-#define PONCA_FITTING_APIDOC_ADDNEIGHBOR \
-/*! Add a neighbor to perform the fit \return false if param nei is not a valid neighbour (weight = 0) */
-#define PONCA_FITTING_APIDOC_ADDNEIGHBOR_DER \
-/*! Add a neighbor to perform the fit \return false if param nei is not a valid neighbour (weight = 0) */
+#define PONCA_FITTING_APIDOC_ADDNEIGHBOR     /*! Add a neighbor to perform the fit */
+#define PONCA_FITTING_APIDOC_ADDNEIGHBOR_DER /*! Add a neighbor to perform the fit */
 #define PONCA_FITTING_APIDOC_FINALIZE \
 /*! Finalize the procedure \return Fitting Status \warning Must be called be for any use of the fitting output */
 
