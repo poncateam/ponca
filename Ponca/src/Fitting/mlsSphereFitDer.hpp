@@ -32,14 +32,12 @@ void MlsSphereFitDer<DataPoint, _NFilter, DiffType, T>::addLocalNeighbor(Scalar 
         d2w(0, 0) = Base::getNeighborFilter().scaled2w(attributes.pos(), attributes);
 
     if (Base::isSpaceDer())
-        d2w.template bottomRightCorner<Dim, Dim>() =
-            Base::getNeighborFilter().spaced2w(attributes.pos(), attributes);
+        d2w.template bottomRightCorner<Dim, Dim>() = Base::getNeighborFilter().spaced2w(attributes.pos(), attributes);
 
     if (Base::isScaleDer() && Base::isSpaceDer())
     {
-        d2w.template bottomLeftCorner<Dim, 1>() =
-            Base::getNeighborFilter().scaleSpaced2w(attributes.pos(), attributes);
-        d2w.template topRightCorner<1, Dim>() = d2w.template bottomLeftCorner<Dim, 1>().transpose();
+        d2w.template bottomLeftCorner<Dim, 1>() = Base::getNeighborFilter().scaleSpaced2w(attributes.pos(), attributes);
+        d2w.template topRightCorner<1, Dim>()   = d2w.template bottomLeftCorner<Dim, 1>().transpose();
     }
 
     m_d2SumDotPN += d2w * attributes.normal().dot(localQ);
