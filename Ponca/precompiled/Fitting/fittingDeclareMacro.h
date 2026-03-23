@@ -36,8 +36,6 @@ using NoWeightFuncL = Ponca::NoWeightFunc<Point<Scalar>>;
 /* Fits that can't be precompiled because they lack some methods but are still used in testing. */
 // #define INCOMPLETE_FITTING_DEF(SCALAR) \
 //     DEF_FIT_FOR_ALL_FUNCS(SCALAR, Ponca::MeanPosition) \
-//     DEF_FIT_FOR_ALL_FUNCS(SCALAR, Ponca::SphereFit)    \
-//     DEF_FIT_FOR_ALL_FUNCS(SCALAR, Ponca::Plane)        \
 //     DEF_FIT_FOR_ALL_WEIGHTED_FUNCS(SCALAR, Ponca::MeanPosition, Ponca::CovarianceFitBase) \
 //     DEF_FIT_FOR_ALL_WEIGHTED_FUNCS(SCALAR, Ponca::CovarianceLineFit)
 
@@ -54,7 +52,8 @@ using NoWeightFuncL = Ponca::NoWeightFunc<Point<Scalar>>;
 
 /* Common fit types to precompile */
 #define FITTING_DEF(SCALAR) \
-    DEF_FIT_FOR_ALL_FUNCS(SCALAR, Ponca::MeanPlaneFit) \
+    DEF_FIT_FOR_ALL_FUNCS(SCALAR, Ponca::MeanPlaneFit)       \
+    DEF_FIT_FOR_ALL_WEIGHTED_FUNCS(SCALAR, Ponca::Plane)     \
     /* CovariancePlane fits */                               \
     DEF_FIT_FOR_ALL_FUNCS(SCALAR, Ponca::CovariancePlaneFit) \
     /* MongePatch fits */                                                             \
