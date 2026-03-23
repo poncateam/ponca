@@ -7,9 +7,9 @@
 */
 
 /*!
- \file test/Grenaille/projection.cpp
- \brief Test validity of the direct projection on an algebraic sphere
- \authors Thibault Lejemble, Nicolas Mellado
+ * \file tests/src/projection.cpp
+ * \brief Test validity of the direct projection on an algebraic sphere
+ * \authors Thibault Lejemble, Nicolas Mellado
  */
 
 #include "../common/testing.h"

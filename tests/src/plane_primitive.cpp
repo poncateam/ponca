@@ -5,8 +5,8 @@
 */
 
 /*!
-    \file test/Grenaille/okabe_primitive.cpp
-    \brief Test validity Plane Primitive
+ * \file tests/src/plane_primitive.cpp
+ * \brief Test validity Plane Primitive
  */
 
 #include "../common/testing.h"

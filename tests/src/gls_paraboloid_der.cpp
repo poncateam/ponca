@@ -5,8 +5,8 @@
 */
 
 /*!
- \file test/Grenaille/gls_paraboloid_der.cpp
- \brief Test validity of GLS derivatives for a paraboloid
+ * \file tests/src/gls_paraboloid_der.cpp
+ * \brief Test validity of GLS derivatives for a paraboloid
  */
 #ifdef NDEBUG
 #    undef NDEBUG

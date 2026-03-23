@@ -7,8 +7,8 @@
 */
 
 /*!
- \file test/src/fit_cov.cpp
- \brief Test validity of the covariance fitting procedures wrt to standard algorithm
+ * \file tests/src/fit_cov.cpp
+ * \brief Test validity of the covariance fitting procedures wrt to standard algorithm
  */
 
 #include "../common/testing.h"

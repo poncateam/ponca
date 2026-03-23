@@ -8,8 +8,8 @@
 */
 
 /*!
- \file test/Grenaille/fit_line.cpp
- \brief Test validity of line fitting procedure(s)
+ * \file tests/src/fit_line.cpp
+ * \brief Test validity of line fitting procedure(s)
  */
 
 #include "../common/testing.h"

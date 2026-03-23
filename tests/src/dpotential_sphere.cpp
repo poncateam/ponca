@@ -5,8 +5,8 @@
 */
 
 /*!
-    \file test/Grenaille/dpotential_sphere.cpp
-    \brief Test validity of dPotential
+ * \file tests/src/dpotential_sphere.cpp
+ * \brief Test validity of dPotential
  */
 
 #include "../common/testing.h"

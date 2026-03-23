@@ -5,8 +5,8 @@
 */
 
 /*!
- \file test/Grenaille/gls_compare.cpp
- \brief Test coherance of gls compareTo
+ * \file tests/src/gls_compare.cpp
+ * \brief Test coherance of gls compareTo
  */
 
 #include "../common/testing.h"

@@ -5,8 +5,8 @@
 */
 
 /*!
-    \file test/Grenaille/okabe_primitive.cpp
-    \brief Test validity Algebraic Sphere Primitive
+ * \file tests/src/change_basis.cpp
+ * \brief Test validity of Algebraic Sphere Primitive and Covariance Plane and Line fit
  */
 
 #include "../common/testing.h"

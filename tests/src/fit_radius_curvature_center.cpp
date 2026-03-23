@@ -5,8 +5,8 @@
 */
 
 /*!
- \file test/Grenaille/fit_radius_curvature_center.cpp
- \brief Test validity of algebraic sphere procedure and GLS kappa
+ * \file tests/src/fit_radius_curvature_center.cpp
+ * \brief Test validity of algebraic sphere procedure and GLS kappa
  */
 
 #include "../split_test_helper.h"

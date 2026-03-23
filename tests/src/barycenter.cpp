@@ -5,8 +5,8 @@
 */
 
 /*!
-    \file test/barycenter.cpp
-    \brief Test validity of Global and Local Weight Func
+ * \file tests/src/barycenter.cpp
+ * \brief Test validity of Global and Local Weight Func
  */
 
 #include "../common/testing.h"

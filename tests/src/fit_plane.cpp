@@ -7,8 +7,8 @@
 */
 
 /*!
- \file test/Grenaille/fit_plane.cpp
- \brief Test validity of plane fitting procedure(s)
+ * \file tests/src/fit_plane.cpp
+ * \brief Test validity of plane fitting procedure(s)
  */
 
 #define MULTIPASS_PLANE_FITTING_FAILED false

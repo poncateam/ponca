@@ -5,8 +5,8 @@
 */
 
 /*!
-    \file test/Grenaille/dnormal_sphere.cpp
-    \brief Test validity of dnormal
+ * \file tests/src/dnormal_sphere.cpp
+ * \brief Test validity of dnormal
  */
 
 #include "../common/testing.h"

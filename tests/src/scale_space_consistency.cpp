@@ -5,8 +5,8 @@
 */
 
 /*!
-    \file test/Grenaille/scale_space_consistency.cpp
-    \brief Test consistency of scale/space dPotential and dNormal
+ * \file tests/src/scale_space_consistency.cpp
+ * \brief Test consistency of scale/space dPotential and dNormal
  */
 
 #include "../common/testing.h"

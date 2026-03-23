@@ -5,8 +5,8 @@
 */
 
 /*!
-    \file test/Grenaille/normal_plane.cpp
-    \brief Test validity of normal estimations
+ * \file tests/src/normal_plane.cpp
+ * \brief Test validity of normal estimations
  */
 
 #include "../common/testing.h"

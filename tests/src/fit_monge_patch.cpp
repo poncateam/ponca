@@ -7,8 +7,8 @@
 */
 
 /*!
- \file test/Grenaille/fit_monge_patch.cpp
- \brief Test validity of monge patch fitting procedure(s)
+ * \file tests/src/fit_monge_patch.cpp
+ * \brief Test validity of monge patch fitting procedure(s)
  */
 
 #include "../common/testing.h"

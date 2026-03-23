@@ -5,8 +5,8 @@
 */
 
 /*!
-    \file test/Grenaille/gls_tau.cpp
-    \brief Test validity GLS tau param
+ * \file tests/src/gls_tau.cpp
+ * \brief Test validity GLS tau param
  */
 
 #include "../common/testing.h"

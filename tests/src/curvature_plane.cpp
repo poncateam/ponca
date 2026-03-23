@@ -1,8 +1,12 @@
-﻿
+﻿/*
+ This Source Code Form is subject to the terms of the Mozilla Public
+ License, v. 2.0. If a copy of the MPL was not distributed with this
+ file, You can obtain one at http://mozilla.org/MPL/2.0/.
+*/
 
 /*!
-    \file test/Grenaille/curvature_plane.cpp
-    \brief Test validity of curvature estimator for plane
+ * \file tests/src/curvature_plane.cpp
+ * \brief Test validity of curvature estimator for plane
  */
 
 #define FITTING_FAILED false
@@ -161,33 +165,33 @@ void callSubTests()
 {
     typedef PointPositionNormal<Scalar, Dim> Point;
 
-    typedef DistWeightFunc<Point, SmoothWeightKernel<Scalar>> WeightSmoothFunc;
-    typedef DistWeightFunc<Point, ConstantWeightKernel<Scalar>> WeightConstantFunc;
+    using WeightSmoothFunc   = DistWeightFunc<Point, SmoothWeightKernel<Scalar>>;
+    using WeightConstantFunc = DistWeightFunc<Point, ConstantWeightKernel<Scalar>>;
 
     // Covariance-based fits
     //! [Curvature Estimator PCA plane]
-    typedef Basket<Point, WeightSmoothFunc, CovariancePlaneFit> FitSmoothNormalCovariance;
+    using FitSmoothNormalCovariance = Basket<Point, WeightSmoothFunc, CovariancePlaneFit>;
     //! [Curvature Estimator PCA plane]
-    typedef Basket<Point, WeightConstantFunc, CovariancePlaneFit> FitConstantNormalCovariance;
+    using FitConstantNormalCovariance = Basket<Point, WeightConstantFunc, CovariancePlaneFit>;
     // Curvature estimators that runs on top of the covariance fit
     //! [Curvature Tensor PCA normals]
-    typedef BasketDiff<FitSmoothNormalCovariance, FitSpaceDer, CovariancePlaneDer, CurvatureEstimatorDer,
-                       NormalDerivativeWeingartenEstimator>
-        EstimatorSmoothNormalCovariance;
+    using EstimatorSmoothNormalCovariance = BasketDiff<
+        FitSmoothNormalCovariance, FitSpaceDer, CovariancePlaneDer, CurvatureEstimatorDer, NormalDerivativeWeingartenEstimator
+    >;
     //! [Curvature Tensor PCA normals]
-    typedef BasketDiff<FitConstantNormalCovariance, FitSpaceDer, CovariancePlaneDer, CurvatureEstimatorDer,
-                       NormalDerivativeWeingartenEstimator>
-        EstimatorConstantNormalCovariance;
+    using EstimatorConstantNormalCovariance = BasketDiff<
+        FitConstantNormalCovariance, FitSpaceDer, CovariancePlaneDer, CurvatureEstimatorDer, NormalDerivativeWeingartenEstimator
+    >;
     // Curvature estimators based on MongePatch fitting using generalized quadric
     //! [Curvature Estimator Monge Quadric]
-    typedef Basket<Point, WeightSmoothFunc, MongePatchQuadraticFit> FitMongeSmooth;
+    using FitMongeSmooth = Basket<Point, WeightSmoothFunc, MongePatchQuadraticFit>;
     //! [Curvature Estimator Monge Quadric]
-    typedef Basket<Point, WeightConstantFunc, MongePatchQuadraticFit> FitMongeConstant;
+    using FitMongeConstant = Basket<Point, WeightConstantFunc, MongePatchQuadraticFit>;
     // Curvature estimators based on MongePatch fitting using restricted quadric
     //! [Curvature Estimator Monge Quadric Restricted]
-    typedef Basket<Point, WeightSmoothFunc, MongePatchRestrictedQuadraticFit> FitMongeRestrictedSmooth;
+    using FitMongeRestrictedSmooth = Basket<Point, WeightSmoothFunc, MongePatchRestrictedQuadraticFit>;
     //! [Curvature Estimator Monge Quadric Restricted]
-    typedef Basket<Point, WeightConstantFunc, MongePatchRestrictedQuadraticFit> FitMongeRestrictedConstant;
+    using FitMongeRestrictedConstant = Basket<Point, WeightConstantFunc, MongePatchRestrictedQuadraticFit>;
 
     cout << "Testing with perfect plane..." << flush;
     for (int i = 0; i < g_repeat; ++i)

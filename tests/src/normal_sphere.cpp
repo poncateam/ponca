@@ -5,8 +5,8 @@
 */
 
 /*!
-    \file test/Grenaille/normal_sphere.cpp
-    \brief Test validity of normal estimations
+ * \file tests/src/normal_sphere.cpp
+ * \brief Test validity of normal estimations
  */
 
 #include "../common/testing.h"

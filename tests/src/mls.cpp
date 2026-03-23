@@ -5,8 +5,8 @@
 */
 
 /*!
-    \file test/mls.cpp
-    \brief Test basket utility functions
+ * \file tests/src/mls.cpp
+ * \brief Test basket utility functions
  */
 
 #include "../common/testing.h"

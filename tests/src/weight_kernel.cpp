@@ -5,8 +5,8 @@
 */
 
 /*!
-    \file test/Grenaille/weight_kernel.cpp
-    \brief Test weight kernel derivatives
+ * \file tests/src/weight_kernel.cpp
+ * \brief Test weight kernel derivatives
  */
 
 #include "../common/testing.h"

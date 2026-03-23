@@ -5,8 +5,8 @@
 */
 
 /*!
-    \file test/Grenaille/gls_sphere_der.cpp
-    \brief Test validity of GLS derivatives for a sphere
+ * \file tests/src/gls_sphere_der.cpp
+ * \brief Test validity of GLS derivatives for a sphere
  */
 
 #include "../common/testing.h"

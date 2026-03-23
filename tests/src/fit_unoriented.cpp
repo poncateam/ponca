@@ -5,8 +5,8 @@
 */
 
 /*!
- \file test/Grenaille/fit_unoriented.cpp
- \brief Test coherance of unoriented sphere fitting
+ * \file tests/src/fit_unoriented.cpp
+ * \brief Test coherance of unoriented sphere fitting
  */
 
 #include "../common/testing.h"
