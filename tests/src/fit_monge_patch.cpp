@@ -120,7 +120,7 @@ void callSubTests()
 {
     typedef PointPosition<Scalar, Dim> Point;
 
-    using WeightSmoothFunc   = DistWeightFunc<Point,   SmoothWeightKernel<Scalar>>;
+    using WeightSmoothFunc   = DistWeightFunc<Point, SmoothWeightKernel<Scalar>>;
     using WeightConstantFunc = DistWeightFunc<Point, ConstantWeightKernel<Scalar>>;
 
     using CovFitSmooth   = Basket<Point, WeightSmoothFunc, MongePatchQuadraticFit>;

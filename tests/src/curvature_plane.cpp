@@ -175,13 +175,11 @@ void callSubTests()
     using FitConstantNormalCovariance = Basket<Point, WeightConstantFunc, CovariancePlaneFit>;
     // Curvature estimators that runs on top of the covariance fit
     //! [Curvature Tensor PCA normals]
-    using EstimatorSmoothNormalCovariance = BasketDiff<
-        FitSmoothNormalCovariance, FitSpaceDer, CovariancePlaneDer, CurvatureEstimatorDer, NormalDerivativeWeingartenEstimator
-    >;
+    using EstimatorSmoothNormalCovariance = BasketDiff<FitSmoothNormalCovariance, FitSpaceDer, CovariancePlaneDer,
+                                                       CurvatureEstimatorDer, NormalDerivativeWeingartenEstimator>;
     //! [Curvature Tensor PCA normals]
-    using EstimatorConstantNormalCovariance = BasketDiff<
-        FitConstantNormalCovariance, FitSpaceDer, CovariancePlaneDer, CurvatureEstimatorDer, NormalDerivativeWeingartenEstimator
-    >;
+    using EstimatorConstantNormalCovariance = BasketDiff<FitConstantNormalCovariance, FitSpaceDer, CovariancePlaneDer,
+                                                         CurvatureEstimatorDer, NormalDerivativeWeingartenEstimator>;
     // Curvature estimators based on MongePatch fitting using generalized quadric
     //! [Curvature Estimator Monge Quadric]
     using FitMongeSmooth = Basket<Point, WeightSmoothFunc, MongePatchQuadraticFit>;
@@ -232,4 +230,3 @@ int main(int argc, char** argv)
     cout << "Test curvature estimation with long double" << endl;
     CALL_SUBTEST_3((callSubTests<long double, 3>()));
 }
-

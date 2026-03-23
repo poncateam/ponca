@@ -7,7 +7,7 @@
 /*!
  * \file tests/src/dnormal_orthogonal_derivatives.cpp
  * \brief Test validity of the spatial differentiation of normal
-*/
+ */
 
 #include "../split_test_helper.h"
 #include "../common/testing.h"
@@ -122,7 +122,7 @@ void Helper<3>::testRestrictedFits()
 {
     typedef PointPositionNormal<Scalar, 3> Point;
     using WeightFunc = DistWeightFunc<Point, SmoothWeightKernel<Scalar>>;
-    using PlaneFit = BasketDiff<Basket<Point, WeightFunc, CovariancePlaneFit>, FitScaleSpaceDer, CovariancePlaneDer>;
+    using PlaneFit   = BasketDiff<Basket<Point, WeightFunc, CovariancePlaneFit>, FitScaleSpaceDer, CovariancePlaneDer>;
 
     for (int k = 0; k < kmax; ++k)
     {
@@ -137,8 +137,8 @@ void _testAdimensionalFits()
     cout << "Test in dimension " << Dim << std::endl;
 
     typedef PointPositionNormal<Scalar, Dim> Point;
-    using WeightFunc   = DistWeightFunc<Point, SmoothWeightKernel<Scalar>>;
-    using SphereFit    = BasketDiff<Basket<Point, WeightFunc, OrientedSphereFit>, FitScaleSpaceDer, OrientedSphereDer>;
+    using WeightFunc = DistWeightFunc<Point, SmoothWeightKernel<Scalar>>;
+    using SphereFit  = BasketDiff<Basket<Point, WeightFunc, OrientedSphereFit>, FitScaleSpaceDer, OrientedSphereDer>;
     using MlsSphereFit =
         BasketDiff<Basket<Point, WeightFunc, OrientedSphereFit>, FitScaleSpaceDer, OrientedSphereDer, MlsSphereFitDer>;
 

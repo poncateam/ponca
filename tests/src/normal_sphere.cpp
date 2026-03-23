@@ -15,7 +15,7 @@
 #include <vector>
 
 using namespace std;
-using namespace Grenaille;
+using namespace Ponca;
 
 template <typename DataPoint, typename Fit>
 void testFunction(bool _bAddPositionNoise = false, bool _bAddNormalNoise = false)

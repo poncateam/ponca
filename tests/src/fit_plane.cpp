@@ -146,9 +146,9 @@ void callSubTests()
     using NoWeightFuncGlobal      = NoWeightFuncGlobal<Point>;
     using NoWeightFunc            = NoWeightFunc<Point>;
 
-    using CovFitSmooth         = Basket<Point, WeightSmoothFunc, CovariancePlaneFit>;
-    using CovFitConstant       = Basket<Point, WeightConstantFuncLocal, CovariancePlaneFit>;
-    using CovFitConstant2      = Basket<Point, NoWeightFunc, CovariancePlaneFit>;
+    using CovFitSmooth    = Basket<Point, WeightSmoothFunc, CovariancePlaneFit>;
+    using CovFitConstant  = Basket<Point, WeightConstantFuncLocal, CovariancePlaneFit>;
+    using CovFitConstant2 = Basket<Point, NoWeightFunc, CovariancePlaneFit>;
     // using CovFitConstantGlobal = Basket<Point, NoWeightFuncGlobal, CovariancePlaneFit>;
 
     using MeanFitSmooth         = Basket<Point, WeightSmoothFunc, MeanPlaneFit>;
@@ -159,12 +159,10 @@ void callSubTests()
     // test if conflicts are detected
     //! [Conflicting type]
     using Hybrid1 = Basket<Point, NoWeightFuncGlobal, Plane, MeanNormal, MeanPosition, MeanPlaneFitImpl,
-        CovarianceFitBase, CovariancePlaneFitImpl
-    >; // test conflict detection in one direction
+                           CovarianceFitBase, CovariancePlaneFitImpl>; // test conflict detection in one direction
     //! [Conflicting type]
     using Hybrid2 = Basket<Point, NoWeightFuncGlobal, Plane, MeanPosition, CovarianceFitBase, CovariancePlaneFitImpl,
-        MeanNormal, MeanPlaneFitImpl
-    >; // test conflict detection in the second direction
+                           MeanNormal, MeanPlaneFitImpl>; // test conflict detection in the second direction
 
     cout << "Testing with perfect plane..." << endl;
     for (int i = 0; i < g_repeat; ++i)
