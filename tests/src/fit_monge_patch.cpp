@@ -120,11 +120,11 @@ void callSubTests()
 {
     typedef PointPosition<Scalar, Dim> Point;
 
-    typedef DistWeightFunc<Point, SmoothWeightKernel<Scalar>> WeightSmoothFunc;
-    typedef DistWeightFunc<Point, ConstantWeightKernel<Scalar>> WeightConstantFunc;
+    using WeightSmoothFunc   = DistWeightFunc<Point,   SmoothWeightKernel<Scalar>>;
+    using WeightConstantFunc = DistWeightFunc<Point, ConstantWeightKernel<Scalar>>;
 
-    typedef Basket<Point, WeightSmoothFunc, MongePatchQuadraticFit> CovFitSmooth;
-    typedef Basket<Point, WeightConstantFunc, MongePatchQuadraticFit> CovFitConstant;
+    using CovFitSmooth   = Basket<Point, WeightSmoothFunc, MongePatchQuadraticFit>;
+    using CovFitConstant = Basket<Point, WeightConstantFunc, MongePatchQuadraticFit>;
 
     cout << "Testing with perfect plane..." << endl;
     for (int i = 0; i < g_repeat; ++i)

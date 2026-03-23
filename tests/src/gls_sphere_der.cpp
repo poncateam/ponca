@@ -85,7 +85,7 @@ template <typename Scalar, int Dim>
 void callSubTests()
 {
     typedef PointPositionNormal<Scalar, Dim> Point;
-    typedef DistWeightFunc<Point, SmoothWeightKernel<Scalar>> WeightSmoothFunc;
+    using WeightSmoothFunc  = DistWeightFunc<Point, SmoothWeightKernel<Scalar>>;
     using FitSmoothOriented = BasketDiff<Basket<Point, WeightSmoothFunc, OrientedSphereFit, GLSParam>, FitScaleSpaceDer,
                                          OrientedSphereDer, GLSDer>;
 

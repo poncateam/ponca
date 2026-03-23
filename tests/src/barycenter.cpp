@@ -83,13 +83,13 @@ void callSubTests()
 {
     typedef Ponca::PointPositionNormal<Scalar, Dim> Point;
 
-    typedef Ponca::DistWeightFunc<Point, Ponca::ConstantWeightKernel<Scalar>> WeightConstantFuncLocal;
-    typedef Ponca::NoWeightFuncGlobal<Point> NoWeightFuncGlobal;
-    typedef Ponca::NoWeightFunc<Point> NoWeightFunc;
+    using WeightConstantFuncLocal = Ponca::DistWeightFunc<Point, Ponca::ConstantWeightKernel<Scalar>>;
+    using NoWeightFuncGlobal      = Ponca::NoWeightFuncGlobal<Point>;
+    using NoWeightFunc            = Ponca::NoWeightFunc<Point>;
 
-    typedef Ponca::Basket<Point, WeightConstantFuncLocal, Ponca::MeanPosition> FitConstantLocal;
-    typedef Ponca::Basket<Point, NoWeightFunc, Ponca::MeanPosition> FitNoWeightLocal;
-    typedef Ponca::Basket<Point, NoWeightFuncGlobal, Ponca::MeanPosition> FitNoWeightGlobal;
+    using FitConstantLocal  = Ponca::Basket<Point, WeightConstantFuncLocal, Ponca::MeanPosition>;
+    using FitNoWeightLocal  = Ponca::Basket<Point, NoWeightFunc, Ponca::MeanPosition>;
+    using FitNoWeightGlobal = Ponca::Basket<Point, NoWeightFuncGlobal, Ponca::MeanPosition>;
 
     for (int i = 0; i < g_repeat; ++i)
     {

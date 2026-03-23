@@ -83,9 +83,9 @@ void callSubTests()
 {
     typedef PointPositionNormal<Scalar, Dim> Point;
 
-    typedef DistWeightFunc<Point, SmoothWeightKernel<Scalar>> WeightSmoothFunc;
+    using WeightSmoothFunc = DistWeightFunc<Point, SmoothWeightKernel<Scalar>>;
 
-    typedef Basket<Point, WeightSmoothFunc, OrientedSphereFit, GLSParam> FitSmoothOriented;
+    using FitSmoothOriented = Basket<Point, WeightSmoothFunc, OrientedSphereFit, GLSParam>;
 
     cout << "Testing with perfect spheres (oriented / unoriented)..." << endl;
     for (int i = 0; i < g_repeat; ++i)

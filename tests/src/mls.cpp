@@ -94,15 +94,15 @@ void callSubTests()
 
     // We test only primitive functions and not the fitting procedure
     //! [WeightFunction]
-    typedef DistWeightFunc<Point, SmoothWeightKernel<Scalar>> WeightFunc;
+    using WeightFunc = DistWeightFunc<Point, SmoothWeightKernel<Scalar>>;
     //! [WeightFunction]
-    typedef Basket<Point, WeightFunc, OrientedSphereFit> Sphere;
+    using Sphere = Basket<Point, WeightFunc, OrientedSphereFit>;
     //! [PlaneFitType]
-    typedef Basket<Point, WeightFunc, CovariancePlaneFit> Plane;
+    using Plane = Basket<Point, WeightFunc, CovariancePlaneFit>;
     //! [PlaneFitType]
 
-    typedef DistWeightFunc<Point, SmoothWeightKernel<Scalar>> WeightSmoothFunc;
-    typedef Basket<Point, WeightSmoothFunc, OrientedSphereFit> FitSmoothOriented;
+    using WeightSmoothFunc  = DistWeightFunc<Point, SmoothWeightKernel<Scalar>>;
+    using FitSmoothOriented = Basket<Point, WeightSmoothFunc, OrientedSphereFit>;
 
     // //! [PlaneFitDerTypes]
     // using PlaneScaleDiff = BasketDiff<Plane, FitScaleDer, CovariancePlaneDer>;

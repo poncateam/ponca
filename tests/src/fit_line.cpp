@@ -75,11 +75,11 @@ void callSubTests()
 {
     typedef PointPosition<Scalar, Dim> Point;
 
-    typedef DistWeightFunc<Point, SmoothWeightKernel<Scalar>> WeightSmoothFunc;
-    typedef DistWeightFunc<Point, ConstantWeightKernel<Scalar>> WeightConstantFunc;
+    using WeightSmoothFunc   = DistWeightFunc<Point, SmoothWeightKernel<Scalar>>;
+    using WeightConstantFunc = DistWeightFunc<Point, ConstantWeightKernel<Scalar>>;
 
-    typedef Basket<Point, WeightSmoothFunc, CovarianceLineFit> LeastSquareFitSmooth;
-    typedef Basket<Point, WeightConstantFunc, CovarianceLineFit> LeastSquareFitConstant;
+    using LeastSquareFitSmooth   = Basket<Point, WeightSmoothFunc, CovarianceLineFit>;
+    using LeastSquareFitConstant = Basket<Point, WeightConstantFunc, CovarianceLineFit>;
 
     cout << "Testing with perfect line..." << endl;
     for (int i = 0; i < g_repeat; ++i)
