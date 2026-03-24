@@ -49,7 +49,8 @@ static int g_repeat;
 static unsigned int g_seed;
 static bool g_has_set_repeat, g_has_set_seed;
 
-inline void verify_impl(bool condition, const char* testname, const char* file, int line, const char* condition_as_string)
+inline void verify_impl(bool condition, const char* testname, const char* file, int line,
+                        const char* condition_as_string)
 {
     if (!condition)
     {
