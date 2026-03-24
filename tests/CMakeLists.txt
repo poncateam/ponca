@@ -99,11 +99,8 @@ macro(add_multi_test filename)
     add_dependencies(buildtests ${testname})
     foreach(suffix ${suffixes})
       add_executable(${testname}_${suffix} ${filename})
+      target_link_libraries(${testname}_${suffix} PRIVATE Ponca::FittingPrecompiled)
       target_include_directories(${testname}_${suffix} PRIVATE ${PONCA_src_ROOT})
-      target_link_libraries(${testname}_${suffix} PRIVATE
-        Ponca::FittingPCH   # for header parsing speed
-        Ponca::FittingETI   # for template class reusability with vtable
-      )
 
       ponca_add_target_property(${testname}_${suffix} COMPILE_FLAGS "-DTEST_PART_${suffix}=1")
 
@@ -120,11 +117,8 @@ macro(add_multi_test filename)
     endforeach(suffix)
   else(suffixes)
     add_executable(${testname} ${filename})
+    target_link_libraries(${testname} PRIVATE Ponca::FittingPrecompiled)
     target_include_directories(${testname} PRIVATE ${PONCA_src_ROOT})
-    target_link_libraries(${testname} PRIVATE
-            Ponca::FittingPCH   # for header parsing speed
-            Ponca::FittingETI   # for template class reusability with vtable
-    )
 
     if(OpenMP_CXX_FOUND)
       target_link_libraries(${testname} PUBLIC OpenMP::OpenMP_CXX)
