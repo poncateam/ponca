@@ -49,7 +49,7 @@ namespace Ponca
 
             \todo check with MatrixType, VectorArray and ScalarArray
          */
-        typedef Eigen::Matrix<Scalar, DerDim, DerDim> Matrix;
+        using Matrix = Eigen::Matrix<Scalar, DerDim, DerDim>;
 
         /*!
             \brief Static matrix of scalars with a size adapted to the
@@ -70,7 +70,7 @@ namespace Ponca
                 Matrix m_i = a.template block<DerDim, DerDim>(0, i*DerDim);
             \endcode
          */
-        typedef Eigen::Matrix<Scalar, DerDim, Dim * DerDim> MatrixArray;
+        using MatrixArray = Eigen::Matrix<Scalar, DerDim, Dim * DerDim>;
 
     protected:
         // computation data

@@ -26,9 +26,9 @@ namespace Ponca
         {
             Dim = _Dim
         };
-        typedef _Scalar Scalar;
-        typedef Eigen::Matrix<Scalar, Dim, 1> VectorType;
-        typedef Eigen::Matrix<Scalar, Dim, Dim> MatrixType;
+        using Scalar     = _Scalar;
+        using VectorType = Eigen::Matrix<Scalar, Dim, 1>;
+        using MatrixType = Eigen::Matrix<Scalar, Dim, Dim>;
 
         PONCA_MULTIARCH inline PointPositionNormal(const VectorType& pos    = VectorType::Zero(),
                                                    const VectorType& normal = VectorType::Zero())
@@ -60,9 +60,9 @@ namespace Ponca
         {
             Dim = _Dim
         };
-        typedef _Scalar Scalar;
-        typedef Eigen::Matrix<Scalar, Dim, 1> VectorType;
-        typedef Eigen::Matrix<Scalar, Dim, Dim> MatrixType;
+        using Scalar     = _Scalar;
+        using VectorType = Eigen::Matrix<Scalar, Dim, 1>;
+        using MatrixType = Eigen::Matrix<Scalar, Dim, Dim>;
 
         PONCA_MULTIARCH inline PointPosition(const VectorType& pos = VectorType::Zero()) : m_pos(pos) {}
 
@@ -94,9 +94,9 @@ namespace Ponca
         {
             Dim = _Dim
         };
-        typedef _Scalar Scalar;
-        typedef Eigen::Matrix<Scalar, Dim, 1> VectorType;
-        typedef Eigen::Matrix<Scalar, Dim, Dim> MatrixType;
+        using Scalar     = _Scalar;
+        using VectorType = Eigen::Matrix<Scalar, Dim, 1>;
+        using MatrixType = Eigen::Matrix<Scalar, Dim, Dim>;
 
         PONCA_MULTIARCH inline PointPositionNormalBinding(const Scalar* _interlacedArray, const int _pId)
             : m_pos(Eigen::Map<const VectorType>(_interlacedArray + Dim * 2 * _pId)),
@@ -133,9 +133,9 @@ namespace Ponca
         {
             Dim = _Dim
         };
-        typedef _Scalar Scalar;
-        typedef Eigen::Matrix<Scalar, Dim, 1> VectorType;
-        typedef Eigen::Matrix<Scalar, Dim, Dim> MatrixType;
+        using Scalar     = _Scalar;
+        using VectorType = Eigen::Matrix<Scalar, Dim, 1>;
+        using MatrixType = Eigen::Matrix<Scalar, Dim, Dim>;
 
         PONCA_MULTIARCH inline PointPositionNormalLazyBinding(Scalar* _interlacedArray, const int _pId)
             : m_interlacedArray(_interlacedArray), m_id(_pId)

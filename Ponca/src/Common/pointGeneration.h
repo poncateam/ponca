@@ -26,8 +26,8 @@ namespace Ponca
                                              const bool _bAddPositionNoise = true, const bool _bAddNormalNoise = true,
                                              const bool _bReverseNormals = false)
     {
-        typedef typename DataPoint::Scalar Scalar;
-        typedef typename DataPoint::VectorType VectorType;
+        using Scalar     = typename DataPoint::Scalar;
+        using VectorType = typename DataPoint::VectorType;
 
         VectorType vNormal   = VectorType::Random().normalized();
         VectorType vPosition = _vCenter + vNormal * _radius;
@@ -84,8 +84,8 @@ namespace Ponca
                                                        const typename DataPoint::VectorType& _localyAxis,
                                                        const bool _bAddPositionNoise = true)
     {
-        typedef typename DataPoint::Scalar Scalar;
-        typedef typename DataPoint::VectorType VectorType;
+        using Scalar     = typename DataPoint::Scalar;
+        using VectorType = typename DataPoint::VectorType;
 
         const Scalar u = Eigen::internal::random<Scalar>(-_width / Scalar(2), _width / Scalar(2));
         const Scalar v = Eigen::internal::random<Scalar>(-_height / Scalar(2), _height / Scalar(2));
@@ -109,9 +109,9 @@ namespace Ponca
                                             const bool _bAddPositionNoise = true, const bool _bAddNormalNoise = true,
                                             const bool _bReverseNormals = false)
     {
-        typedef typename DataPoint::Scalar Scalar;
-        typedef typename DataPoint::VectorType VectorType;
-        typedef Eigen::Quaternion<Scalar> QuaternionType;
+        using Scalar         = typename DataPoint::Scalar;
+        using VectorType     = typename DataPoint::VectorType;
+        using QuaternionType = Eigen::Quaternion<Scalar>;
 
         VectorType vRandom;
         VectorType vRandomDirection = VectorType::Zero();
@@ -216,8 +216,8 @@ namespace Ponca
                                                  const typename DataPoint::Scalar _b,
                                                  const typename DataPoint::Scalar _s, const bool _bAddNoise = true)
     {
-        typedef typename DataPoint::Scalar Scalar;
-        typedef typename DataPoint::VectorType VectorType;
+        using Scalar     = typename DataPoint::Scalar;
+        using VectorType = typename DataPoint::VectorType;
 
         VectorType vNormal;
         VectorType vPosition;
@@ -243,8 +243,8 @@ namespace Ponca
                                                  typename DataPoint::Scalar _e, typename DataPoint::Scalar _f,
                                                  typename DataPoint::Scalar _s, bool _bAddNoise = true)
     {
-        typedef typename DataPoint::Scalar Scalar;
-        typedef typename DataPoint::VectorType VectorType;
+        using Scalar     = typename DataPoint::Scalar;
+        using VectorType = typename DataPoint::VectorType;
 
         DataPoint out;
 
@@ -276,8 +276,8 @@ namespace Ponca
     template <typename DataPoint>
     [[nodiscard]] DataPoint getRandomPoint()
     {
-        typedef typename DataPoint::VectorType VectorType;
-        typedef typename DataPoint::Scalar Scalar;
+        using Scalar       = typename DataPoint::Scalar;
+        using VectorType   = typename DataPoint::VectorType;
         const VectorType n = VectorType::Random().normalized();
         const VectorType p = n * Eigen::internal::random<Scalar>(MIN_NOISE, MAX_NOISE);
         return {p, (n + VectorType::Random() * Scalar(0.1)).normalized()};

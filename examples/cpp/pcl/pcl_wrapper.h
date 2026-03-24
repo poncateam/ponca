@@ -11,9 +11,7 @@
 
 /*!
  * \file examples/cpp/pcl/pcl_wrapper.h
- * \brief Class used for fitting method.
- * Using this approach, ones can use the ponca library with already existing
- * data-structures and without any data-duplication.
+ * \author: Nicolas Mellado
  */
 
 using GlsPoint = Ponca::PointPositionNormal<float, 3>;

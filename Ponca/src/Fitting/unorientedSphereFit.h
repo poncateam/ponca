@@ -55,8 +55,8 @@ namespace Ponca
             Check = Base::PROVIDES_ALGEBRAIC_SPHERE && Base::PROVIDES_MEAN_POSITION
         };
 
-        typedef Eigen::Matrix<Scalar, DataPoint::Dim + 1, 1> VectorB;
-        typedef Eigen::Matrix<Scalar, DataPoint::Dim + 1, DataPoint::Dim + 1> MatrixBB;
+        using VectorB  = Eigen::Matrix<Scalar, DataPoint::Dim + 1, 1>;
+        using MatrixBB = Eigen::Matrix<Scalar, DataPoint::Dim + 1, DataPoint::Dim + 1>;
 
     public:
         using Solver = Eigen::EigenSolver<MatrixBB>;
