@@ -6,8 +6,8 @@
 
 /*!
  * \file Ponca/precompiled/Fitting/fittingETI.h
- * \brief Instantiate explicitly most fitting types.
- * It tells the compiler that it should fetch the Fitting types from the precompiled library.
+ * \brief Pre-instantiate explicitly most fitting types for 3D point clouds.
+ * It tells the compiler that it should fetch with the vtable the Fitting types from the precompiled library.
  */
 
 #pragma once
