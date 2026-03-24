@@ -83,7 +83,7 @@ void testFunction(bool _bAddPositionNoise = false, bool _bAddNormalNoise = false
 template <typename Scalar, int Dim>
 void callSubTests()
 {
-    using Point = PointPositionNormal<Scalar, Dim>;
+    using Point             = PointPositionNormal<Scalar, Dim>;
     using WeightSmoothFunc  = DistWeightFunc<Point, SmoothWeightKernel<Scalar>>;
     using FitSmoothOriented = BasketDiff<Basket<Point, WeightSmoothFunc, OrientedSphereFit, GLSParam>, FitScaleSpaceDer,
                                          OrientedSphereDer, GLSDer>;

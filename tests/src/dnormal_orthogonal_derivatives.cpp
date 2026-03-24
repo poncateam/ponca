@@ -136,7 +136,7 @@ void _testAdimensionalFits()
 {
     cout << "Test in dimension " << Dim << std::endl;
 
-    using Point = PointPositionNormal<Scalar, Dim>;
+    using Point      = PointPositionNormal<Scalar, Dim>;
     using WeightFunc = DistWeightFunc<Point, SmoothWeightKernel<Scalar>>;
     using SphereFit  = BasketDiff<Basket<Point, WeightFunc, OrientedSphereFit>, FitScaleSpaceDer, OrientedSphereDer>;
     using MlsSphereFit =

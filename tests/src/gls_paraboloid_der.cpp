@@ -98,7 +98,7 @@ void testFunction()
         // Check derivatives wrt numerical differentiation
         // Use long double for stable numerical differentiation
         using RefScalar = long double;
-        using RefPoint = PointPositionNormal<RefScalar, 3>;
+        using RefPoint  = PointPositionNormal<RefScalar, 3>;
 
         vector<RefPoint> refVectorPoints(nbPoints);
         for (unsigned int i = 0; i < vectorPoints.size(); ++i)
@@ -241,7 +241,7 @@ void callSubTests()
                                        //    typedef PointPositionNormal<TestScalar, 3> TestPoint;
     //    using TestWeightFunc = DistWeightFunc<TestPoint, SmoothWeightKernel<TestScalar> >;
 
-    using Point = PointPositionNormal<Scalar, Dim>;
+    using Point            = PointPositionNormal<Scalar, Dim>;
     using WeightSmoothFunc = DistWeightFunc<Point, SmoothWeightKernel<Scalar>>;
 
     using FitSphereOriented =

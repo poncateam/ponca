@@ -188,7 +188,7 @@ template <typename Scalar, int Dim>
 void callSubTests()
 {
     //! [SpecializedPointType]
-    using Point = PointPositionNormal<Scalar, Dim>;
+    using Point      = PointPositionNormal<Scalar, Dim>;
     using VectorType = typename Point::VectorType;
     //! [SpecializedPointType]
 

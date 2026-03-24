@@ -95,7 +95,7 @@ void testKernelDiff(int nbSteps = 1000)
     W1 kernel1;
     W2 kernel2;
 
-    using Scalar = typename W1::Scalar;
+    using Scalar   = typename W1::Scalar;
     Scalar epsilon = Scalar(0.0001); // Current tolerance
 
     for (int i = 1; i <= nbSteps; ++i)

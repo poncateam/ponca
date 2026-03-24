@@ -76,7 +76,7 @@ template <typename DataPoint>
 typename DataPoint::Scalar getPointKappaMean(typename DataPoint::VectorType _vPoint, typename DataPoint::Scalar _a,
                                              typename DataPoint::Scalar _b)
 {
-    using Scalar     = typename DataPoint::Scalar;
+    using Scalar = typename DataPoint::Scalar;
 
     Scalar x = _vPoint.x();
     Scalar y = _vPoint.y();
