@@ -1,16 +1,16 @@
 /*
-This Source Code Form is subject to the terms of the Mozilla Public
-License, v. 2.0. If a copy of the MPL was not distributed with this
-file, You can obtain one at http://mozilla.org/MPL/2.0/.
+ This Source Code Form is subject to the terms of the Mozilla Public
+ License, v. 2.0. If a copy of the MPL was not distributed with this
+ file, You can obtain one at http://mozilla.org/MPL/2.0/.
 */
 
 /*!
-\file examples/Ponca/ssgls.cu
-\brief Screen space GLS using c++/CUDA
+ * \file examples/cuda/ssgls/ponca_ssgls.cu
+ * \brief Screen space GLS using c++/CUDA
 */
 
-#include <stdio.h>
-#include <stdlib.h>
+#include <cstdio>
+#include <cstdlib>
 #include <iostream>
 #include <cmath>
 #include <algorithm>
@@ -27,8 +27,6 @@ file, You can obtain one at http://mozilla.org/MPL/2.0/.
 #include <Ponca/src/Fitting/weightFunc.h>
 #include <Ponca/src/Fitting/weightKernel.h>
 
-
-
 /**************************************************************************************************/
 /* IO (source: http://zarb.org/~gc/html/libpng.html )                                             */
 /**************************************************************************************************/
@@ -37,15 +35,15 @@ class PNGImage
 {
 public:
   inline bool load(const char *file_name);
-  inline bool loaded () const { return ! row_pointers.empty(); }
+  [[nodiscard]] inline bool loaded () const { return ! row_pointers.empty(); }
   inline bool save(const char *file_name);
 
-  inline png_uint_32 width()  const { return m_width; };
-  inline png_uint_32 height() const { return m_height; };
+  [[nodiscard]] inline png_uint_32 width()  const { return m_width; };
+  [[nodiscard]] inline png_uint_32 height() const { return m_height; };
 
-  inline const std::vector<png_bytep>& buffer() const { return row_pointers; }
+  [[nodiscard]] inline const std::vector<png_bytep>& buffer() const { return row_pointers; }
   inline std::vector<png_bytep>& buffer() { return row_pointers; }
-  inline png_byte colorType() const { return png_get_color_type(png_ptr, info_ptr);}
+  [[nodiscard]] inline png_byte colorType() const { return png_get_color_type(png_ptr, info_ptr);}
 
   ~PNGImage() { for (auto e: row_pointers) delete e; row_pointers.clear(); }
 private:
@@ -61,8 +59,7 @@ private:
   using vecSizeT = typename std::vector<png_bytep>::size_type;
 };
 
-bool
-PNGImage::load(const char* file_name)
+bool PNGImage::load(const char* file_name)
 {
     unsigned char header[8];    // 8 is the maximum size that can be checked
 
@@ -146,8 +143,7 @@ PNGImage::load(const char* file_name)
     return true;
 }
 
-bool
-PNGImage::save(const char* file_name) {
+bool PNGImage::save(const char* file_name) {
   /* create file */
   FILE *fp = fopen(file_name, "wb");
   if (!fp)
@@ -237,10 +233,10 @@ class ScreenSpacePoint
 {
 public:
     enum {Dim = 3};
-    typedef float Scalar;
-    typedef Eigen::Matrix<Scalar, Dim, 1>   VectorType;
-    typedef Eigen::Matrix<Scalar, 2,   1>   ScreenVectorType;
-    typedef Eigen::Matrix<Scalar, Dim, Dim> MatrixType;
+    using Scalar           = float;
+    using VectorType       = Eigen::Matrix<Scalar, Dim, 1>;
+    using ScreenVectorType = Eigen::Matrix<Scalar, 2,   1>;
+    using MatrixType       = Eigen::Matrix<Scalar, Dim, Dim>;
 
     PONCA_MULTIARCH inline ScreenSpacePoint(const VectorType       &_pos    = VectorType::Zero(),
                                       const VectorType       &_normal = VectorType::Zero(),
@@ -261,17 +257,17 @@ private:
 };
 //! [mypoint]
 
-typedef ScreenSpacePoint::Scalar Scalar;
-typedef ScreenSpacePoint::VectorType VectorType;
-typedef ScreenSpacePoint::ScreenVectorType ScreenVectorType;
+using Scalar           = ScreenSpacePoint::Scalar;
+using VectorType       = ScreenSpacePoint::VectorType;
+using ScreenVectorType = ScreenSpacePoint::ScreenVectorType;
 
 //! [w_def]
-class ProjectedWeightFunc: public Ponca::DistWeightFunc<ScreenSpacePoint,Ponca::SmoothWeightKernel<Scalar> >
+class ProjectedWeightFunc: public Ponca::DistWeightFunc<ScreenSpacePoint, Ponca::SmoothWeightKernel<Scalar> >
 {
 public:
-    typedef ScreenSpacePoint::Scalar Scalar;
-    typedef ScreenSpacePoint::VectorType VectorType;
-    using Base = Ponca::DistWeightFunc<ScreenSpacePoint,Ponca::SmoothWeightKernel<Scalar> >;
+    using Scalar     = ScreenSpacePoint::Scalar;
+    using VectorType = ScreenSpacePoint::VectorType;
+    using Base       = Ponca::DistWeightFunc<ScreenSpacePoint, Ponca::SmoothWeightKernel<Scalar> >;
 
     PONCA_MULTIARCH inline ProjectedWeightFunc(const VectorType& _evalPos = VectorType::Zero(), const Scalar& _t = Scalar(1.), const Scalar _dz = 0.f)
         : Base(_evalPos, _t), m_dz(_dz) {}
@@ -293,10 +289,10 @@ private:
 //! [w_def]
 
 //! [fit_def]
-typedef Ponca::Basket< ScreenSpacePoint,
+using  ScreenSpaceFit = Ponca::Basket< ScreenSpacePoint,
                            ProjectedWeightFunc,
                            Ponca::OrientedSphereFit,
-                           Ponca::GLSParam> ScreenSpaceFit;
+                           Ponca::GLSParam>;
 //! [fit_def]
 
 //! [data_acces]
@@ -336,7 +332,7 @@ __global__ void doGLS_kernel( int _imgw, int _imgh, int _scale,
     int x = blockIdx.x * bw + tx;
     int y = blockIdx.y * bh + ty;
 
-    int idx = y * _imgw + x;
+    const int idx = y * _imgw + x;
 
     if((x >= _imgw || y >= _imgh))
     {
@@ -392,8 +388,8 @@ __global__ void doGLS_kernel( int _imgw, int _imgh, int _scale,
       n.normalize();
 
       ScreenSpacePoint::ScreenVectorType xyCoord;
-      xyCoord[0] = dx;
-      xyCoord[1] = dy;
+      xyCoord[0] = ScreenSpacePoint::Scalar(dx);
+      xyCoord[1] = ScreenSpacePoint::Scalar(dy);
 
       ScreenSpacePoint::VectorType p = getVector(nx, ny, _imgw, _imgh, _positions) * 2.f - one;
       // GLS computation
@@ -489,8 +485,8 @@ __host__ bool initInputDatas(const PNGImage& positions, const PNGImage& normals,
     positionsInfos.resize(width*height*3);
     normalsInfos.resize(width*height*3);
 
-    auto pbuf = positions.buffer();
-    auto nbuf = normals.buffer();
+    const auto& pbuf = positions.buffer();
+    const auto& nbuf = normals.buffer();
 
     for (int j = 0; j < height; ++j) {
         png_bytep pcol = pbuf[j];
@@ -521,8 +517,8 @@ __host__ bool saveResult(float* _results,
         return false;
     }
 
-    int width = result.width();
-    int height = result.height();
+    int width  = int(result.width());
+    int height = int(result.height());
 
     auto pbuf = result.buffer().data();
 
@@ -560,8 +556,8 @@ __host__ int adjust(int n, int blockSize)
 int main()
 {
     const char *positionsFilename = "./data/ssgls_sample_wc.png";
-    const char *normalsFilename = "./data/ssgls_sample_normal.png";
-    const char *resultFilename = "./ssgls_results.png";
+    const char *normalsFilename   = "./data/ssgls_sample_normal.png";
+    const char *resultFilename    = "./ssgls_results.png";
 
     PNGImage positions, normals;
 
@@ -570,10 +566,10 @@ int main()
         return 0;
     }
 
-    float fScale = 10.f;
-    float fMaxDepthDiff = 0.00f;
-    unsigned int width = 0;
-    unsigned int height = 0;
+    const float fScale        = 10.f;
+    const float fMaxDepthDiff = 0.00f;
+    unsigned int width        = 0;
+    unsigned int height       = 0;
     std::vector<float> positionsInfos, normalsInfos;
 
     if(!initInputDatas(positions, normals, positionsInfos, normalsInfos, width, height))
@@ -616,12 +612,12 @@ int main()
     std::cout << "ssCurvature running..." << std::endl;
 
     // dry run: first call is always slower
-    doGLS_kernel<<<grid, block>>>(width, height, fScale, fMaxDepthDiff, positionsInfos_device, normalsInfos_device, results_device);
+    doGLS_kernel<<<grid, block>>>(int(width), int(height), fScale, fMaxDepthDiff, positionsInfos_device, normalsInfos_device, results_device);
 
     int nbrun = 100;
     auto start = std::chrono::system_clock::now();
     for( int i = 0; i != nbrun; ++i) {
-      doGLS_kernel<<<grid, block>>>(width, height, fScale, fMaxDepthDiff, positionsInfos_device, normalsInfos_device, results_device);
+      doGLS_kernel<<<grid, block>>>(int(width), int(height), fScale, fMaxDepthDiff, positionsInfos_device, normalsInfos_device, results_device);
       cudaDeviceSynchronize();	// Wait for the GPU launched work to complete
     }
     auto end = std::chrono::system_clock::now();

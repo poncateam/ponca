@@ -12,7 +12,7 @@
 #include <algorithm>
 
 #include "Eigen/Core"
-#include "Patate/grenaille.h"
+#include <Ponca/Fitting>
 
 
 //! [mypoint]
@@ -20,10 +20,10 @@ class MyPoint
 {
 public:
     enum {Dim = 3};
-    typedef float Scalar;
-    typedef Eigen::Matrix<Scalar, Dim, 1> VectorType;
-    typedef Eigen::Matrix<Scalar, Dim, Dim> MatrixType;
-    typedef Eigen::Matrix<Scalar, 2, 1>   ScreenVectorType;
+    using Scalar           = float;
+    using VectorType       = Eigen::Matrix<Scalar, Dim, 1>;
+    using MatrixType       = Eigen::Matrix<Scalar, Dim, Dim>;
+    using ScreenVectorType = Eigen::Matrix<Scalar, 2, 1>;
 
     MULTIARCH inline MyPoint(   const VectorType& _pos        = VectorType::Zero(),
                                 const VectorType& _normal     = VectorType::Zero(),
@@ -50,25 +50,25 @@ private:
 };
 //! [mypoint]
 
-typedef MyPoint::Scalar Scalar;
-typedef MyPoint::VectorType VectorType;
-typedef MyPoint::ScreenVectorType ScreenVectorType;
+using Scalar           = MyPoint::Scalar;
+using VectorType       = MyPoint::VectorType;
+using ScreenVectorType = MyPoint::ScreenVectorType;
 
 //! [w_def]
-class ProjectWeightFunc: public Grenaille::DistWeightFunc<MyPoint, Grenaille::SmoothWeightKernel<Scalar> >
+class ProjectWeightFunc: public Ponca::DistWeightFunc<MyPoint, Ponca::SmoothWeightKernel<Scalar> >
 {
 public:
-    typedef MyPoint::Scalar Scalar;
-    typedef MyPoint::VectorType VectorType;
+    using Scalar     = MyPoint::Scalar;
+    using VectorType = MyPoint::VectorType;
 
     /*
-    Default constructor (needed by Grenaille). Note that the screenspace
+    Default constructor (needed by Ponca). Note that the screenspace
     evaluation position is specified as parameter
     */
     MULTIARCH inline ProjectWeightFunc( const Scalar& _t                = 1.f,
                                         const ScreenVectorType& _refPos = ScreenVectorType::Zero(),
                                         const Scalar& _dz               = 0.f)
-        : Grenaille::DistWeightFunc<MyPoint, Grenaille::SmoothWeightKernel<Scalar> >(_t), m_refPos(_refPos), m_dz(_dz) {}
+        : Ponca::DistWeightFunc<MyPoint, Ponca::SmoothWeightKernel<Scalar> >(_t), m_refPos(_refPos), m_dz(_dz) {}
 
     MULTIARCH inline Scalar w(const VectorType& _q, const MyPoint&  _attributes) const
     {
@@ -87,7 +87,7 @@ private:
 //! [w_def]
 
 //! [fit_def]
-typedef Grenaille::Basket<MyPoint,ProjectWeightFunc,Grenaille::OrientedSphereFit, Grenaille::GLSParam> Gls;
+using Gls = Ponca::Basket<MyPoint,ProjectWeightFunc, Ponca::OrientedSphereFit, Ponca::GLSParam>;
 //! [fit_def]
 
 //! [data_acces]

@@ -1,8 +1,13 @@
 /*
-This Source Code Form is subject to the terms of the Mozilla Public
-License, v. 2.0. If a copy of the MPL was not distributed with this
-file, You can obtain one at http://mozilla.org/MPL/2.0/.
+ This Source Code Form is subject to the terms of the Mozilla Public
+ License, v. 2.0. If a copy of the MPL was not distributed with this
+ file, You can obtain one at http://mozilla.org/MPL/2.0/.
 */
+
+/*!
+ * \file examples/cpp/ponca_customize_kdtree.cpp
+ * \author: Nicolas Mellado
+ */
 
 #include <iostream>
 #include <optional>
@@ -67,7 +72,7 @@ int main()
     const CustomKdTree kdtree(points);
 
     // neighbor searches are done below from these arbitrary index and point
-    const int query_idx = 10;
+    constexpr int query_idx = 10;
     const DataPoint::VectorType query_pt{-10.0, 0.5, 75.0};
 
     //

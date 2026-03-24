@@ -1,16 +1,15 @@
 /*
-This Source Code Form is subject to the terms of the Mozilla Public
-License, v. 2.0. If a copy of the MPL was not distributed with this
-file, You can obtain one at http://mozilla.org/MPL/2.0/.
+ This Source Code Form is subject to the terms of the Mozilla Public
+ License, v. 2.0. If a copy of the MPL was not distributed with this
+ file, You can obtain one at http://mozilla.org/MPL/2.0/.
 */
 
 /*!
-\file examples/Grenaille/basic_cpu.h
-\brief Basic use of Grenaille
+ * \file examples/cpp/ponca_basic_cpu.cpp
+ * \brief Basic use of Ponca
+ * \author: Nicolas Mellado, Gautier Ciaudo
+ */
 
-\author: Nicolas Mellado, Gautier Ciaudo
-*/
-#include <cmath>
 #include <algorithm>
 #include <iostream>
 
@@ -33,22 +32,22 @@ file, You can obtain one at http://mozilla.org/MPL/2.0/.
 using namespace std;
 using namespace Ponca;
 
-using MyPoint = PointPositionNormal<double, 3>;
-typedef MyPoint::Scalar Scalar;
-typedef MyPoint::VectorType VectorType;
+using MyPoint    = PointPositionNormal<double, 3>;
+using Scalar     = MyPoint::Scalar;
+using VectorType = MyPoint::VectorType;
 
 // Define related structure
-typedef DistWeightFunc<MyPoint, SmoothWeightKernel<Scalar>> WeightFunc;
-using Fit1 = Basket<MyPoint, WeightFunc, OrientedSphereFit, GLSParam>;
-using Fit2 = Basket<MyPoint, WeightFunc, UnorientedSphereFit, GLSParam>;
-using Fit3 = BasketDiff<Fit1, FitSpaceDer, OrientedSphereDer, GLSDer, CurvatureEstimatorDer,
+using WeightFunc = DistWeightFunc<MyPoint, SmoothWeightKernel<Scalar>>;
+using Fit1       = Basket<MyPoint, WeightFunc, OrientedSphereFit, GLSParam>;
+using Fit2       = Basket<MyPoint, WeightFunc, UnorientedSphereFit, GLSParam>;
+using Fit3       = BasketDiff<Fit1, FitSpaceDer, OrientedSphereDer, GLSDer, CurvatureEstimatorDer,
                         NormalDerivativeWeingartenEstimator, WeingartenCurvatureEstimatorDer>;
-using Fit4 = Basket<MyPoint, WeightFunc, SphereFit, GLSParam>;
+using Fit4       = Basket<MyPoint, WeightFunc, SphereFit, GLSParam>;
 
 template <typename Fit>
 void test_fit(Fit& _fit, const KdTree<MyPoint>& tree, const VectorType& _p)
 {
-    Scalar tmax = 100.0;
+    constexpr Scalar tmax = Scalar(100.0);
 
     // Set a weighting function instance
     _fit.setNeighborFilter({_p, tmax});
@@ -56,7 +55,7 @@ void test_fit(Fit& _fit, const KdTree<MyPoint>& tree, const VectorType& _p)
     _fit.init();
 
     // Iterate over samples and _fit the primitive
-    for (int i : tree.rangeNeighbors(_p, tmax))
+    for (const int i : tree.rangeNeighbors(_p, tmax))
     {
         _fit.addNeighbor(tree.points()[i]);
     }
@@ -94,13 +93,13 @@ int main()
     VectorType p = VectorType::Random();
 
     // init input data
-    int n = 10000;
+    constexpr int n = 10000;
     vector<MyPoint> vecs(n);
     std::generate(vecs.begin(), vecs.end(), getRandomPoint<MyPoint>);
 
     p = vecs.at(0).pos();
 
-    KdTreeDense<MyPoint> tree{vecs};
+    const KdTreeDense<MyPoint> tree{vecs};
 
     std::cout << "====================\nOrientedSphereFit:\n";
     Fit1 fit1;

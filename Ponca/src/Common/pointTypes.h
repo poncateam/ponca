@@ -7,6 +7,7 @@ This Source Code Form is subject to the terms of the Mozilla Public
 #pragma once
 
 #include "./defines.h"
+#include <Eigen/Core>
 
 /*!
   \file pointTypes.h
