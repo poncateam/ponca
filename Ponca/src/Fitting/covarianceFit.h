@@ -10,6 +10,9 @@
 #pragma once
 #include "./defines.h"
 
+#include PONCA_MULTIARCH_INCLUDE_STD(cmath)
+#include PONCA_MULTIARCH_INCLUDE_CU_STD(limits)
+
 #include <Eigen/Dense>
 
 namespace Ponca

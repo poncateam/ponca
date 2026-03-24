@@ -7,10 +7,6 @@
  file, You can obtain one at http://mozilla.org/MPL/2.0/.
 */
 
-#include PONCA_MULTIARCH_INCLUDE_STD(cmath)
-
-#include <limits>
-#include PONCA_MULTIARCH_INCLUDE_CU_STD(numeric_limits)
 
 template <class DataPoint, class _NFilter, typename T>
 FIT_RESULT CovariancePlaneFitImpl<DataPoint, _NFilter, T>::finalize()
@@ -44,8 +40,6 @@ typename CovariancePlaneFitImpl<DataPoint, _NFilter, T>::VectorType CovariancePl
 template <class DataPoint, class _NFilter, int DiffType, typename T>
 FIT_RESULT CovariancePlaneDerImpl<DataPoint, _NFilter, DiffType, T>::finalize()
 {
-    PONCA_MULTIARCH_STD_MATH(sqrt);
-
     Base::finalize();
     // Test if base finalize end on a viable case (stable / unstable)
     if (this->isReady())

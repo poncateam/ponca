@@ -14,6 +14,8 @@
 #include PONCA_MULTIARCH_INCLUDE_STD(cmath)
 
 #include <Eigen/Dense>
+#include <Eigen/SVD>
+#include <Eigen/Geometry>
 
 namespace Ponca
 {
