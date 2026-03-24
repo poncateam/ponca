@@ -10,6 +10,10 @@ MaxEmptyLinesToKeep: 1
 KeepEmptyLinesAtEOF: true
 KeepEmptyLines:
   AtEndOfFile: true
+IndentRequiresClause: true
+RequiresClausePosition: 'OwnLine'
+AllowShortCompoundRequirementOnASingleLine: true
+# RequiresExpressionIndentation: 'OuterScope'
 AlignConsecutiveAssignments: true
 AlignEscapedNewlines: Left
 AllowShortFunctionsOnASingleLine: All
