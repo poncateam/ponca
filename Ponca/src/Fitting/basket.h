@@ -117,13 +117,13 @@ namespace Ponca
      * The various implementations of Ponca::Concept are mixed through specializations of the BasketDiff and Basket
      *   classes:
      *   \code
-     *   typedef
+     *   using myFitDer =
      *   BasketDiff <BasketType,           // Existing Basket, to be differentiated
      *   DiffType,                         // Differentiation space: FitScaleDer, FitSpaceDer, or
      * FitScaleDer|FitSpaceDer ComputationalDerivativesConcept1, // Implementation of ComputationalDerivativesConcept
      *   ComputationalDerivativesConcept2, // Implementation of ComputationalDerivativesConcept
      *   ... ,                             //
-     *   > myFitDer;                       // Final structure to fit and derive a primitive over weighted samples
+     *   >;                                // Final structure to fit and derive a primitive over weighted samples
      *   \endcode
      *
      * \tparam Derived Derived class that provides the addNeighbor method (either Basket or BasketDiff)
