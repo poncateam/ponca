@@ -33,7 +33,7 @@
 
 #endif // ifdef __CUDACC__
 
-#ifdef __CUDA_ARCH__
+#ifdef __CUDACC__
 #    define PONCA_MULTIARCH_INCLUDE_STD(FILENAME) "defines.h"
 #    define PONCA_MULTIARCH_STD_MATH(FUNC)
 #    define PONCA_MULTIARCH_STD_MATH_NAMESPACE(FUNC) FUNC

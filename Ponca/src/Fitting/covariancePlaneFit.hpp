@@ -8,7 +8,9 @@
 */
 
 #include PONCA_MULTIARCH_INCLUDE_STD(cmath)
-#include PONCA_MULTIARCH_INCLUDE_STD(limits)
+
+#include <limits>
+#include PONCA_MULTIARCH_INCLUDE_CU_STD(numeric_limits)
 
 template <class DataPoint, class _NFilter, typename T>
 FIT_RESULT CovariancePlaneFitImpl<DataPoint, _NFilter, T>::finalize()
@@ -43,7 +45,6 @@ template <class DataPoint, class _NFilter, int DiffType, typename T>
 FIT_RESULT CovariancePlaneDerImpl<DataPoint, _NFilter, DiffType, T>::finalize()
 {
     PONCA_MULTIARCH_STD_MATH(sqrt);
-    PONCA_MULTIARCH_STD_MATH(numeric_limits);
 
     Base::finalize();
     // Test if base finalize end on a viable case (stable / unstable)
@@ -54,7 +55,7 @@ FIT_RESULT CovariancePlaneDerImpl<DataPoint, _NFilter, DiffType, T>::finalize()
 
         // pre-compute shifted eigenvalues to apply the pseudo inverse of C - lambda_0 I
         Scalar epsilon          = Scalar(2) * Eigen::NumTraits<Scalar>::epsilon();
-        Scalar consider_as_zero = Scalar(2) * numeric_limits<Scalar>::denorm_min();
+        Scalar consider_as_zero = Scalar(2) * PONCA_MULTIARCH_CU_STD_NAMESPACE(numeric_limits)<Scalar>::denorm_min();
 
         // This is where the limitation to 3d comes from.
         // \fixme Replace shift in 2d subspace by any subspace with co-dimension 1
