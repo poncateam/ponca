@@ -77,7 +77,7 @@ PNGImage::load(const char* file_name)
         return false;
     }
 
-    fread(header, 1, 8, fp);
+    [[maybe_unused]] auto _ = fread(header, 1, 8, fp);
     if (png_sig_cmp(header, 0, 8))
     {
         std::cerr << "[read_png_file] File " \
