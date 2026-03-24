@@ -120,7 +120,7 @@ template <>
 template <typename Scalar>
 void Helper<3>::testRestrictedFits()
 {
-    typedef PointPositionNormal<Scalar, 3> Point;
+    using Point      = PointPositionNormal<Scalar, 3>;
     using WeightFunc = DistWeightFunc<Point, SmoothWeightKernel<Scalar>>;
     using PlaneFit   = BasketDiff<Basket<Point, WeightFunc, CovariancePlaneFit>, FitScaleSpaceDer, CovariancePlaneDer>;
 
@@ -136,7 +136,7 @@ void _testAdimensionalFits()
 {
     cout << "Test in dimension " << Dim << std::endl;
 
-    typedef PointPositionNormal<Scalar, Dim> Point;
+    using Point = PointPositionNormal<Scalar, Dim>;
     using WeightFunc = DistWeightFunc<Point, SmoothWeightKernel<Scalar>>;
     using SphereFit  = BasketDiff<Basket<Point, WeightFunc, OrientedSphereFit>, FitScaleSpaceDer, OrientedSphereDer>;
     using MlsSphereFit =

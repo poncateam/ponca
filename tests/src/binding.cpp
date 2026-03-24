@@ -28,8 +28,8 @@ using namespace Ponca;
 template <typename DataPoint>
 typename DataPoint::Scalar generateData(vector<DataPoint>& points)
 {
-    typedef typename DataPoint::Scalar Scalar;
-    typedef typename DataPoint::VectorType VectorType;
+    using Scalar     = typename DataPoint::Scalar;
+    using VectorType = typename DataPoint::VectorType;
 
     // generate sampled sphere
 #ifdef NDEBUG
@@ -159,9 +159,9 @@ using TestSphereFit = Basket<DataPoint, NeighborFilter<DataPoint>, OrientedSpher
 template <typename Scalar, int Dim>
 void callSubTests()
 {
-    typedef PointPositionNormal<Scalar, Dim> Point;
-    typedef PointPositionNormalBinding<Scalar, Dim> PointRef;
-    typedef PointPositionNormalLazyBinding<Scalar, Dim> PointLateRef;
+    using Point        = PointPositionNormal<Scalar, Dim>;
+    using PointRef     = PointPositionNormalBinding<Scalar, Dim>;
+    using PointLateRef = PointPositionNormalLazyBinding<Scalar, Dim>;
 
     for (int i = 0; i < g_repeat; ++i)
     {

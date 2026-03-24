@@ -36,11 +36,11 @@ template <typename Fit, typename RefFit, typename TestFit>
 void testFunction()
 {
     // Define related structure
-    typedef typename Fit::DataPoint DataPoint;
-    typedef typename TestFit::DataPoint TestDataPoint;
-    typedef typename TestDataPoint::Scalar TestScalar;
-    typedef typename DataPoint::Scalar Scalar;
-    typedef typename DataPoint::VectorType VectorType;
+    using DataPoint     = typename Fit::DataPoint;
+    using TestDataPoint = typename TestFit::DataPoint;
+    using TestScalar    = typename TestDataPoint::Scalar;
+    using Scalar        = typename DataPoint::Scalar;
+    using VectorType    = typename DataPoint::VectorType;
     // typedef typename DataPoint::MatrixType MatrixType;
 
     // generate sampled paraboloid
@@ -97,8 +97,8 @@ void testFunction()
     {
         // Check derivatives wrt numerical differentiation
         // Use long double for stable numerical differentiation
-        typedef long double RefScalar;
-        typedef PointPositionNormal<RefScalar, 3> RefPoint;
+        using RefScalar = long double;
+        using RefPoint = PointPositionNormal<RefScalar, 3>;
 
         vector<RefPoint> refVectorPoints(nbPoints);
         for (unsigned int i = 0; i < vectorPoints.size(); ++i)
@@ -111,7 +111,7 @@ void testFunction()
         RefFit ref_fit;
         ref_fit.setNeighborFilter({vFittingPoint.template cast<RefScalar>(), analysisScale});
         ref_fit.init();
-        for (typename vector<RefPoint>::iterator it = refVectorPoints.begin(); it != refVectorPoints.end(); ++it)
+        for (vector<RefPoint>::iterator it = refVectorPoints.begin(); it != refVectorPoints.end(); ++it)
         {
             ref_fit.addNeighbor(*it);
         }
@@ -232,8 +232,8 @@ void testFunction()
 template <typename Scalar, int Dim>
 void callSubTests()
 {
-    typedef long double RefScalar;
-    typedef PointPositionNormal<RefScalar, 3> RefPoint;
+    using RefScalar     = long double;
+    using RefPoint      = PointPositionNormal<RefScalar, 3>;
     using RefWeightFunc = DistWeightFunc<RefPoint, SmoothWeightKernel<RefScalar>>;
 
     typedef ScalarPrecisionCheck<Scalar, RefScalar> TestScalar;
@@ -241,7 +241,7 @@ void callSubTests()
                                        //    typedef PointPositionNormal<TestScalar, 3> TestPoint;
     //    using TestWeightFunc = DistWeightFunc<TestPoint, SmoothWeightKernel<TestScalar> >;
 
-    typedef PointPositionNormal<Scalar, Dim> Point;
+    using Point = PointPositionNormal<Scalar, Dim>;
     using WeightSmoothFunc = DistWeightFunc<Point, SmoothWeightKernel<Scalar>>;
 
     using FitSphereOriented =

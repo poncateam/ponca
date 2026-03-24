@@ -29,8 +29,8 @@ using namespace Ponca;
 template <typename DataPoint>
 typename DataPoint::Scalar generateData(KdTree<DataPoint>& tree)
 {
-    typedef typename DataPoint::Scalar Scalar;
-    typedef typename DataPoint::VectorType VectorType;
+    using Scalar     = typename DataPoint::Scalar;
+    using VectorType = typename DataPoint::VectorType;
 
     // generate sampled sphere
 #ifdef NDEBUG
@@ -63,11 +63,6 @@ typename DataPoint::Scalar generateData(KdTree<DataPoint>& tree)
 template <typename Fit>
 void testBasicFunctionalities(const KdTree<typename Fit::DataPoint>& tree, typename Fit::Scalar analysisScale)
 {
-    using DataPoint = typename Fit::DataPoint;
-
-    // Define related structure
-    typedef typename DataPoint::Scalar Scalar;
-
     const auto& vectorPoints = tree.points();
 
     // Quick testing is requested for coverage
@@ -163,7 +158,7 @@ template <typename Scalar, int Dim>
 void callSubTests()
 {
     //! [SpecializedPointType]
-    typedef PointPositionNormal<Scalar, Dim> Point;
+    using Point = PointPositionNormal<Scalar, Dim>;
     //! [SpecializedPointType]
 
     // We test only primitive functions and not the fitting procedure

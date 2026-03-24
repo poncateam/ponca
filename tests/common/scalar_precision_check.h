@@ -43,8 +43,8 @@ template <typename _lowPrecisionScalarT = float, typename _highPrecisionScalarT 
 class ScalarPrecisionCheck
 {
 public:
-    typedef _lowPrecisionScalarT LPScalar;
-    typedef _highPrecisionScalarT HPScalar;
+    using LPScalar = _lowPrecisionScalarT;
+    using HPScalar = _highPrecisionScalarT;
 
     inline ScalarPrecisionCheck() {}
 

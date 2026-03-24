@@ -21,9 +21,9 @@ template <typename DataPoint, typename FitScaleDer, typename FitSpaceDer, typena
 void checkConsistency(const vector<DataPoint> vectorPoints, typename DataPoint::Scalar analysisScale,
                       typename DataPoint::Scalar epsilon)
 {
-    typedef typename DataPoint::Scalar Scalar;
-    typedef typename DataPoint::VectorType VectorType;
-    typedef typename DataPoint::MatrixType MatrixType;
+    using Scalar     = typename DataPoint::Scalar;
+    using VectorType = typename DataPoint::VectorType;
+    using MatrixType = typename DataPoint::MatrixType;
 
     // input type check
     VERIFY(FitScaleDer::isScaleDer() && !FitScaleDer::isSpaceDer());
@@ -89,9 +89,9 @@ template <typename DataPoint, typename Fit1, typename Fit2, typename Fit3>
 void testFunction(bool _bAddNoise = false)
 {
     // Define related structure
-    typedef typename DataPoint::Scalar Scalar;
-    typedef typename DataPoint::VectorType VectorType;
-    typedef typename DataPoint::QuaternionType QuaternionType;
+    using Scalar         = typename DataPoint::Scalar;
+    using VectorType     = typename DataPoint::VectorType;
+    using QuaternionType = typename DataPoint::QuaternionType;
 
     int nbPointsParaboloid = Eigen::internal::random<int>(100, 1000);
     int nbPointsPlane      = Eigen::internal::random<int>(100, 1000);

@@ -31,8 +31,8 @@ template <typename DataPoint, typename Fit>
 void testFunction(bool _bAddPositionNoise = false)
 {
     // Define related structure
-    typedef typename DataPoint::Scalar Scalar;
-    typedef typename DataPoint::VectorType VectorType;
+    using Scalar     = typename DataPoint::Scalar;
+    using VectorType = typename DataPoint::VectorType;
 
     // generate sampled plane
     int nbPoints = Eigen::internal::random<int>(100, 1000);
@@ -118,7 +118,7 @@ void testFunction(bool _bAddPositionNoise = false)
 template <typename Scalar, int Dim>
 void callSubTests()
 {
-    typedef PointPosition<Scalar, Dim> Point;
+    using Point = PointPositionNormal<Scalar, Dim>;
 
     using WeightSmoothFunc   = DistWeightFunc<Point, SmoothWeightKernel<Scalar>>;
     using WeightConstantFunc = DistWeightFunc<Point, ConstantWeightKernel<Scalar>>;

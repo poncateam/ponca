@@ -70,8 +70,8 @@ void testFunction(bool _bAddPositionNoise = false, bool _bAddNormalNoise = false
     constexpr bool hasFundamentalForms = hasFirstFundamentalForm<Fit>::value;
 
     // Define related structure
-    typedef typename DataPoint::Scalar Scalar;
-    typedef typename DataPoint::VectorType VectorType;
+    using Scalar     = typename DataPoint::Scalar;
+    using VectorType = typename DataPoint::VectorType;
 
     // generate sampled plane
     int nbPoints = Eigen::internal::random<int>(1000, 5000);
@@ -163,7 +163,7 @@ void testFunction(bool _bAddPositionNoise = false, bool _bAddNormalNoise = false
 template <typename Scalar, int Dim>
 void callSubTests()
 {
-    typedef PointPositionNormal<Scalar, Dim> Point;
+    using Point = PointPositionNormal<Scalar, Dim>;
 
     using WeightSmoothFunc   = DistWeightFunc<Point, SmoothWeightKernel<Scalar>>;
     using WeightConstantFunc = DistWeightFunc<Point, ConstantWeightKernel<Scalar>>;

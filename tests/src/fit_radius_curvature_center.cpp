@@ -57,8 +57,8 @@ template <typename DataPoint, typename Fit, bool isSpaceDer>
 void testFunction(bool _bUnoriented = false, bool _bAddPositionNoise = false, bool _bAddNormalNoise = false)
 {
     // Define related structure
-    typedef typename DataPoint::Scalar Scalar;
-    typedef typename DataPoint::VectorType VectorType;
+    using Scalar     = typename DataPoint::Scalar;
+    using VectorType = typename DataPoint::VectorType;
 
     // generate sampled sphere
     int nbPoints = Eigen::internal::random<int>(100, 1000);
@@ -131,7 +131,7 @@ void testFunction(bool _bUnoriented = false, bool _bAddPositionNoise = false, bo
 }
 
 #define DECLARE_DEFAULT_TYPES                                                                     \
-    typedef PointPositionNormal<Scalar, Dim> Point;                                               \
+    using Point = PointPositionNormal<Scalar, Dim>;                                               \
                                                                                                   \
     using WeightSmoothFunc   = DistWeightFunc<Point, SmoothWeightKernel<Scalar>>;                 \
     using WeightConstantFunc = DistWeightFunc<Point, ConstantWeightKernel<Scalar>>;               \

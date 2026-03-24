@@ -23,8 +23,8 @@ template <typename DataPoint, typename FitA, typename FitB>
 void compareFit(const bool _bAddPositionNoise = false, const bool _bAddNormalNoise = false)
 {
     // Define related structure
-    typedef typename DataPoint::Scalar Scalar;
-    typedef typename DataPoint::VectorType VectorType;
+    using Scalar     = typename DataPoint::Scalar;
+    using VectorType = typename DataPoint::VectorType;
 
     int nbPoints = Eigen::internal::random<int>(10000, 20000);
     // the radius is between 1 and 10

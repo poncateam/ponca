@@ -30,8 +30,8 @@ template <typename DataPoint, typename Fit>
 void testFunction()
 {
     // Define related structure
-    typedef typename DataPoint::Scalar Scalar;
-    typedef typename DataPoint::VectorType VectorType;
+    using Scalar     = typename DataPoint::Scalar;
+    using VectorType = typename DataPoint::VectorType;
 
     // Generate sampled sphere
     int nbPoints = Eigen::internal::random<int>(100, 1000);
@@ -89,7 +89,7 @@ template <typename Scalar, int Dim>
 void callSubTests()
 {
     //! [SpecializedPointType]
-    typedef PointPositionNormal<Scalar, Dim> Point;
+    using Point = PointPositionNormal<Scalar, Dim>;
     //! [SpecializedPointType]
 
     // We test only primitive functions and not the fitting procedure

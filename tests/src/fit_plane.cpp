@@ -49,8 +49,8 @@ void testFunction(bool _bUnoriented = false, bool _bAddPositionNoise = false, bo
                   bool conflictAnnounced = false)
 {
     // Define related structure
-    typedef typename DataPoint::Scalar Scalar;
-    typedef typename DataPoint::VectorType VectorType;
+    using Scalar     = typename DataPoint::Scalar;
+    using VectorType = typename DataPoint::VectorType;
     // generate sampled plane
     int nbPoints = Eigen::internal::random<int>(100, 1000);
 
@@ -139,7 +139,7 @@ void testFunction(bool _bUnoriented = false, bool _bAddPositionNoise = false, bo
 template <typename Scalar, int Dim>
 void callSubTests()
 {
-    typedef PointPositionNormal<Scalar, Dim> Point;
+    using Point = PointPositionNormal<Scalar, Dim>;
 
     using WeightSmoothFunc        = DistWeightFunc<Point, SmoothWeightKernel<Scalar>>;
     using WeightConstantFuncLocal = DistWeightFunc<Point, ConstantWeightKernel<Scalar>>;

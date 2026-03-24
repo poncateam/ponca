@@ -29,10 +29,9 @@ template <typename DataPoint, typename Fit>
 void testFunction(bool _bAddPositionNoise = false, bool _bAddNormalNoise = false)
 {
     // Define related structure
-    typedef typename DataPoint::Scalar Scalar;
-    typedef typename DataPoint::VectorType VectorType;
-
-    typedef typename Fit::ScalarArray ScalarArray;
+    using Scalar      = typename DataPoint::Scalar;
+    using VectorType  = typename DataPoint::VectorType;
+    using ScalarArray = typename Fit::ScalarArray;
 
     // generate sampled sphere
     int nbPoints = Eigen::internal::random<int>(100, 1000);
@@ -84,7 +83,7 @@ void testFunction(bool _bAddPositionNoise = false, bool _bAddNormalNoise = false
 template <typename Scalar, int Dim>
 void callSubTests()
 {
-    typedef PointPositionNormal<Scalar, Dim> Point;
+    using Point = PointPositionNormal<Scalar, Dim>;
     using WeightSmoothFunc  = DistWeightFunc<Point, SmoothWeightKernel<Scalar>>;
     using FitSmoothOriented = BasketDiff<Basket<Point, WeightSmoothFunc, OrientedSphereFit, GLSParam>, FitScaleSpaceDer,
                                          OrientedSphereDer, GLSDer>;
