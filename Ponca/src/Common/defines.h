@@ -33,8 +33,14 @@
 
 #endif // ifdef __CUDACC__
 
-#ifdef __CUDA_ARCH__
+#ifdef __CUDACC__
 #    define PONCA_MULTIARCH_INCLUDE_STD(FILENAME) "defines.h"
+// __device__ version of math function are implicitly defined by cuda and are not inside any
+// namespaces. However, other classes (such as numeric_limits) are not. We distinguish both
+// cases with the two following macros.
+// Note: When the new min supported version of cuda will be 13.0, we will be
+// able to merge both maccros due to new addition to libcu++ library.
+#    define PONCA_MULTIARCH_CU_STD_FUNC(FUNC) using cuda::std::FUNC;
 #    define PONCA_MULTIARCH_STD_MATH(FUNC)
 #    define PONCA_MULTIARCH_STD_MATH_NAMESPACE(FUNC) FUNC
 
@@ -45,6 +51,7 @@
 #    define PONCA_CUDA_ARCH
 #else
 #    define PONCA_MULTIARCH_INCLUDE_STD(FILENAME) <FILENAME>
+#    define PONCA_MULTIARCH_CU_STD_FUNC(FUNC) using std::FUNC;
 #    define PONCA_MULTIARCH_STD_MATH(FUNC) using std::FUNC;
 #    define PONCA_MULTIARCH_STD_MATH_NAMESPACE(FUNC) std::FUNC
 #    define PONCA_MULTIARCH_CU_STD_NAMESPACE(FUNC) std::FUNC

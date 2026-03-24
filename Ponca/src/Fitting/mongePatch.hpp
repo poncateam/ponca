@@ -1,9 +1,4 @@
 ﻿
-#include <Eigen/SVD>
-#include <Eigen/Geometry>
-
-#include "mongePatch.h"
-
 template <class DataPoint, class _NFilter, typename T>
 void MongePatchQuadraticFitImpl<DataPoint, _NFilter, T>::init()
 {
