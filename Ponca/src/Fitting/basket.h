@@ -6,6 +6,7 @@
 
 #pragma once
 
+#include "../Common/concepts.h"
 #include "defines.h"
 #include "enums.h"
 #include "primitive.h"
@@ -252,6 +253,7 @@ namespace Ponca
     */
     template <class P, class NF, template <class, class, typename> class Ext0,
               template <class, class, typename> class... Exts>
+        requires IsPoint<P>
     class Basket : public BasketComputeObject<Basket<P, NF, Ext0, Exts...>,
                                               typename internal::BasketAggregate<P, NF, Ext0, Exts...>::type>
     {
