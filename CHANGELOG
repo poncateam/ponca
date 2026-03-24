@@ -13,12 +13,15 @@ introduces several bug fixes and minors improvements.
     - [spatialPartitioning] Refactor KdTree classes to make it usable in cuda kernels (#242)
     - [common] Define M_PI in the common module (#283)
     - [fitting] Change addLocalNeighbor return type to void (#288)
+    - [common] Update to C++20 minimum version (this drops Cuda < 12.0.0 support) (#219)
 
 - Bug-fixes and code improvements
     - [fitting] Fix issues when converting vectors between local and global frames (#201)
     - [fitting] Fix bug in MongePatch::primitiveGradient (#269)
     - [fitting] Fix warnings on windows (#278)
-    - [commin] Applied clang-formatting (#274)
+    - [common] Applied clang-formatting (#274)
+    - [common] Fix inclusion of headers within hpp files (#219)
+    - [cuda] Add PONCA_MULTIARCH_CU_STD_FUNC maccros for function within cuda::std:: namespace (#219)
 
 - Tests
     - [utils] Improve point cloud generation functions (#201)
