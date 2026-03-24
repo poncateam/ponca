@@ -40,6 +40,8 @@ typename CovariancePlaneFitImpl<DataPoint, _NFilter, T>::VectorType CovariancePl
 template <class DataPoint, class _NFilter, int DiffType, typename T>
 FIT_RESULT CovariancePlaneDerImpl<DataPoint, _NFilter, DiffType, T>::finalize()
 {
+    PONCA_MULTIARCH_CU_STD_FUNC(numeric_limits);
+
     Base::finalize();
     // Test if base finalize end on a viable case (stable / unstable)
     if (this->isReady())
@@ -49,7 +51,7 @@ FIT_RESULT CovariancePlaneDerImpl<DataPoint, _NFilter, DiffType, T>::finalize()
 
         // pre-compute shifted eigenvalues to apply the pseudo inverse of C - lambda_0 I
         Scalar epsilon          = Scalar(2) * Eigen::NumTraits<Scalar>::epsilon();
-        Scalar consider_as_zero = Scalar(2) * PONCA_MULTIARCH_CU_STD_NAMESPACE(numeric_limits)<Scalar>::denorm_min();
+        Scalar consider_as_zero = Scalar(2) * numeric_limits<Scalar>::denorm_min();
 
         // This is where the limitation to 3d comes from.
         // \fixme Replace shift in 2d subspace by any subspace with co-dimension 1

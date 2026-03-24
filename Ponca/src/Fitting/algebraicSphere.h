@@ -9,7 +9,7 @@
 #include "./defines.h"
 
 #include PONCA_MULTIARCH_INCLUDE_STD(cmath)
-#include PONCA_MULTIARCH_INCLUDE_STD(limits)
+#include PONCA_MULTIARCH_INCLUDE_CU_STD(limits)
 
 #include <Eigen/Core>
 
@@ -196,7 +196,7 @@ namespace Ponca
         */
         PONCA_MULTIARCH [[nodiscard]] inline Scalar radius() const
         {
-            PONCA_MULTIARCH_STD_MATH(numeric_limits);
+            PONCA_MULTIARCH_CU_STD_FUNC(numeric_limits);
             if (isPlane())
                 return numeric_limits<Scalar>::infinity(); // non-sense value
 
@@ -211,7 +211,7 @@ namespace Ponca
         */
         PONCA_MULTIARCH [[nodiscard]] inline VectorType center() const
         {
-            PONCA_MULTIARCH_STD_MATH(numeric_limits);
+            PONCA_MULTIARCH_CU_STD_FUNC(numeric_limits);
             if (isPlane())
                 return VectorType::Constant(numeric_limits<Scalar>::infinity()); // non-sense value
 
