@@ -10,6 +10,7 @@ All rights reserved.
 #pragma once
 
 #include <random>
+#include <numeric>
 
 namespace Ponca::internal
 {
