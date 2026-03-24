@@ -7,7 +7,6 @@
  file, You can obtain one at http://mozilla.org/MPL/2.0/.
 */
 
-
 template <class DataPoint, class _NFilter, typename T>
 FIT_RESULT CovariancePlaneFitImpl<DataPoint, _NFilter, T>::finalize()
 {
