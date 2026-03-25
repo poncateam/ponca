@@ -54,16 +54,10 @@ namespace Ponca
         \see AlgebraicSphere
     */
     template <class DataPoint, class _NFilter, typename T>
+        requires ProvidesAlgebraicSphere<T>
     class SphereFitImpl : public T
     {
         PONCA_FITTING_DECLARE_DEFAULT_TYPES
-
-    protected:
-        enum
-        {
-            Check = Base::PROVIDES_ALGEBRAIC_SPHERE
-        };
-
     protected:
         using VectorA = Eigen::Matrix<Scalar, DataPoint::Dim + 2, 1>;
         using MatrixA = Eigen::Matrix<Scalar, DataPoint::Dim + 2, DataPoint::Dim + 2>;

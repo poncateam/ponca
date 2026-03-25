@@ -35,8 +35,7 @@ namespace Ponca
         coordinates (e.g. you don't need to convert your query in the current locale
         frame).
 
-        This primitive provides:
-        \verbatim PROVIDES_ALGEBRAIC_SPHERE \endverbatim
+        This primitive satisfies: ProvidesAlgebraicSphere
 
         \todo Deal with planar case (_uq == 0) and what about _ul == 0 ?
     */
@@ -47,12 +46,6 @@ namespace Ponca
     {
         PONCA_FITTING_DECLARE_DEFAULT_TYPES
         static_assert(_NFilter::hasLocalFrame, "AlgebraicSphere requires local frame");
-
-    protected:
-        enum
-        {
-            PROVIDES_ALGEBRAIC_SPHERE /*!< \brief Provides Algebraic Sphere */
-        };
 
     protected:
         //! \brief Is the implicit scalar field normalized using Pratt
