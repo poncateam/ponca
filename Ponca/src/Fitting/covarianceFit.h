@@ -57,6 +57,7 @@ namespace Ponca
      */
 
     template <class DataPoint, class _NFilter, typename T>
+        requires ProvidesMeanPosition<T>
     class CovarianceFitBase : public T
     {
         PONCA_FITTING_DECLARE_DEFAULT_TYPES
@@ -64,7 +65,6 @@ namespace Ponca
     protected:
         enum
         {
-            Check = Base::PROVIDES_MEAN_POSITION,
             PROVIDES_POSITION_COVARIANCE
         };
 
@@ -141,7 +141,7 @@ namespace Ponca
         \inherit Concept::FittingExtensionConcept
     */
     template <class DataPoint, class _NFilter, int DiffType, typename T>
-        requires ProvidesPrimitiveDerivative<T>
+        requires ProvidesPrimitiveDerivative<T> && ProvidesMeanPositionDerivative<T>
     class CovarianceFitDer : public T
     {
         PONCA_FITTING_DECLARE_DEFAULT_TYPES
@@ -151,7 +151,7 @@ namespace Ponca
     protected:
         enum
         {
-            Check = Base::PROVIDES_MEAN_POSITION_DERIVATIVE && Base::PROVIDES_POSITION_COVARIANCE,
+            Check = Base::PROVIDES_POSITION_COVARIANCE,
             PROVIDES_POSITION_COVARIANCE_DERIVATIVE
         };
 
