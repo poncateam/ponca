@@ -181,7 +181,7 @@ __global__ void doGLS_kernel(const int* _params, //[w, h, scale]
                         {
 
                             // RGB to XYZ remapping
-                            n =  Scalar(2.f) * n - one;
+                            n = Scalar(2.f) * n - one;
                             n.normalize();
 
                             // GLS computation

@@ -157,7 +157,7 @@ def main(argv):
   if outputPath == '':
     plt.imshow( result.reshape(h, w),
       vmin  = -scaleFactor,
-      vmax  = scaleFactor,
+      vmax  =  scaleFactor,
       cmap  = 'seismic'
     )
     plt.show()
