@@ -85,12 +85,12 @@ def main(argv):
       ["scale=", "positions=", "normals=", "output=", "quiet"]
     )
   except getopt.GetoptError:
-    print("ssgls.py -s <scale> -p <positions> -n <normals>")
+    print("ssgls.py -s <scale> -p <image path> -n <normals>")
     sys.exit(2)
 
   for opt, arg in opts:
     if opt == '-h':
-      print("ssgl.py -s <scale> -p <positions> -n <normals>")
+      print("ssgls.py -s <scale> -p <image path> -n <normals>")
       sys.exit()
     elif opt in ("-s", "--scale"):
       scale = int(arg)
@@ -120,8 +120,8 @@ def main(argv):
   ################################################################################
   # Launch kernel
   blockSize  = 32
-  gridWidth  = w/blockSize
-  gridHeight = h/blockSize
+  gridWidth  = w // blockSize
+  gridHeight = h // blockSize
 
   w          = np.int32(w)
   h          = np.int32(h)
