@@ -51,7 +51,7 @@ MathJax.Hub.Config({
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Ponca
-   &#160;<span id="projectnumber">aeb674e48d61b44380de68c0caeb3f205c4769f5</span>
+   &#160;<span id="projectnumber">1ffd926693113b7db54c52b90e144fa17574978f</span>
    </div>
    <div id="projectbrief">Point Cloud Analysis library</div>
   </td>
@@ -163,28 +163,27 @@ Define fitting data structure</h2>
 <div class="line">{</div>
 <div class="line">public:</div>
 <div class="line">    enum {Dim = 3};</div>
-<div class="line">    typedef float Scalar;</div>
-<div class="line">    typedef Eigen::Matrix&lt;Scalar, Dim, 1&gt; VectorType;</div>
-<div class="line">    typedef Eigen::Matrix&lt;Scalar, Dim, Dim&gt; MatrixType;</div>
-<div class="line">    typedef Eigen::Matrix&lt;Scalar, 2, 1&gt;   ScreenVectorType;</div>
+<div class="line">    using Scalar           = float;</div>
+<div class="line">    using VectorType       = Eigen::Matrix&lt;Scalar, Dim, 1&gt;;</div>
+<div class="line">    using MatrixType       = Eigen::Matrix&lt;Scalar, Dim, Dim&gt;;</div>
+<div class="line">    using ScreenVectorType = Eigen::Matrix&lt;Scalar, 2, 1&gt;;</div>
 <div class="line"> </div>
-<div class="line">    MULTIARCH inline MyPoint(   const VectorType&amp; _pos        = VectorType::Zero(),</div>
-<div class="line">                                const VectorType&amp; _normal     = VectorType::Zero(),</div>
-<div class="line">                                const ScreenVectorType&amp; _spos = ScreenVectorType::Zero(),</div>
-<div class="line">                                const Scalar _dz = 0.f)</div>
-<div class="line">        : m_pos(_pos), m_normal(_normal), m_spos(_spos), m_dz(_dz){}</div>
+<div class="line">    PONCA_MULTIARCH inline MyPoint(</div>
+<div class="line">        const VectorType&amp; _pos        = VectorType::Zero(),</div>
+<div class="line">        const VectorType&amp; _normal     = VectorType::Zero(),</div>
+<div class="line">        const ScreenVectorType&amp; _spos = ScreenVectorType::Zero(),</div>
+<div class="line">        const Scalar _dz              = 0.f</div>
+<div class="line">    ) : m_pos(_pos), m_normal(_normal), m_spos(_spos), m_dz(_dz){}</div>
 <div class="line"> </div>
-<div class="line">    MULTIARCH inline const VectorType&amp; pos()    const { return m_pos; }</div>
-<div class="line">    MULTIARCH inline const VectorType&amp; normal() const { return m_normal; }</div>
-<div class="line">    MULTIARCH inline const ScreenVectorType&amp; spos() const { return m_spos; }</div>
-<div class="line">    MULTIARCH inline const float &amp; dz() const { return m_dz; }</div>
+<div class="line">    PONCA_MULTIARCH inline const VectorType&amp; pos()  const { return m_pos; }</div>
+<div class="line">    PONCA_MULTIARCH inline const VectorType&amp; normal()   const { return m_normal; }</div>
+<div class="line">    PONCA_MULTIARCH inline const ScreenVectorType&amp; spos() const { return m_spos; }</div>
+<div class="line">    PONCA_MULTIARCH inline const float &amp; dz()   const { return m_dz; }</div>
 <div class="line"> </div>
-<div class="line"> </div>
-<div class="line">    MULTIARCH inline VectorType&amp; pos()   { return m_pos; }</div>
-<div class="line">    MULTIARCH inline VectorType&amp; normal()    { return m_normal; }</div>
-<div class="line">    MULTIARCH inline ScreenVectorType&amp; spos() { return m_spos; }</div>
-<div class="line">    MULTIARCH inline float&amp; dz()     { return m_dz; }</div>
-<div class="line"> </div>
+<div class="line">    PONCA_MULTIARCH inline VectorType&amp; pos()     { return m_pos; }</div>
+<div class="line">    PONCA_MULTIARCH inline VectorType&amp; normal()  { return m_normal; }</div>
+<div class="line">    PONCA_MULTIARCH inline ScreenVectorType&amp; spos() { return m_spos; }</div>
+<div class="line">    PONCA_MULTIARCH inline float&amp; dz()   { return m_dz; }</div>
 <div class="line"> </div>
 <div class="line">private:</div>
 <div class="line">    ScreenVectorType m_spos;</div>
@@ -193,24 +192,27 @@ Define fitting data structure</h2>
 <div class="line">};</div>
 </div><!-- fragment --><h2><a class="anchor" id="pyssgl_cuda_weight_sec"></a>
 Define weighting functions</h2>
-<div class="fragment"><div class="line">class ProjectWeightFunc: public Grenaille::DistWeightFunc&lt;MyPoint, Grenaille::SmoothWeightKernel&lt;Scalar&gt; &gt;</div>
+<div class="fragment"><div class="line">class ProjectWeightFunc: public Ponca::DistWeightFunc&lt;MyPoint, Ponca::SmoothWeightKernel&lt;Scalar&gt; &gt;</div>
 <div class="line">{</div>
 <div class="line">public:</div>
-<div class="line">    typedef MyPoint::Scalar Scalar;</div>
-<div class="line">    typedef MyPoint::VectorType VectorType;</div>
+<div class="line">    using Scalar     = MyPoint::Scalar;</div>
+<div class="line">    using VectorType = MyPoint::VectorType;</div>
+<div class="line">    using Base       = Ponca::DistWeightFunc&lt;MyPoint, Ponca::SmoothWeightKernel&lt;Scalar&gt; &gt;;</div>
 <div class="line"> </div>
 <div class="line">    /*</div>
-<div class="line">    Default constructor (needed by Grenaille). Note that the screenspace</div>
+<div class="line">    Default constructor (needed by Ponca). Note that the screenspace</div>
 <div class="line">    evaluation position is specified as parameter</div>
 <div class="line">    */</div>
-<div class="line">    MULTIARCH inline ProjectWeightFunc( const Scalar&amp; _t                = 1.f,</div>
-<div class="line">                                        const ScreenVectorType&amp; _refPos = ScreenVectorType::Zero(),</div>
-<div class="line">                                        const Scalar&amp; _dz               = 0.f)</div>
-<div class="line">        : Grenaille::DistWeightFunc&lt;MyPoint, Grenaille::SmoothWeightKernel&lt;Scalar&gt; &gt;(_t), m_refPos(_refPos), m_dz(_dz) {}</div>
+<div class="line">    PONCA_MULTIARCH inline ProjectWeightFunc(</div>
+<div class="line">        const VectorType&amp; _refPos = VectorType::Zero(),</div>
+<div class="line">        const ScreenVectorType&amp; _refScreenPos = ScreenVectorType::Zero(),</div>
+<div class="line">        const Scalar&amp; _t                = Scalar(1.f),</div>
+<div class="line">        const Scalar&amp; _dz               = Scalar(0.f)</div>
+<div class="line">    ) : Base(_refPos, _t), m_refScreenPos(_refScreenPos), m_dz(_dz) {}</div>
 <div class="line"> </div>
-<div class="line">    MULTIARCH inline Scalar w(const VectorType&amp; _q, const MyPoint&amp;  _attributes) const</div>
+<div class="line">    PONCA_MULTIARCH inline Scalar w(const VectorType&amp; _q, const MyPoint&amp;  _attributes) const</div>
 <div class="line">    {</div>
-<div class="line">        Scalar d  = (_attributes.spos()-m_refPos).norm();</div>
+<div class="line">        Scalar d = (_attributes.spos()-m_refScreenPos).norm();</div>
 <div class="line">        const Scalar dz = _attributes.dz();</div>
 <div class="line"> </div>
 <div class="line">        if (d &gt; m_t || dz &gt; m_dz)</div>
@@ -219,23 +221,23 @@ Define weighting functions</h2>
 <div class="line">        return m_wk.f(d/m_t);</div>
 <div class="line">    }</div>
 <div class="line">private:</div>
-<div class="line">    ScreenVectorType m_refPos;</div>
+<div class="line">    ScreenVectorType m_refScreenPos;</div>
 <div class="line">    float m_dz;</div>
 <div class="line">};</div>
 </div><!-- fragment --><h2><a class="anchor" id="pyssgl_cuda_fit_sec"></a>
 Define fitting primitive</h2>
-<div class="fragment"><div class="line">typedef Grenaille::Basket&lt;MyPoint,ProjectWeightFunc,Grenaille::OrientedSphereFit, Grenaille::GLSParam&gt; Gls;</div>
+<div class="fragment"><div class="line">using Gls = Ponca::Basket&lt;MyPoint,ProjectWeightFunc, Ponca::OrientedSphereFit, Ponca::GLSParam&gt;;</div>
 </div><!-- fragment --><h2><a class="anchor" id="pyssgl_cuda_kernel_sec"></a>
 Kernel</h2>
 <div class="fragment"><div class="line">extern &quot;C&quot; { </div>
-<div class="line">__global__ void doGLS_kernel(int* _params, //[w, h, scale]</div>
-<div class="line">                             float* _positions,</div>
-<div class="line">                             float* _normals,</div>
-<div class="line">                             float* _result)</div>
+<div class="line">__global__ void doGLS_kernel(const int* _params, //[w, h, scale]</div>
+<div class="line">                             const float* _positions,</div>
+<div class="line">                             const float* _normals,</div>
+<div class="line">                             float* const _result)</div>
 <div class="line">{</div>
 <div class="line">    </div>
-<div class="line">    uint x = (blockIdx.x * blockDim.x) + threadIdx.x;</div>
-<div class="line">    uint y = (blockIdx.y * blockDim.y) + threadIdx.y;</div>
+<div class="line">    const int x = int((blockIdx.x * blockDim.x) + threadIdx.x);</div>
+<div class="line">    const int y = int((blockIdx.y * blockDim.y) + threadIdx.y);</div>
 <div class="line">    </div>
 <div class="line">    const int &amp;width     = _params[0];</div>
 <div class="line">    const int &amp;height    = _params[1];</div>
@@ -244,27 +246,27 @@ Kernel</h2>
 <div class="line">    {</div>
 <div class="line">        const int &amp;scale = _params[2];</div>
 <div class="line"> </div>
-<div class="line">        ScreenVectorType refPos;</div>
-<div class="line">        refPos &lt;&lt; x, y;</div>
+<div class="line">        ScreenVectorType refScreenPos;</div>
+<div class="line">        refScreenPos &lt;&lt; Scalar(x), Scalar(y);</div>
 <div class="line"> </div>
 <div class="line">        int dx, dy; // neighbor offset ids</div>
 <div class="line">        int nx, ny; // neighbor ids</div>
 <div class="line"> </div>
 <div class="line">        Gls gls;</div>
-<div class="line">        gls.setNeighborFilter({scale, refPos});</div>
-<div class="line">        gls.init( getVector(x,y,width,height,_positions) );</div>
+<div class="line">        gls.init();</div>
+<div class="line">        gls.setNeighborFilter({getVector(x, y, width, height, _positions), refScreenPos, Scalar(scale)});</div>
 <div class="line"> </div>
-<div class="line">        if (getVector(x,y,width,height,_normals).squaredNorm() == 0.f )</div>
+<div class="line">        if (getVector(x, y, width, height, _normals).squaredNorm() == 0.f )</div>
 <div class="line">        {</div>
-<div class="line">            _result[getId(x,y,width,height,0,1)] = -1.0;</div>
+<div class="line">            _result[getId(x, y, width, height, 0, 1)] = -1.0;</div>
 <div class="line">        }</div>
 <div class="line">        else</div>
 <div class="line">        {</div>
 <div class="line">            //_result[getId(x,y,width,height,0,1)] = getVector(x,y,width,height,_normals)(0);</div>
-<div class="line">            VectorType p, n;</div>
+<div class="line">            VectorType n;</div>
 <div class="line"> </div>
 <div class="line">            // collect neighborhood</div>
-<div class="line">            VectorType one = VectorType::Zero();</div>
+<div class="line">            const VectorType one = VectorType::Ones();</div>
 <div class="line"> </div>
 <div class="line">            for(dy = -scale; dy != scale; dy++)</div>
 <div class="line">            {</div>
@@ -272,7 +274,6 @@ Kernel</h2>
 <div class="line">                {</div>
 <div class="line">                    nx = x+dx;</div>
 <div class="line">                    ny = y+dy;</div>
-<div class="line"> </div>
 <div class="line"> </div>
 <div class="line">                    // Check image boundaries</div>
 <div class="line">                    if (nx &gt;= 0 &amp;&amp; ny &gt;= 0 &amp;&amp; nx &lt; width &amp;&amp; ny &lt; height)</div>
@@ -285,7 +286,7 @@ Kernel</h2>
 <div class="line">                        {</div>
 <div class="line"> </div>
 <div class="line">                            // RGB to XYZ remapping</div>
-<div class="line">                            n =  2.f * n - one;</div>
+<div class="line">                            n = Scalar(2.f) * n - one;</div>
 <div class="line">                            n.normalize();</div>
 <div class="line"> </div>
 <div class="line">                            // GLS computation</div>
@@ -339,49 +340,34 @@ Python script</h1>
 <div class="line"> </div>
 <div class="line"><span class="keyword">import</span> pycuda.autoinit</div>
 <div class="line"><span class="keyword">import</span> pycuda.driver <span class="keyword">as</span> drv</div>
-<div class="line"><span class="keyword">import</span> numpy</div>
-<div class="line"><span class="keyword">import</span> Image</div>
+<div class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</div>
+<div class="line"><span class="keyword">from</span> PIL <span class="keyword">import</span> Image</div>
 <div class="line"><span class="keyword">import</span> time</div>
 <div class="line"><span class="keyword">import</span> sys, getopt</div>
 <div class="line"> </div>
 <div class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</div>
-<div class="line"><span class="keyword">import</span> matplotlib.image <span class="keyword">as</span> mpimg</div>
 <div class="line"> </div>
-<div class="line"><span class="keyword">from</span> pycuda.compiler <span class="keyword">import</span> SourceModule</div>
+<div class="line">start_time = 0.0</div>
 <div class="line"> </div>
-<div class="line">  </div>
-<div class="line">  </div>
-<div class="line">  </div>
-<div class="line"> </div>
-<div class="line">start_time=0.0</div>
-<div class="line">  </div>
-<div class="line"><span class="keyword">def </span>startTimer( funcname, quiet ):</div>
+<div class="line"><span class="keyword">def </span>startTimer(funcname, quiet):</div>
 <div class="line">  <span class="keyword">global</span> start_time</div>
-<div class="line">  </div>
 <div class="line">  <span class="keywordflow">if</span> <span class="keywordflow">not</span> quiet:</div>
 <div class="line">    sys.stdout.write(funcname)</div>
-<div class="line">    sys.stdout.flush()  </div>
+<div class="line">    sys.stdout.flush()</div>
 <div class="line">  start_time = time.time()</div>
 <div class="line"> </div>
 <div class="line"> </div>
 <div class="line"><span class="keyword">def </span>stopTimer(quiet):</div>
 <div class="line">  elapsed_time = time.time() - start_time</div>
 <div class="line">  <span class="keywordflow">if</span> <span class="keywordflow">not</span> quiet:</div>
-<div class="line">    <span class="keywordflow">print</span> <span class="stringliteral">&#39;DONE in {0:.3f} seconds.&#39;</span>.format(elapsed_time)  </div>
+<div class="line">    print(f<span class="stringliteral">&quot;DONE in {elapsed_time:.3f} seconds.&quot;</span>)</div>
 <div class="line"> </div>
 <div class="line"> </div>
 <div class="line"> </div>
-<div class="line"> </div>
-<div class="line"> </div>
-<div class="line"><span class="keyword">def </span>loadKernel():                   </div>
-<div class="line">  module = drv.module_from_file(<span class="stringliteral">&quot;ssgls.ptx&quot;</span>)      </div>
-<div class="line">  glsKernel    = module.get_function(<span class="stringliteral">&quot;doGLS_kernel&quot;</span>)</div>
-<div class="line">  </div>
+<div class="line"><span class="keyword">def </span>loadKernel():</div>
+<div class="line">  module    = drv.module_from_file(<span class="stringliteral">&quot;ssgls.ptx&quot;</span>)</div>
+<div class="line">  glsKernel = module.get_function(<span class="stringliteral">&quot;doGLS_kernel&quot;</span>)</div>
 <div class="line">  <span class="keywordflow">return</span> module, glsKernel</div>
-<div class="line">  </div>
-<div class="line">  </div>
-<div class="line">  </div>
-<div class="line">    </div>
 <div class="line"> </div>
 <div class="line"> </div>
 <div class="line"><span class="keyword">def </span>initInputData(imgNormPath, imgwcPath): </div>
@@ -390,52 +376,54 @@ Python script</h1>
 <div class="line"> </div>
 <div class="line">  <span class="comment"># Todo: check dimensions for depth, normals and positions</span></div>
 <div class="line">  (w,h)     = i_positions.size     </div>
-<div class="line">  length    = w*h;      </div>
+<div class="line">  l    = w * h</div>
 <div class="line"> </div>
-<div class="line">  normals   = numpy.array(i_normals.getdata()).reshape(3*length,1).astype(numpy.float32) / 255.0;</div>
-<div class="line">  positions = numpy.array(i_positions.getdata()).reshape(3*length,1).astype(numpy.float32) / 255.0;</div>
-<div class="line">  </div>
-<div class="line">  positions = positions * 2.0 - 1.0;</div>
-<div class="line">    </div>
+<div class="line">  normals   = np.array(i_normals).reshape(l, 3).astype(np.float32) / 255.0</div>
+<div class="line">  positions = np.array(i_positions).reshape(l, 3).astype(np.float32) / 255.0</div>
+<div class="line"> </div>
+<div class="line">  positions = positions * 2.0 - 1.0</div>
+<div class="line"> </div>
+<div class="line">  <span class="comment"># flatten for CUDA</span></div>
+<div class="line">  normals   = normals.reshape(-1)</div>
+<div class="line">  positions = positions.reshape(-1)</div>
+<div class="line"> </div>
 <div class="line">  <span class="keywordflow">return</span> w, h, normals, positions</div>
-<div class="line">  </div>
-<div class="line">  </div>
-<div class="line">  </div>
-<div class="line">    </div>
-<div class="line">  </div>
 <div class="line"> </div>
-<div class="line"><span class="keyword">def </span>initQueries(w,h):</div>
-<div class="line">  nbQueries = w*h</div>
 <div class="line"> </div>
-<div class="line">  queries   = numpy.zeros(2*nbQueries).astype(numpy.float32);</div>
-<div class="line">  <span class="keywordflow">for</span> j <span class="keywordflow">in</span> range (0,h):</div>
-<div class="line">      <span class="keywordflow">for</span> i <span class="keywordflow">in</span> range (0,w):</div>
-<div class="line">          queries[2*(i + j*w)] = i</div>
-<div class="line">          queries[2*(i + j*w)+1] = j</div>
+<div class="line"> </div>
+<div class="line"><span class="keyword">def </span>initQueries(w, h):</div>
+<div class="line">  nbQueries = w * h</div>
+<div class="line">  queries = np.zeros(2 * nbQueries, dtype=np.float32)</div>
+<div class="line"> </div>
+<div class="line">  <span class="keywordflow">for</span> j <span class="keywordflow">in</span> range(h):</div>
+<div class="line">    <span class="keywordflow">for</span> i <span class="keywordflow">in</span> range(w):</div>
+<div class="line">      idx              = 2 * (i + j * w)</div>
+<div class="line">      queries[idx]     = i</div>
+<div class="line">      queries[idx + 1] = j</div>
+<div class="line"> </div>
 <div class="line">  <span class="keywordflow">return</span> nbQueries, queries</div>
 <div class="line"> </div>
 <div class="line"> </div>
-<div class="line"> </div>
-<div class="line"> </div>
-<div class="line"><span class="keyword">def </span>main(argv):    </div>
-<div class="line">    </div>
-<div class="line"> </div>
+<div class="line"><span class="keyword">def </span>main(argv):</div>
 <div class="line">  scale       = 10 <span class="comment"># neighborhood size in pixels</span></div>
 <div class="line">  imgNormPath = <span class="stringliteral">&#39;&#39;</span></div>
 <div class="line">  imgwcPath   = <span class="stringliteral">&#39;&#39;</span></div>
 <div class="line">  quiet       = <span class="keyword">False</span></div>
 <div class="line">  outputPath  = <span class="stringliteral">&#39;&#39;</span></div>
-<div class="line">  </div>
-<div class="line">  </div>
-<div class="line">  </div>
+<div class="line"> </div>
 <div class="line">  <span class="keywordflow">try</span>:</div>
-<div class="line">    opts, args = getopt.getopt(argv,<span class="stringliteral">&quot;s:p:n:o:q&quot;</span>,[<span class="stringliteral">&quot;scale=&quot;</span>,<span class="stringliteral">&quot;positions=&quot;</span>,<span class="stringliteral">&quot;normals=&quot;</span>,<span class="stringliteral">&quot;output=&quot;</span>,<span class="stringliteral">&quot;quiet&quot;</span>])</div>
+<div class="line">    opts, args = getopt.getopt(</div>
+<div class="line">      argv,</div>
+<div class="line">      <span class="stringliteral">&quot;s:p:n:o:q&quot;</span>,</div>
+<div class="line">      [<span class="stringliteral">&quot;scale=&quot;</span>, <span class="stringliteral">&quot;positions=&quot;</span>, <span class="stringliteral">&quot;normals=&quot;</span>, <span class="stringliteral">&quot;output=&quot;</span>, <span class="stringliteral">&quot;quiet&quot;</span>]</div>
+<div class="line">    )</div>
 <div class="line">  <span class="keywordflow">except</span> getopt.GetoptError:</div>
-<div class="line">    <span class="keywordflow">print</span> <span class="stringliteral">&#39;ssgl.py -s &lt;scale&gt; -p &lt;positions&gt; -n &lt;normals&gt;&#39;</span></div>
+<div class="line">    print(<span class="stringliteral">&quot;ssgls.py -s &lt;scale&gt; -p &lt;image path&gt; -n &lt;normals&gt;&quot;</span>)</div>
 <div class="line">    sys.exit(2)</div>
+<div class="line"> </div>
 <div class="line">  <span class="keywordflow">for</span> opt, arg <span class="keywordflow">in</span> opts:</div>
 <div class="line">    <span class="keywordflow">if</span> opt == <span class="stringliteral">&#39;-h&#39;</span>:</div>
-<div class="line">      <span class="keywordflow">print</span> <span class="stringliteral">&#39;ssgl.py -s &lt;scale&gt; -p &lt;positions&gt; -n &lt;normals&gt;&#39;</span></div>
+<div class="line">      print(<span class="stringliteral">&quot;ssgls.py -s &lt;scale&gt; -p &lt;image path&gt; -n &lt;normals&gt;&quot;</span>)</div>
 <div class="line">      sys.exit()</div>
 <div class="line">    <span class="keywordflow">elif</span> opt <span class="keywordflow">in</span> (<span class="stringliteral">&quot;-s&quot;</span>, <span class="stringliteral">&quot;--scale&quot;</span>):</div>
 <div class="line">      scale = int(arg)</div>
@@ -447,72 +435,75 @@ Python script</h1>
 <div class="line">      outputPath = arg</div>
 <div class="line">    <span class="keywordflow">elif</span> opt <span class="keywordflow">in</span> (<span class="stringliteral">&quot;-q&quot;</span>, <span class="stringliteral">&quot;--quiet&quot;</span>):</div>
 <div class="line">      quiet = <span class="keyword">True</span></div>
-<div class="line">      </div>
-<div class="line">  </div>
-<div class="line">   </div>
-<div class="line">  </div>
-<div class="line">  </div>
+<div class="line"> </div>
 <div class="line">  startTimer(<span class="stringliteral">&quot;Load CUDA kernel ........... &quot;</span>, quiet)</div>
 <div class="line">  module, glsKernel = loadKernel()</div>
-<div class="line">  stopTimer(quiet)  </div>
-<div class="line">  </div>
-<div class="line">  startTimer(<span class="stringliteral">&quot;Init Input data ............ &quot;</span>, quiet)</div>
-<div class="line">  w, h, normals, positions = initInputData (imgNormPath, imgwcPath)</div>
-<div class="line">  stopTimer(quiet)    </div>
-<div class="line">  </div>
-<div class="line">  nbQueries  = w*h</div>
-<div class="line">    </div>
-<div class="line">  startTimer(<span class="stringliteral">&quot;Init result array memory ... &quot;</span>, quiet)</div>
-<div class="line">  result = numpy.zeros(nbQueries).astype(numpy.float32)</div>
 <div class="line">  stopTimer(quiet)</div>
 <div class="line"> </div>
+<div class="line">  startTimer(<span class="stringliteral">&quot;Init Input data ............ &quot;</span>, quiet)</div>
+<div class="line">  w, h, normals, positions = initInputData(imgNormPath, imgwcPath)</div>
+<div class="line">  stopTimer(quiet)</div>
 <div class="line"> </div>
+<div class="line">  nbQueries = w * h</div>
+<div class="line"> </div>
+<div class="line">  startTimer(<span class="stringliteral">&quot;Init result array memory ... &quot;</span>, quiet)</div>
+<div class="line">  result = np.zeros(nbQueries, dtype=np.float32)</div>
+<div class="line">  stopTimer(quiet)</div>
 <div class="line"> </div>
 <div class="line">  </div>
 <div class="line">  blockSize  = 32</div>
-<div class="line">  gridWidth  = w/blockSize</div>
-<div class="line">  gridHeight = h/blockSize</div>
-<div class="line">  </div>
-<div class="line">  w          = numpy.int32(w)</div>
-<div class="line">  h          = numpy.int32(h)</div>
-<div class="line">  scale      = numpy.int32(scale)</div>
+<div class="line">  gridWidth  = w // blockSize</div>
+<div class="line">  gridHeight = h // blockSize</div>
+<div class="line"> </div>
+<div class="line">  w          = np.int32(w)</div>
+<div class="line">  h          = np.int32(h)</div>
+<div class="line">  scale      = np.int32(scale)</div>
 <div class="line"> </div>
 <div class="line">  startTimer(<span class="stringliteral">&quot;Launch kernel .............. &quot;</span>, quiet)</div>
 <div class="line">  glsKernel(</div>
-<div class="line">          drv.In(numpy.array([w, h, scale])),</div>
-<div class="line">          drv.In(positions),</div>
-<div class="line">          drv.In(normals),</div>
-<div class="line">          drv.Out(result),</div>
-<div class="line">          block = (blockSize,  blockSize,  1), </div>
-<div class="line">          grid  = (gridWidth,gridHeight))</div>
-<div class="line">          </div>
-<div class="line">  stopTimer(quiet)  </div>
+<div class="line">    drv.In(np.array([w, h, scale])),</div>
+<div class="line">    drv.In(positions),</div>
+<div class="line">    drv.In(normals),</div>
+<div class="line">    drv.Out(result),</div>
+<div class="line">    block=(blockSize, blockSize, 1),</div>
+<div class="line">    grid=(gridWidth, gridHeight)</div>
+<div class="line">  )</div>
+<div class="line">  stopTimer(quiet)</div>
+<div class="line"> </div>
 <div class="line">  </div>
-<div class="line">  </div>
-<div class="line">  whereAreNaNs = numpy.isnan(result);</div>
-<div class="line">  result[whereAreNaNs] = 0;</div>
+<div class="line">  result[np.isnan(result)] = 0</div>
 <div class="line"> </div>
 <div class="line">  <span class="keywordflow">if</span> <span class="keywordflow">not</span> quiet:</div>
-<div class="line">    <span class="keywordflow">print</span> <span class="stringliteral">&#39;\n###########Configuration#############&#39;</span></div>
-<div class="line">    <span class="keywordflow">print</span> <span class="stringliteral">&#39;Image size: {} x {}&#39;</span>.format(w,h)</div>
-<div class="line">    <span class="keywordflow">print</span> <span class="stringliteral">&#39;NbQueries:  {}&#39;</span>.format(nbQueries)</div>
-<div class="line">    <span class="keywordflow">print</span> <span class="stringliteral">&#39;Scale:      {}&#39;</span>.format(scale)</div>
-<div class="line">    <span class="keywordflow">print</span> <span class="stringliteral">&#39;################Results################&#39;</span></div>
-<div class="line">    <span class="keywordflow">print</span> <span class="stringliteral">&#39;Max value:  {}&#39;</span>.format(result.max())</div>
-<div class="line">    <span class="keywordflow">print</span> <span class="stringliteral">&#39;Min value:  {}&#39;</span>.format(result.min())</div>
-<div class="line">    <span class="keywordflow">print</span> <span class="stringliteral">&#39;#######################################&#39;</span></div>
+<div class="line">    print(<span class="stringliteral">&quot;\n###########Configuration#############&quot;</span>)</div>
+<div class="line">    print(f<span class="stringliteral">&quot;Image size: {w} x {h}&quot;</span>)</div>
+<div class="line">    print(f<span class="stringliteral">&quot;NbQueries:  {nbQueries}&quot;</span>)</div>
+<div class="line">    print(f<span class="stringliteral">&quot;Scale:      {scale}&quot;</span>)</div>
+<div class="line">    print(<span class="stringliteral">&quot;################Results################&quot;</span>)</div>
+<div class="line">    print(f<span class="stringliteral">&quot;Max value:  {result.max()}&quot;</span>)</div>
+<div class="line">    print(f<span class="stringliteral">&quot;Min value:  {result.min()}&quot;</span>)</div>
+<div class="line">    print(<span class="stringliteral">&quot;#######################################&quot;</span>)</div>
 <div class="line"> </div>
-<div class="line">  scaleFactor = max(abs(result.max()), abs(result.min())); <span class="comment">#/ (2.0*scaleFactor) + 0.5) </span></div>
-<div class="line">  </div>
+<div class="line">  scaleFactor = max(abs(result.max()), abs(result.min()))</div>
+<div class="line"> </div>
 <div class="line">  <span class="keywordflow">if</span> outputPath == <span class="stringliteral">&#39;&#39;</span>:</div>
-<div class="line">    plt.imshow(result.reshape(h,w), vmin=-scaleFactor, vmax=scaleFactor, cmap=<span class="stringliteral">&#39;seismic&#39;</span>)</div>
+<div class="line">    plt.imshow( result.reshape(h, w),</div>
+<div class="line">      vmin  = -scaleFactor,</div>
+<div class="line">      vmax  =  scaleFactor,</div>
+<div class="line">      cmap  = <span class="stringliteral">&#39;seismic&#39;</span></div>
+<div class="line">    )</div>
 <div class="line">    plt.show()</div>
 <div class="line">  <span class="keywordflow">else</span>:</div>
-<div class="line">    plt.imsave(fname=outputPath, arr=result.reshape(h,w), vmin=-1.0, vmax=1.0, cmap=<span class="stringliteral">&#39;seismic&#39;</span>)  </div>
-<div class="line">  </div>
+<div class="line">    plt.imsave(</div>
+<div class="line">      fname = outputPath,</div>
+<div class="line">      arr   = result.reshape(h, w),</div>
+<div class="line">      vmin  = -1.0,</div>
+<div class="line">      vmax  =  1.0,</div>
+<div class="line">      cmap  = <span class="stringliteral">&#39;seismic&#39;</span></div>
+<div class="line">    )</div>
+<div class="line"> </div>
+<div class="line"> </div>
 <div class="line"><span class="keywordflow">if</span> __name__ == <span class="stringliteral">&quot;__main__&quot;</span>:</div>
 <div class="line">  main(sys.argv[1:])</div>
-<div class="line"> </div>
 </div><!-- fragment --> </div></div><!-- contents -->
 </div><!-- PageDoc -->
 </div><!-- doc-content -->
@@ -520,7 +511,7 @@ Python script</h1>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="example_page.html">Examples</a></li>
-    <li class="footer">Generated on Tue Mar 24 2026 17:38:57 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
+    <li class="footer">Generated on Wed Mar 25 2026 17:52:41 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
   </ul>
 </div>
 </body>

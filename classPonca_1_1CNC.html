@@ -51,7 +51,7 @@ MathJax.Hub.Config({
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Ponca
-   &#160;<span id="projectnumber">aeb674e48d61b44380de68c0caeb3f205c4769f5</span>
+   &#160;<span id="projectnumber">1ffd926693113b7db54c52b90e144fa17574978f</span>
    </div>
    <div id="projectbrief">Point Cloud Analysis library</div>
   </td>
@@ -155,10 +155,10 @@ Public Types</h2></td></tr>
 <tr class="separator:a62ffc4acea5395e662ae4f7dd7672e44"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac666d35f611254d3c57b6522f242611b" id="r_ac666d35f611254d3c57b6522f242611b"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1CNC.html#ac666d35f611254d3c57b6522f242611b">VectorType</a> = typename DataPoint::VectorType</td></tr>
 <tr class="separator:ac666d35f611254d3c57b6522f242611b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a671f93c3a97237636d0dc12cd20f1b39" id="r_a671f93c3a97237636d0dc12cd20f1b39"><td class="memItemLeft" align="right" valign="top">typedef Eigen::VectorXd&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1CNC.html#a671f93c3a97237636d0dc12cd20f1b39">DenseVector</a></td></tr>
-<tr class="separator:a671f93c3a97237636d0dc12cd20f1b39"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a20964a558373661bad71688d26a98ead" id="r_a20964a558373661bad71688d26a98ead"><td class="memItemLeft" align="right" valign="top">typedef Eigen::MatrixXd&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1CNC.html#a20964a558373661bad71688d26a98ead">DenseMatrix</a></td></tr>
-<tr class="separator:a20964a558373661bad71688d26a98ead"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae15b7ca8e27675c97d574c6e00dc6609" id="r_ae15b7ca8e27675c97d574c6e00dc6609"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1CNC.html#ae15b7ca8e27675c97d574c6e00dc6609">DenseVector</a> = Eigen::VectorXd</td></tr>
+<tr class="separator:ae15b7ca8e27675c97d574c6e00dc6609"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa05870b8c019b15e4408b6f3f1961b26" id="r_aa05870b8c019b15e4408b6f3f1961b26"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1CNC.html#aa05870b8c019b15e4408b6f3f1961b26">DenseMatrix</a> = Eigen::MatrixXd</td></tr>
+<tr class="separator:aa05870b8c019b15e4408b6f3f1961b26"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0ca8fa519fec012d370056f1c9d9493b" id="r_a0ca8fa519fec012d370056f1c9d9493b"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1CNC.html#a0ca8fa519fec012d370056f1c9d9493b">NeighborFilter</a> = <a class="el" href="classPonca_1_1NeighborFilterStoreNormal.html">NeighborFilterStoreNormal</a>&lt; DataPoint, <a class="el" href="classPonca_1_1NoWeightFuncBase.html">NoWeightFunc</a>&lt; DataPoint &gt; &gt;</td></tr>
 <tr class="separator:a0ca8fa519fec012d370056f1c9d9493b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
@@ -291,8 +291,8 @@ template&lt;class P , <a class="el" href="namespacePonca.html#a9934430d447bf9cd0
 
 </div>
 </div>
-<a id="a20964a558373661bad71688d26a98ead" name="a20964a558373661bad71688d26a98ead"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a20964a558373661bad71688d26a98ead">&#9670;&#160;</a></span>DenseMatrix</h2>
+<a id="aa05870b8c019b15e4408b6f3f1961b26" name="aa05870b8c019b15e4408b6f3f1961b26"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa05870b8c019b15e4408b6f3f1961b26">&#9670;&#160;</a></span>DenseMatrix</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -300,7 +300,7 @@ template&lt;class P , <a class="el" href="namespacePonca.html#a9934430d447bf9cd0
 template&lt;class P , <a class="el" href="namespacePonca.html#a9934430d447bf9cd046b70da4dc69a2a">TriangleGenerationMethod</a> _method = UniformGeneration&gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">typedef Eigen::MatrixXd <a class="el" href="classPonca_1_1CNC.html">Ponca::CNC</a>&lt; P, _method &gt;::DenseMatrix</td>
+          <td class="memname">using <a class="el" href="classPonca_1_1CNC.html">Ponca::CNC</a>&lt; P, _method &gt;::DenseMatrix =  Eigen::MatrixXd</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -309,8 +309,8 @@ template&lt;class P , <a class="el" href="namespacePonca.html#a9934430d447bf9cd0
 
 </div>
 </div>
-<a id="a671f93c3a97237636d0dc12cd20f1b39" name="a671f93c3a97237636d0dc12cd20f1b39"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a671f93c3a97237636d0dc12cd20f1b39">&#9670;&#160;</a></span>DenseVector</h2>
+<a id="ae15b7ca8e27675c97d574c6e00dc6609" name="ae15b7ca8e27675c97d574c6e00dc6609"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae15b7ca8e27675c97d574c6e00dc6609">&#9670;&#160;</a></span>DenseVector</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -318,7 +318,7 @@ template&lt;class P , <a class="el" href="namespacePonca.html#a9934430d447bf9cd0
 template&lt;class P , <a class="el" href="namespacePonca.html#a9934430d447bf9cd046b70da4dc69a2a">TriangleGenerationMethod</a> _method = UniformGeneration&gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">typedef Eigen::VectorXd <a class="el" href="classPonca_1_1CNC.html">Ponca::CNC</a>&lt; P, _method &gt;::DenseVector</td>
+          <td class="memname">using <a class="el" href="classPonca_1_1CNC.html">Ponca::CNC</a>&lt; P, _method &gt;::DenseVector =  Eigen::VectorXd</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -1455,7 +1455,7 @@ template&lt;class P , <a class="el" href="namespacePonca.html#a9934430d447bf9cd0
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="namespacePonca.html">Ponca</a></li><li class="navelem"><a class="el" href="classPonca_1_1CNC.html">CNC</a></li>
-    <li class="footer">Generated on Tue Mar 24 2026 17:38:57 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
+    <li class="footer">Generated on Wed Mar 25 2026 17:52:41 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
   </ul>
 </div>
 </body>

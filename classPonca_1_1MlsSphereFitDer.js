@@ -1,8 +1,8 @@
 var classPonca_1_1MlsSphereFitDer =
 [
     [ "Base", "classPonca_1_1MlsSphereFitDer.html#aa1844ffb907d5b9249846c704786235b", null ],
-    [ "Matrix", "classPonca_1_1MlsSphereFitDer.html#ae607a1f5ef10a77793915fe039bd3856", null ],
-    [ "MatrixArray", "classPonca_1_1MlsSphereFitDer.html#a66efb1a2f711529f88131fd825010be6", null ],
+    [ "Matrix", "classPonca_1_1MlsSphereFitDer.html#a5e919a7523eabe3abc25241957968031", null ],
+    [ "MatrixArray", "classPonca_1_1MlsSphereFitDer.html#aa389b496c1e5215d0f3957ab2b976d95", null ],
     [ "NeighborFilter", "classPonca_1_1MlsSphereFitDer.html#ae1c03535e8f9330d755f486e2ae93a6b", null ],
     [ "Scalar", "classPonca_1_1MlsSphereFitDer.html#ab7a7ab04f5087ebfba54291ad03ea8a7", null ],
     [ "ScalarArray", "classPonca_1_1MlsSphereFitDer.html#a0b08154a82683272274fbf0c2d438f29", null ],

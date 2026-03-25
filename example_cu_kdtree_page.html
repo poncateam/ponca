@@ -51,7 +51,7 @@ MathJax.Hub.Config({
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Ponca
-   &#160;<span id="projectnumber">aeb674e48d61b44380de68c0caeb3f205c4769f5</span>
+   &#160;<span id="projectnumber">1ffd926693113b7db54c52b90e144fa17574978f</span>
    </div>
    <div id="projectbrief">Point Cloud Analysis library</div>
   </td>
@@ -126,7 +126,20 @@ Introduction</h1>
 <div class="line">cd examples/cuda &amp;&amp; ./cuda_fit_plane_kdtree</div>
 </div><!-- fragment --><h1><a class="anchor" id="cu_kdtree_code"></a>
 Source code</h1>
-<div class="fragment"><div class="line">#include &lt;Ponca/src/Fitting/basket.h&gt;</div>
+<div class="fragment"><div class="line">/*</div>
+<div class="line"> This Source Code Form is subject to the terms of the Mozilla Public</div>
+<div class="line"> License, v. 2.0. If a copy of the MPL was not distributed with this</div>
+<div class="line"> file, You can obtain one at http://mozilla.org/MPL/2.0/.</div>
+<div class="line">*/</div>
+<div class="line"> </div>
+<div class="line">/*!</div>
+<div class="line"> * \file examples/cuda/ponca_fit_kdtree.cu</div>
+<div class="line"> * \brief Example that uses the Fitting and SpatialPartitioning module with CUDA</div>
+<div class="line"> * \authors Auberval Florian, Nicolas Mellado</div>
+<div class="line"> */</div>
+<div class="line"> </div>
+<div class="line"> </div>
+<div class="line">#include &lt;Ponca/src/Fitting/basket.h&gt;</div>
 <div class="line">#include &lt;Ponca/src/Fitting/covariancePlaneFit.h&gt;</div>
 <div class="line">#include &lt;Ponca/src/Fitting/meanPlaneFit.h&gt;</div>
 <div class="line">#include &lt;Ponca/src/Fitting/weightFunc.h&gt;</div>
@@ -206,10 +219,10 @@ Source code</h1>
 <div class="line">    const bool _bAddPositionNoise = false,</div>
 <div class="line">    const bool _bAddNormalNoise   = false</div>
 <div class="line">) {</div>
-<div class="line">    typedef Ponca::PointPositionNormal&lt;Scalar, Dim&gt; DataPoint;</div>
-<div class="line">    typedef Ponca::DistWeightFunc&lt;DataPoint, Ponca::SmoothWeightKernel&lt;Scalar&gt; &gt; WeightSmoothFunc;</div>
-<div class="line">    typedef Ponca::Basket&lt;DataPoint, WeightSmoothFunc, Ponca::MeanPlaneFit&gt; MeanFitSmooth;</div>
-<div class="line">    typedef typename DataPoint::VectorType VectorType;</div>
+<div class="line">    using DataPoint        = Ponca::PointPositionNormal&lt;Scalar, Dim&gt;;</div>
+<div class="line">    using WeightSmoothFunc = Ponca::DistWeightFunc&lt;DataPoint, Ponca::SmoothWeightKernel&lt;Scalar&gt; &gt;;</div>
+<div class="line">    using MeanFitSmooth    = Ponca::Basket&lt;DataPoint, WeightSmoothFunc, Ponca::MeanPlaneFit&gt;;</div>
+<div class="line">    using VectorType       = typename DataPoint::VectorType;</div>
 <div class="line"> </div>
 <div class="line">    // Point cloud parameters for the plane</div>
 <div class="line">    const unsigned int nbPoints = Eigen::internal::random&lt;int&gt;(100, 1000);</div>
@@ -309,7 +322,7 @@ Source code</h1>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="example_page.html">Examples</a></li>
-    <li class="footer">Generated on Tue Mar 24 2026 17:38:56 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
+    <li class="footer">Generated on Wed Mar 25 2026 17:52:41 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
   </ul>
 </div>
 </body>

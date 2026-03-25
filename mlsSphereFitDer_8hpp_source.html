@@ -51,7 +51,7 @@ MathJax.Hub.Config({
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Ponca
-   &#160;<span id="projectnumber">aeb674e48d61b44380de68c0caeb3f205c4769f5</span>
+   &#160;<span id="projectnumber">1ffd926693113b7db54c52b90e144fa17574978f</span>
    </div>
    <div id="projectbrief">Point Cloud Analysis library</div>
   </td>
@@ -155,7 +155,7 @@ $(document).ready(function(){initNavTree('mlsSphereFitDer_8hpp_source.html','');
 <div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>{</div>
 <div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>    Base::addLocalNeighbor(w, localQ, attributes, dw);</div>
 <div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>    <span class="comment">// compute weight derivatives</span></div>
-<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>    <a class="code hl_typedef" href="classPonca_1_1MlsSphereFitDer.html#ae607a1f5ef10a77793915fe039bd3856">Matrix</a> d2w = Matrix::Zero();</div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>    <a class="code hl_typedef" href="classPonca_1_1MlsSphereFitDer.html#a5e919a7523eabe3abc25241957968031">Matrix</a> d2w = Matrix::Zero();</div>
 <div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span> </div>
 <div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>    <span class="keywordflow">if</span> (Base::isScaleDer())</div>
 <div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>        d2w(0, 0) = Base::getNeighborFilter().scaled2w(attributes.pos(), attributes);</div>
@@ -189,11 +189,11 @@ $(document).ready(function(){initNavTree('mlsSphereFitDer_8hpp_source.html','');
 <div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span> </div>
 <div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>    <span class="keywordflow">if</span> (this-&gt;isReady())</div>
 <div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>    {</div>
-<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>        <a class="code hl_typedef" href="classPonca_1_1MlsSphereFitDer.html#ae607a1f5ef10a77793915fe039bd3856">Matrix</a> sumdSumPdSumN  = Matrix::Zero();</div>
-<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>        <a class="code hl_typedef" href="classPonca_1_1MlsSphereFitDer.html#ae607a1f5ef10a77793915fe039bd3856">Matrix</a> sumd2SumPdSumN = Matrix::Zero();</div>
-<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>        <a class="code hl_typedef" href="classPonca_1_1MlsSphereFitDer.html#ae607a1f5ef10a77793915fe039bd3856">Matrix</a> sumd2SumNdSumP = Matrix::Zero();</div>
-<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>        <a class="code hl_typedef" href="classPonca_1_1MlsSphereFitDer.html#ae607a1f5ef10a77793915fe039bd3856">Matrix</a> sumdSumPdSumP  = Matrix::Zero();</div>
-<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>        <a class="code hl_typedef" href="classPonca_1_1MlsSphereFitDer.html#ae607a1f5ef10a77793915fe039bd3856">Matrix</a> sumd2SumPdSumP = Matrix::Zero();</div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>        <a class="code hl_typedef" href="classPonca_1_1MlsSphereFitDer.html#a5e919a7523eabe3abc25241957968031">Matrix</a> sumdSumPdSumN  = Matrix::Zero();</div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>        <a class="code hl_typedef" href="classPonca_1_1MlsSphereFitDer.html#a5e919a7523eabe3abc25241957968031">Matrix</a> sumd2SumPdSumN = Matrix::Zero();</div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>        <a class="code hl_typedef" href="classPonca_1_1MlsSphereFitDer.html#a5e919a7523eabe3abc25241957968031">Matrix</a> sumd2SumNdSumP = Matrix::Zero();</div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>        <a class="code hl_typedef" href="classPonca_1_1MlsSphereFitDer.html#a5e919a7523eabe3abc25241957968031">Matrix</a> sumdSumPdSumP  = Matrix::Zero();</div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>        <a class="code hl_typedef" href="classPonca_1_1MlsSphereFitDer.html#a5e919a7523eabe3abc25241957968031">Matrix</a> sumd2SumPdSumP = Matrix::Zero();</div>
 <div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span> </div>
 <div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>        <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; Dim; ++i)</div>
 <div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>        {</div>
@@ -206,7 +206,7 @@ $(document).ready(function(){initNavTree('mlsSphereFitDer_8hpp_source.html','');
 <div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span> </div>
 <div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>        <a class="code hl_typedef" href="classPonca_1_1MlsSphereFitDer.html#ab7a7ab04f5087ebfba54291ad03ea8a7">Scalar</a> invSumW = <a class="code hl_typedef" href="classPonca_1_1MlsSphereFitDer.html#ab7a7ab04f5087ebfba54291ad03ea8a7">Scalar</a>(1.) / Base::getWeightSum();</div>
 <div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span> </div>
-<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>        <a class="code hl_typedef" href="classPonca_1_1MlsSphereFitDer.html#ae607a1f5ef10a77793915fe039bd3856">Matrix</a> d2Nume =</div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>        <a class="code hl_typedef" href="classPonca_1_1MlsSphereFitDer.html#a5e919a7523eabe3abc25241957968031">Matrix</a> d2Nume =</div>
 <div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>            m_d2SumDotPN -</div>
 <div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>            invSumW * invSumW * invSumW * invSumW *</div>
 <div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>                (Base::getWeightSum() * Base::getWeightSum() *</div>
@@ -222,7 +222,7 @@ $(document).ready(function(){initNavTree('mlsSphereFitDer_8hpp_source.html','');
 <div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>                          (Base::m_sumN.transpose() * Base::m_dSumP + Base::m_sumP.transpose() * Base::m_dSumN) -</div>
 <div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span>                      (Base::m_sumP.transpose() * Base::m_sumN) * Base::m_dSumW));</div>
 <div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span> </div>
-<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>        <a class="code hl_typedef" href="classPonca_1_1MlsSphereFitDer.html#ae607a1f5ef10a77793915fe039bd3856">Matrix</a> d2Deno = m_d2SumDotPP -</div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>        <a class="code hl_typedef" href="classPonca_1_1MlsSphereFitDer.html#a5e919a7523eabe3abc25241957968031">Matrix</a> d2Deno = m_d2SumDotPP -</div>
 <div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>                        invSumW * invSumW * invSumW * invSumW *</div>
 <div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span>                            (Base::getWeightSum() * Base::getWeightSum() *</div>
 <div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>                                 (<a class="code hl_typedef" href="classPonca_1_1MlsSphereFitDer.html#ab7a7ab04f5087ebfba54291ad03ea8a7">Scalar</a>(2.) * Base::getWeightSum() * (sumdSumPdSumP + sumd2SumPdSumP) +</div>
@@ -252,10 +252,10 @@ $(document).ready(function(){initNavTree('mlsSphereFitDer_8hpp_source.html','');
 <div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span>                           Base::m_dSumW.transpose() * Base::m_dUl.row(i));</div>
 <div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span>        }</div>
 <div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span> </div>
-<div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span>        <a class="code hl_typedef" href="classPonca_1_1MlsSphereFitDer.html#ae607a1f5ef10a77793915fe039bd3856">Matrix</a> sumdUldSumP = Matrix::Zero();</div>
-<div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span>        <a class="code hl_typedef" href="classPonca_1_1MlsSphereFitDer.html#ae607a1f5ef10a77793915fe039bd3856">Matrix</a> sumUld2SumP = Matrix::Zero();</div>
-<div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span>        <a class="code hl_typedef" href="classPonca_1_1MlsSphereFitDer.html#ae607a1f5ef10a77793915fe039bd3856">Matrix</a> sumd2UlsumP = Matrix::Zero();</div>
-<div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span>        <a class="code hl_typedef" href="classPonca_1_1MlsSphereFitDer.html#ae607a1f5ef10a77793915fe039bd3856">Matrix</a> sumdSumPdUl = Matrix::Zero();</div>
+<div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span>        <a class="code hl_typedef" href="classPonca_1_1MlsSphereFitDer.html#a5e919a7523eabe3abc25241957968031">Matrix</a> sumdUldSumP = Matrix::Zero();</div>
+<div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span>        <a class="code hl_typedef" href="classPonca_1_1MlsSphereFitDer.html#a5e919a7523eabe3abc25241957968031">Matrix</a> sumUld2SumP = Matrix::Zero();</div>
+<div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span>        <a class="code hl_typedef" href="classPonca_1_1MlsSphereFitDer.html#a5e919a7523eabe3abc25241957968031">Matrix</a> sumd2UlsumP = Matrix::Zero();</div>
+<div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span>        <a class="code hl_typedef" href="classPonca_1_1MlsSphereFitDer.html#a5e919a7523eabe3abc25241957968031">Matrix</a> sumdSumPdUl = Matrix::Zero();</div>
 <div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span> </div>
 <div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span>        <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; Dim; ++i)</div>
 <div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span>        {</div>
@@ -339,8 +339,8 @@ $(document).ready(function(){initNavTree('mlsSphereFitDer_8hpp_source.html','');
 <div class="ttc" id="aclassPonca_1_1MlsSphereFitDer_html"><div class="ttname"><a href="classPonca_1_1MlsSphereFitDer.html">Ponca::MlsSphereFitDer</a></div><div class="ttdoc">Extension performing derivation of the mls surface.</div><div class="ttdef"><b>Definition</b> <a href="mlsSphereFitDer_8h_source.html#l00022">mlsSphereFitDer.h:23</a></div></div>
 <div class="ttc" id="aclassPonca_1_1MlsSphereFitDer_html_a0b08154a82683272274fbf0c2d438f29"><div class="ttname"><a href="classPonca_1_1MlsSphereFitDer.html#a0b08154a82683272274fbf0c2d438f29">Ponca::MlsSphereFitDer::ScalarArray</a></div><div class="ttdeci">typename Base::ScalarArray ScalarArray</div><div class="ttdoc">Alias to scalar derivatives array.</div><div class="ttdef"><b>Definition</b> <a href="mlsSphereFitDer_8h_source.html#l00025">mlsSphereFitDer.h:25</a></div></div>
 <div class="ttc" id="aclassPonca_1_1MlsSphereFitDer_html_a0f5df155d1bb3ab05e966d9cebcc4324"><div class="ttname"><a href="classPonca_1_1MlsSphereFitDer.html#a0f5df155d1bb3ab05e966d9cebcc4324">Ponca::MlsSphereFitDer::VectorArray</a></div><div class="ttdeci">typename Base::VectorArray VectorArray</div><div class="ttdoc">Alias to vector derivatives array.</div><div class="ttdef"><b>Definition</b> <a href="mlsSphereFitDer_8h_source.html#l00025">mlsSphereFitDer.h:25</a></div></div>
+<div class="ttc" id="aclassPonca_1_1MlsSphereFitDer_html_a5e919a7523eabe3abc25241957968031"><div class="ttname"><a href="classPonca_1_1MlsSphereFitDer.html#a5e919a7523eabe3abc25241957968031">Ponca::MlsSphereFitDer::Matrix</a></div><div class="ttdeci">Eigen::Matrix&lt; Scalar, DerDim, DerDim &gt; Matrix</div><div class="ttdoc">Static squared matrix of scalars with a size adapted to the differentiation type.</div><div class="ttdef"><b>Definition</b> <a href="mlsSphereFitDer_8h_source.html#l00052">mlsSphereFitDer.h:52</a></div></div>
 <div class="ttc" id="aclassPonca_1_1MlsSphereFitDer_html_ab7a7ab04f5087ebfba54291ad03ea8a7"><div class="ttname"><a href="classPonca_1_1MlsSphereFitDer.html#ab7a7ab04f5087ebfba54291ad03ea8a7">Ponca::MlsSphereFitDer::Scalar</a></div><div class="ttdeci">typename DataPoint::Scalar Scalar</div><div class="ttdoc">Alias to scalar type.</div><div class="ttdef"><b>Definition</b> <a href="mlsSphereFitDer_8h_source.html#l00024">mlsSphereFitDer.h:24</a></div></div>
-<div class="ttc" id="aclassPonca_1_1MlsSphereFitDer_html_ae607a1f5ef10a77793915fe039bd3856"><div class="ttname"><a href="classPonca_1_1MlsSphereFitDer.html#ae607a1f5ef10a77793915fe039bd3856">Ponca::MlsSphereFitDer::Matrix</a></div><div class="ttdeci">Eigen::Matrix&lt; Scalar, DerDim, DerDim &gt; Matrix</div><div class="ttdoc">Static squared matrix of scalars with a size adapted to the differentiation type.</div><div class="ttdef"><b>Definition</b> <a href="mlsSphereFitDer_8h_source.html#l00052">mlsSphereFitDer.h:52</a></div></div>
 <div class="ttc" id="aclassPonca_1_1MlsSphereFitDer_html_ae97f47e67bb3650bce00170926066670"><div class="ttname"><a href="classPonca_1_1MlsSphereFitDer.html#ae97f47e67bb3650bce00170926066670">Ponca::MlsSphereFitDer::VectorType</a></div><div class="ttdeci">typename Base::VectorType VectorType</div><div class="ttdoc">Alias to vector type.</div><div class="ttdef"><b>Definition</b> <a href="mlsSphereFitDer_8h_source.html#l00024">mlsSphereFitDer.h:24</a></div></div>
 <div class="ttc" id="anamespacePonca_html_a7beaddc698523e7f9c041ea8bc4c535a"><div class="ttname"><a href="namespacePonca.html#a7beaddc698523e7f9c041ea8bc4c535a">Ponca::DiffType</a></div><div class="ttdeci">DiffType</div><div class="ttdoc">Flags defining which derivatives need to be computed.</div><div class="ttdef"><b>Definition</b> <a href="enums_8h_source.html#l00033">enums.h:34</a></div></div>
 <div class="ttc" id="anamespacePonca_html_abfd697aebf07c1b5c8be5ee401e2dc84"><div class="ttname"><a href="namespacePonca.html#abfd697aebf07c1b5c8be5ee401e2dc84">Ponca::FIT_RESULT</a></div><div class="ttdeci">FIT_RESULT</div><div class="ttdoc">Enum corresponding to the state of a fitting method (and what the finalize function returns)</div><div class="ttdef"><b>Definition</b> <a href="enums_8h_source.html#l00014">enums.h:15</a></div></div>
@@ -350,7 +350,7 @@ $(document).ready(function(){initNavTree('mlsSphereFitDer_8hpp_source.html','');
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_695d95a8d8fbec601a248c0414764298.html">Ponca</a></li><li class="navelem"><a class="el" href="dir_ce16314fc45f8638543c5146aff64d4a.html">src</a></li><li class="navelem"><a class="el" href="dir_221133f19e4af6803e4ee7d78db21786.html">Fitting</a></li><li class="navelem"><b>mlsSphereFitDer.hpp</b></li>
-    <li class="footer">Generated on Tue Mar 24 2026 17:38:56 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
+    <li class="footer">Generated on Wed Mar 25 2026 17:52:41 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
   </ul>
 </div>
 </body>

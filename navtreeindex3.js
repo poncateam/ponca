@@ -40,7 +40,7 @@ var NAVTREEINDEX3 =
 "classPonca_1_1UnorientedSphereFitImpl.html#af79b6d442322d78d4cfdc2fe3e66082c":[8,0,0,99,0],
 "classPonca_1_1UnorientedSphereFitImpl.html#af93a1ea519fdeaa5213456da8f9133f4":[8,0,0,99,4],
 "classPonca_1_1WendlandWeightKernel.html":[8,0,0,102],
-"classPonca_1_1WendlandWeightKernel.html#a3ce3f4e507808b3934b9d0b4fbc69396":[8,0,0,102,0],
+"classPonca_1_1WendlandWeightKernel.html#ab54eedc04b005f89825daddceb3a8322":[8,0,0,102,0],
 "classPonca_1_1WendlandWeightKernel.html#acad25024f6a75c79edfc20717a772c37":[8,0,0,102,2],
 "classPonca_1_1WendlandWeightKernel.html#ae7197a07d3d93888bba8dffd99fad9cd":[8,0,0,102,1],
 "classPonca_1_1WendlandWeightKernel.html#afe07c65ab62cce1ff65ed397cd3cdcf3":[8,0,0,102,3],
