@@ -6,7 +6,7 @@
 
 /*!
  * \file Ponca/precompiled/Fitting/fittingPrecompiled.cpp
- * \brief Precompiled target that defines the commonly used Fitting types for 3D point clouds.
+ * \brief Precompiled target that defines explicitly the commonly used Fitting types for 3D point clouds.
  */
 
 #include "fittingPCH.h"

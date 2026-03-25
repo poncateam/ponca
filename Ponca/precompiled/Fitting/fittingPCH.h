@@ -6,11 +6,18 @@
 
 /*!
  * \file Ponca/precompiled/Fitting/fittingPCH.h
- * \brief Precompilable header that defines the commonly used Fitting types for 3D point clouds.
- * This header is to be included in each target that wants to benefit from precompiled Fitting acceleration.
+ * \brief Link most fitting types to pre-instantiated class for 3D point clouds.
+ * Tells the compiler that it should fetch the class using the vtable from the precompiled library.
+ * This header is to be included in each target that wants to benefit from the pre-instantiation acceleration.
  */
 
 #pragma once
 
-#include "fittingETI.h" // References Explicit Template Instantiations
-// TODO : Include other heavy to compile headers
+#define EXTERN extern // Link to the vtable with the extern keyword
+#include "fittingDeclareMacro.h"
+
+FITTING_DEF(float)
+FITTING_DEF(double)
+FITTING_DEF(long double)
+
+#undef EXTERN
