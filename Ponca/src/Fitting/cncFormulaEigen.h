@@ -349,7 +349,6 @@ namespace Ponca::internal
             }
             else
             {
-                // std::cerr << "Incorrect diagonalization for tensor " << M << std::endl;
                 VectorType v1, v2;
                 return std::make_tuple(Scalar(0.0), Scalar(0.0), v1, v2);
             }
