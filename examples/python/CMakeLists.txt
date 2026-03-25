@@ -1,30 +1,44 @@
-set(CMAKE_INCLUDE_CURRENT_DIR ON)
+project(Ponca_Examples_python LANGUAGES CXX)
 
+include(CheckLanguage)
+check_language(CUDA)
 
 ################################################################################
 # CUDA                                                                         #
 ################################################################################
+if(CMAKE_CUDA_COMPILER)
+    set (CMAKE_CUDA_HOST_COMPILER ${CMAKE_CXX_COMPILER})
+    enable_language(CUDA)
 
-find_package(CUDA)
-if(CUDA_FOUND)
+    if(POLICY CMP0104)
+        cmake_policy(SET CMP0104 NEW)
+    endif()
 
-    # Pass options to NVCC
-    set(CUDA_NVCC_FLAGS ${CUDA_NVCC_FLAGS} -O3)
+    if(NOT DEFINED CMAKE_CUDA_STANDARD)
+        set(CMAKE_CUDA_STANDARD 20)
+        set(CMAKE_CUDA_STANDARD_REQUIRED ON)
+    endif()
+    set(SSGLS_CU ${CMAKE_CURRENT_SOURCE_DIR}/ssgls.cu)
 
-    # For compilation ...
-    # Specify target & source files to compile it from
-    # cuda_add_executable( ssgls_py ssgls.cu )
-    cuda_compile_ptx (ptxfile ssgls.cu)
+    # Generate PTX
+    add_library(ssgls_ptx OBJECT ${SSGLS_CU})
+    set_property(TARGET ssgls_ptx PROPERTY CUDA_ARCHITECTURES OFF)
 
+    # Include directories
+    target_include_directories(ssgls_ptx PRIVATE ${PONCA_src_ROOT})
+    ponca_handle_eigen_dependency(ssgls_ptx)
 
+    # Custom target to copy outputs
     add_custom_target(ssgls_py ALL
-        DEPENDS ${ptxfile} ssgls.cu
-        SOURCES ssgls.cu
         COMMAND ${CMAKE_COMMAND} -E copy_directory
-                ${CMAKE_CURRENT_SOURCE_DIR}/data/ ${CMAKE_CURRENT_BINARY_DIR}/data
+        ${CMAKE_CURRENT_SOURCE_DIR}/data/ ${CMAKE_CURRENT_BINARY_DIR}/data
         COMMAND ${CMAKE_COMMAND} -E copy
-                ${CMAKE_CURRENT_SOURCE_DIR}/ssgls.py ${CMAKE_CURRENT_BINARY_DIR}
+        ${CMAKE_CURRENT_SOURCE_DIR}/ssgls.py ${CMAKE_CURRENT_BINARY_DIR}
         COMMAND ${CMAKE_COMMAND} -E copy
-                ${ptxfile} ${CMAKE_CURRENT_BINARY_DIR}/ssgls.ptx )
+        $<TARGET_OBJECTS:ssgls_ptx> ${CMAKE_CURRENT_BINARY_DIR}/ssgls.ptx
+        DEPENDS ssgls_ptx
+    )
 
-endif(CUDA_FOUND)
+else()
+    message(STATUS "CUDA not found, skipping Ponca_Examples_python")
+endif()

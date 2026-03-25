@@ -1,17 +1,20 @@
 /*
  This Source Code Form is subject to the terms of the Mozilla Public
  License, v. 2.0. If a copy of the MPL was not distributed with this
- file, You can obtain one at http://mozilla.org/MPL/2.0/. 
- 
- Compile using 
- nvcc --ptx -I ../../Patate/ -I /path/to/eigen-nvcc/ ssgls.cu
+ file, You can obtain one at http://mozilla.org/MPL/2.0/.
 */
 
+/*!
+ * \file examples/python/ssgls.cu
+ * \brief Example that uses the ssgls and the Ponca Fitting module with CUDA
+ * Compile using
+ * `nvcc --ptx -I ../../Ponca/ -I /path/to/eigen-nvcc/ ssgls.cu`
+ * \authors Nicolas Mellado
+ */
 
 #include <cuda.h>
 #include <algorithm>
-
-#include "Eigen/Core"
+#include <Eigen/Core>
 #include <Ponca/Fitting>
 
 
@@ -25,23 +28,22 @@ public:
     using MatrixType       = Eigen::Matrix<Scalar, Dim, Dim>;
     using ScreenVectorType = Eigen::Matrix<Scalar, 2, 1>;
 
-    MULTIARCH inline MyPoint(   const VectorType& _pos        = VectorType::Zero(),
-                                const VectorType& _normal     = VectorType::Zero(),
-                                const ScreenVectorType& _spos = ScreenVectorType::Zero(),
-                                const Scalar _dz = 0.f)
-        : m_pos(_pos), m_normal(_normal), m_spos(_spos), m_dz(_dz){}
+    PONCA_MULTIARCH inline MyPoint(
+        const VectorType& _pos        = VectorType::Zero(),
+        const VectorType& _normal     = VectorType::Zero(),
+        const ScreenVectorType& _spos = ScreenVectorType::Zero(),
+        const Scalar _dz              = 0.f
+    ) : m_pos(_pos), m_normal(_normal), m_spos(_spos), m_dz(_dz){}
 
-    MULTIARCH inline const VectorType& pos()	const { return m_pos; }
-    MULTIARCH inline const VectorType& normal()	const { return m_normal; }
-    MULTIARCH inline const ScreenVectorType& spos() const { return m_spos; }
-    MULTIARCH inline const float & dz()	const { return m_dz; }
+    PONCA_MULTIARCH inline const VectorType& pos()	const { return m_pos; }
+    PONCA_MULTIARCH inline const VectorType& normal()	const { return m_normal; }
+    PONCA_MULTIARCH inline const ScreenVectorType& spos() const { return m_spos; }
+    PONCA_MULTIARCH inline const float & dz()	const { return m_dz; }
 
-
-    MULTIARCH inline VectorType& pos()	 { return m_pos; }
-    MULTIARCH inline VectorType& normal()	 { return m_normal; }
-    MULTIARCH inline ScreenVectorType& spos() { return m_spos; }
-    MULTIARCH inline float& dz()	 { return m_dz; }
-
+    PONCA_MULTIARCH inline VectorType& pos()	 { return m_pos; }
+    PONCA_MULTIARCH inline VectorType& normal()	 { return m_normal; }
+    PONCA_MULTIARCH inline ScreenVectorType& spos() { return m_spos; }
+    PONCA_MULTIARCH inline float& dz()	 { return m_dz; }
 
 private:
     ScreenVectorType m_spos;
@@ -60,19 +62,22 @@ class ProjectWeightFunc: public Ponca::DistWeightFunc<MyPoint, Ponca::SmoothWeig
 public:
     using Scalar     = MyPoint::Scalar;
     using VectorType = MyPoint::VectorType;
+    using Base       = Ponca::DistWeightFunc<MyPoint, Ponca::SmoothWeightKernel<Scalar> >;
 
     /*
     Default constructor (needed by Ponca). Note that the screenspace
     evaluation position is specified as parameter
     */
-    MULTIARCH inline ProjectWeightFunc( const Scalar& _t                = 1.f,
-                                        const ScreenVectorType& _refPos = ScreenVectorType::Zero(),
-                                        const Scalar& _dz               = 0.f)
-        : Ponca::DistWeightFunc<MyPoint, Ponca::SmoothWeightKernel<Scalar> >(_t), m_refPos(_refPos), m_dz(_dz) {}
+    PONCA_MULTIARCH inline ProjectWeightFunc(
+        const VectorType& _refPos = VectorType::Zero(),
+        const ScreenVectorType& _refScreenPos = ScreenVectorType::Zero(),
+        const Scalar& _t                = Scalar(1.f),
+        const Scalar& _dz               = Scalar(0.f)
+    ) : Base(_refPos, _t), m_refScreenPos(_refScreenPos), m_dz(_dz) {}
 
-    MULTIARCH inline Scalar w(const VectorType& _q, const MyPoint&  _attributes) const
+    PONCA_MULTIARCH inline Scalar w(const VectorType& _q, const MyPoint&  _attributes) const
     {
-        Scalar d  = (_attributes.spos()-m_refPos).norm();
+        Scalar d = (_attributes.spos()-m_refScreenPos).norm();
         const Scalar dz = _attributes.dz();
 
         if (d > m_t || dz > m_dz)
@@ -81,7 +86,7 @@ public:
         return m_wk.f(d/m_t);
     }
 private:
-    ScreenVectorType m_refPos;
+    ScreenVectorType m_refScreenPos;
     float m_dz;
 };
 //! [w_def]
@@ -120,14 +125,14 @@ __device__ VectorType getVector(const int _x,
 
 //! [kernel]
 extern "C" { 
-__global__ void doGLS_kernel(int* _params, //[w, h, scale]
-                             float* _positions,
-                             float* _normals,
-                             float* _result)
+__global__ void doGLS_kernel(const int* _params, //[w, h, scale]
+                             const float* _positions,
+                             const float* _normals,
+                             float* const _result)
 {
     
-    uint x = (blockIdx.x * blockDim.x) + threadIdx.x;
-    uint y = (blockIdx.y * blockDim.y) + threadIdx.y;
+    const int x = int((blockIdx.x * blockDim.x) + threadIdx.x);
+    const int y = int((blockIdx.y * blockDim.y) + threadIdx.y);
     
     const int &width     = _params[0];
     const int &height    = _params[1];
@@ -136,15 +141,15 @@ __global__ void doGLS_kernel(int* _params, //[w, h, scale]
     {
         const int &scale = _params[2];
 
-        ScreenVectorType refPos;
-        refPos << x, y;
+        ScreenVectorType refScreenPos;
+        refScreenPos << Scalar(x), Scalar(y);
 
         int dx, dy; // neighbor offset ids
         int nx, ny; // neighbor ids
 
         Gls gls;
-        gls.setNeighborFilter({scale, refPos});
-        gls.init( getVector(x,y,width,height,_positions) );
+        gls.init();
+        gls.setNeighborFilter({getVector(x,y,width,height,_positions), refScreenPos, Scalar(scale)});
 
         if (getVector(x,y,width,height,_normals).squaredNorm() == 0.f )
         {
@@ -156,7 +161,7 @@ __global__ void doGLS_kernel(int* _params, //[w, h, scale]
             VectorType p, n;
 
             // collect neighborhood
-            VectorType one = VectorType::Zero();
+            const VectorType one = VectorType::Zero();
 
             for(dy = -scale; dy != scale; dy++)
             {
