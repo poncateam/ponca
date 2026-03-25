@@ -32,4 +32,35 @@ namespace Ponca
             { ct.derDimension() } -> std::integral;
         };
 
+    template <typename T>
+    concept ProvidesAlgebraicSphere = requires(T t, const T ct, typename T::VectorType v, typename T::Scalar s) {
+        ct.algebraicSphere();
+
+        { ct.algebraicSphere().potential() } -> std::same_as<typename T::Scalar>;
+        { ct.algebraicSphere().potential(v) } -> std::same_as<typename T::Scalar>;
+
+        { ct.algebraicSphere().project(v) } -> std::same_as<typename T::VectorType>;
+
+        { ct.algebraicSphere().primitiveGradient() } -> std::convertible_to<typename T::VectorType>;
+        { ct.algebraicSphere().primitiveGradient(v) } -> std::same_as<typename T::VectorType>;
+
+        { ct.algebraicSphere().isPlane() } -> std::same_as<bool>;
+        { ct.algebraicSphere().isValid() } -> std::same_as<bool>;
+        { ct.algebraicSphere().isNormalized() } -> std::same_as<bool>;
+        { ct.algebraicSphere().isApprox(ct, s) } -> std::same_as<bool>;
+
+        { t.algebraicSphere().applyPrattNorm() } -> std::same_as<bool>;
+        { ct.algebraicSphere().prattNorm() } -> std::same_as<typename T::Scalar>;
+        { ct.algebraicSphere().prattNorm2() } -> std::same_as<typename T::Scalar>;
+
+        { ct.algebraicSphere().radius() } -> std::convertible_to<typename T::Scalar>;
+        { ct.algebraicSphere().center() } -> std::convertible_to<typename T::VectorType>;
+
+        t.algebraicSphere().changeBasis(v);
+    };
+
+    template <typename T>
+    concept ProvidesAlgebraicSphereDerivative = requires(const T ct) {
+        { ct.dPotential() } -> std::convertible_to<typename T::ScalarArray>;
+    };
 } // namespace Ponca

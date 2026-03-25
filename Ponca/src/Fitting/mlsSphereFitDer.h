@@ -20,7 +20,8 @@ namespace Ponca
      * provides first order derivatives of the algebraic sphere parameters.
      */
     template <class DataPoint, class _NFilter, int DiffType, typename T>
-        requires ProvidesPrimitiveDerivative<T>
+        requires ProvidesPrimitiveDerivative<T> && 
+                 ProvidesAlgebraicSphereDerivative<T>
     class MlsSphereFitDer : public T
     {
         PONCA_FITTING_DECLARE_DEFAULT_TYPES
@@ -29,7 +30,6 @@ namespace Ponca
     protected:
         enum
         {
-            Check = Base::PROVIDES_ALGEBRAIC_SPHERE_DERIVATIVE,
             PROVIDES_NORMAL_DERIVATIVE
         };
 
