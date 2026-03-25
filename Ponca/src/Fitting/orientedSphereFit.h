@@ -23,6 +23,7 @@ namespace Ponca
         \see AlgebraicSphere
     */
     template <class DataPoint, class _NFilter, typename T>
+        requires ProvidesAlgebraicSphere<T>
     class OrientedSphereFitImpl : public T
     {
         PONCA_FITTING_DECLARE_DEFAULT_TYPES
@@ -30,7 +31,7 @@ namespace Ponca
     protected:
         enum
         {
-            Check = Base::PROVIDES_ALGEBRAIC_SPHERE && Base::PROVIDES_MEAN_NORMAL && Base::PROVIDES_MEAN_POSITION
+            Check = Base::PROVIDES_MEAN_NORMAL && Base::PROVIDES_MEAN_POSITION
         };
 
         // computation data
@@ -57,7 +58,7 @@ namespace Ponca
         \brief Internal generic class performing the Fit derivation
     */
     template <class DataPoint, class _NFilter, int DiffType, typename T>
-        requires ProvidesPrimitiveDerivative<T>
+        requires ProvidesPrimitiveDerivative<T> && ProvidesAlgebraicSphere<T>
     class OrientedSphereDerImpl : public T
     {
         PONCA_FITTING_DECLARE_DEFAULT_TYPES
@@ -66,8 +67,7 @@ namespace Ponca
     protected:
         enum
         {
-            Check = Base::PROVIDES_ALGEBRAIC_SPHERE & Base::PROVIDES_MEAN_POSITION_DERIVATIVE,
-            PROVIDES_ALGEBRAIC_SPHERE_DERIVATIVE,
+            Check = Base::PROVIDES_MEAN_POSITION_DERIVATIVE,
             PROVIDES_NORMAL_DERIVATIVE
         };
 

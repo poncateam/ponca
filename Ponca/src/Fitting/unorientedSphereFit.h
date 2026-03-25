@@ -46,6 +46,7 @@ namespace Ponca
         \see class AlgebraicSphere, class OrientedSphereFit
     */
     template <class DataPoint, class _NFilter, typename T>
+        requires ProvidesAlgebraicSphere<T>
     class UnorientedSphereFitImpl : public T
     {
         PONCA_FITTING_DECLARE_DEFAULT_TYPES
@@ -53,7 +54,7 @@ namespace Ponca
     protected:
         enum
         {
-            Check = Base::PROVIDES_ALGEBRAIC_SPHERE && Base::PROVIDES_MEAN_POSITION
+            Check = Base::PROVIDES_MEAN_POSITION
         };
 
         using VectorB  = Eigen::Matrix<Scalar, DataPoint::Dim + 1, 1>;
@@ -82,7 +83,8 @@ namespace Ponca
                                 MeanPosition<DataPoint, _NFilter, AlgebraicSphere<DataPoint, _NFilter, T>>>;
 
     template <class DataPoint, class _NFilter, int DiffType, typename T>
-        requires ProvidesPrimitiveDerivative<T>
+        requires ProvidesPrimitiveDerivative<T> &&
+                 ProvidesAlgebraicSphere<T>
     class UnorientedSphereDerImpl : public T
     {
     protected:
@@ -95,8 +97,7 @@ namespace Ponca
     protected:
         enum
         {
-            Check = Base::PROVIDES_ALGEBRAIC_SPHERE & Base::PROVIDES_MEAN_POSITION_DERIVATIVE,
-            PROVIDES_ALGEBRAIC_SPHERE_DERIVATIVE,
+            Check = Base::PROVIDES_MEAN_POSITION_DERIVATIVE,
             PROVIDES_NORMAL_DERIVATIVE
         };
 
