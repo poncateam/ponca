@@ -19,8 +19,8 @@ namespace Ponca
 
         \warning The barycenter is not stored explicitly, but rather computed from the sum of the neighbors positions.
 
-        This primitive provides:
-        \verbatim PROVIDES_MEAN_POSITION \endverbatim
+        This primitive respects:
+        \verbatim ProvidesMeanPosition \endverbatim
     */
     template <class DataPoint, class _NFilter, typename T>
     class MeanPosition : public T
@@ -28,11 +28,7 @@ namespace Ponca
         PONCA_FITTING_DECLARE_DEFAULT_TYPES
 
     protected:
-        enum
-        {
-            PROVIDES_MEAN_POSITION
-        };
-        VectorType m_sumP{VectorType::Zero()}; /*!< \brief Sum of the input points vectors */
+       VectorType m_sumP{VectorType::Zero()}; /*!< \brief Sum of the input points vectors */
 
     public:
         PONCA_EXPLICIT_CAST_OPERATORS(MeanPosition, meanPosition)
@@ -76,7 +72,7 @@ namespace Ponca
 
         \warning The mean normal is not stored explicitly, but rather computed from the sum of the neighbors normals.
 
-        This primitive provides:
+        This primitive respects:
         \verbatim PROVIDES_MEAN_NORMAL \endverbatim
 
         \see MeanNormalDer
@@ -116,27 +112,21 @@ namespace Ponca
         \inherit Concept::FittingProcedureConcept
 
         This primitive requires:
-        \verbatim ProvidePrimitiveDerivative, PROVIDES_MEAN_POSITION\endverbatim
+        \verbatim ProvidePrimitiveDerivative, ProvidesMeanPosition\endverbatim
 
         This primitive provides:
-        \verbatim PROVIDES_MEAN_POSITION_DERIVATIVE \endverbatim
+        \verbatim ProvidesMeanPositionDerivative \endverbatim
 
         \see MeanNormal
     */
     template <class DataPoint, class _NFilter, int DiffType, typename T>
-        requires ProvidesPrimitiveDerivative<T>
+        requires ProvidesPrimitiveDerivative<T> && ProvidesMeanPosition<T>
     class MeanPositionDer : public T
     {
         PONCA_FITTING_DECLARE_DEFAULT_TYPES
         PONCA_FITTING_DECLARE_DEFAULT_DER_TYPES
 
     protected:
-        enum
-        {
-            Check = Base::PROVIDES_MEAN_POSITION,
-            PROVIDES_MEAN_POSITION_DERIVATIVE, /*!< \brief Provides derivative of the mean position*/
-        };
-
         /*! \brief Derivatives of the input points vectors */
         VectorArray m_dSumP{VectorArray::Zero()};
 
