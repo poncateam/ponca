@@ -24,7 +24,7 @@ namespace Ponca
     {
     public:
         /*! \brief Scalar type defined outside the class */
-        typedef _Scalar Scalar;
+        using Scalar = _Scalar;
 
         /// \brief The kernel is compact and shall not be evaluated outside of the scale bounds.
         /// \see #NoWeightFunc and #NoWeightFuncGlobal for alternative way to use uniform weight.
@@ -64,7 +64,7 @@ namespace Ponca
     {
     public:
         /*! \brief Scalar type defined outside the class*/
-        typedef _Scalar Scalar;
+        using Scalar = _Scalar;
 
         /// \brief The kernel is compact and shall not be evaluated outside of the scale bounds.
         static constexpr bool isCompact = true;
@@ -102,7 +102,7 @@ namespace Ponca
     {
     public:
         /*! \brief Scalar type defined outside the class*/
-        typedef _Scalar Scalar;
+        using Scalar = _Scalar;
 
         /// \brief The kernel is compact and shall not be evaluated outside of the scale bounds.
         static constexpr bool isCompact = true;
@@ -149,7 +149,7 @@ namespace Ponca
     {
     public:
         /*! \brief Scalar type defined outside the class*/
-        typedef _Scalar Scalar;
+        using Scalar = _Scalar;
 
         /// \brief The kernel is compact and shall not be evaluated outside of the scale bounds.
         static constexpr bool isCompact = true;
@@ -193,7 +193,7 @@ namespace Ponca
     {
     public:
         /*! \brief Scalar type defined outside the class*/
-        typedef _Scalar Scalar;
+        using Scalar = _Scalar;
 
         /// \brief The kernel is compact and shall not be evaluated outside of the scale bounds.
         static constexpr bool isCompact = true;
@@ -229,7 +229,7 @@ namespace Ponca
     {
     public:
         /*! \brief Scalar type defined outside the class*/
-        typedef _Scalar Scalar;
+        using Scalar = _Scalar;
 
         /// \brief The kernel is compact and shall not be evaluated outside of the scale bounds.
         static constexpr bool isCompact = true;
@@ -302,7 +302,7 @@ namespace Ponca
     {
     public:
         /*! \brief Scalar type defined outside the class*/
-        typedef _Scalar Scalar;
+        using Scalar = _Scalar;
 
         /// \brief The kernel is not compact and can be evaluated outside of the scale bounds.
         static constexpr bool isCompact = false;

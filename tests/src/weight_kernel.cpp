@@ -5,8 +5,8 @@
 */
 
 /*!
-    \file test/Grenaille/weight_kernel.cpp
-    \brief Test weight kernel derivatives
+ * \file tests/src/weight_kernel.cpp
+ * \brief Test weight kernel derivatives
  */
 
 #include "../common/testing.h"
@@ -24,8 +24,8 @@ using namespace Ponca;
 template <class Kernel>
 void testFunctionAutoDiff()
 {
-    typedef typename Kernel::Scalar ScalarDiff;
-    typedef typename ScalarDiff::Scalar Scalar;
+    using ScalarDiff = typename Kernel::Scalar;
+    using Scalar     = typename ScalarDiff::Scalar;
 
     Scalar step = Scalar(0.05);
     int n       = int(Scalar(1) / Scalar(step));
@@ -53,7 +53,7 @@ void testFunctionAutoDiff()
 template <class Kernel>
 void testFunction(typename Kernel::Scalar mmin = 0, typename Kernel::Scalar mmax = 1)
 {
-    typedef typename Kernel::Scalar Scalar;
+    using Scalar = typename Kernel::Scalar;
 
     Scalar step = Scalar(0.05);
     int n       = int((mmax - mmin) / Scalar(step));
@@ -95,7 +95,7 @@ void testKernelDiff(int nbSteps = 1000)
     W1 kernel1;
     W2 kernel2;
 
-    typedef typename W1::Scalar Scalar;
+    using Scalar   = typename W1::Scalar;
     Scalar epsilon = Scalar(0.0001); // Current tolerance
 
     for (int i = 1; i <= nbSteps; ++i)
@@ -143,8 +143,8 @@ void testKernelDiff(int nbSteps = 1000)
 template <typename Scalar, template <typename> class KernelT>
 void callSubTests(Scalar mmin = 0, Scalar mmax = 1)
 {
-    typedef Eigen::AutoDiffScalar<Eigen::Matrix<Scalar, 1, 1>> ScalarDiff;
-    typedef KernelT<Scalar> Kernel;
+    using ScalarDiff = Eigen::AutoDiffScalar<Eigen::Matrix<Scalar, 1, 1>>;
+    using Kernel     = KernelT<Scalar>;
     CALL_SUBTEST((testFunction<Kernel>(mmin, mmax)));
 
     cout << "ok" << endl;
@@ -152,8 +152,8 @@ void callSubTests(Scalar mmin = 0, Scalar mmax = 1)
 template <typename Scalar, template <typename> class KernelT>
 void callAutoDiffSubTests()
 {
-    typedef Eigen::AutoDiffScalar<Eigen::Matrix<Scalar, 1, 1>> ScalarDiff;
-    typedef KernelT<ScalarDiff> KernelAutoDiff;
+    using ScalarDiff     = Eigen::AutoDiffScalar<Eigen::Matrix<Scalar, 1, 1>>;
+    using KernelAutoDiff = KernelT<ScalarDiff>;
     CALL_SUBTEST((testFunctionAutoDiff<KernelAutoDiff>()));
 
     cout << "ok" << endl;

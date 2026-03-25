@@ -4,6 +4,12 @@
  file, You can obtain one at http://mozilla.org/MPL/2.0/.
 */
 
+/*!
+ * \file tests/src/queries_range.cpp
+ * \brief Test validity of the direct projection on an algebraic sphere
+ * \authors Auberval Florian, Nicolas Mellado
+ */
+
 #include "../common/testing.h"
 #include "../common/kdtree_utils.h"
 #include "../split_test_helper.h"

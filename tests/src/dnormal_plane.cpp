@@ -5,8 +5,8 @@
 */
 
 /*!
-    \file test/Grenaille/dnormal_plane.cpp
-    \brief Test validity of dnormal
+ * \file tests/src/dnormal_plane.cpp
+ * \brief Test validity of dnormal
  */
 
 #include "../common/testing.h"
@@ -21,9 +21,9 @@ template <typename DataPoint, typename Fit>
 void testFunction(bool _bAddPositionNoise = false, bool /*_bAddNormalNoise */ = false)
 {
     // Define related structure
-    typedef typename DataPoint::Scalar Scalar;
-    typedef typename DataPoint::VectorType VectorType;
-    typedef typename DataPoint::MatrixType MatrixType;
+    using Scalar     = typename DataPoint::Scalar;
+    using VectorType = typename DataPoint::VectorType;
+    using MatrixType = typename DataPoint::MatrixType;
 
     // generate sampled plane
     int nbPoints = Eigen::internal::random<int>(100, 1000);

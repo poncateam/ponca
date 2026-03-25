@@ -47,7 +47,7 @@ inline long double testEpsilon<long double>()
 template <typename DataPoint>
 void reverseNormals(std::vector<DataPoint>& _dest, const std::vector<DataPoint>& _src, bool _bRandom = true)
 {
-    typedef typename DataPoint::VectorType VectorType;
+    using VectorType = typename DataPoint::VectorType;
 
     VectorType vNormal;
 
@@ -76,7 +76,7 @@ template <typename DataPoint>
 typename DataPoint::Scalar getPointKappaMean(typename DataPoint::VectorType _vPoint, typename DataPoint::Scalar _a,
                                              typename DataPoint::Scalar _b)
 {
-    typedef typename DataPoint::Scalar Scalar;
+    using Scalar = typename DataPoint::Scalar;
 
     Scalar x = _vPoint.x();
     Scalar y = _vPoint.y();
@@ -98,8 +98,8 @@ typename DataPoint::Scalar getKappaMean(const std::vector<DataPoint>& _vectorPoi
                                         typename DataPoint::VectorType _vCenter, typename DataPoint::Scalar _a,
                                         typename DataPoint::Scalar _b, typename DataPoint::Scalar _analysisScale)
 {
-    typedef typename DataPoint::Scalar Scalar;
-    typedef typename DataPoint::VectorType VectorType;
+    using Scalar     = typename DataPoint::Scalar;
+    using VectorType = typename DataPoint::VectorType;
 
     int size         = static_cast<int>(_vectorPoints.size());
     Scalar kappaMean = 0.;

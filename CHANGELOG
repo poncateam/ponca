@@ -22,6 +22,7 @@ introduces several bug fixes and minors improvements.
     - [common] Applied clang-formatting (#274)
     - [common] Fix inclusion of headers within hpp files (#219)
     - [cuda] Add PONCA_MULTIARCH_CU_STD_FUNC maccros for function within cuda::std:: namespace (#219)
+    - [all] Update code to meet new standards (#292)
 
 - Tests
     - [utils] Improve point cloud generation functions (#201)

@@ -65,8 +65,8 @@ namespace Ponca
         };
 
     protected:
-        typedef Eigen::Matrix<Scalar, DataPoint::Dim + 2, 1> VectorA;
-        typedef Eigen::Matrix<Scalar, DataPoint::Dim + 2, DataPoint::Dim + 2> MatrixA;
+        using VectorA = Eigen::Matrix<Scalar, DataPoint::Dim + 2, 1>;
+        using MatrixA = Eigen::Matrix<Scalar, DataPoint::Dim + 2, DataPoint::Dim + 2>;
 
     public:
         using Solver = Eigen::EigenSolver<MatrixA>;

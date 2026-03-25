@@ -7,6 +7,7 @@
 #pragma once
 
 #include "pcl_wrapper.h"
+#include <Ponca/Fitting>
 #include <pcl/common/point_tests.h> // isFinite
 
 //////////////////////////////////////////////////////////////////////////////////////////////
@@ -58,27 +59,24 @@ template <typename PointInT, typename PointOutT>
 void pcl::GlsCurvature<PointInT, PointOutT>::computeCurvature(const pcl::PointCloud<PointInT>& cloud, int p_idx,
                                                               const std::vector<int>& indices, float& curvature)
 {
-    typedef GlsPoint::Scalar Scalar;
-    typedef Ponca::DistWeightFunc<GlsPoint, Ponca::SmoothWeightKernel<Scalar>> WeightFunc;
-    typedef Ponca::Basket<GlsPoint, WeightFunc, Ponca::CovariancePlaneFit> FitBasket;
-    typedef Ponca::BasketDiff<FitBasket, Ponca::FitScaleSpaceDer, Ponca::CovariancePlaneDer,
-                              Ponca::CurvatureEstimatorDer, Ponca::NormalDerivativeWeingartenEstimator,
-                              Ponca::WeingartenCurvatureEstimatorDer>
-        Fit;
+    using Scalar     = GlsPoint::Scalar;
+    using WeightFunc = Ponca::DistWeightFunc<GlsPoint, Ponca::SmoothWeightKernel<Scalar>>;
+    using FitBasket  = Ponca::Basket<GlsPoint, WeightFunc, Ponca::CovariancePlaneFit>;
+    using Fit =
+        Ponca::BasketDiff<FitBasket, Ponca::FitScaleSpaceDer, Ponca::CovariancePlaneDer, Ponca::CurvatureEstimatorDer,
+                          Ponca::NormalDerivativeWeingartenEstimator, Ponca::WeingartenCurvatureEstimatorDer>;
 
     Fit fit;
     // Set a weighting function instance using the search radius of the tree as scale
-    fit.setNeighborFilter({cloud.points[p_idx].getVector3fMap(), search_radius_});
+    fit.setNeighborFilter({cloud.points[p_idx].getVector3fMap(), float(search_radius_)});
 
     fit.init();
 
     // Iterate over indices and fit the primitive
     // A GlsPoint instance is generated on the fly to bind the positions to the
     // library representation. No copy is done at this step.
-    for (size_t idx = 0; idx < indices.size(); ++idx)
+    for (int id : indices)
     {
-        int id = indices[idx];
-
         fit.addNeighbor(GlsPoint(cloud.points[id].getVector3fMap(), cloud.points[id].getNormalVector3fMap()));
     }
 
@@ -97,4 +95,3 @@ void pcl::GlsCurvature<PointInT, PointOutT>::computeCurvature(const pcl::PointCl
 }
 
 #define PCL_INSTANTIATE_GlsCurvature(T, OutT) template class PCL_EXPORTS pcl::GlsCurvature<T, OutT>;
-

@@ -1,3 +1,15 @@
+/*
+ This Source Code Form is subject to the terms of the Mozilla Public
+ License, v. 2.0. If a copy of the MPL was not distributed with this
+ file, You can obtain one at http://mozilla.org/MPL/2.0/.
+*/
+
+/*!
+ * \file examples/cuda/ponca_fit_kdtree.cu
+ * \brief Utils function for using Ponca with CUDA
+ * \authors Auberval Florian, Nicolas Mellado
+ */
+
 #pragma once
 
 #include <Ponca/src/SpatialPartitioning/KdTree/kdTree.h>

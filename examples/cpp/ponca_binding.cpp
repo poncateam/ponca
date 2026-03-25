@@ -1,15 +1,15 @@
 /*
-This Source Code Form is subject to the terms of the Mozilla Public
-License, v. 2.0. If a copy of the MPL was not distributed with this
-file, You can obtain one at http://mozilla.org/MPL/2.0/.
+ This Source Code Form is subject to the terms of the Mozilla Public
+ License, v. 2.0. If a copy of the MPL was not distributed with this
+ file, You can obtain one at http://mozilla.org/MPL/2.0/.
 */
 
 /*!
-\file examples/cpp/ponca_binding.cpp
-\brief Basic use example of the Ponca point binding type
+ * \file examples/cpp/ponca_binding.cpp
+ * \brief Basic use example of the Ponca point binding type
+ * \author: Nicolas Mellado, Gautier Ciaudo
+ */
 
-\author: Nicolas Mellado, Gautier Ciaudo
-*/
 #include <iostream>
 
 #include <Ponca/src/Fitting/basket.h>
@@ -26,13 +26,13 @@ using namespace Ponca;
 
 #define DIMENSION 3
 
-using MyPoint = PointPositionNormalBinding<double, DIMENSION>;
-typedef MyPoint::Scalar Scalar;
-typedef MyPoint::VectorType VectorType;
+using MyPoint    = PointPositionNormalBinding<double, DIMENSION>;
+using Scalar     = MyPoint::Scalar;
+using VectorType = MyPoint::VectorType;
 
 // Define related structure
-typedef DistWeightFunc<MyPoint, SmoothWeightKernel<Scalar>> WeightFunc;
-typedef Basket<MyPoint, WeightFunc, OrientedSphereFit, GLSParam> Fit;
+using WeightFunc = DistWeightFunc<MyPoint, SmoothWeightKernel<Scalar>>;
+using Fit        = Basket<MyPoint, WeightFunc, OrientedSphereFit, GLSParam>;
 
 template <typename Fit>
 void test_fit(Fit& _fit, Scalar* const _interlacedArray, const int _n, const VectorType& _p)

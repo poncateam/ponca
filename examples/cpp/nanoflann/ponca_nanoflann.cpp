@@ -1,12 +1,14 @@
-
+/*
+ This Source Code Form is subject to the terms of the Mozilla Public
+ License, v. 2.0. If a copy of the MPL was not distributed with this
+ file, You can obtain one at http://mozilla.org/MPL/2.0/.
+*/
 
 /*!
-\file examples/cpp/nanoflann/ponca_nanoflann.cpp
-\brief Demonstrate how to use Ponca with Nanoflann, and compare performances with built-in kdtree
-
-
-\author: Nicolas Mellado
-*/
+ * \file examples/cpp/nanoflann/ponca_nanoflann.cpp
+ * \brief Demonstrate how to use Ponca with Nanoflann, and compare performances with built-in kdtree
+ * \author: Nicolas Mellado
+ */
 
 #include <iostream>
 #include <chrono>
@@ -27,9 +29,9 @@ public:
     {
         Dim = 3
     };
-    typedef double Scalar;
-    typedef Eigen::Matrix<Scalar, Dim, 1> VectorType;
-    typedef Eigen::Matrix<Scalar, Dim, Dim> MatrixType;
+    using Scalar     = double;
+    using VectorType = Eigen::Matrix<Scalar, Dim, 1>;
+    using MatrixType = Eigen::Matrix<Scalar, Dim, Dim>;
 
     PONCA_MULTIARCH inline MyPoint(const VectorType& _pos = VectorType::Zero()) : m_pos(_pos) {}
     PONCA_MULTIARCH inline const VectorType& pos() const { return m_pos; }
@@ -45,8 +47,8 @@ private:
     VectorType m_pos;
 };
 
-typedef MyPoint::Scalar Scalar;
-typedef MyPoint::VectorType VectorType;
+using Scalar     = MyPoint::Scalar;
+using VectorType = MyPoint::VectorType;
 
 //! [Define Fit Type]
 using NeighborFilter = DistWeightFunc<MyPoint, Ponca::SmoothWeightKernel<Scalar>>;
@@ -63,13 +65,13 @@ struct NFPointCloud
     inline NFPointCloud(const std::vector<MyPoint>& _pts) : pts(_pts) {}
 
     // Must return the number of data points
-    inline size_t kdtree_get_point_count() const { return pts.size(); }
+    [[nodiscard]] inline size_t kdtree_get_point_count() const { return pts.size(); }
 
     // Returns the dim'th component of the idx'th point in the class:
     // Since this is inlined and the "dim" argument is typically an immediate
     // value, the
     //  "if/else's" are actually solved at compile time.
-    inline coord_t kdtree_get_pt(const size_t idx, const size_t dim) const
+    [[nodiscard]] inline coord_t kdtree_get_pt(const size_t idx, const size_t dim) const
     {
         if (dim == 0)
             return pts[idx].pos()[0];
@@ -117,7 +119,6 @@ int test_nanflann_kdtree(FitType& f, const std::vector<MyPoint>& _vecs, VectorTy
                          Scalar tmax)
 {
     // radius search:
-    const Scalar squaredRadius = 1;
     std::vector<nanoflann::ResultItem<size_t, Scalar>> indices_dists;
     nanoflann::RadiusResultSet<Scalar, size_t> resultSet(tmax * tmax, indices_dists);
 
@@ -147,7 +148,7 @@ int main()
 {
     using Scalar = typename MyPoint::Scalar;
     // init random point cloud
-    int n = 100000;
+    constexpr int n = 100000;
     std::vector<MyPoint> vecs(n);
     std::generate(vecs.begin(), vecs.end(), []() { return MyPoint::Random(); });
 
@@ -157,14 +158,14 @@ int main()
 
     //! [Create NanoFlann KdTree]
     NFPointCloud nfcloud(vecs);
-    my_kd_tree_t mat_index(3, nfcloud);
+    const my_kd_tree_t mat_index(3, nfcloud);
     //! [Create NanoFlann KdTree]
 
     Scalar tmax = 0.2;
 
     FitType fit;
 
-    int nbrun = 1000;
+    constexpr int nbrun = 1000;
     std::vector<typename MyPoint::VectorType> queries(nbrun);
     std::generate(queries.begin(), queries.end(), []() { return MyPoint::Random().pos(); });
 
@@ -184,8 +185,8 @@ int main()
         fit.setNeighborFilter({queries[i], tmax});
         neiPonca += test_ponca_kdtree(fit, vecs, queries[i], ponca_tree, tmax);
     }
-    end                                     = std::chrono::system_clock::now();
-    std::chrono::duration<double> poncaDiff = (end - start);
+    end                                           = std::chrono::system_clock::now();
+    const std::chrono::duration<double> poncaDiff = (end - start);
 
     start = std::chrono::system_clock::now();
     for (int i = 0; i != nbrun; ++i)
@@ -193,14 +194,16 @@ int main()
         fit.setNeighborFilter({queries[i], tmax});
         neiFlann += test_nanflann_kdtree(fit, vecs, queries[i], mat_index, tmax);
     }
-    end                                         = std::chrono::system_clock::now();
-    std::chrono::duration<double> nanoflannDiff = (end - start);
+    end                                               = std::chrono::system_clock::now();
+    const std::chrono::duration<double> nanoflannDiff = (end - start);
 
-    std::cout << "Timings: " << "\n"
+    std::cout << "Timings: "
+              << "\n"
               << "Raw :       " << rawDiff.count() << "\n"
               << "Ponca :     " << poncaDiff.count() << "\n"
               << "Nanoflann : " << nanoflannDiff.count() << "\n";
-    std::cout << "Number of neighbors: " << "\n"
+    std::cout << "Number of neighbors: "
+              << "\n"
               << "Raw :       " << neiRaw << "\n"
               << "Ponca :     " << neiPonca << "\n"
               << "Nanoflann : " << neiFlann << "\n";

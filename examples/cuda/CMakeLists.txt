@@ -3,8 +3,7 @@ project(Ponca_Examples_cuda LANGUAGES CXX)
 include(CheckLanguage)
 check_language(CUDA)
 
-    if( CMAKE_CUDA_COMPILER )
-
+if( CMAKE_CUDA_COMPILER )
     set (CMAKE_CUDA_HOST_COMPILER ${CMAKE_CXX_COMPILER})
     enable_language(CUDA)
 

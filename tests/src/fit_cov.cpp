@@ -7,8 +7,8 @@
 */
 
 /*!
- \file test/src/fit_cov.cpp
- \brief Test validity of the covariance fitting procedures wrt to standard algorithm
+ * \file tests/src/fit_cov.cpp
+ * \brief Test validity of the covariance fitting procedures wrt to standard algorithm
  */
 
 #include "../common/testing.h"
@@ -118,8 +118,8 @@ template <typename DataPoint, typename Fit, typename FitRef>
 void testFunction(bool _bUnoriented = false, bool _bAddPositionNoise = false, bool _bAddNormalNoise = false)
 {
     // Define related structure
-    typedef typename DataPoint::Scalar Scalar;
-    typedef typename DataPoint::VectorType VectorType;
+    using Scalar     = typename DataPoint::Scalar;
+    using VectorType = typename DataPoint::VectorType;
 
     // generate sampled plane
     int nbPoints = Eigen::internal::random<int>(100, 1000);
@@ -181,16 +181,16 @@ void testFunction(bool _bUnoriented = false, bool _bAddPositionNoise = false, bo
 template <typename Scalar, int Dim>
 void callSubTests()
 {
-    typedef PointPositionNormal<Scalar, Dim> Point;
+    using Point = PointPositionNormal<Scalar, Dim>;
 
-    typedef DistWeightFunc<Point, SmoothWeightKernel<Scalar>> WeightSmoothFunc;
-    typedef DistWeightFunc<Point, ConstantWeightKernel<Scalar>> WeightConstantFunc;
+    using WeightSmoothFunc   = DistWeightFunc<Point, SmoothWeightKernel<Scalar>>;
+    using WeightConstantFunc = DistWeightFunc<Point, ConstantWeightKernel<Scalar>>;
 
-    typedef Basket<Point, WeightSmoothFunc, MeanPosition, CovarianceFitBase> CovFitSmooth;
-    typedef Basket<Point, WeightConstantFunc, MeanPosition, CovarianceFitBase> CovFitConstant;
+    using CovFitSmooth   = Basket<Point, WeightSmoothFunc, MeanPosition, CovarianceFitBase>;
+    using CovFitConstant = Basket<Point, WeightConstantFunc, MeanPosition, CovarianceFitBase>;
 
-    typedef Basket<Point, WeightSmoothFunc, PrimitiveBase, MeanPosition, CovarianceFitTwoPassesBase> RefFitSmooth;
-    typedef Basket<Point, WeightConstantFunc, PrimitiveBase, MeanPosition, CovarianceFitTwoPassesBase> RefFitConstant;
+    using RefFitSmooth   = Basket<Point, WeightSmoothFunc, PrimitiveBase, MeanPosition, CovarianceFitTwoPassesBase>;
+    using RefFitConstant = Basket<Point, WeightConstantFunc, PrimitiveBase, MeanPosition, CovarianceFitTwoPassesBase>;
 
     cout << "Testing with data sampling a perfect plane..." << endl;
     for (int i = 0; i < g_repeat; ++i)

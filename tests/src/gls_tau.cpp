@@ -5,8 +5,8 @@
 */
 
 /*!
-    \file test/Grenaille/gls_tau.cpp
-    \brief Test validity GLS tau param
+ * \file tests/src/gls_tau.cpp
+ * \brief Test validity GLS tau param
  */
 
 #include "../common/testing.h"
@@ -28,8 +28,8 @@ template <typename DataPoint, typename Fit>
 void testFunction(bool _bUnoriented = false, bool _bAddPositionNoise = false, bool _bAddNormalNoise = false)
 {
     // Define related structure
-    typedef typename DataPoint::Scalar Scalar;
-    typedef typename DataPoint::VectorType VectorType;
+    using Scalar     = typename DataPoint::Scalar;
+    using VectorType = typename DataPoint::VectorType;
 
     // generate sampled plane
     int nbPoints = Eigen::internal::random<int>(100, 1000);
@@ -84,16 +84,16 @@ void testFunction(bool _bUnoriented = false, bool _bAddPositionNoise = false, bo
 template <typename Scalar, int Dim>
 void callSubTests()
 {
-    typedef PointPositionNormal<Scalar, Dim> Point;
+    using Point = PointPositionNormal<Scalar, Dim>;
 
-    typedef DistWeightFunc<Point, SmoothWeightKernel<Scalar>> WeightSmoothFunc;
-    typedef DistWeightFunc<Point, ConstantWeightKernel<Scalar>> WeightConstantFunc;
+    using WeightSmoothFunc   = DistWeightFunc<Point, SmoothWeightKernel<Scalar>>;
+    using WeightConstantFunc = DistWeightFunc<Point, ConstantWeightKernel<Scalar>>;
 
     //! [GLSFitTypes]
-    typedef Basket<Point, WeightSmoothFunc, OrientedSphereFit, GLSParam> FitSmoothOriented;
-    typedef Basket<Point, WeightConstantFunc, OrientedSphereFit, GLSParam> FitConstantOriented;
-    typedef Basket<Point, WeightSmoothFunc, UnorientedSphereFit, GLSParam> FitSmoothUnoriented;
-    typedef Basket<Point, WeightConstantFunc, UnorientedSphereFit, GLSParam> FitConstantUnoriented;
+    using FitSmoothOriented     = Basket<Point, WeightSmoothFunc, OrientedSphereFit, GLSParam>;
+    using FitConstantOriented   = Basket<Point, WeightConstantFunc, OrientedSphereFit, GLSParam>;
+    using FitSmoothUnoriented   = Basket<Point, WeightSmoothFunc, UnorientedSphereFit, GLSParam>;
+    using FitConstantUnoriented = Basket<Point, WeightConstantFunc, UnorientedSphereFit, GLSParam>;
     //! [GLSFitTypes]
 
     cout << "Testing with perfect plane (oriented / unoriented)..." << endl;

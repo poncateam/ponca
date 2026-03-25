@@ -8,8 +8,8 @@
 */
 
 /*!
- \file test/Grenaille/fit_line.cpp
- \brief Test validity of line fitting procedure(s)
+ * \file tests/src/fit_line.cpp
+ * \brief Test validity of line fitting procedure(s)
  */
 
 #include "../common/testing.h"
@@ -30,8 +30,8 @@ template <typename DataPoint, typename Fit>
 void testFunction(bool _bAddPositionNoise = false)
 {
     // Define related structure
-    typedef typename DataPoint::Scalar Scalar;
-    typedef typename DataPoint::VectorType VectorType;
+    using Scalar     = typename DataPoint::Scalar;
+    using VectorType = typename DataPoint::VectorType;
 
     // generate sampled line
     int nbPoints = Eigen::internal::random<int>(100, 1000);
@@ -73,13 +73,13 @@ void testFunction(bool _bAddPositionNoise = false)
 template <typename Scalar, int Dim>
 void callSubTests()
 {
-    typedef PointPosition<Scalar, Dim> Point;
+    using Point = PointPositionNormal<Scalar, Dim>;
 
-    typedef DistWeightFunc<Point, SmoothWeightKernel<Scalar>> WeightSmoothFunc;
-    typedef DistWeightFunc<Point, ConstantWeightKernel<Scalar>> WeightConstantFunc;
+    using WeightSmoothFunc   = DistWeightFunc<Point, SmoothWeightKernel<Scalar>>;
+    using WeightConstantFunc = DistWeightFunc<Point, ConstantWeightKernel<Scalar>>;
 
-    typedef Basket<Point, WeightSmoothFunc, CovarianceLineFit> LeastSquareFitSmooth;
-    typedef Basket<Point, WeightConstantFunc, CovarianceLineFit> LeastSquareFitConstant;
+    using LeastSquareFitSmooth   = Basket<Point, WeightSmoothFunc, CovarianceLineFit>;
+    using LeastSquareFitConstant = Basket<Point, WeightConstantFunc, CovarianceLineFit>;
 
     cout << "Testing with perfect line..." << endl;
     for (int i = 0; i < g_repeat; ++i)

@@ -5,8 +5,8 @@
 */
 
 /*!
-    \file test/Grenaille/dpotential_sphere.cpp
-    \brief Test validity of dPotential
+ * \file tests/src/dpotential_sphere.cpp
+ * \brief Test validity of dPotential
  */
 
 #include "../common/testing.h"
@@ -21,8 +21,8 @@ template <typename DataPoint, typename Fit>
 void testFunction(bool _bAddPositionNoise = false, bool _bAddNormalNoise = false)
 {
     // Define related structure
-    typedef typename DataPoint::Scalar Scalar;
-    typedef typename DataPoint::VectorType VectorType;
+    using Scalar     = typename DataPoint::Scalar;
+    using VectorType = typename DataPoint::VectorType;
 
     // generate sampled sphere
     int nbPoints = Eigen::internal::random<int>(100, 1000);

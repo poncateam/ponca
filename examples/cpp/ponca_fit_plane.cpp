@@ -1,15 +1,15 @@
 /*
-This Source Code Form is subject to the terms of the Mozilla Public
-License, v. 2.0. If a copy of the MPL was not distributed with this
-file, You can obtain one at http://mozilla.org/MPL/2.0/.
+ This Source Code Form is subject to the terms of the Mozilla Public
+ License, v. 2.0. If a copy of the MPL was not distributed with this
+ file, You can obtain one at http://mozilla.org/MPL/2.0/.
 */
 
 /*!
-\file examples/Grenaille/basic_cpu.h
-\brief Basic use of Grenaille with plane fit
+ * \file examples/cpp/ponca_fit_plane.cpp
+ * \brief Basic use of Ponca with plane fit
+ * \author: Nicolas Mellado, Gautier Ciaudo
+ */
 
-\author: Nicolas Mellado, Gautier Ciaudo
-*/
 #include <cmath>
 #include <algorithm>
 #include <iostream>
@@ -25,13 +25,13 @@ file, You can obtain one at http://mozilla.org/MPL/2.0/.
 using namespace std;
 using namespace Ponca;
 
-using MyPoint = PointPositionNormal<double, 3>;
-typedef MyPoint::Scalar Scalar;
-typedef MyPoint::VectorType VectorType;
+using MyPoint    = PointPositionNormal<double, 3>;
+using Scalar     = MyPoint::Scalar;
+using VectorType = MyPoint::VectorType;
 
 // Define related structure
-typedef DistWeightFunc<MyPoint, SmoothWeightKernel<Scalar>> WeightFunc;
-typedef Basket<MyPoint, WeightFunc, CovariancePlaneFit> CovPlaneFit;
+using WeightFunc  = DistWeightFunc<MyPoint, SmoothWeightKernel<Scalar>>;
+using CovPlaneFit = Basket<MyPoint, WeightFunc, CovariancePlaneFit>;
 
 template <typename Fit>
 void test_fit(Fit& _fit, vector<MyPoint>& _vecs, const VectorType& _p)

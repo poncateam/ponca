@@ -1,3 +1,16 @@
+/*
+ This Source Code Form is subject to the terms of the Mozilla Public
+ License, v. 2.0. If a copy of the MPL was not distributed with this
+ file, You can obtain one at http://mozilla.org/MPL/2.0/.
+*/
+
+/*!
+ * \file examples/cuda/ponca_fit_kdtree.cu
+ * \brief Example that uses the Fitting and SpatialPartitioning module with CUDA
+ * \authors Auberval Florian, Nicolas Mellado
+ */
+
+
 #include <Ponca/src/Fitting/basket.h>
 #include <Ponca/src/Fitting/covariancePlaneFit.h>
 #include <Ponca/src/Fitting/meanPlaneFit.h>
@@ -78,10 +91,10 @@ __host__ void testPlaneCuda(
     const bool _bAddPositionNoise = false,
     const bool _bAddNormalNoise   = false
 ) {
-    typedef Ponca::PointPositionNormal<Scalar, Dim> DataPoint;
-    typedef Ponca::DistWeightFunc<DataPoint, Ponca::SmoothWeightKernel<Scalar> > WeightSmoothFunc;
-    typedef Ponca::Basket<DataPoint, WeightSmoothFunc, Ponca::MeanPlaneFit> MeanFitSmooth;
-    typedef typename DataPoint::VectorType VectorType;
+    using DataPoint        = Ponca::PointPositionNormal<Scalar, Dim>;
+    using WeightSmoothFunc = Ponca::DistWeightFunc<DataPoint, Ponca::SmoothWeightKernel<Scalar> >;
+    using MeanFitSmooth    = Ponca::Basket<DataPoint, WeightSmoothFunc, Ponca::MeanPlaneFit>;
+    using VectorType       = typename DataPoint::VectorType;
 
     // Point cloud parameters for the plane
     const unsigned int nbPoints = Eigen::internal::random<int>(100, 1000);

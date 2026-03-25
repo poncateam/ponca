@@ -5,8 +5,8 @@
 */
 
 /*!
-    \file test/Grenaille/okabe_primitive.cpp
-    \brief Test validity Algebraic Sphere Primitive
+ * \file tests/src/change_basis.cpp
+ * \brief Test validity of Algebraic Sphere Primitive and Covariance Plane and Line fit
  */
 
 #include "../common/testing.h"
@@ -24,12 +24,12 @@
 using namespace std;
 using namespace Ponca;
 
-template <typename Point, typename Fit>
+template <typename DataPoint, typename Fit>
 void testFunction()
 {
     // Define related structure
-    typedef typename Point::Scalar Scalar;
-    typedef typename Point::VectorType VectorType;
+    using Scalar     = typename DataPoint::Scalar;
+    using VectorType = typename DataPoint::VectorType;
 
     // generate sampled sphere
     int nbPoints = Eigen::internal::random<int>(100, 1000);
@@ -42,11 +42,11 @@ void testFunction()
 
     Scalar epsilon = testEpsilon<Scalar>();
 
-    vector<Point> vecs(nbPoints);
+    vector<DataPoint> vecs(nbPoints);
 
     for (unsigned int i = 0; i < vecs.size(); ++i)
     {
-        vecs[i] = getPointOnSphere<Point>(radius, center, true, false, false);
+        vecs[i] = getPointOnSphere<DataPoint>(radius, center, true, false, false);
     }
 
     // Quick testing is requested for coverage

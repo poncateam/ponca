@@ -5,8 +5,8 @@
 */
 
 /*!
-    \file test/Grenaille/okabe_primitive.cpp
-    \brief Test validity Plane Primitive
+ * \file tests/src/plane_primitive.cpp
+ * \brief Test validity Plane Primitive
  */
 
 #include "../common/testing.h"
@@ -26,8 +26,8 @@ template <typename DataPoint, typename Fit>
 void testFunction()
 {
     // Define related structure
-    typedef typename DataPoint::Scalar Scalar;
-    typedef typename DataPoint::VectorType VectorType;
+    using Scalar     = typename DataPoint::Scalar;
+    using VectorType = typename DataPoint::VectorType;
 
     Scalar epsilon   = testEpsilon<Scalar>();
     VectorType query = VectorType::Random();
@@ -58,11 +58,11 @@ void testFunction()
 template <typename Scalar, int Dim>
 void callSubTests()
 {
-    typedef PointPosition<Scalar, Dim> Point;
+    using Point = PointPositionNormal<Scalar, Dim>;
 
     // We test only primitive functions and not the fitting procedure
-    typedef DistWeightFunc<Point, SmoothWeightKernel<Scalar>> NeighborFilter;
-    typedef Basket<Point, NeighborFilter, Plane> Plane;
+    using NeighborFilter = DistWeightFunc<Point, SmoothWeightKernel<Scalar>>;
+    using Plane          = Basket<Point, NeighborFilter, Plane>;
 
     for (int i = 0; i < g_repeat; ++i)
     {

@@ -1,13 +1,13 @@
 /*
-  This Source Code Form is subject to the terms of the Mozilla Public
-  License, v. 2.0. If a copy of the MPL was not distributed with this
-  file, You can obtain one at http://mozilla.org/MPL/2.0/.
+ This Source Code Form is subject to the terms of the Mozilla Public
+ License, v. 2.0. If a copy of the MPL was not distributed with this
+ file, You can obtain one at http://mozilla.org/MPL/2.0/.
 */
 
 /*!
-  \file tests/src/dnormal_orthogonal_derivatives.cpp
-  \brief Test validity of the spatial differentiation of normal
-*/
+ * \file tests/src/dnormal_orthogonal_derivatives.cpp
+ * \brief Test validity of the spatial differentiation of normal
+ */
 
 #include "../split_test_helper.h"
 #include "../common/testing.h"
@@ -102,7 +102,7 @@ void test_orthoDerivatives(Functor f, bool skipCov = false)
         {
             auto res                          = f(fit);
             typename Point::VectorType normal = res.first; // fit.primitiveGradient();
-            typename Point::MatrixType dN = res.second.template middleCols<Point::Dim>(FitType::isScaleDer() ? 1 : 0);
+            MatrixType dN = res.second.template middleCols<Point::Dim>(FitType::isScaleDer() ? 1 : 0);
 
             // check that we have unitary normal vector
             VERIFY(normal.norm() - Scalar(1) < epsilon);
@@ -120,9 +120,9 @@ template <>
 template <typename Scalar>
 void Helper<3>::testRestrictedFits()
 {
-    typedef PointPositionNormal<Scalar, 3> Point;
-    typedef DistWeightFunc<Point, SmoothWeightKernel<Scalar>> WeightFunc;
-    using PlaneFit = BasketDiff<Basket<Point, WeightFunc, CovariancePlaneFit>, FitScaleSpaceDer, CovariancePlaneDer>;
+    using Point      = PointPositionNormal<Scalar, 3>;
+    using WeightFunc = DistWeightFunc<Point, SmoothWeightKernel<Scalar>>;
+    using PlaneFit   = BasketDiff<Basket<Point, WeightFunc, CovariancePlaneFit>, FitScaleSpaceDer, CovariancePlaneDer>;
 
     for (int k = 0; k < kmax; ++k)
     {
@@ -136,9 +136,9 @@ void _testAdimensionalFits()
 {
     cout << "Test in dimension " << Dim << std::endl;
 
-    typedef PointPositionNormal<Scalar, Dim> Point;
-    typedef DistWeightFunc<Point, SmoothWeightKernel<Scalar>> WeightFunc;
-    using SphereFit = BasketDiff<Basket<Point, WeightFunc, OrientedSphereFit>, FitScaleSpaceDer, OrientedSphereDer>;
+    using Point      = PointPositionNormal<Scalar, Dim>;
+    using WeightFunc = DistWeightFunc<Point, SmoothWeightKernel<Scalar>>;
+    using SphereFit  = BasketDiff<Basket<Point, WeightFunc, OrientedSphereFit>, FitScaleSpaceDer, OrientedSphereDer>;
     using MlsSphereFit =
         BasketDiff<Basket<Point, WeightFunc, OrientedSphereFit>, FitScaleSpaceDer, OrientedSphereDer, MlsSphereFitDer>;
 

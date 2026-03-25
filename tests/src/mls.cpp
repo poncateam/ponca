@@ -5,8 +5,8 @@
 */
 
 /*!
-    \file test/mls.cpp
-    \brief Test basket utility functions
+ * \file tests/src/mls.cpp
+ * \brief Test basket utility functions
  */
 
 #include "../common/testing.h"
@@ -30,8 +30,8 @@ template <typename DataPoint, typename Fit>
 void testFunction()
 {
     // Define related structure
-    typedef typename DataPoint::Scalar Scalar;
-    typedef typename DataPoint::VectorType VectorType;
+    using Scalar     = typename DataPoint::Scalar;
+    using VectorType = typename DataPoint::VectorType;
 
     // Generate sampled sphere
     int nbPoints = Eigen::internal::random<int>(100, 1000);
@@ -89,20 +89,20 @@ template <typename Scalar, int Dim>
 void callSubTests()
 {
     //! [SpecializedPointType]
-    typedef PointPositionNormal<Scalar, Dim> Point;
+    using Point = PointPositionNormal<Scalar, Dim>;
     //! [SpecializedPointType]
 
     // We test only primitive functions and not the fitting procedure
     //! [WeightFunction]
-    typedef DistWeightFunc<Point, SmoothWeightKernel<Scalar>> WeightFunc;
+    using WeightFunc = DistWeightFunc<Point, SmoothWeightKernel<Scalar>>;
     //! [WeightFunction]
-    typedef Basket<Point, WeightFunc, OrientedSphereFit> Sphere;
+    using Sphere = Basket<Point, WeightFunc, OrientedSphereFit>;
     //! [PlaneFitType]
-    typedef Basket<Point, WeightFunc, CovariancePlaneFit> Plane;
+    using Plane = Basket<Point, WeightFunc, CovariancePlaneFit>;
     //! [PlaneFitType]
 
-    typedef DistWeightFunc<Point, SmoothWeightKernel<Scalar>> WeightSmoothFunc;
-    typedef Basket<Point, WeightSmoothFunc, OrientedSphereFit> FitSmoothOriented;
+    using WeightSmoothFunc  = DistWeightFunc<Point, SmoothWeightKernel<Scalar>>;
+    using FitSmoothOriented = Basket<Point, WeightSmoothFunc, OrientedSphereFit>;
 
     // //! [PlaneFitDerTypes]
     // using PlaneScaleDiff = BasketDiff<Plane, FitScaleDer, CovariancePlaneDer>;

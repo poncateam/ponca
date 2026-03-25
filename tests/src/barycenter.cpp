@@ -5,8 +5,8 @@
 */
 
 /*!
-    \file test/barycenter.cpp
-    \brief Test validity of Global and Local Weight Func
+ * \file tests/src/barycenter.cpp
+ * \brief Test validity of Global and Local Weight Func
  */
 
 #include "../common/testing.h"
@@ -23,8 +23,8 @@ template <typename DataPoint, typename FitA, typename FitB>
 void compareFit(const bool _bAddPositionNoise = false, const bool _bAddNormalNoise = false)
 {
     // Define related structure
-    typedef typename DataPoint::Scalar Scalar;
-    typedef typename DataPoint::VectorType VectorType;
+    using Scalar     = typename DataPoint::Scalar;
+    using VectorType = typename DataPoint::VectorType;
 
     int nbPoints = Eigen::internal::random<int>(10000, 20000);
     // the radius is between 1 and 10
@@ -81,15 +81,14 @@ void compareFit(const bool _bAddPositionNoise = false, const bool _bAddNormalNoi
 template <typename Scalar, int Dim>
 void callSubTests()
 {
-    typedef Ponca::PointPositionNormal<Scalar, Dim> Point;
+    using Point                   = Ponca::PointPositionNormal<Scalar, Dim>;
+    using WeightConstantFuncLocal = Ponca::DistWeightFunc<Point, Ponca::ConstantWeightKernel<Scalar>>;
+    using NoWeightFuncGlobal      = Ponca::NoWeightFuncGlobal<Point>;
+    using NoWeightFunc            = Ponca::NoWeightFunc<Point>;
 
-    typedef Ponca::DistWeightFunc<Point, Ponca::ConstantWeightKernel<Scalar>> WeightConstantFuncLocal;
-    typedef Ponca::NoWeightFuncGlobal<Point> NoWeightFuncGlobal;
-    typedef Ponca::NoWeightFunc<Point> NoWeightFunc;
-
-    typedef Ponca::Basket<Point, WeightConstantFuncLocal, Ponca::MeanPosition> FitConstantLocal;
-    typedef Ponca::Basket<Point, NoWeightFunc, Ponca::MeanPosition> FitNoWeightLocal;
-    typedef Ponca::Basket<Point, NoWeightFuncGlobal, Ponca::MeanPosition> FitNoWeightGlobal;
+    using FitConstantLocal  = Ponca::Basket<Point, WeightConstantFuncLocal, Ponca::MeanPosition>;
+    using FitNoWeightLocal  = Ponca::Basket<Point, NoWeightFunc, Ponca::MeanPosition>;
+    using FitNoWeightGlobal = Ponca::Basket<Point, NoWeightFuncGlobal, Ponca::MeanPosition>;
 
     for (int i = 0; i < g_repeat; ++i)
     {

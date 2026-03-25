@@ -161,10 +161,10 @@ namespace Ponca
 
     public:
         /*! \brief Static array of scalars with a size adapted to the differentiation type */
-        typedef Eigen::Matrix<Scalar, DataPoint::Dim, NbDerivatives, DerStorageOrder> VectorArray;
+        using VectorArray = Eigen::Matrix<Scalar, DataPoint::Dim, NbDerivatives, DerStorageOrder>;
 
         /*! \brief Static array of scalars with a size adapted to the differentiation type */
-        typedef Eigen::Matrix<Scalar, 1, NbDerivatives> ScalarArray;
+        using ScalarArray = Eigen::Matrix<Scalar, 1, NbDerivatives>;
 
     protected:
         // computation data

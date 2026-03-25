@@ -15,10 +15,10 @@
 
 #include "pcl_wrapper.h"
 
-typedef struct
+struct Color
 {
     double r, g, b;
-} Color;
+};
 
 // Colormap function
 Color getColor(float value, float min_value, float max_value)

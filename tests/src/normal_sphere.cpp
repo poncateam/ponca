@@ -5,8 +5,8 @@
 */
 
 /*!
-    \file test/Grenaille/normal_sphere.cpp
-    \brief Test validity of normal estimations
+ * \file tests/src/normal_sphere.cpp
+ * \brief Test validity of normal estimations
  */
 
 #include "../common/testing.h"
@@ -15,14 +15,14 @@
 #include <vector>
 
 using namespace std;
-using namespace Grenaille;
+using namespace Ponca;
 
 template <typename DataPoint, typename Fit>
 void testFunction(bool _bAddPositionNoise = false, bool _bAddNormalNoise = false)
 {
     // Define related structure
-    typedef typename DataPoint::Scalar Scalar;
-    typedef typename DataPoint::VectorType VectorType;
+    using Scalar     = typename DataPoint::Scalar;
+    using VectorType = typename DataPoint::VectorType;
 
     // generate sampled sphere
     int nbPoints = Eigen::internal::random<int>(100, 1000);

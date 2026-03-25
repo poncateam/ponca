@@ -4,6 +4,11 @@
  file, You can obtain one at http://mozilla.org/MPL/2.0/.
 */
 
+/*!
+ * \file examples/cpp/ponca_fit_line.cpp
+ * \author: Nicolas Mellado
+ */
+
 #include <numeric> // transform_reduce
 #include <algorithm>
 #include <iostream>
@@ -18,17 +23,15 @@ using namespace Ponca;
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-using MyPoint = PointPosition<double, 3>;
-typedef MyPoint::Scalar Scalar;
-typedef MyPoint::VectorType VectorType;
+using MyPoint    = PointPosition<double, 3>;
+using Scalar     = MyPoint::Scalar;
+using VectorType = MyPoint::VectorType;
+using WeightFunc = DistWeightFunc<MyPoint, ConstantWeightKernel<Scalar>>;
+using Fit        = Basket<MyPoint, WeightFunc, CovarianceLineFit>;
 
-typedef DistWeightFunc<MyPoint, ConstantWeightKernel<Scalar>> WeightFunc;
-typedef Basket<MyPoint, WeightFunc, CovarianceLineFit> Fit;
-
-int main(int argc, char** argv)
+int main(int /*argc*/, char** /*argv*/)
 {
-
-    int n = 10000;
+    constexpr int n = 10000;
 
     // Generate a random set of n points along a line
     vector<MyPoint> points(n);

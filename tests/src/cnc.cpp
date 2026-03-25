@@ -1,12 +1,12 @@
 /*
-This Source Code Form is subject to the terms of the Mozilla Public
+ This Source Code Form is subject to the terms of the Mozilla Public
  License, v. 2.0. If a copy of the MPL was not distributed with this
  file, You can obtain one at http://mozilla.org/MPL/2.0/.
 */
 
 /*!
- \file test/src/cnc.cpp
- \brief Test validity of the CNC curvature estimator procedure
+ * \file tests/src/cnc.cpp
+ * \brief Test validity of the CNC curvature estimator procedure
  */
 
 #include "../common/testing.h"
@@ -32,7 +32,7 @@ typename DataPoint::Scalar generateSpherePC(
     KdTree<DataPoint>& tree, const int nbPoints = Eigen::internal::random<int>(500, 1000),
     const VectorType& center = VectorType::Random() * Eigen::internal::random<typename DataPoint::Scalar>(1, 10000))
 {
-    typedef typename DataPoint::Scalar Scalar;
+    using Scalar = typename DataPoint::Scalar;
 
     Scalar radius        = Eigen::internal::random<Scalar>(1., 10.);
     Scalar analysisScale = Scalar(10.) * std::sqrt(Scalar(4. * M_PI) * radius * radius / nbPoints);
@@ -188,8 +188,8 @@ template <typename Scalar, int Dim>
 void callSubTests()
 {
     //! [SpecializedPointType]
-    typedef PointPositionNormal<Scalar, Dim> Point;
-    typedef typename Point::VectorType VectorType;
+    using Point      = PointPositionNormal<Scalar, Dim>;
+    using VectorType = typename Point::VectorType;
     //! [SpecializedPointType]
 
     using SmoothWeightFunc = DistWeightFunc<Point, SmoothWeightKernel<Scalar>>;

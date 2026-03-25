@@ -1,8 +1,12 @@
-﻿
+﻿/*
+ This Source Code Form is subject to the terms of the Mozilla Public
+ License, v. 2.0. If a copy of the MPL was not distributed with this
+ file, You can obtain one at http://mozilla.org/MPL/2.0/.
+*/
 
 /*!
-    \file test/Grenaille/curvature_sphere.cpp
-    \brief Test validity of curvature estimator for sphere
+ * \file tests/src/curvature_sphere.cpp
+ * \brief Test validity of curvature estimator for sphere
  */
 
 #define FITTING_FAILED false
@@ -19,8 +23,8 @@ template <typename DataPoint, typename Fit>
 void testFunction(bool _bAddPositionNoise = false, bool _bAddNormalNoise = false)
 {
     // Define related structure
-    typedef typename DataPoint::Scalar Scalar;
-    typedef typename DataPoint::VectorType VectorType;
+    using Scalar     = typename DataPoint::Scalar;
+    using VectorType = typename DataPoint::VectorType;
 
     // generate sampled plane
     int nbPoints = Eigen::internal::random<int>(10000, 50000);

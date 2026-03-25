@@ -5,8 +5,8 @@
 */
 
 /*!
- \file test/Grenaille/fit_radius_curvature_center.cpp
- \brief Test validity of algebraic sphere procedure and GLS kappa
+ * \file tests/src/fit_radius_curvature_center.cpp
+ * \brief Test validity of algebraic sphere procedure and GLS kappa
  */
 
 #include "../split_test_helper.h"
@@ -57,8 +57,8 @@ template <typename DataPoint, typename Fit, bool isSpaceDer>
 void testFunction(bool _bUnoriented = false, bool _bAddPositionNoise = false, bool _bAddNormalNoise = false)
 {
     // Define related structure
-    typedef typename DataPoint::Scalar Scalar;
-    typedef typename DataPoint::VectorType VectorType;
+    using Scalar     = typename DataPoint::Scalar;
+    using VectorType = typename DataPoint::VectorType;
 
     // generate sampled sphere
     int nbPoints = Eigen::internal::random<int>(100, 1000);
@@ -130,16 +130,16 @@ void testFunction(bool _bUnoriented = false, bool _bAddPositionNoise = false, bo
     }
 }
 
-#define DECLARE_DEFAULT_TYPES                                                                   \
-    typedef PointPositionNormal<Scalar, Dim> Point;                                             \
-                                                                                                \
-    typedef DistWeightFunc<Point, SmoothWeightKernel<Scalar>> WeightSmoothFunc;                 \
-    typedef DistWeightFunc<Point, ConstantWeightKernel<Scalar>> WeightConstantFunc;             \
-                                                                                                \
-    typedef Basket<Point, WeightSmoothFunc, OrientedSphereFit, GLSParam> FitSmoothOriented;     \
-    typedef Basket<Point, WeightConstantFunc, OrientedSphereFit, GLSParam> FitConstantOriented; \
-    typedef Basket<Point, WeightSmoothFunc, UnorientedSphereFit, GLSParam> FitSmoothUnoriented; \
-    typedef Basket<Point, WeightConstantFunc, UnorientedSphereFit, GLSParam> FitConstantUnoriented;
+#define DECLARE_DEFAULT_TYPES                                                                     \
+    using Point = PointPositionNormal<Scalar, Dim>;                                               \
+                                                                                                  \
+    using WeightSmoothFunc   = DistWeightFunc<Point, SmoothWeightKernel<Scalar>>;                 \
+    using WeightConstantFunc = DistWeightFunc<Point, ConstantWeightKernel<Scalar>>;               \
+                                                                                                  \
+    using FitSmoothOriented     = Basket<Point, WeightSmoothFunc, OrientedSphereFit, GLSParam>;   \
+    using FitConstantOriented   = Basket<Point, WeightConstantFunc, OrientedSphereFit, GLSParam>; \
+    using FitSmoothUnoriented   = Basket<Point, WeightSmoothFunc, UnorientedSphereFit, GLSParam>; \
+    using FitConstantUnoriented = Basket<Point, WeightConstantFunc, UnorientedSphereFit, GLSParam>;
 
 template <typename Scalar, int Dim>
 void callSubTests()

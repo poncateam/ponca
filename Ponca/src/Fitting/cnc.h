@@ -30,9 +30,9 @@ namespace Ponca
         struct Triangle
         {
         public:
-            typedef typename DataPoint::Scalar Scalar;
-            typedef typename DataPoint::VectorType VectorType;
-            typedef typename DataPoint::MatrixType MatrixType;
+            using Scalar     = typename DataPoint::Scalar;
+            using VectorType = typename DataPoint::VectorType;
+            using MatrixType = typename DataPoint::MatrixType;
 
         protected:
             std::array<VectorType, 3> m_points;
@@ -112,12 +112,12 @@ namespace Ponca
         };
 
     public:
-        using DataPoint  = P;
-        using MatrixType = typename DataPoint::MatrixType;
-        using Scalar     = typename DataPoint::Scalar;
-        using VectorType = typename DataPoint::VectorType;
-        typedef Eigen::VectorXd DenseVector;
-        typedef Eigen::MatrixXd DenseMatrix;
+        using DataPoint      = P;
+        using MatrixType     = typename DataPoint::MatrixType;
+        using Scalar         = typename DataPoint::Scalar;
+        using VectorType     = typename DataPoint::VectorType;
+        using DenseVector    = Eigen::VectorXd;
+        using DenseMatrix    = Eigen::MatrixXd;
         using NeighborFilter = NeighborFilterStoreNormal<DataPoint, NoWeightFunc<DataPoint>>;
 
     protected:

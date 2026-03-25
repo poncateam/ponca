@@ -7,8 +7,8 @@
 */
 
 /*!
- \file test/Grenaille/fit_plane.cpp
- \brief Test validity of plane fitting procedure(s)
+ * \file tests/src/fit_plane.cpp
+ * \brief Test validity of plane fitting procedure(s)
  */
 
 #define MULTIPASS_PLANE_FITTING_FAILED false
@@ -49,8 +49,8 @@ void testFunction(bool _bUnoriented = false, bool _bAddPositionNoise = false, bo
                   bool conflictAnnounced = false)
 {
     // Define related structure
-    typedef typename DataPoint::Scalar Scalar;
-    typedef typename DataPoint::VectorType VectorType;
+    using Scalar     = typename DataPoint::Scalar;
+    using VectorType = typename DataPoint::VectorType;
     // generate sampled plane
     int nbPoints = Eigen::internal::random<int>(100, 1000);
 
@@ -139,32 +139,30 @@ void testFunction(bool _bUnoriented = false, bool _bAddPositionNoise = false, bo
 template <typename Scalar, int Dim>
 void callSubTests()
 {
-    typedef PointPositionNormal<Scalar, Dim> Point;
+    using Point = PointPositionNormal<Scalar, Dim>;
 
-    typedef DistWeightFunc<Point, SmoothWeightKernel<Scalar>> WeightSmoothFunc;
-    typedef Ponca::DistWeightFunc<Point, Ponca::ConstantWeightKernel<Scalar>> WeightConstantFuncLocal;
-    typedef Ponca::NoWeightFuncGlobal<Point> NoWeightFuncGlobal;
-    typedef Ponca::NoWeightFunc<Point> NoWeightFunc;
+    using WeightSmoothFunc        = DistWeightFunc<Point, SmoothWeightKernel<Scalar>>;
+    using WeightConstantFuncLocal = DistWeightFunc<Point, ConstantWeightKernel<Scalar>>;
+    using NoWeightFuncGlobal      = NoWeightFuncGlobal<Point>;
+    using NoWeightFunc            = NoWeightFunc<Point>;
 
-    typedef Basket<Point, WeightSmoothFunc, CovariancePlaneFit> CovFitSmooth;
-    typedef Basket<Point, WeightConstantFuncLocal, CovariancePlaneFit> CovFitConstant;
-    typedef Basket<Point, NoWeightFunc, CovariancePlaneFit> CovFitConstant2;
-    typedef Basket<Point, NoWeightFuncGlobal, CovariancePlaneFit> CovFitConstantGlobal;
+    using CovFitSmooth    = Basket<Point, WeightSmoothFunc, CovariancePlaneFit>;
+    using CovFitConstant  = Basket<Point, WeightConstantFuncLocal, CovariancePlaneFit>;
+    using CovFitConstant2 = Basket<Point, NoWeightFunc, CovariancePlaneFit>;
+    // using CovFitConstantGlobal = Basket<Point, NoWeightFuncGlobal, CovariancePlaneFit>;
 
-    typedef Basket<Point, WeightSmoothFunc, MeanPlaneFit> MeanFitSmooth;
-    typedef Basket<Point, WeightConstantFuncLocal, MeanPlaneFit> MeanFitConstant;
-    typedef Basket<Point, NoWeightFunc, MeanPlaneFit> MeanFitConstant2;
-    typedef Basket<Point, NoWeightFuncGlobal, MeanPlaneFit> MeanFitConstantGlobal;
+    using MeanFitSmooth         = Basket<Point, WeightSmoothFunc, MeanPlaneFit>;
+    using MeanFitConstant       = Basket<Point, WeightConstantFuncLocal, MeanPlaneFit>;
+    using MeanFitConstant2      = Basket<Point, NoWeightFunc, MeanPlaneFit>;
+    using MeanFitConstantGlobal = Basket<Point, NoWeightFuncGlobal, MeanPlaneFit>;
 
     // test if conflicts are detected
     //! [Conflicting type]
-    typedef Basket<Point, NoWeightFuncGlobal, Plane, MeanNormal, MeanPosition, MeanPlaneFitImpl, CovarianceFitBase,
-                   CovariancePlaneFitImpl>
-        Hybrid1; // test conflict detection in one direction
+    using Hybrid1 = Basket<Point, NoWeightFuncGlobal, Plane, MeanNormal, MeanPosition, MeanPlaneFitImpl,
+                           CovarianceFitBase, CovariancePlaneFitImpl>; // test conflict detection in one direction
     //! [Conflicting type]
-    typedef Basket<Point, NoWeightFuncGlobal, Plane, MeanPosition, CovarianceFitBase, CovariancePlaneFitImpl,
-                   MeanNormal, MeanPlaneFitImpl>
-        Hybrid2; // test conflict detection in the second direction
+    using Hybrid2 = Basket<Point, NoWeightFuncGlobal, Plane, MeanPosition, CovarianceFitBase, CovariancePlaneFitImpl,
+                           MeanNormal, MeanPlaneFitImpl>; // test conflict detection in the second direction
 
     cout << "Testing with perfect plane..." << endl;
     for (int i = 0; i < g_repeat; ++i)

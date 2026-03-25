@@ -7,9 +7,9 @@
 */
 
 /*!
- \file test/Grenaille/projection.cpp
- \brief Test validity of the direct projection on an algebraic sphere
- \authors Thibault Lejemble, Nicolas Mellado
+ * \file tests/src/projection.cpp
+ * \brief Test validity of the direct projection on an algebraic sphere
+ * \authors Thibault Lejemble, Nicolas Mellado
  */
 
 #include "../common/testing.h"
@@ -37,9 +37,9 @@ void testFunction(
     typename Fit::Scalar lowPrecisionEpsilon = typename Fit::Scalar(0.001)) // Lesser precision for the paraboloid test
 {
     // Define related structure
-    typedef typename Fit::Scalar Scalar;
-    typedef typename Fit::VectorType VectorType;
-    typedef typename Fit::DataPoint DataPoint;
+    using DataPoint  = typename Fit::DataPoint;
+    using Scalar     = typename DataPoint::Scalar;
+    using VectorType = typename DataPoint::VectorType;
 
     // generate samples
     int nbPoints    = QUICK_TESTS ? 1 : Eigen::internal::random<int>(100, 1000);
