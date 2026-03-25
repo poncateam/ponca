@@ -7,6 +7,7 @@
 #pragma once
 
 #include "./defines.h"
+#include "./concepts.h"
 #include "./primitive.h"
 
 namespace Ponca
@@ -115,7 +116,7 @@ namespace Ponca
         \inherit Concept::FittingProcedureConcept
 
         This primitive requires:
-        \verbatim PROVIDES_PRIMITIVE_DERIVATIVE, PROVIDES_MEAN_POSITION\endverbatim
+        \verbatim ProvidePrimitiveDerivative, PROVIDES_MEAN_POSITION\endverbatim
 
         This primitive provides:
         \verbatim PROVIDES_MEAN_POSITION_DERIVATIVE \endverbatim
@@ -123,6 +124,7 @@ namespace Ponca
         \see MeanNormal
     */
     template <class DataPoint, class _NFilter, int DiffType, typename T>
+        requires ProvidesPrimitiveDerivative<T>
     class MeanPositionDer : public T
     {
         PONCA_FITTING_DECLARE_DEFAULT_TYPES
@@ -131,7 +133,7 @@ namespace Ponca
     protected:
         enum
         {
-            Check = Base::PROVIDES_PRIMITIVE_DERIVATIVE && Base::PROVIDES_MEAN_POSITION,
+            Check = Base::PROVIDES_MEAN_POSITION,
             PROVIDES_MEAN_POSITION_DERIVATIVE, /*!< \brief Provides derivative of the mean position*/
         };
 
@@ -181,7 +183,7 @@ namespace Ponca
         \inherit Concept::FittingProcedureConcept
 
         This primitive requires:
-        \verbatim PROVIDES_PRIMITIVE_DERIVATIVE, PROVIDES_MEAN_NORMAL\endverbatim
+        \verbatim ProvidesPrimitiveDerivative, PROVIDES_MEAN_NORMAL\endverbatim
 
         This primitive provides:
         \verbatim PROVIDES_MEAN_NORMAL_DERIVATIVE \endverbatim
@@ -189,6 +191,7 @@ namespace Ponca
         \see MeanNormal
     */
     template <class DataPoint, class _NFilter, int DiffType, typename T>
+        requires ProvidesPrimitiveDerivative<T>
     class MeanNormalDer : public T
     {
         PONCA_FITTING_DECLARE_DEFAULT_TYPES
@@ -197,7 +200,7 @@ namespace Ponca
     protected:
         enum
         {
-            Check = Base::PROVIDES_PRIMITIVE_DERIVATIVE && Base::PROVIDES_MEAN_NORMAL,
+            Check = Base::PROVIDES_MEAN_NORMAL,
             PROVIDES_MEAN_NORMAL_DERIVATIVE, /*!< \brief Provides derivative of the mean normal*/
         };
 

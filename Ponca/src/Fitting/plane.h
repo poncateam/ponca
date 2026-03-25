@@ -9,6 +9,7 @@
 #pragma once
 
 #include "./defines.h"
+#include "./concepts.h"
 #include <Eigen/Geometry>
 
 namespace Ponca
@@ -32,6 +33,7 @@ namespace Ponca
         \verbatim PROVIDES_PLANE \endverbatim
     */
     template <class DataPoint, class _NFilter, typename T>
+        requires ProvidesPrimitiveBase<T>
     class Plane : public T, public Eigen::Hyperplane<typename DataPoint::Scalar, DataPoint::Dim>
     {
         PONCA_FITTING_DECLARE_DEFAULT_TYPES
@@ -43,7 +45,6 @@ namespace Ponca
     protected:
         enum
         {
-            check = Base::PROVIDES_PRIMITIVE_BASE,
             PROVIDES_PLANE
         };
 

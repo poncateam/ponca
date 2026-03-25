@@ -7,6 +7,7 @@
 #pragma once
 
 #include "./defines.h"
+#include "./concepts.h"
 #include "./curvature.h"
 
 namespace Ponca
