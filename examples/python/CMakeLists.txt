@@ -27,6 +27,9 @@ if(CMAKE_CUDA_COMPILER)
     # Include directories
     target_include_directories(ssgls_ptx PRIVATE ${PONCA_src_ROOT})
     ponca_handle_eigen_dependency(ssgls_ptx)
+    set_target_properties(ssgls_ptx PROPERTIES
+        CUDA_PTX_COMPILATION ON
+    )
 
     # Custom target to copy outputs
     add_custom_target(ssgls_py ALL
