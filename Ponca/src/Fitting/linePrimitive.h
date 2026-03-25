@@ -10,6 +10,7 @@
 #pragma once
 
 #include "./defines.h"
+#include "./concepts.h"
 #include <Eigen/Geometry>
 #include <Eigen/Core>
 
@@ -31,6 +32,7 @@ namespace Ponca
     */
 
     template <class DataPoint, class _NFilter, typename T>
+        requires ProvidesPrimitiveBase<T>
     class Line : public T, public Eigen::ParametrizedLine<typename DataPoint::Scalar, DataPoint::Dim>
     {
         PONCA_FITTING_DECLARE_DEFAULT_TYPES
@@ -42,8 +44,7 @@ namespace Ponca
     protected:
         enum
         {
-            check = Base::PROVIDES_PRIMITIVE_BASE, /*!< \brief Requires PrimitiveBase */
-            PROVIDES_LINE                          /*!< \brief Provides  Line */
+            PROVIDES_LINE /*!< \brief Provides  Line */
         };
 
     public:
