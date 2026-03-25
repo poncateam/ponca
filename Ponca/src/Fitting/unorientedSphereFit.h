@@ -9,6 +9,7 @@
 #pragma once
 
 #include "./algebraicSphere.h"
+#include "./concepts.h"
 #include "./mean.h" // used to define UnorientedSphereFit
 
 #include <Eigen/Dense>
@@ -81,6 +82,7 @@ namespace Ponca
                                 MeanPosition<DataPoint, _NFilter, AlgebraicSphere<DataPoint, _NFilter, T>>>;
 
     template <class DataPoint, class _NFilter, int DiffType, typename T>
+        requires ProvidesPrimitiveDerivative<T>
     class UnorientedSphereDerImpl : public T
     {
     protected:
@@ -93,8 +95,7 @@ namespace Ponca
     protected:
         enum
         {
-            Check = Base::PROVIDES_ALGEBRAIC_SPHERE & Base::PROVIDES_MEAN_POSITION_DERIVATIVE &
-                    Base::PROVIDES_PRIMITIVE_DERIVATIVE,
+            Check = Base::PROVIDES_ALGEBRAIC_SPHERE & Base::PROVIDES_MEAN_POSITION_DERIVATIVE,
             PROVIDES_ALGEBRAIC_SPHERE_DERIVATIVE,
             PROVIDES_NORMAL_DERIVATIVE
         };

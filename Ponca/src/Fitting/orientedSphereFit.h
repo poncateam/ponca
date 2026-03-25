@@ -7,6 +7,7 @@ file, You can obtain one at http://mozilla.org/MPL/2.0/.
 #pragma once
 
 #include "./algebraicSphere.h"
+#include "./concepts.h"
 #include "./mean.h" // used to define OrientedSphereFit
 
 namespace Ponca
@@ -56,6 +57,7 @@ namespace Ponca
         \brief Internal generic class performing the Fit derivation
     */
     template <class DataPoint, class _NFilter, int DiffType, typename T>
+        requires ProvidesPrimitiveDerivative<T>
     class OrientedSphereDerImpl : public T
     {
         PONCA_FITTING_DECLARE_DEFAULT_TYPES
@@ -64,8 +66,7 @@ namespace Ponca
     protected:
         enum
         {
-            Check = Base::PROVIDES_ALGEBRAIC_SPHERE & Base::PROVIDES_MEAN_POSITION_DERIVATIVE &
-                    Base::PROVIDES_PRIMITIVE_DERIVATIVE,
+            Check = Base::PROVIDES_ALGEBRAIC_SPHERE & Base::PROVIDES_MEAN_POSITION_DERIVATIVE,
             PROVIDES_ALGEBRAIC_SPHERE_DERIVATIVE,
             PROVIDES_NORMAL_DERIVATIVE
         };

@@ -7,6 +7,7 @@
 #pragma once
 
 #include "./defines.h"
+#include "./concepts.h"
 #include "./curvature.h"
 
 namespace Ponca
@@ -118,6 +119,7 @@ namespace Ponca
         Method published in \cite Mellado:2012:GLS
     */
     template <class DataPoint, class _NFilter, int DiffType, typename T>
+        requires ProvidesPrimitiveDerivative<T>
     class GLSDer : public T
     {
         PONCA_FITTING_DECLARE_DEFAULT_TYPES
@@ -126,8 +128,7 @@ namespace Ponca
     protected:
         enum
         {
-            Check = Base::PROVIDES_GLS_PARAMETRIZATION & Base::PROVIDES_PRIMITIVE_DERIVATIVE &
-                    Base::PROVIDES_ALGEBRAIC_SPHERE_DERIVATIVE,
+            Check = Base::PROVIDES_GLS_PARAMETRIZATION & Base::PROVIDES_ALGEBRAIC_SPHERE_DERIVATIVE,
             PROVIDES_GLS_DERIVATIVE,
             PROVIDES_GLS_GEOM_VAR
         };

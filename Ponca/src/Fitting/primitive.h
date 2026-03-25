@@ -9,6 +9,7 @@
 #pragma once
 
 #include "defines.h"
+#include "concepts.h"
 #include "enums.h"
 #include <Eigen/Dense>
 
@@ -28,11 +29,6 @@ namespace Ponca
     class PrimitiveBase
     {
     protected:
-        enum
-        {
-            PROVIDES_PRIMITIVE_BASE, /*!< \brief Provides base API for primitives*/
-        };
-
     public:
         using Scalar         = typename DataPoint::Scalar;     /*!< \brief Inherited scalar type*/
         using VectorType     = typename DataPoint::VectorType; /*!< \brief Inherited vector type*/
@@ -143,17 +139,11 @@ namespace Ponca
         compute the Fit, and if it works properly, compute the weight derivatives.
      */
     template <class DataPoint, class _NFilter, int Type, typename T>
+        requires ProvidesPrimitiveBase<T>
     class PrimitiveDer : public T
     {
         PONCA_FITTING_DECLARE_DEFAULT_TYPES
         PONCA_FITTING_DECLARE_MATRIX_TYPE
-    protected:
-        enum
-        {
-            Check = Base::PROVIDES_PRIMITIVE_BASE, /*!< \brief Provides base API for primitives*/
-            PROVIDES_PRIMITIVE_DERIVATIVE
-        };
-
     protected:
         static constexpr int NbDerivatives =
             ((Type & FitScaleDer) ? 1 : 0) + ((Type & FitSpaceDer) ? DataPoint::Dim : 0);
