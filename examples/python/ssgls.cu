@@ -149,19 +149,19 @@ __global__ void doGLS_kernel(const int* _params, //[w, h, scale]
 
         Gls gls;
         gls.init();
-        gls.setNeighborFilter({getVector(x,y,width,height,_positions), refScreenPos, Scalar(scale)});
+        gls.setNeighborFilter({getVector(x, y, width, height, _positions), refScreenPos, Scalar(scale)});
 
-        if (getVector(x,y,width,height,_normals).squaredNorm() == 0.f )
+        if (getVector(x, y, width, height, _normals).squaredNorm() == 0.f )
         {
-            _result[getId(x,y,width,height,0,1)] = -1.0;
+            _result[getId(x, y, width, height, 0, 1)] = -1.0;
         }
         else
         {
             //_result[getId(x,y,width,height,0,1)] = getVector(x,y,width,height,_normals)(0);
-            VectorType p, n;
+            VectorType n;
 
             // collect neighborhood
-            const VectorType one = VectorType::Zero();
+            const VectorType one = VectorType::Ones();
 
             for(dy = -scale; dy != scale; dy++)
             {
@@ -169,7 +169,6 @@ __global__ void doGLS_kernel(const int* _params, //[w, h, scale]
                 {
                     nx = x+dx;
                     ny = y+dy;
-
 
                     // Check image boundaries
                     if (nx >= 0 && ny >= 0 && nx < width && ny < height)
@@ -182,7 +181,7 @@ __global__ void doGLS_kernel(const int* _params, //[w, h, scale]
                         {
 
                             // RGB to XYZ remapping
-                            n =  2.f * n - one;
+                            n =  Scalar(2.f) * n - one;
                             n.normalize();
 
                             // GLS computation
