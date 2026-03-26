@@ -5,6 +5,7 @@
 */
 
 template <class DataPoint, class _NFilter, typename T>
+    requires ProvidesAlgebraicSphere<T>
 inline FIT_RESULT GLSParam<DataPoint, _NFilter, T>::finalize()
 {
     FIT_RESULT bResult = Base::finalize();
@@ -18,6 +19,7 @@ inline FIT_RESULT GLSParam<DataPoint, _NFilter, T>::finalize()
 }
 
 template <class DataPoint, class _NFilter, int DiffType, typename T>
+    requires ProvidesPrimitiveDerivative<T> && ProvidesAlgebraicSphereDerivative<T>
 typename GLSDer<DataPoint, _NFilter, DiffType, T>::ScalarArray GLSDer<DataPoint, _NFilter, DiffType, T>::dtau() const
 {
     PONCA_MULTIARCH_STD_MATH(sqrt);
@@ -35,12 +37,14 @@ typename GLSDer<DataPoint, _NFilter, DiffType, T>::ScalarArray GLSDer<DataPoint,
 }
 
 template <class DataPoint, class _NFilter, int DiffType, typename T>
+    requires ProvidesPrimitiveDerivative<T> && ProvidesAlgebraicSphereDerivative<T>
 typename GLSDer<DataPoint, _NFilter, DiffType, T>::VectorArray GLSDer<DataPoint, _NFilter, DiffType, T>::deta() const
 {
     return Base::dNormal();
 }
 
 template <class DataPoint, class _NFilter, int DiffType, typename T>
+    requires ProvidesPrimitiveDerivative<T> && ProvidesAlgebraicSphereDerivative<T>
 typename GLSDer<DataPoint, _NFilter, DiffType, T>::ScalarArray GLSDer<DataPoint, _NFilter, DiffType, T>::dkappa() const
 {
     PONCA_MULTIARCH_STD_MATH(sqrt);
@@ -53,6 +57,7 @@ typename GLSDer<DataPoint, _NFilter, DiffType, T>::ScalarArray GLSDer<DataPoint,
 }
 
 template <class DataPoint, class _NFilter, int DiffType, typename T>
+    requires ProvidesPrimitiveDerivative<T> && ProvidesAlgebraicSphereDerivative<T>
 typename GLSDer<DataPoint, _NFilter, DiffType, T>::ScalarArray GLSDer<DataPoint, _NFilter, DiffType,
                                                                       T>::dtau_normalized() const
 {
@@ -60,6 +65,7 @@ typename GLSDer<DataPoint, _NFilter, DiffType, T>::ScalarArray GLSDer<DataPoint,
 }
 
 template <class DataPoint, class _NFilter, int DiffType, typename T>
+    requires ProvidesPrimitiveDerivative<T> && ProvidesAlgebraicSphereDerivative<T>
 typename GLSDer<DataPoint, _NFilter, DiffType, T>::VectorArray GLSDer<DataPoint, _NFilter, DiffType,
                                                                       T>::deta_normalized() const
 {
@@ -67,6 +73,7 @@ typename GLSDer<DataPoint, _NFilter, DiffType, T>::VectorArray GLSDer<DataPoint,
 }
 
 template <class DataPoint, class _NFilter, int DiffType, typename T>
+    requires ProvidesPrimitiveDerivative<T> && ProvidesAlgebraicSphereDerivative<T>
 typename GLSDer<DataPoint, _NFilter, DiffType, T>::ScalarArray GLSDer<DataPoint, _NFilter, DiffType,
                                                                       T>::dkappa_normalized() const
 {
@@ -74,6 +81,7 @@ typename GLSDer<DataPoint, _NFilter, DiffType, T>::ScalarArray GLSDer<DataPoint,
 }
 
 template <class DataPoint, class _NFilter, int DiffType, typename T>
+    requires ProvidesPrimitiveDerivative<T> && ProvidesAlgebraicSphereDerivative<T>
 typename GLSDer<DataPoint, _NFilter, DiffType, T>::Scalar GLSDer<DataPoint, _NFilter, DiffType, T>::geomVar(
     Scalar wtau, Scalar weta, Scalar wkappa) const
 {

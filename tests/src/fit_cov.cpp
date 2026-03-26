@@ -28,6 +28,7 @@ using namespace Ponca;
 
 /// Class that perform the covariance fit using standard two-passes procedure
 template <class DataPoint, class _NFilter, typename T>
+    requires ProvidesMeanPosition<T>
 class CovarianceFitTwoPassesBase : public T
 {
     PONCA_FITTING_DECLARE_DEFAULT_TYPES
@@ -35,7 +36,6 @@ class CovarianceFitTwoPassesBase : public T
 protected:
     enum
     {
-        Check = Base::PROVIDES_MEAN_POSITION,
         PROVIDES_POSITION_COVARIANCE
     };
 
@@ -61,6 +61,7 @@ public:
 };
 
 template <class DataPoint, class _NFilter, typename T>
+    requires ProvidesMeanPosition<T>
 void CovarianceFitTwoPassesBase<DataPoint, _NFilter, T>::init()
 {
     Base::init();
@@ -71,6 +72,7 @@ void CovarianceFitTwoPassesBase<DataPoint, _NFilter, T>::init()
 }
 
 template <class DataPoint, class _NFilter, typename T>
+    requires ProvidesMeanPosition<T>
 void CovarianceFitTwoPassesBase<DataPoint, _NFilter, T>::addLocalNeighbor(Scalar w, const VectorType& localQ,
                                                                           const DataPoint& attributes)
 {
@@ -87,6 +89,7 @@ void CovarianceFitTwoPassesBase<DataPoint, _NFilter, T>::addLocalNeighbor(Scalar
 }
 
 template <class DataPoint, class _NFilter, typename T>
+    requires ProvidesMeanPosition<T>
 FIT_RESULT CovarianceFitTwoPassesBase<DataPoint, _NFilter, T>::finalize()
 {
     if (!m_barycenterReady)

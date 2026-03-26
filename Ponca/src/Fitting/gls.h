@@ -119,8 +119,7 @@ namespace Ponca
         Method published in \cite Mellado:2012:GLS
     */
     template <class DataPoint, class _NFilter, int DiffType, typename T>
-        requires ProvidesPrimitiveDerivative<T> && 
-                 ProvidesAlgebraicSphereDerivative<T>
+        requires ProvidesPrimitiveDerivative<T> && ProvidesAlgebraicSphereDerivative<T>
     class GLSDer : public T
     {
         PONCA_FITTING_DECLARE_DEFAULT_TYPES

@@ -54,7 +54,7 @@ namespace Ponca
     protected:
         using VectorB  = Eigen::Matrix<Scalar, DataPoint::Dim + 1, 1>;
         using MatrixBB = Eigen::Matrix<Scalar, DataPoint::Dim + 1, DataPoint::Dim + 1>;
-        
+
     public:
         using Solver = Eigen::EigenSolver<MatrixBB>;
 
@@ -78,9 +78,7 @@ namespace Ponca
                                 MeanPosition<DataPoint, _NFilter, AlgebraicSphere<DataPoint, _NFilter, T>>>;
 
     template <class DataPoint, class _NFilter, int DiffType, typename T>
-        requires ProvidesPrimitiveDerivative<T> &&
-                 ProvidesAlgebraicSphere<T> && 
-                 ProvidesMeanPositionDerivative<T>
+        requires ProvidesPrimitiveDerivative<T> && ProvidesAlgebraicSphere<T> && ProvidesMeanPositionDerivative<T>
     class UnorientedSphereDerImpl : public T
     {
     protected:
