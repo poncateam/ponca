@@ -8,8 +8,6 @@
 
 #pragma once
 
-#include <Ponca/precompiled/Common/commonPCH.h>
-#include <Ponca/precompiled/Fitting/fittingPCH.h>
 #include <iostream>
 #include <vector>
 #include <cerrno>
