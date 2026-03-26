@@ -78,9 +78,7 @@ namespace Ponca
                                 MeanPosition<DataPoint, _NFilter, AlgebraicSphere<DataPoint, _NFilter, T>>>;
 
     template <class DataPoint, class _NFilter, int DiffType, typename T>
-        requires ProvidesPrimitiveDerivative<T> &&
-                 ProvidesAlgebraicSphere<T> &&
-                 ProvidesMeanPositionDerivative<T>
+        requires ProvidesPrimitiveDerivative<T> && ProvidesAlgebraicSphere<T> && ProvidesMeanPositionDerivative<T>
     class UnorientedSphereDerImpl : public T
     {
     protected:
